@@ -112,86 +112,74 @@ one. Think answers: A = get a grown-up first, N = act now, then tell.
 **Kitchen** (look-alike: a pot on the back burner, handle turned toward the back. "Looks fine: the handle points to
 the back, so no one can bump it.")
 1. Cleaners. Situation: "Your cousin set bleach and a glass cleaner with ammonia next to an empty bucket. 'Let's mix
-   them to make super cleaner!'" Think N. Options: (a) "Mix a little to test it": a gas forms that hurts your eyes,
-   nose and lungs; people cough and struggle to breathe. (b) S "Say no. Keep them closed and apart, then tell a
-   grown-up": no gas forms; the cleaners get used one at a time, as the label says. (c) "Mix them outside where
-   there is air": the gas still forms and you still breathe it. Fix: drag the bucket away from the bottles, then tap
+   them to make super cleaner!'" Think N. Options: (a) "Mix a little; tell Dad.": a gas forms that hurts your eyes,
+   nose and lungs; people cough and struggle to breathe. (b) S "Say no. Keep both closed and apart.": no gas forms; the cleaners get used one at a time, as the label says. (c) "Ask Dad later. Mix outdoors.": the gas still forms and you still breathe it. Fix: drag the bucket away from the bottles, then tap
    "Tell Dad". Habit: "Never mix cleaners. One at a time." Safer: Everyone.
 2. Towel. Situation: "Dad stepped out to answer the door. A dish towel hangs right next to a lit burner." Think A.
-   Options: (a) S "Get Dad back to the stove right away": Dad moves the towel and stays with the cooking. (b) "Wait.
-   It hasn't caught fire yet": a towel by a flame can catch fire fast, and the fire can spread to the cabinets.
-   (c) "Turn the burner up so the food is done sooner": a bigger flame, still next to the towel. Fix: tap "Tell Dad";
-   Dad moves the towel; then drag the towel onto its hook across the kitchen (now cool and away). Habit: "Things that
+   Options: (a) S "Call Dad back now. Step away.": Dad moves the towel and stays with the cooking. (b) "Wait for Dad.": a towel by a flame can catch fire fast, and the fire can spread to the cabinets.
+   (c) "Turn up the burner so Dad can finish cooking sooner": a bigger flame, still next to the towel. Fix: tap "Tell Dad"; stand back and tap "Watch Dad move the towel". Habit: "Things that
    burn stay away from the stove, and someone stays with the cooking." Safer: Everyone.
 
 **Living room** (look-alike: a battery candle glowing on the shelf. "Looks fine: a battery candle has no flame.")
 3. Candle. Situation: "A lit candle sits on the windowsill. The curtain is moving in the breeze, and no one is in the
-   room." Think A. Options: (a) "Push the curtain behind the candle": the curtain can blow back into the flame.
-   (b) "Leave it. Someone lit it on purpose": a candle left alone near cloth can start a fire. (c) S "Get a grown-up
-   to blow it out": the flame is out and no one has to watch it. Fix: tap "Tell Grandma June"; then press and hold the
+   room." Think A. Options: (a) "Push the curtain back and tell Grandma after your game": the curtain can blow back into the flame.
+   (b) "Leave it for a grown-up to notice when they come back into the room": a candle left alone near cloth can start a fire. (c) S "Ask Grandma to blow it out now": the flame is out and no one has to watch it. Fix: tap "Tell Grandma June"; then press and hold the
    candle for 1 s to watch her blow it out (a smoke curl, still frame with Motion off). Habit: "Candles stay a foot
    away from anything that can burn, and go out when you leave the room." Safer: Everyone.
 4. Pills. Situation: "Grandma June's pill box is open on the low coffee table. Theo is building blocks right beside
-   it." Think A. Options: (a) S "Tell Grandma June now, and keep Theo busy with his blocks": she puts it up high, out
-   of sight. (b) "Leave it. Theo can't open pills": this box is open, and even safety caps are not childproof.
-   (c) "Hide it under the couch cushion": Theo can still find it; medicine belongs up high and out of sight. Fix: tap
+   it." Think A. Options: (a) S "Tell Grandma now. Keep Theo with his blocks.": she puts it up high, out
+   of sight. (b) "Leave it. Tell Grandma later.": this box is open, and even safety caps are not childproof.
+   (c) "Hide it under a cushion.": Theo can still find it; medicine belongs up high and out of sight. Fix: tap
    "Tell Grandma June", then drag the block bin toward Theo so he plays away from the table. Habit: "Medicine lives up
    high, out of sight." Safer: Theo.
 
 **Hallway** (look-alike: the family's fire escape map on the wall. "Looks fine: it shows two ways out of every room
 and the meeting spot outside.")
 5. Smoke alarm. Situation: "The smoke alarm is on the floor with its battery out. The battery is in a toy car."
-   Think A. Options: (a) "Keep the battery in the toy. The alarm only chirps anyway": with no battery the alarm
-   cannot warn anyone about smoke. (b) S "Tell a grown-up so they put in a fresh battery and test it": the alarm is
-   back on the ceiling and works. (c) "Climb on a chair and stick it back up yourself": you could fall, and no one
+   Think A. Options: (a) "Keep the battery. Tell Dad later.": with no battery the alarm
+   cannot warn anyone about smoke. (b) S "Ask Dad to replace the battery and test the alarm.": the alarm is
+   back on the ceiling and works. (c) "Climb up yourself, then ask a grown-up if it looks okay": you could fall, and no one
    checks that it works. Fix: tap "Tell Dad"; Dad puts it back (fixed art); then press and hold the alarm's Test
    button for 2 s: a short beep plays (Sound on) and the alarm's light flashes. Habit: "A grown-up tests smoke alarms
    every month with the test button." Safer: Everyone.
 6. Heater. Situation: "A space heater is running. A blanket is draped over a chair about one foot away." Think N.
-   Options: (a) "Drape the blanket over the heater to warm it up": the blanket can catch fire. (b) "Turn the heater
-   up": more heat, still close to the blanket. (c) S "Pull the blanket away, at least 3 feet, then tell a grown-up":
+   Options: (a) "Drape the blanket over the heater and show Dad how warm it gets": the blanket can catch fire. (b) "Turn the heater up, then tell a grown-up the hallway is warm": more heat, still close to the blanket. (c) S "Pull the cool blanket 3 feet away.":
    nothing that burns is near the heater. Fix: drag the blanket at least 3 feet away (a code ruler shows feet from
    the heater; the drop counts only at 3 feet or more), then tap "Tell Dad". Habit: "Keep a 3-foot space around
    heaters." Safer: Everyone.
 
 **Bathroom** (look-alike: the medicine cabinet, closed and up high. "Looks fine: up high and closed.")
 7. Gummies. Situation: "A bottle of gummy vitamins is open on the counter. They look just like candy." Think A.
-   Options: (a) "Eat a couple. They're vitamins": vitamins are medicine; only take them when a grown-up gives them.
-   (b) "Leave them. They're only vitamins": too many can make a child very sick, and Theo could find them.
-   (c) S "Tell a grown-up so they go up high, out of sight": the bottle is closed and put away. Fix: tap "Tell Dad";
-   then drag the closed bottle up to the high cabinet. Habit: "Vitamins are medicine too. Up high, out of sight."
+   Options: (a) "Try two; ask Dad.": vitamins are medicine; only take them when a grown-up gives them.
+   (b) "Leave it for Dad.": too many can make a child very sick, and Theo could find them.
+   (c) S "Tell Dad. Keep Theo away.": the bottle is closed and put away. Fix: tap "Tell Dad";
+   stay away from the counter and tap "Watch Dad put the bottle away". Habit: "Vitamins are medicine too. Up high, out of sight."
    Safer: Theo.
 8. Tub. Situation: "The tub is still full after Theo's bath, and Theo is heading back toward it." Think N. Options:
-   (a) "Go get a towel and come right back": a young child can slip under in a few seconds, without a sound.
-   (b) S "Stay with Theo, pull the plug, and call a grown-up": the water drains and Theo is never alone near it.
-   (c) "Leave it. The water isn't deep": a young child can drown in only a few inches of water. Fix: drag the plug
+   (a) "Fetch a towel.": a young child can slip under in a few seconds, without a sound.
+   (b) S "Stay with Theo. Pull the plug. Call out for help.": the water drains and Theo is never alone near it.
+   (c) "Call Dad from the hall and leave Theo waiting by the water until you get back.": a young child can drown in only a few inches of water. Fix: drag the plug
    chain up (the water level drops in code over 1.5 s), then tap "Tell Dad". Habit: "Empty the tub right after a
    bath, and stay with little kids near water." Safer: Theo.
 
 **Game room** (look-alike: a chat message from Maya, a friend from your class: "gg! that was fun". "Looks fine: you
 know Maya in real life, and she isn't asking for anything.")
 9. Chat. Situation: a chat message (code, over a blank painted screen) from "CoinKing_77": "what school do you go to?
-   I'll send you free coins". Think N. Options: (a) S "Don't answer. Block and report them, then tell a grown-up":
-   they can't message you again, and a grown-up knows. (b) "Tell them your school. It's just coins": a stranger now
-   knows where to find you every day. (c) "Ask for the coins first, then decide": you keep talking with someone you
+   I'll send you free coins". Think N. Options: (a) S "Do not reply. Block and report.":
+   they can't message you again, and a grown-up knows. (b) "Give your school name, then ask Dad if you can keep the coins": a stranger now
+   knows where to find you every day. (c) "Ask for the coins first. Show a grown-up the messages after you get them.": you keep talking with someone you
    don't know, who wants your details. Fix: tap the chat's "Block" button, then "Report", then "Tell Dad". Habit:
    "Never share your school, address or phone online. Block, report, tell." Safer: You.
 10. Pop-up. Situation: a pop-up (code): "YOU WON 10,000 COINS! Type your password to claim." Think N. Options:
-   (a) "Type your password. It's a prize": someone else can now get into your account. (b) "Tap the prize to see if
-   it's real": tapping can open a trick page that asks for more. (c) S "Close it without typing anything, then tell a
-   grown-up": your password stays yours. Fix: tap the pop-up's close button (an X in a 44 px circle), then "Tell Dad".
+   (a) "Type it; ask Dad.": someone else can now get into your account. (b) "Tap it. Show Dad.": tapping can open a trick page that asks for more. (c) S "Close it. Type nothing.": your password stays yours. Fix: tap the pop-up's close button (an X in a 44 px circle), then "Tell Dad".
    Habit: "A message that asks for your password is a trick. Close it and tell." Safer: You.
 
 **Backyard** (look-alike: a life jacket on a hook by the pool. "Looks fine: ready for anyone who needs it.")
 11. Gate. Situation: "The pool gate is propped open with a flowerpot. Theo's ball is by the pool." Think N. Options:
-   (a) "Leave it open so everyone can get through": Theo can walk straight to the water. (b) S "Move the pot so the
-   gate swings shut and latches, then tell a grown-up": the gate is closed and latched. (c) "Run in and get the ball
-   by yourself": now you are at the pool with no grown-up watching. Fix: drag the flowerpot off the gate; the gate
+   (a) "Leave it for Dad.": Theo can walk straight to the water. (b) S "Move the pot. Let the gate latch.": the gate is closed and latched. (c) "Run in for the ball, then tell a grown-up the gate was open": now you are at the pool with no grown-up watching. Fix: drag the flowerpot off the gate; the gate
    swings shut and a latch click sounds (Sound on); then tap "Tell Dad". Habit: "Pool gates close and latch by
    themselves. Never prop them open." Safer: Theo.
-12. Lighter. Situation: "A lighter is on the patio table next to the grill." Think A. Options: (a) S "Don't touch it.
-   Tell a grown-up so they put it away": the lighter goes up high, where kids can't reach. (b) "Click it once to see
-   if it works": a flame near the table and grill can start a fire. (c) "Put it in your pocket to hand in later": you
+12. Lighter. Situation: "A lighter is on the patio table next to the grill." Think A. Options: (a) S "Leave it alone. Tell Dad now.": the lighter goes up high, where kids can't reach. (b) "Click it once and ask Dad if the flame is big enough for the grill": a flame near the table and grill can start a fire. (c) "Carry it in your pocket until a grown-up has time to put it away": you
    are carrying a fire tool around. Fix: tap "Tell Dad"; Dad's chip appears; tap the lighter to watch it go to the
    high shelf. Habit: "Matches and lighters are grown-up tools. Don't touch, tell." Safer: Everyone.
 
@@ -343,3 +331,20 @@ school, type the password) all fail.
 ## Open questions
 - People art review: Theo, Grandma June and Dad (Gemini) go to Cory's contact sheet and the fresh representation
   check (BASELINE rule 11). No cultural or hard-history content.
+
+## Curiosity repair authority (2026-11-06)
+The user’s Curiosity brief supersedes the lesson-shaped Screens, Interactions, Voice and Done when above. No kit header, welcome, step quiz, score, goal or automatic Safety card. Rooms, comparisons, safe-action demonstrations and reference habits stay openly accessible. No Curiosity number is assigned in this spec or docs/CURIOSITIES.md; do not invent one.
+
+### Revised Content option text and Fix lines
+- 1. Cleaners. Think N. (a) Mix a little; tell Dad. (b) S Say no. Keep both closed and apart. (c) Ask Dad later. Mix outdoors. Fix: Drag the bucket away from the bottles, then tap Tell Dad. Safer: Everyone.
+- 2. Towel. Think A. (a) S Call Dad back now. Step away. (b) Wait for Dad. (c) Turn up the burner so Dad can finish cooking sooner Fix: Tap Tell Dad. Then tap Watch Dad move the towel. Stand back from the stove. Safer: Everyone.
+- 3. Candle. Think A. (a) Push the curtain back and tell Grandma after your game (b) Leave it for a grown-up to notice when they come back into the room (c) S Ask Grandma to blow it out now Fix: Tap Tell Grandma June, then hold the candle for 1 second to watch her blow it out. Safer: Everyone.
+- 4. Pills. Think A. (a) S Tell Grandma now. Keep Theo with his blocks. (b) Leave it. Tell Grandma later. (c) Hide it under a cushion. Fix: Tap Tell Grandma June, then drag the block bin toward Theo, away from the table. Safer: Theo.
+- 5. Smoke alarm. Think A. (a) Keep the battery. Tell Dad later. (b) S Ask Dad to replace the battery and test the alarm. (c) Climb up yourself, then ask a grown-up if it looks okay Fix: Tap Tell Dad. Help Dad test it: hold the alarm’s Test button for 2 seconds. Safer: Everyone.
+- 6. Heater. Think N. (a) Drape the blanket over the heater and show Dad how warm it gets (b) Turn the heater up, then tell a grown-up the hallway is warm (c) S Pull the cool blanket 3 feet away. Fix: Drag the cool blanket to 3 feet or more. Leave the heater untouched. Then tap Tell Dad. Safer: Everyone.
+- 7. Gummies. Think A. (a) Try two; ask Dad. (b) Leave it for Dad. (c) S Tell Dad. Keep Theo away. Fix: Tap Tell Dad. Stay away from the counter. Tap Watch Dad put the bottle away. Safer: Theo.
+- 8. Tub. Think N. (a) Fetch a towel. (b) S Stay with Theo. Pull the plug. Call out for help. (c) Call Dad from the hall and leave Theo waiting by the water until you get back. Fix: Stay with Theo. Drag the plug chain up to drain the tub, then tap Tell Dad. Safer: Theo.
+- 9. Chat. Think N. (a) S Do not reply. Block and report. (b) Give your school name, then ask Dad if you can keep the coins (c) Ask for the coins first. Show a grown-up the messages after you get them. Fix: Tap Block in the chat, then Report, then Tell Dad. Safer: You.
+- 10. Pop-up. Think N. (a) Type it; ask Dad. (b) Tap it. Show Dad. (c) S Close it. Type nothing. Fix: Tap the pop-up’s X close button, then tap Tell Dad. Safer: You.
+- 11. Gate. Think N. (a) Leave it for Dad. (b) S Move the pot. Let the gate latch. (c) Run in for the ball, then tell a grown-up the gate was open Fix: Drag the flowerpot off the gate onto the patio, then tap Tell Dad. Safer: Theo.
+- 12. Lighter. Think A. (a) S Leave it alone. Tell Dad now. (b) Click it once and ask Dad if the flame is big enough for the grill (c) Carry it in your pocket until a grown-up has time to put it away Fix: Tap Tell Dad. Then tap the lighter to watch Dad put it on the high shelf. Safer: Everyone.

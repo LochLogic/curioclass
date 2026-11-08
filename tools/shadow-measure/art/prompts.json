@@ -1,6 +1,6 @@
 {
-  "house_style": "Flat painted illustration for a high school geometry lab: clean simple shapes, soft pastel daylight colors, a pale blue sky, calm, deserted, every surface blank. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
-  "style": "The far backdrop above the horizon line; objects that cast shadows are drawn by the tool.",
+  "house_style": "Sophisticated flat gouache illustration for a Grade 10 field geometry lab. Straight side elevation, clean confident silhouettes, softly shaded materials, subtle paper grain, restrained rich color. Light from upper left. Every surface is blank. No text, letters, numbers, logos, watermarks, frames or people.",
+  "style": "Painted schoolyard and cutouts; every physical shadow, ray, tape and numerical label is drawn by code.",
   "assets": [
     {
       "name": "sm-schoolyard",
@@ -8,9 +8,192 @@
       "aspect": "16:9",
       "cutout": false,
       "width": 1600,
-      "quality": 70,
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "quality": 72,
+      "source": "gpt-image (Codex)",
+      "review": "Final WebP inspected on dark field; scene placement checked in completed frames; see report for browser limits",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "sm-night",
+      "prompt": "A quiet empty schoolyard in a straight side view at night. Deep navy sky with a few stars, a low brick school building far in the background, dark blue green grass in front. The open sky fills the upper two thirds. A tranquil painted place with room for a precise light experiment.",
+      "aspect": "16:9",
+      "width": 1600,
+      "cutout": false,
+      "quality": 78,
+      "key": "green",
+      "people": false,
+      "review": "Final WebP inspected on dark field; scene placement checked in completed frames; see report for browser limits",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)"
+    },
+    {
+      "name": "sm-flagpole",
+      "prompt": "One tall slender white metal flagpole with a small gold ball on its top and a plain red flag extending to the right near the top. The entire upright pole including its small base is visible. Ball is the highest point. Realistic proportions and subtle metal highlights.",
+      "aspect": "9:16",
+      "width": 320,
+      "cutout": true,
+      "quality": 78,
+      "key": "green",
+      "people": false,
+      "review": "Cold review: rekeyed from raw with edge despill; inspected at final scene scale.",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)",
+      "landmark": {
+        "base_x": 0.1,
+        "measured_y": 0,
+        "point": "top of gold ball"
+      },
+      "despill": true
+    },
+    {
+      "name": "sm-tree",
+      "prompt": "One tall leafy oak tree with a broad rounded crown, branching trunk, small clusters of leaves and textured bark. Entire tree from crown to roots visible, perfectly straight side view.",
+      "aspect": "9:16",
+      "width": 750,
+      "cutout": true,
+      "quality": 78,
+      "key": "magenta",
+      "people": false,
+      "review": "Final WebP inspected on dark field; scene placement checked in completed frames; see report for browser limits",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)",
+      "landmark": {
+        "base_x": 0.5,
+        "measured_y": 0,
+        "point": "highest crown leaf"
+      },
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "sm-hoop",
+      "prompt": "One complete outdoor basketball hoop, entire blank backboard and bolted base fully in frame. Orange horizontal rim and white net. Single shaded dark steel support. Straight side elevation, softly shaded gouache, subtle paper grain, light from upper left. Flat pure green key. No text or people.",
+      "aspect": "9:16",
+      "width": 400,
+      "cutout": true,
+      "quality": 78,
+      "key": "green",
+      "people": false,
+      "review": "Cold review redraw: complete backboard, rim and base; built-in imagegen. Exact generation request retained in Scratch review working notes.",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)",
+      "landmark": {
+        "base_x": 0.823,
+        "measured_y": 0.2685,
+        "point": "upper edge at orange rim center; base is vertical projection beneath rim, cold-review redraw"
+      },
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "sm-sign",
+      "prompt": "One blank white rectangular schoolyard sign on two short upright metal posts. Entire sign including both post bases, blank shaded enamel and small corner fasteners.",
+      "aspect": "9:16",
+      "width": 1100,
+      "cutout": true,
+      "quality": 78,
+      "key": "green",
+      "people": false,
+      "review": "Cold review: rekeyed from raw with edge despill; inspected at final scene scale.",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)",
+      "landmark": {
+        "base_x": 0.5,
+        "measured_y": 0,
+        "point": "top edge of sign"
+      },
+      "despill": true
+    },
+    {
+      "name": "sm-gym-wall",
+      "prompt": "The plain end wall of a tan brick school gym, perfectly flat horizontal top edge, straight side elevation. Entire rectangular wall including its ground edge. Subtle individual brick courses and mortar, small coping highlight. The whole wall is blank.",
+      "aspect": "4:3",
+      "width": 1600,
+      "cutout": true,
+      "quality": 78,
+      "key": "green",
+      "people": false,
+      "review": "Cold review: rekeyed from raw with edge despill; inspected at final scene scale.",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)",
+      "landmark": {
+        "base_x": 0.99,
+        "measured_y": 0,
+        "point": "right edge of flat coping"
+      },
+      "despill": true
+    },
+    {
+      "name": "sm-streetlight",
+      "prompt": "One old fashioned black iron streetlight with one small lantern directly on top of a straight vertical post, warm pale glass, slim decorative collar and bolted base. Entire object visible in straight side elevation. Lantern top is the highest point.",
+      "aspect": "9:16",
+      "width": 290,
+      "cutout": true,
+      "quality": 78,
+      "key": "green",
+      "people": false,
+      "review": "Cold review: rekeyed from raw with edge despill; inspected at final scene scale.",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)",
+      "landmark": {
+        "base_x": 0.5,
+        "measured_y": 0,
+        "point": "highest point of lantern assembly"
+      },
+      "despill": true
+    },
+    {
+      "name": "sm-tripod",
+      "prompt": "One surveyor sighting scope on a wooden three legged tripod, strict straight side view. Small horizontal teal optical telescope with an eyepiece, brass fittings, warm wood legs with metal feet, entire instrument fully visible. The optical axis is just below the highest point.",
+      "aspect": "9:16",
+      "width": 340,
+      "cutout": true,
+      "quality": 78,
+      "key": "green",
+      "people": false,
+      "review": "Final WebP inspected on dark field; scene placement checked in completed frames; see report for browser limits",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)",
+      "landmark": {
+        "base_x": 0.96,
+        "measured_y": 0.05,
+        "point": "eyepiece optical axis, above its vertical ground projection"
+      },
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "sm-stick",
+      "prompt": "One plain yellow wooden meter stick standing vertically upright, slim and straight, blank face, small regular dark measurement ticks but no numbers. Entire stick and flat ends visible, subtle wood grain and a shaded side edge.",
+      "aspect": "9:16",
+      "width": 100,
+      "cutout": true,
+      "quality": 78,
+      "key": "green",
+      "people": false,
+      "review": "Cold review: rekeyed from raw with edge despill; inspected at final scene scale.",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)",
+      "landmark": {
+        "base_x": 0.5,
+        "measured_y": 0,
+        "point": "top flat edge"
+      },
+      "despill": true
+    },
+    {
+      "name": "sm-mirror",
+      "prompt": "One small square hand mirror lying perfectly flat on level ground, strict low side view. A thin bright silver sliver in a dark charcoal frame, slight blue glass reflection. Entire mirror visible.",
+      "aspect": "4:1",
+      "width": 250,
+      "cutout": true,
+      "quality": 78,
+      "key": "green",
+      "people": false,
+      "review": "Final WebP inspected on dark field; scene placement checked in completed frames; see report for browser limits",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex)"
     }
   ]
 }

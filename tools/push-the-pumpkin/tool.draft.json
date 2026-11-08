@@ -1,0 +1,23 @@
+{
+  "id": "push-the-pumpkin",
+  "stage": "built",
+  "status": "beta",
+  "hook": "A little push, a stop flag, and a barn full of discoveries.",
+  "outcome": "Compare pushes and pulls, plan a fair test, and judge a ball-moving design.",
+  "driver": "teacher",
+  "minutes": "25-35",
+  "modes": [
+    "Push",
+    "Find out",
+    "Barn"
+  ],
+  "grades_label": "Kindergarten",
+  "sources": [
+    "NGSS K-PS2-1 and K-PS2-2, Motion and Stability",
+    "NASA Glenn Research Center, Newton's Laws of Motion",
+    "OpenStax College Physics, Impulse",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

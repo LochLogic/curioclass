@@ -1,0 +1,969 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Input or Output? · In, think, out · Curio Class</title>
+<meta name="description" content="Explore everyday gadgets, cover a part, and predict what happens. Grade 2 computer science. Works offline.">
+<!--
+Input or Output? (Curio Class). Teacher led, Grade 2. E2-SYS-HW-11, 1A-CS-02, 1A-CS-03.
+Sources: Code.org CS Fundamentals glossary, BBC Bitesize Computing, US FDA Microwave Oven Radiation.
+Twinkle, Twinkle, Little Star: public-domain melody. Everything is pretend. No camera or microphone access.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0; code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f3f9fb; --ink:#132a31; --muted:#4c636b; --line:#d3e5ea; --focus:#c2410c;
+  --brand:#0e6f86; --btn:#07586d; --btn-line:#80bbc8; --head-ink:#fff; --panel:#f3f9fb;
+  --input:#1f5fbf; --output:#b8500b; --gold:#ffd23f;
+}
+body {height:100dvh; min-height:0; overflow:hidden;}
+header {padding:10px 18px; gap:10px; flex-wrap:nowrap; z-index:4; box-shadow:0 3px 12px #17394130;}
+h1 {font-size:clamp(20px,2.3vw,32px); white-space:nowrap;}
+h1 small {color:white; opacity:1;}
+button {touch-action:manipulation;}
+button:active {filter:brightness(.95);}
+:focus-visible {outline:4px solid var(--focus); outline-offset:2px; box-shadow:0 0 0 3px white;}
+.seg {flex:none; border-radius:20px;}
+.seg button {min-height:60px; font-size:17px; padding:0 16px;}
+.icon-btn {min-height:60px; padding:0 12px;}
+main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage panel"; min-height:0;}
+.panel {grid-area:panel; border-left:3px solid #aacdd5; padding:14px; gap:12px; overflow:hidden;
+  background:linear-gradient(115deg,#fff,#e4f0f3); box-shadow:inset 5px 0 12px #5d797310;}
+#hint {margin:0; min-height:88px; font-size:18px; line-height:1.35; font-weight:600;}
+.picker {display:grid; grid-template-columns:repeat(4,1fr); gap:5px;}
+.gadget {position:relative; min-width:0; height:84px; border:2px solid #abc7cf; border-bottom:5px solid #8faab2;
+  background:#fff; border-radius:15px; padding:4px; display:grid; place-items:center;}
+.gadget img {width:100%; height:55px; object-fit:contain; filter:drop-shadow(0 3px 2px #132a3120);}
+.gadget[aria-pressed="true"] {background:#e0f3fa; border-color:var(--brand);}
+.check {display:none; position:absolute; right:0; top:0; color:white; background:#24693f;
+  border:2px solid white; border-radius:50%; width:24px; height:24px; font-weight:bold;}
+.gadget.found .check {display:block;}
+#go {width:100%; min-height:72px; font-size:24px; border:2px solid #d6a322; border-bottom:6px solid #bf8c12;
+  box-shadow:0 6px 12px #66511720;}
+.cover-controls {display:grid; gap:10px;}
+.note-row,.predict {display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+.action,.guess {min-height:68px; border:2px solid #a9c7d0; border-bottom:5px solid #a9c7d0; border-radius:14px;
+  background:#fff; padding:4px; font-weight:800; font-size:17px; line-height:1.15;}
+.action.guide {box-shadow:0 0 0 4px var(--focus); background:#ffe066;}
+.action[aria-pressed="true"] {background:#ffe066; border-color:#866b19;}
+.guess {min-height:88px; font-size:16px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;}
+.guess .symbol {font-size:27px;}
+.guess[aria-pressed="true"] {border-color:var(--brand); background:#d9f1f5;}
+.definition {margin:auto 0 0; font-size:16px; line-height:1.35; padding:12px; border:2px solid #bed7df;
+  border-radius:14px; background:#ffffffbd;}
+.definition b {display:block; color:var(--input);}
+.definition .out {margin-top:8px; color:var(--output);}
+.pretend {font-size:13px; color:var(--muted); margin:0;}
+.stage {grid-area:stage; min-height:0; background:#dfebec url('art:kitchen-counter') center/cover;
+  display:grid; grid-template-columns:minmax(0,1fr) 220px; padding:14px; gap:12px; isolation:isolate;}
+.lab {position:relative; min-width:0; min-height:0; border-radius:28px;}
+.scene-title {position:absolute; z-index:2; top:0; left:50%; transform:translateX(-50%); margin:0;
+  padding:6px 20px; color:#31575d; background:#ffffffe8; border:2px solid #b7d0d4;
+  box-shadow:0 3px 8px #42606c1a; border-radius:20px; font-size:20px; white-space:nowrap;}
+.art-space {position:absolute; inset:11% 12% 12%; display:grid; place-items:center; z-index:0;}
+.device {position:absolute; width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 15px 8px #2b302b25);}
+.display {position:absolute; overflow:hidden; border-radius:8px; display:grid; place-items:center; pointer-events:none;}
+.tablet-screen {left:5.8%; top:7.6%; width:88%; height:84.5%; background:radial-gradient(ellipse at 30% 10%,#23434d,#0b222e);}
+.otter {width:100%; height:100%; object-fit:cover; opacity:0;}
+.call-on .otter {opacity:1; animation:call-talk .9s ease-in-out infinite;}
+@keyframes call-talk {0%,100% {transform:scale(1.02);} 50% {transform:scale(1.025,1.04);}}
+.calm .otter {animation:none!important; transform:none;}
+.hello {position:absolute; top:12%; left:50%; right:auto; transform:translateX(-50%); max-width:90%; text-align:center; background:white; border-radius:18px; padding:5px 12px; color:#14313a;
+  font-weight:800; font-size:clamp(14px,1.8vw,24px); opacity:0;}
+.call-on .hello {opacity:1;}
+.class-box {position:absolute; bottom:5%; right:5%; width:40%; aspect-ratio:4/3; border-radius:8px; border:3px solid #fff;
+  background:#c8e4e7; opacity:0;}
+.class-box img {width:100%; height:100%; object-fit:cover; border-radius:5px;}
+.class-on .class-box {opacity:1;}
+.dark-camera .class-box {background:#14202c;}
+.dark-camera .class-box img {visibility:hidden;}
+.class-box:after {content:'?'; display:none; font-size:22px; color:white; text-align:center;}
+.dark-camera .class-box:after {display:block;}
+.ear-question {position:absolute; left:10%; top:8%; bottom:auto; font-size:28px; background:white; border-radius:50%; padding:4px;}
+.tv {position:absolute; left:4%; top:2%; width:92%; height:62%; object-fit:contain;}
+.tv-screen {left:17%; top:3%; width:66%; height:42%; background:linear-gradient(#b5e8f4 70%,#a0c885 70%);}
+.ground {position:absolute; left:0; right:0; bottom:0; height:17%; background:linear-gradient(#5d8748 15%,#b09165 15%);}
+.fox {position:absolute; left:3%; bottom:12%; width:23%; height:57%; object-fit:contain; object-position:center bottom;}
+.log {position:absolute; left:57%; bottom:8%; width:25%; height:22%; object-fit:contain;}
+.controller {position:absolute; left:13%; bottom:0; width:74%; height:43%; object-fit:contain;}
+.buzz {position:absolute; right:5%; bottom:18%; font-size:42px; font-weight:bold; color:#b8500b; opacity:0;}
+.ring {position:absolute; left:0; top:0; width:100%; height:62%; border-radius:50%; border:8px solid #29a8bc;
+  box-shadow:0 0 18px #56e2ef; opacity:0;}
+.ring-on .ring {opacity:1;}
+.light-spark {position:absolute; width:16px; height:16px; background:#fff; border:3px solid #24a9c1;
+  border-radius:50%; box-shadow:0 0 15px #37edff; transform:translate(-50%,-50%); opacity:0;}
+.ring-on .light-spark {opacity:1;}
+.notes {position:absolute; left:36%; top:4%; font-size:58px; font-weight:bold; color:#b8500b; opacity:0;}
+.music-on .notes {opacity:1;}
+.bowl {position:absolute; left:19%; top:45%; width:32%; height:22%; object-fit:contain;}
+.micro-time {position:absolute; left:78%; top:22%; width:19%; height:13%; background:#112c2e; color:#d4ffcb;
+  display:grid; place-items:center; font:bold clamp(14px,2.2vw,28px) monospace; border-radius:4px;}
+.micro-light {position:absolute; left:5%; top:23%; width:62%; height:61%; border-radius:8px; background:#ffe47322;
+  box-shadow:inset 0 0 35px #ffd961; opacity:0;}
+.micro-on .micro-light {opacity:1;}
+.art-space[data-door="open"] .micro-time {left:84%; top:26%; width:13.5%; height:12%; font-size:clamp(10px,1.8vw,24px);}
+.art-space[data-door="open"] .bowl {left:41%; top:49%; width:28%; height:22%;}
+.art-space[data-door="open"] .micro-light {left:30%; top:25%; width:48%; height:49%;}
+.art-space[data-door="open"] .steam {left:48%; top:35%;}
+.steam {position:absolute; left:26%; top:30%; font-size:55px; color:#fff; text-shadow:0 2px 4px #435e60; opacity:0;}
+.warm .steam {opacity:1;}
+.wires {position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; z-index:1;}
+.wire {fill:none; stroke:#789da3; stroke-width:2; stroke-dasharray:3 5; opacity:.55;}
+.cutaway {fill:#eefaff14; stroke:#476d7580; stroke-width:2; stroke-dasharray:9 6;}
+.arrow {fill:none; stroke-width:3;}
+.flow-dot {filter:drop-shadow(0 0 4px white);}
+.chip {position:absolute; bottom:2%; left:50%; transform:translateX(-50%); width:72px; height:60px;
+  background:linear-gradient(140deg,#47616a,#183440); border:5px solid #aabdc3; border-radius:13px; color:#fff;
+  box-shadow:0 5px 0 #55767f,0 0 0 3px #fff8; display:grid; place-items:center; font-size:12px; font-weight:900; z-index:2;}
+.chip .chip-face {font-size:23px; letter-spacing:4px; line-height:15px;}
+.chip.lit {background:#0e6f86; box-shadow:0 0 25px #63d6ed,0 0 0 3px white;}
+.chip.stuck {background:#7b5010; font-size:28px;}
+.hits {position:absolute; inset:0; z-index:3; pointer-events:none;}
+.part {position:absolute; width:76px; height:76px; border:3px solid #fff; border-radius:50%; background:#ffffffee;
+  box-shadow:0 0 0 2px #376c7b,0 5px 12px #173b4533; padding:4px; pointer-events:auto;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-weight:800; font-size:12px; line-height:1.05;}
+.part .part-icon.clock-icon {font:700 17px/24px monospace; padding:0 3px; border-radius:4px; background:#112c2e; color:#d4ffcb;}
+.part .part-icon {font-size:25px; line-height:26px;}
+.part .inside-pic {width:40px; height:30px; object-fit:contain;}
+.part.untried {animation:breathe 2.4s ease-in-out infinite;}
+.part.active {background:#fef4c7; box-shadow:0 0 0 5px #d5a42d,0 0 25px #ffeb94;}
+.part.tried {border-color:#c4e4e9;}
+.part.covered {background:#ffe066;}
+.paper {position:absolute; inset:-8px; width:calc(100% + 16px); height:calc(100% + 16px); object-fit:contain;
+  filter:drop-shadow(0 4px 4px #715e2344); pointer-events:none;}
+.paper.pop {animation:slap .3s ease-out;}
+.cover-patch {position:absolute; z-index:6; width:30%; height:30%; min-width:40px; min-height:40px;
+  object-fit:fill; transform:translate(-50%,-50%); filter:drop-shadow(0 4px 4px #67552450); pointer-events:none;}
+.cover-patch.pop {animation:note-land .25s ease-out;}
+@keyframes note-land {from {opacity:.3; margin-top:-18px;}}
+.note-icon {display:inline-block; width:22px; height:22px; background:#ffe066; border:1px solid #8c741d;
+  border-radius:2px 2px 7px 2px; vertical-align:middle;}
+.board {align-self:center; min-width:0; background:linear-gradient(110deg,#fffdf1,#f5eed6);
+  border:8px solid #bc956b; border-radius:19px; padding:10px; box-shadow:0 8px 18px #3e4c4b26; transform:rotate(1deg);}
+.board.complete {border-color:#368178; box-shadow:0 8px 18px #3e4c4b26,inset 0 0 20px #b9e5d7;}
+.board-title {font-size:17px; margin:0 0 10px; text-align:center;}
+.columns {display:grid; grid-template-columns:1fr .48fr 1fr; gap:5px;}
+.column {position:relative; min-width:0; text-align:center;}
+.column h3 {font-size:15px; margin:0; padding:5px 0; border-bottom:3px solid currentColor;}
+.column h3 small {display:block; font-size:12px;}
+.column.in {color:var(--input);}
+.column.out {color:var(--output);}
+.column.think {color:#425b61;}
+.column.think h3 {font-size:11px;}
+.mini-chip {margin:16px 0; font-size:24px;}
+.tiles {display:flex; flex-direction:column; align-items:center; gap:7px; min-height:70px; padding-top:8px;}
+.tile {display:grid; place-items:center; color:var(--ink); width:100%; border-radius:9px; background:#fff9;
+  padding:3px; font-size:11px; line-height:1.1;}
+.tile.new {animation:drop .35s ease-out;}
+.crop {width:38px; height:32px; background-repeat:no-repeat; background-size:220%; border-radius:5px;}
+.tile.both {border:2px dashed #a57625;}
+.result {text-align:center;}
+.result .result-symbol {display:block; font-size:49px; margin:8px 0;}
+.result h3 {font-size:23px; margin:8px 0;}
+.result p {font-size:17px; line-height:1.35; margin:8px 0;}
+.result .match {background:#e0efdb; color:#285337; padding:8px; border-radius:10px; font-weight:800;}
+.status {position:absolute; bottom:calc(2% + 70px); left:50%; transform:translateX(-50%); background:#fffef3e8;
+  border:2px solid #abcbd0; border-radius:16px; padding:5px 13px; font-weight:800; font-size:17px;
+  white-space:normal; max-width:calc(100% - 160px); text-align:center; z-index:2; pointer-events:none;}
+@keyframes breathe {50% {box-shadow:0 0 0 5px #0e6f8640,0 5px 12px #173b4533;}}
+@keyframes slap {from {transform:scale(1.6) rotate(-15deg); opacity:.3;}}
+@keyframes drop {from {transform:translateY(-20px); opacity:0;}}
+.calm .part,.calm .paper,.calm .cover-patch,.calm .tile {animation:none!important;}
+.calm * {transition:none!important;}
+@media (max-width:1100px) {
+  main {grid-template-columns:minmax(0,1fr) 336px;}
+  header {gap:6px; padding:6px 10px;}
+  .seg button {padding:0 12px;}
+  .icon-btn {padding:0 8px; font-size:14px;}
+  .stage {grid-template-columns:minmax(0,1fr) 150px; gap:5px; padding:10px;}
+  .board {padding:5px; border-width:6px;}
+  .board-title {font-size:14px;}
+  .column h3 {font-size:12px;}
+  .column h3 small {font-size:10px;}
+  .tile {font-size:10px;}
+  .definition {font-size:14px;}
+  #hint {font-size:16px; min-height:90px;}
+}
+@media (max-height:650px) and (min-width:561px) {
+  header {padding:4px 8px; gap:5px;}
+  h1 {font-size:18px;}
+  h1 small {display:none;}
+  .seg button {font-size:14px; padding:0 10px;}
+  .icon-btn {font-size:13px; min-height:60px; padding:0 8px;}
+  main {grid-template-columns:minmax(0,1fr) 310px;}
+  .panel {padding:5px; gap:4px;}
+  #hint {font-size:13px; min-height:68px; line-height:1.25;}
+  .picker {gap:3px;}
+  .gadget {height:72px; padding:2px;}
+  .gadget img {height:44px;}
+  #go {min-height:60px; font-size:19px;}
+  .cover-controls {gap:4px;}
+  .action {min-height:60px; font-size:13px;}
+  .guess {min-height:60px; font-size:12px; gap:1px;}
+  .guess .symbol {font-size:20px;}
+  .definition {font-size:12px; padding:6px;}
+  .definition .out {margin-top:3px;}
+  .pretend {display:none;}
+  .stage {grid-template-columns:minmax(0,1fr) 82px; padding:6px; gap:4px;}
+  .scene-title {font-size:15px; padding:3px 10px;}
+  .part {width:72px; height:72px; font-size:11px;}
+  .part .part-icon {font-size:22px;}
+  .board {border-width:4px; padding:4px;}
+  .board-title {font-size:11px; margin-bottom:4px;}
+  .columns {gap:2px;}
+  .column h3 {font-size:10px;}
+  .column h3 small {display:none;}
+  .column.think h3 {position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+    overflow:hidden; clip-path:inset(50%); font-size:10px;}
+  .column.think::before {content:''; display:block; height:22px; border-bottom:3px solid currentColor;}
+  .col-arrow {display:none;}
+  .tiles {gap:3px; padding-top:3px;}
+  .tile span {display:none;}
+  .crop {width:25px; height:24px;}
+  .mini-chip {font-size:17px;}
+  .result .result-symbol {font-size:26px; margin:2px;}
+  .result h3 {font-size:15px;}
+  .result p {font-size:12px;}
+  .result .match {padding:4px; font-size:11px;}
+  .status {font-size:12px; padding:3px 8px; bottom:22%;}
+}
+@media (min-width:561px) and (max-width:900px) and (min-height:700px) {
+  .stage {grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) 130px;}
+  .board {align-self:stretch; transform:none; padding:5px; border-width:6px;}
+  .board-title {font-size:14px; margin-bottom:6px;}
+  .column h3 {font-size:13px; padding:3px 0;}
+  .column h3 small {font-size:10px; display:inline; margin-left:5px;}
+  .column.think h3 {font-size:11px;}
+  .tiles {flex-direction:row; flex-wrap:wrap; justify-content:center; gap:4px; padding-top:5px; min-height:36px;}
+  .tile {width:32px; height:34px; padding:2px;}
+  .tile span {display:none;}
+  .crop {width:28px; height:28px;}
+  .mini-chip {margin:8px 0; font-size:24px;}
+  .result {display:grid; grid-template-columns:50px minmax(0,1fr); gap:2px 8px; align-items:center;}
+  .result .result-symbol {grid-row:1/4; font-size:22px; margin:0; white-space:nowrap; letter-spacing:-2px;}
+  .result h3 {font-size:18px; margin:2px 0;}
+  .result p {font-size:14px; margin:2px 0;}
+  .result .match {grid-column:2; font-size:12px; padding:4px;}
+}
+@media (max-width:900px) { .micro-time {visibility:hidden;} }
+@media (max-width:560px) {
+  header {display:grid; grid-template-columns:repeat(3,1fr); gap:4px; padding:5px 8px;}
+  h1 {grid-column:1/-1; font-size:20px; text-align:center;}
+  h1 small {display:none;}
+  .seg {grid-column:1/-1; grid-row:2; display:grid; grid-template-columns:1fr 1fr; width:100%; border-radius:13px;}
+  .seg button {min-height:60px; font-size:16px; padding:0 4px;}
+  .icon-btn {min-height:60px; font-size:13px; padding:0 3px;}
+  main {grid-template-columns:1fr; grid-template-rows:minmax(320px,1fr) auto; grid-template-areas:"stage" "panel";}
+  .stage {grid-template-columns:minmax(0,1fr) 82px; padding:5px; gap:3px;}
+  .board {border-width:4px; padding:3px;}
+  .board-title {font-size:10px; margin-bottom:3px;}
+  .columns {grid-template-columns:1fr .35fr 1fr; gap:1px;}
+  .column h3 {font-size:10px;}
+  .column.think h3 {position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+    overflow:hidden; clip-path:inset(50%); font-size:10px;}
+  .column.think::before {content:''; display:block; height:22px; border-bottom:3px solid currentColor;}
+  .col-arrow {display:none;}
+  .column h3 small {display:none;}
+  .tile span {display:none;}
+  .tile {padding:1px;}
+  .crop {width:22px; height:20px;}
+  .tiles {gap:2px; min-height:30px; padding-top:4px;}
+  .mini-chip {font-size:14px;}
+  .part {width:72px; height:72px; font-size:11px;}
+  .part .part-icon {font-size:22px;}
+  .scene-title {font-size:14px; padding:3px 9px;}
+  .art-space {inset:9% 8% 14%;}
+  .chip {width:60px; height:50px; font-size:10px; bottom:1%;}
+  .chip .chip-face {font-size:19px;}
+  .status {font-size:11px; padding:3px 7px; bottom:20%;}
+  .panel {border-left:0; border-top:3px solid #aacdd5; padding:6px 8px; gap:4px;}
+  #hint {font-size:13px; min-height:48px; line-height:1.2;}
+  .gadget {height:72px;}
+  .gadget img {height:49px;}
+  #go {min-height:60px; font-size:21px;}
+  .cover-controls {gap:4px;}
+  .action {min-height:60px; font-size:15px;}
+  .guess {min-height:60px; font-size:14px; flex-direction:row; gap:8px;}
+  .guess .symbol {font-size:22px;}
+  .definition,.pretend {display:none;}
+  .result .result-symbol {font-size:27px; margin:0;}
+  .result h3 {font-size:14px;}
+  .result p {font-size:11px;}
+  .result .match {font-size:10px; padding:3px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Input or Output?<small>In, think, out</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-try" aria-pressed="true">☝ Try It</button>
+    <button id="m-cover" aria-pressed="false"><span class="note-icon" aria-hidden="true"></span> Cover It</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="picker" role="group" aria-label="Gadgets">
+      <button class="gadget" id="g-tablet" aria-label="Tablet" aria-pressed="true"><img src="art:tablet" alt=""><span class="check">✓</span></button>
+      <button class="gadget" id="g-game" aria-label="Game set" aria-pressed="false"><img src="art:game-controller" alt=""><span class="check">✓</span></button>
+      <button class="gadget" id="g-speaker" aria-label="Smart speaker" aria-pressed="false">
+        <img src="art:puck-speaker" alt=""><span class="check">✓</span></button>
+      <button class="gadget" id="g-microwave" aria-label="Microwave" aria-pressed="false">
+        <img src="art:microwave-shut" alt=""><span class="check">✓</span></button>
+    </div>
+    <button class="big-btn gold" id="go">☎ Video call</button>
+    <div class="cover-controls" id="cover-controls" hidden>
+      <div class="note-row">
+        <button class="action" id="sticky" aria-pressed="false"><span class="note-icon" aria-hidden="true"></span> Sticky note</button>
+        <button class="action" id="peel">↗ Peel off</button>
+      </div>
+      <div class="predict" role="group" aria-label="Prediction">
+        <button class="guess" id="guess-in" aria-pressed="false"><span class="symbol" aria-hidden="true">▣?</span><span>The gadget can't tell</span></button>
+        <button class="guess" id="guess-out" aria-pressed="false"><span class="symbol" aria-hidden="true">👁 👂?</span><span>We can't tell</span></button>
+      </div>
+    </div>
+    <div class="definition"><b>→ Input</b>How a gadget finds things out.<b class="out">Output →</b>How a gadget shows us or does things.</div>
+    <p class="pretend">Pretend gadgets. No camera or microphone is used.</p>
+  </aside>
+  <div class="stage" id="stage">
+    <div class="lab" id="lab">
+      <h2 class="scene-title" id="gadget-title">Tablet</h2>
+      <div class="art-space" id="art-space"></div>
+      <svg class="wires" id="wires" aria-hidden="true"></svg>
+      <div class="chip" id="chip"><span class="chip-face">···</span>THINK</div>
+      <div class="status" id="status" hidden></div>
+      <div class="hits" id="hits"></div>
+    </div>
+    <section class="board" id="board" aria-label="In, Think, Out board"></section>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ART = {
+    tablet:'art:tablet', otter:'art:otter-call', classWave:'art:class-wave', controller:'art:game-controller', tv:'art:game-tv',
+    fox:'art:hero-fox', log:'art:game-log', speaker:'art:puck-speaker', open:'art:microwave-open', shut:'art:microwave-shut',
+    bowl:'art:soup-bowl', motor:'art:buzz-motor', switch:'art:door-switch', heater:'art:heater', note:'art:sticky-note'
+  };
+  const L = {
+    wTry:"Every gadget takes things in, thinks, and gives things out. Let's look inside!",
+    tapPart:'Tap a part to see which way the dots go. Blue dots go in. Orange dots come out.',
+    job:'Now press the big gold button to run the whole job.', gadget:'Tap a gadget picture to try another one.',
+    wCover:"Let's cover a part with a sticky note and see what happens.", cover:'Tap Sticky note, then tap a part.',
+    guess:"Who can't tell now, the gadget or us? Tap The gadget can't tell, or We can't tell. Then press the big gold button.",
+    again:'Tap Sticky note to cover a new part, or Peel off to take it away.',
+    touchscreen:"Touchscreen. It's an input and an output!", camera:'Camera. Input.', microphone:'Microphone. Input.',
+    speaker:'Speaker. Output.', joystick:'Joystick. Input.', jump:'Jump button. Input.',
+    motor:'Buzz motor. Output. It shakes the controller.', tv:'TV screen. Output.', volume:'Volume button. Input.',
+    ring:'Light ring. Output.', keypad:'Keypad. Input.', door:'Door switch. Input. It feels when the door is shut.',
+    display:'Display. Output.', beeper:'Beeper. Output.', light:'Inside light. Output.', heater:'Heater. Output. It warms the food.',
+    hello:'Hello!', where:'Where are you?', play:'Play a song.',
+    rInput:"You covered an input. The gadget can't find out what it needs, so it's stuck.",
+    rOutput:"You covered an output. The gadget still did the job. We just can't see or hear it.",
+    rBoth:"The touchscreen is both! Now the tablet can't feel your finger, and we can't see the screen.",
+    rDoor:"The microwave can't tell the door is shut, so it won't start. That keeps you safe.",
+    rVolume:"The job didn't need that input, so it still worked.", right:'Your guess was right!', look:"Let's look at the dots again.",
+    inside:"That part is inside. We can't cover it, but it's an output: it warms the food.",
+    all:'You found every part on this gadget!',
+    inDefinition:'Input: how a gadget finds things out.', outDefinition:'Output: how a gadget shows us or does things.',
+    runHint:'Press the big gold button to run again, or tap a part.', predictHint:'Tap a prediction, then press the big gold button.',
+    stickyOn:'Tap a part to cover it with the sticky note.', peeled:'The note is off. Tap Sticky note to cover a part.',
+    pickTablet:'Tablet. Tap a part.', pickGame:'Game set. Tap a part.', pickSpeaker:'Smart speaker. Tap a part.',
+    pickMicrowave:'Microwave. Tap a part.', selectedIn:"The gadget can't tell. Press the big gold button.",
+    selectedOut:"We can't tell. Press the big gold button.", video:'Video call.', jumpJob:'Jump!', soupJob:'Warm the soup.'
+  };
+  const part = (id,name,kind,icon,asset) => ({id,name,kind,icon,asset});
+  const G = {
+    tablet:{name:'Tablet',job:'☎ Video call',pick:'pickTablet',asset:ART.tablet,parts:[
+      part('touchscreen','Touchscreen','both','◎'),part('camera','Camera','in','📷'),
+      part('microphone','Microphone','in','🎤'),part('speaker','Speaker','out','♫')]},
+    game:{name:'Game set',job:'↑ Jump!',pick:'pickGame',asset:ART.controller,parts:[
+      part('joystick','Joystick','in','✥'),part('jump','Jump button','in','↑'),
+      part('motor','Buzz motor','out','',ART.motor),part('tv','TV screen','out','▣')]},
+    speaker:{name:'Smart speaker',job:'♫ Play a song',pick:'pickSpeaker',asset:ART.speaker,parts:[
+      part('microphone','Microphone','in','🎤'),part('volume','Volume button','in','＋'),
+      part('speaker','Speaker','out','♫'),part('ring','Light ring','out','◯')]},
+    microwave:{name:'Microwave',job:'♨ Warm the soup',pick:'pickMicrowave',asset:ART.shut,parts:[
+      part('keypad','Keypad','in','▦'),part('door','Door switch','in','',ART.switch),
+      part('display','Display','out','▣'),part('beeper','Beeper','out','♫'),
+      part('light','Inside light','out','☀'),part('heater','Heater','out','',ART.heater)]}
+  };
+  const ANCHOR = {
+    tablet:{touchscreen:[.5,.48],camera:[.5,.04],microphone:[.35,.96],speaker:[.5,.96]},
+    game:{joystick:[.32,.78],jump:[.68,.78],motor:[.5,.92],tv:[.5,.24]},
+    speaker:{microphone:[.5,.44],volume:[.5,.21],speaker:[.5,.78],ring:[.26,.49]},
+    microwave:{keypad:[.86,.62],door:[.18,.48],display:[.86,.28],beeper:[.95,.82],light:[.36,.26],heater:[.66,.15]}
+  };
+  const state = {mode:'try',gadget:'tablet',running:false,flowHold:false,phase:0,active:null,result:null,token:0,
+    started:0,duration:5000,effectUntil:0,jobRuns:0,modes:{try:{},cover:{}}};
+  for (const m of ['try','cover']) for (const g of Object.keys(G)) {
+    state.modes[m][g]={found:[],note:null,prediction:null,armed:false,result:null};
+  }
+  const current = () => state.modes[state.mode][state.gadget];
+  const gadget = () => G[state.gadget];
+  const parts = () => gadget().parts;
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    speaks:'.part,#go',welcome:() => state.mode==='try'
+      ? [['tapPart',{valid:() => !state.running && !state.active}],['wTry',{valid:() => !state.running && !state.active}]]
+      : [['cover',{valid:() => !current().note}],['wCover',{valid:() => !current().note && !current().armed}]]});
+  function say(key,valid,opts={}) {return V.say(key,{valid,hint:false,now:true,...opts});}
+  function how(key,valid=() => true,needs,now=false) {
+    $('hint').textContent=L[key];
+    V.how(key,{valid,needs,hint:false,now});
+  }
+  function waitingHint() {
+    if (state.mode==='try') return current().found.length ? 'runHint' : 'tapPart';
+    if (current().result) return 'again';
+    return current().armed ? 'stickyOn' : current().note ? 'predictHint' : 'cover';
+  }
+  function stop(hush=true) {
+    state.token++;
+    state.running=false;
+    state.flowHold=false;
+    state.active=null;
+    state.phase=0;
+    state.effectUntil=0;
+    if (hush) V.hush();
+    else V.dropQueued();
+    $('status').hidden=true;
+    resetEffects();
+    drawWires();
+  }
+  function clearResult() {current().result=null;
+  state.result=null;
+  renderBoard();}
+  function setMode(mode) {
+    if (state.mode===mode) {
+      $('hint').textContent=L[waitingHint()];
+      if (!V.welcome() && !V.playing) V.how(waitingHint(),{hint:false,valid:() => !state.running});
+      return;
+    }
+    stop();
+    state.mode=mode;
+    state.result=current().result;
+    $('m-try').setAttribute('aria-pressed',mode==='try');
+    $('m-cover').setAttribute('aria-pressed',mode==='cover');
+    $('cover-controls').hidden=mode!=='cover';
+    $('hint').textContent=L[waitingHint()];
+    renderDevice();
+    renderParts();
+    renderBoard();
+    updateControls();
+    restoreResultScene();
+    V.welcome() || V.how(waitingHint(),{hint:false,valid:() => !state.running});
+  }
+  function restoreResultScene() {
+    if (state.mode!=='cover' || !current().result || !current().note) return;
+    state.duration=state.gadget==='microwave' ? 5800 : 5000;
+    const t=performance.now();
+    state.started=t-state.duration;
+    state.running=true;
+    animateJob(t,true);
+    state.running=false;
+    state.flowHold=true;
+    if (state.gadget==='microwave') $('art-space').classList.remove('micro-on');
+    $('status').hidden=true;
+    drawWires();
+  }
+  function chooseGadget(id) {
+    stop();
+    if (state.gadget!==id) {
+      current().note=null;
+      current().armed=false;
+      current().prediction=null;
+      current().result=null;
+      state.gadget=id;
+      current().note=null;
+      current().armed=false;
+      current().prediction=null;
+      current().result=null;
+    }
+    state.result=current().result;
+    $('hint').textContent=L[waitingHint()];
+    renderDevice();
+    renderParts();
+    renderBoard();
+    updateControls();
+    restoreResultScene();
+    if (state.mode==='try') say(gadget().pick,() => !state.running);
+    else V.how('cover',{hint:false,valid:() => !state.running && !current().note,needs:'#sticky'});
+    Curio.tone(300,.1,.025);
+  }
+  function updateControls() {
+    for (const id of Object.keys(G)) {
+      $('g-'+id).setAttribute('aria-pressed',id===state.gadget);
+      $('g-'+id).classList.toggle('found',state.modes.try[id].found.length===G[id].parts.length);
+    }
+    $('go').textContent=gadget().job;
+    $('gadget-title').textContent=gadget().name;
+    $('sticky').setAttribute('aria-pressed',current().armed);
+    $('guess-in').setAttribute('aria-pressed',current().prediction==='in');
+    $('guess-out').setAttribute('aria-pressed',current().prediction==='out');
+  }
+  function microwaveDoor(closed) {
+    $('microwave-art').src=closed ? ART.shut : ART.open;
+    $('art-space').dataset.door=closed ? 'shut' : 'open';
+  }
+  function renderDevice() {
+    const s=$('art-space');
+    if (state.gadget==='tablet') {
+      s.innerHTML=`<img class="device" src="${ART.tablet}" alt="Silver tablet">
+        <div class="display tablet-screen" id="screen"><img class="otter" src="${ART.otter}" alt="Otter on a pretend call">
+        <span class="hello" id="hello">Hello!</span><div class="class-box" id="class-box" aria-label="Pretend class picture">
+        <img src="${ART.classWave}" alt="Three children waving in a pretend classroom call"></div></div>`;
+    } else if (state.gadget==='game') {
+      s.innerHTML=`<img class="tv" src="${ART.tv}" alt="TV"><div class="display tv-screen" id="screen">
+        <div class="ground"></div><img class="fox" id="fox" src="${ART.fox}" alt="Fox game hero">
+        <img class="log" src="${ART.log}" alt="Log"></div><img class="controller" id="controller" src="${ART.controller}" alt="Controller">
+        <span class="buzz" id="buzz">〰</span>`;
+    } else if (state.gadget==='speaker') {
+      s.innerHTML=`<img class="device" src="${ART.speaker}" alt="Smart speaker"><div class="ring" id="ring"></div>
+        <div class="light-spark" id="light-spark"></div><div class="notes" id="notes">♪ ♫</div>`;
+    } else {
+      s.innerHTML=`<img class="device" id="microwave-art" src="${ART.open}" alt="Microwave">
+        <div class="micro-light" id="micro-light"></div><img class="bowl" id="bowl" src="${ART.bowl}" alt="Soup bowl">
+        <div class="micro-time" id="micro-time">0:30</div><div class="steam" id="steam">♨</div>`;
+    }
+    if (state.gadget==='microwave') microwaveDoor(false);
+    layout();
+  }
+  function renderParts() {
+    const old=document.activeElement && document.activeElement.id;
+    $('hits').innerHTML=parts().map(p => `<button class="part" id="p-${p.id}" aria-label="${p.name}" title="${p.name}">
+      ${p.asset ? `<img class="inside-pic" src="${p.asset}" alt="">` : `<span class="part-icon" aria-hidden="true">${p.icon}</span>`}
+      <span>${p.name}</span></button>`).join('');
+    for (const p of parts()) $('p-'+p.id).onclick=() => tapPart(p.id);
+    if (old && $(old)) $(old).focus({preventScroll:true});
+    updateParts(); layout();
+  }
+  function updateParts() {
+    for (const p of parts()) {
+      const b=$('p-'+p.id);
+      if (!b) continue;
+      const found=state.modes.try[state.gadget].found.includes(p.id);
+      b.classList.toggle('tried',found);
+      b.classList.toggle('untried',!found && state.mode==='try');
+      b.classList.toggle('active',state.active===p.id);
+      b.classList.toggle('covered',current().note===p.id && state.mode==='cover');
+      b.setAttribute('aria-label',p.name+(current().note===p.id && state.mode==='cover' ? ', covered' : ''));
+    }
+    updateNote();
+    syncClockLabels();
+  }
+  function updateNote() {
+    let note=$('physical-note');
+    if (state.mode!=='cover' || !current().note) {if (note) note.remove(); return;}
+    if (!note) {
+      $('art-space').insertAdjacentHTML('beforeend',`<img id="physical-note" class="cover-patch pop" src="${ART.note}" alt="Sticky note covers the part">`);
+      note=$('physical-note');
+    }
+    const id=current().note,a=ANCHOR[state.gadget][id];
+    note.style.left=a[0]*100+'%'; note.style.top=a[1]*100+'%';
+    const whole=id==='touchscreen' || id==='tv';
+    note.style.width=whole ? '94%' : '30%'; note.style.height=whole ? (id==='tv' ? '45%' : '86%') : '30%';
+  }
+  function tile(p,newId) {
+    const img=p.asset || gadget().asset;
+    const a=ANCHOR[state.gadget][p.id];
+    return `<div class="tile ${p.id===newId ? 'new' : ''} ${p.kind==='both' ? 'both' : ''}" title="${p.name}${p.kind==='both' ? ': both input and output' : ''}">
+      <div class="crop" style="background-image:url('${img}');background-size:${p.asset ? 'contain' : '450%'};
+        background-position:${a[0]*100}% ${a[1]*100}%"></div>
+      <span>${p.name}${p.kind==='both' ? ' ↔' : ''}</span></div>`;
+  }
+  function renderBoard(newId) {
+    const complete=state.mode==='try' && current().found.length===parts().length;
+    $('board').classList.toggle('complete',complete);
+    const r=current().result;
+    if (state.mode==='cover' && r) {
+      $('board').innerHTML=`<div class="result" role="status"><span class="result-symbol" aria-hidden="true">${r.symbol}</span>
+        <h3>${r.title}</h3><p>${r.detail}</p>${r.prediction ? `<p class="match">${r.match ? '✓ '+L.right : '⌕ Let’s look'}</p>` : ''}</div>`;
+      return;
+    }
+    const found=state.mode==='cover' ? parts() : parts().filter(p => current().found.includes(p.id));
+    $('board').innerHTML=`<h3 class="board-title">${complete ? "✓ Every part found!" : "In, think, out"}</h3><div class="columns">
+      <div class="column in"><h3>IN <span class="col-arrow">→</span><small>(input)</small></h3><div class="tiles">${found.filter(p=>p.kind!=='out').map(p=>tile(p,newId)).join('')}</div></div>
+      <div class="column think"><h3>THINK</h3><div class="mini-chip" aria-hidden="true">${found.some(p=>p.kind==='both') ? '↔' : '▦'}</div></div>
+      <div class="column out"><h3><span class="col-arrow">→</span> OUT<small>(output)</small></h3><div class="tiles">${found.filter(p=>p.kind!=='in').map(p=>tile(p,newId)).join('')}</div></div></div>`;
+  }
+  function syncClockLabels() {
+    const time=$('micro-time');
+    const button=$('p-display');
+    if (!time || !button) return;
+    const icon=button.querySelector('.part-icon');
+    if (!icon) return;
+    const compact=innerWidth<=900;
+    const show=compact && !(state.mode==='cover' && current().note==='display');
+    icon.textContent=show ? time.textContent : '▣';
+    icon.classList.toggle('clock-icon',show);
+  }
+  let positions=[];
+  function layout() {
+    const lab=$('lab').getBoundingClientRect();
+    if (!lab.width) return;
+    const size=innerHeight<=650 || innerWidth<=560 ? 72 : 76;
+    const aspect={tablet:620/828,game:1.1,speaker:620/432,microwave:700/447}[state.gadget];
+    const artWidth=Math.min(lab.width*.86,lab.height*.78*aspect);
+    const artHeight=artWidth/aspect;
+    Object.assign($('art-space').style,{inset:'auto',left:(lab.width-artWidth)/2+'px',
+      top:((lab.height-artHeight)/2-15)+'px',width:artWidth+'px',height:artHeight+'px'});
+    const top=36,bottom=lab.height-(innerWidth<=560 ? 56 : 60)-size,rows=parts().length===6 ? 3 : 2;
+    positions=parts().map((p,i) => {
+      const col=i%2,row=Math.floor(i/2);
+      const y=top+(Math.max(top,bottom)-top)*row/(rows-1);
+      const x=col ? lab.width-size-3 : 3;
+      const b=$('p-'+p.id);
+      if (b) {b.style.left=x+'px'; b.style.top=y+'px';}
+      return {id:p.id,x:x+size/2,y:y+size/2};
+    });
+    drawWires();
+    updateNote();
+    syncClockLabels();
+  }
+  function drawWires() {
+    const w=$('lab').clientWidth,h=$('lab').clientHeight,cx=w/2,cy=h-36,t=performance.now();
+    let svg=`<rect class="cutaway" x="${w*.18}" y="${h*.22}" width="${w*.64}" height="${h*.56}" rx="23"/>`;
+    for (const p of parts()) {
+      const pos=positions.find(q=>q.id===p.id);
+      if (!pos) continue;
+      const anchor=ANCHOR[state.gadget][p.id],box=$('art-space');
+      const spot={x:box.offsetLeft+anchor[0]*box.offsetWidth,y:box.offsetTop+anchor[1]*box.offsetHeight};
+      svg+=`<path class="wire" d="M${pos.x},${pos.y} L${spot.x},${spot.y} L${cx},${cy}"/>`;
+      svg+=`<circle cx="${spot.x}" cy="${spot.y}" r="5" fill="#fff" stroke="#497f8e" stroke-width="2"/>`;
+      let active=state.active===p.id,output=false;
+      if (state.running || state.flowHold) {
+        output=state.phase>=(state.gadget==='microwave' ? 800/state.duration : .3) && !blocksJob(current().note);
+        active=output ? p.kind!=='in' : p.kind!=='out';
+        if (output && blocksJob(current().note)) active=false;
+      } else if (active) output=p.kind==='out' || (p.kind==='both' && state.effectUntil-t<1200);
+      if (state.running || state.flowHold) $('p-'+p.id).classList.toggle('active',active);
+      if (!active) continue;
+      const color=output ? '#b8500b' : '#1f5fbf';
+      const from=output ? {x:cx,y:cy} : spot,to=output ? spot : {x:cx,y:cy};
+      const covered=state.mode==='cover' && current().note===p.id;
+      if (covered && !output) {
+        svg+=`<circle cx="${spot.x}" cy="${spot.y+30}" r="7" fill="${color}"/>`;
+        continue;
+      }
+      const count=Curio.reduce ? 7 : 4;
+      for (let k=0;k<count;k++) {
+        const q=Curio.reduce || state.flowHold ? (k+.5)/count : (t/950+k/count)%1;
+        if (covered && q>.74) continue;
+        const x=from.x+(to.x-from.x)*q,y=from.y+(to.y-from.y)*q;
+        svg+=`<circle class="flow-dot" cx="${x}" cy="${y}" r="5.5" fill="${color}" stroke="white" stroke-width="1.5"/>`;
+      }
+      const dx=to.x-from.x,dy=to.y-from.y,a=Math.atan2(dy,dx),mx=from.x+dx*.56,my=from.y+dy*.56;
+      svg+=`<path class="arrow" stroke="${color}" d="M${mx-10*Math.cos(a-.55)},${my-10*Math.sin(a-.55)} L${mx},${my}
+        L${mx-10*Math.cos(a+.55)},${my-10*Math.sin(a+.55)}"/>`;
+    }
+    $('wires').setAttribute('viewBox',`0 0 ${w} ${h}`);
+    $('wires').innerHTML=svg;
+  }
+  function resetEffects() {
+    $('art-space').className='art-space';
+    for (const id of ['screen','ring','light-spark','notes','micro-time','micro-light','bowl']) if ($(id)) $(id).style.visibility='';
+    if ($('fox')) {$('fox').style.left='3%';
+    $('fox').style.bottom='12%';}
+    if ($('controller')) $('controller').style.transform='';
+    if ($('buzz')) $('buzz').style.opacity=0;
+    if ($('hello')) $('hello').textContent='Hello!';
+    if ($('micro-time')) $('micro-time').textContent='0:30';
+    if ($('microwave-art')) microwaveDoor(false);
+    if ($('ear-question')) $('ear-question').remove();
+    $('chip').className='chip';
+    $('chip').innerHTML='<span class="chip-face">···</span>THINK';
+    updateParts();
+  }
+  function tapPart(id) {
+    const p=parts().find(p=>p.id===id);
+    stop(false); clearResult();
+    const token=state.token;
+    if (state.mode==='cover') {
+      if (!current().armed) {
+        $('sticky').classList.add('guide');
+        setTimeout(() => $('sticky').classList.remove('guide'),700);
+        Curio.tone(330,.1,.025);
+        how('cover',() => !current().armed,'#sticky',true);
+        return;
+      }
+      if (id==='heater') {
+        say('inside',() => token===state.token);
+        $('status').textContent='That part is inside.';
+        $('status').hidden=false;
+        const b=$('p-heater');
+        if (!Curio.reduce) b.animate([{transform:'translateY(0)'},{transform:'translateY(-12px)'},{transform:'translateY(0)'}],350);
+        how('stickyOn');
+        Curio.tone(260,.15,.03);
+        return;
+      }
+      current().note=id;
+      current().prediction=null;
+      current().armed=false;
+      updateParts();
+      updateControls();
+      Curio.tone(180,.09,.025,'triangle');
+      how('guess',() => !!current().note && !current().prediction && !state.running,['#guess-in','#guess-out','#go'],true);
+      return;
+    }
+    state.active=id;
+    state.effectUntil=performance.now()+2500;
+    const fresh=!current().found.includes(id);
+    if (fresh) current().found.push(id);
+    updateParts();
+    renderBoard(fresh ? id : null);
+    updateControls();
+    $('hint').textContent=L[id]+' '+L.job;
+    say(id,() => token===state.token);
+    Curio.tone(p.kind==='in' ? 450 : 650,.15,.035);
+    partEffect(id);
+    if (current().found.length===parts().length && fresh) {Curio.yes();
+    say('all',() => token===state.token,{now:false});}
+    setTimeout(() => {
+      if (token!==state.token) return;
+      $('hint').textContent=L.job;
+      const teaching=p.kind==='both' ? ['inDefinition','outDefinition'] : [p.kind==='in' ? 'inDefinition' : 'outDefinition'];
+      // Put the next action before optional definitions so guidance is not buried.
+      V.how(['job',...teaching],{hint:false,valid:() => token===state.token && !state.running,needs:'#go'});
+    },1300);
+  }
+  function partEffect(id) {
+    const s=$('art-space');
+    if (state.gadget==='tablet') {
+      if (['touchscreen','speaker'].includes(id)) s.classList.add('call-on');
+      if (id==='camera') s.classList.add('class-on');
+      if (id==='microphone') {$('status').textContent='〰 → ▦';
+      $('status').hidden=false;}
+      if (id==='speaker') say('hello',() => state.active===id,{now:false});
+    } else if (state.gadget==='game') {
+      if (id==='tv') $('screen').style.boxShadow='0 0 18px #b8500b';
+      if (id==='motor') {$('buzz').style.opacity=1;
+      Curio.tone(90,.4,.035,'triangle');}
+    } else if (state.gadget==='speaker') {
+      if (id==='ring') s.classList.add('ring-on');
+      if (id==='speaker') {s.classList.add('music-on');
+      Curio.tone(262,.3,.045);}
+      if (id==='volume') {s.classList.add('music-on');
+      Curio.tone(650,.4,.06);}
+    } else {
+      if (id==='light') s.classList.add('micro-on');
+      if (id==='heater') {microwaveDoor(true); s.classList.add('warm');}
+      if (id==='display') $('micro-time').textContent='0:30';
+      if (id==='beeper') beep();
+      if (id==='door') microwaveDoor(true);
+    }
+  }
+  function blocksJob(note) {
+    return !!note && ['touchscreen','joystick','jump','microphone','keypad','door'].includes(note)
+      && !(state.gadget==='tablet' && note==='microphone');
+  }
+  function outcome(note) {
+    const p=parts().find(p=>p.id===note);
+    if (!p) return null;
+    let key=p.kind==='both' ? 'rBoth' : p.kind==='in' ? 'rInput' : 'rOutput';
+    if (note==='door') key='rDoor';
+    if (note==='volume') key='rVolume';
+    const detail={
+      touchscreen:"The tablet can't feel the tap. We can't see the call.",camera:'Otter sees a dark square.',
+      microphone:state.gadget==='tablet' ? "Your words don't reach Otter." : 'It never heard the song request.',
+      speaker:state.gadget==='tablet' ? 'Otter moves, but we hear nothing.' : 'The light is on. The song is silent.',
+      joystick:"The fox can't move.",jump:'The fox stops at the log.',motor:'The game works. The controller does not buzz.',
+      tv:'The game plays behind the note.',volume:L.rVolume,ring:'The song plays. The listening light is hidden.',
+      keypad:"It can't tell how long. It won't start.",door:"It can't tell the door is shut. It won't start.",
+      display:'The soup warms. The time is hidden.',beeper:'The soup warms. The finish is silent.',light:'The soup warms. The inside stays dark.'
+    }[note];
+    const match=p.kind==='both' || current().prediction===p.kind;
+    return {key,detail,match,prediction:current().prediction,
+      title:p.kind==='both' ? 'Both!' : note==='volume' ? 'It still worked!' : p.kind==='in' ? 'Input covered' : 'Output covered',
+      symbol:p.kind==='both' ? '↔' : note==='volume' ? '♪ ✓' : p.kind==='in' ? '→ ▦ ?' : '▦ → ◉'};
+  }
+  let melodyIndex=-1;
+  function runJob() {
+    stop(false); clearResult();
+    state.running=true;
+    state.duration=state.gadget==='microwave' ? 5800 : 5000;
+    state.started=performance.now();
+    state.phase=0;
+    state.jobRuns++;
+    melodyIndex=-1;
+    $('hint').textContent=L.runHint;
+    $('chip').classList.add('lit');
+    Curio.tone(390,.12,.03);
+    const token=state.token;
+    say({tablet:'video',game:'jumpJob',speaker:'play',microwave:'soupJob'}[state.gadget],() => token===state.token && state.running);
+    if (state.gadget==='tablet') {
+      const key=current().note==='camera' && state.mode==='cover' ? 'where' : 'hello';
+      if (!(state.mode==='cover' && ['speaker','touchscreen'].includes(current().note))) {
+        // The on-screen greeting is a timed event, so it takes its turn at that beat.
+        setTimeout(() => {if (token===state.token) say(key,() => token===state.token && state.running,{now:true});},1600);
+      }
+    }
+  }
+  function beep() {
+    const token=state.token;
+    for (let i=0;i<3;i++) setTimeout(() => {if (token===state.token) Curio.tone(880,.14,.035);},i*230);
+  }
+  const tune=[262,262,392,392,440,440,392,349,349,330,330,294,294,262];
+  function melody(t) {
+    const i=Math.floor((t-state.started-1400)/240);
+    if (i>=0 && i<tune.length && i!==melodyIndex) {
+      melodyIndex=i;
+      Curio.tone(tune[i],i===6 || i===13 ? .4 : .22,.045);
+    }
+  }
+  function animateJob(t,restoring=false) {
+    const elapsed=t-state.started;
+    state.phase=Math.min(1,elapsed/state.duration);
+    const note=state.mode==='cover' ? current().note : null,blocked=blocksJob(note);
+    $('chip').classList.toggle('lit',elapsed>700 && !blocked);
+    if (blocked && elapsed>750) {$('chip').className='chip stuck';
+    $('chip').textContent='?';}
+    if (state.gadget==='tablet' && elapsed>1500 && note!=='touchscreen') {
+      $('art-space').classList.add('call-on','class-on');
+      $('art-space').classList.toggle('dark-camera',note==='camera');
+      $('hello').textContent=note==='camera' ? 'Where are you?' : note==='speaker' ? '···' : 'Hello!';
+      if (note==='microphone' && !$('ear-question')) {
+        $('screen').insertAdjacentHTML('beforeend','<span class="ear-question" id="ear-question">?</span>');
+      }
+    }
+    if (state.gadget==='game') {
+      if (elapsed>1100) {
+        let q=Math.min(1,(elapsed-1100)/3000);
+        if (note==='joystick') q=0;
+        if (note==='jump') q=Math.min(.49,q);
+        if (Curio.reduce) q=q<.33 ? 0 : q<.66 ? .5 : 1;
+        $('fox').style.left=(3+q*70)+'%';
+        $('fox').style.bottom=(12+(note==='jump' || note==='joystick' ? 0 : Math.sin(q*Math.PI)*50))+'%';
+      }
+      $('screen').style.visibility=note==='tv' ? 'hidden' : '';
+      const buzz=elapsed>4000 && !blocked && note!=='motor';
+      $('buzz').style.opacity=buzz ? 1 : 0;
+      if (buzz && !Curio.reduce) $('controller').style.transform=`translateX(${Math.sin(elapsed/25)*3}px)`;
+      if (elapsed>4000 && elapsed<4070 && !blocked && note!=='motor') Curio.tone(85,.18,.025,'triangle');
+    }
+    if (state.gadget==='speaker' && elapsed>1300 && !blocked) {
+      $('art-space').classList.add('ring-on','music-on');
+      $('ring').style.visibility=note==='ring' ? 'hidden' : '';
+      $('light-spark').style.visibility=note==='ring' ? 'hidden' : '';
+      $('light-spark').style.left=(50+48*Math.cos(Curio.reduce ? 0 : elapsed/300))+'%';
+      $('light-spark').style.top=(31+29*Math.sin(Curio.reduce ? 0 : elapsed/300))+'%';
+      $('notes').textContent=note==='speaker' ? '♪♪♪ ▪' : '♪ ♫';
+      if (!Curio.reduce) $('notes').style.transform=`translateY(${Math.sin(elapsed/250)*6}px)`;
+      if (note!=='speaker') melody(t);
+    }
+    if (state.gadget==='microwave') {
+      microwaveDoor(true);
+      $('status').hidden=elapsed>900 || blocked;
+      $('status').textContent=elapsed<300 ? '3' : elapsed<600 ? '3 → 0' : '3 → 0 → Start';
+      if (!blocked) {
+        $('art-space').classList.toggle('micro-on',elapsed>=800);
+        const seconds=Math.min(30,Math.max(0,30-Math.floor((elapsed-800)/1000*6)));
+        $('micro-time').textContent='0:'+String(seconds).padStart(2,'0');
+        syncClockLabels();
+        $('micro-time').style.visibility=note==='display' ? 'hidden' : '';
+        $('micro-light').style.visibility=note==='light' ? 'hidden' : '';
+        $('bowl').style.visibility=note==='light' ? 'hidden' : '';
+        if (elapsed>2600 && note!=='light') $('art-space').classList.add('warm');
+      }
+    }
+    if (elapsed>=state.duration && !restoring) finishJob(note);
+  }
+  function finishJob(note) {
+    state.running=false;
+    state.flowHold=true;
+    const token=state.token;
+    if (state.gadget==='microwave' && !blocksJob(note)) {
+      $('micro-time').textContent='0:00';
+      syncClockLabels();
+      $('art-space').classList.remove('micro-on');
+      if (note!=='beeper') beep();
+    }
+    if (state.gadget==='game' && note==='tv' && !blocksJob(note)) Curio.tone(660,.25,.04);
+    if (state.mode==='cover' && note) {
+      const r=outcome(note);
+      current().result=r;
+      state.result=r;
+      renderBoard();
+      $('hint').textContent=L.again;
+      if (r.prediction) {
+        if (r.match) Curio.yes();
+        say([r.match ? 'right' : 'look',r.key],() => token===state.token && current().result===r);
+      } else say(r.key,() => token===state.token && current().result===r);
+      V.how('again',{hint:false,valid:() => token===state.token && !!current().result,needs:['#sticky','#peel']});
+    } else {
+      $('hint').textContent=L.gadget;
+      V.how('gadget',{hint:false,valid:() => token===state.token && !state.running});
+    }
+  }
+  $('m-try').onclick=() => setMode('try');
+  $('m-cover').onclick=() => setMode('cover');
+  for (const id of Object.keys(G)) $('g-'+id).onclick=() => chooseGadget(id);
+  $('go').onclick=runJob;
+  $('sticky').onclick=() => {
+    const armed=!current().armed;
+    stop(false); clearResult();
+    current().armed=armed;
+    updateParts();
+    updateControls();
+    how(armed ? 'stickyOn' : waitingHint(),() => !state.running,undefined,true);
+    Curio.tone(300,.1,.025);
+  };
+  $('peel').onclick=() => {
+    stop(false); clearResult();
+    current().note=null;
+    current().prediction=null;
+    current().armed=false;
+    updateParts();
+    updateControls();
+    how('peeled',() => !current().note,undefined,true);
+    Curio.tone(430,.1,.025);
+  };
+  for (const kind of ['in','out']) $('guess-'+kind).onclick=() => {
+    stop(false); clearResult();
+    current().prediction=kind;
+    updateParts();
+    updateControls();
+    how(kind==='in' ? 'selectedIn' : 'selectedOut',() => current().prediction===kind,'#go',true);
+    Curio.tone(kind==='in' ? 440 : 550,.1,.025);
+  };
+  let lastFrame=0;
+  function frame(t) {
+    if (state.running) animateJob(t);
+    if (state.active && t>state.effectUntil) {
+      state.active=null;
+      updateParts();
+      drawWires();
+    }
+    if (state.active && state.gadget==='game') {
+      const q=Math.max(0,Math.min(1,1-(state.effectUntil-t)/2500));
+      if (state.active==='joystick') $('fox').style.left=(3+q*30)+'%';
+      if (state.active==='jump') {
+        $('fox').style.bottom=(12+(Curio.reduce ? (q<.33 ? 0 : q<.66 ? 45 : 0) : Math.sin(q*Math.PI)*45))+'%';
+      }
+      if (state.active==='motor' && !Curio.reduce) $('controller').style.transform=`translateX(${Math.sin(t/25)*3}px)`;
+    }
+    if (t-lastFrame>35 && (state.running || state.flowHold || state.active || lastFrame===0)) {drawWires(); lastFrame=t;}
+    requestAnimationFrame(frame);
+  }
+  Curio.init({clips:"voice:*",rate:.9});
+  Curio.onMotion(drawWires);
+  new ResizeObserver(layout).observe($('lab'));
+  window.__tool={state,setMode,chooseGadget,tapPart,runJob,outcome,blocksJob,G,L,allLines:V.allLines,vlog:V.log,
+    get vq() {return V.queue;}};
+  renderDevice();
+  renderParts();
+  renderBoard();
+  updateControls();
+  $('hint').textContent=L.tapPart;
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

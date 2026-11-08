@@ -13,416 +13,411 @@ NGSS MS-ESS1-2, MS-ESS1-3, MS-PS2-4; reaches HS-PS2-4 and HS-ESS1-4.
 Newtonian N-body gravity, softened by one pocket pixel, leapfrog at 1/480 second. Dust pulls nothing.
 Pocket masses are exaggerated so moons fit. Real uses JPL J2000 elements, NASA masses and diameters.
 Sources and model boundaries are in spec.md and notes.md. Content CC BY 4.0, code MIT.
-No network requests. Saves and stickers never leave this device. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+No network requests. Saves never leave this device. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
 -->
 <link rel="stylesheet" href="kit:curio">
 <style>
 :root {
   --paper: #090a13;
   --ink: #eef0ff;
-  --muted: #a3a8c8;
-  --line: #36374d;
+  --muted: #b2b7d0;
+  --line: #55566b;
   --focus: #7fe3ff;
   --brand: #ff8fd8;
   --brand-ink: #1a0a17;
   --btn: #222334;
-  --btn-line: #45445e;
+  --btn-line: #77778b;
   --head-ink: #eef0ff;
   --panel: #12131f;
   --sec-bg: #1a1b2b;
+  --dock-height: 200px;
 }
-body { height: 100%; overflow: hidden; }
-header {
-  padding: 10px 18px;
-  gap: 10px;
-  background: linear-gradient(110deg, #181321, #10111d 65%);
-  border-bottom: 1px solid #4c3650;
-  box-shadow: 0 3px 25px #0006;
-  z-index: 2;
-}
-h1 { font-size: 25px; letter-spacing: -.7px; }
-h1 small { color: var(--muted); font-size: 12px; margin-top: 5px; letter-spacing: .4px; }
-h1 .brandmark { color: var(--brand); font-weight: 400; margin-right: 6px; }
-.seg { border-width: 1px; border-radius: 12px; }
-.seg button, .icon-btn { min-height: 44px; font-size: 13px; padding: 0 12px; }
-.icon-btn { min-width: 44px; }
-.seg button[aria-pressed="true"] { color: var(--brand-ink); background: var(--brand); }
-.icon-btn { border-radius: 12px; border-width: 1px; }
-main { grid-template-columns: minmax(0, 1fr) 290px; overflow: hidden; }
-.observatory {
-  grid-column: 1;
-  grid-row: 1;
-  min-width: 0;
-  min-height: 0;
-  display: grid;
-  grid-template-rows: minmax(0, 1fr) auto;
-}
-.stage {
-  min-height: 0;
-  isolation: isolate;
-  background: radial-gradient(ellipse at 11% 35%, #32203e66, transparent 58%),
-    radial-gradient(ellipse at 90% 80%, #172d4766, transparent 55%), #05060d;
-}
-.sky { position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: .055; pointer-events: none; }
+body { display: block; height: 100dvh; min-height: 0; overflow: hidden; }
+main { display: block; height: 100%; position: relative; overflow: hidden; }
+.stage { position: absolute; inset: 0; min-height: 0; isolation: isolate; background: #05060d; }
+.sky { position: absolute; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .wash { position: absolute; inset: 0; background: #05060d59; pointer-events: none; }
-canvas#universe { width: 100%; height: 100%; position: absolute; inset: 0; touch-action: none; outline-offset: -5px; }
-.stage-caption {
-  position: absolute;
-  top: 16px;
-  left: 18px;
-  pointer-events: none;
-  color: var(--muted);
-  font-size: 11px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-}
-.stage-caption strong { display: block; color: #eef0ff; font: 600 19px Georgia, serif; letter-spacing: .2px; margin-bottom: 5px; }
-#scale-label { position: absolute; right: 15px; top: 18px; max-width: 46%; text-align: right; font-size: 11px; color: #c2c5dc; }
-.stage-footer {
-  position: absolute;
-  bottom: 89px;
-  left: 18px;
-  pointer-events: none;
-  font-size: 11px;
-  color: #c2c5dc;
-}
-.tray {
-  position: absolute;
-  bottom: 12px;
-  left: 12px;
-  right: 12px;
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  padding: 7px;
-  border: 1px solid #77718e55;
-  border-radius: 17px;
-  background: linear-gradient(#252236df, #11121eed);
-  box-shadow: 0 8px 30px #0008, inset 0 1px #ffffff12;
-  backdrop-filter: blur(12px);
-}
-.chip {
-  flex: 1 1 0;
-  min-width: 48px;
-  max-width: 91px;
-  height: 56px;
-  border: 1px solid transparent;
-  border-radius: 10px;
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-  font-size: 11px;
-  white-space: nowrap;
-  position: relative;
-}
+#universe { position: absolute; top: 0; left: 0; width: 100%; height: calc(100% - var(--dock-height));
+  touch-action: none; outline-offset: -5px; }
+.view-heading { position: absolute; top: 17px; left: 22px; pointer-events: none; }
+h1 { font: 500 22px Georgia, serif; letter-spacing: .3px; text-shadow: 0 2px 6px #000; }
+#world-subtitle { display: block; color: var(--muted); font: 10px/1.6 Consolas, monospace; letter-spacing: 1.5px; }
+#scale-label { position: absolute; top: 23px; right: 22px; max-width: 45%; text-align: right; font: 11px Consolas, monospace; }
+.hint { position: absolute; top: 65px; left: 22px; margin: 0; max-width: calc(100% - 44px);
+  font-size: 12px; line-height: 1.5; text-shadow: 0 1px 4px #000; pointer-events: none;
+  background: #05060dbb; padding: 2px 5px; }
+body.has-selection .hint { max-width: calc(100% - 355px); }
+.stage-footer { position: absolute; left: 22px; bottom: calc(var(--dock-height) + 50px);
+  font: 11px Consolas, monospace; pointer-events: none; }
+.honesty-strip { position: absolute; bottom: calc(var(--dock-height) + 12px); left: 22px;
+  max-width: min(640px, calc(100% - 44px)); pointer-events: none; }
+.honesty-strip p { margin: 0; font: 11px/1.45 Consolas, monospace; color: #d5d8e9; text-shadow: 0 1px 4px #000; }
+.telemetry { position: absolute; top: 78px; right: 22px; width: 280px; padding: 9px 0;
+  background: #05060de8; border-top: 1px solid #858397; border-bottom: 1px solid #858397;
+  pointer-events: none; font: 11px/1.5 Consolas, monospace; }
+.body-card { display: flex; align-items: center; gap: 10px; padding: 0 9px 7px; }
+#selected-image { width: 33px; height: 33px; object-fit: contain; }
+#selected-name { font: 600 14px Consolas, monospace; margin: 0; }
+#selected-orbit { margin: 0; color: var(--muted); }
+.readouts { margin: 0; padding: 0 9px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px 10px; }
+.readouts div { border-top: 1px solid #636078; padding-top: 4px; }
+.readouts dt { color: var(--muted); font-size: 10px; }
+.readouts dd { margin: 0; color: var(--ink); font-size: 12px; }
+.console { position: absolute; z-index: 3; bottom: 0; left: 0; right: 0; padding: 9px 16px 5px;
+  border-top: 1px solid #96909d; background: linear-gradient(115deg, #302d38ed, #171924f5 60%, #292832f5);
+  box-shadow: 0 -9px 36px #0008, inset 0 2px #ffffff12; }
+.console::before, .console::after { content: ''; position: absolute; top: 5px; width: 5px; height: 5px;
+  border-radius: 50%; border: 1px solid #9993a0; background: linear-gradient(130deg, #aaa 42%, #35323b 44%, #35323b 58%, #aaa 60%); }
+.console::before { left: 5px; }
+.console::after { right: 5px; }
+.console-main { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(350px, 1fr); gap: 18px; align-items: center; }
+.engraving { color: #c6bfd1; font: 10px Consolas, monospace; letter-spacing: 1.5px; margin-bottom: 4px; }
+.tray { display: flex; gap: 3px; padding: 3px; border: 1px solid #100f19; border-radius: 5px;
+  background: linear-gradient(#090a12, #21202d); box-shadow: inset 0 2px 5px #000b; }
+.chip { flex: 1; min-width: 44px; height: 54px; border: 1px solid transparent; border-radius: 3px;
+  background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 2px; font-size: 10px; position: relative; padding: 0 1px; white-space: nowrap; }
 .chip img { width: 29px; height: 29px; object-fit: contain; }
-.chip .dust-chip { font-size: 25px; line-height: 29px; color: #ffd166; }
-.chip[aria-pressed="true"] { border-color: var(--brand); background: #ff8fd81d; box-shadow: inset 0 0 20px #ff8fd80b; }
-.chip[aria-pressed="true"] { animation: chip-glow 4s ease-in-out infinite; }
-@keyframes chip-glow { 50% { box-shadow: inset 0 0 20px #ff8fd835, 0 0 9px #ff8fd81a; } }
-button:disabled { opacity: .45; cursor: default; }
-.timebar.rewind-ready { box-shadow: inset 0 2px 0 #ff8fd8, 0 -4px 24px #ff8fd82b; }
-.timebar.rewind-ready #scrub { filter: drop-shadow(0 0 5px #ff8fd8); }
-.timebar { background: linear-gradient(#1c1c2c, #12131f); border-top: 1px solid #4e425a; padding: 8px 12px; }
-.transport { display: flex; align-items: center; gap: 5px; }
-.transport button { min-width: 44px; }
-button, summary, select, input { -webkit-tap-highlight-color: transparent; }
-.btn {
-  min-height: 44px;
-  min-width: 44px;
-  padding: 0 10px;
-  border: 1px solid #45445e;
-  border-radius: 9px;
-  background: linear-gradient(#2c2b40, #202130);
-  color: #eef0ff;
-  box-shadow: inset 0 1px #ffffff09;
-  font-size: 12px;
-  font-weight: 600;
-}
-.btn:hover:not(:disabled), .chip:hover:not(:disabled) { background-color: #3a2b42; border-color: #b89aba; }
-.btn[aria-pressed="true"], .btn.primary { background: var(--brand); border-color: var(--brand); color: var(--brand-ink); }
-#pause { min-width: 84px; }
-.speed { display: flex; gap: 3px; }
-.speed button { padding: 0 10px; }
-#clock { margin-left: auto; font: 12px Consolas, monospace; color: #eef0ff; white-space: nowrap; }
-.tape { display: flex; align-items: center; gap: 10px; }
-.tape span { font-size: 10px; color: var(--muted); white-space: nowrap; }
-input[type="range"] { width: 100%; min-width: 44px; accent-color: var(--brand); height: 30px; cursor: pointer; }
-.panel { grid-column: 2; grid-row: 1; position: relative; padding: 14px; border-left: 1px solid #4b3652; gap: 10px; }
-.eyebrow { font-size: 10px; color: var(--brand); text-transform: uppercase; letter-spacing: 2px; margin: 0 0 4px; }
-.hint { font-size: 13px; line-height: 1.45; min-height: 58px; margin: 0; padding: 0; }
-.panel > div:first-child { position: sticky; top: 0; z-index: 3; background: var(--panel); }
-.top-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-.top-actions .btn { font-size: 13px; }
-details { background: var(--sec-bg); border: 1px solid #373549; border-radius: 12px; }
+.chip span:not(.dust-chip) { line-height: 11px; }
+.dust-chip { font-size: 25px; line-height: 29px; color: #ffd166; }
+.chip[aria-pressed="true"] { border-color: var(--brand); background: #ff8fd81d; box-shadow: inset 0 0 17px #ff8fd81a; }
+.chip[aria-pressed="true"]::after { content: ''; position: absolute; bottom: 1px; width: 12px; height: 2px; background: var(--brand); }
+.btn, .icon-btn, summary, .mode-switch button { min-height: 44px; min-width: 44px; padding: 0 11px;
+  border: 1px solid var(--btn-line); border-radius: 3px; color: var(--ink);
+  background: linear-gradient(#3b3948, #242534 50%, #1b1c28); box-shadow: inset 0 1px #ffffff18, 0 2px 2px #0005;
+  font: 600 11px 'Segoe UI', sans-serif; cursor: pointer; }
+.btn:hover:not(:disabled), .icon-btn:hover, .chip:hover:not(:disabled), summary:hover { border-color: #e3bddb; }
+.btn:active, .icon-btn:active, .mode-switch button:active { transform: translateY(1px); box-shadow: inset 0 2px 3px #0007; }
+.btn[aria-pressed="true"], .icon-btn[aria-pressed="true"], .mode-switch button[aria-pressed="true"] {
+  border-color: var(--brand); box-shadow: inset 0 -3px var(--brand), inset 0 1px #ffffff18; }
+.btn.primary { background: linear-gradient(#ffb0e3, #ff8fd8); color: var(--brand-ink); border-color: #ffb0e3; }
+button:disabled, summary[aria-disabled="true"] { opacity: .5; cursor: default; }
+.timebar { min-width: 0; display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: 14px; }
+.transport { display: flex; align-items: center; gap: 6px; }
+#pause { min-width: 72px; }
+.time-control { display: flex; align-items: center; gap: 12px; justify-content: flex-end; }
+.dial { position: relative; width: 56px; height: 56px; flex: 0 0 56px; border-radius: 50%;
+  background: repeating-conic-gradient(from -135deg, #b5afc5 0deg 2deg, transparent 2deg 45deg), #0d0e17;
+  box-shadow: inset 0 1px 4px #000, 0 1px #ffffff23; }
+.dial-grip { position: absolute; inset: 7px; border-radius: 50%; border: 1px solid #a9a0b0;
+  background: radial-gradient(circle at 32% 25%, #78717f, #383442 55%, #181824 85%);
+  box-shadow: 1px 3px 4px #000a; transform: rotate(var(--angle, -45deg)); }
+.dial-grip::after { content: ''; position: absolute; top: 3px; left: calc(50% - 1px); width: 2px; height: 13px;
+  background: #ffd5ef; box-shadow: 0 0 4px #ff8fd8a0; }
+#time-rate { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: .001; cursor: grab; touch-action: none; }
+.dial:focus-within { outline: 3px solid var(--focus); outline-offset: 3px; }
+.time-label { display: flex; flex-direction: column; gap: 3px; min-width: 114px; font: 11px Consolas, monospace; }
+#rate-value { color: #ffd5ef; font-size: 13px; }
+#running-rate { color: var(--muted); font-size: 10px; }
+#clock { font: 12px Consolas, monospace; white-space: nowrap; }
+.tape { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; }
+.tape span { font: 10px Consolas, monospace; white-space: nowrap; color: var(--muted); }
+input[type="range"] { width: 100%; min-width: 44px; accent-color: var(--brand); height: 32px; cursor: pointer; }
+.timebar.rewind-ready #scrub { filter: drop-shadow(0 0 4px #ff8fd8); }
+.console-tools { display: flex; align-items: center; justify-content: space-between; gap: 14px;
+  border-top: 1px solid #65616f; padding-top: 6px; margin-top: 5px; }
+.mode-switch { display: flex; padding: 2px; gap: 3px; border: 1px solid #0c0d15; background: #0d0e16; border-radius: 3px; }
+.mode-switch button { font-size: 11px; padding: 0 11px; min-height: 44px; }
+.actions, .power { display: flex; gap: 5px; align-items: center; }
+.power { border-left: 1px solid #777381; padding-left: 12px; }
+.power .icon-btn { width: 68px; font-size: 10px; padding: 0 7px; white-space: nowrap; }
+.console-fold { border: 0; background: none; }
+summary { display: flex; align-items: center; justify-content: center; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; margin-left: 10px; color: var(--brand); }
+.console-fold[open] summary { border-color: var(--brand); }
+.console-fold[open] summary::after { content: '\2212'; }
+.section-inner { position: fixed; z-index: 6; left: 16px; bottom: calc(var(--dock-height) + 8px);
+  width: min(380px, calc(100vw - 32px)); max-height: calc(100dvh - var(--dock-height) - 24px); overflow: auto;
+  padding: 15px; background: linear-gradient(135deg, #252332fa, #11121ffa); border: 1px solid #8a8195;
+  box-shadow: 0 5px 30px #0009; }
 details:not([open]) > .section-inner { display: none; }
-summary { cursor: pointer; min-height: 44px; padding: 12px; font-size: 12px; font-weight: 700; color: #d9dced; }
-.section-inner { padding: 0 10px 10px; }
-.row { display: flex; gap: 6px; align-items: center; }
-.grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 5px; }
-.grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px; }
-.body-card { display: flex; align-items: center; gap: 10px; min-height: 56px; margin-bottom: 6px; }
-#selected-image { width: 48px; height: 48px; object-fit: contain; }
-#selected-name { font-size: 15px; margin: 0 0 4px; }
-#selected-data { font: 11px/1.55 Consolas, monospace; color: #c0c5e0; margin: 0 0 8px; min-height: 34px; }
-.small { font-size: 11px; line-height: 1.5; color: var(--muted); margin: 8px 0 0; }
-.control-label { display: flex; align-items: center; justify-content: space-between; font-size: 12px; margin-bottom: 2px; }
+.drawer-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
+.drawer-head h2 { margin: 0; font: 16px Georgia, serif; }
+.grid2, .grid3 { display: grid; gap: 6px; }
+.grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.control-label { display: flex; align-items: center; justify-content: space-between; font: 11px Consolas, monospace; margin: 8px 0 4px; }
 .control-label output { color: var(--brand); }
-.world-buttons { margin: 7px 0; }
-.privacy { margin-top: auto; border-top: 1px solid #373549; padding-top: 10px; }
-.privacy .row { justify-content: space-between; margin-top: 8px; }
-#toast {
-  position: absolute;
-  z-index: 4;
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  pointer-events: none;
-  border: 1px solid var(--brand);
-  border-radius: 10px;
-  background: #322036;
-  padding: 10px;
-  box-shadow: 0 6px 24px #0009;
-}
-#toast strong { display: block; color: var(--brand); font-size: 14px; margin-bottom: 4px; }
-#toast:not([hidden]) { animation: sticker-in .24s ease-out; }
-@keyframes sticker-in { from { opacity: 0; transform: translateY(-8px); } }
-#toast p { margin: 0; font-size: 12px; line-height: 1.4; }
-.overlay {
-  position: absolute;
-  z-index: 5;
-  inset: 12px 12px 88px;
-  border: 1px solid #80617f;
-  border-radius: 18px;
-  background: #11121ff5;
-  box-shadow: 0 18px 70px #000a;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-.overlay-head { padding: 12px 16px; border-bottom: 1px solid #51415a; display: flex; align-items: center; gap: 8px; }
-.overlay-head h2 { font: 500 23px Georgia, serif; margin: 0 auto 0 0; }
-.overlay-head p { font-size: 11px; color: var(--muted); margin: 3px 0 0; }
-.overlay-content { overflow: auto; padding: 14px; flex: 1; }
-.stickers { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
-.sticker { padding: 9px; border: 1px solid #494055; border-radius: 12px; background: #222031; }
-.sticker .snapshot { aspect-ratio: 1.6; width: 100%; border: 1px dashed #686079; background: #0c0d16; border-radius: 7px; }
-.sticker .empty-sticker { display: grid; place-items: center; color: #a3a8c8; font: 20px Georgia, serif; }
-.sticker h3 { font-size: 13px; margin: 8px 0 5px; }
-.sticker p { font-size: 12px; line-height: 1.4; margin: 0; color: #b9bfdc; }
-.sticker.found { border-color: #ff8fd88a; box-shadow: inset 0 0 30px #ff8fd808; }
-.sticker.found h3 { color: var(--brand); }
-.wonder-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-.wonder { text-align: left; padding: 12px; min-height: 84px; background: linear-gradient(130deg, #302239, #1a1c2d); }
+.world-buttons { margin: 8px 0; }
+.small { font-size: 11px; line-height: 1.5; color: var(--muted); margin: 8px 0 0; }
+.console-foot { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+#manual { min-height: 44px; letter-spacing: 1px; border-color: #a4a0ae; }
+.maker-plate { padding: 5px 12px; border: 1px solid #7d7784; border-radius: 2px; color: #e0d9e5;
+  background: linear-gradient(110deg, #3b3842, #282630, #38353f); box-shadow: inset 0 1px #ffffff19;
+  font: 10px/1.5 Consolas, monospace; letter-spacing: .2px; }
+.privacy { margin-left: auto; font: 10px/1.5 Consolas, monospace; color: var(--muted); }
+.overlay { position: fixed; z-index: 8; top: 16px; bottom: calc(var(--dock-height) + 8px); left: 16px;
+  width: min(760px, calc(100vw - 32px)); display: flex; flex-direction: column;
+  border: 1px solid #a69aae; background: linear-gradient(110deg, #23212efc, #10121ffc); box-shadow: 10px 0 60px #000a; }
+.overlay-head { padding: 12px 16px; border-bottom: 1px solid #777084; display: flex; align-items: center; gap: 10px; }
+.overlay-head > div { flex: 1; }
+.overlay-head h2 { font: 22px Georgia, serif; margin: 0; }
+.overlay-head p { font: 11px/1.5 Consolas, monospace; color: var(--muted); margin: 4px 0 0; }
+.overlay-content { padding: 16px; overflow: auto; min-height: 0; }
+.overlay-content > :first-child { margin-top: 0; }
+.overlay-content h3 { font: 18px Georgia, serif; color: #ffe3f1; }
+.overlay-content p { font-size: 13px; line-height: 1.6; }
+.findings { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+.finding { border-top: 1px solid #625b70; }
+.finding summary { justify-content: flex-start; border: 0; border-radius: 0; background: transparent; padding: 8px 0;
+  box-shadow: none; min-height: 44px; color: #e8d5e7; font: 13px Georgia, serif; }
+.finding summary::after { margin-left: auto; }
+.finding p { margin: 0 0 12px; color: #c5c8dc; }
+.wonder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.wonder { text-align: left; padding: 12px; min-height: 88px; background: linear-gradient(130deg, #393041, #1a1c2d); }
 .wonder strong { display: block; font: 17px Georgia, serif; color: #f5d9ec; margin: 4px 0 7px; }
-.wonder small { display: block; font-size: 11px; line-height: 1.4; color: #b9bfdc; }
+.wonder small { display: block; font-size: 11px; line-height: 1.4; color: #c5c8dc; }
 .save-card { display: grid; grid-template-columns: 100px minmax(0, 1fr); gap: 10px; margin-bottom: 14px; }
-.save-card img { width: 100px; height: 63px; border-radius: 8px; }
-.save-card input { width: 100%; min-height: 44px; background: #202130; color: var(--ink); border: 1px solid #62536f; border-radius: 7px; }
+.save-card img { width: 100px; height: 63px; border: 1px solid #6b6177; }
+.save-card input { width: 100%; min-height: 44px; background: #202130; color: var(--ink); border: 1px solid #9f8fac; }
 .save-card .grid3 { margin-top: 5px; }
 .save-card p { margin: 3px 0; }
-dialog.confirmation {
-  width: min(440px, calc(100vw - 24px));
-  padding: 22px;
-  border: 1px solid #b98aaa;
-  border-radius: 16px;
-  background: linear-gradient(135deg, #302239, #12131f);
-  color: var(--ink);
-  box-shadow: 0 18px 80px #000b;
-}
+.row { display: flex; gap: 6px; align-items: center; }
+dialog.confirmation { width: min(440px, calc(100vw - 24px)); padding: 22px; border: 1px solid #b98aaa;
+  background: linear-gradient(135deg, #302239, #12131f); color: var(--ink); box-shadow: 0 18px 80px #000b; }
 dialog.confirmation::backdrop { background: #05060da8; }
 dialog.confirmation h2 { margin: 0 0 12px; font: 23px Georgia, serif; }
 dialog.confirmation p { font-size: 14px; line-height: 1.5; }
 dialog.confirmation .row { justify-content: flex-end; margin-top: 18px; }
-.sr { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
+.sr { position: absolute; top: 0; left: 0; width: 1px; height: 1px; padding: 0;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; }
 .calm * { animation: none !important; transition: none !important; }
-@media (max-height: 899px) {
-  header { padding: 6px 12px; }
-  .panel { padding: 10px; gap: 8px; }
-  .section-inner { padding: 0 8px 8px; }
-  #selected-section[open] > .section-inner { display: flex; flex-direction: column; }
-  #selected-section .body-card { order: 0; }
-  #body-controls { order: -1; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-bottom: 6px; }
+@media (max-width: 1000px) {
+  .console { padding: 7px 10px 4px; }
+  .console-main { grid-template-columns: minmax(0, 1.2fr) minmax(290px, 1fr); gap: 10px; }
+  .console-tools { gap: 6px; }
+  .btn, summary, .mode-switch button { padding: 0 8px; font-size: 10px; }
+  .power { padding-left: 6px; }
+  .power .icon-btn { padding: 0 6px; }
+  .actions { gap: 4px; }
+  .timebar { column-gap: 8px; }
+  .time-control { gap: 8px; }
+  .time-label { min-width: 95px; }
+  .dial { width: 48px; height: 48px; flex-basis: 48px; }
+  .maker-plate { padding: 5px 7px; }
+  .privacy { max-width: 170px; }
 }
-@media (max-height: 640px) {
-  .overlay[data-kind="wonders"] { position: fixed; inset: 8px; z-index: 9; }
-  .overlay[data-kind="wonders"] .wonder-grid { gap: 6px; }
-  .overlay[data-kind="wonders"] .wonder { min-height: 60px; padding: 8px; }
-  .overlay[data-kind="wonders"] .wonder strong { font-size: 15px; margin: 2px 0 4px; }
-  .overlay[data-kind="wonders"] .overlay-content { padding: 8px; }
+@media (max-width: 760px) {
+  .console-main { grid-template-columns: minmax(0, 1fr) 292px; }
+  .engraving { display: none; }
+  .chip { font-size: 10px; height: 50px; }
+  .chip img { width: 25px; height: 25px; }
+  .tray { gap: 0; padding: 1px; }
+  .console-tools { flex-wrap: wrap; justify-content: flex-start; }
+  .actions { flex: 1; justify-content: flex-end; }
+  .power { border-left: 0; padding-left: 0; }
+  .view-heading { left: 14px; top: 12px; }
+  h1 { font-size: 19px; }
+  .hint { left: 14px; top: 58px; font-size: 11px; }
+  #scale-label { top: 16px; right: 14px; font-size: 10px; }
+  .honesty-strip, .stage-footer { left: 14px; }
+  .telemetry { right: 14px; width: 240px; top: 84px; }
+  body.has-selection .hint { max-width: calc(100% - 28px); }
+  .privacy { display: none; }
+  .console-foot { margin-top: 4px; }
 }
-@media (max-width: 1100px) and (min-width: 761px), (max-width: 760px) and (max-height: 600px) {
-  main { grid-template-columns: minmax(0, 1fr) 228px; }
-  header { padding: 5px 8px; gap: 5px; flex-wrap: nowrap; }
-  h1 { font-size: 18px; letter-spacing: -.4px; }
-  h1 small { display: none; }
-  h1 .brandmark { display: none; }
-  .seg button, .icon-btn { padding: 0 7px; font-size: 11px; white-space: nowrap; }
-  .tray { gap: 2px; left: 5px; right: 5px; padding: 4px; bottom: 6px; }
-  .chip { min-width: 44px; font-size: 10px; }
-  .timebar { padding: 5px 7px; }
-  .transport { flex-wrap: wrap; }
-  #clock { font-size: 11px; }
-  .speed button { padding: 0 6px; }
-  .stage-caption { left: 12px; top: 12px; }
-  .stage-caption strong { font-size: 16px; }
-  #scale-label { top: 12px; font-size: 10px; max-width: 42%; }
-  .stage-footer { left: 12px; font-size: 10px; }
-  .panel { padding: 8px; }
-  .hint { font-size: 12px; min-height: 72px; }
-  .btn { padding: 0 6px; font-size: 11px; }
-  .overlay { inset: 6px 6px 76px; }
-  .overlay-head h2 { font-size: 17px; }
-  .overlay-head { padding: 7px; }
+@media (max-width: 610px) {
+  .console { padding: 6px 8px 4px; }
+  .console-main { grid-template-columns: 1fr; gap: 4px; }
+  .chip { height: 52px; }
+  .timebar { grid-template-columns: auto 1fr; column-gap: 8px; }
+  .time-control { justify-content: flex-end; }
+  .time-label { gap: 1px; min-width: 95px; }
+  .dial { width: 44px; height: 44px; flex-basis: 44px; }
+  .tape { height: 29px; }
+  .console-tools { display: grid; grid-template-columns: auto 1fr; gap: 5px; padding-top: 5px; margin-top: 2px; }
+  .actions { grid-column: 1 / -1; grid-row: 1; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .actions .btn, summary { width: 100%; padding: 0 5px; }
+  .mode-switch { grid-column: 1; grid-row: 2; gap: 2px; padding: 1px; }
+  .mode-switch button { font-size: 10px; padding: 0 5px; }
+  .power { justify-content: flex-end; gap: 3px; }
+  .power .icon-btn { font-size: 10px; padding: 0 5px; }
+  .console-foot { gap: 6px; }
+  .console-foot { flex-wrap: wrap; }
+  .privacy { display: block; flex: 0 0 100%; max-width: none; width: 100%; text-align: right; margin: 0; }
+  .maker-plate { flex: 1; padding: 3px 6px; font-size: 10px; }
+  #manual { padding: 0 8px; }
+  .honesty-strip { bottom: calc(var(--dock-height) + 8px); max-width: calc(100% - 28px); }
+  .honesty-strip p { font-size: 10px; }
+  .stage-footer { bottom: calc(var(--dock-height) + 57px); font-size: 10px; max-width: calc(100% - 28px); }
+  .hint { top: 56px; max-width: calc(100% - 28px); }
+  .telemetry { top: 100px; right: 14px; width: 218px; }
+  .readouts { gap: 3px 8px; }
+  .readouts dd { font-size: 11px; }
+  .overlay { top: 8px; left: 8px; width: calc(100vw - 16px); bottom: 8px; }
+  .overlay-head { padding: 10px; }
+  .overlay-content { padding: 12px; }
+  .findings { grid-template-columns: 1fr; }
+  .wonder-grid { grid-template-columns: 1fr 1fr; }
+  .section-inner { left: 8px; width: calc(100vw - 16px); }
 }
-@media (max-width: 760px) and (min-height: 601px) {
-  body { overflow: auto; height: auto; min-height: 100%; }
-  header { padding: 8px 10px; gap: 6px; }
-  h1 { width: 100%; font-size: 23px; }
-  h1 small { display: inline; font-size: 11px; margin-left: 9px; }
-  .seg { flex: 1; }
-  .seg button { padding: 0 8px; font-size: 12px; }
-  .icon-btn { font-size: 11px; padding: 0 7px; }
-  main { grid-template-columns: minmax(0, 1fr); overflow: visible; }
-  .observatory { grid-template-rows: clamp(260px, calc(60vh - 90px), 470px) auto auto; }
-  .tray { position: relative; inset: auto; order: 2; border-radius: 0; justify-content: flex-start; overflow-x: auto; padding: 6px; }
-  .chip { flex: 0 0 62px; }
-  .timebar { grid-row: 2; }
-  .stage-footer { bottom: 12px; }
-  .stage-caption { top: 12px; left: 12px; }
-  #scale-label { top: 14px; max-width: 40%; font-size: 10px; }
-  .panel { grid-column: 1; grid-row: 2; border-left: 0; overflow: visible; }
-  .hint { min-height: 44px; }
-  .panel .section-inner { padding: 0 12px 12px; }
-  .grid2 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .overlay { position: fixed; inset: 12px; z-index: 9; }
-  .transport { flex-wrap: wrap; }
-  #clock { font-size: 11px; }
+@media (min-width: 611px) and (max-width: 760px) {
+  .console-tools { display: grid; grid-template-columns: auto 1fr; }
+  .power { grid-column: 2; justify-content: flex-end; }
+  .console-foot { position: relative; }
+  .console-foot .maker-plate { max-width: 340px; }
+  .console-tools .power { position: absolute; right: 10px; bottom: 4px; }
+  .maker-plate { font-size: 10px; }
 }
-@media (max-width: 430px) {
-  h1 small { display: none; }
-  .seg { flex-basis: 100%; }
-  .seg button { flex: 1; }
-  header .icon-btn { flex: 1; }
-  .stage-caption strong { font-size: 16px; }
-  .stage-caption { font-size: 10px; }
-  .wonder-grid { grid-template-columns: 1fr; }
-  .overlay-head h2 { font-size: 19px; }
+@media (max-height: 520px) and (min-width: 761px) {
+  .console-foot { margin-top: 2px; }
+  .console-main .engraving { display: none; }
+  .chip { height: 46px; }
+  .chip img { width: 23px; height: 23px; }
 }
+@media (max-width: 760px) {
+  .chip { white-space: normal; }
+  .chip span:not(.dust-chip) { max-width: 42px; min-height: 22px; display: grid; place-items: center; }
+  .chip { height: 57px; }
+}
+@media (max-height: 520px) {
+  .telemetry { top: 70px; }
+  body.has-selection .hint, body.has-selection .honesty-strip { max-width: calc(100% - 330px); }
+  .section-inner { top: 8px; bottom: 8px; max-height: calc(100dvh - 16px); }
+  .overlay { top: 8px; bottom: 8px; }
+  .overlay[data-kind="wonders"] .wonder { min-height: 60px; padding: 7px 10px; }
+  .overlay[data-kind="wonders"] .wonder strong { font-size: 14px; margin: 0 0 4px; }
+  .overlay[data-kind="wonders"] .wonder-grid { gap: 7px; }
+  .overlay[data-kind="wonders"] .overlay-head { padding: 8px 12px; }
+  .overlay[data-kind="wonders"] .overlay-content { padding: 10px; }
+}
+@media (max-height: 520px) and (max-width: 760px) {
+  body.has-selection .hint, body.has-selection .honesty-strip { max-width: calc(100% - 288px); }
+}
+@media (max-height: 720px) {
+  .overlay[data-kind="wonders"] { top: 8px; bottom: 8px; }
+}
+
 </style>
 </head>
 <body>
-<header>
-  <h1><span class="brandmark" aria-hidden="true">✧</span>Pocket Universe<small>One rule: every mass pulls.</small></h1>
-  <div class="seg" role="group" aria-label="Mode">
-    <button id="m-pocket" aria-pressed="true">Pocket</button>
-    <button id="m-real" aria-pressed="false">Real Solar System</button>
+<main aria-label="Pocket Universe gravity instrument">
+  <section class="console" id="console" aria-label="Mission control console">
+    <div class="console-main">
+      <div class="launch-bay">
+        <div class="engraving">MATTER / PICK TO THROW</div>
+        <div class="tray" id="tray" role="group" aria-label="Pick what to throw"></div>
+      </div>
+      <div class="timebar" id="timebar">
+        <div class="transport">
+          <button class="btn primary" id="pause">Pause</button>
+          <button class="btn" id="undo">Undo</button>
+        </div>
+        <div class="time-control">
+          <label class="dial" title="Time dial: one quarter, 1, 4 or 16 times speed">
+            <span class="dial-grip" aria-hidden="true"></span>
+            <input id="time-rate" type="range" min="0" max="3" step="1" value="1" aria-label="Time dial">
+          </label>
+          <div class="time-label"><label for="time-rate">TIME <output id="rate-value">1×</output></label>
+            <span id="running-rate">RUN 1×</span>
+            <output id="clock" aria-label="World time">0.0 s</output></div>
+        </div>
+        <div class="tape">
+          <span id="tape-start">0 s</span>
+          <input id="scrub" type="range" min="0" max="0.25" step="0.25" value="0" aria-label="Rewind world time">
+          <span>NOW</span>
+        </div>
+      </div>
+    </div>
+    <div class="console-tools">
+      <div class="mode-switch" role="group" aria-label="Universe switch">
+        <button id="m-pocket" aria-pressed="true">Pocket</button>
+        <button id="m-real" aria-pressed="false">Real Solar System</button>
+      </div>
+      <div class="actions">
+        <details id="world-section" class="console-fold">
+          <summary>World</summary>
+          <div class="section-inner">
+            <div class="drawer-head"><h2>World controls</h2><button class="btn" data-close="world-section">Close</button></div>
+            <label class="control-label" for="gravity">Gravity <output id="gravity-value">×1.0</output></label>
+            <input id="gravity" type="range" min="0" max="2" step="0.1" value="1">
+            <div class="grid2 world-buttons">
+              <button class="btn" id="ghost" aria-pressed="true">Ghost</button>
+              <button class="btn" id="true-size" aria-pressed="false" hidden>True size</button>
+            </div>
+            <p class="control-label">Trails / world seconds</p>
+            <div class="grid3">
+              <button class="btn" id="trail-short" data-trail="3" aria-pressed="false">Short / 3 s</button>
+              <button class="btn" id="trail-long" data-trail="12" aria-pressed="true">Long / 12 s</button>
+              <button class="btn" id="trail-forever" data-trail="0" aria-pressed="false">Forever</button>
+            </div>
+            <div class="grid3 world-buttons">
+              <button class="btn" id="fit">Fit</button>
+              <button class="btn" id="zoom-in" aria-label="Zoom in">+</button>
+              <button class="btn" id="zoom-out" aria-label="Zoom out">−</button>
+            </div>
+            <button class="btn" id="clear">Clear</button>
+          </div>
+        </details>
+        <details id="body-section" class="console-fold">
+          <summary aria-disabled="true">Body</summary>
+          <div class="section-inner">
+            <div class="drawer-head"><h2 id="selected-summary">Selected body</h2>
+              <button class="btn" data-close="body-section">Close</button></div>
+            <div class="grid3" id="body-controls">
+              <button class="btn" id="follow" aria-pressed="false">Follow</button>
+              <button class="btn" id="pulls" aria-pressed="false">Pulls</button>
+              <button class="btn" id="remove">Remove</button>
+              <button class="btn" id="heavier">Heavier</button>
+              <button class="btn" id="lighter">Lighter</button>
+              <button class="btn" id="faster">Faster</button>
+              <button class="btn" id="slower">Slower</button>
+              <button class="btn" id="left">Turn left</button>
+              <button class="btn" id="right">Turn right</button>
+            </div>
+            <p class="small" id="pull-data"></p>
+          </div>
+        </details>
+        <button class="btn" id="wonders">Setups</button>
+        <button class="btn" id="save">Save</button>
+        <button class="btn" id="my-universes">My universes</button>
+      </div>
+      <div class="power" role="group" aria-label="Power panel">
+        <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+        <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+        <button class="icon-btn" id="read">Read</button>
+      </div>
+    </div>
+    <div class="console-foot">
+      <button class="btn" id="manual">Manual</button>
+      <div class="maker-plate">Curio Class Instruments · No. 02 · Pocket Universe</div>
+      <span class="privacy">Saves stay on this device.</span>
+    </div>
+  </section>
+  <div class="stage" id="stage">
+    <img class="sky" id="sky" alt="Painted deep space sky">
+    <div class="wash"></div>
+    <canvas id="universe" tabindex="0" role="application"
+      aria-label="Gravity sandbox. Drag to throw. Tab through bodies, F to follow."></canvas>
+    <div class="view-heading"><h1 id="world-title">Starter</h1><span id="world-subtitle">Your pocket of space</span></div>
+    <div id="scale-label">700 world px across the shorter side</div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <section class="telemetry" id="selected-section" aria-label="Selected body telemetry" hidden>
+      <div class="body-card">
+        <img id="selected-image" alt="" hidden>
+        <div><h2 id="selected-name">Tap a body</h2><p id="selected-orbit"></p></div>
+      </div>
+      <dl class="readouts" id="selected-data">
+        <div><dt>Mass</dt><dd id="mass-data"></dd></div>
+        <div><dt id="speed-label">Speed / parent</dt><dd id="speed-data"></dd></div>
+        <div><dt id="distance-label">Distance / parent</dt><dd id="distance-data"></dd></div>
+        <div><dt>Completed laps</dt><dd id="lap-data"></dd></div>
+      </dl>
+    </section>
+    <div class="stage-footer" id="stage-footer"></div>
+    <div class="honesty-strip">
+      <p id="honesty">Pocket masses exaggerated: giant = 1/10 star; planet = 1/100. Real Jupiter = 1/1048 Sun.</p>
+      <p id="whirl-note" hidden>This whirl uses one heavy center, not a galaxy's distributed stars and dark matter.</p>
+    </div>
   </div>
-  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
-  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
-  <button class="icon-btn" id="read">Read</button>
-</header>
-<main>
-  <aside class="panel" id="panel">
-    <div><p class="eyebrow">Flight notes</p><p class="hint" id="hint" aria-live="polite"></p></div>
-    <div id="toast" role="status" hidden><strong id="toast-title"></strong><p id="toast-fact"></p></div>
-    <div class="top-actions">
-      <button class="btn" id="goals">✧ Goals <span id="goal-count">0 / 24</span></button>
-      <button class="btn" id="wonders">Wonders</button>
+  <section class="overlay" id="overlay" role="dialog" aria-label="Universe manual and books" hidden>
+    <div class="overlay-head">
+      <div><h2 id="overlay-title"></h2><p id="overlay-subtitle"></p></div>
+      <button class="btn" id="close-overlay">Close</button>
     </div>
-    <details id="selected-section" open>
-      <summary id="selected-summary">Selected body</summary>
-      <div class="section-inner">
-        <div class="body-card">
-          <img id="selected-image" alt="" hidden>
-          <div><h2 id="selected-name">Tap a body</h2><p class="small" id="selected-orbit">Choose a world to change its course.</p></div>
-        </div>
-        <p id="selected-data"></p>
-        <div class="grid2" id="body-controls">
-          <button class="btn" id="follow" aria-pressed="false">Follow</button>
-          <button class="btn" id="pulls" aria-pressed="false">Pulls</button>
-          <button class="btn" id="heavier">Heavier</button>
-          <button class="btn" id="lighter">Lighter</button>
-          <button class="btn" id="faster">Faster</button>
-          <button class="btn" id="slower">Slower</button>
-          <button class="btn" id="left">Turn left</button>
-          <button class="btn" id="right">Turn right</button>
-          <button class="btn" id="remove">Remove</button>
-        </div>
-        <p class="small" id="pull-data"></p>
-      </div>
-    </details>
-    <details id="world-section" open>
-      <summary>World</summary>
-      <div class="section-inner">
-        <label class="control-label" for="gravity">Gravity <output id="gravity-value">x1.0</output></label>
-        <input id="gravity" type="range" min="0" max="2" step="0.1" value="1">
-        <div class="grid2 world-buttons">
-          <button class="btn" id="ghost" aria-pressed="true">Ghost</button>
-          <button class="btn" id="true-size" aria-pressed="false" hidden>True size</button>
-        </div>
-        <p class="control-label">Trails</p>
-        <div class="grid3">
-          <button class="btn" id="trail-short" data-trail="3" aria-pressed="false">Short</button>
-          <button class="btn" id="trail-long" data-trail="12" aria-pressed="true">Long</button>
-          <button class="btn" id="trail-forever" data-trail="0" aria-pressed="false">Forever</button>
-        </div>
-        <div class="grid3 world-buttons">
-          <button class="btn" id="fit">Fit</button>
-          <button class="btn" id="zoom-in" aria-label="Zoom in">+</button>
-          <button class="btn" id="zoom-out" aria-label="Zoom out">−</button>
-        </div>
-        <button class="btn" id="clear">Clear</button>
-        <p class="small" id="honesty">Pocket rule: same gravity, but giants are 1/10 of a star and planets 1/100,
-          so moons fit on screen. Real Jupiter is 1/1048 of the Sun. Real Solar System uses true numbers.</p>
-        <p class="small" id="whirl-note" hidden>A real galaxy holds together with the pull of all its stars and dark matter.
-          This whirl has one heavy center, so its outer dust moves slower than a real galaxy's stars.</p>
-      </div>
-    </details>
-    <div class="privacy">
-      <div class="grid2"><button class="btn" id="save">Save</button><button class="btn" id="my-universes">My universes</button></div>
-      <p class="small">Saves and stickers stay on this device.<br>Curio Class · Grades 6-12</p>
-    </div>
-  </aside>
-  <div class="observatory">
-    <div class="stage" id="stage">
-      <img class="sky" id="sky" alt="Painted deep space sky">
-      <div class="wash"></div>
-      <canvas id="universe" tabindex="0" role="application" aria-label="Gravity sandbox. Drag to throw. Tab through bodies, F to follow."></canvas>
-      <div class="stage-caption"><strong id="world-title">Starter</strong><span id="world-subtitle">Your pocket of space</span></div>
-      <div id="scale-label">700 world px across the shorter side</div>
-      <div class="stage-footer" id="stage-footer">Pick a world. Drag into an orbit.</div>
-      <div class="tray" id="tray" role="group" aria-label="Pick what to throw"></div>
-      <section class="overlay" id="overlay" role="dialog" aria-label="Universe book" hidden>
-        <div class="overlay-head">
-          <div><h2 id="overlay-title"></h2><p id="overlay-subtitle"></p></div>
-          <button class="btn" id="close-overlay">Close</button>
-        </div>
-        <div class="overlay-content" id="overlay-content"></div>
-      </section>
-    </div>
-    <div class="timebar" id="timebar">
-      <div class="transport">
-        <button class="btn primary" id="pause">Ⅱ Pause</button>
-        <div class="speed" role="group" aria-label="Time speed">
-          <button class="btn" id="speed-slow" data-speed="0.25" aria-pressed="false">Slow</button>
-          <button class="btn" id="speed-one" data-speed="1" aria-pressed="true">x1</button>
-          <button class="btn" id="speed-four" data-speed="4" aria-pressed="false">x4</button>
-          <button class="btn" id="speed-sixteen" data-speed="16" aria-pressed="false">x16</button>
-        </div>
-        <button class="btn" id="undo">↶ Undo</button>
-        <output id="clock" aria-label="World time">0.0 s</output>
-      </div>
-      <div class="tape">
-        <span id="tape-start">0 s</span>
-        <input id="scrub" type="range" min="0" max="0.25" step="0.25" value="0" aria-label="Rewind world time">
-        <span>NOW</span>
-      </div>
-    </div>
-  </div>
+    <div class="overlay-content" id="overlay-content"></div>
+  </section>
 </main>
 <dialog class="confirmation" id="confirmation" aria-labelledby="confirmation-title" aria-describedby="confirmation-text">
   <h2 id="confirmation-title">Keep this change?</h2>
@@ -698,209 +693,42 @@ const NBODY = (() => {
 const TAU = Math.PI * 2;
 const angleDiff = (a, b) => Math.atan2(Math.sin(a - b), Math.cos(a - b));
 const distance = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
-const involved = (...a) => a.some(b => b && b.edited);
-function measureGoals(w, award, lapSound = () => {}, passSound = () => {}) {
-  const m = w.metrics ||= {b: {}, pairs: {}, trojan: {}, zero: 0, real: {passes: 0}};
-  const dt = 1 / 30;
-  const bodies = w.bodies;
-  const heavy = bodies.reduce((a, b) => !a || a.m < b.m ? b : a, null);
-  if (!heavy) return;
-  const get = id => bodies.find(b => b.id === id);
-  const tracks = [...bodies, ...w.dust];
-  for (const a of tracks) {
+function measureOrbits(w, lapSound = () => {}, passSound = () => {}) {
+  const m = w.metrics ||= {b: {}, pairs: {}};
+  m.closePairs ||= {};
+  for (const a of w.bodies) {
     const p = NBODY.parentOf(w, a);
-    const q = m.b[a.id] ||= {past: {}, visits: [], close: {}, highE: 0};
-    const prevParent = q.parent;
-    if (p) {
-      q.hadParent = true;
-      if (q.parent !== p.id) {
-        if (q.parent) q.past[q.parent] = Math.floor(Math.abs(q.turn || 0) / TAU);
-        q.parent = p.id;
-        q.turn = 0;
-        q.angle = Math.atan2(a.y - p.y, a.x - p.x);
-        q.laps = 0;
-        q.highE = 0;
-        q.epoch = (q.epoch || 0) + 1;
-        q.parentAt = w.n;
-        delete q.laneStart;
-        delete q.laneTurn;
-      }
-      const angle = Math.atan2(a.y - p.y, a.x - p.x);
-      q.delta = angleDiff(angle, q.angle);
-      q.turn += q.delta;
-      q.angle = angle;
-      const laps = Math.floor(Math.abs(q.turn) / TAU);
-      if (laps > q.laps && a.m > 0) {
-        lapSound(a);
-        const x = a.x - p.x;
-        const y = a.y - p.y;
-        const vx = a.vx - p.vx;
-        const vy = a.vy - p.vy;
-        const mu = NBODY.G * w.g * (a.m + p.m);
-        const r = Math.hypot(x, y);
-        const dot = x * vx + y * vy;
-        const v2 = vx * vx + vy * vy;
-        const e = Math.hypot((v2 - mu / r) * x - dot * vx, (v2 - mu / r) * y - dot * vy) / Math.max(mu, 1e-9);
-        q.highE = e >= .7 ? q.highE + 1 : 0;
-      }
-      q.laps = laps;
-      if (a.m > 0 && involved(a, p)) {
-        if (laps >= 1) award(1);
-        if (q.highE >= 3) award(6);
-        const pp = NBODY.parentOf(w, p);
-        if (laps >= 5 && pp) {
-          award(9);
-          if (q.turn * (m.b[p.id]?.turn || 0) < 0) award(10);
-        }
-        if (laps >= 2 && Object.values(q.past).some(v => v >= 2)) award(15);
-        if (laps >= 3 && p.kind === 'Black hole') award(20);
-      }
-      if (w.load === 'Rescue the moon' && a.name === 'Moon 1' && p.kind === 'Giant' && laps >= 10 && a.edited) award(18);
-    } else {
-      if (prevParent) q.past[prevParent] = Math.floor(Math.abs(q.turn || 0) / TAU);
+    const q = m.b[a.id] ||= {};
+    if (!p) {
       q.parent = null;
       q.laps = 0;
-      q.delta = 0;
+      q.turn = 0;
+      continue;
     }
-    if (!a.m) continue;
-    const e = NBODY.energy(a, heavy, w.g);
-    const far = distance(a, heavy);
-    if (a.id !== heavy.id && q.hadParent && e > 0 && far >= 1500 && involved(a, heavy)) award(3);
-    for (const tag of w.lighten || []) {
-      const star = get(tag.id);
-      if (!star || !tag.parents.includes(a.id)) continue;
-      if (w.t - tag.t <= 1 && NBODY.energy(a, star, w.g) > 0) q.light = star.id;
-      if (q.light === star.id && distance(a, star) >= 1500) award(11);
-    }
-    if (a.edited && a.m >= 2000) award(7);
-    if (a.id !== heavy.id && involved(a)) {
-      for (const b of bodies) {
-        if (b.id === a.id || b.m < 10 && !w.real) continue;
-        const r = distance(a, b);
-        const limit = w.real ? 30 : 60;
-        if (r < limit && !q.visits.includes(b.id) && (w.real ? b.planet : b.m >= 10)) q.visits.push(b.id);
-        if (b.id === heavy.id) continue;
-        const pass = q.close[b.id] ||= {r: Infinity, t: -Infinity, bound: false};
-        if (r < 100 && r < pass.r) {
-          pass.r = r;
-          pass.t = w.t;
-          pass.bound ||= e < 0;
-        }
-        if (pass.bound && w.t - pass.t <= 3 && e > 0) q.sling = true;
-      }
-      if (q.visits.length >= 3 && !a.merged) award(24);
-      if (q.sling && e > 0 && far >= 1500) award(14);
-    }
-  }
-  if (w.g === 0 && bodies.some(b => Math.hypot(b.vx, b.vy) > .1)) m.zero += dt;
-  else m.zero = 0;
-  if (m.zero >= 3) award(4);
-  for (const a of bodies) {
-    const q = m.b[a.id];
-    const p = get(q?.parent);
-    if (!p) continue;
-    for (const b of bodies) {
-      const z = m.b[b.id];
-      if (b.id === a.id || z?.parent !== p.id) continue;
-      m.races ||= {};
-      let innerStart = 0;
-      let outerStart = 0;
-      if (q.parentAt !== z.parentAt) {
-        const raceKey = a.id + ':' + b.id;
-        const race = m.races[raceKey] ||= {parent: p.id, inner: q.turn, outer: z.turn, aEpoch: q.epoch, bEpoch: z.epoch};
-        if (race.parent !== p.id || race.aEpoch !== q.epoch || race.bEpoch !== z.epoch) {
-          Object.assign(race, {parent: p.id, inner: q.turn, outer: z.turn, aEpoch: q.epoch, bEpoch: z.epoch});
-        }
-        innerStart = race.inner;
-        outerStart = race.outer;
-      }
-      if (involved(a, b, p) && distance(a, p) < distance(b, p)
-        && Math.abs(q.turn - innerStart) - Math.abs(z.turn - outerStart) >= 2 * TAU) award(5);
-      if (b.m < .001 || a.m >= b.m || !involved(a, b, p) || !['Planet', 'Giant'].includes(b.kind)) continue;
-      const phase = Math.abs(angleDiff(q.angle, z.angle)) * 180 / Math.PI;
-      const key = a.id + ':' + b.id;
-      m.trojan[key] = phase >= 25 && phase <= 100 ? (m.trojan[key] || 0) + Math.abs(z.delta || 0) : 0;
-      if (m.trojan[key] >= 5 * TAU) award(16);
-    }
-    if (a.m >= 10) {
-      const lane = w.dust.filter(b => Math.abs(distance(b, p) / distance(a, p) - 1) <= .1).length;
-      if (q.laneStart === undefined) { q.laneStart = lane;
-        q.laneTurn = q.turn;
-        }
-      if (q.laneStart >= 20 && Math.abs(q.turn - q.laneTurn) <= 10 * TAU && lane <= q.laneStart / 4 && a.edited) award(19);
-    }
-  }
-  for (const p of bodies) {
-    const motes = w.dust.filter(a => m.b[a.id]?.parent === p.id);
-    const slices = new Set(motes.map(a => Math.floor((Math.atan2(a.y - p.y, a.x - p.x) + Math.PI) / TAU * 12)));
-    if (motes.length >= 20 && slices.size >= 9 && motes.some(a => (m.b[a.id]?.laps || 0) >= 3) && involved(p, ...motes)) award(12);
-  }
-  for (let i = 0; i < bodies.length; i++) {
-    const a = bodies[i];
-    for (let j = i + 1; j < bodies.length; j++) {
-      const b = bodies[j];
-      const total = a.m + b.m;
-      if (total <= 0) continue;
-      const key = a.id + ':' + b.id;
-      const r2 = (a.x - b.x) ** 2 + (a.y - b.y) ** 2;
-      const close = m.closePairs ||= {};
-      if (!close[key] && r2 <= 1600) passSound();
-      if (r2 <= 1600) close[key] = true;
-      else if (close[key]) delete close[key];
-      const starPair = a.kind === 'Star' || a.kind === 'Red dwarf' || b.kind === 'Star' || b.kind === 'Red dwarf';
-      if (!starPair && !(a.m >= 300 && b.m >= 300)) continue;
-      const center = {x: (a.x * a.m + b.x * b.m) / total, y: (a.y * a.m + b.y * b.m) / total};
-      const angle = Math.atan2(a.y - center.y, a.x - center.x);
-      const q = m.pairs[key] ||= {angle, turn: 0, around: {}};
-      if (NBODY.energy(a, b, w.g) < 0) q.turn += angleDiff(angle, q.angle);
-      else q.turn = 0;
+    q.hadParent = true;
+    const angle = Math.atan2(a.y - p.y, a.x - p.x);
+    if (q.parent !== p.id) {
+      q.parent = p.id;
+      q.turn = 0;
+      q.laps = 0;
       q.angle = angle;
-      if (involved(a, b) && Math.abs(q.turn) >= TAU) {
-        for (const [s, other] of [[a, b], [b, a]]) {
-          const heaviest = bodies.filter(z => z.id !== s.id).sort((x, y) => y.m - x.m)[0];
-          if (['Star', 'Red dwarf'].includes(s.kind) && heaviest?.id === other.id && distance(s, center) >= 10) award(8);
-        }
-      }
-      if (a.m < 300 || b.m < 300) continue;
-      const binary = Math.abs(q.turn) >= 3 * TAU;
-      if (binary && involved(a, b)) award(13);
-      for (const c of bodies) {
-        if (c.id === a.id || c.id === b.id) continue;
-        const theta = Math.atan2(c.y - center.y, c.x - center.x);
-        const z = q.around[c.id] ||= {angle: theta, turn: 0, inside: true};
-        z.inside &&= distance(a, center) < distance(c, center) && distance(b, center) < distance(c, center);
-        z.turn += angleDiff(theta, z.angle);
-        z.angle = theta;
-        if (binary && z.inside && Math.abs(z.turn) >= 3 * TAU && involved(a, b, c)) award(17);
-      }
+    }
+    q.turn += angleDiff(angle, q.angle);
+    q.angle = angle;
+    const laps = Math.floor(Math.abs(q.turn) / TAU);
+    if (laps > q.laps) lapSound(a);
+    q.laps = laps;
+  }
+  for (let i = 0; i < w.bodies.length; i++) {
+    for (let j = i + 1; j < w.bodies.length; j++) {
+      const a = w.bodies[i];
+      const b = w.bodies[j];
+      const key = a.id + ':' + b.id;
+      const near = distance(a, b) <= 40;
+      if (near && !m.closePairs[key]) passSound();
+      m.closePairs[key] = near;
     }
   }
-  if (w.danceStart !== undefined) {
-    const stars = bodies.filter(a => w.dancers?.includes(a.id));
-    const center = stars.length ? {x: stars.reduce((s, a) => s + a.x, 0) / stars.length,
-      y: stars.reduce((s, a) => s + a.y, 0) / stars.length} : {x: 0, y: 0};
-    if (stars.length !== 3 || stars.some(a => a.merged || distance(a, center) > 600)) w.danceFailed = true;
-    if (!w.danceFailed && w.t - w.danceStart >= 103.3) award(21);
-  }
-  if (w.real && w.followEarth) {
-    const earth = bodies.find(a => a.name === 'Earth');
-    const mars = bodies.find(a => a.name === 'Mars');
-    const venus = bodies.find(a => a.name === 'Venus');
-    if (earth && mars && venus) {
-      const theta = Math.atan2(mars.y - earth.y, mars.x - earth.x);
-      const q = m.real;
-      const delta = q.angle === undefined ? 0 : angleDiff(theta, q.angle);
-      if (q.direction && delta * q.direction < -1e-8) award(22);
-      if (Math.abs(delta) > 1e-8) q.direction = Math.sign(delta);
-      q.angle = theta;
-      const r = distance(earth, venus);
-      if (w.forever && q.r !== undefined && q.dr < 0 && r - q.r >= 0) q.passes++;
-      if (!w.forever) q.passes = 0;
-      q.dr = r - (q.r ?? r);
-      q.r = r;
-      if (q.passes >= 5) award(23);
-    }
-  } else if (m.real) m.real = {passes: 0};
 }
 
 const DUST_LIMIT = 160;
@@ -1043,205 +871,101 @@ const PLANETS = [
     "diameter": 49528
   }
 ];
-const GOALS = [
+const FINDINGS = [
   {
-    "id": 1,
-    "name": "First orbit",
-    "target": "Make something go all the way around.",
-    "check": "any body completes 1 lap",
-    "lesson": "an orbit is falling and missing",
+    "name": "Falling and missing",
     "fact": "An orbit is falling and missing: it falls toward the star the whole time, but moves sideways fast enough to miss."
   },
   {
-    "id": 2,
     "name": "Crash",
-    "target": "Make two things hit.",
-    "check": "any merge",
-    "lesson": "masses add; momentum is kept",
     "fact": "The masses add up, and the new body keeps going with the push of both."
   },
   {
-    "id": 3,
     "name": "Escape",
-    "target": "Throw something away for good.",
-    "check": "a body that once had a parent is 1500 px or more from the heaviest body with energy relative to it above 0",
-    "lesson": "escape speed is 1.41 times circle speed",
     "fact": "From any spot, escape speed is about 1.41 times the speed for a circle."
   },
   {
-    "id": 4,
     "name": "Straight line",
-    "target": "Turn gravity off and watch.",
-    "check": "Gravity dial at 0 for 3 s of world time with a moving body",
-    "lesson": "Newton's first law; orbits need a pull",
     "fact": "With no pull, a moving thing goes straight at a steady speed. Gravity is what bends the path."
   },
   {
-    "id": 5,
     "name": "Racetrack",
-    "target": "Make an inner planet lap an outer one.",
-    "check": "two bodies with the same parent, the inner one 2 laps ahead since both got that parent",
-    "lesson": "closer orbits are shorter and faster",
     "fact": "Closer orbits are shorter and faster. Mercury takes 88 days; Neptune takes 165 years."
   },
   {
-    "id": 6,
     "name": "Comet",
-    "target": "Make a long, stretched orbit.",
-    "check": "a body completes 3 laps on an orbit with eccentricity 0.7 or more (two-body elements at each lap)",
-    "lesson": "speeds up near the star, slow far out",
     "fact": "On a stretched orbit, a body races past the star and crawls far away. Halley's Comet returns about every 76 years."
   },
   {
-    "id": 7,
     "name": "Heavy hitter",
-    "target": "Grow one body by crashing things into it.",
-    "check": "any body reaches mass 2000",
-    "lesson": "more mass, more pull; it turns blue-white",
     "fact": "More mass, more pull: the neighbors' orbits tighten. Big stars burn hotter and bluer."
   },
   {
-    "id": 8,
     "name": "Wobble",
-    "target": "Make a star circle too.",
-    "check": "a star completes 1 lap around the center of mass of itself and its heaviest companion, at 10 px or more from that center",
-    "lesson": "planets tug stars; how exoplanets are found",
     "fact": "A planet tugs its star around in a small circle. Astronomers find planets around other stars by that wobble."
   },
   {
-    "id": 9,
     "name": "Moon",
-    "target": "Give a planet a moon.",
-    "check": "a body completes 5 laps around a parent that itself has a parent",
-    "lesson": "nested orbits; a moon must stay close",
     "fact": "A moon stays only close to its planet. Farther out, the star's pull carries it away."
   },
   {
-    "id": 10,
     "name": "Backwards moon",
-    "target": "A moon that circles the other way.",
-    "check": "5 laps around a parent, turning opposite to that parent's own laps",
-    "lesson": "backwards moons hold farther out (Triton)",
     "fact": "Moons that go backwards stay steady farther out. Neptune's big moon Triton goes backwards."
   },
   {
-    "id": 11,
     "name": "Lightweight",
-    "target": "Make a star lighter and set a planet free.",
-    "check": "within 1 s after `Lighter` on a star, a body with that star as parent gets energy above 0 relative to it, and later reaches 1500 px",
-    "lesson": "the pull holds the orbit; less mass, less pull",
     "fact": "A lighter star can let a planet go. Less mass means a weaker pull; a small speed change can decide whether it escapes."
   },
   {
-    "id": 12,
     "name": "Ring",
-    "target": "Make a ring around something.",
-    "check": "20 or more dust motes bound to one body, spread over at least 9 of 12 equal slices around it, and the first of them bound for 3 of its laps",
-    "lesson": "rings are countless tiny moons, smeared by speed",
     "fact": "A ring is countless tiny moons. Inner bits move faster, so a clump smears into a circle. Saturn's rings are ice."
   },
   {
-    "id": 13,
     "name": "Two suns",
-    "target": "Two stars circling each other.",
-    "check": "two bodies of mass 300 or more, bound to each other, complete 3 laps around their center of mass",
-    "lesson": "binary stars circle a shared center",
     "fact": "Two stars circle a point between them, their center of mass. Nearly half of Sun-like stars have a partner."
   },
   {
-    "id": 14,
     "name": "Slingshot",
-    "target": "Use a planet to fling something out.",
-    "check":
-      "a body bound to the heaviest body (energy below 0) passes within 100 px of a different body of mass 10 or more; " +
-      "within 3 s after its closest pass its energy relative to the heaviest body is above 0; then it reaches 1500 px",
-    "lesson": "gravity assist",
     "fact": "A close pass behind a moving planet borrows some of its speed. Voyager 2 did this at Jupiter, Saturn and Uranus."
   },
   {
-    "id": 15,
     "name": "Moon thief",
-    "target": "Move a moon from one owner to another.",
-    "check": "a body completes 2 laps around parent A, then 2 laps around a different parent B",
-    "lesson": "capture: which pull wins can change",
     "fact": "Which pull wins can change in a close pass, so moons can be lost and caught."
   },
   {
-    "id": 16,
     "name": "Trojan",
-    "target": "Ride along beside a planet.",
-    "check":
-      "a body with the same parent as a planet stays between 25 and 100 degrees ahead of it (or behind it), measured " +
-      "around the parent, for 5 of the planet's laps",
-    "lesson": "Lagrange points L4 and L5",
     "fact": "Sixty degrees ahead of or behind a planet, the pulls balance. Jupiter has thousands of Trojan asteroids there."
   },
   {
-    "id": 17,
     "name": "Tatooine",
-    "target": "A planet circling both stars of a pair.",
-    "check": "a body completes 3 laps around the center of mass of a pair that earns Two suns, both stars inside its path the whole time",
-    "lesson": "circumbinary planets need room",
     "fact": "A planet can circle two suns if it stays far out, a bit more than twice their spacing. Kepler-16b is one."
   },
   {
-    "id": 18,
     "name": "Rescue",
-    "target": "Save the moon in the Rescue load.",
-    "check": "in Rescue the moon completes 10 laps around the giant",
-    "lesson": "small changes now, big changes later",
     "fact": "A slower moon stayed closer and safer. A small change now is a big change later."
   },
   {
-    "id": 19,
     "name": "Lane clearer",
-    "target": "Let a giant sweep its path.",
-    "check":
-      "dust within 10 percent of a body's distance from its parent falls to 25 percent or less of the count when its " +
-      "first lap began (20 motes or more then), within 10 of its laps",
-    "lesson": "planets clear their lanes (why Pluto is a dwarf)",
     "fact": "A big planet sweeps its path clear. Clearing its lane is part of being a planet; Pluto has not cleared its lane."
   },
   {
-    "id": 20,
     "name": "Calm black hole",
-    "target": "Orbit a black hole.",
-    "check": "a body completes 3 laps around a black hole",
-    "lesson": "far off, a black hole pulls like any equal mass",
     "fact": "Far away, a black hole pulls just like a star of the same mass. It only swallows what comes very close."
   },
   {
-    "id": 21,
     "name": "Figure eight",
-    "target": "Nudge the three-body dance and keep it dancing.",
-    "check":
-      "in Three-body dance, after `Faster` or `Slower` on a dancer, all three survive 10 more rounds (103.3 s world " +
-      "time) with no merge and none more than 600 px from their center",
-    "lesson": "some three-body orbits are sturdy",
     "fact": "Three equal stars can share one figure-eight path, found in 1993. Small nudges keep it going; big ones break it."
   },
   {
-    "id": 22,
     "name": "Backing up",
-    "target": "Watch Mars move backward.",
-    "check": "in Real, while following Earth, Mars's direction from Earth reverses",
-    "lesson": "retrograde motion: Earth overtakes Mars",
     "fact": "Earth passes Mars on the inside track, so Mars seems to back up for a while about every 26 months."
   },
   {
-    "id": 23,
     "name": "Venus flower",
-    "target": "Let Venus draw its flower.",
-    "check": "in Real, following Earth with Trails Forever, 5 closest passes of Venus seen without a change in between",
-    "lesson": "13 Venus years are almost 8 Earth years",
     "fact": "Seen from Earth, Venus draws five loops in eight years: 13 Venus years almost equal 8 Earth years."
   },
   {
-    "id": 24,
     "name": "Grand tour",
-    "target": "One throw that visits three planets.",
-    "check": "one body passes within 60 px of 3 different bodies of mass 10 or more (Pocket) or of 3 planets within 0.3 AU (Real), with no merge",
-    "lesson": "Voyager 2's grand tour",
     "fact": "Voyager 2 flew past Jupiter, Saturn, Uranus and Neptune in 12 years."
   }
 ];
@@ -1253,7 +977,7 @@ const colors = ['#ffd166', '#7fe3ff', '#9dff8a', '#ff9f7a', '#c9a7ff', '#6ff5c8'
 const state = {
   mode: 'pocket', speed: 1, paused: false, picked: 'Planet', selected: null, follow: null,
   ghost: true, pulls: false, trails: 12, trueSize: false, thrown: false, aiming: null, overlay: null,
-  camera: {x: 0, y: 0, zoom: 1}, actualSpeed: 1, rewound: false, fitIndex: 0,
+  camera: {x: 0, y: 0, zoom: 1}, actualSpeed: 0, rewound: false, fitIndex: 0,
 };
 let world;
 let width = 900;
@@ -1275,8 +999,6 @@ let prediction = null;
 let lastPredict = 0;
 let predictionTimer = null;
 let lastLapSound = -1000;
-let toastUntil = 0;
-let toastGoal = null;
 let activePointer = false;
 let openingControl = null;
 let soundContext;
@@ -1286,40 +1008,39 @@ let lastSelected = null;
 let persistenceVersion = 0;
 const heldModes = {};
 const storageKey = 'curio-pocket-universe';
-let store = {stickers: {}, saves: []};
+let store = {saves: []};
 try {
   const saved = JSON.parse(localStorage.getItem(storageKey));
-  if (saved && saved.stickers && Array.isArray(saved.saves)) store = saved;
+  if (Array.isArray(saved?.saves)) store.saves = saved.saves;
   else if (saved?.format === 'gzip-base64-v1') {
     const bytes = Uint8Array.from(atob(saved.data), c => c.charCodeAt(0));
     new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).text().then(text => {
       const loaded = JSON.parse(text);
-      store.stickers = {...loaded.stickers, ...store.stickers};
       store.saves = [...loaded.saves, ...store.saves].slice(-12);
       if (world) syncControls();
     }).catch(() => {});
   }
 } catch {}
 const L = {
-  welcome: 'Pick something from the tray, then drag in space to throw it. A longer drag throws it faster.',
+  welcome: 'Pick from the tray. Drag in space to throw; a longer drag throws faster.',
   crash: 'Crash. Drag the time bar back to undo it, then throw again.',
   escape: 'That one got away. It was too fast for the star to pull it back.',
-  follow: 'Tap a planet, then tap Follow. Now your throws aim around it, so you can give it a moon.',
-  goals: 'Tap Goals to see your stickers and what to try next.',
-  real: 'This is our real solar system, on the first day of 2000. Tap x16 to watch the outer planets move.',
-  realExplore: 'Drag in space to add a comet. Tap a planet, then Follow to watch from its view.',
-  realFollow: 'Tap Earth, then tap Follow. Watch Mars from Earth for a few years.',
-  trueSize: 'Tap True size to see how small the planets really are.',
+  follow: 'Tap a planet, open Body, then tap Follow. Now your throws aim around it, so you can give it a moon.',
+  real: 'Real Solar System. Turn the Time dial to sixteen.',
+  realExplore: 'Drag in space to add a comet. Tap a planet and open Body for Follow.',
+  realFollow: 'Tap Earth, open Body, then tap Follow. Watch Mars from Earth for a few years.',
+  trueSize: 'Open World and tap True size to see how small the planets really are.',
   twoSuns: 'Two suns. Throw a planet around both of them, far out.',
-  dance: 'Three stars share one figure eight. Tap a dancer, then tap Faster once.',
-  rescue: 'This moon keeps crashing. Drag the time bar to the start, tap the moon, then tap Slower a few times.',
+  dance: 'Three stars share one figure eight. Tap a dancer, open Body, then tap Faster once.',
+  rescue: 'This moon keeps crashing. Drag the tape back, tap the moon, open Body, then tap Slower a few times.',
   lane: 'A giant in a dust disk. Watch its path.',
-  whirl: 'A whirl around a black hole. Drag Gravity down to 0.4 and watch.',
+  whirl: 'A whirl around a black hole. Open World and drag Gravity down to 0.4.',
   full: 'Space is full. Crash some together, or pick one and tap Remove.',
   gone: 'Gone. It flew too far to follow.',
   saved: 'Saved on this device.',
   aiming: 'Let go to throw. The dashed line shows where it will go.',
-  selected: 'Drag from it to throw it again, or use Faster, Slower and Turn.',
+  aimingBlind: 'Let go to throw. Open World and turn Ghost on to see the predicted path.',
+  selected: 'Open Body for Faster, Slower and Turn, or drag from it to throw again.',
   past: 'Throw or change something to start a new timeline, or tap Play.',
   contexts: [
     "Storage is unavailable or full. Keep playing here; this universe has not been saved.",
@@ -1328,8 +1049,8 @@ const L = {
     "Make a throw or change, then tap Undo to try again.",
     "Undone. Drag in space to try again, or tap Play.",
     "Everything is in view. Drag in space to throw another world.",
-    "Your targets are all in the book. Tap Close, then try one in space.",
-    "Tap a universe in Wonders. Each one is yours to change.",
+    "Open a field note to read what people have noticed. Tap Close to return to space.",
+    "Tap a universe in Setups. Each one is yours to change.",
     "Saved on this device. Tap My universes to load or replay it.",
     "Replaying your throws. Change anything to begin a new timeline.",
     "Loaded. Drag in space to keep experimenting.",
@@ -1351,13 +1072,19 @@ const L = {
     "Giants. Tap Fit for All.",
     "All planets. Tap True size to compare their real sizes.",
   ],
-  sticker: GOALS.map(g => 'New sticker: ' + g.name + '.'),
-  findings: GOALS.map(g => g.fact),
+  manual: 'This is the Manual. Open a field note, or tap Setups for a universe you can change.',
+  rateLines: [
+    'Time at one quarter speed. Drag in space to throw.',
+    'Time at one times speed. Drag in space to throw.',
+    'Time at four times speed. Drag in space to throw.',
+    'Time at sixteen times speed. Drag in space to throw.',
+  ],
+  findings: FINDINGS.map(g => g.fact),
 };
 function hint(text) { $('hint').textContent = text;
   }
 function currentHint() {
-  if (state.aiming) return L.aiming;
+  if (state.aiming) return state.ghost ? L.aiming : L.aimingBlind;
   if (state.rewound) return L.past;
   if (world && (state.picked === 'Dust' ? world.dust.length + 30 > DUST_LIMIT : world.bodies.length >= 20)) return L.full;
   if (state.selected && bodyById(state.selected)) return L.selected;
@@ -1367,8 +1094,9 @@ const V = Curio.voice({
   lines: L,
   scope: () => state.mode,
   hint: false,
-  read: () => toastGoal ? GOALS[toastGoal - 1].fact : $('hint').textContent,
-  welcome: () => state.overlay || $('confirmation').open ? null : state.mode === 'pocket' ? (!state.thrown ? ['welcome', {valid: () => !state.thrown}] : null)
+  read: () => $('hint').textContent,
+  welcome: () => state.overlay || $('confirmation').open || document.querySelector('.console-fold[open]') ? null
+    : state.mode === 'pocket' ? (!state.thrown ? ['welcome', {valid: () => !state.thrown}] : null)
     : ['real', {valid: () => state.speed === 1 && !state.follow}],
   // STANDARDS' multi-mode rule wins over the spec's welcomeAfter setting.
   welcomeAfter: false,
@@ -1482,6 +1210,7 @@ function makeLoad(name) {
   return w;
 }
 function initialHistory() {
+  measureOrbits(world);
   $('timebar').classList.remove('rewind-ready');
   histories = [{t: world.t, w: NBODY.snapshot(world)}];
   historyEnd = world.t;
@@ -1556,6 +1285,7 @@ function beforeChange() {
 function afterChange() {
   world.metrics ||= {b: {}, pairs: {}, trojan: {}, zero: 0, real: {passes: 0}};
   world.metrics.real = {passes: 0};
+  measureOrbits(world);
   changes.push({n: world.n, w: NBODY.snapshot(world)});
   // Store the exact post-action state even when an action falls between tape ticks.
   histories.push({t: world.t, w: NBODY.snapshot(world)});
@@ -1567,7 +1297,19 @@ function loadWonder(name) {
   const fromBook = state.overlay === 'wonders';
   beforeChange();
   V.hush();
-  world = state.mode === 'real' && name === 'Empty' ? {...newWorld(true), load: 'Empty'} : makeLoad(name);
+  flash = [];
+  prediction = null;
+  const previousMode = state.mode;
+  const real = name === 'Real Solar System' || name === 'Empty' && state.mode === 'real';
+  if ((real ? 'real' : 'pocket') !== previousMode) heldModes[previousMode] = pack();
+  state.mode = real ? 'real' : 'pocket';
+  world = name === 'Real Solar System' ? loadReal() : real ? {...newWorld(true), load: 'Empty'} : makeLoad(name);
+  state.trueSize = false;
+  state.fitIndex = 0;
+  if (previousMode !== state.mode) {
+    state.picked = real ? 'Comet' : 'Planet';
+    buildTray();
+  }
   state.follow = name === 'Rescue the moon' ? world.bodies[1].id : null;
   state.selected = name === 'Rescue the moon' ? world.bodies[2].id : null;
   state.camera = {x: 0, y: 0, zoom: 1};
@@ -1578,8 +1320,9 @@ function loadWonder(name) {
   closeOverlay(fromBook);
   const key = {'Two suns': 'twoSuns', 'Three-body dance': 'dance', 'Rescue the moon': 'rescue',
     'Ring lane': 'lane', 'Black hole whirl': 'whirl'}[name];
-  hint(key ? L[key] : L.welcome);
+  hint(key ? L[key] : real ? L.real : L.welcome);
   if (key) how(key, () => world.load === name);
+  else if (real) V.welcome();
   resize();
   syncControls();
   draw();
@@ -1613,16 +1356,20 @@ function setMode(mode) {
   resize();
   V.welcome();
 }
+function skyBounds() {
+  const compact = innerHeight <= 520;
+  return {top: compact ? 25 : 40, bottom: Math.max(130, height - (compact ? 12 : 35))};
+}
 function scaleForView() {
-  const stacked = innerWidth <= 760 && innerHeight > 600;
-  const viewH = height - (stacked ? 0 : 80);
-  return Math.min(width, viewH) / (state.mode === 'real' ? [340, 2000, 6200][state.fitIndex] : 700) * state.camera.zoom;
+  const bounds = skyBounds();
+  const span = state.mode === 'real' ? [340, 2000, 6200][state.fitIndex] : 700;
+  return Math.min(width - 28, bounds.bottom - bounds.top) / span * state.camera.zoom;
 }
 function viewCenter() {
   const b = bodyById(state.follow);
-  const stacked = innerWidth <= 760 && innerHeight > 600;
+  const bounds = skyBounds();
   return {x: (b?.x || 0) + state.camera.x, y: (b?.y || 0) + state.camera.y,
-    sx: width / 2, sy: (height - (stacked ? 0 : 80)) / 2};
+    sx: width / 2, sy: (bounds.top + bounds.bottom) / 2};
 }
 function toScreen(a) {
   const c = drawingCenter || viewCenter();
@@ -1641,12 +1388,7 @@ function resize() {
   canvas.height = Math.round(height * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   scale = scaleForView();
-  const focused = document.activeElement;
-  if (innerWidth <= 760 && innerHeight > 600) {
-    if ($('tray').parentElement !== $('stage').parentElement) $('stage').after($('tray'));
-  } else if ($('tray').parentElement !== $('stage')) $('stage').append($('tray'));
-  if (state.overlay) placeOverlay();
-  if (focused?.isConnected && document.activeElement !== focused) focused.focus({preventScroll: true});
+  document.documentElement.style.setProperty('--dock-height', $('console').getBoundingClientRect().height + 'px');
   draw();
 }
 function sceneImage(name) { return $('asset-' + name);
@@ -1667,8 +1409,8 @@ function drawTrailSet(set, ghost = false) {
     ctx.lineWidth = ghost ? 1 : 1.5;
     ctx.globalAlpha = ghost ? .3 : .72;
     ctx.setLineDash(ghost ? [2, 6] : []);
-    ctx.shadowColor = track.color;
-    ctx.shadowBlur = ghost ? 0 : 5;
+    // Layered luminous strokes avoid a full-canvas blur for every orbit on software-rendered Chromebooks.
+    ctx.shadowBlur = 0;
     ctx.beginPath();
     let began = false;
     let previous = null;
@@ -1709,7 +1451,19 @@ function drawTrailSet(set, ghost = false) {
       } else continuous = false;
       previous = z;
     }
-    if (began) ctx.stroke();
+    if (began) {
+      if (!ghost) {
+        ctx.lineWidth = 5;
+        ctx.globalAlpha = .06;
+        ctx.stroke();
+        ctx.lineWidth = 3;
+        ctx.globalAlpha = .12;
+        ctx.stroke();
+      }
+      ctx.lineWidth = ghost ? 1 : 1.5;
+      ctx.globalAlpha = ghost ? .3 : .72;
+      ctx.stroke();
+    }
   }
   ctx.globalAlpha = 1;
   ctx.shadowBlur = 0;
@@ -1793,8 +1547,7 @@ function draw() {
   for (const a of world.bodies) {
     const p = toScreen(a);
     const radius = renderRadius(a);
-    const stacked = innerWidth <= 760 && innerHeight > 600;
-    const viewBottom = height - (stacked ? 18 : 88);
+    const viewBottom = skyBounds().bottom;
     const off = p.x < -radius || p.x > width + radius || p.y < -radius || p.y > viewBottom + radius;
     if (off) {
       offscreen.push({a, p, bottom: viewBottom});
@@ -1930,8 +1683,8 @@ function draw() {
     ctx.setLineDash([2, 7]);
     ctx.lineDashOffset = Curio.reduce ? 0 : -now / 110;
     ctx.beginPath();
-    ctx.moveTo(width * .64, height - 90);
-    ctx.quadraticCurveTo(width * .78, height * .64, width * .7, height * .4);
+    ctx.moveTo(width * .64, skyBounds().bottom);
+    ctx.quadraticCurveTo(width * .78, skyBounds().bottom * .7, width * .7, viewCenter().sy);
     ctx.stroke();
     ctx.setLineDash([]);
     ctx.lineDashOffset = 0;
@@ -2033,25 +1786,11 @@ function thumbnail() {
   const c = small.getContext('2d');
   c.fillStyle = '#05060d';
   c.fillRect(0, 0, 160, 100);
-  c.drawImage(canvas, 0, 0, canvas.width, canvas.height, 0, 0, 160, 100);
+  const ratio = Math.min(160 / canvas.width, 100 / canvas.height);
+  const w = canvas.width * ratio;
+  const h = canvas.height * ratio;
+  c.drawImage(canvas, 0, 0, canvas.width, canvas.height, (160 - w) / 2, (100 - h) / 2, w, h);
   return small.toDataURL('image/png');
-}
-function award(id) {
-  if (store.stickers[id]) return;
-  store.stickers[id] = {image: thumbnail(), at: Date.now()};
-  persist();
-  const goal = GOALS[id - 1];
-  $('toast-title').textContent = '✧ ' + goal.name;
-  $('toast-fact').textContent = goal.fact;
-  $('toast').hidden = false;
-  toastGoal = id;
-  toastUntil = performance.now() + 3000;
-  $('goal-count').textContent = Object.keys(store.stickers).length + ' / 24';
-  $('live').textContent = 'New sticker: ' + goal.name + '. ' + goal.fact;
-  V.say('New sticker: ' + goal.name + '.', {valid: () => performance.now() < toastUntil + 1000, maxAge: 4000, hint: false});
-  for (const [i, frequency] of [392, 494, 659].entries()) setTimeout(() => Curio.tone(frequency, .17, .04), i * 110);
-  how('goals', () => state.overlay !== 'goals', '#goals');
-  if (state.overlay === 'goals') showGoals(false);
 }
 function onEvents(events) {
   for (const e of events) {
@@ -2059,12 +1798,10 @@ function onEvents(events) {
       flash.push({...e, at: performance.now()});
       sound(e.kind === 'Black hole' ? 'hole' : 'crash', e.mass);
       if (['Star', 'Red dwarf'].includes(e.kind)) Curio.tone(1500, .12, .015, 'sawtooth');
-      if (e.edited) award(2);
       hint(L.crash);
       $('timebar').classList.add('rewind-ready');
       $('stage-footer').textContent = 'Crash. Drag the glowing time bar back, then try another throw.';
-      V.how([['crash', {valid: () => !scrubbed, needs: '#scrub'}],
-        ['goals', {valid: () => state.overlay !== 'goals', needs: '#goals'}]], {hint: false});
+      how('crash', () => !scrubbed, '#scrub');
       if (e.ids.includes(state.selected) && !bodyById(state.selected)) state.selected = world.bodies.find(a => e.ids.includes(a.id))?.id || null;
     } else if (e.type === 'gone') {
       hint('Gone: ' + e.name + ' flew away.');
@@ -2092,7 +1829,7 @@ function advance(count, quiet = false) {
     if (!(world.n % 16)) {
       world.followEarth = world.real && bodyById(state.follow)?.name === 'Earth';
       world.forever = state.trails === 0;
-      measureGoals(world, quiet ? () => {} : award, quiet ? () => {} : a => {
+      measureOrbits(world, quiet ? () => {} : a => {
         const frequency = a.kind === 'Moon' ? 880 : a.kind === 'Giant' ? 330 : a.kind === 'Star' ? 165 : 554;
         sound('lap', frequency);
       }, quiet ? () => {} : () => sound('pass'));
@@ -2132,12 +1869,12 @@ function frame(now) {
   if (!state.paused && !state.aiming && !state.rewound && elapsed > 0) {
     debt += elapsed * state.speed * 480;
     const start = performance.now();
-    const physicsBudget = Math.min(8, Math.max(2, 13 - lastDrawMs));
+    const physicsBudget = Math.min(2, Math.max(.5, 6 - lastDrawMs));
     let done = 0;
     const wanted = Math.floor(debt);
     while (done < wanted) {
-      advance(Math.min(4, wanted - done));
-      done += Math.min(4, wanted - done);
+      advance(1);
+      done++;
       if (state.paused) break;
       if (performance.now() - start > physicsBudget) break;
     }
@@ -2150,11 +1887,6 @@ function frame(now) {
   if (now > nextPanel) {
     updateReadouts();
     nextPanel = now + 100;
-  }
-  if (toastUntil && now >= toastUntil) {
-    $('toast').hidden = true;
-    toastUntil = 0;
-    toastGoal = null;
   }
   if (world.real && world.t > 10 && state.selected && !V.heard('realFollow') && !howPending('realFollow')) {
     how('realFollow', () => bodyById(state.follow)?.name !== 'Earth', '#follow');
@@ -2178,11 +1910,24 @@ function updateReadouts() {
   $('selected-name').textContent = a ? a.name : 'Tap a body';
   const q = a && world.metrics?.b[a.id];
   const parent = q && bodyById(q.parent);
-  $('selected-orbit').textContent = a ? parent ? 'circling ' + parent.name + ', lap ' + (q.laps || 0)
-    : 'no heavier parent' : 'Choose a world to change its course.';
-  const followed = bodyById(state.follow);
-  const speed = a ? Math.hypot(a.vx - (followed?.vx || 0), a.vy - (followed?.vy || 0)) : 0;
-  $('selected-data').textContent = a ? 'mass ' + Number(a.m.toPrecision(6)) + ' units · ' + speed.toFixed(1) + ' px/s in view' : '';
+  document.body.classList.toggle('has-selection', !!a);
+  $('body-section').querySelector('summary').setAttribute('aria-disabled', !a);
+  if (!a) $('body-section').open = false;
+  $('selected-orbit').textContent = a ? parent ? 'Circles ' + parent.name : 'No heavier bound parent' : '';
+  const reference = parent || {x: 0, y: 0, vx: 0, vy: 0};
+  const speed = a ? Math.hypot(a.vx - reference.vx, a.vy - reference.vy) : 0;
+  const separation = a ? distance(a, reference) : 0;
+  const secondsPerWorldSecond = 365.25 * 86400 / 1.9869176531592203;
+  const kmPerWorldPixel = 149597870.7 / 100;
+  $('mass-data').textContent = a ? world.real ? (a.m * 1.9885e27).toExponential(3) + ' kg'
+    : Number(a.m.toPrecision(6)) + ' pocket u' : '';
+  $('speed-label').textContent = parent ? 'Speed / parent' : 'Speed / origin';
+  $('distance-label').textContent = parent ? 'Distance / parent' : 'Distance / origin';
+  $('speed-data').textContent = a ? world.real ? (speed * kmPerWorldPixel / secondsPerWorldSecond).toFixed(2) + ' km/s'
+    : speed.toFixed(1) + ' px/s' : '';
+  $('distance-data').textContent = a ? world.real ? (separation / 100).toFixed(4) + ' AU'
+    : separation.toFixed(1) + ' world px' : '';
+  $('lap-data').textContent = a ? parent ? String(q.laps || 0) : 'n/a' : '';
   const src = a && sceneImage(a.art)?.src;
   if (a && src) {
     if ($('selected-image').src !== src) $('selected-image').src = src;
@@ -2202,15 +1947,14 @@ function updateReadouts() {
       : pulls.slice(0, 3).map(p => p.b.name + ': ' + Math.round(p.force / sum * 100) + ' percent').join('; ');
   } else $('pull-data').textContent = '';
   const slow = state.actualSpeed < state.speed * .9 && !state.paused && !state.aiming;
-  for (const b of document.querySelectorAll('[data-speed]')) {
-    const requested = +b.dataset.speed;
-    b.textContent = requested === .25 ? 'Slow' : 'x' + requested;
-    if (slow && requested === state.speed) b.textContent += ' running x' + state.actualSpeed.toFixed(1);
-  }
+  $('rate-value').textContent = state.speed + '×';
+  const actual = state.paused || state.aiming || state.rewound ? 0 : state.actualSpeed;
+  $('running-rate').textContent = 'RUN ' + Number(actual.toFixed(actual < 1 ? 2 : 1)) + '×';
+  $('time-rate').setAttribute('aria-valuetext', state.speed + ' times requested' + (slow ? ', ' + state.actualSpeed.toFixed(1) + ' times running' : ''));
   updateBudget();
   if (replay && !state.paused && !world.bodies.length && !world.dust.length && replay.events[replay.index]) {
     const wait = Math.max(0, (replay.events[replay.index].n - world.n) / 480);
-    hint('Your next throw is in ' + wait.toFixed(1) + ' s of world time. Tap x4 to move through this quiet part.');
+    hint('Your next throw is in ' + wait.toFixed(1) + ' s of world time. Turn the Time dial up to move through this quiet part.');
     state.replayIdle = true;
   } else if (state.replayIdle) {
     state.replayIdle = false;
@@ -2219,19 +1963,20 @@ function updateReadouts() {
   if (world.bodies.length && !state.aiming && !state.overlay && !$('timebar').classList.contains('rewind-ready')) {
     const visible = world.bodies.some(a => {
       const p = toScreen(a);
-      return p.x >= 0 && p.x <= width && p.y >= 0 && p.y <= height - 80;
+      return p.x >= 0 && p.x <= width && p.y >= 0 && p.y <= skyBounds().bottom;
     });
     $('stage-footer').textContent = !visible ? 'Worlds off screen. Open World, then tap Fit, or press 0.'
-      : state.follow ? 'Throws move with ' + (bodyById(state.follow)?.name || 'your view') : 'Pick a world. Drag into an orbit.';
+      : state.follow ? 'View follows ' + (bodyById(state.follow)?.name || 'your world') : '';
   }
 }
 function syncControls() {
-  if (state.selected && lastSelected !== state.selected && innerHeight < 900) $('world-section').open = false;
   lastSelected = state.selected;
   $('m-pocket').setAttribute('aria-pressed', state.mode === 'pocket');
   $('m-real').setAttribute('aria-pressed', state.mode === 'real');
   $('pause').textContent = state.paused || state.rewound ? '▶ Play' : 'Ⅱ Pause';
-  for (const b of document.querySelectorAll('[data-speed]')) b.setAttribute('aria-pressed', +b.dataset.speed === state.speed);
+  const rateIndex = [0.25, 1, 4, 16].indexOf(state.speed);
+  $('time-rate').value = rateIndex < 0 ? 1 : rateIndex;
+  $('time-rate').parentElement.style.setProperty('--angle', (-135 + (rateIndex < 0 ? 1 : rateIndex) * 90) + 'deg');
   for (const b of document.querySelectorAll('[data-trail]')) b.setAttribute('aria-pressed', +b.dataset.trail === state.trails);
   $('gravity').value = world.g;
   $('gravity-value').textContent = 'x' + world.g.toFixed(1);
@@ -2240,17 +1985,14 @@ function syncControls() {
   $('true-size').setAttribute('aria-pressed', state.trueSize);
   $('honesty').hidden = world.real;
   $('whirl-note').hidden = world.load !== 'Black hole whirl';
-  $('wonders').hidden = world.real;
   $('world-title').textContent = world.load;
   $('world-subtitle').textContent = state.follow ? 'Following ' + (bodyById(state.follow)?.name || 'a world')
     : world.real ? world.load === 'Empty' || world.bodies.some(a => a.edited)
       ? 'Real units · Your universe' : 'J2000 · Sun + eight planets' : 'Your pocket of space';
   $('scale-label').textContent = world.real ? state.trueSize ? 'True size: Earth is ' + (.0085268593 * scaleForView()).toPrecision(2) + ' px across here'
     : 'Drawn bigger than life' : Math.round(700 / state.camera.zoom) + ' world px across the shorter side';
-  $('stage-footer').textContent = state.follow ? 'Throws move with ' + (bodyById(state.follow)?.name || 'your view')
-    : 'Pick a world. Drag into an orbit.';
-  if (!world.bodies.length && !world.dust.length) $('stage-footer').textContent = 'Empty space. Pick a world below, then drag to throw it.';
-  $('goal-count').textContent = Object.keys(store.stickers).length + ' / 24';
+  $('stage-footer').textContent = state.follow ? 'View follows ' + (bodyById(state.follow)?.name || 'your world') : '';
+  if (!world.bodies.length && !world.dust.length) $('stage-footer').textContent = 'Empty space.';
   $('sky').src = sceneImage(world.real ? 'pu-sky-deep' : ['Three-body dance', 'Black hole whirl'].includes(world.load)
     ? 'pu-sky-dust' : 'pu-sky-nebula').src;
   $('sky').style.opacity = $('sky').src.startsWith('data:image/svg+xml') ? '.055' : '1';
@@ -2355,7 +2097,6 @@ function pointerXY(e) {
 }
 function pickBody(id) {
   state.selected = id;
-  $('selected-section').open = true;
   hint(currentHint());
   syncControls();
   draw();
@@ -2395,7 +2136,7 @@ canvas.onpointerdown = e => {
   }
   state.aiming = {body: b, hit: !!hit, previous, x: p.x, y: p.y, dx: 0, dy: 0, moved: false};
   prediction = null;
-  hint(L.aiming);
+  hint(currentHint());
   sound('pop');
   if (!hit) updatePrediction(true);
   draw();
@@ -2465,7 +2206,7 @@ function finishAim(cancel = false) {
   state.paused = false;
   state.rewound = false;
   sampleTrails();
-  // The held body's initial parent was remembered on press. Goal time only advances on actual world ticks.
+  // The held body's initial parent was remembered on press. Laps advance only on actual world ticks.
   afterChange();
   hint(currentHint());
   sound('throw', Math.hypot(a.body.vx, a.body.vy));
@@ -2579,7 +2320,7 @@ function scrubTo(time) {
   if (!histories.length) return;
   const snap = [...histories].reverse().find(s => s.t <= time + .00001) || histories[0];
   NBODY.restore(world, snap.w);
-  // Sub-quarter-second precision uses the same deterministic integrator without earning stickers.
+  // Sub-quarter-second precision uses the same deterministic integrator without changing orbital history.
   const target = Math.round(time * 480);
   while (world.n < target) NBODY.step(world);
   state.rewound = true;
@@ -2608,13 +2349,15 @@ function fit() {
   draw();
 }
 function placeOverlay() {
-  const fixed = innerWidth <= 760 && innerHeight > 600 || innerHeight <= 640 && state.overlay === 'wonders';
-  const parent = fixed ? document.body : $('stage');
-  if ($('overlay').parentElement !== parent) parent.append($('overlay'));
+  // Every book shares the lower-left Manual drawer. The console stays accessible on wide screens.
 }
 function openOverlay(kind, title, subtitle, takeFocus = true) {
-  if (state.overlay !== kind) openingControl = document.activeElement;
+  if (state.overlay !== kind) {
+    openingControl = $('overlay').contains(document.activeElement) ? $('manual') : document.activeElement;
+  }
   state.overlay = kind;
+  $('world-section').open = false;
+  $('body-section').open = false;
   $('overlay').dataset.kind = kind;
   placeOverlay();
   $('overlay').hidden = false;
@@ -2629,32 +2372,58 @@ function closeOverlay(returnFocus = true) {
   if (returnFocus && openingControl?.isConnected) openingControl.focus({preventScroll: true});
   hint(currentHint());
 }
-function showGoals(takeFocus = true) {
-  openOverlay('goals', 'Your gravity discoveries', Object.keys(store.stickers).length + ' / 24 found · the universe keeps running', takeFocus);
+function showManual() {
+  openOverlay('manual', 'Manual', 'Pocket Universe / gravity sandbox');
+  const guide = document.createElement('div');
+  guide.innerHTML = `<h3>Throw, watch, change</h3>
+    <p>Pick from the tray, then drag in space. A longer drag throws faster. Tap a body to see its orbit readout;
+    open Body on the console to change it. Follow moves the view with it.</p>
+    <p>Turn the Time dial for a quarter, 1, 4 or 16 times speed. Drag the tape back to rewind.
+    A change in the past starts a new timeline; Undo restores your last action.</p>
+    <button class="btn" id="manual-setups">Setups</button>
+    <h3>Model and scale</h3>
+    <p>Pocket uses exaggerated masses so moons fit: Star 1000, Giant 100, Planet 10 pocket mass units.
+    Gravity uses world pixels and seconds. Real Solar System uses true mass and distance ratios in one plane,
+    starting on 1 January 2000. Its readouts use kilograms, kilometers per second and astronomical units.
+    One astronomical unit is about 149.6 million kilometers.</p>
+    <p>Speed and distance are relative to the named parent, or to the simulation origin when there is none.
+    Laps reset if the parent changes. A parent here is the nearest bound body at least three times heavier.
+    This is a softened Newtonian model, not an ephemeris: no tides, relativity or stellar evolution.</p>
+    <p>Real bodies are drawn bigger than life. Open World and tap True size for physical sizes with locating rings.
+    Gravity changes the strength of every pull; real space has no Gravity dial. A whirl around one heavy center
+    is not a galaxy's distributed stars and dark matter.</p>
+    <h3>Keyboard</h3>
+    <p>Tab reaches the console. Enter on a tray item places it at circular speed; Tab in space selects bodies.
+    Space plays or pauses; F follows; G toggles Ghost; Delete removes; Ctrl+Z undoes. Numbers pick tray items.
+    Arrow keys turn the Time dial or step the focused tape; plus and minus zoom, and 0 fits the view.</p>
+    <p>Saves and replay history stay on this device. Up to twelve universes fit in My universes.</p>
+    <h3>Things people have found</h3>
+    <p>A field guide to revisit after something surprises you in space. Open any note.</p>`;
+  $('overlay-content').append(guide);
+  $('manual-setups').onclick = showWonders;
   const grid = document.createElement('div');
-  grid.className = 'stickers';
-  for (const g of GOALS) {
-    const saved = store.stickers[g.id];
-    const card = document.createElement('article');
-    card.className = 'sticker' + (saved ? ' found' : '');
-    const picture = document.createElement(saved ? 'img' : 'div');
-    picture.className = 'snapshot' + (saved ? '' : ' empty-sticker');
-    if (saved) { picture.src = saved.image;
-      picture.alt = 'Your trails when you found ' + g.name;
-      }
-    else picture.textContent = '✧ ' + String(g.id).padStart(2, '0');
-    const title = document.createElement('h3');
-    title.textContent = (saved ? '✓ ' : '') + g.name;
+  grid.className = 'findings';
+  for (const entry of FINDINGS) {
+    const card = document.createElement('details');
+    card.className = 'finding';
+    const title = document.createElement('summary');
+    title.textContent = entry.name;
     const text = document.createElement('p');
-    text.textContent = saved ? g.fact : g.target;
-    card.append(picture, title, text);
+    text.textContent = entry.fact;
+    card.append(title, text);
+    card.ontoggle = () => {
+      if (!card.open || state.overlay !== 'manual') return;
+      hint(entry.fact);
+      how(entry.fact, () => state.overlay === 'manual' && card.open);
+    };
     grid.append(card);
   }
   $('overlay-content').append(grid);
-  hint('Your targets are all in the book. Tap Close, then try one in space.');
+  hint(L.manual);
+  how('manual', () => state.overlay === 'manual');
 }
 function showWonders() {
-  openOverlay('wonders', 'A universe to get lost in', 'Load one, change something, see what happens. Undo brings your universe back.');
+  openOverlay('wonders', 'Setups', 'Load one, change something, see what happens. Undo brings your universe back.');
   const grid = document.createElement('div');
   grid.className = 'wonder-grid';
   const loads = {
@@ -2665,6 +2434,7 @@ function showWonders() {
     'Rescue the moon': 'This moon is in trouble. Rewind and change its speed.',
     'Ring lane': 'A giant sweeps a lane through 160 flecks of dust.',
     'Black hole whirl': 'One heavy center. Try the Gravity dial.',
+    'Real Solar System': 'Sun and eight planets, J2000. True masses and distances.',
   };
   for (const [name, desc] of Object.entries(loads)) {
     const button = document.createElement('button');
@@ -2679,7 +2449,7 @@ function showWonders() {
     grid.append(button);
   }
   $('overlay-content').append(grid);
-  hint('Tap a universe in Wonders. Each one is yours to change.');
+  hint('Tap a universe in Setups. Each one is yours to change.');
 }
 let confirmationPending = null;
 function ask(message) {
@@ -2794,13 +2564,34 @@ $('m-pocket').onclick = () => setMode('pocket');
 $('m-real').onclick = () => setMode('real');
 $('pause').onclick = togglePause;
 $('undo').onclick = undo;
-for (const button of document.querySelectorAll('[data-speed]')) button.onclick = () => {
-  state.speed = +button.dataset.speed;
+function setTimeRate(index) {
+  state.speed = [0.25, 1, 4, 16][index];
   debt = 0;
   speedSamples = [];
+  state.actualSpeed = 0;
   syncControls();
-  hint('Time at ' + (state.speed === .25 ? 'one quarter speed' : 'x' + state.speed) + '. Drag in space to throw.');
+  draw();
+  hint(L.rateLines[index]);
+  sound('pop');
+}
+$('time-rate').oninput = () => setTimeRate(+$('time-rate').value);
+let dialPointer = null;
+function turnDial(e) {
+  const r = $('time-rate').getBoundingClientRect();
+  const x = e.clientX - (r.x + r.width / 2);
+  const y = e.clientY - (r.y + r.height / 2);
+  const angle = Math.atan2(x, -y) * 180 / Math.PI;
+  setTimeRate(Math.round((Math.max(-135, Math.min(135, angle)) + 135) / 90));
+}
+$('time-rate').onpointerdown = e => {
+  e.preventDefault();
+  dialPointer = e.pointerId;
+  $('time-rate').focus({preventScroll: true});
+  $('time-rate').setPointerCapture(e.pointerId);
+  turnDial(e);
 };
+$('time-rate').onpointermove = e => { if (e.pointerId === dialPointer) turnDial(e); };
+$('time-rate').onpointerup = $('time-rate').onpointercancel = () => { dialPointer = null; };
 for (const button of $('body-controls').children) button.onclick = () => changeBody(button.id);
 $('gravity').onpointerdown = () => beforeChange();
 $('gravity').onkeydown = e => { if (e.key.startsWith('Arrow')) beforeChange();
@@ -2845,7 +2636,7 @@ $('zoom-out').onclick = () => { state.camera.zoom = Math.max(.04, state.camera.z
   };
 $('clear').onclick = async () => { if (await ask('Clear this universe? Undo can bring it back.')) loadWonder('Empty');
   };
-$('goals').onclick = () => showGoals();
+$('manual').onclick = showManual;
 $('wonders').onclick = showWonders;
 $('save').onclick = saveUniverse;
 $('my-universes').onclick = showSaves;
@@ -2861,10 +2652,21 @@ $('scrub').onkeydown = e => {
   e.preventDefault();
   scrubTo(Math.max(+(histories[0]?.t || 0), Math.min(historyEnd, world.t + (e.key === 'ArrowLeft' ? -1 : 1))));
 };
-for (const details of document.querySelectorAll('details')) details.addEventListener('toggle', () => {
-  if (!details.open || !userGesture) return;
-  hint(details.id === 'world-section' ? 'Drag Gravity to change the pull. Try Ghost, Trails or Fit to change your view.' : currentHint());
-});
+for (const id of ['world-section', 'body-section']) {
+  const details = $(id);
+  details.addEventListener('toggle', () => {
+    if (!details.open || !userGesture) return;
+    $(id === 'world-section' ? 'body-section' : 'world-section').open = false;
+    hint(id === 'world-section' ? 'Drag Gravity to change the pull. Try Ghost, Trails or Fit to change your view.' : currentHint());
+  });
+}
+$('body-section').querySelector('summary').onclick = e => { if (!bodyById(state.selected)) e.preventDefault(); };
+for (const button of document.querySelectorAll('[data-close]')) button.onclick = () => {
+  const details = $(button.dataset.close);
+  details.open = false;
+  details.querySelector('summary').focus({preventScroll: true});
+  hint(currentHint());
+};
 let bodyFocusIndex = -1;
 canvas.addEventListener('blur', () => { bodyFocusIndex = -1; });
 document.addEventListener('keydown', e => {
@@ -2875,7 +2677,8 @@ document.addEventListener('keydown', e => {
       closeOverlay();
       }
     if (e.key === 'Tab') {
-      const controls = [...$('overlay').querySelectorAll('button, input')].filter(b => !b.disabled);
+      const controls = [...$('overlay').querySelectorAll('button, input, summary')]
+        .filter(b => !b.disabled && b.getClientRects().length);
       const first = controls[0];
       const last = controls[controls.length - 1];
       if (e.shiftKey && document.activeElement === first) { e.preventDefault();
@@ -2889,6 +2692,13 @@ document.addEventListener('keydown', e => {
   }
   const textField = e.target.matches('input:not([type=range]), textarea, select');
   if (textField) return;
+  if (e.key === 'Escape') {
+    const drawer = document.querySelector('.console-fold[open]');
+    if (drawer) {
+      drawer.open = false;
+      drawer.querySelector('summary').focus({preventScroll: true});
+    }
+  }
   if (e.key === ' ' && e.target.closest('button, summary, input')) return;
   if (e.key === ' ') { e.preventDefault();
     togglePause();
@@ -2929,6 +2739,8 @@ buildTray();
 hint(L.welcome);
 syncControls();
 new ResizeObserver(resize).observe($('stage'));
+new ResizeObserver(resize).observe($('console'));
+new ResizeObserver(resize).observe(canvas);
 window.addEventListener('resize', resize);
 resize();
 requestAnimationFrame(frame);
@@ -2943,8 +2755,8 @@ window.__tool = {
     },
   get prediction() { return prediction;
     },
-  NBODY, measureGoals, makeLoad, loadReal, advance, pack, unpack, loadWonder, pickBody, changeBody, scrubTo, toScreen, toWorld,
-  syncControls, draw, goals: GOALS, dateAt,
+  NBODY, measureOrbits, makeLoad, loadReal, advance, pack, unpack, loadWonder, pickBody, changeBody, scrubTo, toScreen, toWorld,
+  syncControls, draw, findings: FINDINGS, showManual, showWonders, setTimeRate, dateAt,
 };
 
 })();

@@ -1,0 +1,1595 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Egg Carton Factory · Curio Class</title>
+<meta name="description" content="Pack every rectangular carton, run a filling line and solve farm orders. Grade 4 factors and multiples. Offline.">
+<!-- Curio Class. Grade 4 mathematics, CCSS 4.OA.B.4. Students or teacher.
+     Sources: CCSS Mathematics 4.OA.B.4; Illustrative Mathematics Factors and Multiples;
+     Math is Fun Prime and Composite Numbers, Factors and Multiples; Miller Manufacturing Egg Flats 30 count.
+     Gus, his farm and all orders are fictional. Content CC BY 4.0, code MIT.
+     Illustrations generated with OpenAI gpt-image, edited for Curio Class. One file, no network requests. -->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fbf7ef; --ink:#2a2118; --muted:#62574a; --line:#b8aa90; --focus:#884600;
+  --brand:#44691a; --btn:#385716; --btn-line:#98ad77; --head-ink:#fff; --panel:#fbf7ef;
+}
+body {min-height:0; overflow:hidden;}
+header {padding:4px 12px; gap:8px; flex-wrap:nowrap; background:#304713; border-bottom:3px solid #c8ab6d;}
+h1 {font:900 22px/1 'Trebuchet MS',sans-serif; white-space:nowrap; letter-spacing:-.6px;}
+h1 small {font-size:10px; letter-spacing:2px; margin-top:5px; color:#eee0b7; text-transform:uppercase;}
+header .seg {border-radius:7px; border:1px solid #91a072; flex:none;}
+.seg button, .icon-btn {min-height:44px; padding:0 11px; font-size:13px; border-radius:0;}
+.seg button[aria-pressed="true"] {background:#f4d79a; color:#2a2118;}
+.icon-btn {border-radius:7px; padding:0 8px; white-space:nowrap;}
+#motion {min-width:98px;} #sound {min-width:98px;} #read {min-width:64px;}
+main {grid-template-columns:minmax(0,1fr) 390px; overflow:hidden;}
+.stage {order:1; min-height:0; background:#b69465; position:relative;}
+canvas {display:block; width:100%; height:100%;}
+button, input {font:inherit; color:inherit;}
+button {min-height:44px; border:1px solid #a5977d; border-radius:7px; background:#fffcf5; padding:6px 10px; font-weight:750;}
+button:hover {filter:brightness(1.035); border-color:#44691a;}
+button:active {box-shadow:inset 0 2px 4px #34231433;}
+button:disabled {opacity:.5; cursor:default;}
+button[aria-disabled="true"] {opacity:.5; cursor:default;}
+button[aria-pressed="true"] {background:#44691a; color:white; border-color:#304713;}
+input {height:44px; min-width:0; border:2px solid #9d8d70; background:#fffdf7; border-radius:5px; padding:4px 8px;}
+.primary {background:#44691a; color:white; border-color:#304713; box-shadow:0 3px 0 #263d0b;}
+.ship {background:#ecc86f; color:#2a2118; font-size:20px; border-color:#856123; box-shadow:0 3px 0 #8a6736;}
+.panel {order:2; padding:15px 20px; gap:10px; border-left:4px solid #8d6842; background:linear-gradient(105deg,#ede3cf,#fbf7ef 14%);}
+.gus {display:flex; align-items:center; gap:14px; height:115px; flex:none; border-bottom:1px solid #d2c4aa;}
+.gus img {width:100px; height:111px; object-fit:contain; filter:drop-shadow(0 3px 2px #5e42252b);}
+.gus strong {font:900 24px 'Trebuchet MS',sans-serif; display:block;}
+.eyebrow {font-size:10px; font-weight:800; letter-spacing:2px; color:#62574a; text-transform:uppercase;}
+.gus p {font-size:12px; margin:3px 0; color:#62574a;}
+.hint {margin:0; font-size:16px; line-height:1.4; min-height:68px; flex:none; padding:5px 0;}
+.row {display:flex; align-items:center; gap:7px;}
+.row > button {flex:1;}
+.row-control {display:grid; grid-template-columns:1fr 64px 1fr; gap:7px; align-items:center;}
+#rowValue {text-align:center; font:900 25px 'Trebuchet MS',sans-serif;}
+#rowValue small {display:block; font:700 11px 'Segoe UI',sans-serif; color:#62574a;}
+.order-control {display:grid; grid-template-columns:1fr 70px 1fr; gap:7px;}
+#order {text-align:center; font-size:22px; font-weight:800; width:100%;}
+#order {appearance:textfield; -moz-appearance:textfield;}
+#order::-webkit-inner-spin-button, #order::-webkit-outer-spin-button {appearance:none; margin:0;}
+.caption {font-size:11px; color:#62574a; margin:0 0 5px; letter-spacing:.3px;}
+#next {width:100%; margin-top:7px;}
+.panel-block {flex:none;}
+.panel-block h2 {font:800 17px 'Trebuchet MS',sans-serif; margin:0 0 8px;}
+#sizes {display:grid; grid-template-columns:repeat(5,1fr); gap:6px;}
+.size-button {display:flex; align-items:center; justify-content:center; flex-direction:column; padding:3px; gap:3px; min-height:53px;}
+.mini {display:grid; gap:2px; padding:3px; border:1px solid currentColor; border-radius:3px; opacity:.8;}
+.mini i {width:4px; height:4px; border-radius:50%; background:currentColor;}
+#run, #pack, #ship {width:100%; min-height:48px;}
+#seal {border:2px solid #638637; border-radius:8px; background:#f4f4db; padding:12px; box-shadow:3px 3px 0 #c1c99a;}
+#seal h2 {margin:0 0 6px; font:900 22px 'Trebuchet MS',sans-serif; text-transform:capitalize;}
+#sealText {font-size:13px; line-height:1.45; margin:0 0 8px;}
+#factors {display:flex; flex-wrap:wrap; gap:5px; align-items:center;}
+#factors button {min-width:44px; padding:4px;}
+#factors span {padding:4px; font-size:13px;}
+#feedback {min-height:34px; margin:0; font-size:13px; font-weight:750; line-height:1.3;}
+#feedback:empty {display:none;}
+.saved {font-size:11px; color:#62574a; margin:0;}
+#cardTitle {font:900 22px/1.1 'Trebuchet MS',sans-serif; margin:2px 0;}
+#cardPrompt {font-size:15px; line-height:1.35; margin:0;}
+.pager {display:grid; grid-template-columns:44px 1fr 44px; gap:7px; align-items:center; text-align:center;}
+#dots {display:flex; justify-content:center; gap:8px; margin:6px 0;}
+#dots button {width:44px; padding:0;}
+#rushProgress {font-size:13px; font-weight:700; margin:0;}
+#fiction {font-size:10px; color:#62574a; margin:0;}
+#legend {font-size:14px; line-height:2;}
+#legend span {display:block;}
+.legend-mark {width:20px; height:20px; display:inline-grid; place-items:center; border:1px solid #7a5a00; margin-right:8px;}
+#boardCount {font:900 22px/1.3 'Trebuchet MS',sans-serif; margin:0;}
+#handle {position:absolute; border:2px solid #4b493d; background:linear-gradient(#ebe3ce,#bdb6a4); color:#2a2118;
+  min-width:96px; min-height:44px; padding:0 10px; border-radius:6px; box-shadow:0 3px 4px #3d2a2850;
+  touch-action:none; cursor:ns-resize; z-index:3; font-size:12px;}
+#readout {position:absolute; left:16px; right:16px; bottom:97px; padding:8px 12px; background:#fbf7efee;
+  border:1px solid #af9873; border-radius:6px; font-size:16px; font-weight:700; text-align:center; pointer-events:none;}
+.stage.sort #readout {bottom:160px;}
+#shelf {position:absolute; bottom:0; left:0; right:0; height:88px; display:flex; align-items:center; justify-content:center;
+  gap:10px; padding:12px 16px 16px; background:linear-gradient(#ab7945 0 9%,#d7af77 10% 22%,#936234 23% 29%,#b98a55 30%);
+  box-shadow:0 -4px 9px #3c25183b; border-top:2px solid #f3d49d;}
+.shelf-label {position:absolute; top:1px; left:20px; padding:0 6px; line-height:11px; background:#61432b; color:#fff9e8;
+  font-size:10px; letter-spacing:1px; text-transform:uppercase; border-radius:3px 3px 0 0;}
+.stamp {background:#faf2db; border:2px solid #416222; border-radius:5px; text-align:center; padding:9px 7px;
+  font:800 15px 'Trebuchet MS',sans-serif; box-shadow:2px 4px 0 #64432755; min-width:70px; position:relative;}
+.stamp small {font:700 10px 'Segoe UI',sans-serif; display:block; color:#62574a;}
+.stamp.fresh {animation:stamp .35s both;}
+.stamp.twin {outline:4px solid #f4db8d; background:#fff3b7;}
+#turnLine {align-self:stretch; border-left:3px dashed #385716; width:2px;}
+#turnNote {position:absolute; right:12px; bottom:3px; font-size:10px; font-weight:800; color:#2a2118; background:#eed9ad; padding:1px 4px;}
+#board {position:absolute; inset:20px; display:grid; grid-template-columns:repeat(10,minmax(0,1fr));
+  gap:5px; max-width:660px; margin:0 auto; padding:15px; background:#e6d4ad; border:10px solid #765333;
+  box-shadow:inset 0 0 0 2px #ad8559, 0 6px 16px #31231550; border-radius:6px;}
+.cell {padding:0; min-height:0; border-radius:4px; border:1px solid #988b78; font-size:19px; font-weight:800;
+  box-shadow:0 2px 1px #6e573642; position:relative; background:#ded7ca;}
+.cell small {display:block; font-size:10px; line-height:1.1;}
+.cell.prime {background:#e9b43a; border:2px solid #7a5a00;}
+.cell.composite {background:#2f5f9e; color:white;}
+.cell.neither {background:#d9d2c7;}
+.cell:has(.square-mark) {padding-right:8px;}
+.square-mark {position:absolute; right:3px; top:1px; font-size:10px;}
+#rushTags {position:absolute; top:10px; left:8px; right:8px; display:flex; flex-wrap:wrap; gap:4px; justify-content:center; z-index:2;}
+.tag {font-size:21px; min-width:64px; background:#f9e5b2; border:2px solid #8a6537; box-shadow:2px 4px 0 #3c2b2540;}
+.tag small {font-size:10px; display:block;}
+.tag[aria-pressed="true"] {outline:3px solid #fff1b0;}
+#rushTags.decade-tags .tag {min-width:44px; font-size:14px; padding:4px;}
+#crates {position:absolute; bottom:18px; left:14px; right:14px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;}
+.crate {background:transparent; border:0; position:relative; height:125px; padding:45px 6px 8px;}
+.crate img {position:absolute; inset:0; width:100%; height:100%; object-fit:contain; pointer-events:none;}
+.crate span {position:relative; z-index:1; background:#f9edd2ed; padding:6px 4px; border:1px solid #a3885c;
+  display:block; font-size:14px; border-radius:3px;}
+.crate small {font-size:10px; display:block;}
+.crate b {font-size:12px; display:block; min-height:16px;}
+#multipleChoices {position:absolute; inset:100px 30px 50px; display:grid; grid-template-columns:repeat(3,1fr); gap:18px; align-items:center;}
+.choice {background:#fbf5e8; padding:20px 14px; border:2px solid #94744e; border-top:8px solid #63813b;
+  border-radius:5px; box-shadow:5px 8px 0 #553e2f40; text-align:center;}
+.choice h3 {font:900 35px 'Trebuchet MS',sans-serif; margin:6px 0;}
+.choice p {font-size:13px; margin:6px 0 15px;}
+.choice button {width:100%;}
+.choice label {font-size:12px; display:block; margin-top:12px;}
+.choice input {width:100%; margin-top:5px; font-size:22px; text-align:center;}
+.choice {position:relative; background:linear-gradient(115deg,#fff9eb,#eee1c5);}
+.choice::before, .choice::after {content:''; position:absolute; top:9px; width:7px; height:7px; border-radius:50%;
+  background:linear-gradient(135deg,#f7e4ba,#816a48); box-shadow:0 1px 1px #59442c;}
+.choice::before {left:9px;} .choice::after {right:9px;}
+.carton-sketch {display:block; width:120px; max-width:100%; height:52px; margin:8px auto 12px;
+  filter:drop-shadow(0 3px 2px #44332540);}
+.count-box[hidden] {display:block!important; visibility:hidden;}
+#decadeToggles {position:absolute; bottom:18px; left:12px; right:12px; display:flex; justify-content:center; gap:5px;}
+#decadeToggles button {font-size:11px; min-width:44px; padding:5px;}
+#truck {position:absolute; left:20%; width:60%; height:50%; object-fit:contain; bottom:15%; pointer-events:none;
+  filter:drop-shadow(0 10px 5px #3a2a2540); z-index:5;}
+#truck.leaving {animation:drive-away 1.5s ease-in both;}
+#shippingBanner {position:absolute; top:22%; left:10%; right:10%; background:#faf0d4; border:3px solid #44691a;
+  box-shadow:0 7px 14px #3c281c55; padding:15px; text-align:center; font:900 25px 'Trebuchet MS',sans-serif; z-index:6;}
+#shownCard {position:absolute; inset:95px 35px 105px; z-index:4; background:#fbf5e9f5; border:3px solid #7b633b;
+  padding:15px; text-align:center; display:flex; flex-direction:column; justify-content:center; border-radius:10px;}
+#shownCard h3 {font:900 25px 'Trebuchet MS',sans-serif; margin:0 0 12px;}
+#shownText {font-size:19px; line-height:1.6;}
+.answer-cartons {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin-top:6px;}
+.answer-carton {background:#d5ccba; border:1px solid #8d8473; border-radius:4px; padding:5px;}
+.answer-carton svg {display:block; width:100%; height:65px; margin-bottom:3px;}
+.answer-carton b {display:block; font-size:11px;}
+#showNext {align-self:center; margin-top:12px;}
+#modalCover {position:fixed; inset:0; z-index:7; background:#2a2118aa;}
+#resetConfirm {position:absolute; inset:20% 12%; padding:24px; background:#fbf7ef; z-index:8; border:4px solid #705235;
+  border-radius:12px; box-shadow:0 10px 35px #2a211866;}
+#resetConfirm h2 {margin-top:0;}
+.calm .idle-light {animation:none; opacity:.65;}
+.idle-light {position:absolute; width:7px; height:7px; top:15px; right:15px; border-radius:50%; background:#d9ee8f;
+  box-shadow:0 0 7px #a9d254; animation:breathe 3s infinite alternate; pointer-events:none;}
+@keyframes breathe {to {opacity:.4;}}
+@keyframes stamp {from {transform:translateY(-32px) rotate(-8deg); opacity:.4;} to {transform:translateY(0) rotate(0); opacity:1;}}
+@keyframes drive-away {to {transform:translateX(160%);}}
+.compact-only {display:none;}
+@media (max-width:1100px) {
+  main {grid-template-columns:minmax(0,1fr) 310px;}
+  h1 {font-size:18px;} h1 small {display:none;}
+  header {gap:5px; padding:4px 7px; flex-wrap:wrap;}
+  .seg button {padding:0 8px; font-size:12px;}
+  .panel {padding:10px 13px; gap:8px;}
+  .gus {height:88px;} .gus img {height:85px; width:75px;}
+  .gus strong {font-size:21px;}
+  .hint {font-size:14px; min-height:62px;}
+  #board {inset:12px; padding:7px; gap:3px; border-width:7px;}
+  .cell {font-size:15px;}
+}
+@media (max-height:650px) and (min-width:601px) {
+  main {grid-template-columns:minmax(0,1fr) 280px;}
+  header {gap:4px; padding:3px 7px;}
+  h1 {font-size:17px; width:auto;}
+  .gus {display:none;}
+  .panel {padding:6px 12px; gap:4px;}
+  .hint {font-size:12px; line-height:1.3; min-height:32px; padding:0;}
+  .row-control button, .order-control button {font-size:12px; padding:4px; white-space:nowrap;}
+  body.rush-mode #benchControls {display:grid; grid-template-columns:minmax(0,1fr) 78px; gap:5px; align-items:center;}
+  body.rush-mode .row-control {grid-template-columns:1fr 24px 1fr; gap:3px;}
+  body.rush-mode .row-control button {font-size:10px; padding:3px;}
+  body.rush-mode #rushPager {display:grid; grid-template-columns:44px minmax(0,1fr) 44px; gap:3px 0;}
+  body.rush-mode .pager {display:contents; font-size:10px;}
+  body.rush-mode #shiftLabel {grid-column:1/-1; grid-row:1; font-size:11px; text-align:center;}
+  body.rush-mode #prevShift {grid-column:1; grid-row:2;}
+  body.rush-mode #nextShift {grid-column:3; grid-row:2;}
+  body.rush-mode #dots {grid-column:2; grid-row:2; gap:1px;}
+  body.rush-mode #cardTitle {display:none;}
+  body.rush-mode #cardPrompt {grid-column:1/-1; grid-row:3;}
+  .caption {font-size:10px; margin-bottom:2px;}
+  .panel-block h2 {font-size:13px; margin-bottom:3px;}
+  #next {margin-top:5px;}
+  #seal {padding:6px;} #seal h2 {font-size:17px;}
+  #sealText {font-size:11px; line-height:1.25; margin-bottom:3px;}
+  #factors {gap:3px;} #feedback {font-size:11px; min-height:27px;}
+  #cardTitle {font-size:17px;} #cardPrompt {font-size:12px;}
+  #readout {font-size:11px; bottom:67px; padding:5px 7px; left:8px; right:8px;}
+  .stage.sort #readout {bottom:100px;}
+  .stage.decade #readout {bottom:110px;}
+  #shelf {height:58px; gap:5px; padding:9px 8px;}
+  .stamp {font-size:11px; min-width:0; padding:5px;} .stamp small {display:none;}
+  #turnNote {font-size:10px; bottom:0;}
+  #dots {margin:0; gap:5px;}
+  #run, #pack, #ship {min-height:44px;}
+  #sizes {gap:4px 0;} .size-button {min-height:44px;} .mini {display:none;}
+  #legend {font-size:12px; line-height:1.7;} #boardCount {font-size:17px;}
+  #board {inset:8px; border-width:6px; gap:2px; padding:5px;}
+  .cell {font-size:12px;} .cell small {font-size:10px;}
+  .crate {height:83px; padding:22px 2px 0;} .crate span {font-size:11px; padding:3px;}
+  .crate small {font-size:10px;} #crates {bottom:6px; gap:5px; left:5px; right:5px;}
+  .choice {padding:10px 6px;} .choice h3 {font-size:25px;} .choice p {font-size:11px; margin:4px 0 7px;}
+  .choice label {font-size:10px; margin-top:6px;} #multipleChoices {inset:55px 12px 12px; gap:7px;}
+  .carton-sketch {height:30px; margin:4px auto 6px;}
+  #decadeToggles {bottom:5px; gap:1px; flex-wrap:wrap;}
+  #decadeToggles button {min-width:44px; padding:3px; font-size:10px;}
+  #shownCard {inset:55px 15px 65px; padding:8px;} #shownText {font-size:13px; line-height:1.4;}
+  .answer-carton svg {height:32px;}
+}
+@media (max-width:730px) and (min-width:601px) {
+  main {grid-template-columns:minmax(0,1fr) 250px;}
+  header {justify-content:space-between;}
+  h1 {width:210px; font-size:17px;}
+  .seg {order:2; width:100%; display:grid; grid-template-columns:repeat(4,1fr);}
+  #motion, #sound {min-width:88px;}
+  .seg button {min-height:44px; padding:0 5px;}
+  #feedback {min-height:26px;}
+  #sealText {font-size:10px;}
+  #rushProgress {font-size:11px;}
+  #crates {grid-template-columns:repeat(3,minmax(0,1fr));}
+}
+@media (max-width:600px) {
+  body {overflow:hidden; min-height:0; height:100%; display:grid; grid-template-rows:auto minmax(0,1fr);}
+  header {position:relative; display:grid; grid-template-columns:1fr 1fr 1fr; padding:6px; gap:5px;}
+  h1 {grid-column:1/-1; text-align:center; font-size:20px; padding:2px;}
+  header .seg {grid-column:1/-1; display:grid; grid-template-columns:repeat(4,1fr);}
+  .seg button {font-size:11px; padding:0 4px;}
+  #motion, #sound, #read {min-width:0; width:100%; padding:0 4px;}
+  main {display:flex; flex-direction:column; overflow:hidden;}
+  .panel {order:0; border-left:0; border-bottom:4px solid #8d6842; padding:7px 10px; gap:5px; overflow:auto;
+    display:grid; grid-template-columns:1fr 1fr; flex:none; max-height:57%;}
+  .panel > * {grid-column:1/-1;}
+  .stage {order:1; height:auto; min-height:250px; flex:1;}
+  .gus {display:none;}
+  .hint {min-height:0; font-size:12px; padding:0; line-height:1.3;}
+  #seal {margin-top:5px;}
+  #feedback {min-height:0; font-size:11px;}
+  #feedback:empty {display:none;}
+  .panel-block h2 {font-size:14px;}
+  .order-control {grid-template-columns:1fr 65px 1fr;}
+  #next {margin-top:5px;}
+  #rushPager {display:grid; grid-template-columns:1fr 1fr; gap:4px;}
+  #rushPager[hidden] {display:none;}
+  #dots {margin:0; gap:3px;}
+  .pager {gap:3px; font-size:11px;}
+  #cardTitle {grid-column:1/-1; font-size:17px; margin:0;}
+  #cardPrompt {grid-column:1/-1; font-size:12px;}
+  #benchControls {display:grid; grid-template-columns:minmax(0,1fr) 90px; gap:6px; align-items:center;}
+  #rowsBlock {grid-column:1;}
+  .row-control {grid-template-columns:1fr 28px 1fr; gap:3px;}
+  .row-control button {padding:3px; font-size:12px;}
+  #rowValue {font-size:20px;}
+  #pack {grid-column:2; min-height:44px;}
+  #ship {min-height:44px;}
+  #rushProgress {font-size:11px;}
+  #fiction {font-size:10px;}
+  .saved {font-size:10px;}
+  #sizes {gap:4px;}
+  .size-button {min-height:44px;}
+  .mini {display:none;}
+  .cell {font-size:13px;}
+  #board {inset:7px; gap:2px; padding:5px; border-width:6px;}
+  .choice {padding:10px 6px;} #multipleChoices {inset:75px 8px 15px; gap:5px;}
+  .choice h3 {font-size:27px;}
+  .choice p, .choice label {font-size:11px;}
+  .crate {height:85px; padding:24px 2px 0;} .crate span {font-size:11px;}
+  #crates {gap:4px; left:6px; right:6px; bottom:7px;}
+  #decadeToggles {bottom:7px; flex-wrap:wrap;}
+  #readout {font-size:12px; bottom:74px;}
+  .stage.sort #readout {bottom:105px;}
+  .stage.decade #readout {bottom:110px;}
+  #shelf {height:64px; gap:4px; padding:8px;}
+  .stamp {font-size:11px; padding:5px; min-width:0;} .stamp small {display:none;}
+  #shownCard {inset:45px 15px 55px; padding:8px;} #shownText {font-size:13px;}
+  .answer-carton svg {height:40px;}
+  .square-mark {font-size:10px; right:1px;}
+}
+
+#sealCompact {display:none;}
+@media (max-height:650px) and (min-width:601px), (max-width:600px) {
+  body.sealed-pack .panel {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-content:start;}
+  body.sealed-pack .panel > * {grid-column:1/-1;}
+  body.sealed-pack #orderBlock {display:contents;}
+  body.sealed-pack #orderBlock > .caption, body.sealed-pack .order-control {grid-column:1/-1;}
+  body.sealed-pack #next {grid-column:1; margin-top:0; font-size:12px; padding:3px;}
+  body.sealed-pack #resetOrder {grid-column:2; font-size:12px; padding:3px;}
+  body.sealed-pack #seal {padding:6px;}
+  body.sealed-pack #seal h2 {font-size:17px; margin-bottom:3px;}
+  #sealText {display:none;}
+  #sealCompact {display:block; font-size:11px; line-height:1.25; margin:0 0 4px;}
+  body.sealed-pack #factors {gap:3px;}
+  body.sealed-pack #factors span {padding:2px; font-size:11px;}
+}
+@media (max-height:650px) and (min-width:601px) {
+  #sealCompact {font-size:10px;}
+  body.sealed-pack .panel {gap:2px; padding-top:4px; padding-bottom:4px;}
+  body.sealed-pack #seal {padding:4px;}
+  body.sealed-pack #seal h2 {font-size:16px; line-height:1.1; margin-bottom:2px;}
+  body.sealed-pack #sealCompact {margin-bottom:2px;}
+}
+@media (max-width:730px) and (min-width:601px) {
+  header {flex-wrap:nowrap; padding:3px 6px; gap:4px;}
+  h1 {width:auto; font-size:16px;}
+  header .seg {order:0; width:auto; display:flex;}
+  .seg button {font-size:10px; padding:0 5px; flex:none;}
+  #motion, #sound {min-width:80px;}
+  #read {min-width:55px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Egg Carton Factory <small>Every egg. Every shape.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-pack" aria-pressed="true">Pack Station</button>
+    <button id="m-fill" aria-pressed="false">Fill Line</button>
+    <button id="m-board" aria-pressed="false">Order Board</button>
+    <button id="m-rush" aria-pressed="false">Rush Orders</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<div id="modalCover" hidden></div>
+<main>
+  <aside class="panel">
+    <div class="gus"><img id="gus" alt="Gus, the fictional farmer"><div><span class="eyebrow">Gus's packing shed</span>
+      <strong id="modeTitle">Pack Station</strong><p>One order. No empty cups.</p></div></div>
+    <p class="hint" id="hint"></p>
+    <section id="rushPager" class="panel-block" hidden>
+      <div class="pager"><button id="prevShift" aria-label="Previous shift">‹</button><b id="shiftLabel"></b>
+        <button id="nextShift" aria-label="Next shift">›</button></div>
+      <div id="dots"></div><p id="cardTitle"></p><p id="cardPrompt"></p>
+    </section>
+    <div id="benchControls"><section id="rowsBlock" class="panel-block">
+      <div class="row-control"><button id="rowsDown">Rows −</button><div id="rowValue">5<small>rows</small></div>
+        <button id="rowsUp">Rows +</button></div>
+    </section>
+    <button id="pack" class="primary" hidden>Pack</button></div>
+    <section id="orderBlock" class="panel-block">
+      <p class="caption">EGG ORDER · 1 TO 100</p>
+      <div class="order-control"><button id="orderDown">Order −</button><input id="order" type="number" min="1" max="100" value="36" aria-label="Egg order">
+        <button id="orderUp">Order +</button></div>
+      <button id="next">Next order →</button>
+    </section>
+    <button id="resetOrder">Reset order</button>
+    <section id="fillBlock" class="panel-block" hidden><h2>Our shed's carton sizes</h2><div id="sizes"></div></section>
+    <button id="run" class="primary" hidden>Run the line</button>
+    <button id="ship" class="ship" hidden disabled>Ship it →</button>
+    <section id="seal" class="panel-block" hidden><h2 id="sealTitle"></h2><p id="sealText"></p><p id="sealCompact"></p><div id="factors"></div></section>
+    <section id="boardInfo" class="panel-block" hidden><p id="boardCount"></p><div id="legend">
+      <span><b class="legend-mark" style="background:#e9b43a">━</b>Prime: one long row</span>
+      <span><b class="legend-mark" style="background:#2f5f9e;color:white">••</b>Composite: more shapes</span>
+      <span><b class="legend-mark" style="background:#d9d2c7">●</b>1: neither</span>
+      <span>□ A square carton was found</span></div><button id="startOver">Start over</button></section>
+    <p id="feedback" role="status" aria-live="polite" tabindex="-1"></p>
+    <div id="rushFoot" hidden><p id="rushProgress"></p><p id="fiction">Gus's farm and orders are made up for practice.</p></div>
+    <p class="saved" id="saved" hidden>Saved on this device only.</p>
+  </aside>
+<div class="stage" id="stage">
+    <canvas id="canvas" aria-label="Egg packing bench. Change rows with the Rows buttons or carton edge."></canvas>
+    <span class="idle-light" aria-hidden="true"></span>
+    <button id="handle" role="slider" aria-valuemin="1" aria-valuemax="12" aria-valuenow="5" aria-orientation="vertical"
+      aria-label="Carton bottom edge. Drag to change rows, or use up and down arrow keys.">↕ Drag rows</button>
+    <div id="readout" role="status" aria-live="polite"></div>
+    <div id="shelf"><span class="shelf-label">Cartons found</span><div id="turnLine" hidden></div><span id="turnNote"></span></div>
+    <div id="board" hidden aria-label="Orders one to one hundred"></div>
+    <div id="rushTags" hidden></div>
+    <div id="crates" hidden>
+      <button class="crate" data-bin="prime"><img class="crate-art" alt=""><span>Prime<small>one long row</small><b></b></span></button>
+      <button class="crate" data-bin="composite"><img class="crate-art" alt=""><span>Composite<small>more shapes</small><b></b></span></button>
+      <button class="crate" data-bin="neither"><img class="crate-art" alt=""><span>Neither<small>check on Ship</small><b></b></span></button>
+    </div>
+    <div id="multipleChoices" hidden></div>
+    <div id="decadeToggles" hidden></div>
+    <img id="truck" alt="Farm delivery truck" hidden>
+    <div id="shippingBanner" role="region" aria-label="Shipping result" tabindex="-1" hidden></div>
+    <div id="shownCard" role="region" aria-labelledby="helpTitle" tabindex="-1" hidden><h3 id="helpTitle">Gus helped</h3><div id="shownText"></div></div>
+    <section id="resetConfirm" role="dialog" aria-modal="true" aria-labelledby="confirmTitle" hidden>
+      <h2 id="confirmTitle">Start the farm over?</h2><p>This clears all packed orders and Rush progress on this device.</p>
+      <div class="row"><button id="cancelReset">Keep my work</button><button id="confirmReset">Clear my work</button></div>
+    </section>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const L = {
+    wPack: "I'm Gus. Every order goes in one carton with no empty cups. Drag the carton's edge to change the rows.",
+    fitHow: "That one fits, so it goes on the shelf. Try other rows to find every shape.",
+    turnHow: "That's a carton you already have, just turned. Once the rows pass the columns, every fit is a turn.",
+    sealComp: "That's every carton. More than one shape, so it's composite.",
+    sealPrime: "Only one long row fits. That order is prime.",
+    sealOne: "One egg, one cup. One has just one factor, so it's neither prime nor composite.",
+    wFill: "Pick a carton size, then tap Run the line. If the last carton fills up, it's a multiple.",
+    fillYes: "Every carton is full. It's a multiple of that size.",
+    fillNo: "The last carton has empty cups. Not a multiple.",
+    wBoard: "Every order you finish colors its number. Tap a number to pack it.",
+    wRush: "Rush orders get harder each shift. Read the card, then work it out.",
+    everyHow: "Set the rows and tap Pack. When the shelf has every shape, tap Ship it.",
+    sortHow: "Tap an order to load it. Then tap its crate. Composite needs a carton that proves it.",
+    proofHow: "Pack a fitting carton with at least two rows and two columns first.",
+    multHow: "Turn on each size that fills with no gaps, type how many cartons, then tap Ship it.",
+    decadeHow: "Mark every order that only fits one long row, then tap Ship it.",
+    shipRight: "Shipped. Right on time.",
+    shipMissing: "Not every shape yet. Try the rows you skipped.",
+    missOdd: "Odd doesn't mean prime. One of those has another carton. Try more rows.",
+    missTwo: "Two only fits one long row. It's the one even prime.",
+    missOne: "Only one goes in Neither. It has just one factor.",
+    missFill: "One size is off. Think about the last carton for each.",
+    missCount: "The sizes are right. Check how many cartons.",
+    missLeft: "You missed one that only fits a long row.",
+    missOther: "Not quite. Check each order again.",
+    shown: "Here's how I'd pack it. Watch.",
+    shiftDone: "Shift done. The truck's loaded."
+  };
+  const ASSETS = {
+    shed:'art:shed-bg', pulp:'art:pulp-texture', brown:'art:egg-brown', white:'art:egg-white', sign:'art:order-sign',
+    hen:'art:hen-calm', cluck:'art:hen-cluck', portrait:'art:gus-portrait', thumbs:'art:gus-thumbs',
+    point:'art:gus-point', shrug:'art:gus-shrug', crate:'art:crate', pallet:'art:pallet', truck:'art:truck', wood:'art:board-wood'
+  };
+  const images = {};
+  const STARTERS = [36,12,13,24,1,30,49,72];
+  const SIZES = [2,3,4,5,6,7,8,9,10,12];
+  const LAYOUTS = {2:[1,2],3:[1,3],4:[2,2],5:[1,5],6:[2,3],7:[1,7],8:[2,4],9:[3,3],10:[2,5],12:[2,6]};
+  const CARDS = [
+    {id:'1a', kind:'every', variants:[12,20,18]},
+    {id:'1b', kind:'every', variants:[16,25,9]},
+    {id:'1c', kind:'every', variants:[30,28,40]},
+    {id:'2a', kind:'sort', variants:[[13,21,27],[17,39,25],[11,37,49]]},
+    {id:'2b', kind:'sort', variants:[[2,9,31],[1,19,57],[2,23,51]]},
+    {id:'2c', kind:'sort', variants:[[91,97,87],[77,79,93],[89,69,81]]},
+    {id:'3a', kind:'multiple', variants:[[72,6,5,8],[48,6,9,8],[84,4,6,9]]},
+    {id:'3b', kind:'multiple', variants:[[70,4,7,5],[90,4,6,9],[54,4,6,9]]},
+    {id:'3c', kind:'multiple', variants:[[91,7,3,9],[78,3,6,9],[96,7,8,9]]},
+    {id:'4a', kind:'every', variants:[60,72,84]},
+    {id:'4b', kind:'every', variants:[96,100,90]},
+    {id:'4c', kind:'decade', variants:[41,61,81]}
+  ];
+  const pairs = n => {
+    const p = [];
+    for (let r = 1; r*r <= n; r++) if (n % r === 0) p.push([r,n/r]);
+    return p;
+  };
+  const factors = n => [...new Set(pairs(n).flat())].sort((a,b) => a-b);
+  const verdict = n => n === 1 ? 'neither' : factors(n).length === 2 ? 'prime' : 'composite';
+  const pairKey = (r,c) => Math.min(r,c)+'x'+Math.max(r,c);
+  const state = {
+    mode:'pack', order:36, rows:5, size:6, shelves:{}, sealed:{}, progress:{}, variant:{}, tries:{},
+    cardIndex:0, selected:0, bins:{}, proofs:{}, rushShelves:{}, picks:{}, counts:{}, primePicks:{},
+    rushPacked:false, running:false, fillDone:0, fillComplete:false, busy:false, shown:false,
+    fresh:'', twin:'', turn:false, cluckUntil:0, dealAt:0, fillStart:0, epoch:0
+  };
+  const STORE = 'egg-carton-factory-v1';
+  try {
+    const s = JSON.parse(localStorage.getItem(STORE) || '{}');
+    for (const n of Object.keys(s.sealed || {})) {
+      if (/^\d+$/.test(n) && +n >= 1 && +n <= 100 && s.sealed[n] === true) state.sealed[n] = true;
+    }
+    for (const c of CARDS) {
+      if (['own','helped'].includes(s.progress?.[c.id])) state.progress[c.id] = s.progress[c.id];
+      state.variant[c.id] = Number.isInteger(s.variant?.[c.id]) ? Math.abs(s.variant[c.id])%3 : 0;
+      state.tries[c.id] = Math.min(2, Math.max(0, Number(s.tries?.[c.id]) || 0));
+    }
+  } catch {}
+  for (const n of Object.keys(state.sealed)) state.shelves[n] = pairs(+n).map(p => p.join('x'));
+  function save() {
+    try {
+      localStorage.setItem(STORE, JSON.stringify({sealed:state.sealed, progress:state.progress,
+        variant:state.variant, tries:state.tries}));
+    } catch {}
+  }
+  const card = () => CARDS[state.cardIndex];
+  const variant = () => card().variants[state.variant[card().id] || 0];
+  const currentOrder = () => state.mode !== 'rush' ? state.order :
+    card().kind === 'every' ? variant() : card().kind === 'multiple' ? variant()[0] : state.selected;
+  function shelfFor(n=currentOrder()) {
+    const obj = state.mode === 'rush' ? state.rushShelves : state.shelves;
+    if (!obj[n]) obj[n] = [];
+    return obj[n];
+  }
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode + (state.mode === 'rush' ? ':'+card().id+':'+state.variant[card().id] : ''),
+    welcome:() => {
+      if (!$('resetConfirm').hidden) return null;
+      if (state.mode === 'rush' && state.busy) return null;
+      if (state.mode === 'pack') return state.sealed[state.order] ? null : ['wPack',{valid:() => !state.sealed[state.order]}];
+      if (state.mode === 'fill') return 'wFill';
+      if (state.mode === 'board') return 'wBoard';
+      if (state.progress[card().id]) return null;
+      const k = card().kind;
+      return [k === 'every' ? ['everyHow',{needs:'#pack'}] : k === 'sort' ? ['sortHow'] :
+        k === 'multiple' ? ['multHow'] : ['decadeHow',{needs:'#ship'}], ['wRush']];
+    },
+    hint:false, read:() => [$('hint').textContent, state.mode === 'rush' ? $('cardPrompt').textContent : '',
+      $('readout').hidden ? '' : $('readout').textContent].filter(Boolean),
+    speaks:'#pack, #run, #ship'
+  });
+  function feedback(text='') { $('feedback').textContent = text; }
+  function speak(key, options={}) { return V.say(key, {hint:false,...options}); }
+  function how(key, options={}) { return V.how(key, {hint:false,...options}); }
+  function hint() {
+    let text = '';
+    if (state.mode === 'pack') {
+      const linkedFactor = factors(state.order).some(f => SIZES.includes(f));
+      text = state.sealed[state.order] ? (linkedFactor ?
+        'Order sealed. Tap a factor chip to try the Fill Line, or tap Next order.' :
+        'Order sealed. Tap Next order to pack a different order.') :
+        shelfFor().length ? 'Drag the bottom edge to find every shape with no empty cups.' :
+        "Drag the carton's bottom edge to change the rows. No empty cups allowed.";
+    } else if (state.mode === 'fill') text = 'Pick a carton size, then tap Run the line. Watch the last carton.';
+    else if (state.mode === 'board') text = 'Tap any number to pack that order. Finished orders keep their color here.';
+    else if (state.shown) text = "Watch Gus pack the order. The truck will take it to the next card.";
+    else if (state.progress[card().id]) text = 'This card has shipped. Tap a card dot or a shift arrow to choose another.';
+    else if (state.busy) text = card().kind === 'multiple' ?
+      'Watch the result. You can choose another mode at any time.' :
+      'Watch the result. You can change the rows or choose another mode at any time.';
+    else if (card().kind === 'every') text = shelfFor().length ?
+      'Set rows and tap Pack. Tap Ship it when you have every shape.' : 'Set rows and tap Pack to try a carton.';
+    else if (card().kind === 'sort') text = Object.keys(state.bins).length === 3 ?
+      'All orders are placed. Tap Ship it, or tap an order tag to change its crate.' :
+      'Tap an order tag, set rows and tap Pack. Then tap its crate. Composite needs a proof carton.';
+    else if (card().kind === 'multiple') {
+      const incomplete = variant().slice(1).some(s => state.picks[s] && !validCount(state.counts[s]));
+      text = incomplete ? 'Type a whole number of cartons in every open count box.' :
+        'Turn on each size that fills. Type how many cartons, then tap Ship it.';
+    }
+    else text = 'Tap an order to test on the bench. Mark each prime below, then tap Ship it.';
+    $('hint').textContent = text;
+  }
+  let raf = 0;
+  let W = 0;
+  let H = 0;
+  let layout = {};
+  const ctx = $('canvas').getContext('2d');
+  const visible = (id, yes) => { $(id).hidden = !yes; };
+  function setGus(pose='portrait') { $('gus').src = ASSETS[pose]; }
+  function clearFlyingCartons() {
+    for (const e of $('stage').querySelectorAll('.flying-carton')) e.remove();
+  }
+  function showResetConfirm(open) {
+    visible('modalCover',open);
+    visible('resetConfirm',open);
+    document.querySelector('header').inert = open;
+    document.querySelector('.panel').inert = open;
+    for (const e of $('stage').children) if (e !== $('resetConfirm')) e.inert = open;
+  }
+  function cancelActivity() {
+    clearFlyingCartons();
+    state.epoch++;
+    state.running = false;
+    state.busy = false;
+    $('truck').classList.remove('leaving');
+    visible('truck',false);
+    visible('shippingBanner',false);
+  }
+  function reroll(index) {
+    const c = CARDS[index];
+    if (state.progress[c.id]) return;
+    const old = state.variant[c.id] || 0;
+    const counts = c.variants.map((v,i) => {
+      const ns = c.kind === 'every' ? [v] : c.kind === 'multiple' ? [v[0]] :
+        c.kind === 'decade' ? Array.from({length:9},(_,j) => v+j) : v;
+      return {i, known:ns.filter(n => state.sealed[n]).length};
+    }).filter(x => x.i !== old).sort((a,b) => a.known-b.known || a.i-b.i);
+    state.variant[c.id] = counts[0].i;
+    save();
+  }
+  function setMode(mode) {
+    if (!['pack','fill','board','rush'].includes(mode)) return;
+    if (mode === state.mode) { hint(); return; }
+    if (state.mode === 'rush' && mode !== 'rush') reroll(state.cardIndex);
+    V.hush();
+    cancelActivity();
+    state.mode = mode;
+    if (mode === 'fill') {
+      state.fillDone = 0;
+      state.fillComplete = false;
+    }
+    Curio.tone(240,.035,.02,'triangle');
+    state.shown = false;
+    feedback();
+    setGus();
+    if (mode === 'rush') resetCard();
+    render();
+    V.welcome();
+  }
+  function changeOrder(value) {
+    const raw = Number(value);
+    const n = Math.max(1,Math.min(100,Math.round(Number.isFinite(raw) ? raw : 1)));
+    V.hush();
+    cancelActivity();
+    state.order = n;
+    Curio.tone(260,.04,.02,'triangle');
+    state.fillDone = 0;
+    state.fillComplete = false;
+    feedback(raw !== n ? 'Orders run 1 to 100.' : '');
+    if (state.sealed[n] && !state.shelves[n]) state.shelves[n] = pairs(n).map(p => p.join('x'));
+    render();
+    if (state.mode === 'pack') pack(true);
+    else if (state.mode === 'fill') runFill();
+  }
+  function changeRows(value) {
+    const r = Math.max(1,Math.min(12,Math.round(value)));
+    if (r === state.rows) return;
+    if (state.mode === 'pack') {
+      const fits = state.order%r === 0;
+      const turns = fits && r > state.order/r;
+      if ((V.playing === L.fitHow && !fits) || (V.playing === L.turnHow && !turns)) V.hush();
+    }
+    state.rows = r;
+    state.dealAt = performance.now();
+    feedback();
+    if (state.mode === 'pack') pack(true);
+    else {
+      state.rushPacked = false;
+      render();
+    }
+    Curio.tone(220+r*18,.045,.025,'triangle');
+  }
+  function seal(n, narrate=true) {
+    if (state.sealed[n]) return;
+    state.sealed[n] = true;
+    save();
+    if (narrate) {
+      const type = verdict(n);
+      setTimeout(() => {
+        if (state.mode === 'pack' && state.order === n && state.sealed[n]) {
+          speak(type === 'prime' ? 'sealPrime' : type === 'neither' ? 'sealOne' : 'sealComp',
+            {valid:() => state.mode === 'pack' && state.order === n && state.sealed[n]});
+        }
+      },Curio.reduce ? 0 : 420);
+    }
+  }
+  function pack(auto=false) {
+    if (state.mode === 'rush' && (state.busy || state.progress[card().id])) return;
+    const n = currentOrder();
+    const r = state.rows;
+    const cols = Math.ceil(n/r);
+    const fit = n % r === 0;
+    state.rushPacked = true;
+    state.dealAt = performance.now();
+    state.fresh = '';
+    state.twin = '';
+    if (fit) {
+      const key = pairKey(r,cols);
+      const shelf = shelfFor(n);
+      const isNew = !shelf.includes(key);
+      if (isNew) shelf.push(key);
+      shelf.sort((a,b) => +a.split('x')[0]-+b.split('x')[0]);
+      state.fresh = isNew ? key : '';
+      state.twin = !isNew ? key : '';
+      state.cluckUntil = performance.now()+600;
+      Curio.yes();
+      if (state.mode === 'rush') {
+        if (r >= 2 && cols >= 2) state.proofs[n] = true;
+      } else {
+        const stillFits = () => state.mode === 'pack' && state.order === n && n%state.rows === 0;
+        if (r > cols) how('turnHow',{valid:() => stillFits() && state.rows > n/state.rows});
+        else if (!state.sealed[n] && shelf.length < pairs(n).length) how('fitHow',{valid:stillFits});
+        if (shelf.length === pairs(n).length) seal(n);
+      }
+      state.turn = r >= cols;
+      if (state.mode !== 'rush' && r > cols) feedback('Same as '+key.replace('x',' by ')+', turned.');
+    } else if (!auto) {
+      Curio.tone(150,.12,.025,'triangle');
+      const epoch = state.epoch;
+      setTimeout(() => {
+        if (state.epoch === epoch && state.mode === 'rush') {
+          state.rushPacked = false;
+          draw();
+        }
+      },1000);
+    }
+    render();
+    if (fit && state.fresh) flyCarton(state.fresh);
+    animate();
+  }
+  function flyCarton(key) {
+    if (Curio.reduce || !$('shelf').offsetWidth || !layout.w) return;
+    const target = $('shelf').querySelector('[data-pair="'+key+'"]');
+    if (!target) return;
+    const ghost = document.createElement('canvas');
+    ghost.className = 'flying-carton';
+    const d = Math.min(2,devicePixelRatio || 1);
+    const {x,y,w,h} = layout;
+    ghost.width = Math.max(1,Math.round((w+12)*d));
+    ghost.height = Math.max(1,Math.round((h+12)*d));
+    ghost.getContext('2d').drawImage($('canvas'),(x-6)*d,(y-6)*d,(w+12)*d,(h+12)*d,
+      0,0,ghost.width,ghost.height);
+    Object.assign(ghost.style,{position:'absolute',left:(x-6)+'px',top:(y-6)+'px',width:(w+12)+'px',
+      height:(h+12)+'px',pointerEvents:'none',zIndex:4,transformOrigin:'center'});
+    ghost.setAttribute('aria-hidden','true');
+    $('stage').append(ghost);
+    const a = $('stage').getBoundingClientRect();
+    const b = target.getBoundingClientRect();
+    const dx = b.x+b.width/2-a.x-(x+w/2);
+    const dy = b.y+b.height/2-a.y-(y+h/2);
+    const scale = Math.min(b.width/(w+12),b.height/(h+12));
+    const anim = ghost.animate([{transform:'translate(0,0) scale(1)',opacity:.85},
+      {transform:'translate('+dx+'px,'+dy+'px) scale('+scale+')',opacity:.15}],
+      {duration:420,easing:'cubic-bezier(.3,.7,.5,1)'});
+    anim.onfinish = () => ghost.remove();
+  }
+  function readout(n,r) {
+    const cols = Math.ceil(n/r);
+    const empty = r*cols-n;
+    if (!empty) return r+(r === 1 ? ' row' : ' rows')+' of '+cols+' = '+n+'. Fits!';
+    const gaps = empty+' cup'+(empty === 1 ? '' : 's')+' empty.';
+    if (r > n) return r+' rows: '+n+(n === 1 ? ' egg' : ' eggs')+' in 1 column. '+gaps;
+    const full = Math.floor(n/r);
+    return r+' rows: '+full+' full column'+(full === 1 ? '' : 's')+', then '+(n%r)+' egg'+(n%r === 1 ? '' : 's')+
+      ' in the next. '+gaps;
+  }
+  function renderSeal() {
+    const n = state.order;
+    const show = state.mode === 'pack' && state.sealed[n];
+    visible('seal',show);
+    if (!show) return;
+    const fs = factors(n);
+    const ps = pairs(n);
+    const type = verdict(n);
+    $('sealTitle').textContent = n+' · '+type;
+    let text = n === 1 ? 'One egg, one cup. Its only factor is 1, so 1 is neither prime nor composite.' :
+      type === 'prime' ? 'One long row only. Factors: 1 and '+n+'. Prime.' :
+      ps.length+' carton shapes. Factors: '+fs.join(', ')+'. '+n+' is a multiple of each one. Composite: more than one shape.';
+    if (n > 1 && Number.isInteger(Math.sqrt(n))) text += ' '+Math.sqrt(n)+' by '+Math.sqrt(n)+
+      ' uses one number twice, so '+fs.length+' factors make '+ps.length+' shapes.';
+    $('sealText').textContent = text;
+    let compact = n === 1 ? 'Only factor: 1. One is neither prime nor composite.' :
+      type === 'prime' ? 'One long row; its factors below are 1 and '+n+'.' :
+      ps.length+' shapes: '+n+' is a multiple of every factor below.';
+    if (n > 1 && Number.isInteger(Math.sqrt(n))) compact += ' '+Math.sqrt(n)+' by '+Math.sqrt(n)+
+      ' repeats a factor: '+fs.length+' factors, '+ps.length+' shapes.';
+    $('sealCompact').textContent = compact;
+    const signature = n+':'+fs.join(',');
+    if ($('factors').dataset.signature !== signature) {
+      $('factors').replaceChildren();
+      $('factors').dataset.signature = signature;
+      for (const f of fs) {
+        const e = document.createElement(SIZES.includes(f) ? 'button' : 'span');
+        e.textContent = f;
+        if (e.tagName === 'BUTTON') {
+          e.setAttribute('aria-label','Run '+n+' in cartons of '+f);
+          e.onclick = () => { state.size = f; setMode('fill'); runFill(); };
+        }
+        $('factors').append(e);
+      }
+    }
+  }
+  function renderShelf() {
+    const show = state.mode === 'pack' || (state.mode === 'rush' && card().kind === 'every');
+    visible('shelf',show);
+    if (!show) return;
+    const shelf = shelfFor();
+    for (const el of $('shelf').querySelectorAll('.stamp')) if (!shelf.includes(el.dataset.pair)) el.remove();
+    for (const p of shelf) {
+      let e = $('shelf').querySelector('[data-pair="'+p+'"]');
+      if (!e) {
+        e = document.createElement('div');
+        e.className = 'stamp';
+        e.dataset.pair = p;
+        e.innerHTML = p.replace('x',' by ')+'<small>ALL CUPS FULL</small>';
+        $('shelf').insertBefore(e,$('turnLine'));
+      }
+      e.classList.toggle('fresh',p === state.fresh && !Curio.reduce);
+      e.classList.toggle('twin',p === state.twin);
+    }
+    const turned = state.rows >= Math.ceil(currentOrder()/state.rows);
+    visible('turnLine',turned);
+    $('turnNote').textContent = turned ? 'Beyond here, every fit is a turn' : '';
+  }
+  function updateBoard() {
+    let prime = 0;
+    let composite = 0;
+    for (let n = 1; n <= 100; n++) {
+      const e = $('b'+n);
+      const done = !!state.sealed[n];
+      const type = done ? verdict(n) : '';
+      e.className = 'cell '+type;
+      e.style.backgroundImage = done ? '' : 'url("'+ASSETS.pulp+'")';
+      e.style.backgroundSize = '120px';
+      e.setAttribute('aria-label',n+(done ? ', '+type : ', not packed'));
+      e.innerHTML = n+(done ? '<small>'+(type === 'prime' ? '━' : type === 'neither' ? '●' :
+        '•'.repeat(pairs(n).length))+'</small>' : '')+
+        (done && Number.isInteger(Math.sqrt(n)) ? '<span class="square-mark">□</span>' : '');
+      if (done && type === 'prime') prime++;
+      if (done && type === 'composite') composite++;
+    }
+    $('boardCount').textContent = 'Packed '+Object.keys(state.sealed).length+' of 100: '+prime+
+      ' prime, '+composite+' composite'+(state.sealed[1] ? ', and 1' : '')+'.';
+  }
+  function render() {
+    const rush = state.mode === 'rush';
+    const fill = state.mode === 'fill';
+    const board = state.mode === 'board';
+    const k = card().kind;
+    $('stage').classList.toggle('sort',rush && k === 'sort');
+    $('stage').classList.toggle('decade',rush && k === 'decade');
+    document.body.classList.toggle('rush-mode',rush);
+    document.body.classList.toggle('sealed-pack',state.mode === 'pack' && !!state.sealed[state.order]);
+    visible('benchControls',state.mode === 'pack' || (rush && k !== 'multiple'));
+    for (const m of ['pack','fill','board','rush']) $('m-'+m).setAttribute('aria-pressed',state.mode === m);
+    $('modeTitle').textContent = {pack:'Pack Station',fill:'Fill Line',board:'Order Board',rush:'Rush Orders'}[state.mode];
+    visible('rowsBlock',state.mode === 'pack' || (rush && k !== 'multiple'));
+    visible('handle',state.mode === 'pack');
+    visible('orderBlock',!rush && !board);
+    visible('fillBlock',fill);
+    visible('run',fill);
+    visible('board',board);
+    visible('boardInfo',board);
+    visible('rushPager',rush);
+    visible('rushFoot',rush);
+    visible('ship',rush);
+    visible('pack',rush && k !== 'multiple');
+    visible('resetOrder',state.mode === 'pack');
+    visible('saved',board || rush);
+    visible('readout',!board && !state.shown && !(rush && k === 'multiple'));
+    visible('rushTags',rush && (k === 'sort' || k === 'decade'));
+    visible('crates',rush && k === 'sort');
+    visible('multipleChoices',rush && k === 'multiple');
+    visible('decadeToggles',rush && k === 'decade');
+    visible('shownCard',rush && state.shown);
+    $('rowValue').innerHTML = state.rows+'<small>rows</small>';
+    $('handle').setAttribute('aria-valuenow',state.rows);
+    $('handle').setAttribute('aria-valuetext',readout(currentOrder(),state.rows));
+    $('order').value = state.order;
+    $('rowsDown').setAttribute('aria-disabled',state.rows === 1);
+    $('rowsUp').setAttribute('aria-disabled',state.rows === 12);
+    $('orderDown').setAttribute('aria-disabled',state.order === 1);
+    $('orderUp').setAttribute('aria-disabled',state.order === 100);
+    for (const s of SIZES) $('size'+s).setAttribute('aria-pressed',state.size === s);
+    if (state.mode === 'pack') $('readout').textContent = readout(state.order,state.rows);
+    if (fill && !state.running) $('readout').textContent = state.fillComplete ? fillResult() :
+      state.order+(state.order === 1 ? ' egg' : ' eggs')+' · Ready. Pick a carton size, then tap Run the line.';
+    if (rush) {
+      const locked = state.busy || !!state.progress[card().id];
+      const choices = '#rushTags button, #crates button, #multipleChoices button, #multipleChoices input, #decadeToggles button';
+      for (const e of document.querySelectorAll(choices)) e.disabled = locked;
+      $('readout').textContent = state.rushPacked ? readout(currentOrder(),state.rows) :
+        currentOrder()+(currentOrder() === 1 ? ' egg' : ' eggs')+' waiting. Set rows, then tap Pack.';
+      $('pack').disabled = state.busy || !!state.progress[card().id];
+      let ready = k === 'every' ? shelfFor().length > 0 : k === 'sort' ? Object.keys(state.bins).length === 3 : true;
+      if (k === 'multiple') ready = variant().slice(1).every(s => !state.picks[s] || validCount(state.counts[s]));
+      $('ship').disabled = !ready || state.busy || !!state.progress[card().id];
+      $('rushProgress').textContent = 'Orders shipped '+Object.keys(state.progress).length+' of 12 ('+
+        Object.values(state.progress).filter(v => v === 'own').length+' on your own)';
+      if (state.progress[card().id]) feedback(state.progress[card().id] === 'own' ? 'Shipped on your own.' : 'Shipped. Gus helped.');
+    }
+    renderSeal();
+    renderShelf();
+    if (board) updateBoard();
+    hint();
+    resize();
+  }
+  function fillResult() {
+    const n = state.order;
+    const s = state.size;
+    const q = Math.floor(n/s);
+    const rem = n%s;
+    if (!rem) return n+' eggs: '+q+' full carton'+(q === 1 ? '' : 's')+' of '+s+'. '+n+' = '+q+' × '+s+
+      ', so '+n+' is a multiple of '+s+', and '+s+' is a factor of '+n+'.';
+    return n+(n === 1 ? ' egg: ' : ' eggs: ')+q+' full cartons of '+s+', then '+rem+
+      (rem === 1 ? ' egg' : ' eggs')+' in the last one. '+
+      (s-rem)+' cup'+(s-rem === 1 ? '' : 's')+' empty. '+n+' is not a multiple of '+s+'.';
+  }
+  function runFill() {
+    if (state.mode !== 'fill') return;
+    const changedSetting = state.fillOrder !== state.order || state.fillSize !== state.size;
+    if (changedSetting && (V.playing === L.fillYes || V.playing === L.fillNo)) V.hush();
+    else V.dropQueued();
+    state.fillOrder = state.order;
+    state.fillSize = state.size;
+    state.epoch++;
+    state.running = !Curio.reduce;
+    state.fillComplete = false;
+    state.fillDone = Curio.reduce ? Math.ceil(state.order/state.size) : 0;
+    state.fillStart = performance.now();
+    state.fillDuration = Math.min(4000,Math.ceil(state.order/state.size)*250);
+    $('readout').textContent = 'The line is filling cartons of '+state.size+'…';
+    feedback();
+    Curio.tone(330,.08,.04,'triangle');
+    if (Curio.reduce) settleCalmFill(state.fillDuration);
+    else animate();
+    draw();
+  }
+  function settleCalmFill(delay) {
+    state.running = false;
+    state.fillComplete = true;
+    state.fillDone = Math.ceil(state.order/state.size);
+    $('readout').textContent = fillResult();
+    const epoch = state.epoch;
+    setTimeout(() => {
+      if (state.mode === 'fill' && state.epoch === epoch) finishFill();
+    },Math.max(0,delay));
+    draw();
+  }
+  function finishFill() {
+    state.running = false;
+    state.fillComplete = true;
+    state.fillDone = Math.ceil(state.order/state.size);
+    $('readout').textContent = fillResult();
+    const epoch = state.epoch;
+    const yes = state.order%state.size === 0;
+    Curio.tone(yes ? 660 : 180,.13,.04,'triangle');
+    speak(yes ? 'fillYes' : 'fillNo',{valid:() => state.mode === 'fill' && state.epoch === epoch});
+    draw();
+  }
+  function chooseCard(index, rerollOld=true) {
+    if (rerollOld && index === state.cardIndex) { hint(); return; }
+    if (rerollOld && state.mode === 'rush' && index !== state.cardIndex) reroll(state.cardIndex);
+    V.hush();
+    cancelActivity();
+    state.cardIndex = Math.max(0,Math.min(11,index));
+    Curio.tone(285,.04,.02,'triangle');
+    resetCard();
+    feedback();
+    render();
+    V.welcome();
+  }
+  function resetCard() {
+    state.bins = {};
+    state.proofs = {};
+    state.rushShelves = {};
+    state.picks = {};
+    state.counts = {};
+    state.primePicks = {};
+    state.rushPacked = false;
+    state.shown = false;
+    state.fresh = '';
+    state.twin = '';
+    state.rows = 1;
+    const c = card();
+    const v = variant();
+    state.selected = c.kind === 'sort' ? v[0] : c.kind === 'decade' ? v : 0;
+    $('shiftLabel').textContent = 'Shift '+(Math.floor(state.cardIndex/3)+1)+' of 4';
+    $('cardTitle').textContent = c.id+' · '+{every:'Every shape',sort:'Sort the orders',multiple:'Will it fill?',decade:'Prime orders'}[c.kind];
+    $('cardPrompt').textContent = c.kind === 'every' ? 'Find every carton for '+v+' eggs. Then tap Ship it.' :
+      c.kind === 'sort' ? 'Sort these orders. A composite needs a carton that proves it.' :
+      c.kind === 'multiple' ? 'Which cartons will '+v[0]+' eggs fill with no gaps? Type how many cartons.' :
+      'Mark every order from '+v+' to '+(v+8)+' that only fits one long row.';
+    while ($('dots').children.length < 3) $('dots').append(document.createElement('button'));
+    for (let j = Math.floor(state.cardIndex/3)*3; j < Math.floor(state.cardIndex/3)*3+3; j++) {
+      const b = $('dots').children[j%3];
+      b.textContent = CARDS[j].id+(state.progress[CARDS[j].id] ? ' ✓' : '');
+      b.setAttribute('aria-label','Card '+CARDS[j].id);
+      b.setAttribute('aria-pressed',j === state.cardIndex);
+      b.onclick = () => chooseCard(j);
+    }
+    $('rushTags').replaceChildren();
+    $('decadeToggles').replaceChildren();
+    const ns = c.kind === 'sort' ? v : c.kind === 'decade' ? Array.from({length:9},(_,j) => v+j) : [];
+    $('rushTags').classList.toggle('decade-tags',c.kind === 'decade');
+    for (const n of ns) {
+      const b = document.createElement('button');
+      b.className = 'tag';
+      b.id = 'tag'+n;
+      b.textContent = n;
+      b.setAttribute('aria-pressed',n === state.selected);
+      b.onclick = () => {
+        if (state.busy || state.progress[c.id]) return;
+        state.selected = n;
+        Curio.tone(300,.04,.02,'triangle');
+        if (state.bins[n]) delete state.bins[n];
+        state.rushPacked = false;
+        for (const m of ns) $('tag'+m).setAttribute('aria-pressed',m === n);
+        updateBins();
+        render();
+      };
+      $('rushTags').append(b);
+      if (c.kind === 'decade') {
+        const toggle = document.createElement('button');
+        toggle.textContent = n+' Prime';
+        toggle.id = 'prime'+n;
+        toggle.setAttribute('aria-pressed','false');
+        toggle.onclick = () => {
+          if (state.busy || state.progress[c.id]) return;
+          state.primePicks[n] = !state.primePicks[n];
+          toggle.setAttribute('aria-pressed',!!state.primePicks[n]);
+          Curio.tone(state.primePicks[n] ? 440 : 290,.05,.02,'triangle');
+        };
+        $('decadeToggles').append(toggle);
+      }
+    }
+    $('multipleChoices').replaceChildren();
+    if (c.kind === 'multiple') {
+      for (const s of v.slice(1)) {
+        const choice = document.createElement('section');
+        choice.className = 'choice';
+        choice.innerHTML = '<p>CARTON SIZE</p><h3>'+s+'</h3><p>cups per carton</p>'+cartonSketch(s)+
+          '<button id="fills'+s+'" aria-pressed="false">Fills</button>'+
+          '<div class="count-box" id="countBox'+s+'" hidden><label for="count'+s+'">How many cartons?</label>'+
+          '<input id="count'+s+'" type="number" min="1" max="99" step="1" inputmode="numeric" '+
+          'aria-label="How many cartons of '+s+' cups?"></div>';
+        $('multipleChoices').append(choice);
+        $('fills'+s).onclick = () => {
+          if (state.busy || state.progress[c.id]) return;
+          state.picks[s] = !state.picks[s];
+          Curio.tone(state.picks[s] ? 390 : 280,.05,.02,'triangle');
+          $('fills'+s).setAttribute('aria-pressed',!!state.picks[s]);
+          visible('countBox'+s,!!state.picks[s]);
+          render();
+        };
+        $('count'+s).oninput = () => {
+          if (state.busy || state.progress[c.id]) return;
+          state.counts[s] = $('count'+s).value;
+          render();
+        };
+      }
+    }
+    setGus();
+    updateBins();
+  }
+  function cartonSketch(size) {
+    const [rows,cols] = LAYOUTS[size];
+    const cell = 12;
+    const width = cols*cell+8;
+    const height = rows*cell+8;
+    let svg = '<svg class="carton-sketch" aria-hidden="true" viewBox="0 0 '+width+' '+height+'">'+
+      '<defs><radialGradient id="cup'+size+'"><stop stop-color="#858174"/>'+
+      '<stop offset=".75" stop-color="#b7b0a1"/><stop offset="1" stop-color="#eee6d5"/></radialGradient></defs>'+
+      '<rect x="1" y="1" width="'+(width-2)+'" height="'+(height-2)+'" rx="4" fill="#c8bfae" stroke="#887f6e"/>';
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      svg += '<circle cx="'+(10+c*cell)+'" cy="'+(10+r*cell)+'" r="5" fill="url(#cup'+size+')"/>';
+    }
+    return svg+'</svg>';
+  }
+  function updateBins() {
+    for (const b of $('crates').querySelectorAll('button')) {
+      const ns = Object.keys(state.bins).filter(n => state.bins[n] === b.dataset.bin);
+      b.querySelector('b').textContent = ns.join(' · ');
+    }
+    if (card().kind === 'sort') for (const n of variant()) {
+      const b = $('tag'+n);
+      if (b) b.innerHTML = n+(state.bins[n] ? '<small>'+state.bins[n]+'</small>' : '');
+    }
+  }
+  function placeBin(bin) {
+    if (state.busy || state.progress[card().id]) return;
+    const n = state.selected;
+    if (bin === 'composite' && !state.proofs[n]) {
+      Curio.tone(155,.09,.025,'triangle');
+      feedback('Pack a fitting carton with at least two rows and two columns first.');
+      if (!state.proofSaid) state.proofSaid = {};
+      const key = card().id+':'+state.variant[card().id]+':'+n;
+      if (!state.proofSaid[key]) { state.proofSaid[key] = true; speak('proofHow'); }
+      return;
+    }
+    state.bins[n] = bin;
+    Curio.tone(310,.07,.025,'triangle');
+    updateBins();
+    render();
+  }
+  const validCount = s => /^[1-9]\d?$/.test(String(s)) && Number(s) <= 99;
+  function judge() {
+    const c = card();
+    const v = variant();
+    if (c.kind === 'every') return shelfFor().length === pairs(v).length ? null : 'shipMissing';
+    if (c.kind === 'sort') {
+      if (v.some(n => n%2 && verdict(n) === 'composite' && state.bins[n] === 'prime')) return 'missOdd';
+      if (v.includes(2) && state.bins[2] !== 'prime') return 'missTwo';
+      if (v.some(n => (n === 1 && state.bins[n] !== 'neither') || (n !== 1 && state.bins[n] === 'neither'))) return 'missOne';
+      return v.every(n => state.bins[n] === verdict(n) && (verdict(n) !== 'composite' || state.proofs[n])) ? null : 'missOther';
+    }
+    if (c.kind === 'multiple') {
+      if (v.slice(1).some(s => !!state.picks[s] !== (v[0]%s === 0))) return 'missFill';
+      if (v.slice(1).some(s => state.picks[s] && (!validCount(state.counts[s]) || +state.counts[s] !== v[0]/s))) return 'missCount';
+      return null;
+    }
+    const ns = Array.from({length:9},(_,j) => v+j);
+    if (ns.some(n => state.primePicks[n] && verdict(n) !== 'prime')) return nOddMarked(ns) ? 'missOdd' : 'missOther';
+    return ns.some(n => verdict(n) === 'prime' && !state.primePicks[n]) ? 'missLeft' : null;
+  }
+  function nOddMarked(ns) { return ns.some(n => n%2 && state.primePicks[n] && verdict(n) === 'composite'); }
+  function solutionText() {
+    const c = card();
+    const v = variant();
+    if (c.kind === 'every') return pairs(v).map(p => p.join(' by ')).join(' · ');
+    if (c.kind === 'sort') return v.map(n => n+': '+verdict(n)+
+      (verdict(n) === 'composite' ? ' ('+pairs(n)[1].join(' by ')+')' : '')).join('<br>');
+    if (c.kind === 'multiple') return v.slice(1).map(s => v[0]%s === 0 ?
+      s+' cups: '+(v[0]/s)+' full cartons' : s+' cups: last carton has '+(s-v[0]%s)+' empty cups').join('<br>');
+    return Array.from({length:9},(_,j) => v+j).filter(n => verdict(n) === 'prime').join(', ')+' are prime.';
+  }
+  function completeCard(helped) {
+    const c = card();
+    if (!state.progress[c.id]) state.progress[c.id] = helped ? 'helped' : 'own';
+    if (c.kind === 'every') seal(variant(),false);
+    if (c.kind === 'sort') for (const n of variant()) seal(n,false);
+    if (c.kind === 'decade') for (let n = variant(); n <= variant()+8; n++) seal(n,false);
+    save();
+  }
+  function showProofCartons() {
+    if (card().kind !== 'every') return;
+    const wrap = document.createElement('div');
+    wrap.className = 'answer-cartons';
+    for (const [r,c] of pairs(variant())) {
+      const tile = document.createElement('div');
+      tile.className = 'answer-carton';
+      let svg = '<svg aria-hidden="true" viewBox="0 0 '+(c*8+4)+' '+(r*10+4)+'">'+
+        '<defs><radialGradient id="proof'+r+'"><stop stop-color="#fff0c9"/>'+
+        '<stop offset=".65" stop-color="#d6a15d"/><stop offset="1" stop-color="#9f6b34"/></radialGradient></defs>';
+      for (let row = 0; row < r; row++) for (let col = 0; col < c; col++) {
+        svg += '<ellipse cx="'+(col*8+6)+'" cy="'+(row*10+7)+'" rx="3" ry="4" fill="url(#proof'+r+')"/>';
+      }
+      tile.innerHTML = svg+'</svg><b>'+r+' by '+c+'</b>';
+      wrap.append(tile);
+    }
+    $('shownText').replaceChildren(wrap);
+  }
+  async function ship() {
+    if ($('ship').disabled || state.busy || state.progress[card().id]) return;
+    const reason = judge();
+    const epoch = state.epoch;
+    const index = state.cardIndex;
+    const current = () => state.epoch === epoch && state.mode === 'rush' && state.cardIndex === index;
+    state.busy = true;
+    if (reason) {
+      V.hush();
+      Curio.tone(160,.12,.03,'triangle');
+      state.tries[card().id] = (state.tries[card().id] || 0)+1;
+      save();
+      setGus('shrug');
+      feedback(L[reason]);
+      render();
+      if (state.tries[card().id] < 2) {
+        $('feedback').focus({preventScroll:true});
+        await speak(reason,{wait:true,valid:current});
+        if (!current()) return;
+        state.busy = false;
+        resetCard();
+        feedback('Try again. Nothing from that try was marked.');
+        render();
+        focusRushAction();
+        return;
+      }
+      completeCard(true);
+      setGus('point');
+      state.shown = true;
+      $('shownText').innerHTML = solutionText();
+      showProofCartons();
+      render();
+      $('shownCard').focus({preventScroll:true});
+      await speak('shown',{wait:true,valid:current});
+      if (!current()) return;
+      const readingTime = 1400+60*$('shownText').textContent.length;
+      await Curio.wait(Math.max(2500,readingTime));
+      if (!current()) return;
+      state.shown = false;
+      visible('truck',true);
+      $('shippingBanner').textContent = card().id+' · Shipped · Gus helped';
+      visible('shippingBanner',true);
+      render();
+      $('shippingBanner').focus({preventScroll:true});
+      if (!Curio.reduce) $('truck').classList.add('leaving');
+      else visible('truck',false);
+      await Curio.wait(1500);
+      if (!current()) return;
+      if ((index+1)%3 === 0) {
+        await speak('shiftDone',{wait:true,valid:current});
+        if (!current()) return;
+      }
+      nextCard();
+      return;
+    }
+    completeCard(false);
+    Curio.yes();
+    setGus('thumbs');
+    feedback('Order checked. Shipped on your own!');
+    visible('shippingBanner',true);
+    $('shippingBanner').textContent = card().id+' · Shipped on your own';
+    visible('truck',true);
+    render();
+    $('shippingBanner').focus({preventScroll:true});
+    await speak('shipRight',{wait:true,valid:current});
+    if (!current()) return;
+    if (!Curio.reduce) $('truck').classList.add('leaving');
+    else visible('truck',false);
+    await Curio.wait(1500);
+    if (!current()) return;
+    if ((index+1)%3 === 0) {
+      await speak('shiftDone',{wait:true,valid:current});
+      if (!current()) return;
+    }
+    nextCard();
+  }
+  function focusRushAction() {
+    const kind = card().kind;
+    const first = kind === 'every' ? $('pack') : kind === 'multiple' ?
+      $('multipleChoices').querySelector('button') : $('rushTags').querySelector('button');
+    first?.focus({preventScroll:true});
+  }
+  function nextCard() {
+    const next = CARDS.findIndex((c,i) => i > state.cardIndex && !state.progress[c.id]);
+    const other = CARDS.findIndex(c => !state.progress[c.id]);
+    if (next >= 0 || other >= 0) {
+      chooseCard(next >= 0 ? next : other,false);
+      focusRushAction();
+    }
+    else {
+      cancelActivity();
+      state.shown = false;
+      render();
+      const own = Object.values(state.progress).filter(v => v === 'own').length;
+      const recap = 'All 12 orders shipped. '+own+' on your own, '+(12-own)+' with Gus.';
+      feedback(recap);
+      $('shippingBanner').textContent = recap;
+      visible('shippingBanner',true);
+      $('shippingBanner').focus({preventScroll:true});
+    }
+  }
+  function rounded(x,y,w,h,r=8) {
+    ctx.beginPath();
+    ctx.roundRect(x,y,w,h,Math.min(r,w/2,h/2));
+  }
+  function photo(name,x,y,w,h,cover=false) {
+    const im = images[name];
+    if (!im?.complete || !im.naturalWidth) return;
+    if (cover) {
+      const s = Math.max(w/im.width,h/im.height);
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(x,y,w,h);
+      ctx.clip();
+      ctx.drawImage(im,x+(w-im.width*s)/2,y+(h-im.height*s)/2,im.width*s,im.height*s);
+      ctx.restore();
+    } else {
+      const s = Math.min(w/im.width,h/im.height);
+      ctx.drawImage(im,x+(w-im.width*s)/2,y+(h-im.height*s)/2,im.width*s,im.height*s);
+    }
+  }
+  function carton(n,r,x,y,cell,empty=false,fillAmount=n) {
+    const cols = Math.ceil(n/r);
+    const w = cols*cell;
+    const h = r*cell;
+    ctx.save();
+    ctx.shadowColor = '#39291d66';
+    ctx.shadowBlur = 10;
+    ctx.shadowOffsetY = 6;
+    rounded(x-5,y-5,w+10,h+10,cell*.14);
+    ctx.fillStyle = '#b8b1a1';
+    ctx.fill();
+    ctx.shadowColor = 'transparent';
+    ctx.save();
+    rounded(x-4,y-4,w+8,h+8,cell*.14);
+    ctx.clip();
+    const texture = images.pulp;
+    if (texture?.complete && texture.naturalWidth) {
+      ctx.globalAlpha = .7;
+      ctx.fillStyle = ctx.createPattern(texture,'repeat');
+      ctx.fillRect(x-4,y-4,w+8,h+8);
+      ctx.globalAlpha = 1;
+    }
+    ctx.restore();
+    ctx.strokeStyle = '#7c786b';
+    ctx.lineWidth = 1;
+    rounded(x-5,y-5,w+10,h+10,cell*.14);
+    ctx.stroke();
+    for (let col = 0; col < cols; col++) for (let row = 0; row < r; row++) {
+      const i = col*r+row;
+      const cx = x+(col+.5)*cell;
+      const cy = y+(row+.5)*cell;
+      const grad = ctx.createRadialGradient(cx-cell*.08,cy-cell*.1,cell*.05,cx,cy,cell*.43);
+      grad.addColorStop(0,'#8b877c');
+      grad.addColorStop(.7,'#b4afa2');
+      grad.addColorStop(1,'#eee8da');
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      ctx.ellipse(cx,cy,cell*.43,cell*.43,0,0,Math.PI*2);
+      ctx.fill();
+      if (i < fillAmount && !empty) {
+        const im = i%3 === 0 ? 'white' : 'brown';
+        const elapsed = performance.now()-state.dealAt;
+        const offset = !Curio.reduce && state.mode !== 'fill' ? Math.max(0,1-elapsed/250)*Math.min(28,cell*.6) : 0;
+        if (cell >= 16) photo(im,cx-cell*.43-offset,cy-cell*.45,cell*.86,cell*.9);
+        else {
+          const egg = ctx.createLinearGradient(cx-cell*.25,cy,cx+cell*.3,cy+cell*.3);
+          egg.addColorStop(0,im === 'white' ? '#fff9df' : '#e8be7d');
+          egg.addColorStop(1,im === 'white' ? '#c7be9f' : '#a96f36');
+          ctx.fillStyle = egg;
+          ctx.beginPath();
+          ctx.ellipse(cx,cy,cell*.29,cell*.38,0,0,Math.PI*2);
+          ctx.fill();
+        }
+      } else if (i >= n || (state.mode === 'fill' && i >= fillAmount && state.fillComplete)) {
+        ctx.strokeStyle = '#b23a2a';
+        ctx.lineWidth = Math.max(1.5,cell*.04);
+        ctx.setLineDash([Math.max(2,cell*.09),Math.max(2,cell*.06)]);
+        ctx.beginPath();
+        ctx.ellipse(cx,cy,cell*.35,cell*.37,0,0,Math.PI*2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+    ctx.restore();
+    return {x,y,w,h};
+  }
+  function text(t,x,y,size=16,color='#2a2118',align='center') {
+    ctx.font = '800 '+size+'px "Trebuchet MS", sans-serif';
+    ctx.fillStyle = color;
+    ctx.textAlign = align;
+    ctx.fillText(t,x,y);
+  }
+  function draw() {
+    if (!W || !H) return;
+    ctx.clearRect(0,0,W,H);
+    photo(state.mode === 'board' ? 'wood' : 'shed',0,0,W,H,true);
+    if (state.mode === 'board') return;
+    const compact = W < 500 || H < 470;
+    const rush = state.mode === 'rush';
+    const k = card().kind;
+    const n = currentOrder();
+    if (!rush || k === 'every' || k === 'multiple') {
+      const sw = compact ? 110 : 165;
+      photo('sign',10,5,sw,compact ? 80 : 118);
+      text(n+(n === 1 ? ' egg' : ' eggs'),10+sw/2,compact ? 57 : 79,compact ? 19 : 29,'#fff8df');
+      if (n === 30 && !rush) {
+        ctx.fillStyle = '#fbf7efee';
+        rounded(sw+25,15,Math.min(W-sw-45,260),40,4);
+        ctx.fill();
+        text('Real egg flats: 30 eggs, 5 by 6',sw+35,40,Math.max(10,Math.min(12,(W-sw-45)/23)),'#2a2118','left');
+      }
+    }
+    if (state.mode === 'fill') { drawFill(compact); return; }
+    if (rush && k === 'multiple') return;
+    const crowdedTags = compact && rush && (k === 'sort' || k === 'decade');
+    const hideHen = crowdedTags || (innerWidth <= 730 && innerHeight <= 650);
+    if (!hideHen) photo(performance.now() < state.cluckUntil ? 'cluck' : 'hen',W-(compact ? 100 : 165),
+      compact ? 15 : 20,compact ? 85 : 145,compact ? 85 : 145);
+    let top = compact ? 80 : 130;
+    let bottom = compact ? 150 : 185;
+    if (!rush) {
+      const stageBox = $('stage').getBoundingClientRect();
+      const readBox = $('readout').getBoundingClientRect();
+      bottom = H-(readBox.top-stageBox.top)+59;
+    }
+    if (rush && k === 'sort') { top = compact ? 68 : 110; bottom = compact ? 145 : 205; }
+    if (rush && k === 'decade') { top = compact ? 100 : 120; bottom = compact ? 170 : 190; }
+    const availW = W-40;
+    const availH = Math.max(20,H-top-bottom);
+    const cols = Math.ceil(n/state.rows);
+    const cell = Math.max(1,Math.min(56,availW/cols,availH/state.rows));
+    const x = (W-cols*cell)/2;
+    const y = top+(availH-state.rows*cell)/2;
+    const showEggs = !rush || state.rushPacked;
+    layout = carton(n,state.rows,x,y,cell,!showEggs);
+    if (state.mode === 'pack') {
+      const handleX = Math.max(7,Math.min(W-103,x+layout.w/2-48));
+      $('handle').style.left = handleX+'px';
+      $('handle').style.top = (y+layout.h+7)+'px';
+    }
+    if (showEggs && n%state.rows === 0) {
+      const label = state.rows+' by '+cols;
+      const fontSize = compact ? 13 : 21;
+      ctx.font = '800 '+fontSize+'px "Trebuchet MS", sans-serif';
+      const labelWidth = ctx.measureText(label).width+20;
+      const labelY = Math.max(top-9,y-14);
+      ctx.fillStyle = '#fbf7ef';
+      ctx.strokeStyle = '#44691a';
+      ctx.lineWidth = 1.5;
+      rounded(x+layout.w/2-labelWidth/2,labelY-fontSize-3,labelWidth,fontSize+10,4);
+      ctx.fill();
+      ctx.stroke();
+      text(label,x+layout.w/2,labelY,fontSize,'#2f4815');
+    }
+  }
+  function drawFill(compact) {
+    const n = state.order;
+    const s = state.size;
+    const count = Math.ceil(n/s);
+    const [r,c] = LAYOUTS[s];
+    const rows = Math.ceil(count/10);
+    const top = compact ? 100 : 155;
+    const bottom = compact ? 110 : 185;
+    const slotW = Math.min(80,(W-34)/10);
+    const slotH = Math.min(76,Math.max(16,(H-top-bottom)/rows));
+    const pw = slotW*10+20;
+    const ph = slotH*rows+20;
+    photo('pallet',(W-pw)/2,top-10,pw,ph,true);
+    ctx.fillStyle = '#4c5146';
+    rounded(10,top-42,W-20,20,6);
+    ctx.fill();
+    ctx.strokeStyle = '#929b8b';
+    ctx.lineWidth = 2;
+    for (let x = 20; x < W-20; x += 18) {
+      ctx.beginPath();
+      ctx.moveTo(x,top-39);
+      ctx.lineTo(x,top-25);
+      ctx.stroke();
+    }
+    if (state.running && !Curio.reduce) for (let i = 0; i < 5; i++) {
+      const x = ((performance.now()/4+i*76)%(W-50))+15;
+      photo(i%2 ? 'brown' : 'white',x,top-60,22,30);
+    }
+    for (let i = 0; i < count; i++) {
+      const x = (W-slotW*10)/2+(i%10)*slotW+5;
+      const y = top+Math.floor(i/10)*slotH;
+      const cell = Math.min((slotW-12)/c,(slotH-14)/r,22);
+      const fill = i < state.fillDone ? Math.min(s,n-i*s) : 0;
+      carton(s,r,x,y,cell,false,fill);
+      if (i === count-1 && state.fillComplete && n%s === 0) text('✓',x+c*cell+3,y+r*cell,18,'#2e5918');
+    }
+    const q = Math.min(Math.floor(n/s),state.fillDone);
+    const seq = Array.from({length:q},(_,i) => (i+1)*s);
+    const line = seq.length > 10 ? seq.slice(0,3).join(', ')+', … '+seq.slice(-3).join(', ') : seq.join(', ');
+    ctx.fillStyle = '#fbf7efed';
+    const counterX = compact ? 130 : 195;
+    rounded(counterX,18,W-counterX-18,32,5);
+    ctx.fill();
+    text(line || 'Ready for the line',(counterX+W-18)/2,40,compact ? 12 : 20);
+  }
+  function resize() {
+    const b = $('stage').getBoundingClientRect();
+    W = b.width;
+    H = b.height;
+    const d = Math.min(2,devicePixelRatio || 1);
+    if ($('canvas').width !== Math.round(W*d) || $('canvas').height !== Math.round(H*d)) {
+      $('canvas').width = Math.round(W*d);
+      $('canvas').height = Math.round(H*d);
+    }
+    ctx.setTransform(d,0,0,d,0,0);
+    draw();
+  }
+  function animate() {
+    if (raf) return;
+    const tick = () => {
+      raf = 0;
+      if (state.running) {
+        const elapsed = performance.now()-state.fillStart;
+        const count = Math.ceil(state.order/state.size);
+        const before = state.fillDone;
+        state.fillDone = Math.min(count,Math.floor(elapsed/state.fillDuration*count));
+        if (before !== state.fillDone) Curio.tone(270+state.fillDone*4,.035,.015,'triangle');
+        if (elapsed >= state.fillDuration) finishFill();
+      }
+      draw();
+      if (!Curio.reduce && (state.running || performance.now() < state.cluckUntil ||
+        performance.now()-state.dealAt < 260)) raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+  }
+  for (const [name,src] of Object.entries(ASSETS)) {
+    const im = new Image();
+    images[name] = im;
+    im.onload = () => draw();
+    im.src = src;
+  }
+  for (const e of document.querySelectorAll('.crate-art')) {
+    e.src = ASSETS.crate;
+    e.parentElement.querySelector('span').style.backgroundImage = 'url("'+ASSETS.pulp+'")';
+  }
+  $('truck').src = ASSETS.truck;
+  $('board').style.backgroundImage = 'url("'+ASSETS.wood+'")';
+  for (let n = 1; n <= 100; n++) {
+    const b = document.createElement('button');
+    b.id = 'b'+n;
+    b.className = 'cell';
+    b.textContent = n;
+    b.onclick = () => {
+      state.order = n;
+      setMode('pack');
+      changeOrder(n);
+      $('handle').focus({preventScroll:true});
+    };
+    $('board').append(b);
+  }
+  for (const s of SIZES) {
+    const b = document.createElement('button');
+    const [r,c] = LAYOUTS[s];
+    b.id = 'size'+s;
+    b.className = 'size-button';
+    b.innerHTML = s+'<span aria-hidden="true" class="mini" style="grid-template-columns:repeat('+c+',4px)">'+
+      '<i></i>'.repeat(s)+'</span>';
+    b.setAttribute('aria-label',s+' cups, '+r+' by '+c);
+    b.onclick = () => {
+      state.size = s;
+      render();
+      runFill();
+    };
+    $('sizes').append(b);
+  }
+  for (const m of ['pack','fill','board','rush']) $('m-'+m).onclick = () => setMode(m);
+  $('rowsDown').onclick = () => changeRows(state.rows-1);
+  $('rowsUp').onclick = () => changeRows(state.rows+1);
+  $('orderDown').onclick = () => { if (state.order > 1) changeOrder(state.order-1); };
+  $('orderUp').onclick = () => { if (state.order < 100) changeOrder(state.order+1); };
+  $('order').onchange = () => changeOrder($('order').value);
+  $('order').onkeydown = e => { if (e.key === 'Enter') changeOrder($('order').value); };
+  $('next').onclick = () => changeOrder(STARTERS[(STARTERS.indexOf(state.order)+1)%STARTERS.length]);
+  $('resetOrder').onclick = () => {
+    V.hush();
+    cancelActivity();
+    state.shelves[state.order] = [];
+    delete state.sealed[state.order];
+    state.fresh = '';
+    state.twin = '';
+    save();
+    feedback('Shelf cleared. Change rows to start again.');
+    render();
+  };
+  $('run').onclick = runFill;
+  $('pack').onclick = () => pack(false);
+  $('ship').onclick = ship;
+  $('prevShift').onclick = () => chooseCard((Math.floor(state.cardIndex/3)+3)%4*3);
+  $('nextShift').onclick = () => chooseCard((Math.floor(state.cardIndex/3)+1)%4*3);
+  for (const e of $('crates').querySelectorAll('button')) e.onclick = () => placeBin(e.dataset.bin);
+  $('modalCover').onpointerdown = e => e.preventDefault();
+  $('startOver').onclick = () => {
+    V.hush();
+    showResetConfirm(true);
+    $('cancelReset').focus({preventScroll:true});
+  };
+  $('cancelReset').onclick = () => {
+    showResetConfirm(false);
+    $('startOver').focus({preventScroll:true});
+  };
+  $('confirmReset').onclick = () => {
+    state.sealed = {};
+    state.shelves = {};
+    state.progress = {};
+    state.variant = {};
+    state.tries = {};
+    save();
+    showResetConfirm(false);
+    render();
+    $('startOver').focus({preventScroll:true});
+  };
+  $('resetConfirm').onkeydown = e => {
+    if (e.key === 'Escape') $('cancelReset').click();
+    if (e.key === 'Tab') {
+      e.preventDefault();
+      (document.activeElement === $('cancelReset') ? $('confirmReset') : $('cancelReset')).focus({preventScroll:true});
+    }
+  };
+  let drag = null;
+  $('handle').onpointerdown = e => {
+    e.preventDefault();
+    drag = {y:e.clientY,rows:state.rows};
+    $('handle').setPointerCapture(e.pointerId);
+    $('handle').focus({preventScroll:true});
+    Curio.tone(220,.05,.02,'triangle');
+  };
+  $('handle').onpointermove = e => {
+    if (drag) changeRows(drag.rows+Math.round((e.clientY-drag.y)/36));
+  };
+  $('handle').onpointerup = () => { drag = null; };
+  $('handle').onpointercancel = () => { drag = null; };
+  $('handle').onkeydown = e => {
+    if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      changeRows(state.rows+(e.key === 'ArrowUp' ? -1 : 1));
+    }
+  };
+  Curio.init({clips:"voice:*",rate:.94});
+  Curio.onMotion(() => {
+    if (Curio.reduce) clearFlyingCartons();
+    if (Curio.reduce && state.running) {
+      settleCalmFill(state.fillDuration-(performance.now()-state.fillStart));
+    } else if (!Curio.reduce && state.running) animate();
+    draw();
+  });
+  new ResizeObserver(resize).observe($('stage'));
+  window.__tool = {
+    state, setMode, allLines:V.allLines, vlog:V.log, get vq() { return V.queue; },
+    pairs, factors, verdict, changeOrder, changeRows, pack, runFill, chooseCard, judge, ship, placeBin,
+    get cards() { return CARDS; }, get lines() { return L; }
+  };
+  setGus();
+  render();
+})();
+</script>
+</body>
+</html>

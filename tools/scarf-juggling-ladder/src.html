@@ -1,0 +1,1764 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scarf Juggling Ladder · Curio Class</title>
+<meta name="description" content="Watch six scarf-juggling patterns, practice with real scarves, and read your private practice chart. Grades 3-5 PE. Works offline.">
+<!-- Scarf Juggling Ladder, Curio Class. Grades 3-5 Physical Education. SHAPE.S1 and SHAPE.S4.
+Sources: Alberta Education A(K-3)13, Bethel Juggling Progression, Gopher Sport,
+Maine State Library scarf sheet, Circomedia, Draganski et al. Nature 427 (2004),
+Shea et al. Human Movement Science 19 (2000), Lee and Genovese (1988).
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One offline file. -->
+<link rel="stylesheet" href="kit:curio">
+<style>
+
+:root {
+  --paper:#f5f6fd; --ink:#1c1f33; --muted:#545a75; --line:#dcdff3; --focus:#c2410c;
+  --brand:#4338ca; --btn:#3730a3; --btn-line:#a5a0f2; --head-ink:#fff; --panel:#fff;
+}
+body {height:100dvh; min-height:0; overflow:hidden}
+header {height:64px; padding:6px 16px; gap:8px; flex-wrap:nowrap; background:linear-gradient(100deg,#302787,#4338ca)}
+h1 {font-size:23px; letter-spacing:-.5px}
+h1 small {font-size:12px; letter-spacing:1.2px; text-transform:uppercase}
+header .seg {border-radius:12px; flex:none}
+header .seg button,header .icon-btn {min-height:44px; padding:0 12px; font-size:14px}
+main {grid-template-columns:minmax(0,1fr) 388px; height:calc(100dvh - 64px); gap:0}
+button,input,select,summary {min-height:44px; min-width:44px; font:inherit}
+button {touch-action:manipulation}
+button:disabled {opacity:.45; cursor:default}
+button:active:not(:disabled) {transform:translateY(1px)}
+.b,summary {border:1px solid #b6bad8; background:linear-gradient(#fff,#f4f3fc); border-radius:12px;
+  padding:8px 12px; font-weight:700; box-shadow:0 2px 0 #1c1f3314; text-align:center}
+.b[aria-pressed=true],.selected {background:#eceafd; border-color:var(--brand); box-shadow:inset 0 0 0 1px var(--brand)}
+.primary {background:linear-gradient(120deg,#4338ca,#6153dc); color:#fff; border-color:#3730a3}
+.quiet {background:transparent; box-shadow:none}
+.row {display:flex; gap:7px; align-items:center}
+.row>* {flex:1; min-width:0}
+.stack {display:flex; flex-direction:column; gap:8px}
+.eyebrow {text-transform:uppercase; letter-spacing:1.7px; font-size:11px; font-weight:800; color:var(--muted)}
+.panel {grid-column:2; grid-row:1; padding:16px; gap:10px; border-left:1px solid var(--line);
+  background:linear-gradient(110deg,#fff,#f7f6ff); box-shadow:-8px 0 24px #2119630a; z-index:2; overflow:hidden}
+.panel h2 {font:800 27px/1.1 'Trebuchet MS',sans-serif; margin:0}
+.panel p {margin:0}
+.hint {min-height:65px; font-size:16px; line-height:1.35; border-left:3px solid var(--brand); padding:6px 10px;
+  background:#eeecfc; border-radius:0 10px 10px 0}
+.sub {color:var(--muted); font-size:13px; line-height:1.4}
+.privacy {font-size:12px; color:var(--muted); line-height:1.35; margin-top:auto!important}
+#storage {font-size:12px; color:#8b2d0a}
+#start {min-height:60px; font-size:21px; box-shadow:0 4px 0 #29216f}
+#settings {display:flex; flex-direction:column; gap:9px}
+#settings summary {display:none}
+.setting-body {display:flex; flex-direction:column; gap:8px}
+.setting-body label {font-size:12px; font-weight:700; color:var(--muted)}
+.reset-row {display:grid; grid-template-columns:1fr 1fr 1.35fr; gap:5px}
+.reset-row button {font-size:12px; padding:5px; line-height:1.2}
+.reset-row svg {display:block; width:22px; height:22px; margin:0 auto 3px; fill:none; stroke:currentColor; stroke-width:2}
+.switch {display:flex; align-items:center; gap:8px; font-weight:700; font-size:14px; min-height:44px}
+.switch input {width:44px; min-width:44px; height:44px; min-height:44px; margin:0; accent-color:var(--brand)}
+#ladder-panel,#try-panel,#log-panel {display:flex; flex-direction:column; gap:10px}
+#ladder-panel,#log-panel {min-height:0; overflow:auto; flex-shrink:1}
+.privacy,.hint,#storage {flex-shrink:0}
+.stage {grid-column:1; grid-row:1; min-height:0; background:#eadcc1; isolation:isolate}
+.gym {position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center; z-index:-2}
+.stage::after {content:''; position:absolute; inset:0; pointer-events:none; z-index:-1;
+  background:linear-gradient(90deg,#193c4d30,transparent 35%,#fff6de10)}
+#ladder-view {position:absolute; inset:0; display:grid; grid-template-columns:114px minmax(0,1fr); grid-template-rows:1fr auto; padding:14px; gap:12px}
+#rungs {grid-row:1 / 3; display:flex; flex-direction:column-reverse; justify-content:space-evenly; gap:7px; position:relative;
+  background:linear-gradient(90deg,#6d4b2c 0 8px,transparent 8px calc(100% - 8px),#6d4b2c calc(100% - 8px));
+  padding:6px; border-radius:10px; max-height:600px; align-self:center; height:95%}
+.rung {border:1px solid #b78a56; border-radius:10px; background:linear-gradient(#ffedcc,#e7bf88);
+  box-shadow:0 3px 0 #694527,0 5px 8px #0002; min-height:64px; font-weight:800; display:flex; gap:6px;
+  align-items:center; justify-content:center; padding:5px; position:relative; color:#3a2c26}
+.rung[aria-pressed=true] {background:linear-gradient(#5b4ddd,#3930a3); color:white; border:2px solid #fff;
+  box-shadow:0 0 0 3px #4338ca,0 5px 8px #0003}
+.rung strong {font-size:29px}
+.rung .scarves-icon {font-size:13px; letter-spacing:1px; max-width:40px}
+.rung .ready {position:absolute; top:1px; right:4px; font-size:13px}
+#performer {min-height:0; position:relative; display:flex; align-items:center; justify-content:center}
+#juggle {width:100%; height:100%; overflow:visible; filter:drop-shadow(0 5px 4px #3c2b1d18)}
+.stage-note {position:absolute; top:3px; right:5px; width:165px; text-align:center; pointer-events:none; z-index:1}
+.stage-note span {display:inline-block; border:1px solid #fff8; background:#fffbeced; padding:6px 16px; border-radius:40px;
+  box-shadow:0 2px 7px #38291612; font-size:11px; line-height:1.5; letter-spacing:1px; font-weight:800; color:#35314e}
+#beat {position:absolute; bottom:5px; left:6px; right:6px; text-align:center; font-size:15px; font-weight:800;
+  background:#fff9e9ec; border:1px solid #dfccab; border-radius:10px; padding:7px; min-height:35px}
+#cues {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; grid-column:2}
+.cue {border:1px solid #c5bfd9; background:#fffdf5; padding:8px 6px; border-radius:13px; min-height:62px;
+  font-weight:800; font-size:14px; box-shadow:0 3px 0 #44381d30; line-height:1.15}
+.cue::before {content:attr(data-n); display:inline-grid; place-items:center; border-radius:50%; width:20px; height:20px;
+  background:#e9e6f6; margin-right:5px; font-size:12px; color:#4338ca}
+.cue.lit {background:var(--brand); color:#fff; border-color:#fff}
+.cue.lit::before {background:white; color:#4338ca}
+#try-view {position:absolute; inset:0; display:flex; align-items:center; justify-content:center; background:#f5f6fdeb;
+  flex-direction:column; gap:10px; z-index:4; padding:15px}
+#timer {position:relative; width:min(360px,55vh); height:min(360px,55vh); display:grid; place-items:center; flex:none}
+#timer svg {position:absolute; inset:0; width:100%; height:100%; transform:rotate(-90deg)}
+#clock {font-size:clamp(54px,8vw,100px); line-height:1; font-weight:850; font-variant-numeric:tabular-nums; letter-spacing:-5px}
+#clock-label {position:absolute; bottom:23%; font-size:13px; text-transform:uppercase; letter-spacing:2px; font-weight:700}
+#big-cue {font:800 clamp(30px,3.7vw,48px)/1.1 'Trebuchet MS',sans-serif; text-align:center; max-width:650px}
+#partner-view {display:flex; align-items:center; gap:20px}
+#run-count {font-size:64px; font-weight:850; min-width:90px; text-align:center; font-variant-numeric:tabular-nums}
+#count-controls {display:flex; gap:6px}
+#count-controls button {min-width:75px}
+#best-live {font-size:14px; color:var(--muted); text-align:center}
+.flash {background:#eceafd!important}
+#entry-view {position:absolute; inset:14px; z-index:5; display:flex; align-items:center; justify-content:center;
+  background:#f5f2e7e8; border-radius:20px; backdrop-filter:blur(5px); overflow:auto; padding:12px}
+.entry-card {width:min(540px,100%); background:#fffef8; border:1px solid #d8d1c1; border-radius:20px; padding:20px;
+  box-shadow:0 10px 24px #3c2b1d22; display:flex; flex-direction:column; gap:12px}
+.entry-card h2 {font:800 27px 'Trebuchet MS',sans-serif; margin:0}
+.entry-card p {margin:0}
+.stepper {display:flex; justify-content:center; gap:10px; align-items:center}
+.stepper input {width:100px; text-align:center; font-size:40px; font-weight:800; background:#f0edfc; border:1px solid #c7c0e5;
+  border-radius:12px; color:var(--brand); height:64px}
+.stepper button {font-size:27px; width:54px; height:54px}
+.cue-check {display:grid; grid-template-columns:1fr 85px 85px; align-items:center; gap:5px; font-size:14px}
+.cue-check button {font-size:12px; padding:6px}
+.help-choices {display:grid; grid-template-columns:repeat(5,1fr); gap:5px}
+.help-choices button {font-size:12px; padding:6px}
+.entry-privacy {display:none}
+#saved-view {position:absolute; inset:0; background:#f5f2e7dd; z-index:5; display:grid; place-items:center; padding:16px}
+#saved-view .entry-card {text-align:center}
+#saved-view {left:140px}
+.stage:has(#try-view:not([hidden]),#entry-view:not([hidden])) #rungs {visibility:hidden}
+.stage:has(#try-view:not([hidden]),#entry-view:not([hidden]),#saved-view:not([hidden]))
+  :is(#beat,#cues,.stage-note) {visibility:hidden}
+.saved-mark {font-size:54px; color:var(--brand); line-height:1}
+#log-view {position:absolute; inset:0; background:#f3f1e7; display:flex; flex-direction:column; padding:20px; gap:10px}
+.log-head {display:flex; align-items:center; justify-content:space-between; gap:10px}
+.log-head h2 {font:800 26px 'Trebuchet MS',sans-serif; margin:0}
+.log-head select {max-width:230px; background:white; color:var(--ink); border:1px solid #bbb7d3; border-radius:10px; padding:6px}
+#sample-banner {padding:8px 12px; border-radius:10px; background:#e6e1fc; color:#373070; font-size:13px; font-weight:700}
+#chart-frame {flex:1; min-height:200px; position:relative; background:#fffef8; border:1px solid #d3cdbd;
+  border-radius:15px; box-shadow:0 6px 0 #ddd5c2; padding:12px 12px 16px; display:flex; flex-direction:column}
+#chart-scroll {width:100%; height:100%; min-height:0; overflow-x:auto; overflow-y:hidden; position:relative}
+#chart {display:block; width:100%; height:100%; min-height:170px}
+#chart circle {outline:none}
+#chart .dot {cursor:pointer}
+#chart .dot:focus-visible {stroke:#c2410c; stroke-width:4}
+.story-link {stroke-dasharray:1000; stroke-dashoffset:1000; animation:trace-story .7s ease-out forwards}
+@keyframes trace-story {to {stroke-dashoffset:0}}
+.calm .story-link {animation:none; stroke-dashoffset:0}
+.guided {background:#f1edf9; border:1px solid #c9bfdf; border-radius:8px; padding:8px; font-size:12px}
+#empty {position:absolute; inset:30px; display:flex; justify-content:center; align-items:center; flex-direction:column; gap:15px;
+  text-align:center; color:var(--muted); background:#fffef8}
+#empty p {font:700 21px/1.3 'Trebuchet MS',sans-serif; max-width:350px}
+#numbers {display:flex; gap:12px; font-weight:800; min-height:25px; color:var(--brand); font-size:16px}
+#chart-caption {font-size:12px; line-height:1.35; margin:0; color:var(--muted)}
+.card {background:#fffef9; border:1px solid #d5d1e0; border-radius:12px; box-shadow:0 2px 0 #dcd8e5; padding:12px}
+.card h3 {font-size:16px; margin:0 0 7px}
+.card p {font-size:14px; line-height:1.4}
+.card label {display:flex; gap:5px; font-size:13px; align-items:center}
+.card input,.card select {width:100%; border:1px solid #b6b3cc; border-radius:8px; padding:6px; background:white; color:var(--ink)}
+.goal-fields {display:grid; grid-template-columns:repeat(3,1fr); gap:6px}
+.goal-fields label {display:block; font-size:11px; font-weight:700; color:var(--muted)}
+.goal-fields select,.goal-fields input {margin-top:3px}
+#prediction {display:flex; gap:5px; margin:6px 0}
+#prediction button {flex:1; font-size:12px; padding:5px}
+.answers {display:flex; flex-direction:column; gap:6px}
+.answers button {font-size:13px; text-align:left; padding:8px}
+.answers .correct {outline:3px solid var(--brand); outline-offset:-3px}
+#reflection-body {font-size:14px; display:flex; flex-direction:column; gap:8px}
+#log-extras {display:flex; flex-direction:column; gap:9px}
+details.card {padding:0}
+details.card summary {border:0; text-align:left; border-radius:12px; background:#fffef9; box-shadow:none}
+details.card>div {padding:10px; display:flex; flex-direction:column; gap:8px}
+details:not([open]) > :not(summary) {display:none}
+.tally-row {font-size:12px; border-top:1px solid var(--line); padding:7px 0}
+.tally-track {display:flex; height:7px; background:#e0d7ee; border-radius:8px; overflow:hidden; margin-top:4px}
+.tally-track i {background:var(--brand)}
+#strength-picks .b {font-size:12px; padding:7px; text-align:left}
+dialog {border:1px solid #c1b8dc; border-radius:20px; background:#fffef8; color:var(--ink); padding:20px;
+  width:min(640px,calc(100vw - 24px)); max-height:calc(100dvh - 24px); box-shadow:0 16px 70px #19132955}
+dialog::backdrop {background:#16142699; backdrop-filter:blur(3px)}
+dialog h2 {margin:0 0 12px; font:800 27px 'Trebuchet MS',sans-serif}
+dialog p {line-height:1.5; margin:10px 0}
+dialog img {width:100%; max-height:300px; object-fit:cover; border-radius:12px}
+dialog .row {margin-top:12px}
+.sr {position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden}
+@media (max-height:700px) and (min-width:600px) {
+  header {height:56px; padding:4px 10px}
+  main {height:calc(100dvh - 56px); grid-template-columns:minmax(0,1fr) 300px}
+  .panel {padding:10px; gap:7px}
+  .panel h2 {font-size:22px}
+  .hint {font-size:14px; min-height:49px; padding:5px 8px}
+  #settings summary {display:block}
+  #settings .setting-body {padding:9px 0}
+  #settings:not([open]) .setting-body {display:none}
+  #ladder-panel,#try-panel,#log-panel {gap:7px}
+  #ladder-panel {display:grid; grid-template-columns:1fr 1fr; gap:5px}
+  #rung-header,#suggestion,#demo-controls,#start,#settings {grid-column:1 / 3}
+  #partner-label {grid-column:1}
+  #setup {grid-column:2}
+  #suggestion {font-size:11px}
+  #start {min-height:50px; font-size:18px}
+  #ladder-view {padding:8px; grid-template-columns:1fr; grid-template-rows:44px 1fr 56px; gap:7px}
+  #rungs {grid-row:1; grid-column:1; flex-direction:row; padding:0; height:44px; background:none; max-height:none; gap:5px}
+  .rung {flex:1; min-height:44px; padding:3px; border-radius:9px}
+  .rung strong {font-size:21px}
+  .rung .scarves-icon {display:none}
+  #cues {grid-column:1; grid-row:3; gap:5px}
+  .cue {font-size:11px; min-height:50px; padding:5px 3px}
+  .cue::before {display:none}
+  .stage-note {display:none}
+  #beat {font-size:12px; padding:4px; bottom:0; min-height:25px}
+  #timer {width:190px; height:190px}
+  #clock {font-size:68px}
+  #big-cue {font-size:32px}
+  #try-view {gap:5px; padding:8px}
+  #partner-view {gap:10px}
+  #run-count {font-size:42px}
+  #count-controls {gap:4px}
+  #count-controls button {min-width:44px; font-size:12px; padding:5px}
+  #entry-view {inset:5px; padding:7px; align-items:flex-start}
+  #saved-view {left:0; top:59px}
+  .entry-card {padding:12px; gap:7px}
+  #entry-rung {display:none}
+  #entry-view .entry-card {padding:8px; gap:4px}
+  #entry-view .entry-card h2 {font-size:18px; line-height:22px}
+  #entry-unit {font-size:10px; line-height:14px}
+  #entry-view .stepper button {height:44px}
+  #entry-view .stepper input {height:44px}
+  #entry-view #cue-checks {gap:0}
+  .entry-card h2 {font-size:21px}
+  .stepper input {height:48px; font-size:29px}
+  .stepper button {height:44px; width:44px; font-size:20px}
+  .cue-check {grid-template-columns:1fr 61px 61px; font-size:11px; gap:3px}
+  .cue-check button {font-size:11px; padding:3px}
+  .help-choices button {font-size:10px; line-height:12px; padding:3px 1px; min-height:44px}
+  #log-view {padding:12px; gap:7px}
+  .log-head h2 {font-size:20px}
+  #sample-banner {font-size:11px; padding:5px 8px}
+  #chart-frame {padding:7px 5px 10px}
+  #numbers {font-size:12px}
+  .card {padding:9px}
+  .card h3 {font-size:14px; margin-bottom:5px}
+  .card p,#reflection-body {font-size:12px}
+  .answers button {font-size:12px}
+  .privacy {font-size:10px}
+  dialog img {max-height:130px}
+  dialog h2 {font-size:22px; margin-bottom:8px}
+  dialog p {font-size:13px; line-height:1.35; margin:8px 0}
+}
+@media (min-width:600px) and (max-width:850px) {
+  h1 {font-size:17px; max-width:170px}
+  h1 small {display:none}
+  header {gap:5px; padding-left:8px; padding-right:8px}
+  header .seg button,header .icon-btn {font-size:12px; padding:0 8px}
+}
+@media (max-width:599px), (min-width:600px) and (max-width:999px) and (min-height:701px) {
+  header {height:105px; flex-wrap:wrap; padding:5px 8px; gap:5px}
+  h1 {font-size:20px; flex-basis:100%}
+  h1 small {display:none}
+  header .seg button,header .icon-btn {font-size:12px; padding:0 7px}
+  header .icon-btn {flex:1}
+  main {height:calc(100dvh - 105px); grid-template-columns:1fr; grid-template-rows:minmax(240px,1fr) auto}
+  .stage {grid-row:1; grid-column:1}
+  .panel {grid-row:2; grid-column:1; border-left:0; border-top:1px solid var(--line); padding:8px 10px; gap:6px; max-height:46dvh}
+  .panel h2 {font-size:20px}
+  .eyebrow {font-size:10px}
+  #ladder-panel {gap:6px; display:grid; grid-template-columns:1fr 1fr}
+  #rung-header,#suggestion {grid-column:1 / 3}
+  #suggestion {font-size:11px}
+  #start {grid-column:2; grid-row:3; min-height:48px; font-size:16px}
+  #demo-controls {grid-column:1; grid-row:3}
+  #demo-controls .b {font-size:12px; padding:4px; white-space:nowrap}
+  #settings {grid-column:1 / 3}
+  #settings summary {display:block; padding:4px; font-size:12px}
+  #settings:not([open]) .setting-body {display:none}
+  #settings .setting-body {padding:6px 0}
+  .switch {font-size:12px; min-height:44px}
+  #partner-label {grid-column:1}
+  #setup {grid-column:2; font-size:12px; padding:4px}
+  .hint {font-size:13px; min-height:46px; padding:5px 7px; margin-bottom:0}
+  .privacy {font-size:10px}
+  #ladder-view {grid-template-columns:1fr; grid-template-rows:44px 1fr 48px; padding:7px; gap:6px}
+  #rungs {grid-row:1; grid-column:1; flex-direction:row; height:44px; background:none; padding:0; gap:6px}
+  .rung {flex:1; min-height:44px; padding:2px}
+  .rung strong {font-size:21px}
+  .rung .scarves-icon {display:none}
+  #cues {grid-column:1; grid-row:3; gap:5px}
+  .cue {font-size:11px; padding:4px 3px; min-height:44px}
+  .cue::before {display:none}
+  .stage-note {display:none}
+  #beat {font-size:11px; padding:3px; min-height:22px; bottom:0}
+  #timer {width:150px; height:150px}
+  #clock {font-size:57px}
+  #clock-label {font-size:10px; letter-spacing:1px}
+  #big-cue {font-size:29px}
+  #try-view {padding:8px; gap:5px}
+  #partner-view {gap:5px}
+  #run-count {font-size:34px; min-width:50px}
+  #count-controls button {font-size:11px; min-width:44px; padding:5px}
+  #best-live {font-size:11px}
+  #entry-view {inset:4px; padding:5px; align-items:flex-start}
+  #saved-view {left:0; top:57px}
+  .entry-card {padding:12px; gap:8px}
+  .entry-card h2 {font-size:21px}
+  .stepper input {height:48px; font-size:30px}
+  .stepper button {height:44px; width:44px}
+  .cue-check {grid-template-columns:1fr 62px 62px; font-size:11px}
+  .cue-check button {font-size:11px; padding:3px}
+  .help-choices button {font-size:11px; padding:3px}
+  #log-view {padding:8px; gap:6px}
+  .log-head h2 {font-size:19px}
+  .log-head select {max-width:160px; font-size:12px}
+  #sample-banner {font-size:10px; padding:5px}
+  #chart-frame {padding:5px 3px 10px; min-height:200px}
+  #numbers {font-size:12px; gap:5px}
+  .card {padding:9px}
+  .card h3 {font-size:14px}
+  .card p,#reflection-body {font-size:12px}
+  #log-extras summary {min-height:44px}
+  .answers {gap:4px}
+  .answers button {font-size:12px; padding:5px}
+  #log-panel {gap:6px}
+  dialog img {max-height:180px}
+}
+@media (max-width:599px) {
+  .stage:has(#entry-view:not([hidden])) {z-index:3}
+  #entry-view:not([hidden]) {position:fixed; inset:109px 4px 4px; z-index:10; align-items:center}
+  .entry-privacy {display:block; font-size:10px; margin-top:0!important}
+  body:has(#entry-view:not([hidden])) .panel {z-index:auto}
+  body:has(#entry-view:not([hidden])) #hint {position:fixed; z-index:4; top:114px; left:12px; right:12px}
+}
+
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Scarf Juggling Ladder <small>A little practice. A new possibility.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-ladder" aria-pressed="true">Ladder</button>
+    <button id="m-log" aria-pressed="false">My log</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <p class="hint" id="hint" aria-live="polite">Tap Show me to watch rung 1 slowly.</p>
+    <div id="ladder-panel">
+      <div id="rung-header"><div class="eyebrow" id="rung-kicker">Rung 1 · One scarf</div><h2 id="rung-name">Toss and claw</h2></div>
+      <p class="sub" id="suggestion">Suggested goal: 10 catches in a row.</p>
+      <div class="row" id="demo-controls"><button class="b" id="show">▶ Show me</button><button class="b" id="step">Step</button></div>
+      <button class="b primary" id="start">Start a try</button>
+      <details id="settings" open>
+        <summary>More: speed, hand, reset</summary>
+        <div class="setting-body">
+          <div><label>Demonstration speed</label><div class="row"><button class="b" id="slow" aria-pressed="true">Slow</button>
+          <button class="b" id="real" aria-pressed="false">Real</button></div></div>
+          <button class="b" id="hand" aria-pressed="false">Two in right hand</button>
+          <div><label>After a drop, I’ll try...</label><div class="reset-row">
+            <button class="b" data-reset="Breathe" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h13q6 0 4-4t-5 0M3 12h10M3 16h12q6 0 4 4t-5 0"/></svg>
+              Breathe</button>
+            <button class="b" data-reset="Shake out" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 19l-3-6 2-1 3 3V5q2-2 3 0v6-8q2-1 3 1v7-6q2-1 3 1v9l-2 6M2 4l2 3m16 0 2-3"/>
+              </svg>Shake out</button>
+            <button class="b" data-reset="Say pick it up" aria-pressed="false">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h18v13H9l-5 5v-5H3zM7 7h10M7 11h6"/></svg>
+              Say “pick it up”</button>
+          </div></div>
+        </div>
+      </details>
+      <label class="switch" id="partner-label"><input type="checkbox" id="partner">Partner counts</label>
+      <button class="b quiet" id="setup">Set up</button>
+    </div>
+    <div id="try-panel" hidden>
+      <div class="eyebrow">Your practice minute</div><h2 id="try-title">Get ready</h2>
+      <button class="b primary" id="done">Done early</button>
+      <div class="row"><button class="b" id="extend">+30 s</button><button class="b quiet" id="stop">Stop</button></div>
+      <p class="sub">Stop keeps no log. A try needs at least 10 seconds before you can log it.</p>
+    </div>
+    <div id="log-panel" hidden>
+      <section class="card" id="reflection"><h3>Read my chart</h3><div id="reflection-body"></div></section>
+      <div id="log-extras">
+        <details class="card" id="goal-card"><summary>Goal</summary><div>
+          <p>My goal: a best run by a future session.</p>
+          <div class="goal-fields">
+            <label>Rung<select id="goal-rung" aria-label="Goal rung"></select></label>
+            <label>Best run<input id="goal-best" type="number" min="1" max="99" value="5"></label>
+            <label>By session<input id="goal-session" type="number" min="2" max="10" value="5"></label>
+          </div>
+          <p>Do you think practicing a little every session will grow your best run, even with drops?</p>
+          <div id="prediction"><button class="b" data-predict="Yes">Yes</button><button class="b" data-predict="No">No</button>
+          <button class="b" data-predict="Not sure">Not sure</button></div>
+          <button class="b primary" id="save-goal">Set goal</button><p id="goal-status"></p>
+        </div></details>
+        <details class="card" id="strength-card"><summary>Strength and next</summary><div id="strength-picks"></div></details>
+        <details class="card"><summary>Reset</summary><div><p id="reset-stats"></p></div></details>
+        <details class="card"><summary>Did you know?</summary><div>
+          <p>Scientists taught a group of adults to juggle for three months. Brain scans showed changes in areas that track moving things.
+          After they stopped practicing, the changes got smaller.</p>
+          <p>Spreading practice over several days can help you learn a movement skill.</p>
+        </div></details>
+        <div class="row"><button class="b" id="new-session">Start a new session</button><button class="b" id="sample">Show a sample log</button></div>
+        <button class="b quiet" id="clear-log">Clear my log</button>
+      </div>
+    </div>
+    <p id="storage" hidden>This browser can't save. Your tries last until you close the page.</p>
+    <p class="privacy">Your log stays on this device. It never leaves it.</p>
+  </aside>
+  <div class="stage" id="stage">
+    <img class="gym" src="art:gym-wall" alt="" draggable="false">
+    <div id="ladder-view">
+      <nav id="rungs" aria-label="Choose a rung"></nav>
+      <div id="performer">
+        <div class="stage-note"><span id="scene-tag">ONE SCARF. ONE GOOD TOSS.</span></div>
+        <svg id="juggle" viewBox="0 0 600 700" role="img" aria-label="A student demonstrating scarf juggling">
+          <defs>
+            <linearGradient id="clothShade" x2=".8" y2="1"><stop stop-color="#fff" stop-opacity=".4"/>
+              <stop offset=".5" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#28164c" stop-opacity=".25"/></linearGradient>
+            <pattern id="stripe" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)">
+              <path d="M0 2h12" stroke="#fff4d5" stroke-width="4" opacity=".8"/></pattern>
+            <pattern id="dots" width="13" height="13" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="2.2" fill="#dfeaff"/></pattern>
+          </defs>
+          <ellipse cx="300" cy="661" rx="105" ry="15" fill="#49361d" opacity=".16"/>
+          <g id="figure">
+            <image id="body-art" href="art:juggler-body" x="215" y="131" width="170" height="525"/>
+            <g id="arms-right">
+              <image class="arm" data-side="right" data-pose="low" href="art:juggler-arm-right-low" x="146" y="267" width="100" height="157"/>
+              <image class="arm" data-side="right" data-pose="high" href="art:juggler-arm-right-high" x="220" y="95" width="140" height="187" hidden/>
+              <image class="arm" data-side="right" data-pose="claw" href="art:juggler-arm-right-claw" x="132" y="125" width="120" height="168" hidden/>
+            </g>
+            <g id="arms-left">
+              <image class="arm" data-side="left" data-pose="low" href="art:juggler-arm-left-low" x="354" y="267" width="105" height="149"/>
+              <image class="arm" data-side="left" data-pose="high" href="art:juggler-arm-left-high" x="240" y="95" width="140" height="191" hidden/>
+              <image class="arm" data-side="left" data-pose="claw" href="art:juggler-arm-left-claw" x="348" y="125" width="125" height="166" hidden/>
+            </g>
+            <g id="scarves"></g>
+          </g>
+        </svg>
+        <div id="beat" aria-live="off">Ready when you are</div>
+      </div>
+      <div id="cues"></div>
+    </div>
+    <div id="try-view" hidden>
+      <div id="timer"><svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="88" fill="none" stroke="#ddd9f0" stroke-width="8"/>
+        <circle id="timer-ring" cx="100" cy="100" r="88" fill="none" stroke="#4338ca" stroke-width="8" stroke-linecap="round"
+        stroke-dasharray="553" stroke-dashoffset="0"/></svg><span id="clock">3</span><span id="clock-label">Get ready</span></div>
+      <div id="big-cue">Pick up your scarves</div>
+      <div id="partner-view" hidden><span id="run-count">0</span><div id="count-controls">
+        <button class="b primary" id="catch">Catch +1</button><button class="b" id="drop">Drop</button><button class="b" id="undo">Undo</button>
+      </div></div>
+      <p id="best-live" hidden>Best 0 · Drops 0</p>
+    </div>
+    <div id="entry-view" hidden><div class="entry-card">
+      <div class="eyebrow" id="entry-rung">Rung 1</div><h2>Best run this try</h2><p class="sub" id="entry-unit">catches in a row</p>
+      <div class="stepper"><button class="b" id="minus" aria-label="Best run minus one">−</button>
+      <input id="best-input" type="number" min="0" max="99" value="0" aria-label="Best run this try">
+      <button class="b" id="plus" aria-label="Best run plus one">+</button></div>
+      <div class="stack" id="cue-checks"></div>
+      <div id="reset-help" hidden><p class="sub">If used after a drop, did it help?</p><div class="help-choices">
+        <button class="b" data-help="Yes">Yes</button><button class="b" data-help="A little">A little</button>
+        <button class="b" data-help="No">No</button><button class="b" data-help="Not needed">Not needed</button>
+        <button class="b" data-help="I'd rather not say">I'd rather not say</button>
+      </div></div>
+      <button class="b primary" id="save-try">Save try</button>
+      <p class="privacy entry-privacy">Your log stays on this device. It never leaves it.</p>
+    </div></div>
+    <div id="saved-view" hidden><div class="entry-card"><div class="saved-mark">✓</div><h2>One more try in your story.</h2>
+      <p id="saved-tip"></p><p class="sub" id="ready-message"></p><div class="row">
+      <button class="b primary" id="again">Start another try</button><button class="b" id="see-log">See my log</button></div>
+    </div></div>
+    <div id="log-view" hidden>
+      <div class="log-head"><h2>Your practice, on paper.</h2><select id="chart-rung" aria-label="Chart rung"></select></div>
+      <div id="sample-banner" hidden>Ren is made up, to show what a practice log can look like.</div>
+      <div id="chart-frame"><div id="chart-scroll"><svg id="chart" role="group" aria-label="Practice tries chart"></svg></div>
+        <div id="empty" hidden><p>No tries yet. Start in Ladder, or tap Show a sample log.</p><button class="b" id="empty-sample">Show a sample log</button></div>
+      </div>
+      <div id="numbers"><span id="first-number">First session: ?</span><span id="last-number">Latest: ?</span></div>
+      <p id="chart-caption">Each dot is one try. Height is your best run. Read the session bands.</p>
+    </div>
+  </div>
+</main>
+<dialog id="setup-dialog" aria-labelledby="setup-title"><h2 id="setup-title">Make room for a good toss.</h2>
+  <img src="art:setup-scarves" alt="Three light juggling scarves beside an open practice space">
+  <p>Get three juggling scarves. Find a space where your arms can swing out in every direction without touching anyone or anything.
+  Start on rung 1, even if it looks easy.</p><button class="b primary" id="close-setup">Ready</button>
+</dialog>
+<dialog id="clear-dialog" aria-labelledby="clear-title"><h2 id="clear-title">Clear every try on this device?</h2>
+  <p>This can't be undone.</p><div class="row"><button class="b" id="keep-log" autofocus>Keep it</button>
+  <button class="b primary" id="confirm-clear">Clear</button></div>
+</dialog>
+
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const $$ = selector => [...document.querySelectorAll(selector)];
+  const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, Number.isFinite(+n) ? Math.floor(+n) : lo));
+  const countedUnit = (value, unit) => value === 1 ? unit.replace('catches','catch').replace('rounds','round') : unit;
+  const dateKey = () => new Date().toLocaleDateString('en-CA');
+  const KEY = 'curio-class-scarf-juggling-ladder-v1';
+  const R = [
+    {name:'Toss and claw', count:1, unit:'catches in a row', goal:10,
+      intro:'Rung 1: one scarf. Toss it up and claw it with the same hand.',
+      cues:['Pinch, palm down','Lift high, let go','Claw from above'],
+      tips:['Pinch the scarf in its middle, palm facing the floor.','Reach up as high as you can, then let go.',
+        'Reach over the top and grab down, like snatching it from the air.']},
+    {name:'Cross over', count:1, unit:'catches in a row', goal:10,
+      intro:'Rung 2: toss across your body and claw it with the other hand.',
+      cues:['Toss across','Let go up high','Claw with the other hand'],
+      tips:['Let go on the other side of your body.','Let go above your head so it floats longer.',
+        'The other hand reaches over the top and grabs down.']},
+    {name:'Two scarves, X', count:2, unit:'rounds in a row', goal:5,
+      intro:'Rung 3: two scarves. Throw, throw, catch, catch.',
+      cues:['Make an X','Toss 2 at the top','First up, first caught'],
+      tips:['The two scarves cross in front of you.','Wait until scarf 1 is at its highest, then toss scarf 2.',
+        'Claw scarf 1 first, then scarf 2.']},
+    {name:'Three tosses', count:3, unit:'good rounds in a row', goal:5,
+      intro:'Rung 4: three scarves. Just toss them in order and let them fall.',
+      cues:['Two in one hand','That hand starts','Every toss crosses'],
+      tips:['Ring and little finger hold one, the fingertips pinch the other.','The first toss comes from the hand holding two.',
+        'Each scarf lands on the other side from where it started.']},
+    {name:'One round', count:3, unit:'rounds in a row', goal:3,
+      intro:'Rung 5: one full round with three. Three tosses, three catches.',
+      cues:['Toss at the top','Claw, then toss','Three up, three caught'],
+      tips:['Each new toss goes when the last scarf is at its highest.','The hand that just threw is free to claw.',
+        'Count the catches: one, two, three.']},
+    {name:'Cascade', count:3, unit:'catches in a row', goal:10,
+      intro:'Rung 6: the cascade. Keep the round going.',
+      cues:['Keep the X','Toss at the top, every time','Throw first'],
+      tips:['Every toss still crosses.','Watch the top of the scarf in the air, not your hands.',
+        'A good toss matters more than a catch. Keep tossing.']}
+  ];
+  const L = {
+    wLadder:'Six rungs, one scarf to three. Tap Show me to watch the pattern.',
+    wLog:'This is your practice chart. Follow Read my chart, or tap Show a sample log.',
+    afterShow:"Grab your scarves. Tap Start a try when you're ready.",
+    go:'One minute. Go!', half:'Halfway. Keep going.', thirty:'Thirty seconds left. Keep going.', ten:'Ten seconds.',
+    time:'Time. Set your scarves down and log your best run.', early:'Nice. Log your best run.',
+    logHow:'Tap plus or minus to set your best run. Then check your cues and tap Save try.',
+    saved:'Saved. Start another try, or see your log.',
+    short:"Too short to log. Start a try when you're ready.",
+    dropPartner:'Drop. That run is saved. The counter starts again.',
+    chart1:'Tap your best try in the first session shown.', chart2:'Now tap your best try in your latest session.',
+    chart3:'Which sentence matches your chart? Tap one.', dip:'Tap a dip: a session lower than the one before.',
+    keep:'A dip is part of practice. Keep going and see what comes next.',
+    noData:'No tries yet. Start in Ladder, or tap Show a sample log.',
+    breathe:'Take one slow breath.', shake:'Shake out your hands.', pick:'Say: pick it up and go.',
+    setup:'Get three juggling scarves. Find a space where your arms can swing out in every direction '+
+      'without touching anyone or anything. Start on rung 1, even if it looks easy.',
+    strength:"Pick the cue you're best at. Then pick the cue to practice next.",
+    goal:'Open Goal. Choose a rung, a best run, a session, and a prediction. Then tap Set goal.',
+    editGoal:'Choose a rung, a best run, a session, and a prediction. Then tap Change goal.',
+    chartDone:'Tap Ladder to practice again, or explore another card in My log.',
+    noSessions:'Practice this rung in 2 sessions to read your chart. Or tap Show a sample log.',
+    noDips:'No dips yet. When one comes, look at what happens next.',
+    clear:"Clear every try on this device? This can't be undone. Tap Clear or Keep it."
+  };
+  R.forEach((r, i) => {
+    L['r'+(i+1)] = r.intro;
+    r.cues.forEach((c, j) => { L[`cue${i+1}-${j}`] = c+'.'; L[`tip${i+1}-${j}`] = r.tips[j]; });
+    L['ready'+(i+1)] = i === 5 ? 'Rung 6 looks ready. Keep practicing the cascade when you want to.' :
+      `Rung ${i+1} looks ready. Try rung ${i+2} when you want to.`;
+  });
+  function emptyLog() { return {tries:[], session:1, day:dateKey(), rung:1, goal:null}; }
+  let storageOK = true;
+  function readStorage() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return emptyLog();
+      const x = JSON.parse(raw);
+      if (!Array.isArray(x.tries)) return emptyLog();
+      const log = emptyLog();
+      log.tries = x.tries.filter(t => t && Number.isInteger(t.rung) && t.rung >= 1 && t.rung <= 6 &&
+        Number.isInteger(t.session) && t.session >= 1 && Number.isInteger(t.best) && t.best >= 0 && t.best <= 99)
+        .map(t => ({rung:t.rung, session:t.session, best:t.best, date:String(t.date || ''),
+          drops:clamp(t.drops,0,9999), checks:[0,1,2].map(j => t.checks?.[j] === true ? true : t.checks?.[j] === false ? false : null),
+          reset:['Breathe','Shake out','Say pick it up'].includes(t.reset) ? t.reset : null,
+          help:['Yes','A little','No','Not needed',"I'd rather not say"].includes(t.help) ? t.help : null}));
+      log.session = Math.max(clamp(x.session,1,999999),...log.tries.map(t => t.session));
+      log.rung = clamp(x.rung,1,6);
+      log.day = typeof x.day === 'string' ? x.day : dateKey();
+      if (x.goal && ['Yes','No','Not sure'].includes(x.goal.predict)) {
+        log.goal = {rung:clamp(x.goal.rung,1,6),best:clamp(x.goal.best,1,99),by:clamp(x.goal.by,2,10),
+          predict:x.goal.predict,changed:x.goal.changed ? clamp(x.goal.changed,1,999999) : null};
+      }
+      return log;
+    } catch { storageOK = false; return emptyLog(); }
+  }
+  const log = readStorage();
+  if (log.day !== dateKey()) { if (log.tries.some(t => t.session === log.session)) log.session++; log.day = dateKey(); }
+  const state = {
+    mode:'Ladder', rung:log.rung, speed:'Slow', left:false, reset:null, partner:false, phase:'idle',
+    demoToken:0, demoTime:-1, beatIndex:-1, activeCue:-1, showing:false, timerToken:0,
+    remaining:60, total:60, started:0, elapsed:0, extended:false, run:0, best:0, drops:0, history:[],
+    checks:[null,null,null], help:null, sample:false, chartRung:log.rung,
+    readStep:0, readToken:0, dotCorrect:[], dipAssisted:false, recovery:null, ring:[], feedback:'', choice:null, prediction:'',
+    strength:null, next:null, log
+  };
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => currentRead(),
+    welcome:() => state.phase === 'idle' ? state.mode === 'Ladder' ? ['wLadder',{valid:() => !state.showing}] : 'wLog' : null,
+    speaks:'#show, #start, .rung, .cue', welcomeAfter:false
+  });
+  function hint(text) { $('hint').textContent = text; }
+  function tell(key, opts = {}) { return V.say(key, {hint:false,...opts}); }
+  function how(key, opts = {}) { return V.how(key, {hint:false,...opts}); }
+  function currentRead() {
+    if ($('setup-dialog').open) return L.setup;
+    if ($('clear-dialog').open) return L.clear;
+    return $('hint').textContent;
+  }
+  function persist() {
+    try {
+      localStorage.setItem(KEY,JSON.stringify(log));
+      localStorage.removeItem(KEY+'-probe');
+    } catch { storageOK = false; }
+    $('storage').hidden = storageOK;
+  }
+  // Probe writes too: some browsers allow reading while writes are blocked.
+  try { localStorage.setItem(KEY+'-probe','1'); } catch { storageOK = false; }
+  persist();
+  const ready = n => log.tries.filter(t => t.rung === n && t.best >= R[n-1].goal).length >= 2;
+  const busy = () => ['countdown','go','try','ending'].includes(state.phase);
+  const mirrorWord = side => state.left ? side === 'right' ? 'left' : 'right' : side;
+  const r = () => R[state.rung-1];
+  function leaveSaved() {
+    if (state.phase !== 'saved') return;
+    state.phase = 'idle';
+    $('saved-view').hidden = true;
+  }
+  function setMode(mode) {
+    if (busy()) { hint('Finish or stop this try first.'); return; }
+    if (state.phase === 'entry') { hint(L.logHow); return; }
+    state.demoToken++;
+    state.showing = false;
+    V.hush();
+    state.mode = mode;
+    $('m-ladder').setAttribute('aria-pressed',mode === 'Ladder');
+    $('m-log').setAttribute('aria-pressed',mode === 'My log');
+    $('ladder-panel').hidden = mode !== 'Ladder';
+    $('log-panel').hidden = mode !== 'My log';
+    $('try-panel').hidden = true;
+    $('ladder-view').hidden = mode !== 'Ladder';
+    $('log-view').hidden = mode !== 'My log';
+    $('entry-view').hidden = true;
+    $('saved-view').hidden = true;
+    if (mode === 'Ladder') {
+      state.phase = 'idle';
+      selectRung(state.rung,false);
+      hint(`Tap Show me to watch rung ${state.rung} ${state.speed.toLowerCase()}ly.`.replace('really','at real speed'));
+      V.welcome();
+    } else {
+      state.phase = 'idle';
+      refreshLog();
+      V.welcome();
+      reflectionHint();
+    }
+  }
+  function selectRung(n, speak = true) {
+    if (busy() || state.phase === 'entry') return;
+    leaveSaved();
+    state.demoToken++;
+    state.showing = false;
+    state.rung = n;
+    state.demoTime = -1;
+    state.beatIndex = -1;
+    state.activeCue = -1;
+    log.rung = n;
+    persist();
+    V.hush();
+    $$('.rung').forEach(b => {
+      b.setAttribute('aria-pressed',+b.dataset.rung === n);
+      b.querySelector('.ready').textContent = ready(+b.dataset.rung) ? '✓' : '';
+    });
+    $('rung-kicker').textContent = `Rung ${n} · ${r().count === 1 ? 'One scarf' : r().count+' scarves'}`;
+    $('rung-name').textContent = r().name;
+    $('suggestion').textContent = n === 4 ? `Suggested: ${r().goal} rounds, all 3 cross in order.` :
+      `Suggested goal: ${r().goal} ${r().unit}.`;
+    $('scene-tag').textContent = n <= 2 ? 'ONE SCARF. ONE GOOD TOSS.' : n === 3 ? 'THROW. THROW. CATCH. CATCH.' : 'THREE SCARVES. YOUR NEXT STEP.';
+    $('cues').replaceChildren();
+    r().cues.forEach((c, j) => {
+      const b = document.createElement('button');
+      b.className = 'cue';
+      b.dataset.n = j+1;
+      b.textContent = c;
+      b.onclick = () => jumpCue(j);
+      $('cues').append(b);
+    });
+    drawPose(-1);
+    $('beat').textContent = 'Ready when you are';
+    hint(`Tap Show me to watch rung ${n}. Or tap Start a try with your real scarves.`);
+    if (speak) how('r'+n, {valid:() => state.rung === n && !busy()});
+  }
+  R.forEach((data, i) => {
+    const b = document.createElement('button');
+    b.className = 'rung';
+    b.dataset.rung = i+1;
+    b.setAttribute('aria-label',`Rung ${i+1}: ${data.name}, ${data.count} ${data.count === 1 ? 'scarf' : 'scarves'}`);
+    b.innerHTML = `<strong>${i+1}</strong><span class="scarves-icon" aria-hidden="true">${'◇'.repeat(data.count)}</span><span class="ready"></span>`;
+    b.onclick = () => selectRung(i+1);
+    $('rungs').append(b);
+  });
+  // A flight's time is in demonstration beats. Rung 5's first catch is BEFORE the third toss.
+  function pattern(n) {
+    let flights = [], beats = [];
+    const flight = (id,start,end,from,to,fall=false) => flights.push({id,start,end,from,to,fall,
+      peak:n <= 2 ? .5 : fall ? 1/3 : 2/3});
+    const beat = (t,label,cue,side='right',pose='low') => beats.push({t,label,cue,side,pose});
+    if (n <= 2) {
+      for (let i=0;i<2;i++) {
+        const side = i === 0 ? 'right' : 'left';
+        const other = side === 'right' ? 'left' : 'right';
+        const base = i*6;
+        flight(0,base+1,base+4,side,n === 1 ? side : other);
+        beat(base,`Pinch with your ${side} hand`,0,side);
+        beat(base+1,`Toss ${i+1} from your ${side} hand`,1,side,'high');
+        beat(base+2.5,'Scarf at the top',1,side,'high');
+        beat(base+4,`Claw with your ${n === 1 ? side : other} hand`,2,n === 1 ? side : other,'claw');
+      }
+    } else {
+      beat(0,n === 3 ? 'One scarf in each hand' : 'Two in your right hand',0);
+      flight(0,1,n === 4 ? 7 : 4,'right','left',n === 4);
+      flight(1,3,n === 4 ? 9 : 6,'left','right',n === 4);
+      beat(1,'Toss 1 from your right hand',n === 4 ? 1 : 0,'right','high');
+      beat(3,'Scarf 1 at the top: toss 2',n === 4 ? 2 : 1,'left','high');
+      if (n !== 4) beat(4,'Claw 1 with your left hand',n === 3 ? 2 : 1,'left','claw');
+      if (n >= 4) {
+        flight(2,5,n === 4 ? 11 : 8,'right','left',n === 4);
+        beat(5,'Scarf 2 at the top: toss 3',n === 4 ? 2 : n === 6 ? 2 : 1,'right','high');
+      }
+      if (n !== 4) {
+        beat(6,'Claw 2 with your right hand',2,'right','claw');
+        if (n >= 5) beat(8,'Claw 3 with your left hand',2,'left','claw');
+      } else {
+        beat(7,'Let scarf 1 fall',2,'left');
+        beat(9,'Let scarf 2 fall',2,'right');
+        beat(11,'Let scarf 3 fall',2,'left');
+      }
+      if (n === 6) {
+        // Continue the cascade: a freed hand throws before it takes the next falling scarf.
+        flights = [];
+        beats = beats.filter(b => b.t <= 6);
+        for (let j=0;j<9;j++) {
+          const side = j%2 === 0 ? 'right' : 'left';
+          flight(j%3,1+2*j,4+2*j,side,side === 'right' ? 'left' : 'right');
+          if (j >= 3) beat(1+2*j,`Toss ${(j%3)+1} again from your ${side} hand`,j%3,side,'high');
+          if (j >= 2) beat(4+2*j,`Claw ${(j%3)+1} with your ${side === 'right' ? 'left' : 'right'} hand`,2,
+            side === 'right' ? 'left' : 'right','claw');
+        }
+      }
+    }
+    beats.sort((a,b) => a.t-b.t);
+    return {flights,beats,end:Math.max(...beats.map(b => b.t))+1};
+  }
+  const clothPaths = [
+    'M0 -20 Q18 -32 34 -17 Q24 1 33 29 Q12 21 -6 34 Q-11 10 -31 9 Q-18 -9 -23 -28 Q-10 -21 0 -20Z',
+    'M0 -23 Q19 -27 31 -13 Q22 3 30 27 Q9 23 -8 32 Q-9 9 -29 5 Q-18 -11 -21 -26Z',
+    'M0 -25 Q20 -24 31 -9 Q23 9 25 30 Q6 20 -11 31 Q-10 7 -32 3 Q-18 -13 -19 -28Z'
+  ];
+  for (let i=0;i<3;i++) {
+    const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+    g.id = 'cloth'+i;
+    g.innerHTML = `<path d="${clothPaths[i]}" fill="${['#ea580c','#2563eb','#db2777'][i]}" fill-opacity=".88" stroke="#1c1f33" stroke-width="2"/>`+
+      `<path d="${clothPaths[i]}" fill="${i < 2 ? 'url(#'+['stripe','dots'][i]+')' : 'none'}" `+
+      `stroke="${i === 2 ? '#ffc8e4' : 'none'}" stroke-width="5" transform="scale(.79)"/>`+
+      `<path d="${clothPaths[i]}" fill="url(#clothShade)"/><path d="M0 -19Q-2 0 -6 20M3 -17Q16 2 22 20" stroke="#fff" opacity=".35" fill="none"/>`;
+    $('scarves').append(g);
+  }
+  const handX = side => side === 'right' ? 190 : 410;
+  function flightPosition(f, t) {
+    const p = Math.max(0,Math.min(1,(t-f.start)/(f.end-f.start)));
+    const cross = f.from !== f.to;
+    const x0 = state.rung === 1 ? (f.from === 'right' ? 216 : 384) : (f.from === 'right' ? 350 : 250);
+    const x1 = handX(f.to);
+    const x = x0+(x1-x0)*p+(cross ? 0 : Math.sin(p*Math.PI)*25);
+    const y = p <= f.peak ? 95-65*Math.sin(Math.PI/2*p/f.peak) :
+      30+(f.fall ? 600 : 145)*(1-Math.cos(Math.PI/2*(p-f.peak)/(1-f.peak)));
+    return {x,y,p};
+  }
+  function drawPose(t) {
+    const p = pattern(state.rung);
+    const at = p.beats.filter(b => b.t <= t).at(-1);
+    const held = p.flights.filter(f => !f.fall && f.end <= t &&
+      !p.flights.some(next => next.id === f.id && next.start > f.start && next.start <= t));
+    const poses = {right:'low',left:'low'};
+    if (at) poses[at.side] = at.pose;
+    // A released empty hand lowers; a hand holding a caught scarf keeps its claw.
+    if (at?.pose !== 'low') ['right','left'].forEach(side => {
+      const last = p.beats.filter(b => b.t <= t && b.side === side).at(-1);
+      if (last?.pose === 'claw' && held.some(f => f.to === side)) poses[side] = 'claw';
+    });
+    $$('.arm').forEach(el => {
+      el.toggleAttribute('hidden',el.dataset.pose !== poses[el.dataset.side]);
+      if (el.dataset.pose === 'high') {
+        el.setAttribute('transform',state.rung !== 1 ? '' :
+          el.dataset.side === 'right' ? 'rotate(-40 240 267)' : 'rotate(40 360 267)');
+      }
+    });
+    $('figure').setAttribute('transform',state.left ? 'translate(600 0) scale(-1 1)' : '');
+    for (let i=0;i<3;i++) {
+      const el = $('cloth'+i);
+      el.toggleAttribute('hidden',i >= r().count);
+      if (el.hasAttribute('hidden')) continue;
+      const flightNow = p.flights.filter(f => f.id === i && t >= f.start && t <= f.end).at(-1);
+      const past = p.flights.filter(f => f.id === i && t > f.end).at(-1);
+      let x,y,angle=0;
+      if (flightNow) {
+        let moment = t;
+        if (Curio.reduce) {
+          const u = (t-flightNow.start)/(flightNow.end-flightNow.start);
+          const key = u < flightNow.peak ? 0 : u < 1 ? flightNow.peak : 1;
+          moment = flightNow.start+key*(flightNow.end-flightNow.start);
+        }
+        const pos = flightPosition(flightNow,moment);
+        x = pos.x;
+        y = pos.y;
+        angle = Curio.reduce ? 0 : Math.sin(t*3+i)*12;
+      } else if (past) {
+        x = handX(past.to)+(past.fall ? i*20-20 : 0);
+        y = past.fall ? 630 : 175;
+        const upcoming = p.flights.find(f => f.id === i && f.start > t);
+        if (upcoming && at?.pose === 'low') { x = handX(upcoming.from); y = 403; }
+      } else {
+        x = handX(i === 1 ? 'left' : 'right')+(i === 2 ? 17 : 0);
+        y = 403+(i === 2 ? 14 : 0);
+      }
+      const caught = held.find(f => f.id === i);
+      if (caught) {
+        const index = held.filter(f => f.to === caught.to).findIndex(f => f.id === i);
+        x += index*17;
+        y += index*14;
+      }
+      // Idle scarves remain held at the pinching fingers.
+      el.setAttribute('transform',`translate(${x} ${y}) rotate(${angle}) scale(${past?.fall && !flightNow ? '.9 .35' : '1'})`);
+    }
+  }
+  function lightCue(j, speak = false) {
+    state.activeCue = j;
+    $$('#cues .cue').forEach((c,i) => c.classList.toggle('lit',i === j));
+    if (speak) return how(`cue${state.rung}-${j}`,{wait:true,now:!state.showing,
+      valid:() => state.activeCue === j && !busy() && state.mode === 'Ladder'});
+    return Promise.resolve();
+  }
+  function namedBeat(b) {
+    return state.left ? b.label.replace(/right|left/g,word => mirrorWord(word)) : b.label;
+  }
+  function showBeat(b) {
+    state.demoTime = b.t;
+    drawPose(b.t);
+    $('beat').textContent = namedBeat(b);
+    lightCue(b.cue);
+  }
+  async function animateTo(from,to,token) {
+    const ms = Math.max(350,(to-from)*(state.speed === 'Slow' ? 1200 : 600));
+    const began = performance.now();
+    return new Promise(resolve => {
+      function tick(now) {
+        if (token !== state.demoToken) return resolve(false);
+        const frac = Math.min(1,(now-began)/ms);
+        state.demoTime = from+(to-from)*frac;
+        drawPose(state.demoTime);
+        if (frac < 1) requestAnimationFrame(tick); else resolve(true);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+  async function show() {
+    if (busy()) return;
+    leaveSaved();
+    V.hush();
+    const token = ++state.demoToken;
+    state.showing = true;
+    state.phase = 'idle';
+    const p = pattern(state.rung);
+    state.beatIndex = 0;
+    showBeat(p.beats[0]);
+    hint('Watch the scarves. Tap a cue to hold its moment, or tap Step for one beat.');
+    Curio.tone(440,.12,.025);
+    for (let cycle=0;cycle<2;cycle++) {
+      let prev = 0;
+      for (let i=0;i<p.beats.length;i++) {
+        if (token !== state.demoToken) return;
+        const b = p.beats[i];
+        if (i && !await animateTo(prev,b.t,token)) return;
+        if (token !== state.demoToken) return;
+        state.beatIndex = i;
+        showBeat(b);
+        Curio.tone(b.pose === 'claw' ? 600 : 380,.1,.02);
+        const key = `cue${state.rung}-${b.cue}`;
+        if (!V.heard(key)) await lightCue(b.cue,true);
+        if (token !== state.demoToken) return;
+        await Curio.wait(state.speed === 'Slow' ? 700 : 350);
+        prev = b.t;
+      }
+      if (token !== state.demoToken) return;
+      await Curio.wait(700);
+      drawPose(-1);
+    }
+    if (token !== state.demoToken) return;
+    state.showing = false;
+    hint(L.afterShow);
+    how('afterShow',{needs:'#start',valid:() => !busy()});
+  }
+  function step() {
+    if (busy()) return;
+    leaveSaved();
+    ++state.demoToken;
+    state.showing = false;
+    V.dropQueued();
+    const p = pattern(state.rung);
+    state.beatIndex = (state.beatIndex+1)%p.beats.length;
+    const b = p.beats[state.beatIndex];
+    showBeat(b);
+    hint(`${namedBeat(b)}. Tap Step for the next beat, or Show me to play.`);
+    lightCue(b.cue,true);
+    Curio.tone(480,.12,.025);
+  }
+  function jumpCue(j) {
+    if (busy()) return;
+    leaveSaved();
+    ++state.demoToken;
+    state.showing = false;
+    V.hush();
+    const p = pattern(state.rung);
+    state.beatIndex = p.beats.findIndex(b => b.cue === j);
+    showBeat(p.beats[state.beatIndex]);
+    hint(r().tips[j]+' Tap Step to move on.');
+    lightCue(j,true);
+    Curio.tone(500,.13,.025);
+  }
+  function controlsLocked(on) {
+    $$('#rungs button, #cues button, #ladder-panel button, #partner, #m-ladder, #m-log').forEach(el => { el.disabled = on; });
+  }
+  function focus(id) { $(id).focus({preventScroll:true}); }
+  function tryLayout() {
+    $('ladder-panel').hidden = true;
+    $('try-panel').hidden = false;
+    $('try-view').hidden = false;
+    $('entry-view').hidden = true;
+    $('saved-view').hidden = true;
+    $('clock-label').textContent = state.phase === 'countdown' ? 'Get ready' : 'Seconds left';
+    $('try-title').textContent = state.phase === 'countdown' ? 'Get ready' : r().name;
+    $('partner-view').hidden = !state.partner || state.phase !== 'try';
+    $('best-live').hidden = !state.partner || state.phase !== 'try';
+    $('catch').textContent = state.rung >= 3 && state.rung <= 5 ? 'Round +1' : 'Catch +1';
+  }
+  async function startTry() {
+    if (busy()) return;
+    ++state.demoToken;
+    const token = ++state.timerToken;
+    state.showing = false;
+    const readyText = Object.entries(L).filter(([k]) => k.startsWith('ready')).map(([,v]) => v);
+    if (!readyText.includes(V.playing) && !V.queue.some(x => String(x.key).startsWith('ready'))) V.hush();
+    else V.dropQueued(x => !String(x.key).startsWith('ready'));
+    // Ready is an earned event. Let it finish before the next go line, while the countdown answers at once.
+    state.phase = 'countdown';
+    state.run = state.best = state.drops = 0;
+    state.history = [];
+    state.extended = false;
+    state.total = state.remaining = 60;
+    state.elapsed = 0;
+    state.checks = [null,null,null];
+    state.help = null;
+    controlsLocked(true);
+    $('extend').disabled = true;
+    $('done').disabled = false;
+    tryLayout();
+    hint('Pick up your scarves. The try starts after 3, 2, 1. Tap Stop to cancel.');
+    $('big-cue').textContent = 'Pick up your scarves';
+    $('timer-ring').style.strokeDashoffset = '0';
+    focus('stop');
+    for (let i=3;i>=1;i--) {
+      if (token !== state.timerToken) return;
+      $('clock').textContent = i;
+      Curio.tone(i === 1 ? 660 : 440,.18,.04);
+      await Curio.wait(1000);
+    }
+    if (token !== state.timerToken) return;
+    state.phase = 'go';
+    $('clock').textContent = '60';
+    $('big-cue').textContent = 'Go!';
+    const go = tell('go',{wait:true,valid:() => token === state.timerToken});
+    // Start when the whole go event starts, not after it ends. Sound off starts immediately.
+    const sentAt = performance.now();
+    while (Curio.sound && performance.now()-sentAt < 8000 && !V.log.some(x => x.key === 'go' && x.t >= sentAt-100)) {
+      if (token !== state.timerToken) return;
+      await Curio.wait(25);
+    }
+    if (token !== state.timerToken) return;
+    state.phase = 'try';
+    state.started = performance.now();
+    $('extend').disabled = false;
+    tryLayout();
+    hint('Practice with your real scarves. After a drop, use your reset and keep going. Tap Done early when finished.');
+    focus('done');
+    let half = false, ten = false;
+    while (token === state.timerToken && state.phase === 'try') {
+      state.elapsed = (performance.now()-state.started)/1000;
+      state.remaining = Math.max(0,state.total-state.elapsed);
+      updateTimer();
+      if (!half && state.remaining <= 30 && state.remaining > 10) {
+        half = true;
+        tell(state.extended ? 'thirty' : 'half',{valid:() => state.phase === 'try' && state.remaining > 10});
+      }
+      if (!ten && state.remaining <= 10 && state.remaining > 0) {
+        ten = true;
+        tell('ten',{valid:() => state.phase === 'try' && state.remaining > 0});
+      }
+      if (!state.remaining) { await finishTry(false); return; }
+      await Curio.wait(100);
+    }
+    void go;
+  }
+  function updateTimer() {
+    $('clock').textContent = Math.ceil(state.remaining);
+    $('clock-label').textContent = 'Seconds left';
+    $('timer-ring').style.strokeDashoffset = String(553*(1-state.remaining/state.total));
+    $('big-cue').textContent = r().cues[Math.floor(state.elapsed/5)%3];
+    $('run-count').textContent = state.run;
+    $('best-live').textContent = `Best ${Math.max(state.best,state.run)} · Drops ${state.drops}`;
+    $('undo').disabled = !state.history.length;
+  }
+  function partnerAction(action) {
+    if (state.phase !== 'try' || !state.partner) return;
+    if (action === 'undo') {
+      const prev = state.history.pop();
+      if (!prev) return;
+      Object.assign(state,prev);
+    } else {
+      state.history.push({run:state.run,best:state.best,drops:state.drops});
+      if (action === 'catch') state.run = Math.min(99,state.run+1);
+      else {
+        state.best = Math.max(state.best,state.run);
+        state.run = 0;
+        state.drops++;
+        how('dropPartner',{valid:() => state.phase === 'try'});
+      }
+    }
+    updateTimer();
+    Curio.tone(action === 'drop' ? 220 : 660,.1,.035);
+    $('partner-view').classList.add('flash');
+    setTimeout(() => $('partner-view').classList.remove('flash'),140);
+  }
+  function stopTry() {
+    if (!busy()) return;
+    ++state.timerToken;
+    state.phase = 'idle';
+    state.started = 0;
+    V.hush();
+    controlsLocked(false);
+    $('try-view').hidden = true;
+    $('try-panel').hidden = true;
+    $('ladder-panel').hidden = false;
+    hint('Try stopped. Nothing was logged. Tap Start a try when you are ready.');
+    focus('start');
+  }
+  async function finishTry(early) {
+    if (!busy() || state.phase === 'ending') return;
+    const elapsed = state.phase === 'try' ? (performance.now()-state.started)/1000 : 0;
+    ++state.timerToken;
+    const token = state.timerToken;
+    V.dropQueued();
+    state.phase = 'ending';
+    $('done').disabled = true;
+    $('extend').disabled = true;
+    if (elapsed < 10) {
+      state.phase = 'idle';
+      controlsLocked(false);
+      $('try-view').hidden = true;
+      $('try-panel').hidden = true;
+      $('ladder-panel').hidden = false;
+      hint(L.short);
+      tell('short');
+      focus('start');
+      return;
+    }
+    state.elapsed = elapsed;
+    hint(early ? L.early : L.time);
+    if (!early) {
+      $('clock').textContent = '0';
+      $('big-cue').textContent = 'Set your scarves down';
+      await tell('time',{wait:true,valid:() => state.phase === 'ending'});
+    } else tell('early',{valid:() => state.phase === 'ending' || state.phase === 'entry'});
+    if (token !== state.timerToken) return;
+    state.phase = 'entry';
+    controlsLocked(true);
+    $('try-view').hidden = true;
+    $('try-panel').hidden = true;
+    $('ladder-panel').hidden = false;
+    $('entry-view').hidden = false;
+    $('entry-rung').textContent = `Rung ${state.rung} · ${r().name}`;
+    $('entry-unit').textContent = r().unit+(state.rung === 4 ? ' (all three crossed, in order)' : '');
+    $('best-input').value = Math.max(state.best,state.run);
+    $('cue-checks').replaceChildren();
+    r().cues.forEach((c,j) => {
+      const row = document.createElement('div');
+      row.className = 'cue-check';
+      const label = document.createElement('span');
+      label.textContent = c;
+      row.append(label);
+      [true,false].forEach(value => {
+        const b = document.createElement('button');
+        b.className = 'b';
+        b.textContent = value ? 'Got it' : 'Not yet';
+        b.setAttribute('aria-label',`${c}: ${b.textContent}`);
+        b.setAttribute('aria-pressed','false');
+        b.onclick = () => {
+          state.checks[j] = state.checks[j] === value ? null : value;
+          [...row.querySelectorAll('button')].forEach((el,k) => el.setAttribute('aria-pressed',state.checks[j] === (k === 0)));
+          Curio.tone(value ? 600 : 400,.1,.02);
+        };
+        row.append(b);
+      });
+      $('cue-checks').append(row);
+    });
+    $('reset-help').hidden = !state.reset;
+    $$('[data-help]').forEach(b => b.setAttribute('aria-pressed','false'));
+    hint(L.logHow);
+    how('logHow',{needs:'#save-try',valid:() => state.phase === 'entry'});
+    focus('best-input');
+  }
+  function saveTry() {
+    if (state.phase !== 'entry' || state.elapsed < 10) return;
+    const value = $('best-input').value;
+    if (value === '' || !Number.isInteger(+value) || +value < 0 || +value > 99) {
+      hint('Type a whole best run from 0 to 99. Then tap Save try.');
+      focus('best-input');
+      return;
+    }
+    V.hush();
+    const wasReady = ready(state.rung);
+    if (log.day !== dateKey()) { if (log.tries.some(t => t.session === log.session)) log.session++; log.day = dateKey(); }
+    log.tries.push({rung:state.rung,session:log.session,best:+value,drops:state.partner ? state.drops : 0,
+      checks:[...state.checks],reset:state.reset,help:state.help,date:new Date().toISOString()});
+    persist();
+    resetReading();
+    state.phase = 'saved';
+    controlsLocked(false);
+    $('entry-view').hidden = true;
+    $('saved-view').hidden = false;
+    const tip = state.checks.findIndex(v => v === false);
+    const text = tip < 0 ? 'Saved. Start another try, or see your log.' : r().tips[tip];
+    $('saved-tip').textContent = text;
+    $('ready-message').textContent = !wasReady && ready(state.rung) ? L['ready'+state.rung] :
+      `Session ${log.session} · ${value} ${countedUnit(+value,r().unit)}`;
+    hint(tip < 0 ? L.saved : text+' Tap Start another try or See my log.');
+    if (tip >= 0) {
+      if (!V.heard(`tip${state.rung}-${tip}`)) how(`tip${state.rung}-${tip}`,{valid:() => state.phase === 'saved'});
+    } else tell('saved',{valid:() => state.phase === 'saved'});
+    if (!wasReady && ready(state.rung)) tell('ready'+state.rung,{valid:() => state.rung === log.rung});
+    $$('.rung').forEach(b => { b.querySelector('.ready').textContent = ready(+b.dataset.rung) ? '✓' : ''; });
+    Curio.yes();
+    focus('again');
+  }
+  const SAMPLE = [];
+  [[1,0,2],[2,3,1],[1,1,2],[4,3,5],[6,4,7]].forEach((values,s) => values.forEach(best => {
+    const i = SAMPLE.length;
+    SAMPLE.push({rung:3,session:s+1,best,checks:[i<13,i<6,i<10],reset:i<5 ? 'Breathe' : i<7 ? 'Shake out' : null,
+      help:i<7 ? 'Yes' : null,drops:0,date:''});
+  }));
+  const sampleGoal = {rung:3,best:5,by:5,predict:'Yes',changed:null};
+  const activeTries = () => state.sample ? SAMPLE : log.tries;
+  const activeGoal = () => state.sample ? sampleGoal : log.goal;
+  const filtered = () => activeTries().filter(t => t.rung === state.chartRung);
+  function sessionBests(tries = filtered()) {
+    const ids = [...new Set(tries.map(t => t.session))].sort((a,b) => a-b);
+    return ids.map(session => ({session,best:Math.max(...tries.filter(t => t.session === session).map(t => t.best))}));
+  }
+  const trend = (first,last) => last-first >= 2 ? 'up' : last-first <= -2 ? 'down' : 'same';
+  const trendWords = {up:'went up',same:'stayed about the same',down:'went down'};
+  function resetReading() {
+    state.readToken++;
+    state.readStep = 0;
+    state.dotCorrect = [];
+    state.ring = [];
+    state.feedback = '';
+    state.choice = null;
+    state.dipAssisted = false;
+    state.recovery = null;
+    state.strength = state.next = null;
+    state.choices = ['up','same','down'].map(v => ({v,k:Math.random()})).sort((a,b) => a.k-b.k).map(x => x.v);
+  }
+  function updateGoalStatus() {
+    const g = activeGoal();
+    if (!g) { $('goal-status').textContent = 'Set your goal before looking at results.'; return; }
+    const tries = activeTries().filter(t => t.rung === g.rung);
+    const met = tries.filter(t => t.best >= g.best).sort((a,b) => a.session-b.session)[0];
+    const by = met && met.session <= g.by;
+    const status = !tries.length ? 'Not yet: no tries on this rung.' :
+      met ? `Met on session ${met.session}${by ? '' : `, after session ${g.by}`}.` :
+      `Not yet: best so far ${Math.max(0,...tries.map(t => t.best))}.`;
+    $('goal-status').textContent = `Rung ${g.rung}: ${g.best} by session ${g.by}. ${status}`+
+      (g.changed ? ` Changed on session ${g.changed}.` : '');
+  }
+  function refreshLog() {
+    const choices = [...new Set(activeTries().map(t => t.rung))].sort();
+    if (choices.length && !choices.includes(state.chartRung)) state.chartRung = choices[0];
+    $('chart-rung').replaceChildren();
+    choices.forEach(n => {
+      const option = document.createElement('option');
+      option.value = n;
+      option.textContent = `Rung ${n}: ${R[n-1].name}`;
+      $('chart-rung').append(option);
+    });
+    $('chart-rung').value = state.chartRung;
+    $('chart-rung').hidden = !choices.length;
+    $('sample-banner').hidden = !state.sample;
+    document.querySelector('.log-head h2').textContent = state.sample ? "Ren's practice, on paper." : 'Your practice, on paper.';
+    $('sample').textContent = state.sample ? 'Back to my log' : 'Show a sample log';
+    $('new-session').disabled = state.sample || log.tries.filter(t => t.session === log.session).length < 2;
+    $('clear-log').disabled = state.sample || !log.tries.length;
+    const g = activeGoal();
+    $('goal-rung').value = g?.rung || state.rung;
+    $('goal-best').value = g?.best || R[state.rung-1].goal;
+    $('goal-session').value = g?.by || Math.min(10,Math.max(2,log.session+2));
+    state.prediction = g?.predict || '';
+    $$('[data-predict]').forEach(b => { b.disabled = state.sample; b.setAttribute('aria-pressed',b.dataset.predict === state.prediction); });
+    ['goal-rung','goal-best','goal-session','save-goal'].forEach(id => { $(id).disabled = state.sample; });
+    $('save-goal').textContent = g ? 'Change goal' : 'Set goal';
+    $('goal-card').open = false;
+    updateGoalStatus();
+    drawChart();
+    reflectionPanel();
+    strengthPanel();
+    resetStats();
+  }
+  function toggleSample() {
+    state.sample = !state.sample;
+    if (state.sample) state.chartRung = 3;
+    resetReading();
+    refreshLog();
+    reflectionHint();
+    focus(filtered().length ? 'chart-rung' : 'empty-sample');
+  }
+  function reflectionHint() {
+    if (!activeTries().length) { hint(L.noData); how('noData'); return; }
+    if (!activeGoal()) { hint(L.goal); how('goal',{needs:'#goal-card summary'}); return; }
+    const sessions = sessionBests();
+    if (sessions.length < 2) { hint(L.noSessions); how('noSessions'); return; }
+    const texts = [
+      `Tap your best try in session ${sessions[0].session}.`,L.chart2,L.chart3,L.dip,
+      'Your chart tells a practice story. Tap Ladder to try another rung, or Start a new session when ready.'
+    ];
+    hint(state.readStep === 4 ? (state.feedback ? state.feedback+' ' : '')+L.chartDone : state.feedback || texts[state.readStep]);
+    const step = state.readStep;
+    if (step < 4) how(['chart1','chart2','chart3','dip'][step],
+      {now:true,valid:() => state.mode === 'My log' && state.readStep === step});
+    else how('chartDone',{needs:'#m-ladder',valid:() => state.mode === 'My log' && state.readStep === 4});
+  }
+  function reflectionPanel() {
+    const body = $('reflection-body');
+    body.replaceChildren();
+    const sessions = sessionBests();
+    if (!activeTries().length) { body.textContent = L.noData; return; }
+    if (!activeGoal()) { body.textContent = 'Open Goal and set your prediction before viewing the chart.'; return; }
+    if (sessions.length < 2) { body.textContent = L.noSessions; return; }
+    const prompts = [`Tap your best try in session ${sessions[0].session}.`,L.chart2,'Which sentence matches?',L.dip];
+    const p = document.createElement('p');
+    p.textContent = state.feedback || prompts[state.readStep] || 'Your practice story';
+    body.append(p);
+    if (state.readStep < 4) {
+      const label = document.createElement('span');
+      label.className = 'eyebrow';
+      label.textContent = `Step ${state.readStep+1} of 4`;
+      body.prepend(label);
+    }
+    if (state.readStep === 2) {
+      const answers = document.createElement('div');
+      answers.className = 'answers';
+      (state.choices || ['up','same','down']).forEach(v => {
+        const b = document.createElement('button');
+        b.className = 'b';
+        b.textContent = `My best run ${trendWords[v]}.`;
+        b.onclick = () => chooseSentence(v);
+        answers.append(b);
+      });
+      body.append(answers);
+    }
+    if (state.choice) {
+      const answer = document.createElement('div');
+      answer.className = 'b correct';
+      answer.textContent = 'Chart shows: best run '+trendWords[trend(sessions[0].best,sessions.at(-1).best)]+'.';
+      body.append(answer);
+    }
+    if (state.readStep === 4) {
+      const guided = document.createElement('p');
+      guided.className = 'guided';
+      const bestsRead = state.dotCorrect.length === 2 && state.dotCorrect.every(Boolean);
+      const sentenceRead = state.choice === trend(sessions[0].best,sessions.at(-1).best);
+      guided.textContent = `Session bests: ${bestsRead ? 'you found both' : 'shown with help'}. `+
+        `Sentence: ${sentenceRead ? 'matched' : 'corrected after your choice'}.`+
+        (state.dipAssisted ? ' Dip: shown with help.' : '');
+      body.append(guided);
+      const pred = document.createElement('p');
+      pred.textContent = `${state.sample ? 'Ren' : 'You'} predicted: ${activeGoal()?.predict.toLowerCase() || 'not set'}. `+
+        `The chart: ${trendWords[trend(sessions[0].best,sessions.at(-1).best)]}.`;
+      body.append(pred);
+    }
+    $('first-number').textContent = state.readStep >= 2 ? `Session ${sessions[0].session}: ${sessions[0].best}` : 'First session: ?';
+    $('last-number').textContent = state.readStep >= 2 ? `Latest: ${sessions.at(-1).best}` : 'Latest: ?';
+  }
+  async function chooseSentence(value) {
+    if (state.readStep !== 2 || state.choice) return;
+    V.hush();
+    const sessions = sessionBests();
+    const first = sessions[0].best, last = sessions.at(-1).best;
+    const correct = trend(first,last);
+    state.choice = value;
+    const diff = last-first;
+    const reason = correct === 'same' ? `That's within one.` : `That's ${correct} by ${Math.abs(diff)}.`;
+    state.feedback = `${value === correct ? 'Yes.' : 'Look again.'} Session ${sessions[0].session} was ${first}, and your latest was ${last}. ${reason}`;
+    hint(state.feedback);
+    Curio.tone(value === correct ? 660 : 260,.2,.035);
+    $$('#reflection-body button').forEach(b => {
+      b.setAttribute('aria-disabled','true');
+      b.classList.toggle('correct',b.textContent === `My best run ${trendWords[correct]}.`);
+    });
+    const token = state.readToken;
+    await tell(state.feedback,{wait:true,valid:() => state.readToken === token && state.readStep === 2});
+    if (state.mode !== 'My log' || state.readToken !== token || state.readStep !== 2) return;
+    state.readStep = 3;
+    state.feedback = '';
+    const dips = sessions.filter((s,i) => i && s.best < sessions[i-1].best);
+    if (!dips.length) {
+      state.readStep = 4;
+      state.feedback = L.noDips;
+      hint(L.noDips);
+      await tell('noDips',{wait:true});
+    }
+    reflectionPanel();
+    drawChart();
+    reflectionHint();
+    focus('chart-rung');
+  }
+  async function pickDot(index) {
+    if (!activeGoal() || state.readStep === 2 || state.readStep >= 4) return;
+    const tries = filtered(), t = tries[index], sessions = sessionBests();
+    if (!t || sessions.length < 2) return;
+    const step = state.readStep;
+    const token = state.readToken;
+    V.hush();
+    if (step <= 1) {
+      const target = step === 0 ? sessions[0] : sessions.at(-1);
+      const correct = t.session === target.session && t.best === target.best;
+      state.dotCorrect[step] = correct;
+      state.ring = tries.map((x,i) => x.session === target.session && x.best === target.best ? i : -1).filter(i => i >= 0);
+      // Wrong taps are an explained teaching step, never a correct result.
+      state.feedback = correct ? '' : `That try is in session ${t.session}. Session ${target.session}'s best is the highest dot in its band.`;
+      if (!correct) hint(state.feedback);
+      state.readStep++;
+      drawChart();
+      reflectionPanel();
+      Curio.tone(correct ? 660 : 260,.14,.035);
+      if (!correct) await tell(state.feedback,{wait:true,valid:() => state.readStep === step+1});
+      if (state.readToken !== token || state.mode !== 'My log' || state.readStep !== step+1) return;
+      state.feedback = '';
+      reflectionPanel();
+      reflectionHint();
+    } else if (step === 3) {
+      const si = sessions.findIndex(s => s.session === t.session);
+      const isDip = si > 0 && sessions[si].best < sessions[si-1].best;
+      if (!isDip) {
+        state.dipAssisted = true;
+        const dip = sessions.find((s,i) => i && s.best < sessions[i-1].best);
+        state.ring = tries.map((x,i) => dip && x.session === dip.session && x.best === dip.best ? i : -1).filter(i => i >= 0);
+        state.feedback = si === 0 ? 'The first session has no session before it. A dip is lower than the session before.' :
+          'That session was not lower than the one before. A dip is lower.';
+        hint(state.feedback+' Tap a dot in the dip session.');
+        tell(state.feedback,{valid:() => state.readStep === 3});
+        drawChart();
+        reflectionPanel();
+        return;
+      }
+      const next = sessions[si+1];
+      state.recovery = next && next.best > sessions[si].best ? {from:t.session,to:next.session} : null;
+      state.ring = tries.map((x,i) => (x.session === t.session && x.best === sessions[si].best) ||
+        (next && x.session === next.session && x.best === next.best) ? i : -1).filter(i => i >= 0);
+      state.feedback = next && next.best > sessions[si].best ?
+        `${state.sample ? 'Ren' : 'You'} kept going, and the next session climbed back to ${next.best}.` : L.keep;
+      hint(state.feedback);
+      drawChart();
+      if (state.dotCorrect.every(Boolean) && state.choice === trend(sessions[0].best,sessions.at(-1).best) && !state.dipAssisted) {
+        Curio.yes();
+      } else Curio.tone(440,.14,.025);
+      await tell(state.feedback,{wait:true,valid:() => state.readStep === 3});
+      if (state.mode !== 'My log' || state.readToken !== token || state.readStep !== 3) return;
+      state.readStep = 4;
+      reflectionPanel();
+      reflectionHint();
+    }
+  }
+  function drawChart() {
+    const svg = $('chart');
+    const focusedDot = document.activeElement.closest?.('#chart .dot');
+    const focusIndex = focusedDot ? +focusedDot.dataset.index : -1;
+    const tries = filtered(), sessions = sessionBests();
+    const visible = !!activeGoal();
+    $('empty').hidden = !!tries.length && visible;
+    if (tries.length && !visible) $('empty').querySelector('p').textContent = 'Set your goal before looking at your results. Open Goal to begin.';
+    else $('empty').querySelector('p').textContent = 'No tries yet. Start in Ladder, or tap Show a sample log.';
+    $('empty-sample').hidden = !!tries.length;
+    $('first-number').textContent = 'First session: ?';
+    $('last-number').textContent = 'Latest: ?';
+    const box = $('chart-scroll').getBoundingClientRect();
+    const goal = activeGoal()?.rung === state.chartRung ? activeGoal() : null;
+    const emptyGoal = goal && !sessions.some(s => s.session === goal.by);
+    const w = Math.max(box.width,(tries.length+(emptyGoal ? 2 : 0))*46+60,
+      sessions.length >= 10 ? sessions.length*100 : 0,230);
+    const h = Math.max(170,$('chart-scroll').clientHeight);
+    svg.style.width = w+'px';
+    svg.style.height = h+'px';
+    svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    svg.innerHTML = '';
+    if (!tries.length || !visible) return;
+    const max = Math.max(10,Math.ceil(Math.max(...tries.map(t => t.best),goal?.best || 0)/5)*5);
+    const left = 42, right = 18, top = 28, bottom = 60;
+    const plotW = w-left-right, plotH = h-top-bottom;
+    const y = n => top+plotH*(1-n/max);
+    const bands = emptyGoal ? [...sessions,{session:goal.by,best:null}].sort((a,b) => a.session-b.session) : sessions;
+    const pointSlots = [];
+    let totalSlots = 0;
+    const ranges = bands.map(s => {
+      const indices = tries.map((t,i) => t.session === s.session ? i : -1).filter(i => i >= 0);
+      const range = {session:s.session,start:totalSlots,count:indices.length || 2,empty:!indices.length};
+      indices.forEach((i,j) => { pointSlots[i] = totalSlots+j; });
+      totalSlots += range.count;
+      return range;
+    });
+    const dx = plotW/Math.max(1,totalSlots);
+    const slotX = slot => left+dx*(slot+.5);
+    const x = i => slotX(pointSlots[i]);
+    const make = (tag,attrs,text) => {
+      const el = document.createElementNS('http://www.w3.org/2000/svg',tag);
+      Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k,v));
+      if (text !== undefined) el.textContent = text;
+      svg.append(el);
+      return el;
+    };
+    ranges.forEach((band,i) => {
+      make('rect',{x:left+band.start*dx,y:top-9,width:band.count*dx,height:plotH+10,
+        fill:band.empty ? '#eeedf1' : i%2 ? '#f0edf8' : '#faf5e9'});
+      make('text',{x:slotX(band.start+(band.count-1)/2),y:h-21,'text-anchor':'middle',fill:'#545a75',
+        'font-size':Math.max(10,Math.min(14,dx*band.count/5)), 'font-weight':700},`Session ${band.session}`);
+    });
+    const ticks = max <= 15 ? 5 : max <= 50 ? 10 : 20;
+    for (let n=0;n<=max;n+=ticks) {
+      make('line',{x1:left,y1:y(n),x2:w-right,y2:y(n),stroke:'#d8d3c7','stroke-width':1});
+      make('text',{x:left-9,y:y(n)+4,'text-anchor':'end','font-size':12,fill:'#545a75'},n);
+    }
+    make('text',{x:left,y:14,'font-size':12,fill:'#545a75','font-weight':700},R[state.chartRung-1].unit);
+    if (goal) {
+      make('line',{x1:left,y1:y(goal.best),x2:w-right,y2:y(goal.best),stroke:'#7060a4','stroke-width':2,'stroke-dasharray':'7 6'});
+      // The goal's session flag uses session bands, including future sessions.
+      const band = ranges.find(s => s.session === goal.by);
+      const gx = slotX(band.start+(band.count-1)/2);
+      make('line',{x1:gx,y1:top-8,x2:gx,y2:y(goal.best),stroke:'#7060a4','stroke-width':1.5});
+      make('path',{d:`M${gx} ${top-8}h22l-6 8 6 8h-22Z`,fill:'#4338ca'});
+    }
+    // Equal dot diameters. No scores or best labels before the student reads the heights.
+    const pts = tries.map((t,i) => `${x(i)},${y(t.best)}`);
+    make('polyline',{points:pts.join(' '),fill:'none',stroke:'#a9a0c5','stroke-width':2});
+    if (state.recovery) {
+      const a = sessions.find(s => s.session === state.recovery.from);
+      const b = sessions.find(s => s.session === state.recovery.to);
+      const ai = tries.findIndex(t => t.session === a.session && t.best === a.best);
+      const bi = tries.findIndex(t => t.session === b.session && t.best === b.best);
+      const ax = x(ai), ay = y(a.best), bx = x(bi), by = y(b.best), middle = (ax+bx)/2;
+      make('path',{d:`M${ax} ${ay} C${middle} ${ay} ${middle} ${by} ${bx-9} ${by}`,
+        fill:'none',stroke:'#4338ca','stroke-width':3.5,class:'story-link','pointer-events':'none'});
+      make('path',{d:`M${bx-15} ${by-5} L${bx-7} ${by} L${bx-15} ${by+5}`,
+        fill:'none',stroke:'#4338ca','stroke-width':3,'pointer-events':'none'});
+    }
+    tries.forEach((t,i) => {
+      const g = document.createElementNS('http://www.w3.org/2000/svg','g');
+      g.setAttribute('class','dot');
+      g.dataset.index = i;
+      g.setAttribute('role','button');
+      g.setAttribute('tabindex','0');
+      // Nonvisual descriptions convey chart coordinates to screen-reader users.
+      g.setAttribute('aria-label',`Session ${t.session}, try ${i+1}, ${t.best} ${countedUnit(t.best,R[state.chartRung-1].unit)}`);
+      const hit = document.createElementNS(svg.namespaceURI,'rect');
+      hit.setAttribute('x',x(i)-22);
+      hit.setAttribute('y',y(t.best)-22);
+      hit.setAttribute('width',44);
+      hit.setAttribute('height',44);
+      hit.setAttribute('fill','transparent');
+      const dot = document.createElementNS(svg.namespaceURI,'circle');
+      dot.setAttribute('cx',x(i));
+      dot.setAttribute('cy',y(t.best));
+      dot.setAttribute('r',6);
+      dot.setAttribute('fill','#4338ca');
+      dot.setAttribute('stroke','#fffef8');
+      dot.setAttribute('stroke-width',2);
+      g.append(hit,dot);
+      g.onclick = () => pickDot(i);
+      g.onkeydown = e => { if (['Enter',' '].includes(e.key)) { e.preventDefault(); pickDot(i); } };
+      svg.append(g);
+      if (state.ring.includes(i)) make('circle',{cx:x(i),cy:y(t.best),r:12,fill:'none',stroke:'#c2410c','stroke-width':3,
+        'pointer-events':'none'});
+    });
+    if (state.readStep >= 2) {
+      $('first-number').textContent = `Session ${sessions[0].session}: ${sessions[0].best}`;
+      $('last-number').textContent = `Latest: ${sessions.at(-1).best}`;
+    }
+    $('chart-caption').textContent = (w > box.width+1 ? 'Scroll sideways for more sessions. ' : '')+
+      `Each dot is one try. ${R[state.chartRung-1].unit}. Dashed line: your goal.`;
+    if (sessions.length >= 10 && state.readStep === 0) {
+      $('chart-scroll').scrollLeft = $('chart-scroll').scrollWidth;
+    }
+    const ringSessions = new Set(state.ring.map(i => tries[i]?.session));
+    if (ringSessions.size > 1) {
+      const positions = state.ring.map(i => x(i));
+      $('chart-scroll').scrollLeft = Math.max(0,(Math.min(...positions)+Math.max(...positions)-box.width)/2);
+    }
+    if (focusIndex >= 0) svg.querySelector(`.dot[data-index="${focusIndex}"]`)?.focus({preventScroll:true});
+  }
+  function strengthPanel() {
+    const root = $('strength-picks');
+    root.replaceChildren();
+    const tries = filtered().filter(t => t.checks?.some(c => c !== null));
+    if (tries.length < 3) { root.textContent = 'Save at least 3 tries with cue checks on this rung first.'; return; }
+    const cues = R[state.chartRung-1].cues;
+    if (state.strength === null || state.next === null) {
+      const p = document.createElement('p');
+      p.textContent = state.strength === null ? "Pick the cue you're best at." : 'Pick the cue to practice next.';
+      root.append(p);
+      cues.forEach((cue,j) => {
+        const b = document.createElement('button');
+        b.className = 'b';
+        b.textContent = cue;
+        b.onclick = () => {
+          if (state.strength === null) state.strength = j; else state.next = j;
+          strengthPanel();
+          if (state.next === null) $('strength-picks').querySelector('button')?.focus({preventScroll:true});
+          else $('strength-card').querySelector('summary').focus({preventScroll:true});
+          hint(state.next === null ? 'Pick the cue to practice next in Strength and next.' : 'Compare your choices with your saved cue checks.');
+          Curio.tone(520,.12,.025);
+        };
+        root.append(b);
+      });
+      return;
+    }
+    const picked = document.createElement('p');
+    picked.textContent = `Strength: ${cues[state.strength]}. Next: ${cues[state.next]}.`;
+    root.append(picked);
+    cues.forEach((cue,j) => {
+      const yes = tries.filter(t => t.checks[j] === true).length;
+      const no = tries.filter(t => t.checks[j] === false).length;
+      const row = document.createElement('div');
+      row.className = 'tally-row';
+      row.textContent = `${cue}: Got it ${yes} · Not yet ${no}`;
+      const track = document.createElement('div');
+      track.className = 'tally-track';
+      const bar = document.createElement('i');
+      bar.style.width = (100*yes/Math.max(1,yes+no))+'%';
+      track.append(bar);
+      row.append(track);
+      root.append(row);
+    });
+  }
+  function resetStats() {
+    const resets = ['Breathe','Shake out','Say pick it up'];
+    // "A little" is reported separately, never silently counted as "Yes".
+    const rows = resets.map(name => ({name,yes:activeTries().filter(t => t.reset === name && t.help === 'Yes').length,
+      little:activeTries().filter(t => t.reset === name && t.help === 'A little').length}));
+    const most = Math.max(...rows.map(x => x.yes));
+    const best = rows.filter(x => x.yes === most).map(x => x.name);
+    $('reset-stats').textContent = rows.map(x => `${x.name}: helped ${x.yes}, a little ${x.little}.`).join(' ')+
+      (most ? ` Helped most: ${best.join(' and ')}${best.length > 1 ? ' (tie)' : ''}.` : ' Try one during your next practice.');
+  }
+  function addSession() {
+    if (log.tries.filter(t => t.session === log.session).length < 2) return false;
+    log.session++;
+    log.day = dateKey();
+    persist();
+    resetReading();
+    if (state.mode === 'My log') refreshLog();
+    hint(`Session ${log.session} is ready. Tap Ladder, then Start a try.`);
+    focus('m-ladder');
+    return true;
+  }
+  function setGoal() {
+    if (state.sample) return;
+    const best = +$('goal-best').value, by = +$('goal-session').value;
+    if (!state.prediction || !Number.isInteger(best) || best<1 || best>99 || !Number.isInteger(by) || by<2 || by>10) {
+      hint('Choose a best run from 1 to 99, a session from 2 to 10, and Yes, No, or Not sure. Then tap Set goal.');
+      return;
+    }
+    log.goal = {rung:clamp($('goal-rung').value,1,6),best,by,predict:state.prediction,
+      changed:log.goal && log.tries.length ? log.session : null};
+    persist();
+    resetReading();
+    refreshLog();
+    reflectionHint();
+    $('goal-card').open = false;
+    Curio.tone(600,.18,.035);
+  }
+  function openDialog(id) {
+    const dlg = $(id);
+    state.oldHint = $('hint').textContent;
+    state.dialogFocus = document.activeElement;
+    state.demoToken++;
+    state.showing = false;
+    V.hush();
+    dlg.showModal();
+    hint(id === 'setup-dialog' ? L.setup : L.clear);
+    tell(id === 'setup-dialog' ? 'setup' : 'clear');
+  }
+  function closeDialog(id) {
+    $(id).close();
+    V.hush();
+    hint(state.oldHint || 'Tap Show me to watch the pattern.');
+    state.dialogFocus?.focus({preventScroll:true});
+  }
+  $('m-ladder').onclick = () => setMode('Ladder');
+  $('m-log').onclick = () => setMode('My log');
+  $('show').onclick = show;
+  $('step').onclick = step;
+  $('slow').onclick = () => {
+    state.speed = 'Slow';
+    $('slow').setAttribute('aria-pressed','true');
+    $('real').setAttribute('aria-pressed','false');
+    hint('Slow speed. Tap Show me to watch, or Step for one beat.');
+  };
+  $('real').onclick = () => {
+    state.speed = 'Real';
+    $('slow').setAttribute('aria-pressed','false');
+    $('real').setAttribute('aria-pressed','true');
+    hint('Real speed. Tap Show me to watch, or Step for one beat.');
+  };
+  $('hand').onclick = () => {
+    state.left = !state.left;
+    $('hand').textContent = state.left ? 'Two in left hand' : 'Two in right hand';
+    $('hand').setAttribute('aria-pressed',state.left);
+    drawPose(state.demoTime);
+    const b = pattern(state.rung).beats[state.beatIndex];
+    if (b) $('beat').textContent = namedBeat(b);
+    hint(`Two in ${state.left ? 'left' : 'right'} hand. The figure and scarf paths are mirrored. Tap Step to see a beat.`);
+  };
+  $$('[data-reset]').forEach(b => {
+    b.onclick = () => {
+      state.reset = state.reset === b.dataset.reset ? null : b.dataset.reset;
+      $$('[data-reset]').forEach(el => el.setAttribute('aria-pressed',el.dataset.reset === state.reset));
+      const line = {'Breathe':'breathe','Shake out':'shake','Say pick it up':'pick'}[state.reset];
+      hint(state.reset ? L[line]+' Tap Start a try when ready.' : 'No reset selected. Tap Start a try when ready.');
+      if (line) how(line,{valid:() => !!state.reset});
+      Curio.tone(480,.1,.025);
+    };
+  });
+  $('partner').onchange = () => { state.partner = $('partner').checked; };
+  $('start').onclick = startTry;
+  $('again').onclick = startTry;
+  $('done').onclick = () => finishTry(true);
+  $('stop').onclick = stopTry;
+  $('extend').onclick = () => {
+    if (state.phase !== 'try' || state.extended) return;
+    state.total += 30;
+    state.extended = true;
+    $('extend').disabled = true;
+    state.remaining += 30;
+    if (state.phase === 'try') updateTimer();
+    hint('Thirty extra seconds added once. Keep practicing, or tap Done early.');
+    Curio.tone(540,.15,.03);
+  };
+  ['catch','drop','undo'].forEach(action => { $(action).onclick = () => partnerAction(action); });
+  $('minus').onclick = () => { $('best-input').value = clamp(+$('best-input').value-1,0,99); Curio.tone(350,.08,.02); };
+  $('plus').onclick = () => { $('best-input').value = clamp(+$('best-input').value+1,0,99); Curio.tone(500,.08,.02); };
+  $('best-input').onchange = () => { $('best-input').value = clamp($('best-input').value,0,99); };
+  $$('[data-help]').forEach(b => {
+    b.onclick = () => {
+      state.help = b.dataset.help;
+      $$('[data-help]').forEach(el => el.setAttribute('aria-pressed',el.dataset.help === state.help));
+    };
+  });
+  $('save-try').onclick = saveTry;
+  $('see-log').onclick = () => {
+    if (state.sample) { state.sample = false; resetReading(); }
+    state.chartRung = state.rung;
+    setMode('My log');
+  };
+  $('setup').onclick = () => openDialog('setup-dialog');
+  $('close-setup').onclick = () => closeDialog('setup-dialog');
+  $('clear-log').onclick = () => openDialog('clear-dialog');
+  $('keep-log').onclick = () => closeDialog('clear-dialog');
+  $('confirm-clear').onclick = () => {
+    Object.assign(log,emptyLog());
+    persist();
+    state.rung = state.chartRung = 1;
+    resetReading();
+    closeDialog('clear-dialog');
+    refreshLog();
+    reflectionHint();
+    focus('sample');
+  };
+  ['setup-dialog','clear-dialog'].forEach(id => {
+    $(id).addEventListener('cancel',e => { e.preventDefault(); closeDialog(id); });
+  });
+  $('sample').onclick = toggleSample;
+  $('empty-sample').onclick = toggleSample;
+  $('chart-rung').onchange = () => {
+    state.chartRung = +$('chart-rung').value;
+    resetReading();
+    drawChart();
+    reflectionPanel();
+    strengthPanel();
+    reflectionHint();
+  };
+  $('new-session').onclick = addSession;
+  $('save-goal').onclick = setGoal;
+  $$('[data-predict]').forEach(b => {
+    b.onclick = () => {
+      state.prediction = b.dataset.predict;
+      $$('[data-predict]').forEach(el => el.setAttribute('aria-pressed',el.dataset.predict === state.prediction));
+    };
+  });
+  R.forEach((data,i) => {
+    const option = document.createElement('option');
+    option.value = i+1;
+    option.textContent = `Rung ${i+1}`;
+    $('goal-rung').append(option);
+  });
+  $('strength-card').addEventListener('toggle',() => {
+    if ($('strength-card').open && filtered().filter(t => t.checks?.some(c => c !== null)).length >= 3) {
+      hint(L.strength);
+      how('strength',{valid:() => $('strength-card').open});
+    }
+  });
+  $('goal-card').addEventListener('toggle',() => {
+    if ($('goal-card').open && !state.sample) {
+      const key = log.goal ? 'editGoal' : 'goal';
+      hint(L[key]);
+      how(key,{now:true,valid:() => $('goal-card').open,needs:'#save-goal'});
+    }
+  });
+  document.addEventListener('keydown',e => {
+    if (e.target.matches('input,select,textarea') || document.querySelector('dialog[open]')) return;
+    if (e.key === '1') setMode('Ladder');
+    if (e.key === '2') setMode('My log');
+  });
+  const compact = matchMedia('(max-height:700px), (max-width:999px)');
+  function compactSettings() { $('settings').open = !compact.matches; }
+  compact.addEventListener('change',compactSettings);
+  compactSettings();
+  let resizeFrame;
+  new ResizeObserver(() => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => { if (state.mode === 'My log') drawChart(); });
+  }).observe($('chart-scroll'));
+  Curio.onMotion(() => drawPose(state.demoTime));
+  Curio.init({clips:"voice:*",rate:.98,readFallback:currentRead});
+  resetReading();
+  selectRung(state.rung,false);
+  hint(`Tap Show me to watch rung ${state.rung} slowly.`);
+  window.__tool = {
+    state,setMode,allLines:V.allLines,vlog:V.log, get vq() { return V.queue; },
+    addSession,pattern,trend,sessionBests,selectRung,show,step,drawPose,startTry,finishTry,stopTry,partnerAction,
+    saveTry,pickDot,chooseSentence,refreshLog,resetReading,drawChart,SAMPLE,R,ready,
+    get storageOK() { return storageOK; }
+  };
+})();
+
+</script>
+</body>
+</html>

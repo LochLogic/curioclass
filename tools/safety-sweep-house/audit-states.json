@@ -13,13 +13,16 @@
       ]
     },
     {
-      "name": "stop",
+      "name": "compare",
       "steps": [
         {
           "click": "#room-0"
         },
         {
           "click": "#spot-0"
+        },
+        {
+          "click": "#peek-1"
         }
       ],
       "keep": [
@@ -28,208 +31,42 @@
       ]
     },
     {
-      "name": "think",
+      "name": "fixed-towel",
       "steps": [
         {
           "click": "#room-0"
         },
         {
-          "click": "#spot-0"
-        },
-        {
-          "click": "#think"
-        }
-      ],
-      "keep": [
-        "#hint",
-        "#controls"
-      ]
-    },
-    {
-      "name": "choose",
-      "steps": [
-        {
-          "click": "#room-0"
-        },
-        {
-          "click": "#spot-0"
-        },
-        {
-          "click": "#think"
-        },
-        {
-          "click": "#act"
-        },
-        {
-          "click": "#choose"
-        }
-      ],
-      "keep": [
-        "#hint",
-        "#controls"
-      ]
-    },
-    {
-      "name": "safe",
-      "steps": [
-        {
-          "click": "#room-0"
-        },
-        {
-          "click": "#spot-0"
-        },
-        {
-          "click": "#think"
-        },
-        {
-          "click": "#act"
-        },
-        {
-          "click": "#choose"
-        },
-        {
-          "click": "#option-1"
-        }
-      ],
-      "keep": [
-        "#hint",
-        "#controls"
-      ]
-    },
-    {
-      "name": "fix",
-      "steps": [
-        {
-          "click": "#room-0"
-        },
-        {
-          "click": "#spot-0"
-        },
-        {
-          "click": "#think"
-        },
-        {
-          "click": "#act"
-        },
-        {
-          "click": "#choose"
-        },
-        {
-          "click": "#option-1"
+          "click": "#spot-1"
         },
         {
           "click": "#check"
-        }
-      ],
-      "keep": [
-        "#hint",
-        "#controls"
-      ]
-    },
-    {
-      "name": "who",
-      "steps": [
-        {
-          "click": "#room-0"
-        },
-        {
-          "click": "#spot-0"
-        },
-        {
-          "click": "#think"
-        },
-        {
-          "click": "#act"
-        },
-        {
-          "click": "#choose"
-        },
-        {
-          "click": "#option-1"
-        },
-        {
-          "click": "#check"
-        },
-        {
-          "click": "#object"
-        },
-        {
-          "click": "#target"
-        },
-        {
-          "click": "#tell"
-        }
-      ],
-      "keep": [
-        "#hint",
-        "#controls"
-      ]
-    },
-    {
-      "name": "reveal",
-      "steps": [
-        {
-          "click": "#room-0"
-        },
-        {
-          "click": "#spot-0"
-        },
-        {
-          "click": "#think"
-        },
-        {
-          "click": "#act"
-        },
-        {
-          "click": "#choose"
-        },
-        {
-          "click": "#option-1"
-        },
-        {
-          "click": "#check"
-        },
-        {
-          "click": "#object"
-        },
-        {
-          "click": "#target"
         },
         {
           "click": "#tell"
         },
         {
-          "click": "#who-0"
-        },
-        {
-          "click": "#done"
+          "click": "#put-away"
         }
       ],
       "keep": [
         "#hint",
         "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
       ]
     },
     {
-      "name": "alarm-hold",
+      "name": "gummies-adult",
       "steps": [
         {
-          "click": "#room-2"
+          "click": "#room-3"
         },
         {
           "click": "#spot-0"
-        },
-        {
-          "click": "#think"
-        },
-        {
-          "click": "#adult"
-        },
-        {
-          "click": "#choose"
-        },
-        {
-          "click": "#option-1"
         },
         {
           "click": "#check"
@@ -258,24 +95,39 @@
           "click": "#spot-1"
         },
         {
-          "click": "#think"
-        },
-        {
-          "click": "#act"
-        },
-        {
-          "click": "#choose"
-        },
-        {
-          "click": "#option-2"
-        },
-        {
           "click": "#check"
         }
       ],
       "keep": [
         "#hint",
-        "#controls"
+        "#object",
+        ".ruler"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "alarm-hold",
+      "steps": [
+        {
+          "click": "#room-2"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#tell"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#hold-action"
       ],
       "sizes": [
         "680x425",
@@ -290,19 +142,10 @@
           "click": "#room-4"
         },
         {
-          "click": "#spot-0"
+          "click": "#monitor"
         },
         {
-          "click": "#think"
-        },
-        {
-          "click": "#act"
-        },
-        {
-          "click": "#choose"
-        },
-        {
-          "click": "#option-0"
+          "click": "#monitor-chat"
         },
         {
           "click": "#check"
@@ -310,7 +153,8 @@
       ],
       "keep": [
         "#hint",
-        "#controls"
+        "#block",
+        "#report"
       ],
       "sizes": [
         "680x425",
@@ -319,17 +163,60 @@
       ]
     },
     {
-      "name": "safety-card",
+      "name": "monitor",
       "steps": [
         {
-          "js": "__tool.state.progress.forEach(p=>{p.done=p.fixed=p.safe=p.told=p.acted=true});__tool.setMode();"
+          "click": "#room-4"
         },
         {
-          "click": "#show-card"
+          "click": "#monitor"
         }
       ],
       "keep": [
-        ".safety"
+        ".monitor-focus"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manual-close"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "pills-target",
+      "steps": [
+        {
+          "click": "#room-1"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#tell"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#object",
+        "#target"
       ],
       "sizes": [
         "680x425",

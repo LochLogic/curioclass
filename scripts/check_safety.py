@@ -36,7 +36,7 @@ RISKY = [
     (r'(?<![\w.])eval\s*\(', 'eval()'),
     (r'(?-i:\bnew\s+Function\s*\()', 'new Function()'),  # capital F only: "new function(){}" is ordinary JS
     (r'\bnavigator\.geolocation\b', 'location'),
-    (r'(?:googletagmanager|google-analytics|gtag\s*\(|fbq\s*\(|hotjar|mixpanel|segment\.com|clarity\.ms|doubleclick)', 'analytics or ad tracker'),
+    (r'(?:googletagmanager|google-analytics|(?-i:\bgtag\s*\(|\bfbq\s*\()|hotjar|mixpanel|segment\.com|clarity\.ms|doubleclick)', 'analytics or ad tracker'),
 ]
 
 # Fine for a kids' tool when it stays on the device; printed so a reviewer sees it.

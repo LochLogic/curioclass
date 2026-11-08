@@ -1,0 +1,267 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "pad-three",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "document.querySelector('#test').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 16000
+        }
+      ],
+      "keep": [
+        "#rules",
+        "#lab-status"
+      ]
+    },
+    {
+      "name": "generator-three",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "document.querySelector('#generator').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#generator"
+        },
+        {
+          "js": "document.querySelector('#test').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 16000
+        }
+      ],
+      "keep": [
+        "#rules",
+        "#lab-status"
+      ]
+    },
+    {
+      "name": "ledger-complete",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "document.querySelector('#generator').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#generator"
+        },
+        {
+          "js": "document.querySelector('#ride').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#ride"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 35000
+        },
+        {
+          "js": "document.querySelector('#m-ledger').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#m-ledger"
+        }
+      ],
+      "keep": [
+        "#energy-tower",
+        "#scrub"
+      ]
+    },
+    {
+      "name": "notebook-with-rides",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "document.querySelector('#test').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 16000
+        },
+        {
+          "js": "document.querySelector('#m-notebook').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#m-notebook"
+        }
+      ],
+      "keep": [
+        "#mass-plot"
+      ]
+    },
+    {
+      "name": "sliders-min",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "drag": "const r=document.getElementById('height').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+3,r.y+r.height/2]];"
+        },
+        {
+          "drag": "const r=document.getElementById('sag').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+3,r.y+r.height/2]];"
+        },
+        {
+          "drag": "const r=document.getElementById('mass').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+3,r.y+r.height/2]];"
+        },
+        {
+          "drag": "const r=document.getElementById('strength').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.x+3,r.y+r.height/2]];"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#ride",
+        "#test"
+      ]
+    },
+    {
+      "name": "sliders-max",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "drag": "const r=document.getElementById('height').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-3,r.y+r.height/2]];"
+        },
+        {
+          "drag": "const r=document.getElementById('sag').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-3,r.y+r.height/2]];"
+        },
+        {
+          "drag": "const r=document.getElementById('mass').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-3,r.y+r.height/2]];"
+        },
+        {
+          "js": "document.querySelector('#generator').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#generator"
+        },
+        {
+          "drag": "const r=document.getElementById('strength').getBoundingClientRect();return [[r.x+r.width/2,r.y+r.height/2],[r.right-3,r.y+r.height/2]];"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#ride",
+        "#test"
+      ]
+    },
+    {
+      "name": "cards-open",
+      "steps": [
+        {
+          "click": "#briefs"
+        }
+      ],
+      "keep": [
+        "#cards",
+        "#close-cards"
+      ]
+    },
+    {
+      "name": "friction-off",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "document.querySelector('#friction').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#friction"
+        },
+        {
+          "js": "document.querySelector('#test').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 15000
+        }
+      ],
+      "keep": [
+        "#lab-status"
+      ]
+    },
+    {
+      "name": "notebook-comparison",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#test"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 16000
+        },
+        {
+          "click": "#generator"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 16000
+        },
+        {
+          "click": "#m-notebook"
+        },
+        {
+          "js": "document.querySelector('#conclusion').scrollIntoView({block:'center'}); document.querySelector('#conclusion').value='Pad 800 gives the light rider 2.39 g. Generator 70 gives 1.44 g. Its force depends on speed.';"
+        },
+        {
+          "click": "#compare"
+        },
+        {
+          "js": "document.querySelector('#compare-result').scrollIntoView({block:'center'});"
+        }
+      ],
+      "keep": [
+        "#compare-result"
+      ]
+    }
+  ]
+}

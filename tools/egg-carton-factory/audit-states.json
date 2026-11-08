@@ -1,0 +1,268 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "four-rows",
+      "steps": [
+        {
+          "click": "#rowsDown"
+        }
+      ],
+      "keep": [
+        "#rowsBlock",
+        "#orderBlock",
+        "#readout"
+      ]
+    },
+    {
+      "name": "rows-min",
+      "steps": [
+        {
+          "click": "#rowsDown",
+          "times": 4
+        }
+      ],
+      "keep": [
+        "#rowsBlock"
+      ]
+    },
+    {
+      "name": "rows-max",
+      "steps": [
+        {
+          "click": "#rowsUp",
+          "times": 7
+        }
+      ],
+      "keep": [
+        "#rowsBlock"
+      ]
+    },
+    {
+      "name": "fill-finished",
+      "steps": [
+        {
+          "click": "#m-fill"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "wait": 4100
+        }
+      ],
+      "keep": [
+        "#sizes",
+        "#run",
+        "#readout"
+      ]
+    },
+    {
+      "name": "rush-shapes",
+      "steps": [
+        {
+          "click": "#m-rush"
+        },
+        {
+          "click": "#pack"
+        }
+      ],
+      "keep": [
+        "#pack",
+        "#ship"
+      ]
+    },
+    {
+      "name": "rush-sort",
+      "steps": [
+        {
+          "click": "#m-rush"
+        },
+        {
+          "click": "#nextShift"
+        }
+      ],
+      "keep": [
+        "#crates",
+        "#rushTags",
+        "#pack"
+      ]
+    },
+    {
+      "name": "rush-count",
+      "steps": [
+        {
+          "click": "#m-rush"
+        },
+        {
+          "click": "#nextShift",
+          "times": 2
+        },
+        {
+          "click": "#fills6"
+        },
+        {
+          "click": "#fills8"
+        }
+      ],
+      "keep": [
+        "#multipleChoices",
+        "#ship"
+      ]
+    },
+    {
+      "name": "rush-decade",
+      "steps": [
+        {
+          "click": "#m-rush"
+        },
+        {
+          "click": "#prevShift"
+        },
+        {
+          "click": "#dots button:last-child"
+        }
+      ],
+      "keep": [
+        "#rushTags",
+        "#decadeToggles",
+        "#ship"
+      ]
+    },
+    {
+      "name": "reset-dialog",
+      "steps": [
+        {
+          "click": "#m-board"
+        },
+        {
+          "click": "#startOver"
+        }
+      ],
+      "keep": [
+        "#resetConfirm"
+      ]
+    },
+    {
+      "name": "seal-36",
+      "steps": [
+        {
+          "click": "#rowsDown",
+          "times": 4
+        },
+        {
+          "click": "#rowsUp",
+          "times": 5
+        }
+      ],
+      "keep": [
+        "#seal",
+        "#rowsBlock"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "largest-fill",
+      "steps": [
+        {
+          "click": "#m-fill"
+        },
+        {
+          "js": "const e=document.querySelector('#order');e.value=100;e.dispatchEvent(new Event('change',{bubbles:true}));"
+        },
+        {
+          "click": "#size2"
+        },
+        {
+          "wait": 4200
+        }
+      ],
+      "keep": [
+        "#sizes",
+        "#run",
+        "#readout"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "help-six-shapes",
+      "steps": [
+        {
+          "click": "#m-rush"
+        },
+        {
+          "js": "const t=__tool;t.state.progress={};t.state.variant={};t.state.tries={'4a':1};t.chooseCard(9,false);"
+        },
+        {
+          "click": "#pack"
+        },
+        {
+          "click": "#ship"
+        }
+      ],
+      "keep": [
+        "#shownCard",
+        "#shownText"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "pack-100",
+      "steps": [
+        {
+          "js": "const e=document.querySelector('#order');e.value=100;e.dispatchEvent(new Event('change',{bubbles:true}));"
+        },
+        {
+          "click": "#rowsDown",
+          "times": 4
+        }
+      ],
+      "keep": [
+        "#rowsBlock",
+        "#orderBlock",
+        "#readout"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "seal-one",
+      "steps": [
+        {
+          "js": "const e=document.querySelector('#order');e.value=1;e.dispatchEvent(new Event('change',{bubbles:true}));"
+        },
+        {
+          "click": "#rowsDown",
+          "times": 4
+        }
+      ],
+      "keep": [
+        "#rowsBlock",
+        "#orderBlock",
+        "#readout"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

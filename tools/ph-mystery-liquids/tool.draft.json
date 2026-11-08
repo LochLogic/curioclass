@@ -1,0 +1,27 @@
+{
+  "id": "ph-mystery-liquids",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Six clear liquids. A broken meter. What will you test first?",
+  "outcome": "Use chemical test evidence to identify liquids and distinguish pH from total acid.",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": [
+    "Cases",
+    "Bench"
+  ],
+  "grades_label": "Grade 10",
+  "sources": [
+    "OpenStax, Chemistry 2e, sections 4.2, 11.2, 14.2, 14.3, 14.7 and 18.6; appendices H and I",
+    "Clemson Cooperative Extension, pH Values of Common Foods and Ingredients",
+    "U.S. EPA, What is Acid Rain?",
+    "American Chemical Society, Guidelines for Chemical Laboratory Safety in Secondary Schools (2016)",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Existing prep-room illustration drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class",
+    "NIH PubChem, Sodium Bicarbonate, molecular weight 84.007 g/mol",
+    "Royal Society of Chemistry, Acid or alkali? A litmus paper test",
+    "Health Canada, Use household chemicals safely"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

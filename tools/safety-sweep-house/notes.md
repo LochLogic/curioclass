@@ -1,6 +1,6 @@
 ## What it teaches
 Students identify household and online hazards, decide when to get a grown-up, compare possible outcomes, and perform a safe action.
-They finish by considering who benefits from their choice.
+The scene explains who benefits from each fix.
 
 ## Key skills
 - Notice risky situations and explain why a look-alike is safe.
@@ -15,11 +15,11 @@ They finish by considering who benefits from their choice.
 
 ## Five-minute start
 Open the Kitchen. Let students search without pointing to the hazards. Tap a look-alike, then a hazard.
-Use Stop, Think, Choose and Check. Peek at an outcome before making the choice. Try an unsafe choice in the simulation and discuss its consequence.
+Compare actions in any order. Try the fix directly, or inspect an outcome first. Nothing is graded.
 
 ## Explore
 There is one explore experience with six rooms, twelve hazards, and no score or timer. Rooms can be visited in any order.
-Leaving a room preserves its decisions and fixes during this visit. Refresh starts over. The tool collects nothing and stores no progress.
+Leaving a room preserves its fixes during this visit. Reset this scene makes a single fix repeatable. Refresh starts over. The tool collects nothing and stores no progress.
 On touch or keyboard, select a movable object and then its marked target. The heater ruler uses arrow keys in six-inch steps and Enter to check.
 Hold the candle for one second after calling Grandma June. Hold the alarm Test button for two seconds after calling Dad.
 
@@ -35,7 +35,7 @@ If a child discloses that a stranger online asked for personal details, or descr
 including referral to the counselor and reporting when required. Do not invite personal disclosures in the group.
 This is a simulated safety sweep. In real life, children call a trusted grown-up; they do not climb to test alarms or put medicines away alone.
 The heater ruler measures the blanket's clearance from the heater's edge. Moving a cool blanket does not mean touching the heater.
-Read includes the current help explanation and, on the Safety card, the habits currently shown and both emergency instructions.
+Read includes the current help explanation and, in the Manual, the habits currently shown and both emergency instructions.
 Dad and Grandma June represent trusted grown-ups, not a requirement about a student's family structure.
 
 ## Sources
@@ -55,3 +55,6 @@ Dad and Grandma June represent trusted grown-ups, not a requirement about a stud
 - [HRSA Poison Help](https://poisonhelp.hrsa.gov/faq/calling-poison-help): US number 1-800-222-1222, free at any time.
 
 Illustrations generated with OpenAI gpt-image, edited for Curio Class. Narration uses the kit's browser speech fallback; no recordings were made.
+
+## Curiosity repair
+The house has no welcome, step quiz, score, progress counter or automatic ending. The Manual is always available. Dad moves the hot towel and stores the vitamin bottle; the student watches and stays back. The ruler is an illustrative clearance model, not a measuring instrument for a real heater. All advice is US guidance; use a trusted adult in real situations. Source and licence details are bundled in the Manual and tool.draft.json.

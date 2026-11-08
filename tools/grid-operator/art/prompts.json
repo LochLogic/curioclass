@@ -1,7 +1,97 @@
 {
-  "house_style": "Moody realistic digital painting for a high school energy game: night and dusk light, deep navy and slate with amber and soft blue glows, clean and uncluttered, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
-  "style": "Backdrops for a dark control-room stage: shown faint behind cards, and as a thin strip at the top.",
+  "house_style": "Painted realistic editorial illustration for a senior high school energy control-room simulator. Rich matte gouache textures, precise industrial architecture, cinematic depth with foreground, middle ground and distance, directional light from upper left. Refined navy, amber and natural landscape colors. No people, text, letters, numbers, logos or watermarks.",
   "assets": [
+    {
+      "name": "go-control-room",
+      "prompt": "An empty grid control room at night, a wall of glowing screens with abstract line charts, rows of empty desks and chairs, amber and blue light, wide immersive view.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 75,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "go-skyline",
+      "prompt": "Coastal city skyline at dusk across calm water, many lit windows, a few wind turbines on a far hill, panoramic horizontal composition.",
+      "aspect": "4:1",
+      "width": 1400,
+      "quality": 75,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "go-nuclear",
+      "prompt": "A nuclear power plant with a domed reactor building and a low turbine hall beside a coast, seen from a low hill at a distance, clear afternoon light, painted realistic illustration, wide view.",
+      "aspect": "16:9",
+      "width": 500,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "go-coal",
+      "prompt": "A coal power plant with a tall smokestack, a conveyor and a long black coal pile, seen from a low hill at a distance, clear afternoon light, painted realistic illustration, wide view.",
+      "aspect": "16:9",
+      "width": 500,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "go-gas-cc",
+      "prompt": "A modern gas combined cycle plant with two short stacks and a steam turbine hall, seen from a low hill at a distance, clear afternoon light, painted realistic illustration, wide view.",
+      "aspect": "16:9",
+      "width": 500,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "go-peakers",
+      "prompt": "A row of small gas turbine units in white enclosures with short stacks inside a fenced yard, seen from a low hill at a distance, clear afternoon light, painted realistic illustration, wide view.",
+      "aspect": "16:9",
+      "width": 500,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "go-wind",
+      "prompt": "A line of tall white three-bladed utility-scale wind turbines along a grassy ridge, seen from a low hill at a distance. A low oak branch and textured grasses frame the foreground; access tracks, nacelles and tower bases define the middle ground; a blue lake and layered hills recede beyond. Clear afternoon light from upper left, white cumulus clouds, painted realistic editorial gouache, wide view. All turbines have exactly three blades connected to one hub. No industrial plant, people, text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 500,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "Cold review redraw for stronger depth and closer match to plant set."
+    },
+    {
+      "name": "go-solar",
+      "prompt": "Rows of blue solar panels on a flat field under a blue sky, seen from a low hill at a distance, clear afternoon light, painted realistic illustration, wide view.",
+      "aspect": "16:9",
+      "width": 500,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "go-battery",
+      "prompt": "Rows of white battery storage containers on a gravel pad beside a substation, seen from a low hill at a distance, clear afternoon light, painted realistic illustration, wide view.",
+      "aspect": "16:9",
+      "width": 500,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
     {
       "name": "control-room",
       "prompt": "An empty power grid control room at night: a large curved wall of glowing screens showing simple colored line charts and wavy curves, rows of empty desks with dark chairs in front, amber and blue light, quiet and empty.",

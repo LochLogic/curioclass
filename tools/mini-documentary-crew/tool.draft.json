@@ -1,0 +1,26 @@
+{
+  "id": "mini-documentary-crew",
+  "status": "beta",
+  "stage": "built",
+  "hook": "You can only cut what you shot. Make three weeks count.",
+  "outcome": "Schedule a nonfiction production, edit a five-minute cut, interpret a model screening and plan its premiere.",
+  "driver": "students",
+  "minutes": "35-50",
+  "modes": [
+    "Schedule",
+    "Edit",
+    "Screen",
+    "Premiere"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
+    "National Core Arts Standards, Media Arts: MA:Pr4, MA:Pr5, MA:Pr6, MA:Cn10",
+    "Hampe, Making Documentary Films and Videos, 2nd edition, Henry Holt, 2007",
+    "Center for Media and Social Impact, Documentary Filmmakers' Statement of Best Practices in Fair Use, 2005",
+    "W3C WCAG 2.1, Success Criterion 1.2.2, Captions (Prerecorded)",
+    "The shop, people, town, history, crew and attention model are fictional, as stated in the tool.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

@@ -1,0 +1,1897 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Launch Pad · Solve it first. Then fire. · Curio Class</title>
+<meta name="description" content="Solve quadratic equations, then launch a foam ball to test your times. Grade 9 Algebra 1. Works offline.">
+<link rel="icon" href="data:,">
+<!--
+Launch Pad, Curio Class. Grade 9 Algebra 1, A-REI.B.4a and 4b. Students drive Launch and Missions.
+Model: h(t) = -16t² + vt + h0 in feet, no air resistance, g = 32 ft/s².
+Sources: Common Core HSA-REI; OpenStax Elementary Algebra 2e 10.4; Intermediate Algebra 2e chapter 9;
+NIST standard acceleration of gravity. Source URLs and model qualifications are in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file. Content CC BY 4.0, code MIT. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{
+--brand:#ff7a5c;
+--brand-ink:#2a0c05
+}
+
+body{
+height:100dvh;
+min-height:0;
+overflow:hidden
+}
+
+header{
+padding:10px 18px;
+gap:10px
+}
+
+h1{
+font-size:28px;
+letter-spacing:-.8px
+}
+
+h1 small{
+letter-spacing:.2px
+}
+
+.seg button,.icon-btn{
+min-height:44px;
+font-size:14px;
+padding:0 13px
+}
+
+.seg,.icon-btn{
+border-radius:8px;
+border-width:1px
+}
+
+main{
+grid-template-columns:minmax(0,1fr) clamp(320px,29vw,410px);
+min-height:0
+}
+
+.stage{
+min-height:0;
+display:grid;
+grid-template-columns:minmax(130px,.36fr) minmax(0,1fr);
+gap:12px;
+padding:16px
+}
+
+.range,.instrument{
+position:relative;
+min-width:0;
+min-height:0;
+border:1px solid #43516a;
+border-radius:12px;
+overflow:hidden
+}
+
+.range{
+background:#0b1728;
+box-shadow:inset 0 0 40px #0009
+}
+
+.range::before{
+content:'';
+position:absolute;
+inset:0;
+background:url(art:field-dusk) center/cover;
+opacity:.55
+}
+
+.range::after{
+content:'';
+position:absolute;
+inset:0;
+box-shadow:inset 0 0 35px #0007;
+pointer-events:none
+}
+
+#world{
+position:absolute;
+inset:0;
+width:100%;
+height:100%
+}
+
+.clock{
+position:absolute;
+z-index:2;
+top:12px;
+left:10px;
+right:10px;
+padding:9px 8px;
+background:#0b1423ec;
+
+  border:1px solid #7e8ca8;
+border-radius:6px;
+text-align:center;
+box-shadow:0 5px 16px #0004
+}
+
+.clock small{
+display:block;
+font-size:10px;
+letter-spacing:.14em;
+color:#b9c7dc
+}
+
+.clock strong{
+font:600 clamp(19px,2.5vw,30px) var(--readout-font);
+color:#fff
+}
+
+.clock span{
+font-size:12px;
+color:var(--muted)
+}
+
+.instrument{
+background:radial-gradient(ellipse at 60% 0,#1c2c43,#0e1520 70%);
+display:grid;
+
+  grid-template-rows:auto auto minmax(0,1fr) auto;
+box-shadow:0 10px 24px #0003
+}
+
+.instrument-head{
+display:flex;
+justify-content:space-between;
+gap:8px;
+padding:13px 16px 6px;
+align-items:center
+}
+
+.eyebrow{
+font-size:11px;
+letter-spacing:.12em;
+color:var(--muted);
+text-transform:uppercase
+}
+
+.live-light{
+width:6px;
+height:6px;
+border-radius:50%;
+display:inline-block;
+background:var(--ok);
+margin-right:6px;
+
+  box-shadow:0 0 9px #6fdca688;
+animation:pilot 2.4s ease-in-out infinite
+}
+
+@keyframes pilot{
+50%{
+opacity:.35
+}
+
+}
+
+.drone-bob{
+animation:hover-drone 3s ease-in-out infinite alternate
+}
+
+@keyframes hover-drone{
+to{
+transform:translateY(2px)
+}
+
+}
+
+.equation{
+margin:0;
+padding:4px 16px 8px;
+font:500 clamp(15px,1.6vw,23px)/1.4 var(--readout-font);
+color:#fff
+}
+
+.graph-box{
+position:relative;
+min-height:0;
+margin:0 6px
+}
+
+#graph{
+position:absolute;
+inset:0;
+width:100%;
+height:100%
+}
+
+.graph-lock{
+position:absolute;
+inset:35% 10% auto;
+text-align:center;
+color:var(--muted);
+font-size:14px;
+pointer-events:none
+}
+
+.graph-lock b{
+display:block;
+color:var(--ink);
+font-weight:500;
+font-size:18px;
+margin-bottom:8px
+}
+
+.telemetry{
+border-top:1px solid var(--line);
+padding:12px 16px;
+min-height:95px;
+min-width:0;
+background:#0a101aaa
+}
+
+.telemetry p{
+margin:0;
+font-size:13px;
+line-height:1.5
+}
+
+.telemetry b{
+color:var(--brand);
+font-weight:600
+}
+
+#crossings{
+margin-top:5px;
+color:var(--ink)
+}
+
+.panel{
+padding:14px;
+gap:10px;
+overflow:hidden;
+background:linear-gradient(120deg,#1c2633,#141b25 65%)
+}
+
+.hint{
+min-height:48px;
+font-size:14px;
+line-height:1.4;
+color:#d5dfec;
+border-left:2px solid var(--brand);
+padding-left:10px
+}
+
+.panel p{
+margin:0
+}
+
+.control-deck{
+display:flex;
+flex-direction:column;
+gap:10px;
+min-height:0
+}
+
+.gr-slider{
+gap:0 8px;
+padding:8px 10px;
+background:#101925;
+border:1px solid #334158;
+border-radius:8px
+}
+
+.gr-slider label{
+font-size:13px;
+color:#cbd6e5
+}
+
+.gr-slider .num{
+width:65px;
+min-height:44px;
+font-size:15px
+}
+
+.gr-slider input[type=range]{
+width:100%;
+height:44px;
+min-width:0;
+margin:0
+}
+
+.model{
+font-size:12px;
+color:var(--muted);
+line-height:1.5
+}
+
+.go-row{
+margin-top:auto;
+display:flex;
+gap:8px;
+flex:none
+}
+
+.go-row .big-btn{
+flex:1;
+min-height:48px;
+letter-spacing:.03em
+}
+
+#next{
+min-width:76px
+}
+
+.nav-row{
+display:grid;
+grid-template-columns:minmax(0,1fr) auto;
+gap:6px
+}
+
+select,input{
+font:inherit;
+color:var(--ink)
+}
+
+select{
+height:44px;
+min-width:0;
+width:100%;
+border:1px solid var(--btn-line);
+border-radius:6px;
+padding:0 7px;
+background:#0f1825
+}
+
+.nav-row .btn{
+font-size:11px;
+padding:0 7px
+}
+
+.mission-brief{
+padding:9px 10px;
+background:#111b29;
+border:1px solid #394760;
+border-top:2px solid var(--brand);
+border-radius:6px
+}
+
+.mission-brief h2{
+font-size:16px;
+margin:0 0 4px;
+font-weight:600
+}
+
+#setup{
+font-size:13px;
+line-height:1.35;
+color:#c3cedd
+}
+
+#tidied{
+font:14px/1.4 var(--readout-font);
+color:var(--brand);
+margin-top:5px
+}
+
+.work{
+background:#0e1724;
+border:1px solid #3a4860;
+border-radius:8px;
+min-height:0;
+flex:1;
+
+  display:flex;
+flex-direction:column;
+gap:8px;
+padding:10px
+}
+
+.step-head{
+display:flex;
+justify-content:space-between;
+align-items:center;
+min-height:18px
+}
+
+.step-head strong{
+color:var(--brand);
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:.08em
+}
+
+.methods{
+display:grid;
+grid-template-columns:repeat(4,minmax(0,1fr));
+gap:4px
+}
+
+.methods button{
+font-size:11px;
+line-height:1.15;
+padding:2px;
+min-width:44px;
+min-height:44px
+}
+
+.fields{
+display:flex;
+gap:6px;
+align-items:end
+}
+
+.fields label{
+flex:1;
+min-width:0;
+font-size:12px;
+color:var(--muted);
+display:flex;
+flex-direction:column;
+gap:4px
+}
+
+input.text{
+width:100%;
+height:44px;
+border:1px solid #7189ae;
+border-radius:5px;
+background:#080f19;
+padding:0 8px;
+
+  font:15px var(--readout-font)
+}
+
+.formula{
+font:15px/1.5 var(--readout-font);
+overflow-wrap:anywhere;
+color:#e3ecfa
+}
+
+.work .btn{
+flex:none
+}
+
+#check{
+align-self:stretch;
+background:#293a51
+}
+
+#feedback{
+font-size:13px;
+line-height:1.35;
+min-height:36px;
+color:var(--warn)
+}
+
+#feedback.good{
+color:var(--ok)
+}
+
+.answer-help{
+font-size:11px;
+color:var(--muted)
+}
+
+.mission-deck{
+display:flex;
+flex-direction:column;
+gap:8px;
+flex:1;
+min-height:0
+}
+
+#progress{
+font-size:12px;
+color:var(--muted)
+}
+
+.sr{
+position:absolute;
+width:1px;
+height:1px;
+overflow:hidden;
+clip:rect(0 0 0 0);
+white-space:nowrap
+}
+
+.flash-ring{
+animation:event-ring .7s ease-out 1
+}
+
+@keyframes event-ring{
+from{
+opacity:1;
+stroke-width:6
+}
+to{
+opacity:.35;
+stroke-width:2
+}
+
+}
+
+.calm .live-light,.calm .flash-ring,.calm .drone-bob{
+animation:none!important
+}
+
+.gr-pt{
+cursor:default!important
+}
+
+.square-derivation{
+font:13px/1.8 var(--readout-font);
+color:#d3deed
+}
+
+.square-derivation span{
+display:block;
+color:var(--brand)
+}
+
+.proof-record{
+border-left:2px solid var(--brand);
+padding:8px 10px;
+background:linear-gradient(110deg,#20364a,#152334);
+font:13px/1.7 var(--readout-font)
+}
+
+.proof-record strong,.proof-record span{
+display:block
+}
+
+.proof-record strong{
+color:#ffd4b8;
+font:600 12px/1.5 system-ui,sans-serif;
+margin-bottom:3px
+}
+
+@media(max-height:640px),(max-width:599px){
+.proof-record{
+grid-column:1/-1;
+grid-row:4;
+font-size:11px;
+line-height:1.4;
+padding:4px 7px
+}
+.proof-record strong{
+font-size:11px;
+margin:0
+}
+.work:has(.proof-record:not([hidden])) #feedback{
+grid-row:5
+}
+}
+
+@media(max-height:899px){
+
+  .stage{
+gap:8px;
+padding:10px;
+grid-template-columns:minmax(110px,.31fr) minmax(0,1fr)
+}
+
+  .panel{
+padding:10px;
+gap:7px
+}
+
+  .telemetry{
+padding:9px 12px;
+min-height:85px
+}
+
+
+}
+
+@media(max-width:1000px){
+
+  header{
+padding:5px 9px;
+gap:6px;
+flex-wrap:nowrap
+}
+
+  h1{
+font-size:20px
+}
+
+  h1 small{
+font-size:12px
+}
+
+  .icon-btn,.seg button{
+font-size:12px;
+padding:0 9px
+}
+
+  main{
+grid-template-columns:minmax(0,1fr) 300px
+}
+
+  .stage{
+padding:7px;
+gap:6px;
+grid-template-columns:minmax(100px,.34fr) minmax(0,1fr)
+}
+
+  .instrument-head{
+padding:9px 10px 4px
+}
+
+  .equation{
+padding:3px 10px 6px;
+font-size:14px
+}
+
+  .telemetry{
+padding:7px 10px;
+min-height:84px
+}
+
+  .telemetry p{
+font-size:12px
+}
+
+
+}
+
+@media(max-width:800px) and (min-height:600px){
+
+  .stage{
+grid-template-columns:1fr;
+grid-template-rows:150px minmax(0,1fr)
+}
+
+  .range::before{
+background-position:center 85%
+}
+
+  .clock{
+left:10px;
+right:auto;
+width:105px;
+top:8px
+}
+
+  .clock strong{
+font-size:23px
+}
+
+
+}
+
+@media(max-height:640px) and (min-width:600px){
+
+  header{
+padding:4px 8px
+}
+
+  h1{
+font-size:18px
+}
+
+  h1 small{
+display:none
+}
+
+  .panel{
+gap:5px;
+padding:7px
+}
+
+  .hint{
+font-size:12px;
+min-height:35px;
+line-height:1.3
+}
+
+  .control-deck{
+gap:5px
+}
+
+  .gr-slider{
+padding:4px 8px
+}
+
+  .gr-slider label{
+font-size:12px
+}
+
+  .mission-deck{
+gap:5px
+}
+
+  .mission-brief{
+padding:5px 8px
+}
+
+  .mission-brief h2{
+font-size:14px;
+margin:0 0 2px
+}
+
+  #setup{
+font-size:11px
+}
+
+  #tidied{
+font-size:12px;
+margin-top:2px
+}
+
+  .work{
+padding:6px;
+gap:5px
+}
+
+  .formula{
+font-size:13px;
+line-height:1.3
+}
+
+  #feedback{
+min-height:30px;
+font-size:11px
+}
+
+  .go-row .big-btn{
+min-height:44px
+}
+
+  .model,#progress{
+font-size:10px
+}
+
+  .telemetry{
+min-height:90px
+}
+
+  .clock{
+top:8px;
+left:6px;
+right:6px;
+padding:5px 2px
+}
+
+  .mission-brief h2{
+display:none
+}
+
+  .work{
+display:grid;
+grid-template-columns:minmax(0,1fr) 66px;
+align-content:start
+}
+
+  .step-head{
+display:none
+}
+
+  #methods{
+grid-column:1/-1;
+grid-row:1
+}
+
+  #work-equation{
+grid-column:1/-1;
+grid-row:2
+}
+
+  #fields{
+grid-column:1;
+grid-row:3
+}
+
+  #check{
+grid-column:2;
+grid-row:3;
+align-self:end;
+min-height:44px;
+font-size:11px;
+padding:0 3px
+}
+
+  #feedback{
+grid-column:1/-1;
+grid-row:4
+}
+
+  #answer-help{
+display:none
+}
+
+  .telemetry .hint{
+margin:6px 0;
+min-height:32px;
+font-size:11px
+}
+
+  .telemetry .model{
+font-size:10px;
+margin-top:5px
+}
+
+  .graph-lock{
+font-size:11px;
+inset:20% 5% auto
+}
+
+  .graph-lock b{
+font-size:14px;
+margin-bottom:4px
+}
+
+  .square-derivation{
+font-size:10px;
+line-height:1.5
+}
+
+
+}
+
+@media(max-width:599px){
+
+  header{
+flex-wrap:wrap;
+padding:5px 8px;
+gap:4px;
+justify-content:space-between
+}
+
+  h1{
+font-size:21px;
+flex:1 0 calc(100% - 180px)
+}
+
+  h1 small{
+display:none
+}
+
+  .seg{
+margin-left:auto
+}
+
+  .icon-btn{
+flex:1 0 30%;
+min-height:44px
+}
+
+  main{
+grid-template-columns:1fr;
+grid-template-rows:245px minmax(0,1fr)
+}
+
+  .stage{
+padding:6px;
+grid-template-columns:1fr;
+grid-template-rows:75px minmax(0,1fr);
+gap:5px
+}
+
+  .range{
+border-radius:6px
+}
+
+  .range::before{
+background-position:center 84%
+}
+
+  .clock{
+top:4px;
+bottom:4px;
+left:5px;
+right:auto;
+width:90px;
+padding:4px
+}
+
+  .clock small{
+font-size:10px;
+letter-spacing:.06em
+}
+
+  .clock strong{
+font-size:19px
+}
+
+  .instrument{
+grid-template-rows:auto minmax(0,1fr) auto;
+border-radius:6px
+}
+
+  .instrument-head{
+display:none
+}
+
+  .equation{
+padding:2px 8px;
+font-size:12px
+}
+
+  .telemetry{
+min-height:25px;
+padding:3px 8px;
+display:flex;
+gap:8px;
+align-items:center
+}
+
+  .telemetry p{
+font-size:10px;
+line-height:1.2;
+min-width:0;
+overflow-wrap:anywhere
+}
+
+  .telemetry #crossings{
+margin:0
+}
+
+  .panel{
+padding:7px 9px;
+gap:5px;
+border-left:0;
+border-top:1px solid var(--line)
+}
+
+  .hint{
+font-size:12px;
+min-height:33px;
+line-height:1.3
+}
+
+  .control-deck{
+gap:5px;
+display:grid;
+grid-template-columns:1fr 1fr
+}
+
+  .control-deck>div:last-child{
+grid-column:1/-1
+}
+
+  .gr-slider{
+padding:4px 7px
+}
+
+  .gr-slider label{
+font-size:12px
+}
+
+  .gr-slider .num{
+width:51px;
+font-size:13px
+}
+
+  .model,#progress{
+font-size:10px
+}
+
+  .mission-deck{
+gap:4px
+}
+
+  .mission-brief{
+padding:5px 8px
+}
+
+  .mission-brief h2{
+font-size:14px;
+margin-bottom:1px
+}
+
+  #setup{
+font-size:11px
+}
+
+  #tidied{
+font-size:12px;
+margin-top:2px
+}
+
+  .work{
+gap:4px;
+padding:6px
+}
+
+  .formula{
+font-size:13px;
+line-height:1.3
+}
+
+  #feedback{
+font-size:11px;
+min-height:28px
+}
+
+  .go-row .big-btn{
+min-height:44px
+}
+
+  .mission-brief h2,.step-head{
+display:none
+}
+
+  .work{
+display:grid;
+grid-template-columns:minmax(0,1fr) 66px;
+align-content:start
+}
+
+  #methods{
+grid-column:1/-1;
+grid-row:1
+}
+
+  #work-equation{
+grid-column:1/-1;
+grid-row:2
+}
+
+  #fields{
+grid-column:1;
+grid-row:3
+}
+
+  #check{
+grid-column:2;
+grid-row:3;
+align-self:end;
+min-height:44px;
+font-size:11px;
+padding:0 3px
+}
+
+  #feedback{
+grid-column:1/-1;
+grid-row:4
+}
+
+  #answer-help{
+display:none
+}
+
+  .graph-lock{
+font-size:11px;
+inset:15% 5% auto
+}
+
+  .graph-lock b{
+font-size:14px;
+margin-bottom:3px
+}
+
+  .graph-lock.deriving{
+inset:0 5% auto
+}
+
+  .square-derivation{
+font-size:10px;
+line-height:1.3
+}
+
+
+}
+
+</style>
+</head>
+<body>
+<header>
+  <h1>Launch Pad <small>Solve it first. Then fire.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-launch" aria-pressed="true">Launch</button>
+    <button id="m-missions" aria-pressed="false">Missions</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="range" id="range" role="img" aria-label="Painted launch range, height ruler and foam ball">
+      <svg id="world" aria-hidden="true"></svg>
+      <div class="clock"><small>FLIGHT CLOCK</small><strong id="clock">0.00</strong><span> s</span></div>
+    </div>
+    <section class="instrument" aria-label="Height against time">
+      <div class="instrument-head"><span class="eyebrow">Flight telemetry</span><span class="eyebrow"><i class="live-light"></i>Range ready</span></div>
+      <p class="equation" id="equation"></p>
+      <div class="graph-box" id="graph-box">
+        <svg id="graph" role="img" aria-label="Graph of height in feet against time in seconds"></svg>
+        <div class="graph-lock" id="graph-lock" hidden><b>Your equation. Your prediction.</b>Solve first. Launch reveals the flight.</div>
+      </div>
+      <div class="telemetry" id="telemetry" aria-live="polite"><p id="stats"></p><p id="crossings"></p></div>
+    </section>
+  </div>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <div class="control-deck" id="explore"><div id="v-control"></div><div id="h-control"></div><div id="H-control"></div></div>
+    <div class="mission-deck" id="missions" hidden>
+      <div class="nav-row">
+        <label class="sr" for="mission-select">Mission</label><select id="mission-select"></select>
+        <button class="btn" id="clear">Clear missions</button>
+      </div>
+      <section class="mission-brief"><h2 id="mission-title"></h2><p id="setup"></p><p id="tidied" hidden></p></section>
+      <section class="work" id="work">
+        <div class="step-head"><strong id="step-title"></strong><span id="step-count" class="eyebrow"></span></div>
+        <div class="methods" id="methods" role="group" aria-label="Method" hidden>
+          <button class="btn" data-method="Factor" aria-pressed="true">Factor</button>
+          <button class="btn" data-method="Square root" aria-pressed="false">Square root</button>
+          <button class="btn" data-method="Complete the square" aria-pressed="false">Complete<br>the square</button>
+          <button class="btn" data-method="Formula" aria-pressed="false">Formula</button>
+        </div>
+        <p class="formula" id="work-equation"></p><div class="proof-record" id="proof-record" hidden></div>
+        <div class="fields" id="fields"></div>
+        <p class="answer-help" id="answer-help" hidden>Commas, fractions, sqrt( ), √ or ±. Decimals within 0.01 s count.</p>
+        <button class="btn" id="check">Write it</button><p id="feedback" aria-live="polite"></p>
+      </section>
+      <p id="progress"></p>
+    </div>
+    <p class="model">Simple model: no air · g = 32 ft/s²<br><span id="privacy">Mission progress stays on this device.</span></p>
+    <div class="go-row"><button class="big-btn" id="go">↑ Launch</button><button class="btn" id="next" hidden>Next →</button></div>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const art = {launcher:'art:launcher',ball:'art:foam-ball',drone:'art:drone',brick:'art:brick-texture',balcony:'art:balcony'};
+  const L = {
+    wLaunch:'Set Speed v and Height h0, then press Launch. Watch the curve it draws.',
+    wMissions:'Each mission is one equation. Press Write it, pick a method and solve. Then launch to check.',
+    coeff:'Type a, b and c from the tidied equation. Then press Check work.',
+    disc:'Check the discriminant. Type how many real answers it means, then press Check work.',
+    derive:'Fill the three denominators to derive the formula. Then press Check work.',
+    launchNow:'Your answer checks. Press Launch and watch the clock stop at your time.',
+    neg:'Negative time is before launch. Pick the other answer.',
+    never:'No real answer. The ball never gets that high.',
+    done:'Mission complete.',
+    tidy:'Choose the target height, then press Tidy to collect the terms.',
+    method:'Pick a method. Fill the boxes, then press Check work.',
+    answer:'Type the time or times that fit the event. Then press Check answer.',
+    root:'Type both algebraic roots, then press Check roots.',
+    again:'Press Launch to replay, or choose another mission.',
+  };
+  const data = [
+    {v:64,h:0,H:0,name:'Return to ground',setup:'64 ft/s from ground. When does it land?',a:1,b:-4,c:0,div:16,
+      roots:[0,4],exact:'0, 4',event:[4],eventExact:'4'},
+    {v:64,h:80,H:0,name:'Roof launch',setup:'64 ft/s from an 80 ft roof. When does it land?',a:1,b:-4,c:-5,div:16,
+      roots:[-1,5],exact:'−1, 5',event:[5],eventExact:'5'},
+    {v:64,h:0,H:48,name:'Pass the drone',setup:'64 ft/s from ground. When does it pass the 48 ft drone?',a:1,b:-4,c:3,div:16,
+      roots:[1,3],exact:'1, 3',event:[1,3],eventExact:'1, 3'},
+    {v:64,h:0,H:64,name:'Just a touch',setup:'64 ft/s from ground. When does it touch the 64 ft drone?',a:1,b:-4,c:4,div:16,
+      roots:[2],exact:'2',event:[2],eventExact:'2'},
+    {v:64,h:0,H:80,name:'Out of reach',setup:'64 ft/s from ground. When does it reach the 80 ft drone?',a:1,b:-4,c:5,div:16,
+      roots:[],exact:'2 ± i',event:[],eventExact:'No real time'},
+    {v:0,h:144,H:0,name:'The drop',setup:'Dropped from a 144 ft ledge. When does it land?',a:1,b:0,c:-9,div:16,
+      roots:[-3,3],exact:'−3, 3',event:[3],eventExact:'3'},
+    {v:48,h:5,H:0,name:'Complete the square',setup:'48 ft/s from a 5 ft launcher. When does it land?',a:16,b:-48,c:-5,div:1,
+      roots:[(6-Math.sqrt(41))/4,(6+Math.sqrt(41))/4],exact:'(6 ± √41)/4',event:[(6+Math.sqrt(41))/4],eventExact:'(6 + √41)/4'},
+    {v:40,h:6,H:0,name:'Use the formula',setup:'40 ft/s from a 6 ft launcher. When does it land?',a:8,b:-20,c:-3,div:2,
+      roots:[(5-Math.sqrt(31))/4,(5+Math.sqrt(31))/4],exact:'(5 ± √31)/4',event:[(5+Math.sqrt(31))/4],eventExact:'(5 + √31)/4'},
+    {v:56,h:4,H:40,name:'The downward catch',setup:'56 ft/s from 4 ft. A friend catches it at a 40 ft balcony, on the way down.',a:4,b:-14,c:9,div:4,
+      roots:[(7-Math.sqrt(13))/4,(7+Math.sqrt(13))/4],exact:'(7 ± √13)/4',event:[(7+Math.sqrt(13))/4],eventExact:'(7 + √13)/4'},
+  ];
+  const state = {mode:'Launch',mission:1,v:64,h:0,H:48,t:0,running:false,revealed:false,
+    step:'write',method:'Factor',proof:false,ready:false,completed:{},events:[],feedback:'',visits:0};
+  let storageOK = true;
+  try {
+    const saved = JSON.parse(localStorage.getItem('curio-launch-pad') || '{}');
+    if (saved && typeof saved === 'object' && !Array.isArray(saved)) {
+      for (let n=1;n<=9;n++) if (saved[n] && typeof saved[n] === 'object') state.completed[n] = saved[n];
+    }
+  } catch { storageOK = false; }
+  const V = Curio.voice({lines:L,scope:() => state.mode+':'+state.mission,hint:false,read:() => $('hint').textContent,
+    welcome:() => state.mode === 'Launch' ? ['wLaunch',{valid:() => !state.running && !state.revealed}] :
+      ['wMissions',{valid:() => state.step === 'write'}],speaks:'#check'});
+  const m = () => data[state.mission-1];
+  const cfg = () => state.mode === 'Launch' ? state : m();
+  const height = t => -16*t*t+cfg().v*t+cfg().h;
+  const land = () => (cfg().v+Math.sqrt(cfg().v**2+64*cfg().h))/32;
+  const peakTime = () => cfg().v/32;
+  const peak = () => cfg().h+cfg().v**2/64;
+  const fmt = (x,d=2) => Plane.fmt(Math.abs(x)<1e-8?0:x,d);
+  const mk = (tag,attrs={},parent) => {
+    const el = document.createElementNS(NS,tag);
+    for (const [k,v] of Object.entries(attrs)) el.setAttribute(k,v);
+    if (parent) parent.appendChild(el);
+    return el;
+  };
+  function text(parent,x,y,value,size=12,fill='#e8edf3') {
+    const el=mk('text',{x,y,fill,'font-size':size,'font-family':'Segoe UI, sans-serif'},parent);
+    el.textContent=value;
+    return el;
+  }
+  const image = (parent,name,x,y,w,h) => mk('image',{href:art[name],x,y,width:w,height:h,
+    preserveAspectRatio:'xMidYMid meet'},parent);
+  function hint(key) {
+    $('hint').textContent=L[key]||key;
+  }
+  function how(key,valid,needs) {
+    hint(key);
+    if(!V.heard(key)) V.how(key,{valid,needs,now:true});
+  }
+  function feedback(message,good=false) {
+    state.feedback=message;
+    $('feedback').textContent=message;
+    $('feedback').classList.toggle('good',good);
+    if(message) Curio.tone(good?610:190,.12,.025,'triangle');
+  }
+  function poly(a,b,c) {
+    let str=(a===1?'':a)+'t²';
+    if(b) str+=(b<0?' − ':' + ')+(Math.abs(b)===1?'':Math.abs(b))+'t';
+    if(c) str+=(c<0?' − ':' + ')+Math.abs(c);
+    return str;
+  }
+  function fraction(n,d) {
+    const gcd=(a,b)=>b?gcd(b,a%b):a;
+    const g=gcd(Math.abs(n),Math.abs(d))||1;
+    n/=g;
+    d/=g;
+    return d===1?String(n):n+'/'+d;
+  }
+  function equation() {
+    const c=cfg();
+    return 'h(t) = −16t²'+(c.v?' + '+c.v+'t':'')+(c.h?' + '+c.h:'');
+  }
+  // Arithmetic-only parser. No eval or Function, including when a student enters an exact radical.
+  function real(raw) {
+    let s=String(raw).toLowerCase().replace(/[−–]/g,'-').replace(/\s+/g,'').replace(/²/g,'^2');
+    s=s.replace(/√(\d+(?:\.\d+)?)/g,'sqrt($1)').replace(/√\(/g,'sqrt(');
+    s=s.replace(/(\d|\))(?=sqrt|\()/g,'$1*').replace(/\)(?=\d)/g,')*');
+    if(!s||s.length>160||/[^\d.()+*/^a-z-]/.test(s)) return NaN;
+    let i=0;
+    function atom() {
+      if(s.slice(i,i+5)==='sqrt(') {
+        i+=5;
+        const v=add();
+        if(s[i++]!==')') throw Error();
+        return Math.sqrt(v);
+      }
+      if(s[i]==='(') {
+        i++;
+        const v=add();
+        if(s[i++]!==')') throw Error();
+        return v;
+      }
+      const part=s.slice(i).match(/^(?:\d+(?:\.\d*)?|\.\d+)/);
+      if(!part) throw Error();
+      i+=part[0].length;
+      return Number(part[0]);
+    }
+    function power() {
+      let v=atom();
+      if(s[i]==='^') {
+        i++;
+        v=v**unary();
+      }
+      return v;
+    }
+    function unary() {
+      if(s[i]==='+'||s[i]==='-') {
+        const sign=s[i++];
+        const v=unary();
+        return sign==='-'?-v:v;
+      }
+      return power();
+    }
+    function mul() {
+      let v=unary();
+      while(s[i]==='*'||s[i]==='/') {
+        const op=s[i++],q=unary();
+        v=op==='*'?v*q:v/q;
+      }
+      return v;
+    }
+    function add() {
+      let v=mul();
+      while(s[i]==='+'||s[i]==='-') {
+        const op=s[i++],q=mul();
+        v=op==='+'?v+q:v-q;
+      }
+      return v;
+    }
+    try {
+      const v=add();
+      return i===s.length&&Number.isFinite(v)?v:NaN;
+    }catch {
+      return NaN;
+    }
+  }
+  function values(raw) {
+    let parts=String(raw).trim().replace(/\band\b/gi,',').split(/[,;]|\s+or\s+/i).map(s=>s.trim()).filter(Boolean);
+    parts=parts.flatMap(s=>/±|\+\/-/.test(s)?[s.replace(/±|\+\/-/g,'+'),s.replace(/±|\+\/-/g,'-')]:[s]);
+    return parts.map(real);
+  }
+  function same(got,want,tol=.01) {
+    if(got.length!==want.length||got.some(v=>!Number.isFinite(v))) return false;
+    const a=[...got].sort((x,y)=>x-y),b=[...want].sort((x,y)=>x-y);
+    return a.every((v,i)=>Math.abs(v-b[i])<=tol+1e-9);
+  }
+  function complex(raw) {
+    const s=String(raw).replace(/\s+/g,'').replace(/[−–]/g,'-').replace(/\+\/-/g,'±').toLowerCase();
+    return ['2±i','2+i,2-i','2-i,2+i','2+1i,2-1i','2-1i,2+1i'].includes(s);
+  }
+  function denominator(raw,squared=false) {
+    let s=String(raw).toLowerCase().replace(/\s+/g,'').replace(/²/g,'^2');
+    if(!s||s.length>80||/[^a\d.()+*/^−-]/.test(s))return false;
+    s=s.replace(/(\d|\))(?=a)/g,'$1*').replace(/a(?=a|\(|\d)/g,'a*');
+    return [1,2,3,5,-2].every(a=>{
+      const value=real(s.replace(/a/g,'('+a+')'));
+      return Math.abs(value-(squared?4*a*a:2*a))<1e-8;
+    });
+  }
+  let plane=null,trace=null,curve=null,curveDomain=[0,0],ball=null,trail=null,ring=null;
+  let geometry={},runGeneration=0;
+  const sliders={};
+  function stop() {
+    state.running=false;
+    runGeneration++;
+  }
+  function store() {
+    try {
+      localStorage.setItem('curio-launch-pad',JSON.stringify(state.completed));
+    }catch {
+      storageOK=false;
+    }
+    $('privacy').textContent=storageOK?'Mission progress stays on this device.':'Saving is unavailable on this device.';
+  }
+  function showProgress() {
+    $('progress').textContent=Object.keys(state.completed).length+' / 9 missions verified · '+
+      (storageOK?'Saved on this device':'Saving unavailable');
+    for(let i=0;i<9;i++) $('mission-select').options[i].textContent=
+      (state.completed[i+1]?'✓ ':'')+(i+1)+'. '+data[i].name;
+  }
+  function heightTimes() {
+    const c=cfg(),D=c.v*c.v+64*(c.h-c.H);
+    if(D<0) return [];
+    return [...new Set([(c.v-Math.sqrt(D))/32,(c.v+Math.sqrt(D))/32])].filter(t=>t>=-1e-9);
+  }
+  function renderGraph() {
+    const svg=$('graph'),box=$('graph-box').getBoundingClientRect();
+    const w=Math.max(100,Math.round(box.width)),h=Math.max(70,Math.round(box.height));
+    svg.replaceChildren();
+    svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    const tiny=h<150,left=tiny?37:58,top=tiny?8:20,bottom=tiny?40:46,right=18;
+    const maxT=Math.max(1,land()+.5),maxH=Math.max(20,peak()*1.14,cfg().H*1.1);
+    plane=Plane(svg,{x:[0,maxT],y:[0,maxH],left,top,width:Math.max(45,w-left-right),height:Math.max(30,h-top-bottom),
+      grid:[maxT>6?1:.5,maxH>200?25:10],labels:[maxT>6?2:1,maxH>200?100:maxH>100?40:20],
+      xLabel:tiny?'':'time (s)',yLabel:tiny?'':'height (ft)',ticks:'edge'});
+    if(tiny) text(svg,w/2,h-2,'time (s)',10,'#a6b3c4').setAttribute('text-anchor','middle');
+    const locked=state.mode==='Missions'&&!state.revealed&&!state.running;
+    $('graph-lock').hidden=!locked;
+    $('graph-lock').classList.toggle('deriving',locked&&state.step==='derive');
+    if(locked&&state.step==='derive') {
+      $('graph-lock').innerHTML='<b>Derive the formula</b>'+
+        '<div class="square-derivation">Divide by a, then complete the square.'+
+        '<span>Use a in each box.</span></div>';
+    }else $('graph-lock').innerHTML='<b>Your equation. Your prediction.</b>Solve first. Launch reveals the flight.';
+    plane.fn(()=>cfg().H,{color:2,width:2,label:'Target height '+cfg().H+' feet'});
+    const targetLabel=plane.label(maxT*.96,cfg().H,'H = '+cfg().H+' ft',
+      {anchor:'end',dy:tiny?0:-7,layer:'labels'});
+    if(tiny)targetLabel.el.style.fontSize='10px';
+    if(!locked) {
+      curveDomain=[0,state.revealed||Curio.reduce?land():state.t];
+      curve=plane.fn(height,{color:1,width:3.5,domain:curveDomain,label:equation()});
+      state.crossCheck=plane.roots(t=>height(t)-cfg().H,[0,land()]);
+      state.extrema=plane.extrema(height,[0,Math.max(.01,land())]);
+      if(state.revealed) for(const t of heightTimes()) {
+        const p=plane.point(t,cfg().H,{color:2,r:5,shape:'none',ariaLabel:'Height crossing at '+fmt(t,4)+' seconds'});
+        mk('circle',{r:6,fill:'none',stroke:'var(--gr-2)','stroke-width':2},p.body);
+      }
+      trace=plane.trace(height,{x:state.t,color:1,r:5,draggable:false,domain:[0,land()],ariaLabel:'Flight clock position'});
+    }else {
+      trace=null;
+      curve=null;
+    }
+  }
+  function renderWorld() {
+    const svg=$('world'),rect=$('range').getBoundingClientRect();
+    const w=Math.max(80,Math.round(rect.width)),h=Math.max(65,Math.round(rect.height)),short=h<200;
+    svg.replaceChildren();
+    svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    const left=short?Math.min(125,w*.35):39,right=short?20:12,top=short?8:78;
+    const bottom=short?34:Math.min(82,h*.13)+24;
+    const maxH=Math.max(20,peak()*1.15,cfg().H*1.12);
+    const y=z=>h-bottom-z/maxH*(h-top-bottom);
+    const catching=state.mode==='Missions'&&state.mission===9;
+    const x=left+(w-left-right)*(catching?.20:short?.38:.47);
+    const launcherH=short?28:Math.min(82,h*.13),launcherW=launcherH*180/320;
+    // Equipment is symbolic: the ruler measures the ball at the tube mouth, not the tripod feet.
+    const baseY=y(cfg().h)+launcherH;
+    if(cfg().h>0) {
+      const defs=mk('defs',{},svg),p=mk('pattern',{id:'bricks',width:60,height:60,patternUnits:'userSpaceOnUse'},defs);
+      mk('image',{href:art.brick,width:60,height:60},p);
+      mk('rect',{x:x-launcherW*.8,y:baseY,width:launcherW*1.6,height:Math.max(1,y(0)-y(cfg().h)),fill:'url(#bricks)'},svg);
+      mk('path',{d:`M${x-launcherW*.8},${baseY}h${launcherW*1.6}`,stroke:'#dbc2aa','stroke-width':3},svg);
+    }
+    image(svg,'launcher',x-launcherW/2,y(cfg().h),launcherW,launcherH);
+    mk('rect',{x:short?w-31:0,y:top-5,width:short?31:37,height:h-top-bottom+12,fill:'#0e1520',opacity:.8},svg);
+    const rx=short?w-31:37;
+    for(let z=0;z<=Math.floor(maxH/10)*10;z+=10) {
+      mk('line',{x1:rx-7,x2:rx,y1:y(z),y2:y(z),stroke:'#e8edf3','stroke-width':1},svg);
+      const every=short?Math.max(20,Math.ceil(maxH/40)*10):maxH>180?50:20;
+      if(z%every===0) text(svg,rx-33,y(z)+4,z,10);
+    }
+    if(!short) text(svg,6,top-12,'ft',10,'#b9c7dc');
+    if(state.mode==='Missions'&&state.mission>=3&&state.mission<=5) {
+      const dw=short?57:Math.min(110,w*.65),dh=dw*100/220;
+      image(svg,'drone',x-dw*.23,y(cfg().H)-dh*.5,dw,dh).setAttribute('class','drone-bob');
+      mk('circle',{cx:x+dw*.24,cy:y(cfg().H),r:2,fill:'#6fdca6',class:'live-light'},svg);
+    }
+    if(state.mode==='Missions'&&state.mission===9) {
+      const ratio=226/320,rail=.47,glove=.14;
+      const bw=Math.max(12,Math.min(short?95:170,(w-x-8)/(1-glove),
+        (y(40)-2)/(ratio*rail),(h-y(40)-2)/(ratio*(1-rail))));
+      const bh=bw*ratio;
+      // The redrawn rail is 47 percent down, and the glove is 14 percent across.
+      image(svg,'balcony',x-bw*glove,y(40)-bh*rail,bw,bh);
+      mk('line',{x1:0,x2:w,y1:y(40),y2:y(40),stroke:'#c9a0ff','stroke-width':1,'stroke-dasharray':'3 4',opacity:.6},svg);
+    }
+    trail=mk('line',{x1:x,x2:x,y1:y(cfg().h),y2:y(Math.max(0,height(state.t))),stroke:'#ff7a5c','stroke-width':2,opacity:.35},svg);
+    const ballSize=short?10:Math.max(12,Math.min(25,h*.04));
+    ball=image(svg,'ball',x-ballSize/2,y(Math.max(0,height(state.t)))-ballSize/2,ballSize,ballSize);
+    ring=mk('circle',{cx:x,cy:y(Math.max(0,height(state.t))),r:ballSize*.85,fill:'none',stroke:'#fff0cf','stroke-width':2,opacity:0},svg);
+    geometry.world={x,y,ballSize};
+  }
+  function renderTelemetry() {
+    $('equation').textContent=equation();
+    const reveal=state.mode==='Launch'||state.revealed||state.running;
+    if(reveal) {
+      $('stats').innerHTML=`Peak <b>${fmt(peak())} ft</b> at ${fmt(peakTime())} s · Land <b>${fmt(land())} s</b>`;
+      if(state.mode==='Launch') {
+        const times=heightTimes();
+        $('crossings').textContent='At '+cfg().H+' ft: '+(times.length?times.map(t=>fmt(t,4)+' s').join(' and '):'never');
+      } else if(state.events.length) $('crossings').textContent=state.events.map(e=>e.text).join(' · ');
+      else $('crossings').textContent=state.mission===5?'Target 80 ft. Watch the 64 ft peak.':'Prediction locked. Watch the clock.';
+    }else{
+      $('stats').textContent='Height line: '+cfg().H+' ft · Flight hidden until you solve.';
+      $('crossings').textContent='Set h(t) equal to the event height.';
+    }
+  }
+  function render() {
+    renderGraph();
+    renderWorld();
+    renderTelemetry();
+  }
+  function drawAt(t,event=false) {
+    state.t=t;
+    $('clock').textContent=t.toFixed(2);
+    if(!Curio.reduce||event) {
+      const q=geometry.world,y=q.y(Math.max(0,height(t)));
+      if(ball) ball.setAttribute('y',y-q.ballSize/2);
+      if(trail) trail.setAttribute('y2',y);
+      if(ring) ring.setAttribute('cy',y);
+      if(trace) trace.set(t);
+    }
+    if(curve&&!state.revealed&&!Curio.reduce) {
+      curveDomain[1]=t;
+      curve.render();
+    }
+    if(event&&ring) {
+      ring.setAttribute('opacity',1);
+      if(!Curio.reduce) ring.classList.add('flash-ring');
+    }
+  }
+  function complete() {
+    state.completed[state.mission]={method:state.method,answer:m().eventExact,times:[...m().event]};
+    store();
+    showProgress();
+    $('next').hidden=state.mission===9;
+    const record=$('proof-record');
+    record.replaceChildren();
+    record.hidden=false;
+    const title=document.createElement('strong');
+    title.textContent=state.method+' · flight verified';
+    record.appendChild(title);
+    for(const event of state.events) {
+      const row=document.createElement('span');
+      const direction=cfg().v-32*event.time;
+      const phase=Math.abs(direction)<1e-7?'Peak':direction>0?'↑ Rising':'↓ Falling';
+      row.textContent=state.mission===5?'64 ft peak · 16 ft below the drone':
+        phase+' · '+event.time.toFixed(2)+' s · '+fmt(event.height)+' ft';
+      record.appendChild(row);
+    }
+    if(state.mission===9) {
+      const note=document.createElement('span');
+      note.textContent='Ground time assumes no catch.';
+      record.appendChild(note);
+    }
+    feedback('Mission complete · '+(state.mission===5?'64 ft peak, below the 80 ft drone.':m().eventExact+' s verified.'),true);
+    hint('again');
+    V.say('done',{valid:()=>!state.running});
+    Curio.tone(660,.2,.035,'triangle');
+  }
+  function launch() {
+    if(state.mode==='Missions'&&!state.ready) return false;
+    stop();
+    V.dropQueued();
+    state.t=0;
+    state.events=[];
+    state.running=true;
+    state.revealed=false;
+    const generation=++runGeneration,isMission=state.mode==='Missions';
+    const targets=isMission?(state.mission===5?[peakTime()]:[...m().event]):[];
+    render();
+    drawAt(0,true);
+    if(ring)ring.setAttribute('opacity',0);
+    hint('Watch the flight clock. Press Launch to restart.');
+    Curio.tone(120,.16,.05,'triangle');
+    let last=performance.now(),holdUntil=0,at=0;
+    const end=isMission&&state.mission!==5?targets[targets.length-1]:land();
+    function tick(now) {
+      if(generation!==runGeneration||!state.running)return;
+      if(now<holdUntil) {
+        last=now;
+        requestAnimationFrame(tick);
+        return;
+      }
+      let next=Math.min(end,state.t+(now-last)/1000);
+      last=now;
+      const target=targets[at];
+      if(target!==undefined&&next>=target-1e-8) {
+        next=target;
+        drawAt(next,true);
+        const message=state.mission===5?'Peak: 64 ft < 80 ft':next.toFixed(2)+' s → '+fmt(height(next))+' ft';
+        state.events.push({time:next,height:height(next),text:message});
+        renderTelemetry();
+        Curio.tone(state.mission===5?230:720,.15,.035);
+        at++;
+        holdUntil=now+950;
+      }else drawAt(next);
+      if(next>=end-1e-8&&now>=holdUntil) {
+        state.running=false;
+        state.revealed=true;
+        drawAt(end,true);
+        renderGraph();
+        renderTelemetry();
+        if(isMission)complete();
+        else hint('Set Speed v, Height h0 or Line at height. Press Launch to fly again.');
+        return;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    return true;
+  }
+  function addField(id,label) {
+    const lab=document.createElement('label');
+    lab.textContent=label;
+    const input=document.createElement('input');
+    Object.assign(input,{id,className:'text',type:'text',autocomplete:'off',spellcheck:false});
+    const names={p:'Factor root p',q:'Factor root q',k:'Square center k',m:'Squared distance m',
+      a:'Quadratic coefficient a',b:'Linear coefficient b',c:'Constant c'};
+    input.setAttribute('aria-label',names[id]||label);
+    input.addEventListener('keydown',e=>{
+      if(e.key==='Enter') {
+        e.preventDefault();
+        check();
+      }
+    });
+    lab.appendChild(input);
+    $('fields').appendChild(lab);
+    return input;
+  }
+  function newStep(step,focus=true) {
+    const was=document.activeElement;
+    state.step=step;
+    state.visits++;
+    $('fields').replaceChildren();
+    $('proof-record').hidden=true;
+    $('answer-help').hidden=true;
+    $('methods').hidden=!['method','coeff','discriminant'].includes(step);
+    $('check').hidden=false;
+    feedback('');
+    const c=m();
+    const titles={write:'Write it',height:'Set the height',method:'Choose a method',coeff:'Formula coefficients',
+      discriminant:'Read the discriminant',derive:'Derive the formula',roots:'Algebraic roots',
+      answer:'Answer the mission',ready:'Prediction checked'};
+    $('step-title').textContent=titles[step];
+    $('step-count').textContent=['write','height'].includes(step)?'01 / 03':step==='answer'||step==='ready'?'03 / 03':'02 / 03';
+    if(step==='write') {
+      $('work-equation').textContent='What height does the event ask for?';
+      $('check').textContent='Write it';
+      hint('wMissions');
+    }else if(step==='height') {
+      $('work-equation').textContent=equation()+' = H';
+      addField('target','Event height H (ft)');
+      $('check').textContent='Tidy';
+      how('tidy',()=>state.step==='height','#check');
+    }else if(step==='method')method(state.method,false);
+    else if(step==='derive') {
+      $('work-equation').textContent='(t + b/u)² = (b² − 4ac)/v;  t = (−b ± √(b² − 4ac))/w';
+      addField('derive-u','u: shift');
+      addField('derive-v','v: square');
+      addField('derive-w','w: formula');
+      $('check').textContent='Check work';
+      how('derive',()=>state.step==='derive','#check');
+    }
+    else if(step==='roots') {
+      $('work-equation').textContent=state.identity||poly(c.a,c.b,c.c)+' = 0';
+      addField('root-input','Both algebraic roots (one if repeated)');
+      $('answer-help').hidden=false;
+      $('check').textContent='Check roots';
+      how('root',()=>state.step==='roots','#check');
+    }else if(step==='answer') {
+      $('work-equation').textContent='Roots: '+c.exact+' · Which time fits?';
+      addField('answer-input',state.mission===5?'Complex roots, since no real time exists':'Event time(s), in seconds');
+      $('answer-help').hidden=false;
+      $('check').textContent='Check answer';
+      how('answer',()=>state.step==='answer','#check');
+    }else if(step==='ready') {
+      $('work-equation').textContent=c.eventExact+(state.mission===5?'':' s');
+      $('check').hidden=true;
+      feedback(state.mission===5?'Complex roots: 2 ± i. No real time.':'Exact answer: '+c.eventExact+' s. Ready to test.',true);
+      how('launchNow',()=>state.ready&&!state.running,'#go');
+    }
+    renderGraph();
+    if(focus&&was&&(!document.contains(was)||!was.getClientRects().length)) {
+      ($('fields').querySelector('input')||$('go')).focus({preventScroll:true});
+    }
+  }
+  function method(name,announce=true) {
+    if(state.mode!=='Missions'||['write','height','derive','answer','ready','roots'].includes(state.step))return;
+    const normalized={'factor':'Factor','square root':'Square root','complete the square':'Complete the square','formula':'Formula'};
+    name=normalized[String(name).toLowerCase()]||name;
+    if(!Object.values(normalized).includes(name))return;
+    state.method=name;
+    state.proof=false;
+    state.step='method';
+    const c=m();
+    $('methods').hidden=false;
+    for(const b of $('methods').children)b.setAttribute('aria-pressed',b.dataset.method===name);
+    $('fields').replaceChildren();
+    $('check').hidden=false;
+    $('check').textContent='Check work';
+    feedback('');
+    if(name==='Factor') {
+      $('work-equation').textContent='(t − p)(t − q) = 0';
+      addField('p','p');
+      addField('q','q');
+      if(c.roots.length===0||c.roots.some(r=>!Number.isInteger(r)))feedback('No whole number pair works. Try the formula.');
+    }else if(name==='Square root') {
+      if(c.b!==0){
+        $('work-equation').textContent='A linear t term remains. Use Complete the square to isolate a square.';
+        $('check').hidden=true;
+      }else{
+        $('work-equation').textContent='t² = '+fmt(-c.c/c.a)+' ⇒ t = ± r';
+        addField('r','Positive root r');
+      }
+    }else if(name==='Complete the square') {
+      $('work-equation').textContent='(t − k)² = m';
+      addField('k','k');
+      addField('m','m');
+    }else{
+      state.step='coeff';
+      $('work-equation').textContent='at² + bt + c = 0';
+      addField('a','a');
+      addField('b','b');
+      addField('c','c');
+      if(announce)how('coeff',()=>state.step==='coeff','#check');
+    }
+    if(announce&&name!=='Formula')how('method',()=>state.step==='method','#check');
+  }
+  function check() {
+    V.dropQueued();
+    const c=m(),close=(x,y)=>Math.abs(x-y)<1e-8;
+    if(state.step==='write') {
+      newStep('height');
+      return;
+    }
+    if(state.step==='height') {
+      if(real($('target').value)!==c.H){feedback('Landing means 0 ft. A drone or balcony uses its stated height. Try the event height again.');return;}
+      $('tidied').hidden=false;
+      $('tidied').textContent=poly(c.a,c.b,c.c)+' = 0';
+      newStep('method');
+      feedback('Move terms left, multiply by −1'+(c.div>1?', divide by '+c.div:'')+'.',true);
+      how('method',()=>state.step==='method','#check');
+      return;
+    }
+    if(state.step==='coeff') {
+      if(!close(real($('a').value),c.a)||!close(real($('b').value),c.b)||!close(real($('c').value),c.c)) {
+        feedback('Use the tidied equation. Keep the signs on b and c.');return;
+      }
+      state.step='discriminant';
+      $('fields').replaceChildren();
+      $('work-equation').textContent='b² − 4ac = '+(c.b*c.b-4*c.a*c.c);
+      addField('real-count','How many real answers?');
+      if(!document.contains(document.activeElement)||document.activeElement===document.body) {
+        $('real-count').focus({preventScroll:true});
+      }
+      feedback('Positive: two real. Zero: one real. Negative: none real (two complex).');
+      how('disc',()=>state.step==='discriminant','#check');
+      return;
+    }
+    if(state.step==='discriminant') {
+      const D=c.b*c.b-4*c.a*c.c,n=$('real-count').value.trim().toLowerCase();
+      const count={none:0,zero:0,'none real':0,one:1,two:2}[n]??real(n);
+      if(count!==(D<0?0:D===0?1:2)){feedback('Check the sign of '+D+' and try the real-answer count again.');return;}
+      state.identity='t = (−b ± √(b² − 4ac)) / (2a)';
+      newStep('roots',true);
+      return;
+    }
+    if(state.step==='method') {
+      if(state.method==='Factor') {
+        const p=real($('p').value),q=real($('q').value);
+        if(!Number.isFinite(p)||!Number.isFinite(q)) {
+          feedback('Type a number or exact expression in both p and q. Then press Check work.');
+          return;
+        }
+        if(!close(-(p+q),c.b/c.a)||!close(p*q,c.c/c.a)) {
+          feedback('Expansion: t² − ('+fmt(p+q)+')t + ('+fmt(p*q)+'). Match both coefficients.');return;
+        }
+        state.proof=true;
+        newStep('answer');
+        feedback('Expansion checks. Zero-product rule: t = '+c.exact+'.',true);
+      }else if(state.method==='Square root') {
+        if(!$('r')||!close(real($('r').value),Math.sqrt(-c.c/c.a))){feedback('Square the positive root to check the isolated square.');return;}
+        state.proof=true;
+        newStep('answer');
+        feedback('Take both signs: t = '+c.exact+'. Keep the time that fits.',true);
+      }else{
+        const k=-c.b/(2*c.a),M=k*k-c.c/c.a;
+        if(!close(real($('k').value),k)||!close(real($('m').value),M)) {
+          feedback('Divide by a. Halve the t coefficient, square it, and add that to both sides.');return;
+        }
+        state.identity='(t − '+fraction(-c.b,2*c.a)+')² = '+fraction(c.b*c.b-4*c.a*c.c,4*c.a*c.a);
+        newStep(state.mission===7?'derive':'roots',true);
+        feedback('Square completed. Take both signs of the square root.',true);
+      }
+      return;
+    }
+    if(state.step==='derive') {
+      if(!denominator($('derive-u').value)||!denominator($('derive-v').value,true)||!denominator($('derive-w').value)) {
+        feedback('Halve b/a for the shift. Square its denominator, then take both square-root signs. Use a in each box.');
+        return;
+      }
+      newStep('roots',true);
+      feedback('The completed square gives the formula. Now solve this flight using both signs.',true);
+      return;
+    }
+    if(state.step==='roots') {
+      const raw=$('root-input').value;
+      if(state.mission===5?!complex(raw):!same(values(raw),c.roots)) {
+        feedback('Check both signs and simplify. Separate different roots with a comma.');return;
+      }
+      state.proof=true;
+      newStep('answer',true);
+      feedback('Exact roots: '+c.exact+'. Now select the event time.',true);
+      return;
+    }
+    if(state.step==='answer')answer($('answer-input').value);
+  }
+  function answer(raw) {
+    const c=m();
+    if(state.mode!=='Missions'||!state.proof)return false;
+    state.ready=false;
+    $('go').disabled=true;
+    if(state.mission===5) {
+      if(!complex(raw)){feedback('Write both complex roots as 2 ± i, or 2 + i, 2 - i.');return false;}
+    }else{
+      const got=values(raw);
+      if(got.some(t=>t<0)) {
+        feedback(L.neg);
+        hint('Type the time after launch, then press Check answer.');
+        const visit=state.visits;
+        V.say('neg',{valid:()=>state.visits===visit&&!state.ready,now:true});
+        return false;
+      }
+      if(state.mission===1&&got.includes(0)){feedback('0 s is the launch. Choose when it comes back to ground.');return false;}
+      if(state.mission===9&&got.some(t=>Math.abs(t-c.roots[0])<=.01)) {
+        feedback('That time is on the way up. The catch is on the way down.');return false;
+      }
+      if(!same(got,c.event)){feedback('That time does not fit yet. Check your roots and which event is asked for.');return false;}
+    }
+    state.ready=true;
+    state.events=[];
+    $('go').disabled=false;
+    newStep('ready',true);
+    if(state.mission===5)V.say('never',{valid:()=>state.ready});
+    return true;
+  }
+  function mission(n) {
+    n=Number(n);
+    if(!Number.isInteger(n)||n<1||n>9)return;
+    stop();
+    V.hush();
+    Object.assign(state,{mission:n,t:0,revealed:false,ready:false,proof:false,identity:'',method:'Factor',events:[]});
+    $('clock').textContent='0.00';
+    $('mission-select').value=n;
+    $('mission-title').textContent=String(n).padStart(2,'0')+' / '+m().name;
+    $('setup').textContent=m().setup;
+    $('tidied').hidden=true;
+    $('go').disabled=state.mode==='Missions';
+    $('next').hidden=true;
+    newStep('write');
+    showProgress();
+    render();
+    if(state.mode==='Missions')V.welcome();
+  }
+  let modeInitialized=false;
+  function setMode(mode) {
+    mode=String(mode).toLowerCase()==='missions'?'Missions':'Launch';
+    if(modeInitialized&&mode===state.mode) return;
+    modeInitialized=true;
+    stop();
+    V.hush();
+    Object.assign(state,{mode,t:0,revealed:false,events:[]});
+    document.body.dataset.mode=mode;
+    $('clock').textContent='0.00';
+    $('explore').hidden=mode!=='Launch';
+    $('missions').hidden=mode!=='Missions';
+    $('m-launch').setAttribute('aria-pressed',mode==='Launch');
+    $('m-missions').setAttribute('aria-pressed',mode==='Missions');
+    $('next').hidden=true;
+    $('go').disabled=mode==='Missions'&&!state.ready;
+    if(mode==='Missions')mission(state.mission);
+    else {
+      hint('wLaunch');
+      render();
+      V.welcome();
+    }
+  }
+  for(const [n,c] of data.entries()) {
+    const option=document.createElement('option');
+    option.value=n+1;
+    option.textContent=(n+1)+'. '+c.name;
+    $('mission-select').appendChild(option);
+  }
+  for(const [key,label,min,max,step,value] of [
+    ['v','Speed v · ft/s',0,120,4,64],['h','Height h0 · ft',0,100,1,0],['H','Line at height · ft',0,330,1,48]]) {
+    sliders[key]=Plane.slider($(key+'-control'),{id:'slider-'+key,label,min,max,step,value,format:v=>String(v),
+      parse:s=>{const v=real(s);return Number.isFinite(v)?Math.round(v/step)*step:null;},
+      onInput:v=>{
+        state[key]=v;
+        stop();
+        V.dropQueued();
+        Object.assign(state,{t:0,events:[],revealed:false});
+        $('clock').textContent='0.00';
+        render();
+        hint('Set the launch, then press Launch.');
+        Curio.tone(330+v,.06,.012);
+      }});
+  }
+  $('check').onclick=check;
+  $('go').onclick=launch;
+  $('next').onclick=()=>mission(Math.min(9,state.mission+1));
+  $('mission-select').onchange=()=>mission($('mission-select').value);
+  $('clear').onclick=()=>{
+    if(state.mode==='Missions')mission(state.mission);
+    state.completed={};
+    store();
+    showProgress();
+    feedback('Saved mission progress cleared.',true);
+  };
+  for(const b of $('methods').children)b.onclick=()=>method(b.dataset.method);
+  $('m-launch').onclick=()=>setMode('Launch');
+  $('m-missions').onclick=()=>setMode('Missions');
+  Curio.onMotion(()=>render());
+  Curio.init({clips:"voice:*",rate:.95,readFallback:()=>$('hint').textContent});
+  function relayout() {
+    const compact=innerHeight<=640&&innerWidth>=600;
+    if(compact) {
+      $('telemetry').appendChild($('hint'));
+      $('telemetry').appendChild(document.querySelector('.model'));
+    }else{
+      $('panel').insertBefore($('hint'),$('explore'));
+      $('panel').insertBefore(document.querySelector('.model'),document.querySelector('.go-row'));
+    }
+    render();
+  }
+  new ResizeObserver(relayout).observe($('stage'));
+  addEventListener('resize',relayout);
+  window.__tool={state,setMode,mission,method,answer,launch,allLines:V.allLines,vlog:V.log,check,real,values,complex,
+    data,sliders,heightTimes,land,peak,stop,get plane(){return plane;}};
+  showProgress();
+  store();
+  setMode('Launch');
+})();
+</script>
+</body>
+</html>

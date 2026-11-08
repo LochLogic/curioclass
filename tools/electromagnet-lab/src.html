@@ -1,0 +1,1728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Electromagnet Lab · Curio Class</title>
+<meta name="description" content="Turn class results into fair tests of coils, balloons and invisible fields. Grade 8 science. Works offline.">
+<!--
+Electromagnet Lab (Curio Class). Adapted from kit/starter/src.html. Grade 8, MS-PS2-3 and MS-PS2-5.
+OpenStax College Physics 2e chapters 18, 21 and 22; NOAA geomagnetism FAQ; Energizer E91 datasheet;
+Matsusaka et al. 2010. Counts, gap factors and trial spread are an idealized model.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file. No network requests. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f5f3ee; --panel:#fff; --ink:#1c2226; --muted:#58626a; --line:#cbd0cc;
+  --focus:#1f5fd1; --brand:#0e6b66; --btn:#fff; --btn-line:#7d868d; --head-ink:#1c2226;
+  --tint:#e3f1ef; --ok:#1d7a3c; --warn:#a8321d; font-variant-numeric:tabular-nums;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { height:58px; padding:5px 14px; gap:7px; background:#fffdf8; border-bottom:1px solid #a8b0aa; flex-wrap:nowrap; }
+h1 { font:800 22px/1.08 'Trebuchet MS',sans-serif; letter-spacing:-.6px; }
+h1 small { font:400 11px/1.4 'Segoe UI',sans-serif; letter-spacing:0; color:var(--muted); }
+button { min-height:44px; min-width:44px; border:1px solid var(--btn-line); border-radius:6px; background:#fffefa;
+  padding:5px 9px; touch-action:manipulation; font-weight:650; }
+button:hover { background:#edf6f3; border-color:var(--brand); }
+button:active { box-shadow:inset 0 2px 5px #183a392b; }
+button[aria-pressed=true] { background:var(--brand); color:#fff; border-color:var(--brand); }
+header .seg { border:1px solid #7d868d; border-radius:7px; flex-shrink:0; }
+header .seg button,header .icon-btn { min-height:44px; font-size:12px; padding:0 10px; color:var(--ink); }
+header .seg button[aria-pressed=true] { color:#fff; background:var(--brand); }
+header .icon-btn { border-radius:7px; width:88px; padding:0 4px; flex-shrink:0; }
+header .icon-btn[aria-pressed=true] { color:#fff; }
+main { grid-template-columns:minmax(0,64fr) minmax(310px,36fr); }
+.workspace { min-width:0; min-height:0; display:grid; grid-template-rows:minmax(200px,1fr) 224px;
+  padding:12px; gap:10px; background:linear-gradient(120deg,#e3e5db,#f4f1e8); }
+.stage { min-height:0; border:1px solid #8d938a; border-radius:11px; box-shadow:0 6px 16px #25302a20; }
+.scene-bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+#apparatus { position:absolute; inset:0; width:100%; height:100%; }
+.plate { position:absolute; top:11px; left:11px; border-radius:4px; padding:6px 9px; background:#fffdf3ee;
+  border:1px solid #a49f89; box-shadow:0 2px 4px #0001; font-size:11px; letter-spacing:.07em; font-weight:750; }
+.plate b { color:var(--brand); }
+.lamp { display:inline-block; width:7px; height:7px; border-radius:50%; margin-right:6px; background:#0e6b66;
+  box-shadow:0 0 6px #63b9a5; animation:breathe 4s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity:.4; } }
+.readout { position:absolute; top:11px; right:11px; background:#143d39; color:#f7ffe7; border:4px solid #c1bfaa;
+  outline:1px solid #56605c; padding:5px 11px; border-radius:6px; box-shadow:2px 3px 5px #0003; font:700 22px Consolas,monospace; }
+.readout small { display:block; font:600 10px 'Segoe UI',sans-serif; color:#e0ece2; letter-spacing:.1em; }
+.caption { position:absolute; bottom:8px; left:50%; transform:translateX(-50%); max-width:94%; white-space:normal;
+  text-align:center; padding:5px 10px; border:1px solid #818d84; border-radius:5px; background:#fffdf4f2; font-size:12px; }
+.count { position:absolute; top:66px; right:11px; border-radius:5px; background:#fffdfaef;
+  border:1px solid #999e91; padding:5px 9px; font-size:14px; font-weight:750; }
+.records { min-height:0; display:grid; grid-template-columns:55fr 45fr; gap:9px; }
+.record-card,.chart-card { min-width:0; overflow:hidden; border:1px solid #b0b7ac; background:#fffdf7;
+  border-radius:8px; padding:5px 9px; box-shadow:0 2px 4px #273b2d0a; }
+.section-head { display:flex; align-items:center; gap:4px; min-height:44px; }
+.section-head h2 { font-size:12px; margin:0 auto 0 0; }
+.section-head button { font-size:10px; padding:3px 6px; }
+table { width:100%; border-collapse:collapse; font-size:11px; text-align:left; }
+th { font-weight:650; color:#525e58; border-bottom:1px solid #9da99f; padding:3px; }
+td { padding:6px 3px; border-bottom:1px solid #d9dfd7; }
+tr.lit { background:var(--tint); box-shadow:inset 3px 0 var(--brand); }
+tr.flash { animation:flash 1.2s ease-out; }
+@keyframes flash { from { background:#e8c574; } }
+.privacy { font-size:10px; color:var(--muted); margin:5px 0 0; }
+.empty-row { text-align:center; height:75px; color:var(--muted); }
+#chart { width:100%; height:calc(100% - 23px); display:block; }
+.chart-title { font-size:11px; margin:0; color:var(--muted); }
+.panel { padding:9px 12px; border-left:1px solid #aeb8ae; gap:5px; overflow:hidden;
+  background:linear-gradient(110deg,#fffef8,#fff); }
+.hint { margin:0; min-height:53px; flex-shrink:0; font-size:13px; line-height:1.35; padding:7px 9px;
+  border-left:3px solid var(--brand); border-radius:4px; background:#e9f3ef; }
+.data-card { flex-shrink:0; padding:0 6px; border:1px solid #b6baa9; background:#fffdf5; border-radius:5px; }
+.card-label { margin:4px 0; font-size:10px; text-transform:uppercase; letter-spacing:.08em; color:#56625d; }
+.group-row { display:grid; width:100%; grid-template-columns:52px 1fr 60px; align-items:center; min-height:44px;
+  border:0; border-top:1px solid #d8dbc9; border-radius:0; padding:3px; font-size:11px; font-weight:400; text-align:left; }
+.group-row b { font-size:11px; }
+.group-row span:last-child { text-align:right; font-size:15px; font-weight:750; }
+.group-row small { font-size:10px; font-weight:400; }
+.group-row[aria-pressed=true] { background:#e3f1ef; color:var(--ink); box-shadow:inset 3px 0 var(--brand); }
+.compare-strip { font-size:12px; line-height:1.3; }
+.compare-strip p { margin:3px 0 5px; }
+.add-list { display:flex; flex-wrap:wrap; gap:4px; }
+.add-list button { flex:1; font-size:11px; padding:2px 5px; }
+.data-trigger { align-self:flex-start; font-size:12px; }
+#board { display:grid; grid-template-columns:1fr 1fr; gap:4px; flex-shrink:0; }
+.question { min-height:44px; text-align:left; font-size:11px; padding:4px 7px; }
+.question span { display:block; font-size:10px; font-weight:400; }
+.empty-slot { min-height:44px; border:1px dashed #b6bcb5; border-radius:5px; padding:12px 6px;
+  font-size:10px; color:#66716a; background:#f7f8f3; }
+.setting { display:grid; grid-template-columns:53px minmax(0,1fr); align-items:center; gap:4px; min-height:44px; }
+.setting-label { font-size:11px; font-weight:700; color:#495850; }
+.setting .seg { display:flex; border:1px solid #8d9990; border-radius:5px; min-width:0; }
+.setting .seg button { color:var(--ink); flex:1; min-height:44px; min-width:44px; padding:2px 3px;
+  border-radius:0; font-size:12px; border-right:1px solid #c6cdc5; background:#f9faf5; }
+.setting .seg button:last-child { border-right:0; }
+.setting .seg button[aria-pressed=true] { color:#fff; background:var(--brand); }
+.core-swatch { display:block; height:12px; width:38px; margin:0 auto 2px; object-fit:contain; }
+.core-label { font-size:10px; }
+.actions { display:flex; gap:5px; flex-shrink:0; }
+.actions button { flex:1; font-size:12px; }
+#test { flex:2; color:#fff; background:var(--brand); font-weight:750; border-color:#0b524e; box-shadow:0 3px 0 #0a4844; }
+#real { flex:0 0 80px; padding:0 5px; display:flex; align-items:center; gap:4px; font-size:10px; }
+#real img { width:38px; height:36px; object-fit:cover; border-radius:3px; }
+.claim-card { border:1px solid #aab6aa; background:#fcfcf5; padding:8px; border-radius:7px; }
+.claim-card h2 { font-size:14px; margin:0 0 7px; }
+.options { display:grid; grid-template-columns:1fr; gap:5px; }
+.options button { min-height:44px; text-align:left; font-size:12px; font-weight:500; padding:6px 9px; line-height:1.3; }
+.options button.chosen { border:2px solid #1c2226; }
+.options button.correct { background:#e9f4e8; border-color:var(--ok); }
+.options button.incorrect { background:#fff0e7; border-color:var(--warn); }
+.options.answered button:not(.chosen):not(.correct) { display:none; }
+.feedback { font-size:12px; line-height:1.4; margin:7px 0; }
+#claim-next { width:100%; margin-top:5px; color:#fff; background:var(--brand); }
+.checklist { list-style:none; padding:0; margin:4px 0; }
+.checklist li { font-size:12px; line-height:1.3; padding:7px 7px 7px 26px; position:relative; border-bottom:1px solid #dce3d9; }
+.checklist li::before { content:'○'; position:absolute; left:4px; font-weight:800; }
+.checklist li.done::before { content:'✓'; color:var(--ok); }
+.field-buttons { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+.field-buttons button { font-size:12px; }
+.tiny-field { gap:2px; padding:4px 6px; }
+.tiny-field .field-buttons { gap:2px; }
+.tiny-field .hint { width:100%; min-height:44px; }
+.checklist.compact { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin:0; }
+.checklist.compact li { font-size:10px; line-height:1.2; min-height:32px; padding:4px 2px 4px 15px; }
+.checklist.compact li::before { left:2px; }
+#field-settings { font-size:12px; flex-shrink:0; }
+#compass { position:absolute; padding:0; border:0; border-radius:50%; background:transparent;
+  touch-action:none; cursor:grab; min-width:44px; min-height:44px; }
+#compass img { position:absolute; left:0; top:-24%; width:100%; height:124%; object-fit:contain; pointer-events:none; }
+#needle { position:absolute; inset:20%; width:60%; height:60%; transition:transform .3s ease-out; }
+#compass::after { content:'N'; position:absolute; top:15%; left:45%; font-size:10px; font-weight:750; }
+.north-label { position:absolute; top:10px; right:10px; max-width:210px; padding:6px 9px;
+  background:#fffdf3ee; border-radius:4px; font-size:11px; pointer-events:none; }
+.north-label b { font-size:16px; }
+#notebook-page { position:absolute; top:10px; left:10px; bottom:10px; width:55%; background:url('art:em-notebook') center/100% 100%;
+  padding:24px 20px 16px 36px; box-shadow:4px 4px 12px #27342d30; }
+#notebook-page h2 { font:italic 700 21px Georgia,serif; color:#293d56; margin:0 0 18px; }
+#sam { font:16px/1.8 Georgia,serif; margin:0; }
+#fair-result { border-top:1px solid #aab59c; padding-top:13px; margin-top:16px; font:700 15px/1.6 Georgia,serif; color:var(--brand); }
+.case-tabs { display:flex; gap:6px; align-items:center; }
+.case-tabs span { font-size:12px; margin-right:auto; }
+.case-tabs button { padding:4px; }
+#note-actions { display:flex; gap:5px; }
+#note-actions button { flex:1; font-size:12px; }
+.workspace.stage-only { grid-template-rows:minmax(0,1fr); }
+dialog { border:1px solid #5b7166; border-radius:12px; background:#fffdf6; color:var(--ink); padding:16px;
+  width:min(660px,94vw); max-height:94dvh; box-shadow:0 18px 70px #12281d66; }
+dialog::backdrop { background:#152d2880; }
+dialog h2 { font-size:20px; margin:0 0 8px; width:calc(100% - 80px); }
+dialog .card-label { width:calc(100% - 74px); }
+dialog .dialog-close { float:right; margin-left:10px; }
+#real-dialog img { width:100%; border-radius:6px; margin-top:10px; }
+#real-dialog p { font-size:16px; line-height:1.5; }
+#chart-dialog svg { width:100%; height:280px; }
+.compact-chart { display:none; }
+.calm * { animation:none!important; transition:none!important; }
+@media (min-width:1600px) {
+  .workspace { grid-template-rows:minmax(300px,1fr) 280px; }
+  .hint { font-size:15px; min-height:65px; }
+  .group-row { min-height:48px; font-size:13px; }
+  .setting { min-height:53px; }
+  .setting .seg button { min-height:50px; font-size:14px; }
+  .options button { font-size:14px; }
+}
+@media (max-width:1100px),(max-height:680px) {
+  header { height:52px; padding:4px 8px; gap:4px; }
+  h1 { font-size:18px; }
+  h1 small { display:none; }
+  header .seg button,header .icon-btn { font-size:11px; padding:0 7px; }
+  .workspace { padding:7px; gap:7px; grid-template-rows:minmax(170px,1fr) 140px; }
+  .panel { padding:6px 8px; gap:4px; }
+  .hint { min-height:53px; font-size:12px; padding:6px 7px; }
+  .records { grid-template-columns:1fr; }
+  .chart-card { display:none; }
+  .compact-chart { display:block; }
+  .record-card { padding:2px 7px; }
+  td { padding:4px 3px; }
+  .privacy { margin-top:3px; }
+  .plate { top:8px; left:8px; font-size:10px; padding:4px 6px; }
+  .readout { top:8px; right:8px; font-size:17px; padding:4px 7px; }
+  .count { top:60px; right:8px; font-size:12px; padding:4px 7px; }
+  .caption { font-size:11px; padding:4px 7px; }
+  .setting { grid-template-columns:45px minmax(0,1fr); }
+  .setting-label { font-size:10px; }
+  .setting .seg button { font-size:11px; }
+  .options { grid-template-columns:1fr 1fr; }
+  .options button { font-size:11px; padding:5px 7px; }
+  .claim-card { padding:6px; }
+  #notebook-page { padding:17px 12px 12px 24px; }
+  #notebook-page h2 { font-size:17px; margin-bottom:10px; }
+  #sam { font-size:13px; line-height:1.55; }
+  #fair-result { font-size:12px; margin-top:10px; padding-top:8px; }
+  .checklist li { padding-top:4px; padding-bottom:4px; font-size:11px; }
+}
+@media (max-width:1100px) and (max-height:600px) {
+  main { grid-template-columns:minmax(0,1fr) 320px; }
+  h1 { width:135px; flex-shrink:0; font-size:16px; }
+  header .seg button { font-size:10px; padding:0 6px; }
+  header .icon-btn { font-size:10px; padding:0 5px; }
+  .workspace { grid-template-rows:minmax(140px,1fr) 128px; padding:5px; gap:5px; }
+  .panel { gap:3px; padding:5px 6px; }
+  .hint { min-height:48px; font-size:11px; padding:5px 6px; }
+  .empty-slot { padding:11px 5px; }
+  .panel { position:relative; }
+  #board { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  #class-open { position:absolute; top:5px; right:6px; z-index:2; width:70px; font-size:10px; padding:3px; }
+  .hint { min-height:60px; width:calc(100% - 76px); padding-right:6px; }
+  th { font-size:10px; padding:2px; }
+  td { font-size:10px; padding:2px; }
+  .empty-row { height:30px; }
+  .section-head h2 { font-size:10px; }
+  .section-head button { padding:2px 4px; font-size:10px; }
+  #real { flex-basis:72px; }
+  #real img { width:30px; }
+  .readout small { display:none; }
+  .count { top:47px; }
+  .plate { max-width:55%; }
+  .caption { font-size:10px; }
+  #notebook-page { width:58%; padding:15px 9px 8px 18px; }
+  #notebook-page h2 { font-size:14px; }
+  #sam { font-size:11px; line-height:1.5; }
+  #fair-result { font-size:11px; }
+  .claim-card h2 { font-size:12px; margin-bottom:4px; }
+  .feedback { font-size:11px; margin:4px 0; }
+}
+@media (max-width:799px) and (min-height:601px) {
+  body { overflow:auto; height:auto; min-height:100dvh; }
+  header { display:grid; grid-template-columns:minmax(0,1fr) repeat(3,auto); grid-template-rows:44px 46px;
+    height:102px; min-height:102px; padding:4px 8px; gap:4px; }
+  h1 { font-size:16px; grid-row:1; grid-column:1; }
+  header .seg { grid-row:2; grid-column:1 / -1; margin:0; }
+  header .seg button { flex:1; }
+  header .icon-btn { grid-row:1; font-size:10px; width:64px; padding:0 4px; }
+  #motion { grid-column:2; }
+  #sound { grid-column:3; }
+  #read { grid-column:4; }
+  main { display:flex; flex-direction:column; }
+  .workspace { display:contents; }
+  .stage { order:0; width:min(calc(100% - 12px),calc((100dvh - 560px)*1.6)); margin:6px auto;
+    aspect-ratio:16/10; min-height:0; flex-shrink:0; }
+  .panel { order:1; border:0; border-top:1px solid #b4beb4; padding:5px 8px; overflow:visible; gap:4px; }
+  .records { order:2; height:176px; margin:6px; }
+  .hint { min-height:48px; }
+  #notebook-page { padding:15px 10px 10px 22px; }
+  #notebook-page { width:58%; }
+  #notebook-page h2 { font-size:16px; }
+  #sam { font-size:11px; line-height:1.4; }
+  #fair-result { font-size:10.5px; line-height:1.3; margin-top:7px; padding-top:5px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Electromagnet Lab <small>What makes a magnet pull harder?</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-coil" aria-pressed="true">Coil</button>
+    <button id="m-static" aria-pressed="false">Static</button>
+    <button id="m-field" aria-pressed="false">Field</button>
+    <button id="m-notebook" aria-pressed="false">Notebook</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="workspace" id="workspace" aria-label="Experiment workbench">
+    <div class="stage" id="stage">
+      <img class="scene-bg" id="backdrop" src="art:em-bench" alt="">
+      <svg id="apparatus" aria-label="Laboratory apparatus" role="img"></svg>
+      <div class="plate" id="plate"><i class="lamp"></i><b>COIL BENCH</b> / MODEL</div>
+      <div class="readout" id="current"><small>AMMETER</small><span>0.0 A</span></div>
+      <div class="count" id="count" aria-live="polite">Switch off</div>
+      <div class="caption" id="caption">Wind. Power. Measure.</div>
+      <div class="north-label" id="north" hidden><b>↑ North</b><br>The paper is turned so north is up.</div>
+      <button id="compass" aria-label="Compass. Drag or use arrow keys. A drops an arrow." hidden>
+        <img src="art:em-compass" alt="">
+        <svg id="needle" viewBox="-20 -20 40 40" aria-hidden="true">
+          <path d="M0 -19 L5 1 L0 -2 L-5 1 Z" fill="#b3261e"/>
+          <path d="M0 19 L5 -1 L0 2 L-5 -1 Z" fill="#40516b"/>
+          <circle r="2" fill="#d8bc74" stroke="#625124"/>
+        </svg>
+      </button>
+      <article id="notebook-page" hidden><h2>Sam's lab notes</h2><p id="sam"></p><p id="fair-result" hidden></p></article>
+    </div>
+    <section class="records" id="records" aria-label="Your measurements">
+      <div class="record-card">
+        <div class="section-head"><h2>RESULTS <span id="row-total">0</span></h2>
+          <button id="older">Older</button><button id="newer">Newer</button>
+          <button id="chart-open" class="compact-chart">Chart</button><button id="clear-table">Clear table</button>
+        </div>
+        <table id="table"><thead></thead><tbody></tbody></table><p class="privacy">Your results stay on this device.</p>
+      </div>
+      <div class="chart-card"><p class="chart-title" id="chart-label">Mean clips (3 trials)</p>
+        <svg id="chart" role="img" aria-label="Your fair test means"></svg>
+      </div>
+    </section>
+  </section>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <button class="data-trigger" id="class-open">Class data</button>
+    <section class="data-card" id="data-card" aria-label="Class data"><div id="class-data"></div></section>
+    <div id="compare-strip" class="compare-strip" hidden></div>
+    <div id="board" aria-label="Question board"></div>
+    <section id="claim-card" class="claim-card" hidden><h2 id="claim-title"></h2><p id="claim-detail" class="feedback"></p>
+      <div class="options" id="claim-options"></div><p class="feedback" id="claim-feedback" hidden></p>
+      <button id="claim-next" hidden>Use my numbers</button>
+    </section>
+    <ul class="checklist" id="checklist" hidden></ul>
+    <button id="field-settings" hidden>Coil settings</button>
+    <div id="settings"></div>
+    <div class="actions" id="bench-actions"><button id="switch" aria-pressed="false">Switch: off</button>
+      <button id="test">Test: 3 trials</button><button id="real"><img src="art:em-crane" alt="">Real one</button>
+    </div>
+    <div class="field-buttons" id="field-actions" hidden><button id="flip">Flip batteries</button>
+      <button id="drop">Drop arrow · A</button><button id="sprinkle">Sprinkle filings</button><button id="clear-paper">Clear paper</button>
+    </div>
+    <div class="case-tabs" id="case-tabs" hidden><span id="case-label">Case 1 of 3</span>
+      <button id="case-0">1</button><button id="case-1">2</button><button id="case-2">3</button>
+    </div>
+    <section class="claim-card" id="note-card" hidden><h2>What's wrong with Sam's test?</h2>
+      <div class="options" id="note-options"></div><p class="feedback" id="note-feedback" hidden></p>
+    </section>
+    <div id="note-actions" hidden><button id="fair" hidden>Run it the fair way</button><button id="next-case">Next case</button></div>
+  </aside>
+</main>
+<dialog id="data-dialog" aria-label="Class results"><button class="dialog-close" data-close="data-dialog">Close</button>
+  <h2>Class data</h2><div id="dialog-data"></div><div id="dialog-compare" class="compare-strip"></div>
+</dialog>
+<dialog id="real-dialog" aria-label="A real electromagnet"><button class="dialog-close" data-close="real-dialog">Close</button>
+  <h2>Same idea, much bigger</h2><img src="art:em-crane" alt="A scrapyard lifting magnet holding a crushed car">
+  <p>A scrapyard lifting magnet is a coil around iron. Power on: it grabs steel. Power off: it lets go.</p>
+</dialog>
+<dialog id="clear-dialog" aria-label="Clear all results?"><h2>Clear all results?</h2>
+  <p>This clears both results tables and both question boards on this device.</p>
+  <button id="clear-confirm">Clear</button><button data-close="clear-dialog">Keep</button>
+</dialog>
+<dialog id="chart-dialog" aria-label="Your fair tests"><button class="dialog-close" data-close="chart-dialog">Close</button>
+  <h2 id="dialog-chart-title">Your fair tests</h2><svg id="dialog-chart" role="img" aria-label="Chart of measured means"></svg>
+</dialog>
+<dialog id="settings-dialog" aria-label="Coil settings"><button class="dialog-close" data-close="settings-dialog">Close</button>
+  <h2>Coil settings</h2><div id="field-settings-body"></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const MODES = ['coil','static','field','notebook'];
+  const VALUES = {turns:[10,20,30,40],batteries:[1,2,3],core:['None','Wood','Aluminum','Steel nail'],
+    gap:[0,.5,1,2],rubs:[0,5,10,20,40],staticGap:[1,2,3,5]};
+  const LABEL = {turns:'Turns',batteries:'Batteries',core:'Core',gap:'Gap',rubs:'Rubbing'};
+  const ART = {
+    bench:'art:em-bench',table:'art:em-table',paper:'art:em-paper',notebook:'art:em-notebook',
+    steel:'art:em-core-steel',wood:'art:em-core-wood',al:'art:em-core-al',aa:'art:em-aa',
+    open:'art:em-switch-open',closed:'art:em-switch-closed',pile:'art:em-clip-pile',clip:'art:em-clip',
+    balloon:'art:em-balloon',wool:'art:em-wool',bits:['art:em-bit-1','art:em-bit-2','art:em-bit-3'],scissors:'art:em-scissors',
+    compass:'art:em-compass'
+  };
+  const L = {
+    wCoil:'Four groups built magnets and got very different counts. Tap two group rows to see what they did differently.',
+    addQ:'Tap Add question to put that difference on your board.',
+    pickQ:'Tap a question on the board, then change only that setting and tap Test.',
+    test1:"Three trials, so one odd count can't fool you. Watch the nail tip.",
+    keep:'Keep the other settings the same. Step this one through its values, one Test each.',
+    flat:'These counts are all about the same. Try a stronger setup, then test again.',
+    ready:'You have enough data. Tap Answer on the question.',
+    claim:'Tap the sentence your chart supports. You get one try.',
+    right:'Right.',wrong:'Not quite.',
+    howMuch:'Now look at the numbers. Tap the answer closest to your own means.',tested:'Question tested.',
+    warm:'The wire is warming up. Switch off between tests.',
+    stopped:'You changed a setting, so that test stopped. Tap Test.',
+    wStatic:'Balloon A lifted more bits with less rubbing. Tap both balloon rows to see why.',
+    wField:'Drag the compass around the coil with the switch off. Watch the red end.',
+    item1:'Points north.',item2:'It turned, and nothing touched it.',item3:'Back to north.',item4:'It turned around.',
+    filings:'Same pattern, but the needle flipped. Tap the reason why.',
+    wNote:"Sam ran three tests, and each one has a flaw. Tap what's wrong with the first.",
+    fair:'Tap Run it the fair way to see what Sam should have found.',caseDone:'Tap Next case.',
+    fieldOn:'Turn Switch on. Drag the compass near the coil.',
+    fieldStart:'Turn Switch off, then drag the compass around the coil. Watch the red end.',
+    fieldOff:'Turn Switch off while the needle is turned. Watch where it goes.',
+    fieldFlip:'Switch on. Sprinkle filings, then tap Flip batteries.',
+    fieldSprinkle:'Tap Sprinkle filings before and after Flip batteries. Compare the shape and the red end.',
+    fieldWeak:'The turn is small. Choose Steel nail or more Turns and Batteries, then flip again.',
+    fieldWeakCompact:'The turn is small. Tap Coil settings for a stronger setup, then flip again.',
+    fieldWeakOn:'The turn is small. Choose Steel nail or more Turns and Batteries, then move the compass nearby.',
+    fieldWeakOnCompact:'The turn is small. Tap Coil settings for a stronger setup, then move the compass nearby.',
+    fieldExplore:'Drag the compass to map more places. Tap Drop arrow to leave a record on the paper.',
+    small:'These counts are too small to compare. Make a stronger fair set, then tap Answer again.',
+    noteAgain:'Tap a case number to revisit the evidence, or use another bench. Your first choices stay marked.'
+  };
+  const QUESTIONS = {
+    turns:['Do more turns lift more clips?',[
+      'More turns lifted more clips.','More turns lifted fewer clips.',
+      'Turns did not change clip counts.','Only turns up to 20 helped.']],
+    batteries:['Do more batteries lift more clips?',[
+      'More batteries lifted more clips.','More batteries lifted fewer clips.',
+      'Batteries did not change counts.','Two batteries beat three cells.']],
+    core:['Does the core change the pull?',[
+      'Only the steel nail lifted clips; the others lifted none.','Steel and aluminum both lifted clips; any metal worked.',
+      'The coil alone lifted clips, so the core did not matter.','The wooden core lifted most clips because it is light.']],
+    gap:['Does a bigger gap change the pull?',[
+      'A bigger gap lifted fewer clips.','A bigger gap lifted more clips.',
+      'Gap size did not change clip counts.','Gaps cut clips only with one cell.']],
+    rubs:['Does more rubbing lift more bits?',[
+      'More rubbing lifted more bits, but each extra rub added less.','More rubbing lifted more bits; each extra rub added as many.',
+      'More rubbing made no difference: all tests lifted equal bits.','More rubbing lifted fewer bits; extra rubbing reduced pull.']],
+    staticGap:['Does a bigger gap lift fewer bits?',[
+      'A bigger gap lifted fewer bits.','A bigger gap lifted more bits.',
+      'Gap size did not change bit counts.','Only a touching balloon lifted bits.']]
+  };
+  const CLASS = {
+    coil:[{turns:20,batteries:1,core:'Steel nail',gap:0,count:6},{turns:40,batteries:2,core:'Steel nail',gap:0,count:24},
+      {turns:40,batteries:2,core:'Aluminum',gap:0,count:0},{turns:20,batteries:3,core:'Steel nail',gap:1,count:5}],
+    static:[{rubs:5,gap:1,count:8},{rubs:20,gap:3,count:3}]
+  };
+  const CASES = [
+    {sam:'Test 1: 20 turns, 1 battery, steel nail: 6 clips. Test 2: 40 turns, 3 batteries, steel nail: 36 clips. Turns made it 6 times stronger!',
+      options:["Sam changed turns and batteries at once, so the jump can't be pinned on turns.",
+        'Sam needed a fuller dish, so each magnet had more clips available to lift.',
+        'Sam needed a small gap in both tests; touching the clips makes any count unreliable.',
+        'Sam needed a lighter aluminum core, so the magnet would have less weight to lift.'],
+      reason:'Two settings changed. Hold batteries at 1 and change only turns.',
+      result:'Fair test: twice the turns, about twice the clips. 20 turns: 6 clips. 40 turns: 12 clips.'},
+    {sam:'I rubbed a balloon 20 times and pressed it onto the paper bits. They stuck! So an electric force pulls across empty space.',
+      options:["The balloon touched the bits, so this can't show a pull across a gap.",
+        'Twenty rubs is too many; fewer rubs would make this test fair.',
+        'Paper bits weigh too little for motion to show an electric force.',
+        'Sam needed a second balloon; a single balloon cannot show electric pull.'],
+      reason:'Touching does not establish a force across empty space. Hold the balloon above the paper.',
+      result:'Fair test: bits jumped a 2 cm gap. 20 rubs: about 8 bits.'},
+    {sam:"Compass beside my coil (wood core, 20 turns, 2 batteries), switch on: the needle pointed at the coil. The coil's field turned it!",
+      options:["Scissors sat by the compass and Sam never checked it with the switch off.",
+        'A wood core has no field, so this coil could not turn the needle.',
+        'Sam needed three batteries; fewer cells cannot turn a compass needle.',
+        'Compasses only work outside; a needle cannot measure a field on a desk.'],
+      reason:'A wood-core coil still makes a field. Move the scissors away, then compare the same spot with the switch off and on.',
+      result:'Fair test: off, north; on, the needle turned about 45 degrees.'}
+  ];
+  const FILINGS = ["Filings show the field's shape; only the compass shows its direction.",
+    'The flip switched the field off, so the filings had nothing to show.',
+    'The flip made the field too weak for the filings to see.',
+    'The compass is broken; it should have matched the filings.'];
+  const state = {
+    mode:'coil',coil:{turns:20,batteries:1,core:'Steel nail',gap:0},static:{rubs:5,gap:1},
+    on:false,polarity:1,rows:[],boards:{coil:{},static:{}},active:{coil:null,static:null},selected:{coil:[],static:[]},
+    running:null,trial:0,phase:0,page:0,card:null,classOpen:true,warmed:false,residual:false,
+    field:{x:-11,y:-6,ticks:[false,false,false,false],arrows:[],filings:false,flipped:false,
+      freshAfterFlip:false,beforeFlip:false,filingsPolarity:null,weakFlip:false,weakOn:false,offOrigin:{x:-11,y:-6},choice:null},
+    note:{index:0,cases:CASES.map(()=>({choice:null,done:false,fixed:false})),running:false,phase:0}
+  };
+  let randomSeed = Date.now() >>> 0;
+  let actionSerial = 0;
+  let raf = 0;
+  let warmTimer = 0;
+  let fieldTimer = 0;
+  let boardMode = '';
+  let lastFocus;
+  const boardNodes = new Map();
+  function random() {
+    randomSeed = (Math.imul(1664525,randomSeed)+1013904223) >>> 0;
+    return randomSeed / 4294967296;
+  }
+  function shuffled(texts) {
+    const items = texts.map((text,index)=>({text,index}));
+    for(let i=items.length-1;i>0;i--) {
+      const j=Math.floor(random()*(i+1));
+      [items[i],items[j]]=[items[j],items[i]];
+    }
+    return items;
+  }
+  const V = Curio.voice({lines:L,scope:()=>state.mode,hint:false,
+    read:()=>$('hint').textContent+(state.mode==='coil' && state.selected.coil.length<2?' Group 2 lifted 24, Group 3 none.':''),
+    welcome:()=>{
+      if(state.mode==='field') return state.field.ticks[0]?null:state.on?'fieldStart':'wField';
+      if(state.mode==='notebook' && (state.note.index!==0 || state.note.cases[0].choice!==null)) return null;
+      if(['coil','static'].includes(state.mode) && state.selected[state.mode].length===2) return null;
+      return ({coil:'wCoil',static:'wStatic',notebook:'wNote'})[state.mode];
+    },
+    speaks:'.group-row, #test, .question, #fair, #note-options button, #claim-options button'});
+  function hint(text) { $('hint').textContent=L[text] || text; }
+  function how(key,valid=()=>true,needs) {
+    hint(key);
+    V.how(key,{valid,needs});
+  }
+  function event(key,valid=()=>true) { V.say(key,{valid,key:key+':'+(++actionSerial)}); }
+  function benchMode() { return state.mode==='static'?'static':'coil'; }
+  function keys(mode) { return mode==='coil'?['turns','batteries','core','gap']:['rubs','gap']; }
+  function qid(mode,key) { return mode==='static' && key==='gap'?'staticGap':key; }
+  function values(mode,key) { return mode==='static' && key==='gap'?VALUES.staticGap:VALUES[key]; }
+  function signature(mode,s) { return mode+':'+keys(mode).map(k=>s[k]).join('|'); }
+  function meanFor(mode,s) {
+    if(mode==='static') return 20*(1-Math.exp(-s.rubs/10))*({1:1,2:.45,3:.2,5:.04}[s.gap]);
+    return .5*s.turns*(s.batteries*1.5/2.5)*(s.core==='Steel nail'?1:.01)*({0:1,.5:.5,1:.25,2:.06}[s.gap]);
+  }
+  function validRow(row) {
+    if(!row || !['coil','static'].includes(row.mode)) return false;
+    if(!keys(row.mode).every(k=>values(row.mode,k).includes(row.settings?.[k]))) return false;
+    return Array.isArray(row.trials) && row.trials.length===3
+      && row.trials.every(n=>Number.isInteger(n) && n>=0 && n<=(row.mode==='coil'?40:20));
+  }
+  try {
+    const saved=JSON.parse(localStorage.getItem('curio-emlab') || '[]');
+    if(Array.isArray(saved)) {
+      const unique=new Map();
+      saved.filter(validRow).forEach(row=>{
+        row.mean=row.trials.reduce((a,b)=>a+b,0)/3;
+        row.id=signature(row.mode,row.settings);
+        unique.set(row.id,row);
+      });
+      state.rows=[...unique.values()];
+    }
+  } catch {}
+  function save() {
+    try { localStorage.setItem('curio-emlab',JSON.stringify(state.rows)); } catch {}
+  }
+  function fairSet(mode,key) {
+    return state.rows.filter(row=>row.mode===mode && keys(mode).every(k=>k===key || row.settings[k]===state[mode][k]))
+      .sort((a,b)=>values(mode,key).indexOf(a.settings[key])-values(mode,key).indexOf(b.settings[key]));
+  }
+  function readiness(mode,key) {
+    const rows=fairSet(mode,key);
+    const enough=rows.length>={turns:3,batteries:2,core:4,gap:3,rubs:4}[key]
+      && (key!=='rubs' || rows.some(r=>r.settings.rubs===40));
+    const spread=rows.length?Math.max(...rows.map(r=>r.mean))-Math.min(...rows.map(r=>r.mean)):0;
+    const changed=spread>=2 && (key!=='core' || rows.some(r=>r.settings.core==='Steel nail' && r.mean>=2))
+      && (key!=='rubs' || rows.some(r=>r.settings.rubs===40 && r.mean>=6));
+    return {rows,enough,ready:enough && changed,flat:enough && !changed};
+  }
+  function stopRun(show=true) {
+    if(!state.running) return false;
+    state.running=null;
+    state.phase=0;
+    setPower(false,false);
+    state.residual=false;
+    V.dropQueued(item=>item.kind==='how');
+    if(show) how('stopped',()=>!state.running,'#test');
+    return true;
+  }
+  function setSetting(mode,key,value) {
+    if(!values(mode,key).includes(value)) return;
+    const interrupted=stopRun();
+    state[mode][key]=value;
+    if(state.mode==='field') {
+      if([L.fieldWeak,L.fieldWeakCompact,L.fieldWeakOn,L.fieldWeakOnCompact].includes(V.playing)) V.hush();
+      state.field.flipObservation=null;
+      state.field.weakFlip=false;
+      state.field.weakOn=false;
+    }
+    state.residual=false;
+    state.card=null;
+    syncControls();
+    renderBoard();
+    renderClaim();
+    renderRecords();
+    renderScene();
+    if(state.mode==='field') evaluateField();
+    if(!interrupted && state.mode===mode && state.active[mode]) updateReadyHint(mode);
+    Curio.tone(250,.035,.025);
+  }
+  function setPower(on,announce=true) {
+    const angle=state.mode==='field'?needleAngle():fieldAngle(state.field.x,state.field.y);
+    const wasOn=state.on;
+    state.on=Boolean(on);
+    clearTimeout(warmTimer);
+    state.warmed=false;
+    if(state.on) {
+      warmTimer=setTimeout(()=>{
+        if(!state.on || state.running || !['coil','field'].includes(state.mode)) return;
+        state.warmed=true;
+        $('caption').textContent=L.warm;
+        if(!state.card && !document.querySelector('dialog[open]')) how('warm',()=>state.on,'#switch');
+      },10000);
+    } else if(wasOn && !state.running && meanFor('coil',state.coil)>=10 && state.coil.core==='Steel nail') {
+      state.residual=random()<1/3;
+    }
+    if(state.mode==='field' && announce) {
+      if(!state.on && wasOn && angleDifference(angle,0)>=30 && state.field.ticks[1]) tickField(2);
+      if(!state.on) {
+        state.field.offOrigin={x:state.field.x,y:state.field.y};
+        state.field.flipObservation=null;
+        state.field.weakFlip=false;
+        state.field.weakOn=false;
+      }
+      evaluateField();
+    }
+    syncControls();
+    renderScene();
+    if(announce) Curio.tone(on?160:100,.07,.045,'triangle');
+  }
+  function runTest(mode=benchMode()) {
+    if(!['coil','static'].includes(state.mode) || state.running || mode!==state.mode) return;
+    if([L.pickQ,L.keep,L.wCoil,L.wStatic].includes(V.playing)) V.hush();
+    V.dropQueued(item=>item.kind==='how');
+    state.residual=false;
+    const settings={...state[mode]};
+    const base=meanFor(mode,settings),noise=mode==='coil'?.12:.15;
+    const trials=Array.from({length:3},()=>Math.min(mode==='coil'?40:20,
+      Math.max(0,Math.round(base*(1+(random()*2-1)*noise)))));
+    state.running={mode,settings,trials,start:performance.now(),duration:mode==='coil'?1200:1500};
+    state.trial=0;
+    state.phase=0;
+    state.page=0;
+    setPower(mode==='coil',false);
+    if(mode==='coil') how('test1',()=>!!state.running);
+    else hint('Watch three trials: rub, lift across a gap, then wipe away the charge.');
+    Curio.tone(180,.08,.05,'triangle');
+    startFrames();
+  }
+  function finishTest(run) {
+    if(state.running!==run) return;
+    state.running=null;
+    state.phase=0;
+    setPower(false,false);
+    state.residual=Boolean(run.residual);
+    const id=signature(run.mode,run.settings);
+    const index=state.rows.findIndex(row=>row.id===id);
+    const row={id,mode:run.mode,settings:run.settings,trials:run.trials,
+      mean:run.trials.reduce((a,b)=>a+b,0)/3,retested:index>=0};
+    if(index>=0) state.rows.splice(index,1);
+    state.rows.push(row);
+    save();
+    renderRecords(id);
+    renderBoard();
+    renderScene();
+    if(state.active[run.mode]) updateReadyHint(run.mode);
+    else hint('Three trials logged. Compare the class data, then add a question to your board.');
+    Curio.tone(580,.09,.045);
+  }
+  function updateReadyHint(mode) {
+    const key=state.active[mode];
+    if(!key) return;
+    const r=readiness(mode,key),q=state.boards[mode][key];
+    if(q.done) { hint('Question tested. Tap another question, or change a setting and tap Test.'); return; }
+    if(r.ready) {
+      hint('ready');
+      const fingerprint=r.rows.map(row=>row.id+row.mean).join(',');
+      if(q.lastReady!==fingerprint) {
+        q.lastReady=fingerprint;
+        event('ready',()=>state.active[mode]===key && readiness(mode,key).ready && !q.done);
+      }
+    } else if(r.flat) {
+      hint('Every test in this set lifted about the same. Try more batteries or a smaller gap, and test again.');
+      const fingerprint=signature(mode,state[mode]);
+      if(q.lastFlat!==fingerprint) {
+        q.lastFlat=fingerprint;
+        event('flat',()=>state.active[mode]===key && readiness(mode,key).flat);
+      }
+    } else if(r.rows.length) how('keep',()=>!readiness(mode,key).ready && !state.running,'#test');
+    else hint('Change only '+LABEL[key]+'. Keep the other settings steady and tap Test: 3 trials.');
+  }
+  function differences(mode) {
+    if(state.selected[mode].length!==2) return [];
+    const [a,b]=state.selected[mode].map(i=>CLASS[mode][i]);
+    return keys(mode).filter(k=>a[k]!==b[k]);
+  }
+  function compare(mode,a,b) {
+    state.selected[mode]=[a,b].filter(i=>Number.isInteger(i) && CLASS[mode][i]);
+    state.classOpen=true;
+    renderData();
+    if(state.selected[mode].length===2) how('addQ',()=>state.selected[mode].length===2);
+  }
+  function chooseGroup(mode,index) {
+    const selected=state.selected[mode];
+    if(selected.includes(index)) selected.splice(selected.indexOf(index),1);
+    else { if(selected.length===2) selected.shift(); selected.push(index); }
+    renderData();
+    if(selected.length===2) {
+      if([L.wCoil,L.wStatic].includes(V.playing)) V.hush();
+      how('addQ',()=>state.selected[mode].length===2);
+    }
+    else hint('Tap one more group row to see what changed.');
+    if($('data-card').hidden && document.activeElement?.closest('#class-data')) {
+      $('compare-strip').querySelector('button')?.focus({preventScroll:true});
+    }
+    Curio.tone(340,.04,.025);
+  }
+  function addQuestion(mode,key) {
+    if(!differences(mode).includes(key) || state.boards[mode][key]) return;
+    state.boards[mode][key]={choice:null,ratioChoice:null,done:false,fixed:false};
+    state.active[mode]=null;
+    state.card=null;
+    state.classOpen=false;
+    renderData();
+    renderBoard();
+    if($('data-dialog').open) closeDialog('data-dialog');
+    boardNodes.get(key)?.focus({preventScroll:true});
+    how('pickQ',()=>!state.active[mode],'#board');
+  }
+  function selectQuestion(mode,key) {
+    if(!state.boards[mode][key]) return;
+    state.active[mode]=key;
+    state.classOpen=false;
+    state.card=null;
+    renderData();
+    renderBoard();
+    renderRecords();
+    const q=state.boards[mode][key];
+    if(readiness(mode,key).ready && !q.done) openClaim(mode,key);
+    else { renderClaim(); updateReadyHint(mode); }
+  }
+  function openClaim(mode,key) {
+    const q=state.boards[mode][key],r=readiness(mode,key);
+    if(!r.ready || q.done) return;
+    if(q.choice===null || q.ratio?.small) {
+      q.snapshot=r.rows.map(row=>({...row,settings:{...row.settings},trials:[...row.trials]}));
+    }
+    q.options ||= shuffled(QUESTIONS[qid(mode,key)][1]);
+    const type=q.choice===null || ['core','rubs'].includes(key)?'claim':'ratio';
+    state.card={type,mode,key};
+    renderClaim();
+    how(q.choice===null?'claim':'howMuch',()=>state.card?.mode===mode && state.card?.key===key
+      && (q.choice===null?state.card.type==='claim':state.card.type==='ratio' && q.ratioChoice===null),'#claim-options');
+  }
+  function ratioData(mode,key,rows) {
+    if(key==='core' || key==='rubs') return null;
+    let low,high;
+    if(key==='turns' || key==='batteries') {
+      const pairs=[];
+      for(const a of rows) for(const b of rows) {
+        const multiple=b.settings[key]/a.settings[key];
+        if(multiple>1 && Number.isInteger(multiple) && a.mean>=4) pairs.push({a,b,multiple});
+      }
+      pairs.sort((a,b)=>b.multiple-a.multiple);
+      if(!pairs.length) return {small:true};
+      [low,high]=[pairs[0].a,pairs[0].b];
+      return {low,high,ratio:high.mean/low.mean,values:[1,2,3,4],texts:['the same','2 times','3 times','4 times'],
+        prompt:`From ${low.settings[key]} to ${high.settings[key]} ${key} (${pairs[0].multiple} times as many), your mean went from `
+          + `${low.mean.toFixed(1)} to ${high.mean.toFixed(1)}. That is about:`};
+    }
+    const base=mode==='coil'?0:1;
+    low=rows.find(row=>row.settings.gap===base && row.mean>=(mode==='coil'?4:6));
+    high=(mode==='coil'?[1,.5,2]:[2,3,5]).map(g=>rows.find(row=>row.settings.gap===g)).find(Boolean);
+    if(!low || !high) return {small:true};
+    return {low,high,ratio:high.mean/low.mean,values:mode==='coil'?[1,.5,.25,.06]:[1,.45,.2,.04],
+      texts:mode==='coil'?['all of it','about half','about a quarter','almost none']:['all of it','about half','about a fifth','almost none'],
+      prompt:`At ${high.settings.gap} cm your mean was ${high.mean.toFixed(1)}. At ${base} cm it was ${low.mean.toFixed(1)}. `
+        + 'What share of the near count is that?'};
+  }
+  function answerClaim(index) {
+    const card=state.card;
+    if(!card) return;
+    if(card.type==='filings') return answerFilings(index);
+    const q=state.boards[card.mode][card.key];
+    if(card.type!=='claim' || q.choice!==null || !q.options[index]) return;
+    if(V.playing===L.claim) V.hush();
+    V.dropQueued(item=>item.kind==='how');
+    q.choice=index;
+    q.fixed=q.options[index].index!==0;
+    renderClaim();
+    event(q.fixed?'wrong':'right',()=>state.mode===card.mode);
+    hint('Read the marked claim and why. Then tap '+(['core','rubs'].includes(card.key)?'Mark question tested.':'Use my numbers.'));
+    Curio.tone(q.fixed?170:650,.1,.045);
+  }
+  function nextClaim() {
+    const card=state.card;
+    if(!card) return;
+    if(card.type==='filings') {
+      if(state.field.choice!==null) {
+        state.card=null;
+        renderClaim();
+        fieldHint();
+      }
+      return;
+    }
+    const q=state.boards[card.mode][card.key];
+    if(card.type==='ratio' && q.done) {
+      state.card=null;
+      renderClaim();
+      hint('Question tested. Tap another question on the board, or try a different bench.');
+      return;
+    }
+    if(card.type==='claim' && q.choice!==null) {
+      if(['core','rubs'].includes(card.key)) return completeQuestion(card.mode,card.key);
+      state.card={...card,type:'ratio'};
+      renderClaim();
+      how(q.ratio?.small?'small':'howMuch',()=>state.card?.type==='ratio');
+    } else if(card.type==='ratio' && q.ratioChoice!==null) completeQuestion(card.mode,card.key);
+    else if(q.ratio?.small) {
+      state.card=null;
+      renderClaim();
+      hint('Make a stronger fair set, then tap Answer again.');
+    }
+  }
+  function answerRatio(index) {
+    const card=state.card;
+    if(!card || card.type!=='ratio') return;
+    const q=state.boards[card.mode][card.key];
+    if(q.ratioChoice!==null || q.ratio.small || !q.ratioOptions[index]) return;
+    if(V.playing===L.howMuch) V.hush();
+    q.ratioChoice=index;
+    q.ratioRight=q.ratio.values.reduce((best,v,i,a)=>Math.abs(v-q.ratio.ratio)<Math.abs(a[best]-q.ratio.ratio)?i:best,0);
+    const right=q.ratioOptions[index].index===q.ratioRight;
+    q.fixed ||= !right;
+    q.done=true;
+    renderClaim();
+    renderBoard();
+    event('tested',()=>state.mode===card.mode);
+    hint('Question tested. Read your result, then tap Back to bench.');
+    Curio.tone(right?650:170,.1,.04);
+  }
+  function completeQuestion(mode,key) {
+    const q=state.boards[mode][key];
+    if(q.choice===null || (!['core','rubs'].includes(key) && q.ratioChoice===null)) return;
+    q.done=true;
+    state.card=null;
+    renderClaim();
+    renderBoard();
+    hint('Question tested. Tap another question on the board, or try a different bench.');
+    event('tested',()=>state.mode===mode);
+    Curio.yes();
+  }
+  function optionsDOM(container,options,picked,correct,handler) {
+    container.classList.toggle('answered',picked!==null);
+    const key=options.map(o=>o.text).join('|');
+    if(container.dataset.key!==key) {
+      container.replaceChildren();
+      options.forEach((o,index)=>{
+        const button=document.createElement('button');
+        button.textContent=o.text;
+        button.onclick=()=>handler(index);
+        container.append(button);
+      });
+      container.dataset.key=key;
+    }
+    [...container.children].forEach((button,index)=>{
+      button.setAttribute('aria-disabled',picked!==null);
+      button.classList.toggle('chosen',index===picked);
+      button.classList.toggle('correct',index===correct);
+      button.classList.toggle('incorrect',index===picked && picked!==correct);
+      button.setAttribute('aria-label',options[index].text+(index===correct?' Supported answer.':'')+(index===picked?' Your first choice.':''));
+    });
+  }
+  function renderClaim() {
+    const card=state.card;
+    $('claim-card').hidden=!card;
+    if(!card) { renderVisibility(); return; }
+    $('claim-feedback').hidden=true;
+    $('claim-next').hidden=true;
+    let options,picked=null,correct=null;
+    if(card.type==='filings') {
+      $('claim-title').textContent='Same shape. A reversed needle.';
+      $('claim-detail').textContent='Fresh filings after the flip made the same pattern, but the compass turned around. Why?';
+      state.field.options ||= shuffled(FILINGS);
+      options=state.field.options;
+      picked=state.field.choice;
+      if(picked!==null) {
+        correct=options.findIndex(o=>o.index===0);
+        $('claim-feedback').hidden=false;
+        $('claim-feedback').textContent='Each filing lines up like a tiny needle with no north end marked. '
+          + 'A flipped field looks the same. The compass has a north end.';
+        $('claim-next').hidden=false;
+        $('claim-next').textContent='Back to paper';
+      }
+    } else {
+      const q=state.boards[card.mode][card.key];
+      if(card.type==='claim') {
+        $('claim-title').textContent=QUESTIONS[qid(card.mode,card.key)][0];
+        $('claim-detail').textContent='Use the lit fair-test rows and their chart.';
+        options=q.options;
+        picked=q.choice;
+        if(picked!==null) {
+          correct=options.findIndex(o=>o.index===0);
+          $('claim-feedback').hidden=false;
+          $('claim-feedback').textContent=(q.fixed?'Correction: ':'Supported: ')+QUESTIONS[qid(card.mode,card.key)][1][0];
+          $('claim-next').hidden=false;
+          $('claim-next').textContent=['core','rubs'].includes(card.key)?'Mark question tested':'Use my numbers';
+        }
+      } else {
+        q.ratio=ratioData(card.mode,card.key,q.snapshot);
+        $('claim-title').textContent='How much? Use your own means.';
+        if(q.ratio.small) {
+          $('claim-detail').textContent='These counts are too small to compare. Test a double or triple with at least 4 at the lower count. '
+            + 'For gaps, include touching with 4 clips, or 1 cm with 6 bits.';
+          options=[];
+          $('claim-next').hidden=false;
+          $('claim-next').textContent='Back to bench';
+        } else {
+          q.ratioOptions ||= shuffled(q.ratio.texts);
+          options=q.ratioOptions;
+          picked=q.ratioChoice;
+          $('claim-detail').textContent=q.ratio.prompt;
+          if(picked!==null) {
+            correct=options.findIndex(o=>o.index===q.ratioRight);
+            $('claim-feedback').hidden=false;
+            $('claim-feedback').textContent=`Your data: ${q.ratio.ratio.toFixed(2)} times the lower or near count. `
+              + (card.key==='gap'?'Pull fades fast with distance.':'In this model the pull grows in step with turns times current.');
+            $('claim-next').hidden=false;
+            $('claim-next').textContent='Back to bench';
+          }
+        }
+      }
+    }
+    optionsDOM($('claim-options'),options,picked,correct,i=>card.type==='ratio'?answerRatio(i):answerClaim(i));
+    renderVisibility();
+  }
+  function renderBoard() {
+    const mode=benchMode(),list=keys(mode);
+    if(boardMode!==mode) {
+      $('board').replaceChildren();
+      boardNodes.clear();
+      list.forEach(key=>{
+        const node=document.createElement('div');
+        node.className='empty-slot';
+        node.textContent='Ask from the data';
+        $('board').append(node);
+        boardNodes.set(key,node);
+      });
+      boardMode=mode;
+    }
+    list.forEach(key=>{
+      const q=state.boards[mode][key];
+      let node=boardNodes.get(key);
+      if(!q) return;
+      if(node.tagName!=='BUTTON') {
+        const button=document.createElement('button');
+        button.className='question';
+        button.dataset.question=key;
+        button.onclick=()=>selectQuestion(mode,key);
+        node.replaceWith(button);
+        node=button;
+        boardNodes.set(key,node);
+      }
+      const r=readiness(mode,key);
+      const status=q.done?(q.fixed?'tested, fixed':'tested'):r.ready?'Answer':`${r.rows.length} fair values`;
+      node.innerHTML=`${LABEL[key]} <span>${status}</span>`;
+      node.setAttribute('aria-pressed',state.active[mode]===key);
+      node.setAttribute('aria-label',`${LABEL[key]}. ${status}. ${QUESTIONS[qid(mode,key)][0]}`);
+    });
+  }
+  function renderDataRows(container,mode) {
+    if(container.dataset.mode!==mode) {
+      container.innerHTML='<p class="card-label">'+(mode==='coil'?'Four groups. One puzzle.':'Two balloons. A puzzle.')+'</p>';
+      CLASS[mode].forEach((row,index)=>{
+        const button=document.createElement('button');
+        button.className='group-row';
+        button.dataset.group=index;
+        const name=mode==='coil'?'Group '+(index+1):'Balloon '+['A','B'][index];
+        const text=mode==='coil'?`${row.turns} turns · ${row.batteries} ${row.batteries===1?'battery':'batteries'}`
+          + `<br>${row.core} · ${row.gap} cm`:`${row.rubs} rubs · ${row.gap} cm`;
+        button.innerHTML=`<b>${name}</b><span>${text}</span><span>${row.count}<small> ${mode==='coil'?'clips':'bits'}</small></span>`;
+        button.onclick=()=>chooseGroup(mode,index);
+        container.append(button);
+      });
+      container.dataset.mode=mode;
+    }
+    [...container.querySelectorAll('.group-row')].forEach((button,i)=>button.setAttribute('aria-pressed',state.selected[mode].includes(i)));
+  }
+  function renderCompare(container,mode) {
+    const diff=differences(mode);
+    const key=mode+':'+state.selected[mode].join(',')+':'+Object.keys(state.boards[mode]).join(',');
+    if(container.dataset.key===key) return;
+    container.dataset.key=key;
+    container.replaceChildren();
+    if(!diff.length) return;
+    const title=document.createElement('b');
+    title.textContent=(mode==='coil'?'Groups '+state.selected[mode].map(i=>i+1).join(' and '):'Balloons A and B')
+      +' differ in '+diff.map(k=>LABEL[k]).join(', ')+'.';
+    const text=document.createElement('p');
+    text.textContent=diff.length===1?'Only the core differs. Test all four cores to be sure.':
+      `These differ in ${diff.length} ways. Their counts cannot tell which one mattered.`;
+    const list=document.createElement('div');
+    list.className='add-list';
+    diff.forEach(key=>{
+      const button=document.createElement('button');
+      button.textContent=state.boards[mode][key]?LABEL[key]+': on the board':'Add question: '+LABEL[key];
+      button.dataset.add=key;
+      button.onclick=()=>addQuestion(mode,key);
+      list.append(button);
+    });
+    container.append(title,text,list);
+  }
+  function isCompact() { return innerWidth<=1100 || innerHeight<=680; }
+  function renderData() {
+    const mode=benchMode();
+    renderDataRows($('class-data'),mode);
+    renderDataRows($('dialog-data'),mode);
+    renderCompare($('compare-strip'),mode);
+    renderCompare($('dialog-compare'),mode);
+    $('class-open').textContent=mode==='coil'?'Class data':'Balloon data';
+    renderVisibility();
+  }
+  function renderVisibility() {
+    const bench=['coil','static'].includes(state.mode),field=state.mode==='field',note=state.mode==='notebook';
+    const tinyField=field && innerHeight<=600 && innerWidth<=1100;
+    $('panel').classList.toggle('tiny-field',tinyField);
+    const compare=differences(benchMode()).length>0;
+    $('class-open').hidden=!bench || !!state.card || (!isCompact() && state.classOpen && !compare);
+    $('data-card').hidden=!bench || !state.classOpen || isCompact() || compare || !!state.card;
+    $('compare-strip').hidden=!bench || !compare || !state.classOpen || isCompact() || !!state.card;
+    $('board').hidden=!bench || (!!state.card && isCompact());
+    $('settings').hidden=note || !!state.card || tinyField;
+    $('field-settings').hidden=!tinyField || !!state.card;
+    $('bench-actions').hidden=note || (!!state.card && !field);
+    $('test').hidden=!bench;
+    $('real').hidden=state.mode!=='coil';
+    $('switch').hidden=state.mode==='static';
+    $('field-actions').hidden=!field || !!state.card;
+    $('checklist').hidden=!field || !!state.card;
+    $('claim-card').hidden=!state.card;
+    $('case-tabs').hidden=!note;
+    $('note-card').hidden=!note;
+    $('note-actions').hidden=!note;
+    $('records').hidden=!bench;
+    $('workspace').classList.toggle('stage-only',!bench);
+    $('notebook-page').hidden=!note;
+    $('compass').hidden=!field;
+    $('north').hidden=!field;
+    $('plate').hidden=field || note;
+    $('current').hidden=field || note || state.mode==='static';
+    $('count').hidden=field || note;
+    $('caption').hidden=note;
+  }
+  function buildSettings() {
+    const mode=benchMode(),list=state.mode==='field'?['turns','batteries','core']:keys(mode);
+    const signature=mode+':'+list.join(',');
+    if($('settings').dataset.key===signature) return;
+    $('settings').dataset.key=signature;
+    $('settings').replaceChildren();
+    list.forEach(key=>{
+      const row=document.createElement('div');
+      row.className='setting';
+      const label=document.createElement('span');
+      label.className='setting-label';
+      label.textContent=key==='rubs'?'Rubs':LABEL[key];
+      const seg=document.createElement('div');
+      seg.className='seg';
+      seg.setAttribute('role','group');
+      seg.setAttribute('aria-label',LABEL[key]);
+      values(mode,key).forEach((value,i)=>{
+        const button=document.createElement('button');
+        button.id=`set-${key}-${i}`;
+        button.dataset.key=key;
+        button.dataset.value=value;
+        button.setAttribute('aria-label',`${LABEL[key]}: ${value}${key==='gap'?' cm':''}`);
+        if(key==='core') {
+          const image=value==='None'?null:ART[{Wood:'wood',Aluminum:'al','Steel nail':'steel'}[value]];
+          button.innerHTML=(image?`<img class="core-swatch" src="${image}" alt="">`:'<span class="core-swatch">○</span>')
+            +`<span class="core-label">${value}</span>`;
+        } else button.textContent=value+(key==='gap'?' cm':'');
+        button.onclick=()=>setSetting(mode,key,value);
+        seg.append(button);
+      });
+      row.append(label,seg);
+      $('settings').append(row);
+    });
+  }
+  function syncControls() {
+    const mode=benchMode();
+    document.querySelectorAll('#settings button,#field-settings-body button').forEach(b=>
+      b.setAttribute('aria-pressed',String(state[mode][b.dataset.key])===b.dataset.value));
+    $('switch').textContent='Switch: '+(state.on?'on':'off');
+    $('switch').setAttribute('aria-pressed',state.on);
+    $('test').textContent=state.running?'Testing: '+(state.trial+1)+' of 3':'Test: 3 trials';
+    $('test').setAttribute('aria-disabled',!!state.running);
+    $('current').querySelector('span').textContent=(state.on?state.coil.batteries*.6:0).toFixed(1)+' A';
+  }
+  function renderRecords(flashId) {
+    const mode=benchMode(),rows=state.rows.filter(r=>r.mode===mode).slice().reverse();
+    const count=isCompact()?2:4;
+    const maxPage=Math.max(0,Math.ceil(rows.length/count)-1);
+    state.page=Math.min(state.page,maxPage);
+    $('row-total').textContent=rows.length;
+    $('older').setAttribute('aria-disabled',state.page>=maxPage);
+    $('newer').setAttribute('aria-disabled',state.page<=0);
+    $('table').querySelector('thead').innerHTML=mode==='coil'
+      ?'<tr><th>Turns / cells / core / cm</th><th>Trials</th><th>Mean</th></tr>'
+      :'<tr><th>Rubs / gap</th><th>Trials</th><th>Mean</th></tr>';
+    const active=state.active[mode],ids=active?fairSet(mode,active).map(r=>r.id):[];
+    const page=rows.slice(state.page*count,(state.page+1)*count);
+    $('table').querySelector('tbody').innerHTML=page.length?page.map(row=>{
+      const s=row.settings;
+      const summary=mode==='coil'?`${s.turns} / ${s.batteries} / ${s.core==='Steel nail'?'Steel':s.core} / ${s.gap}`:`${s.rubs} rubs / ${s.gap} cm`;
+      return `<tr class="${ids.includes(row.id)?'lit ':''}${row.id===flashId?'flash':''}"><td>${summary}${row.retested?' (retested)':''}</td>`
+        +`<td>${row.trials.join(', ')}</td><td><b>${row.mean.toFixed(1)}</b></td></tr>`;
+    }).join(''):'<tr><td colspan="3" class="empty-row">Your first three trials go here.</td></tr>';
+    $('chart-label').textContent=`Mean ${mode==='coil'?'clips':'bits'} (3 trials)`;
+    drawChart($('chart'));
+    if($('chart-dialog').open) drawChart($('dialog-chart'));
+  }
+  function drawChart(svg) {
+    const mode=benchMode(),active=state.active[mode];
+    const W=svg.clientWidth || 400,H=svg.clientHeight || 180;
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const left=33,right=W-20,top=15,bottom=H-34,max=mode==='coil'?40:20;
+    let out='';
+    for(let y=0;y<=max;y+=10) {
+      const py=bottom-(bottom-top)*y/max;
+      out+=`<line x1="${left}" y1="${py}" x2="${right}" y2="${py}" stroke="#d6dfd4"/>`
+        +`<text x="${left-6}" y="${py+4}" text-anchor="end" font-size="11" fill="#58626a">${y}</text>`;
+    }
+    out+=`<path d="M${left} ${top} V${bottom} H${right}" fill="none" stroke="#7d868d"/>`;
+    if(!active) out+=`<text x="${(left+right)/2}" y="${H/2}" text-anchor="middle" font-size="11" fill="#58626a">Tap a question on the board</text>`;
+    else {
+      const list=values(mode,active),rows=fairSet(mode,active);
+      const numeric=active!=='core';
+      const fraction=v=>numeric?(v-list[0])/(list[list.length-1]-list[0]):list.indexOf(v)/(list.length-1);
+      const px=v=>left+(right-left)*fraction(v),py=v=>bottom-(bottom-top)*v/max;
+      list.forEach(v=>{
+        const text=v==='Steel nail'?'Steel':v==='Aluminum'?'Alum.':v;
+        out+=`<text x="${px(v)}" y="${bottom+17}" text-anchor="middle" font-size="10" fill="#58626a">${text}</text>`;
+      });
+      out+=`<text x="${(left+right)/2}" y="${H-2}" text-anchor="middle" font-size="10" fill="#58626a">${LABEL[active]}`
+        +(active==='gap'?' (cm)':'')+'</text>';
+      if(rows.length) out+=`<polyline points="${rows.map(r=>`${px(r.settings[active])},${py(r.mean)}`).join(' ')}"`
+        +' fill="none" stroke="#0e6b66" stroke-width="2.5"/>';
+      rows.forEach(row=>{
+        const x=px(row.settings[active]);
+        row.trials.forEach((trial,i)=>{
+          out+=`<line x1="${x-6}" y1="${py(trial)+(i-1)*1.5}" x2="${x+6}" y2="${py(trial)+(i-1)*1.5}" stroke="#526d62"/>`;
+        });
+        out+=`<circle cx="${x}" cy="${py(row.mean)}" r="4" fill="#0e6b66" stroke="#fff"/>`;
+      });
+    }
+    svg.innerHTML=out;
+  }
+  function image(src,x,y,w,h,extra='') {
+    return `<image href="${src}" x="${x}" y="${y}" width="${w}" height="${h}" ${extra}/>`;
+  }
+  function text(value,x,y,size=12,fill='#263f35') {
+    const width=value.length*size*.55+12;
+    return `<g><rect x="${x-width/2}" y="${y-size-3}" width="${width}" height="${size+8}" rx="3"`
+      +` fill="#fffdf4ed" stroke="#b0ad96" stroke-width=".5"/><text x="${x}" y="${y}" font-family="Segoe UI,sans-serif"`
+      +` font-size="${size}" fill="${fill}" text-anchor="middle">${value}</text></g>`;
+  }
+  function benchDrawing(W,H,mode,s,number,lift,mini=false) {
+    const scale=Math.max(.35,Math.min(W/700,H/350));
+    const cx=W*.51,floor=H*.78;
+    const top=mini?H*.06:Math.max(44,H*.16);
+    const coreH=Math.min(H*.38,155*scale),tip=top+coreH;
+    const gapPx=s.gap*(mode==='coil'?13:8)*scale;
+    const extra=mode==='coil'?Math.max(0,Math.ceil(number/5)-2)*8*scale*lift:0;
+    const dishY=Math.min(H*.74,tip+12*scale+gapPx+extra);
+    let out='<defs><linearGradient id="metal"><stop stop-color="#52625d"/><stop offset=".35" stop-color="#edf1e5"/>'
+      +'<stop offset=".6" stop-color="#92a299"/><stop offset="1" stop-color="#4e6058"/></linearGradient>'
+      +'<linearGradient id="copper"><stop stop-color="#62260b"/><stop offset=".4" stop-color="#edb57a"/>'
+      +'<stop offset=".65" stop-color="#9a4a12"/><stop offset="1" stop-color="#50250f"/></linearGradient></defs>';
+    out+=`<ellipse cx="${cx}" cy="${floor+30*scale}" rx="${W*.22}" ry="${9*scale}" fill="#283c3233"/>`;
+    out+=`<rect x="${cx-106*scale}" y="${top-10*scale}" width="${8*scale}" height="${floor-top+15*scale}" rx="3" fill="url(#metal)"/>`
+      +`<ellipse cx="${cx-92*scale}" cy="${floor+10*scale}" rx="${50*scale}" ry="${8*scale}" fill="#394b45"/>`
+      +`<path d="M${cx-102*scale} ${top+7*scale} H${cx}" stroke="#4c5e55" stroke-width="${9*scale}"/>`
+      +`<circle cx="${cx-102*scale}" cy="${top+7*scale}" r="${7*scale}" fill="#b3bfb0" stroke="#45564b"/>`;
+    if(mode==='coil') {
+      const coreArt={Wood:ART.wood,Aluminum:ART.al,'Steel nail':ART.steel}[s.core];
+      if(coreArt) out+=`<g transform="translate(${cx} ${top+coreH/2}) rotate(90)">`
+        +image(coreArt,-coreH/2,-13*scale,coreH,26*scale)+'</g>';
+      else out+=`<rect x="${cx-8*scale}" y="${top}" width="${16*scale}" height="${coreH}" rx="4"`
+        +' fill="#d8bc8e33" stroke="#9d7e52" stroke-dasharray="3 4"/>';
+      const wireTop=top+14*scale,wireH=coreH*.65;
+      for(let i=0;i<s.turns;i++) {
+        const y=wireTop+i*wireH/s.turns;
+        out+=`<path d="M${cx-17*scale} ${y} C${cx-24*scale} ${y-6*scale},${cx+23*scale} ${y-6*scale},${cx+17*scale} ${y+scale}"`
+          +` fill="none" stroke="url(#copper)" stroke-width="${Math.max(.6,Math.min(2.6*scale,wireH/s.turns*.55))}"/>`;
+      }
+      const bx=W*.10,by=floor-65*scale;
+      out+=`<path d="M${cx-16*scale} ${wireTop} C${cx-100*scale} ${wireTop+40*scale},${bx+70*scale} ${by-35*scale},${bx+20*scale} ${by+6*scale}`
+        +` M${cx+17*scale} ${wireTop+wireH} C${cx+85*scale} ${floor+17*scale},${W*.82} ${floor+25*scale},${W*.81} ${floor-8*scale}"`
+        +` fill="none" stroke="#5d2d18" stroke-width="${3.5*scale}"/>`;
+      out+=`<rect x="${bx-6*scale}" y="${by+8*scale}" width="${(s.batteries*24+15)*scale}" height="${65*scale}" rx="4"`
+        +' fill="#313f3b" stroke="#172822"/>';
+      for(let i=0;i<s.batteries;i++) out+=image(ART.aa,bx+i*24*scale,by,25*scale,68*scale);
+      const powered=mini?number>0 && lift>.05:state.on;
+      out+=image(powered?ART.closed:ART.open,W*.72,floor-48*scale,100*scale,70*scale);
+      out+=`<path d="M${bx+20*scale} ${by+62*scale} C${W*.33} ${floor+37*scale},${W*.55} ${floor+15*scale},${W*.74} ${floor-7*scale}"`
+        +` stroke="#26372f" stroke-width="${3.5*scale}" fill="none"/>`;
+      const rx=W*.35,ry=floor+13*scale;
+      out+=`<rect x="${rx-20*scale}" y="${ry-7*scale}" width="${40*scale}" height="${14*scale}" rx="4" fill="#c5af77" stroke="#6d5b31"/>`;
+      [0,6,15].forEach(x=>{
+        out+=`<rect x="${rx-12*scale+x*scale}" y="${ry-7*scale}" width="${3*scale}" height="${14*scale}" fill="#76523b"/>`;
+      });
+      if(!mini && W>440) out+=text('2.5 ohm resistor',rx,ry+24*scale,11);
+      out+=`<path d="M${cx-43*scale} ${dishY+30*scale} l${86*scale} ${25*scale} m0 ${-25*scale} l${-86*scale} ${25*scale}"`
+        +` stroke="#627167" stroke-width="${4*scale}"/><rect x="${cx-53*scale}" y="${dishY+52*scale}" width="${106*scale}"`
+        +` height="${8*scale}" rx="3" fill="url(#metal)"/>`;
+      const twitch=state.running && number===0 && s.gap>0 && !Curio.reduce?Math.sin(state.phase*60)*1.2*scale:0;
+      out+=image(ART.pile,cx-60*scale+twitch,dishY-4*scale,120*scale,60*scale);
+      for(let i=0;i<number;i++) {
+        const x=cx+((i%5)-2)*9*scale+Math.sin(i*3)*3*scale;
+        const target=tip-2*scale+Math.floor(i/5)*9*scale;
+        const y=dishY+12*scale+(target-dishY-12*scale)*lift;
+        out+=image(ART.clip,x-6*scale,y,13*scale,22*scale,`transform="rotate(${(i%3-1)*18} ${x} ${y})"`);
+      }
+      const rulerX=cx+74*scale;
+      out+=`<rect x="${rulerX}" y="${tip-4*scale}" width="${15*scale}" height="${Math.max(30*scale,dishY-tip+12*scale)}"`
+        +' fill="#f3db9b" stroke="#a68c56"/>';
+      for(let i=0;i<6;i++) out+=`<path d="M${rulerX} ${tip+i*6*scale} h${(i%2?5:9)*scale}" stroke="#736440"/>`;
+      if(!mini) out+=text('Gap '+s.gap+' cm',rulerX+40*scale,tip-10*scale,11);
+    } else {
+      const bw=Math.min(W*.28,165*scale),bh=Math.min(H*.49,195*scale);
+      out+=`<path d="M${cx} ${top-12*scale} V${top+12*scale}" stroke="#706247" stroke-width="2"/>`;
+      out+=image(ART.balloon,cx-bw/2,top-8*scale,bw,bh);
+      const bottom=top-8*scale+bh,paperY=Math.min(H*.76,bottom+gapPx+8*scale);
+      out+=`<path d="M${cx+110*scale} ${bottom} V${paperY}" stroke="#7b6943" stroke-width="2"/>`
+        +text('Gap '+s.gap+' cm',cx+120*scale,paperY+20*scale,11);
+      for(let i=0;i<20;i++) {
+        const x=cx-82*scale+(i%7)*25*scale+Math.sin(i*11)*5*scale;
+        const y=paperY+Math.floor(i/7)*12*scale+Math.cos(i*13)*3*scale;
+        const tx=cx-35*scale+(i%5)*16*scale,ty=bottom-33*scale+Math.floor(i/5)*8*scale;
+        const f=i<number?lift:0;
+        out+=image(ART.bits[i%3],x+(tx-x)*f,y+(ty-y)*f,16*scale,16*scale);
+      }
+      const rubbing=state.running && state.phase<.4;
+      const clothX=rubbing?cx-bw*.62+(Curio.reduce?0:Math.sin(state.phase*50)*12*scale):W*.14;
+      out+=image(ART.wool,clothX,rubbing?top+30*scale:floor-25*scale,94*scale,65*scale);
+      if(state.running && state.phase>.82) {
+        out+=`<rect x="${cx-30*scale}" y="${top+35*scale}" width="${60*scale}" height="${30*scale}" rx="6"`
+          +' fill="#a2c7bc" stroke="#507569"/>';
+      }
+    }
+    return out;
+  }
+  function renderScene() {
+    const W=$('stage').clientWidth,H=$('stage').clientHeight;
+    if(!W || !H) return;
+    $('apparatus').setAttribute('viewBox',`0 0 ${W} ${H}`);
+    const background=state.mode==='field'?ART.paper:state.mode==='static'?ART.table:ART.bench;
+    if($('backdrop').getAttribute('src')!==background) $('backdrop').src=background;
+    if(state.mode==='field') {
+      drawField(W,H);
+      $('caption').textContent=state.warmed?L.warm:'Drag the compass · Arrow keys: 0.5 cm · A: drop arrow';
+      return;
+    }
+    if(state.mode==='notebook') { drawNotebook(W,H); return; }
+    const mode=state.mode,run=state.running;
+    let lift=0,number=0,caption='';
+    if(run) {
+      number=run.trials[state.trial];
+      const p=state.phase,start=mode==='coil'?.10:.4,end=mode==='coil'?.7:.8;
+      if(Curio.reduce) lift=p>=start && p<end?1:0;
+      else lift=p<start?0:p<start+.2?(p-start)/.2:p<end?1:Math.max(0,1-(p-end)/.17);
+      caption=mode==='coil'?(p<.7?'Power on: watch the tip.':'Power off: clips fall.')
+        :p<.4?'Rubbing the balloon':p<.8?'Bits leap across empty space.':'Wiped: no charge left';
+      $('count').textContent=`Trial ${state.trial+1}: ${number} ${mode==='coil'?(number===1?'clip':'clips'):(number===1?'bit':'bits')}`;
+      if(mode==='coil' && run.residual && p>.92) {
+        number=1;
+        lift=1;
+        caption='Steel can stay a little magnetized. One clip remains.';
+      }
+    } else if(mode==='coil' && (state.on || state.residual)) {
+      number=state.residual && !state.on?1:Math.round(meanFor(mode,state[mode]));
+      lift=1;
+      caption=state.residual && !state.on?'Steel can stay a little magnetized.':'Power on: the coil pulls.';
+      $('count').textContent=number+(number===1?' clip':' clips');
+    } else {
+      $('count').textContent=mode==='coil'?'Switch off':'Ready to rub';
+      caption=mode==='coil'?'A coil, a core, a question.':'Rub. Lift across a gap. Wipe. Repeat.';
+    }
+    if(state.warmed && state.on) caption=L.warm;
+    $('plate').innerHTML='<i class="lamp"></i><b>'+(mode==='coil'?'COIL BENCH':'STATIC BENCH')+'</b> / MODEL';
+    $('caption').textContent=caption;
+    $('apparatus').innerHTML=benchDrawing(W,H,mode,state[mode],number,lift);
+  }
+  function startFrames() { if(!raf) raf=requestAnimationFrame(frame); }
+  function frame(now) {
+    raf=0;
+    if(state.running) {
+      const run=state.running,elapsed=Math.max(0,(now-run.start)/run.duration);
+      if(elapsed>=3) finishTest(run);
+      else {
+        const previous=state.trial;
+        state.trial=Math.floor(elapsed);
+        state.phase=elapsed-state.trial;
+        if(previous!==state.trial) {
+          run.residual=false;
+          Curio.tone(270+state.trial*60,.06,.04);
+        }
+        const powered=state.phase<.72 && run.mode==='coil';
+        if(state.on && !powered && run.settings.core==='Steel nail' && run.trials[state.trial]>=10) run.residual=random()<1/3;
+        state.on=powered;
+        syncControls();
+        renderScene();
+      }
+    }
+    if(state.note.running) {
+      state.note.phase=Math.max(0,Math.min(1,(now-state.note.start)/3000));
+      renderScene();
+      if(state.note.phase>=1) {
+        state.note.running=false;
+        const c=state.note.cases[state.note.runIndex];
+        c.done=true;
+        c.fixed=c.options[c.choice].index!==0;
+        if(V.playing===L.fair) V.hush();
+        renderNote();
+        hint('caseDone');
+        event('caseDone',()=>state.mode==='notebook' && state.note.index===state.note.runIndex);
+      }
+    }
+    if(state.running || state.note.running) startFrames();
+  }
+  function coilVector(x,y,polarity=state.polarity) {
+    const s=state.coil,strength=s.turns*(s.batteries*.6)*(s.core==='Steel nail'?1:.01);
+    let vx=0,vy=0;
+    for(const [px,sign] of [[2.5,1],[-2.5,-1]]) {
+      const dx=x-px,dy=y,distance=Math.max(.4,Math.hypot(dx,dy));
+      const magnitude=polarity*sign*40*strength/(distance*distance);
+      vx+=magnitude*dx/distance;
+      vy+=magnitude*dy/distance;
+    }
+    return {x:vx,y:vy};
+  }
+  function fieldAngle(x,y) {
+    if(!state.on) return 0;
+    const f=coilVector(x,y);
+    return Math.atan2(f.x,1-f.y)*180/Math.PI;
+  }
+  function angleDifference(a,b) { return Math.abs(((a-b+540)%360)-180); }
+  function needleAngle() {
+    const matrix=getComputedStyle($('needle')).transform;
+    if(matrix==='none') return 0;
+    const numbers=matrix.match(/matrix\(([^)]+)\)/)?.[1].split(',').map(Number);
+    return numbers?Math.atan2(numbers[1],numbers[0])*180/Math.PI:0;
+  }
+  function checkNeedle() {
+    if(state.mode!=='field') return;
+    const f=state.field,angle=needleAngle();
+    if(state.on && f.ticks[0] && angleDifference(angle,0)>=30) tickField(1);
+    f.weakOn=state.on && f.ticks[0] && !f.ticks[1] && Math.hypot(f.x,f.y)<=7;
+    if(f.weakOn && V.playing===L.fieldOn) V.hush();
+    if(f.flipObservation) {
+      const observation=f.flipObservation;
+      f.flipObservation=null;
+      const same=state.on && f.ticks[2] && observation.polarity===state.polarity
+        && observation.x===f.x && observation.y===f.y && observation.setup===signature('coil',state.coil);
+      if(same) {
+        if(angleDifference(observation.from,angle)>=120) tickField(3);
+        else {
+          if(V.playing===L.fieldFlip) V.hush();
+          f.weakFlip=true;
+        }
+      }
+    }
+    renderChecklist();
+    fieldHint();
+  }
+  function tickField(index) {
+    if(state.field.ticks[index]) return;
+    const previous=index===0?[L.wField,L.fieldStart]:[L.fieldOn,L.fieldOff,L.fieldFlip].slice(index-1,index);
+    if(previous.includes(V.playing)) V.hush();
+    state.field.ticks[index]=true;
+    event('item'+(index+1),()=>state.mode==='field');
+  }
+  function fieldHint() {
+    if($('settings-dialog').open) {
+      hint('Tap Turns, Batteries or Core. Then tap Close to return to the paper.');
+      return;
+    }
+    const ticks=state.field.ticks;
+    if(state.card?.type==='filings') {
+      hint(state.field.choice===null?'filings':'Read the marked reason, then tap Back to paper.');
+      return;
+    }
+    if(!ticks[0]) hint(state.on?'fieldStart':'wField');
+    else if(!ticks[1] && state.field.weakOn) {
+      const compact=innerHeight<=600 && innerWidth<=1100;
+      how(compact?'fieldWeakOnCompact':'fieldWeakOn',()=>state.field.weakOn && !state.field.ticks[1],
+        compact?'#field-settings':'#settings');
+    }
+    else if(!ticks[1]) how('fieldOn',()=>!state.field.ticks[1] && !state.field.weakOn,'#switch');
+    else if(!ticks[2]) how('fieldOff',()=>!state.field.ticks[2],'#switch');
+    else if(!ticks[3] && state.field.weakFlip) {
+      const compact=innerHeight<=600 && innerWidth<=1100;
+      how(compact?'fieldWeakCompact':'fieldWeak',()=>state.field.weakFlip && !state.field.ticks[3],
+        compact?'#field-settings':'#settings');
+    }
+    else if(!ticks[3]) how('fieldFlip',()=>!state.field.ticks[3] && !state.field.weakFlip,'#flip');
+    else if(!state.field.freshAfterFlip) how('fieldSprinkle',()=>!state.field.freshAfterFlip,'#sprinkle');
+    else how('fieldExplore',()=>state.field.choice!==null,'#drop');
+  }
+  function evaluateField() {
+    renderChecklist();
+    updateCompass();
+    clearTimeout(fieldTimer);
+    fieldTimer=setTimeout(checkNeedle,Curio.reduce?0:320);
+    fieldHint();
+  }
+  function moveCompass(x,y) {
+    if(!Number.isFinite(x) || !Number.isFinite(y)) return;
+    state.field.flipObservation=null;
+    state.field.weakFlip=false;
+    state.field.weakOn=false;
+    const f=state.field,nx=Math.max(-14.4,Math.min(14.4,x)),ny=Math.max(-8.4,Math.min(8.4,y));
+    const radius=Math.max(1.6,22/fieldLayout().scale),edgeX=2.5+radius,edgeY=1+radius;
+    if(Math.abs(nx)<edgeX && Math.abs(ny)<edgeY) {
+      if(Math.abs(nx)/edgeX>Math.abs(ny)/edgeY) { f.x=nx<0?-edgeX:edgeX; f.y=ny; }
+      else { f.y=ny<0?-edgeY:edgeY; f.x=nx; }
+    } else { f.x=nx; f.y=ny; }
+    if(!state.on && Math.hypot(f.x-f.offOrigin.x,f.y-f.offOrigin.y)>=2) tickField(0);
+    evaluateField();
+    renderScene();
+  }
+  function flip() {
+    const before=needleAngle();
+    state.polarity*=-1;
+    state.field.flipped=state.on;
+    state.field.freshAfterFlip=false;
+    state.field.weakFlip=false;
+    state.field.flipObservation=state.on?{from:before,polarity:state.polarity,x:state.field.x,y:state.field.y,
+      setup:signature('coil',state.coil)}:null;
+    evaluateField();
+    renderScene();
+    Curio.tone(360,.08,.035,'triangle');
+  }
+  function dropArrow() {
+    const f=state.field;
+    f.arrows.push({x:f.x,y:f.y,angle:fieldAngle(f.x,f.y),on:state.on});
+    if(f.arrows.length>40) f.arrows.shift();
+    renderScene();
+    Curio.tone(460,.04,.025);
+  }
+  function sprinkle() {
+    const f=state.field;
+    f.filings=true;
+    const reversedSample=f.filingsPolarity!==null && f.filingsPolarity!==state.polarity;
+    if(state.on && reversedSample && f.ticks[3]) {
+      if([L.fieldSprinkle,L.fieldFlip].includes(V.playing)) V.hush();
+      V.dropQueued(item=>item.kind==='how');
+      f.freshAfterFlip=true;
+      state.card={type:'filings'};
+      renderClaim();
+      how('filings',()=>state.card?.type==='filings' && f.choice===null,'#claim-options');
+    } else {
+      if(state.on) {
+        f.beforeFlip=true;
+        f.filingsPolarity=state.polarity;
+      }
+      hint(state.on?'Pattern recorded. Tap Flip batteries, then Sprinkle filings again.':
+        'Turn Switch on, then tap Sprinkle filings before and after Flip batteries.');
+    }
+    renderScene();
+    Curio.tone(900,.06,.025,'triangle');
+  }
+  function answerFilings(index) {
+    const f=state.field;
+    if(f.choice!==null || !f.freshAfterFlip || !f.options?.[index]) return;
+    if(V.playing===L.filings) V.hush();
+    V.dropQueued(item=>item.kind==='how');
+    f.choice=index;
+    renderClaim();
+    hint('The paper records field shape. The red compass end records direction. Drag the compass to keep exploring.');
+    event(f.options[index].index===0?'right':'wrong',()=>state.mode==='field');
+  }
+  function fieldLayout() {
+    const W=$('stage').clientWidth,H=$('stage').clientHeight,scale=Math.min((W-16)/32,(H-16)/20);
+    return {W,H,scale,ox:W/2,oy:H/2};
+  }
+  function updateCompass() {
+    const {scale,ox,oy}=fieldLayout(),size=Math.max(44,3.2*scale);
+    $('compass').style.width=size+'px';
+    $('compass').style.height=size+'px';
+    $('compass').style.left=(ox+state.field.x*scale-size/2)+'px';
+    $('compass').style.top=(oy+state.field.y*scale-size/2)+'px';
+    $('needle').style.transform=`rotate(${fieldAngle(state.field.x,state.field.y)}deg)`;
+  }
+  function drawField(W,H) {
+    const {scale:s,ox,oy}=fieldLayout();
+    let out='<defs><linearGradient id="field-copper"><stop stop-color="#623010"/><stop offset=".4" stop-color="#edba88"/>'
+      +'<stop offset="1" stop-color="#914611"/></linearGradient></defs>';
+    if(state.field.filings) {
+      let seed=19842;
+      const rng=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+      for(let i=0;i<1600;i++) {
+        const x=(rng()-.5)*30,y=(rng()-.5)*18,chance=rng();
+        if(Math.abs(x)<3.1 && Math.abs(y)<1.2) continue;
+        const v=coilVector(x,y,1),mag=Math.hypot(v.x,v.y);
+        const angle=state.on && chance<Math.min(1,mag/3)?Math.atan2(v.y,v.x):rng()*Math.PI;
+        const dx=Math.cos(angle)*2.4,dy=Math.sin(angle)*2.4;
+        out+=`<path d="M${ox+x*s-dx} ${oy+y*s-dy} l${dx*2} ${dy*2}" stroke="#354139" stroke-opacity=".65" stroke-width="1"/>`;
+      }
+    }
+    state.field.arrows.forEach(a=>{
+      out+=`<g transform="translate(${ox+a.x*s} ${oy+a.y*s}) rotate(${a.angle})">`
+        +`<path d="M0 9 V-9 M-4 -4 L0 -9 L4 -4" stroke="${a.on?'#0e6b66':'#666c66'}" fill="none" stroke-width="2"/></g>`;
+    });
+    const art={Wood:ART.wood,Aluminum:ART.al,'Steel nail':ART.steel}[state.coil.core];
+    if(art) out+=image(art,ox-2.5*s,oy-.8*s,5*s,1.6*s);
+    else out+=`<rect x="${ox-2.5*s}" y="${oy-.7*s}" width="${5*s}" height="${1.4*s}" fill="#f4e7ce" stroke="#b69a6e"/>`;
+    for(let i=0;i<state.coil.turns;i++) {
+      const x=ox-2*s+i*4*s/state.coil.turns;
+      out+=`<ellipse cx="${x}" cy="${oy}" rx="${.15*s}" ry="${.95*s}" fill="none" stroke="url(#field-copper)"`
+        +` stroke-width="${Math.max(1,s*.08)}"/>`;
+    }
+    out+=`<path d="M${ox-2*s} ${oy+s} q${-2*s} ${3*s} ${-5*s} ${3*s} M${ox+2*s} ${oy+s} q${2*s} ${3*s} ${5*s} ${3*s}"`
+      +' stroke="#5d4030" fill="none" stroke-width="3"/>';
+    $('apparatus').innerHTML=out;
+    updateCompass();
+  }
+  function renderChecklist() {
+    const lines=['Switch off: the needle points north.','Switch on: the needle turns near the coil.',
+      'Switch off again: it swings back.','Flip the batteries: the needle turns around.'];
+    const compact=state.mode==='field' && innerHeight<=600 && innerWidth<=1100;
+    const short=['Off: north','On: turns','Off: back','Flip: turns'];
+    $('checklist').classList.toggle('compact',compact);
+    $('checklist').innerHTML=lines.map((line,i)=>`<li class="${state.field.ticks[i]?'done':''}" title="${line}"`
+      +` aria-label="${line}">${compact?short[i]:line}</li>`).join('');
+  }
+  function selectCase(index) {
+    if(index<0 || index>2) return;
+    state.note.running=false;
+    clearTimeout(fieldTimer);
+    state.note.index=index;
+    V.hush();
+    renderNote();
+    renderScene();
+    const c=state.note.cases[index];
+    if(c.done) hint('noteAgain');
+    else if(c.choice!==null) how('fair',()=>!state.note.running,'#fair');
+    else hint("Tap the flaw in Sam's test. You get one first choice.");
+  }
+  function pickCase(index) {
+    const c=state.note.cases[state.note.index];
+    if(c.choice!==null || !c.options[index]) return;
+    if(V.playing===L.wNote) V.hush();
+    c.choice=index;
+    renderNote();
+    const selected=state.note.index;
+    event(c.options[index].index===0?'right':'wrong',()=>state.note.index===selected);
+    how('fair',()=>state.note.index===selected && !c.done && !state.note.running,'#fair');
+  }
+  function runFair() {
+    const c=state.note.cases[state.note.index];
+    if(c.choice===null || state.note.running) return;
+    if(V.playing===L.fair || V.playing===L.wNote) V.hush();
+    state.note.running=true;
+    state.note.start=performance.now();
+    state.note.phase=0;
+    state.note.runIndex=state.note.index;
+    hint('Watch the fair comparison on the small bench. Next case is available whenever you are ready.');
+    startFrames();
+    Curio.tone(280,.07,.035);
+  }
+  function renderNote() {
+    const i=state.note.index,c=state.note.cases[i];
+    c.options ||= shuffled(CASES[i].options);
+    $('case-label').textContent=`Case ${i+1} of 3`+(c.done?(c.fixed?' · found, fixed':' · found'):'');
+    for(let j=0;j<3;j++) $('case-'+j).setAttribute('aria-pressed',i===j);
+    $('sam').textContent=CASES[i].sam;
+    $('fair-result').hidden=!c.done;
+    $('fair-result').textContent=CASES[i].result;
+    optionsDOM($('note-options'),c.options,c.choice,c.choice===null?null:c.options.findIndex(o=>o.index===0),pickCase);
+    $('note-feedback').hidden=c.choice===null;
+    $('note-feedback').textContent=CASES[i].reason;
+    $('fair').hidden=c.choice===null;
+    $('fair').textContent=state.note.running?'Fair test running':'Run it the fair way';
+  }
+  function drawNotebook(W,H) {
+    const i=state.note.index,c=state.note.cases[i],miniW=W*.40,miniH=Math.min(H*.68,W*.29);
+    let out='';
+    if(i<2) {
+      const phase=state.note.running?state.note.phase:c.done?1:0,fair=state.note.running || c.done;
+      const mode=i===0?'coil':'static';
+      const s=i===0?{turns:fair && phase>.5?40:20,batteries:1,core:'Steel nail',gap:0}:{rubs:20,gap:fair?2:0};
+      const number=i===0?(phase>.5?12:6):8;
+      const lift=state.note.running?(Curio.reduce?1:Math.min(1,(phase%0.5)*5)):c.done?1:0;
+      const benchY=(H-miniH)/2;
+      out=`<g transform="translate(${W*.59} ${benchY})">${benchDrawing(miniW,miniH,mode,s,number,lift,true)}</g>`;
+      const label=i===0?(fair?`${s.turns} turns / 1 cell`:'Hold batteries at 1')
+        :fair?'20 rubs / 2 cm':'Sam pressed it on';
+      const labelSize=Math.max(10,Math.min(12,W*.014));
+      out+=text(label,W*.79,benchY+miniH+18,labelSize);
+      if(fair) out+=text(i===0?`${number} clips`:'About 8 bits',W*.79,benchY+miniH+36,labelSize);
+    } else {
+      const x=W*.79,y=H*.42;
+      out+=image(ART.wood,x-60,y-60,110,45);
+      for(let n=0;n<20;n++) out+=`<ellipse cx="${x-45+n*4}" cy="${y-35}" rx="2" ry="20" fill="none" stroke="#9a4a12" stroke-width="2"/>`;
+      const fixed=state.note.running || c.done;
+      const compassSize=Math.max(44,Math.min(88,W*.1)),needleY=y+52;
+      out+=image(ART.scissors,fixed?W*.91:W*.63,H*.63,85,60);
+      out+=`<ellipse cx="${x+3}" cy="${needleY+compassSize*.47}" rx="${compassSize*.48}" ry="7" fill="#243b3430"/>`;
+      out+=image(ART.compass,x-compassSize/2,needleY-compassSize*.74,compassSize,compassSize*1.244);
+      for(let mark=0;mark<12;mark++) {
+        out+=`<path d="M0 ${-compassSize*.39} v${mark%3===0?5:3}" transform="translate(${x} ${needleY}) rotate(${mark*30})"`
+          +' stroke="#526052" stroke-width="1"/>';
+      }
+      out+=`<text x="${x}" y="${needleY-compassSize*.27}" text-anchor="middle" font-size="10" fill="#293d56">N</text>`;
+      const angle=state.note.running?(state.note.phase>.5?45:0):c.done?45:40;
+      out+=`<g transform="translate(${x} ${y+52}) rotate(${angle}) scale(${Math.min(1,compassSize*.29/23)})">`
+        +'<path d="M0 -23 L5 1 L0 -2 L-5 1 Z" fill="#b3261e"/>'
+        +'<path d="M0 23 L5 -1 L0 2 L-5 -1 Z" fill="#40516b"/><circle r="2.5" fill="#d8bc74" stroke="#625124"/></g>';
+      out+=text(fixed?'Scissors moved away':'Steel scissors nearby',x,H*.87,11);
+      if(fixed) out+=text(c.done || state.note.phase>.5?'On: about 45°':'Off: north',x,H*.93,11);
+    }
+    $('apparatus').innerHTML=out;
+  }
+  function setMode(mode) {
+    if(!MODES.includes(mode)) return;
+    stopRun(false);
+    state.note.running=false;
+    V.hush();
+    state.mode=mode;
+    if(!['coil','field'].includes(mode)) setPower(false,false);
+    state.card=null;
+    state.page=0;
+    if(['coil','static'].includes(mode)) state.classOpen=true;
+    MODES.forEach(m=>$('m-'+m).setAttribute('aria-pressed',m===mode));
+    buildSettings();
+    syncControls();
+    renderData();
+    renderBoard();
+    renderRecords();
+    renderChecklist();
+    renderNote();
+    renderVisibility();
+    renderScene();
+    hint({coil:'wCoil',static:'wStatic',field:'wField',notebook:'wNote'}[mode]);
+    if(['coil','static'].includes(mode) && state.selected[mode].length===2) {
+      if(state.active[mode]) updateReadyHint(mode);
+      else hint(Object.keys(state.boards[mode]).length?'pickQ':'addQ');
+    }
+    if(mode==='field') fieldHint();
+    if(mode==='notebook') {
+      const c=state.note.cases[state.note.index];
+      if(c.done) hint('noteAgain');
+      else if(c.choice!==null) hint('fair');
+      else if(state.note.index!==0) hint("Tap the flaw in Sam's test in Case "+(state.note.index+1)+'. You get one first choice.');
+    }
+    if(V.tapped) V.welcome();
+    if(mode==='field' && state.field.ticks[0]) evaluateField();
+  }
+  function openDialog(id) {
+    lastFocus=document.activeElement;
+    $(id).showModal();
+    $(id).querySelector('button')?.focus({preventScroll:true});
+  }
+  function closeDialog(id) {
+    $(id).close();
+    if(lastFocus?.isConnected) lastFocus.focus({preventScroll:true});
+    if(id==='settings-dialog') fieldHint();
+    if(id==='data-dialog' && (isCompact() || !state.classOpen)) {
+      hint('Tap '+(state.mode==='static'?'Balloon data':'Class data')+' to return to the comparison and add a question.');
+    }
+  }
+  MODES.forEach(mode=>$('m-'+mode).onclick=()=>setMode(mode));
+  $('test').onclick=()=>runTest();
+  document.addEventListener('click',e=>{
+    if(e.target.closest('button')) Curio.tone(420,.018,.012);
+  });
+  $('switch').onclick=()=>{stopRun();setPower(!state.on);};
+  $('real').onclick=()=>openDialog('real-dialog');
+  $('class-open').onclick=()=>{renderData();openDialog('data-dialog');};
+  $('claim-next').onclick=nextClaim;
+  $('older').onclick=()=>{state.page++;renderRecords();};
+  $('newer').onclick=()=>{state.page=Math.max(0,state.page-1);renderRecords();};
+  $('clear-table').onclick=()=>openDialog('clear-dialog');
+  $('clear-confirm').onclick=()=>{
+    stopRun(false);
+    state.rows=[];
+    state.boards={coil:{},static:{}};
+    state.active={coil:null,static:null};
+    state.card=null;
+    boardMode='';
+    save();
+    closeDialog('clear-dialog');
+    renderBoard();
+    renderData();
+    renderClaim();
+    renderRecords();
+    hint('Tap '+(state.mode==='static'?'Balloon data':'Class data')+', compare two rows, then add a fresh question.');
+  };
+  $('chart-open').onclick=()=>{
+    openDialog('chart-dialog');
+    $('dialog-chart-title').textContent='Mean '+(state.mode==='static'?'bits':'clips')+' (3 trials)';
+    drawChart($('dialog-chart'));
+  };
+  document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>closeDialog(b.dataset.close));
+  $('flip').onclick=flip;
+  $('field-settings').onclick=()=>{
+    $('field-settings-body').replaceChildren();
+    [...$('settings').children].forEach(row=>{
+      const clone=row.cloneNode(true);
+      clone.querySelectorAll('button').forEach(b=>{
+        b.removeAttribute('id');
+        b.onclick=()=>setSetting('coil',b.dataset.key,b.dataset.key==='core'?b.dataset.value:Number(b.dataset.value));
+      });
+      $('field-settings-body').append(clone);
+    });
+    openDialog('settings-dialog');
+    hint('Tap Turns, Batteries or Core. Then tap Close to return to the paper.');
+  };
+  $('drop').onclick=dropArrow;
+  $('sprinkle').onclick=sprinkle;
+  $('clear-paper').onclick=()=>{state.field.arrows=[];state.field.filings=false;renderScene();};
+  for(let i=0;i<3;i++) $('case-'+i).onclick=()=>selectCase(i);
+  $('fair').onclick=runFair;
+  $('next-case').onclick=()=>selectCase((state.note.index+1)%3);
+  let dragging=false;
+  $('compass').addEventListener('pointerdown',e=>{
+    dragging=true;
+    $('compass').setPointerCapture(e.pointerId);
+  });
+  $('compass').addEventListener('pointermove',e=>{
+    if(!dragging) return;
+    const {scale,ox,oy}=fieldLayout(),r=$('stage').getBoundingClientRect();
+    moveCompass((e.clientX-r.left-ox)/scale,(e.clientY-r.top-oy)/scale);
+  });
+  $('compass').addEventListener('pointerup',()=>{dragging=false;});
+  $('compass').addEventListener('pointercancel',()=>{dragging=false;});
+  $('compass').addEventListener('keydown',e=>{
+    const d={ArrowLeft:[-.5,0],ArrowRight:[.5,0],ArrowUp:[0,-.5],ArrowDown:[0,.5]}[e.key];
+    if(d) {e.preventDefault();moveCompass(state.field.x+d[0],state.field.y+d[1]);}
+  });
+  addEventListener('keydown',e=>{
+    if(state.mode==='field' && e.key.toLowerCase()==='a' && !document.querySelector('dialog[open]')) dropArrow();
+  });
+  let resizeTimer;
+  new ResizeObserver(()=>{
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=>{renderVisibility();renderChecklist();renderScene();renderRecords();},30);
+  }).observe($('stage'));
+  Curio.onMotion(()=>renderScene());
+  Curio.init({clips:"voice:*",rate:.95});
+  window.__tool={state,setMode,seed:n=>{randomSeed=n>>>0;},
+    coil:{set:(k,v)=>setSetting('coil',k,v),test:()=>runTest('coil'),switch:setPower,
+      compare:(a,b)=>compare('coil',a,b),add:q=>addQuestion('coil',q),answer:answerClaim,howMuch:answerRatio},
+    stat:{set:(k,v)=>setSetting('static',k,v),test:()=>runTest('static'),switch:setPower,
+      compare:(a,b)=>compare('static',a,b),add:q=>addQuestion('static',q),answer:answerClaim,howMuch:answerRatio},
+    field:{move:moveCompass,switch:setPower,flip,drop:dropArrow,sprinkle,answer:answerFilings},
+    note:{pick:pickCase,fair:runFair,next:()=>selectCase((state.note.index+1)%3)},
+    rows:()=>state.rows,allLines:V.allLines,vlog:V.log,fairSet,readiness,ratioData,meanFor,fieldAngle,
+    get vq(){return V.queue;}
+  };
+  setMode('coil');
+})();
+</script>
+</body>
+</html>

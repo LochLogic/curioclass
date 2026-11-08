@@ -1,5 +1,5 @@
 {
-  "house_style": "Flat illustration for a high school statistics roleplay: warm muted oak, walnut and cream colors, soft daylight, clean simple shapes, calm, empty room. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "house_style": "Refined flat editorial gouache illustration for high school statistics: warm muted oak, walnut and cream, green accents, soft light from upper left, subtle paper grain, clean shapes and rich gentle shading. No people, body parts, text, letters, numbers, logos or watermarks.",
   "style": "Used as a backdrop behind the court panels.",
   "assets": [
     {
@@ -11,7 +11,130 @@
       "quality": 70,
       "sd": "The interior of an empty small-town courtroom seen from the back: a raised oak judge's bench in front of a wall of plain warm oak wood paneling, a witness stand beside it, wooden railings and rows of wooden benches, plain cream plaster walls, tall bare windows with soft daylight on both sides, flat illustration.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "builder reviewed, no people or lettering"
+    },
+    {
+      "name": "case-folder",
+      "prompt": "A single closed manila file folder with a blank tab, lying flat, seen from above, soft daylight, flat illustration, flat pure magenta (#FF00FF) background",
+      "aspect": "4:3",
+      "cutout": true,
+      "key": "magenta",
+      "width": 400,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "builder reviewed",
+      "despill": true
+    },
+    {
+      "name": "gavel",
+      "prompt": "A polished walnut judge's gavel with a brass band, lying at an angle beside its round sound block, soft daylight, flat illustration, flat pure magenta (#FF00FF) background",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 400,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "builder reviewed",
+      "despill": true
+    },
+    {
+      "name": "coin",
+      "prompt": "A single plain silver coin with a smooth blank face and a ridged edge, seen from slightly above, soft daylight, flat illustration, flat pure magenta (#FF00FF) background",
+      "aspect": "1:1",
+      "cutout": true,
+      "key": "magenta",
+      "width": 400,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "builder reviewed",
+      "despill": true
+    },
+    {
+      "name": "evidence-seeds",
+      "prompt": "Rows of small seed trays on a greenhouse bench, some seedlings sprouted green and some bare soil cells, a seed scoop beside them, soft daylight, flat illustration",
+      "aspect": "4:3",
+      "cutout": false,
+      "key": "magenta",
+      "width": 680,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "builder reviewed"
+    },
+    {
+      "name": "evidence-cereal",
+      "prompt": "A closed upright blank cream cereal box supported squarely on the metal tray of a sturdy green kitchen scale, a bowl of cereal beside the scale on a wooden counter, rich editorial gouache, upper-left daylight, warm oak and cream, blank dial, no lettering or people.",
+      "aspect": "4:3",
+      "cutout": false,
+      "key": "magenta",
+      "width": 680,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "Cold review: corrected weighing demonstration; box is on the scale; checked at final size."
+    },
+    {
+      "name": "evidence-texts",
+      "prompt": "A smartphone with a plain glowing blank screen lying on a clinic waiting room counter beside an appointment card holder and a small potted plant, soft daylight, flat illustration",
+      "aspect": "4:3",
+      "cutout": false,
+      "key": "magenta",
+      "width": 680,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "builder reviewed"
+    },
+    {
+      "name": "evidence-bus",
+      "prompt": "An empty city bus stop shelter with a bench and a blank timetable panel on a quiet street, a bus far down the road, soft morning light, flat illustration",
+      "aspect": "4:3",
+      "cutout": false,
+      "key": "magenta",
+      "width": 680,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "builder reviewed"
+    },
+    {
+      "name": "evidence-shoes",
+      "prompt": "A worn pair of running shoes and a bright new pair of running shoes side by side on the lane lines of a red running track, soft daylight, flat illustration",
+      "aspect": "4:3",
+      "cutout": false,
+      "key": "magenta",
+      "width": 680,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "builder reviewed"
+    },
+    {
+      "name": "evidence-desks",
+      "prompt": "An open office with one tall standing desk and one ordinary sitting desk side by side, each with a laptop with a blank screen, soft daylight, flat illustration",
+      "aspect": "4:3",
+      "cutout": false,
+      "key": "magenta",
+      "width": 680,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "builder reviewed"
+    },
+    {
+      "name": "evidence-callin",
+      "prompt": "An old landline telephone beside a television with a plain glowing blank screen on a living room side table, soft evening lamp light, flat illustration",
+      "aspect": "4:3",
+      "cutout": false,
+      "key": "magenta",
+      "width": 680,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "builder reviewed"
     }
   ]
 }

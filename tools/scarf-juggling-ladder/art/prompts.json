@@ -1,0 +1,104 @@
+{
+  "house_style": "Warm, accomplished gouache and colored-pencil picture-book illustration for grades 3-5. Soft textured paint, confident silhouettes, dimensional shading, warm morning light from upper left, friendly natural proportions. Indigo, cream, honey wood and dusty turquoise. No text, letters, numbers, logos or watermark.",
+  "assets": [
+    {
+      "name": "gym-wall",
+      "prompt": "A beautiful empty school gym, wide straight-on view. Tall pale cream wall with a deep dusty turquoise lower wall, high windows along upper left letting warm morning sunlight slant onto a honey-colored polished wooden floor. Blank indigo cloth banner high on the right. Wooden wall bars at far left, a bench and neatly stacked mats far right. Broad empty central wall and floor for a full-height animated child and flying scarves. Rich painted texture, quiet welcoming space, foreground floorboards and long soft shadows. No people.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "setup-scarves",
+      "prompt": "Three light translucent juggling scarves, orange with broad stripes, blue with little dots and magenta with a plain border band, loosely folded and draped on a honey-colored gym floor at the lower left. A broad inviting empty gym practice space extends behind them, turquoise lower wall and warm cream upper wall. Morning light shows fine gauze weave and soft fabric folds. No people.",
+      "aspect": "4:3",
+      "width": 700,
+      "quality": 76,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "juggler-body",
+      "prompt": "A friendly ten-year-old child with warm medium-brown skin and short curly dark hair, front view, small natural smile, plain dusty indigo gym t-shirt, ochre shorts, white socks and blue trainers. Full figure from head to shoes completely in frame, feet apart with a clear gap. Modular animation body asset: torso ends at both sleeve openings, with BOTH ARMS OMITTED at the shoulders for separately drawn arms. The sleeves are short. Front-facing neutral balanced stance. On perfectly flat pure green #00FF00 background. No shadows on background.",
+      "aspect": "3:4",
+      "width": 400,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "juggler-arm-right-low",
+      "prompt": "One isolated RIGHT arm of the same ten-year-old child, medium-brown skin, short dusty indigo t-shirt sleeve at the shoulder. Front-facing child's anatomical right arm is on viewer's left. Sleeve shoulder joint at TOP RIGHT of image, arm bends gently downward to waist, hand palm down, thumb and forefinger pinching an imaginary scarf, remaining fingers naturally relaxed. Entire arm in frame. Asset for a modular juggler. Perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "ref": "juggler-body",
+      "despill": true
+    },
+    {
+      "name": "juggler-arm-right-high",
+      "prompt": "One isolated RIGHT arm of the same ten-year-old child, medium-brown skin, short dusty indigo t-shirt sleeve. Front view: child's right is viewer's left. Shoulder joint near BOTTOM LEFT of image, arm reaches upward and inward across the body, open fingers releasing an imaginary scarf above the head, natural five-finger anatomy. Entire arm in frame. Modular animation asset. Perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "ref": "juggler-body",
+      "despill": true
+    },
+    {
+      "name": "juggler-arm-right-claw",
+      "prompt": "One isolated RIGHT arm of the same ten-year-old child, medium-brown skin, short dusty indigo t-shirt sleeve. Front view: child's right is viewer's left. Shoulder joint near BOTTOM RIGHT, bent elbow outward left, hand above shoulder height, palm faces downward, fingers gently curved down in an overhand claw catch, natural five-finger anatomy. Entire arm in frame. Modular animation asset. Perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "ref": "juggler-body",
+      "despill": true
+    },
+    {
+      "name": "juggler-arm-left-low",
+      "prompt": "One isolated LEFT arm of the same ten-year-old child, medium-brown skin, short dusty indigo t-shirt sleeve. Front-facing child's anatomical left arm is viewer's right. Sleeve shoulder joint at TOP LEFT, arm bends gently downward to waist, hand palm down, thumb and forefinger pinching an imaginary scarf, remaining fingers naturally relaxed. Entire arm in frame. Modular juggler animation asset. Perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "ref": "juggler-body",
+      "despill": true
+    },
+    {
+      "name": "juggler-arm-left-high",
+      "prompt": "One isolated LEFT arm of the same ten-year-old child, medium-brown skin, short dusty indigo t-shirt sleeve. Front view: child's left is viewer's right. Shoulder joint near BOTTOM RIGHT, arm reaches upward and inward across body, open fingers releasing an imaginary scarf above the head, natural five-finger anatomy. Entire arm in frame. Modular juggler animation asset. Perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "ref": "juggler-body",
+      "despill": true
+    },
+    {
+      "name": "juggler-arm-left-claw",
+      "prompt": "One isolated LEFT arm of the same ten-year-old child, medium-brown skin, short dusty indigo t-shirt sleeve. Front view: child's left is viewer's right. Shoulder joint near BOTTOM LEFT, bent elbow outward right, hand above shoulder height, palm faces downward, fingers gently curved down in an overhand claw catch, natural five-finger anatomy. Entire arm in frame. Modular juggler animation asset. Perfectly flat pure green #00FF00 background.",
+      "aspect": "3:4",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "ref": "juggler-body",
+      "despill": true
+    }
+  ]
+}

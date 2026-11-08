@@ -7,17 +7,18 @@
   "driver": "students or teacher",
   "minutes": "20-30",
   "modes": [
-    "Watch the Street",
-    "Street Jobs"
+    "Live street",
+    "Setups"
   ],
   "grades_label": "Grade 3",
   "sources": [
-    "MUTCD 2009 Sections 4D.26, 4E.06, 4E.08 and 4D.27",
-    "CSTA K-12 Computer Science Standards 2017, 1B-AP-10, 1B-AP-11, 1B-AP-15",
-    "Code.org CS Fundamentals glossary: conditional, event",
-    "Street scripts, driver model and fairness limits are original classroom model choices",
-    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+    "FHWA MUTCD 2009, 4D.26, 4E.06, 4E.08, 4D.27; public domain (FHWA MUTCD General FAQ). https://mutcd.fhwa.dot.gov/htm/2009/part4/part4d.htm; https://mutcd.fhwa.dot.gov/htm/2009/part4/part4e.htm",
+    "Minnesota DOT Traffic Signals 101 Course Manual, independent timing cross-check only; no text or figures copied. https://www.dot.mn.gov/trafficeng/signals/docs/signals-101-manual.pdf",
+    "Street scripts, driver assumptions, rule loop and fairness references: original Curio Class model; content CC BY 4.0, code MIT",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class; original art retained"
   ],
   "third_party": [],
-  "updated": "2026-11-03"
+  "updated": "2026-11-06",
+  "curiosity": true,
+  "plate": null
 }

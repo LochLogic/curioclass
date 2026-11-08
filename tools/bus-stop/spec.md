@@ -13,7 +13,7 @@ You drive Ms. Rosa's little school bus down a road you pick: kids hop on and off
 ## Who and how
 - Grade K, math, module "Putting Together and Taking Apart". Standards: K.OA.A.1, K.OA.A.2, K.OA.A.3, K.OA.A.4, K.OA.A.5.
 - Driver: teacher on a projector or smartboard (tool.json `driver: "teacher"`); the class tells each stop's story and says answers out loud, a child taps. Every question and choice is spoken and every choice is a picture, so a child alone at home can play it (BASELINE rule 4).
-- Minutes: one Drive trip 8 to 12, a Split round 5, an Express ride 3. A class period: one trip plus one Express ride.
+- Minutes: one Drive trip 8 to 12, a Split round 5, an Express ride 3, a Fill up ride 4. A class period: one trip plus one Express ride.
 - No personal prompts. Nothing is stored (only the kit's Motion setting).
 
 ## Standards map
@@ -22,11 +22,11 @@ You drive Ms. Rosa's little school bus down a road you pick: kids hop on and off
 | K.OA.A.1 represent with objects, expressions, equations | Taps the counter cup (or drags) once per kid who got on, or taps a counter once per kid who got off, then picks the number sentence that matches | Solid counters for riders already aboard, ringed counters for new riders, dashed empty rings for riders who left; the three sentence cards with dot pictures under each number | Check 3 and 4 |
 | K.OA.A.2 solve add and take-away stories within 10 | Watches the story stop (kids board or leave), shows it with counters, answers "How many riders now?" by picking the right card | Riders walking on or off the painted bus; the chart's new count; the card's total | Check 2, 3 and 4 |
 | K.OA.A.3 decompose a number every way, record each | At the Split stop (and in Split mode) taps counters across two play areas, then taps Keep it to record each new way | Live equation "7 = 4 + 3" with dots; the way list filling its empty slots; turn-around ways linked | Check 5 |
-| K.OA.A.4 make 10 from any number 1 to 9 | At the Ten stop fills every empty seat with counters, taps Done, then picks the card "n + e = 10" | The 2 by 5 chart going full, the extra kids waving at the curb, the card | Check 6 |
-| K.OA.A.5 fluently add and subtract within 5 | In Express, hears a quick story, says the answer out loud and taps a number tile (or the teacher taps Show me after the class calls it) | A five-seat strip, the riders moving, the sentence, a ticket per fact | Check 7 |
+| K.OA.A.4 make 10 from any number 1 to 9 | At the Ten stop (starts 4 to 8) and in Fill up (starts 1 to 9, every start within two rides) fills every empty seat with counters, taps Done, then picks "n + e = 10" from three cards that all end in 10, so the child must match the new counters to the second number | The 2 by 5 chart going full, the extra kids waving at the curb, the cards | Check 6 and 13 |
+| K.OA.A.5 fluently add and subtract within 5 | In Express, hears a quick story, says the answer out loud and taps a number tile (or the teacher taps Show me after the class calls it) | A five-seat strip holding the starting riders only (leavers stand at the door, no ring marks who left until the reveal), the riders moving, the sentence, a ticket per fact | Check 7 |
 
 ## Screens and modes
-Header (kit): title "Bus Stop", mode buttons (`.seg`, icon plus word, 60 px tall): `Drive` (bus icon, default), `Split` (two groups of dots), `Express` (lightning bolt); then `Read`, `Motion`, `Sound`. Every control is 60 px or more (44 px at the 680x425 preview) and carries an icon and a word.
+Header (kit): title "Bus Stop", mode buttons (`.seg`, icon plus word, 60 px tall): `Drive` (bus icon, default), `Split` (two groups of dots), `Express` (lightning bolt), `Fill up` (full bus icon); then `Read`, `Motion`, `Sound`. Every control is 60 px or more (44 px at the 680x425 preview) and carries an icon and a word.
 
 Panel (right, 330 px at 1366x768): Ms. Rosa's portrait (painted cutout, 120 px, three faces, see Art) beside the hint (22 px type, the kit `#hint`), then the mode's panel buttons, then the trip map (Drive only).
 
@@ -48,6 +48,8 @@ Fork: after stop 2 the stage shows two painted road signs with icons (Content) a
 
 **Express.** Focus: the five-seat strip and the riders. Layout at 1366x768: the school-street scene on top with the bus and the waiting or leaving kids; under it a five-seat strip (one row of 5 seats, 110 px each); under that six number tiles `0` to `5` (120 x 110, the numeral in 56 px over its dot pattern) and `Show me` (eye icon). The ride's five tickets sit across the scene top. Panel: portrait, hint, `Again` (circular arrow, shown when a ride ends). At 680x425 tiles are 64 x 60 and the tickets show the last one only.
 
+**Fill up** (added in Refine round 1, 2026-11-06, so K.OA.A.4 covers every start from 1 to 9). Focus: the seat chart and the cup, laid out as a Drive Ten stop (same scene band, chart, cup, `Done`, `See again`, cards). A ride is 5 buses at the Ice Cream Corner scene. Starts are drawn without repeats from 1 to 9 for the page load: ride 1 takes 5 of the nine, ride 2 the other 4 plus one, so two rides use every start. Each bus plays exactly as the Ten stop (Interactions), with e = 10 - n empty seats and e + 1 kids waiting (at most 10). Its three cards: `n + e = 10` | `n + (e-1) = 10` | `n + (e+1) = 10` (for n = 9 the second is `9 + 0 = 10`). A right card adds the ticket and the next bus pulls up; after 5 buses, `Again` (circular arrow) starts a new ride. Panel: portrait, hint, `Again` when a ride ends. At 680x425 as the Drive Ten stop.
+
 ## Content
 Seat chart order: counters fill seats left to right, top row then bottom row. Counter looks (never color alone): already aboard = solid yellow disc with an ink outline; got on at this stop = blue disc with a thick white ring and a plus mark; got off = the seat keeps a dashed empty ring with a small arrow out.
 
@@ -60,8 +62,8 @@ Park road (start 3 riders):
    - Duck Bridge, on 3: `4 + 3 = 7` | `4 - 3 = 1` | `4 + 3 = 8`
    - Big Hill, on 4: `4 + 4 = 8` | `4 - 4 = 0` | `4 + 4 = 9`
 4. The Park (Split stop): all riders get off to play, `Swings` or `Slide`. 7 riders (bridge) or 8 (hill).
-5. Ice Cream Corner (Ten stop): 7 aboard, 3 empty, 5 kids waiting: `7 + 3 = 10` | `7 + 2 = 9` | `7 + 0 = 7`. Hill: 8 aboard, 2 empty, 4 waiting: `8 + 2 = 10` | `8 + 1 = 9` | `8 + 0 = 8`.
-6. School, off 10: `10 - 10 = 0` | `10 - 9 = 1` | `10 - 0 = 10`
+5. Ice Cream Corner (Ten stop): 7 aboard, 3 empty, 5 kids waiting: `7 + 3 = 10` | `7 + 2 = 10` | `7 + 4 = 10`. Hill: 8 aboard, 2 empty, 4 waiting: `8 + 2 = 10` | `8 + 1 = 10` | `8 + 3 = 10`.
+6. School, off 10: `10 - 10 = 0` | `10 - 9 = 0` | `10 - 0 = 0`
 
 Library road (start 4):
 1. Bakery, on 2: `4 + 2 = 6` | `4 - 2 = 2` | `4 + 2 = 7`
@@ -70,7 +72,7 @@ Library road (start 4):
    - Big Street, off 1: `7 - 1 = 6` | `7 + 1 = 8` | `7 - 1 = 7`
    - Little Lane, off 2: `7 - 2 = 5` | `7 + 2 = 9` | `7 - 2 = 6`
 4. The Library (Split stop): `Story rug` or `Puppet stage`. 6 riders (Big Street) or 5 (Little Lane).
-5. Fruit Stand (Ten stop): 6 aboard, 4 empty, 6 waiting: `6 + 4 = 10` | `6 + 3 = 9` | `6 + 0 = 6`. Little Lane: 5 aboard, 5 empty, 7 waiting: `5 + 5 = 10` | `5 + 4 = 9` | `5 + 0 = 5`.
+5. Fruit Stand (Ten stop): 6 aboard, 4 empty, 6 waiting: `6 + 4 = 10` | `6 + 3 = 10` | `6 + 5 = 10`. Little Lane: 5 aboard, 5 empty, 7 waiting: `5 + 5 = 10` | `5 + 4 = 10` | `5 + 6 = 10`.
 6. School, off 10 (cards as on Park).
 
 Farm road (start 5):
@@ -80,24 +82,27 @@ Farm road (start 5):
    - Barn Road, off 3: `7 - 3 = 4` | `7 + 3 = 10` | `7 - 3 = 5`
    - Pumpkin Patch, off 1: `7 - 1 = 6` | `7 + 1 = 8` | `7 - 1 = 7`
 4. The Farm (Split stop): `Goats` or `Hens`. 4 riders (Barn Road) or 6 (Pumpkin Patch).
-5. Corn Stand (Ten stop): Barn Road: 4 aboard, 6 empty, 8 waiting: `4 + 6 = 10` | `4 + 5 = 9` | `4 + 0 = 4`. Pumpkin: 6 aboard, 4 empty, 6 waiting: `6 + 4 = 10` | `6 + 3 = 9` | `6 + 0 = 6`.
+5. Corn Stand (Ten stop): Barn Road: 4 aboard, 6 empty, 8 waiting: `4 + 6 = 10` | `4 + 5 = 10` | `4 + 7 = 10`. Pumpkin: 6 aboard, 4 empty, 6 waiting: `6 + 4 = 10` | `6 + 3 = 10` | `6 + 5 = 10`.
 6. School, off 10 (cards as on Park).
 
-Card kinds: the right card; the "wrong way" card (the other sign: on became off or off became on); the "miscount" card (total one more, or for take-away the start number, the "forgot to take away" slip). Ten stop wrong cards: "one seat left empty" (`n + (e-1) = 9`) and "nobody got on" (`n + 0 = n`). School wrong cards: "one rider still on" and "nobody got off".
+Card kinds: the right card; the "wrong way" card (the other sign: on became off or off became on); the "miscount" card (total one more, or for take-away the start number, the "forgot to take away" slip). Ten stop wrong cards (Refine round 1: a card picked by its total alone taught nothing, so all three end in 10): "one too few" (`n + (e-1) = 10`) and "one too many" (`n + (e+1) = 10`); the child matches the second number to the new counters. School wrong cards (all three end in 0, same reason): "one rider still on" (`10 - 9 = 0`) and "nobody got off" (`10 - 0 = 0`); the child matches the second number to the empty rings.
 
 **Split stop and Split mode.** A way is recorded as `n = a + b`, a on the left area, b on the right. Ways for n are the n + 1 pairs (n, 0) down to (0, n); each fills the slot of its left count, top slot = n on the left. Turn-around pairs: (a, b) and (b, a) with a not equal to b. In Drive, `Drive on` lights after 2 different ways. Split mode: n from 2 to 10, starting at 7 on the Park areas; each n keeps its own list for the page load.
 
-**Express facts** (25, all within 5): add a + b for a, b from 1 and a + b at most 5 (10 facts: 1+1, 1+2, 1+3, 1+4, 2+1, 2+2, 2+3, 3+1, 3+2, 4+1); take away a - b for 1 to 5 and b from 1 to a (15 facts, 1-1 up to 5-5). A ride is 5 facts drawn without repeats, at least 2 of each kind. On a fact the strip holds a counters; for "on", b kids wait at the curb; for "off", b counters wear the leaving ring and b kids stand at the door.
+**Express facts** (25, all within 5): add a + b for a, b from 1 and a + b at most 5 (10 facts: 1+1, 1+2, 1+3, 1+4, 2+1, 2+2, 2+3, 3+1, 3+2, 4+1); take away a - b for 1 to 5 and b from 1 to a (15 facts, 1-1 up to 5-5). A ride is 5 facts drawn without repeats, at least 2 of each kind. On a fact the strip holds a plain solid counters; for "on", b kids wait at the curb; for "off", b kids stand at the open door facing out, and no counter is marked as leaving until the reveal (Refine round 1: leaving rings shown before the answer made take-away "count the yellow ones"). Each fact uses a fresh set of kids. Rides mix kinds at random, 2 or 3 of each.
 
 ## Interactions in detail
 - Watch step: when a stop opens, the scene slides in, the door opens, and the story line plays while the riders walk on (they slide into the door and vanish) or step off (they appear at the door and walk to the curb), about 2.5 s with a small bob per step (Motion off: they appear at their end spot on the same beat). The cup (on stops) or the counters (off stops) are live from the first frame: a tap during the walk acts at once.
-- Tell first (toggle): riders wait at the curb or at the door; the hint and line ask the class to tell what will happen; `Go` starts the walk. Off by default.
+- First stop of a road: the road line and the start-counters line play first, and the riders' walk starts with the story line (not on the road tap), so "{k} kids get on" is heard while they board.
+- Tell first (toggle): riders wait at the curb or at the door; the hint and line ask the class to tell what will happen; `Go` starts the walk. Only `Go` is live while riders wait (cup, counters and Done wake with the walk). Off by default.
 - Show step, on stops: a tap on the cup (or a drag from it to any empty seat) adds one new counter in the next seat; tapping a new counter takes it back; aboard counters are fixed. The cup greys when no seat is empty. Off stops: the cup is hidden; tapping an aboard counter sends it off (dashed ring stays); tapping the ring brings it back. No running total is shown anywhere: the child counts.
 - `Done` checks the change, not the total: exact k new (on) or k gone (off). Too few: "Two kids got on, and you added one. Tap the cup for each kid." Too many: "Two kids got on, and you added three. Tap a blue counter to take one back." Both name `See again`. Done with no change gives the too-few line. The cards appear only after a right Done.
 - Tell step: the question and the three cards are read in order (one sequence; any tap cuts it). A card's speaker icon reads that card only. Tapping a card picks it:
   - Right: chime, the right line, ticket to the strip, drive-off (2 s, Motion off: the scene swaps on the same beat). The right line is `whole`: the next stop's story line waits for it.
   - Wrong way: the card greys; for 1.5 s the chart acts out the card (ghost counters leave for a minus card, ghost counters arrive for a plus card) and returns, while its line plays. Then the other two cards are live.
-  - Miscount: the card greys; the chart numbers each rider counter in turn while Ms. Rosa counts aloud (one number per 0.6 s), then the miss line.
+  - Miscount: the card greys; the chart numbers each seat that still holds a rider (solid or new, never a dashed ring), in seat order, while Ms. Rosa counts aloud (one number per 0.6 s), then the miss line.
+  - Ten stop and Fill up wrong cards: the card greys; the chart numbers the new (blue) counters in turn while Ms. Rosa counts them, then "{e} kids got on. Try another card."
+  - School wrong cards: the card greys; the chart numbers the dashed empty rings in turn while Ms. Rosa counts them, then "Ten kids got off. Try another card."
   - The bus never leaves on a wrong card. Greyed cards stay greyed for that stop. No score anywhere; tickets hold only right sentences.
 - Split stop and mode: counters start all on the left area (n = n + 0). Tap a counter to send it to the other area (or drag). The equation updates at once. `Keep it` records the shown way into its slot (slot fills with the equation and dots, chime). A duplicate makes its slot flash; its line plays once per pair. When both turn-around ways of a pair are kept, a curved link joins their slots with its line. When every slot is full, all slots pulse once and the all-ways line plays (whole). In Drive, `Drive on` (gold, bus icon) appears after 2 ways; the riders then walk back aboard and the chart shows n.
 - Ten stop: the waiting kids stand at the curb; each cup tap fills the next empty seat and one kid walks aboard. At 10 the cup greys and shows "Full" in code; a further tap plays the full line (once per stop). The kids left over wave (wave pose). `Done` with an empty seat: "There is still an empty seat. Tap the cup to fill it." Then the cards.
@@ -161,12 +166,18 @@ Split mode:
 - the kept, duplicate, link and all-ways lines as above.
 
 Express:
-- how, welcome (stale when a tile or Show me is tapped): "Express stops! Listen, say the answer out loud, then tap the number or Show me."
-- event, each fact: "{a} riders. {b} more get on. How many now?" / "{a} riders. {b} get off. How many now?"
+- No separate welcome (it was always dropped by the first fact). The first fact's how line: "Listen, say the answer out loud, then tap the number or Show me." then the fact.
+- event, each fact: "{a} riders. {b} more get on. How many now?" / "{a} riders. {b} get off. How many now?" The fact's story is also the first sentence of the Express hint, so Read says it again.
 - event, right tile: "Yes! {sentence}." Wrong tile: "Look. {sentence}." Show me: "{sentence}."
 - event, ride done: "Five express stops! Tap Again for a new ride."
 
-Read speaks the hint, which always names the current action and control (the how line of the step, or "Tap the number sentence that tells the story." while cards show).
+Fill up:
+- how, first bus (stale when Done is right): "Fill up the bus! {n} seats are full. Tap the cup to fill every empty seat. Then tap Done."
+- event, each later bus: "{n} seats are full."
+- the cup-full, empty-seat, cards and wrong-card lines as at the Ten stop; right card: "Yes! {n} plus {e} equals ten. The bus is full!"
+- event, ride done: "Five full buses! Tap Again for a new ride."
+
+Read speaks the hint, which always names the current action and control (the how line of the step, or "Tap the number sentence that tells the story." while cards show; in Express the fact's story, then the action).
 
 ## Family engine
 none
@@ -184,7 +195,7 @@ Backed twice: 5. Cut: 1 (a research claim about ten-frames helping K make ten; n
 Checks run (Python, S:/CurioClass-codex-scratch/specs/bus-stop/check.py, 2026-11-05):
 - All 6 route paths stay within 0 to 10 at every stop; every right card is true; every wrong-way card is a true sentence with the other sign and a different total; every miscount card is false; no card has a negative or a total over 10. A first draft had Farm at 9 riders minus 5, whose wrong-way card was 9 + 5 = 14, and Library's 2 + 4 whose wrong-way card had to be 4 - 2: both routes were re-numbered.
 - Split numbers by path: 7, 8, 6, 5, 4, 6; ways n + 1 (5 to 9); turn-around links 2 to 4; Split mode 2 to 10 gives 3 to 11 slots (fits in two columns).
-- Ten stops: empty seats 2 to 6, waiting kids empty + 2 = 4 to 8 (at most 10 rider cutouts in use); each stop's three cards have three different totals.
+- Ten stops: empty seats 2 to 6, waiting kids empty + 2 = 4 to 8 (at most 10 rider cutouts in use). Refine round 1 (2026-11-06) changed the Ten stop and School cards so all three share the total (10, or 0 at School) and differ in the second number; every wrong one is false (Ten: n + (e-1) and n + (e+1) are never 10; School: 10 - 9 and 10 - 0 are never 0), no number over 10. Fill up: starts 1 to 9, e = 9 down to 1, waiting e + 1 = 2 to 10 (at most 10 cutouts), wrong second numbers 0 to 10.
 - Express: 10 add + 15 take-away facts, largest sum 5.
 - Wrong behaviors: Done with 0, k-1, k+1 or 7 counters (on k = 2) fails; only exactly k passes, so mashing the cup never shows cards; Done with nothing fails; Express locks on the first tile, so mashing gives one answer; Split's Keep it without moving records a real way (n + 0), and Drive on needs two different ways; no score exists to game.
 - Contrast ratios as in Look.
@@ -195,13 +206,15 @@ Checks run (Python, S:/CurioClass-codex-scratch/specs/bus-stop/check.py, 2026-11
 3. Done passes only with exactly the stop's k counters added or removed (try 0, k-1, k+1 and ten cup taps), and no running total shows anywhere.
 4. A right card drives on with its ticket; a wrong-way card acts its sign out on the chart; a miscount card counts aloud; the bus never leaves on a wrong card. (K.OA.A.1, A.2)
 5. Split: Keep it records "n = a + b" into its slot, a duplicate flashes and its line plays once, both turn-around ways get linked, filling every slot plays the all-ways line, and Drive on appears after two ways. (K.OA.A.3)
-6. Ten stop: the cup stops at 10, the extra kids wave, and only "n + e = 10" drives on. (K.OA.A.4)
-7. Express: five facts within 5 per ride, the first tile locks, right and wrong both show the answer, no timer. (K.OA.A.5)
+6. Ten stop: the cup stops at 10, the extra kids wave, all three cards end in 10, and only "n + e = 10" drives on; a wrong card counts the blue counters. School's cards all end in 0 and a wrong one counts the empty rings. (K.OA.A.4)
+7. Express: five facts within 5 per ride, the first tile locks, right and wrong both show the answer, no timer; before the answer no counter is marked as leaving; Read repeats the fact's story. (K.OA.A.5)
 8. Tap while it plays: tapping the cup during the boarding walk adds a counter at once; a mode button during the drive-off switches at once and no older line plays after.
 9. Pre-reader: every choice (road, fork, cards, tiles, places) is a picture or numerals with dots and is spoken; a child with Sound on can finish a trip without reading.
 10. Voice: in five Done-wrong taps the Done line plays five times; the how lines play once each; no line names Done, Drive on or Go while it is hidden.
 11. Motion off: riders and bus appear at their end spots on the same beats; no wobble or pulse.
 12. No network requests; nothing is stored.
+13. Fill up: two rides use every start from 1 to 9; each bus plays as the Ten stop with three cards ending in 10. (K.OA.A.4)
 
 ## Open questions
 - None for Cory. The idea card's on-screen finger strip is left out: fingers are used in the room ("say the answer out loud" and the class can show fingers), and counters carry K.OA.A.1 on screen. People art (23 images) goes to the contact sheet and the fresh representation check.
+- Settled in Refine round 1 (2026-11-06, integrator, by BASELINE rule 2 and "a check must reward the right practice"): Express no longer marks leavers before the answer; Ten stop and School cards share their total; Fill up mode added so K.OA.A.4 covers starts 1 to 9; the first stop's walk waits for its story line; Read in Express repeats the fact.

@@ -52,18 +52,18 @@ of the physical card width. The physical squeezed card still stays hidden during
 Round 2 evidence and the report draft are in _scratch/virtual-gallery/round2/. The final polish.md distinguishes
 new before/after repairs from the twelve should-fix items already closed by the cold exit check.
 
-### New round 2 audit lead left open
+### Round 3 empty Show me repair, 2026-11-07
 
-The final audit found real focus losses on empty Checklist Show me for Selection, Theme and Labels at 1366x768.
-showProblem() enters empty Hang, then tries to focus wall-choice or edit-label, which the empty panel does not
-render. The Labels branch also overwrites the correct empty hint with Tap Label to edit. This means the original
-should-fix 8 is not fully closed for every empty Show me path, despite the prior exit check's closure.
+The updated refine verdict leaves only the empty Checklist Show me cases from should-fix 8. The three paths
+reproduced at both 1366x768 and 680x425: Selection, Theme and Labels lost focus to BODY, and Labels referred to
+a Label control which empty Hang does not render.
 
-The exact local follow-up is in src.html, showProblem(): handle !state.chosen.length before choosing a per-work
-target, preserve L.emptyHang, and focus an enabled Select control with preventScroll. Preserve the separate
-empty-statement path and do not describe a nonempty, unhung tray as empty. Reproduce all three empty Show me
-buttons with held clicks, then verify focus and Read's hint at 1366x768 and 680x425. This is a tool fix, not a kit
-change. No post-audit repair round was started; polish.md reports the lead as NOT FIXED.
+showProblem() now checks an empty chosen list before choosing any work or per-work target. Every empty request
+except Statement enters Hang, retains L.emptyHang and focuses m-select with preventScroll. Statement keeps its
+existing enabled editor button, and a selected-work request bypasses this guard. No score, label-writing rule,
+voice string, camera, art, room geometry or timing changed. The six matching after frames and focus/hint numbers
+are in _scratch/virtual-gallery/round3/after/ and its sibling JSON files. Three dedicated audit states exercise
+Selection, Theme and Labels with real clicks at both named sizes. See the new polish.md for the final checks.
 
 ## Cold review, 2026-11-04
 

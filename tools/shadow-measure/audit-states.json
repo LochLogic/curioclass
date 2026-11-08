@@ -1,0 +1,275 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "measure",
+      "steps": [
+        {
+          "click": "#to-measure"
+        }
+      ],
+      "keep": [
+        "#record",
+        "#tape-a",
+        "#tape-b",
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ]
+    },
+    {
+      "name": "why",
+      "steps": [
+        {
+          "click": "#to-measure"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#tape-a').getBoundingClientRect();const g=__tool.geometry;const k='a';const sign=(k==='a'||k==='b')?g[k].sign:1;const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[Math.round(x+(1.19-__tool.state[k])*g.scale*sign*i/15),Math.round(y+(i===0||i===15?0:((i%3)-1)))]);})();"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#tape-b').getBoundingClientRect();const g=__tool.geometry;const k='b';const sign=(k==='a'||k==='b')?g[k].sign:1;const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[Math.round(x+(10.01-__tool.state[k])*g.scale*sign*i/15),Math.round(y+(i===0||i===15?0:((i%3)-1)))]);})();"
+        },
+        {
+          "click": "#record"
+        }
+      ],
+      "keep": [
+        "#reasons",
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ]
+    },
+    {
+      "name": "reveal",
+      "steps": [
+        {
+          "click": "#to-measure"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#tape-a').getBoundingClientRect();const g=__tool.geometry;const k='a';const sign=(k==='a'||k==='b')?g[k].sign:1;const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[Math.round(x+(1.19-__tool.state[k])*g.scale*sign*i/15),Math.round(y+(i===0||i===15?0:((i%3)-1)))]);})();"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#tape-b').getBoundingClientRect();const g=__tool.geometry;const k='b';const sign=(k==='a'||k==='b')?g[k].sign:1;const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[Math.round(x+(10.01-__tool.state[k])*g.scale*sign*i/15),Math.round(y+(i===0||i===15?0:((i%3)-1)))]);})();"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#reason-0"
+        },
+        {
+          "click": "#reason-1"
+        },
+        {
+          "click": "#reveal"
+        }
+      ],
+      "keep": [
+        ".result-grid",
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ]
+    },
+    {
+      "name": "notebook",
+      "steps": [
+        {
+          "click": "#to-measure"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#tape-a').getBoundingClientRect();const g=__tool.geometry;const k='a';const sign=(k==='a'||k==='b')?g[k].sign:1;const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[Math.round(x+(1.19-__tool.state[k])*g.scale*sign*i/15),Math.round(y+(i===0||i===15?0:((i%3)-1)))]);})();"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#tape-b').getBoundingClientRect();const g=__tool.geometry;const k='b';const sign=(k==='a'||k==='b')?g[k].sign:1;const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[Math.round(x+(10.01-__tool.state[k])*g.scale*sign*i/15),Math.round(y+(i===0||i===15?0:((i%3)-1)))]);})();"
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#notebook"
+        }
+      ],
+      "keep": [
+        "#book"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "mirror-near",
+      "steps": [
+        {
+          "click": "#m-mirror"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#mirror-handle').getBoundingClientRect();const g=__tool.geometry;const k='mirror';const sign=(k==='a'||k==='b')?g[k].sign:1;const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[Math.round(x+(4-__tool.state[k])*g.scale*sign*i/15),Math.round(y+(i===0||i===15?0:((i%3)-1)))]);})();"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#tripod-handle').getBoundingClientRect();const g=__tool.geometry;const k='tripod';const sign=(k==='a'||k==='b')?g[k].sign:1;const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[Math.round(x+(0.89-__tool.state[k])*g.scale*sign*i/15),Math.round(y+(i===0||i===15?0:((i%3)-1)))]);})();"
+        },
+        {
+          "click": "#step-2"
+        }
+      ],
+      "keep": [
+        "#sight",
+        "#record",
+        "#tape-a",
+        "#tape-b",
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ]
+    },
+    {
+      "name": "dilation",
+      "steps": [
+        {
+          "click": "#m-streetlight"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#stick-handle').getBoundingClientRect();const g=__tool.geometry;const k='stick';const sign=(k==='a'||k==='b')?g[k].sign:1;const x=r.x+r.width/2,y=r.y+r.height/2;return Array.from({length:16},(_,i)=>[Math.round(x+(8-__tool.state[k])*g.scale*sign*i/15),Math.round(y+(i===0||i===15?0:((i%3)-1)))]);})();"
+        },
+        {
+          "click": "#dilation"
+        },
+        {
+          "click": "#to-measure"
+        }
+      ],
+      "keep": [
+        "#dilation",
+        "#record",
+        "#tape-a",
+        "#tape-b",
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ]
+    },
+    {
+      "name": "review-tree-long",
+      "steps": [
+        {
+          "js": "__tool.setObject('Tree');__tool.setSun(25);__tool.goStep(2);"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-hoop-high-sun",
+      "steps": [
+        {
+          "js": "__tool.setObject('Hoop');__tool.setSun(65);__tool.goStep(2);"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-mirror-far",
+      "steps": [
+        {
+          "js": "__tool.setMode('Mirror');__tool.moveObject('mirror',12);__tool.moveObject('tripod',2.67);__tool.goStep(2);"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-light-near",
+      "steps": [
+        {
+          "js": "__tool.setMode('Streetlight');__tool.moveObject('stick',1);__tool.goStep(2);"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-ratio-remeasure",
+      "steps": [
+        {
+          "js": "__tool.goStep(2);__tool.tape('a',.05);__tool.tape('b',.42);__tool.record();__tool.why(0,1);__tool.reveal();"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-refusal",
+      "steps": [
+        {
+          "js": "__tool.goStep(2);__tool.tape('a',1.19);__tool.tape('b',10.01);__tool.record();__tool.why(0,4);"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#hint",
+        ".steps",
+        ".footer-row"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

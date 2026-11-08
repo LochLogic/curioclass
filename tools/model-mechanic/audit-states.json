@@ -1,0 +1,372 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "after-run",
+      "steps": [
+        {
+          "click": "#k-1"
+        },
+        {
+          "click": "#run"
+        }
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "fox-repair",
+      "steps": [
+        {
+          "click": "#m-orders"
+        },
+        {
+          "click": "#more-1-0"
+        },
+        {
+          "click": "#more-1-1"
+        },
+        {
+          "click": "#run"
+        }
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "drawer",
+      "steps": [
+        {
+          "click": "#inspect"
+        }
+      ],
+      "keep": [
+        "#matrix",
+        "#evidence"
+      ],
+      "sizes": [
+        "1366x768",
+        "1000x625"
+      ]
+    },
+    {
+      "name": "training-photo",
+      "steps": [
+        {
+          "click": "#inspect"
+        },
+        {
+          "click": ".neighbors button"
+        }
+      ],
+      "keep": [
+        "#photo-dialog"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "minimum-count",
+      "steps": [
+        {
+          "click": "#less-0-0",
+          "times": 4
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "maximum-count",
+      "steps": [
+        {
+          "click": "#more-0-0",
+          "times": 4
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "night-shift",
+      "steps": [
+        {
+          "click": "#m-orders"
+        },
+        {
+          "click": "#more-1-0"
+        },
+        {
+          "click": "#more-1-1"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "ghost-deer",
+      "steps": [
+        {
+          "click": "#m-orders"
+        },
+        {
+          "click": "#k-1"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#clue-Mask"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "all-minimum",
+      "steps": [
+        {
+          "click": "#less-0-0",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#less-0-1",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#less-1-0",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#less-1-1",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#less-2-0",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#less-2-1",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#less-3-0",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#less-3-1",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#run"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "all-maximum",
+      "steps": [
+        {
+          "click": "#more-0-0",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#more-0-1",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#more-1-0",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#more-1-1",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#more-2-0",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#more-2-1",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#more-3-0",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#more-3-1",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#run"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "no-clues",
+      "steps": [
+        {
+          "click": "#clue-Size"
+        },
+        {
+          "click": "#clue-Legs"
+        },
+        {
+          "click": "#clue-Tail"
+        },
+        {
+          "click": "#clue-Mask"
+        },
+        {
+          "click": "#run"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "goal-reversed",
+      "sizes": [
+        "1366x768",
+        "1280x720"
+      ],
+      "steps": [
+        {
+          "click": "#m-orders"
+        },
+        {
+          "click": "#k-1"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#k-9"
+        },
+        {
+          "click": "#run"
+        }
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "finished-orders",
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-orders"
+        },
+        {
+          "click": "#k-1"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#clue-Mask"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#k-5"
+        },
+        {
+          "click": "#run"
+        }
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    }
+  ]
+}

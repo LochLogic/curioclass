@@ -1,61 +1,67 @@
 ## What it teaches
-Children represent riders getting on and off with counters and match each story to a number sentence within ten.
-They also record ways to split a group, fill empty seats to make ten, and practice addition and subtraction within five.
+Bus Stop is an open counter instrument for exploring addition, subtraction, splitting groups and empty seats.
+Children can move along a road at any time; tickets record stories they explored.
 
 ## Key skills
-- Count each rider once and show the change with objects.
-- Tell whether a story adds riders or takes them away.
-- Connect counters, dot pictures and number sentences.
-- Find and record different pairs that make the same group.
-- Count empty seats to complete a group of ten.
+- Represent riders getting on and off with objects.
+- Connect an action, a dot picture and a number sentence.
+- Split a group between two places and record its groupings.
+- Use empty seats to find a partner that makes ten.
+- Explore small addition and subtraction stories within five.
 
 ## Support at home
-- Use ten scraps of paper as seats. Add and remove small household objects and tell the bus story together.
-- Split a small collection between two hands. Ask what stayed the same when an object moved.
-- Say a short story within five, let your child answer aloud, then act it out together.
+- Use ten scraps of paper as seats. Add and remove small objects and tell a bus story together.
+- Split a collection between two hands and notice what stays the same when an object moves.
+- Tell a short rider story, say a number, then act it out together.
 
 ## A five-minute start
-Project Drive with Sound on. Tap Park and invite the class to tell what the children do at Maple Street.
-Ask a child to tap the cup once for each new rider, then Done. Read or listen to all three number sentences.
-Invite children to explain a wrong-sign choice by looking at the counters that move.
+Choose a road and tap the cup or seats. Done opens number sentences whose actions can be explored.
+Read repeats the current story. Drive on is always available at a stop, including a Split stop with no saved ways.
+There is no required route, grade or finishing screen.
 
 ## Modes
-**Drive:** Three roads each have two forks. Riders carry over between stops. At a Split stop, keep two different
-ways before driving on. Fill the bus at the Ten stop, then empty it at school. Other road restores the earlier fork.
-Tell first holds the riders until Go. See again replays the current stop without changing the counters.
-Once Done opens the cards, the cup, seat counters and Done are inactive until the next stop.
-Wrong cards remain grey as the specification requires. A child can find the remaining sentence by elimination;
-the tickets record completed stories and must not be treated as a measure of independent mastery.
+**Drive:** Three fictional roads have two branches each. Riders carry over between stops. At school, the road loops
+back to its fork for further exploration. Tell first holds riders until Go; cup, seat counters and Done wait for Go.
+See again replays the action. Number sentences grey after exploration; trying all of them is allowed.
+Tickets are observations, not evidence of independent mastery.
 
-**Split:** Choose two through ten riders. Tap or drag counters between the two painted places and Keep it to record
-each different way. Each number retains its list during this page load. Changing places keeps the same mathematics.
+**Split:** Choose two through ten riders. Tap or drag counters between two painted places. Keep it records a grouping.
+Each number retains its own list for this page load. More, Fewer and the place selector remain available after a full list.
 
-**Express:** Listen, say the answer aloud, then choose a number or Show me. A ride contains five facts, with at least
-two additions and two subtractions. The first answer is final for that fact. Both right and wrong answers are acted
-out and explained. There is no score, timer or speed reward. Number keys zero through five also choose a tile.
+**Express:** Listen with Read, say a number, tap it, or choose Show me. Each set of five contains two or three additions,
+with the rest subtractions. The first selection starts the demonstration. The starting counters stay unmarked before
+an off story is revealed. After the fifth story a fresh set continues, with five recent tickets still visible.
+Number keys zero through five also select a tile. Again opens a fresh set whenever wanted.
+
+**Fill up:** The same seat chart starts with one through nine seats full. Fill empty seats and explore number sentences
+that all end in ten. Starts come from a shuffled bag: the first five and the next four cover all nine starting numbers.
+Five buses roll into another set without a finishing screen. Again opens a fresh set.
 
 ## Talk questions
-- What changed at this stop? What stayed on the bus?
-- Which sign tells the story? Can a true number sentence tell a different story?
-- If we switch the two play groups, is the whole group still the same size?
-- How can the empty seats help us make ten?
+- What changed? What stayed on the bus?
+- Can a true sentence tell a different story?
+- What happens to the whole group when its parts switch sides?
+- What do the occupied seats and empty seats make together?
 
 ## Good to know
-This is a ten-seat story bus, not a claim about real school-bus capacity. The routes' make-ten questions begin with
-four through eight riders; the fixed spec does not include every starting number from one through nine.
-Children notice turn-around pairs without needing the formal name of the commutative property, introduced in grade one.
-The tool makes no requests and stores no student answers. Only the shared kit Motion preference is remembered.
-Speech uses the kit's browser voice fallback in this Build. No voice recordings were made.
+This invented bus has ten seats; it makes no claim about actual school-bus capacity.
+The first interaction may speak one quiet hint. Later speech waits for Read, which repeats the current story and action.
+Motion removes animation without shortening its timing. Only the device's shared Motion preference is remembered.
+No student answers or recordings are stored. The one-file instrument makes no network requests.
+The lower-left Manual holds instructions, discoveries, honesty notes and source/licence details.
 
 ## Standards and sources
-K.OA.A.1: counters and dot pictures represent operations. K.OA.A.2: children solve the stops' stories within ten.
-K.OA.A.3: Split records every ordered pair for a selected number. K.OA.A.4: Ten stops complete ten from four to eight.
-K.OA.A.5: Express practices the 25 positive-operand facts specified within five.
+K.OA.A.1 and A.2: counters, dots and original rider stories within ten. K.OA.A.3: ordered groupings in Split.
+K.OA.A.4: every starting count one through nine in Fill up, plus the route's Ten stop.
+K.OA.A.5: all ten positive-operand addition facts and fifteen take-away facts within five in Express.
+These are exploration opportunities, not a mastery assessment or a fluency measurement.
 
-- Common Core State Standards Initiative, [Kindergarten Operations and Algebraic Thinking](https://www.thecorestandards.org/Math/Content/K/OA/).
-- Common Core State Standards Initiative, [Grade 1 Operations and Algebraic Thinking](https://www.thecorestandards.org/Math/Content/1/OA/), 1.OA.B.3.
-- Common Core Standards Writing Team (2011), Progressions for the CCSS in Mathematics, K-5 Operations and Algebraic Thinking,
-  [kindergarten problem types](https://achievethecore.org/page/932/situation-types-for-operations-in-word-problems).
-  The cold review checked the named sources and independently recomputed all six routes and the 25 Express facts.
+- Curio Class original stories, arithmetic enumeration and illustrations: CC BY 4.0. Code: MIT.
+- [NGA Center and CCSSO, Kindergarten Operations and Algebraic Thinking](https://www.thecorestandards.org/Math/Content/K/OA/).
+  Curriculum reference only, under its [CCSS Public License](https://www.thecorestandards.org/public-license/).
+  No standards text or examples are incorporated into the instrument.
+- [Student Achievement Partners, Situation Types for Operations in Word Problems](https://achievethecore.org/page/932/situation-types-for-operations-in-word-problems).
+  This is a situation-types resource excerpted from the Progressions, not the full Progressions document.
+  Reference link only; no third-party resource content is bundled.
 
 Illustrations generated with OpenAI gpt-image, edited for Curio Class.

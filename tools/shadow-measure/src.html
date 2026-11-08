@@ -1,0 +1,1330 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Shadow Measure · Measure what you can't climb. · Curio Class</title>
+<meta name="description" content="Measure a painted schoolyard with similar triangles, mirrors and shadows. Grade 10 geometry. Works offline.">
+<!--
+Shadow Measure (Curio Class). Built from kit/starter/src.html.
+Grade 10 geometry, G-SRT.A.1, G-SRT.A.3, G-SRT.B.5. Students drive.
+Sources: Common Core HSG/SRT; Euclid VI.4, Joyce edition; OpenStax College Physics 2e 25.1 and 25.2;
+NBA Official Rule 1. Schoolyard heights are invented except the regulation hoop rim.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file. Session notebook stays on this device. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root { --brand:#ffd0f0; --brand-ink:#10161f; --focus:#8fe3ff; }
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { padding:12px 18px; gap:10px; flex-wrap:nowrap; }
+h1 { font-size:27px; white-space:nowrap; }
+h1 small { font-size:13px; }
+button,select { touch-action:manipulation; }
+button { min-width:44px; }
+.seg { border-radius:9px; border-width:1px; flex:none; }
+.seg button { min-height:44px; padding:0 14px; font-size:14px; }
+.settings { display:flex; gap:6px; }
+.icon-btn { min-height:44px; border-width:1px; border-radius:8px; padding:0 12px; font-size:13px; width:100px; }
+#read { width:78px; }
+main { grid-template-columns:minmax(0,1fr) 372px; min-height:0; }
+.panel {
+  grid-column:2; grid-row:1; min-height:0; overflow:hidden; padding:16px; gap:12px;
+  background:repeating-linear-gradient(0deg,transparent 0 27px,#ffffff03 27px 28px),#141b25;
+  box-shadow:-8px 0 25px #0002; z-index:2;
+}
+.notebook-heading { display:flex; align-items:center; justify-content:space-between; flex:none; }
+.notebook-heading h2 { font:600 16px Georgia,serif; margin:0; letter-spacing:.04em; }
+.serial { font:11px var(--readout-font); color:var(--muted); }
+.steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; flex:none; }
+.step { min-height:48px; border:1px solid #546071; background:#10161f; border-radius:5px; padding:3px; font-size:11px; }
+.step b { display:block; font:600 15px var(--readout-font); margin-bottom:2px; }
+.step[aria-current="step"] { background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+.step:disabled { color:#8390a2; cursor:default; }
+.hint { font-size:15px; line-height:1.4; min-height:64px; flex:none; padding-left:10px; border-left:2px solid var(--brand); }
+.page { min-height:0; flex:1; display:flex; flex-direction:column; gap:12px; }
+.page h3 { margin:0; font:500 23px Georgia,serif; }
+.field { display:flex; flex-direction:column; gap:4px; }
+.field label { font-size:11px; color:#bdc9d8; text-transform:uppercase; letter-spacing:.08em; }
+.field select { min-height:44px; padding:4px 10px; border:1px solid #6c7c90; border-radius:6px; background:#202a37; color:var(--ink); }
+.sun-caption { display:flex; justify-content:space-between; align-items:center; }
+.sun-caption output { font:15px var(--readout-font); color:var(--brand); }
+.detail { font-size:13px; line-height:1.4; margin:0; color:#b9c6d5; }
+.primary {
+  min-height:48px; padding:9px 14px; background:var(--brand); color:var(--brand-ink);
+  border:1px solid var(--brand); border-radius:6px; font-weight:700;
+}
+.primary:disabled { opacity:.45; cursor:default; }
+.measurements { display:grid; gap:9px; }
+.reading { display:grid; grid-template-columns:1fr auto; gap:6px; padding:12px; border:1px solid #4b596d; border-radius:6px; background:#0e1520; }
+.reading span { font-size:13px; align-self:center; }
+.reading output { font:22px var(--readout-font); color:#f3f0e8; }
+.reading small { grid-column:1/-1; color:#aebacd; font-size:11px; }
+.card-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.reason { min-height:68px; padding:8px; text-align:left; border:1px solid #6a788c; background:#1c2532; border-radius:6px; font-size:13px; line-height:1.3; }
+.reason[aria-pressed="true"] { border:2px solid var(--brand); background:#3a2c40; padding:7px; }
+.reason[aria-disabled="true"] { cursor:default; }
+.reason.refused { animation:shake .3s linear; }
+@keyframes shake { 25% { transform:translateX(-4px); } 75% { transform:translateX(4px); } }
+.feedback { min-height:19px; margin:0; font-size:12px; color:var(--warn); }
+.result-grid { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.result-grid div { background:#0e1520; border:1px solid #536176; border-radius:5px; padding:12px 8px; }
+.result-grid span { display:block; font-size:12px; color:var(--muted); margin-bottom:5px; }
+.result-grid strong { display:block; font:26px var(--readout-font); }
+.error-reading { font:600 20px var(--readout-font); color:var(--brand); margin:0; }
+.formula { border-top:1px solid #475467; padding-top:10px; color:#c8d5e4; font:13px/1.6 var(--readout-font); }
+.formula b { display:block; color:#f3f0e8; font-size:16px; }
+.footer-row { display:grid; grid-template-columns:1fr 1fr; gap:7px; flex:none; margin-top:auto; }
+.footer-row .btn { padding:3px; font-size:13px; }
+.privacy { font-size:10px; color:#aebacd; margin:0; text-align:center; flex:none; }
+.sight-block { display:flex; align-items:center; gap:10px; }
+#sight { width:104px; height:104px; border:6px solid #495667; border-radius:50%; background:#162333; flex:none; }
+#sight-status { font-size:13px; color:var(--ink); margin:0; line-height:1.4; }
+.dilation-wrap {
+  display:flex; flex-direction:column; gap:8px; position:absolute; top:18px; right:18px;
+  max-width:245px; align-items:flex-end;
+}
+#dilation { align-self:flex-end; }
+.dilation-text { font:12px/1.45 var(--readout-font); margin:0; color:#e5d6ad; background:#10161fed; padding:10px; border-radius:5px; }
+.dilation-short { display:none; }
+.stage { grid-column:1; grid-row:1; min-height:0; isolation:isolate; background:#b9d4ea; }
+#world { width:100%; height:100%; display:block; }
+#world:focus-visible { outline:3px solid var(--focus); outline-offset:-4px; }
+.scene-tag {
+  position:absolute; top:18px; left:20px; padding:8px 11px; color:#e8edf3; background:#10161feb;
+  border:1px solid #e8edf355; border-radius:5px; font:11px var(--readout-font); pointer-events:none;
+  letter-spacing:.04em; display:flex; align-items:center; gap:8px;
+}
+.dot { width:6px; height:6px; border-radius:50%; background:var(--brand); animation:breathe 4s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity:.3; box-shadow:0 0 6px #ffd0f0; } }
+.scene-caption {
+  position:absolute; bottom:14px; left:20px; right:20px; display:flex; justify-content:space-between; gap:10px;
+  color:#e8edf3; font:11px var(--readout-font); pointer-events:none;
+}
+.drag-handle {
+  position:absolute; width:44px; height:44px; border:1px solid #ffd0f0; background:#25303b;
+  border-radius:50%; color:var(--brand); font:700 18px var(--readout-font); touch-action:none;
+  cursor:ew-resize; box-shadow:0 3px 7px #0008; display:grid; place-items:center; padding:0;
+}
+.drag-handle:active { background:#4b354b; }
+.drag-handle:focus-visible { outline:3px solid #10161f; box-shadow:0 0 0 6px #8fe3ff; outline-offset:1px; }
+.object-handle { background:#10161fcc; border-color:#e8edf3; color:#fff; font-size:17px; border-radius:8px; }
+.tape-hidden { visibility:hidden; pointer-events:none; }
+dialog {
+  width:min(960px,calc(100vw - 24px)); max-height:calc(100dvh - 24px); border:1px solid #7f90a6;
+  border-radius:10px; color:#e8edf3; padding:16px; background:#141b25; box-shadow:0 20px 80px #000b;
+}
+dialog::backdrop { background:#07111dbb; }
+.dialog-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px; }
+.dialog-head h2 { margin:0; font:24px Georgia,serif; }
+.table-scroll { overflow:auto; max-height:calc(100dvh - 220px); }
+table { width:100%; border-collapse:collapse; font:12px var(--readout-font); white-space:nowrap; }
+th,td { border-bottom:1px solid #435168; text-align:right; padding:10px 7px; }
+th { color:#b8c6d8; font-size:11px; }
+td:nth-child(2),td:nth-child(3),th:nth-child(2),th:nth-child(3) { text-align:left; }
+.book-empty { text-align:center; color:#c3cddd; padding:25px; }
+.dialog-foot { display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:12px; }
+.calm .dot { animation:none; }
+.calm .reason.refused { animation:none; outline:2px solid var(--warn); }
+@media (min-height:900px) and (min-width:1000px) {
+  .page { flex:none; }
+  #inline-book { display:block!important; min-height:0; flex:1; overflow:auto; margin-top:12px; }
+  #inline-book table { font-size:10px; }
+  #inline-book td,#inline-book th { padding:5px 2px; }
+}
+@media (max-width:1099px) {
+  header { padding:8px 12px; gap:7px; }
+  h1 { font-size:23px; }
+  main { grid-template-columns:minmax(0,1fr) 334px; }
+  .panel { padding:12px; gap:9px; }
+  .icon-btn { font-size:0; width:44px!important; padding:0; }
+  .icon-btn::before { font-size:17px; content:attr(data-symbol); }
+}
+@media (max-height:899px) {
+  .notebook-heading { display:none; }
+  .panel { gap:8px; padding:12px; }
+  .page h3 { font-size:21px; }
+  .page { gap:10px; }
+  .hint { min-height:58px; font-size:14px; }
+  .measurements { grid-template-columns:1fr 1fr; }
+  .reading { padding:9px; grid-template-columns:1fr; }
+  .reading small { display:none; }
+  .reading output { font-size:20px; }
+  .reason { min-height:64px; font-size:12px; }
+  #sight { width:84px; height:84px; }
+  .privacy { display:none; }
+}
+@media (max-width:999px) and (min-height:900px) {
+  main { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 460px; }
+  .stage { grid-column:1; grid-row:1; }
+  .panel { grid-column:1; grid-row:2; border-left:0; border-top:1px solid #546071; }
+  .notebook-heading { display:none; }
+  .page { gap:7px; }
+  .page h3 { display:none; }
+  .hint { min-height:44px; }
+  .reason { min-height:48px; }
+  .measurements { grid-template-columns:1fr 1fr; }
+  #setup-page { display:grid; grid-template-columns:1fr 1fr; align-items:start; }
+  #setup-page #to-measure,#setup-page .detail { grid-column:1/-1; }
+  .privacy { display:none; }
+}
+@media (max-height:540px) and (min-width:600px) {
+  header { padding:5px 10px; gap:6px; }
+  h1 { font-size:18px; }
+  h1 small { display:none; }
+  .seg button { font-size:12px; padding:0 9px; }
+  main { grid-template-columns:minmax(0,1fr) 302px; }
+  .panel { padding:8px; gap:5px; }
+  .steps { gap:3px; }
+  .step { min-height:44px; }
+  .step b { display:inline; margin-right:3px; font-size:12px; }
+  .hint { min-height:42px; font-size:12px; line-height:1.35; padding-left:6px; }
+  .page { gap:5px; }
+  .page h3 { display:none; }
+  .primary { min-height:44px; padding:5px 8px; font-size:13px; }
+  .detail { font-size:11px; }
+  .field label { font-size:10px; }
+  .reason { min-height:48px; padding:5px; font-size:10.5px; line-height:1.2; }
+  .reason[aria-pressed="true"] { padding:4px; }
+  .feedback { min-height:14px; font-size:10px; }
+  .reading { padding:6px; gap:2px; }
+  .reading span { font-size:11px; }
+  .reading output { font-size:18px; }
+  .reading small { display:none; }
+  .measurements { gap:5px; }
+  .measurements { grid-template-columns:1fr 1fr; }
+  .reading { grid-template-columns:1fr; }
+  .dilation-wrap { top:10px; right:10px; width:calc(100% - 130px); max-width:none; }
+  .dilation-text { font-size:10px; line-height:1.3; padding:4px; width:100%; }
+  .dilation-wide { display:none; }
+  .dilation-short { display:inline; }
+  .sight-block { gap:7px; }
+  #sight { width:60px; height:60px; border-width:3px; }
+  #sight-status { font-size:11px; }
+  .result-grid div { padding:6px; }
+  .result-grid strong { font-size:20px; }
+  .formula { font-size:10px; padding-top:4px; }
+  .formula b { font-size:13px; }
+  .error-reading { font-size:16px; }
+  #setup-page { display:grid; grid-template-columns:1fr 1fr; align-content:start; align-items:start; }
+  #setup-page .sight-block,#setup-page .detail,#setup-page #to-measure { grid-column:1/-1; }
+  .scene-tag { top:10px; left:12px; font-size:10px; padding:6px 8px; }
+  .scene-caption { left:12px; right:12px; bottom:10px; font-size:10px; }
+}
+@media (max-width:599px) {
+  header { display:grid; grid-template-columns:1fr auto; gap:7px; padding:8px 10px; }
+  h1 { font-size:21px; }
+  h1 small { display:none; }
+  .seg { grid-row:2; grid-column:1/-1; display:flex; }
+  .seg button { flex:1; padding:0 9px; }
+  .settings { gap:5px; }
+  .icon-btn { border-radius:6px; }
+  main { grid-template-columns:1fr; grid-template-rows:minmax(0,.78fr) minmax(0,1fr); }
+  .stage { grid-column:1; grid-row:1; }
+  .panel { grid-column:1; grid-row:2; padding:9px 10px; gap:6px; border-left:0; border-top:1px solid #5f6d80; }
+  .step { min-height:44px; }
+  .step b { display:inline; font-size:12px; margin-right:4px; }
+  .page { gap:6px; }
+  .page h3 { display:none; }
+  .hint { min-height:40px; font-size:12px; line-height:1.35; }
+  .detail { font-size:11px; }
+  .reason { min-height:49px; font-size:10.5px; padding:5px; }
+  .reason[aria-pressed="true"] { padding:4px; }
+  .feedback { font-size:11px; min-height:15px; }
+  .reading { padding:7px; gap:3px; grid-template-columns:1fr; }
+  .reading output { font-size:20px; }
+  .reading small { display:none; }
+  .primary { min-height:44px; padding:5px 10px; font-size:14px; }
+  .measurements { grid-template-columns:1fr 1fr; gap:5px; }
+  .reading span { font-size:11px; }
+  .scene-tag { top:9px; left:10px; padding:5px 7px; font-size:10px; }
+  .scene-caption { bottom:9px; left:10px; right:10px; font-size:10px; }
+  .result-grid div { padding:7px; }
+  .result-grid strong { font-size:23px; }
+  .formula { padding-top:5px; font-size:11px; }
+  .formula b { font-size:14px; }
+  .error-reading { font-size:18px; }
+  #sight { width:68px; height:68px; border-width:4px; }
+  .dilation-wrap { top:9px; right:10px; width:calc(100% - 130px); max-width:none; }
+  .dilation-text { font-size:10px; line-height:1.3; padding:4px; width:100%; }
+  .dilation-wide { display:none; }
+  .dilation-short { display:inline; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Shadow Measure <small>Measure what you can't climb.</small></h1>
+  <div class="seg" role="group" aria-label="Method">
+    <button id="m-sun" aria-pressed="true">Sun</button>
+    <button id="m-mirror" aria-pressed="false">Mirror</button>
+    <button id="m-streetlight" aria-pressed="false">Streetlight</button>
+  </div>
+  <div class="settings">
+    <button class="icon-btn" id="motion" data-symbol="◌" aria-label="Motion" aria-pressed="true">Motion</button>
+    <button class="icon-btn" id="sound" data-symbol="♫" aria-label="Sound" aria-pressed="true">Sound</button>
+    <button class="icon-btn" id="read" data-symbol="▷" aria-label="Read current hint">Read</button>
+  </div>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <div class="notebook-heading"><h2>Schoolyard field notes</h2><span class="serial">SIMILARITY / 01</span></div>
+    <nav class="steps" aria-label="Lab steps">
+      <button class="step" id="step-1"><b>1</b>Set up</button>
+      <button class="step" id="step-2"><b>2</b>Measure</button>
+      <button class="step" id="step-3"><b>3</b>Why similar?</button>
+      <button class="step" id="step-4"><b>4</b>Reveal</button>
+    </nav>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <section class="page" id="setup-page" aria-label="Set up">
+      <h3>A little light. A tall question.</h3>
+      <div class="field" id="object-field">
+        <label for="object">What will you measure?</label>
+        <select id="object"><option>Flagpole</option><option>Tree</option><option>Hoop</option><option>Sign</option></select>
+      </div>
+      <div class="field" id="sun-field">
+        <div class="sun-caption"><label for="sun">Sun height</label><output id="sun-value">40°</output></div>
+        <input type="range" id="sun" min="25" max="65" step="1" value="40">
+      </div>
+      <div class="sight-block" id="sight-block" hidden>
+        <canvas id="sight" width="200" height="200" role="img" aria-label="Mirror sight window with a crosshair"></canvas>
+        <p id="sight-status" aria-live="polite"></p>
+      </div>
+      <p class="detail" id="setup-detail"></p>
+      <button class="primary" id="to-measure">Measure →</button>
+    </section>
+    <section class="page" id="measure-page" aria-label="Measure" hidden>
+      <h3>Read the ground.</h3>
+      <div class="measurements">
+        <div class="reading"><span id="label-a"></span><output id="value-a">0.00 m</output><small>End A · arrows: 0.01 m</small></div>
+        <div class="reading"><span id="label-b"></span><output id="value-b">0.00 m</output><small>End B · Shift + arrows: 0.10 m</small></div>
+      </div>
+      <p class="detail">Drag A and B to the endpoints. Arrow keys move 0.01 m; Shift moves 0.10 m.</p>
+      <button class="primary" id="record" disabled>Record readings</button>
+    </section>
+    <section class="page" id="why-page" aria-label="Why similar?" hidden>
+      <h3>Which angles have to match?</h3>
+      <div class="card-grid" id="reasons"></div>
+      <p class="feedback" id="why-feedback" aria-live="polite"></p>
+    </section>
+    <section class="page" id="reveal-page" aria-label="Reveal" hidden>
+      <h3 id="result-title">Your height comparison.</h3>
+      <div class="result-grid">
+        <div><span>Your estimate · wide bar</span><strong id="estimate">?</strong></div>
+        <div><span>Real height · thin bar</span><strong id="real">?</strong></div>
+      </div>
+      <p class="error-reading" id="error-reading">Ready to compare.</p>
+      <div class="formula" id="formula"></div>
+      <button class="primary" id="reveal">Reveal real height</button>
+    </section>
+    <div class="footer-row">
+      <button class="btn" id="new">New trial</button>
+      <button class="btn" id="notebook">Notebook · 0</button>
+    </div>
+    <p class="privacy">Session notebook stays on this device. It clears when this page closes.</p>
+    <div id="inline-book" hidden aria-label="Recent notebook entries"></div>
+  </aside>
+  <div class="stage" id="stage">
+    <canvas id="world" role="img" aria-label="Schoolyard measuring scene. Use the labeled draggable controls to measure."></canvas>
+    <div class="scene-tag"><span class="dot"></span><span id="scene-tag">SUN / FIELD TRIAL 01</span></div>
+    <div class="scene-caption"><span id="scene-note">Level ground · meters</span><span>Notes stay on this device</span></div>
+    <button class="drag-handle tape-hidden" id="tape-a" role="slider" aria-label="Stick shadow tape"
+      aria-valuemin="0" aria-valuemax="30" aria-valuenow="0" aria-valuetext="stick shadow tape, 0.00 meters">A</button>
+    <button class="drag-handle tape-hidden" id="tape-b" role="slider" aria-label="Object shadow tape"
+      aria-valuemin="0" aria-valuemax="30" aria-valuenow="0" aria-valuetext="object shadow tape, 0.00 meters">B</button>
+    <button class="drag-handle object-handle" id="mirror-handle" role="slider" aria-label="Mirror distance from wall"
+      aria-valuemin="4" aria-valuemax="12" aria-valuenow="9" hidden>↔</button>
+    <button class="drag-handle object-handle" id="tripod-handle" role="slider" aria-label="Tripod distance from mirror"
+      aria-valuemin="0.5" aria-valuemax="4" aria-valuenow="3" hidden>↔</button>
+    <button class="drag-handle object-handle" id="stick-handle" role="slider" aria-label="Stick distance from lamp"
+      aria-valuemin="1" aria-valuemax="8" aria-valuenow="5" hidden>↔</button>
+    <div class="dilation-wrap" id="dilation-wrap" hidden>
+      <button class="btn" id="dilation" aria-pressed="false">Show dilation</button>
+      <p class="dilation-text" id="dilation-text" hidden></p>
+    </div>
+  </div>
+</main>
+<dialog id="book" aria-labelledby="book-title">
+  <div class="dialog-head"><h2 id="book-title">Your field notebook</h2><button class="btn" id="close-book">Close</button></div>
+  <p class="detail">Recorded readings, including unfinished trials. Stored only for this page session on this device.</p>
+  <div class="table-scroll" id="book-table"></div>
+  <div class="dialog-foot"><span class="detail">A fresh measurement is a fresh trial.</span><button class="btn" id="clear">Clear notebook</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const canvas = $('world');
+  const ctx = canvas.getContext('2d');
+  const TAU = Math.PI * 2;
+  const round = n => Math.round((n + Number.EPSILON) * 100) / 100;
+  const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+  const fixed = n => n.toFixed(2);
+  const objects = {
+    Flagpole:{height:8.40, art:'sm-flagpole'},
+    Tree:{height:11.25, art:'sm-tree'},
+    Hoop:{height:3.05, art:'sm-hoop'},
+    Sign:{height:2.40, art:'sm-sign'},
+    Wall:{height:6.75, art:'sm-gym-wall'},
+    Lamp:{height:4.80, art:'sm-streetlight'},
+    Tripod:{height:1.50, art:'sm-tripod'},
+    Stick:{height:1.00, art:'sm-stick'}
+  };
+  const landmarks = "json:landmarks";
+  for (const o of Object.values(objects)) {
+    o.anchor = landmarks[o.art].base_x;
+    o.measured = landmarks[o.art].measured_y;
+  }
+  const artSources = {
+    'sm-schoolyard':'art:sm-schoolyard',
+    'sm-night':'art:sm-night',
+    'sm-flagpole':'art:sm-flagpole',
+    'sm-tree':'art:sm-tree',
+    'sm-hoop':'art:sm-hoop',
+    'sm-sign':'art:sm-sign',
+    'sm-gym-wall':'art:sm-gym-wall',
+    'sm-streetlight':'art:sm-streetlight',
+    'sm-tripod':'art:sm-tripod',
+    'sm-stick':'art:sm-stick',
+    'sm-mirror':'art:sm-mirror'
+  };
+  const art = {};
+  const silhouettes = {};
+  const state = {
+    mode:'Sun', step:1, object:'Flagpole', sun:40, mirror:9, tripod:3, stick:5, ghost:3.8,
+    a:0, b:0, movedA:false, movedB:false, choices:[], proved:false, revealed:false,
+    dilation:false, notebook:[], trial:1, row:null, feedback:'', failed:false,
+    taps:0, tripodMoved:false, revealAt:0, attempt:0
+  };
+  const L = {
+    wSun:'Pick an object, then tap Measure. Drag each tape from the base to the tip of its shadow.',
+    wMirror:'Drag the mirror into place. Then drag the tripod until the top of the wall sits in the crosshair.',
+    wLight:"Drag the stick anywhere, then tap Measure. Drag one tape to the lamp's base and one to the shadow tip.",
+    recordReady:'Both tapes are down. Tap Record to write them in the notebook.',
+    why:'Tap two reason cards that make the angles match.',
+    revealReady:'Those two reasons make the triangles similar. Tap Reveal to see the real height.',
+    crosshair:'There. The top is in the crosshair. Tap Measure, then drag the two tapes out from the mirror.',
+    crosshairTape:'There. The top is in the crosshair. Now drag the two tapes out from the mirror.',
+    close:'Very close. Your triangles did the climbing.',
+    far:"That one's off. Check where each tape ends, then tap New trial.",
+    tapeSun:'Drag tape A to the stick shadow tip and tape B to the object shadow tip.',
+    tapeMirror:'Drag tape A from the mirror to the wall base, and tape B from the mirror to the tripod.',
+    tapeLight:"Drag tape A from the stick to the lamp's base, and tape B to the shadow tip.",
+    pairRetry:'That pair does not establish two matching angles. Measure again, then choose a new pair.',
+    chooseSecond:'Tap one more reason card to complete your angle-angle explanation.',
+    newTrial:'Pick your setup, then tap Measure for a fresh reading.',
+    book:'Compare your readings and results in the notebook. Tap Close to return to the schoolyard.',
+    middle:'Your estimate is recorded. Try a fresh measurement and compare it in your notebook.',
+    ratioCheck:'The ratio agrees, but these tapes do not reach the marked endpoints. Tap New trial and measure again.',
+    recorded:'These readings are in the notebook. Move a tape for a fresh trial, or tap Why similar?',
+    alignFirst:'Drag the tripod until the wall top reaches the crosshair. Then lay out both tapes.',
+    proved:'Your angle pair is recorded. Tap Reveal to return to the height comparison.',
+    retryHint:'Tap Measure for two fresh readings before trying another angle pair.',
+    closeNext:'Very close. Your triangles did the climbing. Tap New trial to test another setup.',
+    middleNext:'Your estimate is recorded. Try a fresh measurement and compare it in your notebook. Tap New trial.'
+  };
+  const reasonText = [
+    'Both stand straight up on level ground: right angles',
+    "The sun's rays are parallel, so they meet the ground at the same angle",
+    'At a mirror the angle in equals the angle out',
+    'Both triangles share the angle at the shadow tip',
+    'The shadows are about the same color',
+    'The two triangles look about the same shape'
+  ];
+  const reasons = [];
+  let geometry = {};
+  let drag = null;
+  let frame = 0;
+  let mapPoint = null;
+  const V = Curio.voice({
+    lines:L,
+    scope:() => state.mode,
+    hint:false,
+    read:() => $('book').open ? L.book : $('hint').textContent,
+    welcome:() => {
+      if (state.step === 2 && !state.taps) {
+        const key = state.mode === 'Sun' ? 'tapeSun' : state.mode === 'Mirror' ?
+          (aligned() ? 'tapeMirror' : 'alignFirst') : 'tapeLight';
+        return [key, {valid:() => state.step === 2 && !state.taps}];
+      }
+      if (state.step !== 1) return null;
+      if (state.mode === 'Sun' && !state.taps) return ['wSun', {valid:() => !state.taps && state.step <= 2}];
+      if (state.mode === 'Mirror' && !state.tripodMoved) return ['wMirror', {valid:() => !state.tripodMoved && state.step <= 2}];
+      if (state.mode === 'Streetlight' && !state.taps) return ['wLight', {valid:() => !state.taps && state.step <= 2}];
+      return null;
+    }
+  });
+  function line(key, event = false, valid = () => true, needs = []) {
+    if (event) V.say(key, {valid, needs});
+    else if (!V.heard(key)) V.how(key, {valid, needs});
+  }
+  function currentObject() {
+    return state.mode === 'Sun' ? state.object : state.mode === 'Mirror' ? 'Wall' : 'Lamp';
+  }
+  function trueHeight() { return objects[currentObject()].height; }
+  function shadow(height = 1) { return height / Math.tan(state.sun * Math.PI / 180); }
+  function aligned() { return Math.abs(1.5 * state.mirror / state.tripod - 6.75) <= 0.1000001; }
+  function ready() {
+    return state.movedA && state.movedB && state.a > 0 && state.b > 0 && (state.mode !== 'Mirror' || aligned());
+  }
+  function expected() {
+    if (state.mode === 'Sun') return [shadow(), shadow(trueHeight())];
+    if (state.mode === 'Mirror') return [state.mirror, state.tripod];
+    return [state.stick, state.stick / 3.8];
+  }
+  function estimate(a = state.a, b = state.b, mode = state.mode) {
+    if (a <= 0 || b <= 0) return null;
+    if (mode === 'Sun') return b / a;
+    if (mode === 'Mirror') return 1.5 * a / b;
+    return (a + b) / b;
+  }
+  function describeTapes() {
+    if (state.mode === 'Sun') return ['Stick shadow', state.object === 'Hoop' ? 'Rim shadow' : state.object + ' shadow'];
+    if (state.mode === 'Mirror') return ['Mirror to wall', 'Mirror to tripod'];
+    return ['Stick to lamp', 'Stick shadow'];
+  }
+  function resetTrial(step = 1, preserveSpeech = false) {
+    if (!preserveSpeech) V.hush();
+    state.step = step;
+    state.a = 0;
+    state.b = 0;
+    state.movedA = false;
+    state.movedB = false;
+    state.choices = [];
+    state.proved = false;
+    state.revealed = false;
+    state.row = null;
+    state.feedback = '';
+    state.failed = false;
+    state.taps = 0;
+    state.tripodMoved = false;
+    state.revealAt = 0;
+    mapPoint = null;
+    sync();
+  }
+  function newTrial() {
+    const fresh = state.step === 1 && state.row === null && !state.taps && !state.tripodMoved &&
+      !state.revealed && !state.feedback;
+    state.trial++;
+    resetTrial(1,fresh);
+    Curio.tone(420, .07, .04);
+    V.welcome();
+  }
+  function setMode(mode) {
+    if (!['Sun','Mirror','Streetlight'].includes(mode)) return false;
+    if (state.mode === mode) { V.welcome(); return true; }
+    state.trial++;
+    state.mode = mode;
+    state.dilation = false;
+    resetTrial();
+    V.welcome();
+    return true;
+  }
+  function changedSetup() {
+    if (state.row !== null || state.step >= 3) {
+      state.trial++;
+      resetTrial(1);
+    } else {
+      state.a = 0;
+      state.b = 0;
+      state.movedA = false;
+      state.movedB = false;
+      state.feedback = '';
+    }
+    state.revealAt = 0;
+  }
+  function setSun(deg) {
+    if (!Number.isFinite(Number(deg))) return false;
+    const value = Math.round(clamp(Number(deg), 25, 65));
+    if (value === state.sun) return true;
+    changedSetup();
+    state.sun = value;
+    sync();
+    return true;
+  }
+  function setObject(name) {
+    if (!['Flagpole','Tree','Hoop','Sign'].includes(name)) return false;
+    if (state.object !== name) {
+      changedSetup();
+      state.object = name;
+      sync();
+    }
+    return true;
+  }
+  function moveObject(name, meters) {
+    if (!Number.isFinite(Number(meters))) return false;
+    const limits = {mirror:[4,12], tripod:[.5,4], stick:[1,8]};
+    if (!limits[name]) return false;
+    const value = round(clamp(Number(meters), ...limits[name]));
+    if (state[name] === value) return true;
+    const oldAligned = aligned();
+    if (name === 'tripod' && !state.tripodMoved) V.hush();
+    if (name === 'stick' && !drag) state.ghost = state.stick;
+    changedSetup();
+    state[name] = value;
+    if (name === 'tripod') state.tripodMoved = true;
+    if (state.mode === 'Mirror' && oldAligned && !aligned()) V.hush();
+    sync();
+    if (state.mode === 'Mirror' && aligned() && !oldAligned) {
+      Curio.yes();
+      const step = state.step;
+      const key = step === 1 ? 'crosshair' : 'crosshairTape';
+      line(key, true, () => state.mode === 'Mirror' && aligned() && state.step === step && step <= 2);
+    }
+    return true;
+  }
+  function goStep(step) {
+    const allowed = step === 1 || step === 2 || (step === 3 && state.row !== null) || (step === 4 && state.proved);
+    if (!allowed) return false;
+    if (state.step === 1 && step === 2) V.hush();
+    state.step = step;
+    state.revealAt = 0;
+    sync();
+    if (step === 2) {
+      if (ready() && state.row === null) line('recordReady', false, () => state.step === 2 && ready(), '#record');
+      else if (state.mode === 'Sun') line('tapeSun', false, () => state.step === 2 && !ready());
+      else if (state.mode === 'Mirror' && aligned()) {
+        line('tapeMirror', false, () => state.step === 2 && aligned() && !ready());
+      }
+      else if (state.mode === 'Streetlight') line('tapeLight', false, () => state.step === 2 && !ready());
+    }
+    if (step === 3) line('why', false, () => state.step === 3 && !state.proved);
+    if (step === 4 && !state.revealed) line('revealReady', false, () => state.step === 4 && !state.revealed, '#reveal');
+    Curio.tone(460 + step * 60, .045, .025);
+    return true;
+  }
+  function tape(name, meters) {
+    const key = ['a','stick','distance','wall','stick-shadow'].includes(name) ? 'a' :
+      ['b','object','shadow','tripod','object-shadow'].includes(name) ? 'b' : null;
+    if (!key || !Number.isFinite(Number(meters)) || state.step !== 2) return false;
+    if (!state.taps) V.hush();
+    state[key] = round(clamp(Number(meters), 0, geometry[key]?.max || geometry.tapeMax || 30));
+    state[key === 'a' ? 'movedA' : 'movedB'] = true;
+    state.taps++;
+    state.revealAt = 0;
+    state.feedback = '';
+    state.failed = false;
+    if (state.row !== null) {
+      state.row = null;
+      state.proved = false;
+      state.revealed = false;
+      state.choices = [];
+      state.trial++;
+    }
+    sync();
+    if (ready()) line('recordReady', false, () => state.step === 2 && ready() && state.row === null, '#record');
+    return true;
+  }
+  function record() {
+    if (state.step !== 2 || !ready() || state.row !== null) return false;
+    const heldFocus = document.activeElement === $('record');
+    V.hush();
+    state.notebook.push({
+      trial:state.trial, mode:state.mode, object:currentObject(), a:state.a, b:state.b,
+      estimate:estimate(), real:null, off:null, proved:false, refused:false
+    });
+    state.row = state.notebook.length - 1;
+    state.choices = [];
+    state.proved = false;
+    state.revealed = false;
+    state.step = 3;
+    state.failed = false;
+    state.feedback = '';
+    sync();
+    if (heldFocus) reasons[document.querySelector('.reason').id.split('-')[1]].focus({preventScroll:true});
+    Curio.tone(620, .09, .04);
+    line('why', false, () => state.step === 3 && !state.proved);
+    return true;
+  }
+  function correctPair(pair) {
+    const target = state.mode === 'Sun' ? 1 : state.mode === 'Mirror' ? 2 : 3;
+    return pair.length === 2 && pair.includes(0) && pair.includes(target);
+  }
+  function refusedReason(pair) {
+    if (pair.includes(4)) return "Color doesn't fix any angle.";
+    if (pair.includes(5)) return "Looking alike doesn't establish equal angles.";
+    if (!pair.includes(0)) return 'You still need a second pair of equal angles.';
+    return 'That light rule does not apply to this method.';
+  }
+  function chooseReason(id) {
+    if (state.step !== 3 || state.row === null || state.proved || !Number.isInteger(id) || id < 0 || id > 5) return false;
+    if (state.choices.includes(id)) state.choices = state.choices.filter(c => c !== id);
+    else state.choices.push(id);
+    Curio.tone(420 + id * 35, .04, .02);
+    if (state.choices.length < 2) { sync(); return false; }
+    const pair = [...state.choices];
+    state.attempt++;
+    if (correctPair(pair)) {
+      const heldFocus = document.activeElement.classList.contains('reason');
+      V.hush();
+      state.proved = true;
+      state.notebook[state.row].proved = true;
+      state.feedback = '';
+      state.step = 4;
+      sync();
+      if (heldFocus) $('reveal').focus({preventScroll:true});
+      Curio.yes();
+      line('revealReady', false, () => state.step === 4 && state.proved && !state.revealed, '#reveal');
+      return true;
+    }
+    state.notebook[state.row].refused = true;
+    V.hush();
+    pair.forEach(i => reasons[i].classList.add('refused'));
+    state.feedback = refusedReason(pair);
+    state.failed = true;
+    state.choices = [];
+    state.row = null;
+    state.a = 0;
+    state.b = 0;
+    state.movedA = false;
+    state.movedB = false;
+    state.trial++;
+    sync();
+    line('pairRetry', true, () => state.failed && state.step === 3);
+    setTimeout(() => pair.forEach(i => reasons[i].classList.remove('refused')), 350);
+    return false;
+  }
+  function why(a, b) {
+    if (state.step !== 3 || state.row === null || state.proved) return false;
+    state.choices = [];
+    chooseReason(a);
+    return chooseReason(b);
+  }
+  function reveal() {
+    if (state.step !== 4 || !state.proved || state.row === null || state.revealed) return false;
+    const heldFocus = document.activeElement === $('reveal');
+    V.hush();
+    const row = state.notebook[state.row];
+    if (!row.proved || row.refused || row.a !== state.a || row.b !== state.b) return false;
+    row.real = trueHeight();
+    row.off = Math.abs(row.estimate - row.real) / row.real * 100;
+    const actual = expected();
+    row.endsMatch = [row.a,row.b].every((v,i) => Math.abs(v-actual[i]) <= Math.max(.06,actual[i]*.03));
+    state.revealed = true;
+    state.revealAt = Curio.reduce ? 0 : performance.now();
+    sync();
+    if (heldFocus) $('new').focus({preventScroll:true});
+    Curio.tone(660, .12, .035);
+    const key = row.off < 2 ? (row.endsMatch ? 'close' : 'ratioCheck') : row.off > 10 ? 'far' : 'middle';
+    line(key, true, () => state.revealed && state.row !== null);
+    return true;
+  }
+  function setHint() {
+    let text;
+    if (state.step === 1) text = state.mode === 'Sun' ? L.wSun : state.mode === 'Mirror' ? L.wMirror : L.wLight;
+    else if (state.step === 2) {
+      if (state.row !== null) text = L.recorded;
+      else if (state.mode === 'Mirror' && !aligned()) text = L.alignFirst;
+      else if (ready()) text = L.recordReady;
+      else text = state.mode === 'Sun' ? L.tapeSun : state.mode === 'Mirror' ? L.tapeMirror : L.tapeLight;
+    } else if (state.step === 3) {
+      text = state.proved ? L.proved :
+        state.failed ? L.retryHint :
+        state.choices.length ? L.chooseSecond : L.why;
+    } else if (!state.revealed) text = L.revealReady;
+    else {
+      const row = state.notebook[state.row];
+      text = row.off < 2 ? (row.endsMatch ? L.closeNext : L.ratioCheck) :
+        row.off > 10 ? L.far : L.middleNext;
+    }
+    $('hint').textContent = text;
+  }
+  function formulaText(row) {
+    if (!row) return '';
+    if (row.mode === 'Sun') return `height = stick × (object shadow ÷ stick shadow)<b>1.00 × (${fixed(row.b)} ÷ ${fixed(row.a)})</b>`;
+    if (row.mode === 'Mirror') return `height = eye × (wall distance ÷ tripod distance)<b>1.50 × (${fixed(row.a)} ÷ ${fixed(row.b)})</b>`;
+    return `height = stick × (shadow + distance) ÷ shadow<b>1.00 × (${fixed(row.b)} + ${fixed(row.a)}) ÷ ${fixed(row.b)}</b>`;
+  }
+  function tableHTML(compact = false) {
+    if (!state.notebook.length) return '<p class="book-empty">No readings yet. Lay out two tapes, then tap Record.</p>';
+    const rows = compact ? state.notebook.slice(-4) : state.notebook;
+    const headings = compact ? ['Trial','Method','Estimate','Real','Off by'] :
+      ['Trial','Method','Object','Reading 1 (m)','Reading 2 (m)','Estimate (m)','Real (m)','Off by (%)'];
+    return '<table><thead><tr>' + headings.map(s => '<th>' + s + '</th>').join('') + '</tr></thead><tbody>' +
+      rows.map(r => {
+        const method = r.mode + (r.real !== null && r.endsMatch === false ? ' · remeasure' : '');
+        const cells = compact ? [r.trial,method,fixed(r.estimate),r.real === null ? '?' : fixed(r.real),
+          r.off === null ? '?' : r.off.toFixed(1)+'%'] :
+          [r.trial,method,r.object === 'Wall' ? 'Gym wall' : r.object === 'Lamp' ? 'Streetlight' : r.object,
+           fixed(r.a),fixed(r.b),fixed(r.estimate),r.real === null ? '?' : fixed(r.real),r.off === null ? '?' : r.off.toFixed(1)];
+        return '<tr>' + cells.map(c => '<td>' + c + '</td>').join('') + '</tr>';
+      }).join('') + '</tbody></table>';
+  }
+  function sync() {
+    for (const mode of ['Sun','Mirror','Streetlight']) $('m-' + mode.toLowerCase()).setAttribute('aria-pressed',state.mode === mode);
+    for (let i=1;i<=4;i++) {
+      const b = $('step-' + i);
+      b.disabled = i === 3 ? state.row === null && !state.failed : i === 4 && !state.proved;
+      if (i === state.step) b.setAttribute('aria-current','step');
+      else b.removeAttribute('aria-current');
+    }
+    ['setup','measure','why','reveal'].forEach((id,i) => $(id + '-page').hidden = state.step !== i+1);
+    $('object-field').hidden = state.mode !== 'Sun';
+    $('sun-field').hidden = state.mode !== 'Sun';
+    const page = [null,'setup-page','measure-page','why-page','reveal-page'][state.step];
+    if (state.mode === 'Mirror' && state.step <= 2 && $('sight-block').parentElement.id !== page) {
+      $(page).insertBefore($('sight-block'),$(page).firstElementChild);
+    }
+    $('sight-block').hidden = state.mode !== 'Mirror' || state.step > 2;
+    $('object').value = state.object;
+    $('sun').value = state.sun;
+    $('sun-value').textContent = state.sun + '°';
+    $('sun').setAttribute('aria-valuetext',state.sun + ' degrees');
+    $('setup-detail').textContent = state.mode === 'Sun' ?
+      (state.object === 'Hoop' ? 'Tape to the shadow of the rim. Rim height: 10 ft (3.05 m), rule as of 2026.' :
+        'A 1.00 m stick is your reference. The schoolyard heights are invented.') :
+      state.mode === 'Mirror' ? 'The eyepiece is 1.50 m above level ground. Mirror range: 4 to 12 m.' :
+      'A 1.00 m stick is your reference. Drag its ground handle from 1 to 8 m away.';
+    $('to-measure').disabled = state.mode === 'Mirror' && !aligned();
+    $('record').disabled = !ready() || state.row !== null;
+    const labels = describeTapes();
+    for (const [i,k] of ['a','b'].entries()) {
+      $('label-' + k).textContent = String.fromCharCode(65+i) + ' · ' + labels[i];
+      $('value-' + k).textContent = fixed(state[k]) + ' m';
+      const handle = $('tape-' + k);
+      handle.setAttribute('aria-label',labels[i] + ' tape');
+      handle.setAttribute('aria-valuenow',fixed(state[k]));
+      handle.setAttribute('aria-valuetext',labels[i].toLowerCase() + ' tape, ' + fixed(state[k]) + ' meters');
+      handle.classList.toggle('tape-hidden',state.step !== 2);
+      handle.tabIndex = state.step === 2 ? 0 : -1;
+    }
+    reasons.forEach((b,i) => {
+      b.setAttribute('aria-pressed',state.choices.includes(i));
+      b.setAttribute('aria-disabled',state.failed || state.proved);
+    });
+    $('why-feedback').textContent = state.feedback;
+    $('dilation-wrap').hidden = state.mode !== 'Streetlight' || state.step === 3;
+    $('dilation').setAttribute('aria-pressed',state.dilation);
+    $('dilation-text').hidden = !state.dilation;
+    const dilationWide = (state.revealed ?
+      'The stick is the lamp post dilated by k = 0.21 from the shadow tip. ' :
+      'Dilation center: the shadow tip. The numeric scale appears after Reveal. ') +
+      'Hover, or Tab to the scene and use arrow keys to map a point.';
+    const dilationShort = state.revealed ?
+      'k = 0.21 about the shadow tip. Hover or Tab to scene; use arrows.' :
+      'Center: shadow tip. k after Reveal. Hover or Tab to scene; use arrows.';
+    $('dilation-text').innerHTML = '<span class="dilation-wide">'+dilationWide+'</span>' +
+      '<span class="dilation-short">'+dilationShort+'</span>';
+    $('dilation').title = 'Hover over the lamp triangle, or Tab to the scene and use arrow keys, to map corresponding points.';
+    canvas.tabIndex = state.mode === 'Streetlight' && state.dilation ? 0 : -1;
+    canvas.setAttribute('aria-label',state.mode === 'Streetlight' && state.dilation ?
+      'Lamp triangle mapping. Arrow keys move the sample point; Home returns to the lamp top.' :
+      'Schoolyard measuring scene. Use the labeled draggable controls to measure.');
+    canvas.style.cursor = state.dilation ? 'crosshair' : 'default';
+    $('mirror-handle').hidden = state.mode !== 'Mirror';
+    $('tripod-handle').hidden = state.mode !== 'Mirror';
+    $('stick-handle').hidden = state.mode !== 'Streetlight';
+    $('scene-tag').textContent = state.mode.toUpperCase() + ' / FIELD TRIAL ' + String(state.trial).padStart(2,'0');
+    $('scene-note').textContent = state.mode === 'Sun' ? 'Level ground · stick 1.00 m' :
+      state.mode === 'Mirror' ? 'Level ground · eye 1.50 m' : 'Level ground · stick 1.00 m';
+    $('sight-status').textContent = aligned() ? (state.step === 1 ? 'Top in the crosshair. Tap Measure to lay the tapes.' :
+      'Top in the crosshair. Tape from the mirror to both ground points.') :
+      'Slide the tripod: bring the reflected wall top onto the crosshair.';
+    if (state.row !== null) {
+      const row = state.notebook[state.row];
+      $('result-title').textContent = row.off !== null && row.off < 2 ?
+        (row.endsMatch ? 'Your triangles did the climbing.' : 'Right ratio. Recheck the tapes.') : 'Your height comparison.';
+      $('estimate').textContent = fixed(row.estimate) + ' m';
+      $('real').textContent = row.real === null ? '?' : fixed(row.real) + ' m';
+      $('error-reading').textContent = row.off === null ? 'Ready to compare.' :
+        'Off by ' + row.off.toFixed(1) + '%' + (row.off > 10 ? ' · Check each tape end.' : '');
+      $('formula').innerHTML = formulaText(row);
+    }
+    $('reveal').disabled = !state.proved || state.revealed;
+    $('notebook').textContent = 'Notebook · ' + state.notebook.length;
+    $('inline-book').innerHTML = tableHTML(true);
+    if ($('book').open) $('book-table').innerHTML = tableHTML();
+    setHint();
+    draw();
+  }
+  function loadArt() {
+    const loads = Object.entries(artSources).map(([key,src]) => new Promise(resolve => {
+      const img = new Image();
+      img.onload = () => {
+        art[key] = img;
+        if (key !== 'sm-schoolyard' && key !== 'sm-night') {
+          const c = document.createElement('canvas');
+          c.width = img.width;
+          c.height = img.height;
+          const g = c.getContext('2d');
+          g.drawImage(img,0,0);
+          g.globalCompositeOperation = 'source-in';
+          g.fillStyle = '#000';
+          g.fillRect(0,0,c.width,c.height);
+          silhouettes[key] = c;
+        }
+        resolve();
+      };
+      img.onerror = () => resolve();
+      img.src = src;
+    }));
+    Promise.all(loads).then(draw);
+  }
+  function pill(text,x,y,dark = false) {
+    ctx.font = '600 12px "Segoe UI", sans-serif';
+    const width = ctx.measureText(text).width + 14;
+    x = clamp(x,width/2+5,geometry.w-width/2-5);
+    ctx.fillStyle = dark ? '#10161fed' : '#f3f0e8f5';
+    ctx.beginPath();
+    ctx.roundRect(x-width/2,y-11,width,23,4);
+    ctx.fill();
+    ctx.fillStyle = dark ? '#e8edf3' : '#10161f';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(text,x,y+1);
+  }
+  function stroke(points,color,width = 1.5,dash = []) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    ctx.setLineDash(dash);
+    ctx.beginPath();
+    points.forEach(([x,y],i) => i ? ctx.lineTo(x,y) : ctx.moveTo(x,y));
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  function objectSize(name,scale) {
+    const o = objects[name];
+    const img = art[o.art];
+    const height = o.height*scale/(1-o.measured);
+    const width = img ? height*img.width/img.height : height*.3;
+    return {width,height};
+  }
+  function paintObject(name,x,y,scale,opacity = 1) {
+    const o = objects[name];
+    const img = art[o.art];
+    if (!img) return;
+    const {width,height} = objectSize(name,scale);
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.drawImage(img,x-o.anchor*width,y-height,width,height);
+    ctx.restore();
+  }
+  function paintShadow(name,base,y,scale,length,depth = 24,opacity = .45) {
+    const o = objects[name];
+    const silhouette = silhouettes[o.art];
+    if (!silhouette) return;
+    const fullLength = length/(1-o.measured);
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    // Image height projects along the ground, with the original width across the measuring strip.
+    ctx.transform(0,depth/silhouette.width,-fullLength/silhouette.height,0,base+fullLength,y-o.anchor*depth);
+    ctx.drawImage(silhouette,0,0);
+    ctx.restore();
+  }
+  function chalk(x,y,ring = false) {
+    stroke([[x,y-9],[x,y+9]],'#ffd0f0',2.5);
+    stroke([[x-4,y-7],[x+4,y-7]],'#ffd0f0',1.4);
+    if (ring) {
+      ctx.strokeStyle = '#ffd0f0';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.ellipse(x,y,9,5,0,0,TAU);
+      ctx.stroke();
+    }
+  }
+  function rightAngle(x,y,direction = 1) {
+    stroke([[x,y-10],[x+direction*10,y-10],[x+direction*10,y]],'#ffe7a3',1.5);
+  }
+  function tapeStrip(k,origin,y,sign,max) {
+    const value = state[k];
+    const end = origin+sign*value*geometry.scale;
+    const left = Math.min(origin,end);
+    const width = Math.max(2,Math.abs(end-origin));
+    ctx.fillStyle = '#0004';
+    ctx.fillRect(left,y+2,width,13);
+    ctx.fillStyle = '#f3f0e8';
+    ctx.fillRect(left,y-7,width,11);
+    const tickStep = geometry.scale >= 35 ? .1 : .5;
+    for (let t=0;t<=value;t+=tickStep) {
+      const px = origin+sign*t*geometry.scale;
+      const major = Math.abs(t-Math.round(t)) < .001;
+      stroke([[px,y-7],[px,y+(major ? 2 : -2)]],'#343a40',major ? 1.4 : .8);
+    }
+    ctx.fillStyle = '#e7c080';
+    ctx.beginPath();
+    ctx.roundRect(origin-8,y-12,16,23,3);
+    ctx.fill();
+    stroke([[origin-4,y-5],[origin+4,y-5]],'#745b39',1);
+    const labelX = Math.abs(end-origin)<90 ? origin+55 : (origin+end)/2;
+    pill(k.toUpperCase() + '  ' + fixed(value) + ' m',labelX,y-36,true);
+    const handle = $('tape-' + k);
+    handle.style.left = (clamp(end,23,geometry.w-23)-22) + 'px';
+    handle.style.top = (y-22) + 'px';
+    const safeMax = Math.min(max,(sign > 0 ? geometry.w-25-origin : origin-25)/geometry.scale);
+    handle.setAttribute('aria-valuemax',safeMax);
+    geometry[k] = {origin,y,sign,end,max:safeMax};
+    if (state.revealed) {
+      const target = expected()[k === 'a' ? 0 : 1];
+      const targetX = origin+sign*target*geometry.scale;
+      // Compare this student's endpoint with the physical target only after Reveal.
+      stroke([[end,y-12],[targetX,y-12]],'#ffd0f0',2,[3,3]);
+      stroke([[targetX,y-18],[targetX,y+7]],'#ffd0f0',2);
+      if (Math.abs(targetX-end)>6) stroke([[targetX-sign*5,y-17],[targetX,y-12],[targetX-sign*5,y-7]],'#ffd0f0',2);
+    }
+  }
+  function placeHandle(id,x,y,value,label) {
+    const handle = $(id);
+    handle.style.left = clamp(x-22,2,geometry.w-46) + 'px';
+    handle.style.top = clamp(y-22,48,geometry.h-70) + 'px';
+    handle.setAttribute('aria-valuenow',value);
+    handle.setAttribute('aria-valuetext',label + ', ' + fixed(value) + ' meters');
+  }
+  function paintBackdrop(w,h,ground) {
+    const img = art[state.mode === 'Streetlight' ? 'sm-night' : 'sm-schoolyard'];
+    ctx.fillStyle = state.mode === 'Streetlight' ? '#0b1020' : '#b9d4ea';
+    ctx.fillRect(0,0,w,h);
+    if (img) {
+      const ih = ground+10;
+      const ratio = Math.max(w/img.width,ih/img.height);
+      const dw = img.width*ratio;
+      const dh = img.height*ratio;
+      ctx.drawImage(img,(w-dw)/2,ih-dh,dw,dh);
+    }
+    const gradient = ctx.createLinearGradient(0,ground-20,0,h);
+    gradient.addColorStop(0,state.mode === 'Streetlight' ? '#252c3b' : '#484c50');
+    gradient.addColorStop(.3,state.mode === 'Streetlight' ? '#202736' : '#3b3f45');
+    gradient.addColorStop(1,state.mode === 'Streetlight' ? '#121b2a' : '#30353b');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0,ground-14,w,h-ground+14);
+    stroke([[0,ground-14],[w,ground-14]],state.mode === 'Streetlight' ? '#637184' : '#c6cfbb',3);
+    ctx.fillStyle = '#b8bdc020';
+    for (let i=0;i<90;i++) {
+      const x = (i*137.3)%w;
+      const y = ground+((i*41.7)%Math.max(1,h-ground));
+      ctx.fillRect(x,y,1.5,1);
+    }
+    stroke([[w*.65,h],[w*.63,h-26],[w*.66,h-45],[w*.64,h-60]],'#11192538',1);
+  }
+  function drawSun(w,h) {
+    const name = state.object;
+    const o = objects[name];
+    const narrow = w < 450;
+    const ground = h-(narrow ? 120 : 148);
+    const raw = objectSize(name,1);
+    const leftExtent = Math.max(1.3,raw.width*o.anchor);
+    const rightExtent = Math.max(shadow(o.height)/(1-o.measured),raw.width*(1-o.anchor));
+    const scale = Math.max(3,Math.min((w-56)/(leftExtent+rightExtent+1.6),(ground-58)/raw.height));
+    const base = 28+leftExtent*scale;
+    geometry = {w,h,scale,base,ground,tapeMax:(w-28-base)/scale};
+    paintBackdrop(w,h,ground);
+    const objectShadow = shadow(o.height)*scale;
+    const stickY = ground+(narrow ? 49 : 61);
+    const stickShadow = shadow()*scale;
+    paintShadow(name,base,ground+3,scale,objectShadow,narrow ? 22 : 34);
+    paintShadow('Stick',base,stickY,scale,stickShadow,8);
+    paintObject(name,base,ground,scale);
+    paintObject('Stick',base,stickY,scale);
+    stroke([[base,ground-o.height*scale],[base+objectShadow,ground]],'#ffe7a3',1.7);
+    stroke([[base,stickY-scale],[base+stickShadow,stickY]],'#ffe7a3',1.7);
+    rightAngle(base,ground);
+    rightAngle(base,stickY);
+    chalk(base+objectShadow,ground,name === 'Hoop');
+    chalk(base+stickShadow,stickY);
+    chalk(base,ground);
+    pill(name === 'Hoop' ? 'Rim' : name,base+115,Math.max(64,ground-o.height*scale-20));
+    pill('1.00 m',base+Math.max(stickShadow,22)+96,stickY-6);
+    if (name === 'Hoop') stroke([[base,ground],[base,ground-o.height*scale]],'#ffd0f0',1,[3,4]);
+    tapeStrip('b',base,ground+28,1,geometry.tapeMax);
+    tapeStrip('a',base,stickY+28,1,geometry.tapeMax);
+    drawReveal(base+Math.min(64,scale*1.5),ground,scale);
+  }
+  function drawMirror(w,h) {
+    const ground = h-(w < 450 ? 145 : 152);
+    const scale = Math.max(3,Math.min((w-68)/18,(ground-64)/6.75));
+    const base = Math.max(34,scale*1.5);
+    const mirror = base+state.mirror*scale;
+    const tripod = mirror+state.tripod*scale;
+    geometry = {w,h,scale,base,ground,tapeMax:Math.max(12,(w-30-base)/scale)};
+    paintBackdrop(w,h,ground);
+    paintObject('Wall',base,ground,scale);
+    paintObject('Tripod',tripod,ground,scale);
+    const img = art['sm-mirror'];
+    if (img) ctx.drawImage(img,mirror-15,ground-3,30,4);
+    const hitHeight = 1.5*state.mirror/state.tripod;
+    const rayY = ground-hitHeight*scale;
+    stroke([[base,rayY],[mirror,ground],[tripod,ground-1.5*scale]],'#ffe7a3',2);
+    stroke([[mirror,ground],[mirror,ground-Math.min(65,ground-48)]],'#f3f0e8',1,[4,4]);
+    stroke([[tripod,ground],[tripod,ground-1.5*scale]],'#e8edf3',1,[3,4]);
+    rightAngle(base,ground);
+    rightAngle(tripod,ground,-1);
+    chalk(base,ground);
+    chalk(mirror,ground);
+    chalk(tripod,ground);
+    pill('Gym wall',base,Math.max(59,ground-6.75*scale-18));
+    pill('Mirror',mirror,ground-26);
+    pill('Eye 1.50 m',tripod-35,ground-Math.max(1.5*scale+25,96));
+    tapeStrip('a',mirror,ground+39,-1,geometry.tapeMax);
+    tapeStrip('b',mirror,ground+93,1,geometry.tapeMax);
+    placeHandle('mirror-handle',mirror,ground-60,state.mirror,'Mirror distance from wall');
+    placeHandle('tripod-handle',tripod+34,ground-42,state.tripod,'Tripod distance from mirror');
+    drawSight(hitHeight);
+    drawReveal(base+24,ground,scale);
+  }
+  function drawSight(hitHeight) {
+    const g = $('sight').getContext('2d');
+    g.clearRect(0,0,200,200);
+    g.save();
+    g.beginPath();
+    g.arc(100,100,100,0,TAU);
+    g.clip();
+    const gradient = g.createLinearGradient(0,0,0,200);
+    gradient.addColorStop(0,'#c6ddec');
+    gradient.addColorStop(1,'#91b3cc');
+    g.fillStyle = gradient;
+    g.fillRect(0,0,200,200);
+    const top = clamp(100+(6.75-hitHeight)*95,-240,440);
+    const img = art['sm-gym-wall'];
+    if (img) {
+      g.save();
+      g.translate(0,top);
+      g.scale(1,-1);
+      g.drawImage(img,-140,0,480,174);
+      g.restore();
+    }
+    g.fillStyle = '#d9efff33';
+    g.fillRect(15,0,8,200);
+    g.strokeStyle = aligned() ? '#fff4d1' : '#10161f';
+    g.lineWidth = 2;
+    g.beginPath();
+    g.moveTo(35,100);
+    g.lineTo(165,100);
+    g.moveTo(100,35);
+    g.lineTo(100,165);
+    g.stroke();
+    g.strokeStyle = '#10161f88';
+    g.beginPath();
+    g.arc(100,100,12,0,TAU);
+    g.stroke();
+    g.restore();
+  }
+  function drawStreetlight(w,h) {
+    const ground = h-(w < 450 ? 144 : 155);
+    const scale = Math.max(3,Math.min((w-86)/11.6,(ground-58)/4.8));
+    const base = 43;
+    const stick = base+state.stick*scale;
+    const length = state.stick/3.8*scale;
+    const tip = stick+length;
+    const previous = geometry;
+    geometry = {w,h,scale,base,ground,tapeMax:Math.max(9,(w-30-base)/scale),tip,stick};
+    if (mapPoint && previous.tip !== undefined) {
+      const x = clamp(base+(mapPoint.x-previous.base)*scale/previous.scale,base,tip);
+      const y = ground-(previous.ground-mapPoint.y)*scale/previous.scale;
+      const rayY = ground-4.8*scale*(tip-x)/(tip-base);
+      mapPoint = {x,y:clamp(y,rayY,ground)};
+    }
+    paintBackdrop(w,h,ground);
+    const lightY = ground-4.8*scale;
+    const glow = ctx.createRadialGradient(base,lightY,2,base,lightY,Math.max(55,scale*2));
+    glow.addColorStop(0,'#ffe7a388');
+    glow.addColorStop(1,'#ffe7a300');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0,Math.max(0,lightY-scale*2),base+scale*2,scale*4);
+    ctx.fillStyle = '#ffe7a314';
+    ctx.beginPath();
+    ctx.moveTo(base,lightY);
+    ctx.lineTo(Math.min(w,base+11*scale),ground);
+    ctx.lineTo(base-25,ground);
+    ctx.closePath();
+    ctx.fill();
+    paintObject('Lamp',base,ground,scale);
+    const ghostX = base+state.ghost*scale;
+    paintObject('Stick',ghostX,ground,scale,.26);
+    paintShadow('Stick',ghostX,ground+1,scale,state.ghost/3.8*scale,6,.2);
+    paintShadow('Stick',stick,ground+1,scale,length,9,.75);
+    paintObject('Stick',stick,ground,scale);
+    stroke([[base,lightY],[tip,ground]],'#ffe7a3',1.7);
+    stroke([[stick,ground-scale],[tip,ground]],'#ffd0f0',2.6);
+    rightAngle(base,ground);
+    rightAngle(stick,ground);
+    chalk(stick,ground);
+    chalk(tip,ground);
+    pill('Lamp',base,Math.max(57,lightY-19),true);
+    pill('1.00 m',stick-25,ground-scale-24,true);
+    if (state.dilation) {
+      stroke([[base,lightY],[base,ground],[tip,ground],[base,lightY]],'#ffe7a3',1.2,[6,4]);
+      stroke([[stick,ground-scale],[stick,ground],[tip,ground]],'#ffd0f0',2);
+      if (mapPoint) {
+        const k = 1/4.8;
+        const q = {x:tip+k*(mapPoint.x-tip),y:ground+k*(mapPoint.y-ground)};
+        stroke([[mapPoint.x,mapPoint.y],[tip,ground]],'#e8edf388',1,[3,4]);
+        [[mapPoint,'#ffe7a3'],[q,'#ffd0f0']].forEach(([p,color]) => {
+          ctx.fillStyle = color;
+          ctx.beginPath();
+          ctx.arc(p.x,p.y,5,0,TAU);
+          ctx.fill();
+        });
+      }
+    }
+    tapeStrip('a',stick,ground+40,-1,geometry.tapeMax);
+    tapeStrip('b',stick,ground+94,1,geometry.tapeMax);
+    placeHandle('stick-handle',stick+34,ground-42,state.stick,'Stick distance from lamp');
+    drawReveal(base+22,ground,scale);
+  }
+  function drawReveal(x,y,scale) {
+    if (!state.revealed || state.row === null) return;
+    const row = state.notebook[state.row];
+    const t = state.revealAt ? clamp((performance.now()-state.revealAt)/800,0,1) : 1;
+    const ease = 1-Math.pow(1-t,3);
+    const maxHeight = (y-40)/scale;
+    const eh = Math.min(row.estimate,maxHeight)*scale*ease;
+    const rh = Math.min(row.real,maxHeight)*scale*ease;
+    ctx.fillStyle = '#ffd0f0cc';
+    ctx.fillRect(x,y-eh,8,eh);
+    ctx.fillStyle = '#f3f0e8';
+    ctx.fillRect(x+13,y-rh,4,rh);
+    stroke([[x-3,y-eh],[x+11,y-eh]],'#ffd0f0',2);
+    stroke([[x+10,y-rh],[x+22,y-rh]],'#f3f0e8',2);
+    if (row.estimate > maxHeight) {
+      stroke([[x-1,49],[x+4,40],[x+9,49]],'#ffd0f0',2);
+      pill('↑ ' + fixed(row.estimate) + ' m',x+85,80,true);
+    }
+    if (t < 1) frame = requestAnimationFrame(draw);
+    else state.revealAt = 0;
+  }
+  function draw() {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    const r = $('stage').getBoundingClientRect();
+    const w = Math.max(1,r.width);
+    const h = Math.max(1,r.height);
+    const dpr = Math.min(devicePixelRatio || 1,2);
+    if (canvas.width !== Math.round(w*dpr) || canvas.height !== Math.round(h*dpr)) {
+      canvas.width = Math.round(w*dpr);
+      canvas.height = Math.round(h*dpr);
+    }
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    ctx.clearRect(0,0,w,h);
+    if (state.mode === 'Sun') drawSun(w,h);
+    else if (state.mode === 'Mirror') drawMirror(w,h);
+    else drawStreetlight(w,h);
+  }
+  function bindDrag(id,kind) {
+    const el = $(id);
+    el.onpointerdown = e => {
+      if (e.button !== 0 || ((kind === 'a' || kind === 'b') && state.step !== 2)) return;
+      state.revealAt = 0;
+      if (kind === 'stick') state.ghost = state.stick;
+      drag = {kind,id:e.pointerId,startX:e.clientX,startValue:state[kind],scale:geometry.scale};
+      el.setPointerCapture(e.pointerId);
+      Curio.tone(320,.04,.025);
+      e.preventDefault();
+    };
+    el.onpointermove = e => {
+      if (!drag || drag.kind !== kind || drag.id !== e.pointerId) return;
+      const delta = (e.clientX-drag.startX)/drag.scale;
+      if (kind === 'a' || kind === 'b') tape(kind,drag.startValue+delta*geometry[kind].sign);
+      else moveObject(kind,drag.startValue+delta);
+    };
+    const end = e => {
+      if (!drag || drag.id !== e.pointerId) return;
+      drag = null;
+      if (el.hasPointerCapture(e.pointerId)) el.releasePointerCapture(e.pointerId);
+    };
+    el.onpointerup = end;
+    el.onpointercancel = end;
+    el.onkeydown = e => {
+      if (!['ArrowRight','ArrowUp','ArrowLeft','ArrowDown','Home','End'].includes(e.key)) return;
+      e.preventDefault();
+      const sign = ['ArrowRight','ArrowUp'].includes(e.key) ? 1 : -1;
+      const delta = sign*(e.shiftKey ? .1 : .01);
+      if (kind === 'a' || kind === 'b') {
+        const value = e.key === 'Home' ? 0 : e.key === 'End' ? geometry.tapeMax : state[kind]+delta;
+        tape(kind,value);
+      } else moveObject(kind,state[kind]+delta);
+      Curio.tone(360,.025,.015);
+    };
+  }
+  // Keep the cards mounted and randomize their positions without exposing per-card correctness.
+  const order = [0,1,2,3,4,5];
+  for (let i=order.length-1;i>0;i--) {
+    const j = Math.floor(Math.random()*(i+1));
+    [order[i],order[j]] = [order[j],order[i]];
+  }
+  order.forEach(id => {
+    const b = document.createElement('button');
+    b.className = 'reason';
+    b.id = 'reason-' + id;
+    b.setAttribute('aria-pressed','false');
+    b.textContent = reasonText[id];
+    b.onclick = () => chooseReason(id);
+    reasons[id] = b;
+    $('reasons').append(b);
+  });
+  for (let i=1;i<=4;i++) $('step-' + i).onclick = () => goStep(i);
+  for (const m of ['Sun','Mirror','Streetlight']) $('m-' + m.toLowerCase()).onclick = () => setMode(m);
+  $('object').onchange = e => { setObject(e.target.value); Curio.tone(420,.06,.025); };
+  $('sun').oninput = e => { setSun(e.target.value); Curio.tone(300+state.sun*4,.025,.015); };
+  $('to-measure').onclick = () => {
+    if (goStep(2)) $('tape-a').focus({preventScroll:true});
+  };
+  $('record').onclick = record;
+  $('reveal').onclick = reveal;
+  $('new').onclick = newTrial;
+  $('dilation').onclick = () => {
+    state.dilation = !state.dilation;
+    mapPoint = state.dilation ? {x:geometry.base,y:geometry.ground-4.8*geometry.scale} : null;
+    sync();
+    Curio.tone(state.dilation ? 590 : 400,.06,.025);
+  };
+  $('notebook').onclick = () => {
+    $('book-table').innerHTML = tableHTML();
+    V.hush();
+    $('book').showModal();
+    line('book',false,() => $('book').open);
+  };
+  $('close-book').onclick = () => { $('book').close(); V.hush(); };
+  $('book').addEventListener('close',() => { V.hush(); setHint(); });
+  $('clear').onclick = () => {
+    state.notebook = [];
+    state.trial++;
+    resetTrial();
+    $('book-table').innerHTML = tableHTML();
+    Curio.tone(300,.05,.025);
+  };
+  bindDrag('tape-a','a');
+  bindDrag('tape-b','b');
+  bindDrag('mirror-handle','mirror');
+  bindDrag('tripod-handle','tripod');
+  bindDrag('stick-handle','stick');
+  function mapSample(px,py) {
+    const x = clamp(px,geometry.base,geometry.tip);
+    const y = clamp(py,geometry.ground-4.8*geometry.scale,geometry.ground);
+    const rayY = geometry.ground-4.8*geometry.scale*(geometry.tip-x)/(geometry.tip-geometry.base);
+    mapPoint = {x,y:Math.max(y,rayY)};
+    draw();
+  }
+  canvas.onpointermove = e => {
+    if (state.mode !== 'Streetlight' || !state.dilation) return;
+    const r = canvas.getBoundingClientRect();
+    mapSample(e.clientX-r.left,e.clientY-r.top);
+  };
+  canvas.onkeydown = e => {
+    if (state.mode !== 'Streetlight' || !state.dilation ||
+        !['ArrowRight','ArrowLeft','ArrowUp','ArrowDown','Home'].includes(e.key)) return;
+    e.preventDefault();
+    const p = mapPoint || {x:geometry.base,y:geometry.ground-4.8*geometry.scale};
+    const delta = e.shiftKey ? 25 : 8;
+    if (e.key === 'Home') mapSample(geometry.base,geometry.ground-4.8*geometry.scale);
+    else mapSample(p.x+(e.key === 'ArrowRight' ? delta : e.key === 'ArrowLeft' ? -delta : 0),
+      p.y+(e.key === 'ArrowDown' ? delta : e.key === 'ArrowUp' ? -delta : 0));
+  };
+  canvas.onpointerleave = () => { if (mapPoint) { mapPoint = null; draw(); } };
+  Curio.init({clips:"voice:*",rate:.95});
+  Curio.onMotion(() => { state.revealAt = 0; draw(); });
+  Curio.onSound(() => setHint());
+  new ResizeObserver(() => draw()).observe($('stage'));
+  window.__tool = {
+    state,setMode,setSun,setObject,tape,record,why,reveal,newTrial,goStep,moveObject,
+    expected,estimate,aligned,allLines:V.allLines,vlog:V.log,
+    get geometry() { return geometry; },
+    get vq() { return V.queue; }
+  };
+  sync();
+  loadArt();
+})();
+</script>
+</body>
+</html>

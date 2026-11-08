@@ -1,0 +1,239 @@
+{
+  "target": 60,
+  "keep": [
+    "#hint",
+    "#actions"
+  ],
+  "states": [
+    {
+      "name": "rule-open",
+      "steps": [
+        {
+          "click": "#machine-0"
+        },
+        {
+          "click": "#open"
+        }
+      ]
+    },
+    {
+      "name": "ai-open",
+      "steps": [
+        {
+          "click": "#machine-1"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "wait": 3100
+        }
+      ]
+    },
+    {
+      "name": "mop",
+      "steps": [
+        {
+          "click": "#machine-7"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#try"
+        },
+        {
+          "click": "#try"
+        },
+        {
+          "wait": 2500
+        }
+      ]
+    },
+    {
+      "name": "show-vote",
+      "steps": [
+        {
+          "click": "#m-show"
+        },
+        {
+          "click": "#vote-a"
+        }
+      ]
+    },
+    {
+      "name": "show-open",
+      "steps": [
+        {
+          "click": "#m-show"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        }
+      ]
+    },
+    {
+      "name": "finale",
+      "steps": [
+        {
+          "click": "#m-show"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#vote-a"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "teddy-cycle",
+      "steps": [
+        {
+          "click": "#machine-2"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#try"
+        },
+        {
+          "wait": 2600
+        }
+      ]
+    },
+    {
+      "name": "cat-lock",
+      "steps": [
+        {
+          "click": "#machine-1"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#try"
+        },
+        {
+          "click": "#try"
+        },
+        {
+          "wait": 2600
+        }
+      ]
+    },
+    {
+      "name": "cloud-question",
+      "steps": [
+        {
+          "click": "#machine-3"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#try"
+        },
+        {
+          "click": "#try"
+        },
+        {
+          "wait": 2600
+        }
+      ]
+    }
+  ]
+}

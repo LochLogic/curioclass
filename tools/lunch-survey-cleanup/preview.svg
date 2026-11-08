@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500" role="img" aria-labelledby="title desc">
+<title id="title">Lunch Survey Cleanup</title>
+<desc id="desc">The honest cleaning state: vegetarian 53, tacos 48, all three grades counted once.</desc>
+<defs>
+  <linearGradient id="tile" x2="0" y2="1"><stop stop-color="#e8efdf"/><stop offset="1" stop-color="#c4d2b8"/></linearGradient>
+  <linearGradient id="bar" x2="0" y2="1"><stop stop-color="#5b789c"/><stop offset="1" stop-color="#3d5a80"/></linearGradient>
+  <linearGradient id="paper" x2="1" y2="1"><stop stop-color="#fffef8"/><stop offset="1" stop-color="#edf3e5"/></linearGradient>
+  <pattern id="copies" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+    <rect width="8" height="8" fill="#e1e9ee"/><rect width="3" height="8" fill="#435571"/>
+  </pattern>
+</defs>
+<rect width="800" height="500" fill="url(#tile)"/>
+<g stroke="#afbea6" opacity=".4"><path d="M0 100H800M0 200H800M0 300H800M0 400H800M100 0V500M200 0V500M300 0V500M400 0V500M500 0V500M600 0V500M700 0V500"/></g>
+<rect x="34" y="29" width="732" height="448" rx="12" fill="#28432c" opacity=".18"/>
+<rect x="28" y="23" width="732" height="448" rx="12" fill="url(#paper)" stroke="#a3b399"/>
+<rect x="28" y="23" width="732" height="68" rx="12" fill="#2f6a33"/>
+<text x="52" y="67" font-family="Segoe UI,sans-serif" font-size="30" font-weight="700" fill="#fff">Lunch Survey Cleanup</text>
+<text x="54" y="120" font-family="Segoe UI,sans-serif" font-size="17" fill="#56615a">Every fix changes who counts.</text>
+<g fill="url(#bar)" stroke="#304c70"><rect x="70" y="166" width="59" height="152"/>
+<rect x="154" y="185" width="59" height="133"/><rect x="238" y="171" width="59" height="147"/>
+<rect x="322" y="245" width="59" height="73"/></g>
+<rect x="406" y="237" width="59" height="81" fill="#2f6a33" stroke="#255528"/>
+<path d="M54 318H489" stroke="#56615a" stroke-width="2"/>
+<text x="326" y="345" font-family="Segoe UI,sans-serif" font-size="14" fill="#1c2420">Tacos</text>
+<text x="400" y="345" font-family="Segoe UI,sans-serif" font-size="14" fill="#1c2420">Vegetarian</text>
+<rect x="520" y="157" width="208" height="186" rx="6" fill="#254731" stroke="#a78551" stroke-width="6"/>
+<text x="541" y="190" font-family="Georgia,serif" font-size="20" fill="#fff8d9">On the menu?</text>
+<text x="550" y="237" font-family="Segoe UI,sans-serif" font-size="21" fill="#fff">53 vs 48</text>
+<text x="541" y="279" font-family="Segoe UI,sans-serif" font-size="14" fill="#e4efdb">Say what your</text>
+<text x="541" y="301" font-family="Segoe UI,sans-serif" font-size="14" fill="#e4efdb">cleaning choices did.</text>
+<text x="55" y="387" font-family="Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1c2420">WHO'S IN</text>
+<text x="55" y="419" font-family="Segoe UI,sans-serif" font-size="15" fill="#1c2420">Grade 6: 118 of 118</text>
+<rect x="239" y="405" width="239" height="14" fill="#4c7944" stroke="#809278"/>
+<text x="502" y="419" font-family="Segoe UI,sans-serif" font-size="15" fill="#56615a">All grades in</text>
+<text x="55" y="448" font-family="Segoe UI,sans-serif" font-size="15" fill="#1c2420">Grade 7: 140 of 140</text>
+<rect x="239" y="434" width="239" height="14" fill="#4c7944"/>
+<text x="502" y="448" font-family="Segoe UI,sans-serif" font-size="15" fill="#56615a">Counted once</text>
+</svg>

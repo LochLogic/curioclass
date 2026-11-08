@@ -1,14 +1,32 @@
 {
-  "keep": [
-    "#timebar",
-    "#tray"
-  ],
   "states": [
     {
-      "name": "goals-book",
+      "name": "manual-field-notes",
       "steps": [
         {
-          "click": "#goals"
+          "click": "#manual"
+        },
+        {
+          "js": "document.querySelector('.findings').scrollIntoView({block:'start'});"
+        },
+        {
+          "click": ".finding summary"
+        }
+      ],
+      "keep": [
+        "#close-overlay"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "setups-book",
+      "steps": [
+        {
+          "click": "#wonders"
         }
       ],
       "keep": [
@@ -16,29 +34,32 @@
       ]
     },
     {
-      "name": "rescue-slower",
+      "name": "selected-body",
       "steps": [
         {
-          "click": "#wonders"
+          "click": "#universe"
         },
         {
-          "click": "[data-load='Rescue the moon']"
-        },
-        {
-          "click": "#pause"
-        },
-        {
-          "click": "#slower",
-          "times": 5,
-          "gap": 0.15
+          "click": "#body-section > summary"
         }
+      ],
+      "keep": [
+        "#body-controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
       ]
     },
     {
-      "name": "world-zero",
+      "name": "gravity-zero",
       "steps": [
         {
           "click": "#pause"
+        },
+        {
+          "click": "#world-section > summary"
         },
         {
           "click": "#gravity"
@@ -75,7 +96,15 @@
         },
         {
           "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
         }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
       ]
     },
     {
@@ -88,6 +117,9 @@
           "click": "#pause"
         },
         {
+          "click": "#world-section > summary"
+        },
+        {
           "click": "#fit",
           "times": 2
         },
@@ -96,7 +128,15 @@
         },
         {
           "click": "#trail-forever"
+        },
+        {
+          "click": "[data-close=\"world-section\"]"
         }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
       ]
     },
     {
@@ -115,14 +155,14 @@
       "sizes": [
         "680x425",
         "1366x768",
-        "375x812 (iframe host)"
+        "375x812"
       ]
     },
     {
       "name": "clear-confirmation",
       "steps": [
         {
-          "js": "document.querySelector('#clear').scrollIntoView({block:'center'});"
+          "click": "#world-section > summary"
         },
         {
           "click": "#clear"
@@ -135,33 +175,53 @@
       "sizes": [
         "680x425",
         "1366x768",
-        "375x812 (iframe host)"
+        "375x812"
       ]
     },
     {
-      "name": "real-cleared",
+      "name": "rescue-rewind",
       "steps": [
         {
-          "click": "#m-real"
+          "click": "#wonders"
         },
         {
-          "js": "document.querySelector('#clear').scrollIntoView({block:'center'});"
+          "click": "[data-load=\"Rescue the moon\"]"
         },
         {
-          "click": "#clear"
+          "click": "#pause"
         },
         {
-          "click": "#confirmation-accept"
+          "click": "#body-section > summary"
         },
         {
-          "click": "#chip-1"
-        },
-        {
-          "key": "Enter"
+          "click": "#slower",
+          "times": 5,
+          "gap": 0.15
         }
       ],
       "sizes": [
-        "1366x768"
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "time-dial",
+      "steps": [
+        {
+          "js": "document.querySelector('#time-rate').focus({preventScroll:true});"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
       ]
     }
   ]

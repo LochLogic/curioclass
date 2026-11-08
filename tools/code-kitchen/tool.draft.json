@@ -1,0 +1,26 @@
+{
+  "id": "code-kitchen",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Cook breakfast with code, then change the whole menu by editing one reusable recipe.",
+  "outcome": "Choose typed variable values and create procedures with parameters that reduce edits after a menu change",
+  "driver": "students",
+  "minutes": "20-35",
+  "modes": [
+    "Tickets",
+    "Open kitchen"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "CSTA K-12 CS Standards: MS-PRO-VD-16, MS-PRO-PD-12, MS-PRO-RD-17; 2017 crosswalk 2-AP-11, 2-AP-13, 2-AP-14",
+    "Python Tutorial, An Informal Introduction to Python and Defining Functions: https://docs.python.org/3/tutorial/",
+    "Python Built-in Functions, str: https://docs.python.org/3/library/functions.html#func-str",
+    "Python Built-in Exceptions, TypeError: https://docs.python.org/3/library/exceptions.html#TypeError",
+    "Abelson and Sussman, Structure and Interpretation of Computer Programs, section 1.1.8",
+    "Tickets, menus, pars and kitchen language are original to Curio Class",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Existing diner backdrop drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

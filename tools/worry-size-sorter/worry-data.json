@@ -60,35 +60,35 @@
       "id": "b1",
       "text": "A grown-up asked me to keep a secret, and it feels wrong.",
       "size": "Big",
-      "reason": "A secret that feels wrong, or that you're told to keep from your family, is always one to tell.",
+      "reason": "A secret that feels wrong, or that you're told to keep from your family, is always one to tell. That's true even if it's a grown-up you know, or one in your family.",
       "art": "ws-card-door"
     },
     {
       "id": "b2",
       "text": "Someone at home is very sick.",
       "size": "Big",
-      "reason": "This is too heavy to carry alone. A trusted adult can help you understand it and help you feel better.",
+      "reason": "This is too heavy to carry alone. A trusted adult can help you understand it and help you feel better. It's not your fault, and it's not your job to fix it.",
       "art": "ws-card-bedside"
     },
     {
       "id": "b3",
       "text": "Someone online asked me for a photo and said to keep it secret.",
       "size": "Big",
-      "reason": "Tell a trusted adult right away, even if you already sent something. You won't be in trouble for telling.",
+      "reason": "Tell a trusted adult right away, even if you already sent something. It's not your fault. The person who asked did something wrong.",
       "art": "ws-card-tablet"
     },
     {
       "id": "b4",
       "text": "An older kid hurts me on the bus and says not to tell.",
       "size": "Big",
-      "reason": "Being hurt is never okay. Someone saying 'don't tell' is a sign to tell.",
+      "reason": "Being hurt is never okay. Someone saying 'don't tell' is a sign to tell. It's not your fault.",
       "art": "ws-card-bus"
     },
     {
       "id": "b5",
       "text": "I've felt worried almost every day for weeks, and it's hard to sleep.",
       "size": "Big",
-      "reason": "Worry that lasts for weeks, or gets in the way of sleep, school or play, is a sign to get help.",
+      "reason": "Worry that lasts for weeks, or gets in the way of sleep, school or play, is a sign to get help. Tell a grown-up you trust; a school counselor or doctor can help with worry.",
       "art": "ws-card-calendar"
     }
   ],
@@ -171,20 +171,222 @@
   ],
   "sources": [
     "https://kidshealth.org/en/teens/anxiety.html",
-    "https://health.clevelandclinic.org/box-breathing-benefits",
     "https://www.cdc.gov/children-mental-health/about/about-anxiety-and-depression-in-children.html",
-    "https://www.webmd.com/balance/what-is-box-breathing",
     "https://www.nimh.nih.gov/health/publications/children-and-mental-health",
+    "https://health.clevelandclinic.org/box-breathing-benefits",
+    "https://www.webmd.com/balance/what-is-box-breathing",
+    "https://www.webmd.com/lung-cancer/features/respiratory-therapist-breathing-exercises-for-lung-cancer-patients",
     "https://www.uofmhealth.org/health-library/ta4146",
     "https://www.healthlinkbc.ca/healthwise/progressive-muscle-relaxation",
     "https://www.heretohelp.bc.ca/sites/default/files/healthy-thinking-for-younger-children.pdf",
-    "https://youngminds.org.uk/blog/how-to-make-a-worry-box-a-guide-for-parents/",
+    "https://www.youngminds.org.uk/parent/blog/how-to-make-a-worry-box-a-guide-for-parents/",
+    "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/tackling-your-worries/",
     "https://www.justonenorfolk.nhs.uk/media/us1bjpvw/worry-box.pdf",
     "https://childhelp.org/safe-vs-unsafe-secrets-how-to-talk-to-kids-about-the-difference/",
     "https://www.esafety.gov.au/sites/default/files/2026-09/secrets-and-surprises-sept-2026.pdf",
     "https://www.advocatesforyouth.org/wp-content/uploads/2023/07/2.5_Seeking-Help_3Rs2023.pdf",
-    "https://www.missingkids.org/netsmartz",
+    "https://www.missingkids.org/gethelpnow/cybertipline",
     "https://www.justice.gov/usao-ri/file/765166/dl",
+    "https://www.justice.gov/criminal/media/1437006/dl?inline=",
+    "https://takeitdown.ncmec.org/",
+    "https://childhelp.org/what-to-do-if-a-child-tells-you-theyre-being-abused-a-step-by-step-guide/",
+    "https://childhelphotline.org/",
+    "https://www.michigan.gov/mde/services/ed-serv/educator-conduct/abuse-neglect",
+    "https://www.redcross.org/take-a-class/swimming/swim-lessons/kids-swim-lessons",
     "https://shapeamerica.org/standards/health/new-he-standards/"
+  ],
+  "sourceNotes": [
+    {
+      "name": "Nemours KidsHealth Â· Anxiety",
+      "url": "https://kidshealth.org/en/teens/anxiety.html",
+      "claim": "Body readiness, fast heart/breathing, tummy feelings, sleep, sweaty hands, trusted adult help.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "CDC Â· Anxiety and Depression in Children",
+      "url": "https://www.cdc.gov/children-mental-health/about/about-anxiety-and-depression-in-children.html",
+      "claim": "Physical signs and worry interfering with school, home or play.",
+      "licence": "US federal text is generally public domain; third-party exceptions. Facts referenced, no CDC assets copied; no endorsement. Free at the source.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "NIMH Â· Children and Mental Health",
+      "url": "https://www.nimh.nih.gov/health/publications/children-and-mental-health",
+      "claim": "Persistent worry and sleep problems: ask a caregiver, counselor or doctor for help.",
+      "licence": "US federal government public-domain information; no third-party assets copied. Fact-check reference only.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Cleveland Clinic Â· Box Breathing",
+      "url": "https://health.clevelandclinic.org/box-breathing-benefits",
+      "claim": "Four equal phases, three to four rounds, comfort and practice when calm; 48 and 36 seconds computed from the chosen count.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "WebMD Â· Box Breathing",
+      "url": "https://www.webmd.com/balance/what-is-box-breathing",
+      "claim": "Four phases and a shorter count when needed; primary page returned 403 in this pass. Cross-checked with Cleveland Clinic and WebMD respiratory therapist article.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "WebMD Â· Respiratory Therapist Breathing Exercises",
+      "url": "https://www.webmd.com/lung-cancer/features/respiratory-therapist-breathing-exercises-for-lung-cancer-patients",
+      "claim": "Independent explanation of box breathing, four equal phases and three to four repeats; no disease-specific advice imported.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Michigan Medicine Â· Progressive Muscle Relaxation",
+      "url": "https://www.uofmhealth.org/health-library/ta4146",
+      "claim": "Muscle tension and release; chosen timing is five seconds tight and ten seconds loose.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "HealthLink BC Â· Progressive Muscle Relaxation",
+      "url": "https://www.healthlinkbc.ca/healthwise/progressive-muscle-relaxation",
+      "claim": "Tension/release technique and comfortable practice. Shares a Healthwise origin with Michigan Medicine; not an independent trial.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "HereToHelp BC / Anxiety Canada Â· Healthy Thinking for Younger Children",
+      "url": "https://www.heretohelp.bc.ca/sites/default/files/healthy-thinking-for-younger-children.pdf",
+      "claim": "Realistic helpful self-talk. All example replies here are fictional, authored for Curio Class.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "YoungMinds Â· How to make a worry box",
+      "url": "https://www.youngminds.org.uk/parent/blog/how-to-make-a-worry-box-a-guide-for-parents/",
+      "claim": "Put a written worry aside for time with a grown-up; avoid immediately before bed. The ten-minute choice is supported by NHS worry-time guidance.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "NHS Every Mind Matters Â· Tackling your worries",
+      "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/tackling-your-worries/",
+      "claim": "Ten to fifteen minutes as one possible worry-time length. The no-bedtime choice comes from child-focused YoungMinds, not this adult page.",
+      "licence": "NHS website content: Open Government Licence v3.0, with stated exceptions. Reference only; no source text or assets bundled.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Just One Norfolk NHS Â· Worry box",
+      "url": "https://www.justonenorfolk.nhs.uk/media/us1bjpvw/worry-box.pdf",
+      "claim": "A physical worry box and discussion with an adult. Reference only, not a downloaded template.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Childhelp Â· Safe vs Unsafe Secrets",
+      "url": "https://childhelp.org/safe-vs-unsafe-secrets-how-to-talk-to-kids-about-the-difference/",
+      "claim": "Tell an adult about unsafe secrets; identify more than one trusted adult and keep telling.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "eSafety Commissioner Â· Secrets and surprises",
+      "url": "https://www.esafety.gov.au/sites/default/files/2026-09/secrets-and-surprises-sept-2026.pdf",
+      "claim": "Unsafe secrets and help with picture requests. Australian emergency numbers were not imported.",
+      "licence": "Australian Government copyright; no blanket open licence verified for this PDF. Fact reference only; no PDF/text/art copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Advocates for Youth Â· Seeking Help",
+      "url": "https://www.advocatesforyouth.org/wp-content/uploads/2023/07/2.5_Seeking-Help_3Rs2023.pdf",
+      "claim": "Seeking help from trusted adults. Reference only; no lesson or activity copied.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "NCMEC Â· NetSmartz / CyberTipline",
+      "url": "https://www.missingkids.org/gethelpnow/cybertipline",
+      "claim": "Trusted-adult support and the adult-facing US reporting route.",
+      "licence": "Copyright NCMEC, all rights reserved. Facts and service names only; no banner, text or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "US Attorney Â· Online safety tip sheet",
+      "url": "https://www.justice.gov/usao-ri/file/765166/dl",
+      "claim": "Historical spec reference for photo requests. Original endpoint unavailable in this pass; current DOJ source below used for the changes.",
+      "licence": "DOJ federal text: public domain unless otherwise marked. No source assets copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "US DOJ Â· Threats to Children Online",
+      "url": "https://www.justice.gov/criminal/media/1437006/dl?inline=",
+      "claim": "Children are victims, not wrongdoers; trusted adult, CyberTipline phone/URL and Take It Down. Adult notes only for reporting routes.",
+      "licence": "DOJ federal text: public domain unless otherwise marked. Facts independently checked with NCMEC; no logos or illustrations copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "NCMEC Â· Take It Down",
+      "url": "https://takeitdown.ncmec.org/",
+      "claim": "Can help limit sharing of eligible images on participating platforms. Adult notes only.",
+      "licence": "Copyright NCMEC, all rights reserved. Service facts only; no assets copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Childhelp Â· Responding to a disclosure",
+      "url": "https://childhelp.org/what-to-do-if-a-child-tells-you-theyre-being-abused-a-step-by-step-guide/",
+      "claim": "Stay calm, reassure, listen without investigating, document own words, explain next steps. Adult notes only.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Childhelp Â· National Child Abuse Hotline",
+      "url": "https://childhelphotline.org/",
+      "claim": "1-800-422-4453 is support, not a replacement for mandated reporting. Adult notes only.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Michigan Department of Education Â· Reporting duties",
+      "url": "https://www.michigan.gov/mde/services/ed-serv/educator-conduct/abuse-neglect",
+      "claim": "Applicable reporting law and agency reporting can differ from internal school policy. Adult notes only.",
+      "licence": "State of Michigan copyright; fact-check reference only, no source text copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "American Red Cross Â· Childrenâ€™s swim lessons",
+      "url": "https://www.redcross.org/take-a-class/swimming/swim-lessons/kids-swim-lessons",
+      "claim": "A swim instructor can help learn safely; no promise about water depth or instructor position.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "SHAPE America Â· NHES 2024",
+      "url": "https://shapeamerica.org/standards/health/new-he-standards/",
+      "claim": "Adult-facing curriculum reference for health understanding and coping practice, S1 and S7. S6 weekly goal flow removed under the Curiosity brief.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    }
   ]
 }

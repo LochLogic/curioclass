@@ -2,20 +2,11 @@
   "voice": "friendly-dad",
   "style": "Say in a relaxed, friendly way, like a kind dad helping with homework.",
   "lines": [
-    "This is a safety sweep. In every room, look for things that could hurt someone. Tap anything that looks risky.",
-    "Tap a room to start your safety sweep.",
-    "Search the room. Tap anything that looks risky.",
-    "You found one. Read what is going on, then tap Think.",
-    "Do you need a grown-up first? Tap one of the two buttons.",
-    "Tap What could happen to peek at any choice. Then tap the safest one.",
-    "That could go wrong. Read what could happen, then choose again.",
-    "That’s the safe choice. Now tap Check.",
-    "Now do the fix. The hint shows what to drag or tap.",
-    "Who is safer now? Tap everyone it helps, then tap Done.",
-    "That one looks fine. Keep searching.",
-    "Room swept! Tap House, then pick another room.",
-    "The whole house is swept and every room is lit. Here is your safety card.",
-    "Poison Help is one eight hundred, two two two, one two two two. For a fire, get out, stay out, and call nine one one from outside."
-  ],
-  "bank": "friendly-dad"
+    "Tap a room. Explore what changes when you move things.",
+    "Tap an object for a closer look.",
+    "Compare any action, or tap Try the fix to change the scene.",
+    "The hint shows what to move or tap. Room view takes you back any time.",
+    "That object looks fine. Tap Close to return to the room.",
+    "The Manual holds the controls, safety notes, habits and sources."
+  ]
 }

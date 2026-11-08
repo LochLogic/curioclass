@@ -1,61 +1,36 @@
-# Up the Watershed build handoff
+# Up the Watershed handoff
 
-Build only, 2026-10-31. No commits, branch changes, deployment or polish round. Writes are confined to this tool and `_scratch/up-the-watershed/`.
+Curiosity fix round 1, 2026-11-06. The user explicitly overrides the lesson-shaped spec and Claude Refine. The retained spec and refine.md are evidence, not authority to restore claims, kit limits, a locked simulator, solved stamps, goals or the kit header.
 
 ## Structure
-`src.html` began with the kit starter. It contains the responsive CSS, semantic controls, SVG watershed, load model, evidence validator, session controller and persistence layer. Kit CSS, the grade 9-12 theme and Curio.voice are bundled without changes. There is no family engine.
+`src.html` contains the SVG map, retained load model and input tables, a permanently reserved sample readout, a lower control desk, an intervention simulator, native dialogs and persistence. Kit JavaScript supplies Motion, Sound, tones and voice. Kit CSS is not used. No shared files were changed.
 
-The major pure functions are `model(weather, plan)`, `evaluate(plan)`, `share(source, weather)`, `cost(plan)` and `validEvidence(source, sampleIndices)`. Display values come from the unrounded load model, then round for samples; cleanup calculations retain full precision. `renderGauges` presents concentration and load changes separately. The source table's beach has only E. coli; other beach tests explicitly say Not modeled.
+`model(weather, plan)` retains the original arithmetic. `measure(plan)` returns measurements without grading them. `sourceShare` supports the separate baseline ledger and excludes downstream sources at S7. `compareSamples` uses unrounded loads and reports CFU/s or g/s. Dry S6-to-S7 adds 10,000,000 CFU/s, not the 13.3 billion example in refine.md.
 
-Controls are built once. State updates change values and attributes rather than replacing active controls. A plan-version token invalidates the 400 ms test beat and subsequent 400 ms gauge fill when any fix changes. Motion off keeps the test beat and removes the fill motion. Progress is under localStorage key `up-the-watershed`, guarded with try/catch. Saved plan explanations live only in the in-memory reasons object.
+Results occupy their own grid row outside the map. Changing a stop fades prior values and marks the next stop ready. A dedicated polite live region announces the result. Sampling has no kit limit. The optional ledger never adds samples or flags. Log selection is limited to exactly two entries for comparison; there is no evidence validator or answer key.
 
-There is one actual `#hint`, moved into the appropriate Sample/Claim or Fix-it container. Read always speaks the current visible hint. Same-mode taps preserve narration; distinct event occurrence keys keep repeated solved, last-kit and out-of-kits lines in the queue. Mode changes and dialogs stop lines whose context has passed.
+The storm-drain line joins at (515,458), above S7. Pipe remains at its upper endpoint; the miniature sits along the line. Source illustrations are passive labels; full photographs are in Field files. The 11 stops and the stop selector are accessible map controls. Map-stop :active preserves its centering transform, avoiding hit-area jumps under a held pointer.
 
-## Art
-All 22 specified images are present and used. Eight existing scene WebPs and their prompts were retained. Fourteen missing assets were generated with the built-in OpenAI image tool: two case scenes, seven miniatures and five aerial textures. Full prompts and provenance are in `art/prompts.json`; originals are in `art/raw/`. The mandated free `art.py --rekey <name>` path produced WebPs. The active names retain the eight existing short names instead of renaming files.
+Intervention toggles update both weathers synchronously. Bars show concentration on fixed physical scales with reference ticks, not progress. All nine toggles remain usable at any cost, including $4.1 million. The advisory changes beach access and removes no pollution. Save up to three plans; remove one in Compare plans to make room. Why notes remain session-only.
 
-The map clips tiled 256 px textures to code shapes and darkens them with palette layers. Labels, sample flags, brackets, results and flowing water stay in code. Icons are full illustrations rather than generic pictograms. No person appears in any image.
+Storage schema version 2 preserves samples and plans. Version 1 samples and alternatives migrate, while claims and solved fields are ignored. Clear collected samples opens a count-specific confirmation and preserves plans. The pivot does not silently erase prior sampled evidence.
 
-## Spec open questions resolved
-- Title: use **Up the Watershed**, the option the spec favors.
-- Rain advisory: retain it as an honest protection option. It can meet the beach goal through storm closure while explicitly showing water still over 410. It never reduces the modeled pollutant.
-- Costs, flows and loads: retain the fictional, scaled teaching model. Say so on screen and in notes; do not imply real cost estimates or universal field efficiencies.
+## Voice
+The first-action hint is automatic once. After that first hint, speech occurs only when Read is pressed, including the compare and saved-plan instructions. Test plan has no repetitive how-to or failure narration. Read speaks the current instruction, including in dialogs and with Sound off. `voice/lines.json` matches `__tool.allLines()`. Speech uses browser fallback; no recordings were made.
 
-## Important presentation choices
-- The EPA 410 statistical threshold is called the fictional case action line, not a universal legal closure rule. The 126 geometric mean is not treated as a single-sample test.
-- Compact cleanup cards show art, name, price and Add/Remove. Fix details exposes every effect and who-pays note to touch and keyboard users. Larger laptop cards also show it inline.
-- A pinned result allows pointer input through its noninteractive body so it does not block the next sample spot. Its Close control remains interactive with a reserved 44 px header area. Resize repositions the existing result without rebuilding its control.
-- Evidence buttons appear for checked suspects. Unchecked rows reserve their space without presenting a disabled action.
-- Whole-creek revelation supplies all results and source shares, but does not invent sampled evidence for claims. Source shares replace the checkbox area's reserved footprint; all 22 map flags remain unobscured. Hide whole creek restores the choices without moving Submit.
-- Responsive source positions use the icon image centers to redraw map evidence brackets. Compact flags move beside or above crowded sites. Dry stays before storm, and letters preserve the distinction in grayscale.
-- B1 and B2 combine multiplicatively on the remaining field nitrate load.
-- Voice uses the specified casual-peer bank identity in `voice/lines.json`. No audio was recorded; the kit currently uses browser speech fallback, so the actual bank timbre awaits recordings.
+## Sources and licences
+Manual, notes.md and tool.draft.json name the sources and licences. Synthetic inputs remain attributed to the original specification, CC BY 4.0. Numerical government reference facts are U.S. public domain. FAO, WHO and British Columbia documents were independent checks only; none of their prose, figures or datasets is imported. A permissive FAO licence was not established. Raw government references and hashes are in Scratch data/ with a bounded gather script. NEPIS PURL downloads are redirect stubs; browser extraction verified their source text.
 
-## Evidence map
-`_scratch/up-the-watershed/watershed_numbers.py` independently computes samples, worked plans and all 512 combinations. `browser-model-results.json` compares the JavaScript model against 4,174 independent numeric comparisons. `display-results.json` checks all 88 displayed sample cells. `final-paths/` holds the final real-click case routes. `responsive/` holds the full size/mode sweep. `bars/` contains isolated copies and bundled reference tools, keeping their original tool folders untouched.
-
-The single mechanical audit is under `audit/`; it completed with 549 original leads. `audit-dispositions.csv` responds to each original lead. Focused post-fix checks are under `focused/`, `last/`, `result-finish/` and `voice-finish/`. The full audit was not repeated. `frame-sheet-manifest.json` maps inspected contact sheets to their original screenshots. `validation-manifest.json` points to the main final evidence.
+## Owner decisions taken unattended
+Use the open Curiosity interpretation. Retain the synthetic model and title, with the invented data clearly labeled. Keep the advisory and its limitations. Remove lesson gates and victory states instead of restoring them. No plate number is assigned in the spec or docs/CURIOSITIES.md, so use an unnumbered plate and `plate: null` pending owner allocation; do not borrow another tool's number.
 
 ## Engine changes wanted
-None. The iframe test host requests a favicon by default; the scratch harness adds a data favicon to the temporary host page rather than editing drive.py.
+None.
 
-## Remaining validation
-The cold review is recorded in codex-review.md. Recorded voice timbre and classroom duration remain unmeasured. This tool uses browser speech fallback; no recordings were made during build or review.
+## Sensitivity
+No people, cultural representation or medical advice is added. Water references are contextual scientific guides, not a safety certificate or local regulatory instruction. The advisory duration is an invented scenario.
 
-Precision nit retained from the spec: E alone gives exactly 0.0475 mg/L dry inlet phosphorus. The three-decimal display is 0.047, as in the spec, because of binary rounding. Raw goal checks are unaffected.
+## Evidence
+Current evidence and dispositions are linked in polish.md. Testing files, original source, screenshots, profiles and downloads stay in `_scratch/up-the-watershed/`. No git commits, deployments or edits to refine.md were made.
 
-## Cold review changes, 2026-11-03
-- Fixed `share`: the treatment plant lies below S7, so it contributes zero to the Muddy creek target. Background shares now sum correctly.
-- Added a visible Fix details disclosure of all effects and social costs, usable by touch and keyboard at compact sizes. Kept the nine-card choice set.
-- Kept dry, storm and change row labels in phone gauges. Added the 20 percent culprit criterion to the initial Claim instruction.
-- Isolated claim feedback by case and invalidated feedback when attached evidence changes. Selecting a map spot with no accusation restores the actionable Claim hint.
-- Lifted sampling with a brief shaded vial fill plus the existing ripple. A dry Pipe keeps the vial empty; Motion off preserves the result and removes movement.
-- Redrew `uw-i-cattle` using built-in OpenAI image generation, processed through `art.py --rekey uw-i-cattle`; prompt and provenance are in prompts.json.
-- Expanded audit states with compact Fix details, over-budget and exhausted-kit states. Review evidence stays in `_scratch/up-the-watershed/`.
-- Cancels a pending cleanup test on mode exit, so its late result cannot replace another mode's hint. Logbook distinguishes no flow and unmodeled tests without attaching measurement units.
-- Speech remains browser fallback. No recordings were made. No shared kit, scripts, docs, other tools or git history were changed.
-- The single review audit completed in 2,302 seconds with 285 leads. The 285-row disposition file and all 67 audit frames are in Scratch. Confirmed layout and voice leads received scoped rechecks; no second full audit was run.
-- Compact header layout keeps the map, kits, Take sample and Make claim inside the phone viewport. Flags have explicit gaps from circles and labels at every checked size.
-- Exhaustion and budget-threshold events preempt obsolete welcomes. Empty evidence and empty portfolio instructions name reachable controls.
-- Native dialogs now include their own Read button because the page header becomes inert while a dialog is open. Field photos use contain and a viewport-based height cap to preserve the whole scene.
-- Three actual saved alternatives were tested together, including the advisory plan, the $1,595,000 alternative and E alone. Plans survive reload; Why notes remain session-only.
+The single full audit finished with 79 leads. Its archived input hashes distinguish that snapshot from the subsequent scoped fixes: separated compact S9/Outfall hit areas, source labels clear of stops and collected flags, pulse centers from actual button rectangles, compact advisory text, 44 px Manual links, a shorter first hint and fixed-width power controls. Final held-click checks collected all 11 stops in both weathers at 680x425, 800x500, 1000x625 and the 375x812 iframe. The phone recheck also separates every source label from the legend. All-intervention layouts have zero control intersections at 680 and 375. See post-audit-validation.json and the 79-row fix-audit-dispositions.csv in Scratch. Native-modal backdrop coverage and secondary Manual scrolling are intentional; six missing lesson welcomes are Curiosity overrides. No second full audit was run.

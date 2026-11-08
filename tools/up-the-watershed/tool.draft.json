@@ -2,24 +2,29 @@
   "id": "up-the-watershed",
   "status": "beta",
   "stage": "built",
-  "hook": "Eight kits. Three water mysteries. Follow the evidence upstream.",
-  "outcome": "Use spatial and weather evidence to identify pollution sources, then evaluate cleanup technologies under a budget.",
+  "hook": "A creek, two weathers, and a field sampler.",
+  "outcome": "Explore concentration, flow and pollutant load, then compare intervention trade-offs.",
   "driver": "students",
   "minutes": "30-45",
-  "modes": ["Cases", "Sample", "Claim", "Fix-it"],
+  "modes": [
+    "Map",
+    "Interventions"
+  ],
   "grades_label": "Grade 12",
   "topic": "watershed pollution and solutions",
   "sources": [
-    "EPA, 2012 Recreational Water Quality Criteria: 126 geometric mean and 410 statistical threshold, E. coli CFU/100 mL. The fictional case uses 410 as its action line.",
-    "EPA National Primary Drinking Water Regulations: nitrate-N 10 mg/L.",
-    "EPA Quality Criteria for Water (1986): 0.05 mg/L phosphorus guideline for streams entering lakes.",
-    "EIFAC Technical Paper 1 (1965): suspended sediment fisheries reference bands.",
-    "EPA agricultural nonpoint source guidance (2003), urban guidance (2005), Construction General Permit, nutrient removal reference (2008), and BEACH Act program.",
-    "USDA NRCS conservation practice standards 382, 390 and 605.",
-    "Creek, town, loads, flows, costs and modeled fix efficiencies are fictional teaching inputs from spec.md.",
-    "Eight retained illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class.",
+    "Curio Class, tools/up-the-watershed/spec.md: synthetic network, loads, flows, areas, costs, intervention reductions and who-pays assignments. Original content CC BY 4.0; code MIT. No observed monitoring data.",
+    "EPA, 2012 Recreational Water Quality Criteria, recommendation 1: E. coli 126 geometric mean and 410 STV CFU/100 mL. U.S. government numerical facts, U.S. public domain. https://www.epa.gov/sites/default/files/2015-10/documents/rwqc2012.pdf",
+    "EPA, National Primary Drinking Water Regulations: nitrate-N 10 mg/L. U.S. public domain. https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations",
+    "EPA, Quality Criteria for Water (1986): historical lake-inlet phosphorus guideline 0.05 mg/L. U.S. public domain. https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P100P4DO.TXT",
+    "EIFAC Technical Paper 1 (1964; journal version 1965): historical numerical sediment bands, independently checked against EPA-600/3-77-042 and British Columbia WQG-18 (2023). Numerical facts only; no FAO prose, figures or dataset bundled. FAO document has no verified permissive licence. https://www.fao.org/4/al950e/al950e00.pdf",
+    "EPA agricultural nonpoint-source guidance (2003), urban guidance (2005), Construction General Permit, Municipal Nutrient Removal Technologies Reference Document (2008), BEACH Act program; USDA NRCS standards 382, 390 and 605. U.S. government reference material, U.S. public domain. Intervention types only; efficiencies and prices are synthetic.",
+    "Independent fact checks, not imported content: WHO (2018), table B1, E. coli; USGS Circular 1350 FAQ, nitrate; USGS Circular 1136, phosphorus; British Columbia WQG-18 (2023), sediment bands. USGS material U.S. public domain. WHO and BC documents used for verification only.",
+    "Eight retained illustrations drawn with FLUX.1-schnell (model Apache 2.0) on a local computer, edited for Curio Class. Original Curio Class image content.",
     "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
   ],
   "third_party": [],
-  "updated": "2026-10-31"
+  "updated": "2026-11-06",
+  "curiosity": true,
+  "plate": null
 }

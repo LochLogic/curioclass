@@ -1,0 +1,373 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "coil-after-test",
+      "steps": [
+        {
+          "click": "#test"
+        },
+        {
+          "wait": 3900
+        }
+      ],
+      "keep": [
+        "#test",
+        "#settings",
+        "#board",
+        "#records"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "coil-max",
+      "steps": [
+        {
+          "click": "#set-turns-3"
+        },
+        {
+          "click": "#set-batteries-2"
+        },
+        {
+          "click": "#switch"
+        }
+      ],
+      "keep": [
+        "#test",
+        "#settings"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "coil-zero",
+      "steps": [
+        {
+          "click": "#set-core-0"
+        },
+        {
+          "click": "#set-gap-3"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "wait": 3900
+        }
+      ],
+      "keep": [
+        "#test"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "class-compare",
+      "steps": [
+        {
+          "click": "#class-open"
+        },
+        {
+          "click": "#dialog-data [data-group='0']"
+        },
+        {
+          "click": "#dialog-data [data-group='1']"
+        }
+      ],
+      "keep": [
+        "#data-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1000x625",
+        "760x900",
+        "375x812"
+      ]
+    },
+    {
+      "name": "static-max",
+      "steps": [
+        {
+          "click": "#m-static"
+        },
+        {
+          "click": "#set-rubs-4"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "wait": 4800
+        }
+      ],
+      "keep": [
+        "#test",
+        "#settings"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "static-zero",
+      "steps": [
+        {
+          "click": "#m-static"
+        },
+        {
+          "click": "#set-rubs-0"
+        },
+        {
+          "click": "#set-gap-3"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "wait": 4800
+        }
+      ],
+      "keep": [
+        "#test"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "field-work",
+      "steps": [
+        {
+          "click": "#m-field"
+        },
+        {
+          "click": "#switch"
+        },
+        {
+          "click": "#sprinkle"
+        },
+        {
+          "click": "#drop"
+        }
+      ],
+      "keep": [
+        "#field-actions"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "note-fair",
+      "steps": [
+        {
+          "click": "#m-notebook"
+        },
+        {
+          "click": "#note-options button"
+        },
+        {
+          "click": "#fair"
+        },
+        {
+          "wait": 3300
+        }
+      ],
+      "keep": [
+        "#note-options",
+        "#note-actions"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "real-one",
+      "steps": [
+        {
+          "click": "#real"
+        }
+      ],
+      "keep": [
+        "#real-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "clear-confirm",
+      "steps": [
+        {
+          "click": "#clear-table"
+        }
+      ],
+      "keep": [
+        "#clear-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "class-compare-wide",
+      "sizes": [
+        "1280x720",
+        "1366x768",
+        "1920x1080"
+      ],
+      "steps": [
+        {
+          "click": "#class-data [data-group='0']"
+        },
+        {
+          "click": "#class-data [data-group='1']"
+        }
+      ],
+      "keep": [
+        "#compare-strip"
+      ]
+    },
+    {
+      "name": "notebook-case-2",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-notebook"
+        },
+        {
+          "click": "#case-1"
+        },
+        {
+          "click": "#note-options button"
+        },
+        {
+          "click": "#fair"
+        },
+        {
+          "wait": 3300
+        }
+      ],
+      "keep": [
+        "#note-options",
+        "#note-actions"
+      ]
+    },
+    {
+      "name": "notebook-case-3",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-notebook"
+        },
+        {
+          "click": "#case-2"
+        },
+        {
+          "click": "#note-options button"
+        },
+        {
+          "click": "#fair"
+        },
+        {
+          "wait": 3300
+        }
+      ],
+      "keep": [
+        "#note-options",
+        "#note-actions"
+      ]
+    },
+    {
+      "name": "compact-field-settings",
+      "sizes": [
+        "680x425",
+        "800x500"
+      ],
+      "steps": [
+        {
+          "click": "#m-field"
+        },
+        {
+          "click": "#field-settings"
+        }
+      ],
+      "keep": [
+        "#settings-dialog"
+      ]
+    },
+    {
+      "name": "review-notebook-correction",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-notebook"
+        },
+        {
+          "click": "#note-options button"
+        },
+        {
+          "wait": 2500
+        }
+      ],
+      "keep": [
+        "#note-options",
+        "#fair"
+      ]
+    },
+    {
+      "name": "review-static-after-coil-question",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-static"
+        }
+      ],
+      "keep": [
+        "#test",
+        "#settings"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,301 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "one-shoot",
+      "steps": [
+        {
+          "click": "#shoot-1"
+        },
+        {
+          "click": "#slot-0-0-1"
+        }
+      ],
+      "keep": [
+        "#calendar",
+        "#wrap",
+        "#hint"
+      ]
+    },
+    {
+      "name": "edit-with-cut",
+      "steps": [
+        {
+          "click": "#shoot-1"
+        },
+        {
+          "click": "#slot-0-0-1"
+        },
+        {
+          "click": "#shoot-2"
+        },
+        {
+          "click": "#slot-0-1-1"
+        },
+        {
+          "click": "#shoot-8"
+        },
+        {
+          "click": "#slot-0-4-1"
+        },
+        {
+          "click": "#wrap"
+        },
+        {
+          "click": "#confirm"
+        },
+        {
+          "click": "#add",
+          "times": 10,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#play",
+        "#timeline",
+        "#hint"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "trim-handles",
+      "steps": [
+        {
+          "click": "#shoot-1"
+        },
+        {
+          "click": "#slot-0-0-1"
+        },
+        {
+          "click": "#shoot-2"
+        },
+        {
+          "click": "#slot-0-1-1"
+        },
+        {
+          "click": "#shoot-8"
+        },
+        {
+          "click": "#slot-0-4-1"
+        },
+        {
+          "click": "#wrap"
+        },
+        {
+          "click": "#confirm"
+        },
+        {
+          "click": "#add",
+          "times": 10,
+          "gap": 0.15
+        },
+        {
+          "click": "#trim"
+        }
+      ],
+      "keep": [
+        "#dialog"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "screened",
+      "steps": [
+        {
+          "click": "#shoot-1"
+        },
+        {
+          "click": "#slot-0-0-1"
+        },
+        {
+          "click": "#shoot-2"
+        },
+        {
+          "click": "#slot-0-1-1"
+        },
+        {
+          "click": "#shoot-8"
+        },
+        {
+          "click": "#slot-0-4-1"
+        },
+        {
+          "click": "#wrap"
+        },
+        {
+          "click": "#confirm"
+        },
+        {
+          "click": "#add",
+          "times": 10,
+          "gap": 0.15
+        },
+        {
+          "click": "#m-screen"
+        },
+        {
+          "click": "#screen-it"
+        },
+        {
+          "until": "!__tool.ui.screening",
+          "max": 40000
+        }
+      ],
+      "keep": [
+        "#graph-host",
+        "#screen-it",
+        "#hint"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "premiere-plan",
+      "steps": [
+        {
+          "click": "#shoot-1"
+        },
+        {
+          "click": "#slot-0-0-1"
+        },
+        {
+          "click": "#shoot-2"
+        },
+        {
+          "click": "#slot-0-1-1"
+        },
+        {
+          "click": "#shoot-8"
+        },
+        {
+          "click": "#slot-0-4-1"
+        },
+        {
+          "click": "#wrap"
+        },
+        {
+          "click": "#confirm"
+        },
+        {
+          "click": "#add",
+          "times": 10,
+          "gap": 0.15
+        },
+        {
+          "click": "#m-screen"
+        },
+        {
+          "click": "#screen-it"
+        },
+        {
+          "until": "!__tool.ui.screening",
+          "max": 40000
+        },
+        {
+          "click": "#m-premiere"
+        }
+      ],
+      "keep": [
+        "#hint"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-cover-preview",
+      "steps": [
+        {
+          "click": "#shoot-1"
+        },
+        {
+          "click": "#slot-0-0-1"
+        },
+        {
+          "click": "#shoot-2"
+        },
+        {
+          "click": "#slot-0-1-1"
+        },
+        {
+          "click": "#shoot-6"
+        },
+        {
+          "click": "#slot-0-4-1"
+        },
+        {
+          "click": "#wrap"
+        },
+        {
+          "click": "#confirm"
+        },
+        {
+          "click": "#add"
+        },
+        {
+          "click": "#cover"
+        },
+        {
+          "js": "document.querySelector('#cover-source').value='B2';document.querySelector('#cover-seconds').value='10';"
+        },
+        {
+          "click": "#confirm"
+        }
+      ],
+      "keep": [
+        "#edit-viewer",
+        "#cover",
+        "#hint"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "review-archive-caption",
+      "steps": [
+        {
+          "click": "#shoot-8"
+        },
+        {
+          "click": "#slot-0-4-1"
+        },
+        {
+          "click": "#wrap"
+        },
+        {
+          "click": "#confirm"
+        },
+        {
+          "click": "#add"
+        },
+        {
+          "click": "#caption"
+        }
+      ],
+      "keep": [
+        "#dialog"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    }
+  ]
+}

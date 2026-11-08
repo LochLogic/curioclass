@@ -39,7 +39,38 @@ the fair's mainly Sundanese repertoire. Equal-tempered pentatonic tuning is expl
 not traditional repertoire or authentic slendro / pelog tuning.
 
 Sources in notes.md include Smithsonian Folkways, Smithsonian NMAA and UNESCO.
-The fresh cultural wording and people-art review passed: refine/sensitivity.md.
+The current Claude Refine sensitivity review is FAIL. The repairs below await its fresh exit check;
+this build does not claim a new sensitivity PASS.
+
+## Claude Refine repairs, round 1
+
+- Gamelan is a side station, identified as a living tradition heard in Paris in 1889. Mystery excludes it.
+  Court and village transmission and the Dutch colonial exhibit are named; no notation-date claim is added.
+- Mystery counts the closest eligible station, with strict midpoint ties. A fixed guess can count at most
+  one of six unique stations. The reveal keeps a dim estimate pin and draws its gap to the answer.
+- Playing modes speak their how-to lines over ducked music. Each mode has its own Power instruction.
+  Idents wait for a stable 500 ms lock; brief lock-edge wobble keeps the current musical phrase running.
+- Station output trims and quieter static are tool-local. No family or kit engine changed.
+- Text-comparison badges were removed. Organum's Harmony row names the held notes and changing intervals.
+  Notation shows its long-short 3/4 rhythm and drone, modern clefs, and ragtime's eighth-note placement.
+- Mixing knobs drag 32 pixels per era and retain native arrow keys. Mixed rows name added drums and
+  separately pulsing accompaniment. Letter shortcuts require Shift.
+- Accepted music corrections: C chord in Classical/Ragtime phrase 2, delayed B in the Renaissance
+  suspension, and gamelan half-beat elaboration with gong punctuation on the final beat.
+- The hip hop community postcard is kept deliberately, with Cindy Campbell credited on screen and in notes.
+  New pendopo, Harlem ballroom and juke-joint postcards replace the disputed settings. They were made with
+  the built-in imagegen tool and saved in art/raw, then resized with art.py --rekey. Full prompts are in prompts.json.
+- Verification, exact before/after numbers, paths and remaining limits are in polish.md when this fix run ends.
+- The single fix audit completed with 15 leads. Two typesetting causes (compact footer size and Organum
+  signature spacing) received targeted follow-up frames; Reset's starting value, action-owned welcomes and
+  the intentional Pause speech cut are explained in polish.md. The full audit was not repeated.
+
+## Sensitivity
+
+The next fresh sensitivity exit check should re-check the living-tradition ident and Mystery exclusion, the Dutch
+colonial exhibit wording, transmission in court and village ensembles, the Black swing bandleaders and Savoy,
+the Cindy Campbell credit with the deliberately retained community postcard, and the three replacement settings.
+No new sensitivity lens was run during this one-pass fix.
 
 ## Timing and checks
 

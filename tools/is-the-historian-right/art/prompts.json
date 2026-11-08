@@ -1,0 +1,63 @@
+{
+  "house_style": "Detailed gouache illustration for older students, warm archive light from upper left, muted brown and blue colors, rich material texture. No people, faces, body parts, text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "archive-desk",
+      "prompt": "A worn dark wooden library desk seen from above, a brass desk lamp casting warm light on one corner, a blotter pad. Clear middle area for three case folders drawn in code.",
+      "aspect": "16:10",
+      "width": 1500,
+      "quality": 75,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image, built-in imagegen"
+    },
+    {
+      "name": "cover-titanic",
+      "prompt": "A four-funnel ocean liner steaming across a calm dark sea at night, a pale iceberg far off on the horizon, a sky full of stars.",
+      "aspect": "4:3",
+      "width": 760,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image, built-in imagegen"
+    },
+    {
+      "name": "cover-chicago",
+      "prompt": "A dirt street of 1870s wooden storefronts with blank signboards, a small wooden barn behind them, a dry autumn evening sky.",
+      "aspect": "4:3",
+      "width": 760,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image, built-in imagegen"
+    },
+    {
+      "name": "cover-frontier",
+      "prompt": "A brass surveyor's compass, a rolled blank paper map tied with string and an open pocket watch on a dark wooden desk. Objects of the 1890s survey, close still life.",
+      "aspect": "4:3",
+      "width": 760,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image, built-in imagegen"
+    },
+    {
+      "name": "pd-aic-59281",
+      "prompt": "Public-domain historical photograph: Untitled (Chicago after the Fire), attributed to George N. Barnard, 1871, albumen print. Art Institute of Chicago, CC0.",
+      "width": 700,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "source": "https://www.artic.edu/artworks/59281",
+      "review": "ok"
+    }
+  ]
+}

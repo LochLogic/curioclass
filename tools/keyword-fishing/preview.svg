@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="title desc">
+  <title id="title">Keyword Fishing</title>
+  <desc id="desc">A red bobber and two golden fish on a misty lake. Word tiles read sea, turtles and eat.</desc>
+  <defs>
+    <linearGradient id="water" x2="0" y2="1">
+      <stop stop-color="#a3d8c4"/><stop offset=".4" stop-color="#438f91"/><stop offset="1" stop-color="#125a6b"/>
+    </linearGradient>
+    <linearGradient id="fish" x2="0" y2="1">
+      <stop stop-color="#ffce79"/><stop offset=".6" stop-color="#f4a259"/><stop offset="1" stop-color="#c96d30"/>
+    </linearGradient>
+    <linearGradient id="wood" x2="0" y2="1"><stop stop-color="#d6ad70"/><stop offset="1" stop-color="#8e6137"/></linearGradient>
+    <radialGradient id="cap" cx=".3" cy=".2"><stop stop-color="#ff8b65"/><stop offset="1" stop-color="#b6291e"/></radialGradient>
+    <g id="one-fish">
+      <path d="M-38 0l-30-22 3 43z" fill="#d68733" stroke="#bc6f26" stroke-width="2"/>
+      <path d="M-9-22q10-26 26 2" fill="#df923a"/>
+      <ellipse rx="49" ry="29" fill="url(#fish)" stroke="#c0782a" stroke-width="2"/>
+      <path d="M-20-23q-11 24 0 46m14-47q-9 24 1 49" fill="none" stroke="#fff1bb" stroke-width="8"/>
+      <circle cx="29" cy="-7" r="7" fill="#fff9dc"/><circle cx="31" cy="-7" r="4" fill="#183e3b"/>
+      <circle cx="32" cy="-9" r="1.5" fill="white"/>
+      <path d="M39 10q8 4 11-1" fill="none" stroke="#9e542c" stroke-width="2"/>
+      <path d="M0 0q15-8 14 13z" fill="#e9933b" stroke="#c57228"/>
+    </g>
+  </defs>
+  <rect width="640" height="400" fill="url(#water)"/>
+  <path d="M0 104Q90 31 177 83T340 68 504 82 640 59V145H0" fill="#8eaa79"/>
+  <path d="M0 120Q124 64 232 111T435 101 640 91V150H0" fill="#5f8c6b" opacity=".75"/>
+  <path d="M0 132Q170 117 340 135T640 129" fill="none" stroke="#edf5cf" stroke-width="24" opacity=".35"/>
+  <g fill="none" stroke="#d2efd5" opacity=".45">
+    <path d="M75 170h111m180-4h140M51 230h109m321 7h103M176 287h113m83-13h89"/>
+    <ellipse cx="322" cy="218" rx="75" ry="18"/><ellipse cx="322" cy="218" rx="48" ry="10"/>
+  </g>
+  <path d="M320 0v172" stroke="#fff8d1" stroke-width="1.5"/>
+  <ellipse cx="320" cy="203" rx="22" ry="28" fill="#fff7db"/>
+  <path d="M298 202a22 28 0 0 1 44 0z" fill="url(#cap)"/>
+  <circle cx="320" cy="171" r="5" fill="none" stroke="#cbb064" stroke-width="3"/>
+  <use href="#one-fish" transform="translate(170 219) rotate(-6)"/>
+  <use href="#one-fish" transform="translate(475 245) rotate(7)"/>
+  <path d="M0 307l103-16 34 109H0" fill="url(#wood)" stroke="#986b3d" stroke-width="3"/>
+  <g stroke="#745134" fill="none" opacity=".65">
+    <path d="M0 337l112-14M0 373l124-15M19 314l7 85M60 307l16 92M16 344l28 3m-3-27 21 2"/>
+  </g>
+  <g font-family="Georgia,serif" font-weight="bold" text-anchor="middle" fill="#263e29">
+    <rect x="165" y="315" width="98" height="47" rx="7" fill="#fff4d1" stroke="#c9ac67" stroke-width="2"/>
+    <rect x="271" y="315" width="112" height="47" rx="7" fill="#fff4d1" stroke="#c9ac67" stroke-width="2"/>
+    <rect x="391" y="315" width="86" height="47" rx="7" fill="#fff4d1" stroke="#c9ac67" stroke-width="2"/>
+    <text x="214" y="346" font-size="23">sea</text><text x="327" y="346" font-size="23">turtles</text>
+    <text x="434" y="346" font-size="23">eat</text>
+    <text x="320" y="49" font-size="37" fill="#fffce9" stroke="#28594b" stroke-width=".7">Keyword Fishing</text>
+  </g>
+</svg>

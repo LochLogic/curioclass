@@ -1,5 +1,5 @@
 {
-  "house_style": "Flat painted illustration for a high school math simulator: a dark dusk palette of deep navy and slate with a faint warm coral glow at the horizon, simple clean shapes, soft gradients, calm and uncluttered, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "house_style": "Rich gouache and colored-pencil painted illustration for a Grade 9 math launch range. Deep navy and slate dusk palette, coral-orange equipment, soft warm light from the upper left, convincing materials and small true details, clean readable silhouettes. No text, letters, numbers, logos, watermarks, watermarks. Draw people only in assets that explicitly call for a person, with natural proportions and respectful representation.",
   "style": "Used dim behind the launch scene, so the sky stays open and dark.",
   "assets": [
     {
@@ -11,6 +11,74 @@
       "quality": 70,
       "source": "flux1-schnell (local)",
       "review": "pending"
+    },
+    {
+      "name": "field-dusk",
+      "prompt": "An open sports field at dusk, short green grass in the bottom eighth, deep blue sky with first stars, low distant dark trees. Tall open sky for a ball flight, foreground grass blades, layered atmospheric distance.",
+      "aspect": "9:16",
+      "cutout": false,
+      "people": false,
+      "width": 620,
+      "quality": 78,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "launcher",
+      "prompt": "A small foam ball launcher on a short tripod, an orange tube pointing perfectly straight up, pump handle, dark rubber feet, metal screws and brushed steel fittings. Side view, entire object visible, isolated on perfectly flat pure magenta (#FF00FF).",
+      "aspect": "3:4",
+      "cutout": true,
+      "people": false,
+      "width": 180,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta",
+      "holes": true
+    },
+    {
+      "name": "foam-ball",
+      "prompt": "One bright orange foam ball with fine porous texture, round silhouette, warm highlight upper left and shaded lower right. Isolated on perfectly flat pure magenta (#FF00FF).",
+      "aspect": "1:1",
+      "cutout": true,
+      "people": false,
+      "width": 80,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta",
+      "holes": true
+    },
+    {
+      "name": "drone",
+      "prompt": "A small white quadcopter drone with exactly four propellers, side view with slight view from above so all four arms are visible, detailed white shell, charcoal motors, tiny dark camera. Entire object visible, isolated on perfectly flat pure green (#00FF00).",
+      "aspect": "16:9",
+      "cutout": true,
+      "people": false,
+      "width": 220,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "green",
+      "holes": true
+    },
+    {
+      "name": "brick-texture",
+      "prompt": "Full-frame texture of a red brick wall, straight level courses, weathered brick faces, pale mortar, subtle warm upper-left light. Orthographic tileable texture filling the entire image.",
+      "aspect": "1:1",
+      "cutout": false,
+      "people": false,
+      "width": 300,
+      "quality": 78,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "balcony",
+      "prompt": "An apartment balcony with a horizontal black metal railing and pale stone slab. A teenage friend with warm brown skin and short dark curly hair, wearing a plain teal long-sleeve shirt and dark trousers, stands naturally behind the rail, holding a brown leather baseball glove open just on top of the rail for a catch. Entire balcony and figure visible, no cropped silhouette. Clear simple side view, glove on the LEFT third of the horizontal rail. Fine rail bars, glove stitching, soft gouache and colored pencil, upper-left warm dusk light. Isolated on perfectly flat pure magenta (#FF00FF), including all holes between the bars. No text, letters, numbers or logos.",
+      "aspect": "4:3",
+      "cutout": true,
+      "people": true,
+      "width": 320,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta",
+      "holes": true
     }
   ]
 }

@@ -1,0 +1,151 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "type-error",
+      "steps": [
+        {
+          "click": "#cook"
+        },
+        {
+          "wait": 1000
+        }
+      ],
+      "keep": [
+        "#cook",
+        "#rail",
+        ".card"
+      ]
+    },
+    {
+      "name": "pantry",
+      "steps": [
+        {
+          "click": ".slot[data-i=\"0\"][data-key=\"0\"]"
+        },
+        {
+          "click": "#pantry"
+        }
+      ],
+      "keep": [
+        "#pantry-dialog"
+      ]
+    },
+    {
+      "name": "open-ticket",
+      "steps": [
+        {
+          "click": "#m-open"
+        },
+        {
+          "click": "#new-ticket"
+        }
+      ],
+      "keep": [
+        "#ticket-dialog"
+      ]
+    },
+    {
+      "name": "level-picker",
+      "steps": [
+        {
+          "click": "#choose-level"
+        }
+      ],
+      "keep": [
+        "#level-dialog"
+      ]
+    },
+    {
+      "name": "parameter-run",
+      "steps": [
+        {
+          "click": "#choose-level"
+        },
+        {
+          "click": "#level-options [data-level=\"8\"]"
+        },
+        {
+          "click": "#cook"
+        },
+        {
+          "wait": 800
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ],
+      "keep": [
+        "#cook",
+        "#rail",
+        ".card"
+      ]
+    },
+    {
+      "name": "served-a1",
+      "steps": [
+        {
+          "click": ".slot[data-i=\"0\"][data-key=\"0\"]"
+        },
+        {
+          "click": "#pantry"
+        },
+        {
+          "click": "#numbers [data-value=\"4\"]"
+        },
+        {
+          "click": "#use-value"
+        },
+        {
+          "click": "#cook"
+        },
+        {
+          "until": "__tool.state.done",
+          "max": 8000
+        }
+      ],
+      "keep": [
+        "#cook",
+        "#rail",
+        ".card"
+      ]
+    },
+    {
+      "name": "manager-change",
+      "steps": [
+        {
+          "click": "#choose-level"
+        },
+        {
+          "click": "#level-options [data-level=\"10\"]"
+        },
+        {
+          "click": "#cook"
+        },
+        {
+          "until": "__tool.state.phase===1",
+          "max": 15000
+        }
+      ],
+      "keep": [
+        "#manager",
+        "#cook"
+      ]
+    },
+    {
+      "name": "line-composer",
+      "steps": [
+        {
+          "click": "#add-line"
+        },
+        {
+          "click": "#add-options [data-add=\"0\"]"
+        }
+      ],
+      "keep": [
+        "#add-dialog"
+      ]
+    }
+  ]
+}

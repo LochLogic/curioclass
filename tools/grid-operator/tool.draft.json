@@ -1,0 +1,26 @@
+{
+  "id": "grid-operator",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Keep an island city's lights on, then defend the cost and carbon tradeoffs.",
+  "outcome": "Evaluate electricity fleets using hourly supply, cost, reliability and fuel CO2 evidence",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": [
+    "Plan",
+    "Run",
+    "Compare"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "EIA, Cost and Performance Characteristics of New Generating Technologies, AEO2023, Table 1 (2022 dollars)",
+    "EIA, Electric Power Annual Tables 7.20, 8.1 and 8.4; Electric Power Monthly Tables 4.1, 6.07.A and 6.07.B",
+    "EIA, Carbon Dioxide Emissions Coefficients (September 18, 2024)",
+    "EIA FAQ, CO2 per kilowatthour (2023 data)",
+    "FERC and NERC, Winter Storm Elliott final report (November 7, 2023)",
+    "Ridgeport, hourly demand and weather profiles are invented teaching scenarios",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-05"
+}

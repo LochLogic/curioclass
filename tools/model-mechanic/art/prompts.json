@@ -11,7 +11,7 @@
       "quality": 74,
       "sd": "Wide angle photo of a sunny forest clearing taken from knee height: green ferns in the foreground, a fallen mossy log across the middle, a dirt path winding into the trees, soft daylight, natural colors, clean full-bleed photo.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
     },
     {
       "name": "clearing-night",
@@ -23,7 +23,99 @@
       "local_note": "tinted green-gray in CSS",
       "sd": "Black and white infrared night photo of a forest clearing taken from knee height: pale ferns in the foreground, a fallen log across the middle, a dirt path into dark trees, a soft white glow in the center fading to black at the edges, grainy monochrome, clean full-bleed photo.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
+    },
+    {
+      "name": "deer-day",
+      "prompt": "A white-tailed deer walking, daylight, full side view, complete hooves and ears. Isolated on flat pure magenta (#FF00FF). No ground shadow. No people, text, letters, numbers or logos.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 600,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": false,
+      "review": "ok",
+      "holes": true
+    },
+    {
+      "name": "deer-night",
+      "prompt": "A white-tailed deer walking, black and white infrared photograph, glowing eye shine, full side view. Isolated on flat pure magenta (#FF00FF). No ground shadow. No people, text, letters, numbers or logos.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 600,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": false,
+      "review": "ok",
+      "holes": true
+    },
+    {
+      "name": "fox-day",
+      "prompt": "A red fox trotting with a bushy tail, daylight, full side view, complete paws and tail. Isolated on flat pure magenta (#FF00FF). No ground shadow. No people, text, letters, numbers or logos.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 600,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": false,
+      "review": "ok",
+      "holes": true
+    },
+    {
+      "name": "fox-night",
+      "prompt": "A red fox trotting, black and white infrared photograph, glowing eye shine, full side view. Isolated on flat pure magenta (#FF00FF). No ground shadow. No people, text, letters, numbers or logos.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 600,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": false,
+      "review": "ok",
+      "holes": true
+    },
+    {
+      "name": "raccoon-day",
+      "prompt": "A raccoon with a dark face mask and ringed tail, walking, daylight, full side view. Isolated on flat pure magenta (#FF00FF). No ground shadow. No people, text, letters, numbers or logos.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 600,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": false,
+      "review": "ok",
+      "holes": true
+    },
+    {
+      "name": "raccoon-night",
+      "prompt": "A raccoon walking, black and white infrared photograph, its face mask washed out pale, gentle eye shine, full side view with all four paws and a complete ringed tail. Fine realistic fur, clean natural fur edges. Isolated on flat pure magenta (#FF00FF). No ground shadow. No people, text, letters, numbers or logos.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 600,
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": false,
+      "review": "cold review: redrawn for clean fur and less overexposed eye; washed-out mask retained; inspected keyed and in-scene",
+      "holes": true,
+      "review_source": "OpenAI gpt-image, revised 2026-11-07"
+    },
+    {
+      "name": "grass-wind",
+      "prompt": "A clump of tall grass and a few leaves bending and slightly blurred in the wind, daylight. Isolated on flat pure magenta (#FF00FF). No ground shadow. No people, text, letters, numbers or logos.",
+      "cutout": true,
+      "key": "magenta",
+      "aspect": "1:1",
+      "width": 360,
+      "quality": 72,
+      "drawn_by": "codex",
+      "despill": false,
+      "holes": true,
+      "review": "ok"
     }
   ]
 }

@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Me vs the Counter · Curio Class</title>
+<meta name="description" content="Count bouncing balls alongside a floor sensor, compare timelines, and find the bounciest ball. Kindergarten computer science. Works offline.">
+<!--
+Me vs the Counter, Curio Class. Kindergarten, teacher led, Count and Decide.
+CSTA 2026 EK-DAT-DC-08, EK-DAT-DI-09, EK-DAT-IM-10; 2017 1A-DA-06, 1A-DA-07.
+Physics and matching model: spec.md. FIBA basketball rebound test; ITF Rules of Tennis Appendix I;
+OpenStax College Physics 2e. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file. No student data stored. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fdf8f1; --ink:#2a1f14; --muted:#6b5a48; --line:#ecdcc6; --brand:#b45309;
+  --focus:#1d4ed8; --gold:#ffd23f; --teal:#0f6e74; --btn:#984306; --btn-line:#e8ae77;
+  --head-ink:#fff; --panel:#fffaf2;
+}
+body {height:100dvh; overflow:hidden}
+button {touch-action:manipulation; -webkit-tap-highlight-color:transparent}
+button:focus-visible {outline:4px solid var(--focus); outline-offset:2px; box-shadow:0 0 0 5px white}
+button:active {filter:brightness(.94)}
+header {padding:10px 16px; gap:8px; flex-wrap:nowrap; z-index:5; box-shadow:0 4px 12px #502a2426}
+h1 {font-family:'Trebuchet MS',sans-serif; font-size:30px}
+h1 small {font-size:14px; opacity:1; padding-top:4px}
+.seg {border-radius:19px}
+.seg button {min-height:60px; padding:0 15px; font-size:17px}
+.icon-btn {min-height:60px; padding:0 12px}
+main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
+.panel {grid-column:2; grid-row:1; padding:18px 14px 12px; gap:16px; overflow:hidden;
+  background:linear-gradient(120deg,#fffaf2,#f3e4cd); border-left:4px solid #dbc09c}
+.rack {display:grid; grid-template-columns:repeat(4,1fr); gap:4px; padding-bottom:9px; border-bottom:4px solid #b6844a}
+.ball-choice {position:relative; padding:4px; min-width:60px; height:76px; border:2px solid #d9bd99;
+  border-radius:14px; background:#fffaf2; box-shadow:0 4px 0 #c5a27b}
+.ball-choice img {width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 3px 2px #43291025)}
+.ball-choice[aria-pressed=true] {border:4px solid var(--brand); background:#ffedbd; box-shadow:0 4px 0 #8c420a}
+.ball-choice[aria-pressed=true]::after {content:'✓'; position:absolute; right:0; top:-7px; background:var(--brand);
+  color:white; border:2px solid white; font-size:17px; width:24px; height:24px; border-radius:50%}
+.action-deck {display:grid; grid-template-columns:1fr 138px; grid-template-rows:66px 66px; gap:12px}
+.big-btn {min-width:60px; font-size:24px; padding:0 8px; border:2px solid #a76520}
+#drop {grid-column:1; grid-row:1; background:var(--gold)}
+#again {grid-column:1; grid-row:2; background:#fffaf2; color:var(--brand); font-size:21px}
+#tap {grid-column:2; grid-row:1 / 3; width:138px; height:138px; align-self:center; border-radius:50%;
+  border:5px solid #fff1dc; box-shadow:0 6px 0 #893b09,0 0 0 3px #c16c2a; background:radial-gradient(at 35% 25%,#e9973b,#b45309);
+  color:white; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; font-size:22px}
+.hand-icon {width:62px; height:65px; display:block; fill:currentColor; filter:drop-shadow(0 2px 0 #5e2b1633)}
+.painted-hand {object-fit:contain}
+#tap small {font-size:11px; font-weight:500}
+#tap.tap {transform:scale(.95); background:#8d3f08; box-shadow:0 2px 0 #893b09,0 0 0 6px #ffd23f}
+.first-pulse {animation:invite 2.2s ease-in-out infinite}
+@keyframes invite {50% {box-shadow:0 6px 0 #893b09,0 0 0 8px #e8ae7766}}
+#slow {width:100%; height:60px; border:2px solid #bfa17a; border-radius:16px; background:#fffaf2; font-weight:800; font-size:20px}
+#slow[aria-pressed=true] {background:#e4f1e1; border-color:#426c36}
+.slow-check {display:none}
+#slow[aria-pressed=true] .slow-check {display:inline}
+.control-icon {font-size:1.3em}
+.mode-tools {display:grid; gap:10px}
+#chart-toggle,#start-over {height:60px; font-size:18px; border-radius:14px; border:2px solid #bfa17a; font-weight:800}
+#chart-toggle {background:var(--teal); color:white}
+#chart-toggle:disabled {background:#ddd4c6; color:#635b51; opacity:1; cursor:default}
+#start-over {background:#fffaf2}
+.panel-foot {margin:auto 0 0; text-align:center; font-size:12px; color:var(--muted); line-height:1.5}
+.panel-ball {font-size:20px; font-weight:800; text-align:center; margin:0}
+.stage {grid-column:1; grid-row:1; min-height:0; background:#ead7b7; isolation:isolate}
+.gym {position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+.stage::after {content:''; position:absolute; inset:0; background:linear-gradient(100deg,#fff5d520,transparent 50%,#6d350314);
+  pointer-events:none; z-index:0}
+.hint {position:absolute; z-index:4; top:12px; left:14px; right:14px; min-height:66px; margin:0;
+  padding:10px 18px; background:#fffaf2f5; border:2px solid #e5c79d; border-radius:16px;
+  box-shadow:0 4px 12px #52371c17; text-align:center; font-size:19px; line-height:1.3; display:flex; align-items:center; justify-content:center}
+.fair {position:absolute; top:91px; left:50%; transform:translateX(-50%); color:#5b432b; background:#fffaf2d9;
+  font-size:13px; border-radius:20px; padding:4px 12px; z-index:2; white-space:nowrap}
+.column {position:absolute; top:19%; bottom:16%; left:36%; width:28%; z-index:1}
+.stand {position:absolute; height:100%; width:auto; left:-21%; bottom:0; object-fit:contain; object-position:bottom}
+.pad {position:absolute; width:125%; height:18%; object-fit:fill; bottom:-4%; left:-12.5%; filter:drop-shadow(0 8px 4px #613d2c40)}
+.lights {position:absolute; display:flex; justify-content:center; gap:8%; width:85%; height:5%; bottom:-.4%; left:7.5%}
+.lights i {width:8%; aspect-ratio:1; border-radius:50%; background:#59696b; border:1px solid #283c3c; align-self:center;
+  box-shadow:inset 0 1px 2px #0005}
+.lights.hit i {background:#6df5e7; box-shadow:0 0 12px 4px #33e2ce; border-color:#fff}
+.lights:not(.hit) i:first-child {animation:pilot 3s ease-in-out infinite}
+@keyframes pilot {50% {background:#8abcb5}}
+#ball {position:absolute; width:22%; aspect-ratio:1; left:44%; top:0; object-fit:contain; transform-origin:center bottom;
+  filter:drop-shadow(0 4px 2px #5b2e2925); will-change:top,transform}
+#ball-shadow {position:absolute; width:20%; height:3%; left:45%; bottom:8%; border-radius:50%; background:#62402644; filter:blur(2px)}
+.cable {position:absolute; left:53%; top:70%; width:34%; height:13%; z-index:0; overflow:visible}
+.plate {position:absolute; top:32%; width:25%; height:31%; z-index:2; background:linear-gradient(135deg,#fffdf6,#f4e5cc);
+  border:4px solid var(--brand); border-bottom-width:8px; border-radius:23px; box-shadow:0 8px 17px #6f45232e;
+  display:flex; flex-direction:column; align-items:center; justify-content:center}
+.plate.me {left:4%}
+.plate.counter {right:4%; border:0; background:none; box-shadow:none}
+.plate-label {display:flex; gap:7px; align-items:center; justify-content:center; font-size:clamp(16px,2vw,28px);
+  font-weight:800; white-space:nowrap}
+.plate-label .hand-icon {width:29px; height:32px; color:var(--brand)}
+.number {font:900 clamp(38px,6.3vw,94px)/1 'Trebuchet MS',sans-serif; color:var(--brand)}
+.computer {position:absolute; width:110%; height:130%; top:-10%; left:-5%; object-fit:fill; z-index:-1}
+.counter .plate-label {position:absolute; top:-13%; background:#fffaf2e6; padding:2px 12px; border-radius:12px; color:var(--teal)}
+.counter .number {position:absolute; top:22%; font-size:clamp(34px,5.5vw,82px); color:var(--teal)}
+.tallies {width:90%; height:25px; overflow:hidden; display:flex; align-items:center; justify-content:center; gap:5px; color:var(--brand)}
+.tally-group {display:inline-flex; gap:3px; position:relative; height:17px; padding:0 2px}
+.tally-group b {height:16px; border-left:2px solid currentColor; transform:rotate(7deg)}
+.tally-group.full::after {content:''; position:absolute; left:0; right:0; top:7px; border-top:2px solid currentColor; transform:rotate(-26deg)}
+.counter .tallies {position:absolute; bottom:-15%; color:var(--teal); background:#fffaf2d9; border-radius:9px}
+.plate.pop .number {animation:number-hit .22s ease-out}
+@keyframes number-hit {50% {transform:scale(1.14)}}
+.timeline {position:absolute; z-index:3; bottom:12px; left:3%; width:94%; height:35%; border:3px solid #d9ba8e;
+  border-radius:20px; background:#fffaf2; box-shadow:0 8px 20px #56351c30; padding:8px 12px; animation:reveal .4s ease-out}
+@keyframes reveal {from {transform:translateY(25px); opacity:0}}
+.timeline-top {display:flex; justify-content:space-between; align-items:center; gap:8px; height:60px}
+.timeline-title {font-size:20px; font-weight:800}
+.stepper {display:flex; gap:6px; align-items:center; font-size:15px; font-weight:700}
+.stepper button {width:60px; height:60px; border:2px solid #c79d6e; border-radius:14px; background:#ffedce; font-size:32px; font-weight:700}
+.stepper.glow {border-radius:17px; box-shadow:0 0 0 4px #ffd23f}
+#timeline-svg {display:block; width:100%; height:calc(100% - 62px); min-height:34px; overflow:visible}
+.result-strip {position:absolute; top:87px; left:10px; right:10px; height:64px; z-index:3; display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px}
+.result-cell {position:relative; border:2px solid #d5b48b; border-radius:12px; background:#fffaf2f0; padding:4px; display:flex;
+  align-items:center; gap:5px; font-size:13px; line-height:1.2}
+.result-cell img {width:35px; height:35px; object-fit:contain}
+.result-cell strong {color:var(--teal); font-size:20px}
+.result-cell .tries {color:var(--brand)}
+.stage.data .fair {top:158px; font-size:12px}
+.stage.data .column {top:28%}
+.stage.data .plate {top:39%; height:25%}
+.stage.data .timeline {height:32%}
+.overlay {position:absolute; z-index:4; inset:91px 16px 16px; border:4px solid #d1af7e; border-radius:23px;
+  background:linear-gradient(120deg,#fffdf8,#f7e9cc); box-shadow:0 12px 24px #60402833; padding:20px;
+  display:flex; flex-direction:column; align-items:center; justify-content:space-evenly; gap:12px}
+.overlay h2 {font:800 clamp(20px,3vw,34px)/1.1 'Trebuchet MS',sans-serif; text-align:center; margin:0}
+.prediction-balls {display:grid; grid-template-columns:repeat(4,1fr); width:100%; gap:12px}
+.predict-ball {position:relative; min-width:60px; min-height:90px; padding:8px; border:2px solid #dcc19b;
+  border-radius:18px; background:#fffaf2; box-shadow:0 5px 0 #ceb28b}
+.predict-ball img {width:100%; height:clamp(60px,12vw,150px); object-fit:contain}
+#skip {height:60px; min-width:120px; border:2px solid #b99a72; background:#fffaf2; border-radius:14px; font-size:20px; font-weight:800}
+.prediction-star {position:absolute; right:2px; top:-5px; color:#9b6100; font-size:16px; line-height:1;
+  width:18px; height:18px; text-align:center}
+.result-cell .prediction-star {left:0; right:auto}
+#graph {align-items:stretch; padding:14px; gap:10px}
+#graph h2 {font-size:25px; margin:0 0 8px}
+.graph-row {flex:1; min-height:60px; display:flex; align-items:center; padding:5px 10px; gap:12px;
+  border:2px solid #dcc19b; border-radius:13px; background:#fffdf6; box-shadow:0 3px 0 #ddc8ab}
+.graph-row img {width:56px; height:56px; object-fit:contain}
+.graph-row .dots {display:flex; gap:clamp(2px,.5vw,7px); align-items:center; flex:1}
+.dot {width:clamp(8px,1.5vw,24px); aspect-ratio:1; border-radius:50%; background:radial-gradient(at 35% 25%,#46b7b5,#0f6e74);
+  border:1px solid #0f6e74; animation:dot-in .4s backwards}
+@keyframes dot-in {from {transform:scale(.2); opacity:0}}
+.graph-row.correct {border:4px solid var(--teal); background:#e3f4e8; box-shadow:0 0 0 3px #ffd23f}
+.graph-row.wrong {border-color:#b45309; background:#fff0d4}
+.graph-row {position:relative}
+.graph-row .prediction-star {right:4px; top:3px; font-size:20px}
+.graph-row.wrong .dots {outline:2px dashed #b45309; outline-offset:4px; border-radius:8px}
+.graph-row.correct .dot {box-shadow:0 1px 2px #183a3933}
+.graph-row strong {font-size:24px; min-width:28px}
+.plate {height:auto; aspect-ratio:1.25}
+.stage.data .plate {height:auto; aspect-ratio:1.4}
+.calm .first-pulse,.calm .lights i,.calm .dot,.calm .timeline,.calm .plate.pop .number {animation:none!important}
+.calm #tap.tap {transform:none}
+@media (max-width:1100px) {
+  h1 {font-size:23px}
+  .seg button {font-size:15px; padding:0 10px}
+  .icon-btn {font-size:13px; padding:0 8px}
+  main {grid-template-columns:minmax(0,1fr) 278px}
+  .panel {padding:14px 10px; gap:13px}
+  .action-deck {grid-template-columns:1fr 120px; gap:10px; grid-template-rows:60px 60px}
+  #tap {height:120px; width:120px}
+  .hand-icon {height:52px; width:52px}
+  .ball-choice {height:64px}
+  .hint {font-size:16px; min-height:60px; padding:8px 10px}
+  .panel-ball {font-size:18px}
+  .timeline {padding:6px 8px}
+  .timeline-title {font-size:16px}
+  .stepper {gap:3px; font-size:12px}
+}
+@media (max-height:650px) and (min-width:601px) {
+  header {padding:4px 8px; gap:5px}
+  h1 {font-size:20px}
+  h1 small {display:none}
+  .seg button {font-size:14px; padding:0 8px}
+  .icon-btn {font-size:12px; padding:0 7px; min-height:44px}
+  main {grid-template-columns:minmax(0,1fr) 266px}
+  .panel {padding:10px 6px; gap:10px; display:grid; grid-template-columns:1fr;
+    grid-template-rows:64px 128px 60px; align-content:start}
+  .rack {grid-row:1}
+  .action-deck {grid-row:2}
+  #slow {grid-row:3; grid-column:1}
+  .data-mode #slow {width:60px; font-size:20px}
+  .data-mode #slow .control-label {display:none}
+  .rack {gap:2px; padding-bottom:4px}
+  .ball-choice {min-width:60px; height:60px; padding:2px}
+  .action-deck {grid-template-columns:1fr 120px; grid-template-rows:60px 60px; gap:8px}
+  .big-btn {font-size:21px}
+  .panel-ball,.panel-foot {display:none}
+  .mode-tools {grid-template-columns:minmax(0,1fr) 60px; gap:6px; grid-row:3; grid-column:1; margin-left:68px}
+  #start-over .control-label {display:none}
+  #start-over .control-icon {font-size:28px}
+  #chart-toggle {font-size:15px}
+  .hint {top:6px; left:6px; right:6px; font-size:14px; min-height:54px; padding:5px 8px}
+  .fair {top:66px; font-size:11px}
+  .column {top:25%; bottom:12%}
+  .plate {top:34%; width:27%; height:auto; aspect-ratio:1.25; border-radius:15px; border-width:3px; border-bottom-width:5px}
+  .plate.me {left:2%}
+  .plate.counter {right:2%; border:0}
+  .plate-label {font-size:16px}
+  .plate-label .hand-icon {width:21px; height:25px}
+  .number {font-size:44px}
+  .counter .number {font-size:42px; top:20%}
+  .tallies {gap:2px; height:18px}
+  .tally-group {gap:2px; height:12px; padding:0 1px}
+  .tally-group b {height:12px; border-left-width:1.5px}
+  .tally-group.full::after {top:5px}
+  .timeline {height:37%; min-height:110px; bottom:5px; border-radius:13px; padding:3px 6px}
+  .timeline-title {font-size:13px}
+  .stepper .step-label {display:none}
+  #timeline-svg {height:calc(100% - 60px)}
+  .result-strip {top:65px; height:40px; gap:3px; left:5px; right:5px}
+  .result-cell {font-size:10px; padding:2px; gap:2px}
+  .result-cell img {width:23px; height:23px}
+  .result-cell strong {font-size:14px}
+  .stage.data .fair {top:106px; font-size:10px}
+  .stage.data .column {top:36%; bottom:10%}
+  .stage.data .plate {top:45%; height:auto; aspect-ratio:1.5}
+  .stage.data .counter .plate-label {font-size:14px; padding:2px 5px}
+  .stage.data .counter .number {font-size:31px; top:22%}
+  .stage.data .me {top:44%}
+  .stage.data .me .number {font-size:28px}
+  .stage.data .me .plate-label {font-size:14px}
+  .stage.data .tallies {display:none}
+  .stage.data .timeline {height:32%}
+  .overlay {inset:65px 8px 8px; padding:12px; gap:8px}
+  .overlay h2,#graph h2 {font-size:20px; margin:0}
+  .predict-ball {min-height:72px; padding:3px}
+  .predict-ball img {height:65px}
+  #graph {inset:59px 4px 2px; gap:0; padding:2px; border-width:2px}
+  #graph h2 {display:none}
+  .graph-row {padding:0 6px; min-height:60px; gap:6px}
+  .graph-row img {width:35px; height:35px}
+  .graph-row strong {font-size:17px; min-width:20px}
+}
+@media (max-width:800px) and (min-width:601px) {
+  header {display:grid; grid-template-columns:minmax(0,1fr) 76px 76px; grid-template-rows:44px 60px;
+    min-height:116px; gap:4px; padding:4px 8px}
+  h1 {grid-column:1; grid-row:1; width:auto; margin:0; font-size:20px}
+  .seg {grid-column:1 / 3; grid-row:2; width:100%; min-width:0; border-radius:13px}
+  .seg button {flex:1}
+  .icon-btn {min-width:52px; padding:0 5px; min-height:44px}
+  #motion {grid-column:2; grid-row:1}
+  #sound {grid-column:3; grid-row:1}
+  #read {grid-column:3; grid-row:2; min-width:60px; height:60px}
+  .seg button {height:60px}
+  .timeline-title {font-size:12px}
+}
+@media (max-width:600px) {
+  body {grid-template-rows:144px minmax(0,1fr)}
+  header {padding:5px 8px; gap:4px; flex-wrap:wrap; align-content:center}
+  h1 {font-size:22px; width:100%; margin:0; text-align:center}
+  h1 small {display:none}
+  .seg {order:1; width:100%; height:60px; border-radius:13px}
+  .seg button {flex:1; font-size:16px; padding:0 8px}
+  .icon-btn {order:2; flex:1; height:44px; min-height:44px; font-size:12px}
+  main {grid-template-columns:1fr; grid-template-rows:minmax(280px,1fr) 226px}
+  .stage {grid-column:1; grid-row:1}
+  .panel {grid-column:1; grid-row:2; border:0; border-top:3px solid #dbc09c; padding:8px;
+    display:grid; grid-template-columns:1fr 120px; grid-template-rows:64px 60px 60px; gap:8px; overflow:visible}
+  .rack {grid-column:1 / 3; grid-row:1; border:0; padding:0; gap:6px}
+  .ball-choice {min-width:60px; height:60px; padding:3px}
+  .action-deck {display:contents}
+  #drop {grid-column:1; grid-row:2}
+  #again {grid-column:1; grid-row:3; width:calc(50% - 4px); font-size:17px}
+  #tap {grid-column:2; grid-row:2 / 4}
+  #slow {grid-column:1; grid-row:3; width:calc(50% - 4px); justify-self:end; font-size:16px}
+  .panel-ball,.panel-foot {display:none}
+  .mode-tools {position:absolute; z-index:4; bottom:232px; right:8px; display:flex; gap:6px}
+  #chart-toggle {font-size:14px; padding:0 8px; box-shadow:0 3px 5px #38251033}
+  #start-over {width:60px}
+  #start-over .control-label {display:none}
+  #start-over .control-icon {font-size:28px}
+  .hint {top:5px; left:6px; right:6px; min-height:54px; padding:4px 8px; font-size:14px}
+  .fair {top:65px; font-size:10px}
+  .column {top:26%; bottom:17%; width:30%; left:35%}
+  .plate {top:34%; height:auto; aspect-ratio:1.15; width:27%; border-radius:15px}
+  .plate.me {left:2%}
+  .plate.counter {right:2%}
+  .plate-label {font-size:16px}
+  .plate-label .hand-icon {width:20px; height:25px}
+  .number {font-size:40px}
+  .counter .number {font-size:38px; top:21%}
+  .counter .plate-label {font-size:14px; padding:2px 5px}
+  .tallies {gap:2px; height:18px}
+  .tally-group {gap:2px; padding:0 1px; height:12px}
+  .tally-group b {height:12px; border-width:1.5px}
+  .timeline {height:36%; bottom:5px; padding:3px 6px; border-radius:13px}
+  .timeline-title {font-size:12px}
+  .step-label {display:none}
+  .result-strip {top:63px; left:5px; right:5px; height:41px; gap:2px}
+  .result-cell {gap:2px; font-size:10px; padding:2px}
+  .result-cell img {width:22px; height:22px}
+  .result-cell strong {font-size:13px}
+  .stage.data .fair {top:109px; font-size:10px}
+  .stage.data .column {top:34%; bottom:23%}
+  .stage.data .plate {top:35%; height:auto; aspect-ratio:1.4}
+  .stage.data .plate .number {font-size:32px}
+  .stage.data .tallies {display:none}
+  .stage.data .timeline {height:36%; bottom:64px}
+  .overlay {inset:63px 8px 69px; padding:10px; gap:6px; border-width:3px}
+  .overlay h2 {font-size:21px}
+  .prediction-balls {gap:5px}
+  .predict-ball {min-height:65px; padding:3px}
+  .predict-ball img {height:60px}
+  #graph {inset:63px 8px 69px; gap:4px; padding:6px}
+  #graph h2 {font-size:17px; margin:0}
+  .graph-row {min-height:60px; gap:5px; padding:0 4px}
+  .graph-row img {width:30px; height:30px}
+  .graph-row strong {font-size:16px; min-width:20px}
+  .dot {width:10px}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <symbol id="hand" viewBox="0 0 72 82">
+    <path d="M22 76c-3-12-8-18-15-28-5-8 2-13 8-7l7 7V17c0-8 10-8 10 0v20-27c0-8 10-8 10 0v27-21
+      c0-8 10-8 10 0v23-15c0-8 10-8 10 0v30c0 9-6 16-10 22z"/>
+  </symbol>
+</defs></svg>
+<header>
+  <h1>Me vs the Counter<small>Who counts better?</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-lab" aria-pressed="true">◉ Bounce Lab</button>
+    <button id="m-data" aria-pressed="false">🏆 Bounciest Ball</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" aria-label="Ball controls">
+    <p class="panel-ball" id="ball-label">Bouncy ball</p>
+    <div class="rack" id="rack" role="group" aria-label="Pick a ball">
+      <button class="ball-choice" id="pick-bouncy" data-ball="bouncy" aria-label="Bouncy ball" aria-pressed="true"><img src="art:ball-bouncy" alt=""></button>
+      <button class="ball-choice" id="pick-basket" data-ball="basket" aria-label="Basketball" aria-pressed="false"><img src="art:ball-basket" alt=""></button>
+      <button class="ball-choice" id="pick-tennis" data-ball="tennis" aria-label="Tennis ball" aria-pressed="false"><img src="art:ball-tennis" alt=""></button>
+      <button class="ball-choice" id="pick-beanbag" data-ball="beanbag" aria-label="Beanbag" aria-pressed="false"><img src="art:beanbag" alt=""></button>
+    </div>
+    <div class="action-deck">
+      <button class="big-btn gold" id="drop">⬇ Drop</button>
+      <button id="tap" class="first-pulse" aria-label="Bounce! Tap for each hit. Space bar.">
+        <img class="hand-icon painted-hand" src="art:tap-hand" alt=""><span>Bounce!</span><small>SPACE</small>
+      </button>
+      <button class="big-btn" id="again">↻ Again</button>
+    </div>
+    <button id="slow" aria-label="Slow: half speed" aria-pressed="false">
+      <span class="control-icon" aria-hidden="true">🐢</span> <span class="control-label">Slow</span>
+      <span class="slow-check" aria-hidden="true">✓</span>
+    </button>
+    <div class="mode-tools" id="mode-tools" hidden>
+      <button id="chart-toggle" disabled>🔒 Show the chart</button>
+      <button id="start-over" aria-label="Start over">
+        <span class="control-icon" aria-hidden="true">↺</span> <span class="control-label">Start over</span>
+      </button>
+    </div>
+    <p class="panel-foot">Same height. Every ball.<br>Counts stay here, on this device.</p>
+  </aside>
+  <div class="stage" id="stage">
+    <img class="gym" src="art:gym-backdrop" alt="">
+    <p class="hint" id="hint"></p>
+    <div class="fair">↕ 1.8 m drop · Counts stay on this device</div>
+    <svg class="cable" viewBox="0 0 300 80" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 25C65 75 90 79 160 55S240 70 300 0" fill="none" stroke="#514f48" stroke-width="5"/>
+      <path d="M0 23C65 73 90 77 160 53S240 68 300 0" fill="none" stroke="#c5bb9e" stroke-width="1.3"/>
+    </svg>
+    <div class="column" id="column">
+      <img class="stand" id="stand" src="art:drop-arm-closed" alt="Ball drop stand">
+      <img class="pad" src="art:sensor-pad" alt="Sensor pad on the floor">
+      <div class="lights" id="lights" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div id="ball-shadow"></div><img id="ball" src="art:ball-bouncy" alt="Bouncy ball">
+    </div>
+    <div class="plate me" id="me-plate">
+      <div class="plate-label"><img class="hand-icon painted-hand" src="art:tap-hand" alt="">Me</div>
+      <div class="number" id="me-number">0</div><div class="tallies" id="me-tallies" aria-hidden="true"></div>
+    </div>
+    <div class="plate counter" id="counter-plate">
+      <img class="computer" src="art:counter-computer" alt="">
+      <div class="plate-label">▣ Counter</div><div class="number" id="counter-number">0</div>
+      <div class="tallies" id="counter-tallies" aria-hidden="true"></div>
+    </div>
+    <div class="timeline" id="timeline" hidden>
+      <div class="timeline-top"><span class="timeline-title" id="timeline-title">Our bounces</span>
+        <div class="stepper" id="stepper"><span class="step-label">Our count</span>
+          <button id="minus" aria-label="Our count minus">−</button><strong id="paper-total">0</strong>
+          <button id="plus" aria-label="Our count plus">+</button>
+        </div>
+      </div>
+      <svg id="timeline-svg" role="img" aria-label="A ten second bounce timeline"></svg>
+    </div>
+    <div class="result-strip" id="result-strip" aria-label="Me and Counter results" hidden></div>
+    <div class="overlay" id="prediction" role="dialog" aria-label="Which ball is the bounciest?" hidden>
+      <h2>Which ball is the bounciest?</h2><div class="prediction-balls" id="prediction-balls"></div>
+      <button id="skip">↪ Skip</button>
+    </div>
+    <div class="overlay" id="graph" aria-label="Picture graph" hidden>
+      <h2 id="graph-title">Which row is the longest?</h2>
+    </div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const L = {
+    'w-lab': 'Welcome to the gym! You count the bounces, and the computer counts them too. Tap a ball. Then press Drop.',
+    'tap-along': 'Every time the ball hits the floor, say bounce, and tap the hand!',
+    sensor: 'The pad on the floor is a sensor. It feels every hit and tells the computer.',
+    'w-ball': 'Which ball is the bounciest? Point to your guess. Then tap that ball on the card.',
+    'drop-all': 'Now tap a ball and press Drop. Drop every ball, one at a time.',
+    paper: 'Did you count on paper? Tap plus or minus to show your count.',
+    same: 'The computer counted the same as you! Nice counting!',
+    timing: 'Our totals match, but some taps did not match hits. Look at the circles. Tap Again to try.',
+    paperSame: 'Our paper total matches the computer total. Tap Again to count once more.',
+    corrected: 'The bouncy ball has the longest row. Compare its dots with the row you tried first.',
+    fewer: 'You counted fewer than the computer. Look for the yellow circles. Those are the bounces you missed.',
+    more: 'You counted more than the computer. The gray circles are extra taps.',
+    fast: 'The bounces got small and fast at the end. Those are the hardest to count.',
+    again: 'Again! The computer got the same number. It counts the same way every time.',
+    bouncy: 'Bouncy ball: the computer counted fifteen.',
+    basket: 'Basketball: the computer counted ten.',
+    tennis: 'Tennis ball: the computer counted six.',
+    beanbag: 'Beanbag: the computer counted one. Plop!',
+    correct: "Yes! The bouncy ball has the longest row. It's the bounciest ball!",
+    wrong: 'Look again. Which row is the longest? Tap it.',
+    ready: 'Every ball has a count. Tap Show the chart!',
+    'pick-row': 'Which ball is the bounciest? Tap its row.',
+    replay: 'Tap Again to count the same ball, or tap another ball and press Drop.',
+    dropping: 'Tap the hand every time the ball hits the pad.',
+    totals: 'Compare the two counts. Tap Again to count the same ball once more.',
+    paperFewer: 'Your paper count is fewer than the computer count. Tap Again to try the same ball.',
+    paperMore: 'Your paper count is more than the computer count. Tap Again to try the same ball.',
+    pickedBouncy: 'Bouncy ball. Press Drop when you are ready.',
+    pickedBasket: 'Basketball. Press Drop when you are ready.',
+    pickedTennis: 'Tennis ball. Press Drop when you are ready.',
+    pickedBeanbag: 'Beanbag. Press Drop when you are ready.',
+    slow: 'Slow is on. The same bounces play at half speed.',
+    normal: 'Slow is off. The bounces play at normal speed.',
+    graphBack: 'Tap a row to choose the bounciest ball. Tap Back to gym to try another drop.',
+    title: 'Me vs the Counter. Who counts better?',
+    privacy: 'Counts stay here, on this device.',
+    fair: 'Every ball drops from the same height.',
+    buttons: 'Bounce Lab. Bounciest Ball. Motion. Sound. Read. Drop. Bounce. Again. Slow. Our count. Show the chart. Start over. Skip.'
+  };
+  const BALLS = [
+    {id:'bouncy', name:'Bouncy ball', e:.9, art:'art:ball-bouncy', pitch:780, pick:'pickedBouncy'},
+    {id:'basket', name:'Basketball', e:.85, art:'art:ball-basket', pitch:350, pick:'pickedBasket'},
+    {id:'tennis', name:'Tennis ball', e:.745, art:'art:ball-tennis', pitch:570, pick:'pickedTennis'},
+    {id:'beanbag', name:'Beanbag', e:0, art:'art:beanbag', pitch:110, pick:'pickedBeanbag'}
+  ];
+  const FALL = Math.sqrt(3.6 / 9.8);
+  for (const b of BALLS) {
+    b.hits = [FALL];
+    for (let n = 1; 2 * FALL * b.e ** n >= .25; n++) b.hits.push(b.hits.at(-1) + 2 * FALL * b.e ** n);
+  }
+  const fresh = () => ({ball:'bouncy', last:null, rows:{}, prediction:null, ask:true, graph:false, firstRow:null});
+  const state = {mode:'lab', modes:{lab:fresh(), data:fresh()}, slow:false, running:false, time:0, taps:[],
+    hitLog:[], hits:0, token:0, firstDrop:true, phase:'idle', selectedRow:null};
+  const current = () => state.modes[state.mode];
+  const ball = () => BALLS.find(b => b.id === current().ball);
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => {
+      if (state.running) return null;
+      if (state.mode === 'lab') return ['w-lab', {valid:() => state.phase === 'idle'}];
+      return current().ask ? ['w-ball', {valid:() => current().ask && !state.running}] : null;
+    },
+    speaks:'#drop, #again, .ball-choice, .predict-ball, #skip, #chart-toggle, .graph-row'
+  });
+  const hint = text => { $('hint').textContent = L[text] || text; };
+  const event = (key, token = state.token, extra = {}) => V.say(key, {
+    valid:() => token === state.token && !state.running, hint:false, ...extra
+  });
+  function how(key, extra = {}) {
+    const token = state.token;
+    V.how(key, {hint:false, valid:() => token === state.token && !state.running, ...extra});
+  }
+  // Maximum in-order pairs, with minimum total gap as the tie-breaker.
+  function match(hits, taps) {
+    const dp = Array.from({length:hits.length + 1}, () => Array(taps.length + 1));
+    function best(a, b) {
+      if (!a) return b;
+      return b.n > a.n || (b.n === a.n && b.gap < a.gap - 1e-10) ? b : a;
+    }
+    for (let i = hits.length; i >= 0; i--) {
+      for (let j = taps.length; j >= 0; j--) {
+        if (i === hits.length || j === taps.length) { dp[i][j] = {n:0, gap:0, pairs:[]}; continue; }
+        let v = best(dp[i + 1][j], dp[i][j + 1]);
+        const delta = taps[j] - hits[i];
+        if (delta >= -.1500001 && delta <= .4000001) {
+          const next = dp[i + 1][j + 1];
+          v = best(v, {n:next.n + 1, gap:next.gap + Math.abs(delta), pairs:[[i,j], ...next.pairs]});
+        }
+        dp[i][j] = v;
+      }
+    }
+    const pairs = dp[0][0].pairs;
+    return {pairs, missed:hits.map((_,i) => i).filter(i => !pairs.some(p => p[0] === i)),
+      extra:taps.map((_,i) => i).filter(i => !pairs.some(p => p[1] === i))};
+  }
+  function tallies(id, n) {
+    $(id).replaceChildren();
+    for (let a = 0; a < n; a += 5) {
+      const g = document.createElement('span');
+      const count = Math.min(5,n-a);
+      g.className = 'tally-group' + (count === 5 ? ' full' : '');
+      g.innerHTML = '<b></b>'.repeat(Math.min(4,count));
+      $(id).append(g);
+    }
+  }
+  function counts(me, computer) {
+    $('me-number').textContent = me;
+    $('counter-number').textContent = computer;
+    $('paper-total').textContent = me;
+    tallies('me-tallies', me);
+    tallies('counter-tallies', computer);
+  }
+  function pulse(id) {
+    $(id).classList.remove('pop');
+    void $(id).offsetWidth;
+    $(id).classList.add('pop');
+  }
+  function renderRows() {
+    for (const b of BALLS) {
+      const row = $('result-' + b.id);
+      const tries = current().rows[b.id];
+      row.querySelector('.tries').textContent = tries ? tries.map(t => t.me).join(',') : '?';
+      row.querySelector('strong').textContent = tries ? tries.at(-1).count : '?';
+      row.querySelector('.prediction-star').textContent = current().prediction === b.id ? '★' : '';
+      $('graph-' + b.id).querySelector('.prediction-star').textContent = current().prediction === b.id ? '★' : '';
+    }
+    const ready = BALLS.every(b => current().rows[b.id]?.length);
+    $('chart-toggle').disabled = !ready;
+    $('chart-toggle').textContent = current().graph ? '↩ Back to gym' : ready ? '▥ Show the chart' : '🔒 Show the chart';
+  }
+  function render() {
+    const c = current();
+    const b = ball();
+    $('stage').classList.toggle('data',state.mode === 'data');
+    document.body.classList.toggle('data-mode',state.mode === 'data');
+    $('mode-tools').hidden = state.mode !== 'data';
+    $('result-strip').hidden = state.mode !== 'data' || c.ask || c.graph;
+    $('prediction').hidden = state.mode !== 'data' || !c.ask;
+    $('graph').hidden = state.mode !== 'data' || !c.graph;
+    const covered = state.mode === 'data' && (c.ask || c.graph);
+    for (const id of ['column','me-plate','counter-plate']) $(id).hidden = covered;
+    document.querySelector('.cable').hidden = covered;
+    document.querySelector('.fair').hidden = covered;
+    $('timeline').hidden = state.running || !c.last || c.graph || (state.mode === 'data' && c.ask);
+    $('ball').src = b.art;
+    $('ball').alt = b.name;
+    $('ball-label').textContent = b.name;
+    $('stand').src = state.running || c.last ? 'art:drop-arm-open' : 'art:drop-arm-closed';
+    for (const pick of document.querySelectorAll('.ball-choice')) {
+      pick.setAttribute('aria-pressed',pick.dataset.ball === c.ball);
+    }
+    if (state.running) counts(state.taps.length,state.hits);
+    else if (c.last) counts(c.last.me,c.last.count);
+    else counts(0,0);
+    $('stepper').classList.toggle('glow',!!c.last && !c.last.taps.length && !c.last.paper);
+    renderRows();
+    if (!$('timeline').hidden) drawTimeline();
+    positionBall();
+    drawCable();
+  }
+  function positionBall() {
+    const b = ball();
+    const t = state.time;
+    let height = 1;
+    let nearHit = false;
+    if (state.running) {
+      if (t < FALL) height = Math.max(0,1 - (t / FALL) ** 2);
+      else {
+        const i = b.hits.findLastIndex(v => v <= t);
+        const next = b.hits[i + 1];
+        const start = b.hits[i];
+        if (next !== undefined) {
+          const f = Math.min(1,(t - start) / (next - start));
+          height = Curio.reduce ? (t-start < .09 ? 0 : f < .5 ? b.e ** (2 * (i+1)) : 0) :
+            4 * f * (1-f) * b.e ** (2 * (i+1));
+        } else height = 0;
+        nearHit = t - start < .09;
+      }
+    } else if (current().last) height = 0;
+    if (state.running && t < FALL && Curio.reduce) height = 1;
+    const floor = $('column').clientHeight * .90 - $('ball').clientHeight;
+    const initial = Math.max(0,$('column').clientHeight * .145 - $('ball').clientHeight * .5);
+    const standWidth = $('column').clientHeight * 380 / 650;
+    $('stand').style.width = standWidth + 'px';
+    $('stand').style.left = ($('column').clientWidth * .55 - standWidth * .855) + 'px';
+    $('ball').style.top = (initial + (1-height) * Math.max(0,floor-initial)) + 'px';
+    $('ball').style.transform = !Curio.reduce && nearHit ? 'scale(1.22,.74)' : '';
+    $('ball-shadow').style.opacity = .25 + .65 * (1-height);
+    $('ball-shadow').style.transform = 'scale(' + (.65 + .35*height) + ')';
+  }
+  function drawCable() {
+    const svg = document.querySelector('.cable');
+    if (svg.hidden) return;
+    const stage = $('stage').getBoundingClientRect();
+    const pad = document.querySelector('.pad').getBoundingClientRect();
+    const computer = document.querySelector('.computer').getBoundingClientRect();
+    const x = pad.left - stage.left + pad.width * .88;
+    const y = pad.bottom - stage.top - pad.height * .16;
+    const endX = computer.left - stage.left + computer.width * .65;
+    const endY = computer.bottom - stage.top - computer.height * .10;
+    svg.style.left = '0';
+    svg.style.top = '0';
+    svg.style.width = '100%';
+    svg.style.height = '100%';
+    svg.setAttribute('viewBox',`0 0 ${stage.width} ${stage.height}`);
+    const path = `M${x} ${y} C${x+45} ${y+25} ${endX+45} ${y+25} ${endX} ${endY}`;
+    svg.querySelectorAll('path').forEach(p => p.setAttribute('d',path));
+    svg.querySelectorAll('path')[1].setAttribute('transform','translate(0,-1)');
+  }
+  let clockAt = 0;
+  function sync(now = performance.now()) {
+    const next = Math.max(now,clockAt);
+    if (state.running) state.time += (next-clockAt) / 1000 * (state.slow ? .5 : 1);
+    clockAt = next;
+  }
+  function frame(now) {
+    if (state.running) {
+      sync(now);
+      const b = ball();
+      while (state.hits < b.hits.length && state.time >= b.hits[state.hits]) {
+        const scheduled = b.hits[state.hits];
+        state.hitLog.push({ball:b.id, index:state.hits, scheduled, actual:state.time, wall:now});
+        state.hits++;
+        counts(state.taps.length,state.hits);
+        pulse('counter-plate');
+        Curio.tone(b.pitch,.055,.12,b.e === 0 ? 'sine' : 'triangle');
+        if (state.hits === 1) {
+          if (V.playing === L['tap-along']) V.hush();
+          else V.dropQueued(line => line.key === 'tap-along');
+        }
+      }
+      $('lights').classList.toggle('hit', state.hits > 0 && state.time - b.hits[state.hits - 1] < .12);
+      positionBall();
+      if (state.time >= b.hits.at(-1) + 1) finish();
+    }
+    requestAnimationFrame(frame);
+  }
+  function start(again = false) {
+    V.hush();
+    state.token++;
+    current().ask = false;
+    current().graph = false;
+    current().last = null;
+    state.running = true;
+    state.phase = 'running';
+    state.time = 0;
+    state.taps = [];
+    state.hits = 0;
+    state.wasAgain = again;
+    state.firstDrop = false;
+    $('tap').classList.remove('first-pulse');
+    clockAt = performance.now();
+    hint('dropping');
+    render();
+    const token = state.token;
+    V.how('tap-along',{hint:false, valid:() => state.running && state.hits === 0 && token === state.token});
+    Curio.tone(430,.045,.08);
+  }
+  function tap() {
+    if (state.running) {
+      sync();
+      if (state.time <= ball().hits.at(-1) + 1) state.taps.push(state.time);
+      counts(state.taps.length,state.hits);
+      pulse('me-plate');
+    }
+    $('tap').classList.add('tap');
+    clearTimeout(tap.timer);
+    tap.timer = setTimeout(() => $('tap').classList.remove('tap'),110);
+    Curio.tone(180,.035,.08);
+  }
+  function finish() {
+    state.running = false;
+    state.phase = 'result';
+    $('lights').classList.remove('hit');
+    const b = ball();
+    const last = {ball:b.id, me:state.taps.length, count:b.hits.length, taps:[...state.taps], paper:false,
+      matching:match(b.hits,state.taps)};
+    current().last = last;
+    const first = !current().rows[b.id];
+    const rows = current().rows[b.id] ||= [];
+    rows.push(last);
+    if (rows.length > 3) rows.shift();
+    render();
+    pulse('counter-plate');
+    const token = state.token;
+    event(b.id,token);
+    if (state.wasAgain) event('again',token);
+    if (!last.me) {
+      hint('paper');
+      const keys = V.heard('sensor') ? ['paper'] : ['paper','sensor'];
+      how(keys,{valid:() => token === state.token && !state.running && !last.paper, needs:'#plus'});
+    } else compare();
+    if (state.mode === 'data' && first && BALLS.every(x => current().rows[x.id]?.length)) {
+      hint('ready');
+      event('ready',token,{valid:() => token === state.token && !state.running && !current().graph, needs:'#chart-toggle'});
+    }
+  }
+  function compare() {
+    const last = current().last;
+    if (!last) return;
+    const key = last.me === last.count ? 'same' : last.me < last.count ? 'fewer' : 'more';
+    const token = state.token;
+    // Paper tallies have no timestamps, so never point at absent timeline rings.
+    const fullyMatched = !last.matching.missed.length && !last.matching.extra.length;
+    const spokenKey = last.paper ? (key === 'same' ? 'paperSame' : key === 'fewer' ? 'paperFewer' : 'paperMore') :
+      key === 'same' && !fullyMatched ? 'timing' : key;
+    event(spokenKey,token);
+    teachSensor(token);
+    const b = BALLS.find(x => x.id === last.ball);
+    const late = !last.paper && (last.matching.missed.some(i => i >= 5) ||
+      last.matching.extra.some(j => b.hits.length > 5 && last.taps[j] > b.hits[4]));
+    if (key !== 'same' && late) event('fast',token);
+    hint(last.paper ? 'totals' : 'replay');
+  }
+  function teachSensor(token) {
+    if (!V.heard('sensor')) {
+      how('sensor',{valid:() => token === state.token && !state.running && !current().graph && !current().ask});
+    }
+  }
+  function paper(delta) {
+    const last = current().last;
+    if (!last || state.running) return;
+    last.paper = true;
+    last.me = Math.max(0,Math.min(30,last.me+delta));
+    const compareKeys = new Set(['same','timing','paperSame','fewer','more','paperFewer','paperMore','paper','fast','sensor']);
+    const oldComparePlaying = ['same','timing','paperSame','fewer','more','paperFewer','paperMore','fast'].some(k => L[k] === V.playing);
+    if (oldComparePlaying) V.hush();
+    else V.dropQueued(line => compareKeys.has(line.key));
+    render();
+    compare();
+    Curio.tone(300 + last.me*12,.04,.08);
+  }
+  function select(id) {
+    if (id === current().ball && state.phase === 'idle' && !current().ask && !current().graph) {
+      Curio.tone(330,.04,.07);
+      return;
+    }
+    const wasRunning = state.running;
+    V.hush();
+    state.token++;
+    current().ball = id;
+    current().last = null;
+    current().graph = false;
+    current().ask = false;
+    state.time = 0;
+    state.phase = 'idle';
+    if (wasRunning) { start(); return; }
+    render();
+    hint(ball().pick);
+    V.how(['tap-along',ball().pick],{hint:false, valid:() => !state.running && state.phase === 'idle', needs:'#drop'});
+    Curio.tone(330,.04,.07);
+  }
+  function predict(id) {
+    V.hush();
+    state.token++;
+    current().prediction = id;
+    current().ask = false;
+    if (id) current().ball = id;
+    state.phase = 'idle';
+    render();
+    hint('drop-all');
+    how('drop-all',{needs:'#drop'});
+    if (document.activeElement.closest('#prediction')) $('drop').focus({preventScroll:true});
+    Curio.tone(520,.07,.08);
+  }
+  function setMode(mode) {
+    if (!state.modes[mode]) return;
+    V.hush();
+    state.token++;
+    state.running = false;
+    state.mode = mode;
+    state.phase = current().last ? 'result' : 'idle';
+    state.time = 0;
+    $('lights').classList.remove('hit');
+    $('m-lab').setAttribute('aria-pressed',mode === 'lab');
+    $('m-data').setAttribute('aria-pressed',mode === 'data');
+    render();
+    if (current().graph) { hint('graphBack'); how('pick-row'); }
+    else if (mode === 'data' && current().ask) { hint('w-ball'); V.welcome(); }
+    else if (current().last) { hint('replay'); how('replay'); }
+    else {
+      const key = mode === 'lab' ? 'w-lab' : 'drop-all';
+      hint(key);
+      V.welcome() || how(key);
+    }
+  }
+  function showChart() {
+    if ($('chart-toggle').disabled) return;
+    V.hush();
+    state.token++;
+    state.running = false;
+    current().graph = !current().graph;
+    render();
+    if (current().graph) { hint('graphBack'); how('pick-row',{needs:'.graph-row'}); }
+    else { hint('drop-all'); how('drop-all',{needs:'#drop'}); }
+    Curio.tone(540,.06,.09);
+  }
+  function chooseRow(id) {
+    state.selectedRow = id;
+    current().firstRow ||= id;
+    const correct = id === 'bouncy';
+    const independent = current().firstRow === 'bouncy';
+    for (const b of BALLS) {
+      $('graph-' + b.id).classList.toggle('correct',correct && b.id === id);
+      $('graph-' + b.id).classList.toggle('wrong',!correct && b.id === id);
+    }
+    V.hush();
+    const key = correct ? (independent ? 'correct' : 'corrected') : 'wrong';
+    event(key,state.token,{valid:() => current().graph && state.selectedRow === id});
+    hint(key);
+    if (correct && independent) Curio.yes();
+    else Curio.tone(210,.09,.08);
+  }
+  function drawTimeline() {
+    const last = current().last;
+    if (!last) return;
+    const svg = $('timeline-svg');
+    const w = Math.max(180,svg.clientWidth);
+    const h = Math.max(32,svg.clientHeight);
+    svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+    const left = w < 420 ? 44 : 68;
+    const x = t => left + t / 10 * (w-left-14);
+    const top = Math.max(8,h*.22);
+    const bottom = h*.67;
+    const b = BALLS.find(v => v.id === last.ball);
+    const labelSize = Math.max(10,Math.min(14,h*.16));
+    let out = `<text x="0" y="${top+4}" fill="#0f6e74" font-size="${labelSize}" font-weight="700">Pad</text>`;
+    out += `<line x1="${left}" x2="${w-14}" y1="${top}" y2="${top}" stroke="#c4d6d2"/>`;
+    if (!last.paper) {
+      out += `<text x="0" y="${bottom+4}" fill="#b45309" font-size="${labelSize}" font-weight="700">Me</text>`;
+      out += `<line x1="${left}" x2="${w-14}" y1="${bottom}" y2="${bottom}" stroke="#e6cfb3"/>`;
+      for (const [i,j] of last.matching.pairs) {
+        out += `<line x1="${x(b.hits[i])}" y1="${top}" x2="${x(last.taps[j])}" y2="${bottom}" stroke="#adbea9" stroke-width="1.5"/>`;
+      }
+      for (const i of last.matching.missed) {
+        out += `<circle cx="${x(b.hits[i])}" cy="${top}" r="7" fill="#ffe89a" stroke="#a8750b" stroke-width="1.5"/>`;
+      }
+      for (let j = 0; j < last.taps.length; j++) {
+        const extra = last.matching.extra.includes(j);
+        out += `<path d="M${x(last.taps[j])-3} ${bottom+3}v-7m3 7v-9m3 9v-7" stroke="#b45309" stroke-width="2"/>`;
+        if (extra) out += `<circle cx="${x(last.taps[j])}" cy="${bottom}" r="7" fill="none" stroke="#76716c" stroke-width="1.5"/>`;
+      }
+    } else {
+      out += `<text x="${left}" y="${bottom}" fill="#6b5a48" font-size="${labelSize}">Paper count: ${last.me}. No tap times.</text>`;
+    }
+    for (const t of b.hits) out += `<path d="M${x(t)} ${top-5}v10" stroke="#0f6e74" stroke-width="2.5"/>`;
+    out += `<text x="${left}" y="${h-1}" font-size="10" fill="#6b5a48">0</text>`;
+    out += `<text x="${w-35}" y="${h-1}" font-size="10" fill="#6b5a48">10 s</text>`;
+    svg.innerHTML = out;
+    $('timeline-title').textContent = last.paper ? 'Paper count' : 'Our bounces';
+    svg.setAttribute('aria-label',last.paper ? `Paper count ${last.me}. Sensor ${last.count}.` :
+      `${last.matching.pairs.length} matched, ${last.matching.missed.length} missed, ${last.matching.extra.length} extra. Ten second timeline.`);
+  }
+  // Build controls once. Updating numbers never replaces a focused button.
+  for (const b of BALLS) {
+    const prediction = document.createElement('button');
+    prediction.id = 'guess-' + b.id;
+    prediction.className = 'predict-ball';
+    prediction.setAttribute('aria-label','Predict ' + b.name);
+    prediction.innerHTML = `<img src="${b.art}" alt="">`;
+    prediction.onclick = () => predict(b.id);
+    $('prediction-balls').append(prediction);
+    const cell = document.createElement('div');
+    cell.className = 'result-cell';
+    cell.id = 'result-' + b.id;
+    cell.innerHTML = `<img src="${b.art}" alt="${b.name}"><div><span class="prediction-star"></span>` +
+      `Me: <span class="tries">?</span><br>▣ <strong>?</strong></div>`;
+    $('result-strip').append(cell);
+    const row = document.createElement('button');
+    row.id = 'graph-' + b.id;
+    row.className = 'graph-row';
+    row.setAttribute('aria-label',b.name + ': ' + b.hits.length + ' dots');
+    row.innerHTML = `<img src="${b.art}" alt=""><span class="prediction-star" aria-hidden="true"></span><span class="dots">` +
+      b.hits.map((_,i) => `<i class="dot" style="animation-delay:${i*.045}s"></i>`).join('') +
+      `</span><strong>${b.hits.length}</strong>`;
+    row.onclick = () => chooseRow(b.id);
+    $('graph').append(row);
+  }
+  $('drop').onclick = () => start();
+  $('again').onclick = () => start(true);
+  $('tap').onclick = tap;
+  $('slow').onclick = () => {
+    sync();
+    state.slow = !state.slow;
+    $('slow').setAttribute('aria-pressed',state.slow);
+    if (!state.running) { hint(state.slow ? 'slow' : 'normal'); how(state.slow ? 'slow' : 'normal'); }
+    Curio.tone(270,.055,.08);
+  };
+  document.querySelectorAll('.ball-choice').forEach(b => { b.onclick = () => select(b.dataset.ball); });
+  $('m-lab').onclick = () => { if (state.mode !== 'lab') setMode('lab'); };
+  $('m-data').onclick = () => { if (state.mode !== 'data') setMode('data'); };
+  $('minus').onclick = () => paper(-1);
+  $('plus').onclick = () => paper(1);
+  $('skip').onclick = () => predict(null);
+  $('chart-toggle').onclick = showChart;
+  $('start-over').onclick = () => {
+    V.hush();
+    state.token++;
+    state.running = false;
+    state.modes.data = fresh();
+    state.selectedRow = null;
+    for (const b of BALLS) $('graph-' + b.id).classList.remove('correct','wrong');
+    setMode('data');
+    Curio.tone(260,.06,.08);
+  };
+  const tabOrder = ['m-lab','m-data','motion','sound','read',...BALLS.map(b => 'pick-' + b.id),
+    'drop','tap','again','slow','minus','plus',...BALLS.map(b => 'graph-' + b.id),
+    'chart-toggle','start-over',...BALLS.map(b => 'guess-' + b.id),'skip'];
+  tabOrder.forEach((id,i) => { $(id).tabIndex = i + 1; });
+  addEventListener('keydown',e => {
+    if (e.repeat || e.ctrlKey || e.altKey || e.metaKey) return;
+    if (e.code === 'Space') { e.preventDefault(); tap(); }
+    else if (e.code === 'KeyD') { e.preventDefault(); start(); }
+  });
+  new ResizeObserver(() => {
+    if (!$('timeline').hidden) drawTimeline();
+    positionBall();
+    drawCable();
+  }).observe($('stage'));
+  Curio.onMotion(positionBall);
+  Curio.init({clips:"voice:*",rate:.9});
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,match,BALLS,start,tap,
+    get vq() {return V.queue;}, get last() {return current().last;}};
+  setMode('lab');
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

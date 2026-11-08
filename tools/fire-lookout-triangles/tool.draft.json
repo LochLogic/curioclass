@@ -1,0 +1,26 @@
+{
+  "id": "fire-lookout-triangles",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Sight the smoke. Solve the triangle. Send the crew.",
+  "outcome": "Solve non-right triangles and distinguish zero, one, and two SSA solutions.",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": [
+    "Spot",
+    "Dispatch",
+    "Radio",
+    "Burn area"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "OpenStax Algebra and Trigonometry 2e, sections 10.1 and 10.2 (CC BY 4.0)",
+    "NIST Handbook 44 Appendix C, area units",
+    "CCSS Mathematics G-SRT.D.9, D.10 and D.11",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Existing dusk illustration drawn with FLUX.1-schnell (Apache 2.0)",
+    "USDA Forest Service / NWCG, Firefighter Math, Chapter 6: Location and azimuth intersections"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

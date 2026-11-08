@@ -279,6 +279,66 @@
         "#walk-wall-label",
         "#walk-step"
       ]
+    },
+    {
+      "name": "empty-showme-selection",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-checklist"
+        },
+        {
+          "click": "[data-check=selection]"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#m-select",
+        "#empty-select"
+      ]
+    },
+    {
+      "name": "empty-showme-theme",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-checklist"
+        },
+        {
+          "click": "[data-check=theme]"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#m-select",
+        "#empty-select"
+      ]
+    },
+    {
+      "name": "empty-showme-labels",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-checklist"
+        },
+        {
+          "click": "[data-check=labels]"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#m-select",
+        "#empty-select"
+      ]
     }
   ]
 }

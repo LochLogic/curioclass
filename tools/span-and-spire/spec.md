@@ -21,7 +21,7 @@ No reading needed. Nothing is locked.
   shiver until the student closes a triangle; then the shiver stops with a soft "tok".
 - 25 s. Most students now have a lumpy row of triangles. `Go` again: the pickup rolls across, each beam lighting up blue
   or amber as the wheels pass over, the sag shown 20 times bigger so the bridge visibly flexes. The pickup parks on the
-  far bank, a three-note bell rises, and the first inspection tag stamps into the corner: "Crossed".
+  far bank, a three-note bell rises, and the crossing is recorded quietly in the optional yard logbook.
 - 40 s. The truck shelf shows four bigger trucks. The student taps the school bus; it rolls in. Some will try the semi
   at once and watch the end post bow, crack and drop the semi into the creek in slow motion. That is the fun, and the
   hook.
@@ -41,7 +41,7 @@ No reading needed. Nothing is locked.
 
 ## Who and how
 Grades 6 to 12 (anchor: grade 8 science, module Engineering Design). Students drive, alone or in pairs on laptops, 20 to
-60 minutes. Explore first: the bridge is live from the first second; goals are optional tags. Topic line: "bridges,
+60 minutes. Explore first: the bridge is live from the first second; the logbook and design briefs are optional. Topic line: "bridges,
 towers, forces in structures, engineering design". Standards: MS-ETS1-1 (Promises: criteria and constraints from the
 people who use it), MS-ETS1-2 (Yard compare table scores designs against the promises), MS-ETS1-3 (Borrow combines the
 best parts of tested designs), MS-ETS1-4 (the solver is the model for repeated testing). High school reach: HS-ETS1-2,
@@ -49,70 +49,46 @@ HS-ETS1-3, HS-ETS1-4. tool.json: driver "students", minutes "20-60", modes ["Bri
 "Grades 6-12".
 
 ## Screens and modes
-Header (kit): title "Span and Spire", small line "Pulled or squeezed?". Mode buttons `Bridge` (opens first), `Tower`,
-`Yard`; then `Tags` (opens the tag book drawer), kit `Motion`, `Sound`, `Read`.
-Layout: stage left, panel right (300 to 340 px). Under 1000 px wide the panel goes under the stage, buttons first. Under
-900 px tall the panel goes compact: trucks and materials become icon rows, Promises fold to one line of six ticks. The
-stage is drawn at real pixel size and re-laid out per size (STANDARDS.md); the world scales to fit the stage width.
+Owner-approved instrument pivot, 2026-11-04, implemented in this fix round.
+There is one engineer's test yard with two test rigs, Bridge and Tower, plus a saved-design Yard.
+Free build is the front door: a bare 24 m deck and the truck tray, with no brief, target count or budget limit shown.
+No tests or loads depend on earlier results. No score, finish line or reward animation.
 
-### Bridge (default)
-Focus: the bridge and the truck, the biggest thing on screen, centered over the creek.
-Stage: world x from -6 to 30 m, y from -6 to 12 m, 1 m grid of faint dots. Painted far hills and sky behind; banks are a
-painted soil-and-rock texture clipped to the terrain shape (code); grass strip along the bank tops; creek water drawn in
-code (gently moving surface line and ripples), the dashed spring high-water line at y = -2 with a small label "spring
-flood", the canoe opening shown as a faint dotted box with a painted canoe floating under it. Abutments (painted
-concrete seats) at (0, 0) and (24, 0). Scale bar "4 m" bottom left. Readouts top left on dark chips: truck name and
-weight, "Each side carries half: 18.1 t", heaviest pull and squeeze right now in kN with the member's use.
-Panel, top to bottom:
-- `Go` (Space, big, pink) and `Rebuild` (R; shown after a collapse, restores the design and the truck).
-- Trucks: `Pickup 3.0 t`, `School bus 13.6 t`, `Fire engine 20.0 t`, `Grain truck 23.4 t`, `Semi 36.3 t`, each with its
-  painted thumbnail. Tapping one swaps the truck in place at once.
-- Pieces: `Timber`, `Big timber`, `Steel`, `Big steel`, `Cable` (the piece new beams use; tapping a beam on the stage
-  turns it into the selected piece). Each button shows its price per meter.
-- Tools: `Build` (default), `Erase`, `Undo`, `Redo`.
-- Views: `Worst spots` (toggle), `True size` (toggle, sag at real size instead of 20 times).
-- Readout: Cost $ / Members n of 60 / Joints n of 40.
-- Promises (card): six rows, each with a painted icon and a checkbox (Content). Ticked rows show a live tick or cross
-  after each test.
-- `Save to Yard`, `New` (back to the bare deck; asks "Start over? Your design stays if you saved it." with `Start over`
-  and `Keep building`).
-- hint.
+### Bridge (default rig)
+A real-pixel drafting surface overlays the painted creek site with blueprint lines. The bridge and truck are the
+largest objects. Drag from a joint to build, Shift drag to move a free joint, tap a member to change its material
+and read its length, cost and force limits. A truck can be dragged by hand or sent with Go.
+The bottom test console holds the truck tray, material rack, Build, Erase, Undo, Redo, Worst spots, True size,
+Save to Yard and New. The optional Budget switch opens a limit dial; it starts off. The limit defaults to $9,000
+and adjusts from $3,000 to $30,000 in $100 steps. Its native adjustment dialog closes with Done while the chosen limit stays enabled on the power switch.
+It is a comparison constraint: over-limit designs can still build and test. Per-member prices and total costs remain. The county brief independently keeps its fixed $9,000 check.
 
-### Tower
-Focus: the tower on the shake table, the biggest thing, with the small resonance chart second.
-Stage: world x from -8 to 8 m, y from -1 to 32 m (portrait world centered in a landscape stage; the free side space
-holds the resonance chart at the right and the wind and pressure readouts at the left). Painted open-air test yard
-backdrop at bright noon, painted shake table platform (12 m wide, x -6 to 6) that slides left and right during a shake;
-a painted water tank or bell sits on the top joint when chosen. A height ruler at the left with marks every 2 m and the
-tap pressure for a tank at that height. Wind: code streaks whose speed and density follow the wind, a painted windsock
-(limp or full) at the table edge, two painted clouds drifting at a speed tied to the wind.
-Panel:
-- `Shake` (Space) / `Stop`, `Rebuild` (R; after a collapse).
-- Shake settings: Strength slider 0.05 to 0.60 g (step 0.05, default 0.30), Speed slider 0.40 to 4.00 shakes a second
-  (step 0.05, default 1.20), presets `Valley quake` (0.30 g, 1.20 a second).
-- Wind: `Wind` toggle and speed slider 0 to 70 m/s (step 5, default 30), scale marks: 10 breezy, 20 gale, 33 hurricane,
-  70 top hurricane.
-- Top load: `None`, `Bell 2 t`, `Tank 8 t` (default Tank).
-- Pieces and Tools as in Bridge (shared rows), `Worst spots`, `True size`.
-- Readout: Members n of 60 / Joints n of 40 / Tank height and tap pressure "26 m: 284 kPa (41 psi)" / "Sway: 0.77 a
-  second" (appears after the first pluck).
-- Promises (Tower set, Content), `Save to Yard`, `New`, hint.
+### Tower (second rig)
+The same yard uses the existing shake table, pinned table joints and wind model. Top load (None, Bell 2 t,
+Tank 8 t), strength 0.05 to 0.60 g, speed 0.40 to 4.00 shakes/s, Valley quake and wind 0 to 70 m/s are always available.
+Pluck the top to see its natural sway. Shakes last 15 s with a 2 s ramp; steady wind records after 5 s.
+The resonance plot remains. Sway is magnified as before; True size shows actual displacement.
 
-### Yard
-Focus: the compare table, the biggest thing, with the design cards above it.
-Up to 12 saved designs (bridges and towers) as cards with a code-drawn thumbnail, name (editable), cost, heaviest truck
-crossed or tower results. One sample is always there: "Old farm bridge" (read only, Content).
-- Tap cards to pick up to three; the compare table shows one column each and one row per promise (both sets), plus cost,
-  members, heaviest truck, worst use with each truck, sway per second, wind and shake results. Each cell is a tick, a
-  cross, a number or "not tested" (run `Test all` to fill).
-- `Test all` (runs every truck and the Tower tests in the background on the picked designs, about 1 s each, no
-  animation), `Open` (loads into its mode), `Borrow` (Interactions), `Replay` (plays the design's best test with the
-  cinematic camera), `Rename`, `Delete` (asks).
+### Yard (saved designs)
+Keep up to twelve saved designs and the permanent Old farm bridge sample. Select up to three for the compare
+table. Test all runs all five trucks or the 50 m/s wind and Valley quake. Open, Borrow, Replay, Rename and Delete
+remain. Borrowed members retain their material; matching joints are identified by position.
+Saved designs, test evidence and logbook entries never leave this device, with a session fallback if storage fails.
+
+### Manual and logbook
+An engraved plate at the lower left reads "Curio Class Instruments · No. 01 · Span and Spire".
+Manual opens from that same corner, as for the instrument family. It holds how-to, model assumptions, keyboard
+instructions, saving information and Open yard logbook. Motion, Sound and Read sit on the yard power panel.
+The logbook holds the optional Bridge or Tower brief (the original Promises) and all 25 observation entries.
+A recorded entry stores the actual test description and measurements with its timestamp. Historical date-only
+entries are labeled as earlier inspections without stored measurements. There is no visible progress count,
+flying stamp or automatic logbook narration.
 
 ## Goals
-Inspection tags. The `Tags` drawer shows 25 tag shapes (code-drawn, each with a painted icon reused from the art); found
-ones are stamped with the date, missing ones show only their name and target. Tags never block anything. Saved on this
-device. A stamp makes a thunk, the tag flies to the `Tags` button, and the drawer badge counts up.
+There are no goals on the main surface. The original 25 inspection Tags are an optional yard logbook of observations,
+never a ladder. Opening it shows recorded evidence, or the condition under which the yard would record an observation.
+The following catalog preserves the original physical checks. A crossing observation requires the whole-crossing
+structural pass, including no member lost. Changing a budget dial does not change the county observation threshold.
 
 | # | Tag | Target | Check (exact) | Secretly teaches |
 |---|---|---|---|---|
@@ -200,7 +176,7 @@ Pieces (per side, 1 m grid; beam length up to 12 m, cable up to 30 m):
 
 Timber strength 20 MPa both ways; steel yield 250 MPa (A36). Squeeze limits shown on the beam info chip, e.g. Timber 4
 m: 312 kN, 5.66 m: 156 kN, 8 m: 78 kN. Every joint $300 (gusset plate), the two abutment joints included; the abutment
-seats are free. Prices are game prices set for play, not quotes; the panel says so in its tip.
+seats are free. Prices are classroom estimates, not construction quotes; the Manual states this.
 Trucks (axle offsets behind the front axle, tonnes; drawn at true length; speed 5 m/s on `Go`):
 
 | Truck | Axles | Total | Length |
@@ -291,29 +267,20 @@ Budget: 60 members and 40 joints per design. A 55-member bridge crosses the semi
 the build must keep a frame under 16 ms on a school Chromebook at 60 members during a collapse.
 
 ## Look
-Chrome: dark blueprint night. --paper #0f1a24, --panel #16232f, --ink #eef3f7, --muted #a7b6c2, --line #2b3d4c, --focus
-#7aa2ff, accent --brand #ff6fae (survey-flag pink; dark text on it #2a0614). Neighbors: zipline gold
-#d0c440, reserve-designer #ff4a2e, water-shapes-earth #58acac, model-mechanic #a3e635, orbit-lab #a9c4ff: all
-different.
-Forces: pull #3fc8ff (cyan), squeeze #ffab2e (amber), failing white #fff4e0 with a #ff5a5a edge. Pull and squeeze have
-the same brightness on purpose, so color is never the only signal: pulled beams draw as a single line with small outward
-arrowheads at both ends and fine stretch dashes that drift outward; squeezed beams draw as a double line with inward
-chevrons. Slack cables draw wavy and gray. Pieces by line: timber wide with a wood-grain dash in #b98a56 under the force
-glow, steel narrower with a center highlight, cable thin.
-Contrast (WCAG): ink on paper 15.75:1, ink on panel 14.29:1, muted on paper 8.47:1, muted on panel 7.69:1, pink on paper
-6.82:1, dark text on pink 7.17:1, cyan on paper 9.15:1, amber on paper 9.31:1, focus on paper 7.07:1, red edge 5.75:1.
-Labels over the painted scene sit on
-#0f1a24 chips at 85% opacity. Scenes: Bridge at dusk (teal sky to peach horizon, warm lamplight in a far farmhouse);
-Tower at bright noon (blue sky, pale concrete yard). Distinct from each other and from the chrome.
-Shine. Joints are small gusset plates that glint when touched. The truck's wheels show a turning hub mark; the deck dips
-under each axle (sag 20 times bigger). At over 70% a beam hums; over 90% it pulses. Buckling bows in slow motion; snaps
-recoil. Splash and ripples on a fall; dust puff when a tower hits the table. Wind streaks and windsock; the shake table
-slides with a low thump on each swing.
-Sound (Web Audio, kit Sound): place joint: wood knock (timber), clank (steel), short twang (cable) whose pitch rises
-with that cable's pull (mapped to 200 to 800 Hz, not the cable's real, too-low pitch); engine hum (low-passed sawtooth,
-lower for heavier trucks, pitch with speed); creak (filtered noise grains, louder with the worst use over 70%); buckle:
-falling "bwong" plus crack; snap: noise burst and high ping; splash: low-passed noise; pass: three rising bell tones;
-tag: stamp thunk; shake: low thump per table swing; wind: filtered noise, louder with speed.
+An engineer's test yard, drawn in blueprint blue and brushed steel. The subject fills the drafting surface;
+there is no kit header or right-hand pill panel. A bottom console holds a truck tray, material rack, square
+mechanical switches and lit test buttons. A small engraved maker's plate and Manual sit in the lower-left corner.
+A separate power panel holds Budget, Motion, Sound and Read.
+
+Live needle gauges read total truck/top mass in t (0 to 40), current worst-member use in percent (0 to 100),
+and actual top displacement in cm (0 to 50). Needle travel saturates; readout numbers do not. A loose frame says
+LOOSE, never a valid zero-percent pass. An empty rig says NO FRAME. Bridge has no top-sway reading.
+All readouts use monospace figures and units. Blueprint lines overlay the painted site. Existing painted props,
+vehicles and terrain remain. Pull is cyan #3fc8ff with outward arrows; squeeze is amber #ffab2e with inward chevrons
+and double lines; slack cables are gray and wavy. The force legend remains readable without color. Member grain,
+highlights, gusset bolts, buckling, snapping, falling geometry, hook recovery, wind and water effects remain.
+Motion off preserves test duration. All controls retain 44 px targets. At compact sizes the bottom console
+rearranges into shelves and at phone width into rows, preserving the main test and material controls.
 
 ## Art
 All local FLUX, no people (trucks have dark tinted windows). Text on signs stays blank.
@@ -369,7 +336,7 @@ text is read on screen; lines only where they help. Event line ids: every line m
 - bSnap (event; first failure is a snap): "A stretched beam snapped."
 - bSlack (event; a collapse caused by slack cables): "The cables went slack. A cable can pull but never push."
 - bWorst (how; first `Worst spots`): "Each beam shows its hardest moment as the truck crosses."
-- bPromise (how; first tick in Promises): "Tick the promises your bridge must keep. The Yard scores them."
+- bPromise (how; first tick in Promises): "Choose a brief in the logbook. Save to Yard, then Test all to compare its promises."
 - bLimit (event; member or joint limit hit): "The yard is out of members. Erase one to add one."
 - tWelcome (how; Tower entry): "Drag up from the table to build. Then press Shake or turn on the wind."
 - tPluck (how; first time a tower stands with a top load; stale after a pluck): "Drag the top sideways and let go to
@@ -381,17 +348,17 @@ text is read on screen; lines only where they help. Event line ids: every line m
 - tResonance (event; first failure within 15% of the sway rate): "The table shook at the tower's own sway speed. That is
   resonance."
 - yWelcome (how; Yard entry): "Tap up to three designs to compare them. Tap Borrow to copy parts."
-- tag (event; each new tag): "New inspection tag."
 Read speaks the hint. No line names a disabled control (`Rebuild` only after a collapse).
 
 ## Family engine
 none. The truss solver, modal and explicit engines live in the tool.
 
 ## Teacher note
-Three ways to use a period: free play (ten minutes, then ask "what did you figure out about squeezed beams?"); a goal
-set (tags 5 to 11 one day, 19 to 24 another); a challenge for the room ("Every promise for the least money": students
-save, the class compares Yard costs on the board; ours was $8,364). Reaches MS-ETS1-1 to 4 and HS-ETS1-2 to 4. No
-worksheets.
+Start with free investigation: allow ten minutes, then ask what changed the force path or the sway. For a directed
+lesson, open Manual and the logbook, then pick up a Bridge or Tower brief as criteria and constraints. Pairs may set
+their own optional budget limit, save competing designs, compare their measured results in the Yard and Borrow parts
+to test a combined design. The county brief remains fixed at $9,000. No tag count or completion task is required.
+Reaches MS-ETS1-1 to 4 and HS-ETS1-2 to 4 through choosing a brief, comparing, combining and retesting. No worksheets.
 
 ## Sources
 - Truss analysis by the direct stiffness method, pin joints, axial members: Hibbeler, Structural Analysis (any edition),
@@ -471,8 +438,7 @@ worksheets.
 7. 60 members and 40 joints stay at 60 frames a second on a school Chromebook through a collapse; the limit message
    shows at member 61.
 8. How lines play once per load, then hint only; event lines each time; no line names `Rebuild` before a collapse.
-9. Tags stamp on their exact checks, survive a reload (Save on this device), and the Yard compare table fills with `Test
-   all`.
+9. Logbook entries record their exact checks and measurements, survive a reload, and the Yard compare table fills with `Test all`.
 10. A fresh player with no instructions is still choosing to play after 10 minutes, and can name one thing they figured
     out.
 

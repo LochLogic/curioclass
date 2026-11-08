@@ -1,0 +1,25 @@
+{
+  "id": "egg-carton-factory",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Every egg. Every shape. Can you pack the whole order?",
+  "outcome": "Find all factor pairs from 1 to 100, test multiples, and distinguish prime and composite numbers.",
+  "driver": "students or teacher",
+  "minutes": "15-35",
+  "grades_label": "Grade 4",
+  "modes": [
+    "Pack Station",
+    "Fill Line",
+    "Order Board",
+    "Rush Orders"
+  ],
+  "sources": [
+    "CCSS Mathematics 4.OA.B.4",
+    "Illustrative Mathematics: Factors and Multiples",
+    "Math is Fun: Prime and Composite Numbers; Factors and Multiples",
+    "Miller Manufacturing: Egg Flats 30 count 5 x 6",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

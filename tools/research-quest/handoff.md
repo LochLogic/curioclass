@@ -50,3 +50,44 @@ Trail back keeps its map and every route. Focusing or hovering a question isolat
 The inherited caterpillar was replaced using the built-in image generation tool, then processed with art.py --rekey. The prompt is in art/prompts.json and the raw painting in art/raw/rq-caterpillar.png. Two local FLUX paintings remain. See codex-review.md for the final audit disposition and any limitations.
 
 The review audit completed in 1,797 seconds with 124 leads. Its frames exposed a compact ending image extending under the footer status and populated organizer grids growing into the plan-step label; explicit shrinking grid rows now keep both within their reserved space. Compact heading source names have titled ellipses. The audit also caught focus falling to the page during a nested-card transition; openDialog now focuses the first live control after replacing content. All three endings and three/four-note organizer headings were rechecked at 680, 800 and 1000 widths; nested-card focus and Enter-to-return passed all eight standard sizes. No full audit rerun.
+
+
+## Curiosity fix, 2026-11-06 (supersedes historical descriptions above)
+
+The explicit user instruction overrides Refine's lesson classification and its keep-endings call.
+The current file is an open desk, with five independent file tabs, its own power rail, maker plate and lower-left Manual.
+There is no header from the kit, numbered route, welcome, score, quiz, approval band or finish screen.
+The evaluator returns evidence results only. It checks every outlined citation and rejects changed meanings as support.
+Evidence causes determine the route. Selected cards expose full wording; cancelled native drags cannot carry stale pointer state.
+Voice speaks one quiet hint and otherwise only Read. voice/lines.json matches allLines().
+The supplied spec has no Curiosity number and CURIOSITIES.md has no Research Quest entry. plate is null, visibly unnumbered.
+The underlying material remains six fictional source documents with verified biological facts. This authenticity ceiling is explicit.
+AASL Collaborate was removed; catalog reassignment belongs to the integrator, outside this write scope.
+No kit change, paid generation, installation, registration, upload, git operation or external message was performed.
+
+## Engine changes wanted (current fix)
+
+None. Historical audit-helper suggestions above are informational only.
+
+
+## Fix verification closeout
+
+The single full audit completed in 1115.9 seconds (18.6 minutes), with 81 inspected frames and 233 mechanical leads.
+Dispositions are in _scratch/research-quest/audit-dispositions.json. They comprise 18 legacy hidden-hint checks,
+28 invalid fixture actions/focus/keep checks, 95 SVG or nested-label geometry checks, 81 expected modal occlusions,
+and 11 lesson-welcome checks overridden by the Curiosity brief. No exceptions or stuck controls were found in the resize checks.
+
+The compact fixtures originally used hidden visit tabs. A first correction still tried to click a Pack row below its scroll edge.
+The final audit-states.json uses visible Pack input, Tab and Enter to bring each source into view, with a confirmed reset for isolation.
+Twelve scoped real-input cases then passed, including all four saved notes, selected full notes at 680/800/1000/375,
+all Not needed, a skipped useful source, seven evidence routes at 1366/375 and first-tap Manual/Pack.
+Every scoped case had zero console errors. Source lines fit the note cards. The selected county note at 680 had
+text client/scroll heights 56/56 and source heights 32/32. Other selected-note sizes also had equal client/scroll heights.
+
+One small voice correction followed the full audit: an initial cue is stale while a dialog is open. First-tap Manual and Pack
+were rechecked: neither spoke that cue. No second full audit was run. Native HTML drag in the test fixture emitted no drop;
+native drop is therefore unverified. Three canceled-drag patterns cannot move or silently select a note, and keyboard placement works.
+
+Current evidence: fixture-recheck/, last-proofs/, input-final/, last-layout/, fix-before/, fix-after/, fix-audit/,
+logic-verified.json (10000 combinations, 28020 assertions), contract-final.json and the data/source-manifest.json licence record.
+The report does not claim the six-document corpus has the depth of Beat Lab or Elements Inspector. The catalog number remains unassigned.

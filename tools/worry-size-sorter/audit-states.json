@@ -145,75 +145,6 @@
       ]
     },
     {
-      "name": "week-chart",
-      "sizes": [
-        "1366x768",
-        "1920x1080"
-      ],
-      "steps": [
-        {
-          "click": "#m-week"
-        },
-        {
-          "click": "#goalTool0"
-        },
-        {
-          "click": "#goalTime0"
-        },
-        {
-          "click": "#goalWho0"
-        },
-        {
-          "click": "#because0"
-        },
-        {
-          "click": "#setGoal"
-        },
-        {
-          "click": "#day0"
-        }
-      ],
-      "keep": [
-        ".chart",
-        ".privacy"
-      ]
-    },
-    {
-      "name": "reflection",
-      "sizes": [
-        "1366x768"
-      ],
-      "steps": [
-        {
-          "click": "#m-week"
-        },
-        {
-          "click": "#goalTool0"
-        },
-        {
-          "click": "#goalTime0"
-        },
-        {
-          "click": "#goalWho0"
-        },
-        {
-          "click": "#because0"
-        },
-        {
-          "click": "#setGoal"
-        },
-        {
-          "click": "#finishWeek"
-        },
-        {
-          "click": "#barrier0"
-        }
-      ],
-      "keep": [
-        ".reflection"
-      ]
-    },
-    {
       "name": "early-stop-rating",
       "steps": [
         {
@@ -237,46 +168,80 @@
       ]
     },
     {
-      "name": "early-reflection-phone",
-      "sizes": [
-        "375x812"
-      ],
+      "name": "tummy-tool-link",
       "steps": [
         {
-          "click": "#m-week"
+          "click": "#m-clues"
         },
         {
-          "click": "#goalTool0"
+          "click": "#clue3"
         },
         {
-          "click": "#builderNext"
-        },
-        {
-          "click": "#goalTime0"
-        },
-        {
-          "click": "#builderNext"
-        },
-        {
-          "click": "#goalWho0"
-        },
-        {
-          "click": "#builderNext"
-        },
-        {
-          "click": "#because0"
-        },
-        {
-          "click": "#setGoal"
-        },
-        {
-          "click": "#finishWeek"
+          "click": "#clueTool0"
         }
       ],
       "keep": [
-        ".reflection",
+        ".meter"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#closeManual"
+      ]
+    },
+    {
+      "name": "helper-privacy",
+      "steps": [
+        {
+          "click": "#m-tools"
+        },
+        {
+          "click": "#meter3"
+        },
+        {
+          "click": "#startTool"
+        },
+        {
+          "click": "#stopTool"
+        },
+        {
+          "click": "#meter4"
+        },
+        {
+          "click": "#helps"
+        }
+      ],
+      "keep": [
         ".privacy",
-        "#keepNext"
+        ".result-actions"
+      ]
+    },
+    {
+      "name": "tools-idle",
+      "steps": [
+        {
+          "click": "#m-tools"
+        }
+      ],
+      "keep": [
+        ".meter"
+      ]
+    },
+    {
+      "name": "body-idle",
+      "steps": [
+        {
+          "click": "#m-clues"
+        }
+      ],
+      "keep": [
+        ".kid-wrap"
       ]
     }
   ]

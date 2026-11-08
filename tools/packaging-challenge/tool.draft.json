@@ -1,0 +1,27 @@
+{
+  "id": "packaging-challenge",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Same volume. Less material. Shape a package and discover its best design.",
+  "outcome": "Use volume and surface area to compare package designs and explain case fill.",
+  "driver": "students",
+  "minutes": "15-40",
+  "modes": [
+    "Orders",
+    "Shelf",
+    "Case"
+  ],
+  "grades_label": "Grade 10",
+  "topic": "surface area, volume and design",
+  "sources": [
+    "Common Core State Standards for Mathematics, HSG Modeling with Geometry, G-MG.A.1, G-MG.A.2, G-MG.A.3",
+    "OpenStax Prealgebra 2e, section 9.6, Volume and Surface Area (CC BY 4.0)",
+    "Wikipedia Beverage can and Tin can, outside sizes as listed 2026-10-27",
+    "NIST Handbook 44 Appendix C: 1 US fluid ounce = 29.5735 mL",
+    "Metal grams per area: 0.03 g per cm² is an explicitly labeled practice number",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Existing kraft texture drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

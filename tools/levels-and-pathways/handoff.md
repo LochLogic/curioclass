@@ -1,5 +1,33 @@
 # Levels and Pathways handoff
 
+## Fix pass, November 4, 2026
+
+The active merged list is refine.md. The fix evidence is in _scratch/levels-and-pathways/fix-before,
+fix-before-parts-real, fix-after, fix-targeted, fix-extra and fix-walk. The final status belongs to polish.md.
+No kit files, catalog files or sibling tools were edited. No commit was made.
+
+Part controls now sit on their own parts, without leaders. Compact placements are planned together along the
+actual part geometry so all four 64-pixel targets remain separate. The studio SVG is a labeled group instead
+of an image role, exposing its controls. Guide bands select levels outside Mystery; Mystery disables them.
+
+The painted rig adds rounded underpainting, folded-leg depth ordering, a hand-only green-alpha filter and
+a head/neck limit. Low rest hands use solved knee-contact angles. The kneeling silhouette still needs an
+art-quality check: these are corrections to an articulated T-pose, not newly painted kneeling illustrations.
+No new raster or new people artwork was generated in this pass.
+
+DA:Pr4.1.2a is removed from this tool's claims in src.html, spec.md and notes.md. Move it to choreography-board
+for full teaching of facings, symmetrical and asymmetrical shapes, and circling versus turning. The integrator
+must update the shared catalog and the receiving tool because those paths are outside this session's scope.
+
+Copy me and bubble space are folded into the Levels welcome. The first move shape appears during the call.
+The new Middle cue names body height. Mystery immediately shows the watching hint, teaches that a circle is
+curved after round 7, and names Play again only after the gallery bow enables it. Runtime and lines.json
+contain 49 identical fixed lines. Changed and added text uses browser voice fallback; no recording was made.
+
+Mystery retains the spec's eight exact rounds and unlimited wrong-answer replays. It measures completion,
+not demonstrated mastery. Blind answer enumeration must be reported honestly if it fills a progress dot;
+do not add attempts, lives, a new task or a new scoring rule without a spec decision.
+
 Cold review completed November 3, 2026 in S:/CurioClass-codex. No commit. See codex-review.md for the review outcome.
 
 ## Files and structure
@@ -72,6 +100,11 @@ The prior spec routes grade 1 and 2 Re7 expectations to the dance siblings. Cata
 
 ## Engine changes wanted
 
+kit/curio.js, Curio.voice return object: add `waitForRead: () => readP`. The returned promise must resolve
+when Read finishes or hush cancels it, also with Sound off. Then the tool's afterRead can await that public
+method instead of a conservative duration cap. Empty queue barrier lines have been removed locally; this
+remaining dependency is not fixed here. No kit change was made.
+
 kit/curio.js, init Motion handler: optional in-memory preference for tools that request no persistence, while
 retaining the shared Motion control. No kit change made. Dance.readPath retains its documented limit for finely
 squeezed or shaky compound waves on small stages. Do not loosen shared thresholds from a few passing examples.
@@ -90,3 +123,12 @@ Its snapshots precede final repairs. Focused checks answered its real leads; no 
 The four-part audit drag fixture lacked a return expression during that run. It is corrected, and actual pointer
 drags at 1366 by 768, 680 by 425 and 375 by 812 verified four parts separately. The random mixed-plan fixture is
 now seeded so resizing compares the same labels. A deterministic resize and Enter-twice check preserves focus.
+
+## Interrupted fix audit
+
+The November 4 fix audit was started once with a 2400-second limit, Chrome 9911 and host 8715. The session cut off
+after seven clean direct viewport sizes and the three mode-entry checks. It did not finish the later states,
+resize stress or control walk. The 375x812 audit iframe could not be attached; its missing-hint lead is secondary
+to that unread context. Independent phone drive frames exist, but the final four-pixel phone hint-padding
+adjustment has no final full-viewport measurement. The resumed session verified unchanged saved artifacts and
+finished reporting without a second audit. See polish.md and _scratch/levels-and-pathways/fix-audit/audit.md.

@@ -1,86 +1,98 @@
 ## What it teaches
 
-Students write if-then rules, test them against a goal, and use a report to debug their program.
-They learn that the first matching rule wins when a program checks conditions from the top.
+Students explore first-match if-then rules through a working traffic signal model.
+They edit conditions, actions and priority, then see the consequences on the street and its time record.
+This is a Curiosity: freely chosen setups, no score, progression, quiz or finish.
 
 ## Key skills
 
 - Combine conditions with "and".
-- Predict which matching rule will fire first.
-- Break a crossing into car-light and walk-sign decisions.
-- Test a program and trace an unsafe result to its rule.
-- Change timing and rule order, then test again.
+- Predict which matching rule fires first.
+- Connect car-light and walk-sign decisions.
+- Trace an unsafe moment to its firing rule.
+- Compare timing and rule order on repeatable traffic.
 
 ## Support at home
 
 - Make an everyday if-then rule together: "If the plant's soil is dry, then water it."
-- Invent two rules that could both fit. Discuss which one should come first and why.
-- Describe a familiar routine with a missing condition. Ask your child to spot and repair it.
+- Invent two rules that could both fit. Discuss which one comes first and why.
+- Describe a familiar routine with a missing condition and imagine what happens.
 
 ## A five-minute start
 
-Open Watch the Street. Press a curb button and follow the glowing rule and firing ribbon.
-Pause and use Step to see one half-second check. A program checks its rules again and again;
-it does not perform every card as a sequence.
-
-Open Street Jobs. Run the first job without changes and read the report. Add the missing
-green-to-yellow rule, set its condition to button pressed, and test again.
+Press a curb button on Live street and follow the lit rule and firing tape. Pause and Step
+to see one half-second pass round the loop. Edit any chip; the next check uses your change.
+Setups offers repeatable traffic, in any order. Run script watches it; Read record advances
+the same simulation to its observation endpoint. There is no prescribed path through the setups.
 
 ## Modes
 
-Watch the Street runs live with editable rules, curb calls and an ambulance. Reset street
-keeps the program; Default rules restores the four starting rules. Pause offers Step.
+Live street runs with editable rules, curb calls and an ambulance. Reset street keeps rules;
+Defaults restores the four starting rules. Pause offers Step.
 
-Street Jobs has five separate programs for this page load. Start over restores the current
-job. A test runs at four times street speed; Speed switches to normal speed. Stop or a rule
-tap stops the test immediately. Skip to report completes the same simulation without waiting.
-Unsafe report lines replay from three seconds before the moment and pause on the named rule.
-The report strip shows the actual green, yellow and red intervals from your test.
+Setups keeps five independent programs for this page load. Reset setup restores that setup's
+program. Speed switches between normal and four times street time. Stop or a rule tap halts
+a script immediately. Unsafe record lines replay the three seconds before that moment.
+The record reports what happened; no thresholds confer a grade or unlock anything.
 
-## The five jobs
+## Setup observations
 
-1. Press to Cross: add GREEN and button pressed, then turn YELLOW.
-2. Don't Skip Yellow: change the first action to YELLOW, then add YELLOW and been 3 s, then RED.
-3. Let Them Finish: change the return-to-green condition from been 10 s to walk is done.
-4. Rush Hour: add been 30 s to the first rule. Add been 10 s to the walk-is-done return rule
-   and move that return rule above start WALK. Both timing and priority matter.
-5. Ambulance!: add GREEN and ambulance coming, then keep lights, above every other rule.
+- Press to Cross begins with no rule taking GREEN to YELLOW. A condition and action can connect
+  that transition to the button event, building the GREEN, YELLOW, RED, WALK sequence from rules.
+- Don't Skip Yellow begins with a direct GREEN to RED action. Adding the yellow transition
+  constructs the same signal sequence through conditions, rather than a fixed list of steps.
+- Let Them Finish begins with a timed return to green. The record now observes whether cars
+  get green back after each red, including unfinished reds and reds that end in yellow.
+  The numeric check uses the existing 45 s tool reference, with no pass badge.
+- Rush Hour preserves the original walker spacing and two-part timing/priority interaction.
+  The record names the dominant rule during the longest red. Repeated WALK requests and
+  actual new walks are counted separately, because an active WALK request does nothing.
+- Ambulance reads the vehicle's stopped flag on every beat until it clears the crossing,
+  including queues continuing beyond the detector's active interval. A long yellow cannot
+  produce "Never stopped" when the vehicle actually stopped.
 
 ## Talk questions
 
-- Why can a rule at the bottom never get a turn even when its condition fits?
+- Why can a rule lower down lose its turn even when its condition fits?
 - Which sensor tells us everyone has finished crossing?
-- Which part of the report would change if you moved that rule?
-- What should win when a walker presses while an ambulance approaches?
+- Which observation changes if you move that rule?
+- What happens when a walker presses while an ambulance approaches?
 
 ## Good to know
 
-This is a classroom model. A real signal requires engineering, local rules and many additional
-safety systems. The tool uses the cited MUTCD 2009 timing examples, not current design guidance.
-WALK lasts 7 seconds; a flashing hand lasts 10 seconds for a 35-foot crossing at 3.5 feet per second.
-Walkers take 10 seconds to cross. Repeated presses by the same waiting walker count once.
+This is a simplified programming model, not current signal engineering guidance.
+Historical MUTCD 2009 examples inform a 7 s WALK and a 10 s flashing clearance for
+35 feet divided by 3.5 feet per second. Walkers take 10 s to cross. The fixed-speed driver,
+two-second yellow decision, traffic scripts and half-second rule loop are original model choices.
+An active WALK request cannot restart the walk. Repeated curb presses count once per waiting walker.
 
-Every half second the first complete matching rule fires. A press or a walk-sign interval
-ending at a check becomes available to rules on the next check. Ambulance detection in job 5
-is true from checks 36.0 through 45.5. Incomplete rules are skipped. An active WALK cannot restart.
-Green durations still open when a test ends are excluded from the shortest-green check.
+The 60 s walker wait, 30 s green, 45 s red and 10 s empty-red references are the tool's own.
+A script observes at most 120 street seconds; the live street continues freely. Rules stay
+only in page memory. Only Motion persists on this device; Sound and rules last for this page. Nothing leaves it.
 
-The 60-second walker wait, 30-second green, 45-second red and 10-second empty-red thresholds
-are this tool's own fairness limits. The last is report-only. Tests run at most 120 street seconds.
-Rules and completed jobs are kept only for this page load. Only kit settings persist on the device; they never leave it.
+Keyboard: Tab to a rule, Enter to edit; Left and Right switch chip slots. Tab among choices,
+Enter chooses, and Done or Escape returns. Alt plus Up or Down moves a rule; Delete removes it.
+Motion off removes gliding and blinking while preserving timing.
 
-Keyboard: Tab to a rule, Enter to edit; Left and Right switch chip slots in the picker.
-Tab among choices and Enter to choose, Done or Escape to return. Alt plus Up or Down moves
-the focused rule; Delete removes it. All controls also work with Tab and Enter.
-Motion off removes gliding and blinking while keeping street time and rule checks unchanged.
+## Standards coverage
 
-The module's three standards are practiced directly: selecting conditions, constructing a
-combined program, and using repeatable tests to find and repair bugs.
+The legacy module references E3-ALG-PS-01, E3-PRO-PD-04 and E3-PRO-TR-08
+(2017 crosswalk 1B-AP-10, 1B-AP-15, 1B-AP-11). Here students author selection through conditions,
+use button and detector events, and test and trace rules. They build signal sequences indirectly
+through state transitions. Iteration is the engine's fixed half-second loop, named beside Step
+and in the Manual; students inspect it but do not author that loop. These are partial contributions
+to the combined standards, not direct practice of every part. Module reassignment remains an owner
+decision outside these permitted folders. No standards wording is reproduced.
 
 ## Sources
 
-- MUTCD 2009, 4D.26: https://mutcd.fhwa.dot.gov/htm/2009/part4/part4d.htm
-- MUTCD 2009, 4E.06 and 4E.08: https://mutcd.fhwa.dot.gov/htm/2009/part4/part4e.htm
-- Figure 4E-2: https://mutcd.fhwa.dot.gov/htm/2009/part4/fig4e_02_longdesc.htm
-- CSTA 2017: https://csteachers.org/k12standards/
-- Code.org glossary: https://code.org/curriculum/docs/k-5/glossary
+- FHWA MUTCD 2009, 4D.26 and 4D.27: https://mutcd.fhwa.dot.gov/htm/2009/part4/part4d.htm
+- FHWA MUTCD 2009, 4E.06 and 4E.08: https://mutcd.fhwa.dot.gov/htm/2009/part4/part4e.htm
+- Licence: public domain, explicitly confirmed in FHWA's General FAQ:
+  https://mutcd-dr.fhwa.dot.gov/knowledge/faqs/faq_general.htm
+- Independent timing cross-check: Minnesota DOT Traffic Signals 101 Course Manual,
+  https://www.dot.mn.gov/trafficeng/signals/docs/signals-101-manual.pdf.
+  Reference only; no Minnesota text, figures or dataset incorporated.
+- Original scripts, thresholds, driver model and explanatory writing: Curio Class, content CC BY 4.0, code MIT.
+- Existing illustrations generated with OpenAI gpt-image and edited for Curio Class, retained unchanged.
+- CSTA codes are reference identifiers only: https://csteachers.org/k12standards/. No licensed standard text copied.

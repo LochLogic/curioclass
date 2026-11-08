@@ -1,0 +1,23 @@
+{
+  "id": "fair-dice-investigation",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Something at this table isn't fair.",
+  "outcome": "Use chi-square tests and inference for a regression slope to weigh evidence.",
+  "driver": "students",
+  "minutes": "25-45",
+  "modes": [
+    "Cases",
+    "Dice lab"
+  ],
+  "grades_label": "Grade 12",
+  "updated": "2026-11-08",
+  "sources": [
+    "College Board AP Statistics; legacy Units 8 and 9 per source spec (2026-27 mapping needs curriculum review)",
+    "OpenStax Introductory Statistics 2e, 11.2 and 11.4",
+    "OpenIntro Statistics 4e, 7.5 and 8.4",
+    "All cafe, dice and game records are made up.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": []
+}

@@ -1,0 +1,26 @@
+{
+  "id": "input-or-output",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Cover a gadget part. Who cannot tell now: the gadget, or us?",
+  "outcome": "Identify inputs and outputs and predict how a covered part changes a gadget job.",
+  "driver": "teacher",
+  "minutes": "10-20",
+  "modes": [
+    "Try It",
+    "Cover It"
+  ],
+  "grades_label": "Grade 2",
+  "sources": [
+    "Code.org CS Fundamentals glossary: input and output",
+    "BBC Bitesize Computing: input and output devices",
+    "US FDA: Microwave Oven Radiation; 21 CFR 1030.10",
+    "Twinkle, Twinkle, Little Star: public-domain melody",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Open University OpenLearn: An introduction to computers and computer systems, glossary",
+    "Lincoln Center: Mostly Mozart Festival program notes, 2017, Ah vous dirai-je maman",
+    "Microsoft Learn: Gamepad and vibration, controller input and vibration motors"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

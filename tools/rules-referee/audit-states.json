@@ -1,0 +1,173 @@
+{
+  "states": [
+    {
+      "name": "net-before-contact",
+      "steps": [
+        {"click": "#m-replay"},
+        {"click": "#clip-7"},
+        {"click": "#tool"},
+        {"click": "#step-forward", "times": 9, "gap": 0.05}
+      ],
+      "keep": ["#scrub", "#calls"]
+    },
+    {
+      "name": "soccer-playing",
+      "steps": [
+        {
+          "click": "#locker-0"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 900
+        }
+      ],
+      "keep": [
+        "#scrub",
+        "#calls"
+      ]
+    },
+    {
+      "name": "soccer-key",
+      "steps": [
+        {
+          "click": "#m-replay"
+        },
+        {
+          "click": "#clip-0"
+        },
+        {
+          "click": "#key-moment"
+        }
+      ],
+      "keep": [
+        "#scrub",
+        "#calls"
+      ]
+    },
+    {
+      "name": "level-frame",
+      "steps": [
+        {
+          "click": "#m-replay"
+        },
+        {
+          "click": "#clip-1"
+        },
+        {
+          "click": "#key-moment"
+        }
+      ],
+      "keep": [
+        "#scrub",
+        "#calls"
+      ]
+    },
+    {
+      "name": "basket-step",
+      "steps": [
+        {
+          "click": "#m-replay"
+        },
+        {
+          "click": "#clip-3"
+        },
+        {
+          "click": "#tool"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 3100
+        }
+      ],
+      "keep": [
+        "#calls"
+      ]
+    },
+    {
+      "name": "volley-contact",
+      "steps": [
+        {
+          "click": "#m-replay"
+        },
+        {
+          "click": "#clip-8"
+        },
+        {
+          "click": "#key-moment"
+        }
+      ],
+      "keep": [
+        "#calls"
+      ]
+    },
+    {
+      "name": "softball-clocks",
+      "steps": [
+        {
+          "click": "#m-replay"
+        },
+        {
+          "click": "#clip-9"
+        },
+        {
+          "click": "#tool"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 3800
+        }
+      ],
+      "keep": [
+        "#calls"
+      ]
+    },
+    {
+      "name": "wrong-call",
+      "steps": [
+        {
+          "click": "#locker-0"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 3200
+        },
+        {
+          "click": "button.call[aria-label=\"Goal\"]"
+        }
+      ],
+      "keep": [
+        "#calls",
+        "#key-moment"
+      ]
+    },
+    {
+      "name": "rule-card",
+      "steps": [
+        {
+          "click": "#locker-0"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 3200
+        },
+        {
+          "click": "button.call[aria-label=\"Offside: indirect free kick to White\"]"
+        }
+      ],
+      "keep": [
+        "#rule-card",
+        "#next"
+      ]
+    }
+  ]
+}

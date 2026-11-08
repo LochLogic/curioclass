@@ -1,0 +1,229 @@
+{
+  "states": [
+    {
+      "name": "run-ready",
+      "steps": [
+        {
+          "click": "#runWeek"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#chartBox",
+        ".weeks"
+      ]
+    },
+    {
+      "name": "scorecard",
+      "steps": [
+        {
+          "click": "#runWeek"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#scoreDialog"
+      ]
+    },
+    {
+      "name": "step-heat",
+      "steps": [
+        {
+          "click": "#runWeek"
+        },
+        {
+          "click": "#week1"
+        },
+        {
+          "click": "#step"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#chartBox"
+      ]
+    },
+    {
+      "name": "compare-work",
+      "steps": [
+        {
+          "click": "#save"
+        },
+        {
+          "click": "#keep1"
+        },
+        {
+          "click": "#keep2"
+        },
+        {
+          "click": "#save"
+        },
+        {
+          "click": "#m-Compare"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#compareStage"
+      ]
+    },
+    {
+      "name": "challenges",
+      "steps": [
+        {
+          "click": "#save"
+        },
+        {
+          "click": "#m-Compare"
+        },
+        {
+          "click": "#challenges"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#challengeDrawer"
+      ]
+    },
+    {
+      "name": "build-max",
+      "steps": [
+        {
+          "click": "#plus7",
+          "times": 10,
+          "gap": 0.05
+        },
+        {
+          "click": "#plus0",
+          "times": 10,
+          "gap": 0.05
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "gas-charge",
+      "steps": [
+        {
+          "click": "#plus7",
+          "times": 2
+        },
+        {
+          "click": "#charging"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#runWeek"
+        },
+        {
+          "click": "#step"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ],
+      "keep": [
+        "#chartBox",
+        "#sourceList"
+      ]
+    },
+    {
+      "name": "score-escape",
+      "steps": [
+        {
+          "click": "#runWeek"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "key": "Escape"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#scorecard",
+        "#hint"
+      ]
+    },
+    {
+      "name": "replace-plan",
+      "steps": [
+        {
+          "click": "#save",
+          "times": 5,
+          "gap": 0.1
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#replaceDialog"
+      ]
+    },
+    {
+      "name": "build-limit",
+      "steps": [
+        {
+          "click": "#plus7",
+          "times": 11,
+          "gap": 0.05
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "keep": [
+        "#hint"
+      ]
+    },
+    {
+      "name": "reset-edited-plan",
+      "steps": [
+        {
+          "click": "#plus7"
+        },
+        {
+          "click": "#reset"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#hint",
+        "#save",
+        "#runWeek"
+      ]
+    }
+  ]
+}

@@ -172,6 +172,22 @@
         "#d-dance",
         "#hint"
       ]
+    },
+    {
+      "name": "level-guide-low",
+      "steps": [
+        {
+          "click": ".lgband[data-level=low]"
+        },
+        {
+          "wait": 600
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#moves",
+        "#hint"
+      ]
     }
   ]
 }

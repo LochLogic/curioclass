@@ -1,0 +1,187 @@
+{
+  "keep": [
+    "#drop",
+    "#tap"
+  ],
+  "states": [
+    {
+      "name": "beanbag-result",
+      "steps": [
+        {
+          "click": "#pick-beanbag"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 1900
+        }
+      ],
+      "keep": [
+        "#timeline",
+        "#plus",
+        "#minus"
+      ]
+    },
+    {
+      "name": "paper-max",
+      "steps": [
+        {
+          "click": "#pick-beanbag"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 1900
+        },
+        {
+          "click": "#plus",
+          "times": 31,
+          "gap": 0.025
+        }
+      ],
+      "keep": [
+        "#timeline",
+        "#paper-total"
+      ]
+    },
+    {
+      "name": "paper-min",
+      "steps": [
+        {
+          "click": "#pick-beanbag"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 1900
+        },
+        {
+          "click": "#minus"
+        }
+      ],
+      "keep": [
+        "#timeline"
+      ]
+    },
+    {
+      "name": "prediction",
+      "steps": [
+        {
+          "click": "#m-data"
+        }
+      ],
+      "keep": [
+        "#prediction",
+        "#skip"
+      ]
+    },
+    {
+      "name": "data-result",
+      "steps": [
+        {
+          "click": "#m-data"
+        },
+        {
+          "click": "#guess-beanbag"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 1900
+        }
+      ],
+      "keep": [
+        "#result-strip",
+        "#timeline"
+      ]
+    },
+    {
+      "name": "chart",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-data"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "click": "#pick-bouncy"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 10300
+        },
+        {
+          "click": "#pick-basket"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 7200
+        },
+        {
+          "click": "#pick-tennis"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 4600
+        },
+        {
+          "click": "#pick-beanbag"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 1900
+        },
+        {
+          "click": "#chart-toggle"
+        }
+      ],
+      "keep": [
+        "#graph",
+        "#chart-toggle"
+      ]
+    },
+    {
+      "name": "equal-total-unmatched",
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ],
+      "steps": [
+        {
+          "click": "#drop"
+        },
+        {
+          "click": "#tap",
+          "times": 15,
+          "gap": 0.015
+        },
+        {
+          "wait": 10500
+        }
+      ],
+      "keep": [
+        "#timeline",
+        "#me-number",
+        "#counter-number"
+      ]
+    }
+  ]
+}

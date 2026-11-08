@@ -12,7 +12,8 @@
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
       "despill": true,
-      "height": 600
+      "height": 600,
+      "review_note": "Refine round 1: hair-edge green re-despill only; original pose and alpha unchanged."
     },
     {
       "name": "ws-kid-fists",
@@ -26,7 +27,8 @@
       "source": "OpenAI gpt-image",
       "despill": true,
       "height": 600,
-      "ref": "ws-kid-stand"
+      "ref": "ws-kid-stand",
+      "review_note": "Refine round 1: hair-edge green re-despill only; original pose and alpha unchanged."
     },
     {
       "name": "ws-kid-shoulders",
@@ -40,7 +42,8 @@
       "source": "OpenAI gpt-image",
       "despill": true,
       "height": 600,
-      "ref": "ws-kid-stand"
+      "ref": "ws-kid-stand",
+      "review_note": "Refine round 1: hair-edge green re-despill only; original pose and alpha unchanged."
     },
     {
       "name": "ws-kid-toes",
@@ -71,7 +74,8 @@
       "source": "OpenAI gpt-image",
       "despill": true,
       "height": 600,
-      "ref": "ws-kid-stand"
+      "ref": "ws-kid-stand",
+      "review_note": "Refine round 1: hair-edge green re-despill only; original pose and alpha unchanged."
     },
     {
       "name": "ws-basket",
@@ -243,7 +247,7 @@
     },
     {
       "name": "ws-card-door",
-      "prompt": "A closed wooden bedroom door with a soft hallway light underneath. No people. Close view, layered scene, warm light and true small details.",
+      "prompt": "A closed teal notebook with a plain unmarked cream sticker, resting on a wooden school hallway bench beside sunlit cubbies. Daylight. No people, bedroom, bed, night scene, text, letters, numbers or logos. Close view, layered scene, warm light and true small details.",
       "width": 480,
       "aspect": "4:3",
       "quality": 76,

@@ -1,3 +1,25 @@
+# Current Curiosity precedence, 2026-11-06
+
+This file retains the original narrative content below for provenance. The user explicitly designated Research Quest a Curiosity.
+The current surface is an open research desk with Question, Sources, Notes, Outline and Evidence files, accessible in any order.
+No kit header, welcome, numbered route, quiz, score, level, goal or finish screen is used. Original ending bands and sequential council
+presentation below are superseded. No catalog number or Research Quest concept entry exists in the supplied Curiosity catalog;
+the maker plate therefore leaves the number unassigned rather than inventing it.
+
+Council rules for the live evidence map: question 4 examines EVERY outlined note; any missing source or unquoted copy
+exposes that note and routes to Notes. An empty outline routes to Outline. An unvisited source routes to Sources;
+a missing or changed note routes to Notes; a wrong heading, excluded note or missing plan step routes to Outline;
+an unsuitable question routes to Question. Meaning-changing notes do not support questions 1, 2, 3 or 5.
+An outline made entirely of quotations invites the uncounted aside: "Can you say that in your own words?"
+Quotes with sources remain valid. Collaborate is removed because automatic replies do not teach it.
+
+Current Done when: every file opens without a sequence gate; evidence identifies the actual cause; every citation issue is visible;
+changed meanings never support answers; full selected notes and source lines are accessible at compact sizes; no terminal outcome;
+keyboard alternatives, device-only save, Motion, Sound, Read and the lower-left Manual work offline.
+
+All six documents are original fictional examples by Curio Class, CC BY 4.0. Biological facts have named references and rights
+in the Manual and tool.draft.json. The notebook count, place names, dates and advertisement are fictional, not measurements.
+
 # Research Quest
 
 ## One idea
@@ -13,10 +35,10 @@ Every shortcut you take while researching comes back as a question you can't ans
 ## Who and how
 - Grades 6 to 8, library. Module: The Research Process (Research), "Plan, gather, organize and present research".
 - Driver: students on laptops, alone or in pairs; a teacher can project it and take class votes at each choice. 20 to 30 minutes for one run; a second run (with different choices) takes about 10.
-- Standards: AASL.Inquire (I.A.1 formulating questions; I.B.2 devising and implementing a plan to fill knowledge gaps), AASL.Collaborate (presenting findings to a group and answering its questions); C3 D1.5.6-8 (choosing the kinds of sources that will help answer the question), D3.1.6-8 (gathering from several sources, guided by each one's origin and authority). Link: AASL.Engage VI.B.1 (ethically using others' work: quoting and paraphrasing). CCSS ELA: W.6.7, W.7.7, W.8.7 (short research projects to answer a question, drawing on several sources).
+- Standards: AASL.Inquire (I.A.1 formulating questions; I.B.2 devising and implementing a plan to fill knowledge gaps), C3 D1.5.6-8 (choosing the kinds of sources that will help answer the question), D3.1.6-8 (gathering from several sources, guided by each one's origin and authority). Link: AASL.Engage VI.B.1 (ethically using others' work: quoting and paraphrasing). CCSS ELA: W.6.7, W.7.7, W.8.7 (short research projects to answer a question, drawing on several sources).
 - tool.json: driver "students or teacher", minutes "20-30", modes [], grades_label "Grades 6-8".
 
-## Screens and modes
+## Historical screens and modes (superseded by the Curiosity precedence above)
 Kit frame, own `:root` (a parchment trail map). Header: title "Research Quest", small line "Five stops to Friday's council"; Motion, Sound, Read. One mode.
 
 Focus: the current chapter card, centered over the map and the biggest thing on screen (at least 60 percent of the stage); the map shows around it so the student always sees where they are. At the end, the Trail back map is the focus.
@@ -47,33 +69,32 @@ Your note cards on the left; an outline with three headings on the right: **What
 The council table (art rq-council-room, an empty table seen from your seat) with three code nameplates on its blank name stands (Principal Okoro; Lily Tran, garden club president, grade 8; Mr. Hale, groundskeeper). The council members are never pictured: a nameplate lights when its person speaks. Your outline shows as three slides. Focus: the speech card with the question and your answer, center stage. Each council question appears in turn in a speech card; your answer is filled in automatically from your pack, or "I'm not sure..." when nothing in the pack answers it. **Next question** steps through. Then the ending card and the **Trail back**: the map returns with a line drawn from each council question to the stop whose choice decided it (green line with ✓ when answered, red dashed with ✗ when not).
 
 ## Content
-Mr. Adeyemi's line per question choice: A "That's a topic. A topic is a place to start. What do you want to know about it?" B "That's a question you can answer, and it's about our garden." C "People can disagree on that one. Can research settle it?" D "You could find that out. Will it help the garden?"
+Mr. Adeyemi's line per question choice: A "That's a topic. A topic is a place to start. What do you want to know about it?" B "What would you need to find out about the garden first?" C "People can disagree on that one. Can research settle it?" D "You could find that out. Will it help the garden?"
 
 Passages (places made up; the facts in them are real and sourced):
-- Library shelf: "Monarchs and Milkweed", Dana Whitfield, 2022, page 12: "Monarch caterpillars eat only milkweed. Without milkweed plants, monarchs cannot complete their life cycle." Own words: good "Monarch caterpillars need milkweed. It's the only plant they eat, so no milkweed means no new monarchs." / too close "Monarch caterpillars eat just milkweed. Without milkweed plants, monarchs can't complete their life cycle." / changed "Monarch butterflies like milkweed best, but they can use other plants too."
-- County garden office: "Planting for Pollinators", Bramble County Garden Office, updated April 2025: "Choose milkweed that is native to our region, such as common milkweed or butterfly weed. Avoid spraying pesticides, which can kill caterpillars." Good "The county garden office says to plant milkweed that grows naturally here, like common milkweed or butterfly weed, and not to spray pesticides." / too close "Choose milkweed native to our region, like common milkweed or butterfly weed. Avoid spraying pesticides that can kill caterpillars." / changed "Any milkweed from any store works, and a little pesticide is fine."
-- Nature center: interview with Rosa Delgado, naturalist, Bramble Creek Nature Center, this week: "Adult monarchs drink nectar from lots of different flowers. In late summer and fall they need blooming flowers to fuel their long trip south." Good "Grown monarchs feed on nectar from many flowers, and flowers that bloom late in the year give them energy for migrating." / too close "Adult monarchs drink nectar from many flowers. In late summer and fall they need blooming flowers to fuel their trip south." / changed "Monarchs only visit flowers in the spring."
-- Garden club notebook: club notes, last October: "We counted 2 monarchs all fall. There is no milkweed anywhere in our garden." Good "Last fall the club saw only two monarchs, and the garden has no milkweed." / too close "We counted two monarchs all fall. There is no milkweed in our garden." / changed "The club saw lots of monarchs last fall."
-- Video: "Top 10 Butterfly Facts", FactBlast channel: "Monarchs can fly up to 3,000 miles to their winter home!" Good "Some monarchs travel as far as 3,000 miles to spend the winter somewhere warm." / too close "Monarchs can fly up to 3,000 miles to their winter home." / changed "Every butterfly flies 3,000 miles each year."
-- Seed ad: "Butterfly Blend", Sunny Acres Seeds: "Butterfly Blend brings butterflies to ANY garden, guaranteed! Just sprinkle and wait." Good "A seed company says its mix brings butterflies to any garden." / too close "Butterfly Blend brings butterflies to any garden, guaranteed." / changed "Scientists say Butterfly Blend works in every garden."
+- Library shelf: "Monarchs and Milkweed", Dana Whitfield, 2022, page 12: "Monarch caterpillars eat only milkweed. Without milkweed plants, monarchs cannot complete their life cycle." Own words: good "Monarch caterpillars need milkweed. It's the only plant they eat, so no milkweed means no new monarchs." / too close "Monarch caterpillars eat just milkweed. Without milkweed plants, monarchs can't complete their life cycle." / changed "Monarch caterpillars like milkweed best, but other garden plants can feed them when milkweed is missing."
+- County garden office: "Planting for Pollinators", Bramble County Garden Office, updated April 2025: "Choose milkweed that is native to our region, such as common milkweed or butterfly weed. Avoid spraying pesticides, which can kill caterpillars." Good "The county garden office says to plant milkweed that grows naturally here, like common milkweed or butterfly weed, and not to spray pesticides." / too close "Choose milkweed native to our region, like common milkweed or butterfly weed. Avoid spraying pesticides that can kill caterpillars." / changed "The county garden office says any milkweed from any store will grow well here, and a little pesticide will not harm the caterpillars."
+- Nature center: interview with Rosa Delgado, naturalist, Bramble Creek Nature Center, this week: "Adult monarchs drink nectar from lots of different flowers. In late summer and fall they need blooming flowers to fuel their long trip south." Good "Grown monarchs feed on nectar from many flowers, and flowers that bloom late in the year give them energy for migrating." / too close "Adult monarchs drink nectar from many flowers. In late summer and fall they need blooming flowers to fuel their trip south." / changed "Grown monarchs feed on nectar from many flowers, mostly in spring before they head north, so fall flowers are not needed."
+- Garden club notebook: club notes, last October: "We counted 2 monarchs all fall. There is no milkweed anywhere in our garden." Good "Last fall the club saw only two monarchs, and the garden has no milkweed." / too close "We counted two monarchs all fall. There is no milkweed in our garden." / changed "Last fall the club saw many monarchs, and milkweed filled our garden."
+- Video: "Top 10 Butterfly Facts", FactBlast channel: "Monarchs can fly up to 3,000 miles to their winter home!" Good "Some monarchs travel as far as 3,000 miles to spend the winter somewhere warm." / too close "Monarchs can fly up to 3,000 miles to their winter home." / changed "Every butterfly travels exactly 3,000 miles each year to spend the winter somewhere warm."
+- Seed ad: "Butterfly Blend", Sunny Acres Seeds: "Butterfly Blend brings butterflies to ANY garden, guaranteed! Just sprinkle and wait." Good "A seed company says its mix brings butterflies to any garden." / too close "Butterfly Blend brings butterflies to any garden, guaranteed." / changed "Scientists confirm this seed mix brings butterflies to any garden."
 
 Council questions (in this order; each lists what answers it, checked from the pack and outline):
 1. Principal Okoro: "What are you asking us to do, and why?" Answered if question B was chosen and the garden club note is under "What our garden has now". Answer shown: your question, then the note.
-2. Lily Tran: "Why milkweed? Why not just pretty flowers?" Answered if the library note is under "What monarchs need".
-3. Mr. Hale: "Will the plants you want grow here?" Answered if the county garden office note is in the outline and "Plant native milkweed" is a plan step.
-4. Principal Okoro: "Where did that fact come from?" (about the first note under "What monarchs need"; if that heading is empty, about the first note anywhere in the outline; if the outline has no notes at all, the answer is "There's nothing in the outline to point to." and it counts as not answered). Answered if that note was saved with its source. If it was copied without quote marks, the answer adds the principal's reply: "Those are the book's exact words. Put them in quote marks and name the book." and it counts as not answered.
-5. Lily Tran: "When should our flowers bloom?" Answered if the naturalist note is in the outline and "Plant flowers that bloom in late summer and fall" is a plan step.
+2. Lily Tran: "Why milkweed? Why not just pretty flowers?" Linked if the library note is under "What monarchs need" and preserves the source meaning.
+3. Mr. Hale: "Will the plants you want grow here?" Linked if the county garden office note preserves its meaning, is in the outline, and "Plant native milkweed" is a plan step.
+4. Principal Okoro: "Where did that fact come from?" Check every outlined note. Every note must keep its source; exact copies require quote marks. List every citation issue with that note's words and its source title. A copied note with a source says "Those are the exact words from [source title]. Put them in quote marks." Without a source it adds "Put them in quote marks and name where they came from." Route every citation issue to Notes. With no outlined notes, show "There's nothing in the outline to point to." and route to Outline. No grade or terminal outcome is produced.
+5. Lily Tran: "When should our flowers bloom?" Linked if the naturalist note preserves its meaning, is in the outline, and "Plant flowers that bloom in late summer and fall" is a plan step.
 6. (Only if any note in the outline used a meaning-changing version) Mr. Hale: "Hold on. Is that really what your source said?" Never answered; the speech card shows the source's real words beside your note.
 7. (Only if "Sprinkle Butterfly Blend seed mix" is a plan step) Mr. Hale: "What plants are in Butterfly Blend?" Never answered: "The ad didn't say."
 Any too-close note in the outline adds one aside from the principal after the questions (not counted): "Some of your notes sound almost word for word. Try saying it your own way."
 
-Endings (by questions not answered, of those asked):
-- 0: "Plan approved! Next week the club plants native milkweed and fall flowers." Art rq-garden-bloom.
-- 1 or 2: "Approved, with homework: come back with [the missing pieces, named]." Art rq-garden-bed. The missing piece for each unanswered question: 1 "a clear question and what our garden has now"; 2 "why monarchs need milkweed"; 3 "proof the plants will grow here"; 4 "where your facts came from"; 5 "when the flowers should bloom"; 6 "what your source really said"; 7 "what is in the seed mix". Two pieces are joined with "and".
-- 3 or more: "Not yet. The council asks you to dig deeper and come back next month." Art rq-garden-bed.
-Each ending is followed by the Trail back and two buttons: **Rewind to a stop** and **Start over**.
+Current evidence behavior: the seven prompts are inspectable evidence cards, with the original conditions for prompts 6 and 7.
+There are no ending bands or approval counts. An outline consisting entirely of quotations with sources remains supported and adds
+the uncounted aside, "Can you say that in your own words?" A too-close note adds its comparison aside. Missing pieces are named at
+the evidence gap itself. The student can revise any file and inspect another route indefinitely.
 
-## Interactions in detail
+## Historical interactions (superseded by the Curiosity precedence above)
 - Choices never show right or wrong when made; only the council and the Trail back judge, and only in story terms. No score.
 - Stop 2: a fifth tile can't be picked (it shakes; hint "Four visits. Unpick one first."). Go is enabled at exactly four.
 - Stop 3: a source can be noted once; **Redo note** replaces it before Stop 4.
@@ -93,7 +114,7 @@ Each ending is followed by the Trail back and two buttons: **Rewind to a stop** 
 - Contrast: white on brand 5.47:1; brand on paper 4.85:1; brand on panel 5.26:1; ink on paper 13.61:1; muted on paper 5.68:1; muted on panel 6.16:1; focus on panel 7.58:1 and on paper 6.99:1; white on nameplate brass 5.05:1; answered green on panel 4.82:1; red on panel 6.22:1. All pass AA.
 
 ## Art
-All local FLUX (`scripts/localart.py`); no people (the four characters speak through nameplates and speech cards). One style: hand-drawn storybook illustration in warm parchment light.
+Eleven generated gpt-image illustrations and two retained local FLUX illustrations, as recorded in art/prompts.json; no people (the four characters speak through nameplates and speech cards). One style: hand-drawn storybook illustration in warm parchment light.
 - rq-trail-map: an illustrated parchment map of a small town and school grounds, a winding dotted trail with five empty round clearings along it, a library, a nature center in woods, a garden and a school building, hand-drawn storybook style, blank banners; 16:9; cutout no; people no; the stage map under the code-drawn stop labels, marker path and Trail back lines.
 - rq-marker: a small canvas backpack with a teal flap standing on a round map pin, storybook illustration, plain white background; 1:1; cutout yes; people no; your marker on the map, walking stop to stop.
 - rq-garden-bed: an empty wooden raised garden bed of bare soil beside a brick school wall, late summer light, storybook illustration; 4:3; cutout no; people no; the story opening and the not-yet and homework endings.
@@ -105,26 +126,17 @@ All local FLUX (`scripts/localart.py`); no people (the four characters speak thr
 That is 13 images (6 of them the place kit), none with people. Cards, tiles, outline, speech cards, nameplates, Trail back lines and preview.svg are drawn in code.
 
 ## Voice
-Bank voice `smooth-narrator` (Algieba), "Say smoothly and warmly, like an audiobook narrator": it tells the story and voices the chapter openings and council questions. No neighbor from `neighbors.py` (fake-or-fact-lab wise-mentor) and no other spec in this batch uses it; its only 6-8 wave user is pressure-point (health). `Curio.voice`, one scope. Passages and note texts are on screen only (Read speaks the open card). How lines are spoken the first time, then only update the hint; event lines play every time and are dropped when stale.
-- open (how; the first time the quest opens; stale once a question card is tapped): "The garden club has an empty bed, and Friday the council decides what grows there. Your quest: bring them a plan. Tap a question card to begin."
-- ask (how; Stop 1 opens; stale once a card is chosen): "Stop one. Tap the question you will research."
-- plan (how; Stop 2 opens; stale once four places are picked): "Stop two. You have time for four visits. Tap four places."
-- go (how; the first time exactly four are picked and Go turns on; stale once Go is pressed): "Four places. Press Go."
-- gather (how; Stop 3 opens; stale once a way is tapped): "Stop three. Tap one of the five ways to write this note."
-- save (how; the first time a way is chosen and the save buttons turn on; stale once a note is saved): "Now press Save note, or Save note with its source."
-- organize (how; Stop 4 opens; stale once every card is placed): "Stop four. Tap a note, then tap a heading. Then tap up to three plan steps."
-- done (how; the first time Done turns on; stale once it is pressed): "Your outline is ready. Press Done."
-- present (how; Stop 5 opens; stale once Next question is pressed): "Friday. The council is waiting. Press Next question to hear them."
-- Council questions 1 to 7 (event, spoken each time they come up; stale when Next question is pressed): the seven question lines in Content, each preceded by the speaker's name.
-- Mr. Adeyemi's four question replies (event, on each Stop 1 choice; stale when another card is chosen or Stop 2 opens): the four lines in Content.
-- Endings (event; stale on Rewind or Start over): the three ending lines in Content, without the bracketed list (the screen shows it).
-- trail (how; the first Trail back; stale once a line is tapped): "Each line leads back to the choice that decided an answer. Tap a line to see that choice."
+
+Bank smooth-narrator, Algieba. One optional initial cue: "Pick a note style. Compare it with the source."
+It becomes stale after choosing wording or opening a dialog. There is no automatic route, council, praise or ending narration.
+Read speaks semantic working content, including full notes and credits. Dialogs have their own Read button because a native modal
+covers the main power rail. voice/lines.json equals allLines(): one cue. Browser narration is the current fallback.
 
 ## Family engine
 none
 
 ## Sources
-- AASL, National School Library Standards (2018), Standards Framework for Learners: Inquire I.A.1 and I.B.2, Collaborate, Engage VI.B.1. https://standards.aasl.org/framework/
+- AASL, National School Library Standards (2018), Standards Framework for Learners: Inquire I.A.1 and I.B.2, Engage VI.B.1. https://standards.aasl.org/framework/
 - U.S. Fish and Wildlife Service, "Monarch" (milkweed is the only food the caterpillars can eat; the eastern population travels up to 3,000 miles in migration; adults feed on the nectar of many flowers during breeding and migration). https://www.fws.gov/species/monarch-danaus-plexippus
 - Xerces Society, "Monarch Butterfly Conservation" and "Milkweeds: A Conservation Practitioner's Guide" (plant milkweed native to your region; provide fall-blooming nectar plants; avoid pesticides). https://xerces.org/monarchs
 - Common milkweed (Asclepias syriaca) and butterfly weed (Asclepias tuberosa) as native milkweeds: USDA PLANTS Database. https://plants.usda.gov/
@@ -132,14 +144,15 @@ none
 - Checks run 2026-10-29 (Python model of the council rules): the ideal run (question B, the four useful places, good notes with sources, the right headings, milkweed and fall flower steps) answers all five and is approved; a run with the library quote in quote marks also answers question 4; 200,000 random runs reached all three endings (approved, homework, not yet), 5 to 7 questions asked, at most 7 unanswered. Fixed: question 4 had no answer when the outline held no notes; the homework ending named "missing pieces" with no list (the list is now in Content); Stop 3 had no button to move on (On to Stop 4 added); Next question waited for the voice line.
 
 ## Done when
-1. A run with question B, the four useful places, good own-words notes saved with sources, a correct outline and the native milkweed and fall flower steps gets all five questions answered and the approved ending.
-2. Each council rule in Content can be made to fail on its own (verify each of questions 1 to 5 by changing one earlier choice) and its Trail back line goes to that stop.
-3. Questions 6 and 7 appear only under their conditions; the too-close aside appears only when a too-close note is in the outline; question 4 with no notes in the outline shows "There's nothing in the outline to point to."
-4. Endings follow the count of unanswered questions exactly (0, 1 to 2, 3 or more); the homework ending names the missing pieces from Content.
-5. Stop 2 enforces four visits; On to Stop 4 turns on only when four notes are saved; Stop 4 enforces three plan steps and every card placed; tap-then-tap works without dragging.
-6. Rewind clears later stops only; the run survives a reload; Start over (after Yes) clears it.
-7. Focus: the chapter card is the largest, central block at 1280x720, 1366x768 and 1920x1080; at Stop 5 the speech card is center stage.
-8. Tap while it plays: a tap on Next question while a council line plays cuts it and shows the next question at once; taps during the marker's walk are taken at once.
-9. No person is pictured anywhere; all 13 images load; place tiles show their painted pictures with code labels.
-10. Chapter choices and their main button visible without scrolling at every size in STANDARDS.md; 375 wide works in `drive.py --host`.
-11. Voice: each stop's how line once; council questions spoken as they come and dropped on Next question; endings spoken once per ending; no line names a disabled control; Read speaks the open card; console clean; no network requests; only "Curio Class".
+
+1. Notes opens as a working surface. Question, Sources, Notes, Outline and Evidence can be opened in any order without a goal, quiz or finish gate.
+2. Every evidence route points to the actual cause: Question for the unsuitable question; Sources for an unvisited place; Notes for missing or distorted notes and citation issues; Outline for placement, exclusion or missing plan steps.
+3. The credit prompt checks every outlined note. Every uncredited note or unquoted copy exposes that note and routes to Notes; an empty outline routes to Outline.
+4. Meaning-changing notes do not support prompts 1, 2, 3 or 5. Meaning-change and seed-ingredient prompts appear only under their stated conditions. Credited quotations remain valid, with the all-quotes aside uncounted.
+5. Four source visits and three plan steps are capacity limits. Neither all notes nor a selected plan step is required to inspect evidence. Tap-then-heading and keyboard placement work.
+6. Revisit preserves choices; explicit Rewind asks Yes / No before clearing later files. Saved work survives reopening, including when no question is selected. Start over clears saved research choices.
+7. The desk fills the screen, with no kit header or right-hand lesson panel. Manual and maker plate sit on the lower-left rail; the missing catalog number is disclosed rather than invented.
+8. Rapid input, resize, empty outlines and all Not needed remain responsive and truthful. No score or terminal outcome exists.
+9. All retained artwork has named provenance and explicit people flags. No people are pictured. The tool is one offline file with no external resource requests.
+10. Main controls remain visible at every STANDARDS size. At 680x425, 800x500, 1000x625 and 375x812 the selected note and its full source are accessible without a hover-only title, and source lines are not clipped.
+11. The optional cue speaks at most once when relevant; otherwise speech is Read. Read skips decoration and includes the open working material. Sources and licences are named in the Manual and tool.draft.json; console clean.

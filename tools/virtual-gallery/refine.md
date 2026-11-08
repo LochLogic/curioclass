@@ -1,4 +1,4 @@
-ROUND 2 (exit check 2026-11-06): blocker 1 open (door view names a First seen work it does not paint: deep Left-wall works and an all-door-wall show); polish 1 and 13 partly
+ROUND 2 (exit check 2026-11-06): should fix 8 partly (empty-show Show me on Selection, Theme, Labels drops focus; Labels says "Tap Label to edit" with no Label control); blocker 1, polish 1 and 13 now fixed
 Counts: blockers 1 (general 1, family 0), should fix 12 (general 10, family 2), polish accepted 15
 
 # Refine: virtual-gallery
@@ -250,3 +250,65 @@ None found in the default screen, each mode once, or the frames tied to the fixe
   at 1366 for "1 ★ Kitchen Window, 7 a.m." (ellipsis by design).
 - Missed: the blocker. Every door-view frame has an in-window DOM box, so a box-based check cannot see that a
   Left-wall frame never paints; only the picture shows it.
+
+## Exit check round 2 (2026-11-06)
+
+Round 2 re-check by a cold Claude agent after Codex round 2 (`polish.md`; round 1 account in `polish-1.md`). Frames in
+`S:/CurioClass-codex-scratch/virtual-gallery/exit2/f/` (contact sheets `sheet-door.png`, `sheet-modes.png`), shots in
+`exit2/shots.json` and `exit2/s3.json`, audit in `exit2/audit-r2/`. Layouts built with `__tool.place()` after opening
+Hang, as in the first exit check. No console errors in any shot.
+
+### Blocker
+1. **Fixed.** All six door layouts at 1366x768 paint and outline the named frame: back wall (`door-back`, Seed
+   Packets), near-door sides (`door-sides`), far sides (`door-sides-far`, Blue Teapot now painted at Left x=520),
+   left corner clamp (`door-left-corner`, Kitchen Window at x=577, also at 680x425), and a new full Left wall sweep
+   (`door-left-mid`, Map of My Block at x=560). All-door-wall (`door-only`): no outline or cone, readout "No work is
+   in view from the door", and `firstSeen()` returns null; the Checklist Anchor row fails with "Starred: Kitchen
+   Window, 7 a.m. No work is in view from the door." (`door-only-checklist`). The camera still points straight
+   ahead (`src.html:836-853` filters the `front` walls only).
+
+### Should fix
+1 to 7 and 9 to 12. Fixed, unchanged from the first exit check (spot-checked on `mode-hang`, `mode-checklist`,
+`hang-1366-plan`, `hang-680-tray`; Labels warning and two-column checklist present, door wall unfolds with all six
+frames, cards show size and tags on `default`).
+
+8. **Partly.** Empty Hang itself is right (emptyHang line, "The tray is empty" workbench, held-click audit row 1),
+   and Show me on Anchor (and the other hung-dependent rows) lands on emptyHang with focus on Select. But Show me on
+   an empty show still misleads for three rows (`empty-showme-*.png`, real clicks, nothing chosen): Selection and
+   Theme drop focus to the body (target `wall-choice` is not rendered in empty Hang); Labels says "Every selected
+   work has a title; notes are 25 words or fewer. Tap Label to edit." with no Label control on screen and focus on
+   the body (`empty-showme-labels.png`). Statement is fine (focus on Statement). Codex reported the same and left it
+   open (`polish.md` should fix 8). Narrow fix: in `showProblem()` (`src.html:1912-1951`) handle an empty
+   `state.chosen` first for selection, theme and labels: `L.emptyHang` and focus `m-select`/`empty-select`.
+
+### Polish (bulk spot-check)
+1. Fixed now: the named frame is outlined in every door layout; no cone or name when nothing is in view.
+13. Fixed now: wall select reads "Back" at 680x425 and 1366x768 with Plan open (`hang-680-tray`,
+    `hang-1366-plan`); tray captions whole.
+The other thirteen stay fixed as in the first exit check.
+
+### Regressions
+None found. Default screen (Select with tags), Hang, Walk, Checklist each once, and the door, corner and empty-Show-me
+frames tied to this round's fixes. Left-wall `preserve-3d` shows no seam on the back wall in any frame.
+
+### Gate
+1. Done when: pass (Done when 3, first seen from the door, now holds for every layout tried).
+2. Codes: unchanged; VA:Pr6 depth stays on the spec's open questions.
+3. Solo defaults: work.
+4. Sensitivity: rule 5 does not apply.
+5. No blocker or should-fix open: no, should fix 8 partly (empty Show me on Selection, Theme, Labels).
+6. Bundle clean: 1,120,120 bytes (under 2 MB), no console errors in drive shots or audit, no em dashes in src.html;
+   network not re-measured (the audit hit its 1500 s limit, exit 124, after the click and voice tables again); Codex's round 2 offline probe recorded zero requests.
+7. Voice: 37 lines in `voice/lines.json`, matching Codex's allLines count; held-click table clean (emptyHang on Hang,
+   selectMore with the star on Add to show, noWalk only in Walk).
+
+## Audit pilot (exit check, round 2)
+- Ran into the 1500 s limit (exit 124) after the click, five-held-click and two-quick-tap tables; network section not
+  saved. Its Chrome was left behind and was stopped by this check.
+- Leads confirmed: Checklist Show me on Selection, Theme and Labels "rebuilt, focus lost" (empty show), reproduced
+  with real clicks (should fix 8).
+- Leads wrong or expected (all settled earlier): checklist Flow/Statement rows below the fold at 680x425 and
+  375x812; `#hint` behind modal backdrops; 3 to 8 px text in the cutaway and intro panel (scaled 3D text);
+  `order-title` ellipsis at 1366; "focus lost" on off-fold portfolio cards; Add to show replaces the welcome
+  (selectMore carries the star).
+- Missed: the wrong "Tap Label to edit" line on an empty Labels Show me (it checks focus, not the words of a hint).

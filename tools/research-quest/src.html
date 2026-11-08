@@ -4,17 +4,17 @@
 <meta charset="utf-8">
 <link rel="icon" href="data:,">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Research Quest · Five stops to Friday's council · Curio Class</title>
+<title>Research Quest · A research desk · Curio Class</title>
 <meta name="description" content="Build a researched school garden plan. Choose a question, visit sources, make notes and face the council. Grades 6-8. Works offline.">
 <!--
 Research Quest, Curio Class. Students or teacher, grades 6-8, library.
-AASL Inquire, Collaborate, Engage; C3 D1.5.6-8, D3.1.6-8; CCSS W.6.7, W.7.7, W.8.7.
+AASL Inquire, Engage; C3 D1.5.6-8, D3.1.6-8; CCSS W.6.7, W.7.7, W.8.7.
 Facts: U.S. Fish and Wildlife Service, Monarch; Xerces Society, Monarch Butterfly Conservation;
 USDA PLANTS. All people, institutions and source documents in the story are fictional.
-Illustrations generated with OpenAI gpt-image and existing local FLUX art, edited for Curio Class.
+Illustrations generated for Curio Class, with two retained local FLUX paintings.
 Content CC BY 4.0. Code MIT. One offline file. No network requests. curioclass.org
 -->
-<link rel="stylesheet" href="kit:curio">
+
 <style>
 :root {
   --paper:#f7f1e1; --panel:#fffaf0; --ink:#2b2418; --muted:#6b5d45; --line:#e3d6b8;
@@ -454,15 +454,124 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
   .note-card .note-copy {font-size:10px; line-height:1.05;}
   .note-card small {margin-top:1px;}
 }
+
+.maker-plate small {display:block; font:10px monospace; margin-top:3px;}
+/* The desk surface is the instrument. File tabs remain available in every state. */
+* {box-sizing:border-box;}
+body {margin:0; padding:0; height:100dvh; min-height:0; overflow:hidden;
+  display:flex; flex-direction:column; color:var(--ink); font:14px 'Segoe UI',sans-serif;
+  background:repeating-linear-gradient(3deg,#59432d 0,#59432d 3px,#5f4931 4px,#684e34 9px);}
+button {font:inherit; cursor:pointer; color:inherit;}
+button:focus-visible {outline:3px solid var(--focus); outline-offset:2px;}
+[hidden] {display:none!important;}
+main {display:block; flex:1; min-height:0; position:relative; padding:0 16px;}
+.stage {height:100%; width:100%; position:relative; display:flex; padding:0 0 10px;}
+.stage::after {background:#48371942;}
+.map-art {opacity:.16;}
+.idle-glint {display:none;}
+.panel {display:none;}
+.trail {height:56px; padding:6px 8px 0; gap:5px; justify-content:flex-start; align-items:end;}
+.trail::before {display:none;}
+.trail button {height:44px; padding:6px 20px; border:1px solid #ab9468; border-bottom:0; border-radius:6px 6px 0 0;
+  background:#ddccaa; box-shadow:inset 0 2px 1px #fff8; font:700 13px Georgia,serif;}
+.trail button[aria-pressed="true"] {background:#fffaf0; color:#0b5c55; box-shadow:inset 0 4px #0f766e;}
+.chapter {max-width:none; min-height:0; flex:1; border-radius:3px; padding:18px 22px; gap:12px; width:100%;
+  box-shadow:0 10px 30px #251c1470,3px 3px #bfa777;}
+.chapter-title .eyebrow {font:11px monospace; letter-spacing:.12em;}
+h2 {font-size:29px;} .chapter-title .seal {display:none;}
+.desk-rail {flex:none; height:60px; display:flex; gap:12px; align-items:center; padding:7px 16px;
+  background:linear-gradient(#604c35,#42311f); border-top:1px solid #bba170;}
+.maker-plate {padding:7px 13px; border:1px solid #d7bd7a; border-radius:2px; color:#302718;
+  background:linear-gradient(115deg,#bda06a,#e2c990,#bda16e); font:12px Georgia,serif; text-shadow:0 1px #fff6;}
+.power {display:flex; gap:6px; margin-left:auto;}
+.power button {min-height:44px; padding:7px 12px; background:#30291f; color:#fff7df; border:1px solid #bba170; border-radius:3px;}
+.power button[aria-pressed="true"] {border-bottom:3px solid #91dbb3;}
+.note-card {display:flex; flex-direction:column; justify-content:flex-start; align-items:stretch; overflow:auto;}
+.note-card .note-copy {display:block!important; min-height:20px; overflow:auto!important; -webkit-line-clamp:unset!important;
+  max-height:none!important; white-space:normal; flex:1;}
+.note-card small:not(.where) {white-space:normal; overflow:visible; text-overflow:clip; flex:none; line-height:1.3!important;}
+.note-card .where {flex:none;}
+.note-card {overflow:hidden;}
+.notes-list {grid-column:1; grid-row:1;}
+.outline {grid-column:2; grid-row:1;}
+.organizer:has(.selected-note:not([hidden])) .notes-list {visibility:hidden;}
+.selected-note {grid-column:1; grid-row:1; z-index:2; min-height:0; overflow:hidden;
+  display:flex; flex-direction:column; background:white; border:1px solid #9b855e;}
+.selected-note .note-sheet {flex:1; min-height:0; display:flex; flex-direction:column; overflow:hidden;}
+.selected-note .note-sheet p:first-child {flex:1; min-height:0; overflow:auto;}
+.selected-note .citation {flex:none;}
+.selected-note .note-sheet {font-size:14px; padding:9px; line-height:1.3;}
+.selected-note .citation {margin-top:4px;}
+.stop small:empty {display:none;}
+.trail-back {min-height:0;}
+.trail-back svg {z-index:3; pointer-events:none;}
+.trace-path {pointer-events:stroke;}
+.route-halo,.route-ink {pointer-events:none;}
+.connections {z-index:2; bottom:4%; gap:10px;}
+.connection {min-height:70px; padding:8px;}
+.back-stops {z-index:4; pointer-events:none;}
+.trace-hit {pointer-events:none;}
+.manual-drawer {position:fixed; margin:0; top:auto; right:auto; left:10px; bottom:66px; width:min(680px,calc(100% - 20px));}
+.dialog {font-size:15px;}
+.dialog h3 {margin-top:8px;}
+.dialog p {overflow-wrap:anywhere;}
+.dialog .dialog-content {max-height:calc(80dvh - 140px);}
+@media(max-height:640px) {
+  main {padding:0 10px;} .trail {height:49px; padding-top:4px;}
+  .chapter {padding:10px 14px; gap:8px;} h2 {font-size:23px;}
+  .chapter-title .eyebrow {display:none;} .chapter-body {gap:7px;}
+  .desk-rail {height:52px; padding:4px 10px; gap:7px;}
+  .maker-plate {font-size:11px; padding:6px 9px;}
+  .gather-footer .status {display:none;}
+  .note-card {padding:6px; font-size:12px; line-height:1.2;}
+  .note-card .note-copy {font-size:12px; line-height:1.2;}
+  .note-card small {font-size:10px; margin-top:4px;}
+  .selected-note .note-sheet {font-size:13px; line-height:1.2;}
+  .organizer {min-height:0; overflow:auto; flex:1;}
+  .notes-list {grid-template-rows:repeat(2,minmax(0,1fr)); overflow:hidden;}
+  .steps .btn {font-size:11px; min-width:85px;}
+  .chapter:has(.organizer) .steps {padding-right:96px;}
+  .connection {min-height:56px; padding:5px;}
+  .manual-drawer {bottom:58px;}
+}
+@media(max-width:600px) {
+  main {padding:0 7px;} .stage {padding-bottom:7px;}
+  .trail {height:52px; padding:6px 0 0; gap:2px; justify-content:space-between;}
+  .trail button {padding:4px 8px; font-size:12px; flex:1; min-width:0;}
+  .chapter {padding:12px 10px; gap:9px;} h2 {font-size:25px;}
+  .desk-rail {height:96px; flex-wrap:wrap; gap:4px 9px; padding:4px 8px; align-content:center;}
+  .maker-plate {font-size:10px; padding:6px; flex:1;}
+  .power {margin-left:0; width:100%; justify-content:flex-end;}
+  .power button {flex:1; padding:4px 12px;}
+  .desk-rail #manual {font-size:12px; padding:6px 10px;}
+  .gather {grid-template-columns:1fr; grid-template-rows:185px minmax(0,1fr); gap:9px;}
+  .source {display:flex; position:relative; padding-left:0; gap:5px; overflow:auto;}
+  .source img {float:right; display:none;}
+  .source blockquote {font-size:16px; line-height:1.25;}
+  .source h3 {font-size:14px;} .source .citation {font-size:10px;}
+  .ways {gap:5px;}
+  .way {font-size:12px; padding:6px;} .way small {font-size:10px; margin-bottom:3px;}
+  .gather-footer {flex-wrap:wrap; gap:5px;}
+  .gather-footer .btn {flex:1; font-size:12px; padding:5px;}
+  .gather-footer .status {display:none;}
+  .organizer {grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 112px; gap:7px; overflow:hidden;}
+  .notes-list {grid-template-rows:repeat(2,minmax(0,1fr)); overflow:hidden;}
+  .note-card {padding:6px; font-size:12px;}
+  .note-card .note-copy {font-size:12px; line-height:1.2;}
+  .note-card small {font-size:10px; margin-top:3px;}
+  .heading {padding:6px; font-size:12px;} .heading small {font-size:10px;}
+  .steps .btn {min-width:90px; font-size:11px;}
+  .steps-label span {display:none;}
+  .outline {grid-column:1; grid-row:2;}
+  .connections {bottom:3%; gap:7px;}
+  .connection {width:calc(50% - 6px); min-height:59px;}
+  .back-stops {gap:2px;} .back-stops span {border-radius:3px; font-size:10px; padding:4px 2px;}
+  .manual-drawer {bottom:102px;}
+}
+
 </style>
 </head>
 <body>
-<header>
-  <h1>Research Quest <small>Five stops to Friday's council</small></h1>
-  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
-  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
-  <button class="icon-btn" id="read">Read</button>
-</header>
 <main>
   <aside class="panel">
     <span class="eyebrow">Librarian's field notes</span>
@@ -475,20 +584,22 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     </div>
     <p class="privacy">Your quest saves on this device. Nothing leaves it.</p>
   </aside>
-  <section class="stage" id="stage" aria-label="Quest map and current chapter">
+  <section class="stage" id="stage" aria-label="Research desk">
     <img class="map-art" src="art:rq-trail-map" alt="A painted map of school grounds and woodland paths">
     <div class="idle-glint"></div>
-    <nav class="trail" id="trail" aria-label="Five stops">
-      <div class="stop"><b>1</b><span>Ask</span><small></small></div>
-      <div class="stop"><b>2</b><span>Plan</span><small></small></div>
-      <div class="stop"><b>3</b><span>Gather</span><small></small></div>
-      <div class="stop"><b>4</b><span>Organize</span><small></small></div>
-      <div class="stop"><b>5</b><span>Present</span><small></small></div>
-      <img id="marker" src="art:rq-marker" alt="Your backpack marker">
+    <nav class="trail" id="trail" aria-label="Research files">
+      <button data-desk="1" id="file-question">Question</button><button data-desk="2" id="file-sources">Sources</button>
+      <button data-desk="3" id="file-notes">Notes</button><button data-desk="4" id="file-outline">Outline</button>
+      <button data-desk="5" id="file-evidence">Evidence</button>
     </nav>
-    <article class="chapter" id="chapter" aria-label="Current chapter"></article>
+    <article class="chapter" id="chapter" aria-label="Working file"></article>
   </section>
 </main>
+<footer class="desk-rail"><button id="manual" class="btn">Manual</button><button id="desk-pack" class="btn">Pack</button>
+  <span class="maker-plate">Curio Class Curiosities · Research Quest<small>Saved only on this device</small></span>
+  <div class="power" aria-label="Desk power panel">
+    <button id="motion" aria-pressed="true">Motion</button><button id="sound" aria-pressed="true">Sound</button><button id="read">Read</button>
+  </div></footer>
 <dialog class="dialog" id="dialog" aria-labelledby="dialog-title">
   <h2 id="dialog-title"></h2>
   <div class="dialog-content" id="dialog-content"></div>
@@ -513,7 +624,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
   ];
   const REPLIES = [
     "That's a topic. A topic is a place to start. What do you want to know about it?",
-    "That's a question you can answer, and it's about our garden.",
+    "What would you need to find out about the garden first?",
     'People can disagree on that one. Can research settle it?',
     'You could find that out. Will it help the garden?'
   ];
@@ -525,7 +636,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
       versions:[
         "Monarch caterpillars need milkweed. It's the only plant they eat, so no milkweed means no new monarchs.",
         "Monarch caterpillars eat just milkweed. Without milkweed plants, monarchs can't complete their life cycle.",
-        'Monarch butterflies like milkweed best, but they can use other plants too.'
+        'Monarch caterpillars like milkweed best, but other garden plants can feed them when milkweed is missing.'
       ]
     },
     {
@@ -535,7 +646,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
       versions:[
         'The county garden office says to plant milkweed that grows naturally here, like common milkweed or butterfly weed, and not to spray pesticides.',
         'Choose milkweed native to our region, like common milkweed or butterfly weed. Avoid spraying pesticides that can kill caterpillars.',
-        'Any milkweed from any store works, and a little pesticide is fine.'
+        'The county garden office says any milkweed from any store will grow well here, and a little pesticide will not harm the caterpillars.'
       ]
     },
     {
@@ -545,7 +656,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
       versions:[
         'Grown monarchs feed on nectar from many flowers, and flowers that bloom late in the year give them energy for migrating.',
         'Adult monarchs drink nectar from many flowers. In late summer and fall they need blooming flowers to fuel their trip south.',
-        'Monarchs only visit flowers in the spring.'
+        'Grown monarchs feed on nectar from many flowers, mostly in spring before they head north, so fall flowers are not needed.'
       ]
     },
     {
@@ -554,7 +665,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
       versions:[
         'Last fall the club saw only two monarchs, and the garden has no milkweed.',
         'We counted two monarchs all fall. There is no milkweed in our garden.',
-        'The club saw lots of monarchs last fall.'
+        'Last fall the club saw many monarchs, and milkweed filled our garden.'
       ]
     },
     {
@@ -563,7 +674,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
       versions:[
         'Some monarchs travel as far as 3,000 miles to spend the winter somewhere warm.',
         'Monarchs can fly up to 3,000 miles to their winter home.',
-        'Every butterfly flies 3,000 miles each year.'
+        'Every butterfly travels exactly 3,000 miles each year to spend the winter somewhere warm.'
       ]
     },
     {
@@ -572,7 +683,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
       versions:[
         'A seed company says its mix brings butterflies to any garden.',
         'Butterfly Blend brings butterflies to any garden, guaranteed.',
-        'Scientists say Butterfly Blend works in every garden.'
+        'Scientists confirm this seed mix brings butterflies to any garden.'
       ]
     }
   ];
@@ -591,28 +702,10 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     ['Mr. Hale','What plants are in Butterfly Blend?',4,'what is in the seed mix']
   ];
   const L = {
-    open:"The garden club has an empty bed, and Friday the council decides what grows there. Your quest: bring them a plan. Tap a question card to begin.",
-    ask:'Stop one. Tap the question you will research.',
-    plan:'Stop two. You have time for four visits. Tap four places.',
-    go:'Four places. Press Go.',
-    gather:'Stop three. Tap one of the five ways to write this note.',
-    save:'Now press Save note, or Save note with its source.',
-    gatherNext:'Tap a place in your pack to write another note.',
-    toOrganize:'Four notes saved. Press On to Stop 4.',
-    organize:'Stop four. Tap a note, then tap a heading. Then tap up to three plan steps.',
-    placeNote:'Tap a heading to place this note.',
-    done:'Your outline is ready. Press Done.',
-    present:'Friday. The council is waiting. Press Next question to hear them.',
-    next:'Press Next question to hear the next council member.',
-    endingNext:'Press See the decision to hear the council outcome.',
-    trail:'Each line leads back to the choice that decided an answer. Tap a line to see that choice.',
-    approved:'Plan approved! Next week the club plants native milkweed and fall flowers.',
-    homework:'Approved, with homework: come back with the missing pieces.',
-    notYet:'Not yet. The council asks you to dig deeper and come back next month.',
-    tooClose:'Some of your notes sound almost word for word. Try saying it your own way.',
-    continueAsk:'Your question is in the pack. Press On to Plan, or tap another question card.',
-    reply:REPLIES,
-    council:COUNCIL.map(row => row[0] + '. ' + row[1])
+    open:'Pick a note style. Compare it with the source.',
+    tooClose:'Some notes follow the source almost word for word. How would you say the same idea?',
+    allQuotes:'Can you say that in your own words?',
+    reply:REPLIES
   };
   const shuffle = list => {
     const out = [...list];
@@ -623,29 +716,41 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     return out;
   };
   function fresh() {
-    return {version:1, mode:'quest', stop:1, question:null, places:[], notes:{}, headings:{}, steps:[],
-      active:null, way:null, selected:null, councilIndex:-1, finale:false, trail:false,
+    return {version:2, mode:'desk', stop:3, question:null, places:['library','county','nature','notebook'], notes:{}, headings:{}, steps:[],
+      active:null, way:null, selected:null, 
       order:Object.fromEntries(SOURCES.map(s => [s.id,shuffle([0,1,2])]))};
   }
   let state = fresh();
   try {
     const saved = JSON.parse(localStorage.getItem('rq-run'));
-    if (saved && saved.version === 1 && saved.stop >= 1 && saved.stop <= 5 && Array.isArray(saved.places)) {
+    if (saved && saved.version === 2 && saved.stop >= 1 && saved.stop <= 5 && Array.isArray(saved.places)) {
       state = {...fresh(),...saved};
     }
   } catch {}
+  function readText() {
+    const root = $('dialog').open ? $('dialog-content') : $('chapter');
+    const selectors = $('dialog').open ? 'h3,p,.note-sheet,.pack-item' :
+      'h2,.source h3,.source blockquote,.source .citation,.way,.note-sheet,.question,.reply,.connection,.steps .btn,.note-card,.heading,.place';
+    const elements = [...root.querySelectorAll(selectors)].filter(el =>
+      !el.closest('[aria-hidden="true"],[hidden],.dialog-hint') && getComputedStyle(el).visibility !== 'hidden');
+    const unique = elements.filter(el => !elements.some(parent => parent !== el && parent.contains(el)));
+    const title = $('dialog').open ? $('dialog-title').textContent + '. ' : '';
+    return title + unique.map(el => {
+      const copy = el.cloneNode(true);
+      copy.querySelectorAll('[aria-hidden="true"],.where,.pick,.trace-mini,.trace-short').forEach(n => n.remove());
+      copy.querySelectorAll('small,b,span,p').forEach(n => n.insertAdjacentText('beforebegin',' '));
+      return copy.textContent.replace(/\s+/g,' ').trim();
+    }).join('. ');
+  }
   const V = Curio.voice({
-    lines:L, scope:() => state.stop, hint:false,
-    welcome:() => state.stop === 1 && state.question === null && !$('dialog').open ?
-      ['open',{valid:() => state.question === null && !$('dialog').open}] : null,
-    speaks:'.question, #next-question',
-    read:() => $('dialog').open ? $('dialog-title').innerText + '. ' + $('dialog-content').innerText :
-      $('hint').innerText + ' ' + $('chapter').innerText
+    lines:{open:L.open}, scope:() => state.stop, hint:false,
+    welcome:() => ['open',{valid:() => state.stop === 3 && state.way === null && !countNotes() && !$('dialog').open}],
+    speaks:'.question',
+    read:readText
   });
   function save() {
     try {
-      if (state.stop === 1 && state.question === null) localStorage.removeItem('rq-run');
-      else localStorage.setItem('rq-run',JSON.stringify(state));
+      localStorage.setItem('rq-run',JSON.stringify(state));
     } catch {}
   }
   const source = id => SOURCES.find(s => s.id === id);
@@ -665,105 +770,86 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
   function evaluate(run = state) {
     const outlined = id => run.notes[id] && Number.isInteger(run.headings[id]) && run.headings[id] < 3;
     const ids = run.places.filter(outlined);
-    const target = ids.find(id => run.headings[id] === 0) || ids[0];
+    const citationIssues = ids.filter(id => !run.notes[id].withSource || run.notes[id].way === 'copy');
+    const target = citationIssues[0] || ids.find(id => run.headings[id] === 0) || ids[0];
     const changed = ids.find(id => run.notes[id].way === '2');
+    const faithful = id => run.notes[id] && run.notes[id].way !== '2';
     const answers = [
-      run.question === 1 && outlined('notebook') && run.headings.notebook === 1,
-      outlined('library') && run.headings.library === 0,
-      outlined('county') && run.steps.includes(0),
-      !!target && run.notes[target].withSource && run.notes[target].way !== 'copy',
-      outlined('nature') && run.steps.includes(1)
+      run.question === 1 && outlined('notebook') && run.headings.notebook === 1 && faithful('notebook'),
+      outlined('library') && run.headings.library === 0 && faithful('library'),
+      outlined('county') && run.steps.includes(0) && faithful('county'),
+      !!ids.length && !citationIssues.length,
+      outlined('nature') && run.steps.includes(1) && faithful('nature')
     ];
+    // Choose the earliest actual cause, rather than a destination fixed to the question.
+    const cause = id => !run.places.includes(id) ? 2 : !run.notes[id] || !faithful(id) ? 3 : 4;
     const references = [
-      ['notebook',run.question !== 1 ? 1 : 4], ['library',4], ['county',4], [target,3], ['nature',4]
+      ['notebook',run.question !== 1 ? 1 : cause('notebook')],
+      ['library',cause('library')], ['county',cause('county')],
+      [target,ids.length ? 3 : 4], ['nature',cause('nature')]
     ];
-    const results = answers.map((ok,i) => ({id:i, ok:!!ok, target:references[i][0], stop:references[i][1]}));
+    const results = answers.map((ok,i) => ({id:i,ok:!!ok,target:references[i][0],stop:references[i][1]}));
     if (changed) results.push({id:5,ok:false,target:changed,stop:3});
     if (run.steps.includes(3)) results.push({id:6,ok:false,target:'seed',stop:4});
-    const missing = results.filter(r => !r.ok);
-    return {results, missing, target, tooClose:ids.some(id => run.notes[id].way === '1'),
-      ending:missing.length === 0 ? 'approved' : missing.length < 3 ? 'homework' : 'notYet'};
+    return {results,target,citationIssues,tooClose:ids.some(id => run.notes[id].way === '1'),
+      allQuotes:ids.length > 0 && ids.every(id => run.notes[id].way === 'quote')};
   }
   function answerText(result) {
     if (result.id === 3 && !result.target) return "There's nothing in the outline to point to.";
-    if (result.id === 6) return "I'm not sure... The ad didn't say.";
-    if (result.id === 5) return 'Your note: ' + noteText(state.notes[result.target]) + '\nSource: “' + source(result.target).passage + '”';
-    if (result.id === 3) {
-      const n = state.notes[result.target];
-      const response = n.withSource ? sourceLine(n) : "I'm not sure... I did not save the source.";
-      return n.way === 'copy' ? response + '\nPrincipal Okoro: Those are the book\'s exact words. Put them in quote marks and name the book.' : response;
-    }
-    if (!result.ok) return "I'm not sure...";
+    if (result.id === 6) return "The advertisement does not list its ingredients.";
+    if (result.id === 5) return 'Your note: ' + noteText(state.notes[result.target]) +
+      '\nSource: “' + source(result.target).passage + '”';
+    if (result.id === 3) return evaluate().citationIssues.length ?
+      evaluate().citationIssues.map(id => {
+        const n = state.notes[id];
+        const credit = n.withSource ? sourceLine(n) : 'No source saved.';
+        const copy = n.way === 'copy' ? ' Those are the exact words from ' + source(id).title +
+          (n.withSource ? '. Put them in quote marks.' : '. Put them in quote marks and name where they came from.') : '';
+        return noteText(n) + '\n' + credit + copy;
+      }).join('\n\n') : noteText(state.notes[result.target]) + '\n' + sourceLine(state.notes[result.target]);
+    if (!result.ok) return traceEvidence(result);
     if (result.id === 0) return QUESTIONS[state.question] + ' ' + noteText(state.notes.notebook);
     return noteText(state.notes[result.target]) + (result.id === 2 ? ' Our plan: ' + PLAN[0] + '.' :
       result.id === 4 ? ' Our plan: ' + PLAN[1] + '.' : '');
   }
-  function hint(text, key, valid = () => true, needs) {
-    $('hint').textContent = text === L.organize && matchMedia('(max-width:600px)').matches ?
-      'Tap a note, then a heading. Pick up to 3 plan steps.' : text;
-    if (key) V.how(key,{valid,needs});
-  }
+  function hint(text) { $('hint').textContent = text; }
   function how() {
-    if (state.stop === 1) {
-      if (state.question === null) hint(L.ask, V.heard('open') ? 'ask' : null,() => state.question === null);
-      else hint(L.continueAsk,'continueAsk',() => state.stop === 1 && state.question !== null,'#ask-next');
-    }
-    if (state.stop === 2) {
-      const ready = state.places.length === 4;
-      hint(ready ? L.go : `${4-state.places.length} visits left. Tap a place to add it, or tap it again to unpick.`,
-        ready ? 'go' : 'plan',() => state.stop === 2 && (state.places.length === 4) === ready,ready ? '#plan-go' : '.place');
-    }
-    if (state.stop === 3) {
-      if (state.way !== null && !state.notes[state.active]) {
-        hint(L.save,'save',() => state.stop === 3 && state.way !== null && !state.notes[state.active],'#save-source');
-      } else if (state.notes[state.active]) {
-        const left = 4-countNotes();
-        hint(left ? `${left} ${left === 1 ? 'place still needs' : 'places still need'} a note. Tap a place in your pack.` : L.toOrganize,
-          left ? 'gatherNext' : 'toOrganize',() => state.stop === 3 && !!state.notes[state.active],left ?
-            (matchMedia('(max-height:640px), (max-width:600px)').matches ? '#pack-chip' : '.visit-tab') : '#gather-next');
-      } else hint(L.gather,'gather',() => state.stop === 3 && state.way === null,'.way');
-    }
-    if (state.stop === 4) {
-      const ready = state.places.every(id => Number.isInteger(state.headings[id])) && state.steps.length > 0;
-      const key = state.selected ? 'placeNote' : ready ? 'done' : 'organize';
-      hint(L[key],key,() => state.stop === 4 &&
-        (key === 'placeNote' ? !!state.selected : !state.selected &&
-          (state.places.every(id => Number.isInteger(state.headings[id])) && state.steps.length > 0) === ready),
-        key === 'done' ? '#organize-done' : '.heading');
-    }
-    if (state.stop === 5) {
-      if (state.trail) hint(L.trail,'trail',() => state.trail,'.connection');
-      else if (state.finale) hint('Press Trail back to see which choices decided the council answers.');
-      else if (state.councilIndex < 0) hint(L.present,'present',() => state.councilIndex < 0,'#next-question');
-      else hint(state.councilIndex >= evaluate().results.length-1 ? L.endingNext : L.next);
-    }
+    const hints = {
+      1:'Choose a question, or open any other part of the desk.',
+      2:'Pick up to four source visits. Tap a selected place to remove it.',
+      3:state.notes[state.active] ? (countNotes() < state.places.length ?
+        (matchMedia('(max-height:640px), (max-width:600px)').matches ? 'Tap a place in your pack.' : 'Tap the next place below.') :
+        'Open Outline to arrange your notes, or change this note.') : 'Choose wording, then save the note with or without its source.',
+      4:state.selected ? 'The full selected note is below. Tap a heading to place it.' : 'Tap a note, then a heading. Change the plan freely.',
+      5:'Open any evidence card to inspect its source and follow its route.'
+    };
+    hint(hints[state.stop]);
   }
   function btn(id, text, enabled = true, cls = 'primary') {
     return `<button class="btn ${cls}" id="${id}" ${enabled ? '' : 'disabled'}>${text}</button>`;
   }
-  function chapterHeader(eyebrow, title, stamp = 'FRIDAY<br>COUNCIL') {
-    return `<div class="chapter-title"><div><div class="eyebrow">${eyebrow}</div><h2>${title}</h2></div>
-      <div class="seal" aria-hidden="true">${stamp}</div></div>`;
+  function chapterHeader(eyebrow, title) {
+    return `<div class="chapter-title"><div><div class="eyebrow">${eyebrow}</div><h2>${title}</h2></div></div>`;
   }
   function askView() {
-    return chapterHeader('Stop 1 / Ask','What will you research?') + `<div class="chapter-body">
+    return chapterHeader('Question file','What will you research?') + `<div class="chapter-body">
       <div class="intro-grid">
         <div class="opening-art"><img class="bed" src="${art.bed}" alt="An empty raised garden bed by the school">
           <img class="desk" src="${art.desk}" alt="Mr. Adeyemi's library desk with books, a green lamp and your waiting pack">
-          <div class="photo-caption">An empty bed. A Friday deadline.<br>A garden for monarchs?</div></div>
+          <div class="photo-caption">A garden for monarchs?</div></div>
         <div class="ask-content">
           <div class="story"><img src="${art.desk}" alt="Mr. Adeyemi's empty library desk and a waiting backpack">
-            <p>Principal Okoro needs a researched plan for the garden. Mr. Adeyemi hands you a pack. Your first choice:</p></div>
+            <p>Bramble Hill is a fictional school garden. These questions let you explore what different sources contribute.</p></div>
           <div class="questions">${QUESTIONS.map((q,i) => `<button class="question" id="question-${i}" data-question="${i}"
             aria-pressed="${state.question === i}"><b>${'ABCD'[i]}</b>${q}</button>`).join('')}</div>
-          <p class="reply" id="ask-reply">${state.question === null ? '“Bring the council a plan your research can stand behind.”' : esc(REPLIES[state.question])}</p>
+          <p class="reply" id="ask-reply">${state.question === null ? '“What would you like to find out?”' : esc(REPLIES[state.question])}</p>
         </div>
       </div>
       <div class="actions"><span class="status">Bramble Hill Middle School · Garden Council</span>
-        ${btn('ask-next','On to Plan →',state.question !== null)}</div></div>`;
+        ${btn('ask-next','Sources →')}</div></div>`;
   }
   function planView() {
-    return chapterHeader('Stop 2 / Plan','Four visits before Friday') + `<div class="chapter-body">
+    return chapterHeader('Source shelf','Choose your material') + `<div class="chapter-body">
       <div class="place-grid">${SOURCES.map(s => `<button class="place" id="place-${s.id}" data-place="${s.id}"
         aria-pressed="${state.places.includes(s.id)}"><img src="${art[s.id]}" alt="${esc(s.place)}">
         ${s.id === 'county' ? '<span class="art-mark">Planting for Pollinators</span>' :
@@ -772,17 +858,17 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
         <span class="pick" aria-hidden="true">${state.places.includes(s.id) ? '✓' : '+'}</span>
         <span class="label">${s.place}<small>${s.kind}</small></span></button>`).join('')}</div>
       <div class="actions"><span class="status" id="visit-count">${state.places.length} of 4 visits in your plan</span>
-        ${btn('plan-go','Go →',state.places.length === 4)}</div></div>`;
+        ${btn('plan-go','Notes →',state.places.length > 0)}</div></div>`;
   }
   function gatherView() {
-    const s = source(state.active || state.places[0]);
+    const s = source(state.active || state.places[0] || 'library');
     state.active = s.id;
     const n = state.notes[s.id];
     const labels = ['Copy it, with quote marks','Copy it, no quote marks'];
-    return chapterHeader('Stop 3 / Gather',n ? 'A note in your pack' : 'Keep what you find',`${countNotes()} / 4<br>NOTES`) +
+    return chapterHeader('Note bench',n ? 'A note in your pack' : 'Keep what you find',`${countNotes()} / 4<br>NOTES`) +
       `<div class="chapter-body"><div class="gather">
         <div class="source"><img src="${art[s.id === 'library' ? 'caterpillar' : s.id]}" alt="${s.id === 'library' ? 'Monarch caterpillar on milkweed' : s.place}">
-          <h3>${s.title}</h3><blockquote>${s.passage}</blockquote><p class="citation">${s.citation}</p></div>
+          <h3>${s.title}</h3><blockquote>${s.passage}</blockquote><p class="citation">${s.citation} · Fictional source document · Curio Class, CC BY 4.0</p></div>
         <div class="note-work">${n ? noteHtml(n) :
           `<div class="ways">${['quote','copy',...state.order[s.id].map(String)].map((way,i) =>
             `<button class="way ${i > 1 ? 'own' : ''}" data-way="${way}" id="way-${i}" aria-pressed="${state.way === way}">
@@ -793,13 +879,13 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
           id="visit-${id}" aria-pressed="${state.active === id}">${source(id).place}${state.notes[id] ? ' · ✓' : ''}</button>`).join('')}</div>
         <div class="actions gather-footer"><span class="status">${countNotes()} of 4 places have a saved note</span>
           ${n ? btn('redo','Redo note',true,'') : btn('save-note','Save note',state.way !== null,'') +
-            btn('save-source','Save note with its source',state.way !== null)}
-          ${btn('gather-next','On to Stop 4 →',countNotes() === 4)}</div></div>`;
+            btn('save-source','Save note with its source',state.way !== null,'')}
+          ${btn('gather-next','Outline →')}</div></div>`;
   }
   function organizeView() {
     const placed = state.places.every(id => Number.isInteger(state.headings[id]));
-    return chapterHeader('Stop 4 / Organize','Make a case, not a pile') + `<div class="chapter-body">
-      <div class="organizer"><div class="notes-list">${state.places.map(id => {
+    return chapterHeader('Outline board','Make a case, not a pile') + `<div class="chapter-body">
+      <div class="organizer"><div class="notes-list">${state.places.filter(id => state.notes[id]).map(id => {
         const n = state.notes[id];
         return `<button class="note-card" id="note-${id}" draggable="true" data-note="${id}" aria-pressed="${state.selected === id}">
           <span class="note-copy" title="${esc(noteText(n))}">${esc(noteText(n))}</span>
@@ -809,67 +895,43 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
         const names = state.places.filter(id => state.headings[id] === i).map(id => source(id).place).join(' · ') || 'Place a note here';
         return `<button class="heading" id="heading-${i}" data-heading="${i}">
           ${name}<small title="${esc(names)}">${names}</small></button>`;
-      }).join('')}</div></div>
+      }).join('')}</div>
+      <div id="selected-note" class="selected-note" ${state.selected ? '' : 'hidden'}>${state.selected && state.notes[state.selected] ?
+        noteHtml(state.notes[state.selected]) + btn('close-note','Back to notes',true,'') : ''}</div></div>
       <div class="steps-label"><b>Plan steps · choose up to 3</b><span>${state.steps.length === 3 ? 'Three steps chosen. Unpick one to change it.' : state.steps.length + ' of 3 chosen'}</span></div>
       <div class="steps">${PLAN.map((p,i) => `<button class="btn" id="step-${i}" data-step="${i}" aria-pressed="${state.steps.includes(i)}"
         ${state.steps.length === 3 && !state.steps.includes(i) ? 'disabled title="Three steps chosen. Unpick one first."' : ''}>${p}</button>`).join('')}</div>
       <div class="actions"><span class="status">${Object.keys(state.headings).length} of 4 notes placed</span>
-        ${btn('organize-done','Done →',placed && state.steps.length > 0)}</div></div>`;
+        ${btn('organize-done','Evidence →')}</div></div>`;
   }
   function slidesHtml() {
     return `<div class="slides">${HEADINGS.slice(0,3).map((name,i) => `<div class="slide"><b>${name}</b>
       <span class="slide-content">${state.places.filter(id => state.headings[id] === i).map(id => source(id).place).join(' · ') || 'No notes'}
       ${i === 2 ? '<br>' + state.steps.map(n => PLAN[n]).join(' · ') : ''}</span></div>`).join('')}</div>`;
   }
-  function presentView() {
-    const ev = evaluate();
-    const r = ev.results[state.councilIndex];
-    const row = r ? COUNCIL[r.id] : null;
-    return chapterHeader('Stop 5 / Present',"Friday. The council is listening.") + `<div class="chapter-body">
-      <div class="council"><img src="${art.council}" alt="An empty meeting table with three empty chairs and blank name stands">
-        <div class="nameplates">${['Principal Okoro','Lily Tran','Mr. Hale'].map((name,i) => `<div class="nameplate ${row && row[0] === name ? 'active' : ''}">
-          ${name}${i === 1 ? '<small>Garden club president · Grade 8</small>' : i === 2 ? '<small>Groundskeeper</small>' : ''}</div>`).join('')}</div>
-        <div class="speech arrive" aria-live="polite"><p class="who">${row ? row[0] : 'Your researched plan'}</p>
-          <p class="c-question">${row ? row[1] : 'You have the floor.'}</p>
-          <div class="answer">${r && r.id === 5 ? `<div class="evidence-compare"><p><b>Your note</b>${esc(noteText(state.notes[r.target]))}</p>
-            <p><b>Source's real words</b>“${esc(source(r.target).passage)}”</p></div>` :
-            row ? esc(answerText(r)).replace(/\n/g,'<br><br>') : 'Your question, notes and plan are on the table. Which answers will they hold up?'}
-          </div></div></div>
-      ${slidesHtml()}<div class="actions"><span class="status">${r ? 'Question ' + (state.councilIndex+1) + ' of ' + ev.results.length : 'Your outline becomes three slides'}</span>
-        ${btn('next-question',state.councilIndex === ev.results.length-1 ? 'See the decision →' : 'Next question →')}</div></div>`;
-  }
-  function endingView() {
-    const ev = evaluate();
-    const text = ev.ending === 'homework' ? 'Approved, with homework: come back with ' +
-      ev.missing.map(r => COUNCIL[r.id][3]).join(' and ') + '.' : L[ev.ending];
-    return chapterHeader('Friday / The decision',ev.ending === 'approved' ? 'A plan the club can plant.' : 'Your research has a next chapter.') +
-      `<div class="chapter-body"><div class="ending"><img src="${ev.ending === 'approved' ? art.bloom : art.bed}"
-        alt="${ev.ending === 'approved' ? 'The garden full of milkweed and asters, with a monarch butterfly' : 'The raised bed still waiting for a plan'}">
-        <div><h3>${ev.ending === 'approved' ? 'Plan approved!' : ev.ending === 'homework' ? 'Approved, with homework' : 'Not yet.'}</h3>
-          <p>${esc(text)}</p>${ev.tooClose ? `<p class="reply" style="margin-top:16px">Principal Okoro: “${L.tooClose}”</p>` : ''}</div></div>
-        <div class="actions"><span class="status">Every answer has a trail.</span>${btn('show-trail','Trail back →')}</div></div>`;
-  }
   function trailView() {
     const ev = evaluate();
-    return chapterHeader('Your quest / Trail back','Follow an answer to its roots') + `<div class="chapter-body">
+    return chapterHeader('Evidence map','Follow an idea to its source') + `<div class="chapter-body">
       <div class="trail-back"><img src="${art.map}" alt="Your illustrated research trail">
         <svg viewBox="0 0 1000 400" preserveAspectRatio="none" aria-label="Lines from council questions to research choices">${ev.results.map((r,i) => {
           const x = 80 + i * (840 / Math.max(1,ev.results.length-1));
           const path = `M ${x} 240 Q ${x} 150 ${(r.stop-.5)*200} 35`;
-          return `<g class="trace-path" role="button" tabindex="0" data-trace="${r.id}"
-            aria-label="Follow question ${r.id+1} to Stop ${r.stop}">
+          return `<g class="trace-path" role="button" tabindex="-1" data-trace="${r.id}"
+            aria-label="Inspect evidence: ${COUNCIL[r.id][1]}">
             <circle class="trace-hit" cx="${x}" cy="200" r="22" fill="transparent"/>
             <path d="${path}" fill="none" stroke="transparent" stroke-width="44"/>
+            <path class="route-halo" d="${path}" fill="none" stroke="#fffaf0" stroke-width="9"/>
             <path class="route-ink" d="${path}" fill="none" stroke="${r.ok ? '#15803d' : '#b91c1c'}"
               stroke-width="4" ${r.ok ? '' : 'stroke-dasharray="10 7"'}/></g>`;
         }).join('')}</svg>
-        <div class="back-stops">${['1 Ask','2 Plan','3 Gather','4 Organize','5 Present'].map(s => `<span>${s}</span>`).join('')}</div>
+        <div class="back-stops">${['Question','Sources','Notes','Outline','Evidence'].map(s => `<span>${s}</span>`).join('')}</div>
         <div class="connections" style="--questions:${ev.results.length}">${ev.results.map(r => `<button class="connection ${r.ok ? '' : 'missing'}" data-trace="${r.id}" id="trace-${r.id}">
-          <b>${r.ok ? '✓ Answer held' : '× Still missing'} · Stop ${r.stop}</b><span class="trace-full">${COUNCIL[r.id][1]}</span>
-          <span class="trace-mini">${r.ok ? '✓' : '×'} Stop ${r.stop}</span>
+          <b>${r.ok ? '↗ Evidence linked' : '? Evidence gap'} · ${['','Question','Sources','Notes','Outline','Evidence'][r.stop]}</b><span class="trace-full">${COUNCIL[r.id][1]}</span>
+          <span class="trace-mini">${r.ok ? '↗' : '?'} ${['','Question','Sources','Notes','Outline','Evidence'][r.stop]}</span>
           <span class="trace-short">${['Our garden question','Why milkweed?','Plants that grow here','Where facts came from','When flowers bloom','What the source said','Seed mix contents'][r.id]}</span>
           <span class="trace-evidence">${esc(traceEvidence(r))}</span></button>`).join('')}</div>
-      </div><div class="actions">${btn('trail-rewind','Rewind to a stop',true,'')}${btn('trail-restart','Start over',true,'')}</div></div>`;
+      </div><div class="actions"><span class="status">${ev.allQuotes ? 'Principal Okoro: '+L.allQuotes : ev.tooClose ? L.tooClose : 'Every route follows a choice. Keep exploring.'}</span>
+      ${btn('trail-rewind','Revisit a file',true,'')}</div></div>`;
   }
   function packContent() {
     let out = state.question === null ? '<p class="pack-empty">A question, four visits, and the notes that carry your plan. Your pack starts here.</p>' :
@@ -884,24 +946,14 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     $('pack-items').innerHTML = packContent();
     $('pack-chip').innerHTML = `<img src="${art.marker}" alt=""><span>Research pack · ${
       (state.question === null ? 0 : 1) + countNotes()}<small class="pack-local">Only on this device</small></span>`;
-    $('rewind').disabled = state.stop === 1;
-    const badges = [state.question === null ? '' : 'Question ' + 'ABCD'[state.question],
-      state.places.length ? state.places.length + ' visits' : '',countNotes() ? countNotes() + ' notes' : '',
-      Object.keys(state.headings).length ? 'Outline' : '',''];
-    [...document.querySelectorAll('.stop')].forEach((el,i) => {
-      el.classList.toggle('current',i+1 === state.stop);
-      el.querySelector('small').textContent = i+1 < state.stop ? badges[i] : '';
-      if (i === 1 && state.stop > 2) {
-        el.querySelector('small').innerHTML = state.places.map(id =>
-          `<img src="${art[id]}" alt="${source(id).place}" title="${source(id).place}">`).join('');
-      }
-    });
-    $('marker').style.left = (10 + (state.stop-1)*20) + '%';
+    $('rewind').disabled = false;
+    document.querySelectorAll('[data-desk]').forEach(el => el.setAttribute('aria-pressed',Number(el.dataset.desk) === state.stop));
   }
+
   function render(focusId) {
     const old = focusId || (document.activeElement && document.activeElement.id);
     $('chapter').innerHTML = state.stop === 1 ? askView() : state.stop === 2 ? planView() : state.stop === 3 ? gatherView() :
-      state.stop === 4 ? organizeView() : state.trail ? trailView() : state.finale ? endingView() : presentView();
+      state.stop === 4 ? organizeView() : trailView();
     updatePack();
     how();
     save();
@@ -914,11 +966,6 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     state.way = null;
     state.selected = null;
     if (stop === 3) state.active = state.places[0];
-    if (stop === 5) {
-      state.councilIndex = -1;
-      state.finale = false;
-      state.trail = false;
-    }
     render();
     Curio.tone(440,.1,.04,'sine');
     requestAnimationFrame(() => {
@@ -941,7 +988,12 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
       const startY = card.top - bounds.top - 3;
       const endX = stop.left + stop.width/2 - bounds.left;
       const endY = stop.bottom - bounds.top + 4;
-      const path = `M ${startX} ${startY} Q ${startX} ${(startY+endY)/2} ${endX} ${endY}`;
+      const cardBoxes = [...map.querySelectorAll('.connection')].map(el => el.getBoundingClientRect());
+      const upperRow = cardBoxes.some(box => box.bottom < card.top - 2);
+      const laneX = startX < bounds.width/2 ? 3 + id*.2 : bounds.width - 3 - id*.2;
+      const path = upperRow ?
+        `M ${startX} ${startY} H ${laneX} V ${endY+22} Q ${laneX} ${endY} ${endX} ${endY}` :
+        `M ${startX} ${startY} Q ${startX} ${(startY+endY)/2} ${endX} ${endY}`;
       group.querySelectorAll('path').forEach(el => el.setAttribute('d',path));
       group.querySelector('circle').setAttribute('cx',startX);
       group.querySelector('circle').setAttribute('cy',Math.max(24,startY-24));
@@ -950,16 +1002,18 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
   addEventListener('resize',drawTrail);
   let returnFocus = null;
   function openDialog(title, content, actions) {
+    $('dialog').classList.remove('manual-drawer');
     if (!$('dialog').open) returnFocus = document.activeElement;
     $('dialog-title').textContent = title;
     $('dialog-content').innerHTML = content;
-    $('dialog-actions').innerHTML = actions || btn('dialog-close','Back to quest',true,'');
+    $('dialog-actions').innerHTML = btn('dialog-read','Read',true,'') +
+      (actions || btn('dialog-close','Back to desk',true,''));
     const instruction = document.createElement('p');
     instruction.className = 'dialog-hint';
     instruction.textContent = $('dialog-actions').querySelector('#reset-yes') ?
       'Tap Yes to clear those choices, or No to keep them.' : $('dialog-content').querySelector('[data-rewind]') ?
-      'Tap a stop, or tap Back to quest.' : $('dialog-content').querySelector('[data-pack]') ?
-      'Tap a pack item, or tap Back to quest.' : 'Tap Back to quest to return.';
+      'Tap a stop, or tap Back to desk.' : $('dialog-content').querySelector('[data-pack]') ?
+      'Tap a pack item, or tap Back to desk.' : 'Use the controls below, or return to the desk.';
     $('dialog-content').append(instruction);
     V.hush();
     $('dialog').showModal();
@@ -972,14 +1026,14 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     if (returnFocus && returnFocus.isConnected && !returnFocus.disabled) returnFocus.focus({preventScroll:true});
   }
   function confirmReset(stop) {
-    const title = stop === 0 ? 'Start the whole quest over?' : 'Go back to ' + ['','Ask','Plan','Gather','Organize'][stop] + '?';
-    openDialog(title,`<p>${stop === 0 ? 'Your whole quest will be cleared.' : 'Your choices after this stop will be cleared.'}</p>`,
-      btn('reset-no','No, keep my quest',true,'') + `<button class="btn primary" id="reset-yes" data-reset="${stop}">Yes</button>`);
+    const title = stop === 0 ? 'Clear this research desk?' : 'Rewind to ' + ['','Question','Sources','Notes','Outline'][stop] + '?';
+    openDialog(title,`<p>${stop === 0 ? 'Your saved research choices will be cleared.' : 'Later research choices will be cleared. The reopened file keeps its choices.'}</p>`,
+      btn('reset-no','No, keep my research',true,'') + `<button class="btn primary" id="reset-yes" data-reset="${stop}">Yes</button>`);
   }
   function rewindMenu() {
-    openDialog('Rewind to a stop',`<p>Choose the stop to reopen. You will confirm before anything is cleared.</p>
-      ${['Ask','Plan','Gather','Organize'].slice(0,state.stop-1).map((s,i) =>
-        `<button class="btn" data-rewind="${i+1}">${i+1} ${s}</button>`).join('')}`);
+    openDialog('Revisit a file',`<p>Open any research file without clearing your work.</p>
+      ${['Question','Sources','Notes','Outline'].map((name,i) =>
+        `<button class="btn" data-desk="${i+1}">${name}</button>`).join('')}`);
   }
   function rewindTo(stop) {
     V.hush();
@@ -1000,9 +1054,6 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     state.active = state.places[0] || null;
     state.way = null;
     state.selected = null;
-    state.councilIndex = -1;
-    state.finale = false;
-    state.trail = false;
     closeDialog();
     render();
     const next = $('chapter').querySelector('button:not(:disabled)');
@@ -1021,26 +1072,60 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     else openDialog(source(key).place,`<img src="${art[key]}" alt="${source(key).place}" style="width:100%;max-height:260px;object-fit:cover">
       <p>${source(key).kind} · a planned visit</p>`);
   }
+  function manual() {
+    openDialog('Manual · Research Quest',`
+      <h3>Using the desk</h3><p>Compare a passage with a saved note. Open Question, Sources, Notes, Outline or Evidence in any order.
+      Tap a note then a heading, or drag it. Selecting a card exposes its full wording. Evidence routes update from your choices.</p>
+      <h3>Reading the evidence map</h3><p>A solid route has supporting evidence. A dashed route exposes a gap, with the file that caused it.
+      These are limited document rules, not a general fact checker. There is no score or final decision. Quoted notes with a source remain valid.</p>
+      <h3>Things people have found</h3><p>A remembered source can still accompany changed meaning. A useful note in Not needed cannot support the outline.
+      A quotation can be evidence; rewriting it asks a different kind of attention.</p>
+      <h3>The real material and its limits</h3><p>The six source documents, people, school, notebook count of two monarchs,
+      seed advertisement and local region are fictional examples by Curio Class, CC BY 4.0. Candidate notes can distort their sources.
+      The biological facts below are real; the desk shows how changing wording or placement changes the evidence trail.
+      This fictional region is not a planting guide for your location.</p>
+      <p>Milkweed as caterpillar food, adult nectar feeding and eastern migration up to 3,000 miles:
+      U.S. Fish and Wildlife Service, Monarch (Danaus plexippus), https://www.fws.gov/species/monarch-danaus-plexippus .
+      Federal-authored factual text: public domain under 17 USC 105; no third-party images or text copied.
+      FWS copyright notice: https://www.fws.gov/disclaimer .</p>
+      <p>Native milkweed, fall nectar and avoiding pesticides: Xerces Society, Monarch Butterfly Conservation,
+      https://xerces.org/monarchs . Facts paraphrased in original Curio Class writing, CC BY 4.0; no Xerces copyrighted text or images bundled.</p>
+      <p>Common milkweed and butterfly weed plant identities: USDA PLANTS Database, https://plants.usda.gov/ .
+      U.S. federal species information, public domain. These examples do not establish suitability in your region.</p>
+      <p>Independent checks: National Park Service, Protecting Western Monarchs and Monarchs on the Move in Cuyahoga Valley;
+      University of Connecticut, Milkweed. NPS federal text is public domain; UConn used for fact checking only.
+      No external dataset is sampled. All six original example documents are bundled in full.</p>
+      <p>Research practice reference: AASL Standards Framework for Learners (2018), https://standards.aasl.org/framework/ .
+      Copyright AASL; codes and references only, no framework text reproduced. Collaborate is not claimed: the desk supplies its own responses.</p>
+      <h3>Privacy and controls</h3><p>Choices save only on this device. Nothing leaves it. Motion removes animation; Sound controls voice and tones.
+      Read speaks the working material. The browser supplies narration. Rewind asks before clearing later choices.</p>
+      <h3>Making</h3><p>Code MIT. Original text CC BY 4.0. Illustrations generated for Curio Class, with two retained FLUX.1-schnell paintings
+      (model Apache 2.0). No people appear. The Curiosity catalog number has not been assigned in the supplied spec.</p>`);
+    $('dialog').classList.add('manual-drawer');
+  }
   function trace(id) {
     const r = evaluate().results.find(r => r.id === id);
     const note = state.notes[r.target];
-    let content = `<p><b>${COUNCIL[id][1]}</b></p><p>${r.ok ? 'Your answer held up.' : 'This answer was still missing.'} Follow it to Stop ${r.stop}.</p>
-      <p class="reply">${esc(traceEvidence(r))}</p>`;
-    if (r.stop === 1) content += `<p class="note-sheet">${QUESTIONS[state.question]}</p>`;
-    if (note) content += noteHtml(note,true);
-    if (id === 2 || id === 4 || id === 6) content += `<p>Plan steps: ${state.steps.map(i => PLAN[i]).join('; ')}</p>`;
-    if (!note && r.stop !== 1) content += '<p>No matching note in the outline.</p>';
-    openDialog('Trail back · ' + ['','Ask','Plan','Gather','Organize','Present'][r.stop],content);
+    const file = ['','Question','Sources','Notes','Outline','Evidence'][r.stop];
+    let content = `<p><b>${COUNCIL[id][0]}: ${COUNCIL[id][1]}</b></p><p class="reply">${esc(traceEvidence(r))}</p>`;
+    if (r.stop === 1 && state.question !== null) content += `<p class="note-sheet">${QUESTIONS[state.question]}</p>`;
+    if (id === 3 && r.target) content += `<div class="note-sheet">${esc(answerText(r)).replace(/\n/g,'<br>')}</div>`;
+    else if (note) content += noteHtml(note,true);
+    if (id === 5 && note) content += `<p>Source's real words: “${esc(source(r.target).passage)}”</p>`;
+    if ([2,4,6].includes(id)) content += `<p>Plan steps: ${state.steps.map(i => PLAN[i]).join('; ') || 'None selected'}</p>`;
+    openDialog('Evidence · '+file,content,
+      `<button class="btn primary" data-rewind="${r.stop}">Rewind to ${file}</button>` + btn('dialog-close','Back to desk',true,''));
   }
   function traceEvidence(r) {
     const note = state.notes[r.target];
-    if (r.id === 0 && state.question !== 1) return 'Your question: ' + QUESTIONS[state.question];
+    if (r.id === 0 && state.question !== 1) return state.question === null ? 'No research question selected.' : 'Your question: ' + QUESTIONS[state.question];
     if (r.id === 6) return 'Your plan includes Butterfly Blend; its ingredients were not given.';
-    if (!note) return 'Your visits did not bring back this evidence.';
-    if (r.id === 3) return note.way === 'copy' ? 'Exact words saved without quote marks.' :
-      note.withSource ? 'You kept the source with this note.' : 'You saved the note without its source.';
-    if (r.id === 5) return 'Compare the meaning of your note with the source.';
-    if (!inOutline(r.target)) return source(r.target).place + ': placed in Not needed.';
+    if (r.id === 3 && !r.target) return "There's nothing in the outline to point to.";
+    if (r.stop === 2) return 'You did not plan a visit to ' + source(r.target).place + '.';
+    if (!note) return 'No note saved from ' + source(r.target).place + '.';
+    if (r.id === 3) return evaluate().citationIssues.length ? 'Check the wording and source of every outlined note below.' : 'Every outlined note keeps its source and quotation marks where needed.';
+    if (r.id === 5 || note.way === '2') return 'The saved note changes the source’s meaning. Compare the words.';
+    if (!inOutline(r.target)) return source(r.target).place + ': ' + (state.headings[r.target] === 3 ? 'placed in Not needed.' : 'not placed in the outline.');
     if (r.id === 0 || r.id === 1) return source(r.target).place + ': ' + HEADINGS[state.headings[r.target]] + '.';
     return source(r.target).place + ' + ' +
       (state.steps.includes(r.id === 2 ? 0 : 1) ? PLAN[r.id === 2 ? 0 : 1] : 'the matching plan step was not selected') + '.';
@@ -1071,8 +1156,8 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     $('ask-next').disabled = false;
     updatePack();
     save();
-    $('hint').textContent = L.continueAsk;
-    V.say(REPLIES[i],{valid:() => state.stop === 1 && state.question === i});
+    how();
+
   }
   function pickPlace(id, el) {
     const at = state.places.indexOf(id);
@@ -1084,11 +1169,11 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
       Curio.tone(180,.08,.04);
       return;
     }
-    if (at >= 0) state.places.splice(at,1);
+    if (at >= 0) {state.places.splice(at,1); delete state.notes[id]; delete state.headings[id];}
     else state.places.push(id);
     el.setAttribute('aria-pressed',at < 0);
     el.querySelector('.pick').textContent = at < 0 ? '✓' : '+';
-    $('plan-go').disabled = state.places.length !== 4;
+    $('plan-go').disabled = state.places.length === 0;
     $('visit-count').textContent = state.places.length + ' of 4 visits in your plan';
     updatePack();
     how();
@@ -1121,6 +1206,8 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     const selected = state.selected;
     state.headings[selected] = i;
     state.selected = null;
+    $('selected-note').hidden = true;
+    document.querySelector('.notes-list').inert = false;
     $('note-' + selected).querySelector('.where').textContent = HEADINGS[i];
     document.querySelectorAll('.note-card').forEach(el => el.setAttribute('aria-pressed','false'));
     document.querySelectorAll('.heading').forEach((el,j) => {
@@ -1130,38 +1217,21 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
         .map(id => source(id).place).join(' · ') || 'Place a note here';
       detail.title = detail.textContent;
     });
-    $('organize-done').disabled = !(state.places.every(id => Number.isInteger(state.headings[id])) && state.steps.length > 0);
+    $('organize-done').disabled = false;
     document.querySelector('.actions .status').textContent = Object.keys(state.headings).length + ' of 4 notes placed';
     updatePack();
     how();
     save();
     Curio.tone(540,.08,.04);
   }
-  function nextCouncil() {
-    V.hush();
-    state.councilIndex++;
-    const ev = evaluate();
-    if (state.councilIndex >= ev.results.length) {
-      state.finale = true;
-      render('show-trail');
-      V.say(ev.ending,{valid:() => state.finale && !state.trail});
-      if (ev.tooClose) V.say('tooClose',{valid:() => state.finale && !state.trail});
-      if (ev.ending === 'approved') Curio.yes();
-    } else {
-      const nextButton = $('next-question');
-      render('next-question');
-      if (nextButton) {
-        nextButton.textContent = $('next-question').textContent;
-        $('next-question').replaceWith(nextButton);
-        nextButton.focus({preventScroll:true});
-      }
-      const index = state.councilIndex;
-      V.say(L.council[ev.results[index].id],{valid:() => state.councilIndex === index && !state.finale});
-    }
-  }
   document.addEventListener('click',event => {
     const b = event.target.closest('button, .trace-path');
     if (!b || b.disabled) return;
+    if (b.dataset.desk) {
+      if ($('dialog').open) closeDialog();
+      return move(Number(b.dataset.desk));
+    }
+    if (b.id === 'manual') return manual();
     if (!['motion','sound','read'].includes(b.id)) Curio.tone(370,.035,.018,'sine');
     if (b.dataset.question !== undefined) return selectQuestion(Number(b.dataset.question));
     if (b.dataset.place) return pickPlace(b.dataset.place,b);
@@ -1175,6 +1245,11 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     if (b.dataset.note) {
       state.selected = state.selected === b.dataset.note ? null : b.dataset.note;
       document.querySelectorAll('.note-card').forEach(el => el.setAttribute('aria-pressed',el.dataset.note === state.selected));
+      const detail = $('selected-note');
+      detail.hidden = !state.selected;
+      detail.innerHTML = state.selected ? noteHtml(state.notes[state.selected]) + btn('close-note','Back to notes',true,'') : '';
+      document.querySelector('.notes-list').inert = !!state.selected;
+      if (state.selected) $('heading-0').focus({preventScroll:true});
       how();
       save();
       return;
@@ -1188,7 +1263,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
         el.disabled = state.steps.length === 3 && !state.steps.includes(Number(el.dataset.step));
       });
       const ready = state.places.every(id => Number.isInteger(state.headings[id])) && state.steps.length > 0;
-      $('organize-done').disabled = !ready;
+      $('organize-done').disabled = false;
       document.querySelector('.steps-label span').textContent = state.steps.length === 3 ?
         'Three steps chosen. Unpick one to change it.' : state.steps.length + ' of 3 chosen';
       how();
@@ -1210,7 +1285,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
         state.way = null;
         render('way-0');
       },
-      'next-question':nextCouncil,
+      
       'show-trail':() => {
         V.hush();
         state.trail = true;
@@ -1219,7 +1294,8 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
       rewind:rewindMenu, 'trail-rewind':rewindMenu,
       restart:() => confirmReset(0), 'trail-restart':() => confirmReset(0),
       'pack-chip':() => openDialog('Your research pack',packContent(),
-        btn('dialog-rewind','Rewind',state.stop > 1,'') + btn('dialog-restart','Start over',true,'') + btn('dialog-close','Back to quest',true,'')),
+        btn('dialog-rewind','Rewind',state.stop > 1,'') + btn('dialog-restart','Start over',true,'') + btn('dialog-close','Back to desk',true,'')),
+      'desk-pack':() => $('pack-chip').click(),
       'dialog-rewind':() => {
         closeDialog();
         rewindMenu();
@@ -1228,7 +1304,12 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
         closeDialog();
         confirmReset(0);
       },
-      'dialog-close':closeDialog, 'reset-no':closeDialog
+      'close-note':() => {
+        const id = state.selected;
+        state.selected = null;
+        render('note-' + id);
+      },
+      'dialog-read':() => V.read(), 'dialog-close':closeDialog, 'reset-no':closeDialog
     };
     if (actions[b.id]) actions[b.id]();
   });
@@ -1240,10 +1321,10 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
   let dragged = null;
   let pointerDrag = null;
   document.addEventListener('dragstart',event => {
+    pointerDrag = null;
     const card = event.target.closest('[data-note]');
     if (!card) return;
     dragged = card.dataset.note;
-    state.selected = dragged;
     event.dataTransfer.setData('text/plain',dragged);
     event.dataTransfer.effectAllowed = 'move';
   });
@@ -1262,7 +1343,11 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
     dragged = null;
     placeNote(Number(heading.dataset.heading));
   });
+  document.addEventListener('pointercancel',() => {pointerDrag = null;});
+  document.addEventListener('dragend',() => {dragged = null; pointerDrag = null;});
+  addEventListener('blur',() => {dragged = null; pointerDrag = null;});
   document.addEventListener('pointerdown',event => {
+    pointerDrag = null;
     const card = event.target.closest('[data-note]');
     if (card) pointerDrag = {id:card.dataset.note,x:event.clientX,y:event.clientY};
   });
@@ -1283,7 +1368,7 @@ main button[aria-pressed="true"] {border-color:var(--brand); box-shadow:inset 0 
   Curio.init({clips:"voice:*",rate:.9});
   window.__tool = {
     get state() {return state;}, setMode:() => {}, allLines:V.allLines, vlog:V.log,
-    get vq() {return V.queue;}, evaluate, render, rewindTo, source, noteText,
+    get vq() {return V.queue;}, evaluate, render, rewindTo, source, noteText, readText,
     load:run => {
       V.hush();
       state = {...fresh(),...run};

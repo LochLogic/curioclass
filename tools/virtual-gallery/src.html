@@ -1911,6 +1911,13 @@ dialog p {font-size:13px;line-height:1.5}
   }
   function showProblem(key) {
     const list = checks();
+    // An empty show has no per-work controls to focus or describe.
+    if (!state.chosen.length && key !== 'statement') {
+      setMode('hang',false);
+      setHint(L.emptyHang);
+      $('m-select').focus({preventScroll:true});
+      return;
+    }
     let id = state.selected;
     if (key === 'selection') id = state.chosen.find(k => !state.positions[k]) || state.chosen[0];
     if (key === 'theme') id = hung().find(k => !workById(k).tags.includes(theme())) || state.chosen[0];

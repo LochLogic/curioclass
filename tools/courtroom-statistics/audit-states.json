@@ -1,0 +1,496 @@
+{
+  "keep": [
+    "#bench",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "seeds-evidence",
+      "steps": [
+        {
+          "click": "#case-0"
+        },
+        {
+          "click": "[data-sign='<']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#yes-0"
+        },
+        {
+          "click": "#no-1"
+        },
+        {
+          "click": "#yes-2"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#bench",
+        "#steps",
+        "#null-curve",
+        "#next"
+      ]
+    },
+    {
+      "name": "seeds-verdict",
+      "steps": [
+        {
+          "click": "#case-0"
+        },
+        {
+          "click": "[data-sign='<']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#yes-0"
+        },
+        {
+          "click": "#no-1"
+        },
+        {
+          "click": "#yes-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#guilty"
+        }
+      ],
+      "keep": [
+        "#guilty",
+        "#not-guilty",
+        "#innocent",
+        "#sentence",
+        "#next"
+      ]
+    },
+    {
+      "name": "cereal-evidence",
+      "steps": [
+        {
+          "click": "#case-1"
+        },
+        {
+          "click": "[data-sign='<']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#yes-0"
+        },
+        {
+          "click": "#no-1"
+        },
+        {
+          "click": "#no-2"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#bench",
+        "#steps",
+        "#null-curve",
+        "#next"
+      ]
+    },
+    {
+      "name": "shoes-evidence",
+      "steps": [
+        {
+          "click": "#case-4"
+        },
+        {
+          "click": "[data-sign='<']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#yes-0"
+        },
+        {
+          "click": "#no-1"
+        },
+        {
+          "click": "#no-2"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#bench",
+        "#steps",
+        "#null-curve",
+        "#next"
+      ]
+    },
+    {
+      "name": "desks-evidence",
+      "steps": [
+        {
+          "click": "#case-5"
+        },
+        {
+          "click": "[data-sign='≠']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#yes-0"
+        },
+        {
+          "click": "#no-1"
+        },
+        {
+          "click": "#yes-2"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#bench",
+        "#steps",
+        "#null-curve",
+        "#next"
+      ]
+    },
+    {
+      "name": "desks-verdict",
+      "steps": [
+        {
+          "click": "#case-5"
+        },
+        {
+          "click": "[data-sign='≠']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#yes-0"
+        },
+        {
+          "click": "#no-1"
+        },
+        {
+          "click": "#yes-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#guilty"
+        }
+      ],
+      "keep": [
+        "#guilty",
+        "#not-guilty",
+        "#innocent",
+        "#sentence",
+        "#next"
+      ]
+    },
+    {
+      "name": "lineup-work",
+      "steps": [
+        {
+          "click": "#m-lineup"
+        },
+        {
+          "drag": "(()=>{const r=document.getElementById('claim-slider').getBoundingClientRect();return [[r.x+10,r.y+r.height/2],[r.right-10,r.y+r.height/2]]})()"
+        }
+      ],
+      "keep": [
+        "#lineup-line",
+        "#claim-slider"
+      ]
+    },
+    {
+      "name": "docket-after-run",
+      "steps": [
+        {
+          "click": "#m-docket"
+        },
+        {
+          "click": "#simulate"
+        },
+        {
+          "wait": 900
+        }
+      ],
+      "keep": [
+        "#docket-curves",
+        "#bars",
+        "#simulate"
+      ]
+    },
+    {
+      "name": "dismissed-poll",
+      "steps": [
+        {
+          "click": "#case-6"
+        },
+        {
+          "click": "[data-sign='≠']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#no-0"
+        }
+      ],
+      "keep": [
+        "#checks",
+        "#hint"
+      ]
+    },
+    {
+      "name": "docket-min",
+      "steps": [
+        {
+          "click": "#m-docket"
+        },
+        {
+          "click": "#docket-n"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#docket-alpha"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#true-p"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "key": "ArrowLeft"
+        },
+        {
+          "click": "#simulate"
+        }
+      ],
+      "keep": [
+        "#docket-curves",
+        "#bars",
+        "#simulate"
+      ]
+    },
+    {
+      "name": "docket-max",
+      "steps": [
+        {
+          "click": "#m-docket"
+        },
+        {
+          "click": "#docket-n"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#docket-alpha"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#true-p"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "click": "#simulate"
+        }
+      ],
+      "keep": [
+        "#docket-curves",
+        "#bars",
+        "#simulate"
+      ]
+    },
+    {
+      "name": "seeds-sentencing",
+      "steps": [
+        {
+          "click": "#case-0"
+        },
+        {
+          "click": "[data-sign='<']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#yes-0"
+        },
+        {
+          "click": "#no-1"
+        },
+        {
+          "click": "#yes-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#guilty"
+        },
+        {
+          "click": "#sentence-strength"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#sentence-direction"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#file-sentence"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#steps",
+        "#interval-line",
+        "#interval-note",
+        "#next"
+      ]
+    },
+    {
+      "name": "cereal-charges",
+      "steps": [
+        {
+          "click": "#case-1"
+        }
+      ],
+      "keep": [
+        "#evidence",
+        "#evidence-tag",
+        "#signs",
+        "#next"
+      ]
+    },
+    {
+      "name": "proof-standard",
+      "steps": [
+        {
+          "click": "#case-0"
+        },
+        {
+          "click": "[data-sign='<']"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#proof-alphas",
+        "#next",
+        "#hint"
+      ]
+    },
+    {
+      "name": "wrong-desks-charge",
+      "steps": [
+        {
+          "click": "#case-5"
+        },
+        {
+          "click": "[data-sign='<']"
+        }
+      ],
+      "keep": [
+        "#signs",
+        "#hint",
+        "#next"
+      ]
+    }
+  ]
+}

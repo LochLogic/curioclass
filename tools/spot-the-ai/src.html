@@ -1,0 +1,810 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spot the AI · A rule, or a pattern? · Curio Class</title>
+<meta name="description" content="Open ten everyday machines and discover written rules or patterns learned from examples.
+A teacher-led Grade 1 workshop and voting game. Works offline.">
+<!--
+Spot the AI, Curio Class. Grade 1 computer science. E1-ALG-ML-02 and E1-SOC-HU-15.
+Teacher-led Machine Shop and AI or Not? Simplified examples, never a test of a real device.
+Sources: AI4K12 Big Idea 3; Apple Platform Security Face ID; Google Maps 101 (2020);
+Hinton et al. (2012); Krizhevsky et al. (2012); Covington et al. (2016). See notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class; existing workshop FLUX.1-schnell.
+Content CC BY 4.0, code MIT. One offline file, no requests, no camera or microphone access.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f6f7fb; --ink:#1a2233; --muted:#545d70; --line:#dde1ec; --brand:#1e3a5f;
+  --gold:#ffd84d; --focus:#c2410c; --btn:#28496e; --btn-line:#809ab5; --head-ink:#fff; --panel:#fff8e6;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { gap:8px; padding:10px 16px; box-shadow:0 4px 12px #14263b44; z-index:3; }
+h1 { font-size:29px; }
+h1 small { font-size:14px; }
+button { min-height:60px; min-width:60px; touch-action:manipulation; }
+button:active:not(:disabled) { translate:0 2px; }
+:focus-visible { outline:4px solid var(--focus); outline-offset:2px; box-shadow:0 0 0 3px #fff; }
+.seg { border-radius:15px; }
+.seg button { min-height:60px; padding:0 15px; display:flex; align-items:center; gap:8px; }
+.icon-btn { min-height:60px; border-radius:13px; padding:0 10px; }
+.ico { display:inline-block; width:27px; height:27px; flex:none; vertical-align:middle; }
+main { grid-template-columns:minmax(0,1fr) 310px; min-height:0; }
+.stage { min-height:0; background:#6d8793; isolation:isolate; }
+.stage::before {
+  content:""; position:absolute; inset:0; background:linear-gradient(#1c354449,#18374315 65%,#3c241c18),url('art:workshop') center/cover;
+  z-index:-2;
+}
+.stage::after { content:""; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 70px #142b4844; z-index:-1; }
+#bench { position:absolute; inset:0; width:100%; height:100%; }
+#shelves { position:absolute; z-index:2; top:9px; left:14px; right:14px; display:flex; flex-direction:column;
+  align-items:center; justify-content:center; gap:3px; }
+.shelf-row { display:flex; justify-content:center; position:relative; gap:10px; padding:0 10px 15px; }
+.shelf-row::after { content:""; position:absolute; left:0; right:0; bottom:0; height:22px; background:url('art:shelf') center/100% 100%; z-index:-1; }
+.tile { width:80px; height:75px; padding:3px 8px; border:2px solid #ffffff9c; border-radius:13px; background:#eaf2f3e8;
+  box-shadow:0 3px 6px #18304a44,inset 0 1px #fff; }
+.tile img { width:100%; height:100%; object-fit:contain; pointer-events:none; filter:drop-shadow(0 2px 2px #1d334a44); }
+.tile[aria-pressed="true"] { background:#fff8d1; border-color:#735308; box-shadow:0 0 0 3px var(--gold); }
+.tile:hover { background:#fff8d1; }
+.tile:nth-child(even) { margin-right:10px; }
+body.active #shelves { flex-direction:row; flex-wrap:nowrap; top:8px; gap:8px; }
+body.active .shelf-row { display:contents; }
+body.active .tile { width:64px; height:64px; flex:0 0 64px; }
+body.active .tile:nth-child(even) { margin-right:3px; }
+.panel { background:linear-gradient(#fffcf3,#f4ead1); border-left:5px solid #a4774b; padding:18px 16px;
+  gap:12px; box-shadow:inset 4px 0 8px #72533517; }
+.panel::before { content:""; display:block; width:84px; height:14px; border-radius:4px; background:linear-gradient(#8b9ca4,#c5d0d5,#8b9ca4);
+  box-shadow:0 2px 2px #0003; margin:-12px auto 0; flex:none; }
+#hint { margin:0; min-height:86px; font-size:19px; line-height:1.35; }
+#actions { display:flex; flex-direction:column; gap:12px; }
+.action { min-height:66px; border:2px solid #1e3a5f; border-bottom-width:5px; border-radius:15px; background:#fffdf7;
+  display:flex; align-items:center; justify-content:center; gap:10px; font-size:20px; font-weight:800; padding:8px; }
+.action.gold { background:linear-gradient(#ffe87c,#ffd84d); }
+.action:disabled { opacity:.47; cursor:default; }
+#votes { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.vote { flex-direction:column; font-size:20px; min-height:90px; gap:3px; }
+.vote .ico { width:31px; height:31px; }
+.vote[aria-pressed="true"] { box-shadow:0 0 0 4px #fff,0 0 0 7px var(--brand); }
+#teacher-note { font-size:13px; line-height:1.35; padding:9px; border-left:3px solid #a4774b; margin:0; }
+#privacy { font-size:11px; line-height:1.3; margin:0; color:var(--muted); }
+.definitions { font-size:13px; color:var(--muted); border-top:1px solid #ccbca0; line-height:1.4; padding-top:10px; margin-top:auto; }
+.definitions p { margin:3px 0; }
+.definitions b { color:var(--brand); }
+#bulbs { position:absolute; top:12px; left:8px; right:8px; display:flex; justify-content:center; gap:8px; height:40px; pointer-events:none; }
+.bulb { width:27px; height:35px; filter:drop-shadow(0 2px 3px #0004); }
+.bulb .glass { fill:#edf0e8; stroke:#24405a; stroke-width:2; }
+.bulb.on .glass { fill:#ffd84d; }
+.bulb.current { border-bottom:3px solid white; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+.idle-lamp { animation:lamp 4s ease-in-out infinite alternate; }
+@keyframes lamp { to { opacity:.65; } }
+.job-bounce { transform-box:fill-box; transform-origin:center bottom; animation:squeeze .55s ease-in-out; }
+@keyframes squeeze { 45% { transform:scale(1.08,.88); } }
+.front-slide { animation:slide .5s ease-out both; transform-box:fill-box; transform-origin:center; }
+@keyframes slide { from { opacity:0; transform:translateX(-28px) rotate(-4deg); } }
+.pile-scroll { animation:pile 3s ease-out both; }
+@keyframes pile { from { transform:translateY(45px); opacity:.3; } to { transform:translateY(0); opacity:1; } }
+.route-move { stroke-dasharray:650; animation:route 2.4s ease both; }
+@keyframes route { from { stroke-dashoffset:650; } to { stroke-dashoffset:0; } }
+.calm .idle-lamp,.calm .job-bounce,.calm .front-slide,.calm .pile-scroll,.calm .route-move { animation:none!important; }
+@media (max-width:1100px) {
+  header { padding:6px 10px; gap:6px; }
+  h1 { font-size:24px; }
+  h1 small { font-size:12px; }
+  .seg button { font-size:15px; padding:0 10px; }
+  .icon-btn { font-size:14px; padding:0 7px; }
+  main { grid-template-columns:minmax(0,1fr) 258px; }
+  #hint { font-size:17px; min-height:82px; }
+  .panel { padding:13px 12px; gap:10px; }
+  .action { font-size:18px; }
+  #shelves,body.active #shelves { flex-direction:row; flex-wrap:nowrap; justify-content:flex-start; overflow-x:auto;
+    padding:4px 4px 8px; left:5px; right:5px; top:3px; }
+  .shelf-row,body.active .shelf-row { display:contents; }
+  .tile,body.active .tile { width:64px; height:64px; flex:0 0 64px; }
+  .tile:nth-child(even) { margin-right:4px; }
+}
+@media (max-height:650px) and (min-width:600px) {
+  header { padding:4px 8px; gap:5px; }
+  h1 { width:110px; flex:none; font-size:21px; }
+  h1 small { display:none; }
+  .seg button { font-size:13px; padding:0 7px; gap:4px; }
+  .seg .ico { width:22px; height:22px; }
+  .icon-btn { font-size:12px; padding:0 5px; }
+  main { grid-template-columns:minmax(0,1fr) 230px; }
+  .panel { padding:10px; gap:8px; }
+  .panel::before { display:none; }
+  #hint { font-size:14px; min-height:58px; line-height:1.3; }
+  #actions { gap:8px; }
+  .action { min-height:60px; font-size:16px; padding:4px; gap:5px; }
+  .vote { min-height:60px; flex-direction:row; }
+  .vote .ico { width:22px; height:22px; }
+  #teacher-note { font-size:11px; padding:5px; }
+  .definitions { display:none; }
+}
+@media (max-width:599px) {
+  header { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; padding:8px; }
+  h1 { grid-column:1/-1; text-align:center; margin:0; font-size:23px; }
+  h1 small { display:none; }
+  .seg { grid-column:1/-1; justify-self:stretch; }
+  .seg button { flex:1; justify-content:center; font-size:15px; }
+  .icon-btn { font-size:14px; }
+  main { grid-template-columns:1fr; grid-template-rows:minmax(215px,1fr) auto; }
+  .panel { border-left:0; border-top:4px solid #a4774b; padding:9px 10px; gap:7px; overflow:visible; }
+  .panel::before,.definitions { display:none; }
+  #hint { min-height:60px; font-size:15px; line-height:1.3; }
+  #actions { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+  #votes { grid-column:1/-1; }
+  .action { min-height:60px; font-size:16px; padding:5px; gap:6px; }
+  .vote { min-height:60px; flex-direction:row; }
+  #back { grid-column:1/-1; }
+  #teacher-note { font-size:11px; padding:4px 6px; }
+  body.show #open,body.show #next,body.finale #replay { grid-column:1/-1; }
+  body.show #try { display:none; }
+  #bulbs { gap:6px; top:6px; }
+  .bulb { width:24px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Spot the AI<small>A rule, or a pattern?</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-shop" aria-pressed="true"><span data-icon="tools"></span>Machine Shop</button>
+    <button id="m-show" aria-pressed="false"><span data-icon="spot"></span>AI or Not?</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div id="shelves" role="group" aria-label="Machines on the shelves"></div>
+    <div id="bulbs" aria-label="Ten guesses" hidden></div>
+    <svg id="bench" role="img" aria-label="Machine on the workshop bench"></svg>
+    <p id="scene-description" class="sr" aria-live="polite"></p>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <div id="actions">
+      <div id="votes" role="group" aria-label="Class vote" hidden>
+        <button class="action vote gold" id="vote-a" aria-pressed="false"><span data-icon="spark"></span>AI</button>
+        <button class="action vote" id="vote-n" aria-pressed="false"><span data-icon="gear"></span>Not AI</button>
+      </div>
+      <button class="action gold" id="open"><span data-icon="screw"></span>Open it up</button>
+      <button class="action" id="try" hidden><span data-icon="new"></span><span id="try-label">Try a new one</span></button>
+      <button class="action" id="next" hidden><span data-icon="right"></span>Next</button>
+      <button class="action" id="back" hidden><span data-icon="left"></span>Back to shelf</button>
+      <button class="action gold" id="replay" hidden><span data-icon="again"></span>Play again</button>
+    </div>
+    <p id="teacher-note" hidden>Real machines can mix both. In this tool each machine is the kind shown.</p>
+    <p id="privacy">Motion setting stays on this device.</p>
+    <div class="definitions">
+      <p><b>AI (artificial intelligence) here:</b> a computer that learned patterns from lots of examples and uses them to guess.</p>
+      <p><b>Rule:</b> steps a person wrote; the machine follows those steps every time.</p>
+    </div>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ART = {
+    shelf:'art:shelf', door:'art:keypad-door-shut', doorOpen:'art:keypad-door-open', phone:'art:face-phone',
+    teddy:'art:talking-teddy', speaker:'art:tall-speaker', elevator:'art:elevator', map:'art:car-screen',
+    camera:'art:camera', laptop:'art:laptop', tv:'art:retro-tv', remote:'art:tv-remote', tablet:'art:kid-tablet',
+    owner:'art:face-owner', hat:'art:face-owner-hat', crowd:'art:face-crowd', cat:'art:cat-face',
+    beagle:'art:photo-beagle', poodle:'art:photo-poodle', spotted:'art:photo-spotted-dog', photoCat:'art:photo-cat',
+    ball:'art:photo-ball', puppy:'art:photo-puppy', mop:'art:photo-mop', dinoA:'art:cartoon-dino-a',
+    dinoB:'art:cartoon-dino-b', spaceA:'art:cartoon-space-a', spaceB:'art:cartoon-space-b', ocean:'art:cartoon-ocean'
+  };
+  const L = {
+    wShop:"Welcome to the Machine Shop! Some machines follow rules. Some learned from lots of examples. That's AI.",
+    pick:'Tap a shelf machine.',
+    open:'Tap Open it up.',
+    tryNew:'Tap Try a new one.',
+    again:'Tap Press it again.',
+    back:'Tap Back to shelf.',
+    wShow:"Let's play AI or Not! Watch the machine. Then vote with your hands.",
+    vote:'Tap AI or Not AI. Sparkle hands for AI. Fists for a rule.',
+    openShow:'Tap Open it up!',
+    next:'Tap Next.',
+    door:'A door with number buttons.', phone:'A phone that opens when it sees your face.',
+    teddy:'A teddy bear that talks when you squeeze it.', speaker:'A speaker that answers questions.',
+    elevator:'An elevator.', map:'A map that finds a way to the park.', camera:'A camera button.',
+    laptop:'A photo finder that finds all the dog pictures.', tv:'A TV remote.', tablet:'A video app that picks the next cartoon.',
+    teddy0:'I love you!', teddy1:"Let's play!", teddy2:'Night night!',
+    cowQ:'What sound does a cow make?', cowA:'A cow says moo.', duckQ:'What sound does a duck make?',
+    duckA:'A duck says quack.', cloudQ:'What sound does a cloud make?', cloudA:"Hmm, I'm not sure about that one.",
+    hat:'It still knows your face, even in a hat!', cat:"A cat! That face doesn't match, so it stays locked.",
+    rain:'Rain makes the roads slow. It picks a new way.', puppy:'A new puppy! It never saw this one, but it found it.',
+    mop:"Uh oh! It guessed dog, but that's a mop. AI guesses from patterns, and sometimes it's wrong.",
+    space:'You watched a space cartoon. It picks another space cartoon.',
+    rule:"It's a rule! A person wrote the steps it follows.",
+    ai:"It's AI! It learned a pattern from lots and lots of examples.",
+    matched:'You spotted it!', missed:"Tricky one! Let's look again.",
+    repeat:"It does exactly the same thing again. That's a rule.",
+    teddyRepeat:"The same three sayings, in order. That's a rule.",
+    end:"That's all ten! Rules come from people. AI learns patterns from examples. Tap Play again to play once more.",
+    teacher:'Real machines can mix both. In this tool each machine is the kind shown.',
+    same:'Same rule every time', cycle:'Same three in order', learned:'Learned from lots of examples',
+    privacy:'Motion setting stays on this device.',
+    defAI:'AI, artificial intelligence here: a computer that learned patterns from lots of examples and uses them to guess.',
+    defRule:'Rule: steps a person wrote; the machine follows those steps every time.',
+    doorRule:'Press one, two, three, four. Then open.', floorRule:'Press a number. Go to that floor.',
+    cameraRule:'Press. Take a picture.', tvRule:'Press a number. Show that channel.',
+    facePattern:'Eyes, nose and mouth in their places.', soundPattern:'The sound of the word cow.',
+    routePattern:'This street is slow after school.', dogPattern:'Four legs, ears, a tail.',
+    videoPattern:'Kids who watched one dinosaur show often watch another.',
+    unlock:'Unlocked', locked:'Locked', dog:'Dog', notDog:'Not dog', wrong:'A mop!',
+    inside:'What is inside?', ruleTitle:'A person wrote a rule', aiTitle:'It learned a pattern'
+  };
+  const MACHINES = [
+    {key:'door', name:'Key-code door', art:'door', ai:false, rule:'doorRule'},
+    {key:'phone', name:'Face unlock phone', art:'phone', ai:true, pattern:'facePattern'},
+    {key:'teddy', name:'Talking teddy', art:'teddy', ai:false},
+    {key:'speaker', name:'Smart speaker', art:'speaker', ai:true, pattern:'soundPattern'},
+    {key:'elevator', name:'Elevator', art:'elevator', ai:false, rule:'floorRule'},
+    {key:'map', name:'Map app', art:'map', ai:true, pattern:'routePattern'},
+    {key:'camera', name:'Camera button', art:'camera', ai:false, rule:'cameraRule'},
+    {key:'laptop', name:'Photo finder', art:'laptop', ai:true, pattern:'dogPattern'},
+    {key:'tv', name:'TV remote', art:'tv', ai:false, rule:'tvRule'},
+    {key:'tablet', name:'Video app', art:'tablet', ai:true, pattern:'videoPattern'}
+  ];
+  const ORDER = [1,2,4,7,5,0,6,3,9,8];
+  const doorAccepts = code => code === '1234';
+  const doorEntry = phase => phase === 1 ? '1235' : phase >= 3 ? '1234' : phase === 2 ? '12' : '1';
+  const fresh = id => ({id, opened:false, trial:0, vote:null, phase:0, playing:false, pile:false, againCount:0, spokenBubble:null});
+  const state = {mode:'shop', shop:fresh(1), show:{...fresh(1), round:0, results:[], done:false},
+    picked:false, shelfCompact:false, noteSeen:false};
+  let serial = 0;
+  let timers = [];
+  let dimensions = {w:900,h:650};
+  const current = () => state[state.mode];
+  const machine = () => MACHINES[current().id];
+  const icons = {
+    spark:'<path d="m16 2 3.5 10.5L30 16l-10.5 3.5L16 30l-3.5-10.5L2 16l10.5-3.5Z"/>',
+    gear:'<path d="m12 3 8 0 1 5 4 2 5 1 0 8-5 1-4 3-1 5-8 0-1-5-4-3-5-1 0-8 5-1 4-2Z"/><circle cx="16" cy="16" r="5" fill="white"/>',
+    screw:'<path d="m6 27 13-13-1-7 7-5 5 5-5 7-6-1L7 28Z"/><path d="m20 5 6 6" stroke="white" stroke-width="2"/>',
+    right:'<path d="M3 13h16V5l12 11-12 11v-8H3Z"/>',
+    left:'<path d="M29 13H13V5L1 16l12 11v-8h16Z"/>',
+    new:'<path d="M25 10a12 12 0 1 0 2 13M25 2v10H15" fill="none" stroke="currentColor" stroke-width="4"/><path d="m15 14 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z"/>',
+    again:'<path d="M25 10a12 12 0 1 0 2 13M25 2v10H15" fill="none" stroke="currentColor" stroke-width="4"/>',
+    spot:'<path d="m8 3 17 7-4 10-17-7Z"/><path d="m18 20 11 10H3l7-13" fill="none" stroke="currentColor" stroke-width="2"/>',
+    tools:'<path d="m4 29 15-15a8 8 0 0 0 9-11l-7 7-5-5 7-7a9 9 0 0 0-9 12L0 25Z"/>',
+    person:'<circle cx="16" cy="7" r="5"/><path d="M6 30V20a10 10 0 0 1 20 0v10Z"/>',
+    pencil:'<path d="m4 22 17-18 7 7-18 17-8 2Z"/><path d="m18 7 7 7" stroke="white" stroke-width="2"/>'
+  };
+  const icon = name => `<svg class="ico" viewBox="0 0 32 32" aria-hidden="true" fill="currentColor">${icons[name] || icons.spark}</svg>`;
+  document.querySelectorAll('[data-icon]').forEach(el => { el.innerHTML = icon(el.dataset.icon); });
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => state.mode === 'shop' ? [
+      ['pick',{valid:() => !state.picked}], ['wShop',{valid:() => !state.picked}]
+    // The vote instruction is the showdown's entry. A second greeting behind
+    // that action line arrives late, after the student has already begun.
+    ] : (!state.show.done && state.show.vote === null ? [['vote']] : null),
+    speaks:'.tile,#open,#try,#next,#back,#vote-a,#vote-n,#replay'
+  });
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
+  const image = (name,x,y,w,h,extra='') => `<image href="${ART[name]}" x="${x}" y="${y}" width="${w}" height="${h}" ${extra}/>`;
+  const text = (t,x,y,size=18,fill='#1a2233',extra='') =>
+    `<text x="${x}" y="${y}" text-anchor="middle" font-family="Segoe UI,sans-serif" font-size="${size}"
+      font-weight="750" fill="${fill}" ${extra}>${esc(t)}</text>`;
+  const rect = (x,y,w,h,fill,rx=10,stroke='none',sw=2) =>
+    `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}"/>`;
+  function later(ms, fn) {
+    const token = serial;
+    timers.push(setTimeout(() => { if (token === serial) fn(); }, ms));
+  }
+  function stopWork() {
+    serial++;
+    timers.forEach(clearTimeout);
+    timers = [];
+    current().playing = false;
+    current().pile = false;
+  }
+  function speech(key, token=serial, more={}) {
+    return V.say(key,{hint:false,valid:() => {
+      if (token !== serial) return false;
+      // Sayings, questions and answers can outlast the job. Keep their bubble
+      // on the words that actually start, using the shared voice queue.
+      if (Curio.sound && /^(?:(?:cow|duck|cloud)[QA]|teddy[0-2])$/.test(key)) {
+        current().spokenBubble = key;
+        draw();
+      }
+      return true;
+    },...more});
+  }
+  function hintKey() {
+    const s = current();
+    if (state.mode === 'show') {
+      if (s.done) return 'end';
+      if (s.opened) return 'next';
+      return s.vote === null ? 'vote' : 'openShow';
+    }
+    if (!state.picked) return 'pick';
+    if (!s.opened) return 'open';
+    if (s.trial || s.againCount) return 'back';
+    return machine().ai ? 'tryNew' : 'again';
+  }
+  function how(priority=false) {
+    const key = hintKey();
+    $('hint').textContent = L[key];
+    const token = serial;
+    const needs = {pick:'.tile', open:'#open', tryNew:'#try', again:'#try', back:'#back',
+      vote:'#vote-a', openShow:'#open', next:'#next',end:'#replay'};
+    if (V.queue.some(line => line.key === key) || V.playing === L[key]) return;
+    V.how(key,{hint:false,needs:needs[key],now:priority && !V.heard(key),
+      valid:() => token === serial && key === hintKey()});
+  }
+  function controls() {
+    const s = current();
+    const show = state.mode === 'show';
+    document.body.classList.toggle('active',state.shelfCompact || show);
+    document.body.classList.toggle('show',show);
+    document.body.classList.toggle('finale',show && s.done);
+    $('shelves').hidden = show;
+    $('bulbs').hidden = !show;
+    $('votes').hidden = !show || s.opened || s.done;
+    $('open').hidden = s.opened || !!s.done;
+    $('open').disabled = show && s.vote === null;
+    $('try').hidden = !s.opened || show;
+    $('try-label').textContent = machine().ai ? 'Try a new one' : 'Press it again';
+    $('back').hidden = show || !state.picked;
+    $('next').hidden = !show || !s.opened || s.done;
+    $('replay').hidden = !show || !s.done;
+    $('teacher-note').hidden = !s.opened || !s.note;
+    $('vote-a').setAttribute('aria-pressed',s.vote === true);
+    $('vote-n').setAttribute('aria-pressed',s.vote === false);
+    document.querySelectorAll('.tile').forEach(el => el.setAttribute('aria-pressed',state.picked && +el.dataset.id === s.id));
+    $('hint').textContent = L[hintKey()];
+    bulbs();
+  }
+  function bulbs() {
+    $('bulbs').innerHTML = Array.from({length:10},(_,i) => {
+      const match = state.show.results[i]?.match;
+      const label = i < state.show.results.length ? (match ? 'Matching guess' : 'Look again') : 'Not opened yet';
+      return `<svg class="bulb ${match ? 'on' : ''} ${state.show.round === i ? 'current' : ''}" viewBox="0 0 28 38" role="img" aria-label="${i+1}: ${label}">
+        <path class="glass" d="M8 26v-3C-5 11 4 1 14 1s19 10 6 22v3Z"/>
+        <path d="M9 27h10v6H9ZM11 35h6" fill="#557085" stroke="#24405a" stroke-width="2"/>
+        ${match ? '<path d="m8 13 4 4 8-8" fill="none" stroke="#1e3a5f" stroke-width="3"/>' : ''}</svg>`;
+    }).join('');
+  }
+  function shelf() {
+    $('shelves').innerHTML = [MACHINES.slice(0,6),MACHINES.slice(6)].map((row,r) =>
+      `<div class="shelf-row">${row.map((m,j) => `<button class="tile" data-id="${r ? j+6 : j}" id="machine-${r ? j+6 : j}"
+      aria-label="${m.name}" aria-pressed="false"><img src="${ART[m.art]}" alt=""></button>`).join('')}</div>`).join('');
+    document.querySelectorAll('.tile').forEach(el => { el.onclick = () => choose(+el.dataset.id); });
+  }
+  function choose(id) {
+    if (state.picked && state.shop.id === id) {
+      // A pressed shelf tile is a selection, not the repeat control. Preserve
+      // its current job and narration; Open and the repeat button stay live.
+      Curio.tone(480,.08,.02);
+      how();
+      return;
+    }
+    stopWork();
+    V.hush();
+    state.shop = fresh(id);
+    state.picked = true;
+    controls();
+    runJob(false);
+  }
+  function runJob(isTrial, welcome=false) {
+    const s = current();
+    const m = machine();
+    stopWork();
+    V.hush();
+    s.playing = true;
+    s.phase = 0;
+    s.spokenBubble = null;
+    const token = serial;
+    // A startup sound must never encode the hidden classification.
+    Curio.tone(480,.13,.04);
+    draw();
+    how(true);
+    if (welcome) V.welcome();
+    if (!isTrial) speech(m.key,token);
+    const phrase = m.key === 'teddy' ? 'teddy'+(s.againCount%3) : null;
+    if (phrase) speech(phrase,token);
+    if (m.key === 'speaker') {
+      const kind = s.trial === 0 ? 'cow' : s.trial%2 === 1 ? 'duck' : 'cloud';
+      speech(kind+'Q',token);
+      speech(kind+'A',token);
+    }
+    if (isTrial && m.ai && m.key !== 'speaker') {
+      const keys = {phone:s.trial%2 ? 'hat' : 'cat',map:'rain',laptop:s.trial%2 ? 'puppy' : 'mop',tablet:'space'};
+      later(1800,() => speech(keys[m.key],token));
+    }
+    if (isTrial && !m.ai) speech(m.key === 'teddy' ? 'teddyRepeat' : 'repeat',token);
+    for (let i=1;i<=4;i++) later(i*600,() => {
+      s.phase = i;
+      if (i === 4) s.playing = false;
+      if (m.key === 'door') Curio.tone(320+i*90,.09,.025);
+      if (m.key === 'elevator' && i === 4) Curio.tone(880,.5,.04);
+      if (m.key === 'camera' && i === 2) Curio.tone(170,.08,.045,'triangle');
+      draw();
+      if (i === 4) {
+        how();
+      }
+    });
+  }
+  function openMachine() {
+    const s = current();
+    if (s.opened || s.done || (state.mode === 'show' && s.vote === null)) return;
+    const moveFocus=document.activeElement === $('open');
+    stopWork();
+    V.hush();
+    if (state.mode === 'shop') {
+      state.picked = true;
+      state.shelfCompact = true;
+    }
+    s.phase = 4;
+    s.opened = true;
+    s.spokenBubble = null;
+    s.openedAt = performance.now();
+    s.note = !state.noteSeen;
+    s.pile = machine().ai;
+    if (state.mode === 'show') {
+      const match = s.vote === machine().ai;
+      s.results.push({id:s.id,vote:s.vote,match});
+      if (match) Curio.tone(740,.3,.04);
+    } else Curio.tone(480,.18,.04);
+    controls();
+    draw();
+    const token = serial;
+    how(true);
+    speech(machine().ai ? 'ai' : 'rule',token);
+    if (state.mode === 'show') speech(s.results.at(-1).match ? 'matched' : 'missed',token);
+    if (machine().rule) speech(machine().rule,token);
+    if (machine().pattern) speech(machine().pattern,token);
+    if (!V.heard('teacher')) speech('teacher',token);
+    state.noteSeen = true;
+    later(3000,() => { s.pile = false; draw(); });
+    if (moveFocus) (state.mode === 'show' ? $('next') : $('try')).focus({preventScroll:true});
+  }
+  function tryAgain() {
+    const s = current();
+    if (!s.opened || state.mode !== 'shop') return;
+    if (machine().ai) s.trial++;
+    else s.againCount++;
+    controls();
+    runJob(true);
+  }
+  function vote(value) {
+    const s = state.show;
+    if (state.mode !== 'show' || s.opened || s.done) return;
+    s.vote = value;
+    Curio.tone(440,.09,.03);
+    controls();
+    how(true);
+    draw();
+  }
+  function next() {
+    const s = state.show;
+    if (state.mode !== 'show' || !s.opened || s.done) return;
+    stopWork();
+    V.hush();
+    if (s.round === 9) {
+      s.done = true;
+      controls();
+      draw();
+      speech('end');
+      $('replay').focus({preventScroll:true});
+      return;
+    }
+    const {results} = s;
+    const round = s.round+1;
+    state.show = {...fresh(ORDER[round]),round,results,done:false};
+    controls();
+    runJob(false);
+    $('vote-a').focus({preventScroll:true});
+  }
+  function setMode(mode) {
+    if (!['shop','show'].includes(mode)) return;
+    if (mode === state.mode) return;
+    stopWork();
+    V.hush();
+    state.mode = mode;
+    for (const m of ['shop','show']) $('m-'+m).setAttribute('aria-pressed',m === mode);
+    controls();
+    draw();
+    if (mode === 'show' && !state.show.opened && !state.show.done) {
+      runJob(false,true);
+      how();
+    } else {
+      V.welcome();
+      how();
+    }
+  }
+  function machineDrawing(m,x,y,w,h,mini=false,forcedPhase=null) {
+    const s = current();
+    const p = forcedPhase === null ? s.phase : forcedPhase;
+    const trial = mini ? 0 : s.trial;
+    let out = '';
+    const ratio = {door:.687,phone:.572,teddy:.83,speaker:.481,elevator:.848,map:1.56,camera:1.47,laptop:1.26,tv:1.095,tablet:1.5}[m.key];
+    const iw = Math.min(w,h*ratio);
+    const ih = iw/ratio;
+    const ix = x+(w-iw)/2;
+    const iy = y+(h-ih)/2;
+    const img = m.key === 'door' && p >= 4 && doorAccepts(doorEntry(p)) ? 'doorOpen' : m.art;
+    out += `<g ${m.key === 'teddy' && s.playing && !mini ? 'class="job-bounce"' : ''}>`;
+    out += image(img,ix,iy,iw,ih);
+    if (!mini && m.key === 'phone') {
+      const face = trial === 0 ? 'owner' : trial%2 ? 'hat' : 'cat';
+      out += image(face,ix+iw*.15,iy+ih*.22,iw*.70,ih*.44);
+      const unlocked = p >= 3 && (trial === 0 || trial%2 === 1);
+      const lx=ix+iw*.42, ly=iy+ih*.70, lw=iw*.16;
+      out += `<path d="M${lx+lw*.2} ${ly+lw*.35}v${-lw*.25}
+        a${lw*.3} ${lw*.3} 0 0 1 ${lw*.6} 0${unlocked ? `m0 0v${-lw*.10}` : `v${lw*.25}`}"
+        fill="none" stroke="${unlocked ? '#a5f5cf' : '#fff'}" stroke-width="${Math.max(2,lw*.10)}"/>`;
+      out += rect(lx,ly+lw*.35,lw,lw*.75,unlocked ? '#a5f5cf' : '#fff',lw*.1);
+      out += `<circle cx="${lx+lw*.5}" cy="${ly+lw*.65}" r="${lw*.09}" fill="#1e3a5f"/>`;
+      if (unlocked) out += text('✓',ix+iw*.7,ly+lw,Math.max(15,lw),'#a5f5cf');
+      if (p < 3) out += `<path d="M${ix+iw*.12} ${iy+ih*(.23+p*.13)}h${iw*.76}" stroke="#ffd84d" stroke-width="3"/>`;
+    }
+    if (!mini && m.key === 'door' && p < 4) {
+      out += rect(ix+iw*.20,iy+ih*.61,iw*.48,ih*.14,'#1e3a5f',4);
+      out += text(doorEntry(p).split('').join(' '),ix+iw*.44,iy+ih*.69,Math.max(12,iw*.07),'#fff');
+      if (!doorAccepts(doorEntry(p))) out += text('▣',ix+iw*.44,iy+ih*.74,Math.max(11,iw*.06),'#ffd84d');
+    }
+    if (!mini && m.key === 'elevator') {
+      out += text(Math.min(3,p),ix+iw*.50,iy+ih*.13,Math.max(15,iw*.12),'#ffd84d');
+      if (p >= 4) {
+        out += rect(ix+iw*.38,iy+ih*.23,iw*.22,ih*.70,'#273e53',1);
+        out += rect(ix+iw*.39,iy+ih*.24,iw*.035,ih*.67,'#ffd889',0);
+      }
+    }
+    if (!mini && m.key === 'tv') {
+      if (p >= 2) out += rect(ix+iw*.13,iy+ih*.34,iw*.56,ih*.42,'#264c64',ih*.04);
+      out += text(p >= 2 ? '5' : '·',ix+iw*.41,iy+ih*.62,Math.max(23,ih*.33),'#ffd84d');
+      out += image('remote',ix+iw*.83,iy+ih*.42,iw*.25,ih*.68);
+      if (s.playing) {
+        out += `<path d="M${ix+iw*.84} ${iy+ih*.48}q${-iw*.12} ${-ih*.18} ${-iw*.12} ${-ih*.3}
+          m${iw*.07} ${ih*.21}q${-iw*.1} ${-ih*.15} ${-iw*.08} ${-ih*.23}" fill="none" stroke="#ffd84d" stroke-width="4"/>`;
+      }
+    }
+    if (!mini && m.key === 'map') {
+      const mx = ix+iw*.245, my = iy+ih*.08, mw = iw*.52, mh = ih*.36;
+      out += rect(mx,my,mw,mh,'#dfece0',2);
+      out += `<path d="M${mx} ${my+mh*.4}h${mw}M${mx+mw*.3} ${my}v${mh}M${mx+mw*.7} ${my}v${mh}" stroke="#fefcf2" stroke-width="${mw*.08}"/>`;
+      out += `<path d="M${mx+mw*.42} ${my+mh*.40}h${mw*.27}" stroke="#b34324" stroke-width="${mw*.08}"/>`;
+      out += `<path class="${s.playing ? 'route-move' : ''}"
+        d="M${mx+mw*.1} ${my+mh*.65}L${mx+mw*.3} ${my+mh*.65}V${my+mh*(trial ? .85 : .16)}H${mx+mw*.83}V${my+mh*.4}"
+        fill="none" stroke="#1e3a5f" stroke-width="${Math.max(3,mw*.04)}" stroke-linejoin="round"/>`;
+      out += text('♧',mx+mw*.86,my+mh*.45,Math.max(12,mh*.6),'#1e684c');
+    }
+    if (!mini && m.key === 'laptop') {
+      const sx = ix+iw*.12, sy = iy+ih*.1, sw = iw*.76, sh = ih*.48;
+      out += rect(sx,sy,sw,sh,'#edf0eb',2);
+      if (trial) {
+        out += image(trial%2 ? 'puppy' : 'mop',sx+sw*.22,sy+sh*.02,sw*.55,sh*.77);
+        out += text(p >= 3 ? (trial%2 ? 'Dog ✓' : 'Dog ×') : '?',sx+sw*.50,sy+sh*.95,Math.max(10,sh*.17),'#1e3a5f');
+      } else ['beagle','photoCat','poodle','ball','spotted','photoCat'].forEach((a,i) => {
+        const px = sx+(i%3)*sw/3, py = sy+Math.floor(i/3)*sh/2;
+        out += image(a,px,py,sw/3,sh/2);
+        if (p >= 3 && [0,2,4].includes(i)) out += rect(px+1,py+1,sw/3-2,sh/2-2,'none',3,'#ffd84d',3);
+      });
+    }
+    if (!mini && m.key === 'tablet') {
+      const sx=ix+iw*.12, sy=iy+ih*.18, sw=iw*.76, sh=ih*.64;
+      out += image(trial ? (p < 3 ? 'spaceA' : 'spaceB') : (p < 3 ? 'dinoA' : 'dinoB'),sx,sy,sw,sh);
+      if (p >= 3) out += text('▶',sx+sw*.9,sy+sh*.9,Math.max(13,sh*.2),'#fff');
+    }
+    if (!mini && m.key === 'camera' && p === 2) {
+      out += rect(ix-iw*.06,iy-ih*.06,iw*1.12,ih*1.12,'#ffffffdd',18);
+    }
+    out += '</g>';
+    return out;
+  }
+  function miniCard(m,i,x,y,w,h,stacked=false) {
+    let out = rect(x,y,w,h,'#fffdf8',6,'#1e3a5f',2);
+    if (m.key === 'phone') {
+      const col=i%4, row=Math.floor(i/4)%3;
+      if (i === 0) out += image('owner',x+3,y+3,w-6,h-6);
+      else {
+        out += `<svg x="${x+3}" y="${y+3}" width="${w-6}" height="${h-6}" viewBox="${col*150} ${row*150} 150 150"
+          preserveAspectRatio="xMidYMid slice" overflow="hidden">`;
+        out += image('crowd',0,0,600,450)+'</svg>';
+      }
+    } else if (m.key === 'laptop') {
+      const names=['beagle','poodle','spotted','photoCat','ball','photoCat'];
+      const label=i%6 < 3 ? 'Dog' : 'Not dog';
+      if (!stacked) {
+        out += image(names[i%6],x+3,y+3,w-6,h*.72);
+        out += text(label,x+w/2,y+h*.92,Math.max(10,w*.14));
+      } else if (stacked !== 'tiny' && i%3 === 2) {
+        out += text(label,x+w/2,y+12,10);
+        out += image(names[i%6],x+3,y+16,w-6,Math.max(8,h-19));
+      } else out += image(names[i%6],x+3,y+3,w-6,h-6);
+    } else if (m.key === 'tablet') {
+      const names=['dinoA','dinoB','spaceA','spaceB','ocean'];
+      out += image(names[i%5],x+3,y+3,w-6,h-6);
+    } else if (m.key === 'speaker') {
+      for (let j=0;j<9;j++) {
+        const dh=(.2+Math.abs(Math.sin(j*1.5+i))*.6)*h;
+        out += rect(x+w*.12+j*w*.085,y+(h-dh)/2,w*.035,dh,i%3 ? '#718797' : '#1e3a5f',2);
+      }
+    } else {
+      out += `<path d="M${x+w*.12} ${y+h*.85}L${x+w*.38} ${y+h*.85}V${y+h*(.2+i%3*.16)}H${x+w*.82}V${y+h*.12}"
+        fill="none" stroke="${i%3 ? '#718797' : '#1e3a5f'}" stroke-width="3"/>`;
+      out += `<circle cx="${x+w*.82}" cy="${y+h*.12}" r="4" fill="#ffd84d"/>`;
+    }
+    return out;
+  }
+  function insideDrawing(m,x,y,w,h,tiny=false) {
+    const labelSize=tiny ? 11 : Math.max(12,Math.min(22,w*.075));
+    if (!m.ai) {
+      let out = rect(x+3,y+5,w-6,h-10,'#fff8e6',12,'#624a31',3);
+      out += `<path d="M${x+w*.12} ${y+9}H${x+w*.88}" stroke="#e9d6a6" stroke-width="4"/>`;
+      out += `<g transform="translate(${x+w*.1},${y+h*.08}) scale(${w*.003})" fill="#1e3a5f">${icons.person}</g>`;
+      out += `<g transform="translate(${x+w*.78},${y+h*.08}) scale(${w*.003})" fill="#a4774b">${icons.pencil}</g>`;
+      if (m.key === 'teddy') {
+        ['♡','▶','☾'].forEach((v,i) => {
+          out += rect(x+w*(.09+i*.30),y+h*.34,w*.23,h*.27,'#fff',8,'#1e3a5f');
+          out += text(v,x+w*(.205+i*.30),y+h*.53,w*.16);
+        });
+        const active = current().againCount%3;
+        if (!tiny) out += rect(x+w*(.09+active*.30),y+h*.34,w*.23,h*.27,'none',8,'#9a6d00',4);
+        out += `<path d="M${x+w*.8} ${y+h*.69}Q${x+w*.5} ${y+h*.87} ${x+w*.2} ${y+h*.69}
+          L${x+w*.25} ${y+h*.68}M${x+w*.2} ${y+h*.69}L${x+w*.22} ${y+h*.75}"
+          fill="none" stroke="#1e3a5f" stroke-width="3" stroke-linejoin="round"/>`;
+      } else {
+        const v={door:tiny ? '1234' : '1 2 3 4',elevator:'3',camera:'●',tv:'5'}[m.key];
+        out += rect(x+w*.08,y+h*.33,w*.36,h*.28,'#e7edf1',7,'#1e3a5f');
+        out += text(v,x+w*.26,y+h*.52,tiny ? 10 : Math.max(13,w*.11));
+        out += text('➜',x+w*.55,y+h*.55,w*.14);
+        out += machineDrawing(m,x+w*.65,y+h*.3,w*.24,h*.35,true,4);
+      }
+      if (!tiny) out += text(L[m.key === 'teddy' ? 'cycle' : 'same'],x+w/2,y+h*.93,labelSize);
+      return out;
+    }
+    const elapsed=Math.max(0,performance.now()-(current().openedAt || 0));
+    let out = `<g class="${current().pile && !tiny ? 'pile-scroll' : ''}" style="animation-delay:-${elapsed}ms">`;
+    const cw=w*.39, ch=Math.min(h*.26,cw*.9);
+    for (let i=0;i<12;i++) {
+      const xx=x+w*.12+(i%3)*w*.16;
+      const yy=y+h*.08+Math.floor(i/3)*h*.115;
+      out += `<g transform="rotate(${(i%3-1)*9} ${xx+cw/2} ${yy+ch/2})">`;
+      out += miniCard(m,i,xx,yy,cw,ch,tiny ? 'tiny' : 'stack')+'</g>';
+    }
+    for (let i=0;i<3;i++) {
+      const xx=x+w*.04+i*w*.31, yy=y+h*.60;
+      out += miniCard(m,m.key === 'tablet' ? (i%2) : i,xx,yy,w*.29,h*.22,tiny ? 'tiny' : false);
+      if (!current().pile || Curio.reduce || tiny) out += rect(xx-1,yy-1,w*.29+2,h*.22+2,'none',7,'#9a6d00',3);
+    }
+    out += `<path d="M${x+w*.19} ${y+h*.86}H${x+w*.81}" stroke="#1e3a5f" stroke-width="3" stroke-dasharray="3 6"/>`;
+    out += '</g>';
+    if (!tiny) {
+      const clues={phone:'Eyes · nose · mouth',speaker:'The sound of cow',map:'Slow after school',
+        laptop:'Legs · ears · tail',tablet:'Dinosaur → dinosaur'};
+      out += text(clues[m.key],x+w/2,y+h*.96,labelSize);
+    }
+    return out;
+  }
+  function draw() {
+    const s = current(), m = machine();
+    const {w,h} = dimensions;
+    const compact = w < 600 || h < 440;
+    const fullShelves=state.mode === 'shop' && !state.shelfCompact && innerWidth > 1100;
+    const top = state.mode === 'show' ? 54 : (fullShelves ? 190 : 85);
+    let out = `<defs><radialGradient id="pool"><stop stop-color="#fff4ac" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#ffd84d" stop-opacity="0"/></radialGradient>
+      <linearGradient id="wood" x2="0" y2="1"><stop stop-color="#ddb176"/>
+      <stop offset=".2" stop-color="#b77d42"/><stop offset="1" stop-color="#80502f"/></linearGradient>
+      <filter id="shadow"><feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#172e42" flood-opacity=".27"/></filter></defs>`;
+    out += `<path d="M${w*.46} 0L${w*.08} ${h}H${w*.94}L${w*.54} 0Z" fill="#fff" opacity=".14"/>`;
+    out += `<ellipse cx="${w*.5}" cy="${h*.73}" rx="${w*.46}" ry="${h*.3}" fill="url(#pool)" class="idle-lamp"/>`;
+    out += rect(0,h-48,w,48,'url(#wood)',0);
+    out += `<path d="M0 ${h-46}H${w}M0 ${h-38}H${w}M${w*.1} ${h-14}Q${w*.5} ${h-26} ${w*.9} ${h-12}"
+      fill="none" stroke="#f6d299" stroke-opacity=".6" stroke-width="2"/>`;
+    if (state.mode === 'show' && s.done) {
+      out += '<g id="pair-recap" data-audit-keep>';
+      const gap = 8;
+      const rowH = (h-72)/5;
+      const cardW = Math.min(w-28,620);
+      for (let pair=0;pair<5;pair++) {
+        const x=(w-cardW)/2, y=58+pair*rowH;
+        out += rect(x,y,cardW,rowH-gap,'#fffbf0f2',9,'#a4774b');
+        for (let side=0;side<2;side++) {
+          const mm=MACHINES[pair*2+side], xx=x+side*cardW/2;
+          out += machineDrawing(mm,xx+3,y+4,cardW*.22,rowH-gap-8,true,4);
+          out += insideDrawing(mm,xx+cardW*.24,y+3,cardW*.23,rowH-gap-6,true);
+        }
+      }
+      out += '</g>';
+      $('scene-description').textContent='All ten machines in five pairs: a rule card beside each rule machine and example cards beside each AI machine.';
+    } else {
+      const available = Math.max(90,h-top-65);
+      const boxH = Math.min(available,440);
+      const boxW = Math.min(s.opened ? w*.42 : w*.64,450);
+      const y=top+(available-boxH)/2;
+      const x=s.opened ? w*.06 : (w-boxW)/2;
+      out += `<ellipse cx="${x+boxW/2}" cy="${y+boxH}" rx="${boxW*.5}" ry="9" fill="#3b291c44"/>`;
+      out += `<g id="machine-picture" data-audit-keep filter="url(#shadow)">${machineDrawing(m,x,y,boxW,boxH)}</g>`;
+      if (s.opened) {
+        const ix=w*.53, iw=Math.min(boxW,w*.43);
+        const elapsed=Math.max(0,performance.now()-(s.openedAt || 0));
+        out += `<g id="inside-picture" data-audit-keep class="${elapsed < 500 ? 'front-slide' : ''}"
+          style="animation-delay:-${elapsed}ms" filter="url(#shadow)">`;
+        out += insideDrawing(m,ix,y,iw,boxH)+'</g>';
+      }
+      const labelY=h-17;
+      const label = s.opened ? (m.ai ? 'AI · Learned from lots of examples' : 'Rule · A person wrote it') : m.name;
+      out += rect(Math.max(5,w*.5-Math.min(w*.47,260)),h-39,Math.min(w*.94,520),33,'#fff8e6',8,'#60452f');
+      out += text(label,w/2,labelY,compact ? 13 : 19);
+      if (s.playing || s.trial || (['speaker','teddy'].includes(m.key) && s.spokenBubble)) {
+        let bubble='';
+        if (m.key === 'teddy') bubble=L[s.spokenBubble || 'teddy'+s.againCount%3];
+        if (m.key === 'speaker') {
+          const animal=s.trial === 0 ? 'cow' : s.trial%2 ? 'duck' : 'cloud';
+          bubble=L[Curio.sound ? (s.spokenBubble || animal+'Q') : animal+(s.phase < 2 ? 'Q' : 'A')];
+        }
+        if (m.key === 'laptop' && s.trial && s.trial%2 === 0 && s.phase >= 3) bubble='A mop!';
+        if (bubble) {
+          const bw=Math.min(w-20,300);
+          out += rect((w-bw)/2,top-4,bw,35,'#fffdf5',12,'#1e3a5f');
+          out += text(bubble,w/2,top+19,compact ? 13 : 17);
+        }
+      }
+      const description=s.opened ? (m.ai ? '. Learned from lots of examples.' : '. A person wrote this rule.')
+        : '. '+L[hintKey()];
+      $('scene-description').textContent=m.name+description;
+    }
+    $('bench').setAttribute('viewBox',`0 0 ${w} ${h}`);
+    $('bench').innerHTML=out;
+  }
+  $('open').onclick=openMachine;
+  $('try').onclick=tryAgain;
+  $('vote-a').onclick=() => vote(true);
+  $('vote-n').onclick=() => vote(false);
+  $('next').onclick=next;
+  $('back').onclick=() => {
+    stopWork();
+    V.hush();
+    state.picked=false;
+    state.shelfCompact=false;
+    state.shop.opened=false;
+    controls();
+    draw();
+    how();
+    $('machine-'+state.shop.id).focus({preventScroll:true});
+  };
+  $('replay').onclick=() => {
+    stopWork();
+    V.hush();
+    state.show={...fresh(1),round:0,results:[],done:false};
+    controls();
+    runJob(false);
+    how();
+    $('vote-a').focus({preventScroll:true});
+  };
+  $('m-shop').onclick=() => setMode('shop');
+  $('m-show').onclick=() => setMode('show');
+  addEventListener('keydown',e => {
+    if (e.ctrlKey || e.altKey || e.metaKey || e.repeat) return;
+    if (state.mode === 'show' && ['a','n'].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+      vote(e.key.toLowerCase() === 'a');
+    }
+  });
+  Curio.onMotion(draw);
+  shelf();
+  Curio.init({clips:"voice:*",rate:.9});
+  new ResizeObserver(entries => {
+    const r=entries[0].contentRect;
+    dimensions={w:Math.round(r.width),h:Math.round(r.height)};
+    draw();
+  }).observe($('stage'));
+  controls();
+  draw();
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    machines:MACHINES,order:ORDER,doorAccepts,get serial(){return serial;},get dimensions(){return dimensions;}};
+})();
+</script>
+</body>
+</html>

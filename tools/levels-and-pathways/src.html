@@ -3,12 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
 <title>Levels and Pathways · Locomotor and nonlocomotor movement · Curio Class</title>
 <meta name="description" content="A dancer in a studio stretches, twists and curls at high, middle and low levels, then travels straight, curved and zigzag pathways that leave a ribbon on the floor. The class copies, guesses a hidden pathway by drawing it in the air, and draws new pathways for the dancer. Grades K-2 dance. Works offline.">
 <!--
 Levels and Pathways (Curio Class)
 Grades K-2, arts (dance), module Moving Bodies (Dance). NCAS dance DA:Cr1.1.Ka, DA:Cr1.1.Kb, DA:Pr4.1.Ka, DA:Pr4.1.1a,
-DA:Pr4.1.2a, DA:Cr1.1.2b, DA:Re7.1.Kb, DA:Cr3.1.Kb, DA:Cr3.1.2b, DA:Pr5.1.Kb; SHAPE America S2 (movement concepts).
+DA:Cr1.1.2b, DA:Re7.1.Kb, DA:Cr3.1.Kb, DA:Cr3.1.2b, DA:Pr5.1.Kb; SHAPE America S2 (movement concepts).
 Teacher led on a projector or smartboard; the class stands in their own bubble space and copies.
 Levels: six nonlocomotor moves (stretch, twist, bend, swing, shake, curl) at high, middle and low, plus Up and down.
 Pathways: straight, curved and zigzag trips that paint a ribbon (pattern and icon show the level, never color alone).
@@ -122,7 +123,8 @@ body.wide:not(.short) .hint{order:-1}
 .twinkle{animation:tw 2.4s ease-in-out infinite}
 @keyframes tw{0%,100%{opacity:.15}50%{opacity:.9}}
 .calm .twinkle{animation:none;opacity:.5}
-.lgband{transition:opacity .3s}
+.lgband{transition:opacity .3s;outline:none}
+.lgband:focus-visible>rect:first-child{stroke:var(--focus);stroke-width:5}
 .pulse-ring{animation:pr 1s ease-in-out infinite}
 @keyframes pr{50%{opacity:.35}}
 .calm .pulse-ring{animation:none}
@@ -145,7 +147,11 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
 .studio-dust{animation:studio-drift 8s ease-in-out infinite alternate;pointer-events:none}
 @keyframes studio-drift{to{transform:translate(-7px,-11px);opacity:.25}}
 .calm .studio-dust{animation:none;opacity:.25}
-@media(max-width:560px){.hint{min-height:0}}
+@media(max-width:560px){
+  #moves .tile svg{width:40px;height:40px}
+  body.stack .panel{gap:6px}
+  .hint{min-height:0;font-size:15px;line-height:1.3;padding-top:2px}
+}
 .preparing{filter:drop-shadow(0 0 10px #d6a437)}
 .preparing polygon:first-child{fill:#ffe9a3;stroke:#a77500}
 </style>
@@ -206,7 +212,7 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
     <p class="hint" id="hint" aria-live="polite"></p>
   </aside>
   <div class="stage" id="stage">
-    <svg id="sv" role="img" aria-labelledby="svdesc"><desc id="svdesc">A dance studio with a dancer.</desc></svg>
+    <svg id="sv" role="group" aria-labelledby="svdesc"><desc id="svdesc">A dance studio with a dancer.</desc></svg>
   </div>
 </main>
 <script src="kit:curio"></script>
@@ -252,11 +258,10 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
 
   // ------------------------------------------------------------ the narrator's lines (spec, Voice)
   const L = {
-    wLevels: 'Let\'s dance at three levels: high, middle and low. Tap a move, and copy the dancer!',
-    wPaths: 'A pathway is the line you make when you travel. Tap a pathway, then tap Go, and follow the dancer!',
+    wLevels: 'These moves stay in one place, at high, middle or low levels. Tap a move and copy me in your bubble space!',
+    wPaths: 'Now we travel! A pathway is the line you make when you travel. Tap a pathway, then tap Go, and follow the dancer!',
     wMystery: 'The magic floor hides the pathway. Tap Go, watch the dancer, then draw the pathway in the air with one finger.',
     wDraw: 'Draw a pathway from the star with your finger, or tap Surprise path.',
-    copyMe: 'Copy me! Stay in your own bubble space.',
     stretch: 'Stretch!',
     twist: 'Twist!',
     bend: 'Bend!',
@@ -264,7 +269,7 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
     shake: 'Shake!',
     curl: 'Curl!',
     atHigh: 'High level. Reach up to the sky!',
-    atMiddle: 'Middle level. Stay in the middle.',
+    atMiddle: 'Middle level. Stand up, not too high and not too low.',
     atLow: 'Low level. Get close to the floor.',
     freeze: 'And freeze!',
     upDown: 'High, middle, low, middle, high. Follow me up and down!',
@@ -283,6 +288,9 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
     nextHow: 'Tap Next for a new mystery.',
     wrong: 'Hmm, let\'s watch it again.',
     allDone: 'Eight mysteries solved! Look at all our ribbons.',
+    replayHow: 'Tap Play again for new mysteries.',
+    watchTrip: 'Watch the dancer. Draw the pathway in the air with your finger.',
+    circleCurved: 'A circle is a curved pathway too!',
     firstStraight: 'First, straight.',
     firstCurved: 'First, curved.',
     firstZigzag: 'First, zigzag.',
@@ -309,6 +317,7 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
   // low level is on the floor: every low keyframe sits, kneels back on the heels or lies down, so its head is well
   // under any middle keyframe's (measured; see handoff.md). A lying shape turns (yaw) so it reads along the floor.
   const heels = {
+    yaw: 28,
     lLeg: [92, 4, 170],
     rLeg: [92, 4, 170]
   };
@@ -380,12 +389,12 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
       low: [{
         ...heels,
         lean: 14,
-        arms: [40, -25, 55, 165],
+        arms: [30, 0, 32, 180],
         twist: 40
       }, {
         ...heels,
         lean: 14,
-        arms: [40, -25, 55, 165],
+        arms: [30, 0, 32, 180],
         twist: -40
       }]
     },
@@ -412,12 +421,12 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
       low: [{
         ...heels,
         side: 30,
-        lArm: [40, -25, 55, 165],
+        lArm: [30, 0, 32, 180],
         rArm: [168, 0, 176, 0]
       }, {
         ...heels,
         side: -30,
-        rArm: [40, -25, 55, 165],
+        rArm: [30, 0, 32, 180],
         lArm: [168, 0, 176, 0]
       }]
     },
@@ -537,6 +546,14 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
     high: MOVES[id].high[i],
     low: MOVES[id].low[i]
   });
+  function restPose(level) {
+    const p = Dance.level('stand', level);
+    if (level === 'low') {
+      p.lArm = [64.2, 10, 79.8, 130];
+      p.rArm = [64.2, 10, 79.8, 130];
+    }
+    return p;
+  }
   const WAYS = {
     walk: {
       bpm: 100,
@@ -668,7 +685,7 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
   // the Mystery welcome is the line for the round's current step (coming back mid-round, or Sound off and on)
   function mysWelcome() {
     const m = state.mys;
-    if (m.gallery) return null;
+    if (m.gallery) return ['replayHow', {needs:'#y-replay',valid:() => !state.busy}];
     if (m.step === 'path') return ['askPath', {
       valid: () => m.step === 'path' && !state.busy
     }];
@@ -682,19 +699,14 @@ body.compact.tiny #y-paths .tile,body.compact.tiny #y-levels .tile{min-height:72
       valid: () => m.step === 'go' && !state.busy
     }];
   }
-  // Read retains priority over a new action. The kit's invalid silent queue item is a barrier,
-  // never narration: it cancels ordinary speech with now, while the helper keeps Read in front.
+  // Real queued lines already wait for Read in the kit. Count-ins without a call
+  // use the conservative Read cap until the kit exposes completion.
   let readUntil = 0;
   $('read').addEventListener('click', () => {
     readUntil = performance.now() + 2500 + 80 * ($('hint').textContent || '').length;
   }, true);
   const afterRead = async tok => {
-    if (Curio.sound) {
-      await V.say('', {wait:true, hint:false, valid:() => false});
-    } else {
-      // Forced Read also works with Sound off. Its kit cap safely bounds that otherwise private promise.
-      while (performance.now() < readUntil && live(tok)) await new Promise(r => setTimeout(r, 120));
-    }
+    while (performance.now() < readUntil && live(tok)) await new Promise(r => setTimeout(r, 120));
   };
 
   // ------------------------------------------------------------ icons drawn in code
@@ -833,14 +845,24 @@ function paintDancer(model, cast = 0) {
   const bowImage = mk('image', {href:'art:painted-gallery-bow',opacity:0,
     preserveAspectRatio:'xMidYMax meet','aria-hidden':'true'},root);
   const uid = 'painted-' + (++paintedSerial) + '-';
+  // Skin's red channel exceeds green. Remove key-green alpha on hand fragments only,
+  // leaving the deliberately teal shirt and the original warm painted skin intact.
+  const despill = mk('filter', {id:uid+'skin-key',x:'-10%',y:'-10%',width:'120%',height:'120%',
+    'color-interpolation-filters':'sRGB'},defs);
+  mk('feColorMatrix', {type:'matrix',values:'1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  10 -10 0 1 .2'},despill);
   function piece(name, polygon, source, joints, width = 1) {
     const id = uid + name;
     const clip = mk('clipPath',{id,clipPathUnits:'userSpaceOnUse'},defs);
     mk('polygon',{points:polygon.map(p=>p.join(',')).join(' ')},clip);
-    const g = mk('g',{},root);
+    const g = mk('g',{'data-piece':name},root);
+    let seam = null;
+    if (/Th|Sn/.test(name)) {
+      seam = mk('line', {stroke:'#44433c','stroke-linecap':'round'},g);
+    }
     const cut = mk('g',{'clip-path':'url(#'+id+')'},g);
+    if (/Fa/.test(name)) cut.setAttribute('filter','url(#'+uid+'skin-key)');
     mk('use',{href:'#painted-dancer-source'},cut);
-    pieces.push({name,g,source,joints,width,clip});
+    pieces.push({name,g,source,joints,width,clip,seam});
   }
   function strip(name,A,B,half,joints,extra=6) {
     const len = Math.hypot(B[0]-A[0],B[1]-A[1]);
@@ -871,7 +893,20 @@ function paintDancer(model, cast = 0) {
   const oldRemove = model.remove.bind(model);
   model.render = function() {
     oldRender();
-    const S=model.sj;
+    const S = Object.fromEntries(Object.entries(model.sj).map(([k,v]) => [k,v.slice()]));
+    const bodyPx = model.floor.scale(model.opts.reflect ? -model.z*model.opts.reflect : model.z) * model.height;
+    const kneeling = model.pose.lLeg[2] > 155 && model.pose.rLeg[2] > 155 && Math.abs(model.pose.pitch) < 20;
+    // Preserve the neck length when a leaned torso foreshortens on the projector.
+    if (Math.abs(model.pose.pitch) < 45) {
+      const shoulderY = (S.lSh[1] + S.rSh[1]) / 2;
+      S.head[1] = Math.min(S.head[1], shoulderY - bodyPx * .09);
+      S.neck[1] = Math.min(S.neck[1], S.head[1] + bodyPx * .065);
+    }
+    // A clear heel lift: keep toe tips on the floor while raising the rest of the figure.
+    const heelRise = Math.min(model.pose.lToe, model.pose.rToe) > .85 &&
+      Math.abs(model.pose.pitch) < 20 && model.pose.lLeg[0] < 40 && model.pose.rLeg[0] < 40 ? bodyPx * .045 : 0;
+    if (heelRise) for (const k in S) if (!/To$/.test(k)) S[k][1] -= heelRise;
+
     root.style.visibility=model.g.style.visibility;
     const scale=model.floor.scale(model.opts.reflect ? -model.z*model.opts.reflect : model.z)*model.height/rig.height;
     for(const p of pieces) {
@@ -879,7 +914,7 @@ function paintDancer(model, cast = 0) {
       const ux=b[0]-a[0],uy=b[1]-a[1],len=Math.hypot(ux,uy);
       let dx=B[0]-A[0],dy=B[1]-A[1],dlen=Math.hypot(dx,dy);
       if(p.name==='head') {
-        const angle=Math.atan2(dx,Math.abs(dy));
+        const angle=clamp(Math.atan2(dx,Math.abs(dy)), -.6, .6);
         const k=scale*.88,cs=Math.cos(angle),sn=Math.sin(angle);
         const cx=rig.head[0],cy=rig.head[1];
         const matrix = [k * cs, k * sn, -k * sn, k * cs,
@@ -888,10 +923,22 @@ function paintDancer(model, cast = 0) {
         p.depth=B[2]-.02;
         continue;
       }
+      if (p.seam) {
+        const half = /Th/.test(p.name) ? (cast===1?48:33) : /Sn/.test(p.name) ? (cast===1?40:28) :
+          /Ua/.test(p.name) ? (cast===1?31:24) : 25;
+        p.seam.setAttribute('x1',a[0]);
+        p.seam.setAttribute('y1',a[1]);
+        p.seam.setAttribute('x2',b[0]);
+        p.seam.setAttribute('y2',b[1]);
+        p.seam.setAttribute('stroke-width',half*1.8);
+      }
       // A small minimum thickness preserves hands and limbs under perspective foreshortening.
       const nx=dlen>.2?-dy/dlen:1,ny=dlen>.2?dx/dlen:0;
       const facingWidth = Math.max(.32, Math.abs(Math.cos((model.facing + model.pose.twist) * Math.PI / 180)));
       const across = scale * (p.name === 'torso' ? 1.06 * facingWidth : 1);
+      if (p.name === 'neck' && dlen > bodyPx * .07) {
+        const k = bodyPx * .07 / dlen; dx *= k; dy *= k; dlen *= k;
+      }
       const m0=dx/len*(ux/len)+nx*across*(-uy/len);
       const m1=dy/len*(ux/len)+ny*across*(-uy/len);
       const m2=dx/len*(uy/len)+nx*across*(ux/len);
@@ -910,7 +957,12 @@ function paintDancer(model, cast = 0) {
     bowImage.setAttribute('width', bh * .48);
     bowImage.setAttribute('height', bh);
     bowImage.setAttribute('opacity', showBow ? 1 : 0);
-    for (const p of pieces) p.g.style.visibility = showBow ? 'hidden' : '';
+    for (const p of pieces) {
+      // Folded feet sit behind the knees. Their ankle skin must never be composited
+      // over the front of a kneeling trouser leg.
+      p.g.style.visibility = showBow ? 'hidden' : '';
+      if (kneeling && /Sn$|Ft$/.test(p.name)) p.depth += 100;
+    }
     const sorted=pieces.slice().sort((a,b)=>b.depth-a.depth);
     const order=sorted.map(p=>p.name).join();
     if(root.dataset.order!==order) {
@@ -920,12 +972,14 @@ function paintDancer(model, cast = 0) {
   };
   model.remove = () => {
     root.remove();
+    despill.remove();
     for (const p of pieces) p.clip.remove();
     oldRemove();
   };
   model.setCast = index => {
     if (index === cast) return;
     root.remove();
+    despill.remove();
     for (const p of pieces) p.clip.remove();
     model.render = oldRender;
     model.remove = oldRemove;
@@ -1147,6 +1201,7 @@ function paintDancer(model, cast = 0) {
   G.sparkle = mk('g', {}, floor.layers.marks);
   G.drawn = mk('g', {}, floor.layers.marks);
   for (const m of ['levels', 'paths', 'mystery', 'draw']) G['tr_' + m] = mk('g', {}, floor.layers.trail);
+  G.pathLabels = mk('g', {'aria-hidden':'true'}, G.tr_paths);
   G.icons = mk('g', {}, floor.layers.trail.parentNode);
   floor.layers.trail.after(G.icons);
   G.guide = mk('g', {}, floor.layers.front);
@@ -1272,7 +1327,7 @@ function paintDancer(model, cast = 0) {
         fill: '#d6efec',
         opacity: .8
       }, G.mat);
-    } else {
+    } else if (!(state.mode === 'mystery' && state.mys.gallery)) {
       const st = Array.from({
         length: 10
       }, (_, i) => {
@@ -1323,6 +1378,7 @@ function paintDancer(model, cast = 0) {
   // the level guide on the left wall: three bands (cloud, table, grass); the band of the dancer's level glows
   function drawGuide() {
     const g = G.guide;
+    const focusedLevel = document.activeElement?.classList.contains('lgband') ? document.activeElement.dataset.level : null;
     g.textContent = '';
     const {
       x,
@@ -1343,17 +1399,27 @@ function paintDancer(model, cast = 0) {
     LV.forEach((l, i) => {
       const on = state.shownLevel === l,
         by = y + i * bh;
+      const displayOnly = state.mode === 'mystery';
       const band = mk('g', {
-        class: 'lgband'
+        class: 'lgband', role:displayOnly ? 'img' : 'button', tabindex:displayOnly ? -1 : 0,
+        'aria-label':LVW[l] + ' level', 'aria-pressed':state.level === l, 'data-level':l
       }, g);
+      band.onclick = e => { e.stopPropagation(); if (state.mode !== 'mystery') tapLevel(l); };
+      band.onkeydown = e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); band.onclick(e); }
+      };
+      band.setAttribute('aria-disabled', state.mode === 'mystery' || state.busy && state.mode === 'draw');
+      band.style.cursor = state.mode === 'mystery' ? 'default' : 'pointer';
+      if (!displayOnly) mk('rect', {x:x+(w-Math.max(60,w))/2,y:by,width:Math.max(60,w),height:bh,
+        fill:'#fff','fill-opacity':.001,stroke:'none','pointer-events':'all'},band);
       mk('rect', {
         x,
         y: by + 2,
         width: w,
         height: bh - 4,
-        rx: 9,
-        fill: on ? LVC[l] : '#f6fbfa',
-        stroke: LVC[l],
+        rx: displayOnly ? 0 : 9,
+        fill: on ? LVC[l] : displayOnly ? 'none' : '#f6fbfa',
+        stroke: displayOnly ? 'none' : LVC[l],
         'stroke-width': on ? 4 : 2
       }, band);
       levelGlyph(band, l, x + w / 2, by + bh * .4, Math.min(w * .28, bh * .24), on ? '#fff' : LVC[l]);
@@ -1389,6 +1455,7 @@ function paintDancer(model, cast = 0) {
         }, band);
       }
     });
+    if (focusedLevel) g.querySelector(`[data-level="${focusedLevel}"]`)?.focus({preventScroll:true});
   }
 
   function setShownLevel(l) {
@@ -1513,8 +1580,8 @@ function paintDancer(model, cast = 0) {
         V.hush();
         readUntil = 0;
       } else {
-        V.dropQueued();
-        V.say('', {now:true, hint:false, valid:() => false});
+        if (performance.now() < readUntil) V.dropQueued();
+        else V.hush();
       }
     }
     state.run++;
@@ -1634,8 +1701,10 @@ function paintDancer(model, cast = 0) {
     showPressed();
     const lvl0 = state.level,
       seq = [];
+    dancer.set({pose: Dance.level(kf(id, 0), lvl0), facing:0, x:MAT.x, z:MAT.z});
     $('hint').textContent = L[id] + ' ' + L[atKey(lvl0)];
     await V.say([id, atKey(lvl0)], {
+      now: true,
       wait: true,
       valid: () => live(tok)
     });
@@ -1656,11 +1725,6 @@ function paintDancer(model, cast = 0) {
       z: MAT.z
     }, 350, () => live(tok));
     if (!live(tok)) return;
-    const said = await V.how('copyMe', {
-      wait: true,
-      valid: () => live(tok)
-    });
-    if (!live(tok) || said === 'dropped' && !live(tok)) return;
     const levelFn = j => seq[j] || seq[seq.length - 1] || lvl0;
     const ok = await runCounts(tok, {
       bpm: 96,
@@ -1778,7 +1842,7 @@ function paintDancer(model, cast = 0) {
       z: dancer.z
     };
     Dance.tween(dancer, {
-      pose: Dance.level(state.mode === 'levels' ? kf(state.lastMove, 0) : 'stand', l),
+      pose: state.mode === 'levels' ? Dance.level(kf(state.lastMove, 0), l) : restPose(l),
       facing: 0,
       ...at
     }, 450, () => live(tok));
@@ -1850,7 +1914,10 @@ function paintDancer(model, cast = 0) {
     });
     if (!live(tok)) return;
     // up to three ribbons stay; older ones fade to half; a fourth trip clears the oldest
-    if (ribbons.length >= 3) ribbons.shift().remove();
+    if (ribbons.length >= 3) {
+      ribbons.shift().remove();
+      layoutPathBadges();
+    }
     ribbons.forEach(r => r.fade(.5, 400));
     const tr = Dance.trail(dancer, {
       layer: G.tr_paths,
@@ -1873,10 +1940,11 @@ function paintDancer(model, cast = 0) {
     if (!ok) return;
     state.pending = null;
     state.traveling = false;
+    tr.pathLabel = sel;
     ribbons.push(tr);
-    tr.end(badge(sel.path, sel.level));
+    layoutPathBadges();
     await Dance.tween(dancer, {
-      pose: Dance.level('stand', sel.level),
+      pose: restPose(sel.level),
       facing: 0
     }, 500, () => live(tok));
     if (!live(tok)) return;
@@ -1888,6 +1956,18 @@ function paintDancer(model, cast = 0) {
       valid: () => !state.busy && state.mode === 'paths'
     });
   }
+  function layoutPathBadges() {
+    G.pathLabels.textContent = '';
+    G.tr_paths.appendChild(G.pathLabels);
+    ribbons.forEach((trail, i) => {
+      const meta = trail.pathLabel;
+      if (!meta) return;
+      const middle = PATHS[meta.path].at(.28 + i * .25);
+      const label = mk('g', {class:'dz-end path-label'}, G.pathLabels);
+      cellBadge(meta.path, meta.level, middle.x, middle.z)(label);
+    });
+  }
+  floor.onResize(layoutPathBadges);
   async function cleanFloor() {
     V.hush();
     readUntil = 0;
@@ -1897,6 +1977,7 @@ function paintDancer(model, cast = 0) {
     }
     const runAtClean = state.run;
     const old = ribbons.splice(0);
+    layoutPathBadges();
     await Promise.all(old.map(r => r.fade(0, 500)));
     old.forEach(r => r.remove());
     if (state.mode !== 'paths' || state.run !== runAtClean) return;
@@ -1940,6 +2021,8 @@ function paintDancer(model, cast = 0) {
       r = M.round;
     if (!replay) M.step = 'go';
     syncMystery();
+    $('hint').textContent = L.watchTrip;
+    V.how('watchTrip', {hint:false, valid:() => live(tok) && state.kind === 'mystery'});
     if (!(await walkTo(tok, STAR)) || !live(tok)) return;
     const tr = replay ? null : Dance.trail(dancer, {
       layer: G.tr_mystery,
@@ -2047,7 +2130,10 @@ function paintDancer(model, cast = 0) {
         now: !keepPathReply,
         valid: () => M.round === r
       });
-      if (r < 7) V.how('nextHow', {
+      if (r === 6 && !V.heard('circleCurved')) V.say([
+        ['circleCurved', {kind:'how', hint:false}], ['nextHow', {kind:'how', needs:'#y-next'}]
+      ], {valid:() => M.round === r && M.step === 'solved'});
+      else if (r < 7) V.how('nextHow', {
         valid: () => M.round === r && M.step === 'solved',
         needs: '#y-next'
       });
@@ -2126,6 +2212,7 @@ function paintDancer(model, cast = 0) {
       facing: BOW_FACING
     }, 900, () => live(tok));
     endRun(tok);
+    if (live(tok)) V.how('replayHow', {needs:'#y-replay',valid:() => M.gallery && !state.busy});
   }
   // a gallery cell's badge: the pathway and level icons at the top middle of the cell, clear of its neighbours
   function cellBadge(path, lvl, fx, fz) {
@@ -2205,23 +2292,6 @@ function paintDancer(model, cast = 0) {
     for (const part of state.draw.parts) {
       for (let i = 1; i < part.geo.length; i++) inkSegments.push([P(part.geo[i - 1]), P(part.geo[i])]);
     }
-    // Segment/rectangle clipping keeps complete paths clear of the full touch targets.
-    const intersects = (a, b, box) => {
-      let lo = 0, hi = 1;
-      for (const [axis, min, max] of [[0,box.x0,box.x1],[1,box.y0,box.y1]]) {
-        const delta = b[axis] - a[axis];
-        if (Math.abs(delta) < .001) {
-          if (a[axis] < min || a[axis] > max) return false;
-        } else {
-          const v = [(min - a[axis]) / delta, (max - a[axis]) / delta].sort((x,y) => x-y);
-          lo = Math.max(lo, v[0]);
-          hi = Math.min(hi, v[1]);
-          if (lo > hi) return false;
-        }
-      }
-      return true;
-    };
-    const inkHits = box => inkSegments.reduce((n, [a,b]) => n + (intersects(a,b,box) ? 1 : 0), 0);
     for (const p of state.draw.parts) {
       const pts = p.geo.map(q => P(q).slice(0, 2).map(v => v.toFixed(1)).join(',')).join(' ');
       mk('polyline', {
@@ -2244,156 +2314,68 @@ function paintDancer(model, cast = 0) {
     }
     const focused = document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('part') ? +document
       .activeElement.dataset.i : -1;
-    // each badge takes the first clear spot: on the stage, off the dancer and off the badges already placed. Spots are
-    // tried from the middle of the part outward, above the line first, then below it, then nudged sideways; if none is
-    // clear, the spot with the least overlap wins (stage edge counted heaviest)
-    const gd = LAY.guide,
-      gz = gd ? {
-        x0: gd.x - 8,
-        x1: gd.x + gd.w + 24,
-        y0: gd.y - 8,
-        y1: gd.y + gd.h + 8
-      } : null; // the level guide and its pointer
-    const stageRect = sv.getBoundingClientRect();
-    const placed = [...G.tr_draw.querySelectorAll('.dz-end')].map(el => {
-        const r = el.getBoundingClientRect();
-        return {
-          x0: r.left - stageRect.left,
-          x1: r.right - stageRect.left,
-          y0: r.top - stageRect.top,
-          y1: r.bottom - stageRect.top
-        };
-      }),
-      dz = dancerBox(),
-      ov = (a, b) => Math.max(0, Math.min(a.x1, b.x1) - Math.max(a.x0, b.x0)) * Math.max(0, Math.min(a.y1, b.y1) - Math.max(a.y0, b.y0));
-    // Plan the badges together. A greedy first placement can strand the fourth badge on a phone.
-    const needsPacking = floor.w < 480 && state.draw.parts.length === 4;
-    const planned = [], choices = needsPacking ? state.draw.parts.map(p => {
-      const path = Dance.path(p.geo), m = path.at(.5), q = P(m);
-      const s = clamp(floor.scale(m.z) * 5.2, 32, 46), w = s * 2.3;
-      const hw = Math.max(64, w + s * .5 + 8), hh = Math.max(64, s * 1.4);
-      const options = [];
-      for (let cy = hh / 2 + 4; cy <= floor.h - LAY.counts.h - hh / 2 - 8; cy += 8) {
-        for (let cx = hw / 2 + 4; cx <= floor.w - hw / 2 - 4; cx += 8) {
-          const box = {x0:cx-hw/2,x1:cx+hw/2,y0:cy-hh/2,y1:cy+hh/2};
-          const pad = {x0:box.x0-4,x1:box.x1+4,y0:box.y0-4,y1:box.y1+4};
-          if ((dz && ov(pad,dz)) || (gz && ov(pad,gz)) || placed.some(o=>ov(pad,o)) || inkHits(pad)) continue;
-          options.push({bx:cx-w/2+s*.25,y:cy,q,cost:0,box,pad,distance:Math.hypot(cx-q[0],cy-q[1])});
+    // Put each control directly on its own part. A small stage has no spare annotation
+    // area: remote cards with routed leaders obscure the dance. No leaders are needed.
+    const placed = [];
+    const small = floor.w < 480;
+    const plan = [];
+    if (small) {
+      const choices = state.draw.parts.map(p => {
+        const path = Dance.path(p.geo);
+        return Array.from({length:19}, (_,i) => (i+1)/20).sort((a,b)=>Math.abs(a-.5)-Math.abs(b-.5)).map(f => {
+          const q = P(path.at(f));
+          const cx = clamp(q[0],36,floor.w-36), cy = clamp(q[1],36,floor.h-LAY.counts.h-36);
+          return {cx,cy,box:{x0:cx-32,x1:cx+32,y0:cy-32,y1:cy+32}};
+        });
+      });
+      const overlaps = (a,b) => Math.min(a.x1,b.x1)+2 > Math.max(a.x0,b.x0) &&
+        Math.min(a.y1,b.y1)+2 > Math.max(a.y0,b.y0);
+      const order = state.draw.parts.map((p,i)=>({i,len:Dance.path(p.geo).length})).sort((a,b)=>a.len-b.len);
+      let tries = 0;
+      const pack = depth => {
+        if (depth === order.length) return true;
+        if (++tries > 100000) return false;
+        const i = order[depth].i;
+        for (const spot of choices[i]) {
+          if (plan.some((o,j)=>j!==i && o && overlaps(spot.box,o.box))) continue;
+          plan[i] = spot;
+          if (pack(depth+1)) return true;
         }
-      }
-      return options.sort((a,b)=>a.distance-b.distance);
-    }) : [];
-    let searches = 0;
-    const pack = left => {
-      if (!left.length) return true;
-      if (++searches > 12000) return false;
-      const available = left.map(i=>({i, spots:choices[i].filter(c=>!planned.some(o=>o && ov(c.pad,o.box)))}))
-        .sort((a,b)=>a.spots.length-b.spots.length);
-      const next = available[0];
-      for (const spot of next.spots) {
-        planned[next.i] = spot;
-        if (pack(left.filter(i=>i!==next.i))) return true;
-      }
-      planned[next.i] = null;
-      return false;
-    };
-    const packed = needsPacking && pack(state.draw.parts.map((_,i)=>i));
+        plan[i] = null;
+        return false;
+      };
+      if (!pack(0)) plan.length = 0;
+    }
     state.draw.parts.forEach((p, i) => {
-      const path = Dance.path(p.geo),
-        m = path.at(.5),
-        s = clamp(floor.scale(m.z) * 5.2, 32, 46),
-        w = s * 2.3;
+      const path = Dance.path(p.geo);
+      const s = small ? 26 : clamp(floor.scale(path.at(.5).z) * 5.2, 32, 42);
+      const w = s * 2.3;
+      const hw = small ? 64 : Math.max(64, w + s * .5 + 8);
+      const hh = Math.max(64, s * 1.4);
+      let best = null;
+      for (const fraction of [.5,.35,.65,.2,.8,.1,.9]) {
+        const q = P(path.at(fraction));
+        const cx = clamp(q[0], hw / 2 + 4, floor.w - hw / 2 - 4);
+        const cy = clamp(q[1], hh / 2 + 4, floor.h - LAY.counts.h - hh / 2 - 4);
+        const box = {x0:cx-hw/2,x1:cx+hw/2,y0:cy-hh/2,y1:cy+hh/2};
+        const overlap = placed.reduce((n,o) => n +
+          Math.max(0,Math.min(box.x1,o.x1)-Math.max(box.x0,o.x0)) *
+          Math.max(0,Math.min(box.y1,o.y1)-Math.max(box.y0,o.y0)), 0);
+        const cost = overlap * 100 + Math.hypot(cx-q[0],cy-q[1]) * 10 + Math.abs(fraction-.5);
+        if (!best || cost < best.cost) best = {cost,cx,cy,box};
+      }
+      if (plan[i]) best = plan[i];
+      placed.push(best.box);
+      const bx = best.cx - w / 2 + s * .25, y = best.cy;
       const g = oldBadges[i] || mk('g', {
-        class: 'part',
-        role: 'button',
-        tabindex: 0,
-        'data-i': i
+        class:'part', role:'button', tabindex:0, 'data-i':i
       }, G.icons);
       g.textContent = '';
       g.setAttribute('aria-label', `Part ${i + 1}, ${p.kind}, ${p.level} level. Change its level`);
-      const hw = Math.max(64, w + s * .5 + 8);
-      const hh = Math.max(64, s * 1.4);
-      const boxAt = (bx, y) => ({
-        x0: bx + w / 2 - s * .25 - hw / 2,
-        x1: bx + w / 2 - s * .25 + hw / 2,
-        y0: y - hh / 2,
-        y1: y + hh / 2
-      });
-      let best = null;
-      for (const t of [.5, .38, .62, .26, .74, .15, .85]) {
-        const q = P(path.at(t));
-        for (const dy of [-1.05, 1.15, -2.3, 2.4])
-          for (const dx of [0, -.45, .45, -.9, .9]) {
-            const bx = q[0] - w / 2 + s * .2 + dx * w,
-              y = q[1] + dy * s,
-              b = boxAt(bx, y);
-            const off = Math.max(0, 4 - b.x0) + Math.max(0, b.x1 - (floor.w - 4)) + Math.max(0, 4 - b.y0) + Math.max(0, b.y1 - (floor.h - LAY.counts.h - 10));
-            const pad = {
-              x0: b.x0 - 6,
-              x1: b.x1 + 6,
-              y0: b.y0 - 6,
-              y1: b.y1 + 6
-            };
-            const cost = off * 1e4 + (dz ? ov(pad, dz) : 0) * 10 + (gz ? ov(pad, gz) : 0) * 10 + placed.reduce((c, o) => c + ov(pad, o), 0) + inkHits(pad) * 1000;
-            if (!best || cost < best.cost) best = {
-              cost,
-              bx,
-              y,
-              q
-            };
-            if (cost === 0) break;
-          }
-        if (best.cost === 0) break;
-      }
-      // When four parts are close together, search the rest of the stage for a full clear touch target.
-      if (best.cost > 0) {
-        const q = P(path.at(.5));
-        let clear = null;
-        for (let cy = hh / 2 + 4; cy <= floor.h - LAY.counts.h - hh / 2 - 8; cy += 12) {
-          for (let cx = hw / 2 + 4; cx <= floor.w - hw / 2 - 4; cx += 12) {
-            const bx = cx - w / 2 + s * .25;
-            const b = boxAt(bx, cy);
-            const pad = {x0:b.x0-4,x1:b.x1+4,y0:b.y0-4,y1:b.y1+4};
-            if ((dz && ov(pad, dz)) || (gz && ov(pad, gz)) || placed.some(o => ov(pad, o)) || inkHits(pad)) continue;
-            const distance = Math.hypot(cx - q[0], cy - q[1]);
-            if (!clear || distance < clear.distance) clear = {bx,y:cy,q,cost:0,distance};
-          }
-        }
-        if (clear) best = clear;
-      }
-      if (packed) best = planned[i];
-      const {
-        bx,
-        y,
-        q
-      } = best;
-      placed.push(boxAt(bx, y));
-      // the hit area: at least 64 by 64 pixels around the badge
       mk('rect', {
-        class: 'hit',
-        x: bx + w / 2 - s * .25 - hw / 2,
-        y: y - hh / 2,
-        width: hw,
-        height: hh,
-        rx: 12,
-        fill: '#ffffff',
-        'fill-opacity': .01,
-        stroke: 'none'
+        class:'hit', x:best.cx-hw/2, y:y-hh/2, width:hw, height:hh,
+        rx:12, fill:'#ffffff', 'fill-opacity':.01, stroke:'none'
       }, g);
-      // Leaders are noninteractive artwork, separate from the badge's accessible/tappable bounds.
-      const end = [clamp(q[0], bx, bx + w), q[1] < y ? y - s / 2 : y + s / 2];
-      const obstacles = (packed ? planned.filter((_,j)=>j!==i).map(o=>o.box) : placed.slice(0, -1)).concat(gz ? [gz] : []);
-      const routes = [[q,end], [q,[q[0],end[1]],end], [q,[end[0],q[1]],end]];
-      const xs = [4, floor.w - 4, ...obstacles.flatMap(o => [o.x0-8,o.x1+8])];
-      const ys = [4, floor.h-LAY.counts.h-4, ...obstacles.flatMap(o => [o.y0-8,o.y1+8])];
-      for (const x of xs) if (x >= 0 && x <= floor.w) routes.push([q,[x,q[1]],[x,end[1]],end]);
-      for (const py of ys) if (py >= 0 && py < floor.h-LAY.counts.h) routes.push([q,[q[0],py],[end[0],py],end]);
-      const clear = route => route.every((a,i) => !i || !obstacles.some(o => intersects(route[i-1],a,o)));
-      const leader = routes.find(clear) || routes[0];
-      mk('polyline', {
-        points: leader.map(p => p.slice(0,2).join(',')).join(' '),
-        fill:'none', stroke:'#13282b', 'stroke-width':2, 'pointer-events':'none'
-      }, G.drawn);
       mk('rect', {
         x: bx,
         y: y - s / 2,
@@ -2426,7 +2408,7 @@ function paintDancer(model, cast = 0) {
         x: bx,
         y: y - s / 2 + s * .13,
         'text-anchor': 'middle',
-        'font-size': s * .38,
+        'font-size': Math.max(11, s * .38),
         'font-weight': 800,
         fill: '#fff',
         'font-family': 'Trebuchet MS, Segoe UI, sans-serif'
@@ -2623,7 +2605,7 @@ function paintDancer(model, cast = 0) {
     const last = parts[parts.length - 1];
     tr.end(badge(last.kind, last.level));
     await Dance.tween(dancer, {
-      pose: Dance.level('stand', last.level),
+      pose: restPose(last.level),
       facing: 0
     }, 500, () => live(tok));
     if (!live(tok)) return;
@@ -2857,7 +2839,7 @@ function paintDancer(model, cast = 0) {
       if (!M.watched && M.step !== 'solved') M.step = 'go';
     } else {
       dancer.set({
-        pose: Dance.level('stand', state.level),
+        pose: restPose(state.level),
         ...STAR,
         facing: 0,
         lift: 0
@@ -2873,12 +2855,12 @@ function paintDancer(model, cast = 0) {
     const howNow = {
       levels: 'wLevels',
       paths: 'wPaths',
-      mystery: M.gallery ? null : M.step === 'path' ? 'askPath' : M.step === 'level' ? 'askLevel' : M.step === 'solved' ? 'nextHow' : 'wMystery',
+      mystery: M.gallery ? 'replayHow' : M.step === 'path' ? 'askPath' : M.step === 'level' ? 'askLevel' : M.step === 'solved' ? 'nextHow' : 'wMystery',
       draw: state.draw.parts.length ? 'danceIt' : 'wDraw'
     } [m];
     $('hint').textContent = L[howNow] || L.allDone;
     if (!V.welcome() && howNow) V.how(howNow);
-    if (m === 'mystery' && M.gallery) $('hint').textContent = L.allDone;
+    if (m === 'mystery' && M.gallery) $('hint').textContent = L.replayHow;
   }
   for (const k of MODES) $('m-' + k).onclick = () => setMode(k);
   $('l-updown').onclick = () => upDown();
@@ -2938,7 +2920,7 @@ function paintDancer(model, cast = 0) {
       const w = st.getBoundingClientRect().width || innerWidth;
       const smallPhone = innerWidth < 480;
       let stageHeight = Math.round(clamp(Math.min(w * (smallPhone ? .56 : .5), innerHeight * (smallPhone ? .5 : .29)),
-        smallPhone ? 210 : 260, 520));
+        smallPhone ? 242 : 260, 520));
       // Draw has fewer panel rows: use its spare phone space for clear, full-size part badges.
       if (smallPhone && innerHeight >= 800 && state.mode === 'draw') stageHeight += 96;
       st.style.height = stageHeight + 'px';

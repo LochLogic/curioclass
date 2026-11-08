@@ -1,0 +1,20 @@
+{
+  "id":"lunch-survey-cleanup",
+  "status":"beta",
+  "stage":"built",
+  "hook":"Every fix changes the lunch menu. Who did it leave out?",
+  "outcome":"Compare data-cleaning options and report the resulting evidence, biases and limits honestly",
+  "driver":"students or teacher",
+  "minutes":"25-40",
+  "modes":["Clean","Report"],
+  "grades_label":"Grades 6-8",
+  "sources":[
+    "Fictional Ridgeview Middle School survey, exact row recipe in spec.md",
+    "Kang H. (2013), The prevention and handling of the missing data, https://pmc.ncbi.nlm.nih.gov/articles/PMC3668100/",
+    "Sampling and Survey Techniques, chapter 7, Data Validation, https://bookdown.org/dsciencelabs/sampling_and_survey_techniques/",
+    "OpenRefine user manual, Cluster and edit, https://openrefine.org/docs/manual/cellediting",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party":[],
+  "updated":"2026-11-07"
+}

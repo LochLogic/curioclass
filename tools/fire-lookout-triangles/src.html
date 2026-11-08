@@ -1,0 +1,1321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fire Lookout Triangles · Curio Class</title>
+<meta name="description" content="Sight a smoke, solve its triangle, and dispatch a crew. Explore the laws of sines and cosines in a made-up forest. Grade 12. Offline.">
+<!--
+Fire Lookout Triangles, Curio Class. Grade 12 precalculus, G-SRT.D.9, D.10, D.11.
+Students drive. Spot, Dispatch, Radio, Burn area. Forest and incidents are fictional.
+Mathematics: OpenStax Algebra and Trigonometry 2e 10.1 and 10.2. Area units: NIST Handbook 44 Appendix C.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class; existing dusk image: local FLUX.1-schnell.
+Content CC BY 4.0. Code MIT. One file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#ff6150;--brand-ink:#10161f;--btn:#1d2932;--btn-line:#637b88;--line:#34434b}
+body{overflow:hidden}
+header{padding:10px 18px;gap:8px;flex-wrap:nowrap;z-index:5}
+h1{font-size:24px;letter-spacing:-.5px}
+h1 small{font-size:12px;letter-spacing:.04em;margin-top:4px}
+.seg{border-radius:8px;flex-shrink:0}
+.seg button,.icon-btn{min-height:44px;min-width:44px;padding:0 12px;font-size:14px;white-space:nowrap}
+.icon-btn{border-radius:8px;padding:0 10px}
+#sound{min-width:94px}
+main{grid-template-columns:minmax(0,1fr) 340px;overflow:hidden}
+.panel{grid-column:2;grid-row:1}
+.stage{grid-column:1;grid-row:1}
+.stage{min-height:0;background:#101c1c;isolation:isolate}
+.stage::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#101a22e8,#101a2260 35%,#101a2250 65%,#101a22e8),
+  url(art:forest-canopy) center/cover;opacity:.8;z-index:-1}
+#map{display:block;width:100%;height:100%;touch-action:none;user-select:none}
+#map text{fill:var(--ink);font:600 12px 'Segoe UI',sans-serif;paint-order:stroke;stroke:#10161f;stroke-width:4px;stroke-linejoin:round}
+#map .mono{font-family:var(--readout-font);font-weight:500}
+#map .large{font-size:15px;letter-spacing:.08em}
+#map .minor{fill:#b6c4c0;font-size:11px}
+.side-plate{position:absolute;top:26px;left:22px;width:160px;pointer-events:none}
+.eyebrow{font:600 10px/1.4 var(--readout-font);letter-spacing:.15em;color:#b6c6bd}
+.side-plate strong{font:600 28px/1.15 Georgia,serif;display:block;margin:8px 0 16px;color:#e6e9dc}
+.side-plate p{font-size:12px;line-height:1.7;color:#acbdb6}
+.plate-line{width:35px;height:2px;background:var(--brand);margin:18px 0}
+.map-footer{position:absolute;left:20px;bottom:18px;font:11px var(--readout-font);color:#adc0b2;pointer-events:none}
+.live-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff8a70;margin-right:7px;animation:signal 3s infinite}
+@keyframes signal{50%{opacity:.35}}
+.calm .live-dot{animation:none!important}
+.handle{position:absolute;width:44px;height:44px;border-radius:50%;padding:0;transform:translate(-50%,-50%);
+  background:#101b26aa;border:1px solid #cad6df66;color:var(--gr-1);touch-action:none;z-index:3;font:700 13px var(--readout-font)}
+.handle::before{content:'';position:absolute;inset:8px;border:2px solid currentColor;border-radius:50%;box-shadow:0 0 14px #5aa9ff40}
+.handle[data-tower="B"]{color:var(--gr-2)}
+.handle.locked{background:#16312bd9;border-color:#80d4a3}
+.handle:hover{background:#263e4c}
+.panel{min-width:0;padding:14px;gap:10px;border-left:1px solid #51605b;background:linear-gradient(145deg,#1c2730,#111a23)}
+.panel{display:grid;grid-template-rows:minmax(0,1fr) auto auto;overflow:hidden}
+.pane{display:flex;flex-direction:column;gap:10px;overflow:auto;min-height:0;padding:2px}
+.pane>*{flex-shrink:0}
+.msg:empty{display:none}
+#p-burn .sec>h2{white-space:nowrap}
+.hint{font-size:14px;line-height:1.4;min-height:59px;border-left:2px solid var(--brand);padding:4px 0 4px 10px}
+.sec{padding:12px;background:linear-gradient(140deg,#202c35,#17212a);border-color:#40505a;border-radius:5px;box-shadow:0 6px 18px #0002}
+.sec>h2{color:#bfcbc9;letter-spacing:.12em;font-size:11px}
+.btn{border-radius:5px;font-size:13px;padding:0 10px}
+.big-btn{border-radius:5px;font-size:15px;min-height:44px;padding:0 12px}
+.row{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.row>*{flex:1}
+.picker{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.picker .btn{padding:0 3px;font-size:12px}
+.picker.three{grid-template-columns:repeat(3,1fr)}
+.mini{font-size:12px;line-height:1.55;color:#b0bebf;margin:6px 0 0}
+.welcome{background:linear-gradient(#111c26a6,#111c26d9),url(art:flt-lookout-dusk) center/cover;min-height:155px;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:16px;border:1px solid #56706e;border-radius:5px}
+.welcome h2{font:400 27px/1.05 Georgia,serif;margin:0 0 9px;color:#fff1d8}
+.welcome p{margin:0;font-size:13px;line-height:1.5;color:#e4e9e7;max-width:240px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}
+.stat{border-bottom:1px solid #42545a;padding:5px 0}
+.stat span{display:block;font-size:11px;color:#bccacb}
+.stat b{font:500 20px/1.5 var(--readout-font)}
+.formula{font:14px/1.7 var(--readout-font);overflow-wrap:anywhere;color:#d5e3db}
+.formula strong{color:#ffb3a0}
+.fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.fields.two{grid-template-columns:repeat(2,minmax(0,1fr))}
+label{display:flex;flex-direction:column;gap:5px;font-size:12px;color:#c8d1d4}
+input.num{width:100%;min-width:0;font-size:16px;padding:0 8px;border-radius:4px}
+.checkrow{display:flex;gap:7px;margin-top:10px;align-items:center}
+.checkrow .big-btn{flex:1}
+.msg{min-height:38px;font-size:13px;line-height:1.4;margin:8px 0 0;color:#ffb8a8}
+.msg.ok{color:var(--ok)}
+.step-title{font:400 21px Georgia,serif;margin:4px 0 12px}
+.step-tag{font:11px var(--readout-font);color:#ffad98;letter-spacing:.1em}
+.step-dots{display:flex;gap:5px;margin-bottom:10px}
+.step-dots i{height:3px;flex:1;background:#41505b}
+.step-dots i.done{background:#ff8672}
+.sight-status{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin:9px 0}
+.sight-status p{border:1px solid #4a5a62;padding:12px 7px;margin:0;border-radius:4px;font:14px var(--readout-font)}
+.sight-status .locked{border-color:#6fdca6;color:#6fdca6}
+.radio-card{position:relative;min-height:155px;padding-right:83px;background:linear-gradient(140deg,#273641,#151f29)}
+.radio-card img{position:absolute;height:146px;width:65px;object-fit:contain;right:7px;bottom:8px;filter:drop-shadow(3px 7px 3px #0008)}
+.radio-card blockquote{margin:10px 0;font:400 20px/1.3 Georgia,serif;color:#e6e9dc}
+.radio-card .eyebrow{color:#ffc6a1}
+#dispatchLog{font-size:12px;line-height:1.6;padding-left:18px;margin:5px 0;color:#bbd2c9}
+.badge{font:11px var(--readout-font);color:#a7c0b5;border:1px solid #435951;padding:5px 7px;border-radius:3px}
+.assist{color:#ffd2a1}
+.key-guide{font-size:11px;color:#b1c0c2;line-height:1.5;margin:7px 0 0}
+@media(min-width:1700px){main{grid-template-columns:minmax(0,1fr) 400px}.panel{padding:22px;gap:14px}.sec{padding:17px}}
+@media(max-width:1150px){h1{font-size:19px}.seg button,.icon-btn{padding:0 8px;font-size:12px}header{gap:5px;padding:7px 10px}}
+@media(max-width:999px) and (min-height:701px){
+  body{overflow:auto;height:auto;min-height:100vh}main{grid-template-columns:minmax(0,1fr);overflow:visible}
+  .stage{height:48vh;min-height:320px}.panel{border-left:0;border-top:1px solid #51605b;overflow:visible}
+  header{flex-wrap:wrap}h1{flex:1 1 100%;font-size:22px}.pane{gap:8px;overflow:visible}
+  .stage{grid-column:1;grid-row:1}.panel{grid-column:1;grid-row:2;display:flex}
+  #hint{order:-1}
+}
+@media(max-height:700px) and (min-width:600px){
+  main{grid-template-columns:minmax(0,1fr) 275px}.panel{padding:8px;gap:7px}.pane{gap:7px}
+  h1{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+  header{padding:5px 8px;gap:6px}.seg{margin-right:auto}.seg button,.icon-btn{padding:0 10px;font-size:12px}
+  .sec{padding:8px}.hint{font-size:12px;min-height:50px}.welcome{min-height:110px;padding:10px}.welcome h2{font-size:22px}
+  .welcome p{font-size:12px}.stat b{font-size:17px}.step-title{font-size:18px;margin:3px 0 8px}
+  .side-plate{display:none}.map-footer{font-size:10px;left:10px;bottom:10px}
+  .radio-card{min-height:130px;padding-right:83px}
+  .radio-card blockquote{font-size:16px;line-height:1.2}
+  #sightStep .mini,#sightStep .key-guide{display:none}
+  #burnGiven{font-size:13px;margin:7px 0 10px}
+  .sight-status p{padding:9px 7px}
+  #dispatchMsg{display:none}
+}
+@media(max-height:450px) and (min-width:600px){
+  #p-spot .stat{padding:1px 0}
+  #p-spot .stats{gap:4px}
+  #p-spot .sec{padding:6px 8px}
+  #p-spot .stat span{font-size:10px;line-height:1.1}
+  #p-spot .stat b{font-size:15px;line-height:1.2}
+  #p-spot .welcome{min-height:74px;padding:9px}
+  #p-spot .welcome h2{font-size:19px;margin-bottom:5px}
+  #p-spot .welcome p,#p-spot .mini{font-size:11px;line-height:1.3}
+  #p-spot .mini{margin-top:3px}
+}
+@media(max-width:599px){
+  body{overflow:auto;height:auto}header{flex-wrap:wrap;padding:8px;gap:6px}h1{flex:1 1 100%;font-size:22px}
+  h1 small{display:block;font-size:11px}.seg{width:100%;border-radius:5px}.seg button{flex:1;padding:0 7px}
+  .icon-btn{flex:1}.stage{height:260px;min-height:260px}main{grid-template-columns:minmax(0,1fr);overflow:visible}
+  .panel{overflow:visible;border-left:0;padding:10px;grid-column:1;grid-row:2;display:flex}
+  .stage{grid-column:1;grid-row:1}.pane{overflow:visible}.side-plate{display:none}.map-footer{left:8px;font-size:10px}
+  .hint{min-height:42px}.welcome{min-height:118px}.stat b{font-size:18px}
+  #hint{order:-1}
+  #sightStep .mini,#sightStep .key-guide{display:none}
+  .radio-card{min-height:130px}.radio-card blockquote{font-size:18px}.radio-card img{height:125px}
+  #dispatchMsg{display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Fire Lookout Triangles<small>Larkspur Range, a made-up forest</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-spot" aria-pressed="true">Spot</button>
+    <button id="m-dispatch" aria-pressed="false">Dispatch</button>
+    <button id="m-radio" aria-pressed="false">Radio</button>
+    <button id="m-burn" aria-pressed="false">Burn area</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <div id="p-spot" class="pane">
+      <section class="sec" id="triangleCard">
+        <h2>Triangle / live readings</h2>
+        <div class="stats" id="triangleStats"></div>
+        <p class="mini" id="spotStatus">Two lookouts. One smoke. Find the crossing.</p>
+      </section>
+      <div class="row">
+        <button class="btn" id="sines" aria-expanded="false">Show the law of sines</button>
+        <button class="btn" id="towerC" aria-pressed="false">Tower C check</button>
+      </div>
+      <section class="sec" id="sinesCard" hidden><h2>Law of sines</h2><div class="formula" id="sinesWork"></div></section>
+      <section class="sec" id="cosCard" hidden><h2>Tower C / law of cosines</h2><div class="formula" id="cosWork"></div></section>
+      <section class="welcome" id="welcomeCard"><h2>Eyes on the range.</h2><p>Tap a clearing. Watch two sights find the same smoke.</p></section>
+      <p class="mini">Azimuth is clockwise from north: 000° to 359°. Triangle angles use rounded azimuths.</p>
+    </div>
+    <div id="p-dispatch" class="pane" hidden>
+      <section class="sec" id="stepCard">
+        <div class="step-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <span class="step-tag" id="stepTag">DISPATCH / STANDBY</span>
+        <h2 class="step-title" id="stepTitle">Choose a smoke below</h2>
+        <div id="sightStep" hidden>
+          <div class="sight-status"><p id="lockA">A 000°</p><p id="lockB">B 000°</p></div>
+          <p class="mini">Drag the round A and B handles onto the smoke. Each locks within half a degree.</p>
+          <p class="key-guide">Keyboard: Tab to a sight. Arrows turn 1°; Shift + arrows turn 10°.</p>
+        </div>
+        <div id="angleStep" hidden>
+          <div class="fields">
+            <label>Angle A (°)<input class="num" id="angleA" aria-label="Angle A in degrees" inputmode="numeric" autocomplete="off"></label>
+            <label>Angle B (°)<input class="num" id="angleB" aria-label="Angle B in degrees" inputmode="numeric" autocomplete="off"></label>
+            <label>Angle F (°)<input class="num" id="angleF" aria-label="Angle F in degrees" inputmode="numeric" autocomplete="off"></label>
+          </div>
+        </div>
+        <div id="distanceStep" hidden><label id="distanceLabel" for="distance">AF (miles)</label>
+          <input class="num" id="distance" aria-label="Distance AF in miles" inputmode="decimal" autocomplete="off">
+          <p class="mini" id="distanceGiven"></p>
+        </div>
+        <div class="checkrow" id="checkRow" hidden>
+          <button class="big-btn" id="check">Check</button>
+          <button class="btn" id="showMe" hidden>Show me</button>
+        </div>
+        <button class="big-btn" id="dispatchCrew" hidden style="width:100%">Dispatch crew</button>
+        <p class="msg" id="dispatchMsg" role="status"></p>
+        <div id="workedCard" class="formula" hidden></div>
+      </section>
+      <div class="picker" id="smokePicker" role="group" aria-label="Smoke">
+        <button class="btn" id="smoke1">Smoke 1</button><button class="btn" id="smoke2">Smoke 2</button>
+        <button class="btn" id="smoke3">Smoke 3</button><button class="btn" id="smoke4">Smoke 4</button>
+      </div>
+      <div class="row"><button class="btn" id="newSmoke">New smoke</button><button class="btn" id="startOver">Start over</button></div>
+      <button class="btn" id="angleHelp" hidden>How do I get angle A?</button>
+      <p class="mini" id="angleHelpText" hidden>Angle A is the gap between A's azimuth to B (070°) and A's azimuth to the smoke.</p>
+      <section class="sec"><h2>Field log</h2><ol id="dispatchLog"></ol><p class="mini">Check marks stay on this device only.</p>
+        <button class="btn" id="clearMarks">Clear marks</button></section>
+    </div>
+    <div id="p-radio" class="pane" hidden>
+      <div class="picker three" role="group" aria-label="Radio call">
+        <button class="btn" id="call1">Call 1</button><button class="btn" id="call2">Call 2</button>
+        <button class="btn" id="call3">Call 3</button>
+      </div>
+      <section class="sec radio-card"><span class="eyebrow">INCOMING / GRANITE DOME</span>
+        <blockquote id="callText"></blockquote><p class="mini">A reads 040°. AB = 14.0 mi.<br>Angle A = 30°.</p>
+        <img src="art:radio-handset" alt="Painted handheld radio with blank screen">
+      </section>
+      <div class="picker three" id="countPicker" role="group" aria-label="How many possible spots">
+        <button class="btn" id="count0">0 spots</button><button class="btn" id="count1">1 spot</button>
+        <button class="btn" id="count2">2 spots</button>
+      </div>
+      <button class="big-btn" id="noSpot" hidden>No spot</button>
+      <p class="msg" id="radioMsg" role="status"></p>
+      <section class="sec" id="radioWork" hidden><h2>SSA / the ambiguous case</h2><div class="formula" id="radioFormula"></div></section>
+      <p class="key-guide">Keyboard: Tab to the map. Arrows move a crosshair 0.1 mi; Shift moves 1 mi. Enter pins a spot.</p>
+    </div>
+    <div id="p-burn" class="pane" hidden>
+      <div class="picker three" role="group" aria-label="Burn survey">
+        <button class="btn" id="burn1">Burn 1</button><button class="btn" id="burn2">Burn 2</button>
+        <button class="btn" id="burn3">Burn 3</button>
+      </div>
+      <section class="sec"><h2>Burn survey / two walked edges</h2>
+        <p id="burnGiven" class="formula"></p>
+        <div class="fields two">
+          <label>Square miles<input class="num" id="area" aria-label="Area in square miles" inputmode="decimal" autocomplete="off"></label>
+          <label>Acres<input class="num" id="acres" aria-label="Area in acres" inputmode="numeric" autocomplete="off"></label>
+        </div>
+        <div class="checkrow"><button class="big-btn" id="checkArea">Check area</button><button class="btn" id="showArea" hidden>Show me</button></div>
+        <p class="msg" id="burnMsg" role="status"></p>
+        <div id="burnWork" class="formula" hidden></div>
+      </section>
+      <p class="mini">1 square mile = 640 acres. Convert the unrounded area, then round acres to a whole number.</p>
+    </div>
+    <p class="hint" id="hint"></p>
+    <p class="mini">Curio Class · law of sines and law of cosines</p>
+  </aside>
+  <div class="stage" id="stage">
+    <div class="side-plate"><span class="eyebrow">LARKSPUR RANGE / FIELD SHEET</span><strong>Find the fire.<br>Know the distance.</strong>
+      <div class="plate-line"></div><p>Three lookouts.<br>A forest measured in miles.<br>One precise location.</p>
+      <p>A / Larkspur<br>B / Granite Dome<br>C / Owl Point</p>
+    </div>
+    <svg id="map" tabindex="0" role="img" aria-label="Larkspur Range map. Tap to place smoke. Arrows move a crosshair, Enter places it."></svg>
+    <button class="handle" id="handleA" data-tower="A" role="slider" aria-label="A sight" aria-valuemin="0" aria-valuemax="359" hidden>A</button>
+    <button class="handle" id="handleB" data-tower="B" role="slider" aria-label="B sight" aria-valuemin="0" aria-valuemax="359" hidden>B</button>
+    <div class="map-footer"><span class="live-dot"></span><span id="mapFooter">LOOKOUT NETWORK / EXPLORE</span></div>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const rad = v => v * Math.PI / 180;
+  const sin = v => Math.sin(rad(v));
+  const cos = v => Math.cos(rad(v));
+  const gap = (p,q) => Math.abs(((p-q+540)%360)-180);
+  const norm = v => (v%360+360)%360;
+  const az = (p,q) => norm(Math.atan2(q.x-p.x,q.y-p.y)*180/Math.PI);
+  const dist = (p,q) => Math.hypot(p.x-q.x,p.y-q.y);
+  const along = (p,a,d) => ({x:p.x+d*sin(a),y:p.y+d*cos(a)});
+  const fmt = v => Number.isFinite(v) ? v.toFixed(2) : '?';
+  const bearing = v => String(Math.round(norm(v))%360).padStart(3,'0')+'°';
+  const A = {x:0,y:0};
+  const B = along(A,70,14);
+  const C = along(A,150,12);
+  const towers = {A,B,C};
+  const fixed = [[35,345],[100,170],[10,300],[120,200]];
+  const burns = [[1.2,.9,48],[2,1.5,110],[.8,.8,90]];
+  const L = {
+    spot:'Tap the map to put up a smoke. Both towers swing their sights onto it.',
+    spotC:'Tower C draws a circle with the law of cosines. The fire sits on it.',
+    noCross:'These sights never cross. Tap a smoke off the line between the towers.',
+    lineup:'The sights line up. No triangle, so no fix. Ask a tower off this line.',
+    dispatch:"Tap Smoke 1 to start. Then drag each tower's sight handle onto the smoke.",
+    sight:'Drag each round sight handle onto the smoke. Or Tab to a handle and turn it with the arrow keys.',
+    angles:'Type the three angles inside the triangle. They add to one hundred eighty degrees.',
+    af:'Use the law of sines. Type the distance from tower A to the fire, then press Check.',
+    cf:'Now tower C. Use the law of cosines to type the distance from C, then press Check.',
+    crew:'Press Dispatch crew to send the truck.',
+    right:'That checks out.',
+    guided:'This guided step checks out.',
+    miss:'Not yet. Look at the step the note points to, then fix that box.',
+    onScene:'Crew on scene.',
+    radio:'A crew radioed one distance. Tap how many spots fit, then tap each spot on the map.',
+    radioPin:'Tap each spot where the circle meets the forward sight. Or move the map crosshair and press Enter.',
+    radioNone:'Press No spot to confirm that the circle never reaches the sight.',
+    two:'Two spots fit the same numbers. That is the ambiguous case.',
+    burn:"Two crews walked the fire's edge from one corner. Type the area, then press Check.",
+    show:'The worked solution is shown. Use it to finish this guided example.',
+    help:"Angle A is the gap between A's azimuth to B, seventy degrees, and A's azimuth to the smoke.",
+    cleared:'The saved check marks on this device are cleared.'
+  };
+  const state = {
+    mode:'spot',fire:null,a:0,b:0,showC:false,showSines:false,step:0,smoke:null,
+    misses:0,mistakes:0,assisted:false,driving:false,arrived:false,truck:null,log:[],marks:[],
+    call:0,count:null,pins:[],radioDone:false,radioAssisted:false,pinMisses:0,
+    burn:0,burnMisses:0,burnDone:false,burnAssisted:false,
+    cursor:{x:8,y:6},keyboard:false,camera:null
+  };
+  const assistedTriangles=new Set();
+  try {
+    const saved = JSON.parse(localStorage.getItem('curio-flt-done') || '[]');
+    state.marks = Array.isArray(saved) ? saved.filter(n => Number.isInteger(n) && n>=0 && n<4) : [];
+  } catch {}
+  // Fixed Read text belongs to the recording inventory as well as queued narration.
+  const readHints = [
+    "Tap another clearing, or press Show the law of sines to work this triangle.",
+    "Crew en route. Choose another smoke or mode to cancel the drive.",
+    "Crew on scene. Pick another smoke to survey a different triangle.",
+    "Look where the circle crosses the sight, then choose 0 spots, 1 spot, or 2 spots again.",
+    "Read the SSA work, then choose another call to compare how many locations fit.",
+    "Choose another burn to compare an acute, obtuse, and right included angle.",
+    "Tap the map to place a smoke. Tower C can then check its distance.",
+    "Saved check marks cleared. Choose a smoke to survey it.",
+    "Guided example shown. Press Check area to compare with the shaded survey.",
+    "Values changed. Press Check area to check this guided example again.",
+    "Worked example shown. Press Check to continue this guided survey.",
+    "Type each angle as a whole number of degrees. Fix the box, then press Check.",
+    "Angle A: compare the two azimuths leaving A. Fix the box, then press Check.",
+    "Angle B: use the direction from B back to A, 250°. Fix the box, then press Check.",
+    "Angle F should make the three angles add to 180. Fix the box, then press Check.",
+    "Type a number of miles. Fix the box, then press Check.",
+    "AF: pair each side with the sine of its opposite angle. Fix the box, then press Check.",
+    "CF: use the included angle CAF, between AC and AF. Fix the box, then press Check.",
+    "Type an area in square miles. Fix the boxes, then press Check area.",
+    "Type acres as a whole number. Fix the boxes, then press Check area.",
+    "Square miles: use half the product of the sides and the sine of the included angle. Fix the boxes, then press Check area.",
+    "Acres: multiply the unrounded square miles by 640. Fix the boxes, then press Check area."
+  ];
+  const V = Curio.voice({
+    lines:{...L,readHints},scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,
+    welcome:()=> {
+      if (state.mode==='spot' && !state.fire) return ['spot',{valid:()=>!state.fire}];
+      if (state.mode==='dispatch' && !state.fire) return ['dispatch',{valid:()=>!state.fire}];
+      if (state.mode==='radio' && state.count===null) return ['radio',{valid:()=>state.count===null}];
+      if (state.mode==='burn' && !state.burnDone) return ['burn',{valid:()=>!state.burnDone}];
+      return null;
+    }
+  });
+  const events = new Set(['right','guided','miss','onScene','two','noCross','lineup','show','cleared']);
+  function hint(key,valid=()=>true,now=false) {
+    $('hint').textContent = L[key] || key;
+    if (L[key]) V.how(key,{valid,now});
+  }
+  function event(key,valid=()=>true) {
+    if (!events.has(key)) return;
+    V.say(key,{valid,now:true});
+  }
+  function intersection(a,b) {
+    const u = along(A,a,1);
+    const v = along({x:0,y:0},b,1);
+    const det = u.x*v.y-u.y*v.x;
+    if (Math.abs(det)<1e-9) return null;
+    const t = (B.x*v.y-B.y*v.x)/det;
+    const q = (B.x*u.y-B.y*u.x)/det;
+    if (t<=0 || q<=0) return null;
+    return {x:u.x*t,y:u.y*t};
+  }
+  function triangle(a=state.a,b=state.b) {
+    const alpha=gap(70,a),beta=gap(250,b),f=180-alpha-beta;
+    const p=intersection(a,b);
+    if (!p || f<=.00001) return null;
+    const af=14*sin(beta)/sin(f);
+    const bf=14*sin(alpha)/sin(f);
+    const caf=gap(150,a);
+    const cf=Math.sqrt(144+af*af-24*af*cos(caf));
+    return {alpha,beta,f,af,bf,caf,cf,p};
+  }
+  function target() {
+    return state.fire ? triangle(state.fire.azA,state.fire.azB) : null;
+  }
+  function randomSmoke() {
+    for(let i=0;i<3000;i++) {
+      const p={x:-3+22*Math.random(),y:-13+30*Math.random()};
+      const a=Math.round(az(A,p))%360,b=Math.round(az(B,p))%360;
+      const t=triangle(a,b);
+      if (!t || t.f<25 || t.f>155) continue;
+      if (t.p.x<-4 || t.p.x>20 || t.p.y<-14 || t.p.y>18) continue;
+      if ([A,B,C].some(v=>dist(v,t.p)<2)) continue;
+      return {...t.p,azA:a,azB:b};
+    }
+    const [a,b]=fixed[0];
+    return {...triangle(a,b).p,azA:a,azB:b};
+  }
+  let animation=0;
+  let animationKind='';
+  let finishAnimation=null;
+  function stopAnimation() {
+    cancelAnimationFrame(animation);
+    animation=0;
+    animationKind='';
+    finishAnimation=null;
+    state.driving=false;
+  }
+  function animate(kind,ms,frame,done=()=>{}) {
+    stopAnimation();
+    animationKind=kind;
+    const start=performance.now();
+    finishAnimation=()=>{
+      stopAnimation();
+      frame(1);
+      done();
+    };
+    if (Curio.reduce) {
+      frame(1);
+      done();
+      animationKind='';
+      return;
+    }
+    function tick(now) {
+      const t=Math.min(1,(now-start)/ms);
+      frame(t);
+      if(t<1) animation=requestAnimationFrame(tick);
+      else { animation=0; animationKind=''; finishAnimation=null; done(); }
+    }
+    animation=requestAnimationFrame(tick);
+  }
+  function setMode(mode) {
+    if (state.mode===mode && initialized) return;
+    stopAnimation();
+    Curio.stop();
+    V.hush();
+    state.mode=mode;
+    state.camera=null;
+    state.keyboard=false;
+    for(const m of ['spot','dispatch','radio','burn']) {
+      $('m-'+m).setAttribute('aria-pressed',m===mode);
+      $('p-'+m).hidden=m!==mode;
+    }
+    if(mode==='spot') {
+      state.fire=null;
+      state.showC=false;
+      state.showSines=false;
+      state.a=0;
+      state.b=0;
+      $('sines').setAttribute('aria-expanded','false');
+      $('towerC').setAttribute('aria-pressed','false');
+      $('spotStatus').textContent='Two lookouts. One smoke. Find the crossing.';
+      hint('spot',()=>!state.fire);
+      renderSpot();
+    }
+    if(mode==='dispatch') {
+      resetDispatch();
+      hint('dispatch',()=>!state.fire);
+    }
+    if(mode==='radio') setCall(state.call);
+    if(mode==='burn') setBurn(state.burn,true);
+    $('map').setAttribute('aria-label',mode==='radio' ? 'Radio map. Arrows move crosshair; Enter pins a spot.' :
+      mode==='spot' ? 'Forest map. Arrows move crosshair; Enter places smoke.' : 'Survey map of Larkspur Range');
+    V.welcome();
+    draw();
+  }
+  function placeSmoke(p) {
+    if (Object.values(towers).some(t=>dist(t,p)<.55)) return;
+    stopAnimation();
+    V.dropQueued();
+    let a=Math.round(az(A,p))%360,b=Math.round(az(B,p))%360;
+    const cross=Math.abs((p.x*B.y-p.y*B.x)/14)<.06;
+    let t=triangle(a,b);
+    if(t && !cross && (t.p.x<-4 || t.p.x>20 || t.p.y<-14 || t.p.y>18)) {
+      let best=null;
+      for(let da=-2;da<=2;da++) for(let db=-2;db<=2;db++) {
+        const aa=norm(a+da),bb=norm(b+db),candidate=triangle(aa,bb);
+        if(!candidate || candidate.p.x<-4 || candidate.p.x>20 || candidate.p.y<-14 || candidate.p.y>18) continue;
+        const error=dist(p,candidate.p);
+        if(!best || error<best.error) best={a:aa,b:bb,t:candidate,error};
+      }
+      if(!best) return;
+      a=best.a;
+      b=best.b;
+      t=best.t;
+    }
+    state.fire={...p,azA:a,azB:b};
+    state.fire.invalid=cross || !t;
+    if(t && !cross) {
+      Object.assign(state.fire,t.p);
+      assistedTriangles.add(`${a}/${b}`);
+    }
+    const oldA=state.a,oldB=state.b;
+    $('welcomeCard').hidden=true;
+    Curio.tone(380,.12,.025);
+    if(state.fire.invalid) {
+      $('spotStatus').textContent='The sights line up. No triangle, so no fix: ask a tower off this line.';
+      $('hint').textContent=L[cross?'lineup':'noCross'];
+      event(cross?'lineup':'noCross',()=>!!state.fire?.invalid);
+    } else {
+      $('spotStatus').textContent='Read the triangle, then open a law to see the calculation.';
+      if(state.showC) hint('spotC',()=>state.showC && !state.fire?.invalid,true);
+      else $('hint').textContent='Tap another clearing, or press Show the law of sines to work this triangle.';
+    }
+    renderSpot();
+    animate('sight',400,t=>{
+      const ease=1-Math.pow(1-t,3);
+      state.a=norm(oldA+(((a-oldA+540)%360)-180)*ease);
+      state.b=norm(oldB+(((b-oldB+540)%360)-180)*ease);
+      draw();
+    },()=>{state.a=a;state.b=b;draw();});
+  }
+  function sinesText(t) {
+    return `AF / sin B = AB / sin F<br>AF = 14 sin ${t.beta}° / sin ${t.f}°<br><strong>AF = ${fmt(t.af)} mi</strong>`;
+  }
+  function cosText(t) {
+    return `CF² = AC² + AF² - 2(AC)(AF)cos(CAF)<br>CF² = 12² + ${fmt(t.af)}² - 2(12)(${fmt(t.af)})cos ${t.caf}°<br>`+
+      `<strong>CF = ${fmt(t.cf)} mi</strong><br><span class="mini">Calculation uses unrounded AF.</span>`;
+  }
+  function renderSpot() {
+    const t=state.fire && !state.fire.invalid ? target() : null;
+    const pairs=[['Angle A',t?`${t.alpha}°`:'?'],['Angle B',t?`${t.beta}°`:'?'],['Angle F',t?`${t.f}°`:'?'],
+      ['AB / mi','14.00'],['AF / mi',t?fmt(t.af):'?'],['BF / mi',t?fmt(t.bf):'?']];
+    $('triangleStats').innerHTML=pairs.map(([k,v])=>`<div class="stat"><span>${k}</span><b>${v}</b></div>`).join('');
+    $('sinesCard').hidden=!state.showSines;
+    $('cosCard').hidden=!state.showC;
+    $('sinesWork').innerHTML=t?sinesText(t):'Tap the map off the A-B line to make a triangle.';
+    $('cosWork').innerHTML=t?cosText(t):'Place a smoke first. Then C can check its distance.';
+    $('welcomeCard').hidden=!!state.fire;
+  }
+  function marks() {
+    for(let i=0;i<4;i++) $('smoke'+(i+1)).textContent=`Smoke ${i+1}${state.marks.includes(i)?' ✓':''}`;
+  }
+  function resetDispatch() {
+    stopAnimation();
+    V.hush();
+    state.fire=null;
+    state.smoke=null;
+    state.step=0;
+    state.a=0;
+    state.b=0;
+    state.misses=0;
+    state.mistakes=0;
+    state.assisted=false;
+    state.arrived=false;
+    state.truck=null;
+    state.showC=false;
+    $('workedCard').hidden=true;
+    $('dispatchMsg').textContent='';
+    $('angleHelpText').hidden=true;
+    ['angleA','angleB','angleF','distance'].forEach(id=>$(id).value='');
+    renderDispatch();
+  }
+  function pickSmoke(index) {
+    resetDispatch();
+    state.smoke=index;
+    if(index===4) state.fire=randomSmoke();
+    else {
+      const [a,b]=fixed[index];
+      state.fire={...triangle(a,b).p,azA:a,azB:b};
+    }
+    state.assisted=assistedTriangles.has(`${state.fire.azA}/${state.fire.azB}`);
+    state.step=1;
+    if(state.assisted) $('dispatchMsg').textContent='This triangle already has a guided or explored example in this session. This run stays guided.';
+    Curio.tone(300,.15,.025);
+    hint('sight',()=>state.step===1);
+    renderDispatch();
+    draw();
+  }
+  function currentHow() {
+    return ['dispatch','sight','angles','af','cf','crew','onScene'][state.step];
+  }
+  function renderDispatch() {
+    const step=state.step;
+    const names=['Choose a smoke below','Sight the smoke','Angles in the triangle','Distance from A','Tower C confirms','Ready to roll','Crew on scene'];
+    $('stepTag').textContent=step ? `DISPATCH / ${Math.min(step,5)} OF 5${state.assisted?' / GUIDED':''}` : 'DISPATCH / STANDBY';
+    $('stepTitle').textContent=names[step];
+    document.querySelectorAll('.step-dots i').forEach((el,i)=>el.classList.toggle('done',i<step));
+    $('sightStep').hidden=step!==1;
+    $('angleStep').hidden=step!==2;
+    $('distanceStep').hidden=step!==3 && step!==4;
+    $('checkRow').hidden=![2,3,4].includes(step);
+    $('showMe').hidden=state.misses<2;
+    $('dispatchCrew').hidden=step<5 || step>5;
+    $('dispatchCrew').textContent=state.driving?'Crew en route…':'Dispatch crew';
+    $('dispatchCrew').setAttribute('aria-disabled',state.driving?'true':'false');
+    $('angleHelp').hidden=step!==2;
+    $('angleHelpText').hidden=step!==2 || $('angleHelpText').hidden;
+    if(step===3 || step===4) {
+      $('distanceLabel').textContent=step===3?'AF (miles)':'CF (miles)';
+      $('distance').setAttribute('aria-label',step===3?'Distance AF in miles':'Distance CF in miles');
+      const t=target();
+      $('distanceGiven').textContent=step===3?`AB = 14.0 mi. Use your angles A, B and F.`:
+        `AC = 12.0 mi. AF = ${fmt(t.af)} mi. Angle CAF = ${t.caf}°.`;
+    }
+    updateLocks();
+    marks();
+  }
+  function updateLocks() {
+    for(const key of ['A','B']) {
+      const a=key==='A'?state.a:state.b;
+      const want=state.fire?.[key==='A'?'azA':'azB'];
+      const locked=state.fire && gap(a,want)<.001;
+      $('lock'+key).textContent=`${key} ${bearing(a)}${locked?' / locked':''}`;
+      $('lock'+key).classList.toggle('locked',!!locked);
+      $('handle'+key).classList.toggle('locked',!!locked);
+      const rounded=Math.round(norm(a))%360;
+      $('handle'+key).setAttribute('aria-valuenow',rounded);
+      $('handle'+key).setAttribute('aria-valuetext',`${key} sight, azimuth ${rounded} degrees${locked?', locked on smoke':''}`);
+    }
+  }
+  function turnSight(key,angle) {
+    if(state.mode!=='dispatch' || state.step!==1) return;
+    const goal=state.fire[key==='A'?'azA':'azB'];
+    let value=norm(angle);
+    if(gap(value,goal)<=.5) value=goal;
+    state[key==='A'?'a':'b']=value;
+    updateLocks();
+    draw();
+    if(gap(state.a,state.fire.azA)<.001 && gap(state.b,state.fire.azB)<.001) {
+      state.step=2;
+      Curio.yes();
+      renderDispatch();
+      $('angleA').focus({preventScroll:true});
+      hint('angles',()=>state.step===2,true);
+      draw();
+    }
+  }
+  function parseNumber(text,unit='') {
+    const suffix=unit==='mi'?'(?:\\s*(?:mi|miles?))?':unit==='acres'?'(?:\\s*acres?)?':unit==='area'?'(?:\\s*(?:sq\\.?\\s*mi|square miles))?':'';
+    const re=new RegExp('^\\s*([+-]?(?:\\d+(?:\\.\\d*)?|\\.\\d+))'+suffix+'\\s*$','i');
+    const m=String(text).match(re);
+    return m && Number.isFinite(Number(m[1]))?Number(m[1]):NaN;
+  }
+  function failDispatch(message) {
+    state.misses++;
+    state.mistakes++;
+    if(state.mistakes>=2) {
+      state.assisted=true;
+      assistedTriangles.add(`${state.fire.azA}/${state.fire.azB}`);
+    }
+    $('dispatchMsg').textContent=message;
+    $('dispatchMsg').className='msg';
+    $('hint').textContent=message+' Fix the box, then press Check.';
+    if(state.assisted) {
+      $('stepTag').textContent=`DISPATCH / ${state.step} OF 5 / GUIDED`;
+      $('dispatchMsg').textContent+=' Guided practice: repeated checks earn no saved mark.';
+    }
+    $('showMe').hidden=state.misses<2;
+    Curio.tone(145,.16,.035,'triangle');
+    const step=state.step;
+    event('miss',()=>state.step===step);
+  }
+  function checkDispatch() {
+    if(![2,3,4].includes(state.step) || !state.fire) return;
+    const t=target();
+    if(state.step===2) {
+      const values=['angleA','angleB','angleF'].map(id=>parseNumber($(id).value));
+      if(values.some(v=>!Number.isInteger(v))) return failDispatch('Type each angle as a whole number of degrees.');
+      if(values[0]!==t.alpha) return failDispatch('Angle A: compare the two azimuths leaving A.');
+      if(values[1]!==t.beta) return failDispatch('Angle B: use the direction from B back to A, 250°.');
+      if(values[2]!==t.f) return failDispatch('Angle F should make the three angles add to 180.');
+    } else {
+      const v=parseNumber($('distance').value,'mi');
+      if(!Number.isFinite(v)) return failDispatch('Type a number of miles.');
+      const answer=state.step===3?t.af:t.cf;
+      if(Math.abs(v-answer)>.05+1e-9) return failDispatch(state.step===3?
+        'AF: pair each side with the sine of its opposite angle.':
+        'CF: use the included angle CAF, between AC and AF.');
+    }
+    const old=state.step;
+    state.step++;
+    state.misses=0;
+    $('distance').value='';
+    $('workedCard').hidden=true;
+    $('dispatchMsg').textContent=state.assisted?'Guided step checked. This run earns no saved mark.':'That checks out.';
+    $('dispatchMsg').className='msg ok';
+    if(state.step===5) state.showC=true;
+    Curio.yes();
+    event(state.assisted?'guided':'right',()=>state.step===old+1);
+    renderDispatch();
+    hint(currentHow(),()=>state.step===old+1);
+    if(state.step===3 || state.step===4) $('distance').focus({preventScroll:true});
+    if(state.step===5) $('dispatchCrew').focus({preventScroll:true});
+    draw();
+  }
+  function showDispatch() {
+    if(state.misses<2 || ![2,3,4].includes(state.step)) return;
+    const t=target();
+    state.assisted=true;
+    assistedTriangles.add(`${state.fire.azA}/${state.fire.azB}`);
+    if(state.step===2) {
+      $('angleA').value=t.alpha;
+      $('angleB').value=t.beta;
+      $('angleF').value=t.f;
+      $('workedCard').innerHTML=`A = gap(070°, ${bearing(state.fire.azA)}) = ${t.alpha}°<br>`+
+        `B = gap(250°, ${bearing(state.fire.azB)}) = ${t.beta}°<br>F = 180° - ${t.alpha}° - ${t.beta}° = ${t.f}°`;
+    } else {
+      $('distance').value=fmt(state.step===3?t.af:t.cf);
+      $('workedCard').innerHTML=state.step===3?sinesText(t):cosText(t);
+    }
+    $('workedCard').hidden=false;
+    $('dispatchMsg').textContent='Guided example. Check this step to continue; this run earns no saved check mark.';
+    $('hint').textContent='Worked example shown. Press Check to continue this guided survey.';
+    $('stepTag').textContent=`DISPATCH / ${state.step} OF 5 / GUIDED`;
+    event('show',()=>state.assisted);
+  }
+  const road1=[A,{x:1.8,y:2},{x:4.5,y:2.7},{x:8,y:4.3},{x:12,y:6.2},{x:17,y:10},{x:20,y:13}];
+  const road2=[A,{x:2,y:-1.5},{x:5,y:-2.3},{x:8,y:-4},{x:12,y:-5.1},{x:16,y:-8},{x:20,y:-9}];
+  function driveCrew() {
+    if(state.step!==5 || state.driving) return;
+    V.hush();
+    const fire={...state.fire};
+    const road=fire.y>2?road1:road2;
+    let nearest=0;
+    for(let i=1;i<road.length;i++) if(dist(road[i],fire)<dist(road[nearest],fire)) nearest=i;
+    const path=[...road.slice(0,nearest+1),fire];
+    const segments=path.slice(1).map((p,i)=>dist(path[i],p));
+    const total=segments.reduce((a,b)=>a+b,0);
+    $('hint').textContent='Crew en route. Choose another smoke or mode to cancel the drive.';
+    Curio.tone(210,.3,.035,'sawtooth');
+    animate('truck',3000,t=>{
+      state.driving=true;
+      let d=t*total,index=0;
+      while(index<segments.length-1 && d>segments[index]) d-=segments[index++];
+      const u=segments[index]?d/segments[index]:1;
+      const p=path[index],q=path[index+1];
+      state.truck={x:p.x+(q.x-p.x)*u,y:p.y+(q.y-p.y)*u,angle:az(p,q)};
+      draw();
+    },()=>{
+      state.driving=false;
+      state.arrived=true;
+      state.step=6;
+      const t=target();
+      const title=state.smoke===4?'New smoke':`Smoke ${state.smoke+1}`;
+      state.log.push({title,af:t.af,cf:t.cf,assisted:state.assisted});
+      if(!state.assisted && state.smoke<4 && !state.marks.includes(state.smoke)) {
+        state.marks.push(state.smoke);
+        try {localStorage.setItem('curio-flt-done',JSON.stringify(state.marks));} catch {}
+      }
+      $('dispatchLog').innerHTML=state.log.map(v=>`<li>${v.title}: AF ${fmt(v.af)}, CF ${fmt(v.cf)} mi${v.assisted?' (guided)':''}</li>`).join('');
+      const focusNext=document.activeElement.id==='dispatchCrew';
+      renderDispatch();
+      if(focusNext) {
+        const next=[0,1,2,3].find(i=>!state.marks.includes(i)) ?? 0;
+        $('smoke'+(next+1)).focus({preventScroll:true});
+      }
+      $('dispatchMsg').textContent=`${title} reached. AF ${fmt(t.af)} mi; CF ${fmt(t.cf)} mi.${state.assisted?' Guided run.':''}`;
+      $('hint').textContent='Crew on scene. Pick another smoke to survey a different triangle.';
+      event('onScene',()=>state.arrived);
+      Curio.yes();
+      draw();
+    });
+    if(state.driving) renderDispatch();
+  }
+  function radioDistances(index=state.call) {
+    const r=[9,7,6][index],d=r*r-49,base=14*cos(30);
+    return d<0?[]:d===0?[base]:[base-Math.sqrt(d),base+Math.sqrt(d)];
+  }
+  function setCall(index) {
+    V.hush();
+    state.call=index;
+    state.count=null;
+    state.pins=[];
+    state.radioDone=false;
+    state.radioAssisted=false;
+    state.pinMisses=0;
+    state.cursor={x:8,y:6};
+    $('callText').textContent=["Engine 6: we're 9 miles from Granite Dome.","Engine 2: we're 7 miles from Granite Dome.",
+      "Engine 4: we're 6 miles from Granite Dome."][index];
+    $('radioMsg').textContent='Choose a count. Then locate the crossing points.';
+    $('radioMsg').className='msg';
+    $('radioWork').hidden=true;
+    $('noSpot').hidden=true;
+    $('countPicker').hidden=false;
+    for(let i=0;i<3;i++) {
+      $('call'+(i+1)).setAttribute('aria-pressed',i===index);
+      $('count'+i).setAttribute('aria-pressed','false');
+    }
+    hint('radio',()=>state.count===null);
+    draw();
+  }
+  function chooseCount(n) {
+    if(state.radioDone) return;
+    state.count=n;
+    for(let i=0;i<3;i++) $('count'+i).setAttribute('aria-pressed',i===n);
+    const truth=radioDistances().length;
+    $('noSpot').hidden=!(n===0 && truth===0);
+    $('countPicker').hidden=n===0 && truth===0;
+    if($('countPicker').hidden && document.activeElement.id==='count0') $('noSpot').focus({preventScroll:true});
+    if(n!==truth) {
+      state.radioAssisted=true;
+      $('radioMsg').textContent='Look where the circle crosses the forward sight. Try the count again.';
+      Curio.tone(160,.14,.025);
+      $('hint').textContent='Look where the circle crosses the sight, then choose 0 spots, 1 spot, or 2 spots again.';
+    } else {
+      $('radioMsg').textContent=n?`Now pin ${n===1?'the spot':'both spots'} where the sight meets the circle.`:'Press No spot to confirm the impossible reading.';
+      hint(n?'radioPin':'radioNone',()=>state.count===truth && !state.radioDone,true);
+      Curio.tone(470,.12,.025);
+    }
+    draw();
+  }
+  function pinRadio(p) {
+    const ds=radioDistances();
+    if(state.radioDone || state.count!==ds.length || !ds.length) return;
+    const i=ds.findIndex(d=>dist(along(A,40,d),p)<=.3);
+    if(i<0) {
+      state.pinMisses++;
+      if(state.pinMisses>=2) state.radioAssisted=true;
+      $('radioMsg').textContent='Not on both the sight and the circle.';
+      Curio.tone(140,.12,.025);
+      return;
+    }
+    if(state.pins.includes(i)) {
+      $('radioMsg').textContent='That spot is already pinned. Find the other crossing.';
+      return;
+    }
+    state.pins.push(i);
+    Curio.tone(640,.18,.035);
+    $('radioMsg').textContent=`${state.pins.length} of ${ds.length} locations pinned.`;
+    if(state.pins.length===ds.length) solveRadio();
+    draw();
+  }
+  function solveRadio() {
+    const focusNext=document.activeElement.id==='noSpot';
+    state.radioDone=true;
+    $('noSpot').hidden=true;
+    $('countPicker').hidden=false;
+    if(focusNext) $('call'+((state.call+1)%3+1)).focus({preventScroll:true});
+    const r=[9,7,6][state.call];
+    let work=`sin T = AB sin A / BT<br>sin T = 14 sin 30° / ${r} = ${(7/r).toFixed(4)}<br>`;
+    if(state.call===0) work+='T = 51.06° or 128.94°.<br>Both leave a positive third angle.<br>AT = 17.78 mi or 6.47 mi.<br><br>'+
+      '<strong>Two answers fit.</strong> Ask the crew one more thing: they say Blue Lake is about 2 miles south of them. The farther spot fits.';
+    if(state.call===1) work+='T = 90°. The circle just touches the sight.<br>AT = 12.12 mi. One spot fits.';
+    if(state.call===2) work+='A sine cannot exceed 1.<br>No point on A’s sight is that close to B. Someone misread a number.';
+    $('radioFormula').innerHTML=work;
+    $('radioWork').hidden=false;
+    $('radioMsg').textContent=state.call===0?'Both possible locations found. One more clue resolves the call.':
+      state.call===1?'One location: the tangent point.':'No location: the reading is impossible.';
+    if(state.radioAssisted) $('radioMsg').textContent='Guided comparison. '+$('radioMsg').textContent;
+    $('radioMsg').className='msg ok';
+    $('hint').textContent='Read the SSA work, then choose another call to compare how many locations fit.';
+    event(state.radioAssisted?'guided':state.call===0?'two':'right',()=>state.radioDone);
+    Curio.yes();
+    draw();
+  }
+  const fullCamera={x:-4,y:-14,w:24,h:32};
+  function burnGeometry(index=state.burn) {
+    const [a,b,c]=burns[index];
+    const p={x:0,y:0},q={x:a,y:0},r={x:b*cos(c),y:b*sin(c)};
+    const minX=Math.min(0,q.x,r.x),maxX=Math.max(0,q.x,r.x),maxY=r.y;
+    const span=Math.max(2,maxX-minX+.48,maxY+.48);
+    return {a,b,c,p,q,r,area:.5*a*b*sin(c),camera:{x:(minX+maxX-span)/2,y:(maxY-span)/2,w:span,h:span}};
+  }
+  function setBurn(index,instant=false) {
+    const wasZooming=animationKind==='zoom';
+    const from=state.camera || fullCamera;
+    stopAnimation();
+    V.hush();
+    state.burn=index;
+    state.burnMisses=0;
+    state.burnDone=false;
+    state.burnAssisted=false;
+    $('area').value='';
+    $('acres').value='';
+    $('burnMsg').textContent='';
+    $('burnWork').hidden=true;
+    $('showArea').hidden=true;
+    const g=burnGeometry();
+    $('burnGiven').textContent=`${g.a.toFixed(1)} mi, ${g.b.toFixed(1)} mi, ∠${g.c}°`;
+    for(let i=0;i<3;i++) $('burn'+(i+1)).setAttribute('aria-pressed',i===index);
+    hint('burn',()=>!state.burnDone);
+    if(instant || wasZooming) { state.camera=g.camera; draw(); return; }
+    animate('zoom',600,t=>{
+      const e=1-Math.pow(1-t,3);
+      state.camera=Object.fromEntries(['x','y','w','h'].map(k=>[k,from[k]+(g.camera[k]-from[k])*e]));
+      draw();
+    });
+  }
+  function checkBurn() {
+    const g=burnGeometry(),v=parseNumber($('area').value,'area'),ac=parseNumber($('acres').value,'acres');
+    const ok=Number.isFinite(v) && Number.isInteger(ac) && Math.abs(v-g.area)<=.01+1e-9 && Math.abs(ac-g.area*640)<=g.area*6.4;
+    if(!ok) {
+      state.burnMisses++;
+      if(state.burnMisses>=2) state.burnAssisted=true;
+      $('showArea').hidden=state.burnMisses<2;
+      $('burnMsg').className='msg';
+      $('burnMsg').textContent=!Number.isFinite(v)?'Type an area in square miles.':!Number.isInteger(ac)?'Type acres as a whole number.':
+        Math.abs(v-g.area)>.01?'Square miles: use half the product of the sides and the sine of the included angle.':
+        'Acres: multiply the unrounded square miles by 640.';
+      $('hint').textContent=$('burnMsg').textContent+' Fix the boxes, then press Check area.';
+      Curio.tone(150,.15,.025);
+      event('miss',()=>!state.burnDone);
+      return;
+    }
+    state.burnDone=true;
+    $('burnMsg').textContent=state.burnAssisted?'Guided example checked. Choose another burn to try it yourself.':
+      'That checks out. The shaded triangle is the surveyed burn area.';
+    $('burnMsg').className='msg ok';
+    $('burnWork').innerHTML=`Area = ½ab sin C<br>= ½(${g.a})(${g.b})sin ${g.c}°<br>`+
+      `<strong>${fmt(g.area)} square miles</strong><br>${g.area.toFixed(4)} × 640 ≈ ${Math.round(g.area*640)} acres`;
+    $('burnWork').hidden=false;
+    $('hint').textContent='Choose another burn to compare an acute, obtuse, and right included angle.';
+    event(state.burnAssisted?'guided':'right',()=>state.burnDone);
+    Curio.yes();
+    draw();
+  }
+  let width=0,height=0,scale=1,ox=0,oy=0,camera=fullCamera;
+  const NS='http://www.w3.org/2000/svg';
+  const assets={forest:'art:forest-canopy',tower:'art:lookout-tower',smoke:'art:smoke-plume',flame:'art:flame',
+    truck:'art:crew-truck',scar:'art:burn-scar'};
+  function svg(tag,attrs={},parent=$('map')) {
+    const el=document.createElementNS(NS,tag);
+    for(const [k,v] of Object.entries(attrs)) el.setAttribute(k,v);
+    parent.appendChild(el);
+    return el;
+  }
+  function text(x,y,value,attrs={},parent=$('map')) {
+    const el=svg('text',{x,y,...attrs},parent);
+    el.textContent=value;
+    return el;
+  }
+  const screen=p=>({x:ox+(p.x-camera.x)*scale,y:oy+(camera.y+camera.h-p.y)*scale});
+  function world(x,y) {
+    return {x:camera.x+(x-ox)/scale,y:camera.y+camera.h-(y-oy)/scale};
+  }
+  function line(p,q,attrs={},parent=$('map')) {
+    p=screen(p);
+    q=screen(q);
+    return svg('line',{x1:p.x,y1:p.y,x2:q.x,y2:q.y,...attrs},parent);
+  }
+  function path(points,attrs={},parent=$('map')) {
+    return svg('polyline',{points:points.map(p=>{const s=screen(p);return `${s.x},${s.y}`;}).join(' '),fill:'none',...attrs},parent);
+  }
+  function image(name,x,y,w,h,attrs={},parent=$('map')) {
+    return svg('image',{href:assets[name],x,y,width:w,height:h,...attrs},parent);
+  }
+  function circleAt(p,r,attrs={},parent=$('map')) {
+    const s=screen(p);
+    return svg('circle',{cx:s.x,cy:s.y,r:r*scale,...attrs},parent);
+  }
+  function labelAt(p,label,dx=0,dy=0,attrs={},parent=$('map')) {
+    const s=screen(p);
+    return text(s.x+dx,s.y+dy,label,attrs,parent);
+  }
+  function draw() {
+    const rect=$('stage').getBoundingClientRect();
+    width=rect.width;
+    height=rect.height;
+    if(width<1 || height<1) return;
+    camera=state.mode==='burn'?(state.camera || burnGeometry().camera):fullCamera;
+    const pad=state.mode==='burn'?38:25;
+    scale=Math.min((width-pad*2)/camera.w,(height-pad*2)/camera.h);
+    ox=(width-camera.w*scale)/2;
+    oy=(height-camera.h*scale)/2;
+    $('map').setAttribute('viewBox',`0 0 ${width} ${height}`);
+    $('map').replaceChildren();
+    const mapW=camera.w*scale,mapH=camera.h*scale;
+    const defs=svg('defs');
+    const clip=svg('clipPath',{id:'mapClip'},defs);
+    svg('rect',{x:ox,y:oy,width:mapW,height:mapH,rx:2},clip);
+    const grad=svg('linearGradient',{id:'mapShade',x1:0,y1:0,x2:1,y2:1},defs);
+    svg('stop',{offset:'0%','stop-color':'#0c191c','stop-opacity':'.17'},grad);
+    svg('stop',{offset:'100%','stop-color':'#08151d','stop-opacity':'.62'},grad);
+    const field=svg('g',{'clip-path':'url(#mapClip)'});
+    image('forest',ox,oy,mapW,mapH,{preserveAspectRatio:'xMidYMid slice'},field);
+    svg('rect',{x:ox,y:oy,width:mapW,height:mapH,fill:'url(#mapShade)'},field);
+    if(state.mode!=='burn') drawTerrain(field);
+    svg('rect',{x:ox,y:oy,width:mapW,height:mapH,fill:'none',stroke:'#74948366','stroke-width':1});
+    for(let i=0;i<12;i++) {
+      const yy=oy+mapH*i/11;
+      svg('line',{x1:ox-4,y1:yy,x2:ox,y2:yy,stroke:'#8ba092'});
+      svg('line',{x1:ox+mapW,y1:yy,x2:ox+mapW+4,y2:yy,stroke:'#8ba092'});
+    }
+    if(state.mode==='burn') drawBurn(field);
+    else {
+      drawBaselines(field);
+      if(state.mode==='spot') drawSpot(field);
+      if(state.mode==='dispatch') drawDispatch(field);
+      if(state.mode==='radio') drawRadio(field);
+      drawTowers(field);
+    }
+    drawCompass();
+    if(state.keyboard && (state.mode==='spot' || state.mode==='radio')) {
+      const p=screen(state.cursor);
+      svg('circle',{cx:p.x,cy:p.y,r:10,fill:'#10161f99',stroke:'#f3e2b2'});
+      svg('path',{d:`M${p.x-15},${p.y}h30 M${p.x},${p.y-15}v30`,stroke:'#f3e2b2','stroke-width':1.5});
+    }
+    for(const k of ['A','B']) {
+      const handle=$('handle'+k);
+      handle.hidden=state.mode!=='dispatch' || state.step!==1;
+      if(!handle.hidden) {
+        let p=screen(along(towers[k],k==='A'?state.a:state.b,3));
+        p.x=Math.max(ox+22,Math.min(ox+mapW-22,p.x));
+        p.y=Math.max(oy+22,Math.min(oy+mapH-22,p.y));
+        handle.style.left=p.x+'px';
+        handle.style.top=p.y+'px';
+      }
+    }
+    document.querySelector('.side-plate').style.display=width-mapW>390 && state.mode!=='burn'?'':'none';
+    // Plumes may extend beyond the frame; instrument labels still belong above the artwork.
+    for(const label of $('map').querySelectorAll('text')) $('map').appendChild(label);
+    $('mapFooter').textContent=state.mode==='spot'?'LOOKOUT NETWORK / EXPLORE':state.mode==='dispatch'?
+      (state.arrived?'CREW ON SCENE':state.driving?'ENGINE EN ROUTE':'LOOKOUT NETWORK / DISPATCH'):state.mode==='radio'?
+      'RADIO FIX / AZIMUTH 040°':`BURN ${state.burn+1} / EDGE SURVEY`;
+  }
+  function drawTerrain(parent) {
+    for(const p of [A,B,C]) {
+      const s=screen(p);
+      for(let r=1;r<=6;r++) {
+        const rx=scale*(.6+r*.45),ry=scale*(.45+r*.36);
+        svg('ellipse',{cx:s.x+Math.sin(r)*3,cy:s.y,rx,ry,fill:'none',stroke:'#9caf793b','stroke-width':.8,
+          transform:`rotate(${-18+r*4} ${s.x} ${s.y})`},parent);
+      }
+    }
+    const lake=screen({x:11,y:11});
+    svg('ellipse',{cx:lake.x,cy:lake.y,rx:1.5*scale,ry:.5*scale,fill:'#203e51',stroke:'#7498aa','stroke-width':1.2},parent);
+    const lakeLabelY=state.mode==='dispatch' && state.step===1 && scale<8?lake.y-12:lake.y+4;
+    text(lake.x,lakeLabelY,'Blue Lake',{'text-anchor':'middle',class:'minor'},parent);
+    const p=screen({x:-4,y:2}),q=screen({x:20,y:-6});
+    svg('path',{d:`M${p.x},${p.y} C${p.x+4*scale},${p.y+5*scale} ${q.x-5*scale},${q.y-5*scale} ${q.x},${q.y}`,
+      fill:'none',stroke:'#6793b1','stroke-width':2},parent);
+    if(scale<14) text(ox+camera.w*scale+9,screen({x:12,y:-7.8}).y,'Cedar Creek',{class:'minor'});
+    else labelAt({x:12,y:-7.8},'Cedar Creek',0,0,{class:'minor','text-anchor':'end'},parent);
+    for(const points of [road1,road2]) {
+      path(points,{stroke:'#172019','stroke-width':6,'stroke-linejoin':'round'},parent);
+      path(points,{stroke:'#b2976b','stroke-width':2.5,'stroke-linejoin':'round'},parent);
+      path(points,{stroke:'#e8d8a5','stroke-width':.6,'stroke-dasharray':'2 6'},parent);
+    }
+  }
+  function drawBaselines(parent) {
+    line(A,B,{stroke:'#d9e5d2aa','stroke-width':1.2},parent);
+    const nearSmoke=state.mode==='spot' && state.fire && dist(state.fire,{x:B.x*.5,y:B.y*.5})<3;
+    if(scale<8 || nearSmoke) text(ox-10,screen({x:B.x*.5,y:B.y*.5}).y+4,'AB 14.0 mi',{'text-anchor':'end'});
+    else labelAt({x:B.x*.5,y:B.y*.5},'AB 14.0 mi',0,17,{'text-anchor':'middle'},parent);
+    if((state.mode==='spot' && state.showC) || (state.mode==='dispatch' && state.step>=4)) {
+      line(A,C,{stroke:'#b9d6cc99','stroke-width':1.1},parent);
+      if(scale<8) text(ox+camera.w*scale+10,screen({x:3,y:-5.2}).y,'AC 12.0 mi');
+      else labelAt({x:3,y:-5.2},'AC 12.0 mi',-13,0,{'text-anchor':'end'},parent);
+    }
+  }
+  function drawTowers(parent) {
+    const wide=width>650;
+    for(const [key,p] of Object.entries(towers)) {
+      const s=screen(p);
+      if(scale<8) image('tower',s.x-12,s.y-32,24,36,{'data-map-tower':key},parent);
+      else image('tower',s.x-17,s.y-46,34,52,{'data-map-tower':key},parent);
+      circleAt(p,.13,{fill:'#f4dfb7',stroke:'#10161f','stroke-width':1.5},parent);
+      const name=key==='A'?'Larkspur':key==='B'?'Granite Dome':'Owl Point';
+      const right=key==='B';
+      text(s.x+(right?-20:20),s.y+4,wide?`${key} / ${name}`:key,{'text-anchor':right?'end':'start'},parent);
+    }
+  }
+  function sight(key,angle,parent,length=65) {
+    const colors={A:'#5aa9ff',B:'#c9a0ff',C:'#5fd39a'};
+    const dash={A:'',B:'9 6',C:'2 6'};
+    const p=towers[key];
+    line(p,along(p,angle,length),{stroke:'#10161f88','stroke-width':5},parent);
+    line(p,along(p,angle,length),{stroke:colors[key],'stroke-width':2,'stroke-dasharray':dash[key]},parent);
+    const tag=screen(p);
+    if(scale<8) {
+      const left=key==='A';
+      text(left?ox-10:ox+camera.w*scale+10,Math.min(oy+camera.h*scale-4,tag.y+27),`${key} ${bearing(angle)}`,
+        {'text-anchor':left?'end':'start',class:'mono'});
+    } else {
+      text(tag.x+(key==='B'?-10:10),tag.y+27,`${key} ${bearing(angle)}`,
+        {'text-anchor':key==='B'?'end':'start',class:'mono'},parent);
+    }
+  }
+  function fillTriangle(p,parent) {
+    const points=[A,B,p].map(screen).map(s=>`${s.x},${s.y}`).join(' ');
+    svg('polygon',{points,fill:'#e7d7a811',stroke:'#e7d7a833','stroke-width':.6},parent);
+  }
+  function smoke(parent) {
+    if(!state.fire) return;
+    const s=screen(state.fire);
+    if(state.arrived && state.mode==='dispatch') {
+      svg('circle',{cx:s.x,cy:s.y,r:12,fill:'#183b2ccf',stroke:'#9ce8b7','stroke-width':2},parent);
+      text(s.x,s.y+4,'✓',{'text-anchor':'middle'},parent);
+      const labelX=Math.max(ox+60,Math.min(ox+camera.w*scale-60,s.x));
+      const labelY=s.y-oy<55?s.y+38:s.y-34;
+      text(labelX,labelY,'Crew on scene',{'text-anchor':'middle'},parent);
+    } else {
+      const plumeH=Math.max(12,Math.min(95,s.y-5));
+      image('smoke',s.x-plumeH*.21,s.y-plumeH,plumeH*.42,plumeH);
+      svg('circle',{cx:s.x,cy:s.y,r:7,fill:'#ff615029',stroke:'#ff9b73','stroke-width':1},parent);
+      svg('circle',{cx:s.x,cy:s.y,r:3.5,fill:'#ff7655'},parent);
+      if(state.mode==='dispatch') image('flame',s.x-13,s.y-32,26,34);
+      const nearLeft=s.x<ox+34;
+      text(s.x+(nearLeft?26:-26),Math.max(oy+15,s.y-16),'F',{'text-anchor':nearLeft?'start':'end'},parent);
+    }
+  }
+  function cCircle(t,parent) {
+    const ca=az(C,state.fire);
+    circleAt(C,t.cf,{fill:'none',stroke:'#6fdca6','stroke-width':1.4,'stroke-dasharray':'3 5'},parent);
+    sight('C',ca,parent);
+  }
+  function drawSpot(parent) {
+    if(!state.fire) return;
+    if(!state.fire.invalid) fillTriangle(state.fire,parent);
+    sight('A',state.a,parent);
+    sight('B',state.b,parent);
+    const t=target();
+    if(state.showC && t && !state.fire.invalid) cCircle(t,parent);
+    smoke(parent);
+  }
+  function drawDispatch(parent) {
+    if(!state.fire) return;
+    if(state.step>=2) fillTriangle(state.fire,parent);
+    sight('A',state.a,parent);
+    sight('B',state.b,parent);
+    if(state.showC) cCircle(target(),parent);
+    smoke(parent);
+    if(state.truck) {
+      const s=screen(state.truck);
+      image('truck',s.x-12,s.y-24,24,48,{transform:`rotate(${state.truck.angle} ${s.x} ${s.y})`});
+    }
+  }
+  function drawRadio(parent) {
+    const r=[9,7,6][state.call];
+    circleAt(B,r,{fill:'#c9a0ff07',stroke:'#d3b3f6','stroke-width':1.5,'stroke-dasharray':'7 5'},parent);
+    sight('A',40,parent);
+    if(scale<8) text(ox+camera.w*scale+10,screen({x:B.x,y:B.y-r}).y-7,`BT ${r}.0 mi`,{class:'mono'});
+    else labelAt({x:B.x,y:B.y-r},`BT ${r}.0 mi`,-6,-7,{'text-anchor':'end',class:'mono'},parent);
+    const ds=radioDistances();
+    for(const index of state.pins) {
+      const p=along(A,40,ds[index]);
+      circleAt(p,.22,{fill:'#ffc191',stroke:'#18241e','stroke-width':2},parent);
+      const near=ds[index]<12;
+      if(scale<8) {
+        const s=screen(p);
+        text(near?ox-10:ox+camera.w*scale+10,s.y+(near?-10:3),`AT ${fmt(ds[index])} mi`,
+          {'text-anchor':near?'end':'start'});
+      } else labelAt(p,`AT ${fmt(ds[index])} mi`,near?-12:12,near?-10:3,{'text-anchor':near?'end':'start'},parent);
+    }
+    if(state.radioDone && state.call===0) {
+      const far=along(A,40,ds[1]);
+      const shore={x:far.x,y:11.5};
+      const p=screen(far);
+      line(far,shore,{stroke:'#ffe0ac','stroke-width':2,'stroke-dasharray':'3 3'},parent);
+      svg('circle',{cx:p.x,cy:p.y,r:9,fill:'none',stroke:'#ffe0ac','stroke-width':2},parent);
+      const compact=scale<8;
+      text(compact?ox-10:p.x+14,compact?p.y+4:p.y+22,'Lake clue fits',
+        {'text-anchor':compact?'end':'start',class:'minor'});
+    }
+  }
+  function drawBurn(parent) {
+    const g=burnGeometry();
+    const points=[g.p,g.q,g.r].map(screen).map(s=>`${s.x},${s.y}`).join(' ');
+    const defs=$('map').querySelector('defs');
+    const clip=svg('clipPath',{id:'burnClip'},defs);
+    svg('polygon',{points},clip);
+    const s1=screen({x:camera.x,y:camera.y+camera.h});
+    image('scar',s1.x,s1.y,camera.w*scale,camera.h*scale,{'clip-path':'url(#burnClip)',preserveAspectRatio:'xMidYMid slice'},parent);
+    svg('polygon',{points,fill:'#f6c19b0a',stroke:'#ffd0a0','stroke-width':1.2},parent);
+    line(g.p,g.q,{stroke:'#f4d6a7','stroke-width':3},parent);
+    line(g.p,g.r,{stroke:'#f4d6a7','stroke-width':3},parent);
+    line(g.q,g.r,{stroke:'#101c22','stroke-width':4},parent);
+    line(g.q,g.r,{stroke:'#f4d6a7','stroke-width':2,'stroke-dasharray':'9 6'},parent);
+    for(const p of [g.p,g.q,g.r]) circleAt(p,.025,{fill:'#ffb27a',stroke:'#fff0cf','stroke-width':1.5},parent);
+    labelAt({x:g.a/2,y:0},`${g.a.toFixed(1)} mi`,0,23,{'text-anchor':'middle'},parent);
+    labelAt({x:g.r.x/2,y:g.r.y/2},`${g.b.toFixed(1)} mi`,-14,-5,{'text-anchor':'end'},parent);
+    const ang=g.c/2;
+    labelAt({x:.3*cos(ang),y:.3*sin(ang)},`${g.c}°`,0,0,{'text-anchor':'middle'},parent);
+    if(state.burnDone) labelAt({x:(g.q.x+g.r.x)/3,y:g.r.y/3},`${fmt(g.area)} sq mi`,0,0,{'text-anchor':'middle'},parent);
+    text(ox+12,oy+23,`BURN ${state.burn+1} / WALKED EDGES`,{class:'minor'},parent);
+  }
+  function drawCompass() {
+    const x=ox+camera.w*scale-18,y=oy+32;
+    svg('path',{d:`M${x},${y+13}v-24m-5,7l5,-7l5,7`,fill:'none',stroke:'#f1ead0','stroke-width':1.5});
+    text(x,y-18,'N',{'text-anchor':'middle',class:'minor'});
+    const miles=state.mode==='burn'?.5:5;
+    const bx=ox+12,by=oy+camera.h*scale-15,len=miles*scale;
+    svg('path',{d:`M${bx},${by-4}v8m0,-4h${len}m0,-4v8`,stroke:'#f3e5c9','stroke-width':2,fill:'none'});
+    text(bx+len/2,by-9,`${miles} mi`,{'text-anchor':'middle',class:'minor'});
+  }
+  for(const m of ['spot','dispatch','radio','burn']) $('m-'+m).onclick=()=>setMode(m);
+  for(let i=0;i<4;i++) $('smoke'+(i+1)).onclick=()=>pickSmoke(i);
+  $('newSmoke').onclick=()=>pickSmoke(4);
+  $('startOver').onclick=()=>{resetDispatch();hint('dispatch',()=>!state.fire);draw();};
+  $('sines').onclick=()=>{
+    state.showSines=!state.showSines;
+    $('sines').setAttribute('aria-expanded',state.showSines);
+    Curio.tone(420,.1,.02);
+    renderSpot();
+  };
+  $('towerC').onclick=()=>{
+    state.showC=!state.showC;
+    $('towerC').setAttribute('aria-pressed',state.showC);
+    if(state.showC && state.fire && !state.fire.invalid) hint('spotC',()=>state.showC && state.mode==='spot');
+    else if(state.showC) $('hint').textContent='Tap the map to place a smoke. Tower C can then check its distance.';
+    else $('hint').textContent='Tap another clearing, or press Show the law of sines to work this triangle.';
+    renderSpot();
+    draw();
+    Curio.tone(520,.14,.025);
+  };
+  $('check').onclick=checkDispatch;
+  $('showMe').onclick=showDispatch;
+  $('dispatchCrew').onclick=driveCrew;
+  $('angleHelp').onclick=()=>{
+    $('angleHelpText').hidden=!$('angleHelpText').hidden;
+    if(!$('angleHelpText').hidden) hint('help',()=>state.step===2);
+  };
+  $('clearMarks').onclick=()=>{
+    state.marks=[];
+    try {localStorage.removeItem('curio-flt-done');} catch {}
+    marks();
+    event('cleared');
+    $('hint').textContent='Saved check marks cleared. Choose a smoke to survey it.';
+  };
+  for(let i=0;i<3;i++) {
+    $('call'+(i+1)).onclick=()=>setCall(i);
+    $('count'+i).onclick=()=>chooseCount(i);
+    $('burn'+(i+1)).onclick=()=>setBurn(i);
+  }
+  $('noSpot').onclick=()=>{if(state.count===0 && radioDistances().length===0) solveRadio();};
+  $('checkArea').onclick=checkBurn;
+  $('showArea').onclick=()=>{
+    if(state.burnMisses<2) return;
+    const g=burnGeometry();
+    state.burnAssisted=true;
+    $('area').value=fmt(g.area);
+    $('acres').value=Math.round(g.area*640);
+    $('burnWork').innerHTML=`Area = ½(${g.a})(${g.b})sin ${g.c}° = ${g.area.toFixed(4)} sq mi.<br>Multiply by 640 for acres.`;
+    $('burnWork').hidden=false;
+    $('burnMsg').textContent='Guided example shown. Press Check area to compare with the shaded survey.';
+    $('hint').textContent=$('burnMsg').textContent;
+    event('show');
+  };
+  for(const id of ['angleA','angleB','angleF','distance','area','acres']) {
+    $(id).addEventListener('input',()=>{
+      V.dropQueued(q=>q.key==='miss');
+      if(state.mode==='burn' && state.burnDone) {
+        state.burnDone=false;
+        state.burnAssisted=true;
+        $('burnWork').hidden=true;
+        $('burnMsg').textContent='Values changed. Press Check area to check this guided example again.';
+        $('burnMsg').className='msg';
+        $('hint').textContent=$('burnMsg').textContent;
+        draw();
+      }
+    });
+    $(id).addEventListener('keydown',e=>{
+      if(e.key==='Enter') {e.preventDefault();state.mode==='burn'?checkBurn():checkDispatch();}
+    });
+  }
+  let dragging=null;
+  for(const key of ['A','B']) {
+    const el=$('handle'+key);
+    el.onpointerdown=e=>{
+      e.preventDefault();
+      el.focus({preventScroll:true});
+      dragging=key;
+      el.setPointerCapture(e.pointerId);
+    };
+    el.onpointermove=e=>{
+      if(dragging!==key) return;
+      const r=$('map').getBoundingClientRect();
+      const p=world(Math.max(0,Math.min(width,e.clientX-r.left)),Math.max(0,Math.min(height,e.clientY-r.top)));
+      turnSight(key,az(towers[key],p));
+    };
+    el.onpointerup=el.onpointercancel=()=>{dragging=null;};
+    el.onkeydown=e=>{
+      if(!e.key.startsWith('Arrow')) return;
+      e.preventDefault();
+      const change=(e.key==='ArrowRight' || e.key==='ArrowUp'?1:-1)*(e.shiftKey?10:1);
+      Curio.tone(300,.04,.01);
+      turnSight(key,state[key==='A'?'a':'b']+change);
+    };
+  }
+  $('map').onclick=e=>{
+    if(e.target.closest('[data-map-tower]')) return;
+    state.keyboard=false;
+    const r=$('map').getBoundingClientRect(),p=world(e.clientX-r.left,e.clientY-r.top);
+    if(p.x<-4 || p.x>20 || p.y<-14 || p.y>18) return;
+    if(state.mode==='spot') placeSmoke(p);
+    else if(state.mode==='radio') pinRadio(p);
+  };
+  $('map').onkeydown=e=>{
+    if(!['spot','radio'].includes(state.mode)) return;
+    const amount=e.shiftKey?1:.1;
+    const p=state.cursor;
+    if(e.key.startsWith('Arrow')) {
+      e.preventDefault();
+      state.keyboard=true;
+      if(e.key==='ArrowLeft') p.x=Math.max(-4,p.x-amount);
+      if(e.key==='ArrowRight') p.x=Math.min(20,p.x+amount);
+      if(e.key==='ArrowUp') p.y=Math.min(18,p.y+amount);
+      if(e.key==='ArrowDown') p.y=Math.max(-14,p.y-amount);
+      $('map').setAttribute('aria-label',`Map crosshair ${p.x.toFixed(1)} miles east, ${p.y.toFixed(1)} miles north. Enter to select.`);
+      draw();
+    }
+    if(e.key==='Enter' || e.key===' ') {
+      e.preventDefault();
+      state.mode==='spot'?placeSmoke({...p}):pinRadio({...p});
+    }
+  };
+  const observer=new ResizeObserver(draw);
+  observer.observe($('stage'));
+  Curio.onMotion(reduce=>{
+    if(reduce && finishAnimation) finishAnimation();
+    draw();
+  });
+  let initialized=false;
+  Curio.init({clips:"voice:*",rate:.9});
+  setMode('spot');
+  initialized=true;
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    triangle,intersection,randomSmoke,parseNumber,radioDistances,burnGeometry,screen,world,draw};
+})();
+</script>
+</body>
+</html>

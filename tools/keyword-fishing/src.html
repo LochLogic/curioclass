@@ -1,0 +1,1460 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Keyword Fishing · Curio Class</title>
+<meta name="description" content="Pick search keywords and watch which made-up pages bite. An offline lake puzzle for Grades 3-5.">
+<link rel="icon" href="data:,">
+<!--
+Keyword Fishing, Curio Class. Grades 3-5 library, AASL.Inquire I.A.1 and AASL.Curate IV.A.2.
+Students or teacher choose words in Levels and Free fishing. All pages are fictional.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. Uses the Curio Class kit. Sources and model notes: notes.md.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#eef6f3; --panel:#fff; --ink:#1d2a24; --muted:#4f5f57; --line:#cfe0d8;
+  --brand:#4d7c0f; --btn:#4d7c0f; --btn-line:#94b46d; --head-ink:#fff; --focus:#c2410c;
+}
+header :focus-visible {outline-color:#fff;}
+body {height:100dvh; min-height:0; overflow:hidden;}
+header {padding:10px 20px; gap:8px; border-bottom:3px solid #345b0c;}
+h1 {font-family:Georgia,serif; font-size:30px; letter-spacing:-.7px;}
+h1 small {font-size:13px; letter-spacing:.2px; opacity:1; margin-top:3px;}
+.seg button,.icon-btn {min-height:44px; min-width:44px; font-size:14px; padding:0 13px;}
+main {grid-template-columns:minmax(0, 1.5fr) minmax(420px, 1fr); gap:0; overflow:hidden;}
+.panel {grid-column:2; grid-row:1; padding:14px 18px 8px; gap:10px; border-left:4px solid #c4cfa6;
+  background:linear-gradient(90deg,#edead8 0,#fffdf4 4%,#fffdf7 90%,#f1eedc); overflow:auto;}
+.stage {grid-column:1; grid-row:1; min-height:0; isolation:isolate; background:#286d6c;}
+.lake-art {position:absolute; width:100%; height:100%; object-fit:cover; object-position:center; z-index:-3;}
+.water-wash {position:absolute; inset:18% 0 0; background:linear-gradient(transparent,#0c636c2b 40%,#073f5155); z-index:-2;}
+.water-glint {position:absolute; width:22%; height:4px; border-radius:50%; background:#d9f9df8c;
+  box-shadow:60px 38px 0 -1px #efffdc55,-35px 91px 0 -1px #efffdc44; pointer-events:none;
+  left:32%; top:40%; animation:glimmer 6s ease-in-out infinite alternate;}
+@keyframes glimmer {to {transform:translateX(18px); opacity:.35;}}
+.lake-label {position:absolute; top:16px; left:18px; color:#163f3a; background:#fffdf0e8; padding:8px 12px;
+  border:1px solid #fff9; border-radius:4px 14px 14px 4px; box-shadow:0 2px 8px #143c352b; font-size:12px;}
+.lake-label b {display:block; font:700 19px Georgia,serif; margin-bottom:2px;}
+.topic-key {position:absolute; bottom:14px; left:14px; right:14px; display:flex; gap:6px; flex-wrap:wrap;
+  pointer-events:none; justify-content:center;}
+.topic-key span {background:#fff9e9ef; border:1px solid #ddd4b3; border-radius:15px; padding:5px 8px; font-size:11px;}
+.topic-key i {display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:4px; border:1px solid #5558;}
+.line-in-lake {position:absolute; left:50%; top:0; height:50%; width:1px;
+  background:linear-gradient(#fff0,#fff9); pointer-events:none;}
+#bobber {position:absolute; left:50%; top:50%; width:84px; height:96px; transform:translate(-50%,-50%);
+  pointer-events:none; z-index:4;}
+#bobber img {width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 4px 4px #00353c66);
+  animation:bob 3.7s ease-in-out infinite alternate;}
+@keyframes bob {to {transform:translateY(5px) rotate(3deg);}}
+#nibble {position:absolute; top:-32px; left:50%; transform:translateX(-50%); white-space:nowrap;
+  background:#fffce9; color:#153f3c; border:2px solid #ddbd61; border-radius:40px; padding:9px 14px;
+  box-shadow:0 3px 0 #614c1c44; font-size:15px; font-weight:800;}
+#nibble strong {font:800 23px Georgia,serif;}
+.ripple {position:absolute; top:71%; left:10%; width:80%; height:20%; border:1px solid #e7fff4aa; border-radius:50%;
+  animation:ripple 3.7s ease-out infinite;}
+@keyframes ripple {from {transform:scale(.5); opacity:.8;} to {transform:scale(2); opacity:0;}}
+.fish {position:absolute; left:50%; top:50%; width:110px; height:72px; padding:0; border:0;
+  background:transparent; transform:translate(-50%,-50%); transition:left .55s ease-in-out,top .55s ease-in-out,opacity .3s;
+  z-index:2; border-radius:50%;}
+.fish:focus-visible {outline-offset:4px; z-index:12; background:#fff6;}
+.fish img {width:100%; height:58px; object-fit:contain; filter:drop-shadow(0 4px 2px #053b463d);
+  animation:swim 3s ease-in-out infinite alternate; pointer-events:none;}
+.stage .fish {width:var(--fish-hit-width,110px); height:var(--fish-hit-height,72px);}
+.stage .fish img {position:absolute; left:50%; top:0; margin-left:calc(var(--fish-art-width,110px) / -2);
+  width:var(--fish-art-width,110px); height:var(--fish-art-height,58px);}
+.fish .fin {pointer-events:none;}
+.stage.compact-school .fish .fish-title {display:none;}
+.stage.compact-school .fish:hover .fish-title,.stage.compact-school .fish:focus-visible .fish-title {display:block;}
+.stage.compact-school .lake-label b {display:none;}
+.stage .fish:hover {z-index:12;}
+#bobber.empty-cast::after {content:''; position:absolute; inset:20%; border:2px solid #fff5c4;
+  border-radius:50%; animation:empty-ring .8s ease-out forwards;}
+@keyframes empty-ring {from {transform:scale(.3); opacity:1;} to {transform:scale(2.5); opacity:0;}}
+.calm #bobber.empty-cast::after {animation:none; opacity:0;}
+@keyframes swim {from {transform:translateY(-2px) rotate(-2deg) scaleX(var(--face,1));}
+  to {transform:translateY(2px) rotate(2deg) scaleX(var(--face,1));}}
+.fish .fish-title {position:absolute; left:50%; top:41px; transform:translateX(-50%); width:var(--tag-width,126px);
+  font-size:12px; font-weight:600; line-height:1.1; color:#1d2a24; background:#fff7d6; border:1px solid #b7ac83;
+  border-radius:4px; box-shadow:0 2px 2px #0a39382b; padding:3px 4px; pointer-events:none;}
+.stage .fish .fish-title {left:var(--fish-title-left,50%);}
+.stage .fish[data-tag-above] .fish-title {top:auto; bottom:calc(100% - 8px);}
+.fish.away {opacity:.48; z-index:1;}
+.fish.away .fish-title {display:none;}
+.fish.away:hover,.fish.away:focus-visible {opacity:1; z-index:12;}
+.fish.away:hover .fish-title,.fish.away:focus-visible .fish-title {display:block;}
+.stage.tight.crowded .fish .fish-title {display:none;}
+.stage.tight.crowded .fish:hover .fish-title,.stage.tight.crowded .fish:focus-visible .fish-title {display:block;}
+.fish .fin {position:absolute; left:50%; top:3px; transform:translateX(-50%); white-space:nowrap;
+  background:#f2b632; color:#3b2c00;
+  border-radius:12px 12px 0 0; padding:3px 5px; font-size:10px; font-weight:800; display:none;}
+.stage.compact-school .fish .fin {top:auto; bottom:0;}
+.stage.compact-school .fish:hover .fin,.stage.compact-school .fish:focus-visible .fin {top:3px; bottom:auto;}
+.fish.answer .fin {display:block;}
+.fish.reeling {animation:reel .8s ease-in forwards; pointer-events:auto;}
+.reel-copy {position:fixed; z-index:80; pointer-events:none; object-fit:contain;
+  filter:drop-shadow(0 3px 2px #123e4a66);}
+.bucket.landed .bucket-heading img {animation:bucket-land .4s ease-out;}
+@keyframes bucket-land {40% {transform:rotate(-9deg) scale(1.15);} 75% {transform:rotate(5deg);}}
+.drag-ghost {position:fixed; pointer-events:none; z-index:100; background:#fff1bf; padding:10px 15px;
+  border:2px solid #9e7e35; border-radius:7px; box-shadow:0 6px 15px #273d2a55;}
+@keyframes reel {to {transform:translate(25px,-120px) rotate(-15deg) scale(.35); opacity:0;}}
+#bobber.casting img {animation:dip .8s ease-in-out;}
+@keyframes dip {30% {transform:translateY(25px) rotate(12deg);} 70% {transform:translateY(-15px);}}
+#tangle {position:absolute; left:50%; top:50%; width:210px; height:160px; border:1px solid #f7f3ba66;
+  border-radius:48%; transform:translate(-50%,-50%) rotate(14deg); pointer-events:none; z-index:0;
+  box-shadow:inset 0 0 0 12px #d7f5d912,0 0 0 20px #c4f8d510;}
+#tag-card {position:absolute; left:6%; right:6%; bottom:54px; padding:13px 52px 13px 15px;
+  background:#fffbed; color:var(--ink); border:2px solid #bca666; border-radius:7px;
+  box-shadow:0 8px 24px #063e4166; z-index:20;}
+#tag-card b {font:700 19px Georgia,serif; display:block;}
+#tag-card small {display:block; color:var(--muted); margin:5px 0; font-size:12px;}
+#tag-card p {margin:0; font-size:14px; line-height:1.3;}
+#close-tag {position:absolute; right:5px; top:5px; width:44px; height:44px; background:#fff5; border:0; font-size:22px;}
+.levels {display:grid; grid-template-columns:repeat(6,1fr); gap:6px; flex-shrink:0;}
+.level {position:relative; min-height:44px; background:#f3f3df; border:1px solid #b5bd93; border-radius:8px;
+  box-shadow:0 2px 0 #9f9f7b; font-weight:800; font-size:16px;}
+.level[aria-pressed=true] {background:#4d7c0f; color:#fff; border-color:#365b0b;}
+.level.solved::after {content:'🐟'; font-size:17px; position:absolute; right:2px; bottom:-3px;
+  filter:drop-shadow(0 1px 0 #fff);}
+.question {border-left:4px solid #b29348; padding:4px 0 4px 10px; flex-shrink:0;}
+#level-name {font:700 11px 'Segoe UI',sans-serif; letter-spacing:1px; text-transform:uppercase; color:#647047;}
+#question {font:700 23px/1.13 Georgia,serif; margin:4px 0 6px;}
+#goal {font-size:12px; margin:0; line-height:1.25;}
+#hint {font-size:14px; line-height:1.35; margin:0; min-height:57px; padding:8px 10px;
+  background:#edf2dc; border:1px solid #d8e2bd; border-radius:7px; flex-shrink:0;}
+.eyebrow {display:block; color:#46553a; font-size:11px; letter-spacing:1.2px; text-transform:uppercase;
+  font-weight:800; margin:0 0 5px;}
+.line-wrap {position:relative; flex-shrink:0;}
+#word-line {display:grid; grid-template-columns:repeat(4,1fr); gap:6px; position:relative; padding:4px 0 7px;}
+#word-line::before {content:''; position:absolute; top:48%; left:-12px; right:-12px; height:15px;
+  border-bottom:2px solid #9f8244; border-radius:0 0 50% 50%; pointer-events:none;}
+.slot {position:relative; min-width:0; min-height:44px; border:1px dashed #b9a87d; border-radius:6px;
+  background:#fffaf0; color:#65705a; font-size:14px; display:flex; align-items:center; justify-content:center;}
+button.slot {background:linear-gradient(#fffef6,#eee2b9); color:#2e3b2c; border:1px solid #a89057;
+  box-shadow:0 2px 0 #b3a06a; font-weight:700; display:block; padding:0 2px;
+  overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+button.slot[aria-pressed=true] {border:2px solid var(--focus); box-shadow:0 4px 0 #b3a06a; transform:translateY(-3px);}
+.wordbox {flex-shrink:0; position:relative;}
+#tiles {display:flex; gap:6px; flex-wrap:wrap;}
+.tile,.swap-tile {min-height:44px; min-width:44px; padding:0 12px; border:1px solid #bfa472; border-radius:7px;
+  background:linear-gradient(#fffef7,#f4ebd6); box-shadow:0 3px 0 #d2bf94; font-size:15px; font-weight:700;}
+.tile:hover:not(:disabled),.swap-tile:hover {background:#f9dfa0; transform:translateY(-1px);}
+.tile:disabled {opacity:.43; cursor:default; box-shadow:none;}
+.actions {display:grid; grid-template-columns:1.1fr 1fr 1.05fr .85fr; gap:6px; flex-shrink:0;}
+.actions button {min-height:48px; padding:3px 5px; border:1px solid #afb79a; border-radius:7px;
+  background:#fffef8; font-size:13px; font-weight:700; box-shadow:0 2px 0 #b8bf9f;}
+.actions #cast {background:linear-gradient(#ffe28a,#efbc37); border:2px solid #4d7c0f;
+  color:#3c3006; font-size:19px; box-shadow:0 3px 0 #a28125;}
+.actions button:disabled {opacity:.43; cursor:default;}
+#swaps {padding:10px; position:fixed; z-index:25; background:#fffdf1;
+  border:2px solid #b99546; box-shadow:0 5px 20px #5e572b44; border-radius:9px;}
+#swaps p {min-height:34px; width:calc(100% - 44px); margin:0 0 6px; font-size:13px;}
+#swap-options {display:flex; gap:6px; flex-wrap:wrap;}
+#swap-close {position:absolute; right:4px; top:4px; min-width:44px; min-height:44px;
+  margin:0; border:0; background:transparent;}
+.bucket {border-top:2px solid #d6ceb1; margin-top:2px; min-height:55px; flex:1; display:flex; flex-direction:column;}
+.bucket-heading {display:flex; align-items:center; gap:9px; min-height:51px;}
+.bucket-heading img {height:48px; width:48px; object-fit:contain;}
+.bucket-heading h2 {font:700 20px Georgia,serif; margin:0;}
+#bucket-count {font-size:12px; color:var(--muted); margin-left:auto; max-width:65%; overflow:hidden;
+  text-overflow:ellipsis; white-space:nowrap;}
+#bucket-list {overflow:auto; min-height:0; max-height:270px; padding-right:4px;}
+.bucket-item {padding:9px 8px; background:#fffdf4; border:1px solid #d9d4bb; border-radius:5px; margin:0 0 7px;}
+.bucket-item b {display:block; font:700 16px Georgia,serif;}
+.bucket-item small {display:block; font-size:11px; color:var(--muted); margin:4px 0;}
+.bucket-item p {font-size:12px; line-height:1.3; margin:0;}
+.bucket-item.answer {border-left:5px solid #e4b334; background:#fff9df;}
+.answer-label {display:block; color:#674b00; font-weight:800; font-size:12px; margin-bottom:4px;}
+.empty-bucket {font:italic 13px/1.4 Georgia,serif; color:var(--muted); padding:5px 0 12px; margin:0;}
+.footer {font-size:10px; color:var(--muted); display:flex; align-items:center; gap:10px; flex-shrink:0;}
+#clear-stickers {min-height:44px; border:0; background:transparent; text-decoration:underline; font-size:11px; margin-left:auto;}
+.drawer-tabs {display:grid; grid-template-columns:repeat(5,1fr); gap:3px; margin-bottom:8px;}
+.drawer-tabs button {min-height:44px; border:1px solid #a69b72; border-radius:5px; font-size:10px;
+  background:#e7e7d2; padding:2px 3px;}
+.drawer-tabs button[aria-pressed=true] {background:#4d7c0f; color:#fff;}
+#free-words {max-height:144px; overflow:auto; padding:0 3px 5px;}
+#free-words .tile {font-size:13px; padding:0 8px; margin:0 5px 5px 0;}
+.type-row {display:flex; gap:6px; margin:6px 0 0;}
+.type-row input {width:0; flex:1; min-height:44px; border:1px solid #929b7a; border-radius:5px; padding:6px 9px;
+  background:#fffef9; color:var(--ink); font:14px 'Segoe UI',sans-serif;}
+#add-word {min-height:44px; min-width:56px; border:1px solid #4d7c0f; background:#4d7c0f; color:#fff; border-radius:5px;}
+#unknown-note {font-size:12px; margin:4px 0 0; min-height:15px; color:#87420d;}
+dialog {border:2px solid #a3a779; border-radius:12px; max-width:310px; padding:20px; background:#fffdf1; color:var(--ink);}
+dialog::backdrop {background:#082e2b77;}
+dialog p {font-size:18px; margin:0 0 16px;}
+dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border-radius:6px; margin-right:8px; background:#e8edda;}
+.calm .water-glint,.calm .ripple,.calm #bobber img,.calm .fish img,.calm .fish.reeling {animation:none!important;}
+.calm .fish {transition:none!important;}
+.calm .fish img {transform:scaleX(var(--face,1));}
+@media(min-width:1600px) {
+  main {grid-template-columns:minmax(0,1.5fr) minmax(500px,1fr);}
+  .panel {padding:25px 30px 12px; gap:16px;}
+  #question {font-size:29px;} #hint {font-size:17px; min-height:72px;}
+  .tile {font-size:18px; min-height:50px; padding:0 17px;}
+  #word-line {grid-template-columns:repeat(4,1fr);} .slot {min-height:50px; font-size:17px;}
+  .actions button {min-height:58px; font-size:15px;} .actions #cast {font-size:23px;}
+  #bucket-list {max-height:350px;}
+}
+@media(max-height:760px) and (min-width:601px) {
+  header {padding:6px 14px;} h1 {font-size:26px;}
+  .panel {padding:8px 12px; gap:6px;} #question {font-size:21px;}
+  #hint {min-height:52px; padding:6px 8px; font-size:13px;}
+  .eyebrow {margin-bottom:2px;} #word-line {padding:2px 0 3px; gap:5px;}
+  .bucket-heading {min-height:44px;} .bucket-heading img {width:40px; height:40px;}
+  #bucket-list {max-height:132px;}
+}
+@media(max-width:1100px) and (min-width:601px) {
+  header {padding:6px 10px; gap:5px;} h1 {font-size:23px;} h1 small {font-size:11px;}
+  .seg button,.icon-btn {font-size:12px; padding:0 9px;}
+  main {grid-template-columns:minmax(0,1fr) 420px;}
+  .fish {width:90px;} .fish .fish-title {width:var(--tag-width,108px);}
+  .lake-label {top:9px; left:9px; padding:5px 8px;} .lake-label b {font-size:16px;}
+  .topic-key {display:none;}
+}
+@media(max-height:550px) and (min-width:601px) {
+  header {padding:3px 8px; border-bottom-width:2px; flex-wrap:nowrap;}
+  h1 {font-size:18px;} h1 small {display:none;}
+  .seg button,.icon-btn {padding:0 7px; font-size:11px;}
+  .panel {padding:4px 9px; gap:2px;}
+  .levels {gap:4px;} .level {font-size:14px;}
+  .question {padding:0 0 0 7px;} #level-name {font-size:10px; letter-spacing:.4px; line-height:1;}
+  #question {font-size:16px; margin:1px 0 2px;} #goal {font-size:10px; line-height:1.1;}
+  #hint {font-size:11px; min-height:34px; padding:3px 6px; line-height:1.2;}
+  .eyebrow {font-size:10px; line-height:1; margin:0; letter-spacing:.6px;}
+  #word-line {display:flex; gap:2px; padding:0; margin-top:4px;}
+  .slot {font-size:11px; flex:1 1 auto; min-width:44px;}
+  #tiles {gap:4px;} .tile {font-size:12px; padding:0 10px;}
+  .actions button {min-height:44px; font-size:11px;} .actions #cast {font-size:17px;}
+  .bucket {flex:none; min-height:0;} .bucket-heading {min-height:24px;}
+  .bucket-heading img {height:22px; width:22px;} .bucket-heading h2 {font-size:14px;}
+  #bucket-list {display:none;} .footer {min-height:44px;}
+  .fish {width:70px; height:44px;} .fish img {height:44px;}
+  .fish .fish-title {display:none; top:25px;}
+  .fish:focus-visible .fish-title,.fish:hover .fish-title {display:block;}
+  #bobber {width:54px; height:64px;} #nibble {font-size:11px; padding:5px 8px; top:-23px;}
+  #nibble strong {font-size:17px;}
+  .lake-label {font-size:10px;} .lake-label b {font-size:14px;}
+  #free-words {max-height:49px;} .drawer-tabs {margin-bottom:3px;}
+  .type-row {margin-top:2px;} #unknown-note {min-height:12px; font-size:10px;}
+  #tag-card {bottom:8px; padding:8px 56px 8px 10px;} #tag-card b {font-size:15px;}
+  #tag-card p {font-size:12px;}
+}
+@media(min-width:601px) and (max-width:999px) and (min-height:641px) {
+  main {grid-template-columns:minmax(0,1fr); grid-template-rows:280px minmax(0,1fr);}
+  .stage {grid-column:1; grid-row:1;}
+  .panel {grid-column:1; grid-row:2; padding:8px 14px; gap:5px; border-left:0; border-top:3px solid #c4cfa6;}
+  #word-line {grid-template-columns:repeat(8,1fr);}
+  #question {font-size:21px;} #hint {min-height:44px; font-size:13px;}
+  #free-words {max-height:98px;}
+  .fish {width:70px; height:44px;} .fish img {height:44px;}
+  .fish .fish-title {display:none; top:25px;}
+  .fish:focus-visible .fish-title,.fish:hover .fish-title {display:block;}
+  #bobber {width:55px; height:65px;}
+  #nibble {font-size:12px; padding:5px 9px; top:-24px;} #nibble strong {font-size:18px;}
+}
+@media(max-width:600px) {
+  body {overflow:auto; display:block; height:auto; min-height:100dvh;}
+  header {padding:5px 8px; gap:5px; justify-content:center;}
+  h1 {font-size:23px; width:100%; text-align:center; margin:0;}
+  h1 small {display:none;} .seg button,.icon-btn {font-size:11px; padding:0 7px;}
+  main {display:flex; flex-direction:column; overflow:visible;}
+  .stage {order:0; height:220px; flex:none;}
+  .panel {order:1; border:0; padding:8px 10px; gap:5px; overflow:visible;}
+  .levels {gap:5px;} .question {padding-top:0; padding-bottom:0;}
+  #question {font-size:19px; margin:2px 0 3px;} #level-name {font-size:10px;}
+  #goal {font-size:11px;} #hint {font-size:12px; min-height:44px; padding:6px 8px;}
+  .eyebrow {font-size:10px; margin:0;} #word-line {gap:4px; padding:2px 0 4px;}
+  .slot {font-size:12px;} #tiles {gap:4px;} .tile {font-size:13px; padding:0 11px;}
+  #word-line::before {left:0; right:0;}
+  .actions {gap:4px;} .actions button {font-size:10px; min-height:44px;} .actions #cast {font-size:18px;}
+  .bucket {flex:none;} #bucket-list {max-height:200px;}
+  .fish {width:70px; height:44px;} .fish img {height:44px;}
+  .fish .fish-title {display:none; top:25px; width:115px;}
+  .fish:focus-visible .fish-title,.fish:hover .fish-title {display:block;}
+  #bobber {width:50px; height:60px;} #nibble {font-size:11px; padding:4px 8px; top:-22px;}
+  #nibble strong {font-size:17px;} .lake-label {top:6px; left:6px; font-size:10px; padding:4px 7px;}
+  .lake-label b {font-size:13px;} .topic-key {display:none;} #tag-card {bottom:8px;}
+  #tag-card b {font-size:15px;} #tag-card p {font-size:12px;} #tangle {width:110px; height:95px;}
+  #free-words {max-height:98px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Keyword Fishing<small>Pick the words, watch what bites</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-levels" aria-pressed="true">🐟 Levels</button>
+    <button id="m-free" aria-pressed="false">≋ Free fishing</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel" aria-label="Fishing tackle">
+    <nav class="levels" id="levels" aria-label="Choose a level"></nav>
+    <section class="question" id="question-card">
+      <div id="level-name"></div>
+      <h2 id="question"></h2>
+      <p id="goal">Catch 3 fish or fewer, and one of them must answer the question.</p>
+    </section>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <section class="line-wrap" aria-label="Your line">
+      <span class="eyebrow">Your line <span id="slot-count">0 / 8</span></span>
+      <div id="word-line"></div>
+    </section>
+    <section class="wordbox" aria-label="Word box">
+      <span class="eyebrow" id="wordbox-label">Word box</span>
+      <div id="tiles"></div>
+      <div id="tackle" hidden>
+        <div class="drawer-tabs" id="drawers" role="group" aria-label="Tackle box drawers"></div>
+        <div id="free-words"></div>
+        <form class="type-row" id="type-form">
+          <input id="typed-word" aria-label="Type a word" placeholder="Type a word" maxlength="30" autocomplete="off" spellcheck="false">
+          <button id="add-word" type="submit">Add</button>
+        </form>
+        <p id="unknown-note" aria-live="polite"></p>
+      </div>
+    </section>
+    <div class="actions">
+      <button id="cast">Cast ↗</button>
+      <button id="remove" disabled>Take it off</button>
+      <button id="swap" disabled>Swap a word</button>
+      <button id="clear">Clear line</button>
+    </div>
+    <section class="bucket" aria-label="Bucket">
+      <div class="bucket-heading">
+        <img src="art:kf-bucket" alt="">
+        <h2>Bucket</h2><span id="bucket-count">Not cast yet</span>
+      </div>
+      <div id="bucket-list"><p class="empty-bucket">Your catch will land here. Tie on a word, then press Cast.</p></div>
+    </section>
+    <div class="footer"><span>Made-up pages · Stickers stay on this device.</span>
+      <button id="clear-stickers">Clear stickers</button></div>
+  </aside>
+  <div id="swaps" hidden role="dialog" aria-modal="false" aria-labelledby="swap-label">
+    <button id="swap-close" aria-label="Close swap choices">×</button>
+    <p id="swap-label">Swap for another word</p>
+    <div id="swap-options"></div>
+  </div>
+  <section class="stage" id="stage" aria-label="Lake of 30 made-up web pages">
+    <img class="lake-art" src="art:kf-lake-dock" alt="A misty morning lake with a wooden dock, reeds and lily pads.">
+    <div class="water-wash"></div><div class="water-glint"></div>
+    <div class="lake-label"><b>A lake of possibilities</b>30 fish. Each fish is a made-up page.<br>Only words in a page's list count.</div>
+    <div class="line-in-lake"></div><div id="tangle"></div>
+    <div id="bobber"><div class="ripple"></div><img src="art:kf-bobber" alt="">
+      <div id="nibble" aria-live="polite"><strong>30</strong> fish nibbling</div></div>
+    <div id="fish-layer"></div>
+    <section id="tag-card" hidden role="dialog" aria-modal="false" aria-labelledby="tag-title"
+      aria-describedby="tag-site tag-snippet">
+      <button id="close-tag" aria-label="Close page tag">×</button>
+      <b id="tag-title"></b><small id="tag-site"></small><p id="tag-snippet"></p>
+    </section>
+    <div class="topic-key" aria-hidden="true">
+      <span><i style="background:#f4a259"></i>Ocean & pets</span>
+      <span><i style="background:#8e7dbe"></i>Night & sports</span>
+      <span><i style="background:#e07a5f"></i>Earth & fire</span>
+      <span><i style="background:#5fa8d3"></i>Space & weather</span>
+    </div>
+  </section>
+</main>
+<dialog id="confirm-clear" aria-labelledby="confirm-label">
+  <p id="confirm-label">Clear all six stickers?</p>
+  <button id="clear-yes">Yes</button><button id="clear-no">No</button>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const POND = [
+  {
+    "id": "T1",
+    "title": "Sea Turtle Snack Guide",
+    "site": "Ocean Kids Notebook",
+    "snippet": "What sea turtles eat, with pictures of their food.",
+    "words": [
+      "sea",
+      "turtle",
+      "eat",
+      "food",
+      "jellyfish",
+      "seagrass",
+      "ocean",
+      "animal"
+    ]
+  },
+  {
+    "id": "T2",
+    "title": "What's on a Sea Turtle's Menu?",
+    "site": "Reef Ranger Club",
+    "snippet": "A sea turtle's diet, food by food.",
+    "words": [
+      "sea",
+      "turtle",
+      "eat",
+      "food",
+      "diet",
+      "ocean",
+      "animal"
+    ]
+  },
+  {
+    "id": "T3",
+    "title": "Sea Turtle Nests",
+    "site": "Shoreline Science Kids",
+    "snippet": "Where sea turtles dig nests and leave their eggs.",
+    "words": [
+      "sea",
+      "turtle",
+      "egg",
+      "nest",
+      "beach",
+      "sand",
+      "night",
+      "animal"
+    ]
+  },
+  {
+    "id": "T4",
+    "title": "Hatchling Race to the Waves",
+    "site": "Ocean Kids Notebook",
+    "snippet": "Baby sea turtles leaving the nest at night.",
+    "words": [
+      "sea",
+      "turtle",
+      "egg",
+      "hatchling",
+      "beach",
+      "night",
+      "ocean",
+      "animal"
+    ]
+  },
+  {
+    "id": "T5",
+    "title": "Turtle Pond Pets",
+    "site": "Pet Pals Corner",
+    "snippet": "Caring for a pet turtle in a tank.",
+    "words": [
+      "turtle",
+      "pet",
+      "pond",
+      "tank",
+      "food",
+      "eat",
+      "animal"
+    ]
+  },
+  {
+    "id": "T6",
+    "title": "Giant Tortoises of the Islands",
+    "site": "World Animal Atlas for Kids",
+    "snippet": "Where giant tortoises live.",
+    "words": [
+      "tortoise",
+      "turtle",
+      "giant",
+      "size",
+      "island",
+      "land",
+      "animal"
+    ]
+  },
+  {
+    "id": "T7",
+    "title": "Tortoise Size Chart",
+    "site": "Reptile Ruler",
+    "snippet": "How the size of tortoises compares, kind by kind.",
+    "words": [
+      "tortoise",
+      "turtle",
+      "size",
+      "weight",
+      "land",
+      "animal",
+      "chart"
+    ]
+  },
+  {
+    "id": "T8",
+    "title": "Turtle Racing Board Game",
+    "site": "Toy Shelf Reviews",
+    "snippet": "A review of a turtle race game.",
+    "words": [
+      "turtle",
+      "game",
+      "toy",
+      "race"
+    ]
+  },
+  {
+    "id": "T9",
+    "title": "Sea Turtle Stuffed Toy",
+    "site": "Toy Shelf Reviews",
+    "snippet": "A review of a plush sea turtle.",
+    "words": [
+      "sea",
+      "turtle",
+      "toy",
+      "plush"
+    ]
+  },
+  {
+    "id": "T10",
+    "title": "Tortoise Pet Care",
+    "site": "Pet Pals Corner",
+    "snippet": "Food and homes for pet tortoises.",
+    "words": [
+      "tortoise",
+      "turtle",
+      "pet",
+      "food",
+      "eat",
+      "animal"
+    ]
+  },
+  {
+    "id": "T11",
+    "title": "The Tortoise and the Hare",
+    "site": "Story Time Shelf",
+    "snippet": "The old fable, retold.",
+    "words": [
+      "tortoise",
+      "hare",
+      "story",
+      "race"
+    ]
+  },
+  {
+    "id": "B1",
+    "title": "How Bats Hunt at Night",
+    "site": "Night Sky Nature",
+    "snippet": "How bats use sound to find food in the dark.",
+    "words": [
+      "bat",
+      "animal",
+      "echolocation",
+      "sound",
+      "dark",
+      "night",
+      "insect",
+      "food",
+      "hunt"
+    ]
+  },
+  {
+    "id": "B2",
+    "title": "Fruit Bats and Their Food",
+    "site": "World Animal Atlas for Kids",
+    "snippet": "Bats that eat fruit.",
+    "words": [
+      "bat",
+      "animal",
+      "fruit",
+      "food",
+      "eat",
+      "tree"
+    ]
+  },
+  {
+    "id": "B3",
+    "title": "Bat Caves",
+    "site": "Night Sky Nature",
+    "snippet": "Where bats sleep in the day.",
+    "words": [
+      "bat",
+      "animal",
+      "cave",
+      "dark",
+      "sleep"
+    ]
+  },
+  {
+    "id": "B4",
+    "title": "Picking a Baseball Bat",
+    "site": "Ballpark Basics",
+    "snippet": "Choosing a bat for your size.",
+    "words": [
+      "bat",
+      "baseball",
+      "wood",
+      "size",
+      "sport"
+    ]
+  },
+  {
+    "id": "B5",
+    "title": "Cricket Bats Explained",
+    "site": "Ballpark Basics",
+    "snippet": "The flat bat used in the sport of cricket.",
+    "words": [
+      "bat",
+      "cricket",
+      "sport",
+      "wood"
+    ]
+  },
+  {
+    "id": "B6",
+    "title": "Paper Bat Craft",
+    "site": "Craft Time Corner",
+    "snippet": "Fold and cut a paper bat.",
+    "words": [
+      "bat",
+      "paper",
+      "craft"
+    ]
+  },
+  {
+    "id": "B7",
+    "title": "Spooky Bat Stories",
+    "site": "Story Time Shelf",
+    "snippet": "Short stories with bats in them.",
+    "words": [
+      "bat",
+      "story",
+      "night",
+      "spooky"
+    ]
+  },
+  {
+    "id": "V1",
+    "title": "Why Volcanoes Erupt",
+    "site": "Rock Hound Kids",
+    "snippet": "What happens inside a volcano before it erupts.",
+    "words": [
+      "volcano",
+      "erupt",
+      "magma",
+      "lava",
+      "pressure",
+      "earth"
+    ]
+  },
+  {
+    "id": "V2",
+    "title": "Volcano in a Bottle",
+    "site": "Science Fair Station",
+    "snippet": "A baking soda volcano project.",
+    "words": [
+      "volcano",
+      "project",
+      "baking",
+      "soda",
+      "erupt",
+      "experiment"
+    ]
+  },
+  {
+    "id": "V3",
+    "title": "Island Volcano Walks",
+    "site": "Island Trails for Kids",
+    "snippet": "Trails near island volcanoes.",
+    "words": [
+      "volcano",
+      "lava",
+      "island",
+      "erupt",
+      "trail"
+    ]
+  },
+  {
+    "id": "V4",
+    "title": "Volcano Park Trip Planner",
+    "site": "Family Trip Board",
+    "snippet": "Planning a visit to a volcano park.",
+    "words": [
+      "volcano",
+      "park",
+      "trip",
+      "map"
+    ]
+  },
+  {
+    "id": "V5",
+    "title": "Lava Lamp How-To",
+    "site": "Craft Time Corner",
+    "snippet": "Make a lamp with oil and water.",
+    "words": [
+      "lava",
+      "lamp",
+      "craft",
+      "oil",
+      "water"
+    ]
+  },
+  {
+    "id": "M1",
+    "title": "Mars, the Cold Red Planet",
+    "site": "Space Scouts Notebook",
+    "snippet": "What the weather and temperature are like on Mars.",
+    "words": [
+      "mars",
+      "planet",
+      "temperature",
+      "cold",
+      "weather",
+      "space"
+    ]
+  },
+  {
+    "id": "M2",
+    "title": "Rovers on Mars",
+    "site": "Space Scouts Notebook",
+    "snippet": "Robots that drive on Mars.",
+    "words": [
+      "mars",
+      "planet",
+      "rover",
+      "robot",
+      "space"
+    ]
+  },
+  {
+    "id": "M3",
+    "title": "Mars, Roman God of War",
+    "site": "Myth Map for Kids",
+    "snippet": "The myth behind the planet's name.",
+    "words": [
+      "mars",
+      "myth",
+      "rome",
+      "god",
+      "war"
+    ]
+  },
+  {
+    "id": "M4",
+    "title": "Mars Street Bakery Menu",
+    "site": "Mars Street Bakery",
+    "snippet": "A made-up bakery's cakes.",
+    "words": [
+      "mars",
+      "bakery",
+      "food",
+      "menu",
+      "cake"
+    ]
+  },
+  {
+    "id": "M5",
+    "title": "Weather on Other Planets",
+    "site": "Space Scouts Notebook",
+    "snippet": "Weather on the planets, compared.",
+    "words": [
+      "planet",
+      "weather",
+      "temperature",
+      "space"
+    ]
+  },
+  {
+    "id": "M6",
+    "title": "Coldest Places on Earth",
+    "site": "Polar Pals",
+    "snippet": "The coldest places on our planet.",
+    "words": [
+      "cold",
+      "temperature",
+      "ice",
+      "earth"
+    ]
+  },
+  {
+    "id": "M7",
+    "title": "Planet Mars Coloring Page",
+    "site": "Space Scouts Notebook",
+    "snippet": "A page to print and color.",
+    "words": [
+      "mars",
+      "planet",
+      "coloring",
+      "art"
+    ]
+  }
+];
+  const LITTLE = 'a an the what do does how is are why where when of to in on at it their they get can'.split(' ');
+  const LEVELS = [
+    {name:'Little words', question:'What do sea turtles eat?', tiles:'what do sea turtles eat', answers:['T1','T2']},
+    {name:'Too many', question:'How do bats find food in the dark?', tiles:'how do bats find food in the dark', answers:['B1']},
+    {name:'Too few', question:'Where do sea turtles lay their eggs?',
+      tiles:'sea turtles lay eggs beach night Florida sand', answers:['T3'], full:true},
+    {name:'Same idea, other word', question:'How big do tortoises grow?', tiles:'how big do tortoises grow', answers:['T7']},
+    {name:'Two meanings', question:'How cold does it get on Mars?', tiles:'how cold does it get on Mars', answers:['M1']},
+    {name:'Put it together', question:'Why does lava come out of a volcano?', tiles:'why does lava come out of a volcano', answers:['V1']}
+  ];
+  const SWAPS = {big:['size','large','huge'], grow:['get'], cold:['temperature','freezing'], come:['erupt','burst'],
+    eat:['food','diet'], lay:['nest'], eggs:['nest','hatchling'], dark:['night'], find:['hunt']};
+  const L = {
+    'w-levels':'Tap word tiles to tie them on your line. Watch which fish swim to your bobber. Then press Cast.',
+    'w-free':'Free fishing. Tap any word in the tackle box, or type your own and press Add, and watch the lake.',
+    swap:'Stuck? Tap a word on your line, then press Swap a word.',
+    tooMany:'Too many to read! Tap a word tile that says what you want to know.',
+    none:'Nothing bit. Tap a word on your line to select it.',
+    little:'Little words are on every page. Tap the tiles that name your topic.',
+    noAnswer:'Small catch, but none of these answers the question. Tap a word on your line to select it.',
+    solved:'Good catch! That one answers the question. Tap another level number to fish again.',
+    unknown:'No fish here know that word. Tap it on your line to select it.',
+    full:'Your line is full. Tap a word on your line to select it.',
+    cast:'Press Cast to reel in the fish at your bobber.',
+    select:'Tap a word tile to tie it on your line.',
+    tooManyFull:'Your catch has too many fish and your line is full. Tap a word on your line to select it.',
+    swapPick:'Tap a replacement word to swap it onto your line.',
+    remove:'Press Take it off to remove the selected word.',
+    same:'Same fish as before. Little words don\'t change the catch.',
+    empty:'Tap a word tile to tie it on your line first.',
+    freeCatch:'Your catch is in the bucket. Change a word and press Cast to try again.',
+    noSwaps:'No swaps for that word. Press Take it off, or pick another word.'
+  };
+  const EVENT_IDS = new Set(['tooMany','none','little','noAnswer','solved','unknown','freeCatch','tooManyFull']);
+  const state = {mode:'levels', level:0, words:[], selected:-1, drawer:0, bucket:[], castWords:[],
+    castLevel:0, castMode:'levels', casting:false, revision:0, generation:0, swaps:false, tag:null, solved:[]};
+  try {
+    const saved = JSON.parse(localStorage.getItem('kf-levels') || '[]');
+    if (Array.isArray(saved)) state.solved = [...new Set(saved.filter(n => Number.isInteger(n) && n >= 0 && n < 6))];
+  } catch {}
+  const V = Curio.voice({lines:L, scope:() => state.mode, hint:false,
+    read:() => [ $('hint').textContent, state.tag ? tagText(POND.find(p => p.id === state.tag)) :
+      state.mode === 'levels' ? LEVELS[state.level].question : '' ].filter(Boolean),
+    welcome:() => state.words.length || $('confirm-clear').open ? null :
+      ['w-' + state.mode, {valid:() => !state.words.length && !$('confirm-clear').open}],
+    speaks:'#cast'});
+  const fishButtons = [];
+  const art = {T:'art:kf-fish-ocean', B:'art:kf-fish-night', V:'art:kf-fish-earth', M:'art:kf-fish-space'};
+  let castTimer = 0;
+  const reelCopies = [];
+  const sameWord = (a,b) => {
+    a = a.toLowerCase();
+    b = b.toLowerCase();
+    return a === b || a === b+'s' || a === b+'es' || b === a+'s' || b === a+'es';
+  };
+  const fishCatch = words => {
+    if (typeof words === 'string') words = words.trim().split(/\s+/).filter(Boolean);
+    return POND.filter(p => words.every(w => [...p.words,...LITTLE].some(t => sameWord(w,t))));
+  };
+  const isLittle = word => LITTLE.includes(word.toLowerCase());
+  const duplicate = (word, except=-1) => state.words.some((w,i) => i !== except && sameWord(w,word));
+  const hint = text => { $('hint').textContent = text; };
+  const speak = (key, options={}) => V.say(key,
+    {kind:EVENT_IDS.has(key) ? 'event' : 'how',hint:false,now:true,...options});
+  const how = (key, options={}) => {
+    if (!V.heard(key)) V.how(key, {hint:false,...options});
+  };
+  function beep() { Curio.tone(440 + fishCatch(state.words).length*10, .07, .045, 'sine'); }
+  function save() {
+    try { localStorage.setItem('kf-levels', JSON.stringify(state.solved)); } catch {}
+  }
+  function paintStickers() {
+    LEVELS.forEach((l,i) => {
+      const b = $('level-' + i);
+      b.classList.toggle('solved',state.solved.includes(i));
+      b.setAttribute('aria-pressed',state.level === i);
+      b.setAttribute('aria-label','Level ' + (i+1) + ': ' + l.name + (state.solved.includes(i) ? ', solved' : ''));
+    });
+  }
+  function closeSwaps(restore=false) {
+    state.swaps = false;
+    $('swaps').hidden = true;
+    if (restore && !$('swap').disabled) $('swap').focus({preventScroll:true});
+  }
+  function invalidateCast() {
+    if (state.casting) {
+      $('bucket-count').textContent = state.castWords.length ? state.bucket.length + ' in last catch' : 'Not cast yet';
+    }
+    clearTimeout(castTimer);
+    state.generation++;
+    state.casting = false;
+    $('bobber').classList.remove('casting');
+    $('bobber').classList.remove('empty-cast');
+    fishButtons.forEach(b => b.classList.remove('reeling'));
+    reelCopies.splice(0).forEach(node => node.remove());
+    document.querySelector('.bucket').classList.remove('landed');
+  }
+  function changeLine() {
+    invalidateCast();
+    state.revision++;
+    // A result no longer describes this line. Read still keeps priority:
+    // it has no V.playing item, so editing does not hush an active Read.
+    if (V.playing && [...EVENT_IDS].some(key => L[key] === V.playing)) V.hush();
+    else V.dropQueued();
+    closeSwaps();
+    $('unknown-note').textContent = '';
+    renderLine();
+    updateTiles();
+    aimFish();
+    hint(state.words.length === 8 ? L.full : state.words.length ? L.cast : L.empty);
+    beep();
+  }
+  function addWord(word) {
+    word = word.trim();
+    if (!word || duplicate(word)) return false;
+    if (state.words.length === 8) {
+      hint(L.full);
+      how('full');
+      return false;
+    }
+    const before = fishCatch(state.words).length;
+    state.words.push(word);
+    state.selected = -1;
+    changeLine();
+    if (isLittle(word) && fishCatch(state.words).length === before) {
+      hint(L.same);
+      how('same');
+    } else {
+      how('cast',{valid:() => state.words.length > 0 && state.words.length < 8, needs:'#cast'});
+    }
+    return true;
+  }
+  function renderLine() {
+    const focused = document.activeElement;
+    const oldIndex = focused && focused.dataset.slot;
+    const frag = document.createDocumentFragment();
+    for (let i=0; i<8; i++) {
+      const filled = i < state.words.length;
+      const el = document.createElement(filled ? 'button' : 'span');
+      el.className = 'slot';
+      if (filled) {
+        el.textContent = state.words[i];
+        el.title = state.words[i];
+        el.dataset.slot = i;
+        el.id = 'slot-' + i;
+        el.setAttribute('aria-pressed',i === state.selected);
+        el.setAttribute('aria-label','Select ' + state.words[i] + ' on your line');
+        el.onclick = () => selectWord(i);
+      } else {
+        el.textContent = '·';
+        el.setAttribute('aria-hidden','true');
+      }
+      frag.append(el);
+    }
+    $('word-line').replaceChildren(frag);
+    $('slot-count').textContent = state.words.length + ' / 8';
+    $('remove').disabled = state.selected < 0;
+    $('swap').disabled = state.selected < 0 || !SWAPS[state.words[state.selected]?.toLowerCase()];
+    if (oldIndex !== undefined) {
+      const next = $('slot-' + Math.min(+oldIndex,state.words.length-1));
+      (next || $('cast')).focus({preventScroll:true});
+    }
+  }
+  function selectWord(i) {
+    state.selected = i;
+    closeSwaps();
+    // Selection changes attributes on persistent word nodes, preserving pointer and focus.
+    $('word-line').querySelectorAll('button').forEach((b,j) => b.setAttribute('aria-pressed',j === i));
+    $('remove').disabled = false;
+    $('swap').disabled = !SWAPS[state.words[i].toLowerCase()];
+    hint($('swap').disabled ? L.noSwaps : 'Press Take it off, or press Swap a word to try another word.');
+    if (!$('swap').disabled) how('swap',{valid:() => state.selected === i && !state.swaps,needs:'#swap'});
+    else how('remove',{valid:() => state.selected === i,needs:'#remove'});
+    Curio.tone(610,.045,.025);
+  }
+  function removeWord() {
+    if (state.selected < 0) return;
+    const focusRemove = document.activeElement === $('remove');
+    state.words.splice(state.selected,1);
+    state.selected = -1;
+    changeLine();
+    if (focusRemove) ($('slot-0') || $('cast')).focus({preventScroll:true});
+  }
+  function showSwaps() {
+    const word = state.words[state.selected];
+    const list = SWAPS[word?.toLowerCase()];
+    if (!list) return;
+    state.swaps = true;
+    $('swaps').hidden = false;
+    $('swap-label').textContent = 'Swap “' + word + '” for:';
+    $('swap-options').replaceChildren();
+    list.forEach(w => {
+      const b = document.createElement('button');
+      b.textContent = w;
+      b.className = 'swap-tile';
+      b.disabled = duplicate(w,state.selected);
+      b.onclick = () => {
+        const i = state.selected;
+        state.words[i] = w;
+        changeLine();
+        selectWord(i);
+        $('slot-' + i).focus({preventScroll:true});
+      };
+      $('swap-options').append(b);
+    });
+    positionSwaps();
+    hint(L.swapPick);
+    how('swapPick',{valid:() => state.swaps});
+    $('swap-options').querySelector('button:not(:disabled)')?.focus({preventScroll:true});
+  }
+  function positionSwaps() {
+    if (!state.swaps) return;
+    const anchor = $('swap').getBoundingClientRect();
+    const width = Math.min(300,innerWidth-20);
+    $('swaps').style.width = width + 'px';
+    const height = $('swaps').offsetHeight;
+    const left = Math.max(10,Math.min(innerWidth-width-10,anchor.right-width));
+    const below = anchor.bottom+8;
+    const top = below+height <= innerHeight-8 ? below : anchor.top-height-8;
+    $('swaps').style.left = left + 'px';
+    $('swaps').style.top = Math.max(8,Math.min(innerHeight-height-8,top)) + 'px';
+  }
+  addEventListener('resize',positionSwaps);
+  document.querySelector('.panel').addEventListener('scroll',positionSwaps);
+  function makeTile(word) {
+    const b = document.createElement('button');
+    b.textContent = word;
+    b.dataset.word = word;
+    b.className = 'tile';
+    b.onclick = () => {
+      const hadFocus = document.activeElement === b;
+      const added = addWord(word);
+      // The tied word now occupies the next place in reading order.
+      if (added && hadFocus) $('slot-' + (state.words.length-1))?.focus({preventScroll:true});
+    };
+    return b;
+  }
+  function renderTiles() {
+    $('tiles').replaceChildren();
+    if (state.mode === 'levels') LEVELS[state.level].tiles.split(' ').forEach(w => $('tiles').append(makeTile(w)));
+    updateTiles();
+  }
+  function updateTiles() {
+    document.querySelectorAll('.tile').forEach(b => { b.disabled = state.words.length === 8 || duplicate(b.dataset.word); });
+  }
+  function renderDrawer() {
+    const groups = ['T','B','V','M'];
+    const words = state.drawer === 4 ? LITTLE : [...new Set(POND.filter(p => p.id[0] === groups[state.drawer]).flatMap(p => p.words))].sort();
+    $('free-words').replaceChildren(...words.map(makeTile));
+    $('drawers').querySelectorAll('button').forEach((b,i) => b.setAttribute('aria-pressed',state.drawer === i));
+    updateTiles();
+  }
+  function resetBucket() {
+    state.bucket = [];
+    state.castWords = [];
+    $('bucket-count').textContent = 'Not cast yet';
+    $('bucket-list').innerHTML = '<p class="empty-bucket">Your catch will land here. Tie on a word, then press Cast.</p>';
+  }
+  function openLevel(i, fromMode=false) {
+    if (!fromMode && state.mode === 'levels' && state.level === i) return;
+    V.hush();
+    invalidateCast();
+    state.level = i;
+    state.words = LEVELS[i].full ? LEVELS[i].tiles.split(' ') : [];
+    state.selected = -1;
+    state.revision++;
+    closeSwaps();
+    closeTag(false);
+    resetBucket();
+    $('level-name').textContent = 'Level ' + (i+1) + ' · ' + LEVELS[i].name;
+    $('question').textContent = LEVELS[i].question;
+    paintStickers();
+    renderLine();
+    renderTiles();
+    aimFish();
+    hint(LEVELS[i].full ? 'Nothing is nibbling. Tap a word on your full line to select it.' : L['w-levels']);
+    if (!fromMode) {
+      if (LEVELS[i].full) how('full',{valid:() => state.level === i && state.words.length === 8 && state.selected < 0});
+      else if (i >= 2) how('select',{valid:() => state.level === i && !state.words.length});
+      else V.welcome();
+    }
+  }
+  function setMode(mode) {
+    if (mode === state.mode && $('slot-count').textContent !== '0 / 8') return;
+    if (mode !== 'levels' && mode !== 'free') return;
+    V.hush();
+    invalidateCast();
+    state.mode = mode;
+    state.words = [];
+    state.selected = -1;
+    state.revision++;
+    closeSwaps();
+    closeTag(false);
+    $('m-levels').setAttribute('aria-pressed',mode === 'levels');
+    $('m-free').setAttribute('aria-pressed',mode === 'free');
+    $('levels').hidden = mode !== 'levels';
+    $('question-card').hidden = mode !== 'levels';
+    $('tiles').hidden = mode !== 'levels';
+    $('tackle').hidden = mode !== 'free';
+    $('wordbox-label').textContent = mode === 'free' ? 'Tackle box' : 'Word box';
+    $('clear-stickers').hidden = mode === 'free';
+    if (mode === 'levels') openLevel(state.level,true);
+    else {
+      renderLine();
+      renderDrawer();
+      resetBucket();
+      aimFish();
+      hint(L['w-free']);
+      $('unknown-note').textContent = '';
+    }
+    V.welcome();
+  }
+  function aimFish() {
+    const matches = fishCatch(state.words);
+    const ids = new Set(matches.map(p => p.id));
+    const crowded = matches.length > 12;
+    const stageRect = $('stage').getBoundingClientRect();
+    const width = stageRect.width;
+    const height = stageRect.height;
+    if (!width || !height) return;
+    // Every page keeps its own 44-pixel target, including the rejected pages.
+    // Rich cutouts can overhang their compact targets without stealing a neighbour's tap.
+    const columns = Math.max(1,Math.floor((width-12)/Math.min(132,Math.max(44,(width-12)/6))));
+    const maximumColumns = Math.max(1,Math.floor((width-12)/44));
+    let fittedColumns = columns;
+    while (Math.ceil(32/fittedColumns)*44 > height-26 && fittedColumns < maximumColumns) fittedColumns++;
+    const rows = Math.ceil(32/fittedColumns);
+    const top = Math.max(22,Math.min(height*.23,height-rows*44-4));
+    const cellWidth = (width-12)/fittedColumns;
+    const bottom = cellWidth >= 120 && height >= 600 ? 48 : 4;
+    const cellHeight = (height-top-bottom)/rows;
+    const hitWidth = Math.max(44,Math.min(110,cellWidth-6));
+    const hitHeight = Math.max(44,Math.min(72,cellHeight-4));
+    $('stage').style.setProperty('--fish-hit-width',hitWidth+'px');
+    $('stage').style.setProperty('--fish-hit-height',hitHeight+'px');
+    const compact = cellWidth < 120 || cellHeight < 72;
+    $('stage').classList.toggle('compact-school',compact);
+    $('stage').style.setProperty('--fish-art-width',(compact ? 70 : 110)+'px');
+    $('stage').style.setProperty('--fish-art-height',(compact ? 44 : 58)+'px');
+    const spots = [];
+    for (let row=0; row<rows; row++) {
+      for (let col=0; col<fittedColumns; col++) {
+        const x = 6+cellWidth*(col+.5);
+        const y = top+cellHeight*(row+.5);
+        // Leave the bobber and its count a window whenever there is room.
+        const distance = Math.hypot((x-width/2)/width,(y-height/2)/height);
+        spots.push({x,y,distance});
+      }
+    }
+    spots.sort((a,b) => a.distance-b.distance || a.y-b.y || a.x-b.x);
+    // Keep a window for the bobber and its count without hiding a page target.
+    spots.splice(0,Math.min(4,spots.length-POND.length));
+    const nearSpots = spots.slice(0,matches.length);
+    const farSpots = spots.slice(matches.length).sort((a,b) => b.distance-a.distance);
+    let near = 0;
+    let far = 0;
+    const currentX = fishButtons.map(b => {
+      const r = b.getBoundingClientRect();
+      return (r.left+r.width/2-stageRect.left)/stageRect.width*100;
+    });
+    $('stage').classList.toggle('crowded',crowded);
+    $('tangle').hidden = !crowded;
+    $('nibble').innerHTML = '<strong>' + matches.length + '</strong> ' + (matches.length === 1 ? 'fish nibbling' : 'fish nibbling');
+    fishButtons.forEach((b,i) => {
+      const match = ids.has(POND[i].id);
+      b.classList.toggle('away',!match);
+      const spot = match ? nearSpots[near++] : farSpots[far++];
+      const x = spot.x/width*100;
+      const y = spot.y/height*100;
+      const tagWidth = parseFloat(getComputedStyle(b).getPropertyValue('--tag-width')) || 126;
+      const titleX = Math.max(tagWidth/2+4,Math.min(width-tagWidth/2-4,spot.x));
+      b.style.setProperty('--fish-title-left',(hitWidth/2+titleX-spot.x)+'px');
+      b.toggleAttribute('data-tag-above',compact && spot.y+hitHeight/2+38 > height);
+      const before = currentX[i];
+      b.style.setProperty('--face',x < before ? -1 : 1);
+      b.style.left = x + '%';
+      b.style.top = y + '%';
+    });
+    syncAnswerFins();
+  }
+  function syncAnswerFins() {
+    const current = state.mode === 'levels' && state.castMode === 'levels' && state.level === state.castLevel &&
+      JSON.stringify(state.words) === JSON.stringify(state.castWords);
+    fishButtons.forEach((b,i) => b.classList.toggle('answer',current &&
+      state.bucket.some(p => p.id === POND[i].id) && LEVELS[state.level].answers.includes(POND[i].id)));
+  }
+  function tagText(p) { return p.title + '. ' + p.site + '. ' + p.snippet; }
+  function openTag(id) {
+    const p = POND.find(p => p.id === id);
+    state.tag = id;
+    $('tag-title').textContent = p.title;
+    $('tag-site').textContent = p.site + ' · Made-up page';
+    $('tag-snippet').textContent = p.snippet;
+    $('tag-card').hidden = false;
+    $('close-tag').focus({preventScroll:true});
+    Curio.tone(740,.05,.025);
+  }
+  function closeTag(restore=true) {
+    const id = state.tag;
+    state.tag = null;
+    $('tag-card').hidden = true;
+    if (restore && id) $('fish-' + id).focus({preventScroll:true});
+  }
+  function renderBucket() {
+    const currentLevel = LEVELS[state.castLevel];
+    $('bucket-list').replaceChildren();
+    $('bucket-count').textContent = state.bucket.length + ' caught · ' + state.castWords.join(' ');
+    $('bucket-count').title = $('bucket-count').textContent;
+    for (const p of state.bucket.slice(0,12)) {
+      const answers = state.castMode === 'levels' && currentLevel.answers.includes(p.id);
+      const item = document.createElement('article');
+      item.className = 'bucket-item' + (answers ? ' answer' : '');
+      if (answers) {
+        const label = document.createElement('span');
+        label.className = 'answer-label';
+        label.textContent = '◀ This one answers it!';
+        item.append(label);
+        $('fish-' + p.id).classList.add('answer');
+      }
+      const title = document.createElement('b');
+      title.textContent = p.title;
+      const site = document.createElement('small');
+      site.textContent = p.site;
+      const snippet = document.createElement('p');
+      snippet.textContent = p.snippet;
+      item.append(title,site,snippet);
+      $('bucket-list').append(item);
+    }
+    if (state.bucket.length > 12) {
+      const p = document.createElement('p');
+      p.className = 'empty-bucket';
+      p.textContent = '+ ' + (state.bucket.length-12) + ' more';
+      $('bucket-list').append(p);
+    }
+    if (!state.bucket.length) $('bucket-list').innerHTML = '<p class="empty-bucket">An empty catch. Change a word on your line.</p>';
+    syncAnswerFins();
+  }
+  function cast() {
+    if (!state.words.length) {
+      hint(L.empty);
+      how('empty');
+      Curio.tone(240,.06,.04);
+      return;
+    }
+    invalidateCast();
+    closeSwaps();
+    V.dropQueued();
+    const token = state.generation;
+    const revision = state.revision;
+    const level = state.level;
+    const words = [...state.words];
+    const mode = state.mode;
+    const caught = fishCatch(words);
+    state.casting = true;
+    $('bucket-count').textContent = 'Reeling in ' + caught.length + '…';
+    $('bobber').classList.add('casting');
+    if (!caught.length) $('bobber').classList.add('empty-cast');
+    const bucketRect = document.querySelector('.bucket-heading img').getBoundingClientRect();
+    caught.forEach((p,i) => {
+      const fish = $('fish-' + p.id);
+      if (!Curio.reduce && i < 12) {
+        const r = fish.querySelector('img').getBoundingClientRect();
+        const copy = document.createElement('img');
+        copy.src = art[p.id[0]];
+        copy.alt = '';
+        copy.className = 'reel-copy';
+        Object.assign(copy.style,{left:r.left+'px',top:r.top+'px',width:r.width+'px',height:r.height+'px'});
+        document.body.append(copy);
+        reelCopies.push(copy);
+        const dx = bucketRect.left + bucketRect.width/2 - r.left - r.width/2;
+        const dy = bucketRect.top + bucketRect.height/2 - r.top - r.height/2;
+        copy.animate([
+          {transform:'translate(0,0) rotate(0) scale(1)',opacity:1},
+          {transform:`translate(${dx*.45}px,${Math.min(dy*.4,-80)}px) rotate(-15deg) scale(.9)`,opacity:1,offset:.5},
+          {transform:`translate(${dx}px,${dy}px) rotate(12deg) scale(.15)`,opacity:0}
+        ],{duration:800,easing:'ease-in-out',fill:'forwards'});
+      }
+      fish.classList.add('reeling');
+    });
+    Curio.tone(270,.11,.045);
+    hint('Reeling in. You can still tap a tile to change your line.');
+    const finish = () => {
+      if (token !== state.generation) return;
+      state.casting = false;
+      state.bucket = caught;
+      state.castWords = words;
+      state.castLevel = level;
+      state.castMode = mode;
+      $('bobber').classList.remove('casting');
+      $('bobber').classList.remove('empty-cast');
+      fishButtons.forEach(b => b.classList.remove('reeling'));
+      reelCopies.splice(0).forEach(node => node.remove());
+      document.querySelector('.bucket').classList.add('landed');
+      renderBucket();
+      const answer = caught.find(p => LEVELS[level].answers.includes(p.id));
+      let key, text;
+      if (mode === 'levels' && words.every(isLittle)) {
+        key = 'little';
+        text = "Little words are on every page, so they catch everything. Use the words that name your topic.";
+      } else if (!caught.length) {
+        key = 'none';
+        text = L.none;
+      } else if (mode === 'levels' && caught.length <= 3 && answer) {
+        key = 'solved';
+        text = 'Good catch! ' + answer.title + ' answers the question. Tap another level number to fish again.';
+        if (!state.solved.includes(level)) state.solved.push(level);
+        save();
+        paintStickers();
+        Curio.yes();
+      } else if (mode === 'levels' && caught.length <= 3) {
+        key = 'noAnswer';
+        text = 'Small catch, but none of these answers the question. Tap a word on your line to select it, or tie on a different tile.';
+      } else if (caught.length > 3) {
+        key = words.length === 8 ? 'tooManyFull' : 'tooMany';
+        text = words.length === 8 ? "That's " + caught.length + ' fish. Tap a word on your full line to select it.' :
+          "That's " + caught.length + ' fish. Too many to read! Tap a word tile that says what you want to know.';
+      } else {
+        key = 'freeCatch';
+        text = L.freeCatch;
+      }
+      hint(text);
+      speak(key,{valid:() => state.revision === revision && state.level === level});
+      Curio.tone(caught.length ? 660 : 190,.12,.05);
+    };
+    if (Curio.reduce) finish();
+    else castTimer = setTimeout(finish,800);
+  }
+  LEVELS.forEach((l,i) => {
+    const b = document.createElement('button');
+    b.className = 'level';
+    b.id = 'level-' + i;
+    b.textContent = i+1;
+    b.onclick = () => openLevel(i);
+    $('levels').append(b);
+  });
+  ['Ocean & pets','Night & sports','Earth & fire','Space & weather','Little words'].forEach((name,i) => {
+    const b = document.createElement('button');
+    b.textContent = name;
+    b.id = 'drawer-' + i;
+    b.onclick = () => {
+      state.drawer = i;
+      renderDrawer();
+      hint('Tap a word in this drawer to tie it on, or type a word and press Add.');
+      Curio.tone(450+i*50,.05,.025);
+    };
+    $('drawers').append(b);
+  });
+  POND.forEach((p,i) => {
+    const b = document.createElement('button');
+    b.className = 'fish';
+    b.id = 'fish-' + p.id;
+    b.setAttribute('aria-label',p.title + ', open page tag');
+    b.title = p.title;
+    const img = document.createElement('img');
+    img.src = art[p.id[0]];
+    img.alt = '';
+    img.style.animationDelay = (-i*.39) + 's';
+    const tag = document.createElement('span');
+    tag.className = 'fish-title';
+    tag.textContent = p.title;
+    const fin = document.createElement('span');
+    fin.className = 'fin';
+    fin.textContent = 'Answers it';
+    b.append(img,tag,fin);
+    b.onclick = () => openTag(p.id);
+    fishButtons.push(b);
+    $('fish-layer').append(b);
+  });
+  $('m-levels').onclick = () => { if (state.mode !== 'levels') setMode('levels'); };
+  $('m-free').onclick = () => { if (state.mode !== 'free') setMode('free'); };
+  $('cast').onclick = cast;
+  $('remove').onclick = removeWord;
+  $('swap').onclick = showSwaps;
+  $('swap-close').onclick = () => { closeSwaps(true); hint(L.select); };
+  $('close-tag').onclick = () => closeTag();
+  $('clear').onclick = () => {
+    state.words = [];
+    state.selected = -1;
+    changeLine();
+  };
+  $('type-form').onsubmit = e => {
+    e.preventDefault();
+    const word = $('typed-word').value.trim().toLowerCase();
+    if (!word) {
+      $('unknown-note').textContent = 'Type one word at a time, then press Add.';
+      hint(L['w-free']);
+      how('w-free',{needs:'#typed-word'});
+      $('typed-word').focus({preventScroll:true});
+      Curio.tone(240,.06,.03);
+      return;
+    }
+    if (/\s/.test(word)) {
+      $('unknown-note').textContent = 'Type one word at a time, then press Add.';
+      return;
+    }
+    if (addWord(word)) {
+      $('typed-word').value = '';
+      if (!fishCatch([word]).length) {
+        $('unknown-note').textContent = 'No fish here know that word.';
+        hint(L.unknown);
+        speak('unknown',{valid:() => state.words.includes(word)});
+      }
+    }
+  };
+  $('clear-stickers').onclick = () => $('confirm-clear').showModal();
+  $('clear-no').onclick = () => $('confirm-clear').close();
+  $('clear-yes').onclick = () => {
+    state.solved = [];
+    save();
+    paintStickers();
+    $('confirm-clear').close();
+  };
+  document.addEventListener('keydown',e => {
+    if (e.key === 'Escape') {
+      if (state.swaps) closeSwaps(true);
+      else if (state.tag) closeTag();
+    }
+  });
+  let drag = null;
+  let swallowClick = false;
+  document.addEventListener('pointerdown',e => {
+    const node = e.target.closest('.tile,button.slot');
+    if (!node || node.disabled) return;
+    drag = {node,x:e.clientX,y:e.clientY,word:node.dataset.word,index:node.dataset.slot,ghost:null};
+  });
+  document.addEventListener('pointermove',e => {
+    if (!drag) return;
+    if (!drag.ghost && Math.hypot(e.clientX-drag.x,e.clientY-drag.y) > 14) {
+      drag.ghost = document.createElement('div');
+      drag.ghost.className = 'drag-ghost';
+      drag.ghost.textContent = drag.node.textContent;
+      document.body.append(drag.ghost);
+    }
+    if (drag.ghost) {
+      e.preventDefault();
+      drag.ghost.style.left = (e.clientX+9) + 'px';
+      drag.ghost.style.top = (e.clientY+9) + 'px';
+    }
+  },{passive:false});
+  document.addEventListener('pointerup',e => {
+    if (!drag) return;
+    const d = drag;
+    drag = null;
+    if (!d.ghost) return;
+    d.ghost.remove();
+    swallowClick = true;
+    setTimeout(() => { swallowClick = false; },100);
+    const r = $('word-line').getBoundingClientRect();
+    const inside = e.clientX >= r.left && e.clientX <= r.right && e.clientY >= r.top && e.clientY <= r.bottom;
+    if (d.word && inside) addWord(d.word);
+    else if (d.index !== undefined && !inside) {
+      state.selected = +d.index;
+      removeWord();
+      $('cast').focus({preventScroll:true});
+    }
+  });
+  document.addEventListener('click',e => {
+    if (swallowClick) { e.preventDefault(); e.stopImmediatePropagation(); swallowClick = false; }
+  },true);
+  document.addEventListener('pointercancel',() => {
+    drag?.ghost?.remove();
+    drag = null;
+  });
+  Curio.onMotion(reduced => {
+    if (reduced) reelCopies.splice(0).forEach(node => node.remove());
+    aimFish();
+  });
+  new ResizeObserver(() => {
+    const width = $('stage').clientWidth;
+    $('stage').style.setProperty('--tag-width',Math.max(88,Math.min(126,width*.145))+'px');
+    $('stage').classList.toggle('tight',width < 700);
+    aimFish();
+  }).observe($('stage'));
+  Curio.init({clips:"voice:*", rate:.9});
+  window.__tool = {state, setMode, openLevel, allLines:V.allLines, vlog:V.log,
+    catch:words => fishCatch(words).map(p => p.id), pond:POND, levels:LEVELS, swaps:SWAPS,
+    addWord, selectWord, removeWord, cast, aimFish, get vq() {return V.queue;}};
+  openLevel(0,true);
+})();
+</script>
+</body>
+</html>

@@ -1,5 +1,42 @@
 # City Skyline Studio build handoff
 
+## Current fix round, 2026-11-04
+
+The current list is refine.md, OPEN round 1 after the rework. The sections below this one are historical.
+Only this tool and its scratch folder were edited. Shared kit files and refine.md were left alone.
+
+- Ink uses one local inkTargets adapter with horizontal:false and a screen upright only when Tilt is level.
+  Infinite side VPs preserve the level direction at Turn 0 and 90. Check counts receding side-VP lines, excludes
+  screen uprights from that count, and uses an aiming question when no line needed revision. Erasing without
+  replacement still leaves a missing-line requirement. checkFix is voiced on the first red line; inkMore is
+  suppressed during checking.
+- Find exposes only off settings and an overall meter in 25-point steps, capped at 75 until every setting matches.
+  Street-level targets keep their specified cameras and allow 0.6 m eye error. No labeled eye stop passes.
+  Each missed check queues its own short result event; the reading how-to stays once. findLens names the lens
+  control and Check camera. The large panel button advances after a match, including Start over on target 6.
+- The tank underside fact tests tank-bottom samples against nearer painted faces. Setback tier bottoms do not
+  trigger it. The current fact sits on the Build stage. Teacher notes name the tank and explain the upright
+  drafting view versus Tilt. These use the existing pinhole/construction sources and the tool's drawn geometry.
+- Buildings now precedes Readouts. The shorter reserved laptop hint leaves both Overlays and the five palette
+  choices visible at 1366x768. Stacked hints use their text height. Ink retains its controls ahead of Readouts.
+  Build hints follow completed actions even when Turn or Guides comes first. Empty cities queue addFirst;
+  welcomeBuild requires a city and a still-pending eye step.
+- offPage is Build-only. Narrow Find labels are shortened into a bottom edge rail and framing reserves that rail.
+  Canvas type grows with the large stage, reaching 14.4 px for a 12 px base and 15.6 px for a 13 px base at 1920.
+- voice/lines.json equals allLines(): 45 strings. Existing matching recordings remain; changed strings use the
+  kit's browser-speech fallback. No audio was recorded and no images were replaced.
+
+Evidence and bounded runners are in _scratch/city-skyline-studio/fix-before, fix-after, fix-support, fix-voice and
+fix-final. Before/after numerical records use matching names at the scratch root. polish.md is the fix report.
+The composition-brief open question remains with the spec owner. No engine changes are needed for these fixes.
+
+The one fix audit was interrupted by the session restart after the Ink control walk. Its saved 99-lead report is
+in fix-audit/audit.md; unfinished repeat, rapid-tap and resize/stress stages are not passes. Do not confuse its
+placeholder clean/none rows with completed checks. The direct phone host frames cover all six targets separately.
+After restart, a targeted overlay correction moved the fact chip right and reserved its box for canvas labels,
+restoring the Plan legend. Five fix-overlay frames were viewed; Plan overlap is zero at 1366x768 and 1920x1080.
+The full audit was not repeated. The final report answers the saved leads and preserves the remaining limits.
+
 ## Cold review changes, 2026-11-03
 
 - Reset `view.find` explicitly while easing and on mode entry. Object.assign previously retained Find's scaling flag

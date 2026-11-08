@@ -1,0 +1,26 @@
+{
+  "id": "spot-the-ai",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Open everyday machines. Find a rule card or a pile of learned examples.",
+  "outcome": "Distinguish written rules from AI patterns learned from examples.",
+  "driver": "teacher",
+  "minutes": "10-20",
+  "modes": [
+    "Machine Shop",
+    "AI or Not?"
+  ],
+  "grades_label": "Grade 1",
+  "sources": [
+    "AI4K12 Five Big Ideas, Big Idea 3: computers can learn from data",
+    "Apple Platform Security: Face ID security",
+    "Google Maps 101: How AI helps predict traffic and determine routes (2020)",
+    "Hinton et al. Deep Neural Networks for Acoustic Modeling in Speech Recognition (2012)",
+    "Krizhevsky et al. ImageNet Classification with Deep Convolutional Neural Networks (2012)",
+    "Covington et al. Deep Neural Networks for YouTube Recommendations (2016)",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Workshop illustration drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-05"
+}

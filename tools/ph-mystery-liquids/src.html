@@ -1,0 +1,1325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>pH Mystery Liquids · Curio Class</title>
+<meta name="description" content="Test unknown liquids, compare hidden acid reserves and investigate a virtual spill. Grade 10 chemistry. Works offline.">
+<!--
+pH Mystery Liquids, Curio Class. Grade 10 chemistry, students drive. Cases and Bench.
+Chemistry: OpenStax Chemistry 2e, chapters 11 and 14, appendices H and I.
+Food ranges: Clemson Cooperative Extension, pH Values of Common Foods and Ingredients.
+Safety: ACS Guidelines for Chemical Laboratory Safety in Secondary Schools, 2016.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Existing prep-room illustration: FLUX.1-schnell. Content CC BY 4.0, code MIT.
+Model assumptions and curriculum alignment limits are in notes.md. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#d590b0;--brand-ink:#10141a;--focus:#8fe3ff;--scene-ink:#10141a;--bottle-h:136px}
+body{grid-template-rows:auto minmax(0,1fr) auto;overflow:hidden}
+header{padding:9px 18px;gap:8px}
+h1{font-size:25px;letter-spacing:-.5px}
+h1 small{font-size:13px;margin-top:4px;letter-spacing:.5px}
+.icon-btn,.seg button{min-height:44px;font-size:14px;padding:0 13px}
+.seg button{min-width:44px}
+.icon-btn{min-width:94px}
+main{grid-template-columns:minmax(0,1fr) 350px;gap:0}
+.panel{padding:12px;gap:10px;scrollbar-width:thin;background:linear-gradient(115deg,#1e2631,#141b25);
+  scroll-padding-top:90px;scroll-padding-bottom:10px}
+.stage{min-height:0;display:grid;grid-template-rows:minmax(0,1fr) auto auto;background:#151e28}
+.world{position:relative;min-height:0;isolation:isolate;background:#586974 url('art:phm-bench') center 52%/cover}
+.world:after{content:"";position:absolute;inset:0;pointer-events:none;z-index:-1;
+  background:linear-gradient(90deg,#0b182000,transparent 40%,#10223333),linear-gradient(0deg,#020d1680,transparent 45%)}
+.shelf{position:absolute;left:4%;right:4%;top:14px;display:flex;justify-content:center;gap:8px}
+.bottle{position:relative;flex:1;max-width:100px;height:136px;padding:0;border:0;background:transparent;color:#10141a;
+  border-radius:6px}
+.bottle img{position:relative;z-index:2;height:100%;width:100%;object-fit:contain;pointer-events:none;
+  filter:drop-shadow(3px 5px 3px #0006)}
+.bottle .bname{position:absolute;top:56%;left:10%;right:10%;font-size:23px;line-height:1.05;font-weight:800;
+  text-align:center;color:#10141a;background:#f5f3ec;border-radius:2px;padding:2px 0;pointer-events:none;z-index:5}
+.bottle[aria-pressed=true]{outline:2px solid #d590b0;outline-offset:3px;background:#d590b026}
+.bottle .placed{position:absolute;top:99%;left:0;right:0;padding:4px;background:#101923e8;color:#fff;
+  font-size:11px;line-height:1.15;border-radius:4px;z-index:5;pointer-events:none}
+.bottle .placed.good{background:#133f31}.bottle .placed.bad{background:#632f38}
+.bench-mode .bottle .bname{font-size:11px}
+.specimen{position:absolute;bottom:18px;left:50%;transform:translateX(-50%);width:min(40%,315px);height:65%;z-index:3;
+  max-height:352px;min-height:150px;isolation:isolate;filter:drop-shadow(9px 15px 10px #0005);pointer-events:none}
+.specimen .glass{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:3;pointer-events:none}
+.liquid{position:absolute;left:8%;right:8%;top:48%;bottom:7%;z-index:1;border-radius:4% 4% 13% 13%;
+  background:linear-gradient(100deg,#ffffff33,transparent 35%,#0002),var(--liquid,#d5e7ec55);
+  box-shadow:inset 0 3px 0 #ffffff80,inset -10px -8px 18px #0002;overflow:hidden}
+.liquid:before{content:"";position:absolute;top:0;left:0;width:100%;height:10px;border-radius:50%;
+  background:#ffffff40;animation:surface 4s ease-in-out infinite}
+@keyframes surface{50%{transform:scaleY(.45)}}
+.bubbles{position:absolute;inset:0;overflow:hidden;z-index:2;pointer-events:none}
+.bubble{position:absolute;width:8px;height:8px;border:1px solid #fff;border-radius:50%;bottom:0;
+  animation:rise .85s ease-out both;background:#ffffff30}
+@keyframes rise{to{transform:translate(7px,-130px);opacity:0}}
+.calm .liquid:before,.calm .bubble{animation:none!important}
+.calm .bubble{bottom:var(--bubble-y,0)}
+.sample-tag{position:absolute;left:50%;bottom:0;transform:translateX(-50%);z-index:4;white-space:normal;
+  width:max-content;max-width:calc(100% - 16px);text-align:center;
+  color:#e8edf3;background:#101923;padding:7px 13px;border:1px solid #62789a;border-radius:4px;
+  font:13px var(--readout-font);box-shadow:2px 3px 6px #0006}
+.reserve-compare{position:absolute;top:18px;left:18px;width:24%;max-width:230px;z-index:4;
+  padding:8px;background:#101923ed;border:1px solid #7b8b9b;border-radius:6px;pointer-events:none;
+  box-shadow:3px 5px 12px #0004;font:11px/1.3 var(--readout-font)}
+.reserve-compare strong{display:block;color:#f5d3e3;margin-bottom:5px;font-size:11px}
+.reserve-compare .dose{display:flex;justify-content:space-between;gap:4px}
+.reserve-compare .track{height:7px;margin:3px 0 5px;background:#ffffff16;border-radius:2px}
+.reserve-compare .fill{height:100%;background:linear-gradient(90deg,#d590b0,#f5d3e3);border-radius:2px}
+@media(max-width:1000px){.reserve-compare{top:8px;left:8px;padding:5px;width:27%;font-size:10px}
+  .reserve-compare strong{font-size:10px}.reserve-compare .dose{display:block}.reserve-compare .dose span{float:right}}
+.reading{position:absolute;left:18px;bottom:25px;z-index:4;width:190px;max-width:32%;padding:12px;
+  background:linear-gradient(140deg,#202d3bf5,#101923ed);border:1px solid #788a9a;border-radius:8px;
+  box-shadow:3px 6px 16px #0004;min-height:100px}
+.eyebrow{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.reading strong{display:block;font:600 29px/1.2 var(--readout-font);color:#f3edf2;margin:5px 0}
+.reading span{font-size:13px;line-height:1.25;display:block}
+.instrument-wrap{position:absolute;right:4%;bottom:20px;height:calc(var(--bottle-h)*var(--ih,.9));
+  width:calc(var(--bottle-h)*var(--ih,.9)*var(--iw,.74));filter:drop-shadow(5px 8px 4px #0005)}
+.instrument{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.litmus-color{position:absolute;inset:0;background:var(--strip-color,#9a6bc4);opacity:.88;mix-blend-mode:multiply;
+  mask:url('art:phm-litmus') center/contain no-repeat;pointer-events:none}
+.meter-lcd{position:absolute;left:9.5%;top:39.7%;width:30%;height:15%;display:grid;place-items:center;
+  background:linear-gradient(#aabcae,#d2dfd3);color:#102b26;border-radius:1px;font:700 10px Arial,sans-serif}
+.goggles{position:absolute;right:3%;top:38%;width:12%;opacity:.85;transform:rotate(-10deg)}
+.instrument-wrap,.goggles,.reading,.spill-focus{pointer-events:none}
+.bulb{position:absolute;left:41%;top:0;width:18%;height:18%;border-radius:50%;z-index:4;background:#2a2f38}
+.bulb.dim{background:#a08a3c;box-shadow:0 0 12px #a08a3c66}
+.bulb.bright{background:#fff3a0;box-shadow:0 0 35px 10px #fff3a077}
+.tray{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;padding:9px 12px;
+  background:linear-gradient(#273340,#17212d);border-top:2px solid #667787;box-shadow:inset 0 3px 5px #0005}
+.test-btn{min-height:88px;min-width:0;border-radius:6px;border:1px solid #627185;background:linear-gradient(#354351,#25313d);
+  color:#f1f3f7;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  font-size:12px;padding:2px 4px;line-height:1.15;box-shadow:0 3px 0 #0a111a}
+.test-btn img{height:58px;max-width:64px;object-fit:contain;pointer-events:none}
+.test-btn[aria-pressed=true]{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand),0 2px 0 #0a111a}
+.test-btn[aria-disabled=true]{filter:grayscale(1);opacity:.65}
+.test-btn small{font-size:10px;display:block}
+.soda-row{display:flex;align-items:center;gap:6px;padding:7px 12px;background:#101923;border-top:1px solid #354555}
+.soda-row img{width:42px;height:44px;object-fit:contain}
+.soda-total{margin-right:auto;font:15px var(--readout-font);white-space:nowrap}
+.soda-total small{display:block;font:10px 'Segoe UI',sans-serif;color:var(--muted)}
+.btn{padding:5px 9px;font-size:13px;line-height:1.2}
+.btn.hot{background:var(--brand);color:var(--brand-ink);border-color:var(--brand);font-weight:700}
+.soda-row .btn[aria-disabled="true"],.choice[aria-disabled="true"]{opacity:.5;cursor:not-allowed}
+.hint{font-size:14px;line-height:1.4;min-height:76px;padding:8px 10px;border-left:3px solid var(--brand);background:#111923}
+.case-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.case-nav .btn{font-size:12px;text-align:left;padding:7px}
+.case-nav .btn b{display:block;font-size:14px;margin-bottom:2px}
+.casecard{padding:13px;border:1px solid #576372;border-radius:8px;background:#18202b;position:relative}
+.casecard.flood{background:linear-gradient(#08101bb3,#08101bb3),url('art:phm-prep-room') center/cover}
+h2{margin:0 0 5px;font-size:18px;font-weight:650}
+p{margin:5px 0;font-size:13px;line-height:1.45}
+.casecard .case-index{font:11px var(--readout-font);color:var(--brand);letter-spacing:.12em;margin-bottom:7px}
+.labels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;margin-top:8px}
+.label{cursor:grab;font-size:12px;background:linear-gradient(#f6f0e3,#e0d8c9);color:#1a2630;border:1px solid #aba394;
+  border-radius:3px;min-height:44px;text-align:left;padding:5px 7px;box-shadow:1px 2px 0 #0005}
+.label[aria-pressed=true]{outline:3px solid var(--brand);outline-offset:-3px;background:#f6d8e7}
+.row{display:flex;gap:5px;margin-top:8px;flex-wrap:wrap}.row .btn{flex:1}
+.result{border-left:3px solid #8fe3ff;padding:7px 9px;background:#101923;font-size:13px;line-height:1.4;margin-top:8px}
+.result.good{border-color:#6fdca6}.result.bad{border-color:#ffb8a8}
+.notebook{border-radius:6px;border:1px solid #53606c;background:#ddd8c9;color:#192330;box-shadow:3px 4px 0 #080f18;
+  padding:10px 8px 8px;min-height:125px;flex-shrink:0;overflow:hidden}
+.notebook h2{font-size:13px;text-transform:uppercase;letter-spacing:.09em;display:flex;justify-content:space-between}
+.notebook small{font-weight:400;font-size:10px;letter-spacing:0;text-transform:none}
+.gridwrap{overflow:auto;max-height:195px;scrollbar-width:thin;contain:paint}
+table{border-collapse:separate;border-spacing:0;width:100%;font:11px/1.3 'Segoe UI',sans-serif;color:#192330}
+th,td{border-bottom:1px solid #a9a89f;border-right:1px solid #b9b6aa;padding:5px 4px;text-align:left;min-width:38px}
+th{font-weight:700}thead{background:#ddd8c9}td.empty{color:#4f5754}
+.nb-note{font-size:10px;margin:5px 0 0;color:#3f4a50}
+.progress{font-size:12px;color:#a6b3c4;display:flex;align-items:center;justify-content:space-between;gap:6px}
+.progress .btn{font-size:12px}
+.choice{display:block;width:100%;text-align:left;margin-top:6px;padding:7px 9px;font-size:12px}
+.checklist{margin:8px 0;font-size:12px;line-height:1.5;color:#cdd7e1}
+.checklist span{display:block}.checklist .done{color:#6fdca6}
+.ladder{display:grid;gap:5px;margin-top:10px}
+.food{display:grid;grid-template-columns:58px 1fr;gap:10px;align-items:center;background:#101923;border-radius:5px;padding:5px}
+.food img{width:58px;height:58px;object-fit:cover;border-radius:4px}
+.food strong{font-size:12px}.food span{display:block;font:12px var(--readout-font);margin-top:4px;color:var(--brand)}
+.ph-axis{display:flex;justify-content:space-between;margin:0 5px 0 73px;font:11px var(--readout-font);color:var(--muted)}
+.ph-range{display:block;width:100%;height:8px;margin-top:5px;overflow:visible}
+.spill-focus{position:absolute;left:3%;right:3%;top:28px;bottom:30px;display:grid;grid-template-columns:1fr 1fr;gap:15px;
+  align-items:center}
+.spill-art{position:relative;width:100%;height:auto;aspect-ratio:500/202;min-height:0;filter:drop-shadow(6px 12px 7px #0007)}
+.spill-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:fill;z-index:2}
+.spill-fill{position:absolute;inset:17% 8% 28%;z-index:3;background:linear-gradient(120deg,#b4dce440,#537c9026);
+  border-radius:11%;box-shadow:inset 1px 2px 4px #7797a24d}
+.spill-art .bubbles{z-index:3;inset:20% 11% 25%}
+.spill-graph{width:100%;height:100%;min-height:0;background:#111c29f0;border:1px solid #8792a2;border-radius:8px}
+.spill-graph text{font-family:'Segoe UI',sans-serif;font-size:12px;fill:#dde5ef}
+.spill-number{position:absolute;left:5%;bottom:0;z-index:4;background:#111c29;padding:6px 10px;border:1px solid #7a8c9e;border-radius:4px;
+  font:15px var(--readout-font)}
+footer{font-size:11px;line-height:1.35;padding:6px 15px;color:#bbc7d4;background:#0b1119;border-top:1px solid #3b4656}
+details{font-size:12px;color:#c1ccd8}summary{cursor:pointer;min-height:44px;display:flex;align-items:center}
+details:not([open]) > :not(summary){display:none}
+.sr{position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden}
+.phone-only{display:none}
+@media(min-width:561px){.hint{position:sticky;top:0;z-index:8;flex-shrink:0}}
+@media(min-width:1600px){:root{--bottle-h:180px}main{grid-template-columns:minmax(0,1fr) 410px}.panel{padding:20px;gap:14px}
+  .world .shelf{top:25px}.bottle{max-width:130px;height:180px}.reading{left:5%;width:220px}
+  .test-btn{min-height:100px;font-size:14px}.test-btn img{height:64px}.specimen{max-height:430px}}
+@media(max-width:1000px),(max-height:650px){
+  :root{--bottle-h:86px}
+  .meter-lcd{display:none}
+  header{padding:5px 9px;gap:5px;flex-wrap:nowrap}h1{font-size:18px}h1 small{display:none}
+  .icon-btn,.seg button{padding:0 8px;font-size:12px}.icon-btn{min-width:75px}
+  main{grid-template-columns:minmax(0,1fr) 270px}.panel{padding:7px;gap:7px}
+  .bottle{height:86px;max-width:65px}.shelf{top:7px;gap:5px}.bottle .bname{font-size:17px}
+  .bench-mode .bottle .bname{font-size:10px}.bottle .placed{font-size:10px;padding:2px}
+  .specimen{height:67%;width:35%;bottom:13px;min-height:110px;max-height:235px}
+  .reading{left:10px;bottom:18px;padding:7px;min-height:76px;max-width:30%}.reading strong{font-size:23px}
+  .reading span{font-size:11px}.reading .eyebrow{font-size:10px}
+  .sample-tag{font-size:10px;padding:5px 7px}.goggles{top:38%}
+  .tray{gap:4px;padding:6px}.test-btn{min-height:57px;font-size:10px;flex-direction:row;gap:4px;padding:3px}
+  .test-btn img{height:35px;max-width:28px}.test-btn small{font-size:10px}
+  .soda-row{padding:4px 6px;gap:4px}.soda-row img{width:26px}.soda-total{font-size:12px}
+  .soda-row .btn{font-size:11px;padding:3px 5px}.soda-total small{font-size:10px}
+  .hint{font-size:12px;min-height:64px;padding:6px}.casecard{padding:9px}h2{font-size:15px}p{font-size:12px}
+  .notebook{padding:8px 5px}.gridwrap{max-height:145px}.case-nav .btn{font-size:10px}
+  .case-nav .btn b{font-size:12px}footer{font-size:10px;padding:4px 9px}
+}
+@media(max-width:720px) and (min-width:561px){main{grid-template-columns:minmax(0,1fr) 245px}
+  header{gap:4px}h1{font-size:16px}.icon-btn{min-width:68px}.seg button,.icon-btn{font-size:11px;padding:0 6px}
+  .test-btn{font-size:10px;flex-direction:column;min-height:52px;gap:0}.test-btn img{height:23px;max-width:26px}
+  .soda-row img{display:none}.soda-row .btn{padding:3px}.soda-total{font-size:11px}
+  .reading{max-width:31%;padding:6px}.reading strong{font-size:19px}.reading span{font-size:10px}
+}
+@media(min-width:561px) and (max-height:650px){
+  .panel{padding:5px;gap:4px;scroll-padding-top:65px}.hint{min-height:52px;font-size:11px;line-height:1.25;padding:4px 6px}
+  .case-nav .btn{min-height:44px;padding:3px 5px;font-size:10px;line-height:1.05}
+  .case-nav .btn b{display:inline;margin-right:3px;font-size:11px}
+  .casecard{padding:5px}.casecard .case-index,.casecard h2,.casecard>p{display:none}
+  .labels{margin-top:0;gap:3px;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .label{font-size:10px;line-height:1.05;padding:3px;min-width:0}
+  .row{margin-top:4px;gap:4px}.row .btn{font-size:11px}
+  #c1-result{display:none}.notebook{min-height:70px;padding:5px}.notebook h2{margin:0 0 3px;font-size:10px}
+  .notebook h2 small,.nb-note{display:none}.gridwrap{max-height:57px}table{font-size:10px}th,td{padding:3px}
+  .checklist{font-size:10px;line-height:1.2;margin:3px 0;display:grid;grid-template-columns:1fr 1fr;gap:3px}
+  .choice{font-size:11px;min-height:44px;margin-top:4px;padding:4px 6px}
+  .result{font-size:10px;padding:4px 6px;margin-top:4px}
+  #explain-result{font-size:10px}#c2-amounts{font-size:10px;line-height:1.2}
+  #spill-task{display:block;font-size:10px;line-height:1.2;margin:3px 0}
+  .spill-focus{top:10px;bottom:12px;gap:8px}.spill-number{font-size:11px;padding:4px 6px}
+  body[data-case="3"] .casecard .checklist,body[data-case="3"] #spill-task,#explain-result{display:none}
+  #c2-tasks{display:block;line-height:1.1}#c2-tasks span{margin-bottom:2px}
+  #c2-amounts{line-height:1.1}
+}
+@media(min-width:561px) and (max-height:500px){
+  .goggles{display:none}
+  .reading{bottom:1px;padding:4px;min-height:0}.reading strong{font-size:17px;margin:2px 0}
+  .reading span{display:none}
+  .reading .eyebrow{letter-spacing:.03em;font-size:10px}.reading span{font-size:10px}
+}
+@media(min-width:1001px) and (max-height:740px){
+  body[data-case="1"] .casecard>p{display:none}
+}
+@media(max-width:560px){
+  body{overflow:auto;display:block;height:auto;min-height:100vh}header{flex-wrap:wrap;padding:6px;gap:4px}
+  h1{font-size:18px;flex:1 0 55%}.seg{margin-left:auto}.seg button{font-size:12px;padding:0 10px}
+  .icon-btn{flex:1;min-width:70px}.stage{height:356px}.world{min-height:180px}
+  main{display:flex;flex-direction:column}.panel{overflow:visible;padding:10px;border-top:2px solid var(--brand)}
+  .hint{min-height:52px;font-size:13px}.shelf{left:3%;right:3%;top:10px;gap:4px}.bottle{height:86px}
+  .specimen{height:65%;width:36%;min-height:150px}.tray{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .test-btn{flex-direction:column;min-height:54px;font-size:10px}.test-btn img{height:22px;max-width:28px}
+  .soda-row .btn{font-size:10px;min-width:48px}.soda-total{font-size:12px}
+  .case-nav .btn{font-size:12px}.case-nav .btn b{font-size:14px}.labels{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .label{font-size:11px}.gridwrap{max-height:none}.notebook{min-height:150px}.food{grid-template-columns:72px 1fr}
+  .food img{width:72px;height:64px}footer{font-size:11px;padding:8px}
+  .ph-axis{margin-left:87px}
+  .spill-focus{gap:8px;left:2%;right:2%;top:20px;bottom:20px}.spill-graph text{font-size:12px}
+  .case-nav .btn b{display:inline;margin-right:4px;font-size:12px}
+  body[data-case="1"] .casecard .case-index,body[data-case="1"] .casecard h2,
+  body[data-case="1"] .casecard>p,body[data-case="1"] #c1-result{display:none}
+  body[data-case="1"] .casecard{padding:6px}
+  body[data-case="1"] .labels{margin-top:0}
+  body[data-case="3"] .tray,body[data-explain="true"] .tray,body[data-explain="true"] .soda-row{display:none}
+  body[data-case="2"]:not([data-explain="true"]) #choices,
+  body[data-case="2"]:not([data-explain="true"]) #c2-prompt{display:none}
+  body[data-case="3"] .stage{height:232px}
+  body[data-case="3"] .casecard .case-index,body[data-case="3"] .casecard h2,
+  body[data-case="3"] #spill-task,body[data-case="3"] .casecard .checklist,
+  body[data-case="3"] #explain-result{display:none}
+  body[data-explain="true"] .stage{height:180px}
+  body[data-explain="true"] .casecard .case-index,body[data-explain="true"] .casecard h2,
+  body[data-explain="true"] .casecard>p:not(.phone-only),body[data-explain="true"] #explain-result{display:none}
+  body[data-explain="true"] .casecard>.phone-only{display:block}
+  body[data-explain="true"] #c2-tasks{font-size:11px;line-height:1.3;margin:4px 0}
+  body[data-explain="true"] #c2-amounts{font-size:12px;line-height:1.35;padding:6px;margin-top:6px}
+  .spill-number{font-size:11px;padding:4px 6px}
+  .reading{bottom:5px;padding:4px;min-height:0}.reading strong{font-size:17px;margin:2px 0}
+  .reading .eyebrow{letter-spacing:.03em;font-size:10px}.goggles{display:none}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>pH Mystery Liquids<small>Test it. Never taste it.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-cases" aria-pressed="true">Cases</button>
+    <button id="m-bench" aria-pressed="false">Bench</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Virtual laboratory bench">
+    <div class="world" id="world">
+      <div class="shelf" id="shelf" role="group" aria-label="Bottle rack"></div>
+      <div class="specimen" id="specimen" role="img" aria-label="Test beaker containing a 10 milliliter sample">
+        <div class="liquid" id="liquid"><div class="bubbles" id="bubbles"></div></div>
+        <img class="glass" src="art:phm-beaker" alt="">
+        <div class="sample-tag" id="sample-tag">10 mL · Bottle A</div>
+      </div>
+      <div class="reserve-compare" id="reserve-compare" role="img" hidden>
+        <strong>Your soda measurements</strong>
+        <div class="dose">A <span id="dose-a"></span></div><div class="track"><div class="fill" style="width:100%"></div></div>
+        <div class="dose">B <span id="dose-b"></span></div><div class="track"><div class="fill" id="dose-bar-b"></div></div>
+      </div>
+      <div class="reading" id="reading" role="status" aria-live="polite">
+        <div class="eyebrow" id="read-title">Evidence, not guesses</div>
+        <strong id="read-main">Untested</strong><span id="read-detail">Open a case to begin.</span>
+      </div>
+      <div class="instrument-wrap" id="instrument-wrap"><img class="instrument" id="instrument" src="art:phm-meter" alt="">
+        <div class="litmus-color" id="litmus-color" hidden></div>
+        <div class="meter-lcd" id="meter-lcd" aria-hidden="true" hidden></div>
+        <div class="bulb" id="bulb" hidden></div>
+      </div>
+      <img class="goggles" src="art:phm-goggles" alt="Lab safety goggles">
+      <div class="spill-focus" id="spill-focus" hidden>
+        <div class="spill-art"><div class="spill-fill" id="spill-fill"></div>
+          <img src="art:phm-tray" alt="Virtual spill containment tray"><div class="bubbles" id="spill-bubbles"></div>
+          <div class="spill-number" id="spill-number">pH 0.00</div>
+        </div>
+        <svg class="spill-graph" id="spill-graph" viewBox="0 0 290 250" role="img" aria-label="Graph of baking soda in grams against pH"></svg>
+      </div>
+    </div>
+    <div class="tray" id="tray" role="group" aria-label="Test tray"></div>
+    <div class="soda-row" id="soda-row">
+      <img src="art:phm-soda" alt="Baking soda jar">
+      <div class="soda-total"><small>Baking soda added</small><output id="soda-total">0.000 g</output></div>
+      <button class="btn" id="soda-001">+0.001 g</button>
+      <button class="btn" id="soda-01">+0.01 g</button>
+      <button class="btn" id="soda-1">+0.1 g</button>
+      <button class="btn" id="fresh">Fresh sample</button>
+    </div>
+  </section>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint">Press a case card in the panel to open your first job.</p>
+    <nav class="case-nav" id="case-nav" aria-label="Case cards">
+      <button class="btn" id="case1"><b>01</b>Flooded room</button>
+      <button class="btn" id="case2"><b>02</b>Same pH</button>
+      <button class="btn" id="case3"><b>03</b>Spill drill</button>
+    </nav>
+    <section class="casecard" id="casecard"></section>
+    <section class="notebook" id="notebook">
+      <h2>Lab notebook <small>Each test leaves a trace</small></h2>
+      <div class="gridwrap" id="gridwrap"></div>
+      <p class="nb-note">Words describe every color. A blank cell means untested.</p>
+    </section>
+    <section id="ladder" hidden>
+      <h2>Food pH ladder</h2><p>Reference ranges, not bottle-identification clues. Foods vary.</p>
+      <div class="ladder">
+        <div class="ph-axis" aria-hidden="true"><span>0</span><span>7</span><span>14</span></div>
+        <div class="food"><img src="art:phm-lime" alt="Cut lime and lime juice">
+          <div><strong>Lime juice</strong><span>2.00 to 2.35</span><svg class="ph-range" data-low="2" data-high="2.35" aria-hidden="true"></svg></div>
+        </div>
+        <div class="food"><img src="art:phm-lemon" alt="Cut lemon and lemon juice">
+          <div><strong>Lemon juice</strong><span>2.00 to 2.60</span><svg class="ph-range" data-low="2" data-high="2.6" aria-hidden="true"></svg></div>
+        </div>
+        <div class="food"><img src="art:phm-vinegar" alt="Vinegar cruet">
+          <div><strong>Vinegar</strong><span>2.40 to 3.40</span><svg class="ph-range" data-low="2.4" data-high="3.4" aria-hidden="true"></svg></div>
+        </div>
+        <div class="food"><img src="art:phm-apple" alt="Apple and apple juice">
+          <div><strong>Apple juice</strong><span>3.35 to 4.00</span><svg class="ph-range" data-low="3.35" data-high="4" aria-hidden="true"></svg></div>
+        </div>
+        <div class="food"><img src="art:phm-tomato" alt="Tomato and tomato juice">
+          <div><strong>Tomato juice</strong><span>4.10 to 4.60</span><svg class="ph-range" data-low="4.1" data-high="4.6" aria-hidden="true"></svg></div>
+        </div>
+      </div>
+      <p>Clemson Cooperative Extension, pH Values of Common Foods and Ingredients.</p>
+    </section>
+    <details id="help"><summary>Model &amp; safety notes</summary>
+      <p>Virtual samples at 25 °C. The bulb uses total ion concentration: dark below 0.0005 mol/L, dim through 0.02, bright above.</p>
+      <p>Dilution means making 10 mL up to 100 mL with distilled water, then taking 10 mL of that as the new sample.</p>
+      <p>Buffer pH is held constant in this simplified model. Spill volume change is ignored and carbon dioxide escapes.</p>
+      <p>After adding soda, pH uses the acid left unreacted. Acetate buffering is omitted, so this is not a real vinegar titration curve.</p>
+      <p>Never mix bleach with acids or ammonia. Students report real spills to a teacher; this simulation is not a cleanup instruction.</p>
+    </details>
+    <div class="progress"><span id="progress">Saved here only. Never leaves this device.</span><button class="btn" id="clear">Clear</button></div>
+  </aside>
+</main>
+<footer>This is a virtual lab. In a real lab: goggles on, never taste or smell a chemical,
+  tell your teacher about every spill, and follow your school's lab safety rules.</footer>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const MW = 84.007;
+  const STORE = 'curio-ph-mystery-liquids';
+  const LIQUIDS = {
+    ammonia: {name:'Ammonia', full:'Household ammonia, diluted', C:.10, Kb:1.8e-5},
+    salt: {name:'Salt water', full:'Salt water', C:.50, buffer:7, ions:2},
+    vinegar: {name:'Vinegar', full:'White vinegar, 5 percent', C:.8326, Ka:1.8e-5, acid:true},
+    borax: {name:'Borax', full:'Borax solution', C:.025, buffer:-Math.log10(5.4e-10), ions:4},
+    water: {name:'Distilled water', full:'Distilled water, open to air', C:0, buffer:5.6, ionFixed:.000005},
+    bicarbonate: {name:'Baking soda', full:'Baking soda solution', C:.10,
+      buffer:(-Math.log10(4.3e-7)-Math.log10(4.7e-11))/2, ions:2},
+    hcl: {name:'Dilute HCl', full:'Dilute hydrochloric acid', C:.004, acid:true, strong:true}
+  };
+  const ORIGINAL = ['ammonia','salt','vinegar','borax','water','bicarbonate'];
+  const BENCH_ORDER = ['vinegar','hcl','ammonia','bicarbonate','borax','salt','water'];
+  const L = {
+    wCases:'Press a case card in the panel to open your first job.',
+    c1:'Press a test in the tray to run it. Then drag each label onto a bottle and press Check labels.',
+    noMeter:'The meter is out for repair. Press an indicator or Conductivity instead.',
+    wrong:'Some labels are wrong. Move the crossed ones and press Check labels again.',
+    missingLabels:'Some bottles still need labels. Pick a label, then press a bottle before Check labels.',
+    c2Tip:'Both read 2.4. Press the baking soda buttons a little at a time and watch for the fizz to stop.',
+    spillFirst:'Spill rule one. Press Tell the teacher before anything else.',
+    c3Soda:'Good. Now press the baking soda buttons and watch the pH graph climb.',
+    solved:'Case closed. Every bottle is labeled right.',
+    wBench:'Press a bottle to fill the beaker, then press any test in the tray.',
+    labelHow:'Pick a label, then press a bottle. Test each bottle before checking labels.',
+    moreEvidence:'Press a test for each bottle. Your labels need recorded evidence before Check labels can close the case.',
+    diluteHow:'Take fresh samples, press Dilute times ten, then press the pH meter for each bottle.',
+    explainHow:'Use your two test records. Pick the explanation that accounts for both amounts and both dilution readings.',
+    c2Solved:'Case closed. The same pH concealed very different amounts of acid.',
+    c3Explain:'Look at the pH graph after adding extra baking soda. Pick why it is chosen over a strong base.',
+    c3Solved:'Case closed. You reported the spill first and tested what happens after the acid is used up.',
+    retry2:'That explanation does not fit your evidence. Press Fresh sample, then dilute and measure both bottles again.',
+    retry3:'Press Reset spill, tell the teacher, and rebuild the graph with small steps before trying another explanation.',
+    spillPrecision:'Press Reset spill and use the smallest soda button near the steep rise. Record both sides before choosing a reason.',
+    spillFine:'Near the steep rise, press the smallest baking soda button. Record both sides before choosing a reason.',
+    freshHow:'A fresh ten milliliter sample is ready. Press a test in the tray.',
+    pickedHow:'The bottle is in the beaker. Press a test in the tray.',
+    neutralHow:'The acid is used up. Switch bottles to compare, or take a fresh sample to test dilution.',
+    shelfHow:'A new shelf has new letter assignments. Test the bottles again before labeling them.',
+    afterDrops:'Press Fresh sample before testing or diluting this sample again.',
+    attachLabel:'Label selected. Press a bottle to attach it.',
+    diluteC1:'Press an indicator or Conductivity to compare this diluted sample.',
+    diluteMeter:'Press pH meter to measure the diluted sample.',
+    reactedDilution:'Press Fresh sample before diluting a sample that has reacted.',
+    endpointMiss:'You passed the endpoint by too much. Press Fresh sample and approach it with smaller steps.',
+    retryEqual:'Your soda tests needed different amounts, so equal pH cannot mean equal acid reserves. Press Fresh sample and repeat both dilution readings.',
+    retryHcl:'The HCl needed less soda, so it cannot hold the larger acid reserve. Press Fresh sample and repeat both dilution readings.',
+    retryNeutral:'Your graph rose above seven with extra soda, so bases do not all stop at neutral. Reset spill, tell the teacher, and test again.',
+    retryGas:'The bubbles showed a gas-producing reaction. Reset spill, tell the teacher, and test again.'
+  };
+  const state = {mode:'Cases', caseId:0, selected:'A', shelf:[...ORIGINAL], seed:1, labels:{}, marks:{},
+    picked:null, samples:{}, notebook:{}, evidence:{}, solved:{}, attempts:{}, c2:{neutral:{}, diluted:{}, retry:false},
+    spill:{told:false, mg:0, points:[[0,0]], retry:false}, activeTest:null, result:null, checked:false};
+  let fizzTimer = 0;
+  let shelfKey = '';
+  let cardKey = '';
+  let saved = false;
+  let labelVersion = 0;
+  let phoneExplain = false;
+  const V = Curio.voice({lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => state.mode === 'Bench' && !state.activeTest ? ['wBench',{valid:() => state.mode === 'Bench' && !state.activeTest}] :
+      state.mode === 'Cases' && !state.caseId ? ['wCases',{valid:() => !state.caseId}] : null});
+
+  function weak(k, c) {
+    return 2*k*c/(Math.sqrt(k*k+4*k*c)+k);
+  }
+  function key() {
+    return state.mode === 'Bench' ? 'bench:'+state.selected : 'case'+state.caseId+':'+state.selected;
+  }
+  function liquidId() {
+    if (state.mode === 'Bench') return state.selected;
+    if (state.caseId === 2) return state.selected === 'A' ? 'vinegar' : 'hcl';
+    return state.shelf[state.selected.charCodeAt(0)-65];
+  }
+  function sample() {
+    const k = key();
+    return state.samples[k] || (state.samples[k] = {dilutions:0, mg:0, altered:false});
+  }
+  function factor(s = sample()) {
+    return s.dilutions < 4 ? '×'+Math.pow(10,s.dilutions) : '×10^'+s.dilutions;
+  }
+  function pH(id = liquidId(), s = sample()) {
+    const l = LIQUIDS[id];
+    if (!l) return 7;
+    const factor = Math.pow(10,s.dilutions);
+    const c = l.C/factor;
+    if (l.acid && s.mg > 0) {
+      const left = c*.01 - s.mg/1000/MW;
+      if (Math.abs(left) < 1e-15) return 7;
+      if (left < 0) return 8.35;
+      return -Math.log10(l.strong ? Math.sqrt((left/.01)**2+4e-14)/2+left/.02 : weak(l.Ka,left/.01));
+    }
+    if (l.buffer !== undefined) return l.buffer;
+    if (l.Ka) return -Math.log10(Math.max(1e-7,weak(l.Ka,c)));
+    if (l.Kb) return 14+Math.log10(Math.max(1e-7,weak(l.Kb,c)));
+    return -Math.log10((c+Math.sqrt(c*c+4e-14))/2);
+  }
+  function ions(id = liquidId(), s = sample()) {
+    const l = LIQUIDS[id];
+    const c = l.C/Math.pow(10,s.dilutions);
+    if (l.acid && s.mg > 0) {
+      // Sodium and the acid's counterion remain after the gas has escaped.
+      const sodaC = s.mg / 1000 / MW / .01;
+      const left = Math.max(0,c-sodaC);
+      return 2*sodaC + (l.Ka ? 2*weak(l.Ka,left) : 2*left);
+    }
+    if (l.ionFixed) return l.ionFixed;
+    if (l.Ka) return 2*weak(l.Ka,c);
+    if (l.Kb) return 2*weak(l.Kb,c);
+    return c*(l.ions || 2);
+  }
+  function conductivity() {
+    const n = ions();
+    return n < .0005 ? 'dark' : n <= .02 ? 'dim' : 'bright';
+  }
+  function indicator(name, p) {
+    if (name === 'Methyl orange') return p < 3.1 ? ['red','#e0442c'] : p <= 4.4 ? ['orange','#f08a24'] : ['yellow','#f5d02c'];
+    if (name === 'Bromothymol blue') return p < 6 ? ['yellow','#f2d43a'] : p <= 7.6 ? ['green','#5fbf6a'] : ['blue','#3f74d9'];
+    if (name === 'Phenolphthalein') return p < 8.2 ? ['colorless','#d5e7ec55'] :
+      p <= 8.6 ? ['pale pink','#f7a8d0'] : ['pink','#e0479a'];
+    return p < 4.5 ? ['red','#d9443c'] : p <= 8.3 ? ['purple','#9a6bc4'] : ['blue','#4a78d6'];
+  }
+  function spillPH() {
+    const left = .05-state.spill.mg/1000/MW;
+    if (Math.abs(left) < 1e-15) return 7;
+    if (left < 0) return 8.35;
+    return Math.max(0,-Math.log10((left/.05+Math.sqrt((left/.05)**2+4e-14))/2));
+  }
+  function hint(k, valid) {
+    $('hint').textContent = L[k];
+    V.how(k,{valid:valid || (() => true)});
+  }
+  function save() {
+    try {
+      localStorage.setItem(STORE,JSON.stringify({version:1,shelf:state.shelf,seed:state.seed,labels:state.labels,
+        solved:state.solved,notebook:state.notebook,evidence:state.evidence,attempts:state.attempts,c2:state.c2,spill:state.spill}));
+      saved = true;
+    } catch { saved = false; }
+  }
+  function restore() {
+    try {
+      const s = JSON.parse(localStorage.getItem(STORE));
+      if (!s || s.version !== 1) return;
+      if (Array.isArray(s.shelf) && s.shelf.length === 6 && new Set(s.shelf).size === 6 && s.shelf.every(x => ORIGINAL.includes(x))) {
+        state.shelf = s.shelf;
+      }
+      for (const k of ['labels','solved','notebook','evidence','attempts']) {
+        if (s[k] && typeof s[k] === 'object' && !Array.isArray(s[k])) state[k] = s[k];
+      }
+      state.seed = Number.isInteger(s.seed) ? s.seed : 1;
+      if (s.c2 && s.c2.neutral && s.c2.diluted) state.c2 = s.c2;
+      if (s.spill && Number.isFinite(s.spill.mg) && Array.isArray(s.spill.points)) state.spill = s.spill;
+    } catch {}
+  }
+  function record(name, value) {
+    const k = key();
+    if (!state.notebook[k]) state.notebook[k] = {};
+    state.notebook[k][name] = value;
+    if (state.mode === 'Cases' && state.caseId === 1 && sample().mg === 0 && !sample().altered) {
+      const s = sample();
+      if (!state.evidence[state.selected]) state.evidence[state.selected] = [];
+      state.evidence[state.selected].push({name,value,dilutions:s.dilutions});
+    }
+    save();
+  }
+  function readout(title, main, detail, color = '#d5e7ec55') {
+    state.result = {title,main,detail,color};
+    $('read-title').textContent = title;
+    $('read-main').textContent = main;
+    $('read-detail').textContent = detail;
+    $('liquid').style.setProperty('--liquid',color);
+  }
+  const ART = {meter:'art:phm-meter',dropper:'art:phm-dropper',litmus:'art:phm-litmus',tester:'art:phm-tester',
+    wash:'art:phm-wash',flask:'art:phm-flask',soda:'art:phm-soda'};
+  const TESTS = [['pH meter','meter'],['Methyl orange','dropper'],['Bromothymol blue','dropper'],
+    ['Phenolphthalein','dropper'],['Litmus paper','litmus'],['Conductivity','tester'],['Dilute ×10','flask'],
+    ['Vinegar drops','dropper'],['Fresh sample','wash']];
+  function instrument(kind) {
+    const heights = {meter:.9,dropper:.45,litmus:.35,tester:.75,wash:1,flask:1.1,soda:.5};
+    const aspects = {meter:.74,dropper:.319,litmus:4.05,tester:.96,wash:.443,flask:.377,soda:.82};
+    $('instrument').src = ART[kind];
+    $('instrument-wrap').style.setProperty('--ih',heights[kind]);
+    $('instrument-wrap').style.setProperty('--iw',aspects[kind]);
+  }
+  for (const [i,[name,art]] of TESTS.entries()) {
+    const b = document.createElement('button');
+    b.className = 'test-btn';
+    b.id = 'test-'+i;
+    b.dataset.test = name;
+    b.innerHTML = `<img src="${ART[art]}" alt=""><span>${name}<small id="test-sub-${i}"></small></span>`;
+    b.onclick = () => test(name);
+    $('tray').append(b);
+  }
+  function usable() {
+    return state.mode === 'Bench' || (state.caseId > 0 && (state.caseId !== 3 || state.spill.told));
+  }
+  function stopFizz() {
+    clearTimeout(fizzTimer);
+    $('bubbles').replaceChildren();
+    $('spill-bubbles').replaceChildren();
+  }
+  function fizz() {
+    stopFizz();
+    const target = state.caseId === 3 && state.mode === 'Cases' ? $('spill-bubbles') : $('bubbles');
+    for (let i=0; i<17; i++) {
+      const b = document.createElement('i');
+      b.className = 'bubble';
+      b.style.left = (8+(i*37)%85)+'%';
+      b.style.animationDelay = (-i*.047)+'s';
+      b.style.setProperty('--bubble-y',((i*17)%76)+'%');
+      b.style.width = b.style.height = (4+i%5)+'px';
+      target.append(b);
+    }
+    fizzTimer = setTimeout(stopFizz,1000);
+    Curio.tone(340,.08,.035,'triangle');
+  }
+  function test(name) {
+    if (state.mode === 'Cases' && state.caseId === 3) {
+      if (!state.spill.told) hint('spillFirst',() => !state.spill.told);
+      return;
+    }
+    if (name === 'Dilute ×10' || name === 'Dilute times ten') return dilute();
+    if (name === 'Fresh sample') return fresh();
+    if (!usable()) {
+      hint(state.caseId === 3 ? 'spillFirst' : 'wCases',() => !usable());
+      return;
+    }
+    if (state.mode === 'Cases' && state.caseId === 3) return;
+    if (state.mode === 'Cases' && state.caseId === 1 && name === 'pH meter') {
+      hint('noMeter',() => state.mode === 'Cases' && state.caseId === 1);
+      Curio.tone(140,.1,.025);
+      return;
+    }
+    stopFizz();
+    state.activeTest = name;
+    const s = sample();
+    if (s.altered) {
+      hint('afterDrops',() => sample().altered);
+      return;
+    }
+    const p = pH();
+    const context = s.mg ? 'Soda-treated sample; simplified model' :
+      s.dilutions ? `Diluted ${factor(s)} sample` : 'Fresh 10 mL sample';
+    instrument(name === 'pH meter' ? 'meter' : name === 'Conductivity' ? 'tester' :
+      name === 'Litmus paper' ? 'litmus' : 'dropper');
+    $('bulb').hidden = name !== 'Conductivity';
+    if (name === 'pH meter') {
+      const wasReady = state.mode === 'Cases' && state.caseId === 2 && c2Ready();
+      readout('pH meter',p.toFixed(2),context);
+      record(name,p.toFixed(2)+(s.dilutions ? ' '+factor(s) : ''));
+      if (state.mode === 'Cases' && state.caseId === 2 && s.dilutions === 1 && s.mg === 0 && !s.altered && !state.c2.retryNeeded?.[state.selected]) {
+        state.c2.diluted[state.selected] = p;
+        state.c2.retry = false;
+        save();
+        if (!wasReady && c2Ready()) V.hush();
+      }
+    } else if (name === 'Conductivity') {
+      const word = conductivity();
+      $('bulb').className = 'bulb '+word;
+      readout('Conductivity',word,context+' · ion-threshold model');
+      record(name,word);
+    } else if (name === 'Vinegar drops') {
+      const l = LIQUIDS[liquidId()];
+      const need = l.acid ? l.C/Math.pow(10,s.dilutions)*.01*MW*1000 : 0;
+      const reacts = liquidId() === 'bicarbonate' || s.mg > need;
+      readout(name,reacts ? 'Fizz' : 'No fizz',reacts ? 'Carbon dioxide bubbles' : 'No visible bubbles');
+      record(name,reacts ? 'fizz' : 'no fizz');
+      s.altered = true;
+      if (reacts) fizz();
+    } else {
+      const [word,color] = indicator(name,p);
+      if (name === 'Litmus paper') $('litmus-color').style.setProperty('--strip-color',color);
+      readout(name,word,context,name === 'Litmus paper' ? '#d5e7ec55' : color);
+      record(name,word);
+    }
+    Curio.tone(620,.04,.025,'sine');
+    render();
+    if (name === 'Vinegar drops') hint('afterDrops',() => state.activeTest === 'Vinegar drops' && !state.picked);
+    else if (state.mode === 'Cases' && state.caseId === 2) c2Hint();
+    else hint(state.mode === 'Bench' ? 'pickedHow' : 'labelHow',() => state.activeTest !== null);
+  }
+  function dilute() {
+    if (!usable() || (state.mode === 'Cases' && state.caseId === 3)) {
+      if (!usable()) hint(state.caseId === 3 ? 'spillFirst' : 'wCases');
+      return;
+    }
+    stopFizz();
+    const s = sample();
+    if (s.mg || s.altered) {
+      hint('reactedDilution',() => !!sample().mg || sample().altered);
+      return;
+    }
+    s.dilutions++;
+    state.activeTest = 'Dilute ×10';
+    instrument('flask');
+    $('bulb').hidden = true;
+    readout('Dilution',factor(s),'10 mL → 100 mL; take a new 10 mL portion.');
+    record('Dilution',factor(s));
+    Curio.tone(430,.09,.025,'sine');
+    render();
+    hint(state.mode === 'Cases' && state.caseId === 1 ? 'diluteC1' : 'diluteMeter',
+      () => state.activeTest === 'Dilute ×10');
+  }
+  function soda(g) {
+    if (![.001,.01,.1].includes(g) || !usable()) {
+      if (!usable()) hint(state.caseId === 3 ? 'spillFirst' : 'wCases');
+      return;
+    }
+    if (state.mode === 'Cases' && state.caseId === 1) return;
+    stopFizz();
+    const add = Math.round(g*1000);
+    Curio.tone(390,.035,.02,'triangle');
+    if (state.mode === 'Cases' && state.caseId === 3) {
+      if (state.spill.retry) {
+        hint('retry3',() => state.caseId === 3 && state.spill.retry);
+        return;
+      }
+      const before = spillPH();
+      state.spill.mg += add;
+      const p = spillPH();
+      if (before < 8 && p >= 8) V.hush();
+      state.spill.points.push([state.spill.mg/1000,p]);
+      record('Baking soda',(state.spill.mg/1000).toFixed(3)+' g');
+      record('pH meter',p.toFixed(2));
+      state.spill.retry = false;
+      if (before < 7) fizz();
+      save();
+      render();
+      hint(p >= 8 ? spillReady() ? 'c3Explain' : 'spillPrecision' : state.spill.mg >= 4000 ? 'spillFine' : 'c3Soda',
+        () => state.caseId === 3 && state.spill.told);
+      return;
+    }
+    const s = sample();
+    if (s.altered) {
+      hint('afterDrops',() => sample().altered);
+      return;
+    }
+    const l = LIQUIDS[liquidId()];
+    const need = l.acid ? l.C/Math.pow(10,s.dilutions)*.01*MW*1000 : 0;
+    const before = s.mg;
+    s.mg += add;
+    state.activeTest = 'Baking soda';
+    instrument('soda');
+    $('bulb').hidden = true;
+    const exhausted = l.acid && s.mg >= need;
+    if (l.acid && before < need && !exhausted) fizz();
+    const [word,color] = indicator('Methyl orange',pH());
+    readout('Baking soda',exhausted ? 'Used up' : l.acid ? 'Fizzing' : 'No fizz',
+      `pH ${pH().toFixed(2)} · methyl orange: ${word} · simplified model`,color);
+    record('Baking soda',(s.mg/1000).toFixed(3)+' g; '+(exhausted ? 'used up' : l.acid ? 'fizz' : 'no fizz'));
+    if (state.mode === 'Cases' && state.caseId === 2 && exhausted && s.dilutions === 0 && !s.altered && s.mg === Math.ceil(need)) {
+      state.c2.neutral[state.selected] = {added:s.mg/1000,need:need/1000};
+      save();
+    }
+    render();
+    if (state.mode === 'Cases' && state.caseId === 2) c2Hint();
+    else hint(exhausted ? 'neutralHow' : 'pickedHow');
+    if (state.mode === 'Cases' && state.caseId === 2 && exhausted && s.mg > Math.ceil(need)) {
+      hint('endpointMiss',() => sample().mg > Math.ceil(need));
+    }
+  }
+  function fresh() {
+    if (!usable()) return;
+    V.hush();
+    Curio.tone(440,.05,.02,'sine');
+    stopFizz();
+    if (state.mode === 'Cases' && state.caseId === 3) {
+      state.spill = {told:false,mg:0,points:[[0,0]],retry:false};
+      save();
+      render();
+      hint('spillFirst',() => !state.spill.told);
+      return;
+    }
+    state.samples[key()] = {dilutions:0,mg:0,altered:false};
+    if (state.mode === 'Cases' && state.caseId === 2 && state.c2.retryNeeded) {
+      delete state.c2.retryNeeded[state.selected];
+    }
+    state.activeTest = null;
+    $('bulb').hidden = true;
+    readout('Fresh sample','Ready','Clear, colorless · 10 mL');
+    render();
+    hint('freshHow',() => !state.activeTest);
+  }
+  function bottle(letter) {
+    if (state.mode === 'Cases' && !state.caseId) {
+      hint('wCases',() => !state.caseId);
+      return;
+    }
+    if (state.mode === 'Cases' && state.caseId === 3) {
+      caseHint();
+      return;
+    }
+    if (state.mode === 'Bench' && /^[A-G]$/.test(letter)) {
+      letter = Object.keys(LIQUIDS)[letter.charCodeAt(0)-65];
+    }
+    const valid = state.mode === 'Bench' ? Object.keys(LIQUIDS) : state.caseId === 2 ? ['A','B'] : ['A','B','C','D','E','F'];
+    if (!valid.includes(letter)) return;
+    if (state.mode === 'Cases' && state.caseId === 1 && state.picked) {
+      place(state.picked,letter);
+      return;
+    }
+    stopFizz();
+    state.selected = letter;
+    state.activeTest = null;
+    $('bulb').hidden = true;
+    const s = sample();
+    const stored = s.mg || s.dilutions || s.altered;
+    readout('Sample selected',stored ? 'Retained' : 'Ready',s.altered ? 'Reacted with vinegar; take a fresh sample.' :
+      s.mg ? (s.mg/1000).toFixed(3)+' g soda already added.' :
+      s.dilutions ? 'Previously diluted '+factor(s)+' sample.' :
+      state.mode === 'Bench' ? LIQUIDS[letter].full : 'Bottle '+letter+' · 10 mL');
+    Curio.tone(420,.05,.02);
+    render();
+    hint(s.altered ? 'afterDrops' : 'pickedHow',() => state.selected === letter && !state.activeTest);
+  }
+  function setMode(mode) {
+    mode = mode.toLowerCase() === 'bench' ? 'Bench' : 'Cases';
+    if (state.mode === mode) {
+      $('panel').scrollTop = 0;
+      return;
+    }
+    V.hush();
+    stopFizz();
+    state.mode = mode;
+    Curio.tone(460,.04,.02);
+    state.selected = mode === 'Bench' ? 'vinegar' : 'A';
+    state.activeTest = null;
+    state.picked = null;
+    shelfKey = cardKey = '';
+    render();
+    $('panel').scrollTop = 0;
+    if (mode === 'Bench') readout('Test bench','Ready','Select a bottle, then a test.');
+    else if (!state.caseId) readout('Evidence, not guesses','Untested','Open a case to begin.');
+    else readout('Case 0'+state.caseId,'Ready','Choose an available test.');
+    if (mode === 'Bench') hint('wBench',() => state.mode === 'Bench' && !state.activeTest);
+    else if (!state.caseId) hint('wCases',() => !state.caseId);
+    else caseHint();
+  }
+  function openCase(id) {
+    id = Number(String(id).replace(/c/i,''));
+    if (![1,2,3].includes(id)) return;
+    V.hush();
+    stopFizz();
+    state.mode = 'Cases';
+    state.caseId = id;
+    Curio.tone(510,.05,.02);
+    state.selected = 'A';
+    state.picked = null;
+    state.activeTest = null;
+    state.marks = {};
+    shelfKey = cardKey = '';
+    readout('Case 0'+id,'Ready','Choose a test to gather evidence.');
+    render();
+    $('panel').scrollTop = 0;
+    caseHint();
+  }
+  function caseHint() {
+    if (state.caseId === 1) hint('c1',() => state.caseId === 1 && !state.checked);
+    if (state.caseId === 2) c2Hint();
+    if (state.caseId === 3) hint(state.spill.told ? state.spill.retry ? 'retry3' :
+      spillPH() >= 8 ? spillReady() ? 'c3Explain' : 'spillPrecision' : 'c3Soda' : 'spillFirst',
+      () => state.caseId === 3);
+  }
+  function c2Ready() {
+    return ['A','B'].every(b => state.c2.neutral[b] && Number.isFinite(state.c2.diluted[b])) && !state.c2.retry;
+  }
+  function spillReady() {
+    const pts = state.spill.points;
+    return state.spill.told && !state.spill.retry && pts.some(([g,p],i) =>
+      i > 0 && p > 7 && pts[i-1][1] < 7 && g-pts[i-1][0] <= .001001);
+  }
+  function c2Hint() {
+    const both = ['A','B'].every(b => state.c2.neutral[b]);
+    hint(c2Ready() ? 'explainHow' : both ? 'diluteHow' : 'c2Tip',() => state.caseId === 2);
+  }
+  function place(id,letter) {
+    if (!ORIGINAL.includes(id) || !['A','B','C','D','E','F'].includes(letter) || state.caseId !== 1) return;
+    V.hush();
+    labelVersion++;
+    V.dropQueued(e => String(e.key).startsWith('wrong:'));
+    for (const b of Object.keys(state.labels)) if (state.labels[b] === id) delete state.labels[b];
+    state.labels[letter] = id;
+    state.picked = null;
+    state.marks = {};
+    delete state.solved[1];
+    save();
+    render();
+    Curio.tone(540,.05,.02);
+    hint('labelHow');
+  }
+  function enoughEvidence() {
+    return ['A','B','C','D','E','F'].every(b => {
+      const candidates = ORIGINAL.filter(id => (state.evidence[b] || []).every(e => {
+        const s = {dilutions:e.dilutions,mg:0};
+        if (e.name === 'Conductivity') {
+          const n = ions(id,s);
+          return e.value === (n < .0005 ? 'dark' : n <= .02 ? 'dim' : 'bright');
+        }
+        if (e.name === 'Vinegar drops') return e.value === (id === 'bicarbonate' ? 'fizz' : 'no fizz');
+        if (['Methyl orange','Bromothymol blue','Phenolphthalein','Litmus paper'].includes(e.name)) {
+          return e.value === indicator(e.name,pH(id,s))[0];
+        }
+        return true;
+      }));
+      return candidates.length === 1 && candidates[0] === state.labels[b];
+    });
+  }
+  function check() {
+    if (state.mode !== 'Cases' || state.caseId !== 1) return false;
+    state.checked = true;
+    state.attempts[1] = (state.attempts[1] || 0)+1;
+    let right = 0;
+    for (const [i,b] of ['A','B','C','D','E','F'].entries()) {
+      const ok = state.labels[b] === state.shelf[i];
+      state.marks[b] = ok;
+      if (ok) right++;
+    }
+    if (right === 6 && enoughEvidence()) {
+      closeCase(1,'solved');
+      return true;
+    }
+    const allPlaced = Object.keys(state.labels).length === 6;
+      $('c1-result').textContent = right === 6 ? 'Labels fit. Use tests that distinguish each liquid from the other possibilities.' :
+      (allPlaced ? 'Crossed labels need another look. Use the notebook to revise them.' : 'Some bottles still need labels.');
+    $('c1-result').className = 'result bad';
+    const version = labelVersion;
+    const misplaced = Object.keys(state.labels).some(b => state.marks[b] === false);
+    const feedback = right === 6 ? 'moreEvidence' : misplaced ? 'wrong' : 'missingLabels';
+    V.dropQueued(e => e.kind === 'how');
+    V.say(feedback,{
+      kind:feedback === 'wrong' ? 'event' : 'how',
+      key:feedback === 'wrong' ? 'wrong:'+state.attempts[1] : feedback,
+      valid:() => state.caseId === 1 && labelVersion === version && !state.solved[1] && Object.keys(state.marks).length > 0
+    });
+    $('hint').textContent = L[feedback];
+    save();
+    render();
+    return false;
+  }
+  function closeCase(id,line) {
+    V.hush();
+    state.solved[id] = true;
+    save();
+    render();
+    $('hint').textContent = L[line];
+    V.say(line,{valid:() => state.mode === 'Cases' && state.caseId === id && state.solved[id]});
+    Curio.yes();
+  }
+  function shuffle() {
+    labelVersion++;
+    Curio.tone(470,.06,.025);
+    state.seed++;
+    let seed = state.seed;
+    const rng = () => {seed = (Math.imul(1664525,seed)+1013904223)>>>0; return seed/4294967296;};
+    const next = [...ORIGINAL];
+    for (let i=next.length-1; i>0; i--) {
+      const j = Math.floor(rng()*(i+1));
+      [next[i],next[j]] = [next[j],next[i]];
+    }
+    if (next.every((x,i) => x === state.shelf[i])) next.push(next.shift());
+    state.shelf = next;
+    state.labels = {};
+    state.marks = {};
+    state.evidence = {};
+    state.checked = false;
+    delete state.solved[1];
+    for (const k of Object.keys(state.notebook)) if (k.startsWith('case1:')) delete state.notebook[k];
+    for (const k of Object.keys(state.samples)) if (k.startsWith('case1:')) delete state.samples[k];
+    state.selected = 'A';
+    state.activeTest = null;
+    state.picked = null;
+    V.hush();
+    readout('New shelf','Untested','Letters changed. Start with a test.');
+    save();
+    render();
+    hint('shelfHow',() => state.caseId === 1);
+  }
+  function answer(which) {
+    const id = state.caseId;
+    if (state.mode !== 'Cases' || (id !== 2 && id !== 3)) return;
+    if (state.solved[id]) return;
+    if (id === 2 && !c2Ready()) return;
+    if (id === 3 && !spillReady()) return;
+    V.hush();
+    state.attempts[id] = (state.attempts[id] || 0)+1;
+    const right = id === 2 ? which === 1 : which === 2;
+    if (right) {
+      closeCase(id,id === 2 ? 'c2Solved' : 'c3Solved');
+    } else {
+      Curio.tone(160,.08,.025);
+      if (id === 2) {
+        state.c2.diluted = {};
+        state.c2.retry = true;
+        state.c2.retryNeeded = {A:true,B:true};
+      } else state.spill.retry = true;
+      $('explain-result').textContent = id === 2 ?
+        'Same meter reading, different soda amounts. Measure the two fresh dilutions again before revising.' :
+        'Rebuild the graph and use the smallest steps across the steep rise before revising.';
+      $('explain-result').className = 'result bad';
+      const feedback = id === 2 ? which === 0 ? 'retryEqual' : 'retryHcl' :
+        which === 0 ? 'retryNeutral' : 'retryGas';
+      $('explain-result').textContent = L[feedback];
+      $('hint').textContent = L[feedback];
+      V.say(feedback,{key:'retry:'+id+':'+state.attempts[id],valid:() => state.caseId === id});
+      save();
+      render();
+    }
+  }
+  function renderShelf() {
+    const spill = state.mode === 'Cases' && state.caseId === 3;
+    $('shelf').hidden = spill;
+    $('specimen').hidden = spill;
+    $('reading').hidden = spill;
+    $('instrument-wrap').hidden = spill;
+    $('spill-focus').hidden = !spill;
+    $('world').classList.toggle('bench-mode',state.mode === 'Bench');
+    const ids = state.mode === 'Bench' ? BENCH_ORDER : state.caseId === 2 ? ['A','B'] : ['A','B','C','D','E','F'];
+    const signature = state.mode+':'+state.caseId+':'+ids.join(',');
+    if (shelfKey !== signature) {
+      $('shelf').replaceChildren();
+      for (const id of ids) {
+        const b = document.createElement('button');
+        b.className = 'bottle';
+        b.id = 'bottle-'+id;
+        b.innerHTML = '<img src="art:phm-bottle" alt=""><span class="bname"></span><span class="placed" hidden></span>';
+        b.onclick = () => bottle(id);
+        b.ondragover = e => e.preventDefault();
+        b.ondrop = e => {
+          e.preventDefault();
+          const label = e.dataTransfer.getData('text/plain');
+          place(label,id);
+        };
+        $('shelf').append(b);
+      }
+      shelfKey = signature;
+    }
+    for (const id of ids) {
+      const b = $('bottle-'+id);
+      const title = state.mode === 'Bench' ? LIQUIDS[id].name : id;
+      b.querySelector('.bname').textContent = title;
+      b.setAttribute('aria-pressed',String(state.selected === id));
+      b.tabIndex = state.mode === 'Cases' && !state.caseId ? -1 : 0;
+      b.setAttribute('aria-label',(state.mode === 'Bench' ? LIQUIDS[id].full : 'Bottle '+id)+
+        (state.labels[id] && state.caseId === 1 ? ', label '+LIQUIDS[state.labels[id]].name : '')+
+        (state.mode === 'Cases' && state.caseId === 1 && id in state.marks ?
+          state.marks[id] ? ', correct' : ', needs revision' : ''));
+      const label = b.querySelector('.placed');
+      label.hidden = state.mode !== 'Cases' || state.caseId !== 1 || !state.labels[id];
+      if (!label.hidden) {
+        const marked = id in state.marks;
+        label.textContent = (marked ? state.marks[id] ? '✓ ' : '× ' : '')+LIQUIDS[state.labels[id]].name;
+        label.className = 'placed'+(marked ? state.marks[id] ? ' good' : ' bad' : '');
+      }
+    }
+  }
+  function createCard() {
+    const mode = state.mode;
+    const signature = mode+state.caseId;
+    if (cardKey === signature) return;
+    const c = $('casecard');
+    c.className = 'casecard';
+    if (mode === 'Bench') {
+      c.innerHTML = '<div class="case-index">OPEN BENCH</div><h2>Test an idea.</h2>'+
+        '<p>Select any named liquid. Every test is available. Use fresh samples to make fair comparisons.</p>'+
+        '<p>Model at 25 °C. Buffer pH stays fixed; extreme dilutions are illustrative.</p>';
+    } else if (state.caseId === 0) {
+      c.classList.add('flood');
+      c.innerHTML = '<div class="case-index">LAB CREW / THREE JOBS</div><h2>The labels washed away.</h2>'+
+        '<p>Six clear liquids. A broken meter. Find out what the other tests can tell you.</p>'+
+        '<p>Press 01 Flooded room to open the first case.</p>';
+    } else if (state.caseId === 1) {
+      c.classList.add('flood');
+      c.innerHTML = '<div class="case-index">CASE 01 / FLOODED PREP ROOM</div><h2>Give every bottle its name.</h2>'+
+        '<p>Test the liquids. Drag a label to a bottle, or pick a label then press a bottle.</p><div class="labels" id="labels"></div>'+
+        '<div class="row"><button class="btn hot" id="check">Check labels</button><button class="btn" id="new-shelf">New shelf</button></div>'+
+        '<div class="result" id="c1-result">Your notebook is the evidence.</div>';
+      const order = ['vinegar','bicarbonate','ammonia','water','salt','borax'];
+      for (const id of order) {
+        const b = document.createElement('button');
+        b.className = 'label';
+        b.id = 'label-'+id;
+        b.textContent = LIQUIDS[id].name;
+        b.draggable = true;
+        b.ondragstart = e => e.dataTransfer.setData('text/plain',id);
+        b.onclick = () => {
+          state.picked = state.picked === id ? null : id;
+          render();
+          hint(state.picked ? 'attachLabel' : 'labelHow',() => state.caseId === 1 &&
+            (state.picked ? $('hint').textContent === L.attachLabel : !state.picked));
+          Curio.tone(520,.04,.02);
+        };
+        $('labels').append(b);
+      }
+      $('check').onclick = check;
+      $('new-shelf').onclick = shuffle;
+    } else if (state.caseId === 2) {
+      c.innerHTML = '<div class="case-index">CASE 02 / SAME pH, DIFFERENT STRENGTH</div><h2>Both start at pH 2.4.</h2>'+
+        '<p>A is vinegar; B is dilute hydrochloric acid. Find the soda needed, then test a tenfold dilution of each.</p>'+
+        '<p class="phone-only">A: vinegar. B: dilute HCl.</p>'+
+        '<div class="checklist" id="c2-tasks"></div><div class="result" id="c2-amounts" hidden></div>'+
+        '<p id="c2-prompt">What accounts for both tests?</p><div id="choices"></div>'+
+        '<div class="result" id="explain-result">Gather both kinds of evidence first.</div>';
+      makeChoices([
+        'Equal pH means equal acid reserves.',
+        'Vinegar holds more acid, mostly unsplit.',
+        'HCl holds more acid, mostly unsplit.'
+      ]);
+    } else {
+      c.innerHTML = '<div class="case-index">CASE 03 / SPILL DRILL</div><h2>Stop. Report it first.</h2>'+
+        '<p>A virtual 50 mL spill of 1.0 mol/L hydrochloric acid. In a real lab, follow the teacher’s directions.</p>'+
+        '<button class="btn hot" id="tell">Tell the teacher</button><p id="spill-task">The spill controls stay locked until you report it.</p>'+
+        '<div class="checklist">HCl + NaHCO₃ → NaCl + H₂O + CO₂<br>Volume fixed; carbon dioxide escapes.</div>'+
+        '<p>Why choose baking soda over a strong base?</p><div id="choices"></div>'+
+        '<div class="result" id="explain-result">Report, then build the graph with small additions.</div>';
+      $('tell').onclick = () => {
+        if (state.spill.told) return;
+        V.hush();
+        state.spill.told = true;
+        save();
+        render();
+        hint('c3Soda',() => state.caseId === 3 && state.spill.told && !state.spill.retry && state.spill.mg < 4000);
+        Curio.tone(490,.07,.03);
+      };
+      makeChoices([
+        'Every base stops reacting at neutral.',
+        'Baking soda reacts without making gas.',
+        'Extra baking soda stays near neutral.'
+      ]);
+    }
+    cardKey = signature;
+  }
+  function makeChoices(texts) {
+    texts.forEach((text,i) => {
+      const b = document.createElement('button');
+      b.className = 'btn choice';
+      b.id = 'choice-'+i;
+      b.textContent = text;
+      b.onclick = () => answer(i);
+      $('choices').append(b);
+    });
+  }
+  function renderCard() {
+    createCard();
+    if (state.mode === 'Bench') return;
+    if (state.caseId === 1) {
+      for (const id of ORIGINAL) $('label-'+id).setAttribute('aria-pressed',String(state.picked === id));
+      if (state.solved[1]) {
+        $('c1-result').textContent = 'Case closed. Every bottle is labeled right. '+
+          (saved ? 'Your test record is saved here.' : 'Your test record is kept for this session.');
+        $('c1-result').className = 'result good';
+      }
+    }
+    if (state.caseId === 2) {
+      const c = state.c2;
+      $('c2-tasks').innerHTML = ['A','B'].map(b =>
+        `<span class="${c.neutral[b] && Number.isFinite(c.diluted[b]) ? 'done' : ''}">${b}: soda `+
+        `${c.neutral[b] ? c.neutral[b].added.toFixed(3)+' g' : 'not yet'}; ×10 pH `+
+        `${Number.isFinite(c.diluted[b]) ? c.diluted[b].toFixed(2) : 'not yet'}</span>`).join('');
+      const both = c.neutral.A && c.neutral.B;
+      $('c2-amounts').hidden = !both;
+      if (both) $('c2-amounts').textContent = 'Model amounts needed: vinegar 0.699 g; HCl 0.0034 g. Ratio ≈ 208. '+
+        'Button endpoints: 0.700 g and 0.004 g.';
+      for (let i=0;i<3;i++) {
+        const locked = !c2Ready() || !!state.solved[2];
+        $('choice-'+i).setAttribute('aria-disabled',String(locked));
+        $('choice-'+i).tabIndex = locked ? -1 : 0;
+      }
+      if (state.solved[2]) {
+        $('explain-result').textContent = 'Case closed. Vinegar has far more acid in the bottle; only a little of it is split at a time, '+
+          'and pH counts only the split part.';
+        $('explain-result').className = 'result good';
+      } else if (c2Ready()) {
+        $('explain-result').textContent = 'Both comparisons are recorded. Choose the explanation that fits them.';
+        $('explain-result').className = 'result';
+      }
+    }
+    if (state.caseId === 3) {
+      $('tell').textContent = state.spill.told ? '✓ Teacher told' : 'Tell the teacher';
+      $('tell').setAttribute('aria-disabled',String(state.spill.told));
+      $('spill-task').textContent = state.spill.told ? 'About 4.20 g is needed. Use +0.001 g across the steep rise, then choose a reason.' :
+        'The spill controls stay locked until you report it.';
+      for (let i=0;i<3;i++) {
+        const locked = !spillReady() || !!state.solved[3];
+        $('choice-'+i).setAttribute('aria-disabled',String(locked));
+        $('choice-'+i).tabIndex = locked ? -1 : 0;
+      }
+      if (state.solved[3]) {
+        $('explain-result').textContent = 'Case closed. Extra baking soda cannot push the spill far past neutral. '+
+          'Your graph levels near pH 8.35 after the acid is used up. '+
+          'A strong base could overshoot to a high, caustic pH.';
+        $('explain-result').className = 'result good';
+      }
+    }
+  }
+  function graph() {
+    const points = state.spill.points;
+    const maxX = Math.max(4.5,state.spill.mg/1000+.1);
+    const r = $('spill-graph').getBoundingClientRect();
+    const w = Math.max(100,r.width);
+    const h = Math.max(90,r.height);
+    const bottom = h-31;
+    const x = g => 32+g/maxX*(w-45);
+    const y = p => bottom-p/14*(bottom-20);
+    $('spill-graph').setAttribute('viewBox',`0 0 ${w} ${h}`);
+    let svg = '<text x="8" y="10">pH</text>';
+    for (const p of h < 180 ? [0,7,14] : [0,4,7,8.35,14]) {
+      svg += `<path d="M32 ${y(p)}H${w-12}" stroke="#ffffff22"/><text x="3" y="${y(p)+4}">${p}</text>`;
+    }
+    svg += `<path d="M32 20V${bottom}H${w-12}" fill="none" stroke="#bbcad7"/>`;
+    svg += `<polyline points="${points.map(([g,p]) => x(g)+','+y(p)).join(' ')}" fill="none" stroke="#d590b0" stroke-width="3"/>`;
+    for (const [g,p] of points) svg += `<circle cx="${x(g)}" cy="${y(p)}" r="2.5" fill="#f5d3e3"/>`;
+    svg += `<text x="32" y="${h-17}">0</text><text x="${w-33}" y="${h-17}">${maxX.toFixed(1)}</text>`;
+    svg += `<text x="${w/2}" y="${h-3}" text-anchor="middle">Baking soda (g)</text>`;
+    $('spill-graph').innerHTML = svg;
+    $('spill-graph').setAttribute('aria-label','Baking soda graph. '+(state.spill.mg/1000).toFixed(3)+' grams added. pH '+spillPH().toFixed(2));
+    $('spill-number').textContent = 'pH '+spillPH().toFixed(2)+(spillPH()>=7 ? ' · used up' : '');
+  }
+  function notebook() {
+    const prefix = state.mode === 'Bench' ? 'bench:' : 'case'+state.caseId+':';
+    const records = Object.entries(state.notebook).filter(([k]) => k.startsWith(prefix));
+    const cols = [...new Set(records.flatMap(([,r]) => Object.keys(r)))];
+    if (!cols.length) {
+      $('gridwrap').innerHTML = '<table><thead><tr><th>Bottle</th><th>Tests</th></tr></thead>'+
+        '<tbody><tr><td>?</td><td class="empty">No tests yet</td></tr></tbody></table>';
+      return;
+    }
+    const table = document.createElement('table');
+    const tr = table.createTHead().insertRow();
+    for (const s of ['Bottle',...cols]) {
+      const th = document.createElement('th');
+      th.textContent = s;
+      tr.append(th);
+    }
+    const body = table.createTBody();
+    for (const [k,r] of records) {
+      const row = body.insertRow();
+      const b = k.slice(prefix.length);
+      row.insertCell().textContent = state.mode === 'Bench' ? LIQUIDS[b]?.name || b : b;
+      for (const col of cols) {
+        const td = row.insertCell();
+        td.textContent = r[col] || '·';
+        if (!r[col]) td.className = 'empty';
+      }
+    }
+    $('gridwrap').replaceChildren(table);
+  }
+  function render() {
+    const focusInTray = $('tray').contains(document.activeElement);
+    const focusInChoices = $('choices')?.contains(document.activeElement);
+    document.body.dataset.case = state.mode === 'Cases' ? state.caseId : 'bench';
+    const explaining = state.mode === 'Cases' && state.caseId === 2 && c2Ready();
+    document.body.dataset.explain = String(explaining);
+    $('m-cases').setAttribute('aria-pressed',String(state.mode === 'Cases'));
+    $('m-bench').setAttribute('aria-pressed',String(state.mode === 'Bench'));
+    $('case-nav').hidden = state.mode === 'Bench';
+    $('ladder').hidden = state.mode !== 'Bench';
+    for (let i=1;i<=3;i++) {
+      $('case'+i).setAttribute('aria-pressed',String(state.caseId === i));
+      $('case'+i).querySelector('b').textContent = (state.solved[i] ? '✓ ' : '')+'0'+i;
+    }
+    renderShelf();
+    renderCard();
+    const a = state.c2.neutral.A;
+    const b = state.c2.neutral.B;
+    $('reserve-compare').hidden = !(state.mode === 'Cases' && state.caseId === 2 && a && b);
+    if (!$('reserve-compare').hidden) {
+      $('dose-a').textContent = a.added.toFixed(3)+' g';
+      $('dose-b').textContent = b.added.toFixed(3)+' g';
+      $('dose-bar-b').style.width = (100*b.added/a.added)+'%';
+      $('reserve-compare').setAttribute('aria-label','Baking soda added to use up each sample: A '+a.added.toFixed(3)+
+        ' grams; B '+b.added.toFixed(3)+' grams. Bars share one scale.');
+    }
+    notebook();
+    const spill = state.mode === 'Cases' && state.caseId === 3;
+    const closed = state.mode === 'Cases' && state.caseId === 1;
+    $('meter-lcd').hidden = spill || state.activeTest !== 'pH meter';
+    $('litmus-color').hidden = spill || state.activeTest !== 'Litmus paper';
+    if (!$('meter-lcd').hidden) $('meter-lcd').textContent = state.result?.main || '';
+    for (const [i,[name]] of TESTS.entries()) {
+      const b = $('test-'+i);
+      const locked = !usable() || spill || (closed && name === 'pH meter');
+      b.setAttribute('aria-disabled',String(locked));
+      b.tabIndex = locked && !(closed && name === 'pH meter') ? -1 : 0;
+      b.setAttribute('aria-pressed',String(state.activeTest === name));
+      $('test-sub-'+i).textContent = closed && i === 0 ? 'out for repair' : '';
+    }
+    for (const id of ['soda-001','soda-01','soda-1']) {
+      $(id).setAttribute('aria-disabled',String(!usable() || closed));
+      $(id).tabIndex = !usable() || closed ? -1 : 0;
+    }
+    $('fresh').setAttribute('aria-disabled',String(!usable()));
+    $('fresh').tabIndex = usable() ? 0 : -1;
+    $('fresh').textContent = spill ? 'Reset spill' : 'Fresh sample';
+    const s = sample();
+    $('soda-total').textContent = ((spill ? state.spill.mg : s.mg)/1000).toFixed(3)+' g';
+    $('sample-tag').textContent = (state.mode === 'Bench' ? LIQUIDS[liquidId()].name : 'Bottle '+state.selected)+
+      ' · 10 mL'+(s.dilutions ? ' · '+factor(s) : '');
+    if (spill) graph();
+    const count = Object.values(state.solved).filter(Boolean).length;
+    $('progress').textContent = count+'/3 cases closed. '+(saved ? 'Saved here only.' : 'On this device only.')+' Never leaves this device.';
+    if (matchMedia('(max-width:560px)').matches && explaining !== phoneExplain && state.caseId === 2) {
+      if (explaining && focusInTray) $('choice-0').focus({preventScroll:true});
+      if (!explaining && focusInChoices) $('fresh').focus({preventScroll:true});
+    }
+    phoneExplain = explaining;
+  }
+  $('m-cases').onclick = () => setMode('Cases');
+  $('m-bench').onclick = () => setMode('Bench');
+  for (let i=1;i<=3;i++) $('case'+i).onclick = () => openCase(i);
+  $('soda-001').onclick = () => soda(.001);
+  $('soda-01').onclick = () => soda(.01);
+  $('soda-1').onclick = () => soda(.1);
+  $('fresh').onclick = fresh;
+  $('clear').onclick = () => {
+    Curio.tone(350,.04,.02);
+    V.hush();
+    stopFizz();
+    state.labels = {};
+    state.marks = {};
+    state.samples = {};
+    state.notebook = {};
+    state.evidence = {};
+    state.solved = {};
+    state.attempts = {};
+    state.c2 = {neutral:{},diluted:{},retry:false};
+    state.spill = {told:false,mg:0,points:[[0,0]],retry:false};
+    state.shelf = [...ORIGINAL];
+    state.seed = 1;
+    state.caseId = 0;
+    state.mode = 'Cases';
+    state.selected = 'A';
+    state.activeTest = null;
+    state.picked = null;
+    state.checked = false;
+    shelfKey = cardKey = '';
+    save();
+    render();
+    readout('Evidence, not guesses','Untested','Open a case to begin.');
+    $('panel').scrollTop = 0;
+    if (matchMedia('(max-width:560px)').matches) window.scrollTo(0,0);
+    $('case1').focus({preventScroll:true});
+    hint('wCases',() => !state.caseId);
+  };
+  restore();
+  for (const range of document.querySelectorAll('.ph-range')) {
+    range.setAttribute('viewBox','0 0 140 8');
+    range.setAttribute('preserveAspectRatio','none');
+    range.innerHTML = '<path d="M0 4H140" stroke="#8795a5" stroke-width="1"/>'+
+      `<path d="M${Number(range.dataset.low)*10} 4H${Number(range.dataset.high)*10}" stroke="#d590b0" stroke-width="5"/>`;
+  }
+  Curio.init({clips:"voice:*",rate:.95});
+  render();
+  new ResizeObserver(() => {
+    if (state.mode === 'Cases' && state.caseId === 3) graph();
+  }).observe($('world'));
+  window.__tool = {state,setMode,case:openCase,bottle,test,dilute,soda,fresh,check,pH,ions,indicator,spillPH,
+    allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},LIQUIDS};
+})();
+</script>
+</body>
+</html>

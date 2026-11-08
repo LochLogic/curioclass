@@ -1,0 +1,24 @@
+{
+  "id": "model-mechanic",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Follow the wrong animal names back to the training photos. Repair the model.",
+  "outcome": "Read a confusion matrix and improve a nearest-neighbor model by repairing data, labels and clues.",
+  "driver": "students",
+  "minutes": "20-35",
+  "modes": ["Garage", "Work Orders"],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "Google Machine Learning Crash Course: Classification, confusion matrices and class imbalance",
+    "scikit-learn user guide: Nearest Neighbors",
+    "Norouzzadeh et al., PNAS 115(25), 2018, doi:10.1073/pnas.1719367115",
+    "Rovero et al., Which camera trap type and how many do I need?, Hystrix 24(2), 2013",
+    "National Wildlife Federation wildlife guides: Raccoon, Red Fox, White-tailed Deer",
+    "CSTA K-12 Computer Science Standards, 2017",
+    "Cedar Hollow and all measured features are synthetic teaching data",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Existing forest clearing illustrations drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

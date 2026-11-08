@@ -1,0 +1,1113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Model Mechanic · Cedar Hollow · Curio Class</title>
+<meta name="description" content="Diagnose a wildlife camera AI using a confusion matrix. Repair training data, labels and clues. Grades 6-8. Works offline.">
+<!--
+Model Mechanic, Curio Class. Grades 6-8 computer science. Students drive.
+MS-ALG-ML-06, MS-ALG-ML-07, MS-ALG-ML-08, MS-DAT-IM-29.
+Shared MLLab engine: seeded synthetic features and nearest-neighbor classification.
+Sources: Google ML Crash Course Classification; scikit-learn Nearest Neighbors; Norouzzadeh et al. PNAS 2018;
+Rovero et al. Hystrix 2013; National Wildlife Federation wildlife guides; CSTA 2017.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Existing forest clearings drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class.
+Content CC BY 4.0. Code MIT. One file, offline, nothing saved. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#121612; --panel:#1a201a; --ink:#e9efe6; --muted:#a9b5a4; --line:#2e382d;
+  --brand:#a3e635; --brand-ink:#142000; --focus:#ffd166; --btn:#242e23; --btn-line:#4d6048;
+  --head-ink:#e9efe6; --ml-cell:#192319; --ml-ok:#a3e635; --ml-bad:#ff6b6b;
+  --ml-ink:#e9efe6; --ml-muted:#b4c3ac; --ml-line:#394936;
+  --hint-height:59px;
+}
+body {min-height:100%; overflow:hidden; background:radial-gradient(ellipse at 30% 0,#273426,#121612 65%)}
+button {min-height:44px; min-width:44px; border:1px solid #52624b; border-radius:7px; background:#263024; font-weight:650}
+button:hover {background:#35432f; border-color:#a3e635}
+button:active {box-shadow:inset 0 3px 8px #0009; transform:translateY(1px)}
+button:disabled,button[aria-disabled="true"] {opacity:.4; cursor:default}
+button[aria-pressed="true"] {background:var(--brand); color:var(--brand-ink); border-color:var(--brand)}
+header {background:linear-gradient(#253023,#171e17); border-bottom:2px solid var(--brand); flex-wrap:nowrap; padding:10px 18px; gap:10px}
+h1 {font-size:27px; letter-spacing:-.6px; white-space:nowrap}
+h1 small {font:500 12px/1.5 ui-monospace,Consolas,monospace; letter-spacing:1px; color:#c6d6be}
+.seg {border-radius:8px; border-width:1px; flex:none}
+.seg button,.icon-btn {min-height:44px; font-size:14px; padding:0 12px; border-radius:7px}
+.seg button {border-radius:0}
+.seg button[aria-pressed="true"] {background:var(--brand); color:var(--brand-ink)}
+.icon-btn {flex:none; border-width:1px}
+main {grid-template-columns:minmax(0,1fr) 366px; gap:14px; padding:14px; min-height:0}
+.panel {grid-column:2; grid-row:1; border:1px solid #48533e; border-radius:12px; padding:12px; gap:9px;
+  box-shadow:0 14px 30px #0005,inset 0 1px #ffffff0d; background:linear-gradient(120deg,#252d22,#191f19); overflow:hidden}
+.toolbox-body {display:flex; flex-direction:column; gap:7px; overflow:auto; min-height:0; scroll-padding-top:24px}
+.stage {grid-column:1; grid-row:1; min-height:0; overflow:auto; padding:0 4px 0 0; background:transparent;
+  display:flex; flex-direction:column; gap:9px}
+.eyebrow {font:700 11px/1.3 ui-monospace,Consolas,monospace; letter-spacing:1.5px; color:var(--muted); text-transform:uppercase}
+.toolbox-label {display:flex; align-items:center; justify-content:space-between; margin:0; gap:8px}
+.led {display:inline-block; height:7px; width:7px; border-radius:50%; background:var(--brand); box-shadow:0 0 9px #a3e63888;
+  animation:breathe 3s ease-in-out infinite}
+@keyframes breathe {50% {opacity:.35}}
+.calm .led {animation:none}
+.hint {font-size:14px; line-height:1.4; min-height:59px; margin:0; color:#dce7d5}
+.panel {scroll-padding-top:calc(var(--hint-height) + 65px)}
+.panel .hint {flex:none; background:#20291e}
+.panel .actions {background:#20291e}
+.actions {display:grid; grid-template-columns:1fr 72px; gap:8px; flex:none}
+.big-btn {min-height:47px; font-size:17px; border-radius:7px; background:var(--brand); color:var(--brand-ink);
+  box-shadow:0 3px 0 #536f19; text-align:center; padding:0 8px}
+.big-btn:hover {background:#b9f453; color:#142000}
+#reset {font-size:12px}
+.sec {border-top:1px solid #46503d; padding-top:7px; flex:none}
+.sec h2 {font-size:13px; margin:0 0 5px; display:flex; align-items:center; justify-content:space-between}
+.sec h2 span {color:var(--muted); font-weight:500}
+.train-table {width:100%; border-collapse:collapse; font-size:13px; table-layout:fixed}
+.train-table th:first-child {width:76px}
+.train-table td {padding:0}
+.train-table th {text-align:left; font-weight:550}
+.train-table thead th {font-size:11px; color:var(--muted); padding:0 0 3px}
+.train-table thead {position:sticky; top:0; z-index:2; background:#20291e}
+.train-table thead th:not(:first-child) {text-align:center}
+.train-table tbody tr {border-top:1px solid #ffffff09}
+.stepper {display:flex; align-items:center; justify-content:center; gap:0}
+.stepper button {border-color:#465540; border-radius:5px; width:44px; height:44px; padding:0; font-size:21px}
+.stepper output {width:25px; flex:none; text-align:center; font:700 15px ui-monospace,Consolas,monospace}
+.tag-letter {font-weight:850; display:inline-block; width:18px; text-align:center}
+.training-total {font-size:11px; color:var(--muted); margin:5px 0 0}
+#warning {font-size:12px; color:#ffd166; margin:4px 0 0}
+#warning:empty {display:none}
+.k-row,.clue-row {display:flex; gap:6px}
+.k-row button {flex:1; padding:0; font-family:ui-monospace,Consolas,monospace}
+.clue-row button {flex:1; font-size:12px; padding:0 4px}
+.clue-row button[aria-pressed="false"] {color:#c0cab9; text-decoration:line-through}
+.order-card {background:linear-gradient(120deg,#303926,#232c21); border:1px solid #64774b; border-radius:7px; padding:9px;
+  flex:none; box-shadow:inset 0 1px #ffffff12; display:grid; grid-template-columns:minmax(0,1fr) 108px; gap:2px 6px}
+#order-number,#order-title,#complaint,#debrief {grid-column:1/-1}
+.order-card h2 {font-size:16px; margin:3px 0}
+.order-card p {font-size:12px; line-height:1.35; margin:4px 0 6px; color:#d0ddc6}
+#goals {list-style:none; margin:5px 0; padding:0; font-size:12px; line-height:1.6}
+#goals li::before {content:'□'; margin-right:6px; color:#ccd6c6}
+#goals li.met::before {content:'✓'; color:var(--brand)}
+#next {width:100%; font-size:11px; min-height:44px; align-self:center; padding:0 5px}
+#debrief {color:#d6eac4; border-top:1px solid #596c43; padding-top:7px; margin-top:8px; line-height:1.4}
+.stage > #debrief {flex:none; margin:0; padding:14px; border:1px solid #748f4c; border-radius:9px;
+  background:linear-gradient(120deg,#2e3d24,#202b1d); font-size:13px; box-shadow:inset 3px 0 var(--brand)}
+.scores {display:flex; align-items:center; gap:14px; min-height:47px; flex:none; background:linear-gradient(120deg,#293624,#1c251c);
+  border:1px solid #4f6243; border-radius:9px; padding:6px 13px; box-shadow:inset 0 1px #ffffff09}
+.scores strong {font:800 25px/1.1 ui-monospace,Consolas,monospace; color:#c4f184}
+.scores span {font-size:12px; white-space:nowrap}
+.scores span b {font-size:15px; color:var(--ink)}
+.scores .eyebrow {margin-left:auto}
+#photos-toggle {display:block; font-size:12px; padding:0 8px; margin-left:auto}
+.photos {display:grid; grid-template-columns:repeat(20,minmax(0,1fr)); gap:3px; flex:none}
+.photos .photo {height:29px; aspect-ratio:auto}
+.photos.testing .stamp {animation:tag-flip .4s ease-out both}
+@keyframes tag-flip {from {transform:rotateX(90deg)} to {transform:rotateX(0)}}
+.calm .photos.testing .stamp {animation:none}
+.photo {position:relative; overflow:hidden; border:1px solid #65735b; border-radius:5px; padding:0; display:block;
+  min-height:0; min-width:0; aspect-ratio:1.6; background:#101510; box-shadow:0 2px 5px #0005}
+button.photo {min-height:44px}
+.photo .back {position:absolute; width:100%; height:100%; inset:0; object-fit:cover; pointer-events:none}
+.photo .animal {position:absolute; object-fit:contain; object-position:bottom; bottom:4%; width:auto; max-width:none; pointer-events:none;
+  filter:drop-shadow(1px 3px 2px #0005)}
+.photo.night .back {filter:grayscale(1) sepia(.35) hue-rotate(38deg) saturate(.65)}
+.photo.night .animal {filter:grayscale(1) sepia(.35) hue-rotate(38deg) saturate(.65) drop-shadow(1px 3px 2px #0005)}
+.photo.night::after {content:''; position:absolute; inset:0; box-shadow:inset 0 0 30px #0d140d66; pointer-events:none}
+.photo .stamp {position:absolute; z-index:2; bottom:1px; right:1px; padding:0 3px; border-radius:2px;
+  font:850 10px/1.3 ui-monospace,Consolas,monospace; background:#101810e8; color:var(--tag)}
+.photo.wrong::before {content:'×'; position:absolute; top:0; right:0; z-index:3; background:#ff6b6b; color:#200807;
+  width:13px; height:13px; text-align:center; font:900 13px/12px sans-serif; border-radius:0 0 0 4px}
+.matrix-bench {border:1px solid #4a5940; border-radius:12px; background:linear-gradient(145deg,#243020,#151c15 75%);
+  box-shadow:0 8px 24px #0005,inset 0 1px #ffffff12; flex:1 0 320px; min-height:320px; padding:10px 12px 8px;
+  display:flex; flex-direction:column; position:relative}
+.bench-top {display:flex; align-items:center; justify-content:space-between; gap:8px; flex:none}
+.bench-top h2 {font-size:15px; margin:0}
+.tabs {display:flex; gap:5px}
+.tabs button {font-size:12px; padding:0 11px}
+#matrix {flex:1; min-height:258px; max-height:510px; width:100%; align-self:center}
+#matrix svg {overflow:visible}
+#matrix text[style*="paint-order"] {fill:#142000!important; font-weight:900!important}
+#matrix svg g[role="button"]:hover > rect:first-child {stroke:#d2eea6; stroke-width:2px}
+.matrix-foot {display:flex; justify-content:space-between; gap:8px; font-size:11px; color:var(--muted); margin-top:3px}
+.matrix-foot .diag {color:#b9ed78}
+#status {font-weight:650; color:#d2e7c3}
+.dirty #matrix,.dirty .photos {opacity:.42}
+.dirty #status {color:#ffd166}
+.dirty .scores {border-color:#a58b49}
+.dirty .scores strong {color:#ffd166}
+.dirty .led {background:#ffd166; animation:none}
+.dirty #evidence::before {content:'Evidence from the last test. Run the test after your edits.'; display:block;
+  color:#ffd166; font-size:12px; margin-bottom:8px}
+.repair-traces {position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible}
+.repair-traces path {fill:none; stroke:#c4f184; stroke-width:2; opacity:.6; stroke-dasharray:3 5}
+.repair-traces circle {fill:#d4fa95; stroke:#142000; stroke-width:2; filter:drop-shadow(0 0 5px #a3e635)}
+.run-change {display:block; color:#d8f5b5; font:700 12px/1.5 ui-monospace,Consolas,monospace; margin-bottom:4px}
+.evidence {border:1px solid #495840; border-radius:10px; padding:10px; background:linear-gradient(115deg,#20291e,#181f18);
+  box-shadow:inset 0 1px #ffffff0a; flex:none}
+.evidence-heading {display:flex; align-items:center; justify-content:space-between; gap:9px; margin-bottom:8px}
+.evidence h2 {font-size:13px; margin:0}
+#close-drawer {font-size:12px; padding:0 10px}
+.idle-evidence {display:grid; grid-template-columns:240px 1fr; gap:16px; align-items:center}
+.idle-evidence .photo {width:100%; aspect-ratio:1.8}
+.idle-evidence h3 {font-size:20px; margin:7px 0}
+.idle-evidence p {font-size:13px; line-height:1.4; max-width:360px; margin:5px 0; color:#c0cbb8}
+.idle-evidence button {margin-top:9px; border-color:#8eaf5a; color:#d8efb9; padding:0 13px; font-size:13px}
+.drawer-list {display:flex; flex-direction:column; gap:9px; max-height:215px; overflow:auto}
+.match-row {display:grid; grid-template-columns:146px 1fr; gap:12px; border-top:1px solid #3b4935; padding-top:8px}
+.test-evidence {display:flex; flex-direction:column; gap:3px}
+.test-evidence .photo {width:100%; aspect-ratio:1.6}
+.caption {font-size:11px; color:#becdb4}
+.neighbors {display:flex; gap:6px; flex-wrap:wrap; align-content:start; margin-top:4px}
+.neighbors .photo {width:91px; aspect-ratio:1.6}
+.fact {color:var(--muted); font-size:11px; margin:0 2px 2px; line-height:1.4; flex:none}
+dialog {width:min(660px,calc(100% - 24px)); max-height:calc(100% - 24px); overflow:auto; color:var(--ink);
+  background:linear-gradient(130deg,#2a3526,#161d16); border:1px solid #94af6b; border-radius:12px;
+  box-shadow:0 20px 100px #000c; padding:17px}
+dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
+.modal-top {display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:12px}
+.modal-top h2 {font-size:17px; margin:0}
+#large-photo .photo {width:100%; aspect-ratio:1.7}
+#bars {display:grid; grid-template-columns:1fr 1fr; gap:9px 18px; margin:13px 0}
+.feature {display:grid; grid-template-columns:44px 1fr 32px; gap:7px; align-items:center; font-size:12px}
+.bar-track {height:8px; background:#10180e; border-radius:5px; overflow:hidden}
+.bar-track i {display:block; height:100%; background:linear-gradient(90deg,#588836,#b6e765)}
+.relabels {display:flex; gap:7px; flex-wrap:wrap}
+.relabels button {flex:1; min-width:90px; font-size:13px}
+.model-note {font-size:11px; line-height:1.4; color:var(--muted); margin-bottom:0}
+.scanline {position:absolute; inset:0; pointer-events:none; border-radius:12px; overflow:hidden}
+.scanline i {display:block; position:absolute; top:0; width:100%; height:3px; background:#b1ef5f66; box-shadow:0 0 22px #a3e635;
+  animation:scan .4s linear both}
+@keyframes scan {to {top:100%}}
+.calm .scanline {display:none}
+@media (max-height:800px) {
+  :root {--hint-height:55px}
+  main {padding:9px; gap:10px}
+  header {padding:7px 13px}
+  .panel {padding:9px; gap:7px}
+  .hint {font-size:13px; min-height:55px}
+  .order-card {padding:7px}
+  .order-card h2 {font-size:14px}
+  .order-card p {font-size:11px; margin:3px 0}
+  #goals {font-size:11px; line-height:1.4}
+  .sec {padding-top:4px}
+  .sec h2 {margin-bottom:3px}
+  .train-table {border-spacing:0}
+  .train-table td {padding:0}
+  .train-table tbody tr {height:44px}
+  .training-total {margin-top:3px}
+  .idle-evidence {grid-template-columns:200px 1fr}
+  .idle-evidence h3 {font-size:17px}
+  .matrix-bench {flex-basis:380px; min-height:380px}
+  #matrix {min-height:238px}
+}
+@media (max-width:1050px) {
+  main {grid-template-columns:minmax(0,1fr) 320px}
+  h1 {font-size:22px}
+  header {gap:6px}
+  .seg button,.icon-btn {padding:0 9px; font-size:12px}
+  .stepper output {width:23px}
+  .train-table th:first-child {width:60px}
+  .photos {display:none}
+  .photos button.photo {min-height:32px}
+  .idle-evidence {grid-template-columns:160px 1fr; gap:10px}
+  .idle-evidence h3 {font-size:15px}
+  .idle-evidence p {font-size:11px}
+  .scores {gap:9px; padding:6px 9px}
+  .scores strong {font-size:20px}
+  .scores .eyebrow {display:none}
+}
+@media (max-width:800px) and (min-width:601px) {
+  :root {--hint-height:69px}
+  main {grid-template-columns:minmax(0,1fr) 285px; padding:6px; gap:6px}
+  header {padding:4px 7px; gap:4px}
+  h1 {font-size:18px}
+  h1 small {display:none}
+  .seg button,.icon-btn {padding:0 7px; font-size:11px}
+  .panel {padding:5px}
+  .train-table th {font-size:11px}
+  .train-table .animal-name {display:none}
+  .train-table th:first-child {width:29px}
+  .stepper output {width:21px; font-size:13px}
+  .hint {font-size:12px; min-height:69px}
+  .clue-row {gap:3px}
+  .clue-row button {font-size:11px}
+  .scores {gap:7px; min-height:44px}
+  .scores span {font-size:10px}
+  .scores strong {font-size:16px}
+  .scores span b {font-size:12px}
+  .photos {display:none}
+  #photos-toggle {display:block; margin-left:auto}
+  .bench-top h2 {font-size:12px}
+  .tabs {gap:3px}
+  .tabs button {font-size:11px; padding:0 5px}
+  .matrix-bench {padding:7px; min-height:285px; flex-basis:285px}
+  #matrix {min-height:215px}
+  .matrix-foot {font-size:10px}
+  .matrix-foot #status {display:none}
+  .matrix-foot .diag {font-size:0}
+  .matrix-foot .diag::after {content:'D Deer · F Fox · R Raccoon · E Empty'; font-size:10px}
+  .dirty .matrix-foot .diag::after {content:'Changed: run the test'; color:#ffd166}
+  .idle-evidence {grid-template-columns:115px 1fr}
+  .idle-evidence h3 {font-size:14px}
+  .idle-evidence p {display:none}
+  .match-row {grid-template-columns:105px 1fr; gap:7px}
+  .neighbors .photo {width:77px}
+}
+@media (max-width:600px) {
+  body {height:auto; overflow:auto; display:block}
+  header {display:grid; grid-template-columns:repeat(3,1fr); padding:8px; gap:6px}
+  header {position:sticky; top:0; z-index:20}
+  header .actions {grid-column:1/-1; width:100%}
+  header .actions #next {display:none}
+  .orders-mode header .actions {grid-template-columns:minmax(0,1fr) 64px 92px}
+  .orders-mode header .actions #next {display:block}
+  h1 {grid-column:1/-1; font-size:24px}
+  h1 small {display:block; font-size:11px}
+  .seg {grid-column:1/-1; display:grid; grid-template-columns:1fr 1fr}
+  .seg button,.icon-btn {font-size:12px; padding:0 7px; width:100%}
+  main {display:flex; flex-direction:column; padding:8px; gap:10px}
+  .stage {order:0; overflow:visible; padding:0; gap:7px}
+  .panel {order:1; overflow:visible; padding:11px; gap:9px}
+  .toolbox-body {overflow:visible}
+  .order-card {grid-template-columns:1fr}
+  .scores {gap:8px; padding:6px 8px}
+  .scores strong {font-size:18px}
+  .scores span {font-size:10px}
+  .scores span b {font-size:13px}
+  .scores .eyebrow,.photos {display:none}
+  #photos-toggle {display:block; margin-left:auto}
+  .matrix-bench {min-height:336px; flex-basis:auto; padding:8px}
+  #matrix {min-height:264px; height:264px; flex:none}
+  .bench-top h2 {font-size:13px}
+  .tabs button {padding:0 8px}
+  .matrix-foot {font-size:10px}
+  .idle-evidence {grid-template-columns:130px 1fr; gap:9px}
+  .idle-evidence h3 {font-size:15px}
+  .idle-evidence p {display:none}
+  .idle-evidence button {font-size:12px; padding:0 7px}
+  .hint {min-height:55px}
+  .stage > .hint {padding:7px 9px; border-left:2px solid var(--brand); background:#202a1d; border-radius:5px; font-size:12px}
+  #evidence,#training {scroll-margin-top:235px}
+  .match-row {grid-template-columns:105px 1fr; gap:8px}
+  .neighbors .photo {width:83px}
+  #bars {grid-template-columns:1fr}
+  dialog {padding:11px}
+}
+@media (min-width:801px) and (max-height:560px) {
+  .photos {display:none}
+  #photos-toggle {display:block; margin-left:auto}
+}
+@media (min-width:801px) and (max-height:800px) {
+  .k-row {gap:2px}
+  .toolbox-body > .sec:not(#training) {display:grid; grid-template-columns:65px 1fr; gap:6px; align-items:center}
+  .toolbox-body > .sec:not(#training) h2 {font-size:12px; flex-direction:column; align-items:flex-start; margin:0; gap:3px}
+  #clue-row {gap:4px}
+  #clue-row button {font-size:11px}
+  #clue-row {grid-column:2}
+  #clue-row::before {display:none}
+  .toolbox-body > .sec:last-child h2 span {display:none}
+}
+@media (min-width:601px) and (max-width:800px) and (max-height:600px) {
+  .no-model .scores {padding-top:0; padding-bottom:0; gap:3px}
+  .no-model .scores .eyebrow {display:inline; font-size:10px; letter-spacing:0; text-transform:none}
+  .no-model .matrix-foot {display:none}
+  .matrix-bench {min-height:292px; flex-basis:292px}
+  .bench-top {position:absolute; right:6px; top:65px}
+  .bench-top h2 {display:none}
+  .tabs {flex-direction:column; gap:6px}
+  #matrix {min-height:264px; align-self:flex-start}
+  .matrix-foot #status {display:none}
+  .matrix-foot .diag {font-size:0}
+  .matrix-foot .diag::after {content:'D Deer · F Fox · R Raccoon · E Empty'; font-size:10px}
+  .dirty .matrix-foot .diag::after {content:'Changed: run the test'; color:#ffd166}
+}
+@media (max-width:600px) {
+  .matrix-foot #status {display:none}
+  .matrix-foot .diag {font-size:0}
+  .matrix-foot .diag::after {content:'D Deer · F Fox · R Raccoon · E Empty'; font-size:10px}
+  .dirty .matrix-foot .diag::after {content:'Changed: run the test'; color:#ffd166}
+}
+@media (max-width:800px) {
+  .no-model:not(.dirty) .matrix-foot .diag::after {
+    content:'D Deer · F Fox · R Raccoon · E Empty · ? No answer'; font-size:10px;
+  }
+}
+@media (min-width:601px) and (max-height:700px) {
+  #photo-dialog[open] {display:grid; grid-template-columns:1.3fr 1fr; gap:8px 14px; padding:12px}
+  #photo-dialog .modal-top {grid-column:1/-1; grid-row:1; margin:0}
+  #inspector-hint {grid-column:1/-1; grid-row:2; margin:0; font-size:11px}
+  #large-photo {grid-column:1; grid-row:3/5; align-self:center}
+  #bars {grid-column:2; grid-row:3; grid-template-columns:1fr; gap:6px; margin:0}
+  #label-tools {grid-column:2; grid-row:4}
+  #current-label {font-size:12px; margin:4px 0 6px}
+  .relabels {display:grid; grid-template-columns:1fr 1fr; gap:6px}
+  .relabels button {min-width:0; font-size:12px}
+  #test-caption {grid-column:1/-1; grid-row:5; margin:0}
+  #photo-dialog .model-note {grid-column:1/-1; grid-row:6; margin:0; font-size:10px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Model Mechanic<small>Cedar Hollow trail camera</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-garage" aria-pressed="true">⚒ Garage</button>
+    <button id="m-orders" aria-pressed="false">▤ Work Orders</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel" aria-label="Model toolbox">
+    <p class="toolbox-label eyebrow">Model toolbox <span><i class="led"></i> <span id="bench-state">Bench ready</span></span></p>
+    <p id="hint" class="hint"></p>
+    <div class="actions"><button class="big-btn" id="run">▶ Run the test</button><button id="reset">↻ Reset</button></div>
+    <div class="toolbox-body" id="toolbox-body">
+    <section id="order-card" class="order-card" hidden>
+      <div class="eyebrow" id="order-number"></div><h2 id="order-title"></h2><p id="complaint"></p>
+      <ul id="goals"></ul><button id="next" disabled>Next work order →</button><p id="debrief" hidden></p>
+    </section>
+    <section class="sec" id="training">
+      <h2>Training photos <span>− / + five</span></h2>
+      <table class="train-table"><thead><tr><th>Animal</th><th>Day</th><th>Night</th></tr></thead><tbody id="training-rows"></tbody></table>
+      <p class="training-total" id="total"></p><p id="warning" role="status"></p>
+    </section>
+    <section class="sec"><h2>Neighbors <span id="k-label">k = 5</span></h2>
+      <div id="k-row" class="k-row" role="group" aria-label="Number of neighbors"></div></section>
+    <section class="sec"><h2>Clues <span>Camera measurements</span></h2>
+      <div id="clue-row" class="clue-row" role="group" aria-label="Clues used by the model"></div></section>
+    </div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Trail camera test bench">
+    <div class="scores" id="scores" aria-live="polite">
+      <span>Right: <strong id="score">39 of 40</strong></span><span>Day <b id="day-score">15 of 15</b></span>
+      <span>Night <b id="night-score">24 of 25</b></span><span class="eyebrow">Fixed test set · 40 frames</span>
+      <button id="photos-toggle">Photos</button>
+    </div>
+    <div class="photos" id="photos" aria-label="Forty fixed test photos"></div>
+    <section class="matrix-bench" id="matrix-bench">
+      <div class="bench-top"><h2>Confusion matrix</h2><div class="tabs" role="group" aria-label="Test photo time">
+        <button id="tab-All" aria-pressed="true">All</button><button id="tab-Day" aria-pressed="false">Day</button>
+        <button id="tab-Night" aria-pressed="false">Night</button></div></div>
+      <div id="matrix"></div>
+      <div class="matrix-foot"><span class="diag">▱ Diagonal = right answers</span><span id="status">Tap a square to inspect</span></div>
+    </section>
+    <section class="evidence" id="evidence"></section>
+    <p class="fact" id="fact">Motion cameras can capture empty frames: moving grass, rain. Cedar Hollow and its clue values are simulated.</p>
+  </section>
+</main>
+<dialog id="photo-dialog" aria-labelledby="photo-title">
+  <div class="modal-top"><h2 id="photo-title">Camera evidence</h2>
+    <button id="read-photo" aria-label="Read photo instructions">Read</button><button id="close-photo">Close</button></div>
+  <p class="caption" id="inspector-hint"></p>
+  <div id="large-photo"></div><p class="caption" id="test-caption" hidden></p><div id="bars"></div>
+  <div id="label-tools"><p id="current-label"></p><div class="relabels" id="relabels" role="group" aria-label="Relabel as"></div></div>
+  <p class="model-note">Simulated data: this model compares the four bars, not image pixels. Paintings change with Size only.</p>
+</dialog>
+<dialog id="photos-dialog" aria-labelledby="photos-title">
+  <div class="modal-top"><h2 id="photos-title">The 40 test photos</h2>
+    <button id="read-photos" aria-label="Read test photo instructions">Read</button><button id="close-photos">Close</button></div>
+  <p class="caption" id="photos-hint"></p>
+  <div id="all-photos" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px"></div>
+</dialog>
+<script src="kit:curio"></script>
+<script src="kit:ml-lab"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const C = ['Deer', 'Fox', 'Raccoon', 'Empty'];
+  const F = ['Size', 'Legs', 'Tail', 'Mask'];
+  const featureNames = {
+    Size:'Height in the camera frame', Legs:'Leg length for the body',
+    Tail:'Tail length and bushiness', Mask:'Face mask and ringed-tail contrast',
+  };
+  const letters = ['D', 'F', 'R', 'E'];
+  const colors = ['#f2b866', '#ff8a5b', '#9ec5ff', '#c9c9c9'];
+  const ranges = [
+    [[.65,.95],[.65,.90],[.05,.25],[.05,.25]],
+    [[.30,.55],[.35,.60],[.55,.85],[.15,.40]],
+    [[.30,.50],[.20,.45],[.40,.65],[.65,.90]],
+    [[0,.15],[0,.20],[0,.20],[0,.20]],
+  ];
+  const art = {
+    day:'art:clearing-day', night:'art:clearing-night',
+    'deer-day':'art:deer-day', 'deer-night':'art:deer-night',
+    'fox-day':'art:fox-day', 'fox-night':'art:fox-night',
+    'raccoon-day':'art:raccoon-day', 'raccoon-night':'art:raccoon-night', grass:'art:grass-wind',
+  };
+  const L = {
+    wGarage:'This camera AI names every animal it sees. Each square shows what an animal really was and what the model said. Tap a square off the diagonal.',
+    diagonal:'That square holds the right answers. Tap a square off the diagonal to see the mistakes.',
+    drawer:'Each wrong photo shows the training photos it was matched to. Look for the reason, then change something in the toolbox.',
+    emptyCell:'No test photos landed in that square. Tap a square with a count to inspect its photos and training matches.',
+    noMatches:'That run had no training photos. Press a plus button in the toolbox, then Run the test.',
+    changed:'You changed the model. Press Run the test.',
+    wOrders:'The rangers sent work orders. Read the complaint, then tap the square where the mistakes are.',
+    order1:'Work order one. Where are the foxes?', order2:'Work order two. Night shift.', order3:'Work order three. Ghost deer.',
+    goalMet:'Goal met. Read what was wrong, then press Next work order.',
+    tradeOff:'That fixed one thing and broke another. Check the other rows.',
+    relabel:'Label changed. Press Close, then Run the test to see what it does.',
+    trainingPhoto:'Compare the clue bars and the animal with its current label. If the label is wrong, tap the right animal. Then press Close.',
+    testPhoto:'Compare the clue bars with the model answer and the real animal. Press Close to return to the evidence.',
+    photos:'Tap a test photo to compare its answer with the real animal, or press Close to return to the matrix.',
+    resultAction:'Tap an error square, or change the toolbox and press Run the test.',
+    inspectAgain:'Tap a square off the diagonal to inspect a mistake.',
+    tabAll:'All test photos. Tap a square to inspect the photos and nearest training matches.',
+    tabDay:'Day test photos. Tap a square to inspect the photos and nearest training matches.',
+    tabNight:'Night test photos. Tap a square to inspect the photos and nearest training matches.',
+    allDone:'All three work orders are done. Read the last note, then press Start again or open the Garage.',
+  };
+  for (let n = 0; n <= 40; n++) L['score' + n] = 'The model got ' + n + ' of 40 right.';
+  const orders = [
+    {title:'Where are the foxes?', complaint:'The camera keeps calling our foxes raccoons.', counts:[[20,20],[2,1],[25,25],[20,20]], k:5,
+      debrief:"Class imbalance: with 50 raccoon photos and 3 fox photos, a fox's 5 nearest neighbors are mostly raccoons. " +
+        'Fixes: add fox photos, use fewer raccoons, or k = 1.'},
+    {title:'Night shift', complaint:'It works all day and gets confused at night.', counts:C.map(() => [30,0]), k:5,
+      debrief:"Missing data: the model never saw a night photo. In this simulation, infrared reduces the Mask clue. " +
+        'Fixes: add night photos, or stop trusting Mask. Raccoons in this test set appear mostly at night, so missing night data hurts them most.'},
+    {title:'Ghost deer', complaint:'Deer keep coming up as empty frames.', counts:C.map(() => [15,15]), k:1,
+      debrief:'Label noise: 8 deer were labeled Empty, and with k = 1 one wrong neighbor decides. ' +
+        'Fixes: find and relabel them, or raise k so one wrong photo gets outvoted.'},
+  ];
+  function photo(R, a, time, i, prefix) {
+    const v = {};
+    F.forEach((f, j) => {
+      let x = MLLab.uni(R, ...ranges[a][j]);
+      if (time === 'Night') {
+        if (f === 'Mask') x *= .35;
+        x += (2 * R() - 1) * .05;
+      }
+      v[f] = MLLab.r2(Math.max(0, Math.min(1, x)));
+    });
+    return MLLab.item(`${prefix}-${a}-${time}-${i}`, C[a], v, {time, animal:C[a], number:i});
+  }
+  const pool = C.map(() => ({Day:[], Night:[]}));
+  let R = MLLab.rng(601);
+  C.forEach((c, a) => {
+    for (let i = 0; i < 40; i++) {
+      for (const time of ['Day', 'Night']) pool[a][time].push(photo(R, a, time, i, 'train'));
+    }
+  });
+  R = MLLab.rng(602);
+  const tests = [];
+  C.forEach((c, a) => {
+    ['Day', 'Night'].forEach((time, t) => {
+      for (let i = 0; i < [[5,5],[3,7],[2,8],[5,5]][a][t]; i++) tests.push(photo(R, a, time, i, 'test'));
+    });
+  });
+  function config(order = -1) {
+    const labels = {};
+    if (order === 2) {
+      [1,5,9,13].forEach(i => { labels[pool[0].Day[i].id] = 'Empty'; });
+      [2,6,10,14].forEach(i => { labels[pool[0].Night[i].id] = 'Empty'; });
+    }
+    return {
+      counts:order < 0 ? C.map(() => [20,20]) : orders[order].counts.map(row => row.slice()),
+      k:order < 0 ? 5 : orders[order].k, features:F.slice(), labels, dirty:false, ev:null, goals:[], runs:0, revision:0,
+      announced:false, delta:null,
+    };
+  }
+  const state = {mode:'garage', order:0, tab:'All', garage:config(), work:config(0), cell:null, selected:null, epoch:0, hintParts:[]};
+  const active = () => state.mode === 'garage' ? state.garage : state.work;
+  let view;
+  let frame = 0;
+  let tween = null;
+  let restorePhotoFocus = null;
+  let matrixFocusIndex = null;
+  const glyphs = Object.fromEntries(C.map((c, i) => [c, {shape:['circle','triangle','square','diamond'][i], color:colors[i], letter:letters[i]}]));
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode + ':' + state.order,
+    welcome:() => [[state.mode === 'garage' ? 'wGarage' : 'wOrders', {
+      valid:() => !state.cell && !active().dirty && !$('photo-dialog').open && !$('photos-dialog').open &&
+        !(state.mode === 'orders' && active().goals.length && active().goals.every(Boolean)),
+    }]],
+    speaks:'#run, #next, #reset, .stepper button, #k-row button, #clue-row button, #matrix [role="button"]',
+    hint:false, read:() => $('photo-dialog').open ? $('inspector-hint').textContent :
+      $('photos-dialog').open ? L.photos : state.hintParts,
+  });
+  function hint(text) {
+    state.hintParts = Array.isArray(text) ? text : [text];
+    $('hint').textContent = state.hintParts.join(' ');
+  }
+  function transitionSpeech() {
+    // Stop speech whose screen has gone away. A student-requested Read keeps priority.
+    if (V.playing) V.hush();
+    else V.dropQueued();
+  }
+  function trainList(s = active()) {
+    const train = [];
+    C.forEach((c, a) => {
+      ['Day', 'Night'].forEach((time, t) => {
+        pool[a][time].slice(0, s.counts[a][t]).forEach(p => train.push({...p, label:s.labels[p.id] || c}));
+      });
+    });
+    return train;
+  }
+  function evaluate(s) {
+    const train = trainList(s);
+    // No examples means no prediction. The extra column states this instead of inventing a class.
+    const model = train.length ? MLLab.train('knn', train, {k:s.k, features:s.features}) : {
+      predict:() => ({label:'No answer', neighbors:[], votes:{}, scores:{}, score:0}),
+    };
+    return MLLab.evaluate(model, tests, {classes:train.length ? C : [...C,'No answer'], groupBy:p => p.tags.time});
+  }
+  function goalValues(e, order = state.order) {
+    if (order === 0) return [e.cm.Fox.Fox >= 9, ['Deer','Raccoon','Empty'].every(c => e.cm[c][c] >= 9)];
+    if (order === 1) return [e.byGroup.Night.ok >= 22, e.ok >= 36];
+    return [e.cm.Deer.Deer === 10, e.ok >= 37];
+  }
+  function goalTexts() {
+    if (state.order === 0) return ['Fox: at least 9 of 10', 'Every other animal: at least 9 of 10'];
+    if (state.order === 1) return ['Night: at least 22 of 25', 'Right: at least 36 of 40'];
+    return ['Deer: 10 of 10', 'Right: at least 37 of 40'];
+  }
+  function tag(c) {
+    const i = C.indexOf(c);
+    return `<span class="tag-letter" style="color:${colors[i] || '#ffd166'}">${letters[i] || '?'}</span><span class="animal-name">${c}</span>`;
+  }
+  function frameHTML(p, label = p.label, wrong = false, button = false, tiny = false) {
+    const night = p.tags.time === 'Night';
+    const animal = p.tags.animal;
+    const source = animal === 'Empty' ? art.grass : art[animal.toLowerCase() + (night ? '-night' : '-day')];
+    const seededLeft = 10 + ((p.tags.number * 37 + C.indexOf(animal) * 13) % 51);
+    const height = animal === 'Empty' ? 27 : p.v.Size * 100;
+    const ratio = animal === 'Deer' ? (night ? 600 / 406 : 600 / 435) :
+      animal === 'Fox' ? (night ? 600 / 265 : 600 / 284) : animal === 'Raccoon' ? (night ? 600 / 296 : 600 / 284) : 360 / 308;
+    const left = Math.max(10, Math.min(seededLeft, 98 - height * ratio / 1.6));
+    const flip = (p.tags.number + 1) % 2 ? 'scaleX(-1)' : 'none';
+    const cls = `photo ${night ? 'night' : ''} ${wrong ? 'wrong' : ''}`;
+    const attrs = `class="${cls}" data-photo="${p.id}" aria-label="${p.tags.time} ${animal}, labeled ${label}${wrong ? ', wrong answer' : ''}"`;
+    const i = C.indexOf(label);
+    return `<${button ? 'button' : 'div'} ${attrs}>
+      <img class="back" src="${night ? art.night : art.day}" alt="">
+      <img class="animal" src="${source}" alt="" style="height:${height}%;left:${left}%;transform:${flip}">
+      <span class="stamp" style="--tag:${colors[i] || '#ffd166'}">${letters[i] || '?'}${button || tiny ? '' : ' ' + label}</span>
+      </${button ? 'button' : 'div'}>`;
+  }
+  function syncControls() {
+    const s = active();
+    C.forEach((c, a) => [0,1].forEach(t => {
+      $('count-' + a + '-' + t).textContent = s.counts[a][t];
+      $('less-' + a + '-' + t).setAttribute('aria-disabled', s.counts[a][t] <= 0);
+      $('more-' + a + '-' + t).setAttribute('aria-disabled', s.counts[a][t] >= 40);
+    }));
+    const total = s.counts.flat().reduce((a,b) => a + b, 0);
+    $('total').textContent = 'Training photos: ' + total;
+    $('warning').textContent = C.filter((c,a) => s.counts[a][0] + s.counts[a][1] === 0)
+      .map(c => c === 'Empty' ? 'The model has never seen an empty frame.' : 'The model has never seen a ' + c.toLowerCase() + '.').join(' ');
+    for (const k of [1,3,5,7,9]) {
+      $('k-' + k).disabled = k > total;
+      $('k-' + k).setAttribute('aria-pressed', s.k === k);
+    }
+    $('k-label').textContent = 'k = ' + s.k + (total < s.k ? ' · ' + total + ' available' : '');
+    for (const f of F) $('clue-' + f).setAttribute('aria-pressed', s.features.includes(f));
+    $('stage').classList.toggle('dirty', s.dirty);
+    $('bench-state').textContent = s.dirty ? 'Test needed' : 'Bench ready';
+    $('status').textContent = s.dirty ? 'Changed: run the test' : 'Tap a square to inspect';
+    $('run').setAttribute('aria-label', s.dirty ? 'Run the test with changed model' : 'Run the test');
+    if (state.mode === 'orders') {
+      $('next').disabled = s.dirty || !s.goals.every(Boolean);
+      if (s.dirty) $('order-title').textContent = orders[state.order].title;
+    }
+  }
+  function change() {
+    snapTween();
+    state.epoch++;
+    active().dirty = true;
+    active().revision++;
+    syncControls();
+    $('debrief').hidden = true;
+    if (!state.cell) {
+      paintIdle();
+      $('evidence').hidden = false;
+    }
+    hint(L.changed);
+    if (!$('photo-dialog').open) {
+      if (!V.heard('changed') || [L.wGarage,L.wOrders,L.drawer,L.diagonal].includes(V.playing)) transitionSpeech();
+      V.how('changed', {valid:() => active().dirty, needs:'#run'});
+    }
+    Curio.tone(290, .035, .035, 'triangle');
+  }
+  function buildControls() {
+    $('training-rows').innerHTML = C.map((c, a) => `<tr><th scope="row">${tag(c)}</th>` + [0,1].map(t => `<td>
+      <div class="stepper"><button id="less-${a}-${t}" aria-label="Fewer ${c} ${t ? 'night' : 'day'} training photos">−</button>
+      <output id="count-${a}-${t}" aria-label="${c} ${t ? 'night' : 'day'} count">20</output>
+      <button id="more-${a}-${t}" aria-label="More ${c} ${t ? 'night' : 'day'} training photos">+</button></div></td>`).join('') + '</tr>').join('');
+    C.forEach((c, a) => [0,1].forEach(t => {
+      for (const [name, delta] of [['less',-5],['more',5]]) $(name + '-' + a + '-' + t).onclick = () => {
+        const next = Math.max(0, Math.min(40, active().counts[a][t] + delta));
+        if (next === active().counts[a][t]) return;
+        active().counts[a][t] = next;
+        change();
+      };
+    }));
+    $('k-row').innerHTML = [1,3,5,7,9].map(k => `<button id="k-${k}" aria-pressed="false" aria-label="Use ${k} neighbors">${k}</button>`).join('');
+    for (const k of [1,3,5,7,9]) $('k-' + k).onclick = () => {
+      active().k = k;
+      change();
+    };
+    $('clue-row').innerHTML = F.map(f => `<button id="clue-${f}" title="${featureNames[f]}" aria-pressed="true">${f}</button>`).join('');
+    for (const f of F) $('clue-' + f).onclick = () => {
+      const s = active();
+      s.features = s.features.includes(f) ? s.features.filter(x => x !== f) : F.filter(x => x === f || s.features.includes(x));
+      change();
+    };
+    $('relabels').innerHTML = C.map(c => `<button data-label="${c}">${c}</button>`).join('');
+    $('relabels').querySelectorAll('button').forEach(b => {
+      b.onclick = () => {
+        if (!state.selected) return;
+        active().labels[state.selected.id] = b.dataset.label;
+        change();
+        $('current-label').textContent = 'Relabel as... Current label: ' + b.dataset.label;
+        $('large-photo').innerHTML = frameHTML(state.selected, b.dataset.label);
+        $('relabels').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
+        V.say('relabel', {valid:() => active().dirty});
+        hint(L.relabel);
+        $('inspector-hint').textContent = L.relabel;
+      };
+    });
+  }
+  function filtered(e = active().ev) { return state.tab === 'All' ? e : {...e.byGroup[state.tab], classes:e.classes}; }
+  function evidenceKey(cell) {
+    const items = filtered().cells[cell.truth]?.[cell.pred] || [];
+    if (!items.length) return 'emptyCell';
+    const result = active().ev.results.find(r => r.item.id === items[0].id);
+    if (!result.out.neighbors.length) return 'noMatches';
+    return cell.truth === cell.pred ? 'diagonal' : 'drawer';
+  }
+  function updateMatrix(e = active().ev) {
+    const focused = $('matrix').contains(document.activeElement) ? document.activeElement.getAttribute('aria-label') : null;
+    const shortEmpty = e.classes.length > 4 && innerWidth >= 601 && innerWidth <= 800 && innerHeight <= 600;
+    $('matrix').style.minHeight = e.classes.length > 4 ? (e.classes.length * 48 + (shortEmpty ? 54 : 72)) + 'px' : '';
+    const box = $('matrix').getBoundingClientRect();
+    const sideTabs = innerWidth >= 601 && innerWidth <= 800 && innerHeight <= 600;
+    const available = $('matrix-bench').clientWidth - (sideTabs ? (shortEmpty ? 60 : 76) : 26);
+    const width = Math.min(available, box.height + 65);
+    $('matrix').style.width = width + 'px';
+    const compact = sideTabs || innerWidth <= 600 || Math.min((width - 100) / 4, (box.height - 64) / 4) < 45;
+    const names = compact ? {...Object.fromEntries(C.map((c,i) => [c,letters[i]])), 'No answer':'?'} : {Raccoon:'Racc.'};
+    $('stage').classList.toggle('no-model', e.classes.length > 4);
+    const options = {classes:e.classes, glyphs, names, onCell:openCell,
+      rowTitle:shortEmpty ? 'Rows: real' : 'Rows: real animal', colTitle:'Columns: model answer'};
+    if (!view) {
+      view = MLLab.view.confusion($('matrix'), filtered(e), options);
+      view.redraw();
+    } else view.update(filtered(e), options);
+    if (focused) {
+      const prefix = focused.split(':')[0];
+      const target = [...$('matrix').querySelectorAll('[role="button"]')].find(b => b.getAttribute('aria-label').split(':')[0] === prefix);
+      target?.focus({preventScroll:true});
+    }
+    $('matrix').querySelectorAll('text').forEach(t => {
+      if (letters.includes(t.textContent) && t.previousElementSibling?.tagName !== 'text') {
+        t.style.fill = '#142000';
+        t.style.fontWeight = '900';
+      }
+    });
+  }
+  function paintPhotos() {
+    $('photos').innerHTML = active().ev.results.map(r => frameHTML(r.item, r.pred, !r.ok, false, true)).join('');
+  }
+  function paintScores() {
+    const e = active().ev;
+    $('scores').querySelector('.eyebrow').textContent = e.classes.length > 4 ? '? No answer' : 'Fixed test set · 40 frames';
+    $('score').textContent = e.ok + ' of 40';
+    $('day-score').textContent = e.byGroup.Day.ok + ' of 15';
+    $('night-score').textContent = e.byGroup.Night.ok + ' of 25';
+  }
+  function paintOrder() {
+    const yes = state.mode === 'orders';
+    $('order-card').hidden = !yes;
+    $('fact').hidden = yes;
+    if (!yes) {
+      $('debrief').hidden = true;
+      $('evidence').hidden = false;
+      return;
+    }
+    const s = active();
+    const done = s.goals.length && s.goals.every(Boolean);
+    $('order-number').textContent = 'Ranger work order ' + (state.order + 1) + ' / 3';
+    $('order-title').textContent = state.order === 2 && done ? 'All work orders done' : orders[state.order].title;
+    $('complaint').textContent = orders[state.order].complaint;
+    $('goals').innerHTML = goalTexts().map((text, i) => `<li class="${s.goals[i] ? 'met' : ''}">${text}</li>`).join('');
+    $('next').textContent = state.order === 2 ? 'Start again' : 'Next work order →';
+    $('next').disabled = !done || s.dirty;
+    $('debrief').hidden = !done;
+    $('evidence').hidden = Boolean(done);
+    $('debrief').replaceChildren();
+    if (s.delta) {
+      const line = document.createElement('strong');
+      line.className = 'run-change';
+      line.textContent = `${s.delta.fixed} errors corrected · ${s.delta.introduced} new errors · ${40 - s.ev.ok} still wrong`;
+      $('debrief').append(line);
+    }
+    $('debrief').append(document.createTextNode(orders[state.order].debrief));
+  }
+  function paintIdle() {
+    const e = active().ev;
+    const r = e.mistakes[0] || e.results[10];
+    const title = e.mistakes.length ? 'One frame. A wrong name.' : 'Every frame found its square.';
+    $('evidence').innerHTML = `<div class="idle-evidence">${frameHTML(r.item, r.pred, !r.ok)}
+      <div><div class="eyebrow">Evidence desk · ${r.item.tags.time}</div><h3>${title}</h3>
+      <p>${!r.ok ? 'Really ' + r.item.label + '. The model said ' + r.pred + '. Follow its nearest matches.' :
+      'Try changing the training mix, neighbors or clues. Then run the same test.'}</p>
+      <button id="inspect">${!r.ok ? 'Inspect this mistake ↗' : 'Inspect this frame ↗'}</button></div></div>`;
+    $('inspect').onclick = () => openCell({truth:r.item.label, pred:r.pred});
+  }
+  function paintDrawer() {
+    if (!state.cell) {
+      paintIdle();
+      return;
+    }
+    const e = filtered();
+    const {truth, pred} = state.cell;
+    const items = e.cells[truth]?.[pred] || [];
+    const list = items.map(p => active().ev.results.find(r => r.item.id === p.id));
+    $('evidence').innerHTML = `<div class="evidence-heading"><h2>Really ${truth} → called ${pred} · ${list.length} frame${list.length === 1 ? '' : 's'}</h2>
+      <button id="close-drawer">Close</button></div><div class="drawer-list">${list.length ? list.slice(0,10).map(r => `<div class="match-row">
+      <div class="test-evidence">${frameHTML(r.item, r.pred, !r.ok, true)}<span class="caption">Test · ${r.item.tags.time} · really ${r.item.label}</span></div>
+      <div><div class="caption">Matched to: ${r.out.neighbors.length} nearest training photos.</div>
+      <div class="caption">Each match votes. Most votes wins; a tie goes to the closest tied label.</div>
+      <div class="neighbors">${r.out.neighbors.map(n =>
+        frameHTML(n.item, active().labels[n.item.id] || n.item.tags.animal, false, true)).join('')}</div></div></div>`).join('') :
+      '<p class="caption">No test photos in this square. Tap another square in the matrix.</p>'}</div>`;
+    $('close-drawer').onclick = () => {
+      transitionSpeech();
+      state.cell = null;
+      paintIdle();
+      paintOrder();
+      const completed = state.mode === 'orders' && active().goals.every(Boolean);
+      hint(active().dirty ? L.changed : completed ? (state.order === 2 ? L.allDone : L.goalMet) :
+        L.inspectAgain);
+      Curio.tone(250, .035, .03);
+      $('tab-' + state.tab).focus({preventScroll:true});
+    };
+  }
+  function openCell(cell) {
+    const fromInspect = document.activeElement === $('inspect');
+    snapTween();
+    transitionSpeech();
+    state.cell = {truth:cell.truth, pred:cell.pred};
+    state.epoch++;
+    $('evidence').hidden = false;
+    $('debrief').hidden = true;
+    paintDrawer();
+    if (fromInspect) $('close-drawer').focus({preventScroll:true});
+    Curio.tone(cell.truth === cell.pred ? 520 : 320, .055, .035, 'triangle');
+    const thisCell = state.cell;
+    const key = evidenceKey(cell);
+    hint(L[key]);
+    V.how(key, {valid:() => state.cell === thisCell && !$('photo-dialog').open});
+    if ($('evidence').getBoundingClientRect().top > innerHeight - 80) $('evidence').scrollIntoView({block:'nearest', behavior:'instant'});
+  }
+  function openPhoto(p, isTrain, from) {
+    snapTween();
+    transitionSpeech();
+    restorePhotoFocus = from;
+    state.selected = p;
+    $('photo-title').textContent = (isTrain ? 'Training' : 'Test') + ' photo · ' + p.tags.time;
+    const result = isTrain ? null : active().ev.results.find(r => r.item.id === p.id);
+    const label = isTrain ? active().labels[p.id] || p.tags.animal : result.pred;
+    $('large-photo').innerHTML = frameHTML(p, label, result && !result.ok);
+    $('test-caption').hidden = isTrain;
+    $('test-caption').textContent = isTrain ? '' : 'Really ' + p.label + '. The model said ' + label + '.';
+    $('bars').innerHTML = F.map(f => `<div class="feature"><span>${f}</span>
+      <div class="bar-track" title="${featureNames[f]}"><i style="width:${p.v[f] * 100}%"></i></div><b>${p.v[f].toFixed(2)}</b></div>`).join('');
+    $('label-tools').hidden = !isTrain;
+    $('current-label').textContent = 'Relabel as... Current label: ' + label;
+    $('relabels').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.label === label));
+    $('photo-dialog').showModal();
+    const key = isTrain ? 'trainingPhoto' : 'testPhoto';
+    $('inspector-hint').textContent = L[key];
+    hint(L[key]);
+    V.how(key, {valid:() => $('photo-dialog').open && state.selected === p, needs:'#close-photo'});
+    Curio.tone(460, .045, .03, 'triangle');
+  }
+  function closePhoto() {
+    transitionSpeech();
+    $('photo-dialog').close();
+    state.selected = null;
+    if (active().dirty && state.cell) paintDrawer();
+    const samePhoto = restorePhotoFocus?.dataset.photo;
+    const replacement = samePhoto && $('evidence').querySelector(`[data-photo="${samePhoto}"]`);
+    if (restorePhotoFocus?.isConnected) restorePhotoFocus.focus({preventScroll:true});
+    else if (replacement) replacement.focus({preventScroll:true});
+    else $('run').focus({preventScroll:true});
+    hint(active().dirty ? L.changed : state.cell ? L[evidenceKey(state.cell)] : L[state.mode === 'garage' ? 'wGarage' : 'wOrders']);
+    if (active().dirty) V.how('changed', {valid:() => active().dirty, needs:'#run'});
+  }
+  function snapTween() {
+    if (!tween) return;
+    cancelAnimationFrame(frame);
+    tween = null;
+    $('photos').classList.remove('testing');
+    updateMatrix();
+    $('matrix-bench').querySelector('.scanline')?.remove();
+    $('matrix-bench').querySelector('.repair-traces')?.remove();
+  }
+  function movementTraces(old, next) {
+    const n = next.classes.length;
+    const cells = [...$('matrix').querySelectorAll('[role="button"]')];
+    const box = $('matrix-bench').getBoundingClientRect();
+    const changes = new Map();
+    old.results.forEach((r,i) => {
+      const after = next.results[i];
+      if (r.pred === after.pred) return;
+      const a = next.classes.indexOf(r.item.label) * n + next.classes.indexOf(r.pred);
+      const b = next.classes.indexOf(after.item.label) * n + next.classes.indexOf(after.pred);
+      if (a < 0 || b < 0 || !cells[a] || !cells[b]) return;
+      const key = a + ':' + b;
+      changes.set(key, {a,b,count:(changes.get(key)?.count || 0) + 1});
+    });
+    const ns = 'http://www.w3.org/2000/svg';
+    const overlay = document.createElementNS(ns,'svg');
+    overlay.setAttribute('class','repair-traces');
+    overlay.setAttribute('aria-hidden','true');
+    const tracks = [];
+    changes.forEach(({a,b,count}) => {
+      const from = cells[a].getBoundingClientRect();
+      const to = cells[b].getBoundingClientRect();
+      const x1 = from.x + from.width / 2 - box.x, y1 = from.y + from.height / 2 - box.y;
+      const x2 = to.x + to.width / 2 - box.x, y2 = to.y + to.height / 2 - box.y;
+      const cx = (x1 + x2) / 2, cy = (y1 + y2) / 2 - Math.min(35,Math.abs(x2-x1) / 4 + 12);
+      const path = document.createElementNS(ns,'path');
+      path.setAttribute('d',`M${x1},${y1} Q${cx},${cy} ${x2},${y2}`);
+      overlay.append(path);
+      for (let i=0;i<Math.min(count,5);i++) {
+        const dot = document.createElementNS(ns,'circle');
+        dot.setAttribute('r',count > 1 ? 4 : 5);
+        overlay.append(dot);
+        tracks.push({dot,x1,y1,x2,y2,cx,cy,i,count:Math.min(count,5)});
+      }
+    });
+    $('matrix-bench').append(overlay);
+    return tracks;
+  }
+  function animateCounts(old, next) {
+    if (Curio.reduce || String(old.classes) !== String(next.classes)) {
+      updateMatrix();
+      return;
+    }
+    tween = {start:performance.now(), tracks:movementTraces(old,next)};
+    $('photos').classList.add('testing');
+    $('matrix-bench').insertAdjacentHTML('beforeend', '<div class="scanline"><i></i></div>');
+    function tick(now) {
+      if (!tween) return;
+      const t = Math.min(1, (now - tween.start) / 400);
+      tween.tracks.forEach(p => {
+        const u = Math.max(0,Math.min(1,t * 1.3 - p.i * .06));
+        p.dot.setAttribute('cx',(1-u)**2*p.x1 + 2*(1-u)*u*p.cx + u*u*p.x2);
+        p.dot.setAttribute('cy',(1-u)**2*p.y1 + 2*(1-u)*u*p.cy + u*u*p.y2);
+      });
+      const source = state.tab === 'All' ? old : old.byGroup[state.tab];
+      const target = state.tab === 'All' ? next : next.byGroup[state.tab];
+      const cm = Object.fromEntries(next.classes.map(a => [a, Object.fromEntries(next.classes.map(b =>
+        [b, Math.round(source.cm[a][b] + (target.cm[a][b] - source.cm[a][b]) * t)]))]));
+      const display = {...next};
+      if (state.tab === 'All') display.cm = cm;
+      else display.byGroup = {...next.byGroup, [state.tab]:{...target, cm}};
+      updateMatrix(display);
+      if (t < 1) frame = requestAnimationFrame(tick);
+      else {
+        tween = null;
+        $('photos').classList.remove('testing');
+        $('matrix-bench').querySelector('.scanline')?.remove();
+        $('matrix-bench').querySelector('.repair-traces')?.remove();
+      }
+    }
+    frame = requestAnimationFrame(tick);
+  }
+  function run() {
+    snapTween();
+    if (active().dirty) transitionSpeech();
+    const s = active();
+    const previous = s.ev;
+    const oldGoals = s.goals.slice();
+    const start = performance.now();
+    s.ev = evaluate(s);
+    s.delta = {
+      fixed:previous.results.filter((r,i) => !r.ok && s.ev.results[i].ok).length,
+      introduced:previous.results.filter((r,i) => r.ok && !s.ev.results[i].ok).length,
+    };
+    s.computeMs = performance.now() - start;
+    s.dirty = false;
+    s.runs++;
+    state.epoch++;
+    const revision = s.revision;
+    if (state.mode === 'orders') s.goals = goalValues(s.ev);
+    if (state.mode === 'orders' && s.goals.every(Boolean)) state.cell = null;
+    paintScores();
+    paintPhotos();
+    syncControls();
+    paintOrder();
+    paintDrawer();
+    animateCounts(previous, s.ev);
+    Curio.tone(420, .06, .04, 'triangle');
+    if (s.ev.ok > previous.ok) setTimeout(() => Curio.tone(690, .10, .04, 'triangle'), 80);
+    const valid = () => active() === s && s.revision === revision && !s.dirty;
+    const done = state.mode === 'orders' && s.goals.every(Boolean);
+    if (innerWidth <= 600) window.scrollTo({top:0, behavior:'instant'});
+    else if (done) $('toolbox-body').scrollTop = 0;
+    hint(done ? (state.order === 2 ? L.allDone : L.goalMet) :
+      [L['score' + s.ev.ok],L.resultAction]);
+    const lines = ['score' + s.ev.ok];
+    if (done) lines.push(state.order === 2 ? 'allDone' : 'goalMet');
+    else if (s.goals.some((x,i) => x && !oldGoals[i]) && s.goals.some((x,i) => !x && oldGoals[i])) lines.push('tradeOff');
+    const events = lines.map((key,i) => [key, {key:key + ':' + s.runs + ':' + i}]);
+    V.say(events, {valid, ...(done ? {needs:'#next'} : {})});
+  }
+  function setMode(mode) {
+    snapTween();
+    V.hush();
+    if ($('photo-dialog').open) $('photo-dialog').close();
+    if ($('photos-dialog').open) $('photos-dialog').close();
+    if (state.mode === 'garage' && mode === 'orders') state.garage = config();
+    state.mode = mode;
+    document.body.classList.toggle('orders-mode', mode === 'orders');
+    state.tab = 'All';
+    state.cell = null;
+    state.selected = null;
+    state.epoch++;
+    $('toolbox-body').scrollTop = 0;
+    if (innerWidth <= 600) window.scrollTo({top:0, behavior:'instant'});
+    if (!active().ev) active().ev = evaluate(active());
+    if (mode === 'orders' && !active().goals.length) active().goals = goalValues(active().ev);
+    for (const m of ['garage','orders']) $('m-' + m).setAttribute('aria-pressed', m === mode);
+    for (const t of ['All','Day','Night']) $('tab-' + t).setAttribute('aria-pressed', t === 'All');
+    paintScores();
+    paintPhotos();
+    updateMatrix();
+    paintOrder();
+    paintIdle();
+    syncControls();
+    const completed = mode === 'orders' && active().goals.every(Boolean);
+    hint(active().dirty ? L.changed : completed ? (state.order === 2 ? L.allDone : L.goalMet) :
+      L[mode === 'garage' ? 'wGarage' : 'wOrders']);
+    V.welcome();
+    if (mode === 'orders' && !active().announced) {
+      active().announced = true;
+      V.say('order' + (state.order + 1), {valid:() => !active().dirty && !state.cell});
+    }
+    Curio.tone(340, .045, .03, 'triangle');
+  }
+  function reset() {
+    snapTween();
+    V.hush();
+    if (state.mode === 'garage') state.garage = config();
+    else state.work = config(state.order);
+    setMode(state.mode);
+  }
+  function nextOrder() {
+    if (active().dirty || !active().goals.every(Boolean)) return;
+    snapTween();
+    state.order = (state.order + 1) % 3;
+    state.work = config(state.order);
+    setMode('orders');
+    $('run').focus({preventScroll:true});
+  }
+  for (const mode of ['garage','orders']) $('m-' + mode).onclick = () => setMode(mode);
+  for (const tab of ['All','Day','Night']) $('tab-' + tab).onclick = () => {
+    snapTween();
+    transitionSpeech();
+    state.tab = tab;
+    for (const t of ['All','Day','Night']) $('tab-' + t).setAttribute('aria-pressed', t === tab);
+    updateMatrix();
+    paintDrawer();
+    hint(active().dirty ? L.changed : L['tab' + tab]);
+    Curio.tone(380, .045, .03, 'triangle');
+  };
+  $('run').onclick = run;
+  $('reset').onclick = reset;
+  $('next').onclick = nextOrder;
+  $('close-photo').onclick = closePhoto;
+  $('read-photo').onclick = () => V.read();
+  $('read-photos').onclick = () => V.read();
+  $('photo-dialog').addEventListener('cancel', e => {
+    e.preventDefault();
+    closePhoto();
+  });
+  $('photos-toggle').onclick = () => {
+    transitionSpeech();
+    $('photos-hint').textContent = L.photos;
+    $('all-photos').innerHTML = active().ev.results.map(r => frameHTML(r.item, r.pred, !r.ok, true)).join('');
+    $('photos-dialog').showModal();
+    V.how('photos', {valid:() => $('photos-dialog').open && !$('photo-dialog').open});
+    Curio.tone(410, .045, .03);
+  };
+  function closePhotos() {
+    transitionSpeech();
+    $('photos-dialog').close();
+  }
+  $('close-photos').onclick = closePhotos;
+  $('photos-dialog').addEventListener('cancel', e => {
+    e.preventDefault();
+    closePhotos();
+  });
+  document.addEventListener('click', e => {
+    const button = e.target.closest('button[data-photo]');
+    if (!button) return;
+    const id = button.dataset.photo;
+    const p = tests.find(p => p.id === id) || trainList().find(p => p.id === id);
+    if (p) openPhoto(p, id.startsWith('train'), button);
+  });
+  document.addEventListener('pointerdown', e => {
+    if (!tween) return;
+    const cell = e.target.closest('#matrix [role="button"]');
+    const label = cell?.getAttribute('aria-label').split(':')[0];
+    snapTween();
+    if (label) {
+      const target = [...$('matrix').querySelectorAll('[role="button"]')]
+        .find(b => b.getAttribute('aria-label').split(':')[0] === label);
+      target?.dispatchEvent(new MouseEvent('click', {bubbles:true}));
+      e.preventDefault();
+    }
+  }, {capture:true});
+  document.addEventListener('keydown', snapTween, {capture:true});
+  document.addEventListener('focusin', e => {
+    const cell = e.target.closest('#matrix [role="button"]');
+    matrixFocusIndex = cell ? [...$('matrix').querySelectorAll('[role="button"]')].indexOf(cell) : null;
+  });
+  new MutationObserver(() => {
+    if (matrixFocusIndex !== null && document.activeElement === document.body) {
+      $('matrix').querySelectorAll('[role="button"]')[matrixFocusIndex]?.focus({preventScroll:true});
+    }
+  }).observe($('matrix'), {childList:true, subtree:true});
+  Curio.onMotion(reduce => { if (reduce) snapTween(); });
+  new ResizeObserver(() => {
+    if (view && !tween) updateMatrix();
+  }).observe($('matrix-bench'));
+  buildControls();
+  $('stage').insertBefore($('debrief'), $('evidence'));
+  const toolbox = $('hint').parentElement;
+  const actions = $('run').parentElement;
+  function responsiveControls() {
+    const focused = document.activeElement;
+    if (innerWidth <= 600) {
+      if ($('hint').parentElement !== $('stage')) $('stage').insertBefore($('hint'), $('scores'));
+      if (actions.parentElement !== document.querySelector('header')) document.querySelector('header').appendChild(actions);
+      if ($('next').parentElement !== actions) actions.appendChild($('next'));
+    } else {
+      if ($('next').parentElement !== $('order-card')) $('order-card').appendChild($('next'));
+      if ($('hint').parentElement !== toolbox) toolbox.insertBefore($('hint'), $('toolbox-body'));
+      if (actions.parentElement !== toolbox) toolbox.insertBefore(actions, $('toolbox-body'));
+    }
+    if (focused && focused !== document.body && document.activeElement !== focused) focused.focus({preventScroll:true});
+  }
+  addEventListener('resize', () => {
+    snapTween();
+    responsiveControls();
+  });
+  responsiveControls();
+  Curio.init({clips:"voice:*", rate:.95, readFallback:() => $('hint').textContent});
+  setMode('garage');
+  window.__tool = {
+    state, setMode, allLines:V.allLines, vlog:V.log, get vq() { return V.queue; },
+    active, evaluate, trainList, tests, pool, run, reset, config, goalValues, openCell, snapTween,
+  };
+})();
+</script>
+</body>
+</html>

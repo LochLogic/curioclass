@@ -1,0 +1,25 @@
+{
+  "id": "courtroom-statistics",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Put a statistical claim on trial, then test the limits of your verdict.",
+  "outcome": "Use significance tests, confidence intervals, errors and power to evaluate statistical claims.",
+  "driver": "students or teacher",
+  "minutes": "20-40",
+  "modes": [
+    "Trial",
+    "Lineup",
+    "Docket"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "Common Core S-IC.B (partial coverage); College Board AP Statistics inference for proportions and means",
+    "OpenStax Introductory Statistics 2e, chapters 8 to 10",
+    "OpenIntro Statistics 4e, sections 5.3 and 6.1",
+    "All seven cases are made up.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Courtroom backdrop drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

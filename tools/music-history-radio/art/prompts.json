@@ -98,21 +98,23 @@
     },
     {
       "name": "mhr-pc-swing",
-      "prompt": "an empty 1930s ballroom bandstand with gleaming trumpets, trombones and saxophones resting on stands, art deco lights over a polished dance floor. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "prompt": "An empty Harlem ballroom bandstand in the late 1930s, Savoy-inspired, with trumpets, trombones and saxophones resting on stands, upright bass and piano, plain blank music stands. Long sprung wooden dance floor runs from foreground to raised bandstand, simple art deco lights. A neighborhood dance hall where Black swing bands played, not a hotel restaurant. Quiet and unoccupied. Vintage travel postcard painting, full bleed landscape 4:3.",
       "aspect": "4:3",
       "width": 420,
       "people": false,
       "quality": 76,
-      "drawn_by": "codex"
+      "drawn_by": "codex",
+      "redrawn": true
     },
     {
       "name": "mhr-pc-rocknroll",
-      "prompt": "a glowing chrome 1950s jukebox with colored light tubes and a blank front panel, in a diner beside a red vinyl booth. Vintage travel postcard painting, warm muted colors, soft light, an empty quiet place. Full bleed, no postcard border.",
+      "prompt": "A glowing chrome 1950s jukebox with colored amber and red light tubes and entirely blank front panels, inside a modest neighborhood juke joint associated with Black rhythm and blues and early rock and roll. Worn wooden floor, simple wooden tables, upright piano in back corner, small low bandstand and warm wall lamps. Quiet empty interior, rich material detail, full bleed landscape 4:3 vintage travel postcard painting.",
       "aspect": "4:3",
       "width": 420,
       "people": false,
       "quality": 76,
-      "drawn_by": "codex"
+      "drawn_by": "codex",
+      "redrawn": true
     },
     {
       "name": "mhr-pc-disco",
@@ -136,12 +138,13 @@
     },
     {
       "name": "mhr-pc-gamelan",
-      "prompt": "An empty Javanese pendopo pavilion with bronze keyed saron metallophones on carved dark red wooden frames, a rack of small bronze kettle gongs and large hanging bronze gong, warm late afternoon light, layered carved timber architecture and a garden beyond. Vintage postcard painting, full bleed, quiet and unoccupied.",
+      "prompt": "A Central Javanese pendopo with a clearly visible broad joglo timber roof, plain terracotta tiled floor and open sides onto a quiet level garden. Bronze keyed saron metallophones on carved dark red frames in foreground, a rack of small kettle gongs in middle ground and a large hanging bronze gong under the pavilion. Restrained Central Javanese architecture, garden trees, no temple gates or shrines. Empty, quiet, unoccupied. Vintage travel postcard painting, full bleed landscape 4:3.",
       "aspect": "4:3",
       "width": 420,
       "people": false,
       "quality": 76,
-      "drawn_by": "codex"
+      "drawn_by": "codex",
+      "redrawn": true
     }
   ]
 }

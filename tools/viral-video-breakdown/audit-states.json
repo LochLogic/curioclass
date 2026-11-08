@@ -1,0 +1,539 @@
+{
+  "states": [
+    {
+      "name": "shot-8",
+      "steps": [
+        {
+          "click": "#shot-7"
+        }
+      ],
+      "keep": [
+        "#main-phone",
+        "#shot-strip",
+        "#check-shot"
+      ]
+    },
+    {
+      "name": "sound-labels",
+      "steps": [
+        {
+          "click": "#cat-sound"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#check-shot"
+      ]
+    },
+    {
+      "name": "compare",
+      "steps": [
+        {
+          "click": "#m-reposts"
+        },
+        {
+          "click": "#compare"
+        }
+      ],
+      "keep": [
+        "#evidence-dialog"
+      ]
+    },
+    {
+      "name": "captions",
+      "steps": [
+        {
+          "click": "#m-reposts"
+        },
+        {
+          "click": "#captions"
+        }
+      ],
+      "keep": [
+        "#evidence-dialog"
+      ]
+    },
+    {
+      "name": "claims",
+      "steps": [
+        {
+          "click": "#m-reposts"
+        },
+        {
+          "click": "#tab-claims"
+        }
+      ],
+      "keep": [
+        "#question",
+        "#make-claim"
+      ]
+    },
+    {
+      "name": "reset",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#reset-dialog"
+      ]
+    },
+    {
+      "name": "summary",
+      "steps": [
+        {
+          "click": "#shot-0"
+        },
+        {
+          "click": "#cat-size"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#cat-angle"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#cat-sound"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#choices button[data-choice=\"1\"]"
+        },
+        {
+          "click": "#cat-job"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#check-shot"
+        },
+        {
+          "click": "#shot-1"
+        },
+        {
+          "click": "#cat-size"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#cat-angle"
+        },
+        {
+          "click": "#choices button[data-choice=\"1\"]"
+        },
+        {
+          "click": "#cat-sound"
+        },
+        {
+          "click": "#choices button[data-choice=\"1\"]"
+        },
+        {
+          "click": "#cat-job"
+        },
+        {
+          "click": "#choices button[data-choice=\"1\"]"
+        },
+        {
+          "click": "#check-shot"
+        },
+        {
+          "click": "#shot-2"
+        },
+        {
+          "click": "#cat-size"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#cat-angle"
+        },
+        {
+          "click": "#choices button[data-choice=\"3\"]"
+        },
+        {
+          "click": "#cat-sound"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#cat-job"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#check-shot"
+        },
+        {
+          "click": "#shot-3"
+        },
+        {
+          "click": "#cat-size"
+        },
+        {
+          "click": "#choices button[data-choice=\"1\"]"
+        },
+        {
+          "click": "#cat-angle"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#cat-sound"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#choices button[data-choice=\"3\"]"
+        },
+        {
+          "click": "#cat-job"
+        },
+        {
+          "click": "#choices button[data-choice=\"3\"]"
+        },
+        {
+          "click": "#check-shot"
+        },
+        {
+          "click": "#shot-4"
+        },
+        {
+          "click": "#cat-size"
+        },
+        {
+          "click": "#choices button[data-choice=\"3\"]"
+        },
+        {
+          "click": "#cat-angle"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#cat-sound"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#choices button[data-choice=\"3\"]"
+        },
+        {
+          "click": "#cat-job"
+        },
+        {
+          "click": "#choices button[data-choice=\"3\"]"
+        },
+        {
+          "click": "#check-shot"
+        },
+        {
+          "click": "#shot-5"
+        },
+        {
+          "click": "#cat-size"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#cat-angle"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#cat-sound"
+        },
+        {
+          "click": "#choices button[data-choice=\"1\"]"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#cat-job"
+        },
+        {
+          "click": "#choices button[data-choice=\"3\"]"
+        },
+        {
+          "click": "#check-shot"
+        },
+        {
+          "click": "#shot-6"
+        },
+        {
+          "click": "#cat-size"
+        },
+        {
+          "click": "#choices button[data-choice=\"1\"]"
+        },
+        {
+          "click": "#cat-angle"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#cat-sound"
+        },
+        {
+          "click": "#choices button[data-choice=\"1\"]"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#cat-job"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#check-shot"
+        },
+        {
+          "click": "#shot-7"
+        },
+        {
+          "click": "#cat-size"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#cat-angle"
+        },
+        {
+          "click": "#choices button[data-choice=\"0\"]"
+        },
+        {
+          "click": "#cat-sound"
+        },
+        {
+          "click": "#choices button[data-choice=\"2\"]"
+        },
+        {
+          "click": "#cat-job"
+        },
+        {
+          "click": "#choices button[data-choice=\"4\"]"
+        },
+        {
+          "click": "#check-shot"
+        },
+        {
+          "click": "#open-summary"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#summary",
+        "#back-film",
+        "#see-reposts"
+      ]
+    },
+    {
+      "name": "five-arrows",
+      "steps": [
+        {
+          "click": "#m-reposts"
+        },
+        {
+          "click": "#arrow"
+        },
+        {
+          "click": "#card-1"
+        },
+        {
+          "click": "#card-0"
+        },
+        {
+          "click": "#arrow"
+        },
+        {
+          "click": "#card-2"
+        },
+        {
+          "click": "#card-1"
+        },
+        {
+          "click": "#arrow"
+        },
+        {
+          "click": "#card-3"
+        },
+        {
+          "click": "#card-2"
+        },
+        {
+          "click": "#arrow"
+        },
+        {
+          "click": "#card-4"
+        },
+        {
+          "click": "#card-0"
+        },
+        {
+          "click": "#arrow"
+        },
+        {
+          "click": "#card-5"
+        },
+        {
+          "click": "#card-3"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "keep": [
+        "#cards",
+        "#tree"
+      ]
+    },
+    {
+      "name": "clue-picker",
+      "steps": [
+        {
+          "click": "#m-reposts"
+        },
+        {
+          "click": "#compare"
+        },
+        {
+          "click": "#close-evidence"
+        },
+        {
+          "click": "#sound-clue"
+        },
+        {
+          "click": "#close-evidence"
+        },
+        {
+          "click": "#tab-claims"
+        },
+        {
+          "click": "#choose-clues"
+        }
+      ],
+      "keep": [
+        "#clue-picker",
+        "#clue-list"
+      ]
+    },
+    {
+      "name": "ad-trace",
+      "steps": [
+        {
+          "click": "#m-reposts"
+        },
+        {
+          "js": "const a=document.querySelector('#pair-a'),b=document.querySelector('#pair-b');a.value='3';a.dispatchEvent(new Event('change',{bubbles:true}));b.value='5';b.dispatchEvent(new Event('change',{bubbles:true}));"
+        },
+        {
+          "click": "#compare"
+        }
+      ],
+      "keep": [
+        "#evidence-dialog",
+        "#evidence-read",
+        "#close-evidence"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "verdict-closing",
+      "steps": [
+        {
+          "click": "#m-verdict"
+        },
+        {
+          "click": "#owed-0"
+        },
+        {
+          "click": "#owed-2"
+        }
+      ],
+      "keep": [
+        "#owed",
+        "#copy"
+      ]
+    },
+    {
+      "name": "supported-claim",
+      "steps": [
+        {
+          "click": "#m-reposts"
+        },
+        {
+          "js": "const a=document.querySelector('#pair-a'),b=document.querySelector('#pair-b');a.value='1';a.dispatchEvent(new Event('change',{bubbles:true}));b.value='2';b.dispatchEvent(new Event('change',{bubbles:true}));"
+        },
+        {
+          "click": "#compare"
+        },
+        {
+          "click": "#close-evidence"
+        },
+        {
+          "click": "#captions"
+        },
+        {
+          "click": "#close-evidence"
+        },
+        {
+          "click": "#tab-claims"
+        },
+        {
+          "js": "const a=document.querySelector('#answer');a.value='2';a.dispatchEvent(new Event('change',{bubbles:true}));"
+        },
+        {
+          "click": "#choose-clues"
+        },
+        {
+          "js": "for(const id of ['compare:1:2','captions:1:2'])document.querySelector('#clue-'+__tool.state.clues.findIndex(c=>c.id===id)).click();"
+        },
+        {
+          "click": "#close-clues"
+        },
+        {
+          "click": "#make-claim"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#make-claim",
+        "#claim-status"
+      ]
+    }
+  ]
+}

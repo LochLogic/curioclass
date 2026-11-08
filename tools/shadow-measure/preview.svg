@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="sky" x2="0" y2="1"><stop stop-color="#b9d4ea"/><stop offset="1" stop-color="#e7e9dc"/></linearGradient>
+    <linearGradient id="road" x2="0" y2="1"><stop stop-color="#4b5057"/><stop offset="1" stop-color="#202b39"/></linearGradient>
+  </defs>
+  <path fill="url(#sky)" d="M0 0h800v360H0z"/>
+  <path fill="#8fb07a" d="M0 300h800v75H0z"/>
+  <path fill="#bc8d6f" d="M0 260h800v63H0z"/>
+  <path stroke="#e3d4b9" stroke-width="9" d="M0 260h800"/>
+  <path fill="#385d70" d="M30 275h70v28H30zm100 0h70v28h-70zm100 0h70v28h-70zm100 0h70v28h-70zm100 0h70v28h-70z"/>
+  <path fill="url(#road)" d="M0 340h800v160H0z"/>
+  <path stroke="#ecece5" stroke-width="9" d="M125 350V86"/>
+  <path fill="#d94b47" d="M130 98q45-12 104 9v64q-60-25-104-8z"/>
+  <circle cx="125" cy="82" r="7" fill="#c4a866"/>
+  <path fill="#10161f" opacity=".45" d="m125 350 290 7 80-16-75 23-295-5z"/>
+  <path stroke="#ffe7a3" stroke-width="2" d="m125 86 400 264M125 412v-40l61 40"/>
+  <path stroke="#d8ad46" stroke-width="6" d="M125 412v-40"/>
+  <path stroke="#ffd0f0" stroke-width="3" d="M525 341v19m-339 43v18"/>
+  <path stroke="#f3f0e8" stroke-width="9" d="M125 382h400m-400 64h61"/>
+  <g fill="#ffd0f0"><circle cx="525" cy="382" r="16"/><circle cx="186" cy="446" r="16"/></g>
+  <rect x="520" y="37" width="244" height="186" rx="8" fill="#141b25"/>
+  <g font-family="Segoe UI,sans-serif" fill="#e8edf3"><text x="540" y="72" font-size="18">SHADOW MEASURE</text>
+    <text x="540" y="110" font-size="14">Two tapes. Matching angles.</text><text x="540" y="144" font-size="14">A height you can reach.</text></g>
+  <rect x="540" y="169" width="200" height="34" rx="4" fill="#ffd0f0"/>
+  <text x="557" y="192" fill="#10161f" font-family="Segoe UI,sans-serif" font-size="16">Measure →</text>
+</svg>

@@ -17,7 +17,7 @@ The dancer's feet paint the floor: every trip leaves a ribbon whose shape is the
 - Topic line: locomotor and nonlocomotor movement
 - Driver: teacher on a projector or smartboard. The class stands in their own "bubble space" and copies; pathways are followed in the room (gym, cleared space) or in place by marching the shape.
 - Minutes: 10-20. tool.json modes: ["Levels", "Pathways", "Mystery path", "Draw a path"]; driver "teacher"; grades_label "Grades K-2".
-- Standards (NCAS dance): DA:Cr1.1.Ka (respond in movement to a cue: the narrator and the music), DA:Cr1.1.Kb (explore different ways to do basic locomotor and nonlocomotor movements by changing at least one element of dance: level, pathway, way of moving), DA:Pr4.1.Ka (change levels), DA:Pr4.1.1a (straight, curved and zigzag pathways), DA:Pr4.1.2a, DA:Cr1.1.2b (explore locomotor and nonlocomotor movement by changing the elements of dance: Draw a path, one drawn dance changing level part by part); also DA:Re7.1.Kb (Mystery path: describe observed dance movement, its pathway and level), DA:Cr3.1.Kb and DA:Cr3.1.2b (ribbon floor maps as symbols for pathways and levels), DA:Pr5.1.Kb (start and stop on cue), SHAPE.S2 (movement concepts: levels and pathways).
+- Standards (NCAS dance): DA:Cr1.1.Ka (respond in movement to a cue: the narrator and the music), DA:Cr1.1.Kb (explore different ways to do basic locomotor and nonlocomotor movements by changing at least one element of dance: level, pathway, way of moving), DA:Pr4.1.Ka (change levels), DA:Pr4.1.1a (straight, curved and zigzag pathways), DA:Cr1.1.2b (explore locomotor and nonlocomotor movement by changing the elements of dance: Draw a path, one drawn dance changing level part by part); also DA:Re7.1.Kb (Mystery path: describe observed dance movement, its pathway and level), DA:Cr3.1.Kb and DA:Cr3.1.2b (ribbon floor maps as symbols for pathways and levels), DA:Pr5.1.Kb (start and stop on cue), SHAPE.S2 (movement concepts: levels and pathways).
 - K-2 reads nothing: every control has an icon, every fixed line is voiced, targets are 60 px or more (72 px for answer buttons).
 
 ## Screens and modes
@@ -96,20 +96,19 @@ Music: one original, cheerful studio tune (piano, soft bass, light shaker) synth
 - Different from animal-moves (blue #1f6fb2), beat-buddies (red-orange #c2482f), line-safari (orange #c0612b), robot-dance (magenta #b0206a), target-toss (purple #6b3fa0) and the dance siblings (cobalt, mint, lilac).
 
 ## Art
-none: drawn in code (studio, dancer, ribbons, icons). The dancer is simple shapes, so people: false.
+Painted sunlit studio, a painted three-guide articulated atlas, and a gallery bow cutout. The two dancer assets have people: true. Floor ribbons, controls and precise moving joints use SVG code.
 
 ## Voice
 `warm-teacher` (Sulafat): "Say warmly and clearly, like a kind kindergarten teacher talking to the whole class." Different from animal-moves (hero-coach), beat-buddies and robot-dance (lively-host), line-safari and target-toss (bright-teacher), orchestra-zoo (playful-friend). Every fixed line is voiced.
 | Key | Kind | Line | Stale when |
 |---|---|---|---|
-| wLevels | how | Let's dance at three levels: high, middle and low. Tap a move, and copy the dancer! | mode left |
-| wPaths | how | A pathway is the line you make when you travel. Tap a pathway, then tap Go, and follow the dancer! | mode left or trip started |
+| wLevels | how | These moves stay in one place, at high, middle or low levels. Tap a move and copy me in your bubble space! | mode left |
+| wPaths | how | Now we travel! A pathway is the line you make when you travel. Tap a pathway, then tap Go, and follow the dancer! | mode left or trip started |
 | wMystery | how | The magic floor hides the pathway. Tap Go, watch the dancer, then draw the pathway in the air with one finger. | mode left or trip started |
-| wDraw | how | Draw a pathway on the floor with your finger. Start at the star. Then tap Dance it. | mode left |
-| copyMe | how | Copy me! Stay in your own bubble space. | move ended |
+| wDraw | how | Draw a pathway from the star with your finger, or tap Surprise path. | mode left |
 | stretch, twist, bend, swing, shake, curl | event | Stretch! / Twist! / Bend! / Swing! / Shake! / Curl! | another move started |
 | atHigh | event | High level. Reach up to the sky! | another move or level |
-| atMiddle | event | Middle level. Stay in the middle. | another move or level |
+| atMiddle | event | Middle level. Stand up, not too high and not too low. | another move or level |
 | atLow | event | Low level. Get close to the floor. | another move or level |
 | freeze | event | And freeze! | move ended over 1 s ago |
 | upDown | event | High, middle, low, middle, high. Follow me up and down! | routine stopped |
@@ -185,3 +184,23 @@ Levels and Pathways feeds it: the `'studio'` view, ribbon trails, 6 nonlocomotor
 
 ## Open questions
 - The pose figure is shared with the PE movement family (fitness-circuit). This spec puts it in `kit/movement.js` and has `kit/dance.js` build on it, so the site has one dancer model. OK, or should dance keep its own figure?
+
+## Fix decisions (2026-11-04)
+- DA:Pr4.1.2a moves to choreography-board for full teaching of facings, symmetrical and asymmetrical shapes, and circling versus turning. It is not claimed here. Catalog edits belong to the integrator.
+- The guide bands set the selected level, except in Mystery where they remain disabled to keep the answer hidden.
+- watchTrip (how): "Watch the dancer. Draw the pathway in the air with your finger." While the trip is running.
+- circleCurved (how): "A circle is a curved pathway too!" After the correct level in round 7, once.
+- The first move shape appears during its call. Copy me and bubble space are folded into the Levels welcome.
+
+- replayHow (how): "Tap Play again for new mysteries." Only after the bow when Play again is enabled; later visits show the hint silently.
+
+| Additional key | Kind | Line | Stale when |
+|---|---|---|---|
+| replayHow | how | Tap Play again for new mysteries. | its step or mode left |
+| watchTrip | how | Watch the dancer. Draw the pathway in the air with your finger. | its step or mode left |
+| circleCurved | how | A circle is a curved pathway too! | its step or mode left |
+| clean | how | The floor is clean. Tap Go to paint a new pathway. | its step or mode left |
+| clear | how | The floor is clear. Draw from the star, or tap Surprise path. | its step or mode left |
+| returnStar | how | Watch the dancer return to the star. | its step or mode left |
+| chooseMove | how | Tap a move, and copy the dancer! | its step or mode left |
+| pathReady | how | Tap Go, and follow the dancer! | its step or mode left |

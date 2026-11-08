@@ -1,0 +1,42 @@
+{
+  "sm-flagpole": {
+    "base_x": 0.1,
+    "measured_y": 0,
+    "point": "top of gold ball"
+  },
+  "sm-tree": {
+    "base_x": 0.5,
+    "measured_y": 0,
+    "point": "highest crown leaf"
+  },
+  "sm-hoop": {
+    "base_x": 0.823,
+    "measured_y": 0.2685,
+    "point": "upper edge at orange rim center; base is vertical projection beneath rim, cold-review redraw"
+  },
+  "sm-sign": {
+    "base_x": 0.5,
+    "measured_y": 0,
+    "point": "top edge of sign"
+  },
+  "sm-gym-wall": {
+    "base_x": 0.99,
+    "measured_y": 0,
+    "point": "right edge of flat coping"
+  },
+  "sm-streetlight": {
+    "base_x": 0.5,
+    "measured_y": 0,
+    "point": "highest point of lantern assembly"
+  },
+  "sm-tripod": {
+    "base_x": 0.96,
+    "measured_y": 0.05,
+    "point": "eyepiece optical axis, above its vertical ground projection"
+  },
+  "sm-stick": {
+    "base_x": 0.5,
+    "measured_y": 0,
+    "point": "top flat edge"
+  }
+}

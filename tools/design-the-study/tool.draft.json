@@ -1,0 +1,26 @@
+{
+  "id": "design-the-study",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Can your experiment find a 10 millisecond effect?",
+  "outcome": "Design and evaluate experiments using random assignment, control, placebo, blinding and a randomization test.",
+  "driver": "students",
+  "minutes": "20-40",
+  "modes": [
+    "Story",
+    "Bench"
+  ],
+  "grades_label": "Grade 12",
+  "sources": [
+    "Common Core S-IC.B.3, S-IC.B.5 and S-IC.B.6: https://www.thecorestandards.org/Math/Content/HSS/IC/",
+    "College Board AP Statistics, revised 2026-27 Unit 1 collecting data: https://apcentral.collegeboard.org/courses/ap-statistics",
+    "OpenStax Introductory Statistics 2e, 1.4: https://openstax.org/books/introductory-statistics-2e/pages/1-4-experimental-design-and-ethics",
+    "OpenIntro Statistics 4e, 2.3: https://www.openintro.org/book/os/",
+    "American Academy of Pediatrics, Pediatrics 127(6), 2011: https://doi.org/10.1542/peds.2011-0965",
+    "All laboratory data, volunteers, journal and model parameters are invented for this simulation.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "American Academy of Pediatrics, HealthyChildren, current caffeine advice: https://www.healthychildren.org/English/healthy-living/nutrition/Pages/the-effects-of-caffeine-on-kids-a-parents-guide.aspx"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

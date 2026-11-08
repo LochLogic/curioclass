@@ -1,3 +1,45 @@
+# Span and Spire: instrument pivot handoff
+Fix round 1, 2026-11-05. This section supersedes the older frame and tag descriptions below.
+
+## Current instrument frame
+Free build opens on a blueprint drafting surface with the painted site behind it. Bridge and Tower are two rigs
+at a bottom test console, next to Yard. Truck tray, material rack and test settings remain always available.
+Three live needle gauges show total mass, current worst-member use and actual top sway, with numeric units.
+LOOSE and NO FRAME are explicit; needles saturate without capping numeric readings.
+
+Manual sits beside the engraved lower-left maker's plate. Its first action opens the optional yard logbook,
+which holds all 25 former Tags as timestamped test observations and the original Promises as an optional brief.
+No progress badge, automatic stamp, tag sound or tag narration remains. Older date-only records retain their date
+and explicitly say their measurements were not stored. New observations store actual evidence and design metadata.
+The logbook refreshes in place if a test finishes while it is open. Native dialogs provide focus containment.
+
+Budget starts off. Its native adjustment dialog sets a comparison limit. Done closes the dialog while the
+limit stays enabled, shown on the power switch, without locking build operations or tests. This prevents the
+phone adjustment controls from permanently covering Build/Save/Read. Repeated selection of the current rig
+offers any unheard welcome without hushing the one in progress. The county brief
+continues to use $9,000 regardless of the dial. This follows the instrument's student-driven scope. Material and
+member costs remain, with the estimate caveat in Manual. Motion, Sound and Read remain on the power panel.
+
+## Engine and evidence
+The 23 core geometry, direct-stiffness, cable, modal and explicit integration function bodies are unchanged.
+Whole-crossing logbook observations now require a genuine sweep pass, including no lost member; this closes a
+pre-existing observation loophole while preserving solver results. Saved-design Test all passes the tested design
+to its observation recorder, so the logbook never describes a different currently open rig.
+Source section order remains data, model, state/actions, drawing, Yard, input, and initialization. Gauges are
+initialized before the first setMode. Utility controls use a contents wrapper, then a single row in compact Tower.
+
+All evidence, bounded harnesses and reports for this round live in _scratch/span-and-spire/. The final status
+and frame paths are in polish.md. Exact historical reference disagreements and actual Chromebook testing remain
+as documented below; no solver numbers were fitted. No shared kit files, refine files or other tools were edited.
+
+## Engine changes wanted
+No runtime kit change. Audit harness follow-up only: in scripts/audit_tool.py, MODES_JS currently queries only
+header mode controls. Extend its selector with .rig-selector > button[id^="m-"] so the full per-mode control
+walk recognizes the instrument's rig console. Explicit audit states and the manual size/control tests cover
+Tower and Yard in this round, but the automatic per-control walk otherwise starts from Bridge only.
+The shared audit script was not edited.
+
+## Historical review handoff
 # Span and Spire: current review handoff
 Cold review, 2026-10-30. No commit, deployment or voice recording. The original build handoff is preserved below
 as historical evidence; its missing-art and layout statements have been superseded.

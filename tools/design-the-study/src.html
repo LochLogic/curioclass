@@ -1,0 +1,1078 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design the Study · Curio Class</title>
+<meta name="description" content="Design a reaction-time experiment, uncover confounding and revise your methods. Grade 12 statistics. Works offline.">
+<link rel="icon" href="data:,">
+<!--
+Design the Study, Curio Class. Student driven: Story and Bench.
+S-IC.B.3, S-IC.B.5, S-IC.B.6; experimental design (legacy AP-STAT.U3, current 2026-27 Unit 1).
+Sources: CCSS, College Board AP Statistics, OpenStax Introductory Statistics 2e 1.4,
+OpenIntro Statistics 4e 2.3, AAP Pediatrics 127(6), 2011, doi:10.1542/peds.2011-0965.
+The lab, volunteers and model numbers are invented. Content CC BY 4.0; code MIT.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Offline; no data collection. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --paper:#f3eee2; --panel:#fbf7ee; --sec-bg:#fffdf8; --ink:#2a2723; --muted:#6a6358;
+  --line:#cec4b1; --btn-line:#8a7f6a; --brand:#1d5bbf; --brand-ink:#fff; --head-bg:#ece5d4;
+  --head-ink:#2a2723; --btn:#fffdf8; --focus:#0b7285; --ok:#1e6b3a; --warn:#9b1c1c; color-scheme:light;
+}
+body { overflow:hidden; grid-template-rows:auto minmax(0,1fr) auto; }
+header { padding:9px 18px; gap:8px; border-bottom:1px solid #b7a98f; }
+h1 { font:700 clamp(21px,2.2vw,31px)/1.05 Georgia,serif; letter-spacing:-.6px; }
+h1 small { margin-top:4px; font-size:13px; letter-spacing:0; }
+.seg { border-radius:5px; border-width:1px; }
+.seg button,.icon-btn { min-height:44px; padding:0 12px; font-size:14px; border-radius:4px; }
+.icon-btn { border-width:1px; }
+button:disabled { opacity:.48; cursor:default; }
+main { grid-template-columns:minmax(0,1.25fr) minmax(0,1fr); gap:15px; padding:16px 20px 10px; }
+main.results,main.bench { grid-template-columns:minmax(0,.82fr) minmax(0,1.5fr); }
+.manuscript { min-width:0; min-height:0; display:flex; flex-direction:column; background:var(--sec-bg);
+  border:1px solid #d0c7b5; box-shadow:0 6px 18px #53462c18,3px 3px 0 #e3dac9; position:relative; }
+.paper-head { padding:12px 17px 8px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:14px; }
+.paper-head h2 { font:italic 25px Georgia,serif; margin:0; }
+.folio { margin-left:auto; text-align:right; font:11px/1.5 Consolas,monospace; color:var(--muted); }
+.rows { display:grid; grid-template-rows:repeat(6,minmax(48px,1fr)); flex:1; min-height:0; padding:0 13px; }
+.method-row { display:grid; grid-template-columns:84px 1fr; gap:6px; align-items:center; padding:5px 0;
+  border-bottom:1px solid #ded5c4; position:relative; }
+.method-row.flagged { outline:3px solid var(--brand); outline-offset:0; background:#edf3fc; }
+.row-title { font:italic 17px Georgia,serif; }
+.row-title b { font:11px Consolas,monospace; color:var(--muted); margin-right:6px; }
+.choices { display:flex; gap:5px; }
+.chip { min-height:44px; min-width:44px; padding:4px 7px; border:1px solid var(--btn-line); border-radius:4px;
+  background:linear-gradient(#fffefb,#f3ede0); font-size:13px; line-height:1.16; display:inline-flex;
+  align-items:center; justify-content:center; gap:5px; flex:1 1 50px; box-shadow:0 1px 1px #594b3215; }
+.chip[aria-pressed=true] { color:var(--brand); border:2px solid var(--brand); padding:3px 6px;
+  background:#eaf0fb; box-shadow:inset 0 -3px 0 #1d5bbf1c; font-weight:700; }
+.chip img { width:25px; height:33px; object-fit:contain; }
+.reason { margin:3px 0 0; font-size:11px; color:var(--muted); }
+.row-body { min-width:0; }
+.unavailable .choices { opacity:.55; }
+.actions { padding:9px 13px; display:flex; gap:6px; border-top:1px solid #c8bca5; background:#f2ecde; }
+.primary,.secondary { min-height:44px; padding:7px 12px; border-radius:4px; border:1px solid var(--btn-line);
+  background:var(--sec-bg); font-size:14px; font-weight:650; }
+.primary { color:#fff; background:var(--brand); border-color:var(--brand); flex:1; }
+.lab { min-width:0; min-height:0; display:flex; flex-direction:column; position:relative;
+  background:#ece6d9; border:1px solid #bcaf96; box-shadow:0 6px 18px #53462c12; }
+.lab-scene { height:120px; flex:none; position:relative; overflow:hidden; background:#b2bfc5; }
+.lab-scene img { width:100%; height:100%; object-fit:cover; object-position:center 55%; }
+.lab-scene::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#18222cc2,#18222c10); }
+.lab-title { position:absolute; left:17px; top:16px; z-index:1; color:#fffdf8; }
+.lab-title h2 { font:italic 25px Georgia,serif; margin:0 0 6px; }
+.lab-title p { margin:0; font:11px/1.5 Consolas,monospace; }
+.led { display:inline-block; width:6px; height:6px; margin-right:5px; background:#a0e5be; border-radius:50%;
+  box-shadow:0 0 6px #a0e5be; animation:breathe 3s infinite; }
+@keyframes breathe { 50% { opacity:.4; } }
+.calm .led { animation:none; }
+.volunteer-head { display:flex; align-items:center; gap:8px; padding:5px 10px; }
+.eyebrow { font:11px Consolas,monospace; text-transform:uppercase; letter-spacing:1px; color:var(--muted); }
+#inspect { margin-left:auto; min-height:44px; font-size:12px; }
+.cards { display:grid; grid-template-columns:repeat(8,1fr); gap:4px; padding:0 10px 8px; }
+.volunteer { min-width:0; min-height:44px; padding:0; border:1px solid #a7987f; border-radius:3px;
+  background:linear-gradient(130deg,#fffef9,#e0d7c6); box-shadow:1px 2px 0 #b7aa9355;
+  font:14px Consolas,monospace; position:relative; }
+.volunteer.drink { border-top:4px solid #1d5bbf; }
+.volunteer.control { border-top:4px solid #756a59; }
+.volunteer.flashing { background:#b9d0f5; box-shadow:0 0 0 3px #1d5bbf60; }
+.volunteer.inactive { opacity:.3; }
+.lab > .cards { gap:2px; }
+.lab > .cards .volunteer { min-height:18px; display:grid; place-items:center; font-size:11px; }
+.result-info { padding:7px 12px; border-top:1px solid #c7bba6; background:#fffdf8; }
+.group-line { display:flex; flex-wrap:wrap; gap:6px 14px; font-size:12px; align-items:center; }
+.group-line img { height:28px; width:19px; object-fit:contain; vertical-align:middle; }
+.estimate { display:flex; justify-content:space-between; gap:6px; align-items:baseline; margin-top:4px; }
+.estimate strong { font:700 29px Consolas,monospace; color:var(--brand); }
+.estimate span { color:var(--muted); font-size:12px; }
+.chart-area { min-height:80px; flex:1; position:relative; background:#fffdf8; }
+canvas { display:block; width:100%; height:100%; position:absolute; inset:0; }
+.chart-note { padding:5px 12px; font-size:12px; margin:0; border-top:1px solid #e2d9c9; color:var(--muted); background:#fffdf8; }
+.lab-actions { display:flex; gap:6px; padding:7px 10px; background:#e5ddcd; }
+.lab-actions button { flex:1; }
+main.results .lab-scene,main.bench .lab-scene { height:72px; }
+main.results .lab-title,main.bench .lab-title { top:10px; }
+main.results .lab-title h2,main.bench .lab-title h2 { font-size:21px; margin-bottom:2px; }
+main.results .lab > .cards { display:flex; height:20px; padding-bottom:0; gap:2px; }
+main.results .lab > .cards .volunteer { flex:1; font-size:10px; min-height:15px; }
+main.results .volunteer-head { position:absolute; top:8px; right:8px; z-index:2; padding:0; }
+main.results .volunteer-head .eyebrow { display:none; }
+main.results .volunteer-head button { background:var(--sec-bg); }
+main.results .result-info { padding-top:4px; padding-bottom:4px; }
+main.bench .cards,main.bench .volunteer-head { display:none; }
+.bench-stats { display:flex; flex-wrap:wrap; justify-content:space-between; font-size:13px; line-height:1.6; }
+.bench-stats b { color:var(--brand); font-family:Consolas,monospace; }
+#pins { padding:0 12px; background:#fffdf8; font-size:11px; }
+#pins p { margin:5px 0; }
+footer { padding:5px 20px 8px; display:grid; grid-template-columns:1fr auto; gap:8px; align-items:center; }
+#hint { margin:0; min-height:38px; font-size:13px; line-height:1.35; display:flex; align-items:center; }
+.privacy { color:var(--muted); font-size:10px; }
+.badges { display:flex; align-items:center; gap:5px; }
+.badge { font-size:10px; padding:4px 6px; border:1px solid #bdb19c; border-radius:3px; color:var(--muted); }
+.badge.found { color:var(--brand); border-color:var(--brand); background:#eaf0fb; }
+#clear { font-size:11px; min-height:44px; padding:4px 8px; }
+#clear { min-width:44px; }
+.opening { padding:12px 16px; border-bottom:1px solid #c7baa2; background:#eee6d5;
+  font:15px/1.4 Georgia,serif; display:flex; gap:10px; }
+.opening p { margin:0; }
+.editor-portrait { width:100px; height:102px; flex:none; object-fit:contain; object-position:center bottom; }
+.journal .editor-portrait { float:right; width:112px; height:122px; margin:0 0 6px 10px; }
+.health { font:11px/1.4 'Segoe UI',sans-serif; color:var(--muted); margin-top:5px!important; }
+.journal { position:absolute; z-index:3; top:8px; right:10px; left:10px; padding:16px;
+  box-shadow:0 7px 23px #2a272343; border:1px solid #aa9877; background:linear-gradient(115deg,#fffef8,#f1e9d6); }
+.journal h3 { font:italic 22px Georgia,serif; color:var(--brand); margin:0 0 8px; }
+.journal p { font:17px/1.45 Georgia,serif; margin:6px 0; }
+.journal .small { font:12px/1.4 'Segoe UI',sans-serif; color:var(--muted); }
+.stamp { display:inline-block; border:3px double var(--brand); color:var(--brand); padding:5px 13px;
+  font:bold 24px Georgia,serif; transform:rotate(-5deg); margin:9px 0; }
+.journal-buttons { display:flex; gap:7px; margin-top:12px; }
+.journal-buttons button { flex:1; }
+dialog { color:var(--ink); background:var(--panel); border:1px solid var(--btn-line); border-radius:5px;
+  width:min(570px,calc(100vw - 16px)); max-height:calc(100vh - 18px); padding:14px; box-shadow:0 12px 60px #0005; }
+dialog::backdrop { background:#24211d88; }
+dialog h2 { font:italic 23px Georgia,serif; margin:0 0 9px; }
+.inspector-how { font:11px/1.25 'Segoe UI',sans-serif; color:var(--muted); margin:0 0 4px; }
+dialog .cards { padding:0; }
+#card-detail { min-height:44px; font-size:13px; line-height:1.5; margin:8px 0; }
+dialog .close { width:100%; margin-top:8px; }
+@media (max-width:1100px) {
+  header { padding:5px 9px; gap:5px; } h1 { font-size:22px; }
+  main { padding:9px; gap:9px; } .method-row { grid-template-columns:65px 1fr; }
+  .row-title { font-size:15px; } .chip { font-size:12px; padding-left:4px; padding-right:4px; }
+  .chip[aria-pressed=true] { padding-left:3px; padding-right:3px; }
+  .rows { padding:0 9px; } .lab-scene { height:105px; }
+  .opening { font-size:13px; padding:8px 10px; } .opening .editor-portrait { display:none; }
+  .journal .editor-portrait { width:80px; height:86px; }
+}
+@media (max-height:700px) and (min-width:600px) {
+  header { flex-wrap:nowrap; padding:3px 9px; } h1 { font-size:21px; white-space:nowrap; } h1 small { display:none; }
+  main { padding:6px 9px; gap:9px; } .paper-head { padding:4px 10px; } .paper-head h2 { font-size:20px; }
+  .folio { font-size:10px; line-height:1.1; } .opening { display:none; }
+  .paper-head { min-height:24px; padding:1px 8px; } .folio br { display:none; }
+  .method-row { padding:0; grid-template-columns:58px 1fr; gap:3px; }
+  .row-title { font-size:13px; } .row-title b { display:none; }
+  .rows { grid-template-rows:repeat(6,minmax(44px,1fr)); padding:0 6px; }
+  .chip { font-size:11px; padding:2px 3px; gap:2px; } .chip[aria-pressed=true] { padding:1px 2px; }
+  .chip img { width:17px; height:26px; } .choices { gap:3px; }
+  .reason { font-size:10px; line-height:1.1; margin:0; }
+  .actions,.lab-actions { padding:3px 6px; } .primary,.secondary { font-size:12px; padding:4px 6px; }
+  .lab-scene { height:72px; } .lab-title { top:10px; left:10px; } .lab-title h2 { font-size:20px; }
+  .lab-title p { font-size:10px; } .lab > .cards { display:none!important; } .volunteer-head { padding:0 7px; }
+  .chart-note { font-size:10px; padding:3px 7px; } .result-info { padding:3px 8px; }
+  .estimate strong { font-size:23px; } .estimate span,.group-line { font-size:10px; }
+  .group-line img { height:20px; width:14px; } footer { padding:0 9px 3px; }
+  #hint { font-size:11px; min-height:30px; } .privacy { display:none; }
+  .badges { display:none; } footer { grid-template-columns:1fr; }
+  main.results,main.bench { grid-template-columns:minmax(0,.95fr) minmax(0,1.25fr); }
+  .journal { padding:10px; } .journal h3 { font-size:18px; } .journal p { font-size:14px; }
+}
+@media (max-width:780px) and (min-width:600px) {
+  h1 { font-size:18px; } .icon-btn,.seg button { padding:0 7px; font-size:12px; }
+  main { grid-template-columns:minmax(0,1.6fr) minmax(0,1fr); }
+  main.results,main.bench { grid-template-columns:minmax(0,1.28fr) minmax(0,1fr); }
+  .method-row { grid-template-columns:45px 1fr; } .row-title { font-size:11px; }
+  .chip { font-size:10px; padding:1px 2px; } .chip[aria-pressed=true] { padding:0 1px; }
+  .estimate { flex-wrap:wrap; } .estimate strong { font-size:22px; }
+  .journal-buttons { flex-direction:column; }
+}
+@media (max-width:599px) {
+  header { padding:4px 7px; gap:4px; } h1 { flex:1 1 100%; font-size:23px; } h1 small { display:none; }
+  .icon-btn,.seg button { font-size:12px; padding:0 9px; }
+  main,main.results,main.bench { grid-template-columns:1fr; grid-template-rows:338px minmax(0,1fr);
+    padding:6px; gap:6px; }
+  .paper-head { padding:3px 8px; } .paper-head h2 { font-size:18px; } .folio { font-size:10px; }
+  .opening { display:none; } .method-row { grid-template-columns:42px 1fr; padding:0; gap:3px; }
+  .row-title { font-size:11px; } .row-title b { display:none; }
+  .rows { padding:0 5px; grid-template-rows:repeat(6,minmax(44px,1fr)); }
+  .choices { gap:3px; } .chip { font-size:10px; padding:1px 2px; gap:2px; flex-basis:40px; }
+  .chip[aria-pressed=true] { padding:0 1px; } .chip img { width:15px; height:24px; }
+  .reason { font-size:10px; line-height:1.1; margin:0; }
+  .actions,.lab-actions { padding:2px 5px; } .primary,.secondary { font-size:11px; padding:3px 5px; }
+  .lab-scene { height:45px!important; } .lab-title { top:5px!important; left:8px; }
+  .lab-title h2 { font-size:18px!important; margin:0; } .lab-title p { font-size:10px; }
+  .lab > .cards { display:none!important; }
+  .volunteer-head { position:absolute; right:4px; top:0; padding:0; z-index:2; }
+  .volunteer-head .eyebrow { display:none; } #inspect { background:#fffdf8; }
+  .result-info { padding:2px 7px; } .group-line { font-size:10px; gap:4px; }
+  .group-line img { width:12px; height:15px; } .estimate { margin:0; }
+  .estimate strong { font-size:20px; } .estimate span { font-size:10px; }
+  .chart-area { min-height:55px; } .chart-note { font-size:10px; padding:2px 7px; }
+  .bench-stats { font-size:10px; } footer { padding:0 7px 3px; grid-template-columns:1fr; gap:0; }
+  #hint { font-size:11px; min-height:30px; } .badges { display:none; } .privacy { display:none; }
+  .journal { top:0; left:0; right:0; padding:10px; } .journal h3 { font-size:18px; } .journal p { font-size:13px; }
+  .journal-buttons { margin-top:6px; } dialog .cards { gap:2px; } dialog .volunteer { font-size:12px; }
+  dialog { width:calc(100vw - 4px); max-width:none; padding:4px; }
+  dialog .cards { gap:1px; }
+  .icon-btn { padding-left:6px; padding-right:6px; }
+  .icon-btn,.seg button { font-size:11px; padding-left:4px; padding-right:4px; min-width:44px; }
+  #clear { padding-left:5px; padding-right:5px; }
+  .paper-head { padding-top:1px; padding-bottom:1px; }
+  .folio { line-height:1.1; } .folio br { display:none; }
+  .chart-note { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+}
+@media (max-height:700px) and (min-width:600px), (max-width:599px) {
+  .method-row:has(.reason:not(:empty)) .row-title { visibility:hidden; }
+  .reason:not(:empty) { position:absolute; left:0; top:4px; width:43px; font-size:0; line-height:1.1; }
+  .reason:not(:empty)::after { content:attr(data-short); font:10px/1.1 'Segoe UI',sans-serif; }
+}
+@media (max-width:780px) {
+  .journal .editor-portrait { width:44px; height:48px; margin-left:6px; }
+  .row-title b { display:none; }
+  main.results .estimate span { display:none; }
+  main.results .chart-area { min-height:130px; }
+  main.results .lab-scene { height:60px; }
+  main.results .lab > .cards .volunteer { font-size:0; }
+  main.results .lab > .cards { height:12px; }
+  main.results .lab > .cards .volunteer { min-height:12px; }
+}
+@media (min-width:781px) and (max-height:700px) {
+  main.results,main.bench { grid-template-columns:minmax(0,.72fr) minmax(0,1.28fr); }
+}
+@media (min-width:600px) and (max-height:780px) and (min-height:701px) {
+  .method-row { padding:2px 0; }
+  .method-row:has(.reason:not(:empty)) .row-title { visibility:hidden; }
+  .reason:not(:empty) { position:absolute; left:0; top:4px; width:75px; font-size:0; }
+  .reason:not(:empty)::after { content:attr(data-short); font:11px/1.2 'Segoe UI',sans-serif; }
+}
+
+.reason-short { display:none; }
+@media (max-height:780px) and (min-width:600px), (max-width:599px) {
+  .reason:not(:empty) { font-size:10px; }
+  .reason:not(:empty)::after { content:none; }
+  .reason-full { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  .reason-short { display:inline; font:10px/1.1 'Segoe UI',sans-serif; }
+}
+@media (min-width:600px) and (max-height:460px) {
+  .paper-head { padding:0 6px; min-height:15px; }
+  .paper-head h2 { font-size:12px; line-height:14px; }
+  .folio { display:none; }
+  .actions { padding:0 6px; }
+}
+@media (max-height:500px) {
+  dialog { padding:8px; }
+  dialog h2 { font-size:20px; margin-bottom:4px; }
+  dialog .cards { gap:2px; }
+  #card-detail { margin:4px 0; }
+  dialog .close { margin-top:4px; }
+}
+@media (max-height:500px) and (min-width:600px), (max-width:599px) {
+  main.bench:has(#pins p) #pins { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  main.bench:has(#pins p) .lab-scene { height:44px; }
+  main.bench:has(#pins p) .lab-title { top:5px; }
+  main.bench:has(#pins p) .lab-title h2 { font-size:18px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Design the Study <small>Can you find a 10 millisecond effect?</small></h1>
+  <div class="seg" role="group" aria-label="Mode"><button id="m-story" aria-pressed="true">Story</button>
+    <button id="m-bench" aria-pressed="false">Bench</button></div>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button><button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main id="workspace">
+  <section class="manuscript" aria-label="Study manuscript">
+    <div class="paper-head"><h2>Methods</h2><span class="folio">THE OPEN BENCH JOURNAL<br> MANUSCRIPT / <span id="revision">01</span></span></div>
+    <div class="opening" id="opening"><img class="editor-portrait" src="art:editor-quill" alt="Dr. Mara Quill, the invented editor">
+      <div><p><b>From Dr. Mara Quill, editor</b><br>A reader says the drink makes people faster. Design a study our journal can trust. I will read your methods.</p>
+
+      <p class="health">Adult volunteers, ages 18 to 22. The American Academy of Pediatrics advises children and teens not to drink energy drinks.</p>
+</div></div>
+    <div class="rows" id="methods"></div>
+    <div class="actions"><button class="primary" id="run">Run the study →</button><button class="secondary" id="new">New draft</button></div>
+  </section>
+  <section class="lab" aria-label="Reaction lab and results">
+    <div class="lab-scene"><img src="art:reaction-lab" alt="Empty reaction-time laboratory, a button box on the desk">
+      <div class="lab-title"><h2 id="lab-heading">The reaction lab</h2><p><span class="led"></span>MADE-UP LAB, MADE-UP NUMBERS</p></div></div>
+    <div class="volunteer-head"><span class="eyebrow" id="cohort-label">40 adult volunteers</span>
+      <button class="secondary" id="inspect">Inspect cards</button></div>
+    <div class="cards" id="cards" aria-label="Volunteer cards"></div>
+    <div class="result-info" id="readouts" aria-live="polite"></div>
+    <div class="chart-area" id="chart-area"><canvas id="chart" role="img" aria-label="Study result chart"></canvas></div>
+    <p class="chart-note" id="chart-note"></p><div id="pins"></div>
+    <div class="lab-actions"><button class="secondary" id="shuffle" disabled>Shuffle check</button>
+      <button class="primary" id="submit" disabled>Submit to the journal</button>
+      <button class="secondary" id="pin" hidden disabled>Pin design (0/3)</button></div>
+    <article class="journal" id="letter" hidden aria-live="polite"></article>
+  </section>
+</main>
+<footer><div><p id="hint"></p><span class="privacy">Endings stay on this device only. Nothing leaves it.</span></div>
+  <div class="badges"><span class="badge" data-ending="Published">Published</span><span class="badge" data-ending="Pilot">Pilot</span>
+    <span class="badge" data-ending="Retracted">Retracted</span><button class="secondary" id="clear">Clear</button></div></footer>
+<dialog id="inspector"><h2>Volunteer records</h2>
+  <p class="inspector-how" id="inspector-how">Tap a numbered card to turn it over. Use arrow keys to move to another card.</p>
+  <div class="cards" id="inspect-cards"></div>
+  <p id="card-detail">Run a study, then tap a numbered card to turn it over. Arrow keys move between cards.</p>
+  <button class="secondary close" id="close-inspector">Back to study</button></dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const L = {
+    wStory:"I'm Mara Quill, editor. Tap one chip in each row of your methods, then press Run the study.",
+    shuffle:'Press Shuffle check to test chance.',
+    submit:'Press Submit to the journal.',
+    wBench:'Tap a chip in each row and press Run 400 studies. Watch where the results land compared with the dashed line.',
+    revise:'Change the outlined row, then press Run the study.',
+    draft:'Tap a chip in each row of your methods, then press Run the study.',
+    published:'Accepted. This is what a fair test looks like.',
+    pilot:'Sound design, but chance could explain this result. One study does not settle the question.',
+    retracted:"Another lab ran it properly. The headline didn't survive.",
+    card:'Tap a numbered card to turn it over. Use arrow keys to move to another card.',
+    pin:'Change a row and press Run 400 studies, or press Pin design to compare these results.',
+    before:"Day 2 is also the day they've practiced. Your drink and your practice arrive together. Press Revise to fix that row.",
+    choose:'Your volunteers picked their own group. Whatever made them pick may also make them fast. Press Revise to fix that row.',
+    tired:'You chose who got the drink. Nobody, including you, should choose. Press Revise to fix that row.',
+    water:'Your volunteers knew what they drank. Expecting to be faster can make people faster. Press Revise to fix that row.',
+    timer:"Your timer knew who had the drink. That's a thumb on the stopwatch. Press Revise to fix that row.",
+    stopwatch:'A human thumb adds 30 milliseconds of noise to a 10 millisecond question. Press Revise to fix that row.',
+    day2:'Everyone had the drink on the second day. Practice is still riding along. Press Revise to fix that row.',
+    initial:'Tap Run the study. Adults only: the American Academy of Pediatrics advises children and teens not to drink energy drinks.',
+    returnedHint:'Press Revise to change the outlined row, or Skip the journal: post it online.',
+    endingHint:'Press New draft to try another design. Endings stay on this device only.',
+    anotherHint:'Press New draft to try another design.',
+    investigateHint:'Press New draft to investigate another design.',
+    runningHint:'Running repeated studies. Change any chip to cancel this run.',
+    pinnedHint:'Design pinned. Change a chip and press Run 400 studies to compare.',
+    clearHint:'Saved endings and pinned designs cleared. Press Run to investigate again.'
+  };
+  const DEFAULT = {compare:'before',assignment:'choose',order:'day2',control:'water',blind:'everyone',timing:'stopwatch',n:40};
+  const state = {mode:'story',draft:{...DEFAULT},result:null,shuffled:null,benchResult:null,pins:[],revealed:[],
+    letter:null,ending:null,endings:[],revision:1,runIndex:0,edited:false,phase:'draft',animation:null,progress:1,selectedCard:1,
+    benchPreview:[],benchTotal:400};
+  try {
+    state.endings = JSON.parse(localStorage.getItem('curio-dts-endings') || '[]').filter(x=>['Published','Pilot','Retracted'].includes(x));
+  } catch { state.endings = []; }
+  const seedParam = new URLSearchParams(location.search).get('seed');
+  let baseSeed = seedParam!==null&&Number.isFinite(Number(seedParam))?Number(seedParam)>>>0:Date.now()>>>0;
+  let animationTimer = 0;
+  let generation = 0;
+  const V = Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,
+    welcome:()=>state.mode==='story'?['wStory',{valid:()=>!state.edited&&!state.result}]:['wBench',{valid:()=>!state.benchResult}],
+    speaks:'.chip,#run,#shuffle,#submit'});
+  const ART = {'drink-can':'art:drink-can','water-glass':'art:water-glass','stopwatch':'art:stopwatch','reaction-box':'art:reaction-box'};
+  const editorPortrait = '<img class="editor-portrait" src="art:editor-quill" alt="Dr. Mara Quill, the invented editor">';
+  const mean = a=>a.reduce((s,x)=>s+x,0)/a.length;
+  const sd = a=>Math.sqrt(a.reduce((s,x)=>s+(x-mean(a))**2,0)/(a.length-1));
+  const fmt = (n,d=1)=>(n>0?'+':'')+(Math.abs(n)<1e-9?0:n).toFixed(d);
+  function rng(seed) {
+    let value = seed>>>0;
+    const random = ()=>{
+      value += 0x6D2B79F5;
+      let t = value;
+      t = Math.imul(t^t>>>15,t|1);
+      t ^= t+Math.imul(t^t>>>7,t|61);
+      return ((t^t>>>14)>>>0)/4294967296;
+    };
+    random.normal = ()=>Math.sqrt(-2*Math.log(Math.max(1e-12,random())))*Math.cos(2*Math.PI*random());
+    return random;
+  }
+  function shuffled(a,random) {
+    const out = a.slice();
+    for (let i=out.length-1;i>0;i--) {
+      const j = Math.floor(random()*(i+1));
+      [out[i],out[j]] = [out[j],out[i]];
+    }
+    return out;
+  }
+  function model(d,seed) {
+    const random = rng(seed);
+    const people = Array.from({length:d.n},(_,i)=>{
+      const id = d.n===40?i+1:i*2+1;
+      return {id,gamer:id<=12,sleep:id>=13&&id<=22,u:20*random.normal()};
+    });
+    let drinkIds = [];
+    let secondIds = people.map(p=>p.id);
+    if (d.compare==='groups') {
+      if (d.assignment==='choose') drinkIds = people.filter(p=>p.id<=10||p.id>=13&&p.id<=17||p.id>=23&&p.id<=27).map(p=>p.id);
+      if (d.assignment==='tired') drinkIds = people.filter(p=>p.id>=13&&p.id<=32).map(p=>p.id);
+      if (d.assignment==='random') drinkIds = shuffled(people,random).slice(0,d.n/2).map(p=>p.id);
+      if (d.assignment==='blocked') {
+        for (const gamer of [true,false]) {
+          const block = people.filter(p=>p.gamer===gamer);
+          drinkIds.push(...shuffled(block,random).slice(0,block.length/2).map(p=>p.id));
+        }
+      }
+    } else if (d.compare==='days'&&d.order==='order') secondIds = shuffled(people,random).slice(0,d.n/2).map(p=>p.id);
+    const volunteerKnows = d.control==='water'||d.blind==='everyone';
+    const timerKnows = d.control==='water'||d.blind!=='double';
+    const stopwatchBias = d.timing==='stopwatch'&&timerKnows?-12:0;
+    const noise = ()=>8*random.normal()+(d.timing==='stopwatch'?30*random.normal():0);
+    for (const p of people) {
+      const baseline = 280-30*Number(p.gamer)+25*Number(p.sleep)+p.u;
+      p.drink = drinkIds.includes(p.id);
+      p.drinkSecond = secondIds.includes(p.id);
+      if (d.compare==='groups') p.time = baseline+(p.drink?-10-15*Number(volunteerKnows)+stopwatchBias:0)+noise();
+      else {
+        p.drinkTime = baseline-10-15*Number(volunteerKnows)-15*Number(p.drinkSecond)+stopwatchBias+noise();
+        p.controlTime = baseline-15*Number(!p.drinkSecond)+noise();
+        p.diff = p.drinkTime-p.controlTime;
+      }
+    }
+    const drink = people.filter(p=>p.drink);
+    const control = people.filter(p=>!p.drink);
+    const paired = d.compare!=='groups';
+    const estimate = paired?mean(people.map(p=>p.diff)):mean(drink.map(p=>p.time))-mean(control.map(p=>p.time));
+    const gamerMix = paired?0:-30*(mean(drink.map(p=>+p.gamer))-mean(control.map(p=>+p.gamer)));
+    const sleepMix = paired?0:25*(mean(drink.map(p=>+p.sleep))-mean(control.map(p=>+p.sleep)));
+    const parts = {'True effect':-10,Expectation:-15*Number(volunteerKnows),
+      Practice:paired?-15*(2*mean(people.map(p=>+p.drinkSecond))-1):0,
+      'Stopwatch bias':stopwatchBias,'Gamer mix':gamerMix,'Sleep mix':sleepMix};
+    parts.Chance = estimate-Object.values(parts).reduce((s,x)=>s+x,0);
+    return {draft:{...d},seed,people,paired,estimate,parts,drinkN:paired?d.n:drink.length,controlN:paired?d.n:control.length,
+      drinkMean:mean(people.filter(p=>paired||p.drink).map(p=>paired?p.drinkTime:p.time)),
+      controlMean:mean(people.filter(p=>paired||!p.drink).map(p=>paired?p.controlTime:p.time)),random};
+  }
+  function permutation(run,k=1000) {
+    const values = [];
+    for (let j=0;j<k;j++) {
+      let value = 0;
+      if (run.paired) {
+        for (const p of run.people) value += p.diff*(run.random()<.5?-1:1)/run.people.length;
+      } else {
+        const times = shuffled(run.people.map(p=>p.time),run.random);
+        value = mean(times.slice(0,run.drinkN))-mean(times.slice(run.drinkN));
+      }
+      values.push(value);
+    }
+    return {values,count:values.filter(x=>Math.abs(x)>=Math.abs(run.estimate)).length,k};
+  }
+  function finishAnimation() {
+    clearTimeout(animationTimer);
+    state.animation = null;
+    state.progress = 1;
+    $('cards').querySelectorAll('.flashing').forEach(e=>e.classList.remove('flashing'));
+    draw();
+  }
+  function animate(kind) {
+    finishAnimation();
+    if (Curio.reduce) return;
+    state.animation = kind;
+    state.progress = 0;
+    const start = performance.now();
+    function tick() {
+      state.progress = Math.min(1,(performance.now()-start)/1200);
+      if (kind==='cards') {
+        const index = Math.floor(state.progress*40);
+        $('cards').querySelectorAll('.volunteer').forEach((e,i)=>e.classList.toggle('flashing',i<=index&&i>=index-2));
+      }
+      draw();
+      if (state.progress<1) animationTimer = setTimeout(tick,30);
+      else finishAnimation();
+    }
+    tick();
+  }
+  const choice = (value,label,art)=>({value,label,art});
+  const ROWS = [
+    ['compare','Compare',[choice('before','Before and after'),choice('groups','Two groups'),choice('days','Both days')]],
+    ['assignment','Assign',[]],
+    ['control','Control',[choice('water','Water','water-glass'),choice('placebo','Look-alike placebo','drink-can')]],
+    ['blind','Knows',[choice('everyone','Everyone'),choice('volunteers',"Volunteers don't"),choice('double','Neither volunteers nor timer')]],
+    ['timing','Timing',[choice('stopwatch','Stopwatch','stopwatch'),choice('computer','Computer','reaction-box')]],
+    ['n','Size',[choice(20,'20'),choice(40,'40')]]
+  ];
+  let assignmentKey = '';
+  function createMethods() {
+    ROWS.forEach(([key,title],i)=>{
+      const row = document.createElement('section');
+      row.className = 'method-row';
+      row.id = 'row-'+key;
+      row.innerHTML = `<div class="row-title"><b>0${i+1}</b>${title}</div>`+
+        '<div class="row-body"><div class="choices" role="group"></div><p class="reason"></p></div>';
+      row.querySelector('.choices').setAttribute('aria-label',title);
+      $('methods').append(row);
+    });
+    renderMethods(true);
+  }
+  function renderMethods(force=false) {
+    for (const [key,,fixed] of ROWS) {
+      const row = $('row-'+key);
+      let options = fixed;
+      let actualKey = key;
+      if (key==='assignment') {
+        if (state.draft.compare==='groups') options = [choice('choose','Volunteers choose'),choice('tired','Researcher picks who looks tired'),
+          choice('random','Random shuffle'),choice('blocked','Random within gamers')];
+        else {
+          actualKey = 'order';
+          options = [choice('day2','Drink on day 2'),choice('order','Random order, half each')];
+        }
+      }
+      const holder = row.querySelector('.choices');
+      if (force||key==='assignment'&&assignmentKey!==state.draft.compare) {
+        holder.replaceChildren();
+        for (const o of options) {
+          const b = document.createElement('button');
+          b.className = 'chip';
+          b.id = `chip-${actualKey}-${o.value}`;
+          b.dataset.key = actualKey;
+          b.dataset.value = o.value;
+          b.innerHTML = (o.art?`<img src="${ART[o.art]}" alt="">`:'')+`<span>${o.label}</span>`;
+          b.onclick = ()=>setDraft({[actualKey]:o.value});
+          holder.append(b);
+        }
+      }
+      for (const b of holder.children) {
+        b.setAttribute('aria-pressed',String(state.draft[actualKey])===b.dataset.value);
+        b.disabled = key==='blind'&&state.draft.control==='water'&&b.dataset.value!=='everyone'||key==='assignment'&&state.draft.compare==='before';
+      }
+      row.querySelector('.reason').textContent = key==='blind'&&state.draft.control==='water'?'With water, volunteers can tell what they drank.':
+        key==='assignment'&&state.draft.compare==='before'?'Everyone has the drink second.':'';
+      const reason = row.querySelector('.reason');
+      const fullReason = reason.textContent;
+      reason.dataset.short = key==='blind'?'Water reveals drink.':'Drink always second.';
+      reason.innerHTML = fullReason?'<span class=reason-full>'+fullReason+'</span>'+
+        '<span class=reason-short aria-hidden=true>'+reason.dataset.short+'</span>':'';
+      row.classList.toggle('unavailable',key==='assignment'&&state.draft.compare==='before');
+      row.classList.toggle('flagged',state.letter?.row===key);
+    }
+    assignmentKey = state.draft.compare;
+  }
+  function hint(key,speak=false) {
+    $('hint').textContent = L[key]||key;
+    if (speak) V.how(key,{valid:()=>$('hint').textContent===L[key],now:V.playing!==L[key]});
+  }
+  function setDraft(update) {
+    generation++;
+    finishAnimation();
+    if (V.playing) V.hush();
+    else V.dropQueued();
+    Object.assign(state.draft,update);
+    state.draft.n = +state.draft.n;
+    if (state.draft.control==='water') state.draft.blind = 'everyone';
+    Object.assign(state,{edited:true,phase:'draft',result:null,shuffled:null,benchResult:null,ending:null,letter:null});
+    renderMethods();
+    render();
+    Curio.tone(380,.045,.035,'sine');
+    hint(state.mode==='story'?'draft':'wBench');
+  }
+  function run() {
+    if (state.mode==='bench') return bench();
+    generation++;
+    finishAnimation();
+    V.dropQueued();
+    state.result = model(state.draft,(baseSeed+state.runIndex++)>>>0);
+    Object.assign(state,{shuffled:null,letter:null,ending:null,phase:'result'});
+    renderMethods();
+    render();
+    animate('cards');
+    Curio.tone(620,.09,.05,'sine');
+    hint('shuffle',true);
+    return state.result;
+  }
+  function shuffle(k=1000) {
+    finishAnimation();
+    if (!state.result) return null;
+    if (!state.shuffled||state.shuffled.k!==k) state.shuffled = permutation(state.result,k);
+    state.phase = 'shuffle';
+    render();
+    animate('dots');
+    Curio.tone(510,.08,.04,'sine');
+    hint('submit',true);
+    return state.shuffled;
+  }
+  function flaw(d) {
+    if (d.compare==='before') return {key:'before',row:'compare',bars:['Practice']};
+    if (d.compare==='groups'&&d.assignment==='choose') return {key:'choose',row:'assignment',bars:['Gamer mix','Sleep mix']};
+    if (d.compare==='groups'&&d.assignment==='tired') return {key:'tired',row:'assignment',bars:['Gamer mix','Sleep mix']};
+    if (d.control==='water') return {key:'water',row:'control',bars:['Expectation']};
+    if (d.timing==='stopwatch'&&d.blind!=='double') return {key:'timer',row:'blind',bars:['Stopwatch bias']};
+    if (d.timing==='stopwatch') return {key:'stopwatch',row:'timing',bars:['Chance']};
+    if (d.compare==='days'&&d.order==='day2') return {key:'day2',row:'assignment',bars:['Practice']};
+    return null;
+  }
+  function submit() {
+    finishAnimation();
+    if (!state.result||!state.shuffled) return;
+    if (V.playing) V.hush();
+    const found = flaw(state.result.draft);
+    if (found) {
+      state.letter = found;
+      state.phase = 'letter';
+      state.revealed = [...new Set([...state.revealed,...found.bars])];
+      renderMethods();
+      render();
+      hint('Press Revise to change the outlined row, or Skip the journal: post it online.');
+      V.say(found.key,{valid:()=>state.letter?.key===found.key,needs:'#revise'});
+      Curio.tone(260,.13,.05,'triangle');
+    } else ending(state.shuffled.count<50?'Published':'Pilot');
+  }
+  function ending(name) {
+    Object.assign(state,{letter:null,ending:name,phase:'ending'});
+    state.revealed = Object.keys(state.result.parts);
+    if (!state.endings.includes(name)) state.endings.push(name);
+    try { localStorage.setItem('curio-dts-endings',JSON.stringify(state.endings)); } catch {}
+    if (name==='Retracted') state.replication = model({...state.draft,compare:'days',order:'order',control:'placebo',
+      blind:'double',timing:'computer',n:40},(baseSeed+900001)>>>0);
+    renderMethods();
+    render();
+    hint('Press New draft to try another design. Endings stay on this device only.');
+    $('again')?.focus({preventScroll:true});
+    V.say(name.toLowerCase(),{valid:()=>state.ending===name,needs:'#new'});
+    if (name==='Published') Curio.yes();
+  }
+  async function bench(k=400) {
+    finishAnimation();
+    if (V.playing) V.hush();
+    else V.dropQueued();
+    const gen = ++generation;
+    const d = {...state.draft};
+    const runs = [];
+    const batchSeed = (baseSeed+state.runIndex)>>>0;
+    state.runIndex += k;
+    state.benchResult = null;
+    state.benchPreview = [];
+    state.benchTotal = k;
+    state.phase = 'bench-running';
+    render();
+    hint('Running repeated studies. Change any chip to cancel this run.');
+    Curio.tone(570,.08,.04,'sine');
+    for (let i=0;i<k;i++) {
+      const r = model(d,(batchSeed+i)>>>0);
+      const p = permutation(r,1000);
+      runs.push({estimate:r.estimate,count:p.count});
+      if (i%20===19) {
+        state.benchPreview = runs.map(r=>r.estimate);
+        render();
+        await new Promise(resolve=>setTimeout(resolve,0));
+        if (gen!==generation) return null;
+      }
+    }
+    if (gen!==generation) return null;
+    const estimates = runs.map(r=>r.estimate);
+    state.benchResult = {draft:d,estimates,runs,mean:mean(estimates),sd:sd(estimates),share:runs.filter(r=>r.count<50).length/k,label:designName(d)};
+    state.phase = 'bench';
+    render();
+    animate('histogram');
+    hint('pin',true);
+    return state.benchResult;
+  }
+  function designName(d) {
+    const first = d.compare==='before'?'Before and after':d.compare==='days'?'Both days, '+(d.order==='order'?'random order':'drink second'):
+      'Two groups, '+({choose:'volunteers choose',tired:'researcher picks',random:'random shuffle',blocked:'within gamers'}[d.assignment]);
+    return first+' · '+d.control+' · '+(d.blind==='double'?'double blind':d.blind==='volunteers'?'volunteers blind':'everyone knows')+
+      ' · '+d.timing+' · n='+d.n;
+  }
+  function renderCards() {
+    for (const container of [$('cards'),$('inspect-cards')]) {
+      if (container===$('cards')) container.setAttribute('aria-hidden','true');
+      if (!container.children.length) {
+        for (let id=1;id<=40;id++) {
+          const b = document.createElement(container===$('cards')?'div':'button');
+          b.className = 'volunteer';
+          b.textContent = String(id).padStart(2,'0');
+          b.dataset.id = id;
+          b.setAttribute('aria-label','Volunteer '+id);
+          if (container!==$('cards')) b.onclick = ()=>inspect(id);
+          b.onkeydown = e=>{
+            const step = {ArrowLeft:-1,ArrowRight:1,ArrowUp:-8,ArrowDown:8}[e.key];
+            if (step) {
+              e.preventDefault();
+              container.children[Math.max(0,Math.min(39,id-1+step))].focus({preventScroll:true});
+            }
+          };
+          container.append(b);
+        }
+      }
+      for (const b of container.children) {
+        const p = state.result?.people.find(p=>p.id===+b.dataset.id);
+        b.classList.toggle('drink',!!p&&(p.drink||state.result.paired));
+        b.classList.toggle('control',!!p&&!p.drink&&!state.result.paired);
+        b.classList.toggle('inactive',state.draft.n===20&&+b.dataset.id%2===0);
+        if (container!==$('cards')) b.tabIndex = +b.dataset.id===state.selectedCard?0:-1;
+      }
+    }
+  }
+  function openInspector() {
+    document.querySelectorAll('header,#workspace,footer').forEach(e=>e.inert=true);
+    $('inspector').showModal();
+  }
+  function inspect(id) {
+    finishAnimation();
+    if (!$('inspector').open) openInspector();
+    const p = state.result?.people.find(p=>p.id===id);
+    state.selectedCard = id;
+    $('card-detail').textContent = p?'Volunteer '+id+' · '+(p.gamer?'Gamer (-30 ms)':p.sleep?'Short sleeper (+25 ms)':'No listed trait')+
+      (state.result.paired?` · Both conditions: drink ${p.drinkTime.toFixed(1)} ms; control ${p.controlTime.toFixed(1)} ms`+
+        ` · drink on ${p.drinkSecond?'day 2':'day 1'} · difference ${fmt(p.diff)} ms`:
+        ` · ${p.drink?'Drink':'Control'} group · ${p.time.toFixed(1)} ms`):'Volunteer '+id+
+        (state.draft.n===20&&id%2===0?' is not in the 20-person study.':' · Traits stay hidden until you run the study.');
+    renderCards();
+    Curio.tone(440,.035,.025,'sine');
+  }
+  function renderLetter() {
+    const covered = !!state.letter||!!state.ending;
+    document.querySelectorAll('.paper-head,#opening,#methods,.actions').forEach(e=>e.inert=covered);
+    const box = $('letter');
+    if (box.parentElement!==document.querySelector('.manuscript')) document.querySelector('.manuscript').append(box);
+    box.hidden = !state.letter&&!state.ending;
+    if (box.hidden) return;
+    if (state.letter) {
+      const text = L[state.letter.key].replace(' Press Revise to fix that row.','');
+      box.innerHTML = editorPortrait+`<h3>Returned for revision · ${state.letter.row==='blind'?'Who knows':state.letter.row}</h3>`+
+        `<p>${text}</p><p class="small">Dr. Mara Quill · The Open Bench Journal (invented)</p>`+
+        '<div class="journal-buttons"><button class="primary" id="revise">Revise</button>'+
+        '<button class="secondary" id="skip">Skip the journal: post it online</button></div>';
+      $('revise').onclick = ()=>{
+        const row = state.letter.row;
+        V.hush();
+        state.letter = null;
+        state.phase = 'draft';
+        state.revision++;
+        render();
+        $('row-'+row).classList.add('flagged');
+        $('row-'+row).querySelector('button:not(:disabled)')?.focus({preventScroll:true});
+        hint('revise',true);
+      };
+      $('skip').onclick = ()=>{ V.hush(); ending('Retracted'); };
+    } else {
+      const name = state.ending;
+      const text = name==='Published'?'Accepted. Random assignment, a placebo, and nobody knowing: this is what a fair test looks like.':
+        name==='Pilot'?L.pilot:
+        `Another lab used a fair paired design: ${fmt(state.replication.estimate)} ms. Your headline claim of ${fmt(state.result.estimate)} ms comes down.`;
+      box.innerHTML = editorPortrait+`<h3>${name==='Retracted'?'Replication arrived':'Decision on your manuscript'}</h3>`+
+        `<span class="stamp">${name==='Published'?'Accepted':name}</span><p>${text}</p>`+
+        `<p class="small">${designName(state.draft)}</p><p class="small">Found: ${state.endings.join(' · ')}. Saved on this device only.</p>`+
+        '<div class="journal-buttons"><button class="primary" id="again">New draft</button><button class="secondary" id="view-result">View result</button></div>';
+      $('again').onclick = newDraft;
+      $('view-result').onclick = ()=>{
+        if (V.playing) V.hush();
+        state.ending = null;
+        render();
+        hint('Press New draft to investigate another design.');
+        $('new').focus({preventScroll:true});
+      };
+    }
+  }
+  function render() {
+    $('workspace').className = state.mode==='bench'?'bench':state.phase==='draft'?'':'results';
+    $('m-story').setAttribute('aria-pressed',state.mode==='story');
+    $('m-bench').setAttribute('aria-pressed',state.mode==='bench');
+    $('opening').hidden = state.mode!=='story'||state.phase!=='draft';
+    $('revision').textContent = String(state.revision).padStart(2,'0');
+    $('run').textContent = state.mode==='bench'?'Run 400 studies →':'Run the study →';
+    $('lab-heading').textContent = state.mode==='bench'?'400 studies, one design':'The reaction lab';
+    $('cohort-label').textContent = state.draft.n+' adult volunteers';
+    $('shuffle').hidden = state.mode==='bench';
+    $('submit').hidden = state.mode==='bench';
+    $('pin').hidden = state.mode!=='bench';
+    $('pin').disabled = !state.benchResult||state.pins.length>=3;
+    $('pin').textContent = `Pin design (${state.pins.length}/3)`;
+    $('shuffle').disabled = !state.result;
+    $('submit').disabled = !state.shuffled;
+    renderCards();
+    const r = state.result;
+    if (state.mode==='bench') {
+      const b = state.benchResult;
+      $('readouts').innerHTML = b?'<div class="bench-stats">'+`<span>Mean <b>${fmt(b.mean)} ms</b></span>`+
+        `<span>SD <b>${b.sd.toFixed(2)} ms</b></span><span>Flagged <b>${Math.round(b.share*100)}%</b></span></div>`:
+        `<span class="eyebrow">${state.phase==='bench-running'?
+          state.benchPreview.length+' of '+state.benchTotal+' new studies':'Bias moves the center. Noise widens the spread.'}</span>`;
+      $('chart-note').textContent = b?'Dashed line: true effect -10 ms. Flagged: fewer than 50 of 1,000 shuffles as far from zero.':
+        'Run 400 studies to see bias and spread. Every run gets new people effects, assignment, and noise.';
+    } else if (r) {
+      const controlImage = ART[state.draft.control==='water'?'water-glass':'drink-can'];
+      $('readouts').innerHTML = `<div class="group-line"><span><img src="${ART['drink-can']}" alt=""> Drink: ${r.drinkN}, ${r.drinkMean.toFixed(1)} ms</span>`+
+        `<span><img src="${controlImage}" alt=""> Control: ${r.controlN}, ${r.controlMean.toFixed(1)} ms</span></div>`+
+        `<div class="estimate"><strong>${fmt(r.estimate)} ms</strong><span>${r.paired?'Mean difference per person':'Drink mean minus control mean'}<br>Negative means faster</span></div>`;
+      $('chart-note').textContent = state.shuffled?`${state.shuffled.count} of ${state.shuffled.k.toLocaleString()} at least this far out`+
+        ` · ${r.paired?'Sign flips within people':'Re-dealt group labels'} · under 50 is flagged`:
+        'Each covered bar is a part of this estimate. Submit after the shuffle check to uncover the editor’s named flaw.';
+    } else {
+      $('readouts').innerHTML = '<span class="eyebrow">A 10 ms question. What else could make it look real?</span>';
+      $('chart-note').textContent = 'Run the study. Then use Shuffle check and submit your methods.';
+    }
+    $('chart-note').title = $('chart-note').textContent;
+    $('pins').innerHTML = state.mode==='bench'?state.pins.map((p,i)=>`<p>${i+1}. ${p.label}</p>`).join(''):'';
+    document.querySelectorAll('[data-ending]').forEach(b=>b.classList.toggle('found',state.endings.includes(b.dataset.ending)));
+    renderLetter();
+    requestAnimationFrame(draw);
+  }
+  const canvas = $('chart');
+  function draw() {
+    const rect = $('chart-area').getBoundingClientRect();
+    if (!rect.width||!rect.height) return;
+    const ratio = devicePixelRatio||1;
+    canvas.width = Math.round(rect.width*ratio);
+    canvas.height = Math.round(rect.height*ratio);
+    const c = canvas.getContext('2d');
+    c.scale(ratio,ratio);
+    const w = rect.width;
+    const h = rect.height;
+    c.fillStyle = '#fffdf8';
+    c.fillRect(0,0,w,h);
+    canvas.removeAttribute('title');
+    canvas.setAttribute('aria-label',state.mode==='bench'?
+      'Bench: run studies to compare estimates.':'Study draft: run the study to see its result.');
+    const text = (s,x,y,color='#6a6358',align='left',size=12)=>{
+      c.fillStyle = color;
+      c.textAlign = align;
+      c.font = `${size}px Segoe UI,sans-serif`;
+      c.fillText(s,x,y);
+    };
+    const line = (x1,y1,x2,y2,color='#d6ccba',dash=[])=>{
+      c.beginPath();
+      c.setLineDash(dash);
+      c.strokeStyle = color;
+      c.moveTo(x1,y1);
+      c.lineTo(x2,y2);
+      c.stroke();
+      c.setLineDash([]);
+    };
+    if (state.mode==='bench') {
+      const preview = state.phase==='bench-running'&&state.benchPreview.length?
+        {estimates:state.benchPreview,mean:mean(state.benchPreview),sd:sd(state.benchPreview)}:null;
+      const current = state.benchResult||preview;
+      const designs = [...(current?[{...current,plotLabel:preview?'Building':'Current'}]:[]),
+        ...state.pins.map((p,i)=>({...p,plotLabel:'Pin '+(i+1)}))];
+      if (!designs.length) { text('Where will 400 estimates land?',w/2,h/2,'#1d5bbf','center',Math.min(19,w/22)); return; }
+      const all = designs.flatMap(d=>d.estimates);
+      const min = Math.floor(Math.min(-20,...all)/10)*10;
+      const max = Math.ceil(Math.max(0,...all)/10)*10;
+      const left = 32;
+      const right = w-13;
+      const x = v=>left+(v-min)/(max-min)*(right-left);
+      const rowH = (h-25)/designs.length;
+      designs.forEach((design,row)=>{
+        const top = row*rowH+6;
+        const bottom = (row+1)*rowH-6;
+        const bins = Array(32).fill(0);
+        const isCurrent = !!current&&row===0;
+        const limit = isCurrent&&state.animation==='histogram'?Math.ceil(design.estimates.length*state.progress):design.estimates.length;
+        design.estimates.slice(0,limit).forEach(v=>bins[Math.min(31,Math.floor((v-min)/(max-min)*32))]++);
+        const peak = Math.max(1,...bins);
+        bins.forEach((n,i)=>{
+          const bh = n/peak*Math.max(5,rowH-28);
+          c.fillStyle = isCurrent?'#1d5bbf':['#6d665c','#8a704a','#527b76'][row-Number(!!current)];
+          c.fillRect(left+i/32*(right-left),bottom-bh,(right-left)/32-1,bh);
+        });
+        line(left,bottom,right,bottom,'#8a7f6a');
+        line(x(-10),top,x(-10),bottom,'#9b1c1c',[4,3]);
+        const brief = (innerHeight<=500||innerWidth<600)&&state.pins.length&&design.draft?
+          ' '+({before:'Before/after',groups:'Two groups',days:'Both days'}[design.draft.compare]):'';
+        text(design.plotLabel+brief+': '+fmt(design.mean)+' ms; SD '+design.sd.toFixed(1),left+3,top+11,'#2a2723','left',10);
+      });
+      for (let i=0;i<=4;i++) {
+        const v = min+(max-min)*i/4;
+        text(v.toFixed(0),x(v),h-8,'#6a6358','center',10);
+      }
+      const descriptions = designs.map(d=>d.plotLabel+(d.label?' '+d.label:'')+
+        ' mean '+fmt(d.mean)+' milliseconds, SD '+d.sd.toFixed(2));
+      canvas.setAttribute('aria-label',descriptions.join('. '));
+      canvas.title = descriptions.join('\n');
+      return;
+    }
+    if (!state.result) {
+      const mid = Math.max(65,h*.65);
+      line(22,mid,w-22,mid,'#aaa08a');
+      for (let i=0;i<7;i++) {
+        c.fillStyle = i===0?'#1d5bbf24':'#cbbfa655';
+        c.fillRect(25+i*(w-50)/7,mid-15-i%3*7,(w-65)/7,15+i%3*7);
+        text('?',25+(i+.5)*(w-50)/7,mid-30,'#7d735f','center',16);
+      }
+      text('What is inside the headline?',w/2,Math.max(17,h*.2),'#1d5bbf','center',Math.min(18,w/21));
+      return;
+    }
+    if (state.shuffled&&state.phase!=='letter'&&state.phase!=='ending'&&state.phase!=='draft') {
+      const values = state.shuffled.values;
+      const real = state.result.estimate;
+      const bound = Math.ceil(Math.max(15,Math.abs(real)*1.15,...values.map(Math.abs))/10)*10;
+      const left = 25;
+      const right = w-20;
+      const top = 25;
+      const bottom = h-29;
+      const x = v=>left+(v+bound)/(2*bound)*(right-left);
+      const bins = Array(55).fill(0);
+      const counts = Array(55).fill(0);
+      values.forEach(v=>counts[Math.min(54,Math.floor((v+bound)/(2*bound)*55))]++);
+      const unit = Math.max(.15,(bottom-top-10)/Math.max(...counts));
+      const radius = Math.max(.55,Math.min(2.2,unit*.45,(right-left)/55*.35));
+      const limit = state.animation==='dots'?Math.ceil(values.length*state.progress):values.length;
+      values.slice(0,limit).forEach(v=>{
+        const bin = Math.min(54,Math.floor((v+bound)/(2*bound)*55));
+        const index = bins[bin]++;
+        c.beginPath();
+        c.arc(x(-bound+(bin+.5)*2*bound/55),bottom-index*unit-2,radius,0,Math.PI*2);
+        c.fillStyle = Math.abs(v)>=Math.abs(real)?'#1d5bbf':'#aaa08e';
+        c.fill();
+      });
+      line(left,bottom,right,bottom,'#8a7f6a');
+      line(x(0),top,x(0),bottom,'#aaa08e',[3,3]);
+      line(x(real),top,x(real),bottom,'#1d5bbf');
+      text('Observed '+fmt(real)+' ms',Math.max(70,Math.min(w-78,x(real))),16,'#1d5bbf','center',11);
+      for (const v of [-bound,0,bound]) text(String(v),x(v),h-12,'#6a6358','center',10);
+      canvas.setAttribute('aria-label',
+        `${state.shuffled.count} of ${state.shuffled.k} shuffled results at least as far from zero as ${fmt(real)} milliseconds.`);
+      return;
+    }
+    let sum = 0;
+    const segments = Object.entries(state.result.parts).map(([name,value])=>{
+      const start = sum;
+      sum += value;
+      return {name,value,start,end:sum,known:state.revealed.includes(name)};
+    });
+    const all = [0,...segments.map(s=>s.end)];
+    const lo = Math.min(-10,...all)-8;
+    const hi = Math.max(0,...all)+8;
+    if (w<400) {
+      const left = 86;
+      const right = w-35;
+      const x = value=>left+(value-lo)/(hi-lo)*(right-left);
+      const rowH = (h-20)/7;
+      for (const value of [-50,-25,-10,0]) {
+        if (value<lo||value>hi) continue;
+        line(x(value),4,x(value),h-17,'#e1d8c8');
+        text(String(value),x(value),h-3,'#6a6358','center',10);
+      }
+      segments.forEach((s,i)=>{
+        const y = 4+i*rowH;
+        text(s.name,5,y+11,'#2a2723','left',10);
+        c.fillStyle = s.known?i===0?'#1d5bbf':'#9d8c6e':'#e4ddd0';
+        const bx = Math.min(x(s.start),x(s.end));
+        const by = y+2;
+        const bw = Math.max(2,Math.abs(x(s.start)-x(s.end)));
+        const bh = Math.max(4,rowH-4);
+        c.fillRect(bx,by,bw,bh);
+        if (s.known&&i>0) {
+          c.save();
+          c.beginPath();
+          c.rect(bx,by,bw,bh);
+          c.clip();
+          if (s.name==='Chance') {
+            for (let xx=bx;xx<bx+bw;xx+=4) for (let yy=by;yy<by+bh;yy+=4) {
+              c.fillStyle = '#fff9';
+              c.fillRect(xx,yy,1.5,1.5);
+            }
+          } else for (let xx=bx-bh;xx<bx+bw;xx+=6) line(xx,by+bh,xx+bh,by,'#fff8');
+          c.restore();
+        }
+        text(s.known?fmt(s.value,1):'?',w-3,y+11,'#2a2723','right',10);
+      });
+      canvas.setAttribute('aria-label','Waterfall: '+segments.map(s=>s.name+': '+(s.known?fmt(s.value)+' milliseconds':'unknown')).join(', '));
+      return;
+    }
+    const y = v=>27+(hi-v)/(hi-lo)*Math.max(8,h-75);
+    const left = 30;
+    const step = (w-43)/7;
+    for (const v of [0,-10,-25,-50]) {
+      if (v<lo||v>hi) continue;
+      line(left,y(v),w-10,y(v),'#ded5c5');
+      text(String(v),left-5,y(v)+3,'#6a6358','right',10);
+    }
+    segments.forEach((s,i)=>{
+      const x = left+i*step+3;
+      const bw = step-7;
+      const barTop = Math.min(y(s.start),y(s.end));
+      const barH = Math.max(2,Math.abs(y(s.start)-y(s.end)));
+      c.fillStyle = s.known?i===0?'#1d5bbf':'#9d8c6e':'#e4ddd0';
+      c.fillRect(x,barTop,bw,barH);
+      c.strokeStyle = s.known?'#8a7f6a':'#b9ad98';
+      c.strokeRect(x,barTop,bw,barH);
+      if (s.known&&i>0) {
+        c.save();
+        c.beginPath();
+        c.rect(x,barTop,bw,barH);
+        c.clip();
+        if (s.name==='Chance') {
+          for (let xx=x;xx<x+bw;xx+=5) for (let yy=barTop;yy<barTop+barH;yy+=5) { c.fillStyle='#fff8'; c.fillRect(xx,yy,1.5,1.5); }
+        } else for (let xx=x-barH;xx<x+bw;xx+=7) line(xx,barTop+barH,xx+barH,barTop,'#fff7');
+        c.restore();
+      }
+      text(s.known?fmt(s.value,Math.abs(s.value)%1>.005?2:1):'?',x+bw/2,Math.max(14,barTop-6),s.known?'#2a2723':'#6a6358','center',10);
+      s.name.split(' ').forEach((word,j)=>text(word,x+bw/2,h-30+j*11,'#2a2723','center',Math.max(10,Math.min(12,step/5.7))));
+      if (i<6) line(x+bw,y(s.end),x+step,y(s.end),'#a8997f',[2,2]);
+    });
+    canvas.setAttribute('aria-label','Waterfall: '+segments.map(s=>s.name+': '+(s.known?fmt(s.value)+' milliseconds':'unknown')).join(', '));
+  }
+  function setMode(mode) {
+    if (!['story','bench'].includes(mode)) return;
+    if (state.mode===mode) { Curio.tone(330,.035,.025,'sine'); return; }
+    generation++;
+    finishAnimation();
+    V.hush();
+    state.mode = mode;
+    state.letter = null;
+    state.ending = null;
+    state.phase = mode==='bench'&&state.benchResult?'bench':state.result?'result':'draft';
+    renderMethods();
+    render();
+    const next = mode==='bench'?'wBench':state.result?state.shuffled?'submit':'shuffle':'draft';
+    hint(next);
+    V.welcome()||V.how(next,{valid:()=>state.mode===mode});
+    Curio.tone(330,.035,.025,'sine');
+  }
+  function newDraft() {
+    V.hush();
+    state.revision++;
+    setDraft({});
+    $('run').focus({preventScroll:true});
+  }
+  $('run').onclick = run;
+  $('new').onclick = newDraft;
+  $('shuffle').onclick = ()=>shuffle();
+  $('submit').onclick = submit;
+  $('m-story').onclick = ()=>setMode('story');
+  $('m-bench').onclick = ()=>setMode('bench');
+  $('inspect').onclick = ()=>{ finishAnimation(); openInspector(); hint('card',true); };
+  $('inspector').addEventListener('close',()=>{
+    document.querySelectorAll('header,#workspace,footer').forEach(e=>e.inert=false);
+    V.hush();
+    if (state.letter) hint('Press Revise to change the outlined row, or Skip the journal: post it online.');
+    else if (state.ending) hint('Press New draft to try another design.');
+    else if (state.mode==='bench') hint(state.benchResult?'pin':'wBench');
+    else hint(state.result?state.shuffled?'submit':'shuffle':'draft');
+    $('inspect').focus({preventScroll:true});
+  });
+  $('close-inspector').onclick = ()=>{
+    $('inspector').close();
+    $('inspect').focus({preventScroll:true});
+    hint(state.result?state.shuffled?'submit':'shuffle':state.mode==='story'?'draft':'wBench');
+  };
+  $('clear').onclick = ()=>{
+    state.pins = [];
+    state.endings = [];
+    try { localStorage.removeItem('curio-dts-endings'); } catch {}
+    render();
+    hint('Saved endings and pinned designs cleared. Press Run to investigate again.');
+    Curio.tone(320,.04,.03,'sine');
+  };
+  $('pin').onclick = ()=>{
+    finishAnimation();
+    if (!state.benchResult||state.pins.length>=3) return;
+    if (V.playing) V.hush();
+    state.pins.push({...state.benchResult});
+    render();
+    hint('Design pinned. Change a chip and press Run 400 studies to compare.');
+    if (state.pins.length===3) $('run').focus({preventScroll:true});
+    Curio.tone(740,.06,.04,'sine');
+  };
+  document.addEventListener('pointerdown',()=>{ if (state.animation) finishAnimation(); },true);
+  Curio.init({clips:"voice:*",rate:.95,readFallback:()=>$('hint').textContent});
+  Curio.onMotion(()=>finishAnimation());
+  new ResizeObserver(draw).observe($('chart-area'));
+  function fitControls() {
+    const compact = innerWidth<600||innerHeight<=700;
+    const parent = compact?document.querySelector('header'):document.querySelector('.badges');
+    if ($('clear').parentElement!==parent) {
+      const heldFocus = document.activeElement===$('clear');
+      parent.append($('clear'));
+      if (heldFocus) $('clear').focus({preventScroll:true});
+    }
+  }
+  addEventListener('resize',fitControls);
+  fitControls();
+  createMethods();
+  render();
+  hint('Tap Run the study. Adults only: the American Academy of Pediatrics advises children and teens not to drink energy drinks.');
+  window.__tool = {state,setMode,seed(n) { baseSeed=n>>>0; state.runIndex=0; },setDraft,run,shuffle,bench,
+    bars:()=>state.result?{...state.result.parts}:null,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },
+    model,permutation,flaw,submit,draw,designName};
+})();
+</script>
+</body>
+</html>
