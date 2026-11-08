@@ -14,8 +14,9 @@ consistent and safe.
   [docs/ROADMAP.md](docs/ROADMAP.md) (what comes next, in order) and
   [docs/agents/decisions/BASELINE.md](docs/agents/decisions/BASELINE.md) (the standing rules for every call).
   Suggestions about them are welcome as an issue. Changes to them are Cory's alone.
-- **Every tool goes through the same path,** whoever made it: spec, build, review, refine, a final check by Cory,
-  then art and voice. Nothing skips a step, including work by Cory's own helpers.
+- **Every tool goes through the same path,** whoever made it: Spec, Build, Self-check, Refine, Fix, Exit check, Art
+  and voice, Finish check, then Cory's Sign-off. Nothing skips a step, including work by Cory's own helpers. We say
+  the step's name, never just "review", so everyone knows which moment is meant.
 - **"Not now" is common** and usually means "not yet in the roadmap's order", not "bad idea".
 
 ## Rules every contribution follows
@@ -50,11 +51,11 @@ everything in between, with your own tools and our guides.
    (`tools/<id>/spec.md`), so two people never build the same thing.
 2. **Build it** to the spec, following [docs/TOOL-CONTRACT.md](docs/TOOL-CONTRACT.md) and the build brief in
    [docs/agents/CODEX-BUILD.md](docs/agents/CODEX-BUILD.md). Any AI assistant is fine.
-3. **Review and fix it yourself** using [docs/agents/CODEX-REVIEW.md](docs/agents/CODEX-REVIEW.md) and
-   [docs/agents/CODEX-FIX.md](docs/agents/CODEX-FIX.md), until the review finds nothing that blocks.
+3. **Self-check and fix it** using [docs/agents/CODEX-REVIEW.md](docs/agents/CODEX-REVIEW.md) and
+   [docs/agents/CODEX-FIX.md](docs/agents/CODEX-FIX.md), until your Self-check finds nothing that blocks.
 4. **Run the checks:** `python scripts/check_safety.py` and `python scripts/check_tools.py` must pass for your tool.
-5. **Open a pull request** with the tool folder, your review notes and the name of the AI tools you used. Curio
-   Class then does the final check. A tool that comes back needing work returns to you with notes.
+5. **Open a pull request** with the tool folder, your Self-check notes and the name of the AI tools you used. Curio
+   Class then runs Refine and the Exit check. A tool that needs work comes back to you with notes for a Fix.
 
 ## How to send something
 

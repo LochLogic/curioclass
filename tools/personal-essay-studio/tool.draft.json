@@ -1,0 +1,23 @@
+{
+  "id": "personal-essay-studio",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Zoom in on one moment.",
+  "outcome": "Draft and revise a personal narrative using precise details and reflection.",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": [
+    "Spark",
+    "Draft",
+    "Then and Now",
+    "Revise"
+  ],
+  "grades_label": "Grade 11",
+  "sources": [
+    "CCSS ELA W.11-12.3 and W.11-12.5: https://www.thecorestandards.org/ELA-Literacy/W/11-12/",
+    "Original essay samples, prompts, questions and signal lists written for Curio Class.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

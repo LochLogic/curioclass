@@ -40,6 +40,9 @@ so a raised cap or a tool added to QUEUE or FIX joins the run. Once the runner h
 
 ## Pulling tools in (2026-11-04)
 
+Step names (docs/BUILD-PLAN.md, "Names for each step"): Codex does Build, Self-check and Fix; Claude does Refine and
+the Exit check. Never "review" alone.
+
 The Codex checkout holds tools until they are reviewed. A tool with both `codex-report.md` and `codex-review.md`
 moves to main: `git checkout codex/queue -- tools/<id>` in S:\CurioClass, then copy its gitignored `art/raw` and
 `voice/raw` folders by hand, bundle with `CURIO_DRAFT=1` and run the checks. Skip a tool main already has at a later

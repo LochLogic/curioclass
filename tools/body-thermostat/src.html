@@ -1,0 +1,1017 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Body Thermostat · Curio Class</title>
+<meta name="description"
+ content="Test a body's temperature feedback loop. Compare trials and explore a fever's moving set point. Grade 9 science. Works offline.">
+<!--
+Body Thermostat, Curio Class. Grade 9 science, HS-LS1-3. Student driven.
+Sources: OpenStax Anatomy and Physiology 2e 24.6, NIH MedlinePlus Body temperature norms,
+CDC heat and winter weather guidance. Exact gains and watts are educational model values.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0; code MIT. No network requests. No student data persists.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#e25a7e;
+  --brand-ink:#10161f;
+  --gr-1:#ff9a6b;
+  --gr-2:#6ab8ff;
+  --gr-text:#c3cdd7;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { gap:8px; padding:8px 16px; flex-wrap:nowrap; }
+h1 { font-size:26px; }
+h1 small { font-size:12px; letter-spacing:.1em; text-transform:uppercase; margin-top:5px; }
+button { touch-action:manipulation; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); }
+.seg button,.icon-btn { min-height:44px; min-width:44px; padding:0 12px; font-size:14px; }
+.icon-btn { min-width:44px; }
+main { grid-template-columns:minmax(0,1.62fr) minmax(330px,1fr); min-height:0; }
+.panel { gap:8px; padding:12px; overflow:hidden; grid-column:2; grid-row:1; }
+.controls { display:grid; gap:8px; flex:none; }
+.row { display:flex; gap:6px; align-items:center; min-width:0; }
+.row>* { min-width:0; }
+.row .seg { flex:1; }
+.row .seg button { flex:1; }
+.seg { border-radius:8px; border-width:1px; }
+.seg.fill { display:flex; width:100%; }
+.seg.fill button { flex:1; min-width:0; padding:0 5px; }
+.transport { display:grid; grid-template-columns:1.2fr 1fr 1.5fr; gap:6px; }
+.transport button { padding:0 7px; }
+body[data-mode="experiment"] .transport { grid-template-columns:.8fr .8fr 1.4fr 1.6fr; }
+body[data-mode="experiment"] .transport button { padding:0 3px; font-size:12px; }
+.primary { background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+.field { display:grid; grid-template-columns:85px minmax(0,1fr); align-items:center; gap:8px; }
+.field label { font-size:13px; font-weight:700; }
+.field label strong { color:var(--brand); display:block; font:700 21px var(--readout-font); }
+.field input { min-width:0; }
+.group-label { margin:0 0 4px; color:var(--muted); font-size:11px; letter-spacing:.08em; text-transform:uppercase; }
+.clothes button { display:flex; align-items:center; justify-content:center; gap:3px; font-size:11px; }
+.clothes img { height:28px; width:25px; object-fit:contain; }
+.response-switches { display:flex; gap:5px; }
+.response-switches button { flex:1; font-size:12px; padding:0 4px; }
+.response-switches button[aria-pressed="false"] { border-style:dashed; }
+.response-switches button span { display:block; font-size:10px; opacity:.85; }
+.hint { min-height:63px; font-size:14px; line-height:1.4; padding:9px 10px; background:#271c29; border-left:3px solid var(--brand); }
+.details { min-height:0; overflow:auto; padding-right:3px; }
+.readouts { padding:9px 0; }
+dl.readouts { font-size:12px; gap:6px; grid-template-columns:1fr auto; }
+.tip { font-size:12px; padding:8px 10px; margin:7px 0; }
+.limits,.thresholds { color:var(--muted); font-size:11px; line-height:1.45; margin:8px 0; }
+.thresholds span { display:block; }
+.stage { min-height:0; display:grid; grid-template-rows:minmax(160px,1fr) 220px; padding:12px; gap:10px; background:#0e1418;
+  grid-column:1; grid-row:1; }
+.landscape { position:relative; min-height:0; overflow:hidden; border:1px solid #52616a; border-radius:14px; }
+.backdrop { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .5s; }
+.backdrop.current { opacity:1; }
+.scrim { position:absolute; inset:0; background:#0e1418b3; }
+.scene-top { position:absolute; left:16px; right:16px; top:12px; display:flex; align-items:center; justify-content:space-between; }
+.eyebrow { font-size:11px; color:#e0e6e8; letter-spacing:.14em; text-transform:uppercase; }
+.scene-top strong { font:600 17px var(--readout-font); }
+.live-dot { display:inline-block; width:6px; height:6px; background:var(--brand); border-radius:50%; margin-right:7px; }
+.thermal-space { position:absolute; inset:40px 14px 68px; display:grid; grid-template-columns:48% 52%; align-items:center; }
+.figure-wrap { position:relative; height:100%; min-height:0; display:flex; align-items:center; justify-content:center; }
+#body-svg { height:100%; width:100%; overflow:visible; max-height:400px; }
+.clothes-badge { position:absolute; left:3%; bottom:8%; width:56px; height:56px; object-fit:contain; filter:drop-shadow(0 3px 3px #000); }
+.core-read { position:absolute; left:7%; top:17%; pointer-events:none; }
+.core-read span { display:block; font-size:10px; text-transform:uppercase; letter-spacing:.12em; }
+.core-read strong { display:block; font:500 clamp(23px,3.8vw,52px) var(--readout-font); color:#ffe2d3; text-shadow:0 2px 10px #000; }
+.core-read small { color:#cad6dc; font-size:11px; }
+.loop { width:100%; display:grid; grid-template-columns:1fr 1fr; gap:20px 18px; position:relative; padding:12px; }
+.loop:before { content:''; position:absolute; inset:30px 35px; border:1px solid #d1dbe75c; border-radius:28px; }
+.loop-box { position:relative; z-index:1; background:linear-gradient(140deg,#273139ed,#101b23ef); border:1px solid #84929a; border-radius:9px; padding:12px 8px; }
+.loop-box { box-shadow:inset 0 1px 0 #e4f4ff24,inset 0 -3px 8px #0005,0 3px 7px #0004;
+  background-image:linear-gradient(115deg,#c5deed0a,transparent 45%),linear-gradient(140deg,#273139ed,#101b23ef); }
+.loop-box:after { content:''; position:absolute; top:4px; right:4px; width:3px; height:3px; border-radius:50%;
+  background:#b1c1c8; box-shadow:0 1px 1px #000; opacity:.6; }
+.loop-box b { color:#e3edf2; text-shadow:0 1px 1px #000; }
+.loop-box b { display:block; font-size:13px; font-weight:600; }
+.loop-box small { display:block; font-size:10px; line-height:1.35; color:#c6d2d9; margin-top:5px; }
+.loop-box .arrow { position:absolute; font-size:18px; color:var(--brand); }
+.loop-box:nth-child(1) .arrow { right:-17px; top:30%; }
+.loop-box:nth-child(2) .arrow { bottom:-23px; left:46%; }
+.loop-box:nth-child(3) { grid-column:2; grid-row:2; }
+.loop-box:nth-child(3) .arrow { left:-18px; top:30%; }
+.loop-box:nth-child(4) { grid-column:1; grid-row:2; }
+.loop-box:nth-child(4) .arrow { top:-23px; left:46%; }
+.working .arrow { animation:pulse 1.3s ease-in-out infinite; }
+#compare-box { border-color:var(--brand); box-shadow:inset 0 0 16px #e25a7e13; }
+#gap { color:#ffd2dc; }
+.gauges { position:absolute; bottom:12px; left:14px; right:14px; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+.gauge { background:#0b121bdc; border:1px solid #70818f66; border-radius:6px; padding:6px 8px; }
+.gauge small { font-size:10px; color:#c3ced8; display:block; }
+.gauge strong { font:600 15px var(--readout-font); display:block; margin:3px 0; white-space:nowrap; }
+.gauge i { display:block; height:3px; background:linear-gradient(90deg,var(--brand) var(--level,0%),#ffffff1a 0); }
+.graph-box { min-height:0; background:linear-gradient(160deg,#172128,#0b1218); border:1px solid #3a4a56; border-radius:10px; position:relative; overflow:hidden; }
+.graph-heading { position:absolute; top:8px; left:45px; z-index:2; font-size:11px; letter-spacing:.06em; color:#d2dde3; }
+#graph { width:100%; height:100%; display:block; }
+.graph-legend { position:absolute; top:8px; right:12px; font-size:11px; display:flex; gap:12px; }
+.graph-legend span:first-child { color:#ff9a6b; }
+.graph-legend span:last-child { color:#bcdfff; }
+#graph-caption { position:absolute; bottom:5px; right:12px; color:var(--muted); font-size:10px; }
+.notebook { display:none; min-height:0; flex-direction:column; overflow:hidden; border-radius:8px; background:#17212a; border:1px solid #51616b; }
+.notebook-head { display:flex; align-items:center; gap:6px; padding:6px 9px; border-bottom:1px solid #41515d; }
+.notebook-head strong { margin-right:auto; font-size:13px; }
+.notebook-head .btn { font-size:11px; padding:0 8px; }
+.table-scroll { min-height:0; overflow:auto; flex:1; }
+table { width:100%; border-collapse:collapse; font-size:11px; }
+th,td { padding:6px 7px; text-align:right; border-bottom:1px solid #3b4a56; white-space:nowrap; }
+th { color:#d2dce3; font-weight:500; background:#192630; position:sticky; top:0; }
+td.conditions { text-align:left; white-space:normal; min-width:130px; }
+td.conditions small { display:block; color:#afbec9; margin-top:3px; font-size:10px; }
+td .btn { font-size:11px; padding:0 6px; }
+.empty { padding:14px; color:var(--muted); font-size:12px; }
+.privacy { padding:5px 9px; margin:0; font-size:10px; color:var(--muted); }
+.safety { position:absolute; inset:auto 12px 75px; z-index:5; padding:12px; background:#1c2630f5;
+  border:2px solid #d6dfe6; border-radius:9px; font-size:14px; line-height:1.4; }
+body[data-mode="experiment"] .safety { inset:4px 8px; padding:5px 8px; font-size:12px; display:flex; align-items:center; }
+body[data-mode="experiment"] .safety[hidden] { display:none; }
+.wind { position:absolute; inset:0; pointer-events:none; overflow:hidden; }
+.wind i { position:absolute; width:100px; border-top:1px solid #cfe2ed77; left:-100px; animation:blow 3s linear infinite; }
+.wind i:nth-child(1) { top:27%; animation-delay:-1s; }
+.wind i:nth-child(2) { top:49%; animation-delay:-2.5s; width:70px; }
+.wind i:nth-child(3) { top:69%; animation-delay:-1.8s; }
+.wind i:nth-child(4) { top:83%; animation-delay:-.3s; width:50px; }
+.calm .wind i { animation:none!important; left:30%; }
+.calm .working .arrow,.calm #shakes,.calm #scan { animation:none!important; }
+.calm .backdrop { transition:none; }
+#scan { animation:scan 5s ease-in-out infinite; opacity:.16; }
+#shakes { animation:shake .15s linear infinite alternate; }
+@keyframes pulse { 50% { opacity:.3; } }
+@keyframes blow { to { left:110%; } }
+@keyframes scan { 50% { transform:translateY(190px); } }
+@keyframes shake { to { transform:translateX(1.7px); } }
+body[data-mode="experiment"] .stage { grid-template-rows:120px minmax(160px,1fr) 230px; }
+body[data-mode="experiment"] .thermal-space { inset:25px 12px 7px; grid-template-columns:32% 68%; }
+body[data-mode="experiment"] .gauges { display:none; }
+body[data-mode="experiment"] .scene-top { top:6px; }
+body[data-mode="experiment"] .core-read { left:0; top:20%; }
+body[data-mode="experiment"] .core-read strong { font-size:22px; }
+body[data-mode="experiment"] .core-read small,body[data-mode="experiment"] .core-read span { display:none; }
+body[data-mode="experiment"] .clothes-badge { width:32px; height:32px; left:2%; bottom:0; }
+body[data-mode="experiment"] .loop { grid-template-columns:repeat(4,1fr); gap:10px; padding:0; }
+body[data-mode="experiment"] .loop-box { grid-area:auto; padding:6px; }
+body[data-mode="experiment"] .loop-box small { font-size:10px; margin-top:3px; }
+body[data-mode="experiment"] .loop-box b { font-size:11px; }
+body[data-mode="experiment"] .arrow,body[data-mode="experiment"] .loop:before { display:none; }
+body[data-mode="experiment"] .notebook { display:flex; }
+body[data-mode="fever"] .thermal-space { grid-template-columns:33% 67%; }
+body[data-mode="fever"] .loop { padding-right:15%; }
+body[data-mode="fever"] .loop-box:nth-child(1) { grid-column:2; grid-row:1; }
+body[data-mode="fever"] #compare-box { grid-column:1; grid-row:1; }
+body[data-mode="fever"] .loop-box:nth-child(3) { grid-column:1; grid-row:2; }
+body[data-mode="fever"] .loop-box:nth-child(4) { grid-column:2; grid-row:2; }
+body[data-mode="fever"] .loop-box:nth-child(1) .arrow { left:-18px; right:auto; transform:rotate(180deg); }
+body[data-mode="fever"] .loop-box:nth-child(3) .arrow { right:-18px; left:auto; transform:rotate(180deg); }
+body[data-mode="fever"] #compare-box { background:linear-gradient(140deg,#582d40,#211d2a); box-shadow:0 0 35px #e25a7e33; }
+body[data-mode="fever"] #gap { font-size:13px; }
+@media (max-height:899px) {
+  .stage { grid-template-rows:minmax(140px,1fr) 140px; padding:9px; gap:8px; }
+  .panel { gap:7px; }
+  .controls { gap:6px; }
+  .group-label { display:none; }
+  .loop-box { padding:8px; }
+  .loop { gap:18px 14px; padding:9px; }
+  .hint { font-size:12px; min-height:57px; padding:7px 9px; }
+  body[data-mode="experiment"] .stage { grid-template-rows:100px minmax(140px,1fr) 230px; }
+}
+@media (max-width:1000px) {
+  header { padding:6px 9px; gap:5px; }
+  h1 { font-size:19px; }
+  h1 small { display:none; }
+  header .seg button,header .icon-btn { font-size:12px; padding:0 8px; }
+  main { grid-template-columns:minmax(0,1fr) 340px; }
+  .panel { padding:8px; }
+  .clothes button { flex-direction:column; gap:0; line-height:1.05; padding:2px!important; }
+  .loop-box { padding:6px; }
+  .loop-box b { font-size:11px; }
+  .loop { padding:2px; gap:18px 13px; }
+  .core-read { left:0; top:2%; }
+  .core-read strong { font-size:26px; }
+  .gauge { padding:5px 4px; }
+  .gauge strong { font-size:11px; }
+  .thermal-space { inset:35px 8px 63px; grid-template-columns:45% 55%; }
+  .clothes-badge { width:40px; height:40px; }
+}
+@media (max-height:520px) and (min-width:600px) {
+  header { padding:3px 8px; }
+  .panel { gap:5px; padding:6px; }
+  .controls { gap:4px; }
+  .hint { min-height:51px; font-size:11px; padding:5px 7px; }
+  .stage { padding:6px; gap:5px; }
+  .thermal-space { inset:30px 5px 58px; }
+  .scene-top { left:10px; right:10px; top:7px; }
+  .eyebrow { font-size:10px; letter-spacing:.03em; }
+  .scene-top strong { font-size:12px; }
+  .gauges { bottom:5px; left:6px; right:6px; gap:3px; }
+  .gauge small { font-size:10px; }
+  .gauge strong { font-size:10px; margin:2px 0; }
+  .loop { gap:12px 10px; }
+  .loop-box { padding:4px; border-radius:4px; }
+  .loop-box small { margin:2px 0 0; font-size:10px; line-height:1.1; }
+  .loop-box .arrow { font-size:12px; line-height:12px; }
+  .loop-box:nth-child(2) .arrow { bottom:-13px; }
+  .loop-box:nth-child(4) .arrow { top:-13px; }
+  .core-read strong { font-size:21px; }
+  .core-read span { font-size:10px; letter-spacing:0; }
+  .core-read small { display:none; }
+  .safety { inset:28px 6px auto; padding:6px; font-size:11px; line-height:1.25; }
+  body[data-mode="experiment"] .safety { font-size:10px; padding:3px 6px; line-height:1.15; }
+  body[data-mode="experiment"] .stage { grid-template-rows:55px 140px minmax(0,1fr); }
+  body[data-mode="experiment"] .thermal-space { inset:20px 5px 3px; grid-template-columns:20% 80%; }
+  body[data-mode="experiment"] .loop-box { padding:3px; }
+  body[data-mode="experiment"] .loop-box small { display:none; }
+  body[data-mode="experiment"] .core-read { display:none; }
+  body[data-mode="experiment"] .notebook-head { padding:0 3px; gap:3px; }
+  body[data-mode="experiment"] .notebook-head strong { font-size:11px; }
+  body[data-mode="experiment"] .privacy { display:none; }
+  body[data-mode="experiment"] th { padding:3px 4px; font-size:10px; }
+  body[data-mode="experiment"] td { padding:0 4px; font-size:10px; }
+  body[data-mode="experiment"] td.conditions small { font-size:10px; }
+  body[data-mode="fever"] #gap { font-size:10px; }
+}
+@media (max-width:599px) {
+  body { height:auto; min-height:100dvh; overflow:auto; }
+  header { flex-wrap:wrap; gap:5px; }
+  h1 { flex-basis:100%; font-size:22px; }
+  header .seg { flex:1; }
+  header .seg button { flex:1; padding:0 5px; }
+  header #m-experiment { flex:1.7; }
+  header .icon-btn { font-size:11px; padding:0 5px; }
+  main { display:flex; flex-direction:column; }
+  .panel { display:contents; }
+  .panel>#controls { order:0; margin:8px; }
+  .panel>.hint { order:1; margin:0 8px 8px; }
+  .controls { gap:5px; }
+  .stage { order:2; height:400px; flex:none; grid-template-rows:minmax(190px,1fr) 140px; }
+  .details { order:3; max-height:none; overflow:visible; padding:8px; }
+  .hint { min-height:50px; }
+  .loop { gap:12px 13px; }
+  .loop-box { padding:5px; }
+  .loop-box small { line-height:1.1; margin-top:2px; }
+  .loop-box .arrow { font-size:12px; line-height:12px; }
+  .loop-box:nth-child(2) .arrow { bottom:-13px; }
+  .loop-box:nth-child(4) .arrow { top:-13px; }
+  body[data-mode="fever"] #gap { font-size:10px; }
+  body[data-mode="experiment"] .stage { height:auto; grid-template-rows:50px 70px 168px 230px auto; }
+  body[data-mode="experiment"] .notebook { display:contents; }
+  body[data-mode="experiment"] .notebook-head { grid-row:1; border:1px solid #51616b; border-radius:8px; }
+  body[data-mode="experiment"] .landscape { grid-row:2; }
+  body[data-mode="experiment"] .graph-box { grid-row:3; }
+  body[data-mode="experiment"] .table-scroll { grid-row:4; border:1px solid #51616b; border-radius:8px; }
+  body[data-mode="experiment"] .privacy { grid-row:5; }
+  body[data-mode="experiment"] .safety { font-size:11px; line-height:1.25; }
+  body[data-mode="experiment"] .thermal-space { grid-template-columns:24% minmax(0,1fr); }
+  body[data-mode="experiment"] .loop { min-width:0; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; }
+  body[data-mode="experiment"] .loop-box { min-width:0; padding:5px 3px; }
+  body[data-mode="experiment"] .loop-box b { font-size:10px; }
+  body[data-mode="experiment"] .loop-box small { display:none; }
+  body[data-mode="fever"] .stage { height:400px; }
+  body[data-mode="fever"] .loop { padding-right:0; }
+}
+</style>
+</head>
+<body data-mode="lab">
+<header>
+  <h1>Body Thermostat <small>Homeostasis / feedback lab</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-lab" aria-pressed="true">Lab</button>
+    <button id="m-experiment" aria-pressed="false">Experiment</button>
+    <button id="m-fever" aria-pressed="false">Fever</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <div class="controls" id="controls">
+      <div class="transport">
+        <button id="play" class="btn primary">▶ Play</button><button id="reset" class="btn">Reset</button>
+        <button id="run-trial" class="btn primary" title="Run a trial for 60 simulated minutes" hidden>Run trial</button>
+        <div class="seg" role="group" aria-label="Simulation speed"><button id="speed-1" aria-pressed="true">1 min/s</button>
+          <button id="speed-5" aria-pressed="false">5 min/s</button></div>
+      </div>
+      <div id="environment" class="controls">
+        <div class="field"><label for="air">Air <strong id="air-value">22°C</strong></label>
+          <input id="air" type="range" min="-10" max="45" step="1" value="22"></div>
+        <div class="row"><div class="seg" role="group" aria-label="Air feels"><button id="dry" aria-pressed="true">Dry</button>
+          <button id="humid" aria-pressed="false">Humid</button></div><button id="wind" class="btn" aria-pressed="false">Wind off</button></div>
+        <div><p class="group-label">Clothes / insulation</p><div class="seg fill clothes" role="group" aria-label="Clothes">
+          <button id="clothes-swimsuit" aria-pressed="false"><img src="art:bt-clothes-swimsuit" alt="">Swimsuit</button>
+          <button id="clothes-shorts" aria-pressed="false"><img src="art:bt-clothes-shorts" alt="">Shorts</button>
+          <button id="clothes-indoor" aria-pressed="true"><img src="art:bt-clothes-indoor" alt="">Indoor clothes</button>
+          <button id="clothes-coat" aria-pressed="false"><img src="art:bt-clothes-coat" alt="">Winter coat</button></div></div>
+        <div><p class="group-label">Activity / heat production</p><div class="seg fill" role="group" aria-label="Activity">
+          <button id="activity-rest" aria-pressed="true">Rest</button><button id="activity-walk" aria-pressed="false">Walk</button>
+          <button id="activity-jog" aria-pressed="false">Jog</button><button id="activity-run" aria-pressed="false">Run</button></div></div>
+      </div>
+      <div class="controls" id="response-controls" hidden><p class="group-label">Response switches</p>
+        <div class="response-switches"><button id="switch-sweat" class="btn" aria-pressed="true">Sweating<span>ON</span></button>
+          <button id="switch-vessels" class="btn" aria-pressed="true">Skin vessels<span>ON</span></button>
+          <button id="switch-shiver" class="btn" aria-pressed="true">Shivering<span>ON</span></button></div></div>
+      <div class="controls" id="fever-controls" hidden>
+        <div class="field"><label for="set-point">Set point<strong id="point-value">37.0°C</strong></label>
+          <input id="set-point" type="range" min="37" max="40" step=".1" value="37"></div>
+        <div class="row"><button id="fever-starts" class="btn primary">Fever starts</button>
+          <button id="fever-breaks" class="btn">Fever breaks</button></div>
+        <p class="limits" id="fever-conditions"></p>
+      </div>
+    </div>
+    <p class="hint" id="hint"></p>
+    <div class="details">
+      <dl class="readouts" id="readouts"></dl>
+      <p class="tip" id="tip">Sweat only cools when it evaporates. Humid air slows that down.</p>
+      <p class="limits">Model: 60 kg body; 208,200 joules per °C. All heat rates and response gains are model values.</p>
+      <p class="limits" id="model-limits">This model leaves out breathing losses, sunshine, hands and feet, and water lost from the body.
+        Real bodies differ. Model time is not a safe exposure time.</p>
+      <div class="thresholds" title="NIH MedlinePlus; CDC fever, hypothermia and heat-related illness guidance">
+        <span>Average normal: about 37°C / 98.6°F (NIH).</span><span>Fever screening: 38°C / 100.4°F or higher (CDC).</span>
+        <span>Hypothermia: below 35°C / 95°F (CDC).</span><span>Heat stroke sign: 39.4°C / 103°F or higher (CDC).</span>
+      </div>
+    </div>
+    <div id="live-readout" aria-live="polite" class="sr-only"></div>
+  </aside>
+  <section class="stage" id="stage" aria-label="Live thermal model">
+    <div class="landscape" id="landscape">
+      <img class="backdrop" id="scene-cold" src="art:bt-scene-cold" alt="Snowy prairie with a fence and snow path">
+      <img class="backdrop current" id="scene-mild" src="art:bt-scene-mild" alt="School track on a mild day">
+      <img class="backdrop" id="scene-hot-dry" src="art:bt-scene-hot-dry" alt="Dry red-rock desert trail">
+      <img class="backdrop" id="scene-hot-humid" src="art:bt-scene-hot-humid" alt="Steamy summer park with a wet path">
+      <div class="scrim"></div>
+      <div class="wind" id="wind-streaks" hidden><i></i><i></i><i></i><i></i></div>
+      <div class="scene-top"><span class="eyebrow"><i class="live-dot"></i><span id="setting-label">School track</span> · model</span>
+        <strong id="clock">00:00 min</strong></div>
+      <div class="thermal-space">
+        <div class="figure-wrap">
+          <svg id="body-svg" viewBox="0 0 220 330" role="img" aria-label="Thermal silhouette, live core and skin responses">
+            <defs>
+              <radialGradient id="thermal"><stop stop-color="#ffdf9c"/><stop id="skin-color" offset=".55" stop-color="#d77555"/>
+                <stop id="rim-color" offset="1" stop-color="#617db2"/></radialGradient>
+              <radialGradient id="core-glow"><stop stop-color="#fff3ca"/><stop offset=".4" stop-color="#ff9a6b"/>
+                <stop offset="1" stop-color="#ff9a6b" stop-opacity="0"/></radialGradient>
+              <linearGradient id="glass"><stop stop-color="#ffffff18"/><stop offset="1" stop-color="#ffffff00"/></linearGradient>
+              <filter id="blur"><feGaussianBlur stdDeviation="8"/></filter>
+              <path id="person" d="M110 20 C91 20 85 34 88 49 C90 61 98 67 99 72 L98 80
+                C83 81 72 88 67 102 L49 164 Q43 181 54 184 Q62 186 66 175 L81 132
+                L82 182 L75 282 Q74 303 88 303 Q101 303 102 285 L110 218 L118 285
+                Q120 303 133 303 Q146 303 144 282 L137 182 L138 132 L153 175
+                Q157 186 165 184 Q176 181 170 164 L153 102 Q147 83 122 80
+                L121 72 Q134 63 133 44 Q133 20 110 20Z"/>
+            </defs>
+            <ellipse cx="110" cy="313" rx="68" ry="9" fill="#0008"/>
+            <ellipse cx="110" cy="312" rx="65" ry="9" fill="none" stroke="#9bb5c459"/>
+            <path d="M26 42V22H47 M173 22H194V42 M26 280V302H47 M173 302H194V280" stroke="#b5c9d16b" fill="none"/>
+            <use id="insulation" href="#person" fill="none" stroke="#a5c2d4" stroke-width="5" opacity=".5"/>
+            <use href="#person" fill="url(#thermal)" stroke="#c4d8de" stroke-width="1"/>
+            <use href="#person" fill="url(#glass)"/>
+            <path d="M110 79V172 M90 111Q110 122 130 111 M87 144Q110 156 133 144" fill="none" stroke="#ffe1ba39"/>
+            <circle cx="110" cy="130" r="45" fill="url(#core-glow)"/>
+            <circle id="core-dot" cx="110" cy="130" r="13" fill="#ffb18c" stroke="#fff1d2" stroke-width="2"/>
+            <path d="M94 130H126 M110 114V146" stroke="#fff9" stroke-width=".7"/>
+            <path id="scan" d="M45 70H174" stroke="#ecffff" stroke-width="2"/>
+            <g id="sweat-beads" fill="#9be8ff" stroke="#e1fbff" stroke-width=".6"></g>
+            <g id="shakes" fill="none" stroke="#bfe5ff" stroke-width="2" hidden>
+              <path d="M65 92l-7 9 7 9-7 9 M157 92l7 9-7 9 7 9 M65 208l-7 9 7 9 M157 208l7 9-7 9"/>
+            </g>
+          </svg>
+          <div class="core-read"><span>Core temperature</span><strong id="core-large">37.00°</strong><small>60 kg thermal model</small></div>
+          <img class="clothes-badge" id="clothes-badge" src="art:bt-clothes-indoor" alt="Indoor clothes insulation">
+        </div>
+        <div class="loop" id="loop" aria-label="Negative feedback loop">
+          <div class="loop-box"><b>01 Sensor</b><small>Brain's temperature center</small><span class="arrow">→</span></div>
+          <div class="loop-box" id="compare-box"><b>02 Compare</b><small id="point-label">Set point 37.0°C</small>
+            <small id="gap">Core at set point</small><span class="arrow">↓</span></div>
+          <div class="loop-box"><b>03 Responses</b><small id="response-label">Balanced</small><span class="arrow">←</span></div>
+          <div class="loop-box"><b>04 Body heat</b><small id="balance-label">In = out</small><span class="arrow">↑</span></div>
+        </div>
+      </div>
+      <div class="gauges" aria-label="Model response gauges">
+        <div class="gauge" id="g-made"><small>Heat made</small><strong id="made-gauge">70 W</strong><i></i></div>
+        <div class="gauge" id="g-sweat"><small>Sweat cooling</small><strong id="sweat-gauge">0 W</strong><i></i></div>
+        <div class="gauge" id="g-shiver"><small>Shivering</small><strong id="shiver-gauge">0 W</strong><i></i></div>
+        <div class="gauge" id="g-vessels"><small>Skin vessels</small><strong id="vessels-gauge">1.0x</strong><i></i></div>
+      </div>
+      <div id="safety" class="safety" role="status" title="CDC heat and winter weather guidance" hidden></div>
+    </div>
+    <div class="graph-box" id="graph-box">
+      <span class="graph-heading">CORE °C / MINUTES</span>
+      <div class="graph-legend"><span id="legend-a">━━ Core</span><span id="legend-b">┄ Set point</span></div>
+      <svg id="graph" role="img" aria-label="Core temperature against simulated minutes, from 35 to 40 degrees Celsius"></svg>
+      <span id="graph-caption">Last 60 simulated minutes</span>
+    </div>
+    <section class="notebook" id="notebook" aria-label="Lab notebook">
+      <div class="notebook-head"><strong>Lab notebook</strong><button id="compare" class="btn">Compare</button>
+        <button id="clear-notebook" class="btn">Clear notebook</button></div>
+      <div class="table-scroll"><table><thead><tr><th>Pick</th><th>Conditions / off</th><th>10 min</th><th>30 min</th>
+        <th>60 min</th><th>Low</th><th>High</th></tr></thead><tbody id="trials"></tbody></table>
+        <div class="empty" id="empty-notebook">Your first trial starts at 37.00°C. Press Run trial to collect an hour of evidence.</div></div>
+      <p class="privacy">Notebook stays on this page only. It never leaves this device; reloading clears it.</p>
+    </section>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const CLOTHES = {swimsuit:2.8, shorts:2.2, indoor:1, coat:.35};
+  const CLOTHES_NAMES = {swimsuit:'Swimsuit', shorts:'Shorts', indoor:'Indoor clothes', coat:'Winter coat'};
+  const HEAT = {rest:70, walk:195, jog:391, run:547};
+  const L = {
+    welcomeLab:'Welcome to Body Thermostat. Change the air, clothes or activity, then press Play and watch the core temperature hold.',
+    welcomeExp:'Experiment. Switch one response on or off, press Run trial, then switch it back and run it again.',
+    welcomeFever:'Fever. Press Fever starts, then Play, and watch the body warm itself up to a new set point.',
+    sweatOn:'Sweating switched on. Sweat cools you only as it evaporates.',
+    shiverOn:'Shivering switched on. Muscles are working just to make heat.',
+    vesselsTight:'Skin vessels tightened. Warm blood stays in the core.',
+    humidHint:"The air is humid, so sweat can't evaporate fast enough.",
+    trialDone:'Trial added. Now change one thing and press Run trial again.',
+    compareHow:'Two trials. Press Compare to lay their curves on top of each other.',
+    chills:'Chills. The core is normal, but the set point says it is too cold.',
+    breaks:'Fever breaks. The set point drops, so the body sweats and flushes.',
+    hotPause:'Model heat limit. In real life, suspected heat stroke is an emergency. Call 911 and cool the person. Press Reset to start again.',
+    coldPause:'Model cold limit. In real life, hypothermia needs urgent medical help. Get warm and dry. Press Reset to start again.',
+    trialHot:'Trial stopped at the model heat limit. In real life, suspected heat stroke is an emergency. Call 911 and cool the person.',
+    trialCold:'Trial stopped at the model cold limit. In real life, hypothermia needs urgent medical help. Get warm and dry.',
+    compareRead:'Follow the solid and dotted traces. Check the notebook to see what changed, then run a new trial with one change.',
+    labHint:'Lab. Change the air, clothes or activity, then press Play. Watch which response switches on.',
+    expHint:'Experiment. Switch one response on or off, press Run trial, then switch it back and press Run trial again. Then press Compare.',
+    feverHint:'Fever. Press Fever starts to raise the target, then Play. Compare core temperature with the set point.',
+    runningHint:'Change Air, Clothes or Activity while the clock runs. Press Pause to inspect the responses.',
+    pausedHint:'Paused. Change a condition, then press Play to continue. Press Reset for a fresh trace.',
+    compareHint:'Pick two trial numbers in the notebook, then press Compare. Change one condition to make a controlled pair.',
+    feverRunHint:'Watch the Compare box and the dashed set point. Press Fever breaks to lower the target again.',
+    trialHint:'Trial added. Change one condition and press Run trial again, or pick two rows and press Compare.'
+  };
+  const state = {
+    mode:'lab', air:22, humid:false, wind:false, clothes:'indoor', activity:'rest', point:37, feverPoint:37,
+    sweat:true, vessels:true, shiver:true, speed:1, core:37, seconds:0, running:false, safety:null,
+    history:[[0,37,37]], trials:[], selected:[], comparing:false, trial:null, reveal:1, trialSerial:0,
+    started:false, feverStarted:false, minuteAnnounced:-1, responsesSeen:new Set()
+  };
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => {
+      if (state.mode === 'lab' && !state.started) return ['welcomeLab',{valid:() => !state.started}];
+      if (state.mode === 'experiment' && !state.trials.length) return ['welcomeExp',{valid:() => !state.trials.length}];
+      if (state.mode === 'fever' && !state.feverStarted) return ['welcomeFever',{valid:() => !state.feverStarted}];
+      return null;
+    }
+  });
+  function config() {
+    return {air:state.air, humid:state.humid, wind:state.wind, clothes:state.clothes, activity:state.activity,
+      point:state.mode === 'fever' ? state.feverPoint : 37,
+      sweat:state.mode === 'experiment' ? state.sweat : true,
+      vessels:state.mode === 'experiment' ? state.vessels : true,
+      shiver:state.mode === 'experiment' ? state.shiver : true};
+  }
+  function rates(core, c) {
+    const error = core - c.point;
+    const v = c.vessels ? clamp(1 + 3 * error,.5,3) : 1;
+    const q = 70 / 15 * CLOTHES[c.clothes] * v * (c.wind ? 2 : 1) * (core - c.air);
+    const e = c.sweat ? Math.min(c.humid ? 150 : 600,400 * Math.max(0,error)) : 0;
+    const s = c.shiver ? Math.min(250,300 * Math.max(0,-error - .2)) : 0;
+    return {m:HEAT[c.activity], q, e, s, v, error, net:HEAT[c.activity] + s - q - e};
+  }
+  function integrate(core, c) {
+    return core + rates(core,c).net / 208200;
+  }
+  function computeTrial(c, start = 37) {
+    let core = start;
+    const samples = [[0,core,c.point]];
+    const marks = {};
+    let low = core;
+    let high = core;
+    let stop = null;
+    let seconds = 0;
+    for (let s = 1; s <= 3600; s++) {
+      core = integrate(core,c);
+      seconds = s;
+      low = Math.min(low,core);
+      high = Math.max(high,core);
+      if (s % 600 === 0) marks[s / 60] = core;
+      if (core <= 35 || core >= 40) {
+        stop = core <= 35 ? 'cold' : 'hot';
+        core = clamp(core,35,40);
+        samples.push([s / 60,core,c.point]);
+        break;
+      }
+      if (s % 5 === 0) samples.push([s / 60,core,c.point]);
+    }
+    return {c:{...c}, samples, marks, core, seconds, low:clamp(low,35,40), high:clamp(high,35,40), stop};
+  }
+  function conditions(c) {
+    return `${c.air}°C · ${c.humid ? 'humid' : 'dry'}${c.wind ? ' · wind' : ''} · ${CLOTHES_NAMES[c.clothes]} · ${c.activity}`;
+  }
+  function hint(key) { $('hint').textContent = L[key] || key; }
+  function resetClock(modeChange = false) {
+    state.running = false;
+    state.core = state.mode === 'fever' && state.feverStarted && !modeChange ? state.feverPoint : 37;
+    state.seconds = 0;
+    state.safety = null;
+    state.history = [[0,state.core,config().point]];
+    state.minuteAnnounced = -1;
+    state.responsesSeen.clear();
+    accumulator = 0;
+    $('safety').hidden = true;
+    $('play').disabled = false;
+    $('play').title = '';
+    if (state.core >= 40) {
+      safetyPause('hot');
+      hint('This reset starts at the 40°C model limit. Lower Set point below 40°C, then press Reset.');
+    }
+  }
+  let modeReady = false;
+  function setMode(mode) {
+    if (!['lab','experiment','fever'].includes(mode)) return;
+    if (modeReady && state.mode === mode) return;
+    modeReady = true;
+    V.hush();
+    finishReveal(false);
+    state.mode = mode;
+    document.body.dataset.mode = mode;
+    for (const m of ['lab','experiment','fever']) $('m-' + m).setAttribute('aria-pressed',m === mode);
+    $('environment').hidden = mode === 'fever';
+    $('response-controls').hidden = mode !== 'experiment';
+    $('fever-controls').hidden = mode !== 'fever';
+    $('run-trial').hidden = mode !== 'experiment';
+    resetClock(true);
+    state.trial = null;
+    state.comparing = false;
+    if (mode === 'fever' && state.feverPoint !== 37) feverHint();
+    else hint(mode === 'lab' ? 'labHint' : mode === 'experiment' ? 'expHint' : 'feverHint');
+    update();
+    V.welcome();
+    requestAnimationFrame(drawGraph);
+  }
+  function responseVoice(r, c) {
+    const entries = [
+      ['sweatOn',r.e > 1,() => shownRates().e > 1],
+      ['shiverOn',r.s > 1,() => shownRates().s > 1],
+      ['vesselsTight',r.v < .99,() => shownRates().v < .99],
+      ['humidHint',c.humid && r.e >= 149.99,() => shownConfig().humid && shownRates().e >= 149.99]
+    ];
+    const active = entries.filter(([key,on]) => on && !V.heard(key) && !V.queue.some(item => item.key === key));
+    if (active.length && !V.queue.some(item => item.kind === 'how')) {
+      V.how(active.map(([key,on,valid]) => [key,{valid}]),{hint:false});
+    }
+    for (const [key,on] of entries) {
+      if (on && !state.responsesSeen.has(key)) {
+        state.responsesSeen.add(key);
+        Curio.tone(420,.055,.025);
+      }
+    }
+  }
+  function safetyPause(kind) {
+    state.running = false;
+    state.safety = kind;
+    state.core = kind === 'cold' ? 35 : 40;
+    const playHeldFocus = document.activeElement === $('play');
+    $('play').disabled = true;
+    if (playHeldFocus) $('reset').focus({preventScroll:true});
+    $('play').title = 'Press Reset first';
+    const text = L[kind === 'cold' ? 'coldPause' : 'hotPause'];
+    $('safety').textContent = text;
+    $('safety').hidden = false;
+    hint(text);
+    V.say(kind === 'cold' ? 'coldPause' : 'hotPause',{now:true,valid:() => state.safety === kind});
+  }
+  function advance(seconds) {
+    if (state.safety) return;
+    const c = config();
+    for (let i = 0; i < seconds; i++) {
+      state.core = integrate(state.core,c);
+      state.seconds++;
+      if (state.core <= 35 || state.core >= 40) {
+        safetyPause(state.core <= 35 ? 'cold' : 'hot');
+        state.history.push([state.seconds / 60,state.core,c.point]);
+        break;
+      }
+      if (state.seconds % 5 === 0) state.history.push([state.seconds / 60,state.core,c.point]);
+    }
+    const min = state.seconds / 60;
+    state.history = state.history.filter(p => p[0] >= min - 61);
+    if (!state.trial) responseVoice(rates(state.core,c),c);
+    update();
+  }
+  let revealStart = 0;
+  let pendingTrialDone = false;
+  function finishReveal(speak = true) {
+    if (!pendingTrialDone) return;
+    state.reveal = 1;
+    pendingTrialDone = false;
+    if (speak && state.mode === 'experiment' && state.trial) {
+      const id = state.trial.id;
+      hint(state.trial.stop
+        ? 'Trial stopped at the model ' + state.trial.stop + ' limit. Change one condition and press Run trial to test it again.'
+        : 'trialHint');
+      V.say('trialDone',{now:true,valid:() => state.trial?.id === id,needs:'#run-trial'});
+      if (state.trial.stop) {
+        V.say(state.trial.stop === 'cold' ? 'trialCold' : 'trialHot',{
+          valid:() => state.trial?.id === id && !state.comparing
+        });
+      }
+      if (state.trials.length >= 2 && !V.heard('compareHow')) {
+        V.how('compareHow',{valid:() => !state.comparing && state.trials.length >= 2,needs:'#compare'});
+      }
+    }
+  }
+  function runTrial() {
+    finishReveal(false);
+    V.dropQueued();
+    state.running = false;
+    const trial = computeTrial(config());
+    trial.id = ++state.trialSerial;
+    state.trials.push(trial);
+    state.trial = trial;
+    state.comparing = false;
+    state.selected = state.trials.slice(-2).map(t => t.id);
+    state.reveal = Curio.reduce ? 1 : 0;
+    revealStart = performance.now();
+    pendingTrialDone = true;
+    state.responsesSeen.clear();
+    renderNotebook();
+    hint('Trial running. Change a setting for your next trial, or press Run trial again. This trial keeps its starting conditions.');
+    Curio.tone(620,.08,.03);
+    if (Curio.reduce) finishReveal();
+    update();
+  }
+  function renderNotebook() {
+    const body = $('trials');
+    for (const t of state.trials) {
+      let row = $('trial-' + t.id);
+      if (!row) {
+        row = document.createElement('tr');
+        row.id = 'trial-' + t.id;
+        const pick = document.createElement('td');
+        const button = document.createElement('button');
+        button.className = 'btn';
+        button.id = 'pick-' + t.id;
+        button.textContent = 'T' + t.id;
+        button.setAttribute('aria-label','Select trial ' + t.id);
+        button.onclick = () => {
+          if (state.selected.includes(t.id)) state.selected = state.selected.filter(id => id !== t.id);
+          else state.selected = [...state.selected.slice(-1),t.id];
+          state.comparing = false;
+          renderNotebook();
+          hint('compareHint');
+          update();
+        };
+        pick.appendChild(button);
+        row.appendChild(pick);
+        const cond = document.createElement('td');
+        cond.className = 'conditions';
+        cond.textContent = conditions(t.c);
+        const off = ['sweat','vessels','shiver'].filter(k => !t.c[k]);
+        const small = document.createElement('small');
+        small.textContent = `Off: ${off.length ? off.join(', ') : 'none'}` +
+          (t.stop ? ` · stopped at minute ${(t.seconds / 60).toFixed(1)}` : '');
+        cond.appendChild(small);
+        row.appendChild(cond);
+        for (const v of [t.marks[10],t.marks[30],t.marks[60],t.low,t.high]) {
+          const cell = document.createElement('td');
+          cell.textContent = v == null ? 'stopped' : v.toFixed(2);
+          row.appendChild(cell);
+        }
+        body.appendChild(row);
+      }
+      $('pick-' + t.id).setAttribute('aria-pressed',state.selected.includes(t.id));
+    }
+    $('empty-notebook').hidden = !!state.trials.length;
+    $('compare').setAttribute('aria-disabled',state.selected.length !== 2);
+  }
+  function compare() {
+    finishReveal();
+    if (state.selected.length !== 2) {
+      hint('Pick two different trial numbers in the notebook, then press Compare. Run two trials first if the notebook is empty.');
+      return;
+    }
+    state.comparing = true;
+    const [a,b] = state.selected.map(id => state.trials.find(t => t.id === id));
+    const changes = Object.keys(a.c).filter(k => a.c[k] !== b.c[k]);
+    hint(`T${a.id} and T${b.id}: ${changes.length === 0 ? 'identical conditions' : changes.length === 1
+      ? 'one changed variable: ' + changes[0] : changes.length + ' variables changed; isolate one for a fair test'}.
+      Compare the curves, then change a condition and press Run trial.`);
+    Curio.tone(780,.1,.025);
+    V.how('compareRead',{now:true,valid:() => state.comparing,needs:'#run-trial'});
+    update();
+  }
+  function displayTrial() {
+    if (state.mode !== 'experiment') return null;
+    return state.comparing ? state.trials.find(t => t.id === state.selected[0]) : state.trial;
+  }
+  function shownConfig() { return displayTrial()?.c || config(); }
+  function shownPoint() {
+    const t = displayTrial();
+    if (t) {
+      const reveal = state.comparing ? 1 : state.reveal;
+      const index = clamp(Math.floor(reveal * (t.samples.length - 1)),0,t.samples.length - 1);
+      return t.samples[index];
+    }
+    return [state.seconds / 60,state.core,config().point];
+  }
+  function shownRates() { return rates(shownPoint()[1],shownConfig()); }
+  const iconURLs = Object.fromEntries(Object.keys(CLOTHES).map(k => [k,$('clothes-' + k).querySelector('img').src]));
+  let previousBackdrop = 'mild';
+  let lastReadout = '';
+  function update() {
+    const c = shownConfig();
+    const p = shownPoint();
+    const r = rates(p[1],c);
+    const stoppedTrial = state.comparing
+      ? state.selected.map(id => state.trials.find(t => t.id === id)).find(t => t?.stop)
+      : state.reveal === 1 && displayTrial()?.stop ? displayTrial() : null;
+    const trialStop = stoppedTrial?.stop;
+    $('safety').hidden = !state.safety && !trialStop;
+    if (trialStop) $('safety').textContent = `T${stoppedTrial.id}. ` + L[trialStop === 'cold' ? 'trialCold' : 'trialHot'];
+    else if (state.safety) $('safety').textContent = L[state.safety === 'cold' ? 'coldPause' : 'hotPause'];
+    const backdrop = c.air < 10 ? 'cold' : c.air < 30 ? 'mild' : c.humid ? 'hot-humid' : 'hot-dry';
+    if (backdrop !== previousBackdrop) {
+      for (const k of ['cold','mild','hot-dry','hot-humid']) $('scene-' + k).classList.toggle('current',k === backdrop);
+      previousBackdrop = backdrop;
+    }
+    const place = {cold:'Snowy prairie',mild:'School track','hot-dry':'Desert trail','hot-humid':'Summer park'}[backdrop];
+    $('setting-label').textContent = place + (displayTrial() ? ' / T' + displayTrial().id : '');
+    $('wind-streaks').hidden = !c.wind;
+    $('air-value').textContent = state.air + '°C';
+    $('air').setAttribute('aria-valuetext',state.air + ' degrees Celsius');
+    $('point-value').textContent = state.feverPoint.toFixed(1) + '°C';
+    $('set-point').setAttribute('aria-valuetext',state.feverPoint.toFixed(1) + ' degrees Celsius');
+    $('core-large').textContent = p[1].toFixed(2) + '°';
+    $('clock').textContent = `${Math.floor(p[0]).toString().padStart(2,'0')}:${Math.floor((p[0] % 1) * 60 + .01)
+      .toString().padStart(2,'0')} min`;
+    const coreHue = p[1] <= 37 ? 210 - (p[1] - 35) * 90 : 30 - (p[1] - 37) * 10;
+    const coreColor = `hsl(${clamp(coreHue,0,210)},100%,72%)`;
+    $('core-dot').setAttribute('fill',coreColor);
+    document.querySelectorAll('#core-glow stop:not(:first-child)').forEach(stop => stop.setAttribute('stop-color',coreColor));
+    $('skin-color').setAttribute('stop-color',`hsl(${clamp(40 - r.v * 10,0,50)},65%,${35 + r.v * 9}%)`);
+    $('rim-color').setAttribute('stop-color',r.v < 1 ? '#243e71' : r.v > 1.3 ? '#dc6a5a' : '#637ca8');
+    $('insulation').setAttribute('stroke-width',String(2 + 6 / CLOTHES[c.clothes]));
+    $('clothes-badge').src = iconURLs[c.clothes];
+    $('clothes-badge').alt = CLOTHES_NAMES[c.clothes] + ' insulation';
+    $('shakes').style.display = r.s > 1 ? '' : 'none';
+    $('shakes').removeAttribute('hidden');
+    const count = Math.ceil(r.e / 50);
+    const beads = $('sweat-beads');
+    if (beads.childElementCount !== count) {
+      beads.replaceChildren();
+      for (let i = 0; i < count; i++) {
+        const dot = document.createElementNS('http://www.w3.org/2000/svg','path');
+        const x = 72 + (i * 31 % 79);
+        const y = 65 + (i * 43 % 110);
+        dot.setAttribute('d',`M${x} ${y}q-7 10 0 10q7 0 0-10`);
+        beads.appendChild(dot);
+      }
+    }
+    $('point-label').textContent = 'Set point ' + c.point.toFixed(1) + '°C';
+    $('gap').textContent = Math.abs(r.error) < .005 ? 'Core at set point' :
+      `Core ${Math.abs(r.error).toFixed(2)}°C ${r.error > 0 ? 'above' : 'below'} set point`;
+    $('response-label').textContent = [r.e > 1 ? 'Sweating' : '',r.s > 1 ? 'Shivering' : '',
+      r.v < .99 ? 'Vessels tight' : r.v > 1.01 ? 'Vessels wide' : ''].filter(Boolean).join(' + ') ||
+      (Math.abs(r.net) < .5 ? 'Balanced' : 'No response active');
+    $('loop').classList.toggle('working',r.e > 1 || r.s > 1 || Math.abs(r.v - 1) > .01);
+    $('balance-label').textContent = Math.abs(r.net) < .5 ? 'In = out' : `${Math.abs(r.net).toFixed(0)} W net ${r.net > 0 ? 'gained' : 'lost'}`;
+    for (const [key,val,max,text] of [['made',r.m,547,r.m.toFixed(0) + ' W'],['sweat',r.e,600,r.e.toFixed(0) + ' W'],
+      ['shiver',r.s,250,r.s.toFixed(0) + ' W'],['vessels',r.v,3,(r.v < .99 ? 'tight ' : r.v > 1.01 ? 'wide ' : '') + r.v.toFixed(1) + 'x']]) {
+      $(key + '-gauge').textContent = text;
+      $('g-' + key).style.setProperty('--level',clamp(val / max * 100,0,100) + '%');
+    }
+    $('play').textContent = state.running ? 'Ⅱ Pause' : state.safety ? 'Reset first' : '▶ Play';
+    $('fever-conditions').textContent = 'Conditions held: ' + conditions(config()) + '. Return to Lab to change them.';
+    const values = [
+      ['Core temperature',p[1].toFixed(2) + ' °C'],['Set point',c.point.toFixed(1) + ' °C'],
+      ['Heat made',r.m.toFixed(0) + ' W'],['Heat lost through skin',r.q.toFixed(0) + ' W' + (r.q < 0 ? ' (gained)' : '')],
+      ['Sweat cooling',r.e.toFixed(0) + ' W'],['Shivering',r.s.toFixed(0) + ' W'],
+      ['Skin vessels',(r.v < .99 ? 'tight ' : r.v > 1.01 ? 'wide ' : 'baseline ') + r.v.toFixed(1) + 'x']
+    ];
+    const html = values.map(([label,value]) => `<dt>${label}</dt><dd>${value}</dd>`).join('');
+    if (html !== lastReadout) { $('readouts').innerHTML = html; lastReadout = html; }
+    const minute = Math.floor(p[0]);
+    if (minute !== state.minuteAnnounced) {
+      $('live-readout').textContent = `Minute ${minute}. Core ${p[1].toFixed(2)} degrees. Set point ${c.point.toFixed(1)} degrees.`;
+      state.minuteAnnounced = minute;
+    }
+    $('tip').textContent = c.humid && r.e >= 149.9 ? L.humidHint : r.s > 1 ? L.shiverOn : r.v < 1 ? L.vesselsTight :
+      ['Sweat only cools when it evaporates. Humid air slows that down.',
+        'Tight skin vessels keep warm blood in the core, so the skin gets cold first.',
+        'A thermostat needs three parts: a sensor, a set point, a switch.',
+        'Shivering is muscles working only to make heat.'][Math.floor(p[0] / 10) % 4];
+    drawGraph();
+  }
+  function interpolate(samples, x, column = 1) {
+    if (x < samples[0][0] || x > samples[samples.length - 1][0]) return NaN;
+    let lo = 0;
+    let hi = samples.length - 1;
+    while (lo + 1 < hi) {
+      const m = (lo + hi) >> 1;
+      if (samples[m][0] <= x) lo = m;
+      else hi = m;
+    }
+    const a = samples[lo];
+    const b = samples[hi];
+    const f = a[0] === b[0] ? 0 : (x - a[0]) / (b[0] - a[0]);
+    return a[column] + f * (b[column] - a[column]);
+  }
+  let g = null;
+  let graphSize = '';
+  function drawGraph() {
+    const svg = $('graph');
+    const w = Math.round(svg.clientWidth);
+    const h = Math.round(svg.clientHeight);
+    if (w < 100 || h < 80) return;
+    const end = state.mode === 'experiment' ? 60 : Math.max(60,state.seconds / 60);
+    const start = end - 60;
+    const size = `${w},${h},${start}`;
+    if (!g || size !== graphSize) {
+      svg.replaceChildren();
+      svg.setAttribute('viewBox',`0 0 ${w} ${h}`);
+      g = Plane(svg,{x:[start,end],y:[35,40],width:w - 55,height:h - 69,left:37,top:29,
+        grid:[10,1],labels:[20,1],ticks:'edge',axes:false});
+      const band = document.createElementNS('http://www.w3.org/2000/svg','rect');
+      band.setAttribute('width',w - 55);
+      band.setAttribute('height',h - 69);
+      band.setAttribute('fill','#ffffff03');
+      g.layer('back').appendChild(band);
+      graphSize = size;
+    }
+    g.clear('data');
+    g.clear('point');
+    const traces = state.mode === 'experiment' && state.comparing ? state.selected.map(id => state.trials.find(t => t.id === id)) :
+      state.mode === 'experiment' && state.trial ? [state.trial] : [{samples:state.history,c:config()}];
+    traces.forEach((t,i) => {
+      const last = t.samples[t.samples.length - 1][0];
+      const visible = state.mode === 'experiment' && !state.comparing ? last * state.reveal : last;
+      g.fn(x => interpolate(t.samples,x),{id:'data',color:i ? '#6ab8ff' : '#ff9a6b',width:2.7,
+        dashed:i ? '2 5' : false,domain:[Math.max(start,t.samples[0][0]),visible],label:t.id ? 'Trial ' + t.id : 'Core temperature'});
+    });
+    const point = traces[0]?.c.point ?? config().point;
+    g.segment([start,point],[end,point],{id:'point',color:'#e25a7e',width:1.5,dashed:true});
+    $('legend-a').textContent = traces[0]?.id ? `━━ T${traces[0].id}` : '━━ Core';
+    $('legend-b').textContent = traces[1]?.id ? `··· T${traces[1].id} · - - set point` : '┄ Set point';
+    $('graph-caption').textContent = state.mode === 'experiment' ? state.comparing ? 'Two trials / same time axis' :
+      state.trial?.stop ? `Stopped at minute ${(state.trial.seconds / 60).toFixed(1)} · ${state.trial.stop} limit` : 'Trial / 60 simulated minutes' :
+      `Last 60 simulated minutes · set point ${config().point.toFixed(1)}°C`;
+    if (state.comparing && traces.length === 2) {
+      const minute = Math.min(...traces.map(t => t.seconds / 60));
+      const delta = interpolate(traces[1].samples,minute) - interpolate(traces[0].samples,minute);
+      $('graph-caption').textContent = `T${traces[1].id} - T${traces[0].id} at ${minute.toFixed(1)} min: ${delta >= 0 ? '+' : ''}${delta.toFixed(2)}°C`;
+    }
+  }
+  function changed() {
+    Curio.tone(330,.035,.015);
+    if (state.mode === 'experiment' && displayTrial()) {
+      hint(`T${displayTrial().id} keeps its recorded conditions. Press Run trial to test the new controls.`);
+    }
+    update();
+  }
+  for (const mode of ['lab','experiment','fever']) $('m-' + mode).onclick = () => setMode(mode);
+  $('air').oninput = e => { state.air = +e.target.value; changed(); };
+  for (const humid of [false,true]) $(humid ? 'humid' : 'dry').onclick = () => {
+    state.humid = humid;
+    $('humid').setAttribute('aria-pressed',humid);
+    $('dry').setAttribute('aria-pressed',!humid);
+    changed();
+  };
+  $('wind').onclick = () => {
+    state.wind = !state.wind;
+    $('wind').setAttribute('aria-pressed',state.wind);
+    $('wind').textContent = state.wind ? 'Wind on' : 'Wind off';
+    changed();
+  };
+  for (const k of Object.keys(CLOTHES)) $('clothes-' + k).onclick = () => {
+    state.clothes = k;
+    for (const v of Object.keys(CLOTHES)) $('clothes-' + v).setAttribute('aria-pressed',v === k);
+    changed();
+  };
+  for (const k of Object.keys(HEAT)) $('activity-' + k).onclick = () => {
+    state.activity = k;
+    for (const v of Object.keys(HEAT)) $('activity-' + v).setAttribute('aria-pressed',v === k);
+    changed();
+  };
+  for (const speed of [1,5]) $('speed-' + speed).onclick = () => {
+    state.speed = speed;
+    for (const v of [1,5]) $('speed-' + v).setAttribute('aria-pressed',v === speed);
+    changed();
+  };
+  for (const key of ['sweat','vessels','shiver']) $('switch-' + key).onclick = () => {
+    state[key] = !state[key];
+    $('switch-' + key).setAttribute('aria-pressed',state[key]);
+    $('switch-' + key).querySelector('span').textContent = state[key] ? 'ON' : 'OFF';
+    changed();
+  };
+  $('play').onclick = () => {
+    if (state.safety) return;
+    state.trial = null;
+    state.comparing = false;
+    finishReveal(false);
+    state.running = !state.running;
+    if (state.running) state.started = true;
+    hint(state.running ? state.mode === 'fever' ? 'feverRunHint' : 'runningHint' : 'pausedHint');
+    changed();
+    responseVoice(rates(state.core,config()),config());
+  };
+  $('reset').onclick = () => {
+    V.hush();
+    finishReveal(false);
+    state.trial = null;
+    state.comparing = false;
+    resetClock();
+    if (!state.safety) {
+      if (state.mode === 'fever' && state.feverPoint !== 37) feverHint();
+      else hint(state.mode === 'fever' ? 'feverHint' : state.mode === 'experiment' ? 'expHint' : 'labHint');
+    }
+    update();
+  };
+  function setPoint(value, event) {
+    state.feverPoint = value;
+    $('set-point').value = value;
+    if (event) {
+      V.hush();
+      state.feverStarted = event === 'chills';
+      feverHint();
+      V.say(event,{valid:() => event === 'chills'
+        ? state.feverPoint === 38.5 && Math.abs(state.core - 37) < .1
+        : state.feverPoint === 37 && state.core > 37.005});
+    } else {
+      V.hush();
+      feverHint();
+    }
+    Curio.tone(390,.045,.02);
+    update();
+  }
+  function feverHint() {
+    if (state.safety) {
+      hint(state.feverPoint >= 40
+        ? 'Safety pause. Lower Set point below 40°C, then press Reset.'
+        : 'Safety pause. Press Reset before playing again.');
+      return;
+    }
+    const action = state.running ? 'Watch the Compare box, or press Pause to inspect it.' : 'Press Play and watch the Compare box.';
+    hint(`Set point ${state.feverPoint.toFixed(1)}°C. ${action}`);
+  }
+  $('set-point').oninput = e => setPoint(+e.target.value);
+  $('fever-starts').onclick = () => setPoint(38.5,'chills');
+  $('fever-breaks').onclick = () => setPoint(37,'breaks');
+  $('run-trial').onclick = runTrial;
+  $('compare').onclick = compare;
+  $('clear-notebook').onclick = () => {
+    V.hush();
+    finishReveal(false);
+    state.trials = [];
+    state.selected = [];
+    state.trial = null;
+    state.comparing = false;
+    $('trials').replaceChildren();
+    renderNotebook();
+    hint('expHint');
+    update();
+  };
+  // The live clock and the trial reveal have separate clocks. Trials never advance Lab.
+  let previous = performance.now();
+  let accumulator = 0;
+  let lastFrameDraw = 0;
+  function frame(now) {
+    const dt = Math.min(.25,(now - previous) / 1000);
+    previous = now;
+    if (state.running) {
+      accumulator += dt * 60 * state.speed;
+      const n = Math.floor(accumulator);
+      if (n > 0) { accumulator -= n; advance(n); }
+    }
+    if (pendingTrialDone && state.mode === 'experiment') {
+      state.reveal = Curio.reduce ? 1 : clamp((now - revealStart) / 2000,0,1);
+      if (now - lastFrameDraw > 40) {
+        update();
+        responseVoice(shownRates(),shownConfig());
+        lastFrameDraw = now;
+      }
+      if (state.reveal >= 1) { finishReveal(); update(); }
+    }
+    if (!pendingTrialDone && state.mode === 'experiment' && state.trial && now - lastFrameDraw > 200) {
+      responseVoice(shownRates(),shownConfig());
+      lastFrameDraw = now;
+    }
+    requestAnimationFrame(frame);
+  }
+  Curio.init({clips:"voice:*",rate:.9});
+  Curio.onMotion(() => { if (pendingTrialDone) { finishReveal(); update(); } });
+  new ResizeObserver(() => { graphSize = ''; drawGraph(); }).observe($('graph-box'));
+  window.__tool = {
+    state,setMode,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },
+    rates,config,integrate,computeTrial,advance,runTrial,compare,update,resetClock
+  };
+  renderNotebook();
+  setMode('lab');
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

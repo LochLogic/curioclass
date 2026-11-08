@@ -1,0 +1,15 @@
+{
+  "house_style": "Sophisticated tactile editorial illustration for a Grade 9 mathematics studio. Slate blue, graphite and subtle cool daylight, realistic material grain, restrained gouache texture, crisp craft detail. No text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "studio-mat",
+      "prompt": "A dark slate-blue rubber craft mat seen straight from above, filling the entire image. Fine woven fabric grain, subtle rubbed wear, soft directional studio light from the upper left, slightly darker lower right. Broad clear central working surface. A slim beveled rubber lip at the outer edge gives the surface weight. Painted illustration with finely observed material texture. The surface is blank, with no objects, markings, grid, text or people.",
+      "aspect": "16:10",
+      "width": 1440,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

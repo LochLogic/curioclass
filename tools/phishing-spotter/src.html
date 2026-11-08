@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Phishing Spotter | Curio Class</title>
+<meta name="description" content="Inspect fictional emails, texts and sign-in pages. Keep or report, then catch the tell. Grades 6-8. Offline.">
+<!--
+Phishing Spotter, Curio Class. Adapted from kit/starter/src.html.
+Students, grades 6-8 computer science. CSTA MS-SYS-SE-32, MS-SYS-SE-33; 2017 2-NI-05.
+Sources: FTC How To Recognize and Avoid Phishing Scams; CISA Recognize and Report Phishing;
+CISA Avoiding Social Engineering and Phishing Attacks; RFC 2606 and RFC 6761; NANPA fictional numbers.
+Every message and place is invented. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+No network requests. Only Best and kit Motion remain on this device. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style id="tool-style">
+:root {
+  --paper:#12141c; --panel:#1b1f2b; --ink:#eef1f6; --muted:#a5adbd; --line:#2c3242;
+  --brand:#3ee6ff; --brand-ink:#00262e; --btn:#262c3b; --btn-line:#485267;
+  --head-ink:#eef1f6; --focus:#ffd23f; --sec-glow:#ffd23f;
+}
+body { overflow:hidden; }
+button { touch-action:manipulation; }
+header { background:#12141c; border-bottom:1px solid #445067; padding:12px 22px; gap:10px; }
+h1 { font-size:27px; letter-spacing:-.8px; }
+h1 small { color:var(--muted); font-size:12px; letter-spacing:.08em; margin-top:4px; opacity:1; }
+.seg { border-radius:9px; border-width:1px; }
+.seg button { min-width:44px; min-height:46px; background:#1b1f2b; font-size:14px; padding:0 18px; }
+.seg button[aria-pressed="true"] { background:var(--brand); color:var(--brand-ink); }
+.icon-btn { min-height:44px; border-width:1px; border-radius:9px; font-size:13px; padding:0 11px; }
+#sound { min-width:82px; }
+main { grid-template-columns:minmax(0,1fr) 308px; min-height:0; position:relative; }
+.stage { grid-column:1; grid-row:1; min-height:0; display:flex; padding:24px 28px 18px; isolation:isolate;
+  background:#141020; }
+.room { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-3; }
+.stage::after { content:''; position:absolute; inset:0; z-index:-2;
+  background:linear-gradient(90deg,#090d2175,#090d2120 50%,#090d2180); }
+.cabinet { position:relative; width:100%; max-width:1100px; margin:auto; height:100%; display:flex; flex-direction:column;
+  border:2px solid #647188; border-radius:22px 22px 10px 10px; padding:0 22px 16px;
+  background:linear-gradient(110deg,#444b60 0%,#262b3b 3%,#161b27 48%,#242939 96%,#0b101a 100%);
+  box-shadow:0 14px 30px #0009,inset 0 0 0 5px #080d17,0 0 26px #3ee6ff24; }
+.cabinet::before,.cabinet::after { content:'+'; position:absolute; bottom:8px; font:14px monospace; color:#748096; }
+.cabinet::before { left:9px; } .cabinet::after { right:9px; }
+.marquee { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:12px 4px; flex:none; }
+.marquee strong { font:900 clamp(19px,2.5vw,34px)/1 'Trebuchet MS',sans-serif; color:#c6faff;
+  letter-spacing:.09em; text-shadow:0 0 12px #3ee6ff60; }
+.marquee small { display:block; margin-top:7px; color:#a5adbd; font:600 10px monospace; letter-spacing:.18em; }
+.led { display:inline-block; width:8px; height:8px; border-radius:50%; background:#3ee6ff;
+  box-shadow:0 0 9px #3ee6ff; animation:breathe 3s ease-in-out infinite; margin-right:8px; }
+@keyframes breathe { 50% { opacity:.4; } }
+.calm .led { animation:none!important; }
+.clock { width:64px; height:64px; flex:none; display:grid; place-items:center; border:3px solid #59657a;
+  border-radius:50%; background:conic-gradient(var(--brand) var(--clock,100%),#111725 0); padding:4px; }
+.clock b { display:grid; place-items:center; width:100%; height:100%; border-radius:50%; background:#131925;
+  font:800 22px monospace; }
+.screen-shell { flex:1; min-height:0; border-radius:13px; padding:8px; background:#080d16;
+  box-shadow:inset 0 0 0 1px #626c80,0 3px 0 #3ee6ff44; display:flex; flex-direction:column; }
+.screen-top { flex:none; height:37px; display:flex; align-items:center; justify-content:space-between; padding:0 12px;
+  background:#e9ebef; color:#555c6b; border-radius:7px 7px 0 0; font:600 11px monospace; letter-spacing:.06em; }
+.screen-top img { width:28px; height:28px; object-fit:contain; vertical-align:middle; margin-right:7px; }
+.message-viewport { min-height:0; flex:1; overflow:auto; background:#fbfbf8; position:relative; }
+#artifact { min-height:100%; height:100%; }
+.sec-card { border:0; border-radius:0; min-height:100%; font-size:16px; display:flex; flex-direction:column; }
+.sec-card>div:not(.sec-status) { flex:1; }
+.sec-head { padding:12px 15px; font-size:15px; gap:2px 12px; }
+.sec-head dt { display:flex; align-items:center; font-size:12px; }
+.sec-head dd .sec-spot { display:flex; align-items:center; width:100%; }
+.sec-head dd { min-width:0; }
+.sec-head dd .sec-spot { overflow-wrap:anywhere; }
+.sec-subject { font-size:20px; }
+.sec-body { padding:15px; }
+.sec-body p { margin-bottom:5px; }
+.sec-spot { min-height:44px; min-width:44px; }
+.sec-body p.sec-spot { display:flex; align-items:center; padding:4px 6px; margin-left:-6px; }
+.sec-link { display:inline-flex; align-items:center; padding:4px 6px; overflow-wrap:anywhere; }
+.sec-att { min-height:44px; padding:5px 12px; }
+.sec-status { flex:none; min-height:37px; white-space:normal; overflow-wrap:anywhere; padding:8px 10px;
+  font:12px/1.4 monospace; color:#364356; background:#e9ebef; }
+#link-status:empty { display:none; }
+#link-status:not(:empty) + #result { display:none; }
+.sec-phone { width:min(100%,450px); margin:10px auto; border-width:6px; }
+.sec-sender { padding:7px 12px; }
+.sec-sender>.sec-spot { display:flex; align-items:center; justify-content:center; }
+.sec-bubble { min-height:44px; display:flex; align-items:center; max-width:100%; }
+.sec-bubbles { gap:4px; }
+.sec-page { padding:12px; gap:6px; }
+.sec-logo img { width:64px; height:64px; object-fit:contain; }
+.sec-addr { min-height:44px; white-space:normal; overflow-wrap:anywhere; border-radius:7px; font-size:14px; }
+.sec-input { background:#f2f3f5; }
+.sec-fake-btn { background:#33465e; }
+.spot-number { font:700 10px/17px monospace; display:inline-grid; place-items:center; width:17px; height:17px;
+  border:1px solid #858c98; color:#555c6b; border-radius:4px; flex:none; margin-right:7px; }
+.sec-marked .spot-number { background:#ffd23f; color:#1c1f26; }
+.sec-tag { font-size:11px; line-height:16px; margin:2px 4px; }
+.result-strip { min-height:46px; flex:none; display:flex; align-items:center; gap:8px; padding:8px 12px;
+  background:#e9ebef; color:#364356; border-top:1px solid #d9dce3; font-size:14px; font-weight:600; }
+.result-strip.good { background:#d8f4e3; color:#15582f; }
+.result-strip.bad { background:#fff0ed; color:#b42318; }
+.result-strip img { width:32px; height:32px; object-fit:contain; }
+.result-strip.pop { animation:pop .24s ease-out; }
+@keyframes pop { from { box-shadow:inset 0 0 0 5px #ffd23f; } }
+.calm .pop { animation:none!important; }
+.cabinet-foot { display:flex; justify-content:space-between; gap:10px; font:11px monospace; color:#a5adbd;
+  padding:13px 2px 0; letter-spacing:.04em; }
+.panel { grid-column:2; grid-row:1; padding:16px; gap:11px; border-left:1px solid #445067;
+  background:linear-gradient(100deg,#252b3a,#1b1f2b 12%); min-height:0; overflow:auto; }
+.eyebrow { margin:0; color:var(--brand); font:700 10px monospace; letter-spacing:.16em; text-transform:uppercase; }
+.hint { margin:0; min-height:66px; font-size:15px; line-height:1.45; }
+.action-row { display:grid; grid-template-columns:1fr 1fr; gap:9px; flex:none; }
+.call { min-height:62px; border-radius:10px; background:linear-gradient(#333d4e,#252c3b); border:1px solid #617087;
+  border-bottom:4px solid #090d15; font-size:18px; font-weight:800; box-shadow:inset 0 1px #ffffff20;
+  padding:6px 5px; white-space:nowrap; }
+.call .key { font:11px monospace; color:#a5adbd; margin-left:7px; }
+#keep { color:#7ee0a8; } #report { color:#ff8f80; }
+.call:active { transform:translateY(2px); border-bottom-width:2px; }
+.call:disabled { opacity:.48; cursor:default; }
+.primary { min-height:46px; width:100%; flex:none; background:var(--brand); color:var(--brand-ink); border:0;
+  border-bottom:3px solid #127d8c; border-radius:8px; font-weight:800; padding:8px 10px; }
+.sub { min-height:44px; background:#262c3b; border:1px solid #546076; border-radius:7px; padding:6px 10px; }
+.stats { display:grid; grid-template-columns:1fr 1fr; gap:8px; flex:none; }
+.stat { border:1px solid #4b566b; background:#101621; border-radius:8px; padding:9px 12px; }
+.stat small { display:block; color:#a5adbd; font:10px monospace; text-transform:uppercase; }
+.stat strong { display:block; color:#c6faff; font:800 28px monospace; }
+.tell-count { font:800 16px monospace; color:#ffd23f; min-height:36px; display:flex; gap:9px; align-items:center; }
+.tell-count::before { content:''; display:block; flex:none; width:30px; height:30px; border-radius:50%;
+  background:conic-gradient(#ffd23f var(--tell,100%),#384257 0); border:3px solid #384257; }
+.calm .tell-count::before { display:none; }
+.why { background:#111824; border:1px solid #47536a; border-radius:8px; padding:11px; font-size:13px; }
+.why h2 { font-size:14px; margin:0 0 7px; }
+.why p { margin:0; line-height:1.45; }
+.why .evidence-count,.why .context-note { border-top:1px solid #47536a; padding-top:7px; margin-top:7px; }
+.why .context-note { color:#c6faff; }
+.why-list { display:flex; flex-direction:column; gap:3px; }
+.why-list button { background:transparent; border:0; text-align:left; color:#ffd23f; min-height:44px; padding:4px; font-size:13px; }
+.book { border:1px solid #4b566b; border-radius:8px; padding:11px; background:linear-gradient(110deg,#273043,#1a2231);
+  box-shadow:inset 4px 0 #4b566b; }
+.book h2 { font-size:13px; margin:0 0 9px; }
+.book-row { display:flex; gap:8px; align-items:center; min-height:47px; border-top:1px solid #ffffff10; padding:4px 0; }
+.book-row img { width:40px; height:40px; object-fit:contain; flex:none; }
+.book-row b { display:block; font-size:11px; font-weight:600; }
+.book-row small { color:#bce8ee; display:block; overflow-wrap:anywhere; font:11px/1.35 monospace; }
+.privacy { margin:0; color:#a5adbd; font-size:11px; line-height:1.4; }
+#book-open { display:none; }
+.round-card { margin:auto; max-width:500px; padding:28px; text-align:center; color:#1c1f26; }
+.round-card h2 { font:800 28px 'Trebuchet MS',sans-serif; margin:8px 0; }
+.round-card .big-score { font:800 72px monospace; color:#124d58; }
+.round-card p { font-size:15px; margin:8px 0; }
+.recap { display:flex; gap:5px; flex-wrap:wrap; justify-content:center; padding:10px 0; }
+.recap i { width:21px; height:21px; border-radius:3px; display:grid; place-items:center; font:12px monospace; font-style:normal; }
+.recap i.good { background:#1f7a46; color:#fff; } .recap i.bad { background:#b42318; color:#fff; }
+.round-card .recap-key { font-size:12px; color:#555c6b; }
+.round-card .next-try { padding:10px; border:1px solid #9bb5bc; border-radius:8px; background:#e9f6f6; font-size:14px; }
+.start-emblem { width:100px; height:100px; margin:10px auto; border:3px solid #1f8799; border-radius:24px;
+  transform:rotate(-7deg); display:grid; place-items:center; font:900 55px monospace; color:#124d58;
+  background:linear-gradient(135deg,#e1fbff,#a7e6ef); box-shadow:7px 7px 0 #d4d9e0; }
+.arrival { animation:arrive .22s ease-out; }
+@keyframes arrive { from { opacity:.5; transform:translateX(18px); } }
+.calm .arrival { animation:none!important; }
+.tells-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr));
+  width:100%; gap:12px; min-height:0; }
+.tell-card { min-width:0; text-align:left; padding:14px; border:1px solid #6c7592; border-radius:12px;
+  background:linear-gradient(135deg,#30384e,#171c2b); box-shadow:0 5px 0 #090e19; position:relative; }
+.tell-card img { display:block; width:72px; height:72px; object-fit:contain; margin:0 auto 10px;
+  filter:drop-shadow(0 5px 5px #0005); }
+.tell-card b { display:block; font-size:17px; color:#e9faff; margin-bottom:7px; }
+.tell-card p { margin:0 0 8px; color:#bfc6d3; font-size:13px; line-height:1.35; }
+.tell-card q { display:block; color:#ffd23f; font-size:12px; line-height:1.3; overflow-wrap:anywhere; }
+.tick { position:absolute; top:10px; right:12px; color:#7ee0a8; font-size:19px; }
+.tick { font-size:10px; }
+body.tells main { grid-template-columns:1fr; grid-template-rows:auto minmax(0,1fr); }
+body.tells .panel { grid-column:1; grid-row:1; display:grid; grid-template-columns:1fr 1.3fr; gap:10px; padding:10px 22px; }
+body.tells .panel>.eyebrow,body.tells .panel>:not(#hint):not(#what-to-do):not(.eyebrow) { display:none!important; }
+body.tells .hint { min-height:0; }
+#what-to-do { font-size:13px; line-height:1.4; margin:0; color:#bfc6d3; }
+body.tells .stage { grid-row:2; padding:18px 24px 22px; }
+dialog { max-width:min(440px,94vw); color:#eef1f6; background:#1b1f2b; border:2px solid #3ee6ff;
+  border-radius:12px; padding:20px; box-shadow:0 10px 70px #000b; }
+dialog::backdrop { background:#080c19b8; }
+dialog h2 { margin:0 0 12px; font-size:20px; }
+dialog .action-row { margin-top:15px; }
+@media (min-width:1001px) and (min-height:700px) {
+  .tell-card img { width:108px; height:108px; }
+}
+@media (min-width:1600px) and (min-height:900px) {
+  .tell-card img { width:144px; height:144px; }
+}
+@media (max-width:1100px) {
+  header { padding:8px 12px; gap:7px; }
+  h1 { font-size:22px; } h1 small { font-size:11px; }
+  .seg button { padding:0 12px; }
+  main { grid-template-columns:minmax(0,1fr) 260px; }
+  .stage { padding:16px; } .cabinet { padding:0 13px 12px; }
+  .panel { padding:12px; gap:8px; } .book-row img { width:30px; height:30px; }
+}
+@media (max-height:650px) and (min-width:761px) {
+  header { padding:4px 10px; gap:6px; flex-wrap:nowrap; }
+  h1 { font-size:20px; } h1 small { display:none; }
+  .seg button,.icon-btn { min-height:44px; font-size:12px; padding:0 10px; }
+  main { grid-template-columns:minmax(0,1fr) 230px; }
+  .stage { padding:10px; } .marquee { padding:9px 3px; } .marquee strong { font-size:20px; }
+  .clock { width:48px; height:48px; } .clock b { font-size:17px; }
+  .marquee small,.cabinet-foot { display:none; }
+  .panel { gap:6px; padding:9px; } .hint { font-size:13px; min-height:55px; }
+  .call { min-height:50px; font-size:16px; }
+  .book { display:none; } #book-open { display:block; }
+  .sec-body { padding:8px 12px; } .sec-card { font-size:14px; }
+  .sec-head { padding:5px 12px; font-size:13px; } .sec-subject { font-size:16px; }
+  .sec-page { padding:4px; gap:3px; } .sec-logo img { width:44px; height:44px; }
+  .sec-field { gap:0; } .sec-input { padding:4px 8px; }
+  .screen-top { height:29px; } .result-strip { min-height:38px; padding:5px 8px; font-size:12px; }
+  .why { padding:7px; } .why-list { gap:0; }
+  .round-card { padding:12px; } .round-card .big-score { font-size:44px; }
+  .start-emblem { width:65px; height:65px; font-size:35px; }
+  .tell-card { padding:9px; } .tell-card b { font-size:14px; }
+  .tell-card { display:grid; grid-template-columns:72px minmax(0,1fr); grid-template-rows:1fr auto;
+    align-items:center; gap:4px; }
+  .tell-card img { grid-column:1; grid-row:1; margin:0; }
+  .tell-card b { grid-column:2; grid-row:1; }
+  .tell-card p { display:none; }
+  .tell-card q { grid-column:1 / -1; grid-row:2; font-size:11px; }
+  .why { padding:6px; }
+  .why h2 { display:none; }
+  .why-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .why-list button { font-size:11px; }
+  dialog { padding:14px; }
+  dialog .book-row { min-height:36px; padding:2px 0; }
+  dialog .book-row img { width:30px; height:30px; }
+}
+@media (min-width:761px) and (min-height:550px) and (max-height:650px) {
+  .tell-card { grid-template-rows:auto 1fr auto; }
+  .tell-card p { display:block; grid-column:1 / -1; grid-row:2; font-size:12px; }
+  .tell-card q { grid-row:3; }
+}
+@media (max-width:760px) {
+  header { padding:5px 8px; gap:5px; flex-wrap:nowrap; }
+  h1 { font-size:18px; } h1 small { display:none; }
+  .seg button { min-height:44px; padding:0 9px; font-size:12px; }
+  .icon-btn { min-height:44px; padding:0 8px; font-size:12px; }
+  #sound { min-width:72px; }
+  main { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) auto; }
+  .panel { grid-column:1; grid-row:2; border-left:0; border-top:1px solid #445067; display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(170px,.7fr); gap:6px 12px; padding:8px 12px; overflow:visible; }
+  .panel>.eyebrow,.privacy { display:none; }
+  .hint { grid-column:1; grid-row:1; min-height:0; font-size:13px; }
+  .action-row { grid-column:2; grid-row:1 / span 2; }
+  .call { min-height:50px; }
+  .call .key { display:none; }
+  #next,#done,#start { grid-column:1; grid-row:2; min-height:44px; }
+  #book-open { display:block; grid-column:1; grid-row:3; min-height:44px; }
+  .book { display:none; } .why { grid-column:1 / -1; font-size:12px; padding:6px 9px; }
+  .why h2 { display:none; } .why-list { flex-direction:row; flex-wrap:wrap; }
+  .why-list button { font-size:11px; }
+  .stats { grid-column:1; grid-row:3; display:flex; gap:6px; }
+  .stat { padding:4px 9px; display:flex; gap:8px; align-items:center; }
+  .stat strong { font-size:20px; } #clear-best { grid-column:2; grid-row:3; min-height:44px; }
+  #best-note { grid-column:1 / -1; font-size:11px; margin:0; }
+  body.arcade #book-open { grid-column:2; grid-row:3; }
+  body.arcade #clear-best { grid-column:2; grid-row:4; }
+  body.arcade #best-note { grid-column:1; grid-row:4; }
+  .panel>#best-note:not([hidden]) { display:block; }
+  .tell-count { grid-column:1; grid-row:2; font-size:16px; min-height:0; }
+  .stage { padding:10px 14px; }
+  .marquee { padding:8px 3px; } .marquee strong { font-size:21px; }
+  .marquee small { margin-top:4px; font-size:10px; }
+  .clock { width:48px; height:48px; } .clock b { font-size:17px; }
+  .cabinet-foot { display:none; }
+  .cabinet { padding:0 12px 10px; border-radius:15px 15px 8px 8px; }
+  .sec-head { padding:5px 10px; } .sec-subject { font-size:18px; }
+  .sec-body { padding:8px 12px; }
+  .sec-page { padding:5px; gap:3px; }
+  .sec-status { min-height:29px; font-size:11px; }
+  .screen-top { height:29px; font-size:10px; }
+  .result-strip { min-height:35px; padding:5px 8px; font-size:12px; }
+  .tells-grid { gap:7px; }
+  .tell-card { padding:8px; }
+  .tell-card img { float:left; margin:0 7px 4px 0; }
+  .tell-card b { font-size:13px; margin-bottom:4px; }
+  .tell-card p { font-size:11px; } .tell-card q { font-size:11px; }
+  body.tells .panel { display:block; padding:8px 12px; }
+  body.tells #what-to-do { font-size:11px; margin-top:5px; }
+  body.tells .stage { padding:10px; }
+}
+@media (max-width:760px) and (max-height:550px) {
+  main { grid-template-columns:minmax(0,1fr) 202px; grid-template-rows:minmax(0,1fr); }
+  .panel { grid-column:2; grid-row:1; display:flex; flex-direction:column; padding:8px; overflow:auto; gap:6px; }
+  .hint { font-size:13px; min-height:62px; }
+  .action-row { display:grid; min-height:50px; }
+  .stage { padding:8px; } .marquee { padding:8px 0; } .marquee small { display:none; }
+  .marquee strong { font-size:16px; letter-spacing:.04em; }
+  .clock { width:42px; height:42px; } .clock b { font-size:15px; }
+  .sec-card { font-size:13px; } .sec-head { font-size:13px; padding:3px 8px; }
+  .sec-subject { font-size:15px; } .sec-body { padding:5px 9px; }
+  .sec-body p { margin-bottom:0; }
+  .sec-logo img { width:38px; height:38px; }
+  .sec-page { padding:3px; gap:2px; }
+  .screen-top { height:26px; } .screen-top img { width:23px; height:23px; }
+  .cabinet { padding:0 8px 8px; } .screen-shell { padding:4px; }
+  .round-card { padding:8px; } .round-card h2 { font-size:21px; }
+  .round-card .big-score { font-size:40px; } .round-card p { font-size:13px; }
+  .start-emblem { width:55px; height:55px; font-size:30px; margin:6px auto; }
+  body.tells main { grid-template-columns:1fr; grid-template-rows:auto minmax(0,1fr); }
+  body.tells .panel { grid-column:1; grid-row:1; display:flex; flex-direction:row; }
+  body.tells .hint { min-height:0; flex:1; }
+  body.tells #what-to-do { flex:1.4; }
+  .tell-card img { float:left; width:72px; height:72px; margin:0 5px 0 0; }
+  .tell-card p { display:none; } .tell-card q { font-size:10px; }
+  .tell-card { display:grid; grid-template-columns:72px minmax(0,1fr); grid-template-rows:1fr auto;
+    align-items:center; gap:3px; }
+  .tell-card img { grid-column:1; grid-row:1; float:none; margin:0; }
+  .tell-card b { grid-column:2; grid-row:1; font-size:12px; }
+  .tell-card q { grid-column:1 / -1; grid-row:2; }
+}
+@media (max-width:550px) {
+  header { display:grid; grid-template-columns:minmax(0,1fr) auto auto auto; justify-content:center; }
+  h1 { grid-column:1 / -1; width:100%; text-align:center; font-size:20px; padding:2px; }
+  .seg { flex:1; display:flex; } .seg button { flex:1; padding:0 7px; }
+  .seg button { min-width:0; padding:0 5px; }
+  .icon-btn { min-width:44px; font-size:11px; padding:0 5px; }
+  #sound { min-width:62px; }
+  .stage { padding:8px; } .cabinet { padding:0 7px 7px; }
+  .marquee strong { font-size:18px; } .marquee small { display:none; }
+  .panel { padding:8px; grid-template-columns:minmax(0,1fr) 168px; gap:5px 8px; }
+  .call { font-size:15px; } .call .key { display:none; }
+  .hint { font-size:12px; }
+  .sec-head { font-size:15px; grid-template-columns:1fr; gap:0; padding:7px 10px; }
+  .sec-head dt { display:none; }
+  .sec-subject { font-size:17px; }
+  .sec-body { padding:7px 11px; }
+  .sec-card { font-size:15px; }
+  .screen-top { padding:0 6px; }
+  .sec-tag { font-size:10px; }
+  .sec-addr { font-size:15px; }
+  .sec-logo { font-size:16px; } .sec-logo img { width:48px; height:48px; }
+  .sec-phone { border-width:4px; margin:6px auto; }
+  .round-card { padding:12px; } .round-card h2 { font-size:24px; }
+  .round-card .big-score { font-size:50px; }
+  .start-emblem { width:65px; height:65px; font-size:35px; }
+  .tells-grid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(4,minmax(0,1fr)); gap:5px; }
+  .tell-card { padding:5px; }
+  .tell-card img { width:72px; height:72px; float:left; margin:0 4px 0 0; }
+  .tell-card b { font-size:12px; }
+  .tell-card p { display:none; } .tell-card q { font-size:10px; }
+  .tick { top:2px; right:3px; font-size:13px; }
+  .tell-card { display:grid; grid-template-columns:72px minmax(0,1fr); grid-template-rows:1fr auto;
+    align-items:center; gap:3px; }
+  .tell-card img { grid-column:1; grid-row:1; float:none; margin:0; }
+  .tell-card b { grid-column:2; grid-row:1; }
+  .tell-card q { grid-column:1 / -1; grid-row:2; }
+  body.tells .hint { font-size:12px; }
+  body.tells #what-to-do { font-size:11px; }
+}
+@media (min-width:551px) and (max-width:999px) and (min-height:651px) {
+  .tells-grid { grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(4,minmax(0,1fr)); }
+  .tell-card { display:grid; grid-template-columns:72px minmax(0,1fr); grid-template-rows:auto 1fr auto;
+    gap:5px 10px; align-items:center; }
+  .tell-card img { grid-column:1; grid-row:1 / span 3; float:none; margin:0; }
+  .tell-card b { grid-column:2; grid-row:1; font-size:15px; margin:0; }
+  .tell-card p { display:block; grid-column:2; grid-row:2; font-size:12px; margin:0; }
+  .tell-card q { grid-column:2; grid-row:3; }
+}
+@media (max-height:650px) {
+  .why { padding:6px; }
+  .why h2 { display:none; }
+  .why-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .why-list button { font-size:11px; }
+  dialog { padding:14px; }
+  dialog .book-row { min-height:36px; padding:2px 0; }
+  dialog .book-row img { width:30px; height:30px; }
+}
+@media (max-width:760px) and (max-height:550px) {
+  .marquee { padding:1px 0; }
+  .clock { width:32px; height:32px; padding:2px; border-width:2px; }
+  .clock b { font-size:13px; }
+  .screen-top { height:22px; }
+  .screen-top img { width:20px; height:20px; }
+  .sec-head { padding-top:1px; padding-bottom:1px; }
+  .sec-body { padding-top:1px; padding-bottom:1px; }
+  .sec-body p { margin:0; }
+  .sec-status { min-height:35px; padding:5px 8px; }
+  .sec-tag { font-size:10px; line-height:12px; }
+  .why .evidence-count,.why .context-note { font-size:11px; }
+  body.explained .panel { position:relative; }
+  body.explained .panel>.hint { width:calc(100% - 100px); }
+  body.explained #book-open { position:absolute; top:8px; right:8px; width:94px; font-size:11px; padding:4px; }
+  .round-card .next-try { padding:5px; font-size:12px; }
+}
+@media (min-width:761px) and (min-height:651px) and (max-height:750px) {
+  .round-record { padding:12px; }
+  .round-record h2 { font-size:24px; }
+  .round-record .big-score { font-size:56px; }
+  .round-record p { margin:5px 0; }
+  .round-record .recap { padding:6px 0; }
+  .round-record .next-try { padding:8px; font-size:13px; }
+}
+@media (max-width:550px), (max-height:650px) {
+  .round-record { display:grid; grid-template-columns:1fr auto; gap:4px; text-align:left; }
+  .round-record>.eyebrow,.round-record .recap,.round-record .recap-key { display:none; }
+  .round-record h2 { grid-column:1; grid-row:1; font-size:20px; align-self:center; margin:0; }
+  .round-record .big-score { grid-column:2; grid-row:1; font-size:30px; }
+  .round-record p { grid-column:1 / -1; margin:2px 0; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Phishing Spotter<small>Keep it or report it</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-practice" aria-pressed="true">Practice</button>
+    <button id="m-arcade" aria-pressed="false">Arcade</button>
+    <button id="m-tells" aria-pressed="false">Tells</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <p class="eyebrow" id="mode-label">01 / Practice</p>
+    <p class="hint" id="hint"></p>
+    <div class="action-row" id="calls">
+      <button class="call" id="keep" aria-keyshortcuts="K">✓ Keep<span class="key">K</span></button>
+      <button class="call" id="report" aria-keyshortcuts="R">⚑ Report<span class="key">R</span></button>
+    </div>
+    <button class="primary" id="done" hidden>Done</button>
+    <button class="primary" id="next" hidden>Next →</button>
+    <button class="primary" id="start" hidden>Start round</button>
+    <div class="tell-count" id="tell-count" hidden></div>
+    <div class="stats" id="stats" hidden>
+      <div class="stat"><small>Score</small><strong id="score">0</strong></div>
+      <div class="stat"><small>Streak</small><strong id="streak">0</strong></div>
+    </div>
+    <button class="sub" id="clear-best" hidden>Clear best</button>
+    <p class="privacy" id="best-note" hidden>Best: 0 / 30. Saved on this device only.</p>
+    <section class="why" id="why" hidden><h2>Why</h2><div id="why-content"></div></section>
+    <button class="sub" id="book-open">▤ Address book</button>
+    <section class="book" id="book"><h2>▤ Address book <span class="privacy">/ the real places</span></h2><div id="book-rows"></div></section>
+    <p class="privacy">All places and messages are made up. Nothing you tap leaves this page.</p>
+    <p id="what-to-do" hidden><b>What to do:</b> Don't click, reply or open the attachment. Report it to a trusted adult or your mail app.
+      To check, type the real address you know.</p>
+  </aside>
+  <section class="stage" id="stage" aria-label="Message cabinet">
+    <img class="room" src="art:ps-arcade-room" alt="">
+    <div class="cabinet" id="cabinet">
+      <div class="marquee"><div><strong>PHISHING SPOTTER</strong><small><span class="led"></span>LOOK CLOSER. TRUST THE EVIDENCE.</small></div>
+        <div class="clock" id="clock"><b id="clock-value">∞</b></div></div>
+      <div class="screen-shell">
+        <div class="screen-top"><span id="screen-brand"></span><span id="channel">INBOX / PRACTICE</span></div>
+        <div class="message-viewport" id="message-viewport"><div id="artifact"></div></div>
+        <div class="result-strip" id="result" role="status">Inspect the sender and the real link address.</div>
+      </div>
+      <div class="cabinet-foot"><span>CURIO CLASS / SECURITY ARCADE</span><span>KEEP [K] &nbsp; REPORT [R] &nbsp; SPOTS [1–8]</span></div>
+    </div>
+    <div class="tells-grid" id="tells-grid" hidden></div>
+  </section>
+</main>
+<dialog id="book-dialog"><h2>Address book</h2><div id="book-modal-rows"></div><button class="primary" id="book-close">Back to message</button></dialog>
+<dialog id="clear-dialog"><h2>Clear your best score?</h2><p>Only this device's best score will be cleared.</p>
+  <div class="action-row"><button class="sub" id="clear-no">No</button><button class="primary" id="clear-yes">Yes, clear best</button></div></dialog>
+<template id="art-library">
+  <img data-art="ps-pebble" src="art:ps-pebble" alt=""><img data-art="ps-tower" src="art:ps-tower" alt="">
+  <img data-art="ps-leaf" src="art:ps-leaf" alt=""><img data-art="ps-parcel" src="art:ps-parcel" alt="">
+  <img data-art="ps-book" src="art:ps-book" alt=""><img data-art="ps-wave" src="art:ps-wave" alt="">
+  <img data-art="ps-tell-1" src="art:ps-tell-1" alt=""><img data-art="ps-tell-2" src="art:ps-tell-2" alt="">
+  <img data-art="ps-tell-3" src="art:ps-tell-3" alt=""><img data-art="ps-tell-4" src="art:ps-tell-4" alt="">
+  <img data-art="ps-tell-5" src="art:ps-tell-5" alt=""><img data-art="ps-tell-6" src="art:ps-tell-6" alt="">
+  <img data-art="ps-tell-7" src="art:ps-tell-7" alt=""><img data-art="ps-tell-8" src="art:ps-tell-8" alt="">
+</template>
+<script src="kit:curio"></script>
+<script src="kit:security"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const POOL = DATA.messages;
+  const ORGS = DATA.orgs;
+  const h = Sec.h;
+  const L = {
+    'w-practice':'Read the message. Hover a link to see where it really goes. Then press Keep or Report.',
+    tell:'Now tap the part that gave it away. Then press Done.',
+    next:'Press Next for another message.',
+    'w-arcade':'Sixty seconds. Keep the real ones, report the fakes, and tap the tell for double points. Press Start round.',
+    go:'Go!',
+    end:'Time! Check your score and the tells you caught. Press Play again for another round.',
+    best:'New best score!',
+    'w-tells':'These are the eight tells. Tap an example to try that message.',
+    arcadeCall:'Keep or Report. A report needs one tell for double points.',
+    arcadeTell:'Tap one tell in the message. Your first spot is your answer.',
+    nextCall:'Keep or Report can answer the next message now.',
+    book:'Check the known addresses. Then press Back to message.',
+    clear:'Choose No to keep your best score, or Yes, clear best to remove it.'
+  };
+  const TELLS = [
+    ['Look-alike sender',"The address isn't the real one. A sender name can say anything.",'P1','it-help@rnaplegrove.example'],
+    ['Link goes somewhere else',"The real address under the link isn't the real site.",'P2','hilltop-parcel-fees.test/pay'],
+    ['Rush or threat','Pressure to act before you can think.','P1','Sign in within 1 hour'],
+    ['Asks for a password or code','Real services never ask you to send these.','P5','Send me the code'],
+    ['Prize out of nowhere',"Free stuff you didn't sign up for.",'P3','You won 10,000 free gems!'],
+    ['Surprise attachment',"A file you weren't expecting, especially .zip or .html.",'P6','fine-notice.zip'],
+    ['Fake sign-in page',"The address bar isn't the real site, even if the page looks right.",'P4','pebblequest.example.signin-help.test'],
+    ['Keep it secret',"Asks you not to tell anyone.",'P5',"Don't tell anyone"]
+  ];
+  const state = {
+    mode:'practice', phase:'call', current:null, selected:[], score:0, streak:0, right:0,
+    tells:0, answered:0, best:0, running:false, history:[], queue:[], seenTells:[],
+    practiceQueue:[], left:60000, tellLeft:4000, roundEnd:null
+  };
+  try { state.best = Math.max(0,Math.min(30,Number(localStorage.getItem('curio-phishing-spotter')) || 0)); } catch {}
+  let artifact = null;
+  let advanceTimer = null;
+  let roundSerial = 0;
+  let finishing = false;
+  let styleLifted = false;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    speaks:'#keep,#report,#done,#next,#start,.tell-card',
+    welcome:() => {
+      if (document.querySelector('dialog[open]')) return null;
+      if (state.mode === 'practice' && state.phase === 'call') return ['w-practice',{valid:() => state.phase === 'call'}];
+      if (state.mode === 'arcade' && !state.running && state.phase === 'ready') return 'w-arcade';
+      if (state.mode === 'tells') return 'w-tells';
+      return null;
+    }
+  });
+  const roundClock = Sec.clock({ms:60000,tick:50,onTick:c => {
+    state.left = c.left;
+    clockView();
+  },onEnd:() => finishRound()});
+  const tellClock = Sec.clock({ms:4000,tick:50,onTick:c => {
+    state.tellLeft = c.left;
+    if (state.phase === 'tell' && state.mode === 'arcade') {
+      $('tell-count').textContent = 'Tap one tell · ' + Math.ceil(c.left / 1000) + ' s';
+      $('tell-count').style.setProperty('--tell',c.left / 40 + '%');
+    }
+  },onEnd:() => {
+    if (state.running && state.phase === 'tell') complete(1,true,false,'+1 · Reported, tell timed out');
+  }});
+
+  function art(name) {
+    return $('art-library').content.querySelector('[data-art="' + name + '"]').cloneNode();
+  }
+  function tick(freq = 440) { Curio.tone(freq,.045,.06,'sine'); }
+  function shuffle(values) {
+    const result = [...values];
+    for (let i = result.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [result[i],result[j]] = [result[j],result[i]];
+    }
+    return result;
+  }
+  function current() { return POOL.find(m => m.id === state.current); }
+  function setHint(text) { $('hint').textContent = text; }
+  function result(text,kind = '',tell = 0) {
+    artifact?.status(null);
+    $('result').replaceChildren();
+    if (tell) $('result').append(art('ps-tell-' + tell));
+    $('result').append(text);
+    $('result').className = 'result-strip ' + kind + (tell ? ' pop' : '');
+  }
+  function bookRows(where) {
+    ORGS.forEach((org,i) => {
+      const text = h('div',{},h('b',{},org[0]),h('small',{},org[1]));
+      if (i === 0) text.append(h('small',{},'portal.maplegrove.example'));
+      $(where).append(h('div',{class:'book-row'},art(org[2]),text));
+    });
+  }
+  bookRows('book-rows');
+  bookRows('book-modal-rows');
+  const domains = new Set(ORGS.map(o => o[1]));
+  domains.add('portal.maplegrove.example');
+  POOL.forEach(m => {
+    if (m.from?.includes('@')) domains.add(Sec.hostOf(m.from));
+    if (m.link) domains.add(Sec.hostOf(m.link.href));
+    if (m.address) domains.add(Sec.hostOf(m.address));
+  });
+  Sec.world({name:'Phishing Spotter fictional world',domains:[...domains]});
+
+  function clockView() {
+    const arcade = state.mode === 'arcade';
+    $('clock-value').textContent = arcade ? Math.ceil(state.left / 1000) : '∞';
+    $('clock').style.setProperty('--clock',arcade ? (state.left / 600) + '%' : '100%');
+    $('clock').setAttribute('aria-label',arcade ? Math.ceil(state.left / 1000) + ' seconds left' : 'Practice has no clock');
+  }
+  function ui() {
+    const arcade = state.mode === 'arcade';
+    const practice = state.mode === 'practice';
+    document.body.classList.toggle('explained',practice && state.phase === 'why');
+    const calling = state.phase === 'call' || (arcade && state.phase === 'result' && state.running);
+    $('calls').hidden = state.mode === 'tells';
+    $('keep').disabled = !calling;
+    $('report').disabled = !calling;
+    $('next').hidden = !(practice && state.phase === 'why');
+    $('done').hidden = !(practice && state.phase === 'tell');
+    $('start').hidden = !(arcade && !state.running);
+    $('start').textContent = state.phase === 'end' ? 'Play again' : 'Start round';
+    $('tell-count').hidden = !(arcade && state.phase === 'tell');
+    $('stats').hidden = !arcade;
+    $('clear-best').hidden = !arcade || state.running;
+    $('best-note').hidden = !arcade;
+    $('score').textContent = state.score;
+    $('streak').textContent = state.streak;
+    $('best-note').textContent = 'Best: ' + state.best + ' / 30. Saved on this device only.';
+    $('why').hidden = !(practice && state.phase === 'why');
+    $('book-open').hidden = false;
+    $('what-to-do').hidden = state.mode !== 'tells';
+    clockView();
+  }
+  function show(id) {
+    const m = POOL.find(v => v.id === id);
+    if (!m) return false;
+    if (state.mode === 'arcade' && state.running && state.history.some(v => v.id === id)) return false;
+    tellClock.pause();
+    clearTimeout(advanceTimer);
+    state.current = id;
+    state.selected = [];
+    state.phase = 'call';
+    const spot = key => ({id:key});
+    let data;
+    if (m.kind === 'email') {
+      data = {
+        fromName:m.fromName, from:{address:m.from,spot:spot('from')},
+        subject:{text:m.subject,spot:spot('subject')},
+        body:m.body.map((text,i) => ({text,spot:spot('b' + i)})),
+        links:m.link ? [{...m.link,spot:spot('link')}] : [],
+        attachments:m.attachment ? [{name:m.attachment,spot:spot('att')}] : []
+      };
+    } else if (m.kind === 'sms') {
+      data = {
+        sender:m.fromName, number:m.from, senderSpot:spot('from'),
+        bubbles:m.body.map((text,i) => ({text,spot:spot('b' + i)})),
+        links:m.link ? [{...m.link,spot:spot('link')}] : []
+      };
+    } else {
+      data = {
+        address:m.address,addressSpot:spot('address'),heading:m.subject,
+        logo:{name:ORGS[m.org][0],shape:'circle'},
+        fields:[{label:'User name'},{label:'Password',type:'password'}]
+      };
+    }
+    artifact = Sec.artifact(m.kind,data,{onSpot:tapSpot,statusText:''});
+    if (!styleLifted) {
+      document.head.append($('tool-style'));
+      styleLifted = true;
+    }
+    if (m.kind === 'login') {
+      artifact.el.querySelector('.sec-logo svg').replaceWith(art(ORGS[m.org][2]));
+    }
+    $('link-status')?.remove();
+    const linkStatus = artifact.el.querySelector('.sec-status');
+    linkStatus.id = 'link-status';
+    $('result').before(linkStatus);
+    artifact.spots().forEach((key,i) => {
+      artifact.spot(key).prepend(h('span',{class:'spot-number','aria-hidden':'true'},i + 1));
+    });
+    const hadFocus = $('artifact').contains(document.activeElement);
+    $('artifact').replaceChildren(artifact.el);
+    if (hadFocus) $('keep').focus({preventScroll:true});
+    $('artifact').classList.remove('arrival');
+    void $('artifact').offsetWidth;
+    $('artifact').classList.add('arrival');
+    $('message-viewport').scrollTop = 0;
+    $('screen-brand').replaceChildren(art(ORGS[m.org][2]),document.createTextNode(ORGS[m.org][0]));
+    $('channel').textContent = ({email:'EMAIL',sms:'TEXT',login:'SIGN-IN'})[m.kind];
+    result('Inspect the sender and the real link address.');
+    setHint(state.mode === 'practice' ? L['w-practice'] : L.arcadeCall);
+    ui();
+    return true;
+  }
+  function reveal() {
+    const m = current();
+    if (!m?.phish) return;
+    for (const [spot,tells] of Object.entries(m.tells)) {
+      artifact.mark(spot,'marked');
+      artifact.tag(spot,tells.map(n => TELLS[n - 1][0]).join(' · '));
+    }
+  }
+  function practiceWhy(call) {
+    const m = current();
+    state.phase = 'why';
+    artifact.clearMarks();
+    state.selected.filter(key => !m.tells[key]?.length).forEach(key => {
+      artifact.mark(key,'wrong');
+      artifact.tag(key,'Not a tell');
+    });
+    reveal();
+    const correct = (call === 'report') === m.phish;
+    const selectedTells = new Set(state.selected.flatMap(key => m.tells[key] || [])).size;
+    const otherSpots = state.selected.filter(key => !m.tells[key]?.length).length;
+    const allTells = new Set(Object.values(m.tells).flat()).size;
+    const explained = m.phish && call === 'report' && selectedTells === allTells && otherSpots === 0;
+    result(correct ? (m.phish ? (explained ? '✓ Reported · every tell type found' : 'Reported · compare your evidence below')
+      : '✓ Kept · normal in this made-up case')
+      : (m.phish ? '⚑ Missed · look at the highlighted evidence' : '⚑ False alarm · check the context'),correct ? 'good' : 'bad');
+    if (m.phish && correct && !explained) $('result').classList.remove('good');
+    $('why-content').replaceChildren();
+    if (m.phish) {
+      const list = h('div',{class:'why-list'});
+      const unique = new Set();
+      for (const [key,nums] of Object.entries(m.tells)) {
+        nums.forEach(n => {
+          if (unique.has(n)) return;
+          unique.add(n);
+          list.append(h('button',{onclick:() => {
+            artifact.spot(key).scrollIntoView({block:'nearest',behavior:'instant'});
+            artifact.spot(key).focus({preventScroll:true});
+            result(evidenceNote(m,key,n));
+            tick(580);
+          }},'↖ ' + TELLS[n - 1][0]));
+        });
+      }
+      $('why-content').append(list);
+      if (call === 'report') {
+        $('why-content').append(h('p',{class:'evidence-count'},
+          'Tells found: ' + selectedTells + ' of ' + allTells + '. Other parts selected: ' + otherSpots + '.'));
+      }
+    } else {
+      $('why-content').append(h('p',{},m.why),h('p',{class:'context-note'},
+        'A matching sender is not proof; use a route you already know.'));
+    }
+    setHint(L.next);
+    ui();
+    $('next').focus({preventScroll:true});
+    V.how('next',{valid:() => state.phase === 'why',needs:'#next'});
+  }
+  function evidenceNote(m,key,n) {
+    const real = m.kind === 'login' && m.org === 0 ? 'portal.maplegrove.example' : ORGS[m.org][1];
+    if (n === 1) return 'Compare the sender with ' + real + '. The display name can be copied.';
+    if (n === 2) return 'This link goes to ' + m.link.href + ', not ' + real + '.';
+    if (n === 7) return 'Check the whole site name: ' + m.address + ' is not ' + real + '.';
+    return TELLS[n - 1][1];
+  }
+  function answer(call,spots) {
+    if (!['keep','report'].includes(call)) return false;
+    if (state.mode === 'tells') return false;
+    if (state.mode === 'arcade') {
+      if (!state.running) return false;
+      if (state.phase === 'result') nextArcade();
+      if (!state.running || state.phase !== 'call') return false;
+      if (roundClock.left <= 0) { finishRound(); return false; }
+    } else if (state.phase !== 'call') return false;
+    tick(call === 'keep' ? 520 : 330);
+    V.hush();
+    const m = current();
+    if (state.mode === 'practice') {
+      if (call === 'keep') practiceWhy(call);
+      else {
+        state.phase = 'tell';
+        setHint(L.tell);
+        result('Tap the evidence in the message, then press Done.');
+        ui();
+        $('done').focus({preventScroll:true});
+        V.how('tell',{valid:() => state.phase === 'tell',needs:'#done'});
+        if (Array.isArray(spots)) spots.forEach(tapSpot);
+      }
+      return true;
+    }
+    if (call === 'keep') {
+      complete(m.phish ? 0 : 1,!m.phish,false,m.phish ? '⚑ Missed · this was phishing' : '+1 · Kept');
+    } else if (!m.phish) complete(0,false,false,'⚑ False alarm · this was a normal message');
+    else {
+      state.phase = 'tell';
+      state.tellLeft = 4000;
+      setHint(L.arcadeTell);
+      result('REPORT HELD · tap one piece of evidence');
+      tellClock.reset(4000).start();
+      ui();
+      const first = artifact.spot(artifact.spots()[0]);
+      first?.focus({preventScroll:true});
+      if (Array.isArray(spots) && spots.length) tapSpot(spots[0]);
+    }
+    return true;
+  }
+  function tapSpot(key) {
+    if (!artifact?.spot(key)) return false;
+    if (state.phase !== 'tell') {
+      tick(300);
+      if (!artifact.spot(key).classList.contains('sec-link') && state.phase === 'call') {
+        result('Spot ' + (artifact.spots().indexOf(key) + 1) + ' inspected. Choose Keep or Report.');
+      }
+      return false;
+    }
+    if (state.mode === 'practice') {
+      if (state.selected.includes(key)) {
+        state.selected = state.selected.filter(s => s !== key);
+        artifact.mark(key,null);
+      } else { state.selected.push(key); artifact.mark(key,'marked'); }
+      result(state.selected.length + ' spot' + (state.selected.length === 1 ? '' : 's') + ' selected. Press Done to compare.');
+      tick(580);
+      return true;
+    }
+    if (!state.running || finishing) return false;
+    if (roundClock.left <= 0) { finishRound(); return false; }
+    if (tellClock.left <= 0) { complete(1,true,false,'+1 · Reported, tell timed out'); return false; }
+    const tells = current().tells[key];
+    if (tells?.length) complete(2,true,true,'+2 · ' + TELLS[tells[0] - 1][0],tells[0]);
+    else complete(1,true,false,'+1 · Reported, but that spot was not a tell');
+    return !!tells?.length;
+  }
+  function complete(points,right,tell,text,tellNumber = 0) {
+    if (!state.running || !['call','tell'].includes(state.phase)) return;
+    if (state.history.some(v => v.id === state.current)) return;
+    tellClock.pause();
+    state.phase = 'result';
+    state.score += points;
+    state.right += right ? 1 : 0;
+    state.tells += tell ? 1 : 0;
+    state.streak = right ? state.streak + 1 : 0;
+    state.answered++;
+    state.history.push({id:state.current,points,right,tell,tellNumber});
+    if (current().phish) reveal();
+    result(text,right ? 'good' : 'bad',tellNumber);
+    if (!current().phish && !right) artifact.status('False alarm · ' + current().why);
+    if (points === 2) Curio.yes(); else tick(right ? 600 : 160);
+    setHint(L.nextCall);
+    ui();
+    if (state.answered === 20) { finishRound(); return; }
+    const serial = roundSerial;
+    advanceTimer = setTimeout(() => {
+      if (serial === roundSerial && state.running && state.phase === 'result') nextArcade();
+    },right ? 650 : 1500);
+  }
+  function nextArcade() {
+    clearTimeout(advanceTimer);
+    if (!state.running) return;
+    if (!state.queue.length || roundClock.left <= 0) { finishRound(); return; }
+    show(state.queue.shift());
+  }
+  function round() {
+    if (state.mode !== 'arcade' || state.running) return false;
+    V.hush();
+    roundSerial++;
+    state.score = state.streak = state.right = state.tells = state.answered = 0;
+    state.history = [];
+    state.queue = shuffle(POOL.map(m => m.id));
+    state.roundEnd = null;
+    roundClock.reset(60000);
+    state.running = true;
+    state.left = 60000;
+    nextArcade();
+    roundClock.start();
+    V.say('go',{maxAge:2000,valid:() => state.running && roundClock.elapsed < 2000});
+    $('keep').focus({preventScroll:true});
+    return true;
+  }
+  function finishRound() {
+    if (!state.running || finishing) return;
+    finishing = true;
+    if (state.phase === 'tell' && current()?.phish) complete(1,true,false,'+1 · Reported');
+    state.running = false;
+    state.left = roundClock.left;
+    roundClock.pause();
+    tellClock.pause();
+    clearTimeout(advanceTimer);
+    if ($('book-dialog').open) $('book-dialog').close();
+    roundSerial++;
+    state.phase = 'end';
+    const newBest = state.score > state.best;
+    if (newBest) {
+      state.best = state.score;
+      try { localStorage.setItem('curio-phishing-spotter',String(state.best)); } catch {}
+    }
+    state.roundEnd = {score:state.score,right:state.right,answered:state.answered,tells:state.tells,left:state.left};
+    $('screen-brand').textContent = 'SECURITY ARCADE';
+    $('channel').textContent = 'ROUND RECORD';
+    $('link-status')?.remove();
+    const recap = h('div',{class:'recap','aria-label':'Your calls, in order'});
+    state.history.forEach(v => recap.append(h('i',{class:v.right ? 'good' : 'bad',title:v.points + ' points'},v.points)));
+    const missed = state.history.filter(v => !v.right && POOL.find(m => m.id === v.id).phish).length;
+    const alarms = state.history.filter(v => !v.right && !POOL.find(m => m.id === v.id).phish).length;
+    const unproved = state.history.filter(v => v.right && !v.tell && POOL.find(m => m.id === v.id).phish).length;
+    const nextTry = !state.answered ? 'No calls yet. Press Play again, or use Practice to inspect at your own pace.'
+      : missed ? missed + ' phish kept. In Practice, compare senders and link destinations before your next round.'
+      : alarms ? alarms + ' normal messages reported. In Practice, compare their context with the warning signs.'
+      : unproved ? unproved + ' reports need a tell. In Practice, tap the evidence before pressing Done.'
+      : state.answered === 20 ? 'Every call backed by the right evidence. Try another shuffled round.'
+      : 'Right calls: ' + state.right + '. Try the full set of 20, or inspect more messages in Practice.';
+    $('artifact').replaceChildren(h('div',{class:'round-card round-record'},
+      h('p',{class:'eyebrow',style:'color:#124d58'},'ROUND RECORD'),h('h2',{},newBest ? 'New best score' : 'Round complete'),
+      h('div',{class:'big-score'},state.score + hText('/30')),
+      h('p',{},'Right calls: ' + state.right + ' of ' + state.answered + ' · Tells tapped: ' + state.tells),
+      h('p',{},state.answered === 20 ? 'All 20 answered with ' + Math.ceil(state.left / 1000) + ' s left.' : 'Time is up. Try another round.'),
+      recap,h('p',{class:'recap-key'},'Your calls in order: 0 = wrong call, 1 = right call, 2 = report with a tell.'),
+      h('p',{class:'next-try'},nextTry),h('p',{},'Best: ' + state.best + ' / 30')));
+    setHint(L.end);
+    result('Your record stays on this device. Press Play again.','good');
+    ui();
+    $('start').focus({preventScroll:true});
+    V.hush();
+    V.say(newBest ? ['end','best'] : 'end',{valid:() => state.phase === 'end',needs:'#start'});
+    finishing = false;
+  }
+  function hText(text) { return text; }
+  function nextPractice() {
+    V.hush();
+    if (!state.practiceQueue.length) state.practiceQueue = shuffle(POOL.map(m => m.id));
+    show(state.practiceQueue.shift());
+    $('keep').focus({preventScroll:true});
+  }
+  function tellsView() {
+    const grid = $('tells-grid');
+    if (!grid.children.length) TELLS.forEach((t,i) => {
+      const button = h('button',{class:'tell-card',id:'tell-' + (i + 1),onclick:() => {
+        if (!state.seenTells.includes(i)) state.seenTells.push(i);
+        button.querySelector('.tick').textContent = 'Opened';
+        tick(620);
+        setMode('practice');
+        show(t[2]);
+        $('keep').focus({preventScroll:true});
+      }},art('ps-tell-' + (i + 1)),h('b',{},t[0]),h('p',{},t[1]),h('q',{},t[3]),
+      h('span',{class:'tick','aria-hidden':'true'},''));
+      button.setAttribute('aria-label',t[0] + '. ' + t[1] + ' Try example: ' + t[3]);
+      grid.append(button);
+    });
+  }
+  function setMode(mode) {
+    if (!['practice','arcade','tells'].includes(mode)) return;
+    V.hush();
+    clearTimeout(advanceTimer);
+    roundClock.pause();
+    tellClock.pause();
+    roundSerial++;
+    state.running = false;
+    state.roundEnd = null;
+    state.mode = mode;
+    document.body.classList.toggle('tells',mode === 'tells');
+    document.body.classList.toggle('arcade',mode === 'arcade');
+    for (const k of ['practice','arcade','tells']) $('m-' + k).setAttribute('aria-pressed',k === mode);
+    $('mode-label').textContent = ({practice:'01 / Practice',arcade:'02 / Arcade',tells:'03 / Tells'})[mode];
+    $('cabinet').hidden = mode === 'tells';
+    $('tells-grid').hidden = mode !== 'tells';
+    if (mode === 'practice') {
+      if (!state.practiceQueue.length) state.practiceQueue = shuffle(POOL.map(m => m.id));
+      show(state.practiceQueue.shift());
+    } else if (mode === 'arcade') {
+      state.phase = 'ready';
+      state.score = state.streak = 0;
+      state.left = 60000;
+      $('screen-brand').textContent = 'SECURITY ARCADE';
+      $('channel').textContent = '60 SECONDS / 20 MESSAGES';
+      $('link-status')?.remove();
+      $('artifact').replaceChildren(h('div',{class:'round-card'},h('div',{class:'start-emblem'},'⚑'),
+        h('h2',{},'Fast calls. Real reasons.'),h('p',{},'Keep a real message: +1'),
+        h('p',{},'Report a fake: +1, or +2 with its tell.'),
+        h('p',{},'One tell attempt. No repeats. Maximum 30.')));
+      setHint(L['w-arcade']);
+      result('Ready when you are. Press Start round.');
+    } else {
+      state.phase = 'explore';
+      tellsView();
+      setHint(L['w-tells']);
+    }
+    ui();
+    V.welcome();
+  }
+  ['practice','arcade','tells'].forEach(mode => $('m-' + mode).onclick = () => { tick(); setMode(mode); });
+  $('keep').onclick = () => answer('keep');
+  $('report').onclick = () => answer('report');
+  $('done').onclick = () => { if (state.phase === 'tell') { V.hush(); tick(); practiceWhy('report'); } };
+  $('next').onclick = () => { tick(); nextPractice(); };
+  $('start').onclick = round;
+  let dialogContext = null;
+  function actionHint() {
+    if (state.mode === 'tells') return L['w-tells'];
+    if (state.mode === 'practice') return state.phase === 'tell' ? L.tell : state.phase === 'why' ? L.next : L['w-practice'];
+    if (state.phase === 'end') return L.end;
+    if (!state.running) return L['w-arcade'];
+    if (state.phase === 'tell') return L.arcadeTell;
+    if (state.phase === 'result') return L.nextCall;
+    return L.arcadeCall;
+  }
+  function openDialog(id,line,control) {
+    tick();
+    V.hush();
+    dialogContext = {mode:state.mode,phase:state.phase,hint:$('hint').textContent};
+    $(id).showModal();
+    setHint(L[line]);
+    if (state.mode !== 'arcade' || !state.running) V.how(line,{valid:() => $(id).open,needs:control});
+  }
+  function closeDialogHint() {
+    if (V.playing === L.book || V.playing === L.clear) V.hush();
+    V.dropQueued(line => line.key === 'book' || line.key === 'clear');
+    if (document.querySelector('dialog[open]')) return;
+    const same = dialogContext?.mode === state.mode && dialogContext?.phase === state.phase;
+    setHint(same ? dialogContext.hint : actionHint());
+    dialogContext = null;
+  }
+  $('book-dialog').addEventListener('close',closeDialogHint);
+  $('clear-dialog').addEventListener('close',closeDialogHint);
+  $('book-open').onclick = () => openDialog('book-dialog','book','#book-close');
+  $('book-close').onclick = () => { tick(); $('book-dialog').close(); };
+  $('clear-best').onclick = () => openDialog('clear-dialog','clear','#clear-no');
+  $('clear-no').onclick = () => { tick(); $('clear-dialog').close(); };
+  $('clear-yes').onclick = () => {
+    state.best = 0;
+    try { localStorage.removeItem('curio-phishing-spotter'); } catch {}
+    $('clear-dialog').close();
+    tick();
+    ui();
+  };
+  document.addEventListener('keydown',e => {
+    if (e.repeat || e.ctrlKey || e.metaKey || e.altKey || document.querySelector('dialog[open]')) return;
+    const key = e.key.toLowerCase();
+    if (key === 'k' || key === 'r') { e.preventDefault(); answer(key === 'k' ? 'keep' : 'report'); }
+    else if (/^[1-8]$/.test(key) && state.mode !== 'tells') {
+      e.preventDefault();
+      const spot = artifact?.spots()[Number(key) - 1];
+      if (spot) artifact.spot(spot).click();
+    } else if (key === 'enter' && (e.target === document.body || e.target === document.documentElement)) {
+      e.preventDefault();
+      if (state.mode === 'arcade' && !state.running) round();
+      else if (state.mode === 'practice' && state.phase === 'why') nextPractice();
+    }
+  });
+  Curio.init({clips:"voice:*",rate:1,readFallback:() => $('hint').textContent});
+  Curio.onMotion(() => {
+    document.querySelectorAll('.arrival,.pop').forEach(e => e.classList.remove('arrival','pop'));
+  });
+  window.__tool = {
+    state,sec:Sec,setMode,show,answer,round,allLines:V.allLines,vlog:V.log,
+    get vq() { return V.queue; },
+    get artifact() { return artifact; },pool:POOL,roundClock,tellClock,tapSpot,finishRound
+  };
+  state.practiceQueue = ['P1',...shuffle(POOL.filter(m => m.id !== 'P1').map(m => m.id))];
+  setMode('practice');
+})();
+</script>
+</body>
+</html>

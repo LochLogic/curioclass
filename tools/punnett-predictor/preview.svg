@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<defs><radialGradient id="g"><stop stop-color="#35573b"/><stop offset="1" stop-color="#10161a"/></radialGradient></defs>
+<rect width="800" height="500" fill="url(#g)"/>
+<text x="50" y="70" font-family="Georgia,serif" font-size="38" fill="#eaf1ed">Punnett Predictor</text>
+<g stroke="#7caa80" fill="#243c2b"><rect x="80" y="130" width="360" height="300" rx="10"/>
+<path d="M260 130V430M80 280H440"/></g>
+<g fill="#f3d77a" stroke="#b9a251" stroke-width="5"><circle cx="170" cy="204" r="46"/>
+<circle cx="350" cy="204" r="46"/><circle cx="170" cy="354" r="46"/>
+<path d="M320 320Q350 297 378 322L390 353L375 383L340 395L313 375L302 344Z"/></g>
+<g fill="#eaf1ed" font-family="monospace" font-size="21"><text x="155" y="270">RR</text>
+<text x="335" y="270">Rr</text><text x="155" y="420">Rr</text><text x="335" y="420">rr</text></g>
+<text x="490" y="208" font-family="Georgia,serif" font-size="38" fill="#a3ffaf">3 : 1</text>
+<path d="M490 310L512 270L535 315L558 283L580 298L604 293L630 296L710 295" fill="none" stroke="#f3d77a" stroke-width="5"/>
+<path d="M485 295H720" stroke="#a3ffaf" stroke-width="2" stroke-dasharray="8 6"/>
+<text x="490" y="375" font-family="sans-serif" font-size="17" fill="#b4c5bc">Make chance visible.</text>
+</svg>

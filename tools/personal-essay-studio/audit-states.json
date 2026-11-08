@@ -1,0 +1,182 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "lens open with selected sentence",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-draft"
+        },
+        {
+          "js": "const e=document.getElementById('draft-text');e.value='Cooking taught me patience. The hot pan hissed.';e.dispatchEvent(new Event('input',{bubbles:true}));e.setSelectionRange(4,4);"
+        },
+        {
+          "click": "#zoom"
+        }
+      ],
+      "keep": [
+        "#draft-text",
+        "#lens"
+      ]
+    },
+    {
+      "name": "two checked spark",
+      "sizes": [
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "js": "const e=document.getElementById('spark-input');e.value='The first tortilla';e.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#add-spark"
+        },
+        {
+          "click": "[data-check='place']"
+        },
+        {
+          "click": "[data-check='day']"
+        }
+      ],
+      "keep": [
+        "#spark-list"
+      ]
+    },
+    {
+      "name": "example photographs",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "js": "if(innerWidth<=760)document.getElementById('panel-toggle').click();"
+        },
+        {
+          "click": "#example"
+        }
+      ],
+      "keep": [
+        "#close-example"
+      ]
+    },
+    {
+      "name": "sequence with three paragraphs",
+      "sizes": [
+        "1366x768",
+        "680x425"
+      ],
+      "steps": [
+        {
+          "click": "#m-draft"
+        },
+        {
+          "js": "const e=document.getElementById('draft-text');e.value=\"The pan hissed.\\n\\nI had come to the kitchen.\\n\\nNow I watch the edge.\";e.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#m-revise"
+        },
+        {
+          "click": "#r-sequence"
+        }
+      ],
+      "keep": [
+        "#r-sequence"
+      ]
+    },
+    {
+      "name": "ending after reflection changes",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-then"
+        },
+        {
+          "js": "for(const [k,v] of [['then','expected it to work'],['turn','when the wheel stopped'],['now','ask for help']]){const e=document.getElementById(k+'-text');e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));}"
+        },
+        {
+          "click": "#make-ending"
+        },
+        {
+          "js": "const e=document.getElementById('now-text');e.value='wait and look closely';e.dispatchEvent(new Event('input',{bubbles:true}));"
+        }
+      ],
+      "keep": [
+        "#add-ending"
+      ]
+    },
+    {
+      "name": "revision opening preview",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-draft"
+        },
+        {
+          "js": "const e=document.getElementById('draft-text');e.value='I tried to fix it. The wheel stopped.';e.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#m-revise"
+        },
+        {
+          "click": "#r-opening"
+        },
+        {
+          "js": "const e=document.getElementById('opening-0');e.value='The wheel stopped.';e.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "[data-try-opening=\"0\"]"
+        }
+      ],
+      "keep": []
+    },
+    {
+      "name": "real paragraph drag",
+      "sizes": [
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-draft"
+        },
+        {
+          "js": "const e=document.querySelector('#draft-text');e.value='The first paragraph.\\n\\nThe second paragraph.\\n\\nThe third paragraph.';e.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#m-revise"
+        },
+        {
+          "click": "#r-sequence"
+        },
+        {
+          "js": "document.querySelector('#revise-view').scrollTop=170;"
+        },
+        {
+          "drag": "(()=>{const cards=document.querySelectorAll('.paragraph-card');const a=cards[0].querySelector('p').getBoundingClientRect();const b=cards[1].querySelector('p').getBoundingClientRect();const x=Math.round(a.left+40),y=Math.round(a.top+10),end=Math.round(b.top+12);return Array.from({length:19},(_,i)=>[x+(i%3)-1,Math.round(y+(end-y)*i/18)]);})()"
+        },
+        {
+          "click": "#try-order"
+        },
+        {
+          "js": "document.querySelector('#order-preview').scrollIntoView({block:'nearest'});"
+        }
+      ],
+      "keep": [
+        "#order-preview"
+      ]
+    }
+  ]
+}

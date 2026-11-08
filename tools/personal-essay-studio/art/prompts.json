@@ -1,0 +1,25 @@
+{
+  "house_style": "Warm natural-light photograph look, shallow depth of field, editorial food and interior photography for a Grade 11 writing studio. Rich tactile materials, warm morning light from the left, subtle film grain. No text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "pes-kitchen-wide",
+      "prompt": "A wide establishing photograph of a community center kitchen seen from its open doorway, with the doorway edges in the foreground, long stainless steel communal work counters in the middle ground, a large practical stove with a black iron pan, and high windows in the background. A shallow metal bowl of flour tortilla dough, a flour-dusted wooden board and a stack of plain plates sit on the nearest counter. The room feels shared and modest, with a tiled floor and a few stacked chairs far beyond the work area. Warm Saturday morning light enters from the left. Match the existing torn-tortilla photograph's honey light, worn black iron, real flour texture and softly receding stainless steel room. A broad 24 mm composition makes the whole room and its scale legible, leaving the food preparation as a small part of the setting. Empty room, no people, hands, text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 960,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pes-tortilla-close",
+      "prompt": "A close-up of a torn flour tortilla on a hot black iron pan, small bubbles and brown spots on it, a dusting of white flour on the wooden board beside it. The irregular torn edges and tender crumb are in sharp focus, pan rim in foreground, softly blurred community kitchen in background. Warm morning light from the left. No people, hands, text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 960,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

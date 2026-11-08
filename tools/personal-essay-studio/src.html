@@ -1,0 +1,1260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Personal Essay Studio · Curio Class</title>
+<meta name="description" content="A private writing desk for turning a small moment into a precise personal essay. Grade 11.">
+<!-- Personal Essay Studio, Curio Class. Based on kit/starter/src.html.
+W.11-12.3 and W.11-12.5. Original sample, prompts and questions written for Curio Class.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file. No student writing is spoken. -->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --paper:#faf6ef; --panel:#fffdf9; --ink:#2a2125; --muted:#635860; --line:#e3d9cc;
+  --brand:#9c2a55; --btn:#9c2a55; --btn-line:#bd6788; --head-ink:#fff; --focus:#1b6a8a; color-scheme:light;
+}
+body { height:100dvh; min-height:0; overflow:hidden; grid-template-rows:auto auto minmax(0,1fr) auto; }
+header { padding:12px 22px; gap:8px; background:var(--paper); color:var(--ink); border-top:5px solid var(--brand); }
+h1 { font:normal 27px/1.1 Georgia,serif; letter-spacing:-.8px; }
+h1 small { display:block; color:var(--muted); font:12px/1.4 'Segoe UI',sans-serif; margin-top:5px; opacity:1; letter-spacing:.5px; }
+button { min-height:44px; min-width:44px; border:1px solid #b9a99f; border-radius:5px; background:var(--panel); padding:8px 13px; }
+button:hover { border-color:var(--brand); background:#f5e9e9; }
+button:active { box-shadow:inset 0 0 0 2px #9c2a5544; }
+button:disabled { opacity:.5; cursor:default; }
+.primary { background:var(--brand); color:white; border-color:var(--brand); }
+.primary:hover { background:#822146; color:white; }
+.icon-btn { min-height:44px; width:90px; flex:none; padding:0 8px; font-size:12px; border-radius:5px; border-width:1px; }
+#read { width:54px; }
+.icon-btn:hover { background:#822146; color:white; }
+.seg { border-radius:5px; border:1px solid #baa59f; }
+.seg button { min-height:44px; padding:0 14px; font-size:13px; background:transparent; color:var(--muted); }
+.seg button[aria-pressed=true] { background:var(--brand); color:white; }
+.privacy { margin:0; padding:7px 22px; border-block:1px solid var(--line); background:#fffaf4;
+  color:var(--muted); font-size:11px; line-height:1.45; }
+main { grid-template-columns:minmax(0,1fr) 275px; overflow:hidden; }
+  .workspace { grid-column:1; grid-row:1; position:relative; overflow:hidden; min-width:0; min-height:0;
+  background:radial-gradient(ellipse at 10% 0%,#fffaf1,transparent 65%),linear-gradient(115deg,#e7d9c7,#cbb19b); }
+.view { height:100%; padding:24px; overflow:auto; }
+.eyebrow { color:var(--brand); font-size:10px; text-transform:uppercase; letter-spacing:2px; font-weight:700; }
+h2 { margin:5px 0 10px; font:normal 31px/1.15 Georgia,serif; letter-spacing:-.7px; }
+h3 { margin:0 0 10px; font:normal 21px/1.2 Georgia,serif; }
+p { line-height:1.5; }
+.caption { font-size:12px; color:var(--muted); }
+.row { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+.row>* { min-width:0; } .grow { flex:1; }
+label { display:block; font-size:12px; }
+input,textarea,select { font:inherit; color:var(--ink); background:#fffdf9; border:1px solid #a9968b;
+  border-radius:4px; min-height:44px; padding:10px; max-width:100%; }
+textarea { resize:vertical; width:100%; line-height:1.6; }
+label>input,label>textarea,label>select { display:block; width:100%; margin:6px 0 0; }
+input[type=checkbox] { width:44px; height:44px; min-width:44px; margin:0; accent-color:var(--brand); }
+.check { display:flex; align-items:center; gap:7px; min-height:44px; font-size:12px; }
+.panel { grid-column:2; grid-row:1; padding:18px; gap:13px; overflow:hidden; border-left:1px solid #c5b4a4;
+  background:linear-gradient(120deg,#fffdf9,#f5eee5); }
+.panel-scroll { flex:1; min-height:0; overflow:auto; }
+.hint { flex:none; margin:0; padding:10px 0 10px 12px; min-height:99px; font-size:13px; border-left:3px solid var(--brand); }
+.counter { font:28px Georgia,serif; } .counter small { font:12px 'Segoe UI',sans-serif; color:var(--muted); }
+.over { color:var(--brand); font-weight:700; }
+.meter { padding:12px 0; border-block:1px solid var(--line); font-size:12px; }
+.bar-head { display:flex; justify-content:space-between; margin:7px 0 5px; }
+.track { height:8px; border-radius:2px; background:#e5ddd5; overflow:hidden; }
+.track i { display:block; height:100%; width:var(--v); background:var(--brand); }
+.track.wide i { background:repeating-linear-gradient(135deg,#635860 0 2px,#ddd3d6 2px 5px); }
+summary { cursor:pointer; min-height:44px; padding:12px 0; }
+.meter ul { margin:0; padding-left:17px; font-size:11px; line-height:1.5; color:var(--muted); }
+.panel-bottom { margin-top:auto; display:grid; gap:8px; flex:none; }
+#spark-tools { display:grid; gap:8px; } #spark-input { width:100%; }
+.spark-entry { border-top:1px solid #d7c6b8; padding-top:10px; margin-top:12px; }
+.spark-entry p { margin:0 0 7px; overflow-wrap:anywhere; font:17px/1.5 Georgia,serif; }
+.sized { color:var(--brand); font-size:12px; margin:7px 0; }
+.intro { display:flex; align-items:end; justify-content:space-between; gap:10px; }
+.intro p { font-size:12px; max-width:240px; }
+#spark-view { display:flex; flex-direction:column; }
+.intro { flex:none; }
+.wall { display:grid; flex:1; grid-template-columns:repeat(5,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr));
+  gap:14px; margin-top:17px; min-height:0; padding-bottom:10px; }
+.prompt { position:relative; display:flex; flex-direction:column; justify-content:space-between; text-align:left;
+  border-radius:2px; padding:18px 15px; border:1px solid #c6b09d; transform:rotate(var(--tilt));
+  background:linear-gradient(120deg,#fffdf8,#f0e4d5); box-shadow:2px 7px 11px #59412f24,inset 0 1px #fff; }
+.prompt::before { content:''; position:absolute; width:36px; height:7px; background:#bca58d66; top:-4px; left:calc(50% - 18px); }
+.prompt .num { font:11px 'Courier New',monospace; letter-spacing:2px; color:var(--brand); }
+.prompt .front { font:20px/1.35 Georgia,serif; margin:15px 0; }
+.prompt .foot { color:var(--muted); font-size:10px; letter-spacing:1px; text-transform:uppercase; }
+.prompt .back { display:none; font:14px/1.55 Georgia,serif; }
+.prompt .back span { display:block; padding:6px 0; border-bottom:1px solid #e5d6c9; }
+.prompt.flipped { transform:rotate(0); background:linear-gradient(130deg,#f9edf0,#fffaf4); border-color:var(--brand); }
+.flipped .front,.flipped .foot { display:none; } .flipped .back { display:block; }
+.turning { animation:flip .25s ease; }
+@keyframes flip { 50% { transform:perspective(600px) rotateY(65deg); } }
+.idle-dot { display:inline-block; width:6px; height:6px; border-radius:50%; background:var(--brand); margin-right:6px; animation:breathe 4s infinite; }
+@keyframes breathe { 50% { opacity:.35; } }
+.calm .idle-dot,.calm .prompt { animation:none; transition:none; }
+#draft-view { display:grid; grid-template-rows:auto minmax(0,1fr); gap:12px; }
+.draft-head { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+.draft-head h2 { font-size:26px; margin:5px 0 0; overflow-wrap:anywhere; } .draft-head .row { flex:none; }
+.writing-layout { display:grid; grid-template-columns:minmax(0,1fr); min-height:0; gap:16px; }
+.lens-open .writing-layout { grid-template-columns:minmax(0,1fr) 285px; }
+body.lens-open main { grid-template-columns:minmax(0,1fr); } body.lens-open .panel { display:none; }
+.paper-sheet { position:relative; min-height:0; overflow:hidden; display:flex; flex-direction:column; background:var(--panel);
+  border:1px solid #d1c0b1; border-top:5px solid #e2d5c5; box-shadow:0 12px 25px #573c2926;
+  width:100%; max-width:760px; margin-inline:auto; }
+.paper-top { padding:10px 24px; border-bottom:1px solid #e6ddd3; display:flex; justify-content:space-between;
+  font-size:10px; text-transform:uppercase; letter-spacing:1.4px; color:var(--muted); flex:none; }
+.editor-wrap { position:relative; flex:1; min-height:0; overflow:hidden; }
+#draft-text,#draft-mirror { position:absolute; inset:0; width:100%; height:100%; margin:0; padding:28px 36px;
+  font:18px/1.85 Georgia,'Iowan Old Style',serif; letter-spacing:0; tab-size:4; white-space:pre-wrap;
+  overflow-wrap:break-word; word-break:normal; border:0; border-radius:0; overflow:auto; resize:none; }
+#draft-text { background:transparent; color:transparent; caret-color:var(--ink); z-index:2; -webkit-text-fill-color:transparent; }
+#draft-text::selection { background:#9c2a5544; }
+#draft-text::placeholder { color:var(--muted); -webkit-text-fill-color:var(--muted); }
+#draft-mirror { pointer-events:none; color:var(--ink); scrollbar-width:none; }
+.selected-sentence { outline:2px solid var(--brand); outline-offset:3px; background:#faeaf0; }
+.stock { text-decoration:underline dotted var(--brand) 2px; text-underline-offset:5px; }
+.abstract { text-decoration:underline dashed #635860 2px; text-underline-offset:5px; }
+.note-text { color:#635860; background:#f0eeec; font-style:italic; }
+.lens-mark { border-bottom:2px solid #9c2a5588; }
+.lens-mark::after { content:'⌖'; position:absolute; font:12px 'Segoe UI',sans-serif; color:var(--brand); margin-left:3px; }
+.lens { padding:12px; border:1px solid #bca494; background:#f8f2eb; overflow:hidden;
+  box-shadow:0 6px 14px #54392020; display:flex; flex-direction:column; gap:6px; }
+.lens-title { display:flex; justify-content:space-between; align-items:center; gap:10px; } .lens-title h3 { margin:0; }
+.lens-title,.lens>.primary { flex:none; }
+#lens-anchor { display:none; }
+#lens-fields { flex:1; min-height:0; overflow:auto; display:grid; grid-template-columns:1fr; gap:6px; }
+.lens label { margin:0; font-size:11px; line-height:1.25; }
+.lens textarea { height:44px; min-height:44px; padding:5px; font-size:12px; margin-top:4px; }
+.lens>.primary { width:100%; font-size:12px; }
+.reflection-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:22px; }
+.reflection-card { padding:22px; background:linear-gradient(130deg,#fffdf8,#f7eee4); border:1px solid #c7b19e; box-shadow:0 8px 18px #65442f18; }
+.reflection-card:nth-child(2) { border-top:4px solid var(--brand); }
+.reflection-card p { font-size:12px; min-height:38px; }
+.reflection-card textarea { font:18px/1.6 Georgia,serif; min-height:160px; margin-top:14px; }
+.ending,.preview { font:20px/1.65 Georgia,serif; white-space:pre-wrap; background:var(--panel); padding:19px 24px; margin:20px 0;
+  border-left:4px solid var(--brand); overflow-wrap:anywhere; }
+.ending:empty,.preview:empty { display:none; } .blank { color:var(--brand); border-bottom:1px dashed; }
+.detail-strip { background:var(--panel); font:16px/1.8 Georgia,serif; max-height:190px; overflow:auto; padding:14px; margin-top:12px; }
+.detail-strip button { display:inline; min-height:44px; font:inherit; padding:5px; margin:3px; border-color:#b4778d; background:#f8e6ed; }
+.revise-toolbar { display:flex; flex-wrap:wrap; gap:7px; margin:9px 0 18px; }
+.revise-toolbar button[aria-pressed=true] { background:var(--brand); color:white; }
+.revise-section { padding:22px; background:var(--panel); border:1px solid #c9b5a6; box-shadow:0 10px 20px #573b281c; }
+.compare-grid,.opening-grid,.examples,.sample-orders { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:16px; }
+.opening-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+.compare-text { font:17px/1.8 Georgia,serif; white-space:pre-wrap; overflow-wrap:anywhere; }
+ins { background:#e1ece7; text-decoration:underline; } del { background:#f4e1e7; text-decoration:line-through; }
+.stats { font-size:12px; color:var(--muted); padding:10px 0; border-bottom:1px solid var(--line); }
+.opening-grid textarea { font:17px/1.5 Georgia,serif; height:120px; } .opening-grid button { margin-top:8px; width:100%; }
+#opening-preview { max-height:180px; overflow:auto; }
+.job-strip { display:flex; flex-wrap:wrap; gap:6px; margin:13px 0; }
+.job-strip span { padding:8px; background:#f3e7de; border:1px solid #d0b9aa; font-size:12px; }
+.paragraph-card { padding:14px; margin:11px 0; border:1px solid #c4b2a7; border-left:4px solid var(--brand); background:#fffaf4; }
+.paragraph-card p { font:16px/1.6 Georgia,serif; margin:7px 0; white-space:pre-wrap; overflow-wrap:anywhere; }
+.jobs { display:flex; flex-wrap:wrap; gap:5px; } .jobs button { padding:7px 10px; font-size:11px; }
+.jobs button[aria-pressed=true] { background:var(--brand); color:white; }
+.move-row { display:flex; justify-content:space-between; gap:7px; }
+.sequence-question { border-left:3px solid var(--brand); padding-left:12px; font-size:13px; }
+#sequence-actions { position:sticky; top:0; z-index:2; background:var(--panel); padding:6px 0; border-bottom:1px solid var(--line); }
+#checklist { display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+footer { padding:5px 22px; font-size:10px; color:#54474b; background:#eaddcf; border-top:1px solid #cbb7a6;
+  display:flex; justify-content:space-between; align-items:center; }
+#storage-banner { padding:8px 14px; background:#782442; color:white; font-size:13px; }
+body.storage-failed { grid-template-rows:auto auto auto minmax(0,1fr) auto; }
+dialog { width:min(1100px,94vw); max-height:90dvh; padding:24px; border:1px solid #b49886; border-radius:8px;
+  color:var(--ink); background:var(--paper); box-shadow:0 30px 90px #24111f77; }
+dialog::backdrop { background:#211820b3; }
+.dialog-head { display:flex; justify-content:space-between; gap:10px; align-items:center; position:sticky; top:-24px;
+  background:var(--paper); z-index:3; padding:8px 0; } .dialog-head h2 { margin:0; }
+.example img { display:block; width:100%; aspect-ratio:16/9; object-fit:cover; border:5px solid white; box-shadow:0 5px 12px #50392530; }
+.example p { font:16px/1.8 Georgia,serif; } .example .meter p { font:12px/1.5 'Segoe UI',sans-serif; }
+.example h3 { margin-top:17px; } .example-lens { padding:16px; border:1px solid #d2bbaa; margin-top:18px; font-size:13px; }
+.example-lens li { margin:7px 0; } .sample-orders { font:15px/1.7 Georgia,serif; }
+.sample-block { margin:10px 0; padding:12px; background:var(--panel); border-left:3px solid #ad6b82; }
+.sample-block b { display:block; font:11px 'Segoe UI',sans-serif; color:var(--brand); margin-bottom:7px; }
+#confirm { max-width:430px; } #confirm p { font:22px/1.5 Georgia,serif; }
+#toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%); max-width:90vw; padding:12px 18px;
+  z-index:20; background:#30262b; color:white; border-radius:5px; font-size:13px; }
+#panel-toggle,#panel-close,.mobile-hint { display:none; }
+body.guidance-visible { grid-template-rows:auto auto auto minmax(0,1fr) auto; }
+body.guidance-visible.storage-failed { grid-template-rows:auto auto auto auto minmax(0,1fr) auto; }
+#mobile-guidance { background:#fffaf4; padding:4px 10px; border-bottom:1px solid var(--line); }
+#mobile-guidance .hint { font-size:11px; line-height:1.35; min-height:0; padding:3px 8px; }
+@media(min-width:1600px) { .wall { gap:24px; } .prompt { padding:24px; } .prompt .front { font-size:25px; } }
+@media(max-width:1150px) {
+  header { padding:9px 14px; } h1 { font-size:22px; } h1 small { font-size:10px; }
+  .seg button { padding:0 10px; } .icon-btn { padding:0 8px; font-size:11px; }
+  main { grid-template-columns:minmax(0,1fr) 245px; } .panel { padding:13px; } .view { padding:18px; }
+  .wall { gap:9px; } .prompt { padding:12px 9px; } .prompt .front { font-size:17px; } .prompt .back { font-size:12px; }
+  .intro { display:block; } .intro p { max-width:none; } #draft-text,#draft-mirror { padding:20px 25px; }
+  .reflection-card { padding:15px; }
+}
+@media(max-height:650px) and (min-width:761px) {
+  header { padding:5px 12px; } h1 { font-size:21px; } h1 small { display:none; } .privacy { padding-block:4px; }
+  .view { padding:12px; } h2 { font-size:23px; } .intro { display:flex; }
+  .wall { margin-top:8px; grid-template-rows:repeat(2,minmax(0,1fr)); min-height:0; }
+  .prompt { padding:10px; } .prompt .front { font-size:15px; margin:7px 0; } .prompt .back { font-size:11px; }
+  .prompt .back span { padding:3px 0; } .panel { padding:10px; gap:8px; }
+  .hint { min-height:70px; font-size:11px; padding-block:5px; } .meter { padding:5px 0; } .counter { font-size:22px; }
+  .reflection-grid { margin-top:10px; gap:9px; } .reflection-card textarea { min-height:90px; height:95px; }
+}
+@media(max-width:760px) {
+  header { padding:6px 10px; gap:5px; } h1 { font-size:21px; } h1 small { display:none; }
+  .seg { order:5; width:100%; display:flex; } .seg button { flex:1; padding:0 5px; font-size:12px; }
+  .icon-btn { width:70px; padding:0 5px; font-size:11px; } #read { width:44px; }
+  .privacy { padding:5px 10px; font-size:10px; line-height:1.35; }
+  main,body.lens-open main { grid-template-columns:minmax(0,1fr); } .view { padding:14px; } h2 { font-size:26px; }
+  .panel { display:none; position:fixed; inset:50dvh 0 0; z-index:10; border:1px solid #a78e80;
+    border-radius:14px 14px 0 0; box-shadow:0 -12px 45px #30202a44; padding:14px 18px; }
+  body.panel-open .panel { display:flex; } body.lens-open .panel { display:none; }
+  #panel-toggle { display:block; min-height:44px; padding:3px 12px; } #panel-close { display:block; align-self:flex-end; }
+  .mobile-hint { display:none; }
+  .wall { flex:none; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:none; min-height:0; gap:15px; }
+  .prompt { min-height:170px; padding:16px; } .prompt .front { font-size:20px; } .prompt .back { font-size:14px; }
+  .draft-head { display:block; } .draft-head h2 { font-size:22px; margin-bottom:9px; }
+  .draft-head .row { gap:6px; } .draft-head button { padding:6px 10px; font-size:12px; }
+  .writing-layout,.lens-open .writing-layout { grid-template-columns:minmax(0,1fr); }
+  .lens { position:fixed; inset:50dvh 0 0; z-index:10; border-radius:14px 14px 0 0;
+    box-shadow:0 -10px 35px #30202a33; padding:13px 18px; }
+  body.lens-open .paper-sheet { margin-bottom:0; }
+  body.lens-open .draft-head { display:none; }
+  body.lens-open #draft-view { grid-template-rows:minmax(0,1fr); }
+  .lens label { display:inline-block; width:calc(50% - 7px); vertical-align:top; margin:6px 4px 6px 0; }
+  .lens textarea { height:58px; } .lens label:last-of-type { width:100%; }
+  #draft-text,#draft-mirror { padding:17px 18px; font-size:18px; line-height:1.8; } .paper-top { padding:8px 18px; }
+  .reflection-grid,.compare-grid,.opening-grid,.examples,.sample-orders { grid-template-columns:1fr; }
+  .reflection-grid { gap:12px; margin-top:12px; } .reflection-card { padding:15px; }
+  .reflection-card textarea { min-height:95px; margin-top:8px; } .reflection-card p { min-height:0; }
+  .revise-section { padding:14px; } .revise-toolbar { gap:5px; } .revise-toolbar button { padding:6px 9px; font-size:12px; }
+  #checklist { grid-template-columns:1fr; } footer { padding:4px 10px; }
+  dialog { padding:15px; max-height:94dvh; } .dialog-head { top:-15px; } .dialog-head h2 { font-size:23px; }
+}
+@media(max-width:760px) and (max-height:650px) {
+  header { flex-wrap:nowrap; } h1 { font-size:16px; flex:1; max-width:none; white-space:nowrap; } .seg { order:0; width:auto; }
+  .seg button { padding:0 7px; font-size:11px; } .icon-btn { padding:0 5px; font-size:10px; }
+  .view { padding:10px; } .mobile-hint { display:none; } .draft-head { display:flex; }
+  .draft-head h2 { font-size:18px; margin:0; } .draft-head .eyebrow { display:none; }
+  .draft-head .check { font-size:10px; } .paper-top { padding:5px 15px; }
+  .lens { padding-top:8px; } .lens label,.lens label:last-of-type { width:calc(33% - 6px); font-size:10px; }
+  .lens textarea { height:50px; } .lens-title h3 { font-size:18px; } .intro { display:flex; }
+  #spark-view .intro p,#spark-view .eyebrow { display:none; }
+  #spark-view h2 { font-size:21px; margin:0; }
+  .wall { flex:1; grid-template-columns:repeat(5,minmax(0,1fr)); grid-template-rows:repeat(2,minmax(0,1fr));
+    height:auto; min-height:0; margin-top:10px; gap:8px; }
+  .prompt { min-height:0; padding:4px 7px; } .prompt .front { font-size:12px; line-height:1.2; margin:0; }
+  .prompt .foot,.prompt .num { display:none; } .prompt .back { font-size:10px; line-height:1.1; }
+  .prompt .back span { padding:0; }
+}
+@media(max-width:480px) {
+  h1 { font-size:18px; flex:1; } .icon-btn { width:64px; font-size:10px; padding:0 5px; }
+  .wall { grid-template-columns:1fr; } .prompt { min-height:180px; } .prompt .front { font-size:24px; }
+  .draft-head .check { width:100%; } .draft-head .row { justify-content:space-between; }
+  .lens label { width:100%; } .draft-head h2 { font-size:20px; } .paper-top { font-size:9px; }
+  .lens-title { position:sticky; top:-13px; background:#f8f2eb; z-index:2; padding-bottom:7px; }
+}
+@media(min-width:501px) and (max-width:760px) {
+  .reflection-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:9px; }
+}
+@media(max-width:1000px) and (max-height:650px) {
+  #then-view { position:relative; }
+  #then-view>.eyebrow,#revise-view>.eyebrow { display:none; }
+  #then-view>h2,#revise-view>h2 { font-size:20px; margin:0 0 6px; }
+  #then-view>h2 { padding-right:155px; }
+  .reflection-grid { margin-top:8px; }
+  .reflection-card { padding:8px; }
+  .reflection-card h3 { font-size:18px; margin:0 0 5px; }
+  .reflection-card p { font-size:10px; line-height:1.25; margin:4px 0; }
+  .reflection-card textarea { min-height:44px; height:44px; font-size:14px; padding:6px; margin:5px 0 0; }
+  .reflection-card button { margin-top:5px; }
+  #then-view>.caption { font-size:10px; margin:4px 0; }
+  #make-ending { position:absolute; top:7px; right:10px; font-size:12px; padding:7px; }
+  .revise-toolbar { margin:6px 0; }
+  .revise-section { padding:10px; }
+  .revise-section h3 { font-size:18px; margin-bottom:4px; }
+  #opening-preview { max-height:110px; }
+  #compare-panel label { font-size:10px; }
+  #compare-panel select { margin-top:4px; }
+}
+@media(min-width:761px) and (max-width:1000px) and (max-height:650px) {
+  .prompt { padding:8px; }
+  .prompt .front { font-size:13px; line-height:1.2; }
+  .prompt .foot { display:none; }
+}
+@media(max-width:760px) and (max-height:650px) {
+  body.panel-open .panel { display:grid; grid-template-columns:minmax(0,1fr) 140px;
+    grid-template-rows:44px minmax(0,1fr); gap:6px; padding:8px 12px; }
+  .panel #panel-close { grid-column:2; grid-row:1; width:100%; }
+  .panel .panel-scroll { grid-column:1; grid-row:1 / 3; min-height:0; }
+  .panel .panel-bottom { grid-column:2; grid-row:2; gap:6px; margin:0; align-self:end; }
+  #spark-tools { grid-template-columns:140px minmax(0,1fr); column-gap:10px; row-gap:5px; }
+  #spark-tools>label,#spark-input,#add-spark,#spark-cap { grid-column:1; }
+  #spark-tools>label { grid-row:1; font-size:10px; }
+  #spark-input { grid-row:2; } #add-spark { grid-row:3; }
+  #spark-cap { grid-row:4; margin:0; font-size:10px; }
+  #spark-list { grid-column:2; grid-row:1 / 5; min-height:0; max-height:188px; overflow:auto; }
+  .spark-entry { padding-top:3px; margin-top:0; }
+  .spark-entry p { font-size:14px; line-height:1.25; margin-bottom:3px; }
+  .spark-entry .check { font-size:10px; }
+  .spark-entry .sized { font-size:10px; margin:2px 0; }
+  #revise-view>h2 { margin-bottom:4px; }
+  #revise-view>.row>label { font-size:10px; }
+  #revise-view>.row>label { display:flex; align-items:center; gap:6px; }
+  #version-name { margin:0; flex:1; width:0; }
+  .revise-toolbar { margin:3px 0; }
+  #compare-panel { padding:8px; }
+  #sequence-panel>.row>h3 { display:none; }
+  #sequence-panel>.row>label { display:flex; align-items:center; gap:8px; width:100%; }
+  #sequence-panel>.row>label>select { margin:0; flex:1; }
+  .lens #lens-fields { grid-template-columns:repeat(5,minmax(0,1fr)); gap:7px; }
+  .lens label,.lens label:last-of-type { display:block; width:auto; font-size:10px; line-height:1.2; margin:0; }
+  .lens textarea { height:44px; min-height:44px; }
+  .lens .lens-title { padding:0; }
+}
+</style>
+</head>
+<body>
+<div id="storage-banner" role="alert" hidden>This browser isn't saving. Copy your essay before you close the tab.</div>
+<header>
+  <h1>Personal Essay Studio<small>Zoom in on one moment.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-spark" aria-pressed="true">Spark</button><button id="m-draft" aria-pressed="false">Draft</button>
+    <button id="m-then" aria-pressed="false">Then and Now</button><button id="m-revise" aria-pressed="false">Revise</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button><button class="icon-btn" id="read">Read</button>
+</header>
+<p class="privacy">You choose what to share. Pick a moment you'd be comfortable with a teacher reading. Your writing stays on this device.</p>
+<div id="mobile-guidance" hidden></div>
+<main>
+  <aside class="panel" id="side-panel" aria-label="Studio panel">
+    <button id="panel-close">Back to writing</button><p class="hint" id="hint"></p>
+    <div class="panel-scroll" id="panel-scroll">
+    <section id="spark-tools"><label for="spark-input">A quick spark, in your words</label>
+      <input id="spark-input" aria-label="A quick spark, in your words" maxlength="240" placeholder="One small moment...">
+      <button class="primary" id="add-spark">Add spark</button>
+      <p class="caption" id="spark-cap">Keep up to five sparks.</p><div id="spark-list"></div></section>
+    <div><div class="counter" id="word-count">0 <small>words</small></div><div class="caption" id="limit-state"></div>
+      <label>Word limit<select id="limit" aria-label="Word limit"><option value="650">650</option><option value="500">500</option>
+        <option value="250">250</option><option value="0">None</option></select></label></div>
+    <div class="meter" id="meter"></div></div>
+    <div class="panel-bottom"><button id="example">See an example</button><button id="clear">Clear everything</button></div>
+  </aside>
+  <section class="workspace" aria-label="Writing workspace">
+    <section class="view" id="spark-view">
+      <div class="intro"><div><span class="eyebrow">01 / Collect a moment</span><h2>Small is a place to start.</h2></div>
+        <p>Tap a card to turn it over.<br>A whole life can wait. Start with one moment.</p></div>
+      <p class="mobile-hint"></p><div class="wall" id="card-wall"></div>
+    </section>
+    <section class="view" id="draft-view" hidden>
+      <div class="draft-head"><div><span class="eyebrow">02 / Make it visible</span><h2 id="working-title">Your working draft</h2></div>
+        <div class="row"><button class="primary" id="zoom">⌖ Zoom lens</button>
+          <label class="check"><input type="checkbox" id="finder">Wide-shot finder</label></div></div>
+      <div class="writing-layout"><div class="paper-sheet">
+        <div class="paper-top"><span>One moment, your words</span><span id="save-status"><i class="idle-dot"></i>Saved here</span></div>
+        <div class="editor-wrap"><div id="draft-mirror" aria-hidden="true"></div>
+          <textarea id="draft-text" aria-label="Your essay draft" spellcheck="false" placeholder="Start anywhere. Put one moment on the page."></textarea></div>
+        </div>
+        <aside class="lens" id="lens" hidden aria-label="Zoom lens questions">
+          <div class="lens-title"><h3>Five ways closer</h3><button id="close-lens">Close lens</button></div>
+          <p class="caption" id="lens-anchor"></p><div id="lens-fields"></div>
+          <button class="primary" id="drop-notes">Drop notes under this sentence</button>
+        </aside></div>
+    </section>
+    <section class="view" id="then-view" hidden>
+      <span class="eyebrow">03 / Find the movement</span><h2>The moment changed something.</h2><p class="mobile-hint"></p>
+      <div class="reflection-grid">
+        <div class="reflection-card"><h3>Then</h3><p>What did you believe or expect before this moment?</p>
+          <textarea id="then-text" aria-label="Then: what you believed before"></textarea></div>
+        <div class="reflection-card"><h3>The turn</h3><p>What in the moment changed it? Point to a detail from your draft.</p>
+          <textarea id="turn-text" aria-label="The turn: what changed it"></textarea><button id="pick-detail">Pick a detail</button></div>
+        <div class="reflection-card"><h3>Now</h3><p>What do you notice or believe now?</p>
+          <textarea id="now-text" aria-label="Now: what you notice now"></textarea></div>
+      </div>
+      <div class="detail-strip" id="detail-strip" hidden></div>
+      <p class="caption">An ending that reflects doesn't sum up a lesson. It shows how your thinking moved.</p>
+      <button class="primary" id="make-ending">Draft an ending</button><div class="ending" id="ending"></div>
+      <button id="add-ending" hidden>Add to the end of my draft</button>
+    </section>
+    <section class="view" id="revise-view" hidden>
+      <span class="eyebrow">04 / Try another way</span><h2>Keep the words that do the work.</h2><p class="mobile-hint"></p>
+      <div class="row"><label class="grow">Version name (optional)<input id="version-name" aria-label="Version name, optional"
+        maxlength="80" placeholder="Before a new opening"></label>
+        <button class="primary" id="save-version">Save version</button><button id="copy">Copy essay</button></div>
+      <div class="revise-toolbar" role="group" aria-label="Revision tools">
+        <button id="r-compare" aria-pressed="true">Compare</button><button id="r-opening" aria-pressed="false">Opening swap</button>
+        <button id="r-sequence" aria-pressed="false">Sequence board</button><button id="r-check" aria-pressed="false">Read-aloud check</button>
+      </div>
+      <section class="revise-section" id="compare-panel"><h3>Keep both possibilities.</h3>
+        <div class="row"><label class="grow">Earlier version<select id="version-a" aria-label="Earlier version"></select></label>
+          <label class="grow">Later version<select id="version-b" aria-label="Later version"></select></label></div>
+        <div id="compare-content"></div></section>
+      <section class="revise-section" id="opening-panel" hidden><h3>Three doors into the same moment.</h3>
+        <div class="opening-grid" id="opening-fields"></div><div class="preview" id="opening-preview"></div>
+        <button class="primary" id="use-opening" hidden>Use this opening</button></section>
+      <section class="revise-section" id="sequence-panel" hidden>
+        <div class="row"><h3 class="grow">What is each paragraph doing?</h3><label>Build toward<select id="outcome" aria-label="Build toward">
+          <option>Growth</option><option>Surprise</option><option>Resolution</option><option>An open question</option></select></label></div>
+        <div class="row" id="sequence-actions"><button id="try-order">Try this order</button>
+          <button class="primary" id="use-order">Use this order</button></div>
+        <div class="job-strip" id="job-strip"></div><div id="sequence-questions"></div><div id="paragraphs"></div>
+        <div class="preview" id="order-preview"></div></section>
+      <section class="revise-section" id="check-panel" hidden><h3>Read it aloud to yourself or a partner.</h3>
+        <p class="caption">These ticks are private notes, not a score.</p><div id="checklist"></div></section>
+    </section>
+  </section>
+</main>
+<footer><span>Curio Class · Personal Essay Studio</span><button id="panel-toggle">Sparks &amp; tools</button><span id="device-status">Only on this device</span></footer>
+<dialog id="example-dialog" aria-labelledby="example-heading">
+  <div class="dialog-head"><h2 id="example-heading">Same kitchen. A closer lens.</h2><button id="close-example">Back to my writing</button></div>
+  <div class="examples">
+    <article class="example"><img src="art:pes-kitchen-wide" alt="An empty community kitchen seen from its doorway in warm morning light.">
+      <h3>Wide shot</h3><div class="meter" id="example-wide-meter"></div><p id="example-wide"></p></article>
+    <article class="example"><img src="art:pes-tortilla-close" alt="A torn flour tortilla, with bubbles and brown spots, on a black iron pan.">
+      <h3>Zoomed</h3><div class="meter" id="example-zoom-meter"></div><p id="example-zoom"></p></article>
+  </div>
+  <div class="example-lens"><h3>Five notes behind the close-up</h3><ol id="example-answers"></ol></div>
+  <h3 style="margin-top:24px">Two ways to order it</h3><p class="caption">One story can start with the moment or with its background.</p>
+  <div class="sample-orders" id="sample-orders"></div>
+</dialog>
+<dialog id="confirm" aria-label="Clear everything confirmation"><p id="confirm-text"></p>
+  <div class="row"><button id="confirm-no">Keep my writing</button><button class="primary" id="confirm-yes">Clear</button></div></dialog>
+<div id="toast" role="status" hidden></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const CONTENT = "json:content";
+  const {PROMPTS,QUESTIONS,STOCK,ABSTRACT,SENSES,NUMBERS,DAYS,SAMPLE,ANSWERS,L} = CONTENT;
+  const KEY = 'personal-essay-studio:v1';
+  const JOBS = ['Set the scene','The moment','The turn','Looking back','Background'];
+  const GLYPHS = ['◩','◎','↗','◌','▤'];
+  const CHECKS = ['I stumbled on a sentence','A part dragged','The ending surprised me (good)','Someone else could picture the moment'];
+  const initial = () => ({sparks:[],draft:'',title:'',notes:[],then:'',turn:'',now:'',versions:[],limit:650,
+    checklist:[false,false,false,false],openings:['','',''],jobs:[],outcome:'Growth',lensDraft:{},finder:false});
+  const state = {mode:'spark',data:initial(),card:-1,selected:null,lens:false,revision:'compare',board:[],opening:-1,picking:false};
+  let storageOK = true;
+  let saveTimer = 0;
+  let toastTimer = 0;
+  let previousOver = false;
+  let dragged = -1;
+  function storageFailure() {
+    storageOK = false;
+    $('storage-banner').hidden = false;
+    document.body.classList.add('storage-failed');
+    $('device-status').textContent = 'Copy before closing';
+    $('save-status').textContent = 'Not saved';
+  }
+  try {
+    const stored = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (stored && typeof stored.draft==='string') state.data = {...initial(),...stored};
+    localStorage.setItem(KEY,JSON.stringify(state.data));
+  } catch { storageFailure(); }
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => ['w-'+state.mode,{valid:() => state.mode==='spark'?state.card<0 && !state.data.sparks.length:
+      state.mode==='draft'?!state.lens:state.mode==='then'?!state.data.then && !state.data.now && !state.data.turn:
+      !state.data.versions.length}]});
+  function hint(key,speak=false,valid=() => true) {
+    const text = L[key] || key;
+    $('hint').textContent = text;
+    document.querySelectorAll('.mobile-hint').forEach(e => { e.textContent = text; });
+    if (speak) V.how(key,{valid,now:!V.heard(key)});
+  }
+  function toast(text) {
+    $('toast').textContent = text;
+    $('toast').hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { $('toast').hidden = true; },3500);
+  }
+  function save() {
+    clearTimeout(saveTimer);
+    try {
+      localStorage.setItem(KEY,JSON.stringify(state.data));
+      if (storageOK) $('save-status').innerHTML = '<i class="idle-dot"></i>Saved here';
+    } catch { storageFailure(); }
+  }
+  function scheduleSave() {
+    if (storageOK) $('save-status').textContent = 'Saving...';
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(save,700);
+  }
+  function words(text) { return [...text.matchAll(/[\p{L}\p{N}]+(?:['’\-][\p{L}\p{N}]+)*/gu)]; }
+  function counted(n,noun) { return n+' '+noun+(n===1?'':'s'); }
+  function sentences(text) {
+    const result = [];
+    let start = 0;
+    let quote = false;
+    for (let i=0;i<text.length;i++) {
+      if ('"“”'.includes(text[i])) quote = !quote;
+      if (text[i]==='\n' && text[i+1]==='\n') {
+        if (text.slice(start,i).trim()) result.push({start,end:i,text:text.slice(start,i)});
+        start = i+2;
+        while (/\s/.test(text[start] || '') && text[start]) start++;
+        i = start-1;
+        quote = false;
+        continue;
+      }
+      if (!/[.!?]/.test(text[i])) continue;
+      if (text[i]==='.' && /\b(?:Mr|Mrs|Ms|Dr|St)\.$/.test(text.slice(start,i+1))) continue;
+      if (text[i]==='.' && /\d/.test(text[i-1] || '') && /\d/.test(text[i+1] || '')) continue;
+      let end = i+1;
+      if (text[end] && /['"”’]/.test(text[end])) end++;
+      if (quote && end===i+1) continue;
+      if (end<text.length && !/\s/.test(text[end])) continue;
+      result.push({start,end,text:text.slice(start,end)});
+      if (end>i+1) quote = false;
+      start = end;
+      while (text[start] && /\s/.test(text[start])) start++;
+      i = start-1;
+    }
+    if (text.slice(start).trim()) result.push({start,end:text.length,text:text.slice(start)});
+    return result;
+  }
+  function analyze(text) {
+    const tokens = words(text);
+    const wide = [];
+    const close = [];
+    const occupied = new Set();
+    const normalized = text.replace(/’/g,"'");
+    STOCK.forEach(phrase => {
+      for (const m of normalized.matchAll(new RegExp('\\b'+phrase.replace(/’/g,"'")+'\\b','gi'))) {
+        wide.push({start:m.index,end:m.index+m[0].length,text:text.slice(m.index,m.index+m[0].length),kind:'stock'});
+        for (let i=m.index;i<m.index+m[0].length;i++) occupied.add(i);
+      }
+    });
+    const starts = new Set(sentences(text).map(s => s.start+Math.max(0,s.text.search(/[\p{L}\p{N}]/u))));
+    for (const t of tokens) {
+      const value = t[0];
+      const low = value.toLowerCase();
+      const item = kind => ({start:t.index,end:t.index+value.length,text:value,kind});
+      if (ABSTRACT.includes(low) && !occupied.has(t.index)) wide.push(item('abstract'));
+      if (NUMBERS.includes(low) || /^\d+$/.test(value)) close.push(item('number'));
+      if (DAYS.includes(value) || (/^\p{Lu}/u.test(value) && value!=='I' && !starts.has(t.index))) close.push(item('name/place'));
+      if (SENSES.includes(low)) close.push(item('sense'));
+    }
+    for (const m of text.matchAll(/"[^"]+"|“[^”]+”/g)) close.push({start:m.index,end:m.index+m[0].length,text:m[0],kind:'quote'});
+    return {words:tokens.length,close,wide,c100:tokens.length?Math.round(close.length*100/tokens.length):0,
+      w100:tokens.length?Math.round(wide.length*100/tokens.length):0};
+  }
+  function meterHTML(text,details=true) {
+    const a = analyze(text);
+    if (a.words<50) return '<b>Close-up meter</b><p class="caption">Write 50 words to see the meter.</p>';
+    const counts = a.close.reduce((acc,x) => { acc[x.kind] = (acc[x.kind] || 0)+1; return acc; },{});
+    const names = {number:'number signal','name/place':'name or calendar signal',sense:'sense-word signal',quote:'quoted span'};
+    const label = Object.entries(counts).map(([k,v]) => counted(v,names[k])).join(', ');
+    return `<b>Signals per 100 words</b><div class="bar-head"><span>Close-ups</span><b>${a.c100}</b></div>
+      <div class="track"><i style="--v:${Math.min(100,a.c100*4)}%"></i></div>
+      <div class="bar-head"><span>Wide shots</span><b>${a.w100}</b></div>
+      <div class="track wide"><i style="--v:${Math.min(100,a.w100*4)}%"></i></div>
+      <p class="caption">${counted(a.c100,'close-up')}, ${counted(a.w100,'wide shot')} per 100 words.<br>
+      ${counted(a.words,'word')}; ${counted(a.close.length,'close-up signal')}; ${counted(a.wide.length,'wide-shot signal')}.<br>
+      Signals, not a writing score. No ideal balance.</p>
+      ${details?`<details><summary>What was counted?</summary><ul><li>${counted(a.words,'word')}; ${counted(a.close.length,'close-up')}: ${label || 'none'}.</li>
+      <li>${counted(a.wide.length,'wide shot')}: ${a.wide.map(x => esc(x.text)).join(', ') || 'none'}.</li>
+      <li>Names are a capitalization guess. Each quote counts once. Signals can fit two categories.</li>
+      <li>Bars stop at 25 per 100; printed counts keep going.</li></ul></details>`:''}`;
+  }
+  function updateMetrics() {
+    const a = analyze(state.data.draft);
+    const over = state.data.limit>0 && a.words>state.data.limit;
+    $('word-count').innerHTML = `${a.words} <small>word${a.words===1?'':'s'}${state.data.limit?' / '+state.data.limit:''}</small>`;
+    $('word-count').classList.toggle('over',over);
+    $('limit-state').textContent = over?'over by '+(a.words-state.data.limit):state.data.limit?'Within your chosen limit':'No limit chosen';
+    $('meter').innerHTML = meterHTML(state.data.draft);
+    if (over && !previousOver) V.say('over',{valid:() => state.data.limit>0 && words(state.data.draft).length>state.data.limit});
+    previousOver = over;
+  }
+  function mirror() {
+    const text = state.data.draft;
+    const styles = Array.from({length:text.length},() => new Set());
+    const mark = (a,b,c) => { for (let i=Math.max(0,a);i<Math.min(text.length,b);i++) styles[i].add(c); };
+    if (state.data.finder) analyze(text).wide.forEach(x => mark(x.start,x.end,x.kind));
+    if (state.selected) mark(state.selected.start,state.selected.end,'selected-sentence');
+    if (state.placedNote) mark(state.placedNote.start,state.placedNote.end,'placed-note');
+    state.data.notes.forEach(n => {
+      const at = text.indexOf(n.block);
+      if (at>=0) mark(at,at+n.block.length,'note-text');
+      const anchor = text.indexOf(n.anchor);
+      if (anchor>=0 && n.anchor.trim()) mark(anchor,anchor+n.anchor.length,'lens-mark');
+    });
+    let html = '';
+    let start = 0;
+    while (start<text.length) {
+      const style = [...styles[start]].sort().join(' ');
+      let end = start+1;
+      while (end<text.length && [...styles[end]].sort().join(' ')===style) end++;
+      html += '<span class="'+style+'">'+esc(text.slice(start,end))+'</span>';
+      start = end;
+    }
+    $('draft-mirror').innerHTML = html+'\n';
+    syncScroll();
+  }
+  function syncScroll() {
+    $('draft-mirror').scrollTop = $('draft-text').scrollTop;
+    $('draft-mirror').scrollLeft = $('draft-text').scrollLeft;
+  }
+  function draftChanged() {
+    state.placedNote = null;
+    const previous = state.data.draft.split(/\n\s*\n/).filter(p => p.trim());
+    const jobs = state.data.jobs;
+    const used = new Set();
+    state.data.jobs = $('draft-text').value.split(/\n\s*\n/).filter(p => p.trim()).map(text => {
+      const at = previous.findIndex((p,i) => p===text && !used.has(i));
+      if (at<0) return '';
+      used.add(at);
+      return jobs[at] || '';
+    });
+    state.data.draft = $('draft-text').value;
+    clearOpeningPreview();
+    if (state.selected && state.data.draft.slice(state.selected.start,state.selected.end)!==state.selected.text) state.selected = null;
+    mirror();
+    updateMetrics();
+    scheduleSave();
+  }
+  function selectSentence() {
+    const previous = state.selected?.text;
+    const at = $('draft-text').selectionStart;
+    const list = sentences(state.data.draft);
+    state.selected = list.find(s => at>=s.start && at<=s.end) || list.find(s => s.start>at) || list.at(-1) || null;
+    if (state.lens && state.selected?.text!==previous) loadLensNotes();
+    mirror();
+  }
+  function loadLensNotes() {
+    const selected = state.selected?.text || '';
+    $('lens-anchor').textContent = 'Selected: '+selected.trim();
+    const notes = state.data.lensDraft[selected] || [];
+    QUESTIONS.forEach((q,i) => { $('lens-'+i).value = notes[i] || ''; });
+  }
+  function openLens() {
+    if (!state.selected) selectSentence();
+    if (!state.selected?.text.trim()) { hint('choose'); toast('Write a sentence first.'); return; }
+    state.lens = true;
+    document.body.classList.remove('panel-open');
+    document.body.classList.add('lens-open');
+    $('lens').hidden = false;
+    loadLensNotes();
+    mirror();
+    responsiveHint();
+    $('lens-0').focus({preventScroll:true});
+    requestAnimationFrame(() => {
+      const selected = $('draft-mirror').querySelector('.selected-sentence');
+      if (!selected) return;
+      const line = selected.getBoundingClientRect();
+      const box = $('draft-text').getBoundingClientRect();
+      if (line.top<box.top+10 || line.bottom>box.bottom-10) $('draft-text').scrollTop += line.top-box.top-15;
+      syncScroll();
+    });
+    hint('lens',true,() => state.lens);
+    Curio.tone(470,.08,.025);
+  }
+  function closeLens() {
+    if (state.lens) V.hush();
+    state.lens = false;
+    $('lens').hidden = true;
+    document.body.classList.remove('lens-open');
+    document.querySelector('.writing-layout').style.height = '';
+    responsiveHint();
+  }
+  function layoutLens() {
+    const box = document.querySelector('.writing-layout');
+    if (state.lens && innerWidth<=760) {
+      box.style.height = Math.max(55,innerHeight/2-box.getBoundingClientRect().top-4)+'px';
+    } else box.style.height = '';
+    syncScroll();
+  }
+  function dropNotes() {
+    if (!state.selected) { toast('The sentence changed. Select it again.'); return; }
+    const values = QUESTIONS.map((q,i) => $('lens-'+i).value.trim()).filter(Boolean);
+    if (!values.length) { toast('Add a note in any question box first.'); return; }
+    const block = '[Notes:\n'+values.map(v => '    '+v).join('\n')+'\n]';
+    const at = state.selected.end;
+    state.placedNote = {start:at+2,end:at+2+block.length};
+    state.data.notes.push({anchor:state.selected.text,block});
+    state.data.draft = state.data.draft.slice(0,at)+'\n\n'+block+'\n\n'+state.data.draft.slice(at).replace(/^\s+/,'');
+    $('draft-text').value = state.data.draft;
+    closeLens();
+    mirror();
+    updateMetrics();
+    save();
+    hint('notes',true,() => state.mode==='draft' && !state.lens);
+    $('draft-text').focus({preventScroll:true});
+    $('draft-text').setSelectionRange(at+2,at+2);
+    requestAnimationFrame(() => {
+      const note = $('draft-mirror').querySelector('.placed-note');
+      if (!note) return;
+      const box = $('draft-text').getBoundingClientRect();
+      const line = note.getBoundingClientRect();
+      if (line.bottom>box.bottom-12 || line.top<box.top+12) $('draft-text').scrollTop += line.top-box.top-16;
+      syncScroll();
+    });
+    toast('Notes placed. Rewrite in Draft, then remove the note block.');
+  }
+  function renderSparks() {
+    $('spark-list').innerHTML = state.data.sparks.map((s,i) => `<article class="spark-entry"><p>${esc(s.text)}</p>
+      <label class="check"><input type="checkbox" data-spark="${i}" data-check="place" ${s.place?'checked':''}>It happened in one place</label>
+      <label class="check"><input type="checkbox" data-spark="${i}" data-check="day" ${s.day?'checked':''}>It took less than a day</label>
+      <div class="sized" id="spark-sized-${i}">${s.place&&s.day?'Your checks: ◎ Good size for one essay.':''}</div>
+      <button data-use="${i}">Use this spark</button></article>`).join('');
+    $('spark-cap').textContent = `${state.data.sparks.length} of 5 sparks. Checks are your judgment, not a score.`;
+  }
+  function flipCard(index) {
+    document.querySelectorAll('.prompt').forEach((b,i) => {
+      b.classList.remove('turning');
+      b.classList.toggle('flipped',i===index && state.card!==index);
+      b.setAttribute('aria-expanded',i===index && state.card!==index);
+    });
+    state.card = state.card===index?-1:index;
+    if (state.card>=0 && !Curio.reduce) $('card-'+index).classList.add('turning');
+    hint(state.data.sparks.length>=5?'useSpark':'sparkWrite',true,() => state.mode==='spark');
+    Curio.tone(370+index*14,.06,.02);
+  }
+  function endingFrame() {
+    const part = (v,n) => v.trim() || '['+n+']';
+    return 'Before, I '+part(state.data.then,'Then')+'.\nThat changed '+part(state.data.turn,'The turn')+'.\nNow I '+part(state.data.now,'Now')+'.';
+  }
+  function renderEnding() {
+    $('ending').innerHTML = esc(endingFrame()).replace(/\[(Then|The turn|Now)\]/g,'<span class="blank">[$1]</span>');
+  }
+  function pickDetails() {
+    state.picking = !state.picking;
+    $('detail-strip').hidden = !state.picking;
+    $('pick-detail').setAttribute('aria-pressed',state.picking);
+    if (!state.picking) { hint('w-then'); return; }
+    const signals = analyze(state.data.draft).close.sort((a,b) => a.start-b.start || b.end-a.end);
+    if (!signals.length) { $('detail-strip').textContent = L.noDetail; hint('noDetail'); return; }
+    let at = 0;
+    let html = '';
+    for (const s of signals) {
+      if (s.start<at) continue;
+      html += esc(state.data.draft.slice(at,s.start))+`<button data-detail="${s.start}" data-end="${s.end}">${esc(s.text)}</button>`;
+      at = s.end;
+    }
+    $('detail-strip').innerHTML = html+esc(state.data.draft.slice(at));
+    hint('picked',true,() => state.mode==='then' && state.picking);
+  }
+  function snapshot(name='') {
+    const versions = state.data.versions;
+    if (versions.length>=10) {
+      const index = versions.findIndex(v => !v.name);
+      if (index<0) { toast('Ten named versions are kept. Clear a version name to make room.'); return false; }
+      versions.splice(index,1);
+      toast('The oldest unnamed version was dropped.');
+    }
+    versions.push({id:Date.now()+'-'+Math.random().toString(36).slice(2),name:name.trim(),text:state.data.draft,time:Date.now()});
+    save();
+    versionOptions();
+    V.say('saved',{maxAge:5000,now:true});
+    Curio.tone(550,.09,.025);
+    return true;
+  }
+  function versionLabel(v,i) { return (v.name || 'Unnamed '+(i+1))+' · '+new Date(v.time).toLocaleString(); }
+  function versionOptions() {
+    const vs = state.data.versions;
+    $('version-a').innerHTML = vs.map((v,i) => `<option value="${i}">${esc(versionLabel(v,i))}</option>`).join('');
+    $('version-b').innerHTML = $('version-a').innerHTML;
+    $('version-a').value = String(Math.max(0,vs.length-2));
+    $('version-b').value = String(Math.max(0,vs.length-1));
+    renderCompare();
+  }
+  function diff(a,b) {
+    if (a===b) return [esc(a),esc(b)];
+    const originalLeft = a.match(/\S+\s*/g) || [];
+    const originalRight = b.match(/\S+\s*/g) || [];
+    let first = 0;
+    let lastLeft = originalLeft.length;
+    let lastRight = originalRight.length;
+    while (first<lastLeft && first<lastRight && originalLeft[first].trim()===originalRight[first].trim()) first++;
+    while (lastLeft>first && lastRight>first && originalLeft[lastLeft-1].trim()===originalRight[lastRight-1].trim()) {
+      lastLeft--;
+      lastRight--;
+    }
+    const left = originalLeft.slice(first,lastLeft);
+    const right = originalRight.slice(first,lastRight);
+    const dp = Array.from({length:left.length+1},() => new Uint32Array(right.length+1));
+    for (let i=left.length-1;i>=0;i--) {
+      for (let j=right.length-1;j>=0;j--) {
+        dp[i][j] = left[i].trim()===right[j].trim()?dp[i+1][j+1]+1:Math.max(dp[i+1][j],dp[i][j+1]);
+      }
+    }
+    let l = esc(originalLeft.slice(0,first).join(''));
+    let r = esc(originalRight.slice(0,first).join(''));
+    let i = 0;
+    let j = 0;
+    while (i<left.length || j<right.length) {
+      if (i<left.length && j<right.length && left[i].trim()===right[j].trim()) {
+        l += esc(left[i++]);
+        r += esc(right[j++]);
+      } else if (j<right.length && (i===left.length || dp[i][j+1]>=dp[i+1][j])) r += '<ins>'+esc(right[j++])+'</ins>';
+      else l += '<del>'+esc(left[i++])+'</del>';
+    }
+    return [l+esc(originalLeft.slice(lastLeft).join('')),r+esc(originalRight.slice(lastRight).join(''))];
+  }
+  function stats(text) {
+    const a = analyze(text);
+    const quotes = a.close.filter(x => x.kind==='quote').length;
+    return `${counted(a.words,'word')} · ${counted(a.close.length,'close-up')} · ${counted(a.wide.length,'wide shot')} · `+
+      counted(quotes,'quoted line');
+  }
+  function renderCompare() {
+    const a = state.data.versions[+$('version-a').value];
+    const b = state.data.versions[+$('version-b').value];
+    if (!a || !b) { $('compare-content').innerHTML = '<p class="caption">Save a version, revise your draft, then save another. Both possibilities stay here.</p>'; return; }
+    const result = diff(a.text,b.text);
+    $('compare-content').innerHTML = '<div class="compare-grid">'+[a,b].map((v,i) => `<article><div class="stats">${stats(v.text)}</div>
+      <p class="caption">Opening: ${esc(sentences(v.text)[0]?.text || '(empty)')}</p><div class="compare-text">${result[i] || '(empty)'}</div>
+      <label>Rename this version<input aria-label="Rename this version" data-rename="${v.id}"
+      value="${esc(v.name)}" maxlength="80"></label></article>`).join('')+'</div>';
+  }
+  function openingText(index) {
+    const s = sentences(state.data.draft)[0] || {start:0,end:0};
+    return state.data.draft.slice(0,s.start)+state.data.openings[index].trim()+state.data.draft.slice(s.end);
+  }
+  function clearOpeningPreview() {
+    state.opening = -1;
+    state.openingSource = null;
+    $('opening-preview').textContent = '';
+    $('use-opening').hidden = true;
+  }
+  function tryOpening(i) {
+    if (!state.data.openings[i].trim()) { toast('Write this opening first.'); return; }
+    state.opening = i;
+    state.openingSource = state.data.draft;
+    $('opening-preview').textContent = openingText(i).split(/\n\s*\n/)[0];
+    $('use-opening').hidden = false;
+    hint('useOpening',true,() => state.mode==='revise' && state.revision==='opening' && state.opening>=0);
+    requestAnimationFrame(() => {
+      $('use-opening').scrollIntoView({block:'nearest'});
+      $('use-opening').focus({preventScroll:true});
+    });
+    Curio.tone(450,.08,.02);
+  }
+  function setupBoard() {
+    $('order-preview').textContent = '';
+    state.board = state.data.draft.split(/\n\s*\n/).filter(p => p.trim()).map((text,i) => ({text,original:i,job:state.data.jobs[i] || ''}));
+    renderBoard();
+  }
+  function boardQuestions(board) {
+    const result = [];
+    const moment = board.findIndex(p => p.job==='The moment');
+    if (moment>0 && board.slice(0,moment).some(p => p.job==='Background')) {
+      result.push(`Your reader waits ${moment} ${moment===1?'paragraph':'paragraphs'} for the moment. Is that the wait you want?`);
+    }
+    if (!board.some(p => p.job==='Looking back')) result.push('Where does the reader learn what changed?');
+    const look = board.findIndex(p => p.job==='Looking back');
+    const turn = board.findIndex(p => p.job==='The turn');
+    if (look>=0 && turn>look) result.push('The ending comes before the change. Try moving The turn up.');
+    return result;
+  }
+  function boardSummary() {
+    $('job-strip').innerHTML = state.board.map((p,i) => `<span>${p.job?GLYPHS[JOBS.indexOf(p.job)]+' '+p.job:(i+1)+' / choose a job'}</span>`).join('');
+    $('sequence-questions').innerHTML = boardQuestions(state.board).map(q => '<p class="sequence-question">'+q+'</p>').join('');
+  }
+  function renderBoard(focus='') {
+    boardSummary();
+    $('paragraphs').innerHTML = state.board.length?state.board.map((p,i) => `<article class="paragraph-card" draggable="true" data-paragraph="${i}">
+      <div class="move-row"><b class="eyebrow">Paragraph ${i+1}</b><div class="row">
+      <button id="up-${i}" data-move="${i}" data-dir="-1" ${i===0?'disabled':''}>Move up</button>
+      <button id="down-${i}" data-move="${i}" data-dir="1" ${i===state.board.length-1?'disabled':''}>Move down</button></div></div>
+      <p>${esc(p.text)}</p><div class="jobs">${JOBS.map((job,k) => `<button id="job-${i}-${k}" data-job="${i}" data-value="${k}"
+      aria-pressed="${p.job===job}">${GLYPHS[k]} ${job}</button>`).join('')}</div></article>`).join(''):
+      '<p class="caption">Write two or more paragraphs in Draft to try different sequences.</p>';
+    $('try-order').disabled = !state.board.length;
+    $('use-order').disabled = !state.board.length;
+    if (focus) $(focus)?.focus({preventScroll:true});
+  }
+  function moveParagraph(index,direction) {
+    const dest = index+direction;
+    if (dest<0 || dest>=state.board.length) return;
+    reorderBoard(index,dest);
+    $('order-preview').textContent = '';
+    Curio.tone(400+dest*20,.07,.02);
+  }
+  function reorderBoard(index,dest) {
+    $('order-preview').textContent = '';
+    const focused = document.activeElement;
+    const cards = [...$('paragraphs').children];
+    const moving = cards[index];
+    const reference = dest<index?cards[dest]:cards[dest].nextSibling;
+    const [p] = state.board.splice(index,1);
+    state.board.splice(dest,0,p);
+    $('paragraphs').insertBefore(moving,reference);
+    [...$('paragraphs').children].forEach((card,i) => {
+      card.dataset.paragraph = String(i);
+      card.querySelector('.eyebrow').textContent = 'Paragraph '+(i+1);
+      card.querySelectorAll('[data-move]').forEach(b => {
+        b.dataset.move = String(i);
+        b.id = (+b.dataset.dir<0?'up-':'down-')+i;
+        b.disabled = +b.dataset.dir<0?i===0:i===state.board.length-1;
+      });
+      card.querySelectorAll('[data-job]').forEach(b => {
+        b.dataset.job = String(i);
+        b.id = 'job-'+i+'-'+b.dataset.value;
+      });
+    });
+    boardSummary();
+    if (moving.contains(focused)) {
+      (focused.disabled?moving.querySelector('[data-job]'):focused).focus({preventScroll:true});
+    }
+  }
+  function setRevision(tab) {
+    state.revision = tab;
+    for (const key of ['compare','opening','sequence','check']) {
+      $(key+'-panel').hidden = key!==tab;
+      $('r-'+key).setAttribute('aria-pressed',key===tab);
+    }
+    if (tab==='sequence') {
+      setupBoard();
+      if (state.board.length) hint('order',true,() => state.revision==='sequence' && !state.board.some(p => p.job));
+      else hint('emptySequence');
+    }
+    else hint(tab,tab==='opening',() => state.mode==='revise' && state.revision===tab);
+  }
+  function currentHint() {
+    if (state.mode==='spark') return state.data.sparks.length?'useSpark':state.card>=0?'sparkWrite':'w-spark';
+    if (state.mode==='draft') return state.lens?'lens':state.data.finder?'finder':state.placedNote?'notes':'w-draft';
+    if (state.mode==='then') return state.picking?(analyze(state.data.draft).close.length?'picked':'noDetail'):
+      !$('add-ending').hidden?'ending':'w-then';
+    if (!state.data.versions.length) return 'w-revise';
+    if (state.revision==='opening') return state.opening>=0?'useOpening':'opening';
+    if (state.revision==='sequence') return !state.board.length?'emptySequence':
+      state.board.every(p => p.job)?'chooseOutcome':'order';
+    return state.revision;
+  }
+  function setMode(mode,speak=true) {
+    if (!['spark','draft','then','revise'].includes(mode)) return;
+    V.hush();
+    closeLens();
+    document.body.classList.remove('panel-open');
+    state.mode = mode;
+    if (state.openingSource!==state.data.draft) clearOpeningPreview();
+    for (const key of ['spark','draft','then','revise']) {
+      $(key+'-view').hidden = key!==mode;
+      $('m-'+key).setAttribute('aria-pressed',key===mode);
+    }
+    $('spark-tools').hidden = mode!=='spark';
+    $('panel-toggle').textContent = mode==='spark'?'Sparks & tools':'Meter & tools';
+    $('working-title').textContent = state.data.title || 'Your working draft';
+    $('draft-text').value = state.data.draft;
+    $('finder').checked = state.data.finder;
+    ['then','turn','now'].forEach(k => { $(k+'-text').value = state.data[k]; });
+    $('limit').value = String(state.data.limit);
+    if (mode==='revise') { versionOptions(); setRevision(state.revision); }
+    hint(currentHint());
+    mirror();
+    updateMetrics();
+    if (speak) V.welcome();
+  }
+  let confirmStep = 0;
+  function confirmClear() {
+    if (confirmStep===1) { confirmStep = 2; $('confirm-text').textContent = L.clear2; return; }
+    state.data = initial();
+    state.card = -1;
+    state.selected = null;
+    state.placedNote = null;
+    state.opening = -1;
+    state.picking = false;
+    clearTimeout(saveTimer);
+    try { localStorage.removeItem(KEY); } catch { storageFailure(); }
+    $('confirm').close();
+    $('spark-input').value = '';
+    $('ending').textContent = '';
+    $('add-ending').hidden = true;
+    $('detail-strip').hidden = true;
+    $('opening-preview').textContent = '';
+    $('use-opening').hidden = true;
+    $('version-name').value = '';
+    $('outcome').value = 'Growth';
+    $('order-preview').textContent = '';
+    $('detail-strip').textContent = '';
+    $('lens-anchor').textContent = '';
+    QUESTIONS.forEach((q,i) => { $('lens-'+i).value = ''; });
+    versionOptions();
+    setupBoard();
+    document.querySelectorAll('[data-opening]').forEach(e => { e.value = ''; });
+    document.querySelectorAll('[data-checklist]').forEach(e => { e.checked = false; });
+    document.querySelectorAll('.prompt').forEach(e => { e.classList.remove('flipped','turning'); e.setAttribute('aria-expanded','false'); });
+    renderSparks();
+    setMode('spark');
+    $('m-spark').focus({preventScroll:true});
+    toast('Your essay and private notes were cleared.');
+  }
+  $('card-wall').innerHTML = PROMPTS.map((p,i) => `<button class="prompt" id="card-${i}" aria-expanded="false" style="--tilt:${(i%3-1)*.7}deg">
+    <span class="num">${String(i+1).padStart(2,'0')}</span><span class="front">${esc(p[0])}</span>
+    <span class="back">${p.slice(1).map(q => '<span>'+esc(q)+'</span>').join('')}</span><span class="foot">Turn for a closer look ↗</span></button>`).join('');
+  PROMPTS.forEach((p,i) => { $('card-'+i).onclick = () => flipCard(i); });
+  $('lens-fields').innerHTML = QUESTIONS.map((q,i) => `<label>${i+1}. ${q}
+    <textarea id="lens-${i}" aria-label="${esc(q)}"></textarea></label>`).join('');
+  QUESTIONS.forEach((q,i) => {
+    $('lens-'+i).oninput = () => {
+      if (!state.selected) return;
+      state.data.lensDraft[state.selected.text] = QUESTIONS.map((v,k) => $('lens-'+k).value);
+      scheduleSave();
+    };
+  });
+  const labels = ['Start inside the moment',"Start with someone’s words",'Start with a thought from now'];
+  $('opening-fields').innerHTML = labels.map((label,i) => `<div><label>${label}<textarea id="opening-${i}"
+    aria-label="${esc(label)}" data-opening="${i}">${esc(state.data.openings[i])}</textarea></label>
+    <button data-try-opening="${i}">Try it</button></div>`).join('');
+  $('checklist').innerHTML = CHECKS.map((text,i) => `<label class="check"><input type="checkbox" data-checklist="${i}"
+    ${state.data.checklist[i]?'checked':''}>${text}</label>`).join('');
+  $('example-wide').textContent = SAMPLE.wide;
+  $('example-zoom').textContent = SAMPLE.zoom;
+  $('example-wide-meter').innerHTML = meterHTML(SAMPLE.wide,false);
+  $('example-zoom-meter').innerHTML = meterHTML(SAMPLE.zoom,false);
+  $('example-answers').innerHTML = ANSWERS.map(a => '<li>'+esc(a)+'</li>').join('');
+  const boundaries = [0,SAMPLE.zoom.indexOf('I had come'),SAMPLE.zoom.indexOf('Standing at'),SAMPLE.zoom.indexOf('Now when')];
+  const blocks = boundaries.map((at,i) => SAMPLE.zoom.slice(at,boundaries[i+1] || SAMPLE.zoom.length).trim());
+  const blockJobs = ['The moment','Background','The turn','Looking back'];
+  $('sample-orders').innerHTML = [[0,1,2,3],[1,0,2,3]].map((order,i) => `<article><h3>${i?'In time order':'As written'}</h3>
+    <div class="job-strip">${order.map(k => '<span>'+GLYPHS[JOBS.indexOf(blockJobs[k])]+' '+blockJobs[k]+'</span>').join('')}</div>
+    ${order.map(k => '<div class="sample-block"><b>'+blockJobs[k]+'</b>'+esc(blocks[k])+'</div>').join('')}</article>`).join('');
+  for (const mode of ['spark','draft','then','revise']) {
+    $('m-'+mode).onclick = () => { if (state.mode!==mode) setMode(mode); };
+  }
+  $('add-spark').onclick = () => {
+    const text = $('spark-input').value.trim();
+    if (!text) { toast('Type a small moment first.'); return; }
+    if (state.data.sparks.length>=5) {
+      hint('useSpark');
+      toast('Your five sparks are kept. Choose one to work on.');
+      return;
+    }
+    state.data.sparks.push({text,place:false,day:false});
+    const added = state.data.sparks.at(-1);
+    $('spark-input').value = '';
+    renderSparks();
+    save();
+    hint('small',true,() => state.data.sparks.includes(added) && (!added.place || !added.day));
+    const entry = $('spark-list').lastElementChild;
+    entry.querySelector('[data-check="place"]').focus({preventScroll:true});
+    requestAnimationFrame(() => entry.scrollIntoView({block:'nearest'}));
+    Curio.tone(520,.08,.02);
+  };
+  $('spark-input').onkeydown = e => { if (e.key==='Enter') $('add-spark').click(); };
+  $('spark-list').onchange = e => {
+    if (!e.target.matches('[data-spark]')) return;
+    const index = +e.target.dataset.spark;
+    const s = state.data.sparks[index];
+    s[e.target.dataset.check] = e.target.checked;
+    $('spark-sized-'+index).textContent = s.place&&s.day?'Your checks: ◎ Good size for one essay.':'';
+    if (s.place && s.day) {
+      if (V.playing===L.small) V.hush();
+      hint('useSpark');
+      requestAnimationFrame(() => $('spark-list').querySelector('[data-use="'+index+'"]').scrollIntoView({block:'nearest'}));
+    }
+    save();
+    Curio.tone(440,.05,.015);
+  };
+  $('spark-list').onclick = e => {
+    const b = e.target.closest('[data-use]');
+    if (!b) return;
+    state.data.title = state.data.sparks[+b.dataset.use].text;
+    save();
+    setMode('draft');
+    $('draft-text').focus({preventScroll:true});
+  };
+  $('draft-text').oninput = draftChanged;
+  $('draft-text').onclick = selectSentence;
+  $('draft-text').onkeyup = e => { if (e.key.startsWith('Arrow')) selectSentence(); };
+  $('draft-text').onscroll = syncScroll;
+  $('draft-text').onmousemove = e => {
+    const editor = $('draft-text');
+    const surface = $('draft-mirror');
+    editor.style.pointerEvents = 'none';
+    surface.style.pointerEvents = 'auto';
+    const match = document.elementFromPoint(e.clientX,e.clientY)?.closest('.stock,.abstract');
+    editor.style.pointerEvents = '';
+    surface.style.pointerEvents = '';
+    editor.title = state.data.finder && match?(match.classList.contains('stock')?'Wide shot: what moment shows this?':
+      'Big word: show it, then decide if you still need it.'):'Tap a sentence to select it. Dotted: wide shot. Dashed: big word.';
+  };
+  $('zoom').onclick = openLens;
+  $('close-lens').onclick = () => { closeLens(); hint('w-draft'); $('zoom').focus({preventScroll:true}); };
+  $('drop-notes').onclick = dropNotes;
+  $('finder').onchange = () => {
+    state.data.finder = $('finder').checked;
+    if (!state.data.finder && V.playing===L.finder) V.hush();
+    mirror();
+    save();
+    hint(state.data.finder?'finder':'w-draft',state.data.finder,() => state.data.finder);
+  };
+  ['then','turn','now'].forEach(k => {
+    $(k+'-text').oninput = () => {
+      state.data[k] = $(k+'-text').value;
+      if (!$('add-ending').hidden) renderEnding();
+      scheduleSave();
+    };
+  });
+  $('pick-detail').onclick = pickDetails;
+  $('detail-strip').onclick = e => {
+    const b = e.target.closest('[data-detail]');
+    if (!b) return;
+    state.data.turn += (state.data.turn?' ':'')+state.data.draft.slice(+b.dataset.detail,+b.dataset.end);
+    $('turn-text').value = state.data.turn;
+    if (!$('add-ending').hidden) renderEnding();
+    state.picking = false;
+    $('detail-strip').hidden = true;
+    $('pick-detail').setAttribute('aria-pressed','false');
+    hint('turnWrite',true,() => state.mode==='then' && !state.picking);
+    save();
+    toast('Detail placed in The turn. Add what it changed.');
+  };
+  $('make-ending').onclick = () => {
+    renderEnding();
+    $('add-ending').hidden = false;
+    hint('ending',true,() => state.mode==='then' && !$('add-ending').hidden);
+    Curio.tone(500,.1,.02);
+    requestAnimationFrame(() => {
+      $('add-ending').scrollIntoView({block:'nearest',behavior:Curio.reduce?'instant':'smooth'});
+      $('add-ending').focus({preventScroll:true});
+    });
+  };
+  $('add-ending').onclick = () => {
+    state.data.draft += (state.data.draft?'\n\n':'')+endingFrame();
+    save();
+    setMode('draft');
+    toast('Ending frame added. Edit it into your own ending.');
+  };
+  $('save-version').onclick = () => {
+    if (!snapshot($('version-name').value)) return;
+    $('version-name').value = '';
+    hint('compare');
+    toast('Version saved on this device.');
+  };
+  $('version-a').onchange = renderCompare;
+  $('version-b').onchange = renderCompare;
+  $('compare-content').oninput = e => {
+    if (!e.target.matches('[data-rename]')) return;
+    const v = state.data.versions.find(x => x.id===e.target.dataset.rename);
+    v.name = e.target.value;
+    for (const id of ['version-a','version-b']) {
+      [...$(id).options].forEach((o,i) => { o.textContent = versionLabel(state.data.versions[i],i); });
+    }
+    scheduleSave();
+  };
+  for (const tab of ['compare','opening','sequence','check']) $('r-'+tab).onclick = () => setRevision(tab);
+  $('opening-fields').oninput = e => {
+    if (!e.target.matches('[data-opening]')) return;
+    state.data.openings[+e.target.dataset.opening] = e.target.value;
+    clearOpeningPreview();
+    scheduleSave();
+  };
+  $('opening-fields').onclick = e => {
+    const b = e.target.closest('[data-try-opening]');
+    if (b) tryOpening(+b.dataset.tryOpening);
+  };
+  $('use-opening').onclick = () => {
+    if (state.opening<0 || state.openingSource!==state.data.draft || !snapshot()) return;
+    state.data.draft = openingText(state.opening);
+    state.selected = null;
+    save();
+    setMode('draft');
+    toast('Opening replaced. The earlier draft is saved.');
+  };
+  $('paragraphs').onclick = e => {
+    const job = e.target.closest('[data-job]');
+    if (job) {
+      state.board[+job.dataset.job].job = JOBS[+job.dataset.value];
+      state.board.forEach(p => { state.data.jobs[p.original] = p.job; });
+      job.closest('.jobs').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed',b===job));
+      boardSummary();
+      if (state.board.every(p => p.job)) hint('chooseOutcome');
+      save();
+      return;
+    }
+    const move = e.target.closest('[data-move]');
+    if (move) moveParagraph(+move.dataset.move,+move.dataset.dir);
+  };
+  $('paragraphs').ondragstart = e => {
+    const card = e.target.closest('[data-paragraph]');
+    if (!card) return;
+    dragged = +card.dataset.paragraph;
+    e.dataTransfer.setData('text/plain',String(dragged));
+  };
+  $('paragraphs').ondragover = e => { e.preventDefault(); };
+  $('paragraphs').ondrop = e => {
+    e.preventDefault();
+    const card = e.target.closest('[data-paragraph]');
+    if (!card || dragged<0) return;
+    reorderBoard(dragged,+card.dataset.paragraph);
+    dragged = -1;
+  };
+  $('try-order').onclick = () => {
+    $('order-preview').textContent = state.board.map(p => p.text).join('\n\n');
+    Curio.tone(450,.08,.02);
+    requestAnimationFrame(() => {
+      $('order-preview').scrollIntoView({block:'nearest'});
+      $('use-order').focus({preventScroll:true});
+    });
+  };
+  $('use-order').onclick = () => {
+    if (!state.board.length || !snapshot()) return;
+    state.data.draft = state.board.map(p => p.text).join('\n\n');
+    state.data.jobs = state.board.map(p => p.job);
+    state.selected = null;
+    save();
+    setMode('draft');
+    toast('Paragraph order applied. The earlier draft is saved.');
+  };
+  $('outcome').value = state.data.outcome;
+  $('outcome').onchange = () => { state.data.outcome = $('outcome').value; save(); };
+  $('checklist').onchange = e => {
+    if (!e.target.matches('[data-checklist]')) return;
+    state.data.checklist[+e.target.dataset.checklist] = e.target.checked;
+    save();
+  };
+  $('limit').onchange = () => { state.data.limit = +$('limit').value; updateMetrics(); save(); };
+  $('copy').onclick = async () => {
+    try { await navigator.clipboard.writeText(state.data.draft); toast('Essay copied.'); }
+    catch { toast('Clipboard unavailable. Select and copy the text in Draft.'); }
+  };
+  $('example').onclick = () => { hint('example'); $('example-dialog').showModal(); Curio.tone(430,.08,.02); };
+  $('close-example').onclick = () => {
+    $('example-dialog').close();
+    hint(currentHint());
+    $('example').focus({preventScroll:true});
+  };
+  $('clear').onclick = () => { confirmStep = 1; $('confirm-text').textContent = L.clear1; $('confirm').showModal(); };
+  $('confirm-no').onclick = () => { $('confirm').close(); $('clear').focus({preventScroll:true}); };
+  $('confirm-yes').onclick = confirmClear;
+  $('panel-toggle').onclick = () => {
+    document.body.classList.toggle('panel-open');
+    if (document.body.classList.contains('panel-open')) $('panel-close').focus({preventScroll:true});
+  };
+  $('panel-close').onclick = () => { document.body.classList.remove('panel-open'); $('panel-toggle').focus({preventScroll:true}); };
+  addEventListener('keydown',e => {
+    if (e.key==='Escape' && state.lens) { closeLens(); $('zoom').focus({preventScroll:true}); }
+    if (e.key==='Escape') document.body.classList.remove('panel-open');
+    if (state.mode==='draft' && e.key.toLowerCase()==='z' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+      const ta = $('draft-text');
+      if (document.activeElement===ta && ta.selectionStart===ta.selectionEnd) return;
+      if (e.target.closest('.lens,input,select,dialog')) return;
+      e.preventDefault();
+      selectSentence();
+      openLens();
+    }
+  });
+  addEventListener('pagehide',save);
+  function responsiveHint() {
+    const small = innerWidth<=760;
+    document.body.classList.toggle('mobile-layout',small);
+    const visible = small || state.lens;
+    document.body.classList.toggle('guidance-visible',visible);
+    $('mobile-guidance').hidden = !visible;
+    if (visible) $('mobile-guidance').append($('hint'));
+    else $('side-panel').insertBefore($('hint'),$('panel-scroll'));
+    layoutLens();
+  }
+  addEventListener('resize',() => { mirror(); responsiveHint(); });
+  Curio.init({clips:"voice:*",rate:.95});
+  responsiveHint();
+  renderSparks();
+  setMode('spark',false);
+  window.__tool = {state,setMode,setRevision,allLines:V.allLines,vlog:V.log,V,analyze,words,sentences,diff,
+    SAMPLE,STOCK,ABSTRACT,SENSES,NUMBERS,QUESTIONS,boardQuestions,snapshot,save,mirror,updateMetrics,
+    openLens,dropNotes,endingFrame,renderBoard,setupBoard,renderCompare,versionOptions};
+})();
+</script>
+</body>
+</html>

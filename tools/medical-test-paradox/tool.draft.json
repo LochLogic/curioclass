@@ -1,0 +1,25 @@
+{
+  "id": "medical-test-paradox",
+  "stage": "built",
+  "status": "beta",
+  "hook": "A positive test. A surprising crowd. Which denominator tells the truth?",
+  "outcome": "Read conditional probabilities as fractions of the right group in a two-way table.",
+  "driver": "students",
+  "minutes": "15-40",
+  "modes": [
+    "Town",
+    "Table",
+    "Second test",
+    "Cases"
+  ],
+  "grades_label": "Grade 10",
+  "sources": [
+    "Common Core State Standards, HSS-CP: https://www.thecorestandards.org/Math/Content/HSS/CP/",
+    "Gigerenzer et al. (2007), Helping Doctors and Patients Make Sense of Health Statistics: https://pubmed.ncbi.nlm.nih.gov/26161749/",
+    "Association for Psychological Science (2008), Just a Numbers Game: https://www.psychologicalscience.org/news/releases/just-a-numbers-game-making-sense-of-health-statistics.html",
+    "Shreffler and Huecker, StatPearls NBK557491: https://www.ncbi.nlm.nih.gov/books/NBK557491/",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

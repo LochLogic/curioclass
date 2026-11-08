@@ -1,0 +1,439 @@
+{
+  "orgs": [
+    [
+      "Maple Grove Middle School",
+      "maplegrove.example",
+      "ps-leaf"
+    ],
+    [
+      "Riverbend Library",
+      "riverbendlibrary.example",
+      "ps-book"
+    ],
+    [
+      "Pebble Quest",
+      "pebblequest.example",
+      "ps-pebble"
+    ],
+    [
+      "Hilltop Parcel",
+      "hilltopparcel.example",
+      "ps-parcel"
+    ],
+    [
+      "Tune Tower",
+      "tunetower.example",
+      "ps-tower"
+    ],
+    [
+      "Maple Grove Rec Center",
+      "maplegroverec.example",
+      "ps-wave"
+    ]
+  ],
+  "messages": [
+    {
+      "id": "P1",
+      "kind": "email",
+      "org": 0,
+      "subject": "Your school account closes today",
+      "tells": {
+        "from": [
+          1
+        ],
+        "b1": [
+          3
+        ],
+        "link": [
+          2
+        ],
+        "subject": [
+          3
+        ]
+      },
+      "fromName": "Maple Grove IT",
+      "from": "it-help@rnaplegrove.example",
+      "body": [
+        "We are updating accounts.",
+        "Sign in within 1 hour or your account will be closed."
+      ],
+      "link": {
+        "text": "portal.maplegrove.example",
+        "href": "maplegrove.account-check.test/login"
+      },
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "P2",
+      "kind": "sms",
+      "org": 3,
+      "subject": "",
+      "tells": {
+        "b1": [
+          3
+        ],
+        "link": [
+          2
+        ]
+      },
+      "fromName": "+1 555 0142",
+      "from": "",
+      "body": [
+        "Hilltop Parcel: your package is on hold.",
+        "Pay a $1.99 fee today or it goes back:"
+      ],
+      "link": {
+        "text": "hilltop-parcel-fees.test/pay",
+        "href": "hilltop-parcel-fees.test/pay"
+      },
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "P3",
+      "kind": "email",
+      "org": 2,
+      "subject": "You won 10,000 free gems!",
+      "tells": {
+        "from": [
+          1
+        ],
+        "subject": [
+          5
+        ],
+        "b0": [
+          3
+        ],
+        "link": [
+          2
+        ]
+      },
+      "fromName": "Pebble Quest",
+      "from": "rewards@pebblequest-prizes.test",
+      "body": [
+        "Claim them tonight before they disappear."
+      ],
+      "link": {
+        "text": "Claim gems",
+        "href": "pebblequest-prizes.test/claim"
+      },
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "P4",
+      "kind": "login",
+      "org": 2,
+      "subject": "Pebble Quest: Sign in",
+      "tells": {
+        "address": [
+          7
+        ]
+      },
+      "address": "pebblequest.example.signin-help.test",
+      "body": [],
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "P5",
+      "kind": "email",
+      "org": 0,
+      "subject": "Quick favor",
+      "tells": {
+        "from": [
+          1
+        ],
+        "b1": [
+          4
+        ],
+        "b2": [
+          8
+        ]
+      },
+      "fromName": "Ms. Ruiz",
+      "from": "ms.ruiz.maplegrove@mailbox.test",
+      "body": [
+        "I'm in a meeting.",
+        "Send me the code that just came to your phone.",
+        "Don't tell anyone, it's a surprise for the class."
+      ],
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "P6",
+      "kind": "email",
+      "org": 1,
+      "subject": "Overdue fine: open the attached bill",
+      "tells": {
+        "from": [
+          1
+        ],
+        "att": [
+          6
+        ]
+      },
+      "fromName": "Riverbend Library",
+      "from": "notices@riverbend-library.test",
+      "body": [
+        "You owe a fine.",
+        "Open the attachment to see it."
+      ],
+      "attachment": "fine-notice.zip",
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "P7",
+      "kind": "sms",
+      "org": 4,
+      "subject": "",
+      "tells": {
+        "b0": [
+          3
+        ],
+        "b1": [
+          4
+        ]
+      },
+      "fromName": "+1 555 0190 (says it is Tune Tower)",
+      "from": "",
+      "body": [
+        "Your account is locked.",
+        "Reply with your password to unlock it."
+      ],
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "P8",
+      "kind": "login",
+      "org": 0,
+      "subject": "Maple Grove Student Portal",
+      "tells": {
+        "address": [
+          7
+        ]
+      },
+      "address": "maplegrove-portal.test",
+      "body": [],
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "P9",
+      "kind": "email",
+      "org": 5,
+      "subject": "Free summer camp spot for you!",
+      "tells": {
+        "from": [
+          1
+        ],
+        "subject": [
+          5
+        ],
+        "b0": [
+          5
+        ],
+        "att": [
+          6
+        ]
+      },
+      "fromName": "Maple Grove Rec Center",
+      "from": "frontdesk@maplegrove-rec.test",
+      "body": [
+        "You were picked for a free spot.",
+        "Open the form to claim it."
+      ],
+      "attachment": "camp-form.html",
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "P10",
+      "kind": "email",
+      "org": 4,
+      "subject": "Payment failed",
+      "tells": {
+        "from": [
+          1
+        ],
+        "b0": [
+          3
+        ],
+        "link": [
+          2
+        ]
+      },
+      "fromName": "Tune Tower",
+      "from": "billing@tunetovver.example",
+      "body": [
+        "Update your card in 24 hours or lose your playlists."
+      ],
+      "link": {
+        "text": "Update payment",
+        "href": "tunetovver.example/billing"
+      },
+      "phish": true,
+      "why": ""
+    },
+    {
+      "id": "S1",
+      "kind": "email",
+      "org": 0,
+      "subject": "Picture day is Thursday",
+      "tells": {},
+      "fromName": "Maple Grove Middle School",
+      "from": "office@maplegrove.example",
+      "body": [
+        "Wear your best smile.",
+        "Order forms are on the school site."
+      ],
+      "link": {
+        "text": "Picture day info",
+        "href": "maplegrove.example/picture-day"
+      },
+      "phish": false,
+      "why": "Real address, and the link goes where it says. No rush, no request."
+    },
+    {
+      "id": "S2",
+      "kind": "email",
+      "org": 1,
+      "subject": "Your hold is ready",
+      "tells": {},
+      "fromName": "Riverbend Library",
+      "from": "holds@riverbendlibrary.example",
+      "body": [
+        "The Lighthouse Map is waiting at the front desk.",
+        "Pick it up by Friday."
+      ],
+      "phish": false,
+      "why": "Real address and a normal deadline, with nothing to click or type."
+    },
+    {
+      "id": "S3",
+      "kind": "sms",
+      "org": 3,
+      "subject": "",
+      "tells": {},
+      "fromName": "Hilltop Parcel",
+      "from": "+1 555 0123 (saved in your contacts)",
+      "body": [
+        "Your package was delivered at 3:12 p.m.",
+        "Track it:"
+      ],
+      "link": {
+        "text": "hilltopparcel.example/t/48213",
+        "href": "hilltopparcel.example/t/48213"
+      },
+      "phish": false,
+      "why": "The link goes to the real hilltopparcel.example and asks for nothing."
+    },
+    {
+      "id": "S4",
+      "kind": "login",
+      "org": 0,
+      "subject": "Maple Grove Student Portal",
+      "tells": {},
+      "address": "portal.maplegrove.example",
+      "body": [],
+      "phish": false,
+      "why": "The address bar shows the real portal.maplegrove.example."
+    },
+    {
+      "id": "S5",
+      "kind": "email",
+      "org": 2,
+      "subject": "New level: Crystal Caves is open",
+      "tells": {},
+      "fromName": "Pebble Quest",
+      "from": "news@pebblequest.example",
+      "body": [
+        "Explore the new caves this weekend."
+      ],
+      "link": {
+        "text": "See what's new",
+        "href": "pebblequest.example/news"
+      },
+      "phish": false,
+      "why": "Real address, and the link stays on pebblequest.example."
+    },
+    {
+      "id": "S6",
+      "kind": "email",
+      "org": 0,
+      "subject": "Science fair sign-up sheet",
+      "tells": {},
+      "fromName": "Mr. Okafor",
+      "from": "j.okafor@maplegrove.example",
+      "body": [
+        "As I said in class today, here is the sign-up sheet."
+      ],
+      "attachment": "science-fair-signup.pdf",
+      "phish": false,
+      "why": "A teacher you know, at the real school address, sending what he said he would. Unsure? Ask him in person."
+    },
+    {
+      "id": "S7",
+      "kind": "email",
+      "org": 4,
+      "subject": "Your year in music",
+      "tells": {},
+      "fromName": "Tune Tower",
+      "from": "hello@tunetower.example",
+      "body": [
+        "See the songs you played most this year."
+      ],
+      "link": {
+        "text": "See your year",
+        "href": "tunetower.example/year"
+      },
+      "phish": false,
+      "why": "Real address; the link stays on tunetower.example."
+    },
+    {
+      "id": "S8",
+      "kind": "login",
+      "org": 2,
+      "subject": "Pebble Quest: Sign in",
+      "tells": {},
+      "address": "pebblequest.example/signin",
+      "body": [],
+      "phish": false,
+      "why": "The site name before the first slash is pebblequest.example. The fake page's site name ends in signin-help.test."
+    },
+    {
+      "id": "S9",
+      "kind": "sms",
+      "org": 5,
+      "subject": "",
+      "tells": {},
+      "fromName": "Maple Grove Rec",
+      "from": "+1 555 0109 (saved in your contacts)",
+      "body": [
+        "Swim lessons start Monday at 4.",
+        "Reply STOP to unsubscribe."
+      ],
+      "phish": false,
+      "why": "A known sender with a normal reminder and nothing to click."
+    },
+    {
+      "id": "S10",
+      "kind": "email",
+      "org": 2,
+      "subject": "New sign-in on a new device",
+      "tells": {},
+      "fromName": "Pebble Quest",
+      "from": "security@pebblequest.example",
+      "body": [
+        "If this wasn't you, open the Pebble Quest app yourself and change your password.",
+        "We will never ask for your password."
+      ],
+      "phish": false,
+      "why": "Real address. It tells you to open the app yourself and never asks for your password: that is what real alerts do."
+    }
+  ]
+}

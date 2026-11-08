@@ -1,0 +1,76 @@
+{
+  "house_style": "Sophisticated editorial soft oil painting for older students. Warm directional lamplight from upper left, dark walnut, oxidized brass, cream paper, rich painterly material detail, subtle canvas grain. Museum-quality still life, restrained and atmospheric. No text, letters, numbers, logos, people, faces or hands.",
+  "assets": [
+    {
+      "name": "hearing-room",
+      "prompt": "A long polished wooden hearing table seen from the front in a wood-paneled room, five empty leather chairs behind it, five blank brass nameplates standing on the table, a green-shaded lamp at each end. Symmetrical wide composition, warm lamplight from upper left, beautiful walnut grain and brass reflections. The upper middle is quiet dark wood for a sentence card overlay; lower third is the table front. Empty room, no writing anywhere.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pencil",
+      "prompt": "A long red editing pencil standing upright in a small brass cup. Front view, centered complete object with margins, beautiful lacquer highlights, sharpened graphite tip and engraved-free brass patina. Single still life isolated on flat pure green #00FF00, no floor, no cast shadow outside the object.",
+      "aspect": "1:1",
+      "width": 340,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "trumpet",
+      "prompt": "A vintage brass ear trumpet, a historical hearing aid with a broad flared acoustic bell and narrow curved tube, resting upright on its bell. Complete object in front three-quarter view, centered with margins, convincing golden brass reflections and patina. Single still life isolated on flat pure green #00FF00, no floor, no shadow outside object.",
+      "aspect": "1:1",
+      "width": 340,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "papers",
+      "prompt": "A neat upright stack of blank ivory paper held by a small black steel binder clip with silver wire handles. Fine layered paper edges, shallow deckle texture, a gently turned lower corner, subtle warm shadows between sheets. Front view, complete object centered with generous margins. Sophisticated soft oil still life, warm lamplight from upper left, cream and amber palette, restrained painted detail matching polished brass and walnut. The top sheet stays blank for a code-drawn check. Isolated on flat pure magenta #FF00FF. No floor, no external cast shadow, no writing, no people.",
+      "aspect": "1:1",
+      "width": 340,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true,
+      "key": "magenta"
+    },
+    {
+      "name": "quill",
+      "prompt": "A white feather quill standing upright in a small round black inkpot. Elegant individual feather barbs, ivory shaft, glossy inkpot with a brass rim and warm highlights. Front view, complete object centered with margins. Single still life isolated on flat pure green #00FF00, no floor, no shadow outside object.",
+      "aspect": "1:1",
+      "width": 340,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "notebook",
+      "prompt": "A reporter's small spiral notebook with blank cream pages propped open against a small vintage silver microphone on a short round stand. Detailed wire spiral and brushed metal grille, dark leather notebook cover. Front view, both complete objects centered with margins. Single still life isolated on flat pure green #00FF00, no floor, no shadow outside object.",
+      "aspect": "1:1",
+      "width": 340,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "holes": true
+    }
+  ]
+}

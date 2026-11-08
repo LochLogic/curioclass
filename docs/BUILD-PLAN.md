@@ -9,6 +9,24 @@ A long session that builds tool after tool starts to blur them: it misremembers 
 invents facts. Here no agent ever sees more than one tool, and everything it needs is in files, not in memory:
 the concept catalog, the neighbors script, the kit, the family specs and the briefs below.
 
+## Names for each step (Cory, 2026-11-08)
+
+"Review" alone is never used: it could mean five different moments. Each check has its own name, and the files keep
+their old names so nothing breaks.
+
+| # | Who | Name | File it leaves |
+|---|---|---|---|
+| 1 | Codex (or a helper) | **Build** | codex-report.md |
+| 2 | Codex (or a helper) | **Self-check**: the builder checks its own build | codex-review.md |
+| 3 | Claude | **Refine**: three lenses and a fix list | refine/*.md, refine.md (OPEN) |
+| 4 | Codex (or a helper) | **Fix** | polish.md |
+| 5 | Claude | **Exit check**: PASS, or another round of Fix | refine.md (PASS or ROUND 2) |
+| 6 | Claude | **Art and voice** | art/*.webp, voice/ |
+| 7 | Claude | **Finish check**: the finished tool, with its art and voice (REFINE.md, "Final look") | final.md |
+| 8 | Cory | **Sign-off**, on the Desk (the Review Desk) | the Desk |
+
+The Desk is where Cory signs off and answers question cards. A tool that fails a check goes back to Fix.
+
 ## The pipeline for one tool
 
 | Step | Who | Brief | Output |
@@ -22,7 +40,7 @@ the concept catalog, the neighbors script, the kit, the family specs and the bri
 | 6. Integrate | the integrating session | this file | commit, board, art and voice queues |
 | 7. Art | daily rhythm (docs/ART.md) | | Cloudflare, local FLUX, Codex, Gemini for people |
 | 8. Voice | daily rhythm (scripts/voice.py) | | Gemini or the local voice |
-| 9. Review | Cory, on the Review Desk | | approve, or notes back to step 5 |
+| 9. Sign-off | Cory, on the Desk | | approve, or notes back to step 5 |
 | 10. Live | rename tool.draft.json to tool.json, make the card art (`python scripts/preview.py <id>`, look at it), deploy | | preview.svg |
 
 `python scripts/board.py` shows where every tool is (docs/BUILD-BOARD.md). It reads the files, so it can't drift.
@@ -53,9 +71,9 @@ Held back from early waves: ASL (graphics only, no video or photos; design path 
 educator review), Spanish (needs a
 native-speaker review), and hard history (needs extra care and teacher guidance). They get their own waves.
 
-## Review tiers
+## Sign-off tiers
 
-Cory reviews every K-2 tool and every sensitive one (hard history, health, mental health) in full. For other tools
+Cory signs off on every K-2 tool and every sensitive one (hard history, health, mental health) in full. For other tools
 the Refine lenses do the deep check and Cory spot-checks about one in four, plus anything the verifier flagged.
 
 ## Voice

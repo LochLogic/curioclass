@@ -1,0 +1,27 @@
+{
+  "id": "phishing-spotter",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Keep it or report it. Catch the tell for double points.",
+  "outcome": "Spot phishing messages and fake sign-in pages using sender, destination and context.",
+  "driver": "students",
+  "minutes": "10-20",
+  "modes": [
+    "Practice",
+    "Arcade",
+    "Tells"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "FTC Consumer Advice: How To Recognize and Avoid Phishing Scams",
+    "CISA: Recognize and Report Phishing; Avoiding Social Engineering and Phishing Attacks",
+    "NIST: Phishing guidance, checked as corroboration when CISA pages returned 403",
+    "FTC: Verification-code guidance and Scammers Use Fake Emergencies To Steal Your Money",
+    "RFC 2606 and RFC 6761: reserved example and test domains",
+    "NANPA: 555-0100 through 555-0199 reserved for fiction",
+    "CSTA 2026 MS-SYS-SE-32 and MS-SYS-SE-33; CSTA 2017 2-NI-05",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

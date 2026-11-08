@@ -1,0 +1,176 @@
+{
+  "states": [
+    {
+      "name": "thousand",
+      "steps": [
+        {
+          "click": "#breed1000"
+        },
+        {
+          "wait": 1200
+        },
+        {
+          "click": "#test"
+        }
+      ],
+      "keep": [
+        "#fit-card",
+        ".breed-controls"
+      ]
+    },
+    {
+      "name": "two-genes",
+      "steps": [
+        {
+          "click": "#two"
+        }
+      ],
+      "keep": [
+        "#square",
+        ".breed-controls"
+      ]
+    },
+    {
+      "name": "meiosis-first",
+      "steps": [
+        {
+          "click": "#open"
+        }
+      ],
+      "keep": [
+        "#meiosis",
+        ".step-controls"
+      ]
+    },
+    {
+      "name": "meiosis-last",
+      "steps": [
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next",
+          "times": 5,
+          "gap": 0.05
+        }
+      ],
+      "keep": [
+        "#meiosis",
+        "#gamete-links"
+      ]
+    },
+    {
+      "name": "two-orientations",
+      "steps": [
+        {
+          "click": "#two"
+        },
+        {
+          "click": "#open"
+        },
+        {
+          "click": "#next",
+          "times": 2,
+          "gap": 0.05
+        }
+      ],
+      "keep": [
+        "#meiosis-scene"
+      ]
+    },
+    {
+      "name": "linked-data",
+      "steps": [
+        {
+          "click": "#m-linked"
+        },
+        {
+          "click": "#real"
+        }
+      ],
+      "keep": [
+        "#square"
+      ]
+    },
+    {
+      "name": "linked-chromosome",
+      "steps": [
+        {
+          "click": "#m-linked"
+        },
+        {
+          "click": "#real"
+        },
+        {
+          "click": "#chromosome"
+        }
+      ],
+      "keep": [
+        "#meiosis",
+        "#crossing"
+      ]
+    },
+    {
+      "name": "mendel-selected",
+      "steps": [
+        {
+          "click": "#m-mendel"
+        },
+        {
+          "click": "#trait-4"
+        }
+      ],
+      "keep": [
+        ".mendel-table",
+        "#try-total"
+      ]
+    },
+    {
+      "name": "linked-products",
+      "steps": [
+        {
+          "click": "#m-linked"
+        },
+        {
+          "click": "#chromosome"
+        },
+        {
+          "click": "#next",
+          "times": 5,
+          "gap": 0.05
+        }
+      ],
+      "keep": [
+        "#meiosis-scene",
+        "#gamete-links",
+        ".step-controls",
+        "#crossing"
+      ],
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "mendel-last-row",
+      "steps": [
+        {
+          "click": "#m-mendel"
+        },
+        {
+          "click": "#trait-6"
+        }
+      ],
+      "keep": [
+        "#trait-6",
+        "#try-total"
+      ],
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1366x768"
+      ]
+    }
+  ]
+}

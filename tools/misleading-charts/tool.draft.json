@@ -1,0 +1,22 @@
+{
+  "id": "misleading-charts",
+  "status": "beta",
+  "stage": "built",
+  "hook": "The numbers are real. The picture is the suspect.",
+  "outcome": "Measure graphical distortion, identify six misleading chart techniques, and redraw charts honestly.",
+  "driver": "students or teacher",
+  "minutes": "25-40",
+  "modes": [
+    "Case Files",
+    "Spin Room"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "Edward Tufte, The Visual Display of Quantitative Information (Graphics Press, 1983), chapter 2",
+    "Alberto Cairo, How Charts Lie (W. W. Norton, 2019)",
+    "All places, publishers and data are made up for this tool",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

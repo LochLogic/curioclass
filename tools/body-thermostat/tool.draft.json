@@ -1,0 +1,25 @@
+{
+  "id": "body-thermostat",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Turn one response off. Discover what was holding your temperature steady.",
+  "outcome": "Use controlled trials to explain negative feedback and a moving fever set point.",
+  "driver": "students",
+  "minutes": "15-30",
+  "modes": [
+    "Lab",
+    "Experiment",
+    "Fever"
+  ],
+  "grades_label": "Grade 9",
+  "updated": "2026-11-08",
+  "sources": [
+    "NIH MedlinePlus: Body temperature norms",
+    "CDC: Heat-related illnesses, Preventing Hypothermia, Definitions of Signs and Symptoms",
+    "OpenStax Anatomy and Physiology 2e, section 24.6: consulted for physiology facts",
+    "ASHRAE Handbook Fundamentals 2021, ch. 9: thermal constants as cited by the spec",
+    "2024 Adult Compendium of Physical Activities: model MET inputs",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": []
+}

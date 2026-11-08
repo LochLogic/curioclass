@@ -1,0 +1,312 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "ruler",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#confirm-reset"
+        },
+        {
+          "click": "#clue-ruler"
+        },
+        {
+          "click": "[data-item='0']"
+        },
+        {
+          "click": "[data-item='1']"
+        },
+        {
+          "click": "#clue-axis"
+        }
+      ],
+      "keep": [
+        "#file",
+        "#original-readout"
+      ]
+    },
+    {
+      "name": "school-year",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#confirm-reset"
+        },
+        {
+          "click": "#case-2"
+        },
+        {
+          "click": "#clue-zoom"
+        },
+        {
+          "click": "#clue-data"
+        },
+        {
+          "click": "#close-data"
+        }
+      ],
+      "keep": [
+        "#file",
+        "#original-wrap"
+      ]
+    },
+    {
+      "name": "recycling-closed",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#confirm-reset"
+        },
+        {
+          "click": "#case-3"
+        },
+        {
+          "click": "#clue-ruler"
+        },
+        {
+          "click": "[data-item='0']"
+        },
+        {
+          "click": "[data-item='1']"
+        },
+        {
+          "click": "#trick-2"
+        },
+        {
+          "click": "#ruling-1"
+        },
+        {
+          "click": "#file"
+        },
+        {
+          "click": "#fix"
+        }
+      ],
+      "keep": [
+        "#fix",
+        "#next"
+      ]
+    },
+    {
+      "name": "two-scales-data",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#confirm-reset"
+        },
+        {
+          "click": "#case-4"
+        },
+        {
+          "click": "#clue-axis"
+        },
+        {
+          "click": "#clue-data"
+        }
+      ],
+      "keep": [
+        "#data-table",
+        "#close-data"
+      ]
+    },
+    {
+      "name": "rates-wrong-ruling",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#confirm-reset"
+        },
+        {
+          "click": "#case-5"
+        },
+        {
+          "click": "#clue-rate"
+        },
+        {
+          "click": "#clue-data"
+        },
+        {
+          "click": "#close-data"
+        },
+        {
+          "click": "#trick-4"
+        },
+        {
+          "click": "#ruling-0"
+        },
+        {
+          "click": "#file"
+        }
+      ],
+      "keep": [
+        "#file",
+        "#hint"
+      ]
+    },
+    {
+      "name": "robotics-corrected",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#confirm-reset"
+        },
+        {
+          "click": "#case-6"
+        },
+        {
+          "click": "#clue-ruler"
+        },
+        {
+          "click": "[data-item='0']"
+        },
+        {
+          "click": "[data-item='7']"
+        },
+        {
+          "click": "#clue-axis"
+        },
+        {
+          "click": "#trick-5"
+        },
+        {
+          "click": "#ruling-2"
+        },
+        {
+          "click": "#file"
+        },
+        {
+          "click": "#fix"
+        }
+      ],
+      "keep": [
+        "#fix",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "spin-extreme",
+      "steps": [
+        {
+          "click": "#m-spin"
+        },
+        {
+          "drag": "const r=document.getElementById('baseline').getBoundingClientRect();\nreturn Array.from({length:18},(_,i)=>[i===17?r.right+2:r.x+8+(r.width-16)*i/17,r.y+r.height/2]);"
+        },
+        {
+          "click": "#fact-view"
+        }
+      ],
+      "keep": [
+        "#honest",
+        "#fact-view",
+        "#meter"
+      ]
+    },
+    {
+      "name": "reset-confirmation",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#cancel-reset",
+        "#confirm-reset"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "spin-two-scales-review",
+      "steps": [
+        {
+          "click": "#m-spin"
+        },
+        {
+          "click": "#dataset"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#second"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#meter",
+        "#honest"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "robotics-unrelated-pair-review",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#confirm-reset"
+        },
+        {
+          "click": "#case-6"
+        },
+        {
+          "click": "#clue-ruler"
+        },
+        {
+          "click": ".mark"
+        },
+        {
+          "click": ".mark ~ .mark"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#file"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}

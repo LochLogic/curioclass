@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#233f49"/><stop offset="1" stop-color="#101a23"/></linearGradient>
+    <linearGradient id="stone" x2="1" y2="1"><stop stop-color="#c9ad79"/><stop offset="1" stop-color="#80613d"/></linearGradient>
+    <linearGradient id="ice" y2="1"><stop stop-color="#c9edf9"/><stop offset="1" stop-color="#4f8fd0"/></linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <path d="M40 410H760" stroke="#58acac" stroke-width="3"/>
+  <text x="42" y="65" fill="#e8edf3" font-size="35" font-family="Segoe UI,sans-serif" font-weight="700">Water Shapes Earth</text>
+  <text x="44" y="98" fill="#a5c9cf" font-size="17" font-family="Segoe UI,sans-serif">ICE, ACID AND CURRENT</text>
+  <rect x="50" y="177" width="187" height="190" rx="5" fill="url(#stone)"/>
+  <path d="M142 177L130 225L150 264L130 301L144 367" fill="none" stroke="#22313a" stroke-width="25"/>
+  <path d="M142 177L130 225L150 264L130 301L144 367" fill="none" stroke="url(#ice)" stroke-width="14"/>
+  <path d="M55 185H133M154 185H232M56 351H133M155 351H233" stroke="#f4d9a1" opacity=".4"/>
+  <rect x="330" y="155" width="130" height="208" rx="20" fill="#7caac3" fill-opacity=".15" stroke="#cae5e8" stroke-width="4"/>
+  <ellipse cx="395" cy="208" rx="62" ry="10" fill="#5b9eb7" opacity=".5"/>
+  <path d="M353 312L365 279L411 267L439 295L426 329L382 340Z" fill="#d6cdb0" stroke="#f4ead6" stroke-width="3"/>
+  <rect x="322" y="151" width="146" height="19" rx="5" fill="#7d8c91"/>
+  <rect x="312" y="367" width="165" height="30" rx="7" fill="#d4dcdb"/>
+  <rect x="363" y="374" width="65" height="15" fill="#132a30"/>
+  <path d="M560 168H750V371H560Z" fill="#bea272" stroke="#7a5c39" stroke-width="12"/>
+  <path d="M645 174C591 220 702 268 640 323" fill="none" stroke="#283d40" stroke-width="23"/>
+  <path d="M645 174C591 220 702 268 640 323" fill="none" stroke="#4f8fd0" stroke-width="15"/>
+  <path d="M641 315L598 361H704Z" fill="#dcc892"/>
+  <ellipse cx="645" cy="369" rx="92" ry="11" fill="#78a8af" opacity=".7"/>
+  <text x="43" y="455" fill="#d0e1e4" font-size="18" font-family="Segoe UI,sans-serif">Plan a fair test. Run it. Explain the evidence.</text>
+</svg>

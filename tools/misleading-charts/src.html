@@ -1,0 +1,1417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Misleading Charts · Curio Class</title>
+<meta name="description" content="Work the fact-check desk: measure misleading charts and print honest corrections. Grades 6-8. Works offline.">
+<!--
+Curio Class, Misleading Charts. Grades 6-8 computer science, students or teacher, 25-40 minutes.
+Catalog mappings: CSTA MS-DAT-DC-23, MS-DAT-DI-25, MS-DAT-DI-26; see notes.md for coverage limits.
+Direct alignment: MS-DAT-DI-26. The 2017 2-DA-09 mapping belongs with a modeling activity.
+Sources: Tufte, The Visual Display of Quantitative Information (1983), chapter 2; Cairo, How Charts Lie (2019).
+Every place, publisher and number is invented. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One file. No network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f4f1ea; --panel:#fffdf8; --ink:#1c1b19; --muted:#5d5a52; --line:#dcd6c8;
+  --brand:#a21caf; --btn:#a21caf; --btn-line:#dba0df; --head-ink:#fff; --focus:#0b6e4f;
+}
+body { overflow:hidden; }
+header { padding:9px 18px; gap:9px; border-bottom:4px solid #6e1378; }
+h1 { font:700 clamp(20px,2.2vw,30px)/1.05 Georgia,serif; letter-spacing:-.6px; }
+h1 small { font-size:12px; letter-spacing:.03em; margin-top:5px; opacity:1; }
+.seg { border-radius:6px; }
+.seg button { min-height:44px; font-size:14px; padding:0 13px; }
+.seg button[aria-pressed="true"] { background:var(--panel); color:#74177c; }
+.icon-btn { min-height:44px; padding:0 10px; font-size:13px; border-radius:6px; }
+.header-icon { font-size:16px; }
+header :focus-visible { outline-color:#fff; }
+main { grid-template-columns:minmax(0,1fr) 390px; min-height:0; position:relative; }
+.stage { grid-column:1; grid-row:1; min-height:0; background:#b7976c; display:flex; flex-direction:column; isolation:isolate; }
+.desk { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-2; }
+.stage.has-data { z-index:10; }
+.stage::after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(110deg,#21180b05,#21180b22); }
+.case-strip { display:grid; grid-template-columns:repeat(6,1fr); gap:5px; padding:12px 16px 0; }
+.case-tab { min-height:49px; border:1px solid #99836a; border-bottom:3px solid #99836a; border-radius:8px 8px 0 0;
+  background:linear-gradient(#f9eed8,#e4d4b2); font:700 14px Georgia,serif; box-shadow:1px -2px 4px #39260f22; }
+.case-tab small { display:block; font:600 10px 'Segoe UI',sans-serif; margin-top:3px; letter-spacing:.05em; }
+.case-tab[aria-pressed="true"] { background:var(--panel); border-color:var(--brand); }
+.case-tab.closed small { color:#74177c; }
+.worktop { flex:1; min-height:0; display:grid; grid-template-columns:minmax(0,1fr) minmax(180px,.55fr);
+  gap:15px; padding:14px 20px 12px; align-items:center; }
+.publication { height:100%; max-height:700px; min-height:0; position:relative; filter:drop-shadow(3px 8px 8px #23190e55); }
+.prop { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; pointer-events:none; }
+.paper-content { position:absolute; inset:7% 9% 17%; display:flex; flex-direction:column; min-height:0; }
+.publication.laptop .paper-content { inset:9% 10% 32%; }
+.edition { display:flex; justify-content:space-between; border-bottom:1px solid #7c776e; padding-bottom:5px;
+  font:700 10px 'Segoe UI',sans-serif; text-transform:uppercase; letter-spacing:.08em; }
+.status-dot { color:#74177c; }
+.status-dot::before { content:'● '; animation:blink 3s ease-in-out infinite; }
+.calm .status-dot::before { animation:none!important; }
+@keyframes blink { 50% { opacity:.35; } }
+.headline { font:700 clamp(19px,2.1vw,32px)/1.04 Georgia,serif; margin:10px 0 6px; letter-spacing:-.6px; }
+.source { font:11px/1.25 'Segoe UI',sans-serif; color:#5d5a52; margin:0 0 8px; }
+.chart-wrap { flex:1; min-height:85px; position:relative; }
+.chart { display:block; width:100%; height:100%; overflow:visible; }
+.chart text { font-family:'Segoe UI',sans-serif; fill:#3f3d39; }
+.chart text,.chart>path,.chart>polyline,.chart>.grid-line { pointer-events:none; }
+.chart .mark { cursor:pointer; outline:none; }
+.chart .mark:focus-visible .hit { stroke:#0b6e4f; stroke-width:3; fill:#0b6e4f18; }
+.measure-line { stroke:var(--brand); stroke-width:2; stroke-dasharray:4 3; }
+.chart .measurement { fill:#74177c; font-weight:700; paint-order:stroke; stroke:#fffdf8; stroke-width:4px; }
+.grid-line { stroke:#d7d2c7; stroke-width:1; }
+.axis { stroke:#6d685f; stroke-width:1.5; }
+.selected { stroke:var(--brand); stroke-width:3; }
+.ghost { fill:#2563eb33; stroke:#2563eb; stroke-width:2; stroke-dasharray:4 2; }
+.chart .rate-label { fill:#1d4593; font-weight:700; paint-order:stroke; stroke:#fffdf8; stroke-width:3px; }
+.axis-bracket { stroke:var(--brand); fill:none; stroke-width:3; }
+.ruler-slip { margin-top:5px; border-top:1px solid #cbc2b4; padding-top:5px; height:64px; flex:none; overflow:auto;
+  font:12px/1.4 'Segoe UI',sans-serif; color:#3f3d39; }
+.paper-foot { display:flex; justify-content:space-between; font:10px Georgia,serif; border-top:2px solid #3f3d39;
+  padding-top:4px; margin-top:6px; }
+.correction { height:74%; position:relative; background:linear-gradient(120deg,#fffdf8,#f0ece3); padding:15px;
+  border:1px solid #b3a58d; box-shadow:3px 6px 10px #241b123f; display:flex; flex-direction:column;
+  transform:rotate(1.4deg); min-height:150px; }
+.correction::before { content:''; position:absolute; top:-10px; left:39%; width:55px; height:20px;
+  background:#dfc9a7a0; box-shadow:0 1px 2px #38291625; transform:rotate(-4deg); }
+.correction h2 { margin:0 0 8px; font:italic 700 23px Georgia,serif; border-bottom:3px double #2563eb; padding-bottom:6px; }
+.correction .ruler-slip { font-size:11px; }
+.correction .chart text { fill:#1d4593; }
+.empty { margin:auto 0; text-align:center; color:#5d5a52; font:italic 15px/1.5 Georgia,serif; }
+.empty svg { width:70px; height:60px; display:block; margin:0 auto 10px; color:#8e8270; }
+.stamp { position:absolute; bottom:1.5%; right:7%; border:4px double var(--brand); padding:5px 12px;
+  color:#74177c; background:#fffdf8e8; font:900 24px 'Courier New',monospace; letter-spacing:.1em; transform:rotate(-12deg); }
+.fresh { animation:stamp .4s ease-out; }
+@keyframes stamp { from { transform:rotate(-12deg) scale(1.7); opacity:0; } }
+.redraw { animation:print .4s ease-out; }
+@keyframes print { from { opacity:.2; clip-path:inset(0 0 100% 0); } to { opacity:1; clip-path:inset(0); } }
+.view-tabs { display:none; }
+.desk-caption { display:flex; justify-content:space-between; gap:10px; color:#fffdf8; text-shadow:0 1px 3px #24190b;
+  padding:0 20px 10px; font:600 11px 'Segoe UI',sans-serif; }
+.panel { grid-column:2; grid-row:1; padding:11px 13px 8px; gap:8px; border-left:3px solid #bfb09a;
+  min-height:0; overflow:hidden; background:linear-gradient(90deg,#f3eee4,#fffdf8 4%); box-shadow:-4px 0 9px #211c1325; }
+.hint { margin:0; height:64px; flex:none; overflow:auto; font-size:15px; line-height:1.35; padding:8px 10px;
+  border-left:4px solid var(--brand); background:#f9c6f240; }
+.section-title { margin:0 0 5px; font-size:11px; text-transform:uppercase; letter-spacing:.12em; color:#5d5a52; }
+button,select,input { touch-action:manipulation; }
+.tool-grid { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; }
+.clue-tool { min-width:0; min-height:53px; border:1px solid #baaf9d; border-radius:4px; background:linear-gradient(#fffefa,#eee7da);
+  font:600 11px/1.1 'Segoe UI',sans-serif; padding:3px 2px; box-shadow:0 2px 0 #d1c5b2; }
+.clue-tool svg { display:block; width:21px; height:21px; margin:0 auto 3px; stroke:currentColor; stroke-width:1.7; fill:none; }
+.clue-tool[aria-pressed="true"] { background:#f9c6f2; color:#64106d; border-color:var(--brand); }
+.notebook { min-height:65px; max-height:145px; flex:1; display:flex; flex-direction:column; min-width:0; }
+.notes-list { overflow:auto; flex:1; border:1px solid #d0c5af; border-left:5px solid #bfae8c;
+  background:repeating-linear-gradient(#fbf7e9 0 23px,#dfd7c5 23px 24px); padding:6px 8px; }
+.clue-card { margin:0 0 7px; padding:4px 0; font-size:12px; line-height:1.4; }
+.clue-card:last-child { margin-bottom:0; }
+.clue-card b { background:#f9c6f2; padding:1px 3px; font-size:10px; text-transform:uppercase; letter-spacing:.03em; }
+.notebook-empty { margin:0; font:italic 13px/1.4 Georgia,serif; color:#5d5a52; }
+.ruling-section { flex:none; }
+.choice-label { margin:4px 0; font-size:11px; font-weight:600; color:#5d5a52; }
+.tricks { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+.trick { min-height:48px; padding:4px 5px; text-align:left; border:1px solid #c7bca9; border-radius:4px;
+  background:#fffdf8; font:600 12px/1.2 'Segoe UI',sans-serif; }
+.trick-icon { float:right; font:700 16px Georgia,serif; color:#877c6b; margin-left:3px; }
+.trick[aria-pressed="true"],.ruling[aria-pressed="true"] { background:#f9c6f2; border:2px solid var(--brand); padding:3px 4px; }
+.rulings { display:grid; grid-template-columns:1fr 1.5fr 1fr; gap:4px; }
+.ruling { min-height:44px; padding:4px; font-size:12px; line-height:1.2; border:1px solid #c7bca9; background:#fffdf8; border-radius:4px; }
+.file-row { display:flex; gap:6px; margin-top:7px; }
+.big-btn { min-height:46px; border-radius:5px; font:700 17px Georgia,serif; box-shadow:0 3px 0 #62106b; flex:1; }
+.big-btn:disabled { opacity:1; background:#e8e1d4; color:#6a645b; box-shadow:0 3px 0 #c4b9a7; }
+.next { border:1px solid #a21caf; color:#74177c; background:#fffdf8; border-radius:4px; min-height:44px; padding:4px 8px; font-weight:700; }
+.fix-section { padding:8px; background:#e8effa; border:1px dashed #2563eb; }
+.fix-section h2 { color:#1d4593; }
+.fix-toggle { width:100%; min-height:46px; padding:6px; display:flex; gap:9px; align-items:center; border:1px solid #2563eb;
+  background:#fffdf8; border-radius:4px; font-size:13px; font-weight:700; text-align:left; }
+.switch { width:33px; height:20px; background:#b5b1aa; border-radius:10px; position:relative; flex:none; }
+.switch::before { content:''; position:absolute; width:14px; height:14px; border-radius:50%; background:#fff; top:3px; left:3px; }
+[aria-pressed="true"]>.switch { background:#2563eb; }
+[aria-pressed="true"]>.switch::before { left:16px; }
+.panel-footer { display:flex; gap:8px; align-items:center; justify-content:space-between; margin-top:auto; }
+.reset { min-height:44px; border:0; background:transparent; padding:4px 2px; text-decoration:underline; font-size:11px; color:#5d5a52; }
+.privacy { margin:0; font-size:10px; color:#5d5a52; max-width:200px; }
+.spin-controls { display:grid; grid-template-columns:1fr 1fr; gap:7px 10px; overflow:auto; min-height:0; }
+.control { min-width:0; }
+.control.full { grid-column:1/-1; }
+.panel.spin .control.full { grid-column:auto; }
+.panel.spin #honest { flex:none; }
+.control label { display:block; font-size:12px; font-weight:600; margin-bottom:2px; }
+select { width:100%; min-height:44px; background:#fffdf8; color:var(--ink); border:1px solid #b4a994; border-radius:4px; font-size:12px; padding:4px; }
+input[type="range"] { width:100%; height:44px; margin:0; accent-color:var(--brand); }
+.range-label { display:flex!important; justify-content:space-between; align-items:center; gap:6px; font-size:11px; }
+.range-label output { font-weight:700; font-variant-numeric:tabular-nums; color:#74177c; }
+.disabled-reason { color:#5d5a52; font-size:10px; margin:1px 0 0; }
+.wish { margin:0; padding:8px 10px; border:1px solid #d4bf9c; background:#fcf0d7; font:italic 15px/1.25 Georgia,serif; }
+.wish::before { content:"CLIENT'S WISH"; display:block; font:700 10px 'Segoe UI',sans-serif; letter-spacing:.12em; margin-bottom:4px; }
+.spin-paper { height:85%; width:84%; margin:auto; background:linear-gradient(120deg,#fffdf8,#f2eee5); padding:20px 26px;
+  box-shadow:3px 9px 20px #1113; display:flex; flex-direction:column; border-top:5px solid #3f3d39; }
+.spin-paper h2 { font:700 clamp(20px,2.7vw,38px)/1.1 Georgia,serif; margin:8px 0; }
+.spin-stage .worktop { display:flex; padding:12px; }
+.meter { margin-top:10px; padding:10px 12px; border:1px solid #baac95; background:var(--panel); font-size:13px; }
+.meter-numbers { display:flex; gap:20px; font-variant-numeric:tabular-nums; }
+.meter-numbers span { flex:1; }
+.meter-numbers strong { display:block; font:700 clamp(22px,2.5vw,34px) Georgia,serif; color:#74177c; }
+.meter em { display:block; margin-top:4px; font-size:11px; color:#5d5a52; }
+.fact-list { padding:5px 10px; margin:0; font-size:12px; line-height:1.5; border-left:4px solid #0b6e4f; background:#e5eee6; }
+.fact-list p { margin:4px 0; }
+.view-button { min-height:44px; border:1px solid #baaf9d; background:#fffdf8; font-size:13px; text-align:left; padding:6px 9px; border-radius:4px; }
+.data-overlay { position:absolute; inset:67px 18px 45px; z-index:5; background:#fffdf8; border:2px solid #8a7b62;
+  box-shadow:3px 8px 20px #241c1655; display:flex; flex-direction:column; padding:14px; }
+.data-overlay h2 { font:700 22px Georgia,serif; margin:0; }
+.data-header { display:flex; align-items:center; justify-content:space-between; }
+.close-data { min-height:44px; min-width:44px; border:1px solid #8a7b62; background:#f4f1ea; font-size:22px; border-radius:4px; }
+.table-scroll { overflow:auto; margin-top:10px; }
+table { border-collapse:collapse; width:100%; font-variant-numeric:tabular-nums; font-size:13px; }
+th,td { padding:7px 6px; border-bottom:1px solid #dcd6c8; text-align:right; }
+th:first-child,td:first-child { text-align:left; }
+th { background:#f1e9da; position:sticky; top:0; }
+.data-note { font-size:12px; line-height:1.4; margin:10px 0 0; }
+dialog { border:2px solid #a21caf; padding:20px; max-width:330px; background:var(--panel); box-shadow:0 8px 40px #0005; }
+dialog::backdrop { background:#23170c80; }
+dialog p { line-height:1.5; }
+dialog button { min-height:44px; padding:8px 15px; border:1px solid #a21caf; border-radius:4px; }
+dialog button:last-child { background:#a21caf; color:#fff; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+@media (min-width:901px) and (max-height:820px) {
+  .panel.spin .spin-controls { grid-template-columns:repeat(3,minmax(0,1fr)); overflow:visible; flex:none; }
+  .panel.spin #fact-list { position:absolute; left:16px; top:14px; width:270px; max-height:160px; overflow:auto; z-index:6; }
+}
+@media (max-width:1100px) {
+  main { grid-template-columns:minmax(0,1fr) 350px; }
+  header { gap:5px; padding:6px 10px; }
+  h1 small { font-size:10px; }
+  .worktop { padding:12px; gap:10px; grid-template-columns:minmax(0,1fr) minmax(135px,.5fr); }
+  .correction { padding:10px; }
+  .correction h2 { font-size:19px; }
+  .panel { padding:8px 10px; gap:6px; }
+}
+@media (max-height:680px), (max-width:900px) {
+  header { flex-wrap:nowrap; gap:5px; padding:4px 8px; }
+  h1 { font-size:18px; white-space:nowrap; }
+  h1 small { display:none; }
+  .seg button { padding:0 8px; font-size:12px; }
+  .icon-btn { padding:0 5px; font-size:13px; min-width:44px; }
+  .button-word { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  main { grid-template-columns:minmax(0,1fr) 318px; }
+  .case-strip { padding:7px 9px 0; gap:3px; }
+  .case-tab { min-height:44px; font-size:11px; padding:2px; }
+  .case-tab small { font-size:10px; margin-top:2px; }
+  .worktop { display:block; padding:5px 10px 4px; position:relative; }
+  .publication { width:100%; height:100%; }
+  .publication.laptop .prop { height:150%; top:-6%; }
+  .publication.laptop .paper-content { inset:4% 9% 9%; }
+  .publication.laptop .edition { display:none; }
+  .publication.laptop .headline { font-size:16px; }
+  .publication.laptop .source { font-size:10px; line-height:1.1; }
+  .correction { width:calc(100% - 20px); height:calc(100% - 9px); position:absolute; inset:5px 10px 4px; transform:none; }
+  .stage:not(.show-correction) .correction { display:none; }
+  .stage.show-correction .publication { visibility:hidden; }
+  .view-tabs { display:flex; padding:4px 10px 0; gap:4px; }
+  .view-tabs button { min-height:44px; padding:4px 8px; flex:1; border:1px solid #baaf9d; border-radius:4px;
+    background:#fffdf8; color:#3f3d39; font-size:11px; }
+  .view-tabs button[aria-pressed="true"] { border-bottom:3px solid var(--brand); font-weight:700; }
+  .paper-content { inset:5% 7% 8%; }
+  .headline { font-size:20px; margin:6px 0 4px; }
+  .source { font-size:11px; margin-bottom:3px; }
+  .edition { font-size:10px; padding-bottom:3px; }
+  .ruler-slip { font-size:11px; line-height:1.2; height:32px; margin-top:2px; padding-top:3px; }
+  .paper-foot { display:none; }
+  .desk-caption { font-size:10px; padding:0 12px 5px; }
+  .desk-caption span:last-child { display:none; }
+  .panel { gap:3px; padding:5px 7px; }
+  .hint { height:38px; padding:4px 7px; font-size:11px; line-height:1.25; }
+  #clue-section>.section-title { display:none; }
+  .section-title { font-size:10px; margin-bottom:3px; }
+  .clue-tool { min-height:44px; font-size:10px; }
+  .clue-tool svg { width:15px; height:15px; margin-bottom:2px; }
+  .notebook { min-height:30px; height:30px; flex:none; max-height:30px; }
+  .notebook>.section-title { display:none; }
+  .notes-list { padding:3px 5px; }
+  .clue-card { display:none; font-size:11px; margin:0; padding:0; line-height:1.25; }
+  .clue-card:last-child { display:block; }
+  .notebook-empty { font-size:11px; }
+  .trick { min-height:44px; font-size:11px; padding:3px; }
+  .trick-icon { display:none; }
+  .choice-label { margin:2px 0; font-size:10px; }
+  .ruling-section>.section-title { display:none; }
+  .ruling { font-size:11px; }
+  .file-row { margin-top:4px; }
+  .panel.filed .tricks,.panel.filed .rulings,.panel.filed .choice-label { display:none; }
+  .big-btn { min-height:44px; font-size:16px; }
+  .panel-footer { gap:3px; position:absolute; left:10px; bottom:0; height:44px;
+    width:calc(100% - 338px); z-index:4; background:#fffdf8ed; padding:0 7px; border-radius:3px; }
+  .desk-caption { height:48px; padding-top:3px; visibility:hidden; }
+  .reset { min-height:44px; font-size:10px; }
+  .privacy { font-size:10px; max-width:185px; }
+  .fix-section { padding:4px; }
+  .fix-toggle { min-height:44px; font-size:11px; }
+  .spin-controls { gap:3px 7px; }
+  .panel.spin .spin-controls { grid-template-columns:repeat(3,minmax(0,1fr)); gap:2px 4px; overflow:visible; flex:none; }
+  .panel.spin { gap:2px; padding-top:3px; padding-bottom:3px; }
+  .panel.spin .disabled-reason { display:none; }
+  .panel.spin .wish { padding:3px 6px; font-size:11px; line-height:1.2; }
+  .panel.spin .wish::before { font-size:10px; margin-bottom:2px; }
+  .panel.spin #fact-list { position:absolute; left:15px; top:4px; bottom:auto;
+    width:calc(100% - 350px); max-height:150px; z-index:6; }
+  .control label { font-size:10px; }
+  .control select { min-height:44px; font-size:11px; }
+  .wish { padding:5px 8px; font-size:12px; }
+  .spin-paper { width:95%; height:100%; padding:6px 10px; }
+  .spin-paper h2 { font-size:22px; margin:4px 0; }
+  .meter { margin-top:4px; padding:5px; font-size:11px; }
+  .meter-numbers { gap:8px; }
+  .meter-numbers strong { font-size:23px; }
+  .fact-list { max-height:70px; overflow:auto; font-size:11px; }
+  .data-overlay { inset:60px 8px 15px; padding:8px; }
+}
+@media (max-width:540px) {
+  body { overflow:auto; height:auto; min-height:100%; display:block; }
+  header { flex-wrap:wrap; gap:4px; padding:5px; }
+  h1 { flex:1 1 calc(100% - 155px); font-size:21px; }
+  .seg { order:2; width:100%; }
+  .seg button { flex:1; font-size:13px; }
+  .icon-btn { min-width:44px; }
+  main { display:flex; flex-direction:column; }
+  .stage { order:1; height:440px; flex:none; }
+  .panel { border-left:0; border-top:3px solid #bfb09a; overflow:visible; padding:9px; gap:5px; }
+  .hint { height:50px; font-size:13px; }
+  .panel-footer { position:static; width:100%; height:auto; padding:0; background:transparent; }
+  .desk-caption { height:22px; visibility:visible; }
+  .notebook { max-height:55px; min-height:40px; height:40px; }
+  .trick { font-size:12px; min-height:44px; }
+  .ruling { font-size:12px; }
+  .clue-tool { font-size:11px; min-height:49px; }
+  .spin-controls { overflow:visible; gap:9px; }
+  .control label { font-size:12px; }
+  .wish { font-size:15px; }
+  .spin-paper { height:95%; }
+  .fact-list { max-height:none; }
+  .data-overlay { position:fixed; inset:120px 8px 12px; z-index:30; }
+  .panel.spin #fact-list { position:static; width:auto; max-height:none; }
+  .panel.spin .spin-controls { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Misleading Charts<small>The Pine Hollow Ledger fact-check desk</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-cases" aria-pressed="true">▱ Case Files</button><button id="m-spin" aria-pressed="false">◎ Spin Room</button>
+  </div>
+  <button id="motion" class="icon-btn" aria-label="Motion" aria-pressed="true">✨ Motion</button>
+  <button id="sound" class="icon-btn" aria-label="Sound" aria-pressed="true">🔔 Sound</button>
+  <button id="read" class="icon-btn" aria-label="Read the current hint">🔊 Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <section id="clue-section"><h2 class="section-title">Clue tools</h2><div class="tool-grid" id="clue-tools"></div></section>
+    <section class="notebook" id="notebook">
+      <h2 class="section-title">Notebook · findings in order</h2><div class="notes-list" id="notes-list" aria-live="polite"></div>
+    </section>
+    <section class="ruling-section" id="ruling-section">
+      <h2 class="section-title">Your ruling</h2><p class="choice-label">The trick</p>
+      <div class="tricks" id="tricks" role="group" aria-label="The trick"></div><p class="choice-label">The headline</p>
+      <div class="rulings" id="rulings" role="group" aria-label="The headline"></div>
+      <div class="file-row"><button class="big-btn" id="file" disabled>File it ↗</button></div>
+    </section>
+    <section id="fix-section" class="fix-section" hidden>
+      <h2 class="section-title">Fix it</h2>
+      <button id="fix" class="fix-toggle" aria-pressed="false"><span class="switch"></span><span id="fix-label"></span></button>
+      <div class="file-row"><button id="next" class="next" hidden>Next case →</button></div>
+    </section>
+    <p id="wish" class="wish" hidden></p>
+    <section class="spin-controls" id="spin-controls" hidden>
+      <div class="control full"><label for="dataset">Data</label><select id="dataset"></select></div>
+      <div class="control full">
+        <label class="range-label" for="baseline">Axis starts at <output id="baseline-out">0</output></label>
+        <input id="baseline" type="range" min="0" max="999" value="0" step="1">
+      </div>
+      <div class="control"><label for="from">Time window · from</label><select id="from"></select></div>
+      <div class="control"><label for="to">to</label><select id="to"></select></div>
+      <div class="control full"><label for="draw">Draw as</label><select id="draw">
+        <option value="bars">Bars</option><option value="height">Pictures by height</option>
+        <option value="area">Pictures by height and width</option></select></div>
+      <div class="control"><label for="second">Second axis</label><select id="second"><option value="off">Off</option>
+        <option value="on">On</option></select></div>
+      <div class="control"><label for="second-range">Second axis range</label>
+        <input id="second-range" type="range" min="2.5" max="6" value="4" step="0.05"><p class="disabled-reason" id="second-reason"></p></div>
+      <div class="control"><label for="count">Count</label><select id="count"><option value="totals">Totals</option>
+        <option value="rate">Per 100</option></select><p class="disabled-reason" id="count-reason"></p></div>
+      <div class="control"><label for="spacing">Space years</label><select id="spacing"><option value="time">By time</option>
+        <option value="even">Evenly</option></select><p class="disabled-reason" id="spacing-reason"></p></div>
+    </section>
+    <button id="fact-view" class="view-button" aria-pressed="false" hidden>□ Fact-checker's view</button>
+    <div id="fact-list" class="fact-list" hidden></div><button id="honest" class="big-btn" hidden>Make it honest</button>
+    <footer class="panel-footer"><button id="reset" class="reset">Reset cases</button>
+      <p class="privacy">Only closed cases stay on this device. They never leave it.</p></footer>
+  </aside>
+  <div class="stage" id="stage">
+    <img id="desk" class="desk" src="art:desk-ledger" alt="">
+    <nav class="case-strip" id="case-strip" aria-label="Case files"></nav>
+    <div class="view-tabs" id="view-tabs" role="group" aria-label="Paper view">
+      <button id="view-original" aria-pressed="true">Published item</button><button id="view-correction" aria-pressed="false">Correction</button>
+    </div>
+    <div class="worktop" id="case-worktop">
+      <article class="publication" id="publication" aria-label="Published item">
+        <img class="prop" id="prop" src="art:item-ad" alt=""><div class="paper-content">
+          <div class="edition"><span id="item-kind">Advertisement</span><span class="status-dot">published</span></div>
+          <h2 id="headline" class="headline"></h2><p id="source" class="source"></p>
+          <div class="chart-wrap" id="original-wrap"><svg id="original-chart" class="chart" aria-label="Published chart"></svg></div>
+          <div class="ruler-slip" id="original-readout"></div>
+          <div class="paper-foot"><span>THE PINE HOLLOW LEDGER</span><span>Evidence before ink.</span></div>
+        </div><div id="stamp" class="stamp" hidden>CLOSED</div>
+      </article>
+      <article class="correction" id="correction" aria-label="Correction"><h2>Correction</h2>
+        <div class="empty" id="empty-correction">
+          <svg viewBox="0 0 80 65" aria-hidden="true"><path d="M19 5h32l14 14v40H19zM51 5v16h14M28 31h28M28 40h28M28 49h18"
+            fill="none" stroke="currentColor" stroke-width="2"/></svg>
+          The other side of the story.<br>File your ruling to print it here.</div>
+        <div class="chart-wrap" id="correction-wrap" hidden><svg id="correction-chart" class="chart" aria-label="Honest correction chart"></svg></div>
+        <div class="ruler-slip" id="correction-readout" hidden></div>
+      </article>
+    </div>
+    <div class="worktop" id="spin-worktop" hidden><article class="spin-paper">
+      <div class="edition"><span>Pine Hollow creative studio</span><span>Client proof</span></div>
+      <h2 id="spin-title"></h2><p class="source">Invented data. Change the drawing, keep the numbers.</p>
+      <div class="chart-wrap" id="spin-wrap"><svg id="spin-chart" class="chart" aria-label="Spin Room chart"></svg></div>
+      <div class="meter" id="meter" aria-live="polite"></div></article></div>
+    <div class="desk-caption"><span id="desk-caption">FACT-CHECK DESK / SIX PUBLISHED CLAIMS</span><span>All places and data are made up.</span></div>
+    <section class="data-overlay" id="data-overlay" role="dialog" aria-modal="false" aria-label="Data sheet" hidden>
+      <div class="data-header"><h2>Behind the picture</h2><button id="close-data" class="close-data" aria-label="Close data sheet">×</button></div>
+      <div class="table-scroll" id="data-table"></div><p class="data-note" id="data-note"></p>
+    </section>
+  </div>
+</main>
+<dialog id="reset-dialog" aria-labelledby="reset-title"><h2 id="reset-title">Reopen all six cases?</h2>
+  <p>This clears the closed stamps saved on this device.</p>
+  <div><button id="cancel-reset">Keep my cases</button> <button id="confirm-reset">Reset cases</button></div></dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const $$ = selector => [...document.querySelectorAll(selector)];
+  const ART = {
+    desks:['art:desk-ledger','art:desk-agency'],
+    props:['art:item-ad','art:item-newsletter','art:item-poster','art:item-flyer','art:item-report','art:item-webpage'],
+    pics:['art:pic-pretzels','art:pic-book','art:pic-recycling','art:pic-smoothie','art:pic-laptop','art:pic-robot']
+  };
+  const cases = [
+    {headline:'Pretzel sales are SOARING!', kind:'Advertisement', publisher:'Pine Hollow Pretzel Company',
+      labels:['2024','2025'], values:[1000,1050], unit:'bags', start:950, top:1060, trick:0, ruling:1,
+      wish:"Make our sales look like they're soaring."},
+    {headline:'Students have stopped reading.', kind:'School newsletter', publisher:'Pine Hollow Middle School',
+      labels:['Sep','Oct','Nov','Dec','Jan','Feb','Mar','Apr','May','Jun'],
+      values:[820,860,840,510,830,850,870,800,880,400], groups:[20,22,19,12,19,19,21,17,21,9],
+      unit:'visits', start:0, top:1000, window:[2,3], trick:1, ruling:2, wish:'Make it look like nobody reads anymore.'},
+    {headline:'Green Team recycled twice as much!', kind:'Club poster', publisher:'Pine Hollow Green Team',
+      labels:['2024','2025'], values:[120,240], unit:'kg', start:0, top:260, trick:2, ruling:1,
+      wish:'Make our recycling look enormous.'},
+    {headline:'Smoothies help us win!', kind:'Snack bar flyer', publisher:'Pine Hollow Snack Bar',
+      labels:['Mar','Apr','May','Jun'], values:[120,150,190,240], values2:[1,2,2,3], unit:'smoothies', unit2:'wins',
+      start:100, top:250, trick:3, ruling:2, wish:'Make it look like smoothies win games.'},
+    {headline:'Oak students are the roughest on laptops.', kind:'District report', publisher:'Pine Hollow School District',
+      labels:['Oak','Elm','Birch'], values:[45,30,27], groups:[900,300,450], unit:'broken laptops', start:0, top:50,
+      trick:4, ruling:2, wish:'Make Oak look like the problem school.'},
+    {headline:'Robotics club growth has stalled.', kind:'Club web page', publisher:'Pine Hollow Robotics Club',
+      labels:['2004','2009','2014','2019','2020','2021','2022','2023'], values:[6,11,16,21,22,23,24,25],
+      unit:'members', start:0, top:30, trick:5, ruling:2, wish:'Make the club look like it stopped growing.'}
+  ];
+  const tricks = [
+    {name:'Cut-off axis', meaning:'A bar baseline hides part of its length.', fix:'Start the axis at 0', icon:'↥'},
+    {name:'Hand-picked time', meaning:'A short window leaves out the wider story.', fix:'Show the whole year', icon:'◷'},
+    {name:'Picture size', meaning:'Height and width both grow, multiplying the area.', fix:'Use bars', icon:'▧'},
+    {name:'Two different axes', meaning:'Separate scales can make two lines seem alike.', fix:'One chart each, from 0', icon:'⇅'},
+    {name:'Totals, not rates', meaning:'Compare group sizes before comparing totals.', fix:'Per 100 students', icon:'%'},
+    {name:'Uneven time steps', meaning:'Equal spaces can hide unequal year gaps.', fix:'Space by years', icon:'↔'}
+  ];
+  const rulings=['Holds up','True, but blown up','Wrong'];
+  const toolNames=['Ruler','Axis check','Data sheet','Zoom out','Per 100'];
+  const toolKeys=['ruler','axis','data','zoom','rate'];
+  const toolIcons=[
+    '<path d="M3 6h18v12H3zM6 6v5m4-5v3m4-3v5m4-5v3"/>',
+    '<path d="M5 3v17h17M2 6h6M2 12h6m4 5v6m6-6v6"/>',
+    '<path d="M4 3h16v18H4zM4 9h16M4 15h16M10 3v18"/>',
+    '<circle cx="10" cy="10" r="7"/><path d="m15 15 7 7M6 10h8"/>',
+    '<path d="m6 19 12-14"/><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/>'
+  ];
+  const L = {
+    wCases:"Welcome to the fact-check desk. Every chart here was published. Tap a clue tool, like Ruler, to find out what it's hiding.",
+    ruler2:'Tap a second bar, picture, or point. The ruler compares the picture to the numbers.',
+    firstClue:'Clues go in your notebook. When you know the trick, pick it, rule on the headline, and press File it.',
+    filedRight:'Filed. Now turn on the switch in Fix it to correct the chart.',
+    filedWrong:'Not quite. Recheck the clue tools named in the hint, revise your ruling, then press File it again.',
+    allClosed:'All six cases are closed. Press Spin Room to see how the tricks are made.',
+    wSpin:'Now you work for the client. Move the spin controls to give them their wish, and watch the meter.',
+    factView:"This is what a fact-checker would catch. Press Make it honest to undo every trick.",
+    needEvidence:'Use the clue tools to collect a measurement before filing. A ruling needs evidence from this chart.',
+    closed:cases.map((_,i) => `Correction printed. Case ${i+1} is closed.`)
+  };
+  const freshCase=() => ({used:[],notes:[],picks:[],trick:null,ruling:null,filed:false,closed:false,
+    axis:false,zoom:false,rate:false,tool:null,ruler:null,evidenceVersion:0,submittedVersion:-1,proof:{},submittedProof:{}});
+  const state={mode:'cases',caseId:0,files:cases.map(freshCase),spinId:0,spin:{},factView:false,view:'original'};
+  try {
+    const saved=JSON.parse(localStorage.getItem('mc-closed') || '[]');
+    if (Array.isArray(saved)) saved.forEach(i => {
+      if (Number.isInteger(i) && state.files[i]) Object.assign(state.files[i],{
+        closed:true,filed:true,trick:i,ruling:cases[i].ruling
+      });
+    });
+  } catch { /* Device storage is optional. */ }
+  const f=() => state.files[state.caseId];
+  let animation=null;
+  const V=Curio.voice({lines:L,hint:false,read:() => $('hint').textContent,scope:() => state.mode+':'+state.caseId,
+    welcome:() => state.mode === 'cases' ? ['wCases',{valid:() => !f().tool && !f().filed && !$('reset-dialog').open}] :
+      ['wSpin',{valid:() => !state.spin.touched}], speaks:'.clue-tool,.mark,#file,#fix'});
+  const hint=text => { $('hint').textContent=text;
+  };
+  const feedback=(high=false) => Curio.tone(high?660:360,.06,.035,'sine');
+  function finishAnimation() {
+    if (!animation) return;
+    clearTimeout(animation);
+    $$('.redraw,.fresh').forEach(el => el.classList.remove('redraw','fresh'));
+    animation=null;
+  }
+  function animate(el,cls='redraw') {
+    finishAnimation();
+    if (Curio.reduce) return;
+    el.classList.add(cls);
+      animation=setTimeout(() => { $$('.redraw,.fresh').forEach(node => node.classList.remove('redraw','fresh'));
+      animation=null;
+    },400);
+  }
+  function persist() {
+    try { localStorage.setItem('mc-closed',JSON.stringify(state.files.flatMap((x,i) => x.closed?[i]:[])));
+    } catch {}
+  }
+  function add(svg,tag,attrs={},text) {
+    const el=document.createElementNS('http://www.w3.org/2000/svg',tag);
+    Object.entries(attrs).forEach(([k,v]) => el.setAttribute(k,v));
+    if (text !== undefined) el.textContent=text;
+    svg.append(el);
+    return el;
+  }
+  const num=(n,digits=1) => Number.isFinite(n)?n.toFixed(digits):'undefined';
+  const valueText=n => Number.isInteger(n)?n.toLocaleString('en-US'):num(n);
+  const rateValue=(c,i) => c.values[i]/c.groups[i]*(c === cases[1]?1:100);
+  function ratioText(m,detail='') {
+    if (!m || !Number.isFinite(m.a) || !Number.isFinite(m.b)) return 'Choose two marks with nonzero heights to compare.';
+    let text=`Picture: ${num(m.a,m.a === 1.05?2:1)} times. Numbers: ${num(m.b,m.b === 1.05?2:1)} times.`;
+    if (m.area) text='Area · '+text;
+    if ((m.a-1)*(m.b-1)>0 && Math.abs(m.b-1)>1e-10) text+=` Lie factor: ${num((m.a-1)/(m.b-1))}. 1 means honest.`;
+    else if (Math.abs(m.a-m.b)<1e-9) text+=' Honest comparison.';
+    else if (Math.abs(m.b-1)>1e-10) text+=' The picture and numbers go opposite ways.';
+    return text+(detail?' '+detail:'');
+  }
+  function honestSpin(id) {
+    return {baseline:0,from:0,to:cases[id].labels.length-1,draw:'bars',second:'off',range:4,
+      count:cases[id].groups?'rate':'totals',spacing:'time',touched:false};
+  }
+  state.spin=honestSpin(0);
+  function chartConfig(c,correction=false,spin=false) {
+    const id=cases.indexOf(c),s=state.spin,file=f();
+    const showAll=correction || spin || file.zoom || id !== 1;
+    const first=spin?s.from:showAll?0:c.window[0];
+    const last=spin?s.to:showAll?c.labels.length-1:c.window[1];
+    const ids=Array.from({length:last-first+1},(_,i) => i+first);
+    const rate=correction?id === 4:spin?s.count === 'rate':false;
+    const values=ids.map(i => rate && c.groups?rateValue(c,i):c.values[i]);
+    const base=correction?0:spin?s.baseline:c.start;
+    const draw=correction?'bars':spin?s.draw:id === 2?'area':'bars';
+    const dual=id === 3 && !correction && (!spin || s.second === 'on');
+    const line=(id === 5 || id === 3) && draw === 'bars';
+    const top=correction || spin?Math.max(...values)*1.13:c.top;
+    return {id,ids,values,rate,base,draw,dual,line,top:Math.max(top,base+1),correction,spin,
+      time:correction || (spin && s.spacing === 'time'),secondTop:spin?s.range+2/3:19/6,secondBase:2/3};
+  }
+  // Ratios are computed from model geometry, before any screen rounding.
+  function compare(cfg,first,second) {
+    const c=cases[cfg.id];
+    if (cfg.id === 4 && [first,second].includes(0) && [first,second].includes(1)) { first=1;
+      second=0;
+    }
+    if (cfg.id === 5 && cfg.draw === 'bars') {
+      const ids=cfg.ids,a=ids[0],b=ids[1],d=ids.at(-1),e=ids.at(-2);
+      const gap1=cfg.time?(+c.labels[b]-+c.labels[a]):1;
+      const gap2=cfg.time?(+c.labels[d]-+c.labels[e]):1;
+      return {a:((c.values[d]-c.values[e])/gap2)/((c.values[b]-c.values[a])/gap1),b:1};
+    }
+    if (cfg.id === 3 && cfg.draw === 'bars') {
+      const parts=[first,second].map(key => {
+        const other=String(key).startsWith('w'),i=other?+String(key).slice(1):+key;
+        const v=other?c.values2[i]:c.values[i];
+        const base=other?cfg.secondBase:cfg.base,top=other?cfg.secondTop:cfg.top;
+        return {v,h:(v-base)/(top-base)};
+      });
+      return {a:parts[1].h/parts[0].h,b:parts[1].v/parts[0].v,mixed:typeof first !== typeof second};
+    }
+    const a=cfg.rate?rateValue(c,first):c.values[first];
+    const b=cfg.rate?rateValue(c,second):c.values[second];
+    return {a:Math.pow((b-cfg.base)/(a-cfg.base),cfg.draw === 'area'?2:1),
+      b:cfg.id === 4 || (cfg.rate && c.groups)?rateValue(c,second)/rateValue(c,first):c.values[second]/c.values[first],
+      area:cfg.draw === 'area'};
+  }
+  function compareNote(cfg) {
+    if (cfg.id === 3) return cfg.dual?'These two lines use different scales.':'Separate charts, both from zero.';
+    if (cfg.id === 4) return 'Numbers compare per 100 students.';
+    if (cfg.id === 5) return cfg.time?'First and last rates: 1 member per year. Honest.':
+      'First step: +5 members. Last step: +1. Both are +1 member per year.';
+    return cfg.id === 1?'This measures visits, not reading habits.':'';
+  }
+  function measure(id) {
+    finishAnimation();
+    if (state.mode !== 'cases') return;
+    hideData();
+    const file=f();
+    if (file.tool !== 'ruler') {
+      file.tool='ruler';
+      file.picks=[];
+      file.ruler=null;
+      if (!file.used.includes('ruler')) file.used.push('ruler');
+      $$('.clue-tool').forEach(el => el.setAttribute('aria-pressed',el.dataset.tool === 'ruler'));
+      if (V.playing === L.wCases) V.hush();
+    }
+    if (file.picks.length === 2) { file.picks=[];
+      file.ruler=null;
+    }
+    if (file.picks.length === 1 && file.picks[0] === id) {
+      hint('Pick a different mark for the second measurement.');
+      feedback();
+      return;
+    }
+    if (state.caseId === 3 && file.picks.length === 1 && typeof file.picks[0] !== typeof id) {
+      file.picks=[id];
+      hint('These lines use different units. Tap another point on this same line to compare its growth.');
+      feedback();
+      drawOriginal();
+      return;
+    }
+    file.picks.push(id);
+    feedback();
+    if (file.picks.length === 1) {
+      hint(L.ruler2);
+      V.how('ruler2',{valid:() => f().picks.length === 1,needs:'#original-chart'});
+    } else {
+      if (V.playing === L.ruler2) V.hush();
+      else V.dropQueued(line => line.key === 'ruler2');
+      if (state.caseId === 5 && (!file.picks.includes(0) || !file.picks.includes(7))) {
+        file.ruler=null;
+        file.picks=[];
+        hint('Use Ruler on the first and last points to compare growth steps.');
+        drawOriginal();
+        return;
+      }
+      const cfg=chartConfig(cases[state.caseId]);
+      file.ruler=compare(cfg,...file.picks);
+      addNote('Ruler',ratioText(file.ruler,compareNote(cfg)));
+      hint('Measurement added. Choose the trick and the headline ruling.');
+    }
+    drawOriginal();
+  }
+  function drawChart(svg,cfg,interactive=false) {
+    const c=cases[cfg.id],box=svg.getBoundingClientRect();
+    const W=Math.max(100,box.width),H=Math.max(80,box.height);
+    const oldMarks=new Map([...svg.querySelectorAll('.mark')].map(el => [el.dataset.item,el]));
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    svg.replaceChildren();
+    function markGroup(key,attrs) {
+      const old=oldMarks.get(String(key));
+      if (!old) return add(svg,'g',attrs);
+      old.replaceChildren();
+      Object.entries(attrs).forEach(([k,v]) => old.setAttribute(k,v));
+      svg.append(old);
+      return old;
+    }
+    if (cfg.id === 3 && !cfg.dual && cfg.draw === 'bars') { drawSeparate(svg,W,H,cfg);
+      return;
+    }
+    const font=W<260?11:12;
+    const overlay=!cfg.correction && !cfg.spin && f().rate && c.groups;
+    const pad={l:cfg.id === 0?46:38,r:cfg.dual || overlay?42:15,t:cfg.id === 5?18:25,
+      b:cfg.id === 5?(cfg.time?68:46):30};
+    const width=W-pad.l-pad.r,height=Math.max(24,H-pad.t-pad.b),baseY=pad.t+height;
+    // Keep every picture's top on its value tick, widening the vertical range when many pictures need room.
+    if (cfg.draw !== 'bars') {
+      const maxValue=Math.max(...cfg.values)-cfg.base;
+      const column=cfg.id === 5 && cfg.time?(width-36)/
+        Math.max(1,+c.labels[cfg.ids.at(-1)]-+c.labels[cfg.ids[0]]):width/cfg.ids.length;
+      const available=Math.min(height,column*.96);
+      cfg.top=Math.max(cfg.top,cfg.base+maxValue*height/Math.max(1,available));
+    }
+    const y=v => pad.t+height*(1-(v-cfg.base)/(cfg.top-cfg.base));
+    const xpos=index => {
+      const pos=cfg.ids.indexOf(index);
+      if (cfg.id === 5 && cfg.time) return pad.l+18+(width-36)*(+c.labels[index]-+c.labels[cfg.ids[0]])/
+        Math.max(1,+c.labels[cfg.ids.at(-1)]-+c.labels[cfg.ids[0]]);
+      if (cfg.line) return pad.l+18+(width-36)*pos/Math.max(1,cfg.ids.length-1);
+      return pad.l+width*(pos+.5)/cfg.ids.length;
+    };
+    const unit=cfg.rate?(cfg.id === 1?'visits / school day':'per 100 students'):c.unit;
+    const title=overlay?unit+' · ghost '+(cfg.id === 1?'per day':'per 100'):unit;
+    add(svg,'text',{x:pad.l,y:13,'font-size':font,'font-weight':700},title);
+    const tickCount=height<70?2:4;
+    const ticks=cfg.id === 0 && !cfg.correction && !cfg.spin?(height<130?[950,1000,1060]:[950,1000,1050,1060]):
+      Array.from({length:tickCount},(_,i) => cfg.base+(cfg.top-cfg.base)*i/(tickCount-1));
+    ticks.forEach(v => {
+      add(svg,'line',{x1:pad.l,y1:y(v),x2:W-pad.r,y2:y(v),class:'grid-line'});
+      add(svg,'text',{x:pad.l-5,y:y(v)+4,'text-anchor':'end','font-size':font},valueText(Math.round(v*10)/10));
+    });
+    add(svg,'path',{d:`M${pad.l} ${pad.t}V${baseY}H${W-pad.r}`,class:'axis',fill:'none'});
+    if (cfg.id === 1 && cfg.ids.length>2 && !cfg.spin) {
+      const a=xpos(2)-width/cfg.ids.length*.46;
+      add(svg,'rect',{x:a,y:pad.t,width:width/cfg.ids.length*1.92,height,fill:'#f9c6f2',opacity:.42,
+        stroke:'#a21caf','stroke-width':1,'stroke-dasharray':'4 2'});
+      if (height>=100) add(svg,'text',{x:a+3,y:pad.t+13,'font-size':11},'Published');
+    }
+    const ink=cfg.correction?'#2563eb':'#3f3d39',points=[];
+    const maxPicture=Math.max(...cfg.values.map(v => Math.max(0,v-cfg.base)));
+    const pictureUnit=height*maxPicture/(cfg.top-cfg.base);
+    cfg.ids.forEach((index,pos) => {
+      const v=cfg.values[pos],x=xpos(index),vY=y(v),drawnHeight=Math.max(0,baseY-vY);
+      const attrs=interactive?{class:'mark',tabindex:0,role:'button','data-item':index,
+        'aria-label':`${c.labels[index]}, ${valueText(v)} ${unit}. Select for Ruler.`}:{};
+      const g=interactive?markGroup(index,attrs):add(svg,'g',attrs);
+      const selected=interactive && f().picks.includes(index);
+      const barWidth=Math.min(72,width/cfg.ids.length*.55);
+      const picH=pictureUnit*Math.max(0,v-cfg.base)/maxPicture;
+      if (cfg.line) {
+        points.push([x,vY]);
+        add(g,'circle',{cx:x,cy:vY,r:selected?7:4.5,fill:ink,stroke:'#fffdf8','stroke-width':2});
+      } else if (cfg.draw === 'bars') {
+        add(g,'rect',{x:x-barWidth/2,y:vY,width:barWidth,height:drawnHeight,fill:ink,class:selected?'selected':'',rx:1});
+        add(g,'rect',{x:x-barWidth/2+3,y:vY+2,width:3,height:Math.max(0,drawnHeight-3),fill:'#fff',opacity:.15});
+      } else {
+        const picW=cfg.draw === 'area'?picH:pictureUnit*.75;
+        add(g,'image',{href:ART.pics[cfg.id],x:x-picW/2,y:baseY-picH,width:picW,height:picH,preserveAspectRatio:'none'});
+        if (selected) add(g,'rect',{x:x-picW/2-2,y:baseY-picH-2,width:picW+4,height:picH+4,fill:'none',class:'selected'});
+      }
+      if (cfg.ids.length<=4) add(svg,'text',{x,y:Math.max(12,(cfg.draw === 'bars'?vY:baseY-picH)-8),
+        'text-anchor':'middle','font-size':font,'font-weight':700},valueText(v));
+      const yearRow=cfg.id === 5?(cfg.time && pos>=3?(pos-3)%4:!cfg.time && (width-36)/(cfg.ids.length-1)<34?pos%2:0):0;
+      add(svg,'text',{x,y:baseY+18+yearRow*13,
+        'text-anchor':'middle','font-size':font},c.labels[index]);
+      if (interactive) {
+        add(g,'rect',{x:x-22,y:cfg.line?Math.max(0,vY-22):pad.t-Math.max(0,44-height)/2,
+          width:44,height:cfg.line?44:Math.max(44,height),fill:'transparent',class:'hit'});
+        g.onclick=e => {
+          if (!e.isTrusted || cfg.line) return measure(index);
+          const px=(e.clientX-box.left)*W/box.width;
+          const nearest=cfg.ids.reduce((a,b) => Math.abs(xpos(a)-px)<=Math.abs(xpos(b)-px)?a:b);
+          measure(nearest);
+        };
+        g.onkeydown=e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault();
+            measure(index);
+          }
+        };
+      }
+      if (selected) {
+        const my=cfg.draw === 'bars'?vY:baseY-picH,mx=x+Math.min(32,width/cfg.ids.length*.35);
+        add(svg,'path',{d:`M${x} ${my}H${mx}V${baseY}H${x}`,class:'measure-line',fill:'none'});
+        add(svg,'text',{x:Math.min(W-30,mx+3),y:Math.min(baseY-4,my+(baseY-my)/2),'font-size':11,
+          class:'measurement'},`${Math.round(baseY-my)} px`);
+      }
+    });
+    if (points.length) {
+      const p=add(svg,'polyline',{points:points.map(p => p.join(',')).join(' '),fill:'none',stroke:ink,'stroke-width':3});
+      svg.insertBefore(p,svg.querySelector('.mark') || null);
+    }
+    if (cfg.dual) {
+      const y2=v => pad.t+height*(1-(v-cfg.secondBase)/(cfg.secondTop-cfg.secondBase));
+      add(svg,'line',{x1:W-pad.r,y1:pad.t,x2:W-pad.r,y2:baseY,class:'axis'});
+      [1,2,3].forEach(v => add(svg,'text',{x:W-pad.r+4,y:y2(v)+4,'font-size':font},String(v)));
+      add(svg,'text',{x:W-pad.r,y:13,'text-anchor':'end','font-size':font,'font-weight':700},'wins · dashed');
+      add(svg,'polyline',{points:cfg.ids.map(i => `${xpos(i)},${y2(c.values2[i])}`).join(' '),fill:'none',
+        stroke:'#a21caf','stroke-width':2.5,'stroke-dasharray':'6 4'});
+      cfg.ids.forEach(i => {
+        const key='w'+i,x=xpos(i),cy=y2(c.values2[i]);
+        const attrs=interactive?{class:'mark',tabindex:0,role:'button','data-item':key,
+          'aria-label':`${c.labels[i]}, ${c.values2[i]} soccer ${c.values2[i] === 1?'win':'wins'}. Select for Ruler.`}:{};
+        const g=interactive?markGroup(key,attrs):add(svg,'g',attrs);
+        add(g,'rect',{x:x-3,y:cy-3,width:6,height:6,fill:'#a21caf'});
+        if (interactive) {
+          add(g,'rect',{x:x-22,y:cy-22,width:44,height:44,fill:'transparent',class:'hit'});
+          g.onclick=() => measure(key);
+          g.onkeydown=e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault();
+              measure(key);
+            } };
+          if (f().picks.includes(key)) {
+            add(svg,'path',{d:`M${x} ${cy}h-16V${baseY}h16`,class:'measure-line',fill:'none'});
+            add(svg,'text',{x:x-20,y:(cy+baseY)/2,'text-anchor':'end','font-size':11,class:'measurement'},
+              `${Math.round(baseY-cy)} px`);
+          }
+        }
+      });
+    }
+    if (overlay) {
+      const rates=cfg.ids.map(i => rateValue(c,i)),max=Math.max(...rates)*1.15;
+      const rx=W-pad.r;
+      add(svg,'line',{x1:rx,y1:pad.t,x2:rx,y2:baseY,stroke:'#2563eb','stroke-dasharray':'4 2'});
+      [0,max/2,max].forEach(v => add(svg,'text',{x:rx+3,y:baseY-height*v/max+4,'font-size':11},num(v)));
+      cfg.ids.forEach((i,pos) => {
+        const h=height*rates[pos]/max;
+        add(svg,'rect',{x:xpos(i)-12,y:baseY-h,width:24,height:h,class:'ghost'});
+        add(svg,'text',{x:xpos(i),y:baseY-h+13,'text-anchor':'middle','font-size':11,class:'rate-label'},num(rates[pos]));
+      });
+    }
+    if (!cfg.correction && !cfg.spin && f().axis) {
+      add(svg,'path',{d:`M${pad.l-7} ${pad.t}h-5V${baseY}h5M${pad.l} ${baseY+4}v4H${W-pad.r}v-4`,class:'axis-bracket'});
+      const shortAxis=cfg.id === 0 && height<130;
+      add(svg,'text',{x:shortAxis?W-pad.r:pad.l+5,y:shortAxis?13:pad.t+12,
+        'text-anchor':shortAxis?'end':'start',class:'measurement','font-size':11},`Starts at ${valueText(cfg.base)}`);
+      if (cfg.dual) add(svg,'path',{d:`M${W-pad.r+6} ${pad.t}h5V${baseY}h-5`,class:'axis-bracket'});
+      if (cfg.id === 5) cfg.ids.slice(1).forEach((id,pos) => {
+        const gap=+c.labels[id]-+c.labels[cfg.ids[pos]];
+        add(svg,'text',{x:(xpos(id)+xpos(cfg.ids[pos]))/2,y:H-4,'text-anchor':'middle','font-size':11,class:'measurement'},`${gap}y`);
+      });
+    }
+  }
+  function drawSeparate(svg,W,H,cfg) {
+    const c=cases[3],half=H/2;
+    for (let j=0;j<2;j++) {
+      const top=j*half+19,bot=(j+1)*half-23,left=37,right=W-12;
+      const vals=cfg.ids.map(i => j?c.values2[i]:c.values[i]),max=j?4:cfg.top,base=j?0:cfg.base;
+      add(svg,'text',{x:left,y:top-7,'font-size':11,'font-weight':700},j?'Soccer wins':'Smoothies sold');
+      add(svg,'path',{d:`M${left} ${top}V${bot}H${right}`,class:'axis',fill:'none'});
+      [base,max].forEach(v => add(svg,'text',{x:left-5,y:bot-(bot-top)*(v-base)/(max-base)+4,
+        'text-anchor':'end','font-size':11},valueText(v)));
+      const pts=vals.map((v,i) => [left+(right-left)*(i+.1)/Math.max(1,vals.length-.8),bot-(bot-top)*(v-base)/(max-base)]);
+      add(svg,'polyline',{points:pts.map(p => p.join(',')).join(' '),fill:'none',stroke:'#2563eb','stroke-width':2.5,
+        'stroke-dasharray':j?'5 3':'none'});
+      pts.forEach(([x,y],i) => {
+        add(svg,'circle',{cx:x,cy:y,r:3,fill:'#2563eb'});
+        add(svg,'text',{x,y:bot+16,'text-anchor':'middle','font-size':11},c.labels[cfg.ids[i]]);
+      });
+    }
+  }
+  function drawOriginal() {
+    const cfg=chartConfig(cases[state.caseId]),focus=document.activeElement?.getAttribute('data-item');
+    drawChart($('original-chart'),cfg,true);
+    if (focus !== null && focus !== undefined) $('original-chart').querySelector(`[data-item="${focus}"]`)?.focus({preventScroll:true});
+    const compact=innerWidth<901 || innerHeight<681;
+    $('original-readout').textContent=f().ruler?
+      ratioText(f().ruler,compact?'':compareNote(cfg)).replace(compact?' 1 means honest.':'\0',''):
+      f().tool === 'ruler'?(f().picks.length === 1?L.ruler2:'Ruler ready. Tap two chart marks.'):
+      'Tap Ruler, then two chart marks to compare.';
+  }
+  function drawCorrection() {
+    const c=cases[state.caseId],closed=f().closed,n=state.caseId;
+    $('empty-correction').hidden=closed;
+    $('correction-wrap').hidden=!closed;
+    $('correction-readout').hidden=!closed;
+    if (!closed) return;
+    const cfg=chartConfig(c,true);
+    drawChart($('correction-chart'),cfg);
+    let text;
+    if (n === 1) text='Honest: the whole school year. Visits do not show whether students stopped reading.';
+    else if (n === 3) text='Honest: both axes start at 0. Both go up as spring goes on. Rising together does not show that one causes the other.';
+    else if (n === 5) text='Honest: 19 members over 19 years. Every gap is 1 member per year.';
+    else text=ratioText(compare(cfg,n === 4?1:0,n === 4?0:1));
+    $('correction-readout').textContent=text;
+  }
+  function redraw() {
+    if (state.mode === 'cases') { drawOriginal();
+      drawCorrection();
+    } else drawSpin();
+  }
+  function notebook() {
+    const list=$('notes-list');
+    list.replaceChildren();
+    if (!f().notes.length) {
+      const p=document.createElement('p');
+      p.className='notebook-empty';
+      p.textContent='Notebook · No hunches in ink. Try a clue tool.';
+      list.append(p);
+    } else f().notes.forEach(note => {
+      const p=document.createElement('p'),b=document.createElement('b');
+      p.className='clue-card';
+      b.textContent=note.name;
+      p.append(b,document.createTextNode(' '+note.text));
+      list.append(p);
+    });
+    list.scrollTop=list.scrollHeight;
+  }
+  function addNote(name,text) {
+    f().notes.push({name,text});
+    f().evidenceVersion++;
+    const key=toolKeys[toolNames.indexOf(name)];
+    if (key) f().proof[key]=f().evidenceVersion;
+    notebook();
+    if (!V.heard('firstClue')) V.how('firstClue',{
+      valid:() => !f().filed && f().picks.length !== 1 && $('data-overlay').hidden,needs:'#file'
+    });
+  }
+  function syncDataAccess() {
+    const covered=innerWidth<=540 && !$('data-overlay').hidden;
+    const panel=document.querySelector('.panel'),folders=$('case-strip');
+    const move=covered && (panel.contains(document.activeElement) || folders.contains(document.activeElement));
+    panel.inert=covered;
+    folders.inert=covered;
+    if (move) $('close-data').focus({preventScroll:true});
+  }
+  function hideData() {
+    $('data-overlay').hidden=true;
+    syncDataAccess();
+    $('stage').classList.remove('has-data');
+    $('case-worktop').inert=false;
+    $('view-tabs').inert=false;
+  }
+  function rulingHint() {
+    if (f().closed) return 'This correction is printed. Press Next case, or compare it with the Published item.';
+    if (f().filed) return L.filedRight;
+    if (f().trick === null && f().ruling === null) return 'Choose the trick and the headline ruling, or try another clue tool.';
+    if (f().trick === null) return 'Choose the trick in Your ruling.';
+    if (f().ruling === null) return 'Choose the headline ruling.';
+    return 'Press File it to send your evidence and ruling to the editor.';
+  }
+  function retireRulingVoice() {
+    const obsolete=['filedWrong','needEvidence'];
+    if (obsolete.some(key => V.playing === L[key])) V.hush();
+    else V.dropQueued(line => obsolete.includes(line.key));
+  }
+  function showData() {
+    const c=cases[state.caseId],id=state.caseId,columns=['When / group',c.unit];
+    if (c.values2) columns.push('Soccer wins');
+    if (c.groups) columns.push(id === 1?'School days':'Students',id === 1?'Per school day':'Per 100 students');
+    const table=document.createElement('table'),head=table.createTHead().insertRow();
+    columns.forEach(t => { const th=document.createElement('th');
+      th.scope='col';
+      th.textContent=t;
+      head.append(th);
+    });
+    const body=table.createTBody();
+    c.labels.forEach((label,i) => {
+      const row=body.insertRow(),vals=[label,valueText(c.values[i])];
+      if (c.values2) vals.push(c.values2[i]);
+      if (c.groups) vals.push(c.groups[i],num(rateValue(c,i)));
+      vals.forEach(v => { row.insertCell().textContent=v;
+      });
+    });
+    $('data-table').replaceChildren(table);
+    $('data-note').textContent='Every number and publisher is made up. '+(id === 1?
+      'The full year here means the ten-month school year, September to June.':'The data stays the same when the drawing changes.');
+    $('data-overlay').hidden=false;
+    syncDataAccess();
+    $('stage').classList.add('has-data');
+    $('case-worktop').inert=true;
+    $('view-tabs').inert=true;
+    $('close-data').focus({preventScroll:true});
+  }
+  function clue(name) {
+    finishAnimation();
+    if (name !== 'data') hideData();
+    const file=f(),c=cases[state.caseId],id=state.caseId;
+    file.tool=name;
+    if (V.playing === L.wCases) V.hush();
+    else V.dropQueued();
+    if (!file.used.includes(name)) file.used.push(name);
+    $$('.clue-tool').forEach(el => el.setAttribute('aria-pressed',el.dataset.tool === name));
+    feedback();
+    if (name === 'ruler') {
+      file.picks=[];
+      file.ruler=null;
+      hint(id === 5?'Tap the first and last points. Ruler compares the first and last growth steps.':
+        'Ruler ready. Tap two bars, pictures or points in the published chart.');
+      drawOriginal();
+      return;
+    }
+    let text='';
+    if (name === 'axis') {
+      file.axis=true;
+      text=id === 0?'Starts at 950 bags; ticks at 950, 1,000, 1,050 and 1,060. Only 50 bags of the first bar are drawn.':
+        id === 3?'Left: 100 to 250 smoothies. Right: 2/3 to 19/6 wins; ticks 1, 2, 3. Endpoints line up on different units.':
+        id === 5?'Starts at 0; three gaps span 5 years each, then four span 1 year each. Every gap has equal width on paper.':
+        'Axis starts at 0. Nothing odd here. Value ticks use equal steps.';
+    }
+    if (name === 'data') {
+      showData();
+      text=id === 1?'Visits / school days: Nov 840 / 19 = 44.2; Dec 510 / 12 = 42.5; Jan 830 / 19 = 43.7.':
+        id === 4?'Oak: 45 broken, 900 students. Elm: 30 broken, 300 students. Birch: 27 broken, 450 students.':
+        id === 3?'Smoothies: 120, 150, 190, 240. Wins: 1, 2, 2, 3. Same months, different quantities.':
+        id === 5?'Members: 6, 11, 16, 21, 22, 23, 24, 25. First and last years: 2004 and 2023.':
+        c.labels.map((x,i) => `${x}: ${valueText(c.values[i])} ${c.unit}`).join('; ')+'.';
+    }
+    if (name === 'zoom') {
+      file.zoom=true;
+      text=id === 1?'All ten school months appear. Nov and Dec were the published window. Jan rebounds to 830 visits.':
+        'This is all the data the source had.';
+    }
+    if (name === 'rate') {
+      file.rate=!!c.groups;
+      text=c.groups?(id === 1?'Per school day: Nov 44.2, Dec 42.5, Jan 43.7. December had only 12 school days.':
+        'Per 100 students: Oak 5, Elm 10, Birch 6. Oak has half as many breaks per student as Elm.'):
+        'This data has no group sizes. There is no per-100 comparison to make.';
+    }
+    addNote(toolNames[toolKeys.indexOf(name)],text);
+    hint(name === 'data'?'Read Data sheet. Press × to return to the chart, then choose your ruling.':
+      'Finding in Notebook. Choose the trick and headline ruling.');
+    drawOriginal();
+    if (name === 'zoom') animate($('original-chart'));
+  }
+  function syncRuling() {
+    const moveToFix=f().filed && document.activeElement === $('file');
+    $$('.trick').forEach(el => {
+      el.setAttribute('aria-pressed',f().trick === +el.dataset.choice);
+      el.disabled=f().filed;
+    });
+    $$('.ruling').forEach((el,i) => {
+      el.setAttribute('aria-pressed',f().ruling === i);
+      el.disabled=f().filed;
+    });
+    $('file').disabled=f().filed || f().trick === null || f().ruling === null;
+    $('file').setAttribute('aria-disabled',f().filed);
+    $('file').textContent=f().filed?'Ruling filed ✓':'File it ↗';
+    document.querySelector('.panel').classList.toggle('filed',f().filed && state.mode === 'cases');
+    $('fix-section').hidden=!f().filed;
+    $('fix-label').textContent=tricks[state.caseId].fix;
+    $('fix').setAttribute('aria-pressed',f().closed);
+    $('next').hidden=!f().closed;
+    $('next').textContent=state.files.every(x => x.closed)?'All closed · Spin Room →':'Next case →';
+    if (!f().filed && f().notes.length && !V.heard('firstClue')) V.how('firstClue',{
+      valid:() => !f().filed && $('data-overlay').hidden,needs:'#file'
+    });
+    if (moveToFix) $('fix').focus({preventScroll:true});
+  }
+  function sufficientEvidence() {
+    const file=f(),id=state.caseId;
+    if (file.evidenceVersion === file.submittedVersion) return false;
+    if (!proofNeeded().every(key => (file.proof[key] || 0)>(file.submittedProof[key] || 0))) return false;
+    if (id === 0) return !!file.ruler && file.axis;
+    if (id === 1) return file.zoom && file.used.includes('data');
+    if (id === 2) return !!file.ruler;
+    if (id === 3) return file.axis && file.used.includes('data');
+    if (id === 4) return file.rate && file.used.includes('data');
+    return file.axis && !!file.ruler && file.picks.includes(0) && file.picks.includes(7);
+  }
+  function proofNeeded() {
+    return [['ruler','axis'],['zoom','data'],['ruler'],['axis','data'],['rate','data'],['ruler','axis']][state.caseId];
+  }
+  function evidenceHint() {
+    const file=f(),id=state.caseId;
+    const stale=proofNeeded().filter(key => (file.proof[key] || 0)<=(file.submittedProof[key] || 0));
+    if (stale.length && file.submittedVersion>=0) {
+      return 'Recheck '+stale.map(key => toolNames[toolKeys.indexOf(key)]).join(' and ')+
+        '. A new ruling needs fresh diagnostic evidence.';
+    }
+    if ((id === 0 || id === 2 || id === 5) && !file.ruler) return 'Use Ruler and select two different chart marks before filing.';
+    if (id === 5 && (!file.picks.includes(0) || !file.picks.includes(7))) return 'Use Ruler on the first and last points to compare growth steps.';
+    if ((id === 0 || id === 3 || id === 5) && !file.axis) return 'Use Axis check to inspect the scales before filing.';
+    if (id === 1 && !file.zoom) return 'Use Zoom out to see the rest of the school year before filing.';
+    if (id === 4 && !file.rate) return 'Use Per 100 to compare the differently sized schools before filing.';
+    return 'Open Data sheet or repeat a measurement to support this new filing.';
+  }
+  function fileRuling() {
+    finishAnimation();
+    hideData();
+    const file=f(),c=cases[state.caseId];
+    if (file.trick === null || file.ruling === null || file.filed) return;
+    if (!sufficientEvidence()) { hint(evidenceHint());
+      V.say('needEvidence',{valid:() => !f().filed});
+      feedback();
+      return;
+    }
+    file.submittedVersion=file.evidenceVersion;
+    file.submittedProof={...file.proof};
+    if (file.trick === c.trick && file.ruling === c.ruling) {
+      file.filed=true;
+      hint(L.filedRight);
+      syncRuling();
+      Curio.yes();
+      V.say('filedRight',{valid:() => f().filed && !f().closed,needs:'#fix',now:true});
+    } else {
+      const rightTrick=file.trick === c.trick,rightRuling=file.ruling === c.ruling;
+      const lead=rightTrick?"The trick is right; rethink the headline.":
+        rightRuling?'The headline ruling is right; rethink the trick.':'Rethink both choices.';
+      const recheck=proofNeeded().map(key => toolNames[toolKeys.indexOf(key)]).join(' and ');
+      hint(lead+' Recheck '+recheck+'.');
+      V.say('filedWrong',{valid:() => !f().filed,now:true});
+      feedback();
+    }
+  }
+  function syncTabs() {
+    $$('.case-tab').forEach((el,i) => {
+      el.setAttribute('aria-pressed',state.caseId === i);
+      el.classList.toggle('closed',state.files[i].closed);
+      el.querySelector('small').textContent=state.files[i].closed?'✓ Closed':'Open';
+    });
+  }
+  function showView(view) {
+    state.view=view;
+    $('stage').classList.toggle('show-correction',view === 'correction');
+    $('view-original').setAttribute('aria-pressed',view === 'original');
+    $('view-correction').setAttribute('aria-pressed',view === 'correction');
+    drawCorrection();
+  }
+  function closeCase() {
+    finishAnimation();
+    hideData();
+    if (!f().filed) return;
+    if (f().closed) { hint('The correction is already printed. Press Next case to keep investigating.');
+      return;
+    }
+    f().closed=true;
+    persist();
+    $('stamp').hidden=false;
+    drawCorrection();
+    syncRuling();
+    syncTabs();
+    hint(`Correction printed. Case ${state.caseId+1} is closed. Press Next case, or compare the Correction.`);
+    Curio.yes();
+    V.say(L.closed[state.caseId],{valid:() => f().closed,now:true});
+    if (state.files.every(x => x.closed)) V.say('allClosed',{valid:() => state.mode === 'cases' && state.files.every(x => x.closed)});
+    if (innerWidth<901 || innerHeight<681) showView('correction');
+    animate($('correction'));
+    if (!Curio.reduce) $('stamp').classList.add('fresh');
+  }
+  function openCase(id) {
+    finishAnimation();
+    V.hush();
+    state.caseId=id;
+    const c=cases[id];
+    $('headline').textContent=c.headline;
+    $('item-kind').textContent=c.kind;
+    $('source').textContent=c.publisher+(id === 5?' · All made up':' · Made-up publisher and data');
+    $('prop').src=ART.props[id];
+    $('publication').classList.toggle('laptop',id === 5);
+    $('stamp').hidden=!f().closed;
+    hideData();
+    showView('original');
+    syncTabs();
+    syncRuling();
+    notebook();
+    $$('.clue-tool').forEach(el => el.setAttribute('aria-pressed',el.dataset.tool === f().tool));
+    hint(f().closed?'This correction is printed. Compare it with the Published item, or press Next case.':
+      f().filed?L.filedRight:f().tool === 'ruler'?
+        (f().picks.length === 1?L.ruler2:'Ruler ready. Tap two chart marks.'):
+        f().notes.length?rulingHint():innerWidth<=540?
+        'Tap Ruler, then scroll down to the chart and tap two marks. Use the clues before filing.':
+        'Tap Ruler, then two chart marks. Use the clue tools before you file a ruling.');
+    redraw();
+    if (!f().tool && !f().filed) V.welcome();
+  }
+  function setMode(mode) {
+    finishAnimation();
+    V.hush();
+    state.mode=mode;
+    $('m-cases').setAttribute('aria-pressed',mode === 'cases');
+    $('m-spin').setAttribute('aria-pressed',mode === 'spin');
+    $('stage').classList.toggle('spin-stage',mode === 'spin');
+    $('desk').src=ART.desks[mode === 'cases'?0:1];
+    document.querySelector('.panel').classList.toggle('spin',mode === 'spin');
+    document.querySelector('.panel').classList.toggle('filed',mode === 'cases' && f().filed);
+    for (const id of ['case-strip','view-tabs','case-worktop','clue-section','notebook','ruling-section','reset']) $(id).hidden=mode !== 'cases';
+    for (const id of ['spin-worktop','wish','spin-controls','fact-view','honest']) $(id).hidden=mode !== 'spin';
+    $('fix-section').hidden=mode !== 'cases' || !f().filed;
+    $('fact-list').hidden=mode !== 'spin' || !state.factView;
+    hideData();
+    $('stage').classList.remove('show-correction');
+    $('desk-caption').textContent=mode === 'cases'?'FACT-CHECK DESK / SIX PUBLISHED CLAIMS':'SPIN ROOM / SAME DATA, DIFFERENT STORY';
+    if (mode === 'cases') openCase(state.caseId);
+    else { buildSpinControls();
+      hint(L.wSpin);
+      redraw();
+      V.welcome();
+    }
+  }
+  function syncSpinInputs() {
+    const c=cases[state.spinId],s=state.spin;
+    $('draw').options[0].textContent=[3,5].includes(state.spinId)?'Lines':'Bars';
+    const vals=c.values.map((v,i) => s.count === 'rate' && c.groups?rateValue(c,i):v),min=Math.min(...vals),step=min<20?.1:1;
+    const maximum=Math.floor((min-step)*10)/10;
+    s.baseline=Math.min(s.baseline,maximum);
+    $('baseline').max=maximum;
+    $('baseline').step=step;
+    $('baseline').value=s.baseline;
+    $('baseline-out').textContent=valueText(s.baseline);
+    for (const key of ['draw','second','count','spacing','from','to']) $(key).value=s[key];
+    $('second-range').value=s.range;
+    $('second').disabled=state.spinId !== 3;
+    $('second-range').disabled=state.spinId !== 3 || s.second !== 'on';
+    $('second-reason').textContent=state.spinId !== 3?'Only one quantity here.':s.second === 'off'?'Turn Second axis on.':
+      `Top ${num(s.range+2/3,2)} wins`;
+    $('count').disabled=!c.groups;
+    $('count-reason').textContent=c.groups?(state.spinId === 1?'Uses per school day.':''):'This data has no group sizes.';
+    $('count').options[1].textContent=state.spinId === 1?'Per school day':'Per 100';
+    $('spacing').disabled=state.spinId !== 5;
+    $('spacing-reason').textContent=state.spinId !== 5?'No unequal year gaps.':'';
+    for (const [control,reason] of [['count','count-reason'],['second','second-reason'],['second-range','second-reason'],
+      ['spacing','spacing-reason']]) {
+      $(control).parentElement.title=$(reason).textContent;
+      $(control).setAttribute('aria-describedby',reason);
+    }
+    $('fact-view').setAttribute('aria-pressed',state.factView);
+    $('fact-view').textContent=(state.factView?'☑':'□')+" Fact-checker's view";
+  }
+  function buildSpinControls() {
+    const c=cases[state.spinId];
+    $('wish').textContent=c.wish;
+    $('dataset').value=state.spinId;
+    ['from','to'].forEach(id => {
+      const select=$(id);
+      select.replaceChildren();
+      c.labels.forEach((label,i) => { const o=document.createElement('option');
+        o.value=i;
+        o.textContent=label;
+        select.append(o);
+      });
+      select.disabled=![1,3,5].includes(state.spinId);
+      select.title=select.disabled?'This source has no shorter time window.':'';
+    });
+    syncSpinInputs();
+  }
+  function spinTricks() {
+    const c=cases[state.spinId],s=state.spin,out=[];
+    if (s.baseline>0) out.push('Cut-off axis: start at 0.');
+    if (s.from !== 0 || s.to !== c.labels.length-1) out.push('Hand-picked time: show the complete source record.');
+    if (s.draw === 'area') out.push('Picture size: use bars or pictures with fixed width.');
+    if (s.second === 'on') out.push('Two different axes: use one chart each, from 0.');
+    if (c.groups && s.count === 'totals') out.push('Totals, not rates: '+(state.spinId === 1?'compare per school day.':'compare per 100 students.'));
+    if (state.spinId === 5 && s.spacing === 'even') {
+      const gaps=c.labels.slice(s.from+1,s.to+1).map((year,i) => +year-+c.labels[s.from+i]);
+      if (new Set(gaps).size>1) out.push('Uneven time steps: space by years.');
+    }
+    return out;
+  }
+  function drawSpin() {
+    const c=cases[state.spinId],cfg=chartConfig(c,false,true),start=cfg.ids[0],end=cfg.ids.at(-1);
+    $('spin-title').textContent=c.headline;
+    drawChart($('spin-chart'),cfg);
+    const m=compare(cfg,state.spinId === 4?1:start,state.spinId === 4?0:end),meter=$('meter');
+    meter.replaceChildren();
+    const numbers=document.createElement('div');
+    numbers.className='meter-numbers';
+    for (const [title,v,digits] of [['Picture says',m.a,m.a === 1.05?2:1],['Numbers say',m.b,m.b === 1.05?2:1]]) {
+      const span=document.createElement('span'),strong=document.createElement('strong');
+      span.append(document.createTextNode(title));
+      strong.textContent=num(v,digits)+'×';
+      span.append(strong);
+      numbers.append(span);
+    }
+    meter.append(numbers);
+    const line=document.createElement('div');
+    line.textContent=(m.a-1)*(m.b-1)>0 && Math.abs(m.b-1)>1e-10?
+      'Lie factor: '+num((m.a-1)/(m.b-1))+'. 1 means honest size for this comparison.':
+      Math.abs(m.a-m.b)<1e-9?'Honest size comparison.':'The picture and numbers tell different stories.';
+    if (cfg.dual) {
+      const wins=compare(cfg,'w'+start,'w'+end);
+      const factor=(wins.a-1)*(wins.b-1)>0?' Lie factor: '+num((wins.a-1)/(wins.b-1))+'.':'';
+      line.textContent=`Smoothies above. Wins: picture ${num(wins.a)}×, numbers ${num(wins.b)}×.${factor}`;
+    }
+    meter.append(line);
+    const em=document.createElement('em');
+    em.textContent=cfg.dual?`Heights, ${c.labels[start]} to ${c.labels[end]}. Two scales do not establish cause.`:
+      (m.area?'Picture compares area. ':state.spinId === 5 && cfg.draw === 'bars'?
+      'Picture compares slopes. ':'Picture compares drawn heights. ')+(state.spinId === 5 && cfg.draw === 'bars'?
+      'First versus last step; numbers compare members per year.':state.spinId === 4?
+      'Oak versus Elm; numbers compare per 100 students.':
+      `${c.labels[start]} to ${c.labels[end]}; numbers compare ${cfg.rate && c.groups?'visits per school day':c.unit}.`);
+    meter.append(em);
+    $('fact-list').replaceChildren();
+    const found=spinTricks();
+    (found.length?found:['No drawing tricks active. Honest settings.']).forEach(text => {
+      const p=document.createElement('p');
+      p.textContent=text;
+      $('fact-list').append(p);
+    });
+  }
+  function spinChange(key,value) {
+    finishAnimation();
+    const s=state.spin;
+    s.touched=true;
+    s[key]=value;
+    if (s.from>=s.to) {
+      if (key === 'from') { s.to=Math.min(cases[state.spinId].labels.length-1,s.from+1);
+        s.from=Math.min(s.from,s.to-1);
+      }
+      else { s.from=Math.max(0,s.to-1);
+        s.to=Math.max(s.to,s.from+1);
+      }
+    }
+    syncSpinInputs();
+    drawSpin();
+    hint("Watch Picture says and Numbers say. Turn on Fact-checker's view to inspect your changes.");
+    feedback();
+    if (key === 'draw') animate($('spin-chart'));
+  }
+  cases.forEach((c,i) => {
+    const tab=document.createElement('button');
+    tab.className='case-tab';
+    tab.id='case-'+(i+1);
+    tab.setAttribute('aria-pressed','false');
+    tab.append(document.createTextNode('Case '+(i+1)),document.createElement('small'));
+    tab.onclick=() => { feedback();
+      openCase(i);
+    };
+    $('case-strip').append(tab);
+    const option=document.createElement('option');
+    option.value=i;
+    option.textContent=(i+1)+' · '+c.unit;
+    $('dataset').append(option);
+  });
+  toolKeys.forEach((key,i) => {
+    const b=document.createElement('button');
+    b.id='clue-'+key;
+    b.dataset.tool=key;
+    b.className='clue-tool';
+    b.setAttribute('aria-pressed','false');
+    b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true">'+toolIcons[i]+'</svg>';
+    b.append(document.createTextNode(toolNames[i]));
+    b.onclick=() => clue(key);
+    $('clue-tools').append(b);
+  });
+  [3,0,4,2,5,1].forEach(i => {
+    const t=tricks[i];
+    const b=document.createElement('button');
+    b.id='trick-'+i;
+    b.className='trick';
+    b.setAttribute('aria-pressed','false');
+    b.title=t.meaning;
+    b.dataset.choice=i;
+    const icon=document.createElement('span');
+    icon.className='trick-icon';
+    icon.textContent=t.icon;
+    icon.setAttribute('aria-hidden','true');
+    b.append(icon,document.createTextNode(t.name));
+    b.onclick=() => {
+      if (f().filed) return;
+      finishAnimation();
+      retireRulingVoice();
+      f().trick=i;
+      syncRuling();
+      feedback();
+      hint(rulingHint());
+    };
+    $('tricks').append(b);
+  });
+  rulings.forEach((text,i) => {
+    const b=document.createElement('button');
+    b.id='ruling-'+i;
+    b.className='ruling';
+    b.setAttribute('aria-pressed','false');
+    b.textContent=text;
+    b.onclick=() => {
+      if (f().filed) return;
+      finishAnimation();
+      retireRulingVoice();
+      f().ruling=i;
+      syncRuling();
+      feedback();
+      hint(rulingHint());
+    };
+    $('rulings').append(b);
+  });
+  $('m-cases').onclick=() => setMode('cases');
+  $('m-spin').onclick=() => setMode('spin');
+  $('file').onclick=fileRuling;
+  $('fix').onclick=closeCase;
+  $('view-original').onclick=() => { finishAnimation();
+    feedback();
+    showView('original');
+  };
+  $('view-correction').onclick=() => { finishAnimation();
+    feedback();
+    showView('correction');
+  };
+  $('next').onclick=() => {
+    feedback();
+    if (state.files.every(x => x.closed)) return setMode('spin');
+    const next=Array.from({length:6},(_,i) => (state.caseId+i+1)%6).find(i => !state.files[i].closed);
+    openCase(next);
+  };
+  $('close-data').onclick=() => {
+    hideData();
+    syncRuling();
+    hint(rulingHint());
+    $('clue-data').focus({preventScroll:true});
+    feedback();
+  };
+  addEventListener('keydown',e => { if (e.key === 'Escape' && !$('data-overlay').hidden) $('close-data').click();
+  });
+  $('dataset').onchange=e => {
+    finishAnimation();
+    state.spinId=+e.target.value;
+    state.spin=honestSpin(state.spinId);
+    buildSpinControls();
+    drawSpin();
+    feedback();
+    hint('Move Axis starts at or choose Draw as. Watch the picture change while the data stays the same.');
+  };
+  $('baseline').oninput=e => spinChange('baseline',+e.target.value);
+  $('second-range').oninput=e => spinChange('range',+e.target.value);
+  for (const id of ['from','to','draw','second','count','spacing']) $(id).onchange=e =>
+    spinChange(id,['from','to'].includes(id)?+e.target.value:e.target.value);
+  $('fact-view').onclick=() => {
+    finishAnimation();
+    state.factView=!state.factView;
+    syncSpinInputs();
+    $('fact-list').hidden=!state.factView;
+    if (state.factView) {
+      if (V.playing === L.wSpin) V.hush();
+      hint(L.factView);
+      V.how('factView',{valid:() => state.factView,needs:'#honest'});
+    } else {
+      if (V.playing === L.factView) V.hush();
+      else V.dropQueued(line => line.key === 'factView');
+      hint('Move a spin control, or press Make it honest to reset every setting.');
+    }
+    feedback();
+  };
+  $('honest').onclick=() => {
+    if (V.playing === L.factView) V.hush();
+    else V.dropQueued(line => line.key === 'factView');
+    finishAnimation();
+    state.spin=honestSpin(state.spinId);
+    state.spin.touched=true;
+    buildSpinControls();
+    drawSpin();
+    animate($('spin-chart'));
+    feedback(true);
+    hint('Every control is honest again. Move a spin control to test another change.');
+  };
+  $('reset').onclick=() => $('reset-dialog').showModal();
+  $('cancel-reset').onclick=() => $('reset-dialog').close();
+  $('confirm-reset').onclick=() => {
+    V.hush();
+    state.files=cases.map(freshCase);
+    persist();
+    $('reset-dialog').close();
+    openCase(0);
+    feedback();
+  };
+  function labelHeader(id) {
+    const b=$(id),words=b.textContent.trim().split(/\s+/);
+    const icon=document.createElement('span'),label=document.createElement('span');
+    icon.className='header-icon';
+    icon.setAttribute('aria-hidden','true');
+    icon.textContent=words.shift();
+    label.className='button-word';
+    label.textContent=' '+words.join(' ');
+    b.replaceChildren(icon,label);
+  }
+  Curio.init({clips:"voice:*",rate:.95});
+  ['motion','sound','read'].forEach(labelHeader);
+  Curio.onMotion(() => { finishAnimation();
+    labelHeader('motion');
+  });
+  Curio.onSound(() => labelHeader('sound'));
+  const viewport={w:innerWidth,h:innerHeight};
+  const observer=new ResizeObserver(() => {
+    if (viewport.w !== innerWidth || viewport.h !== innerHeight) finishAnimation();
+    viewport.w=innerWidth;
+    viewport.h=innerHeight;
+    syncDataAccess();
+    requestAnimationFrame(redraw);
+  });
+  ['original-wrap','correction-wrap','spin-wrap'].forEach(id => observer.observe($(id)));
+  window.__tool={state,setMode,openCase,allLines:V.allLines,vlog:V.log,get vq() { return V.queue;
+    },
+    cases,chartConfig,compare,spinTricks,sufficientEvidence};
+  setMode('cases');
+})();
+</script>
+</body>
+</html>

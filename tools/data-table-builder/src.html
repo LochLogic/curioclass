@@ -1,0 +1,1496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data Table Builder · Curio Class</title>
+<meta name="description" content="Build a class table and explore its rows as bar graphs, dot plots and sorted lists. Grade 4. Works offline.">
+<!--
+Data Table Builder, Curio Class. Grade 4 computer science, E4-DAT-DC-09 and E4-DAT-DI-10.
+Room 4 is invented practice data from spec.md. ADA MouthHealthy Eruption Charts supplies the baby teeth fact.
+Rows and fields: CSTA Data and Analysis. Graphs: Common Core 3.MD.B.3 and 4.MD.B.4.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Uses the Curio Class kit and data-desk engine with tool-local adapters. Content CC BY 4.0, code MIT.
+One offline file. Class data is saved only on this device. No requests or analytics.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#1d3a2f; --panel:#24463a; --ink:#f4f1e8; --muted:#b9c9bf; --line:#3d5f52;
+  --brand:#ffd84d; --brand-ink:#1d1a05; --btn:#2c5546; --btn-line:#658777; --head-ink:#f4f1e8; --focus:#7fd4ff;
+  --dd-1:#8fd3ff; --dd-2:#ffb38a; --dd-3:#c8f08f; --dd-4:#f7a8d8; --dd-5:#d0c2ff; --dd-6:#f2e6a0;
+  --dd-text:#f4f1e8; --dd-axis:#b9c9bf; --dd-grid:#a4c6b52d; --dd-ring:#ffd84d; --dd-bg-solid:#1d3a2f;
+}
+body { height:100dvh; overflow:hidden; background:#142b23; grid-template-columns:minmax(0,1fr); width:100%; }
+header { background:#173327; border-bottom:3px solid var(--brand); padding:10px 18px; gap:8px; z-index:3; }
+h1 { font-size:clamp(20px,2.2vw,30px); letter-spacing:-.6px; }
+h1 small { font-size:13px; letter-spacing:1px; color:var(--muted); margin-top:5px; }
+button, select, input, textarea { font:inherit; }
+button, select { min-height:48px; min-width:48px; }
+button { border:1.5px solid var(--btn-line); border-radius:8px; padding:6px 12px; background:var(--btn); }
+button:hover { background:#366650; border-color:var(--ink); }
+button:active { transform:translateY(1px); }
+button:disabled { opacity:.5; cursor:default; }
+button[aria-pressed="true"], .primary { background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+button.primary:hover, button[aria-pressed="true"]:hover { background:#ffe77c; color:var(--brand-ink); }
+.icon-btn { min-height:48px; padding:0 12px; font-size:14px; }
+.seg { border-radius:9px; }
+.seg button { min-height:48px; font-size:14px; padding:0 12px; }
+main { grid-template-columns:minmax(0,1fr) 324px; min-height:0; }
+.panel { grid-column:2; grid-row:1; padding:12px 14px; gap:10px; border-left:2px dashed var(--line); overflow:hidden; }
+.panel, .question, .chart-controls { min-width:0; }
+.hint { margin:0; font-size:14px; line-height:1.4; min-height:62px; }
+.section-label { margin:0 0 6px; text-transform:uppercase; letter-spacing:2px; font-size:11px; color:var(--muted); }
+.chart-buttons { display:grid; grid-template-columns:repeat(3,1fr); gap:5px; }
+.chart-buttons button { padding:5px 2px; font-size:12px; font-weight:700; line-height:1.2; }
+.chart-buttons button span { display:block; font-size:20px; margin-bottom:2px; }
+.split-row { display:flex; gap:6px; align-items:center; margin-top:7px; font-size:13px; }
+select, input, textarea { color:var(--ink); background:#173327; border:1.5px solid #729583; border-radius:6px; padding:8px; }
+select { width:100%; min-width:0; }
+.question { border-top:1.5px dashed #729583; padding-top:10px; min-height:0; overflow:auto; }
+.q-nav { display:flex; justify-content:space-between; align-items:center; gap:6px; }
+.q-nav button { padding:4px 8px; font-size:12px; }
+#q-count { color:var(--muted); font-size:12px; }
+#q-title { font:700 19px/1.3 'Trebuchet MS',sans-serif; margin:9px 0; }
+.guess-label { font-size:12px; color:var(--muted); margin:4px 0; }
+#guesses { display:flex; flex-wrap:wrap; gap:5px; }
+#guesses button { flex:1 1 auto; font-size:12px; padding:5px 8px; }
+#guesses img { width:28px; height:28px; object-fit:contain; vertical-align:middle; margin-right:3px; }
+#show { width:100%; margin-top:9px; font-weight:800; }
+#q-result { margin:8px 0 0; line-height:1.45; font-size:14px; }
+#q-result b { color:var(--brand); }
+#q-reason { font-size:12px; color:var(--muted); margin:5px 0; line-height:1.4; }
+.build { border-top:1.5px dashed #729583; padding-top:10px; display:grid; gap:7px; }
+.hint { order:0; flex-shrink:0; }
+.chart-controls { order:1; flex-shrink:0; }
+.build { order:2; flex-shrink:0; }
+.question { order:3; flex:1 1 auto; }
+.question[data-inspected="true"] #guesses, .question[data-inspected="true"] .guess-label { display:none; }
+.question[data-ready="false"] #guesses, .question[data-ready="false"] #show,
+.question[data-ready="false"] #own-question { display:none; }
+.question[data-ready="false"] { display:none; }
+#guesses[data-count="5"] { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:3px; }
+#guesses[data-count="5"] button { padding:4px 2px; font-size:11px; overflow-wrap:anywhere; line-height:1.15; }
+#guesses[data-count="5"] img { display:block; margin:0 auto 3px; }
+#add-row { font-size:17px; font-weight:800; }
+.privacy, #save-status { font-size:12px; color:var(--muted); margin:0; line-height:1.4; }
+#clear { background:transparent; font-size:13px; }
+.stage { grid-column:1; grid-row:1; min-height:0; padding:12px; display:grid; grid-template-rows:42% 1fr; gap:9px;
+  background:radial-gradient(ellipse at 12% 5%,#86a88a20,transparent 65%),
+    radial-gradient(ellipse at 78% 65%,#0b241b35,transparent 70%),
+    repeating-linear-gradient(174deg,#dce6c903 0 1px,transparent 1px 6px),#1d3a2f;
+  box-shadow:inset 6px 0 15px #0003; }
+.table-box { min-height:0; display:flex; flex-direction:column; }
+.stage, .table-box, .chart-box, #table-scroll { min-width:0; }
+.table-heading { display:flex; align-items:center; justify-content:space-between; min-height:25px; gap:8px; }
+.table-heading h2 { margin:0; font-size:14px; letter-spacing:1px; }
+#table-size { font:12px/1.3 'Segoe UI',sans-serif; color:var(--muted); }
+#table-scroll { overflow:auto; min-height:0; flex:1; border:1.5px dashed #729583; border-radius:4px; scrollbar-color:#729583 #1d3a2f; }
+.dd-tablewrap { display:block; }
+.dd-table { width:100%; font-size:13px; border-collapse:separate; border-spacing:0; }
+.dd-table th, .dd-table td { padding:3px 8px; border:0; border-right:1.5px dashed #72958370; border-bottom:1.5px dashed #72958355; }
+.dd-table td { text-align:center; height:27px; white-space:nowrap; }
+.dd-table td.dd-text { text-align:center; }
+.dd-table thead { position:sticky; top:0; z-index:2; }
+.dd-table thead th { padding:0; background:#24463a; min-width:108px; vertical-align:top; }
+.dd-table thead th:first-child { min-width:54px; }
+.dd-table tbody th { white-space:nowrap; font-size:11px; color:var(--muted); font-weight:500; }
+.head-top { display:flex; align-items:stretch; }
+.head-select { width:100%; min-width:66px; border:0; border-radius:0; background:transparent; padding:5px 4px;
+  font-size:12px; font-weight:700; line-height:1.15; }
+.head-select small { display:block; margin-top:4px; color:var(--muted); font-size:10px; font-weight:500; }
+.head-select[aria-pressed="true"] { color:var(--brand); background:#ffd84d12; }
+.selected-col { box-shadow:inset 2px 0 var(--brand),inset -2px 0 var(--brand); background:#ffd84d08; }
+.head-sort, .head-remove { padding:0; min-width:48px; width:48px; border:0; border-left:1px dashed var(--line); border-radius:0; background:transparent; }
+.dd-table tr.marked td, .dd-table tr.marked th { background:#ffd84d22; color:var(--brand); }
+.dd-table tr.new-row { animation:row-flash 1.3s ease-out; }
+.dd-table td.cell-edit { cursor:pointer; min-width:62px; height:48px; }
+.dd-table td.cell-edit:hover { background:#ffd84d18; }
+.row-remove { border:0; padding:0; min-width:48px; min-height:48px; background:transparent; }
+.table-note { font-size:10px; line-height:1.4; color:var(--muted); margin:4px 0 0; }
+.table-note span { display:block; }
+.chart-box { min-height:0; display:flex; flex-direction:column; position:relative; border-top:2px solid #94b39e70; padding-top:7px; }
+.chart-heading { display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:29px; }
+#chart-title { font:700 clamp(16px,1.8vw,24px)/1.2 'Trebuchet MS',sans-serif; margin:0; color:var(--brand); }
+#chart-title { min-width:0; overflow-wrap:anywhere; }
+#chart-kind { font-size:11px; color:var(--muted); white-space:nowrap; }
+#chart-viewport { flex:1; min-height:0; overflow:auto; position:relative; scrollbar-color:#729583 #1d3a2f; }
+.prediction-cover { position:absolute; inset:0; z-index:2; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:10px; text-align:center; padding:12px; background:#1d3a2f; color:var(--muted); }
+.prediction-cover strong { color:var(--brand); font-size:clamp(16px,2vw,24px); }
+.prediction-cover .chalk-marks { display:flex; gap:12px; height:38px; align-items:end; opacity:.65; }
+.prediction-cover .chalk-marks img { width:36px; height:36px; object-fit:contain; }
+.chalk-marks i { width:22px; height:20px; border:2px dashed currentColor; background:#ffd84d0a; }
+.chalk-marks i:nth-child(2) { height:34px; }
+.chalk-marks i:nth-child(3) { height:27px; }
+.prediction-pending > svg, .prediction-pending > #sorted { visibility:hidden; }
+#chart { display:block; overflow:visible; outline-offset:-4px; }
+#chart-summary { min-height:29px; margin:2px 0; font-size:14px; font-weight:600; line-height:1.3; }
+#chart-summary { max-height:52px; overflow:auto; flex-shrink:0; }
+.chart-heading, .chalk-tray { flex-shrink:0; }
+.chalk-tray { display:flex; align-items:center; gap:9px; height:9px; background:linear-gradient(#4b3f2c,#2e281d); box-shadow:0 3px 5px #0005; }
+.chalk-tray i { width:28px; height:5px; background:#f4f1e8; transform:rotate(-3deg); border-radius:2px; margin-left:12px; }
+.chalk-tray i:nth-child(2) { background:var(--brand); transform:rotate(2deg); margin:0; width:21px; }
+.chalk-tray i:nth-child(3) { background:var(--dd-1); transform:rotate(-2deg); margin:0; width:19px; }
+.chalk-tray:after { content:''; width:45px; height:7px; background:linear-gradient(#a5916b,#514b38); border-radius:2px; margin-left:auto; margin-right:18px; }
+.idle-sheen { animation:chalk-breathe 5s ease-in-out infinite; }
+.calm .idle-sheen, .calm .new-row { animation:none!important; }
+@keyframes chalk-breathe { 50% { opacity:.58; } }
+@keyframes row-flash { from { background:#ffd84d66; } to { background:transparent; } }
+@keyframes chalk-rise { from { transform:scaleY(.03); opacity:.4; } to { transform:scaleY(1); opacity:1; } }
+@keyframes chalk-drop { from { transform:translateY(-12px); opacity:0; } to { transform:translateY(0); opacity:1; } }
+.grow { transform-box:fill-box; transform-origin:bottom; animation:chalk-rise .3s ease-out both; }
+.drop { animation:chalk-drop .3s ease-out both; }
+.calm .grow, .calm .drop { animation:none!important; }
+.empty { display:flex; height:100%; min-height:100px; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; color:var(--muted); gap:10px; }
+.empty strong { font:700 24px 'Trebuchet MS',sans-serif; color:var(--ink); }
+.sorted { width:100%; border-collapse:collapse; font-size:14px; }
+.sorted td, .sorted th { border-bottom:1px dashed #72958370; padding:6px 12px; text-align:left; }
+.sorted img { width:28px; height:28px; object-fit:contain; vertical-align:middle; margin-right:9px; }
+.overlay { position:absolute; inset:0; z-index:5; background:#173327fa; border:2px solid var(--brand); border-radius:6px;
+  box-shadow:0 7px 22px #0008; display:flex; flex-direction:column; }
+.overlay header { padding:6px 12px; border:0; background:#24463a; }
+.overlay h2 { margin:0 auto 0 0; font-size:17px; }
+.overlay-content { overflow:auto; padding:10px 12px; min-height:0; flex:1; }
+.overlay-actions { display:flex; gap:8px; padding:8px 12px; background:#24463a; }
+.overlay-actions button { flex:1; }
+body[data-card="shelf"] .chart-box, body[data-card="custom"] .chart-box,
+body[data-card="confirm"] .chart-box { position:static; }
+body[data-card="shelf"] .overlay, body[data-card="custom"] .overlay,
+body[data-card="confirm"] .overlay { inset:8px; }
+.entry-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; }
+.entry-field { margin:0; padding:7px; border:1px dashed #729583; border-radius:6px; min-width:0; }
+.entry-field legend { font-size:13px; font-weight:700; padding:0 5px; }
+.answer-buttons { display:flex; flex-wrap:wrap; gap:5px; }
+.answer-buttons button { flex:1; display:flex; align-items:center; justify-content:center; gap:6px; font-size:13px; }
+.answer-buttons img { width:32px; height:36px; object-fit:contain; }
+.stepper { display:flex; align-items:center; gap:5px; }
+.stepper { min-width:0; width:100%; }
+.stepper input { min-width:0; width:75px; height:48px; text-align:center; flex:1; font-weight:700; font-size:19px; }
+.stepper button { font-size:22px; padding:0; width:48px; }
+.range-note { display:block; font-size:11px; color:var(--muted); margin-top:4px; }
+#shelf { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px; }
+.shelf-card { font-size:13px; display:flex; gap:6px; align-items:center; text-align:left; }
+.shelf-card img { width:32px; height:36px; object-fit:contain; }
+.shelf-card small { display:block; color:var(--muted); font-size:11px; margin-top:2px; }
+.custom-form { display:grid; gap:8px; max-width:600px; margin:auto; }
+.custom-form label { display:grid; gap:4px; font-size:13px; }
+.custom-form input { height:48px; width:100%; min-width:0; }
+.custom-choices { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.own-question { width:100%; min-height:55px; resize:vertical; }
+.error { color:#ffb38a; font-size:13px; margin:6px 0; }
+.confirm-body { font-size:19px; margin:8px 0; line-height:1.4; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+@media (min-width:761px) {
+  body.ours main { position:relative; }
+  body.ours .stage { padding-bottom:100px; }
+  body.ours .build { position:absolute; left:12px; right:338px; bottom:10px; z-index:3;
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:6px; border-top:1.5px dashed #729583; padding-top:7px; }
+  body.ours .build > .section-label { display:none; }
+  body.ours #add-column { grid-column:1; grid-row:1; }
+  body.ours #add-row { grid-column:2; grid-row:1; }
+  body.ours #clear { grid-column:3; grid-row:1; }
+  body.ours .build .privacy { grid-column:1 / 3; grid-row:2; }
+  body.ours #save-status { grid-column:3; grid-row:2; text-align:right; }
+}
+@media (max-width:1100px) {
+  header { padding:6px 10px; }
+  h1 { font-size:22px; }
+  h1 small { font-size:11px; }
+  .seg button { font-size:12px; padding:0 8px; }
+  .icon-btn { font-size:12px; padding:0 9px; }
+  main { grid-template-columns:minmax(0,1fr) 280px; }
+  .panel { padding:9px 10px; }
+  body.ours .build { right:294px; }
+}
+@media (max-height:550px) and (min-width:600px) {
+  header { flex-wrap:nowrap; padding:4px 8px; gap:5px; }
+  h1 { font-size:18px; }
+  h1 small { display:none; }
+  .icon-btn { width:48px; padding:0; font-size:0; }
+  #motion:before { content:'◌'; font-size:22px; }
+  #sound:before { content:'♫'; font-size:22px; }
+  #read:before { content:'▸'; font-size:22px; }
+  main { grid-template-columns:minmax(0,1fr) 316px; position:relative; }
+  .stage { padding:5px 7px; gap:4px; grid-template-rows:49% 1fr; }
+  .table-heading { min-height:17px; }
+  .table-heading h2, #table-size { font-size:10px; }
+  .dd-table { font-size:10px; }
+  .dd-table td { height:13px; padding:0 5px; line-height:1; }
+  .dd-table tbody th { font-size:10px; padding:0 5px; line-height:1; }
+  .dd-table thead th { min-width:104px; }
+  .head-select { font-size:10px; line-height:1; height:48px; padding:2px; }
+  .head-select small { font-size:10px; margin-top:1px; }
+  .table-note { line-height:1.1; font-size:10px; margin-top:2px; }
+  .table-note .sample-edit-note { display:none; }
+  .chart-heading { min-height:22px; }
+  #chart-title { font-size:15px; }
+  #chart-kind { font-size:10px; }
+  #chart-summary { font-size:12px; min-height:18px; }
+  .panel { padding:5px 8px; gap:5px; }
+  .hint { min-height:42px; font-size:12px; line-height:1.25; }
+  .section-label { margin-bottom:3px; font-size:10px; }
+  .chart-buttons button { font-size:10px; }
+  .chart-buttons button span { display:inline; font-size:15px; margin-right:2px; }
+  .split-row { margin-top:3px; font-size:11px; }
+  #q-title { font-size:15px; }
+  .entry-fields { grid-template-columns:1fr; }
+  .question { padding-top:4px; overflow:visible; }
+  .question > .section-label, .chart-controls > .section-label { display:none; }
+  #q-title { margin:4px 0; font-size:14px; line-height:1.2; }
+  .q-nav button { font-size:11px; }
+  #guesses { flex-wrap:nowrap; gap:3px; }
+  #guesses button { flex:1 1 0; min-width:48px; padding:3px; font-size:10px; overflow-wrap:anywhere; }
+  #guesses img { display:none; }
+  .question #guesses[data-count] img { display:none; }
+  #show { margin-top:4px; }
+  #q-result { font-size:11px; margin:4px 0 0; }
+  #q-reason { font-size:10px; margin:3px 0; }
+  .question[data-inspected="true"] #guesses, .question[data-inspected="true"] .guess-label { display:none; }
+  body.ours .build { position:absolute; z-index:3; bottom:4px; left:7px; width:calc(100% - 337px);
+    display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; padding:0; border:0; }
+  body.ours .build button { font-size:10px; padding:3px; min-width:48px; }
+  body.ours .build .section-label, body.ours .build .privacy, body.ours #save-status { display:none; }
+  body.ours .stage { padding-bottom:58px; grid-template-rows:40% 1fr; }
+  body.ours .table-note { font-size:10px; }
+  body[data-card="shelf"] .chart-box, body[data-card="custom"] .chart-box,
+  body[data-card="confirm"] .chart-box { position:static; }
+  body[data-card="shelf"] .overlay, body[data-card="custom"] .overlay,
+  body[data-card="confirm"] .overlay { inset:4px 7px 58px; z-index:6; }
+  #shelf { grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px; }
+  .shelf-card { font-size:10px; padding:4px; }
+  .shelf-card small { font-size:10px; }
+  .shelf-card img { width:25px; height:28px; }
+  body[data-card="shelf"] .overlay-content { padding:6px; }
+  body[data-card="shelf"] #shelf { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  body[data-card="shelf"] .overlay { bottom:4px; }
+  body[data-card="custom"] .overlay { right:4px; bottom:4px; }
+  .custom-form { gap:5px; }
+  .custom-form > label { display:grid; grid-template-columns:85px minmax(0,1fr); align-items:center; }
+  .custom-form .privacy { font-size:10px; }
+  .custom-choices { gap:4px; }
+  .custom-form input { min-width:48px; }
+}
+@media (max-width:760px) and (min-height:551px), (max-width:599px) {
+  body { height:auto; min-height:100dvh; overflow:auto; display:block; padding-bottom:64px; }
+  header { position:relative; gap:6px; }
+  h1 { width:100%; font-size:23px; }
+  h1 small { display:block; }
+  .seg { flex:1; }
+  .seg button { flex:1; font-size:11px; padding:0 4px; }
+  .icon-btn { width:48px; font-size:0; padding:0; }
+  #motion:before { content:'◌'; font-size:22px; }
+  #sound:before { content:'♫'; font-size:22px; }
+  #read:before { content:'▸'; font-size:22px; }
+  main { display:flex; flex-direction:column; }
+  .stage { flex:none; padding:8px; height:480px; grid-template-rows:220px 1fr; }
+  .panel { overflow:visible; border:0; padding:14px; }
+  .stage { order:0; }
+  .panel { order:1; }
+  .hint { min-height:45px; }
+  body.ours #add-row { position:fixed; left:10px; right:10px; bottom:8px; width:calc(100% - 20px); z-index:8; box-shadow:0 4px 15px #000a; }
+  .entry-fields { grid-template-columns:1fr; }
+  #shelf { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .overlay header { position:static; }
+  #chart-title { font-size:19px; }
+  .custom-choices { grid-template-columns:1fr; }
+}
+@media (max-width:599px) {
+  .stage { height:460px; grid-template-rows:200px 1fr; }
+  .panel { gap:7px; }
+  .build { padding-top:4px; gap:4px; }
+  .build > .section-label { margin-bottom:2px; }
+}
+body[data-card="custom"] .overlay { position:fixed; top:var(--card-top,80px); left:6px; right:6px; bottom:6px; }
+body[data-card="custom"] .overlay-content { padding:8px 12px; }
+.custom-form { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.custom-form > .privacy, #custom-details, #custom-error { grid-column:1 / -1; }
+#custom-details { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+#custom-details .custom-choices { display:contents; }
+.custom-form > label { display:grid; grid-template-columns:1fr; align-content:start; }
+.custom-form label { font-size:12px; }
+@media (max-width:760px) and (min-height:551px), (max-width:599px) {
+  .stage { height:460px; grid-template-rows:200px 1fr; }
+  body.ours .build { position:fixed; left:10px; right:10px; bottom:8px; width:auto; z-index:8;
+    display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:3px; padding:0;
+    background:var(--panel); box-shadow:0 3px 12px #0008; border:0; }
+  body.ours .build > .section-label, body.ours .build > .privacy { display:none; }
+  body.ours .build button { min-width:48px; font-size:11px; padding:4px; }
+  body.ours .build #add-row { position:static; width:auto; font-size:12px; box-shadow:none; }
+  body.ours .build #add-column { grid-column:1; grid-row:1; }
+  body.ours .build #add-row { grid-column:2; grid-row:1; }
+  body.ours .build #clear { grid-column:3; grid-row:1; }
+  body.ours #save-status { grid-column:1 / -1; grid-row:2; min-height:12px; font-size:10px; line-height:12px; }
+  body[data-card].ours .build { visibility:hidden; }
+  body[data-card="shelf"] .overlay { position:fixed; top:var(--card-top,120px); left:8px; right:8px; bottom:8px; }
+}
+@media (max-width:599px) {
+  .stage { height:424px; grid-template-rows:185px 1fr; }
+}
+@media (max-height:550px), (max-width:760px) {
+  body[data-card="entry"] .overlay header { padding:0 6px; }
+  body[data-card="entry"] .overlay h2 { font-size:14px; }
+  body[data-card="entry"] .overlay-content { padding:2px 6px; }
+  body[data-card="entry"] .overlay-actions { padding:4px 6px; }
+  .entry-field { padding:3px; }
+  .entry-field legend { font-size:10px; line-height:10px; }
+  .answer-buttons { display:grid; grid-template-columns:repeat(var(--choice-count,2),minmax(0,1fr)); gap:3px; }
+  .answer-buttons button { flex-direction:column; gap:1px; padding:2px; min-width:48px; font-size:10px;
+    line-height:1.1; overflow-wrap:anywhere; }
+  .answer-buttons img { width:28px; height:28px; }
+}
+</style>
+</head>
+<body>
+<header id="top">
+  <h1>Data Table Builder <small>Rows, columns, charts</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-sample" aria-pressed="true">▤ Sample class</button>
+    <button id="m-ours" aria-pressed="false">▰ Our class</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" aria-label="Motion" title="Motion">◌ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true" aria-label="Sound" title="Sound">♫ Sound</button>
+  <button class="icon-btn" id="read" aria-label="Read hint" title="Read hint">▸ Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint"></p>
+    <section class="chart-controls" aria-label="Chart controls">
+      <h2 class="section-label">Chart</h2>
+      <div class="chart-buttons" role="group" aria-label="Chart type">
+        <button id="chart-bar" aria-pressed="true"><span aria-hidden="true">▥</span>Bar graph</button>
+        <button id="chart-dot" aria-pressed="false"><span aria-hidden="true">⠿</span>Dot plot</button>
+        <button id="chart-list" aria-pressed="false"><span aria-hidden="true">☷</span>Sorted list</button>
+      </div>
+      <label class="split-row">Split by <select id="split"><option value="">No split</option></select></label>
+    </section>
+    <section class="question" aria-label="Questions">
+      <h2 class="section-label">Questions</h2>
+      <div class="q-nav">
+        <button id="q-prev" aria-label="Previous question">← Previous</button>
+        <span id="q-count"></span>
+        <button id="q-next" aria-label="Next question">Next →</button>
+      </div>
+      <h3 id="q-title"></h3>
+      <textarea id="own-question" class="own-question" maxlength="80" aria-label="Your own question" hidden></textarea>
+      <p class="guess-label" id="guess-label">Guess first</p>
+      <div id="guesses"></div>
+      <button id="show" class="primary">Show me</button>
+      <p id="q-result" aria-live="polite"></p>
+      <p id="q-reason"></p>
+    </section>
+    <section class="build" id="build" aria-label="Build your table" hidden>
+      <h2 class="section-label">Build</h2>
+      <button id="add-column">＋ Add a column</button>
+      <button id="add-row" class="primary">＋ Add my row</button>
+      <p class="privacy">Answers stay on this device. Enter counts and choices, never names.</p>
+      <p id="save-status" role="status"></p>
+      <button id="clear">▱ Clear our class</button>
+    </section>
+  </aside>
+  <section class="stage" id="stage" aria-label="Class table and chart">
+    <div class="table-box">
+      <div class="table-heading"><h2 id="table-title">ROOM 4 <span class="idle-sheen">✧</span></h2><span id="table-size"></span></div>
+      <div id="table-scroll"><div id="table"></div></div>
+      <p class="table-note" id="table-note"></p>
+    </div>
+    <div class="chart-box" id="chart-box">
+      <div class="chart-heading"><h2 id="chart-title"></h2><span id="chart-kind"></span></div>
+      <div id="chart-viewport">
+        <svg id="chart" xmlns="http://www.w3.org/2000/svg" tabindex="0" role="group" aria-label="Chart"></svg>
+        <div id="sorted" hidden></div><div id="empty" class="empty" hidden></div>
+        <div id="prediction-cover" class="prediction-cover" hidden>
+          <div class="chalk-marks" aria-hidden="true"><i></i><i></i><i></i></div>
+          <strong>Your prediction comes first</strong><span>Choose a guess, tap its column, then Show me.</span>
+        </div>
+      </div>
+      <p id="chart-summary" aria-live="polite"></p>
+      <div class="chalk-tray" aria-hidden="true"><i></i><i></i><i></i></div>
+      <section id="overlay" class="overlay" role="dialog" aria-modal="false" aria-labelledby="overlay-title" hidden>
+        <header><h2 id="overlay-title"></h2><button id="overlay-close" aria-label="Close card">×</button></header>
+        <div id="overlay-content" class="overlay-content"></div>
+        <div id="overlay-actions" class="overlay-actions"></div>
+      </section>
+    </div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:data-desk"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const clone = x => JSON.parse(JSON.stringify(x));
+  const esc = x => String(x).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const colors = ['#8fd3ff','#ffb38a','#c8f08f','#f7a8d8','#d0c2ff','#f2e6a0'];
+  const shapes = ['circle','square','triangle','diamond','star','circle'];
+  const images = {
+    Apple:'art:icon-apple', Banana:'art:icon-banana', Grapes:'art:icon-grapes', Orange:'art:icon-orange',
+    Strawberry:'art:icon-strawberry', Walk:'art:icon-walk', Bus:'art:icon-bus', Car:'art:icon-car', Bike:'art:icon-bike',
+    Winter:'art:icon-winter', Spring:'art:icon-spring', Summer:'art:icon-summer', Fall:'art:icon-fall'
+  };
+  const picture = (v,c) => c && !c.custom && images[v] ? `<img src="${images[v]}" alt="">` : '';
+  const kindName = c => c.kind === 'number' ? '# Number' : c.kind === 'yesno' ? '✓ Yes/No' : '☷ List';
+  const shelf = [
+    {key:'fruit', name:'Favorite fruit', kind:'list', choices:['Apple','Banana','Grapes','Orange','Strawberry']},
+    {key:'season', name:'Favorite season', kind:'list', choices:['Winter','Spring','Summer','Fall']},
+    {key:'way', name:'Way to school today', kind:'list', choices:['Walk','Bus','Car','Bike','Other']},
+    {key:'whistle', name:'Can you whistle?', kind:'yesno', choices:['Yes','No']},
+    {key:'boat', name:'Have you ever been on a boat?', kind:'yesno', choices:['Yes','No']},
+    {key:'teeth', name:'Teeth lost', kind:'number', min:0, max:20},
+    {key:'pockets', name:'Pockets today', kind:'number', min:0, max:12},
+    {key:'letters', name:'Letters in my first name', kind:'number', min:1, max:15},
+    {key:'jacks', name:'Jumping jacks in 10 seconds', kind:'number', min:0, max:30}
+  ];
+  const sampleColumns = ['fruit','teeth','whistle','way','pockets'].map(k => clone(shelf.find(c => c.key === k)));
+  sampleColumns.find(c => c.key === 'way').choices = ['Walk','Bus','Car','Bike'];
+  const raw = [
+    ['Apple',8,'Yes','Car',2], ['Strawberry',9,'Yes','Bus',3], ['Banana',7,'No','Walk',1],
+    ['Apple',10,'Yes','Car',4], ['Grapes',8,'No','Bus',2], ['Strawberry',6,'Yes','Car',0],
+    ['Apple',11,'Yes','Bus',2], ['Orange',8,'No','Walk',5], ['Apple',9,'Yes','Car',3],
+    ['Strawberry',5,'Yes','Bus',2], ['Banana',8,'No','Bus',1], ['Grapes',10,'Yes','Car',2],
+    ['Apple',7,'Yes','Walk',6], ['Strawberry',9,'No','Car',2], ['Grapes',8,'Yes','Bus',3],
+    ['Banana',12,'Yes','Car',0], ['Apple',6,'No','Bus',2], ['Orange',8,'Yes','Walk',4],
+    ['Strawberry',10,'No','Car',1], ['Apple',9,'Yes','Car',2], ['Banana',7,'Yes','Bus',3],
+    ['Strawberry',8,'No','Walk',2], ['Grapes',4,'Yes','Bike',1], ['Apple',9,'Yes','Bike',3]
+  ];
+  const makeMode = (columns,rows) => ({columns,rows,selected:columns[0]?.key || '',chart:'bar',split:'',card:0,
+    guesses:{},reveals:{},inspected:{},ownQuestion:'',ownColumn:'',sort:null,marked:[],newest:null});
+  const sampleRows = raw.map((r,i) => Object.fromEntries([['_id',i+1],...sampleColumns.map((c,j) => [c.key,r[j]])]));
+  const state = {mode:'sample',overlay:null,sample:makeMode(sampleColumns,sampleRows),ours:makeMode([],[])};
+  const current = () => state[state.mode];
+  const selected = () => current().columns.find(c => c.key === current().selected);
+  let t,view,tableController,charts=[],keySerial=0,lastTap=0,returnFocus=null,chartPick=-1;
+  const L = {
+    'w-sample':"This is Room 4's table. Each row is one student. Each column is one question. Tap a column name to chart it.",
+    charts:'Same rows, new chart. Tap Bar graph, Dot plot or Sorted list.',
+    split:'Now the chart splits into groups, so you can compare them.',
+    card:"Guess first and tap the class's guess. Then tap the column that answers the question, and press Show me.",
+    'w-ours':"Let's build our own table. Tap Add a column to choose what to ask.",
+    kinds:'Each column has a kind: a list, a number, or yes or no. Add more columns, or tap Add my row.',
+    entry:'Tap one answer for each column. Then tap Done.',
+    counted:'Now the computer can count. Tap a column name and pick a chart.',
+    ours:'That column answers it. Look at the chart and say what it shows.',
+    own:'This chart counts the column you chose. Say how it helps answer your question.',
+    answers:['Apple: 8 of 24.','Most often 8. From 4 to 12.','Yes 16, No 8. Twice as many can.',
+      'Car 9, Bus 8, Walk 5, Bike 2.','56 pockets.','Car riders: 7 yes, 2 no. Bus riders: 5 yes, 3 no.'],
+    rows:Array.from({length:40},(_,i) => `Row ${i+1} added.`)
+  };
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => {
+    const text=$('hint').textContent;
+    const intro=V.log.find(line => line.key === 'w-sample' && line.as === 'spoken');
+    return state.mode === 'sample' && (!intro || intro.cut) && text !== L['w-sample'] ? [L['w-sample'],text] : text;
+  },
+    welcome:() => state.mode === 'sample' ? ['w-sample',{valid:() => !state.overlay}]
+      : !current().columns.length && !state.overlay ? ['w-ours',{needs:'#add-column'}] : null});
+  function hint(text) { $('hint').textContent=L[text] || text; }
+  function collectionHint() {
+    if (!current().columns.length) return L['w-ours'];
+    return current().rows.length >=40
+      ? 'The table is full. Tap a cell to edit it, or a column name to chart it.'
+      : 'Tap Add my row, or tap a column name to chart the class.';
+  }
+  function how(key,valid=() => true,needs) {
+    hint(key);
+    if (!V.heard(key)) V.how(key,{valid,needs,hint:false});
+  }
+  function chartVisible() { return state.mode !== 'sample' || !!current().inspected[current().card]; }
+  function inspectIfReady() {
+    if (state.mode === 'sample' && validGuess()) current().inspected[current().card]=true;
+  }
+  function guideChart() {
+    if (!current().rows.length) {
+      if (current().columns.length) how('kinds',() => !state.overlay,'#add-row');
+      else hint('w-ours');
+    } else if (!chartVisible()) how('card',() => !state.overlay && !chartVisible());
+    else how('charts',() => !state.overlay && chartVisible());
+  }
+  function ping() { Curio.tone(480,.055,.035,'sine'); }
+  function dropMoment() {
+    V.dropQueued();
+    const stale=[L['w-sample'],L['w-ours'],L.split,L.entry,L.counted,L.ours,L.own,...L.answers,...L.rows];
+    if (stale.includes(V.playing)) V.hush();
+  }
+  function validValue(c,v) {
+    return c.kind === 'number' ? Number.isInteger(v) && v >= c.min && v <= c.max : c.choices.includes(v);
+  }
+  function load() {
+    try {
+      const saved=JSON.parse(localStorage.getItem('dtb-our-class'));
+      if (!saved || !Array.isArray(saved.columns) || !Array.isArray(saved.rows)) return;
+      const columns=saved.columns.slice(0,6).filter(c => c && /^[a-z][a-z0-9_-]{0,40}$/.test(c.key)
+        && typeof c.name === 'string' && c.name.length <=(c.custom ? 24 : 32) && ['list','number','yesno'].includes(c.kind)
+        && (c.kind === 'number' ? Number.isInteger(c.min) && Number.isInteger(c.max) && c.min >=0 && c.max <=100 && c.min <=c.max
+          : Array.isArray(c.choices) && c.choices.length >=1 && c.choices.length <=6
+            && c.choices.every(v => typeof v === 'string' && v.length >0 && v.length <=14)));
+      if (new Set(columns.map(c => c.key)).size !== columns.length) return;
+      const rows=saved.rows.slice(0,40).filter(r => r && columns.every(c => validValue(c,r[c.key])));
+      const used=new Set();
+      rows.forEach(r => {
+        if (!Number.isInteger(r._id) || r._id <1 || r._id >40 || used.has(r._id)) {
+          r._id=Array.from({length:40},(_,i) => i+1).find(i => !used.has(i));
+        }
+        used.add(r._id);
+      });
+      state.ours=makeMode(columns,rows.map(r => Object.fromEntries([['_id',r._id],...columns.map(c => [c.key,r[c.key]])])));
+    } catch { /* Blocked or corrupt storage leaves a usable empty table. */ }
+  }
+  function persist() {
+    if (state.mode !== 'ours') return;
+    try {
+      const m=current();
+      localStorage.setItem('dtb-our-class',JSON.stringify({columns:m.columns,rows:m.rows}));
+      $('save-status').textContent='Saved on this device.';
+    } catch { $('save-status').textContent='Not saved. Keep this page open.'; }
+  }
+  function definitions(columns) {
+    return Object.fromEntries(columns.map(c => [c.key,{label:c.name,type:c.kind === 'number' ? 'number' : 'text',
+      kind:c.kind,choices:c.choices,values:c.choices,digits:0}]));
+  }
+  function attachTable() {
+    const m=current();
+    t=DataTable(m.rows,{columns:definitions(m.columns)});
+    t.counts=key => t.count(key);
+    t.on('change',() => {
+      m.rows=t.rows.map(r => ({...r}));
+      m.reveals={};
+      m.inspected={};
+      persist();
+      renderTable();
+      renderChart();
+      renderQuestions();
+      updateBuild();
+    });
+    renderTable();
+  }
+  function renderTable() {
+    const m=current(),scroller=$('table-scroll'),sx=scroller.scrollLeft,sy=scroller.scrollTop;
+    const active=document.activeElement,activeId=active?.id;
+    if (tableController) tableController.destroy();
+    $('table').replaceChildren();
+    if (!m.columns.length) {
+      $('table').innerHTML='<div class="empty"><strong>Our class, our questions.</strong><span>1 Choose columns. 2 Add rows. 3 Ask questions.</span></div>';
+    } else {
+      const rows=m.rows.slice();
+      if (m.sort) {
+        const c=m.columns.find(c => c.key === m.sort.key);
+        rows.sort((a,b) => (c.kind === 'number' ? a[c.key]-b[c.key]
+          : c.choices.indexOf(a[c.key])-c.choices.indexOf(b[c.key]))*m.sort.dir || a._id-b._id);
+      }
+      view=DataTable(rows,{columns:definitions(m.columns)});
+      tableController=view.renderTable($('table'),{columns:m.columns.map(c => c.key),index:'Row',caption:state.mode === 'sample'
+        ? 'Room 4, invented practice data' : 'Our class, device-only data'});
+      if (state.mode === 'sample') {
+        tableController.table.tabIndex=-1;
+        scroller.tabIndex=0;
+        scroller.setAttribute('role','region');
+        scroller.setAttribute('aria-label','Room 4 sample table. Arrow keys enter the read-only cells.');
+        scroller.onkeydown=e => {
+          if (e.target === scroller && e.key.startsWith('Arrow')) {
+            e.preventDefault();
+            const cell=tableController.table.querySelector('tbody td');
+            cell?.focus({preventScroll:true});
+            revealCell(cell);
+          }
+        };
+      } else {
+        scroller.removeAttribute('tabindex');
+        scroller.removeAttribute('role');
+        scroller.removeAttribute('aria-label');
+        scroller.onkeydown=null;
+      }
+      const head=tableController.table.tHead.rows[0];
+      m.columns.forEach((c,j) => {
+        const th=head.cells[j+1];
+        th.innerHTML=`<div class="head-top"><button id="col-${c.key}" class="head-select" data-column="${c.key}"
+          aria-pressed="${m.selected === c.key}" title="Chart ${esc(c.name)}">${esc(c.name)}<small>${kindName(c)}</small></button>
+          <button id="sort-${c.key}" class="head-sort" aria-label="Sort ${esc(c.name)}" title="Sort up, down, off">↕</button></div>`;
+        if (state.mode === 'ours') {
+          const remove=document.createElement('button');
+          remove.className='head-remove';
+          remove.id='remove-'+c.key;
+          remove.setAttribute('aria-label','Remove '+c.name);
+          remove.textContent='×';
+          remove.onclick=() => confirmCard('Remove this column and its answers?',() => removeColumn(c.key));
+          th.querySelector('.head-top').appendChild(remove);
+        }
+        $('col-'+c.key).onclick=() => selectColumn(c.key);
+        $('sort-'+c.key).onclick=() => {
+          m.sort=m.sort?.key === c.key ? m.sort.dir === 1 ? {key:c.key,dir:-1} : null : {key:c.key,dir:1};
+          ping();
+          const body=tableController.table.tBodies[0];
+          const records=new Map(m.rows.map(r => [r._id,r]));
+          const entryOrder=new Map(m.rows.map((r,i) => [r._id,i]));
+          const ordered=[...body.rows].sort((a,b) => {
+            const aa=records.get(+a.dataset.row),bb=records.get(+b.dataset.row);
+            return m.sort ? (c.kind === 'number' ? aa[c.key]-bb[c.key]
+              : c.choices.indexOf(aa[c.key])-c.choices.indexOf(bb[c.key]))*m.sort.dir || aa._id-bb._id
+              : entryOrder.get(aa._id)-entryOrder.get(bb._id);
+          });
+          ordered.forEach(row => body.appendChild(row));
+          m.columns.forEach(col => {
+            const direction=m.sort?.key === col.key ? m.sort.dir : 0;
+            $('sort-'+col.key).textContent=direction === 1 ? '↑' : direction === -1 ? '↓' : '↕';
+            $('sort-'+col.key).closest('th').setAttribute('aria-sort',direction === 1 ? 'ascending' : direction === -1 ? 'descending' : 'none');
+          });
+          hint('The chart keeps the same counts. Tap a column name to chart it.');
+        };
+        th.setAttribute('aria-sort',m.sort?.key === c.key ? m.sort.dir === 1 ? 'ascending' : 'descending' : 'none');
+        $('sort-'+c.key).textContent=m.sort?.key === c.key ? m.sort.dir === 1 ? '↑' : '↓' : '↕';
+      });
+      [...tableController.table.tBodies[0].rows].forEach((tr,i) => {
+        const row=rows[i];
+        tr.dataset.row=row._id;
+        tr.cells[0].textContent='Row '+row._id;
+        if (m.marked.includes(row._id)) tr.classList.add('marked');
+        if (row._id === m.newest) tr.classList.add('new-row');
+        m.columns.forEach((c,j) => {
+          const cell=tr.cells[j+1];
+          cell.dataset.row=row._id;
+          cell.dataset.column=c.key;
+          cell.id=`cell-${row._id}-${c.key}`;
+          cell.tabIndex=state.mode === 'ours' && i === 0 && j === 0 ? 0 : -1;
+          cell.setAttribute('aria-label',`Row ${row._id}, ${c.name}: ${row[c.key]}`);
+          if (state.mode === 'ours') {
+            cell.classList.add('cell-edit');
+            cell.onclick=() => entryCard(row._id,c.key);
+          }
+          cell.onkeydown=e => {
+            if (e.key === 'Enter' && state.mode === 'ours') { e.preventDefault(); entryCard(row._id,c.key); }
+            const dx=e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+            const dy=e.key === 'ArrowDown' ? 1 : e.key === 'ArrowUp' ? -1 : 0;
+            if (!dx && !dy) return;
+            e.preventDefault();
+            const visibleRows=[...tableController.table.tBodies[0].rows];
+            const at=visibleRows.findIndex(el => +el.dataset.row === row._id);
+            const rr=Math.max(0,Math.min(visibleRows.length-1,at+dy)),cc=Math.max(0,Math.min(m.columns.length-1,j+dx));
+            const target=$(`cell-${visibleRows[rr].dataset.row}-${m.columns[cc].key}`);
+            target.focus({preventScroll:true});
+            revealCell(target);
+          };
+        });
+        if (state.mode === 'ours') {
+          const td=tr.insertCell();
+          td.innerHTML=`<button class="row-remove" id="delete-row-${row._id}" aria-label="Delete row ${row._id}">⌫</button>`;
+          td.firstChild.onclick=() => confirmCard(`Delete Row ${row._id}?`,() => {
+            t.remove(t.rows.findIndex(r => r._id === row._id));
+            closeCard();
+          });
+        }
+      });
+      if (state.mode === 'ours') { const h=document.createElement('th'); h.scope='col'; h.textContent='Delete'; head.appendChild(h); }
+      paintColumn();
+    }
+    $('table-size').textContent=`${m.rows.length} ${m.rows.length === 1 ? 'row' : 'rows'}, `
+      +`${m.columns.length} ${m.columns.length === 1 ? 'column' : 'columns'}`;
+    $('table-title').innerHTML=(state.mode === 'sample' ? 'ROOM 4' : 'OUR CLASS')+' <span class="idle-sheen">✧</span>';
+    $('table-note').innerHTML=state.mode === 'sample'
+      ? 'Room 4 is made up for practice.<span>Kids have 20 baby teeth. Most lose them between about age 6 and age 12.</span>'
+        +'<span class="sample-edit-note">This is a sample. Switch to Our class to make your own.</span>'
+      : 'One row per student. Tap a cell to edit. Answers stay on this device.';
+    scroller.scrollLeft=sx;
+    scroller.scrollTop=sy;
+    if (activeId && $(activeId) && !document.contains(active)) $(activeId).focus({preventScroll:true});
+  }
+  function revealCell(cell) {
+    if (!cell) return;
+    const s=$('table-scroll'),a=cell.getBoundingClientRect(),b=s.getBoundingClientRect();
+    if (a.left < b.left) s.scrollLeft+=a.left-b.left;
+    if (a.right > b.right) s.scrollLeft+=a.right-b.right;
+    if (a.top < b.top+50) s.scrollTop+=a.top-b.top-50;
+    if (a.bottom > b.bottom) s.scrollTop+=a.bottom-b.bottom;
+  }
+  function paintColumn() {
+    const m=current();
+    document.querySelectorAll('#table [data-column]').forEach(el => {
+      el.classList.toggle('selected-col',el.dataset.column === m.selected);
+      if (el.matches('button')) el.setAttribute('aria-pressed',el.dataset.column === m.selected);
+    });
+  }
+  function selectColumn(key) {
+    if (!current().columns.some(c => c.key === key)) return;
+    const m=current();
+    m.selected=key;
+    if (m.split === key) m.split='';
+    if (question()?.own) {
+      m.ownColumn=key;
+      delete m.reveals[m.card];
+    }
+    m.marked=[];
+    inspectIfReady();
+    dropMoment();
+    ping();
+    paintColumn();
+    revealCell($('col-'+key));
+    updateSplit();
+    renderChart();
+    renderQuestions();
+    guideChart();
+  }
+  function domain(c) {
+    if (c.kind !== 'number') return c.choices;
+    const a=t.column(c.key);
+    if (!a.length) return [];
+    const lo=Math.min(...a),hi=Math.max(...a);
+    return Array.from({length:hi-lo+1},(_,i) => lo+i);
+  }
+  function updateSplit() {
+    const m=current(),el=$('split'),val=m.split;
+    el.replaceChildren(new Option('No split',''));
+    m.columns.filter(c => c.kind !== 'number' && c.key !== m.selected).forEach(c => el.add(new Option(c.name,c.key)));
+    el.value=val;
+    if (el.value !== val) m.split='';
+  }
+  function summary(c,kind=current().chart) {
+    if (!t.rows.length) return '';
+    const counts=t.count(c.key),max=Math.max(...counts.map(x => x.n)),top=counts.filter(x => x.n === max).map(x => x.value);
+    const list=a => a.length <3 ? a.join(' and ') : a.slice(0,-1).join(', ')+' and '+a.at(-1);
+    if (c.kind === 'yesno') return `Yes ${counts.find(x => x.value === 'Yes')?.n || 0}, No ${counts.find(x => x.value === 'No')?.n || 0}.`;
+    if (c.kind === 'number' && kind === 'list') {
+      const s=t.stats(c.key);
+      return `Total: ${Math.round(s.sum)}. Biggest: ${s.max}. Smallest: ${s.min}.`;
+    }
+    if (c.kind === 'number' && kind === 'dot') {
+      const s=t.stats(c.key);
+      return `Most often ${list(top.sort((a,b) => a-b))}. From ${s.min} to ${s.max}.`;
+    }
+    return top.length >1 ? `${list(top)} tie with ${max}.` : `${top[0]}: ${max} of ${t.rows.length}.`;
+  }
+  function svgText(g,x,y,value,font=14,anchor='start') {
+    const text=DataDesk.mk('text',{x,y,fill:'#f4f1e8','font-size':font,'font-family':'Segoe UI, sans-serif','text-anchor':anchor},g);
+    text.textContent=value;
+    return text;
+  }
+  function renderChart() {
+    const m=current(),c=selected(),svg=$('chart'),vp=$('chart-viewport');
+    charts.forEach(ch => ch.destroy());
+    charts=[];
+    svg.replaceChildren();
+    $('sorted').replaceChildren();
+    $('sorted').hidden=m.chart !== 'list';
+    svg.style.display=m.chart === 'list' ? 'none' : 'block';
+    $('empty').hidden=true;
+    $('chart-title').textContent=c?.name || 'Make room for your data';
+    $('chart-kind').textContent={bar:'BAR GRAPH',dot:'DOT PLOT',list:'SORTED LIST'}[m.chart];
+    $('chart-summary').textContent=c ? summary(c) : '';
+    const pending=state.mode === 'sample' && !!c && !m.inspected[m.card];
+    vp.classList.toggle('prediction-pending',pending);
+    $('prediction-cover').hidden=!pending;
+    const artChoices=c && !c.custom ? (c.choices || []).filter(v => images[v]) : [];
+    $('prediction-cover').querySelector('.chalk-marks').innerHTML=artChoices.length
+      ? artChoices.map(v => picture(v,c)).join('') : '<i></i><i></i><i></i>';
+    $('prediction-cover').querySelector('span').textContent=validGuess()
+      ? 'Tap the column that answers the question, then Show me.'
+      : 'Choose a guess, tap its column, then Show me.';
+    svg.setAttribute('aria-hidden',pending);
+    $('sorted').setAttribute('aria-hidden',pending);
+    svg.tabIndex=pending ? -1 : 0;
+    if (pending) $('chart-summary').textContent='The same rows will become your chart.';
+    for (const k of ['bar','dot','list']) $('chart-'+k).setAttribute('aria-pressed',m.chart === k);
+    if (!c || !m.rows.length) {
+      svg.style.display='none';
+      $('sorted').hidden=true;
+      $('empty').hidden=false;
+      $('empty').innerHTML='<strong>No rows yet.</strong><span>'+(c ? 'Tap Add my row.' : 'Tap Add a column to begin.')+'</span>';
+      return;
+    }
+    if (m.chart === 'list') { renderSorted(c); return; }
+    const cats=domain(c),gc=m.columns.find(c => c.key === m.split),groups=gc ? gc.choices : [null];
+    t.columns[c.key].values=cats;
+    const font=innerHeight <=550 ? 10 : innerWidth <600 ? 11 : innerWidth <900 ? 12 : 14;
+    const baseW=Math.max(260,vp.clientWidth-2),baseH=Math.max(90,vp.clientHeight-2);
+    const labelWidth=Math.max(52,...cats.map(v => String(v).length*font*.52+6));
+    const legendWidth=gc ? groups.length*Math.max(...groups.map(v => String(v).length*font*.6+32))+60 : 0;
+    const width=m.chart === 'dot' && c.kind === 'number' ? baseW
+      : Math.max(baseW,legendWidth,cats.length*(m.chart === 'bar' && gc ? Math.max(labelWidth,groups.length*31+20) : labelWidth));
+    const height=m.chart === 'dot' && gc ? Math.max(baseH,groups.length*110) : baseH;
+    svg.setAttribute('width',width);
+    svg.setAttribute('height',height);
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    svg.setAttribute('aria-label',`${c.name}. ${summary(c)} Use left and right arrows, then Enter to highlight rows.`);
+    if (m.chart === 'bar') {
+      const g=DataDesk.mk('g',{},svg);
+      const chart=Chart(g,t,{type:'bar',x:c.key,groupBy:m.split || undefined,width,height,font,live:false,
+        margin:{l:35,r:22,t:gc ? 45 : 22,b:!c.custom && cats.some(v => images[v]) ? 65 : 35},
+        xLabel:'',yLabel:'Rows',yFormat:v => Number.isInteger(v) ? String(v) : ''});
+      charts.push(chart);
+      const marks=[...g.querySelector('.dd-marks').querySelectorAll('rect')];
+      [...g.querySelector('.dd-marks').children].filter(el => !['rect','desc'].includes(el.tagName)).forEach(el => el.remove());
+      const F=chart.scales.frame,Y=chart.scales.y;
+      chart.barRects.forEach((b,i) => {
+        const series=gc ? b.j : b.k%6,bar=marks[i];
+        bar.setAttribute('fill',colors[series]);
+        bar.setAttribute('stroke',colors[series]);
+        bar.setAttribute('fill-opacity','.88');
+        bar.classList.add('grow');
+        addPattern(svg,bar,series,b,i,Y);
+        svgText(svg,b.x+b.w/2,Y(b.v)-7,b.v,font,'middle');
+      });
+      if (gc) {
+        const deco=g.querySelector('.dd-deco');
+        for (let i=0;i<groups.length*3;i++) deco.firstChild?.remove();
+        groups.forEach((v,j) => {
+          const x=35+j*(width-57)/groups.length;
+          DataDesk.mk('rect',{x,y:7,width:14,height:11,fill:colors[j]},svg);
+          DataDesk.mk('rect',{x,y:7,width:14,height:11,fill:`url(#chalk-pattern-${j})`},svg);
+          DataDesk.shape(svg,shapes[j],x+7,7,3,{fill:colors[j],stroke:colors[j]});
+          svgText(svg,x+21,19,v,font);
+        });
+      }
+      addAxisArt(svg,c,cats,k => F.x0+chart.scales.slot*(k+.5),F.y0+font+6);
+    } else {
+      const encoded=DataTable(t.rows.map(r => ({...r,__plot:c.kind === 'number' ? r[c.key] : cats.indexOf(r[c.key])})),
+        {columns:{...definitions(m.columns),__plot:{type:'number',label:c.name}}});
+      const min=c.kind === 'number' ? cats[0] : 0,max=c.kind === 'number' ? cats.at(-1) : cats.length-1;
+      let lo=min,hi=max;
+      if (hi-lo <4) hi=lo+4;
+      const gh=height/groups.length;
+      groups.forEach((group,j) => {
+        const g=DataDesk.mk('g',{transform:`translate(0 ${j*gh})`},svg);
+        const chart=Chart(g,encoded,{type:'dot',x:'__plot',width,height:gh,font,live:false,xDomain:[lo,hi],
+          filter:r => group == null || r[m.split] === group,pointSize:10,
+          point:r => ({series:gc ? j+1 : c.kind === 'number' ? 1 : cats.indexOf(r[c.key])%6+1,
+            shape:shapes[gc ? j : c.kind === 'number' ? 0 : cats.indexOf(r[c.key])%6]}),
+          margin:{l:34,r:35,t:gc ? 25 : 12,b:!c.custom && cats.some(v => images[v]) ? 67 : 35},
+          xFormat:v => Number.isInteger(v) ? c.kind === 'number' ? String(v) : cats[v] || '' : '',xLabel:''});
+        charts.push(chart);
+        chart.dots.filter(p => p.p.series === 6).forEach(p => {
+          const el=g.querySelector(`[data-i="${p.i}"]`);
+          el.setAttribute('fill','none');
+          el.setAttribute('stroke',colors[5]);
+          el.setAttribute('stroke-width','1.8');
+        });
+        const F=chart.scales.frame,X=chart.scales.x;
+        const most=Math.max(1,...chart.dots.map(p => p.k+1));
+        const radius=Math.max(.2,Math.min(chart.scales.r,(F.y0-F.y1-4)/(most*2.5)));
+        if (radius <chart.scales.r) {
+          chart.dots.forEach(p => {
+            const el=g.querySelector(`[data-i="${p.i}"]`);
+            const newY=F.y0-radius-2-p.k*radius*2.5;
+            el.setAttribute('transform',`translate(${p.x} ${newY}) scale(${radius/chart.scales.r}) translate(${-p.x} ${-p.y})`);
+            p.y=newY;
+          });
+          chart.scales.r=radius;
+        }
+        g.querySelector('.dd-deco').replaceChildren();
+        if (gc) svgText(g,35,15,group,font);
+        g.querySelector('.dd-marks').classList.add('drop');
+        DataDesk.mk('line',{x1:F.x0,y1:F.y0,x2:F.x1,y2:F.y0,stroke:'#b9c9bf','stroke-width':1.5},g);
+        const ticks=Array.from({length:hi-lo+1},(_,i) => lo+i),stride=Math.max(1,Math.ceil(ticks.length/(width/32)));
+        ticks.forEach((v,k) => {
+          if (k%stride && k !== ticks.length-1) return;
+          DataDesk.mk('line',{x1:X(v),x2:X(v),y1:F.y0,y2:F.y0+4,stroke:'#b9c9bf'},g);
+          svgText(g,X(v),F.y0+font+6,c.kind === 'number' ? v : cats[v] || '',font,'middle');
+        });
+        addAxisArt(g,c,cats,k => X(c.kind === 'number' ? cats[k] : k),F.y0+font+8);
+      });
+    }
+    chartPick=-1;
+  }
+  function addPattern(svg,bar,k,b,i,Y) {
+    const defs=svg.querySelector('defs') || DataDesk.mk('defs',{},svg);
+    const pat=DataDesk.mk('pattern',{id:'chalk-pattern-'+i,width:10,height:10,patternUnits:'userSpaceOnUse'},defs);
+    if (k%4 === 1) DataDesk.mk('path',{d:'M-2 2L2 -2M0 10L10 0M8 12L12 8',stroke:'#1d3a2f','stroke-width':2},pat);
+    else if (k%4 === 2) DataDesk.mk('circle',{cx:4,cy:4,r:1.7,fill:'#1d3a2f'},pat);
+    else if (k%4 === 3) DataDesk.mk('path',{d:'M0 0L10 10M0 10L10 0',stroke:'#1d3a2f','stroke-width':1.4},pat);
+    const overlay=bar.cloneNode(false);
+    overlay.setAttribute('fill',`url(#chalk-pattern-${i})`);
+    overlay.setAttribute('stroke','none');
+    overlay.setAttribute('fill-opacity','1');
+    bar.after(overlay);
+    DataDesk.shape(svg,shapes[k],b.x+b.w/2,Y(b.v)-1,Math.min(4,b.w/3),
+      {fill:k === 5 ? 'none' : colors[k],stroke:colors[k],'stroke-width':1.5});
+  }
+  function addAxisArt(g,c,cats,X,y) {
+    if (c.custom) return;
+    cats.forEach((v,k) => { if (images[v]) DataDesk.mk('image',{href:images[v],x:X(k)-18,y:y+1,width:36,height:36},g); });
+  }
+  function renderSorted(c) {
+    const m=current(),rows=m.rows.slice().sort((a,b) => c.kind === 'number' ? b[c.key]-a[c.key]
+      : c.choices.indexOf(a[c.key])-c.choices.indexOf(b[c.key]) || a._id-b._id);
+    $('sorted').innerHTML=`<table class="sorted"><thead><tr><th>Row</th><th>${esc(c.name)}</th>`
+      +(m.split ? `<th>${esc(m.columns.find(x => x.key === m.split).name)}</th>` : '')+'</tr></thead><tbody>'
+      +rows.map(r => `<tr><th scope="row">Row ${r._id}</th><td>${picture(r[c.key],c)}${esc(r[c.key])}</td>`
+        +(m.split ? `<td>${esc(r[m.split])}</td>` : '')+'</tr>').join('')+'</tbody></table>';
+  }
+  function markRows(cat,group=null) {
+    const m=current(),c=selected();
+    m.marked=t.rows.filter(r => r[c.key] === cat && (group == null || r[m.split] === group)).map(r => r._id);
+    document.querySelectorAll('#table tbody tr').forEach(tr => tr.classList.toggle('marked',m.marked.includes(+tr.dataset.row)));
+    revealCell($('table').querySelector('tr.marked td'));
+    hint(`${m.marked.length} matching ${m.marked.length === 1 ? 'row is' : 'rows are'} highlighted. Tap another bar or dot stack.`);
+    ping();
+  }
+  $('chart').onclick=e => {
+    const m=current(),svg=$('chart'),b=svg.getBoundingClientRect();
+    const x=(e.clientX-b.left)*svg.viewBox.baseVal.width/b.width,y=(e.clientY-b.top)*svg.viewBox.baseVal.height/b.height;
+    if (m.chart === 'bar') {
+      const bar=(charts[0]?.barRects || []).find(v => x >=v.x-4 && x <=v.x+v.w+4);
+      if (bar) markRows(bar.cat,bar.group);
+    } else {
+      const j=Math.min(charts.length-1,Math.floor(y/(svg.viewBox.baseVal.height/charts.length))),ch=charts[j];
+      if (!ch) return;
+      const cats=domain(selected()),nearest=cats.reduce((a,v) => {
+        const vx=ch.scales.x(selected().kind === 'number' ? v : cats.indexOf(v));
+        return !a || Math.abs(vx-x)<a.d ? {v,d:Math.abs(vx-x)} : a;
+      },null);
+      if (nearest) markRows(nearest.v,m.split ? current().columns.find(c => c.key === m.split).choices[j] : null);
+    }
+  };
+  $('chart').onkeydown=e => {
+    if (!selected() || !current().rows.length) return;
+    const cats=domain(selected()),groups=current().split ? current().columns.find(c => c.key === current().split).choices : [null];
+    if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+      e.preventDefault();
+      chartPick=(chartPick+(e.key === 'ArrowRight' ? 1 : -1)+cats.length*groups.length)%(cats.length*groups.length);
+      const cat=cats[Math.floor(chartPick/groups.length)],group=groups[chartPick%groups.length];
+      $('chart-summary').textContent=`${cat}${group == null ? '' : ', '+group}. Press Enter to highlight rows.`;
+    } else if (e.key === 'Enter' && chartPick >=0) {
+      e.preventDefault();
+      markRows(cats[Math.floor(chartPick/groups.length)],groups[chartPick%groups.length]);
+    } else if (e.key === 'Escape') {
+      current().marked=[];
+      document.querySelectorAll('tr.marked').forEach(tr => tr.classList.remove('marked'));
+      $('chart-summary').textContent=summary(selected());
+    }
+  };
+  const sampleQuestions = [
+    {key:'fruit',text:'Which fruit does Room 4 like best?',best:'bar',reason:'each bar is one choice'},
+    {key:'teeth',text:'How many teeth has a Room 4 kid lost?',best:'dot',reason:'each dot sits at its number, so you see where most are'},
+    {key:'whistle',text:'Can more of us whistle, or not?',best:'bar',reason:'each bar counts one answer'},
+    {key:'way',text:'How did most of us get to school today?',best:'bar',reason:'each bar is one choice'},
+    {key:'pockets',text:'How many pockets is Room 4 wearing in all?',best:'list',reason:'the computer adds the column for you',total:true},
+    {key:'whistle',split:'way',text:'Do car riders whistle more than bus riders?',best:'bar',reason:'side-by-side bars compare the groups',compare:true}
+  ];
+  function questions() {
+    if (state.mode === 'sample') return sampleQuestions;
+    return current().columns.map(c => ({key:c.key,text:c.kind === 'number' ? `What is a typical ${c.name} in our class?`
+      : c.kind === 'yesno' ? `Did more of us say yes or no to ${c.name}?` : `Which ${c.name} is most common in our class?`,
+      best:c.kind === 'number' ? 'dot' : 'bar',reason:c.kind === 'number' ? 'each dot sits at its number' : 'each bar is one choice'}))
+      .concat([{own:true,text:'Your own question',key:current().ownColumn,best:'bar',reason:'the column holds answers to your question'}]);
+  }
+  function question() { return questions()[current().card]; }
+  function renderQuestions() {
+    const m=current(),qs=questions();
+    m.card=Math.min(m.card,qs.length-1);
+    const q=question(),enough=m.rows.length >=3 && m.columns.length >0;
+    document.querySelector('.question').dataset.ready=String(enough);
+    document.querySelector('.question').dataset.inspected=String(!!m.inspected[m.card] && !q?.own);
+    $('q-title').textContent=q?.text || 'Add a column to make a question.';
+    $('q-count').textContent=`${m.card+1} / ${qs.length}`;
+    $('q-prev').setAttribute('aria-disabled',m.card === 0);
+    $('q-next').setAttribute('aria-disabled',m.card === qs.length-1);
+    $('own-question').hidden=!q?.own;
+    $('own-question').value=m.ownQuestion;
+    $('own-question').disabled=!enough;
+    const c=q?.own ? selected() : m.columns.find(c => c.key === q?.key);
+    $('guesses').dataset.count=String(q?.compare ? 3 : c?.choices?.length || 0);
+    const saved=m.reveals[m.card];
+    const revealed=saved && m.selected === (q.own ? m.ownColumn : q.key) && m.split === (q.split || '') ? saved : null;
+    $('guesses').replaceChildren();
+    $('guess-label').textContent=!enough ? 'Add at least 3 rows to explore questions.'
+      : q?.own ? 'Type your question, then tap its column.' : 'Guess first';
+    if (c && !q?.own) {
+      if (q.compare) ['Car riders','Bus riders','Same number'].forEach(v => addGuess(v,null));
+      else if (c.kind === 'number') {
+        const lo=q.total ? 0 : c.min,hi=q.total ? c.max*m.rows.length : c.max;
+        const wrap=numberControl('guess-number',m.guesses[m.card],lo,hi,v => {
+          m.guesses[m.card]=v;
+          $('show').disabled=!validGuess();
+        });
+        wrap.querySelectorAll('button,input').forEach(el => el.disabled=!enough || !!m.inspected[m.card]);
+        $('guesses').appendChild(wrap);
+      } else c.choices.forEach(v => addGuess(v,c));
+    }
+    $('show').disabled=!enough || !validGuess();
+    $('show').textContent=revealed ? 'Show me again' : 'Show me';
+    $('q-result').textContent='';
+    $('q-reason').textContent='';
+    if (revealed) {
+      if (q.own) {
+        $('q-result').innerHTML=`<b>Column chosen: ${esc(selected().name)}.</b> ${esc(revealed.answer)}`
+          +`<br>Our question: ${esc(revealed.guess)}`;
+        $('q-reason').textContent=L.own;
+      } else {
+        $('q-result').innerHTML=`<b>✓ Column matched.</b> ${esc(revealed.answer)}<br>Our guess was ${esc(revealed.guess)}.`;
+        $('q-reason').textContent=`Best chart: ${{bar:'Bar graph',dot:'Dot plot',list:'Sorted list'}[q.best]}, because ${q.reason}.`;
+      }
+    }
+    function addGuess(v,c) {
+      const button=document.createElement('button');
+      button.innerHTML=picture(v,c)+esc(v);
+      button.setAttribute('aria-pressed',m.guesses[m.card] === v);
+      button.disabled=!enough || !!m.inspected[m.card];
+      button.onclick=() => {
+        dropMoment();
+        m.guesses[m.card]=v;
+        [...$('guesses').querySelectorAll('button')].forEach(el => el.setAttribute('aria-pressed',el === button));
+        $('show').disabled=!validGuess();
+        ping();
+        hint('Tap the column that answers this question. Then tap Show me.');
+        V.how('card',{valid:() => !state.overlay && !current().reveals[current().card],hint:false});
+      };
+      $('guesses').appendChild(button);
+    }
+  }
+  function validGuess() {
+    const m=current(),q=question();
+    if (q?.own) return m.ownQuestion.trim().length >0 && !!m.ownColumn;
+    const c=m.columns.find(c => c.key === q?.key),v=m.guesses[m.card];
+    if (!c || v === undefined || v === null) return false;
+    return c.kind !== 'number' ? true : Number.isInteger(v) && v >=(q.total ? 0 : c.min)
+      && v <=(q.total ? c.max*m.rows.length : c.max);
+  }
+  function cardStep(delta) {
+    const m=current(),next=Math.max(0,Math.min(questions().length-1,m.card+delta));
+    if (next === m.card) return;
+    m.card=next;
+    dropMoment();
+    ping();
+    renderQuestions();
+    renderChart();
+    how('card',() => !state.overlay && !current().reveals[current().card]);
+  }
+  $('q-prev').onclick=() => cardStep(-1);
+  $('q-next').onclick=() => cardStep(1);
+  $('own-question').oninput=() => {
+    current().ownQuestion=$('own-question').value;
+    delete current().reveals[current().card];
+    $('q-result').textContent='';
+    $('q-reason').textContent='';
+    $('show').disabled=current().rows.length<3 || !validGuess();
+  };
+  $('show').onclick=() => {
+    const m=current(),q=question();
+    if (!validGuess() || m.rows.length <3) return;
+    V.dropQueued();
+    const key=q.own ? m.ownColumn : q.key;
+    m.inspected[m.card]=true;
+    if (m.selected !== key || m.split !==(q.split || '')) {
+      renderChart();
+      renderQuestions();
+      hint('This chart uses a different column or split. Tap the column that answers the question and check Split by.');
+      $('q-result').textContent='This chart counts something else. Try a different column or split.';
+      Curio.tone(230,.08,.035,'triangle');
+      return;
+    }
+    const answer=state.mode === 'sample' ? L.answers[m.card] : summary(selected(),q.best);
+    m.reveals[m.card]={answer,guess:q.own ? m.ownQuestion.trim() : m.guesses[m.card]};
+    renderChart();
+    renderQuestions();
+    Curio.yes();
+    hint('Look at the chart and compare it with your guess. Tap '
+      +(m.card === questions().length-1 ? 'Previous' : 'Next')+' for another question.');
+    const card=m.card,col=m.selected,split=m.split;
+    const event=state.mode === 'sample' ? L.answers[card] : q.own ? 'own' : 'ours';
+    const speech=split && !V.heard('split') ? [['split',{kind:'how'}],[event,{kind:'event'}]] : event;
+    V.say(speech,{valid:() => current().card === card && current().selected === col && current().split === split,
+      hint:false,now:true});
+  };
+  function numberControl(id,value,lo,hi,onValue) {
+    const wrap=document.createElement('div');
+    wrap.className='stepper';
+    wrap.innerHTML=`<button type="button" aria-label="Decrease">−</button><input id="${id}" type="number" min="${lo}"
+      max="${hi}" step="1" inputmode="numeric" aria-label="Answer, ${lo} to ${hi}" placeholder="?">
+      <button type="button" aria-label="Increase">＋</button>`;
+    const input=wrap.querySelector('input'),buttons=wrap.querySelectorAll('button');
+    if (value !== undefined && value !== null) input.value=value;
+    const changed=() => {
+      const v=input.value === '' ? null : Number(input.value),valid=Number.isInteger(v) && v >=lo && v <=hi;
+      input.setAttribute('aria-invalid',!valid);
+      onValue(valid ? v : null);
+    };
+    input.oninput=changed;
+    buttons[0].onclick=() => { input.value=Math.max(lo,input.value === '' ? lo : Number(input.value)-1); changed(); ping(); };
+    buttons[1].onclick=() => { input.value=Math.min(hi,input.value === '' ? lo : Number(input.value)+1); changed(); ping(); };
+    return wrap;
+  }
+  function openCard(title,type) {
+    dropMoment();
+    V.hush();
+    if (!state.overlay) returnFocus=document.activeElement;
+    state.overlay=type;
+    document.body.dataset.card=type;
+    document.body.style.setProperty('--card-top',($('top').getBoundingClientRect().bottom+6)+'px');
+    $('overlay-title').textContent=title;
+    $('overlay-content').replaceChildren();
+    $('overlay-content').scrollTop=0;
+    $('overlay-actions').replaceChildren();
+    $('overlay').hidden=false;
+    document.querySelectorAll('#panel button,#panel select,#panel input,#panel textarea').forEach(el => { el.inert=true; });
+    $('table-scroll').inert=true;
+    ping();
+  }
+  function closeCard() {
+    state.overlay=null;
+    delete document.body.dataset.card;
+    $('overlay').hidden=true;
+    document.querySelectorAll('#panel button,#panel select,#panel input,#panel textarea').forEach(el => { el.inert=false; });
+    $('table-scroll').inert=false;
+    if (returnFocus && document.contains(returnFocus)) returnFocus.focus({preventScroll:true});
+    else if (!$('add-row').disabled && state.mode === 'ours') $('add-row').focus({preventScroll:true});
+    else $('m-'+state.mode).focus({preventScroll:true});
+    V.dropQueued();
+    if (V.playing === L.entry) V.hush();
+    hint(state.mode === 'ours' ? collectionHint() : L.charts);
+  }
+  function focusInCard(el) {
+    if (!el) return;
+    el.focus({preventScroll:true});
+    const pane=$('overlay-content'),group=el.closest('.entry-field');
+    const target=group && group.getBoundingClientRect().height <=pane.clientHeight ? group : el;
+    const a=target.getBoundingClientRect(),b=pane.getBoundingClientRect();
+    if (a.bottom >b.bottom) pane.scrollTop+=a.bottom-b.bottom+3;
+    else if (a.top <b.top) pane.scrollTop-=b.top-a.top+3;
+  }
+  function actionButton(id,text,fn,primary=false) {
+    const b=document.createElement('button');
+    b.id=id;
+    b.textContent=text;
+    if (primary) b.className='primary';
+    b.onclick=fn;
+    $('overlay-actions').appendChild(b);
+    return b;
+  }
+  function confirmCard(text,yes) {
+    openCard('Check before erasing','confirm');
+    $('overlay-content').innerHTML=`<p class="confirm-body">${esc(text)}</p>`;
+    actionButton('confirm-no','No, keep it',closeCard);
+    actionButton('confirm-yes','Yes',yes,true);
+    $('confirm-no').focus({preventScroll:true});
+    hint('Choose Yes to erase, or No to keep your table.');
+  }
+  function entryCard(rowId=null,onlyKey=null) {
+    const m=current();
+    if (state.mode !== 'ours' || !m.columns.length || (rowId == null && m.rows.length >=40)) return;
+    const existing=m.rows.find(r => r._id === rowId),answers=existing ? {...existing} : {};
+    const cols=onlyKey ? m.columns.filter(c => c.key === onlyKey) : m.columns;
+    openCard(existing ? `Edit Row ${rowId}` : 'Add my row','entry');
+    const fields=document.createElement('div');
+    fields.className='entry-fields';
+    $('overlay-content').appendChild(fields);
+    let done;
+    const valid=() => cols.every(c => validValue(c,answers[c.key]));
+    cols.forEach(c => {
+      const field=document.createElement('fieldset');
+      field.className='entry-field';
+      field.innerHTML=`<legend>${esc(c.name)}</legend>`;
+      if (c.kind === 'number') {
+        field.appendChild(numberControl('entry-'+c.key,answers[c.key],c.min,c.max,v => {
+          answers[c.key]=v;
+          done.disabled=!valid();
+        }));
+        const note=document.createElement('span');
+        note.className='range-note';
+        note.textContent=`Whole numbers from ${c.min} to ${c.max}`;
+        field.appendChild(note);
+      } else {
+        const choices=document.createElement('div');
+        choices.className='answer-buttons';
+        choices.style.setProperty('--choice-count',c.choices.length);
+        c.choices.forEach((value,j) => {
+          const button=document.createElement('button');
+          button.id=`entry-${c.key}-${j}`;
+          button.innerHTML=picture(value,c)+(value === 'Yes' ? '✓ ' : value === 'No' ? '× ' : '')+esc(value);
+          button.setAttribute('aria-pressed',answers[c.key] === value);
+          button.onclick=() => {
+            answers[c.key]=value;
+            [...choices.children].forEach(el => el.setAttribute('aria-pressed',el === button));
+            done.disabled=!valid();
+            ping();
+          };
+          choices.appendChild(button);
+        });
+        field.appendChild(choices);
+      }
+      fields.appendChild(field);
+    });
+    actionButton('entry-cancel','Cancel',closeCard);
+    done=actionButton('entry-done','Done',() => {
+      if (!valid()) return;
+      const was=m.rows.length;
+      closeCard();
+      if (existing) {
+        t.batch(() => cols.forEach(c => t.set(t.rows.findIndex(r => r._id === rowId),c.key,answers[c.key])));
+        hint('The answer changed. Look at the chart, then tap another cell or Add my row.');
+      } else {
+        const used=new Set(m.rows.map(r => r._id)),id=Array.from({length:40},(_,i) => i+1).find(i => !used.has(i));
+        m.newest=id;
+        t.add({_id:id,...answers});
+        setTimeout(() => {
+          if (m.newest !==id) return;
+          m.newest=null;
+          if (current() === m) document.querySelector(`#table tr[data-row="${id}"]`)?.classList.remove('new-row');
+        },1400);
+        revealCell($(`cell-${id}-${m.columns[0].key}`));
+        hint(m.rows.length >=40 ? `Row ${id} added. The table is full. Tap a cell to edit it, or a column name to chart it.`
+          : `Row ${id} added. Tap Add my row for the next student.`);
+        const tap=lastTap;
+        V.say(L.rows[id-1],{maxAge:3000,valid:() => lastTap === tap && !state.overlay,hint:false,now:true});
+        if (was === 2) {
+          hint('Now the computer can count. Tap a column name and pick a chart.');
+          V.how('counted',{valid:() => current().rows.length >=3 && !state.overlay,hint:false});
+        }
+      }
+      Curio.yes();
+    },true);
+    done.disabled=!valid();
+    if (!V.heard('entry')) V.how('entry',{valid:() => state.overlay === 'entry',hint:false,now:true});
+    hint('Tap one answer for each column. Done lights up when every answer is ready.');
+    focusInCard(fields.querySelector('button,input'));
+  }
+  function columnShelf() {
+    if (current().columns.length >=6) return;
+    openCard('Choose a column','shelf');
+    const grid=document.createElement('div');
+    grid.id='shelf';
+    shelf.forEach(c => {
+      const b=document.createElement('button');
+      b.id='shelf-'+c.key;
+      b.className='shelf-card';
+      b.innerHTML=picture(c.choices?.find(v => images[v]),c)+`<span>${esc(c.name)}<small>${kindName(c)}</small></span>`;
+      b.disabled=current().columns.some(x => x.key === c.key);
+      b.onclick=() => addColumn(clone(c));
+      grid.appendChild(b);
+    });
+    $('overlay-content').appendChild(grid);
+    actionButton('make-column','Make my own column',customColumn,true);
+    hint('Tap a ready column, or Make my own column.');
+    focusInCard(grid.querySelector('button:not(:disabled)'));
+  }
+  function customColumn() {
+    openCard('Make my own column','custom');
+    $('overlay-content').innerHTML=`<div class="custom-form">
+      <label>Column name, up to 24 characters<input id="custom-name" maxlength="24" autocomplete="off" aria-label="Column name"></label>
+      <label>Kind<select id="custom-kind"><option value="list">☷ List</option><option value="number"># Number</option>
+        <option value="yesno">✓ Yes/No</option></select></label>
+      <p class="privacy">Answers come from buttons, so the computer can count them exactly.</p>
+      <div id="custom-details"></div><p class="error" id="custom-error" role="status"></p></div>`;
+    const fields=() => {
+      const kind=$('custom-kind').value;
+      $('custom-details').innerHTML=kind === 'number'
+        ? '<div class="custom-choices"><label>Smallest<input type="number" id="custom-min" min="0" max="100" value="0"></label>'
+          +'<label>Biggest<input type="number" id="custom-max" min="0" max="100" value="100"></label></div>'
+        : kind === 'yesno' ? '<p>Answers: ✓ Yes and × No</p>'
+        : '<div class="custom-choices" id="custom-choices"><input aria-label="Choice 1" maxlength="14">'
+          +'<input aria-label="Choice 2" maxlength="14"></div><button id="add-choice">Add a choice</button>';
+      if ($('add-choice')) $('add-choice').onclick=() => {
+        const n=$('custom-choices').children.length;
+        if (n >=6) return;
+        const input=document.createElement('input');
+        input.maxLength=14;
+        input.setAttribute('aria-label','Choice '+(n+1));
+        $('custom-choices').appendChild(input);
+        $('add-choice').setAttribute('aria-disabled',n+1 ===6);
+        $('add-choice').hidden=n+1 ===6;
+        focusInCard(input);
+      };
+    };
+    $('custom-kind').onchange=fields;
+    fields();
+    actionButton('custom-back','Back to shelf',columnShelf);
+    actionButton('save-column','Save column',() => {
+      const name=$('custom-name').value.trim(),kind=$('custom-kind').value;
+      const c={key:'custom-'+Date.now().toString(36)+'-'+(++keySerial),name,kind,custom:true};
+      let error='';
+      if (!name) error='Give the column a name.';
+      else if (current().columns.some(c => c.name.toLowerCase() === name.toLowerCase())) error='That column name is already in the table.';
+      if (kind === 'number') {
+        c.min=$('custom-min').value === '' ? NaN : Number($('custom-min').value);
+        c.max=$('custom-max').value === '' ? NaN : Number($('custom-max').value);
+        if (![c.min,c.max].every(Number.isInteger) || c.min<0 || c.max>100 || c.min>c.max) error='Use whole-number limits from 0 to 100, smallest first.';
+      } else {
+        c.choices=kind === 'yesno' ? ['Yes','No'] : [...$('custom-choices').children].map(el => el.value.trim()).filter(Boolean);
+        if (c.choices.length<1) error='Add at least one choice.';
+        if (new Set(c.choices.map(v => v.toLowerCase())).size !== c.choices.length) error='Give each choice a different name.';
+      }
+      if (error) { $('custom-error').textContent=error; return; }
+      addColumn(c);
+    },true);
+    hint('Name the column, choose its kind, then tap Save column.');
+    focusInCard($('custom-name'));
+  }
+  function addColumn(c) {
+    const m=current();
+    if (m.columns.length >=6) return;
+    if (m.rows.length) { backfillColumn(c); return; }
+    commitColumn(c,[]);
+  }
+  function commitColumn(c,values) {
+    const m=current();
+    m.columns.push(c);
+    m.rows.forEach((r,i) => r[c.key]=values[i]);
+    m.selected=c.key;
+    m.reveals={};
+    m.inspected={};
+    closeCard();
+    attachTable();
+    persist();
+    updateBuild();
+    updateSplit();
+    renderChart();
+    renderQuestions();
+    if (m.columns.length <6) how('kinds',() => current().columns.length >0 && current().columns.length <6 && !state.overlay,'#add-row');
+    else hint('Six columns are ready. Tap Add my row.');
+  }
+  function backfillColumn(c) {
+    const m=current(),values=[];
+    let i=0;
+    function next() {
+      openCard(`${c.name}: Row ${m.rows[i]._id}`,'backfill');
+      const label=document.createElement('p');
+      label.className='privacy';
+      label.textContent=`New column: answer for each existing row. ${i+1} of ${m.rows.length}. Cancel keeps the table as it was.`;
+      $('overlay-content').appendChild(label);
+      let value=null;
+      if (c.kind === 'number') $('overlay-content').appendChild(numberControl('backfill-number',null,c.min,c.max,v => {
+        value=v;
+        $('backfill-next').disabled=!validValue(c,v);
+      }));
+      else {
+        const choices=document.createElement('div');
+        choices.className='answer-buttons';
+        choices.style.setProperty('--choice-count',c.choices.length);
+        c.choices.forEach(v => {
+          const b=document.createElement('button');
+          b.innerHTML=picture(v,c)+esc(v);
+          b.onclick=() => {
+            value=v;
+            [...choices.children].forEach(el => el.setAttribute('aria-pressed',el === b));
+            $('backfill-next').disabled=false;
+            ping();
+          };
+          choices.appendChild(b);
+        });
+        $('overlay-content').appendChild(choices);
+      }
+      actionButton('backfill-cancel','Cancel',closeCard);
+      actionButton('backfill-next',i === m.rows.length-1 ? 'Save column' : 'Next row',() => {
+        if (!validValue(c,value)) return;
+        values.push(value);
+        i++;
+        if (i === m.rows.length) commitColumn(c,values);
+        else next();
+      },true).disabled=true;
+      hint('Answer for the row named on the card, then tap Next row or Save column.');
+      focusInCard($('overlay-content').querySelector('button,input'));
+    }
+    next();
+  }
+  function removeColumn(key) {
+    const m=current();
+    m.columns=m.columns.filter(c => c.key !==key);
+    m.rows.forEach(r => delete r[key]);
+    if (!m.columns.length) m.rows=[];
+    if (m.selected === key) m.selected=m.columns[0]?.key || '';
+    if (m.split === key) m.split='';
+    if (m.sort?.key === key) m.sort=null;
+    if (m.ownColumn === key) m.ownColumn='';
+    m.card=0;
+    m.reveals={};
+    m.guesses={};
+    m.inspected={};
+    closeCard();
+    attachTable();
+    persist();
+    updateBuild();
+    updateSplit();
+    renderChart();
+    renderQuestions();
+  }
+  function updateBuild() {
+    const m=current();
+    $('build').hidden=state.mode !== 'ours';
+    $('add-column').disabled=m.columns.length >=6;
+    $('add-row').disabled=!m.columns.length || m.rows.length >=40;
+    $('add-row').textContent=m.rows.length >=40 ? '40 rows, table full' : '＋ Add my row';
+    $('clear').disabled=!m.columns.length && !m.rows.length;
+    if (document.activeElement === $('add-column') && $('add-column').disabled) $('add-row').focus({preventScroll:true});
+    if (document.activeElement === $('add-row') && $('add-row').disabled) $('m-ours').focus({preventScroll:true});
+  }
+  function setMode(mode,refresh=false) {
+    if (!['sample','ours'].includes(mode)) return;
+    if (state.mode === mode && t && !refresh) {
+      if (state.overlay) closeCard();
+      return;
+    }
+    V.hush();
+    if (state.overlay) closeCard();
+    state.mode=mode;
+    document.body.classList.toggle('ours',mode === 'ours');
+    $('m-sample').setAttribute('aria-pressed',mode === 'sample');
+    $('m-ours').setAttribute('aria-pressed',mode === 'ours');
+    attachTable();
+    updateBuild();
+    updateSplit();
+    renderChart();
+    renderQuestions();
+    hint(mode === 'sample' ? 'w-sample' : collectionHint());
+    V.welcome();
+  }
+  $('m-sample').onclick=() => setMode('sample');
+  $('m-ours').onclick=() => setMode('ours');
+  for (const kind of ['bar','dot','list']) $('chart-'+kind).onclick=() => {
+    current().chart=kind;
+    inspectIfReady();
+    dropMoment();
+    ping();
+    renderChart();
+    renderQuestions();
+    guideChart();
+  };
+  $('split').onchange=() => {
+    current().split=$('split').value;
+    inspectIfReady();
+    dropMoment();
+    ping();
+    renderChart();
+    renderQuestions();
+    if (current().split && chartVisible()) how('split',() => !!current().split && !state.overlay && chartVisible());
+    else if (current().split) hint('Choose a guess, then tap Show me to compare the groups.');
+    else hint('Tap a column or chart button to explore the whole class.');
+  };
+  $('add-column').onclick=columnShelf;
+  $('add-row').onclick=() => entryCard();
+  $('overlay-close').onclick=closeCard;
+  $('clear').onclick=() => confirmCard('Erase every column and row on this device?',() => {
+    closeCard();
+    state.ours=makeMode([],[]);
+    try { localStorage.removeItem('dtb-our-class'); } catch {}
+    setMode('ours',true);
+    $('save-status').textContent='Class table erased from this device.';
+  });
+  document.addEventListener('pointerdown',() => { lastTap++; },true);
+  document.addEventListener('keydown',e => {
+    lastTap++;
+    if (e.key === 'Escape' && state.overlay) { e.preventDefault(); closeCard(); }
+    if (e.key === 'Tab' && state.overlay) {
+      const controls=[...$('overlay').querySelectorAll('button,input,select,textarea'),$('read'),$('sound'),$('motion')]
+        .filter(el => !el.disabled && el.offsetParent);
+      const at=controls.indexOf(document.activeElement);
+      const next=controls[(at+(e.shiftKey ? -1 : 1)+controls.length)%controls.length];
+      e.preventDefault();
+      if ($('overlay-content').contains(next)) focusInCard(next);
+      else next.focus({preventScroll:true});
+    }
+  },true);
+  let resizeFrame=0;
+  const observer=new ResizeObserver(() => {
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame=requestAnimationFrame(() => {
+      if (state.overlay) document.body.style.setProperty('--card-top',($('top').getBoundingClientRect().bottom+6)+'px');
+      renderChart();
+    });
+  });
+  observer.observe($('chart-viewport'));
+  Curio.onMotion(() => { if (t) renderChart(); });
+  load();
+  Curio.init({clips:"voice:*",rate:.9});
+  setMode('sample');
+  window.__tool={state,setMode,V,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },
+    get table() { return t; },get charts() { return charts; },summary,selectColumn,renderChart,questions};
+})();
+</script>
+</body>
+</html>

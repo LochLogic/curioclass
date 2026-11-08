@@ -1,0 +1,14 @@
+{
+  "keep": [],
+  "states": [
+    {"name":"practice-tell","steps":[{"click":"#report"}],"keep":["#done","#keep","#report"]},
+    {"name":"practice-why","steps":[{"click":"#report"},{"click":"#done"}],"keep":["#next","#why"]},
+    {"name":"practice-wrong-evidence","steps":[{"click":"#report"},{"click":"[data-spot=b0]"},{"click":"#done"}],"keep":["#next","#why"]},
+    {"name":"practice-safe-context","steps":[{"js":"__tool.show('S8')"},{"click":"#keep"}],"keep":["#next","#why"]},
+    {"name":"arcade-running","steps":[{"click":"#m-arcade"},{"click":"#start"}],"keep":["#keep","#report","#score"]},
+    {"name":"address-book","steps":[{"click":"#book-open"}],"keep":["#book-close"],"sizes":["680x425","800x500","375x812"]},
+    {"name":"round-end","steps":[{"click":"#m-arcade"},{"click":"#start"},{"js":"__tool.finishRound()"}],"keep":["#start","#score"],"sizes":["680x425","1366x768","375x812"]},
+    {"name":"round-one-safe","steps":[{"click":"#m-arcade"},{"click":"#start"},{"js":"__tool.show('S1')"},{"click":"#keep"},{"js":"__tool.roundClock.reset(0).start()"}],"keep":["#start","#score",".next-try"]},
+    {"name":"clear-best","steps":[{"click":"#m-arcade"},{"click":"#clear-best"}],"keep":["#clear-no","#clear-yes"]}
+  ]
+}

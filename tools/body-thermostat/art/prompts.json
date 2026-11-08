@@ -1,0 +1,85 @@
+{
+  "house_style": "Soft painterly outdoor scenes for a Grade 9 science instrument, refined gouache and colored-pencil texture, natural directional light from upper left, rich grounded colors, calm and spacious. No people, animals, lettering, numbers, logos, borders or watermarks.",
+  "assets": [
+    {
+      "name": "bt-scene-cold",
+      "prompt": "A wide treeless snowy prairie in winter, wooden fence line, wind-ridged drifts, low gray sky, trampled snow path in foreground.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "bt-scene-mild",
+      "prompt": "A school running track curving past a grassy field and leafy trees on a mild spring day, soft daylight.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "bt-scene-hot-dry",
+      "prompt": "A dusty desert trail between red rocks and dry scrub under hard bright sunlight, pale washed-out sky.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "bt-scene-hot-humid",
+      "prompt": "A steamy green summer park after rain, hazy white sky, wet shining path between lush trees.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "bt-clothes-swimsuit",
+      "prompt": "A single clothing kit laid flat neatly, seen from above, soft studio light. A plain blue one-piece swimsuit. Centered entirely in frame on flat pure green #00FF00, no cast shadow.",
+      "aspect": "1:1",
+      "height": 112,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "bt-clothes-shorts",
+      "prompt": "A single clothing kit laid flat neatly, seen from above, soft studio light. Running shorts with a plain t-shirt, arranged as one clothing kit. Centered entirely in frame on flat pure green #00FF00, no cast shadow.",
+      "aspect": "1:1",
+      "height": 112,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "bt-clothes-indoor",
+      "prompt": "A single clothing kit laid flat neatly, seen from above, soft studio light. Blue jeans with a plain gray sweatshirt, arranged as one clothing kit. Centered entirely in frame on flat pure green #00FF00, no cast shadow.",
+      "aspect": "1:1",
+      "height": 112,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "bt-clothes-coat",
+      "prompt": "A single clothing kit laid flat neatly, seen from above, soft studio light. A thick puffy winter coat with a hood. Centered entirely in frame on flat pure green #00FF00, no cast shadow.",
+      "aspect": "1:1",
+      "height": 112,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

@@ -1,0 +1,1133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Water Shapes Earth · Curio Class</title>
+<meta name="description" content="Plan fair tests of freezing, dissolving and flowing water. Three earth science lab benches for grade 9. Works offline.">
+<!--
+Water Shapes Earth, Curio Class. Grade 9 Earth science. HS-ESS2-5.
+Started from kit/starter/src.html. Shared frame, sound and narration: kit/curio; plots: kit/graphing.
+Model and sources: spec.md and notes.md. Freeze and dissolve rates are invented lab-model rates.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root { --brand:#58acac; --brand-ink:#10161f; }
+body { height:100dvh; overflow:hidden; grid-template-rows:auto auto auto minmax(0,1fr) auto auto; }
+header { padding:10px 18px; gap:8px; flex-wrap:nowrap; }
+h1 { font-size:23px; letter-spacing:-.6px; white-space:nowrap; }
+h1 small { font-size:12px; letter-spacing:1.5px; margin-top:5px; }
+.seg { border-width:1px; border-radius:6px; flex:none; }
+.seg button { min-height:44px; min-width:44px; padding:0 13px; font-size:13px; }
+.icon-btn { border-width:1px; border-radius:6px; min-height:44px; min-width:44px; padding:0 10px; font-size:12px; }
+.steps { display:flex; padding:0 18px; gap:4px; background:#17212a; border-bottom:1px solid #354553; }
+.steps button { min-height:44px; min-width:80px; border:0; border-bottom:3px solid transparent;
+  padding:0 15px; background:transparent; color:var(--muted); font-size:13px; }
+.steps button[aria-selected="true"] { color:#e8edf3; border-color:var(--brand); background:#203039; }
+.steps span { color:var(--brand); font:11px var(--readout-font); margin-right:7px; }
+.property { display:flex; justify-content:space-between; align-items:center; gap:12px; padding:9px 20px;
+  background:linear-gradient(90deg,#1c3339,#17242d); border-bottom:1px solid #39545b; }
+.property b { font-size:14px; font-weight:600; }
+.eyebrow { color:#b8cbce; letter-spacing:1.7px; font-size:10px; text-transform:uppercase; }
+.property small { font-size:11px; color:#c1d2d5; }
+main { display:grid; grid-template-columns:minmax(0,1fr) minmax(330px,40%); overflow:hidden; min-width:0; }
+body[data-step="run"] main, body[data-step="graph"] main { grid-template-columns:minmax(0,1fr); }
+body[data-step="conclude"] main { grid-template-columns:minmax(0,1fr) minmax(320px,48%); }
+.stage { min-height:0; background:#15242d; display:flex; flex-direction:column; }
+.scene-head { min-height:38px; padding:8px 18px; display:flex; justify-content:space-between; align-items:center;
+  background:#121d26; border-bottom:1px solid #455866; gap:8px; font-size:12px; }
+.scene-head strong { letter-spacing:1px; font-size:11px; color:#d6e2e5; }
+#clock { color:#b6e1e5; font:12px var(--readout-font); }
+.bench { flex:1; min-height:0; position:relative; isolation:isolate; }
+#scene { position:absolute; inset:0; display:block; width:100%; height:100%; }
+.bench::after { content:''; position:absolute; inset:0; pointer-events:none; box-shadow:inset 0 0 55px #12213166; }
+.result-strip { display:grid; grid-template-columns:repeat(var(--groups,3),minmax(0,1fr)); background:#111b25;
+  border-top:1px solid #4b626c; gap:1px; flex:none; }
+.result-card { background:linear-gradient(#1c2c36,#15222d); padding:10px 12px; min-width:0; border-top:3px solid var(--group); }
+.result-card .name { color:#bacecf; font-size:11px; display:block; }
+.result-card strong { display:block; font:500 clamp(18px,2.5vw,29px) var(--readout-font); margin:5px 0; }
+.result-card small { color:#bdcbd6; display:block; font-size:11px; line-height:1.4; }
+.group-tabs { display:flex; gap:5px; }
+.group-tabs button { min-width:44px; min-height:44px; font-size:13px; }
+.panel { border-left:1px solid #475763; padding:16px; gap:10px; overflow:auto; min-width:0; }
+.panel h2 { margin:0; font-size:16px; font-weight:500; }
+.table-wrap { overflow:auto; max-width:100%; border:1px solid #435661; border-radius:5px; flex:none; }
+.plan-table { width:100%; border-collapse:collapse; font-size:12px; }
+.plan-table th { font-weight:500; color:#c9d7dd; padding:7px; background:#1d2c36; text-align:left; }
+.plan-table thead th { text-align:center; border-bottom:2px solid #526974; }
+.plan-table th:first-child { width:70px; min-width:70px; }
+.plan-table td { padding:2px; border-bottom:1px solid #2d404c; }
+select { min-height:44px; min-width:44px; width:100%; border:1px solid #546d7b; border-radius:4px;
+  padding:0 5px; background:#0e1922; color:var(--ink); font:12px 'Segoe UI',sans-serif; }
+.plan-table select { min-width:90px; }
+.panel p { margin:0; font-size:12px; line-height:1.5; }
+.model-note { color:#b6c6ce; border-left:2px solid #698795; padding-left:10px; }
+.pair-list { color:#c1d4d9; font-size:11px; line-height:1.5; }
+.actions { display:flex; align-items:center; gap:8px; padding:9px 18px; border-top:1px solid #39515b;
+  background:#182630; flex-wrap:nowrap; }
+.btn { font-size:12px; border-radius:5px; flex:none; }
+.primary { background:var(--brand); color:var(--brand-ink); border-color:var(--brand); }
+#run { min-width:114px; }
+#skip { min-width:105px; }
+#noise { min-width:97px; }
+.groups-label { display:flex; align-items:center; gap:8px; font-size:12px; }
+#count { width:60px; }
+#book-open { margin-left:auto; }
+#book-open small { display:block; font-size:10px; line-height:1.2; font-weight:400; }
+.hintbar { display:flex; align-items:center; padding:9px 20px; min-height:50px; background:#101a22; border-top:1px solid #334a56; }
+#hint { font-size:13px; line-height:1.4; margin:0; color:#d0dfe3; }
+.hintbar.warn #hint { color:#ffb8a8; }
+.claim-label { font-size:13px; color:#cfdddf; }
+textarea { width:100%; min-height:140px; resize:vertical; background:#0e1922; color:#e8edf3; border:1px solid #68808c;
+  border-radius:5px; padding:12px; font:15px/1.6 'Segoe UI',sans-serif; }
+.answer { border-left:3px solid var(--brand); padding:10px 12px; background:#20343a; font-size:13px; line-height:1.6; }
+.answer:empty { display:none; }
+.dialog { position:fixed; inset:5vh 5vw; z-index:30; padding:20px; background:#14212b; border:1px solid #729298;
+  border-radius:8px; box-shadow:0 15px 80px #000d; display:flex; flex-direction:column; gap:12px; }
+.dialog-head { display:flex; justify-content:space-between; gap:10px; align-items:center; }
+.dialog h2 { margin:0; font-size:21px; }
+.dialog p { margin:0; font-size:13px; color:#b9cdd1; }
+.book-scroll { overflow:auto; flex:1; min-height:0; border:1px solid #536a75; }
+#book-table { border-collapse:collapse; min-width:850px; width:100%; font-size:12px; }
+#book-table td, #book-table th { border:1px solid #384e59; padding:10px; text-align:left; vertical-align:top; }
+.dialog-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; }
+.diagram-card { background:#20343a; border:1px solid #47656c; padding:12px; border-radius:5px; }
+.diagram-card b { display:block; margin-bottom:8px; }
+.diagram-card p { font-size:12px; line-height:1.6; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+svg text { font-family:'Segoe UI',sans-serif; }
+.frost-glint { animation:glint 5s ease-in-out infinite alternate; }
+@keyframes glint { from { opacity:.2; } to { opacity:.65; } }
+body.calm .frost-glint { animation:none; opacity:.4; }
+@media (max-width:1100px) {
+  header { padding:6px 10px; gap:5px; }
+  h1 { font-size:20px; }
+  .seg button { padding:0 9px; font-size:12px; }
+  .icon-btn { padding:0 7px; }
+  .panel { padding:10px; }
+}
+@media (max-height:640px) and (min-width:601px) {
+  header { min-height:50px; padding-top:3px; padding-bottom:3px; }
+  h1 { font-size:17px; }
+  h1 small { display:none; }
+  .seg button { padding:0 7px; font-size:11px; }
+  .icon-btn { padding:0 6px; font-size:11px; }
+  .property { padding:2px 12px; min-height:24px; }
+  .property b { font-size:12px; }
+  .property small { font-size:10px; }
+  .steps { padding:0 8px; }
+  .steps button { padding:0 10px; min-width:75px; }
+  main { grid-template-columns:minmax(0,1fr) 310px; }
+  .panel { padding:5px; gap:5px; }
+  .panel h2, .panel .model-note, .panel .pair-list { display:none; }
+  .scene-head { min-height:28px; padding:4px 10px; font-size:10px; }
+  .scene-head strong, #clock { font-size:10px; }
+  .plan-table th { padding:4px; font-size:10px; }
+  .plan-table th:first-child { min-width:50px; width:50px; }
+  .plan-table td { padding:0 2px; }
+  .plan-table select { min-width:74px; font-size:10px; }
+  .actions { padding:2px 10px; gap:6px; }
+  .actions .btn { padding:0 9px; font-size:11px; }
+  #run { min-width:95px; }
+  #skip { min-width:94px; }
+  #noise { min-width:90px; }
+  .hintbar { min-height:35px; padding:5px 12px; }
+  #hint { font-size:11px; }
+  .result-card { padding:5px 10px; }
+  .result-card strong { font-size:20px; margin:2px 0; }
+  .result-card small { font-size:10px; }
+  .result-card .name { font-size:10px; }
+  body[data-step="plan"] .scene-head { display:none; }
+  body[data-step="plan"] .property { padding-top:2px; padding-bottom:2px; min-height:24px; }
+  body[data-step="plan"] .hintbar { min-height:35px; }
+  body[data-step="plan"] .steps button { min-height:44px; }
+  body[data-step="plan"] .actions { padding-top:2px; padding-bottom:2px; }
+  body[data-step="plan"] .panel { padding:2px; }
+  body[data-step="plan"] header { padding-top:3px; padding-bottom:3px; }
+  body[data-count="4"][data-step="plan"] main { grid-template-columns:minmax(0,1fr) 380px; }
+  body[data-count="4"][data-step="plan"] #results { display:none; }
+  body[data-step="run"] .scene-head { display:none; }
+  body[data-step="run"][data-mode="stream"] .scene-head { display:flex; position:absolute; inset:0 0 auto;
+    justify-content:flex-end; min-height:44px; z-index:3; background:transparent; border:0; }
+  body[data-step="run"][data-mode="stream"] .scene-head strong,
+  body[data-step="run"][data-mode="stream"] #clock { display:none; }
+  textarea { min-height:82px; font-size:12px; padding:7px; }
+  .answer { padding:5px 8px; font-size:11px; line-height:1.35; }
+}
+@media (max-width:800px) and (min-height:641px), (max-width:600px) {
+  body { height:auto; min-height:100dvh; overflow:auto; grid-template-rows:auto auto auto auto auto auto; }
+  header { flex-wrap:wrap; gap:5px; }
+  h1 { width:100%; font-size:22px; margin:3px 0; }
+  h1 small { display:none; }
+  .seg { flex:1 0 100%; display:flex; }
+  .seg button { flex:1; padding:0 7px; }
+  header .icon-btn { flex:1; }
+  main, body[data-step="conclude"] main { grid-template-columns:minmax(0,1fr); overflow:visible; }
+  .stage { min-height:350px; }
+  .bench { min-height:230px; }
+  .panel { border-left:0; border-top:1px solid #475763; padding:12px; overflow:visible; }
+  .property { padding:8px 12px; }
+  .property small { display:none; }
+  .actions { grid-row:4; position:sticky; top:0; z-index:10; flex-wrap:wrap; padding:6px 10px; gap:6px; }
+  main { grid-row:6; }
+  .hintbar { grid-row:5; }
+  body[data-step="plan"] #plan-panel { grid-row:1; }
+  body[data-step="plan"] .stage { grid-row:2; }
+  body[data-step="conclude"] #conclude-panel { grid-row:1; }
+  body[data-step="conclude"] .stage { grid-row:2; }
+  body[data-step="conclude"] textarea { min-height:100px; }
+  #book-open { margin-left:0; }
+  .groups-label { gap:4px; }
+  #count { width:48px; }
+  #run, #skip, #noise { min-width:95px; }
+  .steps { padding:0 7px; justify-content:space-between; }
+  .steps button { padding:0 7px; min-width:70px; }
+  .steps span { margin-right:4px; }
+  .result-card { padding:7px; }
+  .result-card strong { font-size:18px; }
+  .result-card small { font-size:10px; }
+  .dialog { inset:10px; padding:12px; }
+}
+</style>
+</head>
+<body data-step="plan" data-count="3">
+<header>
+  <h1>Water Shapes Earth<small>Ice, acid and current.</small></h1>
+  <div class="seg" role="group" aria-label="Lab bench">
+    <button id="m-freeze" aria-pressed="true">Freeze-Thaw</button>
+    <button id="m-dissolve" aria-pressed="false">Dissolve</button>
+    <button id="m-stream" aria-pressed="false">Stream Table</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<nav class="steps" role="tablist" aria-label="Investigation steps">
+  <button id="s-plan" role="tab" aria-selected="true"><span>01</span>Plan</button>
+  <button id="s-run" role="tab" aria-selected="false"><span>02</span>Run</button>
+  <button id="s-graph" role="tab" aria-selected="false"><span>03</span>Graph</button>
+  <button id="s-conclude" role="tab" aria-selected="false"><span>04</span>Conclude</button>
+</nav>
+<div class="property"><b id="property"></b><small id="property-detail"></small></div>
+<main>
+  <section class="stage" id="stage" aria-label="Lab bench and measurements">
+    <div class="scene-head"><strong id="scene-title"></strong><span id="clock">Ready to run</span>
+      <div class="group-tabs" id="group-tabs" hidden></div></div>
+    <div class="bench" id="bench"><svg id="scene" role="img" aria-label="Experimental bench"></svg></div>
+    <div class="result-strip" id="results"></div>
+  </section>
+  <aside class="panel" id="plan-panel">
+    <h2>Design a fair test</h2>
+    <div class="table-wrap"><table class="plan-table" id="plan-table" aria-label="Experimental plan"></table></div>
+    <p class="model-note" id="model-note"></p>
+    <div class="pair-list" id="pair-list"></div>
+  </aside>
+  <aside class="panel" id="conclude-panel" hidden>
+    <h2>Make a claim from your evidence</h2>
+    <label class="claim-label" id="claim-label" for="claim">Changing ___ made ___ because water ___.</label>
+    <textarea id="claim" aria-labelledby="claim-label" placeholder="Use a result from your tests to explain your claim."></textarea>
+    <button class="btn primary" id="compare">Compare</button>
+    <div class="answer" id="answer" aria-live="polite"></div>
+    <div class="diagram-card" id="chemistry" hidden>
+      <b>What happened?</b>
+      <p>Calcium carbonate + water + carbon dioxide → calcium and bicarbonate in solution.</p>
+      <p>Calcite leaves the chip in solution. The same process helps form limestone caves and sinkholes.</p>
+    </div>
+    <p class="model-note">Your draft claim is unsaved. Completed runs stay in the lab book on this device.</p>
+  </aside>
+</main>
+<div class="actions">
+  <button class="btn primary" id="run">▶ Run</button>
+  <button class="btn" id="skip" hidden>Skip to end</button>
+  <button class="btn" id="noise" aria-pressed="true">Noise: on</button>
+  <label class="groups-label">Groups <select id="count" aria-label="Number of test groups">
+    <option>2</option><option selected>3</option><option>4</option></select></label>
+  <span class="eyebrow" id="trial-label">Trials: 3</span>
+  <button class="btn" id="book-open">Lab book <span id="book-count">0</span><small>On this device</small></button>
+</div>
+<footer class="hintbar" id="hintbar"><p id="hint"></p></footer>
+<section class="dialog" id="book" role="dialog" aria-modal="true" aria-label="Lab book" hidden>
+  <div class="dialog-head"><h2>Lab book</h2><button class="btn" id="book-close">Close</button></div>
+  <p id="storage-note">Saved only on this device. Nothing leaves the device. Draft claims are unsaved.</p>
+  <div class="book-scroll"><table id="book-table"></table></div>
+  <div class="dialog-actions"><button class="btn primary" id="copy">Copy table</button>
+    <button class="btn" id="clear">Clear lab book</button><span id="copy-status" role="status"></span></div>
+</section>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const GROUPS = ['A', 'B', 'C', 'D'];
+  const COLORS = ['#5aa9ff', '#c9a0ff', '#5fd39a', '#ff8a8a'];
+  const KEY = 'curio-water-shapes-earth';
+  const STEPS = ['plan', 'run', 'graph', 'conclude'];
+  const ART = {
+    freezer:'art:ws-freezer', lab:'art:ws-lab-room', tray:'art:ws-stream-tray',
+    granite:'art:ws-granite', sandstone:'art:ws-sandstone', shale:'art:ws-shale',
+    limestoneChip:'art:ws-chip-limestone', marbleChip:'art:ws-chip-marble', graniteChip:'art:ws-chip-granite',
+    jar:'art:ws-jar', scale:'art:ws-scale', gravel:'art:ws-gravel', pebble:'art:ws-pebble'
+  };
+  const L = {
+    freeze:'The plan is ready. Press Run and watch the crack gauges.',
+    fair:'More than one thing changed. You will not know which one did it.',
+    break:'Split. That is ice doing the work.',
+    dissolve:'Pick the water for each jar in the Plan table. Change one thing, then press Run.',
+    stream:'Set the slope and the flow in the Plan table, then press Run. Faster water carries bigger grains.',
+    conclude:'Type what changed, what happened, and which property of water explains it. Then press Compare.',
+    graph:'Each dot is one trial. The thick mark is the mean. Press Conclude to explain your evidence.',
+    finished:'The three trials are ready. Press Graph to compare the results.',
+    changed:'Plan changed. Press Run to test your new plan.',
+    book:'The lab book keeps completed runs on this device. Press Copy table to copy the results, or Close to return.'
+  };
+  const CONFIG = {
+    freeze:{name:'Freeze-Thaw', property:'Water expands when it freezes', detail:'Ice needs about 9% more room.',
+      note:'Invented lab rates. Expansion only: real ice lenses can also draw water into cracks.',
+      fields:[['rock','Rock',['granite','sandstone','shale']], ['fill','Crack fill',[0,50,80,90,95,100]],
+        ['liquid','Liquid',['water','vegetable oil']], ['cycles','Cycles',[10,20,30,40,50,60]]],
+      defaults:[50,95,100,90].map(fill => ({rock:'sandstone',fill,liquid:'water',cycles:40}))},
+    dissolve:{name:'Dissolve', property:'Water with CO2 is a weak acid', detail:'Cold water can hold more dissolved CO2.',
+      note:'Invented lab rates, not real-time forecasts. Each chip starts at 20.0 g. Rainwater: pH about 5.6.',
+      fields:[['rock','Rock',['limestone','marble','granite']], ['water','Water',['distilled','rainwater','CO2-rich']],
+        ['temp','Temperature',[5,25]], ['weeks','Weeks',Array.from({length:12},(_,i) => i+1)]],
+      defaults:['distilled','rainwater','CO2-rich','CO2-rich'].map(water => ({rock:'limestone',water,temp:25,weeks:8}))},
+    stream:{name:'Stream Table', property:'Moving water is heavy', detail:'Water: about 1,000 kg/m³, about 830 times denser than air near sea level.',
+      note:'Wide-channel Manning model: n = 0.03, hydraulic radius ≈ depth. Rounded grain cutoffs; mixed includes already-suspended silt.',
+      fields:[['slope','Slope',[.25,1,4]], ['flow','Flow',['low','medium','high','flood']],
+        ['sediment','Sediment',['sand','gravel','pebbles','mixed']]],
+      defaults:[.25,1,4,4].map(slope => ({slope,flow:'medium',sediment:'mixed'}))}
+  };
+  const state = {
+    mode:'freeze', step:'plan', plans:{}, runs:{}, claims:{freeze:'',dissolve:'',stream:''},
+    noise:true, running:false, done:false, selected:0, elapsed:0, duration:0, serial:0, seed:0, book:[], storage:true,
+    runClaims:{}, edited:{freeze:false,dissolve:false,stream:false}, previewGroup:null
+  };
+  for (const mode of Object.keys(CONFIG)) state.plans[mode] = structuredClone(CONFIG[mode].defaults.slice(0,3));
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || '[]');
+    if (Array.isArray(saved)) state.book = saved.filter(r => r && CONFIG[r.mode] && Array.isArray(r.groups));
+  } catch { state.storage = false; }
+  let started = 0;
+  let animation = 0;
+  let lastBeat = -1;
+  let breakSaid = false;
+  let size = {w:900,h:460};
+  const V = Curio.voice({lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    speaks:'#run', welcome:() => $('book').hidden && state.step === 'plan' && !state.running && !currentRun() && !state.edited[state.mode] ?
+      [state.mode, {valid:() => $('book').hidden && state.step === 'plan' && !state.running &&
+        !currentRun() && !state.edited[state.mode], needs:'#run'}] : null});
+
+  function currentPlan() { return state.plans[state.mode]; }
+  function currentRun() { return state.runs[state.mode]; }
+  function node(tag, attrs = {}, parent = $('scene')) {
+    const e = document.createElementNS(NS,tag);
+    for (const [key,value] of Object.entries(attrs)) e.setAttribute(key,String(value));
+    parent.appendChild(e);
+    return e;
+  }
+  function text(x,y,value,attrs = {},parent = $('scene')) {
+    const e = node('text',{x,y,fill:'#eef7fa','font-size':12,...attrs},parent);
+    e.textContent = value;
+    return e;
+  }
+  function picture(url,x,y,w,h,parent = $('scene'),attrs = {}) {
+    return node('image',{href:url,x,y,width:w,height:h,preserveAspectRatio:'xMidYMid meet',...attrs},parent);
+  }
+  function formatCell(key,value) {
+    if (key === 'fill' || key === 'slope') return value + '%';
+    if (key === 'temp') return value === 5 ? 'Cold 5 °C' : 'Warm 25 °C';
+    if (key === 'flow') return value + ' (' + ({low:2,medium:5,high:10,flood:15}[value]) + ' cm)';
+    return String(value);
+  }
+  function titleCase(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+  function fairness(plan = currentPlan(),mode = state.mode) {
+    const pairs = [];
+    for (let a = 0; a < plan.length; a++) {
+      for (let b = a + 1; b < plan.length; b++) {
+        const changed = CONFIG[mode].fields.filter(([key]) => plan[a][key] !== plan[b][key]).map(([,label]) => label.toLowerCase());
+        pairs.push({a,b,changed,fair:changed.length === 1});
+      }
+    }
+    return {fair:pairs.every(p => p.fair), unfair:pairs.some(p => p.changed.length > 1), pairs};
+  }
+  function fairText(f = fairness()) {
+    const bad = f.pairs.find(p => p.changed.length > 1);
+    if (bad) return `Two or more things change between ${GROUPS[bad.a]} and ${GROUPS[bad.b]} (${bad.changed.join(', ')}). Change one.`;
+    const same = f.pairs.find(p => !p.changed.length);
+    if (same) return `${GROUPS[same.a]} and ${GROUPS[same.b]} are the same test. Change one variable, then press Run.`;
+    const changed = [...new Set(f.pairs.flatMap(p => p.changed))];
+    return `Fair test: only ${changed.join(', ')} changes. Press Run to test the plan.`;
+  }
+  function hint() {
+    let line;
+    if (!$('book').hidden) line = L.book;
+    else if (state.step === 'plan') line = currentRun()?.changed ? L.changed + ' ' + fairText() : fairText();
+    else if (state.step === 'run') line = state.running ? 'Watch trial 1. Tap Skip to end, or choose Plan to change a test.' :
+      currentRun() && !currentRun().changed ? L.finished : 'Press Run to start the planned tests.';
+    else if (state.step === 'graph') line = currentRun() && !currentRun().changed ? L.graph : 'Press Run to collect trial data for the graph.';
+    else line = currentRun() && !currentRun().changed ? L.conclude : 'Press Run to collect evidence before writing a claim.';
+    $('hint').textContent = line;
+    $('hintbar').classList.toggle('warn',state.step === 'plan' && !fairness().fair);
+  }
+  function stopRun(changed = false) {
+    cancelAnimationFrame(animation);
+    if (state.running && currentRun() && !currentRun().complete) currentRun().changed = true;
+    state.running = false;
+    if (changed && currentRun()) currentRun().changed = true;
+    $('skip').hidden = true;
+    $('run').textContent = currentRun() ? '▶ Run again' : '▶ Run';
+  }
+  function setMode(mode) {
+    if (!CONFIG[mode]) return;
+    stopRun();
+    Curio.stop();
+    V.hush();
+    state.mode = mode;
+    document.body.dataset.mode = mode;
+    state.step = 'plan';
+    state.selected = 0;
+    state.elapsed = 0;
+    state.done = !!currentRun() && !currentRun().changed;
+    for (const key of Object.keys(CONFIG)) $('m-' + key).setAttribute('aria-pressed',key === mode);
+    $('property').textContent = CONFIG[mode].property;
+    $('property-detail').textContent = CONFIG[mode].detail;
+    $('model-note').textContent = CONFIG[mode].note;
+    $('count').value = currentPlan().length;
+    document.body.dataset.count = currentPlan().length;
+    $('claim').value = state.claims[mode];
+    $('answer').textContent = '';
+    $('chemistry').hidden = mode !== 'dissolve';
+    renderTable();
+    renderGroupTabs();
+    setStep('plan');
+    V.welcome();
+  }
+  function setStep(step) {
+    if (state.step !== step) V.hush();
+    state.step = step;
+    document.body.dataset.step = step;
+    for (const key of STEPS) $('s-' + key).setAttribute('aria-selected',key === step);
+    $('plan-panel').hidden = step !== 'plan';
+    $('conclude-panel').hidden = step !== 'conclude';
+    $('results').hidden = step === 'graph' || step === 'conclude';
+    $('group-tabs').hidden = state.mode !== 'stream' || step === 'graph' || step === 'conclude';
+    hint();
+    draw();
+    if (step === 'conclude' && availableRun() && !state.claims[state.mode] && !V.heard('conclude')) {
+      V.how('conclude',{valid:() => state.step === 'conclude' && availableRun() && !state.claims[state.mode], needs:['#claim','#compare']});
+    }
+    if (step === 'graph' && currentRun() && !currentRun().changed && !V.heard('graph')) {
+      V.how('graph',{valid:() => state.step === 'graph',needs:'#s-conclude'});
+    }
+  }
+  function renderTable() {
+    const plan = currentPlan();
+    const cfg = CONFIG[state.mode];
+    $('plan-table').replaceChildren();
+    const head = document.createElement('thead');
+    const tr = document.createElement('tr');
+    const corner = document.createElement('th');
+    corner.textContent = 'Variable';
+    tr.appendChild(corner);
+    plan.forEach((_,i) => {
+      const th = document.createElement('th');
+      th.scope = 'col';
+      th.textContent = GROUPS[i];
+      th.style.borderTop = '3px solid ' + COLORS[i];
+      tr.appendChild(th);
+    });
+    head.appendChild(tr);
+    $('plan-table').appendChild(head);
+    const body = document.createElement('tbody');
+    for (const [key,label,options] of cfg.fields) {
+      const row = document.createElement('tr');
+      const th = document.createElement('th');
+      th.scope = 'row';
+      th.textContent = label;
+      row.appendChild(th);
+      plan.forEach((group,i) => {
+        const td = document.createElement('td');
+        const select = document.createElement('select');
+        select.id = `p-${i}-${key}`;
+        select.setAttribute('aria-label',`Group ${GROUPS[i]} ${label}`);
+        for (const value of options) {
+          const option = new Option(formatCell(key,value),String(value));
+          select.add(option);
+        }
+        select.value = group[key];
+        select.onchange = () => {
+          stopRun(true);
+          V.hush();
+          group[key] = typeof options[0] === 'number' ? Number(select.value) : select.value;
+          state.edited[state.mode] = true;
+          state.done = false;
+          $('answer').textContent = '';
+          updatePairs();
+          hint();
+          draw();
+          Curio.tone(250,.045,.03);
+        };
+        select.onkeydown = event => {
+          if (event.key === 'Enter' && select.showPicker) {
+            try { select.showPicker(); event.preventDefault(); } catch {}
+          }
+        };
+        td.appendChild(select);
+        row.appendChild(td);
+      });
+      body.appendChild(row);
+    }
+    $('plan-table').appendChild(body);
+    updatePairs();
+  }
+  function updatePairs() {
+    $('pair-list').replaceChildren();
+    for (const pair of fairness().pairs) {
+      const item = document.createElement('div');
+      item.textContent = `${GROUPS[pair.a]} / ${GROUPS[pair.b]}: ` + (pair.changed.length ? pair.changed.join(' + ') : 'same test');
+      $('pair-list').appendChild(item);
+    }
+  }
+  function renderGroupTabs() {
+    $('group-tabs').replaceChildren();
+    currentPlan().forEach((_,i) => {
+      const button = document.createElement('button');
+      button.id = 'g-' + i;
+      button.className = 'btn';
+      button.textContent = GROUPS[i];
+      button.setAttribute('aria-label','Show group ' + GROUPS[i]);
+      button.onclick = () => {
+        state.selected = i;
+        if (state.running && state.mode === 'stream') {
+          state.previewGroup = i;
+        }
+        draw();
+        Curio.tone(320 + i * 70,.06,.035);
+      };
+      $('group-tabs').appendChild(button);
+    });
+  }
+  function random(seed) {
+    let value = seed >>> 0;
+    return () => {
+      value += 0x6D2B79F5;
+      let t = value;
+      t = Math.imul(t ^ t >>> 15,t | 1);
+      t ^= t + Math.imul(t ^ t >>> 7,t | 61);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function noiseFactor(rng) {
+    const gaussian = Math.sqrt(-2 * Math.log(Math.max(1e-9,rng()))) * Math.cos(2 * Math.PI * rng()) * .05;
+    return 1 + Math.max(-.1,Math.min(.1,gaussian));
+  }
+  function calculate(mode,group,factor = 1) {
+    if (mode === 'freeze') {
+      const rate = group.liquid === 'water' ? ({granite:.02,sandstone:.05,shale:.08}[group.rock]) *
+        Math.max(0,(group.fill / 100 - .917) / .083) * factor : 0;
+      const breakCycle = rate > 0 ? Math.ceil(1 / rate - 1e-9) : null;
+      const broke = breakCycle !== null && breakCycle <= group.cycles;
+      return {value:broke ? 1 : rate * group.cycles, rate, breakCycle:broke ? breakCycle : null, factor};
+    }
+    if (mode === 'dissolve') {
+      const rates = {limestone:[.02,.1,.4],marble:[.016,.08,.32],granite:[.002,.002,.002]};
+      const water = ['distilled','rainwater','CO2-rich'].indexOf(group.water);
+      const temperature = group.temp === 5 && group.rock !== 'granite' ? [1,1.2,1.5][water] : 1;
+      const rate = rates[group.rock][water] * temperature * factor;
+      return {value:20 - rate * group.weeks, rate, factor};
+    }
+    const depth = {low:.02,medium:.05,high:.1,flood:.15}[group.flow];
+    const speed = (1 / .03) * depth ** (2 / 3) * Math.sqrt(group.slope / 100) * factor;
+    const thresholds = {sand:.2,gravel:.8,pebbles:1.5};
+    const present = group.sediment === 'mixed' ? ['sand','gravel','pebbles'] : [group.sediment];
+    const moving = present.filter(grain => speed >= thresholds[grain]);
+    return {value:speed, speed, moving, factor};
+  }
+  function startRun(seed) {
+    stopRun();
+    V.hush();
+    state.serial++;
+    state.seed = seed ?? (Date.now() ^ state.serial * 7919) >>> 0;
+    const rng = random(state.seed);
+    const plan = structuredClone(currentPlan());
+    const groups = plan.map(group => ({plan:group, trials:Array.from({length:3},() =>
+      calculate(state.mode,group,state.noise ? noiseFactor(rng) : 1)), baseline:calculate(state.mode,group)}));
+    const run = {id:state.serial, mode:state.mode, seed:state.seed, noise:state.noise,
+      fairness:fairness(plan), groups, changed:false, complete:false};
+    state.runs[state.mode] = run;
+    state.selected = 0;
+    state.previewGroup = null;
+    state.elapsed = 0;
+    state.done = false;
+    state.running = true;
+    lastBeat = -1;
+    breakSaid = false;
+    state.duration = state.mode === 'freeze' ? Math.max(...plan.map(p => p.cycles)) * 250 :
+      state.mode === 'dissolve' ? Math.max(...plan.map(p => p.weeks)) * 1000 : groups.length * 5000;
+    started = performance.now();
+    $('answer').textContent = '';
+    $('skip').hidden = false;
+    $('run').textContent = '▶ Run again';
+    setStep('run');
+    Curio.tone(380,.07,.05);
+    if (run.fairness.unfair) V.say('fair',{valid:() => currentRun() === run && state.running && !run.changed});
+    animation = requestAnimationFrame(tick);
+  }
+  function tick(now) {
+    if (!state.running) return;
+    state.elapsed = Math.max(0,Math.min(state.duration,now - started));
+    if (state.mode === 'stream' && state.previewGroup === null) {
+      state.selected = Math.min(currentPlan().length - 1,Math.floor(state.elapsed / 5000));
+    }
+    const beat = Math.floor(state.elapsed / (state.mode === 'freeze' ? 250 : 1000));
+    if (beat !== lastBeat) {
+      lastBeat = beat;
+      if (state.mode === 'freeze') Curio.tone(80 + (beat % 3) * 13,.08,.027,'sawtooth');
+      if (state.mode === 'stream') Curio.tone(450 + beat % 4 * 83,.15,.013,'sine');
+      if (state.mode === 'dissolve') Curio.tone(650,.06,.018);
+    }
+    const run = currentRun();
+    if (state.mode === 'freeze' && !breakSaid && run.groups.some(g =>
+      g.trials[0].breakCycle && state.elapsed / 250 >= g.trials[0].breakCycle)) {
+      breakSaid = true;
+      V.say('break',{valid:() => currentRun() === run && !run.changed && $('book').hidden});
+      Curio.tone(110,.2,.06,'triangle');
+    }
+    if (state.elapsed >= state.duration) { finishRun(); return; }
+    draw();
+    animation = requestAnimationFrame(tick);
+  }
+  function finishRun() {
+    if (!state.running || !currentRun() || currentRun().changed) return;
+    const run = currentRun();
+    const skipFocused = document.activeElement === $('skip');
+    state.elapsed = state.duration;
+    run.complete = true;
+    stopRun();
+    if (skipFocused) $('run').focus({preventScroll:true});
+    if (state.mode === 'freeze' && !breakSaid && run.groups.some(g => g.trials[0].breakCycle)) {
+      breakSaid = true;
+      V.say('break',{valid:() => currentRun() === run && !run.changed && $('book').hidden});
+    }
+    state.done = true;
+    if (!state.book.some(entry => entry.id === run.id && entry.seed === run.seed)) {
+      state.book.push(structuredClone(run));
+      saveBook();
+    }
+    hint();
+    draw();
+    if (state.step === 'run') {
+      V.how('finished',{valid:() => currentRun() === run && run.complete && state.step === 'run' && $('book').hidden,
+        needs:'#s-graph'});
+    }
+    Curio.tone(520,.12,.035);
+  }
+  function saveBook() {
+    try {
+      localStorage.setItem(KEY,JSON.stringify(state.book));
+      state.storage = true;
+    }
+    catch { state.storage = false; }
+    $('book-count').textContent = state.book.length;
+  }
+  function availableRun() {
+    const run = currentRun();
+    return run && !run.changed ? run : null;
+  }
+  function groupResult(i) {
+    const run = availableRun();
+    if (!run) return null;
+    return run.groups[i];
+  }
+  function liveValue(i) {
+    const result = groupResult(i);
+    if (!result) return state.mode === 'dissolve' ? 20 : 0;
+    const trial = result.trials[0];
+    if (!state.running) return trial.value;
+    if (state.mode === 'freeze') {
+      const cycles = Math.min(result.plan.cycles,Math.floor(state.elapsed / 250));
+      return trial.breakCycle && cycles >= trial.breakCycle ? 1 : Math.min(1,trial.rate * cycles);
+    }
+    if (state.mode === 'dissolve') return 20 - trial.rate * Math.min(result.plan.weeks,state.elapsed / 1000);
+    return trial.value;
+  }
+  function progress(i) {
+    if (!availableRun()) return 0;
+    if (!state.running) return 1;
+    if (state.previewGroup === i) return 1;
+    if (Curio.reduce) return 0;
+    return Math.max(0,Math.min(1,(state.elapsed - i * 5000) / 5000));
+  }
+  function renderResults() {
+    const plan = currentPlan();
+    $('results').style.setProperty('--groups',plan.length);
+    if ($('results').children.length !== plan.length) {
+      $('results').replaceChildren();
+      plan.forEach((_,i) => {
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        card.style.setProperty('--group',COLORS[i]);
+        card.innerHTML = '<span class="name"></span><strong></strong><small></small>';
+        $('results').appendChild(card);
+      });
+    }
+    plan.forEach((group,i) => {
+      const card = $('results').children[i];
+      const result = groupResult(i);
+      const value = liveValue(i);
+      card.children[0].textContent = `${GROUPS[i]} · ${state.mode === 'stream' ? group.flow + ', ' + group.slope + '%' : group.rock}`;
+      card.children[1].textContent = state.mode === 'freeze' ? value.toFixed(2) + ' mm' :
+        state.mode === 'dissolve' ? value.toFixed(2) + ' g' : result ? result.trials[0].value.toFixed(2) + ' m/s' : 'Ready';
+      if (!result) card.children[2].textContent = 'Not run yet';
+      else if (state.running) card.children[2].textContent = state.mode === 'freeze' && value >= 1 ?
+        'Split at cycle ' + result.trials[0].breakCycle : 'Trial 1 · live';
+      else {
+        const values = result.trials.map(t => t.value.toFixed(2)).join(' / ');
+        card.children[2].textContent = state.mode === 'freeze' && result.trials[0].breakCycle ?
+          'Split: cycle ' + result.trials[0].breakCycle + ' · ' + values :
+        state.mode === 'stream' ? 'Moves: ' + (result.trials[0].moving.join(', ') || 'nothing') : 'Trials: ' + values;
+      }
+    });
+  }
+  function draw() {
+    const box = $('bench').getBoundingClientRect();
+    if (box.width < 1 || box.height < 1) return;
+    size = {w:Math.round(box.width), h:Math.round(box.height)};
+    const {w,h} = size;
+    $('scene').setAttribute('viewBox',`0 0 ${w} ${h}`);
+    $('scene').replaceChildren();
+    $('scene-title').textContent = state.step === 'graph' || state.step === 'conclude' ? 'THREE TRIALS / GROUP MEANS' :
+      CONFIG[state.mode].name.toUpperCase() + (state.mode === 'stream' ? ' / LAB MODEL' : ' / INVENTED LAB RATES');
+    $('clock').textContent = state.running ? state.mode === 'freeze' ? `Cycle ${Math.floor(state.elapsed / 250)}` :
+      state.mode === 'dissolve' ? `Week ${(state.elapsed / 1000).toFixed(1)}` : `Group ${GROUPS[state.selected]} · running` :
+      availableRun() ? 'Run complete' : currentRun()?.changed ? 'Plan changed' : 'Ready to run';
+    const compact = innerHeight <= 640 && innerWidth >= 601;
+    $('property-detail').textContent = compact ?
+      (state.step === 'run' ? $('clock').textContent + (state.mode === 'stream' ? '' : ' · Invented lab rates') :
+        state.mode === 'stream' ? CONFIG.stream.detail : 'Invented lab rates · ' + CONFIG[state.mode].detail) : CONFIG[state.mode].detail;
+    if (state.step === 'graph' || state.step === 'conclude') drawGraph(w,h);
+    else if (state.mode === 'freeze') drawFreeze(w,h);
+    else if (state.mode === 'dissolve') drawDissolve(w,h);
+    else drawStream(w,h);
+    renderResults();
+    [...$('group-tabs').children].forEach((b,i) => b.setAttribute('aria-pressed',i === state.selected));
+  }
+  function background(url,w,h) {
+    picture(url,0,0,w,h,$('scene'),{preserveAspectRatio:'xMidYMid slice'});
+  }
+  function defs() {
+    const d = node('defs');
+    const shade = node('linearGradient',{id:'rock-shade',x1:0,y1:0,x2:1,y2:1},d);
+    node('stop',{offset:0,'stop-color':'#ffffff','stop-opacity':.22},shade);
+    node('stop',{offset:1,'stop-color':'#000000','stop-opacity':.5},shade);
+    return d;
+  }
+  function drawFreeze(w,h) {
+    picture(ART.freezer,0,0,w,h,$('scene'),{preserveAspectRatio:'none'});
+    const d = defs();
+    const plan = currentPlan();
+    const gap = w / plan.length;
+    const blockW = Math.min(210,gap * .73);
+    const blockH = Math.min(blockW * 1.05,h * .61);
+    const top = h * .45 - blockH * .5;
+    plan.forEach((group,i) => {
+      const center = gap * (i + .5);
+      const x = center - blockW / 2;
+      const added = liveValue(i);
+      const split = added >= 1 - 1e-8;
+      const expansion = split ? blockW * .09 : added * blockW * .025;
+      const crack = blockW * .043 + expansion;
+      const points = [0,.22,.43,.62,.78,1].map((v,j) => [center + [0,-.06,.04,-.04,.06,0][j] * blockW,top + blockH * v]);
+      const trace = points.map(p => p.join(',')).join(' ');
+      node('ellipse',{cx:center,cy:top + blockH + 14,rx:blockW * .6,ry:12,fill:'#071a2a',opacity:.4});
+      for (const side of [-1,1]) {
+        const id = `rock-${i}-${side}`;
+        const clip = node('clipPath',{id},d);
+        const shape = side < 0 ? [[x,top],...points,[x,top + blockH]] :
+          [[x + blockW,top],...points,[x + blockW,top + blockH]];
+        node('polygon',{points:shape.map(p => p.join(',')).join(' ')},clip);
+        const piece = node('g',{transform:`translate(${side * crack / 2},0)`,'clip-path':`url(#${id})`});
+        picture(ART[group.rock],x,top,blockW,blockH,piece,{preserveAspectRatio:'none'});
+        node('rect',{x,y:top,width:blockW,height:blockH,fill:'url(#rock-shade)'},piece);
+        node('polyline',{points:trace,fill:'none',stroke:'#2a2622','stroke-width':3},piece);
+        node('polyline',{points:`${x},${top+2} ${x+blockW},${top+2}`,stroke:'#fff8','stroke-width':3},piece);
+      }
+      const freeze = split || state.running && (Curio.reduce || Math.floor(state.elapsed / 125) % 2 === 0);
+      const fillHeight = blockH * group.fill / 100;
+      node('polyline',{points:trace,fill:'none',stroke:'#2a2622','stroke-width':crack*.85});
+      const waterClip = node('clipPath',{id:'liquid-' + i},d);
+      node('rect',{x:center-blockW*.2,y:top+blockH-fillHeight,width:blockW*.4,height:fillHeight},waterClip);
+      node('polyline',{points:trace,fill:'none',stroke:group.liquid === 'vegetable oil' ? '#d8b440' : freeze ? '#e8f4ff' : '#4f8fd0',
+        'stroke-width':crack * .72,opacity:freeze ? 1 : .7,'clip-path':`url(#liquid-${i})`});
+      node('rect',{x:center-19,y:Math.max(8,top-31),width:38,height:23,rx:3,fill:'#102a3c',stroke:'#8faebb'});
+      text(center,Math.max(24,top-15),GROUPS[i],{'text-anchor':'middle','font-size':13,'font-weight':700});
+      const labelY = Math.min(h-13,top+blockH+35);
+      node('rect',{x:center-blockW*.52,y:labelY-14,width:blockW*1.04,height:24,rx:3,fill:'#142535',stroke:'#7e9ba9'});
+      text(center,labelY+2,`${group.fill}% · ${split ? 'SPLIT' : freeze ? 'freeze' : 'liquid'}`,
+        {'text-anchor':'middle','font-size':Math.max(10,Math.min(13,gap/13)),fill:'#e4f5ff'});
+    });
+    node('path',{d:`M 10 11 L ${w-10} 11`,stroke:'#e4f8ff','stroke-width':2,opacity:.5,class:'frost-glint'});
+  }
+  function drawDissolve(w,h) {
+    background(ART.lab,w,h);
+    node('rect',{x:0,y:0,width:w,height:h,fill:'#142327',opacity:.14});
+    const plan = currentPlan();
+    const gap = w / plan.length;
+    const jarH = Math.max(25,Math.min((h-(h < 180 ? 12 : 42))/1.37,gap*1.32,310));
+    const jarW = jarH*.63;
+    const scaleWidth = Math.min(gap*.85,jarW*1.5);
+    const baseY = h-scaleWidth*.49*.8-12;
+    plan.forEach((group,i) => {
+      const center = gap*(i+.5);
+      const jarTop = baseY-jarH;
+      const scaleW = Math.min(gap*.85,jarW*1.5);
+      const scaleH = scaleW*.49;
+      picture(ART.scale,center-scaleW/2,baseY-scaleH*.23,scaleW,scaleH);
+      node('rect',{x:center-jarW*.39,y:jarTop+jarH*.24,width:jarW*.78,height:jarH*.7,rx:jarW*.12,
+        fill:'#84b8d8',opacity:.23,stroke:'#dff7ff','stroke-width':2});
+      const mass = liveValue(i);
+      const shrink = group.rock === 'granite' ? 1 : Math.sqrt(mass/20);
+      const chipW = jarW*.7*shrink;
+      picture(ART[group.rock+'Chip'],center-chipW/2,baseY-jarH*.4*shrink,chipW,jarH*.28*shrink);
+      picture(ART.jar,center-jarW/2,jarTop,jarW,jarH,$('scene'),
+        {style:'filter:saturate(0)',preserveAspectRatio:'xMidYMax meet'});
+      if (group.water === 'CO2-rich' && availableRun()) {
+        for (let j=0;j<8;j++) {
+          const p = Curio.reduce ? j/8 : (state.elapsed/1300+j/8)%1;
+          node('circle',{cx:center+Math.sin(j*7)*jarW*.22,cy:baseY-jarH*(.15+p*.58),r:1.3+j%2,
+            fill:'none',stroke:'#e7faff',opacity:.6});
+        }
+      }
+      const displayY = Math.min(h-20,baseY+scaleH*.45);
+      node('rect',{x:center-scaleW*.35,y:displayY-10,width:scaleW*.7,height:23,rx:3,fill:'#0d242a',stroke:'#97bfc2'});
+      text(center,displayY+6,mass.toFixed(2)+' g',{'text-anchor':'middle','font-family':'Consolas,monospace','font-size':12,fill:'#c2f4df'});
+      if (h >= 180) {
+        node('rect',{x:center-18,y:Math.max(6,jarTop-27),width:36,height:23,rx:3,fill:'#152831'});
+        text(center,Math.max(22,jarTop-11),GROUPS[i],{'text-anchor':'middle','font-weight':700,'font-size':13});
+      }
+    });
+  }
+  function drawStream(w,h) {
+    background(ART.lab,w,h);
+    node('rect',{x:0,y:0,width:w,height:h,fill:'#0b1b23',opacity:.68});
+    const d = defs();
+    const deltaShade = node('linearGradient',{id:'delta-shade',x1:0,y1:0,x2:.3,y2:1},d);
+    node('stop',{offset:0,'stop-color':'#f2dfac'},deltaShade);
+    node('stop',{offset:.65,'stop-color':'#cbb27e'},deltaShade);
+    node('stop',{offset:1,'stop-color':'#9c8052'},deltaShade);
+    const ratio = h < 200 ? 2.5 : 1.85;
+    const trayW = Math.min(w*.82,(h-12)*ratio);
+    const trayH = trayW/ratio;
+    const x = (w-trayW)/2;
+    const y = (h-trayH)/2;
+    picture(ART.tray,x,y,trayW,trayH,$('scene'),{preserveAspectRatio:'none'});
+    const i = Math.min(state.selected,currentPlan().length-1);
+    const group = currentPlan()[i];
+    const result = groupResult(i);
+    const trial = result?.trials[0];
+    const p = progress(i);
+    const speed = trial?.speed || calculate('stream',group).speed;
+    const cx = x+trayW*.5;
+    const channelTop = y+trayH*.11;
+    const channelBottom = y+trayH*.72;
+    const bend = trayW*.085;
+    const route = `M ${cx} ${channelTop} C ${cx-bend} ${y+trayH*.28}, ${cx+bend} ${y+trayH*.45}, ${cx} ${channelBottom}`;
+    node('ellipse',{cx,cy:channelTop,rx:Math.max(8,trayW*.023),ry:Math.max(4,trayH*.025),fill:'#79c3db',stroke:'#cfedf1'});
+    const carried = trial?.moving || [];
+    const channelW = (4+speed*11)*(.2+(carried.length ? .8*p : 0));
+    node('path',{d:route,fill:'none',stroke:'#2a2622','stroke-width':channelW+5*p,opacity:.68,'stroke-linecap':'round'});
+    node('path',{d:route,fill:'none',stroke:'#4f8fd0','stroke-width':channelW,opacity:.7,'stroke-linecap':'round'});
+    node('path',{d:route,fill:'none',stroke:'#c8efff','stroke-width':1.5,opacity:.65,'stroke-dasharray':'4 14',
+      'stroke-dashoffset':Curio.reduce ? 0 : -state.elapsed/75});
+    const mouthY = channelBottom;
+    if (p > 0 && carried.length) {
+      const deltaPath = `M ${cx} ${mouthY-10} Q ${cx-trayW*.17*p} ${mouthY+trayH*.13} ${cx-trayW*.23*p} ${y+trayH*.89}
+        Q ${cx} ${y+trayH*.99} ${cx+trayW*.23*p} ${y+trayH*.89} Q ${cx+trayW*.13*p} ${mouthY+trayH*.1} ${cx} ${mouthY-10}`;
+      node('path',{d:deltaPath,fill:'url(#delta-shade)',opacity:.95,'data-delta':'true'});
+      const clip = node('clipPath',{id:'delta-clip'},d);
+      node('path',{d:deltaPath},clip);
+      const deposits = node('g',{'clip-path':'url(#delta-clip)'});
+      for (let ridge=0;ridge<4;ridge++) {
+        const ry = mouthY+trayH*(.06+ridge*.048);
+        const reach = trayW*(.04+ridge*.045)*p;
+        node('path',{d:`M ${cx-reach} ${ry} Q ${cx} ${ry+trayH*.045} ${cx+reach} ${ry}`,
+          fill:'none',stroke:ridge%2 ? '#795c38' : '#f5e5b6','stroke-width':1.2,opacity:.35},deposits);
+      }
+      for (let grain=0;grain<48;grain++) {
+        const gx = cx+Math.sin(grain*2.399)*trayW*.23*p;
+        const gy = mouthY+trayH*(.015+(grain%17)/17*.24);
+        node('circle',{cx:gx,cy:gy,r:.65,fill:grain%2 ? '#6d5637' : '#f8e7bd',opacity:.55},deposits);
+      }
+    }
+    if (p > 0 && group.sediment === 'mixed') {
+      node('ellipse',{cx,cy:y+trayH*.9,rx:trayW*.23*p,ry:trayH*.065,fill:'#b8a888',opacity:.4,'data-silt':'true'});
+    }
+    const thresholds = {sand:.2,gravel:.8,pebbles:1.5};
+    const kinds = group.sediment === 'mixed' ? ['pebbles','gravel','sand'] : [group.sediment];
+    for (const kind of kinds) {
+      const index = ['pebbles','gravel','sand'].indexOf(kind);
+      const moving = !!trial && speed >= thresholds[kind];
+      for (let j=0;j<14;j++) {
+        const at = ((j*17+index*7)%29)/29;
+        const originX = cx+Math.sin(j*4+index)*trayW*.12;
+        const originY = channelTop+(channelBottom-channelTop)*at;
+        const depositX = cx+Math.sin(j*7+index)*(trayW*.025+index*trayW*.035);
+        const depositY = mouthY+trayH*(.018+index*.05)+j%3*trayH*.008;
+        const journey = Math.min(1,p*1.5-at*.4);
+        const t = moving ? Math.max(0,journey) : 0;
+        const gx = originX+(depositX-originX)*t;
+        const gy = originY+(depositY-originY)*t;
+        const stoneSize = kind === 'pebbles' ? Math.max(8,trayW*.018) : Math.max(4,trayW*.009);
+        if (kind === 'sand') node('circle',{cx:gx,cy:gy,r:Math.max(1.2,trayW*.002),fill:'#e4d19a',stroke:'#826c45','stroke-width':.4});
+        else picture(ART[kind === 'pebbles' ? 'pebble':'gravel'],gx-stoneSize/2,gy-stoneSize/2,stoneSize,stoneSize);
+      }
+    }
+    const sideW = Math.min(110,w*.17);
+    const compact = innerHeight <= 640 && innerWidth >= 601;
+    const sideX = compact || h < 200 ? 10 : w-sideW-10;
+    const sideY = compact || h < 200 ? Math.max(4,h-64) : 10;
+    node('rect',{x:sideX,y:sideY,width:sideW,height:54,rx:4,fill:'#10212b',stroke:'#718892'});
+    node('path',{d:`M ${sideX+8} ${sideY+26} L ${sideX+sideW-8} ${sideY+26+group.slope*3}
+      L ${sideX+sideW-8} ${sideY+43} L ${sideX+8} ${sideY+43} Z`,fill:'#aa926b'});
+    text(sideX+8,sideY+15,group.slope+'% slope',{'font-size':10});
+    if (w>650 && p>0) {
+      const ordering = ['pebbles','gravel','sand'].filter(grain => carried.includes(grain));
+      const labelY = y+trayH*.73;
+      const labelStep = Math.max(15,trayH*.085);
+      node('rect',{x:x+trayW*.72,y:labelY-13,width:trayW*.27,height:labelStep*2+20,
+        rx:4,fill:'#10212b',opacity:.94,stroke:'#718892'});
+      text(x+trayW*.75,labelY,ordering.length ? titleCase(ordering[0])+' first' : 'Grains stay put',
+        {'font-size':11,fill:'#f1e9d1'});
+      text(x+trayW*.75,labelY+labelStep,ordering.slice(1).join(' → '),{'font-size':11,fill:'#f1e9d1'});
+      if (group.sediment === 'mixed') {
+        text(x+trayW*.75,labelY+labelStep*2,'Silt in still lake',{'font-size':11,fill:'#f1e9d1'});
+      }
+    }
+  }
+  function drawGraph(w,h) {
+    node('rect',{x:0,y:0,width:w,height:h,fill:'#0e1520'});
+    const run = availableRun();
+    if (!run) {
+      text(w/2,h/2,'Run the plan to collect evidence.',{'text-anchor':'middle','font-size':Math.max(12,Math.min(20,w/30))});
+      return;
+    }
+    const left = Math.min(58,w*.16);
+    const top = 30;
+    const gw = Math.max(50,w-left-26);
+    const gh = Math.max(35,h-top-52);
+    const maxValue = state.mode === 'freeze' ? 1.15 : state.mode === 'dissolve' ? 21 : 2.2;
+    const g = Plane($('scene'),{x:[0,run.groups.length],y:[0,maxValue],width:gw,height:gh,left,top,
+      grid:[1,state.mode === 'dissolve'?5:state.mode === 'freeze'?.25:.5],labels:[1,state.mode === 'dissolve'?5:.5],
+      ticks:'edge',xLabel:'Test group',yLabel:'',tickFormat:(value,axis) => axis === 'x' ? '' : String(value)});
+    const label = state.mode === 'freeze' ? 'Added crack width (mm)' : state.mode === 'dissolve' ? 'Mass left (g)' : 'Water speed (m/s)';
+    text(left,18,label,{'font-size':Math.max(10,Math.min(13,w/32)),fill:'#bdcddc'});
+    run.groups.forEach((group,i) => {
+      const mean = group.trials.reduce((sum,t) => sum+t.value,0)/3;
+      const px = g.px(i+.5,mean);
+      const bottom = g.px(i+.5,0);
+      node('rect',{x:px[0]-gw/run.groups.length*.23,y:px[1],width:gw/run.groups.length*.46,
+        height:Math.max(1,bottom[1]-px[1]),fill:COLORS[i],opacity:.2},g.layer('plot'));
+      g.segment([i+.26,mean],[i+.74,mean],{color:i+1,width:4});
+      group.trials.forEach((trial,t) => {
+        const point = g.px(i+.5+(t-1)*.1,trial.value);
+        node('circle',{cx:point[0],cy:point[1],r:4.5,fill:COLORS[i],stroke:'#f6faff','stroke-width':1.2},g.layer('points'));
+      });
+      g.label(i+.5,0,GROUPS[i],{dy:20,anchor:'middle',layer:'labels'});
+      g.label(i+.5,mean,mean.toFixed(2),{dy:-13,anchor:'middle',layer:'labels'});
+    });
+    if (state.mode === 'freeze') {
+      g.segment([0,1],[run.groups.length,1],{color:'#e7c388',width:1,dashed:'4 4'});
+      if (w > 550) text(w-28,25,'Split at 1.00 mm',{'text-anchor':'end','font-size':10,fill:'#e7c388'});
+    }
+  }
+  function modelAnswer() {
+    const run = availableRun();
+    if (!run) return 'Press Run first, then compare a claim with the results.';
+    const mean = g => (g.trials.reduce((sum,t) => sum+t.value,0)/3).toFixed(2);
+    const pairs = run.fairness.pairs.filter(pair => pair.fair);
+    if (!pairs.length) {
+      return run.fairness.unfair ?
+        'More than one variable changes in every comparison, so these results cannot identify a single cause. Return to Plan and hold all but one variable constant.' :
+        'These groups repeat the same test; any trial differences come from model noise. Return to Plan and change one variable to investigate a cause.';
+    }
+    const pair = pairs.at(-1);
+    const first = run.groups[pair.a];
+    const last = run.groups[pair.b];
+    const variable = CONFIG[state.mode].fields.find(([,label]) => label.toLowerCase() === pair.changed[0]);
+    const [key,label] = variable;
+    const values = `${formatCell(key,first.plan[key])} to ${formatCell(key,last.plan[key])}`;
+    const unit = state.mode === 'freeze' ? 'mm added crack width' : state.mode === 'dissolve' ? 'g mass left' : 'm/s';
+    const measured = `Groups ${GROUPS[pair.a]} and ${GROUPS[pair.b]} change only ${label.toLowerCase()} (${values}): ` +
+      `${mean(first)} to ${mean(last)} ${unit}. `;
+    const reasons = {
+      freeze:{rock:'The invented rock rates differ, while freezing water supplies the expansion.',
+        fill:'Water needs about 9% more room as ice; only fills above 91.7% widen this model crack.',
+        liquid:'Water expands as it freezes; the oil control produces no widening in this model.',
+        cycles:'More cycles can repeat expansion damage, until the model stops a split at 1.00 mm.'},
+      dissolve:{rock:'The calcite rocks dissolve faster than granite at these invented lab rates.',
+        water:'Dissolved CO2 makes water weakly acidic, increasing calcite loss in this model.',
+        temp:'Colder water can hold more CO2; this model increases loss only for calcite in rainwater or CO2-rich water.',
+        weeks:'More weeks allow more dissolving at the same invented weekly rate.'},
+      stream:{slope:'A steeper slope increases model speed; dense moving water can then move larger grains.',
+        flow:'Deeper flow increases model speed; larger grains need more speed to start moving.',
+        sediment:'Changing sediment does not change model speed; only grains above their motion threshold can travel.'}
+    };
+    const baselineEqual = Math.abs(first.baseline.value-last.baseline.value) < 1e-9;
+    const limit = baselineEqual ? ' No modeled change in this measurement; any trial difference is noise.' : '';
+    const warning = run.fairness.unfair ? ' Other pairs are confounded; use only this controlled pair for a claim.' : '';
+    return measured + reasons[state.mode][key] + limit + warning;
+  }
+  function bookRows() {
+    return state.book.flatMap((run,index) => run.groups.map((group,i) => {
+      const plan = CONFIG[run.mode].fields.map(([key,label]) => label+': '+formatCell(key,group.plan[key])).join('; ');
+      const unit = run.mode === 'freeze' ? 'mm' : run.mode === 'dissolve' ? 'g' : 'm/s';
+      const trials = group.trials.map(t => t.value.toFixed(2)+' '+unit + (t.breakCycle ? ', split cycle '+t.breakCycle : '') +
+        (t.moving ? ', moves '+(t.moving.join('/') || 'nothing') : '')).join('; ');
+      return [String(index+1),CONFIG[run.mode].name,GROUPS[i],plan,run.fairness.fair ? 'Fair' : 'Not isolated',
+        run.noise ? 'On' : 'Off',trials,((group.trials.reduce((sum,t) => sum+t.value,0))/3).toFixed(2)+' '+unit,
+        state.runClaims[run.seed + ':' + run.id] || ''];
+    }));
+  }
+  const BOOK_HEADERS = ['Run','Bench','Group','Plan','Fairness','Noise','Three trials','Mean','Session claim (unsaved)'];
+  function bookBackground(inert) {
+    document.querySelectorAll('body > header,body > nav,body > .property,body > main,body > .actions,body > footer')
+      .forEach(element => { element.inert = inert; });
+  }
+  function openBook() {
+    V.hush();
+    $('book').hidden = false;
+    bookBackground(true);
+    $('book-table').replaceChildren();
+    for (const [i,row] of [BOOK_HEADERS,...bookRows()].entries()) {
+      const tr = document.createElement('tr');
+      row.forEach(value => {
+        const cell = document.createElement(i ? 'td' : 'th');
+        cell.textContent = value;
+        tr.appendChild(cell);
+      });
+      $('book-table').appendChild(tr);
+    }
+    $('storage-note').textContent = state.storage ?
+      'Saved only on this device. Nothing leaves the device. Draft claims are unsaved.' :
+      'Device storage is unavailable. Runs stay in this open session. Draft claims are unsaved.';
+    hint();
+    V.how('book',{valid:() => !$('book').hidden,needs:['#copy','#book-close']});
+    $('book-close').focus({preventScroll:true});
+  }
+  function closeBook() {
+    V.hush();
+    $('book').hidden = true;
+    bookBackground(false);
+    setStep(state.step);
+    if (state.step === 'plan') V.welcome();
+    if (state.step === 'run' && availableRun()?.complete) {
+      V.how('finished',{valid:() => state.step === 'run' && $('book').hidden,needs:'#s-graph'});
+    }
+    $('book-open').focus({preventScroll:true});
+  }
+  for (const mode of Object.keys(CONFIG)) $('m-'+mode).onclick = () => setMode(mode);
+  for (const step of STEPS) $('s-'+step).onclick = () => setStep(step);
+  $('run').onclick = () => startRun();
+  $('skip').onclick = () => finishRun();
+  $('noise').onclick = () => {
+    state.noise = !state.noise;
+    $('noise').textContent = 'Noise: '+(state.noise ? 'on' : 'off');
+    $('noise').setAttribute('aria-pressed',state.noise);
+    Curio.tone(300,.06,.035);
+  };
+  $('count').onchange = () => {
+    stopRun(true);
+    V.hush();
+    const count = +$('count').value;
+    document.body.dataset.count = count;
+    const plan = currentPlan();
+    state.edited[state.mode] = true;
+    while (plan.length < count) plan.push(structuredClone(CONFIG[state.mode].defaults[plan.length]));
+    plan.length = count;
+    state.selected = Math.min(state.selected,count-1);
+    renderTable();
+    renderGroupTabs();
+    hint();
+    draw();
+  };
+  $('claim').oninput = () => {
+    state.claims[state.mode] = $('claim').value;
+    if (currentRun()) state.runClaims[currentRun().seed + ':' + currentRun().id] = $('claim').value;
+    V.dropQueued(item => item.key === 'conclude');
+    $('answer').textContent = '';
+    hint();
+  };
+  $('compare').onclick = () => {
+    V.dropQueued(item => item.key === 'conclude');
+    $('answer').textContent = modelAnswer();
+    Curio.tone(460,.08,.035);
+  };
+  $('book-open').onclick = openBook;
+  $('book-close').onclick = closeBook;
+  $('copy').onclick = async () => {
+      const rows = [BOOK_HEADERS,...bookRows()];
+      const data = rows.map(row => row.map(value => value.replaceAll('\t',' ').replaceAll('\n',' ')).join('\t')).join('\n');
+    try {
+      await navigator.clipboard.writeText(data);
+      $('copy-status').textContent = 'Table copied.';
+    } catch {
+      const area = document.createElement('textarea');
+      area.value = data;
+      $('book').appendChild(area);
+      area.select();
+      const copied = document.execCommand('copy');
+      area.remove();
+      $('copy-status').textContent = copied ? 'Table copied.' : 'Copy unavailable in this browser.';
+      $('copy').focus({preventScroll:true});
+    }
+  };
+  $('clear').onclick = () => {
+    state.book = [];
+    saveBook();
+    openBook();
+    $('copy-status').textContent = 'Lab book cleared.';
+    $('clear').focus({preventScroll:true});
+  };
+  document.addEventListener('keydown',event => {
+    if (!$('book').hidden) {
+      if (event.key === 'Escape') { closeBook(); event.preventDefault(); }
+      if (event.key === 'Tab') {
+        const controls = [...$('book').querySelectorAll('button')];
+        if (event.shiftKey && document.activeElement === controls[0]) { controls.at(-1).focus({preventScroll:true}); event.preventDefault(); }
+        else if (!event.shiftKey && document.activeElement === controls.at(-1)) { controls[0].focus({preventScroll:true}); event.preventDefault(); }
+      }
+      return;
+    }
+    if (event.target.closest('.steps') && ['ArrowLeft','ArrowRight'].includes(event.key)) {
+      event.preventDefault();
+      const index = STEPS.indexOf(state.step);
+      const next = STEPS[Math.max(0,Math.min(3,index+(event.key === 'ArrowLeft' ? -1 : 1)))];
+      setStep(next);
+      $('s-'+next).focus({preventScroll:true});
+      return;
+    }
+    if (event.target.matches('input,textarea,select,button')) return;
+    if (event.code === 'Space') { event.preventDefault(); startRun(); }
+    if (state.step === 'graph' && ['ArrowLeft','ArrowRight'].includes(event.key)) {
+      event.preventDefault();
+      setStep(event.key === 'ArrowLeft' ? 'run' : 'conclude');
+    }
+  });
+  new ResizeObserver(() => draw()).observe($('bench'));
+  Curio.init({clips:"voice:*",rate:.9});
+  Curio.onSound(() => V.welcome());
+  Curio.onMotion(() => draw());
+  window.__tool = {state,setMode,setStep,startRun,finishRun,calculate,fairness,modelAnswer,
+    allLines:() => V.allLines(),vlog:V.log,V,draw,noiseFactor,random};
+  $('book-count').textContent = state.book.length;
+  setMode('freeze');
+})();
+</script>
+</body>
+</html>

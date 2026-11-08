@@ -1,0 +1,23 @@
+{
+  "id": "data-table-builder",
+  "status": "beta",
+  "stage": "built",
+  "hook": "One table. Many questions. Watch the same rows become a chart.",
+  "outcome": "Organize class answers into typed columns and rows, then choose visualizations that answer a question.",
+  "driver": "students or teacher",
+  "minutes": "20-35",
+  "modes": [
+    "Sample class",
+    "Our class"
+  ],
+  "grades_label": "Grade 4",
+  "sources": [
+    "Room 4: made-up practice data, recomputed from spec.md",
+    "American Dental Association, MouthHealthy, Eruption Charts: https://www.mouthhealthy.org/all-topics-a-z/eruption-charts",
+    "CSTA Data and Analysis: https://csteachers.org/k12standards/",
+    "Common Core mathematics 3.MD.B.3 and 4.MD.B.4: https://www.thecorestandards.org/Math/",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

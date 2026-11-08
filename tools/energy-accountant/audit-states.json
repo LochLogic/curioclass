@@ -1,0 +1,253 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "nitrogen-source",
+      "steps": [
+        {
+          "click": "#s-deer"
+        },
+        {
+          "click": "#entry-alanine"
+        },
+        {
+          "wait": 1600
+        }
+      ],
+      "keep": [
+        "#hint",
+        "[data-account=soil]",
+        "#entry-grid"
+      ]
+    },
+    {
+      "name": "passport-sugar",
+      "steps": [
+        {
+          "click": "#follow-carbon"
+        },
+        {
+          "click": "#next-stamp",
+          "times": 2,
+          "gap": 0.2
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#sugar-main",
+        "#next-stamp"
+      ]
+    },
+    {
+      "name": "posted",
+      "steps": [
+        {
+          "click": "#entry-photo"
+        },
+        {
+          "wait": 1600
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#entry-grid",
+        "#status"
+      ]
+    },
+    {
+      "name": "night",
+      "steps": [
+        {
+          "click": "#s-night"
+        },
+        {
+          "click": "#entry-respire"
+        },
+        {
+          "wait": 1600
+        }
+      ],
+      "keep": [
+        "#hint"
+      ]
+    },
+    {
+      "name": "deer",
+      "steps": [
+        {
+          "click": "#s-deer"
+        },
+        {
+          "click": "#entry-lactate"
+        },
+        {
+          "wait": 1600
+        }
+      ],
+      "keep": [
+        "#hint"
+      ]
+    },
+    {
+      "name": "dough",
+      "steps": [
+        {
+          "click": "#s-dough"
+        },
+        {
+          "click": "#entry-ethanol"
+        },
+        {
+          "wait": 1600
+        }
+      ],
+      "keep": [
+        "#hint"
+      ]
+    },
+    {
+      "name": "soil",
+      "steps": [
+        {
+          "click": "#s-soil"
+        },
+        {
+          "click": "#entry-respire"
+        },
+        {
+          "wait": 1600
+        }
+      ],
+      "keep": [
+        "#hint"
+      ]
+    },
+    {
+      "name": "wood",
+      "steps": [
+        {
+          "click": "#wood-open"
+        },
+        {
+          "click": "#wood-check"
+        }
+      ],
+      "keep": [
+        "#wood-result",
+        "#wood-check"
+      ]
+    },
+    {
+      "name": "passport-end",
+      "steps": [
+        {
+          "click": "#follow-carbon"
+        },
+        {
+          "click": "#next-stamp",
+          "times": 9,
+          "gap": 0.1
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#next-stamp",
+        "#stamp-name"
+      ]
+    },
+    {
+      "name": "oxygen-run",
+      "steps": [
+        {
+          "click": "#m-oxygen"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "wait": 800
+        },
+        {
+          "click": "#oxygen"
+        },
+        {
+          "wait": 3400
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#counter-on",
+        "#counter-off",
+        "#tick"
+      ]
+    },
+    {
+      "name": "yeast-high",
+      "steps": [
+        {
+          "click": "#m-oxygen"
+        },
+        {
+          "click": "#cell-yeast"
+        },
+        {
+          "click": "#oxygen"
+        },
+        {
+          "click": "#work"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "click": "#tick"
+        }
+      ],
+      "keep": [
+        "#hint"
+      ]
+    },
+    {
+      "name": "swing",
+      "steps": [
+        {
+          "click": "#m-planet"
+        },
+        {
+          "click": "#swing"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#co2-chart",
+        "#table-toggle"
+      ]
+    },
+    {
+      "name": "planet-table",
+      "steps": [
+        {
+          "click": "#m-planet"
+        },
+        {
+          "click": "#table-toggle"
+        },
+        {
+          "click": "#conclude"
+        }
+      ],
+      "keep": [
+        "#hint"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "algebra-tile-studio",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Close the rectangle. Read the factors.",
+  "outcome": "Factor quadratic expressions and complete the square using signed algebra tiles",
+  "driver": "students",
+  "minutes": "15-40",
+  "modes": [
+    "Mat",
+    "Frame",
+    "Square"
+  ],
+  "grades_label": "Grade 9",
+  "sources": [
+    "Common Core State Standards, High School Algebra, Seeing Structure in Expressions, A-SSE.A.1, A-SSE.A.2, A-SSE.B.3a, A-SSE.B.3b",
+    "OpenStax Elementary Algebra 2e, section 7.3, and Intermediate Algebra 2e, section 9.2",
+    "NCTM Illuminations, Algebra Tiles, signed area and zero pairs",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

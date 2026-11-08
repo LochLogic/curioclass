@@ -1,0 +1,36 @@
+{
+  "id": "usage-panel",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Hear five voices, inspect the record, and chair your own usage panel.",
+  "outcome": "Explain how usage conventions vary by setting and change over time.",
+  "driver": "students or teacher",
+  "minutes": "20-40",
+  "modes": [
+    "Hearing",
+    "Record",
+    "Ruling"
+  ],
+  "grades_label": "Grade 11",
+  "sources": [
+    "AHD, they usage note: https://ahdictionary.com/word/search.html?q=they",
+    "AHD, hopefully usage note: https://ahdictionary.com/word/search.html?q=hopefully",
+    "CJR, AP and Chicago changes, 27 March 2017: https://www.cjr.org/language_corner/stylebooks-single-they-ap-chicago-gender-neutral.php",
+    "Chicago, 18th edition, What's New, 5.51 and 5.266: https://www.chicagomanualofstyle.org/help-tools/what-s-new.html",
+    "Russell Harper, Chicago reviser, Five Changes That Matter (Writer's Digest): https://www.writersdigest.com/write-better-fiction/5-changes-that-matter-from-the-chicago-manual-of-style-18th-edition",
+    "APA 7, 2019; singular they guidance: https://apastyle.apa.org/style-grammar-guidelines/grammar/singular-they",
+    "Associated Press via WHYY, 10 December 2019: https://whyy.org/articles/merriam-webster-declares-they-its-2019-word-of-the-year/",
+    "Shakespeare, The Comedy of Errors, 4.3: https://www.gutenberg.org/ebooks/1504",
+    "Austen, Pride and Prejudice, 1813: https://www.gutenberg.org/ebooks/1342",
+    "Dickens, Nicholas Nickleby, 1838-1839: https://www.gutenberg.org/ebooks/967",
+    "Twain, Tom Sawyer, chapter 2, 1876: https://www.gutenberg.org/ebooks/74",
+    "Fitzgerald, The Great Gatsby, chapter 5, 1925: https://www.gutenberg.org/ebooks/64317",
+    "Merriam-Webster, Did we change the definition of literally?: https://www.merriam-webster.com/grammar/misuse-of-literally",
+    "Merriam-Webster, Can hopefully mean I hope?: https://www.merriam-webster.com/grammar/yes-you-can-use-hopefully-to-mean-i-hope",
+    "Split infinitive, cited works: Layamon; Wycliffe; New-England Magazine (1834); Alford (1864); Fowler (1926); MWDEU (1994); Economist (2012, 2018): https://en.wikipedia.org/wiki/Split_infinitive",
+    "Fewer versus less, cited works: OED; Robert Baker (1770); MWDEU (1995); Cambridge Guide (2004): https://en.wikipedia.org/wiki/Fewer_versus_less",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

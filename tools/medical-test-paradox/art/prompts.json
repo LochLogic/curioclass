@@ -1,0 +1,59 @@
+{
+  "house_style": "Soft pastel gouache and colored-pencil editorial illustration for Grade 10, sophisticated calm composition, tactile painted texture, directional morning light from the upper left, dimensional objects with fine true details. No text, letters, numbers or logos. No people.",
+  "assets": [
+    {
+      "name": "town-street",
+      "prompt": "A quiet small-town main street at dawn, brick shops with plain blank awnings, a small clinic with a green cross lamp, trees and a water tower behind. Wide panoramic composition with foreground pavement, middle-distance shops and distant sky. Rich atmospheric morning light.",
+      "aspect": "4:1",
+      "width": 1300,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "test-strip",
+      "prompt": "A white plastic home test cassette lying flat, viewed from a gentle angle, a small oval window showing exactly one raspberry red line, blank recessed label panel, circular sample well, fine molded rim and subtle lavender dimensional shading. Soft pastel gouache and colored-pencil editorial illustration, upper-left morning light. Entire cassette inside the canvas, clean genuinely transparent background and clean white edges with no green or magenta fringe. No text, letters, numerals, logos or people.",
+      "aspect": "1:1",
+      "width": 450,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "redraws": 1,
+      "transparent": true
+    },
+    {
+      "name": "clinic-hall",
+      "prompt": "An empty bright clinic waiting room with rows of teal chairs, a reception desk with a plain blank sign, potted plants and tall windows. Warm upper-left morning light, foreground chairs, middle reception desk, distant hallway, beautifully painted tactile materials.",
+      "aspect": "4:3",
+      "width": 600,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "lab-rack",
+      "prompt": "A rack of capped test tubes and a microscope on a clean lab bench by a window. Carefully observed laboratory equipment, dimensional glass highlights, foreground bench edge, middle rack and microscope, soft distant window and morning light.",
+      "aspect": "4:3",
+      "width": 600,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "coin-flip",
+      "prompt": "A single plain silver coin spinning upright on its narrow finely ridged edge, gentle three-quarter close view, blank reflective faces with softly brushed metal texture, upper-left morning light, pale pink and blue reflected highlights, soft pastel gouache and colored-pencil editorial illustration. Entire coin comfortably inside the canvas. Clean genuinely transparent background and clean silver edges, with no green or magenta fringe. No text, letters, numerals, logos, people or ground plane.",
+      "aspect": "1:1",
+      "width": 450,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "redraws": 2,
+      "transparent": true
+    }
+  ]
+}

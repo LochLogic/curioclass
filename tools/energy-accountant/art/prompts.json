@@ -1,0 +1,178 @@
+{
+  "house_style": "Naturalistic science illustration for a Grade 9 field ledger. Rich painterly gouache with fine natural textures, clear believable forms, soft directional light from upper left, calm deep blue shadows and warm highlights. Foreground, middle distance and background create depth. Elegant museum science art, not cartoon. No text, letters, numbers, symbols, logos or watermark. No people.",
+  "assets": [
+    {
+      "name": "ea-leaf-day",
+      "prompt": "A single broad green maple leaf on a twig in bright sunshine against a blue sky. The leaf fills the center, delicate branching veins lit from behind, small distant canopy bokeh.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-leaf-night",
+      "prompt": "A single green maple leaf on a twig at night, cool blue moonlight along the veins, dark sky with a few stars, distant forest silhouettes and gentle dew highlights.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-deer",
+      "prompt": "A natural mule deer bounding across a dry golden hillside in late afternoon. All four hooves off the ground, accurate anatomy, large mule-like ears, sagebrush foreground and distant blue ridges.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-dough",
+      "prompt": "A ceramic bowl of rising bread dough with a domed top and small bubbles, on a floury wooden counter. Golden window light, glazed blue ceramic, linen cloth, visible flour and wood grain.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-soil",
+      "prompt": "Close view of a forest floor, dark moist soil, fallen brown leaves breaking down, small white mushrooms and fine white fungus threads, moss in the foreground, forest shadows behind.",
+      "aspect": "16:9",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-muscle-cell",
+      "prompt": "One long cylindrical striated skeletal muscle fiber, scientific cutaway illustration, pink and red cross bands, small oval mitochondria alongside it, fine parallel fibrils. Dark navy plain background.",
+      "aspect": "4:3",
+      "width": 800,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-yeast-cell",
+      "prompt": "A few oval yeast cells as a careful scientific illustration, pale gold translucent cell walls, one with a small bud, visible interior organelles, dark navy plain background.",
+      "aspect": "4:3",
+      "width": 800,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-stamp-air",
+      "prompt": "A circular vignette filled entirely with blue sky and thin high cirrus clouds, view looking straight upward. Thin plain cream circular rim, completely visible. Flat pure green #00FF00 outside. No landscape or terrain.",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "redrawn": 1,
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-stamp-ocean",
+      "prompt": "A small round painted vignette inside a plain cream circle frame: A shallow turquoise sea over pale sand. Entire circular frame visible, centered, on flat pure green (#00FF00) background. Background exactly uniform green, no cast shadow outside the circle.",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-stamp-shell",
+      "prompt": "A small round painted vignette inside a plain cream circle frame: A ribbed clam shell on wet sand. Entire circular frame visible, centered, on flat pure green (#00FF00) background. Background exactly uniform green, no cast shadow outside the circle.",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-stamp-limestone",
+      "prompt": "A small round painted vignette inside a plain cream circle frame: A pale layered limestone cliff. Entire circular frame visible, centered, on flat pure green (#00FF00) background. Background exactly uniform green, no cast shadow outside the circle.",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-stamp-vent",
+      "prompt": "A small round painted vignette inside a plain cream circle frame: A steaming volcanic vent and hot spring on a rocky volcano flank. Entire circular frame visible, centered, on flat pure green (#00FF00) background. Background exactly uniform green, no cast shadow outside the circle.",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-station-arctic",
+      "prompt": "A small research station far from any town, wide view, plain walls. A low research building on flat snowy Arctic coastal tundra beside a gray sea, polar coastal light. Completely flat level ice or coastal tundra horizon in every direction; no mountains or hills. Geographic illustration, buildings generic.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "redrawn": 1,
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-station-maunaloa",
+      "prompt": "A small research station far from any town, wide view, plain walls. Small white observatory domes on a bare dark lava slope high above a sea of clouds.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "inspected at final size"
+    },
+    {
+      "name": "ea-station-pole",
+      "prompt": "A small research station far from any town, wide view, plain walls. A long raised research building on flat white polar ice under a deep blue sky. Completely flat level ice or coastal tundra horizon in every direction; no mountains or hills. Geographic illustration, buildings generic.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "redrawn": 1,
+      "review": "inspected at final size"
+    }
+  ]
+}
