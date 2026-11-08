@@ -94,7 +94,7 @@ on them, chunky shapes, things that bounce, clack and squish (reduced motion alw
 **Puzzle material, free to use:** the Lichess puzzle database (CC0) for chess puzzles from real games; centuries-old
 public domain Go problem collections; public domain checkers problems. Each spec checks the licence at source.
 
-**Computer opponents** are kind: a few gentle levels each, never a crushing engine, all offline in one file. Go gets a
+**Computer opponents** cover a real range (Cory, 2026-11-08): every board game (Go, Chess, Checkers and later ones like them) plays full games against the computer at several levels, from gentle beginners up to a genuinely strong top level, all offline in one file. Easy levels stay kind; the top ones give strong kids a real game. Go gets a
 sensitivity check on its roots (China, Japan, Korea) like any cultural tool.
 
 ## The shell and the shelf
