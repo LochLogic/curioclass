@@ -969,6 +969,8 @@ if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynth
     index += ws_index
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
+# Recess (docs/GAMES.md): the game shelf. Out of the nav and noindex until the first game is live.
+render('recess.html', '/recess/', index=False, games=json.loads((DATA / 'recess.json').read_text(encoding='utf-8'))['games'])
 render(f'pages/{ABOUT}.html', '/about/')
 for name in ['teachers', 'privacy', 'accessibility', 'license']:
     render(f'pages/{name}.html', f'/{name}/')

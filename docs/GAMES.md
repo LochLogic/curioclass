@@ -75,6 +75,38 @@ rules are free to use; the art, boards and puzzles stay our own. Look-ahead plan
 are play against the computer at a few levels, pass-and-play on one device, and short puzzles (capture in two, mate
 in one). Not yet specced.
 
+## The first collection (Cory, 2026-11-08)
+
+Five games launch together so the shelf looks full on day one: Go, Chess, Checkers, Sliding blocks (Cargo Hold) and
+Untangle. Each is its own physical world; only the shell is shared. Classic rules, our own art, boards and levels.
+
+| Game | World | The grab |
+|---|---|---|
+| Go | Ink and stone: slate and shell stones on a warm wood board | Stones click down; captured groups wash off like ink in water. 9x9 first, then 13x13 and 19x19 |
+| Chess | Paper theatre: cut-paper pieces on a stage, lit from the side | Classic, readable piece shapes; a captured piece folds flat and slides offstage |
+| Checkers | Night arcade: neon pucks on a glowing grid | Jumps squash and stretch the puck; a king's crown pops on |
+| Cargo Hold (sliding blocks) | A ship's hold: wooden crates slid to free one hatch | Crates thunk, the hatch swings open. No cars or parking lot (too close to a brand-name puzzle) |
+| Untangle | Constellations: drag the stars until no lines cross | A solved level lights up into a picture (a whale, a fox, a ship) |
+
+**Look and feel.** Recess feels like a toy you can pick up, not a printed page: deep saturated backgrounds with light
+on them, chunky shapes, things that bounce, clack and squish (reduced motion always honored), sound one tap away.
+
+**Puzzle material, free to use:** the Lichess puzzle database (CC0) for chess puzzles from real games; centuries-old
+public domain Go problem collections; public domain checkers problems. Each spec checks the licence at source.
+
+**Computer opponents** are kind: a few gentle levels each, never a crushing engine, all offline in one file. Go gets a
+sensitivity check on its roots (China, Japan, Korea) like any cultural tool.
+
+## The shell and the shelf
+
+- **The Recess shell** is `kit/recess.js` and `kit/recess.css` (bundled with `kit:recess`). Every game shares it and
+  nothing else: the corner controls (Undo, Restart, Sound, Motion, Scores), stars per level, a personal best, the
+  3-letter initials board (local top 10 per level), the win card, sounds, a confetti burst, a seeded daily puzzle and
+  device-only storage. `kit/recess-demo.html` is a test bench that uses every call; the API is in the file's header.
+- **The shelf** is `/recess/` (`site/templates/recess.html`, rows in `data/recess.json`, box art in
+  `site/templates/recess/`). Each game is a box with its grade band as a colored edge. It stays out of the nav and
+  noindex until the first game is live; then a row's `live` turns its box into a link.
+
 ## Open questions
 
 1. Does a game also appear on a standard's page, or only on the Recess shelf?
