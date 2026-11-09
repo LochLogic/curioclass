@@ -54,8 +54,37 @@ and `art/<name>.webp` for painted images, plus `codex-report.md`. If `bundle_too
 without `voice/lines.json` or `audit-states.json`, write the smallest valid one and say so in the report. The bundle
 `<id>.html` is generated and git-ignored.
 
-Images: boards, pieces and anything that must stay exact are drawn in code (SVG or canvas). Paint only what the spec's
-art list names (backdrops, textures, picture reveals). Never paint text.
+Images: see "Visually amazing" below. It replaces the Images rule of the regular brief wherever the two differ. Never
+paint text.
+
+## Visually amazing (owner's decision, Cory, 2026-11-08)
+
+Cory's words: "I want the games to be visually amazing. please ensure that happens." Looks are a pass condition for a
+Recess game, not a polish item. Use your image generation tool fully: the art you paint is the look of the game.
+
+- **Painted first.** Everything a kid looks at is painted unless it is pure geometry that must sit on exact
+  coordinates or move freely. Painted: pieces, stones, pucks, crates, barrels, the board's surface and frame, the room,
+  backdrops, puppet portraits, picture reveals, captured-piece effects where a painted sprite or frame sequence reads
+  better. Code places every sprite exactly (cut-out WebP on transparency), so painting never costs exactness.
+- **Code draws only geometry:** grid lines, Untangle's edges and dashes, legal-move dots, selection rings, hit areas,
+  the stars of the night sky. Give code-drawn layers the painted world's light (soft glow, shadow, texture, the
+  palette of the painting) so they sit inside the picture, never on top of it like a diagram.
+- **The spec is a floor, not a ceiling.** Where a spec says "drawn in code" for something visible that is not pure
+  geometry (for example chess pieces as SVG), paint it instead, and keep the spec's readability rules (silhouettes a kid
+  can tell apart at a glance, grayscale-safe sides). A spec's art list is the minimum set; add what makes the world
+  richer. A spec's hex palette guides contrast and mood; the painting may refine it as long as the contrast checks pass.
+- **Look board first.** Before writing game logic, paint the world and make three hero frames at 1366x768 with the
+  real art: the opening screen, a game in progress, and the best moment (a capture, a win, a reveal). If the direction
+  is not obvious, make two directions and keep the more striking one. Save the frames in `_scratch/<id>/look/` and put
+  them in the report under "Look board".
+- **Motion sells it:** light that moves, depth and parallax, particles, squash and settle on every placed piece,
+  satisfying captures and wins. Calm motion keeps the look and drops the movement.
+- **Box art.** Paint `art/cover.webp`, 1200x750, no text: the shelf's game box for this game (`/recess/`), the world's
+  most striking view. The shelf's current SVG boxes are placeholders until these arrive.
+- **The bar.** Would a kid stop scrolling for this frame? Would it sit comfortably next to a well-made indie game? If
+  not, redraw it (images can be redrawn up to three times each here) and say what changed.
+- **Size.** A Recess game may bundle up to 6 MB (WebP, sprites at about twice their largest on-screen size so they
+  stay crisp), above the 2 MB goal for tools. Report the size.
 
 Puzzle material: use only what the spec lists, with the licence the spec recorded. If you go online to fetch a
 puzzle set the spec names, read the licence at the source first, keep raw files in `_scratch/<id>/data/`, and put
@@ -88,6 +117,7 @@ As the regular brief's "Check your work", with these changes:
 ## Puzzles and levels   (each re-solved: stated vs computed)
 ## Computer opponent    (each level: how it plays, think time measured, level-against-level results)
 ## Break it
+## Look board           (the three hero frames, directions tried, the one kept and why)
 ## Grab check           (best moment, flattest moment, what you changed, frames compared)
 ## Class creep check
 ## Sources              (each puzzle source, licence as stated at the source)
@@ -103,5 +133,6 @@ As the regular brief's "Check your work", with these changes:
 A Self-check of a Recess game follows `docs/agents/CODEX-REVIEW.md` for its process, fixes and report file, but judges
 the game against this brief and GAMES.md, not the lesson norms. Never add a kit header, voice, lesson card or standard
 code; remove any that slipped in. Play before you read the builder's report. The game failing to grab attention, or
-looking like a classroom tool, is a should fix; a rule played wrong, a puzzle with a wrong or second solution the game
+looking like a classroom tool, is a should fix; anything that looks plain, flat or code-drawn where "Visually amazing"
+says it should be painted is a blocker, and the self-checker paints it; a rule played wrong, a puzzle with a wrong or second solution the game
 rejects, a computer opponent that freezes the page, or a star a cheat can earn is a blocker.

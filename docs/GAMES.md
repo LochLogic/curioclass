@@ -89,7 +89,9 @@ Untangle. Each is its own physical world; only the shell is shared. Classic rule
 | Untangle | Constellations: drag the stars until no lines cross | A solved level lights up into a picture (a whale, a fox, a ship) |
 
 **Look and feel.** Recess feels like a toy you can pick up, not a printed page: deep saturated backgrounds with light
-on them, chunky shapes, things that bounce, clack and squish (reduced motion always honored), sound one tap away.
+on them, chunky shapes, things that bounce, clack and squish (reduced motion always honored), sound one tap away. The games must be visually amazing (Cory, 2026-11-08): painted first, with code drawing only
+geometry that must sit on exact coordinates; the builder paints a three-frame look board before writing game logic
+and a box cover for the shelf (docs/agents/CODEX-RECESS.md, "Visually amazing").
 
 **Puzzle material, free to use:** the Lichess puzzle database (CC0) for chess puzzles from real games; centuries-old
 public domain Go problem collections; public domain checkers problems. Each spec checks the licence at source.
