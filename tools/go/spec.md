@@ -521,6 +521,8 @@ only.
 
 ## Open questions
 
+Owner: default accepted, Cory 2026-11-08; may tweak later. Each question below stands at its default.
+
 1. Add Chinese classic problems (Xuanxuan Qijing, 1349) beside the Japanese ones, after a public domain check of a
    scan, and a Korean classic if a public domain source is found? Default: yes, in a later pass, so the puzzles
    do not come from one country only.

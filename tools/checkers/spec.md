@@ -463,6 +463,8 @@ Everything stays on this device. No accounts, no ads, no data collected. Best sc
 
 ## Open questions
 
+Owner: default accepted, Cory 2026-11-08; may tweak later. Each question below stands at its default.
+
 1. Casual "jumps are optional" toggle: default no (see Rules). Say yes and it goes in Play a friend only.
 2. Side names Amber and Blue (Amber in the classic Black role). Default: keep.
 3. Grade band: the shelf row says k2 with "Grades K-12". Default: keep; Pip and round 1 are for the youngest.

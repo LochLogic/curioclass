@@ -2,6 +2,20 @@
 
 Cory's answers to question cards, and what each still needs. Remove a line once it is applied to the specs.
 
+## 2026-11-08
+
+**Recess first collection (Go, Chess, Checkers, Cargo Hold, Untangle)**
+- Cory takes the default on every open question in the five specs ("we'll tweak them later"). Each spec's Open
+  questions section is marked "Owner: default accepted, Cory 2026-11-08; may tweak later." Untangle keeps its name.
+- Computer opponents cover a real range in every board game, gentle to genuinely strong (applied to Chess, Checkers
+  and Go, and in CODEX-RECESS.md).
+- Chess: the top puppet (Lion) plays at about 2250 Elo, the ladder in even steps of about 300, calibrated against
+  Stockfish at dev time (applied to the spec, 3cf5d85b). Chess is built first.
+- Untangle and Cargo Hold: a progressive difficulty ladder with room for 500+ levels without a big file (generated,
+  verified and packed). Cargo Hold is queued after its update; Untangle's design goes to Cory before it is queued, and
+  it is the second build.
+- front-line: the real-data day takes its default (a later round, already in the spec's "Later round (decided)").
+
 ## 2026-11-06
 
 **Second spec test (estimation-station, which-way-is-down, box-plot-builder, story-graphs, illusion-lab)**
