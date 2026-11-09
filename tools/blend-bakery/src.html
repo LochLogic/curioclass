@@ -1,0 +1,3208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Blend Bakery · Sound jars and word orders · Curio Class</title>
+<meta name="description" content="Line up sound jars on the bakery tray, slide them through the oven to hear the blend, and read the baked word on the box. Grade 1 ELA phonics: blends, digraphs, magic-e, vowel teams, two-syllable cakes, endings, and tricky words. Works offline.">
+<!--
+Blend Bakery (Curio Class)
+Grade 1, English Language Arts, module "Phonics: Blends and Digraphs" (Foundational Skills).
+Standards: CCSS.ELA-LITERACY.RF.1.2 (RF.1.2a, RF.1.2b, RF.1.2c, RF.1.2d) and RF.1.3 (RF.1.3a, RF.1.3b, RF.1.3c, RF.1.3d, RF.1.3e, RF.1.3f, RF.1.3g).
+Driver: a child alone, a pair, or the class on a projector ("students or teacher").
+Modes: Counters (Digraph Donuts, Blend Buns, Magic-e Muffins, Team Tarts, Two-Layer Cakes, Ending Eclairs, Tricky Treats) and Rush Hour (90-second mix with Relaxed default on).
+Sources: Common Core State Standards (RF.1.2, RF.1.3), Merriam-Webster Dictionary (spelling rules and homophones), Reading Rockets (adding suffixes).
+Illustrations generated with Google Gemini, edited for Curio Class.
+One self-contained offline file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper: #fff8f6;
+  --ink: #2a1219;
+  --muted: #6b5058;
+  --line: #e4c6d0;
+  --focus: #1d5fd1;
+  --brand: #a8325e;
+  --gold: #f6c94a;
+  --btn: #882349;
+  --btn-line: #e79bb7;
+  --head-ink: #ffffff;
+  --panel: #fff8f6;
+  --c-cons: #fde8ef;
+  --c-cons-b: #b3426d;
+  --c-vow: #fff3cc;
+  --c-vow-b: #a87208;
+  --c-team: #e3f4fc;
+  --c-team-b: #1e6c93;
+  --c-end: #e7f6e7;
+  --c-end-b: #2b7a3d;
+}
+* { box-sizing: border-box; user-select: none; -webkit-user-select: none; }
+[hidden] { display: none !important; }
+html, body { height: 100%; overflow: hidden; background: var(--paper); color: var(--ink); }
+header {
+  padding: 6px 14px;
+  gap: 8px;
+  border-bottom: 3px solid #7d2043;
+  box-shadow: 0 2px 8px #2a121922;
+  z-index: 5;
+}
+h1 { font: 800 clamp(18px, 2.2vw, 26px)/1.1 'Trebuchet MS', 'Segoe UI', sans-serif; }
+h1 small { font: 600 13px/1.2 'Segoe UI', sans-serif; opacity: .92; }
+.seg button, .icon-btn {
+  min-height: 60px;
+  min-width: 60px;
+  padding: 0 14px;
+  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.seg button[aria-pressed="true"] {
+  background: var(--gold);
+  color: var(--ink);
+}
+main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 295px;
+  grid-template-rows: minmax(0, 1fr);
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+body.compact main {
+  grid-template-columns: minmax(0, 1fr) 225px;
+}
+body.stack main {
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+.stage {
+  position: relative;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #f9ebe6 url(art:bakery) center top / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 12px;
+}
+body.stack .stage {
+  min-height: 0;
+}
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #fff8f64d 0%, #fff8f699 45%, #f5e2d8d9 100%);
+  pointer-events: none;
+}
+.stage > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Steam and ambient bakery life (respects .calm) */
+.ambient-steam {
+  position: absolute;
+  right: 72px;
+  top: 64px;
+  width: 60px;
+  height: 60px;
+  pointer-events: none;
+  z-index: 1;
+}
+.steam-puff {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, #ffffffcc 0%, #ffffff00 72%);
+  animation: floatSteam 3.6s infinite ease-in-out;
+}
+.steam-puff.s1 { width: 26px; height: 26px; left: 8px; bottom: 4px; animation-delay: -0.5s; }
+.steam-puff.s2 { width: 34px; height: 34px; left: 22px; bottom: 18px; animation-delay: -1.8s; }
+.steam-puff.s3 { width: 22px; height: 22px; left: 14px; bottom: 32px; animation-delay: -2.9s; }
+@keyframes floatSteam {
+  0% { transform: translateY(8px) scale(0.85); opacity: 0.25; }
+  50% { transform: translateY(-8px) scale(1.1); opacity: 0.75; }
+  100% { transform: translateY(-22px) scale(0.9); opacity: 0.15; }
+}
+body.calm .steam-puff { animation: none !important; opacity: 0.45; }
+
+/* View 1: Bakery Front (7 Counters) */
+.front-view {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 8px;
+  height: 100%;
+  min-height: 0;
+}
+.front-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #fff8f6f2;
+  border: 3px solid var(--brand);
+  border-radius: 16px;
+  padding: 6px 14px;
+  box-shadow: 0 4px 10px #2a121918;
+}
+.bea-greet {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bea-greet img {
+  width: 72px;
+  height: 72px;
+  object-fit: contain;
+  flex: none;
+}
+.bea-greet-text b {
+  display: block;
+  font: 800 19px/1.15 'Trebuchet MS', sans-serif;
+  color: var(--brand);
+}
+.bea-greet-text span {
+  font-size: 14.5px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.door-guest {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fdf0f4;
+  border: 2px solid #dfaec0;
+  border-radius: 12px;
+  padding: 4px 12px;
+}
+.door-guest img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+.door-guest span {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.counters-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: minmax(60px, 1fr);
+  gap: 8px;
+  min-height: 0;
+}
+.counter-card {
+  position: relative;
+  border: 3px solid #b84b74;
+  border-radius: 16px;
+  background: linear-gradient(180deg, #ffffff 0%, #fff0f5 100%);
+  color: var(--ink);
+  padding: 6px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  box-shadow: 0 4px 0 #8a284d33;
+  text-align: center;
+  min-height: 60px;
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.counter-card:hover {
+  background: #fff9fb;
+  border-color: var(--brand);
+  transform: translateY(-1px);
+}
+.counter-card.rush-card {
+  background: linear-gradient(180deg, #fffbeb 0%, #fde694 100%);
+  border-color: #b57c08;
+}
+.counter-card svg.c-icon {
+  width: 58px;
+  height: 58px;
+  display: block;
+  flex: none;
+}
+.counter-card .c-title {
+  font: 800 16px/1.15 'Trebuchet MS', sans-serif;
+  color: var(--ink);
+}
+.counter-card .c-sub {
+  font: 600 12.5px/1.15 'Segoe UI', sans-serif;
+  color: var(--muted);
+}
+.ribbon-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: var(--gold);
+  color: var(--ink);
+  border: 2px solid #966800;
+  border-radius: 999px;
+  padding: 1px 8px;
+  font: 800 11.5px/1.2 'Segoe UI', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* View 2: Active Counter / Rush Hour Workspace */
+.work-view {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  gap: 6px;
+  height: 100%;
+  min-height: 0;
+}
+.work-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  background: #fff8f6f2;
+  border: 2px solid #d9b2c0;
+  border-radius: 12px;
+  padding: 4px 10px;
+}
+.work-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 800 16px/1.1 'Trebuchet MS', sans-serif;
+  color: var(--brand);
+}
+.order-dots {
+  display: inline-flex;
+  gap: 5px;
+  align-items: center;
+}
+.order-dots i {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--brand);
+  background: #fff;
+  display: inline-block;
+}
+.order-dots i.done { background: var(--gold); border-color: #8c6200; }
+.order-dots i.cur { background: var(--brand); box-shadow: 0 0 0 2px var(--gold); }
+
+.stats-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 800 14px/1 'Segoe UI', sans-serif;
+}
+.stat-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #fff;
+  border: 2px solid #d4b2be;
+  color: var(--ink);
+}
+.stat-pill.gold-pill {
+  background: var(--gold);
+  border-color: #946600;
+}
+.stat-pill.streak-on {
+  background: #ffe89e;
+  border-color: var(--brand);
+  box-shadow: 0 0 8px var(--gold);
+}
+
+/* Main Bench: Customer (left), Tray (center), Oven (right) */
+.bench {
+  display: grid;
+  grid-template-columns: 215px minmax(0, 1fr) 185px;
+  gap: 8px;
+  align-items: stretch;
+  min-height: 0;
+}
+.customer-card {
+  background: linear-gradient(180deg, #fff9f7f2 0%, #f7e4dcf5 100%);
+  border: 3px solid #cfa0b1;
+  border-radius: 16px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.speech-bubble {
+  width: 100%;
+  background: #ffffff;
+  border: 3px solid var(--brand);
+  border-radius: 14px;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  position: relative;
+  box-shadow: 0 3px 6px #2a121914;
+}
+.speech-bubble::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 32px;
+  border-width: 10px 8px 0;
+  border-style: solid;
+  border-color: var(--brand) transparent;
+}
+.order-pic {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  background: #fff8f6;
+  border: 2px solid #e6c8d2;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.order-pic svg {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+.bubble-copy {
+  flex: 1;
+  min-width: 0;
+}
+.bubble-copy b {
+  display: block;
+  font: 800 14px/1.2 'Segoe UI', sans-serif;
+  color: var(--ink);
+}
+.bubble-copy small {
+  display: block;
+  font: 600 11.5px/1.2 'Segoe UI', sans-serif;
+  color: var(--muted);
+  margin-top: 2px;
+}
+.customer-stage {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  flex: 1;
+  min-height: 90px;
+  padding-top: 6px;
+}
+.customer-stage img.cust-img {
+  height: 128px;
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+.customer-stage img.bea-mini {
+  height: 112px;
+  max-height: 92%;
+  width: auto;
+  object-fit: contain;
+}
+.patience-wrap {
+  width: 100%;
+  height: 8px;
+  background: #ebd8df;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid #b58c9b;
+}
+.patience-bar {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #2b8a3e, #f6c94a, #c92a2a);
+  transition: width 0.2s linear;
+}
+
+/* Center Tray Zone */
+.tray-card {
+  background: linear-gradient(180deg, #fffdf9eb 0%, #f5dfd2f2 100%);
+  border: 3px solid #b88b76;
+  border-radius: 16px;
+  padding: 8px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  position: relative;
+  box-shadow: inset 0 2px 6px #00000012;
+}
+.tray-hood {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 10px;
+  background: #fdf0f4;
+  border: 2px solid #e2c2ce;
+  border-radius: 12px;
+  font: 700 13px/1.2 'Segoe UI', sans-serif;
+  color: var(--ink);
+}
+.tray-hood b {
+  color: var(--brand);
+}
+.sub-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.tin-btn {
+  min-height: 60px;
+  min-width: 120px;
+  padding: 6px 14px;
+  border-radius: 12px;
+  border: 3px solid #8c583a;
+  background: #fff;
+  color: var(--ink);
+  font: 800 15px/1.1 'Trebuchet MS', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.tin-btn[aria-pressed="true"] {
+  background: var(--gold);
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px #a8325e44;
+}
+.metal-tray {
+  width: 100%;
+  max-width: 700px;
+  min-height: 112px;
+  background: linear-gradient(180deg, #eef2f6 0%, #cfd8e0 100%);
+  border: 4px solid #7c8b99;
+  border-radius: 20px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  box-shadow: inset 0 3px 6px #ffffffaa, 0 5px 0 #5b6875;
+  transition: transform 0.35s ease;
+}
+.metal-tray.sliding {
+  transform: translateX(48px) scale(0.95);
+}
+.cake-trays {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+.cake-layer-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: linear-gradient(180deg, #fff5eb 0%, #f5dec9 100%);
+  border: 3px solid #b57c56;
+  border-radius: 14px;
+  padding: 6px 10px;
+}
+.layer-tag {
+  font: 800 13px/1.1 'Segoe UI', sans-serif;
+  color: var(--ink);
+  background: #ffe3eb;
+  border: 2px solid var(--brand);
+  border-radius: 8px;
+  padding: 4px 8px;
+  min-width: 64px;
+  text-align: center;
+}
+.tray-slot {
+  min-width: 78px;
+  min-height: 78px;
+  border: 3px dashed #7f606b;
+  border-radius: 16px;
+  background: #ffffffd9;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  position: relative;
+  font: 900 24px/1 'Trebuchet MS', sans-serif;
+}
+.tray-slot.vowel-spot {
+  border: 3px dotted var(--brand);
+  background: #fff9e6;
+}
+.tray-slot .slot-tag {
+  font: 700 11px/1 'Segoe UI', sans-serif;
+  color: var(--muted);
+  margin-top: 3px;
+}
+.tray-slot.filled {
+  border-style: solid;
+  border-width: 3px;
+  box-shadow: 0 3px 0 #0002;
+}
+.tray-slot.glow-diff {
+  border-color: #d9480f !important;
+  background: #fff0d4 !important;
+  box-shadow: 0 0 0 4px #f6c94a, 0 0 14px #d9480f !important;
+}
+.tray-slot.slot-blending {
+  transform: translateY(-5px) scale(1.06);
+  border-color: #f59f00 !important;
+  box-shadow: 0 0 0 4px #ffe066, 0 6px 14px #f7670766 !important;
+  transition: transform 0.14s ease, box-shadow 0.14s ease;
+}
+.tray-slot.drop-hover {
+  border-color: var(--brand) !important;
+  background: #fff0f6 !important;
+  box-shadow: 0 0 0 4px #f783ac88 !important;
+  transform: scale(1.05);
+}
+.drag-jar-ghost {
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  width: 72px;
+  height: 70px;
+  transform: translate(-50%, -50%) rotate(-4deg) scale(1.06);
+  box-shadow: 0 10px 22px #2a121955 !important;
+  opacity: 0.95;
+}
+@keyframes coinPopAnim {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.18); background: #ffe066; }
+  100% { transform: scale(1); }
+}
+.stat-pill.coin-pop {
+  animation: coinPopAnim 0.45s ease;
+}
+@keyframes tinNudgeAnim {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+.tin-controls.tin-nudge .tin-btn {
+  animation: tinNudgeAnim 0.28s ease 2;
+  border-color: #d9480f;
+  box-shadow: 0 0 0 3px #ffd43b;
+}
+.eclair-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 26px;
+  background: linear-gradient(180deg, #6b371c 0%, #4d2510 55%, #e3a86b 58%, #d4924e 100%);
+  border: 3px solid #3b1a08;
+  color: #ffffff;
+  font: 800 26px/1 'Trebuchet MS', sans-serif;
+  letter-spacing: 0.02em;
+  text-shadow: 0 2px 2px #0008;
+  min-height: 74px;
+}
+.tricky-boxes {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+}
+.tricky-box-btn {
+  min-width: 112px;
+  min-height: 76px;
+  border-radius: 16px;
+  border: 3px solid var(--brand);
+  background: linear-gradient(180deg, #ffffff 0%, #fde8ef 100%);
+  color: var(--ink);
+  font: 800 25px/1.1 'Trebuchet MS', sans-serif;
+  padding: 8px 16px;
+  box-shadow: 0 4px 0 #8a284d44;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+}
+.tricky-box-btn small {
+  font: 700 11.5px/1 'Segoe UI', sans-serif;
+  color: var(--muted);
+}
+.tray-footer {
+  font: 600 12.5px/1.2 'Segoe UI', sans-serif;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* Right Oven & Baked Box Zone */
+.oven-card {
+  background: linear-gradient(180deg, #522435 0%, #361522 100%);
+  border: 4px solid #8a3858;
+  border-radius: 18px;
+  padding: 8px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  position: relative;
+  box-shadow: inset 0 2px 8px #0008;
+}
+.oven-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 4px;
+  font: 800 13px/1 'Trebuchet MS', sans-serif;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.oven-knobs {
+  display: inline-flex;
+  gap: 4px;
+}
+.oven-knobs i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid #240c15;
+  display: inline-block;
+}
+.oven-window {
+  width: 100%;
+  flex: 1;
+  min-height: 92px;
+  background: radial-gradient(circle at 50% 65%, #ff922b55 0%, #240c15 80%);
+  border: 3px solid var(--gold);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 6px;
+  position: relative;
+  overflow: hidden;
+}
+.oven-window.baking {
+  background: radial-gradient(circle at 50% 60%, #ffd43b 0%, #f76707 55%, #5c192b 100%);
+}
+.baked-box {
+  background: linear-gradient(180deg, #fffdf7 0%, #fde6a2 100%);
+  border: 3px solid #9c6d00;
+  border-radius: 12px;
+  padding: 5px 9px;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 10px #0006;
+  width: 95%;
+}
+.baked-box[hidden] {
+  display: none !important;
+}
+.baked-box.baked-try {
+  background: linear-gradient(180deg, #fff9f5 0%, #f8d7da 100%);
+  border-color: #a8325e;
+}
+.baked-box .box-pastry {
+  width: 36px;
+  height: 36px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.baked-box .box-pastry svg {
+  width: 100%;
+  height: 100%;
+}
+.baked-box .box-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0;
+}
+.baked-box .box-ribbon {
+  font: 800 10px/1 'Segoe UI', sans-serif;
+  color: var(--brand);
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+.baked-box .box-word {
+  font: 900 22px/1.1 'Trebuchet MS', sans-serif;
+  color: var(--ink);
+  letter-spacing: 0.03em;
+}
+.oven-status {
+  font: 700 12px/1.25 'Segoe UI', sans-serif;
+  color: #ffe8cc;
+  text-align: center;
+}
+
+/* Pantry Shelf (Bottom) */
+.pantry-shelf {
+  background: linear-gradient(180deg, #e8c5a5 0%, #cfa07a 100%);
+  border: 3px solid #8c5836;
+  border-radius: 16px;
+  padding: 6px 10px;
+  box-shadow: inset 0 2px 4px #ffffff88, 0 4px 0 #6e4226;
+}
+.pantry-jars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+}
+.jar-btn {
+  width: 78px;
+  height: 76px;
+  min-width: 64px;
+  min-height: 64px;
+  border: 3px solid var(--c-cons-b);
+  background: var(--c-cons);
+  color: var(--ink);
+  padding: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 4px 0 #00000028, inset 0 3px 0 #ffffffaa;
+  transition: transform 0.1s;
+}
+.jar-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+.jar-btn.used {
+  opacity: 0.38;
+}
+/* Distinct silhouettes for jar kinds (never color alone) */
+.jar-btn.kind-cons, .tray-slot.kind-cons {
+  background: var(--c-cons);
+  border-color: var(--c-cons-b);
+  border-radius: 28px;
+}
+.jar-btn.kind-vow, .tray-slot.kind-vow {
+  background: var(--c-vow);
+  border-color: var(--c-vow-b);
+  border-radius: 12px 12px 24px 24px;
+}
+.jar-btn.kind-team, .tray-slot.kind-team {
+  background: var(--c-team);
+  border-color: var(--c-team-b);
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 2px #ffffffcc, 0 4px 0 #00000028;
+}
+.jar-btn.kind-end, .tray-slot.kind-end {
+  background: var(--c-end);
+  border-color: var(--c-end-b);
+  border-radius: 22px 22px 10px 10px;
+}
+.jar-btn.kind-magic, .tray-slot.kind-magic {
+  background: #f5e6ff;
+  border-color: #673ab7;
+  border-radius: 18px 18px 10px 10px;
+}
+.jar-lid {
+  width: 66%;
+  height: 8px;
+  background: var(--brand);
+  border-radius: 4px;
+  margin-bottom: 2px;
+  flex: none;
+}
+.jar-btn.kind-vow .jar-lid { background: #b87b00; }
+.jar-btn.kind-team .jar-lid { background: #186287; width: 78%; }
+.jar-btn.kind-end .jar-lid { background: #266e36; }
+.jar-btn.kind-magic .jar-lid {
+  background: repeating-linear-gradient(90deg, #673ab7 0 4px, #f6c94a 4px 8px);
+}
+.jar-letters {
+  font: 900 25px/1 'Trebuchet MS', 'Segoe UI', sans-serif;
+  color: var(--ink);
+}
+.jar-kind-tag {
+  font: 700 10.5px/1 'Segoe UI', sans-serif;
+  color: var(--ink);
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+/* Side Control Panel */
+.panel {
+  background: var(--panel);
+  border-left: 3px solid var(--line);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+}
+body.stack .panel {
+  border-left: 0;
+  border-top: 3px solid var(--line);
+}
+.hint-card {
+  background: #ffffff;
+  border: 2px solid #debcc8;
+  border-radius: 14px;
+  padding: 8px 10px;
+  min-height: 78px;
+  display: flex;
+  align-items: center;
+}
+#hint {
+  margin: 0;
+  font: 700 15.5px/1.35 'Segoe UI', sans-serif;
+  color: var(--ink);
+}
+.front-guide {
+  background: #ffffff;
+  border: 2px solid #e2c4cf;
+  border-radius: 14px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.front-guide b {
+  font: 800 15px/1.2 'Trebuchet MS', sans-serif;
+  color: var(--brand);
+}
+.legend-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+.legend-chip {
+  padding: 5px 8px;
+  border-radius: 10px;
+  font: 700 12px/1.15 'Segoe UI', sans-serif;
+  color: var(--ink);
+  border: 2px solid #ccc;
+  text-align: center;
+}
+.legend-chip.lc-cons { background: var(--c-cons); border-color: var(--c-cons-b); border-radius: 16px; }
+.legend-chip.lc-vow { background: var(--c-vow); border-color: var(--c-vow-b); border-radius: 6px 6px 14px 14px; }
+.legend-chip.lc-team { background: var(--c-team); border-color: var(--c-team-b); border-radius: 12px; }
+.legend-chip.lc-end { background: var(--c-end); border-color: var(--c-end-b); border-radius: 14px 14px 6px 6px; }
+
+.panel-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.act-btn {
+  min-height: 60px;
+  min-width: 60px;
+  border-radius: 14px;
+  border: 3px solid #7d2043;
+  background: var(--brand);
+  color: #ffffff;
+  font: 800 17px/1.1 'Trebuchet MS', sans-serif;
+  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  box-shadow: 0 4px 0 #2a121933;
+}
+.act-btn.gold-btn {
+  background: var(--gold);
+  color: var(--ink);
+  border-color: #8f6400;
+}
+.act-btn.sec-btn {
+  background: #ffffff;
+  color: var(--ink);
+  border-color: #b58c9b;
+}
+.act-btn:disabled, .act-btn[aria-disabled="true"] {
+  opacity: 0.45;
+  cursor: default;
+}
+.panel-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 7px;
+}
+.privacy-box {
+  margin-top: auto;
+  background: #fdf0f4;
+  border: 2px solid #e0c0cc;
+  border-radius: 12px;
+  padding: 7px 9px;
+  font-size: 12.5px;
+  line-height: 1.3;
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.privacy-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+.clear-btn {
+  min-height: 60px;
+  min-width: 68px;
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 2px solid #9e6b7e;
+  background: #ffffff;
+  color: var(--ink);
+  font: 800 14px/1 'Segoe UI', sans-serif;
+}
+
+/* Compact 680x425 / short landscape overrides */
+body.compact header {
+  padding: 4px 8px;
+  gap: 5px;
+}
+body.compact h1 { font-size: 17px; }
+body.compact h1 small { display: none; }
+body.compact .seg button, body.compact .icon-btn {
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0 9px;
+  font-size: 13px;
+}
+body.compact .stage {
+  padding: 4px 6px;
+}
+body.compact .front-banner {
+  padding: 4px 8px;
+}
+body.compact .bea-greet img { width: 44px; height: 44px; }
+body.compact .door-guest img { width: 38px; height: 38px; }
+body.compact .bea-greet-text b { font-size: 14px; }
+body.compact .bea-greet-text span { font-size: 11.5px; }
+body.compact .counters-grid { gap: 5px; grid-auto-rows: minmax(46px, 1fr); }
+body.compact .counter-card { padding: 3px 4px; min-height: 46px; border-radius: 11px; gap: 2px; }
+body.compact .counter-card svg.c-icon { width: 28px; height: 28px; }
+body.compact .counter-card .c-title { font-size: 12px; }
+body.compact .counter-card .c-sub { font-size: 10.5px; }
+body.compact .work-top { padding: 2px 6px; }
+body.compact .work-title { font-size: 13px; }
+body.compact .stat-pill { padding: 2px 6px; font-size: 11.5px; }
+body.compact .bench {
+  grid-template-columns: 122px minmax(0, 1fr) 110px;
+  gap: 4px;
+}
+body.compact .customer-card { padding: 4px; }
+body.compact .speech-bubble { padding: 3px 5px; gap: 4px; }
+body.compact .order-pic { width: 34px; height: 34px; }
+body.compact .order-pic svg { width: 28px; height: 28px; }
+body.compact .bubble-copy b { font-size: 11px; }
+body.compact .bubble-copy small { font-size: 9.5px; }
+body.compact .customer-stage { min-height: 48px; padding-top: 2px; }
+body.compact .customer-stage img.cust-img { height: 56px; }
+body.compact .customer-stage img.bea-mini { height: 48px; }
+body.compact .tray-card { padding: 3px 4px; gap: 2px; }
+body.compact .tray-hood, body.compact .tray-footer, body.compact .layer-tag { display: none; }
+body.compact .cake-trays { gap: 3px; }
+body.compact .cake-layer-row { padding: 2px 4px; gap: 4px; }
+body.compact .tin-btn { min-height: 44px; min-width: 86px; padding: 3px 6px; font-size: 11.5px; }
+body.compact .metal-tray { min-height: 54px; padding: 3px 4px; gap: 4px; }
+body.compact .tray-slot { min-width: 44px; min-height: 44px; font-size: 15px; padding: 2px; }
+body.compact .eclair-base { min-height: 44px; font-size: 17px; padding: 3px 8px; }
+body.compact .tricky-box-btn { min-width: 68px; min-height: 44px; font-size: 16px; padding: 3px 6px; }
+body.compact .oven-card { padding: 4px; }
+body.compact .oven-window { min-height: 48px; padding: 3px; }
+body.compact .baked-box { padding: 2px 5px; }
+body.compact .baked-box .box-word { font-size: 15px; }
+body.compact .pantry-shelf { padding: 3px; }
+body.compact .pantry-jars { gap: 4px; }
+body.compact .jar-btn {
+  width: 56px;
+  height: 48px;
+  min-width: 50px;
+  min-height: 44px;
+}
+body.compact .jar-letters { font-size: 17px; }
+body.compact .panel { padding: 5px 7px; gap: 4px; }
+body.compact .hint-card { min-height: 46px; padding: 3px 6px; }
+body.compact #hint { font-size: 12px; line-height: 1.2; }
+body.compact .front-guide { padding: 5px 7px; gap: 4px; }
+body.compact .front-guide b { font-size: 12px; }
+body.compact .legend-chip { padding: 2px 4px; font-size: 10px; }
+body.compact .act-btn { min-height: 44px; min-width: 44px; font-size: 12.5px; padding: 2px 5px; border-radius: 10px; }
+body.compact .clear-btn { min-height: 44px; min-width: 52px; font-size: 11.5px; padding: 2px 6px; }
+body.compact .privacy-box { padding: 3px 6px; font-size: 10.5px; }
+
+/* Stack (narrow / 760x900 / 375x812) overrides */
+body.stack .front-guide { display: none !important; }
+body.stack .door-guest { display: none; }
+body.stack .counters-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+body.stack .bench {
+  grid-template-columns: 1fr 1fr;
+}
+body.stack .tray-card {
+  grid-column: 1 / -1;
+  order: 3;
+}
+body.stack .customer-stage { display: none; }
+body.stack .oven-window { min-height: 38px; }
+body.stack .panel { padding: 4px 6px; gap: 3px; }
+body.stack .hint-card { min-height: 34px; padding: 2px 6px; }
+body.stack .panel-actions { gap: 3px; }
+body.stack .panel-row { gap: 3px; }
+body.stack .privacy-box { margin-top: 0; padding: 2px 6px; gap: 1px; font-size: 10px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Blend Bakery <small>Line up sound jars and bake the customer's word</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-counters" aria-pressed="true">🧁 Counters</button>
+    <button id="m-rush" aria-pressed="false">⏱️ Rush Hour</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">🔊 Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="ambient-steam" aria-hidden="true">
+      <span class="steam-puff s1"></span>
+      <span class="steam-puff s2"></span>
+      <span class="steam-puff s3"></span>
+    </div>
+
+    <!-- View 1: Bakery Storefront (7 Counters + Rush Hour card) -->
+    <section class="front-view" id="front-view">
+      <div class="front-banner">
+        <div class="bea-greet">
+          <img src="art:bea-stand" alt="Baker Bea the badger in her rose apron">
+          <div class="bea-greet-text">
+            <b>Baker Bea's Blend Bakery</b>
+            <span id="front-status">Every order is a word! Pick any counter to start baking.</span>
+          </div>
+        </div>
+        <div class="door-guest">
+          <img src="art:rabbit-happy" alt="Customer at the bakery door">
+          <span>Customers ready!</span>
+        </div>
+      </div>
+      <div class="counters-grid" id="counters-grid" role="group" aria-label="Bakery counters"></div>
+    </section>
+
+    <!-- View 2: Active Counter or Rush Hour Bench -->
+    <section class="work-view" id="work-view" hidden>
+      <div class="work-top">
+        <div class="work-title">
+          <span id="counter-title">Digraph Donuts</span>
+          <div class="order-dots" id="order-dots" aria-label="Orders in this counter"></div>
+        </div>
+        <div class="stats-bar">
+          <span class="stat-pill gold-pill" id="coins-pill">🪙 <b id="coins-val">0</b> <span id="coins-unit">coins</span></span>
+          <span class="stat-pill" id="streak-pill">🔔 Streak <b id="streak-val">0</b></span>
+          <span class="stat-pill" id="timer-pill" hidden>⏱️ <b id="timer-val">90s</b></span>
+        </div>
+      </div>
+
+      <div class="bench">
+        <!-- Left: Customer + Picture Order Bubble -->
+        <div class="customer-card" id="customer-card">
+          <div class="speech-bubble" id="order-bubble">
+            <div class="order-pic" id="order-pic" aria-hidden="true"></div>
+            <div class="bubble-copy">
+              <b id="order-line">One ship, please!</b>
+              <small id="order-note">Tap a jar to hear its sound.</small>
+            </div>
+          </div>
+          <div class="customer-stage">
+            <img class="cust-img" id="cust-img" src="art:rabbit-happy" alt="Customer">
+            <img class="bea-mini" id="bea-img" src="art:bea-stand" alt="Baker Bea">
+          </div>
+          <div class="patience-wrap" id="patience-wrap" hidden>
+            <div class="patience-bar" id="patience-bar"></div>
+          </div>
+        </div>
+
+        <!-- Center: Baking Tray / Muffin Tins / Two-Layer Cake / Eclair / Tricky Boxes -->
+        <div class="tray-card" id="tray-card">
+          <div class="tray-hood" id="tray-hood">
+            <b id="tray-hood-title">Baking Tray</b>
+            <span id="tray-hood-tip">Tap jars in order from left to right</span>
+          </div>
+          <div class="sub-controls" id="tin-controls" hidden role="group" aria-label="Muffin tin size">
+            <button class="tin-btn" id="tin-short" aria-pressed="false">🧁 Short Tin (little)</button>
+            <button class="tin-btn" id="tin-long" aria-pressed="false">🧁 Long Tin (tall)</button>
+          </div>
+          <div id="tray-mount" style="width:100%;display:flex;justify-content:center;"></div>
+          <div class="tray-footer" id="tray-footer">Tap any filled slot on the tray to return its jar to the pantry shelf.</div>
+        </div>
+
+        <!-- Right: Oven & Baked Word Box -->
+        <div class="oven-card" id="oven-card">
+          <div class="oven-header">
+            <span>Blend Oven</span>
+            <span class="oven-knobs" aria-hidden="true"><i></i><i></i></span>
+          </div>
+          <div class="oven-window" id="oven-window">
+            <div class="baked-box" id="baked-box" hidden>
+              <span class="box-pastry" id="box-pastry" aria-hidden="true"></span>
+              <div class="box-text">
+                <div class="box-ribbon" id="box-ribbon">Fresh Baked</div>
+                <div class="box-word" id="box-word">ship</div>
+              </div>
+            </div>
+            <div class="oven-status" id="oven-status">Fill the tray slots, then press Bake.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom: Pantry Shelf -->
+      <div class="pantry-shelf" id="pantry-shelf">
+        <div class="pantry-jars" id="pantry-jars" role="group" aria-label="Pantry sound jars"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Control Panel -->
+  <aside class="panel" id="panel">
+    <div class="hint-card">
+      <p class="hint" id="hint">Pick a counter. Tap Digraph Donuts to start.</p>
+    </div>
+
+    <div class="front-guide" id="front-guide">
+      <b>Sound Jar Shapes &amp; Colors</b>
+      <div class="legend-list">
+        <span class="legend-chip lc-cons">Round · Consonant</span>
+        <span class="legend-chip lc-vow">Tall · Vowel</span>
+        <span class="legend-chip lc-team">Double · Team</span>
+        <span class="legend-chip lc-end">Wide · Ending</span>
+      </div>
+    </div>
+
+    <div class="panel-actions" id="panel-actions" hidden>
+      <button class="act-btn gold-btn" id="bake-btn">🔥 Bake</button>
+      <div class="panel-row">
+        <button class="act-btn sec-btn" id="hear-btn">👂 Hear order</button>
+        <button class="act-btn sec-btn" id="clear-tray-btn">🧹 Empty tray</button>
+      </div>
+      <div class="panel-row">
+        <button class="act-btn sec-btn" id="next-order-btn">➡️ Next order</button>
+        <button class="act-btn sec-btn" id="back-shops-btn">🏪 Counters</button>
+      </div>
+      <div class="panel-row" id="rush-controls" hidden>
+        <button class="act-btn sec-btn" id="relaxed-btn" aria-pressed="true">🌿 Relaxed: On</button>
+        <button class="act-btn gold-btn" id="rush-restart-btn">🔄 New Rush</button>
+      </div>
+    </div>
+
+    <div class="privacy-box" id="privacy-box">
+      <div class="privacy-top">
+        <span id="save-summary">Best Rush Hour: 0 orders · 0/7 counters done.</span>
+        <button class="clear-btn" id="clear-save-btn">Clear</button>
+      </div>
+      <span>Saved only in this browser on this device.</span>
+    </div>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+
+  // ---------- Art Lookup Map (literal art:<name> tokens for bundle_tool.py) ----------
+  const ART = {
+    'bea-stand': 'art:bea-stand',
+    'bea-cheer': 'art:bea-cheer',
+    'bea-point': 'art:bea-point',
+    'bea-think': 'art:bea-think',
+    'rabbit-happy': 'art:rabbit-happy',
+    'rabbit-puzzled': 'art:rabbit-puzzled',
+    'goat-happy': 'art:goat-happy',
+    'goat-puzzled': 'art:goat-puzzled',
+    'hedgehog-happy': 'art:hedgehog-happy',
+    'hedgehog-puzzled': 'art:hedgehog-puzzled',
+    'duck-happy': 'art:duck-happy',
+    'duck-puzzled': 'art:duck-puzzled',
+    'mouse-happy': 'art:mouse-happy',
+    'mouse-puzzled': 'art:mouse-puzzled',
+    'bear-happy': 'art:bear-happy',
+    'bear-puzzled': 'art:bear-puzzled'
+  };
+
+  // ---------- SVG Picture Icons for Orders & Counters ----------
+  const PICS = {
+    donut: '<svg class="c-icon" viewBox="0 0 64 64"><circle cx="32" cy="33" r="24" fill="#e59866" stroke="#6e3b1b" stroke-width="3"/><path d="M13 28 Q19 11 32 11 Q46 11 51 28 Q53 39 42 43 Q32 47 22 43 Q11 39 13 28Z" fill="#f06595" stroke="#a8325e" stroke-width="2.5"/><path d="M20 20 Q28 14 38 18" fill="none" stroke="#ffdeeb" stroke-width="3" stroke-linecap="round"/><circle cx="32" cy="33" r="8" fill="#fff8f6" stroke="#6e3b1b" stroke-width="3"/><rect x="21" y="18" width="6" height="3" rx="1.5" transform="rotate(-15 24 19)" fill="#ffd43b"/><rect x="37" y="20" width="6" height="3" rx="1.5" transform="rotate(18 40 21)" fill="#ffffff"/><rect x="24" y="41" width="6" height="3" rx="1.5" fill="#74c0fc"/><rect x="36" y="39" width="6" height="3" rx="1.5" transform="rotate(-12 39 40)" fill="#69db7c"/></svg>',
+    bun: '<svg class="c-icon" viewBox="0 0 64 64"><ellipse cx="32" cy="37" rx="24" ry="17" fill="#dfa05b" stroke="#6e3b1b" stroke-width="3"/><ellipse cx="32" cy="33" rx="19" ry="12" fill="#eab676"/><path d="M17 33 Q32 19 47 33" fill="none" stroke="#fff3cc" stroke-width="4" stroke-linecap="round"/><path d="M21 26 Q32 15 43 26" fill="none" stroke="#fff3cc" stroke-width="3.2" stroke-linecap="round"/><circle cx="26" cy="23" r="1.6" fill="#6e3b1b"/><circle cx="32" cy="21" r="1.6" fill="#6e3b1b"/><circle cx="38" cy="23" r="1.6" fill="#6e3b1b"/></svg>',
+    muffin: '<svg class="c-icon" viewBox="0 0 64 64"><polygon points="18,34 46,34 42,54 22,54" fill="#f6c94a" stroke="#7d5600" stroke-width="3"/><line x1="25" y1="35" x2="27" y2="53" stroke="#b88200" stroke-width="2"/><line x1="32" y1="35" x2="32" y2="53" stroke="#b88200" stroke-width="2"/><line x1="39" y1="35" x2="37" y2="53" stroke="#b88200" stroke-width="2"/><path d="M13 34 Q13 12 32 12 Q51 12 51 34 Z" fill="#d98a4e" stroke="#6e3b1b" stroke-width="3"/><path d="M21 21 Q29 15 39 19" fill="none" stroke="#ffd8a8" stroke-width="3" stroke-linecap="round"/><circle cx="25" cy="25" r="3" fill="#a8325e"/><circle cx="37" cy="22" r="3" fill="#3b5bdb"/><circle cx="32" cy="30" r="3" fill="#a8325e"/></svg>',
+    muffinShort: '<svg viewBox="0 0 64 64"><polygon points="16,36 48,36 43,54 21,54" fill="#ffe066" stroke="#7d5600" stroke-width="3"/><line x1="25" y1="37" x2="27" y2="53" stroke="#b88200" stroke-width="2"/><line x1="32" y1="37" x2="32" y2="53" stroke="#b88200" stroke-width="2"/><line x1="39" y1="37" x2="37" y2="53" stroke="#b88200" stroke-width="2"/><ellipse cx="32" cy="34" rx="18" ry="7" fill="#d98a4e" stroke="#6e3b1b" stroke-width="3"/><circle cx="25" cy="33" r="2.5" fill="#3b5bdb"/><circle cx="36" cy="34" r="2.5" fill="#a8325e"/></svg>',
+    muffinTall: '<svg viewBox="0 0 64 64"><polygon points="18,36 46,36 42,56 22,56" fill="#f6c94a" stroke="#7d5600" stroke-width="3"/><line x1="26" y1="37" x2="27" y2="55" stroke="#b88200" stroke-width="2"/><line x1="32" y1="37" x2="32" y2="55" stroke="#b88200" stroke-width="2"/><line x1="38" y1="37" x2="37" y2="55" stroke="#b88200" stroke-width="2"/><path d="M12 36 Q12 6 32 6 Q52 6 52 36 Z" fill="#e59866" stroke="#6e3b1b" stroke-width="3"/><path d="M20 18 Q28 10 38 14" fill="none" stroke="#fff3bf" stroke-width="3" stroke-linecap="round"/><circle cx="24" cy="24" r="3" fill="#a8325e"/><circle cx="38" cy="21" r="3" fill="#3b5bdb"/><circle cx="32" cy="29" r="3" fill="#a8325e"/><path d="M10 14 L14 14 M12 12 L12 16 M52 12 L56 12 M54 10 L54 14" stroke="#ffd43b" stroke-width="2.5" stroke-linecap="round"/></svg>',
+    tart: '<svg class="c-icon" viewBox="0 0 64 64"><polygon points="11,35 53,35 46,51 18,51" fill="#e8b878" stroke="#784820" stroke-width="3"/><ellipse cx="32" cy="34" rx="21" ry="9.5" fill="#fff3bf" stroke="#784820" stroke-width="2.5"/><circle cx="25" cy="32" r="5.5" fill="#e03131" stroke="#961e1e" stroke-width="1.5"/><circle cx="38" cy="32" r="5.5" fill="#e03131" stroke="#961e1e" stroke-width="1.5"/><circle cx="24" cy="30" r="1.5" fill="#ffc9c9"/><circle cx="37" cy="30" r="1.5" fill="#ffc9c9"/><path d="M32 22 L37 30 L27 30 Z" fill="#2b8a3e"/></svg>',
+    cake: '<svg class="c-icon" viewBox="0 0 64 64"><rect x="13" y="35" width="38" height="16" rx="4" fill="#f7c6d4" stroke="#7d2043" stroke-width="3"/><path d="M15 39 Q21 44 27 39 Q33 44 39 39 Q45 44 49 39" fill="none" stroke="#a8325e" stroke-width="2.5" stroke-linecap="round"/><rect x="18" y="19" width="28" height="16" rx="4" fill="#fff3cc" stroke="#7d2043" stroke-width="3"/><path d="M20 23 Q26 28 32 23 Q38 28 44 23" fill="none" stroke="#f08c00" stroke-width="2.5" stroke-linecap="round"/><circle cx="32" cy="13" r="5" fill="#e03131" stroke="#7d2043" stroke-width="2"/></svg>',
+    eclair: '<svg class="c-icon" viewBox="0 0 64 64"><rect x="9" y="24" width="46" height="20" rx="10" fill="#e0a96d" stroke="#5c3409" stroke-width="3"/><path d="M11 33 Q32 23 53 33 L51 26 Q32 18 13 26 Z" fill="#4a2511"/><path d="M16 29 Q23 34 30 29 Q37 24 46 29" fill="none" stroke="#fff8f6" stroke-width="2.8" stroke-linecap="round"/></svg>',
+    tricky: '<svg class="c-icon" viewBox="0 0 64 64"><rect x="14" y="20" width="36" height="32" rx="6" fill="#fff3cc" stroke="#a8325e" stroke-width="3"/><path d="M14 35 H50 M32 20 V52" stroke="#a8325e" stroke-width="4"/><path d="M32 20 C22 9 16 18 32 20 C48 18 42 9 32 20 Z" fill="#f6c94a" stroke="#8c6200" stroke-width="2.5"/></svg>',
+    rush: '<svg class="c-icon" viewBox="0 0 64 64"><circle cx="32" cy="35" r="20" fill="#fff8f6" stroke="#a8325e" stroke-width="4"/><path d="M32 23 V35 L41 41" fill="none" stroke="#2a1219" stroke-width="4" stroke-linecap="round"/><rect x="26" y="8" width="12" height="5" rx="2" fill="#f6c94a" stroke="#2a1219" stroke-width="2"/></svg>',
+    ship: '<svg viewBox="0 0 64 64"><path d="M8 50 Q20 46 32 50 Q44 54 56 50" fill="none" stroke="#339af0" stroke-width="3.5" stroke-linecap="round"/><path d="M11 40 L53 40 L45 51 L19 51 Z" fill="#8c4f2b" stroke="#2a1219" stroke-width="2.8"/><line x1="32" y1="10" x2="32" y2="40" stroke="#492711" stroke-width="3"/><polygon points="33,11 33,36 51,36" fill="#a8325e" stroke="#2a1219" stroke-width="2.5"/><polygon points="30,15 30,36 14,36" fill="#fff3cc" stroke="#2a1219" stroke-width="2.5"/></svg>',
+    chop: '<svg viewBox="0 0 64 64"><rect x="8" y="42" width="48" height="11" rx="3" fill="#d9a066" stroke="#5c3818" stroke-width="2.5"/><circle cx="22" cy="34" r="7.5" fill="#fd7e14" stroke="#9c3600" stroke-width="2.5"/><circle cx="22" cy="34" r="3" fill="#ffd8a8"/><circle cx="39" cy="35" r="7.5" fill="#fd7e14" stroke="#9c3600" stroke-width="2.5"/><circle cx="39" cy="35" r="3" fill="#ffd8a8"/><path d="M24 11 L49 23 L44 30 L20 18 Z" fill="#dee2e6" stroke="#2a1219" stroke-width="2.5"/><rect x="13" y="9" width="10" height="6" rx="2" transform="rotate(26 18 12)" fill="#5c3818"/></svg>',
+    thin: '<svg viewBox="0 0 64 64"><rect x="28" y="9" width="8" height="46" rx="3" fill="#74c0fc" stroke="#1864ab" stroke-width="2.5"/><line x1="31" y1="13" x2="31" y2="51" stroke="#e7f5ff" stroke-width="2"/><path d="M11 32 L23 32 M17 26 L23 32 L17 38 M53 32 L41 32 M47 26 L41 32 L47 38" stroke="#a8325e" stroke-width="3" stroke-linecap="round"/></svg>',
+    whip: '<svg viewBox="0 0 64 64"><path d="M14 44 Q32 54 50 44 L46 56 H18 Z" fill="#fff3bf" stroke="#8c6200" stroke-width="2.5"/><rect x="28" y="34" width="8" height="16" rx="3" fill="#a8325e" stroke="#2a1219" stroke-width="2.5"/><ellipse cx="32" cy="21" rx="12" ry="14" fill="none" stroke="#495057" stroke-width="2.8"/><ellipse cx="32" cy="21" rx="6" ry="14" fill="none" stroke="#495057" stroke-width="2.5"/></svg>',
+    duck: '<svg viewBox="0 0 64 64"><path d="M8 51 Q20 48 32 51 Q44 54 56 51" fill="none" stroke="#339af0" stroke-width="3" stroke-linecap="round"/><ellipse cx="29" cy="40" rx="17" ry="11" fill="#ffd43b" stroke="#5c4400" stroke-width="2.5"/><path d="M21 39 Q29 33 36 40 Q29 46 21 39Z" fill="#fab005" stroke="#5c4400" stroke-width="2"/><circle cx="40" cy="24" r="10" fill="#ffd43b" stroke="#5c4400" stroke-width="2.5"/><polygon points="48,21 59,25 48,28" fill="#f76707" stroke="#5c4400" stroke-width="2"/><circle cx="42" cy="22" r="2.2" fill="#2a1219"/></svg>',
+    fish: '<svg viewBox="0 0 64 64"><polygon points="26,21 35,12 37,22" fill="#ff922b" stroke="#1864ab" stroke-width="2"/><ellipse cx="29" cy="33" rx="18" ry="12" fill="#4dabf7" stroke="#1864ab" stroke-width="2.5"/><polygon points="46,33 58,20 58,46" fill="#ff922b" stroke="#1864ab" stroke-width="2.5"/><path d="M25 27 Q30 33 25 39" fill="none" stroke="#1864ab" stroke-width="2.2" stroke-linecap="round"/><circle cx="19" cy="30" r="2.6" fill="#2a1219"/><circle cx="10" cy="22" r="2.2" fill="#74c0fc"/><circle cx="13" cy="15" r="1.6" fill="#74c0fc"/></svg>',
+    frog: '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="50" rx="22" ry="6" fill="#2b8a3e"/><ellipse cx="32" cy="38" rx="18" ry="13" fill="#51cf66" stroke="#1b4332" stroke-width="2.5"/><circle cx="22" cy="22" r="7" fill="#51cf66" stroke="#1b4332" stroke-width="2.5"/><circle cx="42" cy="22" r="7" fill="#51cf66" stroke="#1b4332" stroke-width="2.5"/><circle cx="22" cy="22" r="2.8" fill="#2a1219"/><circle cx="42" cy="22" r="2.8" fill="#2a1219"/><circle cx="19" cy="35" r="3" fill="#ff8787" opacity="0.65"/><circle cx="45" cy="35" r="3" fill="#ff8787" opacity="0.65"/><path d="M22 40 Q32 47 42 40" fill="none" stroke="#1b4332" stroke-width="3" stroke-linecap="round"/></svg>',
+    stop: '<svg viewBox="0 0 64 64"><polygon points="22,9 42,9 55,22 55,42 42,55 22,55 9,42 9,22" fill="#e03131" stroke="#2a1219" stroke-width="2.5"/><polygon points="24,13 40,13 51,24 51,40 40,51 24,51 13,40 13,24" fill="none" stroke="#ffffff" stroke-width="2.2"/><rect x="20" y="29" width="24" height="6" rx="3" fill="#ffffff"/></svg>',
+    clap: '<svg viewBox="0 0 64 64"><ellipse cx="26" cy="37" rx="10" ry="16" transform="rotate(-18 26 37)" fill="#f3b689" stroke="#5c3418" stroke-width="2.5"/><ellipse cx="38" cy="37" rx="10" ry="16" transform="rotate(18 38 37)" fill="#e09f6d" stroke="#5c3418" stroke-width="2.5"/><path d="M32 7 V16 M17 13 L23 20 M47 13 L41 20 M11 24 L18 27 M53 24 L46 27" stroke="#f59f00" stroke-width="3.2" stroke-linecap="round"/></svg>',
+    drum: '<svg viewBox="0 0 64 64"><line x1="16" y1="11" x2="29" y2="22" stroke="#8c4f2b" stroke-width="3.2" stroke-linecap="round"/><circle cx="29" cy="22" r="2.8" fill="#ffd43b"/><line x1="48" y1="11" x2="35" y2="22" stroke="#8c4f2b" stroke-width="3.2" stroke-linecap="round"/><circle cx="35" cy="22" r="2.8" fill="#ffd43b"/><rect x="14" y="25" width="36" height="24" rx="4" fill="#e03131" stroke="#2a1219" stroke-width="2.5"/><ellipse cx="32" cy="25" rx="18" ry="6" fill="#fff3cc" stroke="#2a1219" stroke-width="2.5"/><polyline points="14,31 23,46 32,31 41,46 50,31" fill="none" stroke="#f6c94a" stroke-width="3"/></svg>',
+    nest: '<svg viewBox="0 0 64 64"><ellipse cx="25" cy="29" rx="6.5" ry="8.5" fill="#74c0fc" stroke="#1864ab" stroke-width="2.2"/><ellipse cx="38" cy="29" rx="6.5" ry="8.5" fill="#74c0fc" stroke="#1864ab" stroke-width="2.2"/><path d="M9 32 Q32 57 55 32 Z" fill="#b07d4f" stroke="#5c3818" stroke-width="3"/><path d="M15 37 Q32 45 49 37 M19 43 Q32 49 45 43" fill="none" stroke="#5c3818" stroke-width="2.2" stroke-linecap="round"/></svg>',
+    hand: '<svg viewBox="0 0 64 64"><path d="M20 34 V18 A3 3 0 0 1 26 18 V30 V13 A3 3 0 0 1 32 13 V30 V15 A3 3 0 0 1 38 15 V32 V21 A3 3 0 0 1 44 21 V42 C44 50 38 54 30 54 C22 54 16 48 16 40 V29 A3 3 0 0 1 20 29 Z" fill="#eab68c" stroke="#5c3418" stroke-width="2.5"/><path d="M24 39 Q31 44 38 39" fill="none" stroke="#b07d4f" stroke-width="2" stroke-linecap="round"/></svg>',
+    cape: '<svg viewBox="0 0 64 64"><polygon points="21,13 43,13 55,53 9,53" fill="#a8325e" stroke="#2a1219" stroke-width="3"/><path d="M24 15 L17 51 M40 15 L47 51" stroke="#c2255c" stroke-width="2"/><circle cx="32" cy="21" r="6" fill="#f6c94a" stroke="#2a1219" stroke-width="2"/></svg>',
+    pin: '<svg viewBox="0 0 64 64"><line x1="32" y1="24" x2="32" y2="55" stroke="#868e96" stroke-width="4.2" stroke-linecap="round"/><circle cx="32" cy="18" r="9.5" fill="#e03131" stroke="#2a1219" stroke-width="2.5"/><circle cx="29" cy="15" r="2.8" fill="#ffc9c9"/></svg>',
+    hope: '<svg viewBox="0 0 64 64"><path d="M10 46 A22 22 0 0 1 54 46" fill="none" stroke="#e03131" stroke-width="4.5"/><path d="M15 46 A17 17 0 0 1 49 46" fill="none" stroke="#f6c94a" stroke-width="4.5"/><path d="M20 46 A12 12 0 0 1 44 46" fill="none" stroke="#339af0" stroke-width="4.5"/><circle cx="15" cy="47" r="6" fill="#ffffff" stroke="#adb5bd" stroke-width="2"/><circle cx="49" cy="47" r="6" fill="#ffffff" stroke="#adb5bd" stroke-width="2"/></svg>',
+    cub: '<svg viewBox="0 0 64 64"><circle cx="19" cy="19" r="7" fill="#b07d4f" stroke="#4a2c11" stroke-width="2.5"/><circle cx="45" cy="19" r="7" fill="#b07d4f" stroke="#4a2c11" stroke-width="2.5"/><circle cx="32" cy="35" r="16" fill="#c89666" stroke="#4a2c11" stroke-width="2.5"/><circle cx="26" cy="31" r="2.2" fill="#2a1219"/><circle cx="38" cy="31" r="2.2" fill="#2a1219"/><ellipse cx="32" cy="39" rx="7" ry="5.5" fill="#fff3cc"/><circle cx="32" cy="37" r="2.6" fill="#2a1219"/></svg>',
+    kite: '<svg viewBox="0 0 64 64"><polygon points="32,7 50,27 32,49 14,27" fill="#f6c94a" stroke="#2a1219" stroke-width="2.5"/><polygon points="32,7 50,27 32,27" fill="#ff922b"/><line x1="32" y1="7" x2="32" y2="49" stroke="#a8325e" stroke-width="2.5"/><line x1="14" y1="27" x2="50" y2="27" stroke="#a8325e" stroke-width="2.5"/><path d="M32 49 Q37 55 30 60" fill="none" stroke="#a8325e" stroke-width="2.5"/></svg>',
+    tap: '<svg viewBox="0 0 64 64"><path d="M14 31 H38 Q46 31 46 39 V44 H38 V39 H14 Z" fill="#74c0fc" stroke="#1864ab" stroke-width="2.5"/><rect x="23" y="19" width="7" height="12" fill="#74c0fc" stroke="#1864ab" stroke-width="2.2"/><ellipse cx="26.5" cy="19" rx="10" ry="3.2" fill="#a8325e"/><path d="M42 47 C39 53 39 57 42 57 C45 57 45 53 42 47 Z" fill="#339af0"/></svg>',
+    rain: '<svg viewBox="0 0 64 64"><path d="M17 34 Q10 34 10 26 Q10 18 21 18 Q25 10 36 12 Q47 12 49 22 Q55 24 53 34 Z" fill="#ced4da" stroke="#495057" stroke-width="2.5"/><line x1="21" y1="40" x2="17" y2="52" stroke="#339af0" stroke-width="3.2" stroke-linecap="round"/><line x1="33" y1="40" x2="29" y2="52" stroke="#339af0" stroke-width="3.2" stroke-linecap="round"/><line x1="45" y1="40" x2="41" y2="52" stroke="#339af0" stroke-width="3.2" stroke-linecap="round"/></svg>',
+    play: '<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="20" fill="#ff922b" stroke="#2a1219" stroke-width="2.5"/><path d="M18 19 Q32 32 18 45 M46 19 Q32 32 46 45" fill="none" stroke="#fff3bf" stroke-width="3.2"/><circle cx="25" cy="24" r="3" fill="#ffffff" opacity="0.6"/></svg>',
+    feet: '<svg viewBox="0 0 64 64"><path d="M15 15 H27 V38 Q27 49 17 49 H11 Q7 49 7 43 Q7 37 15 37 Z" fill="#a8325e" stroke="#2a1219" stroke-width="2.5"/><rect x="15" y="19" width="12" height="4" fill="#ffd43b"/><path d="M36 15 H48 V38 Q48 49 56 49 H50 Q36 49 36 38 Z" fill="#a8325e" stroke="#2a1219" stroke-width="2.5"/><rect x="36" y="19" width="12" height="4" fill="#ffd43b"/></svg>',
+    seat: '<svg viewBox="0 0 64 64"><rect x="18" y="11" width="24" height="23" rx="4" fill="#d98a4e" stroke="#5c3418" stroke-width="2.5"/><line x1="24" y1="15" x2="24" y2="31" stroke="#5c3418" stroke-width="2"/><line x1="36" y1="15" x2="36" y2="31" stroke="#5c3418" stroke-width="2"/><rect x="15" y="34" width="34" height="7" rx="3" fill="#a8325e" stroke="#2a1219" stroke-width="2.5"/><line x1="19" y1="41" x2="19" y2="55" stroke="#5c3418" stroke-width="4"/><line x1="45" y1="41" x2="45" y2="55" stroke="#5c3418" stroke-width="4"/></svg>',
+    boat: '<svg viewBox="0 0 64 64"><path d="M8 52 Q20 48 32 52 Q44 56 56 52" fill="none" stroke="#339af0" stroke-width="3" stroke-linecap="round"/><polygon points="10,38 54,38 46,50 18,50" fill="#339af0" stroke="#1864ab" stroke-width="2.5"/><polygon points="32,12 32,35 49,35" fill="#f6c94a" stroke="#2a1219" stroke-width="2.5"/></svg>',
+    green: '<svg viewBox="0 0 64 64"><path d="M15 49 C15 21 49 13 49 13 C49 13 47 49 15 49 Z" fill="#2b8a3e" stroke="#1b4332" stroke-width="2.5"/><line x1="15" y1="49" x2="43" y2="21" stroke="#b2f2bb" stroke-width="2.5"/><line x1="27" y1="37" x2="36" y2="37" stroke="#b2f2bb" stroke-width="2"/><line x1="27" y1="37" x2="27" y2="28" stroke="#b2f2bb" stroke-width="2"/></svg>',
+    rabbit: '<svg viewBox="0 0 64 64"><ellipse cx="24" cy="18" rx="5.5" ry="12" fill="#f8f0fc" stroke="#5c3818" stroke-width="2.5"/><ellipse cx="24" cy="18" rx="2.5" ry="8" fill="#faa2c1"/><ellipse cx="40" cy="18" rx="5.5" ry="12" fill="#f8f0fc" stroke="#5c3818" stroke-width="2.5"/><ellipse cx="40" cy="18" rx="2.5" ry="8" fill="#faa2c1"/><circle cx="32" cy="39" r="14" fill="#f8f0fc" stroke="#5c3818" stroke-width="2.5"/><circle cx="27" cy="36" r="2" fill="#2a1219"/><circle cx="37" cy="36" r="2" fill="#2a1219"/><circle cx="32" cy="41" r="3" fill="#e64980"/></svg>',
+    napkin: '<svg viewBox="0 0 64 64"><polygon points="13,16 51,16 32,51" fill="#fde8ef" stroke="#a8325e" stroke-width="3"/><line x1="19" y1="22" x2="45" y2="22" stroke="#a8325e" stroke-width="2"/><circle cx="32" cy="35" r="3" fill="#f6c94a"/></svg>',
+    sunset: '<svg viewBox="0 0 64 64"><line x1="32" y1="12" x2="32" y2="19" stroke="#f59f00" stroke-width="3" stroke-linecap="round"/><line x1="16" y1="19" x2="21" y2="24" stroke="#f59f00" stroke-width="3" stroke-linecap="round"/><line x1="48" y1="19" x2="43" y2="24" stroke="#f59f00" stroke-width="3" stroke-linecap="round"/><path d="M14 42 A18 18 0 0 1 50 42 Z" fill="#f76707" stroke="#a8325e" stroke-width="2.5"/><line x1="8" y1="42" x2="56" y2="42" stroke="#a8325e" stroke-width="3"/><line x1="14" y1="49" x2="50" y2="49" stroke="#f6c94a" stroke-width="3"/></svg>',
+    cupcake: '<svg viewBox="0 0 64 64"><polygon points="19,36 45,36 40,53 24,53" fill="#74c0fc" stroke="#1864ab" stroke-width="2.5"/><path d="M15 36 Q15 19 32 19 Q49 19 49 36 Z" fill="#f783ac" stroke="#a8325e" stroke-width="2.5"/><circle cx="25" cy="29" r="1.8" fill="#fff3bf"/><circle cx="38" cy="28" r="1.8" fill="#fff3bf"/><circle cx="32" cy="15" r="4.5" fill="#e03131" stroke="#2a1219" stroke-width="1.8"/></svg>',
+    picnic: '<svg viewBox="0 0 64 64"><path d="M22 28 A10 10 0 0 1 42 28" fill="none" stroke="#5c3818" stroke-width="3.2"/><rect x="13" y="28" width="38" height="23" rx="4" fill="#d9a066" stroke="#5c3818" stroke-width="2.5"/><rect x="13" y="28" width="38" height="8" rx="2" fill="#e03131" stroke="#5c3818" stroke-width="2"/><line x1="24" y1="36" x2="24" y2="51" stroke="#8c4f2b" stroke-width="2"/><line x1="40" y1="36" x2="40" y2="51" stroke="#8c4f2b" stroke-width="2"/></svg>',
+    muffin2: '<svg viewBox="0 0 64 64"><polygon points="18,34 46,34 42,53 22,53" fill="#fff3cc" stroke="#8c6200" stroke-width="2.5"/><path d="M14 34 Q14 15 32 15 Q50 15 50 34 Z" fill="#c88a56" stroke="#5c3818" stroke-width="2.5"/><circle cx="25" cy="25" r="2.8" fill="#3b5bdb"/><circle cx="38" cy="25" r="2.8" fill="#3b5bdb"/><circle cx="32" cy="29" r="2.5" fill="#3b5bdb"/></svg>'
+  };
+
+  // ---------- Phonics Content & Counter Definitions (exact from spec.md) ----------
+  const VOWELS = new Set(['a', 'e', 'i', 'o', 'u', 'ai', 'ay', 'ee', 'ea', 'oa']);
+  const TEAMS = new Set(['sh', 'ch', 'th', 'wh', 'ck', 'ai', 'ay', 'ee', 'ea', 'oa']);
+  const ENDINGS = new Set(['-s', '-ed', '-ing']);
+
+  function jarKind(j, counterId) {
+    if (ENDINGS.has(j)) return 'end';
+    if (j === 'e' && counterId === 'muffins') return 'magic';
+    if (TEAMS.has(j)) return 'team';
+    if (VOWELS.has(j)) return 'vow';
+    return 'cons';
+  }
+  function jarTag(kind) {
+    return {cons: 'round', vow: 'vowel', team: 'team', end: 'ending', magic: 'magic e'}[kind] || 'sound';
+  }
+
+  const COUNTERS = [
+    {
+      id: 'digraph',
+      name: 'Digraph Donuts',
+      sub: 'sh, ch, th, wh, ck',
+      pastryAsk: 'One donut, please!',
+      icon: PICS.donut,
+      howKey: 'howDigraph',
+      orders: [
+        { word: 'ship', jars: ['sh', 'i', 'p'], extras: ['s', 'h', 'ch', 'a'], pic: PICS.ship, animal: 'rabbit', clue: 'Sails on the sea (3 sounds)' },
+        { word: 'chop', jars: ['ch', 'o', 'p'], extras: ['sh', 'c', 'a', 't'], pic: PICS.chop, animal: 'goat', clue: 'Slice carrots on a board (3 sounds)' },
+        { word: 'thin', jars: ['th', 'i', 'n'], extras: ['t', 'h', 'f', 'a'], pic: PICS.thin, animal: 'hedgehog', clue: 'Narrow, not thick (3 sounds)' },
+        { word: 'whip', jars: ['wh', 'i', 'p'], extras: ['w', 'sh', 'ch', 'o'], pic: PICS.whip, animal: 'duck', clue: 'Whisk the cream fast (3 sounds)' },
+        { word: 'duck', jars: ['d', 'u', 'ck'], extras: ['k', 'c', 'b', 'o'], pic: PICS.duck, animal: 'mouse', clue: 'Quacks on the pond (3 sounds)' },
+        { word: 'fish', jars: ['f', 'i', 'sh'], extras: ['s', 'h', 'ch', 'a'], pic: PICS.fish, animal: 'bear', clue: 'Swims with fins and tail (3 sounds)' }
+      ]
+    },
+    {
+      id: 'blend',
+      name: 'Blend Buns',
+      sub: 'fr, st, cl, dr, nd',
+      pastryAsk: 'One bun, please!',
+      icon: PICS.bun,
+      howKey: 'howBlend',
+      orders: [
+        { word: 'frog', jars: ['f', 'r', 'o', 'g'], extras: ['d', 'l', 'a'], pic: PICS.frog, animal: 'goat', clue: 'Green pond hopper (4 sounds)' },
+        { word: 'stop', jars: ['s', 't', 'o', 'p'], extras: ['t', 'a', 'sh'], pic: PICS.stop, animal: 'rabbit', clue: 'Red eight-sided road sign (4 sounds)' },
+        { word: 'clap', jars: ['c', 'l', 'a', 'p'], extras: ['k', 'i', 'b'], pic: PICS.clap, animal: 'bear', clue: 'Put your hands together (4 sounds)' },
+        { word: 'drum', jars: ['d', 'r', 'u', 'm'], extras: ['b', 'n', 'o'], pic: PICS.drum, animal: 'duck', clue: 'Beat it with two sticks (4 sounds)' },
+        { word: 'nest', jars: ['n', 'e', 's', 't'], extras: ['t', 'ck', 'a'], pic: PICS.nest, animal: 'hedgehog', clue: 'Cozy twig home for bird eggs (4 sounds)' },
+        { word: 'hand', jars: ['h', 'a', 'n', 'd'], extras: ['m', 'b', 'e'], pic: PICS.hand, animal: 'mouse', clue: 'Five fingers and a palm (4 sounds)' }
+      ]
+    },
+    {
+      id: 'muffins',
+      name: 'Magic-e Muffins',
+      sub: 'short or long + e',
+      pastryAsk: 'One muffin, please!',
+      icon: PICS.muffin,
+      howKey: 'howMuffins',
+      orders: [
+        { word: 'cape', tin: 'long', jars: ['c', 'a', 'p', 'e'], shortJars: ['c', 'a', 'p'], extras: ['o', 't'], pic: PICS.cape, animal: 'hedgehog', clue: 'Superhero cloak (Long Tin: long a)' },
+        { word: 'pin', tin: 'short', jars: ['p', 'i', 'n'], longJars: ['p', 'i', 'n', 'e'], extras: ['e', 'a', 't'], pic: PICS.pin, animal: 'mouse', clue: 'Sharp sewing tack (Short Tin: short i)' },
+        { word: 'hope', tin: 'long', jars: ['h', 'o', 'p', 'e'], shortJars: ['h', 'o', 'p'], extras: ['a', 't'], pic: PICS.hope, animal: 'rabbit', clue: 'Rainbow wish (Long Tin: long o)' },
+        { word: 'cub', tin: 'short', jars: ['c', 'u', 'b'], longJars: ['c', 'u', 'b', 'e'], extras: ['e', 'a', 'p'], pic: PICS.cub, animal: 'bear', clue: 'Little baby bear (Short Tin: short u)' },
+        { word: 'kite', tin: 'long', jars: ['k', 'i', 't', 'e'], shortJars: ['k', 'i', 't'], extras: ['a', 'p'], pic: PICS.kite, animal: 'duck', clue: 'Flies high on a string (Long Tin: long i)' },
+        { word: 'tap', tin: 'short', jars: ['t', 'a', 'p'], longJars: ['t', 'a', 'p', 'e'], extras: ['e', 'i', 'n'], pic: PICS.tap, animal: 'goat', clue: 'Water faucet at the sink (Short Tin: short a)' }
+      ]
+    },
+    {
+      id: 'tarts',
+      name: 'Team Tarts',
+      sub: 'ai, ay, ee, ea, oa',
+      pastryAsk: 'One tart, please!',
+      icon: PICS.tart,
+      howKey: 'howTarts',
+      orders: [
+        { word: 'rain', jars: ['r', 'ai', 'n'], extras: ['ay', 'a', 'e'], pic: PICS.rain, animal: 'duck', clue: 'Water drops falling from a cloud' },
+        { word: 'play', jars: ['p', 'l', 'ay'], extras: ['ai', 'a', 'ee'], pic: PICS.play, animal: 'rabbit', clue: 'Have fun with a game and ball' },
+        { word: 'feet', jars: ['f', 'ee', 't'], extras: ['ea', 'e', 'i'], pic: PICS.feet, animal: 'mouse', clue: 'Cozy socks go on both of these' },
+        { word: 'seat', jars: ['s', 'ea', 't'], extras: ['ee', 'e', 'a'], pic: PICS.seat, animal: 'bear', clue: 'A wooden chair to sit on' },
+        { word: 'boat', jars: ['b', 'oa', 't'], extras: ['o', 'd', 'ai'], pic: PICS.boat, animal: 'goat', clue: 'Floats across the lake' },
+        { word: 'green', jars: ['g', 'r', 'ee', 'n'], extras: ['ea', 'e', 'n'], pic: PICS.green, animal: 'hedgehog', clue: 'Color of spring leaves and grass' }
+      ]
+    },
+    {
+      id: 'cakes',
+      name: 'Two-Layer Cakes',
+      sub: 'two syllables + vowels',
+      pastryAsk: 'One cake, please!',
+      icon: PICS.cake,
+      howKey: 'howCakes',
+      orders: [
+        { word: 'rabbit', layer1: ['r', 'a', 'b'], layer2: ['b', 'i', 't'], extras: ['e', 't'], pic: PICS.rabbit, animal: 'rabbit', clue: 'Long-eared garden hopper (2 layers)' },
+        { word: 'napkin', layer1: ['n', 'a', 'p'], layer2: ['k', 'i', 'n'], extras: ['o', 't'], pic: PICS.napkin, animal: 'goat', clue: 'Folded cloth at dinner (2 layers)' },
+        { word: 'sunset', layer1: ['s', 'u', 'n'], layer2: ['s', 'e', 't'], extras: ['a', 'p'], pic: PICS.sunset, animal: 'duck', clue: 'Glowing sky at dusk (2 layers)' },
+        { word: 'cupcake', layer1: ['c', 'u', 'p'], layer2: ['c', 'a', 'k', 'e'], extras: ['i', 't'], pic: PICS.cupcake, animal: 'bear', clue: 'Frosted treat with a cherry (2 layers)' },
+        { word: 'picnic', layer1: ['p', 'i', 'c'], layer2: ['n', 'i', 'c'], extras: ['a', 't'], pic: PICS.picnic, animal: 'mouse', clue: 'Lunch basket in the park (2 layers)' },
+        { word: 'muffin', layer1: ['m', 'u', 'f'], layer2: ['f', 'i', 'n'], extras: ['a', 'p'], pic: PICS.muffin2, animal: 'hedgehog', clue: 'Berry breakfast bakery cup (2 layers)' }
+      ]
+    },
+    {
+      id: 'eclairs',
+      name: 'Ending Eclairs',
+      sub: '-s, -ed, -ing endings',
+      pastryAsk: 'One eclair, please!',
+      icon: PICS.eclair,
+      howKey: 'howEclairs',
+      orders: [
+        { word: 'jumped', base: 'jump', ending: '-ed', sentence: 'Yesterday, the frog ___.', jars: ['-s', '-ed', '-ing'], pic: PICS.frog, animal: 'goat' },
+        { word: 'digging', base: 'dig', ending: '-ing', sentence: 'Look! The dog is ___.', jars: ['-s', '-ed', '-ing'], rule: 'double', pic: PICS.eclair, animal: 'bear' },
+        { word: 'waters', base: 'water', ending: '-s', sentence: 'Every day, Sam ___ the plants.', jars: ['-s', '-ed', '-ing'], pic: PICS.green, animal: 'rabbit' },
+        { word: 'pulled', base: 'pull', ending: '-ed', sentence: 'The cat ___ the yarn yesterday.', jars: ['-s', '-ed', '-ing'], pic: PICS.eclair, animal: 'mouse' },
+        { word: 'baking', base: 'bake', ending: '-ing', sentence: 'We are ___ a cake.', jars: ['-s', '-ed', '-ing'], rule: 'dropE', pic: PICS.cake, animal: 'hedgehog' },
+        { word: 'sings', base: 'sing', ending: '-s', sentence: 'The bird ___ every morning.', jars: ['-s', '-ed', '-ing'], pic: PICS.nest, animal: 'duck' }
+      ]
+    },
+    {
+      id: 'tricky',
+      name: 'Tricky Treats',
+      sub: 'pick by how they look',
+      pastryAsk: 'One tricky treat, please!',
+      icon: PICS.tricky,
+      howKey: 'howTricky',
+      orders: [
+        { word: 'said', choices: ['said', 'sad', 'sand'], sentence: '"Hello!" ___ Baker Bea.', pic: PICS.tricky, animal: 'mouse' },
+        { word: 'was', choices: ['saw', 'was', 'wax'], sentence: 'The muffin ___ warm and sweet.', pic: PICS.tricky, animal: 'bear' },
+        { word: 'of', choices: ['off', 'if', 'of'], sentence: 'A warm cup ___ cocoa.', pic: PICS.tricky, animal: 'rabbit' },
+        { word: 'come', choices: ['came', 'come', 'cone'], sentence: 'Please ___ inside the bakery!', pic: PICS.tricky, animal: 'goat' },
+        { word: 'one', choices: ['on', 'one', 'own'], sentence: 'Just ___ golden coin.', pic: PICS.tricky, animal: 'duck' },
+        { word: 'could', choices: ['cold', 'could', 'cloud'], sentence: 'We ___ bake a tall cake!', pic: PICS.tricky, animal: 'hedgehog' }
+      ]
+    }
+  ];
+
+  // ---------- Synthesized Clean Isolated Phoneme Clips (Web Audio) ----------
+  const PHONEME_FREQ = {
+    s: [4200, 'noise'], sh: [2600, 'noise'], ch: [3000, 'burst'], th: [3600, 'noise'], wh: [320, 'glide'],
+    f: [3400, 'noise'], h: [2200, 'noise'], ck: [1400, 'plosive'], k: [1450, 'plosive'], c: [1400, 'plosive'],
+    p: [700, 'plosive'], b: [220, 'voiced'], t: [1900, 'plosive'], d: [260, 'voiced'], g: [240, 'voiced'],
+    m: [260, 'nasal'], n: [310, 'nasal'], r: [380, 'liquid'], l: [420, 'liquid'], w: [300, 'glide'],
+    a: [660, 'vowel'], e: [530, 'vowel'], i: [440, 'vowel'], o: [590, 'vowel'], u: [500, 'vowel'],
+    ai: [540, 'long'], ay: [540, 'long'], ee: [370, 'long'], ea: [370, 'long'], oa: [460, 'long'],
+    '-s': [4000, 'noise'], '-ed': [290, 'voiced'], '-ing': [350, 'nasal']
+  };
+
+  function playPhonemeClip(token, delayMs = 0, durSec = 0.26) {
+    if (!Curio.sound) return;
+    setTimeout(() => {
+      if (!Curio.sound) return;
+      const spec = PHONEME_FREQ[token] || [480, 'vowel'];
+      const freq = spec[0];
+      const kind = spec[1];
+      if (kind === 'noise' || kind === 'burst') {
+        Curio.tone(freq * 0.25, durSec * 0.7, 0.03, 'triangle');
+      } else if (kind === 'long') {
+        Curio.tone(freq, durSec * 0.55, 0.055, 'sine');
+        setTimeout(() => Curio.tone(freq * 1.18, durSec * 0.5, 0.05, 'sine'), 90);
+      } else {
+        Curio.tone(freq, durSec, 0.055, kind === 'vowel' ? 'sine' : 'triangle');
+      }
+    }, delayMs);
+  }
+
+  function playStreakBell() {
+    [784, 988, 1175, 1568].forEach((f, i) => setTimeout(() => Curio.tone(f, 0.28, 0.06, 'sine'), i * 85));
+  }
+
+  // ---------- Voice Lines Table (all static lines for voice/lines.json and Curio.voice) ----------
+  const L = {
+      "welcome": "Welcome to Blend Bakery! Every order is a word. Line up the sound jars, and the oven blends them.",
+      "rushWelcome": "Rush Hour! Customers come from every counter for ninety seconds. Fill their orders and ring the streak bell!",
+      "howDigraph": "Some jars hold two letters that make one sound.",
+      "howBlend": "Two sounds side by side, and you hear them both.",
+      "howMuffins": "Short or long? Listen to the middle.",
+      "howTarts": "Two letters team up for one long sound.",
+      "howCakes": "Every layer needs a vowel.",
+      "howEclairs": "Add an ending to match the sentence.",
+      "howTricky": "These words don't follow the rules. Find them by how they look.",
+      "readIt": "Can you read the box?",
+      "noWord": "Hmm, that's not a word I know.",
+      "noVowel": "Every layer needs a vowel.",
+      "ruleDropE": "The e steps out when ing comes in.",
+      "ruleDoubleG": "We double the g to keep the vowel short.",
+      "homophoneFeat": "That's feat, a big brave deed. I want feet for my socks.",
+      "homophoneSeet": "That's spelled with double e. I want seat for a chair.",
+      "counterNames": {
+          "digraph": "Digraph Donuts!",
+          "blend": "Blend Buns!",
+          "muffins": "Magic-e Muffins!",
+          "tarts": "Team Tarts!",
+          "cakes": "Two-Layer Cakes!",
+          "eclairs": "Ending Eclairs!",
+          "tricky": "Tricky Treats!"
+      },
+      "orders": {
+          "ship": "One ship, please!",
+          "chop": "One chop, please!",
+          "thin": "One thin, please!",
+          "whip": "One whip, please!",
+          "duck": "One duck, please!",
+          "fish": "One fish, please!",
+          "frog": "One frog, please!",
+          "stop": "One stop, please!",
+          "clap": "One clap, please!",
+          "drum": "One drum, please!",
+          "nest": "One nest, please!",
+          "hand": "One hand, please!",
+          "cape": "One cape, please!",
+          "pin": "One pin, please!",
+          "hope": "One hope, please!",
+          "cub": "One cub, please!",
+          "kite": "One kite, please!",
+          "tap": "One tap, please!",
+          "rain": "One rain, please!",
+          "play": "One play, please!",
+          "feet": "One feet, please!",
+          "seat": "One seat, please!",
+          "boat": "One boat, please!",
+          "green": "One green, please!",
+          "rabbit": "One rabbit, please!",
+          "napkin": "One napkin, please!",
+          "sunset": "One sunset, please!",
+          "cupcake": "One cupcake, please!",
+          "picnic": "One picnic, please!",
+          "muffin": "One muffin, please!",
+          "jumped": "Yesterday, the frog blank.",
+          "digging": "Look! The dog is blank.",
+          "waters": "Every day, Sam blank the plants.",
+          "pulled": "The cat blank the yarn yesterday.",
+          "baking": "We are blank a cake.",
+          "sings": "The bird blank every morning.",
+          "said": "Find the box that says said.",
+          "was": "Find the box that says was.",
+          "of": "Find the box that says of.",
+          "come": "Find the box that says come.",
+          "one": "Find the box that says one.",
+          "could": "Find the box that says could."
+      },
+      "yes": {
+          "ship": "Yum! A ship!",
+          "chop": "Yum! A chop!",
+          "thin": "Yum! A thin!",
+          "whip": "Yum! A whip!",
+          "duck": "Yum! A duck!",
+          "fish": "Yum! A fish!",
+          "frog": "Yum! A frog!",
+          "stop": "Yum! A stop!",
+          "clap": "Yum! A clap!",
+          "drum": "Yum! A drum!",
+          "nest": "Yum! A nest!",
+          "hand": "Yum! A hand!",
+          "cape": "Yum! A cape!",
+          "pin": "Yum! A pin!",
+          "hope": "Yum! A hope!",
+          "cub": "Yum! A cub!",
+          "kite": "Yum! A kite!",
+          "tap": "Yum! A tap!",
+          "rain": "Yum! A rain!",
+          "play": "Yum! A play!",
+          "feet": "Yum! Feet!",
+          "seat": "Yum! A seat!",
+          "boat": "Yum! A boat!",
+          "green": "Yum! Green!",
+          "rabbit": "Yum! A rabbit!",
+          "napkin": "Yum! A napkin!",
+          "sunset": "Yum! A sunset!",
+          "cupcake": "Yum! A cupcake!",
+          "picnic": "Yum! A picnic!",
+          "muffin": "Yum! A muffin!",
+          "jumped": "Yum! Jumped!",
+          "digging": "Yum! Digging!",
+          "waters": "Yum! Waters!",
+          "pulled": "Yum! Pulled!",
+          "baking": "Yum! Baking!",
+          "sings": "Yum! Sings!",
+          "said": "Yum! Said!",
+          "was": "Yum! Was!",
+          "of": "Yum! Of!",
+          "come": "Yum! Come!",
+          "one": "Yum! One!",
+          "could": "Yum! Could!"
+      },
+      "listen": {
+          "start": {
+              "ship": "Listen to the start of ship.",
+              "chop": "Listen to the start of chop.",
+              "thin": "Listen to the start of thin.",
+              "whip": "Listen to the start of whip.",
+              "duck": "Listen to the start of duck.",
+              "fish": "Listen to the start of fish.",
+              "frog": "Listen to the start of frog.",
+              "stop": "Listen to the start of stop.",
+              "clap": "Listen to the start of clap.",
+              "drum": "Listen to the start of drum.",
+              "nest": "Listen to the start of nest.",
+              "hand": "Listen to the start of hand.",
+              "cape": "Listen to the start of cape.",
+              "pin": "Listen to the start of pin.",
+              "hope": "Listen to the start of hope.",
+              "cub": "Listen to the start of cub.",
+              "kite": "Listen to the start of kite.",
+              "tap": "Listen to the start of tap.",
+              "rain": "Listen to the start of rain.",
+              "play": "Listen to the start of play.",
+              "feet": "Listen to the start of feet.",
+              "seat": "Listen to the start of seat.",
+              "boat": "Listen to the start of boat.",
+              "green": "Listen to the start of green.",
+              "rabbit": "Listen to the start of rabbit.",
+              "napkin": "Listen to the start of napkin.",
+              "sunset": "Listen to the start of sunset.",
+              "cupcake": "Listen to the start of cupcake.",
+              "picnic": "Listen to the start of picnic.",
+              "muffin": "Listen to the start of muffin."
+          },
+          "middle": {
+              "ship": "Listen to the middle of ship.",
+              "chop": "Listen to the middle of chop.",
+              "thin": "Listen to the middle of thin.",
+              "whip": "Listen to the middle of whip.",
+              "duck": "Listen to the middle of duck.",
+              "fish": "Listen to the middle of fish.",
+              "frog": "Listen to the middle of frog.",
+              "stop": "Listen to the middle of stop.",
+              "clap": "Listen to the middle of clap.",
+              "drum": "Listen to the middle of drum.",
+              "nest": "Listen to the middle of nest.",
+              "hand": "Listen to the middle of hand.",
+              "cape": "Listen to the middle of cape.",
+              "pin": "Listen to the middle of pin.",
+              "hope": "Listen to the middle of hope.",
+              "cub": "Listen to the middle of cub.",
+              "kite": "Listen to the middle of kite.",
+              "tap": "Listen to the middle of tap.",
+              "rain": "Listen to the middle of rain.",
+              "play": "Listen to the middle of play.",
+              "feet": "Listen to the middle of feet.",
+              "seat": "Listen to the middle of seat.",
+              "boat": "Listen to the middle of boat.",
+              "green": "Listen to the middle of green.",
+              "rabbit": "Listen to the middle of rabbit.",
+              "napkin": "Listen to the middle of napkin.",
+              "sunset": "Listen to the middle of sunset.",
+              "cupcake": "Listen to the middle of cupcake.",
+              "picnic": "Listen to the middle of picnic.",
+              "muffin": "Listen to the middle of muffin."
+          },
+          "end": {
+              "ship": "Listen to the end of ship.",
+              "chop": "Listen to the end of chop.",
+              "thin": "Listen to the end of thin.",
+              "whip": "Listen to the end of whip.",
+              "duck": "Listen to the end of duck.",
+              "fish": "Listen to the end of fish.",
+              "frog": "Listen to the end of frog.",
+              "stop": "Listen to the end of stop.",
+              "clap": "Listen to the end of clap.",
+              "drum": "Listen to the end of drum.",
+              "nest": "Listen to the end of nest.",
+              "hand": "Listen to the end of hand.",
+              "cape": "Listen to the end of cape.",
+              "pin": "Listen to the end of pin.",
+              "hope": "Listen to the end of hope.",
+              "cub": "Listen to the end of cub.",
+              "kite": "Listen to the end of kite.",
+              "tap": "Listen to the end of tap.",
+              "rain": "Listen to the end of rain.",
+              "play": "Listen to the end of play.",
+              "feet": "Listen to the end of feet.",
+              "seat": "Listen to the end of seat.",
+              "boat": "Listen to the end of boat.",
+              "green": "Listen to the end of green.",
+              "rabbit": "Listen to the end of rabbit.",
+              "napkin": "Listen to the end of napkin.",
+              "sunset": "Listen to the end of sunset.",
+              "cupcake": "Listen to the end of cupcake.",
+              "picnic": "Listen to the end of picnic.",
+              "muffin": "Listen to the end of muffin.",
+              "jumped": "Listen to the end of jumped.",
+              "digging": "Listen to the end of digging.",
+              "waters": "Listen to the end of waters.",
+              "pulled": "Listen to the end of pulled.",
+              "baking": "Listen to the end of baking.",
+              "sings": "Listen to the end of sings."
+          }
+      },
+      "muffinTin": {
+          "cape": "Pick the Long Tin for cape.",
+          "pin": "Pick the Short Tin for pin.",
+          "hope": "Pick the Long Tin for hope.",
+          "cub": "Pick the Short Tin for cub.",
+          "kite": "Pick the Long Tin for kite.",
+          "tap": "Pick the Short Tin for tap."
+      },
+      "trickyWrong": {
+          "said:sad": "That's sad. Look for said.",
+          "said:sand": "That's sand. Look for said.",
+          "was:saw": "That's saw. Look for was.",
+          "was:wax": "That's wax. Look for was.",
+          "of:off": "That's off. Look for of.",
+          "of:if": "That's if. Look for of.",
+          "come:came": "That's came. Look for come.",
+          "come:cone": "That's cone. Look for come.",
+          "one:on": "That's on. Look for one.",
+          "one:own": "That's own. Look for one.",
+          "could:cold": "That's cold. Look for could.",
+          "could:cloud": "That's cloud. Look for could."
+      },
+      "nearPairs": {
+          "ship:sip": "That's a sip. I asked for a ship.",
+          "ship:chip": "That's a chip. I asked for a ship.",
+          "ship:hip": "That's a hip. I asked for a ship.",
+          "ship:his": "That's a his. I asked for a ship.",
+          "ship:sap": "That's a sap. I asked for a ship.",
+          "ship:chap": "That's a chap. I asked for a ship.",
+          "ship:ash": "That's a ash. I asked for a ship.",
+          "ship:has": "That's a has. I asked for a ship.",
+          "chop:shop": "That's a shop. I asked for a chop.",
+          "chop:cop": "That's a cop. I asked for a chop.",
+          "chop:top": "That's a top. I asked for a chop.",
+          "chop:cap": "That's a cap. I asked for a chop.",
+          "chop:cat": "That's a cat. I asked for a chop.",
+          "chop:cot": "That's a cot. I asked for a chop.",
+          "chop:chat": "That's a chat. I asked for a chop.",
+          "chop:shot": "That's a shot. I asked for a chop.",
+          "chop:pot": "That's a pot. I asked for a chop.",
+          "chop:hop": "That's a hop. I asked for a chop.",
+          "chop:pat": "That's a pat. I asked for a chop.",
+          "chop:tap": "That's a tap. I asked for a chop.",
+          "thin:tin": "That's a tin. I asked for a thin.",
+          "thin:fin": "That's a fin. I asked for a thin.",
+          "thin:tan": "That's a tan. I asked for a thin.",
+          "thin:fan": "That's a fan. I asked for a thin.",
+          "thin:in": "That's a in. I asked for a thin.",
+          "thin:an": "That's a an. I asked for a thin.",
+          "thin:than": "That's a than. I asked for a thin.",
+          "thin:that": "That's a that. I asked for a thin.",
+          "thin:hat": "That's a hat. I asked for a thin.",
+          "thin:hit": "That's a hit. I asked for a thin.",
+          "thin:fit": "That's a fit. I asked for a thin.",
+          "whip:wip": "That's a wip. I asked for a whip.",
+          "whip:ship": "That's a ship. I asked for a whip.",
+          "whip:chip": "That's a chip. I asked for a whip.",
+          "whip:chop": "That's a chop. I asked for a whip.",
+          "whip:shop": "That's a shop. I asked for a whip.",
+          "duck:dock": "That's a dock. I asked for a duck.",
+          "duck:buck": "That's a buck. I asked for a duck.",
+          "duck:bud": "That's a bud. I asked for a duck.",
+          "duck:cub": "That's a cub. I asked for a duck.",
+          "duck:cob": "That's a cob. I asked for a duck.",
+          "fish:dish": "That's a dish. I asked for a fish.",
+          "fish:ash": "That's a ash. I asked for a fish.",
+          "fish:cash": "That's a cash. I asked for a fish.",
+          "fish:his": "That's a his. I asked for a fish.",
+          "frog:fog": "That's a fog. I asked for a frog.",
+          "frog:dog": "That's a dog. I asked for a frog.",
+          "frog:log": "That's a log. I asked for a frog.",
+          "frog:lag": "That's a lag. I asked for a frog.",
+          "frog:flag": "That's a flag. I asked for a frog.",
+          "frog:rod": "That's a rod. I asked for a frog.",
+          "frog:for": "That's a for. I asked for a frog.",
+          "stop:top": "That's a top. I asked for a stop.",
+          "stop:shop": "That's a shop. I asked for a stop.",
+          "stop:spot": "That's a spot. I asked for a stop.",
+          "stop:pot": "That's a pot. I asked for a stop.",
+          "stop:pat": "That's a pat. I asked for a stop.",
+          "stop:tap": "That's a tap. I asked for a stop.",
+          "stop:sat": "That's a sat. I asked for a stop.",
+          "stop:sap": "That's a sap. I asked for a stop.",
+          "clap:cap": "That's a cap. I asked for a clap.",
+          "clap:clip": "That's a clip. I asked for a clap.",
+          "clap:lip": "That's a lip. I asked for a clap.",
+          "clap:lap": "That's a lap. I asked for a clap.",
+          "clap:cab": "That's a cab. I asked for a clap.",
+          "clap:lab": "That's a lab. I asked for a clap.",
+          "clap:back": "That's a back. I asked for a clap.",
+          "clap:pack": "That's a pack. I asked for a clap.",
+          "drum:rum": "That's a rum. I asked for a drum.",
+          "drum:bun": "That's a bun. I asked for a drum.",
+          "drum:mud": "That's a mud. I asked for a drum.",
+          "drum:run": "That's a run. I asked for a drum.",
+          "drum:rub": "That's a rub. I asked for a drum.",
+          "drum:bud": "That's a bud. I asked for a drum.",
+          "drum:nod": "That's a nod. I asked for a drum.",
+          "drum:rod": "That's a rod. I asked for a drum.",
+          "nest:net": "That's a net. I asked for a nest.",
+          "nest:ten": "That's a ten. I asked for a nest.",
+          "nest:set": "That's a set. I asked for a nest.",
+          "nest:test": "That's a test. I asked for a nest.",
+          "nest:tent": "That's a tent. I asked for a nest.",
+          "nest:neck": "That's a neck. I asked for a nest.",
+          "nest:sack": "That's a sack. I asked for a nest.",
+          "nest:sat": "That's a sat. I asked for a nest.",
+          "nest:cat": "That's a cat. I asked for a nest.",
+          "nest:seat": "That's a seat. I asked for a nest.",
+          "hand:had": "That's a had. I asked for a hand.",
+          "hand:and": "That's a and. I asked for a hand.",
+          "hand:man": "That's a man. I asked for a hand.",
+          "hand:band": "That's a band. I asked for a hand.",
+          "hand:bed": "That's a bed. I asked for a hand.",
+          "hand:ben": "That's a ben. I asked for a hand.",
+          "hand:men": "That's a men. I asked for a hand.",
+          "hand:hen": "That's a hen. I asked for a hand.",
+          "hand:end": "That's a end. I asked for a hand.",
+          "hand:ham": "That's a ham. I asked for a hand.",
+          "hand:mad": "That's a mad. I asked for a hand.",
+          "hand:bad": "That's a bad. I asked for a hand.",
+          "cape:cap": "You baked a cap. I wanted a cape!",
+          "cape:cope": "You baked a cope. I wanted a cape!",
+          "cape:coat": "You baked a coat. I wanted a cape!",
+          "cape:cop": "You baked a cop. I wanted a cape!",
+          "cape:cot": "You baked a cot. I wanted a cape!",
+          "cape:cat": "You baked a cat. I wanted a cape!",
+          "cape:tap": "You baked a tap. I wanted a cape!",
+          "cape:tape": "You baked a tape. I wanted a cape!",
+          "cape:top": "You baked a top. I wanted a cape!",
+          "cape:pat": "You baked a pat. I wanted a cape!",
+          "cape:pet": "You baked a pet. I wanted a cape!",
+          "cape:pot": "You baked a pot. I wanted a cape!",
+          "cape:eat": "You baked a eat. I wanted a cape!",
+          "cape:tea": "You baked a tea. I wanted a cape!",
+          "cape:oat": "You baked a oat. I wanted a cape!",
+          "cape:ape": "You baked a ape. I wanted a cape!",
+          "pin:pine": "You baked a pine. I wanted a pin!",
+          "pin:pan": "You baked a pan. I wanted a pin!",
+          "pin:pane": "You baked a pane. I wanted a pin!",
+          "pin:pat": "You baked a pat. I wanted a pin!",
+          "pin:pit": "You baked a pit. I wanted a pin!",
+          "pin:tin": "You baked a tin. I wanted a pin!",
+          "pin:tan": "You baked a tan. I wanted a pin!",
+          "pin:tap": "You baked a tap. I wanted a pin!",
+          "pin:tape": "You baked a tape. I wanted a pin!",
+          "pin:pet": "You baked a pet. I wanted a pin!",
+          "pin:ten": "You baked a ten. I wanted a pin!",
+          "pin:net": "You baked a net. I wanted a pin!",
+          "pin:tip": "You baked a tip. I wanted a pin!",
+          "pin:tie": "You baked a tie. I wanted a pin!",
+          "pin:pie": "You baked a pie. I wanted a pin!",
+          "pin:eat": "You baked a eat. I wanted a pin!",
+          "pin:tea": "You baked a tea. I wanted a pin!",
+          "pin:ape": "You baked a ape. I wanted a pin!",
+          "hope:hop": "You baked a hop. I wanted a hope!",
+          "hope:hat": "You baked a hat. I wanted a hope!",
+          "hope:hate": "You baked a hate. I wanted a hope!",
+          "hope:hot": "You baked a hot. I wanted a hope!",
+          "hope:pot": "You baked a pot. I wanted a hope!",
+          "hope:top": "You baked a top. I wanted a hope!",
+          "hope:pat": "You baked a pat. I wanted a hope!",
+          "hope:tap": "You baked a tap. I wanted a hope!",
+          "hope:tape": "You baked a tape. I wanted a hope!",
+          "hope:pet": "You baked a pet. I wanted a hope!",
+          "hope:eat": "You baked a eat. I wanted a hope!",
+          "hope:tea": "You baked a tea. I wanted a hope!",
+          "hope:oat": "You baked a oat. I wanted a hope!",
+          "hope:ape": "You baked a ape. I wanted a hope!",
+          "cub:cube": "You baked a cube. I wanted a cub!",
+          "cub:cab": "You baked a cab. I wanted a cub!",
+          "cub:cup": "You baked a cup. I wanted a cub!",
+          "cub:cap": "You baked a cap. I wanted a cub!",
+          "cub:cape": "You baked a cape. I wanted a cub!",
+          "cub:pub": "You baked a pub. I wanted a cub!",
+          "cub:up": "You baked a up. I wanted a cub!",
+          "cub:ape": "You baked a ape. I wanted a cub!",
+          "kite:kit": "You baked a kit. I wanted a kite!",
+          "kite:kat": "You baked a kat. I wanted a kite!",
+          "kite:pat": "You baked a pat. I wanted a kite!",
+          "kite:pit": "You baked a pit. I wanted a kite!",
+          "kite:pet": "You baked a pet. I wanted a kite!",
+          "kite:tie": "You baked a tie. I wanted a kite!",
+          "kite:pie": "You baked a pie. I wanted a kite!",
+          "kite:tip": "You baked a tip. I wanted a kite!",
+          "kite:tap": "You baked a tap. I wanted a kite!",
+          "kite:tape": "You baked a tape. I wanted a kite!",
+          "kite:eat": "You baked a eat. I wanted a kite!",
+          "kite:tea": "You baked a tea. I wanted a kite!",
+          "kite:ape": "You baked a ape. I wanted a kite!",
+          "tap:tape": "You baked a tape. I wanted a tap!",
+          "tap:pin": "You baked a pin. I wanted a tap!",
+          "tap:pine": "You baked a pine. I wanted a tap!",
+          "tap:pan": "You baked a pan. I wanted a tap!",
+          "tap:pane": "You baked a pane. I wanted a tap!",
+          "tap:pat": "You baked a pat. I wanted a tap!",
+          "tap:pit": "You baked a pit. I wanted a tap!",
+          "tap:tin": "You baked a tin. I wanted a tap!",
+          "tap:tan": "You baked a tan. I wanted a tap!",
+          "tap:pet": "You baked a pet. I wanted a tap!",
+          "tap:ten": "You baked a ten. I wanted a tap!",
+          "tap:net": "You baked a net. I wanted a tap!",
+          "tap:tip": "You baked a tip. I wanted a tap!",
+          "tap:tie": "You baked a tie. I wanted a tap!",
+          "tap:pie": "You baked a pie. I wanted a tap!",
+          "tap:eat": "You baked a eat. I wanted a tap!",
+          "tap:tea": "You baked a tea. I wanted a tap!",
+          "tap:ape": "You baked a ape. I wanted a tap!",
+          "rain:ran": "That's a ran. I asked for a rain.",
+          "rain:ray": "That's a ray. I asked for a rain.",
+          "rain:ear": "That's a ear. I asked for a rain.",
+          "rain:near": "That's a near. I asked for a rain.",
+          "rain:air": "That's a air. I asked for a rain.",
+          "play:pay": "That's a pay. I asked for a play.",
+          "play:lay": "That's a lay. I asked for a play.",
+          "play:pal": "That's a pal. I asked for a play.",
+          "play:lap": "That's a lap. I asked for a play.",
+          "play:peel": "That's a peel. I asked for a play.",
+          "play:leap": "That's a leap. I asked for a play.",
+          "play:pale": "That's a pale. I asked for a play.",
+          "play:plea": "That's a plea. I asked for a play.",
+          "feet:fit": "That's a fit. I asked for a feet.",
+          "feet:fat": "That's a fat. I asked for a feet.",
+          "feet:fee": "That's a fee. I asked for a feet.",
+          "feet:tie": "That's a tie. I asked for a feet.",
+          "seat:sat": "That's a sat. I asked for a seat.",
+          "seat:set": "That's a set. I asked for a seat.",
+          "seat:see": "That's a see. I asked for a seat.",
+          "seat:sea": "That's a sea. I asked for a seat.",
+          "seat:eat": "That's a eat. I asked for a seat.",
+          "seat:tea": "That's a tea. I asked for a seat.",
+          "boat:bat": "That's a bat. I asked for a boat.",
+          "boat:oat": "That's a oat. I asked for a boat.",
+          "boat:dot": "That's a dot. I asked for a boat.",
+          "boat:bad": "That's a bad. I asked for a boat.",
+          "boat:bit": "That's a bit. I asked for a boat.",
+          "boat:bait": "That's a bait. I asked for a boat.",
+          "boat:toad": "That's a toad. I asked for a boat.",
+          "boat:coat": "That's a coat. I asked for a boat.",
+          "green:grin": "That's a grin. I asked for a green.",
+          "green:grain": "That's a grain. I asked for a green.",
+          "green:seen": "That's a seen. I asked for a green.",
+          "green:gene": "That's a gene. I asked for a green.",
+          "green:near": "That's a near. I asked for a green.",
+          "green:ear": "That's a ear. I asked for a green.",
+          "green:gear": "That's a gear. I asked for a green.",
+          "jumped:jumps": "That's a jumps. I asked for a jumped.",
+          "jumped:jumping": "That's a jumping. I asked for a jumped.",
+          "digging:digs": "That's a digs. I asked for a digging.",
+          "digging:digged": "That's a digged. I asked for a digging.",
+          "waters:watered": "That's a watered. I asked for a waters.",
+          "waters:watering": "That's a watering. I asked for a waters.",
+          "pulled:pulls": "That's a pulls. I asked for a pulled.",
+          "pulled:pulling": "That's a pulling. I asked for a pulled.",
+          "baking:bakes": "That's a bakes. I asked for a baking.",
+          "baking:baked": "That's a baked. I asked for a baking.",
+          "sings:singed": "That's a singed. I asked for a sings.",
+          "sings:singing": "That's a singing. I asked for a sings."
+      },
+      "rushEnd": {
+          "0": "Rush hour's over! 0 orders!",
+          "1": "Rush hour's over! 1 order!",
+          "2": "Rush hour's over! 2 orders!",
+          "3": "Rush hour's over! 3 orders!",
+          "4": "Rush hour's over! 4 orders!",
+          "5": "Rush hour's over! 5 orders!",
+          "6": "Rush hour's over! 6 orders!",
+          "7": "Rush hour's over! 7 orders!",
+          "8": "Rush hour's over! 8 orders!",
+          "9": "Rush hour's over! 9 orders!",
+          "10": "Rush hour's over! 10 orders!",
+          "11": "Rush hour's over! 11 orders!",
+          "12": "Rush hour's over! 12 orders!",
+          "13": "Rush hour's over! 13 orders!",
+          "14": "Rush hour's over! 14 orders!",
+          "15": "Rush hour's over! 15 orders!",
+          "16": "Rush hour's over! 16 orders!",
+          "17": "Rush hour's over! 17 orders!",
+          "18": "Rush hour's over! 18 orders!",
+          "19": "Rush hour's over! 19 orders!",
+          "20": "Rush hour's over! 20 orders!",
+          "21": "Rush hour's over! 21 orders!",
+          "22": "Rush hour's over! 22 orders!",
+          "23": "Rush hour's over! 23 orders!",
+          "24": "Rush hour's over! 24 orders!",
+          "25": "Rush hour's over! 25 orders!",
+          "26": "Rush hour's over! 26 orders!",
+          "27": "Rush hour's over! 27 orders!",
+          "28": "Rush hour's over! 28 orders!",
+          "29": "Rush hour's over! 29 orders!",
+          "30": "Rush hour's over! 30 orders!"
+      }
+  };
+
+  // ---------- Tool State & Persistence ----------
+  const STORAGE_KEY = 'curio-blend-bakery-v1';
+  const state = {
+    mode: 'counters',          // 'counters' | 'rush'
+    view: 'front',             // 'front' | 'work'
+    counter: 'digraph',        // current counter id
+    order: 0,                  // order index 0..5
+    slots: [],                 // current tray slots (or layer1 slots)
+    slots2: [],                // layer2 slots for Two-Layer Cakes
+    tin: null,                 // 'short' | 'long' for Magic-e Muffins
+    trickyPick: null,          // chosen box in Tricky Treats
+    pantry: [],                // [{id, text, used}]
+    diffSlot: -1,              // slot index that glows on wrong bake
+    diffLayer: 1,              // 1 or 2
+    baking: false,
+    bakedWord: '',
+    bakedOk: false,
+    orderSolved: new Set(),    // tracks solved counter:order keys so spamming Bake gives no extra coins
+    counterSolved: {},         // counterId -> Set of solved order indices (must solve all 6 to earn ribbon)
+    coins: 0,
+    streak: 0,
+    doneCounters: [],          // list of completed counter ids
+    bestRush: 0,
+    rushOrders: 0,
+    rushLeft: 90,
+    relaxed: true,
+    patience: 100,
+    rushActive: false,
+    ruleSaid: { double: false, dropE: false },
+    layout: 'wide'
+  };
+
+  function loadSaved() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      const d = JSON.parse(raw);
+      if (Array.isArray(d.doneCounters)) state.doneCounters = d.doneCounters.filter(x => typeof x === 'string');
+      if (typeof d.bestRush === 'number' && d.bestRush >= 0) state.bestRush = Math.floor(d.bestRush);
+    } catch {}
+  }
+
+  function saveState() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        doneCounters: state.doneCounters,
+        bestRush: state.bestRush
+      }));
+    } catch {}
+    updateSaveUI();
+  }
+
+  function clearSaved() {
+    state.doneCounters = [];
+    state.bestRush = 0;
+    state.orderSolved.clear();
+    state.counterSolved = {};
+    try { localStorage.removeItem(STORAGE_KEY); } catch {}
+    updateSaveUI();
+    renderFront();
+    Curio.tone(440, 0.18, 0.04);
+    setHintNow('Saved progress cleared. Tap Digraph Donuts to start baking.');
+  }
+
+  function updateSaveUI() {
+    const doneCnt = state.doneCounters.length;
+    const oWord = state.bestRush === 1 ? 'order' : 'orders';
+    const cWord = doneCnt === 1 ? 'counter' : 'counters';
+    $('save-summary').textContent = `Best Rush Hour: ${state.bestRush} ${oWord} · ${doneCnt}/7 ${cWord} done.`;
+    const fs = $('front-status');
+    if (fs) {
+      fs.textContent = doneCnt > 0
+        ? `${doneCnt} of 7 counters earned a gold ribbon! Pick any counter to bake.`
+        : 'Every order is a word! Pick any counter to start baking.';
+    }
+  }
+
+  // ---------- Voice Setup (Curio.voice) ----------
+  let currentHint = 'Pick a counter. Tap Digraph Donuts to start.';
+  function setHintNow(t) {
+    currentHint = t;
+    const h = $('hint');
+    if (h && h.textContent !== t) h.textContent = t;
+  }
+
+  const V = Curio.voice({
+    lines: L,
+    scope: () => state.mode + ':' + state.view + ':' + state.counter + ':' + state.order,
+    welcome: () => state.mode === 'rush' ? ['rushWelcome', {hint: false}] : ['welcome', {hint: false}],
+    hint: false,
+    read: () => currentHint
+  });
+
+  // ---------- Helper: Current Counter & Order ----------
+  function curCounterObj() {
+    return COUNTERS.find(c => c.id === state.counter) || COUNTERS[0];
+  }
+  function curOrderObj() {
+    const c = curCounterObj();
+    return c.orders[state.order % c.orders.length];
+  }
+
+  // ---------- Compute Contextual Hint (never gives away target spelling before solving) ----------
+  function computeHint() {
+    if (state.mode === 'counters' && state.view === 'front') {
+      return 'Pick a counter. Tap Digraph Donuts to start.';
+    }
+    const c = curCounterObj();
+    const ord = curOrderObj();
+    if (c.id === 'tricky') {
+      if (!state.trickyPick) {
+        return 'Listen to the tricky word and read the sentence clue. Tap the matching word box, then press Bake.';
+      }
+      return `Box "${state.trickyPick}" picked. Press Bake to serve the order, or tap another box.`;
+    }
+    if (c.id === 'muffins' && !state.tin) {
+      return 'Listen to the middle vowel sound. Tap Short Tin (little) or Long Tin (tall + magic e) first.';
+    }
+    if (c.id === 'cakes') {
+      const full1 = state.slots.every(Boolean);
+      const full2 = state.slots2.every(Boolean);
+      if (!full1 || !full2) {
+        return 'Build the two-syllable word in two layers. Tap or drag sound jars on the shelf to fill both layers, then press Stack.';
+      }
+      return 'Both cake layers are full! Press Stack to bake the cake, or tap a slot to swap a jar.';
+    }
+    if (c.id === 'eclairs') {
+      if (!state.slots[0]) {
+        return `"${ord.sentence.replace('___', '...')}" Tap an ending jar (-s, -ed, or -ing) on the shelf, then press Bake.`;
+      }
+      return `Ending ${state.slots[0].text} is on the tray. Press Bake to finish the eclair, or tap the slot to change it.`;
+    }
+    const allFull = state.slots.length > 0 && state.slots.every(Boolean);
+    if (!allFull) {
+      return 'Listen to the order and check the picture clue. Tap or drag sound jars in order to fill the tray, or tap Hear order.';
+    }
+    return 'The tray is full! Press Bake to blend the jars in the oven, or tap a tray slot to empty it.';
+  }
+
+  function syncHint() {
+    setHintNow(computeHint());
+  }
+
+  // ---------- Render Bakery Front (7 Counters + Rush Hour Card) ----------
+  function renderFront() {
+    const grid = $('counters-grid');
+    grid.innerHTML = '';
+    COUNTERS.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'counter-card';
+      btn.id = 'c-' + c.id;
+      const done = state.doneCounters.includes(c.id);
+      btn.innerHTML = `
+        ${done ? '<span class="ribbon-badge">🏅 Done</span>' : ''}
+        ${c.icon}
+        <span class="c-title">${c.name}</span>
+        <span class="c-sub">${c.sub}</span>
+      `;
+      btn.onclick = () => openCounter(c.id, 0, true);
+      grid.appendChild(btn);
+    });
+
+    // 8th card: Rush Hour launcher showing best score sentence
+    const rushCard = document.createElement('button');
+    rushCard.className = 'counter-card rush-card';
+    rushCard.id = 'c-rush';
+    const bWord = state.bestRush === 1 ? 'order' : 'orders';
+    rushCard.innerHTML = `
+      <span class="ribbon-badge">Best: ${state.bestRush} ${bWord}</span>
+      ${PICS.rush}
+      <span class="c-title">Rush Hour</span>
+      <span class="c-sub">90s mix · Relaxed on</span>
+    `;
+    rushCard.onclick = () => setMode('rush');
+    grid.appendChild(rushCard);
+  }
+
+  // ---------- Setup an Order on the Active Bench ----------
+  let bakeTimer = 0;
+  function clearBakeTimers() {
+    bakeTimer++;
+    state.baking = false;
+  }
+
+  function scramblePantry(items, targetSeq, seedStr) {
+    const arr = items.map((t, i) => ({ id: 'j' + i, text: t, used: false }));
+    if (arr.length <= 3) return arr;
+    let h = 2166136261;
+    for (let i = 0; i < seedStr.length; i++) {
+      h = Math.imul(h ^ seedStr.charCodeAt(i), 16777619) >>> 0;
+    }
+    for (let i = arr.length - 1; i > 0; i--) {
+      h = Math.imul(h ^ (i + 17), 16777619) >>> 0;
+      const j = h % (i + 1);
+      const tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+    }
+    // Guarantee left-to-right #jar-0, #jar-1, #jar-2 is never the solution
+    if (targetSeq && targetSeq.length > 0 && targetSeq.every((t, idx) => arr[idx] && arr[idx].text === t)) {
+      const tmp = arr[0];
+      arr[0] = arr[arr.length - 1];
+      arr[arr.length - 1] = tmp;
+    }
+    return arr;
+  }
+
+  function setupOrder(announce = true, preservePatience = false) {
+    clearBakeTimers();
+    state.diffSlot = -1;
+    state.diffLayer = 1;
+    state.bakedWord = '';
+    state.bakedOk = false;
+    state.trickyPick = null;
+    if (!preservePatience) {
+      state.patience = 100;
+    }
+
+    const c = curCounterObj();
+    const ord = curOrderObj();
+
+    if (c.id === 'muffins') {
+      state.tin = null;
+      state.slots = [null, null, null];
+      state.slots2 = [];
+      const baseJars = ord.tin === 'long' ? ord.shortJars : ord.jars;
+      const all = [...baseJars];
+      if (!all.includes('e')) all.push('e');
+      ord.extras.forEach(x => { if (!all.includes(x)) all.push(x); });
+      state.pantry = scramblePantry(all, ord.jars, c.id + ':' + ord.word);
+    } else if (c.id === 'cakes') {
+      state.tin = null;
+      state.slots = new Array(ord.layer1.length).fill(null);
+      state.slots2 = new Array(ord.layer2.length).fill(null);
+      const raw = [...ord.layer1, ...ord.layer2, ...ord.extras];
+      state.pantry = scramblePantry(raw, [...ord.layer1, ...ord.layer2], c.id + ':' + ord.word);
+    } else if (c.id === 'eclairs') {
+      state.tin = null;
+      state.slots = [null];
+      state.slots2 = [];
+      state.pantry = ord.jars.map((t, i) => ({ id: 'j' + i, text: t, used: false }));
+    } else if (c.id === 'tricky') {
+      state.tin = null;
+      state.slots = [];
+      state.slots2 = [];
+      state.pantry = [];
+    } else {
+      state.tin = null;
+      state.slots = new Array(ord.jars.length).fill(null);
+      state.slots2 = [];
+      const raw = [...ord.jars, ...ord.extras];
+      state.pantry = scramblePantry(raw, ord.jars, c.id + ':' + ord.word);
+    }
+
+    renderWork();
+    syncHint();
+    $('oven-status').textContent = c.id === 'cakes'
+      ? 'Fill both cake layers, then press Stack.'
+      : (c.id === 'tricky' ? 'Pick the matching word box, then press Bake.' : 'Fill the tray slots, then press Bake.');
+
+    if (announce) {
+      const seq = [];
+      if (state.mode === 'counters' && state.order === 0) {
+        seq.push([L.counterNames[c.id], { kind: 'event', key: 'cnt:' + c.id, hint: false }]);
+      }
+      if (!V.heard(c.howKey)) {
+        seq.push([c.howKey, { kind: 'how', hint: false }]);
+      }
+      const oLine = L.orders[ord.word];
+      seq.push([oLine, { kind: 'event', key: 'ord:' + ord.word, hint: false }]);
+      V.welcome();
+      V.say(seq, { hint: false });
+    }
+  }
+
+  function openCounter(counterId, orderIdx = 0, announce = true) {
+    V.hush();
+    state.mode = 'counters';
+    state.view = 'work';
+    state.counter = counterId;
+    state.order = orderIdx;
+    $('m-counters').setAttribute('aria-pressed', 'true');
+    $('m-rush').setAttribute('aria-pressed', 'false');
+    $('front-view').hidden = true;
+    $('work-view').hidden = false;
+    $('rush-controls').hidden = true;
+    $('timer-pill').hidden = true;
+    $('patience-wrap').hidden = true;
+    $('back-shops-btn').hidden = false;
+    $('next-order-btn').hidden = false;
+    setupOrder(announce);
+    const firstFocus = (counterId === 'muffins' && $('tin-short')) ? $('tin-short') : ($('jar-0') || $('tricky-opt-0') || $('hear-btn'));
+    if (firstFocus) firstFocus.focus({ preventScroll: true });
+  }
+
+  function showFront() {
+    clearBakeTimers();
+    stopRushTimer();
+    V.hush();
+    state.mode = 'counters';
+    state.view = 'front';
+    $('m-counters').setAttribute('aria-pressed', 'true');
+    $('m-rush').setAttribute('aria-pressed', 'false');
+    $('front-view').hidden = false;
+    $('work-view').hidden = true;
+    renderFront();
+    syncHint();
+    V.welcome();
+    updatePanelVisibility();
+    const frontCard = $('c-' + state.counter) || $('c-digraph');
+    if (frontCard) frontCard.focus({ preventScroll: true });
+  }
+
+  function getOvenPastrySvg(c, ord) {
+    if (c.id === 'muffins') {
+      return state.tin === 'long' ? PICS.muffinTall : PICS.muffinShort;
+    }
+    return c.icon || PICS.donut;
+  }
+
+  // ---------- Render Active Bench, Tray, Oven & Pantry ----------
+  function renderWork() {
+    const prevFocusId = document.activeElement && document.activeElement !== document.body && document.activeElement.id
+      ? document.activeElement.id
+      : null;
+
+    const c = curCounterObj();
+    const ord = curOrderObj();
+
+    $('counter-title').textContent = state.mode === 'rush' ? `Rush Hour · ${c.name}` : c.name;
+
+    // Order progress dots
+    const dots = $('order-dots');
+    dots.innerHTML = '';
+    if (state.mode === 'counters') {
+      const solvedSet = state.counterSolved[c.id] || new Set();
+      c.orders.forEach((_, idx) => {
+        const i = document.createElement('i');
+        if (solvedSet.has(idx)) i.className = 'done';
+        else if (idx === state.order) i.className = 'cur';
+        dots.appendChild(i);
+      });
+    }
+
+    // Stats pills
+    $('coins-val').textContent = String(state.coins);
+    $('coins-unit').textContent = state.coins === 1 ? 'coin' : 'coins';
+    $('streak-val').textContent = String(state.streak);
+    $('streak-pill').classList.toggle('streak-on', state.streak >= 3);
+    if ($('patience-bar')) {
+      $('patience-bar').style.width = state.patience + '%';
+    }
+
+    // Tray hood instructions
+    const hoodTitle = $('tray-hood-title');
+    const hoodTip = $('tray-hood-tip');
+    const trayFooter = $('tray-footer');
+    if (c.id === 'cakes') {
+      hoodTitle.textContent = 'Two-Layer Cake Tray';
+      hoodTip.textContent = 'Every syllable layer needs a vowel jar';
+      trayFooter.textContent = 'Drag or tap jars to fill both layers. Tap any filled slot to return its jar.';
+    } else if (c.id === 'muffins') {
+      hoodTitle.textContent = 'Muffin Tin Tray';
+      hoodTip.textContent = 'Pick Short or Long tin first, then line up the jars';
+      trayFooter.textContent = 'Drag or tap jars into the tin. Tap any filled slot to return its jar.';
+    } else if (c.id === 'eclairs') {
+      hoodTitle.textContent = 'Eclair Finishing Tray';
+      hoodTip.textContent = 'Add -s, -ed, or -ing to match the sentence';
+      trayFooter.textContent = 'Tap any filled slot on the tray to return its jar to the pantry shelf.';
+    } else if (c.id === 'tricky') {
+      hoodTitle.textContent = 'Tricky Word Counter';
+      hoodTip.textContent = 'Pick the box by how the whole word looks';
+      trayFooter.textContent = 'Tap one of the three word boxes above, then press Bake.';
+    } else {
+      hoodTitle.textContent = 'Baking Tray';
+      hoodTip.textContent = 'Line up the sound jars in order from left to right';
+      trayFooter.textContent = 'Drag or tap a jar to place it on the tray. Tap any filled slot to empty it.';
+    }
+
+    // Customer & speech bubble (never gives away target spelling before solving!)
+    $('order-pic').innerHTML = ord.pic || PICS.donut;
+    if (state.bakedOk) {
+      $('order-line').textContent = L.yes[ord.word] || 'Yum!';
+      $('order-note').textContent = `Fresh baked: ${ord.word}!`;
+    } else if (c.id === 'eclairs') {
+      $('order-line').textContent = ord.sentence;
+      $('order-note').textContent = `Base word: ${ord.base}`;
+    } else if (c.id === 'tricky') {
+      $('order-line').textContent = ord.sentence;
+      $('order-note').textContent = "Can't be sounded out! Pick by look.";
+    } else {
+      $('order-line').textContent = c.pastryAsk || 'One treat, please!';
+      $('order-note').textContent = ord.clue || 'Tap Hear order or a jar to listen.';
+    }
+
+    const custMood = state.diffSlot >= 0 ? 'puzzled' : 'happy';
+    $('cust-img').src = ART[ord.animal + '-' + custMood] || ART['rabbit-happy'];
+    $('cust-img').alt = `${ord.animal} customer (${custMood})`;
+
+    const beaPose = state.bakedOk ? 'cheer' : (state.diffSlot >= 0 ? 'point' : (state.slots.some(Boolean) ? 'think' : 'stand'));
+    $('bea-img').src = ART['bea-' + beaPose] || ART['bea-stand'];
+
+    // Tin controls for Magic-e Muffins
+    const tinWrap = $('tin-controls');
+    if (c.id === 'muffins') {
+      tinWrap.hidden = false;
+      $('tin-short').setAttribute('aria-pressed', String(state.tin === 'short'));
+      $('tin-long').setAttribute('aria-pressed', String(state.tin === 'long'));
+    } else {
+      tinWrap.hidden = true;
+    }
+
+    // Render Center Tray Mount
+    const mount = $('tray-mount');
+    mount.innerHTML = '';
+
+    if (c.id === 'cakes') {
+      const wrap = document.createElement('div');
+      wrap.className = 'cake-trays';
+      wrap.appendChild(buildCakeLayerRow(1, 'Layer 1', state.slots, 1));
+      wrap.appendChild(buildCakeLayerRow(2, 'Layer 2', state.slots2, 1));
+      mount.appendChild(wrap);
+    } else if (c.id === 'eclairs') {
+      const tray = document.createElement('div');
+      tray.className = 'metal-tray';
+      tray.id = 'metal-tray';
+      const baseEl = document.createElement('div');
+      baseEl.className = 'eclair-base';
+      baseEl.id = 'eclair-base-label';
+      baseEl.textContent = state.bakedOk ? ord.word : ord.base;
+      tray.appendChild(baseEl);
+      const slotBtn = buildSlotButton(0, state.slots[0], 1, 'ending');
+      tray.appendChild(slotBtn);
+      mount.appendChild(tray);
+    } else if (c.id === 'tricky') {
+      const boxRow = document.createElement('div');
+      boxRow.className = 'tricky-boxes';
+      ord.choices.forEach((wordOpt, idx) => {
+        const b = document.createElement('button');
+        b.className = 'tricky-box-btn';
+        b.id = 'tricky-opt-' + idx;
+        const picked = state.trickyPick === wordOpt;
+        b.setAttribute('aria-pressed', String(picked));
+        if (picked) {
+          b.style.background = 'var(--gold)';
+          b.style.borderColor = 'var(--ink)';
+        }
+        b.innerHTML = `<span>${wordOpt}</span><small>Box ${idx + 1}</small>`;
+        b.onclick = () => pickTrickyBox(wordOpt, idx);
+        boxRow.appendChild(b);
+      });
+      mount.appendChild(boxRow);
+    } else {
+      const tray = document.createElement('div');
+      tray.className = 'metal-tray';
+      tray.id = 'metal-tray';
+      state.slots.forEach((sl, idx) => {
+        const tag = (c.id === 'muffins' && idx === 3) ? 'magic e' : `slot ${idx + 1}`;
+        tray.appendChild(buildSlotButton(idx, sl, 1, tag));
+      });
+      mount.appendChild(tray);
+    }
+
+    // Oven status & Baked Box with Pastry Icon
+    const boxEl = $('baked-box');
+    const winEl = $('oven-window');
+    winEl.classList.toggle('baking', state.baking);
+    if (state.bakedWord) {
+      boxEl.hidden = false;
+      boxEl.classList.toggle('baked-try', !state.bakedOk);
+      $('box-pastry').innerHTML = getOvenPastrySvg(c, ord);
+      if (c.id === 'muffins') {
+        $('box-ribbon').textContent = state.bakedOk
+          ? (state.tin === 'long' ? 'Tall Muffin' : 'Flat Muffin')
+          : 'Oven Tried';
+      } else {
+        $('box-ribbon').textContent = state.bakedOk ? 'Fresh Baked' : 'Oven Tried';
+      }
+      $('box-word').textContent = state.bakedWord;
+    } else {
+      boxEl.hidden = true;
+      boxEl.classList.remove('baked-try');
+    }
+
+    // Pantry Shelf Jars
+    const shelf = $('pantry-shelf');
+    const jarsWrap = $('pantry-jars');
+    jarsWrap.innerHTML = '';
+    if (c.id === 'tricky') {
+      shelf.hidden = true;
+    } else {
+      shelf.hidden = false;
+      state.pantry.forEach((j, idx) => {
+        const kind = jarKind(j.text, c.id);
+        const jb = document.createElement('button');
+        jb.className = `jar-btn kind-${kind}${j.used ? ' used' : ''}`;
+        jb.id = 'jar-' + idx;
+        jb.dataset.jar = j.text;
+        jb.dataset.pantryIdx = String(idx);
+        jb.setAttribute('aria-label', `Sound jar ${j.text}`);
+        jb.innerHTML = `
+          <span class="jar-lid"></span>
+          <span class="jar-letters">${j.text}</span>
+          <span class="jar-kind-tag">${jarTag(kind)}</span>
+        `;
+        jb.onclick = () => {
+          if (Date.now() - lastDragEndTs < 120) return;
+          tapJar(idx);
+        };
+        wireJarDrag(jb, idx);
+        jarsWrap.appendChild(jb);
+      });
+    }
+
+    // Update Bake / Stack button label and enabled state
+    const bakeBtn = $('bake-btn');
+    bakeBtn.innerHTML = c.id === 'cakes' ? '🎂 Stack' : '🔥 Bake';
+    const ready = isReadyToBake();
+    bakeBtn.disabled = !ready;
+    bakeBtn.setAttribute('aria-disabled', String(!ready));
+
+    // Empty tray button enabled state
+    const hasAny = state.slots.some(Boolean) || state.slots2.some(Boolean) || !!state.trickyPick;
+    $('clear-tray-btn').disabled = !hasAny;
+    $('clear-tray-btn').setAttribute('aria-disabled', String(!hasAny));
+
+    updatePanelVisibility();
+
+    // Restore keyboard focus if rebuilding DOM nodes dropped focus to document.body
+    if (prevFocusId && (!document.activeElement || document.activeElement === document.body)) {
+      const nextFocus = $(prevFocusId);
+      if (nextFocus && !nextFocus.disabled) {
+        nextFocus.focus({ preventScroll: true });
+      } else {
+        const fallback = $('bake-btn') && !$('bake-btn').disabled ? $('bake-btn') : ($('jar-0') || $('tricky-opt-0'));
+        if (fallback) fallback.focus({ preventScroll: true });
+      }
+    }
+  }
+
+  function buildCakeLayerRow(layerNum, label, slotsArr, vowelIdx) {
+    const row = document.createElement('div');
+    row.className = 'cake-layer-row';
+    const tag = document.createElement('span');
+    tag.className = 'layer-tag';
+    tag.textContent = label;
+    row.appendChild(tag);
+    slotsArr.forEach((sl, idx) => {
+      const isVowelSpot = idx === vowelIdx;
+      const isMagicSpot = slotsArr.length === 4 && idx === 3;
+      const slotLabel = isVowelSpot ? 'vowel' : (isMagicSpot ? 'magic e' : `spot ${idx + 1}`);
+      const slotBtn = buildSlotButton(idx, sl, layerNum, slotLabel, isVowelSpot || isMagicSpot);
+      row.appendChild(slotBtn);
+    });
+    return row;
+  }
+
+  function buildSlotButton(idx, sl, layerNum, defaultTag, isVowelSpot = false) {
+    const c = curCounterObj();
+    const btn = document.createElement('button');
+    const kind = sl ? jarKind(sl.text, c.id) : '';
+    const isDiff = state.diffSlot === idx && state.diffLayer === layerNum;
+    btn.className = 'tray-slot' +
+      (isVowelSpot ? ' vowel-spot' : '') +
+      (sl ? ` filled kind-${kind}` : '') +
+      (isDiff ? ' glow-diff' : '');
+    btn.id = layerNum === 2 ? `slot2-${idx}` : `slot-${idx}`;
+    btn.dataset.slotIdx = String(idx);
+    btn.dataset.layerNum = String(layerNum);
+    btn.setAttribute('aria-label', sl ? `Tray slot ${idx + 1}: ${sl.text}. Tap to empty.` : `Empty tray slot ${idx + 1} (${defaultTag})`);
+    btn.innerHTML = sl
+      ? `<span>${sl.text}</span><span class="slot-tag">${defaultTag}</span>`
+      : `<span>+</span><span class="slot-tag">${defaultTag}</span>`;
+    btn.onclick = () => emptySlot(idx, layerNum);
+    return btn;
+  }
+
+  function isReadyToBake() {
+    const c = curCounterObj();
+    if (c.id === 'tricky') return !!state.trickyPick;
+    if (c.id === 'cakes') {
+      return state.slots.length > 0 && state.slots.every(Boolean) &&
+             state.slots2.length > 0 && state.slots2.every(Boolean);
+    }
+    if (c.id === 'muffins') {
+      return !!state.tin && state.slots.length > 0 && state.slots.every(Boolean);
+    }
+    return state.slots.length > 0 && state.slots.every(Boolean);
+  }
+
+  function updatePanelVisibility() {
+    const inWork = state.view === 'work';
+    $('panel-actions').hidden = !inWork;
+    $('front-guide').hidden = inWork;
+  }
+
+  // ---------- Pointer Drag-and-Drop on Pantry Jars -> Tray Slots ----------
+  let lastDragEndTs = 0;
+  function wireJarDrag(btn, pantryIdx) {
+    btn.addEventListener('pointerdown', (e) => {
+      if (e.button !== undefined && e.button !== 0) return;
+      const jar = state.pantry[pantryIdx];
+      if (!jar || jar.used) return;
+      const startX = e.clientX;
+      const startY = e.clientY;
+      let dragging = false;
+      let ghost = null;
+      let hoveredSlot = null;
+
+      function onMove(ev) {
+        const dx = ev.clientX - startX;
+        const dy = ev.clientY - startY;
+        if (!dragging && Math.hypot(dx, dy) > 10) {
+          dragging = true;
+          ghost = btn.cloneNode(true);
+          ghost.removeAttribute('id');
+          ghost.classList.add('drag-jar-ghost');
+          document.body.appendChild(ghost);
+        }
+        if (dragging && ghost) {
+          ghost.style.left = ev.clientX + 'px';
+          ghost.style.top = ev.clientY + 'px';
+          const el = document.elementFromPoint(ev.clientX, ev.clientY);
+          const slotEl = el && el.closest ? el.closest('.tray-slot') : null;
+          if (hoveredSlot && hoveredSlot !== slotEl) {
+            hoveredSlot.classList.remove('drop-hover');
+          }
+          hoveredSlot = slotEl;
+          if (hoveredSlot) {
+            hoveredSlot.classList.add('drop-hover');
+          }
+        }
+      }
+
+      function onUp(ev) {
+        window.removeEventListener('pointermove', onMove);
+        window.removeEventListener('pointerup', onUp);
+        window.removeEventListener('pointercancel', onUp);
+        if (hoveredSlot) hoveredSlot.classList.remove('drop-hover');
+        if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+        if (!dragging) return;
+        lastDragEndTs = Date.now();
+        const el = document.elementFromPoint(ev.clientX, ev.clientY);
+        const slotEl = el && el.closest ? el.closest('.tray-slot') : null;
+        if (slotEl) {
+          const sIdx = Number(slotEl.dataset.slotIdx || 0);
+          const lNum = Number(slotEl.dataset.layerNum || 1);
+          dropJarIntoSlot(pantryIdx, sIdx, lNum);
+        } else if (el && el.closest && el.closest('#tray-card')) {
+          tapJar(pantryIdx);
+        }
+      }
+
+      window.addEventListener('pointermove', onMove);
+      window.addEventListener('pointerup', onUp);
+      window.addEventListener('pointercancel', onUp);
+    });
+  }
+
+  function nudgeMuffinTins() {
+    Curio.tone(320, 0.16, 0.04, 'triangle');
+    const tc = $('tin-controls');
+    if (tc) {
+      tc.classList.remove('tin-nudge');
+      void tc.offsetWidth;
+      tc.classList.add('tin-nudge');
+    }
+    setHintNow('Pick a muffin tin first! Tap Short Tin (little) or Long Tin (tall + magic e), then add sound jars.');
+  }
+
+  function dropJarIntoSlot(pantryIdx, slotIdx, layerNum) {
+    clearBakeTimers();
+    const jar = state.pantry[pantryIdx];
+    if (!jar || jar.used) return;
+    const c = curCounterObj();
+    if (c.id === 'muffins' && !state.tin) {
+      nudgeMuffinTins();
+      return;
+    }
+    state.diffSlot = -1;
+    state.bakedOk = false;
+    playPhonemeClip(jar.text, 0, 0.28);
+
+    const arr = layerNum === 2 ? state.slots2 : state.slots;
+    if (slotIdx < 0 || slotIdx >= arr.length) return;
+    const existing = arr[slotIdx];
+    if (existing) {
+      const oldP = state.pantry.find(x => x.id === existing.id);
+      if (oldP) oldP.used = false;
+    }
+    arr[slotIdx] = { id: jar.id, text: jar.text };
+    jar.used = true;
+    renderWork();
+    syncHint();
+  }
+
+  // ---------- Interactions: Tin Picker, Jar Tap, Slot Tap, Tricky Box ----------
+  function pickTin(tinKind) {
+    clearBakeTimers();
+    state.tin = tinKind;
+    state.diffSlot = -1;
+    state.bakedOk = false;
+    state.pantry.forEach(p => { p.used = false; });
+    state.slots = new Array(tinKind === 'long' ? 4 : 3).fill(null);
+    Curio.tone(tinKind === 'long' ? 587 : 440, 0.16, 0.045);
+    renderWork();
+    syncHint();
+  }
+
+  function tapJar(pantryIdx) {
+    clearBakeTimers();
+    const jar = state.pantry[pantryIdx];
+    if (!jar) return;
+    state.diffSlot = -1;
+    state.bakedOk = false;
+
+    // Always play the jar's isolated phoneme clip immediately
+    playPhonemeClip(jar.text, 0, 0.28);
+
+    const c = curCounterObj();
+    if (c.id === 'muffins' && !state.tin) {
+      nudgeMuffinTins();
+      return;
+    }
+
+    if (jar.used) {
+      const i1 = state.slots.findIndex(s => s && s.id === jar.id);
+      if (i1 >= 0) state.slots[i1] = null;
+      const i2 = state.slots2.findIndex(s => s && s.id === jar.id);
+      if (i2 >= 0) state.slots2[i2] = null;
+      jar.used = false;
+      renderWork();
+      syncHint();
+      return;
+    }
+
+    const empty1 = state.slots.findIndex(s => s === null);
+    if (empty1 >= 0) {
+      state.slots[empty1] = { id: jar.id, text: jar.text };
+      jar.used = true;
+    } else if (c.id === 'cakes') {
+      const empty2 = state.slots2.findIndex(s => s === null);
+      if (empty2 >= 0) {
+        state.slots2[empty2] = { id: jar.id, text: jar.text };
+        jar.used = true;
+      }
+    }
+    renderWork();
+    syncHint();
+  }
+
+  function emptySlot(slotIdx, layerNum = 1) {
+    clearBakeTimers();
+    state.diffSlot = -1;
+    state.bakedOk = false;
+    const arr = layerNum === 2 ? state.slots2 : state.slots;
+    const item = arr[slotIdx];
+    if (!item) {
+      Curio.tone(320, 0.1, 0.03);
+      return;
+    }
+    const p = state.pantry.find(x => x.id === item.id);
+    if (p) p.used = false;
+    arr[slotIdx] = null;
+    Curio.tone(360, 0.14, 0.04);
+    renderWork();
+    syncHint();
+    const btnId = layerNum === 2 ? `slot2-${slotIdx}` : `slot-${slotIdx}`;
+    const btn = $(btnId);
+    if (btn) btn.focus({ preventScroll: true });
+  }
+
+  function pickTrickyBox(wordOpt, idx) {
+    clearBakeTimers();
+    state.trickyPick = wordOpt;
+    state.diffSlot = -1;
+    state.bakedOk = false;
+    Curio.tone(523, 0.16, 0.045);
+    renderWork();
+    syncHint();
+    const btn = $('tricky-opt-' + idx);
+    if (btn) btn.focus({ preventScroll: true });
+  }
+
+  function emptyAllSlots() {
+    clearBakeTimers();
+    state.diffSlot = -1;
+    state.bakedWord = '';
+    state.bakedOk = false;
+    state.trickyPick = null;
+    state.pantry.forEach(p => { p.used = false; });
+    state.slots = state.slots.map(() => null);
+    state.slots2 = state.slots2.map(() => null);
+    Curio.tone(330, 0.15, 0.04);
+    renderWork();
+    syncHint();
+    const firstJar = $('jar-0') || $('tricky-opt-0');
+    if (firstJar) firstJar.focus({ preventScroll: true });
+  }
+
+  function animateSlotBlending(c) {
+    const slotIds = [];
+    if (c.id === 'cakes') {
+      state.slots.forEach((_, i) => slotIds.push(`slot-${i}`));
+      state.slots2.forEach((_, i) => slotIds.push(`slot2-${i}`));
+    } else if (c.id !== 'tricky') {
+      state.slots.forEach((_, i) => slotIds.push(`slot-${i}`));
+    }
+    slotIds.forEach((sid, idx) => {
+      setTimeout(() => {
+        const el = $(sid);
+        if (!el) return;
+        el.classList.add('slot-blending');
+        setTimeout(() => el.classList.remove('slot-blending'), 240);
+      }, idx * 130);
+    });
+  }
+
+  // ---------- Bake / Stack Evaluation & Oven Animation ----------
+  function bakeOrder() {
+    if (!isReadyToBake()) return;
+    clearBakeTimers();
+    V.dropQueued();
+    const myBake = ++bakeTimer;
+
+    const c = curCounterObj();
+    const ord = curOrderObj();
+
+    // 1. Two-Layer Cakes: check that each layer has at least one vowel jar
+    if (c.id === 'cakes') {
+      const hasV1 = state.slots.some(s => s && VOWELS.has(s.text));
+      const hasV2 = state.slots2.some(s => s && VOWELS.has(s.text));
+      if (!hasV1 || !hasV2) {
+        state.diffLayer = !hasV1 ? 1 : 2;
+        state.diffSlot = 1;
+        Curio.tone(240, 0.28, 0.05, 'triangle');
+        renderWork();
+        $('oven-status').textContent = 'Every layer needs a vowel jar!';
+        setHintNow('Every layer needs a vowel. Put a vowel jar (a, e, i, o, u) in the dotted vowel spot.');
+        V.say('noVowel', { kind: 'event', hint: false });
+        return;
+      }
+    }
+
+    state.baking = true;
+
+    let builtTokens = [];
+    let builtWord = '';
+    if (c.id === 'tricky') {
+      builtWord = state.trickyPick;
+      builtTokens = [builtWord];
+    } else if (c.id === 'cakes') {
+      builtTokens = [...state.slots.map(s => s.text), ...state.slots2.map(s => s.text)];
+      builtWord = builtTokens.join('');
+    } else if (c.id === 'eclairs') {
+      const endJar = state.slots[0].text;
+      builtTokens = [ord.base, endJar];
+      if (ord.base === 'dig' && endJar === '-ing') builtWord = 'digging';
+      else if (ord.base === 'bake' && endJar === '-ing') builtWord = 'baking';
+      else if (ord.base === 'bake' && endJar === '-ed') builtWord = 'baked';
+      else builtWord = ord.base + endJar.slice(1);
+    } else {
+      builtTokens = state.slots.map(s => s.text);
+      builtWord = builtTokens.join('');
+    }
+
+    builtTokens.forEach((tok, i) => playPhonemeClip(tok, i * 130, 0.24));
+
+    const isRight = (builtWord === ord.word) && (c.id !== 'muffins' || state.tin === ord.tin);
+    state.bakedWord = builtWord;
+    state.bakedOk = isRight;
+
+    const nearKey = ord.word + ':' + builtWord;
+    const nearLine = L.nearPairs[nearKey] || null;
+
+    if (isRight) {
+      let earnedNewCoin = false;
+      // Anti-cheat: only award coin/streak/score once per order instance
+      const solveKey = state.mode + ':' + c.id + ':' + state.order + ':' + state.rushOrders;
+      if (!state.orderSolved.has(solveKey)) {
+        state.orderSolved.add(solveKey);
+        state.coins += 1;
+        state.streak += 1;
+        earnedNewCoin = true;
+        if (!state.counterSolved[c.id]) state.counterSolved[c.id] = new Set();
+        state.counterSolved[c.id].add(state.order);
+        if (state.counterSolved[c.id].size >= c.orders.length && !state.doneCounters.includes(c.id)) {
+          state.doneCounters.push(c.id);
+        }
+        if (state.streak > 0 && state.streak % 3 === 0) {
+          setTimeout(() => playStreakBell(), 360);
+        }
+        if (state.mode === 'rush') {
+          state.rushOrders += 1;
+          if (state.rushOrders > state.bestRush) {
+            state.bestRush = state.rushOrders;
+          }
+        }
+        saveState();
+      }
+      Curio.yes();
+
+      renderWork();
+      const trayEl = $('metal-tray');
+      if (trayEl) trayEl.classList.add('sliding');
+      animateSlotBlending(c);
+      if (earnedNewCoin) {
+        const cp = $('coins-pill');
+        if (cp) {
+          cp.classList.remove('coin-pop');
+          void cp.offsetWidth;
+          cp.classList.add('coin-pop');
+        }
+      }
+      $('oven-status').textContent = 'Can you read the box? (3s...)';
+
+      const seq = [];
+      if (c.id === 'eclairs' && ord.rule === 'double' && !state.ruleSaid.double) {
+        state.ruleSaid.double = true;
+        seq.push(['ruleDoubleG', { kind: 'event', hint: false }]);
+      } else if (c.id === 'eclairs' && ord.rule === 'dropE' && !state.ruleSaid.dropE) {
+        state.ruleSaid.dropE = true;
+        seq.push(['ruleDropE', { kind: 'event', hint: false }]);
+      }
+      seq.push(['readIt', { kind: 'event', hint: false }]);
+      const yesLine = L.yes[ord.word];
+      seq.push([yesLine, { kind: 'event', key: 'yes:' + ord.word, hint: false }]);
+
+      setHintNow(`Can you read the box? "${builtWord}"! Press Next order for the next customer.`);
+      V.say(seq, { hint: false });
+
+      setTimeout(() => {
+        if (myBake !== bakeTimer) return;
+        state.baking = false;
+        $('oven-status').textContent = `Yum! "${ord.word}"! +1 coin!`;
+        renderWork();
+      }, 3000);
+    } else {
+      // Wrong bake: reset streak so random guessing cannot farm streak bells
+      state.streak = 0;
+
+      let diffIdx = 0;
+      let placeWord = 'start';
+      if (c.id === 'cakes') {
+        const i1 = ord.layer1.findIndex((t, i) => !state.slots[i] || state.slots[i].text !== t);
+        if (i1 >= 0) {
+          state.diffLayer = 1;
+          diffIdx = i1;
+          placeWord = i1 === 0 ? 'start' : 'middle';
+        } else {
+          state.diffLayer = 2;
+          const i2 = ord.layer2.findIndex((t, i) => !state.slots2[i] || state.slots2[i].text !== t);
+          diffIdx = i2 >= 0 ? i2 : 0;
+          placeWord = diffIdx < ord.layer2.length - 1 ? 'middle' : 'end';
+        }
+      } else if (c.id === 'eclairs' || c.id === 'tricky') {
+        state.diffLayer = 1;
+        diffIdx = 0;
+        placeWord = 'end';
+      } else {
+        state.diffLayer = 1;
+        const targetJars = ord.jars;
+        const found = targetJars.findIndex((t, i) => !state.slots[i] || state.slots[i].text !== t);
+        diffIdx = found >= 0 ? found : Math.min(state.slots.length - 1, targetJars.length - 1);
+        if (diffIdx === 0) placeWord = 'start';
+        else if (diffIdx >= targetJars.length - 1) placeWord = 'end';
+        else placeWord = 'middle';
+      }
+      state.diffSlot = diffIdx;
+
+      const targetClip = (c.id === 'cakes')
+        ? (state.diffLayer === 1 ? ord.layer1[diffIdx] : ord.layer2[diffIdx])
+        : (c.id === 'eclairs' ? ord.ending : (ord.jars ? ord.jars[diffIdx] : ord.word));
+      playPhonemeClip(targetClip, 450, 0.32);
+
+      renderWork();
+      animateSlotBlending(c);
+
+      const listenLine = (L.listen[placeWord] && L.listen[placeWord][ord.word]) || L.listen.end[ord.word];
+
+      if (c.id === 'tricky') {
+        const twLine = L.trickyWrong[nearKey] || L.howTricky;
+        $('oven-status').textContent = `That box says "${builtWord}". Try another box!`;
+        setHintNow(`That box says "${builtWord}". Read the sentence clue or tap Hear order, then pick another box and press Bake.`);
+        V.say([[twLine, { kind: 'event', hint: false }]], { hint: false });
+      } else if (c.id === 'tarts' && ord.word === 'feet' && builtWord === 'feat') {
+        $('oven-status').textContent = "That's feat (a brave deed)!";
+        setHintNow("That's feat, a big brave deed. Swap ea for the other long-e vowel team in the glowing middle slot, then press Bake.");
+        V.say(['homophoneFeat', [listenLine, { kind: 'event', hint: false }]], { hint: false });
+      } else if (c.id === 'tarts' && ord.word === 'seat' && builtWord === 'seet') {
+        $('oven-status').textContent = "That's spelled with double e!";
+        setHintNow('Swap ee for the other long-e vowel team in the glowing middle slot, then press Bake.');
+        V.say(['homophoneSeet', [listenLine, { kind: 'event', hint: false }]], { hint: false });
+      } else if (c.id === 'muffins' && state.tin !== ord.tin) {
+        const wantTin = ord.tin === 'long' ? 'Long Tin' : 'Short Tin';
+        const mLine = nearLine || L.muffinTin[ord.word];
+        $('oven-status').textContent = `You baked "${builtWord}". Try the ${wantTin}!`;
+        setHintNow(`You baked "${builtWord}". Tap ${wantTin} first, then line up the sound jars and press Bake.`);
+        V.say([
+          [mLine, { kind: 'event', hint: false }],
+          [listenLine, { kind: 'event', hint: false }]
+        ], { hint: false });
+      } else if (nearLine) {
+        $('oven-status').textContent = `You baked "${builtWord}". Check the glowing ${placeWord} slot!`;
+        setHintNow(`That spells "${builtWord}". Listen to the ${placeWord} sound: tap the glowing ${placeWord} slot to swap that jar.`);
+        V.say([
+          [nearLine, { kind: 'event', hint: false }],
+          [listenLine, { kind: 'event', hint: false }]
+        ], { hint: false });
+      } else {
+        $('oven-status').textContent = "Hmm, that's not a word I know.";
+        setHintNow(`Hmm, "${builtWord}" is not a word I know. Listen to the ${placeWord} sound: tap the glowing ${placeWord} slot to fix it.`);
+        V.say(['noWord', [listenLine, { kind: 'event', hint: false }]], { hint: false });
+      }
+    }
+  }
+
+  // ---------- Advance to Next Order or Complete Counter ----------
+  function nextOrder(fromTimeout = false) {
+    clearBakeTimers();
+    V.dropQueued();
+
+    if (state.mode === 'rush') {
+      if (!state.rushActive) {
+        startRushHour();
+        return;
+      }
+      const skippedUnsolved = !state.bakedOk && !fromTimeout;
+      if (skippedUnsolved) {
+        state.streak = 0;
+      }
+      const preservePatience = skippedUnsolved && !state.relaxed;
+      const nextCIdx = (COUNTERS.findIndex(c => c.id === state.counter) + 1) % COUNTERS.length;
+      state.counter = COUNTERS[nextCIdx].id;
+      state.order = (state.order + 1) % 6;
+      setupOrder(true, preservePatience);
+      if (!document.activeElement || document.activeElement === document.body || document.activeElement.offsetParent === null) {
+        const f = $('jar-0') || $('tricky-opt-0') || $('m-rush');
+        if (f) f.focus({ preventScroll: true });
+      }
+      return;
+    }
+
+    const c = curCounterObj();
+    const solvedSet = state.counterSolved[c.id] || new Set();
+    if (solvedSet.size >= c.orders.length) {
+      if (!state.doneCounters.includes(c.id)) {
+        state.doneCounters.push(c.id);
+        saveState();
+      }
+      state.order = (state.order + 1) % c.orders.length;
+      setupOrder(false);
+      $('oven-status').textContent = `🏅 ${c.name} Ribbon Earned!`;
+      setHintNow(`You baked all 6 orders at ${c.name} and earned its gold ribbon! Tap Counters or keep baking.`);
+      Curio.yes();
+      return;
+    }
+
+    state.order = (state.order + 1) % c.orders.length;
+    setupOrder(true);
+    if (!document.activeElement || document.activeElement === document.body || document.activeElement.offsetParent === null) {
+      const f = $('jar-0') || $('tricky-opt-0') || $('m-rush');
+      if (f) f.focus({ preventScroll: true });
+    }
+  }
+
+  // ---------- Rush Hour (90-second timer + patience bar + Relaxed toggle) ----------
+  let rushInterval = null;
+  function stopRushTimer() {
+    if (rushInterval) {
+      clearInterval(rushInterval);
+      rushInterval = null;
+    }
+    state.rushActive = false;
+  }
+
+  function startRushHour() {
+    stopRushTimer();
+    V.hush();
+    state.mode = 'rush';
+    state.view = 'work';
+    state.rushLeft = 90;
+    state.rushOrders = 0;
+    state.streak = 0;
+    state.patience = 100;
+    state.rushActive = true;
+    state.orderSolved.clear();
+    state.counter = COUNTERS[0].id;
+    state.order = 0;
+
+    $('m-counters').setAttribute('aria-pressed', 'false');
+    $('m-rush').setAttribute('aria-pressed', 'true');
+    $('front-view').hidden = true;
+    $('work-view').hidden = false;
+    $('rush-controls').hidden = false;
+    $('timer-pill').hidden = false;
+    $('timer-val').textContent = '90s';
+    $('patience-wrap').hidden = state.relaxed;
+    $('back-shops-btn').hidden = false;
+
+    setupOrder(true);
+    if (!document.activeElement || document.activeElement === document.body || document.activeElement.offsetParent === null) {
+      const f = $('jar-0') || $('tricky-opt-0') || $('m-rush');
+      if (f) f.focus({ preventScroll: true });
+    }
+
+    rushInterval = setInterval(() => {
+      if (!state.rushActive) return;
+      state.rushLeft = Math.max(0, state.rushLeft - 1);
+      $('timer-val').textContent = state.rushLeft + 's';
+
+      if (!state.relaxed) {
+        state.patience = Math.max(0, state.patience - 4);
+        $('patience-bar').style.width = state.patience + '%';
+        if (state.patience <= 0) {
+          state.streak = 0;
+          nextOrder(true);
+        }
+      }
+
+      if (state.rushLeft <= 0) {
+        finishRushHour();
+      }
+    }, 1000);
+  }
+
+  function finishRushHour() {
+    stopRushTimer();
+    if (state.rushOrders > state.bestRush) {
+      state.bestRush = state.rushOrders;
+      saveState();
+    }
+    const oWord = state.rushOrders === 1 ? 'order' : 'orders';
+    const bWord = state.bestRush === 1 ? 'order' : 'orders';
+    $('oven-status').textContent = `Rush Hour over! Score: ${state.rushOrders} ${oWord} · Best: ${state.bestRush} ${bWord}.`;
+    setHintNow(`Rush Hour's over! You filled ${state.rushOrders} ${oWord} (Best: ${state.bestRush}). Press New Rush to play again.`);
+    const rushKey = String(Math.min(30, Math.max(0, state.rushOrders)));
+    const rushLine = L.rushEnd[rushKey] || L.rushEnd['0'];
+    V.say(rushLine, { kind: 'event', hint: false });
+  }
+
+  function toggleRelaxed() {
+    state.relaxed = !state.relaxed;
+    const btn = $('relaxed-btn');
+    btn.setAttribute('aria-pressed', String(state.relaxed));
+    btn.textContent = state.relaxed ? '🌿 Relaxed: On' : '🌿 Relaxed: Off';
+    $('patience-wrap').hidden = state.relaxed || state.mode !== 'rush';
+    Curio.tone(state.relaxed ? 523 : 440, 0.14, 0.04);
+    syncHint();
+  }
+
+  // ---------- Mode Switching ----------
+  function setMode(m) {
+    if (m === 'rush') {
+      startRushHour();
+    } else {
+      showFront();
+    }
+  }
+
+  // ---------- Responsive Layout (wide / compact / stack) ----------
+  function relayout() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    const isStack = w < 640 || (w < 820 && h > 680);
+    const isCompact = isStack || h < 650 || w < 1050;
+    document.body.classList.toggle('stack', isStack);
+    document.body.classList.toggle('compact', isCompact);
+    state.layout = isStack ? 'stack' : (isCompact ? 'compact' : 'wide');
+  }
+  window.addEventListener('resize', relayout);
+
+  // ---------- Wire Controls ----------
+  $('m-counters').onclick = () => {
+    if (state.mode === 'counters' && state.view === 'front') return;
+    setMode('counters');
+  };
+  $('m-rush').onclick = () => {
+    if (state.mode === 'rush' && state.rushActive) return;
+    setMode('rush');
+  };
+  $('tin-short').onclick = () => pickTin('short');
+  $('tin-long').onclick = () => pickTin('long');
+  $('bake-btn').onclick = () => bakeOrder();
+  $('hear-btn').onclick = () => {
+    const c = curCounterObj();
+    const ord = curOrderObj();
+    const oLine = L.orders[ord.word];
+    if (c.id !== 'tricky' && c.id !== 'eclairs') {
+      const toks = c.id === 'cakes' ? [...ord.layer1, ...ord.layer2] : ord.jars;
+      toks.forEach((tok, i) => playPhonemeClip(tok, i * 160, 0.22));
+    }
+    V.dropQueued();
+    V.say(oLine, { kind: 'event', key: 'hear:' + ord.word, hint: false, now: true });
+  };
+  $('clear-tray-btn').onclick = () => emptyAllSlots();
+  $('next-order-btn').onclick = () => nextOrder(false);
+  $('back-shops-btn').onclick = () => showFront();
+  $('relaxed-btn').onclick = () => toggleRelaxed();
+  $('rush-restart-btn').onclick = () => startRushHour();
+  $('clear-save-btn').onclick = () => clearSaved();
+
+  // ---------- Initialize ----------
+  loadSaved();
+  updateSaveUI();
+  relayout();
+  renderFront();
+  syncHint();
+  updatePanelVisibility();
+
+  Curio.init({ clips: "voice:*", rate: 0.92, readFallback: () => currentHint });
+
+  window.__tool = {
+    state,
+    V,
+    setMode,
+    openCounter,
+    bakeOrder,
+    nextOrder,
+    allLines: V.allLines,
+    vlog: V.log,
+    get vq() { return V.queue; }
+  };
+})();
+</script>
+</body>
+</html>

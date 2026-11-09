@@ -1,0 +1,199 @@
+{
+  "style": "Warm storybook illustration for a Grade 1 phonics bakery: soft gouache and colored-pencil texture, deep rose and cream accents, gentle shading, friendly proportions, rich cozy bakery colors. No text, no letters, no numbers, no watermark.",
+  "assets": [
+    {
+      "name": "bakery",
+      "prompt": "Empty background: the cozy interior of a warm little storybook bakery seen straight on. A deep rose and cream striped fabric awning across the top, warm sunlit cream plaster walls, a wooden counter across the lower half, and shelves in the background with unmarked glass jars and warm golden light. Keep the center and foreground open for interactive counters and trays. No people, no animals, no text, no letters or signs with writing.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "bea-stand",
+      "prompt": "A friendly badger baker named Baker Bea standing cheerfully, three-quarter view facing slightly left, wearing a crisp white chef hat and a deep rose baker's apron over a cream shirt, holding a wooden spoon, warm welcoming smile, soft gouache storybook style.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 260,
+      "quality": 80,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "bea-cheer",
+      "prompt": "A friendly badger baker named Baker Bea cheering happily with both paws raised in celebration, wearing a crisp white chef hat and a deep rose baker's apron over a cream shirt, joyful proud expression, soft gouache storybook style.",
+      "ref": "bea-stand",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 260,
+      "quality": 80,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "bea-point",
+      "prompt": "A friendly badger baker named Baker Bea pointing helpfully toward the right with one paw while smiling encouragingly, wearing a crisp white chef hat and a deep rose baker's apron over a cream shirt, soft gouache storybook style.",
+      "ref": "bea-stand",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 260,
+      "quality": 80,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "bea-think",
+      "prompt": "A friendly badger baker named Baker Bea with one paw on her chin in a gentle curious thinking pose, head tilted slightly, wearing a crisp white chef hat and a deep rose baker's apron over a cream shirt, kind expression, soft gouache storybook style.",
+      "ref": "bea-stand",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 260,
+      "quality": 80,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "rabbit-happy",
+      "prompt": "A cute storybook rabbit customer wearing a sky-blue scarf, standing and smiling happily with ears perked up, facing right, soft gouache illustration.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "rabbit-puzzled",
+      "prompt": "A cute storybook rabbit customer wearing a sky-blue scarf, standing with a gentle puzzled expression, one ear flopped over and head tilted curiously, facing right, soft gouache illustration.",
+      "ref": "rabbit-happy",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "goat-happy",
+      "prompt": "A cute storybook little goat customer wearing a warm yellow vest, standing and smiling happily, facing right, soft gouache illustration.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "goat-puzzled",
+      "prompt": "A cute storybook little goat customer wearing a warm yellow vest, standing with a gentle puzzled expression, head tilted curiously and eyebrows raised, facing right, soft gouache illustration.",
+      "ref": "goat-happy",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "hedgehog-happy",
+      "prompt": "A cute storybook hedgehog customer wearing a cosy polka-dot bow tie, standing and smiling happily, facing right, soft gouache illustration.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "hedgehog-puzzled",
+      "prompt": "A cute storybook hedgehog customer wearing a cosy polka-dot bow tie, standing with a gentle puzzled expression, paws held out slightly in question, facing right, soft gouache illustration.",
+      "ref": "hedgehog-happy",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "duck-happy",
+      "prompt": "A cute storybook yellow duckling customer wearing a tiny blue sailor cap, standing and smiling happily, facing right, soft gouache illustration.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "duck-puzzled",
+      "prompt": "A cute storybook yellow duckling customer wearing a tiny blue sailor cap, standing with a gentle puzzled expression, head tilted and wing raised to bill, facing right, soft gouache illustration.",
+      "ref": "duck-happy",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "mouse-happy",
+      "prompt": "A cute storybook field mouse customer wearing miniature round spectacles and a lavender cardigan, standing and smiling happily, facing right, soft gouache illustration.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "mouse-puzzled",
+      "prompt": "A cute storybook field mouse customer wearing miniature round spectacles and a lavender cardigan, standing with a gentle puzzled expression, head tilted curiously, facing right, soft gouache illustration.",
+      "ref": "mouse-happy",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "bear-happy",
+      "prompt": "A cute storybook brown bear cub customer wearing striped overalls, standing and smiling happily, facing right, soft gouache illustration.",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    },
+    {
+      "name": "bear-puzzled",
+      "prompt": "A cute storybook brown bear cub customer wearing striped overalls, standing with a gentle puzzled expression, scratching head with one paw, facing right, soft gouache illustration.",
+      "ref": "bear-happy",
+      "cutout": true,
+      "aspect": "1:1",
+      "height": 220,
+      "quality": 78,
+      "despill": true,
+      "drawn_by": "antigravity",
+      "people": false
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "id": "blend-bakery",
+  "status": "beta",
+  "stage": "built",
+  "built_by": "antigravity-argon",
+  "hook": "Line up sound jars on the tray, slide them through the oven to hear the blend, and read the word on the box.",
+  "outcome": "Blend, segment, and decode digraphs, consonant blends, final-e, vowel teams, two-syllable words, endings, and irregular words",
+  "driver": "students or teacher",
+  "minutes": "5-10",
+  "modes": [
+    "Counters",
+    "Rush Hour"
+  ],
+  "grades_label": "Grade 1",
+  "sources": [
+    "Common Core State Standards for English Language Arts, Reading: Foundational Skills, Grade 1 (RF.1.2a-d, RF.1.3a-g)",
+    "Merriam-Webster Dictionary: Spelling rules (doubling final consonants, dropping silent e) and homophones (feet/feat, seat)",
+    "Reading Rockets: Spelling and adding suffixes (-s, -ed, -ing)",
+    "Illustrations generated with Google Gemini, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-09"
+}
