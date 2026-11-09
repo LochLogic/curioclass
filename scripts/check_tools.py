@@ -34,12 +34,13 @@ def check(folder):
         problems.append('missing tool.json')
     else:
         data = json.loads(meta.read_text(encoding='utf-8'))
-        problems += [f'tool.json missing "{k}"' for k in REQUIRED_JSON if k not in data]
+        recess = data.get('recess')  # a Recess game (docs/GAMES.md): no lesson fields; its shelf row is in data/recess.json
+        problems += [f'tool.json missing "{k}"' for k in REQUIRED_JSON if k not in data and not recess]
         if data.get('id') != tid:
             problems.append(f'tool.json id {data.get("id")!r} does not match folder')
-        if data.get('status') not in ('beta', 'ready'):
+        if not recess and data.get('status') not in ('beta', 'ready'):
             problems.append('status must be beta or ready')
-        if data.get('driver') not in ('teacher', 'students', 'students or teacher'):
+        if not recess and data.get('driver') not in ('teacher', 'students', 'students or teacher'):
             problems.append('driver must be teacher, students, or "students or teacher"')
     text = html.read_text(encoding='utf-8', errors='replace')
     size = html.stat().st_size
@@ -96,7 +97,8 @@ for folder in sorted(p for p in (ROOT / 'tools').iterdir() if p.is_dir()):
     if not (folder / 'tool.json').exists() and (folder / 'spec.md').exists():  # specced, not built yet
         print(f'spec  {folder.name}')
         continue
-    problems = check(folder) + (notes_sections(folder) if (folder / 'tool.json').exists() else [])
+    problems = check(folder) + (notes_sections(folder) if (folder / 'tool.json').exists()
+                                and not json.loads((folder / 'tool.json').read_text(encoding='utf-8')).get('recess') else [])
     print(f'{"FAIL" if problems else "ok  "} {folder.name}')
     for p in problems:
         print('     ', p)

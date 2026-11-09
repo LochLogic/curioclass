@@ -1,0 +1,6077 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Untangle · Curio Class Recess</title>
+  <link rel="stylesheet" href="kit:recess">
+  <style>
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; }
+    body.recess {
+      --rc-accent: #ffd166;
+      --rc-accent-ink: #1b1630;
+      --rc-glass: rgba(20,22,61,.78);
+      color: #f4f1ff;
+      background: #0a0b26;
+      overscroll-behavior: none;
+    }
+    button { font: inherit; }
+    .rc-card .rc-arr { min-height: 44px; }
+    button:focus-visible { outline: 3px solid #ffd166; outline-offset: 3px; }
+    .scenery, .scenery-veil { position: fixed; inset: 0; pointer-events: none; }
+    .scenery { background-size: cover; background-position: center; transition: opacity .8s; }
+    #land { animation: drift 40s ease-in-out infinite alternate; }
+    .scenery-veil { background: rgba(10,11,38,.4); }
+    #sky {
+      position: absolute;
+      inset: 64px 16px 64px;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      overflow: visible;
+    }
+    #field { width: 100%; height: 100%; overflow: visible; display: block; touch-action: none; }
+    #threads { filter: url(#thread-light); }
+    .thread { stroke: #8fa8ff; stroke-width: 2; opacity: .85; }
+    .thread.crossed { stroke: #ff9e6b; stroke-width: 3; opacity: 1; stroke-dasharray: 7 5; animation: fizz 1.44s linear infinite; }
+    .crossing { fill: #14163d88; stroke: #ff9e6b; stroke-width: 2; filter: url(#thread-light); pointer-events: none; }
+    .solved .thread { stroke: #ffd166; stroke-width: 2.5; stroke-dasharray: none; opacity: 1; animation: none; }
+    .star { cursor: grab; outline: none; }
+    .star .bead { pointer-events: none; transform-box: fill-box; transform-origin: center; transition: transform .12s; }
+    .star .hit { fill: transparent; }
+    .star .focus, .star .halo, .star .helper { fill: none; stroke: #ffd166; opacity: 0; pointer-events: none; }
+    .star .focus { stroke-width: 3; }
+    .star .halo { stroke: #fff6dc; stroke-width: 1.5; }
+    .star:focus-visible .focus { opacity: 1; }
+    .star.held { cursor: grabbing; }
+    .star.held .bead { transform: scale(1.35); }
+    .star.held .halo { opacity: .7; }
+    .star.help .helper { opacity: .85; stroke-width: 2; animation: helper 2.8s ease-in-out infinite; }
+    .star.troubled .bead { animation: twinkle 3s ease-in-out infinite alternate; }
+    .star.held .bead { animation: none; }
+    .star.settle .bead { animation: settle .16s ease-out; }
+    .star.improved:not(.held) .halo { animation: knot-release .38s ease-out; }
+    .speck { fill: #d8daff; opacity: .45; animation: twinkle var(--period) ease-in-out infinite alternate; }
+    #reveal { opacity: 0; pointer-events: none; transition: opacity .5s; }
+    .bloom #reveal { opacity: .86; }
+    #fills { opacity: 0; transition: opacity .5s; pointer-events: none; }
+    .solved #fills { opacity: 1; }
+    .beam {
+      stroke: #ffd166;
+      stroke-width: 2;
+      opacity: .4;
+      filter: url(#thread-light);
+      stroke-dasharray: var(--beam-length);
+      animation: beam-sweep 1.5s ease-out both;
+    }
+    #beams { pointer-events: none; transition: opacity .3s; }
+    #name-card {
+      position: absolute;
+      left: 50%;
+      bottom: 1.5%;
+      transform: translate(-50%, 12px);
+      opacity: 0;
+      white-space: nowrap;
+      text-align: center;
+      font-size: 26px;
+      font-weight: 750;
+      letter-spacing: .035em;
+      text-shadow: 0 2px 16px #000, 0 0 30px #8fa8ff;
+      transition: opacity .5s, transform .5s;
+      pointer-events: none;
+    }
+    .bloom #name-card { opacity: 1; transform: translate(-50%, 0); }
+    #hint {
+      position: absolute;
+      bottom: 7px;
+      left: 0;
+      right: 0;
+      margin: 0;
+      text-align: center;
+      color: #b9b6e0;
+      font-size: 15px;
+      text-shadow: 0 1px 8px #0a0b26;
+      pointer-events: none;
+    }
+    .solved #hint { display: none; }
+    #world-name {
+      position: fixed;
+      top: 66px;
+      right: 24px;
+      color: #b9b6e0;
+      text-transform: uppercase;
+      letter-spacing: .17em;
+      font-size: 11px;
+      pointer-events: none;
+      text-shadow: 0 2px 10px #0a0b26;
+    }
+    footer {
+      position: fixed;
+      bottom: max(8px, env(safe-area-inset-bottom));
+      left: 16px;
+      right: 16px;
+      height: 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+    .glass {
+      border: 1px solid #b9b6e03d;
+      background: rgba(20,22,61,.9);
+      color: #f4f1ff;
+      border-radius: 25px;
+      min-height: 44px;
+      padding: 10px 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px #05051c55, inset 0 1px #b9b6e00c;
+    }
+    button.glass { cursor: pointer; font-weight: 700; }
+    button.glass:hover { border-color: #ffd166; background: #23264e; }
+    #count { font-size: 17px; font-weight: 650; font-variant-numeric: tabular-nums; }
+    #count.zero { color: #ffd166; }
+    #moves { font-size: 15px; font-variant-numeric: tabular-nums; }
+    .mobile { display: none; }
+    .sr-only { position: fixed; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+    #chart {
+      border: 1px solid #8fa8ff55;
+      border-radius: 26px;
+      padding: 0;
+      color: #f4f1ff;
+      background: #0e1230;
+      width: min(850px, calc(100vw - 24px));
+      max-height: calc(100dvh - 24px);
+      box-shadow: 0 32px 120px #000c, inset 0 0 50px #8fa8ff0b;
+      overflow: hidden;
+    }
+    #chart::backdrop { background: #030416b8; backdrop-filter: blur(8px); }
+    .chart-head {
+      padding: 18px 22px 14px;
+      background-size: cover;
+      background-position: center 85%;
+      position: relative;
+      isolation: isolate;
+    }
+    .chart-head::before { content: ''; position: absolute; inset: 0; background: #0a0b2688; z-index: -1; }
+    .chart-top, .chart-nav { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .chart-top { margin-bottom: 8px; }
+    .chart-top span { font-size: 11px; letter-spacing: .16em; color: #d3ceef; text-transform: uppercase; }
+    .chart-head button, .chart-foot button {
+      color: #f4f1ff;
+      background: #14163de8;
+      border: 1px solid #b9b6e044;
+      border-radius: 16px;
+      min-width: 44px;
+      min-height: 44px;
+      padding: 8px 15px;
+      cursor: pointer;
+    }
+    #chart-title { font-size: 23px; margin: 0; font-weight: 750; }
+    #chart-meta { color: #d3ceef; font-size: 13px; margin: 5px 0 0; }
+    .chart-nav > div { text-align: center; }
+    .chart-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 104px));
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 20px 8px;
+    }
+    .sky-tile {
+      height: clamp(44px, calc((100dvh - 238px) / 5), 104px);
+      min-width: 44px;
+      padding: 4px;
+      position: relative;
+      border: 1px solid #8fa8ff2e;
+      border-radius: 15px;
+      background-color: #171c3a;
+      background-size: cover;
+      color: #f4f1ff;
+      cursor: pointer;
+      overflow: hidden;
+    }
+    .sky-tile::before { content: ''; position: absolute; inset: 0; background: #0a0b2699; }
+    .sky-tile:hover { border-color: #b9b6e0; }
+    .sky-tile.first { border: 2px solid #ffd166; box-shadow: 0 0 16px #ffd16620; }
+    .sky-tile.finale { border-width: 2px; border-color: #b9b6e080; box-shadow: inset 0 0 18px #8fa8ff20; }
+    .sky-tile svg { width: 100%; height: 100%; position: relative; }
+    .tile-number { position: absolute; left: 8px; top: 5px; font-size: 13px; font-weight: 750; }
+    .tile-stars { position: absolute; bottom: 2px; right: 6px; color: #ffd166; font-size: 12px; }
+    .tile-art { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; opacity: .75; }
+    .tile-art.hidden-picture { opacity: .18; filter: brightness(.5); }
+    #chart-daily { grid-column: 1 / -1; height: 44px; font-weight: 700; letter-spacing: .015em; }
+    .worlds-grid { grid-template-columns: repeat(6, minmax(0, 120px)); }
+    .world-tile { height: clamp(44px, calc((100dvh - 286px) / 4), 96px); }
+    .world-tile .tile-number { top: 6px; left: 8px; }
+    .world-tile .world-label { position: absolute; left: 6px; right: 6px; bottom: 9px; font-size: 12px; }
+    .world-tile svg { position: absolute; right: 3px; top: 3px; width: 32px; height: 32px; }
+    .chart-foot { display: flex; align-items: center; justify-content: space-between; padding: 4px 20px 12px; gap: 8px; }
+    .chart-foot small { font-size: 11px; color: #b9b6e0; }
+    @keyframes fizz { to { stroke-dashoffset: -24; } }
+    @keyframes twinkle { to { opacity: .75; } }
+    @keyframes helper { 50% { opacity: .35; } }
+    @keyframes settle { 0% { transform: scale(1.1); } 100% { transform: scale(1); } }
+    @keyframes knot-release { from { opacity: .85; r: 15px; } to { opacity: 0; r: 38px; } }
+    @keyframes drift { to { transform: translate3d(6px, -5px, 0) scale(1.012); } }
+    @keyframes beam-sweep { from { stroke-dashoffset: var(--beam-length); } to { stroke-dashoffset: 0; } }
+    body.calm *, body.calm *::before { animation: none !important; }
+    body.calm .scenery { transition-duration: .2s; }
+    body.calm .star .bead { transition: none; }
+    body.calm .beam { stroke-dasharray: none; stroke-dashoffset: 0; }
+    body.calm #reveal, body.calm #fills, body.calm #name-card { transition-duration: .2s; }
+    @media (max-width: 760px) {
+      .rc-info { gap: 6px; padding: 7px 10px; }
+      .rc-title { font-size: 13px; }
+      .rc-stars { font-size: 12px; }
+      #sky { left: 12px; right: 12px; }
+      footer { left: 12px; right: 12px; gap: 5px; }
+      .glass { padding: 10px 12px; }
+      #chart-open { width: 44px; min-width: 44px; padding: 8px; font-size: 23px; }
+      #chart-open .desktop, #moves .desktop { display: none; }
+      .mobile { display: inline; }
+      #count { font-size: 15px; }
+      #moves { font-size: 13px; padding: 12px 8px; }
+      #hint { font-size: 13px; }
+      #name-card { font-size: 18px; }
+      #world-name { right: 16px; font-size: 10px; }
+      #chart { border-radius: 20px; }
+      .chart-head { padding: 10px 12px; }
+      .chart-top { margin-bottom: 4px; }
+      #chart-title { font-size: 18px; }
+      #chart-meta { font-size: 11px; }
+      .chart-grid { gap: 6px; padding: 12px 10px 6px; }
+      .sky-tile { height: min(62px, calc((100dvh - 246px) / 5)); border-radius: 10px; }
+      .chart-grid.first-skies { grid-template-columns: repeat(4, minmax(0, 70px)); }
+      .first-skies .sky-tile { height: min(70px, calc((100dvh - 288px) / 5)); }
+      .first-skies #chart-daily { height: 44px; }
+      .worlds-grid { grid-template-columns: repeat(4, minmax(0, 80px)); }
+      .world-tile { height: min(80px, calc((100dvh - 238px) / 6)); }
+      .world-tile .world-label { display: none; }
+      .world-tile:focus-visible .world-label { display: block; font-size: 10px; bottom: 4px; background: #0a0b26; }
+      .chart-foot { padding: 4px 12px 10px; }
+      .chart-foot small { max-width: 150px; font-size: 10px; }
+    }
+    @media (max-width: 400px) {
+      .rc-info { gap: 4px; padding: 7px 8px; }
+      .rc-title { font-size: 12px; }
+      .rc-stars { font-size: 11px; }
+    }
+    @media (max-height: 500px) and (min-width: 600px) {
+      .chart-head { padding: 6px 14px; }
+      .chart-top { margin-bottom: 0; }
+      .chart-top span { display: none; }
+      .chart-head .chart-top { position: absolute; right: 70px; top: 8px; }
+      .chart-top #worlds-button { min-height: 44px; }
+      #chart-title { font-size: 18px; }
+      .chart-grid { gap: 4px; padding: 6px 16px; }
+      .chart-grid.first-skies { grid-template-columns: repeat(5, minmax(0, 104px)); }
+      .chart-grid.worlds-grid { grid-template-columns: repeat(6, minmax(0, 120px)); }
+      .sky-tile { height: max(44px, calc((100dvh - 175px) / 5)); }
+      .first-skies .sky-tile { height: max(44px, calc((100dvh - 175px) / 5)); }
+      .world-tile { height: max(44px, calc((100dvh - 175px) / 4)); }
+      .chart-foot { padding: 2px 14px 6px; }
+      .chart-foot button { min-height: 44px; }
+    }
+    @media (max-height: 450px) and (min-width: 600px) and (max-width: 760px) {
+      .rc-hud {
+        left: 12px;
+        right: auto;
+        top: 12px;
+        width: 156px;
+        display: grid;
+        grid-template-columns: repeat(3, 48px);
+        gap: 6px;
+      }
+      .rc-info { grid-column: 1 / -1; margin: 0; min-height: 32px; justify-content: center; }
+      .rc-btn { width: 48px; padding: 0; justify-content: center; }
+      #sky { top: 12px; bottom: 12px; left: 184px; right: 12px; }
+      footer {
+        left: 12px;
+        right: auto;
+        bottom: 12px;
+        width: 156px;
+        height: 144px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 6px;
+      }
+      footer .glass { text-align: center; padding: 10px 8px; }
+      #chart-open { width: 156px; font-size: 15px; }
+      #chart-open .desktop { display: inline; }
+      #world-name { left: 14px; right: auto; top: 170px; width: 150px; font-size: 10px; letter-spacing: .08em; }
+    }
+  </style>
+</head>
+<body>
+  <div id="land" class="scenery" aria-hidden="true"></div>
+  <div id="previous-land" class="scenery" aria-hidden="true"></div>
+  <div class="scenery-veil" aria-hidden="true"></div>
+  <main id="sky" aria-label="Constellation sky">
+    <svg id="field" aria-label="Drag stars until no lines cross">
+      <defs>
+        <clipPath id="field-clip"><rect id="field-clip-rect"/></clipPath>
+        <filter id="thread-light" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+          <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+        </filter>
+        <radialGradient id="picture-fill">
+          <stop offset="0" stop-color="var(--picture-color)" stop-opacity=".35"/>
+          <stop offset="1" stop-color="var(--picture-color)" stop-opacity=".1"/>
+        </radialGradient>
+      </defs>
+      <g id="specks" aria-hidden="true"></g>
+      <g id="fills" aria-hidden="true"></g>
+      <image id="reveal" aria-hidden="true"/>
+      <g id="beams" aria-hidden="true" clip-path="url(#field-clip)"></g>
+      <g id="threads" aria-hidden="true"></g>
+      <g id="rings" aria-hidden="true"></g>
+      <g id="stars"></g>
+    </svg>
+    <p id="hint">Drag a star. Make the lines stop crossing.</p>
+    <div id="name-card" aria-hidden="true"></div>
+  </main>
+  <div id="world-name" aria-hidden="true">First Skies</div>
+  <footer>
+    <button id="chart-open" class="glass" aria-label="Star chart (C)"><span aria-hidden="true">✧</span><span class="desktop"> Star chart</span></button>
+    <output id="count" class="glass" aria-live="off">3 crossings</output>
+    <output id="moves" class="glass" aria-label="Moves"></output>
+  </footer>
+  <div id="announcement" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+  <dialog id="chart" aria-labelledby="chart-title">
+    <header class="chart-head">
+      <div class="chart-top"><span>Untangle · Star chart</span><button id="worlds-button">Worlds</button></div>
+      <div class="chart-nav">
+        <button id="chart-prev" aria-label="Previous world">‹</button>
+        <div><h2 id="chart-title"></h2><p id="chart-meta"></p></div>
+        <button id="chart-next" aria-label="Next world">›</button>
+      </div>
+    </header>
+    <div id="chart-grid" class="chart-grid"></div>
+    <div class="chart-foot"><small>Saved on this device only.</small><button id="chart-back">Back to the sky</button></div>
+  </dialog>
+  <!-- Shared Recess shell snapshot: only its bundler example comment is replaced for safe inlining. -->
+<script src="lib:recess"></script>
+  <script id="untangle-data">
+const FIRST = [
+  {
+    "key": "L01",
+    "name": "The Kite",
+    "fill": "#ff7a9c",
+    "pts": [
+      [
+        50,
+        4
+      ],
+      [
+        78,
+        34
+      ],
+      [
+        50,
+        72
+      ],
+      [
+        22,
+        34
+      ],
+      [
+        50,
+        36
+      ],
+      [
+        66,
+        96
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        3
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        4
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3
+      ]
+    ],
+    "start": [
+      [
+        761,
+        112
+      ],
+      [
+        729,
+        819
+      ],
+      [
+        140,
+        854
+      ],
+      [
+        752,
+        418
+      ],
+      [
+        390,
+        631
+      ],
+      [
+        413,
+        563
+      ]
+    ]
+  },
+  {
+    "key": "L02",
+    "name": "The Paper Plane",
+    "fill": "#9ad7ff",
+    "pts": [
+      [
+        4,
+        46
+      ],
+      [
+        40,
+        44
+      ],
+      [
+        96,
+        10
+      ],
+      [
+        58,
+        92
+      ],
+      [
+        46,
+        62
+      ],
+      [
+        24,
+        62
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        2,
+        3,
+        4,
+        5
+      ]
+    ],
+    "start": [
+      [
+        700,
+        500
+      ],
+      [
+        744,
+        556
+      ],
+      [
+        835,
+        839
+      ],
+      [
+        587,
+        61
+      ],
+      [
+        295,
+        511
+      ],
+      [
+        934,
+        106
+      ]
+    ]
+  },
+  {
+    "key": "L03",
+    "name": "The Crown",
+    "fill": "#ffd166",
+    "pts": [
+      [
+        10,
+        80
+      ],
+      [
+        10,
+        30
+      ],
+      [
+        30,
+        55
+      ],
+      [
+        50,
+        18
+      ],
+      [
+        70,
+        55
+      ],
+      [
+        90,
+        30
+      ],
+      [
+        90,
+        80
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        5,
+        6
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    ],
+    "start": [
+      [
+        316,
+        451
+      ],
+      [
+        370,
+        274
+      ],
+      [
+        309,
+        655
+      ],
+      [
+        877,
+        479
+      ],
+      [
+        895,
+        861
+      ],
+      [
+        591,
+        385
+      ],
+      [
+        818,
+        894
+      ]
+    ]
+  },
+  {
+    "key": "L04",
+    "name": "The Fish",
+    "fill": "#ff9e6b",
+    "pts": [
+      [
+        6,
+        50
+      ],
+      [
+        36,
+        24
+      ],
+      [
+        64,
+        42
+      ],
+      [
+        94,
+        20
+      ],
+      [
+        94,
+        80
+      ],
+      [
+        64,
+        58
+      ],
+      [
+        36,
+        76
+      ],
+      [
+        26,
+        46
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ]
+    ],
+    "start": [
+      [
+        426,
+        181
+      ],
+      [
+        230,
+        738
+      ],
+      [
+        674,
+        715
+      ],
+      [
+        807,
+        473
+      ],
+      [
+        921,
+        736
+      ],
+      [
+        504,
+        417
+      ],
+      [
+        379,
+        902
+      ],
+      [
+        161,
+        166
+      ]
+    ]
+  },
+  {
+    "key": "L05",
+    "name": "The Sailboat",
+    "fill": "#7ee0c3",
+    "pts": [
+      [
+        6,
+        68
+      ],
+      [
+        50,
+        68
+      ],
+      [
+        94,
+        68
+      ],
+      [
+        78,
+        90
+      ],
+      [
+        22,
+        90
+      ],
+      [
+        50,
+        6
+      ],
+      [
+        84,
+        58
+      ],
+      [
+        50,
+        58
+      ],
+      [
+        14,
+        58
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      [
+        5,
+        6,
+        7,
+        8
+      ]
+    ],
+    "start": [
+      [
+        562,
+        613
+      ],
+      [
+        710,
+        558
+      ],
+      [
+        165,
+        172
+      ],
+      [
+        564,
+        536
+      ],
+      [
+        468,
+        672
+      ],
+      [
+        230,
+        407
+      ],
+      [
+        103,
+        701
+      ],
+      [
+        847,
+        522
+      ],
+      [
+        257,
+        185
+      ]
+    ]
+  },
+  {
+    "key": "L06",
+    "name": "The Bird",
+    "fill": "#b79cff",
+    "pts": [
+      [
+        4,
+        42
+      ],
+      [
+        30,
+        32
+      ],
+      [
+        44,
+        6
+      ],
+      [
+        58,
+        30
+      ],
+      [
+        80,
+        34
+      ],
+      [
+        96,
+        22
+      ],
+      [
+        90,
+        50
+      ],
+      [
+        62,
+        60
+      ],
+      [
+        32,
+        58
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        8
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    ],
+    "start": [
+      [
+        504,
+        294
+      ],
+      [
+        763,
+        473
+      ],
+      [
+        799,
+        351
+      ],
+      [
+        423,
+        111
+      ],
+      [
+        674,
+        281
+      ],
+      [
+        762,
+        297
+      ],
+      [
+        889,
+        917
+      ],
+      [
+        208,
+        482
+      ],
+      [
+        635,
+        864
+      ]
+    ]
+  },
+  {
+    "key": "L07",
+    "name": "The Turtle",
+    "fill": "#7ee0a0",
+    "pts": [
+      [
+        20,
+        62
+      ],
+      [
+        30,
+        32
+      ],
+      [
+        50,
+        20
+      ],
+      [
+        70,
+        32
+      ],
+      [
+        80,
+        62
+      ],
+      [
+        96,
+        52
+      ],
+      [
+        26,
+        84
+      ],
+      [
+        74,
+        84
+      ],
+      [
+        50,
+        44
+      ],
+      [
+        6,
+        70
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        5
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        9
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      [
+        3,
+        5,
+        4
+      ],
+      [
+        0,
+        4,
+        7,
+        6
+      ],
+      [
+        9,
+        0,
+        6
+      ]
+    ],
+    "start": [
+      [
+        806,
+        281
+      ],
+      [
+        859,
+        361
+      ],
+      [
+        137,
+        741
+      ],
+      [
+        396,
+        811
+      ],
+      [
+        831,
+        803
+      ],
+      [
+        808,
+        621
+      ],
+      [
+        238,
+        244
+      ],
+      [
+        585,
+        315
+      ],
+      [
+        614,
+        892
+      ],
+      [
+        612,
+        366
+      ]
+    ]
+  },
+  {
+    "key": "L08",
+    "name": "The Cat",
+    "fill": "#ffb38a",
+    "pts": [
+      [
+        16,
+        6
+      ],
+      [
+        36,
+        28
+      ],
+      [
+        64,
+        28
+      ],
+      [
+        84,
+        6
+      ],
+      [
+        86,
+        46
+      ],
+      [
+        70,
+        82
+      ],
+      [
+        30,
+        82
+      ],
+      [
+        14,
+        46
+      ],
+      [
+        36,
+        50
+      ],
+      [
+        64,
+        50
+      ],
+      [
+        50,
+        66
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        8
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        10
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        9,
+        10
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7
+      ]
+    ],
+    "start": [
+      [
+        574,
+        801
+      ],
+      [
+        710,
+        238
+      ],
+      [
+        567,
+        653
+      ],
+      [
+        434,
+        455
+      ],
+      [
+        251,
+        742
+      ],
+      [
+        316,
+        111
+      ],
+      [
+        719,
+        100
+      ],
+      [
+        629,
+        443
+      ],
+      [
+        746,
+        812
+      ],
+      [
+        197,
+        640
+      ],
+      [
+        445,
+        924
+      ]
+    ]
+  },
+  {
+    "key": "L09",
+    "name": "The Rocket",
+    "fill": "#ff7a7a",
+    "pts": [
+      [
+        50,
+        2
+      ],
+      [
+        64,
+        24
+      ],
+      [
+        64,
+        66
+      ],
+      [
+        82,
+        86
+      ],
+      [
+        58,
+        76
+      ],
+      [
+        42,
+        76
+      ],
+      [
+        18,
+        86
+      ],
+      [
+        36,
+        66
+      ],
+      [
+        36,
+        24
+      ],
+      [
+        50,
+        40
+      ],
+      [
+        50,
+        98
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        10
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        5,
+        10
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        9
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    ],
+    "start": [
+      [
+        848,
+        590
+      ],
+      [
+        802,
+        465
+      ],
+      [
+        401,
+        640
+      ],
+      [
+        597,
+        560
+      ],
+      [
+        161,
+        409
+      ],
+      [
+        380,
+        877
+      ],
+      [
+        402,
+        938
+      ],
+      [
+        630,
+        658
+      ],
+      [
+        405,
+        283
+      ],
+      [
+        233,
+        215
+      ],
+      [
+        680,
+        912
+      ]
+    ]
+  },
+  {
+    "key": "L10",
+    "name": "The Owl",
+    "fill": "#c9a6ff",
+    "pts": [
+      [
+        24,
+        6
+      ],
+      [
+        50,
+        22
+      ],
+      [
+        76,
+        6
+      ],
+      [
+        82,
+        40
+      ],
+      [
+        76,
+        74
+      ],
+      [
+        60,
+        94
+      ],
+      [
+        40,
+        94
+      ],
+      [
+        24,
+        74
+      ],
+      [
+        18,
+        40
+      ],
+      [
+        36,
+        42
+      ],
+      [
+        64,
+        42
+      ],
+      [
+        50,
+        58
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        10
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        11
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        11
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        11
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        9,
+        11
+      ],
+      [
+        10,
+        11
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    ],
+    "start": [
+      [
+        795,
+        679
+      ],
+      [
+        589,
+        900
+      ],
+      [
+        361,
+        857
+      ],
+      [
+        382,
+        616
+      ],
+      [
+        435,
+        744
+      ],
+      [
+        564,
+        622
+      ],
+      [
+        86,
+        328
+      ],
+      [
+        828,
+        151
+      ],
+      [
+        205,
+        93
+      ],
+      [
+        937,
+        631
+      ],
+      [
+        778,
+        893
+      ],
+      [
+        929,
+        820
+      ]
+    ]
+  },
+  {
+    "key": "L11",
+    "name": "The Fox",
+    "fill": "#ff9e4f",
+    "pts": [
+      [
+        12,
+        6
+      ],
+      [
+        34,
+        30
+      ],
+      [
+        66,
+        30
+      ],
+      [
+        88,
+        6
+      ],
+      [
+        90,
+        42
+      ],
+      [
+        72,
+        60
+      ],
+      [
+        50,
+        94
+      ],
+      [
+        28,
+        60
+      ],
+      [
+        10,
+        42
+      ],
+      [
+        34,
+        46
+      ],
+      [
+        66,
+        46
+      ],
+      [
+        50,
+        72
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        8
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        9
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        10
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        10
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        10
+      ],
+      [
+        5,
+        11
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        11
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        7,
+        11
+      ],
+      [
+        8,
+        9
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    ],
+    "start": [
+      [
+        678,
+        395
+      ],
+      [
+        927,
+        592
+      ],
+      [
+        286,
+        574
+      ],
+      [
+        71,
+        691
+      ],
+      [
+        659,
+        571
+      ],
+      [
+        805,
+        540
+      ],
+      [
+        276,
+        197
+      ],
+      [
+        594,
+        475
+      ],
+      [
+        542,
+        140
+      ],
+      [
+        232,
+        670
+      ],
+      [
+        358,
+        611
+      ],
+      [
+        438,
+        442
+      ]
+    ]
+  },
+  {
+    "key": "L12",
+    "name": "The Lighthouse",
+    "fill": "#ffe08a",
+    "pts": [
+      [
+        38,
+        92
+      ],
+      [
+        62,
+        92
+      ],
+      [
+        58,
+        64
+      ],
+      [
+        56,
+        40
+      ],
+      [
+        44,
+        40
+      ],
+      [
+        42,
+        64
+      ],
+      [
+        42,
+        24
+      ],
+      [
+        58,
+        24
+      ],
+      [
+        50,
+        8
+      ],
+      [
+        8,
+        12
+      ],
+      [
+        92,
+        12
+      ],
+      [
+        12,
+        96
+      ],
+      [
+        88,
+        96
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        0,
+        11
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        12
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        6
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        6,
+        9
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        10
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      [
+        4,
+        3,
+        7,
+        6
+      ],
+      [
+        6,
+        7,
+        8
+      ]
+    ],
+    "start": [
+      [
+        786,
+        345
+      ],
+      [
+        586,
+        592
+      ],
+      [
+        62,
+        552
+      ],
+      [
+        177,
+        841
+      ],
+      [
+        283,
+        122
+      ],
+      [
+        283,
+        265
+      ],
+      [
+        356,
+        851
+      ],
+      [
+        554,
+        544
+      ],
+      [
+        272,
+        412
+      ],
+      [
+        640,
+        899
+      ],
+      [
+        365,
+        562
+      ],
+      [
+        809,
+        110
+      ],
+      [
+        514,
+        64
+      ]
+    ]
+  },
+  {
+    "key": "L13",
+    "name": "The Butterfly",
+    "fill": "#ff8fd0",
+    "pts": [
+      [
+        50,
+        22
+      ],
+      [
+        50,
+        82
+      ],
+      [
+        26,
+        4
+      ],
+      [
+        2,
+        14
+      ],
+      [
+        18,
+        50
+      ],
+      [
+        4,
+        80
+      ],
+      [
+        30,
+        96
+      ],
+      [
+        74,
+        4
+      ],
+      [
+        98,
+        14
+      ],
+      [
+        82,
+        50
+      ],
+      [
+        96,
+        80
+      ],
+      [
+        70,
+        96
+      ],
+      [
+        50,
+        52
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        4
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        12
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        1,
+        11
+      ],
+      [
+        1,
+        12
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        12
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        9,
+        12
+      ],
+      [
+        10,
+        11
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        2,
+        3,
+        4,
+        12
+      ],
+      [
+        12,
+        4,
+        5,
+        6,
+        1
+      ],
+      [
+        0,
+        12,
+        9,
+        8,
+        7
+      ],
+      [
+        12,
+        1,
+        11,
+        10,
+        9
+      ]
+    ],
+    "start": [
+      [
+        684,
+        385
+      ],
+      [
+        554,
+        603
+      ],
+      [
+        556,
+        63
+      ],
+      [
+        532,
+        555
+      ],
+      [
+        80,
+        315
+      ],
+      [
+        432,
+        251
+      ],
+      [
+        489,
+        180
+      ],
+      [
+        340,
+        891
+      ],
+      [
+        129,
+        926
+      ],
+      [
+        184,
+        451
+      ],
+      [
+        344,
+        832
+      ],
+      [
+        775,
+        778
+      ],
+      [
+        892,
+        529
+      ]
+    ]
+  },
+  {
+    "key": "L14",
+    "name": "The Rabbit",
+    "fill": "#d9d2ff",
+    "pts": [
+      [
+        22,
+        48
+      ],
+      [
+        28,
+        4
+      ],
+      [
+        40,
+        34
+      ],
+      [
+        54,
+        4
+      ],
+      [
+        52,
+        38
+      ],
+      [
+        66,
+        50
+      ],
+      [
+        80,
+        62
+      ],
+      [
+        96,
+        70
+      ],
+      [
+        86,
+        92
+      ],
+      [
+        32,
+        92
+      ],
+      [
+        30,
+        66
+      ],
+      [
+        42,
+        48
+      ],
+      [
+        62,
+        74
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        2
+      ],
+      [
+        0,
+        10
+      ],
+      [
+        0,
+        11
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        4
+      ],
+      [
+        2,
+        11
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        11
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        12
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        12
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        12
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        8,
+        12
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        10,
+        11
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ]
+    ],
+    "start": [
+      [
+        522,
+        425
+      ],
+      [
+        466,
+        838
+      ],
+      [
+        381,
+        278
+      ],
+      [
+        473,
+        251
+      ],
+      [
+        482,
+        535
+      ],
+      [
+        761,
+        105
+      ],
+      [
+        691,
+        224
+      ],
+      [
+        604,
+        336
+      ],
+      [
+        636,
+        713
+      ],
+      [
+        423,
+        884
+      ],
+      [
+        666,
+        511
+      ],
+      [
+        225,
+        781
+      ],
+      [
+        889,
+        592
+      ]
+    ]
+  },
+  {
+    "key": "L15",
+    "name": "The Ship",
+    "fill": "#8fc6ff",
+    "pts": [
+      [
+        4,
+        62
+      ],
+      [
+        36,
+        62
+      ],
+      [
+        64,
+        62
+      ],
+      [
+        96,
+        62
+      ],
+      [
+        84,
+        86
+      ],
+      [
+        16,
+        86
+      ],
+      [
+        36,
+        12
+      ],
+      [
+        12,
+        50
+      ],
+      [
+        64,
+        4
+      ],
+      [
+        90,
+        50
+      ],
+      [
+        30,
+        76
+      ],
+      [
+        50,
+        76
+      ],
+      [
+        70,
+        76
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        5
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        1,
+        11
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        2,
+        11
+      ],
+      [
+        2,
+        12
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        12
+      ],
+      [
+        5,
+        10
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        10,
+        11
+      ],
+      [
+        11,
+        12
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      [
+        1,
+        7,
+        6
+      ],
+      [
+        2,
+        8,
+        9
+      ],
+      [
+        1,
+        6,
+        8,
+        2
+      ]
+    ],
+    "start": [
+      [
+        824,
+        523
+      ],
+      [
+        918,
+        280
+      ],
+      [
+        260,
+        458
+      ],
+      [
+        154,
+        590
+      ],
+      [
+        913,
+        786
+      ],
+      [
+        388,
+        460
+      ],
+      [
+        76,
+        64
+      ],
+      [
+        583,
+        317
+      ],
+      [
+        479,
+        273
+      ],
+      [
+        562,
+        739
+      ],
+      [
+        135,
+        225
+      ],
+      [
+        748,
+        288
+      ],
+      [
+        906,
+        719
+      ]
+    ]
+  },
+  {
+    "key": "L16",
+    "name": "The Snail",
+    "fill": "#a0e6b8",
+    "pts": [
+      [
+        30,
+        70
+      ],
+      [
+        20,
+        46
+      ],
+      [
+        34,
+        22
+      ],
+      [
+        58,
+        16
+      ],
+      [
+        78,
+        32
+      ],
+      [
+        78,
+        58
+      ],
+      [
+        62,
+        70
+      ],
+      [
+        44,
+        40
+      ],
+      [
+        60,
+        46
+      ],
+      [
+        6,
+        86
+      ],
+      [
+        96,
+        86
+      ],
+      [
+        92,
+        62
+      ],
+      [
+        98,
+        36
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        0,
+        9
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        7
+      ],
+      [
+        3,
+        8
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        5,
+        10
+      ],
+      [
+        5,
+        11
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        10,
+        11
+      ],
+      [
+        11,
+        12
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      [
+        9,
+        0,
+        6,
+        5,
+        11,
+        10
+      ]
+    ],
+    "start": [
+      [
+        343,
+        513
+      ],
+      [
+        286,
+        147
+      ],
+      [
+        139,
+        548
+      ],
+      [
+        161,
+        302
+      ],
+      [
+        584,
+        329
+      ],
+      [
+        776,
+        624
+      ],
+      [
+        672,
+        691
+      ],
+      [
+        135,
+        133
+      ],
+      [
+        197,
+        817
+      ],
+      [
+        618,
+        734
+      ],
+      [
+        393,
+        722
+      ],
+      [
+        899,
+        218
+      ],
+      [
+        679,
+        310
+      ]
+    ]
+  },
+  {
+    "key": "L17",
+    "name": "The Whale",
+    "fill": "#6fb8ff",
+    "pts": [
+      [
+        4,
+        52
+      ],
+      [
+        14,
+        30
+      ],
+      [
+        40,
+        20
+      ],
+      [
+        66,
+        26
+      ],
+      [
+        80,
+        40
+      ],
+      [
+        90,
+        28
+      ],
+      [
+        98,
+        10
+      ],
+      [
+        96,
+        46
+      ],
+      [
+        84,
+        56
+      ],
+      [
+        66,
+        70
+      ],
+      [
+        36,
+        74
+      ],
+      [
+        14,
+        66
+      ],
+      [
+        22,
+        46
+      ],
+      [
+        26,
+        4
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        11
+      ],
+      [
+        0,
+        12
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        12
+      ],
+      [
+        1,
+        13
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        12
+      ],
+      [
+        2,
+        13
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        9
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        7
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        5,
+        7
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        10,
+        11
+      ],
+      [
+        10,
+        12
+      ],
+      [
+        11,
+        12
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ]
+    ],
+    "start": [
+      [
+        688,
+        651
+      ],
+      [
+        98,
+        570
+      ],
+      [
+        912,
+        353
+      ],
+      [
+        627,
+        562
+      ],
+      [
+        445,
+        510
+      ],
+      [
+        263,
+        549
+      ],
+      [
+        60,
+        659
+      ],
+      [
+        211,
+        444
+      ],
+      [
+        766,
+        496
+      ],
+      [
+        557,
+        504
+      ],
+      [
+        798,
+        622
+      ],
+      [
+        501,
+        843
+      ],
+      [
+        517,
+        589
+      ],
+      [
+        109,
+        363
+      ]
+    ]
+  },
+  {
+    "key": "L18",
+    "name": "The Stag",
+    "fill": "#e8b37a",
+    "pts": [
+      [
+        10,
+        6
+      ],
+      [
+        26,
+        26
+      ],
+      [
+        30,
+        4
+      ],
+      [
+        40,
+        32
+      ],
+      [
+        60,
+        32
+      ],
+      [
+        70,
+        4
+      ],
+      [
+        74,
+        26
+      ],
+      [
+        90,
+        6
+      ],
+      [
+        80,
+        42
+      ],
+      [
+        62,
+        52
+      ],
+      [
+        58,
+        92
+      ],
+      [
+        42,
+        92
+      ],
+      [
+        38,
+        52
+      ],
+      [
+        20,
+        42
+      ],
+      [
+        42,
+        62
+      ],
+      [
+        58,
+        62
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        13
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        13
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        12
+      ],
+      [
+        3,
+        13
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        4,
+        9
+      ],
+      [
+        4,
+        14
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        9,
+        14
+      ],
+      [
+        10,
+        11
+      ],
+      [
+        11,
+        12
+      ],
+      [
+        11,
+        15
+      ],
+      [
+        12,
+        13
+      ],
+      [
+        14,
+        15
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    ],
+    "start": [
+      [
+        329,
+        844
+      ],
+      [
+        881,
+        455
+      ],
+      [
+        540,
+        469
+      ],
+      [
+        808,
+        322
+      ],
+      [
+        343,
+        496
+      ],
+      [
+        420,
+        222
+      ],
+      [
+        326,
+        550
+      ],
+      [
+        150,
+        363
+      ],
+      [
+        381,
+        747
+      ],
+      [
+        548,
+        277
+      ],
+      [
+        870,
+        203
+      ],
+      [
+        881,
+        633
+      ],
+      [
+        831,
+        571
+      ],
+      [
+        669,
+        683
+      ],
+      [
+        734,
+        438
+      ],
+      [
+        724,
+        267
+      ]
+    ]
+  },
+  {
+    "key": "L19",
+    "name": "The Octopus",
+    "fill": "#c58cff",
+    "pts": [
+      [
+        30,
+        42
+      ],
+      [
+        32,
+        14
+      ],
+      [
+        50,
+        4
+      ],
+      [
+        68,
+        14
+      ],
+      [
+        70,
+        42
+      ],
+      [
+        92,
+        70
+      ],
+      [
+        66,
+        58
+      ],
+      [
+        72,
+        94
+      ],
+      [
+        56,
+        64
+      ],
+      [
+        50,
+        96
+      ],
+      [
+        44,
+        64
+      ],
+      [
+        28,
+        94
+      ],
+      [
+        34,
+        58
+      ],
+      [
+        8,
+        70
+      ],
+      [
+        42,
+        28
+      ],
+      [
+        58,
+        28
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        10
+      ],
+      [
+        0,
+        12
+      ],
+      [
+        0,
+        13
+      ],
+      [
+        0,
+        14
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        14
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        2,
+        14
+      ],
+      [
+        2,
+        15
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        15
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        8
+      ],
+      [
+        4,
+        15
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        8
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        8,
+        10
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        10,
+        11
+      ],
+      [
+        10,
+        12
+      ],
+      [
+        11,
+        12
+      ],
+      [
+        12,
+        13
+      ],
+      [
+        14,
+        15
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13
+      ]
+    ],
+    "start": [
+      [
+        406,
+        757
+      ],
+      [
+        577,
+        829
+      ],
+      [
+        864,
+        751
+      ],
+      [
+        757,
+        910
+      ],
+      [
+        294,
+        158
+      ],
+      [
+        185,
+        657
+      ],
+      [
+        91,
+        855
+      ],
+      [
+        79,
+        404
+      ],
+      [
+        611,
+        317
+      ],
+      [
+        415,
+        243
+      ],
+      [
+        742,
+        762
+      ],
+      [
+        757,
+        235
+      ],
+      [
+        725,
+        639
+      ],
+      [
+        615,
+        674
+      ],
+      [
+        632,
+        789
+      ],
+      [
+        798,
+        299
+      ]
+    ]
+  },
+  {
+    "key": "L20",
+    "name": "The Dragon",
+    "fill": "#5fe0b0",
+    "pts": [
+      [
+        4,
+        30
+      ],
+      [
+        18,
+        18
+      ],
+      [
+        24,
+        2
+      ],
+      [
+        30,
+        20
+      ],
+      [
+        42,
+        26
+      ],
+      [
+        54,
+        4
+      ],
+      [
+        62,
+        28
+      ],
+      [
+        78,
+        34
+      ],
+      [
+        98,
+        18
+      ],
+      [
+        90,
+        46
+      ],
+      [
+        72,
+        56
+      ],
+      [
+        70,
+        84
+      ],
+      [
+        56,
+        62
+      ],
+      [
+        38,
+        62
+      ],
+      [
+        34,
+        86
+      ],
+      [
+        26,
+        58
+      ],
+      [
+        12,
+        42
+      ],
+      [
+        20,
+        30
+      ]
+    ],
+    "edges": [
+      [
+        0,
+        1
+      ],
+      [
+        0,
+        16
+      ],
+      [
+        0,
+        17
+      ],
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        17
+      ],
+      [
+        2,
+        3
+      ],
+      [
+        3,
+        4
+      ],
+      [
+        3,
+        17
+      ],
+      [
+        4,
+        5
+      ],
+      [
+        4,
+        6
+      ],
+      [
+        4,
+        13
+      ],
+      [
+        4,
+        17
+      ],
+      [
+        5,
+        6
+      ],
+      [
+        6,
+        7
+      ],
+      [
+        6,
+        10
+      ],
+      [
+        6,
+        12
+      ],
+      [
+        7,
+        8
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        7,
+        10
+      ],
+      [
+        8,
+        9
+      ],
+      [
+        9,
+        10
+      ],
+      [
+        10,
+        11
+      ],
+      [
+        10,
+        12
+      ],
+      [
+        11,
+        12
+      ],
+      [
+        12,
+        13
+      ],
+      [
+        13,
+        14
+      ],
+      [
+        13,
+        15
+      ],
+      [
+        14,
+        15
+      ],
+      [
+        15,
+        16
+      ],
+      [
+        15,
+        17
+      ],
+      [
+        16,
+        17
+      ]
+    ],
+    "polys": [
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16
+      ]
+    ],
+    "start": [
+      [
+        156,
+        596
+      ],
+      [
+        512,
+        298
+      ],
+      [
+        375,
+        232
+      ],
+      [
+        333,
+        413
+      ],
+      [
+        194,
+        924
+      ],
+      [
+        860,
+        89
+      ],
+      [
+        376,
+        606
+      ],
+      [
+        856,
+        200
+      ],
+      [
+        868,
+        151
+      ],
+      [
+        879,
+        744
+      ],
+      [
+        726,
+        780
+      ],
+      [
+        789,
+        525
+      ],
+      [
+        569,
+        620
+      ],
+      [
+        160,
+        721
+      ],
+      [
+        311,
+        877
+      ],
+      [
+        744,
+        459
+      ],
+      [
+        609,
+        351
+      ],
+      [
+        343,
+        474
+      ]
+    ]
+  }
+];
+const RECORDS = [
+  "g522040d",
+  "pa023h0a",
+  "w810000f",
+  "g726430m",
+  "pd020x0c",
+  "w6236v0q",
+  "g433450i",
+  "pd0a4e0l",
+  "w6264g0v",
+  "g432400h",
+  "pc07020h",
+  "w624020s",
+  "g622030g",
+  "p902080a",
+  "wb106g0l",
+  "g522090e",
+  "pd00010b",
+  "w8100t0g",
+  "g5200h0c",
+  "pb060c0g",
+  "w910050i",
+  "g3330t0f",
+  "pb000a0a",
+  "w5243g0q",
+  "g5384j0u",
+  "pf0c4h0q",
+  "w6264k0x",
+  "g620020f",
+  "pc09070l",
+  "w521300m",
+  "g522060f",
+  "pd00060c",
+  "w724480y",
+  "g521030e",
+  "pe000j0d",
+  "wb10010n",
+  "g534420q",
+  "pf000h0e",
+  "w7208p0t",
+  "g5364b0t",
+  "pc040h0g",
+  "w626420z",
+  "g4334k0l",
+  "pe067c0k",
+  "w624680w",
+  "g432440k",
+  "pd080v0m",
+  "w7204a0u",
+  "g6220d0j",
+  "pf008x0f",
+  "w5210d0o",
+  "g4498e11",
+  "pc04410h",
+  "w5253n0v",
+  "g5308m0n",
+  "pc02060f",
+  "w910040l",
+  "g522070h",
+  "pd0a460q",
+  "w5385i1b",
+  "g521020g",
+  "pg03080k",
+  "w6264q12",
+  "g5304v0o",
+  "pc04000i",
+  "w520610o",
+  "g432690m",
+  "pe084x0p",
+  "w5305l0z",
+  "g536bt0x",
+  "pd00080f",
+  "w8245u18",
+  "g433410o",
+  "ph000r0j",
+  "w8208812",
+  "g6204m0j",
+  "pc070n0n",
+  "w6224c0x",
+  "g4478012",
+  "pb080k0o",
+  "w8205913",
+  "g726410v",
+  "ph008l0k",
+  "w5206g0q",
+  "g7234d0r",
+  "pc076g0o",
+  "w820dl14",
+  "g7224w0q",
+  "pg038n0n",
+  "wb10020t",
+  "g534450x",
+  "pg00000k",
+  "w6236511",
+  "g5384h14",
+  "pc00020g",
+  "w7244v18",
+  "g724050u",
+  "pf09880v",
+  "w6224y10",
+  "g4360p0w",
+  "pd02at0k",
+  "w6204o0x",
+  "g430070n",
+  "pc076j0q",
+  "w622a711",
+  "g6305n0z",
+  "pf06830s",
+  "w828581n",
+  "g5364f13",
+  "pe0b0c0z",
+  "w626471a",
+  "g5324s0x",
+  "pf0c4n12",
+  "w5325i1a",
+  "g4425r10",
+  "pc04060n",
+  "w7220o18",
+  "g6309311",
+  "pf0c8b13",
+  "w535561h",
+  "g430000p",
+  "pf064k0u",
+  "w5305h18",
+  "g4475w1a",
+  "pf09890z",
+  "w6366i1s",
+  "g8245g12",
+  "pd05a70r",
+  "w6200d11",
+  "g449511f",
+  "pj0c6p19",
+  "w7208v17",
+  "g538421b",
+  "ph0e0e1b",
+  "w538541r",
+  "g7230k0y",
+  "pi000p0s",
+  "w9246l1r",
+  "g54cax1w",
+  "pe00080n",
+  "w623at19",
+  "g546ah1l",
+  "pe08070z",
+  "w8245e1n",
+  "g7240211",
+  "pk08a717",
+  "w7244s1i",
+  "g538b51e",
+  "pf06bj0y",
+  "w53a5020",
+  "g7244212",
+  "pf038x0u",
+  "w5325z1i",
+  "g549a91u",
+  "pk0da01h",
+  "w724871k",
+  "g5406y1e",
+  "pf0c0b1a",
+  "w7258b1n",
+  "g7220210",
+  "pf090015",
+  "w8288421",
+  "g536011d",
+  "pi0b911d",
+  "w6366l23",
+  "g6350x1j",
+  "pg0d0a1f",
+  "w8248k1t",
+  "g7366s1t",
+  "ph070g16",
+  "w7274b1v",
+  "g5324c17",
+  "pk0h6b1t",
+  "w924ae21",
+  "g5300314",
+  "pk040z17",
+  "w7240z1p",
+  "g7220h13",
+  "pe087415",
+  "wa2a622o",
+  "g825541e",
+  "pi0b961h",
+  "w8208s1o",
+  "g5436h1q",
+  "pf060014",
+  "w5385125",
+  "g8200316",
+  "ph0a0a1f",
+  "w724851s",
+  "g444841i",
+  "pf030u10",
+  "wa20a424",
+  "g7366g20",
+  "pk0ha41z",
+  "w630631y",
+  "g730gf1p",
+  "pi040x18",
+  "w7250a1x",
+  "g440831c",
+  "ph07031c",
+  "w5308r1p",
+  "g8278x1n",
+  "pj04031b",
+  "wa25682k",
+  "g5380i1r",
+  "pl00gj19",
+  "wb287e30",
+  "g5368h1n",
+  "pg030e15",
+  "w5358624",
+  "g4490z1z",
+  "pj04aj1d",
+  "w5328e1x",
+  "g8270s1q",
+  "pl000f1b",
+  "w53a5h2l",
+  "g7330s21",
+  "ph078e1g",
+  "wb2b7k3e",
+  "g8250l1n",
+  "pg0ac51l",
+  "wb267g31",
+  "g4440y1q",
+  "pk00021b",
+  "wb287638",
+  "g632ek1s",
+  "pi089a1m",
+  "w6336w2g",
+  "g447031z",
+  "ph04d01d",
+  "w73ab43d",
+  "g830i729",
+  "pg0a0e1o",
+  "w5385x2l",
+  "g83e7c38",
+  "pm000t1i",
+  "w5380z2m",
+  "g6300q1r",
+  "ph0e8q21",
+  "w5328g25",
+  "g8240u1q",
+  "pj08031s",
+  "w8260d2m",
+  "g820061i",
+  "pk04f81n",
+  "w929an35",
+  "g540f122",
+  "pi00011c",
+  "w9226j2l",
+  "g730gp25",
+  "ph070p1o",
+  "w922az2m",
+  "g5430f2b",
+  "pk0hai2j",
+  "w73e7043",
+  "g648c534",
+  "pi0b0x21",
+  "wc298240",
+  "g7300128",
+  "pl000b1m",
+  "w734bf39",
+  "g546fy2m",
+  "po00051u",
+  "wb260j3l",
+  "g83ac23b",
+  "ph07dj1s",
+  "w9246x2y",
+  "g549fp2x",
+  "pj0ge92k",
+  "wb20c336",
+  "g73c6r39",
+  "ph040g1n",
+  "w83g8l4y",
+  "g64fc43y",
+  "pl000y1q",
+  "w730bw34",
+  "g648cw3e",
+  "pi000z1j",
+  "w633ah30",
+  "g554cv39",
+  "pi04er1s",
+  "w630au2s",
+  "g543aw2m",
+  "pi080922",
+  "wb287843",
+  "g63a9i2y",
+  "pi08e023",
+  "w63c6441",
+  "g736a62z",
+  "pk040f20",
+  "w730b33b",
+  "g64bce3v",
+  "pj0c002i",
+  "w924al3a",
+  "g6350t2m",
+  "pk0ha030",
+  "wc26cf4d",
+  "g8340g3a",
+  "pj04eb20",
+  "w922ei36",
+  "g54ca03m",
+  "pm00gq21",
+  "w838ce4o",
+  "g540fb2m",
+  "pi0f0b2t",
+  "wa20gq3d",
+  "g73c0q3r",
+  "pl000t20",
+  "w838804s",
+  "g7300r2r",
+  "pj08ei2e",
+  "w633633f",
+  "g7360n3a",
+  "pn00h128",
+  "w83cc85c",
+  "g8340a3j",
+  "pk08072j",
+  "w73ab24q",
+  "g8300v39",
+  "pk04002a",
+  "w83g8q5y",
+  "g7330r35",
+  "pk04fc2b",
+  "w73a784u",
+  "g54cac3z",
+  "pj0c0b2v",
+  "w73e7c5e",
+  "g550j93m",
+  "pj0ge339",
+  "wb2bce58",
+  "g5400r2x",
+  "po000j2i",
+  "wa220u3y",
+  "g55c8d4u",
+  "pk0df235",
+  "w630043g",
+  "g55ccw4w",
+  "pk0h023k",
+  "w73eb65n",
+  "g64fcb54",
+  "pk0d0q38",
+  "wc29cn5k",
+  "g6440d41",
+  "pk080n2u",
+  "wb20h94a",
+  "g5500o3w",
+  "pk0hfd3p",
+  "wc230150",
+  "g54caj4d",
+  "pk08f42x",
+  "wb26cr52",
+  "g736gs3u",
+  "pm00ga2j",
+  "w73eba5z",
+  "g7330e3l",
+  "pk0h0t3t",
+  "wc298k5w",
+  "g550j743",
+  "pk0dft3h",
+  "w73ag45k",
+  "g736033z",
+  "pk0dah3i",
+  "wc2cce6f",
+  "g64fc75m",
+  "pk0d0o3k",
+  "wb2bc860",
+  "g64bci57",
+  "wa250f4w",
+  "g74e8t68",
+  "wb20h44q",
+  "g5500l4b",
+  "wb26hb5h",
+  "g736gp46",
+  "wc2c8n6p",
+  "g8300x43",
+  "w93iee86",
+  "g83a0856",
+  "w838j569",
+  "g550jb4g",
+  "wa2a005t",
+  "g5540q4w",
+  "wb230h5b",
+  "g65f9r73",
+  "w73ebq6p",
+  "g558jd5f",
+  "wc298m6l",
+  "g55c8e5y",
+  "wb2bci6j",
+  "g83eii5x",
+  "wc26cb6a",
+  "g74eef6s",
+  "wb260g5x",
+  "g64bc15r",
+  "w830co5m",
+  "g55ccz65",
+  "wa25aa5g",
+  "g739064y",
+  "w730gb52",
+  "g55gc86s",
+  "wb230m5p",
+  "g55c0o6a",
+  "wc29j470",
+  "g64fiw6j",
+  "w830j75u",
+  "g648iw5n",
+  "w83gck88",
+  "g8340053",
+  "wa35gd7w",
+  "g65ffa7u",
+  "w7340c5u",
+  "g83eih6g",
+  "wc26cp6u",
+  "g83aiy5y",
+  "w737gl6d",
+  "g655f86q",
+  "w934e77c",
+  "g64f096w",
+  "wc29cz7g",
+  "g64bi46d",
+  "wa30gi7l",
+  "g744lg6b",
+  "wb26hn6n",
+  "g83e0s6r",
+  "wb230d69",
+  "g65a0q7n",
+  "wb280x72",
+  "g834025i",
+  "wa3fgia3",
+  "g7400q61",
+  "wb20hg5z",
+  "g8370g5z",
+  "w838jw7p",
+  "g7440d6m",
+  "wa35g98q",
+  "g830it57",
+  "wc200e6m",
+  "g845of7p",
+  "wa30nf85",
+  "g74e0c86",
+  "wb28ht7g",
+  "g74i858v",
+  "wa3agr9s",
+  "g65af887",
+  "wb2bhc83",
+  "g650036x",
+  "w930lc7n",
+  "g55c0c7i",
+  "w834c77j",
+  "g834iw60",
+  "wa30gd8j",
+  "g64b0177",
+  "wb2b0n8c",
+  "g84aom8w",
+  "w83gjz9v",
+  "g83aik70",
+  "wc29028m",
+  "g84a0v91",
+  "w93eemad",
+  "g84ggya1",
+  "wc23jl7q",
+  "g840gq7s",
+  "w93elsaj",
+  "g74il49n",
+  "w838cn8p",
+  "g64fic8a",
+  "w83cj99i",
+  "g8450e8n",
+  "wc26ja8h",
+  "g740lc72",
+  "w83g0bah",
+  "g650mw7o",
+  "w83gj5ak",
+  "g64bit7u",
+  "wc26078o",
+  "g655mt8i",
+  "wa3anyb5",
+  "g84aof9r",
+  "w8300e7s",
+  "g558j17t",
+  "w83c0ba1",
+  "g744lf7z",
+  "w939etad",
+  "g6440370",
+  "wa3kg4dj",
+  "g75oiadf",
+  "wa3k9xdn",
+  "g648027r",
+  "wc29jk9q",
+  "g74ilran",
+  "wc23j98o",
+  "g65a0r9v",
+  "wa30gfa1",
+  "g5540h7l",
+  "w930lp97",
+  "g55gj09s",
+  "w934ej9z",
+  "g750ig9v",
+  "wa3agtc4",
+  "g84a0kam",
+  "wc2c0cat",
+  "g55c0n98",
+  "wc260p9n",
+  "g84aosas",
+  "w93i0zd9",
+  "g74i0fbb",
+  "wc2cjsb2",
+  "g65f00bf",
+  "wc230x9a",
+  "g74ilebh",
+  "w93e04cm",
+  "g66cigcr",
+  "wa3kn4f1",
+  "g55gjoah",
+  "w83gjjcd",
+  "g74ellax",
+  "wa35gaby",
+  "g75c0tcq",
+  "w9300ga3",
+  "g8400w9r",
+  "wa300nb6",
+  "g66pitfx",
+  "w9390uc2",
+  "g756qgbx",
+  "w93ilqea",
+  "g66pr3g6",
+  "w9340pb6",
+  "g6660qcg",
+  "w93e0zdi",
+  "g66jr0f3",
+  "wa3a0ddo",
+  "g74i0och",
+  "wa3fgeey",
+  "g7560mce",
+  "w939l2cm",
+  "g666r9cu",
+  "wa3k0ngi",
+  "g66cr3e3",
+  "w93i0sf1",
+  "g8450mbf",
+  "wa3anae7",
+  "g66prbh6",
+  "w934labw",
+  "g75cqre2",
+  "w93el7ec",
+  "g75i00fg",
+  "wa3fgrfr",
+  "g84gote1",
+  "wa35nmdi",
+  "g65amgcb",
+  "wa3k0ihc"
+];
+const WORLDS = [
+  {
+    "index": 1,
+    "name": "Firefly Meadow",
+    "scenery": "tall summer grass, fireflies drifting low",
+    "finale": "The Firefly",
+    "fill": "#ffe08a"
+  },
+  {
+    "index": 2,
+    "name": "Pine Hollow",
+    "scenery": "dark pines around a clearing, a woodpile",
+    "finale": "The Hedgehog",
+    "fill": "#a0e6b8"
+  },
+  {
+    "index": 3,
+    "name": "Reed Lake",
+    "scenery": "still lake, reeds, the sky mirrored",
+    "finale": "The Heron",
+    "fill": "#9ad7ff"
+  },
+  {
+    "index": 4,
+    "name": "Lily Pond",
+    "scenery": "lily pads, glowing water, a stone bridge",
+    "finale": "The Frog",
+    "fill": "#7ee0a0"
+  },
+  {
+    "index": 5,
+    "name": "Coral Shallows",
+    "scenery": "shallow sea over pale coral, a sandbar",
+    "finale": "The Seahorse",
+    "fill": "#ff9e6b"
+  },
+  {
+    "index": 6,
+    "name": "Snowy Ridge",
+    "scenery": "snowfields, a ridge of fir trees",
+    "finale": "The Bear",
+    "fill": "#d9d2ff"
+  },
+  {
+    "index": 7,
+    "name": "Lantern Garden",
+    "scenery": "a hedge garden, paper lanterns in the trees",
+    "finale": "The Moth",
+    "fill": "#ffb38a"
+  },
+  {
+    "index": 8,
+    "name": "Cloud Harbor",
+    "scenery": "a harbour of moored boats under rolling cloud",
+    "finale": "The Balloon",
+    "fill": "#8fc6ff"
+  },
+  {
+    "index": 9,
+    "name": "Ice Shelf",
+    "scenery": "ice cliffs over a calm polar sea",
+    "finale": "The Penguin",
+    "fill": "#b9e6ff"
+  },
+  {
+    "index": 10,
+    "name": "Acorn Wood",
+    "scenery": "old oaks, mossy roots, fallen leaves",
+    "finale": "The Squirrel",
+    "fill": "#e8b37a"
+  },
+  {
+    "index": 11,
+    "name": "Jelly Deep",
+    "scenery": "deep blue water glowing from below",
+    "finale": "The Jellyfish",
+    "fill": "#ff8fd0"
+  },
+  {
+    "index": 12,
+    "name": "Tide Pools",
+    "scenery": "rock pools and a long beach at low tide",
+    "finale": "The Crab",
+    "fill": "#ff7a7a"
+  },
+  {
+    "index": 13,
+    "name": "Dusty Plains",
+    "scenery": "wide grassland, one great tree",
+    "finale": "The Elephant",
+    "fill": "#e8c48f"
+  },
+  {
+    "index": 14,
+    "name": "Dune Sea",
+    "scenery": "rolling sand dunes, wind ripples",
+    "finale": "The Camel",
+    "fill": "#ffcf8a"
+  },
+  {
+    "index": 15,
+    "name": "Blossom Hill",
+    "scenery": "a hillside of blossom trees, petals in the air",
+    "finale": "The Hummingbird",
+    "fill": "#ff9ec4"
+  },
+  {
+    "index": 16,
+    "name": "Bamboo Mist",
+    "scenery": "bamboo forest in low mist",
+    "finale": "The Panda",
+    "fill": "#9fe0b0"
+  },
+  {
+    "index": 17,
+    "name": "Howling Peaks",
+    "scenery": "jagged mountains, a frozen waterfall",
+    "finale": "The Wolf",
+    "fill": "#c9a6ff"
+  },
+  {
+    "index": 18,
+    "name": "Rainbow Falls",
+    "scenery": "a tall waterfall, moonbow in the spray",
+    "finale": "The Unicorn",
+    "fill": "#b79cff"
+  },
+  {
+    "index": 19,
+    "name": "Comet Coast",
+    "scenery": "sea cliffs, a lighthouse far off, a comet overhead",
+    "finale": "The Comet",
+    "fill": "#7ee0c3"
+  },
+  {
+    "index": 20,
+    "name": "Polar Night",
+    "scenery": "sea ice and green-violet sky glow",
+    "finale": "The Narwhal",
+    "fill": "#6fb8ff"
+  },
+  {
+    "index": 21,
+    "name": "Cliff Top",
+    "scenery": "high crags, a lone pine, valley lights far below",
+    "finale": "The Mountain Goat",
+    "fill": "#d0d6e8"
+  },
+  {
+    "index": 22,
+    "name": "Far Galaxy",
+    "scenery": "no ground at all: a spiral galaxy and planets",
+    "finale": "The Starship",
+    "fill": "#5fe0b0"
+  }
+];
+const ART = {
+  "skies": [
+    "art:sky-0",
+    "art:sky-1",
+    "art:sky-2",
+    "art:sky-3",
+    "art:sky-4",
+    "art:sky-5",
+    "art:sky-6",
+    "art:sky-7",
+    "art:sky-8",
+    "art:sky-9",
+    "art:sky-10",
+    "art:sky-11",
+    "art:sky-12",
+    "art:sky-13",
+    "art:sky-14",
+    "art:sky-15",
+    "art:sky-16",
+    "art:sky-17",
+    "art:sky-18",
+    "art:sky-19",
+    "art:sky-20",
+    "art:sky-21",
+    "art:sky-22"
+  ],
+  "first": [
+    "art:sky-l01",
+    "art:sky-l02",
+    "art:sky-l03",
+    "art:sky-l04",
+    "art:sky-l05",
+    "art:sky-l06",
+    "art:sky-l07",
+    "art:sky-l08",
+    "art:sky-l09",
+    "art:sky-l10",
+    "art:sky-l11",
+    "art:sky-l12",
+    "art:sky-l13",
+    "art:sky-l14",
+    "art:sky-l15",
+    "art:sky-l16",
+    "art:sky-l17",
+    "art:sky-l18",
+    "art:sky-l19",
+    "art:sky-l20"
+  ],
+  "worlds": [
+    "art:world-1",
+    "art:world-2",
+    "art:world-3",
+    "art:world-4",
+    "art:world-5",
+    "art:world-6",
+    "art:world-7",
+    "art:world-8",
+    "art:world-9",
+    "art:world-10",
+    "art:world-11",
+    "art:world-12",
+    "art:world-13",
+    "art:world-14",
+    "art:world-15",
+    "art:world-16",
+    "art:world-17",
+    "art:world-18",
+    "art:world-19",
+    "art:world-20",
+    "art:world-21",
+    "art:world-22"
+  ],
+  "star": "art:star",
+  "held": "art:star-held",
+  "gold": "art:star-gold"
+};
+
+</script>
+  <script id="untangle-core">
+// Pure geometry and the exact, packed sky generators. Positions are fractions in play.
+function seeded(seed) {
+  let h = 1779033703 ^ String(seed).length;
+  for (const ch of String(seed)) {
+    h = Math.imul(h ^ ch.charCodeAt(0), 3432918353);
+    h = h << 13 | h >>> 19;
+  }
+  let a = h >>> 0;
+  return () => {
+    a |= 0;
+    a = a + 0x6D2B79F5 | 0;
+    let t = Math.imul(a ^ a >>> 15, 1 | a);
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+    return ((t ^ t >>> 14) >>> 0) / 4294967296;
+  };
+}
+
+function shuffled(list, random) {
+  for (let i = list.length - 1; i > 0; i--) {
+    const j = Math.floor(random() * (i + 1));
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+  return list;
+}
+
+const range = n => Array.from({ length: n }, (_, i) => i);
+const cross = (a, b) => a[0] * b[1] - a[1] * b[0];
+const sub = (a, b) => [a[0] - b[0], a[1] - b[1]];
+const distance = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
+const limit = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
+
+function ladder(record, index, randomFactory = seeded) {
+  const [family, ...digits] = [...record];
+  const [a, b, extra, s] = digits.map(d => parseInt(d, 36));
+  const random = randomFactory('untangle:' + record.slice(0, 6));
+  const pts = [], edges = [], polys = [];
+  const line = (u, v) => edges.push(u < v ? [u, v] : [v, u]);
+  const ring = (j, i, k) => {
+    const t = 2 * Math.PI * i / k - Math.PI / 2;
+    return [Math.floor(1000 * j * Math.cos(t) + .5), Math.floor(1000 * j * Math.sin(t) + .5)];
+  };
+  if (family === 'g') {
+    const id = (x, y) => y * a + x;
+    for (let y = 0; y < b; y++) for (let x = 0; x < a; x++) pts.push([1000 * x, 1000 * y]);
+    for (let y = 0; y < b; y++) for (let x = 0; x < a - 1; x++) line(id(x, y), id(x + 1, y));
+    for (let y = 0; y < b - 1; y++) for (let x = 0; x < a; x++) line(id(x, y), id(x, y + 1));
+    const cells = [];
+    for (let y = 0; y < b - 1; y++) for (let x = 0; x < a - 1; x++) cells.push([x, y]);
+    shuffled(cells, random).forEach(([x, y], i) => {
+      const bit = random() < .5;
+      if (i < extra) line(bit ? id(x, y) : id(x + 1, y), bit ? id(x + 1, y + 1) : id(x, y + 1));
+    });
+    const outline = [];
+    for (let x = 0; x < a; x++) outline.push(id(x, 0));
+    for (let y = 1; y < b; y++) outline.push(id(a - 1, y));
+    for (let x = a - 2; x >= 0; x--) outline.push(id(x, b - 1));
+    for (let y = b - 2; y > 0; y--) outline.push(id(0, y));
+    polys.push(outline);
+  } else if (family === 'w') {
+    pts.push([0, 0]);
+    const id = (j, i) => 1 + (j - 1) * a + (i % a);
+    for (let j = 1; j <= b; j++) for (let i = 0; i < a; i++) pts.push(ring(j, i, a));
+    for (let i = 0; i < a; i++) line(0, id(1, i));
+    for (let j = 1; j <= b; j++) for (let i = 0; i < a; i++) line(id(j, i), id(j, i + 1));
+    for (let j = 1; j < b; j++) for (let i = 0; i < a; i++) line(id(j, i), id(j + 1, i));
+    const cells = [];
+    for (let j = 1; j < b; j++) for (let i = 0; i < a; i++) cells.push([j, i]);
+    shuffled(cells, random).forEach(([j, i], n) => {
+      const bit = random() < .5;
+      if (n < extra) line(bit ? id(j, i) : id(j, i + 1), bit ? id(j + 1, i + 1) : id(j + 1, i));
+    });
+    polys.push(range(a).map(i => id(b, i)));
+  } else {
+    for (let i = 0; i < a; i++) pts.push(ring(1, i, a));
+    for (let i = 0; i < a; i++) line(i, (i + 1) % a);
+    const list = range(a), chords = [];
+    while (list.length > 3) {
+      const i = Math.floor(random() * list.length);
+      chords.push([list[(i + list.length - 1) % list.length], list[(i + 1) % list.length]]);
+      list.splice(i, 1);
+    }
+    chords.slice(0, extra).forEach(([u, v]) => line(u, v));
+    polys.push(range(a));
+  }
+  const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const minX = Math.min(...xs), minY = Math.min(...ys);
+  const width = Math.max(...xs) - minX, height = Math.max(...ys) - minY;
+  const homes = pts.map(([x, y]) => [
+    80 + Math.floor((1680 * (x - minX) + width) / (2 * width)),
+    80 + Math.floor((1680 * (y - minY) + height) / (2 * height))
+  ]);
+  const moved = shuffled(range(pts.length), random).slice(0, s || pts.length);
+  const slots = shuffled(range(100), random);
+  const start = homes.map(p => [...p]);
+  const placed = homes.filter((_, i) => !moved.includes(i));
+  let q = 0;
+  for (const v of moved) {
+    for (;;) {
+      if (q >= slots.length) throw new Error('Invalid sky recipe');
+      const slot = slots[q++];
+      const point = [80 + 93 * (slot % 10), 80 + 93 * Math.floor(slot / 10)];
+      const far = p => Math.max(Math.abs(point[0] - p[0]), Math.abs(point[1] - p[1])) >= 93;
+      if (far(homes[v]) && placed.every(far)) {
+        start[v] = point;
+        placed.push(point);
+        break;
+      }
+    }
+  }
+  return { key: 'R' + String(index + 1).padStart(3, '0'), family, pts, edges, polys, homes, start, moved, p: moved.length };
+}
+
+function fit(points, width, height, rotate = false) {
+  let pts = points.map(p => [...p]);
+  let xs = pts.map(p => p[0]), ys = pts.map(p => p[1]);
+  const shapeWidth = Math.max(...xs) - Math.min(...xs);
+  const shapeHeight = Math.max(...ys) - Math.min(...ys);
+  const turn = height > width ? shapeWidth > shapeHeight : shapeHeight > shapeWidth;
+  if (rotate && turn) pts = pts.map(([x, y]) => [y, -x]);
+  xs = pts.map(p => p[0]);
+  ys = pts.map(p => p[1]);
+  const minX = Math.min(...xs), maxX = Math.max(...xs);
+  const minY = Math.min(...ys), maxY = Math.max(...ys);
+  const scale = .84 * Math.min(width / (maxX - minX || 1), height / (maxY - minY || 1));
+  const ox = width / 2 - (minX + maxX) * scale / 2;
+  const oy = height / 2 - (minY + maxY) * scale / 2;
+  return { points: pts.map(([x, y]) => [x * scale + ox, y * scale + oy]), scale, ox, oy };
+}
+
+function projection(p, a, b) {
+  const d = sub(b, a), length2 = d[0] ** 2 + d[1] ** 2;
+  const t = length2 ? limit(((p[0] - a[0]) * d[0] + (p[1] - a[1]) * d[1]) / length2, 0, 1) : 0;
+  return [a[0] + t * d[0], a[1] + t * d[1]];
+}
+
+function closest(a, b, c, d) {
+  const v = sub(b, a), w = sub(d, c), denom = cross(v, w);
+  if (Math.abs(denom) > 1e-10) {
+    const t = cross(sub(c, a), w) / denom, u = cross(sub(c, a), v) / denom;
+    if (t >= 0 && t <= 1 && u >= 0 && u <= 1) {
+      const p = [a[0] + t * v[0], a[1] + t * v[1]];
+      return { distance: 0, point: p };
+    }
+  }
+  const pairs = [[a, projection(a, c, d)], [b, projection(b, c, d)],
+    [projection(c, a, b), c], [projection(d, a, b), d]];
+  let best = null;
+  for (const [p, q] of pairs) {
+    const dist = distance(p, q);
+    if (!best || dist < best.distance) best = { distance: dist, point: [(p[0] + q[0]) / 2, (p[1] + q[1]) / 2] };
+  }
+  return best;
+}
+
+function trouble(points, edges, details = true) {
+  const bad = new Set(), rings = [], perStar = points.map(() => 0);
+  let count = 0;
+  for (let i = 0; i < edges.length; i++) {
+    const [a, b] = edges[i];
+    for (let j = i + 1; j < edges.length; j++) {
+      const [c, d] = edges[j];
+      const shared = a === c || a === d ? a : b === c || b === d ? b : -1;
+      let isTrouble = false, point;
+      if (shared >= 0) {
+        const farA = a === shared ? b : a, farB = c === shared ? d : c;
+        const center = points[shared], p = points[farA], q = points[farB];
+        const v = sub(p, center), w = sub(q, center);
+        const angle = Math.atan2(Math.abs(cross(v, w)), v[0] * w[0] + v[1] * w[1]);
+        const pa = projection(p, center, q), pb = projection(q, center, p);
+        const da = distance(p, pa), db = distance(q, pb);
+        isTrouble = angle < 4 * Math.PI / 180 || da < 7 || db < 7;
+        const pair = da < db ? [p, pa] : [q, pb];
+        point = [(pair[0][0] + pair[1][0]) / 2, (pair[0][1] + pair[1][1]) / 2];
+      } else {
+        const result = closest(points[a], points[b], points[c], points[d]);
+        isTrouble = result.distance < 7;
+        point = result.point;
+      }
+      if (isTrouble) {
+        count++;
+        if (details) {
+          bad.add(i);
+          bad.add(j);
+          rings.push(point);
+        }
+      }
+    }
+  }
+  for (let i = 0; i < points.length; i++) for (let j = i + 1; j < points.length; j++) {
+    if (distance(points[i], points[j]) < 21.5) {
+      count++;
+      if (details) rings.push([(points[i][0] + points[j][0]) / 2, (points[i][1] + points[j][1]) / 2]);
+    }
+  }
+  if (details) for (const e of bad) for (const v of edges[e]) perStar[v]++;
+  return { count, bad, rings, perStar };
+}
+
+function slide(point, others, width, height) {
+  const clamped = [limit(point[0], 12, width - 12), limit(point[1], 12, height - 12)];
+  const free = p => p[0] >= 12 && p[0] <= width - 12 && p[1] >= 12 && p[1] <= height - 12
+    && others.every(q => distance(p, q) >= 22);
+  if (free(clamped)) return clamped;
+  for (let radius = 2; radius <= 2 * Math.hypot(width, height); radius += 2) {
+    for (let i = 0; i < 24; i++) {
+      const t = i * Math.PI / 12;
+      const candidate = [clamped[0] + radius * Math.cos(t), clamped[1] + radius * Math.sin(t)];
+      if (free(candidate)) return candidate;
+    }
+  }
+  return clamped;
+}
+
+function trueCrossings(points, edges) {
+  let count = 0;
+  for (let i = 0; i < edges.length; i++) for (let j = i + 1; j < edges.length; j++) {
+    const [a, b] = edges[i], [c, d] = edges[j];
+    if (a === c || a === d || b === c || b === d) continue;
+    // The packed table's X includes touches and overlaps as intersections.
+    if (closest(points[a], points[b], points[c], points[d]).distance < 1e-8) count++;
+  }
+  return count;
+}
+
+function dailySky(random) {
+  const perim = t => {
+    const s = Math.floor(t), f = t - s;
+    return [[f, 0], [1, f], [1 - f, 1], [0, 1 - f]][s];
+  };
+  const meet = (a, b) => {
+    const t = cross(sub(b.p, a.p), b.d) / cross(a.d, b.d);
+    return [a.p[0] + t * a.d[0], a.p[1] + t * a.d[1]];
+  };
+  for (let rebuild = 0; rebuild < 20000; rebuild++) {
+    let lines = [];
+    for (let draw = 0; draw < 400 && lines.length < 6; draw++) {
+      const t1 = 4 * random(), t2 = 4 * random();
+      if (Math.floor(t1) === Math.floor(t2)) continue;
+      const p = perim(t1), q = perim(t2), d = sub(q, p);
+      if (lines.some(l => Math.abs(cross(d, l.d)) < .2079116908177593 * Math.hypot(...d) * Math.hypot(...l.d))) continue;
+      let reject = false;
+      for (let i = 0; i < lines.length; i++) for (let j = i + 1; j < lines.length; j++) {
+        if (Math.abs(cross(d, sub(meet(lines[i], lines[j]), p))) / Math.hypot(...d) < .03) reject = true;
+      }
+      if (!reject) lines.push({ p, d });
+    }
+    if (lines.length < 6) continue;
+    const pts = [], belongs = lines.map(() => []), edges = [];
+    for (let i = 0; i < 6; i++) for (let j = i + 1; j < 6; j++) {
+      belongs[i].push(pts.length);
+      belongs[j].push(pts.length);
+      pts.push(meet(lines[i], lines[j]));
+    }
+    belongs.forEach((ids, i) => {
+      const l = lines[i];
+      const along = id => (pts[id][0] - l.p[0]) * l.d[0] + (pts[id][1] - l.p[1]) * l.d[1];
+      ids.sort((a, b) => along(a) - along(b));
+      for (let k = 0; k < 4; k++) edges.push([ids[k], ids[k + 1]]);
+    });
+    if ([[1300,620], [366,690]].some(([w,h]) => trouble(fit(pts, w, h).points, edges, false).count)) continue;
+    let start;
+    do {
+      const order = shuffled(range(15), random);
+      start = Array(15);
+      order.forEach((v, k) => {
+        const a = 2 * Math.PI * k / 15 - Math.PI / 2;
+        start[v] = [Math.round((.5 + .42 * Math.cos(a)) * 10000) / 10, Math.round((.5 + .42 * Math.sin(a)) * 10000) / 10];
+      });
+    } while (!trueCrossings(start, edges));
+    return { pts, edges, start, polys: [], beams: belongs, p: 15, name: 'Six beams of light', world: 0, fill: '#9ad7ff', daily: true };
+  }
+  throw new Error('Daily sky generation exceeded its safety budget');
+}
+
+const award = (moves, pace) => moves <= pace ? 3 : moves <= 2 * pace ? 2 : 1;
+
+</script>
+  <script id="untangle-game">
+const $ = id => document.getElementById(id);
+const NS = 'http://www.w3.org/2000/svg';
+function svgElement(tag, attributes = {}) {
+  const node = document.createElementNS(NS, tag);
+  for (const [key, value] of Object.entries(attributes)) node.setAttribute(key, value);
+  return node;
+}
+const ADJECTIVES = (
+  'Silver Sleepy Quiet Bright Little Wandering Northern Glowing Hidden Brave Gentle Shining Dreaming Frosty '
+  + 'Golden Velvet Midnight Humming Drifting Sparkling Lucky Patient Secret Twinkling'
+).split(' ');
+const NOUNS = {
+  g: 'Net Quilt Window Garden Ladder Map Weave Fence Bridge Raft Basket Kite'.split(' '),
+  w: 'Web Wheel Flower Sun Shield Compass Daisy Snowflake Umbrella Clock Pinwheel Spiral'.split(' '),
+  p: 'Lantern Crystal Shell Fan Gem Locket Ring Bell Drum Bubble Coin Mirror'.split(' ')
+};
+const KEYS = [...FIRST.map(s => s.key), ...RECORDS.map((_, i) => 'R' + String(i + 1).padStart(3, '0'))];
+const state = {
+  sky: null, positions: [], history: [], moves: 0, held: null, solved: false,
+  width: 0, height: 0, report: null, stalls: 0, helped: false, roomHint: false,
+  helper: -1, epoch: 0, awardDone: false, page: 0, overview: false, loading: false, transition: null
+};
+const nodes = { stars: [], threads: [], rings: [] };
+let redraw = 0, dailyWorker = null, dailyCache = null, animation = 0, winTimer = 0;
+let noteContext = null;
+const activeNotes = new Set();
+const day = () => {
+  const date = new Date();
+  return `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+};
+const dailyKey = () => 'daily:' + day();
+const firstUnsolved = () => KEYS.find(key => !Recess.stars(key));
+
+function skyFor(key) {
+  if (key.startsWith('L')) {
+    const sky = FIRST.find(s => s.key === key);
+    return { ...sky, world: 0, p: sky.pts.length };
+  }
+  const index = Number(key.slice(1)) - 1;
+  const sky = ladder(RECORDS[index], index, Recess.rng);
+  const j = RECORDS.slice(0, index).filter(r => r[0] === sky.family).length;
+  sky.name = 'The ' + ADJECTIVES[j % 24] + ' ' + NOUNS[sky.family][(j + Math.floor(j / 24)) % 12];
+  sky.world = Math.floor(index / 25) + 1;
+  sky.fill = WORLDS[sky.world - 1].fill;
+  sky.finale = (index + 1) % 25 === 0;
+  return sky;
+}
+
+function levelLabel(sky) {
+  if (sky.daily) return "Tonight's sky";
+  const base = sky.world ? `${WORLDS[sky.world - 1].name} ${(Number(sky.key.slice(1)) - 1) % 25 + 1}`
+    : `Sky ${Number(sky.key.slice(1))}`;
+  return base + (Recess.store('named:' + sky.key) ? ' · ' + sky.name : '');
+}
+
+function announce(text) {
+  $('announcement').textContent = '';
+  requestAnimationFrame(() => { $('announcement').textContent = text; });
+}
+
+function chime(note = 0) {
+  if (!Recess.sound || activeNotes.size >= 6) return;
+  const Audio = window.AudioContext || window.webkitAudioContext;
+  if (!Audio) return;
+  if (!noteContext) noteContext = new Audio();
+  noteContext.resume().catch(() => {});
+  const now = noteContext.currentTime;
+  const frequency = [523.25, 587.33, 659.25, 783.99, 880, 1046.5, 1174.66, 1318.5][limit(note, 0, 7)];
+  const envelope = noteContext.createGain();
+  envelope.gain.setValueAtTime(.0001, now);
+  envelope.gain.exponentialRampToValueAtTime(.045, now + .008);
+  envelope.gain.exponentialRampToValueAtTime(.0001, now + .608);
+  envelope.connect(noteContext.destination);
+  const voices = ['sine', 'triangle'].map((wave, i) => {
+    const voice = noteContext.createOscillator(), gain = noteContext.createGain();
+    voice.type = wave;
+    voice.frequency.value = frequency * (i ? 2 : 1);
+    gain.gain.value = i ? .16 : 1;
+    voice.connect(gain).connect(envelope);
+    voice.start(now);
+    voice.stop(now + .62);
+    return voice;
+  });
+  activeNotes.add(voices);
+  voices[0].onended = () => { activeNotes.delete(voices); envelope.disconnect(); };
+}
+
+function pixels() {
+  return state.positions.map(([x, y]) => [x * state.width, y * state.height]);
+}
+
+function setPoint(index, point) {
+  state.positions[index] = [point[0] / state.width, point[1] / state.height];
+}
+
+function queueDraw() {
+  if (redraw) return;
+  redraw = requestAnimationFrame(() => { redraw = 0; draw(); });
+}
+
+function draw() {
+  if (!state.sky || state.loading) return;
+  const points = pixels();
+  const report = trouble(points, state.sky.edges);
+  state.report = report;
+  state.sky.edges.forEach(([a, b], i) => {
+    const line = nodes.threads[i];
+    line.setAttribute('x1', points[a][0]);
+    line.setAttribute('y1', points[a][1]);
+    line.setAttribute('x2', points[b][0]);
+    line.setAttribute('y2', points[b][1]);
+    line.setAttribute('class', 'thread' + (!state.solved && report.bad.has(i) ? ' crossed' : ''));
+  });
+  while (nodes.rings.length < report.rings.length) {
+    const ring = svgElement('circle', { r: 7, class: 'crossing' });
+    nodes.rings.push(ring);
+    $('rings').append(ring);
+  }
+  nodes.rings.forEach((ring, i) => {
+    const visible = !state.solved && i < report.rings.length;
+    ring.style.display = visible ? '' : 'none';
+    if (visible) {
+      ring.setAttribute('cx', report.rings[i][0]);
+      ring.setAttribute('cy', report.rings[i][1]);
+    }
+  });
+  points.forEach(([x, y], i) => {
+    const star = nodes.stars[i];
+    star.setAttribute('transform', `translate(${x},${y})`);
+    star.classList.toggle('held', state.held?.index === i);
+    star.classList.toggle('troubled', !state.solved && report.perStar[i] > 0);
+    star.classList.toggle('help', !state.solved && state.helper === i);
+    const word = report.perStar[i] === 1 ? 'line' : 'lines';
+    star.setAttribute('aria-label', `Star ${i + 1} of ${points.length}, ${report.perStar[i]} ${word} crossed`);
+    star.setAttribute('aria-pressed', state.held?.index === i ? 'true' : 'false');
+    star.querySelector('image').setAttribute('href', state.solved ? ART.gold : state.held?.index === i ? ART.held : ART.star);
+  });
+  const count = state.solved ? 0 : report.count;
+  $('count').textContent = count ? `${count} ${count === 1 ? 'crossing' : 'crossings'}` : '✦ No crossings';
+  $('count').classList.toggle('zero', !count);
+  const pace = state.sky.p;
+  const goal = state.moves <= pace ? ['★★★', pace] : state.moves <= 2 * pace ? ['★★', 2 * pace] : null;
+  const desktop = `Moves ${state.moves}` + (goal ? ` · ${goal[0]} within ${goal[1]}` : '');
+  const mobile = `${state.moves}` + (goal ? ` / ${goal[0]} ${goal[1]}` : ' moves');
+  $('moves').replaceChildren();
+  for (const [className, text] of [['desktop', desktop], ['mobile', mobile]]) {
+    const span = document.createElement('span');
+    span.className = className;
+    span.textContent = text;
+    $('moves').append(span);
+  }
+  $('moves').setAttribute('aria-label', desktop);
+}
+
+function buildSky() {
+  $('threads').replaceChildren();
+  $('rings').replaceChildren();
+  $('stars').replaceChildren();
+  $('fills').replaceChildren();
+  $('beams').replaceChildren();
+  nodes.rings = [];
+  nodes.threads = state.sky.edges.map(() => {
+    const line = svgElement('line', { class: 'thread' });
+    $('threads').append(line);
+    return line;
+  });
+  nodes.stars = state.positions.map((_, i) => {
+    const group = svgElement('g', { class: 'star', tabindex: 0, role: 'button', 'data-star': i });
+    group.append(
+      svgElement('circle', { class: 'hit', r: 26 }),
+      svgElement('circle', { class: 'focus', r: 19 }),
+      svgElement('circle', { class: 'halo', r: 34 }),
+      svgElement('circle', { class: 'helper', r: 25 }),
+      svgElement('image', { class: 'bead', href: ART.star, x: -11, y: -11, width: 22, height: 22 })
+    );
+    group.addEventListener('keydown', event => starKey(event, i));
+    $('stars').append(group);
+    return group;
+  });
+  const random = Recess.rng('untangle:specks');
+  $('specks').replaceChildren(...range(60).map(() => {
+    const star = svgElement('circle', { cx: random() * state.width, cy: random() * state.height,
+      r: .4 + random() * .7, class: 'speck' });
+    star.style.setProperty('--period', 3 + random() * 4 + 's');
+    return star;
+  }));
+  draw();
+}
+
+function backdrop(world) {
+  const old = $('land').style.backgroundImage;
+  const next = `url("${ART.skies[world]}")`;
+  if (old !== next) {
+    $('previous-land').style.backgroundImage = old;
+    $('previous-land').style.opacity = 1;
+    $('land').style.backgroundImage = next;
+    requestAnimationFrame(() => { $('previous-land').style.opacity = 0; });
+    if (old) Recess.play('pop');
+  }
+  $('world-name').textContent = world ? WORLDS[world - 1].name : 'First Skies';
+}
+
+function cancelPending() {
+  state.epoch++;
+  cancelAnimationFrame(animation);
+  clearTimeout(winTimer);
+  state.transition = null;
+  if (dailyWorker) dailyWorker.terminate();
+  dailyWorker = null;
+  cancelLift();
+}
+
+function activate(sky) {
+  const refocusStar = document.activeElement?.closest?.('.star');
+  state.sky = sky;
+  state.positions = sky.start.map(([x, y]) => [x / 1000, y / 1000]);
+  state.history = [];
+  state.moves = 0;
+  state.solved = false;
+  state.loading = false;
+  state.awardDone = false;
+  state.stalls = 0;
+  state.helped = false;
+  state.roomHint = false;
+  state.helper = -1;
+  $('sky').classList.remove('solved', 'bloom');
+  $('reveal').removeAttribute('href');
+  $('hint').textContent = Recess.store('hinted') ? '' : 'Drag a star. Make the lines stop crossing.';
+  $('name-card').textContent = '';
+  Recess.level(sky.key, levelLabel(sky));
+  Recess.canUndo(false);
+  backdrop(sky.world);
+  measure();
+  buildSky();
+  if (refocusStar) nodes.stars[0]?.focus({ preventScroll: true });
+}
+
+function loadSky(key) {
+  cancelPending();
+  Recess.close();
+  if ($('chart').open) $('chart').close();
+  if (!key.startsWith('daily:')) { activate(skyFor(key)); return; }
+  if (dailyCache?.key === key) { activate(dailyCache); return; }
+  state.loading = true;
+  Recess.level(key, "Tonight's sky");
+  Recess.canUndo(false);
+  $('hint').textContent = "Gathering tonight's stars…";
+  const epoch = state.epoch, random = Recess.daily();
+  const signature = [random(), random(), random()];
+  const workerCode = $('untangle-core').textContent + `
+    onmessage = event => {
+      const { date, signature } = event.data;
+      const check = seeded('untangle:' + date);
+      if (signature.some(v => v !== check())) throw new Error('Daily random mismatch');
+      postMessage(dailySky(seeded('untangle:' + date)));
+    };`;
+  const blob = URL.createObjectURL(new Blob([workerCode], { type: 'text/javascript' }));
+  dailyWorker = new Worker(blob);
+  URL.revokeObjectURL(blob);
+  dailyWorker.onmessage = event => {
+    if (state.epoch !== epoch) return;
+    dailyCache = { ...event.data, key };
+    dailyWorker.terminate();
+    dailyWorker = null;
+    activate(dailyCache);
+  };
+  dailyWorker.onerror = () => {
+    if (state.epoch !== epoch) return;
+    dailyWorker.terminate();
+    dailyWorker = null;
+    state.loading = false;
+    $('hint').textContent = "Tonight's sky could not open. Try Restart, or choose a sky in the Star chart.";
+  };
+  dailyWorker.postMessage({ date: day(), signature });
+}
+
+function measure() {
+  const bounds = $('field').getBoundingClientRect();
+  state.width = bounds.width;
+  state.height = bounds.height;
+  $('field').setAttribute('viewBox', `0 0 ${state.width} ${state.height}`);
+  $('field-clip-rect').setAttribute('width', state.width);
+  $('field-clip-rect').setAttribute('height', state.height);
+}
+
+function lift(index, pointer = null) {
+  if (state.loading || state.solved || state.held || $('chart').open || document.querySelector('.rc-veil')) return;
+  finishTransition();
+  if (state.solved) return;
+  draw();
+  state.held = { index, before: [...state.positions[index]], count: state.report.count, pointer };
+  $('stars').append(nodes.stars[index]);
+  if (pointer === null) nodes.stars[index].focus({ preventScroll: true });
+  Recess.play('tap');
+  announce('Lifted. Arrow keys move it.');
+  draw();
+}
+
+function restoreOrder(index) {
+  const next = nodes.stars[index + 1];
+  if (next) $('stars').insertBefore(nodes.stars[index], next);
+  else $('stars').append(nodes.stars[index]);
+}
+
+function cancelLift() {
+  if (!state.held) return;
+  const held = state.held;
+  state.positions[held.index] = held.before;
+  state.held = null;
+  restoreOrder(held.index);
+  draw();
+  nodes.stars[held.index].focus({ preventScroll: true });
+}
+
+function drop() {
+  if (!state.held) return;
+  const held = state.held, points = pixels();
+  const requested = points[held.index];
+  const snapped = slide(requested, points.filter((_, i) => i !== held.index), state.width, state.height);
+  const beforePx = [held.before[0] * state.width, held.before[1] * state.height];
+  const changed = distance(beforePx, snapped) >= 4 - 1e-7;
+  const slid = distance(requested, snapped) > .1;
+  setPoint(held.index, changed ? snapped : beforePx);
+  state.held = null;
+  restoreOrder(held.index);
+  if (changed) {
+    state.history.push({ index: held.index, before: held.before });
+    state.moves++;
+    Recess.canUndo(true);
+  }
+  draw();
+  const count = state.report.count;
+  if (changed) {
+    const improved = count < held.count;
+    if (improved) {
+      Recess.store('hinted', true);
+      $('hint').textContent = '';
+      state.stalls = 0;
+      state.helper = -1;
+      chime(Math.max(0, 7 - count));
+    } else {
+      state.stalls++;
+      Recess.play(count === held.count ? 'place' : 'slide');
+    }
+    if (slid && !state.roomHint) {
+      state.roomHint = true;
+      $('hint').textContent = 'Stars need a little room.';
+    }
+    if (state.stalls >= 6 && !state.helped) {
+      state.helped = true;
+      state.helper = state.report.perStar.indexOf(Math.max(...state.report.perStar));
+      $('hint').textContent = 'Try the star with the most dashed lines.';
+    }
+    const star = nodes.stars[held.index];
+    star.classList.remove('settle', 'improved');
+    void star.getBoundingClientRect();
+    star.classList.add('settle');
+    if (count < held.count) star.classList.add('improved');
+  }
+  draw();
+  nodes.stars[held.index].focus({ preventScroll: true });
+  const afterDrop = () => {
+    const left = state.report.count;
+    if (!left) complete();
+    else announce(`${left} ${left === 1 ? 'crossing' : 'crossings'} left`);
+  };
+  if (slid && changed && !Recess.calm) {
+    const final = state.positions.map(p => [...p]);
+    setPoint(held.index, requested);
+    glidePositions(final, 120, afterDrop);
+  } else afterDrop();
+}
+
+function starKey(event, index) {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    if (state.held?.index === index) drop();
+    else if (!state.held) lift(index);
+  } else if (event.key === 'Escape' && state.held) {
+    event.preventDefault();
+    cancelLift();
+    announce('Put back.');
+  } else if (event.key.startsWith('Arrow') && state.held?.index === index) {
+    event.preventDefault();
+    const step = event.shiftKey ? 4 : 16;
+    const delta = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] }[event.key];
+    const p = pixels()[index];
+    setPoint(index, [limit(p[0] + delta[0], 12, state.width - 12), limit(p[1] + delta[1], 12, state.height - 12)]);
+    queueDraw();
+  } else if (event.key === 'Tab' && state.held) {
+    cancelLift();
+  }
+}
+
+function pointerPoint(event) {
+  const bounds = $('field').getBoundingClientRect();
+  return [event.clientX - bounds.left, event.clientY - bounds.top];
+}
+$('field').addEventListener('pointerdown', event => {
+  if (event.button !== 0 || state.held || !state.sky || state.loading) return;
+  const p = pointerPoint(event), points = pixels();
+  let index = -1, best = event.pointerType === 'touch' ? 32 : 26;
+  points.forEach((q, i) => {
+    const d = distance(p, q);
+    if (d <= best) { best = d; index = i; }
+  });
+  if (index < 0) return;
+  event.preventDefault();
+  lift(index, event.pointerId);
+  if (state.held) {
+    $('field').setPointerCapture(event.pointerId);
+    setPoint(index, p);
+    queueDraw();
+  }
+});
+addEventListener('pointermove', event => {
+  if (state.held?.pointer !== event.pointerId) return;
+  event.preventDefault();
+  setPoint(state.held.index, pointerPoint(event));
+  queueDraw();
+});
+addEventListener('pointerup', event => {
+  if (state.held?.pointer !== event.pointerId) return;
+  event.preventDefault();
+  setPoint(state.held.index, pointerPoint(event));
+  drop();
+  if ($('field').hasPointerCapture(event.pointerId)) $('field').releasePointerCapture(event.pointerId);
+});
+addEventListener('pointercancel', event => {
+  if (state.held?.pointer === event.pointerId) cancelLift();
+});
+addEventListener('blur', cancelLift);
+$('field').addEventListener('dragstart', event => event.preventDefault());
+// Keep following the pointer through delayed SVG capture-loss events. Up or cancel ends the lift.
+
+function pictureGeometry() {
+  const sky = state.sky, target = fit(sky.pts, state.width, state.height, !!sky.family);
+  $('fills').replaceChildren(...sky.polys.map(poly => svgElement('polygon', {
+    points: poly.map(i => target.points[i].join(',')).join(' '), fill: 'url(#picture-fill)'
+  })));
+  $('sky').style.setProperty('--picture-color', sky.fill);
+  const reveal = $('reveal');
+  if (!sky.world && !sky.daily) {
+    reveal.setAttribute('href', ART.first[Number(sky.key.slice(1)) - 1]);
+    reveal.setAttribute('x', target.ox);
+    reveal.setAttribute('y', target.oy);
+    reveal.setAttribute('width', 100 * target.scale);
+    reveal.setAttribute('height', 100 * target.scale);
+  } else if (sky.finale) {
+    reveal.setAttribute('href', ART.worlds[sky.world - 1]);
+    const size = Math.min(state.width, state.height) * .88;
+    reveal.setAttribute('x', (state.width - size) / 2);
+    reveal.setAttribute('y', (state.height - size) / 2);
+    reveal.setAttribute('width', size);
+    reveal.setAttribute('height', size);
+  }
+  return target.points;
+}
+
+function showBeams(target) {
+  if (!state.sky.daily) return;
+  $('beams').replaceChildren(...state.sky.beams.map(ids => {
+    const a = target[ids[0]], b = target[ids[ids.length - 1]], d = sub(b, a), length = Math.hypot(...d);
+    const beam = svgElement('line', { x1: a[0] - d[0] / length * 2000, y1: a[1] - d[1] / length * 2000,
+      x2: b[0] + d[0] / length * 2000, y2: b[1] + d[1] / length * 2000, class: 'beam' });
+    beam.style.setProperty('--beam-length', length + 4000);
+    return beam;
+  }));
+  $('beams').style.opacity = 1;
+  const epoch = state.epoch;
+  setTimeout(() => { if (state.epoch === epoch) $('beams').style.opacity = 0; }, 1500);
+}
+
+function saveAward() {
+  if (!state.solved || state.awardDone) return;
+  state.awardDone = true;
+  Recess.win({ score: state.moves, stars: award(state.moves, state.sky.p) });
+}
+
+function revealLanded(target) {
+  const firstBloom = !$('sky').classList.contains('bloom');
+  $('sky').classList.add('bloom');
+  if (firstBloom) {
+    const epoch = state.epoch;
+    target.forEach((_, i) => setTimeout(() => { if (state.epoch === epoch) chime(Math.min(7, i % 8)); }, i * 40));
+  }
+  if (state.sky.daily && (firstBloom || $('beams').style.opacity === '1')) showBeams(target);
+}
+
+function settleReveal() {
+  cancelAnimationFrame(animation);
+  const target = pictureGeometry();
+  state.positions = target.map(([x, y]) => [x / state.width, y / state.height]);
+  revealLanded(target);
+  draw();
+}
+
+function complete() {
+  if (state.solved || state.held || state.report.count) return;
+  state.solved = true;
+  Recess.canUndo(false);
+  Recess.store('named:' + state.sky.key, true);
+  Recess.level(state.sky.key, levelLabel(state.sky));
+  announce('No crossings. Solved!');
+  $('sky').classList.add('solved');
+  const epoch = state.epoch, origin = pixels(), target = pictureGeometry();
+  $('name-card').textContent = state.sky.name;
+  const duration = Recess.calm ? 0 : 900;
+  const began = performance.now();
+  function glide(now) {
+    if (state.epoch !== epoch) return;
+    const t = duration && !Recess.calm ? Math.min(1, (now - began) / duration) : 1;
+    const ease = t < .5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+    state.positions = target.map((p, i) => [
+      (origin[i][0] + (p[0] - origin[i][0]) * ease) / state.width,
+      (origin[i][1] + (p[1] - origin[i][1]) * ease) / state.height
+    ]);
+    draw();
+    if (t < 1) animation = requestAnimationFrame(glide);
+    else {
+      revealLanded(target);
+    }
+  }
+  glide(began);
+  winTimer = setTimeout(() => { if (state.epoch === epoch) saveAward(); }, Recess.calm ? 400 : state.sky.finale ? 2200 : 1600);
+}
+
+function undo() {
+  if (state.solved || state.loading) return;
+  cancelLift();
+  // Commit a pending slide before touching its history. Its final position may solve the sky.
+  finishTransition();
+  if (state.solved) return;
+  const last = state.history.pop();
+  if (!last) return;
+  const target = state.positions.map(p => [...p]);
+  target[last.index] = last.before;
+  state.moves--;
+  Recess.canUndo(state.history.length > 0);
+  Recess.play('slide');
+  glidePositions(target, 160, () => {
+    if (!state.report.count) complete();
+    else announce(`${state.report.count} ${state.report.count === 1 ? 'crossing' : 'crossings'} left`);
+  });
+}
+
+function restart() {
+  const key = state.loading ? dailyKey() : state.sky.key;
+  const origin = state.positions.map(p => [...p]);
+  Recess.play('slide');
+  loadSky(key);
+  if (!state.loading && origin.length === state.positions.length) {
+    const target = state.positions;
+    state.positions = origin;
+    glidePositions(target, 250);
+  }
+}
+
+function finishTransition() {
+  if (!state.transition) return;
+  const { target, done } = state.transition;
+  state.transition = null;
+  cancelAnimationFrame(animation);
+  state.positions = target.map(p => [...p]);
+  draw();
+  if (done) done();
+}
+
+function glidePositions(target, duration, done) {
+  finishTransition();
+  if (Recess.calm) {
+    state.positions = target.map(p => [...p]);
+    draw();
+    if (done) done();
+    return;
+  }
+  const origin = state.positions.map(p => [...p]), epoch = state.epoch, began = performance.now();
+  state.transition = { target, done };
+  function frame(now) {
+    if (state.epoch !== epoch || !state.transition) return;
+    const t = Math.min(1, (now - began) / duration), ease = 1 - (1 - t) ** 3;
+    state.positions = target.map((p, i) => [
+      origin[i][0] + (p[0] - origin[i][0]) * ease,
+      origin[i][1] + (p[1] - origin[i][1]) * ease
+    ]);
+    draw();
+    if (t < 1) animation = requestAnimationFrame(frame);
+    else finishTransition();
+  }
+  animation = requestAnimationFrame(frame);
+}
+
+function nextSky() {
+  const sky = state.sky;
+  if (sky.daily) {
+    const key = firstUnsolved();
+    if (key) loadSky(key);
+    else openChart();
+    return;
+  }
+  const index = KEYS.indexOf(sky.key);
+  if (index + 1 < KEYS.length) loadSky(KEYS[index + 1]);
+  else openChart();
+}
+
+function pageKeys(page) {
+  return page ? KEYS.slice(20 + (page - 1) * 25, 20 + page * 25) : KEYS.slice(0, 20);
+}
+
+function thumbnail(sky, done) {
+  const points = done ? fit(sky.pts, 100, 100).points : sky.start.map(([x, y]) => [x / 10, y / 10]);
+  const svg = svgElement('svg', { viewBox: '0 0 100 100', 'aria-hidden': true });
+  for (const [a, b] of sky.edges) svg.append(svgElement('line', {
+    x1: points[a][0], y1: points[a][1], x2: points[b][0], y2: points[b][1],
+    stroke: done ? '#ffd166' : '#8fa8ff', 'stroke-width': done ? 1.3 : .7, opacity: done ? .85 : .5
+  }));
+  for (const [cx, cy] of points) svg.append(svgElement('circle', { cx, cy, r: 1.3, fill: '#fff6dc' }));
+  return svg;
+}
+
+function chartButton(label, className, fn) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = className;
+  button.setAttribute('aria-label', label);
+  button.onclick = fn;
+  return button;
+}
+
+function paintChart(focusIndex = -1) {
+  const grid = $('chart-grid'), page = state.page, overview = state.overview;
+  grid.replaceChildren();
+  grid.className = 'chart-grid' + (overview ? ' worlds-grid' : !page ? ' first-skies' : '');
+  document.querySelector('.chart-head').style.backgroundImage = `url("${ART.skies[page]}")`;
+  $('worlds-button').textContent = overview ? 'Skies' : 'Worlds';
+  $('chart-prev').disabled = overview;
+  $('chart-next').disabled = overview;
+  $('chart-title').textContent = overview ? 'Choose a world' : page ? WORLDS[page - 1].name : 'First Skies';
+  const keys = pageKeys(page);
+  const total = keys.reduce((sum, key) => sum + Recess.stars(key), 0);
+  $('chart-meta').textContent = overview ? 'Every sky is open. Follow your curiosity.'
+    : `${page ? `World ${page} of 22 · ` : ''}${total} of ${keys.length * 3} ★`;
+  if (overview) {
+    for (let w = 0; w <= 22; w++) {
+      const group = pageKeys(w), solved = group.filter(key => Recess.stars(key)).length;
+      const name = w ? WORLDS[w - 1].name : 'First Skies';
+      const button = chartButton(`${name}, ${solved} of ${group.length} skies solved`, 'sky-tile world-tile', () => {
+        state.page = w;
+        state.overview = false;
+        paintChart(0);
+      });
+      button.style.backgroundImage = `url("${ART.skies[w]}")`;
+      const number = document.createElement('span'), label = document.createElement('span');
+      number.className = 'tile-number';
+      number.textContent = w || '✧';
+      label.className = 'world-label';
+      label.textContent = name;
+      button.append(number, label);
+      const ring = svgElement('svg', { viewBox: '0 0 32 32', 'aria-hidden': true });
+      ring.append(svgElement('circle', { cx: 16, cy: 16, r: 12, fill: '#0a0b2677', stroke: '#8fa8ff55', 'stroke-width': 2 }));
+      ring.append(svgElement('circle', { cx: 16, cy: 16, r: 12, fill: 'none', stroke: '#ffd166', 'stroke-width': 2,
+        'stroke-dasharray': `${solved / group.length * 75.4} 75.4`, transform: 'rotate(-90 16 16)' }));
+      button.append(ring);
+      if (w && Recess.stars(group[group.length - 1])) {
+        const picture = document.createElement('img');
+        picture.src = ART.worlds[w - 1];
+        picture.alt = '';
+        picture.className = 'tile-art';
+        button.prepend(picture);
+      }
+      grid.append(button);
+    }
+  } else {
+    const first = firstUnsolved();
+    keys.forEach((key, i) => {
+      const sky = skyFor(key), stars = Recess.stars(key);
+      const label = `${levelLabel(sky)}, ${stars} of 3 stars`;
+      const tileClass = 'sky-tile' + (key === first ? ' first' : '') + (page && i === 24 ? ' finale' : '');
+      const button = chartButton(label, tileClass, () => loadSky(key));
+      button.style.backgroundImage = `url("${ART.skies[page]}")`;
+      button.append(thumbnail(sky, !!stars));
+      if (page && i === 24) {
+        const picture = document.createElement('img');
+        picture.src = ART.worlds[page - 1];
+        picture.alt = '';
+        picture.className = 'tile-art' + (stars ? '' : ' hidden-picture');
+        button.prepend(picture);
+      }
+      const number = document.createElement('span'), starText = document.createElement('span');
+      number.className = 'tile-number';
+      number.textContent = i + 1;
+      starText.className = 'tile-stars';
+      starText.textContent = '★'.repeat(stars);
+      button.append(number, starText);
+      grid.append(button);
+    });
+    if (!page) {
+      const daily = chartButton("Tonight's sky, a new tangle every day", 'sky-tile', () => loadSky(dailyKey()));
+      daily.id = 'chart-daily';
+      daily.textContent = "✧  Tonight's sky";
+      grid.append(daily);
+    }
+  }
+  if (focusIndex >= 0) grid.children[Math.min(focusIndex, grid.children.length - 1)]?.focus({ preventScroll: true });
+}
+
+function openChart() {
+  cancelLift();
+  if (state.solved) { saveAward(); Recess.close(); }
+  state.overview = false;
+  state.page = state.sky?.world || 0;
+  paintChart();
+  if (!$('chart').open) $('chart').showModal();
+  $('chart-back').focus({ preventScroll: true });
+}
+
+function closeChart() {
+  $('chart').close();
+  $('chart-open').focus({ preventScroll: true });
+}
+
+function turnPage(delta) {
+  state.overview = false;
+  state.page = (state.page + delta + 23) % 23;
+  paintChart(0);
+}
+$('chart-open').onclick = openChart;
+$('chart-back').onclick = closeChart;
+$('chart-prev').onclick = () => turnPage(-1);
+$('chart-next').onclick = () => turnPage(1);
+$('worlds-button').onclick = () => { state.overview = !state.overview; paintChart(0); };
+$('chart').addEventListener('cancel', event => { event.preventDefault(); closeChart(); });
+$('chart').addEventListener('keydown', event => {
+  event.stopPropagation();
+  const key = event.key, grid = $('chart-grid');
+  if (key === 'PageDown' || key === 'PageUp') {
+    event.preventDefault();
+    turnPage(key === 'PageDown' ? 1 : -1);
+  } else if (key === 'Home') {
+    event.preventDefault();
+    const first = firstUnsolved();
+    state.page = first?.startsWith('R') ? Math.floor((Number(first.slice(1)) - 1) / 25) + 1 : 0;
+    state.overview = false;
+    paintChart(Math.max(0, pageKeys(state.page).indexOf(first)));
+  } else if (key.toLowerCase() === 'w') {
+    event.preventDefault();
+    state.overview = !state.overview;
+    paintChart(0);
+  } else if (key.startsWith('Arrow')) {
+    event.preventDefault();
+    const columns = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+    const index = [...grid.children].indexOf(document.activeElement);
+    const delta = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: columns, ArrowUp: -columns }[key];
+    const target = limit(index < 0 ? 0 : index + delta, 0, grid.children.length - 1);
+    grid.children[target].focus({ preventScroll: true });
+  }
+});
+let swipeStart = null;
+$('chart-grid').addEventListener('touchstart', event => { swipeStart = event.touches[0].clientX; }, { passive: true });
+$('chart-grid').addEventListener('touchend', event => {
+  if (swipeStart === null || state.overview) return;
+  const delta = event.changedTouches[0].clientX - swipeStart;
+  swipeStart = null;
+  if (Math.abs(delta) > 60) { event.preventDefault(); turnPage(delta < 0 ? 1 : -1); }
+}, { passive: false });
+
+Recess.start({ id: 'untangle', title: 'Untangle', score: { label: 'Moves', lower: true },
+  onUndo: undo, onRestart: restart, onNext: nextSky });
+document.body.insertBefore(document.querySelector('footer'), $('sky'));
+let previousMotion = null;
+Recess.onMotion(calm => {
+  // The shell also repaints on score and Undo updates; respond only to a motion change.
+  if (calm === previousMotion) return;
+  previousMotion = calm;
+  if (calm) finishTransition();
+  if (calm && state.solved && state.sky) settleReveal();
+});
+$('rc-sound').addEventListener('click', () => {
+  if (!Recess.sound) for (const voices of activeNotes) for (const voice of voices) {
+    try { voice.stop(); } catch {}
+  }
+});
+// Saving initials removes its form. Keep keyboard play on the shell's Next control.
+document.addEventListener('click', event => {
+  const save = event.target.closest?.('.rc-init .rc-go');
+  if (!save) return;
+  const card = save.closest('.rc-card');
+  setTimeout(() => {
+    if (!save.isConnected && card.isConnected) card.querySelector('.rc-row button')?.focus({ preventScroll: true });
+  }, 0);
+}, true);
+// Keep the shared shell's modal cards named and keyboard-contained without changing the kit.
+new MutationObserver(records => {
+  for (const record of records) for (const node of record.addedNodes) {
+    const card = node.querySelector?.('.rc-card');
+    const heading = card?.querySelector('.rc-h');
+    if (!heading) continue;
+    heading.id = 'untangle-card-title';
+    card.setAttribute('aria-labelledby', heading.id);
+  }
+}).observe(document.body, { childList: true });
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Tab') return;
+  const card = document.querySelector('.rc-veil .rc-card');
+  if (!card) return;
+  const controls = [...card.querySelectorAll('button:not(:disabled),input:not(:disabled)')];
+  const first = controls[0], last = controls[controls.length - 1];
+  if (!first) return;
+  if (!card.contains(document.activeElement) || (event.shiftKey && document.activeElement === first)
+      || (!event.shiftKey && document.activeElement === last)) {
+    event.preventDefault();
+    (event.shiftKey ? last : first).focus({ preventScroll: true });
+  }
+}, true);
+addEventListener('keydown', event => {
+  if (event.ctrlKey || event.metaKey || event.altKey || event.target.closest('input,textarea') || $('chart').open) return;
+  if (event.key.toLowerCase() === 'c') {
+    event.preventDefault();
+    openChart();
+  } else if (event.key === 'Escape' && state.held) {
+    event.preventDefault();
+    cancelLift();
+  }
+});
+new ResizeObserver(() => {
+  cancelLift();
+  measure();
+  if (!state.sky || state.loading) return;
+  if (state.solved) settleReveal();
+  else draw();
+}).observe($('sky'));
+measure();
+loadSky(firstUnsolved() || 'L01');
+
+</script>
+</body>
+</html>

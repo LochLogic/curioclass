@@ -1,0 +1,1165 @@
+{
+  "house_style": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people.",
+  "style": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people.",
+  "assets": [
+    {
+      "name": "sky-0",
+      "prompt": "Wide 1600 by 1000 night landscape: a quiet rolling hill with grasses, a tiny distant valley. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: a quiet rolling hill with grasses, a tiny distant valley. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-1",
+      "prompt": "Wide 1600 by 1000 night landscape: tall summer grass, fireflies drifting low. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: tall summer grass, fireflies drifting low. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-2",
+      "prompt": "Wide 1600 by 1000 night landscape: dark pines around a clearing, a woodpile. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: dark pines around a clearing, a woodpile. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-3",
+      "prompt": "Wide 1600 by 1000 night landscape: still lake, reeds, the sky mirrored. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: still lake, reeds, the sky mirrored. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-4",
+      "prompt": "Wide 1600 by 1000 night landscape: lily pads, glowing water, a stone bridge. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: lily pads, glowing water, a stone bridge. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-5",
+      "prompt": "Wide 1600 by 1000 night landscape: shallow sea over pale coral, a sandbar. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: shallow sea over pale coral, a sandbar. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-6",
+      "prompt": "Wide 1600 by 1000 night landscape: snowfields, a ridge of fir trees. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: snowfields, a ridge of fir trees. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-7",
+      "prompt": "Wide 1600 by 1000 night landscape: a hedge garden, paper lanterns in the trees. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: a hedge garden, paper lanterns in the trees. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-8",
+      "prompt": "Wide 1600 by 1000 night landscape: a harbour of moored boats under rolling cloud. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: a harbour of moored boats under rolling cloud. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-9",
+      "prompt": "Wide 1600 by 1000 night landscape: ice cliffs over a calm polar sea. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: ice cliffs over a calm polar sea. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-10",
+      "prompt": "Wide 1600 by 1000 night landscape: old oaks, mossy roots, fallen leaves. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: old oaks, mossy roots, fallen leaves. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-11",
+      "prompt": "Wide 1600 by 1000 night landscape: deep blue water glowing from below. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: deep blue water glowing from below. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-12",
+      "prompt": "Wide 1600 by 1000 night landscape: rock pools and a long beach at low tide. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: rock pools and a long beach at low tide. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-13",
+      "prompt": "Wide 1600 by 1000 night landscape: wide grassland, one great tree. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: wide grassland, one great tree. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-14",
+      "prompt": "Wide 1600 by 1000 night landscape: rolling sand dunes, wind ripples. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: rolling sand dunes, wind ripples. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-15",
+      "prompt": "Wide 1600 by 1000 night landscape: a hillside of blossom trees, petals in the air. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: a hillside of blossom trees, petals in the air. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-16",
+      "prompt": "Wide 1600 by 1000 night landscape: bamboo forest in low mist. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: bamboo forest in low mist. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-17",
+      "prompt": "Wide 1600 by 1000 night landscape: jagged mountains, a frozen waterfall. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: jagged mountains, a frozen waterfall. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-18",
+      "prompt": "Wide 1600 by 1000 night landscape: a tall waterfall, moonbow in the spray. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: a tall waterfall, moonbow in the spray. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-19",
+      "prompt": "Wide 1600 by 1000 night landscape: sea cliffs, a lighthouse far off, a comet overhead. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: sea cliffs, a lighthouse far off, a comet overhead. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-20",
+      "prompt": "Wide 1600 by 1000 night landscape: sea ice and green-violet sky glow. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: sea ice and green-violet sky glow. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-21",
+      "prompt": "Wide 1600 by 1000 night landscape: high crags, a lone pine, valley lights far below. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: high crags, a lone pine, valley lights far below. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "sky-22",
+      "prompt": "Wide 1600 by 1000 night landscape: no ground at all: a spiral galaxy and planets. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+      "width": 1600,
+      "quality": 55,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. Wide 1600 by 1000 night landscape: no ground at all: a spiral galaxy and planets. Land only in the bottom fifth. Upper four fifths is extremely dark indigo night sky, faint violet and teal nebula, very sparse tiny dim stars, spacious and clear with no bright moon. Painterly storybook depth, cinematic landscape. Sky must be darker than #1b1f5e everywhere, no large bright patches. No puzzle lines.",
+          "attempt": 1
+        },
+        {
+          "prompt": "Edit this night landscape. Preserve its exact scene, composition, painterly richness, terrain and nebula shapes. Make the entire painting MUCH darker, including ALL terrain, lanterns, water, ice and foliage. The entire image should be a very low key indigo tonal painting: the brightest broad surface must be no brighter than RGB(32,34,70), and most of the sky should be RGB(12,14,35). Warm lights, fireflies and pale highlights must be nearly extinguished, tiny pinpricks only, never bright areas. Avoid white, pale blue, yellow, luminous green or bright teal regions entirely. Fine details still visible on close inspection as deep blue silhouettes. Keep the land below the bottom fifth. This is a night puzzle backdrop and thin pale threads need contrast everywhere. No text, no stars or constellation added. Do not change aspect ratio.",
+          "attempt": 2
+        },
+        {
+          "prompt": "Premium painterly indie game BACKDROP, wide 1600 by 1000. Pure outer space for a world called Far Galaxy: empty deep indigo space, an extremely faint small spiral galaxy made of smoky dark violet haze in the upper right, two dark blue planets half hidden in shadow, sparse tiny dim pinpricks of stars. All objects float in outer space. Entire bottom edge is empty outer space too. Very low-key tonal painting, brightest broad surface no brighter than RGB(32,34,70), most space RGB(12,14,35). This must be dark behind thin pale puzzle threads. Tactile gouache brushwork and cinematic immense depth. No horizon or terrain, no landscape, no vegetation, no ground, no bright galaxy core, no sun, no text, no puzzle lines.",
+          "attempt": 3
+        }
+      ]
+    },
+    {
+      "name": "sky-l01",
+      "prompt": "The Kite, luminous #ff7a9c starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[50, 4], [78, 34], [50, 72], [22, 34], [50, 36], [66, 96]]; outlines [[0, 1, 2, 3]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Kite, luminous #ff7a9c starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[50, 4], [78, 34], [50, 72], [22, 34], [50, 36], [66, 96]]; outlines [[0, 1, 2, 3]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l02",
+      "prompt": "The Paper Plane, luminous #9ad7ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 46], [40, 44], [96, 10], [58, 92], [46, 62], [24, 62]]; outlines [[0, 2, 3, 4, 5]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Paper Plane, luminous #9ad7ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 46], [40, 44], [96, 10], [58, 92], [46, 62], [24, 62]]; outlines [[0, 2, 3, 4, 5]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l03",
+      "prompt": "The Crown, luminous #ffd166 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[10, 80], [10, 30], [30, 55], [50, 18], [70, 55], [90, 30], [90, 80]]; outlines [[0, 1, 2, 3, 4, 5, 6]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Crown, luminous #ffd166 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[10, 80], [10, 30], [30, 55], [50, 18], [70, 55], [90, 30], [90, 80]]; outlines [[0, 1, 2, 3, 4, 5, 6]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l04",
+      "prompt": "The Fish, luminous #ff9e6b starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[6, 50], [36, 24], [64, 42], [94, 20], [94, 80], [64, 58], [36, 76], [26, 46]]; outlines [[0, 1, 2, 3, 4, 5, 6]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Fish, luminous #ff9e6b starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[6, 50], [36, 24], [64, 42], [94, 20], [94, 80], [64, 58], [36, 76], [26, 46]]; outlines [[0, 1, 2, 3, 4, 5, 6]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l05",
+      "prompt": "The Sailboat, luminous #7ee0c3 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[6, 68], [50, 68], [94, 68], [78, 90], [22, 90], [50, 6], [84, 58], [50, 58], [14, 58]]; outlines [[0, 1, 2, 3, 4], [5, 6, 7, 8]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Sailboat, luminous #7ee0c3 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[6, 68], [50, 68], [94, 68], [78, 90], [22, 90], [50, 6], [84, 58], [50, 58], [14, 58]]; outlines [[0, 1, 2, 3, 4], [5, 6, 7, 8]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l06",
+      "prompt": "The Bird, luminous #b79cff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 42], [30, 32], [44, 6], [58, 30], [80, 34], [96, 22], [90, 50], [62, 60], [32, 58]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Bird, luminous #b79cff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 42], [30, 32], [44, 6], [58, 30], [80, 34], [96, 22], [90, 50], [62, 60], [32, 58]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l07",
+      "prompt": "The Turtle, luminous #7ee0a0 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[20, 62], [30, 32], [50, 20], [70, 32], [80, 62], [96, 52], [26, 84], [74, 84], [50, 44], [6, 70]]; outlines [[0, 1, 2, 3, 4], [3, 5, 4], [0, 4, 7, 6], [9, 0, 6]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Turtle, luminous #7ee0a0 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[20, 62], [30, 32], [50, 20], [70, 32], [80, 62], [96, 52], [26, 84], [74, 84], [50, 44], [6, 70]]; outlines [[0, 1, 2, 3, 4], [3, 5, 4], [0, 4, 7, 6], [9, 0, 6]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l08",
+      "prompt": "The Cat, luminous #ffb38a starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[16, 6], [36, 28], [64, 28], [84, 6], [86, 46], [70, 82], [30, 82], [14, 46], [36, 50], [64, 50], [50, 66]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Cat, luminous #ffb38a starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[16, 6], [36, 28], [64, 28], [84, 6], [86, 46], [70, 82], [30, 82], [14, 46], [36, 50], [64, 50], [50, 66]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l09",
+      "prompt": "The Rocket, luminous #ff7a7a starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[50, 2], [64, 24], [64, 66], [82, 86], [58, 76], [42, 76], [18, 86], [36, 66], [36, 24], [50, 40], [50, 98]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Rocket, luminous #ff7a7a starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[50, 2], [64, 24], [64, 66], [82, 86], [58, 76], [42, 76], [18, 86], [36, 66], [36, 24], [50, 40], [50, 98]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l10",
+      "prompt": "The Owl, luminous #c9a6ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[24, 6], [50, 22], [76, 6], [82, 40], [76, 74], [60, 94], [40, 94], [24, 74], [18, 40], [36, 42], [64, 42], [50, 58]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Owl, luminous #c9a6ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[24, 6], [50, 22], [76, 6], [82, 40], [76, 74], [60, 94], [40, 94], [24, 74], [18, 40], [36, 42], [64, 42], [50, 58]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l11",
+      "prompt": "The Fox, luminous #ff9e4f starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[12, 6], [34, 30], [66, 30], [88, 6], [90, 42], [72, 60], [50, 94], [28, 60], [10, 42], [34, 46], [66, 46], [50, 72]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Fox, luminous #ff9e4f starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[12, 6], [34, 30], [66, 30], [88, 6], [90, 42], [72, 60], [50, 94], [28, 60], [10, 42], [34, 46], [66, 46], [50, 72]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8]]. No text.",
+          "attempt": 1
+        },
+        {
+          "prompt": "A front-facing FOX FACE ONLY as a luminous orange and amber starlight nebula silhouette on transparent square canvas. Broad triangular pointed ears at x12 y6 and x88 y6, narrow pointed nose at x50 y94, cheek fur extends x10 y42 and x90 y42. Symmetric fox mask face, two eyes at x34 y46 and x66 y46. Exact composition fills 0 to 100 guide. Entire head visible; only the fox head. No text, no lines.",
+          "attempt": 2
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l12",
+      "prompt": "The Lighthouse, luminous #ffe08a starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[38, 92], [62, 92], [58, 64], [56, 40], [44, 40], [42, 64], [42, 24], [58, 24], [50, 8], [8, 12], [92, 12], [12, 96], [88, 96]]; outlines [[0, 1, 2, 3, 4, 5], [4, 3, 7, 6], [6, 7, 8]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Lighthouse, luminous #ffe08a starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[38, 92], [62, 92], [58, 64], [56, 40], [44, 40], [42, 64], [42, 24], [58, 24], [50, 8], [8, 12], [92, 12], [12, 96], [88, 96]]; outlines [[0, 1, 2, 3, 4, 5], [4, 3, 7, 6], [6, 7, 8]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l13",
+      "prompt": "The Butterfly, luminous #ff8fd0 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[50, 22], [50, 82], [26, 4], [2, 14], [18, 50], [4, 80], [30, 96], [74, 4], [98, 14], [82, 50], [96, 80], [70, 96], [50, 52]]; outlines [[0, 2, 3, 4, 12], [12, 4, 5, 6, 1], [0, 12, 9, 8, 7], [12, 1, 11, 10, 9]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Butterfly, luminous #ff8fd0 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[50, 22], [50, 82], [26, 4], [2, 14], [18, 50], [4, 80], [30, 96], [74, 4], [98, 14], [82, 50], [96, 80], [70, 96], [50, 52]]; outlines [[0, 2, 3, 4, 12], [12, 4, 5, 6, 1], [0, 12, 9, 8, 7], [12, 1, 11, 10, 9]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l14",
+      "prompt": "The Rabbit, luminous #d9d2ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[22, 48], [28, 4], [40, 34], [54, 4], [52, 38], [66, 50], [80, 62], [96, 70], [86, 92], [32, 92], [30, 66], [42, 48], [62, 74]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Rabbit, luminous #d9d2ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[22, 48], [28, 4], [40, 34], [54, 4], [52, 38], [66, 50], [80, 62], [96, 70], [86, 92], [32, 92], [30, 66], [42, 48], [62, 74]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l15",
+      "prompt": "The Ship, luminous #8fc6ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 62], [36, 62], [64, 62], [96, 62], [84, 86], [16, 86], [36, 12], [12, 50], [64, 4], [90, 50], [30, 76], [50, 76], [70, 76]]; outlines [[0, 1, 2, 3, 4, 5], [1, 7, 6], [2, 8, 9], [1, 6, 8, 2]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Ship, luminous #8fc6ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 62], [36, 62], [64, 62], [96, 62], [84, 86], [16, 86], [36, 12], [12, 50], [64, 4], [90, 50], [30, 76], [50, 76], [70, 76]]; outlines [[0, 1, 2, 3, 4, 5], [1, 7, 6], [2, 8, 9], [1, 6, 8, 2]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l16",
+      "prompt": "The Snail, luminous #a0e6b8 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[30, 70], [20, 46], [34, 22], [58, 16], [78, 32], [78, 58], [62, 70], [44, 40], [60, 46], [6, 86], [96, 86], [92, 62], [98, 36]]; outlines [[0, 1, 2, 3, 4, 5, 6], [9, 0, 6, 5, 11, 10]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Snail, luminous #a0e6b8 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[30, 70], [20, 46], [34, 22], [58, 16], [78, 32], [78, 58], [62, 70], [44, 40], [60, 46], [6, 86], [96, 86], [92, 62], [98, 36]]; outlines [[0, 1, 2, 3, 4, 5, 6], [9, 0, 6, 5, 11, 10]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l17",
+      "prompt": "The Whale, luminous #6fb8ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 52], [14, 30], [40, 20], [66, 26], [80, 40], [90, 28], [98, 10], [96, 46], [84, 56], [66, 70], [36, 74], [14, 66], [22, 46], [26, 4]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Whale, luminous #6fb8ff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 52], [14, 30], [40, 20], [66, 26], [80, 40], [90, 28], [98, 10], [96, 46], [84, 56], [66, 70], [36, 74], [14, 66], [22, 46], [26, 4]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l18",
+      "prompt": "The Stag, luminous #e8b37a starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[10, 6], [26, 26], [30, 4], [40, 32], [60, 32], [70, 4], [74, 26], [90, 6], [80, 42], [62, 52], [58, 92], [42, 92], [38, 52], [20, 42], [42, 62], [58, 62]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Stag, luminous #e8b37a starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[10, 6], [26, 26], [30, 4], [40, 32], [60, 32], [70, 4], [74, 26], [90, 6], [80, 42], [62, 52], [58, 92], [42, 92], [38, 52], [20, 42], [42, 62], [58, 62]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]. No text.",
+          "attempt": 1
+        },
+        {
+          "prompt": "A front-facing STAG HEAD ONLY as an amber and ivory starlight nebula silhouette on transparent square canvas. Two symmetrical branching antlers from x10 to x40 at top left and x60 to x90 at top right, face centered lower with long narrow muzzle ending at y92. Antler tips at y4 to y6; cheeks x20 and x80 at y42; nose centered x50 y90. Square image, entire head and branching antlers. No text, no lines.",
+          "attempt": 2
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l19",
+      "prompt": "The Octopus, luminous #c58cff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[30, 42], [32, 14], [50, 4], [68, 14], [70, 42], [92, 70], [66, 58], [72, 94], [56, 64], [50, 96], [44, 64], [28, 94], [34, 58], [8, 70], [42, 28], [58, 28]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Octopus, luminous #c58cff starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[30, 42], [32, 14], [50, 4], [68, 14], [70, 42], [92, 70], [66, 58], [72, 94], [56, 64], [50, 96], [44, 64], [28, 94], [34, 58], [8, 70], [42, 28], [58, 28]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "sky-l20",
+      "prompt": "The Dragon, luminous #5fe0b0 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 30], [18, 18], [24, 2], [30, 20], [42, 26], [54, 4], [62, 28], [78, 34], [98, 18], [90, 46], [72, 56], [70, 84], [56, 62], [38, 62], [34, 86], [26, 58], [12, 42], [20, 30]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]. No text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Dragon, luminous #5fe0b0 starlight nebula figure. An evocative translucent painted silhouette on transparent background, centered on a 1000 by 1000 square, delicate cloud filaments and warm star glints. No connecting lines. Fit the guide silhouette and exact glints. Guide positions on 0 to 100 grid: [[4, 30], [18, 18], [24, 2], [30, 20], [42, 26], [54, 4], [62, 28], [78, 34], [98, 18], [90, 46], [72, 56], [70, 84], [56, 62], [38, 62], [34, 86], [26, 58], [12, 42], [20, 30]]; outlines [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]. No text.",
+          "attempt": 1
+        }
+      ],
+      "registration": "Painted cut-out placed inside the exact pts bounding rectangle on a transparent square canvas, then painted gold glints registered at every guide point."
+    },
+    {
+      "name": "world-1",
+      "prompt": "The Firefly, an exquisite luminous #ffe08a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Firefly, an exquisite luminous #ffe08a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-2",
+      "prompt": "The Hedgehog, an exquisite luminous #a0e6b8 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Hedgehog, an exquisite luminous #a0e6b8 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-3",
+      "prompt": "The Heron, an exquisite luminous #9ad7ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Heron, an exquisite luminous #9ad7ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-4",
+      "prompt": "The Frog, an exquisite luminous #7ee0a0 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Frog, an exquisite luminous #7ee0a0 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-5",
+      "prompt": "The Seahorse, an exquisite luminous #ff9e6b starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Seahorse, an exquisite luminous #ff9e6b starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-6",
+      "prompt": "The Bear, an exquisite luminous #d9d2ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Bear, an exquisite luminous #d9d2ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-7",
+      "prompt": "The Moth, an exquisite luminous #ffb38a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Moth, an exquisite luminous #ffb38a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-8",
+      "prompt": "The Balloon, an exquisite luminous #8fc6ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Balloon, an exquisite luminous #8fc6ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-9",
+      "prompt": "The Penguin, an exquisite luminous #b9e6ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Penguin, an exquisite luminous #b9e6ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-10",
+      "prompt": "The Squirrel, an exquisite luminous #e8b37a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Squirrel, an exquisite luminous #e8b37a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-11",
+      "prompt": "The Jellyfish, an exquisite luminous #ff8fd0 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Jellyfish, an exquisite luminous #ff8fd0 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-12",
+      "prompt": "The Crab, an exquisite luminous #ff7a7a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Crab, an exquisite luminous #ff7a7a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-13",
+      "prompt": "The Elephant, an exquisite luminous #e8c48f starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Elephant, an exquisite luminous #e8c48f starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-14",
+      "prompt": "The Camel, an exquisite luminous #ffcf8a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Camel, an exquisite luminous #ffcf8a starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-15",
+      "prompt": "The Hummingbird, an exquisite luminous #ff9ec4 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Hummingbird, an exquisite luminous #ff9ec4 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-16",
+      "prompt": "The Panda, an exquisite luminous #9fe0b0 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Panda, an exquisite luminous #9fe0b0 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        },
+        {
+          "prompt": "A clearly recognizable giant PANDA, round body with black-and-white fur pattern preserved in deep indigo and ivory starlight, small round black ears, dark eye patches around both eyes, gentle smiling panda face, sitting pose, luminous green nebula mist inside silhouette. Entire panda visible on transparent background. Exquisite painted original game art. No text or lines.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "world-17",
+      "prompt": "The Wolf, an exquisite luminous #c9a6ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Wolf, an exquisite luminous #c9a6ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-18",
+      "prompt": "The Unicorn, an exquisite luminous #b79cff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Unicorn, an exquisite luminous #b79cff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-19",
+      "prompt": "The Comet, an exquisite luminous #7ee0c3 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Comet, an exquisite luminous #7ee0c3 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-20",
+      "prompt": "The Narwhal, an exquisite luminous #6fb8ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Narwhal, an exquisite luminous #6fb8ff starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        }
+      ]
+    },
+    {
+      "name": "world-21",
+      "prompt": "The Mountain Goat, an exquisite luminous #d0d6e8 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Mountain Goat, an exquisite luminous #d0d6e8 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        },
+        {
+          "prompt": "A mountain GOAT leaping upward, two short curved horns swept back and cloven hooves, shaggy white coat and small beard, clearly a goat. Two separate backward curved horns, short goat tail. Silver blue starlight nebula inside its silhouette, exquisite translucent painted figure on transparent background, entire goat within square. No text or lines.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "world-22",
+      "prompt": "The Starship, an exquisite luminous #5fe0b0 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+      "cutout": true,
+      "width": 640,
+      "quality": 70,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. The Starship, an exquisite luminous #5fe0b0 starlight creature or object, translucent nebula brushwork, floating on a transparent background, square composition, entire silhouette visible, warm sparkling points within its body, no connecting lines, no text.",
+          "attempt": 1
+        },
+        {
+          "prompt": "A fantastical STARSHIP SPACECRAFT made of glowing jade and periwinkle nebula starlight. Clearly a sleek spacefaring vessel with a pointed bow, broad swept wings, two glowing engine pods, ornate invented science fantasy silhouette. Sailing through space, no water, no nautical sails, transparent square background, entire spacecraft visible. No text or logos.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "star",
+      "prompt": "One painted glass bead of light, faint four point glint, soft halo, warm ivory white, on transparent background, perfectly centered, no text.",
+      "cutout": true,
+      "width": 128,
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. One painted glass bead of light, faint four point glint, soft halo, warm ivory white, on transparent background, perfectly centered, no text.",
+          "attempt": 1
+        },
+        {
+          "prompt": "A single tiny warm IVORY WHITE point of starlight, four tapered fine rays arranged as a delicate four-point cross, soft white luminous center, very faint warm transparent halo. A painted light flare sprite, flat luminous light without any solid ball, centered exactly on transparent square background. Main bright glint occupies middle half of canvas; transparent margins. Color #fff6dc, no other colors, no text.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "star-held",
+      "prompt": "One painted glass bead of light, faint four point glint, soft halo, warm ivory white, wider halo for held state, on transparent background, perfectly centered, no text.",
+      "cutout": true,
+      "width": 128,
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. One painted glass bead of light, faint four point glint, soft halo, warm ivory white, wider halo for held state, on transparent background, perfectly centered, no text.",
+          "attempt": 1
+        },
+        {
+          "prompt": "A single warm IVORY WHITE point of starlight, four tapered fine rays arranged as a delicate four-point cross, soft luminous center, wide faint ivory transparent halo. Held-star painted light flare sprite, flat luminous light, centered exactly on transparent square background. Main bright glint occupies middle half of canvas; transparent margins. Color #fff6dc, no other colors, no text.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "star-gold",
+      "prompt": "One painted glass bead of light, faint four point glint, soft halo, golden amber, on transparent background, perfectly centered, no text.",
+      "cutout": true,
+      "width": 128,
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. One painted glass bead of light, faint four point glint, soft halo, golden amber, on transparent background, perfectly centered, no text.",
+          "attempt": 1
+        },
+        {
+          "prompt": "A single tiny warm GOLD point of starlight, four tapered fine rays arranged as a delicate four-point cross, ivory luminous center and gold rays, faint gold transparent halo. Painted light flare sprite, flat luminous light, centered exactly on transparent square background. Main bright glint occupies middle half of canvas; transparent margins. Color #ffd166, no text.",
+          "attempt": 2
+        }
+      ]
+    },
+    {
+      "name": "cover",
+      "prompt": "1200 by 750, wide game box illustration. Tangled warm stars and periwinkle threads above a deep indigo night landscape, half the threads blooming gold into a magnificent luminous starlight whale. Two different worlds along the bottom, a meadow and distant sea cliffs. Cinematic sense of wonder, rich painterly nebula, no text or lettering of any kind.",
+      "width": 1200,
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image generation)",
+      "generations": [
+        {
+          "prompt": "Premium painterly indie game, indigo and violet nocturne with teal haze, tactile brushwork, magical starlight. No writing, letters, logos, watermarks, UI, or real constellations. Own invented world. No people. 1200 by 750, wide game box illustration. Tangled warm stars and periwinkle threads above a deep indigo night landscape, half the threads blooming gold into a magnificent luminous starlight whale. Two different worlds along the bottom, a meadow and distant sea cliffs. Cinematic sense of wonder, rich painterly nebula, no text or lettering of any kind.",
+          "attempt": 1
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "target": 44,
+  "keep": [],
+  "states": [
+    {"name": "star-chart", "steps": [{"click": "#chart-open"}], "keep": ["#chart-grid"]},
+    {"name": "worlds", "steps": [{"click": "#chart-open"}, {"click": "#worlds-button"}], "keep": ["#chart-grid"]},
+    {"name": "far-galaxy", "steps": [{"js": "loadSky('R550')"}], "keep": ["footer", "#field"]},
+    {"name": "win-card", "sizes": ["1366x768", "375x812"], "steps": [
+      {"js": "loadSky('L01')"},
+      {"drag": "return (()=>{let b=$('field').getBoundingClientRect(),p=pixels()[3];return [[b.x+p[0],b.y+p[1]],[b.x+state.width*.35,b.y+state.height*.2]]})()"},
+      {"drag": "return (()=>{let b=$('field').getBoundingClientRect(),p=pixels()[5];return [[b.x+p[0],b.y+p[1]],[b.x+state.width*.1,b.y+state.height*.94]]})()"},
+      {"wait": 1800},
+      {"js": "document.querySelector('.rc-card .rc-row button:last-child').focus({preventScroll:true})"},
+      {"key": "Tab"},
+      {"js": "if(!document.activeElement.closest('.rc-card'))throw new Error('Modal focus escaped');if(!document.querySelector('.rc-card').getAttribute('aria-labelledby'))throw new Error('Modal has no name')"}
+    ], "keep": [".rc-card"]}
+  ]
+}
