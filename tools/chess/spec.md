@@ -239,15 +239,51 @@ nodes only when Recess.sound is true, after the first pointerdown.
 
 ### The computer opponent (exact design)
 
-One engine serves all seven puppets: a negamax alpha-beta search in a Web Worker built from a Blob inside the file
-(so the stage never freezes), written from the rules above. The same move generator serves the rules, hints and the
-engine. Build it as a 0x88 board with make and unmake (no board copies in the search) and incremental Zobrist hashing
-(two 32-bit halves: one indexes the table, the other verifies). The builder must run perft on the five positions under
-"Sources" and match every count before anything else; my JavaScript prototype matched all of them to depth 4 or 5.
+Owner decision (Cory, 2026-11-08): the top puppet plays at about **2250 Elo**, the gentle bottom stays, and the seven
+puppets sit on even steps of about 300 Elo. Kids never see a number; grown-ups get one line in notes.md.
 
-- **Evaluation** from the mover's view, tapered between middlegame and endgame by a phase count (N and B 1, R 2, Q 4,
-  24 = full middlegame): material (P 100, N 320, B 330, R 500, Q 900) plus these piece-square tables (White's view,
-  index 0 = a1, rank by rank; Black reads them mirrored by rank):
+One engine serves all seven puppets, in a Web Worker built from a Blob inside the file (so the stage never freezes),
+offline, written from the rules above. The same move generator serves the rules, hints and the engine. Build it as a
+0x88 board (or 10x12 mailbox) with make and unmake (no board copies in the search), incremental Zobrist hashing (two
+32-bit halves: one indexes the table, the other verifies) and incremental material and piece-square sums. The builder
+must run perft on the five positions under "Sources" and match every count before anything else. Typed arrays
+everywhere in the hot path; no objects allocated per node. Aim for at least 1,000,000 nodes a second on a desktop.
+
+**Search** (every puppet uses the same search; weaker puppets are made weaker only by the puppet table below):
+- **Iterative deepening** from depth 1, with **aspiration windows** from depth 5 (start at +/- 25 cp around the last
+  score, widen 4x on a fail, then full window).
+- **Negamax alpha-beta with PVS** (principal variation search: every move after the first gets a null window first,
+  then a full re-search if it lands inside the window).
+- **Transposition table**: 2^21 entries in typed arrays (verify key, best move, score, depth, bound, age), about 28 MB
+  of memory at run time, nothing in the file. Mate scores are stored relative to the node and adjusted by ply.
+- **Null-move pruning**: not in check, not a PV node, depth at least 3, side to move has a knight, bishop, rook or
+  queen, static eval at least beta. Reduction R = 3 + floor(depth / 6); a fail-high returns beta. At depth 10 and up,
+  verify with a reduced normal search (zugzwang guard).
+- **Late move reductions**: from the 4th move at PV nodes and the 3rd elsewhere, depth at least 3, quiet, not a killer,
+  not in check, not giving check. Reduction from a precomputed table `floor(0.75 + ln(depth) * ln(moveIndex) / 2.25)`,
+  one less at PV nodes and for moves with a high history score; re-search at full depth if it beats alpha.
+- **Move ordering**: table move, then winning and even captures by MVV-LVA (captures that lose material by SEE go after
+  the quiet moves), promotions, two **killer moves** per ply, a counter-move, then quiet moves by **history score**
+  (butterfly table, bonus depth squared on a cutoff, a malus for quiets tried before it, halved before each new search).
+- **Quiescence**: captures and queen promotions (all moves when in check), stand pat on the static eval, delta pruning,
+  and skip captures that lose material by SEE.
+- **Extensions and smaller prunings**: check extension (+1 ply); reverse futility pruning at depth 1 to 6 (return when
+  static eval minus 90 x depth is at least beta); futility pruning of quiet moves at depth 1 to 2; late move pruning of
+  quiet moves past a count that grows with depth. None of these at PV nodes or when in check.
+- **Draws**: a repeated position (against game history or inside the search) or the 100th half-move scores 0; mate
+  scores are 100000 minus ply, so a nearer mate is preferred.
+- **Stopping**: the search stops at the puppet's node budget or its time limit, whichever comes first, checking the
+  clock every 2,048 nodes. When a stop cuts an iteration short, play the best move of the last finished iteration, or
+  of the cut iteration only if its first move (the old best) finished and another finished move beat it. Never mix
+  scores from two depths.
+
+**Evaluation** (tapered between middlegame and endgame by a phase count: N and B 1, R 2, Q 4, 24 = full middlegame;
+every term has a middlegame and an endgame weight, written mg/eg). These are starting weights; the builder may tune
+them (for example Texel tuning on positions from engine self-play) as long as the calibration below passes:
+- **Material**: mg P 82, N 337, B 365, R 477, Q 1025; eg P 94, N 281, B 297, R 512, Q 936.
+- **Piece-square tables**: the tables below are the middlegame set (White's view, index 0 = a1, rank by rank; Black
+  reads them mirrored by rank). The endgame uses the same tables at half weight, except the king, which uses a
+  centralizing table (14 - 4 x king-distance to the nearest of d4, e4, d5, e5).
 ```
 P: 0,0,0,0,0,0,0,0, 0,0,0,-10,-10,0,0,0, 2,2,4,6,6,4,2,2, 4,4,8,20,20,8,4,4, 6,6,12,24,24,12,6,6,
    12,12,18,28,28,18,12,12, 40,40,40,40,40,40,40,40, 0,0,0,0,0,0,0,0
@@ -260,72 +296,80 @@ Q: -10,-5,-5,0,0,-5,-5,-10, -5,0,0,0,0,0,0,-5, then -5,0,4,4,4,4,0,-5 for ranks 
    -10,-5,-5,0,0,-5,-5,-10
 K: 10,20,15,0,0,5,20,10, 5,5,-5,-10,-10,-5,5,5, -15 x8 on rank 3, -25 x8 on ranks 4 to 8
 ```
+- **Mobility**: per piece, squares attacked that hold no own piece and are not attacked by an enemy pawn, minus a
+  baseline (N 4, B 7, R 7, Q 14); weight per square mg/eg: N 4/4, B 5/5, R 2/4, Q 1/2.
+- **King safety** (middlegame only): pawn shield on the three files around the king (missing pawn -15, pawn pushed two
+  squares -8, open file next to the king -20); attack units for each enemy piece attacking the king zone (the king's
+  square, the squares next to it and the three in front): N 2, B 2, R 3, Q 5, counted only when at least two pieces
+  attack; the penalty grows with the square of the units (units squared x 2 cp), capped at 500 cp.
+- **Pawn structure**: passed pawn by rank (ranks 3 to 7) mg 5, 10, 15, 25, 40 and eg 10, 20, 35, 60, 100, plus a
+  free-path bonus when the squares ahead are empty, and in the endgame 5 x (enemy king distance minus own king
+  distance) to the square in front; doubled -12/-20; isolated -10/-12; backward -8/-10; connected or side by side +5/+7.
+- **Pieces**: bishop pair +30/+50; rook on an open file +20/+10, half-open +10/+5; rook or queen on the 7th rank with
+  the enemy king on the 8th +20/+30; knight outpost (protected by a pawn, no enemy pawn can ever attack it) +15/+10.
+- **Tempo** +10 for the side to move; drawish endings (no pawns and a material edge under a rook) scaled to a quarter.
 
-  Plus: king uses the K table in the middlegame and a centralizing table in the endgame (14 - 4 x king-distance to the
-  nearest of d4, e4, d5, e5), blended by phase; passed pawn by rank from its own side (ranks 3 to 7: 10, 15, 25, 45,
-  70), full in the endgame and half in the middlegame; doubled pawn -12 each; isolated pawn -10; rook on an open file
-  +15, half-open +8; bishop pair +30.
-- **Search:** iterative deepening from depth 1 to the level's depth, stopping at the level's node budget or time cap
-  (whichever comes first) and playing the deepest result, using the finished moves of a cut-short iteration. Inside:
-  negamax alpha-beta; a transposition table of 2^20 entries (verify key, best move, score, depth, bound; about 14 MB
-  of memory, nothing in the file); move order = table move, then captures by most valuable victim and least valuable
-  attacker, then promotions, then two killer moves per ply, then the rest; check extension (+1 ply when in check);
-  quiescence on captures and promotions up to the level's cap; a repeated position inside the search or a 100th
-  half-move scores 0. Mate scores are 100000 minus ply, so a nearer mate is preferred.
-- **Lion only, three pruning steps** that let it reach far deeper on the same budget: null-move pruning (not in check,
-  depth at least 3, side to move has a knight, bishop, rook or queen, static score at least beta: pass the move and
-  search depth minus 3 with a null window; a fail-high returns); principal variation search (every move after the
-  first gets a null window first, then a full re-search if it lands inside the window); late move reductions (from the
-  fifth legal move, depth at least 3, quiet move, not a killer, not in check and not giving check: search one ply
-  shallower first, re-search at full depth if it beats alpha).
-- **Root and choosing a move:** with probability `blunder` play a uniformly random legal move. Otherwise each root move
-  is searched with the window lowered by a margin (twice the noise, or the opening margin), so every move within that
-  margin of the best gets an exact score. Add uniform noise in [-noise, +noise] to non-mate scores and play the highest.
-  Opening variety for the top three: in the first 8 half-moves of the game, pick at random among moves within the
-  opening margin of the best. A forced mate is always played. Two traps my prototype fell into, both fixed and both
-  required: (1) a root move that fails low returns only an upper bound that can equal the window edge exactly, so mark
-  it strictly below the window (I subtract 0.5) or a move that loses to mate in one gets drawn as an "equal" opening
-  choice (my Raven played itself into a 2-move mate this way); (2) when the node budget or time cap cuts an iteration
-  short, choose only among moves finished at that depth (the old best is searched first), never mix in scores from the
-  shallower iteration (my Lion lost 5 of 6 to Raven until this was fixed).
+**Puppets.** Weaker puppets get a depth limit, a smaller node budget, score noise and occasional random moves. Raven
+and Lion get no handicap at all, only their node budget.
 
-| Puppet | Max depth | Quiescence | Blunder | Noise (cp) | Opening margin | Node budget | Time cap (Chromebook) | Plays like |
+| Puppet | Target Elo | Depth limit | Node budget | Think (desktop), cap | Blunder | Noise (cp) | Opening margin | Plays like |
 |---|---|---|---|---|---|---|---|---|
-| Mouse | 1 | none | 30% | 80 | 0 | 20,000 | 1 s | Just learned how the pieces move. Grabs a free piece when it sees one, misses most threats, often leaves pieces hanging. |
-| Rabbit | 2 | none | 15% | 50 | 0 | 50,000 | 1 s | Guards its pieces and trades fairly, still falls for two-move tricks like forks. |
-| Fox | 2 | 4 plies | 6% | 25 | 0 | 100,000 | 1 s | A steady beginner: sees loose pieces and simple forks, rarely hangs a piece, can be out-planned. |
-| Owl | 3 | 4 plies | 2% | 10 | 0 | 150,000 | 1.5 s | A careful casual player. Looks a few moves ahead and punishes big mistakes, still slips now and then. |
-| Badger | 4 | 8 plies | 0 | 0 | 15 | 300,000 | 2 s | A solid tournament beginner. Never hangs a piece, sees two-move tactics both ways, plays sensible endgames. |
-| Raven | 5 | 8 plies | 0 | 0 | 15 | 500,000 | 3 s | A sharp club player. Finds combinations three moves deep and punishes loose play. |
-| Lion | 12, with pruning | 8 plies | 0 | 0 | 10 | 1,200,000 | 6 s | The top of the ladder: plays every move seriously and should challenge a strong club-level kid. Still not a full engine (no opening book, simple evaluation), so a strong player can outplan it. |
+| Mouse | 450 | 1 | 5,000 | 0.5 s, cap 1 s | 30% | 120 | 0 | Just learned how the pieces move. Grabs a free piece when it sees one, misses most threats, often leaves pieces hanging. |
+| Rabbit | 750 | 2 | 20,000 | 0.5 s, cap 1 s | 15% | 70 | 0 | Guards its pieces and trades fairly, still falls for two-move tricks like forks. |
+| Fox | 1050 | 3 | 60,000 | 0.7 s, cap 1.5 s | 6% | 40 | 0 | A steady beginner: sees loose pieces and simple forks, rarely hangs a piece, can be out-planned. |
+| Owl | 1350 | 4 | 150,000 | 1 s, cap 2 s | 2% | 20 | 20 | A careful casual player. Looks a few moves ahead and punishes big mistakes, still slips now and then. |
+| Badger | 1650 | 6 | 500,000 | 1.5 s, cap 3 s | 0.5% | 10 | 20 | A solid tournament player. Never hangs a piece, sees two-move tactics both ways, plays sensible endgames. |
+| Raven | 1950 | none | 2,000,000 | 2.5 s, cap 5 s | 0 | 0 | 15 | A sharp club player. Finds deep combinations and punishes loose play. |
+| Lion | 2250 | none | 6,000,000 | 5 s, cap 8 s | 0 | 0 | 10 | The top of the ladder: plays like a strong tournament player and gives grown-up club players a real fight. |
 
-Every puppet waits at least 500 ms before moving (it "thinks"). The top three show the thinking bar. The time caps are
-the Chromebook ceiling; on faster machines the node budget ends the search first, so a puppet plays the same strength
-everywhere unless a slow machine hits the time cap.
+These are starting values. The calibration below sets the final depth limits, node budgets, noise and blunder rates
+so each puppet lands on its target; the builder records the final table in the report. Raven and Lion are tuned by
+their node budget alone; the lower five by depth, noise and blunder rate.
 
-**Checked: the ladder is ordered.** A JavaScript prototype of exactly this design (scratchpad `eng.js` and `sim.js`,
-run in Node) played each puppet against the one below it, colors alternating, games to mate or a draw rule (or a
-300-half-move cap judged by material):
+**Same strength on every machine.** The node budget, not the clock, sets a puppet's strength. On load the worker runs
+a 300 ms speed test (a fixed search from the start position) and keeps nodes per second in Recess.store. A puppet
+whose budget would take longer than its desktop think time on this machine keeps searching up to its cap, then stops.
+On a desktop at 1,000,000 nodes a second Lion spends about 5 s a move; on a Chromebook about 3 times slower it uses its
+full 8 s cap and reaches about half its budget, which costs roughly 50 to 80 Elo. The calibration measures Lion at
+half budget, and notes.md says it plainly ("about 2250 on a fast computer, a little less on a slow one").
 
-| Pairing (upper first) | Games | Upper wins | Draws | Lower wins | Longest move seen |
-|---|---|---|---|---|---|
-| Mouse vs random mover | 20 | 18 | 2 | 0 | 4 ms |
-| Rabbit vs Mouse | 20 | 18 | 2 | 0 | 16 ms |
-| Fox vs Rabbit | 20 | 20 | 0 | 0 | 108 ms |
-| Owl vs Fox | 20 | 16 | 3 | 1 | 218 ms |
-| Badger vs Owl | 24 | 22 | 1 | 1 | 431 ms |
-| Raven vs Badger | 24 | 20 | 3 | 1 | 2,159 ms |
-| Lion vs Raven | 24 | 22 | 2 | 0 | 5,033 ms |
-| Lion capped at 600,000 nodes vs Raven | 24 | 21 | 2 | 1 | 2,702 ms |
+**Root and choosing a move:** with probability `blunder` play a uniformly random legal move. Otherwise, for puppets
+with noise or an opening margin, search the root with the window lowered by a margin (twice the noise, or the opening
+margin), so every move within that margin of the best gets an exact score; add uniform noise in [-noise, +noise] to
+non-mate scores and play the highest. Opening variety for the top four: in the first 8 half-moves of the game, pick at
+random among moves within the opening margin of the best. A forced mate is always played. Two traps the first
+prototype fell into, both required fixes: (1) a root move that fails low returns only an upper bound that can equal
+the window edge exactly, so mark it strictly below the window (subtract 0.5) or a move that loses to mate in one gets
+drawn as an "equal" opening choice; (2) when a stop cuts an iteration short, choose only among moves finished at that
+depth (the old best is searched first), never mix in scores from the shallower iteration.
 
-Every puppet beats the one below it in at least 16 of 20 games, so the ladder is in strength order. The last row stands
-for a slow Chromebook where the time cap stops Lion at half its node budget: it still beats Raven 21 to 1. Tallies
-were summed in Python from the `FINAL` lines of the 48 result files. The longest-move column comes from 16 or more
-games running at once on one desktop, so it overstates the wait. Run alone (`timing.js`, six test positions, no
-blunders), the longest think per move was: Mouse 2 ms, Rabbit 6, Fox 16, Owl 15, Badger 69, Raven 248, Lion 1,997 ms
-(average 1,759). The search ran at about 680,000 nodes a second. A Chromebook is not measured here. If it runs 3 times
-slower, Lion needs about 5.3 s for its full budget, inside its 6 s cap. Below that speed the cap trims Lion's search,
-and the capped row above shows it stays on top.
+Every puppet waits at least 500 ms before moving (it "thinks"). The top three show the thinking bar (depth reached).
+While a puppet thinks, Undo, Sound, Motion and the Playbill stay live; Undo or leaving stops the search at once.
+
+**Where this started.** A 15 KB JavaScript prototype of the earlier, smaller design (scratchpad `eng.js`, `sim.js`,
+plain alpha-beta, PVS, null move and LMR on the top level only, about 680,000 nodes a second in Node) already put its
+seven puppets in strength order: each beat the one below it in at least 16 of 20 games (top level over the next 22 to
+0 with 2 draws). The design above keeps that shape, adds the full search and evaluation to every level, and replaces
+"in order" with measured Elo.
+
+**Calibration** (the builder runs it at dev time; Stockfish is a test tool only and never ships):
+- **Tool**: a desktop Stockfish (version recorded) over UCI with `UCI_LimitStrength true` and `UCI_Elo` set. Our engine
+  runs headless in Node from the file's own engine code, unchanged. A small harness plays the matches, colors
+  alternating, from 50 balanced opening positions (4 to 8 moves into common openings, each played once with each
+  color), adjudicating a win when both engines agree a side is ahead by more than 1000 cp for 5 moves, and a draw after
+  150 moves each.
+- **Time**: each puppet plays at its own node budget; Stockfish plays at a fixed time per move equal to the puppet's
+  measured average think time on the same machine (record the time used next to each result).
+- **Anchors**: Stockfish's `UCI_Elo` floor is 1320, so it calibrates Owl and up directly: Owl against 1320 and 1500;
+  Badger against 1500 and 1800; Raven against 1800, 2000 and 2250; Lion against 2000, 2250 and 2400. Mouse, Rabbit and
+  Fox are placed by a chain: each plays the puppet above it, and its Elo is that puppet's estimate minus the
+  head-to-head difference.
+- **Games**: at least 40 games per anchor pairing (at least 120 for Lion). Each puppet's Elo is the maximum likelihood
+  estimate across its anchors (logistic model, draws as half), with a 95% interval; 120 games give about +/- 60.
+- **Pass mark**: Lion's estimate lands within 2250 +/- 100. Every other puppet lands within 150 of its target, and each
+  still beats the one below it in a direct 20-game match. Lion at half its node budget is also measured and reported.
+- **Report**: a table in codex-report.md, one row per puppet: target, final settings, games, score per anchor,
+  estimate and interval, average and longest think time on the desktop, and the estimated Chromebook time.
 
 ### Puzzle set (45 Lichess puzzles, ships in the file)
 
@@ -485,15 +529,19 @@ beats every other second move by at least a pawn (2 full plies plus captures). C
 above (`sim.js`; an earlier Python prototype, `engine_sim.py`, agreed for the first four). Fastest wins (fool's mate f3 e5 g4 Qh4, and e4 f6 d4 g5 Qh5) replayed as mate.
 Scratch scripts live in the session scratchpad only; nothing else ships.
 
+**Dev-time test tool, not shipped:** Stockfish (stockfishchess.org, GPL v3) is used only on the builder's machine to
+calibrate the puppets. No Stockfish code, weights or output tables go into the file, so its licence places nothing on
+the game. Record the version used in the report.
+
 ## Can it be beaten?
 
 | Check | No-skill path | Closed how |
 |---|---|---|
 | Win vs computer (stars, score) | Random moves | Mouse beat a random mover in 18 of 20 prototype games (2 draws, no losses); random play does not win. |
-| Win vs computer | Undo until the computer blunders | Every takeback costs stars (3 needs none, 2 allows three) and every taken-back move still adds to Moves. The top three never blunder on purpose, so undo only buys a second try at your own move. |
-| Win vs Badger, Raven, Lion | Replay a memorized winning game | The top three pick at random among near-equal moves for the first 8 half-moves, so games split early; after that they are deterministic for a given position, so a kid who reaches the same position again can repeat a win. That takes real chess (reaching it) and is left open. |
+| Win vs computer | Undo until the computer blunders | Every takeback costs stars (3 needs none, 2 allows three) and every taken-back move still adds to Moves. Raven and Lion never blunder on purpose (Badger at most 1 move in 200), so undo only buys a second try at your own move. |
+| Win vs Owl to Lion | Replay a memorized winning game | The top four pick at random among near-equal moves for the first 8 half-moves, so games split early; after that they are deterministic for a given position, so a kid who reaches the same position again can repeat a win. That takes real chess (reaching it) and is left open. |
 | Win vs Lion | Let another engine or app choose the moves | Cannot be closed on a device-only game; it only fills the player's own local board. Left open. |
-| Win vs computer | A machine so slow the time cap weakens the top puppets | Time caps sit above the measured think time (Content); on an underpowered device a puppet plays a little weaker, never stronger. Accepted. |
+| Win vs computer | A machine so slow the time cap weakens the top puppets | Strength is set by the node budget; on a slow device the time cap stops the search early, so a puppet plays a little weaker (Lion about 50 to 80 Elo at half budget, measured), never stronger. Accepted. |
 | Win vs computer | Restart until Mouse falls for a fast trap | Setting a trap is real chess, and the computer's blunders are random, so fishing costs many games; the score floor is the same for everyone (2 moves as Black after the computer plays f3 and g4, 3 as White; both lines checked as mate in Python). Left open on purpose. |
 | Puzzle act stars | Guess at random | A random move mates in one about 1 time in 35 (2.8 percent averaged over the 15 shipped puzzles, which have 16 to 51 legal moves each); each miss is a try, three tries plays the answer and caps the act at 2 or 1 star. |
 | Puzzle act stars | Fail to see the answer, Restart, solve clean | Tally lives in Recess.store until the act ends; Restart and reload keep it. |
@@ -537,10 +585,13 @@ right); legal dots, rings, check halo, last-move tint (#ffd27a at 35%), focus cu
 gradients); the promotion fan; prompt box, wing rows, buttons and cards.
 
 **Size budget** (goal 2 MB): painted art about 500 KB as WebP (160 + 7 x 40 + 60), about 670 KB once base64; code
-about 110 KB (the engine prototype `eng.js` is 15 KB unminified; rules, UI, motion and sound layer about 95 KB);
+about 155 KB: the engine about 45 to 60 KB unminified (move generator, search with every feature above, evaluation
+with its tables, the speed test and the Worker glue; the earlier 15 KB prototype had about a third of the features,
+and engines with this feature list run 40 to 60 KB in plain JavaScript), plus rules, UI, motion and sound about 95 KB;
 puzzle data 4 KB (measured on the block above); shell inlined 20 KB (kit/recess.js plus recess.css measured at 20,013
-bytes). Total about 0.8 MB, well under the goal. The transposition table is memory at run time (about 14 MB), not file
-size.
+bytes). Total about 0.85 MB, still well under the goal. The builder reports the measured engine size. The transposition
+table (about 28 MB), history tables and search stack are memory at run time, not file size; nothing is precomputed
+into the file (no opening book, no endgame tables).
 
 ## notes.md
 
@@ -557,8 +608,9 @@ What a child practises without being told:
 - Losing kindly and trying again. A wrong move is never punished; the game shows what was off and puts the piece back.
 
 How it plays:
-- Play the computer: seven puppets on a ladder, from Mouse (just learned the moves) up to Lion, which plays seriously
-  and is meant to test a strong club player. Pick any of them; takebacks are allowed and cost a star.
+- Play the computer: seven puppets on a ladder in even steps, from Mouse (just learned the moves) up to Lion, which
+  plays at about 2250 on the Elo rating scale, the level of a strong tournament player (a little less on a slow
+  computer). The ladder was measured against a standard chess engine. Children never see the numbers. Pick any of them; takebacks are allowed and cost a star.
 - Play a friend on one device.
 - Puzzles: short acts of five, mate in one, mate in two and win a piece, from the free Lichess puzzle database (CC0).
 - Hints (dots on the squares a piece can reach) are on by default for younger players and can be switched off.
@@ -583,10 +635,19 @@ only. A good next step for a keen child is a local chess club or a school chess 
 - [ ] Checkmate, stalemate, threefold, fifty-move and each insufficient-material case end the game with the right card
       and wording.
 - [ ] Trying a pinned piece shows "That would leave your king in check..." with the attacker named and lined.
-- [ ] On a 1366x768 Chromebook Mouse to Owl answer within 1.5 s, Badger within 2 s, Raven within 3 s, Lion within 6 s,
-      and the page (Undo, Sound, scrolling) stays responsive while any puppet thinks.
+- [ ] Every puppet answers within its cap (Mouse and Rabbit 1 s, Fox 1.5 s, Owl 2 s, Badger 3 s, Raven 5 s, Lion 8 s)
+      on a 1366x768 Chromebook, and the page (Undo, Sound, scrolling) stays responsive while any puppet thinks; Undo
+      during a think stops the search at once.
+- [ ] Calibration against Stockfish (Content, "Calibration") is run and reported: Lion lands at 2250 +/- 100 with its
+      95% interval, every other puppet within 150 of its target, Lion at half budget measured. Stockfish is not in the
+      file and the game makes no network requests.
+- [ ] The engine's search features (iterative deepening, aspiration, PVS, transposition table, null move, LMR, killers,
+      history, SEE, quiescence, tapered evaluation with mobility, king safety and pawn structure) are each listed in the
+      report with where they live in the code; a test position suite (for example 50 tactical positions with known best
+      moves) shows Lion solving at least 80 percent within its budget.
 - [ ] A browser self-play check (a hidden test hook, 20 games per pair, Lion vs Raven may run 10) shows Mouse beating
-      a random mover and each of the seven puppets beating the one below it more often than not.
+      a random mover and each of the seven puppets beating the one below it more often than not, so the Node
+      calibration matches what runs in the browser.
 - [ ] Every one of the 45 puzzles solves with its stated line; each mate in one accepts every mating move Python listed.
 - [ ] Undo vs computer takes back two half-moves and costs a star; Moves never goes down after Undo.
 - [ ] Restart in a puzzle act keeps the tally; a finished act's replay shows the Encore card and no Recess.win.
@@ -596,9 +657,8 @@ only. A good next step for a keen child is a local chess club or a school chess 
 
 ## Open questions
 
-1. Grade band: data/recess.json shows Grades 3-12 with the 3-5 edge. Default: keep it (K-2 kids can still play with
-   hints on). Change to all grades?
-2. Pass-and-play default orientation: board stays put (default) or turns each move?
-3. Lion's strength: the ladder check shows Lion beating Raven 22 to 0 with 2 draws (21 to 1 when capped at half its
-   nodes), but no offline test can put a rating on it. Default: ship
-   it as specced, and if club kids beat Lion easily, raise its node budget (the one number that sets its strength).
+Owner: default accepted, Cory 2026-11-08; may tweak later.
+
+1. Grade band: keep Grades 3-12 with the 3-5 edge (K-2 kids can still play with hints on).
+2. Pass-and-play orientation: the board stays put by default; the "Turn the board each move" switch stays.
+3. Lion's strength: settled by the owner at about 2250 Elo, measured against Stockfish in calibration (Content).
