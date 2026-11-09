@@ -79,7 +79,10 @@ SPEC_TEST_4 = """push-the-pumpkin egg-carton-factory scarf-juggling-ladder inter
 # Fifth spec batch (2026-11-07).
 SPEC_TEST_5 = """tap-to-start-puppets paper-plane-assembly-line box-packer front-line leaf-factory""".split()
 _SPEC = SPEC_TEST + SPEC_TEST_2 + SPEC_TEST_3 + SPEC_TEST_4 + SPEC_TEST_5
-QUEUE = ([t for t in CURIO if curio_ready(t)] + _SPEC
+# Recess games (docs/GAMES.md, Cory 2026-11-08): built from docs/agents/CODEX-RECESS.md, not CODEX-BUILD.md. Add a game
+# here only once its spec is final, so a build never starts on a spec still being written.
+RECESS = """sliding-blocks untangle""".split()
+QUEUE = ([t for t in CURIO if curio_ready(t)] + RECESS + _SPEC
          + [t for t in QUEUE if t not in CURIO and t not in _SPEC])
 # Specs reserved for an outside helper (drafts/paste-ready/helper-process.txt), tool id -> GitHub handle. Codex skips
 # these. Remove the line to hand a tool back to Codex.
@@ -183,6 +186,15 @@ CURIO_REVIEW = """Review the Curio Class Curiosity {t} cold. You did not build i
 Play it before you read what the builder said. Try to break the instrument (extreme values, every control at both ends, rapid input, resize while running), walk it with the voice on, and hold every dataset and fact to a named source and licence. Never add a goal, score, level, quiz, finish screen or kit header; remove any that slipped in. If it fails a question of the short test, make the real material more central. Fix every blocker and should fix, lift the flattest moment, keep what is strong. One pass only. Put a time limit on every command. When tools/{t}/codex-review.md is written, say "Review done" and stop."""
 
 
+RECESS_BUILD = """Build the Curio Class Recess game {t}. This is a Recess game, not a lesson tool. Read docs/agents/CODEX-RECESS.md first and follow it exactly: it replaces docs/agents/CODEX-BUILD.md. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/; never edit kit/recess.js, kit/recess.css or data/recess.json. This is Build only: make no git commits and do not start a polish round. Use Chrome ports {c} and host port {h}.
+
+Build the game the spec describes on the Recess shell (kit:recess), in its own world, and make it grab attention. No kit header, voice, lesson card, standard code or classroom look. Re-solve every shipped puzzle and level with your own solver and play every computer level against the one below it. Put a time limit on every command. When tools/{t}/codex-report.md is written, say "Build done" and stop."""
+
+RECESS_REVIEW = """Self-check the Curio Class Recess game {t} cold. You did not build it. Read docs/agents/CODEX-RECESS.md first, including "For the self-checker", then docs/agents/CODEX-REVIEW.md for the process and report file. Judge it against the Recess brief, GAMES.md and the spec, never against lesson norms. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits. Use Chrome ports {c} and host port {h}.
+
+Play it before you read what the builder said. Try to break it: illegal moves, rapid input, undo at every point, resize mid-move, the computer at every level, cheating for stars. Fix every blocker and should fix, lift the flattest moment, keep what is strong. One pass only. Put a time limit on every command. When tools/{t}/codex-review.md is written, say "Review done" and stop."""
+
+
 class _Pick(str):
     """A prompt template that hands a Curiosity its own prompt. The runner calls template.format(t=..., c=..., h=...)."""
     def __new__(cls, plain, curio):
@@ -191,15 +203,25 @@ class _Pick(str):
         return s
 
     def format(self, *a, **k):
-        return (self.curio if k.get('t') in CURIO else str(self)).format(*a, **k)
+        t = k.get('t')
+        recess = getattr(self, 'recess', None)
+        return (recess if recess and t in RECESS else self.curio if t in CURIO else str(self)).format(*a, **k)
 
 
 BUILD = _Pick(BUILD, CURIO_BUILD)
 REVIEW = _Pick(REVIEW, CURIO_REVIEW)
+BUILD.recess, REVIEW.recess = RECESS_BUILD, RECESS_REVIEW
 CURIO_FIX = """Fix the Curio Class Curiosity {t} from its Claude Refine. This is a Curiosity, not a lesson tool: read docs/agents/CODEX-CURIOSITY.md first, then docs/agents/CODEX-FIX.md for the process and polish.md report, and the rules in docs/agents/CODEX-BUILD.md that the Curiosity brief names. Where the fix brief or the gate leans on lesson norms (a welcome, a goal, a score, a finish), the Curiosity brief wins: never add a goal, score, level, quiz, finish screen or kit header. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits and do not edit refine.md. Use Chrome ports {c} and host port {h}.
 
 The list is tools/{t}/refine.md. Reproduce each blocker and should fix before you fix it, fix the cause, and prove every fix with a frame or a number at the size the item names. Hold every fact and dataset you touch to a named source and licence; you may go online to gather or re-check material as the Curiosity brief's "Gathering data" says. Mark an item FIXED only when you saw it fixed. Put a time limit on every command. When tools/{t}/polish.md is written, say "Fix done" and stop."""
 FIXP = _Pick(FIXP, CURIO_FIX)
+EXTRA.update({  # Recess games (titles from data/recess.json; grade is the low end of the shelf band)
+    'sliding-blocks': {'title': 'Cargo Hold', 'subject': 'recess', 'grade': '2'},
+    'untangle': {'title': 'Untangle', 'subject': 'recess', 'grade': '3'},
+    'chess': {'title': 'Chess', 'subject': 'recess', 'grade': '3'},
+    'go': {'title': 'Go', 'subject': 'recess', 'grade': 'K'},
+    'checkers': {'title': 'Checkers', 'subject': 'recess', 'grade': 'K'},
+})
 EXTRA.update({
     'voice-lab': {'title': 'Voice Lab', 'subject': 'science', 'grade': '8'},
     'living-earth': {'title': 'Living Earth', 'subject': 'science', 'grade': '6'},
