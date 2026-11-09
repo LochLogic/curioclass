@@ -15,12 +15,12 @@ moves, which turns "I got it out" into "can I get it out in 9?".
 **A cargo hold seen from straight above**, lit by one shaft of daylight from an open hatch grating overhead. Around the
 hull, painted dark sea at dusk. Inside, tarred deck planks, pine crates with rope handles, iron-hooped barrels, long
 timber crates, round mast stumps, and one teal sea chest with brass corners. The hold's outline changes level to
-level (a skiff's rounded locker, a brig's tapering bow, a galleon's deep stern), so each level looks like a different
-ship.
+level (a skiff's rounded locker, a barge's long flat bay, a brig's tapering bow, a steamer's hold split by its
+funnel casing, a galleon's deep stern), so each level looks like a different hold.
 
 **How it differs from the brand-name car puzzle and from Klotski.** That puzzle is a 6x6 parking grid, vehicles that
 only slide along their length, and one exit in the right wall for a red car. Klotski is a 4x5 box whose 2x2 block
-leaves through a slot in the bottom edge. Cargo Hold has none of these. Six hull shapes (5x5 up to 7x8) with
+leaves through a slot in the bottom edge. Cargo Hold has none of these. Nine hull shapes (5x5 up to 8x7) with
 cut-off corners, a tapering bow and mast stumps inside the floor. Every crate slides in all four directions. Nothing
 leaves through a wall: the goal is a 2x2 patch of light *inside* the hold, and the chest is lifted up out of it by a
 rope. The hatch moves from level to level. No vehicles, roads, parking or exits anywhere, and every layout is our own
@@ -52,8 +52,12 @@ Set `--rc-glass: rgba(8,26,32,.66)` so the shell's bar sits in the same sea tone
 shadow bars across it; a slow drift of dust motes in the shaft (6 to 10 dots, 0.3 opacity). Everything else in the hold
 is a little darker toward the hull (a radial vignette on the floor), so the eye goes to the light.
 
-**Materials.** Wood is code-drawn: plank seams every half cell running bow to stern, faint grain lines, a 3px darker
-bottom edge on each crate for depth, a soft drop shadow (2px down, 4px blur) that grows while a crate is held.
+**Materials.** Painted first (CODEX-RECESS.md "Visually amazing", Cory 2026-11-08): the deck planks, the hull rim and
+walls, the mast stumps, every crate, barrel and long crate, the sea chest and the hatch light are painted sprites
+(cut-out WebP on transparency) that code places exactly on the grid; see Art list. The paintings carry the wood: plank
+seams every half cell running bow to stern, grain, iron hoops, rope handles, a darker bottom edge on each crate for
+depth. Code adds only a soft drop shadow (2px down, 4px blur) that grows while a crate is held, tinted to the hatch
+light.
 
 **The grab moment.** The chest settles into the light, the hatch grating's shadow swings aside as the doors open, the
 light floods brighter, a rope and iron hook drop in, and the chest rises toward you (grows, its shadow spreads and
@@ -87,16 +91,58 @@ crates are separate pieces in the game even though the solver treats them as ali
 
 ## Modes and levels
 
-**Voyage: 24 hand-placed holds.** All open from the start (no gates). Key `hold-<n>` (n = 1 to 24), label
-`Hold <n>: <name>`, for example `Recess.level('hold-3', 'Hold 3: Rope Locker')`. On load the game opens the first hold
-without 3 stars (Hold 1 on a first visit).
+Three parts, all open from the start (no gates, no locks; GAMES.md): the First voyage, the Fleet, and Today's hold.
+
+**First voyage: 24 hand-placed holds.** Key `hold-<n>` (n = 1 to 24), label `Hold <n>: <name>`, for example
+`Recess.level('hold-3', 'Hold 3: Rope Locker')`. Minimums 2 to 22 (Content). Unchanged.
+
+**The Fleet: 540 holds on 12 ships** (owner decision, Cory 2026-11-08: a progressive difficulty ladder with room for
+500 and more). Each ship has 45 holds. Difficulty is measured, not guessed: a hold's **minimum** (the breadth-first
+search optimal solution length, in moves as defined in Rules) never goes down from one Fleet hold to the next, across
+all 540. Each minimum value from 8 to 44 has a plateau of 14 or 15 holds. Inside a plateau, holds within one ship are
+ordered by a second measured number, the **search size**: how many different arrangements can be reached from the
+start in fewer than `min` moves (identical crates count as alike), which is how much a breadth-first solver has to
+look at before it finds the answer; a bigger search size means more tempting wrong turns. Hull size and crate count
+are the other knobs: early ships use the small hulls and easy crate mixes, late ships the big hulls with long crates
+(the table's last column; Content has the packing and checks).
+
+| Ship | Holds (Fleet number) | Minimum moves | Search size | Main hulls |
+|---|---|---|---|---|
+| 1 Fishing Boat | 1 to 45 | 8 to 11 | 11 to 537 | skiff, sloop |
+| 2 River Barge | 46 to 90 | 11 to 14 | 13 to 2,669 | sloop, skiff, barge |
+| 3 Coastal Sloop | 91 to 135 | 14 to 17 | 23 to 6,839 | sloop, skiff |
+| 4 Pilot Cutter | 136 to 180 | 17 to 20 | 45 to 2,782 | sloop, cutter, barge |
+| 5 Merchant Brig | 181 to 225 | 20 to 23 | 41 to 3,378 | barge, cutter, brig |
+| 6 Trading Schooner | 226 to 270 | 23 to 26 | 104 to 9,635 | cutter, schooner, brig |
+| 7 Mail Packet | 271 to 315 | 26 to 29 | 109 to 9,616 | barge, cutter, brig |
+| 8 Cargo Steamer | 316 to 360 | 29 to 32 | 99 to 12,605 | brig, steamer, schooner |
+| 9 Tea Clipper | 361 to 405 | 32 to 35 | 142 to 7,317 | schooner, clipper, steamer |
+| 10 Treasure Galleon | 406 to 450 | 35 to 38 | 118 to 36,508 | schooner, galleon, clipper |
+| 11 Ocean Freighter | 451 to 495 | 38 to 41 | 187 to 31,204 | steamer, schooner, galleon, clipper |
+| 12 Flagship | 496 to 540 | 41 to 44 | 197 to 21,632 | galleon, schooner, steamer, clipper |
+
+The Fleet starts gentler than Hold 24 (8 moves, a breather after the First voyage) and climbs past it from Ship 5 on.
+Ships 1 to 3 use barrels and short crates only; long crates appear from Ship 4 (in 18 of its 45 holds) and are in
+every Flagship hold. Pieces per hold, the chest included, rise from 8 to 16 on the first three ships to 14 to 22 on
+the last four.
+
+- **Key** `fleet-<token>`, where `<token>` is the hold's own packed code (Content), for example
+  `Recess.level('fleet-IBFB4hJsA', 'Fishing Boat 1')`. The token is unique per hold and never changes, so stars and
+  bests stay put when holds are added, reordered or a new ship is appended. Label `<Ship> <k>` (k = 1 to 45 within the
+  ship).
+- **Growing it later**: append new ships (45 holds each, minimum 44 and up) as new lines, or add holds into a plateau;
+  the stored keys do not move either way. The decoder reads any number of lines.
+
+**Where the game opens.** The game stores the last level key it started (`Recess.store('last')`). On load it opens
+that level, or the next one if it was won; on a first visit, Hold 1. The holds chart's `Next unplayed` button jumps to
+the first level in the order First voyage, Fleet 1 to 540 with no stars yet.
 
 **Today's hold.** One puzzle a day from a pool of 120 verified puzzles in the file (Content):
 `const r = Recess.daily(); const i = Math.floor(r() * POOL.length);`. Key `daily-<i>` (so a puzzle drawn again on
 a later day shares its own scores board and best), label `Today's hold`. Every pool puzzle has a minimum of 11 to 15
 moves, the same as Holds 11 to 17: hard enough to feel like a treat, short enough for one sitting. Fair because each
 was solved by breadth-first search twice (Sources), every visitor gets the same puzzle that day, and stars use the same
-formula as the Voyage.
+formula as the First voyage and the Fleet.
 
 **Score and stars.** `Recess.start({id: 'sliding-blocks', title: 'Cargo Hold', score: {label: 'Moves', lower: true},
 onUndo, onRestart, onNext})`. On a solve: `Recess.win({score: moves, stars})` with, for minimum `m`:
@@ -105,8 +151,12 @@ onUndo, onRestart, onNext})`. On a solve: `Recess.win({score: moves, stars})` wi
 - 2 stars: moves <= m + max(3, ceil(m / 2))
 - 1 star: any solve
 
-`onNext` goes to the next hold (after Hold 24 and after Today's hold: the holds chart). The game shows the cutoffs
-before you start (Screens), never the solution.
+The same formula covers every part (First voyage, Fleet, Today's hold); for the Fleet's 44-move holds that is 3 stars
+at 51 or fewer, 2 stars at 66 or fewer.
+
+`onNext` goes to the next hold: Hold 24 goes on to Fishing Boat 1, each ship's 45th hold to the next ship's first,
+and Flagship 45 and Today's hold go to the holds chart. The game shows the cutoffs before you start (Screens), never
+the solution.
 
 ## Screens and controls
 
@@ -117,12 +167,24 @@ cells is 448x512). To its right a narrow tally plank (200px): `Moves 7`, then th
 fewer`, `★★ 12 or fewer`, `★ any`, the current star row lit brass; `Best 9` when there is one; a `Holds` button.
 Under the hold, one caption line (hints and nudges). Nothing scrolls.
 
-**390x844 portrait.** Shell bar on top (icons only). The hold full width with 16px gutters (galleon cells 51px). Below
+**390x844 portrait.** Shell bar on top (icons only). The hold full width with 16px gutters (7-wide hulls 51px cells;
+the 8-wide steamer and clipper 44px, the floor, so no hull is ever wider than 8 cells). Below
 it the tally as one line (`Moves 7 · ★★★ at 9`), the caption, and the `Holds` button. Fits without scrolling.
 
-**The holds chart** (`Holds` button, or H): a sea chart card over the game: 24 small hull silhouettes in 4 rows of 6
-(phone: 3 columns, scrolls inside the card), each with its number and stars earned (★★☆), plus a larger `Today's
-hold` card on top. Tap one to play it. Esc or the X closes it. The game's own card, styled like the shell's.
+**The holds chart** (`Holds` button, or H): a sea chart card over the game, two levels deep so 564 holds never show
+at once.
+
+- **Top: the ships.** A `Today's hold` card and a `Next unplayed` button on top, then 13 ship cards: First voyage,
+  then the 12 Fleet ships in order. Each card has the painted ship badge (Art list), the name, its move range ("8 to
+  11 moves") and stars earned out of 135 (72 for the First voyage), with a thin brass bar for progress. Desktop: 4
+  columns. Phone: one column of 72px rows (badge left, text right), scrolling inside the card; the ship holding the
+  current level is scrolled into view and outlined.
+- **Inside a ship: its holds.** A back arrow and the ship name on top, then 45 tiles (24 for the First voyage) in
+  reading order, each 56px square on a phone (5 columns, 9 rows, scrolls inside the card) and 64px on desktop (9
+  columns, 5 rows, no scroll): the hold number, a tiny hull silhouette, and three star dots (filled brass when
+  earned). The current hold is outlined. Tap a tile to play it.
+- Keyboard: arrows move over cards and tiles, Enter opens, Backspace goes back to the ships, Esc or the X closes. All
+  open; nothing greyed out or locked. The game's own card, styled like the shell's.
 
 **Pointer and touch.** Press a piece: it lifts (focus ring, shadow grows). Drag: the axis locks after 8px of travel,
 the piece follows the finger along that line and stops flush at the first obstacle; release snaps to the nearest
@@ -273,7 +335,7 @@ moment.
 
 **Today's hold pool** (120 puzzles, minimum 11 to 15; histogram 11: 24, 12: 28, 13: 29, 14: 18, 15: 21; hulls:
 62 skiff, 27 sloop, 12 cutter, 8 brig, 8 schooner, 3 galleon). Same characters, rows joined by `/`. None repeats a
-Voyage hold.
+First voyage or Fleet hold (checked again with the Fleet).
 
 ```js
 const POOL = [  // [hatchX, hatchY, minimum, rows joined by "/"]
@@ -400,10 +462,119 @@ const POOL = [  // [hatchX, hatchY, minimum, rows joined by "/"]
 ];
 ```
 
+**The Fleet: hulls, packing and the 540 holds.**
+
+Nine hulls. The first six are the First voyage's hulls; barge, steamer and clipper are new for the Fleet. A hull id is
+its index here and is stored in each packed hold, so this table may only grow at the end (16 ids fit). No hull is
+wider or taller than 8 cells. `#` is not floor: cells joined to the grid's edge through other `#` are outside the hull
+(sea), the rest are mast stumps or, on the steamer, its funnel casing (two stumps side by side, drawn as one casing).
+
+```js
+const HULLS = [  // id = index; never reorder, only append
+  {name: "skiff", rows: ["#...#", ".....", ".....", ".....", "#...#"]},
+  {name: "sloop", rows: ["#....#", "......", "......", "......", "#....#"]},
+  {name: "cutter", rows: ["#....#", "......", "..#...", "......", "......", "#....#"]},
+  {name: "brig", rows: ["##..##", "#....#", "......", "...#..", "......", "......", "#....#"]},
+  {name: "schooner", rows: ["##...##", "#.....#", ".......", "..#.#..", ".......", ".......", "##...##"]},
+  {name: "galleon", rows: ["###.###", "##...##", "#.....#", "...#...", ".......", ".......", "#.....#", "##...##"]},
+  {name: "barge", rows: ["#.....#", ".......", ".......", ".......", "#.....#"]},
+  {name: "steamer", rows: ["#......#", "........", "...##...", "........", "........", "#......#"]},
+  {name: "clipper", rows: ["##....##", "#......#", "........", "..#..#..", "........", "#......#", "##....##"]},
+];
+```
+
+**Packed format** (one hold = one token of base64url characters). Read the token as a string of bits, 6 per
+character, most significant bit first, using the alphabet `A-Z a-z 0-9 - _` (A = 0, _ = 63). Then:
+
+| Bits | Field |
+|---|---|
+| 6 | `min`, the minimum number of moves (0 to 63) |
+| 4 | hull id (row in the table above) |
+| 6 | hatch = y * 8 + x, the light's top-left cell |
+| 3 each | one code per floor cell, in reading order (top row first, left to right), skipping cells an earlier piece already covers: 0 empty floor, 1 barrel 1x1, 2 crate 2 wide 1 tall, 3 crate 1 wide 2 tall, 4 long crate 3 wide, 5 long crate 3 tall, 6 sea chest 2x2, 7 unused. A piece's code sits at its top-left cell |
+| 0 to 5 | zero padding to a whole character |
+
+The stream ends when every floor cell is decided, so tokens need no length field. Exactly one code 6 per hold.
+
+**Worked example**, Fishing Boat 1, token `IBFB4hJsA` (9 characters):
+
+```
+I      B      F      B      4      h      J      s      A
+001000 000001 000101 000001 111000 100001 001001 101100 000000
+min 001000 = 8 | hull 0000 = skiff | hatch 010001 = 17 -> x 1, y 2
+cells: (1,0) 010 crate 2x1 | (3,0) 000 empty | (0,1) 011 crate 1x2 | (1,1) 110 chest | (3,1) 001 barrel
+       (4,1) 000 empty | (3,2) 010 crate 2x1 | (0,3) 010 crate 2x1 | (2,3) 011 crate 1x2 | (3,3) 011 crate 1x2
+       (4,3) 000 empty | (1,4) 000 empty | then 00 padding
+result (same characters as the First voyage):  #BB.#  CAAD.  CAAEE  FFGH.  #.GH#   hatch [1, 2], min 8
+```
+
+A decoder, tested against all 540 holds (every hold, hull, hatch and minimum matched):
+
+```js
+const B64 = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+const SHAPES = [null, [1, 1], [2, 1], [1, 2], [3, 1], [1, 3], [2, 2]];   // code -> [w, h]; 6 = the sea chest
+function decodeLevel(tok) {
+  let bits = '';
+  for (const ch of tok) bits += B64.indexOf(ch).toString(2).padStart(6, '0');
+  let p = 0; const take = n => parseInt(bits.slice(p, p += n), 2);
+  const min = take(6), hull = take(4), hv = take(6), hatch = [hv % 8, Math.floor(hv / 8)];
+  const grid = HULLS[hull].rows.map(r => [...r]);
+  let next = 0; const L = 'BCDEFGHIJKLMNOPQRSTUVWXYZ';
+  grid.forEach((row, y) => row.forEach((c, x) => {
+    if (c !== '.') return;                       // hull, stump, or covered by an earlier piece
+    const code = take(3);
+    if (code === 0) { row[x] = ','; return; }    // empty floor, decided
+    const [w, h] = SHAPES[code], ch = code === 6 ? 'A' : L[next++];
+    for (let j = 0; j < h; j++) for (let i = 0; i < w; i++) grid[y + j][x + i] = ch;
+  }));
+  return {min, hull, hatch, rows: grid.map(r => r.join('').replaceAll(',', '.'))};
+}
+```
+
+**How the Fleet was made** (dev time, Python, scripts in the session scratchpad `cargo/ladder/`; nothing is generated
+in the browser). Shipping a verified packed table beat a runtime seed generator on both counts: it is small (below)
+and safe (every hold is solved and checked before it ships, and a phone never runs a search). Each Fleet slot n
+(0 to 539) has a target minimum `8 + floor(n * 37 / 540)` and a hull from its ship's rotation. `ladgen.py`: a seeded
+packing fills the hull around a 2x2 chest on a random hatch, leaving 2 to 4 open cells; a breadth-first search lists
+the whole state space (up to 150,000 arrangements) and every arrangement's exact distance from solved (moves are
+reversible, so that distance is the minimum); the start is an arrangement at exactly the target with the chest as far
+(Manhattan) from the light as possible. `gen2.py` filled the deepest slots by mutating deep holds already found
+(split a crate into two barrels, merge two barrels, drop or add a barrel, move the hatch) and searching each mutant
+from scratch. At most one hold per state space and light (fingerprint: hull, state-space size, deepest distance),
+so no hold is just a later position of another hold's puzzle. `finish.py` then
+re-solved every hold with the second, separate solver, measured the search size, ordered each ship by (minimum,
+search size), packed, round-tripped and checked uniqueness (Sources). Open cells: 2 in 137 holds, 3 in 296, 4 in 107.
+
+**Size.** 73.2 bits per hold on average (9.2 bytes raw); a token is 9 to 16 characters, 12.2 on average, so 13.2
+bytes per hold in the file with its separator. Per 100 holds: about 915 bytes raw, about 1.32 KB as it sits in the
+HTML. All 540: 7,129 bytes (lines grow from 496 bytes on the Fishing Boat to 684 on the Tea Clipper). A thousand
+more holds would add about 14 KB.
+
+**The Fleet data.** 12 lines, one per ship in Fleet order, 45 tokens per line separated by single spaces. Fleet hold
+n is token n. Copy the block exactly into the file as one string per ship (`const FLEET = [...]`, with the ship names
+from Modes); the 12 lines joined with LF plus a final LF are 7,129 bytes with SHA-256
+`94ba9e9a8e7fbde816b9954cbd1f2c57d44eb5d380f82b8bf5e64d2ea73bee32`. At about 7 KB the table sits here rather
+than in a separate `ladder.txt`.
+
+```
+IBFB4hJsA IAloENZBE IAF4NMEMI IFoBtBttYo IApMYtsMg IEJvMpNNgA IELNhltBBI IBlEthsnAg IEpoFJ5BBI IEwNJpt4IA IFoBsopJPEg IBJAjNBJA IEslHNtthgA IBIoZNsgI IAk4kkppAA JBBHBJlsE JFHItNJNAA JBotsBIZg JEElPBJpkBA JFkhlpZENIA JFJhHMtsJI JBJFptgYE JAk5gokNog JBENoNF4g JBAkZpEtEA JYxDNplspsBA JZNFI4BpNNgk JEhNks5hloA JAkolDFIFA JAosNoZAI KFtIJshFZAg KZApZpFpNgBA KYIoM5NhNtoA KALMENlho KAIgHJsslA KFoNtNtAYI KFFkMo4NthA KElElvEMNtg KBMsLIJBA KAgolA4sNA KAk4kklsII KBkpFMZsA KBkkrFtkAE KBIkkNtjMA LBEI4FotEg
+LApMYNBsk LBlskNIPA LEnJoppNgA LEJjAhNNJI LY0tBtJPJsAA LFothhJMZs LEwsNtgZJI LBBA5AMNI LYxHJNMoBtIA LEMlEPNBtsA LAIkkAl5Io LBoknJtgEk LAkpIkPAFA LBkpYpoAkA MAlo4JpgE MAgJMHJsA MFRJLMttAA MFMhLFophFA MZlNtMoNsPAA MAtAhpZEI MFtJtIIDNA MZkhostt5tEE MZMDFpttFMJA MEEnMAlNpJA MZttsENJBPBA MBkpYlskEE MBMo5NEgBA MEvEkttsNgA NEllHEtltAg NFRMhvFpogA NZMtFhNtoZIA NExJoprFgI NFHIkNpJsI NBMpYskNkA NZFtshtl4pIA NFMNMNZshI NBooMJo5g NZNssNhlpZhA NZRrFFstNoIA NEsZptBhBI NExtFBtYBI NAhMpk4EIA NAIlsA5FBA OEk5skMtpkg OZkpBZlsMNtA
+OFENJNgs5I OEtZoFthBI OAotsDIMI OEEgsZltpkk OEwBNNLItA OKFJlItYIhJA OBJN4pBAA OBMAJ5spA OFtYptJABI OEtIlEPIoJA OBPAgJApFA OAkokkI5Ao OBkrFFEhAE PIxJsoIJZJI PKFtNtjIMJI PEl4FNtsBI PExJlhAZJI PFItEFNFZBA PFRJLMNtEA PEpZFppIIA PFQNNnJBpA PFRYtlkhIJA PBE4shBIIA PBA5EhtgBA PAkklEIZAo PBk5FtgAFA PAokpgYMNA QFRtgYppsgg QJNhBNosk5NA QElJFFnMgJA QElZplgJso QEF5tpANoA QENlFNvAIog QBktlsYMEg QFQoNPINhI QEkpgJtMZI QEoNJs4MNkg QFRIvEsNsMA QBPEopBhAA QAokoN4BIg QAFkkkIYIo QFMkktthjNg RAktoZMgI RFLElFgJptA RFpIZstgNkg
+REFpjFBhJI RZJFhsFIovFI RKJVxgtJlYA RFBLJtJggI RENIvBkFtog REshIItJrI RElFpgYNpI REEotvFhtgA RFFYpskMowA RFRallkBIQ RElYtsgBtsA SJtolNoFJl4A SFE4sEpNIJA SEIlk5ttsBA SEIkl5gJJJA SYw4BtNtJooA SZIltiusZRA SJooFNJPFBgo SKIywMIDOFE SFMYoNpNhI SFFZFtkNEhA SEENJsYBJI SFNBrBthBI SFM1mksUZg SFQy2DEgFE SJutONMhYIA TKEhViqklh4g TZSZU1VAIBA TKNE1RlZkMAk TKKG2MCE4EI TZKwMtoVh5g TENIttAMLI TIgttNIZMBlA TKGshxFEILBA TEttEtskYJA TKEothuhKYEA TJxJLEtlgNsk TFRYotFBEJA TJtkhwM2sjBA TFsYIgpMpJA TFkjFsMBtpA UKNoANJLFoko UZIGXSt0CE UJkIRNJNNYA UFNItlMB5Eg
+UZOmOhVUDI UKFJtIspMLEA UOAtBKh5slokA UZEytOhMYiA UNEvEINhIspJA UZtJhvMVJgI UJlMtIFZtsIA UKKGuFt4QgA UKMslEh2YkMEg UJlwGYkpIBmA VMtYMFlNMtJI VNEnIlNgtEthI VZOGkVVikZA VJRUVYpEBwI VKIwwlsJJPAg VZRohtvFNhBA VNFHMssIMpNlA VItZsAJpNIog VKIsNMApZtJA VKJMVkNQsZkA VYJk5km0NsiA VMlPENlJNosAg VJNIMNkNZoJA VYJk5km0NsCA VZJFVR1IDBA WZUNFtvFNoBA WY1lllssPJhE WOF0Fo0l4hMQ WJkNvNsgsJtA WNFFBlLMsFtsA WZRpgLJoNKA WNQlhMBtNHRI WILItEIJMJtA WZkpJtthhvAA WJkukui0pjA WJlNlC24gBI WZFrVuh1BAA WZOY0NioOBA WZVmXFUKAQA XIEYFphJNIpA XOBOAFPEpkxI XZJlGxFMHBlA XZBIHJBFhNJA XZAhPBNJNtgg XYFpFJoYoJIA
+XSBENPIMtEFKQ XKIs1th40lEg XOG1gNnNtooA XKIk1st40gokA XItFtojMpBJA XSEstoQ6oFEgqA XJtKalsIBpA XSoqN2ENNw4AA XKMwrVJBQIA YJsBtptljNlA YJssluK5kJAA YONJ0qgtILBA YNBJl5slINIgg YKMslBOxEDME YIstNklgFZJI YJAppNIZtgIg YKEoNNBYhJJA YSNNNlFusEYlIA YKMslBOzEBgkg YKNJkphYNsJA YIEsBvNphstA YRBstklrJIFIhA YJoxF6ttgCA YIJIphoJjIJA ZSBEuIlYsoBFKA ZOJkOsAop5lw ZSpshNEoBJFFZE ZJwoELJppNhA ZOlJFFXOgIpA ZKExJEM3CskA ZJkwotpphrAA ZSEgswGPNkOFQ ZOtNgCUtHNJA ZQrFkhFJttkktAA ZJRUFYtxoAQ ZJNJEJtMpHBA ZIIlhsZttsJA ZJRJtFlvBpAA aQxBYlNtttsBkg aNFZANtJNJgk aJQwk4oswtkBA aIhJFtojIBJA aQPFolpoNpMNkA aJtYooBuBiQ aIsttttsAZBA
+aQkovBNpkNtpgg aZtsoNtvNABA aZVslvG0MkGA aIEsBvFokpJI aZIyiwsktnEA aItItIpvMAJA aZwpMzAWoJA aZFHVsUVpoA bJNIhZsJstIg bNFZMotlsAopA bJptkG5NAFJA bYwotpNtAZIg bZNNtMtjNIgA bOtJtAoWg5JA bZIvBJJMBplA bIItlvNANNBA bZA5JoAWtBo bMtYhhMJottI bZqEKMTMtsg bZKa1NJBIAA bJAkPJsNJsJA bKERIt1DMBI cNBFNMPNhkNo cJitsFpygYg cSJBsJwgrNyQ cZAmYmNshMJA cNBkthNoPIJI cJkNYppFJAJA cNBkMNM5tNkhA cJNMFZBJJMhA cOJGOlMVoYFA cZFalttkBBQ cNFZEopFslhgkg cYhNIhDJsJIg cKJNlNZkslIA cZIylyipDAA cJtLEIJtIBJA dZourK10BgA dZRIFxO5lgI dNEvFooAppFIk dIgkksNsZNslA dOkkQBppt5skg dSqFF1UkFpEPAg dYMtNJpI5ABA dJokhhIRpNvA
+ddAxZw1Ip0wgJA deKpBxMNlZhtJA dNxksFtmlYoGA dSNEspStsPAEw dSMolGJukErIiA dQlo4hNpkMNpsA deONNqO1ikDEEk eMlE5poJNhpA eOCloQ5tlFgI eMpLJsEJkNJI eQlE5JMkMlNgokk edgxDGEKop0uJA eOREMNnV0JFE eMsnAsIFNNNpA eNAtFANtPIJI eMpLNskNsIJI eSQqJlDNtoANI eOFJspxoloYA edhNtvNFNphgNI eOtJDFVFUIgI ecMknFAGEhut1MlA fNhJZJssMNsE fOEnJpsNppIA fOtVMsNk4NBI fOlJJJMlh5IA fd0pkhpsMVXNFIg fONEukupBIYI fQko5hMpsJJkok fNFslJkotjMJA fOsltNHJstEBA fMlE5ptgJpNA fNlJYpguNshA fMlFNtEN5BBI fOslNtBnNKAI fMpEtsNgPJpI fOEkt1G10AZA gNFDAhIppNNo gMstN4MoJpoI gOtMptFstDIEg gdgUlIBrOp1Jok gMpZkptlosIIg gOshotyp6sAA gOB0k50psAJI gMlFoANp5Ntk gOtJVI40gpAI
+gQxF5kkphhJIoo ghgsgFHFJqyFNsg gSUkxFM5tsIBpA ghgsgFHFJqyFNkk gSFCJpmsZsNgk hQlAZJNkMpsFEkg hQpHFEposlltAIg hgw2hvMlUkpEmIA heWqFEogMxoTKE hc2RFNIKIZJsoA hQpHFEpotoNkkIg hSOFElUt1koZAA hRWoRtkBNLFko hSEkopgRl3Mtkk hcMgPJGEFut1MhA hiMtgtLQmsulgiA hiNEJtVBh1s5BI hiMyF2E1BmYlIE hQk4kkkp0MKJtA hdpNpBlxupMgZA iQkpvEoBpBtplA iSFAlBqMu5tkkg iQwpYNlAttooEkg iQwIvFsktlFptA iQssLEJoNtptgg iQxo5tEkhphJEo iSEpFMysPMskkg id2pBxNhpBh5NA iQpHFEpoMotpsE iRBBtEpZsltMBA igslPMiq0ERKJA ieSRxBrOutgEI iSQokt0ptljENk iQtonElktglNNoA iSGMlNButkoZA jQI5NpMstJosAA jQlE5JNkMpsFEkg jQxEZlNptlgJFA jcIl4gNJNtJpFJA jipIpstpNpEkLME jhss2sm4MtJghtA jQtArINsNlthlA jQtonMkkNtppoE jcgBltoPJpNttI jQtonEIJhstFJE
+jWsyC1sVZoCA jR2pwrNhpEtEA jSEkopmVh5tsEg jitJFs1pt1YIIA kSEooBqMu5sskg kSEogJqMu5lskg kQo5NpMsNAtNEA kSRGIpjMNtoIo kWowuUG3EMJQ kSKFFoUuskInIA kWkTIlhtGogpFA kQtonFothpFFAo kRgkICxNM5tlkg kiwyFuF1GzBAog kQuFYs1usglsgA kSQkpMtF1kF4Nk kiNtOEZNmukgIQ kSSpwrNklgJhI kixMqqphhssZBI lSFAkJqMu5tsk lgwWhnMFqskqJI lQkknJJshlNlAkk lQxF5kkpokBFJIg lgw2hvMlVhFQkhA lhss2kmnBlpMENo lSUpRtDNsNIAo lRBFsoslpjEsSA lWsxuUi5VEgQ lWswuUm3EkIKA lVwlQhBVZJQAo liMsBsIqN6ukFQ lWswuUG3EIkKA lWMozEipJICII mWsssgllVnVkgw mUs6hphJFJEoIA mUs6hplJFJEoIA mUs6lplJFJEoIA mQuNZlt1mhkkA mUoPB1k0xJokI mXMwtBmJEBxZk miQktMOsJotPBtA mgzIBmsolJkpJEIg mSFAlBqMO5tsk mQpDFEpotkltAFA miMhhsJqHVl1kQ
+mQok4olNFlMNNgg mds2B1QOsFvMw mWMlQhFVJBDQo nSQJFuosstjFsg nSQJFuossNjFsg nQlA5JNkMpsokkA ngNEvFVg2gRKJA nUoPB0k0mJNEhA ncMgPJGUlmtosFE nWsyuBmlUZAQ nVEwpVVEhDIMo niMtNgAqE6sukkw nSFFRFV5tsBkE nVwgmIpVEqYIFA nc6QpQugNk4oqE neIiNmMp12jBw nQzEkkkp0MKJtA nd6RFZhJFhqBJA oQwpYtlAtsIsokg oc6lkO1AkuYpRE oUs6tkNNUMMoo oUs6tkFNUhhlFA oeWwBpIIxlGZmA oQxFYmhigpNIlA oc6lkO1AkuYJRE oUoHIlVJIopFAg oUs6tkNNUMMIo oQyA6osktt1sA oitJos1NkNq5BA oQsk4osh0hGJtA oiMtNgBqPVmkEmA odAp2sIkE5QlKIg pQlEZJNgMlMoskg peJJuJuvBsJJAA pQtErNNlthtghA pcPMplNhNAppJFA piMsBsJqHVl1kw pWkttklUkl0PCA piMyF2F1CB4oog pSMttkJvBttgQ pVkQqipII5oFE piMhhsJqHVl0lQ pWswmXG1IsgCA pcMkvIAxpmk1tkI pcMkjJAxNmkutkI
+pWMww1m0IZhQ piUyEuEipuwLEk qdlBk2NJs5IIGI qWsyG1sVZgKA qWsltkkKt4VkmA qSVFRsMrNpgIo qSUtkkAOWq5tA qWRkGGloUPKGA qiVJJusVltIYIE qWswuUm3JgBQ qWoTIl1tFEFBFA qV0shgGmpHSKA qSUtkigOVu4JA qSEpQkqvMNgNkg qVwI1jGswlMNs qdWRtRlO0BsYI rSMttsJ5ltsAw rRUqwAuVJZMgg rSsOpsokWlYhkg rSNEto0tuk4BhA reR0QoJItZkMqI riMtNgBqHVl0kmA rSAopnJksgNuGA rXI0llWaAwMkEg rdoptgJwN1JlYo rcMp4BGNM0mtsFA rcE0qqMA40JuGA rc6RVRkBtYlFGA rdAp2lpgjKEpRE rVwoxFKolTBAI rVkwkqpBJZ0gI seONOqO1snAAoA siUyMuMVCzEkpA siVJMsVMh0MprI sduRiJrOuhtEA sSKFEOhNloNrE sc4qRRppLIJoAg sWNkxtMpFnBBBA sQIk5kFOkkBxNI sVkTFEltpExFEA sSMklImN0glYIw sixqlGwklFnQtAA sRgow4UNwKIiA sR2GGuNhYhMBA sXISNkmojSlkA
+```
+
 ## Sources and licences
 
-Nothing from any source ships in the file. Rules are the classic public domain sliding-block rules; all holds, the
-pool, the art direction and the sounds are our own.
+Nothing from any source ships in the file. Rules are the classic public domain sliding-block rules; all holds (First voyage
+and Fleet), the pool, the art direction and the sounds are our own; the Fleet was generated by our own scripts.
 
 | Claim | Source 1 | Source 2 | Agree? |
 |---|---|---|---|
@@ -420,10 +591,24 @@ and this one expired long ago. The painted backdrop and rope cutout are made for
 - `verify.py`: a separate set-based forward BFS (`solver.py`) from each start; all 24 minimums matched (2 to 22),
   every hold solvable, star cutoffs computed, one shortest solution printed (above). Search sizes 22 to 3,246 states.
 - `verify_pool.py`: the same forward BFS on all 120 pool puzzles; every minimum matched, no duplicates, no overlap
-  with the Voyage.
+  with the First voyage.
 - After writing this file, the HOLDS and POOL blocks were read back out of this spec and solved again: all matched.
 - `contrast.py`: every ratio in the palette table.
 - `sim.py`: random play (300 runs per hold, 400-move cap, fold rule on). Results under Can it be beaten.
+
+**Fleet checks (scripts in `cargo/ladder/`, 2026-11-08).**
+- `finish.py`: the separate set-based forward BFS (`solver.py`) re-solved all 540 Fleet holds from their starts:
+  540 of 540 solvable, every minimum equal to the generator's (0 mismatches). Minimums never drop from hold to hold
+  (asserted), 8 to 44, 14 or 15 holds per value.
+- Uniqueness: each hold's smallest description over the 8 grid symmetries (mirrors, turns, and the transpose, hull
+  and light included) was compared across the 540 Fleet holds, the 24 First voyage holds and the 120 pool puzzles
+  (read back from this spec): 0 duplicates, 0 mirror or rotation duplicates, 0 overlaps. All 540 tokens differ.
+- Round trip: every hold packed, unpacked by the Python decoder and by the JavaScript decoder above (Node 24), and
+  compared: 0 mismatches. SHA-256 of the 12 lines as stated.
+- `sim_ladder.py`: random play on every 9th Fleet hold (60 holds, 100 runs each, 600-move cap): 1,243 random solves,
+  3 stars once (one 9-move hold), 2 stars 16 times (only holds with minimum 14 or less).
+- After writing this file, the Fleet block was read back out of this spec: checksum matched, all 540 decoded and
+  solved again by `solver.py`, minimums matched.
 
 ## Can it be beaten?
 
@@ -440,7 +625,10 @@ and this one expired long ago. The painted backdrop and rope cutout are made for
 | Star cutoffs shown | The tally shows "★★★ 9 or fewer" | Gives the target length, not which piece moves; finding it is the game | Accepted |
 | Daily stars | Replaying today's hold | Same puzzle, same cutoffs; replays only improve your own best, stars cap at 3 | Shell stores the max |
 | Daily stars | Changing the device clock to farm new dailies | Each pool puzzle is its own key; at most 3 stars each, 120 puzzles; on this device only | Accepted (device-only) |
-| Holds open | Skip to Hold 24 | All holds are open by design (no gates); stars still need a solve | GAMES.md rule |
+| Holds open | Skip to Hold 24 or Flagship 45 | All holds are open by design (no gates); stars still need a solve | GAMES.md rule |
+| Fleet stars | Random sliding on the Fleet | 60 sampled holds x 100 random runs: 3 stars once (a 9-move hold), 2 stars 16 times, none above a 14-move minimum | Same cutoffs as the First voyage |
+| Fleet stars | A wrong minimum lets 3 stars be impossible or too easy | Every minimum is BFS-exact, re-solved by a second solver, and the builder re-solves all 540 again (Done when) | Two solvers plus the build test |
+| Fleet bests | Saved stars lost or moved to another hold when the Fleet grows | Keys are the hold's own token, not its position | Token keys |
 | Scores board | Initials spam | Shell keeps the top 10 per key on this device; a spammer can only crowd their own machine | Shell |
 
 ## Not like
@@ -459,16 +647,35 @@ and this one expired long ago. The painted backdrop and rope cutout are made for
 
 ## Art list
 
-Painted (two images):
+Painted first (CODEX-RECESS.md "Visually amazing", Cory 2026-11-08). Everything a kid looks at is painted unless it
+is pure geometry; code places every sprite exactly. **This list is a floor, not a ceiling**: add any painted piece that
+makes the hold richer (a lantern on a post, a coil of rope in a hull corner, gulls over the sea). The palette table
+guides contrast and mood; the paintings may refine it as long as the contrast checks still pass. All painted pieces
+share one light: warm daylight from the hatch, straight above. Sprites at about twice their largest on-screen size
+(cells are drawn at up to 80px, so a 1x1 sprite is 160x160). No text in any image.
 
 | Image | Size, format | Prompt | Use |
 |---|---|---|---|
+| `cover` | 1200x750 WebP, about 120 KB | The shelf box art (`art/cover.webp`): a ship's cargo hold seen from above at a slight angle, packed with pine crates and iron-hooped barrels, one teal sea chest with brass corners sitting in a bright square of daylight under an open hatch, dust in the light, dark teal sea at dusk around the hull, painterly, deep saturated colours, no text | The game's box on `/recess/` |
 | `sea-dusk` | 1600x1200 WebP, about 150 KB | Calm dark teal sea at dusk seen from straight above, soft long swells, a few glints of warm lantern light on the water, painterly, deep saturated colours, nothing in the centre | Page background behind the hull, `object-fit: cover`; darkened 20% under the tally |
+| `deck` | 1024x1024 WebP, tileable, about 200 KB | Tarred dark oak deck planks seen from straight above, planks running top to bottom, seams and treenails, worn and warm, evenly lit, seamless tile | Hold floor, clipped to the floor cells (one plank seam every half cell) |
+| `hull-rim` | 9-slice sheet 512x512 WebP with alpha, about 80 KB | Thick dark ship's timber framing seen from above, a rounded outer corner piece, a straight piece and an inner corner piece, warm rim light on the inner edge | The hull wall traced around the floor cells (Content), corners rounded |
+| `stump` | 160x160 WebP with alpha, about 15 KB | A round sawn-off wooden mast stump with iron band, seen from straight above, warm top light | Each mast stump cell |
+| `barrel` | 160x160 WebP with alpha, about 20 KB | A wooden barrel seen from straight above, iron hoops, round lid with staves, warm top light, dark outline | Barrel (1x1) |
+| `crate-2` | 320x160 WebP with alpha, about 35 KB | A pine shipping crate seen from straight above, slats, two rope handles, a darker bottom edge, warm top light, dark outline | Crate 2x1 (not rotated for 1x2: its light is baked in from the top, so 1x2 uses `crate-2v`) |
+| `crate-2v` | 160x320 WebP with alpha, about 35 KB | As `crate-2`, long side vertical | Crate 1x2 |
+| `long-3` / `long-3v` | 480x160 and 160x480 WebP with alpha, about 50 KB each | A long timber crate with three slat sections and iron straps, from straight above, warm top light, dark outline | Long crate 3x1 and 1x3 |
+| `chest` | 320x320 WebP with alpha, about 45 KB | A teal sea chest with brass corners and bands seen from straight above, rounded lid, warm top light, dark outline | The sea chest (2x2) |
+| `hatch-light` | 320x320 WebP with alpha, about 40 KB | A square shaft of warm golden daylight falling on a deck, the shadow of a wooden hatch grating across it, soft glowing edges | The 2x2 light; brightens on a win |
+| `hatch-doors` | 320x320 WebP with alpha, about 40 KB | Two open wooden hatch doors seen from below, edges lit gold | The doors' shadow swinging aside on a win (not in calm) |
 | `rope-hook` | 160x640 WebP with alpha, about 30 KB | A thick hemp rope hanging straight down ending in a black iron cargo hook, seen from above at a slight angle, painterly, warm light from above | Drops into the light on a win (not shown in calm) |
+| `ships` | 13 badges, 320x200 WebP with alpha, about 25 KB each | Each Fleet ship (Modes) seen from the side on a dusk sea, small and charming, same painterly light: a fishing boat, a river barge, a coastal sloop, a pilot cutter, a merchant brig, a trading schooner, a mail packet, a cargo steamer, a tea clipper, a treasure galleon, an ocean freighter, a flagship, plus a rowing skiff for the First voyage | The holds chart's ship cards |
 
-Drawn in code (SVG, exact to the grid): the hull outline and rim, deck planks and seams, mast stumps, pine crates
-(slats, rope handles), barrels (hoops, staves), long crates, the sea chest (brass corners and bands), the hatch light,
-grating shadow and dust, the focus ring, the tally plank, the holds chart and its hull silhouettes.
+Drawn in code, geometry only (SVG or canvas, exact to the grid), lit to match the painting (soft glow, shadow,
+texture and the painting's palette, so it sits inside the picture rather than on top like a diagram): hit areas, the
+focus and selection rings, the brass blocker flash, the faint grid of cell seams if the deck paint needs it, the drop
+shadows, the dust motes in the shaft, the small hull silhouettes on the level tiles, the star dots, and the tally
+plank's text.
 
 ## notes.md
 
@@ -496,8 +703,12 @@ Things to try together
 - Talk through a solution out loud, one move at a time, before touching anything.
 
 How it works
-- 24 holds that get gently harder, all open from the start, plus one new puzzle every day.
-- Each hold takes about 30 to 90 seconds once a player has the hang of it.
+- A first voyage of 24 holds that get gently harder, then a fleet of 12 ships with 45 holds each (540 more). Every
+  fleet hold is a step at least as hard as the one before it, measured by a computer as its fewest possible moves:
+  8 on the first ship, 44 on the last. Everything is open from the start, plus one new puzzle every day.
+- Early holds take about 30 to 90 seconds once a player has the hang of it; the last ships are long puzzles for
+  patient planners and can take several minutes.
+- The game picks up where the player left off.
 - Scores, stars and three-letter initials are saved on this device only. No accounts, no ads, nothing sent anywhere.
 - Sound and motion can be turned down with the buttons at the top.
 ```
@@ -512,22 +723,50 @@ How it works
       move and lowers Moves; Restart sets Moves 0; Undo is off after a win.
 - [ ] Only a move ending with the chest exactly on the light wins; the grab plays (doors, rope, lift) and calm shows
       the one-step version.
+- [ ] The Fleet block is copied exactly: a test joins the 12 lines with LF plus a final LF and gets SHA-256
+      `94ba9e9a8e7fbde816b9954cbd1f2c57d44eb5d380f82b8bf5e64d2ea73bee32` (7,129 bytes), decodes all 540 tokens,
+      re-solves every one by breadth-first search under the Rules (identical crates alike, fold rule moves) in a
+      script in Scratch, and confirms: each is solvable, each solved minimum equals its packed `min`, the minimums
+      never drop from Fleet 1 to Fleet 540, and no two decoded holds are the same or mirror images. Any mismatch is a
+      blocker, never patched by editing a minimum.
+- [ ] Fleet keys are `fleet-<token>` and labels `<Ship> <k>`; Hold 24's Next opens Fishing Boat 1; each ship's 45th
+      goes to the next ship; the game reopens the last level played (or the next one after a win).
+- [ ] The holds chart shows 13 ship cards then a ship's tiles, works by touch and keyboard, scrolls inside the card on
+      a phone, and nothing is locked.
 - [ ] Today's hold uses `Recess.daily()` and key `daily-<i>`; the same pick on two devices on the same date.
 - [ ] Drag (with axis lock and flush stops), tap-to-slide, and keyboard (Tab, arrows, Shift+arrows, H) all work.
-- [ ] At 1366x768 the galleon hold, tally and caption fit with no scroll; at 390x844 every cell is at least 44px.
+- [ ] At 1366x768 the galleon and every 8-wide hull, tally and caption fit with no scroll; at 390x844 every cell is
+      at least 44px.
 - [ ] Each blocked slide or unreachable tap names what is in the way, kindly; no fail state.
 - [ ] Sound off silences the game-owned layer too; calm mode removes dust, lift, bumps and rope travel.
-- [ ] One HTML file, offline, under 400 KB with both images (goal 2 MB).
+- [ ] Painted first: the deck, hull rim, stumps, every crate, barrel and long crate, the chest, the hatch light and
+      doors are painted sprites placed exactly on the grid (Art list); code draws only geometry (rings, hit areas,
+      shadows, dust, silhouettes), lit to match. `art/cover.webp` (1200x750, no text) exists. Look board of three
+      hero frames at 1366x768 in the report, as CODEX-RECESS.md "Visually amazing" asks.
+- [ ] One HTML file, offline, at most 6 MB with every image (CODEX-RECESS.md size rule); the report states the size.
 - [ ] Playtest: three players new to it finish Holds 1 to 12 at 30 to 90 seconds each on average (estimate to
       confirm; adjust star wording only, never the data).
 
 ## Open questions
+
+Owner: default accepted, Cory 2026-11-08; may tweak later. Each default below is the decision.
 
 1. Ambient hull creak: default on at very low volume (default here), or off until asked for?
 2. The daily pool leans on the small skiff hull (62 of 120) because small holds are quick to verify. Fine for launch
    (default), or rebalance toward the bigger hulls before ship?
 3. No hint button (default). If kids stall on Holds 20 to 24, a "show the next move" button that caps that solve at 1
    star could come later.
+4. The Fleet restarts at 8 moves after Hold 24's 22 (default: a breather, and Ship 1 is a fair start for a kid who
+   skips the First voyage), rather than starting at 22.
+5. The Fleet tops out at 44 moves (default). Holds that long take minutes, beyond the 30 to 90 second guide; they are
+   the far end of a 540-hold ladder for patient planners. Lower the top later by trimming ships, never by editing
+   minimums.
+6. Ship names describe the voyage (Fishing Boat to Flagship); each ship's holds use a mix of hull outlines rather than
+   one hull per ship (default), so a "Cargo Steamer" hold may be a brig's outline. Fine, or regenerate with one hull
+   per ship?
 
-Size budget: game code about 45 KB, shell about 15 KB, data about 9 KB (holds 3 KB, pool 6 KB), images about 180 KB:
-about 250 KB total against the 2 MB goal.
+Size budget: game code about 50 KB, shell about 15 KB, data about 17 KB (holds 3 KB, pool 6 KB, Fleet 7.1 KB, hull
+table and decoder 1 KB), painted images about 1.25 MB (Art list: cover 120 KB, sea 150 KB, deck 200 KB, sprites about
+475 KB, 13 ship badges about 325 KB): about 1.35 MB total against the 6 MB Recess cap (CODEX-RECESS.md, Cory
+2026-11-08), leaving room for the extra painting the art list invites. Every further 100 Fleet holds adds about
+1.3 KB.
