@@ -38,8 +38,8 @@ shadow down and to the right and has a small highlight at its upper left.
 Body sets `--rc-accent: #f2b544`, `--rc-accent-ink: #1b1630`, `--rc-glass: rgba(29,19,10,.72)`.
 
 **Light and materials.** The room is a radial gradient from #3a2614 at the upper left to #1d130a, over the painted
-tabletop. The board has a 2 px darker bevel and a long soft shadow. Stones get a radial gradient (highlight at 30%,
-30%) and a drop shadow of 0 2px 3px rgba(0,0,0,.35). Captured stones in a lid are smaller (60%) and piled by a seeded
+tabletop. The board has a 2 px darker bevel and a long soft shadow. Stones are painted sprites (see Art list) with a drop shadow of
+0 2px 3px rgba(0,0,0,.35) under each. Captured stones in a lid are smaller (60%) and piled by a seeded
 jitter so the pile looks natural and stays the same after Undo.
 
 **The grab moment.** A stone drops from 6% larger with its shadow tightening to the board in 140 ms and a wood
@@ -440,6 +440,8 @@ For the later fresh-agent sensitivity check.
 ## Art list
 
 Painted (WebP, embedded as data URIs, our own, no people, no text in images):
+Painted first (Cory, 2026-11-08; docs/agents/CODEX-RECESS.md, "Visually amazing"): everything a kid looks at is painted and placed exactly by code; this list is a floor, not a ceiling. Paint the look board (three hero frames) before writing game logic.
+
 1. **Room**, 1600x1000, about 140 KB: a dark wooden tabletop at night seen from above, one warm lamp pool at the upper
    left, the middle left plain for the board, nothing else on the table (no teacups, plants, scrolls,
    lanterns or other props); the phone uses a CSS crop of the same file.
@@ -450,14 +452,24 @@ Painted (WebP, embedded as data URIs, our own, no people, no text in images):
 4. **Ink bloom**, 512x512, about 40 KB: one round, soft-edged cloud, like a drop of ink in a glass of water,
    grayscale on transparent, tinted in code. No brush strokes, splatter or painted texture.
 
-Drawn in code (must stay exact): grid lines, star points, coordinates, stones (radial gradients and rim), shadows,
-ghost stones, liberty dots, last-move dot, ko ring, dead crosses, area marks, keyboard cursor, the loupe, the
-"thinking" ink drop, the captured-stone piles in the lids, cards and buttons.
+5. **Stones**, painted sprites, 4 variants per color so a full board looks natural (slate: matte near-black with a soft
+   sheen; shell: pearly white with faint natural banding, no clamshell stripes), each 160x160 (twice the 9x9 size),
+   transparent, same lamp, about 8 KB each. Captured stones in a lid use the same sprites at 60 percent.
+6. **Board edge**, the board's frame and thickness as a painted cutout (honey wood edge, soft shadow on the table),
+   1200x1200 outer, about 80 KB, sized so the 9, 13 and 19 grids are drawn inside it.
+7. **Cover**, `art/cover.webp`, 1200x750, about 120 KB, no text: the board under the lamp mid-game, a captured group
+   washing away in the ink bloom.
 
-**Size budget** (goal 2 MB): painted art about 370 KB as WebP (140 + 120 + 2 x 35 + 40), about 495 KB once base64;
+Drawn in code (must stay exact, lit to match the painting: warm lamp tint, soft glow, never a flat diagram line): grid
+lines, star points, coordinates, ghost stones (the stone sprite at 55 percent), liberty dots, last-move dot, ko ring,
+dead crosses, area marks, keyboard cursor, the loupe frame, the "thinking" drop (the ink bloom sprite, small), the lid
+pile layout, cards and buttons.
+
+**Size budget** (Recess cap 6 MB): painted art about 630 KB as WebP (140 + 120 + 2 x 35 + 40, stones 8 x 8, board edge
+80, cover 120), about 840 KB once base64; more painting is welcome inside the cap;
 code about 130 KB (rules, Worker engine about 25 KB, UI, motion and sound); puzzle data about 5 KB (the classic block
 measured at 2,761 bytes, plus the 8 first stones); the shell inlined 20 KB (kit/recess.js 14,980 bytes plus
-kit/recess.css 5,033 bytes, measured). Total about 0.65 MB. Search trees are run-time memory, not file size.
+kit/recess.css 5,033 bytes, measured). Total about 1.0 MB. Search trees are run-time memory, not file size.
 
 ## notes.md
 

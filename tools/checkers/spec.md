@@ -13,7 +13,7 @@ the classic "shot" and the old two-against-two endgame problems.
 ## The world
 
 **Look.** A late-night arcade, seen as if you leaned over a glass-topped game table. A painted backdrop (dark cabinet row,
-blurred marquee lights in magenta and cyan, a faint haze) sits behind a board drawn in code: a deep navy table with a thin
+blurred marquee lights in magenta and cyan, a faint haze) sits behind a painted board: a deep navy glass-topped table with a thin
 glowing grid, the 32 playable dark squares slightly lifted, and pucks that look like lit acrylic: a bright rim, a softer
 face, a glow that spills onto the square around them. Light comes from the pucks themselves; the backdrop stays dim so the
 board is the brightest thing on screen.
@@ -48,9 +48,9 @@ on purpose: the light squares are never used, and the grid lines carry the check
 (Machado 2009 color-blind simulation: protan 1.29, deutan 2.03, tritan 1.32), which is why the dot and ring marks are
 required, never optional. A white crown on amber would be 1.97, so crowns are drawn in the side's ink instead.
 
-**Materials.** Pucks: an SVG circle (82 percent of the square) with a 3 px rim one step lighter than the face, the mark in
-ink, a radial highlight at the top left, and a glow (a blurred copy at 35 percent opacity). Board: flat navy with the grid
-glow; each dark square has a 1 px inner highlight on its top edge, so it reads as a lifted tile.
+**Materials.** Pucks: painted sprites of lit acrylic (82 percent of the square) with a bright rim one step lighter than
+the face, the mark painted in ink, a highlight at the top left, and a painted glow halo (a separate sprite at 35 percent
+opacity, so code can brighten it). Board: a painted navy glass table, with the grid glow drawn in code to sit exactly; each dark square has a 1 px inner highlight on its top edge, so it reads as a lifted tile.
 
 **The grab moment.** Touch a puck and it lifts: it grows 8 percent, its glow brightens, and small mint dots pulse on every
 square it may go to. A jump is the show: the puck stretches tall as it leaves, arcs over the jumped piece, and squashes
@@ -400,15 +400,23 @@ Rounds 1 to 3 except r3-5 (14 of 25) are our own positions, made by a search in 
 
 ## Art list
 
+Painted first (Cory, 2026-11-08; docs/agents/CODEX-RECESS.md, "Visually amazing"): everything a kid looks at is painted and placed exactly by code; this list is a floor, not a ceiling. Paint the look board (three hero frames) before writing game logic.
+
 | Item | Painted or code | Size |
 |---|---|---|
 | Arcade backdrop, landscape (cabinet row, blurred marquee lights, haze; no readable brand or game names) | Painted, WebP | 1600x900, about 140 KB |
 | Arcade backdrop, portrait crop for phones | Painted, WebP | 780x1688, about 110 KB |
 | Opponent badges Pip, Dot, Nova, Comet, Blaze, Titan (round arcade robots with lit faces, growing bigger and brighter up the ladder: Pip small and sleepy, Dot cheerful, Nova bright, Comet with a streak, Blaze flame-lit, Titan tall and calm) | Painted, WebP | 6 at 160x160, about 10 KB each |
-| Board, grid, squares, pucks, marks, crowns, glows, sparks, chain path, trays, Marquee | Code (SVG and CSS) | 0 |
+| Board: navy glass-topped game table with 32 lifted dark tiles, reflections, faint haze; painted to an exact 8x8 grid | Painted, WebP | 1200x1200, about 150 KB |
+| Pucks: Amber man, Amber king, Blue man, Blue king (dot and ring marks and crowns painted in each side's ink), plus a glow halo sprite per side; lit acrylic, twice their on-screen size | Painted, WebP, transparent | 6 at 200x200, about 15 KB each |
+| Crown pop: a 4-frame sprite of the crown landing (for the king moment) | Painted, WebP | 4 at 200x200, about 30 KB in all |
+| Jump sparks: a small sheet of neon spark and streak sprites | Painted, WebP | about 30 KB |
+| Cover `art/cover.webp`: the arcade table at its most striking, a puck mid-jump, no text | Painted, WebP | 1200x750, about 120 KB |
+| Code-drawn geometry only (lit to match the painting): grid glow lines, legal-move dots, selection rings, the chain path, focus cursor, hit areas, tray layout, the Marquee's text | Code (SVG and CSS) | 0 |
 
-**Size budget:** code and CSS about 110 KB (the strong engine and Worker add about 20 KB), puzzle data about 5 KB, images
-about 310 KB (about 415 KB inline as base64), shell inlined about 25 KB: about 0.55 MB of the 2 MB goal.
+**Size budget** (Recess cap 6 MB): code and CSS about 110 KB (the strong engine and Worker add about 20 KB), puzzle data
+about 5 KB, images about 750 KB (about 1.0 MB inline as base64), shell inlined about 25 KB: about 1.15 MB. More painting
+is welcome inside the cap.
 
 ## notes.md
 
@@ -459,7 +467,9 @@ Everything stays on this device. No accounts, no ads, no data collected. Best sc
 - [ ] Calm mode: no squash, arcs, sparks or bounce; the board still reads.
 - [ ] Works by mouse, touch and keyboard at 1366x768 and 390x844 with no scrolling of the board.
 - [ ] No em dashes in the file; "Curio Class" never shortened; notes.md written with the text above.
-- [ ] One file under 2 MB, works offline.
+- [ ] One file under 6 MB, works offline.
+- [ ] Look board (three hero frames at 1366x768) and `art/cover.webp` painted before game logic; board, pucks, crowns and
+      sparks are painted sprites; code draws only the geometry listed under Art list.
 
 ## Open questions
 

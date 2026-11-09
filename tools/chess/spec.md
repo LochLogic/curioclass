@@ -17,7 +17,7 @@ as cut-paper figures on little paper feet, each with a thin dark ink outline and
 behind it so it reads as card with thickness. Light comes from the viewer's left (stage right, in theatre terms): a warm spotlight pool on
 the board, and every piece throws a soft shadow down and to the right.
 
-**Pieces** (drawn in code as SVG, see Art list): the classic Staunton-family silhouettes every kid knows from books
+**Pieces** (painted cut-paper sprites, see Art list): the classic Staunton-family silhouettes every kid knows from books
 (pawn ball-on-collar, rook battlements, horse-head knight, mitred bishop with a slit, crowned queen with points, king
 with a cross), redrawn as flat cut-paper shapes with our own proportions. White's set is ivory card with ink outline;
 Black's set is deep ink card with an ivory edge line, so both read on both squares.
@@ -497,7 +497,7 @@ mat-3 Q2ZXU White to play: gain 500, search gain 300, best other 0, move2 margin
 | Lichess puzzle database | database.lichess.org (puzzle section), read 2026-11-08 | "Database exports are released under the Creative Commons CC0 license." and "Use them for research, commercial purpose, publication, anything you like. You can download, modify and redistribute them, without asking for permission." | 45 puzzles: ids, FEN, UCI moves, rating |
 | Same data, queried | huggingface.co/datasets/Lichess/chess-puzzles (author: Lichess), tagged `license:cc0-1.0` | CC0 1.0 | (query route only) |
 | Chess rules | FIDE Laws of Chess (public domain game; we write our own wording) | rules are not copyrightable | our own text |
-| Piece shapes | Our own SVG paths in the Staunton family (a public domain design from 1849) | ours | SVG in code |
+| Piece shapes | Our own SVG paths in the Staunton family (a public domain design from 1849) | ours | Painted sprites (our own) |
 | Engine, tables, art, sounds | Written for this game | ours | in the file |
 
 Lichess's page states the puzzle format: "FEN is the position before the opponent makes their move" and "The second
@@ -567,6 +567,8 @@ the game. Record the version used in the report.
 ## Art list
 
 Painted (WebP, embedded as data URIs, our own, no people):
+Painted first (Cory, 2026-11-08; docs/agents/CODEX-RECESS.md, "Visually amazing"): everything a kid looks at is painted and placed exactly by code; this list is a floor, not a ceiling. Paint the look board (three hero frames) before writing game logic.
+
 1. **Stage proscenium**, 1600x1000, about 160 KB: red velvet curtains gathered at both wings, scalloped valance with
    gold trim, warm spotlight from the left, dark wooden stage floor in the lower third, center left plain for the
    board. Desktop uses it whole; phone uses the left and right 140 px strips and the valance band (CSS crops of the same
@@ -579,19 +581,31 @@ Painted (WebP, embedded as data URIs, our own, no people):
 3. **Playbill paper**, 800x1100, about 60 KB: an old printed programme sheet, cream, with an empty ornamental border
    (text is set in code).
 
-Drawn in code (must stay exact): the board, squares and coordinates; all 12 pieces as SVG paths (two layers each: the
-front card with the 2.5 px line outline and a 2 px offset back card in a darker tone, plus a CSS drop shadow offset
-right); legal dots, rings, check halo, last-move tint (#ffd27a at 35%), focus cursor; curtain sweep panels (CSS
-gradients); the promotion fan; prompt box, wing rows, buttons and cards.
+4. **Pieces**, 12 painted cut-paper sprites (K, Q, R, B, N, P for each side), each about 240x300 (twice their largest
+   on-screen size), transparent, about 20 KB each: the Staunton-family silhouettes described under The world, as real
+   card with an ink outline, a visible card edge and paper grain, lit from the viewer's left. White is ivory card,
+   Black deep ink card with an ivory edge line. Silhouettes must tell apart at a glance at 40 px and in grayscale.
+   Optional extras that make captures sing: a folded-flat frame for each piece (for the fold-and-slide), a paper
+   confetti sheet for the win.
+5. **Board card**, 1200x1200, about 150 KB: a printed paper chessboard with an ornamental border, laid flat, warm
+   spotlight falling from the left, light and dark squares in the palette's board tones, painted to an exact 8x8 grid
+   so code can place pieces square by square (the builder checks the grid lines against the painting).
+6. **Cover**, `art/cover.webp`, 1200x750, about 120 KB, no text: the shelf box art, the stage at its most striking (a
+   paper Lion puppet facing a Mouse across a lit board, curtains open).
 
-**Size budget** (goal 2 MB): painted art about 500 KB as WebP (160 + 7 x 40 + 60), about 670 KB once base64; code
-about 155 KB: the engine about 45 to 60 KB unminified (move generator, search with every feature above, evaluation
-with its tables, the speed test and the Worker glue; the earlier 15 KB prototype had about a third of the features,
-and engines with this feature list run 40 to 60 KB in plain JavaScript), plus rules, UI, motion and sound about 95 KB;
-puzzle data 4 KB (measured on the block above); shell inlined 20 KB (kit/recess.js plus recess.css measured at 20,013
-bytes). Total about 0.85 MB, still well under the goal. The builder reports the measured engine size. The transposition
-table (about 28 MB), history tables and search stack are memory at run time, not file size; nothing is precomputed
-into the file (no opening book, no endgame tables).
+Drawn in code (must stay exact, lit to match the painting): coordinates, legal-move dots, selection rings, check halo,
+last-move tint (#ffd27a at 35%), focus cursor and hit areas; the drop shadow under each piece sprite (CSS, offset right
+to match the light); curtain sweep panels; the promotion fan's layout (it shows the piece sprites); prompt box, wing
+rows, buttons and cards.
+
+**Size budget** (Recess cap 6 MB): painted art about 1.0 MB as WebP (stage 160, 7 puppet sheets x 40, playbill 60,
+12 pieces x 20, board 150, cover 120, extras about 50), about 1.35 MB once base64; code about 155 KB: the engine about
+45 to 60 KB unminified (move generator, search with every feature above, evaluation with its tables, the speed test and
+the Worker glue; the earlier 15 KB prototype had about a third of the features), plus rules, UI, motion and sound about
+95 KB; puzzle data 4 KB (measured on the block above); shell inlined 20 KB (kit/recess.js plus recess.css measured at
+20,013 bytes). Total about 1.55 MB, well under the cap; more painting is welcome inside it. The builder reports the
+measured engine and file size. The transposition table (about 28 MB), history tables and search stack are memory at
+run time, not file size; nothing is precomputed into the file (no opening book, no endgame tables).
 
 ## notes.md
 
@@ -654,6 +668,8 @@ only. A good next step for a keen child is a local chess club or a school chess 
 - [ ] Full game playable by keyboard only and by touch only at 390x844; every control above the fold at 1366x768.
 - [ ] Calm mode: no lift, fold, slide, shudder or curtain sweep; the stage still reads (shadows, rims, flat wing rows).
 - [ ] Shell keys U, R, M, S never clash with game keys; Ctrl+Z undoes.
+- [ ] Look board (three hero frames at 1366x768) and `art/cover.webp` painted before game logic; pieces, board,
+      stage and puppets are painted sprites; code draws only the geometry listed under Art list. File under 6 MB.
 
 ## Open questions
 
