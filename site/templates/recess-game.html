@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}{{ g.title }} | Recess | Curio Class{% endblock %}
+{% block description %}{{ g.title }}: {{ g.blurb }} A free Recess game from Curio Class. No ads, no accounts.{% endblock %}
+{% block head %}{% include 'recess/_style.html' %}{% endblock %}
+{% block main %}
+<section class="recess-shelf">
+<div class="in">
+  <a class="rg-back" href="/recess/">&larr; Back to the Recess shelf</a>
+  <div class="rg-top">
+    <div class="rg-cover b-{{ g.band }}" style="--bg:{{ g.bg }}" aria-hidden="true">{% if g.cover %}<img src="{{ g.url }}cover.webp" alt="">{% else %}{% include 'recess/art-' ~ g.id ~ '.svg' %}{% endif %}</div>
+    <div>
+      <h1>{{ g.title }}</h1>
+      <p>{{ g.blurb }}</p>
+      <a class="rg-play" href="{{ g.url }}play/">Play {{ g.title }}</a>
+      <div class="rg-meta b-{{ g.band }}"><span class="band">{{ g.band_label }}</span><span class="soon">Saves on this device only</span></div>
+    </div>
+  </div>
+  {% if g.notes_html %}
+  <section class="rg-notes" aria-labelledby="grown-ups">
+    <h2 id="grown-ups">For grown-ups</h2>
+    {{ g.notes_html | safe }}
+  </section>
+  {% endif %}
+</div>
+</section>
+{% endblock %}

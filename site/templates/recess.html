@@ -1,38 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Recess | Curio Class{% endblock %}
 {% block description %}Recess: free games for when the work is done. Go, chess, checkers and puzzles. No ads, no accounts.{% endblock %}
-{% block robots %}<meta name="robots" content="noindex">{% endblock %}
+{% block robots %}{% if not recess_live %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
 {% block head %}
-<style>
-/* Recess has its own look (docs/GAMES.md): a dark toy shelf, each game a box with its grade band as a colored edge. */
-.recess-shelf{--ink:#fff;--soft:#c9c2e8;background:radial-gradient(1200px 600px at 20% -10%,#4b2f9a 0%,transparent 60%),radial-gradient(900px 500px at 100% 10%,#0f6d7a 0%,transparent 55%),#140f2b;color:var(--ink);padding:56px 16px 72px;--rf:ui-rounded,'SF Pro Rounded','Nunito','Segoe UI Variable Display','Segoe UI',system-ui,sans-serif;font-family:var(--rf);overflow:hidden}
-.recess-shelf .in{max-width:1120px;margin:0 auto}
-.rs-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.rs-head h1{margin:0;font:900 clamp(48px,9vw,96px)/.9 var(--rf);letter-spacing:-.02em;background:linear-gradient(100deg,#ffd23f,#ff7a59 45%,#ff5fa2 75%,#8ec5ff);-webkit-background-clip:text;background-clip:text;color:transparent;transform:rotate(-2deg);transform-origin:left}
-.rs-head p{margin:14px 0 0;max-width:36em;font:600 18px/1.5 var(--rf);color:var(--soft)}
-.rs-key{display:flex;gap:8px;flex-wrap:wrap;font:700 13px var(--rf);color:var(--soft)}
-.rs-key span{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.07)}
-.rs-key i{width:12px;height:12px;border-radius:4px;background:var(--band)}
-.recess-shelf h1,.recess-shelf h2{font-family:var(--rf)}
-.rs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:22px;margin-top:44px}
-.box{position:relative;display:flex;flex-direction:column;border-radius:22px;background:var(--bg);color:#fff;text-decoration:none;box-shadow:0 14px 0 -4px rgba(0,0,0,.35),0 24px 40px rgba(0,0,0,.35);border-left:12px solid var(--band);transition:transform .18s cubic-bezier(.2,1.4,.4,1);overflow:hidden}
-.box:nth-child(odd){transform:rotate(-1.2deg)}.box:nth-child(even){transform:rotate(1deg)}
-.box:hover,.box:focus-visible{transform:translateY(-6px) rotate(0)}
-.box:focus-visible{outline:4px solid #ffd23f;outline-offset:4px}
-.art{height:190px;display:grid;place-items:center;position:relative}
-.art svg{width:100%;height:100%}
-.lid{padding:16px 18px 18px;background:rgba(0,0,0,.28)}
-.lid h2{margin:0;font:900 26px/1 var(--rf);letter-spacing:.01em}
-.lid p{margin:6px 0 0;font:600 15px/1.4 var(--rf);color:rgba(255,255,255,.82)}
-.tags{display:flex;justify-content:space-between;align-items:center;margin-top:12px;font:800 12px var(--rf);letter-spacing:.06em;text-transform:uppercase}
-.band{padding:4px 9px;border-radius:999px;background:var(--band);color:#1b1630}
-.soon{opacity:.7}
-.rs-foot{margin-top:56px;max-width:44em;font:600 15px/1.6 var(--rf);color:var(--soft)}
-.rs-foot a{color:#ffd23f}
-@media (prefers-reduced-motion:reduce){.box{transition:none}}
-.b-k2{--band:#ffd23f}.b-35{--band:#5ee08a}.b-68{--band:#5ab8ff}.b-912{--band:#ff6fae}.b-all{--band:linear-gradient(#ffd23f,#5ee08a,#5ab8ff,#ff6fae)}
-.box.b-all{border-left:0;padding-left:12px}.box.b-all::before{content:'';position:absolute;left:0;top:0;bottom:0;width:12px;background:linear-gradient(#ffd23f,#5ee08a,#5ab8ff,#ff6fae)}
-</style>
+{% include 'recess/_style.html' %}
 {% endblock %}
 {% block main %}
 <section class="recess-shelf">
@@ -50,7 +21,7 @@
   {% for g in games %}
     {% set tag = 'a' if g.live else 'div' %}
     <{{ tag }} class="box b-{{ g.band }}" style="--bg:{{ g.bg }}"{% if g.live %} href="{{ g.url }}"{% else %} aria-label="{{ g.title }}, coming soon"{% endif %}>
-      <div class="art" aria-hidden="true">{% include 'recess/art-' ~ g.id ~ '.svg' %}</div>
+      <div class="art" aria-hidden="true">{% if g.cover %}<img src="{{ g.url }}cover.webp" alt="" loading="lazy">{% else %}{% include 'recess/art-' ~ g.id ~ '.svg' %}{% endif %}</div>
       <div class="lid">
         <h2>{{ g.title }}</h2>
         <p>{{ g.blurb }}</p>

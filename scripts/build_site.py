@@ -182,6 +182,21 @@ env.globals['library_live'] = LIBRARY_LIVE
 # The Supply Closet (docs/SUPPLY-CLOSET-PLAN.md) stays out of deploy builds until Sub Day ships; --closet builds it.
 CLOSET_LIVE = bool({'--closet', '--preview'} & set(sys.argv))
 env.globals['closet_live'] = CLOSET_LIVE
+# Recess (docs/GAMES.md): the game shelf at /recess/ and a page per game. A game is live once tools/<id>/tool.json
+# exists (the same Sign-off rename as tools) and its bundle is built; it plays at /recess/<id>/play/. The shelf joins
+# the nav, the sitemap and search once one game is live. --recess previews it: a built draft counts as live there.
+RECESS_PREVIEW = '--recess' in sys.argv
+RECESS = json.loads((DATA / 'recess.json').read_text(encoding='utf-8'))['games']
+for _g in RECESS:
+    _f = TOOLS / _g['id']
+    _g['url'] = f"/recess/{_g['id']}/"
+    _g['file'] = _f / f"{_g['id']}.html"
+    _g['live'] = _g['file'].exists() and ((_f / 'tool.json').exists() or (RECESS_PREVIEW and (_f / 'tool.draft.json').exists()))
+    _g['cover'] = (_f / 'art' / 'cover.webp').exists()
+    _notes = _f / 'notes.md'
+    _g['notes_html'] = markdown.markdown(_notes.read_text(encoding='utf-8')) if _g['live'] and _notes.exists() else ''
+RECESS_LIVE = any(g['live'] for g in RECESS)
+env.globals['recess_live'] = RECESS_LIVE
 pages, sitemap = 0, []
 
 
@@ -945,6 +960,8 @@ if not CLOSET_LIVE:
 index = [{'t': t['title'], 'u': t['url'], 'g': grade_label(t['module']['grade']), 's': t['subject_info']['short'],
           'f': t['format_info']['label'], 'm': t['module']['title'], 'c': ' '.join(t['module']['codes']),
           'd': t['concept'], 'b': t['built']} for t in tools]
+index += [{'t': g['title'], 'u': g['url'], 'g': g['band_label'], 's': 'Recess', 'f': 'Game', 'm': 'Recess', 'c': '',
+           'd': g['blurb'], 'b': True} for g in RECESS if g['live']]
 index += [{'t': m['title'], 'u': m['url'], 'g': grade_label(m['grade']), 's': subjects[m['subject']]['short'], 'f': 'Module',
            'm': m['strand'], 'c': ' '.join(m['codes']), 'd': m['description'],
            'b': any(t['built'] for t in by_module[m['module_id']])} for m in modules.values()]
@@ -969,8 +986,18 @@ if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynth
     index += ws_index
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
-# Recess (docs/GAMES.md): the game shelf. Out of the nav and noindex until the first game is live.
-render('recess.html', '/recess/', index=False, games=json.loads((DATA / 'recess.json').read_text(encoding='utf-8'))['games'])
+# Recess: the shelf (noindex and out of the nav until a game is live), each live game's page and its playable file,
+# and the painted box covers. The setup is near the top (RECESS).
+render('recess.html', '/recess/', index=RECESS_LIVE, games=RECESS)
+for g in RECESS:
+    dest = DIST / 'recess' / g['id']
+    if g['cover']:
+        dest.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(TOOLS / g['id'] / 'art' / 'cover.webp', dest / 'cover.webp')
+    if g['live']:
+        (dest / 'play').mkdir(parents=True, exist_ok=True)
+        shutil.copy2(g['file'], dest / 'play' / 'index.html')
+        render('recess-game.html', g['url'], g=g)
 render(f'pages/{ABOUT}.html', '/about/')
 for name in ['teachers', 'privacy', 'accessibility', 'license']:
     render(f'pages/{name}.html', f'/{name}/')

@@ -106,8 +106,13 @@ sensitivity check on its roots (China, Japan, Korea) like any cultural tool.
   3-letter initials board (local top 10 per level), the win card, sounds, a confetti burst, a seeded daily puzzle and
   device-only storage. `kit/recess-demo.html` is a test bench that uses every call; the API is in the file's header.
 - **The shelf** is `/recess/` (`site/templates/recess.html`, rows in `data/recess.json`, box art in
-  `site/templates/recess/`). Each game is a box with its grade band as a colored edge. It stays out of the nav and
-  noindex until the first game is live; then a row's `live` turns its box into a link.
+  `site/templates/recess/`). Each game is a box with its grade band as a colored edge; the SVG boxes are placeholders.
+- **Going live.** `build_site.py` works out each game from `tools/<id>/`: a game is live when `<id>.html` and
+  `tool.json` exist (rename `tool.draft.json` at Sign-off). A live game gets a page at `/recess/<id>/` (cover, blurb,
+  Play button, the grown-ups' note from `notes.md`) and plays full screen at `/recess/<id>/play/`. `art/cover.webp`
+  replaces the placeholder box as soon as it exists. Once one game is live, the shelf joins the nav, the footer, search
+  and the sitemap; until then it stays noindex and out of the nav. `build_site.py --recess` also counts
+  `tool.draft.json`, for a local preview before Sign-off. Recess games sit on the build board under their own heading.
 
 ## Open questions
 

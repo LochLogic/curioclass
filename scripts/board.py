@@ -78,12 +78,21 @@ def row(tid):
             'sub': 'yes' if (f / 'exit.md').exists() else ''}
 
 
+def recess_rows():
+    """Recess games (data/recess.json, docs/GAMES.md) sit outside the tool catalog. The board and the Desk count them too,
+    as subject 'recess', with the shelf's grade band as their grade."""
+    band = {'k2': 'k-2', '35': '3-5', '68': '6-8', '912': '9-12'}
+    games = json.loads((ROOT / 'data' / 'recess.json').read_text(encoding='utf-8'))['games']
+    return [{'tool_id': g['id'], 'title': g['title'], 'grade': band.get(g['band'], ''), 'subject': 'recess', 'format': 'game',
+             'family': 'recess', 'concept': g['blurb']} for g in games]
+
+
 # Each tool counts under the last step it has finished. Sign-off is counted on the Desk (items marked ready).
 ORDER = ['concept', 'spec', 'build', 'selfcheck', 'refine', 'fix', 'exit', 'artvoice', 'finish', 'live']
 
 
 def main():
-    rows = list(csv.DictReader(open(ROOT / 'data' / 'tools-concepts.csv', encoding='utf-8')))
+    rows = list(csv.DictReader(open(ROOT / 'data' / 'tools-concepts.csv', encoding='utf-8'))) + recess_rows()
     waves = {}
     wf = ROOT / 'data' / 'waves.csv'
     if wf.exists():
@@ -103,6 +112,11 @@ def main():
         out += [f'## Wave {w}', '', '| Tool | Grade | Subject | Format | Family | Stage | Verify | Plan | Sub | Art | Voice |', '|---|---|---|---|---|---|---|---|---|---|---|']
         for r in [r for r in rows if r['wave'] == w]:
             out.append(f"| {r['title']} | {r['grade']} | {r['subject']} | {r['format']} | {r['family'] or ''} | {r['stage']} | {r['verify']} | {r['plan']} | {r['sub']} | {r['art']} | {r['voice']} |")
+        out.append('')
+    rec = [r for r in rows if r['subject'] == 'recess']
+    if rec:
+        out += ['## Recess', '', '| Game | Band | Stage | Verify | Art |', '|---|---|---|---|---|']
+        out += [f"| {r['title']} | {r['grade'] or 'all'} | {r['stage']} | {r['verify']} | {r['art']} |" for r in rec]
         out.append('')
     (ROOT / 'docs' / 'BUILD-BOARD.md').write_text('\n'.join(out) + '\n', encoding='utf-8')
     print('  '.join(f'{s} {tot[s]}' for s in ORDER))
