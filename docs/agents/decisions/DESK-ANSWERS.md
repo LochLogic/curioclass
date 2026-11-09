@@ -2,6 +2,37 @@
 
 Cory's answers to question cards, and what each still needs. Remove a line once it is applied to the specs.
 
+## 2026-11-08
+
+**Recess first collection (Go, Chess, Checkers, Cargo Hold, Untangle)**
+- Cory takes the default on every open question in the five specs ("we'll tweak them later"). Each spec's Open
+  questions section is marked "Owner: default accepted, Cory 2026-11-08; may tweak later." Untangle keeps its name.
+- Computer opponents cover a real range in every board game, gentle to genuinely strong (applied to Chess, Checkers
+  and Go, and in CODEX-RECESS.md).
+- Chess: the top puppet (Lion) plays at about 2250 Elo, the ladder in even steps of about 300, calibrated against
+  Stockfish at dev time (applied to the spec, 3cf5d85b). Chess is built first.
+- Untangle and Cargo Hold: a progressive difficulty ladder with room for 500+ levels without a big file (generated,
+  verified and packed). Cargo Hold is queued after its update; Untangle's design goes to Cory before it is queued, and
+  it is the second build.
+- front-line: the real-data day takes its default (a later round, already in the spec's "Later round (decided)").
+
+## 2026-11-06
+
+**Second spec test (estimation-station, which-way-is-down, box-plot-builder, story-graphs, illusion-lab)**
+- box-plot-builder keeps Luka Doncic's 2023-24 game log as its sports set (applied to the spec).
+- box-plot-builder's data-desk engine addition, box plot option `whiskers: 'range'`, is approved; it is built with the
+  tool and goes into docs/families/data-desk.md in the same change.
+- People art in these five: Codex can paint it; Cory has no concerns there.
+- The Codex prompt file needs nothing for these; the queue picks them up as SPEC_TEST_2.
+
+**Third spec batch (vibration-station, skate-park-angles, cooler-challenge, lunch-survey-cleanup, trade-island)**
+- Spec cost: use 200k tokens as the average for a new-format spec and stop measuring it per batch.
+- trade-island: drop the Rana Plaza case card. Redesign the factory-move policy with a less difficult issue (no deaths or disasters); fix lands with the next spec batch.
+- lunch-survey-cleanup's two open questions (made-up survey, blanks moved to grade 6): Cory has no issue with either. Both stand as specced.
+
+**Fifth spec batch (tap-to-start-puppets, paper-plane-assembly-line, box-packer, front-line, leaf-factory), 2026-11-07**
+- front-line: yes to one real-data day (archived hourly station readings, for example a spring cold front across Kansas from the Iowa Environmental Mesonet), added in a later round after the exit check. This build ships with model days only (applied to the spec).
+
 ## 2026-10-30
 
 **People pictures (q-people-images)**

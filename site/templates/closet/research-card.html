@@ -33,10 +33,20 @@
 .rc-checks { display: flex; gap: 18px; flex-wrap: wrap; }
 .rc-checks span::before { content: ""; display: inline-block; width: 15px; height: 15px; border: 2px solid #234d77; border-radius: 4px; margin-right: 6px; vertical-align: -2px; }
 .rc-fill { display: inline-block; min-width: 260px; border-bottom: 1.5px solid #9aa6b2; height: 1.2em; }
+.rc-say { align-self: flex-start; display: inline-flex; align-items: center; gap: 8px; font: inherit; font-size: 18px; font-weight: 700;
+  color: #fff; background: #234d77; border: 0; border-radius: 999px; padding: 8px 18px 8px 14px; min-height: 48px; cursor: pointer; }
+.rc-say:hover { background: #1a3b5c; }
+.rc-say:focus-visible { outline: 3px solid #f2b705; outline-offset: 3px; }
+.rc-say[aria-pressed="true"] { background: #a33a1c; }
+.rc-say svg { width: 24px; height: 24px; flex: none; }
+.rc-w { border-radius: 4px; transition: background-color .08s; }
+.rc-w.rc-on { background: #ffe066; box-shadow: 0 0 0 2px #ffe066; }
+@media (prefers-reduced-motion: reduce) { .rc-w { transition: none; } }
 @media (max-width: 640px) { .rc-page:not(.rc-measure) { aspect-ratio: auto; padding: 22px 18px; } .rc-page:not(.rc-measure) .rc-head h1 { font-size: 30px; } .rc-page:not(.rc-measure) .rc-pic { width: 90px; height: 90px; font-size: 56px; } }
 @media print {
   @page { size: letter; margin: 0.45in; }
-  .crumbs, .page-head, .rc-bar, .site-head, .site-foot, .skip { display: none !important; }
+  .rc-w.rc-on { background: none; box-shadow: none; }
+  .crumbs, .page-head, .rc-bar, .rc-say, .site-head, .site-foot, .skip { display: none !important; }
   .wrap, main { padding: 0 !important; margin: 0 !important; max-width: none !important; }
   .rc-sheet { display: block; }
   .rc-page { box-shadow: none; border: 0; padding: 0; max-width: none; aspect-ratio: auto; height: 10in; break-after: page; page-break-after: always; }
@@ -50,7 +60,7 @@
 addEventListener('load', () => document.fonts.ready.then(() => document.querySelectorAll('.rc-page').forEach(page => {
   const box = document.createElement('div');
   box.style.cssText = 'position:absolute;left:-9999px;top:0;width:7.6in';
-  const t = page.cloneNode(true); t.classList.add('rc-measure');
+  const t = page.cloneNode(true); t.classList.add('rc-measure'); t.querySelectorAll('.rc-say').forEach(b => b.remove());
   t.style.cssText = 'height:10in;padding:0;max-width:none;aspect-ratio:auto;border:0;box-shadow:none;overflow:hidden';
   box.appendChild(t); document.body.appendChild(box);
   let k = 1;
@@ -59,6 +69,140 @@ addEventListener('load', () => document.fonts.ready.then(() => document.querySel
   box.remove();
 })));
 </script>
+{% if c.title %}
+{% if c.voice %}<script type="application/json" id="rc-voice">{{ c.voice|tojson }}</script>{% endif %}
+<script>
+/* Read to me: reads page 1 aloud (title, reading, quick facts, words to know) and lights up each word as it is said.
+   A card with a recording (scripts/research_voice.py) plays it and lights each word at its measured time; any other
+   card uses the browser's own voice, and the button stays hidden where there is neither. */
+addEventListener('DOMContentLoaded', () => {
+  const say = window.speechSynthesis, btn = document.getElementById('rc-say');
+  if (!btn) return;
+  const page = btn.closest('.rc-page');
+  const parts = [...page.querySelectorAll('.rc-head h1, .rc-read p, .rc-box h2, .rc-box li, .rc-words div')];
+  const blocks = parts.map(el => {
+    const words = [];
+    const walk = node => {
+      for (const kid of [...node.childNodes]) {
+        if (kid.nodeType === 1) { walk(kid); continue; }
+        if (kid.nodeType !== 3 || !kid.textContent.trim()) continue;
+        const frag = document.createDocumentFragment();
+        for (const bit of kid.textContent.split(/(\s+)/)) {
+          if (!bit) continue;
+          if (/^\s+$/.test(bit)) { frag.append(bit); continue; }
+          const w = document.createElement('span');
+          w.className = 'rc-w';
+          w.textContent = bit;
+          frag.append(w);
+          words.push(w);
+        }
+        kid.replaceWith(frag);
+      }
+    };
+    walk(el);
+    let text = '';
+    const starts = words.map(w => { text += (text ? ' ' : '') + w.textContent; return text.length - w.textContent.length; });
+    return {words, text, starts};
+  }).filter(b => b.words.length);
+
+  /* The recording's word times line up with these words only if the card's text is the one that was recorded. */
+  let rec = null;
+  try {
+    const v = JSON.parse(document.getElementById('rc-voice').textContent);
+    if (v.blocks.length === blocks.length && v.blocks.every((b, i) => b[1].length === blocks[i].words.length))
+      rec = {src: v.src, marks: v.blocks.flatMap((b, i) => b[1].map((t, k) => [t, blocks[i].words[k]]))};
+  } catch (e) { rec = null; }
+  const speech = !!(say && window.SpeechSynthesisUtterance);
+  if (!rec && !speech) return;
+
+  let run = 0, lit = null, timer = null, audio = null, frame = 0;
+  const light = w => {
+    if (lit === w) return;
+    if (lit) lit.classList.remove('rc-on');
+    lit = w;
+    if (!w) return;
+    w.classList.add('rc-on');
+    const r = w.getBoundingClientRect();
+    if (r.top < 0 || r.bottom > innerHeight) w.scrollIntoView({block: 'center', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth'});
+  };
+  const stop = () => {
+    run++;
+    clearTimeout(timer);
+    cancelAnimationFrame(frame);
+    if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (speech) say.cancel();
+    light(null);
+    btn.setAttribute('aria-pressed', 'false');
+    btn.querySelector('span').textContent = 'Read to me';
+  };
+
+  /* Recorded voice: follow the audio clock, so the light stays with the voice even if playback stalls or skips. */
+  const play = id => {
+    if (!audio) {
+      audio = new Audio(rec.src);
+      audio.preload = 'auto';
+      audio.addEventListener('ended', () => stop());
+    }
+    const tick = () => {
+      if (id !== run) return;
+      const now = audio.currentTime * 1000 + 30;
+      let lo = 0, hi = rec.marks.length - 1, at = -1;
+      while (lo <= hi) { const mid = (lo + hi) >> 1; if (rec.marks[mid][0] <= now) { at = mid; lo = mid + 1; } else hi = mid - 1; }
+      light(at >= 0 ? rec.marks[at][1] : null);
+      frame = requestAnimationFrame(tick);
+    };
+    audio.currentTime = 0;
+    audio.play().then(() => { if (id === run) tick(); else audio.pause(); })
+      .catch(() => { if (id !== run) return; rec = null; if (speech) speak(0, id); else stop(); });
+  };
+
+  /* Browser voice. */
+  const pick = () => {
+    const vs = say.getVoices().filter(v => /^en(-|_|$)/i.test(v.lang));
+    return vs.find(v => v.localService && /en-US/i.test(v.lang)) || vs.find(v => v.localService) || vs[0] || null;
+  };
+  const speak = (i, id) => {
+    if (id !== run) return;
+    if (i >= blocks.length) { stop(); return; }
+    const b = blocks[i], u = new SpeechSynthesisUtterance(b.text);
+    const v = pick();
+    if (v) { u.voice = v; u.lang = v.lang; } else u.lang = 'en-US';
+    u.rate = 0.85;
+    let heard = false, k = 0;
+    /* Some voices send no word events: then step through the words on a timer shaped by word length. */
+    const step = () => {
+      if (id !== run || heard || k >= b.words.length) return;
+      light(b.words[k]);
+      timer = setTimeout(step, 170 + b.words[k++].textContent.length * 62);
+    };
+    u.onstart = () => { light(b.words[0]); timer = setTimeout(() => { if (!heard) { k = 1; step(); } }, 700); };
+    u.onboundary = e => {
+      if (id !== run || e.name === 'sentence') return;
+      heard = true;
+      clearTimeout(timer);
+      let j = 0;
+      while (j + 1 < b.starts.length && b.starts[j + 1] <= e.charIndex) j++;
+      light(b.words[j]);
+    };
+    u.onend = () => { clearTimeout(timer); if (id === run) setTimeout(() => speak(i + 1, id), 260); };
+    u.onerror = e => { if (id === run && e.error !== 'interrupted' && e.error !== 'canceled') stop(); };
+    say.speak(u);
+  };
+
+  btn.hidden = false;
+  btn.onclick = () => {
+    if (btn.getAttribute('aria-pressed') === 'true') { stop(); return; }
+    stop();
+    btn.setAttribute('aria-pressed', 'true');
+    btn.querySelector('span').textContent = 'Stop reading';
+    if (rec) play(run); else speak(0, run);
+  };
+  if (speech) say.getVoices();
+  addEventListener('pagehide', stop);
+  addEventListener('beforeprint', stop);
+});
+</script>
+{% endif %}
 <div class="wrap">
   {{ crumbs([('Supply Closet', '/closet/'), ('Research Cards', '/closet/research-cards/'), (name, None)]) }}
   <div class="page-head"><h1>{{ name }}</h1><p>Two pages: read and learn, then my research. Print both, or front and back on one sheet.</p></div>
@@ -68,6 +212,7 @@ addEventListener('load', () => document.fonts.ready.then(() => document.querySel
       <div class="rc-top"><b>Research Card · Page 1</b><span>Name <span class="rc-fill" style="min-width:180px"></span></span></div>
       {% if c.title %}
       <div class="rc-head">{% if c.photo %}<img class="rc-pic rc-photo" src="{{ c.photo.src }}" alt="{{ c.photo.alt }}">{% else %}<div class="rc-pic" aria-hidden="true">{{ c.emoji }}</div>{% endif %}<div><h1>{{ c.title }}</h1><span class="rc-kind">{{ c.kind|capitalize }}</span></div></div>
+      <button type="button" class="rc-say" id="rc-say" aria-pressed="false" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 9h4l5-4v14l-5-4H4z"/><path d="M16 8.5a5 5 0 0 1 0 7M18.5 6a8.5 8.5 0 0 1 0 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Read to me</span></button>
       <div class="rc-read">{% for p in c.read %}<p>{{ p }}</p>{% endfor %}</div>
       <div class="rc-box"><h2>Quick facts</h2><ul>{% for f in c.facts %}<li>{{ f }}</li>{% endfor %}</ul></div>
       <div class="rc-box"><h2>Words to know</h2><dl class="rc-words">{% for w, m in c.words %}<div><dt>{{ w }}:</dt> <dd>{{ m }}</dd></div>{% endfor %}</dl></div>

@@ -1,4 +1,4 @@
-// Curio Class: static assets plus a small Worker (worker/index.js) that serves the pictures from R2.
+// Curio Class: static assets plus a small Worker (worker/index.js) that serves the pictures from R2 and takes messages.
 // Deploy: python scripts/build_site.py --library --closet (both flags, or the live site loses those pages);
 //         python scripts/sync_media.py (uploads new pictures to R2); npx wrangler deploy
 {
@@ -10,8 +10,16 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": ["/library/*/art/*", "/modules/*/words/art/*"]
+    "run_worker_first": ["/library/*/art/*", "/modules/*/words/art/*", "/api/*"]
   },
+  // Messages from the home page banner (worker/sql/messages.sql); pulled for review by scripts/messages.py.
+  "d1_databases": [
+    { "binding": "MSG", "database_name": "curioclass-messages", "database_id": "a2c9653b-a605-46c4-8231-cc39d321f6dc" }
+  ],
+  // At most 5 messages a minute from one visitor. The key is used only to count and is never stored.
+  "ratelimits": [
+    { "name": "MSG_LIMIT", "namespace_id": "1001", "simple": { "limit": 5, "period": 60 } }
+  ],
   "r2_buckets": [
     { "binding": "MEDIA", "bucket_name": "curioclass-media" }
   ],

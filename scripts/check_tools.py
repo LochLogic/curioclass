@@ -4,6 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 from bundle_tool import bundle_all  # noqa: E402
+from check_safety import scan as safety_scan  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 GOAL_BYTES = 2 * 1024 * 1024  # the goal: over it prints a note, never a failure (Cory, 2026-11-03)
@@ -11,12 +12,6 @@ REASON_BYTES = 6 * 1024 * 1024  # over this, notes.md must say why in a line sta
 NOTES_SECTIONS = ['## What it teaches', '## Key skills', '## Support at home']
 BACKFILL = set((ROOT / 'docs/agents/notes-backfill.txt').read_text(encoding='utf-8').split())
 REQUIRED_JSON = ['id', 'status', 'hook', 'outcome', 'driver', 'minutes', 'modes', 'grades_label', 'sources', 'third_party', 'updated']
-NETWORK = [
-    (r'<(?:script|img|iframe|audio|video|source|embed)\b[^>]*\ssrc\s*=\s*["\']?(?:https?:)?//', 'external src'),
-    (r'<link\b[^>]*\shref\s*=\s*["\']?(?:https?:)?//', 'external <link>'),
-    (r'@import\s+(?:url\()?["\']?(?:https?:)?//', 'external @import'),
-    (r'url\(\s*["\']?(?:https?:)?//', 'external url()'),
-]
 
 
 def notes_sections(folder):
@@ -39,12 +34,13 @@ def check(folder):
         problems.append('missing tool.json')
     else:
         data = json.loads(meta.read_text(encoding='utf-8'))
-        problems += [f'tool.json missing "{k}"' for k in REQUIRED_JSON if k not in data]
+        recess = data.get('recess')  # a Recess game (docs/GAMES.md): no lesson fields; its shelf row is in data/recess.json
+        problems += [f'tool.json missing "{k}"' for k in REQUIRED_JSON if k not in data and not recess]
         if data.get('id') != tid:
             problems.append(f'tool.json id {data.get("id")!r} does not match folder')
-        if data.get('status') not in ('beta', 'ready'):
+        if not recess and data.get('status') not in ('beta', 'ready'):
             problems.append('status must be beta or ready')
-        if data.get('driver') not in ('teacher', 'students', 'students or teacher'):
+        if not recess and data.get('driver') not in ('teacher', 'students', 'students or teacher'):
             problems.append('driver must be teacher, students, or "students or teacher"')
     text = html.read_text(encoding='utf-8', errors='replace')
     size = html.stat().st_size
@@ -54,9 +50,7 @@ def check(folder):
             problems.append(f'{size / 1e6:.1f} MB is over 6 MB with no "Size:" line in notes.md saying why')
     elif size > GOAL_BYTES:
         print(f'note: {tid} is {size / 1e6:.1f} MB, over the 2 MB goal (fine; trim if it is easy)')
-    for rx, label in NETWORK:
-        for m in re.finditer(rx, text, re.I):
-            problems.append(f'{label}: {text[m.start():m.start() + 90]!r}')
+    problems += safety_scan(text, folder)[0]  # outside servers, tracking, code from strings (scripts/check_safety.py)
     for rx, label in [(r'<html[^>]*\slang=', '<html lang>'), (r'<meta[^>]*charset', 'meta charset'),
                       (r'<meta[^>]*name=["\']viewport', 'meta viewport'), (r'<title>[^<]+</title>', '<title>'),
                       (r'<meta[^>]*name=["\']description', 'meta description')]:
@@ -103,7 +97,8 @@ for folder in sorted(p for p in (ROOT / 'tools').iterdir() if p.is_dir()):
     if not (folder / 'tool.json').exists() and (folder / 'spec.md').exists():  # specced, not built yet
         print(f'spec  {folder.name}')
         continue
-    problems = check(folder) + (notes_sections(folder) if (folder / 'tool.json').exists() else [])
+    problems = check(folder) + (notes_sections(folder) if (folder / 'tool.json').exists()
+                                and not json.loads((folder / 'tool.json').read_text(encoding='utf-8')).get('recess') else [])
     print(f'{"FAIL" if problems else "ok  "} {folder.name}')
     for p in problems:
         print('     ', p)

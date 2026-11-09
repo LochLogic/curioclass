@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Recess | Curio Class{% endblock %}
+{% block description %}Recess: free games for when the work is done. Go, chess, checkers and puzzles. No ads, no accounts.{% endblock %}
+{% block robots %}{% if not recess_live %}<meta name="robots" content="noindex">{% endif %}{% endblock %}
+{% block head %}
+{% include 'recess/_style.html' %}
+{% endblock %}
+{% block main %}
+<section class="recess-shelf">
+<div class="in">
+  <div class="rs-head">
+    <div>
+      <h1>Recess</h1>
+      <p>Games for when the work is done. Real games where the thinking is the fun. Everything saves on this device only. No ads, no accounts.</p>
+    </div>
+    <div class="rs-key" aria-label="Grade band colors">
+      <span class="b-k2"><i></i>K-2</span><span class="b-35"><i></i>3-5</span><span class="b-68"><i></i>6-8</span><span class="b-912"><i></i>9-12</span>
+    </div>
+  </div>
+  <div class="rs-grid">
+  {% for g in games %}
+    {% set tag = 'a' if g.live else 'div' %}
+    <{{ tag }} class="box b-{{ g.band }}" style="--bg:{{ g.bg }}"{% if g.live %} href="{{ g.url }}"{% else %} aria-label="{{ g.title }}, coming soon"{% endif %}>
+      <div class="art" aria-hidden="true">{% if g.cover %}<img src="{{ g.url }}cover.webp" alt="" loading="lazy">{% else %}{% include 'recess/art-' ~ g.id ~ '.svg' %}{% endif %}</div>
+      <div class="lid">
+        <h2>{{ g.title }}</h2>
+        <p>{{ g.blurb }}</p>
+        <div class="tags"><span class="band">{{ g.band_label }}</span>{% if not g.live %}<span class="soon">Coming soon</span>{% endif %}</div>
+      </div>
+    </{{ tag }}>
+  {% endfor %}
+  </div>
+  <p class="rs-foot">For grown-ups: grade bands are a guide, not a gate. Anyone can play anything. Each game has a note on what kids are practicing underneath. Scores and initials stay on this device.</p>
+</div>
+</section>
+{% endblock %}

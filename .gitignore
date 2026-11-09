@@ -17,3 +17,7 @@ tools/*/*.html
 closet/words/art/_raw/
 __pycache__/
 server.pid
+build/research-voice/
+
+# Messages pulled from the home page message box (scripts/messages.py): private, never committed
+docs/Return/messages/

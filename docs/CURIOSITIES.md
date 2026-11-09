@@ -278,6 +278,30 @@ respond over centuries with real physics, and the honest answer ("this takes ten
 wonder. Watch the overlap with Pocket Universe's mission-control look, and keep the model honest (a named source for
 every constant, a readout that says what it leaves out).
 
+### The Wrecking Yard (destruction Curiosities, Cory 2026-11-07)
+
+Destruction is how engineers learn: every failure shows where the forces were going. These are curious and
+satisfying, never crass: no people in them, crash test dummies stay abstract, slow-motion replay and force readouts
+on every collapse, and the payoff is seeing why it failed. Each needs more polish and size than a first idea, and most
+end in the same challenge: now build something that survives.
+
+- **Load Path:** pull bricks or beams out of a building or bridge one at a time; stress colors shift through what is
+  left until it gives. Could be a "demolition day" mode inside Span and Spire (No. 01) rather than a new tool.
+- **Controlled Demolition:** plan the charge order so a tower falls into its own footprint; the wrong order tips it.
+  Center of mass, sequencing, timing.
+- **Earthquake Table:** build, then shake with real recorded quakes; compare a rigid frame, cross bracing, a tuned
+  mass damper and base isolation. Then build one that stands.
+- **Wrecking Ball:** pendulum energy into a wall; mass, height and swing angle against what breaks. Energy and
+  momentum.
+- **Catapult Range:** trebuchet and catapult against walls of different materials. Projectile motion, energy
+  storage, the angle that reaches farthest.
+- **Water Works (instead of erosion):** the power of moving water against buildings and shapes. A flume or wave tank
+  where a flood or wave hits a flat wall, a wedge, a rounded pier, a house on stilts; force readouts follow the real
+  drag relation (force grows with the square of speed), and a wedge splits the flow the way a bridge pier's cutwater
+  or a ship's bow does. Then the challenge: design a building or barrier that withstands it.
+
+Open: which is first, and whether Load Path lives inside Span and Spire.
+
 ### Open questions for the fleshing out
 
 1. One real place done deeply, or a few sites (Second Growth) and planets (Atmosphere Console) to choose from?

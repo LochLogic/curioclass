@@ -37,5 +37,10 @@
   "The hidden camera: eye height 100 meters, turn 20 degrees, 24 millimeter lens.": "qwen3-tts-1.7b-base clone",
   "The hidden camera: eye height 20 meters, turn 55 degrees, 35 millimeter lens.": "qwen3-tts-1.7b-base clone",
   "The hidden camera: eye height 300 meters, turn 40 degrees, 35 millimeter lens.": "qwen3-tts-1.7b-base clone",
-  "The hidden camera: eye height 2.5 meters, turn 15 degrees, 24 millimeter lens, tilted up 15 degrees.": "qwen3-tts-1.7b-base clone"
+  "The hidden camera: eye height 2.5 meters, turn 15 degrees, 24 millimeter lens, tilted up 15 degrees.": "qwen3-tts-1.7b-base clone",
+  "Receding edges run to the two vanishing points. Uprights stay parallel. That's two-point perspective.": "qwen3-tts-1.7b-base clone",
+  "Receding edges run to two vanishing points. Uprights meet at the third. That's three-point perspective.": "qwen3-tts-1.7b-base clone",
+  "Drag to draw. Receding edges snap to the two side vanishing points; uprights snap to the third. Hold Shift for a free line.": "qwen3-tts-1.7b-base clone",
+  "Fix the dashed red lines. Erase one, then draw it again toward its vanishing point.": "qwen3-tts-1.7b-base clone",
+  "Read the eye height: compare the outline's horizon with the roofs. Roofs below eye level are visible. Press Extend outline edges.": "qwen3-tts-1.7b-base clone"
 }

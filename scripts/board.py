@@ -3,20 +3,20 @@ r"""The build board: where every tool is in the pipeline, worked out from its fi
     python scripts/board.py              write docs/BUILD-BOARD.md and print the totals
     python scripts/board.py --wave 1     print one wave's rows
 
-Stages, in order (docs/BUILD-PLAN.md):
-  concept   only the catalog line
-  spec      tools/<id>/spec.md (spec agent, docs/agents/SPEC.md)
-  codex     built by Codex in S:\CurioClass-codex (codex-report.md there), not pulled into this repo yet; reviewed
-            tools are pulled in and count as built (docs/agents/CODEX.md, "Pulling tools in")
-  built     tool.draft.json and src.html (build agent, docs/agents/BUILD.md)
-  verified  Refine passed: refine.md whose first line says PASS (docs/agents/REFINE.md), or for tools checked before
-            2026-10-27, verify.md (docs/agents/archive/VERIFY.md). The key stays 'verified'; the desk labels it Refine.
-  art       every asset in art/prompts.json has its .webp
-  voice     every line in voice/lines.json has its recording (or the tool has no voice)
-  live      tool.json (on the site)
+Stages, in order (docs/BUILD-PLAN.md, "Names for each step"). Each tool counts under the last step it has finished:
+  concept    Idea: only the catalog line
+  spec       Spec: tools/<id>/spec.md (docs/agents/SPEC.md)
+  build      Build: codex-report.md (in Codex's checkout until pulled), or a Claude build with no Self-check
+  selfcheck  Self-check: codex-review.md; waiting for Refine
+  refine     Refine: refine.md's first line is OPEN or ROUND 2 and there is no polish.md; waiting for Fix
+  fix        Fix: polish.md is in; waiting for the Exit check
+  exit       Exit check: refine.md (or a pre-2026-10-27 verify.md) says PASS; waiting for art and voice
+  artvoice   Art and voice: every asset painted and every line recorded (or none asked for); waiting for the Finish check
+  finish     Finish check: final.md says PASS; waiting for Cory's Sign-off on the Desk
+  live       tool.json (on the site)
 The Plan column says whether tools/<id>/plan.md exists (docs/LESSON-PLANS.md), and Sub whether exit.md does (its Sub Day
 packet). Neither holds back the stage.
-Waves come from data/waves.csv (tool_id,wave). Review state lives on the Review Desk, not here.
+Waves come from data/waves.csv (tool_id,wave). Sign-off state lives on the Desk, not here.
 """
 import csv, json, sys
 from pathlib import Path
@@ -45,33 +45,54 @@ def voice(f):
     return sum((f / 'voice' / clip_name(t)).exists() for t in lines), len(lines)
 
 
+def first_line(p):
+    return p.read_text(encoding='utf-8').split('\n', 1)[0].upper() if p.exists() else ''
+
+
 def row(tid):
+    """Where a tool is: the last step it has finished (docs/BUILD-PLAN.md, "Names for each step")."""
     f = TOOLS / tid
     a, an = art(f); v, vn = voice(f)
     verify = f / 'refine.md' if (f / 'refine.md').exists() else f / 'verify.md'
-    verdict = verify.read_text(encoding='utf-8').split('\n', 1)[0].upper() if verify.exists() else ''
+    verdict = first_line(verify)
     if (f / 'tool.json').exists():
         st = 'live'
     elif (f / 'tool.draft.json').exists():
-        final = f / 'final.md'  # the Final look after art and voice (REFINE.md): the review before Cory's
-        looked = final.exists() and 'PASS' in final.read_text(encoding='utf-8').split('\n', 1)[0].upper()
-        st = ('final' if looked else 'voice') if 'PASS' in verdict and a == an and v == vn and vn else 'art' if 'PASS' in verdict and a == an else 'verified' if 'PASS' in verdict else 'built'
+        if 'PASS' in verdict:
+            if a == an and v == vn:  # every asset painted and every line recorded (or none asked for)
+                st = 'finish' if 'PASS' in first_line(f / 'final.md') else 'artvoice'
+            else:
+                st = 'exit'
+        elif verdict:  # Refine wrote its fix list (OPEN, or ROUND 2 after an exit check)
+            st = 'fix' if (f / 'polish.md').exists() else 'refine'
+        else:
+            st = 'selfcheck' if (f / 'codex-review.md').exists() else 'build'
     elif (f / 'spec.md').exists():
         st = 'spec'
     else:
         st = 'concept'
-    if st in ('concept', 'spec') and (CODEX / tid / 'codex-report.md').exists():
-        st = 'codex'
+    if st in ('concept', 'spec') and (CODEX / tid / 'codex-report.md').exists():  # built in Codex's checkout, not pulled
+        st = 'selfcheck' if (CODEX / tid / 'codex-review.md').exists() else 'build'
     return {'stage': st, 'art': f'{a}/{an}' if an else '-', 'voice': f'{v}/{vn}' if vn else '-',
             'verify': 'PASS' if 'PASS' in verdict else ('FIX' if verdict else ''), 'plan': 'yes' if (f / 'plan.md').exists() else '',
             'sub': 'yes' if (f / 'exit.md').exists() else ''}
 
 
-ORDER = ['concept', 'spec', 'codex', 'built', 'verified', 'art', 'voice', 'final', 'live']
+def recess_rows():
+    """Recess games (data/recess.json, docs/GAMES.md) sit outside the tool catalog. The board and the Desk count them too,
+    as subject 'recess', with the shelf's grade band as their grade."""
+    band = {'k2': 'k-2', '35': '3-5', '68': '6-8', '912': '9-12'}
+    games = json.loads((ROOT / 'data' / 'recess.json').read_text(encoding='utf-8'))['games']
+    return [{'tool_id': g['id'], 'title': g['title'], 'grade': band.get(g['band'], ''), 'subject': 'recess', 'format': 'game',
+             'family': 'recess', 'concept': g['blurb']} for g in games]
+
+
+# Each tool counts under the last step it has finished. Sign-off is counted on the Desk (items marked ready).
+ORDER = ['concept', 'spec', 'build', 'selfcheck', 'refine', 'fix', 'exit', 'artvoice', 'finish', 'live']
 
 
 def main():
-    rows = list(csv.DictReader(open(ROOT / 'data' / 'tools-concepts.csv', encoding='utf-8')))
+    rows = list(csv.DictReader(open(ROOT / 'data' / 'tools-concepts.csv', encoding='utf-8'))) + recess_rows()
     waves = {}
     wf = ROOT / 'data' / 'waves.csv'
     if wf.exists():
@@ -91,6 +112,11 @@ def main():
         out += [f'## Wave {w}', '', '| Tool | Grade | Subject | Format | Family | Stage | Verify | Plan | Sub | Art | Voice |', '|---|---|---|---|---|---|---|---|---|---|---|']
         for r in [r for r in rows if r['wave'] == w]:
             out.append(f"| {r['title']} | {r['grade']} | {r['subject']} | {r['format']} | {r['family'] or ''} | {r['stage']} | {r['verify']} | {r['plan']} | {r['sub']} | {r['art']} | {r['voice']} |")
+        out.append('')
+    rec = [r for r in rows if r['subject'] == 'recess']
+    if rec:
+        out += ['## Recess', '', '| Game | Band | Stage | Verify | Art |', '|---|---|---|---|---|']
+        out += [f"| {r['title']} | {r['grade'] or 'all'} | {r['stage']} | {r['verify']} | {r['art']} |" for r in rec]
         out.append('')
     (ROOT / 'docs' / 'BUILD-BOARD.md').write_text('\n'.join(out) + '\n', encoding='utf-8')
     print('  '.join(f'{s} {tot[s]}' for s in ORDER))

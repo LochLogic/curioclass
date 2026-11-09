@@ -1,0 +1,22 @@
+# Cory (LochLogic) owns everything. With branch protection on main set to "require review from Code Owners",
+# no pull request can merge without Cory's approval. The lines below name the files that set direction,
+# so nobody misses that they are Cory's call alone.
+*                                   @LochLogic
+
+# Direction and rules
+/docs/VISION.md                     @LochLogic
+/docs/ROADMAP.md                    @LochLogic
+/docs/CURIOSITIES.md                @LochLogic
+/docs/GAMES.md                      @LochLogic
+/docs/TOOL-CONTRACT.md              @LochLogic
+/docs/agents/decisions/             @LochLogic
+/docs/agents/*.md                   @LochLogic
+
+# Licenses, deploy and safety
+/LICENSE                            @LochLogic
+/LICENSE-CONTENT.md                 @LochLogic
+/CONTRIBUTING.md                    @LochLogic
+/.github/                           @LochLogic
+/wrangler.jsonc                     @LochLogic
+/worker/                            @LochLogic
+/scripts/check_safety.py            @LochLogic

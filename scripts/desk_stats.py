@@ -3,7 +3,7 @@ r"""Tool counts for the Review Desk's stats panel: every catalog tool by subject
     python scripts/desk_stats.py <out.json>     write the stats document (then ArtifactData set stats/board)
 
 Stages come from board.py (worked out from each tool's files), so the panel and docs/BUILD-BOARD.md always agree.
-Planned (the total) is every row in data/tools-concepts.csv; each stage column counts the tools that are at that stage
+Planned (the total) is every row in data/tools-concepts.csv plus the Recess games (data/recess.json); each stage column counts the tools that are at that stage
 now, so a row adds up to it. The first stage, noidea, counts tools on the plan whose catalog line has no idea written
 yet, so the desk shows at a glance that every planned tool has been ideated (0). `where` maps each tool to its subject, band and stage, so the page can move the tools waiting
 on Cory (desk items marked ready) out of their stage into its own "Your review" column, and the row still adds up.
@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'scripts'))
-from board import ORDER, row  # noqa: E402
+from board import ORDER, recess_rows, row  # noqa: E402
 
 STAGES = ['noidea'] + ORDER
 
@@ -34,10 +34,11 @@ def table(rows, key, order):
 
 
 def main():
-    rows = list(csv.DictReader(open(ROOT / 'data' / 'tools-concepts.csv', encoding='utf-8')))
+    rows = list(csv.DictReader(open(ROOT / 'data' / 'tools-concepts.csv', encoding='utf-8'))) + recess_rows()
     for r in rows:
         r['stage'] = row(r['tool_id'])['stage'] if (r.get('concept') or '').strip() else 'noidea'
     labels = {s['subject_id']: s['label'] for s in csv.DictReader(open(ROOT / 'data' / 'subjects.csv', encoding='utf-8'))}
+    labels['recess'] = 'Recess'  # the games (board.recess_rows)
     subj = table(rows, lambda r: labels.get(r['subject'], r['subject']), list(labels.values()))
     subj.sort(key=lambda t: -t['planned'])
     band = table(rows, lambda r: BANDS.get(r['grade'], 'Across bands'), BAND_ORDER)
