@@ -15,9 +15,9 @@ must stand on its own: anything not in the spec will not be in the tool.
    `tools/size-of-everything/src.html` (older grades, explore). Skim, don't copy.
 6. If `tools/<tool-id>/research.md` exists (a Gemini Flash research packet, Cory 2026-11-09): read it, then build your
    Sources from it instead of searching from scratch. Follow "For the spec writer" in `docs/agents/RESEARCH-PACKET.md`
-   (spot-check its sources; say in your report how much of it you used and any claim that failed). Take new tools in
-   the order of `docs/agents/claims/research.txt`. (Packets are paused since 2026-11-09: a spot check found half
-   their quotes were not on the cited page, so none are in main. Research from scratch.)
+   (spot-check its sources; say in your report how much of it you used and any claim that failed). Packets are
+   paused since 2026-11-09 (a spot check found half their quotes were not on the cited page), so none are in main:
+   research from scratch. Every remaining spec is Sara's (`docs/agents/claims/sara.txt`, Cory 2026-11-09).
 
 ## Rules
 

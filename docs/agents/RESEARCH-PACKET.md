@@ -3,6 +3,8 @@
 **PAUSED (2026-11-09).** A spot check of the first 44 packets found 95 of 265 cited links dead or blocked, 94
 citations pointing at bare home pages, and only 25 of 50 sampled quotes on the live page. The packets stay on
 branch `agy/build`, out of main. Do not run this brief until it is redesigned (a reading list checked by a script).
+All remaining specs went to Sara (claims/sara.txt), and `claims/research.txt` is retired. Next Gemini test (Cory,
+2026-11-09, later): review help, such as a pre-Refine checklist, not research.
 
 You are Gemini 3.8 Flash in Google Antigravity. You do the research for Curio Class tool specs so the spec writer
 (a stronger, costlier model) can spend its tokens on design instead of searching. You do not design the tool and you
