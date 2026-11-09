@@ -5,7 +5,7 @@ title Curio Class specs (Sara)
 set "CLAUDE_CONFIG_DIR=%USERPROFILE%\.claude-sara"
 set "CLAUDE_EXE="
 where claude >nul 2>nul && set "CLAUDE_EXE=claude"
-if not defined CLAUDE_EXE for /f "delims=" %%i in ('powershell -NoProfile -Command "(Get-ChildItem \"$env:LOCALAPPDATA\Claude-Data\" -Recurse -Depth 4 -Filter claude.exe -ErrorAction SilentlyContinue ^| Sort-Object LastWriteTime -Descending ^| Select-Object -First 1).FullName"') do set "CLAUDE_EXE=%%i"
+if not defined CLAUDE_EXE for /f "delims=" %%i in ('powershell -NoProfile -Command "(Get-ChildItem (Join-Path $env:LOCALAPPDATA 'Claude-Data') -Recurse -Depth 4 -Filter claude.exe -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending | Select-Object -First 1).FullName"') do set "CLAUDE_EXE=%%i"
 if not defined CLAUDE_EXE (
   echo Could not find Claude Code. Ask Cory.
   pause
