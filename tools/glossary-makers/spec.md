@@ -91,7 +91,7 @@ Bank voice `calm-professor` as Professor Hedge and the passage reader (unique in
 Read speaks the hint, which names the next action and control and never a disabled one.
 
 ## Family engine
-None (word-lab is a single tool, not a family engine). Tool-only code: clue trays, swap test, chips, dictionary page, glossary page.
+word-lab (`kit/wordlab.js`), described in full in tools/word-family-tree/spec.md, exposed as `__tool.wl`. This tool uses: Morphemes (the grade 5 Latin and Greek parts with kid meanings), Word records (each bold word with its passage sentence, picture and kid gloss), Split (the word parts tray), Lookup (the reference shelf's dictionary entry), Strategy log (`wl.log` with 'context', 'parts', 'dictionary' as the trays are used), Guess and verify (the student's definition is kept as a guess; the engine never grades a meaning). Not Build, Tree view, Card view or Road key. The swap test, chips, precise word round, link round and glossary page are tool code.
 
 ## Can it be beaten?
 | Check | Ways to pass without the skill | Why each fails |
