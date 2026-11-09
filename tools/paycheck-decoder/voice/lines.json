@@ -1,0 +1,18 @@
+{
+  "voice": "calm-professor",
+  "style": "Say evenly and clearly, like a calm, friendly college professor",
+  "lines": [
+    "This is a real kind of pay stub. Tap any line to see the math behind it.",
+    "Tap Plain words to see what each short label means.",
+    "Change the hours, the pay or the benefits. Lines that move will flash.",
+    "Change the salary or the benefits. Lines that move will flash.",
+    "Drag the slider to guess the take-home pay. Then tap Check.",
+    "This setup cannot cover its deductions. Tap Change it to raise hours or reduce benefits before guessing.",
+    "Gross pay is zero. Tap Check to see the zero-pay stub, or Next stub for another check.",
+    "Gross and take-home were both zero. There is no percentage of gross to compare."
+  ],
+  "dynamic_events": [
+    "deltaBig",
+    "guessResult"
+  ]
+}

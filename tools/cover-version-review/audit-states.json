@@ -117,13 +117,51 @@
         }
       ],
       "keep": [
-        ".transport",
-        "#hint"
+        "#taste-dialog"
       ],
       "sizes": [
         "1366x768",
         "680x425",
         "375x812"
+      ]
+    },
+    {
+      "name": "review-explained-claim",
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-measure"
+        },
+        {
+          "js": "__tool.edit('loudness','loud');"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#m-review"
+        },
+        {
+          "click": "#line-0"
+        },
+        {
+          "click": ".evidence-chip"
+        },
+        {
+          "js": "const e=document.getElementById('because');e.value='The soft voice makes the simple words sound intimate.';e.dispatchEvent(new Event('input'));"
+        },
+        {
+          "click": "#add"
+        }
+      ],
+      "keep": [
+        ".transport",
+        "#hint",
+        "#claims .pin"
       ]
     }
   ]

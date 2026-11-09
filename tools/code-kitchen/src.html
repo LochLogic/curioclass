@@ -122,6 +122,9 @@ main {
 .actions button {
   font-size:13px
 }
+#next-levels {
+  display:none
+}
 .actions #new-ticket {
   grid-column:1/-1;
   background:#f5d8a4
@@ -449,6 +452,12 @@ main {
   box-shadow:0 6px 15px #40281530;
   animation:pass .35s ease-out
 }
+.served-flash small {
+  display:block;
+  margin-top:5px;
+  font-size:12px;
+  line-height:1.35
+}
 @keyframes pass {
   from {
     transform:translateX(-40px);
@@ -523,7 +532,10 @@ main {
   left:0;
   width:100%;
   font:700 11px ui-monospace,Consolas,monospace;
-  background:#fff7e5e8
+  background:#fff7e5e8;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap
 }
 .scope {
   width:100%;
@@ -773,6 +785,11 @@ dialog input,dialog select {
     width:65px
   }
 }
+@media (min-width:1101px) and (max-height:740px) {
+  .levels {
+    display:none
+  }
+}
 @media (max-width:1100px) {
   main {
     grid-template-columns:minmax(0,1fr) 205px;
@@ -820,6 +837,38 @@ dialog input,dialog select {
   }
 }
 @media (max-height:550px) and (min-width:600px) {
+  .actions:has(#new-ticket:not([hidden])) {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .actions:has(#new-ticket:not([hidden])) #cook {
+    grid-column:1/3;
+  }
+  .actions:has(#new-ticket:not([hidden])) #new-ticket {
+    grid-column:3;
+  }
+  .actions:has(#new-ticket:not([hidden])) #restart {
+    grid-column:1/-1;
+  }
+  .actions:has(#new-ticket:not([hidden])) button:not(#cook) {
+    padding:0 3px;
+    font-size:12px;
+  }
+  .actions:has(#next-levels:not([hidden])) {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+  .actions #next-levels:not([hidden]) {
+    display:block;
+  }
+  .actions:has(#next-levels:not([hidden])) button:not(#cook) {
+    padding:0 3px;
+    font-size:12px;
+  }
+  .actions:has(#next-levels:not([hidden])) #restart {
+    grid-column:span 2;
+  }
+  .panel:has(#next-levels:not([hidden])) #choose-level {
+    display:none;
+  }
   header {
     padding:5px 8px;
     gap:5px
@@ -1387,6 +1436,7 @@ dialog input,dialog select {
       <button id="new-ticket" hidden>+ New ticket</button>
       <button id="step">Step</button><button id="stop">Stop</button>
       <button id="undo">Undo</button><button id="restart">Restart level</button>
+      <button id="next-levels" hidden>Levels</button>
     </div>
     <p class="counter" id="edits">A1 · Numbers</p>
     <h2>Recipe tools</h2>
@@ -1422,12 +1472,12 @@ dialog input,dialog select {
       </section>
     </div>
     <div class="footer"><span id="footer-level">Set A · Jars</span><span>Saved only on this device.</span></div>
-    <div class="manager" id="manager" hidden>
-      <h2>Manager's note · Menu change</h2><p id="manager-text"></p><button id="got-it">Back to the card</button>
+    <div class="manager" id="manager" role="dialog" aria-modal="false" aria-labelledby="manager-title" hidden>
+      <h2 id="manager-title">Manager's note · Menu change</h2><p id="manager-text"></p><button id="got-it">Back to the card</button>
     </div>
   </div>
 </main>
-<dialog id="pantry-dialog">
+<dialog id="pantry-dialog" aria-label="Pantry: fill this slot">
   <div class="dialog-head"><h2>Pantry · Fill this slot</h2><button data-close>Close</button></div>
   <p class="muted">Numbers count. Quotes make text. True and False answer yes or no.</p>
   <input id="value-edit" aria-label="Slot value" autocomplete="off" spellcheck="false">
@@ -1435,7 +1485,7 @@ dialog input,dialog select {
   <div class="pantry-text" id="scope-values"></div>
   <div class="dialog-actions"><button id="use-value" class="primary">Use value</button></div>
 </dialog>
-<dialog id="add-dialog">
+<dialog id="add-dialog" aria-label="Add a recipe line">
   <div class="dialog-head"><h2>Add under selected line</h2><button data-close>Close</button></div>
   <div id="add-options"></div>
   <div id="line-composer" hidden>
@@ -1445,11 +1495,11 @@ dialog input,dialog select {
   </div>
   <p class="muted">A procedure's indented lines run when its name is called.</p>
 </dialog>
-<dialog id="level-dialog">
+<dialog id="level-dialog" aria-label="Ticket sets">
   <div class="dialog-head"><h2>Ticket sets</h2><button data-close>Close</button></div><div id="level-options"></div>
   <p class="muted">✓ Served · Gold ring: menu change met in par. All levels are open.</p>
 </dialog>
-<dialog id="ticket-dialog">
+<dialog id="ticket-dialog" aria-label="Write a new ticket">
   <div class="dialog-head"><h2>Write a new ticket</h2><button data-close>Close</button></div>
   <form id="ticket-form">
     <div class="form-grid">
@@ -1467,7 +1517,7 @@ dialog input,dialog select {
     <div class="dialog-actions"><button type="submit" class="primary">Hang ticket</button></div>
   </form>
 </dialog>
-<dialog id="confirm-dialog">
+<dialog id="confirm-dialog" aria-label="Clear saved kitchen">
   <h2>Clear saved kitchen?</h2><p>This removes your Open kitchen card and tickets from this device.</p>
   <div class="dialog-actions"><button data-close>No, keep it</button><button id="confirm-clear" class="primary">Yes, clear saved</button></div>
 </dialog>
@@ -1489,13 +1539,22 @@ dialog input,dialog select {
     slot:'Pick a value from the pantry, or type one. Quotes make it text.',
     stopped:'The cook stopped. Read the red note on that line, fix it, then press Cook.',
     served:"Every order's out.", change:'The menu just changed. Update your card, then press Cook again.',
-    par:"One change did it. That's what a procedure buys you.",
-    over:'That took a lot of edits. Press Restart level and try a procedure, so the change is in one place.',
-    blank:'A blank holds whatever you pass in, only while that recipe runs.',
+    par:'One change did it. Keeping shared code in one place pays off.',
+    over:'Press Restart level to try keeping each menu change in one place.',
+    blank:'A blank holds whatever you pass in, only while that recipe runs. Press Cook to test the card.',
+    incomplete:'Check the unserved or crossed-out tickets. Edit the card, then press Cook.',
+    ticket:'Set the order values, then press Hang ticket.',
+    add:'Choose a line, fill its slots, then press Insert line.',
+    insert:'Fill the new line slots, then press Insert line.',
+    step:'Press Step for the next line, or Cook to run from the start.',
+    levels:'Choose a level in Ticket sets. All twelve levels are open.',
+    confirm:'Choose Yes, clear saved to remove this kitchen, or No, keep it to go back.',
+    'open-ready':'Choose a slot to edit your saved card, or press Cook to test its tickets.',
     'w-open':'Press New ticket to write an order, then write the card and press Cook.'
   };
   const state = {mode:'tickets', level:1, card:[], tickets:[], phase:0, edits:0, frozen:false, selected:0,
-    slot:null, running:false, error:null, active:-1, globals:{}, locals:null, procedure:'', plate:null, results:[], done:false};
+    slot:null, running:false, error:null, active:-1, globals:{}, locals:null, procedure:'', plate:null, results:[], done:false,
+    changeEdits:[]};
   let history = [], runtime = null, runToken = 0, revision = 0, eventId = 0, openCache = null, progress = {};
   try {progress = JSON.parse(localStorage.getItem('curio-code-kitchen') || '{}');
   } catch {}
@@ -1576,7 +1635,7 @@ dialog input,dialog select {
       state.done=false;
       state.active=-1;
       state.plate=blankPlate();
-      state.globals={};
+      state.globals=Object.create(null);
       state.locals=null;
       state.procedure='';
       state.results=[];
@@ -1590,6 +1649,7 @@ dialog input,dialog select {
   }
   function mutate(fn,keepCard=false) {
     halt();
+    if(V.playing===L.stopped)V.hush();
     history.push(snapshot());
     if (history.length>40) history.shift();
     fn();
@@ -1619,6 +1679,7 @@ dialog input,dialog select {
     state.card=clone(d.card);
     state.tickets=clone(d.tickets);
     state.phase=0;
+    state.changeEdits=[];
     state.edits=0;
     state.frozen=false;
     state.done=false;
@@ -1629,7 +1690,8 @@ dialog input,dialog select {
     $('manager').hidden=true;
     hint(L['w-tickets']);
     render();
-    if (state.level>=7 && state.level<=9) {hint(L.blank+' Press Cook to test the card.');
+    document.querySelector('.panel').scrollTop=0;
+    if (state.level>=7 && state.level<=9) {hint(L.blank);
       how('blank',()=>!state.running);
     }
     else V.welcome();
@@ -1650,15 +1712,18 @@ dialog input,dialog select {
     state.card=Array.isArray(data?.card)?data.card.slice(0,40):[];
     state.tickets=Array.isArray(data?.tickets)?data.tickets.slice(0,8):[];
     state.phase=0;
+    state.changeEdits=[];
     state.edits=0;
     state.frozen=false;
     state.selected=0;
     state.slot=null;
     state.done=false;
     $('manager').hidden=true;
-    hint(state.tickets.length?'Choose a slot to edit, or press Cook to test your saved tickets.':L['w-open']);
+    hint(state.tickets.length?L['open-ready']:L['w-open']);
     render();
-    V.welcome();
+    document.querySelector('.panel').scrollTop=0;
+    if(state.tickets.length)how('open-ready',()=>state.mode==='open'&&!state.running);
+    else V.welcome();
   }
   function kind(value) {
     if (/^-?\d+$/.test(value.trim())) return 'num';
@@ -1713,22 +1778,24 @@ dialog input,dialog select {
   }
   function jarHTML(name,value) {
     const display=typeof value==='boolean'?(value?'True':'False'):typeof value==='string'?'"'+value+'"':String(value);
-    return `<div class="jar" title="${esc(name+' = '+display)}"><b class="${kind(display)}">${esc(display)}</b><small>${esc(name)}</small></div>`;
+    return `<div class="jar" title="${esc(name+' = '+display)}"><b class="${kind(display)}">${esc(display)}</b>`+
+      `<small title="${esc(name)}">${esc(name)}</small></div>`;
   }
   function renderStation(action='') {
     const p=state.servedPlate||state.plate||blankPlate();
     const images=[];
     function img(name,left,top,width,height=18) {
-      images.push(`<img class="food ${name==='toast'?'toast-pop':''}" src="${ART[name]}" alt="${name}" style="left:${left}%;top:${top}%;width:${width}%;height:${height}%">`);
+      images.push(`<img class="food ${name==='toast'?'toast-pop':''}" src="${ART[name]}" alt="${name}" `+
+        `style="left:${left}%;top:${top}%;width:${width}%;height:${height}%">`);
     }
     for(let i=0;i<p.eggs;i++) img('fried-egg',state.servedPlate?28+(i%3)*11:12+(i%3)*18,
-    state.servedPlate?72+Math.floor(i/3)*9:17+Math.floor(i/3)*16,13.2,17);
+    state.servedPlate?72+Math.floor(i/3)*9:13+Math.floor(i/3)*12,13.2,state.servedPlate?17:14);
     const pancakeStep=Math.min(3.5,35/Math.max(1,p.pancakes-1));
     for(let i=0;i<p.pancakes;i++) img('pancake',36,64-i*pancakeStep,28.2,12);
     for(let i=0;i<p.toast;i++) img('toast',state.servedPlate?26+i*8:68+(i%2)*8,
     state.servedPlate?76-i*3:48-Math.floor(i/2)*8,15,15);
-    p.toppings.forEach((t,i)=>img(t,40+i*4,59-Math.max(0,p.pancakes-1)*pancakeStep,
-    t==='butter'?7.5:t==='syrup'?28.2:13.2,16));
+    p.toppings.forEach((t,i)=>img(t,t==='syrup'?36:40+i*4,62-Math.max(0,p.pancakes-1)*pancakeStep,
+    t==='butter'?7.5:t==='syrup'?28.2:13.2,t==='syrup'?10:16));
     const artState=JSON.stringify([p,!!state.servedPlate]);
     if($('food').dataset.state!==artState) {
       const oldCount=$('food').childElementCount;
@@ -1737,10 +1804,12 @@ dialog input,dialog select {
       $('food').dataset.state=artState;
     }
     $('jars').innerHTML=Object.entries(state.globals).map(([n,v])=>jarHTML(n,v)).join('')+
-    (state.locals?`<div class="scope"><span>${esc(state.procedure)}<br>call blanks</span>${Object.entries(state.locals).map(([n,v])=>jarHTML(n,v)).join('')}</div>`:'');
+    (state.locals?`<div class="scope"><span>${esc(state.procedure)}<br>call blanks</span>`+
+      Object.entries(state.locals).map(([n,v])=>jarHTML(n,v)).join('')+'</div>':'');
     $('jars').scrollLeft=$('jars').scrollWidth;
     if(action) $('station-state').textContent=action;
     $('dish').src=state.servedPlate&&state.servedGo?ART.box:ART.plate;
+    $('dish').alt=state.servedPlate&&state.servedGo?'Takeout box':'Breakfast plate';
     $('plate-label').textContent=p.label;
     $('plate-label').hidden=!p.label || (!!state.servedPlate&&!state.servedGo);
     $('cook-scene').classList.toggle('passing',!!state.servedPlate);
@@ -1750,7 +1819,7 @@ dialog input,dialog select {
     `<div class="set"><span>${name}</span>${[1,2,3].map(j=>{
         const n=g*3+j, p=progress[n]||{};
         return `<button data-level="${n}" aria-label="${String.fromCharCode(65+g)+n} ${names[n-1]}" aria-pressed="${state.level===n}"
-    class="${p.done?'done':''} ${p.par?'par':''}">${n}</button>`;
+    class="${p.done?'done':''} ${p.par&&p.parVersion===2?'par':''}">${n}</button>`;
       }).join('')}</div>`).join('');
   }
   function render(keepCard=false) {
@@ -1760,6 +1829,7 @@ dialog input,dialog select {
     $('new-ticket').hidden=state.mode!=='open';
     $('levels').hidden=state.mode!=='tickets';
     $('choose-level').hidden=state.mode!=='tickets';
+    $('next-levels').hidden=state.mode!=='tickets'||!state.done;
     $('restart').textContent=state.mode==='open'?'Reset run':'Restart level';
     $('edits').textContent=state.phase ? `Edits since the change: ${state.edits} (par ${state.level===10&&state.phase===1?'none':1})`+
     (state.frozen?' · final':'') : (state.mode==='open'?'Open kitchen · up to 8 tickets':
@@ -1771,7 +1841,7 @@ dialog input,dialog select {
       const n=Number(button.dataset.level), p=progress[n]||{};
       button.setAttribute('aria-pressed',n===state.level);
       button.classList.toggle('done',!!p.done);
-      button.classList.toggle('par',!!p.par);
+      button.classList.toggle('par',!!p.par&&p.parVersion===2);
     });
     renderRail();
     if(!keepCard)renderCard();
@@ -1839,7 +1909,9 @@ dialog input,dialog select {
       while(text[pos]==='+') {
         pos++;
         const b=atom();
-        if(typeof a!==typeof b || !['number','string'].includes(typeof a))throw Error("Can't add a number and text.");
+        if(typeof a!==typeof b || !['number','string'].includes(typeof a)) {
+          throw Error(typeof a==='boolean'||typeof b==='boolean'?'Use two numbers or two texts with +.':"Can't add a number and text.");
+        }
         a+=b;
         spaces();
       }
@@ -1854,10 +1926,11 @@ dialog input,dialog select {
   }
   function startRuntime() {
     halt(true);
+    document.querySelector('.panel').scrollTop=0;
     $('manager').hidden=true;
     state.slot=null;
     state.done=false;
-    const defs={};
+    const defs=Object.create(null);
     for(let i=0;i<state.card.length;i++) {
       const line=state.card[i];
       if(line.kind==='def') {
@@ -1922,7 +1995,10 @@ dialog input,dialog select {
       const reason=samePlate(state.tickets[index],p,args[1]);
       state.results.push({index,ok:!reason,reason,plate:clone(p),go:args[1]});
       $('served-flash').hidden=false;
-      $('served-flash').textContent=reason?'✗ Table '+args[0]+': '+reason:'✓ Table '+args[0]+' served';
+      const food=[p.eggs?p.eggs+' egg'+(p.eggs===1?'':'s'):'',
+        p.pancakes?p.pancakes+' pancake'+(p.pancakes===1?'':'s'):'',p.toast?p.toast+' toast':'',...p.toppings].filter(Boolean);
+      $('served-flash').innerHTML=reason?'✗ Table '+args[0]+': '+esc(reason):
+        '<strong>✓ Table '+args[0]+' served</strong><small>'+esc(food.join(' · '))+'</small>';
       $('dish').src=args[1]?ART.box:ART.plate;
       state.servedPlate=clone(p);
       state.servedGo=args[1];
@@ -1940,7 +2016,8 @@ dialog input,dialog select {
       const key={crack_eggs:'eggs',pour_pancakes:'pancakes',toast:'toast'}[name];
       p[key]+=args[0];
       Curio.tone(name==='toast'?820:360,.06,.04);
-      return args[0]+' '+(key==='toast'?'toast':key)+' on the station.';
+      const foodName=key==='toast'?'slice'+(args[0]===1?'':'s')+' of toast':args[0]===1?key.slice(0,-1):key;
+      return args[0]+' '+foodName+' on the station.';
     }
     requireType(name,args[0],'string',sources[0]);
     if(name==='add_topping') {
@@ -2035,10 +2112,15 @@ dialog input,dialog select {
     }
     const correct=state.results.filter(r=>r.ok).length;
     if(correct!==state.tickets.length) {
-      hint(correct+' of '+state.tickets.length+' orders matched. Check the rail, edit the card, then press Cook.');
+      hint(correct+' of '+state.tickets.length+' order'+(state.tickets.length===1?'':'s')+
+        ' matched. Check the rail, edit the card, then press Cook.');
       $('station-state').textContent=correct+' / '+state.tickets.length+' matched';
+      const resultRevision=revision;
+      event('incomplete',()=>revision===resultRevision&&!state.running&&!state.done&&!state.error);
       return;
     }
+    $('station-state').textContent=correct+' of '+state.tickets.length+' order'+(state.tickets.length===1?'':'s')+
+      ' served. Your card worked.';
     state.done=true;
     Curio.yes();
     if(state.mode==='open') {hint('Every order matched. Press New ticket for another order, or change your card.');
@@ -2048,15 +2130,20 @@ dialog input,dialog select {
     const d=levelData(state.level);
     progress[state.level]={...(progress[state.level]||{}),done:true};
     if(state.phase) {
-      const previous=d.changes[state.phase-1];
-      const met=state.edits<=1 && previous.par!==false;
-      if(met)progress[state.level].par=true;
+      state.changeEdits[state.phase-1]=state.edits;
       if(state.phase===d.changes.length) {
+        const allMet=d.changes.every((change,i)=>change.par===false||state.changeEdits[i]<=1);
+        if(allMet) {
+          progress[state.level].par=true;
+          progress[state.level].parVersion=2;
+        }
         state.frozen=true;
-        hint(met?'Menu served in '+state.edits+' edit'+(state.edits===1?'':'s')+'. Par met! Choose another level with Levels.':
-        'Menu served in '+state.edits+' edits. Restart level to try a reuse plan.');
-        event(met?'par':'served',()=>state.done);
-        if(!met)how('over',()=>state.frozen);
+        const summary=d.changes.length>1?'Changes took '+state.changeEdits.join(' and ')+' edits.':
+          'Menu served in '+state.edits+' edit'+(state.edits===1?'':'s')+'.';
+        hint(summary+(allMet?' Par met! Choose another level with Levels.':' Restart level to try a reuse plan.'));
+        $('station-state').textContent=correct+' orders served. '+summary;
+        event(allMet?'par':'served',()=>state.done);
+        if(!allMet)how('over',()=>state.frozen);
         render();
         save();
         return;
@@ -2067,14 +2154,19 @@ dialog input,dialog select {
       change.update(state.tickets);
       state.phase++;
       state.edits=0;
+      history=[];
       state.frozen=false;
       state.results=[];
       state.done=false;
+      state.servedPlate=null;
+      $('served-flash').hidden=true;
+      $('station-state').textContent='New menu. Update your recipe card.';
       revision++;
       $('manager-text').textContent=change.text;
       $('manager').hidden=false;
       hint(L.change);
-      event('change',()=>!state.running && !state.frozen);
+      const changePhase=state.phase;
+      event('change',()=>state.phase===changePhase&&!state.running&&!state.frozen&&!$('manager').hidden);
       render();
       save();
       return;
@@ -2141,10 +2233,12 @@ dialog input,dialog select {
     commitFocused();
     halt();
     if(!runtime && !startRuntime())return;
-    hint('Press Step for the next line, or Cook to run from the start.');
+    hint(L.step);
     executeOne();
+    if(runtime&&!state.error)how('step',()=>!!runtime&&!state.running&&!state.error);
   };
   $('stop').onclick=()=>{halt(true);
+    V.hush();
     hint('Station cleared. Press Cook to start the recipe again.');
     render();
     renderStation('Station cleared.');
@@ -2178,6 +2272,10 @@ dialog input,dialog select {
       hint('This line is at the edge. Select another line, or press Cook to test the card.');
       return;
     }
+    if(action==='indent'&&state.card[i].depth===1 || action==='outdent'&&state.card[i].depth===0) {
+      hint('This line is already '+(action==='indent'?'indented':'outside the recipe')+'. Select another line, or press Cook.');
+      return;
+    }
     mutate(()=>{
       if(action==='delete') {state.card.splice(i,1);
         state.selected=Math.max(0,i-1);
@@ -2197,8 +2295,15 @@ dialog input,dialog select {
   for(const [id,action] of [['move-up','up'],['move-down','down'],['indent','indent'],['outdent','outdent'],['delete-line','delete']])
   $(id).onclick=()=>lineTool(action);
   function openDialog(id) {halt();
+    $(id).dataset.returnHint=$('hint').textContent;
+    if(['ticket-dialog','add-dialog','level-dialog','confirm-dialog'].includes(id))V.hush();
     $(id).showModal();
   }
+  document.querySelectorAll('dialog').forEach(dialog=>dialog.addEventListener('close',()=>{
+    const dialogLines=[L.ticket,L.add,L.insert,L.levels,L.confirm];
+    if(dialogLines.includes(V.playing))V.hush();
+    if(dialogLines.includes($('hint').textContent))hint(dialog.dataset.returnHint||L['w-tickets']);
+  }));
   document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
   $('add-line').onclick=()=>{
     commitFocused();
@@ -2222,6 +2327,8 @@ dialog input,dialog select {
         <input data-composer="${i}" value="${esc(a)}" autocomplete="off" spellcheck="false"></label>`).join('');
       $('line-composer').hidden=false;
       $('add-options').hidden=true;
+      hint(L.insert);
+      how('insert',()=>$('add-dialog').open&&!$('line-composer').hidden);
       $('composer-fields').querySelector('input').focus({preventScroll:true});
       $('insert-line').onclick=()=>{
         $('composer-fields').querySelectorAll('input').forEach(el=>{
@@ -2238,6 +2345,8 @@ dialog input,dialog select {
       };
     };
     openDialog('add-dialog');
+    hint(L.add);
+    how('add',()=>$('add-dialog').open&&!$('add-options').hidden);
   };
   $('numbers').innerHTML=Array.from({length:13},(_,i)=>`<button data-value="${i}">${i}</button>`).join('');
   $('text-values').innerHTML=[...TOPPINGS,' eggs',' pancakes','Classic'].map(t=>
@@ -2251,9 +2360,10 @@ dialog input,dialog select {
     }
     const line=state.card[state.slot.line], key=state.slot.key;
     $('value-edit').value=key==='name'?line.name:line.args[Number(key)];
-    const vars=new Set(state.card.filter(l=>l.kind==='assign').map(l=>l.name));
+    const vars=new Set(state.card.filter(l=>l.kind==='assign'&&!l.depth).map(l=>l.name));
     for(let i=state.slot.line-1;i>=0;i--) {
       if(!state.card[state.slot.line].depth)break;
+      if(state.card[i].kind==='assign')vars.add(state.card[i].name);
       if(state.card[i].kind==='def') {state.card[i].args[0].split(',').map(x=>x.trim()).filter(Boolean).forEach(x=>vars.add(x));
         break;
       }
@@ -2303,15 +2413,23 @@ dialog input,dialog select {
     const b=e.target.closest('[data-level]');
     if(!b)return;
     setLevel(b.dataset.level);
-    if($('level-dialog').open)$('level-dialog').close();
+    if($('level-dialog').open) {
+      $('level-dialog').close();
+      $('cook').focus({preventScroll:true});
+      document.querySelector('.panel').scrollTop=0;
+    }
   }
   $('levels').onclick=levelClick;
   $('level-options').onclick=levelClick;
   $('choose-level').onclick=()=>{$('level-options').innerHTML=levelButtons();
     openDialog('level-dialog');
+    hint(L.levels);
+    how('levels',()=>$('level-dialog').open);
   };
+  $('next-levels').onclick=()=>$('choose-level').click();
   $('got-it').onclick=()=>{$('manager').hidden=true;
     hint('Update the card for the new tickets, then press Cook.');
+    $('cook').focus({preventScroll:true});
   };
   $('m-tickets').onclick=()=>setMode('tickets');
   $('m-open').onclick=()=>setMode('open');
@@ -2321,6 +2439,8 @@ dialog input,dialog select {
     }
     $('ticket-error').textContent='';
     openDialog('ticket-dialog');
+    hint(L.ticket);
+    how('ticket',()=>$('ticket-dialog').open);
   };
   $('ticket-form').onsubmit=e=>{
     e.preventDefault();
@@ -2341,7 +2461,11 @@ dialog input,dialog select {
     state.selected=0;
     state.slot=null;
   });
-  $('clear-saved').onclick=()=>openDialog('confirm-dialog');
+  $('clear-saved').onclick=()=>{
+    openDialog('confirm-dialog');
+    hint(L.confirm);
+    how('confirm',()=>$('confirm-dialog').open);
+  };
   $('confirm-clear').onclick=()=>{
     halt(true);
     state.card=[];

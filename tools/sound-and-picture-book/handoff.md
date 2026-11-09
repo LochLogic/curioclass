@@ -8,7 +8,7 @@ Build only in S:/CurioClass-codex. No commits, branch changes or polish round. W
 
 src.html starts with the kit starter's metadata, kit CSS and script, palette, scene and narration hook. The tool has a responsive linen desk, paper book, large painted scenes and navy controls. ART embeds each asset once; repeated pictures reuse its data URI. All 23 paintings were generated with the built-in image tool, then copied to art/raw and finished by scripts/art.py with --rekey only. Full prompts and provenance are in art/prompts.json. Scratch/image-paths.json maps the original generated files.
 
-The book has three page records. A record stores place, planned event, pieces, background and action. Pieces use 1000 by 625 units with stable IDs, position, size, pose and flip. The main animal is marked separately, so Who can replace it across pages while retaining its placement and pose. At capacity, a page without a marked main animal converts its first animal, or otherwise its first piece, to the new main animal.
+The book has three page records. A record stores place, planned event, pieces, background and action. Pieces use 1000 by 625 units with stable IDs, position, size, pose and flip. The main animal is marked separately, so Who can replace it across pages while retaining its placement and pose. At capacity, a page without a marked main animal reuses an existing animal. If its four pieces are all things, Who leaves the whole book unchanged and asks for room in Make.
 
 Rendering uses real viewport dimensions. Only the paper preserves 16:10; the app is not a scaled fixed canvas. Plan and Swap use three simultaneous thumbnails. Make and Play fit one large page. The editing bar and resize handle are code drawn. Thumbnails are display art; the actual editable pieces are buttons with keyboard movement and Delete. Chip swapping supports pointer dragging and a two-tap keyboard path. Full-page swaps use two page-number taps. Undo retains the latest ten snapshots in memory.
 
@@ -67,6 +67,30 @@ The exact requested inline selector layout and circular action-chip silhouette r
 ## Engine changes wanted
 
 None. No kit files were changed.
+
+## Cold review, 2026-11-06
+
+The cold review played the sample book and swaps before reading the builder files. Evidence and bounded command helpers are in Scratch with review- prefixes. The final findings are in codex-review.md.
+
+Fixed data loss: save(swapOnly=false) clears the swap history after a subsequent picture or sound edit. lastSavedBook compares the serialized book, so selecting a piece without changing it retains Undo. Swaps and Undo call save(true). This prevents an old full-book snapshot from deleting newer work; up to ten consecutive swaps still undo. The Swap panel explains when edits cleared the history.
+
+Make now chooses its spoken introduction from the actual page: empty, characters without a setting, or a planned picture ready for sound. It no longer drops the mode's how-to merely because Plan already placed the main character. Read and the visible hint use the same text. The welcome describes this book's three parts rather than making a universal claim about good stories.
+
+Equal sound chips and identical pages do not create a false Swapped event or consume history. Starting a chip selection clears page selection and vice versa. Suggestions are filtered against the current book and narrated when shown. Sample resets pending cards and prior change text. Keyboard movement uses the same edge limits as dragging, and the piece's accessible pose label updates with its image.
+
+The flat swap moment now shows the two chips or pages traveling to their exchanged positions for 420 ms. State changes immediately; no control is locked. Motion off skips or cancels this motion. The scared turtle was redrawn with the built-in image tool to match the happy turtle's shell, rounded limbs and spotted skin, then finished with art.py --rekey turtle-scared. Its full prompt and reference are in art/prompts.json. No other paintings were replaced.
+
+Choice dialogs contain their own Read button: a native modal blocks the header Read control. It stops the audition first, then calls the same V.read helper. Audition hints return to the sound instructions when playback finishes. Read-only fixed hints and all finite card/sound variants are catalogued in allLines and the voice manifest. A shared clampPiece also keeps whole paintings inside the paper while moving or resizing, including old saved edge positions.
+
+Plan's page buttons show each assigned What happens card as an icon and word, so the compact layout does not hide that part of the plan. Starting a native card drag closes its tray after Chrome captures the drag image, exposing the otherwise inert page drop targets. Tap-card-then-page remains available.
+
+The single review audit completed within its 40-minute limit with 33 mechanical leads and 68 inspected frames. Scene-box overlaps and native-modal coverage are intentional. Play's introduction is classified as how, so its missing-welcome flag is a classification lead; Sample, New book and card trays use their own first-tap lines under BASELINE rule 16.
+
+Two confirmed audit findings received targeted repairs afterward: page-slot dialogs now speak their instructions once; Size handles choose a nearby clear corner instead of covering the animal's face. The handle stays 60 by 60 and inside the paper, follows outward drag directions and retains its keyboard focus/limits. A press keeps the piece steady. Selection speaks its own editing help once, and editing stops any audition before narration. Checks at 680x425, 1366x768 and 375x812 measured no overlap with the selected piece, a real resize reached 460, and keyboard resizing reached both 80 and 460. The main voice walk was repeated. No second full audit was run.
+
+The final capacity guard also prevents Who from silently replacing a prop on a page already holding four things. The existing four-piece limit now rejects that change without modifying any page. This was checked separately from the audit. Current narration manifest: 224 distinct lines; recordings remain absent. Final review evidence and limitations are recorded in codex-review.md.
+
+No questions were asked during the unattended review. Existing complete choice trays and pill-shaped action chips were retained under the spec's target-size and readability priorities; exact inline layouts remain a documented spec conflict. Narration recordings were not generated because CODEX-BUILD.md forbids recording audio during this work. The bank identity remains a production-voice limitation.
 
 ## Final package
 

@@ -1,0 +1,25 @@
+{
+  "id": "shadow-measure",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Measure what you can't climb.",
+  "outcome": "Use measured lengths and AA similarity to find heights and compare measuring error.",
+  "driver": "students",
+  "minutes": "15-40",
+  "modes": [
+    "Sun",
+    "Mirror",
+    "Streetlight"
+  ],
+  "grades_label": "Grade 10",
+  "updated": "2026-11-07",
+  "third_party": [],
+  "sources": [
+    "Common Core State Standards, HSG-SRT.A.1, A.3 and B.5: https://www.thecorestandards.org/Math/Content/HSG/SRT/",
+    "NBA Official Rule 1, Section II: https://official.nba.com/rule-no-1-court-dimensions-equipment/",
+    "OpenStax College Physics 2e, 25.1 The Ray Aspect of Light and 25.2 The Law of Reflection",
+    "Euclid Elements VI.4, D. E. Joyce edition: https://mathcs.clarku.edu/~djoyce/java/elements/bookVI/propVI4.html",
+    "Schoolyard heights are invented except the hoop rim; calculations independently recomputed in Python.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ]
+}

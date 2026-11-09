@@ -1,0 +1,21 @@
+{
+  "id": "compass-and-straightedge",
+  "curiosity": true,
+  "plate": 9,
+  "stage": "built",
+  "status": "beta",
+  "hook": "Two circles, a crossing, and an endless sheet of paper.",
+  "outcome": "Explore Euclidean construction using a compass, an unmarked straightedge, and made points.",
+  "driver": "students",
+  "minutes": "2-60+",
+  "modes": [],
+  "grades_label": "Grades 7-12",
+  "sources": [
+    "Euclid, The Thirteen Books of the Elements, T. L. Heath translation (Cambridge, 1908), Books I, IV, XIII. Public domain in the US. https://archive.org/details/thirteenbookseu00heibgoog . Enunciations and postulates supplied in spec.md; original diagrams.",
+    "MacTutor History of Mathematics, J. J. O'Connor and E. F. Robertson, University of St Andrews. Wantzel, Gauss, Lindemann, Mascheroni biographies: https://mathshistory.st-andrews.ac.uk/Biographies/ . Article text: CC BY-SA 4.0, https://mathshistory.st-andrews.ac.uk/Miscellaneous/copyright/ . Only historical facts independently paraphrased; no licensed prose or images incorporated.",
+    "Original analytic geometry engine and derived measurements by Curio Class: MIT code (repository LICENSE); original Book diagrams and text CC BY 4.0 (LICENSE-CONTENT.md). No external dataset. Tangency half-separation tolerance 1e-7 times radius; crossing merge 1e-7 times largest stroke, at least one sheet unit; free and given merge 1e-9 sheet units.",
+    "Archive scan title-page checks, 2026-11-06: thirteenbookseu00heibgoog Books III-IX; thirteenbookseu03heibgoog Books X-XIII; scan 02 book range unconfirmed and omitted. Heath 1908 public domain in the US. Raw OCR and bounded retrieval script in Scratch; no new scan text incorporated."
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

@@ -83,11 +83,11 @@ output { font-variant-numeric:tabular-nums; color:var(--brand); font-weight:800;
 .plan-space { min-height:0; position:relative; border:1px solid #3d4d62; border-radius:12px; overflow:hidden;
   background:radial-gradient(ellipse at 32% 20%,#2c3e52,#182537 65%,#111c2c); box-shadow:inset 0 0 50px #0003; }
 #plan { width:100%; height:100%; display:block; }
-#audience { position:absolute; top:10px; right:10px; width:27%; height:43%; border:1px solid #697385;
+#audience { position:absolute; top:10px; right:10px; width:29%; height:53%; border:1px solid #697385;
   border-radius:8px; overflow:hidden; background:#121a2b; }
 #audience svg { width:100%; height:100%; display:block; }
 .inset-label { position:absolute; top:4px; left:6px; color:#fff; background:#101725d9; font-size:10px; padding:2px 4px; border-radius:3px; }
-#dancerInfo { position:absolute; right:10px; top:calc(43% + 26px); width:26%; font-size:12px; line-height:1.45; color:var(--muted); }
+#dancerInfo { position:absolute; right:10px; top:calc(53% + 26px); width:28%; font-size:12px; line-height:1.45; color:var(--muted); }
 .phrases { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
 .phrases button { display:flex; align-items:center; justify-content:center; gap:7px; min-width:0; padding:4px 6px; font-size:13px; }
 .phrases .pn { font-size:20px; font-weight:850; }
@@ -167,7 +167,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
   .phrases .pn { font-size:14px; }
   .legend { font-size:10px; }
   #audience { top:5px; right:5px; }
-  #dancerInfo { right:6px; font-size:10px; top:calc(43% + 15px); }
+  #dancerInfo { right:6px; font-size:10px; top:calc(53% + 15px); }
   .notes { gap:5px; }
   .notes li { font-size:12px; }
   .sheet { font-size:12px; gap:6px; margin:5px 0; }
@@ -208,7 +208,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
   main { display:flex; flex-direction:column; }
   .stage { flex:none; height:350px; min-height:350px; order:0; }
   .stage:has(#scout:not([hidden])) { height:300px; min-height:300px; }
-  .stage:has(#warm:not([hidden])) { height:500px; }
+  .stage:has(#warm:not([hidden])) { height:auto; min-height:0; }
   .panel { overflow:visible; border:0; border-top:1px solid var(--line); padding:15px; order:1; }
   body[data-mode=scout] #hint { min-height:0; }
   #p-scout { display:flex; flex-direction:column; gap:10px; }
@@ -224,7 +224,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
   .phrases button { font-size:10px; padding:3px; gap:3px; }
   .phrases .pn { font-size:15px; }
   .legend { font-size:10px; flex-wrap:wrap; gap:1px; }
-  #dancerInfo { font-size:10px; top:calc(43% + 20px); }
+  #dancerInfo { font-size:10px; top:calc(53% + 20px); }
   #audience { top:5px; right:5px; }
   .inset-label { font-size:10px; left:2px; padding:1px; }
   .scout-title { left:16px; top:16px; }
@@ -239,6 +239,35 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
   .block-menu button b { font-size:12px; }
   .warmbar { min-height:65px; }
   .chunk { font-size:10px; padding:6px 2px; }
+  body[data-mode=adapt] .stage { height:350px; min-height:350px; }
+  body[data-mode=adapt] .panel { padding:10px; gap:6px; }
+  body[data-mode=adapt] .hint { min-height:40px; font-size:12px; line-height:1.3; }
+  body[data-mode=adapt] .controls { grid-template-columns:1fr 1fr; gap:4px 7px; }
+  body[data-mode=adapt] .controls > .row:first-child { grid-column:1; grid-row:1; }
+  body[data-mode=adapt] #spread { grid-column:1; grid-row:2; }
+  body[data-mode=adapt] .pair { grid-column:2; grid-row:1 / 3; grid-template-columns:1fr; gap:4px; }
+  body[data-mode=adapt] .front-label { display:none; }
+  body[data-mode=adapt] .fronts { grid-column:1 / 3; grid-row:3; }
+  body[data-mode=adapt] .controls > .row:has(#tempoVal) { grid-column:1; grid-row:4; flex-wrap:wrap; gap:1px; }
+  body[data-mode=adapt] #tempo { grid-column:2; grid-row:4; }
+  body[data-mode=adapt] #swap { grid-column:1 / 3; grid-row:5; }
+  body[data-mode=adapt] .controls label,body[data-mode=adapt] output { font-size:12px; }
+  body[data-mode=warm] #hint { min-height:0; }
+  #warm { height:auto; overflow:visible; padding:8px; gap:4px; }
+  #warm .eyebrow { display:none; }
+  #warm h2 { font-size:20px; margin:0 0 4px; }
+  #warm .conditions { padding:6px; font-size:11px; line-height:1.25; }
+  #warm .small { font-size:11px; line-height:1.3; }
+  #warm .warmbar { min-height:44px; height:44px; flex:none; }
+  #warm .empty { padding:10px; font-size:12px; }
+  #warm .block-menu button { min-height:50px; padding:5px; }
+  #warm .block-menu button span { font-size:11px; }
+  #warmList { grid-template-columns:1fr 1fr; gap:4px; }
+  #warmList:empty { display:none; }
+  .warm-item { min-width:0; gap:2px; padding:0 3px; }
+  .warm-item strong { min-width:0; font-size:11px; line-height:1.2; }
+  .warm-item button { width:44px; flex:none; }
+
 }
 </style>
 </head>
@@ -293,8 +322,11 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
         <p>A nearer dancer blocks a standing dancer within 0.45 m of a seat's sightline, for eyes under 2 m.
         For low dancers, use 0.8 m and eyes under 1.5 m. Front rotates the formation; seats stay fixed.</p>
         <p>Safety adds points for the floor, cold, tempo and missing warm-up parts. 0-1 low; 2-3 medium; 4+ high.
-        It rates the whole piece. Open Warm up for the breakdown. Seat icons are compressed; rays use actual meter positions.</p>
+        An incomplete warm-up also stays amber. Open Warm up for the checks and point breakdown.</p>
+        <p>The points describe this model, not injury probability. Warming up cannot fix a hard or slippery floor.
+        Seat icons are compressed; rays use actual meter positions.</p>
         <p>Some formations retain blocked seats under this model. Compare the tradeoffs; all-green is not guaranteed.</p>
+        <p>Run results and the sprinkler note include the travel between formations. Motion off jumps the picture; it keeps the same path checks.</p>
       </details>
     </section>
     <section id="p-warm" hidden>
@@ -358,19 +390,11 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     gym:'art:venue-gym', park:'art:venue-park', theater:'art:venue-theater',
     wood:'art:swatch-wood', grass:'art:swatch-grass', marley:'art:swatch-marley'
   };
-  // One adapter owns the audience art. The next painter can replace kit actors here.
+  // Only this atlas table, its cell bounds and audienceRenderer own the painted cast.
   const PAINTED_POSES = {
-    wideTurn:['art:dancer-arms-wide-front','art:dancer-arms-wide-quarter-right','art:dancer-arms-wide-right',
-      'art:dancer-arms-wide-back-quarter-right','art:dancer-arms-wide-back','art:dancer-arms-wide-back-quarter-left',
-      'art:dancer-arms-wide-left','art:dancer-arms-wide-quarter-left'],
-    stand:['art:dancer-stand-front','art:dancer-stand-right','art:dancer-stand-back','art:dancer-stand-left'],
-    wide:['art:dancer-arms-wide-front','art:dancer-arms-wide-right','art:dancer-arms-wide-back','art:dancer-arms-wide-left'],
-    releve:['art:dancer-releve-front','art:dancer-releve-right','art:dancer-releve-back','art:dancer-releve-left'],
-    jump:['art:dancer-star-jump-front','art:dancer-star-jump-right','art:dancer-star-jump-back','art:dancer-star-jump-left'],
-    low:['art:dancer-crouch-low-front','art:dancer-crouch-low-right','art:dancer-crouch-low-back','art:dancer-crouch-low-left'],
-    middle:['art:dancer-stand-middle-front','art:dancer-stand-middle-right','art:dancer-stand-middle-back','art:dancer-stand-middle-left'],
-    step:['art:dancer-step-front','art:dancer-step-right','art:dancer-step-back','art:dancer-step-left']
+    front:'art:dancer-cast-front', right:'art:dancer-cast-right', back:'art:dancer-cast-back'
   };
+  const PAINTED_CELLS = "json:painted-dancers";
   const VENUES = {
     gym:{name:'Gym',w:14,d:9,temp:20,surface:'Wood over concrete, dusty, little give',swatch:'wood',
       audience:'Front bleachers, three rows',eyes:[1,1.8,2.6],
@@ -385,7 +409,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     park:{name:'Park',w:10,d:7,temp:12,surface:'Grass, uneven and wet with dew',swatch:'grass',
       audience:'Blankets in a front half circle',eyes:[.8,.8,.8],
       notes:['Wet grass: tempo 95% or less.','Raise the Circle from floor work to middle level.',
-        'Keep every phrase at least 0.75 m from the sprinkler.'],
+        'Keep every phrase and travel path at least 0.75 m from the sprinkler.'],
       facts:['At 9:30 in the morning, dew makes this uneven grass wet. Turns at a fast tempo add risk.',
         'Blankets put eyes at 0.8 meters. Floor work can disappear behind another dancer.',
         'A sprinkler head is at x 3, z 2.5 meters. Stay at least 0.75 meters from it.',
@@ -439,7 +463,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
   const venue=()=>VENUES[state.venue];
   const noteSaid={gym:new Set(),park:new Set(),theater:new Set()};
   let clock=null, music=null, floor=null, figures=[], planLayout=null, lastDraw=0, dragBlock=null, lastMetrics=null;
-  let lastPlanPoints=[];
+  let lastPlanPoints=[],lastNoteStatus=null;
   try {
     const saved=JSON.parse(localStorage.getItem('curio-dancers-on-tour')||'null');
     if(saved) for(const id of Object.keys(VENUES)) {
@@ -458,9 +482,13 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     lines:L,scope:()=>state.venue+state.mode,hint:false,read:()=>state.running?[]:$('hint').textContent,
     welcome:()=> {
       if(state.running) return null;
-      if(state.mode==='scout'&&state.hotspot===null) return ['scout-'+state.venue,{valid:()=>state.hotspot===null}];
-      if(state.mode==='adapt') return ['welcomeAdapt',{valid:()=>!state.running&&!state.revision}];
-      if(state.mode==='warm') return ['welcomeWarm',{valid:()=>!data().warm.length}];
+      if(state.mode==='scout') return state.hotspot===null?
+        ['scout-'+state.venue,{valid:()=>state.hotspot===null}]:
+        ['scoutNext',{valid:()=>state.hotspot!==null}];
+      if(state.mode==='adapt') return ['welcomeAdapt',{valid:()=>!state.running}];
+      if(state.mode==='warm') return data().warm.length?
+        ['warmNext',{valid:()=>!state.running&&data().warm.length>0}]:
+        ['welcomeWarm',{valid:()=>!state.running&&!data().warm.length}];
       return null;
     }
   });
@@ -526,7 +554,9 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     add(jumps&&!d.warm.includes(3)?1:0,'Missing Feet and calves');
     const at=d.warm.indexOf(5);
     add(at>=0&&(at===d.warm.length-1||d.warm[at+1]===4)?1:0,'Long holds right before key moves or Run');
-    return {points:reasons.reduce((n,r)=>n+r.n,0),reasons,total,jumps};
+    const required=v.temp<15?12:10;
+    const checks=[d.warm[0]===0,total>=required,d.warm.includes(2),!jumps||d.warm.includes(3),!d.warm.includes(5)];
+    return {points:reasons.reduce((n,r)=>n+r.n,0),reasons,total,jumps,warmOK:checks.every(Boolean)};
   }
   function metrics(p,points=formation(p),id=state.venue) {
     const v=VENUES[id];
@@ -540,12 +570,22 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     const inside=points.map(a=>Math.abs(a.x)<=v.w/2-.75+1e-7&&a.z>=.75-1e-7&&a.z<=v.d-.75+1e-7);
     const sight=visibility(points,p,id),risk=safety(id),seen=sight.filter(a=>a.ok).length;
     return {inside,fit:inside.filter(Boolean).length,closest,pair,collisions,sight,seen,risk,
-      ok:inside.every(Boolean)&&closest>=1.5-1e-7&&seen===9&&risk.points<=1};
+      ok:inside.every(Boolean)&&closest>=1.5-1e-7&&seen===9&&risk.points<=1&&risk.warmOK};
+  }
+  function sprinklerClear(id) {
+    const phrases=[0,1,2,3].map(p=>formation(p,id));
+    for(let p=0;p<3;p++) for(let i=0;i<6;i++) {
+      const a=phrases[p][i],b=phrases[p+1][i],dx=b.x-a.x,dz=b.z-a.z;
+      const length=dx*dx+dz*dz;
+      const u=length?Math.max(0,Math.min(1,((3-a.x)*dx+(2.5-a.z)*dz)/length)):0;
+      if(Math.hypot(a.x+u*dx-3,a.z+u*dz-2.5)<.75-1e-7) return false;
+    }
+    return true;
   }
   function notes(id=state.venue) {
     const d=state.data[id];
     if(id==='gym') return [d.swaps[1]||(d.warm.includes(3)&&d.warm.includes(4)),d.spread[1]>=1.3,!d.swaps[2]];
-    if(id==='park') return [d.tempo<=95,d.swaps[2],[0,1,2,3].flatMap(p=>formation(p,id)).every(a=>Math.hypot(a.x-3,a.z-2.5)>=.75)];
+    if(id==='park') return [d.tempo<=95,d.swaps[2],sprinklerClear(id)];
     const m=metrics(3,formation(3,id),id);
     return [d.swaps[3]&&m.fit===6&&m.closest>=1.5-1e-7,!d.swaps[1],
       [0,1,2,3].every(p=>metrics(p,formation(p,id),id).seen===9)];
@@ -573,15 +613,19 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
   }
   function lights(m) {
     const vals={fit:[m.fit===6,m.fit+' of 6'],spacing:[m.closest>=1.5-1e-7,m.closest.toFixed(2)+' m'],
-      seen:[m.seen===9,m.seen+' of 9 seats'],safety:[m.risk.points<=1,m.risk.points+' · '+(m.risk.points<=1?'Low':m.risk.points<4?'Medium':'High')]};
+      seen:[m.seen===9,m.seen+' of 9 seats'],
+      safety:[m.risk.points<=1&&m.risk.warmOK,
+        m.risk.points+' · '+(!m.risk.warmOK&&m.risk.points<=1?'Prep':m.risk.points<=1?'Low':m.risk.points<4?'Medium':'High')]};
     for(const [key,[ok,val]] of Object.entries(vals)) {
       $('light-'+key).classList.toggle('amber',!ok);
       $(key+'Val').textContent=(ok?'✓ ':'! ')+val;
     }
-    $('light-safety').title=m.risk.points>=4?'Stop and fix this first':'Risk for the whole piece';
+    $('light-safety').title=!m.risk.warmOK?'Warm-up incomplete. Open Warm up to fix the amber checks.':
+      m.risk.points>=4?'Stop and fix this first':'Risk points for the whole piece, not injury probability';
   }
   function drawNotes() {
     const checked=notes();
+    lastNoteStatus=checked;
     $('notes').innerHTML=venue().notes.map((n,i)=>'<li class="'+(checked[i]?'met':'')+'">'+n+'</li>').join('');
   }
   const audienceRenderer={
@@ -590,16 +634,20 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     setup() {
       $('audienceSvg').replaceChildren();
       floor=Dance.floor($('audienceSvg'),'square',{backdrop:ART[state.venue],dancerFrac:.26});
-      figures=Array.from({length:6},(_,i)=>Dance.dancer(floor.layers.actors,{floor,
-        top:['#a7e34b','#e8e6cd','#a7cedb'][i%3],bottom:'#293442',skin:'#bda68c',hair:'#383329',shoe:'#e6e8dc',
-        height:13,badge:['circle','square','triangle','diamond'][i%4]}));
+      figures=Array.from({length:6},()=> {
+        const g=mk('g',{},floor.layers.actors);
+        const shadow=mk('ellipse',{fill:'#050b12',opacity:.3},g);
+        const sprite=mk('svg',{overflow:'hidden',preserveAspectRatio:'none'},g);
+        const image=mk('image',{width:1086,height:1448},sprite);
+        return {g,shadow,sprite,image,x:0,z:0,facing:0};
+      });
       this.resize();
     },
     resize() {
       if(!floor) return;
       const r=$('audience').getBoundingClientRect(),w=Math.max(50,r.width),h=Math.max(50,r.height);
       $('audienceSvg').setAttribute('viewBox',`0 0 ${w} ${h}`);
-      floor.resize(w,h,{x0:w*.08,x1:w*.92,yBack:h*.48,yFront:h*.92});
+      floor.resize(w,h,{x0:w*.08,x1:w*.92,yBack:h*.36,yFront:h*.94});
       const poly=floor.layers.floor.querySelector('polygon');
       if(poly) poly.setAttribute('fill',state.venue==='park'?'#567443':state.venue==='gym'?'#af8c62':'#33383f');
       floor.layers.floor.querySelectorAll('line').forEach(e=>e.setAttribute('opacity','.2'));
@@ -607,21 +655,33 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     draw(points,p,phase=0) {
       if(!floor) return;
       const d=data(),v=venue();
-      let pose;
-      if(p===0) pose=Dance.pose('arms-wide');
-      if(p===1) pose=Dance.pose(d.swaps[1]?'releve':(state.running&&Math.floor(phase)%2===0?'stand':'star-jump'));
-      if(p===2) pose=Dance.level(d.swaps[2]?'stand':'crouch',d.swaps[2]?'middle':'low');
-      if(p===3) pose=Dance.pose('step');
       points.map((a,i)=>({a,i})).sort((a,b)=>b.a.z-a.a.z).forEach(({a,i})=> {
-        let activePose=pose;
-        if(p===3&&state.running) {
-          const q=Math.max(0,phase-i*.35)%2;
-          activePose=Curio.reduce?Dance.pose(q<1?'stand':'step'):
-            Dance.mix(Dance.pose('stand'),Dance.pose('step'),(1-Math.cos(Math.PI*q))/2);
-        }
-        figures[i].set({x:50+a.x/v.w*78,z:52-a.z/v.d*43,pose:activePose,
-          facing:d.front*90+(p===0&&state.running?phase*45:0)});
-        floor.layers.actors.append(figures[i].g);
+        const actor=figures[i];
+        actor.x=50+a.x/v.w*78;
+        actor.z=52-a.z/v.d*43;
+        actor.facing=d.front*90+(p===0&&state.running?Math.floor(phase/2)*90:0);
+        const quarter=((Math.round(actor.facing/90)%4)+4)%4;
+        const facing=quarter===0?'front':quarter===2?'back':'right';
+        const row=p===0?0:p===1?(d.swaps[1]?2:state.running&&Math.floor(phase)%2===0?0:1):
+          p===2?(d.swaps[2]?4:3):4;
+        const cell=PAINTED_CELLS[facing][row][i];
+        const standing=PAINTED_CELLS[facing][0][i][3];
+        const scale=floor.scale(actor.z)*22/standing;
+        const width=cell[2]*scale,height=cell[3]*scale;
+        const pt=floor.map(actor.x,actor.z);
+        const lift=p===1&&row===1?floor.scale(actor.z)*2:0;
+        const sway=p===3&&state.running&&!Curio.reduce?Math.sin((phase-i*.35)*Math.PI)*2:0;
+        actor.g.setAttribute('transform',`translate(${pt.x+sway} ${pt.y})`);
+        actor.shadow.setAttribute('rx',width*.22);
+        actor.shadow.setAttribute('ry',Math.max(1,width*.045));
+        actor.sprite.setAttribute('x',-width/2);
+        actor.sprite.setAttribute('y',-height-lift);
+        actor.sprite.setAttribute('width',width);
+        actor.sprite.setAttribute('height',height);
+        actor.sprite.setAttribute('viewBox',cell.join(' '));
+        actor.image.setAttribute('href',PAINTED_POSES[facing]);
+        actor.sprite.setAttribute('transform',quarter===3?'scale(-1 1)':'');
+        floor.layers.actors.append(actor.g);
       });
     }
   };
@@ -740,7 +800,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     audienceRenderer.draw(points,state.phrase,phase);
     if(state.selected===null) {
       const seat=m.sight.find(s=>!s.ok);
-      $('dancerInfo').textContent=(m.risk.points>=4?'Stop and fix this first. ':'')+
+      $('dancerInfo').textContent=(m.risk.points>=4?'Stop and fix this first. ':!m.risk.warmOK?'Open Warm up: prep incomplete. ':'')+
         (seat?'Seat '+seat.label+' loses dancer '+seat.hidden[0]+'. ':'All nine sample seats see all six. ')+
         'Tap a dancer to inspect spacing.';
     }
@@ -760,6 +820,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     for(let i=0;i<5;i++) {
       $('hot-'+i).style.left=Math.max(8,Math.min(scene.width-60,scene.width*v.hot[i][0]/100))+'px';
       $('hot-'+i).style.top=Math.max(110,Math.min(Math.max(110,scene.height-125),scene.height*v.hot[i][1]/100))+'px';
+      if(scene.width<600&&state.venue==='theater'&&i===4) $('hot-'+i).style.top='110px';
       $('hot-'+i).setAttribute('aria-pressed',state.hotspot===i);
     }
     $('hotFact').textContent=state.hotspot===null?'Tap a numbered ring to investigate this space.':v.facts[state.hotspot];
@@ -772,7 +833,16 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
       [d.warm.includes(2),'Include Dynamic stretches'],[!r.jumps||d.warm.includes(3),'Feet and calves if the piece jumps'],
       [!d.warm.includes(5),'Save Long static holds for the cool-down']];
   }
+  function placeWarmList() {
+    const mobile=matchMedia('(max-width:600px)').matches;
+    const parent=mobile?$('warm'):$('p-warm'),list=$('warmList');
+    if(list.parentElement===parent) return;
+    const focus=document.activeElement?.id;
+    if(mobile) $('blockMenu').after(list); else parent.insertBefore(list,$('riskDetail'));
+    if(focus) $(focus)?.focus({preventScroll:true});
+  }
   function showWarm() {
+    placeWarmList();
     const d=data(),v=venue(),r=safety();
     $('conditions').textContent=v.name+' · '+v.temp+' °C · '+v.surface+'. Piece: arms and turns, '+
       (r.jumps?'jumps':'relevés')+', '+(d.swaps[2]?'middle level':'floor work')+' and traveling.';
@@ -843,10 +913,11 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     changed();
   }
   function changed() {
-    const before=lastMetrics,rev=++state.revision;
+    const before=lastMetrics,previousNotes=lastNoteStatus,rev=++state.revision;
     planLayout=null;
     data().runResult=null;
-    V.dropQueued();
+    if(!state.running) $('count').textContent='32 counts';
+    if([L.tooClose,L.noteMet,L.venueReady].includes(V.playing)) V.hush(); else V.dropQueued();
     save();
     Curio.tone(380+data().spread[state.phrase]*130,.045,.025);
     controls();
@@ -860,7 +931,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     if(before&&before.closest>=1.5-1e-7&&m.closest<1.5-1e-7) V.say('tooClose',{valid,now:true});
     notes().forEach((ok,i)=> {
       const key='note-'+state.venue+'-'+i;
-      if(ok&&!V.heard(key)) {
+      if(ok&&previousNotes&&!previousNotes[i]&&!V.heard(key)) {
         V.say('noteMet',{key,valid});
       }
     });
@@ -891,6 +962,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     if(m==='warm') showWarm();
     if(m==='adapt') {
       $('planTitle').textContent='Six Lanterns / '+venue().name;
+      $('count').textContent=data().runResult?'Last run complete':'32 counts';
       controls();
       drawNotes();
       planLayout=null;
@@ -904,6 +976,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     stopRun(false);
     V.hush();
     state.venue=id;
+    lastNoteStatus=notes(id);
     state.phrase=0;
     state.hotspot=null;
     state.selected=null;
@@ -916,6 +989,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
   }
   function selectPhrase(p) {
     if(state.running) return;
+    if(V.playing===L.tooClose) V.hush();
     state.phrase=p;
     state.selected=null;
     controls();
@@ -925,6 +999,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     Curio.tone(480+p*80,.055,.04);
   }
   const runFailures=new Set();
+  const runIssues={fit:new Set(),spacing:new Set(),seen:new Set()};
   function runFrame(pos,force=false) {
     if(!state.running||(performance.now()-lastDraw<30&&!force)) return;
     lastDraw=performance.now();
@@ -933,22 +1008,27 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     const p=Math.min(3,Math.floor(pos/9)),local=pos-p*9;
     if(state.phrase!==p) {state.phrase=p;controls();}
     state.count=Math.min(8,Math.floor(local)+1);
-    $('count').textContent=NAMES[p].split(' ')[0]+' '+state.count+'/8';
+    $('count').textContent=local>8&&p<3?'Travel '+(p+1)+' to '+(p+2):NAMES[p].split(' ')[0]+' '+state.count+'/8';
     let pts=formation(p);
-    if(local>8&&p<3&&!Curio.reduce) {
+    if(local>8&&p<3) {
       const next=formation(p+1),u=(1-Math.cos(Math.PI*(local-8)))/2;
       pts=pts.map((a,i)=>({x:a.x+(next[i].x-a.x)*u,z:a.z+(next[i].z-a.z)*u}));
     }
     const m=metrics(p,pts);
+    if(m.fit!==6) runIssues.fit.add(p);
+    if(m.closest<1.5-1e-7) runIssues.spacing.add(p);
+    if(m.seen!==9) runIssues.seen.add(p);
     if(!m.ok) {runFailures.add(p);$('phrase-'+p).classList.add('failed');}
-    draw(pts,Curio.reduce?Math.floor(local):local);
+    draw(Curio.reduce?formation(p):pts,Curio.reduce?Math.floor(local):local);
   }
   function startRun() {
     V.hush();
     state.running=true;
+    data().runResult=null;
     state.phrase=0;
     state.count=0;
     runFailures.clear();
+    for(const issues of Object.values(runIssues)) issues.clear();
     for(let i=0;i<4;i++) $('phrase-'+i).classList.remove('failed');
     $('read').setAttribute('aria-disabled','true');
     hint('Run in progress. Change Spread, Tempo or Swaps live. Press Stop to pause the rehearsal.');
@@ -971,12 +1051,13 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     $('count').textContent=finished?'Run complete':'Stopped';
     if(finished) {
       const failed=[...runFailures];
-      data().runResult={failed};
-      hint(failed.length?'Run complete. Check amber phrase '+failed.map(p=>p+1).join(', ')+'. Tap it and change Spread or Swaps.':
+      const passed=Object.fromEntries(Object.entries(runIssues).map(([key,set])=>[key,4-set.size]));
+      data().runResult={failed,passed};
+      hint(failed.length?`Run: ${passed.fit}/4 fit, ${passed.spacing}/4 spaced, ${passed.seen}/4 seen. Tap an amber phrase to inspect it.`:
         'Run complete. All four phrases passed the lights. Check the notes, then choose the next venue.');
       if(failed.length) V.how('afterRun',{valid:()=>!state.running});
       save();
-      Curio.yes();
+      if(failed.length) Curio.tone(240,.12,.04); else Curio.yes();
     }
     if(!finished) hint(L.inspect);
     draw();
@@ -988,6 +1069,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     $('spread').focus({preventScroll:true});
   };
   for(let i=0;i<5;i++) $('hot-'+i).onclick=()=> {
+    if(state.hotspot!==i&&V.playing) V.hush();
     state.hotspot=i;
     showScout();
     V.dropQueued();
@@ -1017,6 +1099,7 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     stopRun(false);
     V.hush();
     state.data[state.venue]=defaults();
+    $('count').textContent='32 counts';
     state.phrase=0;
     state.selected=null;
     state.revision++;
@@ -1046,7 +1129,10 @@ details p { font-size:12px; color:var(--muted); line-height:1.5; }
     audienceRenderer.resize();
     if(state.running) runFrame(clock.pos,true); else draw();
   }).observe($('planSpace'));
-  addEventListener('resize',()=>{if(state.mode==='scout') showScout();});
+  addEventListener('resize',()=>{
+    if(state.mode==='scout') showScout();
+    if(state.mode==='warm') placeWarmList();
+  });
   Curio.onMotion(()=>{if(state.mode==='adapt') draw();});
   Curio.init({clips:"voice:*",rate:.92});
   $('read').addEventListener('click',e=> {

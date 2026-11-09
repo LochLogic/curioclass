@@ -1,0 +1,17 @@
+{
+  "id": "untangle",
+  "title": "Untangle",
+  "description": "Drag the stars until no lines cross, and watch the constellation light up.",
+  "stage": "built",
+  "recess": true,
+  "band": "68",
+  "band_label": "Grades 3-12",
+  "sources": [
+    "Original Curio Class puzzles: 20 hand-made skies and 550 seed records copied exactly from tools/untangle/spec.md; no third-party puzzle material.",
+    "Original daily six-line generator, implemented from tools/untangle/spec.md; no third-party code.",
+    "Wikipedia, Planarity: https://en.wikipedia.org/wiki/Planarity. Text CC BY-SA 4.0; mechanic history only, no text or levels copied.",
+    "Simon Tatham, Untangle manual: https://www.chiark.greenend.org.uk/~sgtatham/puzzles/doc/untangle.html. MIT-style licence as recorded in the spec; no code, levels or art used.",
+    "Wikipedia, Fary's theorem: https://en.wikipedia.org/wiki/F%C3%A1ry%27s_theorem. Text CC BY-SA 4.0; background mathematics only, no text copied.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ]
+}

@@ -2,6 +2,27 @@
   "keep": [],
   "states": [
     {
+      "name": "sound-completed",
+      "steps": [
+        {"click":"#m-sound"},
+        {"click":"#softer","times":2},
+        {"click":"#test"},
+        {"wait":6500}
+      ],
+      "sizes":["680x425","1366x768","375x812"],
+      "keep":["#badges","#hint","#sound-picture","#sound-actions"]
+    },
+    {
+      "name":"speaker-correct-feedback",
+      "steps":[
+        {"click":"#m-speaker"},
+        {"click":"#sentence-3"},
+        {"click":"#picture-3"}
+      ],
+      "sizes":["680x425","1366x768","375x812"],
+      "keep":["#badges","#hint","#sentence-cards","#speaker-grid"]
+    },
+    {
       "name": "closer-problem",
       "steps": [
         {

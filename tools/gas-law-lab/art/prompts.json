@@ -1,0 +1,134 @@
+{
+  "house_style": "Grade 10 scientific editorial illustration, tactile gouache and fine pencil, precise plausible lab equipment, burnished brass, cool glass, warm oak, rich restrained colors, directional upper-left light, detailed surfaces and soft depth. No people. No text, letters, numbers, symbols, logos or watermarks.",
+  "style": "Instrument cabinet and field notebook atmosphere. All moving measurements and labels are added in code.",
+  "assets": [
+    {
+      "name": "gl-lab",
+      "prompt": "Warm wooden physics laboratory bench before a deep teal pegboard wall hung with clamps, ring stands and coiled tubing, oak worktop in the lower quarter, warm side window light, open uncluttered middle for apparatus. Wide cinematic composition.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 76,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "gl-bath",
+      "prompt": "A tall rectangular clear glass water bath tank with a coiled steel heating element on the bottom, filled with clear water, front elevation with slight visible top and side, isolated on a genuinely transparent alpha background.",
+      "aspect": "4:3",
+      "width": 520,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "transparent": true,
+      "redrawn": "Second pass uses generated alpha to avoid green-key glass color spill."
+    },
+    {
+      "name": "gl-cylinder",
+      "prompt": "A tall clear glass cylinder open at the top, completely plain unmarked glass, on a round steel foot, straight front elevation, cylindrical interior clearly visible, isolated on a genuinely transparent alpha background.",
+      "aspect": "9:16",
+      "width": 310,
+      "quality": 80,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "transparent": true,
+      "redrawn": "Second pass uses generated alpha to avoid green-key glass color spill."
+    },
+    {
+      "name": "gl-piston",
+      "prompt": "A thick round gray metal piston disk with a dark rubber seal ring, side elevation, wide and shallow, fully visible, isolated on flat pure green #00FF00.",
+      "aspect": "4:1",
+      "width": 280,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true,
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "gl-weight",
+      "prompt": "A single burnished brass rectangular weight block with plain flat front face and a small arched handle on top, front elevation, isolated on flat pure green #00FF00.",
+      "aspect": "4:3",
+      "width": 180,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true,
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "gl-can",
+      "prompt": "Upright cylindrical brushed steel gas can with welded seams, rounded shoulders, brass gauge connection and side valve. Exactly front-facing circular pressure gauge with blank pale ivory dial. Rich plausible metal shading, fine brushed texture and detailed welds, upper-left warm light. Entire apparatus visible, portrait composition, clean transparent alpha edges. No text, numbers, symbols, logos or people. Match the scientific editorial gouache and fine-pencil house style.",
+      "aspect": "3:4",
+      "width": 350,
+      "quality": 80,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "transparent": true,
+      "redrawn": "Cold review: clean transparent steel edges and detailed brass gauge."
+    },
+    {
+      "name": "gl-balloon",
+      "prompt": "A single round red rubber balloon tied shut, glossy warm upper-left highlight, realistic soft shading, a short curl of string, isolated on flat pure green #00FF00.",
+      "aspect": "3:4",
+      "width": 400,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "holes": true,
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "gl-alt-sea",
+      "prompt": "Sunny sandy beach at sea level, calm blue water and a clear blue sky, open foreground and broad horizon. Wide landscape.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 75,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "gl-alt-1600",
+      "prompt": "Wide high plain with dry golden grass, a line of distant mountains on the horizon, open blue sky. Wide landscape.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 75,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "gl-alt-3000",
+      "prompt": "Alpine meadow with small wildflowers beneath rocky mountain peaks, open high sky, crisp light. Wide landscape.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 75,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "gl-alt-5000",
+      "prompt": "Bare snowy high mountain ridge under a deep blue sky, sculpted rock and snow, clear cold high-altitude light. Wide landscape.",
+      "aspect": "16:9",
+      "width": 1200,
+      "quality": 75,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    }
+  ]
+}

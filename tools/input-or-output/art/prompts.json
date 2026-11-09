@@ -1,5 +1,5 @@
 {
-  "house_style": "Warm bright picture-book gouache and colored-pencil illustration for Grade 2. Clean confident shapes, gentle dimensional shading, rich tactile texture, silver white and soft grey gadgets. Soft daylight from upper left. No text, letters, numbers, logos, people, faces of people, or body parts of people.",
+  "house_style": "Warm bright picture-book gouache and colored-pencil illustration for Grade 2. Clean confident shapes, gentle dimensional shading, rich tactile texture, silver white and soft grey gadgets. Soft daylight from upper left. No text, letters, numbers or logos.",
   "assets": [
     {
       "name": "otter-call",
@@ -195,11 +195,17 @@
     },
     {
       "name": "class-wave",
-      "prompt": "A happy group of young children waving at the camera in a bright classroom, flat bright picture-book illustration.",
+      "prompt": "Three young children waving toward the video-call camera in a bright classroom. Natural range of skin tones and hair textures, friendly everyday clothes, one child with glasses. Clear warm faces and simple open waving hands, waist-up group, centered with space around them. No text, letters, numbers or logos.",
       "people": true,
       "aspect": "4:3",
-      "width": 160,
-      "note": "Pending owner painter. Faceless silhouettes drawn in code until then."
+      "width": 240,
+      "quality": 80,
+      "cutout": false,
+      "drawn_by": "codex",
+      "review": "Reviewed classroom setting, faces and hands; no text or logos. Cultural reviewer should inspect representation.",
+      "source": "OpenAI gpt-image (built-in imagegen), classroom background redrawn once",
+      "generation_prompt": "Create one project art asset, class-wave, for a Grade 2 educational video call simulation. Use case: illustration-story. Warm bright picture-book gouache and colored-pencil illustration. Clean confident shapes, gentle dimensional shading, rich tactile texture. Soft daylight from upper left, soft blue classroom wall and pale wood furniture matching a painted kitchen gadget world. Three young children waving toward the video-call camera in a bright classroom. Natural range of skin tones and hair textures, friendly everyday clothes, one child with glasses. Clear warm faces and simple anatomically coherent open waving hands, waist-up group, centered with comfortable space around them. 4:3 landscape composition; will be shown in a small video-call inset so make faces and hand silhouettes clear. No text, letters, numbers, symbols, logos or watermark.",
+      "edit_prompt": "Edit this classroom video-call illustration. Keep exactly the three friendly children, their faces, hairstyles, clothes, waving hands, pose, colored-pencil and gouache style, lighting and composition. Replace only the background with a bright Grade 2 classroom: pale blue wall, a low shelf of plain colorful books with blank spines, a few small classroom chairs and a pale wood student table. The present background depicts a kitchen; remove every kitchen appliance, cooking pot, kettle, mixer, toaster, blender, and cooking utensil. This must visibly be a classroom. No lettering, logos, numbers or symbols anywhere."
     }
   ]
 }

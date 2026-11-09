@@ -7,7 +7,7 @@
   href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='8' fill='%23f2b705'/%3E%3C/svg%3E">
 <title>Traffic Light Coder · Maple Street · Curio Class</title>
 <meta name="description" content="Program a lively crossing with if-then rules.
-Test five street jobs and replay the exact rule behind each unsafe moment. Grade 3 computer science. Works offline.">
+Explore repeatable traffic setups and replay the rule behind each unsafe moment. Grade 3 computer science. Works offline.">
 <!--
 Traffic Light Coder, Curio Class. Grade 3 computer science, If This, Then That.
 CSTA E3-ALG-PS-01, E3-PRO-PD-04, E3-PRO-TR-08; 2017 crosswalk 1B-AP-10, 1B-AP-15, 1B-AP-11.
@@ -17,7 +17,7 @@ Illustrations generated with OpenAI gpt-image, edited for Curio Class. Includes 
 Robot family supplies program, card list, first-match rule runner and trace. Sound and voice use the shared kit.
 One offline file. No requests or collection. Content CC BY 4.0; code MIT.
 -->
-<link rel="stylesheet" href="kit:curio">
+
 <style>
 :root {
   --paper:#f6f5f1;
@@ -191,15 +191,10 @@ main { grid-template-columns:minmax(0,1fr) minmax(325px,32%); grid-template-area
 .controls #run.running { background:#fff2eb; border-color:#c65235; }
 .controls #skip { flex:1; }
 .controls #restart { flex:1; }
-.job-card { position:relative; padding:12px 14px; background:#fff8dd; border:1px solid #d2bd79; border-radius:12px; }
-.job-card::before { content:''; position:absolute; left:17px; top:-4px; height:7px; width:34px; border-radius:3px; background:#a6a8a0; }
-.job-card h2 { margin:0 0 5px; font-size:18px; }
-.job-card p { margin:0; font-size:12px; line-height:1.4; }
-.job-dots { display:flex; gap:5px; margin-top:8px; }
-.job-dots button { flex:1; border:1px solid #b3a477; border-radius:8px; background:#fff; font-weight:800; }
-.job-dots button.done { background:#d8ead5; border-color:#4c7250; }
-.job-dots button[aria-pressed="true"] { background:var(--brand); color:#fff; box-shadow:inset 0 -4px var(--gold); }
-.job-dots button.done::after { content:' ✓'; }
+.setup-card { position:relative; padding:12px 14px; background:#fff8dd; border:1px solid #d2bd79; border-radius:12px; }
+.setup-card::before { content:''; position:absolute; left:17px; top:-4px; height:7px; width:34px; border-radius:3px; background:#a6a8a0; }
+.setup-card h2 { margin:0 0 5px; font-size:18px; }
+.setup-card p { margin:0; font-size:12px; line-height:1.4; }
 .rules-title { display:flex; justify-content:space-between; align-items:center; margin-top:2px; }
 .rules-title h2 { font-size:15px; margin:0; }
 .rules-title small { font-size:11px; color:var(--muted); }
@@ -251,21 +246,16 @@ main { grid-template-columns:minmax(0,1fr) minmax(325px,32%); grid-template-area
   display:flex; flex-direction:column; gap:9px; overflow:auto;
 }
 .report h2 { margin:0; font:800 23px 'Trebuchet MS',sans-serif; }
-.report h2 span { color:#176439; }
 .report .report-kicker { font-size:10px; font-weight:800; letter-spacing:.13em; color:var(--muted); }
 .report p { margin:0; font-size:13px; }
 .report-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
 .stat { padding:9px 11px; background:#edece3; border-radius:9px; font-size:12px; }
 .stat b { display:block; font-size:16px; margin-bottom:3px; }
-.goal-checks { font-size:12px; display:flex; flex-wrap:wrap; gap:5px 12px; }
-.goal-checks span { padding:4px 6px; border-radius:5px; background:#e7eee3; }
-.goal-checks span.fail { background:#f9e5d9; }
 .unsafe-list { display:flex; flex-direction:column; gap:5px; }
 .unsafe-line { padding:7px 9px; min-height:44px; border:1px solid #ddafa1; background:#fff2ed; border-radius:7px; text-align:left; font-size:12px; }
 .unsafe-line strong { color:#8e251a; }
 .report-actions { display:flex; gap:7px; margin-top:auto; }
 .report-actions button { flex:1; }
-#next { background:var(--gold); }
 .replay-banner {
   position:relative; z-index:5; flex:none; background:#fff8e7; border:2px solid #c29200;
   padding:5px; border-radius:9px; font-size:12px; text-align:center;
@@ -342,11 +332,9 @@ dialog::backdrop { background:#17232888; }
   .controls #run { font-size:13px; min-width:80px; }
   .controls #skip .full { display:none; }
   .controls #skip .short { display:inline; }
-  .job-card { padding:6px 8px; }
-  .job-card h2 { font-size:13px; margin-bottom:2px; }
-  .job-card p { font-size:10px; }
-  .job-dots { margin-top:4px; gap:3px; }
-  .job-dots button { font-size:11px; }
+  .setup-card { padding:6px 8px; }
+  .setup-card h2 { font-size:13px; margin-bottom:2px; }
+  .setup-card p { font-size:10px; }
   .rules-title h2 { font-size:12px; }
   .rules-title small { font-size:10px; }
   #strip { gap:5px!important; padding-top:0; }
@@ -370,16 +358,13 @@ dialog::backdrop { background:#17232888; }
   #cbtns .rb-in button::after { content:none; }
   #cbtns button svg { width:19px; height:19px; }
   .aux-controls button { font-size:10px; padding:3px; }
-  .job-card { display:grid; grid-template-columns:1fr 228px; gap:2px 5px; align-items:center; }
-  .job-card h2 { grid-area:1/1; }
-  .job-card p { grid-area:2/1; }
-  .job-dots { grid-area:1/2/3/3; margin:0; gap:2px; }
-  .job-dots button { min-width:44px; }
+  .setup-card { display:grid; grid-template-columns:1fr 228px; gap:2px 5px; align-items:center; }
+  .setup-card h2 { grid-area:1/1; }
+  .setup-card p { grid-area:2/1; }
   .chip .full { display:none; }
   .chip .short { display:inline; }
   .report { padding:8px; gap:3px; border-radius:10px; }
   .report h2 { font-size:18px; }
-  .report p,.stat,.goal-checks,.unsafe-line { font-size:10px; }
   .report-grid { grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
   .stat { padding:4px; line-height:1.1; }
   .stat b { font-size:11px; line-height:1.1; margin-bottom:2px; }
@@ -442,7 +427,6 @@ dialog::backdrop { background:#17232888; }
   .chip { font-size:10px; padding:4px; }
   .report { min-height:265px; }
   .report h2 { font-size:18px; }
-  .report p,.stat,.unsafe-line,.goal-checks { font-size:11px; }
   .report-grid { gap:4px; }
   .stat { padding:6px; }
   .stat b { font-size:13px; }
@@ -483,7 +467,7 @@ dialog::backdrop { background:#17232888; }
   .stage .report { max-height:calc(100% - 20px); inset:10px 10px auto; }
   .report-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .stage:has(.report:not([hidden])) { min-height:520px; }
-  .stage:has(.report:not([hidden])) .job-card { visibility:hidden; }
+  .stage:has(.report:not([hidden])) .setup-card { visibility:hidden; }
 }
 @media (max-width:599px) {
   .walker { width:20px; height:33px; }
@@ -505,32 +489,219 @@ dialog::backdrop { background:#17232888; }
   .report { padding:10px; gap:4px; }
   .report:has(.unsafe-line) .test-trace { display:none; }
 }
+
+/* Signal cabinet: its street and terminal fill the working surface. */
+* { box-sizing:border-box; }
+[hidden] { display:none!important; }
+html,body { margin:0; width:100%; height:100%; }
+body { display:grid; grid-template-rows:minmax(0,1fr) 54px; background:#373e3d; color:var(--ink);
+  font:14px 'Segoe UI',sans-serif; overflow:hidden; }
+button,select { font:inherit; cursor:pointer; min-width:44px; min-height:44px; }
+button { border:1px solid #9caaa1; border-radius:3px; color:var(--ink); background:linear-gradient(#fffdf4,#d9dfd6); }
+main { display:grid; grid-template-columns:minmax(0,1fr) minmax(340px,34%); grid-template-rows:minmax(0,1fr);
+  grid-template-areas:'stage panel'; height:100%; min-height:0; overflow:hidden; }
+.stage { position:relative; padding:18px; gap:12px; min-width:0; min-height:0;
+  background:radial-gradient(ellipse at 30% 0,#f3f3dd,#becdb3); }
+.panel { display:flex; flex-direction:column; gap:10px; min-height:0; padding:16px;
+  background:repeating-linear-gradient(0deg,#dfe4da 0 2px,#e3e8de 2px 4px); border-left:5px solid #566255; }
+.selector { display:flex; gap:5px; }
+.selector button { flex:1; font:bold 13px Consolas,monospace; }
+.selector button[aria-pressed=true] { background:#374638; color:#fff8df; box-shadow:inset 0 -3px #f2b705; }
+.street-heading { display:flex; }
+.street-heading h2 { font:700 23px Consolas,monospace; letter-spacing:.1em; }
+.eyebrow { font:11px Consolas,monospace; }
+.hint { font-size:13px; line-height:1.4; min-height:40px; }
+.status { border-radius:5px; }
+.signal-unit strong,.signal-unit small,.request,.stat,.clock { font-family:Consolas,monospace; }
+.street { aspect-ratio:2.64; min-height:0; flex:0 1 auto; max-height:calc(100% - 24px); border-radius:7px; }
+.request { flex:none; }
+.street-wrap { min-height:0; }
+.setup-card { display:flex; flex-direction:column; gap:5px; padding:10px; background:#eef0dd;
+  border:1px solid #8e9a7b; border-radius:3px; }
+.setup-card::before { content:none; }
+.setup-card h2 { font:700 16px Consolas,monospace; margin:0; }
+.setup-card p { margin:0; font-size:12px; }
+.setup-book { display:flex; gap:8px; align-items:center; font:11px Consolas,monospace; }
+.setup-book select { flex:1; min-width:0; font:12px Consolas,monospace; background:#fffdf4; color:#1e2228; }
+.ribbon-desk { border-radius:4px; background:#f3f0d7; padding:10px; }
+.ribbon { flex-wrap:wrap; }
+.ribbon-chip { border-radius:3px; }
+.ribbon-chip b { width:15px; height:17px; border-radius:2px; display:grid; place-items:center;
+  color:#151a15; font:bold 11px Consolas,monospace; }
+.ribbon-chip b[style*="d93a2b"] { color:white; }
+.panel-foot { font-size:11px; line-height:1.4; display:block; }
+.controls { flex-wrap:wrap; }
+.controls #run { min-width:90px; }
+.controls button { flex:1; }
+.rule-scroll { flex:1; min-height:0; }
+.rule-scroll:not(.long) { flex:none; }
+.edit-toolbar { flex-direction:column; gap:8px; }
+.add-row { min-height:44px; }
+#defaults .short { font-size:11px; }
+.aux-controls { display:flex; gap:6px; }
+.aux-controls button { font-size:12px; padding:4px; border-radius:3px; }
+.machine-foot { display:flex; align-items:center; gap:10px; padding:5px 12px; border-top:3px solid #75836c;
+  background:linear-gradient(#535e50,#303c31); color:#faf9e9; }
+.maker-plate { padding:5px 10px; border:1px solid #9aa991; border-radius:2px;
+  font:11px/1.4 Consolas,monospace; color:#faf6d7; text-shadow:0 1px #182319; box-shadow:inset 0 1px #1d2a20; }
+.power { display:flex; gap:5px; margin-left:auto; }
+.power button { padding:4px 8px; font:11px Consolas,monospace; color:#fffbe8; background:#2f3d31; border:1px solid #a6b79c; }
+.report { inset:8px 8px auto; max-height:calc(100% - 16px); border-radius:5px; }
+.report h2 { font-size:21px; }
+.picker-sentence { padding:10px; margin:0 0 10px; background:#e1e8db; border-left:4px solid #b68c00;
+  font:700 14px/1.5 Consolas,monospace; }
+.slot-tabs button { font-size:12px; overflow-wrap:anywhere; }
+.options .option-icon { background:#e8e8dc; text-shadow:0 0 1px #222; }
+#manual-drawer { margin:auto auto 60px 10px; max-height:calc(100dvh - 84px);
+  max-width:670px; border-radius:4px; font-size:14px; }
+#manual-drawer .dialog-head { position:sticky; top:0; z-index:1; background:#fbfaf4; padding-bottom:6px; }
+#manual-drawer p { line-height:1.5; overflow-wrap:anywhere; }
+#manual-drawer h3 { margin:18px 0 5px; }
+@media(min-width:1280px) and (min-height:720px) {
+  .rule-line,.rule-line .word,.chip { font-size:14px; }
+  #strip .rb-cell { height:76px; }
+  #strip .rb-face { padding:9px 8px 6px 17px; }
+  .rule-line { gap:3px; }
+  .chip { padding:4px; }
+  .rule-line .chip .full { display:none; }
+  .rule-line .chip .short { display:inline; }
+}
+@media(min-width:600px) and (max-width:1000px), (min-width:600px) and (max-height:650px) {
+  main { display:grid; grid-template-columns:minmax(0,1fr) 290px; grid-template-rows:minmax(0,1fr); overflow:hidden; }
+  .panel { display:flex; overflow:hidden; padding:7px; gap:6px; }
+  .stage { min-height:0; padding:9px; gap:6px; flex:none; }
+  .street-heading { display:none; }
+  .setup-card { padding:5px; gap:3px; }
+  .setup-card h2 { font-size:13px; }
+  .setup-card p { font-size:10px; }
+  .setup-book { font-size:10px; }
+  .status { padding:5px 7px; }
+  .signal-art { height:48px; width:19px; }
+  .walk-art { height:48px; width:39px; }
+  .signal-unit { gap:5px; }
+  .signal-unit strong { font-size:14px; }
+  .signal-unit small { font-size:10px; }
+  .clock { padding-left:5px; }
+  .clock strong { font-size:17px; }
+  .street { aspect-ratio:2.64; min-height:0; max-height:calc(100% - 22px); flex:0 1 auto; }
+  .street-wrap { flex:1; }
+  .push { width:44px; height:44px; min-width:44px; min-height:44px; border-width:2px; font-size:9px; }
+  #push-north { left:2%; top:0; }
+  #push-south { left:auto; right:2%; bottom:0; }
+  .hint { font-size:11px; min-height:43px; margin:0!important; order:initial!important; }
+  #controls { margin:0; order:initial; position:static; }
+  .controls button,.aux-controls button { font-size:10px; }
+  .selector button { font-size:11px; }
+  .rules-title { margin:0; }
+  .rule-scroll { margin:0!important; padding:5px 0; }
+  #strip .rb-cell { height:49px; }
+  #strip .rb-face { padding:4px 3px 3px 14px; }
+  .rule-line,.rule-line .word,.chip { font-size:10px; }
+  .chip { padding:2px 4px; }
+  .chip .full { display:none; }
+  .chip .short { display:inline; }
+  .edit-toolbar { flex-direction:row; gap:5px; margin:0; }
+  #cbtns.rb-cbtns { flex:3; min-width:0; }
+  .add-row { flex:2; }
+  .add-row button { font-size:10px; padding:2px; }
+  #cbtns .rb-in button::after { content:none; }
+  #defaults .full { display:none; }
+  #defaults .short { display:inline; }
+  .panel-foot { display:none; }
+  .ribbon-head { display:none; }
+  .ribbon-desk { padding:5px; }
+  .watchout { display:none; }
+  .request { font-size:10px; margin:4px 0 0; }
+  .stage:has(.report:not([hidden])) { min-height:0; }
+  .stage:has(.report:not([hidden])) .setup-card { visibility:visible; }
+  .report { padding:7px; gap:4px; }
+  .report h2 { font-size:17px; }
+  .report-grid { grid-template-columns:1fr 1fr; }
+  .report p,.stat,.unsafe-line { font-size:10px; }
+  .stat { padding:4px; }
+  .stat b { font-size:11px; }
+  .report-kicker { font-size:10px!important; }
+  .report:has(.unsafe-line) .test-trace { display:none; }
+  .report .test-trace { padding:4px; }
+  .trace-bar { height:18px; margin:3px 0; }
+  .report-actions { margin-top:2px; }
+}
+@media(max-width:599px) {
+  body { display:block; height:auto; overflow:auto; }
+  main { display:flex; flex-direction:column; height:auto; overflow:visible; }
+  .stage { order:0; min-height:330px; padding:10px; gap:8px; }
+  .panel { display:flex; order:1; padding:10px; gap:8px; overflow:visible; border-left:0; }
+  .street-heading { display:none; }
+  .street { flex:none; min-height:125px; aspect-ratio:2.64; }
+  .street-wrap { min-height:150px; }
+  .push { width:44px; height:44px; border-width:2px; font-size:9px; }
+  #push-north { left:1%; top:0; }
+  #push-south { left:auto; right:1%; bottom:0; }
+  #hint,#controls,.rules-title,.edit-toolbar,.panel-foot,#rule-scroll { order:initial; margin:0; position:static; }
+  #strip .rb-cell { height:70px; }
+  .rule-scroll.long { max-height:315px; overflow:auto; }
+  .machine-foot { flex-wrap:wrap; position:relative; padding:7px; gap:6px; }
+  .maker-plate { flex:1; font-size:10px; }
+  .power { width:100%; }
+  .power button { flex:1; }
+  .setup-card { min-height:100px; }
+  .setup-book { flex-direction:column; align-items:stretch; }
+  .stage:has(.report:not([hidden])) { min-height:590px; }
+  .report { max-height:570px; }
+  .slot-tabs { display:grid; grid-template-columns:1fr 1fr; }
+  .options { grid-template-columns:1fr 1fr; }
+  .picker-sentence { font-size:12px; }
+}
+@media(max-height:500px) and (min-width:600px) {
+  body { grid-template-rows:minmax(0,1fr) 48px; }
+  .stage,.panel { padding:5px; gap:3px; }
+  .hint { min-height:26px; line-height:1.15; }
+  .rule-scroll { padding:2px 0; }
+  .rules-title { display:none; }
+  #strip .rb-cell { height:44px; }
+  #strip.rb-strip { gap:3px; }
+  .edit-toolbar { flex-shrink:0; }
+  .maker-plate { font-size:10px; padding:3px; }
+  .machine-foot { gap:5px; padding:2px 5px; }
+  .power button { padding:2px 4px; font-size:10px; }
+  .report .report-grid { gap:3px; }
+  .report .test-trace { display:none; }
+  .unsafe-line { min-height:44px; }
+  .picker-sentence { font-size:12px; padding:5px; margin-bottom:5px; }
+  .dialog-head { margin-bottom:5px; }
+  .slot-tabs { margin-bottom:5px; }
+  dialog { padding:10px; }
+}
+@media(min-width:1001px) and (max-height:760px) {
+  .panel { gap:4px; }
+}
+@media(max-width:599px) {
+  #stage { order:0; }
+  body { display:grid; height:100dvh; grid-template-rows:minmax(0,1fr) 114px; overflow:hidden; }
+  main { height:100%; overflow-y:auto; padding-bottom:12px; }
+  .panel { flex:none; }
+  .machine-foot { position:static; height:114px; align-content:center; }
+}
+@media(max-width:1000px), (max-height:650px) {
+  .push { font-size:10px; }
+  .street-name { display:none; }
+}
+
 </style>
 </head>
 <body>
-<header>
-  <h1>Traffic Light Coder<small>If this, then that, on Maple Street</small></h1>
-  <div class="seg" role="group" aria-label="Mode">
-    <button id="m-watch" aria-pressed="true">
-      <svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12Q12-2 22 12Q12 26 2 12Z"/><circle cx="12" cy="12" r="3"/></svg>
-      Watch the Street
-    </button>
-    <button id="m-jobs" aria-pressed="false">
-      <svg class="mode-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18v-4a9 9 0 0 1 18 0v4M1 18h22M9 14V3h6v11"/></svg>
-      Street Jobs
-    </button>
-  </div>
-  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
-  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
-  <button class="icon-btn" id="read">Read</button>
-</header>
-<main>
+
+<main aria-label="Traffic signal controller">
   <aside class="panel" aria-label="Rule workbench">
+    <div class="selector" role="group" aria-label="Street input">
+      <button id="m-watch" aria-pressed="true">Live street</button>
+      <button id="m-setups" aria-pressed="false">Setups</button>
+    </div>
     <p class="hint" id="hint">Press a walk button on the street. Watch which rule lights up.</p>
     <div class="controls" id="controls">
       <button id="run">Ⅱ Pause</button>
       <button id="speed" hidden>Speed 4×</button>
-      <button id="skip" aria-label="Skip to report" hidden>⏩ <span class="full">Skip to report</span><span class="short">Report</span></button>
+      <button id="skip" aria-label="Read record" hidden>⏩ <span class="full">Read record</span><span class="short">Report</span></button>
       <button id="restart">↻ Reset street</button>
       <button id="step" hidden>▸ Step</button>
       <button id="send-walker">＋ Send walker</button>
@@ -542,20 +713,20 @@ dialog::backdrop { background:#17232888; }
     <div class="add-row">
       <button class="plain" id="add">＋ Add rule</button>
       <button class="plain" id="defaults" title="Default rules" aria-label="Default rules">
-        <span class="full">Default rules</span><span class="short" aria-hidden="true">↻</span>
+        <span class="full">Default rules</span><span class="short" aria-hidden="true">Defaults</span>
       </button>
     </div></div>
-    <p class="panel-foot">Every half second, check from rule 1.<br>Only the first rule that fits gets a turn.</p>
+    <p class="panel-foot">Every half second the light goes once round the loop: check from rule 1. Only the first match fires.</p>
   </aside>
   <section class="stage" id="stage" aria-label="Maple Street crossing">
     <div class="street-heading">
-      <div><div class="eyebrow">Maple Street traffic control</div><h2>A little code. A whole street.</h2></div>
+      <div><div class="eyebrow">Maple Street traffic control</div><h2>MAPLE STREET</h2></div>
       <span class="live"><i></i><span id="live-label">LIVE · 1×</span></span>
     </div>
-    <section class="job-card" id="job-card" hidden>
-      <h2 id="job-title">1 · Press to Cross</h2>
-      <p id="goal"></p>
-      <nav class="job-dots" id="job-dots" aria-label="Street jobs"></nav>
+    <section class="setup-card" id="setup-card" hidden>
+      <h2 id="setup-title">1 · Press to Cross</h2>
+      <p id="setup-problem"></p>
+      <label class="setup-book">Traffic script <select id="setup-select" aria-label="Traffic script"></select></label>
     </section>
     <div class="status" aria-label="Street signals">
       <div class="signal-unit">
@@ -592,13 +763,57 @@ dialog::backdrop { background:#17232888; }
       <div class="ribbon" id="ribbon"><span class="ribbon-empty">Press a walk button. Follow the rule numbers here.</span></div>
       <div class="watchout" id="watchout" aria-live="polite"></div>
     </div>
-    <section class="report" id="report" role="dialog" aria-label="Test report" hidden></section>
+    <section class="report" id="report" aria-label="Street record" hidden></section>
     <div class="aux-controls" id="aux-controls"></div>
   </section>
 
 </main>
+<footer class="machine-foot">
+  <button id="manual" class="plain" aria-haspopup="dialog">Manual</button>
+  <span class="maker-plate">Curio Class Curiosities · Traffic Light Coder</span>
+  <div class="power" role="group" aria-label="Controller power panel">
+    <button id="motion">Motion</button><button id="sound">Sound</button><button id="read">Read</button>
+  </div>
+</footer>
+<dialog id="manual-drawer" aria-labelledby="manual-title">
+  <div class="dialog-head"><h2 id="manual-title">Controller manual</h2><button id="close-manual" class="plain">Close</button></div>
+  <h3>Use the street</h3>
+  <p>Press either curb button. Follow the lit rule, signal lamps and firing tape. Tap a rule to edit its chips.
+  All its conditions must fit; the first match from the top fires. Pause and Step expose one pass round the loop.</p>
+  <p>Setups supplies five repeatable traffic scripts, in any order. Run script watches your rules on that traffic.
+  Read record advances the same model to its 120 s observation cap. There is no grade or finish to earn.</p>
+  <p>Alt plus Up or Down moves a focused rule; Delete removes it. Enter edits it, Left and Right switch slots,
+  and Escape returns. Six rules is the controller's capacity. Defaults restores the live program.</p>
+  <h3>Readouts</h3>
+  <p>The street clock uses seconds. The tape labels the firing rule and G, Y, R or W for its signal action.
+  The record reports actual waits, light durations and the ambulance's motion, with unsafe moments you can replay.
+  A red interval that never returns to green remains visible as a held red, even when walkers cross.</p>
+  <p>Fair-time references (this tool's own): greens at least 30 s, reds under 45 s, walker waits under 60 s.
+  Cars stopped with nobody crossing is the longest empty red interval; 10 s is this tool's comparison reference.
+  These are observations and model choices, not engineering requirements.</p>
+  <h3>Things people have found</h3>
+  <p>A rule lower down can lose its turn even when its conditions fit. A WALK request can hold up a return to green.
+  A long yellow can stop an ambulance before the light turns red. One chip can change the whole street.</p>
+  <h3>Honesty notes</h3>
+  <p>This is a simplified signal programming model, not road design guidance. WALK is 7 s and flashing clearance is 10 s:
+  the example uses 35 feet divided by 3.5 feet per second. Walkers take 10 s to cross. Vehicles move at a fixed model speed;
+  a driver more than 2 s from the stop line when yellow starts stops. Real signals need many additional safety systems.</p>
+  <p>The detector is a model input, not a real emergency preemption system.
+  Only the Motion setting persists on this device. Sound and rules last for this page. Nothing is sent.</p>
+  <h3>Sources and licences</h3>
+  <p>FHWA, MUTCD 2009, sections 4D.26, 4E.06, 4E.08 and 4D.27. Public domain, confirmed by FHWA's MUTCD General FAQ.
+  Historical timing examples, not current design guidance. https://mutcd.fhwa.dot.gov/htm/2009/part4/part4d.htm
+  and https://mutcd.fhwa.dot.gov/htm/2009/part4/part4e.htm</p>
+  <p>The signal timings were cross-checked against Minnesota DOT, Traffic Signals 101 Course Manual.
+  Reference only; no text or figures copied. https://www.dot.mn.gov/trafficeng/signals/docs/signals-101-manual.pdf</p>
+  <p>Street scripts, first-match controller, driver assumptions and fairness references: original Curio Class model,
+  content CC BY 4.0, code MIT. No outside traffic dataset. Illustrations generated with OpenAI gpt-image,
+  edited for Curio Class; original assets retained.</p>
+</dialog>
 <dialog id="picker" aria-labelledby="picker-title">
-  <div class="dialog-head"><h2 id="picker-title">Edit rule 1</h2><button class="plain" id="close-picker">Done</button></div>
+  <div class="dialog-head"><h2 id="picker-title">Edit rule 1</h2>
+    <button class="plain" id="picker-read">Read</button><button class="plain" id="close-picker">Done</button></div>
+  <p class="picker-sentence" id="picker-sentence" aria-live="polite"></p>
   <div class="slot-tabs" id="slot-tabs" role="group" aria-label="Rule chip slots"></div>
   <div class="options" id="options" role="group" aria-label="Choose a chip"></div>
   <div class="dialog-footer"><span class="panel-foot">All conditions must fit. The first matching rule wins.</span></div>
@@ -637,7 +852,14 @@ dialog::backdrop { background:#17232888; }
     {light:'RED', extras:['done','10'], action:'GREEN'},
     DEFAULT[2]
   ];
-  const JOBS = [
+  const PROBLEMS = [
+    'Walkers press the button, but the light never changes.',
+    'The car light skips yellow.',
+    'The light turns green while people are crossing.',
+    'Walkers keep arriving while cars wait.',
+    'An ambulance approaches while walkers request a crossing.'
+  ];
+  const SETUPS = [
     {name:'Press to Cross', start:DEFAULT.slice(1), wait:true},
     {name:"Don't Skip Yellow", start:[{light:'GREEN', extras:['button'], action:'RED'}, DEFAULT[2], DEFAULT[3]]},
     {name:'Let Them Finish', start:[...DEFAULT.slice(0,3), {light:'RED', extras:['10'], action:'GREEN'}]},
@@ -645,29 +867,15 @@ dialog::backdrop { background:#17232888; }
     {name:'Ambulance!', start:RUSH, ambulance:true}
   ];
   const L = {
-    'w-watch':'Welcome to Maple Street. This light follows rules. Every half second it checks them from the top, and the first rule that fits wins.',
-    press:'Press a walk button on the street and watch which rule lights up.',
-    chip:'Tap a chip in a rule to change it. Press Add rule to write a new one.',
-    'w-jobs':"You're the city's new light coder. Each job has a goal. Change the rules, then press Run test.",
-    report:'Tap a line in the report to see that moment on the street.',
-    job1:'Job one: Press to Cross. Walkers press the button, but the light never changes. ' +
-      'Press Add rule and write the rule that starts it. Then press Run test.',
-    job2:"Job two: Don't Skip Yellow. Drivers need a yellow light to stop safely. Fix rule one, and add a rule for yellow. Then press Run test.",
-    job3:'Job three: Let Them Finish. The light turns green too soon. Find the rule that does it and change a chip. Then press Run test.',
-    job4:'Job four: Rush Hour. Walkers press all the time. Give the cars a fair turn too: long greens, and no long reds. Then press Run test.',
-    job5:'Job five: Ambulance! When an ambulance is coming, keep the light green for it. Add a rule, then press Run test.',
-    pass:'Test done. Everything was safe, and every goal is met. Job finished.',
-    unsafe:'Test done. There were unsafe moments. The report shows which rule caused each one.',
-    miss:'Test done. It was safe, but a goal was missed. Check the report.',
-    order:'Two rules fit at once, and the higher one won. Try moving a rule.',
-    all:"That's every job. Maple Street is safe and fair. Nice work, coder.",
-    full:'Six rules is the most. Change a rule instead.'
-  };
-  const EVENT_LINES = new Set(['pass','unsafe','miss','order','all','full']);
+    "press": "Press a walk button on the street and watch which rule lights up.",
+    "chip": "Pick a chip, then press Done.",
+    "full": "Six rules is the most. Change a rule instead."
+};
+  const EVENT_LINES = new Set();
   const state = {
-    mode:'watch', job:0, testing:false, paused:false, speed:4, report:null, replay:false, replaying:false,
-    completed:[false,false,false,false,false], slot:'light', editing:null, pressed:false, selected:null,
-    watchRules:copy(DEFAULT), jobRules:JOBS.map(j => copy(j.start)), revision:0
+    mode:'watch', setup:0, testing:false, paused:false, speed:4, report:null, replay:false, replaying:false,
+    slot:'light', editing:null, pressed:false, selected:null,
+    watchRules:copy(DEFAULT), setupRules:SETUPS.map(j => copy(j.start)), revision:0
   };
   let world;
   let runner = null;
@@ -680,10 +888,10 @@ dialog::backdrop { background:#17232888; }
   const WALK = '<svg viewBox="0 0 50 60"><circle cx="29" cy="7" r="6"/><path d="m23 16 9 1 5 11 9 5' +
     '-4 6-12-8-3-6-3 12 12 15-6 5-14-18-3 10-9 9-6-5 9-10 7-25-7 7-7 1-1-7 9-3z"/></svg>';
 
-  function makeWorld(job = null) {
+  function makeWorld(setup = null) {
     return {
-      t:.5, shown:0, light:'GREEN', since:0, phase:'HAND', walkAt:-100, job, walkers:[], cars:[], unsafe:[], changes:[],
-      greens:[], reds:[], history:[], ribbon:[], fired:[], lastRule:null, ambulanceStopped:false, ambulanceAt:null,
+      t:.5, shown:0, light:'GREEN', since:0, phase:'HAND', walkAt:-100, setup, walkers:[], cars:[], unsafe:[], changes:[],
+      greens:[], reds:[], firings:[], history:[], ribbon:[], fired:[], lastRule:null, ambulanceStopped:false, ambulanceAt:null,
       ambulanceUntil:null, seed:417, carNext:[0,2], uid:0, emptyRed:0, emptyRedMax:0, watchCap:false
     };
   }
@@ -709,6 +917,7 @@ dialog::backdrop { background:#17232888; }
   function execute(card, i, w) {
     const action = card.args.action;
     w.lastRule = i;
+    w.firings.push({time:w.t, rule:i + 1, action, light:w.light});
     if (!w.fired.includes(i)) w.fired.push(i);
     if (LIGHTS.slice(0,3).includes(action) && action !== w.light) {
       if ((w.light === 'GREEN' && action === 'RED') || (w.light === 'YELLOW' && w.t - w.since < 3)) {
@@ -779,8 +988,8 @@ dialog::backdrop { background:#17232888; }
     if (w.phase !== 'HAND') {
       w.phase = w.t - w.walkAt >= 17 ? 'HAND' : w.t - w.walkAt >= 7 ? 'FLASH' : 'WALK';
     }
-    if (w.job !== null) {
-      const j = w.job;
+    if (w.setup !== null) {
+      const j = w.setup;
       const times = j === 3 ? [3,13,23,33,43,53,63,73,83] : j === 4 ? [38,70] : [5,35,65];
       if (times.includes(w.t)) addWalker(w, times.indexOf(w.t) % 2);
       const interval = j === 3 ? 3 : j === 4 ? 4 : 6;
@@ -793,87 +1002,95 @@ dialog::backdrop { background:#17232888; }
         w.ambulanceUntil = 46;
         addCar(w, 1, true);
       }
-      if (j === 4 && w.t === 43) w.ambulanceStopped = w.light === 'RED';
+
     } else {
       for (let k = 0; k < 2; k++) if (w.t >= w.carNext[k]) {
         addCar(w, k === 0 ? 1 : -1);
         w.carNext[k] = w.t + 3 + Math.floor(rng(w) * 9) / 2;
       }
-      if (w.ambulanceAt !== null && w.t === w.ambulanceAt + 7) w.ambulanceStopped = w.light === 'RED';
+
     }
     advanceCars(w);
+    // Observe every ambulance beat, including a queue beyond the detector window.
+    const ambulance = w.cars.find(c => c.kind === 'ambulance' && c.dir * (c.x - .62) <= 0 && c.stopped);
+    if (ambulance) {
+      w.ambulanceStopped = true;
+      if (w.ambulanceStopAt === undefined) w.ambulanceStopAt = w.t;
+    }
     const noCrossing = !w.walkers.some(p => p.start !== null && w.t < p.start + 10);
     w.emptyRed = w.light === 'RED' && noCrossing ? w.emptyRed + .5 : 0;
     w.emptyRedMax = Math.max(w.emptyRedMax, w.emptyRed);
     w.history.push(snapshot(w));
-    if (w.job === null && w.history.length > 500) w.history.shift();
-    const expected = w.job === 3 ? 9 : w.job === 4 ? 2 : 3;
+    if (w.setup === null) {
+      if (w.history.length > 500) w.history.shift();
+      if (w.firings.length > 500) w.firings.shift();
+    }
+    const expected = w.setup === 3 ? 9 : w.setup === 4 ? 2 : 3;
     const crossed = w.walkers.filter(p => p.start !== null && w.t >= p.start + 10).length;
-    const ended = w.job !== null && ((w.t >= 90 && crossed === expected) || w.t >= 120);
+    const ended = w.setup !== null && ((w.t >= 90 && crossed === expected) || w.t >= 120);
     w.t += .5;
     return !ended;
   }
   function summarize(w, rules) {
-    const job = JOBS[w.job];
     const waits = w.walkers.map(p => p.start === null ? w.shown - p.press : p.start - p.press);
     const crossed = w.walkers.filter(p => p.start !== null && w.shown >= p.start + 10).length;
-    const reds = [...w.reds];
-    if (w.light === 'RED') reds.push(w.shown - w.since);
-    const checks = [
-      {label:'Nothing unsafe', ok:w.unsafe.length === 0},
-      {label:'Every walker crossed', ok:crossed === w.walkers.length}
-    ];
-    const longestWait = Math.max(0,...waits);
-    const shortestGreen = w.greens.length ? Math.min(...w.greens) : null;
-    const longestRed = Math.max(0,...reds);
-    if (job.wait) checks.push({label:'Walker waits under 60 s', ok:longestWait < 60});
-    if (job.fair) {
-      checks.push({label:'Greens at least 30 s', ok:shortestGreen === null || shortestGreen >= 30});
-      checks.push({label:'Reds under 45 s', ok:longestRed < 45});
+    const lightChanges = w.changes.filter(c => c.action !== 'WALK');
+    const redIntervals = lightChanges.flatMap((c,i) => c.action === 'RED' ? [{
+      from:c.time, to:lightChanges[i + 1]?.time ?? w.shown,
+      next:lightChanges[i + 1]?.action ?? null
+    }] : []);
+    const longest = redIntervals.reduce((a,b) => b.to - b.from > a.to - a.from ? b : a, {from:0,to:0});
+    const counts = new Map();
+    for (const f of w.firings.filter(f => f.time >= longest.from && f.time < longest.to && f.light === 'RED')) {
+      const key = f.rule + ':' + f.action;
+      const value = counts.get(key) || {rule:f.rule, action:f.action, count:0};
+      value.count++;
+      counts.set(key,value);
     }
-    if (job.ambulance) checks.push({label:'Ambulance never stopped', ok:!w.ambulanceStopped});
-    const arrival = w.changes.filter(c => c.time <= 43 && c.action !== 'WALK');
-    const redAt = arrival.map(c => c.action).lastIndexOf('RED');
-    const arrivalCause = arrival[redAt - 1]?.action === 'YELLOW' ? arrival[redAt - 1] : arrival[redAt];
-    const ambulanceRule = rules.some(r => r.action && ['GREEN','ANY'].includes(r.light) && r.extras.includes('ambulance'));
-    const order = (w.job === 4 && w.ambulanceStopped && ambulanceRule) || (w.job === 3 && longestRed >= 45 &&
-      rules.some(r => r.action === 'GREEN' && r.extras.includes('10')));
-    return {checks, passed:checks.every(c => c.ok), unsafe:copy(w.unsafe), crossed, total:w.walkers.length,
-      longestWait, shortestGreen, longestRed, emptyRed:w.emptyRedMax, ambulanceStopped:w.ambulanceStopped,
-      order, orderRule:w.job === 3 ? rules.findIndex(r => r.action === 'WALK') + 1 :
-        (arrivalCause?.rule || null),
-      time:w.shown, fired:[...w.fired], rules:copy(rules), changes:copy(w.changes)};
+    const dominant = [...counts.values()].sort((a,b) => b.count - a.count)[0];
+    const walks = w.changes.filter(c => c.action === 'WALK' && c.time >= longest.from && c.time < longest.to);
+    const stopAt = w.ambulanceStopAt ?? 43;
+    const arrival = lightChanges.filter(c => c.time <= stopAt);
+    const active = arrival.at(-1);
+    const arrivalCause = active?.action === 'RED' && arrival.at(-2)?.action === 'YELLOW' ? arrival.at(-2) : active;
+    return {
+      unsafe:copy(w.unsafe), crossed, total:w.walkers.length,
+      longestWait:Math.max(0,...waits), shortestGreen:w.greens.length ? Math.min(...w.greens) : null,
+      longestRed:longest.to - longest.from, emptyRed:w.emptyRedMax,
+      carsReturn:redIntervals.length > 0 && redIntervals.every(r => r.next === 'GREEN' && r.to - r.from < 45),
+      redCount:redIntervals.length, heldReds:redIntervals.filter(r => r.next === null).length,
+      otherReds:redIntervals.filter(r => r.next !== null && r.next !== 'GREEN').length,
+      ambulanceStopped:w.ambulanceStopped, ambulanceStopAt:w.ambulanceStopAt ?? null,
+      orderRule:arrivalCause?.rule || null, dominant, walkStarts:walks.length,
+      time:w.shown, fired:[...w.fired], rules:copy(rules), changes:copy(w.changes)
+    };
   }
+
   function programRules() {
     return prog.list.map(c => copy(c.args));
   }
   function storeRules() {
     if (state.mode === 'watch') state.watchRules = programRules();
-    else state.jobRules[state.job] = programRules();
+    else state.setupRules[state.setup] = programRules();
   }
   const prog = Robot.program({max:6});
   const V = Curio.voice({
     lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
-    speaks:'.rb-card, #run.running, .push, #send-walker, #add',
-    welcome:() => {
-      if (state.mode === 'watch') return state.pressed || state.paused ? null : [
-        ['w-watch', {valid:() => !state.pressed}], ['press', {valid:() => !state.pressed}]
-      ];
-      if (state.testing) return null;
-      const j = state.job;
-      const needsAdd = [0,1,4].includes(j);
-      return [['w-jobs', {valid:() => !state.testing}],
-        ['job' + (j + 1), {valid:() => !state.testing && state.job === j && (!needsAdd || !prog.full)}]];
-    }
+    welcome:() => state.mode === 'watch' && !state.pressed && !state.paused &&
+      !$('picker').open && !$('manual-drawer').open ? ['press'] : null
   });
   function hint(text) {
     $('hint').textContent = text;
   }
   function waitingHint() {
-    if (prog.full) return 'Six rules is the most. Tap a rule to change a chip, move it, or delete it.';
-    if (state.mode === 'watch') return 'Press a walk button on the street. Tap a rule to change its chips.';
-    return 'Tap a rule to change its chips, or press Add rule. Then press Run test.';
+    if ($('picker').open) return L.chip;
+    if (prog.full) return 'Six rules is the most. Tap a rule to edit, move it, or delete it.';
+    if (state.mode === 'watch') return state.pressed ?
+      'Tap a rule to change its chips, or press Add rule. Watch the next check.' :
+      'Press a walk button on the street. Tap a rule to change its chips.';
+    return PROBLEMS[state.setup] + ' Tap a rule to edit, then Run script.';
   }
+
   const strip = Robot.strip($('strip'), {
     prog, max:6, layout:'column', buttons:$('cbtns'), label:'Your if-then rules, checked from the top',
     names:{earlier:'Move up', later:'Move down', remove:'Delete'}, emptyFocus:() => $('add'), bounds:() => $('rule-scroll'),
@@ -911,43 +1128,32 @@ dialog::backdrop { background:#17232888; }
     }
   }
   function syncPanel() {
-    const jobs = state.mode === 'jobs';
-    $('m-watch').setAttribute('aria-pressed', !jobs);
-    $('m-jobs').setAttribute('aria-pressed', jobs);
-    $('job-card').hidden = !jobs;
-    $('run').textContent = jobs ? state.testing ? '■ Stop' : '▶ Run test' : state.paused ? '▶ Play' : 'Ⅱ Pause';
+    const setups = state.mode === 'setups';
+    $('m-watch').setAttribute('aria-pressed', !setups);
+    $('m-setups').setAttribute('aria-pressed', setups);
+    $('setup-card').hidden = !setups;
+    $('run').textContent = setups ? state.testing ? '■ Stop' : '▶ Run script' : state.paused ? '▶ Play' : 'Ⅱ Pause';
     $('run').classList.toggle('running', state.testing);
-    $('speed').hidden = !jobs;
+    $('speed').hidden = !setups;
     $('speed').textContent = 'Speed ' + state.speed + '×';
-    $('skip').hidden = !jobs || !state.testing;
-    $('restart').textContent = jobs ? '↻ Start over' : '↻ Reset street';
-    const restartParent = jobs ? $('controls') : $('aux-controls');
-    if ($('restart').parentElement !== restartParent) restartParent.appendChild($('restart'));
-    for (const id of ['send-walker','send-ambulance']) {
+    $('skip').hidden = !setups || !state.testing;
+    $('skip').textContent = 'Read record';
+    $('restart').textContent = setups ? '↻ Reset setup' : '↻ Reset street';
+    for (const id of ['restart','send-walker','send-ambulance']) {
       if ($(id).parentElement !== $('aux-controls')) $('aux-controls').appendChild($(id));
     }
-    $('step').hidden = jobs || !state.paused;
-    $('send-walker').hidden = jobs;
-    $('send-ambulance').hidden = jobs;
-    $('defaults').hidden = jobs;
-    $('push-north').hidden = jobs;
-    $('push-south').hidden = jobs;
+    $('step').hidden = setups || !state.paused;
+    $('step').setAttribute('aria-label','Step: once round the half-second rule loop');
+    for (const id of ['send-walker','send-ambulance','push-north','push-south','defaults']) $(id).hidden = setups;
     $('add').disabled = prog.full;
     $('rule-count').textContent = prog.length + ' / 6';
     $('rule-scroll').classList.toggle('long', prog.length > 4);
-    if (jobs) {
-      $('job-title').textContent = (state.job + 1) + ' · ' + JOBS[state.job].name;
-      $('goal').textContent = 'Goal: every walker crosses, and nothing unsafe.' +
-        (state.job === 3 ? ' Model limits: green ≥ 30 s; red < 45 s; walker wait < 60 s.' :
-          state.job === 4 ? ' The ambulance must never stop.' : state.job === 0 ? ' Model limit: walker wait < 60 s.' : '');
-      $('job-dots').querySelectorAll('button').forEach((b,i) => {
-        b.setAttribute('aria-pressed', i === state.job);
-        b.classList.toggle('done', state.completed[i]);
-        b.setAttribute('aria-label', 'Job ' + (i + 1) + ': ' + JOBS[i].name + (state.completed[i] ? ', complete' : ''));
-      });
-    }
+    $('setup-title').textContent = SETUPS[state.setup].name;
+    $('setup-problem').textContent = PROBLEMS[state.setup];
+    $('setup-select').value = state.setup;
     strip.place();
   }
+
   function stopRunner() {
     clearTimeout(launchTimer);
     launchTimer = null;
@@ -960,7 +1166,7 @@ dialog::backdrop { background:#17232888; }
     state.replay = false;
     state.replaying = false;
     $('replay-banner').hidden = true;
-    $('job-card').hidden = state.mode !== 'jobs';
+    $('setup-card').hidden = state.mode !== 'setups';
   }
   function stopTest() {
     state.testing = false;
@@ -976,7 +1182,7 @@ dialog::backdrop { background:#17232888; }
     runner = Robot.run(prog, {
       style:'rules', world:localWorld,
       beat:() => {
-        nextBeatAt += 500 / (state.mode === 'jobs' ? state.speed : 1);
+        nextBeatAt += 500 / (state.mode === 'setups' ? state.speed : 1);
         return Math.max(1,nextBeatAt - performance.now());
       },
       when, exec:execute, traceIdle:true, snap:w => ({...snapshot(w),t:w.t}),
@@ -1008,7 +1214,7 @@ dialog::backdrop { background:#17232888; }
     state.report = null;
     state.pressed = false;
     $('report').hidden = true;
-    world = makeWorld(state.mode === 'jobs' ? state.job : null);
+    world = makeWorld(state.mode === 'setups' ? state.setup : null);
     lastCheckAt = performance.now();
     strip.setNow(null);
     marks();
@@ -1022,7 +1228,7 @@ dialog::backdrop { background:#17232888; }
     state.report = null;
     $('report').hidden = true;
     clearReplay();
-    if (state.mode === 'jobs') {
+    if (state.mode === 'setups') {
       state.testing = false;
       stopRunner();
     } else if (!state.paused) launch(false, Math.max(0,500 - (performance.now() - lastCheckAt)));
@@ -1035,7 +1241,7 @@ dialog::backdrop { background:#17232888; }
     const w = s || world;
     const t = s ? s.t : w.shown;
     const phase = w.phase;
-    $('job-card').hidden = state.mode !== 'jobs' || state.replay;
+    $('setup-card').hidden = state.mode !== 'setups' || state.replay;
     $('light-label').textContent = w.light;
     $('light-age').textContent = w.light.toLowerCase() + ' for ' + fmt(Math.max(0,t - w.since)) + ' s';
     document.querySelectorAll('.lamp').forEach((e,i) => e.classList.toggle('on', ['RED','YELLOW','GREEN'][i] === w.light));
@@ -1052,7 +1258,7 @@ dialog::backdrop { background:#17232888; }
     $('walk-icon').innerHTML = phase === 'WALK' ? WALK : HAND;
     $('time').textContent = t.toFixed(1) + ' s';
     $('live-label').textContent = state.replay ? state.replaying ? 'REPLAY' : 'PAUSED REPLAY' :
-      state.testing ? 'TEST · ' + state.speed + '×' : state.mode === 'jobs' ? 'READY TO TEST' : state.paused ? 'PAUSED' : 'LIVE · 1×';
+      state.testing ? 'SCRIPT · ' + state.speed + '×' : state.mode === 'setups' ? 'SCRIPT READY' : state.paused ? 'PAUSED' : 'LIVE · 1×';
     $('street').style.setProperty('--beat', (500 / (state.testing ? state.speed : 1)) + 'ms');
     const activeIds = new Set(w.cars.map(c => 'car-' + c.id));
     for (const e of [...$('traffic').children]) if (!activeIds.has(e.id)) e.remove();
@@ -1097,9 +1303,9 @@ dialog::backdrop { background:#17232888; }
     $('request').textContent = detector ? '▰ Ambulance detector: coming up the street' : pending ?
       pending + (pending === 1 ? ' walker waiting · button pressed' : ' walkers waiting · button pressed') : crossCount ?
         crossCount + (crossCount === 1 ? ' walker crossing' : ' walkers crossing') : 'Crosswalk clear · ' +
-          (state.mode === 'watch' ? 'press a curb button to send a walker' : 'traffic follows the job script');
+          (state.mode === 'watch' ? 'press a curb button to send a walker' : 'traffic follows the setup script');
     $('ribbon').innerHTML = w.ribbon.length ? w.ribbon.map(r => '<span class="ribbon-chip" title="Rule ' + r.rule +
-      ': ' + ACTION_LABEL[r.action] + '"><b style="--lc:' + COLORS[r.light] + '"></b>' + r.rule + '</span>').join('') :
+      ': ' + ACTION_LABEL[r.action] + '"><b style="--lc:' + COLORS[r.light] + '">' + (r.action === 'WALK' ? 'W' : r.light[0]) + '</b>' + r.rule + '</span>').join('') :
       '<span class="ribbon-empty">Waiting for a rule to fit…</span>';
     const last = w.unsafe[w.unsafe.length - 1];
     $('hazard').hidden = !last || t - last.time > 2;
@@ -1107,6 +1313,10 @@ dialog::backdrop { background:#17232888; }
     document.querySelector('.street-name').hidden = !$('hazard').hidden;
     $('watchout').textContent = state.mode === 'watch' && last ?
       'Watch out: ' + fmt(last.time) + ' s · ' + last.text + ' · Rule ' + last.rule + ' did it' : '';
+    if (!s && state.mode === 'watch' && !w.cycleHint && w.changes.some(c => c.action === 'GREEN')) {
+      w.cycleHint = true;
+      hint('Try a different action on rule 1. Press a curb button and watch the street.');
+    }
   }
   function setMode(mode) {
     if (mode === state.mode && world) return;
@@ -1116,60 +1326,47 @@ dialog::backdrop { background:#17232888; }
     state.mode = mode;
     state.paused = false;
     state.testing = false;
-    prog.load((mode === 'watch' ? state.watchRules : state.jobRules[state.job]).map(args => ({op:'rule', args:copy(args)})));
+    prog.load((mode === 'watch' ? state.watchRules : state.setupRules[state.setup]).map(args => ({op:'rule', args:copy(args)})));
     resetStreet();
     hint(waitingHint());
-    V.welcome();
+
     syncPanel();
   }
-  function openJob(i) {
-    const fromNext = document.activeElement.id === 'next';
+  function openSetup(i) {
+
     storeRules();
     V.hush();
     stopTest();
-    state.job = i;
-    prog.load(state.jobRules[i].map(args => ({op:'rule', args:copy(args)})));
+    state.setup = i;
+    prog.load(state.setupRules[i].map(args => ({op:'rule', args:copy(args)})));
     resetStreet();
     hint(waitingHint());
-    V.welcome();
-    if (fromNext) $('run').focus({preventScroll:true});
+
+
   }
   function runTest() {
     V.hush();
     resetStreet();
     state.testing = true;
     reportEpoch++;
-    hint('Watch the firing rule. Tap Stop to edit, Speed to change pace, or Skip to report.');
+    hint('Watch the firing rule. Tap Stop to edit, Speed to change pace, or Read record.');
     syncPanel();
     Curio.tone(440,.08,.06);
     launch(false, 0);
   }
   function finishTest() {
-    const fromSkip = document.activeElement.id === 'skip';
     state.testing = false;
-    const report = summarize(world, programRules());
-    state.report = report;
-    if (report.passed) state.completed[state.job] = true;
-    hint(report.passed ? state.job < 4 ? 'Every goal passed. Press Next job, or tap a rule to try another program.' :
-      'All goals passed. Choose another job to try a different program.' :
-      report.unsafe.length ? 'Tap an unsafe line to replay its rule. Tap that rule to change a chip, then press Run test.' :
-        'Check the missed goal. Tap a rule to change its chips, then press Run test.');
+    state.report = summarize(world, programRules());
+    hint(state.report.unsafe.length ?
+      'Street record. Tap an unsafe moment to replay it, or Back to rules to change the controller.' :
+      'Street record. Press Back to rules to change the controller, or Run script to observe again.');
     renderWorld();
     renderReport();
     syncPanel();
-    if (fromSkip) $('edit-report').focus({preventScroll:true});
     marks();
-    const epoch = reportEpoch;
-    const valid = () => state.report === report && !state.testing && reportEpoch === epoch && !state.replay;
-    const summaryKey = report.passed ? 'pass' : report.unsafe.length ? 'unsafe' : 'miss';
-    const entries = [summaryKey];
-    if (report.order) entries.push('order');
-    if (report.passed && state.completed.every(Boolean)) entries.push('all');
-    V.say(entries, {valid});
-    if (report.unsafe.length && !V.heard('report')) V.how('report', {valid, needs:'.unsafe-line'});
-    if (report.passed) Curio.yes();
-    else Curio.tone(200,.12,.05);
+    $('record-heading').focus({preventScroll:true});
   }
+
   function skipReport() {
     if (!state.testing) return;
     stopRunner();
@@ -1202,35 +1399,41 @@ dialog::backdrop { background:#17232888; }
     const r = state.report;
     if (!r) return;
     $('report').hidden = false;
-    const heading = r.passed ? '<span>✓ Job complete</span>' : r.unsafe.length ? '⚠ Find the unsafe rule' : 'A goal needs work';
     const green = r.shortestGreen === null ? 'none ended' : fmt(r.shortestGreen) + ' s';
-    $('report').innerHTML = '<div class="report-kicker">MAPLE STREET · TEST REPORT · ' + fmt(r.time) + ' STREET SECONDS</div>' +
-      '<h2>' + heading + '</h2><div class="goal-checks">' + r.checks.map(c => '<span class="' + (c.ok ? '' : 'fail') + '">' +
-        (c.ok ? '✓ ' : '✕ ') + c.label + '</span>').join('') + '</div>' +
+    const ambulance = world.ambulanceAt === null ? 'not sent' : r.ambulanceStopped ?
+      'Had to stop · ' + fmt(r.ambulanceStopAt) + ' s' : 'Never stopped';
+    let cause = '';
+    if (state.setup === 4 && r.ambulanceStopped) cause = r.orderRule ?
+      '<p>Rule ' + r.orderRule + ' fired first. Rules are checked from the top.</p>' :
+      '<p>The ambulance stopped in the queue. Check the rules that change the car light.</p>';
+    if (state.setup === 3 && (r.longestRed >= 45 || (r.shortestGreen !== null && r.shortestGreen < 30)) && r.dominant) {
+      const d = r.dominant;
+      cause = '<p>Rule ' + d.rule + (d.action === 'WALK' ? ' fit first and requested WALK ' + d.count +
+        ' times (' + r.walkStarts + ' new walks)' : ' fired ' + d.count + ' times') +
+        ' while cars waited ' + fmt(r.longestRed) + ' s.</p>';
+    }
+    $('report').innerHTML = '<div class="report-kicker">MAPLE STREET · ' + fmt(r.time) + ' STREET SECONDS</div>' +
+      '<h2 id="record-heading" tabindex="-1">Street record</h2>' +
       '<div class="report-grid"><div class="stat"><b>' + r.unsafe.length + ' unsafe moments</b>' +
-        (r.unsafe.length ? 'Tap a line below to replay.' : 'Every signal change was safe.') + '</div>' +
+        (r.unsafe.length ? 'Tap a moment to replay.' : 'None observed in this run.') + '</div>' +
       '<div class="stat"><b>' + r.crossed + ' of ' + r.total + ' crossed</b>Longest wait: ' + fmt(r.longestWait) + ' s</div>' +
-      '<div class="stat"><b>Cars</b>Shortest green: ' + green + '<br>Longest red: ' + fmt(r.longestRed) + ' s' +
-        (state.job === 4 ? '<br>Longest empty red: ' + fmt(r.emptyRed) + ' s' : '') + '</div>' +
-      '<div class="stat"><b>' + (state.job === 4 ? 'Ambulance' : 'Empty crosswalk') + '</b>' +
-        (state.job === 4 ? r.ambulanceStopped ? 'Had to stop' : 'Never stopped' :
-          'Longest empty red: ' + fmt(r.emptyRed) + ' s' + (r.emptyRed >= 10 ? '<br>Cars waited 10 s or more.' : '')) + '</div></div>' +
-      (r.order || (state.job === 4 && r.ambulanceStopped) ?
-        (r.orderRule ? '<p>Rule ' + r.orderRule + ' changed the light first. Rules are checked from the top.</p>' :
-          '<p>The ambulance reached a red light. Check the rules that change the car light.</p>') : '') +
-      reportTrace(r) +
+      '<div class="stat"><b>Car lights</b>Shortest green: ' + green + '<br>Longest red: ' + fmt(r.longestRed) + ' s<br>' +
+        (r.heldReds ? r.heldReds + (r.heldReds === 1 ? ' red interval is still open.' : ' red intervals are still open.') :
+          r.otherReds ? r.otherReds + ' red intervals ended in yellow.' :
+            r.redCount ? 'Each red returned to green.' : 'No red interval observed.') + '</div>' +
+      '<div class="stat"><b>Ambulance</b>' + ambulance + '</div></div>' +
+      '<p>Cars stopped with nobody crossing: ' + fmt(r.emptyRed) + ' s.</p>' + cause + reportTrace(r) +
       '<div class="unsafe-list">' + r.unsafe.map((u,i) => '<button class="unsafe-line" data-replay="' + i + '"><strong>' +
         fmt(u.time) + ' s · ' + u.text + '</strong><br>Rule ' + u.rule + ' did it. ↶ Replay</button>').join('') + '</div>' +
-      '<div class="report-actions"><button class="plain" id="edit-report">Back to rules</button>' +
-      (r.passed && state.job < 4 ? '<button class="plain" id="next">Next job →</button>' : '') + '</div>';
+      '<div class="report-actions"><button class="plain" id="edit-report">Back to rules</button></div>';
     $('report').querySelectorAll('[data-replay]').forEach(b => b.onclick = () => replayUnsafe(+b.dataset.replay));
     $('edit-report').onclick = () => {
       $('report').hidden = true;
       hint(waitingHint());
-      strip.card(0)?.focus({preventScroll:true});
+      (strip.card(0) || $('add')).focus({preventScroll:true});
     };
-    if ($('next')) $('next').onclick = () => openJob(state.job + 1);
   }
+
   function replayUnsafe(i) {
     V.hush();
     clearReplay();
@@ -1246,7 +1449,7 @@ dialog::backdrop { background:#17232888; }
       clearReplay();
       renderWorld();
       renderReport();
-      hint('Tap another unsafe line, or tap a rule to change its chips. Then press Run test.');
+      hint('Tap another unsafe line, or tap a rule to change its chips. Then press Run script.');
       $('edit-report').focus({preventScroll:true});
     };
     $('back-report').focus({preventScroll:true});
@@ -1282,12 +1485,10 @@ dialog::backdrop { background:#17232888; }
     const r = prog.card(i).args;
     state.slot = slot || (!r.light ? 'light' : !r.action ? 'action' : 'light');
     strip.select(i, 'picker');
-    hint('Choose a chip, then press Done. ' + (state.mode === 'jobs' ? 'Press Run test to try your rules.' : 'Changes count at the next check.'));
+    hint(L.chip);
     drawPicker();
     if (!$('picker').open) $('picker').showModal();
-    if (!V.heard('chip')) V.how('chip', {
-      valid:() => $('picker').open && !prog.full, needs:['#close-picker','#add']
-    });
+
     $('options').querySelector('[aria-pressed="true"]')?.focus({preventScroll:true});
   }
   function drawPicker() {
@@ -1295,12 +1496,17 @@ dialog::backdrop { background:#17232888; }
     if (i < 0) return;
     const r = prog.card(i).args;
     $('picker-title').textContent = 'Edit rule ' + (i + 1);
-    const slots = [['light','If light'], ['extra0','and…'], ['extra1','and…'], ['action','then…']];
+    $('picker-sentence').textContent = strip.card(i).getAttribute('aria-label');
+    const slots = [['light','If ' + (r.light || '?')],
+      ['extra0','and ' + (EXTRA_LABEL[r.extras[0]] || '+')],
+      ['extra1','and ' + (EXTRA_LABEL[r.extras[1]] || '+')],
+      ['action','then ' + (ACTION_LABEL[r.action] || '?')]];
     $('slot-tabs').innerHTML = slots.map(([key,label]) => '<button data-slot="' + key + '" aria-pressed="' +
       (state.slot === key) + '">' + label + '</button>').join('');
     for (const b of $('slot-tabs').children) b.onclick = () => {
       state.slot = b.dataset.slot;
       drawPicker();
+      $('options').querySelector('[aria-pressed="true"]')?.focus({preventScroll:true});
       $('slot-tabs').querySelector('[aria-pressed="true"]').focus({preventScroll:true});
     };
     let choices;
@@ -1310,7 +1516,8 @@ dialog::backdrop { background:#17232888; }
       k === 'button' ? '◉' : k === 'done' ? '✓' : k === 'ambulance' ? '▰' : '◷'])];
     const value = state.slot === 'light' ? r.light : state.slot === 'action' ? r.action : r.extras[+state.slot.slice(-1)] || '';
     $('options').innerHTML = choices.map(([key,label,icon]) => '<button data-value="' + key + '" aria-pressed="' +
-      (key === value) + '"><span class="option-icon">' + icon + '</span>' + label + '</button>').join('');
+      (key === value) + '"><span class="option-icon" style="color:' + (COLORS[key] || '#283747') + '">' +
+      (COLORS[key] && state.slot === 'action' ? '→' : '') + icon + '</span>' + label + '</button>').join('');
     for (const b of $('options').children) b.onclick = () => {
       const next = copy(prog.card(prog.indexOf(state.editing)).args);
       if (state.slot === 'light') next.light = b.dataset.value;
@@ -1323,6 +1530,8 @@ dialog::backdrop { background:#17232888; }
       }
       prog.replace(prog.indexOf(state.editing),'rule',next);
       Curio.tone(620,.05,.04);
+      drawPicker();
+      $('options').querySelector('[aria-pressed="true"]')?.focus({preventScroll:true});
       const value = state.slot === 'light' ? next.light : state.slot === 'action' ? next.action :
         next.extras[+state.slot.slice(-1)] || '';
       for (const option of $('options').children) option.setAttribute('aria-pressed', option.dataset.value === value);
@@ -1333,7 +1542,7 @@ dialog::backdrop { background:#17232888; }
     const i = prog.indexOf(state.editing);
     strip.card(i)?.focus({preventScroll:true});
     hint(waitingHint());
-    V.dropQueued(e => e.key === 'chip');
+
   }
   // Capture the intended slot before the family strip handles the card's selection.
   $('strip').addEventListener('click', e => {
@@ -1376,14 +1585,15 @@ dialog::backdrop { background:#17232888; }
     if (button && !['sound','read'].includes(button.id)) Curio.tone(420,.025,.018);
   });
   $('close-picker').onclick = closePicker;
+  $('picker-read').onclick = () => V.read();
   $('m-watch').onclick = () => setMode('watch');
-  $('m-jobs').onclick = () => setMode('jobs');
+  $('m-setups').onclick = () => setMode('setups');
   $('run').onclick = () => {
-    if (state.mode === 'jobs') {
+    if (state.mode === 'setups') {
       if (state.testing) {
         V.hush();
         stopTest();
-        hint('Test stopped. Tap a rule to change a chip, then press Run test.');
+        hint('Script stopped. Tap a rule to change a chip, then press Run script.');
       } else runTest();
     } else {
       state.paused = !state.paused;
@@ -1392,7 +1602,7 @@ dialog::backdrop { background:#17232888; }
       hint(state.paused ? 'Press Step for one half-second check, or Play to keep the street moving.' : waitingHint());
       syncPanel();
       renderWorld();
-      if (!state.paused) V.welcome();
+      
     }
   };
   $('speed').onclick = () => {
@@ -1404,13 +1614,13 @@ dialog::backdrop { background:#17232888; }
   $('skip').onclick = skipReport;
   $('restart').onclick = () => {
     V.hush();
-    if (state.mode === 'jobs') {
-      state.jobRules[state.job] = copy(JOBS[state.job].start);
-      prog.load(state.jobRules[state.job].map(args => ({op:'rule',args})));
+    if (state.mode === 'setups') {
+      state.setupRules[state.setup] = copy(SETUPS[state.setup].start);
+      prog.load(state.setupRules[state.setup].map(args => ({op:'rule',args})));
     }
     resetStreet();
     hint(waitingHint());
-    if (state.mode === 'jobs') V.welcome();
+    
   };
   $('defaults').onclick = () => {
     prog.load(DEFAULT.map(args => ({op:'rule',args:copy(args)})));
@@ -1443,7 +1653,7 @@ dialog::backdrop { background:#17232888; }
   $('add').onclick = () => {
     if (prog.full) {
       hint(L.full);
-      V.say('full',{valid:() => prog.full});
+
       return;
     }
     prog.add('rule',null,{light:null,extras:[],action:null});
@@ -1453,25 +1663,34 @@ dialog::backdrop { background:#17232888; }
     openPicker(i,'light');
     Curio.tone(520,.06,.05);
   };
-  JOBS.forEach((j,i) => {
-    const b = document.createElement('button');
-    b.textContent = i + 1;
-    b.id = 'job-' + (i + 1);
-    b.onclick = () => openJob(i);
-    $('job-dots').appendChild(b);
+  SETUPS.forEach((j,i) => {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = j.name;
+    $('setup-select').appendChild(option);
   });
+  $('setup-select').onchange = () => openSetup(+$('setup-select').value);
+  $('manual').onclick = () => {
+    V.hush();
+    $('manual-drawer').showModal();
+    $('close-manual').focus({preventScroll:true});
+  };
+  $('close-manual').onclick = () => {
+    $('manual-drawer').close();
+    $('manual').focus({preventScroll:true});
+  };
   world = makeWorld();
   Curio.onMotion(() => renderWorld());
   Curio.init({clips:"voice:*",rate:.94});
   // Small pure-data hooks let reviewers compare the browser model with independent numeric evidence.
   window.__tool = {
-    state, setMode, openJob, prog, strip, when, execute, tickWorld, makeWorld, summarize, DEFAULT, RUSH, JOBS,
+    state, setMode, openSetup, prog, strip, when, execute, tickWorld, makeWorld, summarize, DEFAULT, RUSH, SETUPS,
     get world() { return world; }, get runner() { return runner; },
     allLines:V.allLines, vlog:V.log, get vq() { return V.queue; }, EVENT_LINES,
     runTest, skipReport, renderWorld,
     loadRules(rules) { prog.load(rules.map(args => ({op:'rule',args:copy(args)}))); },
-    simulate(rules,job) {
-      const w = makeWorld(job);
+    simulate(rules,setup) {
+      const w = makeWorld(setup);
       const cards = rules.map(args => ({op:'rule',args:copy(args)}));
       let more = true;
       let guard = 0;

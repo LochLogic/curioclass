@@ -23,7 +23,7 @@ height energy went. They compare constant-force and generator brakes against thr
 2. Press Test all three. Watch the light rider stop too abruptly with the same 800 N pad.
 3. Choose Generator and test again. Keep the default strength initially.
 4. Open Ledger. Drag the scrubber back and forward to follow the same conserved total.
-5. Open Notebook. Compare the mass plot and explain how the generator adapts its force.
+5. Open Notebook. Write your explanation, then press Compare for your two brakes' measured evidence.
 
 ## Modes
 
@@ -37,6 +37,8 @@ default calculation is available. Zero height is the lowest point on that cable,
 Brake work is split into brake heat and battery energy for a generator. Battery efficiency is 80 percent.
 
 Notebook: stores completed rides on this device using localStorage. The conclusion box is unsaved.
+Compare needs complete three-mass results for both brakes on the current cable, trolley and posture, plus a written
+explanation. It shows the student's measured stops and peak braking, with no automatic judgment of the writing.
 Copy table exports tab-separated text to the clipboard or reveals selectable text if clipboard permission is unavailable.
 Clear notebook clears ride history; earned challenge cards remain. No data leaves the device.
 
@@ -56,15 +58,17 @@ The model omits cable stretch and bounce, wind, rider swing and trolley spin. Th
 of an ellipse with anchors as foci. It starts at x = 4 m, the brake begins at 276 m, and the platform edge is 296 m.
 A ratchet holds a rider who stops in the brake zone. A padded bumper catches a rider who arrives moving.
 Friction off disables rolling friction, drag and braking so the ledger contains height and motion only; no lab verdict applies.
-The rider is drawn at five times physical scale for visibility. Rider paintings are pending; code silhouettes preserve posture.
+The rider is drawn at about five times physical scale for visibility. Six painted cutouts show three builds in both postures.
 Motion off preserves ride duration and displays still launch, brake and finish poses. Sound controls narration and synthesized ride audio.
 Space rides, T tests all three, and R resets when the page itself has focus. Native controls retain their usual keyboard actions.
 
 ## Standards in student actions
 
-HS-PS3-1: students use the computed energy ledger, change model inputs and quantify redistribution of energy.
+HS-PS3-1 support: students use the computed energy ledger, change model inputs and quantify redistribution of energy.
+The tool does not by itself assess the standard's requirement to create a computational model.
 HS-PS3-2: students describe height, motion, heat and stored electrical energy using the ledger and notebook.
-HS-PS3-3: students design and evaluate a brake that converts motion energy within stopping and deceleration constraints.
+HS-PS3-3 support: students design and evaluate a simulated brake within stopping and deceleration constraints.
+Building a physical energy-conversion device remains outside this simulation.
 
 ## Sources
 
@@ -72,5 +76,5 @@ HS-PS3-3: students design and evaluate a brake that converts motion energy withi
 - OpenStax, College Physics 2e, section 5.2: drag force; section 23.5: electric generators.
 - Hoerner, Fluid-Dynamic Drag (1965), chapter 3: context for standing and crouched drag areas; these particular areas are lab settings.
 - NASA Glenn Research Center, Earth Atmosphere Model: near-sea-level density context for the 1.20 kg/m³ lab value.
-- OpenStax, Precalculus 2e, section 8.1: ellipse as constant sum of distances to its foci.
+- [OpenStax, Precalculus 2e, section 10.1](https://openstax.org/books/precalculus-2e/pages/10-1-the-ellipse): constant sum of distances to foci.
 - Illustrations generated with OpenAI gpt-image, edited for Curio Class.

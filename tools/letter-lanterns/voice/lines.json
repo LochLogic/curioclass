@@ -1,0 +1,720 @@
+{
+  "bank": "playful-friend",
+  "voice": "Laomedeia",
+  "style": "Playful and clear, an inviting friend exploring sounds. Isolated stops crisp with no added vowel; sustained sounds about 0.8 seconds.",
+  "lines": [
+    "Tap any lantern. Or choose a letter below.",
+    "Tap the lantern to hear it. Or try Trace.",
+    "Tap either flame to hear its vowel sound.",
+    "Start at the green dot and follow the arrow. Or tap Back to lantern.",
+    "Trace the small letter. Or tap Back to lantern.",
+    "Draw on the slate. Tap Next stroke, or Back to lantern, whenever you like.",
+    "The whole letter is shown over your ink. Draw again, or tap Back to lantern.",
+    "Watch this stroke. You can draw whenever you like.",
+    "Start at the green dot.",
+    "Follow the arrow to the end.",
+    "Let's draw this stroke together.",
+    "Tap lanterns to hear sounds. Tap the window to reveal the word.",
+    "Tap lanterns to compare sounds. Tap a window to reveal its word.",
+    "Tap either word board to hear the word and its vowel.",
+    "Tap a banner to hear the whole word.",
+    "Tap a shop, a banner, or Read the street.",
+    "Tap a lantern, shop, banner, or Read the street.",
+    "The street is asleep. Tap Lanterns and choose any letter, or tap a shop to explore its sign.",
+    "This shop is ready to explore. Tap its window to hear the word.",
+    "Tap letters and banners to hide or show them. Tap Close to return.",
+    "All letters are hidden. Tap Settings to show some.",
+    "Tap Settings to show more letters, or tap Lanterns.",
+    "Your village is saved on this device only. Nothing leaves it.",
+    "Choose a lantern, trace a letter, or open the Wordbook. You can explore in any order.",
+    "Isolated sounds use recordings. Without a recording, you hear an anchor word instead of a letter name.",
+    "Clear this village? Tap Clear village or Cancel.",
+    "Read it!",
+    "Tap another shop or banner, or explore the next street.",
+    "Listen to this sound.",
+    "It can say",
+    "Short sound.",
+    "Long sound.",
+    "mmm",
+    "M.",
+    "Listen to the first sound in moth. moth.",
+    "Like moth.",
+    "sss",
+    "S.",
+    "Listen to the first sound in snail. snail.",
+    "Like snail.",
+    "a",
+    "A.",
+    "Listen to the first sound in ant. ant.",
+    "Like ant.",
+    "t",
+    "T.",
+    "Listen to the first sound in turtle. turtle.",
+    "Like turtle.",
+    "p",
+    "P.",
+    "Listen to the first sound in penguin. penguin.",
+    "Like penguin.",
+    "i",
+    "I.",
+    "Listen to the first sound in inchworm. inchworm.",
+    "Like inchworm.",
+    "nnn",
+    "N.",
+    "Listen to the first sound in newt. newt.",
+    "Like newt.",
+    "k",
+    "C.",
+    "Listen to the first sound in crab. crab.",
+    "Like crab.",
+    "o",
+    "O.",
+    "Listen to the first sound in octopus. octopus.",
+    "Like octopus.",
+    "d",
+    "D.",
+    "Listen to the first sound in duck. duck.",
+    "Like duck.",
+    "g",
+    "G.",
+    "Listen to the first sound in goat. goat.",
+    "Like goat.",
+    "u",
+    "U.",
+    "Listen to the first sound in umbrellabird. umbrellabird.",
+    "Like umbrellabird.",
+    "fff",
+    "F.",
+    "Listen to the first sound in frog. frog.",
+    "Like frog.",
+    "b",
+    "B.",
+    "Listen to the first sound in bear. bear.",
+    "Like bear.",
+    "e",
+    "E.",
+    "Listen to the first sound in elephant. elephant.",
+    "Like elephant.",
+    "h",
+    "H.",
+    "Listen to the first sound in hedgehog. hedgehog.",
+    "Like hedgehog.",
+    "rrr",
+    "R.",
+    "Listen to the first sound in rabbit. rabbit.",
+    "Like rabbit.",
+    "lll",
+    "L.",
+    "Listen to the first sound in ladybug. ladybug.",
+    "Like ladybug.",
+    "K.",
+    "Listen to the first sound in koala. koala.",
+    "Like koala.",
+    "j",
+    "J.",
+    "Listen to the first sound in jellyfish. jellyfish.",
+    "Like jellyfish.",
+    "w",
+    "W.",
+    "Listen to the first sound in walrus. walrus.",
+    "Like walrus.",
+    "vvv",
+    "V.",
+    "Listen to the first sound in vole. vole.",
+    "Like vole.",
+    "y",
+    "Y.",
+    "Listen to the first sound in yak. yak.",
+    "Like yak.",
+    "zzz",
+    "Z.",
+    "Listen to the first sound in zebra. zebra.",
+    "Like zebra.",
+    "ks",
+    "X.",
+    "Listen to the last sounds in ox. Ox.",
+    "Like ox.",
+    "kw",
+    "Q.",
+    "Listen to the starting sounds in quail. Quail.",
+    "Like quail.",
+    "A",
+    "Like acorn.",
+    "E",
+    "Like emu.",
+    "I",
+    "Like ivy.",
+    "O",
+    "Like ocean.",
+    "U",
+    "Like unicorn.",
+    "map.",
+    "pan.",
+    "pin.",
+    "cat.",
+    "cot.",
+    "mop.",
+    "pig.",
+    "dog.",
+    "cup.",
+    "pup.",
+    "sun.",
+    "bug.",
+    "bus.",
+    "fan.",
+    "bed.",
+    "hen.",
+    "pen.",
+    "hat.",
+    "log.",
+    "jet.",
+    "web.",
+    "van.",
+    "box.",
+    "fox.",
+    "the.",
+    "a.",
+    "see.",
+    "my.",
+    "is.",
+    "to.",
+    "you.",
+    "we.",
+    "go.",
+    "no.",
+    "not.",
+    "got.",
+    "me.",
+    "met.",
+    "he.",
+    "hi.",
+    "hit.",
+    "wet."
+  ],
+  "phoneme_takes_required": [
+    {
+      "id": "sound.m",
+      "text": "mmm",
+      "ipa": "m",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.s",
+      "text": "sss",
+      "ipa": "s",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.a",
+      "text": "a",
+      "ipa": "æ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.t",
+      "text": "t",
+      "ipa": "t",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.p",
+      "text": "p",
+      "ipa": "p",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.i",
+      "text": "i",
+      "ipa": "ɪ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.n",
+      "text": "nnn",
+      "ipa": "n",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.c",
+      "text": "k",
+      "ipa": "k",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.o",
+      "text": "o",
+      "ipa": "ɑ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.d",
+      "text": "d",
+      "ipa": "d",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.g",
+      "text": "g",
+      "ipa": "ɡ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.u",
+      "text": "u",
+      "ipa": "ʌ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.f",
+      "text": "fff",
+      "ipa": "f",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.b",
+      "text": "b",
+      "ipa": "b",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.e",
+      "text": "e",
+      "ipa": "ɛ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.h",
+      "text": "h",
+      "ipa": "h",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.r",
+      "text": "rrr",
+      "ipa": "ɹ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.l",
+      "text": "lll",
+      "ipa": "l",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.k",
+      "text": "k",
+      "ipa": "k",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.j",
+      "text": "j",
+      "ipa": "dʒ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.w",
+      "text": "w",
+      "ipa": "w",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.v",
+      "text": "vvv",
+      "ipa": "v",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.y",
+      "text": "y",
+      "ipa": "j",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.z",
+      "text": "zzz",
+      "ipa": "z",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.x",
+      "text": "ks",
+      "ipa": "ks",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "sound.q",
+      "text": "kw",
+      "ipa": "kw",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the isolated sound, not the letter name. Crisp stops with no added vowel; held sounds about 0.8 seconds."
+    },
+    {
+      "id": "longSound.a",
+      "text": "A",
+      "ipa": "eɪ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the long vowel sound, the letter name."
+    },
+    {
+      "id": "longSound.e",
+      "text": "E",
+      "ipa": "iː",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the long vowel sound, the letter name."
+    },
+    {
+      "id": "longSound.i",
+      "text": "I",
+      "ipa": "aɪ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the long vowel sound, the letter name."
+    },
+    {
+      "id": "longSound.o",
+      "text": "O",
+      "ipa": "oʊ",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the long vowel sound, the letter name."
+    },
+    {
+      "id": "longSound.u",
+      "text": "U",
+      "ipa": "juː",
+      "takes_required": 3,
+      "reviewed": false,
+      "instruction": "Only the long vowel sound, the letter name."
+    }
+  ],
+  "hint_only": [
+    "listenLantern",
+    "listenBanner",
+    "listenSign",
+    "listenWord"
+  ],
+  "hint_only_note": "Legacy matching-question hints removed with the quizzes; do not record them.",
+  "sequences_note": "Sound pieces reuse sound.<letter> and longSound.<vowel>. Missing isolated clips use an anchor-word fallback; do not approve phoneme listening from queue logs.",
+  "sequences": {
+    "intro.m": [
+      "letterName.m",
+      "says",
+      "sound.m",
+      "like.m"
+    ],
+    "intro.s": [
+      "letterName.s",
+      "says",
+      "sound.s",
+      "like.s"
+    ],
+    "intro.a": [
+      "letterName.a",
+      "says",
+      "sound.a",
+      "like.a"
+    ],
+    "intro.t": [
+      "letterName.t",
+      "says",
+      "sound.t",
+      "like.t"
+    ],
+    "intro.p": [
+      "letterName.p",
+      "says",
+      "sound.p",
+      "like.p"
+    ],
+    "intro.i": [
+      "letterName.i",
+      "says",
+      "sound.i",
+      "like.i"
+    ],
+    "intro.n": [
+      "letterName.n",
+      "says",
+      "sound.n",
+      "like.n"
+    ],
+    "intro.c": [
+      "letterName.c",
+      "says",
+      "sound.c",
+      "like.c"
+    ],
+    "intro.o": [
+      "letterName.o",
+      "says",
+      "sound.o",
+      "like.o"
+    ],
+    "intro.d": [
+      "letterName.d",
+      "says",
+      "sound.d",
+      "like.d"
+    ],
+    "intro.g": [
+      "letterName.g",
+      "says",
+      "sound.g",
+      "like.g"
+    ],
+    "intro.u": [
+      "letterName.u",
+      "says",
+      "sound.u",
+      "like.u"
+    ],
+    "intro.f": [
+      "letterName.f",
+      "says",
+      "sound.f",
+      "like.f"
+    ],
+    "intro.b": [
+      "letterName.b",
+      "says",
+      "sound.b",
+      "like.b"
+    ],
+    "intro.e": [
+      "letterName.e",
+      "says",
+      "sound.e",
+      "like.e"
+    ],
+    "intro.h": [
+      "letterName.h",
+      "says",
+      "sound.h",
+      "like.h"
+    ],
+    "intro.r": [
+      "letterName.r",
+      "says",
+      "sound.r",
+      "like.r"
+    ],
+    "intro.l": [
+      "letterName.l",
+      "says",
+      "sound.l",
+      "like.l"
+    ],
+    "intro.k": [
+      "letterName.k",
+      "says",
+      "sound.k",
+      "like.k"
+    ],
+    "intro.j": [
+      "letterName.j",
+      "says",
+      "sound.j",
+      "like.j"
+    ],
+    "intro.w": [
+      "letterName.w",
+      "says",
+      "sound.w",
+      "like.w"
+    ],
+    "intro.v": [
+      "letterName.v",
+      "says",
+      "sound.v",
+      "like.v"
+    ],
+    "intro.y": [
+      "letterName.y",
+      "says",
+      "sound.y",
+      "like.y"
+    ],
+    "intro.z": [
+      "letterName.z",
+      "says",
+      "sound.z",
+      "like.z"
+    ],
+    "intro.x": [
+      "letterName.x",
+      "says",
+      "sound.x",
+      "like.x"
+    ],
+    "intro.q": [
+      "letterName.q",
+      "says",
+      "sound.q",
+      "like.q"
+    ],
+    "short.a": [
+      "shortLead",
+      "sound.a",
+      "like.a"
+    ],
+    "long.a": [
+      "longLead",
+      "longSound.a",
+      "longAnchor.a"
+    ],
+    "short.e": [
+      "shortLead",
+      "sound.e",
+      "like.e"
+    ],
+    "long.e": [
+      "longLead",
+      "longSound.e",
+      "longAnchor.e"
+    ],
+    "short.i": [
+      "shortLead",
+      "sound.i",
+      "like.i"
+    ],
+    "long.i": [
+      "longLead",
+      "longSound.i",
+      "longAnchor.i"
+    ],
+    "short.o": [
+      "shortLead",
+      "sound.o",
+      "like.o"
+    ],
+    "long.o": [
+      "longLead",
+      "longSound.o",
+      "longAnchor.o"
+    ],
+    "short.u": [
+      "shortLead",
+      "sound.u",
+      "like.u"
+    ],
+    "long.u": [
+      "longLead",
+      "longSound.u",
+      "longAnchor.u"
+    ],
+    "twinDiff.0": [
+      "sound.a",
+      "sound.i",
+      "word.pan",
+      "word.pin"
+    ],
+    "twinDiff.1": [
+      "sound.a",
+      "sound.o",
+      "word.cat",
+      "word.cot"
+    ],
+    "twinDiff.2": [
+      "sound.a",
+      "sound.o",
+      "word.map",
+      "word.mop"
+    ],
+    "twinDiff.3": [
+      "sound.c",
+      "sound.p",
+      "word.cup",
+      "word.pup"
+    ],
+    "twinDiff.4": [
+      "sound.d",
+      "sound.l",
+      "word.dog",
+      "word.log"
+    ],
+    "twinDiff.5": [
+      "sound.f",
+      "sound.v",
+      "word.fan",
+      "word.van"
+    ],
+    "twinDiff.6": [
+      "sound.h",
+      "sound.p",
+      "word.hen",
+      "word.pen"
+    ],
+    "twinDiff.7": [
+      "sound.b",
+      "sound.f",
+      "word.box",
+      "word.fox"
+    ],
+    "twinDiff.8": [
+      "sound.g",
+      "sound.s",
+      "word.bug",
+      "word.bus"
+    ],
+    "twinDiff.9": [
+      "sound.n",
+      "sound.g",
+      "word.pin",
+      "word.pig"
+    ]
+  }
+}

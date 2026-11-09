@@ -1,0 +1,1480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Lunch Survey Cleanup | Curio Class</title>
+<meta name="description" content="Clean a fictional lunch survey, see who each fix leaves out, and report honestly. Grades 6-8. Offline.">
+<!--
+Lunch Survey Cleanup, Curio Class. Based on kit/starter/src.html.
+Grades 6-8 computer science: MS-DAT-DC-24 and MS-DAT-DI-27.
+Fictional Ridgeview survey: exact recipe in spec.md, generated in Scratch/build_data.py.
+Missing data: Kang 2013, PMC3668100. Standardizing labels: OpenRefine, Cluster and edit.
+Survey validation: Sampling and Survey Techniques, chapter 7, Data Validation.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file, no network requests. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f3f6ef; --panel:#fff; --ink:#1c2420; --muted:#56615a; --line:#cad4c5;
+  --brand:#2f6a33; --btn:#fff; --btn-line:#7b857e; --head-ink:#1c2420; --focus:#1f5fd1;
+  --warn:#a3261b; --dd-1:#3d5a80; --dd-2:#2f6a33; --dd-3:#8a4f9e; --dd-ring:#b45309;
+  --dd-text:#1c2420; --dd-grid:#c9d1c4; --dd-axis:#56615a; --dd-bg-solid:#fff;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { background:#e3ebdd; border-bottom:3px solid var(--brand); padding:8px 18px; gap:8px; }
+h1 { font-size:25px; letter-spacing:-.6px; }
+h1 small { font-size:12px; margin-top:4px; letter-spacing:.3px; }
+button { touch-action:manipulation; }
+button:disabled { opacity:.5; cursor:default; }
+.seg { border-width:1px; border-radius:7px; }
+.seg button,.icon-btn { min-height:44px; min-width:44px; padding:0 12px; font-size:13px; border-radius:6px; }
+.icon-btn { border-width:1px; }
+.seg button[aria-pressed="true"] { background:var(--brand); color:#fff; }
+main { grid-template-columns:minmax(0,64fr) minmax(300px,36fr); }
+.panel { grid-column:2; grid-row:1; border-left:1px solid #aebea6; gap:8px; padding:10px; min-width:0; overflow:hidden; }
+.stage { grid-column:1; grid-row:1; padding:12px 16px; min-height:0;
+  background:repeating-linear-gradient(0deg,transparent 0 79px,#a4b59a26 79px 80px),
+    repeating-linear-gradient(90deg,#dfe7d7 0 79px,#c8d4bf 79px 80px); }
+.desk { position:relative; height:100%; min-height:0; display:flex; flex-direction:column;
+  background:#fffef9; border:1px solid #b9c7ae; box-shadow:0 5px 16px #273c2826; border-radius:8px; overflow:hidden; }
+.cafeteria { height:60px; flex:none; position:relative; overflow:hidden; background:#c9d8b9; }
+.cafeteria img { width:100%; height:100%; object-fit:cover; object-position:center 63%; }
+.cafeteria::after { content:''; position:absolute; inset:0; box-shadow:inset 0 -10px 15px #263d2522; pointer-events:none; }
+.cafeteria .tag { position:absolute; left:13px; top:10px; padding:5px 9px; background:#fffef9f0; border:1px solid #bcc8b4;
+  font-size:10px; letter-spacing:1.8px; font-weight:800; color:#2f5132; }
+.cafeteria .tag::before { content:'● '; animation:light 4s ease-in-out infinite; }
+@keyframes light { 50% { opacity:.35; } }
+.calm .cafeteria .tag::before { animation:none; }
+.note { border:0; border-bottom:1px solid #d4d8c5; background:linear-gradient(100deg,#fff7d6,#fffbec); text-align:left;
+  min-height:44px; flex:none; display:flex; align-items:center; gap:9px; padding:0 12px; font-size:12px; line-height:1.35; }
+.note img { height:72px; width:58px; object-fit:contain; flex:none; }
+.note strong { color:#284e2a; }
+.note.collapsed { font-size:11px; padding:4px 12px; }
+.note.collapsed img { display:none; }
+.arrival { margin:0; padding:5px 12px; font-size:11px; color:var(--muted); }
+.viewbar { display:flex; align-items:center; justify-content:space-between; padding:0 10px; gap:5px; flex:none; }
+.viewbar .seg { flex:none; }
+.viewbar button { min-height:44px; font-size:12px; padding:0 10px; }
+.checklabel { min-height:44px; display:flex; align-items:center; gap:6px; font-size:12px; cursor:pointer; }
+.checklabel input { accent-color:var(--brand); width:17px; height:17px; flex:none; }
+.verdict { margin:5px 12px 0; display:grid; grid-template-columns:1fr 224px; min-height:148px;
+  background:#eaf0e1; border:1px solid #a4b497; border-radius:5px; overflow:hidden; flex:none; }
+.verdict-copy { padding:9px 12px; display:flex; flex-direction:column; justify-content:center; min-width:0; }
+.eyebrow { text-transform:uppercase; letter-spacing:1.4px; font-size:10px; font-weight:800; color:var(--muted); }
+#verdict-line { font-size:14px; line-height:1.35; margin:5px 0 0; }
+#decision { font-size:21px; font-weight:800; color:var(--brand); }
+.menu { position:relative; background:linear-gradient(110deg,#244732,#183626); margin:6px; border:4px solid #a78551;
+  box-shadow:inset 0 0 8px #0005,1px 2px 2px #0002; min-height:128px; }
+.menu-list { width:96px; color:#f5f6df; font:10px/1.65 ui-monospace,Consolas,monospace; padding:3px 6px; opacity:.9; }
+.tray { position:absolute; right:3px; top:2px; width:100px; height:100px; object-fit:contain;
+  filter:drop-shadow(2px 3px 2px #0006); transition:transform 300ms,opacity 300ms; }
+.tray.out { transform:translate(-100px,50px) scale(.5); opacity:.45; }
+.menu-badge { position:absolute; right:0; bottom:0; color:#17351d; background:#fff2b3; padding:2px 4px; font-size:10px; font-weight:800; }
+.menu-badge.miss { right:auto; left:3px; }
+.plot-area { flex:1; min-height:120px; position:relative; margin:0 10px; }
+#chart { width:100%; height:100%; display:block; }
+.plot-caption { margin:0 12px; color:var(--muted); font-size:10px; min-height:16px; flex:none; }
+.who { margin:5px 12px 10px; border-top:2px solid #ced8c6; padding-top:5px; min-height:111px; flex:none; }
+.who h2 { font-size:12px; letter-spacing:1px; text-transform:uppercase; margin:0 0 5px; display:flex; justify-content:space-between; }
+.who h2 span { font-size:10px; font-weight:400; text-transform:none; letter-spacing:0; }
+.who-row { display:grid; grid-template-columns:190px 1fr 126px; align-items:center; gap:6px; min-height:21px; font-size:11px; }
+.track { border:1px solid #809278; height:10px; background:#fff; position:relative; width:85%; }
+.track .solid { height:100%; background:linear-gradient(#608b53,#376939); display:block; transition:width 250ms; }
+.track .extra { position:absolute; top:-1px; bottom:-1px; left:100%; background:repeating-linear-gradient(45deg,#435571 0 2px,#e1e9ee 2px 4px);
+  border:1px solid #435571; }
+.who-cost { color:#7d361d; font-size:10px; }
+.marcus { display:flex; align-items:center; min-height:99px; padding:4px 9px; gap:7px;
+  background:linear-gradient(110deg,#edf3e5,#f8fbf3); border:1px solid #bacab0; border-radius:7px; flex:none; }
+.marcus img { height:88px; width:72px; object-fit:contain; flex:none; }
+.bubble { flex:1; min-width:0; }
+#hint { margin:4px 0 0; font-size:13px; line-height:1.35; min-height:54px; }
+.problem-tabs { display:none; gap:4px; flex:none; }
+.problem-tabs button { flex:1; }
+.problem-list { display:flex; flex-direction:column; gap:7px; flex:1; min-height:0; }
+.problem { background:linear-gradient(115deg,#fffefa,#f5f7ee); border:1px solid #bcc9b1; border-radius:6px;
+  box-shadow:0 2px 2px #31422b12; padding:7px 8px; min-height:max-content;
+  flex:1 1 auto; display:flex; flex-direction:column; }
+.problem:has(.cause:not([hidden])) { flex-grow:1.2; }
+.reason-tabs { display:none; gap:4px; margin-bottom:6px; }
+.reason-tabs button { flex:1; }
+.problem-head { display:flex; align-items:center; gap:6px; flex:none; }
+.prop { width:48px; height:48px; object-fit:contain; flex:none; }
+.prop-art { position:relative; flex:none; width:48px; height:48px; }
+.prop-art .prop { width:100%; height:100%; }
+.survey-marks { position:absolute; inset:10% 16% 20% 13%; width:71%; height:70%; opacity:.65; }
+.spelling-sample { display:inline-block; padding:1px 3px; margin:1px 0; color:#493e25;
+  background:linear-gradient(115deg,#fff5b5,#eed579); box-shadow:1px 1px 1px #66551f33; border-radius:1px 1px 3px 1px; }
+.problem-head h2 { font-size:13px; margin:0 0 3px; }
+.problem-head p { font-size:10px; line-height:1.25; margin:0; color:var(--muted); }
+.problem-head .show { min-width:53px; padding:3px 5px; font-size:10px; margin-left:auto; }
+.btn { min-height:44px; border:1px solid #7b857e; border-radius:5px; background:#fff; padding:5px 9px;
+  font-size:12px; line-height:1.25; font-weight:600; }
+.btn:hover { background:#edf3e6; }
+.btn[aria-pressed="true"],.btn[aria-checked="true"],.btn.primary { background:var(--brand); border-color:var(--brand); color:#fff; }
+.fixes { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; margin-top:6px; }
+.fix-option { min-width:0; }
+.fix { width:100%; min-height:44px; font-size:11px; padding:4px; }
+.fix[aria-checked="true"]::before { content:'✓ '; }
+.effect { font-size:10px; line-height:1.2; margin:4px 0 0; min-height:34px; color:var(--muted); font-variant-numeric:tabular-nums; }
+.effect-short,.detail-short { display:none; }
+.cause { font-size:10px; line-height:1.25; margin:5px 0 0; color:#493e25; padding:4px 6px;
+  background:#fbf0ce; border-left:3px solid #b8943e; }
+.cause-short { display:none; }
+#to-report { width:100%; flex:none; min-height:44px; font-size:14px; }
+.progress { font-size:10px; color:inherit; font-weight:400; }
+.table-view { flex:1; min-height:0; display:flex; flex-direction:column; padding:0 10px 8px; }
+.filters { display:flex; gap:4px; flex-wrap:wrap; align-items:center; }
+.filters .btn { min-width:44px; font-size:10px; padding:4px 7px; }
+.filters .checklabel { font-size:10px; }
+#table-host { flex:1; min-height:0; overflow:auto; font-size:11px; }
+.dd-tablewrap { min-height:100%; }
+.dd-table { width:100%; background:#fff; }
+.dd-table th { background:#e9efdf; font-size:10px; white-space:nowrap; }
+.dd-table td { padding:3px 5px; }
+.dd-table .dropped { opacity:.5; background:repeating-linear-gradient(135deg,#fff 0 5px,#eee 5px 6px); }
+.dd-table .row-dropped::after { content:' dropped'; color:#a3261b; font-size:10px; }
+.dd-table .copy-cell::after { content:' copy'; color:#8a4423; font-size:10px; }
+.dd-table .filled::after { content:' filled'; color:#78480d; font-size:10px; }
+.dd-table .merged::after { content:' was ' attr(data-was); color:#54634a; font-size:10px; }
+.dd-pager { position:static; flex:none; background:#fffef9; padding-top:4px; margin-top:auto; }
+.dd-pager button { border:1px solid #7b857e; border-radius:4px; background:#fff; font:inherit; }
+.report-heading { padding:12px 14px 8px; border-bottom:2px solid #a3b29a; flex:none; }
+.report-heading h2 { font:700 23px/1.1 Georgia,serif; margin:0; }
+.report-heading p { margin:4px 0 0; font-size:11px; color:var(--muted); }
+.letter { display:grid; grid-template-columns:1fr 1fr; gap:10px; padding:10px 12px; flex:1; min-height:0; }
+.letter-column { min-width:0; display:flex; flex-direction:column; gap:8px; }
+.part { border:1px solid #c8d0be; padding:7px; background:linear-gradient(105deg,#fffefa,#fbfcf5); border-radius:4px; min-width:0; }
+.part h3 { margin:0 0 6px; font-size:12px; line-height:1.25; }
+.part h3 b { display:inline-block; color:var(--brand); margin-right:5px; }
+.reason-row { margin-bottom:8px; }
+.reason-row:last-child { margin-bottom:0; }
+.reason-title { font-size:11px; font-weight:700; margin:0 0 4px; }
+.also { display:block; font-size:10px; font-weight:400; color:var(--muted); line-height:1.25; margin:3px 0; }
+.reason-choices { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+.chip { font-weight:400; text-align:left; font-size:11px; padding:6px; min-height:44px; width:100%; }
+.statement-choices,.limit-choices,.answer-choices { display:flex; flex-direction:column; gap:4px; }
+.mark { font-size:10px; margin:3px 0 0; line-height:1.3; color:var(--warn); }
+.mark.ok { color:#2f6a33; }
+.part-tabs { display:none; gap:4px; padding:5px 10px 0; }
+.part-tabs button { flex:1; }
+.gate { margin:auto; max-width:80%; padding:24px; background:#edf0e7; border:1px dashed #9ba88e; text-align:center; }
+.gate h2 { font:700 24px Georgia,serif; color:#65715e; }
+.gate p { font-size:15px; line-height:1.5; }
+.report-evidence { border:1px solid #bdc9b3; background:#fafcf7; padding:8px; }
+#phone-evidence { display:none; }
+#report-verdict { margin:6px 0; font-size:14px; line-height:1.3; }
+.report-evidence .who { margin:6px 0 0; min-height:125px; }
+.report-evidence .who-row { grid-template-columns:1fr; gap:2px; margin-bottom:7px; }
+.report-evidence .track { display:none; }
+.report-evidence .who-cost { font-size:11px; }
+#report-actions { display:flex; flex-direction:column; gap:8px; }
+#first-score { font-size:12px; color:var(--muted); margin:2px 0; }
+#report-actions .btn { min-height:48px; font-size:14px; }
+.sent-card { overflow:auto; flex:1; min-height:0; padding:13px 17px; background:#fffef8; }
+.sent-card h3 { font:700 20px Georgia,serif; margin:0 0 10px; }
+.sent-line { padding:6px 0; font-size:12px; line-height:1.45; border-bottom:1px solid #dfe4d6; }
+.sent-line span { display:block; font-size:10px; font-weight:700; color:var(--brand); }
+.sent-line span.assisted { color:#85500e; }
+.sent-line span.revised { color:#3d5a80; }
+.reply { display:flex; align-items:center; gap:12px; padding:12px; margin-top:13px; background:#eef3e4;
+  border:1px solid #a5b895; border-radius:6px; box-shadow:2px 3px 0 #b0bc9f; }
+.reply img { height:96px; width:75px; object-fit:contain; flex:none; }
+.reply p { font-size:13px; line-height:1.45; margin:0; }
+.sent-buttons { display:flex; gap:8px; margin-top:12px; }
+.sent-buttons button { flex:1; }
+.calm .tray,.calm .solid { transition:none; }
+body:is(.report-feedback,.report-overflow) .part-tabs,body:is(.report-feedback,.report-overflow) .reason-tabs { display:flex; }
+body:is(.report-feedback,.report-overflow) .letter { display:block; overflow:auto; }
+body:is(.report-feedback,.report-overflow) .letter-column { display:contents; }
+body:is(.report-feedback,.report-overflow) .part:not(.active),
+body:is(.report-feedback,.report-overflow) .reason-row:not(.active) { display:none; }
+body:is(.report-feedback,.report-overflow) .reason-choices { grid-template-columns:repeat(3,minmax(0,1fr)); }
+body:is(.report-feedback,.report-overflow) .limit-choices { display:grid; grid-template-columns:1fr 1fr; }
+@media (min-width:1600px) and (min-height:850px) {
+  header { padding:12px 24px; }
+  .cafeteria { height:110px; }
+  .problem { padding:12px; }
+  .problem-head h2 { font-size:17px; }
+  .problem-head p,.cause,.effect { font-size:12px; }
+  .fix { font-size:14px; min-height:56px; }
+  .prop { width:60px; height:60px; }
+  .prop-art { width:60px; height:60px; }
+  #hint { font-size:16px; }
+  .part h3 { font-size:16px; }
+  .chip { font-size:14px; min-height:52px; }
+  .reason-title { font-size:14px; }
+  .also { font-size:11px; }
+  .who-row { font-size:13px; min-height:25px; }
+}
+@media (max-width:1100px),(max-height:740px) {
+  header { padding:5px 8px; gap:5px; }
+  h1 { font-size:19px; }
+  h1 small { display:none; }
+  .icon-btn,.seg button { padding:0 8px; font-size:11px; }
+  main { grid-template-columns:minmax(0,62fr) minmax(245px,38fr); }
+  .stage { padding:7px; }
+  .panel { padding:7px; gap:6px; }
+  .cafeteria { height:48px; }
+  .note { font-size:10px; padding:4px 8px; }
+  .note img { height:54px; width:42px; }
+  .arrival { font-size:10px; padding:3px 8px; }
+  .marcus { min-height:66px; padding:5px 8px; }
+  .marcus img { height:62px; width:50px; }
+  #hint { min-height:42px; font-size:11px; margin-top:2px; }
+  .bubble .eyebrow { display:none; }
+  .problem-tabs { display:flex; }
+  .problem-tabs .btn { padding:3px; font-size:11px; }
+  .problem:not(.active) { display:none; }
+  .problem { padding:8px; justify-content:flex-start; min-height:0; }
+  .problem:has(.cause:not([hidden])) { flex:1; }
+  .problem-head { flex-wrap:nowrap; }
+  .problem-head > div { min-width:0; flex:1; }
+  .problem-head h2 { font-size:13px; }
+  .problem-head .show { margin-left:auto; flex:none; }
+  .problem-head p { font-size:11px; }
+  .fixes { margin-top:8px; }
+  .fix { min-height:64px; font-size:11px; }
+  .effect { font-size:10px; line-height:1.4; }
+  .cause { font-size:11px; margin-top:9px; }
+  .verdict { min-height:88px; grid-template-columns:1fr 145px; margin:4px 8px 0; }
+  .verdict-copy { padding:6px 8px; }
+  #verdict-line { font-size:11px; }
+  #decision { font-size:18px; }
+  .menu { min-height:70px; }
+  .menu-list { display:none; }
+  .tray { width:65px; height:65px; }
+  .tray.out { transform:translate(-61px,21px) scale(.6); }
+  .viewbar { padding:0 7px; }
+  .viewbar button,.checklabel { font-size:10px; }
+  .who { margin:3px 8px 6px; min-height:100px; }
+  .who-row { grid-template-columns:1fr 96px; min-height:20px; font-size:10px; }
+  .who-row .track { display:none; }
+  .who h2 { font-size:10px; }
+  .who h2 span { font-size:10px; }
+  .plot-area { min-height:80px; }
+  .part-tabs { display:flex; }
+  .letter { display:block; padding:8px; overflow:auto; }
+  .letter-column { display:contents; }
+  .part:not(.active) { display:none; }
+  .part { min-height:100%; }
+  .part h3 { font-size:14px; }
+  .reason-title { font-size:11px; }
+  .reason-tabs { display:flex; }
+  .reason-row:not(.active) { display:none; }
+  .limit-choices { display:grid; grid-template-columns:1fr 1fr; }
+  .chip,.also { font-size:10px; }
+  .report-heading { padding:9px 10px 6px; }
+  .report-heading h2 { font-size:20px; }
+}
+@media (max-height:550px) and (min-width:600px) {
+  .panel { gap:4px; }
+  .problem-list { gap:4px; }
+  .cafeteria,.marcus img { display:none; }
+  .marcus { min-height:54px; }
+  .arrival { display:none; }
+  .note:not(.collapsed) { font-size:10px; line-height:1.25; max-height:44px; }
+  .note:not(.expanded) img { display:none; }
+  .note.expanded { position:absolute; z-index:3; top:0; left:0; right:0; min-height:90px; max-height:none; box-shadow:0 5px 12px #20351f55; }
+  .note.expanded img { display:block; }
+  .note img { height:50px; width:35px; }
+  .note.collapsed { font-size:10px; }
+  .verdict { min-height:65px; grid-template-columns:1fr 112px; margin-top:2px; }
+  .menu { min-height:53px; margin:3px; border-width:3px; }
+  .menu-list { display:none; }
+  .tray { width:48px; height:48px; }
+  .tray.out { transform:translate(-47px,14px) scale(.62); }
+  #decision { font-size:15px; }
+  #verdict-line { margin-top:2px; font-size:10px; }
+  .eyebrow { font-size:10px; letter-spacing:.5px; }
+  .who { min-height:0; padding-top:3px; display:grid; grid-template-columns:1fr 1fr; gap:2px 8px; }
+  .who h2 { margin-bottom:2px; grid-column:1/-1; }
+  .who h2 span { display:none; }
+  .who-row { min-height:18px; display:flex; flex-wrap:wrap; gap:2px 4px; }
+  .who-cost:empty { display:none; }
+  body:not(.days) .plot-caption { display:none; }
+  .report-evidence .who { display:block; }
+  .plot-caption { min-height:13px; }
+  .plot-area { min-height:105px; }
+  .problem { padding:5px; }
+  .prop { width:36px; height:36px; }
+  .prop-art { width:36px; height:36px; }
+  .problem-head { display:grid; grid-template-columns:36px minmax(0,1fr) 53px; column-gap:3px; row-gap:2px; }
+  .problem-head > div { display:contents; }
+  .problem-head .prop-art { grid-column:1; grid-row:1; }
+  .problem-head h2 { grid-column:2; grid-row:1; }
+  .problem-head p { grid-column:1/-1; grid-row:2; }
+  .problem-head .show { grid-column:3; grid-row:1; }
+  .spelling-intro,.spelling-outro,.detail-long { display:none; }
+  .detail-short { display:inline; }
+  .problem-head h2 { font-size:11px; }
+  .problem-head p { font-size:10px; }
+  .problem-head .show { min-height:44px; }
+  .fixes { gap:3px; margin-top:4px; }
+  .fix { min-height:44px; font-size:10px; line-height:1.15; padding:3px; }
+  .effect { font-size:10px; line-height:1.1; margin-top:3px; }
+  .effect-long { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  .effect-short,.effect-short > span { display:block; }
+  .cause { font-size:10px; line-height:1.1; padding:2px 3px; margin-top:3px; }
+  .cause-long { display:none; }
+  .cause-short { display:inline; }
+  .problem:has(.cause:not([hidden])) .problem-head p { display:none; }
+  .report-evidence .who { min-height:0; }
+  .report-evidence .who-row { min-height:15px; margin-bottom:0; }
+  .report-evidence { padding:5px; }
+  .report-evidence > .eyebrow { display:none; }
+  #report-verdict { font-size:11px; margin:3px 0; }
+  .report-evidence .who-cost:empty { display:none; }
+  .report-evidence .who-cost { font-size:10px; }
+  #report-actions { gap:3px; }
+  #report-actions .btn { min-height:44px; font-size:12px; }
+  #first-score { font-size:10px; }
+  .report-heading { padding:6px 8px; }
+  .report-heading h2 { font-size:17px; }
+  .report-heading p { display:none; }
+  .part h3 { font-size:11px; }
+  .part { padding:5px; }
+  .reason-row { margin-bottom:4px; }
+  .reason-title { font-size:10px; }
+  .chip { padding:4px; font-size:10px; }
+  .also { line-height:1.2; }
+}
+@media (max-width:599px) {
+  body { overflow:auto; height:auto; min-height:100dvh; }
+  header { position:sticky; top:0; z-index:5; gap:5px; padding:5px 7px; }
+  h1 { width:100%; font-size:20px; }
+  .seg button,.icon-btn { min-height:44px; padding:0 9px; font-size:11px; }
+  main { display:flex; flex-direction:column; }
+  .panel { border-left:0; border-bottom:1px solid #aebea6; padding:6px; gap:5px; overflow:visible; }
+  .marcus { min-height:60px; padding:4px 7px; }
+  .marcus img { height:55px; width:42px; }
+  #hint { font-size:11px; min-height:36px; }
+  .problem-list { flex:none; }
+  .problem { padding:6px; }
+  .problem-head { flex-wrap:nowrap; }
+  .prop { width:38px; height:38px; }
+  .prop-art { width:38px; height:38px; }
+  .problem-head h2 { font-size:12px; }
+  .problem-head p { font-size:10px; }
+  .fix { min-height:49px; font-size:10px; }
+  .effect { min-height:24px; font-size:10px; line-height:1.15; }
+  .cause { font-size:10px; line-height:1.2; padding:3px; margin-top:3px; }
+  #to-report { font-size:12px; }
+  .stage { padding:6px; height:570px; flex:none; }
+  .cafeteria { height:48px; }
+  .note { font-size:10px; }
+  .verdict { grid-template-columns:1fr 124px; }
+  .menu { min-height:60px; }
+  .tray { width:58px; height:58px; }
+  .tray.out { transform:translate(-53px,19px) scale(.6); }
+  .viewbar { flex-wrap:wrap; }
+  .who-row { grid-template-columns:1fr 98px; }
+  .report-evidence { display:none; }
+  #phone-evidence { display:block; border-bottom:1px solid #bdc9b3; margin-bottom:6px; }
+  #phone-evidence .who { margin:3px 0; min-height:0; }
+  #phone-evidence .who-row { min-height:16px; grid-template-columns:1fr 90px; }
+  #phone-evidence p { font-size:11px; margin:4px 0; }
+  body.report .stage { height:650px; }
+  .letter { overflow:auto; }
+  .reason-choices { grid-template-columns:1fr; }
+  .reason-row { margin-bottom:10px; }
+  .chip { font-size:11px; }
+  .part { min-height:0; }
+  .gate { padding:15px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Lunch Survey Cleanup <small>Clean it, then say what cleaning did</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-clean" aria-pressed="true">▧ Clean</button>
+    <button id="m-report" aria-pressed="false">✉ Report</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel">
+    <div class="marcus">
+      <img id="marcus" src="art:marcus-ask" alt="Marcus, an eighth grader holding the surveys">
+      <div class="bubble"><span class="eyebrow">Marcus · Student council</span><p id="hint"></p></div>
+    </div>
+    <div id="clean-controls" class="problem-list">
+      <div class="problem-tabs" role="group" aria-label="Survey problem">
+        <button class="btn" id="problem-tab-0">1 · Blanks</button>
+        <button class="btn" id="problem-tab-1">2 · Spellings</button>
+        <button class="btn" id="problem-tab-2">3 · Copies</button>
+      </div>
+      <div class="problem-list" id="problems"></div>
+      <button id="to-report" class="btn primary">Write the report <span class="progress" id="tried-progress"></span></button>
+    </div>
+    <div id="report-controls" hidden>
+      <div class="report-evidence"><span class="eyebrow">Your evidence</span><p id="report-verdict"></p><div id="who-report"></div></div>
+      <div id="report-actions">
+        <p id="first-score"></p>
+        <button class="btn primary" id="check-report" disabled>Check my report</button>
+        <button class="btn primary" id="send-report" disabled>Send to Ms. Reyes</button>
+        <button class="btn" id="back-clean">Back to Clean</button>
+      </div>
+    </div>
+  </aside>
+  <section class="stage" aria-label="Survey workbench">
+    <div class="desk" id="clean-stage">
+      <div class="cafeteria">
+        <img src="art:lsc-cafeteria" alt="A sunlit cafeteria serving line"><span class="tag">Ridgeview · Lunch desk</span>
+      </div>
+      <button class="note" id="reyes-note" aria-expanded="true">
+        <img src="art:reyes" alt="Ms. Reyes, cafeteria manager"><span id="note-copy"></span>
+      </button>
+      <p class="arrival">412 rows arrived. A made-up school and survey; the problems in it are ones real surveys have.</p>
+      <div class="viewbar">
+        <div class="seg" role="group" aria-label="Data view">
+          <button id="view-chart" aria-pressed="true">Chart</button><button id="view-rows" aria-pressed="false">Rows</button>
+          <button id="view-days" aria-pressed="false">Days a week</button>
+        </div>
+        <label class="checklabel" id="split-label"><input id="split-grade" type="checkbox">Split by grade</label>
+      </div>
+      <div class="verdict" id="verdict">
+        <div class="verdict-copy">
+          <span class="eyebrow">Made-up survey · Menu decision</span><div id="decision"></div><p id="verdict-line"></p>
+        </div>
+        <div class="menu" aria-label="Menu board">
+          <div class="menu-list">Chicken tenders<br>Cheeseburger<br>Pepperoni pizza<br>Beef tacos</div>
+          <img class="tray" id="tray-veg" src="art:tray-veg" alt="Vegetable lasagna, broccoli and an apple on a lunch tray">
+          <img class="tray" id="tray-tacos" src="art:tray-tacos" alt="Beef tacos, corn and an orange on a lunch tray">
+          <span class="menu-badge" id="tray-badge"></span>
+        </div>
+      </div>
+      <div class="plot-area" id="plot-area"><svg id="chart" aria-label="Lunch survey bar chart"></svg></div>
+      <p class="plot-caption" id="plot-caption"></p>
+      <div class="table-view" id="table-view" hidden>
+        <div class="filters" role="group" aria-label="Row filter">
+          <button class="btn" id="filter-all">All</button><button class="btn" id="filter-blanks">Blank Days</button>
+          <button class="btn" id="filter-writeins">Write-ins</button><button class="btn" id="filter-copies">Sent twice</button>
+          <label class="checklabel"><input type="checkbox" id="show-dropped">Show dropped rows</label>
+        </div>
+        <div id="table-host"></div>
+      </div>
+      <div id="who-clean"></div>
+    </div>
+    <div class="desk" id="report-stage" hidden>
+      <div class="report-heading">
+        <h2>To Ms. Reyes, cafeteria manager</h2><p id="draft-title">Our cleaning choices, evidence and limits · Draft 1</p>
+      </div>
+      <div class="gate" id="report-gate">
+        <h2>The report is waiting.</h2><p>Try at least two fixes on each problem first.</p>
+        <button class="btn primary" id="gate-back">Back to Clean</button>
+      </div>
+      <div class="part-tabs" id="part-tabs" role="group" aria-label="Report part">
+        <button class="btn" id="part-tab-1">1 · Fixes</button><button class="btn" id="part-tab-2">2 · Counts</button>
+        <button class="btn" id="part-tab-3">3 · Limits</button><button class="btn" id="part-tab-4">4 · Answer</button>
+      </div>
+      <div class="letter" id="letter">
+        <div class="letter-column">
+          <section class="part active" id="part-1">
+            <h3><b>1</b> What we fixed, and what it cost</h3>
+            <div class="reason-tabs" role="group" aria-label="Reason row">
+              <button class="btn" id="reason-tab-0">Fix 1</button><button class="btn" id="reason-tab-1">Fix 2</button>
+              <button class="btn" id="reason-tab-2">Fix 3</button>
+            </div>
+            <div id="reason-rows"></div>
+          </section>
+          <section class="part" id="part-4"><h3><b>4</b> Our answer</h3><div class="answer-choices" id="answer-choices"></div></section>
+        </div>
+        <div class="letter-column">
+          <section class="part" id="part-2">
+            <h3><b>2</b> Who our data counts, and what it says</h3>
+            <div id="phone-evidence"><p id="phone-verdict"></p><div id="who-phone"></div></div>
+            <div class="statement-choices" id="statement-choices"></div><p class="mark" id="mark-3"></p>
+          </section>
+          <section class="part" id="part-3">
+            <h3><b>3</b> What we still can't say · Pick two or more</h3>
+            <div class="limit-choices" id="limit-choices"></div><p class="mark" id="mark-4"></p>
+          </section>
+        </div>
+      </div>
+      <div class="sent-card" id="sent-card" hidden></div>
+    </div>
+  </section>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:data-desk"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const raw = "json:survey";
+  const menu = ['Chicken tenders', 'Cheeseburger', 'Pepperoni pizza', 'Beef tacos'];
+  const spellings = ['Vegetarian', 'vegetarian', 'veg'];
+  const totals = [118, 140, 133, 53];
+  const names = ['Grade 6', 'Grade 7', 'Grade 8', 'Wrote in vegetarian'];
+  const fixes = [
+    [['D', 'Drop rows with a blank'], ['F', 'Fill with the most common answer'], ['K', 'Keep the blanks']],
+    [['D', 'Drop the write-ins'], ['R', 'Merge into Vegetarian'], ['K', 'Keep as typed']],
+    [['B', 'Drop both copies'], ['E', 'Drop the extra copy'], ['K', 'Keep both']]
+  ];
+  const reasons = [
+    {
+      D: ["It drops all blank Days rows, and every grade 6 lunch answer goes with them.",
+        "It drops blank cells, while keeping each student's lunch answer in the data."],
+      F: ["This rule keeps rows; the grade 6 Days answers it fills with 5s are guesses.",
+        "This rule keeps rows, and the filled Days answers show what grade 6 told us."],
+      K: ["It keeps blank Days missing; the Days chart counts only those answered rows.",
+        "It keeps every row, but treats each blank Days answer as zero days of lunch."]
+    },
+    {
+      D: ["It erases vegetarian write-in rows, so those students' lunch picks are gone.",
+        "It drops extra spellings, keeping one Vegetarian lunch pick for each person."],
+      R: ["It merges veg, vegetarian and Vegetarian, trusting they name the same lunch.",
+        "It drops veg and vegetarian, keeping only rows that were spelled Vegetarian."],
+      K: ["It counts each spelling as a different lunch, splitting vegetarian in three.",
+        "It keeps spellings intact, but the computer always counts them as one lunch."]
+    },
+    {
+      B: ["It drops both copies, leaving out 21 students who truly answered the survey.",
+        "It removes extra copies while keeping one answer from every repeated sender."],
+      E: ["It keeps one copy per pair; this rule never drops students for a double tap.",
+        "It drops both copies, so none of those 21 students' own answers are counted."],
+      K: ["It keeps both copies, so every retained repeat sender is counted twice here.",
+        "It keeps both copies, yet each student counts just once in this final chart."]
+    }
+  ];
+  const outcomeReason = "It gives the menu answer I believe Ms. Reyes wants to hear from this report.";
+  const outcomeFeedback = 'That picks a fix for the answer it gives. Say what the fix does to the data.';
+  const answers = ['Add the hot vegetarian lunch', 'Keep the menu as it is', 'Ask again first, with a taste test'];
+  const L = {
+    wClean: 'Ms. Reyes wants to know if the cafeteria should add a hot vegetarian lunch. Our survey came back messy. ' +
+      'Tap a fix on problem one and watch the chart.',
+    tryTwo: 'Each problem has three fixes. Try at least two on each one, and watch who stays in the data.',
+    grade6Gone: "Whoa. Grade 6 just vanished from the data. Check the Who's in panel.",
+    flipAdd: 'Now vegetarian makes the menu.',
+    flipNot: 'Now vegetarian misses the menu.',
+    ready: "You've tried two fixes on every problem. Keep the ones you trust, then tap Report.",
+    notReady: 'First try at least two fixes on each problem. Tap Back to Clean.',
+    wReport: 'Now tell Ms. Reyes what you did. Pick reasons in Part 1, a counting statement in Part 2, and limits in Part 3.',
+    checkNext: 'Your statements are ready. Tap Check my report.',
+    sendNext: 'Your report is checked. Tap Send to Ms. Reyes.',
+    checkMiss: "Some statements don't match your data yet. Change the marked ones, then check again.",
+    checkFixed: "I fixed the ones that didn't match. Read why under each one.",
+    checkOk: 'Everything matches your data. Tap Send to Ms. Reyes.',
+    checkAnswer: 'Everything matches your data. Now pick your answer in Part 4.',
+    answerNext: 'Now open Part 4 and pick your answer.',
+    sent: 'Ms. Reyes wrote back. Her note is under your report.',
+    stale: 'Your fixes changed, so your report needs a fresh check.',
+    rows: 'Use the row filters to inspect the survey. Tap Chart to watch your next fix.',
+    days: 'Compare the answered and filled-in Days. Tap a fix on problem one to see what changes.',
+    chart: "Tap a fix and compare the bars with the Who's in panel.",
+    chooseFixes: 'Pick one reason for each fix in Part 1.',
+    reason1: 'Tap Fix 1 in Part 1, then pick a reason for it.',
+    reason2: 'Tap Fix 2 in Part 1, then pick a reason for it.',
+    reason3: 'Tap Fix 3 in Part 1, then pick a reason for it.',
+    chooseCounts: 'Pick one statement in Part 2 that matches who your data counts.',
+    chooseLimits: 'Pick two or more limits in Part 3. Complete the other statements before checking.',
+    chooseAnswer: 'Pick your answer in Part 4. Complete the other statements before checking.',
+    copy: 'Report copied. Tap Change my fixes to investigate another draft.'
+  };
+  const state = {
+    mode:'clean', fixes:[null, null, null], tried:[[], [], []], problem:0, view:'chart', split:false,
+    filter:'all', dropped:false, cause:false, noteOpen:true, flipLines:0, draft:1, revision:0,
+    part:1, reasonRow:0, report:null
+  };
+  const columns = {
+    row:{label:'Row', type:'number'}, sent:{label:'Sent', type:'text'},
+    grade:{label:'Grade', type:'text', values:['6', '7', '8']}, form:{label:'Form', type:'text'},
+    pick:{label:'Pick', type:'text', values:[...menu, ...spellings]},
+    days:{label:'Days', type:'number', values:[0, 1, 2, 3, 4, 5]},
+    origin:{label:'Source', type:'text', values:['Answered', 'Filled in']}
+  };
+  const rawTable = DataTable(raw, {columns});
+  const table = DataTable(raw, {columns});
+  const displayTable = DataTable([], {columns});
+  const ART = {ask:'art:marcus-ask', think:'art:marcus-think', reyes:'art:reyes'};
+  let chart = null;
+  let tableControl = null;
+  let ghost = new Map();
+  let flipTimer = 0;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => {
+      if (state.mode === 'clean') return ['wClean', {valid:() => !state.fixes.some(Boolean)}];
+      if (!ready()) return ['notReady', {valid:() => !ready(), needs:'#gate-back'}];
+      return ['wReport', {valid:() => !state.report?.touched && !state.report?.sent}];
+    }
+  });
+  function hint(text) {
+    if (text === 'chooseFixes' && state.report && $('reason-tab-0').getBoundingClientRect().width) {
+      const missing = state.report.picks.findIndex(p => p === null);
+      text = 'reason' + ((missing >= 0 ? missing : state.reasonRow) + 1);
+    }
+    $('hint').textContent = L[text] || text;
+  }
+  function selectedFixes() {
+    return state.fixes.map(x => x || 'K');
+  }
+  function ready() {
+    return state.tried.every(list => list.length >= 2);
+  }
+  function working(f = selectedFixes(), includeDropped = false) {
+    const [blanks, spelling, copies] = f;
+    const result = [];
+    for (const r of raw) {
+      const removed = (blanks === 'D' && r.days === null) || (spelling === 'D' && spellings.includes(r.pick)) ||
+        (copies === 'B' && r.double) || (copies === 'E' && r.copy);
+      if (removed && !includeDropped) continue;
+      const filled = blanks === 'F' && r.days === null;
+      const merged = spelling === 'R' && spellings.includes(r.pick);
+      result.push({...r, days:filled ? 5 : r.days, pick:merged ? 'Vegetarian' : r.pick,
+        filled, merged:merged && r.pick !== 'Vegetarian', dropped:removed, origin:filled ? 'Filled in' : 'Answered'});
+    }
+    return result;
+  }
+  function outcome(f = selectedFixes()) {
+    const t = DataTable(working(f), {columns});
+    const count = new Map(t.count('pick').map(c => [c.value, c.n]));
+    const least = menu.reduce((a, b) => count.get(a) <= count.get(b) ? a : b);
+    const veg = count.get('Vegetarian') || 0;
+    const tacos = count.get(least) || 0;
+    const byGrade = t.crosstab('grade', 'student');
+    const who = names.map((name, i) => {
+      const rows = i < 3 ? t.rows.filter(r => r.grade === String(i + 6)) : t.rows.filter(r => spellings.includes(r.originalPick));
+      const n = new Set(rows.map(r => r.student)).size;
+      const extra = i < 3 ? byGrade.cols.reduce((sum, id) => sum + Math.max(0, byGrade.n(String(i + 6), id) - 1), 0) : rows.length - n;
+      return {name, n, total:totals[i], extra, removed:totals[i] - n};
+    });
+    return {rows:t.rows.length, V:veg, T:tacos, add:veg > tacos, least, who, counts:Object.fromEntries(count), mean:t.stats('days').mean};
+  }
+  function effect(f) {
+    const o = outcome(f);
+    const removed = o.who.slice(0, 3).filter(r => r.removed).slice(0, 2).map(r => `${r.name} ${r.n} of ${r.total}`);
+    const extra = o.who.slice(0, 3).reduce((sum, r) => sum + r.extra, 0);
+    if (extra) removed.push(`+${extra} twice`);
+    return `${o.rows} rows · ${removed.join(' · ') || 'Everyone counted once'} · Veg ${o.V} vs Tacos ${o.T}`;
+  }
+  function effectLabel(element, text) {
+    if (element.dataset.full === text) return;
+    element.dataset.full = text;
+    element.title = text;
+    const full = document.createElement('span');
+    full.className = 'effect-long';
+    full.textContent = text;
+    const short = document.createElement('span');
+    short.className = 'effect-short';
+    short.setAttribute('aria-hidden', 'true');
+    const clauses = text.replace(/Grade ([678]) (\d+) of (\d+)/g, 'Gr$1: $2/$3')
+      .replace(/Veg (\d+) vs Tacos (\d+)/, 'Veg $1 · Tacos $2').split(' · ');
+    for (const clause of clauses) {
+      const line = document.createElement('span');
+      line.textContent = clause;
+      short.appendChild(line);
+    }
+    element.replaceChildren(full, short);
+  }
+  function renderWho(host) {
+    const o = outcome();
+    host.innerHTML = `<div class="who"><h2>Who's in <span>Students, not submissions</span></h2>${o.who.map(r => `
+      <div class="who-row"><span>${r.name}: <b>${r.n} of ${r.total}</b></span>
+      <div class="track"><span class="solid" style="width:${r.n / r.total * 100}%"></span>
+      <span class="extra" style="width:${r.extra / r.total * 100}%"></span></div>
+      <span class="who-cost">${r.removed ? 'minus ' + r.removed : ''}${r.extra ? ' +' + r.extra + ' twice' : ''}</span></div>`).join('')}</div>`;
+  }
+  function renderNote() {
+    const short = matchMedia('(max-height:550px) and (min-width:600px)').matches;
+    const full = state.noteOpen && (!short || state.noteExpanded);
+    $('reyes-note').classList.toggle('expanded', !!state.noteExpanded && short);
+    $('reyes-note').classList.toggle('collapsed', !state.noteOpen);
+    $('reyes-note').setAttribute('aria-expanded', state.noteOpen);
+    $('note-copy').innerHTML = full ? '<strong>Ms. Reyes asks:</strong> Should we add a hot vegetarian lunch? ' +
+      'My rule: if more students would pick it than pick our least popular hot lunch, it takes that spot. ' +
+      'Ridgeview has 452 students; the student council ran this survey for me.' :
+      "<strong>Ms. Reyes's rule:</strong> vegetarian goes on the menu if more students pick it than pick the least-picked hot lunch.";
+  }
+  function renderVerdict() {
+    const o = outcome();
+    $('decision').textContent = o.add ? '✓ Add it' : '× Not this time';
+    $('verdict-line').textContent = `Vegetarian ${o.V} vs ${o.least} ${o.T}, the least-picked menu lunch.`;
+    $('report-verdict').textContent = `Vegetarian ${o.V} vs ${o.least} ${o.T}: ${o.add ? 'Add it' : 'Not this time'}.`;
+    $('phone-verdict').textContent = $('report-verdict').textContent;
+    $('tray-veg').classList.toggle('out', !o.add);
+    $('tray-tacos').classList.toggle('out', o.add);
+    $('tray-veg').style.opacity = o.V === 0 ? '.4' : '';
+    $('tray-badge').textContent = o.V === 0 ? '0 vegetarian picks' : o.add ? '✓ On the menu' : '× Not this time';
+    $('tray-badge').classList.toggle('miss', !o.add);
+    $('marcus').src = o.add || state.report?.checks ? ART.think : ART.ask;
+  }
+  function drawChart() {
+    if (state.view === 'rows' || state.mode !== 'clean') return;
+    const area = $('plot-area').getBoundingClientRect();
+    if (area.width < 10 || area.height < 10) return;
+    const isDays = state.view === 'days';
+    const grouped = isDays ? selectedFixes()[0] === 'F' : state.split;
+    const compact = area.width < 650;
+    const opts = {
+      type:'bar', x:isDays ? 'days' : 'pick', width:Math.round(area.width), height:Math.round(area.height),
+      yDomain:isDays ? [0, 220] : state.split ? [0, 50] : [0, 120], font:compact ? 10 : 12,
+      groupBy:grouped ? isDays ? 'origin' : 'grade' : null,
+      groups:isDays ? ['Answered', 'Filled in'] : ['6', '7', '8'],
+      groupLabels:isDays ? null : {'6':'Grade 6', '7':'Grade 7', '8':'Grade 8'},
+      xLabel:'', yLabel:'', live:false,
+      margin:{l:30, r:10, t:grouped ? 39 : area.height < 140 ? 17 : 24,
+        b:isDays ? 25 : area.height < 140 ? (area.width < 500 && table.columns.pick.values.length > 5 ? 55 : 43) : compact ? 59 : 50},
+      title:isDays ? 'Days a week eating school lunch' : 'Which hot lunch would you pick most often?'
+    };
+    if (!chart) chart = Chart($('chart'), table, opts);
+    else chart.update(opts);
+    const svg = $('chart');
+    svg.querySelectorAll('.tool-labels').forEach(e => e.remove());
+    const layer = DataDesk.mk('g', {class:'tool-labels', 'aria-hidden':'true'}, svg);
+    const F = chart.scales.frame;
+    const cats = chart.scales.cats;
+    if (!isDays) {
+      for (const e of svg.querySelectorAll('.dd-deco text')) {
+        const label = e.textContent;
+        if (!cats.includes(label)) continue;
+        let words = label.split(' ');
+        if (area.width < 500 && label === 'Cheeseburger') words = ['Cheese', 'burger'];
+        if (area.width < 500 && label.toLowerCase() === 'vegetarian') words = [label.slice(0, 4), label.slice(4)];
+        e.textContent = '';
+        const yy = +e.getAttribute('y');
+        words.forEach((word, i) => {
+          const span = DataDesk.mk('tspan', {x:e.getAttribute('x'), y:yy + i * 11}, e);
+          span.textContent = word;
+        });
+      }
+    }
+    for (const bar of chart.barRects) {
+      const x = bar.x + bar.w / 2;
+      const y = chart.scales.y(bar.v);
+      const text = DataDesk.mk('text', {x, y:y - (grouped && bar.v ? 8 : 4), 'text-anchor':'middle',
+        'font-size':compact ? 10 : 12, fill:'#1c2420', 'font-weight':700}, layer);
+      text.textContent = bar.v;
+      const key = `${bar.cat}:${bar.group}`;
+      if (!isDays && ghost.has(key)) {
+        DataDesk.mk('line', {x1:bar.x, x2:bar.x + bar.w, y1:chart.scales.y(ghost.get(key)),
+          y2:chart.scales.y(ghost.get(key)), stroke:'#b45309', 'stroke-width':1, 'stroke-dasharray':'3 2'}, layer);
+      }
+      if (!isDays && bar.j === 0) {
+        const tag = spellings.includes(bar.cat) ? '♧ write-in' : bar.cat === outcome().least ? 'least picked' : '';
+        if (tag) {
+          const label = DataDesk.mk('text', {x:F.x0 + chart.scales.slot * (bar.k + .5), y:opts.height - 6,
+            'text-anchor':'middle', 'font-size':10, fill:spellings.includes(bar.cat) ? '#2f6a33' : '#954306'}, layer);
+          if (area.width < 500 && cats.length > 5 && tag === 'least picked') {
+            label.setAttribute('y', opts.height - 15);
+            label.textContent = 'least';
+            const word = DataDesk.mk('tspan', {x:label.getAttribute('x'), dy:10}, label);
+            word.textContent = 'picked';
+          } else label.textContent = area.width < 500 && tag.includes('write-in') ? '♧' : tag;
+        }
+      }
+    }
+    const f = selectedFixes();
+    const filled = table.rows.filter(r => r.filled).length;
+    const blank = table.rows.filter(r => r.days === null).length;
+    const message = f[0] === 'D' ? '118 original blank rows dropped' : f[0] === 'F' ?
+      `${filled} retained rows filled in with 5` : `Blank: ${blank} retained rows`;
+    $('plot-caption').textContent = isDays ? `${message} · Average: ${outcome().mean.toFixed(1)} days (nonblank rows only)` :
+      `${table.rows.length} rows counted · Thin amber marks show the previous heights`;
+  }
+  function decorateRows() {
+    for (const tr of $('table-host').querySelectorAll('tbody tr')) {
+      const row = displayTable.rows[+tr.dataset.i];
+      const td = tr.querySelector('.merged');
+      if (td && td.dataset.was !== row.originalPick) td.dataset.was = row.originalPick;
+    }
+  }
+  function updateRows() {
+    const rows = working(selectedFixes(), state.dropped).filter(r => state.filter === 'all' ||
+      state.filter === 'blanks' && r.form === 'Paper' || state.filter === 'writeins' && spellings.includes(r.originalPick) ||
+      state.filter === 'copies' && r.double);
+    displayTable.replace(rows);
+    if (!tableControl) {
+      tableControl = displayTable.renderTable($('table-host'), {
+        page:14, index:false, columns:['row', 'sent', 'grade', 'form', 'pick', 'days'], caption:'Ridgeview survey rows',
+        rowClass:r => r.dropped ? 'dropped' : '',
+        cellClass:(r, i, k) => [k === 'row' && r.dropped ? 'row-dropped' : '', k === 'sent' && r.copy ? 'copy-cell' : '',
+          k === 'days' && r.filled ? 'filled' : '', k === 'pick' && r.merged ? 'merged' : ''].filter(Boolean).join(' ')
+      });
+      $('table-view').appendChild($('table-host').querySelector('.dd-pager'));
+      tableControl.onPage(decorateRows);
+      new MutationObserver(decorateRows).observe($('table-host'), {childList:true, subtree:true});
+    }
+    decorateRows();
+    for (const key of ['all', 'blanks', 'writeins', 'copies']) $('filter-' + key).setAttribute('aria-pressed', key === state.filter);
+  }
+  function refreshData() {
+    const f = selectedFixes();
+    table.columns.pick.values = [...menu, ...(f[1] === 'D' ? [] : f[1] === 'R' ? ['Vegetarian'] : spellings)];
+    table.replace(working());
+    renderVerdict();
+    renderWho($('who-clean'));
+    renderWho($('who-report'));
+    renderWho($('who-phone'));
+    updateRows();
+    drawChart();
+    for (let p = 0; p < 3; p++) {
+      for (const [key] of fixes[p]) {
+        const button = $(`fix-${p}-${key}`);
+        button.setAttribute('aria-checked', state.fixes[p] === key);
+        button.tabIndex = (state.fixes[p] || fixes[p][0][0]) === key ? 0 : -1;
+        const choices = [...f];
+        choices[p] = key;
+        effectLabel($(`effect-${p}-${key}`), state.tried[p].includes(key) ? effect(choices) : 'Not tried yet');
+      }
+    }
+    $('cause').hidden = !state.cause;
+    $('tried-progress').textContent = `(${state.tried.filter(t => t.length >= 2).length} of 3 compared)`;
+    renderNote();
+  }
+  function refreshProblem() {
+    for (let p = 0; p < 3; p++) {
+      $('problem-' + p).classList.toggle('active', p === state.problem);
+      $('problem-tab-' + p).setAttribute('aria-pressed', p === state.problem);
+    }
+  }
+  function fix(problem, option) {
+    const p = +problem;
+    if (!fixes[p]?.some(f => f[0] === option) || state.fixes[p] === option) return;
+    const before = outcome();
+    ghost = new Map((chart?.barRects || []).map(b => [`${b.cat}:${b.group}`, b.v]));
+    V.dropQueued();
+    clearTimeout(flipTimer);
+    state.fixes[p] = option;
+    state.problem = p;
+    state.revision++;
+    if (!state.tried[p].includes(option)) state.tried[p].push(option);
+    if (p === 0) state.cause = true;
+    state.noteOpen = false;
+    state.noteExpanded = false;
+    const spoken = V.playing;
+    const flipBecameStale = [L.flipAdd, L.flipNot].includes(spoken) && before.add !== outcome().add;
+    if (spoken === L.wClean || spoken === L.tryTwo && ready() || flipBecameStale) V.hush();
+    if (V.playing === L.grade6Gone && selectedFixes()[0] !== 'D') V.hush();
+    const stale = !!state.report?.checks || !!state.report?.sent;
+    if (stale) {
+      state.draft++;
+      state.pendingDraft = {old:state.report, changed:[p]};
+    } else if (state.pendingDraft && !state.pendingDraft.changed.includes(p)) state.pendingDraft.changed.push(p);
+    state.report = null;
+    refreshProblem();
+    refreshData();
+    Curio.tone(330 + p * 110, .08, .08, 'sine');
+    const after = outcome();
+    const instructions = stale ? 'stale' : ready() ? 'ready' : 'tryTwo';
+    hint(instructions);
+    const chain = [];
+    if (after.who[0].n === 0 && !V.heard('grade6Gone')) {
+      chain.push(['grade6Gone', {kind:'how', valid:() => outcome().who[0].n === 0}]);
+    }
+    const revision = state.revision;
+    const queueAction = () => {
+      if (state.revision !== revision || state.mode !== 'clean') return;
+      if (before.add !== after.add && state.flipLines < 4) {
+        state.flipLines++;
+        chain.push([after.add ? 'flipAdd' : 'flipNot', {kind:'event', valid:() => outcome().add === after.add}]);
+      }
+      chain.push([instructions, {kind:'how', valid:() => state.revision === revision,
+        needs:ready() ? '#to-report' : `#fix-${p}-${option}`}]);
+      V.say(chain, {hint:false});
+    };
+    if (before.add !== after.add) flipTimer = setTimeout(queueAction, 600);
+    else queueAction();
+  }
+  function chooseProblem(p) {
+    state.problem = p;
+    refreshProblem();
+    hint(`Tap a fix on problem ${p + 1} and compare its effect with another fix.`);
+    Curio.tone(420, .05, .05);
+  }
+  function view(name) {
+    if (!['chart', 'rows', 'days'].includes(name)) return;
+    const changed = state.view !== name;
+    state.view = name;
+    document.body.classList.toggle('days', name === 'days');
+    $('plot-area').hidden = name === 'rows';
+    $('table-view').hidden = name !== 'rows';
+    $('who-clean').hidden = name === 'rows';
+    $('plot-caption').hidden = name === 'rows';
+    $('split-label').hidden = name !== 'chart';
+    for (const key of ['chart', 'rows', 'days']) $('view-' + key).setAttribute('aria-pressed', key === name);
+    V.dropQueued();
+    hint(name);
+    V.how(name, {valid:() => state.view === name, now:changed, hint:false});
+    if (name === 'rows') updateRows();
+    else requestAnimationFrame(drawChart);
+    Curio.tone(400, .05, .05);
+  }
+  function split(on) {
+    state.split = !!on;
+    $('split-grade').checked = state.split;
+    ghost.clear();
+    drawChart();
+  }
+  function shuffle(items) {
+    const out = [...items];
+    for (let i = out.length - 1; i > 0; i--) {
+      const random = new Uint32Array(1);
+      crypto.getRandomValues(random);
+      const j = random[0] % (i + 1);
+      [out[i], out[j]] = [out[j], out[i]];
+    }
+    return out;
+  }
+  function statements() {
+    const f = selectedFixes();
+    const o = outcome();
+    const grades = f[0] === 'D' ? 'grades 7 and 8 only' : 'grades six to eight';
+    const otherGrades = f[0] === 'D' ? 'grades six to eight' : 'grades 7 and 8 only';
+    const spell = f[1] === 'R' ? 'with the three vegetarian spellings counted as one' :
+      f[1] === 'D' ? 'with the vegetarian write-ins taken out' : 'with each vegetarian spelling counted on its own';
+    const copy = {
+      E:'each student counted once',
+      K:`${f[1] === 'D' ? 20 : 21} students counted twice`,
+      B:'21 repeat senders missing'
+    };
+    const other = {E:'K', K:'B', B:'E'};
+    const text = (w, c) => `Counting ${w}, ${spell}, and ${copy[c]}: Vegetarian ${o.V}, Beef tacos ${o.T}.`;
+    return [text(grades, f[2]), text(otherGrades, f[2]), text(grades, other[f[2]])];
+  }
+  function limits() {
+    return [
+      selectedFixes()[0] === 'F' ? 'How often grade 6 really eats school lunch: our 5s are guesses' :
+        'How often grade 6 eats school lunch: their page 2 never came back',
+      'Whether students who picked vegetarian would really buy it',
+      "What the 61 students who didn't take the survey think",
+      'Which lunch grade 6 would pick',
+      'Nothing: the data is clean now, so it is complete',
+      'How many students sent the survey twice',
+      'Which hot lunch the students in grades 7 and 8 who answered our survey picked most often'
+    ];
+  }
+  function trueLimit(k) {
+    return k < 3 || k === 3 && selectedFixes()[0] === 'D';
+  }
+  function createDraft() {
+    state.report = {
+      reasons:fixes.map(() => shuffle([0, 1, 2])), statements:shuffle([0, 1, 2]), limits:shuffle([0, 1, 2, 3, 4, 5, 6]),
+      picks:[null, null, null], count:null, limitPicks:[], answer:null, checks:0, first:null,
+      firstMarks:null, marks:null, supplied:[false, false, false, false, false], carried:[false, false, false, false, false],
+      checkedRevision:-1, sent:false, touched:false,
+      explanations:['', '', '', '', '']
+    };
+    if (state.pendingDraft) {
+      const old = state.pendingDraft.old;
+      for (let p = 0; p < 3; p++) {
+        if (!state.pendingDraft.changed.includes(p) && old.picks[p] !== null) {
+          state.report.picks[p] = state.report.reasons[p].indexOf(old.reasons[p][old.picks[p]]);
+          state.report.supplied[p] = old.supplied[p];
+          state.report.carried[p] = old.supplied[p];
+          state.report.explanations[p] = old.explanations[p];
+        }
+      }
+      state.report.answer = old.answer;
+      state.pendingDraft = null;
+    }
+    buildReport();
+  }
+  function chip(text, id, click) {
+    const e = document.createElement('button');
+    e.id = id;
+    e.className = 'btn chip';
+    e.textContent = text;
+    e.setAttribute('aria-pressed', 'false');
+    e.onclick = click;
+    return e;
+  }
+  function buildReport() {
+    const r = state.report;
+    $('reason-rows').textContent = '';
+    for (let p = 0; p < 3; p++) {
+      const row = document.createElement('div');
+      row.className = 'reason-row' + (p === state.reasonRow ? ' active' : '');
+      row.id = 'reason-row-' + p;
+      const title = document.createElement('p');
+      title.className = 'reason-title';
+      title.textContent = fixes[p].find(f => f[0] === selectedFixes()[p])[1];
+      const also = document.createElement('span');
+      also.className = 'also';
+      const f = selectedFixes();
+      also.textContent = 'We also tried: ' + state.tried[p].filter(k => k !== f[p]).map(k => {
+        const test = [...f];
+        test[p] = k;
+        return fixes[p].find(x => x[0] === k)[1] + ': ' + effect(test);
+      }).join('; ');
+      title.appendChild(also);
+      row.appendChild(title);
+      const group = document.createElement('div');
+      group.className = 'reason-choices';
+      group.setAttribute('role', 'group');
+      group.setAttribute('aria-label', `Reason for problem ${p + 1}`);
+      const texts = [...reasons[p][selectedFixes()[p]], outcomeReason];
+      r.reasons[p].forEach((key, pos) => group.appendChild(chip(texts[key], `reason-${p}-${pos}`, () => pick(1, p, pos))));
+      row.appendChild(group);
+      const mark = document.createElement('p');
+      mark.className = 'mark';
+      mark.id = `mark-${p}`;
+      row.appendChild(mark);
+      $('reason-rows').appendChild(row);
+    }
+    $('statement-choices').textContent = '';
+    r.statements.forEach((key, pos) => {
+      $('statement-choices').appendChild(chip(statements()[key], `statement-${pos}`, () => pick(2, 0, pos)));
+    });
+    $('limit-choices').textContent = '';
+    r.limits.forEach((key, pos) => $('limit-choices').appendChild(chip(limits()[key], `limit-${pos}`, () => pick(3, 0, pos))));
+    $('answer-choices').textContent = '';
+    answers.forEach((text, pos) => $('answer-choices').appendChild(chip(text, `answer-${pos}`, () => answer(pos))));
+    renderReport();
+  }
+  function part(n) {
+    state.part = +n;
+    for (let p = 1; p <= 4; p++) {
+      $('part-' + p).classList.toggle('active', +n === p);
+      $('part-tab-' + p).setAttribute('aria-pressed', +n === p);
+    }
+    hint(['', 'chooseFixes', 'chooseCounts', 'chooseLimits', 'chooseAnswer'][+n]);
+  }
+  function hasRequiredPicks() {
+    const r = state.report;
+    return !!r && r.picks.every(x => x !== null) && r.count !== null && r.limitPicks.length > 0;
+  }
+  function matches() {
+    const r = state.report;
+    if (!r) return [false, false, false, false, false];
+    return [...r.picks.map((pos, p) => pos !== null && r.reasons[p][pos] === 0),
+      r.count !== null && r.statements[r.count] === 0,
+      r.limitPicks.length >= 2 && r.limitPicks.every(pos => trueLimit(r.limits[pos]))];
+  }
+  function nextHint() {
+    const r = state.report;
+    if (!r || !ready()) return 'notReady';
+    if (r.sent) return 'sent';
+    if (r.picks.some(x => x === null)) return 'chooseFixes';
+    if (r.count === null) return 'chooseCounts';
+    if (!r.limitPicks.length) return 'chooseLimits';
+    if (r.checkedRevision === state.revision && r.marks?.every(Boolean)) return r.answer === null ? 'answerNext' : 'checkOk';
+    return 'checkNext';
+  }
+  function pick(p, row, k) {
+    const r = state.report;
+    if (!r || r.sent || !ready()) return;
+    if (p === 1 && row >= 0 && row < 3 && k >= 0 && k < 3) r.picks[row] = k;
+    else if (p === 2 && k >= 0 && k < 3) r.count = k;
+    else if (p === 3 && k >= 0 && k < 7) {
+      r.limitPicks = r.limitPicks.includes(k) ? r.limitPicks.filter(x => x !== k) : [...r.limitPicks, k];
+    } else return;
+    r.touched = true;
+    r.checkedRevision = -1;
+    r.marks = null;
+    renderReport();
+    hint(nextHint());
+    if (hasRequiredPicks()) {
+      V.how('checkNext', {valid:() => state.report === r && hasRequiredPicks() && !r.sent,
+        needs:'#check-report', now:V.playing === L.wReport, hint:false});
+    }
+    Curio.tone(520, .04, .045);
+  }
+  function answer(k) {
+    const r = state.report;
+    if (!r || r.sent || !answers[k]) return;
+    r.answer = k;
+    r.touched = true;
+    renderReport();
+    hint(nextHint());
+    if (r.checkedRevision === state.revision && r.marks?.every(Boolean)) {
+      V.how('sendNext', {valid:() => state.report === r && !r.sent, needs:'#send-report', hint:false});
+    }
+  }
+  function feedback(i) {
+    if (i < 3) {
+      const r = state.report;
+      const selected = r.picks[i];
+      return selected !== null && r.reasons[i][selected] === 2 ? outcomeFeedback : reasons[i][selectedFixes()[i]][0];
+    }
+    if (i === 3) return 'Match the grades and the copies clause to the students your fixes actually count.';
+    return 'Grade 6 Days, future buying and the 61 nonrespondents are unknown. ' +
+      (selectedFixes()[0] === 'D' ? 'Grade 6 lunch picks are missing here too. ' : 'Grade 6 lunch picks are on page 1. ') +
+      'Duplicate pairs and grades 7 and 8 picks are known. Clean does not mean complete.';
+  }
+  function check() {
+    const r = state.report;
+    if (!hasRequiredPicks() || !ready() || r.sent) return;
+    const marks = matches();
+    r.checks++;
+    if (r.first === null) {
+      r.firstMarks = [...marks];
+      r.first = marks.filter((matched, i) => matched && !r.carried[i]).length;
+    }
+    const wrong = marks.some(x => !x);
+    if (r.checks >= 2) {
+      for (let i = 0; i < 5; i++) {
+        if (marks[i]) continue;
+        r.explanations[i] = i < 3 ? reasons[i][selectedFixes()[i]][0] : feedback(i);
+        r.supplied[i] = true;
+        if (i < 3) r.picks[i] = r.reasons[i].indexOf(0);
+        else if (i === 3) r.count = r.statements.indexOf(0);
+        else r.limitPicks = r.limits.map((key, pos) => trueLimit(key) ? pos : -1).filter(pos => pos >= 0);
+      }
+    }
+    r.marks = matches();
+    r.checkedRevision = state.revision;
+    // Bring the first marked statement into view when feedback replaces the full letter.
+    const review = marks.findIndex(matched => !matched);
+    if (review >= 0) {
+      if (review < 3) {
+        state.reasonRow = review;
+        part(1);
+      } else part(review === 3 ? 2 : 3);
+    } else if (r.answer === null) part(4);
+    renderReport();
+    const line = wrong ? r.checks === 1 ? 'checkMiss' : 'checkFixed' : r.answer === null ? 'checkAnswer' : 'checkOk';
+    hint(line);
+    V.say(line, {valid:() => state.report === r && !r.sent, now:true, hint:false});
+    if (r.checks >= 2 && r.answer === null) V.how('answerNext', {valid:() => r.answer === null, hint:false});
+    if (wrong && r.checks >= 2 && r.answer !== null) {
+      V.how('sendNext', {valid:() => state.report === r && !r.sent, needs:'#send-report', hint:false});
+    }
+    Curio.tone(wrong ? 220 : 620, .14, .07);
+  }
+  function renderReport() {
+    const r = state.report;
+    document.body.classList.toggle('report-feedback', !!r?.checks);
+    if (r?.checks) $('marcus').src = ART.think;
+    const unlocked = ready();
+    $('report-gate').hidden = unlocked;
+    $('letter').hidden = !unlocked || !!r?.sent;
+    $('part-tabs').hidden = !unlocked || !!r?.sent;
+    $('sent-card').hidden = !r?.sent;
+    $('draft-title').textContent = `Our cleaning choices, evidence and limits · Draft ${state.draft}`;
+    $('check-report').disabled = !unlocked || !hasRequiredPicks() || !!r?.sent;
+    $('send-report').disabled = !unlocked || !r || r.sent || r.answer === null ||
+      r.checkedRevision !== state.revision || !r.marks?.every(Boolean);
+    const carried = r?.carried.filter(Boolean).length || 0;
+    $('first-score').textContent = r?.first === null || !r ? '' :
+      `Matched your data at the first check: ${r.first} of 5 · Draft ${state.draft}` +
+      (carried ? ` · ${carried} carried Marcus fixes, unscored` : '');
+    if (!r) return;
+    for (let p = 1; p <= 4; p++) {
+      const indices = p === 1 ? [0, 1, 2] : p === 2 ? [3] : p === 3 ? [4] : [];
+      const misses = r.marks ? indices.filter(i => !r.marks[i]).length : 0;
+      const status = !r.marks || !indices.length ? '' : misses ? ` ×${misses}` : ' ✓';
+      $('part-tab-' + p).textContent = ['', '1 · Fixes', '2 · Counts', '3 · Limits', '4 · Answer'][p] + status;
+    }
+    for (let p = 0; p < 3; p++) {
+      $('reason-row-' + p)?.classList.toggle('active', state.reasonRow === p);
+      $('reason-tab-' + p).setAttribute('aria-pressed', state.reasonRow === p);
+      $('reason-tab-' + p).textContent = `Fix ${p + 1}` + (r.marks ? r.marks[p] ? ' ✓' : ' ×' : '');
+      for (let k = 0; k < 3; k++) $(`reason-${p}-${k}`)?.setAttribute('aria-pressed', r.picks[p] === k);
+    }
+    for (let k = 0; k < 3; k++) {
+      $('statement-' + k)?.setAttribute('aria-pressed', r.count === k);
+      $('answer-' + k)?.setAttribute('aria-pressed', r.answer === k);
+    }
+    for (let k = 0; k < 7; k++) $('limit-' + k)?.setAttribute('aria-pressed', r.limitPicks.includes(k));
+    for (let i = 0; i < 5; i++) {
+      const mark = $('mark-' + i);
+      if (!mark) continue;
+      mark.classList.toggle('ok', !!r.marks?.[i]);
+      mark.textContent = r.marks ? r.supplied[i] ? 'Marcus fixed: ' + r.explanations[i] :
+        r.marks[i] ? '✓ Matches your data' : "× Doesn't match yet" : '';
+      if (r.marks && i < 3 && !r.marks[i] && r.reasons[i][r.picks[i]] === 2) mark.textContent += ': ' + outcomeFeedback;
+    }
+    requestAnimationFrame(fitReport);
+  }
+  function fitReport() {
+    if (state.mode !== 'report' || !state.report || state.report.sent) return;
+    const body = document.body;
+    body.classList.remove('report-overflow');
+    if (state.report.checks || !matchMedia('(min-width:1101px) and (min-height:741px)').matches) return;
+    const letter = $('letter');
+    if (letter.scrollHeight <= letter.clientHeight + 2) return;
+    // Extra comparisons can make the letter taller. Use the existing Part/Fix layout rather than hide an answer.
+    const focusedPart = document.activeElement.closest('.part');
+    if (focusedPart) part(+focusedPart.id.slice(5));
+    const focusedReason = document.activeElement.closest('.reason-row');
+    if (focusedReason) {
+      state.reasonRow = +focusedReason.id.slice(11);
+      for (let p = 0; p < 3; p++) {
+        $('reason-row-' + p).classList.toggle('active', state.reasonRow === p);
+        $('reason-tab-' + p).setAttribute('aria-pressed', state.reasonRow === p);
+      }
+    }
+    body.classList.add('report-overflow');
+    if (nextHint() === 'chooseFixes') hint('chooseFixes');
+  }
+  function reply() {
+    const f = selectedFixes();
+    const o = outcome();
+    const rules = [
+      [f[0] === 'D', 'Where is grade 6? Their paper forms answered my question on page 1. Please put them back and send it again.'],
+      [f[1] === 'D', 'No one wants vegetarian? Then who wrote it in? Check whether those rows had to go.'],
+      [f[2] === 'K', 'Some students count twice here, so tacos look bigger than they are. Fix that first.'],
+      [f[1] === 'K', 'Vegetarian is split three ways on this chart. Is that one meal or three?'],
+      [f[2] === 'B', 'Twenty-one students lost their say because they pressed Send twice. Keep one copy of each.']
+    ];
+    const triggered = rules.filter(([yes]) => yes).map(([, text]) => text);
+    const answerReply = [
+      `A close race, ${o.V} to ${o.T}, and you told me what every fix did. ` +
+        "I'll run the hot vegetarian lunch for a month and count trays.",
+      `Your own numbers put vegetarian ahead, ${o.V} to ${o.T}. What would change your mind?`,
+      "Fair. It's close, and grade 6 never told us how often they eat here. I'll run a taste test on Friday."
+    ];
+    let text = triggered[0] || answerReply[state.report.answer];
+    if (triggered.length > 1) text += ' Also: ' + triggered[1].match(/^.*?[.!?](?:\s|$)/)[0].trim();
+    const carried = state.report.carried.filter(Boolean).length;
+    return text + ` Your report matched your data on ${state.report.first} of 5 statements at the first check.` +
+      (carried ? ` ${carried} carried Marcus fixes did not earn first-check credit.` : '');
+  }
+  function reportText() {
+    const r = state.report;
+    const lines = [`To Ms. Reyes, cafeteria manager. Draft ${state.draft}.`];
+    const credit = i => r.supplied[i] ? 'Marcus fixed' : r.firstMarks[i] ? 'Matched' : 'Fixed after a check';
+    for (let p = 0; p < 3; p++) lines.push(`[${credit(p)}] ${reasons[p][selectedFixes()[p]][0]}`);
+    lines.push(`[${credit(3)}] ${statements()[0]}`);
+    lines.push(`[${credit(4)}] ` + r.limitPicks.map(pos => limits()[r.limits[pos]]).join('; '));
+    lines.push(answers[r.answer], reply());
+    return lines.join('\n\n');
+  }
+  function send() {
+    const r = state.report;
+    if (!r || r.sent || r.answer === null || r.checkedRevision !== state.revision || !matches().every(Boolean)) return;
+    r.sent = true;
+    $('sent-card').textContent = '';
+    const h = document.createElement('h3');
+    h.textContent = `Your report · Draft ${state.draft}`;
+    $('sent-card').appendChild(h);
+    const texts = [...reasons.map((map, p) => map[selectedFixes()[p]][0]), statements()[0],
+      r.limitPicks.map(pos => limits()[r.limits[pos]]).join('; '), answers[r.answer]];
+    texts.forEach((text, i) => {
+      const e = document.createElement('div');
+      e.className = 'sent-line';
+      e.textContent = text;
+      const status = document.createElement('span');
+      status.textContent = i > 4 ? 'Your recommendation' : r.supplied[i] ? 'Marcus fixed' :
+        r.firstMarks[i] ? '✓ Matched' : '✓ Fixed after a check';
+      if (i < 5 && r.supplied[i]) status.className = 'assisted';
+      else if (i < 5 && !r.firstMarks[i]) status.className = 'revised';
+      e.appendChild(status);
+      $('sent-card').appendChild(e);
+    });
+    const note = document.createElement('div');
+    note.className = 'reply';
+    const image = document.createElement('img');
+    image.src = ART.reyes;
+    image.alt = 'Ms. Reyes, replying to your report';
+    const message = document.createElement('p');
+    message.textContent = reply();
+    note.append(image, message);
+    $('sent-card').appendChild(note);
+    const actions = document.createElement('div');
+    actions.className = 'sent-buttons';
+    actions.append(chip('Change my fixes', 'change-fixes', () => setMode('clean')),
+      chip('Copy report', 'copy-report', copyReport));
+    $('sent-card').appendChild(actions);
+    renderReport();
+    hint('sent');
+    V.say('sent', {valid:() => state.report === r && r.sent, now:true, hint:false});
+    Curio.yes();
+    $('sent-card').tabIndex = -1;
+    $('sent-card').focus({preventScroll:true});
+  }
+  async function copyReport() {
+    try {
+      await navigator.clipboard.writeText(reportText());
+      hint('copy');
+    } catch (_) {
+      hint('Clipboard is unavailable here. Your full report is still shown on this page.');
+    }
+  }
+  function setMode(mode) {
+    mode = mode.toLowerCase();
+    if (!['clean', 'report'].includes(mode)) return;
+    if (mode === state.mode && (mode === 'clean' || !ready() || state.report)) {
+      V.welcome();
+      return;
+    }
+    const previousFocus = document.activeElement?.id;
+    V.hush();
+    clearTimeout(flipTimer);
+    state.mode = mode;
+    document.body.classList.toggle('report', mode === 'report');
+    if (matchMedia('(max-width:599px)').matches) window.scrollTo(0, 0);
+    $('m-clean').setAttribute('aria-pressed', mode === 'clean');
+    $('m-report').setAttribute('aria-pressed', mode === 'report');
+    $('clean-controls').hidden = mode !== 'clean';
+    $('clean-stage').hidden = mode !== 'clean';
+    $('report-controls').hidden = mode !== 'report';
+    $('report-stage').hidden = mode !== 'report';
+    if (mode === 'report') {
+      if (ready() && !state.report) createDraft();
+      renderReport();
+      hint(nextHint());
+    } else {
+      hint(ready() ? 'ready' : 'tryTwo');
+      refreshData();
+      requestAnimationFrame(drawChart);
+    }
+    V.welcome();
+    Curio.tone(480, .06, .05);
+    if (mode === 'report' && previousFocus === 'to-report') {
+      (ready() ? $('reason-0-0') : $('gate-back')).focus({preventScroll:true});
+    }
+    if (mode === 'clean' && ['back-clean', 'gate-back', 'change-fixes'].includes(previousFocus)) {
+      const p = state.problem;
+      $(`fix-${p}-${state.fixes[p] || fixes[p][0][0]}`).focus({preventScroll:true});
+    }
+  }
+  function buildProblems() {
+    const titles = ['118 blanks in Days', 'Vegetarian spelled three ways', '21 rows sent twice'];
+    const details = ['118 rows have no answer for days a week.',
+      'Not on the list. Students wrote Vegetarian 22, vegetarian 18, veg 13; counted apart.',
+      '21 identical pairs, sent 1 or 2 seconds apart: a double tap on Send.'];
+    const props = ['art:prop-paper', 'art:prop-notes', 'art:prop-double'];
+    for (let p = 0; p < 3; p++) {
+      const card = document.createElement('section');
+      card.id = 'problem-' + p;
+      card.className = 'problem' + (p === 0 ? ' active' : '');
+      const head = document.createElement('div');
+      head.className = 'problem-head';
+      const image = document.createElement('img');
+      image.className = 'prop';
+      image.src = props[p];
+      image.alt = '';
+      const propArt = document.createElement('span');
+      propArt.className = 'prop-art';
+      propArt.setAttribute('aria-hidden', 'true');
+      propArt.appendChild(image);
+      if (p === 0) {
+        // Precise survey marks belong in code over the painted paper, not generated lettering.
+        const marks = DataDesk.mk('svg', {viewBox:'0 0 40 48', class:'survey-marks'}, propArt);
+        DataDesk.mk('path', {d:'M3 5H32 M3 8H25 M12 18H32 M12 28H32 M12 38H29',
+          fill:'none', stroke:'#637368', 'stroke-width':1.5}, marks);
+        for (const y of [15, 25, 35]) DataDesk.mk('rect', {x:3, y, width:5, height:5,
+          fill:'#fff9dd', stroke:'#637368', 'stroke-width':1}, marks);
+      }
+      const copy = document.createElement('div');
+      const title = document.createElement('h2');
+      title.textContent = `${p + 1}. ${titles[p]}`;
+      const detail = document.createElement('p');
+      detail.textContent = details[p];
+      if (p === 1) detail.innerHTML = '<span class="spelling-intro">Not on the list. Students wrote </span>' +
+        '<span class="spelling-sample">Vegetarian 22</span>, ' +
+        '<span class="spelling-sample">vegetarian 18</span>, ' +
+        '<span class="spelling-sample">veg 13</span><span class="spelling-outro">; counted apart.</span>';
+      if (p === 2) detail.innerHTML = '<span class="detail-long">' + details[p] + '</span>' +
+        '<span class="detail-short">Same answers, 1 or 2 seconds apart.</span>';
+      copy.append(title, detail);
+      const show = document.createElement('button');
+      show.id = 'show-' + p;
+      show.className = 'btn show';
+      show.textContent = 'Show rows';
+      show.setAttribute('aria-label', `Show rows for problem ${p + 1}`);
+      show.onclick = () => {
+        state.filter = ['blanks', 'writeins', 'copies'][p];
+        if (p === 0) state.cause = true;
+        $('cause').hidden = !state.cause;
+        view('rows');
+      };
+      head.append(propArt, copy, show);
+      card.appendChild(head);
+      const choices = document.createElement('div');
+      choices.className = 'fixes';
+      choices.setAttribute('role', 'radiogroup');
+      choices.setAttribute('aria-label', `Fix problem ${p + 1}`);
+      for (const [key, text] of fixes[p]) {
+        const cell = document.createElement('div');
+        cell.className = 'fix-option';
+        const button = document.createElement('button');
+        button.id = `fix-${p}-${key}`;
+        button.className = 'btn fix';
+        button.setAttribute('role', 'radio');
+        button.setAttribute('aria-checked', 'false');
+        button.textContent = text;
+        button.onclick = () => fix(p, key);
+        button.onkeydown = e => {
+          if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+          e.preventDefault();
+          const index = fixes[p].findIndex(f => f[0] === key);
+          const next = fixes[p][(index + (['ArrowLeft', 'ArrowUp'].includes(e.key) ? 2 : 1)) % 3][0];
+          $(`fix-${p}-${next}`).focus({preventScroll:true});
+        };
+        const status = document.createElement('p');
+        status.className = 'effect';
+        status.id = `effect-${p}-${key}`;
+        status.textContent = 'Not tried yet';
+        cell.append(button, status);
+        choices.appendChild(cell);
+      }
+      card.appendChild(choices);
+      if (p === 0) {
+        const cause = document.createElement('p');
+        cause.className = 'cause';
+        cause.id = 'cause';
+        cause.hidden = true;
+        const fullCause = "All 118 are paper forms from grade 6, whose laptops weren't handed out yet. " +
+          'The copier printed page 1 only, and Days was on page 2.';
+        cause.title = fullCause;
+        const long = document.createElement('span');
+        long.className = 'cause-long';
+        long.textContent = fullCause;
+        const short = document.createElement('span');
+        short.className = 'cause-short';
+        short.textContent = '118 grade 6 paper forms: only page 1 was copied. Days was on page 2.';
+        cause.append(long, short);
+        card.appendChild(cause);
+      }
+      $('problems').appendChild(card);
+    }
+  }
+  buildProblems();
+  for (let p = 0; p < 3; p++) $('problem-tab-' + p).onclick = () => chooseProblem(p);
+  for (let p = 1; p <= 4; p++) $('part-tab-' + p).onclick = () => part(p);
+  for (const name of ['chart', 'rows', 'days']) $('view-' + name).onclick = () => view(name);
+  for (const key of ['all', 'blanks', 'writeins', 'copies']) $('filter-' + key).onclick = () => {
+    state.filter = key;
+    updateRows();
+    hint('rows');
+  };
+  $('show-dropped').onchange = e => {
+    state.dropped = e.target.checked;
+    updateRows();
+  };
+  $('split-grade').onchange = e => split(e.target.checked);
+  $('reyes-note').onclick = () => {
+    if (matchMedia('(max-height:550px) and (min-width:600px)').matches) {
+      state.noteExpanded = !state.noteExpanded;
+      state.noteOpen = true;
+    } else state.noteOpen = !state.noteOpen;
+    renderNote();
+    requestAnimationFrame(drawChart);
+  };
+  for (let p = 0; p < 3; p++) $('reason-tab-' + p).onclick = () => {
+    state.reasonRow = p;
+    for (let i = 0; i < 3; i++) {
+      $('reason-row-' + i).classList.toggle('active', i === p);
+      $('reason-tab-' + i).setAttribute('aria-pressed', i === p);
+    }
+    hint('chooseFixes');
+  };
+  $('m-clean').onclick = () => setMode('clean');
+  $('m-report').onclick = $('to-report').onclick = () => setMode('report');
+  $('back-clean').onclick = $('gate-back').onclick = () => setMode('clean');
+  $('check-report').onclick = check;
+  $('send-report').onclick = send;
+  Curio.init({clips:"voice:*", rate:.98, readFallback:() => $('hint').textContent});
+  Curio.onMotion(drawChart);
+  new ResizeObserver(() => requestAnimationFrame(drawChart)).observe($('plot-area'));
+  window.addEventListener('resize', () => requestAnimationFrame(fitReport));
+  refreshData();
+  hint("Tap a fix on problem 1 and watch the chart and the Who's in panel.");
+  window.__tool = {
+    state, setMode, fix, view, split, outcome, allLines:V.allLines, vlog:V.log,
+    report:{pick, check, answer, send}, get table() { return table; }, get rawTable() { return rawTable; },
+    get chart() { return chart; }, get tableControl() { return tableControl; }
+  };
+})();
+</script>
+</body>
+</html>

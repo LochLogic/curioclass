@@ -39,6 +39,7 @@ before narrating the current action hint. A story opened during play waits for S
 
 **My way of moving:** four Me sliders, two distinct dances, a criterion, two strength judgments, two fact choices,
 and a sentence frame. The dance positions are authored descriptions, not measured scores or cultural hierarchies.
+Changing a selected dance clears the writing tied to it; changing the criterion clears the comparison reason.
 The student decides the judgment; the software does not mark cultural preferences right or wrong. Copy copies the
 sentence; browser restrictions instead select the text for manual copying. Me, dance picks and writing are saved
 only on the current device with guarded localStorage. Reset clears the comparison. There are no accounts or uploads.
@@ -65,7 +66,8 @@ uses **cross step**. Historical names of songs and venues appear only when relev
 - **Charleston:** four-count forward, kick, back, touch, as specified. CLDAA's dance terminology describes this basic.
 - **Lindy Hop:** six counts with swung triples on 3-and-4 and 5-and-6. Eight foot placements occupy six beats.
 - **Mambo:** the requested on-one learning adaptation is labeled on screen. Common ballroom teaching instead breaks
-  on two and six. This is not presented as a reconstruction of a single Palladium dancer's timing.
+  on two and six. Library of Dance also documents a 1954 on-one version. This is not presented as a reconstruction
+  of a single Palladium dancer's timing.
 - **Stroll:** the requested side-touch version is labeled a simplified eight-count adaptation. Richard Powers's
   historical reconstruction describes six-count side patterns and personal invention in the central aisle.
 - **Twist:** feet remain in place, hips and shoulders oppose each other, and eight counts dip and rise.
@@ -75,7 +77,7 @@ uses **cross step**. Historical names of songs and venues appear only when relev
 - **Hustle:** the spec's short tap-and-step introduction is retained, with the lead-in shown as & before 1.
   Historical Hustle basics vary. It does not teach a complete partner lead-and-follow technique.
 - **Electric Slide:** the supplied counts 15-18 were incomplete and disagreed with the common eighteen-count sheet.
-  The build uses 15 right back, 16 left touch, 17 left forward, 18 right scuff with a quarter turn left. Counts 4 and 8
+  The build uses 15 right back, 16 left touch, 17 left forward with a quarter turn left, 18 right scuff. Counts 4 and 8
   use touches, an accepted teaching variant. The original twenty-two-count version is identified separately.
 - **Access claims:** the closed-hotel-ballroom generalization was softened because the named source did not establish
   it. The 1973 Sedgwick event was a fundraiser, so the spec's claim that these parties were free is not repeated.
@@ -92,12 +94,13 @@ are modern summaries, not invented quotations or facsimiles of primary documents
 - [Britannica: Charleston](https://www.britannica.com/art/Charleston-dance) and
   [Cotton Club](https://www.britannica.com/topic/Cotton-Club): origins, Runnin' Wild, 1923 and racial admission policy.
 - [Savoy Ballroom](https://en.wikipedia.org/wiki/Savoy_Ballroom): address, dates, capacity, Cats' Corner and policy.
-  [Brooklyn Public Library](https://www.bklynlibrary.org/blog/2022/12/01/cutting-rug-evidences) quotes Frankie Manning's
-  recollection, while clarifying that integration also happened in other spaces.
+  The Savoy page reproduces Manning's dancing-and-skin recollection.
+  [Brooklyn Public Library](https://www.bklynlibrary.org/blog/2022/12/01/cutting-rug-evidences) discusses integration
+  and the limits of the archive, while clarifying that integration also happened in other spaces.
   [National Endowment for the Arts: Frankie Manning](https://www.arts.gov/honors/heritage/frankie-manning) gives his
   dance and choreography history. The tool's recollection is explicitly paraphrased.
-- [TeachRock: Palladium](https://teachrock.org/wp-content/uploads/Handout_3_-_1950s_Manhattan_2.pdf) and
-  [Lincoln Center](https://jobs.lincolncenter.org/feature/legacies-of-san-juan-hill/latin-jazz-and-san-juan-hill):
+- [Lincoln Center: Latin Jazz and San Juan Hill](https://www.lincolncenter.org/feature/legacies-of-san-juan-hill/latin-jazz-and-san-juan-hill) and
+  [TeachRock: Palladium](https://teachrock.org/wp-content/uploads/Handout_3_-_1950s_Manhattan_2.pdf?x81697=):
   Cuban and Puerto Rican bands and the shared floor. [Britannica: mambo](https://www.britannica.com/art/mambo-dance).
 - [Matthew Delmont: admission-policy evidence](https://nicestkids.com/nehvectors/nicest-kids/protesting-segregation-on-bandstand)
   and The Nicest Kids in Town, University of California Press, 2012: discriminatory practices by 1954.
@@ -144,4 +147,31 @@ Dance-teaching checks:
 No narration was recorded in this Build run. The gentle-storyteller bank selection is Vindemiatrix, but available
 browser speech is the current fallback and cannot promise that actor's voice. Sound stops the groove bus and normal
 narration. Read remains available with Sound off. Motion off freezes continuous motion, while counts and lighting
-keep their original tempo. A future owner-reviewed painter will replace the kit demonstrator using the pose manifest.
+keep their original tempo. Painted demonstrators now hold a pose on each count. Exact L/R footwork is in the diagram. The rear-view
+teaching model stays relative to the dancer; the Electric Slide wall label tracks quarter turns. Modern practice
+clothes do not reconstruct the people or dress of any historical venue. A seated learner may trace the footwork.
+
+## Cold-review source checks, November 5, 2026
+
+The repeated Charleston phrase matches CLDAA terminology; Lindy count placements match SwingHop.
+The Salerno teaching sheet puts the Electric Slide left turn on count 17 and the right scuff on 18; the tool now does too.
+The Mambo source documents on-one as well as on-two timing. The Stroll remains the specified eight-count adaptation.
+Hustle remains a short tap introduction, with an explicit reset-weight cue, rather than a verified complete partner basic.
+Its exact repeated weight transfer needs a spec decision and an embodied teaching check before publication.
+The inaccessible Palladium card link was replaced by the live Lincoln Center article. The Savoy card now links
+to the specific Manning recollection reproduced on the Savoy Ballroom page; Brooklyn Public Library remains
+a useful contextual source for integration and the limits of the archive.
+Disco backlash narration now attributes the interpretation, matching the screen and PBS American Experience:
+https://www.pbs.org/wgbh/americanexperience/films/war-disco/ .
+The history cards are modern summaries, with the discussion question visible first.
+
+The chart explains its authored positions when a row is hovered or its Me slider is focused with the keyboard.
+Bunny Wailer is credited as the writer of Electric Boogie, alongside Marcia Griffiths as the recording artist.
+
+The optional opposing shoulder action in the Twist is also described by Decibel Dance (Noah Rabotin):
+https://www.decibel-danse.com/en/advice/dance-choreography/ . Library of Dance documents quieter-shoulder
+variants too; this short teaching pattern does not define all historical Twist styles.
+
+Painted teaching studies use seventeen selected poses across two modern adult demonstrators. Distinct
+grounded-turn and scuff studies clarify the Electric Slide ending; standing and shallow-dip Twist studies
+show the change of level. These are count-by-count introductions, with precise support feet labeled in the diagram.

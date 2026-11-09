@@ -19,6 +19,9 @@
       "name": "batteries",
       "steps": [
         {
+          "click": "#job-0"
+        },
+        {
           "click": "#m-mission"
         },
         {
@@ -37,6 +40,9 @@
       "name": "water-result",
       "steps": [
         {
+          "click": "#job-0"
+        },
+        {
           "click": "#m-mission"
         },
         {
@@ -44,13 +50,13 @@
           "times": 2
         },
         {
-          "click": "#choice-a"
+          "click": "[data-choice='0']"
         },
         {
           "click": "#next"
         },
         {
-          "click": "#choice-b"
+          "click": "[data-choice='1']"
         }
       ],
       "keep": [
@@ -62,6 +68,9 @@
     {
       "name": "rewind-open",
       "steps": [
+        {
+          "click": "#job-0"
+        },
         {
           "click": "#m-mission"
         },
@@ -81,6 +90,9 @@
       "name": "night",
       "steps": [
         {
+          "click": "#job-0"
+        },
+        {
           "click": "#m-mission"
         },
         {
@@ -88,20 +100,20 @@
           "times": 2
         },
         {
-          "click": "#choice-a"
+          "click": "[data-choice='0']"
         },
         {
           "click": "#next"
         },
         {
-          "click": "#choice-a"
+          "click": "[data-choice='0']"
         },
         {
           "click": "#next",
           "times": 2
         },
         {
-          "click": "#choice-a"
+          "click": "[data-choice='0']"
         },
         {
           "click": "#next",
@@ -119,6 +131,9 @@
       "name": "card-hidden",
       "steps": [
         {
+          "click": "#job-0"
+        },
+        {
           "click": "#m-mission"
         },
         {
@@ -128,6 +143,121 @@
       "keep": [
         "#radio",
         "#controls"
+      ]
+    },
+    {
+      "name": "choice-committed",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#m-mission"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='1']"
+        },
+        {
+          "click": "[data-choice='0']"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "warmth-options",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#ada",
+        "#radio",
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "warmth-revision",
+      "steps": [
+        {
+          "click": "#job-0"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "[data-choice='0']"
+        },
+        {
+          "click": "#next",
+          "times": 2
+        },
+        {
+          "click": "#rewind"
+        },
+        {
+          "click": "#rewind-6"
+        }
+      ],
+      "keep": [
+        "#choices",
+        "#ada",
+        "#radio",
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
       ]
     }
   ]

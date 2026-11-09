@@ -1,0 +1,226 @@
+{
+  "keep": [
+    "#viewer",
+    "#play",
+    "#stop",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "cause-cards",
+      "steps": [
+        {
+          "click": "#finder"
+        },
+        {
+          "click": "#next",
+          "times": 8,
+          "gap": 0.06
+        },
+        {
+          "click": "#tag"
+        }
+      ],
+      "keep": [
+        "#cause-camera",
+        "#cause-light",
+        "#cause-hand",
+        "#cause-move"
+      ]
+    },
+    {
+      "name": "plan",
+      "steps": [
+        {
+          "click": "#m-studio"
+        }
+      ],
+      "keep": [
+        "#story",
+        "#step-setup"
+      ]
+    },
+    {
+      "name": "setup",
+      "steps": [
+        {
+          "click": "#m-studio"
+        },
+        {
+          "click": "#step-setup"
+        },
+        {
+          "click": "#choice-tape"
+        },
+        {
+          "click": "#choice-lamp"
+        },
+        {
+          "click": "#choice-remote"
+        }
+      ],
+      "keep": [
+        "#choice-tape",
+        "#choice-lamp",
+        "#choice-remote",
+        "#step-shoot"
+      ]
+    },
+    {
+      "name": "shoot",
+      "steps": [
+        {
+          "click": "#m-studio"
+        },
+        {
+          "click": "#step-shoot"
+        },
+        {
+          "click": "#snap"
+        }
+      ],
+      "keep": [
+        "#snap",
+        "#pose-0",
+        "#shoot-check"
+      ]
+    },
+    {
+      "name": "check",
+      "steps": [
+        {
+          "click": "#m-studio"
+        },
+        {
+          "click": "#step-shoot"
+        },
+        {
+          "click": "#snap"
+        },
+        {
+          "click": "#moss-hit"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "click": "#snap"
+        },
+        {
+          "click": "#step-check"
+        }
+      ],
+      "keep": [
+        "#step-shoot",
+        "#to-premiere"
+      ]
+    },
+    {
+      "name": "premiere-work",
+      "steps": [
+        {
+          "click": "#m-studio"
+        },
+        {
+          "click": "#step-shoot"
+        },
+        {
+          "click": "#snap"
+        },
+        {
+          "click": "#m-premiere"
+        }
+      ],
+      "keep": [
+        "#film-title",
+        "#music",
+        "#premiere-go"
+      ]
+    },
+    {
+      "name": "reset-confirm",
+      "steps": [
+        {
+          "click": "#start-over"
+        }
+      ],
+      "keep": [
+        "#reset-dialog",
+        "#cancel-reset",
+        "#confirm-reset"
+      ]
+    },
+    {
+      "name": "in-between",
+      "steps": [
+        {
+          "click": "#next",
+          "times": 29,
+          "gap": 0.04
+        },
+        {
+          "click": "#tag"
+        },
+        {
+          "click": "#cause-move"
+        },
+        {
+          "click": "#fix-current"
+        }
+      ],
+      "keep": [
+        "#moss-hit",
+        "#keep-between"
+      ]
+    },
+    {
+      "name": "full-strip",
+      "steps": [
+        {
+          "click": "#m-studio"
+        },
+        {
+          "click": "#step-shoot"
+        },
+        {
+          "click": "#snap",
+          "times": 48,
+          "gap": 0.04
+        }
+      ],
+      "keep": [
+        "#snap",
+        "#shoot-check"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375"
+      ]
+    },
+    {
+      "name": "wren-poses",
+      "steps": [
+        {
+          "click": "#m-studio"
+        },
+        {
+          "click": "#step-shoot"
+        },
+        {
+          "click": "#select-wren"
+        }
+      ],
+      "keep": [
+        "#pose-0",
+        "#pose-5",
+        "#snap"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375"
+      ]
+    }
+  ]
+}

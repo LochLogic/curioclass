@@ -1,0 +1,33 @@
+{
+  "keep":["#hint"],
+  "states":[
+    {"name":"grade6-removed","steps":[{"click":"#fix-0-D"}],"keep":["#verdict","#who-clean"]},
+    {"name":"fill-days","steps":[{"click":"#fix-0-F"},{"click":"#view-days"}],"keep":["#verdict","#chart"]},
+    {"name":"fill-retained-wide","sizes":["1366x768","1920x1080"],
+     "steps":[{"click":"#fix-0-F"},{"click":"#fix-1-D"},{"click":"#view-days"}],"keep":["#chart","#plot-caption"]},
+    {"name":"fill-retained-compact","sizes":["680x425","800x500","1000x625","1280x720","760x900","375x812"],
+     "steps":[{"click":"#fix-0-F"},{"click":"#problem-tab-1"},{"click":"#fix-1-D"},{"click":"#view-days"}],
+     "keep":["#chart","#plot-caption"]},
+    {"name":"paper-rows","steps":[{"click":"#fix-0-F"},{"click":"#show-0"}],"keep":["#table-host"]},
+    {"name":"split-grades","steps":[{"click":"#split-grade"}],"keep":["#chart","#who-clean"]},
+    {"name":"report-locked","steps":[{"click":"#m-report"}],"keep":["#report-gate"]},
+    {"name":"report-ready-wide","sizes":["1366x768","1920x1080"],
+     "steps":[{"click":"#fix-0-D"},{"click":"#fix-0-K"},{"click":"#fix-1-D"},{"click":"#fix-1-R"},
+              {"click":"#fix-2-K"},{"click":"#fix-2-E"},{"click":"#to-report"}],"keep":["#letter","#check-report"]},
+    {"name":"report-all-fixes","sizes":["1366x768","1920x1080"],
+     "steps":[{"click":"#fix-0-D"},{"click":"#fix-0-F"},{"click":"#fix-0-K"},
+       {"click":"#fix-1-D"},{"click":"#fix-1-R"},{"click":"#fix-1-K"},
+       {"click":"#fix-2-B"},{"click":"#fix-2-E"},{"click":"#fix-2-K"},{"click":"#to-report"}],"keep":["#letter"]},
+    {"name":"report-ready-compact","sizes":["680x425","800x500","1000x625","1280x720","760x900","375x812"],
+     "steps":[{"click":"#fix-0-D"},{"click":"#fix-0-K"},{"click":"#problem-tab-1"},
+              {"click":"#fix-1-D"},{"click":"#fix-1-R"},{"click":"#problem-tab-2"},
+              {"click":"#fix-2-K"},{"click":"#fix-2-E"},{"click":"#to-report"}],"keep":["#part-tabs","#check-report"]},
+    {"name":"sent-report","sizes":["1366x768"],
+     "steps":[{"click":"#fix-0-D"},{"click":"#fix-0-K"},{"click":"#fix-1-D"},{"click":"#fix-1-R"},
+       {"click":"#fix-2-K"},{"click":"#fix-2-E"},{"click":"#to-report"},
+       {"click":"#reason-0-0"},{"click":"#reason-1-0"},{"click":"#reason-2-0"},
+       {"click":"#statement-0"},{"click":"#limit-0"},{"click":"#limit-1"},
+       {"click":"#check-report"},{"click":"#check-report"},{"click":"#part-tab-4"},
+       {"click":"#answer-0"},{"click":"#send-report"}],"keep":["#sent-card"]}
+  ]
+}

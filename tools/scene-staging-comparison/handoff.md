@@ -1,88 +1,72 @@
-# Scene Staging Comparison: build handoff
+# Scene Staging Comparison: handoff after cold review
 
 ## Structure
-One offline src.html with kit:curio. Responsive CSS creates the dark theater-program desk.
-The script contains the ten captions, timing and staging tables, code silhouettes, Web Audio cues,
-two-viewer persistence, live reaction stamps, set-difference ranking, comparison grid and six layer views.
-The opinion builder accepts only the selected viewer's actual stamp on the selected production and moment.
-window.__tool exposes the state, content tables, timeline and focused verification hooks.
-DOM order puts the panel's primary controls ahead of the longer comparison grid.
+One offline src.html with kit:curio. CSS lays out the theater-program desk; the script holds captions,
+timing/staging tables, vector actors, synthesized cues, two-viewer storage, split ranking and six layers.
+The four original paintings remain. The blue-overall costumes are now also visible on every modern actor.
+window.__tool exposes state, content, timeline and focused verification hooks.
 
 ## Tricky parts
-- The playback clock uses performance.now and requestAnimationFrame. Each moment is its specified pause,
-  whitespace caption words / 2.5, and one extra second. Motion changes do not reset that clock.
-- Previous and Next preserve playback; switching Viewer changes subsequent stamp ownership at once.
-  Mode switches stop. Read stops playback before the kit reads the current hint.
-- Scene dialogue stays silent. The clock, rain, accordion sting / slide and door slam are local synthesis.
-  Sound off and Stop cancel every active sound node and silence the gain bus.
-  Rain nodes are separately stopped at moment 9. The door slam follows the exit movement, rather than preceding it.
-- No narration overlaps playback. bothDone events triggered while playing are deferred to Stop or completion
-  and dropped if their viewer is no longer current. Event instances have unique queue keys.
-  Play from another mode enters Watch quietly before starting. A stopped first reaction is allowed to speak the welcome.
-- Reaction lists keep three entries including duplicates; set differences collapse duplicates.
-  Ranking counts the symmetric difference and breaks ties by earlier moment, even when a difference is zero.
-- Chips are per viewer and moment. Stamps are per viewer, production and moment. Six opinions are shared
-  across the pair, with viewer identity retained. All saves use localStorage in try/catch.
-- A native confirmation dialog resets both viewers. Cancel keeps the complete record.
-- Layers have frozen representations; the arrows represent position changes since the preceding moment.
-  Character initials inside the dots link to a separate name legend so close blocking cannot overlap labels.
+- Each duration is pause + whitespace caption words / 2.5 + 1 second. Final counts are
+  18, 15, 12, 12, 10, 8, 17, 14, 6, 15: 77.3 seconds and 63.0 seconds. The status derives its total.
+- Next/Previous preserve playback and cancel the preceding moment's audio. Mode changes stop playback.
+- Reactions keep the latest three entries including duplicates; symmetric differences count distinct types.
+- Production comparisons use the current viewer's two sets, 0 to 5. Viewer comparisons compare matched
+  productions first, counting only productions with both viewers' stamps at that moment, then sum, 0 to 10.
+  This resolves the spec's unspecified viewer aggregation without letting production swaps cancel.
+- Earlier moments break ties. Zero entries may rank in the top three, but never receive a difference mark.
+  Missing stamps are unrecorded evidence. Sample rows never inherit personal split marks.
+- An opinion requires the current viewer's own stamp on that production/moment and nonempty text.
+  Saving is not semantic grading. Neutral feedback asks students to check their evidence; it certifies no answer.
+  Compare now starts its opinion selectors at the inspected production/moment. Viewer changes clear unsaved text.
+- Stamps, chips and six shared opinions save locally in try/catch. Reset uses a confirmation dialog.
+- No narration over playback. bothDone describes having reactions, not having watched the whole scene.
+  stampHow stays a visible hint at eight seconds because the spec forbids narration while playing.
+- Read stops the scene, then the kit reads the current hint. New viewer selections hush stale viewer narration.
+- Vector initials link each moving actor to its legend. The farce faint has a short fall/bounce and floor impact;
+  the hopping actor travels around the chair and the crawling exit clears the stage. Calm removes motion,
+  keeping the final pose, pauses and duration. The two plays remain fixed, not student-directed.
 
-## Spec choices and open questions
-- No explicit Open questions section was present. The following contradictions / gaps were resolved locally.
-- Timing: supplied word counts reproduce 70.1 and 55.8 seconds. Complete final captions count
-  18, 15, 12, 12, 10, 9, 17, 14, 6, 15 words, giving 77.7 and 63.4 seconds.
-  This follows the spec's instruction to recompute with final caption text. Role and action labels count.
-- Production 1 is fictional: the 1890 label deliberately borrows the realistic style described as a decade later.
-  Its time explicitly says so rather than presenting it as a real historical reconstruction.
-- The viewer-to-viewer aggregation is unspecified when each viewer has two production sets. This build
-  unions each viewer's two sets at each moment, then applies the same 0 to 5 symmetric difference rule.
-  A swap of reactions between productions can therefore disappear from the viewer comparison, while
-  remaining visible in the four rows and in the production comparison. Review this interpretation.
-- Missing data from either viewer produces no viewer split, rather than treating absence as a feeling.
-  Production ranking still compares a watched production with an unstamped one as the set rule specifies.
-- With all scores tied at zero, Show splits highlights moments 1, 2 and 3, following the earlier-tie rule.
-- stampHow at eight seconds is a visible hint only: the no-narration-during-play rule takes priority.
-- An extra emptyCompare line avoids telling a student to tap a disabled Show splits control.
-- At widths under 900 the frames stack in tall windows. Short landscape previews keep them side by side,
-  preserving caption legibility and the primary controls under STANDARDS. At 375 one frame is selected by P1 / P2.
-- The phone's comparison table scrolls horizontally, and its opinion builder and Layers details scroll vertically.
-  All reaction choices, playback controls and mode tabs stay visible in Watch.
-- Physical acting uses faceless code silhouettes, poses and transitions. The dog mime has drawn leash traces.
-  Gestures are stylized, especially embraces and kisses, rather than a detailed animated performance.
-- The smooth-narrator / Algieba bank selection is in voice/lines.json. No recordings were made as required;
-  kit browser speech remains the fallback and its exact voice depends on the browser.
+## Spec choices
+The fictional 1890 production borrows a realistic style associated with the Moscow Art Theatre a decade later;
+its time card states the anachronism. Historical audience responses are framed as possible interpretations.
+Short landscape keeps two frames side by side for caption readability. Tall widths under 900 stack them;
+375 shows one production. Compare's ten-column evidence table scrolls on phones. Secondary details scroll.
+The final audit confirmed offscreen reason chips at several sizes and compact Reset below the fold.
+Reason chips and their heading now sit with the layer tabs ahead of long evidence, while reaction stamps
+stay with the evidence below. The compact panel puts Reset beside its privacy note and removes the redundant
+viewer heading. See the review's targeted repair frames; the full audit was not repeated.
+The shared-kit engine is unchanged. No recordings were made; smooth-narrator uses browser fallback.
+
+## Sensitivity
+Russian literature and property/marriage expectations: review framing, including the fictional 1890 label.
+The characters' physical distress and forced engagement are plot elements, not medical or relationship advice.
+Students can feel uneasy about the faint; no reaction is scored. Sample viewers are fictional individuals,
+not stand-ins for all older people, farming communities or families with heart conditions.
 
 ## Art
-All four requested paintings were generated with the image tool and copied into art/raw.
-art.py --rekey made the final WebP assets, inspected individually and in the tool.
-The people-free wardrobe uses headless garment forms and hanging clothing. There are no painted characters.
-Prompts, house style and drawn_by are retained in art/prompts.json.
+Four generated paintings retained, with original provenance in art/prompts.json. Wardrobes use empty forms
+and hangers, not people. Moving characters are faceless vector silhouettes, as the spec requests.
+The review improves those vectors rather than replacing strong painted art.
 
 ## Engine changes wanted
-None. No kit, docs, scripts or other tool files were edited.
+None.
 
-## Verification pointers
-Evidence lives only in _scratch/scene-staging-comparison.
-numbers.json recomputes timing and contrast; functional.json checks live held input, separation, split math,
-six layers, chip saves, evidence gating, reload, Read and Reset. voice-check.json checks five repeated
-held taps at two-second pace. full-play.json records actual complete timings and moment boundaries.
-The final frames cover all STANDARDS sizes, grayscale, keyboard and Motion off.
-The report will record the single audit's outcome and any remaining leads.
-This is Build only. No commit or polish round was started.
+## Verification
+See codex-review.md for the cold review and current findings. Evidence is confined to
+_scratch/scene-staging-comparison, with review-prefixed checks and review-audit.
+Original codex-report.md is the builder's historical record, not evidence of review verification.
 
-## Final audit and targeted repairs
-The single audit finished within its 40-minute limit, with 27 leads. It found no exceptions,
-stuck controls, resize failures or infinite motion. The five-repeat and rapid-tap voice checks were clean.
-Every lead has an individual disposition in _scratch/scene-staging-comparison/audit-dispositions.md.
-The confirmed repairs are an explicit evidence-field name, zero horizontal table overflow at 680 pixels,
-enabled-control-only playback hints, a correct first-reaction welcome, and a dialog-only keep fixture.
-Additional frame-led repairs contain Layers columns, keep all seven reason chips together, enlarge diagram labels,
-keep the entire pratfall visible, add latest-reaction words to the miniature strip, and preserve inactive caption contrast.
-The phone still scrolls its wide comparison table; a swipe instruction makes that explicit.
-Reset remains below the compact panel's initial fold at 680x425. It is a secondary confirmation control,
-and all primary Play, stepping and reaction controls remain visible. This lead is retained deliberately.
-Modal coverage of the background hint is expected; its keep fixture no longer demands an uncovered background.
-Targeted evidence includes compact-repair.json, cue-contract.json, sound-tail-stop.json, motion-final.json,
-phone-held-input.json, phone-layout-repair.json, reaction-welcome.json, reset-welcome.json and delivery.json.
-The final delivery HTML is checked byte for byte against the tested Scratch candidate.
-The full size sweep and audit were not repeated after repairs. No shared files were changed.
+## Final review verification limits
+The cold review's one audit reached its 40-minute limit during resize stress checks. Its 21 recorded leads
+are dispositioned in codex-review.md. The complete control walks and voice stress checks finished;
+the entire resize matrix did not. Independent phone checks passed, while the audit's phone harness
+could not attach on the occupied host port. No fresh full audit was run after scoped repairs.
+The final compact hint rechecks require scrollHeight == clientHeight and no overlap with viewer controls.
+Rapid Stop now cancels actor animations and freezes selected-moment poses immediately. Before repair,
+the entrance drifted after Stop; focused 1366 and 680 tests now show zero animations and zero drift.
+Opinion prose uses natural clauses for all five responses, blocking, personal experience and uncertainty.
+The main voice walk reached all 20 production moments with Sound on and no narration over playback.
+Read/stale checks and five held Add events are preserved in Scratch. No recorded narration was created.
+All review Chrome ports are closed. The old test host on 8755 remains because process cleanup was denied;
+host.html was removed. See the review report for this unresolved operational cleanup and evidence paths.

@@ -1,0 +1,23 @@
+{
+ "keep":["#board",".meter","#drawers","#manual"],
+ "states":[
+  {"name":"one-bulb","steps":[{"click":"#notebook"},{"click":"#setup-0"}]},
+  {"name":"series","steps":[{"click":"#notebook"},{"click":"#setup-1"}]},
+  {"name":"parallel","steps":[{"click":"#notebook"},{"click":"#setup-2"}]},
+  {"name":"led","steps":[{"click":"#notebook"},{"click":"#setup-3"}]},
+  {"name":"staircase","steps":[{"click":"#notebook"},{"click":"#setup-4"}]},
+  {"name":"wire-compass","steps":[{"click":"#notebook"},{"click":"#setup-5"}]},
+  {"name":"coil","steps":[{"click":"#notebook"},{"click":"#setup-6"}]},
+  {"name":"motor","steps":[{"click":"#notebook"},{"click":"#setup-7"}]},
+  {"name":"manual","steps":[{"click":"#manual"}],"keep":["#manual-drawer"]},
+  {"name":"notebook","steps":[{"click":"#notebook"}],"keep":["#notebook-drawer"]},
+  {"name":"part-tag","steps":[{"click":"#adjust-part"}],"keep":["#part-drawer"],"sizes":["680x425","1000x625","375x812"]},
+  {"name":"saved-switch","steps":[{"click":"#notebook"},{"click":"#setup-4"},{"click":"#contact"},
+    {"click":"#notebook"},{"click":"#slots .slot:first-child button:first-of-type"},
+    {"click":"#slots .slot:first-child button:last-of-type"}],"sizes":["1366x768"]},
+  {"name":"saved-switch-phone","steps":[{"click":"#notebook"},{"click":"#setup-4"},
+    {"click":"#adjust-part"},{"click":"#contact"},{"click":"#close-part"},
+    {"click":"#notebook"},{"click":"#slots .slot:first-child button:first-of-type"},
+    {"click":"#slots .slot:first-child button:last-of-type"}],"sizes":["375x812"]}
+ ]
+}

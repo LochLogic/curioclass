@@ -34,6 +34,9 @@ dropped turn gets "carry on" (both as resumes, at most 3), then it is logged FAI
 message stops new starts. Tools touched in the last 20 minutes and slots whose ports are busy are skipped, so it can
 run beside hand-pasted chats, but it is meant for when nobody is pasting. Stop gently with an empty file
 S:\CurioClass-codex\_runner\STOP. Log: _runner\summary.txt, one events file per session under _runner\<date>\.
+Change a run without stopping it (from 2026-11-05 runs on): edit _runner\LIMITS.json (how many at once, and max_builds,
+max_reviews, max_fixes, max_jobs; 0 means no limit). The runner re-reads it and scripts/codex_queue.py every 30 seconds,
+so a raised cap or a tool added to QUEUE or FIX joins the run. Once the runner has ended, a new run is needed.
 
 ## Pulling tools in (2026-11-04)
 
@@ -148,6 +151,12 @@ blockers and should fix in round 1, exit rounds to PASS and integrator fixes aga
   `polish.md` as claims; the exit check is still needed.
 - About 14M input tokens to build and 30M a polish round, almost all cached; 37 minutes to build.
 - Its states file and scratch habits are the two things to brief harder.
+
+## What sky-dome round 2 taught (2026-11-06)
+
+- `scripts/drive.py` and the audit start Chrome with `--disable-gpu`, so WebGL runs on a software rasteriser. Sky
+  Dome's round 2 spent a whole fix chasing a 45 ms frame that was 7 ms with the GPU on. For a WebGL tool, judge a
+  60 fps gate on the CPU-side draw time under 4x throttle, or time it in a Chrome started without `--disable-gpu`.
 
 Cory's queue: `scripts/codex_queue.py`. Left out on purpose:
 tools waiting on desk answers, tools needing a kit engine that doesn't exist yet, sensitive or cultural topics, and the

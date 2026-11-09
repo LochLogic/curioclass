@@ -1,0 +1,65 @@
+{
+  "house_style": "Scientific editorial gouache for Grade 8. Rich tactile paint, deep atmospheric blues, amber directional light from upper left, precise recognizable equipment, confident shapes and subtle pencil detail. Square compositions centered in inner 80 percent for a circle crop. No text, letters, numbers, logos or people.",
+  "assets": [
+    {
+      "name": "icon-co2",
+      "prompt": "Mauna Loa observatory: small white domed buildings and a tall thin measurement mast on black volcanic lava slopes above a sea of white clouds, deep blue sky. All buildings inside central 80 percent.",
+      "aspect": "1:1",
+      "width": 144,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image, built-in image tool",
+      "review": "ok"
+    },
+    {
+      "name": "icon-sun",
+      "prompt": "The glowing orange disk of the Sun viewed safely through a solar filter, a few small dark sunspots, softly detailed granulation, black sky around. Whole disk centered inside inner 80 percent.",
+      "aspect": "1:1",
+      "width": 144,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image, built-in image tool",
+      "review": "ok"
+    },
+    {
+      "name": "icon-volcano",
+      "prompt": "A tall gray-white eruption column rising from a green tropical volcano into a blue sky, viewed from far away. Entire peak and eruption column centered inside inner 80 percent.",
+      "aspect": "1:1",
+      "width": 144,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image, built-in image tool",
+      "review": "ok"
+    },
+    {
+      "name": "icon-fossil",
+      "prompt": "A recognizable coal-fired electric power plant at dusk: industrial turbine building, two tall slender chimneys, one distinct broad hyperboloid cooling tower releasing a soft white water-vapor plume, and a coal freight train on rails in the foreground. Convincing industrial structure, layered depth, deep blues and amber light from upper left. All equipment within central 75 percent for a 64-pixel circular medallion. No text, numbers, logos or people.",
+      "aspect": "1:1",
+      "width": 144,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image, built-in image tool",
+      "review": "Redrawn in cold review for clearer turbine building, cooling tower and coal train; steam is not CO2."
+    },
+    {
+      "name": "icon-temp",
+      "prompt": "A white louvered weather-station instrument box on four legs in a green grassy field under a wide blue sky. True horizontal louvers, subtle wood detail. Whole box and legs centered inside inner 80 percent.",
+      "aspect": "1:1",
+      "width": 144,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image, built-in image tool",
+      "review": "ok"
+    }
+  ]
+}

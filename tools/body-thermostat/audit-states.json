@@ -1,0 +1,178 @@
+{
+  "keep": [
+    "#controls",
+    "#hint",
+    "#graph-box"
+  ],
+  "states": [
+    {
+      "name": "running",
+      "steps": [
+        {
+          "click": "#activity-run"
+        },
+        {
+          "click": "#speed-5"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "two-trials",
+      "steps": [
+        {
+          "click": "#m-experiment"
+        },
+        {
+          "click": "#clothes-shorts"
+        },
+        {
+          "click": "#activity-run"
+        },
+        {
+          "click": "#run-trial"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#switch-sweat"
+        },
+        {
+          "click": "#run-trial"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#compare"
+        }
+      ],
+      "keep": [
+        "#notebook"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "fever-chills",
+      "steps": [
+        {
+          "click": "#m-fever"
+        },
+        {
+          "click": "#fever-starts"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "wait": 500
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "air-max",
+      "steps": [
+        {
+          "drag": "const r=document.querySelector(\"#air\").getBoundingClientRect();return [[r.left+r.width/2,r.top+r.height/2],[r.right-12,r.top+r.height/2]];"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "air-min",
+      "steps": [
+        {
+          "drag": "const r=document.querySelector(\"#air\").getBoundingClientRect();return [[r.left+r.width/2,r.top+r.height/2],[r.left+12,r.top+r.height/2]];"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "trial-cold-stop",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "drag": "const r=document.querySelector(\"#air\").getBoundingClientRect();return [[r.left+r.width/2,r.top+r.height/2],[r.left+12,r.top+r.height/2]];"
+        },
+        {
+          "click": "#m-experiment"
+        },
+        {
+          "click": "#clothes-swimsuit"
+        },
+        {
+          "click": "#wind"
+        },
+        {
+          "click": "#run-trial"
+        },
+        {
+          "wait": 2300
+        }
+      ],
+      "keep": [
+        "#safety",
+        "#notebook"
+      ]
+    },
+    {
+      "name": "trial-hot-stop",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "drag": "const r=document.querySelector(\"#air\").getBoundingClientRect();return [[r.left+r.width/2,r.top+r.height/2],[r.right-12,r.top+r.height/2]];"
+        },
+        {
+          "click": "#m-experiment"
+        },
+        {
+          "click": "#clothes-swimsuit"
+        },
+        {
+          "click": "#humid"
+        },
+        {
+          "click": "#activity-run"
+        },
+        {
+          "click": "#run-trial"
+        },
+        {
+          "wait": 2300
+        }
+      ],
+      "keep": [
+        "#safety"
+      ]
+    }
+  ]
+}

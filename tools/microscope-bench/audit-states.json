@@ -1,0 +1,224 @@
+{
+  "keep": [
+    ".eyepiece",
+    ".focus-bank",
+    ".turret",
+    ".identity",
+    ".power"
+  ],
+  "states": [
+    {
+      "name": "reticle-high-power",
+      "steps": [
+        {
+          "click": "#obj100"
+        },
+        {
+          "click": "#oil"
+        },
+        {
+          "click": "#reticle"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manual-title",
+        "#close-manual"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "sketchbook",
+      "steps": [
+        {
+          "click": "#book"
+        }
+      ],
+      "keep": [
+        "#paper",
+        "#close-book",
+        "#notes"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "calibration",
+      "steps": [
+        {
+          "click": "#micrometer"
+        },
+        {
+          "click": "#place"
+        },
+        {
+          "click": "#coarse"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "click": "#calibrate"
+        }
+      ],
+      "keep": [
+        ".eyepiece",
+        "#stage-intervals",
+        "#reticle-intervals",
+        "#store-cal"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "specimen-tray",
+      "steps": [
+        {
+          "click": "#specimens"
+        }
+      ],
+      "keep": [
+        "#slide-title",
+        "#close-slides",
+        "#mount-selected"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "prepared-box",
+      "steps": [
+        {
+          "click": "#prepared"
+        }
+      ],
+      "keep": [
+        "#slide-title",
+        "#close-slides",
+        "#mount-selected"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "mount-preparation",
+      "steps": [
+        {
+          "click": "#specimens"
+        },
+        {
+          "click": "[data-slide=onion]"
+        },
+        {
+          "click": "#mount-selected"
+        },
+        {
+          "click": "#supplies"
+        },
+        {
+          "click": "#iodine"
+        },
+        {
+          "click": "#bubbles"
+        }
+      ],
+      "keep": [
+        "#mount-title",
+        "#close-mount",
+        "#water",
+        "#iodine",
+        "#apply-mount"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "colony-focused",
+      "steps": [
+        {
+          "click": "#prepared"
+        },
+        {
+          "click": "[data-slide=colony]"
+        },
+        {
+          "click": "#mount-selected"
+        },
+        {
+          "click": "#coarse"
+        },
+        {
+          "key": "ArrowDown"
+        }
+      ],
+      "keep": [
+        ".eyepiece",
+        ".focus-bank",
+        ".turret"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "sand-source-contrast",
+      "steps": [
+        {
+          "click": "#specimens"
+        },
+        {
+          "click": "[data-slide=sand]"
+        },
+        {
+          "click": "#mount-selected"
+        },
+        {
+          "click": "#coarse"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "click": "#obj4"
+        }
+      ],
+      "keep": [
+        ".eyepiece",
+        ".focus-bank",
+        ".turret"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

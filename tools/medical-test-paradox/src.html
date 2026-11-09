@@ -1,0 +1,1343 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medical Test Paradox · Curio Class</title>
+<meta name="description" content="Test a fictional town and discover why a positive result depends on the crowd. Grade 10 conditional probability. Works offline.">
+<link rel="icon" href="data:,">
+<!--
+Medical Test Paradox, Curio Class. Grade 10 conditional probability and two-way tables.
+Content: Gigerenzer et al. (2007), APS (2008), StatPearls NBK557491, CCSS HSS-CP.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. One offline file. No personal medical data.
+The specified probability kit is absent. Local mechanics are documented in handoff.md.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#ff3d9a;
+  --brand-ink:#10161f;
+  --stage:#0f141c;
+}
+body { height:100dvh; min-height:0; overflow:hidden; grid-template-rows:auto auto minmax(0,1fr); }
+header { padding:8px 16px; gap:8px; }
+h1 { font-size:23px; letter-spacing:-.5px; }
+h1 small { font-size:12px; margin-top:4px; letter-spacing:0; }
+.seg { border-radius:9px; border-width:1px; flex-shrink:0; }
+.seg button,.icon-btn { min-height:44px; padding:0 12px; font-size:14px; }
+.icon-btn { border-radius:8px; border-width:1px; }
+.medical-note { margin:0; padding:6px 16px; background:#1c1824; color:#d4cbdc; font-size:12px; }
+main { grid-template-columns:minmax(0,1fr) 320px; gap:0; overflow:hidden; }
+.panel { padding:12px; overflow:auto; min-height:0; gap:10px; background:linear-gradient(145deg,#1d2531,#131a23); }
+.panel { grid-column:2; grid-row:1; }
+.stage { grid-column:1; grid-row:1; }
+.stage { min-height:0; display:flex; flex-direction:column; padding:18px 22px 10px; gap:10px; background:var(--stage); }
+.eyebrow { color:var(--brand); text-transform:uppercase; letter-spacing:.16em; font-size:11px; font-weight:700; }
+.stage-head { display:flex; align-items:center; justify-content:space-between; gap:10px; min-height:30px; }
+.stage-head h2 { font-size:18px; margin:0; font-weight:500; }
+.status { display:flex; align-items:center; gap:6px; color:var(--muted); font:12px var(--readout-font); }
+.lamp { width:6px; height:6px; border-radius:50%; background:#84d9cc; box-shadow:0 0 10px #84d9cc77; animation:breathe 3s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity:.35; } }
+.calm .lamp { animation:none; }
+.town-band { width:100%; height:120px; object-fit:cover; border-radius:10px 10px 0 0; mask-image:linear-gradient(#000 65%,transparent); }
+.population-wrap { position:relative; flex:1; min-height:70px; border:1px solid #273140; border-radius:8px;
+  background:radial-gradient(ellipse at 20% 0,#1c2735,#0f141c 75%); overflow:hidden; }
+.population-wrap { box-shadow:inset 0 1px #73859b22,0 3px 12px #0004; }
+.population-wrap::after { content:''; position:absolute; inset:0; pointer-events:none; border:5px solid #93b7dc05; border-radius:8px; }
+#population { width:100%; height:100%; display:block; }
+.scan { position:absolute; inset:0; pointer-events:none; background:linear-gradient(90deg,transparent,#ff3d9a22,transparent);
+  transform:translateX(-100%); }
+.testing .scan { animation:scan 1s linear infinite; }
+@keyframes scan { to { transform:translateX(100%); } }
+.calm .scan { display:none; animation:none; }
+.legend { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:6px; font-size:12px; }
+.legend div { border-top:2px solid #69798e; padding-top:5px; }
+.legend .positive { border-color:var(--brand); }
+.legend b { display:block; font:500 19px var(--readout-font); color:var(--ink); margin-bottom:3px; }
+.legend span { color:var(--muted); }
+.symbol { display:inline-grid; place-items:center; width:12px; height:12px; border:1px solid currentColor; margin-right:4px;
+  font:700 10px sans-serif; vertical-align:baseline; }
+.symbol.full { background:currentColor; box-shadow:inset 0 0 0 1px #ff89bd; }
+.symbol.full::after { color:#10161f; }
+.symbol.plus::after { content:'+'; }
+.positive .symbol { color:var(--brand); }
+.positive .symbol.full::after { color:#10161f; }
+.population-foot { color:var(--muted); font-size:11px; display:flex; justify-content:space-between; gap:8px; }
+.result { border:1px solid #ff3d9a55; background:linear-gradient(100deg,#331c30,#19212c); border-radius:9px;
+  padding:12px 16px; min-height:80px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.result p { margin:0; font-size:15px; line-height:1.35; }
+.result strong { font:600 clamp(28px,4vw,49px)/1 var(--readout-font); color:var(--brand); white-space:nowrap; }
+.result small { display:block; color:var(--muted); margin-top:5px; font-size:12px; }
+.prediction-mark { color:#e8edf3; }
+.hint { min-height:58px; font-size:14px; line-height:1.4; padding-left:10px; border-left:2px solid var(--brand); }
+.panel>* { flex-shrink:0; }
+.row { display:flex; align-items:center; gap:6px; }
+.row>* { min-width:0; flex:1; }
+select { min-height:44px; padding:0 7px; color:var(--ink); background:#111924; border:1px solid #62789a; border-radius:7px; font:13px inherit; }
+.parameter { display:grid; grid-template-columns:80px minmax(40px,1fr) 72px; align-items:center; gap:8px; min-height:54px; }
+.parameter label { font-size:13px; }
+.parameter input.num { width:100%; padding:0 6px; font-size:14px; }
+.parameter .unit { position:relative; }
+.parameter .unit::after { content:'%'; position:absolute; right:6px; top:15px; font-size:12px; color:var(--muted); pointer-events:none; }
+.parameter .unit input { padding-right:22px; appearance:textfield; }
+input::-webkit-inner-spin-button { appearance:none; }
+.ticks { font:10px var(--readout-font); color:var(--muted); margin-top:-4px; text-align:center; }
+.big-btn { width:100%; padding:0 10px; font-size:15px; min-height:46px; }
+.btn { padding:0 8px; font-size:13px; }
+.predict { padding:10px; border:1px solid #66768f; border-radius:8px; background:#101822; }
+.predict label { display:flex; justify-content:space-between; font-size:14px; gap:8px; }
+.predict p { margin:0 0 7px; font-size:14px; line-height:1.35; }
+.predict output { font-family:var(--readout-font); color:var(--brand); }
+.seed { color:var(--muted); font:11px var(--readout-font); margin:0; }
+.glossary { display:flex; gap:4px; flex-wrap:wrap; }
+.glossary button { flex:1; min-height:44px; border:1px solid #3c4759; background:#171e29; color:var(--muted);
+  border-radius:6px; padding:4px 6px; font-size:11px; }
+#gloss { min-height:30px; font-size:12px; color:var(--muted); margin:0; }
+.bottom-row { margin-top:auto; }
+dialog { width:min(460px,calc(100vw - 24px)); border:1px solid #66788f; border-radius:12px; color:var(--ink);
+  background:linear-gradient(140deg,#263246,#121a25); padding:20px; box-shadow:0 20px 80px #000b; }
+dialog::backdrop { background:#050911bb; }
+dialog h2 { margin:0 0 15px; font-size:21px; }
+dialog .glossary { display:grid; grid-template-columns:1fr 1fr; }
+dialog .glossary button { font-size:14px; min-height:48px; color:var(--ink); }
+dialog #gloss { font-size:15px; min-height:70px; padding-top:14px; }
+body[data-mode="cases"] .hint { order:0; }
+body[data-mode="cases"] #case-info { order:1; }
+body[data-mode="cases"] #predict-box { order:2; }
+body[data-mode="cases"] #show-answer { order:3; }
+body[data-mode="cases"] .panel>.row { order:4; }
+body[data-mode="cases"] #case-story { order:5; }
+.table-view { flex:1; display:flex; flex-direction:column; min-height:0; gap:10px; justify-content:center; }
+.two-way { border-collapse:separate; border-spacing:3px; width:100%; font:clamp(14px,2vw,23px) var(--readout-font); }
+.two-way th,.two-way td { background:#19222f; border:1px solid #2c384b; text-align:center; padding:12px 6px; }
+.two-way th { background:transparent; border:0; font:14px 'Segoe UI',sans-serif; }
+.two-way button { min-height:44px; width:100%; border:1px solid #62789a; border-radius:6px; background:#202c3b; font-size:14px; }
+.two-way .lit { background:#ff3d9a33; border-color:var(--brand); }
+.two-way .both { box-shadow:inset 0 0 0 2px var(--brand); }
+.two-way .both { animation:overlap-flash .75s ease-in-out 3; }
+@keyframes overlap-flash { 50% { background:#ff3d9a66; } }
+.calm .two-way .both { animation:none; }
+.fraction { padding:12px; text-align:center; background:#201c2b; border-radius:8px; font-size:15px; line-height:1.5; }
+.fraction b { display:block; color:var(--brand); font:600 clamp(22px,3vw,37px) var(--readout-font); }
+.fraction-targets { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
+.fraction-targets button { min-height:44px; border:1px dashed #7989a2; border-radius:7px; background:#182230;
+  font:14px var(--readout-font); }
+.fraction-targets button.dragover { border-color:var(--brand); background:#ff3d9a33; }
+.questions { display:grid; gap:6px; }
+.question { text-align:left; min-height:44px; border:1px solid #4b5c74; border-radius:6px; padding:7px 9px; background:#1a2431;
+  font-size:12px; line-height:1.25; }
+.question[aria-pressed=true] { border-color:var(--brand); box-shadow:inset 3px 0 var(--brand); }
+.question.wrong { animation:spring .3s ease; }
+@keyframes spring { 25% { transform:translateX(7px); } 75% { transform:translateX(-5px); } }
+.addition { background:#111924; padding:10px; border:1px solid #364155; border-radius:8px; font-size:13px; line-height:1.6; }
+.addition p { margin:0; }
+.addition b { color:var(--brand); }
+.addition button { width:100%; margin-top:6px; }
+.tree-view { flex:1; min-height:0; display:flex; flex-direction:column; }
+#tree .branch-value { dominant-baseline:auto; }
+.strips { display:flex; justify-content:space-around; align-items:center; height:85px; }
+.strips div { display:flex; align-items:center; gap:8px; font-size:12px; color:var(--muted); }
+.strips img { width:95px; height:80px; object-fit:contain; }
+#tree { width:100%; flex:1; min-height:140px; }
+#tree text { fill:var(--ink); font:15px 'Segoe UI',sans-serif; }
+#tree .branch-value { font:600 19px var(--readout-font); fill:var(--brand); }
+#tree path { fill:none; stroke:#67788e; stroke-width:2; }
+#tree rect { fill:#1b2635; stroke:#465773; rx:7; }
+#tree .flow { stroke:var(--brand); stroke-width:3; }
+#tree .alarm-flow { stroke-dasharray:7 4; }
+#tree .caught-node { fill:url(#tree-caught); stroke:#ff80bc; stroke-width:1.7; }
+#tree .alarm-node { fill:url(#tree-alarm); stroke:#ff80bc; stroke-width:1.7; stroke-dasharray:5 3; }
+#tree .caught-node + text + .branch-value,
+#tree .alarm-node + text + .branch-value { fill:#ffe8f2; }
+#tree .joint { fill:#e8edf3; font:12px 'Segoe UI',sans-serif; }
+.case-picker { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:7px; }
+.case-card { border:1px solid #51617a; border-radius:8px; background:#1c2633; padding:0; overflow:hidden; min-height:86px; }
+.case-card[aria-pressed=true] { border-color:var(--brand); box-shadow:0 0 0 1px var(--brand); }
+.case-card img { display:block; width:100%; height:62px; object-fit:cover; }
+.case-card.cut img { object-fit:contain; background:radial-gradient(ellipse,#364154,#1c2633); }
+.case-card span { display:block; padding:5px 2px; font-size:11px; line-height:1.2; }
+.case-card.double .pair { display:flex; height:62px; align-items:center; background:#253143; }
+.case-card.double img { width:50%; object-fit:contain; }
+.case-info { font-size:14px; line-height:1.5; }
+.case-info h3 { font-size:19px; font-weight:500; margin:4px 0 8px; }
+.case-info p { margin:5px 0; }
+.case-info .source { font-size:11px; color:var(--muted); }
+.case-painting { display:flex; align-items:center; justify-content:center; gap:5px; margin-top:12px; height:170px;
+  overflow:hidden; border:1px solid #526078; border-radius:8px; background:radial-gradient(ellipse,#344257,#192230); }
+.case-painting img { display:block; width:100%; height:100%; object-fit:contain; }
+.case-painting.twice img { width:48%; }
+.chart-box { height:130px; flex:none; border:1px solid #334258; border-radius:8px; background:#101722; }
+#converge { width:100%; height:100%; }
+.sr-only { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+@media (max-height:899px) {
+  .town-band { display:none; }
+  .stage { padding:10px 16px; gap:8px; }
+  .parameter { min-height:48px; }
+  .panel { gap:8px; }
+  .result { min-height:72px; padding:9px 12px; }
+}
+@media (max-width:999px) and (min-height:701px) {
+  main { grid-template-columns:1fr; grid-template-rows:minmax(240px,1fr) auto; }
+  body[data-mode="cases"] main { grid-template-rows:minmax(0,1fr) 330px; }
+  body[data-mode="cases"] .panel>.row { align-self:start; }
+  body[data-mode="town"][data-chart="yes"] #town-band { display:none; }
+  body[data-mode="town"][data-phase="predict"] #town-band { height:80px; }
+  .chart-box { height:110px; }
+  body[data-mode="table"] main { grid-template-rows:minmax(0,1fr) 305px; }
+  body[data-mode="table"] .table-view { justify-content:flex-start; }
+  body[data-mode="table"] .two-way { font-size:16px; }
+  body[data-mode="table"] .two-way th,body[data-mode="table"] .two-way td { padding:2px; }
+  body[data-mode="table"] .fraction { padding:7px; font-size:13px; }
+  body[data-mode="table"] .fraction b { font-size:27px; line-height:1.3; }
+  .panel { border-left:0; border-top:1px solid var(--line); display:grid; grid-template-columns:1fr 1fr; }
+  .panel { grid-column:1; grid-row:2; }
+  .hint { grid-column:1/-1; min-height:36px; }
+  #parameters { grid-row:2 / span 3; }
+  .bottom-row { display:block; }
+  #table-controls { grid-column:1/-1; display:grid; grid-template-columns:1.3fr 1fr; gap:10px; }
+  .questions { grid-template-columns:1fr 1fr; }
+  #case-info { grid-row:2 / span 2; }
+}
+@media (max-height:700px) {
+  header { padding:4px 8px; gap:5px; flex-wrap:nowrap; }
+  h1 { font-size:17px; min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  h1 small { display:none; }
+  .seg button,.icon-btn { font-size:12px; padding:0 8px; }
+  .medical-note { font-size:11px; padding:4px 10px; }
+  main { grid-template-columns:minmax(0,1fr) 270px; }
+  .panel { padding:7px; gap:6px; }
+  .hint { min-height:34px; font-size:12px; line-height:1.3; }
+  .stage { padding:7px 10px; gap:6px; }
+  .stage-head { min-height:23px; }
+  .stage-head h2 { font-size:15px; }
+  .parameter { grid-template-columns:65px minmax(35px,1fr) 65px; min-height:44px; gap:5px; }
+  .parameter label { font-size:12px; }
+  .ticks { display:none; }
+  .result { min-height:59px; padding:7px 10px; }
+  .result p { font-size:12px; }
+  .result strong { font-size:29px; }
+  .result small { font-size:11px; }
+  .legend { font-size:10px; gap:4px; }
+  .legend b { font-size:16px; }
+  .population-foot { font-size:10px; }
+  .case-picker { gap:4px; }
+  .case-card { min-height:58px; }
+  .case-card img { height:35px; }
+  .case-card.double .pair { height:35px; }
+  .case-card span { font-size:10px; padding:4px 1px; }
+  .case-info { font-size:12px; line-height:1.35; }
+  .case-info h3 { font-size:16px; }
+  body[data-mode="cases"] #case-info h3 { display:none; }
+  .two-way th,.two-way td { padding:2px; }
+  .two-way { font-size:16px; }
+  .two-way button { font-size:12px; }
+  .table-view { gap:5px; }
+  .fraction { padding:5px; font-size:12px; }
+  .fraction b { font-size:22px; }
+  .fraction-targets { gap:4px; }
+  .fraction-targets button { font-size:12px; }
+  .questions { gap:4px; grid-template-columns:1fr 1fr; }
+  .question { font-size:11px; padding:5px; min-height:52px; }
+  .addition { padding:6px; font-size:11px; line-height:1.35; }
+  .strips { height:50px; }
+  .strips img { width:65px; height:48px; }
+  .chart-box { height:76px; }
+  .predict { padding:6px; }
+  .predict p { font-size:12px; }
+  body[data-phase="predict"] #parameters { display:none; }
+}
+@media (max-width:550px) {
+  header { flex-wrap:wrap; padding:4px 8px; gap:4px; }
+  h1 { flex:1; font-size:18px; }
+  h1 small { display:none; }
+  .seg { order:5; width:100%; }
+  .seg button { flex:1; padding:0 6px; font-size:13px; }
+  .icon-btn { padding:0 7px; font-size:12px; }
+  .medical-note { padding:4px 9px; font-size:11px; line-height:1.3; }
+  main { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 390px; }
+  body[data-mode="table"] main { grid-template-rows:minmax(0,1fr) 290px; }
+  body[data-mode="second"] main { grid-template-rows:minmax(0,1fr) 245px; }
+  body[data-mode="cases"] main { grid-template-rows:minmax(0,1fr) 345px; }
+  body[data-mode="town"][data-chart="yes"] main { grid-template-rows:minmax(0,1fr) 350px; }
+  .chart-box { height:60px; }
+  body[data-mode="cases"] .panel { display:grid; grid-template-columns:1fr 1fr; align-content:start; }
+  body[data-mode="cases"] .hint { grid-column:1/-1; grid-row:1; }
+  body[data-mode="cases"] #predict-box { grid-column:1; grid-row:3; }
+  body[data-mode="cases"] #show-answer { grid-column:2; grid-row:3; align-self:center; }
+  body[data-mode="cases"] #case-info { grid-column:1/-1; grid-row:2; }
+  body[data-mode="cases"] .panel>.row { grid-column:1/-1; grid-row:4; }
+  body[data-mode="cases"] #case-story { grid-column:1/-1; grid-row:5; }
+  body[data-mode="table"] .table-view { justify-content:flex-start; gap:4px; }
+  body[data-mode="table"] .stage-head { min-height:30px; }
+  body[data-mode="table"] .two-way { flex:none; }
+  body[data-mode="table"] .fraction { flex:none; }
+  body[data-mode="table"] .fraction-targets { flex:none; }
+  .stage { padding:7px 9px; gap:5px; }
+  .stage-head h2 { font-size:15px; }
+  .eyebrow { display:none; }
+  .panel { border:0; border-top:1px solid var(--line); padding:7px 9px; gap:5px; display:flex; }
+  .panel { grid-column:1; grid-row:2; }
+  .hint { min-height:32px; font-size:12px; }
+  .parameter { min-height:44px; grid-template-columns:76px minmax(0,1fr) 75px; }
+  .ticks { display:none; }
+  body[data-phase="predict"] #parameters { display:none; }
+  .legend { font-size:10px; }
+  .legend b { font-size:15px; }
+  .result { min-height:64px; padding:7px; }
+  .result p { font-size:12px; }
+  .result strong { font-size:29px; }
+  .result small { font-size:10px; }
+  .case-picker { grid-template-columns:repeat(7,minmax(0,1fr)); gap:3px; }
+  .case-card { min-height:62px; }
+  .case-card img { height:36px; }
+  .case-card.double .pair { height:36px; }
+  .case-card span { font-size:10px; padding:3px 0; }
+  .case-info { font-size:12px; line-height:1.3; }
+  .case-info h3 { font-size:16px; margin:0 0 3px; }
+  body[data-mode="cases"] #case-info h3 { display:none; }
+  .case-info .source { font-size:10px; }
+  .two-way { font-size:13px; border-spacing:2px; }
+  .two-way th,.two-way td { padding:2px; }
+  .two-way button { font-size:11px; padding:2px; }
+  .fraction { padding:6px; font-size:11px; }
+  .fraction b { font-size:22px; }
+  .fraction-targets button { font-size:11px; }
+  .questions { grid-template-columns:1fr 1fr; gap:4px; }
+  .question { font-size:11px; min-height:44px; padding:5px; }
+  .addition { padding:6px; font-size:12px; }
+  #table-controls { display:block; }
+  #table-controls .addition { margin-top:6px; }
+  .strips { height:50px; }
+  .strips img { width:60px; height:48px; }
+  .strips div { font-size:10px; }
+}
+@media (max-height:500px) and (min-width:551px) {
+  body[data-mode="table"] .stage-head { display:none; }
+  body[data-mode="table"] .table-view { justify-content:flex-start; gap:5px; }
+  .two-way { border-spacing:2px; }
+  .two-way th,.two-way td { padding:0; }
+  .fraction { line-height:1.15; font-size:11px; }
+  .fraction b { line-height:1.2; font-size:20px; }
+}
+@media (max-width:550px), (max-height:700px) {
+  body[data-mode="table"] .panel {
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    grid-template-rows:auto auto minmax(0,1fr) 44px auto;
+    gap:4px;
+    align-content:stretch;
+  }
+  body[data-mode="table"] .hint { grid-column:1/-1; grid-row:1; }
+  body[data-mode="table"] #table-controls,
+  body[data-mode="table"] .addition,
+  body[data-mode="table"] .panel>.row { display:contents; }
+  body[data-mode="table"] #questions { grid-column:1/-1; grid-row:2; }
+  body[data-mode="table"] #addition {
+    grid-column:1/-1;
+    grid-row:3;
+    overflow:auto;
+    padding:4px 6px;
+    background:#111924;
+    font-size:11px;
+    line-height:1.35;
+  }
+  body[data-mode="table"] #overlap { grid-column:1; grid-row:4; margin:0; font-size:11px; }
+  body[data-mode="table"] #reset { grid-column:2; grid-row:4; font-size:11px; }
+  body[data-mode="table"] #terms-open { grid-column:3; grid-row:4; font-size:11px; }
+  body[data-mode="table"] #model-label { grid-column:1/-1; grid-row:5; font-size:10px; }
+}
+@media (max-width:550px) {
+  body[data-mode="table"] main { grid-template-rows:minmax(0,1fr) 330px; }
+  body[data-mode="table"] .stage-head { display:none; }
+  body[data-mode="table"] .two-way th,
+  body[data-mode="table"] .two-way td { padding:0; }
+  body[data-mode="table"] .fraction { padding:5px; line-height:1.25; }
+  body[data-mode="table"] .fraction b { font-size:20px; line-height:1.2; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1 title="Medical Test Paradox">Medical Test Paradox<small>A positive test, and what it really means.</small></h1>
+  <nav class="seg" aria-label="Mode">
+    <button id="m-town" aria-pressed="true">Town</button>
+    <button id="m-table" aria-pressed="false">Table</button>
+    <button id="m-second" aria-pressed="false">Second test</button>
+    <button id="m-cases" aria-pressed="false">Cases</button>
+  </nav>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<p class="medical-note">Glimmer fever is made up. Real tests have their own numbers; ask a doctor about yours.</p>
+<main>
+  <aside class="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <section id="parameters" aria-label="Town settings">
+      <div class="row">
+        <select id="people" aria-label="People">
+          <option value="1000">1,000 people</option><option value="10000" selected>10,000 people</option>
+          <option value="100000">100,000 people</option>
+        </select>
+        <select id="run-kind" aria-label="Counts model"><option value="average">On average</option><option value="random">Random run</option></select>
+      </div>
+      <div class="parameter">
+        <label for="p">How common</label><input id="p" type="range" min="0" max="1000" value="371" aria-label="How common, logarithmic">
+        <span class="unit"><input id="p-num" class="num" type="number" min="0.1" max="50" step="0.1" value="1" aria-label="How common percent"></span>
+      </div>
+      <p class="ticks">0.1 · 0.2 · 0.5 · 1 · 2 · 5 · 10 · 20 · 30 · 50%</p>
+      <div class="parameter">
+        <label for="se">Catches</label><input id="se" type="range" min="50" max="100" step="0.1" value="90">
+        <span class="unit"><input id="se-num" class="num" type="number" min="50" max="100" step="0.1" value="90" aria-label="Catches percent"></span>
+      </div>
+      <div class="parameter">
+        <label for="sp">Clears</label><input id="sp" type="range" min="50" max="99.9" step="0.1" value="91">
+        <span class="unit"><input id="sp-num" class="num" type="number" min="50" max="99.9" step="0.1" value="91" aria-label="Clears percent"></span>
+      </div>
+    </section>
+    <section id="case-info" class="case-info" hidden></section>
+    <section class="predict" id="predict-box" hidden>
+      <p id="predict-question">Of the people who test positive, what share have it?</p>
+      <label for="predict">Predict <output id="guess-value">50%</output></label>
+      <input id="predict" type="range" min="0" max="100" step="1" value="50">
+      <div class="row" id="lock-row"><button id="lock" class="big-btn">Lock in guess</button><button id="skip" class="btn">Skip guess</button></div>
+    </section>
+    <div class="row" id="town-actions">
+      <button id="test" class="big-btn">Test everyone</button><button id="positive" class="btn" aria-pressed="false">Positives only</button>
+    </div>
+    <button id="show-answer" class="big-btn" hidden>Show answer</button>
+    <section id="random-actions" hidden>
+      <div class="row"><button id="new-run" class="btn">New run</button><button id="hundred" class="btn">Run 100 towns</button></div>
+      <p class="seed" id="seed">Seed 104729</p>
+    </section>
+    <section id="table-controls" hidden>
+      <div class="questions" id="questions"></div>
+      <div class="addition"><p id="addition"></p><button id="overlap" class="btn">See the overlap</button></div>
+    </section>
+    <section id="second-controls" hidden>
+      <div class="row"><button id="tree-counts" class="btn" aria-pressed="true">Counts</button><button id="tree-chances" class="btn" aria-pressed="false">Chances</button></div>
+      <p class="case-info">The tests are assumed independent given whether a person has the condition. Real repeat tests may share errors.</p>
+    </section>
+    <div class="row"><button id="reset" class="btn">Reset mode</button><button id="terms-open" class="btn">Glossary</button>
+      <span id="model-label" class="seed">Expected counts · on average</span></div>
+    <section id="case-story" class="case-info" hidden></section>
+  </aside>
+  <section class="stage" id="stage" aria-label="Town and probability displays">
+    <div class="stage-head"><div><span class="eyebrow">Glimmer field station</span><h2 id="stage-title">One town. Four possible outcomes.</h2></div>
+      <div class="status"><i class="lamp"></i><span id="phase-label">Ready</span></div></div>
+    <div id="case-picker" class="case-picker" aria-label="Cases" hidden></div>
+    <img class="town-band" id="town-band" src="art:town-street" alt="Painted quiet small-town main street at dawn">
+    <div class="population-wrap" id="population-wrap"><canvas id="population" role="img" aria-label="Town population before testing"></canvas><div class="scan"></div></div>
+    <div class="legend" id="legend">
+      <div class="positive"><b id="tp">?</b><span class="symbol full plus"></span><span>Has it, caught</span></div>
+      <div><b id="fn">?</b><span class="symbol full"></span><span>Has it, missed</span></div>
+      <div class="positive"><b id="fp">?</b><span class="symbol plus"></span><span>Well, flagged</span></div>
+      <div><b id="tn">?</b><span class="symbol"></span><span>Well, cleared</span></div>
+    </div>
+    <div class="population-foot" id="population-foot"><span id="icon-scale">Each icon = 1 person</span>
+      <span id="signal-key">Filled = has it · + = positive</span></div>
+    <div class="table-view" id="table-view" hidden>
+      <table class="two-way" id="two-way" aria-label="Condition and test results"></table>
+      <div class="fraction" id="fraction" aria-live="polite"></div>
+      <div class="fraction-targets" id="targets" aria-label="Drop a question onto its fraction"></div>
+    </div>
+    <div class="tree-view" id="tree-view" hidden>
+      <div class="strips"><div><img src="art:test-strip" alt="Test cassette">First test</div><div><img src="art:test-strip" alt="Second test cassette">Second test</div></div>
+      <svg id="tree" viewBox="0 0 740 350" role="img" aria-label="Two test probability tree"></svg>
+    </div>
+    <div class="chart-box" id="chart-box" hidden><svg id="converge" viewBox="0 0 700 130" role="img" aria-label="Pooled positive share across random towns"></svg></div>
+    <div class="result" id="result" aria-live="polite">
+      <p id="result-copy">A positive test is a clue.<small>Press Test everyone, then make your prediction.</small></p>
+      <strong id="share">?</strong>
+    </div>
+  </section>
+</main>
+<dialog id="terms" aria-labelledby="terms-title">
+  <h2 id="terms-title">Five useful distinctions</h2>
+  <div class="glossary" id="glossary"></div><p id="gloss">Tap a term for its meaning.</p>
+  <div class="row"><button class="btn" id="terms-close">Close glossary</button>
+    <button class="btn" id="terms-read">Read definition</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const fmt = value => Math.abs(value - Math.round(value)) < 1e-7
+    ? Math.round(value).toLocaleString('en-US') : value.toLocaleString('en-US', {minimumFractionDigits:1, maximumFractionDigits:1});
+  const pct = value => Number.isFinite(value) ? (value * 100).toFixed(2) + '%' : 'Undefined';
+  const clamp = (x, lo, hi) => Math.min(hi, Math.max(lo, x));
+  const MODES = ['town', 'table', 'second', 'cases'];
+  const state = {
+    mode:'town', N:10000, p:.01, se:.9, sp:.91, kind:'average', seed:104729, phase:'ready',
+    focus:false, revealed:false, guess:50, locked:null, caseId:1, treeShow:'counts', divide:'positive',
+    selected:null, assisted:[], randomCounts:null, running:false, chart:[], chartExpected:null, stopped:false, records:[], overlap:false
+  };
+  const L = {
+    wTown:'Set the sliders, then press Test everyone.',
+    predictHow:'Drag Predict to your guess, then press Lock in guess.',
+    positivesHow:'Press Positives only to look at just the people who tested positive.',
+    wTable:'Tap a row or a column to divide by it. Then drag each question onto its fraction.',
+    wSecond:'Everyone who tested positive takes the test again. Follow the branches, or tap Chances to see probabilities.',
+    wCases:'Tap a case card, drag Predict to your answer, then press Show answer.',
+    surprise:'Most of these positives are false alarms. The healthy crowd is just so much bigger.',
+    close:'Close. Your guess is near the calculated share.',
+    coin:'The test knows nothing, so a positive tells you nothing new.',
+    afterPositive:'Change How common to compare another town, or open Table to inspect the denominator.',
+    afterCase:'Compare your prediction with the result, then tap another case card.',
+    afterTable:'Select a question, then tap its fraction. You can also drag a question onto a fraction.',
+    wrongQuestion:'That is a different group to divide by. Try the fraction shown in the hint.',
+    rightQuestion:'That fraction matches the question. Select another question to compare denominators.',
+    workedQuestion:'This is the worked example from the hint. Compare its two groups, then select another question.'
+  };
+  L.glossaryHow = 'Tap a glossary term, then press Close glossary to return.';
+  const welcomeKey = () => ({town:'wTown',table:'wTable',second:'wSecond',cases:'wCases'})[state.mode];
+  const welcomeFits = () => !$('terms').open && (state.mode === 'town' ? ['ready','done'].includes(state.phase)
+    : state.mode === 'cases' ? !state.revealed : state.mode === 'table' ? state.selected === null : state.treeShow === 'counts');
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    welcome:() => welcomeFits() ? [welcomeKey(), {valid:welcomeFits}] : null,
+    speaks:'#test, #show-answer, #lock, #skip, #positive'
+  });
+  function hint(key, options = {}) {
+    $('hint').textContent = L[key] || key;
+    if (L[key] && options.speak !== false) V.how(key, {...options, hint:false});
+  }
+  function tone(f = 380) { Curio.tone(f, .06, .035, 'sine'); }
+  function dropStaleVoice() {
+    const stale = [L.surprise,L.close,L.coin,L.predictHow,L.wrongQuestion,L.rightQuestion,L.workedQuestion];
+    if (stale.includes(V.playing)) V.hush();
+    else V.dropQueued();
+  }
+  function Rand(seed) {
+    let a = seed >>> 0;
+    return () => {
+      a += 0x6D2B79F5;
+      let t = Math.imul(a ^ a >>> 15, 1 | a);
+      t ^= t + Math.imul(t ^ t >>> 7, 61 | t);
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function expected() {
+    const has = state.N * state.p;
+    return {tp:has * state.se, fn:has * (1-state.se), fp:(state.N-has) * (1-state.sp), tn:(state.N-has)*state.sp};
+  }
+  function firstCounts() { return state.kind === 'random' && state.randomCounts ? {...state.randomCounts} : expected(); }
+  function counts() {
+    const c = firstCounts();
+    if (state.mode !== 'cases' || state.caseId !== 4) return c;
+    const tp = c.tp*state.se, fp = c.fp*(1-state.sp);
+    return {tp,fn:c.tp+c.fn-tp,fp,tn:c.fp+c.tn-fp};
+  }
+  function second() {
+    const c = firstCounts();
+    return {tp:c.tp*state.se, fn:c.tp*(1-state.se), fp:c.fp*(1-state.sp), tn:c.fp*state.sp};
+  }
+  function positiveShare(c = counts()) { return c.tp + c.fp ? c.tp / (c.tp+c.fp) : NaN; }
+  let token = 0;
+  let sortStart = 0;
+  let raf = 0;
+  let mixedKey = '';
+  let mixedPositions = [];
+  function cancel() {
+    token++;
+    if (state.running) { state.running = false; state.stopped = true; }
+    if (['condition','testing','sorting','sampling'].includes(state.phase)) {
+      state.phase = 'done';
+      state.revealed = true;
+    }
+    $('population-wrap').classList.remove('testing');
+  }
+  async function run(seed = state.seed, silent = false) {
+    if (!silent) {
+      state.kind = 'random';
+      state.seed = seed >>> 0;
+      syncInputs();
+    }
+    const mine = token;
+    const n = state.N, p = state.p, se = state.se, sp = state.sp;
+    const rng = Rand(seed);
+    const c = {tp:0,fn:0,fp:0,tn:0};
+    for (let start = 0; start < n; start += 10000) {
+      if (mine !== token) return null;
+      for (let i = start; i < Math.min(n,start+10000); i++) {
+        const has = rng() < p;
+        const positive = rng() < (has ? se : 1-sp);
+        c[has ? (positive ? 'tp' : 'fn') : (positive ? 'fp' : 'tn')]++;
+      }
+      if (n > 10000 && !silent && start % 20000 === 0) await new Promise(requestAnimationFrame);
+    }
+    if (mine !== token) return null;
+    if (!silent) {
+      state.randomCounts = c;
+      render();
+    }
+    return c;
+  }
+  const cases = [
+    {id:1,short:'Town',title:'Screening the town',N:10000,p:.01,se:.9,sp:.91,art:'town-street',
+      note:'Told as percentages, many doctors guessed far too high. Told as counts, like this town, most got it right.',
+      cite:'Teaching example adapted from Gigerenzer et al. (2007); APS (2008).'},
+    {id:2,short:'Clinic',title:'A clinic where many are sick',N:10000,p:.3,se:.9,sp:.91,art:'clinic-hall',
+      note:'Same test. A different crowd. Predict what a positive means here.'},
+    {id:3,short:'Rarer',title:'A better test, a rarer condition',N:100000,p:.001,se:.99,sp:.99,art:'lab-rack',
+      note:'A very accurate test meets a much rarer condition. Which crowd dominates the positives?'},
+    {id:4,short:'Twice',title:'Test twice',N:10000,p:.01,se:.9,sp:.91,art:'test-strip',
+      note:'Only the first positives test again. Assume independent errors given the condition. Predict the share among double positives.'},
+    {id:5,short:'Half',title:'Half the town',N:10000,p:.5,se:.9,sp:.91,art:'town-street',
+      note:'Half the town has it. The test has the original accuracy. How much should a positive change your belief?'},
+    {id:6,short:'Perfect',title:'A perfect test',N:10000,p:.01,se:1,sp:1,art:'test-strip',
+      note:'A what-if: catches and clears are both 100%. This goes beyond the usual Clears slider limit.'},
+    {id:7,short:'Coin',title:'The coin test',N:10000,p:.01,se:.5,sp:.5,art:'coin-flip',
+      note:'This test says positive half the time, whether someone has it or not. Predict what a positive tells you.'}
+  ];
+  const artSources = ['art:town-street','art:clinic-hall','art:lab-rack','art:test-strip','art:town-street','art:test-strip','art:coin-flip'];
+  const questionDefinitions = [
+    {text:'If I test positive, how likely is it I have it?',key:'hasPositive'},
+    {text:'If I have it, how likely is a positive test?',key:'positiveHas'},
+    {text:'If I test negative, how likely is it I am well?',key:'wellNegative'},
+    {text:'If I am well, how likely is a negative test?',key:'negativeWell'},
+    {text:'What share have it and test positive?',key:'both'},
+    {text:'What share have it or test positive?',key:'either'}
+  ];
+  function fractions() {
+    const c = counts();
+    return {
+      hasPositive:[c.tp,c.tp+c.fp], positiveHas:[c.tp,c.tp+c.fn], wellNegative:[c.tn,c.tn+c.fn],
+      negativeWell:[c.tn,c.tn+c.fp], both:[c.tp,state.N], either:[c.tp+c.fn+c.fp,state.N]
+    };
+  }
+  function syncInputs() {
+    $('people').value = state.N;
+    $('run-kind').value = state.kind;
+    $('p').value = Math.log(state.p/.001) / Math.log(500) * 1000;
+    for (const key of ['p','se','sp']) {
+      $(key+'-num').value = +(state[key]*100).toFixed(1);
+      if (key !== 'p') $(key).value = state[key]*100;
+      $(key).setAttribute('aria-valuetext',(state[key]*100).toFixed(1)+' percent');
+    }
+  }
+  function set(values) {
+    const wasRunning = state.running;
+    cancel();
+    dropStaleVoice();
+    if ('N' in values) state.N = [1000,10000,100000].includes(+values.N) ? +values.N : 10000;
+    for (const key of ['p','se','sp']) if (key in values && Number.isFinite(+values[key])) {
+      state[key] = clamp(+values[key], key === 'p' ? .001 : .5, key === 'p' ? .5 : key === 'sp' ? .999 : 1);
+    }
+    state.randomCounts = null;
+    state.assisted = [];
+    state.locked = null;
+    if (!wasRunning) {
+      state.chart = [];
+      state.stopped = false;
+    }
+    state.focus = false;
+    state.revealed = true;
+    state.phase = 'done';
+    syncInputs();
+    if (state.kind === 'random') {
+      state.revealed = false;
+      state.phase = 'sampling';
+      run().then(c => { if (c) { state.revealed = true; state.phase = 'done'; render(); } });
+    }
+    render();
+    hint('wTown',{speak:false});
+  }
+  function updateResult() {
+    const c = state.mode === 'second' || (state.mode === 'cases' && state.caseId === 4) ? second() : counts();
+    if (!state.revealed && (state.mode === 'town' || state.mode === 'cases')) {
+      $('share').textContent = '?';
+      $('result-copy').textContent = state.phase === 'predict' ? 'A positive is not the same as having it.' : 'A positive test is a clue.';
+      const small = document.createElement('small');
+      small.textContent = state.phase === 'predict' ? 'Lock in your prediction to reveal the denominator.'
+        : 'Press '+(state.mode === 'cases' ? 'Show answer' : 'Test everyone')+'.';
+      $('result-copy').append(small);
+      return;
+    }
+    const positives = c.tp+c.fp;
+    $('share').textContent = positives ? pct(positiveShare(c)) : '0 / 0';
+    $('result-copy').textContent = positives
+      ? `Of ${fmt(positives)} who tested ${state.mode === 'second' || (state.mode === 'cases' && state.caseId === 4) ? 'positive twice' : 'positive'}, ${fmt(c.tp)} have it:`
+      : '0 out of 0: nobody tested positive, so there is nothing to divide.';
+    const small = document.createElement('small');
+    const repeating = state.mode === 'second' || state.mode === 'cases' && state.caseId === 4;
+    small.textContent = (repeating ? 'Second test on average' : state.kind === 'average' ? 'On average' : 'Random · seed '+state.seed)
+      + (state.locked !== null ? ` · Your prediction: ${state.locked}%` : '');
+    $('result-copy').append(small);
+  }
+  function render() {
+    const town = state.mode === 'town', caseMode = state.mode === 'cases';
+    const pop = town || caseMode;
+    document.body.dataset.mode = state.mode;
+    document.body.dataset.phase = state.phase;
+    document.body.dataset.chart = town && (state.running || state.chart.length) ? 'yes' : 'no';
+    $('parameters').hidden = !town;
+    $('town-actions').hidden = !town;
+    $('predict-box').hidden = !(caseMode && !state.revealed || town && state.phase === 'predict');
+    $('lock-row').hidden = !town;
+    $('show-answer').hidden = !caseMode || state.revealed;
+    $('case-info').hidden = !caseMode;
+    $('case-story').hidden = !caseMode;
+    $('predict-question').textContent = caseMode && state.caseId === 4
+      ? 'Of those who test positive twice, what share have it?'
+      : 'Of the people who test positive, what share have it?';
+    $('case-picker').hidden = !caseMode;
+    $('town-band').hidden = !town;
+    $('population-wrap').hidden = !pop;
+    $('population-foot').hidden = !pop;
+    $('legend').hidden = !pop;
+    $('table-view').hidden = state.mode !== 'table';
+    $('table-controls').hidden = state.mode !== 'table';
+    $('tree-view').hidden = state.mode !== 'second';
+    $('second-controls').hidden = state.mode !== 'second';
+    $('result').hidden = state.mode === 'table';
+    for (const [id,visible] of [['hint',true],['result',state.mode !== 'table'],['population-wrap',pop],['legend',pop],
+      ['two-way',state.mode === 'table'],['fraction',state.mode === 'table'],['targets',state.mode === 'table'],
+      ['tree',state.mode === 'second'],['case-picker',caseMode]]) {
+      $(id).toggleAttribute('data-audit-keep',visible);
+    }
+    $('random-actions').hidden = !town || state.kind !== 'random';
+    $('chart-box').hidden = !town || !state.running && !state.chart.length;
+    $('seed').textContent = 'Seed '+state.seed;
+    $('positive').setAttribute('aria-pressed',state.focus);
+    $('hundred').textContent = state.running ? 'Stop towns' : 'Run 100 towns';
+    $('model-label').textContent = state.mode === 'second' || caseMode && state.caseId === 4 ? 'Second test · on average'
+      : state.kind === 'average' ? 'Expected counts · on average' : 'Random counts · whole people';
+    const phaseNames = {ready:'Ready',condition:'1 / Has it',testing:'2 / Test',predict:'Predict',
+      sorting:'3 / Sort',done:'Results',sampling:'Drawing town'};
+    $('phase-label').textContent = phaseNames[state.phase];
+    if (state.running) $('phase-label').textContent = state.chart.length+' / 100 towns';
+    else if (state.stopped && state.chart.length) $('phase-label').textContent = 'Stopped · '+state.chart.length+' towns';
+    $('stage-title').textContent = ({town:'One town. Four possible outcomes.',table:'The denominator changes the question.',
+      second:'Two positives. A different fraction.',cases:cases[state.caseId-1].title})[state.mode];
+    const c = counts();
+    for (const key of ['tp','fn','fp','tn']) $(key).textContent = state.revealed ? fmt(c[key]) : '?';
+    $('icon-scale').textContent = state.N === 100000 ? 'Each square = 10 people · partial square = remainder' : 'Each icon = 1 person · partial icon = fraction';
+    $('signal-key').textContent = caseMode && state.caseId === 4
+      ? 'Filled = has it · + = positive twice' : 'Filled = has it · + = positive';
+    if (caseMode) {
+      const item = cases[state.caseId-1];
+      $('case-info').innerHTML = `<h3>${item.title}</h3><p>${fmt(state.N)} people · ${state.p*100}% have it`
+        + `<br>Catches ${state.se*100}% · Clears ${state.sp*100}%</p>`;
+      if (item.id === 4) $('case-info').innerHTML += '<p>Tests independent, given the condition.</p>';
+      $('case-story').innerHTML = `<p>${item.note}</p>${item.cite ? '<p class="source">'+item.cite+'</p>' : ''}`;
+      const copies = item.id === 4 ? 2 : 1;
+      $('case-story').innerHTML += `<div class="case-painting${copies === 2 ? ' twice' : ''}">`
+        + Array.from({length:copies},() => `<img src="${artSources[item.id-1]}" alt="">`).join('')+'</div>';
+      for (const el of $('case-picker').children) el.setAttribute('aria-pressed',+el.dataset.case === state.caseId);
+    }
+    if (state.mode === 'table') table();
+    if (state.mode === 'second') drawTree();
+    updateResult();
+    requestAnimationFrame(drawPopulation);
+    if (!$('chart-box').hidden) drawConverge();
+  }
+  function drawPopulation() {
+    if ($('population-wrap').hidden) return;
+    const canvas = $('population');
+    const box = canvas.getBoundingClientRect();
+    if (!box.width || !box.height) return;
+    const dpr = Math.min(devicePixelRatio,2);
+    canvas.width = Math.round(box.width*dpr);
+    canvas.height = Math.round(box.height*dpr);
+    const ctx = canvas.getContext('2d');
+    ctx.scale(dpr,dpr);
+    const c = counts(), keys = ['tp','fn','fp','tn'];
+    const positiveLabel = state.mode === 'cases' && state.caseId === 4 ? 'tested positive twice' : 'tested positive';
+    const negativeLabel = state.mode === 'cases' && state.caseId === 4 ? 'did not test positive twice' : 'tested negative';
+    canvas.setAttribute('aria-label',state.revealed
+      ? `${fmt(c.tp)} have it and ${positiveLabel}, ${fmt(c.fn)} have it and ${negativeLabel}, `
+        + `${fmt(c.fp)} are well and ${positiveLabel}, ${fmt(c.tn)} are well and ${negativeLabel}.`
+      : 'Town population. Results are not yet revealed. Filled icons have the fictional condition; plus badges mark positive tests.');
+    const per = state.N === 100000 ? 10 : 1;
+    const rawN = Math.ceil(state.N/per);
+    // Group remainders each occupy a partial icon, so reserve their boundary positions.
+    const slots = rawN+4;
+    const cols = Math.ceil(Math.sqrt(slots*box.width/box.height));
+    const rows = Math.ceil(slots/cols);
+    const dx = (box.width-16)/cols, dy = (box.height-12)/rows;
+    const size = Math.max(.5,Math.min(dx,dy)*.77);
+    const ordered = state.revealed || state.phase === 'sorting';
+    const age = state.phase === 'sorting' && !Curio.reduce ? clamp((performance.now()-sortStart)/850,0,1) : 1;
+    const groups = [];
+    let offset = 0;
+    for (const key of keys) {
+      const units = c[key]/per;
+      const full = Math.floor(units+1e-8), remainder = units-full;
+      for (let j = 0; j < full; j++) groups.push({key,part:1});
+      if (remainder > 1e-7) groups.push({key,part:remainder});
+      offset += units;
+    }
+    const total = groups.length;
+    const layoutKey = [total,state.N,state.seed].join(':');
+    if (mixedKey !== layoutKey) {
+      mixedKey = layoutKey;
+      mixedPositions = Array.from({length:total},(_,i) => i);
+      const shuffle = Rand(state.seed ^ state.N ^ 0x31f5a7);
+      for (let i = total-1; i > 0; i--) {
+        const j = Math.floor(shuffle()*(i+1));
+        [mixedPositions[i],mixedPositions[j]] = [mixedPositions[j],mixedPositions[i]];
+      }
+    }
+    for (let i = 0; i < total; i++) {
+      const {key,part} = groups[i];
+      const filled = key === 'tp' || key === 'fn';
+      const positive = key === 'tp' || key === 'fp';
+      // A seeded shuffle keeps people stable between beats without a visible stripe pattern.
+      const mixed = mixedPositions[i];
+      const from = mixed;
+      const to = ordered ? i : mixed;
+      const x = 8 + ((from%cols)*(1-age)+(to%cols)*age)*dx;
+      const y = 6 + (Math.floor(from/cols)*(1-age)+Math.floor(to/cols)*age)*dy;
+      ctx.globalAlpha = state.focus && !positive ? .09 : 1;
+      const showCondition = state.phase !== 'ready';
+      const showTest = !['ready','condition'].includes(state.phase);
+      const color = showTest && positive ? '#ff3d9a' : '#8292a9';
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = Math.max(.55,size*.12);
+      ctx.save();
+      ctx.beginPath();
+      ctx.rect(x-.5,y-.5,size*part+1,size+1);
+      ctx.clip();
+      if (per === 1) {
+        ctx.beginPath();
+        ctx.arc(x+size*.5,y+size*.19,size*.16,0,Math.PI*2);
+        ctx.rect(x+size*.23,y+size*.42,size*.54,size*.55);
+      } else {
+        ctx.beginPath();
+        ctx.rect(x,y,size,size);
+      }
+      if (showCondition && filled) ctx.fill();
+      else ctx.stroke();
+      if (showTest && positive) {
+        ctx.strokeStyle = showCondition && filled ? '#151a24' : '#ff86bd';
+        ctx.lineWidth = Math.max(.55,size*.12);
+        ctx.beginPath();
+        ctx.moveTo(x+size*.5,y+size*.25);
+        ctx.lineTo(x+size*.5,y+size*.75);
+        ctx.moveTo(x+size*.25,y+size*.5);
+        ctx.lineTo(x+size*.75,y+size*.5);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+    ctx.globalAlpha = 1;
+    if (state.phase === 'sorting' && age < 1) raf = requestAnimationFrame(drawPopulation);
+  }
+  async function testAll() {
+    cancel();
+    dropStaleVoice();
+    state.revealed = false;
+    state.locked = null;
+    state.focus = false;
+    state.chart = [];
+    state.chartExpected = positiveShare(expected());
+    state.phase = 'condition';
+    tone(300);
+    render();
+    const mine = token;
+    if (state.kind === 'random') {
+      const c = await run();
+      if (!c || mine !== token) return;
+    }
+    await Curio.wait(950);
+    if (mine !== token) return;
+    state.phase = 'testing';
+    $('population-wrap').classList.add('testing');
+    tone(450);
+    render();
+    await Curio.wait(950);
+    if (mine !== token) return;
+    state.phase = 'predict';
+    $('population-wrap').classList.remove('testing');
+    render();
+    hint('predictHow',{valid:() => state.phase === 'predict',needs:'#lock'});
+  }
+  function reveal(guess) {
+    if (state.mode === 'town' && state.phase !== 'predict') return;
+    if (state.mode === 'cases' && state.revealed) return;
+    const focusBefore = document.activeElement;
+    const moveFocus = focusBefore && (focusBefore.closest('#predict-box') || focusBefore.id === 'show-answer');
+    cancel();
+    V.hush();
+    state.locked = guess;
+    state.phase = 'sorting';
+    state.revealed = true;
+    sortStart = performance.now();
+    tone(620);
+    const mode = state.mode, version = token;
+    render();
+    const actual = positiveShare(mode === 'cases' && state.caseId === 4 ? second() : counts())*100;
+    state.records.push({caseId:state.mode === 'cases' ? state.caseId : null,guess,actual});
+    const finish = () => {
+      if (version !== token) return;
+      state.phase = 'done';
+      render();
+      if (mode === 'cases' && state.caseId === 7) V.say('coin',{valid:() => state.caseId === 7,hint:false});
+      hint(mode === 'town' ? 'positivesHow' : 'afterCase',
+        {valid:() => state.revealed && (mode !== 'town' || !state.focus),needs:mode === 'town' ? '#positive' : '#case-picker'});
+      if (guess !== null && Math.abs(guess-actual) <= 5) V.say('close',{valid:() => version === token,hint:false});
+    };
+    setTimeout(finish,880);
+    if (moveFocus) {
+      (mode === 'town' ? $('positive') : $('case-picker').children[state.caseId-1]).focus({preventScroll:true});
+    }
+  }
+  function positivesOnly() {
+    cancel();
+    state.revealed = true;
+    state.phase = 'done';
+    state.focus = !state.focus;
+    tone(530);
+    render();
+    if (![L.afterPositive,L.surprise].includes(V.playing)) V.hush();
+    if (state.focus && positiveShare() < .2 && state.locked !== null && state.locked-positiveShare()*100 > 30) {
+      V.say('surprise',{valid:() => state.focus && state.revealed,hint:false});
+    }
+    hint('afterPositive',{needs:'#p'});
+  }
+  async function hundred() {
+    if (state.running) { cancel(); render(); return; }
+    cancel();
+    state.running = true;
+    state.stopped = false;
+    state.chart = [];
+    state.chartExpected = positiveShare(expected());
+    state.revealed = true;
+    state.phase = 'done';
+    const mine = token;
+    let tp = 0, fp = 0;
+    tone();
+    render();
+    if (state.kind === 'random' && !state.randomCounts) {
+      const first = await run();
+      if (!first || mine !== token) return;
+    }
+    // Two condition/test draws per person. A small batch keeps controls responsive.
+    for (let town = 0; town < 100; town++) {
+      const rng = Rand((state.seed+town*9973)>>>0);
+      for (let start = 0; start < state.N; start += 2000) {
+        if (mine !== token) return;
+        for (let i = start; i < Math.min(state.N,start+2000); i++) {
+          const has = rng() < state.p;
+          const positive = rng() < (has ? state.se : 1-state.sp);
+          if (positive) { if (has) tp++; else fp++; }
+        }
+      }
+      state.chart.push(tp+fp ? tp/(tp+fp) : null);
+      if (!Curio.reduce || town % 5 === 0) await new Promise(requestAnimationFrame);
+      if (mine !== token) return;
+      drawConverge();
+      $('phase-label').textContent = state.chart.length+' / 100 towns';
+    }
+    if (mine !== token) return;
+    state.running = false;
+    render();
+    hint('Read the pooled share in the chart. Press New run to try another seed.',{speak:false});
+  }
+  function drawConverge() {
+    const box = $('converge').getBoundingClientRect();
+    if (!box.width || !box.height) return;
+    const width = Math.max(200,box.width), height = Math.max(52,box.height);
+    $('converge').setAttribute('viewBox',`0 0 ${width} ${height}`);
+    const expectedShare = state.chartExpected ?? positiveShare(expected());
+    const valid = state.chart.filter(Number.isFinite);
+    const top = Math.min(1,Math.max(expectedShare,...valid,.01)*1.35);
+    const y = value => height-18-value/top*(height-40);
+    const x = i => 38+Math.log10(i+1)/2*(width-58);
+    const points = state.chart.map((v,i) => Number.isFinite(v) ? `${x(i)},${y(v)}` : '').filter(Boolean).join(' ');
+    const last = state.chart.at(-1);
+    $('converge').setAttribute('aria-label',`Pooled share after ${state.chart.length} towns: `
+      + `${Number.isFinite(last) ? pct(last) : 'not defined yet'}. Expected ${pct(expectedShare)}.`
+      + (state.stopped ? ' Run stopped.' : ''));
+    $('converge').innerHTML = `<path d="M38 21V${height-18}H${width-20}" fill="none" stroke="#63748b"/>`
+      + `<path d="M38 ${y(expectedShare)}H${width-20}" stroke="#a9b9cc" stroke-dasharray="6 5"/>`
+      + `<polyline points="${points}" fill="none" stroke="#ff3d9a" stroke-width="2.5"/>`
+      + `<g fill="#e8edf3" font-family="Segoe UI" font-size="12"><text x="38" y="14">`
+      + `Pooled: ${Number.isFinite(last) ? pct(last) : 'waiting'} · expected ${pct(expectedShare)}${state.stopped ? ' · stopped' : ''}</text>`
+      + `<g text-anchor="middle" font-size="11"><text x="38" y="${height-3}">1</text>`
+      + `<text x="${x(9)}" y="${height-3}">10</text></g>`
+      + `<text text-anchor="end" font-size="11" x="${width-20}" y="${height-3}">100 towns</text></g>`;
+  }
+  function divideBy(which) {
+    const name = String(which).toLowerCase().replace(/[^a-z]/g,'');
+    const aliases = {positive:'positive',negative:'negative',has:'has',hasit:'has',well:'well',
+      doesnt:'well',doesnthaveit:'well',all:'all',total:'all'};
+    if (!aliases[name]) return null;
+    if (state.mode !== 'table') setMode('table');
+    cancel();
+    state.divide = aliases[name];
+    state.revealed = true;
+    tone();
+    table();
+    hint('afterTable',{needs:'#questions'});
+    const key = {positive:'hasPositive',negative:'wellNegative',has:'positiveHas',well:'negativeWell',all:'both'}[state.divide];
+    const [part,whole] = fractions()[key];
+    return {part,whole,frac:whole ? part/whole : null};
+  }
+  function table() {
+    const c = counts(), has = c.tp+c.fn, well = c.fp+c.tn, pos = c.tp+c.fp, neg = c.fn+c.tn;
+    const lit = key => ({positive:['tp','fp'],negative:['fn','tn'],has:['tp','fn'],well:['fp','tn'],all:['tp','fn','fp','tn']})[state.divide].includes(key);
+    // Headers remain stable during a row or column tap, so focus stays put.
+    if (!$('two-way').children.length) {
+      $('two-way').innerHTML = '<thead><tr><th>People</th><th><button data-divide="positive">Positive +</button></th>'
+        + '<th><button data-divide="negative">Negative</button></th><th><button data-divide="all">Total</button></th></tr></thead>'
+        + '<tbody><tr><th><button data-divide="has">Has it</button></th><td data-cell="tp"></td><td data-cell="fn"></td><td id="has-total"></td></tr>'
+        + '<tr><th><button data-divide="well">Doesn’t</button></th><td data-cell="fp"></td><td data-cell="tn"></td><td id="well-total"></td></tr>'
+        + '<tr><th>Total</th><td id="positive-total"></td><td id="negative-total"></td><td id="grand-total"></td></tr></tbody>';
+      for (const button of $('two-way').querySelectorAll('button')) button.onclick = () => divideBy(button.dataset.divide);
+    }
+    for (const el of $('two-way').querySelectorAll('[data-cell]')) {
+      el.textContent = fmt(c[el.dataset.cell]);
+      el.classList.toggle('lit',lit(el.dataset.cell));
+      el.classList.toggle('both',state.overlap && el.dataset.cell === 'tp');
+    }
+    for (const button of $('two-way').querySelectorAll('button')) button.setAttribute('aria-pressed',button.dataset.divide === state.divide);
+    for (const [id,value] of Object.entries({'has-total':has,'well-total':well,'positive-total':pos,'negative-total':neg,'grand-total':state.N})) $(id).textContent = fmt(value);
+    const descriptions = {
+      positive:[c.tp,pos,'of people who test positive, the share who have it'],
+      has:[c.tp,has,'of people who have it, the share who test positive'],
+      negative:[c.tn,neg,'of people who test negative, the share who are well'],
+      well:[c.tn,well,'of people who are well, the share who test negative'],
+      all:[c.tp,state.N,'of everyone, the share who have it and test positive']
+    };
+    const [part,whole,label] = descriptions[state.divide];
+    $('fraction').innerHTML = `<b>${fmt(part)} out of ${fmt(whole)} = ${whole ? pct(part/whole) : 'undefined'}</b>${label}`;
+    $('addition').innerHTML = '<b>Addition rule: has it OR positive</b><br>P(has it) + P(positive) − P(both)<br>'
+      + `${fmt(has)}/${fmt(state.N)} + ${fmt(pos)}/${fmt(state.N)} − ${fmt(c.tp)}/${fmt(state.N)}<br>`
+      + `= ${fmt(has+pos-c.tp)}/${fmt(state.N)} = <b>${((has+pos-c.tp)/state.N).toFixed(4)}</b>`;
+    const f = fractions();
+    if (!$('targets').children.length) {
+      for (const key of ['negativeWell','hasPositive','both','wellNegative','either','positiveHas']) {
+        const target = document.createElement('button');
+        target.dataset.fraction = key;
+        target.onclick = () => matchQuestion(key);
+        target.ondragover = event => { event.preventDefault(); target.classList.add('dragover'); };
+        target.ondragleave = () => target.classList.remove('dragover');
+        target.ondrop = event => { event.preventDefault(); target.classList.remove('dragover'); matchQuestion(key); };
+        $('targets').append(target);
+      }
+    }
+    for (const el of $('targets').children) {
+      const [a,b] = f[el.dataset.fraction];
+      el.textContent = `${fmt(a)} / ${fmt(b)}`;
+      el.setAttribute('aria-label','Fraction '+fmt(a)+' out of '+fmt(b));
+    }
+    return {...c,has,well,positive:pos,negative:neg,total:state.N,cells:[[c.tp,c.fn],[c.fp,c.tn]]};
+  }
+  function matchQuestion(key) {
+    dropStaleVoice();
+    if (state.selected === null) { hint('Select a question first, then tap or drag it onto a fraction.',{speak:false}); return; }
+    if ([L.afterTable,L.wTable].includes(V.playing)) V.hush();
+    const q = questionDefinitions[state.selected], fraction = fractions()[q.key];
+    const [a,b] = fractions()[key];
+    const correct = key === q.key || Math.abs(a-fraction[0]) < 1e-7 && Math.abs(b-fraction[1]) < 1e-7;
+    tone(correct ? 620 : 230);
+    if (correct) {
+      const feedback = state.assisted.includes(state.selected) ? 'workedQuestion' : 'rightQuestion';
+      $('hint').textContent = L[feedback];
+      V.say(feedback,{hint:false,valid:() => state.mode === 'table'});
+    }
+    else {
+      if (!state.assisted.includes(state.selected)) state.assisted.push(state.selected);
+      $('hint').textContent = `That asks a different question. This question divides ${fmt(fraction[0])} by ${fmt(fraction[1])}. Try that fraction.`;
+      const card = $('questions').children[state.selected];
+      card.classList.remove('wrong');
+      void card.offsetWidth;
+      card.classList.add('wrong');
+      V.say('wrongQuestion',{hint:false,valid:() => state.mode === 'table'});
+    }
+  }
+  function drawTree() {
+    const c = counts(), s = second();
+    const probabilities = state.treeShow === 'probs';
+    $('tree-counts').setAttribute('aria-pressed',!probabilities);
+    $('tree-chances').setAttribute('aria-pressed',probabilities);
+    const has = c.tp+c.fn, well = c.fp+c.tn;
+    const hasChance = has/state.N;
+    const firstCatch = has ? c.tp/has : state.se;
+    const firstAlarm = well ? c.fp/well : 1-state.sp;
+    const jointCaught = hasChance*firstCatch*state.se;
+    const jointAlarm = (1-hasChance)*firstAlarm*(1-state.sp);
+    const paint = '<defs><linearGradient id="tree-caught" x2="1" y2="1">'
+      + '<stop stop-color="#66304e"/><stop offset="1" stop-color="#241e32"/></linearGradient>'
+      + '<linearGradient id="tree-alarm" x2="1" y2="1">'
+      + '<stop stop-color="#263346"/><stop offset="1" stop-color="#18202d"/></linearGradient></defs>';
+    const treeBounds = $('tree').getBoundingClientRect();
+    const small = treeBounds.width < 550 || treeBounds.height < 300;
+    if (small) {
+      $('tree').setAttribute('viewBox','0 0 350 260');
+      const treeBox = $('tree').getBoundingClientRect();
+      const scale = Math.max(.3,Math.min(treeBox.width/350,treeBox.height/260));
+      const labelSize = Math.max(14,10/scale);
+      const numberSize = Math.max(16,12/scale);
+      const value = (count,chance) => probabilities ? pct(chance) : fmt(count);
+      const nodes = [
+        [175,16,'All',fmt(state.N)], [82,60,'Has it',value(has,hasChance)], [267,60,'Well',value(well,1-hasChance)],
+        [48,113,'1st +',value(c.tp,firstCatch)], [130,113,'1st −',value(c.fn,1-firstCatch)],
+        [224,113,'1st +',value(c.fp,firstAlarm)], [306,113,'1st −',value(c.tn,1-firstAlarm)],
+        [30,183,'2nd +',value(s.tp,state.se)], [108,183,'2nd −',value(s.fn,1-state.se)],
+        [208,183,'2nd +',value(s.fp,1-state.sp)], [291,183,'2nd −',value(s.tn,state.sp)]
+      ];
+      let svg = paint+'<path d="M175 35L82 51M175 35L267 51M82 79L48 104M82 79L130 104M267 79L224 104M267 79L306 104M48 132L30 174M48 132L108 174M224 132L208 174M224 132L291 174"/>'
+        + '<path class="flow" d="M175 35L82 51M82 79L48 104M48 132L30 174"/>'
+        + '<path class="flow alarm-flow" d="M175 35L267 51M267 79L224 104M224 132L208 174"/>';
+      for (const [index,[x,y,label,number]] of nodes.entries()) {
+        const style = index === 7 ? 'caught-node' : index === 9 ? 'alarm-node' : '';
+        svg += `<rect class="${style}" x="${x-29}" y="${y-9}" width="58" height="39"/>`
+          + `<text style="font-size:${labelSize}px" text-anchor="middle" x="${x}" y="${y+3}">${label}</text>`
+          + `<text class="branch-value" style="font-size:${numberSize}px" text-anchor="middle" x="${x}" y="${y+24}">${number}</text>`;
+        if (probabilities && [7,9].includes(index)) {
+          svg += `<text class="joint" style="font-size:${labelSize}px" text-anchor="middle" x="${x}" y="${y+47}">`
+            + `=${pct(index === 7 ? jointCaught : jointAlarm)}</text>`;
+        }
+      }
+      svg += `<text style="font-size:${labelSize}px" x="5" y="254">`
+        + (probabilities ? '= share of town. First − stops.' : 'First − stops. + positive; − negative.')+'</text>';
+      $('tree').innerHTML = svg;
+      $('tree').setAttribute('aria-label',`Second positives: ${fmt(s.tp)} with it and ${fmt(s.fp)} well, on average.`);
+      if (probabilities) $('hint').textContent = `Has it and two positives: ${pct(hasChance)} × ${pct(firstCatch)} × ${pct(state.se)}`
+        + ` = ${pct(jointCaught)}. Tap Counts to return.`;
+      return;
+    }
+    $('tree').setAttribute('viewBox','0 0 740 350');
+    const nodes = [
+      [8,141,124,'Everyone',fmt(state.N)],
+      [185,49,155,'Has it',probabilities ? pct(hasChance) : fmt(has)],
+      [185,243,155,'Doesn’t have it',probabilities ? pct(1-hasChance) : fmt(well)],
+      [390,49,139,'First +',probabilities ? pct(firstCatch) : fmt(c.tp)],
+      [390,243,139,'First +',probabilities ? pct(firstAlarm) : fmt(c.fp)],
+      [390,141,139,'First negative',probabilities ? pct(1-firstCatch) : fmt(c.fn)],
+      [390,299,139,'First negative',probabilities ? pct(1-firstAlarm) : fmt(c.tn)],
+      [579,10,150,'Second +',probabilities ? pct(state.se) : fmt(s.tp)],
+      [579,105,150,'Second negative',probabilities ? pct(1-state.se) : fmt(s.fn)],
+      [579,205,150,'Second +',probabilities ? pct(1-state.sp) : fmt(s.fp)],
+      [579,298,150,'Second negative',probabilities ? pct(state.sp) : fmt(s.tn)]
+    ];
+    let svg = paint+'<path d="M132 166L185 75M132 166L185 269M340 75H390M340 269H390M340 75L390 166M340 269L390 324M529 75L579 36M529 75L579 131M529 269L579 231M529 269L579 324"/>'
+      + '<path class="flow" d="M132 166L185 75M340 75H390M529 75L579 36"/>'
+      + '<path class="flow alarm-flow" d="M132 166L185 269M340 269H390M529 269L579 231"/>';
+    for (const [index,[x,y,w,label,value]] of nodes.entries()) {
+      const style = index === 7 ? 'caught-node' : index === 9 ? 'alarm-node' : '';
+      svg += `<rect class="${style}" x="${x}" y="${y}" width="${w}" height="51"/><text x="${x+8}" y="${y+19}">${label}</text>`
+        + `<text class="branch-value" x="${x+8}" y="${y+42}">${value}</text>`;
+      if (probabilities && [7,9].includes(index)) {
+        svg += `<text class="joint" x="${x+8}" y="${y+67}">`
+          + `Product: ${pct(index === 7 ? jointCaught : jointAlarm)} of town</text>`;
+      }
+    }
+    $('tree').innerHTML = svg;
+    $('tree').setAttribute('aria-label',`Two test tree. First positives: ${fmt(c.tp)} with it and ${fmt(c.fp)} well.`
+      + ` Second positives: ${fmt(s.tp)} with it and ${fmt(s.fp)} well, on average.`);
+    if (probabilities) $('hint').textContent = `Has it and two positives: ${pct(hasChance)} × ${pct(firstCatch)} × ${pct(state.se)}`
+      + ` = ${pct(jointCaught)}. Tap Counts to return.`;
+  }
+  function caseCard(id, entry = false) {
+    if (state.mode !== 'cases') setMode('cases');
+    cancel();
+    dropStaleVoice();
+    const number = Number(String(id).replace(/^c/i,'')) || 1;
+    const item = cases[clamp(Math.round(number),1,7)-1];
+    state.caseId = item.id;
+    for (const key of ['N','p','se','sp']) state[key] = item[key];
+    state.kind = 'average';
+    state.assisted = [];
+    state.randomCounts = null;
+    state.revealed = false;
+    state.locked = null;
+    state.guess = 50;
+    $('predict').value = 50;
+    $('guess-value').textContent = '50%';
+    state.focus = false;
+    state.phase = 'ready';
+    render();
+    hint('wCases',{speak:!entry,valid:() => !state.revealed,needs:'#show-answer'});
+    if (entry) V.welcome();
+    tone();
+  }
+  function setMode(mode, force = false) {
+    const m = String(mode).toLowerCase().replace(' test','');
+    if (!MODES.includes(m) || state.mode === m && !force) return;
+    cancel();
+    // A prediction abandoned for another mode cannot return beside its revealed answer.
+    if (state.phase === 'predict') state.phase = 'ready';
+    V.hush();
+    state.mode = m;
+    if (m === 'town' && state.sp > .999) state.sp = .999;
+    for (const key of MODES) $('m-'+key).setAttribute('aria-pressed',key === m);
+    state.revealed = m !== 'cases' && state.phase !== 'ready';
+    if (m === 'table' || m === 'second') state.revealed = true;
+    if (m === 'cases') caseCard(state.caseId,true);
+    else {
+      syncInputs();
+      render();
+      hint(welcomeKey(),{speak:false});
+      V.welcome();
+    }
+    tone();
+  }
+  function reset() {
+    const mode = state.mode;
+    const clean = state.phase === 'ready' && !state.chart.length && !state.overlap && state.locked === null
+      && state.guess === 50 && state.treeShow === 'counts' && state.divide === 'positive' && state.selected === null;
+    const defaults = mode === 'cases' ? ['N','p','se','sp'].every(key => state[key] === cases[state.caseId-1][key])
+      : state.N === 10000 && state.p === .01 && state.se === .9 && state.sp === .91 && state.kind === 'average';
+    if (clean && defaults) { tone(); return; }
+    cancel();
+    V.hush();
+    Object.assign(state,{N:10000,p:.01,se:.9,sp:.91,kind:'average',seed:104729,phase:'ready',focus:false,
+      revealed:false,guess:50,locked:null,treeShow:'counts',divide:'positive',selected:null,assisted:[],randomCounts:null,
+      running:false,chart:[],stopped:false,overlap:false});
+    $('predict').value = 50;
+    $('guess-value').textContent = '50%';
+    for (const card of $('questions').children) card.setAttribute('aria-pressed',false);
+    syncInputs();
+    if (mode === 'cases') caseCard(state.caseId);
+    else setMode(mode,true);
+  }
+  for (const mode of MODES) $('m-'+mode).onclick = () => setMode(mode);
+  for (const key of ['p','se','sp']) {
+    $(key).oninput = () => {
+      const value = key === 'p' ? Math.round(.1*Math.pow(500,+$(key).value/1000)*10)/1000 : +$(key).value/100;
+      set({[key]:value});
+      tone(250+state[key]*350);
+    };
+    $(key+'-num').onchange = () => {
+      const input = $(key+'-num');
+      if (input.value.trim() && Number.isFinite(+input.value)) set({[key]:Math.round(+input.value*10)/1000});
+      else syncInputs();
+      tone();
+    };
+  }
+  $('people').onchange = () => { set({N:+$('people').value}); tone(); };
+  $('run-kind').onchange = () => { state.kind = $('run-kind').value; set({}); tone(); };
+  $('test').onclick = testAll;
+  $('positive').onclick = positivesOnly;
+  $('predict').oninput = () => { state.guess = +$('predict').value; $('guess-value').textContent = state.guess+'%'; tone(240+state.guess*4); };
+  $('lock').onclick = () => reveal(state.guess);
+  $('skip').onclick = () => reveal(null);
+  $('show-answer').onclick = () => reveal(state.guess);
+  $('new-run').onclick = () => { state.seed = (state.seed+7919)>>>0; set({}); tone(); };
+  $('hundred').onclick = hundred;
+  $('reset').onclick = reset;
+  let glossaryHint = '';
+  $('terms-open').onclick = () => {
+    cancel();
+    V.hush();
+    render();
+    glossaryHint = $('hint').textContent;
+    $('terms').showModal();
+    for (const region of document.querySelectorAll('[data-audit-keep]')) region.removeAttribute('data-audit-keep');
+    $('terms').setAttribute('data-audit-keep','');
+    hint('glossaryHow',{valid:() => $('terms').open,needs:'#glossary'});
+    tone();
+  };
+  $('terms-close').onclick = () => { $('terms').close(); tone(); };
+  $('terms-read').onclick = () => V.read();
+  $('terms').onclose = () => {
+    V.hush();
+    $('terms').removeAttribute('data-audit-keep');
+    render();
+    $('hint').textContent = glossaryHint;
+  };
+  $('tree-counts').onclick = () => { cancel(); state.treeShow = 'counts'; drawTree(); hint('wSecond',{needs:'#tree-chances'}); tone(); };
+  $('tree-chances').onclick = () => { cancel(); V.dropQueued(); state.treeShow = 'probs'; drawTree(); tone(); };
+  $('overlap').onclick = () => {
+    dropStaleVoice();
+    state.overlap = !state.overlap;
+    table();
+    $('hint').textContent = state.overlap ? 'The outlined cell belongs to both groups. Subtract it once so it is counted once.' : L.afterTable;
+    tone();
+  };
+  for (const item of cases) {
+    const button = document.createElement('button');
+    button.className = 'case-card'+([4,6,7].includes(item.id) ? ' cut' : '')+(item.id === 4 ? ' double' : '');
+    button.dataset.case = item.id;
+    button.id = 'case-'+item.id;
+    button.title = item.title;
+    button.setAttribute('aria-label',item.title);
+    button.innerHTML = (item.id === 4
+      ? `<div class="pair"><img src="${artSources[item.id-1]}" alt=""><img src="${artSources[item.id-1]}" alt=""></div>`
+      : `<img src="${artSources[item.id-1]}" alt="">`)+`<span>${item.short}</span>`;
+    button.onclick = () => caseCard(item.id);
+    $('case-picker').append(button);
+  }
+  questionDefinitions.forEach((q,i) => {
+    const card = document.createElement('button');
+    card.className = 'question';
+    card.draggable = true;
+    card.textContent = q.text;
+    card.setAttribute('aria-pressed',false);
+    const select = () => {
+      dropStaleVoice();
+      state.selected = i;
+      for (const el of $('questions').children) el.setAttribute('aria-pressed',el === card);
+      hint('afterTable',{needs:'#targets'});
+      tone();
+    };
+    card.onclick = select;
+    card.ondragstart = event => { select(); event.dataTransfer.setData('text/plain',String(i)); };
+    $('questions').append(card);
+  });
+  const glossary = {
+    Sensitivity:'Catches: among people who have it, the share who test positive.',
+    Specificity:'Clears: among people who do not have it, the share who test negative.',
+    Prevalence:'How common: the share of the whole town who have it.',
+    'False positive':'A person who is well but tests positive.',
+    'False negative':'A person who has it but tests negative.'
+  };
+  // Read-only fixed hints belong in the production voice inventory too.
+  L.readOnly = [
+    'Tap a glossary term, then press Close glossary to return.',
+    'Select a question first, then tap or drag it onto a fraction.',
+    'Read the pooled share in the chart. Press New run to try another seed.',
+    ...Object.values(glossary).map(text => text+' Tap another term, or press Close glossary.')
+  ];
+  for (const [label,text] of Object.entries(glossary)) {
+    const button = document.createElement('button');
+    button.textContent = label;
+    button.onclick = () => {
+      $('gloss').textContent = text;
+      $('hint').textContent = text+' Tap another term, or press Close glossary.';
+      tone();
+    };
+    $('glossary').append(button);
+  }
+  Curio.init({clips:"voice:*",rate:.95});
+  document.addEventListener('click',event => {
+    const button = event.target.closest('button');
+    if (button && ['motion','sound','read'].includes(button.id)
+      && ['condition','testing','sorting'].includes(state.phase)) {
+      cancel();
+      state.revealed = true;
+      state.phase = 'done';
+      render();
+      hint('positivesHow',{speak:false});
+    }
+  },true);
+  Curio.onMotion(() => {
+    if (state.phase === 'sorting') { cancel(); render(); }
+    if (state.phase === 'condition' || state.phase === 'testing') {
+      cancel();
+      state.phase = 'predict';
+      state.revealed = false;
+      render();
+      hint('predictHow',{needs:'#lock',valid:() => state.phase === 'predict'});
+    }
+  });
+  new ResizeObserver(() => { cancelAnimationFrame(raf); drawPopulation(); }).observe($('population-wrap'));
+  new ResizeObserver(() => { if (state.mode === 'second') drawTree(); }).observe($('tree-view'));
+  new ResizeObserver(() => { if (!$('chart-box').hidden) drawConverge(); }).observe($('chart-box'));
+  window.__tool = {state,setMode,set,testAll,positivesOnly,counts,run,table,divideBy,second,caseCard,
+    allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },expected,Rand,hundred};
+  syncInputs();
+  render();
+  hint('wTown',{speak:false});
+})();
+</script>
+</body>
+</html>

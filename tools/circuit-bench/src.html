@@ -1,0 +1,2242 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A working breadboard, real circuit solver and multimeter. Build freely with light, current and magnetism. One offline instrument.">
+<title>Circuit Bench · Curio Class Curiosities</title>
+<style>
+:root { color-scheme:dark; font:14px 'Segoe UI',sans-serif; color:#e8efe9; background:#1f4a3a; }
+* { box-sizing:border-box; }
+body { margin:0; height:100dvh; overflow:hidden; }
+button,input,select { font:inherit; }
+button,select { color:#eff2e9; background:linear-gradient(#454944,#292e2b); border:1px solid #858d80;
+  border-radius:3px; min-height:44px; padding:5px 11px; cursor:pointer; box-shadow:0 2px 2px #0006,inset 0 1px #ffffff18; }
+button:active,button[aria-pressed=true] { background:#182c24; box-shadow:inset 0 2px 3px #0007; border-color:#b9cfae; }
+button:focus-visible,input:focus-visible,select:focus-visible,canvas:focus-visible { outline:3px solid #ffda73; outline-offset:2px; }
+button:hover { border-color:#efe8bd; }
+[hidden] { display:none!important; }
+.mono,output { font-family:Consolas,'Courier New',monospace; }
+main { height:100%; display:grid; grid-template-rows:60px minmax(0,1fr) 92px 50px; padding:0 16px; gap:7px;
+  background:radial-gradient(ellipse at 35% 30%,#315e4c,transparent 70%),repeating-linear-gradient(5deg,#ffffff02 0 1px,transparent 1px 8px); }
+.bench-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.bench-label { font:12px Consolas,monospace; letter-spacing:.16em; color:#d3dfd0; }
+.bench-label strong { font-size:18px; color:#f2eddb; letter-spacing:.12em; display:block; margin-bottom:3px; }
+.power { display:flex; gap:5px; background:#212b27; padding:5px 8px; border:1px solid #738174; border-radius:4px; }
+.power button { min-width:72px; padding:4px 9px; font-size:12px; }
+.work { min-height:0; display:grid; grid-template-columns:minmax(0,1fr) 253px; grid-template-rows:minmax(0,1fr) 78px; gap:9px 19px; }
+.board-wrap { position:relative; min-height:0; overflow:hidden; border:1px solid #65806d; border-radius:6px; box-shadow:inset 0 0 45px #0a241e88; }
+canvas { display:block; width:100%; height:100%; touch-action:none; }
+.board-tools { position:absolute; top:7px; left:8px; display:flex; gap:4px; }
+.board-tools button { min-width:44px; padding:2px 8px; background:#263d32; }
+.board-tools #notebook { font:12px Georgia,serif; background:linear-gradient(90deg,#413626 5%,#746047 7%,#423827 10%); }
+#cursor-label { position:absolute; top:14px; right:12px; color:#e8efe9; pointer-events:none; font:11px Consolas,monospace; }
+#hint { position:absolute; bottom:9px; left:16px; margin:0; padding:4px 8px; background:#1c3d30e8; font-size:13px; pointer-events:none; }
+.meter { grid-column:2; grid-row:1/3; min-height:0; position:relative; padding:10px 15px;
+  background:linear-gradient(110deg,#42474a,#2b2e33 25%,#22262a 92%,#464b4e); border:3px solid #1b2022;
+  border-radius:24px 24px 30px 30px; box-shadow:7px 10px 8px #10251b88,inset 0 0 0 3px #656b68; display:flex; flex-direction:column; gap:5px; }
+.meter::before,.meter::after { content:'⊕'; position:absolute; bottom:10px; color:#b2b5a6; font-size:15px; }
+.meter::before { left:12px; } .meter::after { right:12px; }
+.meter-name { text-align:center; font:10px Consolas,monospace; letter-spacing:.18em; color:#d3d8ce; }
+.lcd { color:#1a1f17; background:linear-gradient(125deg,#c6d0b2,#a5b398); border:5px solid #181e20;
+  border-radius:5px; padding:6px; box-shadow:inset 2px 3px 4px #26332988; }
+#meter-reading { display:block; font:30px Consolas,monospace; min-height:38px; text-align:right; white-space:nowrap; }
+#meter-caption { font:11px Consolas,monospace; display:block; min-height:13px; }
+.dial-area { position:relative; min-height:85px; flex:1; display:flex; align-items:center; justify-content:center; }
+.dial-face { position:absolute; width:82px; height:82px; border-radius:50%; border:1px solid #879083; background:repeating-conic-gradient(#949b8c 0 1deg,transparent 1deg 45deg); }
+.dial { position:relative; width:68px; min-height:68px; border:4px solid #6c7369; border-radius:50%;
+  background:linear-gradient(90deg,#14191b 38%,#5f655f 40% 60%,#292f31 62%); box-shadow:3px 5px 6px #0008; }
+.dial::after { content:''; position:absolute; width:5px; height:18px; top:4px; left:28px; background:#ede6b2; border-radius:2px; }
+.compact-meter { display:none; }
+.meter-choices { display:grid; grid-template-columns:repeat(3,1fr); gap:4px; }
+.meter-choices button { padding:2px; font:12px Consolas,monospace; }
+.probes { display:flex; gap:7px; }
+.probes button { flex:1; font:12px Consolas,monospace; border-bottom:5px solid #ce6557; }
+.probes button:last-child { border-bottom-color:#a5b4bd; }
+#flow { font-size:11px; min-height:44px; }
+#fuse { font-size:11px; }
+.meter-note { display:none; }
+.inspector { display:flex; align-items:center; gap:10px; min-width:0; overflow-x:auto; padding:6px 9px;
+  border:1px solid #94a18b; color:#282d23; background:linear-gradient(110deg,#e5dfc7,#d2cbb0); box-shadow:2px 3px 4px #10241b88; }
+.tag { min-width:155px; white-space:nowrap; }
+#part-name { display:block; font:600 12px Consolas,monospace; margin-bottom:4px; }
+#part-values { font:11px Consolas,monospace; }
+#part-extra { display:block; font:11px Consolas,monospace; margin-top:3px; }
+.part-controls { display:flex; gap:6px; align-items:center; }
+#adjust-part { display:none; margin-left:auto; }
+#drawer-controls .part-controls { flex-wrap:wrap; }
+.part-controls label { display:flex; align-items:center; gap:5px; font:11px Consolas,monospace; white-space:nowrap; }
+input[type=range] { accent-color:#3c5d41; height:44px; width:135px; }
+.inspector button,.inspector select { font-size:11px; white-space:nowrap; }
+.drawers { display:flex; overflow-x:auto; gap:6px; border-top:3px solid #142e23; padding:6px 2px; align-items:stretch; }
+.drawer { flex:1 0 64px; padding:5px 3px; min-width:64px; font-size:11px; border-color:#718579;
+  background:linear-gradient(#344b3e,#20392d); border-bottom:6px solid #163022; position:relative; }
+.drawer .mini { display:block; font-size:25px; height:33px; color:#ebd7a0; filter:drop-shadow(1px 2px 1px #0009); }
+.drawer small { font:10px Consolas,monospace; display:block; color:#c5d8c4; }
+.footer { display:flex; align-items:center; gap:8px; padding-bottom:4px; }
+.plate { color:#eeead9; border:1px solid #b6b49c; background:linear-gradient(110deg,#51594c,#303e32,#5b6352); padding:8px 12px;
+  box-shadow:inset 0 0 0 2px #202e25,1px 2px 2px #092719; font:10px Consolas,monospace; letter-spacing:.03em; }
+.footer button { min-height:44px; font-size:12px; }
+.status { margin-left:auto; font:11px Consolas,monospace; color:#e8efe9; white-space:nowrap; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+dialog { position:fixed; inset:auto auto 53px 16px; margin:0; width:min(600px,calc(100vw - 32px)); max-height:calc(100dvh - 80px);
+  color:#292e25; background:repeating-linear-gradient(#e8e0c9 0 27px,#cac6ae 28px,#e8e0c9 29px); border:4px solid #4f5645;
+  border-radius:3px; padding:17px 22px; box-shadow:12px -7px 30px #071c16aa; overflow:auto; }
+dialog::backdrop { background:#071d154f; }
+dialog h2 { font:23px Georgia,serif; margin:3px 0 14px; padding-right:70px; }
+dialog h3 { font:600 16px Georgia,serif; margin:20px 0 6px; }
+dialog p,dialog li { font-size:14px; line-height:1.55; }
+dialog a { color:#174c48; display:inline-block; min-height:44px; padding:10px 2px; }
+dialog .close { position:absolute; right:12px; top:12px; }
+.setups { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.setups button { text-align:left; }
+.slot { display:flex; gap:7px; align-items:center; margin:8px 0; }
+.slot span { flex:1; font:12px Consolas,monospace; }
+@media(max-width:1050px) {
+ main { padding:0 8px; grid-template-rows:53px minmax(0,1fr) 85px 50px; gap:4px; }
+ .work { grid-template-columns:minmax(0,1fr) 215px; gap:6px; grid-template-rows:minmax(0,1fr) 76px; }
+ .meter { padding:12px; gap:5px; border-radius:17px; }
+ .dial-area { min-height:85px; }
+ .bench-label strong { font-size:15px; } .bench-label { font-size:10px; }
+ .meter-name { font-size:10px; } #meter-reading { font-size:26px; }
+ .inspector { overflow:hidden; }
+ .inspector .part-controls { display:none; }
+ .inspector .tag { flex:1; min-width:0; white-space:normal; }
+ #adjust-part { display:block; flex:0 0 70px; }
+ .drawers { gap:3px; padding:3px 0; }
+ .drawer { flex:1 0 48px; min-width:48px; padding:3px 1px; border-bottom-width:3px; font-size:10px; }
+ .drawer .mini { height:23px; }
+ .drawer .mini svg { width:42px; height:23px; }
+ .drawer small { display:none; }
+}
+@media(max-height:660px) and (min-width:601px) {
+ main { grid-template-rows:49px minmax(0,1fr) 70px 50px; }
+ .work { grid-template-rows:minmax(0,1fr) 62px; grid-template-columns:minmax(0,1fr) 201px; }
+ .meter { padding:7px; gap:4px; display:grid; grid-template-columns:1fr 1fr; grid-template-rows:58px 44px 44px 44px; }
+ .meter-name,.meter-note,.dial-area,.meter-choices { display:none; }
+ .lcd { grid-column:1/3; grid-row:1; }
+ .compact-meter { display:block; grid-column:1/3; grid-row:2; padding:3px; width:100%; font-size:12px; }
+ .probes { grid-column:1/3; grid-row:3; }
+ #flow { grid-column:1; grid-row:4; font-size:10px; padding:2px; }
+ #fuse { grid-column:2; grid-row:4; font-size:10px; padding:2px; }
+ .lcd { padding:4px; } #meter-reading { font-size:24px; min-height:30px; }
+ .meter-choices { gap:3px; } .meter-choices button { min-height:44px; }
+ .probes button { padding:3px; } .drawer .mini { font-size:20px; height:23px; }
+ #hint { font-size:11px; max-width:95%; left:4px; bottom:4px; }
+}
+@media(max-width:600px) {
+ main { padding:0 6px; grid-template-rows:52px minmax(0,1fr) 85px 53px; gap:4px; }
+ .bench-label { font-size:10px; letter-spacing:.03em; } .bench-label strong { font-size:13px; letter-spacing:.04em; }
+ .power { gap:3px; padding:3px; } .power button { min-width:44px; padding:3px 5px; font-size:10px; }
+ .work { display:grid; grid-template-columns:1fr; grid-template-rows:178px minmax(0,1fr) 78px; gap:5px; }
+ .meter { grid-row:1; grid-column:1; border-radius:10px; padding:7px; display:grid;
+   grid-template-columns:1fr 1.15fr; grid-template-rows:62px 44px 44px; gap:3px 6px; }
+ .lcd { grid-column:1; grid-row:1; padding:3px; border-width:3px; } #meter-reading { font-size:23px; min-height:31px; }
+ .meter-name,.dial-area,.meter-note { display:none; }
+ .meter-choices { grid-column:2; grid-row:1/3; grid-template-rows:1fr 1fr; align-content:stretch; }
+ .meter-choices button { min-width:0; min-height:44px; }
+ .probes { grid-column:1; grid-row:2; gap:3px; } .probes button { padding:2px; }
+ #flow { grid-row:3; grid-column:1; min-height:44px; padding:2px; }
+ #fuse { grid-row:3; grid-column:2; min-height:44px; padding:2px; }
+ .meter::before,.meter::after { display:none; }
+ .board-wrap { grid-column:1; grid-row:2; } .inspector { grid-row:3; grid-column:1; padding:5px; }
+ .tag { min-width:148px; } .board-tools { left:4px; top:4px; gap:3px; }
+ .board-tools button { min-height:44px; } #cursor-label { top:57px; right:5px; }
+ #hint { bottom:5px; left:4px; max-width:94%; font-size:11px; }
+ .plate { font-size:10px; padding:6px; flex:1; } .footer { gap:5px; }
+ .drawer { flex:1 0 64px; min-width:64px; }
+ .footer button { min-width:58px; } .status { display:none; }
+ dialog { left:6px; bottom:57px; width:calc(100vw - 12px); padding:12px; }
+}
+
+/* Engraved switches and focus rings keep their state on paper and on the mat. */
+.power button[aria-pressed]::before { content:''; display:inline-block; width:15px; height:8px;
+  border:1px solid #c9d5bc; background:linear-gradient(90deg,#d8dfcb 45%,#111d16 45%); margin-right:4px; }
+.power button[aria-pressed=true]::before { background:linear-gradient(90deg,#111d16 55%,#d8dfcb 55%); }
+canvas:focus-visible { outline:3px solid #1a1f17; outline-offset:-6px; box-shadow:inset 0 0 0 3px #f5f1e5; }
+.inspector :focus-visible,dialog :focus-visible { outline:3px solid #1a1f17; outline-offset:1px;
+  box-shadow:0 0 0 5px #f5f1e5; }
+#part-values { font-size:15px; }
+#part-name,#part-extra { font-size:12px; }
+.dial-legends { position:absolute; width:148px; height:130px; pointer-events:none; font:11px Consolas,monospace; }
+.dial-legends span { position:absolute; }
+.dial-legends span:nth-child(1) { left:12px; top:91px; }
+.dial-legends span:nth-child(2) { left:4px; top:39px; }
+.dial-legends span:nth-child(3) { left:49px; top:0; }
+.dial-legends span:nth-child(4) { right:19px; top:14px; }
+.dial-legends span:nth-child(5) { right:1px; top:59px; }
+.dial-legends span:nth-child(6) { right:18px; top:103px; }
+.jacks { position:absolute; bottom:4px; left:-3px; display:flex; gap:19px; }
+.jacks i { width:10px; height:10px; border:2px solid #b76859; background:#101a17; border-radius:50%; }
+.jacks i:last-child { border-color:#b4c2bb; }
+.drawer-ghost { position:fixed; z-index:10; width:74px; height:54px; pointer-events:none; opacity:.9;
+  filter:drop-shadow(3px 5px 2px #10251baa); }
+.drawer { touch-action:pan-x; }
+#part-drawer { position:static; width:auto; max-height:none; margin:0; padding:6px 9px;
+  border-width:1px; box-shadow:none; background:linear-gradient(110deg,#e5dfc7,#d2cbb0); }
+#part-drawer h2 { font:12px Consolas,monospace; margin:0 65px 5px 0; padding:0; }
+#part-drawer .close { right:6px; top:3px; min-height:44px; font-size:11px; }
+#part-drawer .part-controls { padding-right:0; }
+.work:has(#part-drawer[open]) { grid-template-rows:minmax(0,1fr) 72px auto; }
+.work:has(#part-drawer[open]) .meter { grid-row:1/4; }
+#part-drawer { grid-column:1; grid-row:3; position:relative; inset:auto; min-width:0; }
+#drawer-controls { min-width:0; }
+.work { position:relative; }
+#probe-cables { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible; }
+@media(max-height:660px) and (min-width:601px) {
+ .board-wrap { overflow:visible; }
+ .board-tools { top:-49px; left:0; }
+ .bench-label { visibility:hidden; }
+ .board-wrap canvas { overflow:hidden; border-radius:6px; }
+ #cursor-label { right:4px; top:4px; background:#1f4a3add; }
+ #part-values { font-size:12px; }
+ #part-drawer { padding:4px 7px; }
+ #part-drawer h2 { display:none; }
+ #part-drawer .close { position:static; float:right; margin-left:4px; }
+ #part-drawer .part-controls { flex-wrap:nowrap; overflow-x:auto; }
+ #part-drawer input[type=range] { width:90px; }
+ .work:has(#part-drawer[open]) { grid-template-rows:minmax(0,1fr) 62px auto; }
+}
+@media(max-width:600px) {
+ .power button { min-width:68px; }
+ .bench-label { display:none; }
+ .bench-top { justify-content:flex-end; }
+ .work:has(#part-drawer[open]) { grid-template-rows:178px minmax(0,1fr) 78px auto; }
+ .work:has(#part-drawer[open]) .meter { grid-row:1; }
+ #part-drawer { grid-row:4; }
+ #part-drawer h2 { display:none; }
+ #part-drawer .close { position:static; float:right; margin-left:4px; }
+ #part-values { font-size:12px; }
+ .jacks { bottom:0; left:8px; }
+}
+@media(min-width:1600px) { #part-values { font-size:22px; } #part-name,#part-extra { font-size:15px; } }
+</style>
+</head>
+<body>
+<main>
+ <div class="bench-top">
+  <div class="bench-label">DC · 2.54 mm</div>
+  <div class="power" role="group" aria-label="Bench power panel">
+   <button id="motion" aria-pressed="true">Motion</button><button id="sound" aria-pressed="true">Sound</button><button id="read">Read</button>
+  </div>
+ </div>
+ <div class="work">
+  <svg id="probe-cables" aria-hidden="true"></svg>
+  <section class="board-wrap" aria-label="Breadboard work mat">
+   <canvas id="board" tabindex="0" aria-label="Breadboard. Arrow keys move hole cursor. W then Enter twice connects a wire. Parts keys are in the Manual."></canvas>
+   <div class="board-tools"><button id="notebook" aria-haspopup="dialog">Notebook</button>
+    <button id="zoom-out" aria-label="Zoom out">−</button><button id="zoom-in" aria-label="Zoom in">+</button>
+    <button id="home" aria-label="Centre breadboard">⌖</button></div>
+   <output id="cursor-label">e 5</output>
+   <p id="hint">Drag a wire from the battery to the bulb.</p>
+  </section>
+  <section class="meter" aria-label="Digital multimeter">
+   <div class="jacks" aria-hidden="true"><i id="jack-red"></i><i id="jack-com"></i></div>
+   <div class="meter-name">CURIO CLASS · DC INSTRUMENT</div>
+   <div class="lcd"><output id="meter-reading">OFF</output><span id="meter-caption">DC · 1999 COUNTS</span></div>
+   <div class="dial-area"><div class="dial-face"></div><div class="dial-legends" aria-hidden="true"><span>OFF</span><span>V</span><span>mA</span><span>A</span><span>Ω</span><span>beep</span></div><button id="dial" class="dial" aria-label="Meter dial: OFF. Press to turn."></button></div>
+   <select id="meter-select" class="compact-meter" aria-label="Meter dial position"><option>OFF</option><option>V · DC</option>
+    <option>mA · 200 mA fuse</option><option>A · 10 A</option><option>Ω</option><option>Continuity</option></select>
+   <div class="meter-choices" role="group" aria-label="Meter dial positions">
+    <button data-meter="0" aria-pressed="true">OFF</button><button data-meter="1" aria-pressed="false">V</button>
+    <button data-meter="2" aria-pressed="false">mA</button><button data-meter="3" aria-pressed="false">A</button>
+    <button data-meter="4" aria-pressed="false">Ω</button><button data-meter="5" aria-pressed="false">Beep</button>
+   </div>
+   <div class="probes"><button id="red-probe">Red probe</button><button id="black-probe">COM probe</button></div>
+   <button id="flow" aria-pressed="false">● + → − current</button>
+   <button id="fuse">FUSE · 200 mA · intact</button>
+   <div class="meter-note">V: across · A: in line<br>Ω: battery disconnected</div>
+  </section>
+  <section class="inspector" aria-label="Selected part paper tag">
+   <div class="tag"><span id="part-name">2 × AA battery</span><output id="part-values">0.00 V · 0.00 A</output><span id="part-extra"></span></div>
+   <button id="adjust-part" aria-expanded="false" aria-controls="part-drawer">Adjust</button>
+   <div id="part-controls" class="part-controls"></div>
+  </section>
+ </div>
+ <nav id="drawers" class="drawers" aria-label="Parts drawers"></nav>
+ <div class="footer"><button id="manual" aria-haspopup="dialog">Manual</button>
+  <div class="plate">Curio Class Curiosities · No. 07 · Circuit Bench</div>
+  <output id="status" class="status" aria-live="polite">12 drawers · bench ready</output></div>
+</main>
+<div id="announce" class="sr" role="status" aria-live="polite"></div>
+<dialog id="manual-drawer" aria-labelledby="manual-title">
+ <button class="close" id="close-manual">Close</button><h2 id="manual-title">Circuit Bench · Manual</h2>
+ <h3>On the mat</h3>
+ <p>Drag from a copper terminal to another terminal or hole to fit a jumper. Or choose Wire and tap two holes.
+ In each column, holes a to e share one copper strip; holes f to j share a separate strip across the centre trench.
+ Each coloured rail runs the full width. Crossing wires do not connect unless their ends share a hole or strip.</p>
+ <p>Choose a drawer, then tap the board. Drag a part by its body to move it.
+ Select a part for its paper tag and adjustment controls. On a compact bench, tap Adjust to unfold the whole tag.
+ Shift-drag a part's copper leg to replug that leg; a plain drag fits a jumper.
+ Drag empty board to pan. The + and − controls zoom; the centre control returns to the opening view.
+ A dark part marked × has burned: tap its body or Replace on its tag.</p>
+ <h3>Without a mouse</h3>
+ <p>Tab to the breadboard. Arrows move the hole cursor. W wire, B battery, L bulb, D LED, R resistor,
+ P potentiometer, S three-leg slide switch, U push button, M motor, Z buzzer, C coil, K compass.
+ Enter places the chosen part. W then Enter at each end fits a wire. Enter on a leg picks it up; arrows and Enter replug it.
+ Enter on a body selects it. T rotates the selected part by 90 degrees. Delete removes it. Escape puts down the tool.</p>
+ <p>On a selected part, F reverses a battery, I moves an iron core, 1 to 4 picks an LED colour.
+ Press H or Hold shaft to latch the motor shaft; press again to release. Hold Space on the push button's tag to conduct. Switches toggle with Enter or Space.
+ Tab reaches all adjustments; ranges use arrows, Page Up and Page Down. Use Move on the tag, then arrows and Enter to place a whole part.</p>
+ <h3>The meter</h3>
+ <p>The dial has OFF, volts, fused milliamps (200 mA), amps (10 A), ohms and continuity. With the dial focused, keys 0 to 5 select it.
+ For voltage, put the probes across two points. For current, remove a wire and put the meter into that gap.
+ Amps across a battery makes a short. The mA fuse opens over 200 mA; tap its fuse cover to replace it. Use A for bulbs, whose current exceeds 200 mA.
+ Ohms and continuity use a 1 mA test source: disconnect batteries first. LIVE means the circuit has power, OL means out of range,
+ and - - means a probe is in an empty hole or floating off the circuit. Continuity sounds below 30 Ω, only with Sound on.</p>
+ <p>On a real bench a short heats the wire fast and can burn you; never short a real battery, and never use mains power.</p>
+ <p>Pick Red probe or COM probe, then tap a hole. You can also drag a connected probe's tip. A focused probe uses arrows to move,
+ Enter to attach at the cursor. Read announces the current context and meter value. A minus sign means the red probe is lower.</p>
+ <h3>Parts and model values</h3>
+ <p>AA cells: 1.5 V and 0.15 Ω inside each, 1 to 4 in series; 9 V pack: 1.5 Ω inside. Estimated runtime uses 2000 mAh per AA
+ or 500 mAh for 9 V, rounded to 10 minutes. The batteries do not drain; real cells give less at high draw.</p>
+ <p>Bulb: 3 V, 0.3 A. Tungsten resistance is 1 + 9√(P/0.9 W) Ω, capped at 10 Ω, warmed over 80 ms;
+ it opens after more than 2 W for 0.5 seconds. Cold ohms uses 1 Ω. Red/yellow/green/blue LEDs turn on at
+ 2.0/2.1/2.2/3.0 V with 10 Ω dynamic resistance; over 50 mA for 0.2 seconds opens them. Replace a burned part on its tag.</p>
+ <p>Resistors: E12, 10 Ω to 100 kΩ, 49 detents over four decades.
+ Potentiometer: 0 to 10 kΩ in 100 steps with a real third wiper leg; the endpoints keep 0.01 Ω for numerical stability.
+ Switch and push contacts: 0.01 Ω. Wires: 0.01 Ω; over 3 A they glow red. The motor has 2 Ω winding resistance,
+ back voltage 0.0022 V per rad/s and 0.15 A running load, with a smoothed speed response. Hold its shaft to stall it.</p>
+ <p>Coil: 4 Ω, length 4 cm, radius 1 cm, 50/100/200/400 turns. Centre field uses the finite solenoid formula
+ B = μ₀NI / (2√(r² + (L/2)²)). The core multiplies this by 100, a design value; real iron varies and saturates.
+ Every coil here is 4 Ω, as if wound with thicker wire as turns rise; a real coil from the same wire gains resistance with its turns.
+ The coil is a DC resistance model, with no inductive transient. The buzzer is a 100 Ω load with a quiet 2.4 kHz tone.</p>
+ <h3>What the instrument assumes</h3>
+ <p>Every electrical connection enters a conductance matrix with Norton battery sources and 1 nS leakage to reference.
+ The diode's conducting states iterate up to 20 passes. Volts has 10 MΩ input resistance, A has 0.01 Ω and mA 0.1 Ω.
+ Readouts update five times each second; part tags report voltage, signed current and electrical power magnitude.
+ Battery power is delivered power; motor power is electrical input, including mechanical output.
+ A potentiometer's tag reports voltage across its outer legs, current entering leg A and total power in both sections.</p>
+ <p>The compass samples nearby part and wire fields, at a minimum 1 cm separation, plus a fixed 20 μT northward Earth field.
+ The long straight wire limit is μ₀I/(2πr); jumpers use Biot-Savart summed along their drawn path, with the compass 1 cm above them, as drawn.
+ A coil uses a dipole far field with moment NIπr², multiplied by 100 with the core; its radial and axial components
+ return beside the coil. Inside one radius the distance is softened to avoid a singularity. This is not an exact near-field model.
+ The 1 mA ohms test source can turn an LED on: its displayed resistance is a test-source ratio, not a fixed diode resistance.
+ The compass ignores nearby steel. This is a local DC field approximation, not a full 3D magnetic simulation or a live WMM location.
+ Dots represent conventional current; electron view reverses them. Neither speed is the real electron drift speed.</p>
+ <h3>Things people have found</h3>
+ <ul><li>Two bulbs in a row share the voltage and dim. Every point in a single loop carries the same current (OpenStax College Physics 2e, 21.3).</li>
+ <li>Two bulbs side by side each receive the terminal voltage; the battery supplies both branch currents (OpenStax College Physics 2e, 21.1).</li>
+ <li>A reversed LED stays dark. Its anode, marked +, needs the higher potential (Georgia State University HyperPhysics, Diode).</li>
+ <li>A hot filament has much more resistance than its cold ohms reading (OpenStax College Physics 2e, 20.3).</li>
+ <li>A wire swings a compass, as Hans Christian Oersted found in 1820 (OpenStax College Physics 2e, 22.9; Britannica, Hans Christian Orsted).</li>
+ <li>A wire lined up with the needle swings it most; one across it barely moves it (OpenStax University Physics Volume 2, 12.2, right-hand rule).</li>
+ <li>More turns or more current strengthen a coil, and an iron core increases its field (OpenStax College Physics 2e, 22.2 and 22.9).</li>
+ <li>A spinning motor makes back voltage and draws less current than a stalled motor (OpenStax College Physics 2e, 23.6).</li>
+ <li>The ammeter itself conducts. Across a source it can heat a wire or open its own fuse (OpenStax College Physics 2e, 21.4).</li></ul>
+ <h3>Sources and licences</h3>
+ <p><a href="https://openstax.org/books/college-physics-2e/pages/21-introduction-to-circuits-and-dc-instruments">OpenStax College Physics 2e</a>,
+ sections 20.2 to 20.4, 21.1 to 21.4, 22.2, 22.9 and 23.6: Ohm's law, heating, series and parallel circuits,
+ Kirchhoff's rules, meter connections, fields and back EMF. CC BY-NC-SA 4.0; facts cited, no text or illustrations copied.
+ <a href="https://openstax.org/books/university-physics-volume-2/pages/12-6-solenoids-and-toroids">OpenStax University Physics Volume 2, 12.6</a>:
+ sections 12.1, 12.2, 12.4 and 12.6: Biot-Savart, the right-hand rule, dipole moment and finite-solenoid equation, facts only; CC BY-NC-SA 4.0 (current online edition).
+ <a href="http://hyperphysics.phy-astr.gsu.edu/hbase/Solids/diode.html">Georgia State University HyperPhysics, Diode</a>:
+ directional conduction, facts only; copyrighted page, no assets copied.
+ <a href="https://www.vishay.com/docs/31001/dectable.pdf">Vishay, Standard Decade Resistance Values</a>:
+ E12 preferred values, facts only; copyright Vishay, no document or graphics copied.
+ <a href="https://www.ncei.noaa.gov/products/world-magnetic-model">NOAA / BGS World Magnetic Model</a>:
+ geomagnetic field context, public US government information; no coefficients or dataset bundled.
+ <a href="https://www.britannica.com/biography/Hans-Christian-Orsted">Britannica, Hans Christian Orsted</a>: 1820 attribution; copyright Encyclopaedia Britannica, facts only.
+ <a href="https://www.cpsc.gov/Regulations-Laws--Standards/Voluntary-Standards/Topics/Batteries">US Consumer Product Safety Commission, Batteries</a>:
+ heat and burn hazards; public US government information, facts only, no text or assets copied.
+ The fixed Earth field and all component constants are stated design assumptions, not measured product data.
+ Original code and drawn instrument: Curio Class, MIT code, CC BY 4.0 original text and graphics.</p>
+</dialog>
+<dialog id="notebook-drawer" aria-labelledby="notebook-title">
+ <button class="close" id="close-notebook">Close</button><h2 id="notebook-title">Bench notebook</h2>
+ <p>Circuits stay on this device. Nothing leaves it.</p><div id="setups" class="setups"></div>
+ <h3>On this device</h3><div id="slots"></div><p id="save-note" role="status"></p>
+ <button id="clear">Clear bench</button>
+</dialog>
+<dialog id="confirm-drawer" aria-labelledby="confirm-title"><h2 id="confirm-title">Clear the mat?</h2>
+ <p>Saved slots stay on this device.</p><button id="clear-yes">Clear bench</button><button id="clear-no">Keep circuit</button></dialog>
+<dialog id="part-drawer" aria-labelledby="part-drawer-title"><button class="close" id="close-part">Close</button>
+ <h2 id="part-drawer-title">Part tag</h2><div id="drawer-controls"></div></dialog>
+<script src="kit:curio"></script>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const canvas = $('board');
+let ctx = canvas.getContext('2d');
+const PI = Math.PI;
+const MU0 = 4 * PI * 1e-7;
+const E12 = Array.from({length:49},(_,i) => Math.round([10,12,15,18,22,27,33,39,47,56,68,82][i%12] * 10**Math.floor(i/12)));
+const names = {wire:'Wire',battery:'AA battery',bulb:'Bulb',led:'LED',resistor:'Resistor',pot:'Potentiometer',
+  switch:'Slide switch',push:'Push button',motor:'DC motor',buzzer:'Buzzer',coil:'Coil',compass:'Compass'};
+const shortcuts = {w:'wire',b:'battery',l:'bulb',d:'led',r:'resistor',p:'pot',s:'switch',u:'push',m:'motor',z:'buzzer',c:'coil',k:'compass'};
+const symbols = {wire:'⌁',battery:'▰',bulb:'♧',led:'◉',resistor:'▰',pot:'◴',switch:'▣',push:'▥',motor:'◉',buzzer:'◍',coil:'≋',compass:'◇'};
+const meterNames = ['OFF','volts','milliamps','amps','ohms','continuity'];
+const L = {hint:'Drag a wire from the battery to the bulb.',short:'That is a short circuit.',
+  burn:'That part burned out. Tap it to replace it.'};
+const state = {parts:[],wires:[],jumpers:[],selected:null,tool:null,first:null,cursor:{c:4,r:6},meter:0,probes:[null,null],
+  fuse:true,electrons:false,rotation:0,nextId:1,zoom:1,pan:{x:0,y:0},hint:true,move:false,heldLeg:null,frameMs:0};
+let readings = new Map();
+let lastSolve = null;
+let meterValue = 'OFF';
+let view = {w:0,h:0,s:1,x:0,y:0};
+let drag = null;
+let clock = 0;
+let lastTime = performance.now();
+let accumulator = 0;
+let lastBeep = 0;
+let lastHum = 0;
+let circuitDirty = true;
+let modelMoving = true;
+let paintDirty = true;
+let shortActive = false;
+let shortDuration = 0;
+let lastCrackle = 0;
+let boardCache = null;
+let boardCacheKey = '';
+let previousScene = '';
+let hadEffect = false;
+let settleValue = '';
+let settleSince = 0;
+let announcedValue = '';
+const partCache = new WeakMap();
+const shortChipCache = new WeakMap();
+let shortObstacleKey = '';
+let shortObstacles = [];
+const metrics = {solves:0,draws:0,frames:0,cacheBuilds:0,shortLayouts:0};
+const V = Curio.voice({lines:L,hint:false,read:() => readText(),
+  welcome:() => state.wires.length<2&&!document.querySelector('dialog[open]') ? 'hint' : null});
+Curio.init({clips:"voice:*",rate:.89});
+function powerLabels() {
+  $('motion').textContent = 'Motion '+(Curio.reduce?'OFF':'ON');
+  $('sound').textContent = 'Sound '+(Curio.sound?'ON':'OFF');
+  paintDirty=true;
+  $('motion').setAttribute('aria-label','Motion '+(Curio.reduce?'off':'on'));
+  $('sound').setAttribute('aria-label','Sound '+(Curio.sound?'on':'off'));
+}
+Curio.onMotion(powerLabels);
+Curio.onSound(powerLabels);
+powerLabels();
+function announce(text) { $('announce').textContent = text;
+}
+function status(text) { $('status').textContent = text;
+announce(text);
+}
+function spoken(text) {
+  if(text==='- -') return 'no reading';
+  if(text==='FUSE') return 'fuse open';
+  if(text==='OL') return 'over range';
+  if(text==='LIVE') return 'live circuit';
+  return text.replace(/μA/g,'microamps').replace(/mA/g,'milliamps').replace(/μV/g,'microvolts')
+    .replace(/mV/g,'millivolts').replace(/μW/g,'microwatts').replace(/mW/g,'milliwatts')
+    .replace(/MΩ/g,'megohms').replace(/kΩ/g,'kilohms').replace(/Ω/g,'ohms')
+    .replace(/\bV\b/g,'volts').replace(/\bA\b/g,'amps').replace(/\bW\b/g,'watts')
+    .replace(/·/g,',').replace(/×/g,'by').replace(/°/g,' degrees');
+}
+function readText() {
+  const toolName=state.tool==='red'?'Red probe':state.tool==='black'?'COM probe':names[state.tool];
+  const context=state.tool?toolName+'. Choose a board hole.':state.hint?L.hint:
+    spoken($('part-name').textContent)+'. '+spoken($('part-values').textContent)+'.';
+  const meter=state.meter===0?'Meter off.':'Meter on '+meterNames[state.meter]+'. '+spoken(meterValue)+'.';
+  return context+' '+meter;
+}
+function action() {
+  if (state.hint) { state.hint=false;
+  $('hint').hidden=true;
+  }
+  circuitDirty=true;
+  Curio.tone(510,.035,.015);
+}
+function hole(c,r) { return {c:Math.max(0,Math.min(29,Math.round(c))),r:Math.max(0,Math.min(13,Math.round(r)))};
+}
+function same(a,b) { return a&&b&&a.c===b.c&&a.r===b.r;
+}
+function node(h) {
+  if (!h) return null;
+  if (h.r<2 || h.r>11) return 'rail'+h.r;
+  return (h.r<7?'a':'f')+h.c;
+}
+function xy(h) { return {x:71+h.c*28,y:63+h.r*28+(h.r>6?22:0)};
+}
+function label(h) { return (['+ top','− top','a','b','c','d','e','f','g','h','i','j','+ lower','− lower'][h.r])+' '+(h.c+1);
+}
+function makePart(type,h,opts={}) {
+  const a=hole(h.c,h.r);
+  const b=hole(h.c+4,h.r);
+  if (a.c===b.c) a.c=Math.max(0,b.c-4);
+  const p={id:state.nextId++,type,a,b,c:hole(a.c+2,a.r+3),cells:2,nine:false,reverse:false,
+    value:330,detent:18,wiper:50,on:false,colour:0,turns:200,core:false,stall:false,
+    omega:0,heat:0,R:1,glow:0,burned:false,angle:0,...opts};
+  if (type==='compass') p.b={...p.a};
+  state.parts.push(p);
+  return p;
+}
+function addWire(a,b,colour) {
+  if(state.wires.length>=150) {status('Mat holds 150 wires. Remove a wire to make room.');
+  return;
+  }
+  if (same(a,b)) { status('Choose a different hole.');
+  return;
+  }
+  state.wires.push({id:state.nextId++,type:'wire',a:{...a},b:{...b},colour:colour||['#d75a49','#343d40','#e6bd4d','#668fbd'][state.wires.length%4]});
+  state.jumpers=state.jumpers.filter(w=>!same(w.a,a)&&!same(w.a,b));
+  action();
+}
+function selected() { return state.parts.find(p=>p.id===state.selected)||state.wires.find(p=>p.id===state.selected);
+}
+function syncTool() {
+  document.querySelectorAll('.drawer').forEach(b=>b.setAttribute('aria-pressed',b.dataset.part===state.tool));
+  paintDirty=true;
+}
+function select(p) { state.selected=p?.id||null;
+state.tool=null;
+syncTool();
+state.heldLeg=null;
+showControls();
+updateReadouts();
+}
+function pickTool(type) {
+  state.tool=type;
+  state.first=null;
+  state.move=false;
+  state.heldLeg=null;
+  document.querySelectorAll('.drawer').forEach(b=>b.setAttribute('aria-pressed',b.dataset.part===type));
+  status(names[type]+': choose a hole on the board.');
+  canvas.focus({preventScroll:true});
+}
+function removeSelected() {
+  state.parts=state.parts.filter(p=>p.id!==state.selected);
+  state.wires=state.wires.filter(p=>p.id!==state.selected);
+  select(null);
+  action();
+  $('part-drawer').close();
+  canvas.focus({preventScroll:true});
+  status('Part removed.');
+}
+// ---------- SOLVER: conductance matrix, Norton sources and piecewise diode iteration ----------
+function gaussian(matrix,rhs) {
+  const n=rhs.length;
+  const a=matrix.map((r,i)=>[...r,rhs[i]]);
+  for (let k=0;k<n;k++) {
+    let pivot=k;
+    for(let i=k+1;i<n;i++) if(Math.abs(a[i][k])>Math.abs(a[pivot][k])) pivot=i;
+    [a[k],a[pivot]]=[a[pivot],a[k]];
+    const d=a[k][k];
+    if(Math.abs(d)<1e-18) continue;
+    for(let j=k;j<=n;j++) a[k][j]/=d;
+    for(let i=k+1;i<n;i++) {
+      const f=a[i][k];
+      if(!f) continue;
+      for(let j=k;j<=n;j++) a[i][j]-=f*a[k][j];
+    }
+  }
+  const v=new Float64Array(n);
+  for(let i=n-1;i>=0;i--) {
+    let x=a[i][n];
+    for(let j=i+1;j<n;j++) x-=a[i][j]*v[j];
+    v[i]=Number.isFinite(x)?x:0;
+  }
+  return v;
+}
+function solveNetwork(edges,extraNodes=[],test=null) {
+  const nodes=[...new Set([...edges.flatMap(e=>[e.a,e.b]),...extraNodes].filter(x=>x!==null))];
+  const ix=new Map(nodes.map((n,i)=>[n,i]));
+  let volts=new Float64Array(nodes.length);
+  const active=new Map();
+  let passes=0;
+  for(;passes<20;passes++) {
+    const A=nodes.map((_,i)=>nodes.map((__,j)=>i===j?1e-9:0));
+    const z=new Float64Array(nodes.length);
+    for(const e of edges) {
+      const i=ix.get(e.a),j=ix.get(e.b);
+      let g=1/e.R,emf=e.emf||0;
+      if(e.diode) {
+        const on=active.get(e)??e.wasOn??false;
+        if(!on) {g=1e-12;
+        emf=0;
+        } else emf=-e.vf;
+      }
+      A[i][i]+=g;
+      A[j][j]+=g;
+      A[i][j]-=g;
+      A[j][i]-=g;
+      z[i]-=emf*g;
+      z[j]+=emf*g;
+    }
+    if(test) { z[ix.get(test.a)]+=.001;
+    z[ix.get(test.b)]-=.001;
+    }
+    volts=gaussian(A,z);
+    let changed=false;
+    for(const e of edges) if(e.diode) {
+      const on=volts[ix.get(e.a)]-volts[ix.get(e.b)]>e.vf;
+      if(on!==(active.get(e)??e.wasOn??false)) changed=true;
+      active.set(e,on);
+    }
+    if(!changed) break;
+  }
+  const voltage=h=>volts[ix.get(typeof h==='string'?h:node(h))]??0;
+  const results=new Map();
+  for(const e of edges) {
+    const v=voltage(e.a)-voltage(e.b);
+    const i=e.diode ? (active.get(e)?Math.max(0,(v-e.vf)/e.R):0) : (v+(e.emf||0))/e.R;
+    results.set(e.key,{v,i,p:e.source?Math.abs(i*v):Math.abs(i*v),edge:e});
+    if(e.part&&e.diode) e.part.diodeOn=active.get(e);
+  }
+  return {results,voltage,nodes,edges,passes};
+}
+function connected(net,a,b) {
+  if(a===null||b===null) return false;
+  if(a===b) return true;
+  const seen=new Set([a]);
+  for(const x of seen) for(const e of net.edges) {
+    if(e.R>1e9||e.meter||e.diode&&!e.part?.diodeOn) continue;
+    if(e.a===x) seen.add(e.b);
+    if(e.b===x) seen.add(e.a);
+  }
+  return seen.has(b);
+}
+// ---------- PART MODELS: all voltages and currents come from the solver ----------
+function partEdges(cold=false) {
+  const edges=[];
+  const add=(p,R,emf=0,suffix='',a=p.a,b=p.b,extra={})=>edges.push({a:node(a),b:node(b),R:Math.max(.01,R),emf,
+    key:String(p.id)+suffix,part:p,...extra});
+  for(const w of state.wires) add(w,.01);
+  for(const p of state.parts) {
+    if(p.burned||p.type==='compass') continue;
+    switch(p.type) {
+      case 'battery': if(!cold) add(p,p.nine?1.5:.15*p.cells,-(p.reverse?-1:1)*(p.nine?9:1.5*p.cells),'',p.a,p.b,{source:true});
+      break;
+      case 'bulb': add(p,cold?1:p.R);
+      break;
+      case 'led': add(p,10,0,'',p.a,p.b,{diode:true,vf:[2,2.1,2.2,3][p.colour],wasOn:p.diodeOn});
+      break;
+      case 'resistor': add(p,p.value);
+      break;
+      case 'pot': add(p,10000*p.wiper/100,0,'',p.a,p.c);
+      add(p,10000*(1-p.wiper/100),0,'b',p.c,p.b);
+      break;
+      case 'switch': add(p,.01,0,'',p.a,p.on?p.c:p.b);
+      break;
+      case 'push': if(p.on) add(p,.01);
+      break;
+      case 'motor': add(p,2,cold?0:-.0022*p.omega);
+      break;
+      case 'buzzer': add(p,100);
+      break;
+      case 'coil': add(p,4);
+      break;
+    }
+  }
+  return edges;
+}
+function simulate(dt) {
+  metrics.solves++;
+  modelMoving=false;
+  const edges=partEdges();
+  const [red,black]=state.probes.map(node);
+  if(red!==null&&black!==null) {
+    if(state.meter===1) edges.push({a:red,b:black,R:1e7,key:'meter',meter:true});
+    if(state.meter===3||state.meter===2&&state.fuse) {
+      edges.push({a:red,b:black,R:state.meter===3?.01:.1,key:'meter',meter:true});
+    }
+  }
+  lastSolve=solveNetwork(edges,[red,black]);
+  readings=lastSolve.results;
+  const mi=readings.get('meter');
+  if(state.meter===2&&state.fuse&&mi&&Math.abs(mi.i)>.2) {
+    state.fuse=false;
+    $('fuse').textContent='FUSE OPEN · tap to replace';
+    status('Fuse open: over 200 mA. Use A for bulbs.');
+    circuitDirty=true;
+    modelMoving=true;
+  }
+  for(const p of state.parts) {
+    const r=readings.get(String(p.id))||{v:0,i:0,p:0};
+    p.v=r.v;
+    p.current=r.i;
+    p.power=r.p;
+    if(p.type==='bulb'&&!p.burned) {
+      const target=Math.min(10,1+9*Math.sqrt(r.p/.9));
+      if(Math.abs(target-p.R)>1e-5||Math.abs(Math.min(1,r.p/.9)-(p.glow||0))>1e-5||p.heat>0)modelMoving=true;
+      p.R+=(target-p.R)*(1-Math.exp(-dt/.08));
+      p.glow=((p.glow||0)+(Math.min(1,r.p/.9)-(p.glow||0))*(1-Math.exp(-dt/.08)));
+      p.heat=r.p>2?p.heat+dt:Math.max(0,p.heat-dt*2);
+      if(p.heat>.5) burn(p);
+    }
+    if(p.type==='led'&&!p.burned) {
+      if(Math.abs(r.i)>.05||p.heat>0)modelMoving=true;
+      p.heat=Math.abs(r.i)>.05?p.heat+dt:Math.max(0,p.heat-dt*2);
+      if(p.heat>.2) burn(p);
+    }
+    if(p.type==='motor') {
+      if(p.stall) p.omega=0;
+      else {
+        const sign=Math.sign(p.omega)||Math.sign(r.v);
+        const torqueCurrent=r.i-.15*sign;
+        if(Math.abs(torqueCurrent)>.000001)modelMoving=true;
+        p.omega+=torqueCurrent*dt*7000;
+        if(Math.sign(p.omega)!==sign&&Math.abs(r.v)<.3) p.omega=0;
+        p.omega=Math.max(-4000,Math.min(4000,p.omega));
+      }
+    }
+    if(p.type==='coil') p.field=MU0*p.turns*r.i/(2*Math.sqrt(.01**2+.02**2))*(p.core?100:1)*1000;
+  }
+  const isShort=state.parts.some(p=>p.type==='battery'&&Math.abs(p.current)>3);
+  shortDuration=isShort?shortDuration+dt:0;
+  const sustainedShort=isShort&&shortDuration>.08;
+  if(isShort&&!sustainedShort)modelMoving=true;
+  if(sustainedShort&&!shortActive) {
+    status(L.short);
+    V.say('short',{kind:'event',valid:()=>state.parts.some(p=>p.type==='battery'&&Math.abs(p.current)>3)});
+  }
+  shortActive=sustainedShort;
+  compassFields();
+}
+function replaceBurned(p) {
+  p.burned=false;
+  p.heat=0;
+  p.R=1;
+  delete p.burnAt;
+  showControls();
+  action();
+}
+function burn(p) { p.burned=true;
+p.current=0;
+p.glow=0;
+p.burnAt=clock;
+status(L.burn);
+V.say('burn',{kind:'event',valid:()=>state.parts.includes(p)&&p.burned});
+Curio.tone(85,.08,.045,'triangle');
+if(state.selected===p.id)showControls();
+circuitDirty=true;
+}
+// ---------- COMPASS: signed local DC field plus 20 microtesla north ----------
+function compassFields() {
+  for(const p of state.parts.filter(p=>p.type==='compass')) {
+    const pt=xy(p.a);
+    let bx=0,by=20e-6;
+    for(const q of [...state.parts,...state.wires]) {
+      if(q===p||q.type==='compass') continue;
+      const a=xy(q.a),b=xy(q.b),centre=q.type==='coil'?partCentre(q):{x:(a.x+b.x)/2,y:(a.y+b.y)/2};
+      const cx=centre.x,cy=centre.y;
+      const dx=pt.x-cx,dy=pt.y-cy;
+      const dist=Math.max(.01,Math.hypot(dx,dy)/28*.00254);
+      const i=readings.get(String(q.id))?.i||0;
+      if(q.type==='coil') {
+        // Dipole far field: B = mu0/(4 pi r^3) [3(m dot rhat)rhat - m].
+        // Softened inside one coil radius; use the finite-solenoid field on its label.
+        const length=Math.max(1,Math.hypot(b.x-a.x,b.y-a.y));
+        const moment=q.turns*i*PI*.01**2*(q.core?100:1);
+        const mx=moment*(b.x-a.x)/length,my=-moment*(b.y-a.y)/length;
+        const rx=dx*.00254/28,ry=-dy*.00254/28;
+        const distance=Math.max(.01,Math.hypot(rx,ry));
+        const ux=rx/distance,uy=ry/distance,dot=mx*ux+my*uy;
+        const factor=MU0/(4*PI*distance**3);
+        bx+=factor*(3*dot*ux-mx);
+        by+=factor*(3*dot*uy-my);
+      } else if(q.type==='wire') {
+        // Biot-Savart over the drawn jumper, with the compass 1 cm above the wire plane.
+        const scale=.00254/28;
+        for(let j=0;j<24;j++) {
+          const v=wireCurve(a,b,j/24),w=wireCurve(a,b,(j+1)/24);
+          const rx=(pt.x-(v.x+w.x)/2)*scale,ry=-(pt.y-(v.y+w.y)/2)*scale,rz=.01;
+          const dlx=(w.x-v.x)*scale,dly=-(w.y-v.y)*scale;
+          const f=MU0*i/(4*PI*(rx*rx+ry*ry+rz*rz)**1.5);
+          bx+=dly*rz*f;
+          by-=dlx*rz*f;
+        }
+      }
+    }
+    p.angle=Math.atan2(bx,by)*180/PI;
+  }
+}
+function meterRead() {
+  if(state.meter===0) return 'OFF';
+  const [a,b]=state.probes.map(node);
+  if(a===null||b===null) return '- -';
+  if(state.meter===2&&!state.fuse) return 'FUSE';
+  if(state.meter>=4) {
+    if(Math.abs(lastSolve.voltage(a)-lastSolve.voltage(b))>.02) return 'LIVE';
+    const cold=solveNetwork(partEdges(true),[a,b],{a,b});
+    if(!connected(cold,a,b)) return 'OL';
+    const r=Math.max(0,(cold.voltage(a)-cold.voltage(b))/.001);
+    if(state.meter===5&&r<30&&clock-lastBeep>.6) { Curio.tone(920,.08,.018);
+    lastBeep=clock;
+    }
+    return engineering(r,'Ω',19.99e6);
+  }
+  if(state.meter===1&&!connected(lastSolve,a,b)) return '- -';
+  if(state.meter===2||state.meter===3) {
+    const occupied=new Set([...state.parts,...state.wires].filter(p=>p.type!=='compass').flatMap(p=>
+      [node(p.a),node(p.b),...(['pot','switch'].includes(p.type)?[node(p.c)]:[])]));
+    if(!occupied.has(a)||!occupied.has(b))return '- -';
+  }
+  const v=state.meter===1?lastSolve.voltage(a)-lastSolve.voltage(b):(readings.get('meter')?.i||0);
+  return engineering(v,state.meter===1?'V':'A',state.meter===1?1999:state.meter===2?.2:10);
+}
+function engineering(value,unit,max=Infinity) {
+  if(!Number.isFinite(value)||Math.abs(value)>max) return 'OL';
+  const x=Math.abs(value);
+  if(x<1e-8) return '0.00 '+unit;
+  let scale=1,prefix='';
+  if(unit==='Ω') { if(x>=1e6){scale=1e6;
+  prefix='M';
+  }else if(x>=1000){scale=1000;
+  prefix='k';
+  } }
+  else if(x<.001){scale=1e-6;
+  prefix='μ';
+  }else if(x<1){scale=.001;
+  prefix='m';
+  }
+  return (value/scale).toPrecision(3)+' '+prefix+unit;
+}
+function updateReadouts() {
+  if(!lastSolve) return;
+  const value=meterRead();
+  if($('meter-reading').textContent!==value) $('meter-reading').textContent=value;
+  meterValue=value;
+  $('meter-caption').textContent=state.meter===0?'DC · 1999 COUNTS':meterNames[state.meter].toUpperCase();
+  const p=selected();
+  if(value!==settleValue){settleValue=value;settleSince=clock;}
+  if(clock-settleSince>=1&&value!==announcedValue){announcedValue=value;announce(state.meter===0?'Meter off.':spoken(value));}
+  if(!p) { $('part-name').textContent='BREADBOARD · 30 columns';
+  $('part-values').textContent='2.54 mm pitch';
+  $('part-extra').textContent='Select a part to measure it.';
+  return;
+  }
+  let r=readings.get(String(p.id))||{v:0,i:0,p:0};
+  if(p.type==='pot') r={v:lastSolve.voltage(p.a)-lastSolve.voltage(p.b),i:r.i,
+    p:r.p+(readings.get(String(p.id)+'b')?.p||0)};
+  $('part-name').textContent=partTitle(p)+(p.burned?' · × OPEN':'');
+  if($('part-drawer').open)$('part-drawer-title').textContent=partTitle(p);
+  const tagNumber=(v,u)=>engineering(Math.abs(v)<1e-6?0:v,u);
+  $('part-values').textContent=p.type==='compass'?Math.round(p.angle)+'° from north':
+    tagNumber(r.v,'V')+' · '+(p.type==='battery'?'supplies '+tagNumber(Math.abs(r.i),'A'):tagNumber(r.i,'A'))+
+    ' · '+tagNumber(r.p,'W')+(p.type==='motor'?' input':'');
+  let extra='';
+  if(p.type==='battery') {
+    const amps=Math.abs(r.i),minutes=amps>1e-7?Math.round((p.nine?.5:2)/amps*6)*10:0;
+    extra=Math.abs(r.v).toFixed(2)+' V · '+(amps>.00001?'runs about '+Math.floor(minutes/60)+' h '+minutes%60+' min at this draw':'open circuit');
+    if(amps>3) extra='Short: '+amps.toFixed(1)+' A';
+  }
+  if(p.type==='motor') extra=Math.round(Math.abs(p.omega)*60/(2*PI)/100)*100+' rpm'+(p.stall?' · shaft held':'');
+  if(p.type==='coil') extra=(p.field||0).toFixed(2)+' mT · '+p.turns+' turns'+(p.core?' · iron':' · air');
+  if(p.type==='compass') extra='';
+  if(p.type==='pot') extra='Outer A-B · current at A';
+  $('part-extra').textContent=extra;
+}
+function partTitle(p) {
+  if(p.type==='battery') return p.nine?'9 V battery':p.cells+' × AA battery';
+  if(p.type==='resistor') return engineering(p.value,'Ω')+' resistor';
+  if(p.type==='led') return ['Red','Yellow','Green','Blue'][p.colour]+' LED';
+  return names[p.type];
+}
+// ---------- instrument controls ----------
+function controlButton(text,fn,id) {
+  const b=document.createElement('button');
+  b.textContent=text;
+  if(id) b.id=id;
+  b.onclick=()=>{fn();
+  action();
+  updateReadouts();
+  };
+  $('part-controls').append(b);
+  return b;
+}
+function rangeControl(text,min,max,value,fn,step=1,page=10) {
+  const l=document.createElement('label');
+  l.textContent=text;
+  const r=document.createElement('input');
+  r.type='range';
+  r.min=min;
+  r.max=max;
+  r.step=step;
+  r.value=value;
+  r.setAttribute('aria-label',text);
+  l.append(r);
+  $('part-controls').append(l);
+  const apply=()=>{
+    fn(+r.value);
+    action();
+    updateReadouts();
+    const p=selected();
+    const spokenValue=p.type==='pot'?p.wiper+' percent, '+spoken(engineering(p.wiper*100,'Ω'))+' to wiper':
+      p.type==='battery'?p.cells+' cells, '+p.cells*1.5+' volts':spoken(partTitle(p));
+    r.setAttribute('aria-valuetext',spokenValue);
+  };
+  r.oninput=apply;
+  r.onkeydown=e=>{
+    if(e.key==='PageUp'||e.key==='PageDown') {
+      e.preventDefault();
+      r.value=Math.max(min,Math.min(max,+r.value+(e.key==='PageUp'?page:-page)));
+      apply();
+    }
+  };
+  return r;
+}
+function showControls() {
+  const focused=$('part-controls').contains(document.activeElement)?document.activeElement:null;
+  const focusName=focused&&(focused.getAttribute('aria-label')||focused.textContent);
+  $('part-controls').replaceChildren();
+  const p=selected();
+  $('adjust-part').disabled=!p;
+  $('part-drawer-title').textContent=p?partTitle(p):'Part tag';
+  if(!p) return;
+  if(p.burned) controlButton('Replace',()=>replaceBurned(p),'replace-part');
+  if(p.type==='battery') {
+    const s=document.createElement('select');
+    s.setAttribute('aria-label','Battery pack');
+    s.innerHTML='<option value="aa">AA cells</option><option value="9">9 V pack</option>';
+    s.value=p.nine?'9':'aa';
+    s.onchange=()=>{p.nine=s.value==='9';
+    action();
+    showControls();
+    };
+    $('part-controls').append(s);
+    if(!p.nine) rangeControl('Cells',1,4,p.cells,v=>p.cells=v,1,1);
+    const b=controlButton('Reverse · F',()=>{p.reverse=!p.reverse;
+    b.setAttribute('aria-pressed',p.reverse);
+    });
+    b.setAttribute('aria-pressed',p.reverse);
+  }
+  if(p.type==='resistor') {
+    rangeControl('Resistance',0,48,p.detent,v=>{p.detent=v;
+    p.value=E12[v];
+    },1,12)
+      .setAttribute('aria-valuetext',spoken(partTitle(p)));
+  }
+  if(p.type==='pot') rangeControl('Wiper',0,100,p.wiper,v=>p.wiper=v);
+  if(p.type==='led') {
+    const s=document.createElement('select');
+    s.setAttribute('aria-label','LED colour');
+    s.innerHTML=['Red','Yellow','Green','Blue'].map((x,i)=>'<option value="'+i+'">'+x+'</option>').join('');
+    s.value=p.colour;
+    s.onchange=()=>{p.colour=+s.value;
+    action();
+    };
+    $('part-controls').append(s);
+    controlButton('Turn LED',()=>{[p.a,p.b]=[p.b,p.a];
+    });
+  }
+  if(p.type==='switch') {
+    const b=controlButton(p.on?'Contact C':'Contact B',()=>{p.on=!p.on;
+    b.textContent=p.on?'Contact C':'Contact B';
+    b.setAttribute('aria-pressed',p.on);
+    },'contact');
+    b.setAttribute('aria-pressed',p.on);
+  }
+  if(p.type==='motor') {
+    const b=controlButton(p.stall?'Release shaft · H':'Hold shaft · H',()=>{
+      p.latched=!p.latched;
+      p.stall=p.latched;
+      if(p.stall)p.omega=0;
+      b.setAttribute('aria-pressed',p.stall);
+      b.textContent=p.stall?'Release shaft · H':'Hold shaft · H';
+    },'hold-part');
+    b.setAttribute('aria-pressed',p.stall);
+  }
+  if(p.type==='push') {
+    const b=controlButton(p.type==='motor'?'Hold shaft · H':'Hold contact',()=>{},'hold-part');
+    const hold=on=>{if(p.type==='motor'){p.stall=on;
+    if(on)p.omega=0;
+    }else p.on=on;
+    b.setAttribute('aria-pressed',on);
+    circuitDirty=true;
+    };
+    b.onpointerdown=e=>{e.preventDefault();
+    b.setPointerCapture(e.pointerId);
+    hold(true);
+    };
+    b.onpointerup=b.onpointercancel=()=>hold(false);
+    b.onlostpointercapture=()=>hold(false);
+    b.onkeydown=e=>{if(e.code==='Space'||e.key==='Enter'){e.preventDefault();
+    hold(true);
+    }};
+    b.onkeyup=e=>{if(e.code==='Space'||e.key==='Enter'){e.preventDefault();
+    hold(false);
+    }};
+    b.onblur=()=>hold(false);
+  }
+  if(p.type==='coil') {
+    const s=document.createElement('select');
+    s.setAttribute('aria-label','Coil turns');
+    s.innerHTML=[50,100,200,400].map(n=>'<option>'+n+'</option>').join('');
+    s.value=p.turns;
+    s.onchange=()=>{p.turns=+s.value;
+    action();
+    };
+    $('part-controls').append(s);
+    const b=controlButton('Iron core · I',()=>{p.core=!p.core;
+    b.setAttribute('aria-pressed',p.core);
+    });
+    b.setAttribute('aria-pressed',p.core);
+  }
+  controlButton('Move',()=>{
+    $('part-drawer').close();
+    state.move=true;
+    state.cursor={...p.a};
+    canvas.focus({preventScroll:true});
+    status('Arrows to move; Enter to put down.');
+  });
+  if(p.type!=='wire'&&p.type!=='compass') controlButton('Turn · T',()=>turnPart(p));
+  controlButton('Remove',removeSelected);
+  if(focusName) {
+    const choices=[...$('part-controls').querySelectorAll('button,input,select')];
+    const next=choices.find(b=>(b.getAttribute('aria-label')||b.textContent)===focusName)||choices[0];
+    next?.focus({preventScroll:true});
+  }
+}
+function turnPart(p) {
+  const a=p.a;
+  const result={};
+  for(const leg of ['b',...(['pot','switch'].includes(p.type)?['c']:[])]) {
+    const d={c:p[leg].c-a.c,r:p[leg].r-a.r};
+    const c=a.c-d.r,r=a.r+d.c;
+    if(c<0||c>29||r<0||r>13){status('Move the part inward before turning.');
+    return;
+    }
+    result[leg]=hole(c,r);
+  }
+  Object.assign(p,result);
+  action();
+}
+function setMeter(n) {
+  state.meter=n;
+  document.querySelectorAll('[data-meter]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.meter===n));
+  $('dial').style.transform='rotate('+(-135+n*54)+'deg)';
+  $('dial').setAttribute('aria-label','Meter dial: '+meterNames[n]+'. Press to turn.');
+  $('meter-select').selectedIndex=n;
+  circuitDirty=true;
+  status('Meter on '+meterNames[n]+'.');
+  action();
+}
+document.querySelectorAll('[data-meter]').forEach(b=>b.onclick=()=>setMeter(+b.dataset.meter));
+$('meter-select').onchange=e=>setMeter(e.target.selectedIndex);
+$('dial').onclick=()=>setMeter((state.meter+1)%6);
+$('dial').onkeydown=e=>{if(/^[0-5]$/.test(e.key)){e.preventDefault();
+setMeter(+e.key);
+}};
+function probeTool(i) {
+  state.tool=i===0?'red':'black';
+  syncTool();
+  state.first=null;
+  status((i===0?'Red':'COM')+' probe: choose a hole.');
+}
+for(const [id,i] of [['red-probe',0],['black-probe',1]]) {
+  $(id).onclick=()=>probeTool(i);
+  $(id).onkeydown=e=>{
+    if(e.key.startsWith('Arrow')) {
+      e.preventDefault();
+      state.cursor=shiftHole(state.probes[i]||state.cursor,e.key);
+      state.probes[i]={...state.cursor};
+      ensureCursor();
+      circuitDirty=true;
+      announce('Probe '+label(state.cursor));
+    }
+    if(e.key==='Enter') {e.preventDefault();
+    state.probes[i]={...state.cursor};
+    circuitDirty=true;
+    announce('Probe attached '+label(state.cursor));
+    }
+  };
+}
+$('flow').onclick=()=>{
+  state.electrons=!state.electrons;
+  $('flow').textContent=state.electrons?'● − → + electrons':'● + → − current';
+  $('flow').setAttribute('aria-pressed',state.electrons);
+  action();
+};
+$('fuse').onclick=()=>{
+  state.fuse=true;
+  $('fuse').textContent='FUSE · 200 mA · intact';
+  action();
+  status('Fresh 200 mA fuse.');
+};
+const openDialog=id=>{$(id).showModal();
+V.hush();
+};
+$('manual').onclick=()=>openDialog('manual-drawer');
+$('notebook').onclick=()=>{buildSlots();
+openDialog('notebook-drawer');
+};
+$('close-manual').onclick=()=>$('manual-drawer').close();
+$('close-notebook').onclick=()=>$('notebook-drawer').close();
+$('adjust-part').onclick=()=>{
+  if(!selected())return;
+  $('drawer-controls').append($('part-controls'));
+  document.querySelector('.work').append($('part-drawer'));
+  $('part-drawer').show();
+  $('adjust-part').setAttribute('aria-expanded','true');
+  requestAnimationFrame(centreAdjustment);
+};
+$('close-part').onclick=()=>$('part-drawer').close();
+$('part-drawer').onclose=()=>{
+  document.querySelector('.inspector').append($('part-controls'));
+  $('adjust-part').setAttribute('aria-expanded','false');
+};
+$('clear').onclick=()=>openDialog('confirm-drawer');
+$('clear-no').onclick=()=>$('confirm-drawer').close();
+$('clear-yes').onclick=()=>{
+  reset(false);
+  $('confirm-drawer').close();
+  $('notebook-drawer').close();
+  status('Mat cleared.');
+};
+function snapshot() {
+  return {version:1,parts:state.parts,wires:state.wires,probes:state.probes,meter:state.meter,nextId:state.nextId,fuse:state.fuse};
+}
+function restore(data) {
+  if(data.version!==1||!Array.isArray(data.parts)||!Array.isArray(data.wires)||data.parts.length>60||data.wires.length>150) throw Error('Invalid circuit');
+  const validHole=h=>h&&Number.isInteger(h.c)&&h.c>=0&&h.c<30&&Number.isInteger(h.r)&&h.r>=0&&h.r<14;
+  for(const p of [...data.parts,...data.wires]) {
+    if(!names[p.type]||!validHole(p.a)||!validHole(p.b)) throw Error('Invalid part');
+  }
+  state.parts=data.parts;
+  state.wires=data.wires;
+  state.jumpers=[];
+  state.probes=data.probes||[null,null];
+  state.nextId=data.nextId;
+  state.fuse=data.fuse!==false;
+  state.parts.forEach(p=>{if(p.type==='push')p.on=false;
+  p.stall=false;
+  p.latched=false;
+  });
+  state.selected=null;
+  state.tool=null;
+syncTool();
+  state.first=null;
+  setMeter(data.meter||0);
+  showControls();
+  action();
+  $('fuse').textContent=state.fuse?'FUSE · 200 mA · intact':'FUSE OPEN · tap to replace';
+}
+function buildSlots() {
+  $('slots').replaceChildren();
+  for(let n=1;n<=4;n++) {
+    const row=document.createElement('div');
+    row.className='slot';
+    const name=document.createElement('span');
+    name.textContent='Slot '+n;
+    const save=document.createElement('button');
+    save.textContent='Save '+n;
+    const load=document.createElement('button');
+    load.textContent='Open '+n;
+    save.onclick=()=>{
+      try{localStorage.setItem('curio-class-circuit-'+n,JSON.stringify(snapshot()));
+      $('save-note').textContent='Slot '+n+' saved on this device.';
+      }
+      catch{ $('save-note').textContent='Storage unavailable. This circuit is still on the mat.';
+      }
+    };
+    load.onclick=()=>{
+      try{
+        const s=localStorage.getItem('curio-class-circuit-'+n);
+        if(!s){$('save-note').textContent='Slot '+n+' is empty.';
+        return;
+        }
+        restore(JSON.parse(s));
+        $('notebook-drawer').close();
+        status('Opened slot '+n+'.');
+      }catch{$('save-note').textContent='Could not open that circuit.';
+      }
+    };
+    row.append(name,save,load);
+    $('slots').append(row);
+  }
+}
+const setupNames=['One bulb','Two in a row','Two side by side','LED + 330 Ω · 9 V','Staircase light','Oersted wire','Coil + compass','Motor + push button'];
+function reset(opening=true) {
+  shortActive=false;
+  shortDuration=0;
+  $('part-drawer').close();
+  state.parts=[];
+  state.wires=[];
+  state.jumpers=[];
+  state.probes=[null,null];
+  state.nextId=1;
+  state.selected=null;
+  state.first=null;
+  state.tool=null;
+syncTool();
+  state.fuse=true;
+  $('fuse').textContent='FUSE · 200 mA · intact';
+  state.heldLeg=null;
+  state.move=false;
+  readings=new Map();
+  if(!opening){state.hint=false;
+  $('hint').hidden=true;
+  }
+  if(opening) {
+    const b=makePart('battery',hole(4,5));
+    makePart('bulb',hole(14,5));
+    state.selected=b.id;
+    state.jumpers=[{a:b.a,b:hole(11,6),loose:true,colour:'#d75a49'},
+      {a:b.b,b:hole(15,7),loose:true,colour:'#343d40'}];
+  }
+  showControls();
+  circuitDirty=true;
+}
+function loadSetup(n) {
+  reset(false);
+  action();
+  const b=makePart('battery',hole(3,4));
+  const wire=(a,z)=>addWire(a,z);
+  if(n===0||n===1||n===2) {
+    const l=makePart('bulb',hole(13,4));
+    if(n===0){wire(b.a,l.a);
+    wire(l.b,b.b);
+    }
+    else {
+      const l2=makePart('bulb',hole(n===1?22:13,n===1?4:10));
+      if(n===1){wire(b.a,l.a);
+      wire(l.b,l2.a);
+      wire(l2.b,b.b);
+      }
+      else {wire(b.a,l.a);
+      wire(l.b,b.b);
+      wire(l.a,l2.a);
+      wire(l.b,l2.b);
+      }
+    }
+    select(l);
+  }
+  if(n===3) {
+    b.nine=true;
+    const r=makePart('resistor',hole(12,4));
+    const d=makePart('led',hole(22,4));
+    wire(b.a,r.a);
+    wire(r.b,d.a);
+    wire(d.b,b.b);
+    select(d);
+  }
+  if(n===4) {
+    const s=makePart('switch',hole(11,4));
+    const t=makePart('switch',hole(21,4));
+    const l=makePart('bulb',hole(21,10));
+    wire(b.a,s.a);
+    wire(s.b,t.b);
+    wire(s.c,t.c);
+    wire(t.a,l.a);
+    wire(l.b,b.b);
+    select(s);
+  }
+  if(n===5) {
+    const s=makePart('switch',hole(10,4),{on:true});
+    const l=makePart('bulb',hole(3,10));
+    makePart('compass',hole(22,6));
+    wire(b.a,s.a);
+    wire(s.c,hole(0,0));
+    wire(hole(22,0),hole(22,13));
+    wire(hole(0,13),l.a);
+    wire(l.b,b.b);
+    select(s);
+  }
+  if(n===6) {
+    const c=makePart('coil',hole(3,10),{turns:50});
+    const s=makePart('switch',hole(13,4),{on:true});
+    makePart('compass',hole(28,9));
+    wire(b.a,s.a);
+    wire(s.c,c.a);
+    wire(c.b,b.b);
+    select(c);
+  }
+  if(n===7) {
+    const m=makePart('motor',hole(14,5));
+    const u=makePart('push',hole(24,5));
+    wire(b.a,m.a);
+    wire(m.b,u.a);
+    wire(u.b,b.b);
+    select(u);
+  }
+  $('notebook-drawer').close();
+  centreSetup();
+  status(setupNames[n]+' on the mat.');
+}
+setupNames.forEach((name,n)=>{
+  const b=document.createElement('button');
+  b.textContent=name;
+  b.id='setup-'+n;
+  b.onclick=()=>loadSetup(n);
+  $('setups').append(b);
+});
+const drawerArt={
+  wire:'<path d="M8 24C6 3 44 3 49 22" fill="none" stroke="#161f19" stroke-width="6"/><path d="M8 24C6 3 44 3 49 22" fill="none" stroke="#d2674b" stroke-width="3"/>',
+  battery:'<rect x="7" y="5" width="45" height="23" rx="3" fill="#303c31" stroke="#b6b89b"/><path d="M12 10h14v13H12zm20 0h14v13H32z" fill="#c5b580"/><path d="M17 13h5m-3-2v5m18-3h5m-3-2v5" stroke="#3a4c38"/>',
+  bulb:'<path d="M28 24v6m-5 0h12" stroke="#a0ad98"/><circle cx="29" cy="13" r="11" fill="#eef5d04a" stroke="#d0d5b7"/><path d="M22 25v-9l4-3 4 5 5-5v12" fill="none" stroke="#e9ce7d"/><path d="M23 25h12v4H23" fill="#929e8b"/>',
+  led:'<path d="M22 21v12m12-12v10" stroke="#c7c8a4"/><path d="M19 22V13a9 9 0 0118 0v9z" fill="#dd6c54" stroke="#ecad86"/><path d="M22 9v8" stroke="#fff1bd"/>',
+  resistor:'<path d="M2 17h54" stroke="#c1bea0" stroke-width="2"/><rect x="15" y="9" width="30" height="16" rx="5" fill="#d1b781"/><path d="M21 9v16m6-16v16m6-16v16" stroke="#a44733" stroke-width="3"/><path d="M40 10v14" stroke="#7c692c" stroke-width="2"/>',
+  pot:'<path d="M16 17v14m13-14v16m13-16v14" stroke="#b3b49a"/><rect x="12" y="5" width="35" height="24" fill="#415c48" stroke="#9db395"/><circle cx="29" cy="16" r="11" fill="#1b3526" stroke="#9ba98e"/><path d="M29 16l6-8" stroke="#e3d397" stroke-width="3"/>',
+  switch:'<path d="M16 18v13m13-13v15m13-15v13" stroke="#b9bba1"/><rect x="10" y="5" width="39" height="20" rx="2" fill="#8b9c82"/><path d="M16 10h26v9H16" fill="#162e22"/><rect x="16" y="8" width="11" height="16" fill="#455748" stroke="#c3c8a7"/>',
+  push:'<path d="M13 20v11m30-11v11" stroke="#c5c5aa"/><rect x="10" y="9" width="37" height="19" rx="2" fill="#8b9681"/><circle cx="28" cy="16" r="12" fill="#c47a50" stroke="#ecc29a"/>',
+  motor:'<rect x="8" y="9" width="42" height="23" rx="6" fill="#a0ae98" stroke="#d0d9b8"/><path d="M29 10V1" stroke="#c0c9af" stroke-width="3"/><circle cx="29" cy="6" r="7" fill="#35543f" stroke="#9baa8b"/><path d="M13 13v12m32-12v12" stroke="#3f5b44" stroke-width="4"/>',
+  buzzer:'<ellipse cx="29" cy="25" rx="18" ry="6" fill="#1a3023"/><ellipse cx="29" cy="14" rx="18" ry="12" fill="#4f664d" stroke="#b4bfa0"/><circle cx="29" cy="14" r="4" fill="#152d1f"/>',
+  coil:'<path d="M3 18h53" stroke="#9ba58c" stroke-width="7"/><path d="M12 27V8q2-9 5 0v18q2 8 5 0V8q2-9 5 0v18q2 8 5 0V8q2-9 5 0v18q2 8 5 0V8q2-9 5 0v18" fill="none" stroke="#d49b55" stroke-width="3"/>',
+  compass:'<circle cx="29" cy="17" r="15" fill="#e6dec0" stroke="#b79a5f" stroke-width="2"/><path d="M29 4l-5 14 5-3 5 3z" fill="#b84632"/><path d="M29 30l-5-14 5 3 5-3z" fill="#4a7481"/>'
+};
+const drawerLabels={battery:'Battery',pot:'Pot.',switch:'Switch',push:'Button',motor:'Motor'};
+let drawerGrab=null;
+addEventListener('pointerdown',e=>{
+  const b=e.target.closest('.drawer');
+  if(!b)return;
+  drawerGrab={button:b,type:b.dataset.part,x:e.clientX,y:e.clientY,moved:false};
+},true);
+addEventListener('pointermove',e=>{
+  if(!drawerGrab||!e.buttons)return;
+  if(Math.hypot(e.clientX-drawerGrab.x,e.clientY-drawerGrab.y)<5)return;
+  drawerGrab.moved=true;
+  let g=$('drag-ghost');
+  if(!g){
+    g=document.createElement('div');
+    g.id='drag-ghost';
+    g.className='drawer-ghost';
+    g.innerHTML='<svg viewBox="0 0 58 34">'+drawerArt[drawerGrab.type]+'</svg>';
+    document.body.append(g);
+  }
+  g.style.left=(e.clientX-37)+'px';
+  g.style.top=(e.clientY-27)+'px';
+},true);
+addEventListener('pointerup',e=>{
+  if(!drawerGrab)return;
+  const {button,type,moved}=drawerGrab,r=canvas.getBoundingClientRect();
+  if(moved){
+    button.dataset.dragged='yes';
+    if(e.clientY>=r.top&&e.clientY<=r.bottom&&e.clientX>=r.left&&e.clientX<=r.right){
+      state.tool=type;
+      placeAt(screenHole(e.clientX,e.clientY));
+    }
+  }
+  drawerGrab=null;
+  $('drag-ghost')?.remove();
+},true);
+const cancelDrawer=()=>{drawerGrab=null;$('drag-ghost')?.remove();};
+addEventListener('pointercancel',cancelDrawer,true);
+addEventListener('blur',cancelDrawer);
+for(const [key,type] of Object.entries(shortcuts)) {
+  const b=document.createElement('button');
+  b.className='drawer';
+  b.dataset.part=type;
+  b.id='part-'+type;
+  b.setAttribute('aria-label',names[type]+', '+key.toUpperCase());
+  b.setAttribute('aria-pressed','false');
+  b.innerHTML='<span class="mini" aria-hidden="true"><svg width="58" height="33" viewBox="0 0 58 34">'+drawerArt[type]+'</svg></span>'
+    +(drawerLabels[type]||names[type])+'<small>'+key.toUpperCase()+'</small>';
+  b.onclick=()=>{if(b.dataset.dragged!=='yes')pickTool(type);
+  b.dataset.dragged='no';
+  };
+  b.onpointerdown=e=>{e.preventDefault();
+  b.setPointerCapture(e.pointerId);
+  b.dataset.startX=e.clientX;
+  b.dataset.startY=e.clientY;
+  };
+  $('drawers').append(b);
+}
+// ---------- pointer and keyboard wiring ----------
+function resize() {
+  paintDirty=true;
+  const r=canvas.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);
+  canvas.width=Math.round(r.width*dpr);
+  canvas.height=Math.round(r.height*dpr);
+  view.w=r.width;
+  view.h=r.height;
+  view.s=Math.max(20/28,Math.min(r.width/955,(r.height-35)/510))*state.zoom;
+  view.x=(r.width<600?r.width/2-xy(hole(11,5)).x*view.s:(r.width-955*view.s)/2)+state.pan.x;
+  view.y=Math.max(34,(r.height-510*view.s)/2)+state.pan.y;
+  if(r.height<250)view.y=r.height*.6-xy(hole(0,5)).y*view.s+state.pan.y;
+}
+new ResizeObserver(()=>{resize();if($('part-drawer').open)centreAdjustment();}).observe(canvas);
+function centreAdjustment() {
+  const p=selected();
+  if(!p)return;
+  const centre=partCentre(p);
+  const loads=state.parts.filter(q=>q.type==='led'||q.type==='bulb');
+  loads.sort((a,b)=>Math.hypot(partCentre(a).x-centre.x,partCentre(a).y-centre.y)-
+    Math.hypot(partCentre(b).x-centre.x,partCentre(b).y-centre.y));
+  const load=loads[0]?partCentre(loads[0]):centre;
+  state.pan={x:0,y:0};
+  resize();
+  state.pan.x=view.w/2-view.x-(centre.x+load.x)/2*view.s;
+  state.pan.y=view.h/2-view.y-(centre.y+load.y)/2*view.s;
+  resize();
+}
+function centreSetup() {
+  const points=state.parts.flatMap(p=>[xy(p.a),xy(p.b)]);
+  if(!points.length)return;
+  const x=(Math.min(...points.map(p=>p.x))+Math.max(...points.map(p=>p.x)))/2;
+  const y=(Math.min(...points.map(p=>p.y))+Math.max(...points.map(p=>p.y)))/2;
+  state.pan={x:0,y:0};
+  resize();
+  state.pan.x=view.w/2-view.x-x*view.s;
+  state.pan.y=view.h/2-view.y-y*view.s;
+  resize();
+}
+function worldPoint(clientX,clientY) {
+  const r=canvas.getBoundingClientRect();
+  return {x:(clientX-r.left-view.x)/view.s,y:(clientY-r.top-view.y)/view.s};
+}
+function screenHole(x,y) {
+  const p=worldPoint(x,y);
+  const rr=p.y>63+6.5*28+11?(p.y-85)/28:(p.y-63)/28;
+  return hole((p.x-71)/28,rr);
+}
+function screenXY(h) {
+  const p=xy(h),r=canvas.getBoundingClientRect();
+  return {x:r.left+view.x+p.x*view.s,y:r.top+view.y+p.y*view.s};
+}
+function hit(p) {
+  for(const [i,h] of state.probes.entries()) if(h&&Math.hypot(p.x-xy(h).x,p.y-xy(h).y)<13) return {probe:i};
+  for(const jumper of state.jumpers) {
+    const tip=jumper.loose?looseTip(jumper):xy(jumper.b);
+    if(Math.hypot(p.x-tip.x,p.y-tip.y)<15)return {jumper};
+  }
+  for(const q of [...state.parts].reverse()) {
+    const a=xy(q.a),b=xy(q.b),m=partCentre(q);
+    const legs=['a','b',...(['pot','switch'].includes(q.type)?['c']:[])];
+    if(q.type!=='compass') for(const leg of legs) {
+      const pt=xy(q[leg]);
+      if(Math.hypot(p.x-pt.x,p.y-pt.y)<13) return {part:q,leg};
+    }
+    if(q.type==='compass'?Math.hypot(p.x-a.x,p.y-a.y)<36:Math.abs(p.x-m.x)<49&&Math.abs(p.y-m.y)<34) return {part:q};
+  }
+  for(const w of [...state.wires].reverse()) {
+    for(const leg of ['a','b']) if(Math.hypot(p.x-xy(w[leg]).x,p.y-xy(w[leg]).y)<12) return {part:w,leg};
+    const a=xy(w.a),b=xy(w.b),m=wireMid(a,b);
+    if(Math.hypot(p.x-m.x,p.y-m.y)<18) return {part:w};
+  }
+  return null;
+}
+function placeAt(h) {
+  const type=state.tool;
+  if(type==='red'||type==='black') {
+    state.probes[type==='red'?0:1]={...h};
+    state.tool=null;
+syncTool();
+    action();
+    status('Probe attached '+label(h));
+    return;
+  }
+  if(type==='wire') {
+    if(!state.first) {state.first={...h};
+    status('Wire starts '+label(h)+'. Choose other end.');
+    }
+    else {addWire(state.first,h);
+    state.first=null;
+    state.tool=null;
+syncTool();
+    status('Wire connected.');
+    }
+    return;
+  }
+  if(names[type]) {
+    if(state.parts.length>=60){status('Mat holds 60 parts. Remove a part to make room.');
+    return;
+    }
+    const p=makePart(type,h);
+    for(let i=0;i<state.rotation;i++)turnPart(p);
+    state.rotation=0;
+    select(p);
+    action();
+    status(partTitle(p)+' placed '+label(h));
+  }
+}
+canvas.onpointerdown=e=>{
+  e.preventDefault();
+  canvas.focus({preventScroll:true});
+  canvas.setPointerCapture(e.pointerId);
+  const p=worldPoint(e.clientX,e.clientY),h=screenHole(e.clientX,e.clientY),obj=hit(p);
+  state.cursor=h;
+  if(state.tool) {placeAt(h);
+  return;
+  }
+  if(obj?.jumper) {drag={kind:'jumper',part:obj.jumper,end:h};
+  return;
+  }
+  if(obj?.probe!==undefined) {drag={kind:'probe',index:obj.probe};
+  return;
+  }
+  if(obj?.leg) {
+    select(obj.part);
+    drag={kind:'lead',part:obj.part,leg:obj.leg,start:h,x:e.clientX,y:e.clientY,moved:false,
+      extend:obj.part.type!=='wire'&&!e.shiftKey};
+      return;
+  }
+  if(obj?.part) {
+    select(obj.part);
+    if(obj.part.burned){replaceBurned(obj.part);return;}
+    if(obj.part.type==='switch') {obj.part.on=!obj.part.on;
+    showControls();
+    action();
+    }
+    if(obj.part.type==='push') {obj.part.on=true;
+    drag={kind:'hold',part:obj.part};
+    action();
+    return;
+    }
+    if(obj.part.type==='motor') {obj.part.stall=true;
+    obj.part.omega=0;
+    drag={kind:'hold',part:obj.part};
+    return;
+    }
+    drag={kind:'move',part:obj.part,start:h,original:{a:{...obj.part.a},b:{...obj.part.b},c:{...obj.part.c}},x:e.clientX,y:e.clientY};
+    return;
+  }
+  drag={kind:'pan',x:e.clientX,y:e.clientY,pan:{...state.pan}};
+};
+canvas.onpointermove=e=>{
+  if(!drag) return;
+  const h=screenHole(e.clientX,e.clientY);
+  if(drag.kind==='jumper') {drag.part.loose=false;
+  drag.end=h;
+  drag.part.b=h;
+  }
+  if(drag.kind==='probe') {state.probes[drag.index]=h;
+  circuitDirty=true;
+  }
+  if(drag.kind==='lead') {
+    drag.moved=drag.moved||Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5;
+    drag.end=h;
+    if(!drag.extend) {drag.part[drag.leg]=h;
+    circuitDirty=true;
+    }
+  }
+  if(drag.kind==='move') {
+    translatePart(drag.part,drag.original,h.c-drag.start.c,h.r-drag.start.r);
+    circuitDirty=true;
+  }
+  if(drag.kind==='pan') {state.pan={x:drag.pan.x+e.clientX-drag.x,y:drag.pan.y+e.clientY-drag.y};
+  resize();
+  }
+};
+function releasePointer() {
+  if(!drag) return;
+  if(drag.kind==='jumper') addWire(drag.part.a,drag.end,drag.part.colour);
+  if(drag.kind==='lead') {
+    if(drag.extend&&drag.moved&&drag.end) addWire(drag.part[drag.leg],drag.end);
+    else if(!drag.moved) {state.tool='wire';
+    state.first={...drag.part[drag.leg]};
+    status('Choose the other wire end.');
+    }
+  }
+  if(drag.kind==='hold') {drag.part.on=false;
+  drag.part.stall=!!drag.part.latched;
+  }
+  drag=null;
+  circuitDirty=true;
+}
+canvas.onpointerup=releasePointer;
+canvas.onpointercancel=()=>{if(drag?.kind==='hold'){drag.part.on=false;
+drag.part.stall=false;
+}drag=null;
+};
+canvas.onlostpointercapture=releasePointer;
+function shiftHole(h,key) {
+  return hole(h.c+(key==='ArrowRight'?1:key==='ArrowLeft'?-1:0),h.r+(key==='ArrowDown'?1:key==='ArrowUp'?-1:0));
+}
+function ensureCursor() {
+  const p=xy(state.cursor),x=view.x+p.x*view.s,y=view.y+p.y*view.s;
+  if(x<35) state.pan.x+=35-x;
+  if(x>view.w-35) state.pan.x+=view.w-35-x;
+  if(y<75) state.pan.y+=75-y;
+  if(y>view.h-30) state.pan.y+=view.h-30-y;
+  resize();
+  $('cursor-label').textContent=label(state.cursor);
+}
+function moveSelectedTo(h) {
+  const p=selected();
+  if(!p) return;
+  translatePart(p,{a:{...p.a},b:{...p.b},c:{...p.c}},h.c-p.a.c,h.r-p.a.r);
+  action();
+}
+function translatePart(p,original,dc,dr) {
+  const legs=['a','b',...(['pot','switch'].includes(p.type)?['c']:[])];
+  const points=legs.map(k=>original[k]);
+  dc=Math.max(-Math.min(...points.map(h=>h.c)),Math.min(29-Math.max(...points.map(h=>h.c)),dc));
+  dr=Math.max(-Math.min(...points.map(h=>h.r)),Math.min(13-Math.max(...points.map(h=>h.r)),dr));
+  for(const leg of legs)p[leg]=hole(original[leg].c+dc,original[leg].r+dr);
+}
+canvas.onkeydown=e=>{
+  const k=e.key.toLowerCase();
+  if(shortcuts[k]) {e.preventDefault();
+  pickTool(shortcuts[k]);
+  return;
+  }
+  if(e.key.startsWith('Arrow')) {
+    e.preventDefault();
+    state.cursor=shiftHole(state.cursor,e.key);
+    ensureCursor();
+    announce(label(state.cursor)+(state.heldLeg?' · holding leg':''));
+    return;
+  }
+  if(e.key==='Escape') {state.tool=null;
+syncTool();
+  state.first=null;
+  state.heldLeg=null;
+  state.move=false;
+  status('Tool put down.');
+  return;
+  }
+  const p=selected();
+  if(k==='t'&&names[state.tool]&&state.tool!=='wire') {
+    state.rotation=(state.rotation+1)%4;
+    e.preventDefault();
+    announce('Held part rotated '+state.rotation*90+' degrees');
+    return;
+  }
+  if(e.key==='Delete') {e.preventDefault();
+  removeSelected();
+  return;
+  }
+  if(k==='t'&&p) {e.preventDefault();
+  turnPart(p);
+  return;
+  }
+  if(k==='f'&&p?.type==='battery') {p.reverse=!p.reverse;
+  action();
+  showControls();
+  return;
+  }
+  if(k==='i'&&p?.type==='coil') {p.core=!p.core;
+  action();
+  showControls();
+  return;
+  }
+  if(k==='h'&&p?.type==='motor') {if(e.repeat)return;
+  p.latched=!p.latched;
+  p.stall=p.latched;
+  showControls();
+  p.omega=0;
+  action();
+  e.preventDefault();
+  return;
+  }
+  if(/^[1-4]$/.test(k)&&p?.type==='led') {p.colour=+k-1;
+  action();
+  showControls();
+  return;
+  }
+  if(e.code==='Space'&&p?.type==='push') {p.on=true;
+  e.preventDefault();
+  action();
+  return;
+  }
+  if(e.code==='Space'&&p?.type==='switch') {p.on=!p.on;
+  showControls();
+  action();
+  e.preventDefault();
+  return;
+  }
+  if(e.key==='Enter') {
+    e.preventDefault();
+    if(state.tool) {placeAt(state.cursor);
+    return;
+    }
+    if(state.move) {moveSelectedTo(state.cursor);
+    state.move=false;
+    status('Part placed.');
+    return;
+    }
+    if(state.heldLeg) {
+      const q=[...state.parts,...state.wires].find(p=>p.id===state.heldLeg.id);
+      if(q) q[state.heldLeg.leg]={...state.cursor};
+      state.heldLeg=null;
+      action();
+      status('Leg attached '+label(state.cursor));
+      return;
+    }
+    const objects=[...state.parts,...state.wires];
+    for(const q of objects) for(const leg of ['a','b',...(['pot','switch'].includes(q.type)?['c']:[])]) {
+      if(same(q[leg],state.cursor)) {select(q);
+      state.heldLeg={id:q.id,leg};
+      announce(partTitle(q)+' '+leg+' picked up. Arrows and Enter replug.');
+      return;
+      }
+    }
+    const obj=hit(xy(state.cursor));
+    if(obj?.part){select(obj.part);if(obj.part.burned)replaceBurned(obj.part);}
+  }
+};
+function releaseHolds() {
+  for(const p of state.parts) {p.stall=!!p.latched;
+    if(p.type==='push')p.on=false;
+  }
+  if(drag?.kind==='hold')drag=null;
+  circuitDirty=true;
+}
+canvas.onblur=releaseHolds;
+addEventListener('keyup',e=>{
+  if(e.key.toLowerCase()==='h')paintDirty=true;
+  if(e.code==='Space')for(const p of state.parts)if(p.type==='push')p.on=false;
+});
+addEventListener('blur',()=>{for(const p of state.parts)p.latched=false;releaseHolds();drag=null;});
+$('zoom-in').onclick=()=>{state.zoom=Math.min(2,state.zoom*1.15);
+resize();
+announce('Zoom '+Math.round(view.s*100)+' percent');
+};
+$('zoom-out').onclick=()=>{state.zoom=Math.max(1,state.zoom/1.15);
+resize();
+announce('Zoom '+Math.round(view.s*100)+' percent');
+};
+$('home').onclick=()=>{state.pan={x:0,y:0};
+state.zoom=1;
+resize();
+};
+// ---------- drawn physical surface ----------
+let currentTextAngle=0;
+function rounded(x,y,w,h,r,fill,stroke) {
+  ctx.beginPath();
+  ctx.roundRect(x,y,w,h,r);
+  if(fill){ctx.fillStyle=fill;
+  ctx.fill();
+  }if(stroke){ctx.strokeStyle=stroke;
+  ctx.stroke();
+  }
+}
+function line(x1,y1,x2,y2,colour,width=2) {
+  ctx.beginPath();
+  ctx.moveTo(x1,y1);
+  ctx.lineTo(x2,y2);
+  ctx.strokeStyle=colour;
+  ctx.lineWidth=width;
+  ctx.stroke();
+}
+function text(t,x,y,colour='#45483c',size=12,align='center') {
+  ctx.shadowColor='transparent';
+  ctx.shadowOffsetX=0;
+  ctx.shadowOffsetY=0;
+  ctx.shadowBlur=0;
+  ctx.save();
+  if(currentTextAngle){ctx.translate(x,y);ctx.rotate(-currentTextAngle);x=0;y=0;}
+  ctx.fillStyle=colour;
+  ctx.font=Math.max(size,10/view.s)+'px Consolas,monospace';
+  ctx.textAlign=align;
+  ctx.fillText(t,x,y);
+  ctx.restore();
+}
+function circle(x,y,r,fill,stroke) {
+  ctx.beginPath();
+  ctx.arc(x,y,r,0,2*PI);
+  if(fill){ctx.fillStyle=fill;
+  ctx.fill();
+  }if(stroke){ctx.strokeStyle=stroke;
+  ctx.stroke();
+  }
+}
+function gradient(x,y,w,colours) {
+  const g=ctx.createLinearGradient(x,y,x,y+w);
+  colours.forEach((c,i)=>g.addColorStop(i/(colours.length-1),c));
+  return g;
+}
+function drawBoard() {
+  ctx.save();
+  ctx.shadowColor='#061e16aa';
+  ctx.shadowBlur=15;
+  ctx.shadowOffsetY=10;
+  rounded(24,36,914,470,10,'#c8c5b8','#aaa999');
+  ctx.restore();
+  rounded(24,30,914,470,10,gradient(0,30,470,['#f5f1e5','#e6e2d6','#e4e0d4','#c9c8bb']),'#c3c6b7');
+  rounded(30,35,902,458,8,null,'#ffffffb0');
+  rounded(40,251,881,18,3,'#bfbcaf','#f8f2e4');
+  line(45,254,918,254,'#97998c',1);
+  for(const r of [0,1,12,13]) {
+    const y=xy(hole(0,r)).y;
+    line(51,y-9,912,y-9,r%2===0?'#c8302c':'#2a5db0',2);
+    text(r%2===0?'+':'−',43,y+3,r%2===0?'#aa2420':'#214982',15);
+  }
+  for(let c=0;c<30;c++) {
+    const x=xy(hole(c,0)).x;
+    text(c+1,x,107,'#575b50',11);
+    text(c+1,x,409,'#575b50',11);
+    for(let r=0;r<14;r++) {
+      const y=xy(hole(c,r)).y;
+      rounded(x-3.5,y-3.5,7,7,1,'#b8b8aa');
+      rounded(x-2.5,y-2.5,5,5,.4,'#3a3a36');
+      line(x-3,y+4,x+3,y+4,'#ffffffa0',1);
+    }
+  }
+  for(let r=2;r<12;r++) {
+    const y=xy(hole(0,r)).y;
+    text('abcdefghij'[r-2],46,y+4,'#55594d',12);
+    text('abcdefghij'[r-2],917,y+4,'#55594d',12);
+  }
+  text('SOLDERLESS · 30 × 10 · 2.54 mm',485,486,'#676b5f',10);
+  for(const x of [34,928]) for(const y of [43,489]) {circle(x,y,4,'#bbbcae','#8d9384');
+  line(x-2,y,x+2,y,'#747d70',1);
+  }
+  if(state.tool==='wire'&&state.first) {
+    const a=xy(state.first);
+    circle(a.x,a.y,10,null,'#ac4e24');
+  }
+}
+function wireMid(a,b) { return {x:(a.x+b.x)/2,y:(a.y+b.y)/2-Math.min(65,20+Math.abs(a.x-b.x)*.11)};
+}
+function wireCurve(a,b,t) {
+  if(a.x===b.x)return {x:a.x,y:a.y+(b.y-a.y)*t};
+  const mid=wireMid(a,b),cy=(mid.y-(a.y+b.y)/8)/.75;
+  const u=1-t;
+  return {x:u**3*a.x+3*u*u*t*(a.x+(b.x-a.x)*.3)+3*u*t*t*(a.x+(b.x-a.x)*.7)+t**3*b.x,
+    y:u**3*a.y+3*u*u*t*cy+3*u*t*t*cy+t**3*b.y};
+}
+function looseTip(w) {
+  const p=xy(w.b);
+  return {x:p.x+12,y:p.y-13};
+}
+function drawWire(w,preview=false) {
+  const a=xy(w.a),b=w.loose?looseTip(w):xy(w.b),r=readings.get(String(w.id));
+  ctx.lineCap='round';
+  ctx.lineJoin='round';
+  const path=()=>{
+    ctx.beginPath();
+    ctx.moveTo(a.x,a.y);
+    if(a.x===b.x)ctx.lineTo(b.x,b.y);
+    else {
+      const mid=wireMid(a,b),cy=(mid.y-(a.y+b.y)/8)/.75;
+      ctx.bezierCurveTo(a.x+(b.x-a.x)*.3,cy,a.x+(b.x-a.x)*.7,cy,b.x,b.y);
+    }
+  };
+  path();
+  ctx.strokeStyle='#111a16';
+  ctx.lineWidth=7;
+  ctx.stroke();
+  path();
+  ctx.strokeStyle=Math.abs(r?.i||0)>3?'#ff6a3d':w.colour||'#d75a49';
+  ctx.lineWidth=4.5;
+  ctx.stroke();
+  path();
+  ctx.strokeStyle='#ffffff35';
+  ctx.lineWidth=1;
+  ctx.stroke();
+  if(Math.abs(r?.i||0)>1e-5&&!preview) {
+    const sign=(Math.sign(r.i)||1)*(state.electrons?-1:1),mag=Math.abs(r.i);
+    ctx.fillStyle=state.electrons?'#6fb7ff':'#ffb547';
+    for(let i=0;i<8;i++) {
+      const t=Curio.reduce?(i+.5)/8:((i/8+clock*sign*Math.min(1.8,.09+mag*.6))%1+1)%1;
+      const p=wireCurve(a,b,t);
+      if(Curio.reduce) {
+        const q=wireCurve(a,b,Math.min(.999,t+.01)),angle=Math.atan2(q.y-p.y,q.x-p.x)+(sign<0?PI:0);
+        ctx.save();
+        ctx.translate(p.x,p.y);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        const size=Math.min(8,3+Math.sqrt(mag)*3);
+        ctx.moveTo(size,0);
+        ctx.lineTo(-size,-size*.5);
+        ctx.lineTo(-size,size*.5);
+        ctx.fill();
+        ctx.restore();
+      } else circle(p.x,p.y,2.4,ctx.fillStyle);
+    }
+  }
+  if(w.loose){circle(b.x,b.y,10,'#f0e4b9','#784b28');text('○',b.x,b.y+4,'#784b28',14);}
+  for(const p of [a,b]) {rounded(p.x-4,p.y-6,8,11,2,'#252c2b');
+  circle(p.x,p.y,2,'#d29a4f');
+  }
+  if(w.id===state.selected) {const m=wireMid(a,b);
+  circle(m.x,m.y,9,null,'#edc36b');
+  }
+}
+function partCentre(p) {
+  const a=xy(p.a),b=xy(p.b),angle=Math.atan2(b.y-a.y,b.x-a.x);
+  return {x:(a.x+b.x)/2+22*Math.sin(angle),y:(a.y+b.y)/2-22*Math.cos(angle),angle};
+}
+function drawPartCached(p) {
+  if(p.type==='motor'||p.burned&&clock-(p.burnAt??-100)<1.1){drawPart(p);return;}
+  const key=[view.s,devicePixelRatio,p.a.c,p.a.r,p.b.c,p.b.r,p.c.c,p.c.r,p.nine,p.cells,p.reverse,
+    p.value,p.wiper,p.on,p.colour,p.turns,p.core,p.burned,p.glow,p.field,p.angle,
+    (readings.get(String(p.id))?.i||0)>.0001,p.id===state.selected].join(':');
+  let cache=partCache.get(p);
+  if(!cache||cache.key!==key) {
+    const a=xy(p.a),b=xy(p.b),c=xy(p.c),centre=p.type==='compass'?a:partCentre(p);
+    const points=[a,b,centre,...(['pot','switch'].includes(p.type)?[c]:[])];
+    const left=Math.min(...points.map(q=>q.x))-90,top=Math.min(...points.map(q=>q.y))-80;
+    const width=Math.max(...points.map(q=>q.x))-left+90,height=Math.max(...points.map(q=>q.y))-top+90;
+    const image=document.createElement('canvas'),scale=Math.min(2,devicePixelRatio||1)*view.s;
+    image.width=Math.ceil(width*scale);
+    image.height=Math.ceil(height*scale);
+    const target=ctx;
+    ctx=image.getContext('2d');
+    ctx.scale(scale,scale);
+    ctx.translate(-left,-top);
+    drawPart(p);
+    ctx=target;
+    cache={key,image,left,top,width,height};
+    partCache.set(p,cache);
+  }
+  ctx.drawImage(cache.image,0,0,cache.image.width,cache.image.height,cache.left,cache.top,cache.width,cache.height);
+}
+function drawPart(p) {
+  const a=xy(p.a),b=xy(p.b),centre=partCentre(p),{x,y,angle}=centre;
+  const r=readings.get(String(p.id))||{i:0,v:0,p:0};
+  if(p.type==='compass') {
+    ctx.save();
+    ctx.translate(a.x,a.y);
+    circle(0,0,36,'#414737','#b9ae76');
+    circle(0,0,31,'#eee9d5','#848674');
+    circle(0,0,27,'#dedbc7');
+    for(let i=0;i<36;i++){const t=i*PI/18;
+    line(Math.sin(t)*25,-Math.cos(t)*25,Math.sin(t)*(i%3?28:30),-Math.cos(t)*(i%3?28:30),'#707760',1);
+    }
+    text('N',0,-14,'#74382c',10);
+    text('S',0,22,'#384d43',10);
+    ctx.rotate((Curio.reduce?p.angle:p.angle)*PI/180);
+    ctx.beginPath();
+    ctx.moveTo(0,-23);
+    ctx.lineTo(6,3);
+    ctx.lineTo(0,0);
+    ctx.lineTo(-6,3);
+    ctx.closePath();
+    ctx.fillStyle='#b33e32';
+    ctx.fill();
+    ctx.beginPath();
+    ctx.moveTo(0,23);
+    ctx.lineTo(6,-3);
+    ctx.lineTo(0,0);
+    ctx.lineTo(-6,-3);
+    ctx.closePath();
+    ctx.fillStyle='#426275';
+    ctx.fill();
+    circle(0,0,3,'#d5b578');
+    ctx.restore();
+    text(Math.round(p.angle)+'°',a.x,a.y+51,'#294438',13);
+    return;
+  }
+  ctx.lineCap='round';
+  for(const h of [p.a,p.b,...(['pot','switch'].includes(p.type)?[p.c]:[])]) {
+    const pt=xy(h);
+    line(pt.x+1,pt.y+1,x+1,y+1,'#4e4d41',4);
+    line(pt.x,pt.y,x,y,'#b1b7ad',2.5);
+    circle(pt.x,pt.y,4,'#ad7e39','#5a4f31');
+  }
+  ctx.save();
+  ctx.translate(x,y);
+  ctx.rotate(angle);
+  currentTextAngle=angle;
+  if(p.id===state.selected) rounded(-53,-35,106,70,7,null,'#ba722a');
+  ctx.shadowColor='transparent';
+  ctx.shadowBlur=0;
+  ctx.shadowOffsetY=0;
+  switch(p.type) {
+    case 'battery': {
+      rounded(-48,-32,96,56,5,'#2c302b','#131e19');
+      if(p.nine) {
+        rounded(-31,-27,62,48,3,gradient(0,-27,48,['#d5c9a4','#a9a689','#69735f']),'#8e957d');
+        rounded(-31,-27,62,12,2,'#434d40');
+        circle(-12,-25,5,'#bcc1ae','#68705d');
+        rounded(7,-30,12,10,3,'#b4bca8','#69735e');
+        text('9 V',0,9,'#263a30',18);
+      } else for(let i=0;i<p.cells;i++) {
+        const xx=-41+i*82/p.cells,ww=76/p.cells,flip=i%2;
+        rounded(xx,-26,ww,44,3,gradient(0,-26,44,['#7b775f','#e2d7a6','#9e9470','#484d3e']),'#9a9c79');
+        rounded(xx,flip?9:-26,ww,9,2,'#5b6554');
+        text('+',xx+ww/2,flip?17:-15,'#f8f1d0',12);
+        text('AA',xx+ww/2,1,'#3a4639',11);
+      }
+      text(p.nine?'9 V':p.cells+' × 1.5 V',0,37,'#283f31',12);
+      const half=Math.hypot(a.x-b.x,a.y-b.y)/2;
+      text(p.reverse?'−':'+',-half-7,12,'#a62a22',15);
+      text(p.reverse?'+':'−',half+8,12,'#253d53',15);
+      break;
+    }
+    case 'bulb': {
+      const bright=p.burned?0:(p.glow||0);
+      if(bright>.01) {
+        const glow=ctx.createRadialGradient(0,-9,5,0,-9,72);
+        glow.addColorStop(0,'rgba(255,176,35,'+Math.min(.85,bright)+')');
+        glow.addColorStop(.45,'rgba(255,155,24,'+(bright*.36)+')');
+        glow.addColorStop(1,'#ffda5500');
+        circle(0,-9,72,glow);
+      }
+      ctx.shadowBlur=0;
+      circle(0,-13,26,gradient(0,-38,50,bright>.01?['#fff3c4cc',bright>.5?'#ffc64dc9':'#c3673a99','#d4a85e88']:
+        ['#ffffffa0','#fff3bc44','#dce8ca80']),'#86927b');
+      ctx.beginPath();
+      ctx.ellipse(-9,-22,5,12,.5,0,PI*2);
+      ctx.fillStyle='#ffffff9c';
+      ctx.fill();
+      line(-7,10,-9,-8,'#7a8878',1.5);
+      line(7,10,9,-8,'#7a8878',1.5);
+      ctx.beginPath();
+      for(let i=0;i<33;i++){const xx=-10+i*20/32,yy=-8+Math.sin(i*PI/2)*3;
+      if(i)ctx.lineTo(xx,yy);
+      else ctx.moveTo(xx,yy);
+      }
+      const filament=p.burned?'#514333':bright>.65?'#fff0a2':bright>.08?'#ef9b3d':bright>.01?'#a94722':'#786a50';
+      ctx.strokeStyle=filament;
+      ctx.shadowColor=filament;
+      ctx.shadowBlur=bright>.01?3+bright*10:0;
+      ctx.lineWidth=bright>.01?2.6:2;
+      ctx.stroke();
+      ctx.shadowBlur=0;
+      ctx.shadowColor='#27352b60';
+      rounded(-13,9,26,16,3,gradient(0,9,16,['#adb1a3','#626e63','#c2c8b2']),'#71816e');
+      for(let i=0;i<4;i++)line(-12,11+i*3,12,11+i*3,'#606e5a',1);
+      text('3 V · 0.3 A',0,44,'#294438',11);
+      break;
+    }
+    case 'resistor': {
+      rounded(-29,-12,58,24,8,gradient(0,-12,24,['#e8d2a3','#d4b67c','#99835e']),'#a58b60');
+      const colours=['#242b25','#78502f','#bb3c2e','#e37b31','#c4a833','#4e7c39','#3c69a3','#785293','#8b8e85','#ebede0'];
+      const exponent=Math.floor(Math.log10(p.value))-1,digits=Math.round(p.value/10**exponent);
+      [Math.floor(digits/10),digits%10,exponent].forEach((v,i)=>{ctx.fillStyle=colours[v];
+      ctx.fillRect(-19+i*12,-11,5,22);
+      });
+      ctx.fillStyle='#997632';
+      ctx.fillRect(22,-10,3,20);
+      text(engineering(p.value,'Ω'),0,34,'#294438',12);
+      break;
+    }
+    case 'led': {
+      const col=['#db453a','#dfae2c','#57a34f','#428ed5'][p.colour];
+      if(r.i>.0001&&!p.burned){ctx.shadowColor=col;
+      ctx.shadowBlur=25;
+      circle(0,-10,26,col+'44');
+      }
+      rounded(-16,-20,32,39,15,gradient(0,-20,39,['#ffffffa0',col,col+'aa']),'#843e34');
+      rounded(-20,12,40,7,3,col,'#7c7760');
+      line(-9,-12,-9,3,'#ffffffaa',3);
+      text('+',-27,27,'#794027',13);
+      text(['RED','YELLOW','GREEN','BLUE'][p.colour],0,42,'#294438',10);
+      break;
+    }
+    case 'pot': {
+      rounded(-32,-22,64,43,5,gradient(0,-22,43,['#63746b','#35473c','#182d22']),'#12251b');
+      circle(0,-2,24,'#a4a79a','#515e4d');
+      circle(0,-2,18,gradient(0,-20,36,['#414e45','#182b20']),'#a4aa94');
+      const t=(-135+p.wiper*2.7)*PI/180;
+      line(0,-2,Math.sin(t)*16,-2-Math.cos(t)*16,'#f2e9bc',3);
+      text(p.wiper+'% · 10 kΩ',0,40,'#294438',11);
+      break;
+    }
+    case 'switch': {
+      rounded(-32,-20,64,38,4,gradient(0,-20,38,['#9ca69a','#59675b','#889184']),'#535e4e');
+      rounded(-24,-10,48,17,2,'#172d22');
+      rounded(p.on?2:-23,-15,22,28,3,'#292e2d','#8b9384');
+      for(let i=0;i<4;i++)line(p.on?5:-20,-9+i*5,p.on?20:-5,-9+i*5,'#6e7869',1);
+      text(p.on?'A ↔ C':'A ↔ B',0,35,'#294438',11);
+      break;
+    }
+    case 'push': {
+      rounded(-26,-21,52,43,4,'#51554b','#27382b');
+      for(const xx of [-19,19])for(const yy of [-14,15])circle(xx,yy,3,'#c7c9b9','#788273');
+      circle(0,p.on?3:-4,17,gradient(0,-19,33,p.on?['#793b2e','#ad5743']:['#b26545','#e6a577','#8d4e36']),'#613b2a');
+      text(p.on?'HELD':'PUSH',0,37,'#294438',11);
+      break;
+    }
+    case 'motor': {
+      rounded(-35,-26,70,50,10,gradient(0,-26,50,['#d4d9cb','#7d8b80','#bbc2b5','#596c5c']),'#506550');
+      for(const xx of [-24,24])rounded(xx-4,-16,8,15,2,'#384d40');
+      line(0,-29,0,-42,'#a4afa0',6);
+      circle(0,-39,18,'#3c4c40','#a9b39b');
+      ctx.save();
+      ctx.translate(0,-39);
+      ctx.rotate(Curio.reduce?0:clock*p.omega*.05);
+      line(-13,0,13,0,'#bec6b0',3);
+      line(0,-13,0,13,'#bec6b0',3);
+      circle(0,0,4,'#d6bf7c');
+      ctx.restore();
+      text(Math.round(Math.abs(p.omega)*60/(2*PI)/100)*100+' rpm',0,39,'#294438',11);
+      break;
+    }
+    case 'buzzer': {
+      circle(0,-1,28,gradient(0,-29,56,['#59665a','#222d25','#455744']),'#1c3523');
+      circle(0,-1,7,'#13251b','#727b69');
+      text('+',18,-12,'#d4dac3',12);
+      text('2.4 kHz',0,39,'#294438',11);
+      break;
+    }
+    case 'coil': {
+      rounded(-42,-23,84,45,6,'#484b3e','#313e31');
+      if(p.core)rounded(-52,-7,104,14,2,gradient(0,-7,14,['#c6cbbb','#5c6c5b','#a4b29c']),'#77836c');
+      for(let i=0;i<19;i++) {
+        ctx.beginPath();
+        ctx.ellipse(-34+i*3.8,0,5,23,0,0,2*PI);
+        ctx.strokeStyle='#5c4023';
+        ctx.lineWidth=4;
+        ctx.stroke();
+        ctx.strokeStyle=i%2?'#c38945':'#dda45d';
+        ctx.lineWidth=2.4;
+        ctx.stroke();
+      }
+      text((p.field||0).toFixed(2)+' mT · '+p.turns+' t',0,42,'#294438',11);
+      break;
+    }
+  }
+  ctx.shadowBlur=0;
+  ctx.shadowOffsetY=0;
+  const burnAge=clock-(p.burnAt??-100);
+  if(p.burned&&burnAge<.14)circle(0,-10,42,'#fff4a4cc');
+  if(p.burned&&!Curio.reduce&&burnAge<1.1) {
+    for(let i=0;i<3;i++)circle(Math.sin(burnAge*5+i)*8,-32-burnAge*40-i*7,5+burnAge*6,
+      'rgba(75,70,59,'+Math.max(0,.25*(1-burnAge))+')');
+  }
+  if(p.burned) {text('×',0,0,'#5b2920',34);
+  }
+  currentTextAngle=0;
+  ctx.restore();
+}
+function drawShortChips() {
+  const sources=[];
+  for(const p of state.parts) {
+    if(p.type!=='battery')continue;
+    if(Math.abs(p.current)>3)sources.push(p);
+    else {
+      shortChipCache.delete(p);
+      delete p.chip;
+    }
+  }
+  if(!sources.length)return;
+  // World coordinates keep a pan, zoom or current change from invalidating a layout.
+  // Compare geometry directly: thermal solves also set circuitDirty and saves can contain old chips.
+  const key=state.wires.map(w=>[w.a.c,w.a.r,w.b.c,w.b.r].join(',')).join(';')+'|'+
+    state.probes.map(h=>h?[h.c,h.r].join(','):'-').join(';');
+  if(key!==shortObstacleKey) {
+    shortObstacleKey=key;
+    shortObstacles=[];
+    for(const w of state.wires) {
+      const a=xy(w.a),b=xy(w.b);
+      for(let i=0;i<=28;i++)shortObstacles.push(wireCurve(a,b,i/28));
+    }
+    for(const h of state.probes)if(h) {
+      const q=xy(h);
+      for(let i=0;i<=6;i++)shortObstacles.push({x:q.x+i*5,y:q.y+i*11});
+    }
+  }
+  for(const p of sources) {
+    const c=partCentre(p);
+    let cached=shortChipCache.get(p);
+    if(!cached||cached.key!==key||cached.x!==c.x||cached.y!==c.y) {
+      let best=null,bestScore=-Infinity;
+      for(let y=52;y<490;y+=28)for(let x=90;x<900;x+=70) {
+        let squared=Infinity;
+        for(const o of shortObstacles) {
+          const dx=Math.max(0,Math.abs(o.x-x)-70),dy=Math.max(0,Math.abs(o.y-y)-16);
+          squared=Math.min(squared,dx*dx+dy*dy);
+        }
+        const clearance=Math.sqrt(squared);
+        const score=(clearance>8?10000:clearance*100)-Math.hypot(x-c.x,y-c.y);
+        if(score>bestScore) {
+          bestScore=score;
+          best={x,y,clearance};
+        }
+      }
+      cached={key,x:c.x,y:c.y,chip:best};
+      shortChipCache.set(p,cached);
+      metrics.shortLayouts++;
+    }
+    const q=cached.chip;
+    p.chip=q;
+    rounded(q.x-66,q.y-13,132,26,3,'#593323');
+    text('Short: '+Math.abs(p.current).toFixed(1)+' A',q.x,q.y+4,'#ffcda8',12);
+  }
+}
+function drawProbes() {
+  const wr=document.querySelector('.work').getBoundingClientRect(),cr=canvas.getBoundingClientRect();
+  const left=cr.left-wr.left,top=cr.top-wr.top;
+  let cables='<defs><clipPath id="outside-board"><path clip-rule="evenodd" d="M0 0H'+wr.width+'V'+wr.height+
+    'H0Z M'+left+' '+top+'v'+cr.height+'h'+cr.width+'v-'+cr.height+'Z"/></clipPath></defs>';
+  for(let i=0;i<2;i++) {
+    const h=state.probes[i];
+    if(!h)continue;
+    const p=xy(h),jack=$(i?'jack-com':'jack-red').getBoundingClientRect(),cr=canvas.getBoundingClientRect();
+    const end={x:(jack.left+jack.width/2-cr.left-view.x)/view.s,y:(jack.top+jack.height/2-cr.top-view.y)/view.s};
+    ctx.beginPath();
+    ctx.moveTo(p.x,p.y+18);
+    ctx.bezierCurveTo(p.x+65,p.y+160,end.x-80,end.y+100,end.x,end.y);
+    ctx.strokeStyle='#11251b';
+    ctx.lineWidth=6;
+    ctx.stroke();
+    ctx.strokeStyle=i?'#283d40':'#bc4e43';
+    ctx.lineWidth=4;
+    ctx.stroke();
+    line(p.x,p.y,p.x+10,p.y+22,'#b9bdac',3);
+    line(p.x+10,p.y+22,p.x+23,p.y+52,i?'#24383c':'#b64236',10);
+    text(i?'COM':'V',p.x+29,p.y+64,'#294438',10);
+    const pt=(x,y)=>(left+view.x+x*view.s)+' '+(top+view.y+y*view.s);
+    const path='M'+pt(p.x,p.y+18)+'C'+pt(p.x+65,p.y+160)+' '+pt(end.x-80,end.y+100)+' '+pt(end.x,end.y);
+    cables+='<path clip-path="url(#outside-board)" d="'+path+'" fill="none" stroke="'+
+      (i?'#283d40':'#bc4e43')+'" stroke-width="4"/>';
+  }
+  if($('probe-cables').innerHTML!==cables)$('probe-cables').innerHTML=cables;
+}
+function draw() {
+  metrics.draws++;
+  const dpr=Math.min(2,devicePixelRatio||1);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,view.w,view.h);
+  ctx.save();
+  ctx.translate(view.x,view.y);
+  ctx.scale(view.s,view.s);
+  const key=[view.s,devicePixelRatio].join(':');
+  if(!boardCache||boardCacheKey!==key) {
+    const target=ctx;
+    boardCache=document.createElement('canvas');
+    const scale=Math.min(2,devicePixelRatio||1)*view.s;
+    boardCache.width=Math.ceil(960*scale);
+    boardCache.height=Math.ceil(520*scale);
+    ctx=boardCache.getContext('2d');
+    ctx.scale(scale,scale);
+    drawBoard();
+    ctx=target;
+    boardCacheKey=key;
+    metrics.cacheBuilds++;
+  }
+  ctx.drawImage(boardCache,0,0,boardCache.width,boardCache.height,0,0,960,520);
+  if(state.tool==='wire'&&state.first){const a=xy(state.first);circle(a.x,a.y,10,null,'#ac4e24');}
+  for(const w of state.wires)drawWire(w);
+  for(const p of state.parts)drawPartCached(p);
+  if(drag?.kind==='lead'&&drag.extend&&drag.end)drawWire({a:drag.part[drag.leg],b:drag.end,colour:'#d75a49'},true);
+  drawProbes();
+  drawShortChips();
+  for(const w of state.jumpers)drawWire(w,true);
+  if(document.activeElement===canvas||state.tool||state.heldLeg) {
+    const p=xy(state.cursor);
+    circle(p.x,p.y,11,null,'#a94f20');
+    circle(p.x,p.y,14,null,'#1e4d3a');
+  }
+  ctx.restore();
+  $('cursor-label').textContent=label(state.cursor)+(state.tool?' · '+(names[state.tool]||'probe'):'');
+}
+function frame(now) {
+  const start=performance.now(),dt=Math.min(.05,(now-lastTime)/1000);
+  lastTime=now;
+  clock+=dt;
+  accumulator+=dt;
+  metrics.frames++;
+  const changed=circuitDirty;
+  if(circuitDirty||modelMoving) {
+    circuitDirty=false;
+    const steps=state.parts.some(p=>p.type==='motor'&&!p.stall)?3:1;
+    for(let i=0;i<steps;i++)simulate(dt/steps);
+    paintDirty=true;
+  }
+  if(accumulator>.2){accumulator=0;
+  updateReadouts();
+  }
+  if(Curio.sound) {
+    if(shortActive&&clock-lastCrackle>.12){Curio.tone(70+(Math.sin(clock*71)+1)*90,.07,.015,'sawtooth');lastCrackle=clock;}
+    if(clock-lastHum>.24) {
+      const lit=state.parts.find(p=>p.type==='bulb'&&!p.burned&&p.power>.02);
+      if(lit){Curio.tone(120,.22,Math.min(.003,lit.power*.003));
+      lastHum=clock;
+      }
+    }
+    if(clock-lastBeep>.16) {
+      const buzz=state.parts.find(p=>p.type==='buzzer'&&Math.abs(p.v)>1);
+      if(buzz){Curio.tone(2400,.17,Math.min(.018,Math.abs(buzz.v)*.002));
+      lastBeep=clock;
+      }
+    }
+  }
+  const moving=!Curio.reduce&&(state.wires.some(w=>Math.abs(readings.get(String(w.id))?.i||0)>1e-5)||
+    state.parts.some(p=>p.type==='motor'&&Math.abs(p.omega)>1));
+  const effect=state.parts.some(p=>p.burned&&clock-(p.burnAt??-100)<(Curio.reduce?.14:1.1));
+  const scene=[state.selected,state.tool,state.cursor.c,state.cursor.r,document.activeElement?.id,!!drag,state.electrons].join(':');
+  if(paintDirty||moving||effect||hadEffect||scene!==previousScene){draw();paintDirty=false;previousScene=scene;}
+  hadEffect=effect;
+  state.frameMs=performance.now()-start;
+  requestAnimationFrame(frame);
+}
+reset();
+resize();
+$('dial').style.transform='rotate(-135deg)';
+requestAnimationFrame(frame);
+window.__tool={state,allLines:()=>Object.values(L),vlog:V.log,loadSetup,simulate,solveNetwork,partEdges,readings:()=>readings,
+  network:()=>lastSolve,makePart,addWire,reset,select,showControls,setMeter,screenXY,meterRead,snapshot,restore,
+  turnPart,draw,engineering,compassFields,readText,spoken,metrics,version:'circuit-bench-fix-2'};
+</script>
+</body>
+</html>

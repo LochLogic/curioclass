@@ -1,0 +1,1393 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An endless drafting sheet, a collapsing compass, an unmarked straightedge, and Euclid's constructions. Works offline.">
+<title>Compass and Straightedge · Curio Class</title>
+<!-- Geometry and figures original to Curio Class. Heath 1908 enunciations: public domain. Historical facts: MacTutor. -->
+<style>
+:root { --paper:#f3ead6; --pencil:#5f5e5a; --ink:#1d232b; --red:#9a3b2a; --brass:#b08d57; --green:#2f4a3a; }
+* { box-sizing:border-box; }
+[hidden] { display:none!important; }
+html,body { margin:0; width:100%; height:100%; overflow:hidden; }
+body { color:var(--ink); font:14px/1.5 Georgia,serif; background:#5a4632; }
+button,select,input { font:inherit; color:inherit; }
+button,select { min-height:48px; border:1px solid #827b6c; border-radius:2px; cursor:pointer; }
+button { padding:5px 12px; background:linear-gradient(#f4eddd,#ded2b8); box-shadow:inset 0 1px #fff8,0 2px 3px #23190d19; }
+button:hover { border-color:#1d232b; background:#fff8e4; }
+button[aria-pressed=true] { background:#354b3e; color:#fff5dc; border-color:#1c3024; box-shadow:inset 0 2px 4px #0006; }
+button:disabled { opacity:.48; cursor:default; }
+:focus-visible { outline:3px solid #9a3b2a; outline-offset:3px; }
+#paper { position:absolute; inset:10px 10px 14px; overflow:hidden; background:radial-gradient(ellipse at 20% 5%,#fff8e7,var(--paper) 65%,#e2d6bc);
+ box-shadow:0 0 2px #0006,0 5px 12px #24160780; }
+#paper::after { content:''; pointer-events:none; position:absolute; inset:0; opacity:.16;
+ background:repeating-linear-gradient(8deg,transparent 0 3px,#c4b69c33 4px,transparent 5px 7px); }
+#sheet { position:absolute; inset:0; width:100%; height:100%; touch-action:none; outline-offset:-4px; }
+#hint { position:absolute; top:115px; left:10%; font:italic 18px Georgia,serif; pointer-events:none; color:var(--pencil); }
+.toolbelt { position:absolute; z-index:5; left:22px; top:22px; display:flex; align-items:stretch; gap:4px; padding:5px;
+ background:linear-gradient(100deg,#b5b6ad,#ece9dc 45%,#bcbcaf); border:1px solid #777d7b; box-shadow:2px 4px 8px #24160725; }
+.toolbelt button { min-width:52px; padding:4px 10px; font:12px system-ui,sans-serif; background:transparent; border-color:transparent; }
+.toolbelt button[aria-pressed=true] { background:#354b3e; border-color:#1c3024; }
+.toolbelt svg { display:block; height:24px; width:30px; margin:auto; }
+.power { position:absolute; z-index:6; right:24px; top:22px; display:flex; gap:4px; padding:8px;
+ background:linear-gradient(120deg,#c8b48a,#eee0bd,#bba174); border:1px solid #7b6744; box-shadow:2px 3px 5px #0003; }
+.power::before,.power::after { content:'⊖'; position:absolute; top:-5px; font:11px monospace; color:#534836; }
+.power::before { left:3px; } .power::after { right:3px; }
+.power button { min-width:56px; padding:4px 7px; font:11px system-ui,sans-serif; }
+.bench { position:absolute; left:24px; bottom:84px; z-index:5; display:flex; flex-wrap:wrap; gap:4px; max-width:590px; }
+.bench button { font:12px system-ui,sans-serif; min-width:48px; }
+.case { position:absolute; left:24px; top:85px; z-index:5; display:flex; gap:4px; }
+.case button { min-height:44px; font:11px system-ui,sans-serif; padding:4px 8px; background:#e6d6b2; }
+.case button[aria-pressed=true] { background:#354b3e; }
+#readout { position:absolute; left:30px; top:163px; pointer-events:none; font:13px/1.8 Consolas,monospace; white-space:pre-line;
+ padding:4px 9px; max-width:calc(100% - 65px); background:#fff9e9d9; border-left:2px solid #b08d57; }
+#readout:empty { display:none; }
+#fieldnote { position:absolute; left:30px; bottom:160px; color:#5f5e5a; font:italic 14px Georgia,serif; pointer-events:none; }
+.lower { position:absolute; bottom:24px; left:24px; display:flex; gap:8px; align-items:center; z-index:6; }
+#manual { min-width:72px; background:#62503a; color:#fff3d8; border:1px solid #382d22; }
+.plate { max-width:360px; padding:7px 18px; border:1px solid #776244; color:#342c20; font:10px/1.6 system-ui,sans-serif;
+ letter-spacing:.07em; text-shadow:0 1px #fff8; background:linear-gradient(110deg,#c2a976,#e5d2a7,#bca071); box-shadow:1px 2px 3px #0003; }
+.plate b { display:block; font-size:13px; font-weight:500; letter-spacing:.03em; }
+.edge { position:absolute; right:24px; bottom:24px; display:flex; gap:6px; z-index:6; }
+#book { background:linear-gradient(90deg,#1c3024 0 6px,#45634f 7px,#2f4a3a); color:#fff3d8; border:1px solid #172b1c;
+ box-shadow:3px 4px 0 #b9ad90,4px 5px 5px #23190d44; padding:6px 24px; font-variant:small-caps; letter-spacing:.12em; }
+#logcard { position:absolute; right:24px; top:108px; width:238px; max-height:calc(100% - 225px); z-index:4;
+ background:linear-gradient(90deg,#bf6c5d33 0 1px,transparent 1px) 23px 0/100% 100%,#fff8e8e8;
+ border:1px solid #b9ab91; box-shadow:2px 4px 8px #513c2220; padding:10px 12px; overflow:auto; }
+#logcard h2 { font:italic 17px Georgia,serif; margin:0 0 10px; padding-left:16px; }
+#log { margin:0; padding-left:28px; font:12px/24px Georgia,serif; }
+#log li { border-bottom:1px solid #a4a7a333; padding-left:2px; white-space:pre-line; }
+#counts { font:11px Consolas,monospace; border-top:1px solid #a4a7a3; padding-top:8px; margin-top:12px; }
+#zoomtag { position:absolute; left:50%; bottom:23px; transform:translateX(-50%); font:11px Consolas,monospace; color:#5f5e5a; }
+.sr { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+dialog { color:var(--ink); background:#f3ead6; border:1px solid #8b795b; padding:0; box-shadow:0 16px 70px #24160766;
+ width:min(740px,calc(100% - 24px)); max-height:calc(100% - 30px); overflow:auto; }
+dialog::backdrop { background:#30281955; }
+#manualDrawer { inset:auto auto 80px 24px; margin:0; max-height:calc(100% - 100px); width:min(640px,calc(100% - 36px)); }
+#undo svg,#redo svg { width:22px; height:22px; display:block; margin:auto; }
+.drawerhead { position:sticky; top:0; background:#e2d6bc; display:flex; align-items:center; justify-content:space-between; padding:8px 16px; z-index:2; }
+.drawerhead h2 { font:22px Georgia,serif; margin:0; }
+.drawerbody { padding:16px 24px 25px; }
+.drawerbody p { margin:10px 0; }
+.drawerbody h3 { font:italic 20px Georgia,serif; margin:24px 0 8px; }
+.drawerbody kbd { font:12px Consolas,monospace; border:1px solid #a39579; padding:1px 5px; }
+.drawerbody a { color:#763020; display:inline-block; min-height:44px; min-width:44px; padding:9px 4px; }
+.bookrow { display:grid; grid-template-columns:1fr 190px; gap:20px; }
+#bookpage { width:100%; padding:8px; background:#fff8e8; min-width:0; }
+#figure { width:190px; height:190px; border:1px solid #b9ab91; }
+#booktext { font:17px/1.6 Georgia,serif; }
+#steptext { min-height:64px; color:#494842; font-style:italic; }
+#bookDrawer .drawerbody>.row { position:sticky; bottom:0; z-index:1; background:#f3ead6; padding:8px 0; }
+.row { display:flex; flex-wrap:wrap; align-items:center; gap:8px; margin:12px 0; }
+.slots { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
+.slot { border:1px solid #b9ab91; padding:10px; }
+.slot label { display:block; font:13px Consolas,monospace; }
+#saveStatus { min-height:25px; }
+@media (max-width:1000px) {
+ .toolbelt { left:18px; top:18px; gap:0; padding:3px; }
+ .toolbelt button { padding:4px 7px; min-width:49px; }
+ .power { right:18px; top:18px; padding:5px; gap:2px; }
+ .power button { min-width:51px; padding:4px 5px; }
+ #logcard { display:none; }
+ .case { left:20px; top:82px; }
+ .bench { left:20px; bottom:81px; }
+ .plate { max-width:285px; padding:5px 12px; letter-spacing:0; }
+ .plate b { font-size:12px; }
+ #fieldnote { bottom:145px; }
+}
+@media (max-width:600px) {
+ #paper { inset:4px 4px 7px; }
+ .toolbelt { left:10px; right:10px; top:auto; bottom:12px; justify-content:space-around; }
+ .toolbelt button { min-width:48px; min-height:56px; padding:3px 4px; }
+ .power { top:12px; right:12px; }
+ .power button { font-size:11px; }
+ .case { left:12px; top:87px; gap:3px; }
+ .case button { padding:3px 7px; }
+ .lower { left:12px; right:12px; bottom:77px; gap:5px; }
+ .plate { flex:1; padding:5px 7px; max-width:none; font-size:10px; }
+ .plate b { font-size:11px; }
+ #manual { padding:4px 8px; min-width:65px; }
+ #manualDrawer { left:12px; bottom:138px; max-height:calc(100% - 154px); }
+ .edge { right:12px; left:12px; bottom:139px; justify-content:flex-end; gap:4px; }
+ #book { padding:4px 12px; }
+ .edge button { font-size:12px; }
+ .bench { left:12px; right:12px; bottom:196px; max-width:none; gap:3px; }
+ .bench button { flex:1; padding:4px 5px; min-width:44px; }
+ #hint { left:25px; top:145px; font-size:17px; }
+ #readout { top:142px; left:20px; font-size:12px; }
+ #fieldnote { bottom:256px; left:20px; font-size:12px; }
+ #zoomtag { top:18px; bottom:auto; left:15px; transform:none; max-width:150px; }
+ .bookrow { grid-template-columns:1fr; gap:8px; }
+ #figure { height:135px; width:100%; }
+ .drawerbody { padding:12px 16px; }
+ .drawerbody h3 { margin-top:18px; }
+ .slots { grid-template-columns:1fr; }
+ #bookDrawer,#logDrawer { margin:auto 12px 12px; }
+}
+@media (max-height:500px) and (min-width:601px) {
+ .case { top:80px; }
+ .bench { bottom:76px; }
+ #readout { top:132px; font-size:11px; }
+ #hint { top:132px; }
+ #fieldnote { bottom:138px; }
+ #logcard { display:none; }
+ .lower { bottom:18px; left:20px; }
+ .edge { bottom:18px; right:20px; }
+ #zoomtag { display:none; }
+}
+@media (max-height:600px) and (min-width:601px) {
+ #bookDrawer .drawerhead { padding:4px 12px; }
+ #bookDrawer .drawerhead button { min-height:44px; }
+ #bookDrawer .drawerbody { padding:10px 16px; }
+ #bookDrawer label { display:none; }
+ #bookpage { min-height:44px; padding:5px; }
+ #bookDrawer .bookrow { grid-template-columns:1fr 100px; gap:12px; }
+ #figure { width:100px; height:100px; }
+ #booktext { font-size:15px; line-height:1.4; margin:5px 0; }
+ #bookref { font-size:12px; margin:5px 0; }
+ #steptext { min-height:40px; margin:6px 0; font-size:13px; }
+ #bookDrawer .row { margin:8px 0; }
+}
+@media print {
+ @page { size:landscape; margin:12mm; }
+ html,body { height:auto; overflow:visible; background:white; }
+ #paper { position:relative; inset:auto; width:100%; height:140mm; background:white; box-shadow:none; }
+ #sheet { width:100%; height:140mm; }
+ #sheet [aria-hidden=true] { display:none; }
+ #paper::after,.toolbelt,.power,.bench,.case,.lower,.edge,#hint,#readout,#zoomtag,#fieldnote,dialog { display:none!important; }
+ #logcard { position:relative; top:auto; right:auto; display:block!important; width:100%; max-height:none; border:0; box-shadow:none; background:white; }
+ #log { columns:3; font-size:9px; line-height:15px; }
+ #log li { break-inside:avoid; }
+ #counts { font-size:10px; }
+}
+</style>
+</head>
+<body>
+<main id="paper" aria-label="Drafting paper">
+ <svg id="sheet" tabindex="0" role="application" aria-label="Construction sheet. C compass, S straightedge, O free point, M measure. Arrow keys select made points; Enter chooses. Escape cancels."></svg>
+ <div id="hint">Drag from A to B.</div>
+ <output id="readout" aria-live="polite"></output>
+ <div id="fieldnote"></div>
+ <div id="zoomtag">AB = 1 unit</div>
+</main>
+<nav class="toolbelt" aria-label="Drawing instruments">
+ <button id="compass" aria-label="Compass, C" aria-pressed="true"><svg viewBox="0 0 30 25" aria-hidden="true"><path d="M15 4 6 24M15 4 24 24" stroke="currentColor" stroke-width="2"/><circle cx="15" cy="5" r="3" fill="currentColor"/></svg>Compass</button>
+ <button id="straightedge" aria-label="Edge, straightedge, S" aria-pressed="false"><svg viewBox="0 0 30 25" aria-hidden="true"><path d="m3 18 23-10 3 7L6 25Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Edge</button>
+ <button id="pointtool" aria-label="Point, free point, O" aria-pressed="false"><svg viewBox="0 0 30 25" aria-hidden="true"><circle cx="15" cy="13" r="3" fill="currentColor"/><path d="M15 1v6m0 12v6M3 13h6m12 0h6" stroke="currentColor"/></svg>Point</button>
+ <button id="eraser" aria-label="Erase, eraser, E" aria-pressed="false"><svg viewBox="0 0 30 25" aria-hidden="true"><path d="m5 15 12-12 10 10-12 12H5Z" fill="none" stroke="currentColor" stroke-width="2"/></svg>Erase</button>
+ <button id="measure" aria-label="Measure, M" aria-pressed="false"><svg viewBox="0 0 30 25" aria-hidden="true"><path d="M4 20 15 3l11 17M9 14h12" fill="none" stroke="currentColor" stroke-width="2"/></svg>Measure</button>
+ <button id="ink" aria-label="Ink selected object, I" aria-pressed="false"><svg viewBox="0 0 30 25" aria-hidden="true"><path d="m15 2-8 14 8 8 8-8Zm0 8v10" fill="none" stroke="currentColor" stroke-width="2"/></svg>Ink</button>
+</nav>
+<div class="case" aria-label="Instrument case">
+ <button id="euclid" aria-pressed="false">Euclid’s rule</button>
+ <button id="extend" aria-pressed="false">Extend · X</button>
+ <button id="opening" aria-pressed="false" title="Keep the modern compass opening; choose a new centre">Keep opening</button>
+</div>
+<div class="power" aria-label="Lamp power panel">
+ <button id="motion" aria-pressed="true">Motion</button>
+ <button id="sound" aria-pressed="true">Sound</button>
+ <button id="read">Read</button>
+</div>
+<div class="bench" aria-label="Paper controls">
+ <button id="undo" aria-label="Undo, Control Z"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5 3 10l5 5M4 10h10a6 6 0 0 1 0 12" transform="translate(0 -3)" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+ <button id="redo" aria-label="Redo, Control Y"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m16 5 5 5-5 5m4-5H10a6 6 0 0 0 0 12" transform="translate(0 -3)" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+ <button id="zoomout" aria-label="Zoom out, minus">−</button>
+ <button id="fit" aria-label="Fit drawing, zero">Fit</button>
+ <button id="zoomin" aria-label="Zoom in, plus">+</button>
+ <button id="paperMenu">Paper</button>
+</div>
+<aside id="logcard" aria-label="Construction log"><h2>Construction record</h2><ol id="log"></ol><div id="counts"></div></aside>
+<div class="edge"><button id="logbutton">Log</button><button id="book">The Book</button></div>
+<div class="lower"><button id="manual">Manual</button><div class="plate">Curio Class Curiosities · No. 09<b>Compass and Straightedge</b></div></div>
+<div id="status" class="sr" role="status" aria-live="polite"></div>
+<dialog id="manualDrawer" aria-labelledby="manualTitle">
+ <div class="drawerhead"><h2 id="manualTitle">Manual</h2><button data-close aria-label="Close Manual">Close</button></div>
+ <div class="drawerbody">
+ <p>A compass makes a circle. An unmarked straightedge joins two points. The paper keeps what you make.</p>
+ <h3>At the table</h3>
+ <p>Drag from A to B with the compass. Drag from B to A. Choose Edge and join either crossing to A and B.
+ The two circles meet at the third vertex of an equilateral triangle. Draw AB too, or measure the three points.</p>
+ <p>Only made points can anchor an instrument: given points, calculated crossings, or your free points.
+ Choose Point to place a free point. Drag empty paper to pan; wheel or pinch to zoom. Fit brings the drawing back.</p>
+ <p>Euclid’s rule closes the compass after each circle. With it off, Keep opening carries a radius to another made centre.
+ Extend draws an infinite line. Ink darkens a selected object; Erase removes it and anything depending on it.</p>
+ <h3>Keys and measurements</h3>
+ <p><kbd>C</kbd> compass, <kbd>S</kbd> straightedge, <kbd>O</kbd> free point, <kbd>E</kbd> eraser,
+ <kbd>M</kbd> measure, <kbd>I</kbd> ink, <kbd>X</kbd> extend. Arrows cycle through made points; Enter chooses one.
+ Two choices draw. In Measure, choose three points for the angle at the middle point, or two lines for their smaller angle.</p>
+ <p>Tab to the paper first. For a keyboard free point, press O, move the crosshair with arrows (Shift for a larger move),
+ then Enter. [ and ] select drawn objects for ink, erasure or line-angle measurement. Escape cancels. Delete erases the selected object. Ctrl+Z undoes; Ctrl+Y or Ctrl+Shift+Z redoes.
+ + and − zoom; 0 fits. On the paper, Shift+arrows pan in other tools. Measure tags report lengths in AB units and angles in degrees.</p>
+ <h3>The record, the Book, and saving</h3>
+ <p>The log records moves in order, including free points, ink and erasures. Undo and redo restore the whole drawing.
+ The Book has fifteen independent pages. Its faint diagrams are references, never drawing anchors.
+ Press Show next step for another ghost stroke. Choose any page, any time. Clear ghosts removes the reference.</p>
+ <p>Paper offers four save slots, kept only on this device. Nothing leaves the device. Browser storage can be cleared or blocked.
+ Print makes a clean sheet with the construction record. New paper starts a fresh sheet; undo can bring the old sheet back.</p>
+ <h3>Euclid’s first three postulates</h3>
+ <p>“To draw a straight line from any point to any point.”</p>
+ <p>“To produce a finite straight line continuously in a straight line.”</p>
+ <p>“To describe a circle with any centre and distance.”</p>
+ <h3>Things people have found</h3>
+ <p><b>Equilateral triangle.</b> Two circles, each centred at one end of AB and passing through the other, give an equilateral triangle (I.1).</p>
+ <p><b>Hexagon.</b> A circle’s own radius walks round it six times (IV.15).</p>
+ <p><b>Collapsing compass.</b> A collapsing compass can copy a length by I.2.</p>
+ <p><b>Pentagon.</b> A regular pentagon’s diagonal divided by its side is 1.6180 (IV.11; XIII.8).</p>
+ <p><b>Trisecting.</b> Some angles trisect, but no compass and straightedge procedure trisects every angle.
+ Pierre Wantzel proved the general impossibility in 1837.</p>
+ <p><b>Seventeen sides.</b> Gauss found the regular 17-gon construction in 1796, aged 18; a regular 7-gon cannot be constructed.</p>
+ <p><b>Squaring the circle.</b> Lindemann proved pi transcendental in 1882, settling its impossibility with these instruments.</p>
+ <p><b>Compass alone.</b> Mohr (1672) and Mascheroni (1797) showed that a compass alone can locate every point constructible with both instruments.</p>
+ <h3>Honesty notes</h3>
+ <p>This is floating-point geometry, not symbolic proof. Double precision has about 15 significant decimal digits;
+ ill-conditioned or very large constructions can lose accuracy. Crossings within 10⁻⁷ times the largest stroke size
+ (at least one sheet unit) are merged; given and free points use 10⁻⁹ sheet units.
+ Tangencies merge the two roots when their half-separation is within 10⁻⁷ times the larger radius.
+ Pencil thickness and 44-pixel selection areas are visual aids.</p>
+ <p>AB is the original unit. Blank paper keeps that unit, labelled u; its new point names do not redefine it. Measuring is our aid, not Euclid’s construction method.
+ Free points stand for points taken at random. Book diagrams are our own analytic drawings of the constructions,
+ with compound steps identified in words; they are not facsimiles of Heath’s plates. No marks on the straightedge.</p>
+ <h3>Sources and permissions</h3>
+ <p>Euclid, <cite>The Thirteen Books of the Elements</cite>, translated by Sir Thomas L. Heath (Cambridge, 1908),
+ Books I, IV and XIII. Public domain in the US. Enunciations and postulates supplied in the Curio Class specification;
+ no transcription markup copied.
+ <a href="https://archive.org/details/thirteenbookseu02heibgoog" target="_blank" rel="noopener">Heath scan 02</a>,
+ <a href="https://archive.org/details/thirteenbookseu00heibgoog" target="_blank" rel="noopener">Books III to IX</a>,
+ <a href="https://archive.org/details/thirteenbookseu03heibgoog" target="_blank" rel="noopener">Books X to XIII</a>.</p>
+ <p>MacTutor History of Mathematics, University of St Andrews: biographies of
+ <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Wantzel/" target="_blank" rel="noopener">Wantzel</a>,
+ <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Gauss/" target="_blank" rel="noopener">Gauss</a>,
+ <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Lindemann/" target="_blank" rel="noopener">Lindemann</a>, and
+ <a href="https://mathshistory.st-andrews.ac.uk/Biographies/Mascheroni/" target="_blank" rel="noopener">Mascheroni</a>.
+ Historical facts paraphrased; no article text or images reproduced. MacTutor article text is licensed
+ <a href="https://mathshistory.st-andrews.ac.uk/Miscellaneous/copyright/" target="_blank" rel="noopener">CC BY-SA 4.0</a>;
+ this instrument uses only the underlying facts, not that licensed prose or imagery.</p>
+ <p>All geometry, instruments and figures drawn in code for Curio Class. Code: MIT; original text and diagrams: CC BY 4.0.
+ No external dataset or library. Offline browser speech
+ is a fallback for the unrecorded knowing-guide voice; its availability and voice depend on this device.</p>
+ <p>A sheet accepts up to 600 drawn objects. Very dense drawings and extreme coordinates are limited by this device’s memory
+ and numerical precision. Save a sheet before beginning another.</p>
+ </div>
+</dialog>
+<dialog id="bookDrawer" aria-labelledby="bookTitle">
+ <div class="drawerhead"><h2 id="bookTitle">Euclid’s Book</h2><button data-close aria-label="Close Book">Close</button></div>
+ <div class="drawerbody">
+ <label for="bookpage">Open at</label><select id="bookpage"></select>
+ <div class="bookrow"><div><p id="booktext"></p><p id="bookref"></p></div><svg id="figure" viewBox="-1.8 -1.8 3.6 3.6" aria-label="Finished construction reference" role="img"></svg></div>
+ <p id="steptext" aria-live="polite">Press Show next step to lay a faint reference on the paper.</p>
+ <div class="row"><button id="nextstep">Show next step</button><button id="clearghost">Clear ghosts</button><button id="backpaper">Back to paper</button></div>
+ </div>
+</dialog>
+<dialog id="paperDrawer" aria-labelledby="paperTitle">
+ <div class="drawerhead"><h2 id="paperTitle">Paper cabinet</h2><button data-close aria-label="Close paper cabinet">Close</button></div>
+ <div class="drawerbody">
+ <div class="row"><button data-new="pair">New A &amp; B</button><button data-new="blank">Blank sheet</button>
+ <button data-new="angle">Given angle</button><button data-new="circle">Given circle</button><button id="print">Print sheet</button></div>
+ <p>Saves stay on this device. Nothing leaves the device.</p><div class="slots" id="slots"></div><p id="saveStatus" role="status"></p>
+ </div>
+</dialog>
+<dialog id="logDrawer" aria-labelledby="logTitle"><div class="drawerhead"><h2 id="logTitle">Construction record</h2>
+ <button data-close aria-label="Close record">Close</button></div><div class="drawerbody"><ol id="logcopy"></ol></div></dialog>
+<script src="kit:curio"></script>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const NS = 'http://www.w3.org/2000/svg';
+const EPS = 1e-9;
+const clone = value => JSON.parse(JSON.stringify(value));
+const distance = (a,b) => Math.hypot(a.x-b.x,a.y-b.y);
+const state = {tool:'compass', points:[], objects:[], log:[], euclid:false, extend:false, hold:false, radius:0,
+ selected:null, chosen:[], cursor:0, crosshair:{x:.5,y:0}, view:{x:.5,y:0,scale:185}, ghosts:[], page:0, step:0, serial:0, nextName:0, unitLabel:'AB'};
+const history = [];
+const future = [];
+let width = 0;
+let height = 0;
+let gesture = null;
+let animation = null;
+let frame = null;
+let touched = false;
+let audioContext = null;
+let graphite = null;
+let keyboardCursor = false;
+let hoverPoint = null;
+let strokeScale = 1;
+let lastLog = '';
+let labelBoxes = [];
+const pointers = new Map();
+const L = {
+ hint:'Drag from A to B.',
+ compass:'Compass. Drag between two made points, or choose them with arrows and Enter.',
+ line:'Straightedge. Drag between two made points. Extend switches between a segment and an infinite line.',
+ point:'Free point. Tap empty paper, or move the crosshair with arrows and press Enter.',
+ erase:'Erase. Tap a point or stroke. Its dependent construction will also be removed.',
+ measure:'Measure. Choose two points for length, three for an angle, or two strokes for their line angle.',
+ blank:'Blank paper. Choose Point to place free points, or press O, arrows and Enter.',
+ book:'Choose any Book page. Show next step adds one faint reference stroke. Back to paper returns to your drawing.',
+ manual:'Manual. Scroll to read about the instruments, keys, measurements and sources. Close returns to the paper.',
+ paper:'Paper cabinet. Choose a starting sheet, save or load a device slot, or print your drawing.',
+ log:'Construction record. Scroll to read your moves. Close returns to the paper.',
+ second:'Choose a second made point. Escape cancels the first choice.',
+ retained:'Compass opening retained. Choose a made point for the next circle centre.',
+ capacity:'This sheet has 600 objects. Use Paper to save it and begin another sheet, or Undo to remove a move.'
+};
+function currentHint() {
+ if($('bookDrawer').open)return L.book;
+ if($('manualDrawer').open)return L.manual;
+ if($('paperDrawer').open)return L.paper;
+ if($('logDrawer').open)return L.log;
+ if(state.objects.length>=600)return L.capacity;
+ if(!state.points.length)return L.blank;
+ if(state.chosen.length===1&&['compass','line'].includes(state.tool))return L.second;
+ if(state.hold&&!state.euclid&&state.radius>EPS&&state.tool==='compass')return L.retained;
+ return !touched&&state.tool==='compass'?L.hint:L[state.tool];
+}
+const V = Curio.voice({lines:L, hint:false, welcome:() => state.tool==='compass'&&state.unitLabel==='AB'&&
+ state.log.length<=2&&!document.querySelector('dialog[open]')?'hint':null, read:() => {
+ if($('bookDrawer').open)return [L.book,$('booktext').textContent,$('steptext').textContent].join(' ');
+ if(document.querySelector('dialog[open]'))return currentHint();
+ const last = state.log.at(-1) || '';
+ return [currentHint(),last,$('readout').textContent].filter(Boolean).join(' ');
+}});
+function announce(text) { $('status').textContent = text; }
+function requestRender() {
+ if(frame==null)frame=requestAnimationFrame(()=>{frame=null;render();});
+}
+function action() { touched = true; $('hint').hidden = true; }
+function pencilSound() {
+ if(!Curio.sound)return;
+ try {
+  audioContext ||= new (window.AudioContext||window.webkitAudioContext)();
+  audioContext.resume();
+  graphite?.stop();
+  const duration=Curio.reduce?.12:.78;
+  const buffer=audioContext.createBuffer(1,Math.ceil(audioContext.sampleRate*duration),audioContext.sampleRate);
+  const data=buffer.getChannelData(0);
+  for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*.12;
+  const source=audioContext.createBufferSource(),filter=audioContext.createBiquadFilter(),gain=audioContext.createGain();
+  source.buffer=buffer;filter.type='bandpass';filter.frequency.value=1900;filter.Q.value=.7;
+  gain.gain.setValueAtTime(.12,audioContext.currentTime);
+  gain.gain.exponentialRampToValueAtTime(.001,audioContext.currentTime+duration);
+  source.connect(filter).connect(gain).connect(audioContext.destination);source.start();graphite=source;
+  source.onended=()=>{if(graphite===source)graphite=null;};
+ }catch{}
+}
+function drawingSnapshot() {
+ const {points,objects,log,serial,nextName,unitLabel}=state;
+ return clone({points,objects,log,serial,nextName,unitLabel});
+}
+function checkpoint() { history.push(drawingSnapshot()); future.length = 0; }
+function restore(saved) {
+ if('view' in saved&&!('bookPlacement' in saved))delete state.bookPlacement;
+ Object.assign(state,clone(saved));
+ state.chosen=[];state.selected=null;state.measureLine=null;gesture=null;animation=null;
+ updateStrokeScale();render();
+}
+function undo() { if (!history.length) return; future.push(drawingSnapshot()); restore(history.pop()); announce('Undid last move.'); }
+function redo() { if (!future.length) return; history.push(drawingSnapshot()); restore(future.pop()); announce('Redid move.'); }
+function pointName(n) {
+ const group=Math.floor(n/26);
+ return String.fromCharCode(65+n%26)+(group?String(group).replace(/\d/g,d=>'₀₁₂₃₄₅₆₇₈₉'[+d]):'');
+}
+function updateStrokeScale() {
+ strokeScale=Math.max(1,...state.objects.map(o=>o.kind==='circle'?geom(o).r:distance(point(o.a),point(o.b))));
+}
+function addPoint(x,y,kind='crossing',parents=[]) {
+ const tolerance=kind==='crossing'?1e-7*strokeScale:EPS;
+ const existing = state.points.find(p => Math.hypot(p.x-x,p.y-y)<tolerance);
+ if (existing) return existing;
+ const p = {id:'p'+(++state.serial),name:pointName(state.nextName++),x,y,kind,parents};
+ state.points.push(p);
+ return p;
+}
+const point = id => state.points.find(p=>p.id===id);
+const unit = () => state.unitLabel||'AB';
+function geom(o) {
+ if(o.kind==='circle') {
+  const c=point(o.a);
+  return {kind:'circle',x:c.x,y:c.y,r:o.radius ?? distance(c,point(o.b))};
+ }
+ return {kind:'line',a:point(o.a),b:point(o.b),extended:o.extended};
+}
+function intersections(a,b) {
+ if(a.kind==='circle' && b.kind==='line') return intersections(b,a);
+ if(a.kind==='line' && b.kind==='line') {
+  const u={x:a.b.x-a.a.x,y:a.b.y-a.a.y};
+  const v={x:b.b.x-b.a.x,y:b.b.y-b.a.y};
+  const det=u.x*v.y-u.y*v.x;
+  if(Math.abs(det)<1e-12*Math.hypot(u.x,u.y)*Math.hypot(v.x,v.y)) return [];
+  const d={x:b.a.x-a.a.x,y:b.a.y-a.a.y};
+  const t=(d.x*v.y-d.y*v.x)/det;
+  const s=(d.x*u.y-d.y*u.x)/det;
+  if((!a.extended&&(t<-EPS||t>1+EPS))||(!b.extended&&(s<-EPS||s>1+EPS))) return [];
+  return [{x:a.a.x+t*u.x,y:a.a.y+t*u.y}];
+ }
+ if(a.kind==='line') {
+  const dx=a.b.x-a.a.x,dy=a.b.y-a.a.y,dd=dx*dx+dy*dy;
+  if(dd<EPS*EPS) return [];
+  const t=((b.x-a.a.x)*dx+(b.y-a.a.y)*dy)/dd;
+  const x=a.a.x+t*dx,y=a.a.y+t*dy;
+  let h2=b.r*b.r-(x-b.x)**2-(y-b.y)**2;
+  const tolerance=1e-7*b.r;
+  if(h2 < -tolerance*tolerance) return [];
+  h2=Math.max(0,h2);
+  const dt=Math.sqrt(h2/dd);
+  return (Math.sqrt(h2)<=tolerance?[t]:[t-dt,t+dt]).filter(s=>a.extended||(s>=-EPS&&s<=1+EPS))
+   .map(s=>({x:a.a.x+s*dx,y:a.a.y+s*dy}));
+ }
+ const dx=b.x-a.x,dy=b.y-a.y,d=Math.hypot(dx,dy);
+ const tolerance=1e-7*Math.max(a.r,b.r);
+ if(d<EPS || d>a.r+b.r+tolerance || d<Math.abs(a.r-b.r)-tolerance) return [];
+ const along=(a.r*a.r-b.r*b.r+d*d)/(2*d);
+ const h2=a.r*a.r-along*along;
+ if(h2 < -tolerance*tolerance) return [];
+ const h=Math.sqrt(Math.max(0,h2));
+ const x=a.x+along*dx/d,y=a.y+along*dy/d;
+ return h<=tolerance?[{x,y}]:[{x:x-h*dy/d,y:y+h*dx/d},{x:x+h*dy/d,y:y-h*dx/d}];
+}
+function createObject(kind,a,b,radius) {
+ if(a===b && radius==null) { announce('Choose two different made points.'); state.chosen=[]; render(); return; }
+ if(state.objects.length>=600) { render();announce(L.capacity);return; }
+ const pa=point(a),pb=point(b);
+ if(!pa || (!pb && radius==null)) return;
+ checkpoint();
+ const o={id:'o'+(++state.serial),kind,a,b,extended:kind==='line'&&state.extend,ink:false};
+ if(radius!=null) o.radius=radius;
+ const g=radius==null&&kind==='circle'?{kind:'circle',x:pa.x,y:pa.y,r:distance(pa,pb)}:null;
+ state.objects.push(o);
+ const before=state.points.length;
+ const shape=geom(o);
+ strokeScale=Math.max(strokeScale,shape.kind==='circle'?shape.r:distance(shape.a,shape.b));
+ for(const other of state.objects.slice(0,-1)) {
+  for(const p of intersections(geom(o),geom(other))) {
+   if(Number.isFinite(p.x)&&Number.isFinite(p.y)) addPoint(p.x,p.y,'crossing',[other.id,o.id]);
+  }
+ }
+ const sentence=kind==='circle' ? radius==null?`Circle with centre ${pa.name} through ${pb.name}.`:
+  `Circle with centre ${pa.name}, retained radius ${radius.toFixed(4)} ${unit()}.`:
+  `${o.extended?'Extended line':'Line'} from ${pa.name} to ${pb.name}.`;
+ const crossings=state.points.slice(before).map(p=>p.name);
+ const crossingText=crossings.length?
+  `\nThey cut at ${crossings.length===1?crossings[0]:crossings.slice(0,-1).join(', ')+' and '+crossings.at(-1)}.`:'';
+ state.log.push(sentence+crossingText);
+ state.chosen=[];
+ state.selected=o.id;
+ if(kind==='circle') {
+  const r=radius??g.r;
+  state.radius=state.euclid?0:r;
+  if(!Curio.reduce) animation={id:o.id,start:performance.now(),angle:pb?Math.atan2(pb.y-pa.y,pb.x-pa.x):0};
+  Curio.tone(560,.035,.015,'triangle');
+  pencilSound();
+ }
+ action();
+ requestRender();
+ announce(sentence+' '+measurement());
+}
+function freePoint(p) {
+ const existing=state.points.find(q=>distance(p,q)<EPS);
+ if(existing){state.selected=existing.id;render();announce(`Point ${existing.name} already exists.`);return;}
+ checkpoint();
+ const made=addPoint(p.x,p.y,'free');
+ state.log.push(`Point ${made.name} (free).`);
+ state.selected=made.id;
+ action(); render(); announce(`Point ${made.name}, free.`);
+}
+function erase(id=state.selected) {
+ if(!id) return;
+ const named=describeObject(state.objects.find(o=>o.id===id));
+ const description=point(id)?`point ${point(id).name}`:named[0].toLowerCase()+named.slice(1);
+ checkpoint();
+ const removed=new Set([id]);
+ let changing=true;
+ while(changing) {
+  changing=false;
+  for(const o of state.objects) if(!removed.has(o.id)&&(removed.has(o.a)||removed.has(o.b))) {
+   removed.add(o.id); changing=true;
+  }
+  for(const p of state.points) if(!removed.has(p.id)&&p.parents.some(x=>removed.has(x))) { removed.add(p.id); changing=true; }
+ }
+ const lines=state.objects.filter(o=>removed.has(o.id)&&o.id!==id&&o.kind==='line').length;
+ const circles=state.objects.filter(o=>removed.has(o.id)&&o.id!==id&&o.kind==='circle').length;
+ const dependents=[lines?`${lines} dependent line${lines===1?'':'s'}`:'',circles?`${circles} dependent circle${circles===1?'':'s'}`:''].filter(Boolean);
+ state.objects=state.objects.filter(o=>!removed.has(o.id));
+ state.points=state.points.filter(p=>!removed.has(p.id));
+ state.log.push(`Erased ${description}${dependents.length?' and '+dependents.join(' and '):''}.`);
+ state.selected=null; state.chosen=[]; animation=null;
+ updateStrokeScale();action();render();announce(state.log.at(-1));
+}
+function describeObject(o) {
+ if(!o)return 'Stroke';
+ if(o.kind==='circle')return `Circle with centre ${point(o.a).name}${o.radius==null?' through '+point(o.b).name:', retained radius '+o.radius.toFixed(4)+' '+unit()}`;
+ return `${o.extended?'Extended line':'Line'} from ${point(o.a).name} to ${point(o.b).name}`;
+}
+function ink() {
+ const o=state.objects.find(o=>o.id===state.selected);
+ if(!o) { announce('Select a drawn line or circle, then press Ink.'); return; }
+ checkpoint(); o.ink=!o.ink;
+ const named=describeObject(o);
+ state.log.push(`${o.ink?'Inked':'Pencilled'} the ${named[0].toLowerCase()+named.slice(1)}.`);
+ action(); render();
+}
+function setTool(tool) {
+ if(tool==='measure'&&state.tool==='measure')tool='compass';
+ if(tool!==state.tool||state.chosen.length)V.hush();
+ state.tool=tool; state.chosen=[]; gesture=null;
+ if(tool==='point') state.crosshair=world(width*.45,height*.42);
+ if(!touched&&tool!=='compass')$('hint').hidden=true;
+ render();announce(L[tool]);
+}
+function choose(id) {
+ const p=point(id);
+ if(!p) return;
+ state.cursor=Math.max(0,state.points.indexOf(p));
+ if(state.tool==='erase') { erase(id); return; }
+ if(state.tool==='measure') {
+  if(state.chosen.length>=3) state.chosen=[];
+  state.chosen.push(id); state.selected=id; action(); render();
+  announce(p.name+' selected. '+$('readout').textContent); return;
+ }
+ if(state.hold&&!state.euclid&&state.radius>EPS&&state.tool==='compass') {
+  createObject('circle',id,null,state.radius); return;
+ }
+ if(!state.chosen.length) {
+  state.chosen=[id]; state.selected=id; render(); announce(`${p.name}. Choose the second point.`);
+ } else createObject(state.tool==='compass'?'circle':'line',state.chosen[0],id);
+}
+function newSheet(kind='pair',initial=false) {
+ if(!initial)V.hush();
+ if(!initial) {checkpoint();action();}
+ state.points=[];state.objects=[];state.log=[];state.serial=0;state.nextName=0;state.radius=0;state.hold=false;
+ strokeScale=1;
+ state.unitLabel=kind==='blank'?'u':'AB';
+ state.selected=null;state.chosen=[];state.cursor=0;state.measureLine=null;state.ghosts=[];state.bookPlacement=null;
+ state.step=0;animation=null;state.tool='compass';
+ if(kind!=='blank') { addPoint(0,0,'given');addPoint(1,0,'given');state.log.push('Given points A and B. AB = 1 unit.'); }
+ if(kind==='angle') {
+  const c=addPoint(.65,-.8,'given');
+  state.objects.push({id:'o'+(++state.serial),kind:'line',a:state.points[0].id,b:state.points[1].id,extended:false,ink:false});
+  state.objects.push({id:'o'+(++state.serial),kind:'line',a:state.points[0].id,b:c.id,extended:false,ink:false});
+  state.log.push('Given angle BAC.');
+ }
+ if(kind==='circle') {
+  state.objects.push({id:'o'+(++state.serial),kind:'circle',a:state.points[0].id,b:state.points[1].id,ink:false});
+  state.log.push('Given circle with centre A through B.');
+ }
+ if(kind==='blank') {
+  state.tool='point';$('hint').textContent=L.blank;$('hint').hidden=false;
+ } else {$('hint').textContent=L.hint;$('hint').hidden=touched;}
+ fit();render();
+}
+function screen(p) { return {x:width*.43+(p.x-state.view.x)*state.view.scale,y:height*.48+(p.y-state.view.y)*state.view.scale}; }
+function world(x,y) { return {x:(x-width*.43)/state.view.scale+state.view.x,y:(y-height*.48)/state.view.scale+state.view.y}; }
+function fit() {
+ const bounds=state.points.flatMap(p=>[{x:p.x,y:p.y}]);
+ for(const o of state.objects) if(o.kind==='circle') {
+  const g=geom(o); bounds.push({x:g.x-g.r,y:g.y-g.r},{x:g.x+g.r,y:g.y+g.r});
+ }
+ if(!bounds.length) bounds.push({x:0,y:0},{x:1,y:0});
+ const xs=bounds.map(p=>p.x),ys=bounds.map(p=>p.y);
+ const loX=Math.min(...xs),hiX=Math.max(...xs),loY=Math.min(...ys),hiY=Math.max(...ys);
+ state.view.x=(loX+hiX)/2;state.view.y=(loY+hiY)/2;
+ const compact=width<600;
+ const usableW=width-(innerWidth>1000&&!$('logcard').hidden?340:70);
+ const usableH=height-(compact?440:240);
+ state.view.scale=Math.max(.0001,Math.min(250,usableW/Math.max(hiX-loX+.8,2.6),Math.max(100,usableH)/Math.max(hiY-loY+.8,2.3)));
+ if(compact) state.view.y+=(height*.48-(140+Math.max(100,usableH)/2))/state.view.scale;
+ render();
+}
+function zoom(factor,anchor={x:width*.43,y:height*.48}) {
+ const before=world(anchor.x,anchor.y);
+ state.view.scale=Math.max(1e-4,Math.min(1e6,state.view.scale*factor));
+ const after=world(anchor.x,anchor.y);
+ state.view.x+=before.x-after.x;state.view.y+=before.y-after.y;requestRender();
+}
+function svg(tag,attrs={},text) {
+ const e=document.createElementNS(NS,tag);
+ for(const [k,v] of Object.entries(attrs)) e.setAttribute(k,v);
+ if(text!=null)e.textContent=text;
+ return e;
+}
+function lineShape(g,attrs={}) {
+ const a=screen(g.a),b=screen(g.b);
+ if(g.extended) {
+  // Clip an infinite line to the paper even when both defining points are far outside it.
+  const dx=(g.b.x-g.a.x)*state.view.scale,dy=(g.b.y-g.a.y)*state.view.scale;
+  let lo=-Infinity,hi=Infinity;
+  for(const [origin,delta,limit] of [[a.x,dx,width],[a.y,dy,height]]) {
+   if(delta===0) {
+    if(origin<0||origin>limit)return svg('g');
+   } else {
+    const t0=-origin/delta,t1=(limit-origin)/delta;
+    lo=Math.max(lo,Math.min(t0,t1));hi=Math.min(hi,Math.max(t0,t1));
+   }
+  }
+  if(lo>hi||!Number.isFinite(lo)||!Number.isFinite(hi))return svg('g');
+  return svg('line',{x1:a.x+lo*dx,y1:a.y+lo*dy,x2:a.x+hi*dx,y2:a.y+hi*dy,...attrs});
+ }
+ return svg('line',{x1:a.x,y1:a.y,x2:b.x,y2:b.y,...attrs});
+}
+function drawGeometry(g,attrs={}) {
+ if(g.kind==='line')return lineShape(g,attrs);
+ const c=screen(g);
+ return svg('circle',{cx:c.x,cy:c.y,r:g.r*state.view.scale,fill:'none',...attrs});
+}
+function compassDrawing(root,c,r,angle=0) {
+ const tip={x:c.x+Math.cos(angle)*r,y:c.y+Math.sin(angle)*r};
+ const mid={x:(c.x+tip.x)/2,y:(c.y+tip.y)/2};
+ const joint={x:mid.x-24,y:mid.y-Math.max(55,Math.min(130,r*.6))};
+ const g=svg('g',{'pointer-events':'none','aria-hidden':'true'});
+ g.append(svg('path',{d:`M${c.x} ${c.y} L${joint.x} ${joint.y} L${tip.x} ${tip.y}`,fill:'none',stroke:'#5b482c','stroke-width':8,'stroke-linecap':'round'}));
+ g.append(svg('path',{d:`M${c.x} ${c.y} L${joint.x} ${joint.y} L${tip.x} ${tip.y}`,fill:'none',stroke:'#bea16c','stroke-width':5}));
+ g.append(svg('line',{x1:c.x,y1:c.y-15,x2:c.x,y2:c.y+2,stroke:'#7e868a','stroke-width':2}));
+ g.append(svg('line',{x1:tip.x,y1:tip.y-13,x2:tip.x,y2:tip.y+2,stroke:'#393e3b','stroke-width':4}));
+ g.append(svg('circle',{cx:joint.x,cy:joint.y,r:8,fill:'#b08d57',stroke:'#665131','stroke-width':2}));
+ g.append(svg('path',{d:`M${joint.x} ${joint.y-7}v-20`,stroke:'#776443','stroke-width':6}));
+ g.append(svg('path',{d:`M${joint.x-3} ${joint.y-28}h6`,stroke:'#c6b28b','stroke-width':3}));
+ root.append(g);
+}
+function angleAt(a,b,c) {
+ const u={x:a.x-b.x,y:a.y-b.y},v={x:c.x-b.x,y:c.y-b.y};
+ const den=Math.hypot(u.x,u.y)*Math.hypot(v.x,v.y);
+ return den<EPS*EPS?null:Math.acos(Math.max(-1,Math.min(1,(u.x*v.x+u.y*v.y)/den)))*180/Math.PI;
+}
+function measurement() {
+ if(state.tool==='measure'&&state.chosen.length>=2) {
+  const ps=state.chosen.map(point);
+  if(ps.length===2) return `${segmentName(...ps)}  ${distance(...ps).toFixed(4)} ${unit()}`;
+  const a=angleAt(...ps);
+  return a==null?'Angle undefined: choose distinct points.':`${ps.map(p=>p.name).join(' · ')}  ${a.toFixed(2)}°`;
+ }
+ const obj=state.objects.find(o=>o.id===state.selected);
+ if(obj) {
+  const g=geom(obj);
+  if(g.kind==='circle')return `radius  ${g.r.toFixed(4)} ${unit()}`;
+  let result=`${segmentName(point(obj.a),point(obj.b))}  ${distance(g.a,g.b).toFixed(4)} ${unit()}`;
+  if(state.measureLine) {
+   const other=state.objects.find(o=>o.id===state.measureLine&&o.kind==='line');
+   if(other&&other.id!==obj.id) {
+    const g2=geom(other);
+    const a=angleAt({x:g.b.x-g.a.x,y:g.b.y-g.a.y},{x:0,y:0},{x:g2.b.x-g2.a.x,y:g2.b.y-g2.a.y});
+    if(a!=null)result+=`\nline angle  ${Math.min(a,180-a).toFixed(2)}°`;
+    const lengths=[distance(g.a,g.b),distance(g2.a,g2.b)];
+    if(Math.min(...lengths)>EPS)result+=`\nlonger / shorter  ${(Math.max(...lengths)/Math.min(...lengths)).toFixed(4)}`;
+   }
+  }
+  return result;
+ }
+ return '';
+}
+function segmentName(a,b) { return a.name.length+b.name.length===2?a.name+b.name:a.name+' · '+b.name; }
+let triangleAnchor=null;
+let triangleBox=null;
+function triangleReadout() {
+ triangleAnchor=null;triangleBox=null;
+ if(state.objects.find(o=>o.id===state.selected)?.kind==='circle')return '';
+ const a=state.points.find(p=>p.name==='A'),b=state.points.find(p=>p.name==='B');
+ if(!a||!b||state.tool==='measure'||Math.abs(distance(a,b)-1)>1e-7)return '';
+ const joins=(u,v)=>state.objects.some(o=>o.kind==='line'&&((o.a===u.id&&o.b===v.id)||(o.b===u.id&&o.a===v.id)));
+ const c=state.points.find(p=>p.kind==='crossing'&&Math.abs(distance(a,p)-1)<1e-7&&Math.abs(distance(b,p)-1)<1e-7&&joins(a,p)&&joins(b,p));
+ if(!c)return '';
+ triangleAnchor=screen({x:Math.max(a.x,b.x,c.x)+.15,y:(Math.min(a.y,b.y,c.y)+Math.max(a.y,b.y,c.y))/2});
+ const corners=[a,b,c].map(screen),xs=corners.map(p=>p.x),ys=corners.map(p=>p.y);
+ triangleBox={x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs),h:Math.max(...ys)-Math.min(...ys)};
+ $('fieldnote').textContent='Euclid, Book I, Proposition 1';
+ const angles=[angleAt(b,a,c),angleAt(a,b,c),angleAt(a,c,b)].map(n=>n.toFixed(2)+'°').join('  ');
+ return `AB  ${distance(a,b).toFixed(4)}   A${c.name}  ${distance(a,c).toFixed(4)}   B${c.name}  ${distance(b,c).toFixed(4)} AB\nangles  ${angles}`;
+}
+function polygonNote() {
+ // Require a closed cycle of equal chords on the original given circle, with equal central gaps.
+ if(!state.log.includes('Given circle with centre A through B.'))return '';
+ const given=state.objects.find(o=>o.kind==='circle'&&point(o.a)?.kind==='given'&&point(o.b)?.kind==='given');
+ if(!given)return '';
+ const g=geom(given),tolerance=1e-6*g.r;
+ const rim=state.points.filter(p=>Math.abs(distance(p,g)-g.r)<tolerance);
+ for(const n of [6,4]) {
+  for(const start of rim) {
+   const angle=Math.atan2(start.y-g.y,start.x-g.x),vertices=[];
+   for(let k=0;k<n;k++) {
+    const target={x:g.x+g.r*Math.cos(angle+k*2*Math.PI/n),y:g.y+g.r*Math.sin(angle+k*2*Math.PI/n)};
+    const p=rim.find(p=>distance(p,target)<tolerance);
+    if(!p)break;
+    vertices.push(p);
+   }
+   if(vertices.length===n&&vertices.every((p,k)=>state.objects.some(o=>o.kind==='line'&&!o.extended&&
+    ((o.a===p.id&&o.b===vertices[(k+1)%n].id)||(o.b===p.id&&o.a===vertices[(k+1)%n].id)))))
+    return `Euclid, Book IV, Proposition ${n===6?15:6}`;
+  }
+ }
+ return '';
+}
+function straightedgeDrawing(root,a,b) {
+ const angle=Math.atan2(b.y-a.y,b.x-a.x)*180/Math.PI,length=Math.max(180,Math.hypot(b.x-a.x,b.y-a.y)+60);
+ const g=svg('g',{'aria-hidden':'true','data-instrument':'straightedge',transform:`translate(${a.x} ${a.y}) rotate(${angle})`});
+ g.append(svg('path',{d:`M-30 1h${length}v24H-30Z`,fill:'#a8afb0',stroke:'#727b7f','stroke-width':1,opacity:.8}));
+ g.append(svg('path',{d:`M-28 3h${length-4}`,stroke:'#edf0ed','stroke-width':2}));
+ root.append(g);
+}
+function overlap(a,b,pad=3) { return a.x<b.x+b.w+pad&&a.x+a.w+pad>b.x&&a.y<b.y+b.h+pad&&a.y+a.h+pad>b.y; }
+function render() {
+ if(!width||!height)return;
+ if(frame)cancelAnimationFrame(frame);
+ frame=null;
+ const sheet=$('sheet'),root=document.createDocumentFragment();
+ sheet.setAttribute('viewBox',`0 0 ${width} ${height}`);
+ if(gesture?.first&&gesture.end&&state.tool==='line')straightedgeDrawing(root,screen(point(gesture.first)),gesture.end);
+ else if(width>=600)straightedgeDrawing(root,{x:width*.6,y:height-12},{x:width*.6+180,y:height-12});
+ for(const ghost of state.ghosts) root.append(drawGeometry(ghost,{stroke:'#5f5e5a','stroke-width':1.4,opacity:.35,
+  'stroke-dasharray':'6 4','aria-hidden':'true'}));
+ const now=performance.now();
+ for(const o of state.objects) {
+  const g=geom(o);
+  const attrs={stroke:o.ink?'#1d232b':'#5f5e5a','stroke-width':o.ink?2.3:1.2,opacity:1};
+  if(state.selected===o.id) {
+   root.append(drawGeometry(g,{stroke:'#9a3b2a','stroke-width':7,opacity:.16,'aria-hidden':'true'}));
+   attrs['stroke-width']=2.5;attrs.stroke='#9a3b2a';
+  }
+  const shape=drawGeometry(g,attrs);
+  if(animation?.id===o.id&&g.kind==='circle') {
+   const fraction=Curio.reduce?1:Math.min(1,(now-animation.start)/800);
+   const circumference=2*Math.PI*g.r*state.view.scale;
+   shape.setAttribute('stroke-dasharray',`${fraction*circumference} ${circumference}`);
+   const c=screen(g);
+   shape.setAttribute('transform',`rotate(${animation.angle*180/Math.PI} ${c.x} ${c.y})`);
+   if(fraction<1) { compassDrawing(root,c,g.r*state.view.scale,animation.angle+fraction*Math.PI*2); frame=requestAnimationFrame(render); }
+   else animation=null;
+  }
+  root.append(shape);
+ }
+ const labels=new Map();
+ labelBoxes=[];
+ const essential=new Set(state.objects.flatMap(o=>[o.a,o.b]).concat(state.chosen));
+ if(state.selected)essential.add(state.selected);
+ if(hoverPoint)essential.add(hoverPoint);
+ if(keyboardCursor&&state.points[state.cursor])essential.add(state.points[state.cursor].id);
+ const cells=box=>{
+  const keys=[];
+  for(let x=Math.floor(box.x/48);x<=Math.floor((box.x+box.w)/48);x++)
+   for(let y=Math.floor(box.y/48);y<=Math.floor((box.y+box.h)/48);y++)keys.push(x+','+y);
+  return keys;
+ };
+ const placeLabel=(p,s,required)=>{
+  const w=p.name.length*12+4;
+  const offsets=[[9,-8],[9,22],[-w-9,-8],[-w-9,22],[9,-32],[9,46]];
+  let box=null,offset=offsets[0];
+  for(const candidate of offsets) {
+   const b={x:s.x+candidate[0],y:s.y+candidate[1]-18,w,h:22};
+   if(b.x<2||b.y<2||b.x+b.w>width-2||b.y+b.h>height-2)continue;
+   const collision=cells(b).some(k=>(labels.get(k)||[]).some(a=>
+    a.x<b.x+b.w+2&&a.x+a.w+2>b.x&&a.y<b.y+b.h+2&&a.y+a.h+2>b.y));
+   if(!collision){box=b;offset=candidate;break;}
+  }
+  if(!box&&!required)return;
+  box ||= {x:s.x+offset[0],y:s.y+offset[1]-18,w,h:22};
+  labelBoxes.push(box);
+  for(const k of cells(box)) {
+   if(!labels.has(k))labels.set(k,[]);
+   labels.get(k).push(box);
+  }
+  if(offset!==offsets[0])root.append(svg('line',{
+   x1:s.x,y1:s.y,x2:s.x+offset[0],y2:s.y+offset[1]-8,
+   stroke:'#5f5e5a','stroke-width':.7,'stroke-dasharray':'2 2','aria-hidden':'true'
+  }));
+  root.append(svg('text',{x:s.x+offset[0],y:s.y+offset[1],fill:'#343731','font-size':17,
+   'font-style':'italic','paint-order':'stroke',stroke:'#f3ead6','stroke-width':3},p.name));
+ };
+ const visiblePoints=state.points.map(p=>({p,s:screen(p),required:p.kind!=='crossing'||essential.has(p.id)}))
+  .filter(({s})=>s.x>=-24&&s.x<=width+24&&s.y>=-24&&s.y<=height+24)
+  .sort((a,b)=>Number(b.required)-Number(a.required));
+ const dots={crossing:[],other:[]};
+ for(const {p,s,required} of visiblePoints) {
+  const chosen=state.chosen.includes(p.id);
+  if(chosen)root.append(svg('circle',{cx:s.x,cy:s.y,r:10,fill:'none',stroke:'#9a3b2a','stroke-width':1.6}));
+  else dots[p.kind==='crossing'?'crossing':'other'].push(`M${s.x-3} ${s.y}a3 3 0 1 0 6 0a3 3 0 1 0-6 0`);
+  if(required||state.view.scale>=70)placeLabel(p,s,required);
+ }
+ for(const [kind,paths] of Object.entries(dots))if(paths.length)
+  root.append(svg('path',{d:paths.join(''),fill:kind==='crossing'?'#9a3b2a':'#1d232b','data-points':kind}));
+ drawGhostLetters(root);
+ const cursor=state.points[state.cursor];
+ if(keyboardCursor&&document.activeElement===sheet&&cursor&&state.tool!=='point') {
+  const p=screen(cursor);root.append(svg('circle',{cx:p.x,cy:p.y,r:16,fill:'none',stroke:'#9a3b2a','stroke-width':1.5,
+   'stroke-dasharray':'3 3','aria-hidden':'true'}));
+ }
+ if(state.tool==='point') {
+  const p=screen(state.crosshair);
+  root.append(svg('path',{d:`M${p.x-10} ${p.y}h20M${p.x} ${p.y-10}v20`,stroke:'#9a3b2a','stroke-width':1.3,'aria-hidden':'true'}));
+ }
+ if(gesture?.first && gesture?.end) {
+  const a=screen(point(gesture.first)),b=gesture.end;
+  if(state.tool==='compass')compassDrawing(root,a,Math.hypot(a.x-b.x,a.y-b.y),Math.atan2(b.y-a.y,b.x-a.x));
+ } else if(!animation&&state.tool!=='point') {
+  const r=state.euclid?12:state.radius?Math.min(width<600?45:100,state.radius*state.view.scale):18;
+  compassDrawing(root,{x:width<600?width-56:width*.57,y:width<600?230:95},r,-.25);
+ }
+ for(const [id,tool] of [['compass','compass'],['straightedge','line'],['pointtool','point'],['eraser','erase'],['measure','measure']])
+  $(id).setAttribute('aria-pressed',state.tool===tool);
+ $('euclid').setAttribute('aria-pressed',state.euclid);
+ $('extend').setAttribute('aria-pressed',state.extend);
+ $('opening').setAttribute('aria-pressed',state.hold);
+ $('opening').disabled=state.euclid||!state.radius;
+ $('opening').title=state.euclid?'Euclid’s compass closes on lift.':`Opening ${state.radius.toFixed(4)} ${unit()}. Choose a new centre.`;
+ $('ink').setAttribute('aria-pressed',!!state.objects.find(o=>o.id===state.selected)?.ink);
+ $('undo').disabled=!history.length;$('redo').disabled=!future.length;
+ $('fieldnote').textContent='';
+ const triangle=triangleReadout();
+ if(!$('fieldnote').textContent)$('fieldnote').textContent=polygonNote();
+ const readout=(triangle||measurement())+(state.objects.length>=600?'\n600 objects · save in Paper, or Undo':'');
+ if($('readout').textContent!==readout)$('readout').textContent=readout;
+ const tag=$('readout');
+ tag.style.left='';tag.style.top='';
+ if(tag.textContent) {
+  let anchor=triangleAnchor;
+  const selected=state.objects.find(o=>o.id===state.selected);
+  if(triangleAnchor)anchor=triangleAnchor;
+  else if(state.tool==='measure'&&state.chosen.length===3)anchor=screen(point(state.chosen[1]));
+  else if(state.tool==='measure'&&state.chosen.length===2) {
+   const a=point(state.chosen[0]),b=point(state.chosen[1]);anchor=screen({x:(a.x+b.x)/2,y:(a.y+b.y)/2});
+  } else if(selected) {
+   const g=geom(selected);
+   anchor=g.kind==='circle'?screen({x:g.x+g.r,y:g.y}):screen({x:(g.a.x+g.b.x)/2,y:(g.a.y+g.b.y)/2});
+  }
+  if(anchor) {
+   const rect=tag.getBoundingClientRect(),w=rect.width,h=rect.height;
+   const obstacles=[...labelBoxes,...visiblePoints.map(({s})=>({x:s.x-7,y:s.y-7,w:14,h:14}))];
+   if(triangleBox)obstacles.push(triangleBox);
+   const paper=$('paper').getBoundingClientRect();
+   for(const e of document.querySelectorAll('.toolbelt,.power,.case,.bench,.lower,.edge,#logcard')) {
+    const b=e.getBoundingClientRect();
+    if(b.width&&b.height)obstacles.push({x:b.x-paper.x,y:b.y-paper.y,w:b.width,h:b.height});
+   }
+   const candidates=[];
+   for(const [dx,dy] of [[27,-35],[-w-22,-35],[27,30],[-w-22,30],[-w/2,-h-38],[-w/2,46]])
+    candidates.push({x:Math.max(12,Math.min(width-w-12,anchor.x+dx)),y:Math.max(132,Math.min(height-h-16,anchor.y+dy)),w,h});
+   for(let y=136;y<height-h-16;y+=30)for(let x=16;x<width-w-12;x+=40)candidates.push({x,y,w,h});
+   const clear=candidates.filter(b=>!obstacles.some(o=>overlap(b,o)));
+   const best=(clear.length?clear:candidates).sort((a,b)=>Math.hypot(a.x+w/2-anchor.x,a.y+h/2-anchor.y)-
+    Math.hypot(b.x+w/2-anchor.x,b.y+h/2-anchor.y))[0];
+   if(best){tag.style.left=best.x+'px';tag.style.top=best.y+'px';}
+  }
+ }
+ const logKey=state.log.join('\n');
+ if(logKey!==lastLog) {
+  lastLog=logKey;const log=$('log');log.replaceChildren();
+  state.log.forEach(text=>{const li=document.createElement('li');li.textContent=text;log.append(li);});
+ }
+ const counted=(n,noun)=>`${n} ${noun}${n===1?'':'s'}`;
+ $('counts').textContent=[counted(state.points.length,'point'),counted(state.objects.filter(o=>o.kind==='circle').length,'circle'),
+  counted(state.objects.filter(o=>o.kind==='line').length,'line')].join(' · ');
+ if(innerWidth>1000) {
+  $('logbutton').setAttribute('aria-expanded',!$('logcard').hidden);
+  $('logbutton').setAttribute('aria-controls','logcard');
+ } else {
+  $('logbutton').removeAttribute('aria-expanded');$('logbutton').setAttribute('aria-controls','logDrawer');
+ }
+ const magnification=state.view.scale/185*100;
+ const zoomLabel=magnification<.01?magnification.toExponential(2):magnification<1?magnification.toFixed(2):magnification.toFixed(0);
+ $('zoomtag').textContent=`${unit()==='u'?'Unit u':'AB = 1 unit'} · ${zoomLabel}%`;
+ sheet.replaceChildren(root);
+}
+function hitPoint(x,y) {
+ let best=null,min=22;
+ for(const p of state.points) { const s=screen(p),d=Math.hypot(x-s.x,y-s.y); if(d<min){best=p;min=d;} }
+ return best;
+}
+function hitObject(x,y,coarse=false) {
+ let best=null,min=coarse||matchMedia('(pointer:coarse)').matches?22:9;
+ for(const o of state.objects) {
+  const g=geom(o);let d;
+  if(g.kind==='circle') { const c=screen(g);d=Math.abs(Math.hypot(x-c.x,y-c.y)-g.r*state.view.scale); }
+  else {
+   const a=screen(g.a),b=screen(g.b),dx=b.x-a.x,dy=b.y-a.y;
+   let t=((x-a.x)*dx+(y-a.y)*dy)/(dx*dx+dy*dy);
+   if(!g.extended)t=Math.max(0,Math.min(1,t));
+   d=Math.hypot(x-a.x-t*dx,y-a.y-t*dy);
+  }
+  if(d<min){min=d;best=o;}
+ }
+ return best;
+}
+const coordinates=e=>{const r=$('sheet').getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};};
+document.addEventListener('pointerdown',()=>{
+ if(keyboardCursor){keyboardCursor=false;requestRender();}
+},true);
+$('sheet').addEventListener('pointerdown',e=>{
+ if(e.button!==0)return;
+ keyboardCursor=false;
+ const p=coordinates(e);p.coarse=e.pointerType==='touch'||e.pointerType==='pen';pointers.set(e.pointerId,p);
+ $('sheet').setPointerCapture(e.pointerId);$('sheet').focus({preventScroll:true});
+ if(pointers.size===2) {
+  const ps=[...pointers.values()];gesture={pinch:Math.hypot(ps[0].x-ps[1].x,ps[0].y-ps[1].y)};return;
+ }
+ const made=hitPoint(p.x,p.y);
+ gesture={start:p,end:p,first:made?.id,view:clone(state.view),moved:false};
+});
+$('sheet').addEventListener('pointermove',e=>{
+ const p=coordinates(e);
+ if(!pointers.has(e.pointerId)) {
+  const id=hitPoint(p.x,p.y)?.id||null;
+  if(id!==hoverPoint){hoverPoint=id;requestRender();}
+  return;
+ }
+ p.coarse=e.pointerType==='touch'||e.pointerType==='pen';
+ pointers.set(e.pointerId,p);
+ if(pointers.size===2) {
+  const ps=[...pointers.values()],d=Math.hypot(ps[0].x-ps[1].x,ps[0].y-ps[1].y);
+  if(gesture?.pinch>0)zoom(d/gesture.pinch,{x:(ps[0].x+ps[1].x)/2,y:(ps[0].y+ps[1].y)/2});
+  gesture={pinch:d};return;
+ }
+ if(!gesture||gesture.pinch)return;
+ gesture.end=p;
+ gesture.moved ||= Math.hypot(p.x-gesture.start.x,p.y-gesture.start.y)>5;
+ if(!gesture.first&&gesture.moved) {
+  state.view.x=gesture.view.x-(p.x-gesture.start.x)/state.view.scale;
+  state.view.y=gesture.view.y-(p.y-gesture.start.y)/state.view.scale;
+ }
+ requestRender();
+});
+$('sheet').addEventListener('pointerup',e=>{
+ const coarse=e.pointerType==='touch'||e.pointerType==='pen';
+ const g=gesture,p=coordinates(e);gesture=null;pointers.delete(e.pointerId);
+ if(!g||g.pinch){render();return;}
+ if(state.tool==='point'&&!g.moved){freePoint(world(p.x,p.y));return;}
+ const end=hitPoint(p.x,p.y);
+ if(g.first&&end&&g.moved&&g.first!==end.id&&['compass','line'].includes(state.tool)) {
+  createObject(state.tool==='compass'?'circle':'line',g.first,end.id);return;
+ }
+ if(!g.moved) {
+  if(end){choose(end.id);return;}
+  const o=hitObject(p.x,p.y,coarse);
+  if(o) {
+   if(state.tool==='erase'){erase(o.id);return;}
+   if(state.tool==='measure')state.measureLine=state.selected;
+   state.selected=o.id;state.chosen=[];action();render();announce(measurement());return;
+  }
+  if(state.chosen.length)announce('Choose a made point; use Point for a free point.');
+ }
+ render();
+});
+$('sheet').addEventListener('pointercancel',e=>{pointers.delete(e.pointerId);gesture=null;render();});
+$('sheet').addEventListener('wheel',e=>{e.preventDefault();zoom(Math.exp(-Math.max(-100,Math.min(100,e.deltaY))*.002),coordinates(e));},{passive:false});
+$('sheet').addEventListener('focus',render);
+$('sheet').addEventListener('blur',render);
+document.addEventListener('keydown',e=>{
+ keyboardCursor=true;
+ if(e.key==='Escape') {
+  const drawer=document.querySelector('dialog[open]');
+  if(drawer){e.preventDefault();drawer.close();return;}
+ }
+ if(e.target.closest('dialog')||e.target.matches('input,select,textarea'))return;
+ const key=e.key.toLowerCase();
+ if((e.ctrlKey||e.metaKey)&&['z','y'].includes(key)) { e.preventDefault();key==='y'||e.shiftKey?redo():undo();return; }
+ const map={c:'compass',s:'line',o:'point',e:'erase',m:'measure'};
+ if(map[key]){e.preventDefault();setTool(map[key]);$('sheet').focus({preventScroll:true});return;}
+ if(key==='i'){e.preventDefault();ink();return;}
+ if(key==='x'){e.preventDefault();$('extend').click();return;}
+ if(key==='delete'){e.preventDefault();erase();return;}
+ if(key==='escape'){state.chosen=[];gesture=null;render();return;}
+ if(key==='0'){e.preventDefault();fit();return;}
+ if((key==='['||key===']')&&e.target===$('sheet')&&state.objects.length) {
+  e.preventDefault();
+  const i=state.objects.findIndex(o=>o.id===state.selected);
+  const o=state.objects[(i+(key==='['?-1:1)+state.objects.length)%state.objects.length];
+  if(state.tool==='measure')state.measureLine=state.selected;
+  state.selected=o.id;state.chosen=[];render();announce(`${describeObject(o)}. ${measurement()}`);return;
+ }
+ if(['+','=','-','−'].includes(key)){e.preventDefault();zoom(key==='-'||key==='−'?.8:1.25);return;}
+ if(e.target!==$('sheet'))return;
+ if(e.key.startsWith('Arrow')) {
+  e.preventDefault();
+  const dx=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+  const dy=e.key==='ArrowDown'?1:e.key==='ArrowUp'?-1:0;
+  if(state.tool==='point') {
+   const jump=(e.shiftKey?50:10)/state.view.scale;
+   state.crosshair.x+=dx*jump;state.crosshair.y+=dy*jump;
+   announce(`Free point cursor ${state.crosshair.x.toFixed(4)}, ${state.crosshair.y.toFixed(4)} ${unit()}.`);
+  } else if(e.shiftKey) {state.view.x+=dx*30/state.view.scale;state.view.y+=dy*30/state.view.scale;}
+  else if(state.points.length) {
+   state.cursor=(state.cursor+(dx||dy)+state.points.length)%state.points.length;
+   announce(`Point ${state.points[state.cursor].name}, ${state.points[state.cursor].kind}.`);
+  }
+  render();
+ }
+ if(e.key==='Enter') { e.preventDefault();state.tool==='point'?freePoint(state.crosshair):choose(state.points[state.cursor]?.id); }
+});
+for(const [id,tool] of [['compass','compass'],['straightedge','line'],['pointtool','point'],['eraser','erase'],['measure','measure']])
+ $(id).onclick=()=>setTool(tool);
+$('ink').onclick=ink;$('undo').onclick=undo;$('redo').onclick=redo;
+$('extend').onclick=()=>{state.extend=!state.extend;render();announce(state.extend?'Infinite line.':'Finite segment.');};
+$('euclid').onclick=()=>{state.euclid=!state.euclid;state.radius=0;state.hold=false;render();announce(state.euclid?'Compass closes when lifted.':'Modern compass retains its opening.');};
+$('opening').onclick=()=>{state.hold=!state.hold;setTool('compass');};
+$('zoomin').onclick=()=>zoom(1.25);$('zoomout').onclick=()=>zoom(.8);$('fit').onclick=fit;
+function openDrawer(id) { V.hush();$(id).showModal(); }
+$('manual').onclick=()=>openDrawer('manualDrawer');
+$('paperMenu').onclick=()=>{refreshSlots();openDrawer('paperDrawer');};
+$('logbutton').onclick=()=>{
+ if(innerWidth>1000){$('logcard').hidden=!$('logcard').hidden;render();return;}
+ $('logcopy').innerHTML=$('log').innerHTML;openDrawer('logDrawer');
+};
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>b.closest('dialog').close());
+document.querySelectorAll('[data-new]').forEach(b=>b.onclick=()=>{newSheet(b.dataset.new);$('paperDrawer').close();});
+$('print').onclick=()=>{$('paperDrawer').close();window.print();};
+function refreshSlots() {
+ $('slots').replaceChildren();
+ for(let i=1;i<=4;i++) {
+  const div=document.createElement('div');div.className='slot';
+  const label=document.createElement('label');
+  let saved=null;
+  try{saved=JSON.parse(localStorage.getItem('cc-compass-slot-'+i));}catch{}
+  label.textContent=`Slot ${i} · ${saved?saved.date:'empty'}`;div.append(label);
+  for(const verb of ['Save','Load']) {
+   const b=document.createElement('button');b.textContent=verb;b.setAttribute('aria-label',`${verb} slot ${i}`);
+   b.disabled=verb==='Load'&&!saved;
+   b.onclick=()=>{
+    try {
+     if(verb==='Save')localStorage.setItem('cc-compass-slot-'+i,JSON.stringify({version:1,date:new Date().toLocaleDateString(),state}));
+     else {
+      const data=JSON.parse(localStorage.getItem('cc-compass-slot-'+i));
+      if(data.version!==1||!validSavedState(data.state))throw Error('Unsupported save');
+      checkpoint();restore(data.state);$('paperDrawer').close();
+     }
+     $('saveStatus').textContent=`${verb==='Save'?'Saved to':'Loaded from'} slot ${i}. On this device only.`;
+     if(verb==='Save')refreshSlots();
+    }catch{$('saveStatus').textContent='Device storage is unavailable or this save cannot be read. The current paper stays open.';}
+   };
+   div.append(b);
+  }
+  $('slots').append(div);
+ }
+}
+function validSavedState(s) {
+ // Validate before restore: a damaged slot must never replace the live paper.
+ const xy=p=>p&&Number.isFinite(p.x)&&Number.isFinite(p.y);
+ if(!s||!Array.isArray(s.points)||!Array.isArray(s.objects)||!Array.isArray(s.log)||
+  s.objects.length>600||!s.log.every(x=>typeof x==='string')||!xy(s.view)||
+  !Number.isFinite(s.view.scale)||s.view.scale<1e-4||s.view.scale>1e6||!xy(s.crosshair)||
+  !['compass','line','point','erase','measure'].includes(s.tool)||
+  !Number.isFinite(s.radius)||s.radius<0||!Number.isInteger(s.serial)||!Number.isInteger(s.nextName)||
+  !Number.isInteger(s.page)||s.page<0||s.page>=book.length||!Number.isInteger(s.step)||
+  s.step<0||s.step>book[s.page][2].length||!Array.isArray(s.ghosts))return false;
+ const m=s.bookPlacement;
+ if(m!=null&&(![m.x,m.y,m.sx,m.sy,m.c,m.d].every(Number.isFinite)||
+  typeof m.mapped!=='boolean'||Math.hypot(m.c,m.d)===0))return false;
+ const ids=new Set();
+ for(const p of s.points) {
+  if(!xy(p)||typeof p.id!=='string'||ids.has(p.id)||typeof p.name!=='string'||
+   !['given','free','crossing'].includes(p.kind)||!Array.isArray(p.parents))return false;
+  ids.add(p.id);
+ }
+ const pointIds=new Set(ids),objectIds=new Set();
+ for(const o of s.objects) {
+  if(!o||typeof o.id!=='string'||ids.has(o.id)||!['line','circle'].includes(o.kind)||!pointIds.has(o.a))return false;
+  if(o.kind==='line'||o.radius==null) {
+   if(!pointIds.has(o.b)||o.a===o.b)return false;
+  } else if(!Number.isFinite(o.radius)||o.radius<=EPS)return false;
+  ids.add(o.id);objectIds.add(o.id);
+ }
+ if(s.points.some(p=>p.parents.some(id=>!objectIds.has(id))))return false;
+ return s.ghosts.every(g=>g.kind==='line'?xy(g.a)&&xy(g.b):
+  g.kind==='circle'&&xy(g)&&Number.isFinite(g.r)&&g.r>=0);
+}
+// The Book stores our diagrams as geometry, separately from the student's made points.
+const P=(x,y)=>({x,y});
+const gl=(a,b,extended=false)=>({kind:'line',a,b,extended});
+const gc=(c,r)=>({kind:'circle',x:c.x,y:c.y,r});
+const A=P(-.5,0),B=P(.5,0),T=P(0,-Math.sqrt(3)/2),D=P(0,Math.sqrt(3)/2);
+const circlePolygon=n=>Array.from({length:n},(_,i)=>P(Math.cos(-Math.PI/2+2*Math.PI*i/n),Math.sin(-Math.PI/2+2*Math.PI*i/n)));
+const polygonLines=ps=>ps.map((p,i)=>gl(p,ps[(i+1)%ps.length]));
+const book=[
+ ['I.1 · Equilateral triangle','On a given finite straight line to construct an equilateral triangle.',
+  [[gc(A,1),'Set the compass at A through B.'],[gc(B,1),'Set the compass at B through A. Call the upper crossing C.'],
+   [gl(T,A),'Join C to A.'],[gl(T,B),'Join C to B.'],[gl(A,B),'Join A to B.']],polygonLines([A,B,T])],
+ ['I.2 · Copy a length','To place at a given point (as an extremity) a straight line equal to a given straight line.',[],[]],
+ ['I.3 · Cut off a length','Given two unequal straight lines, to cut off from the greater a straight line equal to the less.',
+  [[gl(P(-1,0),P(1.3,0)),'Take the greater segment from A.'],[gl(P(-.8,-.8),P(-.2,-.8)),'Take the lesser segment.'],
+   [gl(P(-1,0),P(-1,-.6)),'By I.2, copy the lesser length to A.'],[gc(P(-1,0),.6),'Circle A with that radius. The crossing on the greater segment cuts off the lesser length.']],
+  [gl(P(-1,0),P(1.3,0)),gc(P(-1,0),.6)]],
+ ['I.9 · Bisect an angle','To bisect a given rectilineal angle.',
+  [[gl(P(-1,0),P(1,-1)),'Given angle with vertex A.'],[gl(P(-1,0),P(1,1)),'The other arm.'],
+   [gc(P(-1,0),1),'Circle A cuts both arms at equal distances.'],[gc(P(-1+2/Math.sqrt(5),-1/Math.sqrt(5)),2/Math.sqrt(5)),'Circle the upper crossing through the lower.'],
+   [gc(P(-1+2/Math.sqrt(5),1/Math.sqrt(5)),2/Math.sqrt(5)),'Circle the lower crossing through the upper.'],[gl(P(-1,0),P(-1+(2+Math.sqrt(3))/Math.sqrt(5),0)),'Join A to the crossing inside the angle.']],
+  [gl(P(-1,0),P(1,-1)),gl(P(-1,0),P(1,1)),gl(P(-1,0),P(1,0))]],
+ ['I.10 · Bisect a segment','To bisect a given finite straight line.',
+  [[gl(A,B),'Given AB.'],[gc(A,1),'Circle A through B.'],[gc(B,1),'Circle B through A.'],[gl(T,D),'Join the crossings. It bisects AB.']],
+  [gl(A,B),gl(T,D)]],
+ ['I.11 · Raise a perpendicular','To draw a straight line at right angles to a given straight line from a given point on it.',
+  [[gl(P(-1,0),P(1,0)),'Given a line with point A on it.'],[gc(P(0,0),.6),'Choose a point on the line and circle A through it: equal distances either side.'],
+   [gc(P(-.6,0),1.2),'Circle the left crossing through the right.'],[gc(P(.6,0),1.2),'Circle the right crossing through the left.'],
+   [gl(P(0,0),P(0,-.6*Math.sqrt(3))),'Join A to the upper circle crossing.']], [gl(P(-1,0),P(1,0)),gl(P(0,0),P(0,-1))]],
+ ['I.12 · Drop a perpendicular','To a given infinite straight line, from a given point which is not on it, to draw a perpendicular straight line.',
+  [[gl(P(-1,0),P(1,0),true),'Given an infinite line and A above it.'],[gc(P(0,-.6),1),'Circle A through a chosen point below the line.'],
+   [gc(P(-.8,0),1.6),'Circle one line crossing through the other.'],[gc(P(.8,0),1.6),'Repeat from the other crossing.'],
+   [gl(P(0,-.6),P(0,.8*Math.sqrt(3))),'Join A to the lower crossing.']], [gl(P(-1,0),P(1,0)),gl(P(0,-.6),P(0,0))]],
+ ['I.23 · Copy an angle','On a given straight line and at a point on it to construct a rectilineal angle equal to a given rectilineal angle.',
+  [[gl(P(-1,-.6),P(-.2,-.6)),'At the original vertex, choose equal points along its arms.'],[gl(P(-1,-.6),P(-.6,-.6-.4*Math.sqrt(3))),'The other original arm.'],
+   [gl(P(.2,.7),P(1,.7)),'Copy one radius onto the new ray by I.2.'],[gc(P(.2,.7),.8),'Circle the new vertex.'],
+   [gc(P(1,.7),.8),'Copy the chord between the original arm points; circle the new ray point with it.'],
+   [gl(P(.2,.7),P(.6,.7-.4*Math.sqrt(3))),'Join the new vertex to the upper crossing. The three sides match.']],
+  [gl(P(-1,-.6),P(-.2,-.6)),gl(P(-1,-.6),P(-.6,-.6-.4*Math.sqrt(3))),gl(P(.2,.7),P(1,.7)),gl(P(.2,.7),P(.6,.7-.4*Math.sqrt(3)))]],
+ ['I.31 · Draw a parallel','Through a given point to draw a straight line parallel to a given straight line.',
+  [[gl(P(-1,.6),P(1,.6)),'Given a line and A away from it.'],[gl(P(-.5,-.6),P(.4,.6)),'Join A to a chosen point on the line.'],
+   [gl(P(-.5,-.6),P(1,-.6),true),'Use I.23 to copy the alternate angle at A. Extend its new arm.']],
+  [gl(P(-1,.6),P(1,.6)),gl(P(-1,-.6),P(1,-.6))]],
+ ['I.46 · Square on a segment','On a given straight line to describe a square.',
+  [[gl(A,B),'Given AB.'],[gl(A,P(-.5,-1)),'Raise a perpendicular at A by I.11; copy AB along it by I.3.'],
+   [gl(P(-.5,-1),P(.5,-1)),'Draw the parallel to AB through the new point by I.31.'],
+   [gl(B,P(.5,-1)),'Draw the parallel to the perpendicular through B.']],polygonLines([A,B,P(.5,-1),P(-.5,-1)])],
+ ['IV.6 · Square in a circle','In a given circle to inscribe a square.',
+  [[gc(P(0,0),1),'Given a circle. Draw a diameter through its centre.'],[gl(P(-1,0),P(1,0)),'The first diameter.'],
+   [gl(P(0,-1),P(0,1)),'Raise its perpendicular diameter by I.11.'],...polygonLines(circlePolygon(4)).map(g=>[g,'Join neighbouring diameter ends.'])],
+  [gc(P(0,0),1),...polygonLines(circlePolygon(4))]],
+ ['IV.11 · Pentagon','In a given circle to inscribe an equilateral and equiangular pentagon.',[],[]],
+ ['IV.15 · Hexagon','In a given circle to inscribe an equilateral and equiangular hexagon.',
+  [[gc(P(0,0),1),'Given circle. Its radius is also its hexagon side.'],...circlePolygon(6).map(p=>[gc(p,1),'Circle the next rim crossing through the centre. Keep walking the same radius.']),
+   ...polygonLines(circlePolygon(6)).map(g=>[g,'Join adjacent rim crossings.'])], [gc(P(0,0),1),...polygonLines(circlePolygon(6))]],
+ ['IV.16 · Fifteen-sided figure','In a given circle to inscribe a fifteen-angled figure which shall be both equilateral and equiangular.',
+  [[gc(P(0,0),1),'Given circle. Inscribe a triangle by IV.2 and a pentagon by IV.11 sharing one vertex.'],
+   ...polygonLines(circlePolygon(3)).map(g=>[g,'Triangle side: an arc of 120 degrees.']),
+   ...polygonLines(circlePolygon(5)).map(g=>[g,'Pentagon side: an arc of 72 degrees. Their difference is 48 degrees.']),
+   [gl(P(0,0),P(Math.cos(Math.PI/30),Math.sin(Math.PI/30))),
+    'Bisect the 48-degree arc by I.9 at the centre. Its 24-degree chord steps round fifteen times.'],
+   ...polygonLines(circlePolygon(15)).map(g=>[g,'Step the chord around the circle and join its ends.'])],
+  [gc(P(0,0),1),...polygonLines(circlePolygon(15))]],
+ ['Trying to trisect','Can these two instruments divide every angle into three equal parts?',
+  [[gl(P(-1,.8),P(1,.8)),'Take a 60-degree angle.'],[gl(P(-1,.8),P(0,.8-Math.sqrt(3))),'Its other arm.'],
+   [gl(P(-1,.8),P(-1+Math.sqrt(3),-.2)),'Bisect: 30 degrees.'],
+   [gl(P(-1,.8),P(-1+2*Math.cos(Math.PI/12),.8-2*Math.sin(Math.PI/12))),'Bisect again: 15 degrees, not 20.']],
+  [gl(P(-1,.8),P(1,.8)),gl(P(-1,.8),P(0,.8-Math.sqrt(3))),gl(P(-1,.8),P(-1+Math.sqrt(3),-.2))]]
+];
+// I.2: a true collapsing-compass transfer, with every circle passing through a made point.
+{
+ const a=P(-.9,.1),b=P(.1,.1),c=P(.6,.1),d=P(-.4,-Math.sqrt(3)/2+.1);
+ const g=P(.35,.5330127018922193),l=P(-1.15,.5330127018922193);
+ book[1][2]=[[gl(b,c),'Given BC; copy it to A, a point away from B.'],[gl(a,b),'Join A to B.'],
+  [gc(a,1),'By I.1 circle A through B.'],[gc(b,1),'Circle B through A. Call the upper crossing D.'],
+  [gl(d,b,true),'Extend DB beyond B.'],[gl(d,a,true),'Extend DA beyond A.'],
+  [gc(b,.5),'Circle B through C. It cuts the extended DB at G.'],[gc(d,1.5),'Circle D through G. It cuts extended DA at L.'],
+  [gl(a,l),'AL equals BC: subtract equal DA and DB from equal DL and DG.']];
+ book[1][3]=[gl(b,c),gl(a,l),gl(d,g),gl(d,l)];
+}
+// IV.11 uses II.11 and IV.10 as Euclid's compound sub-constructions, rather than a measured 72-degree shortcut.
+{
+ const ps=circlePolygon(5),phi=(1+Math.sqrt(5))/2;
+ const base=2*Math.sin(Math.PI/5),diag=base*phi;
+ const goldenTriangle=[ps[0],ps[2],ps[3]];
+ const q=P(-1,1),r=P(0,1),u=P(-1,0),v=P(0,0),mid=P(-1,.5);
+ const h=P(-1+(Math.sqrt(5)-1)/2,1);
+ book[11][2]=[[gl(q,r),'II.11: take a unit segment AB.'],[gl(q,u),'I.46: erect its square.'],
+  [gl(u,v),'The opposite side of the square.'],[gl(v,r),'Close the square.'],
+  [gl(mid,r),'I.10: bisect the left side at E. Join E to B.'],
+  [gc(mid,Math.sqrt(5)/2),'Extend the left side below A; circle E through B to meet that extension at F.'],
+  [gl(mid,P(-1,.5+Math.sqrt(5)/2),true),'Use the crossing beyond A, not the crossing beyond the top of the square.'],
+  [gc(q,(Math.sqrt(5)-1)/2),'Circle A through F. Its crossing H on AB divides AB in extreme and mean ratio.'],
+  [gl(q,h),'AH squared equals AB times HB. This is the II.11 golden division.'],
+  [gc(P(-1,-.2),1),'IV.10: circle a new A through B one unit away.'],
+  [gc(P(0,-.2),(Math.sqrt(5)-1)/2),
+   'By I.2, copy the longer part of the preceding golden division to B. Circle B with that length to cut circle A at D.'],
+  [gl(P(-1,-.2),P(-1+Math.cos(Math.PI/5),-.2-Math.sin(Math.PI/5))),
+   'Join AD and BD. Triangle ABD is isosceles: both base angles are twice its vertex angle.'],
+  [gc(P(0,0),1),'IV.2: in the given circle choose a rim point V. Draw its radius.'],
+  [gl(P(0,0),ps[0]),'At V raise a perpendicular to the radius by I.11. This is the tangent.'],
+  [gl(P(-1,-1),P(1,-1)),'Use the tangent as the ray from which to copy the golden triangle’s base angles.'],
+  [gl(goldenTriangle[0],goldenTriangle[1]),'I.23: at V copy a base angle inward from the right tangent ray. Its arm meets the circle.'],
+  [gl(goldenTriangle[2],goldenTriangle[0]),'Copy the same angle inward from the left tangent ray for the other crossing.'],
+  [gl(goldenTriangle[1],goldenTriangle[2]),'Join the crossings. The inscribed triangle has base angles twice its vertex angle.'],
+  [gl(ps[2],ps[4]),'Bisect one base angle by I.9. Extend its bisector to the circle to locate another vertex.'],
+  [gl(ps[3],ps[1]),'Bisect the other base angle to locate the fifth vertex.'],
+  ...polygonLines(ps).map(g=>[g,'Join neighbouring vertices of the five equal arcs.'])];
+ book[11][3]=[gc(P(0,0),1),...polygonLines(ps),gl(ps[0],ps[2])];
+ book[11].ratio=diag/base;
+}
+book.forEach((p,i)=>{const o=document.createElement('option');o.value=i;o.textContent=p[0];$('bookpage').append(o);});
+// Letters belong to each reference construction, independently of the student's naming order.
+const letter=(name,p,from=1)=>({name,p,from});
+const bookLetters=[
+ [letter('A',A),letter('B',B),letter('C',T,2),letter('D',D,2)],
+ [letter('A',P(-.9,.1)),letter('B',P(.1,.1)),letter('C',P(.6,.1)),
+  letter('D',P(-.4,.1-Math.sqrt(3)/2),4),letter('G',P(.35,.5330127018922193),7),letter('L',P(-1.15,.5330127018922193),8)],
+ [letter('A',P(-1,0)),letter('B',P(1.3,0)),letter('C',P(-.8,-.8),2),letter('D',P(-.2,-.8),2)],
+ [letter('A',P(-1,0))],
+ [letter('A',A),letter('B',B),letter('C',T,3),letter('D',D,3)],
+ [letter('A',P(0,0)),letter('B',P(.6,0),2),letter('C',P(-.6,0),2),letter('D',P(0,-.6*Math.sqrt(3)),4)],
+ [letter('A',P(0,-.6)),letter('B',P(-.8,0),2),letter('C',P(.8,0),2)],
+ [letter('A',P(-1,-.6)),letter('B',P(-.2,-.6)),letter('C',P(-.6,-.6-.4*Math.sqrt(3)),2),
+  letter('D',P(.2,.7),3),letter('E',P(1,.7),3)],
+ [letter('A',P(-.5,-.6)),letter('B',P(-1,.6)),letter('C',P(1,.6))],
+ [letter('A',A),letter('B',B),letter('C',P(.5,-1),3),letter('D',P(-.5,-1),2)],
+ [letter('O',P(0,0)),...circlePolygon(4).map((p,i)=>letter('ABCD'[i],p,2))],
+ [],
+ [letter('O',P(0,0)),...circlePolygon(6).map((p,i)=>letter('BCDEFG'[i],p,Math.min(i+1,7)))],
+ [letter('O',P(0,0)),...circlePolygon(15).map((p,i)=>letter('ABCDEFGHIJKLMNP'[i],p,1))],
+ [letter('A',P(-1,.8)),letter('B',P(1,.8)),letter('C',P(0,.8-Math.sqrt(3)),2)]
+];
+function bookPhase() { return state.page===11?(state.step===0||state.step>=13?2:state.step>=10?1:0):0; }
+function currentBookLetters() {
+ if(state.page!==11)return bookLetters[state.page].filter(l=>!state.step||l.from<=state.step);
+ if(bookPhase()===0)return [letter('A',P(-1,1)),letter('B',P(0,1)),letter('C',P(-1,0),2),letter('D',P(0,0),3),
+  letter('E',P(-1,.5),5),letter('F',P(-1,.5+Math.sqrt(5)/2),6),letter('H',P(-1+(Math.sqrt(5)-1)/2,1),8)]
+  .filter(l=>l.from<=state.step);
+ if(bookPhase()===1)return [letter('A',P(-1,-.2)),letter('B',P(0,-.2)),
+  letter('D',P(-1+Math.cos(Math.PI/5),-.2-Math.sin(Math.PI/5)),11)].filter(l=>l.from<=state.step);
+ return [letter('O',P(0,0)),...circlePolygon(5).map((p,i)=>letter(['V','P','Q','R','S'][i],p))];
+}
+function bookStrokes() {
+ const page=book[state.page];
+ if(!state.step)return page[3].map(referenceStroke);
+ const start=state.page===11?(bookPhase()===2?12:bookPhase()===1?9:0):0;
+ return page[2].slice(start,state.step).map(s=>referenceStroke(s[0]));
+}
+function referenceStroke(g) {
+ if(g.kind!=='line'||!g.extended)return g;
+ const dx=g.b.x-g.a.x,dy=g.b.y-g.a.y;
+ // A finite visible portion of the extended reference stays inside its own study area.
+ return {...g,a:P(g.a.x-.2*dx,g.a.y-.2*dy),b:P(g.a.x+1.7*dx,g.a.y+1.7*dy),extended:false};
+}
+function placementForBook() {
+ const a=state.points.find(p=>p.kind==='given'&&p.name==='A'),b=state.points.find(p=>p.kind==='given'&&p.name==='B');
+ let source=null,target=null;
+ const pairPages=[0,2,4,5,9];
+ const pairSources={0:[A,B],2:[P(-1,0),P(1.3,0)],4:[A,B],5:[P(0,0),P(.6,0)],9:[A,B]};
+ const givenCircle=state.log.includes('Given circle with centre A through B.');
+ const givenAngle=state.log.includes('Given angle BAC.');
+ if(a&&b&&!givenAngle&&pairPages.includes(state.page)) {source=pairSources[state.page];target=[a,b];}
+ if(a&&b&&givenCircle&&state.page>=10&&state.page<=13&&(state.page!==11||bookPhase()===2)) {
+  source=[P(0,0),P(0,-1)];target=[a,b];
+ }
+ if(source) {
+  const u={x:source[1].x-source[0].x,y:source[1].y-source[0].y};
+  const v={x:target[1].x-target[0].x,y:target[1].y-target[0].y},den=u.x*u.x+u.y*u.y;
+  return {x:target[0].x,y:target[0].y,sx:source[0].x,sy:source[0].y,
+   c:(u.x*v.x+u.y*v.y)/den,d:(u.x*v.y-u.y*v.x)/den,mapped:true};
+ }
+ // A separate study occupies its own area beyond the student's entire construction, with primed letters.
+ const bounds=state.points.map(p=>p.x);
+ for(const o of state.objects)if(o.kind==='circle'){const g=geom(o);bounds.push(g.x+g.r);}
+ return {x:Math.max(1,...bounds)+2.6,y:0,sx:0,sy:0,c:1,d:0,mapped:false};
+}
+function mapBookPoint(p,m=state.bookPlacement) {
+ const x=p.x-m.sx,y=p.y-m.sy;
+ return {x:m.x+m.c*x-m.d*y,y:m.y+m.d*x+m.c*y};
+}
+function mapBookGeometry(g,m) {
+ if(g.kind==='circle')return {...g,...mapBookPoint(g,m),r:g.r*Math.hypot(m.c,m.d)};
+ return {...g,a:mapBookPoint(g.a,m),b:mapBookPoint(g.b,m)};
+}
+function ghostLetter(l) {
+ const m=state.bookPlacement,p=mapBookPoint(l.p,m);
+ return m.mapped?(state.points.find(q=>distance(q,p)<1e-7*strokeScale)?.name||l.name+'′'):l.name+'′';
+}
+function drawGhostLetters(root) {
+ if(!state.ghosts.length||!state.bookPlacement)return;
+ for(const l of currentBookLetters()) {
+  const p=mapBookPoint(l.p),s=screen(p),name=ghostLetter(l);
+  if(state.bookPlacement.mapped&&state.points.some(q=>q.name===name&&distance(q,p)<1e-7*strokeScale))continue;
+  root.append(svg('circle',{cx:s.x,cy:s.y,r:2,fill:'#5f5e5a',opacity:.55,'aria-hidden':'true'}));
+  root.append(svg('text',{x:s.x+8,y:s.y-8,fill:'#5f5e5a','font-size':16,'font-style':'italic',
+   'paint-order':'stroke',stroke:'#f3ead6','stroke-width':3,'aria-hidden':'true','data-ghost-letter':name},name));
+ }
+}
+function drawBook() {
+ const page=book[state.page];$('booktext').textContent=page[1];
+ $('bookref').textContent=state.page===14?'Wantzel, 1837: a general trisection is impossible. Some particular angles can be trisected.':
+  'Euclid · Heath, 1908 · public domain';
+ const fig=$('figure');fig.replaceChildren();
+ const shown=bookStrokes(),letters=currentBookLetters();
+ // The requested construction stays visible beside its words while the drawer covers the paper.
+ const bounds=shown.flatMap(g=>g.kind==='circle'?
+  [P(g.x-g.r,g.y-g.r),P(g.x+g.r,g.y+g.r)]:[g.a,g.b]).concat(letters.map(l=>l.p));
+ let labelSize=.16,figureBounds=null;
+ if(bounds.length) {
+  const xs=bounds.map(p=>p.x),ys=bounds.map(p=>p.y);
+  const side=Math.max(.5,Math.max(...xs)-Math.min(...xs),Math.max(...ys)-Math.min(...ys))*1.2;
+  const x=(Math.min(...xs)+Math.max(...xs)-side)/2,y=(Math.min(...ys)+Math.max(...ys)-side)/2;
+  fig.setAttribute('viewBox',`${x} ${y} ${side} ${side}`);
+  figureBounds={x,y,w:side,h:side};
+  labelSize=side*Math.max(.075,11/(Math.min(fig.clientWidth,fig.clientHeight)||190));
+ }
+ fig.setAttribute('aria-label',state.step?`${page[0]}. ${page[2][state.step-1][1]}`:`${page[0]}. Finished construction reference.`);
+ for(const [i,g] of shown.entries()) {
+  let e;
+  if(g.kind==='circle') e=svg('circle',{cx:g.x,cy:g.y,r:g.r,fill:'none'});
+  else e=svg('line',{x1:g.a.x,y1:g.a.y,x2:g.b.x,y2:g.b.y});
+  e.setAttribute('stroke','#5f5e5a');e.setAttribute('stroke-width',state.step&&i===shown.length-1?'2':'1.2');
+  e.setAttribute('vector-effect','non-scaling-stroke');
+  if(state.step&&i<shown.length-1)e.setAttribute('opacity','.45');
+  fig.append(e);
+ }
+ const placed=[];
+ for(const l of letters) {
+  fig.append(svg('circle',{cx:l.p.x,cy:l.p.y,r:labelSize*.12,fill:'#5f5e5a'}));
+  const e=svg('text',{x:0,y:0,fill:'#343731','font-size':labelSize,
+   'font-style':'italic','paint-order':'stroke',stroke:'#f3ead6','stroke-width':labelSize*.16},
+   state.step&&state.bookPlacement?ghostLetter(l):l.name);
+  fig.append(e);
+  const size=e.getBBox(),pad=labelSize*.2;
+  const offsets=[[pad,-pad],[pad,labelSize*1.3],[-size.width-pad,-pad],[-size.width-pad,labelSize*1.3],
+   [pad,-labelSize*1.6],[pad,labelSize*2.5]];
+  const candidates=offsets.map(([dx,dy])=>({x:l.p.x+dx,y:l.p.y+dy,box:{
+   x:l.p.x+dx+size.x,y:l.p.y+dy+size.y,w:size.width,h:size.height}}));
+  const clear=candidates.find(({box})=>!placed.some(b=>overlap(b,box,pad))&&(!figureBounds||
+   (box.x>=figureBounds.x&&box.y>=figureBounds.y&&box.x+box.w<=figureBounds.x+figureBounds.w&&
+    box.y+box.h<=figureBounds.y+figureBounds.h)));
+  const position=clear||candidates.slice().sort((a,b)=>placed.filter(p=>overlap(p,a.box,pad)).length-
+   placed.filter(p=>overlap(p,b.box,pad)).length)[0];
+  e.setAttribute('x',position.x);e.setAttribute('y',position.y);placed.push(position.box);
+  if(position!==candidates[0])fig.insertBefore(svg('line',{x1:l.p.x,y1:l.p.y,
+   x2:position.x,y2:position.y-labelSize*.35,stroke:'#5f5e5a','stroke-width':.6,
+   'vector-effect':'non-scaling-stroke','stroke-dasharray':'1 2'}),e);
+ }
+ let text=state.step?page[2][state.step-1][1]:'Press Show next step to lay a faint reference on the paper.';
+ if(state.step&&state.bookPlacement) {
+  const names=new Map(letters.map(l=>[l.name,ghostLetter(l)]));
+  text=text.replace(/\b[A-Z]+\b/g,(word,offset)=>{
+   if(/^[IVX]+$/.test(word)&&text[offset+word.length]==='.'&&/\d/.test(text[offset+word.length+1]))return word;
+   return [...word].every(n=>names.has(n))?[...word].map(n=>names.get(n)).join(' · '):word;
+  });
+  text+=' '+(state.bookPlacement.mapped?'Letters follow your sheet; primed letters are reference points.':'Separate study on the paper; its letters have primes.');
+ }
+ $('steptext').textContent=text;
+ $('nextstep').disabled=state.step>=page[2].length;
+}
+$('book').onclick=()=>{openDrawer('bookDrawer');drawBook();};
+$('bookpage').onchange=()=>{V.hush();state.page=+$('bookpage').value;state.step=0;state.ghosts=[];drawBook();render();};
+$('nextstep').onclick=()=>{
+ V.hush();
+ const steps=book[state.page][2];
+ if(state.step>=steps.length)return;
+ const step=steps[state.step++];
+ const previousPhase=state.page===11?(state.step-1>=13?2:state.step-1>=10?1:0):0;
+ if(state.step===1||previousPhase!==bookPhase()||!state.bookPlacement)state.bookPlacement=placementForBook();
+ state.ghosts=bookStrokes().map(g=>mapBookGeometry(g,state.bookPlacement));
+ if(!state.bookPlacement.mapped) {
+  const g=state.ghosts;
+  const bounds=g.flatMap(o=>o.kind==='circle'?[P(o.x-o.r,o.y-o.r),P(o.x+o.r,o.y+o.r)]:[o.a,o.b]).concat(state.points);
+  const xs=bounds.map(p=>p.x),ys=bounds.map(p=>p.y);
+  state.view.x=(Math.min(...xs)+Math.max(...xs))/2;state.view.y=(Math.min(...ys)+Math.max(...ys))/2;
+  state.view.scale=Math.min(state.view.scale,(width-(width>1000?340:60))/(Math.max(...xs)-Math.min(...xs)+1),
+   Math.max(100,height-(width<600?440:260))/(Math.max(...ys)-Math.min(...ys)+1));
+ }
+ drawBook();
+ render();
+};
+$('clearghost').onclick=()=>{V.hush();state.ghosts=[];state.step=0;drawBook();render();};
+$('backpaper').onclick=()=>{$('bookDrawer').close();$('sheet').focus({preventScroll:true});};
+const observer=new ResizeObserver(()=>{
+ const r=$('sheet').getBoundingClientRect();const first=!width;
+ width=r.width;height=r.height;
+ if(first)fit();else render();
+});
+observer.observe($('sheet'));
+Curio.init({clips:"voice:*",rate:.9,readFallback:()=>L.hint});
+const stylePower=()=>{
+ $('motion').textContent=Curio.reduce?'Motion off':'Motion on';
+ $('sound').textContent=Curio.sound?'Sound on':'Sound off';
+};
+Curio.onMotion(()=>{animation=null;stylePower();render();});
+Curio.onSound(()=>{if(!Curio.sound){try{graphite?.stop();}catch{}}stylePower();});stylePower();
+newSheet('pair',true);
+window.__tool={state,setMode:setTool,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+ intersections,angleAt,distance,createObject,freePoint,choose,newSheet,undo,redo,fit,render,screen,world,book,
+ get history(){return history;},get future(){return future;}};
+</script>
+</body>
+</html>

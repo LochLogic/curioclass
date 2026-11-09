@@ -1,0 +1,24 @@
+{
+  "id": "gas-law-lab",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Measure the gas. Find the law.",
+  "outcome": "Use gas measurements and a fitted line to discover absolute zero.",
+  "driver": "students",
+  "minutes": "20-40",
+  "modes": [
+    "Bench",
+    "Absolute zero"
+  ],
+  "grades_label": "Grade 10",
+  "sources": [
+    "OpenStax Chemistry 2e, sections 9.2 and 9.5",
+    "OpenStax University Physics Volume 2, section 3.5",
+    "NIST CODATA constants and PubChem molar masses",
+    "U.S. Standard Atmosphere, 1976 (NOAA, NASA, USAF)",
+    "NGSS HS-PS3-2",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

@@ -30,7 +30,7 @@ Source offers two poems, two original paintings and two synthesized sounds. High
 
 Map shows X for the start, arrows for travel, numbered circles for in-place moves and a loop for a roll. Draw path reads straight, curved and zigzag parts in drawing order. In-place moves keep their place. Clear map restores the default pathways for the current cards.
 
-Viewer waits until playback ends, then compares average Speed, Weight, Flow and Level plus the most frequent traveling path. It circles every tied nearest source. A tie containing the student's source counts as recognized. Revise outlines the two cards whose qualities differ most from the intended source. Partner guess hides the source and model result until a partner chooses. The closing sentence connects the source to the student's own life.
+Viewer waits until playback ends, then compares average Speed, Weight, Flow and Level plus the most frequent traveling path. It circles every tied nearest source. A tie containing the student's source counts as recognized. Revise outlines the two cards whose qualities differ most from the intended source. Partner guess hides the source and model result. A partner watches the whole phrase before choosing once; both interpretations then appear. The closing sentence connects the source to the student's own life. On a phone, scroll down to that sentence; the Play controls stay available.
 
 ## Talk about it
 
@@ -41,11 +41,11 @@ Viewer waits until playback ends, then compares average Speed, Weight, Flow and 
 
 ## Good to know
 
-The Viewer is a deliberately simple model, not a judge of dance quality. A wrong guess invites another interpretation. Its numeric meters describe averages: Speed runs slow to quick, Weight light to strong, Flow smooth to sharp and Level low to high. The most-used traveling pathway wins; an equal path count uses Straight, Curved, then Zigzag order.
+The Viewer is a deliberately simple model, not a judge of dance quality. The supplied defaults already match their sources; this is an open creative studio, not evidence that a child has mastered choreography. Invite a different interpretation, then compare the result. A wrong guess invites another interpretation. Its numeric meters describe averages: Speed runs slow to quick, Weight light to strong, Flow smooth to sharp and Level low to high. The most-used traveling pathway wins; an equal path count uses Straight, Curved, then Zigzag order.
 
 The tool saves each source's work and personal sentence on this device, using localStorage. Nothing leaves the device. Start over clears only the current source. Sound controls narration, music and source sounds. Read speaks the current hint. Motion off keeps the same timing and shows one pose per count. No recordings were made in this build; narration uses the browser's available voice.
 
-Students may adapt every move to their own comfortable range. Make room before moving. The code dancer is temporary; painted dancer poses are queued for owner review.
+Students may adapt every move to their own comfortable range. Make room before moving. The painted paper dancers use the shared movement engine. Three equally capable children appear across the cast, including a dancer with a lower-leg prosthesis. The cast is independent of the source, so it cannot reveal a partner answer.
 
 ## Sources
 
@@ -55,3 +55,19 @@ Students may adapt every move to their own comfortable range. Make room before m
 - [National Core Arts Standards](https://www.nationalartsstandards.org/), Dance: DA:Cr1, DA:Cr3 and DA:Cn10, grades 3-5. Students create from stimuli, revise and document a phrase, then connect its idea to lived experience.
 - Paintings are original illustrations using woodblock-print and Romantic landscape conventions, rather than reproductions of historical works.
 - Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+
+## Terminology and standards limits
+
+The spec calls the smooth/sharp control Flow. In Gilbert's dance vocabulary, sharp/smooth describes energy;
+formal flow is free/bound. Keep those ideas distinct when teaching. The on-screen term is retained pending a
+spec correction, rather than claiming this is a complete Laban effort model.
+See the Alabama State Department of Education's [Arts Education Course of Study, Appendix D](https://arts.alabama.gov/PDF/AIE/ALC/2017%20Arts%20Education%20COS.pdf), adapted from Gilbert.
+
+This single-dancer tool practices source-based creation, revision, grade 3 pathway maps and personal connections.
+It does not by itself cover every grade-level subpart of DA:Cr1, DA:Cr3 or DA:Cn10. For example, grade 4's
+documentation of relationships between multiple dancers needs another activity.
+
+The River is an original illustration influenced by Japanese woodblock landscape conventions, not a historical
+Japanese print. The Storm is an original Romantic-inspired landscape, not a work by a named historical painter.
+Style references: The Metropolitan Museum of Art, [Woodblock Prints in the Ukiyo-e Style](https://www.metmuseum.org/essays/woodblock-prints-in-the-ukiyo-e-style)
+and [Romanticism](https://www.metmuseum.org/essays/romanticism).

@@ -13,12 +13,12 @@
   "grades_label": "Kindergarten",
   "sources": [
     "CSTA K-12 Computer Science Standards, 2017: 1A-DA-06 and 1A-DA-07; 2026 module identifiers.",
-    "FIBA Official Basketball Rules, Basketball Equipment: ball rebound test.",
+    "FIBA Basketball Equipment 2024: current rebound reference; the required basketball factor 0.85 is retained as a model choice, not a certification claim.",
     "ITF Rules of Tennis, Appendix I: ball rebound test.",
-    "OpenStax College Physics 2e, sections 2.7 and 8.5: free fall and coefficient of restitution.",
+    "OpenStax College Physics 2e, sections 2.7 and 8.5: ideal free fall and energy loss in collisions.",
     "Bounce factors, visible-bounce cut-off and tap matching window are a model chosen for this tool.",
     "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
   ],
   "third_party": [],
-  "updated": "2026-11-03"
+  "updated": "2026-11-07"
 }

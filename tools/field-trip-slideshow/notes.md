@@ -31,10 +31,15 @@ Sound starts at music level 5, equal to the model's voice reference. Tap Test it
 Levels 1 through 5 use gains 0.063, 0.126, 0.251, 0.501, and 1.000, representing -24, -18, -12, -6, and 0 dB.
 The listening symbol is an illustrative model: check at 1-3, question at 4, cross at 5. It is not a microphone test.
 Browser speech output varies by device, so listen to the actual result before class. Tests stop after six seconds.
+The Sound check requires a full test at one unchanged level with Sound on. Changing levels while listening still
+works immediately, but tap Test it again at the new level to confirm it. Interrupted or muted tests do not count.
 The music is an original D-major eight-bar loop at 72 beats per minute, made in code.
 
 Speaker uses tap a sentence, then tap a picture. A wrong sentence returns to the tray. Six correct matches reveal
 the practice card. Let children speak the lines before tapping We practiced.
+Children can sit or stand tall in a position comfortable for their bodies while practicing.
+These are preparation checks, not proof that a child understood or spoke: matching can be solved by trying pictures,
+and We practiced is the teacher or class's own report. Ask children to explain one match and let every speaker rehearse.
 
 Room cycles each setting with one tap. Lights Dim or Off, Screen Down, Chairs Face the screen, Speaker spot Beside
 the screen, and Volume Medium pass. The star with a microphone represents the speaker without depicting a person.
@@ -66,6 +71,13 @@ Nothing is saved between visits. Work remains only while this page is open. Kit 
 Projection contrast is an illustrative model, not a room measurement. For a slide from 0.05 to 1.0, contrast is
 (1 + ambient) / (0.05 + ambient). Ambient 0.6, 0.25, and 0.05 give 2.46, 4.17, and 10.5 to 1 respectively.
 These round to the spec's 2.5, 4.2, and 10.5. The white overlay is a visual teaching cue, not a calibrated projector.
+Dim and Off are passing settings in this model, not AVIXA compliance ratings for an actual room.
+BBC R&D White Paper WHP 324, Mike Armstrong (2016), discusses speech intelligibility and audio mixing. It does not
+establish this tool's five numeric thresholds. The gain factors are illustrative choices from the brief, not measured
+music-to-speech loudness ratios or guarantees that every listener can hear every word.
+
+Named fact references: NOAA Ocean Service, What are jellyfish made of?; Monterey Bay Aquarium, Giant Pacific octopus
+and African penguin; NOAA Fisheries, Green Turtle; Florida Museum, Sharks FAQ; Smithsonian Ocean, A Pregnant Seahorse.
 
 Read speaks the current next action or open checklist. Sound switches off speech, chimes, and music; Read still works.
 Both dialogs include their own Read button. Read during a sound test stops the test so it can speak clearly.

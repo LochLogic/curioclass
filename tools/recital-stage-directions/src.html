@@ -8,7 +8,7 @@
 <meta name="description" content="Flip the stage, place three dancers, light a recital and read its movement clues. Grades 3-5 dance. Works offline.">
 <!--
 Curio Class. Grades 3-5 dance: DA:Pr4, DA:Pr6, DA:Re8, DA:Re9.
-Started from kit/starter/src.html. Kit supplies figures, floor, phrases, clock, music, counts, voice and settings.
+Started from kit/starter/src.html. Kit supplies joint poses, floor, phrases, clock, music, counts, voice and settings. The tool paints the figures.
 Sources: Educational Theatre Association; National Core Arts Standards; Library of Congress ballet overview;
 Gail Grant, Technical Manual and Dictionary of Classical Ballet (1982); Jacob's Pillow Dance Interactive.
 Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0; code MIT.
@@ -28,6 +28,7 @@ button {min-width:44px; min-height:44px; border:1px solid #62748e; border-radius
   padding:7px 11px; font-weight:700; font-size:14px; box-shadow:inset 0 1px #ffffff12,0 2px 0 #0004}
 button:hover {background:#354d6b; border-color:#b6e5ff}
 button[aria-pressed=true],.primary {background:var(--brand); color:#121a2b; border-color:#a9e1ff}
+button.primary:hover,button[aria-pressed=true]:hover {background:#a8e0ff;color:#121a2b}
 button:focus-visible {outline-offset:1px; position:relative; z-index:8}
 button:disabled {opacity:.5; cursor:default}
 .seg button,.icon-btn {min-height:44px; padding:0 11px; font-size:13px}
@@ -92,8 +93,10 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
 #traits {display:grid; grid-template-columns:repeat(4,1fr); gap:6px}
 #traits button {font-size:12px; line-height:1.2; min-height:60px; text-align:left}
 #compare-board.playing {background:transparent; grid-template-rows:1fr auto; pointer-events:none; z-index:3}
-#compare-board.playing #bins {visibility:hidden}
-#compare-board.playing #traits {pointer-events:auto; opacity:.35}
+#compare-board.playing #bins {visibility:visible;pointer-events:auto}
+#compare-board.playing .bin {border-color:transparent}
+#compare-board.playing .history,#compare-board.playing .placed-trait {visibility:hidden}
+#compare-board.playing #traits {pointer-events:auto; opacity:1}
 #compare-board.playing #traits:focus-within {opacity:1}
 #compare-summary {font-size:14px; line-height:1.4; color:#ffe0a2}
 .area-label {paint-order:stroke; stroke:#111a2b; stroke-width:5px; stroke-linejoin:round; fill:#eff4fc; font-weight:800}
@@ -220,6 +223,114 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
   .clues {position:static; width:auto; padding:0; border:0; grid-template-columns:1fr 1fr; background:none}
   .clues button {font-size:11px; min-height:44px; height:44px; padding:4px}
 }
+
+/* Compact production desk: the plan and each short choice set remain visible. */
+@media (max-width:599px) {
+  header {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));padding:5px;gap:3px}
+  h1 {grid-column:1/-1;font-size:20px;margin:0 0 2px}
+  header .seg {display:contents}
+  header .seg button,header .icon-btn {font-size:11px;padding:0 2px;min-width:0;border-radius:6px}
+  .stage {height:230px;min-height:230px;margin-bottom:0;overflow:hidden}
+  #plan-wrap {top:65px;left:auto;right:5px;width:143px;height:auto;padding:4px}
+  #plan button {min-height:44px;height:44px}
+  #plan-audience {font-size:10px;letter-spacing:1px}
+  #scene-caption {width:49%;top:61px;font-size:11px}
+  #scene-caption small {font-size:10px}
+  .panel {padding:7px 7px 63px;gap:5px}
+  .hint {height:55px;min-height:55px;font-size:12px;line-height:1.3;padding:6px}
+  .panel section {gap:5px}
+  .panel button {font-size:12px;padding:4px;min-height:44px}
+  #recital-panel {grid-template-columns:1fr 1fr}
+  #recital-panel>.row {grid-column:auto;gap:3px}
+  #recital-panel>.row>button {font-size:11px;min-width:0}
+  #recital-panel>#dress-controls,#recital-panel>#clue-controls,#recital-panel>#idea-controls,
+  #recital-panel>#recital-result,#recital-panel>.row:last-of-type {grid-column:1/-1}
+  #dress-controls .mini-label {display:none}
+  #light-colors {flex-wrap:nowrap}
+  #light-colors button {font-size:11px}
+  body:has(#recital-panel:not([hidden]) #clue-controls:not([hidden])) .stage,
+  body:has(#recital-panel:not([hidden]) #idea-controls:not([hidden])) .stage {height:230px;min-height:230px}
+  body:has(#recital-panel:not([hidden]) #clue-controls:not([hidden])) #plan-wrap,
+  body:has(#recital-panel:not([hidden]) #idea-controls:not([hidden])) #plan-wrap {display:block}
+  .clues {grid-template-columns:repeat(2,minmax(0,1fr))}
+  .clues button {font-size:11px;line-height:1.15;height:44px;padding:3px}
+  .privacy {font-size:10px;margin:0;line-height:1.2}
+  .privacy button {font-size:10px;padding:0 3px}
+  #setup {font-size:12px;line-height:1.3;padding:6px}
+  #setup svg {height:35px}
+  #turn-panel:has(#setup:not([hidden])) #turn-call,
+  #turn-panel:has(#setup:not([hidden])) #turn-count {display:none}
+  #turn-call {font-size:16px;min-height:68px}
+  #turn-count {font-size:34px}
+  #compare-board {top:81px}
+}
+
+
+#compare-board {background:#111d32;grid-template-rows:auto minmax(0,1fr) auto}
+#compare-board>.hint {width:100%;height:auto;min-height:44px}
+.placed-trait {padding:5px;border:1px solid #8196af;border-radius:5px;background:#24364b;font-size:11px;line-height:1.25}
+#traits button.assigned {border-color:#d8be83;background:#36445a}
+@media (max-height:700px) and (min-width:600px) {
+  #compare-board {position:fixed;top:66px;bottom:62px;left:6px;right:6px;grid-template-rows:auto minmax(0,1fr) auto}
+  #traits {grid-template-columns:repeat(4,minmax(0,1fr))}
+  #traits button {min-height:44px}
+  #compare-board>.hint {height:36px;min-height:36px;padding:3px;font-size:11px}
+  .placed-trait {font-size:10px;padding:2px}
+  #compare-check,#back-recital {position:fixed;bottom:7px;z-index:10;width:calc(50% - 12px);height:48px}
+  #compare-check {left:8px} #back-recital {right:8px}
+}
+@media (max-width:599px) {
+  #plan-wrap {width:152px;right:4px}
+  #scene-caption {display:none}
+  #compare-board {grid-template-rows:auto minmax(0,1fr) auto}
+  #compare-board>.hint {height:auto;min-height:50px;font-size:12px}
+  .placed-trait {font-size:10px;padding:3px}
+}
+
+
+/* Audit-confirmed compact layout corrections. */
+#turn-panel:has(#setup:not([hidden])) #turn-call,
+#turn-panel:has(#setup:not([hidden])) #turn-count {display:none}
+#compare-board,#compare-board.playing {grid-template-rows:auto minmax(0,1fr) auto auto}
+#compare-board .privacy {display:block;margin:0;font-size:10px;line-height:1.2}
+#compare-board .privacy button {display:none}
+#traits .trait-short {display:none}
+@media (min-width:600px) {
+  #scene-caption {max-width:calc(96% - 184px)}
+}
+@media (max-height:700px) and (min-width:600px) {
+  #recital-panel {grid-template-columns:1fr 1fr}
+  #recital-panel>.row {grid-column:auto;gap:3px}
+  #recital-panel>.row>button {font-size:11px;min-width:0}
+  #recital-panel>#dress-controls,#recital-panel>#clue-controls,#recital-panel>#idea-controls,
+  #recital-panel>#recital-result,#recital-panel>.row:last-of-type {grid-column:1/-1}
+  #traits {grid-template-columns:repeat(8,minmax(0,1fr))}
+  #traits button {height:44px;min-height:44px;font-size:10px;line-height:1.1;padding:3px}
+  #traits .trait-full {display:none}
+  #traits .trait-short {display:inline}
+}
+@media (max-width:599px) {
+  body:has(#compare-panel:not([hidden])) .stage {height:440px;min-height:440px}
+}
+
+main:has(#compare-panel:not([hidden])) {grid-template-columns:1fr}
+body:has(#compare-panel:not([hidden])) .stage {grid-column:1;grid-row:1}
+body:has(#compare-panel:not([hidden])) .panel {
+  grid-column:1;grid-row:1;background:transparent;border:0;pointer-events:none;z-index:8;padding:0;
+}
+#compare-panel:not([hidden]) {display:contents}
+#compare-panel>h2,#compare-panel>.mini-label {display:none}
+#compare-panel button {pointer-events:auto;position:fixed;bottom:7px;z-index:10;
+  width:calc(50% - 12px);height:48px;box-shadow:0 0 0 5px #101a2be8}
+#compare-check {left:8px}
+#back-recital {right:8px}
+#compare-summary {position:fixed;bottom:60px;left:8px;right:8px;margin:0;padding:4px 7px;
+  min-height:27px;background:#101a2b;font-size:12px;line-height:1.25}
+body:has(#compare-panel:not([hidden])) #view-switch,
+body:has(#compare-panel:not([hidden])) #scene-caption {visibility:hidden}
+#compare-board {position:fixed;bottom:96px}
+body:has(#compare-panel:not([hidden])) .area-label {visibility:hidden}
+
 </style>
 </head>
 <body>
@@ -319,13 +430,6 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
   const $ = id => document.getElementById(id);
   const NS = 'http://www.w3.org/2000/svg';
   const ART = {house:'art:house-from-stage', backdrop:'art:recital-backdrop'};
-  // The next painter supplies these full pose sets. The adapter below is the only figure integration point.
-  const POSE_ART = {
-    stand:'art:dancer-stand', releve:'art:dancer-releve', arms:'art:dancer-arms-wide', walk:'art:dancer-walk',
-    arabesque:'art:dancer-arabesque', curl:'art:dancer-sink-curl', stamp:'art:dancer-stamp', point:'art:dancer-point',
-    kick:'art:dancer-kick', clap:'art:dancer-clap', jump:'art:dancer-star-jump', freeze:'art:dancer-sharp-freeze',
-    run:'art:dancer-run', reach:'art:dancer-reach', bow:'art:dancer-bow'
-  };
   const areas = [];
   for (const [r, row] of [['U','Upstage'],['C','Center'],['D','Downstage']]) {
     for (const [c, col] of [['R','right'],['C','center'],['L','left']]) {
@@ -348,12 +452,12 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     'A diagonal from upstage right to downstage left.', "Everyone on the audience's right."
   ];
   const clues = [
-    ['Smooth, flowing arms',0,3], ['Straight paths that cross',1,5], ['Starts high and ends low',0,20],
+    ['Smooth, flowing arms',0,3], ['Straight paths that cross',1,2.8], ['Starts high and ends low',0,20],
     ['Quick timing with surprise accents',1,10.9], ['Curved paths',0,11], ['Ends in a frozen shape',1,22],
     ['Slow, soft timing',0,6], ['Sharp, punchy moves',1,7]
   ];
   const traits = [
-    ['Rising onto the toes (releve)',0,2], ['Sharp hits on the beat',1,7],
+    ['Rising onto the balls of the feet (releve)',0,2], ['Sharp hits on the beat',1,7],
     ['Dancers move in formations',2,10], ['Long balanced line on one leg (arabesque)',0,14],
     ['Accents just off the beat (syncopation)',1,11], ['Arms that flow from shape to shape (port de bras)',0,5],
     ['They use high, middle and low levels',2,19], ['Kicks and claps',1,12]
@@ -391,25 +495,29 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     flipHow:"Stage left is always the dancer's left. Now drag a dancer onto the stage.",
     placeHow:'Tap a dancer, then tap an area. Or drag the dancer onto the stage or plan.',
     checkRight:'Right where I called them.',
-    checkWrong:"Not quite. Remember: it's the dancer's left and right.",
+    checkWrong:"Check the dancer's side.",
     welcomeRecital:'Pick costumes and lights for the piece. Then tap Watch from your seat.',
-    cluesHow:'Which of these did you see? Tap them, then pick the main idea.',
-    ideaRight:'Yes. The moves tell that story.',
+    cluesHow:'Choose four clues you saw. Tap Show me to examine the movement, then tap Main idea.',
+    ideaRight:'Your clues fit.',
     ideaOther:'Watch again: what do the shapes, levels and timing say?',
     welcomeTurn:'Mark your nine squares, face the laptop, and tap Start. Your right is stage right.',
     bow:'And bow. Nice work on stage.',
     compareHow:'Tap a trait, then tap a column. Or drag a trait into its column. Then tap Check board.',
-    ideaHow:'Tap the main idea that the movement clues support.',
+    ideaHow:'Tap a main idea.',
+    evidenceHow:'Tap Dress & light and Watch from your seat. Then tap Clues and choose the movement you saw.',
+    retryHow:'Tap Dress & light, then Watch from your seat before trying another idea. Look at shapes, levels and timing.',
+    evidenceOther:'Choose four clues supported by the movement. Tap Clues, then Show me to examine them before choosing the main idea.',
+    manualBow:'Take a bow. Choose a phrase and tap Start when you are ready to follow its counts.',
     ...Object.fromEntries(calls.map((v,i) => ['call'+i,v])),
     ...Object.fromEntries(phraseCalls.flatMap((p,i) => p.map((s,j) => ['turn'+i+'_'+j,s[0]])))
   };
   const state = {
     mode:'map', view:'seats', selected:0, placed:[null,null,null], calls:false, call:0, checked:null,mapTouched:false,
     piece:0, tab:'dress', costume:[0,0], light:[0,0], lit:[areas.map(a=>a.id),areas.map(a=>a.id)],
-    clues:[[],[]], answers:[null,null], watched:[false,false], board:Array(8).fill(null), trait:null,
+    clues:[[],[]], answers:[null,null], retry:[false,false], watched:[false,false], board:Array(8).fill(null), trait:null,
     phrase:0, tempo:100, playing:false, runKind:'', count:0, target:null, compare:false, segment:-1
   };
-  const savedKeys = ['costume','light','lit','clues','answers','watched','board'];
+  const savedKeys = ['costume','light','lit','clues','answers','retry','watched','board'];
   function save() {
     try {
       localStorage.setItem('recital-stage-directions',JSON.stringify(Object.fromEntries(savedKeys.map(k=>[k,state[k]]))));
@@ -426,6 +534,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
         if (Array.isArray(s.clues?.[p])) state.clues[p]=[...new Set(s.clues[p].filter(i=>Number.isInteger(i)&&i>=0&&i<8))];
         if ([0,1,2].includes(s.answers?.[p])) state.answers[p]=s.answers[p];
         state.watched[p]=s.watched?.[p]===true;
+        state.retry[p]=s.retry?.[p]===true;
       }
       if (Array.isArray(s.board)&&s.board.length===8) state.board=s.board.map(v=>[0,1,2].includes(v)?v:null);
     } catch {}
@@ -437,7 +546,9 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     welcome:()=> {
       if (state.playing) return null;
       if (state.mode==='map') {
-        return ['welcomeMap',{valid:()=>!state.calls&&!state.mapTouched&&state.view==='seats'&&state.placed.every(a=>a===null)}];
+        const key=state.placed.some(a=>a!==null)||state.calls||state.mapTouched&&state.view==='seats'?
+          'placeHow':state.view==='stage'?'flipHow':'welcomeMap';
+        return [key,{needs:key==='welcomeMap'?'#reverse':'#dancer-0'}];
       }
       if (state.mode==='recital') {
         if(state.compare) return null;
@@ -449,7 +560,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
       if (state.mode==='turn'&&!$('setup').hidden&&state.segment<0) return 'welcomeTurn';
       return null;
     },
-    speaks:'#seats,#reverse,.dancer-choice,#calls,#check,#next-call,#watch,#start,#slower,#bow,#compare'
+    speaks:'.dancer-choice,#calls,#check,#next-call,#watch,#start,#slower,#bow,#compare'
   });
   function hint(text) {$('hint').textContent=text;}
   function how(key, opts={}) {
@@ -463,6 +574,135 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     return el;
   }
   const svg=$('theater');
+  // Two painted T-pose sheets supply the whole cast. The engine keeps all motion and floor geometry.
+  // Replace PAINT_SOURCES and the source joint landmarks to swap the artwork without changing choreography.
+  const PAINT_SOURCES = {front:'art:dancer-cast', back:'art:dancer-backs'};
+  const paintDefs = mk('defs', {}, svg);
+  for (const [side, href] of Object.entries(PAINT_SOURCES)) {
+    mk('image', {id:'paint-sheet-'+side, href, x:10, y:181, width:1515, height:599,
+      preserveAspectRatio:'none'}, paintDefs);
+  }
+  const castLandmarks = [
+    {cx:201, top:183, sh:337, waist:453, hip:478, knee:605, ankle:741, foot:767, spread:54},
+    {cx:574, top:191, sh:337, waist:450, hip:480, knee:607, ankle:740, foot:767, spread:48},
+    {cx:938, top:195, sh:337, waist:458, hip:485, knee:607, ankle:742, foot:768, spread:53},
+    {cx:1328, top:183, sh:337, waist:453, hip:480, knee:607, ankle:742, foot:768, spread:54}
+  ];
+  let paintedId = 0;
+  function paintFigure(d, index=0, guide=false) {
+    const group = mk('g', {class:'painted-dancer'}, d.g);
+    const localDefs = mk('defs', {}, group);
+    const layers = [];
+    let sourceSide = '';
+    const a = castLandmarks[index];
+    const source = {};
+    for (const [sign, side] of [[-1,'r'],[1,'l']]) {
+      source[side+'Sh'] = [a.cx+sign*a.spread,a.sh];
+      source[side+'El'] = [a.cx+sign*110,a.sh];
+      source[side+'Ha'] = [a.cx+sign*174,a.sh-2];
+      source[side+'Hi'] = [a.cx+sign*29,a.hip];
+      source[side+'Kn'] = [a.cx+sign*39,a.knee];
+      source[side+'An'] = [a.cx+sign*49,a.ankle];
+      source[side+'To'] = [a.cx+sign*55,a.foot];
+    }
+    source.pelvis = [a.cx,a.hip];
+    source.chest = [a.cx,a.sh+8];
+    source.neck = [a.cx,a.sh-29];
+    source.head = [a.cx,a.top+66];
+    const add = (name, p, q, crop, type='skin', breadth=1) => {
+      const g = mk('g', {}, group);
+      const id = 'paint-part-'+(++paintedId);
+      const clip = mk('clipPath', {id,clipPathUnits:'userSpaceOnUse'}, localDefs);
+      const bounds=[[5,397],[397,750],[750,1128],[1128,1530]][index];
+      const left=Math.max(bounds[0],crop[0]);
+      const right=Math.min(bounds[1],crop[0]+crop[2]);
+      mk('rect', {x:left,y:crop[1],width:Math.max(0,right-left),height:crop[3]}, clip);
+      const use = mk('use', {href:'#paint-sheet-front','clip-path':`url(#${id})`}, g);
+      layers.push({name,g,use,p,q,type,breadth});
+    };
+    for (const [sign, side] of [[-1,'r'],[1,'l']]) {
+      const hi=source[side+'Hi'], kn=source[side+'Kn'], an=source[side+'An'];
+      const sh=source[side+'Sh'], el=source[side+'El'];
+      add(side+'thigh',side+'Hi',side+'Kn',[hi[0]-31,a.hip-17,62,a.knee-a.hip+24],'bottom',1.12);
+      add(side+'shin',side+'Kn',side+'An',[Math.min(kn[0],an[0])-25,a.knee-6,60,a.ankle-a.knee+11],'bottom');
+      add(side+'shoe',side+'An',side+'To',[an[0]-34,a.ankle-9,70,49],'skin');
+      const armLeft=Math.min(sh[0],el[0]);
+      add(side+'upper',side+'Sh',side+'El',[armLeft-7,a.sh-22,Math.abs(el[0]-sh[0])+14,43],'skin');
+      add(side+'sleeve',side+'Sh',side+'El',[sign>0?sh[0]-5:sh[0]-25,a.sh-22,30,43],'top');
+      const hand=source[side+'Ha'];
+      add(side+'fore',side+'El',side+'Ha',[Math.min(el[0],hand[0])-15,a.sh-20,94,40],'skin');
+    }
+    add('body','pelvis','chest',[a.cx-a.spread,a.sh-22,a.spread*2,a.waist-a.sh+25],'top',1.15);
+    add('waist','pelvis','chest',[a.cx-a.spread,a.waist,a.spread*2,a.hip-a.waist+18],'bottom',1.15);
+    add('head','neck','head',[a.cx-66,a.top-5,132,a.sh-22-a.top],'skin',1.1);
+    const badge = mk('path', {fill:'#fff5d9',stroke:'#152339','stroke-width':1.5}, group);
+    const render = d.render.bind(d);
+    d.render = () => {
+      render();
+      // Hide the temporary code drawing, retaining its projection and contact shadow.
+      for (const child of [...d.g.children]) if (child!==group) child.style.display='none';
+      const S=d.sj;
+      const facing=((d.facing%360)+360)%360;
+      const back=facing>90&&facing<270;
+      const side=back?'back':'front';
+      if (side!==sourceSide) {
+        for (const part of layers) part.use.setAttribute('href','#paint-sheet-'+side);
+        sourceSide=side;
+      }
+      const unit=d.floor.scale(d.z)*d.height;
+      const order=[];
+      for (const part of layers) {
+        let A=S[part.p], B=S[part.q];
+        const P=source[part.p], Q=source[part.q];
+        if(part.name==='head') {
+          const tilt=Math.max(-30,Math.min(30,d.pose.tilt+d.pose.side*.3))*Math.PI/180;
+          const vx=Math.sin(tilt)*unit*.08, vy=-Math.cos(tilt)*unit*.08;
+          A=[S.head[0]-vx,S.head[1]-vy,S.head[2]];
+          B=S.head;
+        }
+        const ux=Q[0]-P[0], uy=Q[1]-P[1], length=Math.hypot(ux,uy);
+        const vx=B[0]-A[0], vy=B[1]-A[1];
+        // A bone maps along the projected joints; painted thickness stays natural under foreshortening.
+        const ex=ux/length, ey=uy/length;
+        const target=Math.hypot(vx,vy)||.01;
+        const profile=(part.name==='body'||part.name==='waist'||part.name==='head')?
+          Math.max(part.name==='head'?.8:.4,Math.abs(Math.cos(d.facing*Math.PI/180))):1;
+        const width=unit/585*part.breadth*profile;
+        const tx=-vy/target*width, ty=vx/target*width;
+        const m00=vx/length*ex-tx*ey, m01=vx/length*ey+tx*ex;
+        const m10=vy/length*ex-ty*ey, m11=vy/length*ey+ty*ex;
+        part.g.setAttribute('transform',`matrix(${m00} ${m10} ${m01} ${m11} `+
+          `${A[0]-m00*P[0]-m01*P[1]} ${A[1]-m10*P[0]-m11*P[1]})`);
+        if (part.type!=='skin'&&!guide) {
+          const c=d.opts[part.type];
+          const filterId='paint-color-'+index+'-'+part.type+'-'+c.slice(1);
+          if (!document.getElementById(filterId)) {
+            const filter=mk('filter',{id:filterId,'color-interpolation-filters':'sRGB'},paintDefs);
+            const rgb=[1,3,5].map(k=>parseInt(c.slice(k,k+2),16)/255);
+            const matrix=rgb.map(v=>`${v*.2126} ${v*.7152} ${v*.0722} 0 0`).join(' ');
+            mk('feColorMatrix',{type:'matrix',values:matrix+' 0 0 0 1 0'},filter);
+            mk('feComponentTransfer',{},filter);
+          }
+          part.g.setAttribute('filter',`url(#${filterId})`);
+        }
+        order.push([part.g,(A[2]+B[2])/2]);
+      }
+      order.sort((a,b)=>b[1]-a[1]);
+      const head=order.findIndex(([g])=>g===layers.find(p=>p.name==='head').g);
+      order.push(...order.splice(head,1));
+      for (const [part] of order) group.appendChild(part);
+      const r=Math.max(2.5,unit*.035);
+      const x=S.chest[0], y=S.chest[1]+unit*.08;
+      badge.setAttribute('d',index===0?`M${x-r} ${y}a${r} ${r} 0 1 0 ${r*2} 0a${r} ${r} 0 1 0 ${-r*2} 0`:
+        index===1?`M${x-r} ${y-r}h${r*2}v${r*2}h${-r*2}Z`:`M${x} ${y-r}l${r} ${r*2}h${-r*2}Z`);
+      badge.style.display=guide?'none':'';
+      group.appendChild(badge);
+      d.g.appendChild(group);
+    };
+    d.render();
+    return d;
+  }
+
   const sceneRoots=[mk('g',{},svg),mk('g',{},svg)];
   const floors=sceneRoots.map((g,i)=>Dance.floor(g,i?'square':'stage',{backdrop:i?ART.house:undefined,dancerFrac:.26}));
   let camera=0;
@@ -487,16 +727,18 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
       return f.nativeProject(center+x-dancer.x,y,z);
     };
     dancer=Dance.dancer(f.layers.actors,{floor:projection,...options,shadowLayer:shadowGroup});
+    paintFigure(dancer,options.castIndex||0,!!options.guide);
+    if(options.guide) dancer.g.style.pointerEvents='none';
     dancer.shadowGroup=shadowGroup;
     const remove=dancer.remove;
     dancer.remove=()=> {remove();shadowGroup?.remove();};
     return dancer;
   }
-  // Renderer contract: set canonical floor-unit samples, recolor, resize, show/hide. Replace here with painted sprites.
+  // Figure boundary: canonical floor-unit samples, recolor, resize and visibility; paint is replaceable here.
   const renderer={
     extra(f,p,i) {
       const [top,bottom]=colors(i,p);
-      return makeFigure(f,{badge:badges[i],top,bottom,skin:'#bd835e',scale:.62});
+      return makeFigure(f,{badge:badges[i],top,bottom,skin:'#bd835e',scale:.62,castIndex:i});
     },
     frame(i,sample) {
       snapshots[i]={...snapshots[i],...Object.fromEntries(Object.entries(sample).filter(([,v])=>v!=null))};
@@ -507,18 +749,19 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
       guides.forEach(d=>d.remove());
       actors=floors.map(f=>badges.map((badge,i)=> {
         const [top,bottom]=colors(i);
-        const d=makeFigure(f,{badge,top,bottom,skin:['#bd835e','#915c40','#d9a67a'][i],scale:.94});
+        const d=makeFigure(f,{badge,top,bottom,skin:['#bd835e','#915c40','#d9a67a'][i],scale:.94,castIndex:i});
         d.g.style.cursor='grab';
         d.g.onpointerdown=e=>dragStart(e,i);
         return d;
       }));
-      guides=floors.map(f=>makeFigure(f,{top:'#c4d7ec',bottom:'#647d9b',skin:'#c4d7ec',scale:.8,noShadow:true}));
+      guides=floors.map(f=>makeFigure(f,{top:'#c4d7ec',bottom:'#647d9b',skin:'#c4d7ec',scale:.8,noShadow:true,guide:true}));
       snapshots.forEach((s,i)=>renderer.frame(i,s));
       renderPositions();
     },
     icon(el,i) {
       const [top,bottom]=defaults[i];
-      Dance.icon(el,'stand',{badge:badges[i],top,bottom,skin:['#bd835e','#915c40','#d9a67a'][i]});
+      const d= Dance.icon(el,'stand',{badge:badges[i],top,bottom,skin:['#bd835e','#915c40','#d9a67a'][i]});
+      paintFigure(d,i);
     }
   };
   const playbackActors=names.map((_,i)=>({set:s=>renderer.frame(i,s)}));
@@ -530,6 +773,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
   }
   let width=900,height=600;
   function relayout() {
+    if(state.compare) $('compare-board').style.top=(document.querySelector('header').getBoundingClientRect().bottom+8)+'px';
     const box=$('stage').getBoundingClientRect();
     width=box.width;
     height=box.height;
@@ -538,11 +782,19 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     camera=0;
     floors.forEach((f,j)=> {
       const span=j?.85:1.19;
-      const compact=width<600&&height<500&&innerWidth>=600;
+      const compact=width<600&&height<500&&!state.compare;
       const center=compact?(width-164)/2+9:width/2;
       const fw=compact?(width-164)*(j?1:1.4):width*span;
-      f.resize(width,height,{x0:center-fw/2,x1:center+fw/2,yBack:height*.47,yFront:height*.87});
-      if(!j) mk('image',{href:ART.backdrop,x:width*.06,y:height*.08,width:width*.88,height:height*.43,
+      let yBack=height*.47,yFront=height*.87;
+      if(state.compare) {
+        const top=$('bin-0').getBoundingClientRect().bottom-box.top+8;
+        const bottom=$('traits').getBoundingClientRect().top-box.top-8;
+        yFront=bottom;
+        yBack=bottom-Math.min(height*.2,(bottom-top)*.24);
+      }
+      f.resize(width,height,{x0:center-fw/2,x1:center+fw/2,yBack,yFront});
+      if(!j) mk('image',{href:ART.backdrop,x:width*.06,y:height*.08,width:width*.88,
+        height:state.compare?Math.max(height*.43,yBack-height*.08+4):height*.43,
         preserveAspectRatio:'xMidYMid slice'},f.layers.bg);
       if(j) {
         f.layers.floor.querySelectorAll('polygon').forEach(p=>p.setAttribute('fill','#242b39'));
@@ -587,7 +839,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
           mk('path',{d:`M${width-x} 0 Q${width-x-9} ${height*.35} ${width-x-3} ${height*.86}`,
             stroke:'#b44643','stroke-width':3,fill:'none',opacity:.45},folds);
         }
-        if(state.mode==='recital') for(const x of [width*.18,width*.72]) {
+        if(state.mode==='recital'&&!state.compare) for(const x of [width*.18,width*.72]) {
           mk('path',{d:`M${x} ${height+20}v-42q0-34 38-34h${width*.13}q38 0 38 34v42`,
             fill:'#5f1f33',stroke:'#a55460','stroke-width':4},f.deco);
         }
@@ -608,7 +860,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
       d.set({pose:'arms-wide',x:shared?63:50,z:shared?22:30,facing:camera*180/Math.PI});
     });
     actors.forEach(set=>set.forEach(d=> {
-      const hidden=state.mode==='turn'||state.runKind==='both';
+      const hidden=state.mode==='turn'||state.runKind==='both'||state.runKind==='trait';
       d.g.style.display=hidden?'none':'';
       if(d.shadowGroup) d.shadowGroup.style.display=hidden?'none':'';
     }));
@@ -635,10 +887,12 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
           'paint-order':'stroke',stroke:'#101827','stroke-width':4},labels[j]);
         t.textContent=s;
       };
+      const compact=width<600&&height<500&&!state.compare;
       const right=f.project(2,0,32);
       const left=f.project(98,0,32);
-      text(right[0],height*.46,'Stage right',width<500?11:15);
-      text(left[0],height*.46,'Stage left',width<500?11:15);
+      const turn=(1-Math.cos(camera))/2;
+      text(compact?44+(width-253)*turn:right[0],compact?height*.38:height*.46,'Stage right',width<500?10:15);
+      text(compact?width-209-(width-253)*turn:left[0],compact?height*.38:height*.46,'Stage left',width<500?10:15);
       if(!j) {
         text(width*.2,height*.985,"audience's left",Math.max(10,Math.min(13,width/65)),'#bdcbe0');
         text(width*.8,height*.985,"audience's right",Math.max(10,Math.min(13,width/65)),'#bdcbe0');
@@ -651,7 +905,9 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
           const lift=state.placed.includes('C')?Math.min(70,height*.14):5;
           mk('path',{d:`M${p[0]} ${p[1]-5}V${p[1]-lift}h${dir*23}m${-dir*6} -4l${dir*6} 4l${-dir*6} 4`,
             stroke:'#ffdf9a','stroke-width':2,fill:'none'},labels[j]);
-          text(p[0]+dir*30,p[1]-lift-7,label,width<500?10:13,'#ffdf9a',dir>0?'start':'end');
+          const px=p[0]+dir*30;
+          text(compact?Math.max(6,Math.min(width-171,px)):px,p[1]-lift-7,label,width<500?10:13,
+            '#ffdf9a',compact?(dir>0?'end':'start'):(dir>0?'start':'end'));
         }
       }
       if(state.mode==='turn'&&state.segment>=0) {
@@ -701,7 +957,11 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
           'fill-opacity':target?.6:occupied?.25:lit?.17:.6,stroke:target?'#ffedae':'#879bb6',
           'stroke-opacity':target?1:.45,'stroke-width':target?3:1,
           class:state.mode==='turn'?'tile passive':'tile',role:state.mode==='turn'?'img':'button',
-          tabindex:j===(state.view==='stage'?1:0)&&state.mode!=='turn'?'0':'-1'};
+          tabindex:j===(state.view==='stage'?1:0)&&state.mode!=='turn'&&width>=600?'0':'-1'};
+        const corners=[[a.c*100/3,a.r*20],[(a.c+1)*100/3,(a.r+1)*20]].map(([x,z])=>f.project(x,0,z));
+        const smallTarget=Math.min(Math.abs(corners[1][0]-corners[0][0]),Math.abs(corners[1][1]-corners[0][1]))<44;
+        if(smallTarget) {attrs.role='img';attrs.class='tile passive';attrs.tabindex='-1';}
+        tile.style.pointerEvents=smallTarget?'none':'';
         for(const [k,v] of Object.entries(attrs)) tile.setAttribute(k,v);
         if(state.mode==='recital') tile.setAttribute('aria-pressed',lit);
         else tile.removeAttribute('aria-pressed');
@@ -711,12 +971,10 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
         label.textContent=a.id;
         const result=g.children[2];
         result.textContent='';
-        if(occupied&&state.checked) {
+        if(occupied&&state.checked&&(state.call>=3||state.placed[state.call]===a.id)) {
           const ids=state.placed.map((v,i)=>v===a.id?i:-1).filter(i=>i>=0);
           const good=ids.every(i=>state.checked[i]);
-          result.setAttribute('x',p[0]);result.setAttribute('y',p[1]+16);
-          result.setAttribute('fill',good?'#c8ffe1':'#ffe0aa');
-          result.textContent=good?'✓ Right':'× Try again';
+          label.textContent=a.id+' '+(good?'✓':'×')+(width>=600?(good?' Right':' Try again'):'');
         }
       }
     });
@@ -829,14 +1087,17 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     const expected=[['C',null,null],[null,'DR',null],[null,null,'UL'],['DL','DL','UC'],['CR','C','CL'],
       ['DC','UR','UL'],['UR','C','DL'],['CL','CL','CL']][n];
     const lines=state.checked.map((ok,i)=> {
+      if(n<3&&i!==n) return `${names[i]}: not called`;
       if(ok) return `${names[i]}: ✓ Right`;
       const actual=byId(state.placed[i])?.name.toLowerCase()||'in the wings';
       if(n===7) return `${names[i]}: × ${actual}. Audience right means a stage left area.`;
       return `${names[i]}: × ${actual}. Try ${byId(expected[i])?.name.toLowerCase()||'the called formation'}.`;
     });
     $('feedback').textContent=lines.join(' · ');
-    hint((right?L.checkRight:L.checkWrong)+' Tap Next call, or move a dancer and Check again.');
-    V.say(right?'checkRight':'checkWrong',{valid:()=>state.call===n&&state.checked!==null});
+    hint(right?L.checkRight+' Tap Next call, or move a dancer and Check again.':
+      "Use the dancer's own left and right. Move a dancer, then tap Check, or tap Next call.");
+    const verdict=state.checked;
+    V.say(right?'checkRight':'checkWrong',{valid:()=>state.call===n&&state.checked===verdict});
     if(right) Curio.yes(); else Curio.tone(180,.14,.07);
     drawTiles();
   }
@@ -867,9 +1128,9 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
       const endx=[22,50,78][i];
       return Dance.phrase([
         {counts:8,poses:['stand',softArmA,softArmB,softArmA,softArmB,softArmA,softArmB,softArmA,softArmB],
-          at:{x,z:10},dyn:'smooth'},
+          at:{x,z:10},facing:0,dyn:'smooth'},
         {counts:5,gait:'walk',level:'high',facing:'front',travel:Dance.paths.smooth([[x,10],[x-10,18],[x+7,24],[endx,31]])},
-        {counts:3,poses:i===1?['arabesque']:['arms-wide',softArmB],at:{x:endx,z:31},dyn:'smooth'},
+        {counts:3,poses:i===1?['arabesque']:['arms-wide',softArmB],at:{x:endx,z:31},facing:i===1?90:0,dyn:'smooth'},
         {counts:i+1,poses:['stand'],at:{x:endx,z:31}},
         {counts:3,poses:['stand',Dance.mix(Dance.pose('stand'),Dance.pose(lowCurl),.5),lowCurl,lowCurl],
           at:{x:endx,z:31},dyn:'smooth'},
@@ -877,12 +1138,13 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
       ]);
     }
     const starts=[[15,49],[83,45],[24,56]][i];
-    const ends=[[80,49],[17,45],[69,56]][i];
+    const ends=[[80,58],[17,50],[69,56]][i];
     const lineX=[24,50,76][i];
+    const mid=[(starts[0]+ends[0])*.5,(starts[1]+ends[1])*.5];
     const steps=[
-      {counts:3,gait:'walk',travel:Dance.paths.line(starts,[(starts[0]+ends[0])*.5,starts[1]]),dyn:'sharp'},
-      {counts:1,poses:['stamp','point'],at:{x:(starts[0]+ends[0])*.5,z:starts[1]},dyn:'sharp'},
-      {counts:3,gait:'walk',travel:Dance.paths.line([(starts[0]+ends[0])*.5,starts[1]],ends),dyn:'sharp'},
+      {counts:3,gait:'walk',travel:Dance.paths.line(starts,mid),dyn:'sharp'},
+      {counts:1,poses:['stamp','point'],at:{x:mid[0],z:mid[1]},dyn:'sharp'},
+      {counts:3,gait:'walk',travel:Dance.paths.line(mid,ends),dyn:'sharp'},
       {counts:1,poses:['stamp','point'],at:{x:ends[0],z:ends[1]},dyn:'sharp'},
       {counts:3,poses:['kick','clap'],travel:Dance.paths.line(ends,[lineX,30]),dyn:'sharp'},
       {counts:1,poses:['clap','kick'],at:{x:lineX,z:30},dyn:'sharp'},
@@ -931,6 +1193,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     if(me!==token) return;
     stop(false);
     state.watched[p]=true;
+    state.retry[p]=false;
     save();
     showTab('clues');
     how('cluesHow',{valid:()=>state.tab==='clues'&&!state.playing});
@@ -961,11 +1224,13 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
       b.setAttribute('aria-pressed',state.costume[state.piece]===i);
     });
     $('light-colors').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',state.light[state.piece]===i));
-    $('clues').querySelectorAll('button').forEach((b,i)=>b.setAttribute('aria-pressed',state.clues[state.piece].includes(i)));
-    $('compare').textContent=state.answers.every(a=>a!==null)?'Compare':'Compare after both ideas';
+    $('clues').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',state.clues[state.piece].includes(Number(b.id.slice(5)))));
+    updateCompareLabel();
     showTab(state.tab,false);
   }
   function showTab(tab,speak=true) {
+    if(tab!==state.tab) V.hush();
+    if(tab==='idea'&&state.runKind==='clues') stop();
     const active=document.activeElement;
     state.tab=tab;
     $('dress-controls').hidden=tab!=='dress';
@@ -980,6 +1245,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
       });
     }
     if(speak&&!state.playing) how(tab==='dress'?'welcomeRecital':tab==='idea'?'ideaHow':'cluesHow');
+    if(tab==='idea') hint('Tap the main idea that the movement clues support.');
     if(active!==document.body&&active.getClientRects().length===0) {
       $(tab==='idea'?'idea-0':tab==='clues'?'clues-tab':'dress-tab').focus({preventScroll:true});
     }
@@ -988,8 +1254,10 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     const list=state.clues[state.piece],j=list.indexOf(i);
     if(j<0) list.push(i); else list.splice(j,1);
     $('clue-'+i).setAttribute('aria-pressed',j<0);
+    state.answers[state.piece]=null;
     save();
-    hint('Tap more clues you noticed, then tap Show me to replay them or Main idea to read the dance.');
+    updateCompareLabel();
+    hint('Choose four clues that fit. Tap Show me to examine the movement, then tap Main idea.');
     V.dropQueued();
     Curio.tone(j<0?660:350,.06,.06);
   }
@@ -1003,10 +1271,10 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     for(const i of list) {
       if(me!==token) return;
       const [text,owner,c]=clues[i];
-      const detail=owner===p?'A moment in this piece':'This clue belongs to the other piece. Look for different movement here.';
+      const detail='Compare the card with this movement. Does the movement support it?';
       $('scene-caption').innerHTML=`${text}<small>${detail}</small>`;
-      hint(`${text}. ${owner===p?'Look at the frozen moment.':'This clue is not in this piece.'} Tap Stop to end the replay.`);
-      if(owner===p) {
+      hint(`${text}. Look at the paths, shapes and timing, then decide whether this card fits. Tap Stop to end the replay.`);
+      {
         clock=Dance.clock(bpm[p],{countIn:0});
         music=Dance.music(track(p),clock);
         player=Dance.play(playbackActors,[0,1,2].map(k=>piecePhrase(p,k)),{clock,onFrame:()=>updateLights()});
@@ -1015,8 +1283,6 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
         if(me!==token) return;
         player.stop();clock.stop();music.stop();
         [0,1,2].forEach(k=>renderer.frame(k,piecePhrase(p,k).at(c)));
-      } else {
-        [0,1,2].forEach(k=>renderer.frame(k,piecePhrase(p,k).at(c)));
       }
       await Curio.wait(1600);
     }
@@ -1024,29 +1290,65 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     stop(false);
     hint('Tap Main idea and choose the story you read in the movement.');
   }
+  function evidenceFits(p) {
+    return state.clues[p].length===4&&state.clues[p].every(i=>clues[i][1]===p);
+  }
+  function readingFits(p) {
+    return state.watched[p]&&!state.retry[p]&&evidenceFits(p)&&state.answers[p]===correctIdea[p];
+  }
   function pickIdea(i) {
-    state.answers[state.piece]=i;
+    const p=state.piece;
+    if (!state.watched[p]) {how('evidenceHow');return;}
+    if (state.retry[p]) {how('retryHow');return;}
+    if (!evidenceFits(p)) {
+      state.answers[p]=null;
+      save();
+      $('recital-result').textContent=L.evidenceOther;
+      how('evidenceOther');
+      return;
+    }
+    state.answers[p]=i;
+    const good=i===correctIdea[p];
+    state.retry[p]=!good;
     save();
     showTab('idea',false);
-    const good=i===correctIdea[state.piece];
-    $('recital-result').textContent=good?'✓ The movement supports that idea.':'× Try watching the shapes, levels and timing again.';
-    hint((good?L.ideaRight:L.ideaOther)+(state.answers.every(v=>v!==null)?' Tap Compare to compare the two pieces.':' Tap the other piece to read its dance.'));
-    V.say(good?'ideaRight':'ideaOther',{valid:()=>state.tab==='idea'});
+    $('recital-result').textContent=good?'✓ Your movement clues support that reading.':L.retryHow;
+    hint(good?L.ideaRight+(state.answers.every((_,p)=>readingFits(p))?
+      ' Tap Compare to compare the two pieces.':' Tap the other piece to read its dance.'):L.retryHow);
+    V.say(good?'ideaRight':'ideaOther',{valid:()=>state.piece===p&&state.tab==='idea'});
     if(good) Curio.yes();
+    updateCompareLabel();
+  }
+  function updateCompareLabel() {
+    $('compare').textContent=[0,1].every(readingFits)?'Compare':'Compare after both readings';
   }
   function openCompare() {
-    if(!state.answers.every(v=>v!==null)) {
-      hint('Read both pieces first. Tap Main idea for each piece, then tap Compare.');
+    if(![0,1].every(readingFits)) {
+      hint('Watch both pieces. Choose their movement clues and main ideas, then tap Compare.');
       return;
     }
     stop();
     state.compare=true;
+    flipToken++;
+    state.view='seats';camera=0;
+    $('seats').setAttribute('aria-pressed',true);
+    $('reverse').setAttribute('aria-pressed',false);
+    sceneRoots.forEach((g,j)=> {
+      g.setAttribute('opacity',j===0?1:0);
+      g.setAttribute('aria-hidden',j!==0);
+      g.style.pointerEvents=j===0?'':'none';
+    });
     $('recital-panel').hidden=true;
     $('compare-panel').hidden=false;
     $('compare-board').hidden=false;
+    $('compare-board').prepend($('hint'));
+    $('compare-board').appendChild(document.querySelector('.privacy'));
+    $('view-switch').inert=true;
+    $('theater').inert=true;
     $('plan-wrap').hidden=true;
     $('scene-caption').textContent='';
     renderBoard();
+    relayout();
     how('compareHow');
     $('compare-check').focus({preventScroll:true});
   }
@@ -1073,8 +1375,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
         if(v!==p) return;
         let card=$('bins').querySelector(`[data-placed-trait="${i}"]`);
         if(!card) {
-          card=document.createElement('button');card.dataset.placedTrait=i;card.textContent=traits[i][0];
-          card.onclick=()=>selectTrait(i);
+          card=document.createElement('div');card.className='placed-trait';card.dataset.placedTrait=i;card.textContent=traits[i][0];
         }
         if(card.parentElement!==bin) bin.insertBefore(card,bin.querySelector('.history'));
       });
@@ -1084,6 +1385,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     });
     $('traits').querySelectorAll('button').forEach((b,i)=> {
       b.classList.toggle('selected',state.trait===i);
+      b.classList.toggle('assigned',state.board[i]!==null);
       b.setAttribute('aria-label',traits[i][0]+(state.board[i]===null?'':'. Placed in '+(state.board[i]===2?'Both':pieceNames[state.board[i]])));
     });
   }
@@ -1093,7 +1395,9 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     hint('Now tap Autumn Leaves, Both, or Rush Hour to place this trait.');
   }
   async function placeTrait(i,p) {
-    stop();
+    stop(false);
+    V.dropQueued();
+    $('compare-summary').textContent='Place all eight traits, then check your board.';
     state.board[i]=p;
     state.trait=null;
     save();
@@ -1102,14 +1406,27 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     state.playing=true;state.runKind='trait';
     $('compare-board').classList.add('playing');
     $('scene-caption').textContent=traits[i][0];
-    hint('Watch two counts of the trait. Then place another card or tap Check board.');
+    hint(traits[i][0]+'. Watch two counts, then place another card or tap Check board.');
+    relayout();
     // A Both trait shows each piece on its own half of the same canonical stage.
     const source=traits[i][1];
     const c=traits[i][2];
     const mode=source===2?2:source;
+    const clipRoom=$('traits').getBoundingClientRect().top-$('bin-0').getBoundingClientRect().bottom-16;
     if(mode===2) {
       state.runKind='both';
       extras=floors.map(f=>Array.from({length:6},(_,k)=>renderer.extra(f,k<3?0:1,k%3)));
+      actors.flat().forEach(d=> {
+        d.g.style.display='none';
+        if(d.shadowGroup) d.shadowGroup.style.display='none';
+      });
+    }
+    if(mode!==2) {
+      extras=floors.map(f=>Array.from({length:3},(_,k)=> {
+        const d=renderer.extra(f,mode,k);
+        d.scale=Math.min(.94,Math.max(.5,clipRoom/(height*.3)));
+        return d;
+      }));
       actors.flat().forEach(d=> {
         d.g.style.display='none';
         if(d.shadowGroup) d.shadowGroup.style.display='none';
@@ -1137,9 +1454,12 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
         const sampleCount=i===6?(actual===0?[3,12,22]:[16.7,12,22])[Math.min(2,Math.floor(pos*1.5))]:c+Math.min(pos,1.999);
         const sample=piecePhrase(actual,k).at(sampleCount);
         if(mode===2) sample.x=k===2?76:18+k*20;
-        renderer.frame(k,sample);
+        const lit=state.lit[actual].includes(areaAt(sample.x,sample.z)?.id);
+        extras.forEach(set=> {
+          set[k].g.setAttribute('opacity',lit?1:.25);
+          set[k].set({...sample,facing:(sample.facing||0)+camera*180/Math.PI});
+        });
       }
-      updateLights();
     });
     clock.start();
     await Curio.wait(120000/(mode===1?104:72));
@@ -1149,7 +1469,9 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     $('scene-caption').textContent='';
   }
   async function yourTurn(slower=false) {
-    stop();
+    const restarting=state.playing;
+    stop(restarting);
+    V.dropQueued();
     state.tempo=slower?80:100;
     const me=token,p=state.phrase;
     state.playing=true;
@@ -1169,7 +1491,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
       hint(text+' Listen to the call, then follow the four lead-in counts. Tap Stop to stop.');
       drawTiles();
       const callStart=performance.now();
-      await V.say('turn'+p+'_'+i,{wait:true,valid:()=>me===token,now:true,hint:false});
+      await V.say('turn'+p+'_'+i,{wait:true,valid:()=>me===token,now:i>0||restarting,hint:false});
       if(me!==token) return;
       if(!Curio.sound) {
         await Curio.wait(Math.max(0,600+62*text.length-(performance.now()-callStart)));
@@ -1194,7 +1516,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     if(me!==token) return;
     stop(false);
     $('turn-count').textContent='Bow';
-    $('turn-call').textContent='Your phrase is complete. Take a bow.';
+    $('turn-call').textContent='The counts are complete. Take a bow.';
     hint('Tap Again to repeat, Slower for 80 beats a minute, or choose another phrase.');
     V.say('bow');
     Curio.yes();
@@ -1214,8 +1536,15 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     } else hint(L.placeHow);
   }
   function setMode(m) {
-    if(state.mode===m&&document.body.dataset.ready) return;
+    if(state.mode===m&&!state.compare&&document.body.dataset.ready) return;
     stopAll();
+    document.querySelector('.panel').prepend($('hint'));
+    const privacy=document.querySelector('.privacy');
+    if(privacy.parentElement!==document.querySelector('.panel')) document.querySelector('.panel').appendChild(privacy);
+    $('view-switch').inert=false;
+    $('theater').inert=false;
+    flipToken++;
+    camera=state.view==='stage'?Math.PI:0;
     state.mode=m;
     state.compare=false;
     state.target=null;
@@ -1252,7 +1581,12 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     if(m==='turn') {$('setup').hidden=false;}
     relayout();
     hint(L[m==='map'?'welcomeMap':m==='recital'?'welcomeRecital':'welcomeTurn']);
-    if(m==='map'&&state.calls) showCall(); else V.welcome();
+    if(m==='map'&&state.calls) showCall();
+    else {
+      if(m==='map') hint(L[state.placed.some(a=>a!==null)||state.mapTouched&&state.view==='seats'?
+        'placeHow':state.view==='stage'?'flipHow':'welcomeMap']);
+      V.welcome();
+    }
     document.body.dataset.ready='true';
   }
   function pointFromEvent(e) {
@@ -1335,15 +1669,25 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     };
     $('light-colors').appendChild(b);
   });
-  clues.forEach(([text],i)=> {
+  const clueOrder=clues.map((_,i)=>i);
+  for (let n=clueOrder.length-1;n>0;n--) {
+    const j=Math.floor(Math.random()*(n+1));
+    [clueOrder[n],clueOrder[j]]=[clueOrder[j],clueOrder[n]];
+  }
+  clueOrder.forEach(i=> {
+    const text=clues[i][0];
     const b=document.createElement('button');b.id='clue-'+i;b.textContent=text;
     b.setAttribute('aria-pressed',false);b.onclick=()=>pickClue(i);$('clues').appendChild(b);
   });
   for(let i=0;i<3;i++) {
     const b=document.createElement('button');b.id='idea-'+i;b.onclick=()=>pickIdea(i);$('idea-controls').appendChild(b);
   }
+  const shortTraits=['Rise onto balls of feet (releve)','Sharp beat hits','Formations','One-leg line (arabesque)',
+    'Off-beat accents (syncopation)','Flowing arms (port de bras)','High, middle, low','Kicks and claps'];
   traits.forEach(([text],i)=> {
     const b=document.createElement('button');b.id='trait-'+i;b.textContent=text;b.draggable=true;
+    b.title=text;
+    b.innerHTML=`<span class="trait-full">${text}</span><span class="trait-short">${shortTraits[i]}</span>`;
     b.onclick=()=>selectTrait(i);
     b.ondragstart=e=> {state.trait=i;e.dataTransfer.setData('text/plain',String(i));};
     $('traits').appendChild(b);
@@ -1352,7 +1696,11 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
   $('seats').onclick=()=>flip('seats');
   $('reverse').onclick=()=>flip('stage');
   window.addEventListener('keydown',e=> {if(e.key.toLowerCase()==='v'&&!e.ctrlKey&&!e.altKey) flip(state.view==='seats'?'stage':'seats');});
+  let lastCallsTap=-Infinity;
   $('calls').onclick=()=> {
+    const now=performance.now();
+    if(now-lastCallsTap<1000) return;
+    lastCallsTap=now;
     state.calls=!state.calls;$('calls').setAttribute('aria-pressed',state.calls);
     $('call-controls').hidden=!state.calls;
     if(state.calls) showCall();
@@ -1379,14 +1727,21 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
     const right=state.board.filter((v,i)=>v===traits[i][1]).length;
     $('compare-summary').textContent=!done?'Place each of the eight traits before checking.':
       right===8?'✓ Eight traits supported by movement. Your board connects both pieces.':
-      `${right} of 8 placements fit. Try another column for a trait, and watch its clip again.`;
+      'Some placements need another look. Compare the movement in both pieces, then revise your board.';
     hint($('compare-summary').textContent+' Tap a trait to change its column, or tap Back to recital.');
     if(right===8&&done) Curio.yes();
   };
   $('back-recital').onclick=()=> {
-    stopAll();state.compare=false;$('compare-board').hidden=true;$('compare-panel').hidden=true;
+    stopAll();
+    document.querySelector('.panel').prepend($('hint'));
+    const privacy=document.querySelector('.privacy');
+    if(privacy.parentElement!==document.querySelector('.panel')) document.querySelector('.panel').appendChild(privacy);
+    $('view-switch').inert=false;
+    $('theater').inert=false;
+    state.compare=false;$('compare-board').hidden=true;$('compare-panel').hidden=true;
     $('recital-panel').hidden=false;$('plan-wrap').hidden=false;updateRecital();posePreview();how('welcomeRecital');
     $('scene-caption').textContent=pieceNames[state.piece];
+    relayout();
     $('dress-tab').focus({preventScroll:true});
   };
   for(let i=0;i<3;i++) $('phrase-'+i).onclick=()=> {
@@ -1402,13 +1757,15 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
   $('stop-turn').onclick=stopAll;
   $('bow').onclick=()=> {
     stopAll();$('turn-call').textContent='Take your bow.';$('turn-count').textContent='Bow';
-    hint(`Tap ${$('start').textContent} to repeat, or pick a new phrase and tap Start.`);V.say('bow');Curio.yes();
+    hint(`Tap ${$('start').textContent} to repeat, or pick a new phrase and tap Start.`);V.say('manualBow');
   };
   $('reset').onclick=()=> {
+    lastCallsTap=-Infinity;
     stopAll();
+    flipToken++;
     try {localStorage.removeItem('recital-stage-directions');} catch {}
     state.costume=[0,0];state.light=[0,0];state.lit=[areas.map(a=>a.id),areas.map(a=>a.id)];
-    state.clues=[[],[]];state.answers=[null,null];state.watched=[false,false];state.board=Array(8).fill(null);
+    state.clues=[[],[]];state.answers=[null,null];state.retry=[false,false];state.watched=[false,false];state.board=Array(8).fill(null);
     state.placed=[null,null,null];state.checked=null;state.calls=false;state.call=0;
     state.mapTouched=false;
     state.view='seats';camera=0;state.count=0;state.segment=-1;
@@ -1426,7 +1783,7 @@ h2 {font:800 21px 'Trebuchet MS',sans-serif; margin:0; color:#fff2d2}
   Curio.onMotion(()=> {if(Curio.reduce) {camera=state.view==='stage'?Math.PI:0;relayout();}});
   new ResizeObserver(relayout).observe($('stage'));
   window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,callFits,piecePhrase,renderer,flip,place,
-    watch,yourTurn,stop:stopAll,areas,traits,clues,POSE_ART,openCompare,placeTrait,
+    watch,yourTurn,stop:stopAll,areas,traits,clues,PAINT_SOURCES,openCompare,placeTrait,
     inspect:()=>({camera,guide:guides.map(d=>({left:d.sj.lHa,right:d.sj.rHa})),
       positions:snapshots.map(s=>({x:s.x,z:s.z}))}),
     get vq(){return V.queue;},get clock(){return clock;}};

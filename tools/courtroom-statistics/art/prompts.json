@@ -66,7 +66,7 @@
     },
     {
       "name": "evidence-cereal",
-      "prompt": "A plain cereal box with a blank cream front on a kitchen scale beside a bowl of cereal, soft daylight, flat illustration",
+      "prompt": "A closed upright blank cream cereal box supported squarely on the metal tray of a sturdy green kitchen scale, a bowl of cereal beside the scale on a wooden counter, rich editorial gouache, upper-left daylight, warm oak and cream, blank dial, no lettering or people.",
       "aspect": "4:3",
       "cutout": false,
       "key": "magenta",
@@ -74,7 +74,7 @@
       "quality": 76,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "builder reviewed"
+      "review": "Cold review: corrected weighing demonstration; box is on the scale; checked at final size."
     },
     {
       "name": "evidence-texts",

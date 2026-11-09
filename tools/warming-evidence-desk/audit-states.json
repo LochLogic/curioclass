@@ -1,0 +1,317 @@
+{
+  "keep": [
+    "header"
+  ],
+  "states": [
+    {
+      "name": "sun-fast-zero",
+      "steps": [
+        {
+          "click": "#record-sun"
+        },
+        {
+          "click": "#span-3"
+        },
+        {
+          "click": "#zero"
+        }
+      ],
+      "keep": [
+        "#temp-chart",
+        "#record-chart",
+        "#answer",
+        "#clear"
+      ]
+    },
+    {
+      "name": "volcanic-dips",
+      "steps": [
+        {
+          "click": "#record-volcano"
+        },
+        {
+          "click": "#span-4"
+        }
+      ],
+      "keep": [
+        "#temp-chart",
+        "#record-chart",
+        "#answer"
+      ]
+    },
+    {
+      "name": "fuel-pause",
+      "steps": [
+        {
+          "click": "#record-fossil"
+        },
+        {
+          "click": "#span-2"
+        }
+      ],
+      "keep": [
+        "#answer",
+        "#clear"
+      ]
+    },
+    {
+      "name": "argue-compared",
+      "steps": [
+        {
+          "click": "#record-co2"
+        },
+        {
+          "click": "#record-sun"
+        },
+        {
+          "click": "#record-volcano"
+        },
+        {
+          "click": "#record-fossil"
+        },
+        {
+          "click": "#m-argue"
+        },
+        {
+          "click": "#claim-co2-0"
+        },
+        {
+          "click": "#claim-sun-1"
+        },
+        {
+          "click": "#claim-volcano-1"
+        },
+        {
+          "click": "#claim-volcano-2"
+        },
+        {
+          "click": "#claim-fossil-0"
+        },
+        {
+          "click": "#compare"
+        }
+      ],
+      "keep": [
+        "#compare"
+      ]
+    },
+    {
+      "name": "board-open",
+      "sizes": [
+        "680x425",
+        "800x500"
+      ],
+      "steps": [
+        {
+          "click": "#record-sun"
+        },
+        {
+          "click": "#board-toggle"
+        }
+      ],
+      "keep": [
+        "#board",
+        "#board-close"
+      ]
+    },
+    {
+      "name": "all-evidence-compared",
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1000x625",
+        "1366x768",
+        "1920x1080"
+      ],
+      "steps": [
+        {
+          "click": "#record-co2"
+        },
+        {
+          "click": "#span-0"
+        },
+        {
+          "click": "#span-1"
+        },
+        {
+          "click": "#span-2"
+        },
+        {
+          "click": "#span-3"
+        },
+        {
+          "click": "#span-4"
+        },
+        {
+          "click": "#record-sun"
+        },
+        {
+          "click": "#span-0"
+        },
+        {
+          "click": "#span-1"
+        },
+        {
+          "click": "#span-2"
+        },
+        {
+          "click": "#span-3"
+        },
+        {
+          "click": "#span-4"
+        },
+        {
+          "click": "#record-volcano"
+        },
+        {
+          "click": "#span-0"
+        },
+        {
+          "click": "#span-1"
+        },
+        {
+          "click": "#span-2"
+        },
+        {
+          "click": "#span-3"
+        },
+        {
+          "click": "#span-4"
+        },
+        {
+          "click": "#record-fossil"
+        },
+        {
+          "click": "#span-0"
+        },
+        {
+          "click": "#span-1"
+        },
+        {
+          "click": "#span-2"
+        },
+        {
+          "click": "#span-3"
+        },
+        {
+          "click": "#span-4"
+        },
+        {
+          "click": "#m-argue"
+        },
+        {
+          "click": "#claim-co2-0"
+        },
+        {
+          "click": "#claim-sun-1"
+        },
+        {
+          "click": "#claim-volcano-1"
+        },
+        {
+          "click": "#claim-volcano-2"
+        },
+        {
+          "click": "#claim-fossil-0"
+        },
+        {
+          "click": "#compare"
+        }
+      ],
+      "keep": [
+        "#claim-table",
+        "#compare"
+      ]
+    },
+    {
+      "name": "all-evidence-claims",
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1000x625"
+      ],
+      "steps": [
+        {
+          "click": "#record-co2"
+        },
+        {
+          "click": "#span-0"
+        },
+        {
+          "click": "#span-1"
+        },
+        {
+          "click": "#span-2"
+        },
+        {
+          "click": "#span-3"
+        },
+        {
+          "click": "#span-4"
+        },
+        {
+          "click": "#record-sun"
+        },
+        {
+          "click": "#span-0"
+        },
+        {
+          "click": "#span-1"
+        },
+        {
+          "click": "#span-2"
+        },
+        {
+          "click": "#span-3"
+        },
+        {
+          "click": "#span-4"
+        },
+        {
+          "click": "#record-volcano"
+        },
+        {
+          "click": "#span-0"
+        },
+        {
+          "click": "#span-1"
+        },
+        {
+          "click": "#span-2"
+        },
+        {
+          "click": "#span-3"
+        },
+        {
+          "click": "#span-4"
+        },
+        {
+          "click": "#record-fossil"
+        },
+        {
+          "click": "#span-0"
+        },
+        {
+          "click": "#span-1"
+        },
+        {
+          "click": "#span-2"
+        },
+        {
+          "click": "#span-3"
+        },
+        {
+          "click": "#span-4"
+        },
+        {
+          "click": "#m-argue"
+        }
+      ],
+      "keep": [
+        "#claim-table",
+        "#compare",
+        "#hint"
+      ]
+    }
+  ]
+}

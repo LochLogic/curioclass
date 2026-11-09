@@ -1,0 +1,11 @@
+{
+  "target": 44,
+  "keep": ["#ribbon", "#manual", "#input", "#hold"],
+  "states": [
+    {"name": "vowel-held", "steps": [{"click": "#pad-0"}, {"wait": 800}, {"click": "#hold"}, {"click": "#chart-toggle"}], "sizes": ["1366x768", "375x812"]},
+    {"name": "tone", "steps": [{"click": "#ribbon"}, {"key": "Tab"}, {"key": "ArrowRight"}, {"key": "ArrowRight"}], "sizes": ["680x425", "1366x768", "375x812"]},
+    {"name": "narrow-memory", "steps": [{"click": "#pad-1"}, {"click": "#band"}, {"wait": 800}, {"click": "#mem-a"}, {"click": "#harmonics"}], "sizes": ["1366x768"]},
+    {"name": "live-vowels", "steps": [{"click": "#pad-5"}, {"click": "#chart-toggle"}, {"wait": 800}], "sizes": ["680x425", "1366x768", "375x812"]},
+    {"name": "manual", "steps": [{"click": "#manual"}], "keep": ["#manual-drawer", "#close-manual"], "sizes": ["1366x768", "375x812"]}
+  ]
+}

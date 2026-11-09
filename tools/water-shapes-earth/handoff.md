@@ -65,3 +65,35 @@ Chrome sessions and host servers used ports 9990, 9991 and 8795 and were closed.
 The supplied Sources footnote says a trial can be up to 13 percent from its group's mean.
 The exact maximum above a three-trial mean for factors 1.1 / 0.9 / 0.9 is 13.79 percent.
 Done when 7 correctly uses the no-noise baseline, and every tested trial meets that bound.
+
+## Cold review changes
+
+Review evidence lives under Scratch/review-*. Cold student play preceded reading this handoff and source.
+Step changes hush speech from the old screen so Graph cannot delay Conclude; completed runs queue the finished how-to.
+finishRun ignores inactive or invalidated runs, preventing stale completion from entering the book.
+Compare selects a real one-variable pair and names its changed values, measured means and relevant water property.
+Identical plans are described as repeats; fully confounded plans do not receive causal model answers.
+Stream deltas require transported grains. Silt appears only for mixed sediment, which includes pre-suspended fines.
+The jar was redrawn and processed with art.py --rekey; its SVG applies saturate(0) to neutralize residual key tint.
+The Lab book control states On this device before any automatic save. Notes distinguish model constants from field measurements.
+The no-transport state is included in audit-states.json. Review uses Chrome 9940-9947 and host 8745.
+On stacked screens Plan now places the editable table before the still bench, keeping the dropdowns above the fold.
+Run continues to give the illustrated bench the full stage. The earlier phone Plan scrolling limitation is resolved for primary controls.
+
+## Spec source conflict found in cold review
+
+Hjulström 1935 table 7, printed page 295, gives 8 mm at 0.81 m/s and 30 mm at 2.18-2.21 m/s.
+Page 296 explicitly calls the curve a preliminary zone with depth/grain-size qualifications.
+The spec's 32 mm pebble cutoff of 1.50 m/s cannot be represented as a faithful rounding of that table.
+The tool now identifies cutoffs as model choices in notes and avoids attributing exact cutoffs to Hjulström on screen.
+Changing the constants would contradict the spec's flood/4% pebble outcome, so that spec decision remains open.
+The source PDF, text extraction and full-page renders are preserved in Scratch. No new measured threshold was substituted.
+
+## Final audit and confirmed corrections
+
+The cold-review audit completed once, exit 0, within 40 minutes. Its 97 frames and report remain in Scratch/review-audit.
+Confirmed compact caption spacing and slope-card overlaps are fixed. The claim's existing label now also has explicit ARIA linkage.
+Region warnings for the intentional group controls and the specified phone table scroller are documented in the review report.
+The lab book now owns its narration and makes background controls inert; closing it restores focus and the current step's hint.
+Motion off keeps stream grains static during the timed run, then shows the final outcome. An explicit group preview still acts immediately.
+No shared engine, scripts or docs were edited. Main-path/modal voice and affected-size checks follow these narrow corrections; no second audit is run.

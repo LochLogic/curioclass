@@ -32,6 +32,15 @@
           "click": "#die2"
         },
         {
+          "click": "#roll100"
+        },
+        {
+          "wait": 750
+        },
+        {
+          "click": "#test-die"
+        },
+        {
           "click": "#accuse"
         },
         {
@@ -86,6 +95,15 @@
         },
         {
           "click": "#die2"
+        },
+        {
+          "click": "#roll100"
+        },
+        {
+          "wait": 750
+        },
+        {
+          "click": "#test-die"
         },
         {
           "click": "#accuse"
@@ -148,6 +166,15 @@
           "click": "#die2"
         },
         {
+          "click": "#roll100"
+        },
+        {
+          "wait": 750
+        },
+        {
+          "click": "#test-die"
+        },
+        {
           "click": "#accuse"
         },
         {
@@ -191,6 +218,9 @@
         },
         {
           "click": "#cell8"
+        },
+        {
+          "click": "#point-cell"
         },
         {
           "click": "#next-case"
@@ -229,6 +259,15 @@
           "click": "#die2"
         },
         {
+          "click": "#roll100"
+        },
+        {
+          "wait": 750
+        },
+        {
+          "click": "#test-die"
+        },
+        {
           "click": "#accuse"
         },
         {
@@ -272,6 +311,9 @@
         },
         {
           "click": "#cell8"
+        },
+        {
+          "click": "#point-cell"
         },
         {
           "click": "#next-case"
@@ -520,6 +562,207 @@
       "sizes": [
         "680x425",
         "1366x768"
+      ]
+    },
+    {
+      "name": "citation-open",
+      "steps": [
+        {
+          "js": "__tool.seed(42)"
+        },
+        {
+          "click": "#die2"
+        },
+        {
+          "click": "#roll100"
+        },
+        {
+          "wait": 750
+        },
+        {
+          "click": "#test-die"
+        },
+        {
+          "click": "#accuse"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col0"
+        },
+        {
+          "click": "#cell0"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col1"
+        },
+        {
+          "click": "#cell1"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col2"
+        },
+        {
+          "click": "#cell2"
+        },
+        {
+          "click": "#fill-rest"
+        },
+        {
+          "click": "#point-cell"
+        },
+        {
+          "click": "#cell8"
+        },
+        {
+          "click": "#point-cell"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#test-slope"
+        },
+        {
+          "click": "#plot-temp"
+        },
+        {
+          "click": "#test-slope"
+        },
+        {
+          "click": "#weight-link"
+        },
+        {
+          "click": "#cite-ci"
+        }
+      ],
+      "keep": [
+        ".modal",
+        "#file-evidence"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "citation-filed",
+      "steps": [
+        {
+          "js": "__tool.seed(42)"
+        },
+        {
+          "click": "#die2"
+        },
+        {
+          "click": "#roll100"
+        },
+        {
+          "wait": 750
+        },
+        {
+          "click": "#test-die"
+        },
+        {
+          "click": "#accuse"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col0"
+        },
+        {
+          "click": "#cell0"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col1"
+        },
+        {
+          "click": "#cell1"
+        },
+        {
+          "click": "#row0"
+        },
+        {
+          "click": "#col2"
+        },
+        {
+          "click": "#cell2"
+        },
+        {
+          "click": "#fill-rest"
+        },
+        {
+          "click": "#point-cell"
+        },
+        {
+          "click": "#cell8"
+        },
+        {
+          "click": "#point-cell"
+        },
+        {
+          "click": "#next-case"
+        },
+        {
+          "click": "#close-dialog"
+        },
+        {
+          "click": "#test-slope"
+        },
+        {
+          "click": "#plot-temp"
+        },
+        {
+          "click": "#test-slope"
+        },
+        {
+          "click": "#weight-link"
+        },
+        {
+          "click": "#cite-ci"
+        },
+        {
+          "js": "document.querySelector('#evidence-low').value='0.160';document.querySelector('#evidence-high').value='0.410';document.querySelector('#evidence-meaning').value='below'"
+        },
+        {
+          "click": "#file-evidence"
+        }
+      ],
+      "keep": [
+        "#slope-card"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
       ]
     }
   ]

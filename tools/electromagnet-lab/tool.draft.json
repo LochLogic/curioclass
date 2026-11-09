@@ -1,0 +1,26 @@
+{
+  "id": "electromagnet-lab",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Wind a coil. Make a fair test. Reveal the invisible pull.",
+  "outcome": "Ask testable questions, compare fair repeated measurements and gather evidence for fields across empty space.",
+  "driver": "students or teacher",
+  "minutes": "35-50",
+  "modes": [
+    "Coil",
+    "Static",
+    "Field",
+    "Notebook"
+  ],
+  "grades_label": "Grade 8",
+  "sources": [
+    "OpenStax College Physics 2e chapters 18, 21 and 22",
+    "NOAA NCEI Geomagnetism Frequently Asked Questions",
+    "Energizer E91 product datasheet",
+    "Matsusaka et al., Chemical Engineering Science 65 (2010), 5781-5807",
+    "NGSS MS-PS2-3 and MS-PS2-5",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

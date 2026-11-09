@@ -8,7 +8,7 @@
 <link rel="icon" href="data:,">
 <!--
 Design the Study, Curio Class. Student driven: Story and Bench.
-S-IC.B.3, S-IC.B.5, S-IC.B.6; experimental half of AP-STAT.U3.
+S-IC.B.3, S-IC.B.5, S-IC.B.6; experimental design (legacy AP-STAT.U3, current 2026-27 Unit 1).
 Sources: CCSS, College Board AP Statistics, OpenStax Introductory Statistics 2e 1.4,
 OpenIntro Statistics 4e 2.3, AAP Pediatrics 127(6), 2011, doi:10.1542/peds.2011-0965.
 The lab, volunteers and model numbers are invented. Content CC BY 4.0; code MIT.
@@ -119,8 +119,8 @@ footer { padding:5px 20px 8px; display:grid; grid-template-columns:1fr auto; gap
 .opening { padding:12px 16px; border-bottom:1px solid #c7baa2; background:#eee6d5;
   font:15px/1.4 Georgia,serif; display:flex; gap:10px; }
 .opening p { margin:0; }
-.editor-mark { width:45px; height:51px; flex:none; background:#ddd4c0; border-radius:50% 50% 5px 5px; overflow:hidden; }
-.editor-mark svg { width:45px; height:51px; }
+.editor-portrait { width:100px; height:102px; flex:none; object-fit:contain; object-position:center bottom; }
+.journal .editor-portrait { float:right; width:112px; height:122px; margin:0 0 6px 10px; }
 .health { font:11px/1.4 'Segoe UI',sans-serif; color:var(--muted); margin-top:5px!important; }
 .journal { position:absolute; z-index:3; top:8px; right:10px; left:10px; padding:16px;
   box-shadow:0 7px 23px #2a272343; border:1px solid #aa9877; background:linear-gradient(115deg,#fffef8,#f1e9d6); }
@@ -135,6 +135,7 @@ dialog { color:var(--ink); background:var(--panel); border:1px solid var(--btn-l
   width:min(570px,calc(100vw - 16px)); max-height:calc(100vh - 18px); padding:14px; box-shadow:0 12px 60px #0005; }
 dialog::backdrop { background:#24211d88; }
 dialog h2 { font:italic 23px Georgia,serif; margin:0 0 9px; }
+.inspector-how { font:11px/1.25 'Segoe UI',sans-serif; color:var(--muted); margin:0 0 4px; }
 dialog .cards { padding:0; }
 #card-detail { min-height:44px; font-size:13px; line-height:1.5; margin:8px 0; }
 dialog .close { width:100%; margin-top:8px; }
@@ -144,7 +145,8 @@ dialog .close { width:100%; margin-top:8px; }
   .row-title { font-size:15px; } .chip { font-size:12px; padding-left:4px; padding-right:4px; }
   .chip[aria-pressed=true] { padding-left:3px; padding-right:3px; }
   .rows { padding:0 9px; } .lab-scene { height:105px; }
-  .opening { font-size:13px; padding:8px 10px; } .editor-mark { display:none; }
+  .opening { font-size:13px; padding:8px 10px; } .opening .editor-portrait { display:none; }
+  .journal .editor-portrait { width:80px; height:86px; }
 }
 @media (max-height:700px) and (min-width:600px) {
   header { flex-wrap:nowrap; padding:3px 9px; } h1 { font-size:21px; white-space:nowrap; } h1 small { display:none; }
@@ -206,6 +208,7 @@ dialog .close { width:100%; margin-top:8px; }
   dialog { width:calc(100vw - 4px); max-width:none; padding:4px; }
   dialog .cards { gap:1px; }
   .icon-btn { padding-left:6px; padding-right:6px; }
+  .icon-btn,.seg button { font-size:11px; padding-left:4px; padding-right:4px; min-width:44px; }
   #clear { padding-left:5px; padding-right:5px; }
   .paper-head { padding-top:1px; padding-bottom:1px; }
   .folio { line-height:1.1; } .folio br { display:none; }
@@ -217,6 +220,7 @@ dialog .close { width:100%; margin-top:8px; }
   .reason:not(:empty)::after { content:attr(data-short); font:10px/1.1 'Segoe UI',sans-serif; }
 }
 @media (max-width:780px) {
+  .journal .editor-portrait { width:44px; height:48px; margin-left:6px; }
   .row-title b { display:none; }
   main.results .estimate span { display:none; }
   main.results .chart-area { min-height:130px; }
@@ -255,6 +259,12 @@ dialog .close { width:100%; margin-top:8px; }
   #card-detail { margin:4px 0; }
   dialog .close { margin-top:4px; }
 }
+@media (max-height:500px) and (min-width:600px), (max-width:599px) {
+  main.bench:has(#pins p) #pins { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  main.bench:has(#pins p) .lab-scene { height:44px; }
+  main.bench:has(#pins p) .lab-title { top:5px; }
+  main.bench:has(#pins p) .lab-title h2 { font-size:18px; }
+}
 </style>
 </head>
 <body>
@@ -268,9 +278,7 @@ dialog .close { width:100%; margin-top:8px; }
 <main id="workspace">
   <section class="manuscript" aria-label="Study manuscript">
     <div class="paper-head"><h2>Methods</h2><span class="folio">THE OPEN BENCH JOURNAL<br> MANUSCRIPT / <span id="revision">01</span></span></div>
-    <div class="opening" id="opening"><div class="editor-mark" aria-label="Editor silhouette, portrait pending">
-      <svg viewBox="0 0 45 52" aria-hidden="true"><circle cx="23" cy="15" r="10" fill="#7b7e83"/>
-        <path d="M4 52Q3 30 22 28Q42 29 42 52" fill="#3f4958"/><path d="M17 29L23 41L29 29" fill="#f5efe3"/></svg></div>
+    <div class="opening" id="opening"><img class="editor-portrait" src="art:editor-quill" alt="Dr. Mara Quill, the invented editor">
       <div><p><b>From Dr. Mara Quill, editor</b><br>A reader says the drink makes people faster. Design a study our journal can trust. I will read your methods.</p>
 
       <p class="health">Adult volunteers, ages 18 to 22. The American Academy of Pediatrics advises children and teens not to drink energy drinks.</p>
@@ -296,7 +304,9 @@ dialog .close { width:100%; margin-top:8px; }
 <footer><div><p id="hint"></p><span class="privacy">Endings stay on this device only. Nothing leaves it.</span></div>
   <div class="badges"><span class="badge" data-ending="Published">Published</span><span class="badge" data-ending="Pilot">Pilot</span>
     <span class="badge" data-ending="Retracted">Retracted</span><button class="secondary" id="clear">Clear</button></div></footer>
-<dialog id="inspector"><h2>Volunteer records</h2><div class="cards" id="inspect-cards"></div>
+<dialog id="inspector"><h2>Volunteer records</h2>
+  <p class="inspector-how" id="inspector-how">Tap a numbered card to turn it over. Use arrow keys to move to another card.</p>
+  <div class="cards" id="inspect-cards"></div>
   <p id="card-detail">Run a study, then tap a numbered card to turn it over. Arrow keys move between cards.</p>
   <button class="secondary close" id="close-inspector">Back to study</button></dialog>
 <script src="kit:curio"></script>
@@ -306,13 +316,13 @@ dialog .close { width:100%; margin-top:8px; }
   const $ = id => document.getElementById(id);
   const L = {
     wStory:"I'm Mara Quill, editor. Tap one chip in each row of your methods, then press Run the study.",
-    shuffle:'Before you submit, press Shuffle check. It shows what chance alone would give.',
-    submit:"Now press Submit to the journal, and I'll read it.",
+    shuffle:'Press Shuffle check to test chance.',
+    submit:'Press Submit to the journal.',
     wBench:'Tap a chip in each row and press Run 400 studies. Watch where the results land compared with the dashed line.',
     revise:'Change the outlined row, then press Run the study.',
     draft:'Tap a chip in each row of your methods, then press Run the study.',
     published:'Accepted. This is what a fair test looks like.',
-    pilot:'Sound design, but chance could explain this. Try having everyone do both days.',
+    pilot:'Sound design, but chance could explain this result. One study does not settle the question.',
     retracted:"Another lab ran it properly. The headline didn't survive.",
     card:'Tap a numbered card to turn it over. Use arrow keys to move to another card.',
     pin:'Change a row and press Run 400 studies, or press Pin design to compare these results.',
@@ -322,11 +332,20 @@ dialog .close { width:100%; margin-top:8px; }
     water:'Your volunteers knew what they drank. Expecting to be faster can make people faster. Press Revise to fix that row.',
     timer:"Your timer knew who had the drink. That's a thumb on the stopwatch. Press Revise to fix that row.",
     stopwatch:'A human thumb adds 30 milliseconds of noise to a 10 millisecond question. Press Revise to fix that row.',
-    day2:'Everyone had the drink on the second day. Practice is still riding along. Press Revise to fix that row.'
+    day2:'Everyone had the drink on the second day. Practice is still riding along. Press Revise to fix that row.',
+    initial:'Tap Run the study. Adults only: the American Academy of Pediatrics advises children and teens not to drink energy drinks.',
+    returnedHint:'Press Revise to change the outlined row, or Skip the journal: post it online.',
+    endingHint:'Press New draft to try another design. Endings stay on this device only.',
+    anotherHint:'Press New draft to try another design.',
+    investigateHint:'Press New draft to investigate another design.',
+    runningHint:'Running repeated studies. Change any chip to cancel this run.',
+    pinnedHint:'Design pinned. Change a chip and press Run 400 studies to compare.',
+    clearHint:'Saved endings and pinned designs cleared. Press Run to investigate again.'
   };
   const DEFAULT = {compare:'before',assignment:'choose',order:'day2',control:'water',blind:'everyone',timing:'stopwatch',n:40};
   const state = {mode:'story',draft:{...DEFAULT},result:null,shuffled:null,benchResult:null,pins:[],revealed:[],
-    letter:null,ending:null,endings:[],revision:1,runIndex:0,edited:false,phase:'draft',animation:null,progress:1,selectedCard:1};
+    letter:null,ending:null,endings:[],revision:1,runIndex:0,edited:false,phase:'draft',animation:null,progress:1,selectedCard:1,
+    benchPreview:[],benchTotal:400};
   try {
     state.endings = JSON.parse(localStorage.getItem('curio-dts-endings') || '[]').filter(x=>['Published','Pilot','Retracted'].includes(x));
   } catch { state.endings = []; }
@@ -338,7 +357,7 @@ dialog .close { width:100%; margin-top:8px; }
     welcome:()=>state.mode==='story'?['wStory',{valid:()=>!state.edited&&!state.result}]:['wBench',{valid:()=>!state.benchResult}],
     speaks:'.chip,#run,#shuffle,#submit'});
   const ART = {'drink-can':'art:drink-can','water-glass':'art:water-glass','stopwatch':'art:stopwatch','reaction-box':'art:reaction-box'};
-  const editorToken = 'art:editor-quill'; // Superseded portrait is retained but never displayed.
+  const editorPortrait = '<img class="editor-portrait" src="art:editor-quill" alt="Dr. Mara Quill, the invented editor">';
   const mean = a=>a.reduce((s,x)=>s+x,0)/a.length;
   const sd = a=>Math.sqrt(a.reduce((s,x)=>s+(x-mean(a))**2,0)/(a.length-1));
   const fmt = (n,d=1)=>(n>0?'+':'')+(Math.abs(n)<1e-9?0:n).toFixed(d);
@@ -516,12 +535,13 @@ dialog .close { width:100%; margin-top:8px; }
   }
   function hint(key,speak=false) {
     $('hint').textContent = L[key]||key;
-    if (speak) V.how(key,{valid:()=>$('hint').textContent===L[key]});
+    if (speak) V.how(key,{valid:()=>$('hint').textContent===L[key],now:V.playing!==L[key]});
   }
   function setDraft(update) {
     generation++;
     finishAnimation();
-    V.dropQueued();
+    if (V.playing) V.hush();
+    else V.dropQueued();
     Object.assign(state.draft,update);
     state.draft.n = +state.draft.n;
     if (state.draft.control==='water') state.draft.blind = 'everyone';
@@ -569,6 +589,7 @@ dialog .close { width:100%; margin-top:8px; }
   function submit() {
     finishAnimation();
     if (!state.result||!state.shuffled) return;
+    if (V.playing) V.hush();
     const found = flaw(state.result.draft);
     if (found) {
       state.letter = found;
@@ -597,14 +618,18 @@ dialog .close { width:100%; margin-top:8px; }
   }
   async function bench(k=400) {
     finishAnimation();
-    V.dropQueued();
+    if (V.playing) V.hush();
+    else V.dropQueued();
     const gen = ++generation;
     const d = {...state.draft};
     const runs = [];
     const batchSeed = (baseSeed+state.runIndex)>>>0;
     state.runIndex += k;
     state.benchResult = null;
+    state.benchPreview = [];
+    state.benchTotal = k;
     state.phase = 'bench-running';
+    render();
     hint('Running repeated studies. Change any chip to cancel this run.');
     Curio.tone(570,.08,.04,'sine');
     for (let i=0;i<k;i++) {
@@ -612,6 +637,8 @@ dialog .close { width:100%; margin-top:8px; }
       const p = permutation(r,1000);
       runs.push({estimate:r.estimate,count:p.count});
       if (i%20===19) {
+        state.benchPreview = runs.map(r=>r.estimate);
+        render();
         await new Promise(resolve=>setTimeout(resolve,0));
         if (gen!==generation) return null;
       }
@@ -687,7 +714,7 @@ dialog .close { width:100%; margin-top:8px; }
     if (box.hidden) return;
     if (state.letter) {
       const text = L[state.letter.key].replace(' Press Revise to fix that row.','');
-      box.innerHTML = `<h3>Returned for revision · ${state.letter.row==='blind'?'Who knows':state.letter.row}</h3>`+
+      box.innerHTML = editorPortrait+`<h3>Returned for revision · ${state.letter.row==='blind'?'Who knows':state.letter.row}</h3>`+
         `<p>${text}</p><p class="small">Dr. Mara Quill · The Open Bench Journal (invented)</p>`+
         '<div class="journal-buttons"><button class="primary" id="revise">Revise</button>'+
         '<button class="secondary" id="skip">Skip the journal: post it online</button></div>';
@@ -706,14 +733,15 @@ dialog .close { width:100%; margin-top:8px; }
     } else {
       const name = state.ending;
       const text = name==='Published'?'Accepted. Random assignment, a placebo, and nobody knowing: this is what a fair test looks like.':
-        name==='Pilot'?'Sound design, but chance could explain this. Bigger, or have everyone do both days.':
+        name==='Pilot'?L.pilot:
         `Another lab used a fair paired design: ${fmt(state.replication.estimate)} ms. Your headline claim of ${fmt(state.result.estimate)} ms comes down.`;
-      box.innerHTML = `<h3>${name==='Retracted'?'Replication arrived':'Decision on your manuscript'}</h3>`+
+      box.innerHTML = editorPortrait+`<h3>${name==='Retracted'?'Replication arrived':'Decision on your manuscript'}</h3>`+
         `<span class="stamp">${name==='Published'?'Accepted':name}</span><p>${text}</p>`+
         `<p class="small">${designName(state.draft)}</p><p class="small">Found: ${state.endings.join(' · ')}. Saved on this device only.</p>`+
         '<div class="journal-buttons"><button class="primary" id="again">New draft</button><button class="secondary" id="view-result">View result</button></div>';
       $('again').onclick = newDraft;
       $('view-result').onclick = ()=>{
+        if (V.playing) V.hush();
         state.ending = null;
         render();
         hint('Press New draft to investigate another design.');
@@ -743,7 +771,8 @@ dialog .close { width:100%; margin-top:8px; }
       const b = state.benchResult;
       $('readouts').innerHTML = b?'<div class="bench-stats">'+`<span>Mean <b>${fmt(b.mean)} ms</b></span>`+
         `<span>SD <b>${b.sd.toFixed(2)} ms</b></span><span>Flagged <b>${Math.round(b.share*100)}%</b></span></div>`:
-        '<span class="eyebrow">Bias moves the center. Noise widens the spread.</span>';
+        `<span class="eyebrow">${state.phase==='bench-running'?
+          state.benchPreview.length+' of '+state.benchTotal+' new studies':'Bias moves the center. Noise widens the spread.'}</span>`;
       $('chart-note').textContent = b?'Dashed line: true effect -10 ms. Flagged: fewer than 50 of 1,000 shuffles as far from zero.':
         'Run 400 studies to see bias and spread. Every run gets new people effects, assignment, and noise.';
     } else if (r) {
@@ -777,6 +806,9 @@ dialog .close { width:100%; margin-top:8px; }
     const h = rect.height;
     c.fillStyle = '#fffdf8';
     c.fillRect(0,0,w,h);
+    canvas.removeAttribute('title');
+    canvas.setAttribute('aria-label',state.mode==='bench'?
+      'Bench: run studies to compare estimates.':'Study draft: run the study to see its result.');
     const text = (s,x,y,color='#6a6358',align='left',size=12)=>{
       c.fillStyle = color;
       c.textAlign = align;
@@ -793,7 +825,11 @@ dialog .close { width:100%; margin-top:8px; }
       c.setLineDash([]);
     };
     if (state.mode==='bench') {
-      const designs = [...(state.benchResult?[state.benchResult]:[]),...state.pins];
+      const preview = state.phase==='bench-running'&&state.benchPreview.length?
+        {estimates:state.benchPreview,mean:mean(state.benchPreview),sd:sd(state.benchPreview)}:null;
+      const current = state.benchResult||preview;
+      const designs = [...(current?[{...current,plotLabel:preview?'Building':'Current'}]:[]),
+        ...state.pins.map((p,i)=>({...p,plotLabel:'Pin '+(i+1)}))];
       if (!designs.length) { text('Where will 400 estimates land?',w/2,h/2,'#1d5bbf','center',Math.min(19,w/22)); return; }
       const all = designs.flatMap(d=>d.estimates);
       const min = Math.floor(Math.min(-20,...all)/10)*10;
@@ -806,23 +842,29 @@ dialog .close { width:100%; margin-top:8px; }
         const top = row*rowH+6;
         const bottom = (row+1)*rowH-6;
         const bins = Array(32).fill(0);
-        const limit = row===0&&state.animation==='histogram'?Math.ceil(design.estimates.length*state.progress):design.estimates.length;
+        const isCurrent = !!current&&row===0;
+        const limit = isCurrent&&state.animation==='histogram'?Math.ceil(design.estimates.length*state.progress):design.estimates.length;
         design.estimates.slice(0,limit).forEach(v=>bins[Math.min(31,Math.floor((v-min)/(max-min)*32))]++);
         const peak = Math.max(1,...bins);
         bins.forEach((n,i)=>{
-          const bh = n/peak*Math.max(5,rowH-33);
-          c.fillStyle = row===0?'#1d5bbf':['#6d665c','#8a704a','#527b76'][row-1];
+          const bh = n/peak*Math.max(5,rowH-28);
+          c.fillStyle = isCurrent?'#1d5bbf':['#6d665c','#8a704a','#527b76'][row-Number(!!current)];
           c.fillRect(left+i/32*(right-left),bottom-bh,(right-left)/32-1,bh);
         });
         line(left,bottom,right,bottom,'#8a7f6a');
         line(x(-10),top,x(-10),bottom,'#9b1c1c',[4,3]);
-        text(row===0?'Current design':'Pin '+row,left+3,top+11,'#2a2723','left',10);
+        const brief = (innerHeight<=500||innerWidth<600)&&state.pins.length&&design.draft?
+          ' '+({before:'Before/after',groups:'Two groups',days:'Both days'}[design.draft.compare]):'';
+        text(design.plotLabel+brief+': '+fmt(design.mean)+' ms; SD '+design.sd.toFixed(1),left+3,top+11,'#2a2723','left',10);
       });
       for (let i=0;i<=4;i++) {
         const v = min+(max-min)*i/4;
         text(v.toFixed(0),x(v),h-8,'#6a6358','center',10);
       }
-      canvas.setAttribute('aria-label',designs.map((d,i)=>(i?'Pinned':'Current')+' mean '+fmt(d.mean)+' milliseconds, SD '+d.sd.toFixed(2)).join('. '));
+      const descriptions = designs.map(d=>d.plotLabel+(d.label?' '+d.label:'')+
+        ' mean '+fmt(d.mean)+' milliseconds, SD '+d.sd.toFixed(2));
+      canvas.setAttribute('aria-label',descriptions.join('. '));
+      canvas.title = descriptions.join('\n');
       return;
     }
     if (!state.result) {
@@ -1002,6 +1044,7 @@ dialog .close { width:100%; margin-top:8px; }
   $('pin').onclick = ()=>{
     finishAnimation();
     if (!state.benchResult||state.pins.length>=3) return;
+    if (V.playing) V.hush();
     state.pins.push({...state.benchResult});
     render();
     hint('Design pinned. Change a chip and press Run 400 studies to compare.');

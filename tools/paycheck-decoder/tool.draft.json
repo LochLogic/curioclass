@@ -1,0 +1,25 @@
+{
+  "id": "paycheck-decoder",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Follow every cent from your rate to your account.",
+  "outcome": "Explain gross pay, take-home pay, payroll taxes and employer benefits from a pay stub.",
+  "driver": "students or teacher",
+  "minutes": "15-35",
+  "modes": [
+    "Stub",
+    "Change it",
+    "Guess first"
+  ],
+  "grades_label": "Grades 9-12",
+  "updated": "2026-11-08",
+  "sources": [
+    "IRS Rev. Proc. 2025-32; 2026 single-filer brackets and standard deduction",
+    "SSA 2026 Social Security Changes; IRS Publications 15, 15-B and 15-T",
+    "US Department of Labor, Fair Labor Standards Act",
+    "KFF 2025 Employer Health Benefits Survey",
+    "State and local learning approximations from First Apartment Budget",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": []
+}

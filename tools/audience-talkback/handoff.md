@@ -1,6 +1,39 @@
 # Audience Talkback build handoff
 
-## Structure
+## Cold review changes (2026-11-05)
+
+The review keeps the theater, palette and all ten painted assets. The bicycle was redrawn with a more legible
+slack chain and a buckled front wheel. Its generated alpha is preserved by setting cutout false with transparent true
+in prompts.json, so art.py --rekey only resizes/encodes it.
+
+Notebook storage is now version 2. Sessions track completed first-five setup lines, a recipe revision and which
+changed elements were observed for a complete uninterrupted line. A last-instant switch remains an editable note
+but is excluded from results. Multiple-change and base trials remain excluded. Version-1 notes and ratings survive,
+but lack verified evidence and do not enter the chart. A mixed test cannot become fair by resetting a switch.
+The results ticket summarizes the student's own highest average, including ties and zero change; it awards no score.
+Zero ratings draw zero-length bars. Null saved notebook entries are filtered without losing the other saved work.
+Clear my notes also restores Base A and AAAA. New no-observation/base hints are in the voice manifest.
+
+Browser preview buttons now say Timing varies. If all twenty recorded clips are supplied later, the existing
+metadata automatically sets each measured duration, including the nine gaps and the line-8 pause.
+Immediate browser-speech or clip playback errors now use caption timing for the remaining line instead of
+counting a failed line complete immediately. Generation guards also cover this fallback. The on-screen status
+names speech unavailability. A failed speech backend cannot fast-forward the scene into a watched marker.
+The original no-recording restriction still applies to this review. The twenty acted clips and host recordings
+remain a release blocker; none was generated or recorded here. Do not represent this as final acted audio.
+The completed review audit found 62 leads, with no runtime/focus/repeat/resize failures. The final layout repair moves
+the phone hint above the stage, retaining stage/mixer/Play in the viewport. Caption spacing is tightened without
+reducing the art. On wider screens the hint returns to the panel before the caption is placed, so crossing the
+600-pixel breakpoint while playing cannot insert a caption relative to a node in another parent.
+The phone notebook remains below the stage per spec. Its audit keep regions now describe the primary controls;
+the long Talkback form and optional teacher counters deliberately scroll. Full dispositions are in
+_scratch/audience-talkback/review-audit-responses.md. The single audit predates this phone repair; targeted frames
+and a live resize check verify it afterward. The full audit was not repeated.
+
+The sections below preserve the builder's architecture notes; this dated section supersedes their old duration,
+five-arbitrary-lines and recording-count descriptions. Review evidence is in _scratch/audience-talkback/.
+
+## Builder architecture
 
 src.html starts from the kit starter. It contains the responsive theater, Watch, mixer/notebook, Talkback form,
 and dialogs, followed by content, guarded storage, scene playback, music scheduling, rendering and event wiring.
@@ -99,3 +132,7 @@ Tab, Sound changes during a scene, scrolled phone work and Watch B to fair Lab e
 The full audit was not repeated after these changes. The subset phone-state label is corrected to 375x812 for
 the cold review. All manual frames and four audit contact sheets were inspected. All started Chrome instances
 and host servers were closed, and the generated tool host.html was removed.
+
+## Sensitivity
+
+Original animal fiction with no cultural or religious tradition represented. The personal-life prompt must not imply that every student has a grandmother, an allowance or the same family arrangements. The audience cards are three fictional individual experiences, not claims about a whole group. No body or medical instruction is taught by the mention of a knee.

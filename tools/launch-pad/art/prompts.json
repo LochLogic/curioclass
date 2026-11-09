@@ -1,5 +1,5 @@
 {
-  "house_style": "Rich gouache and colored-pencil painted illustration for a Grade 9 math launch range. Deep navy and slate dusk palette, coral-orange equipment, soft warm light from the upper left, convincing materials and small true details, clean readable silhouettes. No text, letters, numbers, logos, watermarks, people, faces or body parts.",
+  "house_style": "Rich gouache and colored-pencil painted illustration for a Grade 9 math launch range. Deep navy and slate dusk palette, coral-orange equipment, soft warm light from the upper left, convincing materials and small true details, clean readable silhouettes. No text, letters, numbers, logos, watermarks, watermarks. Draw people only in assets that explicitly call for a person, with natural proportions and respectful representation.",
   "style": "Used dim behind the launch scene, so the sky stays open and dark.",
   "assets": [
     {
@@ -70,14 +70,14 @@
     },
     {
       "name": "balcony",
-      "prompt": "An apartment balcony with black metal railing and a brown leather baseball glove resting on the rail, side view, pale stone slab, fine rail bars and glove stitching. Rail is horizontal, entire object visible. Isolated on perfectly flat pure green (#00FF00).",
+      "prompt": "An apartment balcony with a horizontal black metal railing and pale stone slab. A teenage friend with warm brown skin and short dark curly hair, wearing a plain teal long-sleeve shirt and dark trousers, stands naturally behind the rail, holding a brown leather baseball glove open just on top of the rail for a catch. Entire balcony and figure visible, no cropped silhouette. Clear simple side view, glove on the LEFT third of the horizontal rail. Fine rail bars, glove stitching, soft gouache and colored pencil, upper-left warm dusk light. Isolated on perfectly flat pure magenta (#FF00FF), including all holes between the bars. No text, letters, numbers or logos.",
       "aspect": "4:3",
       "cutout": true,
-      "people": false,
-      "width": 240,
+      "people": true,
+      "width": 320,
       "quality": 78,
       "drawn_by": "codex",
-      "key": "green",
+      "key": "magenta",
       "holes": true
     }
   ]

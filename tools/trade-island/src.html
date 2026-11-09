@@ -1,0 +1,1632 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Trade Island · Across the strait · Curio Class</title>
+<meta name="description" content="Run Pell's workers, negotiate with Wren and build an evidence-based trade policy case. Grade 12 economics. Works offline.">
+<!--
+Trade Island, Curio Class. Grade 12 economics. Students drive.
+D2.Eco.14.9-12 and D2.Eco.15.9-12. Based on kit/starter/src.html.
+Fictional two-island teaching models, not forecasts. Factual sources in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One file, no automatic network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#7cc4ff;
+  --brand-ink:#0b1a2a;
+  --sand:#f0b860;
+  --cloth:#ff9a8a;
+  --alone:#8a96a8;
+}
+body { height:100dvh; min-height:0; overflow:hidden; }
+header { flex-wrap:nowrap; padding:8px 16px; gap:12px; }
+h1 { display:flex; gap:8px; align-items:center; font-size:24px; white-space:nowrap; }
+h1 img { width:54px; height:42px; object-fit:contain; }
+h1 small { font-size:11px; letter-spacing:.16em; text-transform:uppercase; margin-top:5px; }
+.seg { border-radius:8px; border-width:1px; flex-shrink:0; }
+.seg button,.icon-btn { min-height:44px; padding:0 14px; font-size:14px; }
+.utilities { display:flex; gap:6px; }
+.icon-btn { width:104px; min-width:44px; padding:0 5px; border-width:1px; border-radius:8px; white-space:nowrap; }
+main { grid-template-columns:minmax(0,1fr) minmax(350px,34.5%); overflow:hidden; }
+.panel { grid-column:2; grid-row:1; padding:14px 18px; gap:12px; overflow:hidden; min-width:0; }
+.stage { grid-column:1; grid-row:1; min-height:0; background:#0f1a24; }
+.hint { font-size:14px; line-height:1.4; min-height:58px; border-left:2px solid var(--brand); padding-left:10px; }
+.panel section { display:flex; flex-direction:column; gap:10px; min-height:0; }
+.btn { font-size:13px; min-width:44px; padding:0 10px; }
+.big-btn { width:100%; }
+button,select,input,textarea { touch-action:manipulation; }
+button:active { filter:brightness(1.2); }
+.row { display:flex; align-items:center; gap:6px; }
+.grow { flex:1; }
+.micro { font-size:12px; line-height:1.35; color:var(--muted); margin:0; }
+.season-tabs { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; }
+.season-tabs button { font-size:12px; line-height:1.1; padding:3px; }
+.season-tabs span { display:block; margin-top:2px; }
+.notebook { background:linear-gradient(110deg,#22364a,#1b2b3b); border:1px solid #5a7891; border-radius:4px; padding:10px 12px; }
+.notebook p { margin:0 0 8px; font-size:14px; line-height:1.35; }
+.notebook .row button { flex:1; }
+.notebook.committed { padding:8px 12px; }
+.notebook.committed p { margin:0; }
+.production { padding:8px 10px; background:#0d151f; border:1px solid var(--line); font-size:13px; line-height:1.6; }
+.production b { color:var(--brand); }
+.production span { color:var(--sand); }
+.worker-head { display:flex; justify-content:space-between; align-items:baseline; font-size:14px; }
+.worker-head b { font:700 26px var(--readout-font); color:var(--brand); }
+.worker-head>span { color:var(--muted); font-size:12px; }
+.worker-slider { display:grid; grid-template-columns:44px minmax(0,1fr) 44px; gap:8px; align-items:center; }
+#normal-controls { display:flex; flex-direction:column; gap:7px; }
+.deal-top { display:flex; gap:6px; justify-content:space-between; }
+#send-toggle { flex:1; }
+#send-toggle button { flex:1; padding:0 4px; }
+#cost-open { border-color:var(--sand); color:var(--sand); }
+.amounts { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.amounts label { font-size:12px; display:block; margin:5px 0; color:var(--muted); }
+.stepper { display:grid; grid-template-columns:44px minmax(45px,1fr) 44px; gap:4px; }
+.stepper .num { width:100%; text-align:center; padding:0 1px; min-width:0; appearance:textfield; }
+.num::-webkit-inner-spin-button,.num::-webkit-outer-spin-button { appearance:none; margin:0; }
+#deal-controls { display:flex; flex-direction:column; gap:8px; }
+.reply { min-height:50px; margin:0; padding:8px 10px; font-size:13px; line-height:1.35; background:#1b2936; border-left:3px solid var(--sand); }
+.cost-title { display:flex; justify-content:space-between; align-items:center; }
+h2 { font-size:20px; margin:0; }
+#cost-controls { display:flex; flex-direction:column; gap:8px; }
+#cost-controls p { font-size:14px; margin:4px 0; }
+.cost-label { font-weight:600; font-size:13px; }
+#unchanged { font-size:11px; color:var(--muted); font-weight:400; }
+.cost-picks { display:grid; grid-template-columns:1fr 1fr 1.7fr; gap:4px; }
+.cost-picks button { font-size:12px; padding:2px; }
+#cost-feedback { min-height:68px; color:var(--sand); line-height:1.45; }
+.islands-view { height:100%; display:grid; grid-template-rows:34px minmax(180px,1.35fr) minmax(210px,1fr) auto; }
+.scene-heading { display:flex; justify-content:space-between; align-items:center; padding:0 18px; font-size:11px; letter-spacing:.12em; color:var(--muted); }
+#season-name { color:var(--brand); }
+.harbor { position:relative; min-height:0; overflow:hidden; isolation:isolate; background:#83b5c2; }
+.backdrop { position:absolute; inset:0; height:100%; width:100%; object-fit:cover; }
+.harbor .backdrop { object-fit:cover; object-position:center; }
+.harbor:after { content:''; position:absolute; inset:0; z-index:-1; background:linear-gradient(transparent 65%,#0f1a2488); }
+.island-sign { position:absolute; top:11%; color:#1a1a1a; background:#f4ead6; border:1px solid #92754c; border-radius:2px;
+  box-shadow:0 3px 6px #0005,inset 0 -3px #c7b48c; padding:6px 18px; font-weight:800; font-size:18px; text-align:center; letter-spacing:.15em; }
+.island-sign small { display:block; font-size:10px; font-weight:500; letter-spacing:.04em; margin-top:2px; }
+.pell-sign { left:12%; transform:rotate(-2deg); }
+.wren-sign { right:12%; transform:rotate(2deg); }
+.workers { position:absolute; bottom:10%; width:32%; height:44%; pointer-events:none; }
+.pell-workers { left:3%; }
+.wren-workers { right:3%; }
+.worker { position:absolute; width:10%; height:24%; object-fit:contain; object-position:bottom; filter:drop-shadow(1px 2px 1px #0005);
+  transition:left .22s ease,bottom .22s ease; }
+.dock-boat { position:absolute; width:15%; height:28%; object-fit:contain; left:29%; bottom:11%; filter:drop-shadow(0 5px 3px #15445488); }
+#storm-cloud { position:absolute; width:49%; height:35%; object-fit:fill; top:1%; left:0; }
+#crossing-boat { position:absolute; width:15%; height:29%; object-fit:contain; left:61%; bottom:26%; filter:drop-shadow(0 5px 3px #15445488); }
+#crossing-boat.sailing { animation:cross-strait 1.2s ease-in-out both; }
+@keyframes cross-strait { from { left:27%; transform:translateY(0) rotate(-2deg); } 40% { transform:translateY(-4px) rotate(1deg); } to { left:61%; } }
+.sun-glitter { position:absolute; left:44%; top:38%; width:14%; height:38%; opacity:.4;
+  background:repeating-linear-gradient(0deg,transparent 0 12px,#fff9 13px 15px,transparent 16px 26px); clip-path:polygon(40% 0,60% 0,100% 100%,0 100%);
+  animation:glitter 5s ease-in-out infinite; pointer-events:none; }
+@keyframes glitter { 50% { opacity:.14; transform:translateX(3px); } }
+.outcome-tag { position:absolute; top:8px; left:50%; transform:translateX(-50%); padding:6px 10px; background:#102331ed;
+  border:1px solid #7a9cac; color:#eef5f7; font-size:12px; text-align:center; max-width:60%; }
+.both-banner { position:absolute; left:50%; top:40%; transform:translate(-50%,-50%); width:max-content; max-width:92%;
+  background:linear-gradient(#f7d999,#dbaa51); color:#30200a; border:1px solid #866124; box-shadow:0 4px 15px #0005;
+  padding:9px 18px; font-size:18px; font-weight:700; text-align:center; }
+.both-banner small { display:block; margin-top:3px; font-size:12px; font-weight:600; }
+.both-banner.just-earned { animation:earned-trade .5s ease-out; }
+@keyframes earned-trade { from { opacity:.4; transform:translate(-50%,-45%); } to { opacity:1; transform:translate(-50%,-50%); } }
+.dock-labels { position:absolute; bottom:4px; left:3%; right:3%; display:flex; justify-content:space-between; gap:20px; }
+.dock-labels>span { width:36%; padding:4px; text-align:center; color:#fff; background:#173142df; font-size:11px; border-radius:3px; }
+.bars { padding:12px 18px 4px; display:grid; grid-template-rows:20px 1fr 1fr; gap:8px; background:linear-gradient(#142330,#101a24); }
+.bars-heading { display:flex; gap:8px; justify-content:space-between; color:var(--muted); font-size:10px; letter-spacing:.08em; }
+.bars-heading>span:last-child { letter-spacing:0; }
+.token-key { display:none; letter-spacing:0; }
+.outline-key,.filled-key { display:inline-block; width:13px; height:7px; border:1px solid var(--alone); margin:0 4px; }
+.filled-key { background:var(--brand); border-color:var(--brand); }
+.island-bars { display:grid; grid-template-columns:70px repeat(3,minmax(0,1fr)); gap:14px; align-items:center; }
+.island-bars h3 { font-size:14px; margin:0; color:var(--brand); letter-spacing:.08em; }
+#wren-bars h3 { color:var(--sand); }
+.bar-metric { min-width:0; }
+.bar-label { display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:11px; gap:4px; }
+.bar-label img { width:24px; height:24px; object-fit:contain; margin-right:4px; }
+.bar-label>span { display:flex; align-items:center; }
+.bar-track { position:relative; height:37px; margin:5px 0 2px; }
+.bar-alone,.bar-now { position:absolute; left:0; height:12px; max-width:100%; min-width:1px; }
+.bar-alone { top:0; border:1px solid var(--alone); background:repeating-linear-gradient(45deg,transparent 0 3px,#8a96a812 4px 5px); }
+.bar-now { top:17px; background:linear-gradient(#a5d8ff,var(--brand)); transition:width .2s ease; box-shadow:0 2px 5px #0005; }
+#wren-bars .bar-now { background:linear-gradient(#ffd9a0,var(--sand)); }
+.bar-number { position:absolute; right:3px; top:-2px; font:600 11px var(--readout-font); background:#101a24; padding:0 2px; }
+.bar-now .bar-number { top:-1px; background:transparent; color:#0b1a2a; }
+.bar-now.small .bar-number { right:auto; left:3px; color:var(--ink); background:#101a24; }
+.bar-delta { display:block; color:var(--muted); font-size:10px; }
+.island-foot { padding:8px 18px 12px; font-size:11px; color:var(--muted); line-height:1.4; }
+#ricardo { color:#dfc790; margin-top:4px; }
+#predict-reveal { color:var(--sand); margin-top:3px; }
+.panel-title { font-size:16px; letter-spacing:.04em; color:var(--brand); }
+.lever { display:flex; flex-direction:column; gap:5px; }
+.lever label { font-size:13px; color:var(--muted); }
+select { min-height:44px; width:100%; min-width:0; border:1px solid var(--btn-line); border-radius:6px; color:var(--ink);
+  background:#182532; padding:0 9px; font:600 14px 'Segoe UI',sans-serif; }
+.rules { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.real-card { background:#26313b; border-top:3px solid var(--sand); padding:12px 14px; color:#e2e7ea; font-size:13px; line-height:1.5; }
+.real-card h3 { margin:0 0 7px; font-size:15px; color:var(--sand); }
+.real-card p { margin:0 0 5px; }
+.real-card a { color:var(--brand); display:inline-flex; align-items:center; min-height:44px; }
+.historical-note { display:block; font-size:10px; color:#bdcbd4; }
+#real-toggle { display:none; }
+#compact-case-limit { display:none; }
+.policy-view { height:100%; display:grid; grid-template-rows:110px 158px 28px minmax(0,1fr) 24px; padding:0 14px; }
+.policy-strip { position:relative; overflow:hidden; margin:0 -14px; }
+.policy-strip .backdrop { object-position:center 53%; opacity:.8; }
+.cargo-counter { position:absolute; top:8px; display:flex; gap:6px; align-items:center; background:#102331ed;
+  padding:5px 10px; border:1px solid #55798c; font-size:12px; color:#fff; }
+.cargo-counter img { width:32px; height:32px; object-fit:contain; }
+.cloth-counter { left:12px; }
+.fish-counter { right:12px; }
+#factory-art { position:absolute; bottom:4px; left:16%; width:115px; height:78px; object-fit:contain; transition:left .8s ease; filter:drop-shadow(2px 3px 2px #0007); }
+#factory-art.moved { left:67%; }
+#factory-art.stays { animation:shake .35s ease; }
+@keyframes shake { 25% { transform:translateX(-3px); } 75% { transform:translateX(3px); } }
+#tariff-chest { position:absolute; left:4%; bottom:0; width:65px; height:50px; object-fit:contain; opacity:.5; }
+#tax-coins { position:absolute; left:8%; bottom:27px; display:flex; gap:1px; max-width:60px; flex-wrap:wrap; }
+#tax-coins i { width:10px; height:7px; border:1px solid #705022; border-radius:50%;
+  background:radial-gradient(ellipse at 35% 20%,#ffebb5,#e8ac37 60%,#a16e17); box-shadow:0 2px #6e4d24; }
+.cargo-markers { position:absolute; bottom:4px; display:flex; gap:2px; max-width:25%; }
+.cargo-markers img { width:22px; height:22px; object-fit:contain; filter:drop-shadow(0 2px 2px #0006); }
+#cloth-cargo { left:36%; }
+#fish-cargo { right:12px; }
+#factory-status { position:absolute; bottom:8px; left:36%; max-width:30%; color:white; text-shadow:0 1px 3px #000;
+  font-size:12px; padding:4px; background:#102331db; text-align:center; }
+#island-cards { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); grid-template-rows:1fr 1fr; gap:5px; padding:6px 0; }
+.metric-card { position:relative; background:#1c2a36; border:1px solid #384958; border-radius:4px; padding:6px 44px 4px 7px;
+  min-width:0; overflow:hidden; }
+.metric-card .metric-pin { position:absolute; right:0; top:0; bottom:0; min-width:44px; width:44px; border:0; border-left:1px solid #384958;
+  background:#213747c7; font-size:16px; padding:0; }
+.metric-card>strong { position:relative; display:block; font-size:10px; color:var(--brand); }
+.metric-card.wren>strong { color:var(--sand); }
+.metric-card>span { position:relative; display:block; font-size:11px; line-height:1.25; margin-top:3px; }
+.metric-card.reef img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.35; }
+.metric-card.reef { background:#071a21; }
+.ledger-head { display:flex; justify-content:space-between; align-items:center; font-size:11px; color:var(--muted); }
+.ledger-head b { color:var(--ink); font-size:14px; }
+.ledgers { display:grid; grid-template-columns:1fr 1fr; gap:14px; min-height:0; }
+.ledger { min-width:0; display:flex; flex-direction:column; gap:1px; }
+.group-row { display:grid; grid-template-columns:42px minmax(70px,1fr) auto 44px; gap:6px; align-items:center; flex:1; max-height:66px;
+  min-height:44px; border-bottom:1px solid #31414e; background:linear-gradient(90deg,#20324144,transparent); }
+.group-row img { width:42px; height:62px; max-height:100%; object-fit:contain; object-position:center bottom; }
+.group-name { font-size:12px; line-height:1.2; }
+.group-name small { color:var(--muted); display:block; margin-top:3px; font-size:10px; }
+.group-value { font:600 13px var(--readout-font); text-align:right; }
+.group-value small { display:block; font:400 10px 'Segoe UI',sans-serif; color:var(--muted); }
+.pin-button { min-height:44px; min-width:44px; width:44px; border-radius:5px; border:1px solid #476072; background:#1c2e3c; color:var(--ink); }
+.pin-button[aria-pressed="true"],.metric-pin[aria-pressed="true"] { background:#516048; color:#fce5ab; }
+.policy-foot { font-size:10px; color:var(--muted); margin:0; line-height:1.1; align-self:center; }
+.compact-cards { display:none; }
+.case-view { height:100%; padding:24px 30px; background:radial-gradient(ellipse at 20% 10%,#2f4656,#152430 75%); overflow:auto; }
+.case-sheet { min-height:100%; background:linear-gradient(110deg,#f4ead6,#e5d7b9); color:#252d33;
+  padding:24px 28px; border:1px solid #a39374; box-shadow:0 10px 28px #0007; position:relative; }
+.case-sheet:before { content:''; position:absolute; top:0; left:10px; bottom:0; border-left:1px solid #bfa785; }
+.sheet-heading { display:flex; justify-content:space-between; gap:8px; font-size:10px; color:#4c5d65; }
+.eyebrow { letter-spacing:.12em; font-weight:700; }
+.case-sheet h2 { font-size:32px; font-family:Georgia,serif; margin:10px 0 16px; }
+.case-pickers { display:flex; gap:12px; margin-bottom:14px; }
+.case-pickers select { max-width:300px; }
+.case-sheet label { display:block; font-size:14px; font-weight:600; margin-bottom:7px; }
+.pins { display:grid; grid-template-columns:1fr 1fr; gap:5px; margin:12px 0; }
+.pin-chip { display:flex; justify-content:space-between; align-items:center; gap:8px; padding-left:9px; min-height:44px;
+  border:1px solid #a39474; background:#fff7e5; color:#252d33; font-size:12px; line-height:1.25; text-align:left; }
+.pin-chip button { min-width:44px; min-height:44px; border:0; border-left:1px solid #a39474; background:#e6d3ad; color:#252d33; }
+.empty-pins { font-size:14px; border:1px dashed #9c8d70; padding:12px; }
+.empty-pins { grid-column:1/-1; }
+textarea { width:100%; resize:vertical; min-height:85px; max-height:180px; border:1px solid #8b806b; border-radius:3px;
+  background:#fffaf0; color:#252d33; font:15px/1.5 'Segoe UI',sans-serif; padding:10px; }
+.case-actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+.case-actions .big-btn { min-height:44px; }
+.case-sheet .btn { background:#e3d2b0; color:#252d33; border-color:#8b806b; }
+.case-sheet .btn[aria-pressed="true"] { background:#245c83; color:#fff; }
+#case-result { margin-top:10px; font-size:13px; line-height:1.4; }
+#case-result ul { margin:0; padding-left:18px; }
+.case-limit,.privacy { margin:7px 0 0; font-size:11px; line-height:1.35; color:#45515a; }
+.privacy { font-weight:700; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
+.calm * { animation:none!important; transition:none!important; }
+@media (min-width:1001px) {
+  .bar-track { height:44px; }
+  .bar-alone,.bar-now { height:16px; }
+  .bar-now { top:22px; }
+  .bar-number { font-size:13px; top:-1px; }
+  .bar-now .bar-number { top:0; }
+}
+@media (max-height:760px) and (min-width:1001px) {
+  header { padding:6px 12px; }
+  .panel { padding:10px 14px; gap:8px; }
+  .hint { font-size:13px; min-height:53px; }
+  .panel section { gap:7px; }
+  .production { padding:4px 8px; font-size:12px; }
+  .notebook { padding:8px; }
+  .notebook p { font-size:13px; }
+  #normal-controls { gap:5px; }
+  #deal-controls { gap:5px; }
+  .reply { min-height:43px; padding:6px 8px; font-size:12px; }
+  .policy-view { grid-template-rows:88px 144px 24px minmax(0,1fr) 22px; }
+  .metric-card { padding-top:4px; }
+  .group-row img { height:54px; }
+  .real-card { font-size:12px; padding:9px 10px; }
+  .case-view { padding:14px 20px; }
+  .case-sheet { padding:16px 22px; }
+  .case-sheet h2 { margin:7px 0 10px; }
+}
+@media (max-width:1000px) and (min-width:601px) {
+  header { gap:8px; padding:5px 8px; }
+  h1 { font-size:18px; }
+  h1 img { width:32px; }
+  h1 small { display:none; }
+  .icon-btn { width:70px; font-size:11px; }
+  .seg button { padding:0 11px; font-size:13px; }
+  .utilities { gap:4px; }
+  main { grid-template-columns:minmax(0,1fr) 310px; }
+  .panel { padding:6px 8px; gap:4px; position:relative; overflow:visible; }
+  .panel .hint { position:absolute; left:calc(-100vw + 310px); bottom:6px; width:calc(100vw - 330px); min-height:0;
+    height:auto; max-height:58px; overflow:hidden; z-index:3; font-size:11px; padding:4px 6px; background:#142330; border:0; }
+  .panel section { gap:4px; }
+  .season-tabs button { font-size:11px; }
+  .production { position:absolute; left:calc(-100vw + 318px); top:5px; width:calc(100vw - 326px); z-index:3;
+    font-size:10px; padding:4px; line-height:1.3; background:#112333e8; }
+  .production br { display:none; }
+  .production span { margin-left:5px; }
+  .notebook { padding:5px 7px; }
+  .notebook p { font-size:11px; margin-bottom:4px; }
+  #normal-controls { gap:3px; }
+  .worker-head b { font-size:20px; }
+  .worker-head { font-size:12px; }
+  .wren-choice { display:none; }
+  .amounts { gap:6px; }
+  .amounts label { font-size:11px; margin:1px 0 3px; }
+  .stepper { gap:2px; grid-template-columns:44px minmax(0,1fr) 44px; }
+  .stepper .num { font-size:14px; }
+  #deal-controls { gap:4px; }
+  #price { font-size:11px; }
+  #offer { min-height:44px; font-size:15px; }
+  .reply { min-height:44px; font-size:11px; padding:5px 7px; }
+  .btn { font-size:12px; padding:0 6px; }
+  .islands-view { grid-template-rows:39px minmax(90px,1.1fr) minmax(110px,1fr) 57px; }
+  .scene-heading { font-size:10px; padding:0 8px; align-items:flex-end; padding-bottom:3px; }
+  .scene-heading #strait-state { display:none; }
+  .island-sign { top:17%; font-size:13px; padding:4px 8px; }
+  .island-sign small { display:none; }
+  .pell-sign { left:8%; }
+  .wren-sign { right:8%; }
+  .outcome-tag { top:auto; bottom:19%; font-size:10px; padding:3px 5px; max-width:85%; }
+  .both-banner { font-size:13px; padding:6px; }
+  .dock-labels { display:none; }
+  .bars { padding:6px 8px 0; gap:3px; grid-template-rows:14px 1fr 1fr; }
+  .bars-heading { font-size:10px; letter-spacing:0; }
+  .bars-heading>span:first-child { display:none; }
+  .island-bars { grid-template-columns:48px 1fr; gap:8px; }
+  .bar-metric:not(.baskets) { display:none; }
+  .bar-label { font-size:10px; }
+  .bar-label img { width:20px; height:20px; }
+  .bar-track { height:29px; margin:2px 0 0; }
+  .bar-now { top:15px; }
+  .island-bars h3 { font-size:12px; }
+  .island-foot { font-size:10px; padding:2px 8px; }
+  .island-foot>span { display:none; }
+  #ricardo { display:none!important; }
+  #predict-reveal { display:none!important; }
+  #cost-controls { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:3px 5px; }
+  #cost-controls .cost-title { grid-area:1 / 1 / 2 / 3; }
+  #cost-controls>p:nth-of-type(1) { grid-area:2 / 1 / 3 / 3; }
+  #cost-controls>label[for="cost-pell"] { grid-area:3 / 1; }
+  #cost-controls>label[for="cost-pell"]+.stepper { grid-area:4 / 1; }
+  #cost-controls>label[for="cost-wren"] { grid-area:3 / 2; }
+  #cost-controls>label[for="cost-wren"]+.stepper { grid-area:4 / 2; }
+  #cost-controls>p:nth-of-type(2) { grid-area:5 / 1 / 6 / 3; }
+  #cost-controls .cost-picks { grid-area:6 / 1 / 7 / 3; }
+  #cost-check { grid-area:7 / 1 / 8 / 3; }
+  #cost-feedback { grid-area:8 / 1 / 9 / 3; }
+  #cost-controls .cost-title h2 { font-size:16px; }
+  #cost-controls p { font-size:11px; margin:0; }
+  .cost-label { font-size:11px; }
+  #unchanged { font-size:10px; }
+  #cost-feedback { min-height:0; line-height:1.25; }
+  #cost-check { min-height:44px; }
+  .panel-title { font-size:13px; }
+  .lever { gap:1px; }
+  .lever label { font-size:11px; }
+  select { font-size:12px; padding:0 5px; }
+  .rules { gap:6px; }
+  #policy-controls .real-card { display:none; }
+  #pin-feedback { font-size:10px; }
+  .policy-view { grid-template-rows:88px minmax(0,1fr) 16px; padding:0 7px; }
+  body[data-mode="policy"] .panel .hint,body[data-mode="case"] .panel .hint {
+    position:static; order:2; width:auto; max-height:none; font-size:10px; line-height:1.2; padding:3px 0; }
+  body[data-mode="policy"] #pin-feedback { display:none; }
+  .policy-strip,#island-cards,.ledger-head { display:none; }
+  .compact-cards { display:grid; grid-template-rows:44px 44px; gap:0; }
+  .compact-card-row { display:grid; grid-template-columns:50px minmax(0,1fr) 44px; gap:4px; }
+  .compact-card-row button { padding:0 3px; font-size:11px; }
+  .compact-card-row select { font-size:10px; }
+  .ledgers { display:block; }
+  .ledger { height:100%; }
+  .ledger:not(.active) { display:none; }
+  .group-row { grid-template-columns:30px minmax(60px,1fr) auto 44px; gap:4px; max-height:none; }
+  .group-row img { width:30px; height:40px; }
+  .group-name { font-size:10px; }
+  .group-name small { display:none; }
+  .group-value { font-size:11px; }
+  .group-value small { font-size:10px; }
+  .policy-foot { font-size:10px; }
+  .case-view { padding:7px; }
+  .case-sheet { padding:8px 10px; }
+  .sheet-heading { display:none; }
+  .case-sheet h2 { display:none; }
+  .case-pickers { gap:5px; margin:0 0 4px; }
+  .case-pickers select { font-size:11px; }
+  .case-sheet label { font-size:11px; margin:3px 0; }
+  .pins { grid-template-columns:1fr 1fr; gap:3px; margin:4px 0; }
+  .pin-chip { font-size:10px; padding-left:4px; }
+  textarea { min-height:44px; height:44px; max-height:65px; font-size:12px; padding:4px; }
+  .case-actions { margin-top:4px; gap:4px; }
+  .case-actions .btn,.case-actions .big-btn { font-size:11px; padding:0 3px; }
+  #case-result { font-size:11px; margin-top:4px; }
+  .case-limit,.privacy { font-size:10px; margin-top:3px; }
+  .case-limit { display:none; }
+  #case-controls>#compact-case-limit { display:block; font-size:10px; line-height:1.3; margin:0; }
+  #case-controls>p,.panel-title { display:none; }
+  #case-controls .real-card { font-size:12px; }
+  #real-toggle { display:block; }
+  #case-real { display:none; }
+  #case-real.open { display:block; }
+}
+.cargo-counter { z-index:2; }
+#factory-status { top:8px; bottom:auto; z-index:3; }
+#policy-real-toggle { display:none; }
+#policy-controls.page-real #policy-real-toggle { display:block; flex:1; }
+#policy-controls.page-real .lever,#policy-controls.page-real .rules,
+#policy-controls.page-real #pin-feedback { display:none; }
+#policy-controls.page-real .row>button:not(#policy-real-toggle) { display:none; }
+#policy-controls.page-real .real-card { display:block; }
+@media (min-width:601px) and (max-width:1000px) {
+  #policy-real-toggle { display:block; }
+}
+@media (min-width:901px) and (max-width:1000px) {
+  .island-bars { grid-template-columns:50px repeat(3,minmax(0,1fr)); }
+  .bar-metric:not(.baskets) { display:block; }
+  .policy-view { grid-template-rows:80px 140px 24px minmax(0,1fr) 16px; }
+  .policy-strip { display:block; }
+  #island-cards { display:grid; }
+  .compact-cards { display:none; }
+  .ledger-head { display:flex; }
+  .ledgers { display:grid; }
+  .ledger:not(.active) { display:flex; }
+  .metric-card { font-size:10px; padding-top:4px; }
+  .metric-card>span { font-size:10px; }
+}
+@media (max-width:600px) {
+  body { height:auto; min-height:100dvh; overflow:auto; }
+  header { flex-wrap:wrap; padding:6px 8px; gap:6px; }
+  h1 { font-size:19px; }
+  h1 img { width:35px; height:35px; }
+  h1 small { display:none; }
+  .seg button { padding:0 10px; font-size:12px; }
+  .utilities { width:100%; justify-content:flex-end; }
+  .icon-btn { width:90px; font-size:12px; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .panel { order:1; border:0; padding:10px 12px; overflow:visible; gap:7px; }
+  .stage { order:0; height:270px; flex-shrink:0; }
+  .hint { min-height:0; font-size:13px; }
+  .panel section { gap:8px; }
+  .islands-view { grid-template-rows:22px 100px 145px 3px; }
+  .production { padding:3px 6px; font-size:11px; line-height:1.3; }
+  .production br { display:none; }
+  .production span { margin-left:4px; }
+  .notebook { padding:5px 7px; }
+  .notebook p { font-size:12px; margin-bottom:4px; }
+  .panel section,#normal-controls,#deal-controls { gap:4px; }
+  .wren-choice { display:none; }
+  .worker-head b { font-size:20px; }
+  .amounts label { margin:1px 0 3px; }
+  .worker-head { font-size:12px; }
+  .amounts { gap:6px; }
+  .reply { font-size:11px; min-height:44px; padding:5px 7px; }
+  #offer { min-height:44px; }
+  .scene-heading { font-size:10px; padding:0 8px; }
+  .island-sign { font-size:13px; padding:4px 8px; }
+  .island-sign small,.dock-labels { display:none; }
+  .pell-sign { left:8%; }
+  .wren-sign { right:8%; }
+  .outcome-tag { font-size:10px; bottom:8px; top:auto; max-width:90%; }
+  .both-banner { font-size:13px; padding:6px 8px; }
+  .bars { padding:5px 8px 0; gap:2px; grid-template-rows:15px 1fr 1fr; }
+  .bars-heading { font-size:10px; letter-spacing:0; }
+  .bars-heading>span:first-child { display:none; }
+  .island-bars { grid-template-columns:50px 1fr; gap:5px; }
+  .bar-metric:not(.baskets) { display:none; }
+  .bar-label img { width:18px; height:18px; }
+  .bar-track { height:27px; margin:2px 0 0; }
+  .bar-now { top:15px; }
+  .island-foot { display:none; }
+  #ricardo { display:none!important; }
+  #predict-reveal { display:none!important; }
+  .policy-view { grid-template-rows:88px minmax(0,1fr) 22px; padding:0 8px; }
+  .policy-strip,#island-cards,.ledger-head { display:none; }
+  .compact-cards { display:grid; grid-template-rows:44px 44px; }
+  .compact-card-row { display:grid; grid-template-columns:50px minmax(0,1fr) 44px; gap:4px; }
+  .compact-card-row select { font-size:11px; }
+  .ledgers { display:block; }
+  .ledger { height:100%; }
+  .ledger:not(.active) { display:none; }
+  .group-row { grid-template-columns:30px minmax(60px,1fr) auto 44px; gap:4px; max-height:none; }
+  .group-row img { width:30px; height:35px; }
+  .group-name { font-size:11px; }
+  .group-name small { display:none; }
+  .group-value { font-size:12px; }
+  .policy-foot { font-size:10px; }
+  body[data-mode="policy"] .stage { height:385px; }
+  body[data-mode="policy"] .panel { order:0; }
+  body[data-mode="policy"] .stage { order:1; }
+  body[data-mode="case"] .stage { height:auto; }
+  .case-view { padding:10px; }
+  .case-sheet { padding:14px; }
+  .case-sheet h2 { font-size:27px; }
+  .sheet-heading { font-size:10px; }
+  .case-pickers { gap:6px; }
+  .case-pickers select { font-size:12px; }
+  .case-actions { gap:6px; }
+  .case-actions button { font-size:13px; }
+  #real-toggle { display:block; }
+  #case-real { display:none; }
+  #case-real.open { display:block; }
+}
+@media (max-width:1000px) {
+  #case-controls.page-real #back-policy,#case-controls.page-real>#compact-case-limit { display:none; }
+  #case-controls.page-real #real-toggle { grid-column:1/-1; }
+}
+/* Final compact placement keeps the action rows and their model note in view. */
+.compact-policy-model { display:none; }
+@media (min-width:601px) and (max-width:1000px) {
+  .production { top:2px; padding:2px 4px; }
+  .policy-view { grid-template-rows:88px minmax(0,1fr) 0; }
+  .policy-foot { display:none; }
+  body[data-mode="policy"] .compact-policy-model {
+    display:block; order:3; margin:0; font-size:10px; line-height:1.1; color:var(--muted); }
+  body[data-mode="policy"] .panel .hint { padding:0; }
+}
+@media (min-width:901px) and (max-width:1000px) {
+  .policy-view { grid-template-rows:80px 140px 24px minmax(0,1fr) 16px; }
+  .policy-foot { display:block; }
+  body[data-mode="policy"] .compact-policy-model { display:none; }
+}
+@media (max-width:600px) {
+  body[data-mode="policy"] .panel .hint,body[data-mode="case"] .panel .hint { font-size:12px; line-height:1.3; }
+  #policy-controls { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:4px 8px; }
+  #policy-controls>.lever:nth-of-type(3),#policy-controls>.rules,#policy-controls>.row,#policy-real { grid-column:1/-1; }
+  #policy-controls>.panel-title,#policy-controls>#pin-feedback { display:none; }
+  #policy-controls .lever { gap:2px; }
+  #policy-controls .lever label { font-size:11px; }
+  #policy-controls select { font-size:12px; }
+  #policy-controls>.real-card { display:none; }
+  #policy-controls.page-real>.real-card { display:block; }
+  #policy-real-toggle { display:block; }
+  body[data-mode="case"] .panel { order:0; }
+  body[data-mode="case"] .stage { order:1; }
+  #case-controls { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:6px; }
+  #case-controls>.panel-title,#case-controls>p { display:none; }
+  #case-real { grid-column:1/-1; }
+  #cost-controls { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:3px 6px; }
+  #cost-controls .cost-title { grid-area:1 / 1 / 2 / 3; }
+  #cost-controls>p:nth-of-type(1) { grid-area:2 / 1 / 3 / 3; }
+  #cost-controls>label[for="cost-pell"] { grid-area:3 / 1; }
+  #cost-controls>label[for="cost-pell"]+.stepper { grid-area:4 / 1; }
+  #cost-controls>label[for="cost-wren"] { grid-area:3 / 2; }
+  #cost-controls>label[for="cost-wren"]+.stepper { grid-area:4 / 2; }
+  #cost-controls>p:nth-of-type(2) { grid-area:5 / 1 / 6 / 3; }
+  #cost-controls .cost-picks { grid-area:6 / 1 / 7 / 3; }
+  #cost-check { grid-area:7 / 1 / 8 / 3; min-height:44px; }
+  #cost-feedback { grid-area:8 / 1 / 9 / 3; min-height:0; line-height:1.25; }
+  #cost-controls .cost-title h2 { font-size:18px; }
+  #cost-controls p { font-size:12px; margin:0; }
+  #cost-controls .cost-label { font-size:11px; }
+  #unchanged { font-size:10px; }
+}
+@media (max-width:1000px) {
+  .token-key { display:inline; }
+  .island-sign { top:3%; }
+  .both-banner { top:45%; font-size:12px; padding:4px 8px; }
+  .both-banner small { font-size:10px; margin-top:2px; }
+}
+@media (max-width:600px) {
+  .both-banner { top:48%; font-size:11px; padding:3px 6px; }
+}
+@media (min-width:601px) and (max-width:900px) and (min-height:650px) {
+  .islands-view { grid-template-rows:39px min(36vw,300px) minmax(180px,1fr) 57px; }
+}
+
+</style>
+</head>
+<body>
+<header>
+  <h1><img src="art:trade-boat" alt=""> <span>Trade Island<small>Across the strait</small></span></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-islands" aria-pressed="true">Islands</button>
+    <button id="m-policy" aria-pressed="false">Policy</button>
+    <button id="m-case" aria-pressed="false">Case</button>
+  </div>
+  <div class="utilities">
+    <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+    <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+    <button class="icon-btn" id="read">Read</button>
+  </div>
+</header>
+<main>
+  <aside class="panel">
+    <p class="hint" id="hint"></p>
+    <section id="island-controls">
+      <div class="season-tabs" role="group" aria-label="Season">
+        <button class="btn" id="season-0" aria-pressed="true">1 <span>Alone</span></button>
+        <button class="btn" id="season-1" aria-pressed="false">2 <span>Open strait</span></button>
+        <button class="btn" id="season-2" aria-pressed="false">3 <span>Storm</span></button>
+        <button class="btn" id="season-3" aria-pressed="false">4 <span>Motor boats</span></button>
+      </div>
+      <div id="predict" class="notebook">
+        <p>Pell is better at fishing <b>AND</b> weaving. Should Pell trade with Wren?</p>
+        <div class="row"><button class="btn" id="predict-yes">Yes</button><button class="btn" id="predict-no">No</button></div>
+        <p id="prediction" hidden></p>
+      </div>
+      <div id="production" class="production"></div>
+      <div id="normal-controls">
+        <div class="worker-head"><label for="workers">Pell fishers <b id="worker-count">50</b></label><span id="weaver-count">50 weavers</span></div>
+        <div class="worker-slider"><button id="worker-minus" class="btn" aria-label="One fewer Pell fisher">−</button>
+          <input id="workers" type="range" min="0" max="100" step="1" value="50" aria-label="Pell fishers">
+          <button id="worker-plus" class="btn" aria-label="One more Pell fisher">+</button></div>
+        <p class="micro wren-choice" id="wren-choice">Wren chooses its own split: 75 fishers, 25 weavers.</p>
+        <div class="deal-top">
+          <div id="send-toggle" class="row" role="group" aria-label="Pell sends">
+            <button class="btn" id="send-fish" aria-pressed="true">Send fish</button>
+            <button class="btn" id="send-cloth" aria-pressed="false">Send cloth</button>
+          </div>
+          <button id="cost-open" class="btn">Cost card</button>
+        </div>
+        <div id="deal-controls">
+          <div class="amounts">
+            <div><label for="send">Send <span id="send-unit">fish</span></label>
+              <div class="stepper"><button class="btn" data-step="send:-10" aria-label="Send ten less">−</button>
+                <input class="num" type="number" id="send" min="0" max="300" step="10" value="0">
+                <button class="btn" data-step="send:10" aria-label="Send ten more">+</button></div></div>
+            <div><label for="get">Get <span id="get-unit">cloth</span></label>
+              <div class="stepper"><button class="btn" data-step="get:-10" aria-label="Get ten less">−</button>
+                <input class="num" type="number" id="get" min="0" max="300" step="10" value="0">
+                <button class="btn" data-step="get:10" aria-label="Get ten more">+</button></div></div>
+          </div>
+          <p id="price" class="micro">Set an amount each way.</p>
+          <button class="big-btn" id="offer">Offer deal <span aria-hidden="true">→</span></button>
+          <p id="reply" class="reply" aria-live="polite">Not offered yet.</p>
+        </div>
+      </div>
+      <div id="cost-controls" hidden>
+        <div class="cost-title"><h2>The cost card</h2><button id="cost-close" class="btn">Back</button></div>
+        <p>One cloth costs how many fish?</p>
+        <label class="cost-label" for="cost-pell">Pell</label>
+        <div class="stepper"><button class="btn" data-step="cost-pell:-0.5" aria-label="Pell cost half less">−</button>
+          <input class="num" id="cost-pell" type="number" min="0" max="4" step="0.5" value="0">
+          <button class="btn" data-step="cost-pell:0.5" aria-label="Pell cost half more">+</button></div>
+        <label class="cost-label" for="cost-wren">Wren <span id="unchanged"></span></label>
+        <div class="stepper"><button class="btn" id="cost-wren-less" data-step="cost-wren:-0.5" aria-label="Wren cost half less">−</button>
+          <input class="num" id="cost-wren" type="number" min="0" max="4" step="0.5" value="0">
+          <button class="btn" id="cost-wren-more" data-step="cost-wren:0.5" aria-label="Wren cost half more">+</button></div>
+        <p>Who should make more cloth?</p>
+        <div class="cost-picks" role="group" aria-label="Who should make more cloth">
+          <button class="btn" id="choose-pell" aria-pressed="false">Pell</button>
+          <button class="btn" id="choose-wren" aria-pressed="false">Wren</button>
+          <button class="btn" id="choose-neither" aria-pressed="false">Neither: same cost</button>
+        </div>
+        <button class="big-btn" id="cost-check">Check</button>
+        <p id="cost-feedback" aria-live="polite"></p>
+      </div>
+    </section>
+    <section id="policy-controls" hidden>
+      <h2 class="panel-title">The policy desk</h2>
+      <div class="lever"><label for="tariff">Tariff on Wren cloth</label><select id="tariff">
+        <option value="0">None: 0 shells a bolt</option><option value="0.5">0.5 shell: about 10%</option><option value="1">1 shell: about 20%</option>
+      </select></div>
+      <div class="lever"><label for="exchange">Pell's shell</label><select id="exchange">
+        <option value="1">Steady</option><option value="1.1">Rises 10%</option><option value="1.2">Rises 20%</option>
+      </select></div>
+      <div class="lever"><label for="factory-choice">Cloth factory</label><select id="factory-choice">
+        <option value="stay">Stays in Pell</option><option value="move">May move to Wren</option>
+      </select></div>
+      <div class="rules"><div class="lever"><label for="labor">Wren labor rules</label><select id="labor">
+        <option>Basic</option><option>Strong</option></select></div>
+        <div class="lever"><label for="dye">Wren dye rules</label><select id="dye"><option>Loose</option><option>Strict</option></select></div></div>
+      <div class="row"><button id="reset-levers" class="btn grow">Reset levers</button>
+        <button class="btn" id="go-case">Case <span id="pin-count">0</span>/5 →</button>
+        <button id="policy-real-toggle" class="btn" aria-expanded="false">Real case</button></div>
+      <p id="pin-feedback" class="micro" aria-live="polite">Pin evidence from both islands.</p>
+      <div class="real-card" id="policy-real"></div>
+    </section>
+    <section id="case-controls" hidden>
+      <h2 class="panel-title">Your policy argument</h2>
+      <p>Use the frozen evidence on your sheet to make a case for either side.</p>
+      <button id="back-policy" class="btn">← Pin evidence in Policy</button>
+      <button id="real-toggle" class="btn" aria-expanded="false">Real case</button>
+      <p id="compact-case-limit">This checks that your case uses evidence from both islands and both sides, not whether it is right.</p>
+      <div class="real-card" id="case-real"></div>
+    </section>
+    <p class="compact-policy-model">Policy is a separate teaching model from Islands.</p>
+  </aside>
+  <div class="stage" id="stage">
+    <section class="islands-view" id="islands-view">
+      <div class="scene-heading"><span id="season-name">SEASON 1 / ALONE</span><span id="strait-state">Strait closed</span></div>
+      <div class="harbor" id="harbor" role="img" aria-label="Pell and Wren face one another across a sunlit strait.">
+        <img class="backdrop" src="art:strait" alt="Two sunlit island towns across a strait">
+        <div class="sun-glitter" aria-hidden="true"></div>
+        <div class="island-sign pell-sign">PELL <small>100 workers</small></div>
+        <div class="island-sign wren-sign">WREN <small>100 workers</small></div>
+        <div id="pell-workers" class="workers pell-workers" aria-hidden="true"></div>
+        <div id="wren-workers" class="workers wren-workers" aria-hidden="true"></div>
+        <img id="dock-boat" class="dock-boat" src="art:boat-sail" alt="Pell's sailing fishing boat">
+        <img id="storm-cloud" src="art:storm" alt="Rain over Pell" hidden>
+        <img id="crossing-boat" src="art:trade-boat" alt="Cargo boat carrying fish and cloth">
+        <div id="outcome-tag" class="outcome-tag">A full basket: 3 fish + 1 cloth</div>
+        <div id="both-banner" class="both-banner" hidden>Both islands fill more baskets<small id="basket-gains"></small></div>
+        <div class="dock-labels"><span>Fish dock <span aria-hidden="true">↔</span> Loom shed</span><span>Fish dock <span aria-hidden="true">↔</span> Loom shed</span></div>
+      </div>
+      <div class="bars" id="bars">
+        <div class="bars-heading"><span>WHAT EACH ISLAND CAN USE</span><span class="token-key">1 token ≈ 5 workers</span>
+          <span><i class="outline-key"></i> best alone <i class="filled-key"></i> now</span></div>
+        <div class="island-bars" id="pell-bars"></div>
+        <div class="island-bars" id="wren-bars"></div>
+      </div>
+      <div class="island-foot"><span id="island-note">One token represents 5 workers. Baskets use whole fish and cloth.</span>
+        <div id="predict-reveal" hidden></div>
+        <div id="ricardo" hidden><b>Ricardo, 1817.</b> Portugal needed fewer workers than England for wine and cloth, yet both gained when England made cloth and Portugal made wine.</div></div>
+    </section>
+    <section class="policy-view" id="policy-view" hidden>
+      <div class="policy-strip">
+        <img class="backdrop" src="art:strait" alt="The trading strait">
+        <div class="cargo-counter cloth-counter"><img src="art:bolt" alt=""><span id="cloth-counter"></span></div>
+        <div class="cargo-counter fish-counter"><img src="art:crate" alt=""><span id="fish-counter"></span></div>
+        <img src="art:factory" id="factory-art" alt="Cloth factory in Pell">
+        <img src="art:chest" id="tariff-chest" alt="Pell treasury chest">
+        <div id="tax-coins" aria-hidden="true"></div>
+        <div id="cloth-cargo" class="cargo-markers" aria-hidden="true"></div>
+        <div id="fish-cargo" class="cargo-markers" aria-hidden="true"></div>
+        <span id="factory-status"></span>
+      </div>
+      <div id="island-cards"></div>
+      <div class="compact-cards" id="compact-cards"></div>
+      <div class="ledger-head"><b>Who gains? Who loses?</b><span>Change per season, from open trade</span></div>
+      <div class="ledgers"><div id="pell-ledger" class="ledger"></div><div id="wren-ledger" class="ledger"></div></div>
+      <p class="policy-foot">Teaching model, separate from Islands. Pell: shells. Wren: beads.</p>
+    </section>
+    <section class="case-view" id="case-view" hidden>
+      <div class="case-sheet">
+        <div class="sheet-heading"><span class="eyebrow">STRAIT POLICY / EVIDENCE SHEET</span></div>
+        <h2>Make your case.</h2>
+        <div class="case-pickers"><div class="row" role="group" aria-label="Position"><button id="stance-for" class="btn" aria-pressed="true">For</button>
+          <button id="stance-against" class="btn" aria-pressed="false">Against</button></div>
+          <label class="sr" for="case-policy">Policy to argue</label><select id="case-policy"><option value="tariff">The tariff</option>
+            <option value="factory">Letting the factory move</option></select></div>
+        <div id="pins" class="pins"></div>
+        <label for="sentence">Explain your side using both islands.</label>
+        <textarea id="sentence" rows="4" maxlength="2000" aria-label="Explain your policy case using both islands"
+          placeholder="Name Pell and Wren. Refer to a pinned group or measure from each. At least 15 words."></textarea>
+        <div class="case-actions"><button class="big-btn" id="check-case">Check case</button>
+          <button class="btn" id="save-case"><span id="saved-state" role="status">Save on this device</span></button></div>
+        <div id="case-result" role="status"></div>
+        <p class="case-limit">This checks that your case uses evidence from both islands and both sides, not whether it is right.</p>
+        <p class="privacy">Your case stays on this device. Nothing is sent.</p>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+'use strict';
+// The two independent economies use unrounded quantities until display.
+const floorBasket = (f, c) => Math.floor(Math.min(f / 3, c) + 1e-9);
+const rates = [6, 6, 3, 9];
+const bestAlone = [120, 120, 75, 150];
+const bestSplit = [60, 60, 75, 50];
+
+function negotiate(season, workers, send, get, direction) {
+  const rate = rates[season];
+  const production = {fish: rate * workers, cloth: 3 * (100 - workers)};
+  if (!send || !get) return {accepted: false, reply: 'A deal needs something both ways.'};
+  if (send > production[direction]) {
+    return {accepted: false, reply: `Pell only makes ${production[direction]} ${direction} at this split. Move workers or send less.`};
+  }
+  const wanted = direction === 'fish' ? 'cloth' : 'fish';
+  if (get > 200) return {accepted: false, reply: `Wren can make at most 200 ${wanted}.`};
+  let best = null;
+  for (let fishers = 0; fishers <= 100; fishers++) {
+    const fish = 2 * fishers + (direction === 'fish' ? send : -get);
+    const cloth = 2 * (100 - fishers) + (direction === 'fish' ? -get : send);
+    if (fish < 0 || cloth < 0) continue;
+    const exact = Math.min(fish / 3, cloth);
+    if (!best || exact > best.exact + 1e-9) best = {fishers, fish, cloth, exact};
+  }
+  if (!best) return {accepted: false, reply: 'No deal: Wren cannot supply that much at any worker split.'};
+  const baskets = floorBasket(best.fish, best.cloth);
+  if (baskets <= 50) {
+    const compare = baskets === 50 ? 'the same as' : 'fewer than';
+    return {accepted: false, reply: `No deal: Wren would fill ${baskets} baskets, ${compare} the 50 it fills alone.`};
+  }
+  return {accepted: true, wren: {...best, baskets}, send, get, direction,
+    reply: `Wren accepts: ${best.fishers} fishers, ${best.fish} fish, ${best.cloth} cloth, ${baskets} full baskets.`};
+}
+
+function islandOutcome(season, s) {
+  let fish = rates[season] * s.workers;
+  let cloth = 3 * (100 - s.workers);
+  const covered = !!s.deal?.accepted && s.deal.send <= (s.deal.direction === 'fish' ? fish : cloth);
+  if (covered) {
+    fish += s.deal.direction === 'fish' ? -s.deal.send : s.deal.get;
+    cloth += s.deal.direction === 'fish' ? s.deal.get : -s.deal.send;
+  }
+  const pell = {fish, cloth, baskets: floorBasket(fish, cloth)};
+  const wren = covered ? s.deal.wren : {fishers: 75, fish: 150, cloth: 50, baskets: 50};
+  return {pell, wren, covered, both: covered && pell.baskets > bestAlone[season] && wren.baskets > 50};
+}
+
+function settle(t = 0, e = 1, loc = 'Pell', labor = 'Basic', dye = 'Loose') {
+  const wage = labor === 'Basic' ? 3 : 4.5;
+  const cost = 1 + wage / 3 + (dye === 'Loose' ? 0 : .5);
+  // All allowed lever settings keep these supplies positive. These are the market-clearing linear solutions.
+  const p = loc === 'Pell' ? (833 + 110 * e * t) / (60 + 110 * e)
+    : (773 + 20 * cost + 130 * e * t) / (40 + 130 * e);
+  const q = e * (p - t);
+  const r = 550 / (70 + 35 * e);
+  const s = e * r;
+  const output = 20 * (loc === 'Pell' ? p - 3 : q - cost);
+  const profit = 10 * (loc === 'Pell' ? (p - 3) ** 2 : (q - cost) ** 2 / e);
+  return {p, q, r, s, output, profit, loc, cost, wage};
+}
+
+function policyModel(levers) {
+  const {tariff: t, exchange: e, move, labor, dye} = levers;
+  const home = settle(t, e, 'Pell', labor, dye);
+  const away = settle(t, e, 'Wren', labor, dye);
+  const m = move && away.profit > home.profit + 1 + 1e-9 ? away : home;
+  const old = settle();
+  const {p, q, r, s} = m;
+  const area = (a, b, x, x0) => a * (x - x0) + b * (x * x - x0 * x0) / 2;
+  const pf = 40 * r - 40;
+  const pc = 20 * p - 40;
+  const wf = 10 * s - 10;
+  const wc = 100 * q - 373;
+  const fp = m.loc === 'Pell' ? m.output : 0;
+  const fw = m.loc === 'Wren' ? m.output : 0;
+  const imports = 240 - 20 * p - pc - fp;
+  const rows = [
+    -area(240, -20, p, old.p) - area(300, -30, r, old.r),
+    area(-40, 40, r, old.r),
+    area(-40, 20, p, old.p),
+    m.profit - old.profit,
+    fp / 3 * 2 - old.output / 3 * 2,
+    t * imports,
+    -area(120, -10, q, old.q) - area(200, -25, s, old.s),
+    area(-10, 10, s, old.s),
+    area(-373, 100, q, old.q),
+    fw / 3 * (m.wage - 2)
+  ];
+  const jobs = [pf / 6, pc / 3, fp / 3, wf / 2, wc / 2, fw / 3];
+  const reef = [100 - .1 * pf - .05 * fp, 100 - .1 * wf - (dye === 'Loose' ? .25 : .05) * fw];
+  return {...m, imports, exports: pf - (300 - 30 * r), rows, jobs, reef,
+    growth: [rows.slice(0, 6).reduce((a, b) => a + b, 0), rows.slice(6).reduce((a, b) => a + b, 0)]};
+}
+
+function caseProblems(pins, policy, sentence) {
+  const fixes = [];
+  if (pins.length < 2 || pins.length > 5) fixes.push('Fix: keep 2 to 5 evidence pins.');
+  for (const island of ['Pell', 'Wren']) {
+    if (!pins.some(p => p.island === island)) fixes.push(`Fix: pin a row or card from ${island} too.`);
+  }
+  if (!pins.some(p => p.sign > 0)) fixes.push('Fix: include a gain pin.');
+  if (!pins.some(p => p.sign < 0)) fixes.push('Fix: include a loss pin.');
+  if (!pins.some(p => ['Jobs', 'Wages', 'Rights', 'Reef'].includes(p.metric))) {
+    fixes.push('Fix: pin Jobs, Wages, Rights or Reef too.');
+  }
+  if (pins.some(p => !p.policies.includes(policy))) fixes.push('Fix: replace pins taken while your chosen policy was off.');
+  // A bare alphabet and repeated-word padding are not a fifteen-word argument.
+  const words = sentence.match(/[A-Za-z]+(?:['’][A-Za-z]+)*/g) || [];
+  const meaningful = words.filter(w => w.length > 1 || /^(a|i)$/i.test(w));
+  if (meaningful.length < 15) fixes.push('Fix: write a sentence of at least 15 words.');
+  if (meaningful.length >= 15 && new Set(meaningful.map(w => w.toLowerCase())).size < 8) {
+    fixes.push('Fix: replace repeated-word padding with an explanation.');
+  }
+  // Check references to the frozen evidence, not the student's stance or economic conclusion.
+  const topics = {
+    'Shoppers': /\b(shoppers?|buyers?|consumers?)\b/i,
+    'Fishers': /\b(fishers?|fishing)\b/i,
+    'Home weavers': /\b(weavers?|weaving|cloth)\b/i,
+    'Factory owners': /\b(owners?|profits?)\b/i,
+    'Factory workers': /\b(workers?|factory|mill)\b/i,
+    'Treasury': /\b(treasury|tax|revenue)\b/i,
+    'Growth': /\b(growth|total|surplus)\b/i,
+    'Jobs': /\b(jobs?|employment|work)\b/i,
+    'Wages': /\b(wages?|pay|earnings)\b/i,
+    'Rights': /\b(rights?|unions?|hours?|inspectors?)\b/i,
+    'Reef': /\b(reef|water|coral|pollution)\b/i
+  };
+  for (const island of ['Pell','Wren']) {
+    const named = new RegExp('\\b' + island + '\\b','i').test(sentence);
+    const cited = pins.some(pin => pin.island === island && topics[pin.name]?.test(sentence));
+    if (meaningful.length >= 15 && pins.some(pin => pin.island === island) && (!named || !cited)) {
+      fixes.push(`Fix: name ${island} and refer to one of its pinned groups or measures.`);
+    }
+  }
+  return fixes;
+}
+
+const $ = id => document.getElementById(id);
+const ART = {
+  'boat-sail':'art:boat-sail', 'boat-motor':'art:boat-motor', 'boat-broken':'art:boat-broken',
+  'pell-fisher':'art:pell-fisher', 'pell-weaver':'art:pell-weaver',
+  'pell-factory-worker':'art:pell-factory-worker', 'pell-owner':'art:pell-owner', 'pell-shopper':'art:pell-shopper',
+  'wren-fisher':'art:wren-fisher', 'wren-weaver':'art:wren-weaver',
+  'wren-factory-worker':'art:wren-factory-worker', 'wren-shopper':'art:wren-shopper',
+  basket:'art:basket', crate:'art:crate', bolt:'art:bolt', chest:'art:chest',
+  'reef-healthy':'art:reef-healthy', 'reef-murky':'art:reef-murky'
+};
+const L = {
+  wIslands:'Pell is better than Wren at fishing and at weaving. Slide Pell’s workers between fish and cloth, and fill as many baskets as you can.',
+  alone:'Slide Pell’s workers between fish and cloth to fill the most baskets.',
+  openStrait:'The strait is open. Set what Pell sends and what it gets, then tap Offer deal.',
+  costCard:'Work out what one cloth costs each island in fish, then tap Check.',
+  bothBetter:'Both islands fill more baskets than either could alone, and Pell is still better at both jobs.',
+  predictYes:'You said Yes. Here is why it works.',
+  predictNo:'You said No. Pell gained by doing less of what it is good at.',
+  stormNone:'When each cloth costs both islands the same fish, no price helps both.',
+  wPolicy:'The islands now trade with money: Pell’s shell and Wren’s bead. Pell sells fish and buys cloth. Pull a lever and see who wins and who loses on each island.',
+  wCase:'Pick a side and a policy, then use your pins to make the case.',
+  caseEmpty:'Pin rows and cards in Policy, then come back.',
+  factoryMoves:'The factory crosses to Wren. Watch the jobs, the wages and the reef.',
+  factoryStays:'Moving would not pay under these rules, so the factory stays in Pell.',
+  casePass:'Your case holds together. Save it, or argue the other side.',
+  caseFix:'Some parts need work. The list shows what to fix.',
+  caseNext:'Pick a side and a policy, write your explanation, then tap Check case.',
+  noGoods:'A deal needs something both ways.',
+  policyReal:'Read the historical comparison, then tap Back to levers to keep testing.',
+  caseReal:'Read this comparison. Tap Real case again to return to your case.',
+  stormGuide:'When each cloth costs both islands the same fish, no price helps both. Try another deal, or tap Cost card.'
+};
+const seasons = ['Alone','Open strait','Storm','Motor boats'];
+const freshSeason = () => ({workers:50, send:0, get:0, direction:'fish', deal:null, reply:'Not offered yet.',
+  costPell:0, costWren:0, choice:'', checked:false, feedback:'', wasBoth:false});
+const defaults = () => ({tariff:0, exchange:1, move:false, labor:'Basic', dye:'Loose'});
+const state = {
+  mode:'islands', season:0, seasons:Array.from({length:4},freshSeason), prediction:null, predictionRevealed:false,
+  costOpen:false, levers:defaults(), lastLever:'tariff', pins:[], stance:'for', casePolicy:'tariff', sentence:'',
+  policyIsland:'Pell', compactMetric:{Pell:'Growth',Wren:'Growth'}, offerId:0, stormLogStart:0, caseChecked:false,
+  policyCaseOpen:false, caseRealOpen:false
+};
+const current = () => state.seasons[state.season];
+const V = Curio.voice({
+  lines:L, scope:() => state.mode,
+  welcome:() => {
+    if (state.mode === 'islands') {
+      if (state.costOpen) return ['costCard',{valid:() => state.costOpen}];
+      return state.season === 0 && current().workers === 50 ? ['wIslands',{valid:() => current().workers === 50}] : null;
+    }
+    if (state.mode === 'policy') return state.policyCaseOpen ? 'policyReal' : 'wPolicy';
+    if (state.caseRealOpen && innerWidth <= 1000) return 'caseReal';
+    return state.pins.length ? 'wCase' : 'caseEmpty';
+  },
+  hint:false,
+  read:() => $('hint').textContent,
+  speaks:'#offer,#cost-check,#check-case'
+});
+const round = x => Math.round(Math.abs(x) < .000001 ? 0 : x);
+const signed = (x, digits=0) => {
+  const v = Math.abs(x) < .000001 ? 0 : x;
+  const n = digits ? v.toFixed(digits) : v && Math.abs(v) < .5 ? v.toPrecision(2) : round(v);
+  return v > .000001 ? '+' + n : '' + n;
+};
+const sign = x => Math.abs(x) < .000001 ? 0 : Math.sign(x);
+const safe = s => String(s).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function tone(kind='tap') {
+  Curio.tone(kind === 'pin' ? 720 : 410, .07, .035, 'sine');
+}
+function clearResults() {
+  // Read has no V.playing entry. Leave it in control while replacing invalid event speech.
+  if (V.playing) V.hush();
+  else V.dropQueued();
+}
+function hint() {
+  let text;
+  if (state.mode === 'islands') text = state.costOpen ? L.costCard : state.season === 0 ? L.alone : L.openStrait;
+  if (state.mode === 'islands' && state.season === 2 && !state.costOpen && current().deal) text = L.stormGuide;
+  if (state.mode === 'policy') text = state.policyCaseOpen ? L.policyReal : L.wPolicy;
+  if (state.mode === 'case') text = state.caseRealOpen && innerWidth <= 1000 ? L.caseReal
+    : state.pins.length ? L.caseNext : L.caseEmpty;
+  $('hint').textContent = text;
+}
+
+// Persistent stage elements keep focus and pointer capture out of redraws.
+for (const island of ['pell','wren']) {
+  const parent = $(island + '-workers');
+  for (let n = 0; n < 20; n++) {
+    const img = document.createElement('img');
+    img.className = 'worker';
+    img.alt = '';
+    parent.append(img);
+  }
+  const bars = $(island + '-bars');
+  bars.innerHTML = `<h3>${island.toUpperCase()}</h3>` + ['fish','cloth','baskets'].map(metric => `
+    <div class="bar-metric ${metric}" id="${island}-${metric}">
+      <div class="bar-label"><span><img src="${ART[metric === 'fish' ? 'crate' : metric === 'cloth' ? 'bolt' : 'basket']}" alt="">${metric}</span>
+      <span class="bar-delta"></span></div>
+      <div class="bar-track"><div class="bar-alone"><span class="bar-number"></span></div>
+        <div class="bar-now"><span class="bar-number"></span></div></div>
+    </div>`).join('');
+}
+function workers(island, fishers) {
+  const count = Math.round(fishers / 5);
+  const imgs = $(island + '-workers').children;
+  [...imgs].forEach((img,n) => {
+    const fishing = n < count;
+    const i = fishing ? n : n - count;
+    img.src = ART[island + (fishing ? '-fisher' : '-weaver')];
+    const row = Math.floor(i / 5);
+    img.style.left = (fishing ? i % 5 * 9 + row : 52 + i % 5 * 9 + row) + '%';
+    img.style.bottom = row * 25 + '%';
+    img.style.transform = `scale(${1 - row * .04})`;
+    img.style.transformOrigin = 'bottom center';
+    img.style.zIndex = 5 - row;
+  });
+}
+function updateBars(island, now, base) {
+  for (const metric of ['fish','cloth','baskets']) {
+    const el = $(island + '-' + metric);
+    const max = metric === 'fish' ? 900 : metric === 'cloth' ? 350 : 200;
+    const alone = base[metric];
+    el.querySelector('.bar-alone').style.width = (alone / max * 100) + '%';
+    el.querySelector('.bar-now').style.width = Math.max(0, now[metric] / max * 100) + '%';
+    el.querySelector('.bar-now').classList.toggle('small',now[metric] / max < .09);
+    el.querySelector('.bar-alone .bar-number').textContent = alone;
+    el.querySelector('.bar-now .bar-number').textContent = now[metric];
+    const difference = now[metric] - alone;
+    el.querySelector('.bar-delta').textContent = difference > 0 ? '↑ more' : difference < 0 ? '↓ fewer' : '↔ same';
+    el.setAttribute('aria-label', `${island}: ${metric}, best alone ${alone}, now ${now[metric]}, ${difference > 0 ? 'more' : difference < 0 ? 'fewer' : 'same'}`);
+  }
+}
+function renderIslands() {
+  const s = current();
+  const season = state.season;
+  const outcome = islandOutcome(season,s);
+  for (let i = 0; i < 4; i++) $('season-' + i).setAttribute('aria-pressed', i === season);
+  $('season-name').textContent = `SEASON ${season + 1} / ${seasons[season].toUpperCase()}`;
+  $('strait-state').textContent = season === 0 ? 'Strait closed' : 'Strait open';
+  $('predict').hidden = season !== 0 || state.costOpen;
+  $('predict').classList.toggle('committed',!!state.prediction);
+  $('predict').querySelector('p').hidden = !!state.prediction;
+  $('predict').querySelector('.row').hidden = !!state.prediction;
+  $('prediction').hidden = !state.prediction;
+  $('prediction').textContent = `You said ${state.prediction}. Keep going.`;
+  $('production').innerHTML = `<b>Pell:</b> ${rates[season]} fish or 3 cloth / worker${season === 2 ? ' (storm)' : season === 3 ? ' (motor boats)' : ''}
+    <br><span>Wren:</span> 2 fish or 2 cloth / worker`;
+  $('normal-controls').hidden = state.costOpen;
+  $('cost-controls').hidden = !state.costOpen;
+  $('deal-controls').hidden = season === 0;
+  $('send-toggle').hidden = season === 0;
+  $('workers').value = s.workers;
+  $('worker-count').textContent = s.workers;
+  $('weaver-count').textContent = (100 - s.workers) + ' weavers';
+  $('wren-choice').textContent = `Wren chooses its own split: ${outcome.wren.fishers} fishers, ${100 - outcome.wren.fishers} weavers.`;
+  $('send-fish').setAttribute('aria-pressed', s.direction === 'fish');
+  $('send-cloth').setAttribute('aria-pressed', s.direction === 'cloth');
+  $('send').value = s.send;
+  $('get').value = s.get;
+  $('send-unit').textContent = s.direction;
+  $('get-unit').textContent = s.direction === 'fish' ? 'cloth' : 'fish';
+  const fish = s.direction === 'fish' ? s.send : s.get;
+  const cloth = s.direction === 'fish' ? s.get : s.send;
+  $('price').textContent = fish && cloth ? `That is ${(fish / cloth).toFixed(2).replace(/0$/,'')} fish for each cloth.` : 'Set an amount each way.';
+  $('reply').textContent = s.deal?.accepted && !outcome.covered ? 'Pell can’t cover this. Now bars show no trade.' : s.reply;
+  $('reply').classList.toggle('ok',outcome.covered);
+  $('cost-pell').value = s.costPell;
+  $('cost-wren').value = season >= 2 ? 1 : s.costWren;
+  for (const id of ['cost-wren','cost-wren-less','cost-wren-more']) $(id).disabled = season >= 2;
+  $('unchanged').textContent = season >= 2 ? 'unchanged since Season 2' : '';
+  for (const choice of ['pell','wren','neither']) $('choose-' + choice).setAttribute('aria-pressed',s.choice === choice);
+  $('cost-feedback').textContent = s.feedback;
+  workers('pell',s.workers);
+  workers('wren',outcome.wren.fishers);
+  const split = bestSplit[season];
+  updateBars('pell',outcome.pell,{fish:rates[season] * split, cloth:3 * (100 - split), baskets:bestAlone[season]});
+  updateBars('wren',outcome.wren,{fish:150,cloth:50,baskets:50});
+  $('dock-boat').src = ART[season === 2 ? 'boat-broken' : season === 3 ? 'boat-motor' : 'boat-sail'];
+  $('dock-boat').alt = season === 2 ? 'Pell boat with a snapped mast and torn sail' : season === 3 ? 'Pell motor fishing boat' : 'Pell sailing fishing boat';
+  $('storm-cloud').hidden = season !== 2;
+  $('crossing-boat').hidden = season === 0;
+  $('both-banner').hidden = !outcome.both;
+  $('basket-gains').textContent = outcome.both
+    ? `Pell +${outcome.pell.baskets - bestAlone[season]} · Wren +${outcome.wren.baskets - 50} baskets above best alone` : '';
+  $('ricardo').hidden = !state.predictionRevealed;
+  $('predict-reveal').hidden = !state.predictionRevealed || !state.prediction;
+  $('predict-reveal').textContent = state.prediction === 'Yes' ? L.predictYes : L.predictNo;
+  let tag = 'A full basket: 3 fish + 1 cloth';
+  if (season === 0 && outcome.pell.baskets === 120) tag = 'Pell’s best alone: 120 baskets';
+  else if (s.deal?.accepted && !outcome.covered) tag = 'Pell can’t cover this';
+  else if (s.deal?.accepted) tag = `${s.deal.send} ${s.deal.direction} → ${s.deal.get} ${s.deal.direction === 'fish' ? 'cloth' : 'fish'}`;
+  else if (s.deal && !s.deal.accepted) tag = 'No deal';
+  $('outcome-tag').textContent = tag;
+  $('island-note').textContent = s.checked
+    ? `Cost card checked: one cloth costs Pell ${rates[season] / 3} fish and Wren 1 fish. Full baskets round down the smaller of fish ÷ 3 and cloth.`
+    : 'Each token ≈ 5 workers; counts are exact. Full baskets = the smaller of fish ÷ 3 and cloth, rounded down.';
+  hint();
+  return outcome;
+}
+function announceBoth(outcome, id=state.offerId) {
+  const s = current();
+  if (outcome.both && (!s.wasBoth || !V.heard('bothBetter'))) {
+    const season = state.season;
+    const valid = () => id === state.offerId && state.season === season && islandOutcome(season,current()).both;
+    V.say('bothBetter',{valid, key:'bothBetter'});
+    if (!s.wasBoth) {
+      Curio.yes();
+      $('both-banner').classList.remove('just-earned');
+      void $('both-banner').offsetWidth;
+      $('both-banner').classList.add('just-earned');
+    }
+    if (!state.predictionRevealed) {
+      state.predictionRevealed = true;
+      $('ricardo').hidden = false;
+      $('predict-reveal').hidden = !state.prediction;
+      $('predict-reveal').textContent = state.prediction === 'Yes' ? L.predictYes : L.predictNo;
+    }
+    const predictionKey = state.prediction === 'Yes' ? 'predictYes' : 'predictNo';
+    if (state.prediction && !V.heard(predictionKey)) V.say(predictionKey,{valid});
+  }
+  s.wasBoth = outcome.both;
+}
+function stopBoat() {
+  $('crossing-boat').classList.remove('sailing');
+}
+function setWorkers(value) {
+  if (current().deal) clearResults();
+  current().workers = Math.max(0,Math.min(100,Math.round(value)));
+  tone();
+  const outcome = renderIslands();
+  if (!outcome.covered) stopBoat();
+  announceBoth(outcome);
+}
+function changeDeal(finalize=true) {
+  clearResults();
+  const s = current();
+  const read = value => finalize ? normalize(value,300,10) : Math.min(300,Math.max(0,Number(value) || 0));
+  s.send = read($('send').value);
+  s.get = read($('get').value);
+  s.deal = null;
+  s.reply = 'Not offered yet.';
+  s.wasBoth = false;
+  state.offerId++;
+  stopBoat();
+  tone();
+  renderIslands();
+}
+function normalize(value,max,step) {
+  return Math.min(max,Math.max(0,Math.round((Number(value) || 0) / step) * step));
+}
+function offer() {
+  const season = state.season;
+  if (season === 0) return;
+  const s = current();
+  const id = ++state.offerId;
+  stopBoat();
+  V.dropQueued();
+  s.deal = negotiate(season,s.workers,s.send,s.get,s.direction);
+  s.reply = s.deal.reply;
+  tone();
+  const outcome = renderIslands();
+  const valid = () => id === state.offerId && state.season === season && !state.costOpen;
+  V.say(s.reply,{key:'wrenReply',valid,now:true});
+  if (outcome.covered) {
+    void $('crossing-boat').offsetWidth;
+    if (!Curio.reduce) $('crossing-boat').classList.add('sailing');
+  }
+  announceBoth(outcome,id);
+  const stormHeard = V.log.slice(state.stormLogStart).some(entry => entry.key === 'stormNone' && entry.as === 'spoken');
+  if (season === 2 && !outcome.both && !stormHeard) {
+    V.say('stormNone',{valid});
+  }
+}
+function setSeason(index) {
+  if (state.season === index) return;
+  V.hush();
+  state.offerId++;
+  state.season = index;
+  state.costOpen = false;
+  state.stormLogStart = V.log.length;
+  stopBoat();
+  tone();
+  renderIslands();
+  if (index === 1) V.how('openStrait',{valid:() => state.season === 1 && !state.costOpen});
+  else if (index === 0) V.how('alone');
+}
+function openCost(open) {
+  V.hush();
+  state.costOpen = open;
+  tone();
+  renderIslands();
+  $(open ? 'cost-close' : 'cost-open').focus({preventScroll:true});
+  if (open) V.how('costCard',{valid:() => state.costOpen});
+}
+function checkCost() {
+  const s = current();
+  const p = rates[state.season] / 3;
+  const w = state.season >= 2 ? 1 : s.costWren;
+  const wanted = p === 1 ? 'neither' : 'wren';
+  s.checked = true;
+  if (s.costPell !== p || w !== 1) {
+    s.feedback = `Pell: ${rates[state.season]} fish or 3 cloth per worker, so 1 cloth = ${rates[state.season]} ÷ 3 = ${p} fish. Wren: 2 ÷ 2 = 1 fish.`;
+  } else if (s.choice === 'pell') {
+    s.feedback = `Pell has absolute advantage: 3 cloth per worker against 2. Comparative advantage uses what you give up: ${p} fish per Pell cloth, 1 per Wren cloth.`;
+  } else if (s.choice !== wanted) {
+    s.feedback = p === 1 ? 'Both give up 1 fish per cloth. Neither has a lower opportunity cost.'
+      : `Pell gives up ${p} fish per cloth; Wren gives up 1. Choose the island with the lower opportunity cost.`;
+  } else {
+    s.feedback = p === 1 ? 'Right. Both give up 1 fish per cloth. Same opportunity cost means no deal can help both.'
+      : `Right. Pell gives up ${p} fish per cloth; Wren gives up 1. Wren makes cloth more cheaply, so Pell should fish.`;
+    Curio.yes();
+  }
+  renderIslands();
+  V.say(s.feedback,{key:'costResult',valid:() => state.costOpen,now:true});
+}
+
+// Include variable result speech in the production inventory, without calculating it during play.
+function allLines() {
+  const lines = new Set(V.allLines());
+  lines.add('No deal: Wren cannot supply that much at any worker split.');
+  for (const unit of ['fish','cloth']) {
+    lines.add(`Wren can make at most 200 ${unit}.`);
+    for (const rate of unit === 'fish' ? [3,6,9] : [3]) {
+      for (let count = 0; count <= 100; count++) {
+        lines.add(`Pell only makes ${rate * count} ${unit} at this split. Move workers or send less.`);
+      }
+    }
+  }
+  for (const direction of ['fish','cloth']) {
+    for (let send = 0; send <= 300; send += 10) {
+      for (let get = 0; get <= 300; get += 10) {
+        lines.add(negotiate(1,direction === 'fish' ? 100 : 0,send,get,direction).reply);
+      }
+    }
+  }
+  for (const rate of [3,6,9]) {
+    const p = rate / 3;
+    lines.add(`Pell: ${rate} fish or 3 cloth per worker, so 1 cloth = ${rate} ÷ 3 = ${p} fish. Wren: 2 ÷ 2 = 1 fish.`);
+    lines.add(`Pell has absolute advantage: 3 cloth per worker against 2. Comparative advantage uses what you give up: ${p} fish per Pell cloth, 1 per Wren cloth.`);
+    lines.add(p === 1 ? 'Both give up 1 fish per cloth. Neither has a lower opportunity cost.'
+      : `Pell gives up ${p} fish per cloth; Wren gives up 1. Choose the island with the lower opportunity cost.`);
+    lines.add(p === 1 ? 'Right. Both give up 1 fish per cloth. Same opportunity cost means no deal can help both.'
+      : `Right. Pell gives up ${p} fish per cloth; Wren gives up 1. Wren makes cloth more cheaply, so Pell should fish.`);
+  }
+  return [...lines];
+}
+
+const groups = [
+  ['Pell','Shoppers','pell-shopper'], ['Pell','Fishers','pell-fisher'], ['Pell','Home weavers','pell-weaver'],
+  ['Pell','Factory owners','pell-owner'], ['Pell','Factory workers','pell-factory-worker'], ['Pell','Treasury','chest'],
+  ['Wren','Shoppers','wren-shopper'], ['Wren','Fishers','wren-fisher'], ['Wren','Home weavers','wren-weaver'],
+  ['Wren','Factory workers','wren-factory-worker']
+];
+const metrics = ['Growth','Jobs','Wages','Rights','Reef'];
+const initial = policyModel(defaults());
+let policy = initial;
+function metricData(island,metric,m=policy) {
+  const i = island === 'Pell' ? 0 : 1;
+  const money = i ? 'beads' : 'shells';
+  if (metric === 'Growth') {
+    return {text:state.levers.exchange !== 1 ? 'Not added up: currency swing' : `${signed(m.growth[i],1)} ${money}`,
+      detail:state.levers.exchange !== 1
+        ? 'Not added up: a currency swing changes what each money is worth, so this model shows each group, not a total.'
+        : 'Model total of this island’s group changes from the open-trade start, in its own money.',
+      delta:state.levers.exchange !== 1 ? 0 : m.growth[i]};
+  }
+  if (metric === 'Jobs') {
+    const start = i * 3;
+    const j = m.jobs.slice(start,start+3);
+    const old = initial.jobs.slice(start,start+3).reduce((a,b) => a+b,0);
+    return {text:`Fish ${round(j[0])} · Cloth ${round(j[1])} · Mill ${round(j[2])}`,
+      detail:`${j[0].toFixed(1)} fishing, ${j[1].toFixed(1)} home weaving, ${j[2].toFixed(1)} factory jobs; fractional jobs are model equivalents.`,
+      delta:j.reduce((a,b) => a+b,0) - old};
+  }
+  if (metric === 'Wages') {
+    const wage = i ? m.wage : 6;
+    const other = i ? 2 : 4;
+    return {text:`Mill ${wage}; other work ${other} ${money}`,
+      detail:`Factory wage ${wage} ${money} per worker; other work ${other}. A quoted wage is not a job guarantee.`,
+      delta:i ? wage - 3 : 0};
+  }
+  if (metric === 'Rights') {
+    const strong = !i || state.levers.labor === 'Strong';
+    return {text:strong ? '48h · checked · unions' : '60h · few checks · no unions',
+      detail:strong ? '48-hour weeks, inspectors check wages and hours, workers may form a union.'
+        : '60-hour weeks, few wage and hour checks, unions not recognized.', delta:i && strong ? 1 : 0};
+  }
+  return {text:`${round(m.reef[i])} / 100`, detail:'Model reef index out of 100. Higher means healthier water and coral.',
+    delta:m.reef[i] - initial.reef[i]};
+}
+for (const [i,[island,name,image]] of groups.entries()) {
+  const row = document.createElement('div');
+  row.className = 'group-row';
+  row.id = 'group-' + i;
+  row.innerHTML = `<img src="${ART[image]}" alt=""><span class="group-name">${name}<small>${island}</small></span>
+    <span class="group-value"><b></b><small></small></span><button class="pin-button" id="pin-group-${i}"
+      aria-label="Pin ${island} ${name}" aria-pressed="false">Pin</button>`;
+  $(island.toLowerCase() + '-ledger').append(row);
+  $('pin-group-' + i).onclick = () => pinEvidence('group',i);
+}
+for (const island of ['Pell','Wren']) {
+  for (const metric of metrics) {
+    const id = island.toLowerCase() + '-' + metric.toLowerCase();
+    const card = document.createElement('div');
+    card.className = 'metric-card ' + island.toLowerCase() + (metric === 'Reef' ? ' reef' : '');
+    card.id = 'card-' + id;
+    card.innerHTML = `${metric === 'Reef' ? `<img src="${ART['reef-healthy']}" alt="">` : ''}
+      <strong>${island} / ${metric}</strong><span></span><button class="metric-pin" id="pin-${id}"
+      aria-label="Pin ${island} ${metric}" aria-pressed="false">+</button>`;
+    $('island-cards').append(card);
+    $('pin-' + id).onclick = () => pinEvidence('metric',island,metric);
+  }
+  const row = document.createElement('div');
+  row.className = 'compact-card-row';
+  row.innerHTML = `<button class="btn" id="show-${island}" aria-pressed="${island === 'Pell'}">${island}</button>
+    <select id="metric-${island}" aria-label="${island} measure">${metrics.map(m => `<option>${m}</option>`).join('')}</select>
+    <button class="pin-button" id="compact-pin-${island}" aria-label="Pin chosen ${island} measure">Pin</button>`;
+  $('compact-cards').append(row);
+  $('show-' + island).onclick = () => {
+    state.policyIsland = island;
+    tone();
+    renderPolicy();
+  };
+  $('metric-' + island).onchange = event => {
+    state.compactMetric[island] = event.target.value.split(':')[0];
+    tone();
+    renderPolicy();
+  };
+  $('compact-pin-' + island).onclick = () => pinEvidence('metric',island,state.compactMetric[island]);
+}
+const cases = {
+  tariff:{title:'Washers / United States, 2018',
+    text:'The US put tariffs on imported washing machines in 2018. Washer prices rose nearly 12%, dryers rose about as much, and about 1,800 jobs were added, at an annual cost to buyers of more than $800,000 a job.',
+    url:'https://www.aeaweb.org/research/washing-machines-2018-tariffs-effect', source:'AEA research highlight'},
+  factory:{title:'Garments / Cambodia, 1999',text:'In 1999 the US raised Cambodia’s clothing quota 6% a year, and promised up to 14% more on top if its garment factories followed labor law. The ILO sent monitors into the factories and made what they found public.',
+    url:'https://www.ilo.org/resource/article/new-trade-regime-textiles-and-clothing-how-cambodian-factories-improved',source:'International Labour Organization'},
+  currency:{title:'Swiss franc / Switzerland, 2015',text:'On 15 January 2015 Switzerland’s central bank dropped the cap of 1.20 francs per euro it had held since 2011. The franc jumped, and shares of Swiss exporters fell.',
+    url:'https://www.congress.gov/crs-product/IN10230',source:'Congressional Research Service, IN10230'}
+};
+function renderReal(id,key) {
+  const c = cases[key];
+  $(id).innerHTML = `<h3>${c.title}</h3><p>${c.text}</p><a href="${c.url}" target="_blank" rel="noopener">${c.source} ↗</a>
+    <small class="historical-note">Historical comparison. Pell and Wren are fictional.</small>`;
+}
+function renderPolicy() {
+  policy = policyModel(state.levers);
+  const m = policy;
+  $('tariff').value = String(state.levers.tariff);
+  $('exchange').value = String(state.levers.exchange);
+  $('factory-choice').value = state.levers.move ? 'move' : 'stay';
+  $('labor').value = state.levers.labor;
+  $('dye').value = state.levers.dye;
+  $('policy-controls').classList.toggle('page-real',state.policyCaseOpen);
+  $('policy-real-toggle').textContent = state.policyCaseOpen ? 'Back to levers' : 'Real case';
+  $('policy-real-toggle').setAttribute('aria-expanded',state.policyCaseOpen);
+  $('cloth-counter').textContent = `Cloth to Pell: ${round(m.imports)} bolts`;
+  $('fish-counter').textContent = `Fish to Wren: ${round(m.exports)} crates`;
+  $('factory-art').classList.toggle('moved',m.loc === 'Wren');
+  $('factory-art').alt = 'Cloth factory in ' + m.loc;
+  $('tariff-chest').style.opacity = state.levers.tariff ? 1 : .45;
+  $('tax-coins').innerHTML = '<i></i>'.repeat(Math.max(0,Math.ceil(m.rows[5] / 2)));
+  for (const [id,quantity,image] of [['cloth-cargo',m.imports,'bolt'],['fish-cargo',m.exports,'crate']]) {
+    $(id).innerHTML = Array.from({length:Math.max(0,Math.ceil(quantity / 10))},() => `<img src="${ART[image]}" alt="">`).join('');
+  }
+  $('factory-status').textContent = state.levers.move ? m.loc === 'Wren' ? `Factory in Wren · ${round(m.output)} bolts`
+    : 'Moving would not pay' : `Factory in Pell · ${round(m.output)} bolts`;
+  groups.forEach(([island,name],i) => {
+    const v = m.rows[i];
+    const el = $('group-' + i);
+    const word = sign(v) > 0 ? 'gain' : sign(v) < 0 ? 'loss' : 'same';
+    const value = el.querySelector('.group-value');
+    value.className = 'group-value ' + (sign(v) > 0 ? 'ok' : sign(v) < 0 ? 'warn' : '');
+    value.querySelector('b').textContent = signed(v) + ' ' + word;
+    value.querySelector('small').textContent = island === 'Pell' ? 'shells / season' : 'beads / season';
+    el.title = `${island} ${name}: ${signed(v,2)} ${island === 'Pell' ? 'shells' : 'beads'} per season`;
+  });
+  for (const island of ['Pell','Wren']) {
+    for (const metric of metrics) {
+      const data = metricData(island,metric);
+      const card = $('card-' + island.toLowerCase() + '-' + metric.toLowerCase());
+      card.querySelector('span').textContent = data.text;
+      card.title = data.detail || data.text;
+      card.querySelector('button').setAttribute('aria-label',`Pin ${island} ${metric}: ${data.text}. ${data.detail || ''}`);
+      if (metric === 'Reef') {
+        const dirty = island === 'Wren' && m.loc === 'Wren' && state.levers.dye === 'Loose';
+        card.querySelector('img').src = ART[dirty ? 'reef-murky' : 'reef-healthy'];
+        card.querySelector('img').alt = dirty ? 'Murky reef water' : 'Clear reef water';
+      }
+    }
+    const select = $('metric-' + island);
+    [...select.options].forEach((o,i) => {
+      o.value = metrics[i];
+      o.textContent = metrics[i] + ': ' + metricData(island,metrics[i]).text;
+    });
+    select.value = state.compactMetric[island];
+    $(island.toLowerCase() + '-ledger').classList.toggle('active',state.policyIsland === island);
+    $('show-' + island).setAttribute('aria-pressed',state.policyIsland === island);
+  }
+  updatePinButtons();
+  renderReal('policy-real',state.lastLever === 'exchange' ? 'currency' : ['labor','dye','move'].includes(state.lastLever) ? 'factory' : 'tariff');
+  hint();
+}
+function updatePinButtons() {
+  groups.forEach((g,i) => $('pin-group-' + i).setAttribute('aria-pressed',state.pins.some(p => p.source === 'group-' + i)));
+  for (const island of ['Pell','Wren']) {
+    for (const metric of metrics) {
+      const source = island + '-' + metric;
+      $('pin-' + source.toLowerCase()).setAttribute('aria-pressed',state.pins.some(p => p.source === source));
+    }
+  }
+  $('pin-count').textContent = state.pins.length;
+}
+function changeLever(key,value) {
+  if (V.playing === L.factoryMoves || V.playing === L.factoryStays) V.hush();
+  V.dropQueued();
+  const before = policy.loc;
+  state.levers[key] = value;
+  state.lastLever = key;
+  tone();
+  renderPolicy();
+  if (state.levers.move && policy.loc !== before) {
+    V.say(policy.loc === 'Wren' ? 'factoryMoves' : 'factoryStays',{
+      key:'factoryResult',valid:() => state.mode === 'policy' && policy.loc === (before === 'Pell' ? 'Wren' : 'Pell')
+    });
+  } else if (key === 'move' && value && policy.loc === 'Pell') {
+    $('factory-art').classList.remove('stays');
+    void $('factory-art').offsetWidth;
+    $('factory-art').classList.add('stays');
+    V.say('factoryStays',{valid:() => policy.loc === 'Pell'});
+  }
+}
+function pinEvidence(kind,key,metric) {
+  let pin;
+  if (kind === 'group') {
+    const [island,name] = groups[key];
+    const value = policy.rows[key];
+    pin = {source:'group-' + key, island, metric:'Money', name,
+      text:`${island} ${name}: ${signed(value,1)} ${island === 'Pell' ? 'shells' : 'beads'} / season`,sign:sign(value)};
+  } else {
+    const data = metricData(key,metric);
+    pin = {source:key + '-' + metric,island:key,metric,name:metric,
+      text:`${key} ${metric}: ${data.text} (${signed(data.delta,1)} change)`,sign:sign(data.delta)};
+  }
+  pin.policies = [];
+  if (state.levers.tariff > 0) pin.policies.push('tariff');
+  if (policy.loc === 'Wren') pin.policies.push('factory');
+  pin.levers = {...state.levers};
+  const previous = state.pins.findIndex(p => p.source === pin.source);
+  if (previous >= 0) {
+    state.pins[previous] = pin;
+    $('pin-feedback').textContent = 'Updated this pin with the current values.';
+  } else if (state.pins.length === 5) {
+    $('pin-feedback').textContent = 'Five pins saved. Remove a pin in Case before adding another.';
+    tone();
+    return;
+  } else {
+    state.pins.push(pin);
+    $('pin-feedback').textContent = `Pinned ${pin.island} ${pin.name}. ${state.pins.length} of 5 pins.`;
+  }
+  tone('pin');
+  invalidateCase();
+  updatePinButtons();
+  renderCase();
+}
+function invalidateCase() {
+  if (state.mode === 'case') clearResults();
+  state.caseChecked = false;
+  $('case-result').textContent = '';
+  $('saved-state').textContent = 'Save on this device';
+}
+function renderCase() {
+  $('case-controls').classList.toggle('page-real',state.caseRealOpen);
+  for (const stance of ['for','against']) $('stance-' + stance).setAttribute('aria-pressed',state.stance === stance);
+  $('case-policy').value = state.casePolicy;
+  if ($('sentence').value !== state.sentence) $('sentence').value = state.sentence;
+  $('pins').innerHTML = state.pins.length ? state.pins.map((pin,index) => `
+    <button class="pin-chip" aria-label="Remove ${safe(pin.text)} pin" title="Remove this evidence pin"
+      data-remove="${index}"><span>${safe(pin.text)}</span><span aria-hidden="true">×</span></button>`).join('')
+    : '<div class="empty-pins">No evidence yet. Pin rows and cards in Policy.</div>';
+  $('pins').querySelectorAll('button').forEach(button => {
+    button.onclick = () => {
+      state.pins.splice(Number(button.dataset.remove),1);
+      invalidateCase();
+      tone();
+      renderCase();
+      updatePinButtons();
+      $('check-case').focus({preventScroll:true});
+      hint();
+    };
+  });
+  renderReal('case-real',state.casePolicy);
+  if (state.mode === 'case') hint();
+}
+function checkCase(speak=true) {
+  const fixes = caseProblems(state.pins,state.casePolicy,state.sentence);
+  state.caseChecked = !fixes.length;
+  $('case-result').innerHTML = fixes.length ? '<ul>' + fixes.map(f => `<li>${safe(f)}</li>`).join('') + '</ul>' : L.casePass;
+  if (speak) V.say(fixes.length ? 'caseFix' : 'casePass',{key:'caseResult',valid:() => state.mode === 'case',now:true});
+  tone();
+  return !fixes.length;
+}
+function saveCase() {
+  if (!checkCase()) return;
+  try {
+    localStorage.setItem('curio-trade-island-case',JSON.stringify({version:1,stance:state.stance,policy:state.casePolicy,
+      sentence:state.sentence,pins:state.pins}));
+    $('saved-state').textContent = 'Saved on this device';
+  } catch (_) {
+    $('saved-state').textContent = 'Storage unavailable. Keep this tab open.';
+  }
+}
+function setMode(mode) {
+  if (mode === state.mode) return;
+  const oldFocus = document.activeElement;
+  V.hush();
+  stopBoat();
+  state.mode = mode;
+  document.body.dataset.mode = mode;
+  for (const m of ['islands','policy','case']) {
+    $('m-' + m).setAttribute('aria-pressed',m === mode);
+    $(m === 'islands' ? 'island-controls' : m + '-controls').hidden = m !== mode;
+    $(m + '-view').hidden = m !== mode;
+  }
+  tone();
+  if (mode === 'islands') renderIslands();
+  if (mode === 'policy') renderPolicy();
+  if (mode === 'case') renderCase();
+  hint();
+  if (oldFocus?.closest('[hidden]')) $('m-' + mode).focus({preventScroll:true});
+  V.welcome();
+}
+for (const m of ['islands','policy','case']) $('m-' + m).onclick = () => setMode(m);
+for (let i = 0; i < 4; i++) $('season-' + i).onclick = () => setSeason(i);
+for (const guess of ['Yes','No']) $('predict-' + guess.toLowerCase()).onclick = () => {
+  state.prediction = guess;
+  tone();
+  renderIslands();
+  $('workers').focus({preventScroll:true});
+};
+$('workers').oninput = event => setWorkers(Number(event.target.value));
+$('workers').onkeydown = event => {
+  if (event.key === 'PageUp' || event.key === 'PageDown') {
+    event.preventDefault();
+    setWorkers(current().workers + (event.key === 'PageUp' ? 10 : -10));
+  }
+};
+$('worker-minus').onclick = () => setWorkers(current().workers - 1);
+$('worker-plus').onclick = () => setWorkers(current().workers + 1);
+$('send').oninput = () => changeDeal(false);
+$('get').oninput = () => changeDeal(false);
+$('send').onchange = () => changeDeal();
+$('get').onchange = () => changeDeal();
+for (const dir of ['fish','cloth']) $('send-' + dir).onclick = () => {
+  current().direction = dir;
+  changeDeal();
+};
+document.querySelectorAll('[data-step]').forEach(button => {
+  button.onclick = () => {
+    const [id,amount] = button.dataset.step.split(':');
+    const input = $(id);
+    input.value = normalize(Number(input.value) + Number(amount),Number(input.max),Number(input.step));
+    if (id === 'send' || id === 'get') changeDeal();
+    else {
+      clearResults();
+      current()[id === 'cost-pell' ? 'costPell' : 'costWren'] = Number(input.value);
+      current().feedback = '';
+      tone();
+      renderIslands();
+    }
+  };
+});
+for (const id of ['cost-pell','cost-wren']) $(id).onchange = event => {
+  clearResults();
+  current()[id === 'cost-pell' ? 'costPell' : 'costWren'] = normalize(event.target.value,4,.5);
+  current().feedback = '';
+  renderIslands();
+};
+for (const c of ['pell','wren','neither']) $('choose-' + c).onclick = () => {
+  clearResults();
+  current().choice = c;
+  current().feedback = '';
+  tone();
+  renderIslands();
+};
+$('cost-open').onclick = () => openCost(true);
+$('cost-close').onclick = () => openCost(false);
+$('cost-check').onclick = checkCost;
+$('offer').onclick = offer;
+$('tariff').onchange = event => changeLever('tariff',Number(event.target.value));
+$('exchange').onchange = event => changeLever('exchange',Number(event.target.value));
+$('factory-choice').onchange = event => changeLever('move',event.target.value === 'move');
+$('labor').onchange = event => changeLever('labor',event.target.value);
+$('dye').onchange = event => changeLever('dye',event.target.value);
+$('reset-levers').onclick = () => {
+  V.hush();
+  state.levers = defaults();
+  state.lastLever = 'tariff';
+  $('tariff').value = '0';
+  $('exchange').value = '1';
+  $('factory-choice').value = 'stay';
+  $('labor').value = 'Basic';
+  $('dye').value = 'Loose';
+  tone();
+  renderPolicy();
+};
+$('go-case').onclick = () => setMode('case');
+$('policy-real-toggle').onclick = () => {
+  V.hush();
+  state.policyCaseOpen = !state.policyCaseOpen;
+  tone();
+  renderPolicy();
+  if (state.policyCaseOpen) V.how('policyReal',{valid:() => state.policyCaseOpen});
+};
+$('back-policy').onclick = () => setMode('policy');
+$('real-toggle').onclick = () => {
+  V.hush();
+  const open = $('case-real').classList.toggle('open');
+  state.caseRealOpen = open;
+  $('case-controls').classList.toggle('page-real',open);
+  $('real-toggle').setAttribute('aria-expanded',open);
+  tone();
+  hint();
+  if (open) V.how('caseReal',{valid:() => state.caseRealOpen && innerWidth <= 1000});
+};
+for (const stance of ['for','against']) $('stance-' + stance).onclick = () => {
+  state.stance = stance;
+  invalidateCase();
+  tone();
+  renderCase();
+};
+$('case-policy').onchange = event => {
+  state.casePolicy = event.target.value;
+  invalidateCase();
+  tone();
+  renderCase();
+};
+$('sentence').oninput = event => {
+  state.sentence = event.target.value;
+  invalidateCase();
+};
+$('check-case').onclick = () => checkCase();
+$('save-case').onclick = saveCase;
+try {
+  const saved = JSON.parse(localStorage.getItem('curio-trade-island-case') || 'null');
+  if (saved?.version === 1 && typeof saved.sentence === 'string') {
+    state.sentence = saved.sentence.slice(0,2000);
+    state.stance = saved.stance === 'against' ? 'against' : 'for';
+    state.casePolicy = saved.policy === 'factory' ? 'factory' : 'tariff';
+    if (Array.isArray(saved.pins)) state.pins = saved.pins.filter(p => p && typeof p.text === 'string'
+      && ['Pell','Wren'].includes(p.island) && Array.isArray(p.policies)).slice(0,5);
+  }
+} catch (_) { /* Storage is optional on a school device. */ }
+Curio.init({clips:"voice:*",rate:.9});
+Curio.onMotion(() => { if (Curio.reduce) stopBoat(); });
+window.addEventListener('resize',hint);
+document.body.dataset.mode = 'islands';
+renderIslands();
+renderPolicy();
+renderCase();
+hint();
+window.__tool = {
+  state,setMode,setSeason,setWorkers,offer,changeLever,openCost,checkCost,checkCase,pinEvidence,
+  allLines,vlog:V.log,get vq() { return V.queue; },
+  negotiate,islandOutcome,policyModel,settle,caseProblems,
+  get policy() { return policy; }
+};
+
+})();
+</script>
+</body>
+</html>

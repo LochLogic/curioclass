@@ -1,61 +1,58 @@
 ## What it teaches
-Students trace pollution to its sources using samples from above and below a suspect in the same weather. They evaluate cleanup technologies against water goals, cost and who pays, then explain the priorities behind a plan.
+This Curiosity is a watershed field station. Students explore how concentration, flow and pollutant load change along a fictional creek, then compare the environmental and social effects of interventions.
 
 ## Key skills
-- Choose sampling stops that separate competing explanations.
-- Compare dry-day evidence with storm runoff evidence.
-- Distinguish concentration, load and dilution.
-- Support a claim with a direct sample or a bracketing pair.
-- Weigh water quality, public protection, money and social costs together.
+- Choose upstream and downstream sampling stops on one reach.
+- Compare dry conditions with storm runoff.
+- Use concentration and flow to interpret pollutant load and dilution.
+- Compare intervention effects, modeled costs and who pays.
+- Explain priorities using saved alternatives and their measured outcomes.
 
 ## Support at home
-- On a walk, notice where rainwater would travel from a road or lawn. Talk about what lies upstream and downstream without entering the water.
-- After rain, look from a safe place for changes in water color. Discuss what a single observation can and cannot establish.
-- Pick a household decision with a budget and two priorities. Explain what you would choose and who benefits.
+- From a safe path, notice where rainwater travels from roads and lawns. Discuss upstream and downstream without entering the water.
+- Look for changes in water color after rain. Discuss what one observation can establish and what needs repeated measurements.
+- Compare a household decision with two competing priorities. Explain what you would choose and who benefits.
 
 ## Five-minute start
-Open Beach closed. At S7 take a dry sample, then sample S6 dry. Compare the two entries in the logbook. Ask why a large jump narrows the search but does not explain a storm day. Keep the remaining kits for a pair across another source and a direct storm-drain sample.
+The map is the front door. Choose S6, take a dry sample, then sample S7 dry. Compare the two Logbook entries. Concentration rises by about 1,333 CFU/100 mL; load rises by 10,000,000 CFU/s while flow stays at 0.750 m³/s. Try a storm pair or another trace. Interventions is available immediately.
 
 ## The modes
-Cases opens three fictional environmental investigations. Each has its own eight-kit allowance and saved logbook. Sample records all four tests, except the beach, where only E. coli is modeled. Repeated sampling in identical weather returns the same value and spends a kit. Real samples vary, and real investigators repeat tests.
+Map collects baseline samples in either weather, with no kit limit. Identical samples repeat exactly. The Logbook contains collected samples only. Compare two shows concentration, flow and load differences, and identifies separate forks, different weather, absent flow and unmodeled beach quantities.
 
-Claim checks the source set and the student's selected evidence separately. The source rule is at least 20 percent of the case pollutant at the target in a weather where the target exceeds its line. After any submitted claim, Show the whole creek reveals all samples and source shares. Revealed values do not create sampled evidence. Restart case clears that case's evidence and solved status.
+Interventions is an open simulator. Add or remove any of nine changes and the numbers respond immediately. Test plan refreshes the same measurements. Bars show storm concentration on fixed scales with labeled reference ticks; dry and storm numbers remain visible. The $3 million mark is a cost reference; higher-cost exploration remains available.
 
-Fix-it unlocks after one case is solved. All three goals appear, with unsolved cases identified. Add or remove fixes, Test plan and save up to three alternatives. Compare plans has a Why box for each. Plans persist on this device; Why text lasts only in the open session. Reset returns to Cases. Clear my progress erases this tool's local progress.
+Save up to three alternatives. Compare plans includes costs, measured outcomes and a Why box. Saved plans persist on this device; Why text lasts only in the open session. Removing a saved plan makes room for another. Clearing collected samples requires confirmation and preserves plans.
 
-Use Fix details to read every intervention's effects and who pays, including on phones and short previews. The claim instruction states the 20 percent source rule before students submit. Whole-creek shares count only sources upstream of the case target; the plant contributes nothing at Main Street.
+Field files is an optional book of three fictional places and seven source photographs. Model ledger shows baseline contributions separately from the Logbook. Shares count only sources upstream of the displayed location; the plant contributes nothing at Main Street.
 
-Open panels include a Read button for the current instruction. Field photographs preserve the whole scene, including the cattle's feet in the creek.
+Manual, beside the maker's plate in the lower-left corner, holds instructions, units, assumptions, reference values, sources and licences. Motion, Sound and Read are on the station's lower power panel. This tool's spec and docs/CURIOSITIES.md assign no Curiosity number; its plate is unnumbered pending the owner's allocation.
 
 ## Talk questions
-- Why can a downstream concentration fall even though a source adds pollutant?
-- Which samples separate a leaking sewer from storm drains?
-- Why do the goose sightings not establish the main beach source?
-- Is closing the beach after rain a water-quality success, a public-protection success, or both?
-- Who loses cropland, pays fees or waits for benefits in your plan?
-- What would you measure next in a real lake?
+- Why can downstream concentration fall while pollutant load rises?
+- Which samples separate dry sewer input from storm runoff?
+- What does comparing two different forks tell you, and what remains uncertain?
+- How does a storm closure change access without changing water quality?
+- Who loses cropland, pays fees or waits for benefits in each alternative?
 
 ## Good to know
-Pairs work well: one student chooses samples and one challenges the inference. A case plus Fix-it is intended for 30 to 45 minutes. Three cases can span two class periods.
+HS-ESS3-4 is practiced by changing pollution-control technologies and inspecting their effects. HS-ETS1-3 is practiced by comparing saved alternatives against chosen priorities, costs and social effects. There is no claim grading, solved state or prescribed stopping point.
 
-HS-ESS3-4 is practiced by testing and changing cleanup technologies against measured environmental goals. HS-ETS1-3 is practiced by comparing saved plans against prioritized criteria, the $3 million limit and each fix's social costs.
+The creek, town, flows, loads, prices, land areas, reductions and who-pays assignments are synthetic inputs from the original Curio Class specification, not field observations or real quotations. Flow and load add at junctions. Concentration equals load divided by flow, with the displayed unit conversions. B1 and B2 nitrate reductions combine multiplicatively. Samples represent baseline conditions; the simulator does not rewrite collected samples.
 
-The water network, costs, flows, loads and percent reductions are made up for this model. Sources below support the reference criteria and types of interventions, not the fictional prices or universal performance promises. Flow and pollutant load add; concentration equals load divided by flow. The lake goal deliberately combines dry concentration with storm phosphorus load reduction. B1 and B2 reductions on the same nitrate load combine multiplicatively.
+Only E. coli is modeled at the beach. Other beach tests and flow are not modeled. A dry Pipe has zero flow, so it has no concentration to test. Real investigations repeat samples because conditions vary; this steady-state model has no noise.
 
-E. coli 410 CFU/100 mL is the EPA statistical threshold value, used here as a fictional case action line. It is not a universal legal beach-closure rule. The 126 geometric mean is context, not calculated from one sample. Nitrate-N 10 mg/L is a drinking-water limit; Outfall is effluent, not drinking water. The 0.05 mg/L phosphorus value and sediment bands are reference guides, not locally adopted regulations or precise fish predictions.
+EPA 410 CFU/100 mL is the statistical threshold in recommendation 1 of the 2012 recreational criteria, alongside a 126 geometric mean. These describe distributions over time, not a universal single-sample closure rule. Nitrate-N 10 mg/L is a drinking-water maximum; Outfall effluent is not drinking water. Phosphorus 0.050 mg/L is a historical EPA lake-inlet guideline. Sediment bands are tentative historical guides for normally prevailing conditions, not fish predictions from one storm sample.
 
-The model omits old phosphorus released by lake sediments, time for fixes to work, sunlight killing bacteria, groundwater and hourly sampling variability. A rain advisory cleans no water. The result explicitly says that swimmers are protected by a storm closure while the water remains over 410.
+The model omits old phosphorus released from lake sediment, time for interventions to work, sunlight-driven bacteria decay, groundwater and hourly variability. The synthetic rain advisory lasts 48 hours. It changes beach access and removes no pollution.
 
-## Sources
-- EPA, 2012 Recreational Water Quality Criteria: https://www.epa.gov/wqc/2012-recreational-water-quality-criteria
-- EPA, National Primary Drinking Water Regulations: https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations
-- EPA, Quality Criteria for Water (1986): https://www.epa.gov/sites/default/files/2018-10/documents/quality-criteria-water-1986.pdf
-- EIFAC (1965), Water quality criteria for European freshwater fish: finely divided solids, Technical Paper 1, FAO.
-- EPA (2003), National Management Measures to Control Nonpoint Source Pollution from Agriculture, EPA 841-B-03-004. USDA NRCS standards 382, 390 and 605.
-- EPA (2005), National Management Measures to Control Nonpoint Source Pollution from Urban Areas, EPA 841-B-05-004.
-- EPA Construction General Permit: https://www.epa.gov/npdes/stormwater-discharges-construction-activities
-- EPA (2008), Municipal Nutrient Removal Technologies Reference Document, EPA 832-R-08-006.
-- EPA BEACH Act program: https://www.epa.gov/beaches
+## Sources and licences
+- Curio Class, [original specification](spec.md): all synthetic inputs and intervention assumptions. Original content CC BY 4.0; code MIT.
+- EPA, [2012 Recreational Water Quality Criteria](https://www.epa.gov/sites/default/files/2015-10/documents/rwqc2012.pdf): E. coli values. U.S. government numerical facts, public domain in the U.S. Independently checked against WHO (2018), table B1; no WHO content imported.
+- EPA, [National Primary Drinking Water Regulations](https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations): nitrate-N maximum. U.S. public domain. Checked against [USGS Circular 1350 FAQ](https://water.usgs.gov/nawqa/nutrients/pubs/circ1350/faq.html), U.S. public domain.
+- EPA, [Quality Criteria for Water (1986)](https://www.epa.gov/sites/default/files/2018-10/documents/quality-criteria-water-1986.pdf): historical phosphorus guideline. U.S. public domain. Checked against USGS Circular 1136, U.S. public domain.
+- EIFAC Technical Paper 1 (1964; journal version 1965): historical sediment numerical bands. Checked against EPA-600/3-77-042 and British Columbia WQG-18 (2023). Numerical facts are paraphrased; no FAO or BC prose, figures or dataset is redistributed. A permissive licence for the original FAO document was not established.
+- EPA agricultural nonpoint-source guidance (2003), urban guidance (2005), Construction General Permit, Municipal Nutrient Removal Technologies Reference Document (2008), BEACH Act program; USDA NRCS practice standards 382, 390 and 605: intervention types only. U.S. government reference material, public domain in the U.S. These do not validate synthetic prices or efficiencies.
+- All 22 existing illustrations remain. Eight were made with FLUX.1-schnell (model Apache 2.0); others with OpenAI gpt-image, edited for Curio Class. Original Curio Class asset content, CC BY 4.0. No external field photographs were imported.
 
 ## Privacy and access
-One offline HTML file, no network requests, analytics or accounts. Progress stays on this device under localStorage key `up-the-watershed`. Storage failures fall back to the open session. Every interaction works with buttons or native keyboard controls. Motion and Sound use the shared Curio Class kit; Read reads the current instruction.
+One offline HTML file. No accounts, analytics or network requests. Samples and plans stay on this device under localStorage key `up-the-watershed`; storage failures use the open session. Version 1 samples and plans migrate without importing former claim or solved states. All actions use native buttons and selectors. Read speaks the current instruction, including inside dialogs and with Sound off. Speech uses browser fallback; no recordings were made.

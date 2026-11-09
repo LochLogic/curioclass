@@ -1,0 +1,1413 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Bus Stop · Riders and number stories · Curio Class</title>
+<meta name="description" content="Drive Ms. Rosa's bus, show riders with counters, split groups, and fill ten seats. Kindergarten math. Works offline.">
+<!--
+Bus Stop, Curio Class. Kindergarten, teacher led. CCSS K.OA.A.1 through K.OA.A.5.
+Original stories and arithmetic checked against Content in spec.md. Standards: Common Core State Standards Initiative.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0, code MIT.
+Bus dashboard with the shared voice and power settings. No requests or student storage.
+-->
+
+<style>
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+:root{--paper:#fbf7ec;--ink:#1d2633;--muted:#5a6270;--brand:#2b4c7e;--yellow:#f5b301;--blue:#2f6fb3;--seat:84px}
+html,body{margin:0;height:100%;overflow:hidden}
+body{color:var(--ink);font:18px 'Trebuchet MS',system-ui,sans-serif;background:#776342}
+button{font:800 18px 'Trebuchet MS',sans-serif;color:var(--ink);cursor:pointer;touch-action:manipulation;
+  border:2px solid #8d794d;border-radius:7px;background:linear-gradient(#fffdf4,#e9dfc8);min-height:60px;padding:5px 14px;
+  box-shadow:inset 0 1px #fff,0 3px #54432366}
+button:disabled{cursor:default;filter:saturate(.4);opacity:.55}
+button:focus-visible,summary:focus-visible,[tabindex]:focus-visible,a:focus-visible{outline:4px solid #a12751;outline-offset:2px}
+button[aria-pressed=true],.gold{background:linear-gradient(#ffde72,#f5b301);border-color:#805c13}
+button:active:not(:disabled){transform:translateY(2px);box-shadow:inset 0 1px #fff}
+main{height:100dvh;display:grid;grid-template-rows:minmax(0,1fr) auto auto;overflow:hidden}
+.stage{position:relative;min-height:0;display:grid;grid-template-rows:48% 52%;background:#ead9b5}
+.stage.express-layout{grid-template-rows:40% 60%}
+#world{position:relative;min-height:0;overflow:hidden;background:#b4d7e8;border-bottom:5px solid #9e8658}
+#backdrop{width:100%;height:100%;object-fit:cover;object-position:center 58%;position:absolute;inset:0}
+#bus{position:absolute;left:7%;bottom:3%;width:min(53%,550px);height:94%;object-fit:contain;object-position:center bottom;
+  filter:drop-shadow(0 8px 3px #31281944);z-index:3}
+#tiny-rosa{position:absolute;object-fit:contain;z-index:4}
+#stop-name{position:absolute;display:grid;place-items:center;text-align:center;z-index:6;line-height:1.05;
+  font:800 clamp(10px,1.4vw,21px) 'Trebuchet MS',sans-serif;color:#203d61;overflow-wrap:normal}
+#riders{position:absolute;inset:0;z-index:5;pointer-events:none}
+.rider{position:absolute;object-fit:contain;object-position:bottom;filter:drop-shadow(0 2px 1px #33251e33);transform-origin:bottom}
+.rider.walk-on{animation:board var(--walk-duration,2500ms) ease-in forwards}
+.rider.walk-off{animation:leave var(--walk-duration,2500ms) ease-out forwards}
+@keyframes board{0%{transform:translateX(0)}30%{transform:translate(-20%,-4%)}80%{opacity:1}
+  100%{transform:translateX(var(--walk-x));opacity:0}}
+@keyframes leave{0%{transform:translateX(var(--walk-x));opacity:0}15%{opacity:1}100%{transform:none}}
+.rider.door-wait{transform:translateX(var(--walk-x)) scaleX(-1)}
+#bus.depart,#tiny-rosa.depart{animation:drive 2s ease-in forwards}
+@keyframes drive{to{transform:translateX(200%)}}
+#tickets{position:absolute;left:10px;right:10px;top:6px;z-index:7;display:flex;gap:7px;flex-wrap:wrap}
+.ticket{padding:4px 10px;background:#fff8cf;border:2px dashed #b68c35;border-radius:4px;
+  font:800 16px ui-monospace,Consolas,monospace;box-shadow:0 2px #533a1322;animation:stamp .45s ease-out}
+@keyframes stamp{0%{transform:translateY(15px) rotate(-5deg) scale(1.1)}100%{transform:none}}
+#board{position:relative;padding:10px 18px;background:linear-gradient(100deg,#f9f2df,#e8d8b8);box-shadow:inset 0 6px 10px #614b1720;
+  display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:0}
+#counter-row{display:flex;align-items:center;justify-content:center;gap:22px;min-height:0}
+#cup{width:110px;min-width:80px;height:110px;position:relative;border:0;background:none;padding:0;box-shadow:none}
+#cup svg{width:100%;height:100%;overflow:visible}#cup.full svg{filter:saturate(.3)}
+#cup-label{position:absolute;bottom:8px;left:0;right:0;font-size:20px}
+#floor{position:relative;display:grid;grid-template-columns:repeat(5,var(--seat));gap:7px 10px;padding:10px 35px 10px 15px;
+  border:4px solid #af852f;border-radius:16px 30px 30px 16px;background:repeating-linear-gradient(90deg,#ad9464 0 18px,#bba578 19px 20px);
+  box-shadow:inset 0 3px 3px #fff9,0 4px #69491b55}
+#floor:before{content:'\25c9';position:absolute;right:5px;top:40%;color:#44381f;font-size:23px}
+.seat{width:var(--seat);height:var(--seat);min-height:0;border:3px solid #8793a2;border-radius:12px;
+  background:linear-gradient(#edf0f5,#c1c9d5);padding:5px;position:relative;box-shadow:inset 0 3px #fff9,0 3px #5c6572;display:grid;place-items:center}
+.seat:disabled{opacity:1;filter:none}
+.seat:before{content:'';position:absolute;left:10%;right:10%;bottom:5%;height:14%;border-radius:5px;background:#9ba8b9}
+.counter{position:relative;display:grid;place-items:center;width:85%;height:85%;border:3px solid var(--ink);border-radius:50%;
+  background:radial-gradient(circle at 32% 23%,#ffe682,#f5b301 65%,#c58700);box-shadow:0 3px #0003,inset 0 2px #fff8;
+  font:900 30px ui-monospace,Consolas,monospace;color:var(--ink)}
+.counter.new{background:radial-gradient(circle at 30% 20%,#6fa7df,#2f6fb3 60%,#1d487c);border:4px solid #fff;outline:2px solid #1d2633;color:#fff}
+.counter.gone{background:transparent;border:3px dashed #344e70;box-shadow:none;color:#344e70}
+.counter.empty{visibility:hidden}.counter.counting{outline:4px solid #a12751}
+#actions{display:flex;flex-direction:column;gap:12px}.action{min-height:60px;font-size:20px}
+#cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;min-height:95px;max-width:1100px;width:100%;align-self:center}
+.card-wrap{display:grid;grid-template-columns:minmax(0,1fr) 60px;border:3px solid #aebbc9;border-radius:10px;background:#fff;overflow:hidden}
+.sentence{border:0;border-radius:0;background:#fff;box-shadow:none;font-size:34px;padding:6px;display:flex;align-items:baseline;justify-content:center;gap:7px}
+.term{display:inline-flex;align-items:center;flex-direction:column;gap:4px;vertical-align:top}
+.dots{display:grid;grid-template-columns:repeat(var(--dots,5),5px);gap:2px;min-height:12px}
+.dots i{width:5px;height:5px;border-radius:50%;background:var(--brand)}
+.speaker{width:60px;min-height:60px;border:0;border-left:2px solid #d7dee8;border-radius:0;background:#edf2f8;box-shadow:none;display:grid;place-items:center}
+.speaker svg{width:24px;height:24px}.sentence.bad{background:#d8dde4;opacity:.55;animation:wobble .4s}
+@keyframes wobble{25%{transform:rotate(-3deg)}75%{transform:rotate(3deg)}}
+.counter.ghost-leave{animation:ghostLeave 1.5s ease-in-out}.counter.ghost-arrive{animation:ghostArrive 1.5s ease-in-out}
+@keyframes ghostLeave{40%,70%{transform:translateY(-30px);opacity:.2}}
+@keyframes ghostArrive{0%{transform:translateY(-30px);opacity:.2}40%,70%{transform:none;opacity:1}}
+.choices{position:absolute;inset:0;z-index:9;display:flex;align-items:flex-end;justify-content:center;gap:30px;padding:20px}
+.road-sign{width:24%;min-height:135px;background:linear-gradient(#fff6d9,#edcf8c);border:5px solid #8e5d2c;border-radius:12px;
+  box-shadow:0 6px #5b3c26,0 10px 10px #0003;transform:rotate(-2deg);font-size:26px;display:flex;align-items:center;
+  justify-content:center;flex-direction:column;gap:4px}
+.road-sign:nth-child(2){transform:rotate(2deg)}.road-sign img{width:65px;height:65px;object-fit:contain}
+.stage.choose{grid-template-rows:100% 0}.stage.choose #board{visibility:hidden;padding:0}
+.stage.choose #bus{left:18%;width:54%;bottom:27%;height:60%}
+#split-stage{position:absolute;inset:0;background:linear-gradient(#eee4c8,#fdf8eb);display:flex;flex-direction:column;padding:12px 18px;gap:10px}
+#split-top{display:flex;gap:10px;align-items:center;justify-content:center}
+#split-top output{font:900 40px ui-monospace,Consolas,monospace;min-width:60px;text-align:center}
+.place img{width:28px;height:28px;vertical-align:middle;object-fit:contain}
+#place-cycle{display:none}
+#split-body{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:20px;flex:1;min-height:0}
+#play-space{display:flex;flex-direction:column;justify-content:center;gap:10px;min-height:0}
+#areas{display:grid;grid-template-columns:1fr 1fr;gap:14px;flex:1;max-height:320px;min-height:160px}
+.area{border:4px solid #ac9165;border-radius:14px;position:relative;overflow:hidden;background:#c4d9a1;box-shadow:0 4px #886d4244}
+.area>img{width:100%;height:100%;position:absolute;inset:0;object-fit:cover}
+.area-label{position:absolute;left:5px;top:5px;padding:4px 10px;background:#fffcdfeb;border-radius:5px;font-weight:800;font-size:18px}
+.group{position:absolute;inset:28% 6px 4%;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));grid-auto-rows:70px;align-content:center;justify-items:center}
+.split-counter{padding:0;border:0;box-shadow:none;background:transparent;display:grid;place-items:center;width:70px;height:70px;min-height:0;touch-action:none}
+.split-counter .counter{width:60px;height:60px;font-size:0}
+#split-equation{display:flex;align-items:baseline;justify-content:center;gap:15px;min-height:63px;font:900 42px ui-monospace,Consolas,monospace}
+#keep{align-self:center;min-width:180px}
+#ways{display:grid;grid-template-columns:1fr;gap:7px;align-content:center;min-height:0;position:relative;padding-right:18px}
+#split-stage.many #ways{grid-template-columns:1fr 1fr}
+.way{border:2px dashed #ad9c7e;border-radius:6px;min-height:49px;display:grid;place-items:center;position:relative;
+  font:800 17px ui-monospace,Consolas,monospace;z-index:1}
+.way.kept{border:2px solid #a2884c;background:#ffdf76}
+.way-equation{display:flex;align-items:baseline;gap:4px}.way-term{display:flex;flex-direction:column;align-items:center;gap:2px}
+.way .dots{grid-template-columns:repeat(var(--dots,5),5px);gap:1px;min-height:11px}
+.way .dots i{width:5px;height:5px}.way.linked{padding-right:16px}
+.way.linked:after{content:'\2194';position:absolute;right:2px;top:4px;width:14px;text-align:center;color:var(--brand)}
+.way.flash,.way.just-kept{animation:stamp .45s ease-out}.way.all-found{animation:allWays .65s ease-out}
+@keyframes allWays{50%{background:#fff0aa;box-shadow:0 0 0 3px #2b4c7e}}
+.way-links{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible;z-index:0}
+#express-board{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:12px;padding:10px 24px;
+  background:linear-gradient(100deg,#f9f2df,#e8d8b8)}
+#five{display:flex;justify-content:center;gap:12px}#five .seat{--seat:84px}
+#number-tiles{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;max-width:900px;width:100%;align-self:center}
+.number-tile{min-height:84px;background:#fff;font:900 46px ui-monospace,Consolas,monospace;display:flex;align-items:center;
+  justify-content:center;flex-direction:column;gap:4px}
+.number-tile.chosen{background:#ffe090}.number-tile.wrong{animation:wobble .4s;background:#dce2eb}
+#show-me{align-self:center;min-width:180px}#express-result{font:900 30px ui-monospace,Consolas,monospace;text-align:center;min-height:36px}
+.panel{display:flex;gap:14px;align-items:center;padding:8px 16px;border-top:4px solid #705b35;background:linear-gradient(#d3c29e,#bb9e6d);
+  box-shadow:inset 0 2px #fff7;min-height:95px}
+.driver{display:flex;align-items:center;gap:10px;flex:1;min-width:0}
+#rosa{width:65px;height:65px;object-fit:contain;filter:drop-shadow(0 3px 2px #33291c33)}
+#hint{font-size:18px;line-height:1.25;margin:0;max-width:530px;min-width:0}
+.panel>button{font-size:16px;min-width:100px}
+#trip-map{width:230px;height:85px;flex:none}#trip-map svg{width:100%;height:100%}
+.console{background:linear-gradient(#4d534e,#292f2e);padding:7px 14px 6px;display:flex;gap:14px;align-items:center;
+  border-top:4px solid #172421;box-shadow:inset 0 1px #fff5;flex-wrap:wrap}
+.selector,.power{display:flex;gap:7px;align-items:center}
+.console button{min-width:85px;min-height:60px;border-radius:4px;border-color:#171e1c;background:linear-gradient(#e5e7de,#aeb6a8);font-size:16px}
+.console button[aria-pressed=true]{background:linear-gradient(#ffe099,#e8b02b)}
+.power{margin-left:auto}.console-foot{display:flex;gap:12px;align-items:center;color:#ececdb}
+#manual{min-width:90px}.maker-plate{font:12px ui-monospace,Consolas,monospace;padding:9px 12px;border:1px solid #a9ada0;
+  border-radius:2px;background:linear-gradient(#6a7366,#404a40);box-shadow:inset 0 1px #fff5;text-shadow:0 -1px #182017}
+dialog{position:fixed;left:12px;bottom:12px;top:auto;right:auto;margin:0;width:min(650px,calc(100vw - 24px));max-height:85dvh;
+  border:4px solid #86704a;border-radius:8px;padding:20px 24px;background:#fbf7ec;color:var(--ink);font-size:18px;line-height:1.5}
+dialog::backdrop{background:#18231e99}dialog h2{margin:0}dialog h3{margin-bottom:4px}dialog a{color:#234b81}
+#manual-close{float:right}#manual-body{clear:both}dialog summary{cursor:pointer;font-weight:800;padding:10px 0;min-height:50px}
+.calm *{animation:none!important;transition:none!important}
+@media(max-width:1200px){:root{--seat:68px}#floor{gap:6px}#board{gap:6px;padding:8px 12px}
+  .sentence{font-size:30px}.console{gap:8px}.console button{min-width:75px;padding:5px 9px}
+  .maker-plate{font-size:11px;max-width:190px}.panel{gap:9px}#trip-map{width:190px}#hint{font-size:16px}
+  #split-body{grid-template-columns:minmax(0,1fr) 250px;gap:12px}.split-counter{width:60px;height:60px}
+  .group{grid-auto-rows:60px}.way{font-size:15px}.way-equation{gap:2px}}
+@media(max-height:700px) and (min-width:701px){:root{--seat:60px}#floor{padding:7px 25px 7px 9px}
+  #cup{width:85px;height:85px}#cards{min-height:68px}.sentence{font-size:26px}.panel{min-height:75px}
+  #rosa{width:48px;height:48px}#trip-map{height:65px}#express-board{gap:5px}#five .seat{--seat:60px}
+  .number-tile{min-height:60px;font-size:34px}#express-result{min-height:30px;font-size:25px}
+  #split-stage{gap:6px;padding:8px 12px}#areas{max-height:210px;min-height:140px}
+  #split-equation{font-size:32px;min-height:51px}.way{min-height:42px}}
+@media(max-width:900px){#trip-map{display:none}.panel>button{min-width:80px;font-size:14px;padding:3px 8px}
+  .console{gap:7px;padding:6px 8px}.console button{min-width:72px;font-size:14px;padding:4px 8px}
+  .maker-plate{max-width:none;font-size:10px;padding:6px}.console-foot{gap:6px}
+  .power{margin-left:auto}#manual{min-width:75px}
+  #split-top .place{display:none}#split-top #place-cycle:not([hidden]){display:block}
+  #split-body{grid-template-columns:minmax(0,1fr) 210px;gap:12px}
+  .way{font-size:13px}.way.linked{padding-right:14px}.way-equation{gap:1px}
+  #areas{gap:8px}.area{border-width:2px}.area-label{font-size:14px;padding:3px 5px}
+  .group{inset:28% 2px 4%}.sentence{font-size:26px;gap:4px}}
+@media(min-width:701px) and (max-width:1000px){.console-foot{width:100%;justify-content:space-between}
+  .console-foot #manual{position:absolute;right:8px;bottom:8px;min-width:75px}
+  .maker-plate{font-size:11px;max-width:calc(100% - 90px)}.console{position:relative;padding-bottom:35px}
+  #manual{min-height:26px;height:26px}#areas{grid-template-columns:1fr 1fr}}
+@media(max-width:700px) and (min-width:561px){:root{--seat:44px}
+  button,.action,.console button{min-height:44px;font-size:14px}.console button{min-width:65px}
+  .console{padding:4px 7px;gap:5px}.selector,.power{gap:4px}.console-foot{width:100%;justify-content:space-between}
+  #manual{min-height:26px;height:26px}.maker-plate{font-size:10px;padding:4px 7px}
+  .panel{min-height:64px;padding:4px 8px;gap:7px;border-top-width:3px}#rosa{width:36px;height:40px}
+  #hint{font-size:13px;line-height:1.17}.driver{gap:5px}.panel>button{min-width:70px;font-size:12px}
+  #new-road{display:none}.stage{grid-template-rows:43% 57%}#board{padding:4px 8px;gap:5px}
+  #counter-row{gap:12px}#floor{padding:5px 23px 5px 7px;gap:4px;border-width:3px}#floor:before{font-size:17px;right:3px}
+  .seat{padding:2px;border-width:2px;border-radius:7px}.counter{font-size:23px;border-width:2px}
+  .counter.new{border-width:3px}#cup{width:65px;height:65px;min-width:60px}#cup-label{font-size:15px;bottom:4px}
+  #actions{gap:6px}.action{font-size:14px;padding:3px 7px}#cards{min-height:53px;gap:7px}
+  .card-wrap{grid-template-columns:minmax(0,1fr) 44px;border-width:2px}.speaker{width:44px;min-height:44px}.speaker svg{width:18px;height:18px}
+  .sentence{font-size:21px;gap:3px;padding:3px}.dots{grid-template-columns:repeat(var(--dots,5),3px);gap:1px;min-height:7px}.dots i{width:3px;height:3px}
+  #tickets .ticket:not(:last-child){display:none}.ticket{font-size:11px;padding:2px 6px}.choices{gap:12px;padding:12px}
+  .road-sign{font-size:20px;min-height:85px;width:28%;border-width:3px}.road-sign img{width:40px;height:40px}
+  #split-stage{padding:5px 8px;gap:5px}#split-top{gap:5px}#split-top output{font-size:27px;min-width:40px}
+  #split-body{grid-template-columns:minmax(0,1fr) 200px;gap:8px}#areas{min-height:113px;max-height:145px}
+  .group{inset:23% 0 3%;grid-auto-rows:44px}.split-counter{width:44px;height:44px}.split-counter .counter{width:44px;height:44px}
+  #split-equation{font-size:25px;min-height:40px;gap:8px}#play-space{gap:4px}#keep{min-width:130px}
+  #ways{gap:4px;padding-right:0;grid-template-columns:1fr 1fr!important}.way{font-size:11px;min-height:28px}
+  .way .dots{min-height:10px}.way-equation{gap:1px}.way.linked{padding-right:11px}.way.linked:after{font-size:10px;width:10px;right:0;top:2px}
+  .way-links{display:none}#express-board{padding:4px 12px;gap:4px}#five{gap:8px}#five .seat{--seat:44px}
+  .number-tile{min-height:44px;font-size:27px}#express-result{font-size:21px;min-height:25px}#show-me{min-width:140px}}
+@media(max-width:560px){:root{--seat:60px}main{grid-template-rows:minmax(0,1fr) auto auto}
+  .panel{padding:5px 7px;gap:5px;min-height:75px;flex-wrap:wrap}.driver{flex-basis:100%}#rosa{width:40px;height:40px}
+  #hint{font-size:14px}.panel>button{min-height:60px;flex:1}#tell-first,#new-road{display:none}
+  .console{padding:5px;gap:5px}.selector{display:grid;grid-template-columns:repeat(4,1fr);width:100%;gap:4px}
+  .console button{min-height:60px;min-width:0;font-size:13px;padding:3px}.power{order:1;width:100%;display:grid;grid-template-columns:repeat(3,1fr)}
+  .console-foot{width:100%;justify-content:space-between}.console-foot #manual{min-width:75px;min-height:44px;height:44px}
+  .maker-plate{max-width:260px;font-size:10px}.stage{grid-template-rows:29% 71%}.stage.express-layout{grid-template-rows:35% 65%}
+  #board{padding:6px;gap:6px}#counter-row{flex-wrap:wrap;gap:7px}#floor{order:0;padding:7px 8px;gap:5px;border-width:3px}
+  #floor:before{display:none}#cup{order:1;width:65px;height:60px;min-width:65px}#cup-label{font-size:14px;bottom:3px}
+  #actions{order:2;flex-direction:row;gap:7px}.action{font-size:16px;padding:3px 10px}#cards{gap:4px;min-height:90px}
+  .card-wrap{grid-template-columns:1fr;grid-template-rows:60px 60px;border-width:2px}.sentence{font-size:21px;gap:2px;padding:3px}
+  .speaker{width:100%;height:60px;min-height:60px;border-left:0;border-top:2px solid #d7dee8}
+  .dots{grid-template-columns:repeat(var(--dots,5),3px);gap:1px;min-height:7px}.dots i{width:3px;height:3px}
+  .ticket{font-size:11px;padding:2px 5px}#tickets .ticket:not(:last-child){display:none}.road-sign{width:32%;font-size:17px;min-height:110px;padding:3px;border-width:3px}
+  .road-sign img{width:50px;height:50px}.choices{gap:6px;padding:8px}.stage.choose #bus{left:4%;width:90%;bottom:28%;height:65%}
+  #split-stage{padding:5px;gap:5px}#split-top{gap:5px;flex-wrap:wrap}#split-top button{font-size:14px;padding:3px 10px}
+  #split-top output{font-size:30px;min-width:50px}#split-body{display:flex;flex-direction:column;gap:7px}
+  #play-space{flex:1;gap:6px}#areas{min-height:160px;max-height:220px;gap:6px}.group{inset:28% 0 1%;grid-auto-rows:60px}
+  .split-counter{width:60px;height:60px}.split-counter .counter{width:60px;height:60px}
+  #split-equation{font-size:28px;min-height:43px;gap:8px}#keep{min-width:160px}
+  #ways{grid-template-columns:repeat(3,1fr)!important;gap:4px;padding:0;flex:none}.way{font-size:11px;min-height:35px}
+  .way.linked{padding-right:12px}.way.linked:after{font-size:11px;width:11px;right:0;top:2px}.way .dots{min-height:10px}
+  .way-links{display:none}#express-board{padding:5px 8px;gap:7px}#five{gap:5px}#five .seat{--seat:60px}
+  #number-tiles{grid-template-columns:repeat(3,1fr);gap:7px}.number-tile{min-height:60px;font-size:32px}
+  #express-result{min-height:31px;font-size:25px}#show-me{min-width:180px}}
+
+
+@media(min-width:701px) and (max-width:900px){
+  #split-body{display:flex;flex-direction:column}#play-space{flex:1}
+  #ways{display:grid;grid-template-columns:repeat(4,1fr)!important;flex:none;padding-right:0}
+  .way-links{display:none}.way{min-height:45px}#areas{max-height:330px}}
+@media(max-width:560px){
+  #areas{display:flex;flex-direction:column;min-height:180px;max-height:none}
+  .area{min-height:35px}.area-label{font-size:12px;padding:2px 5px;top:2px;left:2px}
+  .group{inset:24px 5px 2px;align-content:center}
+  .power .icon-btn,.power button{min-height:44px;height:44px}
+  .console-foot #manual{min-height:44px}#ways .way{min-height:32px}}
+
+.stage{grid-row:1;grid-template-rows:40% 60%}.panel{grid-row:2}.console{grid-row:3}
+#board{gap:6px;padding:6px 12px}
+.console{position:relative;padding:6px 12px;gap:6px 14px}
+.console-foot{width:100%;order:3;justify-content:flex-start}
+.console-foot #manual{position:static;min-width:85px;min-height:44px;height:44px}
+.maker-plate{max-width:none;font-size:11px}
+.stage.express-layout{grid-template-rows:34% 66%}
+@media(min-width:701px) and (max-width:1000px){.console{padding-bottom:6px}.maker-plate{max-width:none}}
+@media(min-width:561px) and (max-width:700px){
+  .console{padding:4px 7px;gap:4px}.console-foot #manual{min-height:44px;height:44px}
+  .stage{grid-template-rows:35% 65%}#board{padding:4px 7px;gap:4px}.way{min-height:28px}}
+@media(max-width:560px){
+  .console{padding:5px;gap:4px}.console-foot{order:2}.power{order:1}
+  .stage{grid-template-rows:25% 75%}.maker-plate{font-size:10px;max-width:255px}
+  #board{padding:5px;gap:5px}}
+@media(min-width:701px) and (max-width:900px) and (max-height:650px){
+  #split-top{justify-content:flex-start;gap:6px}
+  #split-top button{font-size:14px;padding:3px 8px}
+  #split-top output{font-size:30px;min-width:45px}
+  #split-body{display:grid;grid-template-columns:minmax(0,1fr) 210px;gap:12px}
+  #play-space{display:flex;min-height:0}
+  #areas{display:flex;flex-direction:column;max-height:none;min-height:0;gap:4px}
+  .area{min-height:25px}
+  .area-label{font-size:12px;top:1px;left:2px;padding:1px 5px}
+  .group{inset:20px 2px 2px;grid-auto-rows:60px}
+  #split-equation{position:absolute;top:12px;left:355px;right:140px;font-size:25px;gap:5px;min-height:40px}
+  #keep{position:absolute;top:8px;right:12px;min-width:110px;font-size:15px}
+  #ways{display:grid;grid-template-columns:1fr 1fr!important;min-height:0;padding:0}
+  .way{min-height:32px;font-size:11px}.way-links{display:none}
+}
+.console-foot #manual{min-height:60px;height:60px}
+@media(min-width:561px) and (max-width:700px){.console-foot #manual{min-height:44px;height:44px}}
+@media(min-width:701px) and (max-width:1100px) and (max-height:650px){
+  body[data-mode=split] .panel{height:50px;min-height:50px;padding:4px 10px}
+  body[data-mode=split] #rosa{width:35px;height:35px}
+  body[data-mode=split] #hint{font-size:14px}
+}
+.stage{grid-template-rows:38% 62%}
+@media(min-width:561px) and (max-width:700px){.stage{grid-template-rows:35% 65%}}
+@media(max-width:560px){.stage{grid-template-rows:25% 75%}}
+.way-equation{white-space:nowrap;flex-shrink:0}
+@media(min-width:901px) and (max-width:1200px){
+  .way{font-size:12px}.way.linked{padding-right:12px}.way-equation{gap:1px}
+  .way.linked:after{width:10px;font-size:10px;right:1px}
+}
+@media(min-width:701px) and (max-width:900px){
+  .way{font-size:11px}.way.linked{padding-right:10px}.way-equation{gap:1px}
+  .way.linked:after{width:8px;font-size:10px;right:0}
+}
+
+.console-foot #new-road{display:block;min-height:60px;height:60px;min-width:85px}
+@media(max-width:560px){.console-foot .maker-plate{max-width:150px}}
+@media(min-width:561px) and (max-width:700px){
+  .console-foot #new-road{min-height:44px;height:44px}
+  .area-label{font-size:12px;line-height:1;top:2px;padding:2px 4px}
+  .group{inset:20px 0 1px;align-content:start}
+  .stage.express-layout{grid-template-rows:28% 72%}
+}
+@media(min-width:701px) and (max-width:900px) and (max-height:650px){
+  .console{padding:6px 12px;gap:6px 10px}
+  .console button{min-width:60px;font-size:12px;padding:3px 4px}
+  .selector,.power{gap:5px}
+  .power{margin-right:166px}
+  .console-foot{height:24px;min-height:24px}
+  .console-foot #manual{position:absolute;top:6px;right:12px;min-width:75px;width:75px}
+  .console-foot #new-road{position:absolute;top:6px;right:94px;min-width:75px;width:75px}
+  .maker-plate{padding:3px 8px;font-size:10px}
+  .panel{height:60px;min-height:60px;padding:4px 10px}
+  #rosa{width:35px;height:35px}#hint{font-size:14px}
+  .stage{grid-template-rows:30% 70%}
+  .stage.express-layout{grid-template-rows:24% 76%}
+}
+
+#manual-close{position:absolute;top:20px;right:24px;float:none}
+#manual-title{width:calc(100% - 90px);min-height:60px;font-size:24px;display:flex;align-items:center}
+dialog summary{min-height:60px;padding:13px 0}
+dialog a{display:inline-flex;align-items:center;min-height:60px;min-width:60px;max-width:100%}
+@media(max-width:560px){.stage.choose #bus{left:2%;width:72%;height:60%}}
+#world::before{
+  content:'';position:absolute;left:0;right:0;bottom:0;height:25%;z-index:1;pointer-events:none;
+  border-top:3px solid #7f7d73;background:linear-gradient(172deg,#a2a29c,#777d80);
+  box-shadow:inset 0 4px 8px #3c414229;
+}
+#world::after{
+  content:'';position:absolute;left:0;width:88%;bottom:25%;height:12%;z-index:1;pointer-events:none;
+  background:repeating-linear-gradient(90deg,#e7d1b0 0 69px,#bea884 70px,#eed8b8 72px);
+  border-bottom:5px solid #b39c7b;box-shadow:0 3px 3px #433c3033;
+}
+.stage.choose #world::before{height:35%}
+.stage.choose #world::after{display:none}
+</style>
+</head>
+<body>
+<main>
+  <nav class="console" aria-label="Bus controls">
+    <div class="selector" role="group" aria-label="Mode">
+      <button id="m-drive" aria-pressed="true">▣ Drive</button>
+      <button id="m-split" aria-pressed="false">●● Split</button>
+      <button id="m-express" aria-pressed="false">ϟ Express</button>
+      <button id="m-fill" aria-pressed="false">▦ Fill up</button>
+    </div>
+    <div class="power" role="group" aria-label="Power panel">
+      <button id="read">◖ Read</button><button id="motion" aria-pressed="true">✦ Motion</button>
+      <button id="sound" aria-pressed="true">♫ Sound</button>
+    </div>
+    <div class="console-foot"><button id="manual" aria-haspopup="dialog">Manual</button>
+      <button id="new-road">⌘ New road</button>
+      <div class="maker-plate">Curio Class Curiosities · Bus Stop</div></div>
+  </nav>
+  <div class="panel" aria-label="Bus dashboard">
+    <div class="driver"><img id="rosa" alt="Ms. Rosa, your bus driver"><p class="hint" id="hint" aria-live="polite"></p></div>
+    <button id="tell-first" aria-pressed="false"><svg width="20" height="20" viewBox="0 0 24 24"
+      aria-hidden="true" style="vertical-align:middle"><path d="M3 3H21V16H10L5 21V16H3Z"
+      fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg> Tell first</button>
+    <button id="go" class="gold" hidden>▶ Go</button>
+    <button id="drive-on" class="gold" hidden>▣ Drive on</button>
+    <button id="again" class="gold" hidden>↻ Again</button>
+    <div id="trip-map" aria-label="Your trip map"></div>
+  </div>
+
+
+  <div class="stage choose" id="stage">
+    <div id="world">
+      <img id="backdrop" alt="">
+      <div id="tickets" aria-label="Your number story tickets"></div>
+      <div id="stop-name" tabindex="-1">Choose a road</div>
+      <img id="bus" alt="Yellow school bus"><img id="tiny-rosa" alt="">
+      <div id="riders"></div>
+      <div class="choices" id="roads"></div>
+    </div>
+    <div id="board">
+      <div id="counter-row">
+        <button id="cup" aria-label="Counter cup: add one rider" draggable="false">
+          <svg viewBox="0 0 120 120" aria-hidden="true"><defs>
+            <linearGradient id="cupPaint"><stop stop-color="#ffdd69"/><stop offset=".5" stop-color="#f5b301"/><stop offset="1" stop-color="#c38705"/></linearGradient>
+          </defs><g fill="#f5b301" stroke="#1d2633" stroke-width="3">
+            <circle cx="36" cy="25" r="18"/><circle cx="68" cy="18" r="18"/><circle cx="89" cy="34" r="18"/>
+          </g><path d="M15 38Q60 25 105 38L94 105Q60 119 26 105Z" fill="url(#cupPaint)" stroke="#815b19" stroke-width="4"/>
+          <ellipse cx="60" cy="39" rx="45" ry="10" fill="#ffe69a" stroke="#815b19" stroke-width="4"/>
+          <path d="M31 55L38 94" stroke="#fff4b5" stroke-width="6" stroke-linecap="round"/>
+          </svg><span id="cup-label">＋ Cup</span>
+        </button>
+        <div id="floor" aria-label="Two rows of five bus seats"></div>
+        <div id="actions"><button class="action gold" id="done">✓ Done</button><button class="action" id="see-again">◉ See again</button></div>
+      </div>
+      <div id="cards" hidden></div>
+      <div id="express-board" hidden>
+        <div id="five" aria-label="Five seats"></div>
+        <div id="express-result" tabindex="-1" aria-live="polite"></div>
+        <div id="number-tiles"></div><button class="action" id="show-me">◉ Show me</button>
+      </div>
+    </div>
+    <div id="split-stage" hidden>
+      <div id="split-top">
+        <button id="fewer">− Fewer</button><output id="split-number">7</output><button id="more">＋ More</button>
+        <button class="place" id="place-park"><img alt="" data-art="tree"> Park</button>
+        <button class="place" id="place-library"><img alt="" data-art="books"> Library</button>
+        <button class="place" id="place-farm"><img alt="" data-art="barn"> Farm</button>
+        <button class="place" id="place-cycle">↻ Place</button>
+      </div>
+      <div id="split-body"><div id="play-space">
+        <div id="areas"><div class="area" id="area-left"><img alt=""><span class="area-label"></span><div class="group"></div></div>
+          <div class="area" id="area-right"><img alt=""><span class="area-label"></span><div class="group"></div></div></div>
+        <div id="split-equation" aria-live="polite" aria-atomic="true"></div><button class="action gold" id="keep">⌖ Keep it</button>
+      </div><div id="ways" aria-label="Ways you have kept"></div></div>
+    </div>
+  </div>
+</main>
+<dialog id="manual-drawer" aria-labelledby="manual-title">
+  <button id="manual-close">Close</button><h2 id="manual-title">Bus Stop · Manual</h2>
+  <div id="manual-body">
+    <details><summary>Using the bus</summary>
+      <p>Choose a road. The story is in the dashboard. Tap the cup for new riders; tap a seat for riders getting off.
+      Done opens number sentences to explore. A sentence acts out or counts its story. Drive on lets you move along whenever you like.</p>
+      <p>Split moves counters between two places. Keep it writes a grouping into the list. More and Fewer change the group.
+      Express has small rider stories: say a number, tap it, or use Show me. Fill up changes the starting seats from one to nine.</p>
+      <p>Read repeats the current story and action. One quiet hint can speak on first use; after that narration waits for Read.
+      Motion removes movement while keeping the same timing. Sound controls tones. Keyboard: Tab, Enter or Space; Express also uses 0 to 5.</p>
+    </details>
+    <details><summary>Reading the counters</summary>
+      <p>Yellow discs were aboard. Blue discs with a white ring and plus mark just got on. Dashed rings mark seats left behind.
+      The chart has two rows of five seats; its driver mark is at the right, like the bus's front.
+      Split equations and dot pictures show the same group in two places.</p>
+    </details>
+    <details><summary>Things people have found</summary>
+      <p>Moving a counter between places leaves the whole group unchanged. Swapping both groups gives a turn-around pair.
+      The empty seats and occupied seats together make ten. A number sentence can be true and describe a different bus story.</p>
+    </details>
+    <details><summary>Honesty and sources</summary>
+      <p>This is an invented ten-seat story bus, not a claim about school-bus capacity. Routes and arithmetic facts are original
+      Curio Class material, CC BY 4.0. All 25 Express facts and all six routes are bundled; no external dataset is sampled.</p>
+      <p>Arithmetic is computed by addition, subtraction and finite enumeration, checked independently in Python and JavaScript.
+      Illustrations generated with OpenAI gpt-image, edited for Curio Class; original project illustrations, CC BY 4.0. Code: MIT.</p>
+      <p>Curriculum reference only: <a href="https://www.thecorestandards.org/Math/Content/K/OA/">NGA Center and CCSSO, Kindergarten Operations and Algebraic Thinking</a>.
+      Its <a href="https://www.thecorestandards.org/public-license/">CCSS Public License</a> is not an open data licence;
+      no standards text or examples are copied into this instrument. Original arithmetic is checked rather than licensed from the standards.</p>
+      <p>No requests, recordings or student work storage. Only the Motion preference is remembered on this device.
+      Tickets are a rolling record of stories explored. There is no grade or required route. The numbered family plate has not been assigned in this spec.</p>
+    </details>
+  </div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const D = "json:content";
+  const ART = {
+    "bus-closed": "art:bus-closed",
+    "bus-open": "art:bus-open",
+    "school": "art:school",
+    "maple": "art:maple",
+    "pond": "art:pond",
+    "bridge": "art:bridge",
+    "hill": "art:hill",
+    "park": "art:park",
+    "icecream": "art:icecream",
+    "bakery": "art:bakery",
+    "fire": "art:fire",
+    "street": "art:street",
+    "lane": "art:lane",
+    "library": "art:library",
+    "fruit": "art:fruit",
+    "mailbox": "art:mailbox",
+    "orchard": "art:orchard",
+    "barnroad": "art:barnroad",
+    "pumpkinpatch": "art:pumpkinpatch",
+    "farm": "art:farm",
+    "corn": "art:corn",
+    "swings": "art:swings",
+    "slide": "art:slide",
+    "rug": "art:rug",
+    "puppets": "art:puppets",
+    "goats": "art:goats",
+    "hens": "art:hens",
+    "tree": "art:tree",
+    "books": "art:books",
+    "barn": "art:barn",
+    "duck": "art:duck",
+    "hill-icon": "art:hill-icon",
+    "buildings": "art:buildings",
+    "cottage": "art:cottage",
+    "barndoor": "art:barndoor",
+    "pumpkin": "art:pumpkin",
+    "kid-0-stand": "art:kid-0-stand",
+    "kid-0-wave": "art:kid-0-wave",
+    "kid-1-stand": "art:kid-1-stand",
+    "kid-1-wave": "art:kid-1-wave",
+    "kid-2-stand": "art:kid-2-stand",
+    "kid-2-wave": "art:kid-2-wave",
+    "kid-3-stand": "art:kid-3-stand",
+    "kid-3-wave": "art:kid-3-wave",
+    "kid-4-stand": "art:kid-4-stand",
+    "kid-4-wave": "art:kid-4-wave",
+    "kid-5-stand": "art:kid-5-stand",
+    "kid-5-wave": "art:kid-5-wave",
+    "kid-6-stand": "art:kid-6-stand",
+    "kid-6-wave": "art:kid-6-wave",
+    "kid-7-stand": "art:kid-7-stand",
+    "kid-7-wave": "art:kid-7-wave",
+    "kid-8-stand": "art:kid-8-stand",
+    "kid-8-wave": "art:kid-8-wave",
+    "kid-9-stand": "art:kid-9-stand",
+    "kid-9-wave": "art:kid-9-wave",
+    "rosa-talk": "art:rosa-talk",
+    "rosa-think": "art:rosa-think",
+    "rosa-cheer": "art:rosa-cheer"
+};
+  const words = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven'];
+  const num = n => words[n];
+  const cap = t => t[0].toUpperCase() + t.slice(1);
+  const result = (a,b,op) => op === '+' ? a+b : a-b;
+  const spoken = c => `${cap(num(c[0]))} ${c[2] === '+' ? 'plus' : 'minus'} ${num(c[1])} equals ${num(c[3])}.`;
+  const equation = c => `${c[0]} ${c[2] === '+' ? '+' : '−'} ${c[1]} = ${c[3]}`;
+  const shuffle = xs => xs.map(x => [Math.random(),x]).sort((a,b) => a[0]-b[0]).map(x => x[1]);
+  const orders = {};
+  const state = {
+    mode:'drive', stopKey:'choose', tellFirst:false, generation:0,
+    drive:{road:null, index:0, branch:null, phase:'choose', count:0, changed:[], tickets:[], stop:null, kidCursor:0},
+    split:{n:7, place:'park', groups:Array(7).fill(0), lists:{}, duplicates:new Set(), links:new Set()},
+    express:{facts:[], index:0, locked:false, shown:false, tickets:[], done:false, serial:0},
+    fill:{bag:[], starts:[],index:0,tickets:[]}, firstHint:false,
+  };
+  const L = {
+    choose:'Tap a road sign: Park, Library or Farm.',
+    on:'Tap the cup for each new rider. Then tap Done.',
+    off:'Tap a counter for each rider who left. Then tap Done.',
+    tell:'Tap a number sentence to explore its story, or Drive on.',
+    fillTell:'Tap a number sentence to explore its story, or Again.',
+    hold:'Tell the story first. Then tap Go.',
+    split:'Tap a rider counter to send it to the other side. Then tap Keep it.',
+    driveOn:'Find more ways, or tap Drive on.',
+    splitAll:'Tap More or Fewer for a new number, or a place.',
+    driveAll:'Tap Drive on.',
+    ten:'Tap the cup to fill every empty seat. Then tap Done.',
+    empty:'There is still an empty seat. Tap the cup to fill it.',
+    full:'Every seat is full!',
+    fullAction:'Every seat is full! Tap Done to explore the number sentences.',
+    school:'Back at school! Everybody off. Tap each counter. Then tap Done.',
+    depart:'The bus is driving to the next stop.',
+    express:'Listen, say the answer out loud, then tap the number or Show me.',
+    expressWatch:'Watch the riders. Your next express stop is coming.',
+    duplicate:'This grouping is already in the list.',
+    count:'Let’s count.',
+  };
+  function expandedLines() {
+    const out=new Set(Object.values(L));
+    const add=t=>out.add(t);
+    for(let n=0;n<=10;n++) {
+      add(cap(num(n))+'.');add(L.count+' '+cap(num(n))+'.');add(cap(num(n))+(n===1?' rider.':' riders.')+' Try another card.');
+      add(cap(num(n))+(n===1?' kid got':' kids got')+' on. Try another card.');
+      add(`${cap(num(n))} ${n===1?'rider':'riders'}.`);
+      add(`${cap(num(n))} ${n===1?'seat is':'seats are'} full. ${L.ten}`);
+      add(`Fill up the bus! ${num(n)} ${n===1?'seat is':'seats are'} full. ${L.ten}`);
+      if(n>=2)for(let a=0;a<=n;a++) {
+        const b=n-a;
+        add(`${cap(num(n))} is ${num(a)} and ${num(b)}.`);
+        add(`${cap(num(a))} and ${num(b)}, ${num(b)} and ${num(a)}. Switch sides, still ${num(n)}!`);
+        add(`The list holds every way to make ${num(n)}. ${cap(num(n+1))} ways!`);
+      }
+    }
+    add('Ten kids got off. Try another card.');
+    for(const [a,b,op] of D.facts) {
+      const t=expressStory([a,b,op]);
+      add(t);add(t+' '+L.express);add(t+' '+L.expressWatch);
+      for(const prefix of ['','Yes! ','Look. '])add(prefix+spoken([a,b,op,result(a,b,op)]));
+    }
+    const defs=[];
+    for(const r of Object.values(D.routes)) {
+      defs.push(...r.stops,...r.forks);
+      add(`Two roads! Tap ${r.forks[0][0]} or ${r.forks[1][0]}.`);
+      add(`${r.name}. ${L.split}`);
+    }
+    const stops=defs.map(def=>makeStop(def));
+    for(let a=1;a<=9;a++)stops.push(makeStop(['Ice Cream Corner','icecream',a,10-a,'+'],{ten:true}));
+    stops.push(makeStop(['School','school',10,10,'-']));
+    for(const st of stops) {
+      add(stopStory(st));
+      add(stopStory(st)+' '+L[st.ten?'ten':st.a===10?'school':st.op==='+'?'on':'off']);
+      let line=`Yes! ${spoken(st.cards[0])} ${cap(num(st.c))} riders now.`;
+      if(st.ten)line=`Yes! ${cap(num(st.a))} plus ${num(st.k)} equals ten. The bus is full!`;
+      if(st.a===10)line='Yes! Ten minus ten equals zero. The bus is empty. Great driving!';
+      add(line+' '+L.depart);
+      for(const c of st.cards) {
+        add(spoken(c));
+        add(`${spoken(c)} That means kids got ${c[2]==='+'?'on':'off'}. But kids got ${st.op==='+'?'on':'off'}! Try another card.`);
+      }
+      for(let x=0;x<=10;x++) {
+        const few=x<st.k;
+        let text=`${cap(num(st.k))} ${st.k===1?'kid got':'kids got'} ${st.op==='+'?'on':'off'}, and you ${st.op==='+'?'added':'removed'} ${num(x)}. `;
+        text+=st.op==='+'?(few?'Tap the cup for each kid.':'Tap a blue counter to take one back.'):
+          (few?'Tap a counter for each kid who got off.':'Tap a dashed ring to bring one back.');
+        add(text+' Tap See again to watch.');
+      }
+    }
+    add(L.empty+' Tap See again to watch.');
+    return [...out];
+  }
+  L.expanded=expandedLines();
+  let explicitRead=null;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode + ':' + state.stopKey, hint:false, read:() => explicitRead||$('hint').textContent,
+    welcome:() => null,
+speaks:'.road-sign,.sentence,.number-tile,#show-me,#done,#keep',
+  });
+  function hint(text) { $('hint').textContent = L[text] || text; }
+  function say(text, opts={}) {
+    // The Curiosity is quiet after its first hint. Read owns all later narration.
+    return opts.wait ? Curio.wait(1600) : false;
+  }
+  function firstHint(text) {
+    if(state.firstHint) return;
+    state.firstHint=true;
+    V.say(text,{hint:false,now:true});
+  }
+  function how() { return false; }
+  function face(pose) { $('rosa').src=ART['rosa-'+pose]; }
+  function dots(n) {
+    return `<span class="dots" style="--dots:${Math.min(5,Math.max(1,n))}" aria-hidden="true">${'<i></i>'.repeat(n)}</span>`;
+  }
+  function term(n) { return `<span class="term">${n}${dots(n)}</span>`; }
+  function chime() { Curio.tone(420,.08,.05); }
+  function route() { return D.routes[state.drive.road]; }
+  function setMode(mode) {
+    if(mode===state.mode) return;
+    V.hush();
+    state.generation++;
+    if(state.mode==='fill') {state.fill.bus=state.drive;state.drive=state.fill.savedDrive;}
+    if(mode==='fill') {state.fill.savedDrive=state.drive;state.drive=state.fill.bus||{...state.drive};}
+    state.mode=mode;
+    for (const m of ['drive','split','express','fill']) $('m-'+m).setAttribute('aria-pressed',m===mode);
+    if (mode === 'express' && !state.express.facts.length) newExpress();
+    render();
+    if(mode==='fill') { if(!state.fill.starts.length) newFill(); else render(); }
+    if(mode==='split') firstHint(L.split);
+    if (mode==='drive') {
+      if (state.drive.phase==='depart') depart();
+      else {describeDrive(false);if(state.drive.walkWaiting)startFirstWalk();}
+    } else if (mode==='split') return;
+    else if(mode==='fill') return;
+    else if (!state.express.done && !state.express.locked) expressQuestion();
+    else if (state.express.locked && !state.express.done) finishExpress();
+  }
+  function currentSplit() { return state.mode==='drive' ? state.drive.split : state.split; }
+  function splitList(s) { return s.lists[s.n] ||= []; }
+  function render() {
+    document.body.dataset.mode=state.mode;
+    const drive=state.mode==='drive'||state.mode==='fill', split=state.mode==='split' || (drive && state.drive.phase==='split');
+    $('split-stage').hidden=!split;
+    $('world').hidden=state.mode==='split';
+    $('board').hidden=split;
+    for(const id of ['bus','tiny-rosa','riders','stop-name']) $(id).hidden=split;
+    $('tell-first').hidden=state.mode!=='drive';
+    $('tell-first').setAttribute('aria-pressed',state.tellFirst);
+    $('go').hidden=!(drive && state.drive.phase==='hold');
+    $('drive-on').hidden=!(state.mode==='drive' && !['choose','fork','depart'].includes(state.drive.phase));
+    $('again').hidden=!['express','fill'].includes(state.mode);
+    $('new-road').hidden=state.mode!=='drive';
+    $('trip-map').hidden=state.mode!=='drive';
+    $('express-board').hidden=state.mode!=='express';
+    $('counter-row').hidden=!drive;
+    $('stage').classList.toggle('choose',drive && ['choose','fork'].includes(state.drive.phase));
+    $('stage').classList.toggle('express-layout',state.mode==='express');
+    $('stage').style.gridTemplateRows=state.mode==='split' ? '100% 0' : '';
+    $('roads').hidden=!(drive && ['choose','fork'].includes(state.drive.phase));
+    face('talk');
+    if (split) renderSplit();
+    else if (drive) renderDrive();
+    else renderExpress();
+    if(state.mode==='drive') renderMap();
+  }
+  function showWorld(scene, name, open=true) {
+    $('backdrop').src=ART[scene];
+    $('tickets').hidden=false;$('stop-name').hidden=false;
+    $('stop-name').textContent=name;
+    $('stop-name').removeAttribute('aria-label');
+    $('bus').src=ART[open?'bus-open':'bus-closed'];
+    $('tiny-rosa').src=ART['rosa-talk'];
+    $('bus').classList.remove('depart');$('tiny-rosa').classList.remove('depart');
+    $('world').dataset.scene=scene;
+    requestAnimationFrame(()=>{positionDriver();positionSign();});
+  }
+  const signFaces={school:[.93,.50,.06,.095],maple:[.93,.50,.06,.095],pond:[.93,.50,.06,.095],
+    bridge:[.93,.50,.06,.095],hill:[.93,.50,.06,.095],icecream:[.93,.50,.06,.095],bakery:[.93,.50,.06,.095],
+    fire:[.93,.50,.06,.095],street:[.93,.50,.06,.095],lane:[.93,.50,.06,.095],fruit:[0.944,0.216,0.0675,0.12],
+    mailbox:[0.95,0.206,0.05,0.116],orchard:[0.945,0.262,0.0575,0.116],barnroad:[0.944,0.292,0.05875,0.12],pumpkinpatch:[0.942,0.254,0.05875,0.096],
+    corn:[0.949,0.246,0.04375,0.096]};
+  function positionSign() {
+    const img=$('backdrop'),world=$('world'),label=$('stop-name');
+    if(!img.naturalWidth) return;
+    const w=world.clientWidth,h=world.clientHeight,scale=Math.max(w/img.naturalWidth,h/img.naturalHeight);
+    const iw=img.naturalWidth*scale,ih=img.naturalHeight*scale;
+    const [x,y,sw,sh]=signFaces[world.dataset.scene]||signFaces.school;
+    const width=Math.max(45,iw*sw),height=Math.max(40,ih*sh);
+    const left=Math.max(4,Math.min(w-width-4,w-iw+iw*x-width/2));
+    const centre=Math.max(height/2+4,Math.min(h-height/2-4,h*.45));
+    const py=ih>h+1?Math.max(0,Math.min(1,(ih*y-centre)/(ih-h))):.58;
+    img.style.objectPosition=`right ${py*100}%`;
+    label.style.background=iw*sw<45?'#fff6db':'';
+    label.style.border=iw*sw<45?'2px solid #2b4c7e':'';
+    label.style.borderRadius='6px';
+    Object.assign(label.style,{left:left+'px',top:((h-ih)*py+ih*y-height/2)+'px',
+      width:width+'px',height:height+'px'});
+    label.style.fontSize=Math.max(10,Math.min(21,iw*sw/6.5))+'px';
+  }
+  function positionDriver() {
+    const bus=$('bus'),world=$('world'),portrait=$('tiny-rosa');
+    if(!bus.naturalWidth || world.hidden) return;
+    const b=bus.getBoundingClientRect(),w=world.getBoundingClientRect();
+    const ratio=bus.naturalWidth/bus.naturalHeight;
+    const width=Math.min(b.width,b.height*ratio),height=width/ratio;
+    Object.assign(portrait.style,{
+      left:(b.left-w.left+(b.width-width)/2+width*.73)+'px',
+      top:(b.top-w.top+b.height-height+height*.25)+'px',
+      width:width*.09+'px',height:height*.23+'px',bottom:'auto',
+    });
+  }
+  function renderTickets(tickets) { $('tickets').innerHTML=tickets.slice(-5).map(t=>`<span class="ticket">${t}</span>`).join(''); }
+  function renderDrive() {
+    const d=state.drive;
+    $('cards').hidden=d.phase!=='tell';
+    renderTickets(d.tickets);
+    $('riders').replaceChildren();
+    if (d.phase==='choose' || d.phase==='fork') {
+      showWorld(d.phase==='choose'?'school':route().stops[1][1],d.phase==='choose'?'Choose a road':'Which road next?',false);
+      const options=d.phase==='choose' ? Object.entries(D.routes).map(([k,r])=>[k,r.name,r.icon]) :
+        route().forks.map((f,i)=>[i,f[0],f[5]]);
+      $('roads').innerHTML=options.map(([key,name,icon])=>
+        `<button class="road-sign" data-road="${key}" aria-label="${name}"><img src="${ART[icon]}" alt="">${name}</button>`).join('');
+      hint(d.phase==='choose'?'choose':`Two roads! Tap ${route().forks[0][0]} or ${route().forks[1][0]}.`);
+      return;
+    }
+    if (!d.stop) return;
+    showWorld(d.stop.scene,d.stop.name,d.phase!=='depart');
+    renderSeats();
+    renderRiders(d.stop.ten?d.stop.k+(state.mode==='fill'?1:2):d.stop.k,d.stop.op,d.phase==='hold'||d.walkWaiting||d.stop.ten);
+    if(d.phase==='tell') {d.feedback=false;renderCards();}
+    if(d.phase==='depart') hint('depart');
+    else if(d.phase==='hold') hint('hold');
+    else if(d.phase==='tell') hint(state.mode==='fill'?'fillTell':'tell');
+    else hint(stopHint(d.stop));
+  }
+  function renderSeats() {
+    const d=state.drive,s=d.stop;
+    if(!s) return;
+    const added=d.changed.length,editable=canEdit(),cupFocused=document.activeElement===$('cup');
+    [...$('floor').children].forEach((el,i)=>{
+      let cls='empty',mark='';
+      if(s.op==='+') {
+        if(i<s.a) cls='solid';
+        else if(i<s.a+added){cls='new';mark='+';}
+      } else if(i<s.a) {
+        cls=d.changed.includes(i)?'gone':'solid';
+        mark=cls==='gone'?'↗':'';
+      }
+      el.firstChild.className='counter '+cls;
+      el.firstChild.textContent=mark;
+      el.setAttribute('aria-label',cls==='empty'?'Empty seat':cls==='new'?'New rider, tap to return':cls==='gone'?'Rider left, tap to bring back':'Rider aboard');
+      const active=editable && (s.op==='+' ? cls==='new' : i<s.a);
+      el.disabled=!active;
+      el.setAttribute('aria-disabled',!active);
+    });
+    $('cup').hidden=s.op==='-';
+    $('cup').disabled=!editable||s.a+added===10;
+    $('done').disabled=!editable;
+    if(editable&&s.a+added===10&&cupFocused)$('done').focus({preventScroll:true});
+    $('see-again').disabled=d.phase==='depart'||d.phase==='hold';
+    const full=s.a+added===10;
+    $('cup').classList.toggle('full',full);
+    $('cup-label').textContent=full?'Full':'＋ Cup';
+    $('cup').setAttribute('aria-label',full?'Full':editable?'Counter cup: add one rider':'Counter cup unavailable');
+    if(s.ten&&editable)hint(full?L.fullAction:s.story+' '+L.ten);
+  }
+  function renderRiders(k,op,hold=false,waving=false) {
+    const d=state.drive,e=state.express,isExpress=state.mode==='express';
+    const duration=isExpress?1500:2500;
+    $('riders').innerHTML=Array.from({length:Math.min(10,k)},(_,i)=>{
+      const ten=!isExpress&&d.stop?.ten;
+      const id=isExpress?(e.riderIds?.[i]??i):(d.riderIds?.[i]??(d.kidCursor+i)%10);
+      const crowded=k>5,row=crowded?Math.floor(i/5):0,col=crowded?i%5:i;
+      const width=crowded?4.8:7;
+      const left=60+col*(crowded?5.3:7.1)+(row?2.5:0);
+      const hidden=isExpress&&e.shown&&op==='+'||ten&&i<d.changed.length;
+      const wavePose=waving||ten&&d.changed.length===d.stop.k&&i>=d.changed.length;
+      const atDoor=isExpress&&!e.locked&&op==='-';
+      const walk=hold||wavePose||isExpress&&e.shown?'':op==='+'?'walk-on':'walk-off';
+      return `<img data-rider="${i}" data-person="${id}" class="rider ${walk} ${atDoor?'door-wait':''}" `+
+        `style="left:${left}%;width:${width}%;--walk-x:${((isExpress&&op==='-'?36+i*7:39)-left)/width*100}%;bottom:${row?33:4}%;`+
+        `height:${crowded?25:36}%;--walk-duration:${duration}ms;opacity:${hidden?0:1}" `+
+        `src="${ART['kid-'+id+'-'+(wavePose?'wave':'stand')]}" alt="">`;
+    }).join('');
+    if(!hold&&!waving) [...$('riders').children].forEach(el=>{
+      if(Curio.reduce)el.style.opacity=op==='+'?'1':'0';
+      setTimeout(()=>{if(el.isConnected)el.style.opacity=op==='+'?'0':'1';},duration);
+    });
+  }
+
+  function chooseRoad(key) {
+    const d=state.drive;
+    V.hush();state.generation++;
+    if(d.phase==='choose') {
+      Object.assign(d,{road:key,index:0,branch:null,phase:'show',count:D.routes[key].start,changed:[],tickets:[],kidCursor:0,
+        aboard:Array.from({length:D.routes[key].start},(_,i)=>i),riderIds:[]});
+      beginStop(0,[`The ${key} road! Off we go.`,
+        `${cap(num(d.count))} riders are on the bus. I can't see the back seats, so the seat chart shows me.`]);
+    } else if(d.phase==='fork') {
+      d.branch=Number(key);beginStop(2);
+    }
+  }
+  function makeStop(def,extra={}) {
+    const [name,scene,a,k,op]=def;
+    const c=result(a,k,op);
+    let cards=[[a,k,op,c],[a,k,op==='+'?'-':'+',result(a,k,op==='+'?'-':'+')],[a,k,op,c+1]];
+    if(extra.ten) cards=[[a,k,'+',10],[a,k-1,'+',10],[a,k+1,'+',10]];
+    if(a===10 && op==='-') cards=[[10,10,'-',0],[10,9,'-',0],[10,0,'-',0]];
+    return {name,scene,a,k,op,c,cards,...extra};
+  }
+  function beginStop(index,intro=[]) {
+    const d=state.drive,r=route();
+    d.index=index;d.changed=[];d.bad=[];d.counting=-1;d.fullSaid=false;d.feedback=false;
+    if(index===3) {
+      const n=d.count;
+      d.phase='split';
+      d.split={n,place:r.place,groups:Array(n).fill(0),lists:{},duplicates:new Set(),links:new Set()};
+      state.stopKey=r.place+'-split';render();
+      $('keep').focus({preventScroll:true});
+      const story=`The ${r.name}! ${cap(num(n))} riders get off to play. Some go to the ${D.areas[r.areas[0]]}, and the rest go to the ${D.areas[r.areas[1]]}.`;
+      hint(story+' '+L.split);
+      return;
+    }
+    let def;
+    if(index<2) def=r.stops[index];
+    else if(index===2) def=r.forks[d.branch];
+    else if(index===4) def=[...r.ten,d.count,10-d.count,'+'];
+    else def=['School','school',10,10,'-'];
+    d.stop=makeStop(def,{ten:index===4});
+    const available=Array.from({length:10},(_,i)=>i).filter(i=>!d.aboard.includes(i));
+    d.riderIds=d.stop.op==='+'?available.slice(0,d.stop.k):d.aboard.slice(0,d.stop.k);
+    if(d.stop.ten) d.riderIds.push(...d.aboard.slice(0,2));
+    state.stopKey=d.road+'-'+index+'-'+d.branch;
+    const orderKey=state.stopKey;
+    d.order=orders[orderKey] ||= shuffle([0,1,2]);
+    d.stop.story=stopStory(d.stop);
+    d.walkWaiting=!!intro.length&&!state.firstHint;
+    d.phase=state.tellFirst?'hold':'show';
+    render();
+    describeDrive(true);
+    if(d.walkWaiting) startFirstWalk();
+    (d.phase==='hold'?$('go'):d.stop.op==='+'?$('cup'):$('seat-0')).focus({preventScroll:true});
+  }
+  function stopStory(s) {
+    if(s.ten)return `${s.name}! ${cap(num(s.a))} ${s.a===1?'seat started':'seats started'} full.`;
+    if(s.a===10)return 'Back at school! Everybody off.';
+    return `${s.name}! ${cap(num(s.k))} ${s.k===1?'kid gets':'kids get'} ${s.op==='+'?'on':'off'} the bus.`;
+  }
+  function startFirstWalk() {
+    const d=state.drive,g=state.generation,start=performance.now();
+    const poll=()=>{
+      if(g!==state.generation)return;
+      if(V.playing||$('sound').getAttribute('aria-pressed')==='false'||performance.now()-start>1500) {
+        d.walkWaiting=false;
+        if(d.phase==='show')renderRiders(d.stop.k,d.stop.op);
+        d.walkAt=performance.now();
+      } else requestAnimationFrame(poll);
+    };
+    requestAnimationFrame(poll);
+  }
+  function describeDrive() {
+    const d=state.drive,s=d.stop;
+    if(!s||!['show','hold','tell'].includes(d.phase))return;
+    const text=d.phase==='hold'?L.hold:d.phase==='tell'?L[state.mode==='fill'?'fillTell':'tell']:
+      stopHint(s);
+    hint(text);firstHint(text);
+  }
+  function stopHint(s) {
+    if(s.ten&&s.a+state.drive.changed.length===10)return L.fullAction;
+    return s.story+' '+L[s.ten?'ten':s.a===10?'school':s.op==='+'?'on':'off'];
+  }
+
+  function canEdit() { return ['drive','fill'].includes(state.mode) && state.drive.phase==='show'; }
+  function addCounter() {
+    if(!canEdit()) return;
+    const d=state.drive,s=d.stop;
+    if(s.op!=='+' || d.changed.length+s.a>=10) {
+      if(s.ten && !d.fullSaid){d.fullSaid=true;say('full');}
+      return;
+    }
+    d.changed.push(s.a+d.changed.length);renderSeats();chime();
+    if(s.ten) updateTenRiders();
+  }
+  function tapSeat(i) {
+    if(!canEdit()) return;
+    const d=state.drive,s=d.stop;
+    if(s.op==='+') {
+      if(i>=s.a && i<s.a+d.changed.length) d.changed.pop();
+      else return;
+    } else {
+      if(i>=s.a) return;
+      if(d.changed.includes(i)) d.changed=d.changed.filter(n=>n!==i);
+      else d.changed.push(i);
+    }
+    renderSeats();chime();
+    if(s.ten) updateTenRiders();
+  }
+  function updateTenRiders() {
+    const d=state.drive,x=d.changed.length;
+    [...$('riders').children].forEach((el,i)=>{
+      if(i<x) {
+        if(!el.classList.contains('walk-on')) {
+          el.classList.add('walk-on');
+          const walk=String(Number(el.dataset.walk||0)+1);
+          el.dataset.walk=walk;
+          setTimeout(()=>{
+            if(el.isConnected&&el.dataset.walk===walk&&el.classList.contains('walk-on'))el.style.opacity='0';
+          },2500);
+        }
+      } else {
+        el.classList.remove('walk-on');el.style.opacity='1';el.dataset.walk=String(Number(el.dataset.walk||0)+1);
+        el.src=ART['kid-'+d.riderIds[i]+'-'+(x===d.stop.k?'wave':'stand')];
+      }
+    });
+  }
+  function done() {
+    if(!canEdit()) return;
+    const d=state.drive,s=d.stop,x=d.changed.length;
+    if(d.phase==='hold') {hint('hold');how('hold','#go',()=>d.phase==='hold');return;}
+    if(x!==s.k) {
+      face('think');
+      const few=x<s.k;
+      let text;
+      if(s.ten) text=L.empty+' Tap See again to watch.';
+      else {
+        text=`${cap(num(s.k))} ${s.k===1?'kid got':'kids got'} ${s.op==='+'?'on':'off'}, and you ${s.op==='+'?'added':'removed'} ${num(x)}. `;
+        text+=s.op==='+'?(few?'Tap the cup for each kid.':'Tap a blue counter to take one back.'):
+          (few?'Tap a counter for each kid who got off.':'Tap a dashed ring to bring one back.');
+        text+=' Tap See again to watch.';
+      }
+      hint(text);say(text,{now:true});
+      $('floor').animate && !Curio.reduce && $('floor').animate([{transform:'translateX(-4px)'},{transform:'translateX(4px)'},{transform:'none'}],{duration:250});
+      return;
+    }
+    d.phase='tell';
+    renderSeats();
+    $('cards').hidden=false;renderCards();hint(state.mode==='fill'?'fillTell':'tell');
+    $('cards').querySelector('.sentence').focus({preventScroll:true});
+    say([L.tell,...d.order.map(i=>spoken(s.cards[i]))],{now:true,valid:()=>d.phase==='tell'});
+  }
+  function renderCards() {
+    const d=state.drive;
+    $('cards').innerHTML=d.order.map((kind,j)=>{
+      const c=d.stop.cards[kind];
+      return `<div class="card-wrap"><button class="sentence ${d.bad.includes(kind)?'bad':''}" id="card-${j}" data-card="${kind}" `+
+        `aria-label="${spoken(c)}" ${d.bad.includes(kind)?'disabled':''}>${term(c[0])}<span>${c[2]==='+'?'+':'−'}</span>`+
+        `${term(c[1])}<span>=</span>${term(c[3])}</button><button class="speaker" data-speak="${kind}" aria-label="Read ${spoken(c)}">`+
+        '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9H7L12 5V19L7 15H3Z" fill="currentColor"/>'+
+        '<path d="M16 8Q21 12 16 16M19 5Q27 12 19 19" fill="none" stroke="currentColor" stroke-width="2"/></svg></button></div>';
+    }).join('');
+  }
+  async function pickCard(kind) {
+    const d=state.drive;
+    if(!['drive','fill'].includes(state.mode) || d.phase!=='tell' || d.feedback || d.bad.includes(kind)) return;
+    const c=d.stop.cards[kind],scope=state.stopKey,g=state.generation;
+    if(kind===0) {
+      d.phase='depart';d.count=d.stop.c;d.tickets.push(equation(c));d.kidCursor=(d.kidCursor+d.stop.k)%10;
+      const moving=d.riderIds.slice(0,d.stop.k);
+      d.aboard=d.stop.op==='+'?[...d.aboard,...moving]:d.aboard.filter(i=>!moving.includes(i));
+      renderTickets(d.tickets);$('cards').hidden=true;face('cheer');Curio.yes();
+      renderSeats();
+      $('stop-name').setAttribute('aria-label',L.depart);
+      $('stop-name').focus({preventScroll:true});
+      await depart();return;
+    }
+    d.bad.push(kind);
+    d.feedback=true;
+    const button=$('cards').querySelector(`[data-card="${kind}"]`);
+    button.classList.add('bad');button.disabled=true;
+    if(document.activeElement===button) $('see-again').focus({preventScroll:true});
+    $('cards').querySelectorAll('.sentence').forEach(el=>el.disabled=true);
+    face('think');
+    if(kind===1 && !d.stop.ten && d.stop.a!==10) {
+      const ghostStart=c[2]==='+'?d.stop.a:Math.max(0,d.stop.a-c[1]);
+      const ghostEnd=c[2]==='+'?Math.min(10,d.stop.a+c[1]):d.stop.a;
+      for(let i=0;i<10;i++) {
+        const counter=$('floor').children[i].firstChild;
+        counter.className='counter '+(i<d.stop.a?'solid':'empty');
+        counter.textContent='';
+        if(i>=ghostStart&&i<ghostEnd) {
+          counter.className='counter '+(c[2]==='+'?'new ghost-arrive':'solid ghost-leave');
+          counter.textContent=c[2]==='+'?'+':'↗';
+        }
+      }
+      say(`${spoken(c)} That means kids got ${c[2]==='+'?'on':'off'}. But kids got ${d.stop.op==='+'?'on':'off'}! Try another card.`,{now:true});
+      await Curio.wait(1500);
+      if(g===state.generation && scope===state.stopKey && d.phase==='tell') renderSeats();
+    } else {
+      say('count',{now:true});
+      const seats=[...$('floor').children].filter(el=>
+        d.stop.ten?el.firstChild.classList.contains('new'):d.stop.a===10?el.firstChild.classList.contains('gone'):
+        el.firstChild.classList.contains('solid')||el.firstChild.classList.contains('new'));
+      for(let i=0;i<seats.length;i++) {
+        if(g!==state.generation || scope!==state.stopKey || d.phase!=='tell') break;
+        const el=seats[i].firstChild;
+        el.classList.add('counting');el.textContent=i+1;
+        hint(L.count+' '+cap(num(i+1))+'.');
+        say(cap(num(i+1))+'.');
+        await Curio.wait(600);
+      }
+      if(g===state.generation && scope===state.stopKey && d.phase==='tell') {
+        renderSeats();
+        const line=d.stop.ten?`${cap(num(d.stop.k))} ${d.stop.k===1?'kid got':'kids got'} on. Try another card.`:
+          d.stop.a===10?'Ten kids got off. Try another card.':`${cap(num(d.stop.c))} ${d.stop.c===1?'rider':'riders'}. Try another card.`;
+        hint(line);say(line);
+      }
+    }
+    if(g===state.generation && scope===state.stopKey && d.phase==='tell') {
+      d.feedback=false;
+      $('cards').querySelectorAll('.sentence').forEach(el=>el.disabled=d.bad.includes(Number(el.dataset.card)));
+    }
+  }
+  async function depart() {
+    const d=state.drive,g=state.generation;
+    const transition=g+':'+state.stopKey;
+    if(d.transition===transition) return;
+    d.transition=transition;
+    const s=d.stop;
+    let line=`Yes! ${spoken(s.cards[0])} ${cap(num(s.c))} riders now.`;
+    if(s.ten) line=`Yes! ${cap(num(s.a))} plus ${num(s.k)} equals ten. The bus is full!`;
+    if(s.a===10) line='Yes! Ten minus ten equals zero. The bus is empty. Great driving!';
+    $('bus').src=ART['bus-closed'];$('bus').classList.add('depart');$('tiny-rosa').classList.add('depart');
+    d.resultLine=line;hint(line+' '+L.depart);
+    await Promise.all([say(line,{now:true,wait:true}),Curio.wait(2000)]);
+    if(g!==state.generation || !['drive','fill'].includes(state.mode)) return;
+    if(state.mode==='fill') {
+      state.fill.tickets=d.tickets.slice(-5);state.fill.index++;
+      if(state.fill.index===5)newFill(true);else beginFillBus();
+      return;
+    }
+    if(d.index===1) {
+      d.phase='fork';d.forkTickets=[...d.tickets];d.forkCount=d.count;d.forkAboard=[...d.aboard];
+      state.stopKey=d.road+'-fork';render();say($('hint').textContent);
+      $('roads').querySelector('button').focus({preventScroll:true});
+    } else if(d.index===5) {
+      d.phase='fork';d.count=d.forkCount;d.tickets=[...d.forkTickets];d.aboard=[...d.forkAboard];d.branch=null;d.index=2;
+      state.stopKey=d.road+'-fork';render();$('roads').querySelector('button').focus({preventScroll:true});
+    } else beginStop(d.index+1);
+  }
+  function renderMap() {
+    const d=state.drive;
+    if(!d.road){$('trip-map').innerHTML='';return;}
+    const r=route(),branch=d.branch===1?1:0;
+    const pts=[[25,119],[68,86],[165,branch?136:63],[215,95],[245,64],[270,28]];
+    const names=[r.stops[0][0],r.stops[1][0],r.forks[branch][0],r.name,r.ten[0],'School'];
+    const pictures=[r.stops[0][1],r.stops[1][1],r.forks[branch][1],r.place,r.ten[1],'school'];
+    const common='M25 119L68 86L118 116M215 95L245 64L270 28';
+    const upper='M118 116L165 63L215 95',lower='M118 116L165 136L215 95';
+    let svg='<svg viewBox="0 0 290 165" role="img" aria-label="Your road: the bus marks this stop.">';
+    svg+='<defs><linearGradient id="mapPaper" x2="0" y2="1"><stop stop-color="#fffbed"/>'+
+      '<stop offset="1" stop-color="#e9dfc3"/></linearGradient></defs>';
+    svg+='<rect x="2" y="2" width="286" height="161" rx="16" fill="url(#mapPaper)" stroke="#c7b180" stroke-width="2"/>';
+    svg+='<path d="M4 111Q50 57 105 98T205 81T286 59V160H4Z" fill="#cddbb3" opacity=".6"/>';
+    const upperOpacity=d.branch===null ? .35 : d.branch===1 ? .25 : 1;
+    const lowerOpacity=d.branch===null ? .35 : d.branch===1 ? 1 : .25;
+    for(const [path,opacity] of [[common,1],[upper,upperOpacity],[lower,lowerOpacity]]) {
+      svg+=`<path d="${path}" fill="none" stroke="#b1a182" stroke-width="13" opacity="${opacity}" stroke-linecap="round"/>`;
+      svg+=`<path d="${path}" fill="none" stroke="#2b4c7e" stroke-width="8" opacity="${opacity}" stroke-linecap="round"/>`;
+    }
+    const other=1-branch,oy=other?136:63;
+    svg+=`<g opacity=".45"><title>${r.forks[other][0]}</title><circle cx="165" cy="${oy}" r="18" fill="#fff7df" stroke="#2b4c7e"/>`+
+      `<image href="${ART[r.forks[other][1]]}" x="151" y="${oy-14}" width="28" height="28"/></g>`;
+    if(d.branch===null) {
+      svg+='<g><title>Choose a branch at the junction</title><circle cx="118" cy="116" r="11" '+
+        'fill="#fff7df" stroke="#2b4c7e" stroke-width="2"/><text x="118" y="121" text-anchor="middle" '+
+        'font-size="16" font-weight="800" fill="#2b4c7e">?</text></g>';
+    }
+    pts.forEach(([x,y],i)=>{
+      const visited=i<d.index,current=d.index===i,unknown=false;
+      svg+=`<defs><clipPath id="map-stop-${i}"><circle cx="${x}" cy="${y}" r="16"/></clipPath></defs>`;
+      svg+=`<g><title>${unknown?'Choose a road at the fork':names[i]}${visited?', visited':''}${current?', current stop':''}</title>`;
+      svg+=`<circle cx="${x}" cy="${y}" r="19" fill="${visited?'#f5b301':'#fff7df'}" stroke="#2b4c7e" stroke-width="2"/>`;
+      if(unknown) svg+=`<text x="${x}" y="${y+7}" text-anchor="middle" font-size="21" font-weight="800" fill="#2b4c7e">?</text>`;
+      else svg+=`<image href="${ART[pictures[i]]}" x="${x-17}" y="${y-17}" width="34" height="34" `+
+        `preserveAspectRatio="xMidYMid slice" clip-path="url(#map-stop-${i})"/>`;
+      if(visited) svg+=`<circle cx="${x+13}" cy="${y+12}" r="8" fill="#f5b301" stroke="#2b4c7e"/>`+
+        `<path d="M${x+9} ${y+12}l3 3 5-6" fill="none" stroke="#1d2633" stroke-width="2"/>`;
+      if(current) svg+=`<g transform="translate(${x-12} ${y-36})"><rect width="25" height="15" rx="4" `+
+        'fill="#f5b301" stroke="#1d2633" stroke-width="2"/><path d="M5 3h5v6H5zm9 0h6v6h-6" fill="#e1f2fa"/>'+
+        '<circle cx="6" cy="16" r="3" fill="#1d2633"/><circle cx="20" cy="16" r="3" fill="#1d2633"/></g>';
+      svg+='</g>';
+    });
+    $('trip-map').innerHTML=svg+'</svg>';
+  }
+  function resetRoad() {
+    V.hush();state.generation++;
+    Object.assign(state.drive,{road:null,phase:'choose',index:0,branch:null,tickets:[],changed:[],stop:null});
+    state.stopKey='choose';render();
+  }
+  function renderSplit() {
+    const s=currentSplit(),n=s.n,a=s.groups.filter(x=>x===0).length,b=n-a;
+    const drive=state.mode==='drive';
+    state.stopKey=drive?state.drive.road+'-split':'split-'+n;
+    $('split-stage').classList.toggle('many',n>=6);
+    $('split-number').textContent=n;
+    $('fewer').hidden=drive;$('more').hidden=drive;
+    $('fewer').setAttribute('aria-disabled',n<=2);$('more').setAttribute('aria-disabled',n>=10);
+    $('split-number').hidden=drive;
+    $('place-cycle').hidden=drive;
+    $('place-cycle').textContent='↻ '+D.routes[s.place].name;
+    for(const key of Object.keys(D.routes)) {
+      $('place-'+key).hidden=drive;
+      $('place-'+key).setAttribute('aria-pressed',s.place===key);
+    }
+    const names=D.routes[s.place].areas;
+    const disc=innerWidth<=700&&innerWidth>560?44:60;
+    const minArea=5*disc+12;
+    if(innerWidth<=1200) {
+      const left=a?minArea:78,right=b?minArea:78;
+      $('areas').style.gridTemplateColumns=`${left}fr ${right}fr`;
+    } else $('areas').style.gridTemplateColumns='1fr 1fr';
+    const existing=new Map([...$('areas').querySelectorAll('[data-kid]')].map(el=>[Number(el.dataset.kid),el]));
+    ['left','right'].forEach((side,which)=>{
+      const area=$('area-'+side),key=names[which];
+      area.querySelector('img').src=ART[key];area.querySelector('.area-label').textContent=D.areas[key];
+      const group=area.querySelector('.group');
+      if(innerWidth<=560||(innerWidth>700&&innerWidth<=900&&innerHeight<=650))
+        area.style.flex=String(Math.max(0.3,Math.ceil((which===0?a:b)/5))+0.4);
+      else area.style.flex='';
+      s.groups.forEach((value,i)=>{
+        if(value!==which) return;
+        const button=existing.get(i)||document.createElement('button');
+        button.className='split-counter';button.dataset.kid=i;
+        button.setAttribute('aria-label',`Move rider to ${D.areas[names[1-which]]}`);
+        if(!button.firstChild) button.innerHTML='<span class="counter"></span>';
+        if(button.parentElement!==group) group.append(button);
+      });
+    });
+    for(const [i,el] of existing) if(i>=n)el.remove();
+    $('split-equation').innerHTML=`${n} = ${term(a)} + ${term(b)}`;
+    const kept=splitList(s);
+    $('ways').innerHTML=Array.from({length:n+1},(_,j)=>{
+      const left=n-j,right=j,isKept=kept.includes(left),linked=isKept&&left!==right&&kept.includes(right);
+      return `<div class="way ${isKept?'kept':''} ${linked?'linked':''}" id="way-${left}" aria-label="${isKept?n+' equals '+left+' plus '+right:'Empty way slot'}">`+
+        (isKept?`<span class="way-equation">${n} = <span class="way-term">${left}${dots(left)}</span> + `+
+          `<span class="way-term">${right}${dots(right)}</span></span>`:'')+'</div>';
+    }).join('');
+    requestAnimationFrame(renderWayLinks);
+    hint(kept.length===n+1?(drive?'driveAll':'splitAll'):drive?'driveOn':'split');
+  }
+  function renderWayLinks() {
+    if($('split-stage').hidden) return;
+    const s=currentSplit(),kept=splitList(s),parent=$('ways'),rect=parent.getBoundingClientRect();
+    if(innerWidth<=700)return;
+    parent.querySelector('.way-links')?.remove();
+    let paths='';
+    for(const a of kept) {
+      const b=s.n-a;
+      if(a<=b||!kept.includes(b)) continue;
+      const p=$('way-'+a).getBoundingClientRect(),q=$('way-'+b).getBoundingClientRect();
+      const x1=p.right-rect.left+2,y1=p.y+p.height/2-rect.y;
+      const x2=q.right-rect.left+2,y2=q.y+q.height/2-rect.y;
+      if(Math.abs(p.x-q.x)>10||p.right<rect.right-22)continue;
+      const bend=Math.max(x1,x2)+12;
+      paths+=`<path d="M${x1} ${y1} C${bend} ${y1},${bend} ${y2},${x2} ${y2}"/>`;
+    }
+    parent.insertAdjacentHTML('afterbegin',`<svg class="way-links" viewBox="0 0 ${rect.width} ${rect.height}" aria-hidden="true">`+
+      `<g fill="none" stroke="#2b4c7e" stroke-width="3">${paths}</g></svg>`);
+  }
+  function moveKid(i) {
+    const s=currentSplit();
+    const button=$('areas').querySelector(`[data-kid="${i}"]`);
+    const from=button.getBoundingClientRect();
+    if(V.playing?.startsWith(`${cap(num(s.n))} is `)) V.hush();
+    else V.dropQueued(line=>line.key.startsWith('kept:'));
+    s.groups[i]=1-s.groups[i];chime();
+    const focused=document.activeElement?.dataset.kid;
+    renderSplit();
+    if(!Curio.reduce && button.animate) {
+      const to=button.getBoundingClientRect();
+      button.animate([{transform:`translate(${from.x-to.x}px,${from.y-to.y}px)`},{transform:'none'}],
+        {duration:220,easing:'ease-out'});
+    }
+    if(focused!==undefined) $('areas').querySelector(`[data-kid="${focused}"]`)?.focus({preventScroll:true});
+  }
+  function keep() {
+    const s=currentSplit(),a=s.groups.filter(x=>x===0).length,b=s.n-a,list=splitList(s);
+    if(list.includes(a)) {
+      const key=s.n+':'+a;
+      $('way-'+a).classList.remove('flash');void $('way-'+a).offsetWidth;$('way-'+a).classList.add('flash');
+      if(!s.duplicates.has(key)){s.duplicates.add(key);say('duplicate');}
+      return;
+    }
+    list.push(a);renderSplit();Curio.yes();
+    $('way-'+a).classList.add('just-kept');
+    const keptLine=`${cap(num(s.n))} is ${num(a)} and ${num(b)}.`;
+    say(keptLine);
+    if(a!==b && list.includes(b)) {
+      const key=s.n+':'+Math.min(a,b);
+      if(!s.links.has(key)) {
+        s.links.add(key);
+        say(`${cap(num(a))} and ${num(b)}, ${num(b)} and ${num(a)}. Switch sides, still ${num(s.n)}!`);
+      }
+    }
+    if(list.length===s.n+1) {
+      $('ways').querySelectorAll('.way').forEach(el=>el.classList.add('all-found'));
+      say(`The list holds every way to make ${num(s.n)}. ${cap(num(s.n+1))} ways!`);
+    }
+    if(state.mode==='drive') {
+      $('drive-on').hidden=false;hint(list.length===s.n+1?'driveAll':'driveOn');
+    }
+  }
+  function splitNumber(delta) {
+    const s=state.split,n=Math.max(2,Math.min(10,s.n+delta));
+    if(n===s.n) return;
+    V.hush();s.n=n;s.groups=Array(n).fill(0);renderSplit();say(`${cap(num(n))} riders.`);
+  }
+  function newExpress() {
+    const e=state.express;
+    const adds=Math.random()<.5?2:3;
+    e.facts=shuffle([...shuffle(D.facts.filter(f=>f[2]==='+')).slice(0,adds),...shuffle(D.facts.filter(f=>f[2]==='-')).slice(0,5-adds)]);
+    Object.assign(e,{index:0,locked:false,shown:false,done:false});
+    freshExpressRiders();
+  }
+  function freshExpressRiders() {
+    const e=state.express;
+    e.serial++;
+    e.riderIds=Array.from({length:5},(_,i)=>(e.serial*3+i)%10);
+  }
+  function expressStory(fact=state.express.facts[state.express.index]) {
+    const [a,b,op]=fact;
+    const change=op==='+'?(b===1?' more gets on.':' more get on.'):(b===1?' gets off.':' get off.');
+    return `${cap(num(a))} ${a===1?'rider':'riders'}. ${cap(num(b))}${change} How many now?`;
+  }
+  function expressQuestion() {
+    const e=state.express;
+    if(e.done)return;
+    const text=expressStory()+' '+L.express;
+    hint(text);firstHint(text);
+  }
+
+  function renderExpress() {
+    const e=state.express;
+    state.stopKey='express-'+e.index;
+    showWorld('school','Express',true);renderTickets(e.tickets);$('roads').hidden=true;$('cards').hidden=true;
+    $('number-tiles').hidden=false;$('show-me').hidden=false;
+    const [a,b,op]=e.facts[e.index],c=result(a,b,op),count=e.shown?c:a;
+    [...$('five').children].forEach((seat,i)=>{
+      const gone=e.shown&&op==='-'&&i>=a-b&&i<a;
+      seat.firstChild.className='counter '+(gone?'gone':i<count?'solid':'empty');
+      seat.firstChild.textContent=gone?'↗':'';
+    });
+    [...$('number-tiles').children].forEach(tile=>{
+      tile.disabled=e.locked;tile.className='number-tile';
+      if(e.locked && Number(tile.dataset.number)===e.answer) tile.classList.add(e.answer===c?'chosen':'wrong');
+    });
+    $('show-me').disabled=e.locked;
+    $('show-me').style.visibility=e.locked?'hidden':'';
+    $('express-result').textContent=e.shown?equation([a,b,op,c]):e.locked?'◉':'';
+    $('express-result').setAttribute('aria-label',e.shown?spoken([a,b,op,c]):'Watch the riders');
+    renderRiders(b,op,!e.locked||e.shown);
+    hint(e.locked?(e.shown?spoken([a,b,op,c])+' '+L.expressWatch:expressStory()+' '+L.expressWatch):expressStory()+' '+L.express);
+  }
+  function answerExpress(value) {
+    const e=state.express;
+    if(state.mode!=='express'||e.locked||e.done) return;
+    e.locked=true;e.answer=value;
+    const [a,b,op]=e.facts[e.index],c=result(a,b,op);
+    if(value===c) Curio.yes();else chime();
+    const prefix=value===null?'':value===c?'Yes! ':'Look. ';
+    e.line=prefix+spoken([a,b,op,c]);
+    renderExpress();$('express-result').focus({preventScroll:true});finishExpress();
+  }
+  async function finishExpress() {
+    const e=state.express,g=state.generation;
+    if(e.transition===g+':'+e.index) return;
+    e.transition=g+':'+e.index;
+    const promise=say(e.line,{now:true,wait:true});
+    // answerExpress rendered the one walk through an open door.
+    await Curio.wait(1500);
+    if(g!==state.generation||state.mode!=='express') return;
+    e.shown=true;renderExpress();
+    await promise;await Curio.wait(1000);
+    if(g!==state.generation||state.mode!=='express') return;
+    const [a,b,op]=e.facts[e.index];e.tickets.push(equation([a,b,op,result(a,b,op)]));e.tickets=e.tickets.slice(-5);
+    if(e.index===4) {
+      newExpress();renderExpress();expressQuestion();
+    } else {
+      e.index++;e.locked=false;e.shown=false;freshExpressRiders();renderExpress();expressQuestion();
+    }
+  }
+  function newFill(continuing=false) {
+    const f=state.fill;
+    f.starts=[];
+    for(let i=0;i<5;i++) {
+      if(!f.bag.length)f.bag=shuffle([1,2,3,4,5,6,7,8,9]);
+      f.starts.push(f.bag.shift());
+    }
+    f.index=0;
+    if(!continuing)f.tickets=[];
+    beginFillBus();
+  }
+  function beginFillBus() {
+    const f=state.fill,d=state.drive,a=f.starts[f.index];
+    Object.assign(d,{phase:'show',changed:[],bad:[],feedback:false,fullSaid:false,walkWaiting:false,
+      count:a,index:4,tickets:[...f.tickets],order:shuffle([0,1,2]),
+      aboard:Array.from({length:a},(_,i)=>i),riderIds:Array.from({length:11-a},(_,i)=>(a+i)%10)});
+    d.stop=makeStop(['Ice Cream Corner','icecream',a,10-a,'+'],{ten:true});
+    d.stop.story=stopStory(d.stop);
+    state.stopKey='fill-'+f.index+'-'+a;
+    render();hint(`${cap(num(a))} ${a===1?'seat is':'seats are'} full. ${L.ten}`);
+    firstHint(`Fill up the bus! ${num(a)} ${a===1?'seat is':'seats are'} full. ${L.ten}`);
+  }
+  for(let i=0;i<10;i++) {
+    const seat=document.createElement('button');
+    seat.className='seat';seat.id='seat-'+i;seat.innerHTML='<span class="counter empty"></span>';
+    seat.onclick=()=>tapSeat(i);$('floor').append(seat);
+  }
+  for(let i=0;i<5;i++) {
+    const seat=document.createElement('div');seat.className='seat';seat.innerHTML='<span class="counter empty"></span>';$('five').append(seat);
+  }
+  for(let i=0;i<6;i++) {
+    const tile=document.createElement('button');tile.className='number-tile';tile.dataset.number=i;tile.id='number-'+i;
+    tile.setAttribute('aria-label',cap(num(i)));tile.innerHTML=i+dots(i);tile.onclick=()=>answerExpress(i);$('number-tiles').append(tile);
+  }
+  $('roads').onclick=e=>{const b=e.target.closest('[data-road]');if(b) chooseRoad(b.dataset.road);};
+  $('cup').onclick=addCounter;$('done').onclick=done;
+  $('cards').onclick=e=>{
+    const read=e.target.closest('[data-speak]'),card=e.target.closest('[data-card]');
+    if(read){
+      explicitRead=spoken(state.drive.stop.cards[Number(read.dataset.speak)]);
+      state.firstHint=true;
+      V.read();
+      explicitRead=null;
+      return;
+    }
+    if(card) pickCard(Number(card.dataset.card));
+  };
+  $('see-again').onclick=()=>{
+    chime();const d=state.drive;
+    renderRiders(d.stop.ten?d.stop.k+(state.mode==='fill'?1:2):d.stop.k,d.stop.op,d.phase==='hold'||d.walkWaiting||d.stop.ten);
+    describeDrive(true);
+  };
+  $('go').onclick=()=>{
+    state.drive.phase='show';$('go').hidden=true;renderDrive();describeDrive(true);
+    (state.drive.stop.op==='+'?$('cup'):$('seat-0')).focus({preventScroll:true});
+  };
+  $('tell-first').onclick=()=>{state.tellFirst=!state.tellFirst;$('tell-first').setAttribute('aria-pressed',state.tellFirst);chime();};
+  $('new-road').onclick=resetRoad;
+  $('drive-on').onclick=()=>{
+    if(state.mode!=='drive')return;
+    const d=state.drive;
+    if(d.phase==='split') {
+      const sp=d.split,last=splitList(sp).at(-1);
+      if(last!==undefined)d.tickets.push(`${sp.n} = ${last} + ${sp.n-last}`);
+      V.hush();d.phase='show';beginStop(4);return;
+    }
+    if(!['show','tell','hold'].includes(d.phase))return;
+    // Moving along is always available; tickets are observations, never a grade.
+    d.phase='depart';d.count=d.stop.c;
+    const moving=d.riderIds.slice(0,d.stop.k);
+    d.aboard=d.stop.op==='+'?[...d.aboard,...moving]:d.aboard.filter(i=>!moving.includes(i));
+    depart();
+  };
+  $('areas').onclick=e=>{const b=e.target.closest('[data-kid]');if(b) moveKid(Number(b.dataset.kid));};
+  $('keep').onclick=keep;$('more').onclick=()=>splitNumber(1);$('fewer').onclick=()=>splitNumber(-1);
+  for(const k of Object.keys(D.routes)) $('place-'+k).onclick=()=>{
+    state.split.place=k;renderSplit();
+    hint(`${D.routes[k].name}. ${L.split}`);
+  };
+  $('place-cycle').onclick=()=>{
+    const keys=Object.keys(D.routes);
+    state.split.place=keys[(keys.indexOf(state.split.place)+1)%keys.length];
+    renderSplit();
+    const place=state.split.place;
+    hint(`${D.routes[place].name}. ${L.split}`);
+  };
+  $('show-me').onclick=()=>answerExpress(null);
+  $('again').onclick=()=>{V.hush();state.generation++;if(state.mode==='fill')newFill();else {newExpress();render();expressQuestion();}};
+  for(const m of ['drive','split','express','fill']) $('m-'+m).onclick=()=>setMode(m);
+  document.addEventListener('keydown',e=>{
+    if(state.mode==='express' && /^[0-5]$/.test(e.key)) {e.preventDefault();answerExpress(Number(e.key));}
+  });
+  let drag=null;
+  document.addEventListener('pointerdown',e=>{
+    if(e.target.closest('#cup')&&$('cup').disabled) {
+      e.preventDefault();
+      if(canEdit())$('done').focus({preventScroll:true});
+      return;
+    }
+    const kid=e.target.closest('[data-kid]');
+    if(e.target.closest('#cup') && canEdit()) drag={type:'cup',x:e.clientX,y:e.clientY};
+    else if(kid) drag={type:'kid',i:Number(kid.dataset.kid),x:e.clientX,y:e.clientY};
+  });
+  document.addEventListener('pointerup',e=>{
+    if(!drag) return;
+    const d=drag;drag=null;
+    if(Math.hypot(e.clientX-d.x,e.clientY-d.y)<12) return;
+    if(d.type==='cup' && e.target.closest('#floor')) addCounter();
+    if(d.type==='kid' && e.target.closest('.area')) {
+      const destination=e.target.closest('.area').id==='area-left'?0:1;
+      if(currentSplit().groups[d.i]!==destination) moveKid(d.i);
+    }
+  });
+  document.querySelectorAll('[data-art]').forEach(el=>el.src=ART[el.dataset.art]);
+  $('bus').addEventListener('load',positionDriver);
+  $('backdrop').addEventListener('load',positionSign);
+  new ResizeObserver(()=>{positionDriver();positionSign();}).observe($('world'));
+  let manualFocus;
+  $('manual').onclick=()=>{manualFocus=document.activeElement;V.hush();$('manual-drawer').showModal();$('manual-close').focus({preventScroll:true});};
+  $('manual-close').onclick=()=>$('manual-drawer').close();
+  $('manual-drawer').addEventListener('close',()=>manualFocus?.focus({preventScroll:true}));
+  new ResizeObserver(renderWayLinks).observe($('ways'));
+  let lastWidth=innerWidth,lastHeight=innerHeight;
+  addEventListener('resize',()=>{if(innerWidth===lastWidth&&innerHeight===lastHeight)return;lastWidth=innerWidth;lastHeight=innerHeight;if(!$('split-stage').hidden)renderSplit();});
+  Curio.init({clips:"voice:*",rate:.9});
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    chooseRoad,addCounter,tapSeat,done,pickCard,keep,moveKid,splitNumber,answerExpress,render,beginStop,newFill,newExpress,renderExpress,data:D};
+  showWorld('school','Choose a road',false);render();
+})();
+</script>
+</body>
+</html>

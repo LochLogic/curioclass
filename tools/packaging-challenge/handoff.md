@@ -1,5 +1,22 @@
 # Packaging Challenge handoff
 
+## Cold review changes, 2026-11-07
+The single cold review played the bundle before reading this handoff or src.html. Full evidence and scripts are in `_scratch/packaging-challenge/`.
+
+Lid cost rejects nonfinite input and restores its last valid price. Its event now follows price direction, interrupts stale price speech, and distinguishes cost from actual material. The sampled minimum is explicitly descriptive; near-minimum events report geometry rather than achievement, and are suppressed after Reveal best so copying the reference earns no praise.
+
+Show curve describes a model curve even with zero or repeated dots. Reveal best keeps the best dimensions and objective on the bench, outside the scrolling detail panel, and gives its marker a brief Motion-aware arrival. Shelf describes model area rather than claiming measured real metal usage, and its Best label is separated from the point.
+
+The drink illustration was redrawn with the built-in imagegen tool using the prompt in `art/prompts.json`. All keyed cutouts except the already-clean soup were reprocessed with art.py's despill option; the painted bench, shelf, metal cans and kraft style remain. No people are needed in this object-scale workbench or pantry scene.
+
+The spec's four-can Shelf is retained. Its stated centimeter inputs remain the model's inputs; numerical results are recomputed from them. The spec's beverage height is an approximate specimen size, not a universal manufacturing dimension. Narration still uses the browser; no recordings were made.
+
+Case labels its planned ratio Full-case fill, separate from the packed count. Small graph margins allow four-digit y values. The invalid-lid audit state keeps the permanent bench readout rather than a duplicate inside the scrolling detail panel, and purposeful fixture focus uses preventScroll.
+
+Focused review evidence: `post-copy.json` has zero best-event credit after copying; `post-math.json` passes all 11 formula checks and all six case comparisons; `keyboard-final.json` reaches O2 at 3.84 with 17 keyboard trials and Reveal best focused. `voice-events.json` has five factual events, `voice-how.json` one how-to over five taps, `voice-main-post.json` all three mode instructions, and `read-off.json` Read with Sound off. The settled calm case has 24 packages and no running animations.
+
+The cold review's single final audit completed within 40 minutes at `_scratch/packaging-challenge/review-audit/audit.md`: four leads, with all 91 frames inspected. One fixture selector was corrected to the bench's live readout; three first-tap welcome omissions are permitted by BASELINE 16 and the spec. All other size, state, Motion off, focus, runtime, repeat, quick-tap and resize checks passed. No second audit was run.
+
 Build only, 2026-11-03. No commits, shared engines or other tools changed.
 
 ## Implementation

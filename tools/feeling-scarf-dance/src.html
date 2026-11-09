@@ -96,7 +96,9 @@ button:not(:disabled):active { translate: 0 2px; }
 .chips { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 15px; }
 .chip { text-align: left; min-height: 90px; font-size: clamp(16px, 2vw, 25px); padding: 12px; }
 .chip[aria-pressed="true"] { background: #f3d7eb; border-color: var(--brand); }
-.chip .tick { display: inline-block; font-size: 28px; width: 38px; color: var(--brand); }
+.chip { display: flex; align-items: center; gap: 4px; }
+.chip .observed-icon { width: 48px; height: 52px; flex: none; }
+.chip .tick { flex: none; display: inline-block; font-size: 28px; width: 38px; color: var(--brand); }
 footer { padding: 9px 18px; background: #fffafc; border-top: 1px solid var(--line); min-height: 57px; }
 #hint { margin: 0; min-height: 36px; display: flex; align-items: center; font-size: 17px; line-height: 1.3; color: var(--ink); }
 dialog { border: 3px solid #a77695; border-radius: 25px; width: min(900px, calc(100% - 24px)); padding: 15px;
@@ -301,24 +303,24 @@ dialog .options svg { height: 55px; }
     {name: 'Surprised', face: '😮', color: '#8a5cc6', pattern: 'stars', bpm: 96, meter: 4, idea: [0, 2, 2]}
   ];
   const state = {mode: 'build', feeling: null, parts: [null, null, null], selected: 0,
-    running: false, still: false, slow: false, mirror: false, count: null, freeze: false, checked: [false, false, false, false]};
+    running: false, preparing: false, still: false, slow: false, mirror: false, count: null, freeze: false, checked: [false, false, false, false]};
   const L = {
     wBuild: "Let's make a dance about a feeling. First, tap a feeling.",
     happy: 'Happy.', sad: 'Sad.', calm: 'Calm.', mad: 'Mad.', surprised: 'Surprised.',
-    feelingHow: 'How does your body show that feeling? Tap a start shape.',
+    feelingHow: 'Think of a time you felt this. Tap Start, then a shape.',
     startHow: 'Now tap Middle and pick a middle move. How does the feeling move?',
     middleHow: 'Last, tap End and pick an end shape. How does the feeling finish?',
     complete: 'Your dance has a start, a middle and an end. Tap Watch it.',
-    idea: 'Here is one idea. You can change any part.',
-    wWatch: 'Watch the scarf. Tap Play.', watchEnd: 'Did the scarf show the feeling? How?',
+    idea: 'Here is one idea. Change a part, or tap Watch it.',
+    wWatch: 'Watch the scarf. Tap Play.', watchEnd: 'Did the scarf show your feeling, and how? Tap Your turn to try it.',
     wTurn: 'Get your scarf, or use your hand. Find your start shape. Tap Go.',
-    freeze: 'Freeze! Hold your end shape. And breathe.',
-    wShare: 'Audience, what did you see? Tell the dancers.',
+    freeze: 'Freeze in your end shape, and breathe. Then tap Share.',
+    wShare: 'Audience, tell the dancers what you saw. Tap the I saw chips.',
     chipStart: 'A clear start!', chipMiddle: 'The middle move!', chipEnd: 'A clear end!', chipFeeling: 'You felt it!',
-    swap: 'Swap! Dancers, sit down. Audience, find your start shape.',
+    swap: 'Swap! New dancers, find your start shape. Tap Go again.',
     startReady: 'Start shape chosen. Tap Middle to choose a middle move.',
     middleReady: 'Middle move chosen. Tap End to choose an end shape.',
-    endReady: 'End shape chosen. Tap a feeling to finish your dance.',
+    endReady: 'Your parts are ready. Tap a feeling to finish your dance.',
     pickFeeling: 'Tap a feeling, then tap Feeling idea, or choose your three parts.',
     pickStart: 'Tap Start, then tap a start shape.', pickMiddle: 'Tap Middle, then tap a middle move.',
     pickEnd: 'Tap End, then tap an end shape.',
@@ -341,7 +343,7 @@ dialog .options svg { height: 55px; }
   };
   const ready = () => state.feeling !== null && state.parts.every(value => value !== null);
   const currentFeeling = () => feelings[state.feeling ?? 0];
-  const missingHint = () => state.feeling === null ? L.pickFeeling : state.parts[0] === null ? L.pickStart :
+  const missingHint = () => state.feeling === null ? (state.parts.every(value => value !== null) ? L.endReady : L.pickFeeling) : state.parts[0] === null ? L.pickStart :
     state.parts[1] === null ? L.pickMiddle : state.parts[2] === null ? L.pickEnd : '';
   let session = 0;
   let clock = null;
@@ -355,10 +357,12 @@ dialog .options svg { height: 55px; }
   let changedAt = 0;
   let transitionFrom = null;
   let feelingEvent = 0;
+  let eventNumber = 0;
+  let observationVersion = 0;
   let modeInitialized = false;
   const V = Curio.voice({lines: L, scope: () => state.mode, hint: false, read: () => $('hint').textContent,
     welcome: () => {
-      if (state.running || state.freeze || $('edit-dialog').open) return null;
+      if (state.running || state.preparing || state.freeze || $('edit-dialog').open) return null;
       const key = {build: 'wBuild', watch: 'wWatch', turn: 'wTurn', share: 'wShare'}[state.mode];
       if (state.mode === 'build' && state.feeling !== null) return null;
       if (['watch', 'turn'].includes(state.mode) && !ready()) return null;
@@ -370,19 +374,36 @@ dialog .options svg { height: 55px; }
       hint(editorPart === 'feeling' ? L.chooseFeeling : L[['chooseStart', 'chooseMiddle', 'chooseEnd'][editorPart]]);
     } else if (state.freeze) hint(L.freezeHint);
     else if (state.mode === 'share') hint(L.shareHow);
-    else if (!ready()) hint(state.mode === 'build' ? missingHint() : L.finishBuild);
+    else if (!ready()) hint(state.mode === 'build' ?
+      (state.feeling !== null && state.parts[0] === null ? L.feelingHow : missingHint()) : L.finishBuild);
     else if (state.running) hint(state.mode === 'watch' ? L.watchRun : L.turnRun);
     else if (state.mode === 'build') hint(L.complete);
     else hint(state.mode === 'watch' ? L.stoppedWatch : L.stoppedTurn);
   }
   function event(key, valid = () => true) {
-    if (!state.running) V.say(key, {valid: () => !state.running && valid()});
+    if (!state.running && !state.preparing) V.say(key, {key: key + '-event-' + (++eventNumber), valid: () => !state.running && valid()});
+  }
+  function buildGuidance() {
+    if (state.feeling === null) return state.parts.every(value => value !== null) ? 'endReady' : 'pickFeeling';
+    if (state.parts[0] === null) return 'pickStart';
+    if (state.parts[1] === null) return 'startHow';
+    return state.parts[2] === null ? 'middleHow' : null;
+  }
+  function invalidateFeedback() {
+    observationVersion++;
+    state.checked.fill(false);
+    V.dropQueued(line => /^(watchEnd|freeze)-event-/.test(line.key));
+    if (V.playing === L.watchEnd || V.playing === L.freeze) V.hush();
   }
   function icon(svg, part, value) {
     svg.textContent = '';
     if (value === null) return;
     if (part !== 1) {
-      Dance.icon(svg, poseFor(value), {top: '#5b4a6e', bottom: '#2f2a3a', facing: 15});
+      const model = Dance.icon(svg, poseFor(value), {facing: 0});
+      paintedFigure(svg, model, () => value % CAST.length);
+      // The painted head is larger than the old joint model's icon bounds.
+      const [x, y, w, h] = svg.getAttribute('viewBox').split(' ').map(Number);
+      svg.setAttribute('viewBox', `${x - 5} ${y - 14} ${w + 10} ${h + 18}`);
       return;
     }
     svg.setAttribute('viewBox', '0 0 100 70');
@@ -493,6 +514,9 @@ dialog .options svg { height: 55px; }
   }
   function chooseFeeling(index, suggestion = false) {
     if (index > 4) return;
+    const wasReady = ready();
+    if (state.freeze) stopRun();
+    if (state.feeling !== index) invalidateFeedback();
     state.feeling = index;
     document.documentElement.style.setProperty('--feeling', currentFeeling().color);
     feelingButtons.forEach((b, i) => b.setAttribute('aria-pressed', String(i === index)));
@@ -504,11 +528,15 @@ dialog .options svg { height: 55px; }
     refreshCards();
     updateHint();
     if (clock && state.running) clock.setBpm(currentFeeling().bpm * (state.slow ? .7 : 1));
-    if (!state.running && !suggestion) {
+    if (!state.running && !state.preparing && !suggestion) {
       V.say(currentFeeling().name.toLowerCase(), {key: 'feeling-event-' + (++feelingEvent),
         valid: () => !state.running && state.feeling === index});
+      if (state.mode === 'build' && !wasReady && ready()) event('complete');
       if (state.mode === 'build' && state.parts[0] === null) {
         V.how('feelingHow', {valid: () => state.parts[0] === null && state.mode === 'build'});
+      } else if (state.mode === 'build' && !ready()) {
+        const key = buildGuidance();
+        if (key) V.how(key, {valid: () => state.mode === 'build' && buildGuidance() === key});
       }
     }
     Curio.tone([523, 294, 392, 220, 622][index], .1, .035);
@@ -517,18 +545,21 @@ dialog .options svg { height: 55px; }
     const wasReady = ready();
     transitionFrom = {pose: dancer.pose, x: dancer.x, z: dancer.z, facing: dancer.facing};
     changedAt = performance.now();
+    if (state.parts[part] !== value) invalidateFeedback();
     state.parts[part] = value;
     rebuildPhrase();
     refreshCards();
     renderChoices();
+    updateChips();
     if (!state.running) {
+      transitionFrom = null;
       dancer.set(phrase.at(part === 0 ? 0 : part === 1 ? 4.3 : 12));
       resetRibbon();
+      $('part-word').textContent = names[part];
+      dots.set(null);
       if (state.mode === 'build') {
-        const key = part === 0 && state.parts[1] === null ? 'startHow' :
-          part === 1 && state.parts[2] === null ? 'middleHow' : null;
-        if (key) V.how(key, {valid: () => !state.running && state.mode === 'build' &&
-          (key === 'startHow' ? state.parts[1] === null : state.parts[2] === null)});
+        const key = buildGuidance();
+        if (key) V.how(key, {valid: () => !state.running && state.mode === 'build' && buildGuidance() === key});
         if (!wasReady && ready()) event('complete');
       }
     }
@@ -537,7 +568,9 @@ dialog .options svg { height: 55px; }
   }
   function feelingIdea() {
     if (state.feeling === null) chooseFeeling(0, true);
+    if (state.parts.some((value, i) => value !== currentFeeling().idea[i])) invalidateFeedback();
     state.parts = currentFeeling().idea.slice();
+    updateChips();
     state.selected = 0;
     rebuildPhrase();
     refreshCards();
@@ -549,6 +582,7 @@ dialog .options svg { height: 55px; }
     Curio.yes();
   }
   function openEditor(part, opener) {
+    if (state.preparing || state.freeze) stopRun();
     editorPart = part;
     editOpener = opener;
     $('edit-title').textContent = part === 'feeling' ? 'Choose a feeling' : 'Change ' + names[part].toLowerCase();
@@ -564,7 +598,7 @@ dialog .options svg { height: 55px; }
   $('edit-dialog').addEventListener('close', updateHint);
   $('close-editor').onclick = closeEditor;
   $('editor-read').onclick = () => {
-    if (state.running || state.freeze) stopRun();
+    if (state.running || state.preparing || state.freeze) stopRun();
     V.read();
   };
   $('feeling-menu').onclick = () => openEditor('feeling', $('feeling-menu'));
@@ -572,13 +606,130 @@ dialog .options svg { height: 55px; }
   $('watch-it').onclick = () => setMode('watch');
   for (const mode of ['build', 'watch', 'turn', 'share']) $('m-' + mode).onclick = () => setMode(mode);
 
-  // Renderer boundary: keep the engine dancer as the pose and hand-position model.
-  // A future painted atlas can subscribe to onMove, hide model.g, and draw in the same floor layer.
   const svg = $('dance-scene');
   const floor = Dance.floor(svg, 'square', {backdrop: 'art:hilltop', dancerFrac: .55});
   const sceneWash = mk('rect', {width: '100%', height: '100%', fill: '#f2b632', class: 'scene-wash'}, floor.layers.bg);
-  const createDancerRenderer = () => Dance.dancer(floor.layers.actors,
-    {floor, top: '#5b4a6e', bottom: '#2f2a3a', badge: 'circle', noShadow: false});
+  // One painted rig per child, front and reverse. Only registration lives here.
+  // Replace the atlas and these coordinates to swap the art, keeping Dance's model.
+  const PAINTED_ATLAS = 'art:dancers-rig';
+  const CAST = [
+    {cx: 250, shoulder: 49, hip: 33, knee: 42, head: 86},
+    {cx: 768, shoulder: 61, hip: 40, knee: 42, head: 83},
+    {cx: 1278, shoulder: 54, hip: 35, knee: 42, head: 84}
+  ];
+  let castIndex = 0;
+  let paintedClipId = 0;
+  function paintedFigure(parent, model, cast = () => castIndex) {
+    const group = mk('g', {'aria-hidden': 'true', class: 'painted-dancer'}, parent);
+    const pieces = new Map();
+    const piece = (name, rect, matrix) => {
+      let p = pieces.get(name);
+      if (!p) {
+        const g = mk('g', {}, group);
+        const defs = mk('defs', {}, g);
+        const id = 'painted-crop-' + (++paintedClipId);
+        const clip = mk('clipPath', {id, clipPathUnits: 'userSpaceOnUse'}, defs);
+        const mask = mk('path', {}, clip);
+        const crop = mk('g', {'clip-path': 'url(#' + id + ')'}, g);
+        mk('image', {href: PAINTED_ATLAS, x: 38, y: 15, width: 1462, height: 992}, crop);
+        p = {g, mask};
+        pieces.set(name, p);
+      }
+      const [x, y, w, h] = rect;
+      const polygon = name === 'head' ?
+        [[x,y], [x+w,y], [x+w,y+h*.85], [x+w*.6,y+h*.85], [x+w*.6,y+h],
+          [x+w*.4,y+h], [x+w*.4,y+h*.85], [x,y+h*.85]] :
+        [[x,y], [x+w,y], [x+w,y+h], [x,y+h]];
+      p.mask.setAttribute('d', 'M' + polygon.map(pt => pt.join(' ')).join(' L') + ' Z');
+      p.g.setAttribute('transform', 'matrix(' + matrix.join(' ') + ')');
+      group.appendChild(p.g);
+    };
+    const affine = (a, b, c, A, B, C) => {
+      const det = (b[0] - a[0]) * (c[1] - a[1]) - (b[1] - a[1]) * (c[0] - a[0]);
+      const solve = k => {
+        const u = ((B[k] - A[k]) * (c[1] - a[1]) - (C[k] - A[k]) * (b[1] - a[1])) / det;
+        const v = ((C[k] - A[k]) * (b[0] - a[0]) - (B[k] - A[k]) * (c[0] - a[0])) / det;
+        return [u, v, A[k] - u * a[0] - v * a[1]];
+      };
+      const X = solve(0), Y = solve(1);
+      return [X[0], Y[0], X[1], Y[1], X[2], Y[2]];
+    };
+    function render() {
+      const reg = CAST[cast() % CAST.length];
+      const J = model.sj;
+      if (!J.head) return;
+      const reverse = Math.cos(model.facing * Math.PI / 180) < 0;
+      const row = reverse ? 512 : 0;
+      const cx = reg.cx;
+      const body = model.height * model.floor.scale(model.z);
+      const k = body / 470;
+      const mid = (a, b) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+      const limb = (name, rect, a, b, A, B) => {
+        a = [a[0], a[1] + row];
+        b = [b[0], b[1] + row];
+        const dx = b[0] - a[0], dy = b[1] - a[1];
+        const length = Math.hypot(dx, dy);
+        const target = Math.hypot(B[0] - A[0], B[1] - A[1]);
+        const n = target > .1 ? [-(B[1] - A[1]) / target * k, (B[0] - A[0]) / target * k] : [k, 0];
+        const c = [a[0] - dy / length, a[1] + dx / length];
+        const C = [A[0] + n[0], A[1] + n[1]];
+        piece(name, [rect[0], rect[1] + row, rect[2], rect[3]], affine(a, b, c, A, B, C));
+      };
+      // Far limbs first. Overlapping crops give each painted joint a soft seam.
+      const sides = reverse ? ['l', 'r'] : ['r', 'l'];
+      for (const side of sides) {
+        const s = (side === 'r' ? -1 : 1) * (reverse ? -1 : 1);
+        const hip = cx + s * reg.hip, knee = cx + s * reg.knee;
+        limb(side + 'thigh', [s < 0 ? cx - 70 : cx - 1, 274, 72, 106],
+          [hip, 286], [knee, 366], J[side + 'Hi'], J[side + 'Kn']);
+        limb(side + 'shin', [s < 0 ? cx - 72 : cx + 1, 355, 73, 117],
+          [knee, 366], [knee, 461], J[side + 'Kn'], J[side + 'An']);
+        const ankle = J[side + 'An'];
+        limb(side + 'foot', [s < 0 ? cx - 87 : cx + 14, 451, 75, 46],
+          [knee, 461], [knee + s * 9, 484], ankle, [ankle[0] + s * body * .018, ankle[1] + body * .052]);
+      }
+      const pelvis = mid(J.rHi, J.lHi);
+      let right = reverse ? J.lSh : J.rSh, left = reverse ? J.rSh : J.lSh;
+      // A torso has depth. Keep its side profile visible when the shoulders align.
+      const shoulderMid = mid(right, left);
+      const halfWidth = Math.max(Math.abs(left[0] - right[0]) / 2, body * .055);
+      const direction = Math.sign(left[0] - right[0]) || 1;
+      right = [shoulderMid[0] - direction * halfWidth, right[1]];
+      left = [shoulderMid[0] + direction * halfWidth, left[1]];
+      piece('body', [cx - reg.shoulder - 3, 138 + row, reg.shoulder * 2 + 6, 171],
+        affine([cx - reg.shoulder, 160 + row], [cx + reg.shoulder, 160 + row], [cx, 289 + row], right, left, pelvis));
+      for (const side of sides) {
+        const s = (side === 'r' ? -1 : 1) * (reverse ? -1 : 1);
+        const sh = cx + s * reg.shoulder, elbow = cx + s * 118, wrist = cx + s * 180;
+        limb(side + 'upper', [s < 0 ? cx - 130 : cx + reg.shoulder - 10, 138, 91, 51],
+          [sh, 160], [elbow, 158], J[side + 'Sh'], J[side + 'El']);
+        limb(side + 'fore', [s < 0 ? cx - 215 : cx + 108, 140, 109, 48],
+          [elbow, 158], [wrist, 162], J[side + 'El'], J[side + 'Ha']);
+      }
+      const neck = J.neck;
+      // Retain the child-sized painted head rather than shrinking it to a code oval.
+      const head = J.head;
+      const up = [head[0] - neck[0], head[1] - neck[1]];
+      const len = Math.hypot(...up) || 1;
+      const width = Math.max(.42, Math.abs(Math.cos(model.facing * Math.PI / 180)));
+      piece('head', [cx - 70, 12 + row, 140, 137],
+        affine([cx, 144 + row], [cx, reg.head + row], [cx + 60, reg.head + row],
+          neck, [neck[0] + up[0] / len * 60 * k, neck[1] + up[1] / len * 60 * k],
+          [neck[0] + (up[0] - up[1] * width) / len * 60 * k,
+            neck[1] + (up[1] + up[0] * width) / len * 60 * k]));
+    }
+    const originalRender = model.render.bind(model);
+    model.render = () => { originalRender(); render(); };
+    model.g.style.display = 'none';
+    render();
+    return {g: group, render};
+  }
+  const createDancerRenderer = () => {
+    const model = Dance.dancer(floor.layers.actors, {floor, noShadow: false});
+    const painted = paintedFigure(floor.layers.actors, model);
+    model.paint = painted;
+    return model;
+  };
   const dancer = createDancerRenderer();
   const ribbonLayer = mk('g', {'aria-hidden': 'true'}, floor.layers.front);
   const ribbonDefs = mk('defs', {}, ribbonLayer);
@@ -769,7 +920,7 @@ dialog .options svg { height: 55px; }
     ];
     return tracks[index ?? 0];
   }
-  function stopRun(keepPose = true) {
+  function stopRun(keepPose = true, hush = true) {
     session++;
     clearTimeout(freezeTimer);
     run?.stop();
@@ -779,15 +930,19 @@ dialog .options svg { height: 55px; }
     clock = null;
     music = null;
     state.running = false;
+    state.preparing = false;
+    $('play').removeAttribute('aria-busy');
+    $('go').removeAttribute('aria-busy');
     state.still = true;
     state.freeze = false;
-    V.hush();
+    if (hush) V.hush();
     $('play').textContent = '▶ Play';
     if (!keepPose) dancer.set(phrase.at(0));
     updateHint();
   }
   function endRun(token) {
     if (token !== session) return;
+    const feedbackVersion = observationVersion;
     clock?.stop();
     music?.stop();
     run = null;
@@ -804,19 +959,36 @@ dialog .options svg { height: 55px; }
       freezeTimer = setTimeout(() => {
         if (token !== session) return;
         state.freeze = false;
-        event('freeze', () => token === session && state.mode === 'turn');
+        event('freeze', () => token === session && state.mode === 'turn' && feedbackVersion === observationVersion);
         hint(L.freezeHint);
       }, 3000);
     } else {
       $('part-word').textContent = 'End';
       hint(L.afterWatch);
-      event('watchEnd', () => token === session);
+      event('watchEnd', () => token === session && feedbackVersion === observationVersion);
     }
   }
-  function startRun() {
+  async function startRun() {
     if (!ready()) { updateHint(); return; }
-    stopRun(false);
+    if (state.preparing) { stopRun(); return; }
+    const introduction = state.mode === 'turn' ? 'wTurn' : 'wWatch';
+    // Keep a fitting introduction intact at the two-second tap pace.
+    // Other speech stops before the next run, as do the old clock and music.
+    const preserve = !state.running && V.playing === L[introduction];
+    stopRun(false, !preserve);
     const token = session;
+    state.preparing = true;
+    $('part-word').textContent = 'Ready';
+    $('play').setAttribute('aria-busy', 'true');
+    $('go').setAttribute('aria-busy', 'true');
+    if (Curio.sound) {
+      await V.how(introduction, {wait: true, valid: () => token === session && state.preparing});
+    }
+    if (token !== session || !state.preparing) return;
+    V.hush();
+    state.preparing = false;
+    $('play').removeAttribute('aria-busy');
+    $('go').removeAttribute('aria-busy');
     rebuildPhrase();
     state.running = true;
     state.still = false;
@@ -870,7 +1042,9 @@ dialog .options svg { height: 55px; }
     $('watch-actions').hidden = mode !== 'watch';
     $('turn-actions').hidden = mode !== 'turn';
     for (const m of ['build', 'watch', 'turn', 'share']) $('m-' + m).setAttribute('aria-pressed', String(m === mode));
-    dancer.g.setAttribute('opacity', mode === 'turn' ? 0 : 1);
+    transitionFrom = null;
+    dancer.set(phrase.at(0));
+    dancer.paint.g.setAttribute('opacity', mode === 'turn' ? 0 : 1);
     floor.layers.shadow.setAttribute('opacity', mode === 'turn' ? 0 : 1);
     handGhost.setAttribute('visibility', mode === 'turn' ? 'visible' : 'hidden');
     $('dance-scene').setAttribute('aria-label', mode === 'turn' ? 'A scarf alone follows your dance, with a faint mark at the hand.' :
@@ -893,7 +1067,7 @@ dialog .options svg { height: 55px; }
     requestAnimationFrame(relayout);
   }
   $('play').onclick = () => state.running ? stopRun() : startRun();
-  $('again').onclick = startRun;
+  $('again').onclick = () => { castIndex = (castIndex + 1) % CAST.length; startRun(); };
   $('go').onclick = startRun;
   $('stop').onclick = () => stopRun();
   $('slow').onclick = () => {
@@ -919,10 +1093,12 @@ dialog .options svg { height: 55px; }
   }
   const chipKeys = ['chipStart', 'chipMiddle', 'chipEnd', 'chipFeeling'];
   const chipButtons = chipKeys.map((key, index) => {
-    const b = button('<span class="tick" aria-hidden="true">○</span><span class="chip-label"></span>', 'choice chip', () => {
-      state.checked[index] = !state.checked[index];
+    const b = button('<span class="tick" aria-hidden="true">○</span>' +
+      '<svg class="observed-icon" aria-hidden="true"></svg><span class="chip-label"></span>', 'choice chip', () => {
+      state.checked[index] = true;
       updateChips();
-      event(key);
+      const version = observationVersion;
+      event(key, () => version === observationVersion && state.checked[index]);
       Curio.yes();
       updateHint();
     });
@@ -937,9 +1113,18 @@ dialog .options svg { height: 55px; }
       b.setAttribute('aria-pressed', String(state.checked[i]));
       b.querySelector('.tick').textContent = state.checked[i] ? '✓' : '○';
       b.querySelector('.chip-label').textContent = labels[i];
+      const drawing = b.querySelector('svg');
+      if (i < 3) icon(drawing, i, state.parts[i]);
+      else {
+        drawing.textContent = '';
+        drawing.setAttribute('viewBox', '0 0 60 60');
+        mk('text', {x: 30, y: 43, 'font-size': 35, 'text-anchor': 'middle'}, drawing).textContent =
+          state.feeling === null ? '◇' : currentFeeling().face;
+      }
     });
   }
   $('swap').onclick = () => {
+    observationVersion++;
     state.checked.fill(false);
     updateChips();
     event('swap');
@@ -980,7 +1165,7 @@ dialog .options svg { height: 55px; }
     resetRibbon();
   });
   // Read always stops the clock before it speaks, including during count-in or a quiet freeze.
-  $('read').addEventListener('click', () => { if (state.running || state.freeze) stopRun(); }, true);
+  $('read').addEventListener('click', () => { if (state.running || state.preparing || state.freeze) stopRun(); }, true);
   // Turning Sound on during a run must not queue a welcome over the music.
   Curio.onSound(() => {
     if (state.running) {
@@ -1021,7 +1206,7 @@ dialog .options svg { height: 55px; }
   requestAnimationFrame(idleFrame);
   window.__tool = {state, setMode, allLines: V.allLines, vlog: V.log, get vq() { return V.queue; },
     feelings, shapes, moves, chooseFeeling, choosePart, feelingIdea, startRun, stopRun, dancer, floor,
-    get clock() { return clock; }, get phrase() { return phrase; }, get ribbon() { return ribbon; }, relayout};
+    get castIndex() { return castIndex; }, get clock() { return clock; }, get phrase() { return phrase; }, get ribbon() { return ribbon; }, relayout};
 })();
 </script>
 </body>

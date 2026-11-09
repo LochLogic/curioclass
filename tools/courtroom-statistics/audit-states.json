@@ -23,7 +23,7 @@
           "click": "#yes-0"
         },
         {
-          "click": "#yes-1"
+          "click": "#no-1"
         },
         {
           "click": "#yes-2"
@@ -58,7 +58,7 @@
           "click": "#yes-0"
         },
         {
-          "click": "#yes-1"
+          "click": "#no-1"
         },
         {
           "click": "#yes-2"
@@ -100,10 +100,10 @@
           "click": "#yes-0"
         },
         {
-          "click": "#yes-1"
+          "click": "#no-1"
         },
         {
-          "click": "#yes-2"
+          "click": "#no-2"
         },
         {
           "click": "#next"
@@ -135,10 +135,10 @@
           "click": "#yes-0"
         },
         {
-          "click": "#yes-1"
+          "click": "#no-1"
         },
         {
-          "click": "#yes-2"
+          "click": "#no-2"
         },
         {
           "click": "#next"
@@ -158,7 +158,7 @@
           "click": "#case-5"
         },
         {
-          "click": "[data-sign='\u2260']"
+          "click": "[data-sign='≠']"
         },
         {
           "click": "#next"
@@ -170,7 +170,7 @@
           "click": "#yes-0"
         },
         {
-          "click": "#yes-1"
+          "click": "#no-1"
         },
         {
           "click": "#yes-2"
@@ -193,7 +193,7 @@
           "click": "#case-5"
         },
         {
-          "click": "[data-sign='\u2260']"
+          "click": "[data-sign='≠']"
         },
         {
           "click": "#next"
@@ -205,7 +205,7 @@
           "click": "#yes-0"
         },
         {
-          "click": "#yes-1"
+          "click": "#no-1"
         },
         {
           "click": "#yes-2"
@@ -235,10 +235,7 @@
           "click": "#m-lineup"
         },
         {
-          "key": "Tab"
-        },
-        {
-          "key": "ArrowRight"
+          "drag": "(()=>{const r=document.getElementById('claim-slider').getBoundingClientRect();return [[r.x+10,r.y+r.height/2],[r.right-10,r.y+r.height/2]]})()"
         }
       ],
       "keep": [
@@ -272,7 +269,7 @@
           "click": "#case-6"
         },
         {
-          "click": "[data-sign='\u2260']"
+          "click": "[data-sign='≠']"
         },
         {
           "click": "#next"
@@ -379,6 +376,120 @@
         "#docket-curves",
         "#bars",
         "#simulate"
+      ]
+    },
+    {
+      "name": "seeds-sentencing",
+      "steps": [
+        {
+          "click": "#case-0"
+        },
+        {
+          "click": "[data-sign='<']"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#yes-0"
+        },
+        {
+          "click": "#no-1"
+        },
+        {
+          "click": "#yes-2"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#guilty"
+        },
+        {
+          "click": "#sentence-strength"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#sentence-direction"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#file-sentence"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#steps",
+        "#interval-line",
+        "#interval-note",
+        "#next"
+      ]
+    },
+    {
+      "name": "cereal-charges",
+      "steps": [
+        {
+          "click": "#case-1"
+        }
+      ],
+      "keep": [
+        "#evidence",
+        "#evidence-tag",
+        "#signs",
+        "#next"
+      ]
+    },
+    {
+      "name": "proof-standard",
+      "steps": [
+        {
+          "click": "#case-0"
+        },
+        {
+          "click": "[data-sign='<']"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#proof-alphas",
+        "#next",
+        "#hint"
+      ]
+    },
+    {
+      "name": "wrong-desks-charge",
+      "steps": [
+        {
+          "click": "#case-5"
+        },
+        {
+          "click": "[data-sign='<']"
+        }
+      ],
+      "keep": [
+        "#signs",
+        "#hint",
+        "#next"
       ]
     }
   ]

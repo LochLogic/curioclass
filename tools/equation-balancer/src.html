@@ -1,0 +1,2005 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Equation Balancer · Count molecules, not guesses. · Curio Class</title>
+<meta name="description" content="Balance 25 chemical equations and predict products using ion charges. Grade 10 chemistry. Works offline.">
+<!--
+Equation Balancer, Curio Class. Students drive. HS-PS1-2 and HS-PS1-7.
+OpenStax Chemistry 2e 4.1, 4.2, 2.6; RSC atomic masses from Elements Inspector; PubChem compound identities.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. All assets inline after bundling. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#59c0ab;--brand-ink:#10141a;--panel:#141b25;--tray:#18232a;--cream:#f5ead2}
+body{height:100dvh;overflow:hidden}
+header{padding:10px 20px;gap:8px;flex-wrap:nowrap;background:linear-gradient(105deg,#172731,#10161f)}
+h1{font-size:26px;letter-spacing:-.6px}
+h1 small{font-size:13px;letter-spacing:.3px;margin-top:5px}
+.seg{border-radius:9px;border-width:1px;flex:none}
+.seg button,.icon-btn{min-height:44px;font-size:14px;padding:0 12px}
+.icon-btn{border-radius:8px;border-width:1px}
+main{grid-template-columns:minmax(0,1fr) 270px;gap:0;overflow:hidden}
+.stage{min-height:0;padding:18px 22px 12px;display:flex;flex-direction:column;gap:12px;
+ background:#0f171c url('art:eb-bench') center/cover;isolation:isolate}
+.stage::before{content:'';position:absolute;inset:0;background:linear-gradient(110deg,#07161b30,#030b13a0);z-index:-1}
+.stage-head{display:flex;justify-content:space-between;gap:10px;align-items:center;min-height:40px}
+.eyebrow{font-size:10px;font-weight:750;letter-spacing:.16em;text-transform:uppercase;color:var(--brand)}
+#reaction-title{margin:4px 0 0;font-size:24px;font-weight:650;letter-spacing:-.4px}
+#status{font:600 12px var(--readout-font);border:1px solid #64737c;border-radius:5px;padding:7px 10px;color:var(--muted)}
+#status.ok{color:var(--ok);border-color:var(--ok);background:#0b3027}
+.periodic{display:flex;justify-content:space-between;gap:6px;border:1px solid #52606a;background:#0b131ce8;border-radius:7px;padding:6px 10px}
+.periodic div{display:grid;grid-template-columns:auto auto;gap:3px 10px;align-items:center}
+.periodic small{font-size:10px;color:var(--muted)}
+.periodic b{color:var(--brand);font:700 15px var(--readout-font)}
+.periodic span{font-size:11px;color:var(--ink)}
+.trays{display:grid;grid-template-columns:minmax(0,1fr) 42px minmax(0,1fr);gap:10px;flex:1;min-height:180px}
+.tray{position:relative;display:flex;flex-direction:column;min-width:0;min-height:0;padding:12px;
+ background:linear-gradient(145deg,#263b43ed,#17232bec 45%,#101c24f5);border:1px solid #52606a;border-radius:12px;
+ box-shadow:inset 0 1px 0 #c7e1de30,inset 0 -5px 0 #07111790,0 12px 30px #0005}
+.tray::after{content:'';position:absolute;inset:5px;border:1px solid #ffffff08;border-radius:8px;pointer-events:none}
+.tray-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;color:#d5e6e5;font-size:11px;
+ font-weight:650;letter-spacing:.13em;text-transform:uppercase}
+.tray-heading i{width:7px;height:7px;border-radius:50%;background:#59c0ab;box-shadow:0 0 10px #59c0ab80;animation:lamp 4s ease-in-out infinite}
+@keyframes lamp{50%{opacity:.35}}
+.arrow{display:flex;align-items:center;justify-content:center;color:#c9d3df;font-size:36px;text-shadow:0 2px 4px #000}
+.cards{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:10px;flex:1;min-height:0}
+.substance{min-width:0;display:flex;flex-direction:column;gap:5px;position:relative}
+.formula{font-family:var(--readout-font);font-size:clamp(20px,2.3vw,34px);font-weight:700;line-height:1.25;white-space:nowrap}
+.formula sub{font-size:.6em;vertical-align:sub}
+.formula-button{padding:0 3px;background:transparent;border:0;min-height:44px;min-width:44px;border-radius:5px;text-align:left;width:max-content;max-width:100%}
+.formula-button sub{border-bottom:1px dotted currentColor}
+.substance-name{color:#c1cfda;font-size:11px;line-height:1.2;min-height:26px}
+.copies{position:relative;flex:1;min-height:65px;display:grid;align-content:center;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px;padding:5px 0}
+.copies.single{grid-template-columns:minmax(0,1fr)}
+.copy{width:100%;height:100%;max-height:120px;min-height:26px;overflow:visible;filter:drop-shadow(0 4px 2px #0005)}
+.copy.new{animation:arrive .3s ease-out both}
+@keyframes arrive{from{opacity:0;transform:translateY(-12px) scale(.8)}to{opacity:1;transform:none}}
+.mult{position:absolute;right:0;bottom:0;background:#0d141f;border:1px solid var(--brand);color:var(--brand);padding:3px 7px;
+ font:700 13px var(--readout-font);border-radius:5px;z-index:1}
+.model-caption{font-size:10px;color:#a6b9c2;text-align:center;letter-spacing:.02em}
+.stepper{display:grid;grid-template-columns:44px minmax(44px,1fr) 44px;gap:3px;background:#070f16;border:1px solid #405562;
+ padding:3px;border-radius:8px;flex:none}
+.stepper button{min-height:44px;min-width:44px;border:1px solid #536e7b;border-radius:5px;background:linear-gradient(#354c55,#1c303a);
+ font-size:23px;box-shadow:inset 0 1px 0 #ffffff20}
+.stepper button:hover:not(:disabled){background:#35665f;border-color:var(--brand)}
+.stepper button:disabled{opacity:.33;cursor:not-allowed}
+.stepper input{appearance:textfield;-moz-appearance:textfield;width:100%;min-width:44px;min-height:44px;background:transparent;border:0;
+ color:var(--cream);text-align:center;font:700 24px var(--readout-font);padding:0}
+.stepper input::-webkit-inner-spin-button,.stepper input::-webkit-outer-spin-button{appearance:none;margin:0}
+.ledger{background:linear-gradient(100deg,#0f1a23fa,#121c26f2);border:1px solid #43545f;border-radius:10px;padding:12px 16px;flex:none;
+ box-shadow:0 6px 18px #0003}
+.ledger-head{display:grid;grid-template-columns:60px 1fr 1fr 155px;gap:8px;align-items:center;font-size:10px;text-transform:uppercase;
+ letter-spacing:.1em;color:#adbdc9;margin-bottom:8px}
+.ledger-head strong{color:var(--brand);letter-spacing:.04em}
+.atom-row{display:grid;grid-template-columns:60px 1fr 1fr 155px;gap:8px;align-items:center;min-height:31px;border-top:1px solid #c4d5e412;
+ font:13px var(--readout-font)}
+.atom-row strong{font-size:15px}
+.atom-row .balance{font:12px 'Segoe UI',sans-serif;line-height:1.2}
+.atom-count{display:flex;gap:9px;align-items:center;min-width:0}
+.dots{display:flex;gap:3px;flex-wrap:wrap;max-width:130px;max-height:21px;overflow:hidden}
+.dot{height:6px;width:6px;border-radius:50%;background:var(--atom);box-shadow:inset 0 1px 1px #fff8}
+.atom-row.pulse .dot{animation:dotpulse .3s ease-out}
+@keyframes dotpulse{from{transform:scale(1.8)}to{transform:none}}
+.delta-mass{display:block;color:var(--muted);font-size:10px;margin-top:2px}
+.mass{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding-top:10px;margin-top:8px;border-top:1px solid #70809055}
+.mass small{display:block;color:var(--muted);font-size:10px;margin-bottom:4px}
+.mass b{font:700 clamp(16px,1.7vw,23px) var(--readout-font);color:var(--cream);white-space:nowrap}
+.mass .ok b{color:var(--ok)}
+.hint-row{display:flex;align-items:center;gap:10px;min-height:54px;flex:none}
+.hint-row::before{content:'↳';font:26px var(--readout-font);color:var(--brand)}
+.hint{font-size:14px;line-height:1.35;color:#d5e0e9;min-height:38px;margin:0;display:flex;align-items:center}
+.panel{border-left:1px solid #40515c;padding:14px;gap:12px;overflow:hidden;background:linear-gradient(#192530,#111a24)}
+.panel .equation{font:600 15px/1.7 var(--readout-font);color:var(--cream);margin:0;overflow-wrap:anywhere;min-height:52px}
+.toolbar{display:flex;gap:6px;flex-wrap:wrap;flex:none}
+.toolbar button{font-size:12px;padding:0 10px}
+#groups{flex:1;white-space:nowrap}
+.privacy{font-size:10px;color:var(--muted);margin:0;line-height:1.3}
+.section-label{margin:0;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.menu{flex:1;min-height:0;overflow:auto;scrollbar-width:thin;padding:1px 4px 2px 1px}
+.menu-group{margin:10px 0 5px;font-size:11px;line-height:1.2;color:var(--brand)}
+.reaction-item{width:100%;display:flex;align-items:center;gap:8px;min-height:50px;border:1px solid #3d5364;border-radius:6px;
+ background:#14202b;color:var(--ink);text-align:left;padding:4px;margin-bottom:5px}
+.reaction-item:hover{border-color:#9cd8cd}
+.reaction-item[aria-pressed=true]{background:#1e3c40;border-color:var(--brand);box-shadow:inset 3px 0 var(--brand)}
+.reaction-item img{width:51px;height:38px;object-fit:cover;border-radius:3px}
+.reaction-item span{min-width:0;font-size:12px;line-height:1.2}
+.reaction-item small{display:block;font-size:10px;color:#b8c5d2;margin-top:3px}
+.reaction-item .mark{margin-left:auto;color:var(--ok);font-size:16px;padding:0 3px}
+.scene-story{margin:0;position:relative;flex:none;border:1px solid #5d6b70;border-radius:8px;overflow:hidden;background:#18232d}
+.scene-story img{display:block;width:100%;height:140px;object-fit:cover}
+.scene-story p{margin:0;padding:9px 10px;font-size:12px;line-height:1.4;color:var(--cream)}
+.scene-story .proof{color:var(--ok);font:11px/1.5 var(--readout-font)}
+.scene-story.earned{box-shadow:0 0 24px #59c0ab28;border-color:var(--brand)}
+.scene-story.earned img{animation:reveal .6s ease-out}
+@keyframes reveal{from{opacity:.2;filter:brightness(2)}to{opacity:1;filter:none}}
+.choices{display:grid;gap:10px;align-content:center;flex:1;min-width:0}
+.choice{min-height:62px;border:1px solid #6e8a94;background:linear-gradient(110deg,#243e48,#192932);border-radius:8px;
+ text-align:left;padding:9px 14px;display:flex;align-items:center;gap:12px;color:var(--cream)}
+.choice::before{content:'?';border:1px solid #607a86;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
+ font:14px var(--readout-font);color:var(--brand);flex:none}
+.choice .formula{font-size:23px}
+.choice[aria-pressed=true]{border-color:var(--warn);background:#4c302e}
+.unknown{font:11px/1.4 'Segoe UI',sans-serif;color:var(--muted);margin-top:12px}
+body.predict .menu{display:grid;grid-template-columns:1fr 1fr;gap:5px;align-content:start;overflow:visible}
+body.predict .reaction-item{min-height:54px;margin:0}
+body.predict .reaction-item small{font-size:10px}
+body.predict .trays{grid-template-columns:minmax(0,.85fr) 42px minmax(0,1.15fr)}
+body.predict .tray.product{border-color:#75a99e}
+body.predict .scene-story{display:none}
+.modal{position:fixed;inset:0;background:#040b13bb;z-index:10;display:grid;place-items:center;padding:18px}
+.formula-card{max-width:460px;width:100%;padding:28px;border:1px solid #8ea9b1;border-radius:16px;
+ background:radial-gradient(ellipse at top,#263e48,#101b29);box-shadow:0 25px 80px #000b}
+.formula-card h2{font-size:18px;color:var(--brand);margin:0 0 22px}
+.formula-card .comparison{font:700 35px var(--readout-font);color:var(--cream);margin:0 0 20px}
+.formula-card p{font-size:16px;line-height:1.5}
+.formula-card button{margin-top:15px;min-height:48px;width:100%}
+.calm *{animation:none!important;transition:none!important}
+@media (min-width:1500px){.stage{padding:24px 36px 18px;gap:18px}main{grid-template-columns:minmax(0,1fr) 310px}
+ .scene-story img{height:190px}.tray{padding:18px}.copies{gap:10px}.copy{max-height:170px}.atom-row{min-height:36px}}
+@media (max-width:1100px){
+ main{grid-template-columns:minmax(0,1fr) 220px}.stage{padding:10px;gap:8px}.trays{gap:6px;grid-template-columns:minmax(0,1fr) 28px minmax(0,1fr)}
+ .tray{padding:8px}.cards{gap:6px}.formula{font-size:24px}.substance-name{font-size:10px}.stepper{padding:2px;gap:0}
+ .panel{padding:10px;gap:8px}.scene-story img{height:110px}.ledger{padding:8px 10px}
+ .ledger-head,.atom-row{grid-template-columns:46px 1fr 1fr 124px;gap:5px}.dots{max-width:75px}.atom-row .balance{font-size:11px}
+ .delta-mass{font-size:10px}.atom-row{min-height:28px}header{padding:6px 10px;gap:5px}h1{font-size:20px}
+ .icon-btn,.seg button{padding:0 8px;font-size:12px}.hint{font-size:12px}.panel .equation{font-size:12px}.choice{padding:7px;gap:6px}
+ body.predict .trays{grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr)}
+}
+@media (max-height:680px),(min-width:601px) and (max-width:900px){
+ header{padding:4px 8px;gap:4px}h1{font-size:18px}h1 small{display:none}
+ .stage{padding:8px 10px;gap:6px}.stage-head{min-height:28px}#reaction-title{font-size:18px;margin:0}.eyebrow{font-size:10px}
+ .stage-head .eyebrow{display:none}#status{font-size:10px;padding:5px}.trays{min-height:0;flex:1}
+ .tray{padding:6px}.tray-heading{font-size:10px;margin-bottom:5px}.cards{display:flex;flex-direction:column;gap:4px}
+ .substance{flex:1;display:grid;grid-template-columns:minmax(48px,1fr) 136px;gap:0 4px;align-content:center;min-height:55px;
+ border-bottom:1px solid #c9e4e014;padding:1px 0}
+ .substance:last-child{border-bottom:0}.formula-button{grid-column:1;grid-row:1;min-height:44px;align-self:center}
+ .formula{font-size:20px}.substance-name{font-size:10px;min-height:0;grid-column:1;line-height:1.05}
+ .copies{position:absolute;width:28px;height:28px;min-height:0;right:138px;top:8px;padding:0;opacity:.7;display:none}
+ .stepper{grid-column:2;grid-row:1 / span 2;align-self:center;width:136px}.stepper input{font-size:20px}
+ .model-caption{display:none}.ledger{padding:6px 10px}.ledger-head{margin-bottom:3px}.atom-row{min-height:22px}
+ .atom-row strong{font-size:12px}.atom-row{font-size:11px}.delta-mass{display:none}.mass{padding-top:5px;margin-top:3px}
+ .mass b{font-size:15px}.mass small{font-size:10px;margin-bottom:1px}.hint-row{min-height:36px}.hint{min-height:32px;font-size:12px}
+ .panel{padding:8px;gap:7px}.panel .equation{min-height:34px;font-size:12px}.scene-story img{height:76px}.scene-story p{font-size:11px;padding:6px}
+ .scene-story .proof{font-size:10px}.privacy{font-size:10px}.menu-group{margin:6px 0 3px}.reaction-item{min-height:44px}
+ .reaction-item img{width:42px;height:31px}.reaction-item span{font-size:11px}.section-label{font-size:10px}
+ .periodic{padding:4px 6px}.periodic div{gap:2px 5px}.periodic b{font-size:12px}.periodic span{display:none}
+ .choice{min-height:44px}.choice .formula{font-size:20px}.choices{gap:5px}.unknown{font-size:10px;margin-top:4px}
+ body.predict .reaction-item{min-height:44px}
+}
+@media (min-width:601px) and (max-width:900px){main{grid-template-columns:minmax(0,1fr) 184px}.panel{padding:7px}
+ .toolbar{gap:4px}.toolbar button{padding:0 8px;font-size:11px}.toolbar #groups{font-size:11px}
+ .ledger-head,.atom-row{grid-template-columns:34px 1fr 1fr 112px}.dots{max-width:42px;gap:2px}.dot{width:4px;height:4px}
+ .substance{grid-template-columns:minmax(45px,1fr) 132px;gap:2px}.stepper{width:132px;padding:0;grid-template-columns:44px 44px 44px;border:0}
+ .formula{font-size:17px}.substance-name{font-size:10px}.tray{padding:5px}.stage{padding:6px}
+ .trays{gap:4px;grid-template-columns:minmax(0,1fr) 22px minmax(0,1fr)}
+ h1{font-size:16px}.seg button,.icon-btn{padding:0 7px;font-size:11px}.icon-btn{font-size:11px}.arrow{font-size:26px}
+ .mass b{font-size:13px}.periodic small{font-size:10px}.periodic{gap:2px}.periodic div{display:block}
+ .periodic b{margin-left:3px}.choice .formula{font-size:17px}.choice::before{width:22px;height:22px}.unknown{display:none}
+}
+@media (max-width:600px){
+ body{height:100dvh;overflow:auto;display:block}header{display:grid;grid-template-columns:1fr 1fr 1fr;padding:6px;gap:5px}
+ h1{grid-column:1 / -1;font-size:20px;line-height:1.2;margin:0;padding:1px 2px}h1 small{display:none}
+ .seg{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr 1fr}.seg button,.icon-btn{font-size:12px;padding:0 7px;min-height:44px}
+ main{display:flex;flex-direction:column;overflow:visible}.stage{padding:8px;gap:7px;min-height:0;flex:none}
+ .stage-head{min-height:28px}#reaction-title{font-size:19px}.eyebrow{display:none}#status{font-size:10px;padding:5px}
+ .trays,body.predict .trays{grid-template-columns:minmax(0,1fr) 18px minmax(0,1fr);gap:4px;flex:none;min-height:0}
+ .tray{padding:5px;border-radius:8px}.tray-heading{font-size:10px;letter-spacing:.04em;margin-bottom:5px}.arrow{font-size:23px}
+ .cards{display:flex;flex-direction:column;gap:5px}.substance{display:grid;grid-template-columns:1fr;gap:0;min-height:0;padding:0;
+ border-bottom:1px solid #c9e4e014}.substance:last-child{border-bottom:0}
+ .formula-button{height:44px;grid-row:auto;grid-column:auto;min-height:44px;padding:0 1px;align-self:start}
+ .formula{font-size:21px}.substance-name{font-size:10px;min-height:14px;grid-column:auto;line-height:1.1}
+ .copies{position:absolute;right:0;top:0;width:44px;height:36px;min-height:0;display:grid;grid-template-columns:1fr;opacity:.8;padding:0}
+ .copies{grid-template-columns:repeat(2,minmax(0,1fr))}.copies .mult{font-size:10px;padding:0 2px}.copy{min-height:25px}
+ .stepper{grid-column:auto;grid-row:auto;width:100%;grid-template-columns:44px minmax(44px,1fr) 44px;gap:0;padding:1px;margin:3px 0}
+ .stepper input{font-size:20px}.model-caption{display:none}
+ .ledger{padding:7px}.ledger-head,.atom-row{grid-template-columns:32px 1fr 1fr 118px;gap:3px}.ledger-head{margin-bottom:3px;letter-spacing:0}
+ .atom-row{min-height:23px;font-size:11px}.atom-row strong{font-size:12px}.atom-row .balance{font-size:10px}
+ .dots{max-width:34px;gap:2px}.dot{width:4px;height:4px}.atom-count{gap:4px}.delta-mass{display:none}
+ .mass{gap:5px;margin-top:4px;padding-top:6px}.mass b{font-size:14px}.mass small{font-size:10px;margin-bottom:3px}
+ .hint-row{min-height:39px}.hint{min-height:35px;font-size:12px}.hint-row::before{font-size:20px}
+ .panel{border-left:0;border-top:1px solid #5b757e;overflow:visible;display:grid;grid-template-columns:1fr;gap:9px;padding:10px}
+ .toolbar{position:relative;order:-3;display:flex;flex-wrap:nowrap}.toolbar button{font-size:12px}.toolbar #groups{flex:1}
+ .equation{order:-2}.privacy{order:-1}.menu{max-height:330px;overflow:auto;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+ .menu-group{grid-column:1 / -1}.reaction-item{min-height:48px;margin:0}.reaction-item img{width:39px;height:30px}
+ .reaction-item span{font-size:11px}.scene-story{display:grid;grid-template-columns:135px 1fr}.scene-story img{height:110px;grid-row:1 / span 2}
+ .scene-story p{font-size:11px}.scene-story .proof{padding-top:0}.periodic{padding:5px;gap:3px}
+ .periodic div{display:block}.periodic small{font-size:10px}.periodic b{display:block;font-size:13px}.periodic span{display:none}
+ body.predict .menu{grid-template-columns:repeat(2,1fr);overflow:visible}.choices{gap:8px;padding:6px 0}
+ .choice{padding:7px;min-height:52px;gap:4px}.choice::before{width:18px;height:18px;font-size:11px}.choice .formula{font-size:17px}
+ .unknown{font-size:10px}.modal{padding:14px}.formula-card{padding:22px}.formula-card .comparison{font-size:29px}
+}
+
+.substance{min-height:0}
+.copies{flex:1 1 0;min-height:0;overflow:hidden;grid-auto-rows:minmax(0,1fr)}
+.copy{display:block;min-height:0;max-height:100%;max-width:100%;height:100%}
+@media (min-width:601px) and (max-height:680px), (min-width:601px) and (max-width:900px){
+ .copies{position:relative;flex:none}.copies .mult{bottom:0}
+}
+@media (min-width:601px) and (max-width:900px) and (min-height:681px){
+ .substance{grid-template-columns:minmax(55px,1fr) 40px 132px}.copies{width:40px;height:50px}
+}
+@media (max-width:600px){.ledger-head,.atom-row{grid-template-columns:40px 1fr 1fr 118px}}
+@media (min-width:601px) and (max-height:680px), (min-width:601px) and (max-width:900px){
+ body.predict .reaction-item{padding:3px;min-height:44px}
+ body.predict .reaction-item span{font-size:11px;line-height:1.1}
+ body.predict .reaction-item small{font-size:10px;line-height:1.1}
+ body.predict[data-chosen=false] .ledger{display:block}
+ body.predict[data-chosen=false] .ledger .mass{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;
+  margin-top:4px;padding:3px 0 0;border-left:0;border-top:1px solid #70809055}
+ body.predict[data-chosen=false] .ledger .privacy{display:none}
+ body.predict[data-chosen=false] .trays{min-height:164px}
+ body.predict[data-chosen=false] .choices{flex:none}
+}
+
+/* Keep the counting controls and full ledger together in short previews. */
+.substance-name{display:block;font-family:'Segoe UI',sans-serif;font-weight:400;white-space:normal;margin-top:5px}
+@media (min-width:601px) and (max-height:680px), (min-width:601px) and (max-width:900px){
+ .stage{gap:5px}.stage-head{min-height:24px}#reaction-title{font-size:17px}
+ .substance{min-height:44px;padding:0;grid-template-columns:minmax(55px,1fr) 22px 132px;gap:2px;align-items:center}
+ .formula-button{grid-column:1;grid-row:1;min-height:44px;height:44px;align-self:center;width:100%;font-size:17px;line-height:1.1}
+ .substance-name{margin-top:3px;min-height:0;font-size:10px;line-height:1.05}
+ .copies{display:grid;position:static;grid-column:2;grid-row:1;width:22px;height:35px;min-height:0;opacity:1;padding:0;gap:0}
+ .copy{min-height:0;max-height:35px}.copies .mult{font-size:10px;padding:0;right:0;bottom:-5px}
+ .stepper{grid-column:3;grid-row:1;width:132px;padding:0;gap:0;grid-template-columns:44px 44px 44px;border:0}
+ .cards{gap:2px}.tray-heading{margin-bottom:4px;font-size:10px;line-height:12px}.tray{padding:5px}
+ .ledger{padding:5px 8px}.ledger-head{font-size:10px;margin-bottom:2px;line-height:12px}
+ .atom-row{min-height:18px}.atom-row strong{font-size:11px}.atom-row .balance{font-size:10px}
+ .mass{margin-top:2px;padding-top:3px}.mass b{font-size:14px}.mass small{line-height:11px}
+ .ledger .privacy{font-size:10px;line-height:11px;margin-top:2px}
+ .hint-row{min-height:29px;gap:5px}.hint{font-size:11px;min-height:26px;line-height:1.2}
+ .scene-story{margin:0}.scene-story img{height:72px}
+ .toolbar button{padding:0 8px}.toolbar{gap:4px}
+ .ledger{display:grid;grid-template-columns:minmax(0,1fr) 104px;gap:0 8px}
+ .ledger-head{grid-column:1;grid-row:1;grid-template-columns:28px 1fr 1fr 112px;gap:3px;letter-spacing:0}
+ #atom-rows{grid-column:1;grid-row:2}.atom-row{grid-template-columns:28px 1fr 1fr 112px;gap:3px}
+ .mass{grid-column:2;grid-row:1 / span 2;display:flex;flex-direction:column;gap:3px;margin:0;padding:0 0 0 6px;
+  border-top:0;border-left:1px solid #70809055;justify-content:space-around}
+ .mass small{margin:0;line-height:11px}.mass b{font-size:13px;line-height:16px}
+ .ledger>.privacy{grid-column:1 / -1;margin-top:4px}
+ .copy text{display:none}
+}
+@media (min-width:901px) and (max-height:680px){
+ .substance{grid-template-columns:minmax(75px,1fr) 40px 132px}.copies{width:40px;height:40px}
+}
+@media (max-width:600px){
+ header{grid-template-columns:minmax(0,1fr) repeat(3,50px);padding:5px;gap:4px}
+ h1{grid-column:1;grid-row:1;font-size:17px;letter-spacing:-.4px;line-height:1.1}
+ #motion{grid-column:2}#sound{grid-column:3}#read{grid-column:4}
+ .seg{grid-column:1 / -1;grid-row:2}.icon-btn{grid-row:1;min-width:44px;padding:0 3px;font-size:10px;line-height:1.2}
+ .stage>.toolbar{margin:0;gap:5px}.stage>.toolbar .btn{min-height:44px}
+ .formula-button{width:100%;font-size:20px;min-height:44px;height:44px;line-height:1.05}
+ .substance-name{font-size:10px;margin-top:3px;min-height:12px}
+ .formula-button{padding-right:30px}.copies{display:grid;position:absolute;right:0;top:2px;width:28px;height:28px;opacity:.85}
+ .substance{gap:0}.stepper{padding:0;border:0;margin:2px 0 3px}
+ .cards{gap:3px}.ledger .privacy{font-size:10px;line-height:1.1}.hint-row{min-height:32px}.hint{min-height:30px}
+ .stage-head{min-height:26px}.stage{gap:6px}.atom-row{min-height:20px}.mass{padding-top:4px}
+ .copy text{display:none}
+}
+
+/* Final audit leads: targets, chemical notation and compact navigation. */
+.icon-btn{min-width:44px}
+.copy.departing{position:absolute;inset:20%;width:60%;height:60%;pointer-events:none;animation:depart .3s ease-out forwards}
+@keyframes depart{to{opacity:0;transform:translateY(12px) scale(.7)}}
+.formula sub,.atom-row sub,.equation sub{font-size:max(10px,.6em)}
+.scene-story:not(.earned) #story-line{min-height:54px;height:54px}
+body.predict .reaction-item .mark{display:none}
+@media (min-width:601px) and (max-height:680px), (min-width:601px) and (max-width:900px){
+ .formula-button{padding:0}
+ .scene-story:not(.earned) #story-line{min-height:44px;height:44px}
+ body.predict .panel{gap:5px}
+ body.predict .panel .equation{min-height:22px}
+ body.predict .menu{flex:none;gap:2px;padding:0;grid-template-rows:repeat(5,44px)}
+ body.predict .reaction-item{height:44px;min-height:44px;max-height:44px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Equation Balancer <small>Count molecules, not guesses.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-workbench" aria-pressed="true">Workbench</button>
+    <button id="m-levels" aria-pressed="false">Levels</button>
+    <button id="m-predict" aria-pressed="false">Predict</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Turn animation on or off">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read" title="Read the current hint">Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <div class="stage-head">
+      <div><div class="eyebrow" id="reaction-code">Molecular workbench</div><h2 id="reaction-title">Water</h2></div>
+      <span id="status">Count atoms</span>
+    </div>
+    <div class="periodic" id="periodic" hidden aria-label="Usual ion charges by periodic group">
+      <div><small>Group 1</small><b>+1</b><span>Li · Na · K</span></div>
+      <div><small>Group 2</small><b>+2</b><span>Mg · Ca</span></div>
+      <div><small>Group 13</small><b>+3</b><span>Al</span></div>
+      <div><small>Group 16</small><b>−2</b><span>O</span></div>
+      <div><small>Group 17</small><b>−1</b><span>Cl · Br</span></div>
+    </div>
+    <div class="trays" id="trays">
+      <section class="tray" aria-label="Reactants">
+        <div class="tray-heading">Reactants <i aria-hidden="true"></i></div>
+        <div class="cards" id="reactants"></div>
+      </section>
+      <div class="arrow" aria-label="yields">→</div>
+      <section class="tray product" aria-label="Products">
+        <div class="tray-heading">Products <span id="product-step"></span></div>
+        <div class="cards" id="products"></div>
+        <div class="choices" id="choices" hidden></div>
+        <div class="unknown" id="unknown" hidden>Choose the product first. Atom and mass checks follow.</div>
+      </section>
+    </div>
+    <section class="ledger" id="ledger" tabindex="0" aria-label="Atom and mass ledgers">
+      <div class="ledger-head"><strong id="ledger-title">Atoms</strong><span>Left</span><span>Right</span><span>Difference</span></div>
+      <div id="atom-rows"></div>
+      <div class="mass" id="mass-ledger">
+        <div><small>Reactants · g</small><b id="mass-left">0.00</b></div>
+        <div><small>Products · g</small><b id="mass-right">0.00</b></div>
+        <div id="mass-gap-wrap"><small>Difference · g</small><b id="mass-gap">0.00</b></div>
+      </div>
+      <div class="privacy">Mass uses coefficients as moles. Dots show up to 24 atoms; numbers are exact.</div>
+    </section>
+    <div class="hint-row"><p class="hint" id="hint" aria-live="polite"></p></div>
+  </div>
+  <aside class="panel" id="panel">
+    <div class="toolbar" id="toolbar">
+      <button class="btn" id="hint-button">Hint</button>
+      <button class="btn" id="reset">Reset</button>
+      <button class="btn" id="groups" aria-pressed="false">Count groups</button>
+    </div>
+    <p class="equation" id="equation"></p>
+    <figure class="scene-story" id="story">
+      <img id="story-art" alt="">
+      <p id="story-line"></p>
+      <p class="proof" id="proof" hidden></p>
+    </figure>
+    <h2 class="section-label" id="menu-label">Choose an equation</h2>
+    <nav class="menu" id="menu" aria-labelledby="menu-label"></nav>
+    <button class="btn" id="clear" hidden>Clear progress</button>
+    <p class="privacy" id="storage-note">Progress stays on this device. It never leaves it.</p>
+  </aside>
+</main>
+<div class="modal" id="formula-modal" hidden>
+  <section class="formula-card" role="dialog" aria-modal="true" aria-labelledby="formula-title" aria-describedby="formula-explain">
+    <h2 id="formula-title">Change a subscript?</h2>
+    <p class="comparison" id="formula-change"></p>
+    <p id="formula-explain"></p>
+    <button class="big-btn" id="put-back">Put it back</button>
+  </section>
+</div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const CONTENT = {
+  "equations": [
+    {
+      "id": "L1-1",
+      "level": 1,
+      "left": [
+        "H2",
+        "O2"
+      ],
+      "right": [
+        "H2O"
+      ],
+      "answer": [
+        2,
+        1,
+        2
+      ],
+      "title": "Water",
+      "art": "eb-story-water",
+      "story": "Water from hydrogen fuel."
+    },
+    {
+      "id": "L1-2",
+      "level": 1,
+      "left": [
+        "N2",
+        "H2"
+      ],
+      "right": [
+        "NH3"
+      ],
+      "answer": [
+        1,
+        3,
+        2
+      ],
+      "title": "Ammonia",
+      "art": "eb-story-ammonia",
+      "story": "Making ammonia for fertilizer."
+    },
+    {
+      "id": "L1-3",
+      "level": 1,
+      "left": [
+        "Na",
+        "Cl2"
+      ],
+      "right": [
+        "NaCl"
+      ],
+      "answer": [
+        2,
+        1,
+        2
+      ],
+      "title": "Table salt",
+      "art": "eb-story-salt",
+      "story": "Table salt from a metal and a toxic gas."
+    },
+    {
+      "id": "L1-4",
+      "level": 1,
+      "left": [
+        "Mg",
+        "O2"
+      ],
+      "right": [
+        "MgO"
+      ],
+      "answer": [
+        2,
+        1,
+        2
+      ],
+      "title": "White light",
+      "art": "eb-story-magnesium",
+      "story": "A magnesium strip burns white."
+    },
+    {
+      "id": "L1-5",
+      "level": 1,
+      "left": [
+        "H2O2"
+      ],
+      "right": [
+        "H2O",
+        "O2"
+      ],
+      "answer": [
+        2,
+        2,
+        1
+      ],
+      "title": "Peroxide",
+      "art": "eb-story-peroxide",
+      "story": "Peroxide releases oxygen bubbles."
+    },
+    {
+      "id": "L2-1",
+      "level": 2,
+      "left": [
+        "Fe",
+        "O2"
+      ],
+      "right": [
+        "Fe2O3"
+      ],
+      "answer": [
+        4,
+        3,
+        2
+      ],
+      "title": "Rust",
+      "art": "eb-story-rust",
+      "story": "Rust, and the heat in a hand warmer."
+    },
+    {
+      "id": "L2-2",
+      "level": 2,
+      "left": [
+        "Al",
+        "O2"
+      ],
+      "right": [
+        "Al2O3"
+      ],
+      "answer": [
+        4,
+        3,
+        2
+      ],
+      "title": "Aluminum skin",
+      "art": "eb-story-aluminum",
+      "story": "The thin oxide skin on aluminum."
+    },
+    {
+      "id": "L2-3",
+      "level": 2,
+      "left": [
+        "KClO3"
+      ],
+      "right": [
+        "KCl",
+        "O2"
+      ],
+      "answer": [
+        2,
+        2,
+        3
+      ],
+      "title": "Oxygen supply",
+      "art": "eb-story-oxygen",
+      "story": "Chlorates release oxygen for emergency supplies."
+    },
+    {
+      "id": "L2-4",
+      "level": 2,
+      "left": [
+        "CaCO3"
+      ],
+      "right": [
+        "CaO",
+        "CO2"
+      ],
+      "answer": [
+        1,
+        1,
+        1
+      ],
+      "title": "Limestone",
+      "art": "eb-story-lime",
+      "story": "Making lime from limestone."
+    },
+    {
+      "id": "L2-5",
+      "level": 2,
+      "left": [
+        "C6H12O6"
+      ],
+      "right": [
+        "C2H5OH",
+        "CO2"
+      ],
+      "answer": [
+        1,
+        2,
+        2
+      ],
+      "title": "Yeast",
+      "art": "eb-story-yeast",
+      "story": "Yeast making bread rise."
+    },
+    {
+      "id": "L3-1",
+      "level": 3,
+      "left": [
+        "AgNO3",
+        "NaCl"
+      ],
+      "right": [
+        "AgCl",
+        "NaNO3"
+      ],
+      "answer": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "title": "White precipitate",
+      "art": "eb-story-silver",
+      "story": "A white solid appears."
+    },
+    {
+      "id": "L3-2",
+      "level": 3,
+      "left": [
+        "Pb(NO3)2",
+        "KI"
+      ],
+      "right": [
+        "PbI2",
+        "KNO3"
+      ],
+      "answer": [
+        1,
+        2,
+        1,
+        2
+      ],
+      "title": "Yellow precipitate",
+      "art": "eb-story-lead",
+      "story": "A yellow solid appears."
+    },
+    {
+      "id": "L3-3",
+      "level": 3,
+      "left": [
+        "H2SO4",
+        "NaOH"
+      ],
+      "right": [
+        "Na2SO4",
+        "H2O"
+      ],
+      "answer": [
+        1,
+        2,
+        1,
+        2
+      ],
+      "title": "Neutralization",
+      "art": "eb-story-neutral",
+      "story": "An acid neutralized."
+    },
+    {
+      "id": "L3-4",
+      "level": 3,
+      "left": [
+        "Ca(OH)2",
+        "HCl"
+      ],
+      "right": [
+        "CaCl2",
+        "H2O"
+      ],
+      "answer": [
+        1,
+        2,
+        1,
+        2
+      ],
+      "title": "Acid and base",
+      "art": null,
+      "story": ""
+    },
+    {
+      "id": "L3-5",
+      "level": 3,
+      "left": [
+        "Al",
+        "CuSO4"
+      ],
+      "right": [
+        "Al2(SO4)3",
+        "Cu"
+      ],
+      "answer": [
+        2,
+        3,
+        1,
+        3
+      ],
+      "title": "Copper coating",
+      "art": "eb-story-copper",
+      "story": "Copper plates out of the blue solution."
+    },
+    {
+      "id": "L4-1",
+      "level": 4,
+      "left": [
+        "CH4",
+        "O2"
+      ],
+      "right": [
+        "CO2",
+        "H2O"
+      ],
+      "answer": [
+        1,
+        2,
+        1,
+        2
+      ],
+      "title": "Natural gas",
+      "art": "eb-story-gas-stove",
+      "story": "Natural gas burns."
+    },
+    {
+      "id": "L4-2",
+      "level": 4,
+      "left": [
+        "C3H8",
+        "O2"
+      ],
+      "right": [
+        "CO2",
+        "H2O"
+      ],
+      "answer": [
+        1,
+        5,
+        3,
+        4
+      ],
+      "title": "Propane",
+      "art": "eb-story-propane",
+      "story": "Fuel from a grill tank."
+    },
+    {
+      "id": "L4-3",
+      "level": 4,
+      "left": [
+        "C2H5OH",
+        "O2"
+      ],
+      "right": [
+        "CO2",
+        "H2O"
+      ],
+      "answer": [
+        1,
+        3,
+        2,
+        3
+      ],
+      "title": "Ethanol",
+      "art": "eb-story-ethanol",
+      "story": "Ethanol fuel burns."
+    },
+    {
+      "id": "L4-4",
+      "level": 4,
+      "left": [
+        "C6H12O6",
+        "O2"
+      ],
+      "right": [
+        "CO2",
+        "H2O"
+      ],
+      "answer": [
+        1,
+        6,
+        6,
+        6
+      ],
+      "title": "Respiration",
+      "art": "eb-story-respiration",
+      "story": "Respiration in your cells."
+    },
+    {
+      "id": "L4-5",
+      "level": 4,
+      "left": [
+        "C2H6",
+        "O2"
+      ],
+      "right": [
+        "CO2",
+        "H2O"
+      ],
+      "answer": [
+        2,
+        7,
+        4,
+        6
+      ],
+      "title": "Ethane",
+      "art": "eb-story-ethane",
+      "story": "Ethane needs a doubled start."
+    },
+    {
+      "id": "L5-1",
+      "level": 5,
+      "left": [
+        "C8H18",
+        "O2"
+      ],
+      "right": [
+        "CO2",
+        "H2O"
+      ],
+      "answer": [
+        2,
+        25,
+        16,
+        18
+      ],
+      "title": "Octane",
+      "art": "eb-story-octane",
+      "story": "Octane in gasoline."
+    },
+    {
+      "id": "L5-2",
+      "level": 5,
+      "left": [
+        "NH3",
+        "O2"
+      ],
+      "right": [
+        "NO",
+        "H2O"
+      ],
+      "answer": [
+        4,
+        5,
+        4,
+        6
+      ],
+      "title": "Nitric acid",
+      "art": "eb-story-nitric",
+      "story": "The first step to nitric acid."
+    },
+    {
+      "id": "L5-3",
+      "level": 5,
+      "left": [
+        "Fe2O3",
+        "CO"
+      ],
+      "right": [
+        "Fe",
+        "CO2"
+      ],
+      "answer": [
+        1,
+        3,
+        2,
+        3
+      ],
+      "title": "Making iron",
+      "art": "eb-story-blast-furnace",
+      "story": "A blast furnace makes iron."
+    },
+    {
+      "id": "L5-4",
+      "level": 5,
+      "left": [
+        "NaHCO3",
+        "HC2H3O2"
+      ],
+      "right": [
+        "NaC2H3O2",
+        "H2O",
+        "CO2"
+      ],
+      "answer": [
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "title": "Soda and vinegar",
+      "art": "eb-story-soda-vinegar",
+      "story": "Baking soda and vinegar."
+    },
+    {
+      "id": "L5-5",
+      "level": 5,
+      "left": [
+        "Ca3(PO4)2",
+        "H2SO4"
+      ],
+      "right": [
+        "CaSO4",
+        "H3PO4"
+      ],
+      "answer": [
+        1,
+        3,
+        3,
+        2
+      ],
+      "title": "Fertilizer acid",
+      "art": "eb-story-phosphate",
+      "story": "Phosphate rock made into fertilizer acid."
+    },
+    {
+      "id": "P1",
+      "left": [
+        "Na",
+        "Cl2"
+      ],
+      "right": [
+        "NaCl"
+      ],
+      "answer": [
+        2,
+        1,
+        2
+      ],
+      "example": true,
+      "choices": [],
+      "title": "Sodium + chlorine",
+      "why": "Na forms 1+ ions and Cl forms 1− ions, so one of each cancels the charges."
+    },
+    {
+      "id": "P2",
+      "left": [
+        "K",
+        "Cl2"
+      ],
+      "right": [
+        "KCl"
+      ],
+      "answer": [
+        2,
+        1,
+        2
+      ],
+      "example": false,
+      "choices": [
+        [
+          "KCl"
+        ],
+        [
+          "KCl2"
+        ],
+        [
+          "K2Cl"
+        ]
+      ],
+      "title": "Potassium + chlorine",
+      "why": "K forms 1+ ions and Cl forms 1− ions, so one of each cancels the charges."
+    },
+    {
+      "id": "P3",
+      "left": [
+        "Mg",
+        "O2"
+      ],
+      "right": [
+        "MgO"
+      ],
+      "answer": [
+        2,
+        1,
+        2
+      ],
+      "example": true,
+      "choices": [],
+      "title": "Magnesium + oxygen",
+      "why": "Mg forms 2+ ions and O forms 2− ions, so one of each cancels the charges."
+    },
+    {
+      "id": "P4",
+      "left": [
+        "Ca",
+        "O2"
+      ],
+      "right": [
+        "CaO"
+      ],
+      "answer": [
+        2,
+        1,
+        2
+      ],
+      "example": false,
+      "choices": [
+        [
+          "CaO"
+        ],
+        [
+          "CaO2"
+        ],
+        [
+          "Ca2O"
+        ]
+      ],
+      "title": "Calcium + oxygen",
+      "why": "Ca forms 2+ ions and oxide is 2−, so one of each cancels the charges."
+    },
+    {
+      "id": "P5",
+      "left": [
+        "Li",
+        "O2"
+      ],
+      "right": [
+        "Li2O"
+      ],
+      "answer": [
+        4,
+        1,
+        2
+      ],
+      "example": false,
+      "choices": [
+        [
+          "LiO"
+        ],
+        [
+          "Li2O"
+        ],
+        [
+          "LiO2"
+        ]
+      ],
+      "title": "Lithium + oxygen",
+      "why": "Li forms 1+ ions and oxide is 2−, so two Li cancel one O."
+    },
+    {
+      "id": "P6",
+      "left": [
+        "Ca",
+        "Cl2"
+      ],
+      "right": [
+        "CaCl2"
+      ],
+      "answer": [
+        1,
+        1,
+        1
+      ],
+      "example": false,
+      "choices": [
+        [
+          "CaCl"
+        ],
+        [
+          "CaCl2"
+        ],
+        [
+          "Ca2Cl"
+        ]
+      ],
+      "title": "Calcium + chlorine",
+      "why": "Ca forms 2+ ions and Cl forms 1− ions, so it takes two Cl to cancel."
+    },
+    {
+      "id": "P7",
+      "left": [
+        "Al",
+        "Br2"
+      ],
+      "right": [
+        "AlBr3"
+      ],
+      "answer": [
+        2,
+        3,
+        2
+      ],
+      "example": false,
+      "choices": [
+        [
+          "AlBr"
+        ],
+        [
+          "AlBr3"
+        ],
+        [
+          "Al3Br"
+        ]
+      ],
+      "title": "Aluminum + bromine",
+      "why": "Al forms 3+ ions and Br forms 1− ions, so it takes three Br to cancel."
+    },
+    {
+      "id": "P8",
+      "left": [
+        "Na",
+        "H2O"
+      ],
+      "right": [
+        "NaOH",
+        "H2"
+      ],
+      "answer": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "example": true,
+      "choices": [],
+      "title": "Sodium + water",
+      "why": "Sodium in water: a teacher demo behind a shield."
+    },
+    {
+      "id": "P9",
+      "left": [
+        "K",
+        "H2O"
+      ],
+      "right": [
+        "KOH",
+        "H2"
+      ],
+      "answer": [
+        2,
+        2,
+        2,
+        1
+      ],
+      "example": false,
+      "choices": [
+        [
+          "KOH",
+          "H2"
+        ],
+        [
+          "KH",
+          "O2"
+        ],
+        [
+          "K2O",
+          "H2"
+        ]
+      ],
+      "title": "Potassium + water",
+      "why": "K forms 1+ ions and OH is 1−. The metal makes a hydroxide and releases hydrogen."
+    },
+    {
+      "id": "P10",
+      "left": [
+        "Mg",
+        "HCl"
+      ],
+      "right": [
+        "MgCl2",
+        "H2"
+      ],
+      "answer": [
+        1,
+        2,
+        1,
+        1
+      ],
+      "example": false,
+      "choices": [
+        [
+          "MgCl2",
+          "H2"
+        ],
+        [
+          "MgCl",
+          "H2"
+        ],
+        [
+          "MgH2",
+          "Cl2"
+        ]
+      ],
+      "title": "Magnesium + acid",
+      "why": "Mg forms 2+ ions, so it needs two Cl with 1− charge; hydrogen is released as H2."
+    }
+  ],
+  "names": {
+    "H2": "hydrogen",
+    "O2": "oxygen",
+    "H2O": "water",
+    "N2": "nitrogen",
+    "NH3": "ammonia",
+    "Na": "sodium",
+    "Cl2": "chlorine",
+    "NaCl": "sodium chloride",
+    "Mg": "magnesium",
+    "MgO": "magnesium oxide",
+    "H2O2": "hydrogen peroxide",
+    "Fe": "iron",
+    "Fe2O3": "iron(III) oxide",
+    "Al": "aluminum",
+    "Al2O3": "aluminum oxide",
+    "KClO3": "potassium chlorate",
+    "KCl": "potassium chloride",
+    "CaCO3": "calcium carbonate",
+    "CaO": "calcium oxide",
+    "CO2": "carbon dioxide",
+    "C6H12O6": "glucose",
+    "C2H5OH": "ethanol",
+    "AgNO3": "silver nitrate",
+    "AgCl": "silver chloride",
+    "NaNO3": "sodium nitrate",
+    "Pb(NO3)2": "lead(II) nitrate",
+    "KI": "potassium iodide",
+    "PbI2": "lead(II) iodide",
+    "KNO3": "potassium nitrate",
+    "H2SO4": "sulfuric acid",
+    "NaOH": "sodium hydroxide",
+    "Na2SO4": "sodium sulfate",
+    "Ca(OH)2": "calcium hydroxide",
+    "HCl": "hydrogen chloride",
+    "CaCl2": "calcium chloride",
+    "CuSO4": "copper(II) sulfate",
+    "Al2(SO4)3": "aluminum sulfate",
+    "Cu": "copper",
+    "CH4": "methane",
+    "C3H8": "propane",
+    "C2H6": "ethane",
+    "C8H18": "octane",
+    "NO": "nitrogen monoxide",
+    "CO": "carbon monoxide",
+    "NaHCO3": "sodium bicarbonate",
+    "HC2H3O2": "acetic acid",
+    "NaC2H3O2": "sodium acetate",
+    "Ca3(PO4)2": "calcium phosphate",
+    "CaSO4": "calcium sulfate",
+    "H3PO4": "phosphoric acid",
+    "K": "potassium",
+    "Ca": "calcium",
+    "Li": "lithium",
+    "Li2O": "lithium oxide",
+    "Br2": "bromine",
+    "AlBr3": "aluminum bromide",
+    "KOH": "potassium hydroxide",
+    "MgCl2": "magnesium chloride"
+  }
+};
+  const ELEMENTS = {
+  "H": {
+    "mass": 1.008,
+    "name": "Hydrogen"
+  },
+  "Li": {
+    "mass": 6.94,
+    "name": "Lithium"
+  },
+  "C": {
+    "mass": 12.011,
+    "name": "Carbon"
+  },
+  "N": {
+    "mass": 14.007,
+    "name": "Nitrogen"
+  },
+  "O": {
+    "mass": 15.999,
+    "name": "Oxygen"
+  },
+  "Na": {
+    "mass": 22.99,
+    "name": "Sodium"
+  },
+  "Mg": {
+    "mass": 24.305,
+    "name": "Magnesium"
+  },
+  "Al": {
+    "mass": 26.982,
+    "name": "Aluminum"
+  },
+  "P": {
+    "mass": 30.974,
+    "name": "Phosphorus"
+  },
+  "S": {
+    "mass": 32.06,
+    "name": "Sulfur"
+  },
+  "Cl": {
+    "mass": 35.45,
+    "name": "Chlorine"
+  },
+  "K": {
+    "mass": 39.098,
+    "name": "Potassium"
+  },
+  "Ca": {
+    "mass": 40.078,
+    "name": "Calcium"
+  },
+  "Fe": {
+    "mass": 55.845,
+    "name": "Iron"
+  },
+  "Cu": {
+    "mass": 63.546,
+    "name": "Copper"
+  },
+  "Br": {
+    "mass": 79.904,
+    "name": "Bromine"
+  },
+  "Ag": {
+    "mass": 107.868,
+    "name": "Silver"
+  },
+  "I": {
+    "mass": 126.904,
+    "name": "Iodine"
+  },
+  "Pb": {
+    "mass": 207.2,
+    "name": "Lead"
+  }
+};
+  const ART = {
+  "eb-story-water": "art:eb-story-water",
+  "eb-story-ammonia": "art:eb-story-ammonia",
+  "eb-story-salt": "art:eb-story-salt",
+  "eb-story-magnesium": "art:eb-story-magnesium",
+  "eb-story-peroxide": "art:eb-story-peroxide",
+  "eb-story-rust": "art:eb-story-rust",
+  "eb-story-aluminum": "art:eb-story-aluminum",
+  "eb-story-oxygen": "art:eb-story-oxygen",
+  "eb-story-lime": "art:eb-story-lime",
+  "eb-story-yeast": "art:eb-story-yeast",
+  "eb-story-silver": "art:eb-story-silver",
+  "eb-story-lead": "art:eb-story-lead",
+  "eb-story-neutral": "art:eb-story-neutral",
+  "eb-story-copper": "art:eb-story-copper",
+  "eb-story-gas-stove": "art:eb-story-gas-stove",
+  "eb-story-propane": "art:eb-story-propane",
+  "eb-story-ethanol": "art:eb-story-ethanol",
+  "eb-story-respiration": "art:eb-story-respiration",
+  "eb-story-ethane": "art:eb-story-ethane",
+  "eb-story-octane": "art:eb-story-octane",
+  "eb-story-nitric": "art:eb-story-nitric",
+  "eb-story-blast-furnace": "art:eb-story-blast-furnace",
+  "eb-story-soda-vinegar": "art:eb-story-soda-vinegar",
+  "eb-story-phosphate": "art:eb-story-phosphate"
+};
+  const equations = CONTENT.equations;
+  const names = CONTENT.names;
+  const colors = {H:'#ffffff',C:'#909090',N:'#3050f8',O:'#ff0d0d',Na:'#ab5cf2',Cl:'#1ff01f',Mg:'#8aff00',
+    Fe:'#e06633',Al:'#bfa6a6',K:'#8f40d4',Ca:'#3dff00',Ag:'#c0c0c0',Pb:'#575961',I:'#940094',S:'#ffff30',
+    Cu:'#c88033',P:'#ff8000',Li:'#cc80ff',Br:'#a62929'};
+  const ATOMS = Object.fromEntries(Object.keys(colors).map(sym => [sym,{sym,...ELEMENTS[sym],cpk:colors[sym]}]));
+  const parseCache = new Map();
+  function parse(formula) {
+    if (parseCache.has(formula)) return {...parseCache.get(formula)};
+    const total = {};
+    for (const part of formula.split(/[·.]/)) {
+      const lead = part.match(/^\d+/);
+      const factor = lead ? +lead[0] : 1;
+      const body = lead ? part.slice(lead[0].length) : part;
+      const tokens = body.match(/[A-Z][a-z]?|\d+|[()]/g) || [];
+      if (tokens.join('') !== body) throw new Error('Invalid formula: ' + formula);
+      const stack = [{}];
+      for (let i = 0;
+      i < tokens.length;
+      ) {
+        const token = tokens[i++];
+        if (token === '(') { stack.push({});
+        continue;
+        }
+        let term;
+        if (token === ')') {
+          if (stack.length === 1) throw new Error('Unmatched parenthesis');
+          term = stack.pop();
+        } else {
+          if (!ATOMS[token]) throw new Error('Unknown element: ' + token);
+          term = {[token]:1};
+        }
+        const n = /^\d+$/.test(tokens[i] || '') ? +tokens[i++] : 1;
+        for (const [el,c] of Object.entries(term)) stack.at(-1)[el] = (stack.at(-1)[el] || 0) + c*n;
+      }
+      if (stack.length !== 1) throw new Error('Unmatched parenthesis');
+      for (const [el,c] of Object.entries(stack[0])) total[el] = (total[el] || 0) + c*factor;
+    }
+    parseCache.set(formula,total);
+    return {...total};
+  }
+  function tally(side) {
+    const result = {};
+    for (const {formula,coef} of side) {
+      for (const [el,n] of Object.entries(parse(formula))) result[el] = (result[el] || 0) + n*coef;
+    }
+    return result;
+  }
+  // Integer thousandths keep equal ledgers exact despite floating-point rounding.
+  function massUnits(counts) { return Object.entries(counts).reduce((a,[el,n]) => a+Math.round(ATOMS[el].mass*1000)*n,0);
+  }
+  function molarMass(formula) { return massUnits(parse(formula))/1000;
+  }
+  function compare(left,right) {
+    const a = tally(left), b = tally(right);
+    const perElement = [...new Set([...Object.keys(a),...Object.keys(b)])].map(el => ({el,left:a[el]||0,right:b[el]||0}));
+    return {balanced:perElement.every(r => r.left === r.right),perElement,massLeft:massUnits(a)/1000,massRight:massUnits(b)/1000};
+  }
+  const gcd = (a,b) => b ? gcd(b,a%b) : a;
+  const state = {mode:'workbench',id:'L1-1',coefs:[1,1,1],groups:false,hints:0,chosen:true,wrong:[],
+    done:[],formulaOpen:false,revision:0,action:false,selected:false};
+  try {
+    const saved = JSON.parse(localStorage.getItem('curio-equation-balancer') || '[]');
+    if (Array.isArray(saved)) state.done = [...new Set(saved.filter(id => equations.some(e => e.id === id && e.level)))];
+  } catch {}
+  const current = () => equations.find(e => e.id === state.id);
+  const fs = () => [...current().left,...current().right];
+  const sides = () => {
+    const e = current();
+    return [e.left.map((formula,i) => ({formula,coef:state.coefs[i]})),
+      e.right.map((formula,i) => ({formula,coef:state.coefs[e.left.length+i]}))];
+  };
+  const ledger = () => compare(...sides());
+  const L = {
+    wBench:'Pick an equation from the menu. Then tap plus or minus under a substance and watch the atom ledger.',
+    wLevels:'Balance each equation in the smallest whole numbers. Tap plus or minus under a substance to add molecules.',
+    wPredict:'Pick a card from the list. Examples come solved; on the others, tap the product you think forms.',
+    subTip:'Change the subscript and you change the substance. Tap Put it back.',
+    doubleTip:'Odd oxygen? Tap plus under the fuel to double it first.',
+    balanced:'Balanced. Same atoms, same mass, both sides.',
+    notLowest:'That balances, but you can divide every number down.',
+    adjust:'Tap plus or minus under a substance, or type its count. Compare the two sides of the atom ledger.',
+    choose:'Use the group charges above the trays. Tap the product formula whose charges cancel.',
+    waterDemo:'Sodium in water is a teacher demo behind a shield. Pick P9 from the list to try the same pattern.',
+    example:'This example is already balanced. Pick the next card from the list to try the same pattern.',
+    wrong:'Those charges do not cancel for the product in this pattern. Read the charge explanation, then choose again.',
+    right:'The product fits this pattern. Now use the coefficient boxes to balance the atoms.',
+    h1:'Start with the element that is in only one substance on each side. Tap its substance count to adjust it.',
+    h2:'Leave elements that appear alone, like oxygen gas, for last. Adjust the other substances first.',
+    h3:'Find a row that does not match. Add whole molecules on the short side with the plus button.',
+    groupNo:'This group breaks apart here. Keep counting individual atoms in the ledger.',
+    groupYes:'Count intact groups as units. Change coefficients and compare the group row in the ledger.',
+    reset:'All counts are one again. Tap plus or minus to adjust the whole molecules.',
+    zero:'Every substance in the equation has to be there at least once. Enter an integer from one to thirty.',
+    cleared:'Progress cleared on this device. Choose an equation to balance.',
+  };
+  const welcomeKey = () => ({workbench:'wBench',levels:'wLevels',predict:'wPredict'})[state.mode];
+  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => !state.action && !state.selected ? [welcomeKey(),{valid:() => !state.formulaOpen}] : null});
+  const speakHow = key => V.how(key,{valid:() => !state.formulaOpen});
+  function hint(text,key,kind='how') {
+    if (current().id==='P8' && !text.includes('behind a shield')) {
+      text='Teacher demo behind a shield. '+text;
+    }
+    $('hint').textContent = text;
+    if (key) V.say(key,{kind,now:kind==='event',valid:() => $('hint').textContent === text});
+  }
+  function baseHint() {
+    if (!state.chosen) return L.choose;
+    if (current().id==='P8' && ledger().balanced) return L.waterDemo;
+    if (current().example && ledger().balanced) return L.example;
+    return L.adjust;
+  }
+  function pretty(formula) { return formula.replace(/(\d+)/g,'<sub>$1</sub>');
+  }
+  function equationText(coeffs=state.coefs,rich=true) {
+    const e = current();
+    const format = (f,i) => (coeffs[i]===1?'':coeffs[i]+' ') + (rich?pretty(f):f);
+    const left = e.left.map((f,i) => format(f,i)).join(' + ');
+    const right = state.chosen ? e.right.map((f,i) => format(f,i+e.left.length)).join(' + ') : '?';
+    return left+' → '+right;
+  }
+  function setMode(mode) {
+    mode = mode.toLowerCase();
+    if (!['workbench','levels','predict'].includes(mode)) return false;
+    V.hush();
+    state.mode = mode;
+    state.action = false;
+    state.selected = false;
+    state.groups = false;
+    document.body.classList.toggle('predict',mode==='predict');
+    for (const m of ['workbench','levels','predict']) $('m-'+m).setAttribute('aria-pressed',m===mode);
+    $('periodic').hidden = mode!=='predict';
+    $('clear').hidden = mode!=='levels';
+    load(mode==='predict'?'P1':state.id.startsWith('P')?'L1-1':state.id,false);
+    hint(L[welcomeKey()]);
+    V.welcome();
+    return true;
+  }
+  function saveProgress() {
+    try { localStorage.setItem('curio-equation-balancer',JSON.stringify(state.done));
+    }
+    catch { $('storage-note').textContent = 'Storage is unavailable. Progress lasts for this visit only.';
+    }
+  }
+  function load(id,student=true) {
+    if (Number.isInteger(id)) id = state.mode==='predict'?'P'+id:equations[id]?.id;
+    const e = equations.find(x => x.id===id);
+    if (!e || (!!e.level === (state.mode==='predict'))) return false;
+    V.hush();
+    closeFormula(false);
+    state.id = e.id;
+    state.coefs = e.example ? [...e.answer] : fs().map(() => 1);
+    state.chosen = state.mode!=='predict' || e.example;
+    state.hints = 0;
+    state.groups = false;
+    state.wrong = [];
+    state.action = false;
+    state.selected = student;
+    state.revision++;
+    $('reaction-title').textContent = e.title;
+    $('reaction-code').textContent = state.mode==='predict' ? e.id+(e.example?' · worked example':' · predict, then balance') : e.id+' · '+levelNames[e.level-1];
+    buildCards();
+    fitFormulas();
+    if ($('menu').dataset.mode!==state.mode) buildMenu();
+    else updateMenu();
+    buildChoices();
+    update(false);
+    hint(baseHint());
+    if (student) speakHow(e.id==='P8'?'waterDemo':e.example?'example':!state.chosen?'choose':'adjust');
+    return true;
+  }
+  const levelNames = ['First counts','Odd meets even','Groups travel together','Burning fuels','Big ones'];
+  function buildMenu() {
+    const menu = $('menu');
+    menu.replaceChildren();
+    menu.dataset.mode=state.mode;
+    $('menu-label').textContent = state.mode==='levels' ? 'Five levels · all open' : state.mode==='predict' ? 'Patterns · examples first' : 'Choose an equation';
+    for (const e of equations.filter(e => state.mode==='predict' ? !e.level : e.level)) {
+      if (e.level && (e.id.endsWith('-1'))) {
+        const heading = document.createElement('h3');
+        heading.className = 'menu-group';
+        heading.textContent = e.level+' · '+levelNames[e.level-1];
+        menu.append(heading);
+      }
+      const button = document.createElement('button');
+      button.className = 'reaction-item';
+      button.id = 'pick-'+e.id;
+      button.dataset.id = e.id;
+      button.setAttribute('aria-pressed',e.id===state.id);
+      const image = e.art && state.mode==='workbench' ? `<img src="${ART[e.art]}" alt="">` : '';
+      button.setAttribute('aria-label',e.id+' '+e.title);
+      button.innerHTML = image+`<span>${e.id} · ${state.mode==='predict'?e.left.join(' + '):e.title}<small>${e.example?'example':e.level?'': 'predict'}</small></span>`+
+        '<b class="mark" aria-label="Balanced on this device"></b>';
+      button.onclick = () => {
+        // Keep the pressed menu node alive through the click. load only rebuilds the card regions.
+        const scroll = menu.scrollTop;
+        load(e.id);
+        menu.scrollTop = scroll;
+        $('pick-'+e.id)?.focus({preventScroll:true});
+      };
+      menu.append(button);
+    }
+    updateMenu();
+  }
+  function updateMenu() {
+    for (const button of $('menu').querySelectorAll('[data-id]')) {
+      button.setAttribute('aria-pressed',button.dataset.id===state.id);
+      button.querySelector('.mark').textContent = state.mode==='levels' && state.done.includes(button.dataset.id)?'✓':'';
+    }
+  }
+  function card(formula,i) {
+    const el = document.createElement('article');
+    el.className = 'substance';
+    el.innerHTML = `<button class="formula-button formula" id="formula-${i}" aria-label="${formula}: inspect a subscript change">`+
+      pretty(formula)+`<span class="substance-name">${names[formula] || formula}</span></button>`+
+      `<div class="copies" id="copies-${i}" aria-hidden="true"></div><div class="model-caption">${isIonic(formula)?'ion cluster':ATOMS[formula]?'atom':geometry(formula).bonds.length?'molecule':'atom inventory'}</div>`+
+      `<div class="stepper"><button id="minus-${i}" aria-label="Remove one ${names[formula]}" title="At least 1">−</button>`+
+      `<input id="coef-${i}" type="number" inputmode="numeric" min="1" max="30" step="1" value="${state.coefs[i]}"`+
+      ` aria-label="${names[formula]} coefficient"><button id="plus-${i}" aria-label="Add one ${names[formula]}" title="At most 30">+</button></div>`;
+    el.querySelector('.formula-button').onclick = event => openFormula(formula,event.currentTarget);
+    el.querySelector('#minus-'+i).onclick = () => change(i,state.coefs[i]-1);
+    el.querySelector('#plus-'+i).onclick = () => change(i,state.coefs[i]+1);
+    const input = el.querySelector('input');
+    input.oninput = () => { if (input.value!=='') change(i,input.value);
+    };
+    input.onblur = () => { if (input.value==='') { input.value=state.coefs[i];
+    hint(L.zero,'zero','event');
+    } };
+    input.onkeydown = event => {
+      if (event.key==='Enter') { event.preventDefault();
+      input.value=state.coefs[i];
+      }
+    };
+    return el;
+  }
+  function buildCards() {
+    const e = current();
+    for (const [side,list,offset] of [['reactants',e.left,0],['products',state.chosen?e.right:[],e.left.length]]) {
+      $(side).replaceChildren(...list.map((f,i) => card(f,i+offset)));
+      $(side).style.setProperty('--n',Math.max(1,list.length));
+      $(side).hidden = side==='products' && !state.chosen;
+    }
+  }
+  function change(i,value) {
+    const n = Number(value);
+    if (!state.chosen || !Number.isInteger(n) || n<1 || n>30 || i<0 || i>=state.coefs.length) {
+      if ($('coef-'+i)) $('coef-'+i).value=state.coefs[i];
+      hint(L.zero,'zero','event');
+      return false;
+    }
+    if (n===state.coefs[i]) return true;
+    if ([L.balanced,L.notLowest,L.doubleTip,L.wBench,L.wLevels].includes(V.playing)) V.hush();
+    state.coefs[i]=n;
+    state.action=true;
+    state.revision++;
+    V.dropQueued();
+    update(true,i);
+    Curio.tone(180+n*11,.07,.045,'sine');
+    return true;
+  }
+  function set(coefs) {
+    if (!state.chosen || !Array.isArray(coefs) || coefs.length!==fs().length || coefs.some(n=>!Number.isInteger(n)||n<1||n>30)) return false;
+    state.coefs=[...coefs];
+    state.action=true;
+    state.revision++;
+    update(true);
+    return true;
+  }
+  function isIonic(f) { return /^(Na|K|Li|Mg|Ca|Al|Ag|Pb|Cu|Fe)(?=[A-Z(0-9])/.test(f);
+  }
+  // The supplied shared engine is absent. Keep its required counting API local until it exists.
+  const SUBSTANCES = Object.fromEntries(Object.keys(names).map(f=>[f,{formula:f,name:names[f],kind:isIonic(f)?'ionic':'molecule'}]));
+  function geometry(f) {
+    const atoms=[], bonds=[];
+    const add = (sym,x,y) => {atoms.push({sym,x,y});
+    return atoms.length-1;
+    };
+    const bond = (a,b,order=1) => bonds.push([a,b,order]);
+    if (/^(H2|O2|N2|Cl2|Br2|CO|NO|HCl)$/.test(f)) {
+      const syms=Object.entries(parse(f)).flatMap(([s,n])=>Array(n).fill(s));
+      add(syms[0],-17,0);
+      add(syms[1],17,0);
+      bond(0,1,['N2','CO'].includes(f)?3:['O2','NO'].includes(f)?2:1);
+    } else if (f==='H2O') {
+      add('O',0,-8);
+      add('H',-24,16);
+      add('H',24,16);
+      bond(0,1);
+      bond(0,2);
+    } else if (f==='CO2') {
+      add('C',0,0);
+      add('O',-31,0);
+      add('O',31,0);
+      bond(0,1,2);
+      bond(0,2,2);
+    } else if (f==='NH3') {
+      add('N',0,-5);
+      add('H',-25,15);
+      add('H',25,15);
+      add('H',0,-33);
+      bond(0,1);
+      bond(0,2);
+      bond(0,3);
+    } else if (f==='H2O2') {
+      add('O',-15,-5);
+      add('O',15,5);
+      add('H',-35,17);
+      add('H',35,-17);
+      bond(0,1);
+      bond(0,2);
+      bond(1,3);
+    } else if (/^(CH4|C2H6|C3H8|C8H18|C2H5OH)$/.test(f)) {
+      const c=parse(f).C;
+      const carbon=[];
+      for(let i=0;
+      i<c;
+      i++) {
+        carbon.push(add('C',(i-(c-1)/2)*27,i%2?7:-7));
+        if(i)bond(carbon[i-1],carbon[i]);
+      }
+      const ethanol=f==='C2H5OH';
+      for(let i=0;
+      i<c;
+      i++) {
+        const h=(c===1?4:i===0||i===c-1?3:2)-(ethanol && i===c-1?1:0);
+        for(let j=0;
+        j<h;
+        j++) {
+          const angle=j===0?-Math.PI/2:j===1?Math.PI/2:i===0?Math.PI:0;
+          bond(carbon[i],add('H',atoms[carbon[i]].x+22*Math.cos(angle),atoms[carbon[i]].y+22*Math.sin(angle)));
+        }
+      }
+      if(ethanol) {const o=add('O',atoms[carbon[1]].x+27,atoms[carbon[1]].y-5);
+      bond(carbon[1],o);
+      bond(o,add('H',atoms[o].x+20,atoms[o].y-17));
+      }
+    } else {
+      const syms=Object.entries(parse(f)).flatMap(([s,n])=>Array(n).fill(s));
+      const cols=Math.ceil(Math.sqrt(syms.length*1.6));
+      syms.forEach((sym,i)=>add(sym,(i%cols-(cols-1)/2)*24,(Math.floor(i/cols)-(Math.ceil(syms.length/cols)-1)/2)*24));
+      // Atom inventories and ion clusters deliberately have no invented covalent bonds.
+    }
+    return {atoms,bonds};
+  }
+  function draw(f,id) {
+    const g=geometry(f);
+    const xs=g.atoms.map(a=>a.x),ys=g.atoms.map(a=>a.y);
+    const x=Math.min(...xs)-16,y=Math.min(...ys)-16,w=Math.max(...xs)-x+16,h=Math.max(...ys)-y+16;
+    let s=`<svg class="copy" viewBox="${x} ${y} ${w} ${h}" xmlns="http://www.w3.org/2000/svg">`;
+    s+='<defs>';
+    for(const sym of new Set(g.atoms.map(a=>a.sym))) {
+      s+=`<radialGradient id="${id}-${sym}" cx="30%" cy="22%" r="80%"><stop stop-color="#fff" stop-opacity=".95"/>`+
+        `<stop offset=".3" stop-color="${colors[sym]}"/><stop offset="1" stop-color="${colors[sym]}" stop-opacity=".35"/></radialGradient>`;
+    }
+    s+='</defs>';
+    for(const [a,b,order] of g.bonds) {
+      const p=g.atoms[a],q=g.atoms[b];
+      for(let k=0;
+      k<order;
+      k++) {
+        const off=(k-(order-1)/2)*4;
+        s+=`<line x1="${p.x}" y1="${p.y+off}" x2="${q.x}" y2="${q.y+off}" stroke="#b6c8d0" stroke-width="3"/>`;
+      }
+    }
+    for(const a of g.atoms) {
+      const r=a.sym==='H'?9:12;
+      s+=`<circle cx="${a.x}" cy="${a.y}" r="${r}" fill="url(#${id}-${a.sym})" stroke="#071019" stroke-width="1"/>`;
+      s+=`<text x="${a.x}" y="${a.y+3}" font-family="Segoe UI,sans-serif" font-size="9" font-weight="800"`+
+        ` text-anchor="middle" fill="${['H','C','Cl','Mg','Al','Ca','Ag','S'].includes(a.sym)?'#071019':'#fff'}">${a.sym}</text>`;
+    }
+    return s+'</svg>';
+  }
+  function updateCopies(i,animate) {
+    const f=fs()[i],box=$('copies-'+i);
+    if(!box)return;
+    for (const ghost of box.querySelectorAll('.departing')) ghost.remove();
+    const n=state.coefs[i],shown=n>8?1:n;
+    const old=+box.dataset.count||0;
+    const departing=animate && n<old && !Curio.reduce ?
+      box.querySelector('svg.copy')?.outerHTML.replaceAll('m'+i+'c0','g'+state.revision+'i'+i) : null;
+    box.dataset.count=n;
+    box.style.gridTemplateRows='repeat('+Math.ceil(shown/2)+',minmax(0,1fr))';
+    box.classList.toggle('single',shown===1);
+    for(const badge of box.querySelectorAll('.mult'))badge.remove();
+    while(box.children.length>shown)box.lastElementChild.remove();
+    while(box.children.length<shown) {
+      const k=box.children.length;
+      box.insertAdjacentHTML('beforeend',draw(f,'m'+i+'c'+k));
+      if(animate && n>old)box.lastElementChild.classList.add('new');
+    }
+    if(n>8)box.insertAdjacentHTML('beforeend',`<span class="mult">× ${n}</span>`);
+    if(departing) {
+      box.insertAdjacentHTML('beforeend',departing);
+      const ghost=box.lastElementChild;
+      ghost.classList.remove('new');
+      ghost.classList.add('departing');
+      setTimeout(()=>ghost.remove(),300);
+    }
+  }
+  function intactGroups() {
+    const candidates=['NO3','SO4','PO4','OH','C2H3O2'];
+    const e=current();
+    return candidates.filter(g=>e.left.some(f=>groupCount(f,g)>0)&&e.right.some(f=>groupCount(f,g)>0));
+  }
+  function groupCount(f,g) {
+    // Match structural formula notation, never an accidental substring in ethanol.
+    if(g==='OH' && !['NaOH','KOH','Ca(OH)2'].includes(f))return 0;
+    if(g==='C2H3O2' && !['HC2H3O2','NaC2H3O2'].includes(f))return 0;
+    const parent='('+g+')';
+    if(f.includes(parent)) {
+      const after=f.split(parent)[1];
+      return +(after.match(/^\d+/)?.[0]||1);
+    }
+    return f.includes(g)?1:0;
+  }
+  function groupRows(r) {
+    const rows=r.perElement.map(x=>({...x}));
+    if(!state.groups)return rows;
+    for(const g of intactGroups()) {
+      const e=current();
+      const left=e.left.reduce((a,f,i)=>a+groupCount(f,g)*state.coefs[i],0);
+      const right=e.right.reduce((a,f,i)=>a+groupCount(f,g)*state.coefs[i+e.left.length],0);
+      const composition=parse(g);
+      for(const [el,n] of Object.entries(composition)) {
+        const row=rows.find(row=>row.el===el);
+        row.left-=left*n;
+        row.right-=right*n;
+      }
+      rows.push({el:g,left,right,group:true});
+    }
+    return rows.filter(row=>row.left||row.right);
+  }
+  function dots(n,color) {
+    return `<span class="dots" style="--atom:${color}" aria-hidden="true">`+Array.from({length:Math.min(n,24)},()=>'<i class="dot"></i>').join('')+'</span>';
+  }
+  const fixed = n => (Math.round(n*100+1e-6)/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+  function update(animate=false,changed=-1) {
+    const e=current();
+    document.body.dataset.chosen=state.chosen;
+    $('equation').innerHTML=equationText();
+    $('groups').setAttribute('aria-pressed',state.groups);
+    $('groups').disabled=!state.chosen;
+    $('hint-button').disabled=!state.chosen;
+    $('product-step').textContent=state.mode==='predict'?(e.example?'example':state.chosen?'02 · balance':'01 · choose'):'';
+    fs().forEach((f,i)=>{
+      const input=$('coef-'+i);
+      if(!input)return;
+      if(document.activeElement!==input || +input.value!==state.coefs[i])input.value=state.coefs[i];
+      $('minus-'+i).disabled=state.coefs[i]===1 || !state.chosen;
+      $('plus-'+i).disabled=state.coefs[i]===30 || !state.chosen;
+      input.disabled=!state.chosen;
+      if (['minus-'+i,'plus-'+i].includes(document.activeElement.id) && document.activeElement.disabled) {
+        input.focus({preventScroll:true});
+      }
+      updateCopies(i,animate && (changed<0 || changed===i));
+    });
+    $('choices').hidden=state.chosen;
+    $('unknown').hidden=state.chosen;
+    $('unknown').textContent='Choose the product first. Atom and mass checks follow.';
+    if(!state.chosen) {
+      $('atom-rows').innerHTML='<div class="atom-row"><strong>?</strong><span>Given</span><span>Unknown</span><span class="balance">Choose products first</span></div>';
+      $('mass-left').textContent='?';
+      $('mass-right').textContent='?';
+      $('mass-gap').textContent='?';
+      $('status').textContent='Predict products';
+      $('status').className='';
+      $('mass-gap-wrap').className='';
+      updateStory(false);
+      return;
+    }
+    const r=ledger();
+    const factor=state.coefs.reduce(gcd);
+    $('ledger-title').textContent=state.groups?'Units':'Atoms';
+    $('atom-rows').innerHTML=groupRows(r).map(row=>{
+      const diff=row.left-row.right;
+      const word=diff===0?'✓ matches':Math.abs(diff)+' more on the '+(diff>0?'left':'right');
+      const unitMass=row.group?molarMass(row.el):ATOMS[row.el].mass;
+      const color=row.group?'#59c0ab':colors[row.el];
+      return `<div class="atom-row ${animate?'pulse':''}"><strong>${pretty(row.el)}</strong>`+
+        `<span class="atom-count">${row.left}${dots(row.left,color)}</span>`+
+        `<span class="atom-count">${row.right}${dots(row.right,color)}</span>`+
+        `<span class="balance ${diff?'warn':'ok'}">${word}<span class="delta-mass">`+
+        (diff?fixed(Math.abs(diff)*unitMass)+' g '+(row.group?row.el:ATOMS[row.el].name.toLowerCase())+' more '+(diff>0?'left':'right'):'0.00 g difference')+
+        '</span></span></div>';
+    }).join('');
+    $('mass-left').textContent=fixed(r.massLeft);
+    $('mass-right').textContent=fixed(r.massRight);
+    $('mass-gap').textContent=r.balanced?'equal':fixed(Math.abs(r.massLeft-r.massRight));
+    $('mass-gap-wrap').className=r.balanced?'ok':'';
+    $('status').className=r.balanced?'ok':'';
+    $('status').textContent=r.balanced?(factor===1?'✓ Balanced':'Balanced · reduce'):'Count atoms';
+    const signature=state.id+'|'+state.coefs.join(',');
+    if(r.balanced && factor===1 && state.mode==='levels' && !state.done.includes(e.id)) {
+      state.done.push(e.id);
+      saveProgress();
+      updateMenu();
+    }
+    updateStory(r.balanced && factor===1);
+    if(animate && r.balanced) {
+      const key=factor===1?'balanced':'notLowest';
+      hint(factor===1?L.balanced:`Balanced. Every number shares a factor of ${factor}: divide them all.`,key,'event');
+      V.dropQueued(item=>item.key!==key);
+      if(factor===1)Curio.yes();
+    } else if(animate) {
+      hint(baseHint());
+      const oxygen=r.perElement.find(row=>row.el==='O');
+      if(e.left[1]==='O2' && e.answer[0]===2 && state.coefs[0]===1 && oxygen &&
+          oxygen.right>oxygen.left && (oxygen.right-oxygen.left)%2===1 && !V.heard('doubleTip')) {
+        hint(L.doubleTip);
+        V.how('doubleTip',{needs:'#plus-0',valid:()=>signature===state.id+'|'+state.coefs.join(',') && !ledger().balanced});
+      }
+    }
+  }
+  function updateStory(balanced) {
+    const e=current();
+    $('story').hidden=state.mode==='levels' ? !balanced : !e.art;
+    $('story-art').hidden=!e.art;
+    if(e.art) {
+      $('story-art').src=ART[e.art];
+      $('story-art').alt=e.story;
+    }
+    $('story').classList.toggle('earned',balanced && state.mode==='levels');
+    $('story-line').textContent=balanced && state.mode==='levels'?equationText(state.coefs,false)+(e.story?' · '+e.story:''):e.story;
+    $('proof').hidden=!(balanced && state.mode==='levels' && e.art);
+    if(balanced && state.mode==='levels') {
+      const r=ledger(),atoms=r.perElement.reduce((a,row)=>a+row.left,0);
+      $('proof').textContent=`Atoms: ${atoms} = ${atoms}. Mass: ${fixed(r.massLeft)} g = ${fixed(r.massRight)} g`;
+    }
+  }
+  function buildChoices() {
+    const e=current();
+    $('choices').replaceChildren();
+    if(state.chosen)return;
+    // Rotate each set. The correct answer has no fixed position or distinct styling.
+    const choices=e.choices.map((formulas,index)=>({formulas,index}));
+    const offset=(+e.id.slice(1)*7)%3;
+    choices.push(...choices.splice(0,offset));
+    for(const {formulas,index} of choices) {
+      const button=document.createElement('button');
+      button.className='choice';
+      button.id='choice-'+index;
+      button.setAttribute('aria-pressed',false);
+      button.innerHTML='<span class="formula">'+formulas.map(pretty).join(' + ')+'</span>';
+      button.onclick=()=>predict(+e.id.slice(1),index);
+      $('choices').append(button);
+    }
+  }
+  function predict(n,choice) {
+    if(state.mode!=='predict')return false;
+    if(state.id!=='P'+n && !load('P'+n))return false;
+    const e=current();
+    if(e.example || state.chosen)return false;
+    const picked=typeof choice==='number'?e.choices[choice]:typeof choice==='string'?choice.split(/\s*\+\s*|\s+/):choice;
+    const correct=Array.isArray(picked)&&picked.join(' ')==e.right.join(' ');
+    if(!correct) {
+      state.wrong.push(Array.isArray(picked)?picked.join(' '):'?');
+      for(const button of $('choices').children)button.setAttribute('aria-pressed',button.textContent.replace(/\s*\+\s*/g,' ').trim()===picked?.join(' '));
+      hint(e.why+' Choose the formula with those charges.','wrong','event');
+      Curio.tone(110,.13,.06,'triangle');
+      return false;
+    }
+    state.chosen=true;
+    state.action=true;
+    state.coefs=fs().map(()=>1);
+    state.revision++;
+    buildCards();
+    fitFormulas();
+    update(false);
+    $('coef-'+e.left.length)?.focus({preventScroll:true});
+    if(ledger().balanced) {
+      hint(L.balanced,'balanced','event');
+      Curio.yes();
+    } else {
+      hint(L.right,'right','event');
+      Curio.tone(520,.1,.05,'sine');
+    }
+    return true;
+  }
+  let returnFocus=null;
+  function openFormula(f,source) {
+    returnFocus=source;
+    state.formulaOpen=true;
+    const lookups={
+      H2O:['H2O2','Hydrogen peroxide: a different substance, used to bleach and disinfect.'],
+      O2:['O3','Ozone: a different gas.'],
+      CO2:['CO','Carbon monoxide: a different, poisonous gas.'],
+      Fe2O3:['FeO','Iron(II) oxide: a different compound.'],
+      H2:['H3','This is not an ordinary stable neutral hydrogen molecule. Change the number in front instead.'],
+      NaCl:['NaCl2','This does not balance the usual sodium and chloride ion charges. Change the number in front instead.'],
+      MgO:['MgO2','Magnesium peroxide is a different compound. Changing this formula cannot balance magnesium oxide.'],
+    };
+    const target=lookups[f] || [f.replace(/\d+/,n=>+n+1)+( /\d/.test(f)?'':'2'),
+      "That's a different formula, so a different substance (or none). Change the number in front instead."];
+    $('formula-change').innerHTML=pretty(f)+' → '+pretty(target[0]);
+    $('formula-explain').textContent=target[1];
+    $('formula-modal').hidden=false;
+    hint(L.subTip);
+    V.how('subTip',{valid:()=>state.formulaOpen,needs:'#put-back'});
+    $('put-back').focus({preventScroll:true});
+  }
+  function closeFormula(restore=true) {
+    state.formulaOpen=false;
+    $('formula-modal').hidden=true;
+    V?.dropQueued(item=>item.key==='subTip');
+    if(restore) {hint(baseHint());
+    returnFocus?.focus({preventScroll:true});
+    }
+  }
+  $('put-back').onclick=()=>closeFormula();
+  $('formula-modal').addEventListener('keydown',event=>{
+    if(event.key==='Escape'){event.preventDefault();
+    closeFormula();
+    }
+    if(event.key==='Tab'){event.preventDefault();
+    $('put-back').focus({preventScroll:true});
+    }
+  });
+  $('hint-button').onclick=()=>{
+    state.hints++;
+    if(state.hints<3)hint(L['h'+state.hints],'h'+state.hints);
+    else {
+      const row=ledger().perElement.find(row=>row.left!==row.right);
+      hint(row?`${ATOMS[row.el].name}: the ${row.left<row.right?'left':'right'} side is short by ${Math.abs(row.left-row.right)} atoms. Tap plus under a substance containing ${row.el}.`:
+        state.coefs.reduce(gcd)>1?'Divide every coefficient by '+state.coefs.reduce(gcd)+'. Type the reduced counts.':'All atoms match. Choose another equation from the menu.','h3');
+    }
+    Curio.tone(330,.06,.03,'sine');
+  };
+  $('reset').onclick=()=>{
+    V.hush();
+    state.coefs=fs().map(()=>1);
+    state.hints=0;
+    state.action=true;
+    state.revision++;
+    update(true);
+    hint(L.reset,'reset');
+  };
+  $('groups').onclick=()=>{
+    if(!intactGroups().length){hint(L.groupNo,'groupNo');
+    return;
+    }
+    state.groups=!state.groups;
+    update(false);
+    hint(state.groups?L.groupYes:L.adjust,state.groups?'groupYes':'adjust');
+  };
+  $('clear').onclick=()=>{state.done=[];
+  saveProgress();
+  updateMenu();
+  hint(L.cleared,'cleared','event');
+  };
+  for(const mode of ['workbench','levels','predict'])$('m-'+mode).onclick=()=>setMode(mode);
+  function fitFormulas() {
+    for (const button of document.querySelectorAll('.formula-button')) {
+      button.style.fontSize='';
+      let size=parseFloat(getComputedStyle(button).fontSize);
+      while(button.scrollWidth>button.clientWidth+1 && size>10) {
+        size--;
+        button.style.fontSize=size+'px';
+      }
+    }
+  }
+  function relayout() {
+    const phone=innerWidth<=600;
+    if(phone) $('stage').insertBefore($('toolbar'),$('trays'));
+    else $('panel').insertBefore($('toolbar'),$('equation'));
+    fitFormulas();
+  }
+  addEventListener('resize',relayout);
+  Curio.init({clips:"voice:*",rate:.96});
+  window.__tool={state,setMode,load,set,ledger,predict,allLines:V.allLines,vlog:V.log,
+    get vq(){return V.queue;
+    },parse,tally,compare,molarMass,ATOMS,SUBSTANCES,geometry,intactGroups,groupRows,change};
+  setMode('workbench');
+  relayout();
+})();
+</script>
+</body>
+</html>

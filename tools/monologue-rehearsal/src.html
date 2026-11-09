@@ -201,6 +201,7 @@ body.calm .breath-light {animation:none}
 .match-svg path {stroke:#e8edf3;fill:none;stroke-width:1.5;opacity:.8}
 .result-number {font:400 45px/1 Georgia,serif;color:var(--brand)}
 .result-copy {font-size:14px!important;line-height:1.5!important}
+  .evidence-note {border-left:2px solid var(--brand);padding-left:10px;color:#cbd6df}
 .want-result {padding:12px;border-left:2px solid var(--gold);background:#2b2923;font-size:13px;line-height:1.5}
 .performance-list {display:flex;flex-direction:column;gap:5px}
 .performance-list .btn {font-size:11px;text-align:left;white-space:normal;padding:8px;line-height:1.4}
@@ -486,8 +487,10 @@ body.calm .breath-light {animation:none}
     breath:'Breathe out first. Then begin.',
     handHow:'Pick an audience and a version, then tap Hand to partner.',
     partnerHow:'Listen. Tap a word whenever you feel the actor change.',
-    landed:'Every change you planned, they felt.',
-    wantRead:'They heard exactly what you wanted.'
+    responseHow:'Choose the want you heard, add one word for how it felt, then tap Save.',
+    compareHow:'Compare your bars with the listener’s triangles. Open Prepare and Score to revise a choice.',
+    landed:'There are listener flags near every planned change.',
+    wantRead:'You and your listener chose the same closest want.'
   };
   const KEY = 'curio-monologue-rehearsal';
   const fresh = () => ({choice:null, works:{}, performances:[]});
@@ -552,11 +555,16 @@ body.calm .breath-light {animation:none}
     if (state.mode === 'perform' && state.phase === 'partner' && !state.flags.length) {
       return ['partnerHow',{valid:() => state.phase === 'partner' && !state.flags.length}];
     }
+    if (state.mode === 'perform' && state.phase === 'response') {
+      return ['responseHow',{valid:() => state.phase === 'response',needs:'.want-grid'}];
+    }
+    if (state.mode === 'compare') return 'compareHow';
     return null;
   }
   const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,welcome});
   function feedback() {Curio.tone(420,.045,.025,'sine');}
   function setMode(m) {
+    if (partnerLocked()) return;
     if (m !== 'choose' && saved.choice === null) return;
     if (m === 'compare' && !saved.performances.length) return;
     V.hush();
@@ -573,8 +581,12 @@ body.calm .breath-light {animation:none}
     for (const m of ['choose','prepare','rehearse','perform','compare']) {
       const b = $('m-'+m);
       b.setAttribute('aria-pressed',state.mode === m);
-      b.disabled = m === 'compare' ? !saved.performances.length : m !== 'choose' && saved.choice === null;
+      b.disabled = partnerLocked() ? m !== 'perform' :
+        m === 'compare' ? !saved.performances.length : m !== 'choose' && saved.choice === null;
     }
+  }
+  function partnerLocked() {
+    return state.mode === 'perform' && state.phase !== 'setup';
   }
   function length(p) {
     const n = words(p.text).filter(w => w !== '[...]').length;
@@ -1006,7 +1018,8 @@ body.calm .breath-light {animation:none}
       <h2>Same words. A different room.</h2></div><p>Your actor’s score stays hidden from the listener.
       <br>Nothing is recorded: no microphone, no camera.</p></div>
       <div class="audience-grid">${AUDIENCES.map((a,i) => `<button class="audience" id="audience-${i}" aria-pressed="${state.audience === i}">
-      <img src="${ART[a[0]]}" alt="Empty setting: ${esc(a[1])}"><div class="caption"><h3>${a[1]}</h3><p>${esc(a[2])}</p></div></button>`).join('')}</div>
+      <img src="${ART[a[0]]}" alt="${a[0] === 'class' ? 'Attentive classmates in a drama classroom' : 'Painted setting: '+esc(a[1])}">
+      <div class="caption"><h3>${a[1]}</h3><p>${esc(a[2])}</p></div></button>`).join('')}</div>
       <div class="setup-bottom">${versionButtons()}<p>Nothing is recorded. Plans and partner taps stay on this device.</p>
       <button class="btn primary" id="hand">Hand to partner →</button></div></section>`;
     wireVersions();
@@ -1033,6 +1046,7 @@ body.calm .breath-light {animation:none}
     };
   }
   function partner() {
+    navigation();
     hint(L.partnerHow);
     let i = 0;
     $('app').innerHTML = `<section class="partner"><div class="partner-top"><div><span class="eyebrow">Listener’s script / ${esc(piece().name)}</span>
@@ -1071,11 +1085,13 @@ body.calm .breath-light {animation:none}
       response();
       document.querySelector('[data-want]')?.focus({preventScroll:true});
       feedback();
+      V.how('responseHow',{valid:() => state.phase === 'response'});
     };
     wireRoving('.partner-script');
   }
   function response() {
-    hint('Pick what you think the character wanted, add one word for how it felt, then tap Save.');
+    navigation();
+    hint(L.responseHow);
     $('app').innerHTML = `<section class="response"><div class="response-copy"><span class="eyebrow">Your response / ${state.flags.length} flags</span>
       <h2>What reached you?</h2><p>There is no answer key here. Name the intention you heard, then hand the laptop back to the actor.</p></div>
       <aside class="side"><h2>What did they want?</h2><div class="want-grid">${state.order.map(i =>
@@ -1085,32 +1101,40 @@ body.calm .breath-light {animation:none}
       <input id="other-want" aria-label="Your own words for the character’s want" maxlength="200" value="${esc(state.otherWant)}"></label>
       <label>One word for how it felt<input id="feeling" aria-label="One word for how it felt" maxlength="20"
       value="${esc(state.feeling)}" autocomplete="off"></label></div>
-      <button class="btn primary" id="save-performance" ${state.heardWant === null ? 'disabled' : ''}>Save</button>
+      <button class="btn primary" id="save-performance" ${!responseReady() ? 'disabled' : ''}>Save</button>
       <p class="small">Saved on this device. Nothing is recorded.</p></aside></section>`;
     document.querySelectorAll('[data-want]').forEach(el => {
       el.onclick = () => {
         state.heardWant = el.dataset.want === 'other' ? 'other' : Number(el.dataset.want);
         document.querySelectorAll('[data-want]').forEach(b => b.setAttribute('aria-pressed',b === el));
         $('other-label').hidden = state.heardWant !== 'other';
-        $('save-performance').disabled = state.heardWant === 'other' && !state.otherWant.trim();
+        $('save-performance').disabled = !responseReady();
         feedback();
       };
     });
     $('other-want').oninput = () => {
       state.otherWant = $('other-want').value;
-      $('save-performance').disabled = state.heardWant === 'other' && !state.otherWant.trim();
+      $('save-performance').disabled = !responseReady();
     };
-    $('feeling').oninput = () => {state.feeling = $('feeling').value;};
+    $('feeling').oninput = () => {
+      state.feeling = $('feeling').value;
+      $('save-performance').disabled = !responseReady();
+    };
     $('save-performance').onclick = () => {
-      if (state.heardWant === null || state.heardWant === 'other' && !state.otherWant.trim()) return;
+      if (!responseReady()) return;
       const result = {...state.take,flags:[...state.flags],heard:state.heardWant,other:state.otherWant,
         feeling:state.feeling,reflections:['','','']};
       saved.performances.push(result);
       state.performance = saved.performances.length-1;
       save();
       feedback();
+      state.phase = 'setup';
       setMode('compare');
     };
+  }
+  function responseReady() {
+    return state.heardWant !== null && state.feeling.trim() &&
+      (state.heardWant !== 'other' || state.otherWant.trim());
   }
   function match(marks, flags) {
     const pairs = [];
@@ -1126,13 +1150,22 @@ body.calm .breath-light {animation:none}
     state.performance = Math.max(0,Math.min(saved.performances.length-1,state.performance));
     return saved.performances[state.performance];
   }
+  function broadFlags(flags,total) {
+    if (flags.length < 12) return false;
+    const covered = new Set();
+    for (const f of flags) {
+      for (let n = Math.max(1,f-6); n <= Math.min(total-1,f+2); n++) covered.add(n);
+    }
+    return covered.size/Math.max(1,total-1) >= .75;
+  }
   function compareVoice() {
     const p = currentPerformance();
     const m = match(p.plan.marks,p.flags);
     const selected = state.performance;
     const valid = () => state.mode === 'compare' && state.performance === selected;
     const lines = [];
-    if (p.plan.marks.length && m.matched.length === p.plan.marks.length) lines.push('landed');
+    if (p.plan.marks.length && m.matched.length === p.plan.marks.length &&
+        !broadFlags(p.flags,words(D[p.choice].text).length)) lines.push('landed');
     if (p.plan.closest !== null && p.plan.closest === p.heard) lines.push('wantRead');
     if (lines.length) V.say(lines,{valid});
   }
@@ -1141,10 +1174,12 @@ body.calm .breath-light {animation:none}
     const text = D[p.choice];
     const m = match(p.plan.marks,p.flags);
     const planned = p.plan.marks.length;
+    const broad = broadFlags(p.flags,words(text.text).length);
     let i = 0;
-    const summary = !planned ? `You planned no changes. Your partner felt ${p.flags.length}.` : !p.flags.length ?
+    const summary = broad ? 'Flags cover most of the script. On the next take, pick only the strongest changes.' :
+      !planned ? `You planned no changes. Your partner felt ${p.flags.length}.` : !p.flags.length ?
       'Your partner didn’t feel a change. Try bigger contrasts between beats.' :
-      `Your partner felt ${m.matched.length} of your ${planned} changes.`;
+      `Your listener placed flags near ${m.matched.length} of your ${planned} planned ${planned === 1 ? 'change' : 'changes'}.`;
     hint('Read the overlay: bars are your plan; triangles are the listener’s flags. Choose a performance, or scroll the panel to Connect.');
     const heard = p.heard === 'other' ? p.other : text.wants[p.heard];
     const wanted = p.want.trim() || (p.plan.closest !== null ? text.wants[p.plan.closest] : 'No want entered');
@@ -1157,19 +1192,22 @@ body.calm .breath-light {animation:none}
         ${esc(w)}${p.flags.includes(n) ? '<span class="partner-flag">▲</span>' : ''}</span>`;
       }).join(' ')}</span>`).join('')}<svg class="match-svg" id="brackets" aria-hidden="true"></svg></div></div></div>
       <aside class="side compare-side"><span class="eyebrow">The listener’s evidence / Version ${'ABC'[p.version]}</span>
-      <div><span class="result-number">${m.matched.length}<span class="muted" style="font-size:24px"> / ${planned}</span></span>
+      <div><span class="result-number">${broad ? p.flags.length : m.matched.length}<span class="muted" style="font-size:24px">
+      ${broad ? ' flags' : ' / '+planned}</span></span>
       <p class="result-copy" id="result-summary">${summary}</p></div>
+      <p class="small evidence-note">Nearby flags are a starting point for discussion, not proof of a clear change or a grade.</p>
+      <button class="btn" id="revise-score">${planned ? 'Revise a choice in Score' : 'Plan a change in Score'}</button>
       ${m.extra.length ? `<p id="extra-flags">They also felt ${m.extra.length === 1 ? 'a change' : 'changes'} at
       ${m.extra.map(n => '“'+esc(words(text.text)[n])+'”').join(', ')} that you didn’t plan.</p>` : ''}
       <div class="want-result">You wanted: ${esc(wanted)}.<br>They heard: ${esc(heard)}.
       <br><strong>${p.plan.closest === null ? 'No closest want was chosen for this take.' : p.plan.closest === p.heard ?
-        'The closest want matched.' : 'The closest want differed.'}</strong></div>
+        'The closest-want choices agree.' : 'The closest-want choices differ.'}</strong></div>
       ${p.feeling ? `<p>One word: <strong>${esc(p.feeling)}</strong></p>` : ''}
       <label>Performance<select id="performance-select">${saved.performances.map((q,j) => `<option value="${j}" ${state.performance === j ? 'selected' : ''}>
       ${new Date(q.date).toLocaleDateString()} ${new Date(q.date).toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})} ·
       ${esc(D[q.choice].name)} · ${AUDIENCES[q.audience][1]} · ${'ABC'[q.version]}</option>`).join('')}</select></label>
       <div class="reflections"><h3>Connect</h3>${['What does your character believe?','Where do you agree or disagree with them?',
-      'What did this audience change about how you played it?'].map((q,j) => `<label>${q}
+        'What, if anything, did this audience change about how you played it?'].map((q,j) => `<label>${q}
       <textarea maxlength="300" aria-label="${q}" data-reflection="${j}">${esc(p.reflections[j])}</textarea></label>`).join('')}</div>
       <p class="small">Matching allows 2 words before to 6 after your mark. Each flag goes to its nearest mark. This is listener evidence, not a grade.</p>
       <button class="btn danger" id="clear-all">Clear all</button><p class="small">Save on this device is automatic.</p></aside></section>`;
@@ -1180,6 +1218,16 @@ body.calm .breath-light {animation:none}
       $('performance-select').focus({preventScroll:true});
       compareVoice();
       feedback();
+    };
+    $('revise-score').onclick = () => {
+      saved.choice = p.choice;
+      state.version = p.version;
+      state.tab = 'score';
+      state.word = null;
+      state.beat = 0;
+      save();
+      setMode('prepare');
+      $('tab-score').focus({preventScroll:true});
     };
     document.querySelectorAll('[data-reflection]').forEach(el => {
       el.oninput = () => {p.reflections[Number(el.dataset.reflection)] = el.value;save();};
@@ -1236,6 +1284,7 @@ body.calm .breath-light {animation:none}
   };
   document.addEventListener('keydown',event => {
     if (state.mode !== 'rehearse' || event.code !== 'Space' || /INPUT|TEXTAREA|SELECT/.test(event.target.tagName)) return;
+    if (event.target.closest('button,summary,a,[role="button"]')) return;
     event.preventDefault();
     if (event.repeat) return;
     if (!state.running) $('start').click();

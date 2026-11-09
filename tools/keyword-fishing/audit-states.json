@@ -6,6 +6,7 @@
     {"name":"swap-open", "steps":[{"click":"#level-3"},{"click":".tile[data-word=big]"},{"click":"#slot-0"},{"click":"#swap"}], "keep":["#swap-options"]},
     {"name":"free-unknown", "steps":[{"click":"#m-free"},{"click":"#typed-word"},{"js":"document.querySelector('#typed-word').value='moonstone'"},{"click":"#add-word"}]},
     {"name":"fish-tag", "steps":[{"click":"#fish-T1"}], "keep":["#tag-card"]},
+    {"name":"zero-catch", "steps":[{"click":"#level-1"},{"click":"#tiles .tile[data-word=find]"},{"click":"#cast"},{"wait":1000}]},
     {"name":"confirm-clear", "steps":[{"click":"#clear-stickers"}], "sizes":["1366x768"], "keep":["#confirm-clear"]}
   ]
 }

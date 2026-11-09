@@ -176,7 +176,109 @@
       "keep": [
         "#inspector",
         "#card-detail",
-        "#close-inspector"
+        "#close-inspector",
+        "#inspector-how"
+      ]
+    },
+    {
+      "name": "pilot-forty",
+      "steps": [
+        {
+          "js": "__tool.seed(1)"
+        },
+        {
+          "click": "#chip-compare-days"
+        },
+        {
+          "click": "#chip-order-order"
+        },
+        {
+          "click": "#chip-control-placebo"
+        },
+        {
+          "click": "#chip-blind-double"
+        },
+        {
+          "click": "#chip-timing-computer"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#shuffle"
+        },
+        {
+          "click": "#submit"
+        }
+      ],
+      "keep": [
+        "#letter",
+        "#chart",
+        "#hint"
+      ]
+    },
+    {
+      "name": "three-pins",
+      "steps": [
+        {
+          "click": "#m-bench"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "until": "!!__tool.state.benchResult",
+          "max": 15000
+        },
+        {
+          "click": "#pin"
+        },
+        {
+          "click": "#chip-compare-groups"
+        },
+        {
+          "click": "#chip-assignment-random"
+        },
+        {
+          "click": "#chip-control-placebo"
+        },
+        {
+          "click": "#chip-blind-double"
+        },
+        {
+          "click": "#chip-timing-computer"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "until": "!!__tool.state.benchResult",
+          "max": 15000
+        },
+        {
+          "click": "#pin"
+        },
+        {
+          "click": "#chip-compare-days"
+        },
+        {
+          "click": "#chip-order-order"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "until": "!!__tool.state.benchResult",
+          "max": 15000
+        },
+        {
+          "click": "#pin"
+        }
+      ],
+      "keep": [
+        "#chart",
+        "#run",
+        "#hint"
       ]
     }
   ]

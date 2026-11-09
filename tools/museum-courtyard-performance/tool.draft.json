@@ -1,21 +1,26 @@
 {
-  "id":"museum-courtyard-performance",
-  "status":"beta",
-  "stage":"built",
-  "hook":"Turn a museum courtyard into the set, without exhausting your budget or your dancers.",
-  "outcome":"Adapt and produce a site-specific dance using sightlines, rehearsal safety and production choices",
-  "driver":"students",
-  "minutes":"30-45",
-  "modes":["Site","Week","Opening night"],
-  "grades_label":"Grades 9-12",
-  "sources":[
+  "id": "museum-courtyard-performance",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Turn a museum courtyard into the set, without exhausting your budget or your dancers.",
+  "outcome": "Adapt and produce a site-specific dance using sightlines, rehearsal safety and production choices",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": [
+    "Site",
+    "Week",
+    "Opening night"
+  ],
+  "grades_label": "Grades 9-12",
+  "sources": [
     "NCAS Dance DA:Pr4, DA:Pr5, DA:Pr6, National Core Arts Standards",
     "Quin, Rafferty and Tomlinson, Safe Dance Practice, Human Kinetics, 2015",
-    "International Association for Dance Medicine and Science, Dance Floors resource paper",
     "Kloetzel and Pavlik, Site Dance: Choreographers and the Lure of Alternative Spaces, 2009",
     "Museum, dance, prices and numerical model are fictional teaching assumptions",
-    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Ausdance National, Safe dance floors, https://ausdance.org.au/articles/details/safe-dance-floors (checked 2026-11-06)",
+    "Human Kinetics, Safe Dance Practice publisher page and session-planning excerpt (checked 2026-11-06)"
   ],
-  "third_party":[],
-  "updated":"2026-11-02"
+  "third_party": [],
+  "updated": "2026-11-06"
 }

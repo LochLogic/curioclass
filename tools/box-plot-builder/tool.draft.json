@@ -1,0 +1,25 @@
+{
+  "id": "box-plot-builder",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Drag one real day. Watch the mean chase it while the median stays put.",
+  "outcome": "Build and explain a box plot, compute mean and MAD, and choose summaries that fit the shape.",
+  "driver": "students or teacher",
+  "minutes": "25-40",
+  "modes": [
+    "Explore",
+    "Build",
+    "Headline"
+  ],
+  "grades_label": "Grade 6",
+  "sources": [
+    "NOAA NCEI GHCN-Daily, airport TMAX: San Diego September 2024, Chicago May 2024, Miami and Denver July 2024",
+    "NWS monthly CF6SAN, CF6ORD, CF6MIA, CF6DEN reports, archived by Iowa Environmental Mesonet",
+    "Basketball-Reference and ESPN, Luka Doncic 2023-24 regular-season game logs",
+    "Illustrative Mathematics Grade 6 Unit 8, Lessons 11, 12, 14, 15, 16 and 18",
+    "OpenStax Introductory Statistics 2e, section 2.6",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

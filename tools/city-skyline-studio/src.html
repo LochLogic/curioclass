@@ -104,7 +104,13 @@ input:disabled{opacity:.35;cursor:not-allowed}
 .horc .btn{min-width:56px;padding:0 6px;font-size:13px}
 /* the hint keeps four lines of room in the panel, so the controls under it never jump */
 .panel>#hint{height:calc(5 * 1.45em);min-height:calc(5 * 1.45em);overflow:auto;flex-shrink:0}
-body.stack .panel>#hint{height:auto;min-height:calc(4 * 1.45em)}
+body.stack .panel>#hint{height:auto;min-height:0}
+body.short .panel>#hint{height:calc(4 * 1.35em);min-height:calc(4 * 1.35em);font-size:14px;line-height:1.35}
+#tip{position:absolute;right:12px;bottom:12px;max-width:calc(100% - 24px);margin:0;
+  padding:8px 12px;font-size:13px;line-height:1.35;z-index:2;background:rgba(11,16,23,.94)}
+body.wide:has(#ov-plan[aria-pressed="true"]) #tip{max-width:calc(100% - 310px)}
+body.stack #tip{position:static;max-width:none;padding:4px 8px;font-size:12px}
+body.compact #tip{display:none}
 dl.readouts .rnote{display:block;font-size:12px;color:var(--muted);font-family:'Segoe UI',system-ui,sans-serif;font-weight:400}
 #note{width:100%;box-sizing:border-box;min-height:66px;border-radius:8px;border:1px solid var(--btn-line);background:#0b1017;color:var(--ink);font:15px 'Segoe UI',system-ui,sans-serif;padding:6px 8px;margin-top:4px}
 #reflect label{font-size:14px;color:var(--ink)}
@@ -173,6 +179,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   <div class="stage" id="stage">
     <canvas id="cv" tabindex="0" role="application" aria-roledescription="city view" aria-label="City view"></canvas>
     <div id="hintDock"></div>
+    <p class="tip" id="tip" data-modes="build"></p>
     <div class="chip" id="fchip" hidden><span id="fchipT">Target 1 of 6</span><span id="fchipM">Not checked</span>
       <button class="btn" id="checkCam2">Check camera</button><button class="btn" id="nextT2" hidden>Next target ▶</button>
       <button class="btn" id="extendQuick" aria-label="Extend outline edges" title="Extend outline edges" hidden>Extend</button></div>
@@ -220,6 +227,24 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
         <p class="small" style="margin:0">Drag the sun around the dial, or use the arrow keys. Faces toward it are light, faces away are dark.</p>
       </div>
     </section>
+    <section class="sec p-bld" data-modes="build" aria-label="Buildings">
+      <h2>Buildings</h2>
+      <div class="grp5 pal" role="group" aria-label="Add a building" id="pal"></div>
+      <div class="row" style="margin-top:6px"><label for="bsel">Selected</label><select class="sel" id="bsel"></select></div>
+      <div class="row"><label for="floors">Floors <output id="floorsV">40</output></label>
+        <input type="range" id="floors" min="1" max="80" step="1" value="40"></div>
+      <div class="row"><label for="bw">Width <output id="bwV">20 m</output></label>
+        <input type="range" id="bw" min="10" max="80" step="5" value="20"></div>
+      <div class="row"><label for="bd">Depth <output id="bdV">20 m</output></label>
+        <input type="range" id="bd" min="10" max="80" step="5" value="20"></div>
+      <div class="grp3" style="margin-top:6px">
+        <button class="btn" id="bremove">Remove</button>
+        <button class="btn" id="example">Example city</button>
+        <button class="btn" id="clearCity">Clear city</button>
+      </div>
+      <p class="small">Drag a building on the view or on the Plan to move it. Arrow keys move the selected one when the view has focus.</p>
+      <p class="small">Your city is saved in this browser on this device only. Nothing is sent anywhere.</p>
+    </section>
     <section class="sec p-camline" data-modes="ink" aria-label="Camera">
       <div class="camline"><span id="camLine"></span><button class="btn" id="editCam">Edit camera</button></div>
     </section>
@@ -254,25 +279,6 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
       <h2>Readouts</h2>
       <dl class="readouts" id="ro"></dl>
     </section>
-    <section class="sec p-bld" data-modes="build" aria-label="Buildings">
-      <h2>Buildings</h2>
-      <div class="grp5 pal" role="group" aria-label="Add a building" id="pal"></div>
-      <div class="row" style="margin-top:6px"><label for="bsel">Selected</label><select class="sel" id="bsel"></select></div>
-      <div class="row"><label for="floors">Floors <output id="floorsV">40</output></label>
-        <input type="range" id="floors" min="1" max="80" step="1" value="40"></div>
-      <div class="row"><label for="bw">Width <output id="bwV">20 m</output></label>
-        <input type="range" id="bw" min="10" max="80" step="5" value="20"></div>
-      <div class="row"><label for="bd">Depth <output id="bdV">20 m</output></label>
-        <input type="range" id="bd" min="10" max="80" step="5" value="20"></div>
-      <div class="grp3" style="margin-top:6px">
-        <button class="btn" id="bremove">Remove</button>
-        <button class="btn" id="example">Example city</button>
-        <button class="btn" id="clearCity">Clear city</button>
-      </div>
-      <p class="small">Drag a building on the view or on the Plan to move it. Arrow keys move the selected one when the view has focus.</p>
-      <p class="small">Your city is saved in this browser on this device only. Nothing is sent anywhere.</p>
-    </section>
-    <p class="tip" id="tip"></p>
   </aside>
 </main>
 <script src="kit:curio"></script>
@@ -328,12 +334,15 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   // The match is the mean of one score per setting, each rising straight toward the answer (no false peaks):
   // eye 1 - |ln(e / e*)| / ln 10 (a tenfold miss scores 0), turn 1 - |difference| / 40 degrees, lens by steps (right 1,
   // one step off .5, two .2, three 0), tilt 1 - |difference| / 30 degrees (counted when either camera tilts).
-  // Matched: every setting at .95 or better (eye within about 12%, turn within 2 degrees, the right lens, tilt within
-  // 1.5 degrees).
+  // Matched: every setting at .95 or better (eye within about 12%, or 0.6 m below 10 m;
+  // turn within 2 degrees, the right lens, tilt within 1.5 degrees). The UI shows coarse overall steps only.
   const MATCH = .95, LENSPTS = [1, .5, .2, 0];
   function scores(c, t) {
     const [e, turn, lens, tilt] = t, out = {};
-    out.eye = clamp(1 - Math.abs(Math.log(c.eye / e)) / Math.log(10), 0, 1);
+    // At street level the unmarked outline cannot resolve sub-floor precision.
+    // A 0.6 m allowance (about five horizon pixels on a laptop) keeps both targets off every labeled stop.
+    out.eye = e < 10 ? clamp(1 - Math.abs(c.eye - e) / 12.000001, 0, 1)
+      : clamp(1 - Math.abs(Math.log(c.eye / e)) / Math.log(10), 0, 1);
     out.turn = clamp(1 - Math.abs(c.turn - turn) / 40, 0, 1);
     out.lens = LENSPTS[Math.abs(LENSES.indexOf(c.lens) - LENSES.indexOf(lens))] ?? 0;
     if (tilt || c.tilt) out.tilt = clamp(1 - Math.abs(c.tilt - tilt) / 30, 0, 1);
@@ -343,7 +352,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
     eye: 'The horizon is always at your eye height.',
     cross: 'Where the horizon crosses a building, it marks your real eye height.',
     tops: 'Buildings shorter than your eye show their roofs; taller ones hide theirs.',
-    bottoms: 'Tiers above your eye show their undersides: above the horizon you see bottoms.',
+    bottoms: 'The water tank above your eye shows its uncovered underside between the legs.',
     turn: 'From the eye, the two vanishing points are 90 degrees apart.',
     lens: 'A wider lens puts the vanishing points closer together and stretches the edges.',
     one: 'Nearly one-point perspective: see Vanishing Point Studio.',
@@ -369,26 +378,29 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
     tiltHow: "Tilting makes the up-and-down edges meet too. That's a third vanishing point.",
     inkAsk: 'Your ink was drawn for the old camera. Press Keep it, or Clear it.',
     welcomeInk: 'Drag to draw. Your lines snap to the vanishing points.',
-    inkLine: 'Drag on the drawing to make a line. It snaps to a vanishing point, an upright or a level line. Hold Shift for a free line.',
+    inkLine: 'Drag on the drawing to make a line. It snaps to a side vanishing point or an upright. Hold Shift for a free line.',
     inkLineTilt: 'Drag to draw. Receding edges snap to the two side vanishing points; uprights snap to the third. Hold Shift for a free line.',
     inkLineFree: 'Drag on the drawing to make a line. Snap is off, so aim each line at its vanishing point yourself.',
     inkHatch: "Drag over a face of a building to hatch it. The lines aim at that face's vanishing point.",
     inkFill: 'Pick Light, Mid, Dark or Dusk, then tap a face to fill it.',
     inkErase: 'Drag across a line, a hatch or a fill to erase it.',
     inkMore: 'Keep drawing, or try Hatch and Fill. Then press Check my drawing to test lines drawn by eye.',
-    checkHow: 'Snap is off now. Draw building edges by eye. Any line that misses its vanishing point turns red.',
+    checkHow: 'Snap is off. Draw three receding building edges toward the side vanishing points by eye. Misses turn red.',
     checkFix: 'Fix the dashed red lines. Erase one, then draw it again toward its vanishing point.',
     checkReflect: 'Every line hits its point now. Write what you changed, then press Done.',
+    checkAim: 'Your receding lines hit their points. Write how you aimed them, then press Done.',
     welcomeFind: 'Set the eye height, turn and lens to match the outline, then press Check camera.',
     findCheck: 'When you think your camera matches, press Check camera. It tells you which setting to read next.',
     findTilt: 'This outline looks up, so use Tilt too.',
     findNext: 'Press Next target for a new outline.',
     findLast: 'That was the last one. Press Start over to go back to target 1, level again.',
-    findEye: "Read the eye height: compare the outline's horizon with the roofs. Roofs below eye level are visible. Press Extend outline edges.",
+    findEye: "Press Extend outline edges. Compare where the two horizons cross the buildings, near their bases for a low eye. Adjust Eye height, then press Check camera.",
     findTurn: "Read the turn: press Extend outline edges, then turn until your red dots sit under the outline's amber ones.",
-    findLens: "Read the lens: the farther apart the outline's vanishing points, the longer the lens. Close together means a wide lens.",
+    findLens: "Read the lens: farther apart vanishing points mean a longer lens. Pick a lens, then press Check camera.",
     findTiltRead: "Read the tilt: the outline's up-and-down edges lean together. Tilt until yours lean the same.",
-    offCity: 'Your city is off the page. Move Horizon on page, or pick a wider lens.',
+    offCity: 'Most of your city is off the page. Press Auto, or pick a wider lens while Auto is on.',
+    findMiss: ['Not yet. One setting is off.', 'Not yet. Two settings are off.',
+      'Not yet. Three settings are off.', 'Not yet. Four settings are off.'],
     matched: 'Matched.',
     matchedSet: TARGETS.map(([e, t, mm, p]) => `The hidden camera: eye height ${spokenE(e)}, turn ${t} degrees, ${mm} millimeter lens${p ? `, tilted up ${p} degrees` : ''}.`),
   };
@@ -412,7 +424,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   };
   const DEFAULTS = JSON.stringify({cam: S.cam, findCam: S.findCam, ov: S.ov, sunA: S.sunA, ink: S.ink, pen: S.pen, snap: S.snap, hatchSp: S.hatchSp,
     fill: S.fill, showRender: S.showRender, hideGuides: S.hideGuides, target: 0, eyeMoved: false, turnMoved: false, guidesSeen: false,
-    moved: false, check: false, checkHadRed: false, snapBefore: true, found: [], tries: 0, extend: false});
+    moved: false, buildCue: null, check: false, checkHadRed: false, snapBefore: true, found: [], tries: 0, extend: false});
   const make = (k, X, Z, w, d, fl) => ({id: S.nextId++, k, X, Z, w, d, fl});
   function loadExample() { S.nextId = 1;
      S.city = EXAMPLE.map(a => make(...a));
@@ -482,7 +494,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   // the room under the target chip (its Check camera button makes it taller)
   const findRoom = (H) => { const fc = $('fchip');
      const top = fc.hidden ? band() + 50 : fc.offsetTop + fc.offsetHeight + 8;
-     return {top, bot: H - 10};
+     return {top, bot: H - (W < 560 ? 34 : 10)};
      };
   function outlineBox(c, W, lensMm) {
     const cam = Persp.camera({W, H: 100, lensMm, eye: c.eye, horizonRow: 0, pitch: c.tilt});
@@ -589,7 +601,8 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   const seg = (a, b) => { ctx.moveTo(a.u, a.v);
      ctx.lineTo(b.u, b.v);
      };
-  const FONT = (px, w = 600) => `${w} ${px}px 'Segoe UI',system-ui,sans-serif`;
+  const sceneText = px => px * (1 + .2 * clamp((W - 1000) / 560, 0, 1));
+  const FONT = (px, w = 600) => `${w} ${sceneText(px)}px 'Segoe UI',system-ui,sans-serif`;
   // the ground: lot outlines, and street edges running far off toward the vanishing points
   function groundLines(cam, c) {
     const out = [], far = 6000, lv = (X, Z) => { const [x, z] = toLevel(X, Z, c);
@@ -825,7 +838,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   let labelBoxes = [];
   function chipText(text, x, y, o = {}) {
     ctx.font = FONT(o.size || 12, o.weight || 700);
-    const w = ctx.measureText(text).width + 12, h = (o.size || 12) + 9;
+    const w = ctx.measureText(text).width + 12, h = sceneText(o.size || 12) + 9;
     let x0 = o.align === 'right' ? x - w : o.align === 'center' ? x - w / 2 : x;
     x0 = clamp(x0, 2, W - w - 2);
     let y0 = clamp(y, 2, H - h - 2);
@@ -954,9 +967,17 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
        ctx.strokeStyle = '#11161f';
        ctx.stroke();
     ctx.restore();
-    const lab = off ? (p.inf ? `${name}: infinitely far` : `${name} (off the page)`) : name;
-    const align = x < W * .25 ? 'left' : x > W * .75 ? 'right' : 'center';
+    const narrowFind = S.mode === 'find' && W < 560;
+    const lab = narrowFind ? name + (p.inf ? ' ∞' : '')
+      : off ? (p.inf ? `${name}: infinitely far` : `${name} (off the page)`) : name;
+    const align = narrowFind ? (name === 'VP R' ? 'right' : name === 'VP 3' ? 'center' : 'left')
+      : x < W * .25 ? 'left' : x > W * .75 ? 'right' : 'center';
     let ly = y > H - 60 ? y - 36 : y + 12;
+    if (narrowFind) {
+      const lx = align === 'left' ? 4 : align === 'right' ? W - 4 : W / 2;
+      chipText(lab, lx, H - 24, {align, line: '#ff6b5a'});
+      return;
+    }
     // keep the chip clear of an earlier VP's chip (two VPs can leave by the same corner)
     for (let k = 0; k < 4 && vpMarks.some(m => Math.abs(m.x - x) < 170 && Math.abs(m.ly - ly) < 26); k++) ly += y > H - 60 ? -26 : 26;
     vpMarks.push({x, ly});
@@ -1097,21 +1118,21 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   const den = (n, c) => ({u: W / 2 + n[0] * W, v: cyOf(c) + n[1] * W});
   const nor = (p, c) => [(p.u - W / 2) / W, (p.v - cyOf(c)) / W];
   // Check my drawing: a line misses when it points more than CHECK degrees away from every vanishing point (from its
-  // middle) and from the level and upright directions the snap uses
+  // middle). Only the grid's side VPs and its upright direction are valid targets.
   const CHECK = 2.5;
-  function misses(c, strokes) {
-    const cam = cameraFor(c, W, H), tg = Persp.targets(cam, c.turn), out = new Set();
-    const diff = (x, y) => { let d = Math.abs(x - y) % Math.PI;
-       return Math.min(d, Math.PI - d);
-       };
-    for (const s of strokes) {
-      if (s.t !== 'line') continue;
-      const a = den(s.a, c), b = den(s.b, c), m = {u: (a.u + b.u) / 2, v: (a.v + b.v) / 2}, ang = Math.atan2(b.v - a.v, b.u - a.u);
-      let best = Infinity;
-      for (const t of tg) best = Math.min(best, diff(ang, t.angle != null ? t.angle : Math.atan2(t.v - m.v, t.u - m.u)));
-      if (best / DEG > CHECK) out.add(s);
+  const inkTargets = (cam, turn) => Persp.targets(cam, turn, {horizontal: false, vertical: !cam.pitch});
+  function lineTarget(c, s, sideOnly = false) {
+    const cam = cameraFor(c, W, H), a = den(s.a, c), b = den(s.b, c);
+    const m = {u: (a.u + b.u) / 2, v: (a.v + b.v) / 2};
+    const tg = inkTargets(cam, c.turn);
+    if (sideOnly) {
+      const uprights = tg.filter(t => t.id === 'vertical' || t.id === 'V3');
+      if (Persp.snap(cam, m, b, uprights, CHECK).target) return null;
     }
-    return out;
+    return Persp.snap(cam, m, b, tg.filter(t => !sideOnly || t.id === 'L' || t.id === 'R'), CHECK).target;
+  }
+  function misses(c, strokes) {
+    return new Set(strokes.filter(s => s.t === 'line' && !lineTarget(c, s)));
   }
   function drawInk(c, strokes, preview, o = {}) {
     const all = preview ? [...strokes, preview] : strokes;
@@ -1188,7 +1209,12 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
     const cam = cameraFor(c, W, H), city = cityFor(S.mode), faces = cityFaces(cam, c, city), v = Persp.vps(cam, c.turn);
     last = {cam, c, faces, v, city};
     if (target === 'picture') return;
+    facts();
     labelBoxes = [];
+    if (S.mode === 'build' && page === 'wide') {
+      const tip = $('tip').getBoundingClientRect(), scene = cv.getBoundingClientRect();
+      labelBoxes.push({x: tip.left - scene.left, y: tip.top - scene.top, w: tip.width, h: tip.height});
+    }
     // Markers keep their geometrically correct positions; labels route around them.
     for (const [point, name] of [[v.L, 'VP L'], [v.R, 'VP R'], [v.V3, 'VP 3']]) {
       if (!point) continue;
@@ -1199,7 +1225,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
     // most of the city off the page (a high eye with a long lens and the horizon low on the page): fewer than a third
     // of the buildings show any part of themselves on the page (looking up with Tilt still counts as seeing them)
     let off = false, below = false;
-    if (!ink && city.length) {
+    if (S.mode === 'build' && city.length) {
       const seen = new Set(), low = new Map();
       for (const f of faces) for (const p of f.pts) {
         if (p.u >= 0 && p.u <= W && p.v >= 0 && p.v <= H) seen.add(f.id);
@@ -1354,19 +1380,21 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
        $('extend').setAttribute('aria-pressed', S.extend);
   }
   function showScores() {
-    const has = S.checkedOnce, stale = has && !S.checked, pct = Math.floor(S.match * 100);
+    const has = S.checkedOnce, stale = has && !S.checked;
+    const pct = S.matchedNow ? 100 : Math.min(75, Math.floor(S.match * 4) * 25);
     $('mbar').style.width = (has ? clamp(pct, 0, 100) : 0) + '%';
     $('mpct').textContent = has ? `Match ${pct}%` : 'Not checked'; $('mpct').setAttribute('aria-valuenow', has ? pct : 0);
     $('fchipM').textContent = !has ? 'Not checked' : stale ? `Last check ${pct}%` : `Match ${pct}%`;
     $('fmeter').classList.toggle('stale', stale);
     const html = has ? READ.filter(([k]) => S.parts[k] != null).map(([k]) => {
       const ok = S.parts[k] >= MATCH;
-      return `<li class="${ok ? 'ok' : 'off'}">${NAMES[k]} <b>${ok ? '✓ ' : ''}${Math.floor(S.parts[k] * 100)}%</b></li>`;
+      return ok ? '' : `<li class="off">${NAMES[k]} <b>Not yet</b></li>`;
     }).join('') : '';
     if ($('parts').innerHTML !== html) $('parts').innerHTML = html;
     $('parts').hidden = !has;
        $('staleNote').hidden = !stale;
        $('checkCam2').hidden = !!S.matchedNow;
+    $('checkCam').textContent = S.matchedNow ? (S.target === TARGETS.length - 1 ? 'Start over' : 'Next target') : 'Check camera';
   }
   // a camera change in Find: the last check no longer describes this camera (a match is undone until checked again)
   function updateMatch(fromStudent) {
@@ -1426,7 +1454,10 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
        showScores();
        setHint();
     const nextControl = miss[0] === 'eye' || miss[0] === 'turn' ? '#extendQuick' : '#checkCam2';
-    how(miss[1], {valid: () => S.mode === 'find' && S.target === i && readKey() === miss[1], needs: nextControl});
+    const attempt = S.tries;
+    V.say([[L.findMiss[n - 1], {key: `miss-${i}-${attempt}`}],
+      [miss[1], {kind: 'how', needs: nextControl}]],
+      {now: playingHow() && V.playing !== L[miss[1]], valid: () => S.mode === 'find' && S.target === i && !S.matchedNow});
   }
   function goTarget(i, startOver) {
     S.target = (i + TARGETS.length) % TARGETS.length;
@@ -1462,7 +1493,11 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   $('nextT2').onclick = () => { nextTarget();
      $('checkCam2').focus({preventScroll: true});
      };
-  $('checkCam').onclick = $('checkCam2').onclick = checkCamera;
+  $('checkCam2').onclick = checkCamera;
+  $('checkCam').onclick = () => {
+    if (S.matchedNow) nextTarget();
+    else checkCamera();
+  };
   $('extend').onclick = () => {
     S.extend = !S.extend;
     syncFind();
@@ -1474,14 +1509,16 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   // VOICE
   // ======================================================================================
   const V = Curio.voice({lines: L, scope: () => S.mode,
-    welcome: () => S.mode === 'build' ? [['welcomeBuild', {valid: () => !S.eyeMoved}]] : S.mode === 'ink' ? [[inkWelcome(), {valid: () => !S.ink.strokes.length || S.check}]]
+    welcome: () => S.mode === 'build' ? (!S.city.length ? ['addFirst']
+      : [['welcomeBuild', {valid: () => buildHintKey() === 'welcomeBuild'}]])
+      : S.mode === 'ink' ? [[inkWelcome(), {valid: () => !S.ink.strokes.length || S.check}]]
       : [['welcomeFind', {valid: () => !S.matchedNow}]],
     hint: false, read: () => hintNow().say});
   // Ink's welcome follows the pen and Snap (and the check step)
   const inkWelcome = () => S.check ? 'checkHow' : S.pen === 'line' ? (S.snap ? 'welcomeInk' : 'inkLineFree') : {hatch: 'inkHatch', fill: 'inkFill',
      erase: 'inkErase'}[S.pen];
   // a newer step's how-to cuts in on an older how-to that is still playing (its step is done), never on an event or Read
-  const EVENTS = new Set([L.offPage, L.matched, ...L.matchedSet]);
+  const EVENTS = new Set([L.offPage, L.matched, ...L.matchedSet, ...L.findMiss]);
   const playingHow = () => { const p = V.playing;
      return !!p && !EVENTS.has(p);
      };
@@ -1495,21 +1532,26 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
     return r;
   }
   const askOn = () => !$('ask').hidden;
+  function buildHintKey() {
+    if (S.buildCue === 'tiltHow' && S.cam.tilt) return 'tiltHow';
+    if (S.moved) return 'composeGoal';
+    if (S.guidesSeen) return 'buildNext';
+    if (S.turnMoved) return S.ov.guides ? 'buildNext' : 'guidesNext';
+    if (S.eyeMoved) return 'turnHow';
+    return 'welcomeBuild';
+  }
   function hintNow() {   // the hint for this moment: what it shows and what Read says (recorded lines)
     const k = (...keys) => ({show: keys.map(x => L[x]).join(' '), say: keys.map(x => L[x])});
     if (S.mode === 'build') {
       if (askOn()) return k('inkAsk');
       if (!S.city.length) return k('addFirst');
       if (offCity) return k('offCity');
-      if (S.moved) return k('composeGoal');
-      if (!S.eyeMoved) return k('welcomeBuild');
-      if (!S.turnMoved) return k('turnHow');
-      if (!S.ov.guides) return k('guidesNext');
       if (winNone) return k('winSmall');
-      return S.moved ? k('composeGoal') : k('buildNext');
+      return k(buildHintKey());
     }
     if (S.mode === 'ink') {
-      if (S.check) return !$('reflect').hidden ? k('checkReflect') : checkBad > 0 || checkMissing > 0 ? k('checkFix') : k('checkHow');
+      if (S.check) return !$('reflect').hidden ? k(S.checkHadRed ? 'checkReflect' : 'checkAim')
+        : checkBad > 0 || checkMissing > 0 ? k('checkFix') : k('checkHow');
       if (S.pen === 'hatch') return k('inkHatch');
       if (S.pen === 'fill') return k('inkFill');
       if (S.pen === 'erase') return k('inkErase');
@@ -1518,7 +1560,6 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
     const nk = S.target === TARGETS.length - 1 ? 'findLast' : 'findNext';
     if (S.matchedNow && S.touched && S.shown === S.target) return {show: 'Matched. ' + shownSet[S.target] + ' ' + L[nk], say: [L.matched, L.matchedSet[S.target],
        L[nk]]};
-    if (offCity) return k('offCity');
     const rk = readKey();
     if (rk) return k(rk);
     if (S.touched && !S.checkedOnce) return k('findCheck');
@@ -1530,7 +1571,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   // the first time in a session a vanishing point goes off the page (stale if it comes back before it plays)
   let prevOff = null;
   function checkOff(v) {
-    if (S.mode === 'ink') { prevOff = null;
+    if (S.mode !== 'build') { prevOff = null;
        return;
        }
     const now = v.off;
@@ -1585,13 +1626,14 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
     && horOf(a) === horOf(b);
   // a Build action after the guides step: say the bridge to Ink again if it was never heard (it can be cut)
   function bridge() {
-    if (S.mode !== 'build' || !S.guidesSeen || V.heard('buildNext') || V.queue.some(q => q.key === 'buildNext')) return;
+    if (S.mode !== 'build' || buildHintKey() !== 'buildNext' || V.heard('buildNext') || V.queue.some(q => q.key === 'buildNext')) return;
     how('buildNext', {valid: () => S.mode === 'build' && !S.moved});
   }
   // the first building moved or added after the guides step: one composition goal (VA:Cr2)
   function movedOne() {
     if (S.moved) return;
     S.moved = true;
+    S.buildCue = null;
     how('composeGoal', {valid: () => S.mode === 'build'});
     setHint();
   }
@@ -1615,6 +1657,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
        return;
        }
     if (S.mode !== 'build') return;
+    S.buildCue = null;
     if (what === 'eye') {
       S.eyeMoved = true;
       if (!V.heard('turnHow') && !S.turnMoved) {
@@ -1630,7 +1673,10 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
     }
     if (what === 'turn') S.lastFact = 'turn';
     if (what === 'lens') S.lastFact = 'lens';
-    if (what === 'tilt' && c.tilt !== 0 && before.tilt === 0) how('tiltHow', {valid: () => S.mode === 'build' && S.cam.tilt !== 0});
+    if (what === 'tilt' && c.tilt !== 0) {
+      S.buildCue = 'tiltHow';
+      if (before.tilt === 0) how('tiltHow', {valid: () => S.mode === 'build' && S.cam.tilt !== 0});
+    }
     bridge();
     inkAsk();
     setHint();
@@ -1672,7 +1718,8 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   function readouts() {
     const c = camOf(), cam = cameraFor(c, W, H), v = Persp.vps(cam, c.turn), city = cityFor(S.mode);
     const down = Math.atan2(c.eye, standoff(c.eye)) / DEG;
-    const rows = [['Eye height', `${fmtE(c.eye)}, ${fmtDist(standoff(c.eye))} back from the block${down >= 5 ? `, looking ${Math.round(down)}° down to it` : ''}`],
+    const rows = [['Eye height', `${fmtE(c.eye)}, ${fmtDist(standoff(c.eye))} back from the block${down >= 5 ? `, looking ${Math.round(down)}° down to it` : ''}`
+      + '<span class="rnote">The picture stays upright, like a drafting view. Use Tilt to show the real lean.</span>'],
       ['Turn', `${c.turn}°`],
       ['Lens', `${c.lens} mm, ${Persp.fov(c.lens).toFixed(1)}° wide`],
       ['VPs apart', (v.apart == null ? 'one is infinitely far' : `${Math.round(v.apart)} px = ${(v.apart / cam.f).toFixed(2)} focal lengths`)
@@ -1687,17 +1734,29 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
     const html = rows.map(([a, b]) => `<dt>${a}</dt><dd>${b}</dd>`).join('');
     if ($('ro').innerHTML !== html) $('ro').innerHTML = html;
   }
-  // bottoms are on the page only when a face looks down from above the eye (the stepped tiers, the water tank)
-  const bottomsShown = () => !!last && last.faces.some(f => f.kind === 'bottom' && f.pts.some(p => p.u >= 0 && p.u <= W && p.v >= 0 && p.v <= H));
+  // Setback tiers sit on wider boxes. Only a tank bottom can be uncovered.
+  // Test samples against the faces painted over it, not just its projected bounding box.
+  function bottomsShown() {
+    if (!last) return false;
+    return last.faces.some((f, index) => {
+      if (f.kind !== 'bottom' || !f.bx.tank || f.clipped) return false;
+      const at = Persp.divide(f, 1, 1).at;
+      let visible = 0;
+      for (const s of [.2, .5, .8]) for (const t of [.2, .5, .8]) {
+        const p = at(s, t);
+        if (p.u < 0 || p.u > W || p.v < band() || p.v > H) continue;
+        if (!last.faces.slice(index + 1).some(g => Persp.inside(g.pts, p.u, p.v))) visible++;
+      }
+      return visible >= 3;
+    });
+  }
   function facts() {
     const c = camOf();
     let t = FACTS[S.lastFact] || FACTS.eye;
     if (S.lastFact === 'eye') {
       const tall = cityFor(S.mode).filter(b => b.fl * FLOOR > c.eye).length, n = cityFor(S.mode).length;
       t = tall && tall < n ? FACTS.tops : tall ? FACTS.cross : FACTS.eye;
-      S.eyeFactN = (S.eyeFactN || 0) + 1;
-      if (S.eyeFactN % 3 === 1 && tall) t = FACTS.cross;
-      else if (S.eyeFactN % 3 === 2 && bottomsShown()) t = FACTS.bottoms;
+      if (bottomsShown()) t = FACTS.bottoms;
     }
     if (S.lastFact === 'turn' && (c.turn <= 3 || c.turn >= 87)) t = FACTS.one;
     if ($('tip').textContent !== t) $('tip').textContent = t;
@@ -1794,6 +1853,9 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
      facts();
      save();
      invalidate();
+    if (!S.city.length && S.mode === 'build') {
+      how('addFirst', {valid: () => S.mode === 'build' && !S.city.length, needs: '#pal'});
+    }
      }
   $('bsel').onchange = () => { S.sel = +$('bsel').value || null;
      syncBuild();
@@ -1851,6 +1913,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   $('ovs').replaceChildren(...OVS.map(([k, n]) => {
     const b = document.createElement('button'); b.className = 'btn'; b.id = 'ov-' + k; b.textContent = n;
     b.onclick = () => {
+      S.buildCue = null;
       S.ov[k] = !S.ov[k]; syncOv(); save(); invalidate();
       if (k === 'guides' && S.ov.guides && S.mode === 'build') {
         S.guidesSeen = true;
@@ -2043,7 +2106,9 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
        S.ink.keep = false;
     Curio.tone(480, .045, .025, 'triangle');
     inkChanged();
-    if (wasEmpty && strokes.length && S.pen === 'line') how('inkMore', {valid: () => S.mode === 'ink' && S.pen === 'line'});
+    if (wasEmpty && strokes.length && S.pen === 'line' && !S.check) {
+      how('inkMore', {valid: () => S.mode === 'ink' && S.pen === 'line' && !S.check});
+    }
   }
   function inkChanged() {
     snapTag = null;
@@ -2116,25 +2181,37 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   let checkBad = -1, checkMissing = 0, checkKey = '';
   function checkCount(n) {
     const lines = S.ink.strokes.filter(s => s.t === 'line').length;
+    const receding = S.ink.strokes.filter(s => s.t === 'line' && lineTarget(S.cam, s, true)).length;
     S.checkPeak = Math.max(S.checkPeak || 0, lines);
-    const key = [n, lines, S.checkPeak, S.checkLines || 0].join();
+    const key = [n, lines, receding, S.checkPeak, S.checkLines || 0].join();
     if (key === checkKey) return;
     checkKey = key;
        checkBad = n;
-    if (n > 0) S.checkHadRed = true;
+    if (n > 0) {
+      S.checkHadRed = true;
+      how('checkFix', {valid: () => S.mode === 'ink' && S.check && checkBad > 0});
+    }
     checkMissing = n > 0 ? 0 : S.checkPeak - lines;
     $('checkMsg').textContent = n > 0 ? `${n} dashed red line${n === 1 ? ' misses its' : 's miss their'} vanishing point.`
       : checkMissing ? `${checkMissing === 1 ? 'A line is' : checkMissing + ' lines are'} missing. Draw ${checkMissing === 1 ? 'it' : 'them'} again toward ${checkMissing === 1 ? 'its vanishing point' : 'their vanishing points'}.`
       : lines ? `All ${lines} line${lines === 1 ? ' hits a' : 's hit their'} vanishing point${lines === 1 ? '' : 's'}.`
       : 'Draw a few building edges by eye.';
     $('checkMsg').classList.toggle('bad', n > 0 || checkMissing > 0);
-    const ready = n === 0 && !checkMissing && lines > 0 && (S.checkHadRed || (S.checkLines || 0) >= 3);
+    const ready = n === 0 && !checkMissing && receding >= (S.checkHadRed ? 1 : 3)
+      && (S.checkHadRed || (S.checkLines || 0) >= 3);
+    if (!n && !checkMissing && !ready) {
+      $('checkMsg').textContent = `${receding} receding line${receding === 1 ? '' : 's'} hit a side vanishing point. Draw three receding building edges by eye.`;
+    }
     if (ready && $('reflect').hidden) {
       $('reflect').hidden = false;
+      $('reflect').querySelector('label').textContent = S.checkHadRed
+        ? 'What did you change to make your lines hit their vanishing points?'
+        : 'How did you aim each line at its vanishing point?';
          $('note').value = S.ink.note || '';
       // bring the note and Done into view (the panel scrolls; the drawing stays where it is)
       requestAnimationFrame(() => $('checkDone').scrollIntoView({block: 'nearest'}));
-      how('checkReflect', {valid: () => S.mode === 'ink' && S.check && !$('reflect').hidden, needs: '#note'});
+      how(S.checkHadRed ? 'checkReflect' : 'checkAim',
+        {valid: () => S.mode === 'ink' && S.check && !$('reflect').hidden, needs: '#note'});
     } else if (!ready && !$('reflect').hidden) $('reflect').hidden = true;
     setTimeout(setHint);
   }
@@ -2211,7 +2288,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
   }
   function lineEnd(a, p, free) {
     if (free || !S.snap) return {end: p, label: ''};
-    const r = Persp.snap(last.cam, a, p, Persp.targets(last.cam, S.cam.turn), 6);
+    const r = Persp.snap(last.cam, a, p, inkTargets(last.cam, S.cam.turn), 6);
     return {end: r.end, label: r.target ? (r.target === 'vertical' || r.target === 'horizontal' ? r.label : 'to ' + r.label) : ''};
   }
   function hatchAt(p) {
@@ -2397,13 +2474,15 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
       const h = $('hint');
       if (p === 'compact' && h.parentNode !== $('hintDock')) $('hintDock').append(h);
       if (p !== 'compact' && h.parentNode !== $('panel')) $('panel').prepend(h);
+      if (p === 'stack' && $('tip').parentNode !== $('panel')) h.after($('tip'));
+      if (p !== 'stack' && $('tip').parentNode !== $('stage')) $('stage').append($('tip'));
     }
     const st = $('stage');
     // Stack: leave Camera, or Ink's pens, values and Undo/Redo, visible below the stage.
     if (page === 'stack') {
       const inkControls = () => $('snap').parentElement.getBoundingClientRect().bottom
         - document.querySelector('.p-ink').getBoundingClientRect().top;
-      const head = document.querySelector('header').offsetHeight, hint = $('hint').offsetHeight,
+      const head = document.querySelector('header').offsetHeight, hint = $('hint').offsetHeight + $('tip').offsetHeight,
         cam = S.mode === 'ink' ? document.querySelector('.p-camline').offsetHeight + inkControls() : $('camSec').offsetHeight;
       const hh = Math.round(clamp(Math.min(st.clientWidth * .75, innerHeight - head - hint - cam - 40), 200, innerHeight * .7)) + 'px';
       if (st.style.height !== hh) st.style.height = hh;
@@ -2438,6 +2517,7 @@ body:not(.wide) #fchip>#extendQuick{grid-column:3}
 
   // for checking frames
   window.__tool = {S, state:S, setMode, allLines, L, TARGETS, EXAMPLE, standoff, Persp, setCheck, misses: () => misses(S.cam, S.ink.strokes).size,
+    bottomsShown, sceneText, inkTargets,
     get last() { return last;
        }, get layout() { return {page, W, H, dpr};
        },

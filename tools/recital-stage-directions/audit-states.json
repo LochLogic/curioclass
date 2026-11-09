@@ -2,7 +2,6 @@
   "target": 44,
   "keep": [
     "#stage",
-    "#view-switch",
     "#hint"
   ],
   "states": [
@@ -10,13 +9,33 @@
       "name": "stage-view",
       "steps": [
         {
+          "click": "#reset"
+        },
+        {
           "click": "#reverse"
+        }
+      ]
+    },
+    {
+      "name": "map-return",
+      "steps": [
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#m-turn"
+        },
+        {
+          "click": "#m-map"
         }
       ]
     },
     {
       "name": "call-check",
       "steps": [
+        {
+          "click": "#reset"
+        },
         {
           "click": "#calls"
         },
@@ -32,8 +51,11 @@
       ]
     },
     {
-      "name": "recital-watch",
+      "name": "recital-evidence",
       "steps": [
+        {
+          "click": "#reset"
+        },
         {
           "click": "#m-recital"
         },
@@ -42,31 +64,9 @@
         },
         {
           "wait": 21000
-        }
-      ]
-    },
-    {
-      "name": "recital-clues",
-      "steps": [
-        {
-          "click": "#m-recital"
-        },
-        {
-          "click": "#clues-tab"
         },
         {
           "click": "#clue-0"
-        }
-      ]
-    },
-    {
-      "name": "idea",
-      "steps": [
-        {
-          "click": "#m-recital"
-        },
-        {
-          "click": "#clues-tab"
         },
         {
           "click": "#main-idea"
@@ -74,13 +74,19 @@
       ]
     },
     {
-      "name": "turn",
+      "name": "turn-active",
       "steps": [
+        {
+          "click": "#reset"
+        },
         {
           "click": "#m-turn"
         },
         {
-          "click": "#phrase-2"
+          "click": "#start"
+        },
+        {
+          "wait": 7000
         }
       ]
     },
@@ -88,10 +94,28 @@
       "name": "compare",
       "steps": [
         {
+          "click": "#reset"
+        },
+        {
           "click": "#m-recital"
         },
         {
-          "click": "#clues-tab"
+          "click": "#watch"
+        },
+        {
+          "wait": 21000
+        },
+        {
+          "click": "#clue-0"
+        },
+        {
+          "click": "#clue-2"
+        },
+        {
+          "click": "#clue-4"
+        },
+        {
+          "click": "#clue-6"
         },
         {
           "click": "#main-idea"
@@ -103,7 +127,22 @@
           "click": "#piece-1"
         },
         {
-          "click": "#clues-tab"
+          "click": "#watch"
+        },
+        {
+          "wait": 15000
+        },
+        {
+          "click": "#clue-1"
+        },
+        {
+          "click": "#clue-3"
+        },
+        {
+          "click": "#clue-5"
+        },
+        {
+          "click": "#clue-7"
         },
         {
           "click": "#main-idea"
@@ -116,7 +155,11 @@
         }
       ],
       "keep": [
-        "#compare-board"
+        "#compare-board",
+        "#hint",
+        "#traits",
+        "#compare-check",
+        "#back-recital"
       ]
     }
   ]

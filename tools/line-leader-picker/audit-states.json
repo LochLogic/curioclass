@@ -1,0 +1,169 @@
+{
+  "keep": [
+    "#board",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "ready",
+      "steps": [
+        {
+          "click": "#tile-0"
+        },
+        {
+          "click": "#tile-3"
+        }
+      ],
+      "keep": [
+        "#run",
+        "#slot1",
+        "#slot2"
+      ]
+    },
+    {
+      "name": "changed",
+      "steps": [
+        {
+          "click": "#m-change"
+        },
+        {
+          "click": "#tile-3"
+        },
+        {
+          "click": "#end"
+        },
+        {
+          "until": "__tool.current.which",
+          "max": 35000
+        }
+      ],
+      "keep": [
+        "#beforeKey",
+        "#slot2"
+      ]
+    },
+    {
+      "name": "fair-C",
+      "steps": [
+        {
+          "click": "#m-fair"
+        },
+        {
+          "click": "#rule-C"
+        },
+        {
+          "until": "__tool.current.done && !__tool.current.resultBusy",
+          "max": 35000
+        },
+        {
+          "click": "#q0-yes"
+        },
+        {
+          "click": "#q1-yes"
+        },
+        {
+          "click": "#q2-yes"
+        }
+      ],
+      "keep": [
+        "#fair",
+        "#notFair"
+      ]
+    },
+    {
+      "name": "bee-B",
+      "steps": [
+        {
+          "click": "#m-fair"
+        },
+        {
+          "click": "#sick"
+        },
+        {
+          "click": "#rule-B"
+        },
+        {
+          "until": "__tool.current.done && !__tool.current.resultBusy",
+          "max": 35000
+        }
+      ],
+      "keep": [
+        "#sick",
+        "#fairband"
+      ]
+    },
+    {
+      "name": "summary",
+      "steps": [
+        {
+          "click": "#m-fair"
+        },
+        {
+          "click": "#summary"
+        }
+      ],
+      "keep": [
+        "#summaryOverlay"
+      ]
+    },
+    {
+      "name": "bee-D",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-fair"
+        },
+        {
+          "click": "#sick"
+        },
+        {
+          "click": "#rule-D"
+        },
+        {
+          "until": "__tool.current.done && !__tool.current.resultBusy",
+          "max": 35000
+        }
+      ],
+      "keep": [
+        "#sick",
+        "#fairband"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manualDrawer"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "workstation-change",
+      "steps": [
+        {
+          "click": "#m-change"
+        }
+      ]
+    },
+    {
+      "name": "workstation-fair",
+      "steps": [
+        {
+          "click": "#m-fair"
+        }
+      ]
+    }
+  ]
+}

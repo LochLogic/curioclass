@@ -44,7 +44,19 @@ Content notes: the Titanic and Chicago fire cases mention deaths; the frontier c
 
 The key is an interpretation to discuss. In particular, the Chicago claim's categorical denial is stronger than the cited museum account, which says the fire's cause is uncertain. This tension is retained from the specification and flagged for cold review in handoff.md. The plain-English layer is also the specification's wording.
 
-The grammatical form changes “was” to “were” for “Too few lifeboats.” The wording choices retain their dictionary form. If every clue supports a claim, the writing frame asks for a limitation of a second clue rather than falsely labeling a supporting clue as complicating. This keeps a counter-point possible on unusual student scales.
+The writing sheet quotes the historian's original claim separately from the student's revised causal wording. The grammatical form changes “was” to “were” for “Too few lifeboats.” If every clue supports a claim, the counter-point asks for a limitation of a second clue rather than labeling supporting evidence as complicating.
+
+Filing is a language and completeness check, not a historical-accuracy grade. Some help requires short explanations of at least four words, with repeated-letter filler rejected. Little help requires connected sentences, causal/evidence/evaluation language, a counter-point, the chosen final verdict, and two explained clue references. It cannot judge the truth of arbitrary prose. Lots of help deliberately supplies reasoning chips; the overall chip must agree with the chosen stamp. Use discussion to assess independent reasoning at that setting.
+
+
+
+Stronger or weaker randomizes the two sentence positions and retains the first response for each pair during the session, including drawer re-entry. Later taps invite comparison instead of awarding fresh correct feedback. Claim annotation still allows guided retries; it is practice, not a mastery score. Guided writing frames remain together on screen, including all four Frontier frames. On compact screens the original and revised claims remain in the generated paragraph, Read it and Copy.
+
+Changing a clue clears its explanation, and changing the help setting removes filed seals while preserving drafts. All word-card titles remain visible beside the selected card. Hear it reads that card. Because of and as a result connect cause and effect but do not have a fixed strength on their own. Inspect photograph opens G4 at a readable width; small screens can pan the original image.
+
+Review source conflicts, retained because the cold-review brief prohibits rewriting a faulty specification: Chicago's categorical denial and its keyed Convincing verdict overstate the museum source; F4's “before any state did” overlooks earlier property-qualified voting by women in New Jersey. Neither statement should be treated as a settled fact in teaching. Resolve these specification passages before release.
+
+Sensitivity: Native nations are living communities with continuing sovereignty, not only people of the past. Turner's “free land” reflects his argument. Review whose democracy is counted, the limits of colonial voting, and the anti-Irish and anti-Catholic stereotyping behind the O'Leary legend. The interface has no points, timers or wins for these histories.
 
 The scale is a consistency aid, not an automatic historical truth detector. Counting clues does not measure their reliability or historical importance. One supporting clue is thin evidence and permits Partly convincing. Every clue in Doesn't decide it permits no stamp.
 
@@ -59,11 +71,12 @@ Work and help settings stay in localStorage on this device. No accounts, collect
 - [Encyclopedia of Chicago, Fire of 1871](https://encyclopedia.chicagohistory.org/pages/1740.html).
 - [US Census history of the Chicago Fire](https://www.census.gov/about/history/stories/monthly/2021/october-2021.html), corroborating the 1997 clearing and approximate human cost. The requested Tribune article could not be opened during this build.
 - [Turner text, university transcription](https://www.ruhr-uni-bochum.de/gna/Quellensammlung/06/06_turnerfrontier_1893.htm).
-- [Turner, printed-text transcription](https://www.gutenberg.org/files/22994/22994-h/22994-h.htm), chapter I, including the democracy sentence. The 1893 report page range remains to be independently checked.
-- [Indian Removal Act, Library of Congress, Statutes at Large volume 4](https://www.loc.gov/item/llsl-v4/), 4 Stat. 411, May 28, 1830. The linked scan returned access denied during the build; exact title retained from the spec.
+- [American Historical Association, Turner's primary text](https://www.historians.org/resource/the-significance-of-the-frontier-in-american-history/), 1893, confirms both quotations, the census line and Annual Report pp. 197-227.
+- [Indian Removal Act, Library of Congress guide](https://guides.loc.gov/indian-removal-act), 4 Stat. 411, May 28, 1830; title checked against [Smithsonian National Museum of the American Indian's transcription](https://americanindian.si.edu/nk360/removal-muscogee/transcription-removal-act.html).
 - [National Archives, Homestead Act](https://www.archives.gov/milestone-documents/homestead-act), May 20, 1862, 160 acres and five years.
 - [Wyoming State Library, suffrage legislation](https://gowyld.libguides.com/wyomingwomenssuffrage/legislation), law approved December 10, 1869.
-- [Mississippi Department of Archives and History, Constitution of 1890](https://mshistory.mdah.ms.gov/issue/mississippi-constitution-of-1890), literacy tests and poll taxes used to prevent Black voting.
+- [Library of Congress, New Jersey Women Gain, then Lose the Vote](https://www.loc.gov/exhibitions/women-fight-for-the-vote/about-this-exhibition/seneca-falls-and-building-a-movement-1776-1890/early-feminist-inspirations/new-jersey-women-gain-then-lose-the-vote/), qualifies the “before any state” phrase retained in F4 from the specification.
+- [Mississippi Department of Archives and History, Constitution of 1890](https://mshistorynow.mdah.ms.gov/issue/mississippi-constitution-of-1890), literacy tests and poll taxes used to prevent Black voting.
 - [National Park Service, The First Legislative Assembly](https://www.nps.gov/jame/learn/historyculture/the-first-legislative-assembly.htm), 1619.
 - [WIDA ELD Standards Framework](https://wida.wisc.edu/teach/standards/eld), 2020 edition.
 - [Untitled (Chicago after the Fire), AIC 59281](https://www.artic.edu/artworks/59281), attributed to George N. Barnard, 1871, albumen print. Gift of Robert Jesmer. CC0.

@@ -1,0 +1,196 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "prediction",
+      "steps": [
+        {
+          "click": "#test"
+        },
+        {
+          "until": "__tool.state.phase === 'predict'",
+          "max": 5000
+        }
+      ],
+      "keep": [
+        "#population-wrap",
+        "#predict-box"
+      ]
+    },
+    {
+      "name": "positives",
+      "steps": [
+        {
+          "click": "#test"
+        },
+        {
+          "wait": 2100
+        },
+        {
+          "click": "#lock"
+        },
+        {
+          "wait": 1000
+        },
+        {
+          "click": "#positive"
+        }
+      ],
+      "keep": [
+        "#population-wrap",
+        "#legend"
+      ]
+    },
+    {
+      "name": "table-has",
+      "steps": [
+        {
+          "click": "#m-table"
+        },
+        {
+          "click": "[data-divide=has]"
+        }
+      ],
+      "keep": [
+        "#two-way",
+        "#fraction"
+      ]
+    },
+    {
+      "name": "tree-chances",
+      "steps": [
+        {
+          "click": "#m-second"
+        },
+        {
+          "click": "#tree-chances"
+        }
+      ],
+      "keep": [
+        "#tree"
+      ]
+    },
+    {
+      "name": "coin-answer",
+      "steps": [
+        {
+          "click": "#m-cases"
+        },
+        {
+          "click": "#case-7"
+        },
+        {
+          "click": "#show-answer"
+        },
+        {
+          "wait": 1000
+        }
+      ],
+      "keep": [
+        "#case-picker",
+        "#population-wrap"
+      ]
+    },
+    {
+      "name": "rarer-answer",
+      "steps": [
+        {
+          "click": "#m-cases"
+        },
+        {
+          "click": "#case-3"
+        },
+        {
+          "click": "#show-answer"
+        },
+        {
+          "wait": 1000
+        }
+      ],
+      "keep": [
+        "#case-picker",
+        "#population-wrap"
+      ]
+    },
+    {
+      "name": "glossary",
+      "steps": [
+        {
+          "click": "#terms-open"
+        },
+        {
+          "click": "#glossary button"
+        }
+      ],
+      "keep": [
+        "#terms"
+      ]
+    },
+    {
+      "name": "random-pooled",
+      "steps": [
+        {
+          "click": "#run-kind"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#hundred"
+        },
+        {
+          "until": "__tool.state.chart.length === 100",
+          "max": 7000
+        }
+      ],
+      "keep": [
+        "#converge",
+        "#result",
+        "#population-wrap"
+      ]
+    },
+    {
+      "name": "abandoned-prediction",
+      "steps": [
+        {
+          "click": "#test"
+        },
+        {
+          "wait": 2100
+        },
+        {
+          "click": "#m-table"
+        },
+        {
+          "click": "#m-town"
+        }
+      ],
+      "keep": [
+        "#population-wrap",
+        "#result"
+      ]
+    },
+    {
+      "name": "matched-question",
+      "steps": [
+        {
+          "click": "#m-table"
+        },
+        {
+          "click": "#questions button:nth-child(1)"
+        },
+        {
+          "click": "#targets button:nth-child(2)"
+        }
+      ],
+      "keep": [
+        "#questions",
+        "#targets",
+        "#hint"
+      ]
+    }
+  ]
+}

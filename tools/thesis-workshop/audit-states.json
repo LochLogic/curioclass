@@ -1,0 +1,194 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "workable-story",
+      "steps": [
+        {
+          "click": "#topic-V"
+        },
+        {
+          "click": "#move-S"
+        },
+        {
+          "click": "#meaning-N1"
+        }
+      ],
+      "keep": [
+        "#chip-rows",
+        "#meter",
+        "#use-thesis"
+      ]
+    },
+    {
+      "name": "all-passages",
+      "steps": [
+        {
+          "click": "#topic-any"
+        },
+        {
+          "click": "#move-any"
+        }
+      ],
+      "keep": [
+        "#meter"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "nothing-lit",
+      "steps": [
+        {
+          "click": "#topic-W"
+        },
+        {
+          "click": "#move-E"
+        }
+      ],
+      "keep": [
+        "#meter"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "four-against",
+      "steps": [
+        {
+          "click": "#text-picker"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#topic-R"
+        },
+        {
+          "click": "#move-Q"
+        },
+        {
+          "click": "#meaning-N3"
+        }
+      ],
+      "keep": [
+        "#meter"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "prove-with-card",
+      "steps": [
+        {
+          "click": "#topic-V"
+        },
+        {
+          "click": "#move-S"
+        },
+        {
+          "click": "#meaning-N1"
+        },
+        {
+          "click": "#use-thesis"
+        },
+        {
+          "click": "[data-pick='W6']"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#to-draft"
+      ]
+    },
+    {
+      "name": "draft-with-evidence",
+      "steps": [
+        {
+          "click": "#topic-V"
+        },
+        {
+          "click": "#move-S"
+        },
+        {
+          "click": "#meaning-N1"
+        },
+        {
+          "click": "#use-thesis"
+        },
+        {
+          "click": "[data-pick='W6']"
+        },
+        {
+          "click": "#because-W6"
+        },
+        {
+          "key": " "
+        },
+        {
+          "click": "#to-draft"
+        }
+      ],
+      "keep": [
+        "#draft-box",
+        "#copy"
+      ]
+    },
+    {
+      "name": "replace-dialog",
+      "steps": [
+        {
+          "click": "#topic-V"
+        },
+        {
+          "click": "#move-S"
+        },
+        {
+          "click": "#meaning-N1"
+        },
+        {
+          "click": "#save-thesis",
+          "times": 6
+        }
+      ],
+      "keep": [
+        "#replace-dialog"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "clear-dialog",
+      "steps": [
+        {
+          "click": "#m-draft"
+        },
+        {
+          "click": "#clear"
+        }
+      ],
+      "keep": [
+        "#clear-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

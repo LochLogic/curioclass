@@ -1,0 +1,202 @@
+{
+  "states": [
+    {
+      "name": "poster-facts",
+      "steps": [
+        {
+          "click": "#media-poster"
+        },
+        {
+          "click": "#variant-a"
+        }
+      ],
+      "keep": [
+        "#set"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "shot-bin",
+      "steps": [
+        {
+          "click": "#edit-shots"
+        }
+      ],
+      "keep": [
+        "#shot-bin"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "site",
+      "steps": [
+        {
+          "click": "#media-site"
+        }
+      ],
+      "keep": [
+        "#set"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "announcement",
+      "steps": [
+        {
+          "click": "#media-announcement"
+        },
+        {
+          "click": "#sentence-1"
+        },
+        {
+          "click": "#sentence-2"
+        },
+        {
+          "click": "#sentence-3"
+        }
+      ],
+      "keep": [
+        "#sentences"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "poster-budget",
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#cell-poster-0"
+        },
+        {
+          "click": "#copies-plus"
+        }
+      ],
+      "keep": [
+        "#run-day",
+        "#copies-plus"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "after-day",
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#job-ann"
+        },
+        {
+          "click": "#run-day"
+        },
+        {
+          "wait": 4500
+        }
+      ],
+      "keep": [
+        "#run-day",
+        "#undo-day"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "reset-confirmation",
+      "steps": [
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#reset-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "friday-partial",
+      "steps": [
+        {
+          "click": "#m-friday"
+        }
+      ],
+      "keep": [
+        "#big-results",
+        "#try-again",
+        "#back-make"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "phone-announcement",
+      "steps": [
+        {
+          "click": "#media-announcement"
+        },
+        {
+          "click": "#sentence-1"
+        },
+        {
+          "click": "#sentence-2"
+        },
+        {
+          "click": "#sentence-3"
+        }
+      ],
+      "keep": [
+        "#sentences",
+        "#hear-script"
+      ],
+      "sizes": [
+        "375x812"
+      ]
+    },
+    {
+      "name": "phone-week",
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#cell-poster-0"
+        }
+      ],
+      "keep": [
+        "#run-day",
+        "#undo-day",
+        "#copies-plus"
+      ],
+      "sizes": [
+        "375x812"
+      ]
+    }
+  ]
+}

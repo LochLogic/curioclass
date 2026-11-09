@@ -1,0 +1,13 @@
+{
+  "target":48,
+  "keep":["#chart-box"],
+  "states":[
+    {"name":"teeth-dots","steps":[{"click":"#q-next"},{"click":"#guesses .stepper button"},
+      {"click":"#col-teeth"},{"click":"#chart-dot"},{"click":"#show"}],"keep":["#chart-summary",".chart-controls"]},
+    {"name":"sorted-total","steps":[{"click":"#q-next","times":4},{"click":"#guesses .stepper button"},
+      {"click":"#col-pockets"},{"click":"#chart-list"},{"click":"#show"}],"keep":["#chart-summary",".chart-controls"]},
+    {"name":"column-shelf","steps":[{"click":"#m-ours"},{"click":"#add-column"}],"keep":["#overlay"]},
+    {"name":"row-entry","steps":[{"click":"#m-ours"},{"click":"#add-column"},{"click":"#shelf-season"},{"click":"#add-row"}],"keep":["#overlay-actions"]},
+    {"name":"custom-column","steps":[{"click":"#m-ours"},{"click":"#add-column"},{"click":"#make-column"}],"keep":["#overlay-actions"]}
+  ]
+}

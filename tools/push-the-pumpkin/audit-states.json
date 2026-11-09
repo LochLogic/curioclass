@@ -1,0 +1,161 @@
+{
+  "target": 44,
+  "target_reason": "The specification permits 44 px controls at the compact 680x425 preview; normal laptop controls are at least 60 px.",
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "push-with-flags",
+      "steps": [
+        {
+          "click": "#go"
+        },
+        {
+          "wait": 2500
+        },
+        {
+          "click": "#size-2"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "wait": 2500
+        }
+      ],
+      "keep": [
+        "#go",
+        "#clear"
+      ]
+    },
+    {
+      "name": "prediction-locked",
+      "steps": [
+        {
+          "click": "#m-find"
+        },
+        {
+          "click": "#guess-big"
+        }
+      ],
+      "keep": [
+        "#test-go",
+        "#choices"
+      ]
+    },
+    {
+      "name": "compare-flags",
+      "steps": [
+        {
+          "click": "#m-find"
+        },
+        {
+          "click": "#guess-big"
+        },
+        {
+          "click": "#test-go"
+        },
+        {
+          "wait": 2400
+        },
+        {
+          "click": "#test-go"
+        },
+        {
+          "wait": 2400
+        }
+      ],
+      "keep": [
+        "#lane0",
+        "#lane1"
+      ]
+    },
+    {
+      "name": "barn-judgment",
+      "steps": [
+        {
+          "click": "#m-barn"
+        },
+        {
+          "click": "#roll"
+        },
+        {
+          "wait": 3300
+        }
+      ],
+      "keep": [
+        "#thumbs"
+      ]
+    },
+    {
+      "name": "barn-all-ramp-spots",
+      "steps": [
+        {
+          "click": "#m-barn"
+        },
+        {
+          "click": "#piece-ramp"
+        }
+      ],
+      "keep": [
+        "#tray",
+        "#roll"
+      ]
+    },
+    {
+      "name": "uphill-ramp-result",
+      "steps": [
+        {
+          "click": "#m-barn"
+        },
+        {
+          "click": "#piece-ramp"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#roll"
+        },
+        {
+          "wait": 3300
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#thumbs"
+      ]
+    },
+    {
+      "name": "ghost-analysis",
+      "steps": [
+        {
+          "click": "#m-barn"
+        },
+        {
+          "click": "#piece-ramp"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#roll"
+        },
+        {
+          "wait": 3300
+        },
+        {
+          "click": "#yes"
+        },
+        {
+          "wait": 12500
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#analysis"
+      ]
+    }
+  ]
+}

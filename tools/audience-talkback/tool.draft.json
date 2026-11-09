@@ -6,7 +6,11 @@
   "outcome": "Evaluate staging with chosen criteria and explain a personal response with evidence.",
   "driver": "students or teacher",
   "minutes": "15-25",
-  "modes": ["Watch", "Swap lab", "Talkback"],
+  "modes": [
+    "Watch",
+    "Swap lab",
+    "Talkback"
+  ],
   "grades_label": "Grades 3-5",
   "sources": [
     "National Core Arts Standards, Theater TH:Re8 and TH:Re9, grades 3-5",
@@ -18,5 +22,5 @@
     "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
   ],
   "third_party": [],
-  "updated": "2026-11-01"
+  "updated": "2026-11-05"
 }

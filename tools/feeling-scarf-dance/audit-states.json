@@ -1,11 +1,159 @@
 {
-  "keep": ["#hint"],
+  "keep": [
+    "#hint"
+  ],
   "states": [
-    {"name":"built-dance","steps":[{"click":"#feeling-2"},{"click":"#idea"}],"keep":["#watch-it","#choices"]},
-    {"name":"middle-choices","steps":[{"click":"#part-1"}],"keep":["#choices"],"sizes":["680x425","1366x768","375x812"]},
-    {"name":"watch-ready","steps":[{"click":"#idea"},{"click":"#watch-it"}],"keep":["#play","#stage"]},
-    {"name":"live-editor","steps":[{"click":"#idea"},{"click":"#watch-it"},{"click":"#play"},{"click":"#mini-1"}],"keep":["#edit-choices","#close-editor"],"sizes":["680x425","1366x768","375x812"]},
-    {"name":"your-turn","steps":[{"click":"#idea"},{"click":"#m-turn"}],"keep":["#go","#stage"]},
-    {"name":"audience","steps":[{"click":"#idea"},{"click":"#m-share"},{"click":"#chip-0"},{"click":"#chip-3"}],"keep":["#chips","#swap"]}
+    {
+      "name": "built-dance",
+      "steps": [
+        {
+          "click": "#feeling-2"
+        },
+        {
+          "click": "#idea"
+        }
+      ],
+      "keep": [
+        "#watch-it",
+        "#choices"
+      ]
+    },
+    {
+      "name": "middle-choices",
+      "steps": [
+        {
+          "click": "#part-1"
+        }
+      ],
+      "keep": [
+        "#choices"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "watch-ready",
+      "steps": [
+        {
+          "click": "#idea"
+        },
+        {
+          "click": "#watch-it"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#stage"
+      ]
+    },
+    {
+      "name": "live-editor",
+      "steps": [
+        {
+          "click": "#idea"
+        },
+        {
+          "click": "#watch-it"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#mini-1"
+        }
+      ],
+      "keep": [
+        "#edit-choices",
+        "#close-editor"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "your-turn",
+      "steps": [
+        {
+          "click": "#idea"
+        },
+        {
+          "click": "#m-turn"
+        }
+      ],
+      "keep": [
+        "#go",
+        "#stage"
+      ]
+    },
+    {
+      "name": "audience",
+      "steps": [
+        {
+          "click": "#idea"
+        },
+        {
+          "click": "#m-share"
+        },
+        {
+          "click": "#chip-0"
+        },
+        {
+          "click": "#chip-3"
+        }
+      ],
+      "keep": [
+        "#chips",
+        "#swap"
+      ]
+    },
+    {
+      "name": "empty-watch",
+      "steps": [
+        {
+          "click": "#m-watch"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#play"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "freeze",
+      "steps": [
+        {
+          "click": "#idea"
+        },
+        {
+          "click": "#m-turn"
+        },
+        {
+          "click": "#go"
+        },
+        {
+          "until": "__tool.state.freeze",
+          "max": 30000
+        }
+      ],
+      "keep": [
+        "#part-word",
+        "#go"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
   ]
 }

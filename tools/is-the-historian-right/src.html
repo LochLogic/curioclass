@@ -135,8 +135,10 @@ select {background:#fffaf1; border:1px solid #ab9272; border-radius:4px; color:v
 .stamp {height:100%; max-height:170px; min-height:0; border:0; background:transparent; display:flex;
   flex-direction:column; align-items:center; justify-content:flex-end; gap:12px; box-shadow:none; padding:10px}
 .stamp:before {content:""; display:block; width:50px; height:58px; border-radius:24px 24px 6px 6px;
-  background:linear-gradient(100deg,#40230f,#9f6330 40%,#5f3415 80%); border:1px solid #44250f;
-  box-shadow:inset 5px 0 5px #ffc88425,5px 7px 8px #321d1440; flex:none}
+  background:repeating-linear-gradient(94deg,#44250f00 0 6px,#301a0c40 7px,#ffc88420 8px),
+    linear-gradient(100deg,#40230f,#b17b40 40%,#5f3415 80%); border:1px solid #44250f;
+  box-shadow:inset 5px 0 5px #ffc88425,5px 7px 8px #321d1440; flex:none;
+  transform:translateY(15px); z-index:1}
 .stamp span {display:block; border:3px double #6e2c00; background:linear-gradient(#f9ebcd,#d0b188); padding:13px 8px;
   box-shadow:0 6px #654329,3px 10px 9px #54341d45; width:100%; font:700 clamp(17px,2vw,28px)/1.2 Georgia,serif}
 .stamp small {font-size:11px; color:var(--muted); margin-top:4px}
@@ -180,6 +182,54 @@ textarea {width:100%; height:100%; min-height:240px; resize:vertical; border:1px
 .word-card p {font-size:13px; line-height:1.5; margin:0}
 .word-card .example {font:italic 16px/1.45 Georgia,serif; flex:1}
 .word-card button {align-self:start; font-size:12px}
+.word-drawer {display:grid; grid-template-columns:minmax(0,42fr) minmax(0,58fr); gap:22px;
+  flex:1; min-height:0; padding:16px; border:1px solid #765232; border-radius:5px;
+  background:repeating-linear-gradient(2deg,#482c1800 0 12px,#38200d16 13px,#ffe5ab12 14px),
+    linear-gradient(120deg,#ad875b,#6b482e);
+  box-shadow:inset 0 3px 8px #3f210c65,0 6px 12px #4f2e1a30}
+.word-index {display:grid; grid-template-columns:1fr 1fr; gap:10px; min-height:0; align-content:center}
+.word-index button {position:relative; min-width:0; text-align:left; font:700 17px/1.2 Georgia,serif;
+  padding:12px; border-radius:2px; border-top:4px solid #b28a50;
+  background:linear-gradient(110deg,#fffaf0,#e9d6b5); box-shadow:1px 4px 0 #50351f80,2px 5px 8px #301a0d40}
+.word-index button[aria-pressed=true] {background:#fff4d8; border-color:#6e2c00; outline:2px solid #fff1c9}
+.word-detail {min-width:0; min-height:0; padding:clamp(16px,3vw,36px);
+  background:linear-gradient(110deg,#fffdf7,#eddfc4); border:1px solid #a98759;
+  box-shadow:3px 7px 12px #36200f50,inset 0 1px #fff; display:flex; flex-direction:column; gap:14px}
+.word-detail .eyebrow {border-bottom:1px solid #c8ac81; padding-bottom:10px}
+.word-detail h3 {font:700 clamp(24px,3vw,40px)/1.1 Georgia,serif; color:#6e2c00; margin:0}
+.word-detail p {font-size:16px; line-height:1.5; margin:0}
+.word-detail .example {font:italic clamp(20px,2.2vw,29px)/1.5 Georgia,serif; margin:auto 0}
+.word-detail button {align-self:start; flex:none}
+.strength-note {font-size:11px; line-height:1.3; margin:0; color:#45321f}
+.filed-seal small {display:block; font:11px/1.4 'Segoe UI',sans-serif; margin-top:4px; color:#5e5143}
+.filed-seal.filed-now {animation:stamp .3s ease-out}
+.calm .filed-seal.filed-now {animation:none}
+@media(max-height:650px) {
+  .word-drawer {padding:8px; gap:12px; grid-template-columns:minmax(0,53fr) minmax(0,47fr)}
+  .word-index {gap:5px; grid-template-columns:repeat(3,minmax(0,1fr))}
+  .word-index button {font-size:13px; padding:6px; border-top-width:2px}
+  .word-detail {padding:12px; gap:7px} .word-detail .eyebrow {display:none}
+  .word-detail h3 {font-size:23px} .word-detail p {font-size:12px}
+  .word-detail .example {font-size:18px; line-height:1.3}
+  .language:has(.word-drawer) {gap:6px}
+  .language:has(.word-drawer) .strength {padding:5px 8px; font-size:11px}
+  .strength-note {font-size:10px}
+}
+@media(max-width:790px) {
+  .word-drawer {gap:12px; padding:9px} .word-index {gap:7px}
+  .word-index button {font-size:14px; padding:7px}
+  .word-detail {padding:14px; gap:10px} .word-detail p {font-size:13px}
+  .word-detail .example {font-size:20px}
+}
+@media(max-width:520px) {
+  .word-drawer {grid-template-columns:1fr; grid-template-rows:auto minmax(0,1fr); gap:10px}
+  .word-index {grid-template-columns:1fr 1fr; gap:5px; align-content:start}
+  .word-index button {font-size:13px; padding:5px 8px; border-top-width:2px}
+  .word-detail {padding:12px; gap:7px} .word-detail .eyebrow {display:none}
+  .word-detail h3 {font-size:25px} .word-detail .example {font-size:19px; line-height:1.3}
+  .word-detail p {font-size:12px} .word-detail button {font-size:12px; padding:5px 10px}
+  .language:has(.word-drawer) {gap:7px}
+}
 .pair {max-width:940px; margin:auto; width:100%; flex:1; display:flex; flex-direction:column; justify-content:center; gap:16px}
 .pair h2 {font:normal 30px Georgia,serif; margin:0}
 .pair-choices {display:grid; grid-template-columns:1fr 1fr; gap:20px}
@@ -191,6 +241,11 @@ dialog {max-width:440px; width:calc(100% - 30px); color:var(--ink); background:#
   border:2px solid #795432; border-radius:6px; padding:25px; box-shadow:0 15px 80px #0006}
 dialog::backdrop {background:#231a1280}
 dialog h2 {font:700 25px Georgia,serif}
+#photo-view {max-width:1400px; max-height:calc(100% - 24px); padding:18px}
+#photo-view h2 {margin:0 0 10px; font-size:22px}
+#photo-view p {font-size:12px; line-height:1.5; margin:10px 0}
+.photo-scroll {overflow:auto; max-height:55vh; border:5px solid #e8d6b5; background:#b79a6d}
+.photo-scroll img {display:block; width:100%; min-width:1000px; height:auto}
 @media(max-width:1100px) {
   header {padding:7px 12px; gap:5px} h1 {font-size:23px} h1 small {font-size:10px}
   .seg button,.icon-btn {font-size:12px; padding:0 8px}
@@ -327,6 +382,101 @@ dialog h2 {font:700 25px Georgia,serif}
   .pair {justify-content:flex-start; padding-top:12px; gap:14px} .pair h2 {font-size:25px}
   .pair-choices {grid-template-columns:1fr; gap:13px} .pair-choices button {font-size:22px; padding:18px; min-height:115px}
 }
+@media(max-height:560px) {
+  .word-detail {display:grid; grid-template-rows:auto auto minmax(0,1fr) 44px; padding:8px; gap:5px}
+  .word-detail h3 {font-size:18px; line-height:1.15}
+  .word-detail p {font-size:11px; line-height:1.25}
+  .word-detail .example {font-size:14px; line-height:1.3; margin:0; min-height:0; overflow:auto}
+  .word-detail button {font-size:11px; padding:4px 8px}
+}
+.word-index button:focus-visible,.stamp:focus-visible,.tray:focus-visible {
+  outline:3px solid var(--focus); outline-offset:3px;
+}
+#sound {width:94px; min-width:94px; flex:0 0 94px; padding:0 6px}
+.writing-paper {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; padding:16px; align-content:start}
+.writing-paper:has(#weaken-clue) {grid-template-columns:repeat(4,minmax(0,1fr))}
+.writing-paper h3 {grid-column:1/-1; margin:0; font-size:22px}
+.writing-paper>.opening-frame {grid-column:1/-1; padding:6px 0; font-size:15px; line-height:1.4}
+.evidence-frame,.overall-frame {min-width:0; padding:10px; border:1px solid #d0b68e;
+  background:linear-gradient(110deg,#fffdf6,#f0e0c5); font-size:13px; line-height:1.4}
+.evidence-frame label,.overall-frame label {font-size:10px; line-height:1.3}
+.evidence-frame select,.evidence-frame input,.overall-frame select,.overall-frame input {font-size:13px; margin-top:3px}
+.writing-paper:has(#free-write) {display:flex; flex-direction:column}
+.writing-paper #free-write {flex:1; min-height:0}
+#file {position:relative; overflow:hidden}
+.filed-seal:not([hidden]) {display:block; background:#fff3db; margin-top:8px}
+@media(max-width:1100px) and (max-height:650px) {
+  .writer {display:grid; grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 44px; gap:5px}
+  .writing-tools {display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px}
+  .writing-tools>p,#draft-preview {display:none}
+  .writing-tools button {min-width:0; padding:5px; font-size:12px}
+  #file {grid-column:auto}
+  .writing-paper {padding:8px; gap:6px}
+  .writing-paper h3 {font-size:18px}
+  .writing-paper>.opening-frame {font-size:12px; padding:3px 0}
+  .evidence-frame,.overall-frame {font-size:12px; padding:6px}
+  .writing-tools .filed-seal {position:absolute; inset:0; margin:0; padding:1px; font-size:11px; line-height:12px}
+  .writing-tools .filed-seal small {font-size:10px; line-height:11px; margin:0; max-height:22px; overflow:hidden}
+}
+@media(max-width:790px) and (max-height:650px) {
+  .panel label {font-size:10px; line-height:1.2}
+  .case-shell {padding:6px; gap:5px}
+  .clue-title {display:flex; gap:3px; align-items:flex-start}
+  .clue-title .cid {flex:none; margin:0; line-height:1.2}
+  .clue strong {font-size:10px; line-height:1.2; min-width:0}
+  .clue {padding:4px 5px}
+  .writing-paper {padding:2px; gap:4px}
+  .writing-paper h3,.writing-paper>.opening-frame {display:none}
+  .evidence-frame,.overall-frame {font-size:10px; line-height:1.25; padding:2px}
+  .evidence-frame label,.overall-frame label {position:absolute; width:1px; height:1px; overflow:hidden;
+    clip:rect(0,0,0,0); clip-path:inset(50%)}
+  .evidence-frame select,.evidence-frame input,.overall-frame select,.overall-frame input {margin-top:2px; font-size:12px}
+  .word-index button {font-size:12px; padding:5px; border-top-width:2px}
+}
+@media(max-width:1100px) and (max-height:560px) {
+  .desk {padding:16px 24px; gap:12px}
+  .claim-layout {grid-template-columns:24% minmax(0,1fr)}
+  .claim-sheet {padding:8px 12px}
+  .claim-sheet>.eyebrow {display:none}
+  .quote {font-size:17px; line-height:1.3; margin:0}
+  .long-claim .quote {font-size:15px}
+  .connection {min-height:22px; padding:2px 0; font-size:11px; line-height:1.2}
+  .pair {display:grid; grid-template-rows:16px 28px minmax(65px,1fr) minmax(24px,auto) 44px;
+    min-height:0; gap:5px; margin:0; justify-content:normal}
+  .pair h2 {font-size:23px; line-height:1.1}
+  .pair-choices {min-height:0; gap:10px}
+  .pair-choices button {min-height:0; padding:8px; font-size:16px; line-height:1.25}
+  .pair-feedback {min-height:24px; margin:0; font-size:11px; line-height:1.3}
+  .writing-paper h3,.writing-paper>.opening-frame {display:none}
+  .evidence-frame label,.overall-frame label {position:absolute; width:1px; height:1px; overflow:hidden;
+    clip:rect(0,0,0,0); clip-path:inset(50%)}
+}
+@media(min-width:791px) and (max-width:1100px) and (max-height:560px) {
+  .evidence-layout {grid-template-columns:44% minmax(0,1fr); grid-template-rows:1fr; gap:8px}
+  .cards {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .clue .text,.clue .source,.clue table,.clue img,.clue .placed,.cards.checked .key-reason {display:none}
+  .clue-title {display:flex; gap:3px; align-items:flex-start}
+  .clue-title .cid {flex:none; margin:0; line-height:1.2}
+  .clue strong {font-size:11px; line-height:1.2; min-width:0; overflow-wrap:anywhere}
+  .clue {padding:5px}
+  .tray-title {font-size:15px}
+  .tray-items {display:none}
+  .tray-count {display:block; margin-top:auto; font-size:10px}
+  #clue-detail {display:block; font-size:11px; line-height:1.3; height:44px; flex:0 0 44px; overflow:auto;
+    background:#fff8e9; padding:6px; border:1px solid #bca685}
+}
+@media(max-width:520px) {
+  .writing-paper,.writing-paper:has(#weaken-clue) {grid-template-columns:repeat(2,minmax(0,1fr)); padding:6px; gap:6px}
+  .writing-paper h3 {display:none}
+  .writing-paper>.opening-frame {font-size:12px; line-height:1.3; padding:3px 0}
+  .evidence-frame,.overall-frame {font-size:11px; line-height:1.25; padding:5px}
+  .evidence-frame label,.overall-frame label {font-size:10px; line-height:1.3; margin-top:3px}
+  .evidence-frame select,.evidence-frame input,.overall-frame select,.overall-frame input {font-size:12px; margin-top:2px}
+  .writing-tools {grid-template-columns:repeat(3,minmax(0,1fr))}
+  #file {grid-column:auto}
+  .writing-tools .filed-seal {position:absolute; inset:0; margin:0; padding:1px; font-size:11px; line-height:12px}
+  .writing-tools .filed-seal small {font-size:10px; line-height:11px; margin:0; max-height:22px; overflow:hidden}
+}
 </style>
 </head>
 <body>
@@ -353,6 +503,13 @@ dialog h2 {font:700 25px Georgia,serif}
   <p>This removes your scales, stamps and writing from this device.</p>
   <div class="toolbar"><button id="cancel-clear">Keep my work</button><button id="do-clear" class="primary">Clear all files</button></div>
 </dialog>
+<dialog id="photo-view" aria-labelledby="photo-title">
+  <h2 id="photo-title">G4 · Chicago after the fire, 1871</h2>
+  <div class="photo-scroll"><img src="art:pd-aic-59281" alt="Panoramic photograph of Chicago's ruined buildings after the fire"></div>
+  <p>Untitled (Chicago after the Fire), attributed to George N. Barnard, 1871. Art Institute of Chicago, 59281.
+    Gift of Robert Jesmer. Public domain, CC0. Scroll sideways on a small screen to inspect the photograph.</p>
+  <button id="close-photo">Back to clues</button>
+</dialog>
 <script src="kit:curio"></script>
 <script>
 (() => {
@@ -368,8 +525,8 @@ dialog h2 {font:700 25px Georgia,serif}
   const STORE = 'is-the-historian-right:v1';
   const blank = () => ({opened:false,cause:false,effect:false,scale:Array(6).fill(null),stamp:null,
     wording:null,text:'',fields:{},filed:false});
-  const state = {mode:'cases',case:null,step:0,selected:null,checked:false,drawer:0,pair:0,
-    pairAnswered:false,help:'some',files:D.map(blank)};
+  const state = {mode:'cases',case:null,step:0,selected:null,checked:false,drawer:0,word:0,pair:0,
+    pairAnswered:false,pairResponses:Array(8).fill(null),pairOrders:Array(8).fill(null),help:'some',files:D.map(blank)};
   try {
     const saved = JSON.parse(localStorage.getItem(STORE));
     if (saved && ['lots','some','little'].includes(saved.help) && saved.files?.length === 3) {
@@ -384,24 +541,33 @@ dialog h2 {font:700 25px Georgia,serif}
   const L = {
     'w-cases':'Tap a case folder to open it. Read the historian’s claim first.',
     'claim-taps':'Tap the cause in the claim. Then tap the effect.',
-    'claim-wrong':'That part says when, not why. Tap the cause.',
+    'effect-tap':'Tap the effect in the claim.',
+    'claim-wrong':'That part does not name the cause. Tap the cause in the claim.',
     'claim-effect':'That is the effect. Tap the cause.',
     'claim-not-effect':'That is not the effect. Tap the effect in the claim.',
     'w-clues':'Drag each clue onto a tray, or tap the clue and then a tray. Does it support, weaken, complicate, or not decide the claim?',
+    'tray-tap':'Tap a tray to place the selected clue.',
     checked:'Here’s where we put each clue. You can still move them.',
     'stamp-blocked':'That stamp doesn’t match your scale.',
     fix:'Tap a verdict stamp. Then tap the strongest words your evidence allows in Fix the claim.',
+    'wording-tap':'Tap the strongest wording your scale allows in Fix the claim.',
+    'go-write':'Tap Write it to explain your verdict.',
+    'w-stamps':'Tap a verdict stamp to test it against your scale. Then tap Write it.',
     'w-write':'Choose your clue references, explain your reasoning, then press File verdict.',
     missing:'Something’s missing. Check the part I marked.',filed:'Verdict filed.',
     'w-tools':'Tap a drawer and then Hear it on a word card. Or tap Stronger or weaker.',
+    'w-pairs':'Tap the sentence that claims more. Compare the explanation, then tap Next pair.',
+    'w-photo':'Inspect the photograph. Scroll sideways on a small screen, then tap Back to clues.',
+    'clear-confirm':'Choose Clear all files to remove your work, or Keep my work to return.',
     'pair-right':'Yes. That word makes the claim stronger.',
     'pair-wrong':'Look at the cause word. Which one claims more?',
     claims:D.map(c=>[c.claim,c.plain,...c.clues.map(x=>x.text)])
   };
   const V = Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,
-    welcome:()=>state.mode==='tools' ? ['w-tools',{valid:()=>state.drawer!==4}]
+    welcome:()=>$('confirm-clear').open||$('photo-view').open?null:state.mode==='tools' ? ['w-tools',{valid:()=>state.drawer!==4}]
       : state.case===null ? ['w-cases',{valid:()=>state.case===null}] : null});
   const hint = text => {$('hint').textContent=text;};
+  let overlayHint='';
   function how(key,valid,needs) {
     hint(L[key]);
     if (!V.heard(key)) V.how(key,{valid,needs});
@@ -426,8 +592,6 @@ dialog h2 {font:700 25px Georgia,serif}
     $('steps').hidden=state.mode!=='cases'||state.case===null;
     if($('steps').hidden)return;
     const f=file();
-    const unlock=[true,f.cause&&f.effect,f.cause&&f.effect&&complete(),
-      f.cause&&f.effect&&complete()&&f.stamp!==null&&(state.case===1||f.wording!==null)];
     const labels=['1 The claim','2 The clues','3 The verdict','4 Write it'];
     $('steps').innerHTML='<button id="back">← Files</button>'+labels.map((x,i)=>
       `<button id="step-${i}" class="${state.step===i?'current':''}" aria-current="${state.step===i?'step':'false'}"
@@ -439,6 +603,8 @@ dialog h2 {font:700 25px Georgia,serif}
     render();how('w-cases',()=>state.case===null,'.folder');
     $('folder-'+previous).focus({preventScroll:true});};
     for(let i=0;i<4;i++)$('step-'+i).onclick=()=>{
+      const unlock=[true,f.cause&&f.effect,f.cause&&f.effect&&complete(),
+        f.cause&&f.effect&&complete()&&f.stamp!==null&&(state.case===1||f.wording!==null)];
       if(!unlock[i]) {
         hint(i===1?'Tap the cause and then the effect in The claim first.':i===2
           ?`Place every clue first. ${file().scale.filter(x=>x===null).length} remain. Tap The clues.`
@@ -506,7 +672,7 @@ dialog h2 {font:700 25px Georgia,serif}
   }
   function renderClaim() {
     const c=data(),f=file();
-    shell(`<div class="claim-layout"><img class="claim-art" src="${covers[state.case]}" alt="Painted ${c.slug} case cover">
+    shell(`<div class="claim-layout ${state.case===2?'long-claim':''}"><img class="claim-art" src="${covers[state.case]}" alt="Painted ${c.slug} case cover">
       <article class="claim-sheet"><div class="eyebrow">${state.case===2?'Frederick Jackson Turner, 1893':'A claim written for Curio Class'}</div>
       <div class="claim-reading"><div class="quote" id="claim-text">${bits()}</div>
       ${state.help!=='little'?`<p class="plain"><b>Plain English</b><br>${esc(c.plain)}</p>`:''}</div>
@@ -517,6 +683,11 @@ dialog h2 {font:700 25px Georgia,serif}
     document.querySelectorAll('[data-bit]').forEach(b=>b.onclick=()=>{
       V.hush();
       const kind=b.dataset.bit;
+      if(kind==='cause'&&f.cause) {
+        hint(f.effect?'Cause and effect connected. Tap Open the clues.':'Cause already identified. Now tap the effect.');
+        Curio.tone(330,.08,.04,'triangle');
+        return;
+      }
       if((!f.cause&&kind==='cause')||(f.cause&&kind==='effect')) {
         f[kind]=true;
         b.classList.add('marked');
@@ -525,6 +696,7 @@ dialog h2 {font:700 25px Georgia,serif}
         $('to-clues').hidden=!(f.cause&&f.effect);
         save();renderSteps();
         hint(f.effect?'Cause and effect connected. Tap Open the clues.':'Cause identified. Now tap the effect.');
+        if(!f.effect)how('effect-tap',()=>state.step===0&&f.cause&&!f.effect,'#claim-effect');
         Curio.tone(f.effect?440:330,.1,.06,'triangle');
       } else {
         const key=kind==='effect'&&!f.cause?'claim-effect':'claim-wrong';
@@ -551,6 +723,7 @@ dialog h2 {font:700 25px Georgia,serif}
   function stepHint() {
     if(state.step===0) {
       if(file().effect)hint('Cause and effect connected. Tap Open the clues.');
+      else if(file().cause)how('effect-tap',()=>state.step===0&&!file().effect,'#claim-effect');
       else how('claim-taps',()=>state.step===0&&!file().effect,'[data-bit]');
     } else if(state.step===1) {
       const n=file().scale.filter(x=>x===null).length;
@@ -559,7 +732,7 @@ dialog h2 {font:700 25px Georgia,serif}
       else hint(n?`${n} ${n===1?'clue remains':'clues remain'}. Tap a clue, then a tray.`:
         'Every clue is on your scale. Tap The verdict, or Check my scale.');
     } else if(state.step===2) {
-      if(state.case===1)hint('Tap a verdict stamp. Your own scale controls which stamps fit.');
+      if(state.case===1)how('w-stamps',()=>state.step===2&&state.case===1,'.stamp');
       else how('fix',()=>state.step===2,'.stamp');
     } else how('w-write',()=>state.step===3,'#file');
   }
@@ -574,6 +747,7 @@ dialog h2 {font:700 25px Georgia,serif}
   }
   function renderClues() {
     shell(`<div class="toolbar"><button id="hear-clue">Hear selected clue</button><button id="check-scale">Check my scale</button>
+      ${state.case===1?'<button id="inspect-photo">Inspect photograph</button>':''}
       <button id="to-verdict" class="primary push">The verdict →</button></div>
       <div class="evidence-layout"><div class="cards" id="cards" aria-label="Six clue cards">
       ${data().clues.map((c,i)=>`<button id="clue-${i}" class="clue ${state.selected===i?'selected':''}" data-clue="${i}"
@@ -588,9 +762,16 @@ dialog h2 {font:700 25px Georgia,serif}
         <span class="tray-items" id="items-${i}"></span><span class="tray-count" id="count-${i}"></span></button>`).join('')}</div></div>
       <div id="clue-detail">Tap any clue to read its complete evidence and source here.</div>`);
     updateScale();
+    if($('inspect-photo'))$('inspect-photo').onclick=()=>{
+      V.hush();
+      overlayHint=$('hint').textContent;
+      $('photo-view').showModal();
+      how('w-photo',()=>$('photo-view').open,'#close-photo');
+      $('close-photo').focus({preventScroll:true});
+    };
     document.querySelectorAll('[data-clue]').forEach(b=>{
       b.onclick=()=>selectClue(+b.dataset.clue);
-      b.ondragstart=e=>{selectClue(+b.dataset.clue);e.dataTransfer.setData('text/plain',b.dataset.clue);};
+      b.ondragstart=e=>{selectClue(+b.dataset.clue,false);e.dataTransfer.setData('text/plain',b.dataset.clue);};
     });
     document.querySelectorAll('[data-tray]').forEach(b=>{
       b.onclick=()=>place(+b.dataset.tray);
@@ -621,7 +802,7 @@ dialog h2 {font:700 25px Georgia,serif}
       else hint(`Place every clue first. ${file().scale.filter(x=>x===null).length} remain. Tap a clue, then a tray.`);
     };
   }
-  function selectClue(i) {
+  function selectClue(i,guide=true) {
     V.hush();
     state.selected=i;
     state.checked=false;updateScale();
@@ -632,6 +813,7 @@ dialog h2 {font:700 25px Georgia,serif}
     const clue=data().clues[i];
     $('clue-detail').textContent=clue.text+' Source: '+clue.source;
     stepHint();
+    if(guide&&!V.heard('tray-tap'))V.how('tray-tap',{valid:()=>state.step===1&&state.selected===i,needs:'.tray'});
     Curio.tone(310,.055,.035,'triangle');
   }
   function updateScale() {
@@ -707,7 +889,7 @@ dialog h2 {font:700 25px Georgia,serif}
       const result=$('stamp-result');result.textContent=stampNames[i];result.classList.remove('hit');
       if(!Curio.reduce){void result.offsetWidth;result.classList.add('hit');}
       Curio.tone(90,.15,.1,'triangle');renderSteps();
-      hint(state.case===1?'Verdict stamped. Tap Write it to explain your evidence.':'Verdict stamped. Choose a wording in Fix the claim.');
+      verdictNext();
     });
     document.querySelectorAll('[data-wording]').forEach(b=>b.onclick=()=>{
       V.hush();
@@ -720,7 +902,7 @@ dialog h2 {font:700 25px Georgia,serif}
       save();
       $('rewrite').textContent=rewrite();
       document.querySelectorAll('[data-wording]').forEach(el=>el.setAttribute('aria-pressed',el===b));renderSteps();
-      hint('The claim now matches that level of certainty. Tap Write it.');
+      verdictNext();
       Curio.tone(330,.09,.04,'triangle');
     });
     $('to-write').onclick=()=>{
@@ -730,6 +912,14 @@ dialog h2 {font:700 25px Georgia,serif}
       return;}
       goStep(3);
     };
+  }
+  function verdictNext() {
+    const f=file();
+    if(f.stamp===null)how('w-stamps',()=>state.step===2&&file().stamp===null,'.stamp');
+    else if(state.case!==1&&f.wording===null) {
+      how('wording-tap',()=>state.step===2&&file().wording===null,'.wording');
+    } else how('go-write',()=>state.step===2&&file().stamp!==null&&
+      (state.case===1||file().wording!==null),'#to-write');
   }
   function rewrite() {
     if(state.case===1)return 'A newspaper story led to people believing the cow story.';
@@ -761,42 +951,51 @@ dialog h2 {font:700 25px Georgia,serif}
   function paragraph() {
     const f=file();
     if(state.help==='little')return f.text;
-    const parts=['The historian argues that '+rewrite().replace(/^./,c=>c.toLowerCase())];
+    const parts=[opening()];
     for(const row of frameRows()) {
       const clue=data().clues.find(c=>c.id===f.fields[row.id+'Clue']);
-      parts.push(`${row.prefix||''}${clue?.name||'[choose clue]'} ${row.phrase} ${f.fields[row.id+'Reason']||'[explain]'}.`);
+      parts.push(`${row.prefix||''}${clue?clue.id+' ('+clue.name+')':'[choose clue]'} `+
+        `${row.phrase} ${f.fields[row.id+'Reason']||'[explain]'}.`);
     }
     parts.push(`Overall, the claim is ${stampNames[f.stamp]?.toLowerCase()}, because ${f.fields.overall||'[explain]'}.`);
     return parts.join('\n\n');
+  }
+  function opening() {
+    const original='The historian argues: "'+data().claim+'"';
+    return state.case===1?original:original+'\nMy revised claim: '+rewrite();
   }
   function renderWrite() {
     const f=file();
     const fields=frameRows().map(row=>{
       const clues=optionsFor(row),id=row.id,chosen=clues.find(c=>c.id===f.fields[id+'Clue']);
       const reasons=chosen?[reasonFor(chosen,row)]:clues.map(c=>reasonFor(c,row));
-      return `<div class="frame">${row.prefix||''}[Clue] ${row.phrase} [reason].
+      return `<div class="frame evidence-frame">${row.prefix||''}[Clue] ${row.phrase} [reason].
         <label for="${id}-clue">${row.tray===null?'Choose another clue from your scale':'Choose a clue from your '+trays[row.tray]+' tray'}</label>
         <select id="${id}-clue" data-field="${id}Clue"><option value="">Choose a clue</option>
           ${clues.map(c=>`<option value="${c.id}" ${f.fields[id+'Clue']===c.id?'selected':''}>${c.id} · ${esc(c.name)}</option>`).join('')}</select>
-        <label for="${id}-reason">Explain what this clue shows</label>
+        <label for="${id}-reason">Explain what this clue shows${state.help==='some'?' (at least four words)':''}</label>
         ${state.help==='lots'?`<select id="${id}-reason" data-field="${id}Reason"><option value="">Choose a reason</option>
           ${[...new Set(reasons)].map(r=>`<option ${f.fields[id+'Reason']===r?'selected':''}>${esc(r)}</option>`).join('')}</select>`:
-          `<input id="${id}-reason" data-field="${id}Reason" value="${esc(f.fields[id+'Reason'])}" placeholder="Explain your reasoning">`}</div>`;
+            `<input id="${id}-reason" data-field="${id}Reason" aria-label="Explain the ${id} clue"
+              value="${esc(f.fields[id+'Reason'])}" placeholder="Explain (4+ words)">`}</div>`;
     }).join('');
     shell(`<div class="writer"><article class="writing-paper"><h3>Your verdict</h3>
       ${state.help==='little'?`<textarea id="free-write" aria-label="Verdict paragraph"
         placeholder="The historian argues that…\nA clue supports this, because…\nHowever, another clue complicates this…\nOverall, the claim is…">${esc(f.text)}</textarea>`:
-        `<div class="frame">The historian argues that <b>${esc(rewrite().replace(/^./,c=>c.toLowerCase()))}</b></div>${fields}
-        <div class="frame">Overall, the claim is <b>${stampNames[f.stamp]?.toLowerCase()}</b>, because [reason].
+        `<div class="frame opening-frame">${state.case===1?'The historian’s claim: '+esc(data().claim):'My revised claim: '+esc(rewrite())}</div>${fields}
+        <div class="frame overall-frame">Overall, the claim is <b>${stampNames[f.stamp]?.toLowerCase()}</b>, because [reason].
           <label for="overall-reason">Explain your overall evaluation</label>
           ${state.help==='lots'?`<select id="overall-reason" data-field="overall"><option value="">Choose your evaluation</option>
             ${['the supporting evidence fits the claim','the claim leaves out another cause or limit','the evidence challenges the claim']
               .map(x=>`<option ${f.fields.overall===x?'selected':''}>${x}</option>`).join('')}</select>`:
-            `<input id="overall-reason" data-field="overall" value="${esc(f.fields.overall)}" placeholder="What does your scale let you conclude?">`}</div>`}
-      </article><aside class="writing-tools"><p>Use cause, evidence and evaluation language. Refer to at least two different clues.</p>
+            `<input id="overall-reason" data-field="overall" aria-label="Explain your overall evaluation"
+              value="${esc(f.fields.overall)}" placeholder="Explain (4+ words)">`}</div>`}
+      </article><aside class="writing-tools"><p>Use two clues and explain your reasoning. Filing checks language parts, not historical accuracy.</p>
       <div id="draft-preview">${esc(paragraph()).replace(/\n/g,'<br>')}</div>
-      <button id="read-it">Read it</button><button id="copy">Copy</button><button id="file" class="primary">File verdict</button>
-      <div id="filed-seal" class="filed-seal" ${f.filed?'':'hidden'}>VERDICT FILED</div></aside></div>`);
+      <button id="read-it">Read it</button><button id="copy">Copy</button><button id="file" class="primary">File verdict
+        <span id="filed-seal" class="filed-seal" ${f.filed?'':'hidden'}>VERDICT FILED<small id="filed-detail"></small></span>
+      </button></aside></div>`);
+    updateFiledDetail();
     document.querySelectorAll('[data-field]').forEach(el=>{
       el.addEventListener(el.tagName==='INPUT'?'input':'change',()=>{
         V.hush();
@@ -804,15 +1003,17 @@ dialog h2 {font:700 25px Georgia,serif}
         f.filed=false;
         el.classList.remove('gap');
         $('filed-seal').hidden=true;
-        $('draft-preview').innerHTML=esc(paragraph()).replace(/\n/g,'<br>');
         hint('Keep building your reasoning. Tap File verdict when your paragraph is ready.');
-        if(state.help==='lots'&&el.dataset.field.endsWith('Clue')) {
+        if(el.dataset.field.endsWith('Clue')) {
           const row=frameRows().find(r=>el.dataset.field===r.id+'Clue');
           const c=data().clues.find(c=>c.id===el.value),select=$(row.id+'-reason');
           f.fields[row.id+'Reason']='';
-          select.innerHTML='<option value="">Choose a reason</option>'+
-            (c?`<option>${esc(reasonFor(c,row))}</option>`:'');
+          if(state.help==='lots') {
+            select.innerHTML='<option value="">Choose a reason</option>'+
+              (c?`<option>${esc(reasonFor(c,row))}</option>`:'');
+          } else select.value='';
         }
+        $('draft-preview').innerHTML=esc(paragraph()).replace(/\n/g,'<br>');
         save();
       });
     });
@@ -846,13 +1047,34 @@ dialog h2 {font:700 25px Georgia,serif}
       f.filed=true;
       save();
       $('filed-seal').hidden=false;
+      updateFiledDetail();
+      $('filed-seal').classList.remove('filed-now');
+      if(!Curio.reduce){void $('filed-seal').offsetWidth;$('filed-seal').classList.add('filed-now');}
       hint('Verdict filed on this device. Tap Files to open another case.');
       Curio.tone(100,.12,.08,'triangle');
       V.say('filed',{valid:()=>file()===f&&f.filed});
     };
   }
+  function updateFiledDetail() {
+    if(!$('filed-detail'))return;
+    const f=file();
+    const refs=state.help==='little'?'Your paragraph':frameRows().map(r=>f.fields[r.id+'Clue']).filter(Boolean).join(' + ');
+    $('filed-detail').textContent=refs+' | '+(stampNames[f.stamp]||'');
+  }
   function writeCheck() {
     const f=file();
+    if(!f.cause||!f.effect)return {id:'step-0',text:'Identify the cause and effect in The claim first.'};
+    if(!complete())return {id:'step-1',text:'Place all six clues in The clues first.'};
+    if(f.stamp===null||!allowed(f.scale)[f.stamp]) {
+      return {id:'step-2',text:'Choose a stamp that matches your current scale in The verdict.'};
+    }
+    if(state.case!==1&&(f.wording===null||!canWord(f.wording))) {
+      return {id:'step-2',text:'Choose wording that matches your current scale in The verdict.'};
+    }
+    const explanation=value=>{
+      const terms=(value||'').toLowerCase().match(/[\p{L}\p{N}]+/gu)||[];
+      return terms.length>=4&&new Set(terms.filter(w=>w.length>1)).size>=3;
+    };
     if(state.help!=='little') {
       const refs=[];
       for(const row of frameRows()) {
@@ -860,29 +1082,65 @@ dialog h2 {font:700 25px Georgia,serif}
           return {id:row.id+'-clue',text:'Choose a clue from your current scale in the '+row.id+' frame.'};
         }
         if(!f.fields[row.id+'Reason']?.trim())return {id:row.id+'-reason',text:'Explain the reason in the '+row.id+' frame.'};
+        if(state.help==='some'&&!explanation(f.fields[row.id+'Reason'])) {
+          return {id:row.id+'-reason',text:'Write a short explanation of this clue, using at least four words.'};
+        }
+        const clue=data().clues.find(c=>c.id===f.fields[row.id+'Clue']);
+        if(state.help==='lots'&&f.fields[row.id+'Reason']!==reasonFor(clue,row)) {
+          return {id:row.id+'-reason',text:'Choose a reason for this clue, not a previous clue.'};
+        }
         refs.push(f.fields[row.id+'Clue']);
       }
       if(new Set(refs).size<2)return {id:frameRows()[1].id+'-clue',text:'Choose at least two different clue references.'};
       if(!f.fields.overall?.trim())return {id:'overall-reason',text:'Explain your overall evaluation.'};
+      if(state.help==='some'&&!explanation(f.fields.overall)) {
+        return {id:'overall-reason',text:'Explain your overall evaluation using at least four words.'};
+      }
+      if(state.help==='lots') {
+        const evaluations=['the supporting evidence fits the claim','the claim leaves out another cause or limit','the evidence challenges the claim'];
+        if(f.fields.overall!==evaluations[f.stamp]) {
+          return {id:'overall-reason',text:'Choose an overall reason that explains your chosen verdict stamp.'};
+        }
+      }
       return null;
     }
     const text=f.text.toLowerCase();
     const checks=[
-      [/caus(?:e|ed)|led to|as a result|because of|contributed to|one reason for|main cause|explain/,'a cause word'],
-      [/shows?|suggests?|supports?|according to|clear from/,'an evidence word'],
-      [/convincing|however|although|overlooks?|ignores?|leaves out|goes too far/,'an evaluation word']
+      [/\b(?:caus(?:e|ed)|led to|as a result|because of|contributed to|one reason for|main cause|explains?)\b/,'a cause word'],
+      [/\b(?:shows?|suggests?|supports?|according to|clear from)\b/,'an evidence word'],
+      [/\b(?:convincing|however|although|overlooks?|ignores?|leaves out|goes too far)\b/,'an evaluation word']
     ];
     for(const [re,name] of checks)if(!re.test(text))return {id:'free-write',text:'Add '+name+' to your paragraph.'};
     const namedVerdicts=text.match(/\b(?:not |partly )?convincing\b/g)||[];
-    if(!namedVerdicts.includes(stampNames[f.stamp]?.toLowerCase())) {
-      return {id:'free-write',text:'Name your chosen stamp: '+stampNames[f.stamp]+'.'};
+    if(namedVerdicts.at(-1)!==stampNames[f.stamp]?.toLowerCase()) {
+      return {id:'free-write',text:'End your evaluation with your chosen stamp: '+stampNames[f.stamp]+'.'};
+    }
+    const sentences=text.split(/[.!?\n]+/).map(s=>s.trim()).filter(Boolean);
+    if(sentences.length<2||!explanation(text)) {
+      return {id:'free-write',text:'Write connected sentences explaining your clues, rather than a list of language words.'};
+    }
+    if(!/\b(?:however|although|but|yet|overlooks?|ignores?|leaves out|goes too far|limit)\b/.test(text)) {
+      return {id:'free-write',text:'Add a counter-point with however, although, or a limitation of the evidence.'};
     }
     const count=data().clues.filter(c=>{
       const words=c.keywords||c.name.toLowerCase().split(/\W+/).filter(x=>x.length>2&&!['and','the','of'].includes(x));
-      return text.includes(c.id.toLowerCase())||text.includes(c.name.toLowerCase())||
+      return new RegExp('\\b'+c.id.toLowerCase()+'\\b').test(text)||text.includes(c.name.toLowerCase())||
         words.filter(w=>new RegExp('\\b'+w+'\\b').test(text)).length>=Math.min(2,words.length);
     }).length;
     if(count<2)return {id:'free-write',text:'Add at least two different clue references, using their short names or two keywords each.'};
+    const frameWords=new Set(('the a an this that it its is are was were be been has have had '+
+      'of to in on for with and or but however although because shows show suggests suggest supports support '+
+      'according clear from contributed caused cause led result reason main explain explains convincing partly not overall').split(' '));
+    const explained=sentences.filter(s=>{
+      const content=(s.match(/[\p{L}\p{N}]+/gu)||[]).filter(w=>!frameWords.has(w)&&!/^\w\d+$/.test(w));
+      return explanation(s)&&new Set(content).size>=2&&
+        /\b(?:shows?|suggests?|supports?|according to|clear from|because|indicates?|means?)\b/.test(s)&&
+        data().clues.some(c=>new RegExp('\\b'+c.id.toLowerCase()+'\\b').test(s)||s.includes(c.name.toLowerCase())||
+          (c.keywords||[]).filter(w=>new RegExp('\\b'+w+'\\b').test(s)).length>=2);
+    });
+    if(explained.length<2) {
+      return {id:'free-write',text:'Explain the evidence in at least two sentences, each referring to a clue.'};
+    }
     return null;
   }
   const words=[
@@ -939,42 +1197,77 @@ dialog h2 {font:700 25px Georgia,serif}
         <p class="pair-feedback" id="pair-feedback" aria-live="polite">Tap the sentence that makes the stronger claim.</p>
         <div class="toolbar"><button id="pair-hear">Hear both</button><button id="pair-next" class="primary push">Next pair →</button></div></div>`:
       `${state.drawer===0?'<div class="strength"><span>WEAKER · a contributing cause</span><span>→</span><span>STRONGER · the main cause</span></div>':''}
-      <div class="word-cards">${words[state.drawer].map((w,i)=>`<article class="word-card"><h3>${esc(w[0])}</h3><p>${esc(w[1])}</p>
-        <p class="example">${esc(w[2])}</p><button id="word-${i}" data-word="${i}">Hear it</button></article>`).join('')}</div>`}</section>`;
+      <div class="word-drawer"><div class="word-index" role="group" aria-label="Word cards">
+        ${words[state.drawer].map((w,i)=>`<button id="word-${i}" data-word="${i}" aria-pressed="${state.word===i}">${esc(w[0])}</button>`).join('')}
+      </div><article class="word-detail" id="word-detail" aria-live="polite"></article></div>`}</section>`;
     if(oldTabs)$('work').querySelector('.drawer-tabs').replaceWith(oldTabs);
     document.querySelectorAll('[data-drawer]').forEach(b=>{
       b.setAttribute('aria-pressed',+b.dataset.drawer===state.drawer);
       b.onclick=()=>{
       V.hush();
       state.drawer=+b.dataset.drawer;
+      state.word=0;
       state.pairAnswered=false;
       render();
-      hint(state.drawer===4?'Tap the sentence that claims more. Then tap Next pair.':'Tap Hear it on a word card, or choose another drawer.');
+      if(state.drawer===4)how('w-pairs',()=>state.mode==='tools'&&state.drawer===4,'#pair-choices');
+      else hint('Tap a word card to open it, then tap Hear it.');
       Curio.tone(240,.06,.04,'triangle');
     };});
     document.querySelectorAll('[data-word]').forEach(b=>b.onclick=()=>{
       V.hush();
-      const drawer=state.drawer,w=words[drawer][+b.dataset.word];
-      V.say(w.join('. '),{valid:()=>state.mode==='tools'&&state.drawer===drawer});
-      hint(`${w[0]}: ${w[1]}. Tap another Hear it or another drawer.`);
+      state.word=+b.dataset.word;
+      renderWord();
+      document.querySelectorAll('[data-word]').forEach(el=>el.setAttribute('aria-pressed',el===b));
+      hint('Read this word card, or tap Hear it. Tap another word card to compare.');
+      Curio.tone(285,.06,.04,'triangle');
     });
     if(state.drawer===4)renderPair();
+    else renderWord();
+  }
+  function renderWord() {
+    const drawer=state.drawer;
+    state.word=Math.min(state.word,words[drawer].length-1);
+    const index=state.word,w=words[drawer][index];
+    $('word-detail').innerHTML=`<div class="eyebrow">${['Cause','Evidence','Evaluation','Hedge'][drawer]} language · card ${index+1}</div>
+      <h3>${esc(w[0])}</h3><p>${esc(w[1])}${drawer===0&&[2,3].includes(index)?'; its strength depends on the sentence':''}</p>
+      <p class="example">${esc(w[2])}</p><button id="word-hear">Hear it</button>`;
+    $('word-hear').onclick=()=>{
+      V.hush();
+      V.say(w.join('. '),{valid:()=>state.mode==='tools'&&state.drawer===drawer&&state.word===index});
+      hint(w[0]+': '+w[1]+'. Tap another word card to compare.');
+    };
   }
   function renderPair() {
-    const p=pairs[state.pair],order=state.pair%2?[0,1]:[1,0];
+    const p=pairs[state.pair];
+    const order=state.pairOrders[state.pair]||(state.pairOrders[state.pair]=Math.random()<.5?[0,1]:[1,0]);
+    state.pairAnswered=state.pairResponses[state.pair]!==null;
     $('pair-choices').innerHTML=order.map((idx,j)=>
       `<button id="pair-${j}" data-answer="${idx}">${esc(p[idx])}</button>`).join('');
     document.querySelectorAll('[data-answer]').forEach(b=>b.onclick=()=>{
+      if(state.pairAnswered) {
+        hint('The comparison is shown. Tap Next pair to try different wording.');
+        return;
+      }
       V.hush();
       state.pairAnswered=true;
+      state.pairResponses[state.pair]=+b.dataset.answer;
       const right=+b.dataset.answer===0;
-      $('pair-feedback').textContent=(right?'Stronger claim identified. ':'Compare the strength. ')+
-        p[2]+': the first expression claims more. A stronger claim is not automatically a truer claim.';
+      showComparison();
       hint('Compare the language, then tap Next pair.');
       V.say(right?'pair-right':'pair-wrong',{valid:()=>state.drawer===4&&pairs[state.pair]===p});
-      document.querySelectorAll('[data-answer]').forEach(el=>el.setAttribute('aria-pressed',el===b));
       Curio.tone(right?350:170,.08,.04,'triangle');
+      $('pair-next').focus({preventScroll:true});
     });
+    function showComparison() {
+      const response=state.pairResponses[state.pair];
+      $('pair-feedback').textContent=(response===0?'Stronger claim identified. ':'Compare the strength. ')+
+        p[2]+': the first expression claims more. A stronger claim is not automatically a truer claim.';
+      document.querySelectorAll('[data-answer]').forEach(el=>{
+        el.setAttribute('aria-pressed',+el.dataset.answer===response);
+        el.setAttribute('aria-disabled','true');
+      });
+    }
+    if(state.pairAnswered)showComparison();
     $('pair-hear').onclick=()=>{V.hush();
     V.say([p[order[0]],p[order[1]]],{valid:()=>state.drawer===4&&pairs[state.pair]===p});};
     $('pair-next').onclick=()=>{
@@ -982,6 +1275,10 @@ dialog h2 {font:700 25px Georgia,serif}
       if(!state.pairAnswered){hint('Tap a sentence to compare its strength before Next pair.');
       return;}
       state.pair=(state.pair+1)%8;
+      if(state.pair===0) {
+        state.pairResponses=Array(8).fill(null);
+        state.pairOrders=Array(8).fill(null);
+      }
       state.pairAnswered=false;
       render();
       hint('Tap the sentence that claims more.');
@@ -991,6 +1288,7 @@ dialog h2 {font:700 25px Georgia,serif}
   $('help').onchange=e=>{
     V.hush();
     state.help=e.target.value;
+    state.files.forEach(f=>{f.filed=false;});
     save();
     render();
     hint(state.mode==='cases'&&state.case!==null&&state.step===3?'Help changed. Complete your verdict and tap File verdict.':
@@ -998,9 +1296,23 @@ dialog h2 {font:700 25px Georgia,serif}
   };
   $('m-cases').onclick=()=>setMode('cases');
   $('m-tools').onclick=()=>setMode('tools');
-  $('clear').onclick=()=>{V.hush();
-  $('confirm-clear').showModal();};
+  $('close-photo').onclick=()=>{
+    V.hush();
+    $('photo-view').close();
+    hint(overlayHint);
+    $('inspect-photo')?.focus({preventScroll:true});
+  };
+  $('photo-view').addEventListener('cancel',()=>{V.hush();hint(overlayHint);});
+  $('confirm-clear').addEventListener('cancel',()=>{V.hush();hint(overlayHint);});
+  $('clear').onclick=()=>{
+    V.hush();
+    overlayHint=$('hint').textContent;
+    $('confirm-clear').showModal();
+    hint(L['clear-confirm']);
+    V.say('clear-confirm',{valid:()=>$('confirm-clear').open});
+  };
   $('cancel-clear').onclick=()=>{$('confirm-clear').close();
+  V.hush();hint(overlayHint);
   $('clear').focus({preventScroll:true});};
   $('do-clear').onclick=()=>{
     V.hush();
@@ -1012,7 +1324,7 @@ dialog h2 {font:700 25px Georgia,serif}
     save();
     $('confirm-clear').close();
     render();
-    hint('Case files cleared. Tap a folder to begin.');
+    hint(state.mode==='cases'?'Case files cleared. Tap a folder to begin.':'Case files cleared. Tap a drawer or Stronger or weaker.');
     $('clear').focus({preventScroll:true});
   };
   Curio.onMotion(reduce=>{if(reduce)document.querySelectorAll('.flying').forEach(e=>e.remove());});

@@ -45,6 +45,20 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     cohort end to end before a new wave, and log repeat problems in the issue ledger.
 15. **Public copy names no companies** (2026-11-03). The ambition in docs/VISION.md (replace paid curriculum) stays
     inside the vision; the site says "a free, complete classroom toolkit".
+16. **The first tap may cut the welcome** (2026-11-05). A tool does not have to let its welcome line finish after the
+    student's first tap; acting at once beats listening. Specs, builds and reviews do not flag a welcome cut short by
+    a tap. What the welcome told the student must still be reachable (the on-screen hint or Read), and a line the
+    tool needs later (a premise, a role) is said again where it is needed, not only in the welcome.
+17. **Curiosities finish on Cory's desk review** (2026-11-05). Span and Spire, Pocket Universe and later Curiosities
+    get Cory's final review on the Review Desk; plate wording ("Instruments" to "Curiosities") and any areas to lift
+    are noted there and fixed after it, not before. Expect larger design work back on the first two.
+18. **Curiosities ship together** (2026-11-05). The home page Curiosities entrance is built after every planned
+    Curiosity is fully built. Their voice goes on the Forge as each one passes its exit check, added to the end of
+    the running Forge queue (Cory, 2026-11-06: recording them all together was a wish, not a hard rule).
+19. **Curiosities may keep a little game essence** (2026-11-06). Don't be too strict about removing gamification.
+    A Curiosity must stay purely fun and exploratory; a light game touch (a challenge to try, a surprise, a setup to
+    break) is fine when it adds to that. A goal ladder, a grade, a forced finish or a game-over still does not belong.
+    Lenses flag a game element only when it narrows play or turns exploring into scoring.
 
 ## One module Cory reviews personally
 

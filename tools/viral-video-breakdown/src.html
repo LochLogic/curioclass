@@ -1,0 +1,1587 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viral Video Breakdown · Curio Class</title>
+<meta name="description" content="Unpack a fictional bakery film, trace five reposts with evidence, and decide what a repost owes its maker.">
+<!--
+Viral Video Breakdown, Curio Class. Grades 6-8 media arts, students alone or in pairs.
+NCAS MA:Re7, Re8, Re9, Cn11. Case facts are fiction written for Curio Class.
+Analysis approach: Library of Congress, Analyzing Motion Pictures. See notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Original synthesized music and effects. Nina's voice-over is captions only.
+Content CC BY 4.0, code MIT. One offline file. Saved here only. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#12131c; --panel:#1c1e2b; --ink:#eceefa; --muted:#a5a9c2; --brand:#8f7bff;
+  --focus:#ffb347; --line:#42465c; --btn:#252839; --btn-line:#535971; --head-ink:#eceefa;
+}
+body { height:100dvh; min-height:0; overflow:hidden; font-family:'Segoe UI',system-ui,sans-serif; }
+button,select,input { font:inherit; }
+button,select { min-height:44px; border:1px solid var(--line); border-radius:8px; background:#252839; color:var(--ink); }
+button { padding:7px 12px; font-weight:650; }
+button:hover { border-color:var(--brand); background:#32364a; }
+button:active { background:#454064; }
+button[aria-pressed="true"] { border-color:var(--brand); background:#383050; }
+button.primary { background:var(--brand); border-color:var(--brand); color:#12131c; }
+button:disabled { opacity:.55; cursor:default; }
+select { padding:7px; width:100%; }
+input[type="range"] { width:100%; height:44px; margin:0; accent-color:var(--brand); cursor:pointer; }
+header { background:#171822; border-bottom:1px solid var(--line); padding:12px 20px; gap:10px; }
+h1 { font:700 clamp(20px,2vw,28px)/1.1 Georgia,serif; letter-spacing:-.7px; }
+h1 small { font-size:12px; color:var(--muted); letter-spacing:0; margin-top:6px; }
+#privacy { display:none; }
+.seg { border:1px solid var(--line); border-radius:10px; }
+.seg button { min-height:44px; padding:0 14px; background:#222535; color:var(--muted); font-size:14px; }
+.seg button[aria-pressed="true"] { background:var(--brand); color:#12131c; }
+.icon-btn { min-height:44px; border:1px solid var(--line); border-radius:8px; padding:0 10px; font-size:12px; }
+#motion { width:84px; }
+#sound { width:80px; }
+#read { width:50px; }
+main { grid-template-columns:minmax(0,1fr) 340px; overflow:hidden; }
+.stage { min-height:0; overflow:hidden; display:flex; flex-direction:column; }
+.panel { border-left:1px solid var(--line); padding:16px; gap:12px; overflow:auto; }
+.panel h2,.panel p { margin:0; }
+.panel h2 { font:600 23px Georgia,serif; }
+.eyebrow { color:var(--brand); text-transform:uppercase; letter-spacing:1.8px; font:700 11px/1.4 system-ui,sans-serif; }
+.hint { font-size:13px; line-height:1.4; min-height:54px; color:#d8dbed; margin:0; }
+.micro { color:var(--muted); font-size:11px; line-height:1.4; }
+.row { display:flex; align-items:center; gap:6px; }
+.row>* { flex:1; min-width:0; }
+.category-tabs { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; margin-top:12px; }
+.category-tabs button { padding:4px; font-size:12px; }
+.choice-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.choice-grid button { padding:6px; font-size:13px; line-height:1.15; }
+.choice-grid button[aria-pressed="true"]::before { content:'✓ '; }
+.label-area { min-height:205px; }
+#category-help { margin:10px 0; font-size:12px; min-height:32px; color:var(--muted); }
+#label-summary { font-size:12px; line-height:1.5; padding:10px; border-left:2px solid var(--brand); min-height:56px; }
+.result { background:#12131c; border:1px solid var(--line); border-radius:9px; padding:10px; font-size:12px; line-height:1.45; }
+.result:empty { display:none; }
+#compact-note { display:none; position:absolute; z-index:8; top:10px; left:10px; right:10px;
+  max-height:58%; overflow:auto; background:#181925f5; border:1px solid var(--brand); border-radius:10px; padding:10px; }
+#compact-note p { font-size:12px; line-height:1.45; margin:6px 0; }
+#compact-note .row span { font:600 17px Georgia,serif; }
+#compact-note .row button { flex:0 0 auto; font-size:11px; }
+.wide { width:100%; margin-top:8px; }
+.footer { margin-top:auto; padding-top:8px; border-top:1px solid var(--line); }
+.footer button { padding:4px 10px; font-size:12px; }
+#video-stage { background:radial-gradient(ellipse at 44% 40%,#423027 0,#1b1d2b 52%,#12131c 85%); }
+.film-top { position:absolute; z-index:2; top:20px; left:24px; pointer-events:none; }
+.film-top h2 { font:600 26px/1.1 Georgia,serif; margin:6px 0; }
+.film-top p { color:var(--muted); font-size:12px; margin:0; }
+.film-top .tag { margin-top:12px; display:inline-block; border:1px solid #666276; padding:5px 8px; border-radius:4px; font-size:10px; }
+.film-view { position:relative; min-height:0; flex:1; display:flex; justify-content:center; padding:22px 20px 6px; }
+.phone { position:relative; overflow:hidden; aspect-ratio:9/16; background:#08090d; border:5px solid #373642;
+  border-radius:25px; box-shadow:0 18px 40px #0008,inset 0 0 0 1px #aba9b0; container-type:inline-size; }
+.phone::after { content:''; position:absolute; z-index:9; height:4px; width:24%; top:6px; left:38%; background:#17131a; border-radius:5px; }
+.hero-phone { height:100%; max-width:100%; }
+.film-layer { position:absolute; inset:0; overflow:hidden; background:#221c19; }
+.film-layer img { width:100%; height:100%; object-fit:cover; display:block; }
+.film-layer.cropped img { transform:scale(1.27); }
+.end-card { height:100%; background:radial-gradient(at 30% 25%,#e2b877,#9d6c45); color:#281b16;
+  display:flex; flex-direction:column; justify-content:center; text-align:center; padding:12%; }
+.end-card b { font:700 clamp(10px,10cqw,27px)/1.2 Georgia,serif; }
+.end-card span { font:500 13px/1.5 Georgia,serif; margin-top:15px; }
+.watermark { position:absolute; bottom:5%; right:5%; z-index:3; font-size:clamp(10px,1vw,14px); color:white; text-shadow:0 1px 4px #000; }
+.subtitles { position:absolute; z-index:4; left:5%; right:5%; bottom:17%; text-align:center; color:white;
+  font-size:clamp(11px,1.05vw,15px); line-height:1.4; text-shadow:0 2px 4px #000; }
+.subtitles span { background:#100f12cc; box-shadow:4px 0 #100f12cc,-4px 0 #100f12cc; box-decoration-break:clone; }
+.via { position:absolute; z-index:4; top:8%; left:3%; right:3%; background:#fcf2dc; color:#352820;
+  font-size:clamp(8px,1vw,12px); text-align:center; padding:5px 2px; transform:rotate(-3deg); }
+.remnant { position:absolute; z-index:5; top:0; left:9%; width:66%; height:3%; background:#fcf2dc; border-bottom:2px solid #bcaa8d; }
+.rip { position:absolute; top:40%; left:26%; padding:4px 12px; background:#f4e8da; color:#28202a; font-weight:900;
+  transform:rotate(-7deg); font-size:clamp(12px,2vw,24px); }
+.product { position:absolute; z-index:6; top:39%; left:22%; width:62%; text-align:center; background:#7b3c17;
+  border:3px double #f9d697; color:#fff2d2; padding:9px 1px; font:800 clamp(10px,1.4vw,20px) Georgia,serif; }
+.rip-corner { position:absolute; top:37%; left:22%; width:19%; height:10%; background:#f4e8da; color:#2a2129;
+  transform:rotate(-7deg); font-weight:900; font-size:12px; padding-left:2px; }
+.news-banner { position:absolute; z-index:6; left:0; right:0; top:12%; background:#951f2a; color:white;
+  text-align:center; padding:8px 3px; font-weight:750; font-size:clamp(9px,1.1vw,14px); }
+.ended { display:grid; height:100%; place-content:center; text-align:center; padding:10px; color:#c6bfd5; font-size:12px; }
+.frame-tools { display:flex; gap:6px; justify-content:center; padding:6px 12px; }
+.frame-tools button { min-width:44px; }
+#play { min-width:100px; }
+#time-readout { align-self:center; color:#c9c6d4; font:12px Consolas,monospace; width:90px; }
+.shot-strip { display:grid; grid-template-columns:repeat(8,minmax(0,1fr)); gap:6px; padding:5px 20px 15px; }
+.shot-strip button { position:relative; padding:0; min-width:0; height:72px; border:2px solid #424051; overflow:hidden;
+  border-radius:7px; background:#27222a; }
+.shot-strip img { width:100%; height:100%; object-fit:cover; }
+.shot-strip button[aria-current="true"] { border-color:var(--brand); box-shadow:0 0 0 2px #8f7bff33; }
+.shot-strip span { position:absolute; bottom:0; left:0; right:0; background:#0a0b12e8; color:white; font-size:11px; padding:3px; }
+.shot-strip .checked::after { content:'notes'; position:absolute; right:2px; top:2px; padding:1px 2px;
+  background:#171925; border:1px solid #8f7bff; border-radius:3px; font-size:10px; line-height:1.1; color:#d8dbed; }
+.graphic-thumb { display:grid; place-content:center; height:100%; padding-bottom:22px;
+  color:#f7dba1; font-size:10px; line-height:1.1; }
+.idle-dot { display:inline-block; width:6px; height:6px; background:#b6a6ff; border-radius:50%; margin-right:7px;
+  animation:breathe 3s ease-in-out infinite; }
+@keyframes breathe { 50% { opacity:.25; box-shadow:0 0 12px #8f7bff; } }
+body.calm .idle-dot { animation:none; }
+#summary { position:absolute; inset:20px; z-index:10; padding:25px; background:#151724; border:1px solid var(--brand);
+  border-radius:14px; display:flex; flex-direction:column; justify-content:center; gap:16px; }
+#summary h2 { font:600 30px Georgia,serif; margin:0; }
+#summary p { max-width:580px; line-height:1.5; }
+.size-bar { display:flex; height:135px; align-items:flex-end; gap:3px; }
+.size-bar div { flex:var(--length); background:linear-gradient(#b6a6ff,#6150ba); padding:8px 2px; text-align:center; font-size:11px; }
+.size-bar small { display:block; font-size:10px; line-height:1.1; }
+#case-stage { background:linear-gradient(#16162277,#12131cdd),url('art:case-desk') center/cover; padding:18px 16px 0; }
+.case-heading { display:flex; justify-content:space-between; gap:8px; align-items:baseline; margin-bottom:12px; }
+.case-heading h2 { font:600 23px Georgia,serif; margin:0; }
+.cards { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; align-items:start; }
+.case-card { padding:8px; min-width:0; background:linear-gradient(150deg,#31303a,#1b1c28); border:1px solid #636071;
+  border-radius:10px; box-shadow:0 7px 14px #0007; text-align:left; position:relative; }
+.case-card[aria-pressed="true"] { background:linear-gradient(140deg,#473c65,#27233f); outline:1px solid var(--brand); }
+.card-top { display:flex; justify-content:space-between; font:700 11px Consolas,monospace; color:#c9bcff; margin-bottom:5px; }
+.mini-phone { border-radius:8px; border:2px solid #6c6470; height:clamp(65px,17vh,165px); max-width:100%; margin:auto; }
+.mini-phone .watermark { font-size:8px; }
+.mini-phone .subtitles { display:none; }
+.mini-phone .via { font-size:7px; padding:2px; }
+.mini-phone .news-banner { font-size:8px; padding:3px 1px; }
+.mini-phone .product { font-size:7px; padding:5px 0; border-width:1px; }
+.mini-phone { container-type:inline-size; }
+.mini-phone .watermark { font-size:5cqw; }
+.mini-phone .via { font-size:5cqw; padding:2px 0; }
+.mini-phone .news-banner { font-size:6cqw; line-height:1.1; padding:2px 0; }
+.mini-phone .product { font-size:6cqw; }
+.case-card strong { display:block; overflow-wrap:anywhere; font-size:12px; margin:7px 0 5px; min-height:30px; }
+.case-card .caption { display:block; font-size:11px; line-height:1.4; min-height:76px; color:#e1deed; }
+.views { display:block; color:var(--muted); font:10px/1.4 Consolas,monospace; margin-top:5px; }
+.tree-box { flex:1; min-height:90px; position:relative; margin-top:8px; }
+#tree { display:block; width:100%; height:100%; min-height:90px; overflow:visible; }
+.tree-label { position:absolute; bottom:8px; left:8px; font-size:11px; color:#bcb3d2; }
+#mobile-timeline { display:none; }
+.pair-row { display:grid; grid-template-columns:18px 1fr; align-items:center; gap:5px; margin:8px 0; }
+.pair-row label { font:700 14px Consolas,monospace; color:var(--brand); }
+.panel-tabs { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.panel-tabs button { font-size:13px; }
+.tools { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; margin:10px 0; }
+.tools button { padding:5px; font-size:12px; }
+#arrow { width:100%; margin-bottom:8px; }
+#claim-panel label { display:block; font-size:12px; color:var(--muted); margin:8px 0 4px; }
+#clue-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; margin:8px 0;
+  max-height:calc(100dvh - 160px); overflow:auto; }
+#clue-list button { text-align:left; font-size:11px; padding:7px; }
+.claim-status { color:#6fe0b0; font-size:12px; margin-top:8px; }
+dialog { background:#1c1e2b; color:var(--ink); border:1px solid #8f7bff; border-radius:15px;
+  width:min(840px,calc(100vw - 24px)); max-height:calc(100dvh - 24px); padding:20px; box-shadow:0 24px 80px #000c; }
+dialog::backdrop { background:#080911ce; backdrop-filter:blur(5px); }
+.dialog-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+.dialog-top h2 { margin:0; font:600 23px Georgia,serif; }
+.dialog-top button { flex:none; }
+.dialog-tools { display:flex; gap:6px; flex:none; }
+.dialog-tools button { font-size:12px; padding:7px 9px; }
+@media (max-width:600px) {
+  .dialog-top { flex-wrap:wrap; }
+  .dialog-top h2 { font-size:18px; }
+}
+.compare-phones { display:flex; justify-content:center; gap:22px; margin:14px 0; }
+.compare-unit { text-align:center; min-width:0; width:42%; }
+.compare-unit strong { display:block; font-size:12px; margin-bottom:6px; overflow-wrap:anywhere; }
+.compare-phone { height:min(37vh,300px); margin:auto; max-width:100%; border-radius:13px; border-width:3px; }
+.compare-clock { font:11px/1.4 Consolas,monospace; color:#c9c4de; margin-top:5px; }
+.overlay-box { position:absolute; border:2px dashed #ffb347; color:#ffb347; z-index:8; pointer-events:none; }
+.overlay-box.added { border-color:#6fe0b0; color:#6fe0b0; }
+.overlay-box span { background:#12131c; font-size:10px; position:absolute; top:0; left:0; padding:2px; white-space:nowrap; }
+.overlay-box.added span { top:auto; bottom:100%; }
+.overlay-box.sticker span { top:calc(100% + 10px); bottom:auto; }
+.compare-phone { container-type:inline-size; }
+.compare-phone .via { font-size:10px; padding:2px 0; line-height:1.1; white-space:nowrap; }
+.compare-phone .product { font-size:clamp(10px,10cqw,13px); width:72%; left:20%; padding:7px 0; border-width:1px; }
+.compare-phone .rip-corner { top:34%; height:15%; width:24%; font-size:14px; }
+.compare-notes { border-left:3px solid #ffb347; padding:8px 12px; font-size:13px; line-height:1.45; margin:8px 0; }
+.scrub-row { display:grid; grid-template-columns:100px 1fr 70px; align-items:center; gap:8px; font-size:12px; }
+#waveform { width:100%; height:105px; background:#10121b; border-radius:8px; display:block; }
+.caption-pair { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.caption-pair blockquote { margin:10px 0; padding:14px; border:1px solid var(--line); border-radius:7px; font-size:14px; line-height:1.5; }
+mark { background:#554329; color:#ffe0b1; border-bottom:1px solid #ffb347; }
+#verdict-stage { overflow:auto; padding:22px; background:radial-gradient(at 10% 0,#353042,#151722 75%); }
+.statement { border-left:3px solid var(--brand); background:#222331; padding:16px 20px; margin:0 0 20px; }
+.statement blockquote { margin:6px 0; font:17px/1.5 Georgia,serif; }
+.verdict-table { width:100%; border-collapse:collapse; font-size:12px; table-layout:fixed; }
+.verdict-table th { color:var(--muted); font-weight:600; text-align:left; padding:10px 6px; border-bottom:1px solid var(--line); }
+.verdict-table td { padding:12px 6px; border-bottom:1px solid #383a50; vertical-align:top; overflow-wrap:anywhere; }
+.verdict-table td:first-child { font-weight:650; }
+.verdict-table th:last-child { width:25%; }
+.verdict-table select { font-size:12px; min-width:0; }
+.verdict-reason { margin-top:6px; width:100%; background:#151724; color:var(--ink); border:1px solid #5d6079;
+  border-radius:6px; min-height:44px; padding:8px; font-size:12px; }
+.verdict-status { color:var(--muted); font-size:11px; margin-top:6px; }
+@media (min-width:1101px) {
+  #verdict-stage { padding:18px; }
+  .statement { padding:12px 16px; margin-bottom:12px; }
+  .statement blockquote { font-size:16px; line-height:1.4; }
+  .verdict-table th:last-child { width:34%; }
+  .verdict-table th { padding:8px 5px; }
+  .verdict-table td { padding:8px 5px; }
+  .verdict-table td:last-child { display:grid; grid-template-columns:110px minmax(0,1fr); gap:4px 6px; }
+  .verdict-reason { margin:0; }
+  .verdict-status { grid-column:1/-1; margin:0; }
+}
+.owed { display:grid; gap:6px; }
+.owed button { text-align:left; font-size:13px; }
+#closing-preview { border-left:3px solid var(--brand); padding:10px 12px; font:16px/1.45 Georgia,serif;
+  background:linear-gradient(120deg,#322d48,#20212e); min-height:66px; }
+#copy-output { width:100%; height:112px; min-height:88px; max-height:160px; margin-top:8px; padding:8px;
+  white-space:pre-wrap; overflow:auto; overflow-wrap:anywhere; resize:vertical; font-size:12px; line-height:1.45;
+  color:var(--ink); background:#151724; border:1px solid var(--line); border-radius:6px; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+@media (min-width:1500px) {
+  main { grid-template-columns:minmax(0,1fr) 380px; }
+  .hero-phone { max-height:700px; }
+}
+@media (max-width:1100px),(max-height:650px) {
+  header { padding:6px 10px; gap:6px; }
+  header h1 { font-size:20px; }
+  header h1 small { display:none; }
+  .seg button { padding:0 10px; font-size:12px; }
+  .icon-btn { padding:0 8px; }
+  main { grid-template-columns:minmax(0,1fr) 280px; }
+  .panel { padding:10px; gap:8px; }
+  .panel h2 { font-size:19px; }
+  .film-top { left:14px; top:15px; }
+  .film-top h2 { font-size:19px; max-width:100px; }
+  .film-top p { max-width:85px; font-size:11px; }
+  .film-top .tag { display:none; }
+  .film-view { padding:14px 5px 3px; }
+  .shot-strip { padding:3px 10px 9px; gap:3px; }
+  .shot-strip button { height:52px; }
+  .frame-tools { padding:3px 5px; gap:4px; }
+  .case-card { padding:5px; border-radius:6px; }
+  .case-card strong { font-size:10px; min-height:34px; }
+  .case-card .caption { font-size:10px; min-height:83px; }
+  #case-stage { padding:10px 8px 0; }
+  .cards { gap:4px; }
+  .case-heading h2 { font-size:19px; }
+}
+@media (min-width:601px) and (max-height:550px) {
+  #closing-preview { display:none; }
+  #claim-panel>label:not([for]) { display:none; }
+  #claim-panel { position:relative; }
+  #claim-panel label { margin:1px 0 2px; font-size:11px; line-height:1.2; }
+  #claim-panel .wide { margin-top:3px; }
+  #claim-status { position:absolute; top:0; right:0; margin:0; font-size:10px; }
+  #claim-feedback { display:none; }
+  body[data-mode="reposts"] main { grid-template-columns:minmax(0,1fr) 240px; }
+  #compact-note:not([hidden]) { display:block; }
+  header h1 { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  .seg { margin-right:auto; }
+  .panel h2 { display:none; }
+  .panel { gap:6px; }
+  .label-area { min-height:130px; }
+  .category-tabs { margin-top:6px; }
+  .choice-grid[data-category="job"] { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  #category-help { min-height:26px; margin:5px 0; font-size:11px; }
+  .choice-grid { gap:4px; }
+  .choice-grid button { font-size:11px; }
+  #label-summary { padding:4px; min-height:30px; font-size:10px; }
+  .hint { font-size:11px; min-height:36px; order:-1; }
+  .footer { padding-top:4px; }
+  .footer .micro { display:none; }
+  .footer { border:0; padding:0; margin:0; height:0; min-height:0; }
+  #reset { position:fixed; z-index:12; left:270px; top:7px; width:75px; height:44px; }
+  #privacy { display:block; position:fixed; left:355px; top:15px; width:60px;
+    color:var(--muted); font-size:10px; line-height:1.3; }
+  .film-top { display:none; }
+  .case-heading { margin-bottom:6px; }
+  .case-heading .micro { display:none; }
+  .case-card .mini-phone { height:65px; }
+  .case-card .caption { min-height:100px; }
+  .case-card .caption { min-height:0; display:-webkit-box; -webkit-line-clamp:5;
+    -webkit-box-orient:vertical; overflow:hidden; }
+  .case-card .card-top { font-size:10px; flex-direction:column; }
+  .tree-box,#tree { min-height:55px; }
+  .tree-label { font-size:10px; bottom:4px; }
+  #clue-list { max-height:calc(100dvh - 140px); }
+  #claim-panel label { margin-top:4px; }
+  dialog { padding:12px; }
+  .compare-phones { margin:6px 0; }
+  .compare-phone { height:155px; }
+  .compare-notes { font-size:11px; padding:5px 8px; }
+  .dialog-top h2 { font-size:18px; }
+  .statement { padding:10px; margin-bottom:10px; }
+  .statement blockquote { font-size:13px; }
+  #summary { inset:8px; padding:12px; gap:8px; }
+  #summary h2 { font-size:22px; }
+  #summary p { font-size:12px; margin:5px 0; }
+  .size-bar { height:95px; }
+  .size-bar div { font-size:10px; padding:2px; min-height:36px; }
+}
+@media (max-width:600px) {
+  #compact-note:not([hidden]) { display:block; }
+  body { height:auto; min-height:100dvh; overflow:auto; }
+  header { gap:6px; padding:9px; }
+  header h1 { width:calc(100% - 66px); flex:0 0 calc(100% - 66px); font-size:23px; margin-bottom:3px; }
+  #privacy { display:block; flex:0 0 60px; font-size:10px; line-height:1.3; text-align:right; }
+  .seg { flex:1 0 100%; }
+  .seg button { flex:1; padding:0 5px; font-size:13px; }
+  .icon-btn { flex:1; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .stage { min-height:450px; }
+  .panel { border-left:0; border-top:1px solid var(--line); overflow:visible; padding:14px; }
+  .film-view { height:330px; flex:none; padding:12px 5px 0; }
+  .film-top { display:none; }
+  .shot-strip { padding:5px 6px 12px; gap:2px; }
+  .shot-strip button { height:54px; min-width:44px; }
+  .shot-strip span { font-size:10px; }
+  .frame-tools { padding:7px; }
+  #time-readout { width:78px; font-size:11px; }
+  #case-stage { min-height:470px; }
+  #mobile-timeline { display:block; }
+  .cards { display:block; }
+  .case-card { display:none; }
+  .case-card.mobile-current { display:block; width:100%; padding:10px 14px; }
+  .case-card .mini-phone { height:145px; }
+  .case-card strong { font-size:14px; min-height:0; text-align:center; }
+  .case-card .caption { min-height:0; font-size:12px; text-align:center; }
+  .card-top { flex-direction:row; }
+  .tree-box,#tree { min-height:90px; }
+  #verdict-stage { padding:12px; min-height:0; }
+  .verdict-table,.verdict-table tbody,.verdict-table tr,.verdict-table td { display:block; }
+  .verdict-table thead { display:none; }
+  .verdict-table tr { border:1px solid var(--line); border-radius:9px; margin:10px 0; padding:10px; }
+  .verdict-table td { border:0; padding:6px; }
+  .verdict-table td[data-label]::before { content:attr(data-label) ': '; font-weight:650; color:#b7aecf; }
+  .compare-phones { gap:8px; }
+  .compare-unit { width:48%; }
+  .compare-phone { height:205px; }
+  .compare-unit strong { font-size:10px; }
+  .compare-phone .subtitles { font-size:10px; }
+  .compare-phone .watermark { font-size:10px; }
+  .scrub-row { grid-template-columns:86px 1fr 50px; gap:5px; }
+  .caption-pair { gap:6px; }
+  .caption-pair blockquote { font-size:12px; padding:8px; }
+  .statement blockquote { font-size:15px; }
+  #video-stage { min-height:0; }
+  .film-view { height:180px; }
+  .panel h2 { display:none; }
+  .category-tabs { margin-top:6px; }
+  .label-area { min-height:130px; }
+  #category-help { font-size:11px; min-height:26px; margin:5px 0; }
+  .choice-grid[data-category="job"] { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .choice-grid { gap:4px; }
+  .choice-grid button { font-size:11px; }
+  #label-summary { font-size:10px; min-height:30px; padding:4px; }
+  .hint { order:-1; min-height:36px; font-size:11px; }
+  #case-stage { min-height:335px; }
+  body[data-mode="reposts"][data-case-tab="claims"] #case-stage { min-height:230px; }
+  body[data-mode="reposts"][data-case-tab="claims"] .case-card .mini-phone { height:60px; }
+  body[data-mode="reposts"][data-case-tab="claims"] .tree-box { display:none; }
+  #claim-panel label { margin:3px 0 2px; font-size:11px; }
+  #case-stage .case-card.mobile-current { display:grid; grid-template-columns:90px 1fr; gap:5px 12px; padding:8px; }
+  .case-card .card-top { grid-column:1/-1; }
+  .case-card .mini-phone { grid-column:1; grid-row:2/5; height:125px; }
+  .case-card strong,.case-card .caption { text-align:left; }
+  .case-card strong { margin:0; font-size:12px; }
+  .case-card .caption { font-size:11px; }
+  .tree-box,#tree { min-height:60px; }
+  .tree-box { flex:none; height:60px; }
+  #tree { height:60px; }
+  #investigate-panel { display:grid; grid-template-columns:1fr 1fr; column-gap:6px; }
+  #investigate-panel .tools,#arrow,#case-result,#clue-count { grid-column:1/-1; }
+  #investigate-panel .tools { margin:4px 0 6px; }
+  .pair-row { margin:5px 0; }
+  .pair-row select { font-size:11px; }
+  .footer .micro { font-size:10px; }
+  body[data-mode="verdict"] main { height:calc(100dvh - 150px); overflow:hidden; }
+  body[data-mode="verdict"] #verdict-stage { flex:1; min-height:200px; }
+  body[data-mode="verdict"] .panel { flex:none; padding:10px; gap:6px; }
+  body[data-mode="verdict"] .owed { grid-template-columns:1fr 1fr; }
+  body[data-mode="verdict"] .footer { display:none; }
+  body[data-mode="verdict"]:has(#copy-output:not([hidden])) .panel { max-height:calc(100dvh - 350px); overflow:auto; }
+  #summary { inset:8px; padding:12px; gap:8px; }
+  #summary h2 { font-size:22px; }
+  #summary p { font-size:12px; margin:5px 0; }
+  .size-bar { height:75px; }
+  .size-bar div { font-size:10px; padding:2px; min-height:36px; }
+}
+@media (min-width:601px) and (max-width:900px) {
+  .verdict-table,.verdict-table tbody { display:block; }
+  .verdict-table thead { display:none; }
+  .verdict-table tr { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--line);
+    border-radius:8px; margin:10px 0; padding:8px; }
+  .verdict-table td { display:block; border:0; padding:6px; }
+  .verdict-table td:first-child,.verdict-table td:last-child { grid-column:1/-1; }
+  .verdict-table td[data-label]::before { content:attr(data-label) ': '; color:#c9bcff; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Viral Video Breakdown<small>Taking apart a viral video and tracing its reposts</small></h1>
+  <span id="privacy" aria-label="Your work stays on this device and is never sent anywhere.">Device only<br>Never sent</span>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-video" aria-pressed="true">The video</button>
+    <button id="m-reposts" aria-pressed="false">The reposts</button>
+    <button id="m-verdict" aria-pressed="false">The verdict</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="video-stage" aria-label="Original film and shot strip">
+    <div class="film-top">
+      <div class="eyebrow"><i class="idle-dot"></i>The original</div>
+      <h2>Grandpa’s<br>5 a.m. bread</h2><p>@ninabakes<br>42,000 views in 30 hours</p>
+      <span class="tag">A fictional case · 20 seconds</span>
+    </div>
+    <div class="film-view"><div class="phone hero-phone" id="main-phone" aria-label="Original video frame"></div></div>
+    <div class="frame-tools">
+      <button id="previous" aria-label="Previous shot" title="Previous shot">◀</button>
+      <button id="play" class="primary">▶ Play</button>
+      <button id="next" aria-label="Next shot" title="Next shot">▶|</button>
+      <span id="time-readout">00.0 / 20 s</span>
+    </div>
+    <nav class="shot-strip" id="shot-strip" aria-label="Eight shots"></nav>
+    <div id="compact-note" hidden aria-live="polite">
+      <div class="row"><span>Nina’s notes</span><button id="close-note">Back to labels</button></div><p id="compact-note-text"></p>
+    </div>
+    <section id="summary" aria-labelledby="summary-title" hidden>
+      <div class="eyebrow">Eight shots, one feeling</div><h2 id="summary-title">How it works</h2>
+      <div class="size-bar" id="size-bar" aria-label="Shot size over time"></div>
+      <p>It starts wide in the dark, moves in close to the work, and ends on her name.</p>
+      <div class="row"><button id="back-film">Back to film</button><button id="see-reposts" class="primary">Trace the reposts →</button></div>
+    </section>
+  </section>
+  <section class="stage" id="case-stage" aria-label="Repost case board" hidden>
+    <div class="case-heading"><h2>The copy trail</h2><span class="micro">Posting time → · All accounts are fictional</span></div>
+    <div id="mobile-timeline">
+      <label for="timeline" class="micro">Timeline: original, then R1 to R5</label>
+      <input id="timeline" type="range" min="0" max="5" step="1" value="0" aria-label="Card on timeline">
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="tree-box">
+      <svg id="tree" viewBox="0 0 900 160" preserveAspectRatio="none" role="img" aria-label="Your copied-from family tree"></svg>
+      <div class="tree-label" id="tree-label">Your arrows point from a copy back to its source.</div>
+    </div>
+  </section>
+  <section class="stage" id="verdict-stage" aria-label="Nina's statement and your verdicts" hidden>
+    <figure class="statement"><figcaption class="eyebrow">Nina’s perspective</figcaption>
+      <blockquote id="nina-statement"></blockquote><div class="micro">One perspective, not an answer key. A fictional case for Curio Class.</div>
+    </figure>
+    <table class="verdict-table"><thead><tr>
+      <th>Repost</th><th>Gave credit?</th><th>Kept meaning?</th><th>Asked first?</th><th>Made money?</th><th>Your call + reason</th>
+    </tr></thead><tbody id="verdict-body"></tbody></table>
+    <datalist id="reason-options"><option value="Kept Nina’s credit and story"><option value="Changed the story without asking">
+      <option value="Used her work to make money"><option value="Credit helps, but permission matters too"></datalist>
+  </section>
+  <aside class="panel">
+    <div id="video-panel">
+      <div class="eyebrow" id="shot-kicker">Fictional film · shot 1/8 · 2s</div><h2 id="shot-title">Before dawn</h2>
+      <div class="category-tabs" role="group" aria-label="Label category">
+        <button id="cat-size" aria-pressed="true">Size</button><button id="cat-angle" aria-pressed="false">Angle</button>
+        <button id="cat-sound" aria-pressed="false">Sound</button><button id="cat-job" aria-pressed="false">Job</button>
+      </div>
+      <div class="label-area"><p id="category-help"></p><div class="choice-grid" id="choices"></div></div>
+      <div id="label-summary"></div><button id="check-shot" class="primary wide">Check shot</button>
+      <div class="result wide" id="shot-result" aria-live="polite"></div>
+      <button id="open-summary" class="wide" hidden>How it works</button>
+    </div>
+    <div id="repost-panel" hidden>
+      <div class="panel-tabs" role="group" aria-label="Case workspace">
+        <button id="tab-investigate" aria-pressed="true">Investigate</button><button id="tab-claims" aria-pressed="false">Make a claim</button>
+      </div>
+      <div id="investigate-panel">
+        <div class="pair-row"><label for="pair-a">A</label><select id="pair-a" aria-label="First card"></select></div>
+        <div class="pair-row"><label for="pair-b">B</label><select id="pair-b" aria-label="Second card"></select></div>
+        <div class="tools"><button id="compare">Compare</button><button id="sound-clue">Sound</button><button id="captions">Captions</button></div>
+        <button id="arrow">Draw arrow</button>
+        <div class="result" id="case-result" aria-live="polite">Pick any two cards. Look for a trace one copy inherited.</div>
+        <p class="micro" id="clue-count">0 findings saved</p>
+      </div>
+      <div id="claim-panel" hidden>
+        <label for="question">Case question</label><select id="question">
+          <option value="0">Who first dropped Nina’s credit?</option><option value="1">Who first changed the meaning?</option>
+          <option value="2">Where did the flour ad get its copy?</option>
+        </select>
+        <label for="answer">Your card</label><select id="answer"></select>
+        <label>Attach two saved findings</label><button id="choose-clues" class="wide">Choose findings</button>
+        <p id="attached-summary" class="micro" aria-live="polite"></p>
+        <button id="make-claim" class="primary wide" disabled>Make the claim</button>
+        <div id="claim-feedback" class="result wide" aria-live="polite"></div>
+        <p class="claim-status" id="claim-status"></p>
+      </div>
+    </div>
+    <div id="verdict-panel" hidden>
+      <div class="eyebrow">Your closing statement</div><h2>A repost owes<br>the maker…</h2>
+      <div class="owed" id="owed"></div><p id="closing-preview" aria-live="polite">A repost owes the maker: still deciding.</p>
+      <button id="copy" class="primary wide">Copy verdict</button>
+      <div id="copy-status" class="micro" aria-live="polite"></div>
+      <textarea id="copy-output" aria-label="Verdict text to copy" rows="6" readonly hidden></textarea>
+    </div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="footer"><div class="row"><p class="micro">Saved here only. Nothing leaves this device.</p><button id="reset">Reset</button></div></div>
+  </aside>
+</main>
+<dialog id="evidence-dialog" aria-labelledby="evidence-title">
+  <div class="dialog-top"><h2 id="evidence-title">Compare</h2><div class="dialog-tools">
+    <button id="evidence-read">Read</button><button id="close-evidence">Back to board</button></div></div>
+  <div id="evidence-content"></div><div class="compare-notes" id="evidence-notes"></div>
+  <div class="micro" id="saved-clue" aria-live="polite"></div>
+</dialog>
+<dialog id="clue-picker" aria-labelledby="clue-picker-title">
+  <div class="dialog-top"><h2 id="clue-picker-title">Your saved findings</h2><div class="dialog-tools">
+    <button id="clues-read">Read</button><button id="close-clues">Back to claim</button></div></div>
+  <p class="micro">Tap two findings that prove your chosen card. Tap a selected finding to remove it.</p>
+  <div id="clue-list"></div>
+</dialog>
+<dialog id="reset-dialog" aria-labelledby="reset-title">
+  <div class="dialog-top"><h2 id="reset-title">Reset this case?</h2><button id="reset-read">Read</button></div>
+  <p>This clears your labels, arrows, findings, claims and verdicts on this device.</p>
+  <div class="row"><button id="cancel-reset">Keep my work</button><button id="confirm-reset">Reset case</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const esc = value => String(value).replace(/[&<>"']/g,ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const ART = ['art:shot-street','art:shot-dough','art:shot-trays','art:shot-oven',
+    'art:shot-crust','art:shot-apron','art:shot-shelves'];
+  const SHOTS = [
+    {title:'Before dawn',length:2,size:'wide',angle:'eye level',sound:['ambient','voice-over'],job:'sets the place',
+      note:'I wanted you to feel how early it is.'},
+    {title:'Flour like snow',length:3,size:'close',angle:'high',sound:['voice-over'],job:'shows the work',note:'The flour looks like snow.'},
+    {title:'A morning’s work',length:2,size:'wide',angle:'overhead',sound:['music'],job:'shows time passing',
+      note:'From above you see how many he makes.'},
+    {title:'The oven glow',length:3,size:'medium',angle:'eye level',sound:['sound effect','music'],job:'makes you feel',
+      note:'That glow is the best part.'},
+    {title:'Listen to the crust',length:2,size:'extreme close',angle:'eye level',sound:['sound effect','music'],job:'makes you feel',
+      note:'I put the phone right next to it to get the sound.'},
+    {title:'The old apron',length:2,size:'close',angle:'eye level',sound:['voice-over','music'],job:'makes you feel',
+      note:'His apron is older than my mom.'},
+    {title:'A bread skyline',length:3,size:'medium',angle:'low',sound:['voice-over','music'],job:'shows time passing',
+      note:'Low, so the bread looks like a skyline.'},
+    {title:'Her name, his story',length:3,size:'graphic',angle:'n/a',sound:['music'],job:'gives credit',
+      note:'So people know who made it, and who he is.'}
+  ];
+  const STARTS = [0,2,5,7,10,12,14,17];
+  const CAPTIONS = ['Every day for 42 years, my grandpa gets up at four.',
+    'Before anyone else is awake, the bread is already rising.',
+    'He says the secret is patience.','This is my favorite smell in the world.'];
+  const CARDS = [
+    {id:'Original',account:'@ninabakes',hour:0,views:'42,000',caption:'Grandpa’s 5 a.m. bread',parent:null,
+      credit:'Yes',meaning:'Kept',asked:'Maker',money:'No'},
+    {id:'R1',account:'@breadlovers_daily',hour:6,views:'310,000',caption:'This is love. via @ninabakes',parent:0,
+      credit:'Yes',meaning:'Kept',asked:'Yes, Nina says they messaged',money:'No'},
+    {id:'R2',account:'@hustle.mindset',hour:9,views:'2,400,000',
+      caption:'He quit his office job at 50 to chase his dream. What’s your excuse?',parent:1,
+      credit:'No',meaning:'Changed: false story',asked:'No',money:'No'},
+    {id:'R3',account:'@dailyfeels',hour:14,views:'1,100,000',caption:'This bakery is closing forever. RIP.',parent:2,
+      credit:'No',meaning:'Changed: false story',asked:'No',money:'No'},
+    {id:'R4',account:'@citynewsnow',hour:20,views:'650,000',caption:'Video: @ninabakes',parent:0,
+      credit:'Yes',meaning:'Stretched: bakery never in danger',asked:'No',money:'Ads on the account'},
+    {id:'R5',account:'@flourpower_shop',hour:26,views:'90,000',caption:'Real bakers use FlourPower.',parent:3,
+      credit:'No',meaning:'Changed: an ad',asked:'No',money:'Yes, selling flour'}
+  ];
+  const NINA = 'I was happy people liked Grandpa’s bread. I was not happy when people said he quit an office job. '
+    + 'He’s been a baker his whole life. And a company used my video to sell flour without asking. '
+    + 'I just want my name on it and the story right.';
+  const CATEGORIES = {
+    size:{help:'Shot size: how much of the subject fills the frame.',choices:['wide','medium','close','extreme close']},
+    angle:{help:'Angle: where the camera looks from. High looks down; low looks up.',choices:['eye level','high','low','overhead']},
+    sound:{help:'Choose every sound layer. Voice-over is captions only.',choices:['ambient','voice-over','music','sound effect']},
+    job:{help:'Job: what this shot does for the story.',
+      choices:['sets the place','shows the work','shows time passing','makes you feel','gives credit']}
+  };
+  const L = {
+    welcomeVideo:'Forty-two thousand people saw this. Press Play, then tap each shot and label it.',
+    checkHow:'Pick a size, angle, sound and job, then tap Check shot.',
+    allShots:'You checked all eight shots. Compare Nina’s notes, then trace the copies.',
+    welcomeReposts:'Five copies, five changes. Pick two cards and open Compare, Sound or Captions.',
+    arrowRefused:'It can’t copy something posted after it.',
+    claimRight:'Case closed on that one. Your clues prove it.',
+    claimNudge:'Not yet. Look closer at the clues.',
+    welcomeVerdict:'Read Nina’s words first. Then decide what each repost owed her.',
+    arrowHow:'Tap a repost first. Then tap the earlier card it copied from.',
+    claimHow:'Choose a question and a card. Tap Choose findings to attach two clues.',
+    findClues:'Tap Investigate. Pick two cards, then open two clue tools to save findings.',
+    chooseFindings:'Tap two saved findings, then tap Back to claim.',
+    verdictHow:'Pick Fair, Not fair or It depends for each repost. Add a reason, then choose what a repost owes the maker.',
+    compareHow:'Drag either film clock to compare the same moment. Then tap Back to board.'
+  };
+  const fresh = () => ({mode:'video',shot:0,time:0,playing:false,category:'size',labels:SHOTS.map(() => ({})),
+    arrows:{},clues:[],claims:{},verdicts:{},owed:[],pair:[0,1],question:0,answer:1,attached:[],caseTab:'investigate',mobileCard:0});
+  const state = fresh();
+  const KEY = 'curio-viral-video-breakdown-v1';
+  let storageWorks = true;
+  try {
+    const saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+    if (saved?.version === 1) {
+      for (const key of ['labels','arrows','clues','claims','verdicts','owed']) {
+        if (saved[key] && typeof saved[key] === 'object') state[key] = saved[key];
+      }
+      if (!Array.isArray(state.labels) || state.labels.length !== 8) state.labels = fresh().labels;
+      if (!Array.isArray(state.clues)) state.clues = [];
+      if (!Array.isArray(state.owed)) state.owed = [];
+    }
+  } catch { storageWorks = false; }
+  const V = Curio.voice({
+    lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
+    welcome:() => {
+      if (state.playing || $('evidence-dialog').open || $('reset-dialog').open || $('clue-picker').open) return null;
+      if (!$('summary').hidden) return null;
+      if (state.mode === 'video') return ['welcomeVideo',{valid:() => !state.playing && state.time === 0}];
+      if (state.mode === 'reposts') {
+        return ['welcomeReposts',{valid:() => !state.clueOpened && state.caseTab === 'investigate'}];
+      }
+      return ['welcomeVerdict',{valid:() => !state.verdictTouched}];
+    },
+    speaks:'#play,.shot-strip button,#check-shot,#compare,#sound-clue,#captions'
+  });
+  function save() {
+    const data = {version:1};
+    for (const key of ['labels','arrows','clues','claims','verdicts','owed']) data[key] = state[key];
+    try { localStorage.setItem(KEY,JSON.stringify(data)); } catch { storageWorks = false; }
+    document.querySelector('.footer .micro').textContent = storageWorks
+      ? 'Saved here only. Nothing leaves this device.' : 'Saving unavailable. Work stays in this open tab.';
+  }
+  function hint(text) { $('hint').textContent = text; }
+  function findingCount() {
+    return `${state.clues.length} finding${state.clues.length === 1 ? '' : 's'} saved`;
+  }
+  function how(key,valid = () => true) {
+    if (!state.playing && !V.heard(key)) V.how(key,{valid:() => !state.playing && valid(),hint:false});
+  }
+  function tone() { Curio.tone(450,.07,.025); }
+  function isCropped(id) { return [2,3,5].includes(id); }
+  function shotAt(t) { return Math.max(0,STARTS.findLastIndex(start => t >= start)); }
+  function frameMarkup(id,t,overlay = false) {
+    const shot = shotAt(t);
+    const cropped = isCropped(id);
+    if (cropped && t >= 17) return '<div class="ended">Clip ended<br>3 s end card removed</div>';
+    let frame = shot === 7
+      ? '<div class="end-card"><b>@ninabakes</b><span>Grandpa Teo,<br>42 years of bread</span></div>'
+      : `<img src="${ART[shot]}" alt="${esc(SHOTS[shot].title)}">`;
+    frame = `<div class="film-layer ${cropped ? 'cropped' : ''}">${frame}</div>`;
+    if (!cropped) frame += '<span class="watermark">@ninabakes</span>';
+    if ([0,1,5,6].includes(shot)) {
+      const cap = {0:0,1:1,5:2,6:3}[shot];
+      frame += `<div class="subtitles"><span>${CAPTIONS[cap]}</span></div>`;
+    }
+    if (id === 1) frame += '<div class="via">via @ninabakes</div>';
+    if (cropped && t < 4 / 30) frame += '<div class="remnant" title="Bottom edge of inherited sticker"></div>';
+    if (id === 3 && shot === 6) frame += '<div class="rip">RIP</div>';
+    if (id === 5 && shot === 6) frame += '<div class="rip-corner">R</div><div class="product">FlourPower</div>';
+    if (id === 4) frame += '<div class="news-banner">Local teen saves<br>grandpa’s bakery</div>';
+    if (overlay) {
+      if (cropped) {
+        frame += '<div class="overlay-box" style="inset:3%"><span>Missing frame</span></div>';
+        frame += '<div class="overlay-box" style="bottom:3%;right:3%;width:65%;height:9%"><span>No credit</span></div>';
+      }
+      if (id === 1) {
+        frame += '<div class="overlay-box added sticker" style="top:7%;left:2%;width:96%;height:18px"><span>Via added</span></div>';
+      }
+      if (id === 3 && shot === 6) {
+        frame += '<div class="overlay-box added" style="top:39%;left:20%;width:65%;height:18%"><span>RIP added</span></div>';
+      }
+      if (id === 5 && shot === 6) {
+        frame += '<div class="overlay-box added logo" style="top:33%;left:18%;width:70%;height:32%"><span>Logo added</span></div>';
+      }
+      if (id === 4) {
+        frame += '<div class="overlay-box added" style="top:11%;left:1%;right:1%;height:23%"><span>Added: news banner</span></div>';
+      }
+    }
+    return frame;
+  }
+  function renderFilm() {
+    const frameKey = String(state.shot);
+    if ($('main-phone').dataset.frame !== frameKey) {
+      $('main-phone').innerHTML = frameMarkup(0,state.time);
+      $('main-phone').dataset.frame = frameKey;
+    }
+    $('time-readout').textContent = `${state.time.toFixed(1).padStart(4,'0')} / 20 s`;
+    $('play').textContent = state.playing ? '■ Stop' : '▶ Play';
+    [...$('shot-strip').children].forEach((button,i) => {
+      button.setAttribute('aria-current',i === state.shot);
+      button.classList.toggle('checked',!!state.labels[i].checked);
+      button.setAttribute('aria-label',`Shot ${i + 1}: ${SHOTS[i].title}, ${SHOTS[i].length} seconds. `
+        + (state.labels[i].checked ? 'Maker’s notes opened; not a score.' : 'Not checked yet.'));
+    });
+  }
+  function labelSummary() {
+    const picks = state.labels[state.shot];
+    $('label-summary').textContent = ['size','angle','sound','job'].map(key => {
+      const value = picks[key];
+      return `${key}: ${Array.isArray(value) ? value.join(' + ') || '…' : value || '…'}`;
+    }).join(' · ');
+  }
+  function renderChoices() {
+    const cat = state.category;
+    const picks = state.labels[state.shot];
+    let choices = CATEGORIES[cat].choices;
+    if (state.shot === 7 && cat === 'size') choices = ['graphic'];
+    if (state.shot === 7 && cat === 'angle') choices = ['n/a'];
+    $('category-help').textContent = CATEGORIES[cat].help;
+    $('choices').dataset.category = cat;
+    $('choices').innerHTML = choices.map((choice,i) => {
+      const selected = cat === 'sound' ? (picks.sound || []).includes(choice) : picks[cat] === choice;
+      return `<button data-choice="${i}" aria-pressed="${selected}">${esc(choice)}</button>`;
+    }).join('');
+    $('choices').querySelectorAll('button').forEach((button,i) => {
+      button.onclick = () => {
+        toggleSummary(false);
+        const choice = choices[i];
+        if (cat === 'sound') {
+          const sounds = picks.sound || [];
+          picks.sound = sounds.includes(choice) ? sounds.filter(s => s !== choice) : [...sounds,choice];
+        } else picks[cat] = choice;
+        picks.checked = false;
+        picks.result = '';
+        $('shot-result').textContent = '';
+        $('compact-note').hidden = true;
+        $('open-summary').hidden = !state.labels.every(label => label.checked);
+        [...$('choices').children].forEach((b,j) => b.setAttribute('aria-pressed',cat === 'sound'
+          ? (picks.sound || []).includes(choices[j]) : picks[cat] === choices[j]));
+        labelSummary();
+        renderFilm();
+        save();
+        tone();
+        hint('Choose a label in each tab, then tap Check shot. Sound can have more than one layer.');
+        how('checkHow',() => !state.labels[state.shot].checked);
+      };
+    });
+    for (const key of Object.keys(CATEGORIES)) $('cat-' + key).setAttribute('aria-pressed',key === cat);
+  }
+  function renderLabelPanel() {
+    $('shot-kicker').textContent = `Fictional film · shot ${state.shot + 1}/8 · ${SHOTS[state.shot].length}s`;
+    $('shot-title').textContent = SHOTS[state.shot].title;
+    $('shot-result').textContent = state.labels[state.shot].result || '';
+    $('open-summary').hidden = !state.labels.every(label => label.checked);
+    renderChoices();
+    labelSummary();
+  }
+  function setShot(index) {
+    V.hush();
+    $('compact-note').hidden = true;
+    state.shot = (index + 8) % 8;
+    state.time = STARTS[state.shot];
+    playAnchor = performance.now() - state.time * 1000;
+    state.category = 'size';
+    renderFilm();
+    renderLabelPanel();
+    hint(`Shot ${state.shot + 1}: tap Size, Angle, Sound and Job to label it. Then tap Check shot.`);
+    save();
+    tone();
+  }
+  function checkShot() {
+    toggleSummary(false);
+    const pick = state.labels[state.shot];
+    if (!pick.size || !pick.angle || !pick.sound?.length || !pick.job) {
+      hint('Choose labels in Size, Angle, Sound and Job first. Then tap Check shot.');
+      how('checkHow');
+      tone();
+      return;
+    }
+    const shot = SHOTS[state.shot];
+    const errors = Object.keys(CATEGORIES).filter(key => key === 'sound'
+      ? [...pick.sound].sort().join('|') !== [...shot.sound].sort().join('|') : pick[key] !== shot[key]);
+    const notes = errors.map(key => `${key}: you chose ${[].concat(pick[key]).join(' + ')}; `
+      + `maker’s note: ${[].concat(shot[key]).join(' + ')}.`);
+    pick.result = `${errors.length ? notes.join(' ') : 'Your labels match Nina’s notes.'} Nina: “${shot.note}”`;
+    pick.checked = true;
+    $('shot-result').textContent = pick.result;
+    $('compact-note-text').textContent = pick.result;
+    $('compact-note').hidden = false;
+    renderFilm();
+    save();
+    Curio.tone(errors.length ? 310 : 650,.18,.04);
+    const all = state.labels.every(label => label.checked);
+    $('open-summary').hidden = !all;
+    hint(all ? 'All eight checked. Tap How it works to see the film’s shape, then trace The reposts.'
+      : 'Read Nina’s note. Tap Next shot, or a thumbnail, and label the next moment.');
+    if (all && !state.playing) V.say('allShots',{now:true,valid:() => !state.playing && state.mode === 'video'});
+  }
+  let playAnchor = 0;
+  let lastBeat = [-1,-1];
+  let lastEffect = [-1,-1];
+  let noiseNodes = [];
+  function musicNote(frequency,duration,volume,type,channel) {
+    if (!Curio.sound || !state.playing) return;
+    const ctx = Curio.audio();
+    const now = ctx.currentTime;
+    for (const harmonic of [1,2,3]) {
+      const source = ctx.createOscillator();
+      const gain = ctx.createGain();
+      const pan = ctx.createStereoPanner();
+      pan.pan.value = $('evidence-dialog').open ? (channel ? .65 : -.65) : 0;
+      source.type = harmonic === 1 ? type : 'sine';
+      source.frequency.value = frequency * harmonic;
+      gain.gain.setValueAtTime(.0001,now);
+      gain.gain.exponentialRampToValueAtTime(volume / harmonic ** 2,now + .008);
+      gain.gain.exponentialRampToValueAtTime(.0001,now + duration);
+      source.connect(gain).connect(pan).connect(ctx.destination);
+      noiseNodes.push(source);
+      source.onended = () => {
+        source.disconnect();
+        gain.disconnect();
+        pan.disconnect();
+        noiseNodes = noiseNodes.filter(node => node !== source);
+      };
+      source.start(now);
+      source.stop(now + duration);
+    }
+  }
+  function noise(duration,frequency,volume) {
+    if (!Curio.sound) return;
+    const ctx = Curio.audio();
+    const buffer = ctx.createBuffer(1,Math.ceil(ctx.sampleRate * duration),ctx.sampleRate);
+    const values = buffer.getChannelData(0);
+    for (let i = 0; i < values.length; i++) values[i] = (Math.random() * 2 - 1) * Math.exp(-i / values.length * 5);
+    const source = ctx.createBufferSource();
+    const filter = ctx.createBiquadFilter();
+    const gain = ctx.createGain();
+    filter.type = 'lowpass';
+    filter.frequency.value = frequency;
+    source.buffer = buffer;
+    gain.gain.value = volume;
+    source.connect(filter).connect(gain).connect(ctx.destination);
+    source.start();
+    noiseNodes.push(source);
+    source.onended = () => { noiseNodes = noiseNodes.filter(node => node !== source); };
+  }
+  function audioBeat(t,id,channel = 0) {
+    if (isCropped(id) && t >= 17) return;
+    const shot = shotAt(t);
+    const beat = Math.floor(t * 2);
+    if (beat !== lastBeat[channel]) {
+      lastBeat[channel] = beat;
+      if (isCropped(id)) {
+        musicNote([110,110,146.83,130.81][beat % 4],.21,.045,'triangle',channel);
+        noise(.07,450,.07);
+      } else if (t >= 5) {
+        musicNote([261.63,329.63,392,329.63,293.66,349.23,440,349.23][beat % 8],.46,.027,'sine',channel);
+      }
+      if (shot === 0) noise(.3,160,.018);
+      if (shot === 4) noise(.12,3400,.026);
+    }
+    if (shot !== lastEffect[channel]) {
+      lastEffect[channel] = shot;
+      if (shot === 3) noise(.65,750,.13);
+    }
+  }
+  function stopPlayback() {
+    state.playing = false;
+    noiseNodes.forEach(source => { try { source.stop(); } catch {} });
+    noiseNodes = [];
+    $('play').textContent = '▶ Play';
+    if ($('compare-play')) $('compare-play').textContent = '▶ Play pair';
+  }
+  function playFilm() {
+    if (state.playing) {
+      stopPlayback();
+      hint('Stopped here. Tap a shot to inspect it, or Play to continue.');
+    } else {
+      V.hush();
+      if (state.time >= 20) state.time = 0;
+      state.playing = true;
+      lastBeat = [-1,-1];
+      lastEffect = [-1,-1];
+      playAnchor = performance.now() - state.time * 1000;
+      hint('The film is playing. Tap any thumbnail to jump; Stop and the label controls stay live.');
+      $('play').textContent = '■ Stop';
+    }
+    tone();
+  }
+  function tick(now) {
+    if (state.playing) {
+      const comparing = $('evidence-dialog').open;
+      const t = Math.min(20,(now - playAnchor) / 1000);
+      if (comparing) {
+        state.compareTime = t;
+        updateComparison();
+        state.pair.forEach((id,index) => audioBeat(t,id,index));
+      } else {
+        const newShot = shotAt(t);
+        state.time = t;
+        if (state.shot !== newShot) {
+          state.shot = newShot;
+          renderLabelPanel();
+        }
+        renderFilm();
+        audioBeat(t,0);
+      }
+      if (t >= 20) {
+        stopPlayback();
+        hint(comparing ? 'Pair stopped. Drag either clock or tap Back to board.'
+          : 'Film finished. Tap each shot, choose labels, then tap Check shot.');
+      }
+    }
+    requestAnimationFrame(tick);
+  }
+  let modeReady = false;
+  function setMode(mode,force = false) {
+    if (!force && modeReady && state.mode === mode && !$('evidence-dialog').open && !$('clue-picker').open) {
+      V.welcome();
+      tone();
+      return;
+    }
+    modeReady = true;
+    stopPlayback();
+    V.hush();
+    if ($('evidence-dialog').open) $('evidence-dialog').close();
+    if ($('clue-picker').open) $('clue-picker').close();
+    state.mode = mode;
+    state.arrowMode = false;
+    state.arrowChild = undefined;
+    document.body.dataset.mode = mode;
+    document.body.dataset.caseTab = state.caseTab;
+    for (const key of ['video','reposts','verdict']) {
+      $(key === 'reposts' ? 'case-stage' : key + '-stage').hidden = key !== mode;
+      $(key === 'reposts' ? 'repost-panel' : key + '-panel').hidden = key !== mode;
+      $('m-' + key).setAttribute('aria-pressed',key === mode);
+    }
+    toggleSummary(false);
+    $('compact-note').hidden = true;
+    if (mode === 'video') {
+      renderFilm();
+      renderLabelPanel();
+      hint(L.welcomeVideo);
+    } else if (mode === 'reposts') {
+      renderCards();
+      renderTree();
+      renderClues();
+      hint(state.caseTab === 'claims' ? (state.clues.length < 2 ? L.findClues : L.claimHow) : L.welcomeReposts);
+      if (state.caseTab === 'claims') how(state.clues.length < 2 ? 'findClues' : 'claimHow');
+    } else {
+      renderVerdict();
+      hint(L.welcomeVerdict);
+    }
+    V.welcome();
+    tone();
+  }
+  function renderCards() {
+    $('cards').innerHTML = CARDS.map((card,i) => `
+      <button class="case-card ${i === state.mobileCard ? 'mobile-current' : ''}" id="card-${i}"
+        aria-pressed="${state.pair.includes(i)}"
+        aria-label="${esc(card.id + ' ' + card.account + '. ' + card.caption + '. ' + card.views + ' views.')}" >
+        <span class="card-top"><span>${card.id}</span><span>${i ? '+' + card.hour + ' h' : '0 h'}</span></span>
+        <div class="phone mini-phone" aria-hidden="true">${frameMarkup(i,14.5)}</div>
+        <strong>${esc(card.account)}</strong><span class="caption" title="${esc(card.caption)}">${esc(card.caption)}</span>
+        <span class="views">${card.views} views</span>
+      </button>`).join('');
+    CARDS.forEach((card,i) => { $('card-' + i).onclick = () => chooseCard(i); });
+    const options = CARDS.map((card,i) => `<option value="${i}">${card.id} ${esc(card.account)}</option>`).join('');
+    for (const id of ['pair-a','pair-b','answer']) $(id).innerHTML = options;
+    $('pair-a').value = state.pair[0];
+    $('pair-b').value = state.pair[1];
+    $('answer').value = state.answer;
+    $('question').value = state.question;
+    $('timeline').value = state.mobileCard;
+    $('investigate-panel').hidden = state.caseTab !== 'investigate';
+    $('claim-panel').hidden = state.caseTab !== 'claims';
+    $('tab-investigate').setAttribute('aria-pressed',state.caseTab === 'investigate');
+    $('tab-claims').setAttribute('aria-pressed',state.caseTab === 'claims');
+    $('arrow').textContent = 'Draw arrow';
+    $('arrow').setAttribute('aria-pressed','false');
+    $('case-result').textContent = 'Pick any two cards. Look for a trace one copy inherited.';
+  }
+  function updateCardSelections() {
+    CARDS.forEach((card,i) => $('card-' + i).setAttribute('aria-pressed',state.pair.includes(i)));
+    $('pair-a').value = state.pair[0];
+    $('pair-b').value = state.pair[1];
+  }
+  function chooseCard(id) {
+    tone();
+    if (state.arrowMode) {
+      if (state.arrowChild === undefined) {
+        if (id === 0) {
+          $('case-result').textContent = 'Start with a repost. Then tap its earlier source.';
+          return;
+        }
+        state.arrowChild = id;
+        $('case-result').textContent = `${CARDS[id].id} selected. Now tap the card it copied from.`;
+        hint(`Tap an earlier card to draw ${CARDS[id].id}’s source arrow.`);
+      } else {
+        const child = state.arrowChild;
+        if (CARDS[id].hour >= CARDS[child].hour) {
+          $('case-result').textContent = 'It can’t copy something posted after it. Pick an earlier card.';
+          hint('Tap an earlier card for this arrow.');
+          V.say('arrowRefused',{now:true,valid:() => state.arrowMode});
+          Curio.tone(190,.18,.04);
+          return;
+        }
+        V.hush();
+        state.arrows[child] = id;
+        state.arrowChild = undefined;
+        state.arrowMode = false;
+        $('arrow').textContent = 'Draw arrow';
+        $('arrow').setAttribute('aria-pressed','false');
+        renderTree();
+        $('case-result').textContent = `${CARDS[child].id} → ${CARDS[id].id} saved as your hypothesis. Use clues to test it.`;
+        hint('Pick two cards to investigate, or tap Draw arrow to redraw a source.');
+        save();
+      }
+      return;
+    }
+    state.pair = [state.pair[1],id];
+    updateCardSelections();
+    $('case-result').textContent = `A: ${CARDS[state.pair[0]].id}. B: ${CARDS[id].id}. Open Compare, Sound or Captions.`;
+    hint('Tap Compare, Sound or Captions to inspect these two cards.');
+  }
+  function renderTree() {
+    const edges = Object.entries(state.arrows).filter(([child,parent]) => +child > 0 && CARDS[+child] && CARDS[parent]);
+    const box = $('tree').getBoundingClientRect();
+    const width = Math.max(300,box.width);
+    const height = Math.max(55,box.height);
+    $('tree').setAttribute('viewBox',`0 0 ${width} ${height}`);
+    let svg = '<defs><marker id="arrow-tip" markerUnits="userSpaceOnUse" '
+      + 'markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">'
+      + '<path d="M0,0 L8,4 L0,8 Z" fill="#8f7bff"/></marker></defs>';
+    edges.forEach(([child,parent],i) => {
+      const x1 = (+child + .5) * width / 6;
+      const x2 = (parent + .5) * width / 6;
+      const depth = Math.min(height - 24,30 + i * Math.max(5,(height - 70) / 5));
+      svg += `<path d="M${x1},4 C${x1},${depth} ${x2},${depth} ${x2},4"
+        fill="none" stroke="#8f7bff" stroke-width="2.5" marker-end="url(#arrow-tip)">
+        <title>${CARDS[child].id} copied from ${CARDS[parent].id}</title></path>`;
+    });
+    $('tree').innerHTML = svg;
+    $('tree').setAttribute('aria-label',edges.length
+      ? edges.map(([c,p]) => `${CARDS[c].id} copied from ${CARDS[p].id}`).join('. ') : 'No copied-from arrows yet.');
+    $('tree-label').textContent = edges.length ? 'Your hypotheses, not checked answers. Arrow = copied from.'
+      : 'Tap Draw arrow, a repost, then its earlier source.';
+  }
+  function pairKey(type,a,b) { return `${type}:${Math.min(a,b)}:${Math.max(a,b)}`; }
+  function finding(type,a,b) {
+    if (a === b) return null;
+    const pair = [a,b].sort((x,y) => x - y);
+    const has = (...ids) => ids.every(id => pair.includes(id));
+    if (type === 'compare') {
+      if (has(1,2)) return 'R1’s via sticker and watermark are gone in R2. At 0.00 s, a sticker edge survives for four frames; the end card is gone.';
+      if (has(3,5)) return 'The crop matches. On shot 7, a corner of R3’s RIP sticker survives beneath R5’s flour logo.';
+      if (has(2,3)) return 'The crop matches; R3 adds RIP on shot 7. Both end before the original’s credit card.';
+      if (has(0,4)) return 'The watermark and end card remain. R4 adds a banner claiming the teen saved the bakery.';
+      if (has(0,1)) return 'The full frame and end card remain. R1 adds a via sticker naming Nina.';
+      const differences = [];
+      if (isCropped(a) !== isCropped(b)) differences.push('One frame is cropped; its watermark corner and 3 s credit card are missing.');
+      if (isCropped(a) && isCropped(b)) differences.push('The crop and missing end card match.');
+      if (pair.includes(3)) differences.push('R3 adds RIP over the bread shelves in shot 7.');
+      if (pair.includes(5)) differences.push('R5 adds a flour logo on shot 7 and runs at 1.25 times speed.');
+      if (pair.includes(4)) differences.push('R4 has a news banner.');
+      if (pair.includes(1)) differences.push('R1 has a via sticker.');
+      return differences.join(' ') || 'Both retain the full frame, watermark and credit card; their added graphics differ.';
+    }
+    if (type === 'sound') {
+      return isCropped(a) === isCropped(b)
+        ? (isCropped(a) ? 'The pounding music shapes match when aligned to original time. Music alone cannot prove the source.'
+          : 'Both use the original soft piano. Matching sound supports a link but cannot prove a source alone.')
+        : 'The original soft piano and the pounding motivational replacement have different shapes and moods.';
+    }
+    return `${CARDS[a].id}: “${CARDS[a].caption}” ${CARDS[b].id}: “${CARDS[b].caption}”`;
+  }
+  function evidenceNotes(type,a,b) {
+    const text = finding(type,a,b);
+    if (type === 'sound') return `${text} Synthesized music envelopes, not recordings of a real video.`;
+    if (type === 'captions') return `${text} Changed words are highlighted. Nina says Grandpa has always been a baker; the bakery was never in danger.`;
+    return `${text} Amber = missing. Mint = added. Drag to 0.00 s, shot 7 at 14 s, or the end card at 17 s.`;
+  }
+  function openEvidence(type) {
+    const [a,b] = state.pair;
+    if (a === b) {
+      hint('Choose two different cards using A and B, then open a clue tool.');
+      $('case-result').textContent = 'A and B are the same card. Choose a different second card.';
+      tone();
+      return;
+    }
+    stopPlayback();
+    V.hush();
+    state.clueOpened = true;
+    state.evidenceType = type;
+    state.compareTime = type === 'compare' && state.pair.includes(5) ? 14.5 : 0;
+    const id = pairKey(type,a,b);
+    const text = finding(type,a,b);
+    if (text && !state.clues.some(clue => clue.id === id)) state.clues.push({id,type,a,b,text});
+    const name = type === 'compare' ? 'Compare frames' : type === 'sound' ? 'Compare sound' : 'Compare captions';
+    $('evidence-title').textContent = `${name} · ${CARDS[a].id} + ${CARDS[b].id}`;
+    let content = '';
+    if (type === 'captions') {
+      content = '<div class="caption-pair">' + [a,b].map((card,index) => {
+        const otherWords = new Set(CARDS[[b,a][index]].caption.toLowerCase().split(/\s+/));
+        const words = CARDS[card].caption.split(/\s+/).map(word => otherWords.has(word.toLowerCase())
+          ? esc(word) : `<mark>${esc(word)}</mark>`).join(' ');
+        return `<div><h3>${esc(CARDS[card].account)}</h3><blockquote>${words}</blockquote></div>`;
+      }).join('') + '</div>';
+    } else {
+      content = '<div class="compare-phones">' + [a,b].map((card,index) => `
+        <div class="compare-unit"><strong>${CARDS[card].id} ${esc(CARDS[card].account)}</strong>
+          <div class="phone compare-phone" id="compare-phone-${index}"></div>
+          <div class="compare-clock" id="clock-${index}"></div>
+          <input type="range" min="0" max="20" step="0.01" value="0" id="pair-scrub-${index}"
+            aria-label="Scrub ${CARDS[card].id}, aligned original time"></div>`).join('') + '</div>';
+      if (type === 'sound') content += '<canvas id="waveform" width="1200" height="170" aria-label="Two overlaid music envelopes"></canvas>';
+      content += '<div class="scrub-row"><button id="compare-play" class="primary">▶ Play pair</button>'
+        + '<span>Shared original clock</span><output id="compare-time">0.00 s</output></div>';
+    }
+    $('evidence-content').innerHTML = content;
+    $('evidence-notes').textContent = evidenceNotes(type,a,b);
+    $('saved-clue').textContent = `${type[0].toUpperCase() + type.slice(1)} finding saved. Attach it in Make a claim.`;
+    $('clue-count').textContent = findingCount();
+    if (type !== 'captions') {
+      [0,1].forEach(index => {
+        $('pair-scrub-' + index).oninput = event => {
+          state.compareTime = Number(event.target.value);
+          playAnchor = performance.now() - state.compareTime * 1000;
+          updateComparison();
+        };
+      });
+      $('compare-play').onclick = () => {
+        if (state.playing) stopPlayback();
+        else {
+          V.hush();
+          state.playing = true;
+          if (state.compareTime >= 20) state.compareTime = 0;
+          playAnchor = performance.now() - state.compareTime * 1000;
+          lastBeat = [-1,-1];
+          lastEffect = [-1,-1];
+          $('compare-play').textContent = '■ Stop pair';
+        }
+        tone();
+      };
+      updateComparison();
+    }
+    renderClues();
+    save();
+    if (!$('evidence-dialog').open) $('evidence-dialog').showModal();
+    hint('Inspect the evidence, then tap Back to board. Your finding is saved for a claim.');
+    how('compareHow',() => $('evidence-dialog').open && type !== 'captions');
+    tone();
+  }
+  function waveform() {
+    const canvas = $('waveform');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,1200,170);
+    state.pair.forEach((id,index) => {
+      ctx.strokeStyle = index ? '#6fe0b0' : '#ffb347';
+      ctx.lineWidth = index ? 2 : 4;
+      ctx.beginPath();
+      for (let x = 0; x <= 1200; x += 2) {
+        const t = x / 60;
+        const amplitude = isCropped(id)
+          ? (t >= 17 ? 0 : Math.exp(-((t * 2) % 1) * 3) * 45)
+          : t < 5 ? 0 : Math.exp(-((t * 2) % 1) * 2) * 25;
+        const y = 85 + Math.sin(x * (isCropped(id) ? .31 : .18)) * amplitude;
+        if (!x) ctx.moveTo(x,y);
+        else ctx.lineTo(x,y);
+      }
+      ctx.stroke();
+    });
+    ctx.fillStyle = '#ffb347';
+    ctx.font = '20px Segoe UI';
+    ctx.fillText(`A: ${CARDS[state.pair[0]].id}`,15,25);
+    ctx.fillStyle = '#6fe0b0';
+    ctx.fillText(`B: ${CARDS[state.pair[1]].id}`,170,25);
+    const x = state.compareTime * 60;
+    ctx.strokeStyle = '#eceefa';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(x,30);
+    ctx.lineTo(x,170);
+    ctx.stroke();
+  }
+  function updateComparison() {
+    const t = state.compareTime || 0;
+    state.pair.forEach((id,index) => {
+      const phone = $('compare-phone-' + index);
+      if (!phone) return;
+      const frameKey = `${id}:${shotAt(t)}:${t < 4 / 30}:${state.evidenceType}`;
+      if (phone.dataset.frame !== frameKey) {
+        phone.innerHTML = frameMarkup(id,t,state.evidenceType === 'compare');
+        phone.dataset.frame = frameKey;
+      }
+      const clipTime = Math.min(id === 5 ? 13.6 : isCropped(id) ? 17 : 20,t / (id === 5 ? 1.25 : 1));
+      $('clock-' + index).textContent = `Original ${t.toFixed(2)} s · clip ${clipTime.toFixed(2)} s`;
+      $('pair-scrub-' + index).value = t;
+    });
+    if ($('compare-time')) $('compare-time').textContent = `${t.toFixed(2)} s`;
+    waveform();
+  }
+  function closeEvidence() {
+    stopPlayback();
+    V.hush();
+    $('evidence-dialog').close();
+    hint('Open another clue tool, draw source arrows, or tap Make a claim to attach two findings.');
+    const id = state.evidenceType === 'sound' ? 'sound-clue' : state.evidenceType === 'compare' ? 'compare' : 'captions';
+    $(id).focus({preventScroll:true});
+  }
+  function caseTab(tab) {
+    const changed = state.caseTab !== tab;
+    if (changed) V.hush();
+    state.caseTab = tab;
+    document.body.dataset.caseTab = tab;
+    $('investigate-panel').hidden = tab !== 'investigate';
+    $('claim-panel').hidden = tab !== 'claims';
+    $('tab-investigate').setAttribute('aria-pressed',tab === 'investigate');
+    $('tab-claims').setAttribute('aria-pressed',tab === 'claims');
+    const key = state.clues.length < 2 ? 'findClues' : 'claimHow';
+    hint(tab === 'claims' ? L[key] : 'Pick two cards using A and B. Tap Compare, Sound or Captions, or draw an arrow.');
+    if (tab === 'claims') how(key,() => state.caseTab === 'claims');
+    else if (changed) V.welcome();
+    tone();
+  }
+  function renderClues() {
+    $('clue-list').innerHTML = state.clues.length ? state.clues.map((clue,index) => `
+      <button id="clue-${index}" aria-pressed="${state.attached.includes(clue.id)}" title="${esc(clue.text)}">
+        ${clue.type[0].toUpperCase() + clue.type.slice(1)} · ${CARDS[clue.a].id} + ${CARDS[clue.b].id}</button>`).join('')
+      : '<p class="micro">No findings yet. Open Compare, Sound or Captions in Investigate.</p>';
+    state.clues.forEach((clue,index) => {
+      $('clue-' + index).onclick = () => {
+        $('claim-feedback').textContent = '';
+        if (state.attached.includes(clue.id)) state.attached = state.attached.filter(id => id !== clue.id);
+        else if (state.attached.length < 2) state.attached.push(clue.id);
+        else {
+          hint('Two findings are attached. Tap one to remove it before attaching another.');
+          tone();
+          return;
+        }
+        state.clues.forEach((entry,i) => $('clue-' + i).setAttribute('aria-pressed',state.attached.includes(entry.id)));
+        $('make-claim').disabled = state.attached.length < 2;
+        renderAttached();
+        hint('Tap Back to claim when your two proving findings are selected.');
+        tone();
+      };
+    });
+    $('make-claim').disabled = state.attached.length < 2;
+    renderAttached();
+    $('clue-count').textContent = findingCount();
+    $('claim-status').textContent = `${Object.keys(state.claims).length} of 3 claims supported`;
+  }
+  function renderAttached() {
+    $('attached-summary').textContent = state.attached.length ? state.attached.map(id => {
+      const clue = state.clues.find(item => item.id === id);
+      return clue ? `${clue.type}: ${CARDS[clue.a].id} + ${CARDS[clue.b].id}` : '';
+    }).join(' · ') : 'No findings attached yet.';
+    $('choose-clues').disabled = state.clues.length === 0;
+  }
+  function closeClues() {
+    V.hush();
+    $('clue-picker').close();
+    hint(state.attached.length === 2 ? 'Check your two findings, then tap Make the claim.' : L.claimHow);
+    $('choose-clues').focus({preventScroll:true});
+    tone();
+  }
+  const PROOFS = [
+    {answer:2,groups:[['compare:1:2'],['captions:1:2']],
+      nudge:'Look for the first missing maker’s name. Compare the frame and caption with the preceding post.'},
+    {answer:2,groups:[['captions:0:2'],['sound:0:2','sound:1:2']],
+      nudge:'Which caption first invents a different life story? Compare that story and its music with an earlier version.'},
+    {answer:3,groups:[['compare:3:5'],['sound:3:5']],
+      nudge:'Look beneath the ad’s logo at shot 7. Find an earlier version with that trace, then compare their sound.'}
+  ];
+  function evaluateClaim(question,answer,attached,clues = state.clues) {
+    const proof = PROOFS[question];
+    const validIds = new Set(clues.map(clue => clue.id));
+    const unique = [...new Set(attached)].filter(id => validIds.has(id));
+    return answer === proof.answer && unique.length === 2
+      && proof.groups.every(group => group.some(id => unique.includes(id)));
+  }
+  function makeClaim() {
+    const q = state.question;
+    if (state.attached.length < 2) return;
+    if (evaluateClaim(q,state.answer,state.attached)) {
+      state.claims[q] = {answer:state.answer,clues:[...state.attached]};
+      $('claim-feedback').textContent = 'Supported. Your card and these two findings fit the evidence.';
+      hint('This claim is supported. Choose another Case question, or open The verdict to make your own call.');
+      V.say('claimRight',{now:true,valid:() => state.question === q && !state.playing});
+      Curio.yes();
+    } else {
+      delete state.claims[q];
+      $('claim-feedback').textContent = PROOFS[q].nudge;
+      hint(PROOFS[q].nudge);
+      V.say('claimNudge',{now:true,valid:() => state.question === q && !state.playing});
+      Curio.tone(210,.2,.04);
+    }
+    $('claim-status').textContent = `${Object.keys(state.claims).length} of 3 claims supported`;
+    save();
+  }
+  function caseKnown(id) {
+    const clues = state.clues.filter(clue => clue.a === id || clue.b === id);
+    const hasArrow = Object.hasOwn(state.arrows,id);
+    return {credit:hasArrow && clues.some(clue => clue.type === 'compare' || clue.type === 'captions'),
+      meaning:hasArrow && clues.some(clue => clue.type === 'captions')};
+  }
+  function verdictText() {
+    const lines = ['Viral Video Breakdown | Curio Class','My verdict on this fictional case:'];
+    CARDS.slice(1).forEach((card,index) => {
+      const entry = state.verdicts[index + 1] || {};
+      lines.push(`${card.id} ${card.account}: ${entry.call || 'Undecided'}. ${entry.reason || 'No reason yet.'}`);
+    });
+    lines.push('A repost owes the maker: ' + (state.owed.join(', ') || 'still deciding') + '.');
+    return lines.join('\n');
+  }
+  function invalidateCopy() {
+    if ($('copy-status').textContent) $('copy-status').textContent = 'Edited since last copy. Tap Copy verdict again.';
+    $('copy-output').hidden = true;
+    $('copy-output').value = '';
+  }
+  function renderVerdict() {
+    $('nina-statement').textContent = NINA;
+    $('verdict-body').innerHTML = CARDS.slice(1).map((card,index) => {
+      const id = index + 1;
+      const known = caseKnown(id);
+      const entry = state.verdicts[id] || {};
+      return `<tr><td>${card.id}<br>${esc(card.account)}</td>
+        <td data-label="Gave credit">${known.credit ? card.credit : 'Unknown: inspect + draw arrow'}</td>
+        <td data-label="Kept meaning">${known.meaning ? esc(card.meaning) : 'Unknown: inspect captions + draw arrow'}</td>
+        <td data-label="Asked first">${esc(card.asked)}</td><td data-label="Made money">${esc(card.money)}</td>
+        <td><label class="sr" for="verdict-${id}">Your call on ${card.id}</label>
+          <select id="verdict-${id}" data-verdict="${id}">
+            ${['Choose your call','Fair','Not fair','It depends'].map(call =>
+              `<option value="${call}" ${entry.call === call ? 'selected' : ''}>${call === 'Choose your call' ? 'Your call' : call}</option>`
+            ).join('')}
+          </select><label class="sr" for="reason-${id}">Reason for ${card.id}, up to 100 characters</label>
+          <input id="reason-${id}" class="verdict-reason" maxlength="100" placeholder="Your reason (100 characters)"
+            value="${esc(entry.reason || '')}" list="reason-options" aria-label="Reason for ${card.id}">
+          <div class="verdict-status" id="verdict-status-${id}">
+            ${entry.call && entry.reason?.trim() ? 'Saved with your reason' : 'Choose a call and add a reason'}</div>
+        </td></tr>`;
+    }).join('');
+    CARDS.slice(1).forEach((card,index) => {
+      const id = index + 1;
+      const edit = () => {
+        state.verdictTouched = true;
+        V.dropQueued();
+        const call = $('verdict-' + id).value;
+        state.verdicts[id] = {call:call === 'Choose your call' ? '' : call,reason:$('reason-' + id).value.slice(0,100)};
+        invalidateCopy();
+        $('verdict-status-' + id).textContent = state.verdicts[id].call && state.verdicts[id].reason.trim()
+          ? 'Saved with your reason' : 'Choose a call and add a reason';
+        hint('Add a reason for each call. Choose what a repost owes the maker, then tap Copy verdict.');
+        save();
+      };
+      $('verdict-' + id).onchange = () => {
+        V.hush();
+        edit();
+        tone();
+        how('verdictHow');
+      };
+      $('reason-' + id).oninput = edit;
+    });
+    renderOwed();
+  }
+  function renderOwed() {
+    const items = ['credit','the original meaning','asking first','a share of any money','nothing'];
+    const updateClosing = () => {
+      $('closing-preview').textContent = 'A repost owes the maker: ' + (state.owed.join(', ') || 'still deciding') + '.';
+    };
+    updateClosing();
+    $('owed').innerHTML = items.map((item,i) =>
+      `<button id="owed-${i}" aria-pressed="${state.owed.includes(item)}">${item}</button>`).join('');
+    items.forEach((item,i) => {
+      $('owed-' + i).onclick = () => {
+        state.verdictTouched = true;
+        V.dropQueued();
+        if (state.owed.includes(item)) state.owed = state.owed.filter(value => value !== item);
+        else if (item === 'nothing') state.owed = ['nothing'];
+        else state.owed = [...state.owed.filter(value => value !== 'nothing'),item];
+        items.forEach((name,j) => $('owed-' + j).setAttribute('aria-pressed',state.owed.includes(name)));
+        invalidateCopy();
+        updateClosing();
+        save();
+        hint('Your closing statement is saved. Tap Copy verdict to copy your calls and reasons.');
+        tone();
+      };
+    });
+  }
+  async function copyVerdict() {
+    const text = verdictText();
+    const complete = state.owed.length > 0
+      && CARDS.slice(1).every((card,i) => state.verdicts[i + 1]?.call && state.verdicts[i + 1]?.reason?.trim());
+    try {
+      await navigator.clipboard.writeText(text);
+      $('copy-status').textContent = verdictText() !== text ? 'Earlier draft copied. Tap Copy verdict again for your changes.'
+        : complete ? 'Verdict copied.' : 'Draft copied. Some calls, reasons or closing choices are still open.';
+    } catch {
+      $('copy-output').value = text;
+      $('copy-output').hidden = false;
+      $('copy-status').textContent = 'Clipboard unavailable. Text selected; use your device’s Copy command.';
+      hint('Your verdict text is selected below. Use your device’s Copy command, or edit your calls and try Copy verdict again.');
+      $('copy-output').focus({preventScroll:true});
+      $('copy-output').select();
+      $('copy-output').scrollIntoView({block:'nearest',behavior:'instant'});
+    }
+    tone();
+  }
+  for (const mode of ['video','reposts','verdict']) $('m-' + mode).onclick = () => setMode(mode);
+  for (const category of Object.keys(CATEGORIES)) $('cat-' + category).onclick = () => {
+    toggleSummary(false);
+    state.category = category;
+    renderChoices();
+    hint(`Choose ${category === 'sound' ? 'all sound layers' : 'the ' + category}, then use the other tabs and tap Check shot.`);
+    tone();
+  };
+  $('shot-strip').innerHTML = SHOTS.map((shot,i) => `
+    <button id="shot-${i}" aria-label="Shot ${i + 1}: ${shot.title}, ${shot.length} seconds">
+      ${i < 7 ? `<img src="${ART[i]}" alt="">` : '<div class="graphic-thumb">End<br>card</div>'}
+      <span>${i + 1} · ${shot.length}s</span></button>`).join('');
+  SHOTS.forEach((shot,i) => { $('shot-' + i).onclick = () => setShot(i); });
+  $('previous').onclick = () => setShot(state.shot - 1);
+  $('next').onclick = () => setShot(state.shot + 1);
+  $('play').onclick = playFilm;
+  $('check-shot').onclick = checkShot;
+  $('close-note').onclick = () => {
+    $('compact-note').hidden = true;
+    $('check-shot').focus({preventScroll:true});
+    tone();
+  };
+  $('open-summary').onclick = () => {
+    stopPlayback();
+    V.hush();
+    toggleSummary(true);
+    $('open-summary').hidden = true;
+    hint('Tap Trace the reposts to follow the copies, or Back to film to keep inspecting shots.');
+    document.querySelector('.panel').scrollTop = 0;
+    if (innerWidth <= 600) window.scrollTo({top:0,behavior:'instant'});
+    $('back-film').focus({preventScroll:true});
+    tone();
+  };
+  $('size-bar').innerHTML = SHOTS.map(shot => {
+    const height = {wide:30,medium:55,close:78,'extreme close':100,graphic:40}[shot.size];
+    return `<div style="--length:${shot.length};height:${height}%">${shot.size}<small>${shot.length}s</small></div>`;
+  }).join('');
+  function toggleSummary(open) {
+    $('summary').hidden = !open;
+    for (const element of document.querySelectorAll('.film-top,.film-view,.frame-tools,#shot-strip')) element.inert = open;
+    if (open) $('compact-note').hidden = true;
+    else $('open-summary').hidden = !state.labels.every(label => label.checked);
+  }
+  $('back-film').onclick = () => {
+    toggleSummary(false);
+    const allChecked = state.labels.every(label => label.checked);
+    $('open-summary').hidden = !allChecked;
+    hint(allChecked ? 'Tap a shot to inspect Nina’s notes, or tap How it works to see the film’s shape again.'
+      : 'You changed a label. Tap Check shot to compare it with Nina’s notes.');
+    $(allChecked ? 'play' : 'check-shot').focus({preventScroll:true});
+    tone();
+  };
+  $('see-reposts').onclick = () => {
+    setMode('reposts');
+    $('m-reposts').focus({preventScroll:true});
+  };
+  for (const [id,type] of [['compare','compare'],['sound-clue','sound'],['captions','captions']]) {
+    $(id).onclick = () => openEvidence(type);
+  }
+  $('close-evidence').onclick = closeEvidence;
+  $('evidence-dialog').addEventListener('cancel',event => {
+    event.preventDefault();
+    closeEvidence();
+  });
+  ['pair-a','pair-b'].forEach((id,index) => {
+    $(id).onchange = event => {
+      state.pair[index] = Number(event.target.value);
+      updateCardSelections();
+      hint('Tap Compare, Sound or Captions to inspect this pair.');
+      tone();
+    };
+  });
+  $('timeline').oninput = event => {
+    state.mobileCard = Number(event.target.value);
+    CARDS.forEach((card,i) => $('card-' + i).classList.toggle('mobile-current',i === state.mobileCard));
+  };
+  $('arrow').onclick = () => {
+    V.hush();
+    state.arrowMode = !state.arrowMode;
+    state.arrowChild = undefined;
+    $('arrow').textContent = state.arrowMode ? 'Cancel arrow' : 'Draw arrow';
+    $('arrow').setAttribute('aria-pressed',state.arrowMode);
+    hint(state.arrowMode ? L.arrowHow : 'Pick two cards and open a clue tool.');
+    if (state.arrowMode) how('arrowHow');
+    tone();
+  };
+  $('tab-investigate').onclick = () => caseTab('investigate');
+  $('tab-claims').onclick = () => caseTab('claims');
+  $('choose-clues').onclick = () => {
+    V.hush();
+    $('clue-picker').showModal();
+    hint(L.chooseFindings);
+    how('chooseFindings',() => $('clue-picker').open);
+    tone();
+  };
+  $('close-clues').onclick = closeClues;
+  $('clue-picker').addEventListener('cancel',event => {
+    event.preventDefault();
+    closeClues();
+  });
+  $('question').onchange = event => {
+    V.hush();
+    state.question = Number(event.target.value);
+    state.attached = [];
+    $('claim-feedback').textContent = '';
+    renderClues();
+    hint(state.clues.length < 2 ? L.findClues : L.claimHow);
+    tone();
+  };
+  $('answer').onchange = event => {
+    V.hush();
+    state.answer = Number(event.target.value);
+    $('claim-feedback').textContent = '';
+    hint(state.attached.length === 2 ? 'Check your two findings, then tap Make the claim.' : L.claimHow);
+    tone();
+  };
+  $('make-claim').onclick = makeClaim;
+  $('copy').onclick = copyVerdict;
+  $('reset').onclick = () => {
+    stopPlayback();
+    V.hush();
+    state.resetHint = $('hint').textContent;
+    hint('Tap Reset case to clear your work, or Keep my work to go back.');
+    $('reset-dialog').showModal();
+    tone();
+  };
+  $('cancel-reset').onclick = () => {
+    V.hush();
+    $('reset-dialog').close();
+    hint(state.resetHint || L['welcome' + state.mode[0].toUpperCase() + state.mode.slice(1)]);
+    delete state.resetHint;
+    $('reset').focus({preventScroll:true});
+    tone();
+  };
+  $('reset-dialog').addEventListener('cancel',event => {
+    event.preventDefault();
+    $('cancel-reset').click();
+  });
+  $('confirm-reset').onclick = () => {
+    const clean = fresh();
+    for (const key of Object.keys(state)) delete state[key];
+    Object.assign(state,clean);
+    $('claim-feedback').textContent = '';
+    $('copy-status').textContent = '';
+    $('copy-output').value = '';
+    $('copy-output').hidden = true;
+    save();
+    $('reset-dialog').close();
+    setMode('video',true);
+    $('reset').focus({preventScroll:true});
+  };
+  Curio.init({clips:"voice:*",rate:.94});
+  const kitRead = $('read').onclick;
+  $('read').onclick = () => {
+    const wasPlaying = state.playing;
+    stopPlayback();
+    if (wasPlaying) hint($('evidence-dialog').open
+      ? 'Pair stopped. Drag either clock, or tap Back to board.'
+      : 'Film stopped. Tap Play to continue, or tap a shot and label it.');
+    kitRead();
+  };
+  $('evidence-read').onclick = () => $('read').onclick();
+  $('clues-read').onclick = () => $('read').onclick();
+  $('reset-read').onclick = () => $('read').onclick();
+  Curio.onSound(on => { if (!on) noiseNodes.forEach(source => { try { source.stop(); } catch {} }); });
+  document.addEventListener('visibilitychange',() => { if (document.hidden) stopPlayback(); });
+  window.__tool = {
+    state,setMode,setShot,checkShot,chooseCard,openEvidence,closeEvidence,makeClaim,evaluateClaim,
+    finding,frameMarkup,caseKnown,verdictText,save,renderVerdict,renderClues,renderTree,caseTab,
+    allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },SHOTS,CARDS,PROOFS,updateComparison,
+    get audioNodes() { return noiseNodes.length; }
+  };
+  setMode('video');
+  new ResizeObserver(() => { if (state.mode === 'reposts') renderTree(); }).observe($('tree').parentElement);
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

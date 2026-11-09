@@ -25,6 +25,7 @@ h1 small {font-size:11px;letter-spacing:.04em;margin-top:4px}
 .seg button {min-height:44px;padding:0 17px;font-size:13px;min-width:44px}
 .utilities {display:flex;gap:6px}
 .icon-btn {min-height:44px;min-width:44px;padding:0 10px;font-size:12px;border-width:1px;border-radius:5px}
+#sound {width:76px;padding-inline:3px;flex-shrink:0}
 button,input,select {touch-action:manipulation}
 button:active {filter:brightness(1.2)}
 button:focus-visible,input:focus-visible,select:focus-visible,canvas:focus-visible {outline:3px solid #8fe3ff;outline-offset:2px}
@@ -106,6 +107,9 @@ footer {display:flex;align-items:center;gap:12px;padding:4px 18px;background:#11
 .board-area {min-height:0;position:relative;background:linear-gradient(#202835,#131922);display:grid;
   grid-template-rows:38px minmax(0,1fr) 32px}
 .board-area .preview {bottom:40px;width:35%;max-width:220px}
+.cue-list button.just-recorded {box-shadow:inset 4px 0 #ee6ff0,0 0 18px #ee6ff04d;animation:recorded .7s ease-out}
+@keyframes recorded {from {background:#75416f} to {background:#3d2541}}
+.calm .cue-list button.just-recorded {animation:none}
 .board-area:has(.preview:not([hidden])) .board {margin-right:calc(35% + 20px)}
 .board-label {font:11px Consolas;padding:12px 14px;color:#bac8d8;letter-spacing:.1em}
 .board {display:flex;gap:2px;overflow-x:auto;min-height:0;padding:0 10px 12px;align-items:stretch}
@@ -117,7 +121,10 @@ footer {display:flex;align-items:center;gap:12px;padding:4px 18px;background:#11
 .fader input[type=range] {writing-mode:vertical-lr;direction:rtl;width:44px;height:100%;min-height:65px;flex:1}
 .fader output {font:15px Consolas;margin-top:6px}
 .fader small {font-size:10px;color:#bac8d8;margin-top:4px}
-.cue-list {padding:12px;background:#171d27;overflow:auto;min-height:0}
+.cue-list {padding:12px;background:#171d27;overflow:hidden;min-height:0;display:flex;flex-direction:column}
+.cue-list h2,.cue-list>label {flex-shrink:0}
+#cueList {min-height:0;overflow:auto;flex:1}
+.cue-list>label {padding-top:6px;border-top:1px solid #374050;background:#171d27}
 .cue-list h2 {font:11px Consolas;letter-spacing:.1em;color:#a6b3c4;margin:0 0 10px}
 .cue-list button {display:grid;grid-template-columns:42px 1fr;gap:4px;width:100%;min-height:62px;padding:8px;margin-bottom:6px;
   border:1px solid #495769;border-radius:4px;background:#202a38;text-align:left}
@@ -196,6 +203,7 @@ dialog p {font-size:14px;line-height:1.6}
   body {grid-template-rows:100px minmax(0,1fr) 58px} header {flex-wrap:wrap;gap:4px;padding:4px 8px}
   h1 {font-size:17px;flex:1;order:0} h1 small {display:none}.utilities {order:1;gap:3px}
   .icon-btn {font-size:10px;padding:0 5px}.seg {order:2;width:100%;display:flex}.seg button {flex:1;font-size:12px}
+  #sound {width:56px}
   .hang-layout {grid-template-columns:1fr;grid-template-rows:minmax(210px,1fr) 252px}
   .plan-wrap {grid-template-rows:44px minmax(0,1fr) 29px}.plan-status {font-size:10px;padding:7px}
   .panel {border-left:0;border-top:1px solid #374050;display:grid;grid-template-columns:84px 1fr;gap:7px;padding:8px}
@@ -416,7 +424,7 @@ dialog p {font-size:14px;line-height:1.6}
     {name:'Winter window',art:'rs-window',facts:[
       'In late December the sun sets in Oslo (then Christiania) about 3:15 in the afternoon, after about six hours of daylight.',
       'This scene is late at night, after a costume party upstairs.',
-      'Any light through the window is moonlight, snow glow or a street lamp: cool and dim.']},
+      'For this design, imagine cool, dim moonlight or snow glow. A street lamp could also motivate light at the window.']},
     {name:'The hall door',art:'rs-hall',facts:[
       'Act III opens with the door into the hall standing open.',
       "Nora leaves through the hall; the last sound of the play is a door shutting below.",
@@ -428,7 +436,7 @@ dialog p {font-size:14px;line-height:1.6}
   ];
   const BEATS = [
     "Helmer: \"What is this? Not gone to bed? Have you changed your things?\" Nora (in everyday dress): \"Yes, Torvald, I " +
-      "have changed my things now.\" Helmer: \"But what for? So late as this.\" Nora: \"I shall not sleep tonight.\"",
+      "have changed my things now.\" Helmer: \"But what for? ...so late as this.\" Nora: \"I shall not sleep tonight.\"",
     "Nora (looking at her watch): \"It is not so very late. Sit down here, Torvald. You and I have much to say to one " +
       "another.\" (She sits down at one side of the table.) [...] \"Torvald, this is a settling of accounts.\"",
     "Nora: \"We have been married now eight years. Does it not occur to you that this is the first time we two, you and " +
@@ -454,19 +462,20 @@ dialog p {font-size:14px;line-height:1.6}
     {beat:4,label:'She stands: she sees the marriage'}, {beat:7,label:'She is gone'}
   ];
   const L = {
-    welcomeHang:'Drag a light from the shelf onto a pipe. Then drag its ring to aim it.',
-    aimHow:'Drag the ring to where you want the light to land.',
-    gelHow:'Tap Gel to color it. Warm reads like the lamp, cool like the window.',
+    welcomeHang:'Drag a light onto a pipe.',
+    aimHow:'Drag its ring to aim the light.',
+    gelHow:'Choose Gel: warm lamp or cool window.',
     welcomeCues:'Tap a beat, set the faders, then tap Record cue.',
     welcomeRun:'Tap Run scene, and watch the graph under the stage.',
-    researchHow:'Tap a research picture, then choose where the light should seem to come from.',
+    researchHow:'Open a picture. Choose a light source.',
     allTurns:'Every turn in the story has a turn in the light.', dark:"We can't see them.",
+    noTurns:'No story turns are marked. Tap Edit turns to add your reading of the scene.',
     ...Object.fromEntries(Array.from({length:8},(_,i) => ['noTurn'+i,`The story turns at beat ${i+1}, but your light holds still.`]))
   };
   const state = {
     mode:'hang',instruments:[],levels:{41:30,42:20,43:15},motivations:[false,false,false,false],cues:[],
     turns:structuredClone(DEFAULT_TURNS),windowGel:5,selected:null,type:'ers36',beat:0,preview:false,
-    selectedCue:null,fade:2,running:false,elapsed:0,aimed:false,research:0,nextId:1,live:false
+    selectedCue:null,fade:2,running:false,elapsed:0,aimed:false,research:0,nextId:1,live:false,previewChosen:false
   };
   let saveOkay = true;
   try {
@@ -483,6 +492,7 @@ dialog p {font-size:14px;line-height:1.6}
   const V = Curio.voice({
     lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
     welcome:() => {
+      if (document.querySelector('dialog[open]')) return null;
       if (state.mode === 'hang' && !state.instruments.length) return ['welcomeHang',{valid:() => !state.instruments.length}];
       if (state.mode === 'cues' && !state.cues.length) return ['welcomeCues',{valid:() => !state.cues.length}];
       if (state.mode === 'run' && !state.running && !runHasStarted) {
@@ -538,7 +548,9 @@ dialog p {font-size:14px;line-height:1.6}
    }
   function how(key, valid, needs) {
     hint(L[key]);
-    V.how(key,{valid,needs,hint:false});
+    // Completing a physical step advances its instruction immediately; Read retains priority.
+    const advance=!V.heard(key) && (key==='aimHow' || key==='gelHow');
+    V.how(key,{valid,needs,hint:false,now:advance});
   }
   function setMode(mode) {
     if (mode === state.mode && document.querySelector('#'+mode)?.hidden === false) return;
@@ -554,6 +566,7 @@ dialog p {font-size:14px;line-height:1.6}
     }
     if (mode === 'research') hint(L.researchHow);
     if (mode === 'cues') { hint(L.welcomeCues);
+     if (!state.previewChosen) setPreview(true);
      if (state.running || frozenPose) state.levels={...runLevels};
      buildBoard();
      renderCues();
@@ -670,12 +683,27 @@ dialog p {font-size:14px;line-height:1.6}
   const changeBeats = () => stats.map((s,i) => i && (
     Math.abs(s.brightness-stats[i-1].brightness)>=.08 || Math.abs(s.warmth-stats[i-1].warmth)>=.08 ||
     Math.abs(s.focus-stats[i-1].focus)>=.08) ? i : -1).filter(i => i>=0);
+  // Compare two cue looks at the SAME blocking. Walking into a held pool is not a cue change.
+  function designChanges() {
+    if (graphDirty) buildStats();
+    return stats.flatMap((s,beat) => {
+      if (!beat || !state.cues.some(c => c.beat===beat)) return [];
+      const before=lookAt(beat-1),beams=compile(before);
+      const n=beat===7 ? 0 : pointLight(...MARKS[beat][0],beams,before).brightness;
+      const h=pointLight(...MARKS[beat][1],beams,before).brightness;
+      const changed=Math.abs(s.brightness-stats[beat-1].brightness)>=.08 ||
+        Math.abs(s.warmth-stats[beat-1].warmth)>=.08 || Math.abs(s.focus-(n-h))>=.08;
+      return changed ? [beat] : [];
+    });
+  }
   function renderObservations() {
     if (graphDirty) buildStats();
-    const changes=changeBeats();
-    const missing=state.turns.filter(t => !changes.includes(t.beat));
-    let a=changes.length ? `Your light changes at ${changes.length===1 ? 'beat' : 'beats'} ${changes.map(i => i+1).join(', ')}.` : 'Your light holds still.';
-    if (missing.length) a+=` The story also turns at ${missing.map(t => t.beat+1).join(', ')}.`;
+    const changes=designChanges();
+    const missing=state.turns.filter(t => !changes.some(b => Math.abs(b-t.beat)<=1));
+    let a=changes.length ? `Your cue light changes at ${changes.length===1 ? 'beat' : 'beats'} ${changes.map(i => i+1).join(', ')}.` :
+      'Your cue light holds still. Actor movement can still change the face line.';
+    if (missing.length) a+=` No nearby cue change for story turns ${missing.map(t => t.beat+1).join(', ')}.`;
+    if (!state.turns.length) a+=' No story turns marked: use Edit turns to add your reading.';
     const s=stats[state.beat];
     const diff=s.focus;
     let b=state.beat===7 ? 'At beat 8 Nora is offstage; her face brightness counts as 0.' :
@@ -687,7 +715,7 @@ dialog p {font-size:14px;line-height:1.6}
       const dist=Math.hypot(px-source.dx*along,py-source.dy*along);
       return dist<=2 && (look[i.channel]||0)>=30;
     })).map(s => s.name.toLowerCase());
-    let c='The light seems to come from: '+(motivated.join(', ')||'no matched source yet')+'.';
+    let c='Positions near source arrows at level 30 or more: '+(motivated.join(', ')||'none')+'. Check the aim in Preview.';
     if (!state.cues.some(q => q.beat===7)) c+=' No cue at beat 8: the light holds still as she leaves.';
     if (!state.cues.some(q => q.beat===0)) c+=' No cue at beat 1: the scene starts dark.';
     $('observations').replaceChildren(...[a,b,c].map(text => {
@@ -892,6 +920,9 @@ dialog p {font-size:14px;line-height:1.6}
     state.selectedCue=c.id;
     renderCues();
     changed();
+    const recorded=$('cue-'+c.id);
+    recorded.classList.add('just-recorded');
+    recorded.scrollIntoView({block:'nearest',inline:'nearest',behavior:'instant'});
     Curio.tone(520,.09,.05);
     hint(`Cue ${cueNumber(c)} recorded at beat ${c.beat+1}. Tap another beat, change the faders, and record its look.`);
   }
@@ -970,24 +1001,31 @@ dialog p {font-size:14px;line-height:1.6}
     syncBeat();
     dirty=true;
   }
-  function checkDark() {
-    if (state.beat===lastDarkBeat) return;
+  function actorsDark() {
     const beams=compile(runLevels);
-    const n=state.beat===7 ? 0 : pointLight(...MARKS[state.beat][0],beams,runLevels).brightness;
-    const h=pointLight(...MARKS[state.beat][1],beams,runLevels).brightness;
-    if (n<.1 && h<.1) {
+    const pose=actorPose();
+    const n=pose.noraAlpha<=0 ? 0 : pointLight(...pose.marks[0],beams,runLevels).brightness;
+    const h=pointLight(...pose.marks[1],beams,runLevels).brightness;
+    return n<.1 && h<.1;
+  }
+  function checkDark() {
+    if (state.beat===lastDarkBeat || state.running && state.elapsed<1200) return;
+    if (actorsDark()) {
       lastDarkBeat=state.beat;
       const beat=state.beat;
-      V.say('dark',{valid:() => state.beat===beat && state.mode==='run',maxAge:4900,hint:false});
+      V.say('dark',{valid:() => state.beat===beat && state.mode==='run' && actorsDark() &&
+        !document.querySelector('dialog[open]'),maxAge:4900,hint:false});
     }
   }
   function finishRun() {
     stopRun();
     if (graphDirty) buildStats();
-    const changes=changeBeats().filter(beat => state.cues.some(c => c.beat===beat));
+    const changes=designChanges();
     const missed=state.turns.find(t => !changes.some(b => Math.abs(t.beat-b)<=1));
-    const key=missed ? 'noTurn'+missed.beat : 'allTurns';
-    V.say(key,{valid:() => state.mode==='run' && !state.running,hint:false});
+    const key=!state.turns.length ? 'noTurns' : missed ? 'noTurn'+missed.beat : 'allTurns';
+    const beat=state.beat;
+    V.say(key,{valid:() => state.mode==='run' && !state.running && state.beat===beat &&
+      !document.querySelector('dialog[open]'),hint:false});
     hint('Rehearsal complete. Read your observations, then return to Cues or Hang to revise this design.');
   }
   function researchCard(index) {
@@ -1072,12 +1110,16 @@ dialog p {font-size:14px;line-height:1.6}
       return row;
     }));
   }
-  function previewToggle() {
-    state.preview=!state.preview;
+  function setPreview(value) {
+    state.preview=value;
     for (const id of ['preview','cuePreview']) $(id).setAttribute('aria-pressed',state.preview);
     $('hangPreview').hidden=!state.preview;
     $('cueInset').hidden=!state.preview;
     dirty=true;
+  }
+  function previewToggle() {
+    state.previewChosen=true;
+    setPreview(!state.preview);
   }
   function clearDesign() {
     stopRun();
@@ -1101,13 +1143,18 @@ dialog p {font-size:14px;line-height:1.6}
   for (const m of ['research','hang','cues','run']) $('m-'+m).onclick=() => setMode(m);
   $('preview').onclick=previewToggle;
   $('cuePreview').onclick=previewToggle;
-  $('clear').onclick=() => $('clearDialog').showModal();
+  function openDialog(id) {
+    V.hush();
+    $(id).showModal();
+  }
+  for (const dialog of document.querySelectorAll('dialog')) dialog.addEventListener('close',() => V.welcome());
+  $('clear').onclick=() => openDialog('clearDialog');
   $('cancelClear').onclick=() => $('clearDialog').close();
   $('confirmClear').onclick=clearDesign;
-  $('lightNote').onclick=() => $('noteDialog').showModal();
+  $('lightNote').onclick=() => openDialog('noteDialog');
   $('closeNote').onclick=() => $('noteDialog').close();
   $('editTurns').onclick=() => {turnsEditor();
-  $('turnDialog').showModal();
+  openDialog('turnDialog');
   };
   $('addTurn').onclick=() => {state.turns.push({beat:state.beat,label:'My story turn'});
   turnsEditor();
@@ -1202,7 +1249,7 @@ dialog p {font-size:14px;line-height:1.6}
   i.gel=+$('gel').value;
   changed(true);
   syncMetrics();
-    hint('Gel changed. Open Cues to record this color in a look. Gels belong to instruments throughout the scene.');
+    hint('Gel changed for the whole scene. Open Cues to record channel levels; gels belong to instruments, not cues.');
     Curio.tone(440,.06,.03);
     };
   for (const [id,key] of [['gobo','gobo'],['flood','beam'],['rotation','rotation'],['height','z']]) {
@@ -1660,12 +1707,13 @@ dialog p {font-size:14px;line-height:1.6}
     const feet=project(mark[0],mark[1],0);
     const x=ox+feet[0]*ww,y=oy+feet[1]*hh;
     const height=(feet[1]-head[1])*hh;
+    const seated=mark[2]<1.4;
     const light=pointLight(...mark,beams,levels).rgb;
     const color=light.map(v => Math.round(25+v*195));
     ctx.save();
     ctx.globalAlpha=alpha;
     ctx.translate(x,y);
-    ctx.scale(height/100,height/100);
+    ctx.scale(height/(seated ? 77 : 100),height/(seated ? 77 : 100));
     ctx.fillStyle='#0007';
     ctx.beginPath();
     ctx.ellipse(0,1,25,6,0,0,Math.PI*2);
@@ -1677,10 +1725,39 @@ dialog p {font-size:14px;line-height:1.6}
     ctx.strokeStyle=`rgba(${color.join(',')},.8)`;
     ctx.lineWidth=1.3;
     ctx.beginPath();
-    ctx.ellipse(0,-91,7,9,0,0,Math.PI*2);
+    ctx.ellipse(0,seated ? -68 : -91,7,9,0,0,Math.PI*2);
     ctx.fill();
     ctx.stroke();
     ctx.beginPath();
+    if (seated) {
+      // Adult proportions, bent knees and a lap, rather than a scaled-down standing person.
+      ctx.moveTo(-7,-59);
+      ctx.lineTo(-13,-52);
+      ctx.lineTo(-12,-33);
+      ctx.lineTo(-23,-25);
+      ctx.lineTo(which===0 ? -25 : -20,-2);
+      ctx.lineTo(-10,0);
+      ctx.lineTo(-7,-21);
+      ctx.lineTo(9,-21);
+      ctx.lineTo(12,0);
+      ctx.lineTo(24,0);
+      ctx.lineTo(20,-28);
+      ctx.lineTo(11,-35);
+      ctx.lineTo(13,-52);
+      ctx.lineTo(7,-59);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(-11,-50);
+      ctx.lineTo(-18,-31);
+      ctx.lineTo(3,-27);
+      ctx.lineTo(5,-32);
+      ctx.lineTo(-10,-36);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+    } else {
     ctx.moveTo(-7,-82);
     ctx.lineTo(-14,-74);
     if (which===0) {
@@ -1717,6 +1794,7 @@ dialog p {font-size:14px;line-height:1.6}
     ctx.lineTo(7,-60);
     ctx.fill();
     ctx.stroke();
+    }
     if (which===0 && state.beat>=5) {
       ctx.fillStyle=`rgb(${color.map(c => Math.round(c*.7)).join(',')})`;
       ctx.beginPath();
@@ -1730,7 +1808,7 @@ dialog p {font-size:14px;line-height:1.6}
       ctx.fillRect(-14,-102,28,4);
       ctx.fillRect(-8,-109,16,9);
     }
-    if (which===1) {ctx.strokeStyle='#d3d6d05a';
+    if (which===1 && !seated) {ctx.strokeStyle='#d3d6d05a';
     ctx.beginPath();
     ctx.moveTo(-7,-81);
     ctx.lineTo(0,-64);
@@ -1773,7 +1851,7 @@ dialog p {font-size:14px;line-height:1.6}
     ctx.filter='blur(2px)';
     ctx.drawImage(roomBuffer,ox-2,oy-2,ww+4,hh+4);
     ctx.restore();
-    const practicals=[{ch:41,u:.5,v:.49,r:.08,color:'#ffd79b'}, {ch:42,u:.918,v:.566,r:.09,color:'#ff9e56'},
+    const practicals=[{ch:41,u:.5,v:.633,r:.08,color:'#ffd79b'}, {ch:42,u:.918,v:.553,r:.09,color:'#ff9e56'},
       {ch:43,u:.08,v:.30,r:.18,color:GELS[state.windowGel].c}];
     ctx.save();
     ctx.globalCompositeOperation='screen';
@@ -1969,7 +2047,7 @@ dialog p {font-size:14px;line-height:1.6}
     geometry,compile,pointLight,lookAt,createInstrument,recordCue,updateCue,jump,startRun,stopRun,finishRun,actorPose,enterBeat,
     buildStats,get stats() {if (graphDirty) buildStats();
     return stats;
-    },changeBeats,renderObservations,changed,save,
+    },changeBeats,designChanges,actorsDark,renderObservations,changed,save,
     get runLevels() {return runLevels;
     },get planTransform() {return planTransform;
     },clearDesign,

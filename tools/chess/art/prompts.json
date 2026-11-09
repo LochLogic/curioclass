@@ -1,0 +1,50 @@
+{
+  "house_style": "Exquisite handmade paper theatre, richly painted gouache, warm left spotlight, layered card edges, crimson velvet and antique gold, deep plum shadows, charming physical miniature. No text or logos.",
+  "assets": [
+    {
+      "name": "stage",
+      "prompt": "Front row view of a spectacular miniature paper theatre. Deep crimson velvet wing curtains, scalloped valance, ornate antique gold proscenium, dark plum empty central space, wooden stage floor below. Center must remain empty for an exact chessboard overlay. Warm left spotlight and atmospheric dust. No pieces, text or people.",
+      "width": 1600,
+      "quality": 84,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pieces",
+      "prompt": "Precisely aligned sprite sheet, 6 columns and 2 rows, twelve separate classic chess paper cutouts. Columns pawn, rook, knight, bishop, queen, king. Top row ivory with dark ink outline, bottom row deep plum ink with ivory outline. Full silhouette each on paper foot, warm left light, separated evenly, transparent background. Classic unmistakable shapes, bishop slit, king cross, queen crown, knight horse. No letters.",
+      "width": 1536,
+      "quality": 88,
+      "cutout": true,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "puppets",
+      "prompt": "Sprite sheet of seven charming animal stick puppets, two poses each, regular grid 7 columns by 2 rows. Columns mouse stagehand cap, rabbit bow tie, fox cape, owl spectacles, badger waistcoat watch, raven magician hat, lion director beret and long scarf. First row waiting, second row thoughtful paw or wing at chin. Layered painted card, full portrait on stick, transparent background, no text.",
+      "width": 1792,
+      "quality": 84,
+      "cutout": true,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "paper",
+      "prompt": "Antique ivory paper theatre programme blank sheet, front view, rich tactile paper grain, delicate dark red and antique gold ornamental border, large blank central field. No letters, text, numbers or symbols.",
+      "width": 800,
+      "quality": 80,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "board",
+      "prompt": "Straight overhead perfectly square flat chessboard, exact 8 by 8 squares, alternating warm ivory paper and walnut brown paper, bottom right light, narrow antique gold and dark wood frame, subtle gouache grain, warm left illumination, no perspective, no pieces, coordinates or text.",
+      "width": 1200,
+      "quality": 88,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "cover",
+      "prompt": "Classic inanimate Staunton ivory knight and deep plum king with a plain cross on a beautiful crimson and gold paper theatre stage. Abstract chess tokens, no human anatomy. Warm side spotlight, layered gouache card, no text.",
+      "width": 1200,
+      "quality": 86,
+      "drawn_by": "codex",
+      "redraw_note": "First cover turned the king into a person. Repainted as the classic inanimate silhouette."
+    }
+  ]
+}

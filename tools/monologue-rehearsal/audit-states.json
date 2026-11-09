@@ -165,8 +165,28 @@
           "click": "[data-want='0']"
         },
         {
+          "js": "const f=document.querySelector('#feeling'); f.value='curious'; f.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
           "click": "#save-performance"
         }
+      ],
+      "keep": [
+        "#result-summary",
+        "#hint"
+      ]
+    },
+    {
+      "name": "broad-flags",
+      "steps": [
+        {
+          "js": "__tool.data.works={};__tool.data.performances=[];document.querySelector('#piece-0').click();document.querySelector('#choose-piece').click();document.querySelector('#tab-score').click();for(const n of [30,62,110,150])document.querySelector('#gap-'+n).click();document.querySelector('#m-perform').click();document.querySelector('#hand').click();for(let i=0;i<207;i+=7)document.querySelector('[data-flag=\"'+i+'\"]').click();document.querySelector('#done').click();document.querySelector('[data-want=\"0\"]').click();const f=document.querySelector('#feeling');f.value='random';f.dispatchEvent(new Event('input'));document.querySelector('#save-performance').click();"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
       ],
       "keep": [
         "#result-summary",

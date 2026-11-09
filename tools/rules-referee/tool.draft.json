@@ -1,0 +1,24 @@
+{
+  "id": "rules-referee",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Twelve close calls. Four locked lockers. Can you find your way onto the field?",
+  "outcome": "Use replay evidence to apply rules in soccer, basketball, volleyball and softball",
+  "driver": "students or teacher",
+  "minutes": "15-25",
+  "modes": [
+    "Escape",
+    "Replay booth"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "IFAB Laws of the Game 2026/27, Laws 11 and 17",
+    "FIBA Official Basketball Rules 2026, Articles 24, 25 and 34",
+    "FIVB Official Volleyball Rules 2025-2028, Rules 8.3, 9.1 and 11.3.1",
+    "WBSC Official Rules of Softball Fast Pitch 2026-2029, Rules 5.1.16 and 5.5.2",
+    "SHAPE America National Physical Education Standards 2024",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

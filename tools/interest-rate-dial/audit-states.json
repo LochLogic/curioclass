@@ -1,0 +1,311 @@
+{
+  "keep": [
+    "#dial",
+    "#abe .card",
+    "#keisha .card",
+    "#luis .card",
+    "#priya .card",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "minimum-rate",
+      "steps": [
+        {
+          "click": "#minus",
+          "times": 6,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#pin"
+      ]
+    },
+    {
+      "name": "maximum-rate",
+      "steps": [
+        {
+          "click": "#plus",
+          "times": 8,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#pin"
+      ]
+    },
+    {
+      "name": "signed-high",
+      "steps": [
+        {
+          "click": "#sign"
+        },
+        {
+          "click": "#plus",
+          "times": 6,
+          "gap": 0.15
+        }
+      ]
+    },
+    {
+      "name": "hundred-plan",
+      "steps": [
+        {
+          "click": "#hundred"
+        }
+      ]
+    },
+    {
+      "name": "pinned-low",
+      "steps": [
+        {
+          "click": "#minus",
+          "times": 6,
+          "gap": 0.1
+        },
+        {
+          "click": "#pin"
+        },
+        {
+          "click": "#plus",
+          "times": 10,
+          "gap": 0.1
+        }
+      ]
+    },
+    {
+      "name": "four-picks",
+      "steps": [
+        {
+          "click": "#m-predict"
+        },
+        {
+          "click": "#abe-picks button:nth-child(1)"
+        },
+        {
+          "click": "#keisha-picks button:nth-child(2)"
+        },
+        {
+          "click": "#luis-picks button:nth-child(2)"
+        },
+        {
+          "click": "#priya-picks button:nth-child(2)"
+        }
+      ],
+      "keep": [
+        "#turn"
+      ]
+    },
+    {
+      "name": "reveal",
+      "steps": [
+        {
+          "click": "#m-predict"
+        },
+        {
+          "click": "#abe-picks button:nth-child(1)"
+        },
+        {
+          "click": "#keisha-picks button:nth-child(2)"
+        },
+        {
+          "click": "#luis-picks button:nth-child(2)"
+        },
+        {
+          "click": "#priya-picks button:nth-child(2)"
+        },
+        {
+          "click": "#turn"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "keep": [
+        "#next"
+      ]
+    },
+    {
+      "name": "context",
+      "steps": [
+        {
+          "click": "#who"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "1920x1080"
+      ],
+      "keep": [
+        "#info"
+      ]
+    },
+    {
+      "name": "more",
+      "steps": [
+        {
+          "click": "#more"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "375x812",
+        "760x900"
+      ],
+      "keep": [
+        "#info"
+      ]
+    },
+    {
+      "name": "end-recap",
+      "steps": [
+        {
+          "click": "#m-predict"
+        },
+        {
+          "click": "#abe-picks button:nth-child(1)"
+        },
+        {
+          "click": "#keisha-picks button:nth-child(1)"
+        },
+        {
+          "click": "#luis-picks button:nth-child(1)"
+        },
+        {
+          "click": "#priya-picks button:nth-child(1)"
+        },
+        {
+          "click": "#turn"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#abe-picks button:nth-child(1)"
+        },
+        {
+          "click": "#keisha-picks button:nth-child(1)"
+        },
+        {
+          "click": "#luis-picks button:nth-child(1)"
+        },
+        {
+          "click": "#priya-picks button:nth-child(1)"
+        },
+        {
+          "click": "#turn"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#abe-picks button:nth-child(1)"
+        },
+        {
+          "click": "#keisha-picks button:nth-child(1)"
+        },
+        {
+          "click": "#luis-picks button:nth-child(1)"
+        },
+        {
+          "click": "#priya-picks button:nth-child(1)"
+        },
+        {
+          "click": "#turn"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#abe-picks button:nth-child(1)"
+        },
+        {
+          "click": "#keisha-picks button:nth-child(1)"
+        },
+        {
+          "click": "#luis-picks button:nth-child(1)"
+        },
+        {
+          "click": "#priya-picks button:nth-child(1)"
+        },
+        {
+          "click": "#turn"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#abe-picks button:nth-child(1)"
+        },
+        {
+          "click": "#keisha-picks button:nth-child(1)"
+        },
+        {
+          "click": "#luis-picks button:nth-child(1)"
+        },
+        {
+          "click": "#priya-picks button:nth-child(1)"
+        },
+        {
+          "click": "#turn"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#abe-picks button:nth-child(1)"
+        },
+        {
+          "click": "#keisha-picks button:nth-child(1)"
+        },
+        {
+          "click": "#luis-picks button:nth-child(1)"
+        },
+        {
+          "click": "#priya-picks button:nth-child(1)"
+        },
+        {
+          "click": "#turn"
+        },
+        {
+          "wait": 1500
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#ending"
+      ]
+    },
+    {
+      "name": "wrong-reveal",
+      "steps": [
+        {
+          "click": "#m-predict"
+        },
+        {
+          "click": "#abe-picks button:nth-child(2)"
+        },
+        {
+          "click": "#keisha-picks button:nth-child(1)"
+        },
+        {
+          "click": "#luis-picks button:nth-child(1)"
+        },
+        {
+          "click": "#priya-picks button:nth-child(1)"
+        },
+        {
+          "click": "#turn"
+        },
+        {
+          "wait": 1500
+        }
+      ],
+      "keep": [
+        "#next"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "house_style": "Refined realistic editorial painting for a high school financial document explorer. Warm directional light from upper left, tactile natural materials, rich precise detail, restrained apricot highlights. No text, letters, numerals, logos or people.",
+  "assets": [
+    {
+      "name": "pd-desk",
+      "prompt": "Full-frame overhead dark walnut desk texture with fine flowing wood grain. A black fountain pen at the far upper right edge and a subtle coffee ring at the far lower left edge. Warm low desk lamp light from upper left. Spacious clear center for a large document overlay. The surface fills the frame.",
+      "aspect": "16:10",
+      "width": 1500,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pd-marker",
+      "prompt": "One chunky apricot-orange highlighter, cap removed, charcoal grip and broad dark felt chisel nib at the left, translucent blank plastic barrel with molding seams and warm upper-left highlights. Warm realistic editorial painting, top-down almost horizontal with slight upward-right angle. Entire object visible on flat pure magenta #FF00FF, clean edges without cast shadow, no text, numbers, logos, separate cap or other objects.",
+      "aspect": "4:1",
+      "width": 240,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "key": "magenta",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "pd-grocery",
+      "prompt": "An empty grocery store checkout lane with a dark conveyor belt, card reader, checkout counter, warm wood and rows of colorful groceries softly visible behind it. Inviting small realistic editorial painting, bright even light, all signs and packages blank.",
+      "aspect": "4:3",
+      "width": 320,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pd-warehouse",
+      "prompt": "An empty warehouse aisle with tall industrial shelves of cardboard boxes, a yellow pallet jack in the foreground, polished concrete and warm skylight. Small realistic editorial painting, bright even light, all surfaces and boxes blank.",
+      "aspect": "4:3",
+      "width": 320,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pd-studio",
+      "prompt": "An empty small contemporary design studio desk with two monitors showing plain colored panels, a blank sketchbook, a leafy plant, a keyboard and a task lamp. Warm wood, softly lit blue wall and apricot accents. Small realistic editorial painting, bright even light, all surfaces blank.",
+      "aspect": "4:3",
+      "width": 320,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

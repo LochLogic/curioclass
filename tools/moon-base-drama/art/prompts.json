@@ -27,11 +27,12 @@
     },
     {
       "name": "ice-crater",
-      "prompt": "Rim of a deep dark lunar crater, its inside in black shadow with patches of white ice glinting, low sunlight on rim, black sky. Broad empty foreground ledge for a small rover, dramatic layered lunar rocks.",
+      "prompt": "Deep polar lunar crater with warm low sunlight grazing only the rim and foreground ledge. Entire floor and lower walls in permanent blue-black shadow. Three patchy rough pale blue ice deposits on the shadowed floor and lower walls, visible by dim reflected Earthlight, much darker than the sunlit rock. Sunlit rocks are ice-free. Black sky and blue Earth, empty foreground ledge for an overlaid rover. Preserve detailed layered grey lunar rock, warm gouache and colored-pencil science-book style. No people, text, letters, numbers or logos.",
       "aspect": "16:10",
       "width": 1280,
       "quality": 72,
-      "drawn_by": "codex"
+      "drawn_by": "codex",
+      "review_redraw": "2026-11-05: shadowed polar ice; built-in image tool; one targeted revision after redraw"
     },
     {
       "name": "airlock",

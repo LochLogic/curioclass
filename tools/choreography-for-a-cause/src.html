@@ -5,13 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Choreography for a Cause · Curio Class</title>
 <meta name="description" content="Turn research into movement, compose a dance and revise from model viewers. Grades 9 to 12. Works offline.">
+<link rel="icon" href="data:,">
 <!--
 Choreography for a Cause, Curio Class. NCAS DA:Cr1, Cr2, Cr3, Cn10.
 Facts: Falchi et al. 2016; USDA ERS EIB-121; US Bureau of Reclamation; Colorado River Compact III(a).
 Voice quotations are invented and labeled. Motif rules and audience model are original educational models.
 Illustrations generated with OpenAI gpt-image, edited for Curio Class.
 Content CC BY 4.0, code MIT. No network requests. Local storage key curio-choreo-cause.
-The owner's final art direction is painted dancers. Performer adapter below isolates the temporary kit figure.
+Painted cast: three neutral source poses, articulated by the shared dance engine through a replaceable adapter.
 -->
 <link rel="stylesheet" href="kit:curio">
 <style>
@@ -113,7 +114,7 @@ textarea { resize:vertical; min-height:60px; }
 .motif-list { display:flex; flex-wrap:wrap; gap:6px; }
 .motif-chip { text-align:left; font-size:12px; padding:7px; flex:1 0 90px; overflow-wrap:anywhere; }
 .motif-chip small { display:block; font-size:10px; color:var(--muted); margin-top:3px; }
-.motif-chip.old { filter:grayscale(1); opacity:.55; }
+.motif-chip.old { filter:grayscale(1); opacity:1; background:#f0eef1; border-style:dashed; }
 .side-head .motif-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); }
 .side-head .motif-chip { min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
 .side-head h3 { font-size:11px; color:var(--muted); margin:2px 0 0; font-weight:600; }
@@ -124,7 +125,7 @@ textarea { resize:vertical; min-height:60px; }
 .score-top label { display:flex; align-items:center; gap:7px; flex:1; }
 .score-top select { width:auto; margin:0; }
 .strip { display:flex; gap:7px; overflow-x:auto; padding:3px 2px 6px; min-width:0; }
-.slot { text-align:left; border:1px solid #bcaecb; border-radius:6px; min-width:90px; flex:1; padding:7px 9px; background:#fff; }
+.slot { text-align:left; border:1px solid #bcaecb; border-radius:6px; min-width:44px; flex:1; padding:7px 9px; background:#fff; }
 .slot b { display:block; color:var(--brand); font:normal 24px Georgia,serif; }
 .slot span { display:block; font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:145px; }
 .slot small { display:block; font-size:10px; color:var(--muted); margin-top:4px; }
@@ -150,9 +151,17 @@ textarea { resize:vertical; min-height:60px; }
 .viewer-card .craft { font:12px/1.4 'Segoe UI',sans-serif; border-top:1px solid var(--line); padding-top:7px; color:#70360e; }
 .viewer-card.pending { background:#f1edf5; }
 .viewer-bottom { grid-column:1/-1; }
-.version-list { display:grid; gap:7px; }
-.version { text-align:left; font-size:12px; }
-.version small { display:block; color:var(--muted); margin-top:4px; font-size:11px; }
+.version-desk { flex:none; padding:10px 12px; border-bottom:1px solid var(--line); }
+.version-desk h3 { font-size:11px; color:var(--muted); margin:0 0 6px; text-transform:uppercase; }
+.version-list { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px; }
+.version { text-align:left; font-size:12px; padding:4px 6px; }
+.version > span { display:flex; justify-content:space-between; gap:3px; }
+.version b { font-size:11px; }
+.version small { display:block; color:var(--muted); margin-top:2px; font-size:10px; white-space:nowrap;
+  overflow:hidden; text-overflow:ellipsis; }
+.version-empty { grid-column:1/-1; margin:0; }
+.version-key { font:10px 'Segoe UI',sans-serif; letter-spacing:0; text-transform:none; }
+.viewer-work .side-head .eyebrow { display:flex; justify-content:space-between; gap:5px; flex-wrap:wrap; }
 .danger { color:#9a3412; background:#fff; }
 dialog { border:1px solid #ac9bbb; border-radius:12px; padding:22px; width:min(450px,92vw); background:#fffdf9; }
 dialog::backdrop { background:#26173488; }
@@ -213,7 +222,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   .stage-caption b { font-size:19px; } .stage-caption span { display:none; } .try-line { font-size:10px; }
   .score-top { flex-wrap:wrap; gap:4px; margin:0; } .score-top label { font-size:10px; } .score-top select { width:110px; font-size:11px; }
   .score-desk { padding:5px; } .score-top .transport { flex:1; } .score-top button { font-size:11px; padding:5px; }
-  .slot { min-width:85px; padding:4px 6px; } .slot b { font-size:17px; } .slot span { font-size:10px; } .slot small { display:none; }
+  .slot { min-width:44px; padding:4px 6px; } .slot b { font-size:17px; } .slot span { font-size:10px; } .slot small { display:none; }
   .viewer-work { grid-template-rows:minmax(280px,1fr) minmax(120px,.5fr); }
   .viewer-theatre { grid-template-columns:105px 1fr 105px; gap:4px; }
   .viewer-summary h2 { font-size:17px; } .viewer-summary p { font-size:10px; } .viewer-summary button { font-size:11px; padding:4px; }
@@ -231,6 +240,54 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   #motif-list { grid-column:1/-1; }
   .side-head .motif-chip { padding:4px; font-size:11px; min-height:44px; }
   .side-head .motif-chip small { display:none; }
+}
+
+/* Every short editor choice is in a named page instead of below a scroll edge. */
+.editor-switch { display:flex; align-items:center; gap:8px; font-size:12px; }
+.editor-switch select { margin:0; flex:1; min-width:0; }
+.editor-pages { overflow:hidden; }
+.editor-pages h3 { margin:0 0 5px; }
+.editor-pages .motif-list { gap:4px; }
+.editor-pages .motif-chip { flex:1 0 42%; }
+.data-chart { display:grid; gap:3px; margin:5px 0; font-size:10px; color:var(--muted); }
+.data-chart i { display:block; height:4px; background:#e2e8f1; border-radius:2px; }
+.data-chart b { display:block; height:4px; background:#2c6fbb; border-radius:2px; }
+.data-chart i:last-child b { background:#6b2fb3; }
+.viewer-card .craft { border-left:3px solid #b76c27; padding-left:8px; background:#fff2dd; }
+@media (max-height:650px) and (min-width:600px), (max-width:599px) {
+  #motifs .side-head,#structure .side-head { display:flex; flex-direction:column; align-items:stretch; padding:6px; gap:4px; }
+  #motifs .side-head { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr) 48px; }
+  #motifs .editor-switch { grid-column:1/-1; }
+  #structure .side-head .row { gap:4px; }
+  #structure .side-head button { padding:3px; font-size:11px; }
+  #save-status { display:none; }
+  .editor-pages { padding:6px; }
+  .editor-pages .controls { gap:4px; }
+  .editor-pages label { font-size:10px; }
+  .editor-pages label select,.editor-pages label input,.editor-pages label textarea { margin-top:2px; }
+  .editor-pages textarea { min-height:44px; height:44px; resize:none; }
+  #motif-controls label.span2 { grid-column:auto; }
+  .editor-pages .motif-chip { min-height:44px; padding:4px; font-size:11px; }
+  .editor-pages .motif-chip small { display:none; }
+  .version-desk { padding:6px; }
+  .version-desk h3 { display:none; }
+  .version-list { grid-template-columns:repeat(4,minmax(0,1fr)); }
+  .version { padding:3px; font-size:11px; }
+  .version b { font-size:10px; }
+  #structure-form-page .small { margin:5px 0; font-size:10px; }
+  #structure-form-page .warning { padding:3px; }
+}
+@media (max-width:599px) {
+  .footer { display:grid; gap:0; }
+  .privacy { display:block; max-width:none; font-size:10px; }
+  .privacy br { display:none; }
+  .viewer-work { grid-template-rows:minmax(280px,1fr) 230px; }
+}
+@media (min-width:600px) and (max-width:1050px) {
+  .viewer-work { grid-template-columns:minmax(0,1fr) 220px; }
+  .viewer-theatre { grid-template-columns:105px minmax(0,1fr) 105px; }
+  .viewer-work .side-head .row { min-width:0; flex-direction:column; align-items:stretch; gap:4px; }
+  .viewer-work .side-head .row button { width:100%; font-size:11px; padding:5px; }
 }
 </style>
 </head>
@@ -274,11 +331,15 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       <div class="side-head"><span class="eyebrow">Movement / 02</span><h2 id="card-title">Most of us</h2>
         <div class="small" id="proposal"></div><button id="make" class="primary">Make a motif</button>
         <div class="transport"><button id="playMotif" class="primary">▶ Play motif</button><button id="stopMotif">■ Stop</button></div>
-        <h3>Your motifs <span id="motif-count"></span></h3><div id="motif-list" class="motif-list"></div>
+        <label class="editor-switch">Edit <select id="motif-page" aria-label="Edit motif section">
+          <option value="library">Your motifs</option><option value="shape">Shape</option>
+          <option value="space">Space</option><option value="meaning">Meaning</option></select></label>
       </div>
-      <div class="side-scroll">
+      <div class="side-scroll editor-pages">
+        <div id="motif-library-page"><h3>Your motifs <span id="motif-count"></span></h3>
+          <div id="motif-list" class="motif-list"></div></div>
         <div id="motif-controls" class="controls"></div>
-        <button id="deleteMotif" class="danger" style="margin-top:8px">Delete motif</button>
+        <button id="deleteMotif" class="danger" style="margin-top:4px">Delete motif</button>
       </div>
     </aside>
   </section>
@@ -296,23 +357,26 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     <aside class="side">
       <div class="side-head"><span class="eyebrow">Composition / 03</span><h2 id="slot-title">Slot A</h2>
         <div class="small">Select a slot, then tap a motif. Or drag a motif into the strip.</div>
-        <div class="row"><button id="saveVersion" class="primary grow">Save version</button><span id="save-status" class="small">Unsaved</span></div>
-        <h3>Place a motif</h3><div id="structure-library" class="motif-list"></div>
+        <div class="row"><button id="saveVersion" class="primary grow">Save version</button>
+          <button id="emptySlot">Empty slot</button></div><span id="save-status" class="small">Unsaved</span>
+        <label class="editor-switch">Edit <select id="structure-page" aria-label="Edit structure section">
+          <option value="library">Place a motif</option><option value="slot">Slot settings</option>
+          <option value="form">Form checks</option></select></label>
       </div>
-      <div class="side-scroll">
+      <div class="side-scroll editor-pages">
+        <div id="structure-library-page"><div id="structure-library" class="motif-list"></div></div>
         <div id="slot-controls" class="controls"></div>
-        <div class="row" id="narrative-controls" hidden><button id="removeSlot">− Slot</button><button id="addSlot">+ Slot</button></div>
+        <div id="structure-form-page"><div class="row" id="narrative-controls" hidden><button id="removeSlot">− Slot</button><button id="addSlot">+ Slot</button></div>
         <div id="variation-warning" class="warning" hidden>Variations should differ. <button id="fix">Fix</button></div>
-        <button id="emptySlot" style="margin-top:8px">Empty this slot</button>
         <p class="small" id="duration"></p>
-        <p class="small">Lantern · original Curio Class groove · 100 beats a minute · four count-in clicks.</p>
+        <p class="small">Lantern · original Curio Class groove · 100 beats a minute · four count-in clicks.</p></div>
       </div>
     </aside>
   </section>
   <section id="viewers" class="screen viewer-work" hidden aria-label="Viewer readings">
     <div class="viewer-theatre">
       <div class="viewer-summary"><div><h2 id="viewer-score">Let the movement speak.</h2>
-        <p>These viewers are a model of how audiences read dance, not real people.</p></div>
+        <p id="model-limit">Model viewers read fixed source-card cues, not artistic quality. Editing a motif keeps its source meaning.</p></div>
         <div class="transport"><button id="showViewers" class="primary">Show viewers</button><button id="stopViewers">■ Stop</button></div>
       </div>
       <div id="viewer-mount"></div>
@@ -322,20 +386,21 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       <article class="viewer-card pending" id="viewer-3"></article>
       <div class="viewer-bottom"><button id="addViewer">Add a real viewer</button><span class="small" id="real-summary"></span></div>
     </div>
-    <aside class="side"><div class="side-head"><span class="eyebrow">Revision / 04</span>
-      <button id="backStructure" class="primary">← Back to Structure</button></div>
-      <div class="side-scroll"><h3>Versions on this device</h3><div id="versions" class="version-list"></div>
-        <div id="real-cards"></div><p class="small">Saved versions and viewer notes never leave this device.</p>
-        <button id="clearAll" class="danger">Clear all</button></div>
+    <aside class="side"><div class="side-head"><span class="eyebrow">Revision / 04<small class="version-key">? = not shown</small></span>
+      <div class="row"><button id="backStructure" class="primary grow">← Back to Structure</button>
+        <button id="clearAll" class="danger">Clear all</button></div></div>
+      <div class="version-desk"><h3>Versions on this device</h3><div id="versions" class="version-list"></div></div>
+      <div class="side-scroll"><div id="real-cards"></div>
+        <p class="small">Saved versions and viewer notes never leave this device.</p></div>
     </aside>
   </section>
 </main>
-<footer class="footer"><p id="hint" class="hint"></p><span class="privacy">Saved on this device only.<br>Nothing is uploaded.</span></footer>
+<footer class="footer"><p id="hint" class="hint"></p><span class="privacy">Saved on this device only.<br> Nothing is uploaded.</span></footer>
 <dialog id="confirmDialog"><h2 id="confirm-title">Change issue?</h2><p id="confirm-text"></p>
   <div class="row"><button id="cancel">Cancel</button><button id="confirm" class="primary">Continue</button></div></dialog>
 <dialog id="realDialog"><h2>A classmate's reading</h2><p>Watch the dance, then type your own reading. These notes stay on this device.</p>
-  <label>I think it is about<input id="real-about" aria-label="I think it is about" maxlength="100"></label>
-  <label>I remember<input id="real-remember" aria-label="I remember" maxlength="100"></label>
+  <label>I think it is about<input id="real-about" aria-label="I think it is about" maxlength="100" required></label>
+  <label>I remember<input id="real-remember" aria-label="I remember" maxlength="100" required></label>
   <div class="row"><button id="real-cancel">Cancel</button><button id="real-save" class="primary">Add viewer card</button></div></dialog>
 <div class="stage-wrap" id="stage-wrap" hidden>
   <svg id="dance-svg" role="img" aria-label="Three contemporary dancers on a rehearsal floor"></svg>
@@ -376,10 +441,10 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     ['L-P2','Starfield','A dark desert sky full of stars.','Painted stimulus, made for this tool',
       'Three still star shapes; one breaks the stillness each two counts.','star-jump reach-up arabesque releve','sharp',
       'high','high','none',3,'stars','the stars','cc-stars'],
-    ['F-D1','One in three','In 2010, 31% of the food at US stores and homes went uneaten.','USDA ERS EIB-121 (2014)',
+    ['F-D1','One in three','In 2010, 31% of US food available at the retail and consumer levels went uneaten.','USDA ERS EIB-121 (2014)',
       'Three move together; one drops out to the floor on count 5.','step plie sit lie','collapse','middle','low','none',3,
       'loss','losing something'],
-    ['F-D2','Too much','That was 133 billion pounds of food, worth $161.6 billion.','USDA ERS EIB-121 (2014)',
+    ['F-D2','Too much','In 2010, that loss was 133 billion pounds of food, worth $161.6 billion.','USDA ERS EIB-121 (2014)',
       'The motif grows each two counts: bigger, wider, heavier.','plie lunge arms-wide stamp','sharp','middle','low','none',2,
       'heaviness','something heavy piling up'],
     ['F-V','Scrape','“Every day I scrape full trays into the bin. Whole apples. Whole sandwiches.”',
@@ -394,7 +459,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     ['R-D1','Many, one source','About 40 million people rely on Colorado River water.','US Bureau of Reclamation',
       'Three dancers travel in to meet at the center.','step point arms-wide plie','smooth','middle','middle','line',3,
       'sharing','sharing something'],
-    ['R-D2','Split','A 1922 agreement split 15 million acre-feet a year: 7.5 million upstream, 7.5 million downstream.',
+    ['R-D2','Split','The 1922 Compact allocated use of 15 million acre-feet a year: 7.5 million each to the Upper and Lower Basins.',
       'Colorado River Compact (1922), III(a)','Two dancers mirror each other and pull apart.',
       'lunge arms-wide twist stand','sharp','middle','middle','line',2,'dividing','splitting something up'],
     ['R-V','Waiting','“My grandfather never once worried about the water. I check the reports every week.”',
@@ -411,14 +476,17 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     id:r[0], issue:r[0][0], kind:r[0][2], name:r[1], text:r[2], source:r[3], rule:r[4], poses:r[5].split(' '),
     dynamic:r[6], start:r[7], end:r[8], path:r[9], dancers:r[10], word:r[11], reading:r[12], image:r[13],
   }]));
+  let motifPage = 'library';
+  let structurePage = 'library';
   const L = {
     welcomeFile:'Open a folder and read the five cards. Then tap Choose this issue.',
     motifHow:'Tap a card, then tap Make a motif. Watch, then stand up and try it.',
-    tuneHow:'Change the poses, the dynamic or the pathway until it feels like the card.',
-    structHow:'Pick a form, then drag a motif onto each slot.',
+    tuneHow:'Use Edit to tune Shape, Space and Meaning. Tap Play motif to watch.',
+    structHow:'Pick a form. Select a slot, then tap a motif.',
+    needMotifHow:'Open Motifs and tap Make a motif first.',
     playHow:'Tap Play dance to watch the whole piece.',
-    viewersHow:'Tap Show viewers. Four people will watch and say what they think it is about.',
-    allNamed:'All four viewers named your issue.',
+    viewersHow:'Tap Show viewers for four model readings.',
+    allNamed:'All four model viewers named your issue.',
     noneNamed:'Nobody named the issue yet. Try putting a picture motif where they will see it most.',
   };
   const state = {
@@ -445,6 +513,9 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       if (state.playing) return null;
       if (state.mode === 'file') return ['welcomeFile',{valid:() => state.mode === 'file'}];
       if (state.mode === 'motifs' && !activeMotifs().length) return ['motifHow',{valid:() => !activeMotifs().length}];
+      if (state.mode === 'structure' && !activeMotifs().length) {
+        return ['needMotifHow',{valid:() => !activeMotifs().length,needs:'#m-motifs'}];
+      }
       if (state.mode === 'structure' && !filled().length) return ['structHow',{valid:() => !filled().length}];
       if (state.mode === 'viewers' && !state.results) return ['viewersHow',{valid:() => !state.playing}];
       return null;
@@ -457,13 +528,14 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     state.dirty = true;
     state.results = null;
     state.revealed = [];
+    state.real = [];
     $('save-status').textContent = 'Unsaved';
     persist();
   }
   function persist() {
     try {
-      const {playing,currentSlot,revealed,...saved} = state;
-      localStorage.setItem('curio-choreo-cause',JSON.stringify({schema:1,...saved}));
+      const {playing,currentSlot,revealed,schema,...saved} = state;
+      localStorage.setItem('curio-choreo-cause',JSON.stringify({schema:2,...saved}));
     } catch {
       hint('This browser could not save. Keep this tab open while you work.');
     }
@@ -471,10 +543,15 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   function restore() {
     try {
       const saved = JSON.parse(localStorage.getItem('curio-choreo-cause'));
-      if (!saved || saved.schema !== 1 || !Array.isArray(saved.motifs) || !Array.isArray(saved.slots)) return;
+      if (!saved || ![1,2].includes(saved.schema) || !Array.isArray(saved.motifs) || !Array.isArray(saved.slots)) return;
       Object.assign(state,saved,{mode:'file',playing:false,currentSlot:-1,revealed:[]});
       state.versions = (state.versions || []).slice(0,8);
       state.motifs = state.motifs.slice(0,6);
+      if (saved.schema === 1) {
+        // The old writer computed readings even when no audience replay happened.
+        state.results = null;
+        state.versions.forEach(version => version.results = []);
+      }
       if (state.results) state.revealed = [0,1,2,3];
     } catch { /* A fresh workspace is usable when storage is blocked or old data is damaged. */ }
   }
@@ -509,15 +586,16 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     }
     if (mode === 'file') hint(L.welcomeFile);
     if (mode === 'motifs') hint(activeMotifs().length ? 'Select a motif to edit it, or tap a card and Make a motif.' : L.motifHow);
-    if (mode === 'structure') hint(filled().length >= 3 ? L.playHow : L.structHow);
+    if (mode === 'structure') hint(!activeMotifs().length ? L.needMotifHow : filled().length >= 3 ? L.playHow : L.structHow);
     if (mode === 'viewers') hint(L.viewersHow);
     V.welcome();
     persist();
   }
   function chart(card) {
     if (card.id === 'R-D1') {
-      return `<svg class="chart" viewBox="0 0 400 24" role="img" aria-label="About forty dots, each for a million people">
-        ${Array.from({length:40},(_,i) => `<circle cx="${5+i*10}" cy="12" r="3.5" fill="#2c6fbb"/>`).join('')}</svg>`;
+      return `<div class="data-chart"><span>Each dot ≈ 1 million people</span>
+        <svg class="chart" viewBox="0 0 400 24" role="img" aria-label="Forty dots, each for about a million people">
+        ${Array.from({length:40},(_,i) => `<circle cx="${5+i*10}" cy="12" r="3.5" fill="#2c6fbb"/>`).join('')}</svg></div>`;
     }
     if (card.id === 'F-D2') {
       return `<div class="small" style="border-left:4px solid #2c6fbb;padding-left:7px;margin-top:4px">
@@ -532,12 +610,9 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       'R-D2':['Upper, 7.5 million acre-feet',50,'Lower, 7.5 million acre-feet',50],
     };
     const d = labels[card.id];
-    return `<svg class="chart" viewBox="0 0 400 42" role="img" aria-label="${esc(d[0] + '; ' + d[2])}">
-      <rect x="0" y="4" width="400" height="8" rx="3" fill="#e2e8f1"/>
-      <rect x="0" y="4" width="${d[1]*4}" height="8" rx="3" fill="#2c6fbb"/>
-      <rect x="0" y="30" width="400" height="8" rx="3" fill="#e2e8f1"/>
-      <rect x="0" y="30" width="${d[3]*4}" height="8" rx="3" fill="#6b2fb3"/>
-      </svg>`;
+    return `<div class="data-chart" role="img" aria-label="${esc(d[0] + '; ' + d[2])}">
+      <span>${esc(d[0])}</span><i><b style="width:${d[1]}%"></b></i>
+      <span>${esc(d[2])}</span><i><b style="width:${d[3]}%"></b></i></div>`;
   }
   function renderFile() {
     $('folder-title').textContent = ISSUES[state.folder].name;
@@ -549,7 +624,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       const picture = c.image ? `<img src="${ART[c.image]}" alt="${c.text}"><div class="card-copy">${content}</div>` : content;
       return `<article class="fact-card ${c.image ? 'picture' : ''}">${picture}</article>`;
     }).join('');
-    $('choose').textContent = state.issue === state.folder ? 'Go to Motifs →' : 'Choose this issue →';
+    $('choose').textContent = 'Choose this issue →';
   }
   function ask(title,text,action) {
     stop();
@@ -591,23 +666,19 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     }
     const c = CARDS[state.card];
     const m = {
-      id:'motif-' + state.nextId++, card:c.id, issue:c.issue, name:c.name, meaning:c.rule.slice(0,80),
+      id:'motif-' + state.nextId++, card:c.id, issue:c.issue, name:c.name, meaning:'',
       poseA:c.poses[0], poseB:c.poses[1], dynamic:c.dynamic, start:c.start, end:c.end, path:c.path, dancers:c.dancers,
     };
     state.motifs.push(m);
     state.selected = m.id;
+    motifPage = 'shape';
     motifEdited = false;
     dirty();
     renderMotifs();
     updateLocks();
     playMotif(false);
     hint(L.tuneHow);
-    // Playback is silent narration-wise. Queue the how-to after the one-shot movement, with a stale check.
-    run.done.then(why => {
-      if (why === 'end' && state.mode === 'motifs' && state.selected === m.id && !motifEdited) {
-        V.how('tuneHow',{valid:() => state.selected === m.id && !motifEdited,hint:false});
-      }
-    });
+    V.how('tuneHow',{valid:() => state.mode === 'motifs' && state.selected === m.id && !motifEdited,hint:false});
   }
   function selectField(id,label,values,value,extra = '') {
     return `<label class="${extra}">${label}<select id="${id}">${values.map(v =>
@@ -617,7 +688,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     return state.motifs.map(m => `<button class="motif-chip ${m.issue !== state.issue ? 'old' : ''}"
       data-motif="${m.id}" data-where="${where}" title="${esc(m.name + ' · ' + CARDS[m.card].name)}"
       draggable="${m.issue === state.issue}"
-      ${m.issue !== state.issue ? 'disabled' : ''} aria-pressed="${where === 'edit' && m.id === state.selected}">
+      ${m.issue !== state.issue && where === 'place' ? 'disabled' : ''} aria-pressed="${where === 'edit' && m.id === state.selected}">
       <span class="badge ${CARDS[m.card].kind}">${CARDS[m.card].kind}</span> ${esc(m.name)}
       <small>${esc(CARDS[m.card].name)} · ${m.dancers} dancer${m.dancers > 1 ? 's' : ''}</small></button>`).join('') ||
       '<p class="small">Make a motif from a research card first.</p>';
@@ -629,9 +700,11 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
         else {
           stop();
           state.selected = b.dataset.motif;
-          state.card = currentMotif().card;
+          if (currentMotif().issue === state.issue) state.card = currentMotif().card;
           renderMotifs();
-          hint('Use the motif controls to change its movement and meaning. Tap Play motif to watch.');
+          hint(currentMotif().issue === state.issue ?
+            'Use Edit to choose Shape, Space or Meaning. Tap Play motif to watch.' :
+            'This motif belongs to an earlier issue. Choose Meaning in Edit, then Delete motif to make room.');
           ping();
         }
       };
@@ -673,7 +746,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     $('card-rail').querySelectorAll('button').forEach(b => {
       b.setAttribute('aria-pressed',b.dataset.card === state.card);
       b.onclick = () => {
-      stop();
+      stop(false);
       state.card = b.dataset.card;
       renderMotifs();
       hint('Tap Make a motif to turn ' + CARDS[state.card].name + ' into eight counts of movement.');
@@ -681,7 +754,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       };
     });
     const m = currentMotif();
-    $('playMotif').disabled = !m;
+    $('playMotif').disabled = !m || m.issue !== state.issue;
     $('deleteMotif').disabled = !m;
     $('make').disabled = state.motifs.length >= 6;
     if ($('make').disabled && document.activeElement === $('make')) $('playMotif').focus({preventScroll:true});
@@ -692,8 +765,9 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       selectField('path','Pathway',['none','line','curve','circle','zigzag'],m.path) +
       selectField('start','Level start',['high','middle','low'],m.start) + selectField('end','Level end',['high','middle','low'],m.end) +
       selectField('dancers','Dancers',[1,2,3],m.dancers) +
-      `<label class="span2">Name<input id="motif-name" maxlength="30" value="${esc(m.name)}"></label>
-      <label class="span2">What it shows<textarea id="motif-meaning" maxlength="80">${esc(m.meaning)}</textarea></label>` :
+      `<label class="span2">Name<input id="motif-name" aria-label="Name" maxlength="30" value="${esc(m.name)}"></label>
+      <label class="span2">What it shows<textarea id="motif-meaning" aria-label="What it shows" maxlength="80"
+        placeholder="Which source detail does this movement express for you?">${esc(m.meaning)}</textarea></label>` :
       '<p class="small span2">Select a source card. Make a motif to unlock the movement controls.</p>';
     if (m) {
       for (const key of ['poseA','poseB','dynamic','path','start','end','dancers']) {
@@ -712,16 +786,199 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       renderIdle(m);
     } else renderIdle(null);
     renderLibrary($('motif-list'),'edit');
+    showMotifPage();
     if (focusKey) $('motif-list').querySelector(`[data-motif="${focusKey}"]`)?.focus({preventScroll:true});
     if (focusCard) $('card-rail').querySelector(`[data-card="${focusCard}"]`)?.focus({preventScroll:true});
   }
-  // The only performer factory. Replace this adapter with painted pose interpolation when paintings arrive.
+  function showMotifPage() {
+    const m = currentMotif();
+    if (!m) motifPage = 'library';
+    $('motif-page').value = motifPage;
+    $('motif-library-page').hidden = motifPage !== 'library';
+    const groups = {shape:['poseA','poseB','dynamic'],space:['path','start','end','dancers'],
+      meaning:['motif-name','motif-meaning']};
+    for (const input of $('motif-controls').querySelectorAll('select,input,textarea')) {
+      input.closest('label').hidden = !(groups[motifPage] || []).includes(input.id);
+      input.disabled = !!m && m.issue !== state.issue;
+    }
+    $('motif-controls').hidden = motifPage === 'library';
+    $('deleteMotif').hidden = motifPage !== 'meaning';
+  }
+  function showStructurePage() {
+    $('structure-page').value = structurePage;
+    $('structure-library-page').hidden = structurePage !== 'library';
+    $('slot-controls').hidden = structurePage !== 'slot';
+    $('structure-form-page').hidden = structurePage !== 'form';
+  }
+
+// Painted skins are replaceable independently of the dance engine and its timing.
+// One neutral source pose per performer supplies articulated painted pieces.
+const CAST_ART = 'art:cc-cast';
+const FLOOR_ART = 'art:cc-floor-cast';
+// Exact painted bounds in the 1536 pixel atlas, per performer: kneel, curl, lie.
+const FLOOR_RECTS = [
+  [[135,45,417,549],[95,669,430,1056],[15,1271,495,1366]],
+  [[632,45,929,552],[596,660,937,1058],[523,1275,1008,1372]],
+  [[1146,78,1436,552],[1102,673,1444,1057],[1033,1274,1520,1371]]
+];
+const CAST_REG = [
+  {
+    head: [264, 64], neck: [264, 116], chest: [264, 145], pelvis: [264, 341],
+    rSh: [184, 149], rEl: [123, 153], rHa: [24, 153],
+    lSh: [346, 149], lEl: [411, 153], lHa: [516, 153],
+    rHi: [233, 341], rKn: [226, 505], rAn: [214, 665], rTo: [190, 698],
+    lHi: [297, 341], lKn: [307, 505], lAn: [313, 665], lTo: [337, 698],
+    headBox: [214, 0, 311, 128], bodyBox: [193, 119, 337, 365],
+    armWidth: 45, legWidth: 62
+  },
+  {
+    head: [767, 82], neck: [767, 140], chest: [767, 171], pelvis: [767, 355],
+    rSh: [680, 170], rEl: [607, 177], rHa: [506, 177],
+    lSh: [851, 170], lEl: [930, 177], lHa: [1031, 177],
+    rHi: [725, 355], rKn: [716, 515], rAn: [708, 666], rTo: [679, 698],
+    lHi: [808, 355], lKn: [818, 515], lAn: [827, 666], lTo: [852, 698],
+    headBox: [719, 13, 811, 151], bodyBox: [690, 141, 841, 381],
+    armWidth: 54, legWidth: 70
+  },
+  {
+    head: [1269, 115], neck: [1269, 165], chest: [1269, 199], pelvis: [1269, 377],
+    rSh: [1183, 199], rEl: [1113, 205], rHa: [1030, 205],
+    lSh: [1354, 199], lEl: [1427, 205], lHa: [1512, 205],
+    rHi: [1228, 377], rKn: [1228, 528], rAn: [1218, 666], rTo: [1195, 698],
+    lHi: [1306, 377], lKn: [1309, 528], lAn: [1320, 666], lTo: [1341, 698],
+    headBox: [1218, 53, 1321, 174], bodyBox: [1195, 167, 1344, 398],
+    armWidth: 51, legWidth: 69
+  }
+];
+let paintId = 0;
+function paintedDancer(parent, options, castIndex) {
+  const d = Dance.dancer(parent, options);
+  const reg = CAST_REG[castIndex];
+  const ns = 'http://www.w3.org/2000/svg';
+  const el = (tag, attrs, into) => {
+    const node = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([key, value]) => node.setAttribute(key, value));
+    into.appendChild(node);
+    return node;
+  };
+  // Engine geometry remains available for projection, trails and poses, but is never shown.
+  [...d.g.children].forEach(node => node.style.display = 'none');
+  const skin = el('g', {class: 'painted-cast', 'aria-hidden': 'true'}, d.g);
+  const defs = el('defs', {}, skin);
+  const textureId = `cast-texture-${++paintId}`;
+  el('image', {id:textureId, href:CAST_ART, width:1536, height:716}, defs);
+  const rig = el('g', {class:'painted-upright'}, skin);
+  const pieces = [];
+  function piece(a, b, polygon, widthScale = 1) {
+    const id = `cast-piece-${++paintId}`;
+    const clip = el('clipPath', {id, clipPathUnits: 'userSpaceOnUse'}, defs);
+    el('polygon', {points: polygon.map(p => p.join(',')).join(' ')}, clip);
+    const g = el('g', {}, rig);
+    el('use', {href:`#${textureId}`, 'clip-path': `url(#${id})`}, g);
+    pieces.push({a, b, g, widthScale});
+  }
+  function strip(a, b, width, end = 0, widthScale = 1) {
+    const A = reg[a], B = reg[b];
+    const len = Math.hypot(B[0] - A[0], B[1] - A[1]);
+    const ux = (B[0] - A[0]) / len, uy = (B[1] - A[1]) / len;
+    const px = -uy * width / 2, py = ux * width / 2;
+    const pad = 18;
+    piece(a, b, [
+      [A[0] - ux * pad + px, A[1] - uy * pad + py],
+      [B[0] + ux * end + px, B[1] + uy * end + py],
+      [B[0] + ux * end - px, B[1] + uy * end - py],
+      [A[0] - ux * pad - px, A[1] - uy * pad - py]
+    ], widthScale);
+  }
+  for (const side of ['r', 'l']) {
+    strip(side + 'Hi', side + 'Kn', reg.legWidth, 8);
+    strip(side + 'Kn', side + 'An', reg.legWidth * .8, 6);
+    strip(side + 'An', side + 'To', 51, 15);
+    strip(side + 'Sh', side + 'El', reg.armWidth, 7);
+    strip(side + 'El', side + 'Ha', reg.armWidth * .72, 20);
+  }
+  const [bx0, by0, bx1, by1] = reg.bodyBox;
+  piece('chest', 'pelvis', [[bx0, by0], [bx1, by0], [bx1, by1], [bx0, by1]], 1.02);
+  const [hx0, hy0, hx1, hy1] = reg.headBox;
+  piece('head', 'neck', [[hx0, hy0], [hx1, hy0], [hx1, hy1], [hx0, hy1]]);
+  const floorTexture = `cast-floor-texture-${++paintId}`;
+  el('image', {id:floorTexture,href:FLOOR_ART,width:1536,height:1536}, defs);
+  const floorPoses = FLOOR_RECTS[castIndex].map(bounds => {
+    const id = `cast-floor-clip-${++paintId}`;
+    const clip = el('clipPath', {id,clipPathUnits:'userSpaceOnUse'}, defs);
+    const [x0,y0,x1,y1] = bounds;
+    el('rect', {x:x0-3,y:y0-3,width:x1-x0+6,height:y1-y0+6}, clip);
+    const g = el('g', {class:'painted-floor',opacity:0}, skin);
+    el('use', {href:`#${floorTexture}`,'clip-path':`url(#${id})`}, g);
+    return {g,bounds};
+  });
+  const badge = el('path', {fill: '#fff', stroke: '#233544', 'stroke-width': 1.5}, skin);
+  function paint() {
+    const S = d.sj;
+    if (!S) return;
+    const unit = d.floor.scale(d.z) * d.height / 710;
+    const ordered = [];
+    for (const part of pieces) {
+      const A = reg[part.a], B = reg[part.b], P = S[part.a], Q = S[part.b];
+      const sx = B[0] - A[0], sy = B[1] - A[1], length = Math.hypot(sx, sy);
+      const ux = sx / length, uy = sy / length;
+      const vx = (Q[0] - P[0]) / length, vy = (Q[1] - P[1]) / length;
+      const qlen = Math.hypot(vx, vy) || .001;
+      const wx = -vy / qlen * unit * part.widthScale;
+      const wy = vx / qlen * unit * part.widthScale;
+      const a = vx * ux - wx * uy, b = vy * ux - wy * uy;
+      const c = vx * uy + wx * ux, e = vy * uy + wy * ux;
+      const tx = P[0] - a * A[0] - c * A[1], ty = P[1] - b * A[0] - e * A[1];
+      part.g.setAttribute('transform', `matrix(${a} ${b} ${c} ${e} ${tx} ${ty})`);
+      ordered.push([part.g, (P[2] + Q[2]) / 2]);
+    }
+    ordered.sort((a, b) => b[1] - a[1]).forEach(([node]) => rig.appendChild(node));
+    const clamp = value => Math.max(0,Math.min(1,value));
+    const P = d.pose;
+    const lying = clamp((Math.abs(P.pitch)-25)/45);
+    const kneeling = clamp((Math.min(P.lLeg[2],P.rLeg[2])-130)/35) *
+      clamp((Math.min(P.lLeg[0],P.rLeg[0])-60)/30) * (1-lying);
+    const curled = clamp((P.lean-8)/30);
+    const weights = [kneeling*(1-curled),kneeling*curled,lying];
+    const floorWeight = weights.reduce((sum,weight) => sum+weight,0);
+    rig.setAttribute('opacity',1-floorWeight);
+    const k = unit*710, anchor = d.floor.map(d.x,d.z);
+    const C = S.chest, H = S.pelvis;
+    let x = (C[0]*.68+H[0]*.32)*(1-floorWeight);
+    let y = (C[1]*.68+H[1]*.32)*(1-floorWeight);
+    floorPoses.forEach((pose,index) => {
+      const [x0,y0,x1,y1] = pose.bounds, width = x1-x0, height = y1-y0;
+      const scale = index === 2 ? k*1.05/width : k*(index === 0 ? .565 : .43)/height;
+      const tx = anchor.x-(x0+x1)/2*scale, ty = anchor.y-y1*scale;
+      pose.g.setAttribute('transform',`translate(${tx} ${ty}) scale(${scale})`);
+      pose.g.setAttribute('opacity',weights[index]);
+      const badgeX = index === 0 ? .43 : index === 1 ? .4 : .35;
+      const badgeY = index === 0 ? .45 : .5;
+      x += (tx+(x0+width*badgeX)*scale)*weights[index];
+      y += (ty+(y0+height*badgeY)*scale)*weights[index];
+    });
+    const r = Math.max(3, unit * 20);
+    const shapes = [
+      `M ${x-r} ${y} a ${r} ${r} 0 1 0 ${2*r} 0 a ${r} ${r} 0 1 0 ${-2*r} 0`,
+      `M ${x} ${y-r} L ${x+r} ${y+r} L ${x-r} ${y+r} Z`,
+      `M ${x-r} ${y-r} h ${2*r} v ${2*r} h ${-2*r} Z`
+    ];
+    badge.setAttribute('d', shapes[castIndex]);
+    skin.appendChild(badge);
+  }
+  const baseRender = d.render;
+  d.render = () => { baseRender(); paint(); };
+  paint();
+  return d;
+}
+
+  // The only performer factory. Swap CAST_ART/CAST_REG and FLOOR_ART/FLOOR_RECTS to replace the painted cast.
   function createPerformer(index) {
     const colors = ['#2c6fbb','#c2410c','#0f766e'];
-    const performer = Dance.dancer(floor.layers.actors,{
+    const performer = paintedDancer(floor.layers.actors,{
       floor,top:colors[index],bottom:Dance.shade(colors[index],.2),skin:'#d4b9a1',hair:'#3c3441',shoe:'#3c3441',
       badge:['circle','triangle','square'][index],scale:1,lineScale:1.15,
-    });
+    },index);
     performer.onMove(() => {
       const shadow = floor.layers.shadow.children[index];
       if (shadow) shadow.style.display = performer.g.style.display;
@@ -750,7 +1007,8 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     const image = document.createElementNS('http://www.w3.org/2000/svg','image');
     for (const [k,v] of Object.entries({href:ART['cc-studio'],width:w,height:h,preserveAspectRatio:'none'})) image.setAttribute(k,v);
     floor.layers.bg.append(image);
-    floor.dancerHeight = Math.min(h*.49/floor.scale(38),w*.32/floor.scale(38));
+    const bodyPixels = Math.max(h*.49,Math.min(110,h*.63));
+    floor.dancerHeight = Math.min(bodyPixels/floor.scale(38),w*.4/floor.scale(38));
     dots.layout({x:w*.26,y:h-28,w:w*.48,h:18});
     performers.forEach(d => { d.height = floor.dancerHeight; d.render(); });
   }
@@ -758,23 +1016,28 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   function safeLevel(name,level) {
     const p = Dance.pose(name);
     if (name === 'star-jump') p.lift = 0;
+    if (level === 'low' && (name === 'kneel' || name === 'curl')) {
+      return Dance.pose({...p,lLeg:[92,4,170],rLeg:[92,4,170],lToe:0,rToe:0,
+        lean:name === 'curl' ? 52 : 8,head:name === 'curl' ? 32 : 0});
+    }
     if (['lie','sit','kneel','crouch'].includes(name) && level === 'low') return p;
     const shaped = Dance.level(name,level);
     if (name === 'star-jump') shaped.lift = 0;
     return shaped;
   }
   function motionPath(m,index,count,size = 1) {
-    let center = [50 + (index - (count-1)/2)*30,38];
-    if (m.card === 'L-D1' && count === 3) center = [[28,38],[47,38],[82,38]][index];
+    const spacing = count === 3 ? 46 : 50;
+    let center = [50 + (index - (count-1)/2)*spacing,38];
+    if (m.card === 'L-D1' && count === 3) center = [[4,38],[47,38],[98,38]][index];
     const a = 11*size;
     if (m.path === 'none') return Dance.paths.line(center,center);
     if (m.path === 'circle') return Dance.paths.arc(center[0],center[1],a,180,540);
     if (m.path === 'curve') return Dance.paths.smooth([[center[0]-a,31],[center[0]+a,35],[center[0]-a,45],[center[0]+a,49]]);
     if (m.path === 'zigzag') return Dance.paths.poly([[center[0]-a,29],[center[0]+a,35],[center[0]-a,43],[center[0]+a,49]]);
-    if (m.card === 'R-D1') return Dance.paths.line([20+index*30,40],[42+index*8,38]);
+    if (m.card === 'R-D1') return Dance.paths.line([12+index*38,40],[34+index*16,38]);
     if (m.card === 'R-D2') {
       const offset = index-(count-1)/2;
-      return Dance.paths.line([50+offset*8,38],[50+offset*(count === 2 ? 50 : 30),38]);
+      return Dance.paths.line([50+offset*24,38],[50+offset*(count === 2 ? 50 : 38),38]);
     }
     return Dance.paths.line([center[0]-a,38],[center[0]+a,38]);
   }
@@ -861,6 +1124,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   }
   function renderIdle(m) {
     const count = m?.dancers || 3;
+    performers.forEach(d => d.scale = count === 3 ? .85 : count === 2 ? .92 : 1);
     performers.forEach((d,i) => paintPerformer(d,m ? motifPhrase(m,i,count).at(0) :
       {pose:'stand',x:25+i*25,z:38,facing:0},i < count));
     $('stage-name').textContent = m?.name || 'Your movement, your meaning';
@@ -898,6 +1162,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     stop();
     state.playing = true;
     const count = m.dancers;
+    performers.forEach(d => d.scale = count === 3 ? .85 : count === 2 ? .92 : 1);
     performers.forEach((d,i) => d.g.style.display = i < count ? '' : 'none');
     clk = Dance.clock(100,{countIn:0});
     dots.bind(clk,1);
@@ -908,7 +1173,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     });
     run = Dance.play(performers.slice(0,count),phrases,{
       clock:clk,offsets:offsets.slice(0,count),loop,
-      onEnd:() => { stop(false); hint('Tap Play motif to watch again, or change a movement control.'); },
+      onEnd:() => { stop(false); dots.set(8); hint('Tap Play motif to watch again, or change a movement control.'); },
     });
     $('stage-label').textContent = loop ? 'Eight-count motif · looping' : 'Movement seed · first take';
     $('stage-name').textContent = m.name;
@@ -930,6 +1195,12 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     if (form === 'Theme and variations') {
       const id = state.slots.find(s => s.motif)?.motif || null;
       state.slots.forEach(s => s.motif = id);
+    } else if (form === 'ABA' || form === 'Rondo ABACA') {
+      const firstByLetter = new Map();
+      state.slots.forEach(slot => {
+        if (!firstByLetter.has(slot.letter)) firstByLetter.set(slot.letter,slot.motif);
+        slot.motif = firstByLetter.get(slot.letter);
+      });
     }
     dirty();
     renderStructure();
@@ -939,7 +1210,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   }
   function placeMotif(id) {
     if (!activeMotifs().some(m => m.id === id)) return;
-    stop();
+    stop(false);
     const m = state.motifs.find(m => m.id === id);
     const target = state.slots[state.slot];
     const repeatedLetter = ['ABA','Rondo ABACA'].includes(state.form);
@@ -983,9 +1254,9 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       b.onclick = () => {
         const wasPlaying = state.playing;
         state.slot = +b.dataset.slot;
+        renderSlotControls();
         if (wasPlaying) playDance(state.slot,false,false);
         else {
-          renderSlotControls();
           $('strip').querySelectorAll('[data-slot]').forEach(el => el.setAttribute('aria-pressed',el === b));
           const m = state.motifs.find(m => m.id === state.slots[state.slot].motif);
           if (m) playDance(state.slot,false,false);
@@ -999,6 +1270,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     });
     renderSlotControls();
     renderLibrary($('structure-library'),'place');
+    showStructurePage();
     if (focusMotif) $('structure-library').querySelector(`[data-motif="${focusMotif}"]`)?.focus({preventScroll:true});
     const counts = filled().reduce((n,s) => n+8*s.repeat,0);
     $('duration').textContent = `${counts} counts · ${(counts*.6).toFixed(1)} seconds of dance (+2.4 second count-in). Empty slots are skipped.`;
@@ -1021,7 +1293,8 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
         dirty();
         updateStripLabels();
         $('variation-warning').hidden = variationDuplicate() < 0;
-        hint('Tap Play dance to see how this slot changes the form.');
+        hint(variationDuplicate() >= 0 ? 'Variations should differ. Choose Form checks in Edit, then tap Fix.' :
+          'Tap Play dance to see how this slot changes the form.');
         ping();
       };
     }
@@ -1055,10 +1328,13 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     return [
       {who:'The friend',e:friend,at:entries[entries.length-1].i,why:'The motif seen most',note:''},
       {who:'The dance teacher',e:first,at:second?.i ?? first.i,why:'The first motif',
-        note:contrast < 2 ? "Your B looked too much like your A; I couldn't feel the change" : ''},
+        note:contrast < 2 ? (first.s.letter === 'A' && second?.s.letter === 'B' ?
+          "Your B looked too much like your A; I couldn't feel the change" :
+          "The first two played phrases looked too similar; I couldn't feel the change") : ''},
       {who:'The stranger',e:last,at:last.i,why:'The last motif',
         note:ending ? '' : "It just stopped. It didn't feel like an ending"},
-      {who:'The kid',e:kid,at:entries.findLast(e => e.m.id === kid.m.id).i,why:'The biggest motif; presence breaks ties',note:''},
+      {who:'The kid',e:kid,at:entries.findLast(e => e.m.id === kid.m.id).i,
+        why:'Greatest level span plus travel; presence breaks ties',note:''},
     ].map(r => ({who:r.who,motif:r.e.m.id,name:r.e.m.name,word:CARDS[r.e.m.card].word,
       reading:CARDS[r.e.m.card].reading,named:ISSUES[issue].words.includes(CARDS[r.e.m.card].word),
       note:r.note,at:r.at,why:r.why,presence:presence[r.e.m.id],size:size(r.e.m)}));
@@ -1083,6 +1359,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
         const c = Math.max(0,local-delay)%8;
         const frame = e.phrases[index].at(c);
         // Visibility is per slot; Dance.play owns all position and pose writes.
+        d.scale = e.s.dancers === 3 ? .85 : e.s.dancers === 2 ? .92 : 1;
         d.g.style.display = index < e.s.dancers ? '' : 'none';
         return frame;
       },
@@ -1133,6 +1410,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       onEnd:() => {
         reveal(composed.total);
         stop(false);
+        dots.set(composed.total);
         if (viewers) {
           state.results = results;
           state.revealed = [0,1,2,3];
@@ -1159,8 +1437,9 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       const card = $('viewer-' + i);
       card.classList.toggle('pending',!show);
       card.innerHTML = `<h3>${['◯','◇','△','□'][i]} ${name}</h3>` + (show ?
-        `<p>“I think it is about ${esc(r.reading)}.”</p><small>I remember <b>${esc(r.name)}</b>.</small>
-        ${r.note ? `<p class="craft">${esc(r.note)}</p>` : ''}<div class="small">${r.why}</div>` :
+        `${r.note ? `<p class="craft">${esc(r.note)}</p>` : ''}
+        <p>“I think it is about ${esc(r.reading)}.”</p><small>I remember <b>${esc(r.name)}</b>.</small>
+        <div class="small">${r.why}</div>` :
         '<p>Watching for a movement that stays with me.</p>');
     });
   }
@@ -1168,10 +1447,14 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     renderViewerCards();
     $('viewer-score').textContent = state.results ? state.results.filter(r => r.named).length + ' of 4 viewers named your issue.' :
       'Let the movement speak.';
-    $('versions').innerHTML = state.versions.map(v => `<button class="version" data-version="${v.number}">
-      v${v.number} · ${esc(ISSUES[v.issue].name)}<small>${esc(v.form)} · ${v.results.filter(r => r.named).length} of 4 named it
-      · ${v.real.length} real viewer${v.real.length === 1 ? '' : 's'}</small></button>`).join('') ||
-      '<p class="small">Tap Back to Structure, then Save version to keep a draft.</p>';
+    const shortForm = {'ABA':'ABA','Rondo ABACA':'ABACA','Theme and variations':'Var.','Narrative':'Narr.'};
+    $('versions').innerHTML = state.versions.map(v => {
+      const score = v.results.length ? v.results.filter(r => r.named).length + '/4' : '?';
+      const reading = v.results.length ? score + ' model matches' : 'Viewers not shown';
+      const label = `v${v.number}, ${ISSUES[v.issue].name}, ${v.form}, ${reading}, ${v.real.length} typed viewer readings`;
+      return `<button class="version" data-version="${v.number}" title="${esc(label)}" aria-label="${esc(label)}">
+        <span>v${v.number}<b>${score}</b></span><small>${shortForm[v.form] || esc(v.form)}</small></button>`;
+    }).join('') || '<p class="small version-empty">Tap Back to Structure, then Save version to keep a draft.</p>';
     $('versions').querySelectorAll('button').forEach(b => b.onclick = () => loadVersion(+b.dataset.version));
     $('real-summary').textContent = state.real.length ? '  ' + state.real.length + ' real reading' + (state.real.length === 1 ? '' : 's') + ' saved with this draft.' : '';
     $('real-cards').innerHTML = state.real.map(r => `<article class="viewer-card"><h3>A real viewer</h3>
@@ -1180,7 +1463,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   function saveVersion() {
     if (state.versions.length >= 8 || !filled().length) return;
     const number = state.versions.length+1;
-    const results = model();
+    const results = state.results || [];
     state.versions.push({number,issue:state.issue,form:state.form,slots:clone(state.slots),motifs:clone(state.motifs),
       results:clone(results),real:clone(state.real)});
     state.loaded = number;
@@ -1197,8 +1480,9 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       const v = state.versions.find(v => v.number === number);
       if (!v) return;
       Object.assign(state,{issue:v.issue,folder:v.issue,form:v.form,slots:clone(v.slots),motifs:clone(v.motifs),
-        results:clone(v.results),real:clone(v.real),slot:0,selected:v.motifs.find(m => m.issue === v.issue)?.id,
-        loaded:number,dirty:false});
+        results:v.results.length ? clone(v.results) : null,real:clone(v.real),slot:0,selected:v.motifs.find(m => m.issue === v.issue)?.id,
+        loaded:number,dirty:false,revealed:v.results.length ? [0,1,2,3] : []});
+      state.card = currentMotif()?.card || state.issue + '-D1';
       state.nextId = Math.max(state.nextId,...state.motifs.map(m => +(m.id.split('-')[1] || 0)+1));
       updateLocks();
       setMode('structure');
@@ -1221,7 +1505,14 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   $('playMotif').onclick = () => playMotif(true);
   $('stopMotif').onclick = $('stopDance').onclick = $('stopViewers').onclick = () => {
     stop();
-    hint('Movement held. Tap the play control in this workspace to start again.');
+    const m = currentMotif();
+    if (state.mode === 'motifs' && m && m.issue !== state.issue) {
+      hint('Choose Meaning in Edit, then Delete motif. This motif belongs to an earlier issue.');
+    } else if (state.mode === 'motifs' && !m) {
+      hint(state.motifs.length >= 6 ? 'Select an earlier motif in Your motifs, then use Meaning to delete it.' : L.motifHow);
+    } else if (state.mode === 'structure' && !activeMotifs().length) hint(L.needMotifHow);
+    else if (state.mode === 'structure' && !filled().length) hint(L.structHow);
+    else hint('Movement held. Tap the play control in this workspace to start again.');
     ping();
   };
   $('deleteMotif').onclick = () => {
@@ -1238,6 +1529,8 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
       hint('Tap a card, then Make a motif to try a new translation.');
     });
   };
+  $('motif-page').onchange = e => { motifPage = e.target.value; showMotifPage(); ping(); };
+  $('structure-page').onchange = e => { structurePage = e.target.value; showStructurePage(); ping(); };
   $('form').onchange = e => changeForm(e.target.value);
   $('playDance').onclick = () => playDance(0,false,true);
   $('showViewers').onclick = () => playDance(0,true,true);
@@ -1253,6 +1546,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   $('fix').onclick = () => {
     const i = variationDuplicate();
     if (i < 0) return;
+    stop();
     const used = new Set(state.slots.map(s => s.device));
     state.slots[i].device = DEVICES.find(d => !used.has(d));
     dirty();
@@ -1269,6 +1563,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     state.slot = state.slots.length-1;
     dirty();
     renderStructure();
+    if ($('addSlot').disabled && document.activeElement === $('addSlot')) $('removeSlot').focus({preventScroll:true});
     ping();
   };
   $('removeSlot').onclick = () => {
@@ -1280,6 +1575,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
     dirty();
     renderStructure();
     updateLocks();
+    if ($('removeSlot').disabled && document.activeElement === $('removeSlot')) $('form').focus({preventScroll:true});
     ping();
   };
   $('saveVersion').onclick = saveVersion;
@@ -1300,6 +1596,7 @@ dialog .row { justify-content:flex-end; margin-top:14px; }
   $('real-save').onclick = () => {
     const about = $('real-about').value.trim();
     const remember = $('real-remember').value.trim();
+    if (!$('real-about').reportValidity() || !$('real-remember').reportValidity()) return;
     if (!about || !remember) return;
     state.real.push({about,remember});
     state.real = state.real.slice(-8);

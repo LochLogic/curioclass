@@ -64,12 +64,13 @@
     },
     {
       "name": "mr-class",
-      "prompt": "An empty high school classroom with desks pushed back to make a playing space, blank walls and blank board. Sunlight from tall windows at left catches dust over the empty central floor. Landscape 4:3.",
+      "prompt": "A high school drama classroom with desks pushed back, seen from the actor's open playing space. Five attentive teenage classmates sit naturally in a loose row in the middle distance, varied skin tones, genders, builds and everyday clothing; one student uses a wheelchair integrated into the row. Warm directional window light from the left, rich gouache and oil texture, polished scuffed wood floor, blank board and unlettered walls. Keep the classmates centered so a tall card crop retains them. Landscape 4:3. No lettering, logos or watermark.",
+      "house_style": "Sophisticated theatrical painting for a high school acting studio. Rich gouache and oil brush texture, cinematic directional light, deep perspective, tactile wood, restrained jewel colors and luminous highlights. Natural, respectful people with quiet attentive expressions. No text, letters, numbers, logos or watermarks.",
       "aspect": "4:3",
       "width": 1200,
       "quality": 72,
       "cutout": false,
-      "people": false,
+      "people": true,
       "drawn_by": "codex"
     },
     {

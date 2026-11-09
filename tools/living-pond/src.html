@@ -1,0 +1,2082 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="An ecologist's living study tank. Stock a pond, trace matter, and watch seasons change a food web. Works offline.">
+<title>Living Pond · Curio Class Curiosities</title>
+<!-- Code: MIT, copyright 2026 LochLogic (Curio Class), repository LICENSE.
+     Owner-authored content, model documentation and illustrations: CC BY 4.0, LICENSE-CONTENT.md.
+     Model: Curio Class spec 018ace9b, original owner-supplied illustrative parameters.
+     Named scientific references and their reuse terms are recorded in the Manual; no source datasets are bundled. -->
+<!-- MIT License
+Copyright (c) 2026 LochLogic (Curio Class)
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+Owner-authored content: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/
+-->
+<style>
+:root { --ink:#16302e; --paper:#f4faf8; --muted:#4c605e; --brand:#0e6a73; --line:#617972; --metal:#d1d9cf; }
+* { box-sizing:border-box; }
+html,body { margin:0; width:100%; height:100%; overflow:hidden; }
+body { background:#203f3d; color:var(--ink); font:13px/1.4 'Segoe UI',sans-serif; }
+button,select,input,summary { font:inherit; }
+button,select,summary { cursor:pointer; }
+button,select,input { color:var(--ink); min-height:44px; min-width:44px; border:1px solid #6c8177; border-radius:3px; }
+button { padding:5px 12px; background:linear-gradient(#f3f5e9,#cad5c7); box-shadow:inset 0 1px #fff,0 2px 2px #16302e25; }
+button:hover,select:hover { border-color:#092f36; }
+button:active { box-shadow:inset 0 2px 4px #16302e55; }
+button[aria-pressed=true] { background:#0b4f56; color:#fff; border-color:#8bd3ce; }
+button:focus-visible,select:focus-visible,input:focus-visible,summary:focus-visible,canvas:focus-visible,a:focus-visible {
+  outline:3px solid #9d3b00; outline-offset:2px; z-index:4;
+}
+select { background:#eef2e5; padding:2px 6px; max-width:100%; }
+input { padding:4px 8px; background:#fff; }
+[hidden] { display:none!important; }
+main { height:100dvh; display:grid; grid-template-rows:minmax(180px,1fr) 68px 160px 64px 48px; }
+.tank { position:relative; min-height:0; overflow:hidden; border:8px solid #729086; border-bottom:0;
+  box-shadow:inset 0 0 25px #123c3f66; background:#9fd0d6; }
+.tank::after { content:''; position:absolute; inset:0; pointer-events:none; border:1px solid #e1f5e4a0;
+  box-shadow:inset 8px 0 12px #e7fff82a,inset -8px 0 12px #15363855; }
+canvas { display:block; width:100%; height:100%; }
+#pond { touch-action:none; }
+.calendar { position:absolute; left:14px; top:10px; color:#16302e; background:#f4faf8ed; padding:8px 13px;
+  border:1px solid #68867c; box-shadow:2px 3px 0 #173d3930; font:12px Consolas,monospace; letter-spacing:1px; }
+.calendar b { font:22px/1.15 Georgia,serif; display:block; letter-spacing:0; }
+.calendar small { display:block; font-size:10px; }
+.power { position:absolute; right:12px; top:10px; display:flex; gap:3px; padding:4px; background:#365a54;
+  border:1px solid #718f80; box-shadow:2px 3px 0 #16302e33; }
+.power button { padding:3px 9px; font:11px Consolas,monospace; }
+.station { position:absolute; right:14px; top:78px; text-align:right; color:#15332f;
+  font:11px Consolas,monospace; text-shadow:0 1px #f4faf8; letter-spacing:1px; pointer-events:none; }
+.station strong { display:block; font:italic 23px Georgia,serif; letter-spacing:0; }
+.transport { position:absolute; bottom:0; left:0; right:0; display:flex; align-items:center; gap:7px; padding:4px 9px;
+  background:linear-gradient(#d2dfd1f5,#b8cabbfa); border-top:1px solid #718b7d; }
+#run { min-width:76px; background:#0e6a73; color:white; font-weight:650; }
+.transport label { display:flex; align-items:center; gap:5px; font:11px Consolas,monospace; }
+.transport select { font-size:12px; }
+#hint { margin-left:auto; font:12px Georgia,serif; }
+.tray { display:flex; align-items:stretch; gap:4px; padding:4px 10px; background:linear-gradient(#6e887b,#456358);
+  border-top:2px solid #dce8d5; border-bottom:3px solid #243f36; overflow-x:auto; }
+.specimen { flex:1; position:relative; min-width:62px; display:flex; align-items:center; justify-content:center; gap:5px;
+  background:linear-gradient(#e9eedb,#c5d2bb); border-color:#9cac96; padding:1px 5px; font-size:11px; }
+.specimen canvas { width:43px; height:48px; flex-shrink:0; }
+.specimen small { display:block; font:10px Consolas,monospace; }
+.all { display:none; min-width:44px; padding:2px 6px; }
+.netting .all { display:block; }
+.netting .specimen[data-kind=decomposers] canvas { opacity:.65; }
+.recorder { display:grid; grid-template-columns:minmax(0,1fr) 220px; min-height:0; background:#c2cdc0;
+  border:6px solid #5b7568; border-top-width:5px; box-shadow:inset 0 0 8px #15372b66; }
+.paper { position:relative; min-width:0; min-height:0; background:var(--paper); display:flex; flex-direction:column; overflow:hidden; }
+.chartbar { display:flex; align-items:center; gap:1px; height:44px; flex-shrink:0; padding:0 5px; border-bottom:1px solid #a8bcb0; }
+.chartbar button { min-width:44px; padding:2px 6px; border:0; background:transparent; box-shadow:none; font:11px Consolas,monospace; }
+.chartbar button:not(#whole)[aria-pressed=false] { text-decoration:line-through; }
+#whole { margin-left:auto; }
+.plot { flex:1; min-height:0; position:relative; }
+.plot canvas { position:absolute; inset:0; }
+.meters { display:grid; min-height:0; min-width:0; grid-template-columns:minmax(0,1fr) 55px; grid-template-rows:minmax(0,1fr) 23px; gap:0 5px;
+  background:linear-gradient(110deg,#e2e8d7,#bfcdb8); border-left:5px solid #5b7568; padding:1px 6px; }
+#oxygen { min-height:0; min-width:0; }
+.thermo { display:flex; flex-direction:column; justify-content:center; align-items:center; font:12px Consolas,monospace; }
+.thermo i { display:block; height:40px; width:12px; border:2px solid #677a6c; background:linear-gradient(to top,#a94435 var(--fill,50%),#f4faf8 0); }
+.light { grid-column:1/-1; font:11px Consolas,monospace; text-align:center; border-top:1px solid #8fa38e; padding-top:2px; }
+.habitat { display:flex; align-items:center; gap:9px; padding:4px 12px; background:linear-gradient(#d9e0cc,#c1cdb6); overflow-x:auto; }
+.habitat label { display:flex; flex-direction:column; flex:1; min-width:83px; font:10px Consolas,monospace; letter-spacing:.6px; }
+.habitat label select { font:12px 'Segoe UI',sans-serif; min-height:44px; }
+#habitat-toggle { display:none; }
+.shade { min-width:145px; flex:1.6; font:10px Consolas,monospace; }
+.swatches { display:flex; height:14px; position:relative; margin-top:3px; border:1px solid #78816b; }
+.swatches i { flex:1; }
+#shade-marker { position:absolute; bottom:-4px; width:2px; height:20px; background:#071d1a; box-shadow:0 0 0 1px #fff; }
+footer { grid-row:5; display:flex; align-items:center; gap:7px; padding:2px 10px; background:linear-gradient(#406153,#284a40); color:#f4faf8; }
+#manual { order:0; }
+.plate { order:1; font:10px/1.5 Consolas,monospace; letter-spacing:.4px; padding:4px 10px; border:1px solid #acb7a1;
+  background:linear-gradient(110deg,#d4d9bd,#eef0db,#b9c4a8); color:#263e32; box-shadow:inset 0 1px #ffffee; }
+.filebuttons { order:2; display:flex; gap:4px; margin-left:auto; }
+footer button { font-size:11px; padding:3px 10px; }
+#status { position:absolute; bottom:62px; left:20px; font:12px Consolas,monospace; background:#f4faf8; padding:4px 8px;
+  pointer-events:none; border:1px solid #5b7568; max-width:calc(100% - 40px); }
+.ledger { position:absolute; left:15px; top:90px; padding:10px 12px; background:#f4faf8ed; border:1px solid #617972;
+  box-shadow:2px 3px #173d3930; font:11px/1.8 Consolas,monospace; max-width:calc(100% - 30px); pointer-events:none; }
+.ledger strong { letter-spacing:1px; font-weight:500; }
+#trip { max-width:410px; white-space:normal; border-top:1px solid #adc2b6; padding-top:4px; margin-top:5px; }
+.drawer { position:fixed; z-index:10; left:8px; bottom:52px; top:12px; width:min(650px,calc(100% - 16px));
+  background:linear-gradient(110deg,#f3f3de,#e2e8d7); border:2px solid #6a8170; box-shadow:10px 4px 50px #071d1a88;
+  display:flex; flex-direction:column; }
+.drawerhead { padding:10px 16px; border-bottom:1px solid #91a38b; display:flex; justify-content:space-between; align-items:center; }
+.drawerhead h2 { margin:0; font:23px Georgia,serif; }
+.drawerbody { padding:12px 20px; overflow:auto; }
+.drawerbody h3 { font:20px Georgia,serif; margin:16px 0 7px; }
+.drawerbody p { line-height:1.65; margin:8px 0; }
+.drawerbody summary { min-height:44px; padding:11px 0; border-top:1px solid #a2b19a; }
+.drawerbody a { color:#064f63; display:inline-block; min-height:44px; padding:12px 0; }
+.drawerbody table { border-collapse:collapse; width:100%; font-size:12px; }
+.drawerbody td,.drawerbody th { border-bottom:1px solid #a2b19a; padding:7px 4px; text-align:left; }
+.log { font:11px/1.8 Consolas,monospace; }
+.save-row { padding:8px 0; border-top:1px solid #a2b19a; }
+.save-row input { width:100%; }
+.save-row div { display:flex; gap:5px; margin-top:5px; flex-wrap:wrap; }
+.privacy { font:11px Consolas,monospace; }
+dialog { padding:20px; width:min(430px,calc(100% - 24px)); color:var(--ink); border:2px solid #6a8170; background:#eef1dd; }
+dialog::backdrop { background:#12342c88; }
+dialog h2 { margin-top:0; font:23px Georgia,serif; }
+dialog .row { display:flex; gap:6px; flex-wrap:wrap; margin-top:15px; }
+.sr { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+@media(max-width:900px) {
+  .specimen { flex-direction:column; gap:0; min-width:62px; line-height:12px; }
+  .specimen canvas { width:38px; height:31px; }
+  .specimen small { display:none; }
+  #hint { display:none; }
+  .station { top:74px; }
+  .shade { min-width:110px; }
+  .habitat { gap:5px; }
+  .plate { letter-spacing:0; padding:4px; font-size:10px; }
+}
+@media(min-width:601px) and (max-width:1200px) {
+  .tray.netting { gap:0; padding-inline:4px; }
+  .netting .specimen { min-width:44px; flex:1; flex-direction:column; gap:0; padding:1px 0; }
+  .netting .specimen canvas { width:34px; height:29px; }
+  .netting .specimen small { display:none; }
+  .netting .all { min-width:44px; flex:0 0 44px; padding:0; }
+}
+@media(max-height:550px) and (min-width:601px) {
+  main { grid-template-rows:minmax(180px,1fr) 60px 103px 0 48px; }
+  .calendar { padding:3px 8px; top:5px; }
+  .calendar b { font-size:17px; }
+  .calendar small { display:none; }
+  .power { top:5px; right:5px; padding:1px; }
+  .station { display:none; }
+  .recorder { grid-template-columns:minmax(0,1fr) 160px; border-width:3px; }
+  .chartbar { height:44px; }
+  .meters { grid-template-columns:minmax(0,1fr) 44px; grid-template-rows:minmax(0,1fr) 18px; }
+  .thermo i { display:none; }
+  .habitat { display:none; padding:8px; }
+  #habitat-toggle { display:block; }
+  .habitat-open .habitat { display:grid; grid-template-columns:repeat(3,1fr); gap:5px 10px; position:fixed;
+    z-index:9; bottom:52px; left:8px; right:8px; border:2px solid #6a8170; box-shadow:0 -4px 20px #12342c66; }
+  .habitat label { min-width:70px; font-size:10px; letter-spacing:0; position:relative; }
+  .habitat label select { min-height:44px; font-size:11px; }
+  .shade { min-width:98px; font-size:10px; }
+  .swatches { height:10px; }
+  .ledger { top:58px; font-size:10px; line-height:1.35; padding:5px; }
+  #trip { max-width:330px; }
+}
+@media(max-width:600px) {
+  main { grid-template-rows:minmax(300px,1fr) 66px 160px 120px 48px; }
+  .tank { border-width:5px; border-bottom:0; }
+  .calendar { left:6px; top:6px; font-size:10px; padding:5px 7px; letter-spacing:0; }
+  .calendar b { font-size:18px; }
+  .calendar small { display:none; }
+  .power { right:5px; top:6px; padding:2px; gap:2px; }
+  .power button { font-size:10px; padding:1px 5px; }
+  .station { top:70px; right:10px; font-size:10px; }
+  .station strong { font-size:21px; }
+  .transport { gap:4px; padding:3px 4px; }
+  .transport label { font-size:0; gap:0; }
+  .transport select { font-size:11px; padding:1px 3px; }
+  #run { min-width:64px; }
+  #step { padding:2px 6px; font-size:11px; }
+  .tray { padding:3px 5px; gap:3px; }
+  .specimen { flex:0 0 62px; }
+  .recorder { grid-template-columns:minmax(0,1fr) 110px; border-width:4px; }
+  .chartbar { overflow-x:auto; padding:0; }
+  .chartbar button { font-size:10px; padding:1px 4px; }
+  .meters { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) 25px 20px; border-left-width:3px; padding:1px 3px; }
+  .thermo { flex-direction:row; gap:6px; font-size:11px; }
+  .thermo i { width:35px; height:9px; }
+  .light { font-size:10px; }
+  .habitat { display:grid; grid-template-columns:repeat(3,1fr); gap:2px 5px; padding:3px 7px; overflow:hidden; }
+  .habitat label { min-width:0; letter-spacing:0; line-height:11px; }
+  .habitat label select { min-height:44px; font-size:11px; }
+  .shade { min-width:0; font-size:10px; }
+  .shade > span { display:block; white-space:nowrap; line-height:11px; }
+  footer { gap:4px; padding:2px 5px; }
+  footer button { font-size:10px; padding:2px 6px; }
+  .plate { font-size:10px; line-height:12px; max-width:150px; }
+  .filebuttons { gap:3px; }
+  .filebuttons button { min-width:44px; }
+  .ledger { top:110px; left:6px; max-width:calc(100% - 12px); font-size:10px; padding:6px; line-height:1.6; }
+  #trip { max-width:290px; }
+  .drawerbody { padding:10px 14px; }
+}
+
+/* Pond instruments: engraved rotary switches, lever and recorder ink. */
+#pond:focus-visible { outline-offset:-5px; }
+.calendar b { font-family:Consolas,monospace; }
+.station { right:18%; top:82px; background:#edf2dcbb; padding:2px 6px; }
+#hint { position:absolute; left:12px; bottom:59px; margin:0; padding:2px 6px; background:#edf2dced;
+  font:12px Consolas,monospace; pointer-events:none; }
+#latest { position:absolute; left:12px; bottom:83px; max-width:calc(100% - 24px); overflow:hidden;
+  text-overflow:ellipsis; white-space:nowrap; padding:2px 6px; background:#183c36dc; color:#f4faf8;
+  font:11px Consolas,monospace; pointer-events:none; }
+#latest:empty { display:none; }
+.chartbar button[aria-pressed=true] { background:#0b4f56; color:#fff!important; border-radius:0; }
+.chartbar button:not(#whole) { border-bottom:3px solid var(--trace,#617972); }
+.specimen span,.specimen small { white-space:nowrap; }
+.rotary,.lever { display:flex; align-items:center; justify-content:center; gap:6px; padding:2px 6px;
+  font:12px Consolas,monospace; background:linear-gradient(#e7ebd9,#bac8b2); min-height:44px; }
+.rotary i { display:block; position:relative; flex:0 0 26px; width:26px; height:26px; border-radius:50%;
+  background:repeating-conic-gradient(#819281 0deg 8deg,#a9b5a1 8deg 20deg); border:2px solid #415c50;
+  box-shadow:inset 0 0 0 4px #d9dfca,1px 2px 2px #213b3a77; transform:rotate(var(--angle)); }
+.rotary i::after { content:''; position:absolute; width:3px; height:9px; top:1px; left:10px; background:#16302e; }
+.lever i { display:block; position:relative; width:24px; height:30px; border-radius:4px; background:#314d41;
+  box-shadow:inset 0 0 0 3px #9aa88c; }
+.lever i::after { content:''; position:absolute; left:7px; top:3px; width:10px; height:15px;
+  background:linear-gradient(90deg,#6e8077,#e0e9d6,#6e8077); border:1px solid #344d3f; border-radius:3px; }
+.lever[aria-checked=false] i::after { top:13px; }
+.energy-row,.energy-head { display:flex; justify-content:space-between; gap:18px; }
+.previous { border-left:1px solid #9cae9e; padding-left:10px; text-align:right; }
+.ledger:has(.energy-row) { min-width:420px; }
+@media(min-width:1280px) { .chartbar button { font-size:13px; } }
+@media(max-width:900px) {
+  #hint { display:block; font-size:11px; }
+  .rotary,.lever { font-size:11px; gap:4px; }
+  .rotary i { flex-basis:24px; width:24px; height:24px; }
+}
+@media(max-height:550px) and (min-width:601px) {
+  main { grid-template-rows:minmax(180px,1fr) 60px 121px 0 48px; }
+  .chartbar { position:absolute; top:0; left:0; right:70px; z-index:1; border:0; background:#f4faf8dd; padding:0; overflow-x:auto; }
+  .chartbar button { font-size:10px; padding:1px 3px; }
+  .paper .plot { flex:1; }
+  .ledger { top:56px; left:7px; line-height:1.3; max-width:calc(100% - 14px); }
+  .ledger .ledger-detail { display:none; }
+  .ledger:has(.energy-row) { min-width:0; width:auto; }
+  .ledger .previous::before { content:'Last yr '; }
+  #trip { margin:0; padding:0; border:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; max-width:450px; }
+  #latest { bottom:59px; left:auto; right:8px; max-width:52%; font-size:10px; }
+  #hint { bottom:59px; }
+}
+@media(max-width:600px) {
+  .transport { gap:3px; }
+  .chartbar { height:88px; flex-wrap:wrap; align-content:flex-start; overflow:visible; row-gap:0; border-bottom:0; }
+  .chartbar button { flex:0 0 auto; height:44px; white-space:nowrap; padding:1px 4px; }
+  #whole { margin-left:0; }
+  .transport .rotary { font-size:10px; padding:2px 3px; gap:3px; }
+  .transport .rotary i { width:22px; height:22px; flex-basis:22px; }
+  #speed { width:110px; }
+  #lens { width:78px; }
+  #step { font-size:10px; padding:2px 4px; }
+  #run { min-width:51px; }
+  .habitat .rotary,.habitat .lever { font-size:10px; padding:1px 3px; }
+  .station { right:18%; top:65px; }
+  .ledger:has(.energy-row) { min-width:0; width:calc(100% - 12px); }
+  .energy-row,.energy-head { gap:5px; }
+  .previous { padding-left:5px; }
+}
+</style>
+</head>
+<body>
+<main>
+  <section class="tank" aria-label="Living pond study tank">
+    <canvas id="pond" tabindex="0" aria-label="Pond. Arrows move drop point. Numbers 1 to 7 add specimens. N selects net. Enter inspects a creature, or
+    follows a dot in Matter."></canvas>
+    <div class="calendar" id="calendar"><b>Year 1</b>WEEK 00 · SPRING<small>WEEKLY ECOSYSTEM STUDY</small></div>
+    <div class="power" aria-label="Power panel"><button id="motion">Motion</button><button id="sound">Sound</button><button id="read">Read</button></div>
+    <div class="station"><strong>Living Pond</strong>FIELD STATION / 13</div>
+    <div class="ledger" id="ledger" hidden></div>
+    <div id="latest" role="status" aria-label="Latest pond event"></div>
+    <div id="status" role="status" hidden></div>
+    <div class="transport">
+      <button id="run" aria-pressed="true">Ⅱ Hold</button>
+      <label>TIME <select id="speed" aria-label="Chart speed"><option value="1">Slow · 1 wk/s</option><option value="2" selected>Normal · 2
+    wk/s</option><option value="8">Fast · 8 wk/s</option></select></label>
+      <button id="step">Step · 1 wk</button>
+      <label>LENS <select id="lens" aria-label="Pond lens"><option>Life</option><option>Matter</option><option>Energy</option></select></label>
+      <span id="hint">Tap a creature to drop it in.</span>
+    </div>
+  </section>
+  <nav class="tray" id="tray" aria-label="Specimen tray"></nav>
+  <section class="recorder" aria-label="Population strip-chart recorder">
+    <div class="paper"><div class="chartbar" id="legend"></div><div class="plot"><canvas id="chart" aria-label="Population history, solid actual lines and
+    dashed unchanged ghost lines"></canvas></div></div>
+    <div class="meters"><canvas id="oxygen" aria-label="Dissolved oxygen needle meter"></canvas><div class="thermo"><i id="thermotube"></i><span
+    id="temperature">5 °C</span></div><div id="light" class="light">LIGHT 64%</div></div>
+  </section>
+  <section class="habitat" aria-label="Habitat controls">
+    <label>FEEDER<select id="feeder" aria-label="Summer feeder"><option value="0">Off</option><option value="3">Some · 3/wk</option><option value="12">Lots
+    · 12/wk</option></select></label>
+    <label>BOTTOM<select id="bottom" aria-label="Bottom shade"><option value="1">Sand</option><option value="3.5">Gravel</option><option value="6">Mud</option></select></label>
+    <label>DECOMPOSERS<select id="decomp" aria-label="Decomposers working"><option value="true">On</option><option value="false">Off</option></select></label>
+    <label>CANOPY<select id="canopy" aria-label="Canopy shade percent"><option value="0">0% shade</option><option value="25">25% shade</option><option
+    value="50">50% shade</option></select></label>
+    <label>YEAR<select id="climate" aria-label="Year temperature"><option value="-2">Cold · −2 °C</option><option value="0" selected>Normal</option><option
+    value="2">Mild · +2 °C</option></select></label>
+    <div class="shade"><span id="shade-text">AVG SHADE 3.50</span> <span>· sped up</span><div class="swatches" id="swatches"><b id="shade-marker"></b></div></div>
+  </section>
+  <footer><button id="manual" aria-expanded="false">Manual</button><div class="plate">Curio Class Curiosities · No. 13 · Living Pond</div><div
+    class="filebuttons"><button id="habitat-toggle" aria-expanded="false">Habitat</button><button id="new">New</button><button
+    id="save">Save</button><button id="saved">Open</button></div></footer>
+</main>
+<aside class="drawer" id="drawer" role="dialog" aria-modal="false" aria-labelledby="drawer-title" hidden>
+  <div class="drawerhead"><h2 id="drawer-title">Field manual</h2><button id="close">Close</button></div>
+  <div class="drawerbody" id="manualbody">
+    <p>An ecologist's study tank. Add, net, feed, shade, then watch. The pond keeps running while this drawer is open.</p>
+    <h3>At the rim</h3>
+    <p>Tap a specimen to drop it in. Drag one into the water to choose its place. Shake in fish food with the shaker.
+    Tap a creature in the water to see its food arrows. Net changes the tray to Net 1 and all; swipe through the water to scoop at most six.</p>
+    <p>Space holds or runs. Period advances one week. &lt; and &gt; change speed. Keys 1–7 stock the tray kinds;
+    arrows on the tank move the drop point; Enter inspects the nearest creature in Life. N picks up the net; Escape puts it down.
+    L changes lenses; W shows the whole chart. M opens this drawer.</p>
+    <h3>Who eats whom</h3><p>Follow the food from algae to the animals that eat them. Dead material becomes muck; decomposers break it down.</p>
+    <table><tr><th>Kind</th><th>Food</th></tr><tr><td>Algae</td><td>Water &amp; air, with sunlight</td></tr><tr><td>Snail</td><td>Algae on
+    stems</td></tr><tr><td>Minnow</td><td>Floating algae, fish food</td></tr><tr><td>Dragonfly nymph</td><td>Snails, minnows</td></tr><tr><td>Painted
+    turtle</td><td>Snails, nymphs, minnows, stem algae</td></tr><tr><td>Great blue heron</td><td>Minnows it can
+    see</td></tr><tr><td>Decomposers</td><td>Muck, returning material to water &amp; air</td></tr></table>
+    <h3>Reading the recorder</h3><p>The dashed line is the pond you did not change. Compare it with your darker line. Floating algae and algae on stems
+    have separate lines. Shade is off until you tap its key; its own scale runs from 0 to 7.</p><details><summary>Recorder details</summary>
+    <p>Numbers on the line keys are counts. Algae: one clump is 5 matter units; snails and nymphs 0.5; minnows 2.
+    Darker traces are your pond. Paler long-dashed traces project the pond just before your latest change, unchanged for 104 weeks.
+    They are a counterfactual, not a prediction after further changes. A vertical mark records an action. Each trace has its own dash and end label.
+    The vertical scale is shared counts; oxygen has its own meter in mg/L.</p>
+    <p>Dense populations share a specimen: each tray key reports its drawing multiplier. The model retains every fraction of matter.</p>
+    </details><h3>Matter</h3><p>Tap a dot to follow some matter. It may stay in one place for weeks. The trip tells you how long it has waited, and where
+    it goes next.</p><details><summary>Matter details</summary>
+    <p>Tap any dot, or press Enter on the tank in Matter, to follow a small sample. The trip follows actual transfers with flow-weighted probabilities.
+    Dots are samples, not individual atoms. Their unit key adapts above 750 units. All model transfers conserve matter; additions, netting, and turtles
+    walking away are in the ledger.</p>
+    <p>A fixed adult turtle has 30 units. A dot in that fixed body stays there; the turtle's food passes through to water, air and muck. A heron is a
+    visitor outside the matter total.</p>
+    </details><h3>Energy</h3><p>Algae catch sunlight and keep some after they breathe. Plant eaters keep part of that food. Heat leaves the pond. Compare
+    this year with the last full year.</p><details><summary>Energy details</summary>
+    <p>Sunlight enters. Algae store chemical energy. Eaters keep some and breathe some away; all living pools release heat.
+    The ledger accumulates this year. Caught is gross algae growth × 10. Algae net production subtracts their respiration;
+    grazer net production subtracts body maintenance from growth. A negative net value means stored chemical energy is being used,
+    not negative energy being passed along. The share is shown when algae net production is positive and grazers are not using stores.
+    Heat is actual respiration × 10. Heat and caught need not balance over a short interval because biomass is stored.
+    Fish food and stocked organisms bring stored chemical energy from outside; the sunlight comparison is not a closed energy budget after stocking or feeding.</p>
+    </details><h3>Model and honesty</h3><p>This is a made-up pond that follows a set of rules. Algae build their bodies from carbon dioxide (air) and water
+    using sunlight. Nutrients from muck are a small share of their bodies; this model puts them in the same Water &amp; air pool.</p>
+    <p>This is one made-up pond, not a forecast for a lake. Matter uses arbitrary units, not grams. Water, air and nutrients are one pool;
+    oxygen is one pond-wide number. Turtle and heron are fixed adults. Rates and thresholds are chosen model values, including the oxygen warning
+    thresholds, not universal fish tolerances.
+    Weekly steps contain seven daily substeps; outgoing flows share a proportional limit when a pool is short. No randomness changes population calculations.</p>
+    <p>Minnow inheritance and predation are simplified and sped up. Colour is not a full account of natural selection.
+    One illustrative oxygen fit is used for fresh water; at 20 °C it is about 0.5 mg/L above the sea-level reference saturation value.
+    Actual saturation also depends on pressure and salinity. Some fish food may cause winterkill after years.
+    Mild years prevent ice here. Decomposers off is a hypothetical switch, not a pond-management suggestion.</p>
+    <h3>Things people have found</h3>
+    <details><summary>Green water can hide a second change</summary><p>Real lakes can show chains of food-web changes too (Carpenter, Kitchell and Hodgson,
+    1985; EPA, Nutrient Pollution). This is a model result.</p><p>Removing minnows frees floating algae. Their shade can reduce algae on stems and the
+    snails that graze there.
+    This instrument calculates that cascade; real food webs have more links and vary among ponds.</p></details>
+    <details><summary>Food can become an oxygen debt</summary><p>Real ponds can lose oxygen under ice (Minnesota DNR, Winterkill; USGS, Dissolved Oxygen
+    and Water). This is a model result.</p><p>Uneaten food sinks. Decomposers use oxygen while breaking down organic material.
+    Ice restricts exchange with the air. A pond can lose fish when that oxygen runs short.</p></details>
+    <details><summary>The background matters to a hunter</summary><p>Real fish populations can change colour under predation (Endler, 1980; OpenStax
+    Biology 2e 19.3). This is a model result, with inheritance sped up.</p><p>A heron takes more visible minnows. In this model, inherited shade shares
+    drift toward the bottom colour over many simulated generations.</p></details>
+    <details><summary>Matter returns, energy leaves</summary><p>Real food webs recycle matter while energy passes through (OpenStax Biology 2e 46.2 and
+    46.3; Lindeman, 1942). This is a model result.</p><p>The matter ledger closes even when populations crash. Energy enters as light and eventually leaves
+    as heat; it does not follow matter around a closed loop.</p></details>
+    <details><summary>A small share of sunlight is caught</summary><p>Real producers catch a small share of incoming sunlight (Lindeman, 1942; OpenStax
+    Biology 2e 46.2). This is a model result, not a universal percentage.</p><p>In year 10 of this Starter model, algae caught 1.03 percent of the incoming
+    sunlight. This is a calculated model result, not a measurement of a real pond.</p></details>
+    <details><summary>Another share reaches the grazers</summary><p>Real plant eaters pass on only part of the energy they eat (Lindeman, 1942; OpenStax
+    Biology 2e 46.2). This is a model result.</p><p>In that same model year, grazer net production was 9.65 percent of algae net production after
+    respiration.
+    This is a model result. Early in a year either group can use its stored energy; a negative net value is labelled using stored food.</p></details>
+    <details><summary>A missing hunter changes the snail trace</summary><p>Real food webs can respond when predators change (Carpenter, Kitchell and
+    Hodgson, 1985; OpenStax Biology 2e 46.1). This is a model result.</p><p>After nymphs were netted at year 1, week 13, the snail peak over the next 104
+    weeks was about 73. The unchanged copy peaked at about 33 over that interval.</p></details>
+    <details><summary>Muck can hold most of the matter</summary><p>Real decomposers return material from dead organisms to the environment (OpenStax
+    Biology 2e 46.3; USGS, Dissolved Oxygen and Water). The switch and these amounts are model results.</p><p>With decomposers off from the start, muck
+    held 92.1 percent of the pond's matter after a year. Switching them on then brought algae above 20 clumps (100 units) after 11 weeks. If algae have
+    gone extinct, decomposers cannot create new algae.</p></details>
+    <details><summary>Food can slow the shade drift</summary><p>Real herons hunt fish by sight (Cornell Lab, Great Blue Heron; Audubon, Great Blue Heron).
+    Real fish colour can respond to predators (Endler, 1980). These feeding comparisons are model results.</p><p>After ten winters in this model, unfed
+    minnows on sand averaged shade 1.22. With Some feeding, the average was 2.10, but oxygen fell into winterkill conditions in 6 of those 10 winters. By
+    year 10 fewer than one minnow remained (0.86 in the model). On mud without feeding it was 5.78. These are separate runs from the Starter
+    pond.</p></details>
+    <details><summary>Shade and cold reach a hunter</summary><p>Real blooms can shade underwater plants, and cold water holds more oxygen (EPA, Nutrient
+    Pollution; USGS, Dissolved Oxygen and Water). These canopy and year comparisons are model results.</p><p>Starting with 25 percent canopy shade kept all
+    six kinds for ten winters here. At 50 percent shade, nymphs disappeared in the third year. Cold years also lost nymphs in the third year; Mild years
+    kept all six kinds and formed no ice. Each run conserved its 742 units.</p></details>
+    <h3>Pond log</h3><div class="log" id="pondlog"></div>
+    <h3>Sources &amp; licences</h3><p>Photosynthesis and the small mineral share of plant bodies: OpenStax Biology 2e 8.1 and 31.1 (CC BY-NC-SA 4.0,
+    reference only) and NOAA Ocean Exploration, Photosynthesis and chemosynthesis (public domain federal text). No source text, figures or datasets are
+    copied. Original explanations here are CC BY 4.0.</p>
+    <p>Curio Class Living Pond model specification, revision 018ace9b: all numerical coefficients, refuges, initial pools and shade inheritance.
+    These are original owner-supplied illustrative parameters, not a downloaded ecological dataset. No external data, text or figures are bundled.
+    Model documentation, original text and generated illustrations are
+    <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>
+    under the repository's LICENSE-CONTENT.md;
+    code is MIT under LICENSE, copyright 2026 LochLogic (Curio Class).
+    The food table describes this simplified model; real minnows, turtles and nymphs have more varied diets.</p>
+    <p><a href="https://openstax.org/books/biology-2e/pages/46-1-ecology-of-ecosystems" target="_blank" rel="noopener">OpenStax Biology 2e, 45.6 and
+    46.1–46.3</a>, currently CC BY-NC-SA (reference only; no text, figures or data reproduced):
+    food webs, matter cycling and energy flow. <a href="https://www.usgs.gov/water-science-school/science/dissolved-oxygen-and-water" target="_blank"
+    rel="noopener">USGS, Dissolved Oxygen and Water</a>, public domain:
+    colder water holds more oxygen, and decay consumes it. <a href="https://www.epa.gov/nutrientpollution/effects-environment" target="_blank"
+    rel="noopener">US EPA, Nutrient Pollution: Effects on the Environment</a>, reference only:
+    confirms the relationships between blooms, shade and oxygen. EPA lists document-specific reuse conditions; no EPA text, figures or data are reproduced here.</p>
+    <p><a href="https://www.dnr.state.mn.us/areas/fisheries/waterville/winterkill.html" target="_blank" rel="noopener">Minnesota DNR, Winterkill and Other
+    Fish Kills</a>, copyright Minnesota DNR, reference only; no material reproduced:
+    confirms that decay and restricted light under ice can contribute to oxygen loss.</p>
+    <p><a href="https://www.waterboards.ca.gov/water_issues/programs/swamp/docs/cwt/guidance/3110en.pdf" target="_blank" rel="noopener">California Water
+    Boards, Dissolved Oxygen</a>:
+    freshwater saturation table gives 9.1 mg/L at 20 °C at sea level, against this model fit's 9.6. Reference only;
+    no open reuse licence asserted and no source table or illustration copied.</p>
+    <p><a href="https://www.allaboutbirds.org/guide/great_blue_heron/lifehistory" target="_blank" rel="noopener">Cornell Lab, Great Blue Heron Life History</a>
+    and <a href="https://www.audubon.org/field-guide/bird/great-blue-heron" target="_blank" rel="noopener">Audubon, Great Blue Heron</a>:
+    fish hunting in shallows. Both are copyrighted references only; no text, images or data copied.</p>
+    <p><a href="https://portal.ct.gov/deep/wildlife/fact-sheets/painted-turtle" target="_blank" rel="noopener">Connecticut DEEP, Painted Turtle</a>
+    and <a href="https://mdc.mo.gov/discover-nature/field-guide/western-painted-turtle" target="_blank" rel="noopener">Missouri Department of Conservation,
+    Western Painted Turtle</a>:
+    varied diet, basking and overwintering in pond-bottom mud. Reference only; no open reuse licence asserted and no material copied.
+    The 10 °C activity switch is a model choice, not a species-wide threshold.</p>
+    <p><a href="https://british-dragonflies.org.uk/odonata/life-cycle-and-biology/" target="_blank" rel="noopener">British Dragonfly Society, Life Cycle and Biology</a>
+    and <a href="https://mdc.mo.gov/discover-nature/field-guide/dragonfly-larvae" target="_blank" rel="noopener">Missouri Department of Conservation, Dragonfly Larvae</a>:
+    six-legged aquatic nymphs and their extendable lower lip; prey can include small fish, and the Society also lists snails.
+    Copyrighted references only, with no text, images or data copied.</p>
+    <p>Model provenance: Holling (1959), type II predation; Gillooly et al. (2001), temperature-dependent metabolism;
+    Lindeman (1942), trophic energy; Endler (1980), predator-mediated colour selection; Carpenter, Kitchell &amp; Hodgson (1985), trophic cascades.
+    These papers are copyrighted citations only; no open reuse licence is asserted and their text, figures and datasets are not reproduced.
+    Model coefficients are not fitted estimates from these papers. The 1.03 and 9.65 percent values are this model's calculations, not universal ecological constants.</p>
+    <p>Shore plants and adult dragonflies are outside the simulated matter pools. They locate the tank in a pond habitat; the model does not simulate emergence.</p>
+    <p>Illustrations generated with OpenAI gpt-image, edited for Curio Class. They identify organisms and places; they do not supply the data.</p>
+    <p>Event voice reads ice, low oxygen, winterkill and departures without giving instructions or praise. Voice selection: gravel-ranger (Algenib). This
+    build uses your browser's available offline speech voice; the ranger recording is not bundled.</p>
+  </div>
+  <div class="drawerbody" id="savesbody" hidden><p class="privacy">Saved ponds stay on this device. Nothing leaves it.</p><p id="save-status"
+    role="status"></p><div id="savelist"></div></div>
+</aside>
+<dialog id="confirm"><h2 id="confirm-title">New pond</h2><p id="confirm-text">Save this pond first?</p><div class="row" id="confirm-actions"></div></dialog>
+<script src="kit:curio"></script>
+<script>
+'use strict';
+const POOLS = ['Water & air','Floating algae','Stem algae','Snails',
+  'Minnow 0','Minnow 1','Minnow 2','Minnow 3','Minnow 4','Minnow 5','Minnow 6','Minnow 7',
+  'Nymphs','Decomposers','Muck','Fish food'];
+const sum = a => a.reduce((x,y) => x+y,0);
+const clamp = (x,a,b) => Math.max(a,Math.min(b,x));
+function makePond(empty=false) {
+  const p = Array(16).fill(0);
+  p[0]=300;
+  p[13]=20;
+  p[14]=150;
+  if (!empty) {
+    p[1]=80;
+    p[2]=70;
+    p[3]=40;
+    p[12]=12;
+    for (let k=2;k<=5;k++) p[4+k]=10;
+  }
+  return {p,w:0,O:10,turtles:empty?0:1,herons:empty?0:1,visitors:empty?0:1,
+    poorT:0,poorH:0,feeder:0,bottom:1,decomp:true,canopy:0,climate:0,
+    added:0,taken:0,walked:0,start:empty?470:742,energy:{sun:0,caught:0,heat:0,plants:0,grazers:0},
+    log:[],flows:[],foodWeek:0,lastIce:false,catchH:0,intakeT:0,winterkills:0};
+}
+function environment(s) {
+  const w=s.w%52;
+  const T=13-11*Math.cos(2*Math.PI*(w-46)/52)+s.climate;
+  const sun=(.6+.4*Math.cos(2*Math.PI*(w-14)/52))*(1-s.canopy/100);
+  const ice=T<4;
+  return {T,sun,ice,light:sun*(ice?.3:1),tf:2**((T-20)/10),osat:14.6-.39*T+.007*T*T};
+}
+const minnow = s => sum(s.p.slice(4,12));
+const total = s => sum(s.p)+30*s.turtles;
+const shade = s => minnow(s)>0 ? sum(s.p.slice(4,12).map((v,k)=>v*k))/minnow(s):null;
+function logEvent(s,text) { s.log.push({w:s.w,text});
+  }
+function week(s,trace=true) {
+  const e=environment(s), p=s.p, before=p.slice(), flows=[];
+  if (s.w%52===0) {
+    if (!s.herons && s.visitors) { s.herons=s.visitors;
+      s.poorH=0;
+      logEvent(s,'Heron back in spring.');
+      }
+  }
+  if (e.ice!==s.lastIce) logEvent(s,e.ice?'Ice. New air is sealed out.':'Ice-out. Air reaches the water.');
+  s.lastIce=e.ice;
+  if (s.w%52>=6 && s.w%52<=38 && s.feeder) { p[15]+=s.feeder;
+    s.added+=s.feeder;
+    }
+  s.energy.sun+=70000*e.sun;
+  let turtleEat=0,heronEat=0;
+  for (let day=0;day<7;day++) {
+    const f=[];
+    const move=(a,b,v,kind='',eater=null) => {
+        if (v>0 && Number.isFinite(v)) f.push({a,b,v:v/7,kind,eater});
+      };
+    const M=minnow(s);
+    const prey = (ids,weights,refuges) => {
+      const parts=ids.map((id,i)=>Math.max(0,p[id]-refuges[i])*weights[i]);
+      return {ids,parts,P:sum(parts)};
+    };
+    const fishPrey=(weight) => Array.from({length:8},(_,k)=>[4+k,weight*(M>6?p[4+k]*(M-6)/M:0)]);
+    const makeFood=items=>({ids:items.map(x=>x[0]),parts:items.map(x=>x[1]),P:sum(items.map(x=>x[1]))});
+    const eat=(b,food,c,H,eff,kind) => {
+      const intake=c*e.tf*(b===4?M:p[b])*food.P/(H+food.P);
+      if (food.P<=0) return;
+      food.ids.forEach((a,i)=>{
+        const v=intake*food.parts[i]/food.P;
+        if (b===4) {
+          for(let k=0;k<8;k++) {
+            const share=M>0?p[4+k]/M:0;
+            move(a,4+k,v*eff*share*.88,kind);
+            move(a,4+Math.max(0,k-1),v*eff*share*.06,kind);
+            move(a,4+Math.min(7,k+1),v*eff*share*.06,kind);
+          }
+        } else move(a,b,v*eff,kind);
+        move(a,0,v*(.7-eff),'breath',b);
+        move(a,14,v*.3);
+      });
+    };
+    for (const [a,max] of [[1,900],[2,500]]) {
+      const light=e.light/(a===2?1+p[1]/250:1);
+      move(0,a,Math.max(0,1.4*light*e.tf*p[a]*p[0]/(p[0]+40)*(1-p[a]/max)),'build');
+      move(a,0,.08*e.tf*p[a],'plantBreath');
+      move(a,14,.05*p[a]*(e.light<.35?1.6:1));
+    }
+    eat(3,prey([2],[1],[15]),1,100,.3,'grazer');
+    eat(4,prey([1,15],[1,3],[15,0]),1,100,.3,'grazer');
+    eat(12,makeFood([[3,Math.max(0,p[3]-4)],...fishPrey(.5)]),.7,35,.3,'predator');
+    for (const [ids,maint,mort] of [[[3],.07,.02],[Array.from({length:8},(_,k)=>4+k),.07,.015],[[12],.07,.02]]) {
+      for (const a of ids) { move(a,0,maint*e.tf*p[a],a===12?'breath':'grazerBreath');
+        move(a,14,mort*p[a]);
+        }
+    }
+    if (s.decomp && p[13]>=2) {
+      if (s.decomp) {
+        const v=1.5*e.tf*p[13]*p[14]/(100+p[14]);
+        move(14,13,.2*v);
+        move(14,0,.8*v,'breath',13);
+      }
+      move(13,0,.08*e.tf*p[13],'breath');
+      move(13,14,.1*p[13]);
+    }
+    if (s.turtles && e.T>=10) {
+      const food=makeFood([[3,Math.max(0,p[3]-4)],...fishPrey(.5),
+        [12,.5*Math.max(0,p[12]-1)],[2,.3*Math.max(0,p[2]-15)]]);
+      const v=1.2*e.tf*s.turtles*food.P/(40+food.P);
+      if(food.P>0) food.ids.forEach((a,i)=>{
+        move(a,0,v*food.parts[i]/food.P*.7,'turtleBreath');
+        move(a,14,v*food.parts[i]/food.P*.3,'turtle');
+      });
+    }
+    if (s.herons && !e.ice && M>6) {
+      const clarity=1/(1+(p[1]/400)**2);
+      const parts=Array.from({length:8},(_,k)=>p[4+k]*(M-6)/M*(.15+.85*Math.abs(k-s.bottom)/7*clarity));
+      const V=sum(parts), v=1.6*s.herons*V/(10+V);
+      if(V>0) parts.forEach((x,k)=>{
+        move(4+k,0,.7*v*x/V,'heronBreath');
+        move(4+k,14,.3*v*x/V,'heron');
+      });
+    }
+    move(15,14,.4*p[15]);
+    if(s.O<3) for(let k=0;k<8;k++) move(4+k,14,1.2*(3-s.O)/3*p[4+k],'lowO');
+    if(s.O<1.5) move(12,14,.6*(1.5-s.O)/1.5*p[12],'lowO');
+    if(s.O<1) move(3,14,.15*(1-s.O)*p[3],'lowO');
+    const outs=Array(16).fill(0);
+    for(const x of f) outs[x.a]+=x.v;
+    let build=0,breath=0;
+    for(const x of f) {
+      const v=x.v*Math.min(1,outs[x.a]>0?p[x.a]/outs[x.a]:1);
+      x.actual=v;
+    }
+    for(const x of f) {
+      const v=x.actual;
+      p[x.a]-=v;
+      p[x.b]+=v;
+      if(trace) flows.push({a:x.a,b:x.b,v,kind:x.kind,eater:x.eater});
+      if(x.kind==='build') build+=v;
+      if(x.b===0 && /breath/i.test(x.kind)) breath+=v;
+      if(x.kind==='plantBreath') s.energy.plants-=v*10;
+      if(x.kind==='grazerBreath') s.energy.grazers-=v*10;
+      if(x.kind==='grazer' && (x.b===3 || (x.b>=4 && x.b<12))) s.energy.grazers+=10*v;
+      if(x.kind==='turtleBreath' || x.kind==='turtle') turtleEat+=v;
+      if(x.kind==='heronBreath' || x.kind==='heron') heronEat+=v;
+    }
+    s.energy.caught+=10*build;
+    s.energy.heat+=10*breath;
+    s.energy.plants+=10*build;
+    s.O=clamp(s.O+.05*(build-breath)+(e.ice?0:.6*(e.osat-s.O)/7),0,20);
+  }
+  s.catchH=heronEat;
+  s.intakeT=turtleEat;
+  if(e.T>=10 && s.turtles) {
+    s.poorT=turtleEat<.25*1.2*e.tf*s.turtles?s.poorT+1:0;
+    if(s.poorT>=8) { s.walked+=30*s.turtles;
+      s.turtles=0;
+      logEvent(s,'Turtle walked off to another pond.');
+      }
+  }
+  if(!e.ice && s.herons) {
+    s.poorH=heronEat<.3*1.6*s.herons?s.poorH+1:0;
+    if(s.poorH>=3) { s.herons=0;
+      logEvent(s,'Heron flew off. Not enough visible fish.');
+      }
+  }
+  const removeSmall=(ids,threshold,label)=>{
+    const amount=sum(ids.map(a=>p[a]));
+    if(amount>0 && amount<threshold) {
+      for(const a of ids) {
+        if(trace) flows.push({a,b:14,v:p[a]});
+        p[14]+=p[a];
+        p[a]=0;
+      }
+      logEvent(s,label+' gone.');
+    }
+  };
+  removeSmall([1],.5,'Floating algae');
+  removeSmall([2],.5,'Stem algae');
+  removeSmall([3],.25,'Snails');
+  removeSmall(Array.from({length:8},(_,k)=>4+k),1,'Minnows');
+  removeSmall([12],.25,'Nymphs');
+  removeSmall([13],.5,'Decomposers');
+  if(e.ice && s.O<2) {
+    if(!s.log.some(x=>x.text.startsWith('Winterkill') && Math.floor(x.w/52)===Math.floor(s.w/52))) {
+      logEvent(s,'Winterkill conditions. Oxygen under 2 mg/L.');
+      s.winterkills++;
+    }
+  }
+  s.flows=flows;
+  s.flowStart=before;
+  s.w++;
+  s.foodWeek=0;
+  if(s.w%52===0) {
+    s.lastEnergy={...s.energy};
+    s.energy={sun:0,caught:0,heat:0,plants:0,grazers:0};
+  }
+  return s;
+}
+function snapshot(s) {
+  return {w:s.w,A:s.p[1]/5,S:s.p[3]/.5,M:minnow(s)/2,D:s.p[12]/.5,O:s.O,Af:s.p[1],As:s.p[2],B:s.p[2]/5,Q:shade(s)};
+}
+function change(s,a) {
+  const kinds=['algae','snail','minnow','nymph','turtle','heron','decomposers'];
+  const ids={algae:[1,2],snail:[3],minnow:Array.from({length:8},(_,k)=>4+k),nymph:[12],decomposers:[13]};
+  let changed=false, amount=0;
+  if(a.type==='add') {
+    const count=a.n||1, k=a.kind;
+    if(k==='turtle') { const n=Math.min(count,3-s.turtles);
+      s.turtles+=n;
+      amount=30*n;
+      changed=n>0;
+      s.poorT=0;
+      }
+    else if(k==='heron') { const n=Math.min(count,2-s.visitors);
+      s.visitors+=n;
+      s.herons=s.visitors;
+      changed=n>0;
+      s.poorH=0;
+      }
+    else if(ids[k]) {
+      const unit={algae:5,snail:.5,minnow:2,nymph:.5,decomposers:5}[k];
+      const cap={algae:400,snail:60,minnow:240,nymph:30,decomposers:60}[k];
+      const list=ids[k], have=sum(list.map(i=>s.p[i]));
+      amount=Math.min(unit*count,Math.max(0,cap-have));
+      if(k==='minnow') for(let shade=2;shade<=5;shade++) s.p[4+shade]+=amount/4;
+      else for(const id of list) s.p[id]+=amount/list.length;
+      changed=amount>0;
+    }
+    s.added+=amount;
+  } else if(a.type==='net') {
+    const k=a.kind;
+    if(k==='decomposers') return false;
+    if(k==='turtle') { const n=a.all?s.turtles:Math.min(1,s.turtles);
+      amount=n*30;
+      s.turtles-=n;
+      }
+    else if(k==='heron') { const n=a.all?s.visitors:Math.min(1,s.visitors);
+      s.visitors-=n;
+      s.herons=Math.min(s.herons,s.visitors);
+      changed=n>0;
+      }
+    else if(ids[k]) {
+      const list=ids[k], have=sum(list.map(i=>s.p[i]));
+      amount=a.all?have:Math.min(have,{algae:5,snail:.5,minnow:2,nymph:.5}[k]);
+      for(const id of list) if(have>0) s.p[id]*=1-amount/have;
+    }
+    s.taken+=amount;
+    changed=changed||amount>0;
+  } else if(a.type==='food') {
+    amount=Math.min(a.n||2,30-s.foodWeek);
+    s.p[15]+=amount;
+    s.added+=amount;
+    s.foodWeek+=amount;
+    changed=amount>0;
+  } else if(['feeder','bottom','decomp','canopy','climate'].includes(a.type)) {
+    s[a.type]=a.value;
+    changed=true;
+  }
+  return changed;
+}
+if(typeof module!=='undefined') module.exports={makePond,environment,week,total,minnow,shade,change,snapshot};
+
+</script>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const kinds=['algae','snail','minnow','nymph','turtle','heron','decomposers'];
+const names=['Algae','Snail','Minnow','Nymph','Turtle','Heron','Decomposers'];
+const sprites=[15,16,18,20,24,28,31];
+const caps=[40,60,60,30,3,2,120];
+const traceKeys=['A','S','M','D','B','Q'];
+const traceNames=['Floating','Snails','Minnows','Nymphs','Stems','Shade'];
+const palette=['#5b6b2a','#8a5a00','#1f7a8c','#6b4fa0','#27633d','#75483a'];
+const dashes=[[],[6,2],[2,2],[9,2,2,2],[10,3],[1,3,7,3]];
+let pond=makePond(), initial=false, history=[snapshot(pond)], actions=[], ghost=[], replay=null;
+const state={running:true,speed:2,lens:'Life',net:false,whole:false,visible:[true,true,true,true,true,false],
+  selected:null,selectedUntil:0,drop:{x:.5,y:.5},tracked:null,trip:[],traceSeed:731,overlay:null};
+let saved=[];
+try { saved=JSON.parse(localStorage.getItem('living-pond-v1')||'[]');
+  if(!Array.isArray(saved)) saved=[];
+  } catch {}
+let frame=0,last=performance.now(),accum=0,lastDraw=0,frameTimes=[],artReady=false,shoreReady=false;
+let pieces=[],hitboxes=[],dots=[],effects=[],dragKind=null,down=null,scooped=0,netSeen=new Set();
+let waterAudio=null;
+let lastEvent=0,first=true,stocked=false,dirty=false,drawerFocus=null;
+let trackerSince=0,swipeStart=null,ghostBuilds=0;
+let tankDirty=true,chartDirty=true,meterDirty=true;
+const drawCounts={tank:0,chart:0,meter:0};
+const L={hint:'Tap a creature to drop it in.',
+  ice:'Ice. No new air gets in until spring.',
+  low:"Oxygen's low. The minnows are gasping at the top.",
+  winterkill:'Winterkill conditions. Oxygen is under two milligrams per liter beneath the ice.',
+  heron:'The heron flew off.',turtle:'The turtle walked off to another pond.',snails:'The snails are gone.'};
+const eventTimes=new Map();
+function eventVoice(key,valid) {
+  const now=performance.now();
+  const spoken=V.log.filter(x=>x.key===key&&x.as==='spoken').at(-1);
+  // Gate queued requests and actual starts to keep each event at least 20 seconds apart.
+  if(spoken && now-spoken.t<20000)return;
+  if(eventTimes.has(key)&&now-eventTimes.get(key)<20000)return;
+  if(V.say(key,{hint:false,maxAge:4000,valid}))eventTimes.set(key,now);
+}
+function speakEvents(entries,oldO) {
+  for(const x of entries) {
+    if(x.text.startsWith('Ice.'))eventVoice('ice',()=>environment(pond).ice);
+    if(x.text.startsWith('Winterkill'))eventVoice('winterkill',()=>environment(pond).ice&&pond.O<2);
+    if(x.text.startsWith('Heron flew'))eventVoice('heron',()=>pond.herons===0);
+    if(x.text.startsWith('Turtle walked'))eventVoice('turtle',()=>pond.turtles===0);
+    if(x.text==='Snails gone.')eventVoice('snails',()=>pond.p[3]===0);
+  }
+  if(oldO>=3&&pond.O<3&&minnow(pond)>0)eventVoice('low',()=>pond.O<3&&minnow(pond)>0);
+}
+const V=Curio.voice({lines:L,scope:()=>0,hint:false,read:()=>readout(),welcomeAfter:true,
+  welcome:()=>first&&!stocked&&!state.overlay&&!$('confirm').open?['hint',{valid:()=>first&&!stocked&&!state.overlay&&!$('confirm').open}]:null});
+Curio.init({clips:"voice:*",rate:.88});
+function powerLabels() {
+  $('motion').textContent='Motion';
+  $('motion').setAttribute('aria-label','Motion '+(Curio.reduce?'off':'on'));
+  $('sound').textContent='Sound';
+  $('sound').setAttribute('aria-label','Sound '+(Curio.sound?'on':'off'));
+  $('sound').setAttribute('aria-pressed',Curio.sound);
+}
+Curio.onMotion(()=>{powerLabels();
+  draw();
+  });
+Curio.onSound(powerLabels);
+powerLabels();
+function readout() {
+  const e=environment(pond),r=snapshot(pond);
+  const event=pond.log.at(-1);
+  const latest=event?`Latest record, year ${Math.floor(event.w/52)+1}, week ${event.w%52}. ${event.text}`:'';
+  return `Year ${Math.floor(pond.w/52)+1}, week ${pond.w%52}. ${season()}. Oxygen ${pond.O.toFixed(1)} milligrams per liter.
+    Temperature ${Math.round(e.T)} degrees Celsius. ${((pond.p[1]+pond.p[2])/5).toFixed(0)} algae clumps, ${r.S.toFixed(0)} snails,
+    ${r.M.toFixed(0)} minnows, ${r.D.toFixed(0)} nymphs.
+    ${pond.turtles} ${pond.turtles===1?'turtle':'turtles'}. ${e.ice?0:pond.herons} ${!e.ice&&pond.herons===1?'heron':'herons'} here.
+    ${latest}`;
+}
+function status(text) {
+  $('status').textContent=text;
+  $('status').hidden=!text;
+  if(state.overlay==='saves') $('save-status').textContent=text;
+}
+function tone(kind) {
+  const now=performance.now();
+  if(now-lastEvent<150 || !Curio.sound || !V.tapped) return;
+  if(state.speed===8 && !['ice','gone'].includes(kind)) return;
+  lastEvent=now;
+  const freq={add:290,food:850,net:155,ice:115,heron:190,turtle:150,gone:95,tick:520}[kind]||350;
+  if(['add','net','ice'].includes(kind)) {
+    try {
+      waterAudio=waterAudio||new (window.AudioContext||window.webkitAudioContext)();
+      waterAudio.resume();
+      const a=waterAudio,duration=kind==='net'?.18:kind==='ice'?.24:.13;
+      const buffer=a.createBuffer(1,Math.ceil(a.sampleRate*duration),a.sampleRate),data=buffer.getChannelData(0);
+      for(let i=0;i<data.length;i++)data[i]=(Math.random()*2-1)*(kind==='ice'?(i%1200<220?1:.08):1);
+      const source=a.createBufferSource(),filter=a.createBiquadFilter(),gain=a.createGain();
+      source.buffer=buffer;filter.type=kind==='ice'?'highpass':'lowpass';
+      filter.frequency.value=kind==='ice'?1800:kind==='net'?650:1200;
+      gain.gain.setValueAtTime(.045,a.currentTime);gain.gain.exponentialRampToValueAtTime(.001,a.currentTime+duration);
+      source.connect(filter);filter.connect(gain);gain.connect(a.destination);source.start();source.stop(a.currentTime+duration);
+      source.onended=()=>{source.disconnect();filter.disconnect();gain.disconnect();};
+    }catch{}
+  } else Curio.tone(freq,.07,.025,'sine');
+  if(kind==='gone') setTimeout(()=>Curio.tone(freq*.75,.12,.018,'sine'),100);
+}
+function afterTouch(dropped=false) {
+  stocked=stocked||dropped;
+  $('hint').hidden=true;
+  if(first) { if(!stocked)V.how('hint',{hint:false,valid:()=>!stocked&&!state.net&&!state.overlay&&!$('confirm').open});
+    first=false;
+    }
+}
+function makeGhost() {
+  ghostBuilds++;
+  const start=performance.now(),copy=structuredClone(pond);
+  ghost=[snapshot(copy)];
+  for(let i=0;i<104;i++) { week(copy,false);
+    ghost.push(snapshot(copy));
+    }
+  state.ghostMs=performance.now()-start;
+}
+function act(a,record=true) {
+  const pre=record?structuredClone(pond):null;
+  if(change(pond,a)) {
+    if(record) {
+      const real=pond;
+      if(!swipeStart) {pond=pre; makeGhost(); pond=real;}
+      actions.push({w:pond.w,...a});
+      dirty=true;
+      replay=null;
+    }
+    if(a.type==='add') {
+      effects.push({x:state.drop.x,y:state.drop.y,t:performance.now(),kind:a.kind});
+      tone('add');
+      status('');
+    } else if(a.type==='food') { effects.push({x:state.drop.x,y:.27,t:performance.now(),kind:'food'});
+      tone('food');
+      }
+    else if(a.type==='net') tone('net');
+    else tone('tick');
+    if(a.type==='net' && pre && state.tracked!==null && state.tracked<17) {
+      const tracked=state.tracked;
+      const kind=tracked===16?'turtle':tracked===3?'snail':tracked>=4&&tracked<12?'minnow':
+        tracked===12?'nymph':tracked===1||tracked===2?'algae':null;
+      if(kind===a.kind) {
+        const before=kind==='turtle'?pre.turtles:kind==='minnow'?minnow(pre):kind==='algae'?pre.p[1]+pre.p[2]:pre.p[tracked];
+        const after=kind==='turtle'?pond.turtles:kind==='minnow'?minnow(pond):kind==='algae'?pond.p[1]+pond.p[2]:pond.p[tracked];
+        if(a.all || after===0 || random()<(before-after)/before) {
+          state.tracked=17;
+          trackerSince=pond.w;
+          state.trip.push('Taken out of pond');
+        }
+      }
+    }
+    if(history.at(-1)?.w===pond.w) history[history.length-1]=snapshot(pond);
+    afterTouch(a.type==='add'||a.type==='food');
+    sync();
+    draw();
+    return true;
+  }
+  if(a.type==='add') status('No room for more '+({minnow:'minnows',snail:'snails',heron:'herons',turtle:'turtles',nymph:'nymphs'}[a.kind]||a.kind)+'.');
+  if(a.type==='food') status('The water is cloudy with food already.');
+  if(a.type==='net' && a.kind==='decomposers') status('Decomposers are too small to net. Use the switch.');
+  return false;
+}
+function advance() {
+  if(replay) {
+    while(replay.i<replay.actions.length && replay.actions[replay.i].w===pond.w) {
+      const a=replay.actions[replay.i++];
+      change(pond,a);
+      actions.push(a);
+      if(history.at(-1)?.w===pond.w) history[history.length-1]=snapshot(pond);
+    }
+    if(pond.w>=replay.target) { state.running=false;
+      state.speed=replay.speed;
+      replay=null;
+      status('Saved moment. Run to keep this pond going.');
+      sync();
+      return;
+      }
+  }
+  const oldLog=pond.log.length,oldO=pond.O,oldTurtles=pond.turtles;
+  const oldHerons=environment(pond).ice?0:pond.herons;
+  week(pond);
+  const heronsHere=environment(pond).ice?0:pond.herons;
+  if(oldHerons>heronsHere&&!Curio.reduce)for(let i=0;i<oldHerons-heronsHere;i++) {
+    effects.push({kind:'heron-flight',i,t:performance.now()});
+  }
+  history.push(snapshot(pond));
+  dirty=true;
+  if(state.tracked===16 && oldTurtles>pond.turtles) {
+    state.tracked=18;
+    trackerSince=pond.w;
+    state.trip.push('Walked out with turtle');
+  } else updateTracker();
+  for(const x of pond.log.slice(oldLog)) {
+    if(x.text.startsWith('Ice.')) tone('ice');
+    if(x.text.startsWith('Ice-out')) tone('ice');
+    if(x.text.startsWith('Heron flew')) tone('heron');
+    if(x.text.startsWith('Turtle walked')) tone('turtle');
+    if(x.text.startsWith('Winterkill')) tone('gone');
+    if(x.text==='Snails gone.') tone('gone');
+  }
+  speakEvents(pond.log.slice(oldLog),oldO);
+  if(pond.w%13===0) tone('tick');
+  sync();
+}
+function season() {return ['SPRING','SUMMER','FALL','WINTER'][Math.floor((pond.w%52)/13)];
+  }
+function counts() {
+  return [(pond.p[1]+pond.p[2])/5,pond.p[3]/.5,minnow(pond)/2,pond.p[12]/.5,
+    pond.turtles,environment(pond).ice?0:pond.herons,pond.p[13]/.25];
+}
+function turtleState() {
+  const e=environment(pond);
+  return !pond.turtles?'walked off':e.T<10?'asleep in mud':e.T>=18&&e.sun>.8?'basking':'swimming';
+}
+function sync() {
+  tankDirty=chartDirty=meterDirty=true;
+  const e=environment(pond),c=counts();
+  $('latest').textContent=pond.log.at(-1)?.text||'';
+  $('calendar').innerHTML=`<b>Year ${Math.floor(pond.w/52)+1}</b>WEEK ${String(pond.w%52).padStart(2,'0')} · ${season()}<small>WEEKLY ECOSYSTEM STUDY</small>`;
+  $('run').textContent=state.running?'Hold':'Run';
+  $('run').removeAttribute('aria-pressed');
+  $('run').setAttribute('aria-label',state.running?'Hold the running pond':'Run the held pond');
+  $('speed').value=state.speed;
+  $('lens').value=state.lens;
+  $('temperature').textContent=Math.round(e.T)+' °C';
+  $('thermotube').style.setProperty('--fill',(e.T/28*100)+'%');
+  $('light').textContent='LIGHT '+Math.round(e.light*100)+'%'+(e.ice?' · ICE':'');
+  $('oxygen').setAttribute('aria-label',`Model dissolved oxygen ${pond.O.toFixed(1)} milligrams per liter. Model warning below 3; winterkill conditions below 2.`);
+  for(let i=0;i<kinds.length;i++) {
+    const b=$('add-'+kinds[i]),n=Math.max(1,Math.ceil(c[i]/caps[i]));
+    b.querySelector('.name').textContent=state.net?(i===6?'Specks':'Net 1'):names[i];
+    b.querySelector('small').textContent=`${Math.round(c[i])}${n>1?' · 1 = '+n:''}`;
+    b.setAttribute('aria-label',state.net&&i===6?
+      `Decomposers. ${Math.round(c[i])} specks. Too small to net; use the decomposers switch.`:
+      `${state.net?'Net one':'Add'} ${names[i]}. ${Math.round(c[i])} present. One drawing = ${n}.`);
+    b.title=`${names[i]} ${Math.round(c[i])}; one drawing = ${n}`;
+    const all=$('all-'+kinds[i]);
+    if(all) all.hidden=!state.net;
+  }
+  const netChanged=$('tray').classList.contains('netting')!==state.net;
+  $('tray').classList.toggle('netting',state.net);
+  if(netChanged)drawTray();
+  $('net').setAttribute('aria-pressed',state.net);
+  $('net').setAttribute('aria-label',state.net?'Put net down':'Pick up net');
+  for(const id of ['feeder','bottom','decomp','canopy','climate']) $(id).value=String(pond[id]);
+  const avg=shade(pond);
+  $('shade-text').textContent='AVG SHADE '+(avg===null?'none':avg.toFixed(2));
+  $('shade-marker').style.left=(avg===null?0:avg/7*100)+'%';
+  $('shade-marker').hidden=avg===null;
+  traceKeys.forEach((key,i)=>{
+    const b=$('line-'+key);
+    const r=snapshot(pond);
+    const name=innerWidth<=600?['Float','Snail','Fish','Nymph','Stem','Shade'][i]:traceNames[i];
+    b.textContent=name+' '+(key==='Q'?(avg===null?'none':avg.toFixed(2)):Math.round(r[key]));
+    const fullName={A:'Floating algae',B:'Stem algae',Q:'Average minnow shade'}[key]||traceNames[i];
+    b.setAttribute('aria-label',fullName+' '+(key==='Q'?(avg===null?'none':avg.toFixed(2)):Math.round(r[key]))+
+      '. Show or hide trace.');
+    b.setAttribute('aria-pressed',state.visible[i]);
+  });
+  $('whole').setAttribute('aria-pressed',state.whole);
+  $('ledger').hidden=state.lens==='Life';
+  if(state.lens==='Matter') {
+    const units=total(pond)>750?Math.ceil(total(pond)/150/5)*5:5;
+    const trip=state.tracked===null?'Tap a dot to follow its trip.':
+      state.trip.join(' → ')+` · ${pond.w-trackerSince} weeks here`;
+    $('ledger').innerHTML=`<span class="ledger-detail"><strong>MATTER · 1 DOT ≈ ${units} UNITS</strong><br></span>`+
+      `IN POND ${total(pond).toFixed(1)}`+
+      `<span class="ledger-detail"><br>ADDED ${pond.added.toFixed(1)} · TAKEN OUT ${pond.taken.toFixed(1)}`+
+      `<br>WALKED OFF ${pond.walked.toFixed(1)}</span><div id="trip">${trip}</div>`;
+  }
+  if(state.lens==='Energy') {
+    const n=pond.energy,previous=pond.lastEnergy;
+    const percent=(a,b)=>b?(100*a/b).toFixed(1)+'%':'0.0%';
+    const last=(field,unit='')=>previous?`<span class="previous">${previous[field].toFixed(0)}${unit}</span>`:'';
+    $('ledger').innerHTML=`<div class="ledger-detail energy-head"><strong>ENERGY · THIS YEAR</strong>`+
+      (previous?'<strong>LAST YEAR</strong>':'')+'</div>'+
+      `<div class="ledger-detail energy-row">Sunlight in ${Math.round(n.sun).toLocaleString()}${last('sun')}</div>`+
+      `<div class="energy-row">Caught ${n.caught.toFixed(0)} · ${percent(n.caught,n.sun)} of sun`+
+      (previous?`<span class="previous">${previous.caught.toFixed(0)} · ${percent(previous.caught,previous.sun)}</span>`:'')+'</div>'+
+      `<div class="ledger-detail energy-row">Algae kept ${n.plants.toFixed(0)}${n.plants<0?' · using stored food':''}${last('plants')}</div>`+
+      `<div class="ledger-detail energy-row">Plant eaters kept ${n.grazers.toFixed(0)} · `+
+      `${n.grazers<0?'using stored food':n.plants>0?percent(n.grazers,n.plants)+' of algae kept':'share n/a'}${last('grazers')}</div>`+
+      `<div class="energy-row">Heat out ${n.heat.toFixed(0)} · ${percent(n.heat,n.caught)} of caught`+
+      (previous?`<span class="previous">${previous.heat.toFixed(0)} · ${percent(previous.heat,previous.caught)}</span>`:'')+'</div>';
+    $('ledger').setAttribute('aria-label','Energy, this year'+(previous?' and last year':'')+', model units');
+  }
+  if(state.overlay==='manual') updateLog();
+}
+function updateLog() {
+  const div=$('pondlog');
+  div.replaceChildren();
+  for(const x of pond.log.slice(-150).reverse()) {const p=document.createElement('div');
+    p.textContent=`Y${Math.floor(x.w/52)+1} W${x.w%52}: ${x.text}`;
+    div.append(p);
+    }
+  if(!pond.log.length) div.textContent='The chart has just started.';
+}
+for(let k=0;k<7;k++) {
+  const b=document.createElement('button');
+  b.id='add-'+kinds[k];
+  b.className='specimen';
+  b.dataset.kind=kinds[k];
+  b.innerHTML=`<canvas aria-hidden="true"></canvas><span><span class="name">${names[k]}</span><small></small></span>`;
+  b.onclick=()=>{if(suppressClick)return;
+    act({type:state.net?'net':'add',kind:kinds[k]});
+    };
+  b.addEventListener('pointerdown',e=>{if(state.net)return;
+    dragKind=kinds[k];
+    down={x:e.clientX,y:e.clientY,tray:true};
+    });
+  $('tray').append(b);
+  if(k!==6) { const a=document.createElement('button');
+    a.className='all';
+    a.id='all-'+kinds[k];
+    a.textContent='all';
+    a.setAttribute('aria-label','Net all '+names[k]);
+    a.hidden=true;
+    a.onclick=()=>act({type:'net',kind:kinds[k],all:true});
+    $('tray').append(a);
+    }
+}
+for(const [id,name,sprite] of [['food','Food',34],['net','Net',35]]) {
+  const b=document.createElement('button');
+  b.id=id;
+  b.className='specimen';
+  b.innerHTML=`<canvas aria-hidden="true"></canvas><span>${name}<small>${id==='food'?'2 units':'N'}</small></span>`;
+  $('tray').append(b);
+}
+$('food').onclick=()=>act({type:'food',n:2});
+function toggleNet() {
+  state.net=!state.net;
+  afterTouch();
+  status('');
+  sync();
+  draw();
+  if(document.activeElement===$('net')) $('net').scrollIntoView({block:'nearest',inline:'nearest'});
+}
+$('net').onclick=toggleNet;
+traceKeys.forEach((key,i)=>{
+  const b=document.createElement('button');
+  b.id='line-'+key;
+  b.style.color=palette[i];
+  b.style.setProperty('--trace',palette[i]);
+  b.title='Show or hide '+traceNames[i]+(key==='Q'?' (shade scale 0 to 7)':'');
+  b.onclick=()=>{state.visible[i]=!state.visible[i];
+    sync();
+    draw();
+    };
+  $('legend').append(b);
+});
+const whole=document.createElement('button');
+whole.id='whole';
+whole.textContent='Whole run';
+whole.onclick=()=>{state.whole=!state.whole;
+  sync();
+  draw();
+  };
+$('legend').append(whole);
+for(let k=0;k<8;k++) { const i=document.createElement('i');
+  i.style.background=`rgb(${215-k*21},${218-k*19},${188-k*20})`;
+  $('swatches').insertBefore(i,$('shade-marker'));
+  }
+$('run').onclick=()=>{state.running=!state.running;
+  accum=0;
+  afterTouch();
+  sync();
+  };
+function installControl(id) {
+  const old=$(id),options=[...old.options].map(o=>({value:o.value,text:o.textContent}));
+  const b=document.createElement('button');b.id=id;b.type='button';
+  const lever=id==='decomp';b.className=lever?'lever':'rotary';
+  b.setAttribute('aria-label',old.getAttribute('aria-label'));
+  b.setAttribute('role',lever?'switch':'slider');
+  let index=Math.max(0,options.findIndex(o=>o.value===old.value));
+  const render=()=>{
+    b.innerHTML='<i aria-hidden="true"></i><span>'+options[index].text+'</span>';
+    b.style.setProperty('--angle',(-65+index/(options.length-1)*130)+'deg');
+    if(lever)b.setAttribute('aria-checked',options[index].value==='true');
+    else {b.setAttribute('aria-valuemin','0');b.setAttribute('aria-valuemax',String(options.length-1));b.setAttribute('aria-valuenow',String(index));}
+    b.setAttribute('aria-valuetext',options[index].text);
+  };
+  Object.defineProperty(b,'value',{get:()=>options[index].value,set:value=>{
+    const next=options.findIndex(o=>o.value===String(value));if(next>=0)index=next;render();
+  }});
+  const step=(delta,wrap=false)=>{
+    const next=wrap?(index+delta+options.length)%options.length:clamp(index+delta,0,options.length-1);
+    if(index===next)return;index=next;render();tone('tick');b.onchange?.(new Event('change'));
+  };
+  b.onclick=e=>step(e.shiftKey?-1:1,true);
+  b.onkeydown=e=>{
+    const delta={ArrowRight:1,ArrowUp:1,ArrowLeft:-1,ArrowDown:-1}[e.key];
+    if(delta){e.preventDefault();e.stopPropagation();step(delta);}
+    if(e.key==='Home'||e.key==='End'){e.preventDefault();e.stopPropagation();step(e.key==='Home'?-options.length:options.length);}
+  };
+  old.replaceWith(b);render();
+}
+for(const id of ['speed','lens','feeder','bottom','decomp','canopy','climate'])installControl(id);
+$('speed').onchange=()=>{state.speed=+$('speed').value;
+  afterTouch();
+  };
+$('step').onclick=()=>{state.running=false;
+  advance();
+  afterTouch();
+  draw();
+  };
+function lens(value) {state.lens=value;
+  afterTouch();
+  status('');
+  sync();
+  draw();
+  }
+$('lens').onchange=()=>lens($('lens').value);
+for(const id of ['feeder','bottom','decomp','canopy','climate']) $(id).onchange=()=>act({type:id,value:id==='decomp'?$(id).value==='true':+$(id).value});
+function openDrawer(which) {
+  drawerFocus=document.activeElement;
+  state.overlay=which;
+  $('drawer').hidden=false;
+  $('manualbody').hidden=which!=='manual';
+  $('savesbody').hidden=which!=='saves';
+  document.querySelector('main').inert=true;
+  $('drawer').setAttribute('aria-modal','true');
+  $('drawer-title').textContent=which==='manual'?'Field manual':'Saved ponds';
+  $('manual').setAttribute('aria-expanded',which==='manual');
+  if(which==='saves') renderSaves();
+  else updateLog();
+  $('close').focus({preventScroll:true});
+}
+function closeDrawer() {
+  state.overlay=null;
+  $('drawer').hidden=true;
+  document.querySelector('main').inert=false;
+  $('manual').setAttribute('aria-expanded','false');
+  drawerFocus?.focus({preventScroll:true});
+}
+$('manual').onclick=()=>state.overlay==='manual'?closeDrawer():openDrawer('manual');
+$('close').onclick=closeDrawer;
+$('saved').onclick=()=>openDrawer('saves');
+$('habitat-toggle').onclick=()=>{
+  const open=document.body.classList.toggle('habitat-open');
+  $('habitat-toggle').setAttribute('aria-expanded',open);
+};
+function closeHabitat() {
+  const open=document.body.classList.contains('habitat-open');
+  document.body.classList.remove('habitat-open');
+  $('habitat-toggle').setAttribute('aria-expanded','false');
+  if(open&&document.querySelector('.habitat').contains(document.activeElement))$('habitat-toggle').focus({preventScroll:true});
+}
+addEventListener('pointerdown',e=>{
+  if(!e.target.closest('.habitat,#habitat-toggle'))closeHabitat();
+});
+function persist() {
+  try {localStorage.setItem('living-pond-v1',JSON.stringify(saved));
+    return true;
+    }
+  catch {status("This browser can't save here. The pond keeps running.");
+    return false;
+    }
+}
+function savePond() {
+  if(saved.length>=8) {status('Eight ponds saved. Open one to rename or delete it.');
+    openDrawer('saves');
+    return false;
+    }
+  const entry={name:`Pond ${saved.length+1}`,initial,actions:structuredClone(actions),w:pond.w};
+  saved.push(entry);
+  if(!persist()) {saved.pop();
+    return false;
+    }
+  dirty=false;
+  openDrawer('saves');
+  return true;
+}
+$('save').onclick=savePond;
+function restore(entry,asReplay=false) {
+  initial=entry.initial;
+  pond=makePond(initial);
+  actions=[];
+  ghost=[];
+  history=[snapshot(pond)];
+  state.tracked=null;
+  state.trip=[];
+  state.selected=null;
+  state.net=false;
+  effects=[];
+  accum=0;
+  if(asReplay) {
+    replay={actions:structuredClone(entry.actions),i:0,target:entry.w,speed:state.speed};
+    state.speed=8;
+    state.running=true;
+  } else {
+    let i=0;
+    for(let w=0;w<=entry.w;w++) {
+      while(i<entry.actions.length&&entry.actions[i].w===w) change(pond,entry.actions[i++]);
+      history[history.length-1]=snapshot(pond);
+      if(w<entry.w) {week(pond);
+        history.push(snapshot(pond));
+        }
+    }
+    actions=structuredClone(entry.actions);
+    state.running=false;
+    replay=null;
+  }
+  dirty=false;
+  status('');
+  closeDrawer();
+  sync();
+  draw();
+}
+function renderSaves() {
+  $('savelist').replaceChildren();
+  $('save-status').textContent=saved.length>=8?'Eight ponds saved. Delete one to make room.':'';
+  if(!saved.length) $('savelist').textContent='No saved ponds. Save keeps this pond and its action history here.';
+  saved.forEach((entry,index)=>{
+    const row=document.createElement('div');
+    row.className='save-row';
+    const name=document.createElement('input');
+    name.value=entry.name;
+    name.maxLength=60;
+    name.setAttribute('aria-label',`Name of saved pond ${index+1}`);
+    row.append(name);
+    const age=document.createElement('p');
+    age.textContent=`Year ${Math.floor(entry.w/52)+1}, week ${entry.w%52} · ${entry.actions.length} actions`;
+    row.append(age);
+    const buttons=document.createElement('div');
+    for(const text of ['Open','Replay','Rename','Delete']) {
+      const b=document.createElement('button');
+      b.textContent=text;
+      b.setAttribute('aria-label',`${text} ${entry.name}`);
+      b.onclick=()=>{
+        if(text==='Open'||text==='Replay') restore(entry,text==='Replay');
+        if(text==='Rename') {
+          const old=entry.name;
+          entry.name=name.value.trim()||old;
+          if(!persist())entry.name=old;
+          else {
+            name.value=entry.name;
+            for(const child of buttons.querySelectorAll('button')) child.setAttribute('aria-label',child.textContent+' '+entry.name);
+          }
+        }
+        if(text==='Delete') confirmBox('Delete saved pond?',entry.name,[['Delete',()=>{
+          const copy=saved.slice();
+          saved.splice(index,1);
+          if(!persist())saved=copy;
+          renderSaves();
+          $('close').focus({preventScroll:true});
+          }]]);
+      };
+      buttons.append(b);
+    }
+    row.append(buttons);
+    $('savelist').append(row);
+  });
+}
+function confirmBox(title,text,buttons) {
+  $('confirm-title').textContent=title;
+  $('confirm-text').textContent=text;
+  $('confirm-actions').replaceChildren();
+  for(const [label,action] of [...buttons,['Cancel',()=>{}]]) {
+    const b=document.createElement('button');
+    b.textContent=label;
+    b.onclick=()=>{$('confirm').close();
+      action();
+      };
+    $('confirm-actions').append(b);
+  }
+  $('confirm').showModal();
+}
+function newPond(empty) {
+  pond=makePond(empty);
+  initial=empty;
+  actions=[];
+  history=[snapshot(pond)];
+  ghost=[];
+  replay=null;
+  state.tracked=null;
+  state.trip=[];
+  state.selected=null;
+  state.net=false;
+  effects=[];
+  accum=0;
+  state.running=true;
+  dirty=false;
+  status('');
+  sync();
+  draw();
+}
+$('new').onclick=()=>confirmBox('New pond','Save this pond before starting another? Saved ponds stay on this device.',
+  [['Save only',savePond],['Starter pond',()=>newPond(false)],['Empty pond',()=>newPond(true)]]);
+function random() {state.traceSeed=(Math.imul(1664525,state.traceSeed)+1013904223)>>>0;
+  return state.traceSeed/4294967296;
+  }
+function poolLabel(a) {
+  return a===17?'Taken out of pond':a===18?'Walked out with turtle':
+    a===16?'Turtle (fixed adult)':a>=4&&a<12?'Minnow':POOLS[a];
+}
+function follow(a) {state.tracked=a;
+  trackerSince=pond.w;
+  state.trip=[poolLabel(a)];
+  state.traceSeed=731;
+  sync();
+  draw();
+  }
+function updateTracker() {
+  if(state.tracked===null||state.tracked>=16)return;
+  const a=state.tracked, out=pond.flows.filter(f=>f.a===a), start=pond.flowStart?.[a]||0;
+  if(!start)return;
+  const r=random()*start;
+  let n=0;
+  for(const f of out) {n+=f.v;
+    if(r<n){state.tracked=f.b;
+      if(f.b!==a)trackerSince=pond.w;
+      if(a===14&&f.b===0)state.trip.push('broken down by decomposers');
+      const name=poolLabel(f.b);
+      if(name!==state.trip.at(-1))state.trip.push(name);
+      break;
+      }}
+  if(state.trip.length>16)state.trip.shift();
+}
+function dimensions(canvas) {
+  const r=canvas.getBoundingClientRect(),dpr=Math.min(2,devicePixelRatio||1);
+  if(canvas.width!==Math.round(r.width*dpr)||canvas.height!==Math.round(r.height*dpr)) {
+    canvas.width=Math.max(1,Math.round(r.width*dpr));
+    canvas.height=Math.max(1,Math.round(r.height*dpr));
+  }
+  const ctx=canvas.getContext('2d');
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  return {ctx,w:r.width,h:r.height};
+}
+function sprite(ctx,id,x,y,w,h,flip=false,alpha=1) {
+  if(!artReady||!pieces[id])return;
+  ctx.save();
+  ctx.globalAlpha=alpha;
+  ctx.translate(x,y);
+  if(flip)ctx.scale(-1,1);
+  const piece=pieces[id];
+  const fit=id<9||id===12?null:Math.min(w/piece.width,h/piece.height);
+  const dw=fit===null?w:piece.width*fit,dh=fit===null?h:piece.height*fit;
+  ctx.drawImage(piece,-dw/2,-dh/2,dw,dh);
+  ctx.restore();
+}
+function seeded(i,offset=0) {return ((Math.sin(i*127.1+offset*311.7)*43758.5453)%1+1)%1;
+  }
+function specimenPosition(kind,i,w,h,t) {
+  const x=seeded(i+1,kinds.indexOf(kind)+1),y=seeded(i+17,3);
+  const water=.31*h,bottom=h-57;
+  if(environment(pond).ice)t*=.35;
+  let px=20+x*(w-40),py=water+y*(bottom-water-14);
+  if(kind==='minnow') {
+    px=w*(.23+.55*x)+Math.sin(t*.32+i*.73)*w*.09;
+    py=pond.O<3?water+12+y*20:water+30+y*(bottom-water-65)+Math.cos(t*.6+i)*8;
+    if(effects.some(e=>e.kind==='food'&&performance.now()-e.t<2400)) py=water+8+y*20;
+  }
+  if(kind==='snail') {
+    const stem=i%7;
+    px=(stem<4?.02+stem*.055:.85+(stem-4)*.065)*w+(x-.5)*16;
+    py=bottom-y*(h*.33);
+    if(i%5===0){px=(.07+Math.floor(i/5)%4*.28)*w;py=bottom-12;}
+  }
+  if(kind==='nymph') {py=bottom-12-y*25;
+    px=25+x*(w-50)+Math.sin(t*.2+i)*5;
+    }
+  if(kind==='turtle') {
+    if(turtleState()==='basking'){px=w*.79+i*25;
+      py=water+6;
+      }
+    else if(turtleState()==='asleep in mud'){px=w*(w<600?.36:.56)+i*Math.min(95,w*.24);
+      py=bottom-1;
+      }
+    else {px=w*(.5+.2*Math.sin(t*.09+i));
+      py=water+50+y*(bottom-water-70);
+      }
+  }
+   if(kind==='heron'){px=w*((w<600?.45:.29)+i*.15);
+    py=water-26;
+    }
+  return {x:clamp(px,20,w-20),y:py};
+}
+function drawTank() {
+  const {ctx:c,w,h}=dimensions($('pond'));
+  if(w<=0||h<=0)return;
+  const e=environment(pond),t=Curio.reduce?0:performance.now()/1000,water=h*.31,bottom=h-53;
+  const sky=c.createLinearGradient(0,0,0,water);
+  sky.addColorStop(0,e.ice?'#c6d5d8':'#c1dfe0');
+  sky.addColorStop(1,'#eef0ce');
+  c.fillStyle=sky;
+  c.fillRect(0,0,w,water);
+  // Shore vignettes describe a place; model water and all measured material are drawn below in code.
+  const seasonId=Math.floor((pond.w%52)/13);
+  // Fit the panoramic shoreline without stretching its trees or painting the model water.
+  if(shoreReady) {
+    const strip=shores.height/4,scale=Math.max(w/shores.width,(water+4)/strip);
+    const sw=w/scale,sh=(water+4)/scale;
+    c.drawImage(shores,(shores.width-sw)/2,seasonId*strip+strip-sh,sw,sh,0,0,w,water+4);
+  }
+  c.fillStyle=e.ice?'#b6c4b6':'#839d69';
+  c.beginPath();
+  c.moveTo(0,water-4);
+  for(let x=0;x<=w;x+=30)c.lineTo(x,water-8-4*Math.sin(x*.025));
+  c.lineTo(w,water+13);
+  c.lineTo(0,water+13);
+  c.fill();
+  const waterGradient=c.createLinearGradient(0,water,0,bottom);
+  waterGradient.addColorStop(0,e.ice?'#719298':'#9fd0d6');
+  waterGradient.addColorStop(1,e.ice?'#203f4a':'#2b6f7a');
+  c.fillStyle=waterGradient;
+  c.fillRect(0,water,w,bottom-water);
+  c.fillStyle=`rgba(111,154,58,${Math.min(.6,pond.p[1]/(pond.p[1]+300))})`;
+  c.fillRect(0,water,w,bottom-water);
+  c.fillStyle=`rgba(16,42,44,${pond.canopy/180})`;
+  c.fillRect(0,water,w,bottom-water);
+  c.strokeStyle='#eefcddbb';
+  c.lineWidth=2;
+  c.beginPath();
+  c.moveTo(0,water);
+  c.lineTo(w,water);
+  c.stroke();
+  const bottomColour=pond.bottom===1?'#c8b68a':pond.bottom===6?'#71664b':'#8b8c7b';
+  c.fillStyle=bottomColour;
+  c.fillRect(0,bottom-12,w,65);
+  const muck=Math.min(35,8+pond.p[14]/25);
+  c.fillStyle='#5a4632';
+  c.beginPath();
+  c.moveTo(0,bottom-muck);
+  for(let x=0;x<=w;x+=16)c.lineTo(x,bottom-muck+3*Math.sin(x*.07));
+  c.lineTo(w,h);
+  c.lineTo(0,h);
+  c.fill();
+  for(let i=0;i<35;i++) {c.fillStyle=pond.bottom===3.5?'#bbbca7':'#826e4a';
+    c.beginPath();
+    c.ellipse(seeded(i,9)*w,bottom-4+seeded(i,2)*8,3+seeded(i,5)*5,2,0,0,7);
+    c.fill();
+    }
+  sprite(c,27,w*.8,water+12,Math.min(200,w*.25),55);
+  for(let i=0;i<7;i++) {
+    const px=(i<4?.02+i*.055:.85+(i-4)*.065)*w;
+    sprite(c,12,px,bottom-h*.18,Math.min(60,w*.1),h*.45,false,Math.min(1,pond.p[2]/35+.15));
+  }
+  sprite(c,seasonId>=2?10:9,w*.035,water-6,Math.min(100,w*.16),Math.min(145,h*.45));
+  sprite(c,seasonId>=2?10:9,w*.96,water-3,Math.min(110,w*.15),Math.min(155,h*.48),true);
+  sprite(c,11,w*.64,water+4,Math.min(150,w*.25),44);
+  if(pond.w%52>=13 && pond.w%52<=30) {
+    for(let i=0;i<Math.min(6,Math.floor(pond.p[12]/2));i++) {
+      const x=w*(.32+.11*i)+Math.sin(t*.9+i)*12,y=water-20-Math.sin(t+i)*6;
+      sprite(c,22,x,y,35,26);
+    }
+  }
+  hitboxes=[];
+  if(pond.p[1]>0) {
+    const n=Math.min(40,Math.ceil(pond.p[1]/5)),mult=Math.max(1,Math.ceil(pond.p[1]/5/40));
+    for(let i=0;i<n;i++) {
+      const x=w*(.18+.6*seeded(i,12)),y=water+4+seeded(i,3)*8;
+      sprite(c,15,x,y,20+Math.sqrt(mult)*8,12);
+      hitboxes.push({x,y,kind:'algae',r:14,i});
+    }
+  }
+  for(let i=0;i<4;i++) {
+    sprite(c,pond.p[2]>30?13:14,(.07+i*.28)*w,bottom-8,46,28);
+    if(pond.p[2]>0)hitboxes.push({x:(.07+i*.28)*w,y:bottom-8,kind:'stem algae',r:20,i});
+  }
+  const count=counts();
+  for(const k of [1,3,2,4,5]) {
+    const kind=kinds[k],multiplier=Math.max(1,Math.ceil(count[k]/caps[k]));
+    const n=Math.min(caps[k],Math.ceil(count[k]/multiplier));
+    for(let i=0;i<n;i++) {
+      let p=specimenPosition(kind,i,w,h,t),id=sprites[k],sw=22,sh=18;
+      const arrival=effects.findLast(x=>x.kind===kind);
+      if(arrival && i===n-1 && !Curio.reduce) {
+        const progress=clamp((performance.now()-arrival.t)/1300,0,1);
+        p={x:arrival.x*w*(1-progress)+p.x*progress,y:arrival.y*h*(1-progress)+p.y*progress};
+      }
+      if(kind==='minnow') {
+        sw=28;
+        sh=12;
+        id=18;
+        let target=(i+.5)/Math.max(1,n)*minnow(pond),shadeK=0;
+        for(let sk=0;sk<8;sk++){target-=pond.p[4+sk];
+          if(target<=0){shadeK=sk;
+            break;
+            }}
+        const flipped=Math.cos(t*.32+i*.73)<0;
+        sprite(c,18,p.x,p.y,sw,sh,flipped);
+        sprite(c,19,p.x,p.y,sw,sh,flipped,shadeK/7);
+      } else {
+        if(kind==='nymph') {
+          const feeding=pond.flows.some(f=>f.b===12&&(f.a===3||(f.a>=4&&f.a<12))&&f.v>0);
+          sw=31;
+          sh=22;
+          id=feeding&&i===0&&Math.sin(t)>0.95?21:20;
+        }
+        if(kind==='turtle'){sw=77;
+          sh=52;
+          id=turtleState()==='asleep in mud'?26:turtleState()==='basking'?25:24;
+          }
+        if(kind==='heron'){sw=80;
+          sh=Math.min(h*.44,148);
+          p.y=Math.max(sh/2+4,water-sh*.34);
+          id=pond.catchH>0&&Math.sin(t*2)>0.8?29:28;
+          }
+        sprite(c,id,p.x,p.y,sw,sh);
+      }
+      hitboxes.push({...p,kind,r:Math.max(11,sw/2),i});
+    }
+  }
+  if(pond.p[13]>0) {
+    const count=pond.p[13]/.25,multiplier=Math.max(1,Math.ceil(count/120));
+    const n=Math.min(120,Math.ceil(count/multiplier));
+    c.fillStyle=pond.decomp?'#d7bf86':'#9e9d8f';
+    for(let i=0;i<n;i++){c.beginPath();
+      c.ellipse(seeded(i,10)*w,bottom-muck+seeded(i,19)*muck,1.5,1,0,0,7);
+      c.fill();
+      hitboxes.push({x:seeded(i,10)*w,y:bottom-muck+seeded(i,19)*muck,kind:'decomposers',r:3,i});
+      }
+  }
+  if(pond.p[15]>0) {
+    c.fillStyle='#d4a15d';
+    for(let i=0;i<Math.min(30,Math.ceil(pond.p[15]*2));i++)c.fillRect(w*(.3+.4*seeded(i,6)),water+8+seeded(i,7)*(bottom-water-15),3,2);
+  }
+  if(!Curio.reduce) {
+    c.strokeStyle='#d5eee585';
+    c.lineWidth=1;
+    const built=sum(pond.flows.filter(f=>f.a===0&&(f.b===1||f.b===2)).map(f=>f.v));
+    for(let i=0;i<Math.min(18,built);i++){
+      const y=bottom-((t*12+i*24)%(Math.max(1,bottom-water)));
+      c.beginPath();
+      c.arc(seeded(i,33)*w,y,2,0,7);
+      c.stroke();
+    }
+    if(seasonId===2)for(let i=0;i<4;i++)sprite(c,33,(seeded(i,52)*w+t*6)%w,water+(t*8+i*43)%(bottom-water),17,17);
+  }
+  if(e.ice) {
+    c.fillStyle='#e8f4f8d9';
+    const thickness=12+8*clamp((4-e.T)/2,0,1);
+    c.fillRect(0,water-5,w,thickness);
+    c.fillStyle='#f2f8f3';
+    c.fillRect(0,water-7,w*.17,thickness+4);
+    c.fillRect(w*.83,water-7,w*.17,thickness+4);
+    c.strokeStyle='#9abfc3';
+    for(let i=0;i<15;i++){const x=seeded(i,42)*w;
+      c.beginPath();
+      c.moveTo(x,water-3);
+      c.lineTo(x+12,water+2);
+      c.lineTo(x+25,water);
+      c.stroke();
+      }
+  }
+  if(state.lens==='Matter')drawMatter(c,w,h);
+  if(state.lens==='Energy')drawEnergy(c,w,h,t);
+  if(state.selected && performance.now()<state.selectedUntil)drawWeb(c,w,h,state.selected);
+  effects=effects.filter(x=>performance.now()-x.t<(x.kind==='heron-flight'?1600:1300));
+  if(!Curio.reduce)for(const x of effects){
+    if(x.kind==='heron-flight') {
+      const age=clamp((performance.now()-x.t)/1600,0,1),start=(w<600?.45:.29)+x.i*.15;
+      sprite(c,30,w*(start+(1.15-start)*age),water-35-h*.28*Math.sin(age*Math.PI/2),100,65);
+      continue;
+    }
+    const age=(performance.now()-x.t)/1300;
+    c.strokeStyle=`rgba(245,255,240,${1-age})`;
+    c.lineWidth=2;
+    c.beginPath();
+    c.ellipse(x.x*w,water,10+age*42,3+age*8,0,0,7);
+    c.stroke();
+    }
+  if(document.activeElement===$('pond')) {
+    c.strokeStyle='#fff5b5';
+    c.lineWidth=2;
+    const x=state.drop.x*w,y=state.drop.y*h;
+    c.beginPath();
+    c.moveTo(x-9,y);
+    c.lineTo(x+9,y);
+    c.moveTo(x,y-9);
+    c.lineTo(x,y+9);
+    c.stroke();
+  }
+  if(state.net && netPoint) sprite(c,35,netPoint.x,netPoint.y,45,65);
+  c.fillStyle='#e5f3df';
+  c.font='10px Consolas, monospace';
+  c.textAlign='right';
+  const turtleLabel=pond.turtles?'TURTLE '+turtleState().toUpperCase():(pond.walked?'TURTLE WALKED OFF':'NO TURTLE');
+  const heronLabel=pond.herons?'HERON '+(e.ice?'AWAY IN ICE':'FISHING'):(pond.visitors?'HERON FLEW OFF':'NO HERON');
+  const summaryLeft=state.lens==='Energy'&&innerHeight<=550&&innerWidth>600;
+  c.textAlign=summaryLeft?'left':'right';
+  c.fillText(turtleLabel+' · '+heronLabel,summaryLeft?10:w-10,bottom-3);
+}
+function drawMatter(c,w,h) {
+  const unit=total(pond)>750?Math.ceil(total(pond)/150/5)*5:5;
+  dots=[];
+  const colours=['#c9eef0','#9ed36d','#64ae64','#ffcc85',...Array(8).fill('#e9d387'),'#ba9eda','#e5b8a0','#b18a62','#dfac70'];
+  for(let a=0;a<16;a++) {
+    const n=Math.round(pond.p[a]/unit);
+    for(let i=0;i<n;i++) {
+      let x=w*(.05+.9*seeded(i+3,a+55)),y=h*(.36+.4*seeded(i+1,a));
+      if(a===0)y=h*(.3+.42*seeded(i+1,99));
+      if(a===1)y=h*.34+seeded(i,1)*10;
+      if(a===2)y=h*(.5+.25*seeded(i,3));
+      if(a===14||a===13)y=h-60-seeded(i,a)*12;
+      const animal=a===3?'snail':a>=4&&a<12?'minnow':a===12?'nymph':null;
+      if(animal) {
+        const found=hitboxes.filter(b=>b.kind===animal);
+        if(found.length) {const body=found[i%found.length];
+          x=body.x+(seeded(i,a)-.5)*8;
+          y=body.y;
+          }
+      }
+      c.fillStyle=colours[a];
+      c.strokeStyle='#233a2e';
+      c.lineWidth=.8;
+      c.beginPath();
+      c.arc(x,y,3,0,7);
+      c.fill();
+      c.stroke();
+      dots.push({x,y,a});
+    }
+  }
+  for(let k=0;k<pond.turtles;k++)for(let i=0;i<Math.round(30/unit);i++) {
+    const body=hitboxes.filter(b=>b.kind==='turtle')[k];
+    const x=(body?.x||w*.68)+(i%3-1)*6,y=(body?.y||h*.78)+Math.floor(i/3)*5;
+    c.fillStyle='#efc87e';
+    c.strokeStyle='#233a2e';
+    c.beginPath();
+    c.arc(x,y,3,0,7);
+    c.fill();
+    c.stroke();
+    dots.push({x,y,a:16});
+  }
+  if(state.tracked!==null && state.tracked<17) {
+    const a=state.tracked;
+    let point=dots.find(d=>d.a===a);
+    if(!point)point={x:w*.55,y:h*.65};
+    c.strokeStyle='#fff07a';
+    c.lineWidth=3;
+    c.beginPath();
+    c.arc(point.x,point.y,9,0,7);
+    c.stroke();
+  }
+}
+function arrow(c,x,y,xx,yy,colour,width=2) {
+  c.strokeStyle=colour;
+  c.fillStyle=colour;
+  c.lineWidth=width;
+  c.beginPath();
+  c.moveTo(x,y);
+  c.lineTo(xx,yy);
+  c.stroke();
+  const a=Math.atan2(yy-y,xx-x);
+  c.beginPath();
+  c.moveTo(xx,yy);
+  c.lineTo(xx-8*Math.cos(a-.5),yy-8*Math.sin(a-.5));
+  c.lineTo(xx-8*Math.cos(a+.5),yy-8*Math.sin(a+.5));
+  c.fill();
+}
+function drawEnergy(c,w,h,t) {
+  const e=environment(pond),small=h<300;
+  c.font='10px Consolas,monospace';
+  c.textAlign='center';
+  const label=(text,x,y)=>{
+    const width=c.measureText(text).width+6;
+    c.fillStyle='#f4faf8ed';c.fillRect(x-width/2,y-10,width,13);
+    c.fillStyle='#16302e';c.fillText(text,x,y);
+  };
+  for(let i=0;i<4;i++)arrow(c,w*(.40+i*.07),h*.17,w*(.35+i*.07),h*.41,'#fff1a0',1+e.sun*3);
+  const middle=w>=600&&w<1100;
+  label('Sun → algae',w*(w<600?.35:middle?.67:.57),h*(w<600?.24:middle?.28:.22));
+  const heatFor=id=>sum(pond.flows.filter(f=>f.b===0&&
+    (id==='turtle'?f.kind==='turtleBreath':id==='heron'?f.kind==='heronBreath':
+    id==='decomp'?(f.eater??f.a)===13&&f.kind==='breath':
+    !['turtleBreath','heronBreath'].includes(f.kind)&&id.includes(f.eater??f.a))).map(f=>f.v));
+  const groups=[['Algae',[1,2]],['Snails',[3]],['Minnows',Array.from({length:8},(_,i)=>4+i)],
+    ['Nymphs',[12]],['Decomposers','decomp'],['Turtle','turtle'],['Heron','heron']];
+  groups.forEach(([name,ids],i)=>{
+    const heat=heatFor(ids),x=w*(w>=600&&w<1100?.47+i*.075:.31+i*.085),y=h*(w<600?.60:small?.56:.70);
+    if(heat>0){
+      arrow(c,x,y,x,y-h*.13,'#e8a36b',Math.min(7,.7+Math.sqrt(heat)));
+      label(name+' heat',x,y+12+(w<600?(i%3)*14:w<1000?(i%2)*14:0));
+    }
+  });
+  const kept=sum(pond.flows.filter(f=>(f.a===1||f.a===2)&&(f.b===3||(f.b>=4&&f.b<12))).map(f=>f.v));
+  if(kept>0){
+    arrow(c,w*.40,h*(w<600?.54:.44),w*.64,h*(w<600?.58:.52),'#a6ef86',Math.min(8,1+Math.sqrt(kept)*2));
+    label('Kept by plant eaters',w*.57,h*(w<600?.57:.47));
+  }
+}
+function drawWeb(c,w,h,kind) {
+  const fallback={'stem algae':[.35,.8],algae:[.4,.35],snail:[.15,.7],minnow:[.53,.55],nymph:[.45,.8],turtle:[.72,.65],
+    heron:[.29,.25],decomposers:[.65,.82],muck:[.5,.86],food:[.54,.35],air:[.18,.4]};
+  const links={'stem algae':[['air','stem algae'],['stem algae','snail'],['stem algae','turtle']],
+    algae:[['air','algae'],['algae','minnow'],['stem algae','turtle']],
+    snail:[['stem algae','snail'],['snail','nymph'],['snail','turtle']],
+    minnow:[['algae','minnow'],['food','minnow'],['minnow','nymph'],['minnow','turtle'],['minnow','heron']],
+    nymph:[['snail','nymph'],['minnow','nymph'],['nymph','turtle']],
+    turtle:[['snail','turtle'],['nymph','turtle'],['minnow','turtle'],['stem algae','turtle']],
+    heron:[['minnow','heron']],decomposers:[['muck','decomposers'],['decomposers','air']]};
+  const edges=[...(links[kind]||[])];
+  edges.push([kind,'muck']);
+  const nodes=new Map();
+  for(const id of new Set(edges.flat())) {
+    const body=hitboxes.find(b=>b.kind===id && (id!==kind || b.i===(state.selectedIndex||0)))||hitboxes.find(b=>b.kind===id);
+    const p=fallback[id];
+    const absent=id==='stem algae'?pond.p[2]===0:id==='food'?pond.p[15]===0:kinds.includes(id)&&counts()[kinds.indexOf(id)]===0;
+    const y=id==='muck'?h-53-Math.min(35,8+pond.p[14]/25)/2:body?.y??h*p[1];
+    nodes.set(id,{x:body?.x??w*p[0],y,absent});
+  }
+  c.save();
+  for(const [a,b] of edges) {
+    const from=nodes.get(a),to=nodes.get(b);
+    c.setLineDash(from.absent||to.absent?[4,4]:[]);
+    arrow(c,from.x,from.y,to.x,to.y,b==='muck'?'#f6c496':'#fff1a3',2);
+  }
+  c.setLineDash([]);
+  c.font='11px Consolas,monospace';
+  c.textAlign='center';
+  const occupied=[];
+  for(const [id,p] of nodes) {
+    const text=({'stem algae':'Stem algae',air:'Water & air',food:'Fish food',muck:'Muck'}[id]||names[kinds.indexOf(id)])+(p.absent?' (absent)':'');
+    const width=c.measureText(text).width+10;
+    const x=clamp(p.x,width/2+3,w-width/2-3);
+    let y=clamp(p.y-17,20,h-76);
+    for(let attempt=0;attempt<6 && occupied.some(r=>Math.abs(r.x-x)<(r.w+width)/2 && Math.abs(r.y-y)<20);attempt++) y-=21;
+    y=Math.max(20,y);
+    occupied.push({x,y,w:width});
+    if(Math.hypot(x-p.x,y-p.y)>24) {
+      c.strokeStyle='#617972';c.lineWidth=.8;c.beginPath();c.moveTo(x,y+5);c.lineTo(p.x,p.y);c.stroke();
+    }
+    c.fillStyle='#f4faf8f2';
+    c.strokeStyle=id===kind?'#9d3b00':'#617972';
+    c.lineWidth=id===kind?2:1;
+    c.fillRect(x-width/2,y-12,width,18);
+    c.strokeRect(x-width/2,y-12,width,18);
+    c.fillStyle='#16302e';
+    c.fillText(text,x,y);
+    if(!p.absent){c.beginPath();c.arc(p.x,p.y,id===kind?12:8,0,Math.PI*2);c.stroke();}
+  }
+  if(['algae','stem algae'].includes(kind)) {
+    const lines=['Algae build from carbon dioxide (air) and water.',
+      'Sunlight supplies energy; muck nutrients are a small share.'];
+    c.font='10px Consolas,monospace';c.textAlign='center';
+    lines.forEach((text,i)=>{
+      const width=Math.min(w-8,c.measureText(text).width+10),y=h-86+i*14;
+      c.fillStyle='#f4faf8f2';c.fillRect(w/2-width/2,y-11,width,14);
+      c.fillStyle='#16302e';c.fillText(text,w/2,y,w-14);
+    });
+  }
+  c.restore();
+}
+function drawChart() {
+  const {ctx:c,w,h}=dimensions($('chart'));
+  c.clearRect(0,0,w,h);
+  if(w<5||h<5)return;
+  const projected=innerWidth>=1280;
+  const compact=innerHeight<=550&&innerWidth>600;
+  const left=28,right=w<400?48:(projected?88:70),top=compact?46:8,bottom=17;
+  const maxWeek=Math.max(104,pond.w,ghost.at(-1)?.w||0),minWeek=state.whole?0:Math.max(0,pond.w-104);
+  const end=state.whole?maxWeek:Math.max(minWeek+104,pond.w+12);
+  const records=[...history.filter(x=>x.w>=minWeek),...ghost];
+  let max=20;
+  for(const r of records) for(let i=0;i<5;i++) if(state.visible[i]) max=Math.max(max,r[traceKeys[i]]||0);
+  const ceil=Math.ceil(max/20)*20;
+  const X=x=>left+(x-minWeek)/(end-minWeek)*(w-left-right),Y=y=>top+(1-y/ceil)*(h-top-bottom);
+  c.save();
+  c.beginPath();
+  c.rect(left,0,w-left-right,h);
+  c.clip();
+  const shades=['#e1eed04d','#fff0bc40','#e9c99c40','#b5dce759'];
+  for(let a=Math.floor(minWeek/13)*13;a<end;a+=13){c.fillStyle=shades[Math.floor(a/13)%4];
+    c.fillRect(X(a),0,X(a+13)-X(a),h);
+    }
+  c.restore();
+  c.strokeStyle='#c7d7ce';
+  c.lineWidth=.6;
+  for(let n=0;n<=4;n++){const y=Y(n*ceil/4);
+    c.beginPath();
+    c.moveTo(left,y);
+    c.lineTo(w-right,y);
+    c.stroke();
+    }
+  for(let n=Math.ceil(minWeek/13)*13;n<=end;n+=13){c.beginPath();
+    c.moveTo(X(n),top);
+    c.lineTo(X(n),h-bottom);
+    c.stroke();
+    }
+  for(let i=0;i<traceKeys.length;i++)if(state.visible[i]) {
+    const key=traceKeys[i],traceY=value=>Y(key==='Q'?value/7*ceil:value);
+    for(const [data,alpha,ghostLine] of [[ghost,.35,true],[history,1,false]]) {
+      c.save();
+      c.beginPath();
+      c.rect(left,top,w-left-right,h-top-bottom);
+      c.clip();
+      c.globalAlpha=alpha;
+      c.strokeStyle=palette[i];
+      c.lineWidth=ghostLine?1.2:1.6;
+      c.setLineDash(ghostLine?[5,4]:dashes[i]);
+      c.beginPath();
+      let started=false;
+      const stride=Math.max(1,Math.floor(data.length/(w*2)));
+      for(let j=0;j<data.length;j+=stride){const r=data[j];
+        if(r.w<minWeek||r.w>end||r[key]===null)continue;
+        if(!started){c.moveTo(X(r.w),traceY(r[key]));
+          started=true;
+          }else c.lineTo(X(r.w),traceY(r[key]));
+        }c.stroke();
+      c.restore();
+    }
+    const r=history.at(-1),y=(h<90?10:12)+i*(h<90?10:projected?15:11);
+    c.fillStyle=palette[i];
+    c.font=(projected?'12':'10')+'px Consolas,monospace';
+    c.textAlign='left';
+    const label=['Float','Snail','Fish','Nymph','Stem','Shade'][i];
+    const value=r[key]===null?'none':key==='Q'?r[key].toFixed(2):Math.round(r[key]);
+    const printed=compact||w<400?['F','S','M','N','St','Sh'][i]:label;
+    c.fillText(printed+' '+value,w-right+4,y);
+  }
+  c.fillStyle='#4c605e';
+  c.font='10px Consolas,monospace';
+  c.textAlign='right';
+  c.fillText(ceil,left-4,top+6);
+  c.fillText('0',left-4,h-bottom);
+  c.textAlign='left';
+  c.fillText(`Y${Math.floor(minWeek/52)+1}`,left,h-3);
+  c.textAlign='right';
+  c.fillText(`Y${Math.floor(end/52)+1} · week`,w-right,h-3);
+  c.strokeStyle='#67533a';
+  for(const a of actions)if(a.w>=minWeek&&a.w<=end){c.beginPath();
+    c.moveTo(X(a.w),h-bottom);
+    c.lineTo(X(a.w),h-bottom-7);
+    c.stroke();
+    }
+  c.strokeStyle='#16302e';
+  c.lineWidth=1;
+  c.beginPath();
+  c.moveTo(X(pond.w),top);
+  c.lineTo(X(pond.w),h-bottom);
+  c.stroke();
+  c.fillStyle='#16302e';
+  c.fillRect(X(pond.w)-2,top-3,4,6);
+}
+function drawOxygen() {
+  const {ctx:c,w,h}=dimensions($('oxygen'));
+  c.clearRect(0,0,w,h);
+  const large=innerWidth>=1280,font=large?12:10;
+  const x=w/2,y=Math.max(22,h-35),r=Math.max(9,Math.min(w*.44,(h-38)*.67));
+  c.fillStyle='#f4f5de';c.fillRect(0,0,w,h);
+  c.strokeStyle='#6c7c65';c.lineWidth=1;
+  c.beginPath();c.arc(x,y,r,Math.PI,2*Math.PI);c.stroke();
+  c.strokeStyle='#b34742';c.lineWidth=6;
+  c.beginPath();c.arc(x,y,r*.94,Math.PI,Math.PI*1.15);c.stroke();
+  c.font=font+'px Consolas,monospace';c.textAlign='center';
+  for(const i of [0,2,3,5,10,15,20]) {
+    const a=Math.PI+i/20*Math.PI;
+    c.strokeStyle=i===2||i===3?'#8d241e':'#6c7c65';c.lineWidth=i===2||i===3?2:1;
+    c.beginPath();c.moveTo(x+Math.cos(a)*r*.76,y+Math.sin(a)*r*.76);
+    c.lineTo(x+Math.cos(a)*r,y+Math.sin(a)*r);c.stroke();
+    if(i!==2&&i!==3&&r>25){c.fillStyle='#233e31';c.fillText(i,x+Math.cos(a)*r*.58,y+Math.sin(a)*r*.58+3);}
+    if(i===2||i===3){c.fillStyle='#8d241e';c.fillText(i+' '+(i===3?'fish gasp':'winterkill'),x,h-(i===3?19:7));}
+  }
+  const a=Math.PI+pond.O/20*Math.PI;
+  c.strokeStyle='#b0306a';c.lineWidth=2;c.beginPath();c.moveTo(x,y);
+  c.lineTo(x+Math.cos(a)*r*.82,y+Math.sin(a)*r*.82);c.stroke();
+  c.fillStyle='#16302e';c.font=(large?14:12)+'px Consolas,monospace';
+  c.fillText(pond.O.toFixed(1)+' mg/L',x,14);
+}
+function draw() {
+  drawTank();drawCounts.tank++;tankDirty=false;
+  if(chartDirty){drawChart();drawCounts.chart++;chartDirty=false;}
+  if(meterDirty){drawOxygen();drawCounts.meter++;meterDirty=false;}
+}
+function drawTray() {
+  for(let k=0;k<9;k++) {
+    const id=k<7?'add-'+kinds[k]:k===7?'food':'net', canvas=$(id).querySelector('canvas');
+    const {ctx,w,h}=dimensions(canvas);
+    ctx.clearRect(0,0,w,h);
+    sprite(ctx,k<7?sprites[k]:k===7?34:35,w/2,h/2,w,h);
+  }
+}
+const shores=new Image();
+shores.src='art:pond-shores-v2';
+shores.onload=()=>{shoreReady=true;draw();};
+shores.onerror=()=>status('Shore artwork could not load. The model is still running.');
+const atlas=new Image();
+atlas.src='art:pond-specimens';
+atlas.onload=()=>{
+  const sw=atlas.width/6,sh=atlas.height/6;
+  for(let id=0;id<36;id++){
+    const canvas=document.createElement('canvas');
+    canvas.width=180;
+    canvas.height=180;
+    const c=canvas.getContext('2d');
+    c.drawImage(atlas,(id%6)*sw,Math.floor(id/6)*sh,sw,sh,0,0,180,180);
+    // Remove transparent atlas padding at draw time so a 28 px fish is actually 28 px long.
+    const data=c.getImageData(0,0,180,180).data;
+    let left=180,top=180,right=-1,bottom=-1;
+    for(let y=0;y<180;y++)for(let x=0;x<180;x++)if(data[(y*180+x)*4+3]>32) {
+      left=Math.min(left,x);top=Math.min(top,y);right=Math.max(right,x);bottom=Math.max(bottom,y);
+    }
+    if(right>=left) {
+      const trimmed=document.createElement('canvas');
+      trimmed.width=right-left+1;
+      trimmed.height=bottom-top+1;
+      trimmed.getContext('2d').drawImage(canvas,left,top,trimmed.width,trimmed.height,0,0,trimmed.width,trimmed.height);
+      pieces.push(trimmed);
+    } else pieces.push(canvas);
+  }
+  artReady=true;
+  drawTray();
+  draw();
+};
+atlas.onerror=()=>status('Specimen artwork could not load. The model is still running.');
+let suppressClick=false,netPoint=null;
+function point(event) {const r=$('pond').getBoundingClientRect();
+  return {x:event.clientX-r.left,y:event.clientY-r.top,w:r.width,h:r.height};
+  }
+function scoop(p) {
+  if(scooped>=6)return;
+  for(const hit of hitboxes)if(hit.kind!=='decomposers'&&Math.hypot(hit.x-p.x,hit.y-p.y)<hit.r+15&&!netSeen.has(hit.kind+hit.i)&&scooped<6){
+    netSeen.add(hit.kind+hit.i);
+    scooped++;
+    act({type:'net',kind:hit.kind==='stem algae'?'algae':hit.kind});
+  }
+}
+function followNearest(x,y) {
+  const dot=dots.reduce((a,b)=>!a||Math.hypot(b.x-x,b.y-y)<Math.hypot(a.x-x,a.y-y)?b:a,null);
+  if(dot)follow(dot.a);
+}
+function inspectCreature(x,y,nearby=false) {
+  const ordered=hitboxes.map(hit=>({hit,distance:Math.hypot(hit.x-x,hit.y-y)})).sort((a,b)=>a.distance-b.distance);
+  const match=ordered.find(({hit,distance})=>!nearby||distance<Math.max(22,hit.r));
+  if(!match)return;
+  state.selected=match.hit.kind;
+  state.selectedIndex=match.hit.i;
+  state.selectedUntil=performance.now()+3000;
+  const selectedName=state.selected==='stem algae'?'Stem algae':names[kinds.indexOf(state.selected)];
+  const algaeNote=['algae','stem algae'].includes(state.selected)?
+    'Algae build their bodies from carbon dioxide (air) and water using sunlight. '+
+    'Nutrients from muck are a small share, combined in Water & air. ':'';
+  $('pond').setAttribute('aria-label',selectedName+'. '+algaeNote+
+    'Model food arrows shown. Arrows move the pointer; Enter inspects nearest creature.');
+  draw();
+}
+$('pond').onpointerdown=e=>{
+  const p=point(e);
+  down={x:e.clientX,y:e.clientY,tray:false};
+  state.drop={x:p.x/p.w,y:p.y/p.h};
+  $('pond').setPointerCapture(e.pointerId);
+  scooped=0;
+  netSeen.clear();
+  netPoint=p;
+  if(state.net){swipeStart=structuredClone(pond); scoop(p);}
+};
+$('pond').onpointermove=e=>{const p=point(e);
+  netPoint=p;
+  if(state.net&&down&&!down.tray)scoop(p);
+  };
+$('pond').onpointerup=e=>{
+  const p=point(e);
+  if(down&&!down.tray&&!state.net&&Math.hypot(e.clientX-down.x,e.clientY-down.y)<10) {
+    if(state.lens==='Matter') {
+      const dot=dots.reduce((a,b)=>!a||Math.hypot(b.x-p.x,b.y-p.y)<Math.hypot(a.x-p.x,a.y-p.y)?b:a,null);
+      if(dot)follow(dot.a);
+    } else inspectCreature(p.x,p.y,true);
+    afterTouch();
+  }
+  finishSwipe();
+  down=null;
+};
+function finishSwipe() {
+  if(!swipeStart)return;
+  if(scooped){const real=pond; pond=swipeStart; makeGhost(); pond=real; sync(); draw();}
+  swipeStart=null;
+}
+$('pond').onpointercancel=()=>{finishSwipe();down=null;};
+addEventListener('pointerup',e=>{
+  if(dragKind&&down?.tray){const p=point(e);
+    if(p.x>=0&&p.y>=0&&p.x<=p.w&&p.y<=p.h){state.drop={x:p.x/p.w,y:p.y/p.h};
+      act({type:'add',kind:dragKind});
+      suppressClick=true;
+      setTimeout(()=>suppressClick=false,0);
+      }}
+  dragKind=null;
+  down=null;
+});
+addEventListener('keydown',e=>{
+  if($('confirm').open)return;
+  if(e.key==='Escape') {closeHabitat(); if(state.overlay)closeDrawer();
+    state.net=false;
+    sync();
+    draw();
+    return;
+    }
+  if(e.key==='Tab' && state.overlay) {
+    const controls=[...$('drawer').querySelectorAll('button,input,summary,a')].filter(x=>x.getClientRects().length);
+    const index=controls.indexOf(document.activeElement);
+    if((e.shiftKey && index===0) || (!e.shiftKey && index===controls.length-1)) {
+      e.preventDefault();
+      controls[e.shiftKey?controls.length-1:0].focus({preventScroll:true});
+    }
+  }
+  if(state.overlay) {
+    if(e.key.toLowerCase()==='m'&&!e.target.matches('input,textarea'))closeDrawer();
+    return;
+  }
+  if(e.target.matches('input,select,textarea,.rotary,.lever')||$('confirm').open)return;
+  if(e.key===' '&&!e.target.matches('button,summary')){e.preventDefault();
+    $('run').click();
+    }
+  if(e.key==='.'){$('step').click();
+    }
+  if(e.key.toLowerCase()==='n')toggleNet();
+  if(e.key.toLowerCase()==='m')$('manual').click();
+  if(e.key.toLowerCase()==='l')lens(['Life','Matter','Energy'][(['Life','Matter','Energy'].indexOf(state.lens)+1)%3]);
+  if(e.key.toLowerCase()==='w')$('whole').click();
+  if(e.key==='>'||e.key==='<'){const speeds=[1,2,8];
+    state.speed=speeds[clamp(speeds.indexOf(state.speed)+(e.key==='>'?1:-1),0,2)];
+    sync();
+    }
+  if(/^[1-7]$/.test(e.key))act({type:state.net?'net':'add',kind:kinds[+e.key-1]});
+  if(e.target===$('pond')) {
+    if(e.key.startsWith('Arrow')){e.preventDefault();
+      state.drop.x=clamp(state.drop.x+({ArrowRight:.04,ArrowLeft:-.04}[e.key]||0),.05,.95);
+      state.drop.y=clamp(state.drop.y+({ArrowDown:.04,ArrowUp:-.04}[e.key]||0),.35,.8);
+      draw();
+      }
+    if(e.key==='Enter') {
+      if(state.lens==='Matter')followNearest(state.drop.x*$('pond').clientWidth,state.drop.y*$('pond').clientHeight);
+      else inspectCreature(state.drop.x*$('pond').clientWidth,state.drop.y*$('pond').clientHeight);
+    }
+  }
+});
+new ResizeObserver(()=>{tankDirty=chartDirty=meterDirty=true;draw();
+  drawTray();
+  }).observe(document.querySelector('main'));
+function tick(now) {
+  const dt=Math.min(.25,(now-last)/1000);
+  last=now;
+  if(state.running&&!document.hidden){accum+=dt*state.speed;
+    while(accum>=1){advance();
+      accum--;
+      if(!state.running)break;
+      }}
+  if(now-lastDraw>14){
+    if(!Curio.reduce||tankDirty)draw();
+    else if(chartDirty||meterDirty)draw();
+    frameTimes.push(now-lastDraw);
+    if(frameTimes.length>120)frameTimes.shift();
+    lastDraw=now;
+    }
+  frame++;
+  requestAnimationFrame(tick);
+}
+sync();
+requestAnimationFrame(tick);
+window.__tool={state,get pond(){return pond;
+    },get history(){return history;
+    },get actions(){return actions;
+    },get ghost(){return ghost;
+    },
+  setMode:lens,allLines:()=>Object.values(L),vlog:V.log,act,advance,newPond,follow,savePond,restore,
+  get saves(){return saved;
+    },draw,environment,total,shade,makePond,week,change,
+  metrics:()=>({drawCounts:{...drawCounts},ghostBuilds,fps:frameTimes.length?1000/(sum(frameTimes)/frameTimes.length):0,ghostMs:state.ghostMs,artReady,frame}),
+  inspect:()=>({w:pond.w,total:total(pond),expected:pond.start+pond.added-pond.taken-pond.walked,snapshot:snapshot(pond),shade:shade(pond)})};
+
+</script>
+</body>
+</html>

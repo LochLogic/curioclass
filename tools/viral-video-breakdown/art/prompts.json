@@ -1,0 +1,86 @@
+{
+  "house_style": "Warm cinematic gouache painting for a middle school media arts film. Rich amber bakery light from the left, deep blue dawn shadows, tactile wood, flour, brushed metal and crisp bread details. Quiet observational composition, sophisticated painted realism, no text, letters, numbers, logos or people.",
+  "assets": [
+    {
+      "name": "shot-street",
+      "prompt": "A dark quiet city street before dawn at eye level, a small bakery window glowing warm yellow on the left, wet pavement reflecting the light. Wide establishing shot, foreground cobblestones, middle bakery, distant blue street. Portrait film frame.",
+      "aspect": "9:16",
+      "width": 640,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-dough",
+      "prompt": "A ball of bread dough on a floured wooden counter, close up from a high camera angle. Powdery flour like snow, folded dough surface and warm side light. Counter fills portrait frame. No hands.",
+      "aspect": "9:16",
+      "width": 640,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-trays",
+      "prompt": "Rows of shaped unbaked bread loaves on several metal trays seen straight from above, wide overhead composition. Scratched silver trays, evenly spaced dough and flour, warm side light. Portrait film frame.",
+      "aspect": "9:16",
+      "width": 640,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-oven",
+      "prompt": "A bakery deck oven door half open with an orange glow and loaves inside, medium shot at eye level. Heavy brushed metal door with real hinges, textured golden loaves, orange light spilling left across the counter. Portrait film frame. No person or hand.",
+      "aspect": "9:16",
+      "width": 640,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-crust",
+      "prompt": "Uncut outside crust of a cooling whole loaf fills almost the entire portrait frame, viewed at crust height. Crisp golden browned blisters, thin fractured crust flakes, tiny fissures, flour in the cracks and delicate steam. Amber light from the left, blue shadows, warm cinematic gouache realism. A sliver of blurred bakery at the top; no text, logos or people.",
+      "aspect": "9:16",
+      "width": 640,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review_redraw": "OpenAI gpt-image, cold review 2026-11-07"
+    },
+    {
+      "name": "shot-apron",
+      "prompt": "An old flour-dusted canvas apron hanging on a wooden hook, close shot at eye level. Faded oatmeal linen, stitched pockets, worn edges and flour marks, warm early morning bakery light from the left. Portrait film frame, no person.",
+      "aspect": "9:16",
+      "width": 640,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-shelves",
+      "prompt": "Wooden shelves full of bread loaves seen from a low camera angle, sunrise through a window behind and to the left. Medium shot, bread forms a skyline, detailed crust, heavy wooden shelves, golden dust in light. Portrait film frame.",
+      "aspect": "9:16",
+      "width": 640,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "case-desk",
+      "prompt": "A dark wooden detective desk seen from above with blank index cards at edges, red string, a brass magnifying glass and a phone lying face down. Clear dark wood in center for an evidence board interface. Warm directional desk lamp light from the left, tactile wood grain, deep blue shadows. Landscape frame.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

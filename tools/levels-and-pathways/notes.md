@@ -13,9 +13,9 @@ They read the floor ribbons as movement symbols and invent a dance that changes 
 
 ## Support at home
 
-- Make a high shape and a low shape together using comfortable arm movements.
-- Trace a straight, curved or zigzag line in the air and ask your child to copy it.
-- In a clear space, make a short dance that starts high and finishes low. Seated movement works too.
+- Draw a straight, curved or zigzag pathway on paper tonight, then walk its shape in a clear space.
+- Call sky, table, grass and freeze together at high, middle and low. Comfortable seated arm shapes work too.
+- Walk a curved pathway around a chair, then a straight pathway back. Trace with a hand if space is tight.
 
 ## A 5-minute start
 
@@ -44,7 +44,10 @@ They read the floor ribbons as movement symbols and invent a dance that changes 
 
 - Keys 1 to 4 switch modes. Every button has a picture and every line is spoken, so non-readers can follow along.
 - In a small room, travel the pathway in place: march the shape on the spot or trace it with a hand.
-- Low level is on the floor (sitting, kneeling or lying). A child who can't get down low, kneel or go on tiptoe shows the level with their arms or upper body instead; any way of getting closer to the floor or to the sky counts.
+- Low level is on the floor (sitting, kneeling or lying) for moves in place, and a deep crouch when traveling. A child who can't get down low, kneel or go on tiptoe shows the level with their arms or upper body instead; any way of getting closer to the floor or to the sky counts.
 - **Motion** off keeps the same counts and music; the dancer just steps from count to count without the in-between.
-- Standards (NCAS dance): Cr1.1.Ka and Kb, Cr1.1.2b (Draw a path: one dance that changes level part by part), Pr4.1.Ka, 1a and 2a (levels; straight, curved and zigzag pathways), Re7.1.Kb (Mystery path), Cr3.1.Kb and 2b (the ribbon map as symbols for pathway and level), Pr5.1.Kb; SHAPE America S2.
+- Standards (NCAS dance): Cr1.1.Ka and Kb, Cr1.1.2b (Draw a path: one dance that changes level part by part), Pr4.1.Ka and 1a (levels; straight, curved and zigzag pathways), Re7.1.Kb (Mystery path), Cr3.1.Kb and 2b (the ribbon map as symbols for pathway and level), Pr5.1.Kb; SHAPE America S2.
 - The studio and three dance guides are painted. The guides, their mirror images and the ribbons follow the dance kit's poses and count clock. Music is synthesized in the browser. No dance or progress is saved or sent anywhere. The shared Motion control remembers its preference on this device.
+
+Moves that stay in one place are nonlocomotor; moves that travel are locomotor.
+DA:Pr4.1.2a moves to choreography-board, where facings, symmetrical and asymmetrical shapes, and circling versus turning must be taught together.

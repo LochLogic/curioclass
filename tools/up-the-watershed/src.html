@@ -2,606 +2,359 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Up the Watershed · Follow the evidence · Curio Class</title>
-<meta name="description" content="Eight sampling kits. Three water mysteries. Trace pollution upstream,
-defend a claim and test a cleanup plan. Grade 12 environmental science. Works offline.">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Up the Watershed · Curio Class Curiosities</title>
+<meta name="description" content="A watershed field station. Sample a fictional creek, compare pollutant loads and explore interventions. Offline.">
 <!--
-Up the Watershed, Curio Class. Grade 12 environmental science. Students drive.
-HS-ESS3-4 and HS-ETS1-3: evidence, cleanup technologies, budgets and social trade-offs.
-Fictional creek, loads, costs and fixes from spec.md. EPA and EIFAC reference values in notes.md.
-Illustrations: retained FLUX.1-schnell paintings and OpenAI gpt-image, edited for Curio Class.
-Content CC BY 4.0, code MIT. One offline file. No network requests.
+Curio Class Curiosities: Up the Watershed. Code MIT; original content CC BY 4.0.
+Synthetic loads, flows, prices and efficiencies: Curio Class, spec.md, CC BY 4.0.
+EPA and USGS factual reference values: U.S. public domain. Full provenance in the Manual.
+Retained FLUX.1-schnell (Apache 2.0) and OpenAI gpt-image illustrations, edited for Curio Class.
+No real monitoring observations, network requests, accounts or analytics.
 -->
-<link rel="stylesheet" href="kit:curio">
-<link rel="stylesheet" href="kit:theme-912">
 <style>
 :root {
-  --brand:#5aa6c8;
-  --brand-ink:#10161f;
-  --map-land:#1a2420;
-  --focus:#b7ecff;
+  color-scheme:dark;
+  --ink:#e8eee6;
+  --muted:#bbc9c0;
+  --accent:#9ed6d6;
+  --focus:#ffe0a0;
+  --line:#627b70;
+  font-family:'Segoe UI',sans-serif;
+  font-variant-numeric:tabular-nums;
 }
-body { height:100dvh; min-height:0; overflow:hidden; grid-template-rows:auto minmax(0,1fr) auto; }
-header { gap:8px; padding:10px 18px; flex-wrap:nowrap; }
-h1 { font-size:23px; letter-spacing:-.6px; white-space:nowrap; }
-h1 small { font-size:11px; letter-spacing:1.7px; margin-top:5px; text-transform:uppercase; }
-header .seg { border-radius:8px; border-width:1px; flex:none; }
-.seg button { min-height:44px; padding:0 13px; font-size:13px; }
-.icon-btn { min-height:44px; padding:0 10px; font-size:12px; border-radius:8px; border-width:1px; white-space:nowrap; }
-#sound { width:88px; }
-#motion { width:97px; }
-button:disabled { cursor:not-allowed; }
-button { min-width:44px; }
-main { display:grid; grid-template-columns:minmax(0,1.65fr) minmax(305px,1fr); overflow:hidden; }
-.stage { grid-column:1; grid-row:1; min-height:0; background:#111d20; }
-.panel { grid-column:2; grid-row:1; padding:17px 20px; gap:12px; border-left:1px solid #34434a; }
-.eyebrow { color:#a5b7bf; font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; }
-h2 { font-size:26px; font-weight:650; letter-spacing:-.6px; margin:5px 0 10px; }
-h3 { margin:0 0 8px; font-size:17px; }
-p { line-height:1.45; }
-.muted { color:var(--muted); }
-.mono { font-family:var(--readout-font); font-variant-numeric:tabular-nums; }
-.hint { min-height:65px; padding:10px 12px; background:#1d2d36; border-left:3px solid var(--brand); font-size:14px; }
-.row { display:flex; gap:7px; align-items:center; }
-.row > .btn { flex:1; }
-.btn { font-size:13px; }
-.primary { background:var(--brand); color:var(--brand-ink); font-weight:750; border-color:var(--brand); }
-.primary:hover:not(:disabled) { background:#8ac7df; }
-.line-btn { border:0; background:transparent; color:#a9d7e9; min-height:44px; padding:0 7px; text-align:left; }
-.kit-line { display:flex; justify-content:space-between; align-items:center; gap:8px; }
-.kit-line strong { font-size:20px; font-family:var(--readout-font); }
-.kit-dots { display:flex; gap:4px; }
-.kit-dots i { width:8px; height:22px; border:1px solid #60829b; border-radius:2px 2px 4px 4px;
-  background:linear-gradient(0deg,#5aa6c8 55%,#152332 55%); box-shadow:inset 2px 0 #ffffff1c; }
-.kit-dots i.used { background:#10161f; border-color:#34434a; }
-label { display:block; color:#c4d4de; font-size:12px; }
-select,textarea { font:inherit; font-size:14px; background:#0e1720; color:var(--ink); border:1px solid #62789a;
-  border-radius:7px; min-height:44px; padding:8px; width:100%; }
-.sample-controls { display:grid; gap:9px; }
-.sample-controls label { margin-bottom:4px; }
-.weather { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
-.weather .btn { padding:5px; font-size:13px; }
-#take-sample { width:100%; }
-.panel-note { font-size:12px; color:#a6b3c4; margin:0; }
-.panel-heading { margin-bottom:0; }
-.panel-heading h2 { font-size:23px; margin:4px 0 7px; }
-.target-note { font-size:13px; margin:0; color:#cfdae1; }
-.mini-table { display:grid; grid-template-columns:1fr auto; gap:4px 8px; font-size:12px; }
-.mini-table span:nth-child(even) { font-family:var(--readout-font); text-align:right; }
-.mini-table small { font-family:'Segoe UI',sans-serif; color:#9cacb6; font-size:10px; }
-footer { display:flex; align-items:center; gap:8px; padding:0 16px; min-height:37px; border-top:1px solid #35434d;
-  background:#10161f; font-size:10px; color:#a9b9c3; }
-footer .line-btn { font-size:10px; min-height:36px; }
-footer .privacy { margin-right:auto; }
-.case-page { height:100%; padding:26px 24px; display:flex; flex-direction:column;
-  background:radial-gradient(ellipse at 20% 8%,#31525066,transparent 60%),linear-gradient(140deg,#182b2c,#101c23); }
-.case-page > h2 { font-size:clamp(28px,3.4vw,48px); margin:10px 0 12px; line-height:1.08; }
-.case-page > p { margin:0 0 25px; max-width:520px; font-size:15px; color:#b4c8cc; }
-.case-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; flex:1; min-height:0; }
-.case-card { position:relative; display:flex; flex-direction:column; overflow:hidden; border:1px solid #65828a;
-  border-radius:5px; background:#15252b; box-shadow:0 9px 28px #0005; }
-.case-photo { flex:1; min-height:90px; position:relative; overflow:hidden; }
-.case-photo img { width:100%; height:100%; position:absolute; object-fit:cover; }
-.case-photo::after { content:""; position:absolute; inset:0; background:linear-gradient(transparent 65%,#15252b); pointer-events:none; }
-.beach-notice { position:absolute; z-index:1; bottom:21px; right:10px; padding:5px; background:#e7e0c8;
-  border:2px solid #8f8061; color:#253743; font-size:10px; font-weight:750; box-shadow:0 2px 5px #0006; }
-.beach-notice::after { content:""; position:absolute; left:48%; top:100%; height:19px; width:4px; background:#8f8061; }
-.case-no { position:absolute; z-index:1; top:10px; left:10px; border:1px solid #fffffd66; padding:5px 8px;
-  background:#10232be8; font-family:var(--readout-font); color:#c5e4ee; font-size:11px; }
-.case-copy { padding:13px 12px 12px; }
-.case-copy h3 { font-size:19px; letter-spacing:-.5px; }
-.case-copy p { color:#bbcbd2; font-size:12px; margin:6px 0; }
-.case-copy .measure { font:650 19px var(--readout-font); color:#ffbcaa; margin-top:12px; }
-.case-copy .btn { width:100%; margin-top:14px; }
-.solved-stamp { position:absolute; top:10px; right:6px; padding:6px; background:#163b2e; color:#b6f2cf; z-index:2; font-size:11px; }
-.case-panel-art { width:100%; height:150px; object-fit:cover; border-radius:5px; opacity:.85; }
-.investigation-steps { display:grid; gap:14px; margin-top:5px; }
-.investigation-steps div { border-left:1px solid #536b77; padding-left:13px; font-size:13px; color:#b9cbd1; }
-.investigation-steps b { color:#edf3f5; display:block; margin-bottom:3px; }
-.field-map { height:100%; width:100%; position:relative; overflow:hidden; background:#1a2420; isolation:isolate; }
-.field-map svg.landscape { position:absolute; inset:0; width:100%; height:100%; }
-.map-heading { position:absolute; left:32%; top:8px; pointer-events:none; }
-.map-heading b { display:block; font-weight:650; font-size:17px; margin-bottom:4px; }
-.map-heading small { font-size:10px; letter-spacing:1.5px; color:#bfd1d0; }
-.map-place { position:absolute; font-size:10px; color:#c1d3c7; letter-spacing:.4px; pointer-events:none;
-  text-shadow:0 1px 3px #071710,0 1px 3px #071710; }
-.map-legend { position:absolute; bottom:9px; left:12px; font-size:10px; color:#bfd0d0; background:#132421e6; padding:6px; }
-.compass { position:absolute; right:15px; top:13px; color:#b9cdcd; text-align:center; font-size:11px; pointer-events:none; }
-.compass b { display:block; font-size:26px; line-height:1; }
-.spot { position:absolute; transform:translate(-50%,-50%); width:44px; height:44px; padding:0; border:0;
-  background:transparent; display:grid; place-items:center; z-index:4; }
-.spot .disc { display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:#101c25;
-  border:2px solid #9fc7d8; color:#fff; font:750 11px var(--readout-font); box-shadow:0 2px 5px #000b; }
-.spot[data-site="Outfall"] .disc,.spot[data-site="Pipe"] .disc { border-radius:5px; width:43px; font-size:10px; }
-.spot[aria-pressed="true"] .disc { background:#c2e6f3; color:#10161f; border-color:#fff; box-shadow:0 0 0 5px #5aa6c84a; }
-.flag-row { position:absolute; top:38px; display:flex; gap:2px; pointer-events:none; }
-.sample-flag { display:inline-grid; place-items:center; width:14px; height:18px; color:#10161f; font:bold 10px var(--readout-font);
-  background:#5aa9ff; border-radius:2px 3px 3px 0; border-left:2px solid #c1e4ee; box-shadow:0 2px 3px #0009; }
-.sample-flag.storm { background:#9fb4c8; }
-.spot[data-site="S9"] .flag-row { top:-10px; }
-.suspect-map { position:absolute; transform:translate(-50%,-100%); width:52px; height:52px; padding:0; background:transparent;
-  border:0; display:flex; align-items:center; flex-direction:column; justify-content:flex-end; z-index:3; }
-.suspect-map img { width:48px; height:48px; object-fit:contain; filter:drop-shadow(0 3px 2px #0008); }
-.suspect-map span { position:absolute; top:51px; white-space:nowrap; font-size:10px; font-weight:650; color:#e4eae2;
-  background:#16221ee8; border-radius:2px; padding:1px 3px; }
-.suspect-map.accused img { border-radius:50%; outline:2px solid #ffb8a8; background:#513d3477; }
-#suspect-D1 span { right:80%; }
-#suspect-E span { right:110%; }
-.water-flow { fill:none; stroke:#acdcef; stroke-width:2; stroke-dasharray:4 40; opacity:.5;
-  animation:flow 12s linear infinite; }
+* { box-sizing:border-box; }
+[hidden] { display:none !important; }
+body { margin:0; height:100dvh; overflow:hidden; background:#16241f; color:var(--ink); }
+button,select,textarea { font:inherit; color:inherit; }
+button,select { min-height:44px; min-width:44px; }
+button { cursor:pointer; border:1px solid #8b9b89; border-radius:3px; padding:6px 12px;
+  background:linear-gradient(#435549,#293e34); box-shadow:inset 0 1px #eef7e225,0 2px 2px #07100b88; }
+button:hover { background:#4c6554; border-color:#e3e5ce; }
+button:active { transform:translateY(1px); }
+button:disabled { opacity:.5; cursor:default; }
+button[aria-pressed=true] { border-color:#b1e0c3; background:#3d6455; box-shadow:inset 0 -3px #a6ddbf; }
+button:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible,summary:focus-visible {
+  outline:3px solid var(--focus); outline-offset:2px;
+}
+select,textarea { background:#14271f; border:1px solid #86998a; border-radius:3px; padding:7px; }
+button.primary { background:linear-gradient(#b4d7c9,#84b7a4); color:#10271e; font-weight:750; }
+.station { height:100%; display:grid; grid-template-rows:minmax(0,1fr) auto auto; }
+.workspace { min-height:0; position:relative; background:#13251d; margin:8px 8px 0; border:1px solid #778a74;
+  box-shadow:0 0 25px #0007,inset 0 0 30px #0006; }
+.map-room { height:100%; display:grid; grid-template-rows:minmax(0,1fr) 99px; }
+.field-map { min-height:0; position:relative; overflow:hidden; isolation:isolate; background:#1a2420; }
+.landscape { width:100%; height:100%; position:absolute; inset:0; }
+.chart-caption { position:absolute; top:9px; left:32%; pointer-events:none; text-shadow:0 2px 3px #071710; }
+.chart-caption b { display:block; font-size:20px; font-weight:600; letter-spacing:2px; }
+.chart-caption small { font:10px Consolas,monospace; color:#d3ddc9; }
+.north { position:absolute; right:14px; top:10px; font:12px Consolas,monospace; text-align:center; }
+.north b { display:block; font-size:25px; }
+.map-legend { position:absolute; bottom:7px; left:9px; font:10px Consolas,monospace; color:#e0e6d6;
+  background:#14221deb; padding:5px; pointer-events:none; }
+.spot { position:absolute; width:44px; height:44px; transform:translate(-50%,-50%); display:grid; place-items:center;
+  padding:0; border:0; background:transparent; box-shadow:none; z-index:4; }
+.spot:hover { background:transparent; }
+.spot:active { transform:translate(-50%,-50%); }
+.spot .disc { width:29px; height:29px; display:grid; place-items:center; border:2px solid #bedfda; border-radius:50%;
+  background:#132d2f; color:#fff; font:700 11px Consolas,monospace; box-shadow:0 2px 5px #0009; }
+.spot[data-site=Pipe] .disc,.spot[data-site=Outfall] .disc { width:44px; font-size:10px; border-radius:3px; }
+.spot[aria-pressed=true] { background:transparent; border:0; box-shadow:none; }
+.spot[aria-pressed=true] .disc { background:#b8e3d6; color:#13291f; border-color:#f5ffe8; box-shadow:0 0 0 4px #c4e6c93a; }
+.flags { position:absolute; top:36px; display:flex; gap:3px; pointer-events:none; }
+.flag { background:#91d5e5; color:#10251f; font:700 10px Consolas,monospace; padding:2px 3px; border-left:2px solid #e4efdf; }
+.flag.storm { background:#d0cbb5; }
+.spot[data-site=S9] .flags { top:-9px; }
+.suspect-map { position:absolute; transform:translate(-50%,-100%); width:56px; height:62px;
+  display:flex; align-items:center; justify-content:flex-end; flex-direction:column; pointer-events:none; z-index:2; }
+.suspect-map img { width:54px; height:54px; object-fit:contain; filter:drop-shadow(0 3px 2px #0009); }
+.suspect-map span { position:absolute; top:60px; font-size:11px; white-space:nowrap; color:#edf1df; padding:1px 3px;
+  background:#122018e6; text-shadow:0 1px #000; }
+#source-E span { left:15px; top:-15px; }
+#source-D1 span { right:43px; top:12px; }
+#source-D2 span { right:10px; top:60px; }
+#source-F span { right:12px; top:25px; }
+.water-flow { fill:none; stroke:#c6eee3; stroke-width:2; stroke-dasharray:4 40; opacity:.55; animation:flow 12s linear infinite; }
 @keyframes flow { to { stroke-dashoffset:-440; } }
 .calm .water-flow { animation:none; }
-.sample-pulse { position:absolute; width:70px; height:70px; border:3px solid #cdf3ff; border-radius:50%; pointer-events:none;
-  transform:translate(-50%,-50%); animation:sample-ripple .65s ease-out forwards; z-index:5; }
-.sample-vial { position:absolute; width:38px; height:64px; pointer-events:none; z-index:8;
-  transform:translate(-50%,-90%); filter:drop-shadow(0 3px 4px #0009); animation:vial-collect .7s ease-out both; }
-.sample-vial .vial-water { transform-origin:19px 54px; animation:vial-fill .45s ease-out both; }
-@keyframes vial-fill { from { transform:scaleY(.08); } to { transform:scaleY(1); } }
-@keyframes vial-collect { 0% { opacity:0; translate:0 8px; } 15%,75% { opacity:1; } 100% { opacity:0; translate:0 -8px; } }
-.calm .sample-vial { animation:none; }
-.calm .sample-vial .vial-water { animation:none; }
-.sample-vial.no-flow .vial-water { display:none; }
-@keyframes sample-ripple { from { opacity:1; scale:.3; } to { opacity:0; scale:1.5; } }
-.result-pin { position:absolute; z-index:7; width:245px; background:#102431f5; padding:12px; border:1px solid #87b9d2;
-  box-shadow:0 9px 24px #0008; border-radius:6px; animation:result-in .18s ease-out; pointer-events:none; }
-@keyframes result-in { from { opacity:.3; translate:0 8px; } to { opacity:1; translate:0 0; } }
-.result-pin h3 { font-size:14px; width:calc(100% - 38px); min-height:34px; display:flex; align-items:center; margin:0 0 9px; }
-.result-pin .close { position:absolute; right:2px; top:2px; width:44px; height:44px; border:0; background:transparent;
-  font-size:18px; pointer-events:auto; }
-.limitbar { position:relative; height:10px; background:#07151e; margin-top:10px; border-radius:3px; }
-.limitbar i { display:block; height:100%; background:#62abcb; border-radius:3px; }
-.limitbar b { position:absolute; top:-3px; width:2px; height:16px; background:#ffbea8; }
-.limit-caption { font-size:10px; margin-top:5px; color:#c4d5dd; }
-.claim-list { display:grid; gap:5px; }
-.claim-row { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; min-height:44px; gap:3px;
-  padding:0 5px; border:1px solid #394b56; border-radius:5px; background:#18252d; }
-.claim-row > label { display:flex; align-items:center; min-height:44px; font-size:13px; gap:7px; color:#e1e8ee; cursor:pointer; }
-.claim-row input { width:19px; height:19px; margin:0; accent-color:var(--brand); flex:none; }
-.claim-row .btn { padding:0 6px; font-size:11px; min-width:44px; }
-.claim-row .evidence-mark { color:#a4c9d3; font-size:11px; }
-.claim-row:not(:has(input:checked)) .btn { visibility:hidden; }
-.evidence-compact { display:none; }
-#claim-feedback { display:grid; gap:6px; }
-.feedback-item { border-left:3px solid #d29c84; padding:6px 9px; font-size:12px; background:#202c35; }
-.feedback-item.good { border-color:#6fdca6; }
-.claim-bracket { fill:none; stroke:#ffb8a8; stroke-width:3; stroke-dasharray:7 4; }
-.reveal-bars { position:absolute; z-index:6; bottom:35px; left:10px; right:10px; padding:10px; background:#0d1c24f5;
-  border:1px solid #5b798a; border-radius:5px; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; pointer-events:none; }
-.share { font-size:10px; color:#d6e3ea; }
-.share i { display:block; height:6px; background:#65a8c3; margin-top:4px; }
-.share b { font-family:var(--readout-font); color:#fff; }
-.claim-work { position:relative; }
-#claim-work #reveal-bars { inset:0; height:100%; bottom:auto; grid-template-columns:repeat(2,minmax(0,1fr));
-  grid-template-rows:repeat(4,minmax(0,1fr)); gap:4px; padding:6px; pointer-events:auto; }
-#claim-work .share { display:flex; flex-direction:column; justify-content:center; min-width:0; font-size:11px; }
-.share-name { font-weight:650; color:#e1edf2; margin-bottom:2px; }
-.share-name { line-height:1.1; }
-.share-weather { display:grid; grid-template-columns:47px 1fr; align-items:center; gap:4px; font-size:10px; line-height:1.1; }
-.share-track { height:4px; background:#07151e; }
-.share-track i { display:block; height:100%; margin:0; background:#5aa9ff; }
-.share-track i.storm-share { background:#9fb4c8; }
-main.fix-layout { display:block; }
-main.fix-layout .panel { display:none; }
-main.fix-layout .stage { height:100%; }
-.fix-page { height:100%; padding:16px 22px; display:grid; gap:12px;
-  grid-template-rows:auto auto minmax(0,1fr) auto; background:radial-gradient(ellipse at 10% 0,#27434c,#101a24 65%); }
-.gauges { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
-.gauge { position:relative; border:1px solid #45616d; background:#152731; border-radius:7px; padding:12px 14px; min-width:0; }
-.gauge h3 { color:#e0eef1; font-size:16px; margin:0; display:flex; align-items:center; justify-content:space-between; gap:5px; }
-.gauge h3 small { color:#a8c2cb; font-size:10px; font-weight:400; }
-.gauge-status { margin:5px 0 8px; font-size:11px; color:#bdd6df; min-height:14px; }
-.gauge-data { display:grid; grid-template-columns:62px 1fr 1fr; gap:4px 8px; font-size:12px; align-items:center; }
-.gauge-data .val { font:600 18px var(--readout-font); color:#ecf6fa; }
-.gauge-data .after { color:#8ed8ee; }
-.gauge-data small { font-size:10px; color:#bed0d8; }
-.meter-track { height:5px; background:#09171f; overflow:hidden; border-radius:3px; margin-top:9px; }
-.meter-track i { display:block; background:#5aa6c8; height:100%; width:0; transition:width .4s ease; }
-.gauge.met { border-color:#6fdca6; }
-.gauge.met .meter-track i { background:#6fdca6; }
-.budget { display:grid; grid-template-columns:auto minmax(50px,1fr) auto; align-items:center; gap:12px; font-size:13px; }
-.budget strong { color:#b4e2f2; font-family:var(--readout-font); }
-.budget.over strong { color:#ffb8a8; }
-.budget-track { height:11px; border:1px solid #65828b; background:#0b1821; border-radius:3px; overflow:hidden; }
-.budget-track i { display:block; height:100%; background:#5aa6c8; width:0; transition:width .15s; }
-.budget.over .budget-track i { background:#ffb8a8; }
-.fix-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(3,minmax(0,1fr)); gap:10px; }
-.fix-card { position:relative; display:grid; grid-template-columns:64px minmax(0,1fr) 65px; align-items:center; gap:10px;
-  border:1px solid #4c6472; border-radius:6px; background:linear-gradient(120deg,#20323c,#172730); padding:10px;
-  text-align:left; min-height:60px; }
-.fix-card:hover { border-color:#a1cfde; background:#263e4a; }
-.fix-card[aria-pressed="true"] { border-color:#87d2b1; background:linear-gradient(120deg,#214535,#1a3430); }
-.fix-card img,.fix-card .advisory-art { width:64px; height:64px; object-fit:contain; filter:drop-shadow(0 3px 3px #0006); }
-.fix-card strong { font-size:14px; display:block; }
-.fix-card small { display:block; color:#bfcfd5; font-size:11px; line-height:1.4; margin-top:4px; }
-.fix-card .price { color:#b5e6f6; font:650 13px var(--readout-font); margin:5px 0; display:block; }
-.toggle-word { justify-self:end; display:grid; place-items:center; border:1px solid #7c9ba8; border-radius:5px; min-width:60px;
-  min-height:44px; font-size:12px; font-weight:750; background:#15242e; }
-.fix-card[aria-pressed="true"] .toggle-word { color:#cbf9dd; background:#244b39; border-color:#6ea88d; }
-.advisory-art { display:grid; place-items:center; }
-.advisory-art svg { width:100%; height:100%; }
-.plan-controls { display:flex; flex-wrap:wrap; align-items:center; gap:9px; }
-.plan-controls .hint { min-height:44px; flex:1; font-size:12px; padding:7px 10px; }
-#fix-hint { min-width:0; flex:1; }
-.plan-controls .btn { min-width:105px; }
-.plan-controls .saved-count { color:#b7c9d4; font-size:11px; }
-dialog { color:var(--ink); background:#13232d; border:1px solid #7da5b5; border-radius:9px; padding:18px;
-  max-width:760px; width:calc(100% - 26px); max-height:90dvh; overflow:auto; box-shadow:0 20px 80px #0009; }
-dialog::backdrop { background:#030c14cc; backdrop-filter:blur(3px); }
-.dialog-top { display:flex; align-items:center; justify-content:space-between; gap:10px; }
-.dialog-top h2 { font-size:22px; margin:0; flex:1; min-width:0; }
-.dialog-top .btn { flex:none; }
-.dialog-help { color:#b5cbd5; font-size:13px; margin:12px 0; }
-.log-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
-.log-sample { border:1px solid #5d7988; border-radius:5px; padding:9px; min-height:72px; background:#1a2f3a; text-align:left; }
-.log-sample[aria-pressed="true"] { border:2px solid #afdfec; padding:8px; background:#294958; }
-.log-sample b { display:block; font-size:13px; margin-bottom:5px; }
-.log-sample span { font:11px var(--readout-font); color:#bed5df; line-height:1.7; }
-.dialog-actions { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-top:12px; }
-.comparison { margin:13px 0; border:1px solid #6ca4ba; background:#173341; padding:12px; }
-.comparison h3 { color:#b7e5f5; font-size:17px; }
-.comparison p { margin:6px 0; font-size:12px; }
-.suspect-photo { width:100%; max-height:min(390px,48dvh); object-fit:contain;
-  background:#10202b; border-radius:4px; margin-top:14px; }
-.photo-caption { font-size:13px; color:#cfdae0; }
-.saved-plans { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
-.saved-plan { padding:12px; border:1px solid #627b8b; background:#192d38; border-radius:6px; }
-.saved-plan h3 { font-size:15px; }
-.saved-plan p { font-size:12px; margin:7px 0; }
-.saved-plan textarea { min-height:110px; font-size:12px; margin-top:6px; resize:vertical; }
-.saved-plan label { margin-top:12px; }
+.sample-pulse { position:absolute; width:64px; height:64px; border:3px solid #d6fae8; border-radius:50%; pointer-events:none;
+  transform:translate(-50%,-50%); animation:ripple .65s ease-out forwards; z-index:5; }
+@keyframes ripple { from { opacity:1; scale:.3; } to { opacity:0; scale:1.5; } }
+.calm .sample-pulse { display:none; }
+.readout { border-top:3px solid #6b8477; padding:8px 14px; background:linear-gradient(#233d32,#162b22);
+  display:grid; grid-template-columns:230px minmax(0,1fr); gap:6px 16px; align-content:center; }
+.readout.muted-result .readout-values { opacity:.35; }
+.readout-title { margin:0; font:700 15px Consolas,monospace; color:#d9eadb; }
+.readout-caption { margin:5px 0 0; font:11px Consolas,monospace; color:#c8d5c8; }
+.readout-values { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:6px; }
+.quantity { min-width:0; border-left:1px solid #597667; padding-left:10px; }
+.quantity small { display:block; font:11px Consolas,monospace; color:#ccd8c9; margin-bottom:5px; }
+.quantity strong { font:700 21px Consolas,monospace; color:#c3f0d6; display:block; }
+.quantity em { display:block; font:10px Consolas,monospace; color:#c4d5ca; font-style:normal; }
+.desk { background:repeating-linear-gradient(90deg,#ffffff03 0 1px,transparent 1px 4px),linear-gradient(#4c5a47,#303f32);
+  border-top:1px solid #9ba88c; padding:8px 14px; box-shadow:0 -3px 13px #0006; }
+.desk-top { display:flex; gap:7px; align-items:center; margin-bottom:7px; }
+.desk-top button { font-size:12px; }
+.counter { margin-left:auto; font:12px Consolas,monospace; color:#e1e9d7; }
+.sampling { display:grid; grid-template-columns:minmax(155px,1.2fr) minmax(140px,1fr) minmax(200px,1.4fr) 140px 90px 115px;
+  align-items:end; gap:8px; }
+.control label { display:block; margin:0 0 4px; font:10px Consolas,monospace; color:#e1e6d5; letter-spacing:.7px; }
+.control select { width:100%; font-size:12px; }
+.weather { display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+.weather button { padding:4px; font-size:12px; }
+.sampling>button { padding:6px; font-size:12px; }
+.power { display:flex; align-items:center; gap:7px; padding:6px 12px; background:linear-gradient(#25352d,#15231b);
+  border-top:1px solid #71836e; min-height:56px; }
+.power button { padding:3px 10px; font-size:11px; }
+.plate { font:11px Consolas,monospace; color:#e0d4b3; letter-spacing:.5px; border:1px solid #94896f;
+  padding:7px 14px; background:linear-gradient(#5c5946,#3a3e2d); box-shadow:inset 0 1px #b4b09a44,0 2px 3px #0007; }
+.plate::before,.plate::after { content:'⊕'; color:#b5ae8e; padding:0 7px; }
+.power-switches { display:flex; gap:5px; margin-left:auto; }
+.power-switches button { min-width:80px; }
+.hint { font-size:11px; color:#d6e6d8; margin:0; }
 .sr-only { position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; white-space:nowrap; }
-@media (min-width:1600px) and (min-height:900px) {
-  .case-page { padding:40px; } .case-copy { padding:22px; } .case-copy h3 { font-size:24px; }
-  .case-copy p { font-size:15px; } .case-copy .measure { font-size:27px; }
-  .panel { padding:26px; } .panel-heading h2 { font-size:29px; }
-  .hint { font-size:16px; } .fix-page { padding:26px 40px; gap:20px; }
-  .fix-card strong { font-size:19px; } .fix-card small { font-size:14px; } .fix-card img { width:80px; height:80px; }
-  .fix-card { grid-template-columns:85px 1fr 75px; padding:18px; }
-  .gauge { padding:20px; } .gauge h3 { font-size:22px; } .gauge-data .val { font-size:27px; }
-}
-@media (max-width:1050px) {
-  header { padding:7px 10px; gap:5px; flex-wrap:wrap; }
-  h1 { font-size:20px; } h1 small { font-size:10px; letter-spacing:1px; }
-  .seg button { padding:0 9px; font-size:12px; } .icon-btn { padding:0 7px; font-size:11px; }
-  #motion { width:89px; } #sound { width:82px; }
-  main { grid-template-columns:minmax(0,1.65fr) minmax(250px,1fr); }
-  .panel { padding:12px; gap:9px; }
-  .case-page { padding:18px 14px; } .case-page > h2 { font-size:31px; }
-  .case-page > p { font-size:13px; margin-bottom:16px; }
-  .case-cards { gap:7px; } .case-copy { padding:9px; } .case-copy h3 { font-size:16px; }
-  .case-copy p { font-size:11px; } .case-copy .measure { font-size:16px; }
-  .fix-page { padding:10px; gap:8px; } .fix-cards { gap:6px; }
-  .fix-card { padding:7px; gap:6px; grid-template-columns:44px 1fr 50px; }
-  .fix-card img,.fix-card .advisory-art { width:44px; height:44px; }
-  .fix-card strong { font-size:12px; } .fix-card small { font-size:10px; line-height:1.2; }
-  .fix-card .price { font-size:11px; margin:3px 0; } .toggle-word { min-width:49px; font-size:10px; }
-}
-@media (max-height:650px) and (min-width:760px), (min-width:600px) and (max-width:759px) {
-  header { padding:4px 8px; flex-wrap:nowrap; gap:5px; }
-  h1 { font-size:16px; } h1 small { display:none; }
-  .seg button { padding:0 7px; font-size:11px; }
-  .icon-btn { font-size:10px; padding:0 5px; } #motion { width:83px; } #sound { width:76px; }
-  main { grid-template-columns:minmax(0,1.65fr) minmax(243px,1fr); }
-  .panel { padding:9px 10px; gap:6px; }
-  .panel-heading h2 { font-size:18px; margin:0 0 4px; } .eyebrow { font-size:10px; letter-spacing:1px; }
-  .target-note { font-size:11px; } .hint { padding:7px; font-size:11px; min-height:48px; }
-  .sample-controls { gap:5px; } .sample-controls label { display:none; }
-  .kit-line strong { font-size:15px; } .kit-dots i { width:6px; height:16px; }
-  .panel-note { font-size:10px; } .panel .row { gap:4px; } .panel .btn { font-size:11px; padding:0 7px; }
-  .panel-heading .target-note { display:none; }
-  .case-page { padding:13px 11px; } .case-page > h2 { font-size:26px; margin:6px 0; }
-  .case-page > p { font-size:11px; margin-bottom:10px; }
-  .case-copy { padding:6px; } .case-copy h3 { font-size:14px; margin:0 0 4px; }
-  .case-copy p { font-size:10px; line-height:1.2; margin:3px 0; }
-  .case-copy .measure { font-size:13px; margin-top:6px; } .case-copy .btn { margin-top:7px; padding:0 2px; font-size:11px; }
-  .case-no { font-size:10px; top:6px; left:6px; padding:3px; }
-  .case-panel-art { display:none; } .investigation-steps { gap:8px; margin:0; }
-  .investigation-steps div { font-size:11px; } .investigation-steps b { margin:0; }
-  footer { min-height:30px; padding:0 8px; gap:5px; font-size:10px; } footer .line-btn { min-height:30px; }
-  .claim-list { gap:2px; } .claim-row { padding:0 3px; }
-  .claim-row > label { font-size:11px; gap:4px; } .claim-row input { width:16px; height:16px; }
-  .claim-row .btn { font-size:10px; padding:0 4px; }
-  .panel.claim-panel { overflow:auto; }
-  .panel.claim-panel .panel-heading { display:none; }
-  .panel.claim-panel .hint { min-height:35px; }
-  .panel.claim-panel .claim-list { grid-template-columns:1fr 1fr; gap:3px; }
-  .panel.claim-panel .claim-row { display:flex; flex-direction:column; gap:0; padding:0 2px; }
-  .panel.claim-panel .claim-row > label { min-height:25px; width:100%; }
-  .panel.claim-panel .claim-row .btn { min-height:44px; width:100%; }
-  .panel.claim-panel .claim-row:not(:has(input:checked)) .btn { display:none; }
-  .panel.claim-panel .claim-row:not(:has(input:checked)) > label { min-height:44px; }
-  .fix-page { padding:7px 10px; gap:6px; }
-  .gauge { padding:7px 9px; } .gauge h3 { font-size:13px; } .gauge h3 small { display:none; }
-  .gauge-status { font-size:10px; margin:3px 0; min-height:12px; }
-  .gauge-data { font-size:10px; grid-template-columns:42px 1fr 1fr; gap:2px 5px; }
-  .gauge-data .val { font-size:13px; } .gauge-data small { font-size:10px; }
-  .meter-track { margin-top:4px; height:3px; }
-  .budget { font-size:11px; } .fix-card { padding:4px 7px; gap:6px; }
-  .fix-card strong { font-size:11px; } .fix-card small { margin-top:2px; }
-  .plan-controls { gap:5px; } .plan-controls .hint { font-size:10px; min-height:44px; }
-  .plan-controls .btn { min-width:89px; font-size:11px; } .plan-controls .saved-count { display:none; }
-}
-@media (max-width:599px) {
-  body { height:auto; min-height:100dvh; overflow:auto; grid-template-rows:auto auto auto; align-content:start; }
-  header { flex-wrap:wrap; padding:6px 8px; gap:4px; }
-  h1 { font-size:20px; width:100%; margin-bottom:2px; } h1 small { display:none; }
-  .seg { width:100%; display:grid; grid-template-columns:repeat(4,1fr); }
-  .seg button { padding:0 7px; font-size:12px; }
-  .icon-btn { min-height:44px; } #motion { width:auto; } #sound { width:auto; }
-  main { display:flex; flex-direction:column; overflow:visible; }
-  .stage { flex:none; min-height:0; height:320px; }
-  .stage:has(#map-view:not([hidden])) { height:350px; }
-  .stage { order:-1; }
-  .panel { flex:none; border-left:0; border-top:1px solid #4d6975; padding:10px; gap:8px; overflow:visible; }
-  .panel-heading { display:none; }
-  .hint { font-size:12px; min-height:47px; }
-  .sample-controls { display:grid; grid-template-columns:1fr; gap:6px; }
-  .sample-controls label { display:none; }
-  .kit-line strong { font-size:17px; }
-  .sample-controls select { min-height:44px; }
-  .panel-note { font-size:10px; }
-  .case-page { padding:10px; } .case-page > .eyebrow,.case-page > p { display:none; }
-  .case-page > h2 { font-size:25px; margin:4px 0 12px; }
-  .case-cards { gap:6px; }
-  .case-copy { padding:7px 5px; } .case-copy h3 { font-size:13px; letter-spacing:-.3px; }
-  .case-copy p { font-size:10px; line-height:1.2; } .case-copy .measure { font-size:12px; margin-top:6px; }
-  .case-copy .btn { margin-top:6px; min-height:44px; padding:0 2px; font-size:10px; }
-  .case-photo { min-height:50px; }
-  .case-copy > p:first-of-type { display:none; }
-  .case-no { top:5px; left:4px; padding:3px; font-size:10px; }
-  .case-panel-art,.investigation-steps { display:none; }
-  .field-map .map-heading b { font-size:12px; } .map-heading small { font-size:10px; }
-  .map-heading { top:6px; left:7px; } .compass { right:8px; top:7px; }
-  .suspect-map { width:44px; height:44px; } .suspect-map img { width:40px; height:40px; }
-  .suspect-map span { display:none; }
-  #suspect-F { left:75%!important; }
-  #suspect-E { left:78%!important; top:73%!important; }
-  .map-legend { font-size:10px; padding:3px; left:5px; bottom:3px; }
-  .spot .disc { width:25px; height:25px; font-size:10px; }
-  .flag-row { top:31px; } .sample-flag { height:14px; width:12px; }
-  .result-pin { width:220px; padding:8px; } .result-pin .mini-table { font-size:11px; }
-  .result-pin h3 { font-size:12px; } .limit-caption { font-size:10px; }
-  .claim-list { grid-template-columns:1fr 1fr; gap:5px; }
-  .claim-row { display:flex; flex-direction:column; align-items:stretch; }
-  .claim-row > label { font-size:12px; } .claim-row .btn { font-size:11px; }
-  footer { padding:3px 8px; gap:3px 8px; flex-wrap:wrap; }
-  footer .privacy { flex:1 0 100%; } footer .line-btn { min-height:30px; }
-  main.fix-layout .stage { min-height:660px; height:calc(100dvh - 195px); }
-  .fix-page { padding:8px; gap:7px; grid-template-rows:auto auto 1fr auto; }
-  .gauges { gap:4px; } .gauge { padding:6px 5px; }
-  .gauge h3 { font-size:12px; } .gauge h3 small { display:none; }
-  .gauge-status { font-size:10px; line-height:1.2; min-height:24px; margin:4px 0; }
-  .gauge-data { grid-template-columns:1fr 1fr; font-size:10px; gap:3px; }
-  .gauge-data > :nth-child(3n+1) { display:none; } .gauge-data .val { font-size:11px; }
-  .gauge-data small { font-size:10px; } .meter-track { margin-top:4px; }
-  .budget { font-size:10px; gap:6px; grid-template-columns:auto 1fr; }
-  .budget > span:last-child { grid-column:1 / -1; }
-  .fix-cards { grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
-  .fix-card { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1px; padding:5px 3px; text-align:center; }
-  .fix-card img,.fix-card .advisory-art { width:40px; height:40px; }
-  .fix-card strong { font-size:11px; line-height:1.15; } .fix-card small { font-size:10px; line-height:1.15; margin:3px 0; }
-  .fix-card .price { font-size:10px; margin:3px 0; } .toggle-word { min-height:22px; border:0; background:transparent; font-size:10px; }
-  .plan-controls { gap:5px; display:grid; grid-template-columns:1fr 1fr; }
-  .plan-controls .hint { grid-column:1 / -1; font-size:11px; }
-  .plan-controls > #fix-hint { grid-column:1 / -1; }
-  .plan-controls .btn { padding:0 5px; min-width:0; font-size:11px; } .saved-count { display:none; }
-  .log-grid,.saved-plans { grid-template-columns:1fr; } dialog { padding:12px; }
-  .dialog-top h2 { font-size:18px; } .reveal-bars { grid-template-columns:repeat(4,1fr); gap:4px; padding:7px; bottom:25px; }
-  main.fix-layout .stage { min-height:0; height:calc(100dvh - 190px); }
-  .fix-page { grid-template-rows:158px 35px minmax(0,1fr) 145px; gap:5px; }
-  .gauge .limit-caption { font-size:10px; line-height:1.1; }
-  .gauge-data { line-height:1.1; }
+.fix-page { height:100%; display:grid; grid-template-rows:auto auto minmax(0,1fr) auto; padding:14px; gap:10px;
+  background:radial-gradient(ellipse at 25% 0,#344d3c,#14251e); }
+.gauges { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:12px; }
+.gauge { padding:12px; border:1px solid #72866f; background:#192e24; box-shadow:inset 0 1px #ffffff15; }
+.gauge h2 { margin:0 0 9px; font:15px Consolas,monospace; color:#e5e2c9; }
+.gauge h2 small { font-size:10px; color:#bdcfbf; display:block; margin-top:4px; }
+.gauge-data { display:grid; grid-template-columns:48px 1fr 1fr; gap:5px 8px; font:12px Consolas,monospace; align-items:center; }
+.gauge-data .val { font-weight:700; font-size:19px; color:#d7e9ce; }
+.gauge-data .after { color:#a7e4da; }
+.meter { height:6px; background:#0d1c15; position:relative; margin:6px 0; }
+.meter i { height:100%; display:block; background:#a7d2ba; }
+.meter b { position:absolute; top:-3px; height:12px; width:2px; background:#f0c8a0; }
+.reference { font:10px Consolas,monospace; color:#e5d4af; margin:5px 0 0; }
+.change-detail { font:11px Consolas,monospace; color:#d1ddcb; margin:6px 0 0; }
+.budget { display:flex; gap:14px; align-items:center; font:12px Consolas,monospace; }
+.budget strong { color:#d8ead6; }
+.budget.over strong { color:#ffd7a8; }
+.budget .meter { flex:1; min-width:40px; }
+.fix-cards { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); grid-template-rows:repeat(3,minmax(0,1fr)); gap:8px; min-height:0; }
+.fix-card { display:grid; grid-template-columns:54px minmax(0,1fr) auto; gap:9px; text-align:left; align-items:center; min-height:44px;
+  padding:8px; border-color:#70826e; background:linear-gradient(110deg,#344b37,#233629); }
+.fix-card img { width:52px; height:52px; object-fit:contain; filter:drop-shadow(0 2px 2px #0007); }
+.fix-card strong { font-size:13px; display:block; }
+.fix-card .price { font:12px Consolas,monospace; color:#d4ead2; display:block; margin-top:5px; }
+.fix-card small { display:block; font-size:10px; color:#d1ddc8; margin-top:4px; }
+.toggle-word { font:11px Consolas,monospace; border:1px solid #8a9b80; padding:8px; background:#21352a; }
+.plan-controls { display:flex; gap:7px; align-items:center; }
+.plan-controls .hint { margin-right:auto; max-width:420px; }
+.plan-controls button { font-size:12px; }
+body.fix-mode .sampling { display:none; }
+body.fix-mode .desk-top { margin:0; }
+dialog { color:var(--ink); background:#23382c; border:1px solid #b6b99c; border-radius:4px; padding:18px;
+  width:min(840px,calc(100vw - 24px)); max-height:calc(100dvh - 28px); overflow:auto; box-shadow:0 16px 70px #000b; }
+dialog::backdrop { background:#08150fcc; backdrop-filter:blur(3px); }
+dialog.manual { margin:auto auto 66px 12px; max-height:calc(100dvh - 85px); }
+.dialog-top { display:flex; align-items:center; gap:7px; position:sticky; top:-18px; background:#23382c; z-index:3; padding:5px 0 10px; }
+.dialog-top h2 { flex:1; margin:0; font:700 20px Consolas,monospace; }
+.dialog-top button { font-size:12px; }
+.dialog-help { font-size:13px; color:#d1dfce; }
+dialog h3 { font:700 16px Consolas,monospace; margin:23px 0 8px; }
+dialog p,dialog li { font-size:13px; line-height:1.6; }
+dialog a { color:#bde7e1; overflow-wrap:break-word; display:inline-flex; align-items:center;
+  min-height:44px; max-width:100%; padding:0 3px; vertical-align:middle; }
+.log-grid { display:grid; grid-template-columns:1fr 1fr; gap:7px; }
+.log-sample { text-align:left; background:#1a3024; border:1px solid #748b74; padding:10px; }
+.log-sample b { display:block; font:13px Consolas,monospace; }
+.log-sample span { display:block; font:11px/1.6 Consolas,monospace; color:#c9dfce; margin-top:5px; }
+.comparison { border-left:3px solid #b9ded3; background:#142a1e; padding:10px; margin-bottom:12px; }
+.comparison p { margin:3px 0; font-family:Consolas,monospace; }
+.comparison h3 { margin:0 0 7px; }
+.dialog-actions { display:flex; gap:8px; margin:10px 0; align-items:center; position:sticky; top:52px; background:#23382c; z-index:2; padding:5px; }
+.source-grid,.file-grid,.saved-plans { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.file { border:1px solid #738367; padding:10px; background:#1a2d21; }
+.file img { width:100%; height:135px; object-fit:cover; }
+.file h3 { margin:8px 0; font-size:15px; }
+.file p { font:12px/1.5 Consolas,monospace; }
+.source-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.source-grid img { object-fit:contain; height:180px; }
+.saved-plan { padding:12px; border:1px solid #819174; background:#1a2e22; }
+.saved-plan h3 { margin:0; }
+.saved-plan textarea { width:100%; min-height:85px; font-size:12px; }
+.saved-plan label { font-size:12px; }
+.ledger { width:100%; border-collapse:collapse; font:12px Consolas,monospace; }
+.ledger td,.ledger th { border-bottom:1px solid #61785f; padding:10px 6px; text-align:right; }
+.ledger td:first-child,.ledger th:first-child { text-align:left; }
+.effects { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.effects article { border:1px solid #647e62; padding:10px; }
+.effects h3 { margin:0; }
+@media(max-width:1050px) {
+  .sampling { grid-template-columns:minmax(140px,1fr) 125px 190px 105px 72px 90px; gap:5px; }
+  .desk { padding:6px 8px; }
+  .sampling>button { font-size:11px; }
+  .readout { grid-template-columns:180px minmax(0,1fr); padding:6px 10px; gap:6px; }
+  .quantity { padding-left:6px; }
+  .quantity strong { font-size:16px; }
+  .plate { padding:5px; font-size:10px; }
+  .plate::before,.plate::after { display:none; }
+  .fix-card { grid-template-columns:36px minmax(0,1fr) auto; gap:5px; padding:6px; }
+  .fix-card img { width:34px; height:34px; }
+  .fix-card strong { font-size:11px; }
   .fix-card small { display:none; }
-  .fix-card img,.fix-card .advisory-art { width:28px; height:28px; }
-  .fix-card strong { font-size:10px; }
-  .fix-card .price { margin:1px 0; }
-  .fix-card { min-height:44px; padding:3px; }
-  .toggle-word { min-height:14px; }
-  .claim-row { display:grid; grid-template-columns:minmax(0,1fr) 52px; padding:0 3px; }
-  .claim-row > label { min-height:44px; overflow-wrap:anywhere; }
-  .claim-row:not(:has(input:checked)) > label { grid-column:1 / -1; }
-  .claim-row:not(:has(input:checked)) .btn { display:none; }
-  .claim-row .btn { font-size:0; padding:0 3px; }
-  .claim-row .btn::after { content:attr(data-compact); font-size:11px; }
+  .toggle-word { padding:5px; font-size:10px; }
 }
-@media (max-height:650px) and (min-width:600px) {
-  .panel:has(#sample-controls:not([hidden])) .panel-heading { display:none; }
-  .panel:has(#sample-controls:not([hidden])) .panel-note { display:none; }
-  .fix-page { grid-template-rows:84px 16px minmax(0,1fr) 44px; padding:5px 8px; gap:5px; }
-  .gauges { gap:7px; }
-  .gauge { padding:4px 8px; }
-  .gauge-status { margin:2px 0; }
-  .gauge .limit-caption,.gauge .meter-track { display:none; }
-  .gauge-data { gap:1px 4px; line-height:1.1; }
-  .gauge-data .val { font-size:12px; line-height:1.15; }
+@media(max-width:800px) and (min-width:600px) {
+  .sampling { grid-template-columns:1.2fr 100px 175px 85px 65px 80px; }
+  .sampling button { font-size:10px; }
+  .weather button { font-size:10px; }
+  .power .hint { display:none; }
+  .readout { grid-template-columns:130px minmax(0,1fr); }
+  .quantity small { font-size:10px; }
+  .quantity strong { font-size:14px; }
+  .quantity em { font-size:10px; }
+  .readout-title { font-size:12px; }
+}
+@media(max-height:650px) and (min-width:600px) {
+  .workspace { margin:4px 4px 0; }
+  .map-room { grid-template-rows:minmax(0,1fr) 73px; }
+  .readout { padding:4px 8px; }
+  .quantity strong { font-size:15px; }
+  .quantity small { margin-bottom:3px; }
+  .chart-caption b { font-size:15px; }
+  .chart-caption small { font-size:10px; }
+  .suspect-map { width:32px; height:35px; }
+  .suspect-map img { width:32px; height:32px; }
+  .suspect-map span { top:34px; font-size:10px; }
+  #source-D2 span { top:32px; right:17px; }
+  #source-D1 span { top:-9px; right:-3px; }
+  #source-E span { left:0; top:-14px; }
+  #source-F span { top:20px; }
+  .desk-top { margin-bottom:4px; }
+  .desk { padding:4px 6px; }
+  .control label { display:none; }
+  .power { padding:2px 8px; min-height:48px; }
+  .power .hint { display:none; }
+  .fix-page { padding:6px; gap:5px; }
+  .gauge { padding:5px 7px; }
+  .gauge h2 { font-size:11px; margin:0 0 3px; }
+  .gauge h2 small { display:inline; margin:0 0 0 4px; font-size:10px; }
+  .gauge-data { grid-template-columns:30px 1fr 1fr; font-size:10px; gap:2px 4px; }
+  .gauge-data .val { font-size:12px; }
+  .reference,.change-detail { font-size:10px; margin:3px 0 0; }
+  .meter { height:4px; margin:4px 0; }
+  .budget { font-size:10px; gap:8px; }
   .fix-cards { gap:4px; }
-  .fix-card { min-height:44px; padding:3px 5px; grid-template-columns:32px 1fr 44px; }
-  .fix-card img,.fix-card .advisory-art { width:32px; height:32px; }
-  .fix-card strong { font-size:10px; line-height:1.15; }
-  .fix-card small { display:none; }
-  .fix-card .price { font-size:10px; margin:2px 0; }
-  .toggle-word { min-width:44px; font-size:10px; }
-  .plan-controls { flex-wrap:nowrap; }
-  .plan-controls .hint { margin:0; line-height:1.15; padding:5px; height:44px; }
-  .plan-controls .btn { min-width:80px; font-size:10px; }
-  #suspect-C { left:21%!important; }
-  #suspect-D1 { left:64%!important; }
-  #suspect-E { left:79%!important; top:73%!important; }
-  #suspect-F { left:75%!important; top:96%!important; }
-  .case-page > p { display:none; }
-  .case-page > h2 { font-size:22px; margin:5px 0 10px; }
-  .case-photo { min-height:50px; }
-  .case-copy > p:first-of-type { display:none; }
-  .panel.claim-panel .claim-row { display:grid; grid-template-columns:minmax(0,1fr) 44px; }
-  .panel.claim-panel .claim-row > label { min-height:44px; font-size:10px; }
-  .panel.claim-panel .claim-row:not(:has(input:checked)) > label { grid-column:1 / -1; }
-  .panel.claim-panel .claim-row .btn { min-width:44px; padding:0 2px; font-size:10px; }
-  .panel.claim-panel .claim-list { gap:3px; }
-  .panel.claim-panel .claim-row > label { overflow-wrap:anywhere; }
-  .panel.claim-panel .claim-row .btn { font-size:0; }
-  .panel.claim-panel .claim-row .btn::after { content:attr(data-compact); font-size:10px; }
+  .fix-card { grid-template-columns:27px minmax(0,1fr) auto; padding:3px 5px; gap:4px; }
+  .fix-card img { width:27px; height:27px; }
+  .fix-card strong { font-size:10px; }
+  .fix-card .price { font-size:10px; margin-top:3px; }
+  .toggle-word { font-size:10px; padding:3px; }
+  .plan-controls { gap:5px; }
+  .plan-controls button { font-size:10px; padding:3px 8px; }
+  .plan-controls .hint { font-size:10px; }
 }
-.claim-row > label { position:relative; padding-left:25px; }
-.claim-row > label::before { content:""; position:absolute; left:3px; width:17px; height:17px;
-  border:1px solid #91acba; border-radius:2px; background:#101c26; }
-.claim-row > label:has(input:checked)::before { content:"✓"; color:#10161f; background:#5aa6c8; text-align:center; font-weight:bold; }
-.claim-row > label:focus-within { outline:3px solid var(--focus); outline-offset:1px; }
-.claim-row input { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:pointer; }
-footer .line-btn { min-height:44px; }
-@media (max-height:650px) and (min-width:600px) {
-  .panel:has(#sample-controls:not([hidden])) { padding:6px 10px; gap:4px; }
-  .panel:has(#sample-controls:not([hidden])) .hint { line-height:1.25; padding:6px; min-height:40px; }
+@media(max-width:599px) {
+  .workspace { margin:4px 4px 0; }
+  .map-room { grid-template-rows:minmax(0,1fr) 119px; }
+  .readout { display:block; padding:7px 8px; }
+  .readout-title { font-size:12px; }
+  .readout-caption { font-size:10px; margin-top:3px; }
+  .readout-values { grid-template-columns:repeat(5,minmax(0,1fr)); gap:3px; margin-top:9px; }
+  .quantity { padding-left:4px; }
+  .quantity small { font-size:10px; }
+  .quantity strong { font-size:13px; }
+  .quantity em { font-size:10px; }
+  .chart-caption { left:32%; top:5px; }
+  .chart-caption b { font-size:14px; letter-spacing:1px; }
+  .chart-caption small { font-size:10px; }
+  .north { right:7px; font-size:10px; }
+  .suspect-map { width:40px; height:45px; }
+  .suspect-map img { width:38px; height:38px; }
+  .suspect-map span { font-size:10px; top:43px; }
+  #source-D1 span { right:24px; top:-7px; }
+  #source-D2 span { right:15px; top:42px; }
+  #source-E span { left:-8px; top:-17px; }
+  #source-F span { top:22px; right:25px; }
+  .map-legend { font-size:10px; bottom:4px; left:5px; }
+  .desk { padding:5px 7px; }
+  .desk-top { display:grid; grid-template-columns:1fr 1.2fr 1fr 1fr; gap:4px; margin-bottom:5px; }
+  .desk-top button { font-size:10px; padding:3px; }
+  .counter { display:none; }
+  .sampling { grid-template-columns:1.2fr 1fr 1fr; gap:5px; }
+  .control label { font-size:10px; letter-spacing:0; margin-bottom:2px; }
+  .control select { font-size:10px; padding:3px; }
+  .site-control { grid-column:1 / 3; }
+  .pollutant-control { grid-column:3; }
+  .weather { grid-column:1 / 3; }
+  .weather button { font-size:10px; }
+  #take-sample { grid-column:3; }
+  #logbook { grid-column:1; }
+  #compare { grid-column:2 / 4; }
+  .power { flex-wrap:wrap; padding:4px 7px; gap:4px; min-height:0; }
+  .plate { flex:1; font-size:10px; padding:5px 6px; line-height:1.4; max-width:calc(100% - 62px); }
+  .power-switches { width:100%; margin:0; }
+  .power-switches button { flex:1; font-size:10px; }
+  .power .hint { display:none; }
+  dialog { padding:12px; }
+  dialog.manual { margin:auto auto 108px 8px; max-height:calc(100dvh - 120px); }
+  .dialog-top { top:-12px; }
+  .dialog-top h2 { font-size:16px; }
+  .dialog-top button { font-size:11px; padding:3px 8px; }
+  .log-grid,.source-grid,.saved-plans { grid-template-columns:1fr; }
+  .file-grid { grid-template-columns:1fr; }
+  .file img { height:150px; }
+  .effects { grid-template-columns:1fr; }
+  .ledger { font-size:10px; }
+  .ledger td,.ledger th { padding:10px 3px; }
+  .fix-page { padding:7px; gap:7px; }
+  .gauges { gap:5px; }
+  .gauge { padding:6px 4px; }
+  .gauge h2 { font-size:11px; margin-bottom:6px; }
+  .gauge h2 small { font-size:10px; min-height:24px; }
+  .gauge-data { grid-template-columns:25px 1fr 1fr; font-size:10px; gap:4px 2px; }
+  .gauge-data .val { font-size:10px; }
+  .reference,.change-detail { font-size:10px; line-height:1.4; min-height:28px; }
+  .budget { flex-wrap:wrap; gap:4px; font-size:10px; }
+  .budget .meter { width:100%; flex:auto; order:2; }
+  .fix-cards { gap:5px; }
+  .fix-card { grid-template-columns:1fr; padding:5px; gap:3px; justify-items:start; align-content:center; }
+  .fix-card img { width:31px; height:31px; }
+  .fix-card strong { font-size:10px; line-height:1.2; }
+  .fix-card .price { font-size:10px; margin-top:4px; }
+  .toggle-word { font-size:10px; padding:2px 4px; }
+  .plan-controls { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; }
+  .plan-controls button { font-size:10px; padding:2px; }
+  .plan-controls .hint { grid-column:1 / -1; font-size:10px; min-height:27px; }
 }
-@media (min-width:1051px) and (max-width:1599px) {
-  .fix-card { padding:6px 10px; }
-  .fix-card strong { font-size:13px; line-height:1.15; }
-  .fix-card .price { font-size:12px; margin:3px 0; }
-  .fix-card small { font-size:10.5px; line-height:1.2; margin-top:2px; }
+/* Preserve readable labels and full hit areas in the preview and phone map. */
+@media(max-height:650px) and (min-width:600px) {
+  .spot[data-site=S9] { top:88% !important; left:85% !important; }
+  .fix-page { padding:4px; gap:4px; }
+  .gauge h2 small,.reference,.change-detail,.toggle-word { font-size:10px; }
+  #source-E span { left:40px; top:-22px; }
+  #source-D1 span { right:100%; top:10px; }
+  #source-F span { left:-75px; right:auto; top:32px; }
 }
-@media (min-width:900px) and (max-width:1050px) and (min-height:600px) {
-  .fix-card small { display:block; font-size:10px; line-height:1.2; margin-top:2px; }
+@media(max-width:599px) {
+  #source-C span { left:-35px; top:35px; }
+  #source-E span { left:-50px; top:20px; }
+  #source-D1 span { right:14px; top:-7px; }
+  #source-D2 span { left:-57px; right:auto; top:52px; }
+  #source-F span { left:-78px; right:auto; top:5px; }
+  .chart-caption small { display:block; max-width:150px; }
+  .gauge-data { grid-template-columns:32px minmax(0,1fr) minmax(0,1fr); }
+  .gauge-data > :nth-child(2),.gauge-data > :nth-child(3) { font-family:'Segoe UI',sans-serif; }
+  .quantity small,.quantity em,.chart-caption small,.map-legend,.plate,.control label,
+  .gauge h2 small,.gauge-data,.reference,.change-detail,.toggle-word { font-size:10px; }
 }
-@media (max-width:760px) {
-  .suspect-map img { width:40px; height:40px; }
+@media(min-width:600px) and (max-width:1050px) and (min-height:651px) {
+  #source-E span { left:50px; top:-15px; }
 }
-@media (max-width:1050px) {
-  .map-heading { left:32%; top:8px; }
-  .suspect-map { width:44px; height:44px; }
-  .suspect-map img { width:40px; height:40px; }
-  .suspect-map span { top:43px; }
-  #suspect-A { left:12%!important; top:35%!important; }
-  #suspect-B { left:89%!important; top:35%!important; }
-  #suspect-C { left:21%!important; top:57%!important; }
-  #suspect-C span { right:0; }
-  #suspect-D1 { left:69%!important; top:58%!important; }
-  #suspect-D1 span { right:auto; left:50%; top:-9px; transform:translateX(-50%); }
-  #suspect-D2 { left:45.5%!important; top:64.5%!important; }
-  #suspect-D2 span { right:25%; top:50px; }
-  #suspect-E { left:70.5%!important; top:74.5%!important; }
-  #suspect-E span { top:50px; }
-  #suspect-F { left:63%!important; top:97%!important; }
-  #suspect-F span { right:110%; top:20px; }
-  #lake-place { left:10%!important; top:79%!important; }
-  #lake-place::after { content:" →"; }
-  .spot[data-site="S9"] .flag-row { top:14px; right:46px; }
-  .spot[data-site="S5"] .flag-row { top:13px; right:45px; }
-  .spot[data-site="S7"] .flag-row { top:-10px; }
-  .spot[data-site="S8"] .flag-row { top:13px; left:46px; }
-}
-@media (max-width:599px) {
-  #suspect-D2 { left:47%!important; top:62.3%!important; }
-  #suspect-E { left:69%!important; top:75%!important; }
-  #lake-place { top:88%!important; }
-  #suspect-E span { right:115%; }
-  .spot[data-site="S8"] .flag-row { left:auto; right:45px; }
-}
-@media (min-width:761px) and (max-width:1050px) {
-  .suspect-map img { width:48px; height:48px; }
-}
-@media (max-width:599px), (max-height:650px) and (min-width:600px) {
-  .claim-row .btn { font-size:10px!important; }
-  .claim-row .btn::after { content:none!important; }
-  .evidence-wide { display:none; }
-  .evidence-compact { display:inline; }
-}
-@media (min-width:600px) and (max-width:759px) and (min-height:651px) {
-  body { height:auto; min-height:100dvh; overflow:auto; grid-template-rows:auto auto auto; align-content:start; }
-  main { display:flex; flex-direction:column; overflow:visible; }
-  .stage { height:350px; min-height:0; flex:none; order:-1; }
-  .panel { flex:none; overflow:visible; border-left:0; border-top:1px solid var(--line); }
-  .panel-heading { display:none; }
-  main.fix-layout .stage { height:calc(100dvh - 100px); min-height:650px; }
-}
-.fix-details-grid { display:grid; grid-template-columns:1fr 1fr; gap:9px; margin-top:12px; }
-.fix-detail { border:1px solid #5b7988; padding:11px; border-radius:5px; background:#1b303a; }
-.fix-detail h3 { font-size:15px; margin:0 0 6px; }
-.fix-detail p { font-size:12px; margin:6px 0; color:#c5d9df; }
-#claim-feedback:empty { display:none; }
-@media (max-height:650px) and (min-width:600px) {
-  .panel.claim-panel .hint { min-height:54px; flex:none; padding:6px; line-height:1.25; }
-}
-@media (max-width:599px) {
-  .fix-details-grid { grid-template-columns:1fr; }
-  header h1 { width:auto; flex:1; font-size:16px; margin:0; }
-  header .seg { order:1; }
-  header .icon-btn { font-size:10px; padding:0 4px; }
-  header #motion { width:62px; }
-  header #sound { width:57px; }
-  header #read { width:50px; }
-  main.fix-layout .stage { height:calc(100dvh - 160px); }
-  .flag-row { top:36px; }
-  .fix-page { grid-template-rows:auto 35px minmax(0,1fr) 145px; }
-  .gauges { min-height:158px; }
-  .gauge-data { grid-template-columns:29px minmax(0,1fr) minmax(0,1fr); gap:3px 2px; }
-  .gauge-data > :nth-child(3n+1) { display:block; }
-  .gauge-data .val { font-size:10px; font-family:'Segoe UI',sans-serif; overflow-wrap:anywhere; }
-  .gauge-status { min-height:36px; }
-}
-@media (min-width:600px) and (max-width:1050px) and (max-height:650px) {
-  #suspect-D1 span { left:auto; right:100%; top:14px; transform:none; }
-  #suspect-D2 span { top:56px; }
-  .spot[data-site="Outfall"] .flag-row { top:-17px; }
+@media(min-width:1051px) and (max-height:740px) {
+  .fix-card small:last-child { display:none; }
 }
 </style>
 </head>
 <body>
-<header>
-  <h1>Up the Watershed<small>Linden stream team · Curio Class</small></h1>
-  <div class="seg" role="group" aria-label="Mode">
-    <button id="m-cases" aria-pressed="true">Cases</button>
-    <button id="m-sample" aria-pressed="false">Sample</button>
-    <button id="m-claim" aria-pressed="false">Claim</button>
-    <button id="m-fix" aria-pressed="false" disabled>Fix-it</button>
-  </div>
-  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
-  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
-  <button class="icon-btn" id="read">🔊 Read</button>
-</header>
-<main id="main">
-  <aside class="panel" id="panel">
-    <div class="panel-heading" id="panel-heading"></div>
-    <p class="hint" id="hint" aria-live="polite"></p>
-    <div id="case-controls">
-      <div class="investigation-steps">
-        <div><b>01 / Trace it</b>Spend eight kits where they can separate suspects.</div>
-        <div><b>02 / Defend it</b>Use an upstream and downstream pair, in the same weather.</div>
-        <div><b>03 / Change it</b>Test fixes. Decide whose water goal comes first.</div>
-      </div>
-      <p class="panel-note" style="margin-top:18px">A made-up watershed. Real reasoning.<br>
-        Samples are repeatable in this model; real teams repeat tests because water varies.</p>
-    </div>
-    <div id="sample-controls" class="sample-controls" hidden>
-      <div class="kit-line"><strong id="kits-left">Kits left: 8</strong><div class="kit-dots" id="kit-dots" aria-hidden="true"></div></div>
-      <div><label for="site-select">Sample spot</label><select id="site-select" aria-label="Sample spot"></select></div>
-      <div class="weather" role="group" aria-label="Sample weather">
-        <button class="btn" id="dry" aria-pressed="true">☀ Dry day</button>
-        <button class="btn" id="storm" aria-pressed="false">☂ Day after storm</button>
-      </div>
-      <button class="btn primary" id="take-sample">Take sample</button>
-      <div class="row"><button class="btn" id="logbook">Logbook</button><button class="btn" id="compare">Compare two</button></div>
-      <div class="row"><button class="btn" id="go-claim">Make claim</button><button class="btn" id="restart-case">Restart case</button></div>
-      <p class="panel-note" id="sample-note">No test result until you use a kit. Dry and storm samples count separately.</p>
-    </div>
-    <div id="claim-controls" hidden>
-      <div class="claim-work" id="claim-work">
-        <div class="claim-list" id="claim-list"></div>
-        <div id="reveal-bars" class="reveal-bars" hidden></div>
-      </div>
-      <div class="row" style="margin-top:8px"><button class="btn primary" id="submit-claim">Submit claim</button>
-        <button class="btn" id="whole-creek" disabled>Show the whole creek</button></div>
-      <div id="claim-feedback" aria-live="polite" style="margin-top:8px"></div>
-    </div>
-  </aside>
-  <div class="stage" id="stage">
-    <section class="case-page" id="cases-view" aria-label="Choose an investigation">
-      <div class="eyebrow">Field files / Heron Lake watershed</div>
-      <h2>Every problem<br>has an upstream.</h2>
-      <p>Three places are in trouble. Follow the creek, find the jumps, and build a case that holds water.</p>
-      <div class="case-cards" id="case-cards"></div>
-    </section>
-    <section class="field-map" id="map-view" aria-label="Alder Creek watershed map" hidden>
-      <svg class="landscape" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
+<main class="station">
+  <div class="workspace">
+    <section class="map-room" id="map-room" aria-label="Watershed field station">
+      <div class="field-map" id="map-view">
+        <svg class="landscape" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
         <defs>
           <pattern id="grass" width="256" height="256" patternUnits="userSpaceOnUse"><image href="art:uw-t-pasture" width="256" height="256"/></pattern>
           <pattern id="crop" width="256" height="256" patternUnits="userSpaceOnUse"><image href="art:uw-t-cropland" width="256" height="256"/></pattern>
@@ -640,7 +393,7 @@ footer .line-btn { min-height:44px; }
           <path d="M170 75C180 145 245 167 285 238S398 283 480 302M785 75C770 135 712 177 691 238S582 285 480 302" stroke="url(#riverlight)" stroke-width="13"/>
           <path d="M480 302C500 340 323 349 350 397S482 436 557 483S687 518 757 572" stroke="#0e1b1f" stroke-width="34"/>
           <path d="M480 302C500 340 323 349 350 397S482 436 557 483S687 518 757 572" stroke="url(#riverlight)" stroke-width="23"/>
-          <path d="M810 421L612 470" stroke="#627c87" stroke-width="7"/>
+          <path d="M810 421L515 458" stroke="#627c87" stroke-width="7"/>
           <path d="M932 513L731 554" stroke="#91a1a6" stroke-width="5"/>
         </g>
         <path d="M757 557C843 530 987 539 1030 606L1030 740L690 740C644 659 695 602 757 557Z" fill="#2c6a8f" stroke="#8ea99e" stroke-width="7"/>
@@ -660,41 +413,58 @@ footer .line-btn { min-height:44px; }
         </g>
         <g id="brackets"></g>
       </svg>
-      <div class="map-heading"><b>Alder Creek</b><small>TWO FORKS · ONE LAKE</small></div>
-      <span class="map-place" style="left:4%;top:39%">North Fork</span>
-      <span class="map-place" style="left:80%;top:43%">East Branch</span>
-      <span class="map-place" style="left:77%;top:48%">Linden</span>
-      <span class="map-place" id="lake-place" style="left:52%;top:94%">Heron Lake</span>
-      <div class="compass">N<b>↑</b></div>
-      <div id="map-items"></div>
-      <div class="map-legend">↓ downstream &nbsp; <span class="sample-flag">D</span> dry &nbsp; <span class="sample-flag storm">S</span> storm</div>
-      <div id="map-result" class="result-pin" hidden></div>
+        <div class="chart-caption"><b>ALDER CREEK</b><small>SYNTHETIC WATERSHED · STEADY STATE</small></div>
+        <div class="north" aria-hidden="true">N<b>↑</b></div>
+        <div id="map-items"></div>
+        <div class="map-legend">↓ downstream · D dry · S storm · flags = collected</div>
+      </div>
+      <div class="readout" id="map-result" aria-label="Sample readout">
+        <div><h2 class="readout-title" id="result-title">FIELD SAMPLER / READY</h2>
+          <p class="readout-caption" id="result-caption">Tap a spot on the map first.</p></div>
+        <div class="readout-values" id="result-values"></div>
+      </div>
     </section>
-    <section class="fix-page" id="fix-view" aria-label="Test a cleanup plan" hidden>
+    <section class="fix-page" id="fix-view" aria-label="Intervention simulator" hidden>
       <div class="gauges" id="gauges"></div>
-      <div class="budget" id="budget"><strong id="budget-label">$0 / $3,000,000</strong>
-        <div class="budget-track"><i id="budget-fill"></i></div><span id="budget-remaining">$3,000,000 available</span></div>
+      <div class="budget" id="budget"><strong id="budget-label"></strong><div class="meter"><i id="budget-fill"></i>
+        <b style="left:73.1707317%" title="$3 million reference"></b></div><span>$3m tick · scale $0–$4.1m</span></div>
       <div class="fix-cards" id="fix-cards"></div>
       <div class="plan-controls">
-        <div id="fix-hint"></div>
-        <button class="btn primary" id="test-plan">Test plan</button>
-        <button class="btn" id="save-plan" disabled>Save plan</button>
-        <button class="btn" id="view-plans">Compare plans</button><span class="saved-count" id="saved-count">0 / 3 saved</span>
-        <button class="btn" id="fix-details">Fix details</button>
+        <p class="hint" id="plan-hint">Toggle an intervention. Readouts respond at once.</p>
+        <button id="test-plan">Test plan</button><button id="save-plan">Save plan</button>
+        <button id="view-plans">Compare plans</button><button id="fix-details">Effects</button>
       </div>
     </section>
   </div>
+  <section class="desk" aria-label="Field station controls">
+    <div class="desk-top">
+      <button id="m-sample" aria-pressed="true">Map</button>
+      <button id="m-fix" aria-pressed="false">Interventions</button>
+      <button id="field-files">Field files</button><button id="ledger">Model ledger</button>
+      <span class="counter" id="sample-count">0 collected</span>
+    </div>
+    <div class="sampling" id="sample-controls">
+      <div class="control site-control"><label for="site-select">SAMPLING STOP</label><select id="site-select" aria-label="Sampling stop"></select></div>
+      <div class="control pollutant-control"><label for="pollutant">TRACE</label><select id="pollutant" aria-label="Pollutant trace">
+        <option value="0">E. coli</option><option value="1">Nitrate-N</option><option value="2">Phosphorus</option><option value="3">Sediment</option>
+      </select></div>
+      <div class="weather" role="group" aria-label="Sample weather"><button id="dry" aria-pressed="true">Dry day</button>
+        <button id="storm" aria-pressed="false">After storm</button></div>
+      <button class="primary" id="take-sample" disabled>Take sample</button>
+      <button id="logbook">Logbook</button><button id="compare">Compare two</button>
+    </div>
+  </section>
+  <footer class="power">
+    <button id="manual">Manual</button>
+    <span class="plate">Curio Class Curiosities · Up the Watershed</span>
+    <p class="hint" id="hint">Tap a spot, choose the weather, then Take sample.</p>
+    <div class="power-switches"><button id="motion" aria-pressed="true">Motion</button>
+      <button id="sound" aria-pressed="true">Sound</button><button id="read">Read</button></div>
+  </footer>
 </main>
-<footer>
-  <span class="privacy" id="privacy">Progress stays on this device. Nothing leaves it.</span>
-  <button class="line-btn" id="model-notes">Model notes</button>
-  <button class="line-btn" id="reset">Reset</button>
-  <button class="line-btn" id="clear-progress">Clear my progress</button>
-</footer>
+<p class="sr-only" id="sample-announcement" role="status" aria-live="polite" aria-atomic="true"></p>
 <dialog id="dialog" aria-labelledby="dialog-title">
-  <div class="dialog-top"><h2 id="dialog-title"></h2>
-    <button class="btn" id="dialog-read" aria-label="Read this panel's instruction">Read</button>
-    <button class="btn" id="close-dialog">Close</button></div>
+  <div class="dialog-top"><h2 id="dialog-title"></h2><button id="dialog-read">Read</button><button id="close-dialog">Close</button></div>
   <div id="dialog-body"></div>
 </dialog>
 <script src="kit:curio"></script>
@@ -705,15 +475,7 @@ footer .line-btn { min-height:44px; }
   const money = n => '$' + n.toLocaleString('en-US');
   const round = (n,d=1) => Number(n.toFixed(d)).toLocaleString('en-US',{maximumFractionDigits:d});
   const escape = s => String(s).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const CASES = {
-    beach: {name:'Beach closed',art:'beach',noticed:'Heron Lake beach is closed.',measure:'447 / 739',
-      unit:'CFU/100 mL · dry / storm',threshold:'E. coli action line: 410',pollutant:0,limit:410,target:'S9',culprits:['A','D1','D2']},
-    lake: {name:'Green lake',art:'uw-green-lake',noticed:'Algae cover the shore.',measure:'0.216 / 0.357',
-      unit:'mg/L phosphorus · dry / storm',threshold:'Lake inlet guideline: 0.05',pollutant:2,limit:.05,target:'S8',culprits:['B','C','E']},
-    creek: {name:'Muddy creek',art:'uw-muddy-creek',noticed:'Trout water turns brown.',measure:'481',
-      unit:'mg/L sediment · storm',threshold:'Over 80: unlikely good fisheries',pollutant:3,limit:80,target:'S7',culprits:['C']}
-  };
-  const SITES = {
+    const SITES = {
     S1:{name:'North Fork at Ridge Road',x:17,y:12},
     S2:{name:'North Fork below pasture',x:28.5,y:34},
     S3:{name:'East Branch at County Line',x:78.5,y:12},
@@ -722,7 +484,7 @@ footer .line-btn { min-height:44px; }
     S6:{name:'Above Linden',x:35,y:57},
     Pipe:{name:'Storm drain at Main Street',x:81,y:60},
     S7:{name:'Main Street bridge',x:56,y:69},
-    Outfall:{name:'Treatment plant effluent',x:93,y:77},
+    Outfall:{name:'Treatment plant effluent',x:92,y:77},
     S8:{name:'Heron Lake inlet',x:75,y:82},
     S9:{name:'Heron Lake beach',x:89,y:92}
   };
@@ -731,14 +493,13 @@ footer .line-btn { min-height:44px; }
     B:{name:'Fields',photo:'fields',icon:'uw-i-tile',x:83,y:31,description:'Tile drains carry water from the fields into East Branch.'},
     C:{name:'Construction',photo:'construction',icon:'uw-i-construction',x:27,y:52,
       description:'Twelve acres of bare soil lie beside Alder Creek.'},
-    D1:{name:'Storm drains',photo:'storm-drain',icon:'uw-i-storm-drain',x:72,y:58,
+    D1:{name:'Storm drains',photo:'storm-drain',icon:'uw-i-storm-drain',x:70,y:63,
       description:'Town runoff enters at Main Street. The Pipe has no flow on a dry day.'},
     D2:{name:'Old sewer',photo:'sewer',icon:'uw-i-sewer',x:48,y:64,description:'An old sewer runs beneath the creek bank in Linden.'},
     E:{name:'Treatment plant',photo:'plant',icon:'uw-i-plant',x:85,y:75,
       description:'The treatment plant discharges effluent downstream of Main Street bridge.'},
     F:{name:'Geese',photo:'geese',icon:'uw-i-geese',x:81,y:95,description:'Canada geese gather on the beach beside Heron Lake.'}
   };
-  const BRACKETS=[['S1','S2'],['S3','S4'],['S5','S6'],['S6','S7'],['S7','S8'],['S8','S9']];
   const ART = {
     beach:'art:beach',pasture:'art:pasture',fields:'art:fields',construction:'art:construction',
     'storm-drain':'art:storm-drain',sewer:'art:sewer',plant:'art:plant',geese:'art:geese',
@@ -755,84 +516,24 @@ footer .line-btn { min-height:44px; }
     E:[[5e4,.75,.15,.5],[5e4,.75,.15,.5]]
   };
   const FIXES = {
-    A:{name:'Fence & troughs',source:'A',cost:60000,effect:'E. coli −70%, soil −60%, P −50%, N −20%.',pays:'Farmer + conservation cost-share'},
+    A:{name:'Fence & troughs',source:'A',cost:60000,effect:'E. coli −70%, sediment −60%, P −50%, N −20%.',pays:'Farmer + conservation cost-share'},
     B1:{name:'30 m grass buffers',source:'B',cost:150000,
-      effect:'Storm: E. coli −40%, soil −60%, P −50%, N −30%. Tiles bypass.',pays:'12 hectares out of crops'},
+      effect:'Storm: E. coli −40%, sediment −60%, P −50%, N −30%. Tiles bypass.',pays:'12 hectares out of crops'},
     B2:{name:'Tile bioreactors',source:'B',cost:80000,effect:'Nitrate −40% dry, −25% storm.',pays:'Farmers'},
-    C:{name:'Catch the soil',source:'C',cost:40000,effect:'Storm soil −75%, phosphorus −60%.',pays:'Developer, required by permit'},
-    D1:{name:'Rain gardens & pond',source:'D1',cost:900000,effect:'Storm: soil −80%, P −50%, E. coli −60%, N −30%.',pays:'Town'},
+    C:{name:'Catch sediment',source:'C',cost:40000,effect:'Storm sediment −75%, phosphorus −60%.',pays:'Developer, required by permit'},
+    D1:{name:'Rain gardens & pond',source:'D1',cost:900000,effect:'Storm: sediment −80%, P −50%, E. coli −60%, N −30%.',pays:'Town'},
     D2:{name:'Reline the sewer',source:'D2',cost:350000,effect:'All sewer pollutants −98%.',pays:'Sewer customers'},
     E:{name:'Plant phosphorus removal',source:'E',cost:2500000,effect:'Effluent P: 3.0 → 0.3 mg/L.',pays:'Sewer customers'},
     F:{name:'Goose management',source:'F',cost:15000,effect:'Geese E. coli term −50%.',pays:'Parks: plants and no feeding'},
     G:{name:'48-hour rain advisory',source:null,cost:5000,effect:'Storm beach closed. Cleans no water.',pays:'County health'}
   };
-  const L = {
-    wCases:'Pick a case card and press Open case. We have eight kits, so plan your stops.',
-    wSample:'Tap a spot, choose Dry day or Day after storm, then press Take sample.',
-    bracket:'Nice, that pair brackets a suspect. A jump between them is evidence.',
-    lastKit:'Last kit. Make it count.',
-    outOfKits:'Out of kits. Go to Claim and make your case, or press Restart case.',
-    wClaim:'Check sources with at least 20 percent at an over-limit target, dry or storm. Then press Add evidence.',
-    solved:"That's the case. Every source has evidence behind it.",
-    wFix:'Press Add on the fixes you want, keep the bar under three million, then press Test plan.',
-    noPlan:'This plan misses a goal. Compare the gauges, change a fix, or press Save plan and explain your priorities.',
-    chooseEvidence:'Tap the samples that support this source. Then press Use evidence.',
-    compare:'Tap two logbook entries. Then press Compare selected.',
-    submitted:'Read the feedback. Change a suspect or its evidence, then press Submit claim again.',
-    saved:'Your plan is saved on this device. Press Compare plans to add your reason.',
-    tested:'Read the before and after gauges. Change a fix, or press Save plan.',
-    why:'Type why you chose this plan in its Why box. Close to return to Fix-it.',
-    fixDetails:'Read the effects and who pays for each fix. Press Close, then Add or Remove a fix and Test plan.',
-    overBudget:'Over budget. Press Remove on a fix to bring the cost within three million.',
-    emptyLog:'No samples yet. Press Close, then Sample, choose a spot and weather, and press Take sample.',
-    emptyPlans:'Press Close, then Test plan and Save plan. You can keep three plans to compare.',
-    emptyBudgetPlans:'Press Close, then Remove a fix. Bring the cost within three million before testing and saving.'
-  };
-  const state = {mode:'cases',caseId:'beach',site:'S7',weather:'dry',cases:{},solved:[],plan:[],saved:[],goals:null,
-    tested:false,testing:false,reveal:false,popup:null,submitted:false};
-  const freshCase = () => ({samples:[],claim:{},submitted:false,solved:false});
-  let planVersion = 0;
-  let selectedLog = [];
-  let evidenceFor = null;
-  let dialogReturn = null;
-  let storageWorks = true;
-  let modeInitialized = false;
-  const reasons = {};
-  const feedbackByCase = {};
-  const caseState = () => state.cases[state.caseId];
-  const caseInfo = () => CASES[state.caseId];
-  const kitsLeft = () => 8-caseState().samples.length;
-  function persist() {
-    try {
-      localStorage.setItem('up-the-watershed',JSON.stringify({v:1,cases:state.cases,plan:state.plan,saved:state.saved}));
-    } catch {
-      storageWorks = false;
-      $('privacy').textContent = 'Storage unavailable. Work stays in this open session only.';
-    }
-  }
-  function load() {
-    Object.keys(CASES).forEach(k => state.cases[k]=freshCase());
-    try {
-      const saved = JSON.parse(localStorage.getItem('up-the-watershed') || 'null');
-      if (saved && saved.v===1) {
-        for (const k of Object.keys(CASES)) {
-          const c = saved.cases?.[k];
-          if (!c || !Array.isArray(c.samples) || c.samples.length>8 || !c.claim || typeof c.claim!=='object') continue;
-          if (!c.samples.every(s => SITES[s.site] && ['dry','storm'].includes(s.weather))) continue;
-          state.cases[k] = {samples:c.samples,claim:c.claim,submitted:!!c.submitted,solved:!!c.solved};
-        }
-        state.plan = [...new Set((saved.plan || []).filter(k => FIXES[k]))];
-        state.saved = (saved.saved || []).slice(0,3).filter(p => Array.isArray(p.plan) && p.plan.every(k => FIXES[k]));
-      }
-    } catch { storageWorks=false; }
-    state.solved = Object.keys(CASES).filter(k => state.cases[k].solved);
-  }
-  function model(weather='dry',plan=[]) {
+
+    function model(weather='dry',plan=[]) {
     const storm = weather==='storm';
     const loads = Object.fromEntries(Object.entries(LOADS).map(([k,v]) => [k,[...v[+storm]]]));
     const effects = {
       A:['A',[.7,.2,.5,.6]],B1:['B',storm?[.4,.3,.5,.6]:[0,0,0,0]],
-      B2:['B',[0,storm?.25:.4,0,0]],C:['C',storm?[0,0,.6,.75]:[0,0,0,0]],
+      B2:['B',[0,storm ? .25:.4,0,0]],C:['C',storm?[0,0,.6,.75]:[0,0,0,0]],
       D1:['D1',[.6,.3,.5,.8]],D2:['D2',[.98,.98,.98,.98]],E:['E',[0,0,.9,0]]
     };
     plan.forEach(k => {
@@ -849,7 +550,7 @@ footer .line-btn { min-height:44px; }
     raw.S1={q:qn,load:base(qn)};
     raw.S2={q:qn,load:add(raw.S1.load,loads.A)};
     raw.S3={q:qe,load:base(qe)};
-    qe += storm?.1:.05;
+    qe += storm ? .1:.05;
     raw.S4={q:qe,load:add(raw.S3.load,loads.B)};
     let q = qn+qe;
     let total = add(raw.S2.load,raw.S4.load);
@@ -857,7 +558,7 @@ footer .line-btn { min-height:44px; }
     total=add(total,loads.C);
     raw.S6={q,load:total};
     raw.Pipe=storm?{q:.8,load:loads.D1}:null;
-    q+=storm?.8:0;
+    q+=storm ? .8:0;
     total=add(add(total,loads.D1),loads.D2);
     raw.S7={q,load:total};
     raw.Outfall={q:.05,load:loads.E};
@@ -869,751 +570,451 @@ footer .line-btn { min-height:44px; }
     values.S9=[.3*values.S8[0]+(plan.includes('F')?20:40),null,null,null];
     return {values,raw,loads};
   }
+
   const BASE = {dry:model('dry'),storm:model('storm')};
-  const cost = (plan=state.plan) => plan.reduce((s,k) => s+FIXES[k].cost,0);
-  function evaluate(plan=state.plan) {
+  const names = ['E. coli','Nitrate-N','Phosphorus','Sediment'];
+  const units = ['CFU/100 mL','mg/L as N','mg/L as P','mg/L'];
+  const lines = {
+    hint:'Tap a spot on the map.',
+    compare:'Select two collected samples, then press Compare selected.',
+    empty:'Take two samples to compare. Close this panel to return to the map.',
+    plan:'Toggle an intervention. The readouts show both weathers. You can explore any cost.',
+    saved:'Plan saved on this device. Compare plans shows your alternatives.',
+    manual:'Browse the Manual. Close returns to the field station.'
+  };
+  const state = {mode:'sample',site:'',weather:'dry',pollutant:0,samples:[],plan:[],saved:[],result:null};
+  let selectedLog = [];
+  let dialogReturn = null;
+  let storageWorks = true;
+  const reasons = {};
+  function persist() {
+    try {
+      localStorage.setItem('up-the-watershed',JSON.stringify({v:2,samples:state.samples,plan:state.plan,saved:state.saved}));
+    } catch { storageWorks=false; }
+  }
+  function load() {
+    try {
+      const saved = JSON.parse(localStorage.getItem('up-the-watershed') || 'null');
+      const valid = s => s && SITES[s.site] && ['dry','storm'].includes(s.weather);
+      if (!saved) return;
+      if (saved.v===2) state.samples=(saved.samples || []).filter(valid);
+      else if (saved.v===1) state.samples=Object.values(saved.cases || {}).flatMap(c => c.samples || []).filter(valid);
+      state.plan=[...new Set((saved.plan || []).filter(k => FIXES[k]))];
+      state.saved=(saved.saved || []).filter(p => Array.isArray(p.plan) && p.plan.every(k => FIXES[k])).slice(0,3);
+    } catch { storageWorks=false; }
+  }
+  const V = Curio.voice({lines,scope:() => state.mode,hint:false,
+    read:() => $('dialog').open?$('dialog-body').dataset.hint:$('hint').textContent,
+    welcome:() => state.samples.length?null:['hint',{valid:() => !$('dialog').open && state.mode==='sample'}]
+  });
+  function hint(text) { $('hint').textContent=text; }
+  const cost = (plan=state.plan) => plan.reduce((total,k) => total+FIXES[k].cost,0);
+  function measure(plan=state.plan) {
     const dry=model('dry',plan);
     const storm=model('storm',plan);
-    const dryBeach=dry.values.S9[0];
-    const stormBeach=storm.values.S9[0];
-    const dryP=dry.values.S8[2];
-    const pCut=1-storm.raw.S8.load[2]/BASE.storm.raw.S8.load[2];
-    const stormSed=storm.values.S7[3];
-    const sCut=1-stormSed/BASE.storm.values.S7[3];
-    const protectedStorm=stormBeach>=410 && plan.includes('G');
-    return {dryBeach,stormBeach,dryP,stormP:storm.values.S8[2],pCut,stormSed,sCut,protectedStorm,
-      met:[dryBeach<410 && (stormBeach<410 || protectedStorm),dryP<.05 && pCut>=.25,sCut>=.5]};
+    return {dryBeach:dry.values.S9[0],stormBeach:storm.values.S9[0],dryP:dry.values.S8[2],stormP:storm.values.S8[2],
+      pCut:1-storm.raw.S8.load[2]/BASE.storm.raw.S8.load[2],stormSed:storm.values.S7[3],drySed:dry.values.S7[3],
+      sCut:1-storm.values.S7[3]/BASE.storm.values.S7[3],advisory:plan.includes('G')};
   }
-  function share(source,weather) {
-    const c=caseInfo();
-    const m=BASE[weather];
-    if (c.target==='S7' && source==='E') return 0;
-    if (c.target==='S9') {
-      if (source==='F') return 40/m.values.S9[0]*100;
-      return .3*(m.loads[source]?.[0] || 0)/m.raw.S8.q/10000/m.values.S9[0]*100;
-    }
-    return (m.loads[source]?.[c.pollutant] || 0)/m.raw[c.target].load[c.pollutant]*100;
+  function value(n,p) { return n===null || n===undefined?'n/m':p===2?n.toFixed(3):p===1?n.toFixed(2):round(n,0); }
+  function flow(site,weather) {
+    if (site==='S9') return 'n/m';
+    return (BASE[weather].raw[site]?.q || 0).toFixed(3);
   }
-  const units=['CFU/100 mL','mg/L nitrate-N','mg/L phosphorus','mg/L sediment'];
-  function sampleStrings(site,weather) {
-    const v=BASE[weather].values[site];
-    if (!v) return ['No flow','No flow','No flow','No flow'];
-    return v.map((n,i) => {
-      if (n===null) return 'Not modeled';
-      if (i===0) return Math.round(n).toLocaleString('en-US');
-      if (site==='Outfall') return n.toFixed([0,1,2,0][i]);
-      if (i===3) return weather==='storm'?Math.round(n).toLocaleString('en-US'):n.toFixed(1);
-      return n.toFixed(i===2?3:2);
-    });
+  function renderControls() {
+    $('site-select').value=state.site;
+    $('take-sample').disabled=!SITES[state.site];
+    $('dry').setAttribute('aria-pressed',String(state.weather==='dry'));
+    $('storm').setAttribute('aria-pressed',String(state.weather==='storm'));
+    $('sample-count').textContent=state.samples.length+' collected';
   }
-  function sampleTable(site,weather) {
-    const v=sampleStrings(site,weather);
-    const names=['E. coli','Nitrate-N','Phosphorus','Suspended sediment'];
-    return '<div class="mini-table">'+names.map((n,i) => '<span>'+n+'</span><span>'+v[i]+
-      (v[i]==='Not modeled' || v[i]==='No flow'?'':' <small>'+(i===0?'CFU/100 mL':'mg/L')+'</small>')+'</span>').join('')+'</div>';
-  }
-  function setHint(text) {
-    $('hint').textContent=text;
-  }
-  const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() =>
-    $('dialog').open?$('dialog-body').dataset.hint || $('dialog-title').textContent:
-      state.mode==='fix'?$('fix-hint').textContent:$('hint').textContent,
-    welcome:() => {
-      const key={cases:'wCases',sample:'wSample',claim:'wClaim',fix:'wFix'}[state.mode];
-      if (state.mode==='sample' && (kitsLeft()===0 || caseState().samples.length>0)) return null;
-      if (state.mode==='claim' && (state.reveal || Object.keys(caseState().claim).length)) return null;
-      if (state.mode==='fix' && state.plan.length) return null;
-      return [key,{valid:() => !$('dialog').open}];
-    }
-  });
-  const EVENT_LINES=new Set(['lastKit','outOfKits','solved','noPlan','submitted','saved','overBudget']);
-  let eventSequence=0;
-  function sayEvent(key,options={}) {
-    if (!EVENT_LINES.has(key)) throw new Error('Unknown event line: '+key);
-    return V.say(key,{kind:'event',key:key+':'+eventSequence++,...options});
-  }
-  function welcome(key,needs) {
-    if (!V.heard(key)) V.how(key,{needs,valid:() => !$('dialog').open});
-  }
-  function rememberFocus(render) {
-    const active=document.activeElement;
-    const id=active?.id;
-    render();
-    if (id && document.activeElement!==active) $(id)?.focus({preventScroll:true});
-  }
-  function modeHint() {
-    if (state.mode==='cases') return L.wCases;
-    if (state.mode==='sample') return kitsLeft()===0?L.outOfKits:L.wSample;
-    if (state.mode==='claim' && state.reveal) {
-      return 'Whole creek revealed. Press Hide whole creek to revise a claim, or press Sample to compare results.';
-    }
-    if (state.mode==='claim') return caseState().solved?'Case solved. Open another case, or press Fix-it to test a cleanup plan.':L.wClaim;
-    if (state.testing) return 'Testing your plan. You can still add or remove any fix.';
-    if (cost()>3000000) return 'Over budget. Press Remove on a fix before you can test this plan.';
-    if (state.tested) return state.saved.length>=3?
-      'Three plans saved. Press Compare plans to weigh them, or change a fix to keep exploring.':L.tested;
-    return state.plan.length?'Plan changed. Press Test plan to update all three goals.':L.wFix;
-  }
-  function setMode(mode,force=false) {
-    if (!['cases','sample','claim','fix'].includes(mode)) return;
-    if (mode==='fix' && !state.solved.length) return;
-    if (modeInitialized && state.mode===mode && !force) {
-      setHint(modeHint());
-      V.welcome();
-      return;
-    }
-    const priorFocus=document.activeElement;
-    V.hush();
-    if (state.testing && mode!=='fix') {
-      planVersion++;
-      state.testing=false;
-      state.tested=false;
-      state.goals=null;
-    }
-    state.mode=mode;
-    modeInitialized=true;
-    if (mode==='fix') $('fix-hint').appendChild($('hint'));
-    else $('panel').insertBefore($('hint'),$('case-controls'));
-    state.popup=null;
-    $('map-result').hidden=true;
-    $('main').classList.toggle('fix-layout',mode==='fix');
-    $('panel').classList.toggle('claim-panel',mode==='claim');
-    $('cases-view').hidden=mode!=='cases';
-    $('map-view').hidden=!['sample','claim'].includes(mode);
-    $('fix-view').hidden=mode!=='fix';
-    for (const m of ['cases','sample','claim','fix']) $('m-'+m).setAttribute('aria-pressed',String(mode===m));
-    $('m-fix').disabled=!state.solved.length;
-    $('case-controls').hidden=mode!=='cases';
-    $('sample-controls').hidden=mode!=='sample';
-    $('claim-controls').hidden=mode!=='claim';
-    renderHeading();
-    renderCaseChecks();
-    renderSample();
-    renderClaim();
+  function selectSite(site) {
+    if (site && !SITES[site]) return;
+    state.site=site;
+    $('map-result').classList.add('muted-result');
+    $('result-title').textContent=site?site+' / READY':'FIELD SAMPLER / READY';
+    $('result-caption').textContent=!site?'Tap a spot on the map first.':state.result?
+      'Previous: '+state.result.site+' '+state.result.weather+'. Take sample at '+site+'.':'Take sample to collect this stop.';
+    renderControls();
     updateMap();
-    updateFix();
-    setHint(modeHint());
-    if (priorFocus!==document.body && !priorFocus.getClientRects().length) {
-      const next={cases:'open-'+state.caseId,sample:'site-select',claim:'claim-A',fix:'test-plan'}[mode];
-      $(next)?.focus({preventScroll:true});
-    }
-    V.welcome();
-  }
-  function renderHeading() {
-    const c=caseInfo();
-    $('panel-heading').innerHTML=state.mode==='cases'?'<div class="eyebrow">The assignment</div><h2>Follow the evidence.</h2>':
-      '<div class="eyebrow">Case file / '+escape(state.caseId)+'</div><h2>'+c.name+'</h2><p class="target-note">'+c.threshold+'</p>';
-  }
-  function buildCases() {
-    $('case-cards').innerHTML=Object.entries(CASES).map(([id,c],i) =>
-      '<article class="case-card"><div class="case-photo"><img src="'+ART[c.art]+'" alt="'+escape(c.noticed)+'">'+
-      '<span class="case-no">FILE 0'+(i+1)+'</span>'+(id==='beach'?'<span class="beach-notice">Beach closed</span>':'')+
-      '<span class="solved-stamp" id="stamp-'+id+'" hidden>✓ Solved</span></div>'+
-      '<div class="case-copy"><h3>'+c.name+'</h3><p>'+c.noticed+'</p><p class="measure">'+c.measure+'</p><p>'+c.unit+'</p>'+
-      '<p>'+c.threshold+'</p><button class="btn primary" id="open-'+id+'">Open case<span class="sr-only">: '+c.name+'</span></button></div></article>'
-    ).join('');
-    Object.keys(CASES).forEach(id => $('open-'+id).onclick=() => openCase(id));
-  }
-  function renderCaseChecks() {
-    Object.keys(CASES).forEach(k => $('stamp-'+k).hidden=!state.cases[k].solved);
-  }
-  function openCase(id) {
-    state.caseId=id;
-    state.reveal=false;
-    state.submitted=caseState().submitted;
-    state.site=CASES[id].target;
-    state.weather='dry';
-    Curio.tone(490,.09,.025,'sine');
-    setMode('sample',true);
+    hint(site?'Choose the weather, then Take sample.':lines.hint);
+    Curio.tone(390,.04,.015,'sine');
   }
   function buildMap() {
     $('map-items').innerHTML=Object.entries(SUSPECTS).map(([id,s]) =>
-      '<button class="suspect-map" id="suspect-'+id+'" style="left:'+s.x+'%;top:'+s.y+'%" aria-label="Inspect '+s.name+'">'+
-      '<img src="'+ART[s.icon]+'" alt=""><span>'+s.name+'</span></button>').join('')+
-      Object.entries(SITES).map(([id,s]) => '<button class="spot" id="spot-'+id+'" data-site="'+id+'" style="left:'+s.x+'%;top:'+s.y+'%"'+
-        ' aria-label="'+id+': '+s.name+'" aria-pressed="false"><span class="disc">'+id+'</span>'+
-        '<span class="flag-row" id="flags-'+id+'"></span></button>').join('');
-    Object.keys(SUSPECTS).forEach(k => $('suspect-'+k).onclick=() => inspectSuspect(k));
-    Object.keys(SITES).forEach(k => $('spot-'+k).onclick=() => selectSite(k));
-    $('site-select').innerHTML=Object.entries(SITES).map(([k,s]) => '<option value="'+k+'">'+k+' · '+s.name+'</option>').join('');
-    $('site-select').onchange=e => selectSite(e.target.value);
-  }
-  function selectSite(id) {
-    state.site=id;
-    $('map-result').hidden=true;
-    state.popup=null;
-    renderSample();
-    updateMap();
-    setHint(state.mode==='claim' && Object.keys(caseState().claim).length?
-      'Use Add evidence beside a checked suspect to choose your samples.':modeHint());
-    Curio.tone(420,.04,.018,'sine');
-  }
-  function renderSample() {
-    $('kits-left').textContent='Kits left: '+kitsLeft();
-    $('kit-dots').innerHTML=Array.from({length:8},(_,i) => '<i'+(i>=kitsLeft()?' class="used"':'')+'></i>').join('');
-    $('site-select').value=state.site;
-    $('dry').setAttribute('aria-pressed',String(state.weather==='dry'));
-    $('storm').setAttribute('aria-pressed',String(state.weather==='storm'));
-    $('take-sample').disabled=kitsLeft()===0;
-    $('sample-note').textContent=kitsLeft()===0?L.outOfKits:
-      'Same spot + same weather gives the same values here. Real samples vary; teams repeat them.';
+      '<div class="suspect-map" id="source-'+id+'" style="left:'+s.x+'%;top:'+s.y+'%">'+
+      '<img src="'+ART[s.icon]+'" alt=""><span>'+(id==='E'?'Plant':s.name)+'</span></div>').join('')+
+      Object.entries(SITES).map(([id,s]) =>
+      '<button class="spot" id="spot-'+id+'" data-site="'+id+'" style="left:'+s.x+'%;top:'+s.y+'%" '+
+      'aria-label="'+id+': '+s.name+'" aria-pressed="false"><span class="disc">'+id+'</span><span class="flags" id="flags-'+id+'"></span></button>').join('');
+    // The map is visually above the controls; keyboard sampling reaches the controls first.
+    $('map-view').style.order='0';
+    Object.keys(SITES).forEach(id => $('spot-'+id).onclick=() => selectSite(id));
+    $('site-select').innerHTML='<option value="">Choose a stop</option>'+Object.entries(SITES).map(([id,s]) =>
+      '<option value="'+id+'">'+id+' · '+s.name+'</option>').join('');
   }
   function updateMap() {
     for (const id of Object.keys(SITES)) {
       $('spot-'+id).setAttribute('aria-pressed',String(state.site===id));
-      const entries=caseState().samples.filter(s => s.site===id);
-      const weather=state.reveal?['dry','storm']:['dry','storm'].filter(w => entries.some(s => s.weather===w));
-      $('flags-'+id).innerHTML=weather.map(w => '<i class="sample-flag '+(w==='storm'?'storm':'')+'">'+(w==='storm'?'S':'D')+'</i>').join('');
-    }
-    Object.keys(SUSPECTS).forEach(k => $('suspect-'+k).classList.toggle('accused',state.mode==='claim' && !!caseState().claim[k]));
-    const lines=[];
-    if (state.mode==='claim') for (const [k,evidence] of Object.entries(caseState().claim)) {
-      const samples=evidence.map(index => caseState().samples[index]).filter(Boolean);
-      if (!samples.length) continue;
-      const photo=$('suspect-'+k).querySelector('img').getBoundingClientRect();
-      const map=$('map-view').getBoundingClientRect();
-      const bx=(photo.left+photo.width/2-map.left)/map.width*1000;
-      const by=(photo.top+photo.height/2-map.top)/map.height*700;
-      samples.forEach(entry => {
-        const a=SITES[entry.site];
-        lines.push('<path class="claim-bracket" d="M'+(a.x*10)+' '+(a.y*7)+'Q'+bx+' '+(by-15)+' '+bx+' '+by+'"/>');
-      });
-    }
-    $('brackets').innerHTML=lines.join('');
-    $('reveal-bars').hidden=!state.reveal;
-    $('claim-list').style.visibility=state.reveal?'hidden':'visible';
-    $('claim-feedback').hidden=state.reveal;
-    $('submit-claim').disabled=state.reveal;
-    $('whole-creek').textContent=state.reveal?'Hide whole creek':'Show the whole creek';
-    if (state.reveal) {
-      const ids=Object.keys(SUSPECTS);
-      const rows=ids.map(k => ({name:SUSPECTS[k].name,dry:share(k,'dry'),storm:share(k,'storm')}));
-      rows.push({name:'Background',dry:100-rows.reduce((n,r) => n+r.dry,0),storm:100-rows.reduce((n,r) => n+r.storm,0)});
-      $('reveal-bars').innerHTML=rows.map(row => {
-        const weatherBar=(label,value,storm) => '<div class="share-weather"><span>'+label+' '+round(value)+'%</span>'+
-          '<span class="share-track"><i class="'+(storm?'storm-share':'')+'" style="width:'+Math.max(0,value)+'%"></i></span></div>';
-        return '<div class="share"><div class="share-name">'+row.name+'</div>'+weatherBar('D',row.dry,false)+
-          weatherBar('S',row.storm,true)+'</div>';
-      }).join('');
-    }
-  }
-  function addSample() {
-    if (kitsLeft()<=0) return;
-    const c=caseState();
-    const site=state.site;
-    const weather=state.weather;
-    c.samples.push({site,weather});
-    state.popup={site,weather};
-    persist();
-    renderSample();
-    updateMap();
-    showResult(site,weather);
-    Curio.tone(660,.09,.035,'sine');
-    setTimeout(() => Curio.tone(990,.12,.025,'sine'),90);
-    const ripple=document.createElement('div');
-    ripple.className='sample-pulse';
-    ripple.style.left=SITES[site].x+'%';
-    ripple.style.top=SITES[site].y+'%';
-    $('map-view').appendChild(ripple);
-    setTimeout(() => ripple.remove(),700);
-    const vial=document.createElement('div');
-    vial.className='sample-vial';
-    if (!BASE[weather].values[site]) vial.classList.add('no-flow');
-    vial.setAttribute('aria-hidden','true');
-    vial.style.left=SITES[site].x+'%';
-    vial.style.top=SITES[site].y+'%';
-    vial.innerHTML='<svg viewBox="0 0 38 64"><path d="M10 13V51Q10 59 19 59T28 51V13Z" '+
-      'fill="#d9f3ff44" stroke="#dbf5ff" stroke-width="2"/>'+
-      '<path class="vial-water" d="M12 32Q19 29 26 32V51Q26 57 19 57T12 51Z" fill="#5aa6c8"/>'+
-      '<path d="M13 17V49" stroke="#fff" stroke-opacity=".7" stroke-width="2"/>'+
-      '<path d="M24 24H28M24 34H28M24 44H28" stroke="#d9eff6"/>'+
-      '<rect x="8" y="7" width="22" height="8" rx="2" fill="#d8e0d4" stroke="#7794a0"/>'+
-      '<path d="M12 8V13M17 8V13M22 8V13M27 8V13" stroke="#8ca5a6"/></svg>';
-    $('map-view').appendChild(vial);
-    setTimeout(() => vial.remove(),700);
-    const hasPair=BRACKETS.some(pair => ['dry','storm'].some(w =>
-      pair.every(spot => c.samples.some(s => s.site===spot && s.weather===w))));
-    if (kitsLeft()===0) {
-      setHint(L.outOfKits);
-      sayEvent('outOfKits',{now:true,valid:() => kitsLeft()===0 && state.mode==='sample',needs:'#go-claim'});
-      if (document.activeElement===$('take-sample')) $('go-claim').focus({preventScroll:true});
-    } else if (kitsLeft()===1) {
-      setHint(L.lastKit+' Choose a spot and weather, then press Take sample.');
-      sayEvent('lastKit',{now:true,valid:() => kitsLeft()===1 && state.mode==='sample'});
-    } else {
-      setHint(hasPair?'A same-weather pair can bracket a source. Tap another spot to keep tracing, or press Make claim.':L.wSample);
-      if (hasPair) V.how('bracket',{valid:() => state.mode==='sample'});
+      const entries=state.samples.filter(s => s.site===id);
+      $('flags-'+id).innerHTML=['dry','storm'].filter(w => entries.some(s => s.weather===w)).map(w =>
+        '<i class="flag '+(w==='storm'?'storm':'')+'">'+(w==='storm'?'S':'D')+'</i>').join('');
     }
   }
   function showResult(site,weather) {
-    const box=$('map-result');
-    const c=caseInfo();
-    const val=BASE[weather].values[site]?.[c.pollutant];
-    const max=Math.max(c.limit*1.5,val || 0);
-    const bar=val===null || val===undefined?'':
-      '<div class="limitbar"><i style="width:'+(val/max*100)+'%"></i><b style="left:'+(c.limit/max*100)+'%"></b></div>'+
-      '<div class="limit-caption">Line: '+c.limit+' '+units[c.pollutant]+' at case target</div>';
-    box.innerHTML='<h3>'+site+' / '+(weather==='dry'?'Dry day':'After storm')+'</h3>'+
-      '<button class="close" id="close-result" aria-label="Close sample result">×</button>'+sampleTable(site,weather)+bar;
-    positionResult(site);
-    box.hidden=false;
-    $('close-result').onclick=() => {
-      box.hidden=true;
-      state.popup=null;
-      $('spot-'+state.site).focus({preventScroll:true});
-    };
+    const values=BASE[weather].values[site];
+    $('map-result').classList.remove('muted-result');
+    $('result-title').textContent=site+' / '+(weather==='dry'?'DRY DAY':'AFTER STORM');
+    $('result-caption').textContent=site==='Pipe' && !values?'No flow: no water to test.':site==='S9'?
+      'Beach: E. coli only; other quantities not modeled.':'Collected · baseline model · '+state.samples.length+' in Logbook';
+    $('result-values').innerHTML=names.map((name,p) => '<div class="quantity"><small>'+name+'</small><strong>'+
+      (values?value(values[p],p):'no flow')+'</strong><em>'+units[p]+'</em></div>').join('')+
+      '<div class="quantity"><small>Flow</small><strong>'+flow(site,weather)+'</strong><em>m³/s</em></div>';
+    const p=state.pollutant;
+    const number=values?.[p];
+    const ref=[410,10,.05,80][p];
+    const status=number===null || number===undefined?'not modeled':value(number,p)+' '+units[p]+', '+
+      (number>ref?'above':'below')+' the '+ref+' reference';
+    $('sample-announcement').textContent=site+', '+(weather==='dry'?'dry day':'after storm')+': '+
+      (values?names[p]+' '+status:'no flow; no water to test')+'.';
   }
-  function positionResult(site) {
-    const s=SITES[site];
-    const box=$('map-result');
-    const width=$('map-view').clientWidth;
-    const height=$('map-view').clientHeight;
-    const popupWidth=width<600?220:245;
-    const left=s.x<50?s.x/100*width+23:s.x/100*width-popupWidth-23;
-    box.style.left=Math.max(5,Math.min(width-popupWidth-5,left))+'px';
-    box.style.top=Math.max(40,Math.min(height-185,s.y/100*height-80))+'px';
-  }
-  function validEvidence(source,indices) {
-    const samples=indices.map(i => caseState().samples[i]).filter(Boolean);
-    const has=(site,w) => samples.some(s => s.site===site && s.weather===w && !!BASE[w].values[site]);
-    const pair=(a,b,w) => has(a,w) && has(b,w);
-    if (source==='A') return state.caseId==='beach'?pair('S1','S2','storm'):
-      ['dry','storm'].some(w => pair('S1','S2',w));
-    if (source==='B') return pair('S3','S4','storm');
-    if (source==='C') return pair('S5','S6','storm');
-    if (source==='D1') return has('Pipe','storm') || (pair('S6','S7','storm') && pair('S6','S7','dry'));
-    if (source==='D2') return pair('S6','S7','dry');
-    if (source==='E') return ['dry','storm'].some(w => has('Outfall',w) || pair('S7','S8',w));
-    if (source==='F') return ['dry','storm'].some(w => pair('S8','S9',w));
-    return false;
-  }
-  const evidenceHint = source => ({
-    A:'Sample S1 and S2 after a storm.',B:'Sample S3 and S4 after a storm.',C:'Sample S5 and S6 after a storm.',
-    D1:'Use Pipe after a storm, or S6 and S7 in both weathers.',D2:'Sample S6 and S7 on a dry day.',
-    E:'Sample Outfall, or S7 and S8 in the same weather.',F:'Compare S8 and S9 in the same weather.'
-  }[source]);
-  function buildClaim() {
-    $('claim-list').innerHTML=Object.entries(SUSPECTS).map(([k,s]) =>
-      '<div class="claim-row"><label for="claim-'+k+'"><input id="claim-'+k+'" type="checkbox">'+s.name+'</label>'+
-      '<button class="btn" id="evidence-'+k+'" disabled aria-label="Add evidence for '+s.name+'">'+
-      '<span class="evidence-wide">Add evidence</span><span class="evidence-compact">Add</span></button></div>').join('');
-    Object.keys(SUSPECTS).forEach(k => {
-      $('claim-'+k).onchange=e => {
-        if (e.target.checked) caseState().claim[k]=[];
-        else delete caseState().claim[k];
-        caseState().submitted=false;
-        state.submitted=false;
-        $('claim-feedback').replaceChildren();
-        renderClaim();
-        updateMap();
-        setHint(e.target.checked?'Press Add evidence beside '+SUSPECTS[k].name+' to choose supporting samples.':L.wClaim);
-        persist();
-        Curio.tone(460,.05,.025,'sine');
-      };
-      $('evidence-'+k).onclick=() => openLog(k);
-    });
-  }
-  function renderClaim() {
-    for (const k of Object.keys(SUSPECTS)) {
-      const e=caseState().claim[k];
-      $('claim-'+k).checked=!!e;
-      $('evidence-'+k).disabled=!e;
-      $('evidence-'+k).querySelector('.evidence-wide').textContent=e?.length?'Evidence ('+e.length+')':'Add evidence';
-      $('evidence-'+k).querySelector('.evidence-compact').textContent=e?.length?e.length+' tests':'Add';
-      $('evidence-'+k).dataset.compact=e?.length?e.length+' tests':'Add';
-    }
-    $('whole-creek').disabled=!caseState().submitted;
-    const feedback=caseState().submitted?(feedbackByCase[state.caseId] || []):[];
-    $('claim-feedback').innerHTML=feedback.map(f =>
-      '<div class="feedback-item '+(f.good?'good':'')+'">'+f.text+'</div>').join('');
-  }
-  function submitClaim() {
-    const c=caseState();
-    c.submitted=true;
-    state.submitted=true;
-    const culprits=caseInfo().culprits;
-    let correct=true;
-    const feedback=[];
-    Object.keys(SUSPECTS).forEach(k => {
-      const accused=!!c.claim[k];
-      const culprit=culprits.includes(k);
-      if (!accused && !culprit) return;
-      if (accused && culprit && validEvidence(k,c.claim[k])) {
-        feedback.push({good:true,text:SUSPECTS[k].name+': right, with good evidence.'});
-      } else if (accused && culprit) {
-        correct=false;
-        feedback.push({text:SUSPECTS[k].name+': right source, but evidence does not bracket it. '+evidenceHint(k)});
-      } else if (accused) {
-        correct=false;
-        let text=SUSPECTS[k].name+': below the 20% culprit rule at this target.';
-        if (k==='F' && state.caseId==='beach') text='Geese: wrong. About 9 percent dry, 5 percent storm. They are not a main source here.';
-        else if (k==='B' && state.caseId==='creek') text='Fields: adds sediment, but only 14 percent in storms. Not a culprit by this case rule.';
-        else text+=' Share: '+round(share(k,'dry'))+'% dry, '+round(share(k,'storm'))+'% storm.';
-        feedback.push({text});
-      } else {
-        correct=false;
-        const hint=k==='D1'?'The storm drains only flow in storms.':k==='D2'?'Look for a dry-day jump below town.':
-          k==='E'?'Check the plant effluent on a dry day.':
-          'Look for '+caseInfo().name.toLowerCase()+' evidence after a storm near '+SUSPECTS[k].name.toLowerCase()+'.';
-        feedback.push({text:'Missed source. '+hint});
-      }
-    });
-    c.solved=correct;
-    state.solved=Object.keys(CASES).filter(k => state.cases[k].solved);
-    $('m-fix').disabled=!state.solved.length;
-    feedbackByCase[state.caseId]=feedback;
-    renderClaim();
-    renderCaseChecks();
-    updateMap();
+  function addSample() {
+    if (!SITES[state.site]) return;
+    const sample={site:state.site,weather:state.weather};
+    state.samples.push(sample);
+    state.result=sample;
     persist();
-    if (correct) {
-      setHint('Case solved. Press Fix-it to test a plan, or open another file in Cases.');
-      Curio.yes();
-      sayEvent('solved',{valid:() => c.solved && caseState()===c});
-    } else {
-      setHint(L.submitted+' Show the whole creek reveals all results.');
-      Curio.tone(220,.12,.03,'triangle');
-      sayEvent('submitted',{valid:() => c.submitted && !c.solved && !state.reveal});
+    renderControls();
+    updateMap();
+    showResult(sample.site,sample.weather);
+    hint('Sample collected. Choose another stop, or Compare two.');
+    Curio.tone(660,.08,.025,'sine');
+    if (!Curio.reduce) {
+      const ripple=document.createElement('div');
+      ripple.className='sample-pulse';
+      const stop=$('spot-'+sample.site).getBoundingClientRect();
+      const map=$('map-view').getBoundingClientRect();
+      ripple.style.left=(stop.left+stop.width/2-map.left)+'px';
+      ripple.style.top=(stop.top+stop.height/2-map.top)+'px';
+      $('map-view').appendChild(ripple);
+      setTimeout(() => ripple.remove(),700);
     }
   }
-  function openDialog(title,html,hint) {
+  function setMode(mode) {
+    if (!['sample','fix'].includes(mode)) return;
+    V.hush();
+    state.mode=mode;
+    document.body.classList.toggle('fix-mode',mode==='fix');
+    $('map-room').hidden=mode!=='sample';
+    $('fix-view').hidden=mode!=='fix';
+    $('m-sample').setAttribute('aria-pressed',String(mode==='sample'));
+    $('m-fix').setAttribute('aria-pressed',String(mode==='fix'));
+    hint(mode==='sample'?lines.hint:lines.plan);
+    if (mode==='fix') { renderFix(); }
+    Curio.tone(330,.05,.02,'sine');
+  }
+  function openDialog(title,html,instruction,manual=false) {
     dialogReturn=document.activeElement;
     V.hush();
     $('dialog-title').textContent=title;
     $('dialog-body').innerHTML=html;
-    $('dialog-body').dataset.hint=hint || title;
+    $('dialog-body').dataset.hint=instruction;
+    $('dialog').classList.toggle('manual',manual);
     $('dialog').showModal();
     $('close-dialog').focus({preventScroll:true});
   }
   function closeDialog() {
-    if (!$('dialog').open) return;
     $('dialog').close();
     V.hush();
-    setHint(modeHint());
     if (dialogReturn?.isConnected) dialogReturn.focus({preventScroll:true});
-    V.welcome();
   }
-  function inspectSuspect(k) {
-    const s=SUSPECTS[k];
-    openDialog(s.name,'<img class="suspect-photo" src="'+ART[s.photo]+'" alt="'+escape(s.description)+'">'+
-      '<p class="photo-caption">'+s.description+'</p><p class="panel-note">'+
-      'Sample above and below a source in the same weather. Concentrations can fall when cleaner water joins the creek.</p>',
-      'Close the field photo, then tap a sample spot on the map.');
-    Curio.tone(380,.05,.02,'sine');
-  }
-  function logEntries() {
-    if (state.reveal && evidenceFor===null) return Object.keys(SITES).flatMap(site => ['dry','storm'].map(weather => ({site,weather})));
-    return caseState().samples;
-  }
-  function openLog(source=null,compare=false) {
-    evidenceFor=source;
-    selectedLog=source?[...(caseState().claim[source] || [])]:[];
-    const samples=logEntries();
-    const header=source?'Evidence for '+SUSPECTS[source].name:compare?'Compare two':'Logbook';
-    const hint=source?L.chooseEvidence:L.compare;
-    const list=samples.length?samples.map((s,i) => {
-      const vals=sampleStrings(s.site,s.weather);
-      const detail=vals[0]==='No flow'?'No flow: no water to test.':
-        'E. coli '+vals[0]+' CFU/100 mL<br>'+(s.site==='S9'?'Other tests not modeled.':
-          'N '+vals[1]+' · P '+vals[2]+' · soil '+vals[3]+' mg/L');
-      return '<button class="log-sample" id="log-'+i+'" data-index="'+i+'" aria-pressed="'+selectedLog.includes(i)+'">'+
-        '<b>'+s.site+' · '+(s.weather==='dry'?'Dry day':'After storm')+'</b><span>'+detail+'</span></button>';
-    }).join(''):'<p class="dialog-help">'+L.emptyLog+'</p>';
-    openDialog(header,(samples.length?'<p class="dialog-help">'+hint+'</p>':'')+'<div class="log-grid">'+list+'</div>'+
-      '<div class="dialog-actions"><button class="btn primary" id="use-log" '+(!samples.length?'disabled':'')+'>'+
-      (source?'Use evidence':'Compare selected')+'</button><span class="panel-note" id="selection-count"></span></div>'+
-      '<div id="comparison" aria-live="polite"></div>',samples.length?hint:L.emptyLog);
-    for (let i=0;i<samples.length;i++) $('log-'+i).onclick=() => {
+  function openLog(compare=false) {
+    selectedLog=[];
+    const ready=state.samples.length>=2;
+    const instruction=ready?lines.compare:lines.empty;
+    openDialog(compare?'Compare two':'Logbook',
+      '<p class="dialog-help">'+(ready?'Collected baseline samples. Select exactly two.':instruction)+'</p>'+
+      '<div class="dialog-actions"><button id="use-log" '+(!ready?'disabled':'')+'>Compare selected</button>'+
+      '<span id="selection-count">0 selected</span></div><div id="comparison" aria-live="polite"></div>'+
+      '<div class="log-grid">'+state.samples.map((s,i) => {
+        const v=BASE[s.weather].values[s.site];
+        const text=v?'E. coli '+value(v[0],0)+' CFU/100 mL<br>N '+value(v[1],1)+' · P '+value(v[2],2)+
+          ' · sediment '+value(v[3],3)+' mg/L':'No flow: no water to test.';
+        return '<button class="log-sample" id="log-'+i+'" aria-pressed="false"><b>'+s.site+' · '+
+          (s.weather==='dry'?'Dry day':'After storm')+'</b><span>'+text+'<br>Flow '+flow(s.site,s.weather)+' m³/s'+
+          (s.site==='S9'?'<br>n/m = not modeled.':'')+'</span></button>';
+      }).join('')+'</div>',instruction);
+    state.samples.forEach((s,i) => $('log-'+i).onclick=() => {
       if (selectedLog.includes(i)) selectedLog=selectedLog.filter(n => n!==i);
-      else {
-        if (!source && selectedLog.length>=2) selectedLog.shift();
-        selectedLog.push(i);
-      }
-      samples.forEach((_,j) => $('log-'+j).setAttribute('aria-pressed',String(selectedLog.includes(j))));
+      else { if (selectedLog.length===2) selectedLog.shift(); selectedLog.push(i); }
+      state.samples.forEach((_,j) => $('log-'+j).setAttribute('aria-pressed',String(selectedLog.includes(j))));
       $('selection-count').textContent=selectedLog.length+' selected';
-      Curio.tone(580,.04,.015,'sine');
-    };
-    $('use-log').onclick=() => {
-      if (source) {
-        caseState().claim[source]=[...selectedLog];
-        caseState().submitted=false;
-        state.submitted=false;
-        renderClaim();
-        updateMap();
-        persist();
-        closeDialog();
-        setHint('Evidence attached to '+SUSPECTS[source].name+'. Add any other sources, then press Submit claim.');
-      } else compareSamples(samples);
-    };
-    if (samples.length) V.how(source?'chooseEvidence':'compare',{valid:() => $('dialog').open});
-    else V.how('emptyLog',{valid:() => $('dialog').open,needs:'#close-dialog'});
+      Curio.tone(470,.04,.015,'sine');
+    });
+    $('use-log').onclick=compareSamples;
   }
-  function compareSamples(samples) {
-    const box=$('comparison');
-    if (selectedLog.length!==2) { box.innerHTML='<p>Tap exactly two sample entries, then press Compare selected.</p>'; return; }
-    let [a,b]=selectedLog.map(i => samples[i]);
+  function compareSamples() {
+    if (selectedLog.length!==2) {
+      $('comparison').innerHTML='<p>Select exactly two collected samples.</p>';
+      return;
+    }
+    let [a,b]=selectedLog.map(i => state.samples[i]);
     const order=Object.keys(SITES);
     if (order.indexOf(a.site)>order.indexOf(b.site)) [a,b]=[b,a];
     const av=BASE[a.weather].values[a.site];
     const bv=BASE[b.weather].values[b.site];
-    if (!av || !bv) { box.innerHTML='<p>No difference can be calculated: the dry Pipe has no flow.</p>'; return; }
-    const p=caseInfo().pollutant;
-    if (av[p]===null || bv[p]===null) {
-      box.innerHTML='<p>The beach has only E. coli in this model. Choose two creek samples for other pollutants.</p>';
-      return;
+    const p=state.pollutant;
+    let text='';
+    if (!av || !bv) text='Dry Pipe has no flow. There is no water concentration to subtract.';
+    else if (av[p]===null || bv[p]===null) text='The beach has only E. coli in this model. Other tests are not modeled.';
+    else {
+      const delta=bv[p]-av[p];
+      const unit=p===0?'CFU/s':'g/s';
+      const araw=BASE[a.weather].raw[a.site];
+      const braw=BASE[b.weather].raw[b.site];
+      text='<b>'+names[p]+': '+(delta>=0?'up ':'down ')+value(Math.abs(delta),p)+' '+units[p]+'</b><br>'+
+        a.site+' → '+b.site+', '+(a.weather===b.weather?(a.weather==='dry'?'dry day':'after storm'):'different weathers')+'.';
+      if (araw && braw) {
+        const loadDelta=braw.load[p]-araw.load[p];
+        text+='<br>Load '+(loadDelta>=0?'up ':'down ')+round(Math.abs(loadDelta),p===0?0:3)+' '+unit+
+          ' · flow '+araw.q.toFixed(3)+' → '+braw.q.toFixed(3)+' m³/s.';
+      } else text+='<br>Beach load and flow are not modeled.';
+      const branchMismatch=(['S1','S2'].includes(a.site) && ['S3','S4'].includes(b.site));
+      text+='<br>'+(a.weather!==b.weather?'Different weather: this does not isolate a reach.':branchMismatch?
+        'Separate forks: this is not an upstream/downstream pair.':'Loads add at junctions; concentration also changes with dilution.');
     }
-    const difference=bv[p]-av[p];
-    const decimals=p===0?0:p===2?3:1;
-    const weather=a.weather===b.weather?(a.weather==='dry'?'dry day':'day after storm'):'different weathers';
-    box.innerHTML='<div class="comparison"><h3>'+(difference>=0?'Up ':'Down ')+round(Math.abs(difference),decimals)+' '+units[p]+
-      '</h3><p>From '+a.site+' to '+b.site+', '+weather+'.</p><p>'+
-      (a.weather!==b.weather?'Different weathers do not make a bracketing pair.':
-      'Check that these stops lie on one branch and sit directly above and below the suspect. Mixing and dilution also change concentration.')+
-      '</p></div>';
-    Curio.tone(difference>=0?330:530,.13,.025,'triangle');
+    $('comparison').innerHTML='<div class="comparison"><h3>Sample comparison</h3><p>'+text+'</p></div>';
+    $('comparison').scrollIntoView({block:'nearest',behavior:'instant'});
+    Curio.tone(530,.08,.02,'sine');
   }
   function buildFixes() {
-    const advisory='<div class="advisory-art"><svg viewBox="0 0 70 75" aria-hidden="true">'+
-      '<path d="M19 28V73M52 28V73" stroke="#927b55" stroke-width="6"/>'+
-      '<rect x="5" y="8" width="60" height="42" rx="3" fill="#e3d8bb" stroke="#887e64" stroke-width="3"/>'+
-      '<path d="M14 38Q23 30 32 38T51 38M23 17L19 25M40 17L36 25M54 17L50 25" fill="none" stroke="#37667d" stroke-width="3"/></svg></div>';
-    $('fix-cards').innerHTML=Object.entries(FIXES).map(([k,f]) =>
-      '<button class="fix-card" id="fix-'+k+'" aria-pressed="false" aria-label="Add '+f.name+'">'+
-      (f.source?'<img src="'+ART[SUSPECTS[f.source].icon]+'" alt="">':advisory)+
-      '<span><strong>'+f.name+'</strong><span class="price">'+money(f.cost)+'</span><small>'+f.effect+'</small><small>Who pays: '+f.pays+'</small></span>'+
-      '<span class="toggle-word">Add</span></button>').join('');
-    Object.keys(FIXES).forEach(k => {
-      const f=FIXES[k];
-      $('fix-'+k).title=f.name+'. '+f.effect+' Who pays: '+f.pays+'.';
-      $('fix-'+k).setAttribute('aria-description',f.effect+' Who pays: '+f.pays+'.');
-    });
-    Object.keys(FIXES).forEach(k => $('fix-'+k).onclick=() => toggleFix(k));
-  }
-  function toggleFix(k) {
-    const before=cost();
-    if (state.plan.includes(k)) state.plan=state.plan.filter(f => f!==k);
-    else state.plan.push(k);
-    planVersion++;
-    state.tested=false;
-    state.testing=false;
-    state.goals=null;
-    updateFix();
-    setHint(modeHint());
-    persist();
-    if (before<=3000000 && cost()>3000000) {
-      sayEvent('overBudget',{now:true,valid:() => state.mode==='fix' && cost()>3000000,
-        needs:'.fix-card[aria-pressed="true"]'});
-    }
-    Curio.tone(state.plan.includes(k)?520:350,.07,.025,'sine');
-  }
-  function showFixDetails() {
-    const details=Object.values(FIXES).map(f => '<article class="fix-detail"><h3>'+f.name+' · '+money(f.cost)+'</h3>'+
-      '<p>'+f.effect+'</p><p>Who pays: '+f.pays+'</p></article>').join('');
-    openDialog('Fix effects and who pays','<p class="dialog-help">'+L.fixDetails+'</p>'+
-      '<div class="fix-details-grid">'+details+'</div>',L.fixDetails);
-    V.how('fixDetails',{valid:() => $('dialog').open});
-    Curio.tone(380,.05,.02,'sine');
-  }
-  function updateFix(animate=false) {
-    for (const k of Object.keys(FIXES)) {
-      const selected=state.plan.includes(k);
-      $('fix-'+k).setAttribute('aria-pressed',String(selected));
-      $('fix-'+k).setAttribute('aria-label',(selected?'Remove ':'Add ')+FIXES[k].name);
-      $('fix-'+k).querySelector('.toggle-word').textContent=selected?'✓ Remove':'Add';
-    }
-    const c=cost();
-    $('budget').classList.toggle('over',c>3000000);
-    $('budget-label').textContent=money(c)+' / $3,000,000';
-    $('budget-fill').style.width=Math.min(c/3000000*100,100)+'%';
-    $('budget-remaining').textContent=c>3000000?money(c-3000000)+' over budget':money(3000000-c)+' available';
-    $('test-plan').disabled=c>3000000;
-    $('save-plan').disabled=!state.tested || state.saved.length>=3 || c>3000000;
-    $('saved-count').textContent=state.saved.length+' / 3 saved';
-    renderGauges(animate);
-  }
-  function renderGauges(animate=false) {
-    const g=state.goals;
-    const base=evaluate([]);
-    const data=[
-      {title:'Beach',id:'beach',unit:'CFU/100 mL',target:'Dry + storm under 410',
-        before:[round(base.dryBeach,0),round(base.stormBeach,0)],
-        after:g?[round(g.dryBeach,1),g.protectedStorm?'Closed*':round(g.stormBeach,1)]:null,
-        labels:['Dry','Storm'],detail:g?.protectedStorm?'*Water still '+round(g.stormBeach,1)+', over 410. Beach closed 48 h.':null},
-      {title:'Lake',id:'lake',unit:'mg/L P · storm load',target:'Dry P < 0.05; storm load −25%',
-        before:[base.dryP.toFixed(3),'0% cut'],after:g?[g.dryP.toFixed(3),round(g.pCut*100)+'% cut']:null,
-        labels:['Dry','Storm'],detail:g?'Storm concentration '+g.stormP.toFixed(3)+' mg/L P.':null},
-      {title:'Creek',id:'creek',unit:'mg/L sediment',target:'Storm sediment cut at least 50%',
-        before:[round(base.stormSed,1),'0% cut'],after:g?[round(g.stormSed,1),round(g.sCut*100)+'% cut']:null,
-        labels:['Storm','Change'],detail:g?'Dry remains '+round(model('dry',state.plan).values.S7[3],1)+' mg/L.':null}
-    ];
-    const widths=data.map((d,i) => g?(g.met[i]?100:35):0);
-    $('gauges').innerHTML=data.map((d,i) => {
-      const solved=state.solved.includes(d.id);
-      const status=state.testing?'Testing…':g?(g.met[i]?(i===0 && g.protectedStorm?'✓ Protected, not cleaned':'✓ Goal met'):'× Goal not met'):'Not tested';
-      return '<article class="gauge '+(g?.met[i]?'met':'')+'" id="gauge-'+d.id+'"><h3>'+d.title+'<small>'+d.unit+'</small></h3>'+
-        '<p class="gauge-status">'+status+(!solved?' · unsolved case':'')+'</p><div class="gauge-data">'+
-        '<small></small><small>Before</small><small>After</small>'+d.labels.map((l,j) => '<small>'+l+'</small><span class="val">'+d.before[j]+
-          '</span><span class="val after">'+(d.after?d.after[j]:'?')+'</span>').join('')+'</div>'+
-        '<div class="meter-track"><i style="width:'+(animate && !Curio.reduce?0:widths[i])+'%"></i></div>'+
-        '<div class="limit-caption">'+(d.detail || d.target)+'</div></article>';
-    }).join('');
-    if (animate && g && !Curio.reduce) {
-      const version=planVersion;
-      const bars=[...$('gauges').querySelectorAll('.meter-track i')];
-      for (const bar of bars) bar.getBoundingClientRect();
-      requestAnimationFrame(() => {
-        if (version!==planVersion || g!==state.goals) return;
-        bars.forEach((bar,i) => { bar.style.width=widths[i]+'%'; });
-      });
-    }
-  }
-  async function testPlan() {
-    if (cost()>3000000) return;
-    const version=++planVersion;
-    state.testing=true;
-    state.tested=false;
-    state.goals=null;
-    updateFix();
-    setHint(modeHint());
-    Curio.tone(430,.09,.025,'triangle');
-    await Curio.wait(400);
-    if (version!==planVersion) return;
-    state.testing=false;
-    state.tested=true;
-    state.goals=evaluate();
-    updateFix(true);
-    if (state.saved.length>=3) setHint(modeHint());
-    else setHint(state.goals.protectedStorm?
-      'All goals checked. The storm beach is protected by closure; water is still over 410. Press Save plan to explain why.':L.tested);
-    if (state.goals.met.every(Boolean)) Curio.yes();
-    else sayEvent('noPlan',{valid:() => state.tested && version===planVersion});
-  }
-  function savePlan() {
-    if (!state.tested || state.saved.length>=3 || cost()>3000000) return;
-    state.saved.push({id:Date.now(),plan:[...state.plan]});
-    persist();
-    updateFix();
-    if (state.saved.length===3 && document.activeElement===$('save-plan')) $('view-plans').focus({preventScroll:true});
-    setHint(state.saved.length===3?'Three plans saved. Press Compare plans to weigh the results and explain your priorities.':L.saved);
-    sayEvent('saved',{needs:'#view-plans'});
-    Curio.tone(740,.1,.025,'sine');
-  }
-  function viewPlans() {
-    if (!state.saved.length) {
-      const hint=cost()>3000000?L.emptyBudgetPlans:L.emptyPlans;
-      openDialog('Your cleanup portfolio','<p>'+hint+'</p>',hint);
-      return;
-    }
-    openDialog('Your cleanup portfolio','<p class="dialog-help">Plans stay on this device. Why notes last only for this session.</p><div class="saved-plans">'+
-      state.saved.map((p,i) => {
-        const g=evaluate(p.plan);
-        return '<article class="saved-plan"><h3>Plan '+(i+1)+' · '+money(cost(p.plan))+'</h3><p>'+p.plan.map(k => FIXES[k].name).join(', ')+'</p>'+
-          '<p>Beach: '+round(g.dryBeach)+' / '+round(g.stormBeach)+' CFU/100 mL'+(g.protectedStorm?' (storm closure)':'')+'</p>'+
-          '<p>Lake: '+g.dryP.toFixed(3)+' mg/L dry; storm load −'+round(g.pCut*100)+'%</p><p>Creek: '+round(g.stormSed)+' mg/L; −'+round(g.sCut*100)+'%</p>'+
-          '<p>'+g.met.filter(Boolean).length+' of 3 goals met.</p><label for="why-'+i+'">Why this plan?</label>'+
-          '<textarea id="why-'+i+'" placeholder="We put the beach first because ...">'+escape(reasons[p.id] || '')+'</textarea></article>';
-      }).join('')+'</div>',L.why);
-    state.saved.forEach((p,i) => $('why-'+i).oninput=e => { reasons[p.id]=e.target.value; });
-    V.how('why',{valid:() => $('dialog').open});
-  }
-  function restartCase() {
-    V.hush();
-    state.cases[state.caseId]=freshCase();
-    state.solved=Object.keys(CASES).filter(k => state.cases[k].solved);
-    state.reveal=false;
-    state.submitted=false;
-    $('claim-feedback').replaceChildren();
-    persist();
-    setMode('sample',true);
-    Curio.tone(320,.08,.02,'sine');
-  }
-  function clearProgress() {
-    openDialog('Clear this device’s progress?',
-      '<p>This removes all case samples, claims and saved plans for Up the Watershed on this device.</p>'+
-      '<div class="dialog-actions"><button class="btn primary" id="confirm-clear">Clear progress</button></div>',
-      'Press Clear progress to erase this tool’s work, or Close to keep it.');
-    $('confirm-clear').onclick=() => {
-      try { localStorage.removeItem('up-the-watershed'); } catch {}
-      for (const k of Object.keys(CASES)) state.cases[k]=freshCase();
-      state.solved=[];
-      state.plan=[];
-      state.saved=[];
-      state.goals=null;
-      state.tested=false;
-      state.testing=false;
-      state.reveal=false;
-      state.submitted=false;
-      planVersion++;
-      Object.keys(reasons).forEach(k => delete reasons[k]);
-      $('claim-feedback').replaceChildren();
-      closeDialog();
-      setMode('cases',true);
-      $('m-cases').focus({preventScroll:true});
+    $('fix-cards').innerHTML=Object.entries(FIXES).map(([id,f]) =>
+      '<button class="fix-card" id="fix-'+id+'" aria-pressed="false">'+
+      (f.source?'<img src="'+ART[SUSPECTS[f.source].icon]+'" alt="">':'<span aria-hidden="true">▧</span>')+
+      '<span><strong>'+f.name+'</strong><span class="price">'+money(f.cost)+'</span><small>'+f.effect+
+      '</small><small>Who pays: '+f.pays+'</small></span><span class="toggle-word">Add</span></button>').join('');
+    for (const id of Object.keys(FIXES)) $('fix-'+id).onclick=() => {
+      state.plan=state.plan.includes(id)?state.plan.filter(k => k!==id):[...state.plan,id];
+      renderFix();
       persist();
+      hint(lines.plan);
+      Curio.tone(state.plan.includes(id)?520:340,.06,.02,'sine');
     };
   }
+  function renderFix() {
+    for (const [id,f] of Object.entries(FIXES)) {
+      const selected=state.plan.includes(id);
+      $('fix-'+id).setAttribute('aria-pressed',String(selected));
+      $('fix-'+id).setAttribute('aria-label',(selected?'Remove ':'Add ')+f.name.replaceAll('&','and')+', '+money(f.cost));
+      $('fix-'+id).title=f.effect+' Who pays: '+f.pays+'.';
+      $('fix-'+id).querySelector('.toggle-word').textContent=selected?'Remove':'Add';
+    }
+    $('budget-label').textContent=money(cost())+' modeled cost';
+    $('budget').classList.toggle('over',cost()>3000000);
+    $('budget-fill').style.width=(cost()/4100000*100)+'%';
+    $('save-plan').disabled=state.saved.length>=3;
+    const before=measure([]);
+    const after=measure();
+    const data=[
+      {name:'Beach',unit:'CFU/100 mL',old:[before.dryBeach,before.stormBeach],now:[after.dryBeach,after.stormBeach],
+        p:0,max:800,ref:410,reference:'410 reference · EPA STV',detail:after.advisory?'48 h advisory · no cleanup':'S9 · baseline → intervention'},
+      {name:'Lake inlet',unit:'mg/L phosphorus',old:[before.dryP,before.stormP],now:[after.dryP,after.stormP],
+        p:2,max:.4,ref:.05,reference:'0.050 historical guideline',detail:'Storm load cut '+round(after.pCut*100)+'%'},
+      {name:'Main Street',unit:'mg/L sediment',old:[before.drySed,before.stormSed],now:[after.drySed,after.stormSed],
+        p:3,max:600,ref:80,reference:'80 reference · EIFAC band',detail:'Storm sediment cut '+round(after.sCut*100)+'%'}
+    ];
+    $('gauges').innerHTML=data.map((d,i) => '<article class="gauge" id="gauge-'+i+'"><h2>'+d.name+'<small>'+d.unit+'</small></h2>'+
+      '<div class="gauge-data"><span></span><span>Before</span><span>After</span>'+['Dry','Storm'].map((w,j) =>
+      '<span>'+w+'</span><span class="val">'+value(d.old[j],d.p)+'</span><span class="val after">'+value(d.now[j],d.p)+'</span>').join('')+
+      '</div><div class="meter" role="img" aria-label="Storm '+d.name+' '+value(d.now[1],d.p)+' '+d.unit+
+      ', reference '+d.ref+'"><i style="width:'+(d.now[1]/d.max*100)+'%"></i><b style="left:'+(d.ref/d.max*100)+'%"></b></div>'+
+      '<p class="reference">'+d.reference+'</p><p class="change-detail">'+d.detail+'</p></article>').join('');
+    $('plan-hint').textContent=state.saved.length===3?'Three saved. Remove a saved plan to make room.':'Toggle an intervention. Readouts respond at once.';
+  }
+  function showEffects() {
+    openDialog('Intervention effects','<p>All costs and reduction percentages are fictional model inputs.</p><div class="effects">'+
+      Object.values(FIXES).map(f => '<article><h3>'+f.name+' · '+money(f.cost)+'</h3><p>'+f.effect+
+      '</p><p>Who pays: '+f.pays+'</p></article>').join('')+'</div>','Read the modeled effects and who pays. Close returns to Interventions.');
+  }
+  function savePlan() {
+    if (state.saved.length>=3) return;
+    state.saved.push({id:Date.now(),plan:[...state.plan]});
+    persist();
+    renderFix();
+    $('plan-hint').textContent=lines.saved;
+    if (state.saved.length===3) $('view-plans').focus({preventScroll:true});
+  }
+  function viewPlans() {
+    openDialog('Saved alternatives','<p>Plans stay on this device. Why notes last only in this open session.</p>'+
+      (state.saved.length?'<div class="saved-plans">'+state.saved.map((s,i) => {
+        const m=measure(s.plan);
+        return '<article class="saved-plan"><h3>Plan '+(i+1)+' · '+money(cost(s.plan))+'</h3><p>'+
+          (s.plan.map(k => FIXES[k].name).join(', ') || 'Baseline')+'</p><p>Beach '+value(m.dryBeach,0)+' / '+value(m.stormBeach,0)+
+          ' CFU/100 mL'+(m.advisory?' · storm closure':'')+'</p><p>Lake dry '+value(m.dryP,2)+' mg/L · storm load cut '+round(m.pCut*100)+
+          '%</p><p>Creek storm '+value(m.stormSed,3)+' mg/L · cut '+round(m.sCut*100)+'%</p><label for="why-'+i+'">Why this plan?</label>'+
+          '<textarea id="why-'+i+'" placeholder="We put the beach first because ...">'+escape(reasons[s.id] || '')+
+          '</textarea><button id="remove-plan-'+i+'">Remove saved plan '+(i+1)+'</button></article>';
+      }).join('')+'</div>':'<p>No saved plans. Close, then Save plan in Interventions.</p>'),
+      'Compare the measured outcomes and costs. Why notes stay in this open session.');
+    state.saved.forEach((s,i) => {
+      $('why-'+i).oninput=e => { reasons[s.id]=e.target.value; };
+      $('remove-plan-'+i).onclick=() => {
+        state.saved.splice(i,1);
+        persist();
+        renderFix();
+        closeDialog();
+        viewPlans();
+      };
+    });
+  }
+  function showFiles() {
+    const files=[
+      ['Beach closed','beach','S9 · E. coli 447 dry / 739 storm CFU/100 mL. EPA reference 410.'],
+      ['Green lake','uw-green-lake','S8 · phosphorus 0.216 dry / 0.357 storm mg/L. Historical guideline 0.050.'],
+      ['Muddy creek','uw-muddy-creek','S7 · storm sediment 481 mg/L. Over 400: poor fisheries at best (historical EIFAC band).']
+    ];
+    openDialog('Field files','<p>Fictional places to browse. Sample any stop, in any order.</p><div class="file-grid">'+
+      files.map(([name,art,text]) => '<article class="file"><img src="'+ART[art]+'" alt="'+name+'"><h3>'+name+'</h3><p>'+text+
+      '</p></article>').join('')+'</div><h3>Along the creek</h3><div class="source-grid">'+Object.values(SUSPECTS).map(s =>
+      '<article class="file"><img src="'+ART[s.photo]+'" alt="'+s.description+'"><h3>'+s.name+'</h3><p>'+s.description+
+      '</p></article>').join('')+'</div>','Browse the field files. Close, then choose any sampling stop.');
+  }
+  function sourceShare(source,weather,target,p) {
+    const m=BASE[weather];
+    if (target==='S7' && source==='E') return 0;
+    if (target==='S9') {
+      if (source==='F') return 40/m.values.S9[0]*100;
+      return .3*(m.loads[source]?.[0] || 0)/m.raw.S8.q/10000/m.values.S9[0]*100;
+    }
+    return (m.loads[source]?.[p] || 0)/m.raw[target].load[p]*100;
+  }
+  function showLedger() {
+    const p=state.pollutant;
+    const target=p===0?'S9':p===3?'S7':'S8';
+    const rows=Object.entries(SUSPECTS).map(([id,s]) => ({name:s.name,
+      dry:sourceShare(id,'dry',target,p),storm:sourceShare(id,'storm',target,p)}));
+    rows.push({name:'Background',dry:100-rows.reduce((n,r) => n+r.dry,0),storm:100-rows.reduce((n,r) => n+r.storm,0)});
+    openDialog('Model ledger','<p>Baseline source contributions · '+names[p]+' at '+target+
+      '. Calculated model output, separate from collected samples.</p><table class="ledger"><thead><tr><th>Source</th><th>Dry share</th><th>Storm share</th></tr></thead><tbody>'+
+      rows.map(r => '<tr><td>'+r.name+'</td><td>'+round(r.dry)+'%</td><td>'+round(r.storm)+'%</td></tr>').join('')+
+      '</tbody></table><p>Shares include only sources upstream of this location. The plant contributes zero at Main Street.</p>',
+      'Read the baseline model shares. Close to return. The Logbook still contains only collected samples.');
+  }
+  function clearSamples() {
+    if (!state.samples.length) return;
+    openDialog('Clear collected samples?','<p>This removes '+state.samples.length+
+      ' collected sample'+(state.samples.length===1?'':'s')+'. Your saved plans stay on this device.</p>'+
+      '<button id="confirm-clear">Clear samples</button>','Clear samples erases your collected samples. Close keeps them.');
+    $('confirm-clear').onclick=() => {
+      state.samples=[];
+      state.result=null;
+      persist();
+      updateMap();
+      renderControls();
+      $('result-values').replaceChildren();
+      $('result-title').textContent='FIELD SAMPLER / READY';
+      $('result-caption').textContent='Tap a spot on the map first.';
+      closeDialog();
+      selectSite('');
+    };
+  }
+  function showManual() {
+    openDialog('Field manual',
+      '<h3>At the station</h3><p>Choose a sampling stop on the map or the stop selector. Choose Dry day or After storm, then Take sample. '+
+      'Sampling stays open. The Logbook holds only what you collected. Compare two subtracts concentration, flow and load for your selected trace.</p>'+
+      '<p>Interventions is always available. Toggle changes to explore both weathers and costs. The $3 million tick is a reference, not a gate. '+
+      'Test plan refreshes the readouts. Save up to three alternatives; Compare plans has a Why box. Use Effects for the full changes and who pays.</p>'+
+      '<h3>Reading the instrument</h3><p>Concentration is pollutant per volume of water. Flow is cubic meters per second. '+
+      'Load is pollutant per second: concentration × flow × 10,000 for E. coli in CFU/100 mL; concentration × flow for mg/L to g/s. '+
+      'Compare stops on the same reach in the same weather to separate a new source from dilution. A fork-to-fork comparison does not isolate a source.</p>'+
+      '<p>The Interventions bars show storm concentration on fixed scales: beach 0–800 CFU/100 mL; phosphorus 0–0.400 mg/L; sediment 0–600 mg/L. '+
+      'Ticks mark the labeled reference values. Both dry and storm numbers stay visible. Load cut and sediment cut are changes from baseline, not ratings.</p>'+
+      '<h3>Honesty notes</h3><p>This is a fictional watershed with synthetic inputs, not a monitoring dataset. '+
+      'Every flow, load, cost, reduction, land area and who-pays assignment comes from the original Curio Class specification. '+
+      'It is a steady-state mass balance: loads and flows add. Identical samples repeat exactly. Real samples vary. '+
+      'Baseline samples are unchanged by the intervention simulator. Beach = 0.30 × inlet E. coli + 40 from geese, or +20 with goose management. '+
+      'Only E. coli is modeled at the beach: n/m means not modeled. A dry Pipe has zero flow, not a zero concentration.</p>'+
+      '<p>The model omits release of old phosphorus from lake sediment, delay before fixes work, sunlight-driven bacteria decay, groundwater and hourly variability. '+
+      'An advisory closes the fictional beach for 48 hours after rain; it removes no pollution. That duration is an invented scenario, not universal health guidance.</p>'+
+      '<h3>Reference values</h3><p>EPA 2012 recommendation 1 uses E. coli 126 geometric mean and 410 statistical threshold CFU/100 mL. '+
+      'The threshold describes a distribution over time, not a single-sample safety certificate or universal closure law. Here 410 is only a reference. '+
+      'Nitrate-N 10 mg/L is the EPA drinking-water maximum; Outfall effluent is not drinking water. '+
+      'The 0.050 mg/L lake-inlet phosphorus guideline is historical EPA (1986) guidance, not a universal current standard.</p>'+
+      '<p>Historical EIFAC suspended-solids bands, in mg/L: below 25, no harmful effects evident in the original review; '+
+      '25–80, moderate or good fisheries possible; 80–400, good fisheries unlikely; above 400, poor fisheries at best. '+
+      'These tentative bands concern normally prevailing conditions and chemically inert solids. A storm snapshot cannot predict fish survival.</p>'+
+      '<h3>Things people have found</h3><p>A downstream concentration can fall while pollutant load rises. '+
+      'A dry Pipe has no water to test, while storm runoff changes the same reach. '+
+      'Closing a beach changes access, while its E. coli value stays the same.</p>'+
+      '<h3>Sources and licences</h3><ul>'+
+      '<li>Curio Class, Up the Watershed specification: all synthetic network inputs and intervention assumptions. Original content CC BY 4.0; code MIT. No measured site data.</li>'+
+      '<li>EPA, <a href="https://www.epa.gov/sites/default/files/2015-10/documents/rwqc2012.pdf">2012 Recreational Water Quality Criteria</a>, '+
+      '<a href="https://www.epa.gov/ground-water-and-drinking-water/national-primary-drinking-water-regulations">National Primary Drinking Water Regulations</a>, '+
+      'and <a href="https://nepis.epa.gov/Exe/ZyPURL.cgi?Dockey=P100P4DO.TXT">Quality Criteria for Water (1986)</a>. '+
+      'Numerical reference facts from U.S. government publications, public domain in the U.S.</li>'+
+      '<li>EIFAC Technical Paper 1 (1964; journal version 1965), numerical bands cross-checked with EPA-600/3-77-042 '+
+      'and British Columbia WQG-18 (2023). Numerical facts only, paraphrased; no FAO text, figures or dataset redistributed. '+
+      'The FAO document has no verified permissive licence.</li>'+
+      '<li>EPA agricultural (2003) and urban (2005) nonpoint-source guidance, Construction General Permit, '+
+      'Municipal Nutrient Removal Technologies Reference Document (2008), BEACH Act program; USDA NRCS practice standards 382, 390, 605. '+
+      'U.S. government reference material, public domain in the U.S. These support intervention types, not this simulator’s prices or efficiencies.</li>'+
+      '<li>Independent checks: <a href="https://www.who.int/docs/default-source/wash-documents/who-recommendations-on-ec-bwd-august-2018.pdf">WHO (2018), table B1</a> '+
+      'for E. coli (verification only, no WHO content bundled); <a href="https://water.usgs.gov/nawqa/nutrients/pubs/circ1350/faq.html">USGS Circular 1350 FAQ</a> '+
+      'for nitrate and USGS Circular 1136 for phosphorus (U.S. public domain). Re-checked 6 November 2026.</li>'+
+      '<li>Illustrations: eight retained FLUX.1-schnell images (model Apache 2.0), plus OpenAI gpt-image illustrations, edited for Curio Class. '+
+      'Original Curio Class asset content; no external photographs. All 22 assets remain in the map and Field files.</li></ul>'+
+      '<h3>On this device</h3><p>Samples and saved plans stay on this device. Nothing leaves it. Why notes last only in this open session. '+
+      (storageWorks?'':'Device storage is unavailable; work lasts only in this open session. ')+
+      'Motion removes moving water and sampling ripples. Sound controls tones and automatic speech; Read speaks the current instruction, including with Sound off.</p>'+
+      '<button id="clear-samples" '+(!state.samples.length?'disabled':'')+'>Clear collected samples</button>',lines.manual,true);
+    $('clear-samples').onclick=() => { closeDialog(); clearSamples(); };
+  }
   load();
-  buildCases();
   buildMap();
-  buildClaim();
   buildFixes();
-  for (const m of ['cases','sample','claim','fix']) $('m-'+m).onclick=() => setMode(m);
-  $('dry').onclick=() => { state.weather='dry'; renderSample(); setHint(modeHint()); Curio.tone(450,.04,.02,'sine'); };
-  $('storm').onclick=() => { state.weather='storm'; renderSample(); setHint(modeHint()); Curio.tone(320,.04,.02,'sine'); };
+  renderControls();
+  updateMap();
+  renderFix();
+  $('site-select').onchange=e => selectSite(e.target.value);
+  $('pollutant').onchange=e => {
+    state.pollutant=Number(e.target.value);
+    hint('Trace: '+names[state.pollutant]+'. Collect or compare samples.');
+  };
+  $('dry').onclick=() => { state.weather='dry'; renderControls(); Curio.tone(430,.04,.02,'sine'); };
+  $('storm').onclick=() => { state.weather='storm'; renderControls(); Curio.tone(280,.04,.02,'sine'); };
   $('take-sample').onclick=addSample;
   $('logbook').onclick=() => openLog();
-  $('compare').onclick=() => openLog(null,true);
-  $('go-claim').onclick=() => setMode('claim');
-  $('restart-case').onclick=restartCase;
-  $('submit-claim').onclick=submitClaim;
-  $('whole-creek').onclick=() => {
-    V.hush();
-    state.reveal=!state.reveal;
-    $('whole-creek').textContent=state.reveal?'Hide whole creek':'Show the whole creek';
-    updateMap();
-    setHint(modeHint());
-  };
-  $('test-plan').onclick=testPlan;
+  $('compare').onclick=() => openLog(true);
+  $('m-sample').onclick=() => setMode('sample');
+  $('m-fix').onclick=() => setMode('fix');
+  $('manual').onclick=showManual;
+  $('field-files').onclick=showFiles;
+  $('ledger').onclick=showLedger;
+  $('fix-details').onclick=showEffects;
   $('save-plan').onclick=savePlan;
   $('view-plans').onclick=viewPlans;
-  $('fix-details').onclick=showFixDetails;
+  $('test-plan').onclick=() => {
+    renderFix();
+    $('plan-hint').textContent='Measured both weathers · '+money(cost())+' modeled cost.';
+    hint(lines.plan);
+    Curio.tone(480,.07,.02,'sine');
+  };
   $('close-dialog').onclick=closeDialog;
   $('dialog-read').onclick=() => V.read();
   $('dialog').addEventListener('cancel',e => { e.preventDefault(); closeDialog(); });
-  $('reset').onclick=() => {
-    if ($('dialog').open) closeDialog();
-    state.reveal=false;
-    setMode('cases');
-  };
-  $('clear-progress').onclick=clearProgress;
-  $('model-notes').onclick=() => openDialog('What this model leaves out',
-    '<p>Lake sediments can release old phosphorus for years. Fixes take time. Sunlight kills bacteria. Groundwater matters. Real samples vary hourly.</p>'+
-    '<p>The creek, town, loads, flows, costs and percent reductions are made up for this tool. Loads and flows add; concentration is load divided by flow.</p>'+
-    '<p>A culprit supplies at least 20 percent of the case pollutant at its target in a weather where the target exceeds its line.</p>'+
-    '<p>EPA reference values: E. coli 126 geometric mean and 410 statistical threshold, CFU/100 mL. Here 410 is the fictional case action line. '+
-    'Nitrate-N drinking-water limit: 10 mg/L. No one drinks Outfall effluent.</p>'+
-    '<p>Lake inlet phosphorus guideline: 0.05 mg/L. Sediment bands: under 25 no harm; 25 to 80 good to moderate fisheries; '+
-    'over 80 unlikely good fisheries (EIFAC). These are reference guides, not predictions of every real creek.</p>'+
-    '<p>Beach model: 0.30 × inlet E. coli + 40 from geese. No other beach tests are modeled. '+
-    'Samples have no noise; use repeat sampling in real investigations.</p>',
-    'Read the model notes. Press Close to return to your investigation.');
-  Curio.init({clips:"voice:*",rate:.95});
+  Curio.init({clips:'voice:*',rate:.95});
   Curio.onMotion(reduced => {
-    if (reduced) document.querySelectorAll('.sample-pulse,.sample-vial').forEach(e => e.remove());
+    if (reduced) document.querySelectorAll('.sample-pulse').forEach(e => e.remove());
   });
-  addEventListener('resize',() => requestAnimationFrame(() => {
-    if (state.mode==='claim') updateMap();
-    if (state.mode==='sample' && state.popup && !$('map-result').hidden) positionResult(state.popup.site);
-  }));
-  window.__tool = {
-    state,setMode,openCase,model,evaluate,cost,validEvidence,share,allLines:V.allLines,vlog:V.log,
-    get mode() { return state.mode; },get caseId() { return state.caseId; },get kitsLeft() { return kitsLeft(); },
-    get samples() { return caseState().samples; },get claim() { return caseState().claim; },
-    get solved() { return state.solved; },get plan() { return state.plan; },get goals() { return state.goals; },
-    get vq() { return V.queue; }
-  };
-  setMode('cases');
-  if (!storageWorks) $('privacy').textContent='Storage unavailable. Work stays in this open session only.';
+  // Put controls before the map's eleven stops in sequential keyboard navigation without positive tabindex.
+  const station=document.querySelector('.station');
+  const desk=document.querySelector('.desk');
+  station.insertBefore(desk,station.firstChild);
+  desk.style.gridRow='2';
+  document.querySelector('.workspace').style.gridRow='1';
+  document.querySelector('.power').style.gridRow='3';
+  window.__tool={state,model,measure,cost,setMode,selectSite,sourceShare,allLines:V.allLines,vlog:V.log,
+    get mode() { return state.mode; },get samples() { return state.samples; },get plan() { return state.plan; }};
 })();
 </script>
 </body>

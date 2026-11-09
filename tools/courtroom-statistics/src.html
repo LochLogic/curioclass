@@ -28,6 +28,7 @@ h1 small {color:#f8f1e4; margin-top:5px; font:13px 'Segoe UI',sans-serif;}
 .seg button[aria-pressed=true] {background:#f8f1e4; color:#2b2119;}
 .icon-btn {background:#4a3322; border-color:#b29a75; border-radius:5px; min-height:44px; padding:0 10px;}
 #sound {width:112px; flex-shrink:0;}
+.mobile-privacy {display:none;}
 main {display:grid; grid-template-columns:minmax(0,1fr) 270px; min-height:0;}
 .stage {min-height:0; display:flex; flex-direction:column; padding:18px 22px; gap:10px;
   background:linear-gradient(#38271966,#38271999),url(art:courtroom-empty) center/cover;}
@@ -62,10 +63,15 @@ button:active:not(:disabled) {filter:brightness(.9);}
 .row {display:flex; gap:8px; align-items:center; flex-wrap:wrap;}
 .row>* {flex:1;}
 .charge {display:grid; grid-template-columns:1fr 1fr; gap:20px; align-items:center; flex:1; min-height:0;}
-.evidence {height:100%; max-height:320px; min-height:0; width:100%; object-fit:cover; border:7px solid #fffaf2;
+.evidence {height:100%; max-height:320px; min-height:0; width:100%; object-fit:contain; border:7px solid #fffaf2;
+  background:linear-gradient(145deg,#eadbc3,#f8f1e4);
   outline:1px solid #baa482; box-shadow:4px 5px 10px #4a332233; transform:rotate(-1.3deg);}
 .evidence-wrap {position:relative; height:100%; max-height:320px; min-height:0; margin:0;}
-.evidence-tag {position:absolute; left:16%; top:42%; font:700 18px Georgia,serif; color:#4a3322; transform:rotate(-1.3deg);}
+.evidence-tag {position:absolute; left:61%; top:25%; font:700 18px Georgia,serif; color:#4a3322;
+  transform:translateX(-50%) rotate(-1.3deg);}
+@media (min-width:1500px) and (min-height:850px) {
+  .evidence,.evidence-wrap {max-height:520px;}
+}
 .claim {font:700 clamp(20px,2.7vw,36px) Georgia,serif; margin:12px 0;}
 .charge .row button {font:700 24px Georgia,serif;}
 .folders {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; flex:1; min-height:0;}
@@ -79,6 +85,12 @@ button:active:not(:disabled) {filter:brightness(.9);}
 .folder .file-no {font:10px var(--readout-font); letter-spacing:.1em;}
 .large-alpha {display:flex; gap:14px; margin:auto 0;}
 .large-alpha button {flex:1; min-height:90px; font:700 30px Georgia,serif;}
+.large-alpha small {display:block; margin-top:9px; font:600 12px/1.35 'Segoe UI',sans-serif;}
+.large-alpha button::before {content:''; display:block; height:5px; margin:0 16px 12px;
+  background:repeating-linear-gradient(90deg,currentColor 0 5px,transparent 5px 10px); opacity:.4;}
+.large-alpha button[data-alpha='0.1']::before {width:100px;}
+.large-alpha button[data-alpha='0.05']::before {width:50px;}
+.large-alpha button[data-alpha='0.01']::before {width:10px;}
 .checks {display:grid; gap:8px;}
 .check {display:grid; grid-template-columns:minmax(0,1fr) 55px 55px; gap:6px; align-items:center;
   padding:8px 10px; border:1px solid var(--line); background:#fffaf2;}
@@ -172,6 +184,12 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   #gavel {width:80px; max-height:80px;}
 }
 @media (max-height:550px) and (min-width:601px) {
+  h1 .mobile-privacy {display:block; font:10px/1.2 'Segoe UI',sans-serif; letter-spacing:0; margin-top:3px;}
+  #lineup-card h2 {min-height:44px; display:flex; align-items:center; max-width:130px;}
+  #line-controls {position:absolute; right:10px; top:10px;}
+  #lineup-line {min-height:110px;}
+  #lineup-card > .field {flex-direction:row; align-items:center; gap:8px;}
+  #lineup-card > .field input {flex:1; min-width:0; width:0;}
   .eyebrow {display:none;}
   .bench span {font-size:10px; letter-spacing:0;}
   .steps button {font-size:10px;}
@@ -183,6 +201,8 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   .charge .lead {font-size:12px; line-height:1.25;}
   .charge .muted {font-size:11px; line-height:1.25;}
   .large-alpha button {min-height:60px;}
+  .large-alpha small {font-size:10px; margin-top:4px;}
+  .large-alpha button::before {margin:0 auto 5px;}
   .folders {grid-template-columns:repeat(4,minmax(0,1fr));}
   .folder strong {font-size:12px;}
   .folder small {font-size:10px;}
@@ -222,6 +242,8 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
 @media (max-width:600px) {
   header {flex-wrap:wrap; padding:5px 8px; gap:5px;}
   h1 {width:100%; font-size:22px;}
+  h1 .mobile-privacy {display:block; width:100%; color:var(--head-ink); font:10px/1.2 'Segoe UI',sans-serif;
+    letter-spacing:0; margin-top:3px;}
   header .seg {margin-right:auto;}
   main {grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 125px;}
   .panel {border-left:0; border-top:3px solid #ad8d61; padding:8px 12px; gap:4px;}
@@ -245,14 +267,15 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   .folder strong {font-size:14px;}
   .folder small {font-size:10px;}
   .charge {grid-template-columns:1fr; grid-template-rows:minmax(60px,1fr) auto; gap:8px;}
-  .evidence {max-height:130px; border-width:4px;}
-  .evidence-wrap {max-height:130px;}
+  .evidence {max-height:190px; border-width:4px;}
+  .evidence-wrap {max-height:190px;}
   .evidence-tag {font-size:13px;}
   .claim {margin:5px 0; font-size:23px;}
   .lead {font-size:14px; line-height:1.3;}
   h2 {font-size:24px;}
   .large-alpha {gap:6px;}
   .large-alpha button {font-size:25px; min-height:70px;}
+  .large-alpha button[data-alpha='0.1']::before {width:70px;}
   .check {grid-template-columns:minmax(0,1fr) 44px 44px; gap:4px;}
   .check button {padding:0 4px;}
   .verdicts {grid-template-columns:1fr; gap:4px;}
@@ -278,7 +301,8 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
 </head>
 <body>
 <header>
-  <h1>Courtroom Statistics <small>Innocent until proven guilty.</small></h1>
+  <h1>Courtroom Statistics <small>Innocent until proven guilty.</small>
+    <small class="mobile-privacy">Session only. No data leaves this device.</small></h1>
   <div class="seg" role="group" aria-label="Mode">
     <button id="m-trial" aria-pressed="true">Trial</button>
     <button id="m-lineup" aria-pressed="false">Lineup</button>
@@ -385,7 +409,7 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
           <div class="bars" id="bars">
             <div><strong>Type I · H₀ true</strong><div class="bar-track"><div class="bar-fill type1" id="type1-bar"></div></div>
               <b id="type1-exact"></b><p id="type1-sim">No trials yet</p></div>
-            <div><strong>Power · true p</strong><div class="bar-track"><div class="bar-fill" id="power-bar"></div></div>
+            <div><strong id="power-label">Power · true p</strong><div class="bar-track"><div class="bar-fill" id="power-bar"></div></div>
               <b id="power-exact"></b><p id="power-sim">No trials yet</p></div>
           </div>
         </div>
@@ -418,39 +442,42 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     {name:'Seeds', art:'seeds', type:'prop', null:.85, estimate:.79, n:200, sign:'<', parameter:'the true germination rate',
       story:'A seed company claims 85% germination. Is the true rate less than 85%?',
       data:'Random sample: 158 of 200 sprout. Shipment: 50,000 seeds.', unit:'', digits:3,
-      checks:[['Random selection','200 seeds selected randomly.',true],['10% condition','200 < 5,000, one tenth of 50,000.',true],
-        ['Large counts under H₀','200 × 0.85 = 170; 200 × 0.15 = 30. Both ≥ 10.',true]]},
+      checks:[['Was selection random?','200 seeds selected randomly.',true],
+        ['Does sampling exceed 10%?','200 seeds from a shipment of 50,000; one tenth is 5,000.',false],
+        ['Are both expected counts at least 10?','Under H₀: 200 × 0.85 = 170; 200 × 0.15 = 30.',true]]},
     {name:'Cereal', art:'cereal', type:'mean', null:368, estimate:mean(cereal), s:sd(cereal), n:25, df:24,
       sign:'<', parameter:'the true mean box mass', story:'The box says 368 g. Are boxes underfilled on average?',
       data:'25 randomly sampled boxes. Mean 365.9 g; sample SD 5.2450 g.', unit:'g', digits:1, dots:cereal,
-      checks:[['Random selection','25 boxes selected randomly.',true],['Independence','Assume 25 boxes are under 10% of production.',true],
-        ['Nearly normal','Dot plot is roughly symmetric, with no strong outliers.',true]]},
+      checks:[['Was selection random?','25 boxes selected randomly.',true],
+        ['Does sampling exceed 10%?','Assume production exceeds 250 boxes; 25 were sampled.',false],
+        ['Does the plot show strong skew or outliers?','Inspect the 25 masses in the dot plot below.',false]]},
     {name:'Reminder texts', art:'texts', type:'twoProp', null:0, estimate:.08, n:300, sign:'>',
       parameter:'the true kept-appointment rate difference (text minus none)',
       story:'Do reminders increase kept appointments? Use text minus no text.',
       data:'Random assignment: 246 of 300 texted; 222 of 300 not texted kept appointments.', unit:'', digits:3,
-      checks:[['Random assignment','600 patients randomly assigned, 300 in each group.',true],
-        ['Independent groups','Different patients; no patient appears in both groups.',true],
-        ['Large counts under H₀','Pooled p = 468/600 = 0.78. Expected 234 kept, 66 missed per group.',true]]},
+      checks:[['Was assignment random?','600 patients randomly assigned, 300 in each group.',true],
+        ['Does any patient appear in both groups?','Different patients receive the two treatments.',false],
+        ['Are expected counts at least 10?','Under H₀: pooled p = 468/600 = 0.78; 234 kept, 66 missed per group.',true]]},
     {name:'Bus waits', art:'bus', type:'mean', null:10, estimate:10.6, s:3.1, n:40, df:39, sign:'>',
       parameter:'the true mean wait', story:'The city says the mean wait is 10 minutes. Is it longer?',
       data:'40 randomly logged waits. Mean 10.6 min; sample SD 3.1 min.', unit:'min', digits:2,
-      checks:[['Random selection','40 waits logged randomly.',true],['Independence','Assume separate waits; 40 under 10% of all waits.',true],
-        ['Large sample','n = 40 ≥ 30. Raw waits were not supplied.',true]]},
+      checks:[['Was selection random?','40 waits logged randomly.',true],
+        ['Is independence assumed here?','Assume separate waits; 40 under 10% of all waits.',true],
+        ['Is n below 30?','n = 40. Raw waits unavailable; assume no extreme outliers.',false]]},
     {name:'Running shoes', art:'shoes', type:'mean', null:0, estimate:mean(shoes), s:sd(shoes), n:12, df:11, sign:'<',
       parameter:'the true mean time difference (new minus old)',
       story:'Do new shoes reduce 400 m times? Use new minus old; each runner tests both pairs.',
       data:'12 paired runners; order randomized. Analyze new minus old in seconds.', unit:'s', digits:2, dots:shoes,
-      checks:[['Randomized order','Each runner uses both pairs in randomized order.',true],
-        ['Independent pairs','Different runners; analyze 12 within-runner differences.',true],
-        ['Nearly normal differences','Difference dot plot has no strong skew or outliers.',true]]},
+      checks:[['Was shoe order randomized?','Each runner uses both pairs in randomized order.',true],
+        ['Are old and new times independent samples?','The same 12 runners test both pairs; runners are independent.',false],
+        ['Does the difference plot show strong skew?','Inspect new minus old in the dot plot below for skew or outliers.',false]]},
     {name:'Standing desks', art:'desks', type:'twoMean', null:0, estimate:20, n:30, sign:'≠',
       parameter:'the true mean steps-per-hour difference (standing minus sitting)',
       story:'Do standing desks change steps per hour? Use standing minus sitting.',
       data:'60 workers randomly assigned. Standing: 256, SD 38, n 30. Sitting: 236, SD 35, n 30.', unit:'steps/h', digits:1,
-      checks:[['Random assignment','60 workers randomly assigned, 30 per desk group.',true],
-        ['Independent groups','Different workers in the two treatments.',true],
-        ['Large samples','Both groups have n = 30. Raw step counts were not supplied.',true]]},
+      checks:[['Was assignment random?','60 workers randomly assigned, 30 per desk group.',true],
+        ['Does any worker appear in both groups?','Different workers receive the two treatments.',false],
+        ['Are both sample sizes at least 30?','n = 30 in each group. Raw data unavailable; assume no extreme outliers.',true]]},
     {name:'Viewer poll', art:'callin', type:'dismiss', null:.92, sign:'≠', parameter:'the true viewer agreement rate',
       story:'A TV show says 92% of 1,000 viewers who called in agree. Does this describe all viewers?',
       data:'1,000 viewers chose to call. No random selection.', unit:'', digits:3,
@@ -464,13 +491,14 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   };
   const state = {mode:'trial',caseId:-1,stage:0,unlocked:0,alpha:.05,locked:false,evidenceSeen:false,
     changed:false,charge:null,checks:[null,null,null],verdict:null,filed:false,summaries:{},claim:null,
-    lineupMoved:false,docketRun:false,docket:{n:100,a:.05,p:.6,sim:null}};
+    lineupMoved:false,docketRun:false,corrections:{},seenEvidence:{},standardChanges:{},standards:{},
+    docket:{n:100,a:.05,p:.6,sim:null}};
   const L = {
     wTrial:'Tap a case folder to open it. Then pick the charge and lock your standard of proof before you see any evidence.',
     charge:'Tap less than, greater than, or not equal to for the charge against the claim.',
     proof:'Tap a standard of proof. Then press Lock standard before opening the evidence.',
     checks:'Read each condition and its numbers. Tap Yes or No for each check.',
-    admit:'The three conditions are checked. Press Admit evidence to open the evidence.',
+    admit:'The design and conditions have been reviewed. Press Admit evidence to open the evidence.',
     evidence:'Compare the shaded tail with the locked standard. Press Make a verdict when you have weighed the evidence.',
     verdict:'Tap Guilty or Not guilty. Then build the conclusion and press File sentence.',
     alphaLate:"The standard was set before the evidence. Changing it now isn't fair to the defendant.",
@@ -481,11 +509,12 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     dismissed:'No random sample, no trial. Tap Case files, then open another folder.',
     wrongCharge:'Read the claim again. Tap the direction that matches what the case asks.',
     rightCharge:'Charge entered. Press Set standard to continue.',
-    wrongCheck:'That condition is not supported by this case. Check the numbers and try Yes or No again.',
+    wrongCheck:'That answer does not match this case. Read the question and numbers, then change Yes or No.',
     paired:'These are the same runners in both shoes. Use the twelve paired differences, not two independent samples.',
     wrongVerdict:'That verdict does not follow the standard. Compare the p-value with alpha, then choose again.',
     rightVerdict:'Verdict entered. Choose the evidence conclusion and direction, then press File sentence.',
     filed:'Conclusion filed. Press View interval to hand down the confidence interval.',
+    filedGuided:'Conclusion filed with corrections noted. Press View interval to compare the claim and interval.',
     wrongSentence:'Check the evidence conclusion and direction against your verdict and charge. Then press File sentence.',
     simulation:'The trials are filed. Compare simulated shares with the exact values, then change a control to test another court.'
   };
@@ -495,7 +524,7 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   function hint(text, key, event=false, valid=() => true) {
     $('hint').textContent=text;
     $('hint').classList.remove('objection');
-    if (key) (event ? V.say : V.how)(key,{valid,hint:false});
+    if (key) (event ? V.say : V.how)(key,{valid,hint:false,now:event});
   }
   // Numerical recipes: log gamma, incomplete beta, normal and Student t tails.
   function logGamma(z) {
@@ -656,7 +685,9 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   [.1,.05,.01].forEach(a => {
     const b=document.createElement('button');
     b.className='btn';
-    b.textContent=alphaText(a);
+    const risk=a===.1 ? 'More Type I risk' : a===.05 ? 'Middle standard' : 'More Type II risk';
+    b.innerHTML=alphaText(a)+'<small>'+risk+'</small>';
+    b.setAttribute('aria-label','Alpha '+alphaText(a)+'. '+risk);
     b.onclick=() => setAlpha(a);
     b.dataset.alpha=a;
     $('proof-alphas').appendChild(b);
@@ -675,7 +706,8 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   function openCase(i) {
     const moveFocus=document.activeElement===folderButtons[i];
     V.hush();
-    Object.assign(state,{caseId:i,stage:0,unlocked:0,alpha:.05,locked:false,evidenceSeen:false,changed:false,
+    Object.assign(state,{caseId:i,stage:0,unlocked:0,alpha:state.standards[i] ?? .05,locked:false,
+      evidenceSeen:!!state.seenEvidence[i],changed:!!state.standardChanges[i],
       charge:null,checks:[null,null,null],verdict:null,filed:false,claim:cases[i].null});
     if (state.mode!=='trial') state.mode='trial';
     $('sentence-strength').value='';
@@ -693,7 +725,11 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
       const keys=['caseId','stage','unlocked','alpha','locked','evidenceSeen','changed','charge','checks','verdict','filed','claim'];
       trialSnapshot=Object.fromEntries(keys.map(key => [key,Array.isArray(state[key]) ? [...state[key]] : state[key]]));
     }
-    if (state.mode!=='trial' && nextMode==='trial' && trialSnapshot) Object.assign(state,trialSnapshot);
+    if (state.mode!=='trial' && nextMode==='trial' && trialSnapshot) {
+      Object.assign(state,trialSnapshot);
+      state.evidenceSeen ||= !!state.seenEvidence[state.caseId];
+      state.changed ||= !!state.standardChanges[state.caseId];
+    }
     state.mode=m.toLowerCase();
     if (state.mode==='lineup') {
       if (state.caseId<0 || state.caseId===6) state.caseId=0;
@@ -707,9 +743,12 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   }
   function goStage(i) {
     if (i>state.unlocked) return;
-    V.dropQueued();
+    V.hush();
     state.stage=i;
-    if (i>=3) state.evidenceSeen=true;
+    if (i>=3) {
+      state.evidenceSeen=true;
+      state.seenEvidence[state.caseId]=true;
+    }
     render();
     if (document.activeElement===$('next') && $('next').disabled) {
       const target=i===2 ? $('yes-0') : i===4 ? $('guilty') : stepButtons[i];
@@ -721,9 +760,12 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   function setAlpha(a) {
     if (state.alpha===a) return;
     state.alpha=a;
+    if (state.mode==='trial' && state.locked) state.standards[state.caseId]=a;
     Curio.tone(360,.08,.03);
     if (state.mode==='trial' && state.evidenceSeen) {
       state.changed=true;
+      state.standardChanges[state.caseId]=true;
+      state.standards[state.caseId]=a;
       state.verdict=null;
       state.filed=false;
       state.unlocked=Math.min(state.unlocked,4);
@@ -738,11 +780,28 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
       $('hint').classList.add('objection');
     } else render();
   }
+  function noteCorrection(part) {
+    const list=state.corrections[state.caseId] ||= [];
+    if (!list.includes(part)) list.push(part);
+  }
+  function invalidateFrom(stage) {
+    state.filed=false;
+    state.unlocked=Math.min(state.unlocked,stage);
+    if (stage<4) state.verdict=null;
+    if (state.summaries[state.caseId]) {
+      state.summaries[state.caseId]={alpha:state.alpha,verdict:'Review pending',changed:state.changed};
+    }
+    renderRecord();
+  }
   document.querySelectorAll('[data-sign]').forEach(b => b.onclick=() => {
+    V.dropQueued();
     const c=cases[state.caseId],sign=b.dataset.sign;
     if (sign!==c.sign) {
+      noteCorrection('charge');
+      state.charge=null;
+      invalidateFrom(0);
+      render();
       hint(`“${c.story}” ${L.wrongCharge}`,'wrongCharge',true,() => state.stage===0);
-      b.setAttribute('aria-pressed','true');
       Curio.tone(170,.12,.03);
       return;
     }
@@ -753,13 +812,22 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     Curio.yes();
   });
   function checkCondition(j,yes) {
+    V.hush();
     const c=cases[state.caseId];
+    if (state.checks[j]!==yes) invalidateFrom(2);
     state.checks[j]=yes;
     renderChecks();
+    updateNext();
+    const pollDismissed=c.type==='dismiss' && state.checks[0]===false;
+    if (pollDismissed) {
+      state.summaries[state.caseId]={alpha:state.alpha,verdict:'Dismissed: voluntary response',changed:false};
+      renderRecord();
+    }
     if (yes!==c.checks[j][2]) {
-      hint(c.checks[j][1]+' '+L.wrongCheck,'wrongCheck',true,() => state.stage===2);
+      noteCorrection('conditions');
+      hint(L.wrongCheck,'wrongCheck',true,() => state.stage===2);
       Curio.tone(170,.1,.03);
-    } else if (c.type==='dismiss' && j===0) {
+    } else if (pollDismissed) {
       state.summaries[state.caseId]={alpha:state.alpha,verdict:'Dismissed: voluntary response',changed:false};
       render();
       hint("No random sample, no trial. A bigger pile of call-ins doesn't fix who chose to call. Tap Case files.",'dismissed',true);
@@ -770,10 +838,14 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
       updateNext();
       const ready=state.checks.every((v,k) => v===c.checks[k][2]);
       if (ready) hint(L.admit,'admit',false,() => state.stage===2 && ! $('next').disabled);
-      else hint('Condition entered. Tap Yes or No for each remaining check.');
+      else hint(state.checks.some((v,k) => v!==null && v!==c.checks[k][2]) ?
+        'Recheck each answer against the case, then change Yes or No.' :
+        'Condition entered. Tap Yes or No for each remaining check.');
     }
   }
   function verdict(guilty) {
+    V.dropQueued();
+    invalidateFrom(4);
     const s=stats(),correct=s.p<state.alpha;
     const cId=state.caseId;
     $('gavel').classList.remove('swing');
@@ -781,6 +853,7 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     $('gavel').classList.add('swing');
     Curio.tone(105,.16,.09,'triangle');
     if (guilty!==correct) {
+      noteCorrection('verdict');
       state.verdict=null;
       state.filed=false;
       state.unlocked=Math.min(state.unlocked,4);
@@ -788,17 +861,20 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
       updateNext();
       $('stamp').textContent='Objection';
       hint(`p = ${pvalue(s.p)}; α = ${alphaText(state.alpha)}. ${L.wrongVerdict}`,'wrongVerdict',true,
-        () => state.caseId===cId && !state.verdict);
+        () => state.caseId===cId && state.stage===4 && !state.verdict);
       return;
     }
     state.verdict=guilty ? 'Guilty' : 'Not guilty';
     renderVerdict();
     updateNext();
-    hint(L.rightVerdict,'rightVerdict',true,() => state.caseId===cId && !!state.verdict && !state.filed);
+    hint(L.rightVerdict,'rightVerdict',true,() => state.caseId===cId && state.stage===4 && !!state.verdict && !state.filed);
   }
   $('guilty').onclick=() => verdict(true);
   $('not-guilty').onclick=() => verdict(false);
   $('innocent').onclick=() => {
+    V.dropQueued();
+    noteCorrection('verdict');
+    invalidateFrom(4);
     state.verdict=null;
     state.filed=false;
     state.unlocked=Math.min(state.unlocked,4);
@@ -810,21 +886,29 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     Curio.tone(160,.12,.04);
   };
   $('file-sentence').onclick=() => {
-    const good=$('sentence-strength').value===(stats().p<state.alpha ? 'yes' : 'no') &&
+    V.dropQueued();
+    const good=!!state.verdict && $('sentence-strength').value===(stats().p<state.alpha ? 'yes' : 'no') &&
       $('sentence-direction').value===cases[state.caseId].sign;
-    if (!good) return hint(L.wrongSentence,'wrongSentence',true,() => !state.filed);
+    if (!good) {
+      noteCorrection('conclusion');
+      invalidateFrom(4);
+      updateNext();
+      return hint(L.wrongSentence,'wrongSentence',true,() => state.stage===4 && !state.filed);
+    }
     state.filed=true;
     state.unlocked=5;
     state.summaries[state.caseId]={alpha:state.alpha,verdict:state.verdict,changed:state.changed};
     renderRecord();
     updateNext();
-    hint(L.filed,'filed',true,() => state.filed && state.stage===4);
+    const key=state.corrections[state.caseId]?.length ? 'filedGuided' : 'filed';
+    hint(L[key],key,true,() => state.filed && state.stage===4);
     Curio.yes();
   };
   $('next').onclick=() => {
     if (state.stage===0 && state.charge) goStage(1);
     else if (state.stage===1) {
       state.locked=true;
+      state.standards[state.caseId]=state.alpha;
       state.unlocked=Math.max(state.unlocked,2);
       goStage(2);
     } else if (state.stage===2 && state.checks.every((v,j) => v===cases[state.caseId].checks[j][2])) {
@@ -837,7 +921,7 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     } else if (state.stage===4 && state.filed) goStage(5);
     else if (state.stage===5) setMode('lineup');
   };
-  $('paired-trap').onclick=() => hint(L.paired,'paired',true,() => state.caseId===4 && state.stage===2);
+  $('paired-trap').onclick=() => hint(L.paired,'paired',false,() => state.caseId===4 && state.stage===2);
   $('folders-back').onclick=() => {
     V.hush();
     state.mode='trial';
@@ -863,6 +947,7 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     hint('Drag the claim slider again. A filled square is convicted; a hollow circle is not convicted.');
   };
   function docketChange() {
+    V.hush();
     state.docket={n:+$('docket-n').value,a:+$('docket-alpha').value,p:+$('true-p').value,sim:null};
     drawDocket();
     hint(L.wDocket);
@@ -908,10 +993,12 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   function renderRecord() {
     const records=Object.entries(state.summaries);
     $('session').innerHTML=records.length ? records.map(([i,s]) => `<div><b>${cases[i].name}</b><br>`+
-      `${s.verdict} · α ${alphaText(s.alpha)}${s.changed ? '<br>⚠ standard changed' : ''}</div>`).join('') : 'No verdicts filed yet.';
+      `${s.verdict} · α ${alphaText(s.alpha)}${s.changed ? '<br>⚠ standard changed' : ''}`+
+      `${state.corrections[i]?.length ? '<br>Corrections: '+state.corrections[i].join(', ') : ''}</div>`).join('') : 'No verdicts filed yet.';
     cases.forEach((c,i) => {
       const s=state.summaries[i];
-      $('folder-status-'+i).textContent=s ? s.verdict+(s.changed ? ' *' : '') : 'Open case';
+      $('folder-status-'+i).textContent=s ? s.verdict+(s.changed ? ' *' : '')+
+        (state.corrections[i]?.length ? ' · corrected' : '') : 'Open case';
     });
   }
   function renderChecks() {
@@ -927,6 +1014,7 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   function updateNext() {
     const labels=['Set standard','Lock standard','Admit evidence','Make a verdict','View interval','Explore in Lineup'];
     $('next').textContent=labels[state.stage];
+    if (state.stage===2 && state.caseId===6 && state.checks[0]===false) $('next').textContent='Case dismissed';
     $('next').disabled=(state.stage===0 && !state.charge) ||
       (state.stage===2 && (!state.checks.every((v,j) => v===cases[state.caseId].checks[j][2]) || state.caseId===6)) ||
       (state.stage===4 && !state.filed);
@@ -949,7 +1037,15 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     $('sentence-preview').textContent='At α '+alphaText(state.alpha)+', there '+s+' evidence that '+
       cases[state.caseId].parameter+' '+d+' '+cases[state.caseId].null+'.';
   }
-  ['sentence-strength','sentence-direction'].forEach(id => $(id).onchange=sentencePreview);
+  ['sentence-strength','sentence-direction'].forEach(id => $(id).onchange=() => {
+    if (state.filed) {
+      V.hush();
+      invalidateFrom(4);
+    }
+    sentencePreview();
+    updateNext();
+    if (state.stage===4) hint(L.rightVerdict);
+  });
   function render() {
     ['trial','lineup','docket'].forEach(m => $('m-'+m).setAttribute('aria-pressed',state.mode===m));
     const isTrial=state.mode==='trial',open=state.caseId>=0;
@@ -977,6 +1073,7 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
       $('evidence').src=art[c.art];
       $('evidence').alt=c.name+' evidence scene, without people';
       $('evidence-tag').hidden=state.caseId!==1;
+      positionEvidenceTag();
       $('claim-story').textContent=c.story;
       const parameter=c.type==='twoProp' ? 'p₁ − p₂' : c.type==='twoMean' ? 'μ₁ − μ₂' :
         state.caseId===4 ? 'μ_diff' : c.type==='prop' || c.type==='dismiss' ? 'p' : 'μ';
@@ -992,6 +1089,17 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
       drawLineup();
     } else if (state.mode==='docket') drawDocket();
   }
+  function positionEvidenceTag() {
+    const image=$('evidence'),tag=$('evidence-tag');
+    if (tag.hidden || !image.naturalWidth || !image.clientHeight) return;
+    const scale=Math.min(image.clientWidth/image.naturalWidth,image.clientHeight/image.naturalHeight);
+    const width=image.naturalWidth*scale,height=image.naturalHeight*scale;
+    const border=parseFloat(getComputedStyle(image).borderLeftWidth);
+    tag.style.fontSize=Math.min(18,Math.max(11,width*.052))+'px';
+    tag.style.left=(image.offsetLeft+border+(image.clientWidth-width)/2+width*.675)+'px';
+    tag.style.top=(image.offsetTop+border+(image.clientHeight-height)/2+height*.24)+'px';
+  }
+  $('evidence').addEventListener('load',positionEvidenceTag);
   // Responsive SVGs use their actual CSS dimensions, keeping labels at readable pixel sizes.
   function svgBox(el) {
     const r=el.getBoundingClientRect();
@@ -1103,6 +1211,7 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
   }
   function drawLineup() {
     const c=cases[state.caseId],r=lineup(),[low,high]=lineupRange();
+    state.seenEvidence[state.caseId]=true;
     numberLine($('lineup-line'),{low,high,estimate:c.estimate,claim:state.claim,band:r.band,ci:r.interval,convicted:r.convicted});
     $('line-status').textContent=(r.convicted ? '■ Convicted' : '○ Not convicted')+` · claim ${fmt(state.claim,c.digits)} · two-sided p ${pvalue(r.p)}`;
     $('line-note').textContent=c.type==='prop' || c.type==='twoProp' ?
@@ -1130,13 +1239,21 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     out+=`<path d="M${pad} ${base}H${w-pad}M${xx(d.k-.5)} ${top}V${base}" stroke="#8c7656"/>`;
     out+=text(pad,14,'H₀: p = .50','start',11)+text(w-pad,14,'True p = '+fmt(d.p,2),'end',11);
     out+=text(xx(lo),base+18,lo,'middle',10)+text(xx(hi),base+18,hi+' heads','end',10);
-    out+=text(xx(d.k-.5),base+18,'k = '+d.k,'middle',11);
+    const cutoffX=xx(d.k-.5),cutoffLabel='k = '+d.k;
+    if (xx(hi)-cutoffX<75) {
+      const labelWidth=cutoffLabel.length*6+8;
+      out+=`<rect x="${cutoffX-labelWidth/2}" y="${base-25}" width="${labelWidth}" height="18" rx="2"`+
+        ' fill="#fffaf2" stroke="#c7b599" stroke-width=".5"/>';
+      out+=text(cutoffX,base-12,cutoffLabel,'middle',11);
+    } else out+=text(cutoffX,base+18,cutoffLabel,'middle',11);
     el.innerHTML=out;
     $('true-label').textContent=fmt(d.p,2);
     $('type1-exact').textContent=fmt(d.typeI,4)+' exact';
+    $('power-label').textContent=d.p===.5 ? 'Rejection rate · H₀ true' : 'Power · true p';
     $('power-exact').textContent=fmt(d.power,4)+' exact';
     $('cutoff').textContent='Convict if x ≥ '+d.k+' heads out of '+d.n+'.';
-    $('beta-note').textContent='β = '+fmt(d.beta,4)+': the unshaded true-p area, failing to reject. '+
+    $('beta-note').textContent=(d.p===.5 ? 'H₀ is true: both bars measure Type I error. Failing to reject is correct, not a Type II error. ' :
+      'β = '+fmt(d.beta,4)+': the unshaded true-p area, failing to reject. ')+
       'Integer cutoffs make exact Type I differ from planned α '+alphaText(d.a)+'.';
     ['type1','power'].forEach((key,i) => {
       const bar=$(key+'-bar'),value=state.docket.sim ? state.docket.sim[i ? 'power' : 'typeI'] : 0;
@@ -1159,6 +1276,7 @@ select {font:600 14px 'Segoe UI',sans-serif; min-height:44px; color:var(--ink); 
     cancelAnimationFrame(chartFrame);
     chartFrame=requestAnimationFrame(() => {
       if (state.mode==='trial' && state.caseId>=0) {
+        if (state.stage===0) positionEvidenceTag();
         if (state.stage===2) drawDots(cases[state.caseId]);
         if (state.stage===3) drawEvidence();
         if (state.stage===5) drawInterval();

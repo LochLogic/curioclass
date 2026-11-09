@@ -1,0 +1,25 @@
+{
+  "id": "energy-accountant",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Follow every atom. See what oxygen buys.",
+  "outcome": "Track atoms and energy through photosynthesis, respiration and fermentation, then explain seasonal carbon dioxide changes.",
+  "driver": "students",
+  "minutes": "20-40",
+  "modes": [
+    "Ledger",
+    "Oxygen switch",
+    "Planet's books"
+  ],
+  "grades_label": "Grade 9",
+  "sources": [
+    "NOAA GML: monthly carbon dioxide at BRW, MLO and SPO, 2023; spec snapshot downloaded 2026-10-27.",
+    "Urry et al., Campbell Biology, 12th edition (2020), chapter 9: glucose free energy and ATP.",
+    "Nelson and Cox, Lehninger Principles of Biochemistry, 8th edition (2021), chapter 14: fermentation free energies.",
+    "OpenStax Biology 2e, sections 7.5, 8.2 and 46.3: fermentation, photosynthesis and carbon cycling; facts paraphrased, no textbook art or passages reproduced.",
+    "NIST: atomic weights, rounded C 12, H 1, O 16 and N 14.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-08"
+}

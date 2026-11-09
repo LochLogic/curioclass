@@ -9,7 +9,9 @@
       "quality": 74,
       "cutout": false,
       "drawn_by": "codex",
-      "review": "Inspected: recognizable object, no people or lettering"
+      "review": "Cold review: snowy night, correctly scaled central table, white glass lamp shade; two imagegen edits retained rich period texture.",
+      "review_prompt": "Edit the existing set painting, retaining its detailed realist gouache/oil style, architecture, doors, stove, piano, materials and empty cast. Make the window show a dark snowy winter night rather than daytime. Keep soft flat neutral indoor illumination for digital relighting, without hard baked-in light pools. Correct the central table to a small round 1.1 meter table centered lower on the stage floor: in a 1600 by 900 frame its floor center is (800,705), tabletop ellipse center (800,625), width about 145 pixels, chairs immediately either side centered near x 680 and 920, feet near y 705. Brass oil lamp with a white glass shade, unlit, centered (800,580). Keep the back wall floor edge y 509, x 320 to 1280, front floor edge y 891, x 0 to 1600. Keep right open hall door and white tiled stove. No people or lettering. Preserve rich texture and period detail.",
+      "review_edit_2": "Reduce the central furniture to the 1.1 meter table; tabletop center (800,625), width145, feet (800,705), chairs x680/920, short elevated-camera view. Preserve surrounding room and nocturnal window."
     },
     {
       "name": "rs-lamp",
@@ -70,7 +72,9 @@
       "cutout": true,
       "drawn_by": "codex",
       "review": "Inspected: recognizable object, no people or lettering",
-      "despill": true
+      "despill": true,
+      "review_prompt": "Ellipsoidal profile: replace external barn doors with a plain front lens rim, internal framing-shutter handles and gobo tab near the gate. Preserve detailed black metal, long barrel, yoke and C clamp; flat pure green key.",
+      "holes": true
     },
     {
       "name": "slp-fresnel",
@@ -81,7 +85,8 @@
       "cutout": true,
       "drawn_by": "codex",
       "review": "Inspected: recognizable object, no people or lettering",
-      "despill": true
+      "despill": true,
+      "holes": true
     },
     {
       "name": "slp-par",
@@ -92,7 +97,8 @@
       "cutout": true,
       "drawn_by": "codex",
       "review": "Inspected: recognizable object, no people or lettering",
-      "despill": true
+      "despill": true,
+      "holes": true
     }
   ]
 }

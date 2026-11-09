@@ -88,10 +88,13 @@
       ]
     },
     {
-      "name": "answer-and-flight",
+      "name": "answer-and-two-crossings",
       "steps": [
         {
           "click": "#m-missions"
+        },
+        {
+          "js": "const s=document.querySelector('#mission-select');s.value='3';s.dispatchEvent(new Event('change',{bubbles:true}));"
         },
         {
           "click": "#check"
@@ -100,7 +103,7 @@
           "click": "#target"
         },
         {
-          "js": "document.querySelector('#target').value='0';"
+          "js": "document.querySelector('#target').value='48';"
         },
         {
           "click": "#check"
@@ -109,13 +112,13 @@
           "click": "#p"
         },
         {
-          "js": "document.querySelector('#p').value='0';"
+          "js": "document.querySelector('#p').value='1';"
         },
         {
           "click": "#q"
         },
         {
-          "js": "document.querySelector('#q').value='4';"
+          "js": "document.querySelector('#q').value='3';"
         },
         {
           "click": "#check"
@@ -124,7 +127,7 @@
           "click": "#answer-input"
         },
         {
-          "js": "document.querySelector('#answer-input').value='4';"
+          "js": "document.querySelector('#answer-input').value='1,3';"
         },
         {
           "click": "#check"
@@ -134,7 +137,7 @@
         },
         {
           "until": "!__tool.state.running",
-          "max": 8000
+          "max": 9000
         }
       ],
       "keep": [
@@ -186,6 +189,80 @@
       "keep": [
         "#explore",
         "#go"
+      ]
+    },
+    {
+      "name": "general-formula-derivation",
+      "steps": [
+        {
+          "click": "#m-missions"
+        },
+        {
+          "js": "__tool.mission(7)"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "js": "document.querySelector('#target').value='0'"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "[data-method=\"Complete the square\"]"
+        },
+        {
+          "js": "document.querySelector('#k').value='3/2';document.querySelector('#m').value='41/16'"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#fields",
+        "#check",
+        "#work-equation"
+      ]
+    },
+    {
+      "name": "complex-roots",
+      "steps": [
+        {
+          "click": "#m-missions"
+        },
+        {
+          "js": "const s=document.querySelector('#mission-select');s.value='5';s.dispatchEvent(new Event('change',{bubbles:true}));"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "js": "document.querySelector('#target').value='80'"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "[data-method=\"Formula\"]"
+        },
+        {
+          "js": "document.querySelector('#a').value='1';document.querySelector('#b').value='-4';document.querySelector('#c').value='5'"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "js": "document.querySelector('#real-count').value='0'"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#fields",
+        "#check",
+        "#work-equation"
       ]
     }
   ]

@@ -39,6 +39,12 @@ main {grid-template-columns:minmax(0,1fr) 326px; min-height:0; min-width:0}
 .hint {font-size:14px; line-height:1.4; min-height:68px; margin:0; padding:9px 11px; border-left:3px solid #4a3ca8;
   background:#eee8fc; border-radius:0 8px 8px 0; flex:none}
 .actions {display:flex; gap:6px; flex-wrap:wrap}
+#play-actions {position:sticky; top:0; z-index:4; background:var(--paper)}
+body[data-step=map] .quality-grid {grid-template-columns:repeat(4,minmax(0,1fr))}
+body[data-step=map] .quality {padding-left:5px; padding-right:5px}
+body[data-step=map] .quality b {font-size:14px}
+body[data-step=map] .quality::after {display:none}
+body[data-step=viewer] #live-caption {padding-left:64px}
 .btn {border:1px solid #baadc9; background:linear-gradient(#fffefb,#f3ebf1); border-radius:9px;
   padding:6px 11px; min-height:44px; font-weight:700; font-size:13px; box-shadow:0 2px 0 #4c315417}
 .btn:hover {background:#eee7fc; border-color:#4a3ca8}
@@ -110,6 +116,8 @@ body[data-step=map] .studio-tag {display:none}
   background:#2d2a3eea; border:1px solid #a392b344; border-radius:9px; padding:7px; pointer-events:none}
 #move-name {font:750 clamp(21px,2.9vw,39px) Georgia,serif; text-transform:capitalize}
 #quality-words {font-size:13px; margin-top:4px; letter-spacing:.04em}
+#live-caption.result {border-color:#ffe7a3; background:#302941f5}
+#live-caption.result #move-name {font-size:clamp(16px,2vw,28px)}
 .dance-along #quality-words {font-size:clamp(14px,1.7vw,23px); font-weight:800}
 #count-label {position:absolute; right:15px; top:10px; color:#ffe7a3; font:750 24px Georgia,serif}
 #count-label,#beat-strip {z-index:2}
@@ -290,6 +298,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
   .studio-tag {font-size:10px; top:9px; left:10px}
   #studio-screen {gap:5px}
   #live-caption {bottom:6px; left:6px; right:6px; padding:4px}
+  body[data-step=viewer] #live-caption {padding-left:4px}
   #floor {height:calc(100% - 53px)}
   #move-name {font-size:24px}
   #quality-words {font-size:11px; margin-top:2px}
@@ -391,7 +400,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
         <textarea id="sentence" maxlength="500" aria-label="What does this idea remind you of in your own life?"
           placeholder="This reminds me of..."></textarea>
       </div>
-      <p id="viewer-model">The Viewer's way of seeing: a model that compares four average qualities and the main traveling path. Other viewers may read a dance differently.</p>
+      <p id="viewer-model">The Viewer's way of seeing: a model of average qualities and main path. Other viewers may disagree.</p>
     </div>
     <div class="panel-bottom"><p class="privacy" id="saved">Saved here. Never leaves this device.</p><button id="reset" class="btn">Start over</button></div>
   </aside>
@@ -444,165 +453,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
   const QUALITIES = {speed:['Slow','Quick'], weight:['Light','Strong'], flow:['Smooth','Sharp'], level:['Low','Middle','High']};
   const PATHS = ['In place','Straight','Curved','Zigzag'];
   const ART = {river:'art:painting-river', storm:'art:painting-storm',studio:'art:studio-light'};
-  // Reserved art tokens for the next painter. The current actor uses the shared kit figure.
-  const PAINTED_POSES = {
-    'dancer-float-low-a':'art:dancer-float-low-a',
-    'dancer-float-low-b':'art:dancer-float-low-b',
-    'dancer-float-middle-a':'art:dancer-float-middle-a',
-    'dancer-float-middle-b':'art:dancer-float-middle-b',
-    'dancer-float-high-a':'art:dancer-float-high-a',
-    'dancer-float-high-b':'art:dancer-float-high-b',
-    'dancer-shiver-low-a':'art:dancer-shiver-low-a',
-    'dancer-shiver-low-b':'art:dancer-shiver-low-b',
-    'dancer-shiver-middle-a':'art:dancer-shiver-middle-a',
-    'dancer-shiver-middle-b':'art:dancer-shiver-middle-b',
-    'dancer-shiver-high-a':'art:dancer-shiver-high-a',
-    'dancer-shiver-high-b':'art:dancer-shiver-high-b',
-    'dancer-glide-low-a':'art:dancer-glide-low-a',
-    'dancer-glide-low-b':'art:dancer-glide-low-b',
-    'dancer-glide-middle-a':'art:dancer-glide-middle-a',
-    'dancer-glide-middle-b':'art:dancer-glide-middle-b',
-    'dancer-glide-high-a':'art:dancer-glide-high-a',
-    'dancer-glide-high-b':'art:dancer-glide-high-b',
-    'dancer-sink-low-a':'art:dancer-sink-low-a',
-    'dancer-sink-low-b':'art:dancer-sink-low-b',
-    'dancer-sink-middle-a':'art:dancer-sink-middle-a',
-    'dancer-sink-middle-b':'art:dancer-sink-middle-b',
-    'dancer-sink-high-a':'art:dancer-sink-high-a',
-    'dancer-sink-high-b':'art:dancer-sink-high-b',
-    'dancer-rush-low-a':'art:dancer-rush-low-a',
-    'dancer-rush-low-b':'art:dancer-rush-low-b',
-    'dancer-rush-middle-a':'art:dancer-rush-middle-a',
-    'dancer-rush-middle-b':'art:dancer-rush-middle-b',
-    'dancer-rush-high-a':'art:dancer-rush-high-a',
-    'dancer-rush-high-b':'art:dancer-rush-high-b',
-    'dancer-stomp-low-a':'art:dancer-stomp-low-a',
-    'dancer-stomp-low-b':'art:dancer-stomp-low-b',
-    'dancer-stomp-middle-a':'art:dancer-stomp-middle-a',
-    'dancer-stomp-middle-b':'art:dancer-stomp-middle-b',
-    'dancer-stomp-high-a':'art:dancer-stomp-high-a',
-    'dancer-stomp-high-b':'art:dancer-stomp-high-b',
-    'dancer-leap-low-a':'art:dancer-leap-low-a',
-    'dancer-leap-low-b':'art:dancer-leap-low-b',
-    'dancer-leap-middle-a':'art:dancer-leap-middle-a',
-    'dancer-leap-middle-b':'art:dancer-leap-middle-b',
-    'dancer-leap-high-a':'art:dancer-leap-high-a',
-    'dancer-leap-high-b':'art:dancer-leap-high-b',
-    'dancer-scatter-low-a':'art:dancer-scatter-low-a',
-    'dancer-scatter-low-b':'art:dancer-scatter-low-b',
-    'dancer-scatter-middle-a':'art:dancer-scatter-middle-a',
-    'dancer-scatter-middle-b':'art:dancer-scatter-middle-b',
-    'dancer-scatter-high-a':'art:dancer-scatter-high-a',
-    'dancer-scatter-high-b':'art:dancer-scatter-high-b',
-    'dancer-freeze-low-a':'art:dancer-freeze-low-a',
-    'dancer-freeze-low-b':'art:dancer-freeze-low-b',
-    'dancer-freeze-middle-a':'art:dancer-freeze-middle-a',
-    'dancer-freeze-middle-b':'art:dancer-freeze-middle-b',
-    'dancer-freeze-high-a':'art:dancer-freeze-high-a',
-    'dancer-freeze-high-b':'art:dancer-freeze-high-b',
-    'dancer-reach-low-a':'art:dancer-reach-low-a',
-    'dancer-reach-low-b':'art:dancer-reach-low-b',
-    'dancer-reach-middle-a':'art:dancer-reach-middle-a',
-    'dancer-reach-middle-b':'art:dancer-reach-middle-b',
-    'dancer-reach-high-a':'art:dancer-reach-high-a',
-    'dancer-reach-high-b':'art:dancer-reach-high-b',
-    'dancer-sway-low-a':'art:dancer-sway-low-a',
-    'dancer-sway-low-b':'art:dancer-sway-low-b',
-    'dancer-sway-middle-a':'art:dancer-sway-middle-a',
-    'dancer-sway-middle-b':'art:dancer-sway-middle-b',
-    'dancer-sway-high-a':'art:dancer-sway-high-a',
-    'dancer-sway-high-b':'art:dancer-sway-high-b',
-    'dancer-roll-low-a':'art:dancer-roll-low-a',
-    'dancer-roll-low-b':'art:dancer-roll-low-b',
-    'dancer-roll-middle-a':'art:dancer-roll-middle-a',
-    'dancer-roll-middle-b':'art:dancer-roll-middle-b',
-    'dancer-roll-high-a':'art:dancer-roll-high-a',
-    'dancer-roll-high-b':'art:dancer-roll-high-b',
-    'dancer-melt-low-a':'art:dancer-melt-low-a',
-    'dancer-melt-low-b':'art:dancer-melt-low-b',
-    'dancer-melt-middle-a':'art:dancer-melt-middle-a',
-    'dancer-melt-middle-b':'art:dancer-melt-middle-b',
-    'dancer-melt-high-a':'art:dancer-melt-high-a',
-    'dancer-melt-high-b':'art:dancer-melt-high-b',
-    'dancer-float-low-strong-a':'art:dancer-float-low-strong-a',
-    'dancer-float-low-strong-b':'art:dancer-float-low-strong-b',
-    'dancer-float-middle-strong-a':'art:dancer-float-middle-strong-a',
-    'dancer-float-middle-strong-b':'art:dancer-float-middle-strong-b',
-    'dancer-float-high-strong-a':'art:dancer-float-high-strong-a',
-    'dancer-float-high-strong-b':'art:dancer-float-high-strong-b',
-    'dancer-shiver-low-strong-a':'art:dancer-shiver-low-strong-a',
-    'dancer-shiver-low-strong-b':'art:dancer-shiver-low-strong-b',
-    'dancer-shiver-middle-strong-a':'art:dancer-shiver-middle-strong-a',
-    'dancer-shiver-middle-strong-b':'art:dancer-shiver-middle-strong-b',
-    'dancer-shiver-high-strong-a':'art:dancer-shiver-high-strong-a',
-    'dancer-shiver-high-strong-b':'art:dancer-shiver-high-strong-b',
-    'dancer-glide-low-strong-a':'art:dancer-glide-low-strong-a',
-    'dancer-glide-low-strong-b':'art:dancer-glide-low-strong-b',
-    'dancer-glide-middle-strong-a':'art:dancer-glide-middle-strong-a',
-    'dancer-glide-middle-strong-b':'art:dancer-glide-middle-strong-b',
-    'dancer-glide-high-strong-a':'art:dancer-glide-high-strong-a',
-    'dancer-glide-high-strong-b':'art:dancer-glide-high-strong-b',
-    'dancer-sink-low-strong-a':'art:dancer-sink-low-strong-a',
-    'dancer-sink-low-strong-b':'art:dancer-sink-low-strong-b',
-    'dancer-sink-middle-strong-a':'art:dancer-sink-middle-strong-a',
-    'dancer-sink-middle-strong-b':'art:dancer-sink-middle-strong-b',
-    'dancer-sink-high-strong-a':'art:dancer-sink-high-strong-a',
-    'dancer-sink-high-strong-b':'art:dancer-sink-high-strong-b',
-    'dancer-rush-low-strong-a':'art:dancer-rush-low-strong-a',
-    'dancer-rush-low-strong-b':'art:dancer-rush-low-strong-b',
-    'dancer-rush-middle-strong-a':'art:dancer-rush-middle-strong-a',
-    'dancer-rush-middle-strong-b':'art:dancer-rush-middle-strong-b',
-    'dancer-rush-high-strong-a':'art:dancer-rush-high-strong-a',
-    'dancer-rush-high-strong-b':'art:dancer-rush-high-strong-b',
-    'dancer-stomp-low-strong-a':'art:dancer-stomp-low-strong-a',
-    'dancer-stomp-low-strong-b':'art:dancer-stomp-low-strong-b',
-    'dancer-stomp-middle-strong-a':'art:dancer-stomp-middle-strong-a',
-    'dancer-stomp-middle-strong-b':'art:dancer-stomp-middle-strong-b',
-    'dancer-stomp-high-strong-a':'art:dancer-stomp-high-strong-a',
-    'dancer-stomp-high-strong-b':'art:dancer-stomp-high-strong-b',
-    'dancer-leap-low-strong-a':'art:dancer-leap-low-strong-a',
-    'dancer-leap-low-strong-b':'art:dancer-leap-low-strong-b',
-    'dancer-leap-middle-strong-a':'art:dancer-leap-middle-strong-a',
-    'dancer-leap-middle-strong-b':'art:dancer-leap-middle-strong-b',
-    'dancer-leap-high-strong-a':'art:dancer-leap-high-strong-a',
-    'dancer-leap-high-strong-b':'art:dancer-leap-high-strong-b',
-    'dancer-scatter-low-strong-a':'art:dancer-scatter-low-strong-a',
-    'dancer-scatter-low-strong-b':'art:dancer-scatter-low-strong-b',
-    'dancer-scatter-middle-strong-a':'art:dancer-scatter-middle-strong-a',
-    'dancer-scatter-middle-strong-b':'art:dancer-scatter-middle-strong-b',
-    'dancer-scatter-high-strong-a':'art:dancer-scatter-high-strong-a',
-    'dancer-scatter-high-strong-b':'art:dancer-scatter-high-strong-b',
-    'dancer-freeze-low-strong-a':'art:dancer-freeze-low-strong-a',
-    'dancer-freeze-low-strong-b':'art:dancer-freeze-low-strong-b',
-    'dancer-freeze-middle-strong-a':'art:dancer-freeze-middle-strong-a',
-    'dancer-freeze-middle-strong-b':'art:dancer-freeze-middle-strong-b',
-    'dancer-freeze-high-strong-a':'art:dancer-freeze-high-strong-a',
-    'dancer-freeze-high-strong-b':'art:dancer-freeze-high-strong-b',
-    'dancer-reach-low-strong-a':'art:dancer-reach-low-strong-a',
-    'dancer-reach-low-strong-b':'art:dancer-reach-low-strong-b',
-    'dancer-reach-middle-strong-a':'art:dancer-reach-middle-strong-a',
-    'dancer-reach-middle-strong-b':'art:dancer-reach-middle-strong-b',
-    'dancer-reach-high-strong-a':'art:dancer-reach-high-strong-a',
-    'dancer-reach-high-strong-b':'art:dancer-reach-high-strong-b',
-    'dancer-sway-low-strong-a':'art:dancer-sway-low-strong-a',
-    'dancer-sway-low-strong-b':'art:dancer-sway-low-strong-b',
-    'dancer-sway-middle-strong-a':'art:dancer-sway-middle-strong-a',
-    'dancer-sway-middle-strong-b':'art:dancer-sway-middle-strong-b',
-    'dancer-sway-high-strong-a':'art:dancer-sway-high-strong-a',
-    'dancer-sway-high-strong-b':'art:dancer-sway-high-strong-b',
-    'dancer-roll-low-strong-a':'art:dancer-roll-low-strong-a',
-    'dancer-roll-low-strong-b':'art:dancer-roll-low-strong-b',
-    'dancer-roll-middle-strong-a':'art:dancer-roll-middle-strong-a',
-    'dancer-roll-middle-strong-b':'art:dancer-roll-middle-strong-b',
-    'dancer-roll-high-strong-a':'art:dancer-roll-high-strong-a',
-    'dancer-roll-high-strong-b':'art:dancer-roll-high-strong-b',
-    'dancer-melt-low-strong-a':'art:dancer-melt-low-strong-a',
-    'dancer-melt-low-strong-b':'art:dancer-melt-low-strong-b',
-    'dancer-melt-middle-strong-a':'art:dancer-melt-middle-strong-a',
-    'dancer-melt-middle-strong-b':'art:dancer-melt-middle-strong-b',
-    'dancer-melt-high-strong-a':'art:dancer-melt-high-strong-a',
-    'dancer-melt-high-strong-b':'art:dancer-melt-high-strong-b',
-  };
+  const PAINTED_POSES = {front:'art:dancer-cast', back:'art:dancer-cast-back'};
   const POSES = {
     float:['reach-up','arms-wide'], shiver:['arms-wide','arms-wide'], glide:['step',Dance.mirror('step')],
     sink:['stand','curl'], rush:['step',Dance.mirror('step')], stomp:['stamp','stand'], leap:['stand','star-jump'],
@@ -611,14 +462,17 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
   };
   const L = {
     welcomeSource:'Pick a poem, a painting or a sound to dance.',
-    highlightHow:'Tap four to six words, spots or moments that make you want to move.',
-    makeHow:'Tap Make moves to turn your highlights into a dance.',
-    welcomeMoves:'Each word is now a move. Tap Play phrase, then change the speed, weight, flow or level.',
-    mapHow:'Show where the dancer travels. Tap a path on a move, or tap Draw path and drag across the floor.',
-    welcomeViewer:'Tap Show the Viewer. The Viewer only sees how you move, not your source.',
+    highlightHow:'Tap four to six words, spots or moments.',
+    makeHow:'Tap Make moves.',
+    welcomeMoves:'Tap Play phrase. Change a quality to give your idea a new meaning.',
+    mapHow:'Tap Draw path.',
+    welcomeViewer:'Tap Show the Viewer.',
     guessRight:'The Viewer read your source. What does this idea remind you of?',
     partnerHow:'Tap Play phrase for your partner. Then ask them to tap the source they think it carries.',
-    drawHow:'Drag one line across the map. Its bends become the traveling moves, in order.',
+    partnerChoose:'Ask your partner to tap one source.',
+    scrollConnection:'Scroll to the sentence below to write your connection. Play stays in view.',
+    skippedHow:'Some moves were skipped. Tap Show the Viewer to play the whole phrase.',
+    drawHow:'Drag one line across the map.',
     tieRevise:'Tap Revise to change the moves that pulled the guess away.',
     poemWind:DATA[0].poem.join('\n').replace(/[\[\]]/g,''),
     poemTrain:DATA[1].poem.join('\n').replace(/[\[\]]/g,'')
@@ -633,7 +487,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
   }
   const state = {step:'source', mode:'source', source:'wind', highlights:[], cards:[], selected:0,
     reached:0, playing:false, count:0, danceAlong:false, draw:false, map:[], result:null, partnerMode:false,
-    partnerGuess:null, sentence:'', flagged:[], pending:false, restartSlot:null, activeSnapshot:null};
+    partnerGuess:null, partnerWatched:false, sentence:'', flagged:[], pending:false, restartSlot:null, activeSnapshot:null};
   let saves = {};
   try { saves = JSON.parse(localStorage.getItem('poem-to-movement') || '{}') || {}; } catch {}
   let clock = null;
@@ -679,8 +533,10 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
     state.highlights = Array.isArray(saved?.highlights) ? [...new Set(saved.highlights)].filter(i => s.items[i]).slice(0,6) : [];
     state.cards = Array.isArray(saved?.cards) ? saved.cards.filter(c => s.items[c.item] && VERBS.includes(c.verb)
       && PATHS.includes(c.path) && Object.entries(QUALITIES).every(([k,v]) => v.includes(c[k]))).slice(0,6) : [];
-    state.map = Array.isArray(saved?.map) ? saved.map.filter(a => Array.isArray(a) && a.length>1).map(a => a.map(p =>
-      ({x:clamp(Number(p.x)||50,8,92),z:clamp(Number(p.z)||30,8,52)}))) : [];
+    // Empty slots belong to in-place cards. Keep their indices so later travel stays on its own card.
+    state.map = Array.isArray(saved?.map) ? saved.map.slice(0,6).map(a =>
+      Array.isArray(a) && a.length>1 ? a.map(p =>
+        ({x:clamp(Number(p.x)||50,8,92),z:clamp(Number(p.z)||30,8,52)})) : null) : [];
     state.sentence = typeof saved?.sentence === 'string' ? saved.sentence.slice(0,500) : '';
     state.reached = state.cards.length >= 4 ? clamp(saved?.reached || 1,1,3) : 0;
     state.selected = 0;
@@ -695,9 +551,10 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
       state.highlights.length ? 'Highlight at least four. Tap underlined words, picture spots or sound moments.' : L.highlightHow;
     if (state.step === 'moves') text = state.playing ? 'Change any quality now. It takes effect on the next count. Tap Stop to finish.' : L.welcomeMoves;
     if (state.step === 'map') text = state.draw ? L.drawHow : L.mapHow;
-    if (state.step === 'viewer') text = state.partnerMode ? L.partnerHow : state.playing ?
+    if (state.step === 'viewer') text = state.partnerMode ? (state.partnerWatched?L.partnerChoose:L.partnerHow) : state.playing ?
       'Watch your phrase. The Viewer will speak after the dance ends.' : state.result ?
-      state.result.right ? 'Write what the idea reminds you of, or tap Moves to try another interpretation.' :
+      state.result.right ? (innerWidth<600 ? L.scrollConnection :
+        'Write what the idea reminds you of, or tap Moves to try another interpretation.') :
         'Tap Revise. The outlined moves show which qualities pulled the guess away.' : L.welcomeViewer;
     $('hint').textContent = text;
   }
@@ -724,6 +581,9 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
     save();
     feedback();
     hint();
+    if (state.highlights.length === 1) V.how('highlightHow',{
+      valid:() => state.step==='source' && state.highlights.length<4
+    });
     if (state.highlights.length >= 4) V.how('makeHow',{needs:'#make',valid:() => state.highlights.length>=4});
   }
   function syncHighlights() {
@@ -865,6 +725,8 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
     $('source-byline').textContent = isSource ? source().author :
       state.partnerMode ? 'Partner session · source hidden' : state.cards.length+' moves · 4 counts each · 96 beats a minute';
     $('stage-kicker').textContent = isSource ? 'Find an idea to move' : 'Your dance, your choices';
+    $('reorder-note').textContent = state.step==='map' ? 'Alt + arrows reorders. Space plays/stops.' :
+      'Drag cards to reorder. Keyboard: Alt + arrows. Space plays or stops.';
     ['source','moves','map','viewer'].forEach((m,i) => {
       $('m-'+m).disabled = i > state.reached;
       $('m-'+m).setAttribute('aria-selected',state.step === m);
@@ -893,7 +755,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
       b.setAttribute('aria-pressed',i === state.selected);
       b.classList.toggle('flagged',state.flagged.includes(i));
       const icon = mk('svg',{'aria-hidden':'true'});
-      Dance.icon(icon,basePose(c,.5),{top:'#ffb3a7',bottom:'#4a3ca8',badge:'circle'});
+      paintedIcon(icon,basePose(c,.5));
       b.append(icon);
       const span = document.createElement('span');
       const verb = document.createElement('strong');
@@ -943,8 +805,10 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
     if (i === j) return;
     const [card] = state.cards.splice(i,1);
     state.cards.splice(j,0,card);
-    const [map] = state.map.splice(i,1);
-    if (map) state.map.splice(j,0,map);
+    if (state.map.length) {
+      const [map] = state.map.splice(i,1);
+      state.map.splice(j,0,map || null);
+    }
     state.selected = j;
     state.restartSlot = state.playing ? j : null;
     state.pending = true;
@@ -990,7 +854,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
     renderEditor();
     const b = $('card-'+state.selected);
     b.querySelector('strong').textContent = c.verb;
-    Dance.icon(b.querySelector('svg'),basePose(c,.5),{top:'#ffb3a7',bottom:'#4a3ca8',badge:'circle'});
+    paintedIcon(b.querySelector('svg'),basePose(c,.5));
     b.setAttribute('aria-label',cardLabel(c,state.selected));
     drawMap();
     if (!state.playing) idlePose();
@@ -1034,7 +898,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
   }
   function renderViewer() {
     const r = state.result;
-    $('show').textContent = state.partnerMode ? 'Show both guesses' : 'Show the Viewer';
+    $('show').textContent = state.partnerMode ? (state.partnerWatched?'Show both guesses':'Play for partner') : 'Show the Viewer';
     $('bubble').textContent = state.partnerMode ? 'Your partner sees the dance, without the source or my guess.' :
       r ? resultText(r) : 'I will watch only your movement qualities.';
     $('meters').hidden = !r || state.partnerMode;
@@ -1056,8 +920,10 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
       b.id = 'guess-'+s.id;
       b.textContent = s.name;
       if (state.partnerMode) {
+        b.disabled = !state.partnerWatched || state.playing;
         b.setAttribute('aria-pressed',state.partnerGuess===s.id);
         b.onclick = () => {
+          if (!state.partnerWatched || state.playing || state.partnerGuess) return;
           state.partnerGuess = s.id;
           b.setAttribute('aria-pressed','true');
           b.classList.add('guessed');
@@ -1095,12 +961,15 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
   }
   function pathSymbol(path) { return {'Straight':'→','Curved':'⌒','Zigzag':'↯','In place':'○'}[path]; }
   function resultText(r) {
-    const qualities = [r.avg[0]>=.5?'quick':'slow',r.avg[1]>=.5?'strong':'light',r.avg[2]>=.5?'sharp':'smooth'];
+    const qualities = [['slow','quick'],['light','strong'],['smooth','sharp']].map((pair,i) =>
+      r.avg[i]===.5 ? 'equal '+pair.join(' and ') : 'mostly '+pair[+(r.avg[i]>.5)]);
     const names = r.ids.map(id => DATA.find(s => s.id===id).name.toLowerCase());
     const guess = names.length>1 ? 'It could be the '+names.join(' or the ')+'.' : 'I think it is the '+names[0]+'.';
     const travel={'In place':'in place',Straight:'on a straight path',Curved:'on a curve',Zigzag:'on a zigzag'}[r.path];
+    const summary = r.avg.slice(0,3).some(v=>v===.5) ? 'I saw '+qualities.join(', ') :
+      'Mostly '+qualities.map(word=>word.replace('mostly ','')).join(', ');
     return (state.cards.length===1?'One move is hard to read. Add more. ':'')+
-      'Mostly '+qualities.join(', ')+', '+travel+'. '+guess+' '+
+      summary+', '+travel+'. '+guess+' '+
       (r.right?'The Viewer read your source.':'Try revising your movement choices.');
   }
   function finishViewer() {
@@ -1113,14 +982,18 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
     renderViewer();
     hint();
     const r = state.result;
+    $('live-caption').classList.add('result');
+    $('move-name').textContent = r.ids.length===1 ? 'Read as '+DATA.find(s=>s.id===r.ids[0]).name : 'More than one reading';
+    $('quality-words').textContent = r.ids.length>1 ? 'Several sources fit.' :
+      r.right ? "The Viewer's reading." : 'Tap Revise to try again.';
     if (r.right) {
-      Curio.yes();
       V.say(r.ids.length>1?['tie-'+r.ids.join('-'),'guessRight']:'guessRight',{valid:() => !state.playing && state.result === r});
     } else if (r.ids.length>1) {
       V.say(['tie-'+r.ids.join('-'),'tieRevise'],{valid:() => !state.playing && state.result===r});
     } else V.say('wrong-'+r.ids[0],{valid:() => !state.playing && state.result===r});
   }
   function revealPartner() {
+    if (!state.partnerWatched || !state.partnerGuess) return;
     const moveFocus=!!document.activeElement?.closest('#viewer-cards');
     state.partnerMode=false;
     state.partnerRevealPending=false;
@@ -1130,11 +1003,92 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
     $('source-byline').textContent=state.cards.length+' moves · both guesses shown';
     if (moveFocus) $('show').focus({preventScroll:true});
   }
-  // Actor adapter: replace only this factory for painted poses. Engine timing and floor coordinates stay shared.
-  // All 156 verb/level/weight/keyframe assets are in prompts.json for the next painter. No generated people in this build.
+  // Painted paper dancers follow the shared engine's exact joints, timing and depth order.
+  // Swap this factory and the two atlas assets to change the art without changing the lesson.
   function createActor(floor) {
-    return Dance.dancer(floor.layers.actors,{floor,top:'#ffb3a7',bottom:'#4a3ca8',skin:'#bf8b73',
-      hair:'#332637',shoe:'#f8e9d5',badge:'circle',scale:1});
+    const actor = Dance.dancer(floor.layers.actors,{floor,scale:1});
+    return paintActor(actor,floor,floor.layers.actors);
+  }
+  function paintedIcon(svg,pose) {
+    const actor = Dance.icon(svg,pose,{facing:0});
+    return paintActor(actor,actor.floor,svg);
+  }
+  function paintActor(actor,floor,parent) {
+    actor.g.style.visibility = 'hidden';
+    const painted = mk('g',{'aria-hidden':'true',class:'painted-dancer'},parent);
+    const cast = Number.isInteger(saves._cast) ? saves._cast : Math.floor(Math.random()*3);
+    saves._cast = clamp(cast,0,2);
+    const center = [344,1026,1708][saves._cast];
+    const pieces = [];
+    // Source coordinates are in a 2048 by 683 reference frame, independent of WebP size.
+    const imageBox = {x:20.75,y:11.31,width:1998.05,height:656.29};
+    function piece(name,box,a,b,jointA,jointB) {
+      const group = mk('g',{'data-part':name},painted);
+      const window = mk('svg',{x:box[0],y:box[1],width:box[2]-box[0],height:box[3]-box[1],
+        viewBox:`${box[0]} ${box[1]} ${box[2]-box[0]} ${box[3]-box[1]}`,
+        overflow:'hidden'},group);
+      const image = mk('image',{...imageBox,href:PAINTED_POSES.front,preserveAspectRatio:'none'},window);
+      pieces.push({name,group,image,a,b,jointA,jointB});
+    }
+    for (const [side,sign] of [['r',-1],['l',1]]) {
+      const x = n => center+sign*n;
+      const bounds = (a,b,y0,y1) => [Math.min(x(a),x(b)),y0,Math.max(x(a),x(b)),y1];
+      piece(side+'Th',bounds(5,96,308,488),[x(44),330],[x(52),474],side+'Hi',side+'Kn');
+      piece(side+'Sn',bounds(5,108,457,629),[x(52),474],[x(64),614],side+'Kn',side+'An');
+      piece(side+'Ft',bounds(15,128,600,674),[x(64),614],[x(83),648],side+'An',side+'To');
+      piece(side+'Ua',bounds(64,178,148,213),[x(76),179],[x(158),184],side+'Sh',side+'El');
+      piece(side+'Fa',bounds(147,323,159,213),[x(158),184],[x(291),190],side+'El',side+'Ha');
+    }
+    piece('torso',[center-88,145,center+88,340],[center,179],[center,330],'chest','pelvis');
+    piece('head',[center-80,6,center+80,162],[center,86],[center,160],'head','neck');
+    const nativeRender = actor.render.bind(actor);
+    actor.render = () => {
+      nativeRender();
+      const S = actor.sj;
+      if (!S) return;
+      const k = floor.scale(actor.z)*actor.height;
+      const turn = (actor.facing+(actor.pose.yaw||0)+(actor.pose.twist||0)) * Math.PI/180;
+      const back = Math.cos(turn)<0;
+      for (const part of pieces) {
+        const {a,b,group,name,image} = part;
+        const A = S[part.jointA], B = S[part.jointB];
+        const dx=b[0]-a[0], dy=b[1]-a[1], length=Math.hypot(dx,dy);
+        const ux=dx/length, uy=dy/length;
+        const ex=(B[0]-A[0])/length, ey=(B[1]-A[1])/length;
+        const scale=k/650;
+        const n=Math.hypot(ex,ey)||1;
+        let px=-ey/n*scale, py=ex/n*scale;
+        // The torso turns with its shoulder line; limbs retain their painted breadth.
+        if (name==='torso') {
+          px=-(S.lSh[0]-S.rSh[0])/140;
+          py=-(S.lSh[1]-S.rSh[1])/140;
+        }
+        let m0=ex*ux-px*uy, m1=ey*ux-py*uy;
+        let m2=ex*uy+px*ux, m3=ey*uy+py*ux;
+        if (name==='head') {
+          // A head keeps its proportions when a bent neck foreshortens on screen.
+          const angle=Math.atan2(B[1]-A[1],B[0]-A[0])-Math.PI/2;
+          const width=scale*(.28+.72*Math.abs(Math.cos(turn)));
+          m0=Math.cos(angle)*width;
+          m1=Math.sin(angle)*width;
+          m2=-Math.sin(angle)*scale;
+          m3=Math.cos(angle)*scale;
+        }
+        const tx=A[0]-m0*a[0]-m2*a[1], ty=A[1]-m1*a[0]-m3*a[1];
+        group.setAttribute('transform',`matrix(${m0} ${m1} ${m2} ${m3} ${tx} ${ty})`);
+        image.setAttribute('href',back?PAINTED_POSES.back:PAINTED_POSES.front);
+        image.setAttribute('transform',back?`translate(${center*2} 0) scale(-1 1)`:'');
+        part.depth=(A[2]+B[2])/2+(name==='head'?-.002:0);
+      }
+      pieces.sort((a,b)=>b.depth-a.depth);
+      for (const part of pieces) painted.append(part.group);
+    };
+    const nativeRemove = actor.remove.bind(actor);
+    actor.remove = () => { painted.remove(); nativeRemove(); };
+    actor.castIndex = saves._cast;
+    actor.painted = painted;
+    actor.render();
+    return actor;
   }
   function poseArt(c,q) {
     const direct=['float','sway','melt'].includes(c.verb) || (c.speed==='Slow' && ['sink','reach'].includes(c.verb));
@@ -1190,6 +1144,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
       const quarter=q*4;
       q=(Math.floor(quarter)+Dance.dyn.sharp.ease(quarter%1))/4;
     }
+    if (c.verb==='freeze' && previous) return Dance.pose(previous);
     const pair = POSES[c.verb] || POSES.float;
     let A;
     let B;
@@ -1238,6 +1193,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
   }
   function caption(c) {
     if (!c) return;
+    $('live-caption').classList.remove('result');
     $('move-name').textContent = c.verb;
     $('quality-words').textContent = [c.speed,c.weight,c.flow,c.level].join(' · ');
   }
@@ -1319,13 +1275,16 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
   function play(danceAlong=false,viewer=false,solo=null) {
     if (!state.cards.length) return;
     stop();
-    V.hush();
+    // Let the current, still-relevant mode instruction finish over the count-in.
+    const guides=[L.welcomeMoves,L.mapHow,L.welcomeViewer,L.partnerHow];
+    if (!guides.includes(V.playing)) V.hush();
     const token = runToken;
     state.playing=true;
     state.danceAlong=danceAlong;
     state.activeSnapshot=clone(state.cards);
     state.pending=false;
     state.result=null;
+    if (state.partnerMode) state.partnerWatched=false;
     soloIndex=solo;
     $('theatre').classList.toggle('dance-along',danceAlong);
     if (state.step==='viewer') renderViewer();
@@ -1364,6 +1323,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
         state.pending=false;
       }
       if (n>currentPhrase.total) { end(); return; }
+      if (n>0) performed.add(n);
       const i=soloIndex==null?Math.max(0,Math.floor((n-1)/4)):soloIndex;
       state.liveIndex=i;
       state.count=n;
@@ -1404,6 +1364,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
       const mark=$('map-dancer');
       if (mark) { mark.setAttribute('cx',mapX(dancer.x)); mark.setAttribute('cy',mapY(dancer.z)); }
     });
+    const performed = new Set();
     function end() {
       if (token!==runToken) return;
       clock?.stop();
@@ -1414,8 +1375,20 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
       $('count-label').textContent='Finished';
       syncCards();
       hint();
+      if (state.partnerMode && soloIndex==null && performed.size===currentPhrase.total) {
+        state.partnerWatched=true;
+        renderViewer();
+        hint();
+        V.how('partnerChoose',{valid:()=>state.partnerMode && state.partnerWatched,needs:'#guess-wind'});
+      }
       if (state.partnerRevealPending) revealPartner();
-      else if (viewer && !state.partnerMode) finishViewer();
+      else if (viewer && !state.partnerMode) {
+        if (performed.size===currentPhrase.total && soloIndex==null) finishViewer();
+        else {
+          $('hint').textContent=L.skippedHow;
+          V.how('skippedHow',{valid:()=>state.step==='viewer' && !state.playing && !state.result});
+        }
+      }
     }
     clock.start();
     feedback();
@@ -1501,6 +1474,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
       c.path=p.kind[0].toUpperCase()+p.kind.slice(1);
       return clone(p.geo);
     });
+    state.result=null;
     state.pending=true;
     state.mapTouched=true;
     state.draw=false;
@@ -1639,6 +1613,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
     stop();
     V.hush();
     state.partnerMode=true;
+    state.partnerWatched=false;
     state.partnerGuess=null;
     state.result=null;
     renderViewer();
@@ -1659,6 +1634,7 @@ body:is([data-step=moves],[data-step=viewer]) #beat-strip {top:auto; bottom:4px;
   };
   $('clear-map').onclick=()=>{
     state.map=[];
+    state.result=null;
     state.cards.forEach(c=>{c.path=source().items[c.item].path;});
     state.pending=true;
     state.draw=false;

@@ -8,7 +8,7 @@
 <meta name="description" content="Devise, tighten and perform a six-beat scene from three viewpoints. Grades 6-8 theater. Works offline.">
 <!--
 Curio Class. NCAS TH:Cr2, TH:Pr4, TH:Pr6, TH:Cn10. Original fictional characters and dialogue.
-Scene checks are this exercise's rules of thumb. Speech estimates: NCVS, 150 words per minute, plus 0.4 s per line.
+Scene checks are this exercise's rules of thumb. Timing assumption: 2.5 words per second, plus 0.4 s per line.
 Devising: Viola Spolin, Improvisation for the Theater; Keith Johnstone, Impro.
 Illustrations generated with OpenAI gpt-image, edited for Curio Class.
 Content CC BY 4.0, code MIT. No network requests. Saves only on this device.
@@ -143,6 +143,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
 .cue blockquote { font:500 clamp(28px,2.4vw,40px)/1.25 Georgia,serif; margin:0; }
 .cue.other blockquote { font-size:23px; }
 .cue-bottom { font-size:12px; margin:13px 0 0; }
+.cue-detail { font:14px/1.4 Georgia,serif; margin:10px 0 0; max-width:75ch; }
 .modal { width:min(1000px,calc(100vw - 28px)); max-height:calc(100dvh - 28px); padding:20px; background:#f4f2ee;
   color:var(--ink); border:1px solid #9aab9d; border-radius:10px; box-shadow:0 20px 90px #0008; }
 .modal::backdrop { background:#101e1bbb; }
@@ -218,7 +219,10 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
   .curve-wrap { flex-basis:75px; padding:5px 8px; }
   .curve-top { font-size:10px; }
   #total { font-size:13px; }
-  .panel { padding:9px; gap:7px; }
+  .panel { padding:9px; gap:5px; }
+  .selection { padding:6px; display:flex; flex-direction:column; gap:6px; }
+  .selection .row { order:-1; }
+  .selection p { margin:0; }
   .hint { min-height:62px; font-size:12px; }
   .play { min-height:44px; font-size:15px; }
   .panel .eyebrow { font-size:10px; }
@@ -249,7 +253,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
 }
 @media (max-width:899px) and (max-height:650px) and (min-width:561px) {
   .room { flex-basis:54px; }
-  .curve-wrap { flex-basis:65px; }
+  .curve-wrap { flex-basis:89px; }
   .beat { padding:4px; gap:2px; }
   .beathead { padding-bottom:2px; }
   .beathead b { font-size:14px; }
@@ -258,18 +262,18 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
   .room-label { max-width:95px; font-size:10px; letter-spacing:0; }
   .board { grid-auto-rows:minmax(0,1fr); }
   .beat { min-height:0; display:grid; grid-template-columns:minmax(0,1fr) 44px;
-    grid-template-rows:44px minmax(0,1fr) 12px; }
+    grid-template-rows:44px minmax(0,1fr); }
   .beathead { grid-column:1; grid-row:1; align-items:center; border:0; }
   .add { grid-column:2; grid-row:1; height:44px; margin:0; font-size:0; }
   .add::after { content:'+'; font-size:20px; }
   .cards { grid-column:1 / -1; grid-row:2; min-height:0; overflow:auto; padding:1px; }
   .card { flex-shrink:0; }
-  .beat-time { grid-column:1 / -1; grid-row:3; }
+  .beat-time { display:none; }
   .room-label { display:none; }
 }
 @media (max-width:899px) and (max-height:450px) and (min-width:561px) {
   .room { flex-basis:34px; }
-  .curve-wrap { flex-basis:55px; }
+  .curve-wrap { flex-basis:79px; }
   .prop { display:flex; flex-direction:row; justify-content:center; gap:3px; }
   .prop img { height:90%; width:40%; }
   .tape { padding:3px 5px; }
@@ -325,7 +329,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
   body[data-mode="tighten"] .room { flex-basis:100px; }
   body[data-mode="perform"] .room { flex-basis:135px; }
   body[data-mode="perform"] .board-wrap { display:none; }
-  body[data-mode="perform"] .cue { flex:auto; min-height:205px; padding:20px; }
+  body[data-mode="perform"] .cue { order:-2; flex:auto; min-height:205px; padding:20px; }
   .cue blockquote { font-size:28px; }
   .picker-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
   .picker-role { gap:6px; }
@@ -345,6 +349,9 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
 }
 @media (max-height:650px) and (min-width:561px) {
   .play { top:62px; }
+  .modal-top { margin-bottom:8px; }
+  .modal-note { margin-top:6px; }
+  .picker-role { gap:6px; }
 }
 </style>
 </head>
@@ -384,8 +391,8 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     </div>
     <div id="selection" class="selection" hidden>
       <p id="selected-text"></p>
-      <div class="row"><button class="button" id="up">Move up</button><button class="button" id="down">Move down</button>
-        <button class="button" id="remove">Remove</button><button class="button" id="hear">Hear it</button></div>
+      <div class="row"><button class="button" id="remove">Remove</button><button class="button" id="hear">Hear it</button>
+        <button class="button" id="up">Move up</button><button class="button" id="down">Move down</button></div>
     </div>
     <div id="offer" hidden><div class="eyebrow">Jules has an offer</div><p id="offer-text"></p>
       <div class="row"><button class="button primary" id="yes-and">Yes, and</button>
@@ -407,7 +414,8 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
       <div class="prop" data-prop="Dale"><img src="art:prop-dale" alt="Clipboard and lanyard on a chair"><span class="tape">Ms. Dale</span></div>
     </div>
     <div class="cue" id="cue" hidden aria-live="polite"><div class="cue-kicker" id="cue-name">Your rehearsal</div>
-      <blockquote id="cue-text">Three people. One late bus.</blockquote><p class="cue-bottom" id="cue-bottom"></p></div>
+      <blockquote id="cue-text">Three people. One late bus.</blockquote><p class="cue-bottom" id="cue-bottom"></p>
+      <p class="cue-detail" id="cue-detail" hidden></p></div>
     <div class="board-wrap"><div class="section-title"><h2>Six beats. Your scene.</h2><span id="line-count"></span></div>
       <div class="board" id="board" aria-label="Six beat board"></div></div>
     <div class="curve-wrap" id="curve-wrap">
@@ -453,14 +461,21 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     welcomeTighten:'Now make it land. Watch the curve, and fix the amber lights.',
     allGreen:'That turn lands. Try it out loud in Perform.',
     welcomePerform:'Pick your role and press Start. Say your lines out loud, then tap Done.',
-    yourLine:'Your line. Say it, then tap Done.', runDone:"That's the scene. Check your time against the plan."
+    pickerHow:'Tap a line to place it.',
+    editHow:'Tap Hear it to try this line.',
+    offersHow:'Tap Reopen to try an offer, or Back to board.',
+    offersEmpty:'Keep adding lines to meet Jules. Tap Back to board.',
+    resetHow:'Tap Keep my scene, or Clear scene.',
+    yourLine:'Your line. Say it, then tap Done.', runDone:"That's the scene. Check your time against the plan.",
+    runPartial:'That was part of the scene. Start again for a full run.'
   };
   DATA.filter(l => !l.silent).forEach(l => { L[l.id] = l.text; });
-  const EVENT_IDS = new Set(['offer1','offer2','offer3','offer4','offerPassed','offerTaken','allGreen','runDone',
+  const EVENT_IDS = new Set(['offer1','offer2','offer3','offer4','offerPassed','offerTaken','allGreen','runDone','runPartial',
     ...DATA.filter(line => !line.silent).map(line => line.id)]);
   const fresh = () => ({mode:'devise',board:Array.from({length:6},() => []),pauses:Array(6).fill(.5),
     offers:Array(4).fill('locked'),placements:0,role:'Maya',selected:null,pauseBeat:4,pickerBeat:null,offerNow:null,
-    playing:false,performing:false,waiting:false,cursor:-1,activeRole:null,result:null,revision:0});
+    playing:false,performing:false,waiting:false,silenceReady:true,cursor:-1,activeRole:null,result:null,revision:0,
+    covered:[],runJumped:false});
   const state = fresh();
   $('hint').style.setProperty('scroll-margin-top','12px');
   const STORAGE = 'curio-three-viewpoints-scene-v1';
@@ -498,7 +513,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
   restore();
   const welcomeKey = () => 'welcome'+state.mode[0].toUpperCase()+state.mode.slice(1);
   const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
-    welcome:() => !state.playing && state.pickerBeat===null &&
+    welcome:() => !state.playing && state.pickerBeat===null && !document.querySelector('dialog[open]') &&
       !(state.mode==='perform' && state.board.some(b => !b.length)) ? [welcomeKey(),{valid:() => !state.playing}] : null,
     speaks:'.add,.card,.option,#play,#yes-and,#pass-offer',
     est:text => (DATA.find(l => l.text===text)?.seconds*1000) || 600+62*text.length});
@@ -543,7 +558,9 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     else if (tensions[5]>1) turnWhy = 'Let beat 6 settle at tension 1 or less.';
     else if (state.pauses[4]<1 || state.pauses[4]>2) turnWhy = 'Give the turn a breath: set Pause before beat 5 to 1 or 2 seconds.';
     const long = seconds.findIndex(s => s>15.00001);
-    let paceWhy = long>=0 ? `Beat ${long+1} runs ${seconds[long].toFixed(1)} s. Cut it below 15 s.` : '';
+    const empty = beats.map((b,i) => b.length?null:i+1).filter(Boolean);
+    let paceWhy = empty.length ? `Beat ${empty[0]} is empty. Add a line in Devise.` :
+      long>=0 ? `Beat ${long+1} runs ${seconds[long].toFixed(1)} s. Cut it to 15 s or less.` : '';
     if (!paceWhy && total<30-1e-8) paceWhy = 'Build at least 30 seconds of scene.';
     if (!paceWhy && total>75+1e-8) paceWhy = 'Cut the scene to 75 seconds or less.';
     const checks = [
@@ -552,7 +569,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
       {name:'The turn',pass:!turnWhy,why:turnWhy || 'A breath, a change, an after.'},
       {name:'Pacing',pass:!paceWhy,why:paceWhy || 'Each beat fits. The scene has room.'}
     ];
-    return {beats,tensions,seconds,total,checks,empty:beats.map((b,i) => b.length?null:i+1).filter(Boolean),allGreen:checks.every(c => c.pass)};
+    return {beats,tensions,seconds,total,checks,empty,allGreen:checks.every(c => c.pass)};
   }
   const esc = text => text.replace(/[&<>"']/g,ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const sequence = () => state.board.flatMap(ids => ids.map(id => byId[id]));
@@ -586,6 +603,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
   }
   function renderCurve() {
     const a = analyse();
+    const rulerLabels = state.mode==='tighten' || (innerWidth>560 && innerWidth<900 && innerHeight<=650);
     $('total').textContent = `${a.total.toFixed(1)} s`;
     a.seconds.forEach((s,i) => { $(`time-${i}`).textContent = `${s.toFixed(1)} s${state.board[i].length?'':' · empty'}`; });
     const w = Math.max(100,$('curve').clientWidth);
@@ -605,9 +623,9 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
       `<path d="${path}" fill="none" stroke="#11756f" stroke-width="3"/>`+
       pts.map(([x,y],i) => `<circle cx="${x}" cy="${y}" r="${h<65?3:5}" fill="${state.board[i].length?'#11756f':'#faf9f4'}" `+
         `stroke="${state.board[i].length?'#11756f':'#a8600a'}" stroke-width="2"/>`+
-        `<text x="${x}" y="${h-2}" text-anchor="${state.mode==='tighten'?(i===0?'start':i===5?'end':'middle'):'middle'}" `+
+        `<text x="${x}" y="${h-2}" text-anchor="${rulerLabels?(i===0?'start':i===5?'end':'middle'):'middle'}" `+
         `font-size="11" fill="#59615f">`+
-        `${state.mode==='tighten'?`${i+1} · ${a.seconds[i].toFixed(1)} s`:i+1}</text>`).join('');
+        `${rulerLabels?`${i+1} · ${a.seconds[i].toFixed(1)} s`:i+1}</text>`).join('');
     $('curve').setAttribute('aria-label',`Tension by beat: ${a.tensions.join(', ')}. Empty beats: ${a.empty.join(', ') || 'none'}.`);
     $('checks').innerHTML = a.checks.map(c => `<div class="check ${c.pass?'pass':''}" title="${esc(c.why)}">`+
       `<b>${c.pass?'✓':'!'} ${c.name}</b><span>${esc(c.why)}</span></div>`).join('');
@@ -618,7 +636,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     $('tighten-controls').hidden = state.mode!=='tighten';
     $('play').textContent = state.playing ? '■ Stop' : state.mode==='perform' ? '▶ Start' : '▶ Play scene';
     $('play').disabled = !state.playing && (state.mode==='perform'?state.board.some(b => !b.length):!state.board.flat().length);
-    $('done').disabled = !state.waiting;
+    $('done').disabled = !state.waiting || !state.silenceReady;
     $('back').disabled = !state.playing || state.cursor<1;
     $('pause-value').textContent = `${state.pauses[state.pauseBeat].toFixed(1)} s`;
     $('pause-less').disabled = state.pauses[state.pauseBeat]===0;
@@ -672,6 +690,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     setSpot(null);
     renderAll();
     defaultHint();
+    if (state.mode==='perform' && state.cursor>=0) updateCue(sequence()[state.cursor],'Stopped');
     if (offers) showOffer();
   }
   function editFirst() {
@@ -698,8 +717,10 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     }).join('');
     hint(`Pick a line for ${BEATS[beat]}. Each character sees the same issue differently.`);
     $('picker').showModal();
+    sayLine('pickerHow',{valid:() => state.pickerBeat===beat && $('picker').open,needs:'.option:not(:disabled)'});
   }
   function closePicker() {
+    V.hush();
     const b = state.pickerBeat;
     state.pickerBeat = null;
     $('picker').close();
@@ -736,13 +757,21 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
       jumpTo(sequence().findIndex(l => l.id===id));
       return;
     }
+    if (state.mode==='perform') {
+      defaultHint();
+      V.welcome();
+      Curio.tone(500,.1,.025);
+      return;
+    }
     V.hush();
     speechRole = null;
     hearToken++;
     state.selected = id;
     state.pauseBeat = byId[id].beat;
     renderAll();
-    hint(`Line selected. Use ${state.mode==='tighten'?'Cut':'Remove'}, Move up, Move down, or Hear it.`);
+    const moves = [!$('up').disabled?'Move up':null,!$('down').disabled?'Move down':null].filter(Boolean);
+    hint(`Line selected. Use Hear it, ${state.mode==='tighten'?'Cut':'Remove'}${moves.length?', or '+moves.join(' or '):''}.`);
+    sayLine('editHow',{valid:() => state.selected===id && !state.playing && state.mode!=='perform',needs:'#hear'});
     setSpot(byId[id].role);
     Curio.tone(280,.1,.025);
   }
@@ -754,8 +783,11 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     state.selected = null;
     changed();
     Curio.tone(210,.15,.025);
-    hint(`Line cut from beat ${l.beat+1}. Tap + there to try a different choice.`);
-    $(`add-${l.beat}`)?.focus({preventScroll:true});
+    hint(state.mode==='tighten' && innerWidth<900 ?
+      `Line cut from beat ${l.beat+1}. Tap Devise, then + in that beat to try a different choice.` :
+      `Line cut from beat ${l.beat+1}. Tap + there to try a different choice.`);
+    const next = state.mode==='tighten' && innerWidth<900 ? $('m-devise') : $(`add-${l.beat}`);
+    next?.focus({preventScroll:true});
     showOffer();
   }
   function move(delta) {
@@ -781,7 +813,8 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     $('offer').hidden = state.offerNow===null;
     if (state.offerNow===null) return;
     $('offer-text').textContent = L[`offer${index+1}`];
-    sayLine(`offer${index+1}`,{valid:() => state.offerNow===index && !state.playing && !$('picker').open});
+    sayLine(`offer${index+1}`,{valid:() => state.offerNow===index && !state.playing &&
+      !$('picker').open && !$('offer-dialog').open});
   }
   function answerOffer(yes) {
     const i = state.offerNow;
@@ -796,7 +829,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     hint(yes ? (placed ? 'Offer added. Try Play scene to hear what it changes.' :
       'Offer unlocked. That beat is full. Cut a line, then add the offer from its picker.') : 'Offer set aside. Tap Offers to reopen it, or keep adding lines.');
     sayLine(yes?'offerTaken':'offerPassed',{valid:() => !state.playing});
-    $('offers').focus({preventScroll:true});
+    $('play').focus({preventScroll:true});
     setTimeout(() => { if (!state.playing) showOffer(); },1800);
   }
   function openOffers() {
@@ -809,7 +842,9 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
         (s==='due' || s==='passed' ? `<button class="button" data-reopen="${i}">Reopen offer ${i+1}</button>`:'')+'</div>';
     }).join('');
     $('offer-dialog').showModal();
-    hint('Reopen a waiting or set-aside offer, or tap Back to board.');
+    const key = state.offers.some(o => o==='due' || o==='passed') ? 'offersHow' : 'offersEmpty';
+    hint(L[key]);
+    sayLine(key,{valid:() => $('offer-dialog').open,needs:'#close-offers'});
   }
   function changePause(delta) {
     const b = state.pauseBeat;
@@ -824,6 +859,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     $('cue').classList.toggle('live',!!l && state.waiting);
     $('cue').classList.toggle('other',!!l && !state.waiting);
     if (!l) {
+      $('cue-detail').hidden = true;
       $('cue-name').textContent = 'Your rehearsal';
       $('cue-text').textContent = 'Three people. One late bus.';
       $('cue-bottom').textContent = state.board.some(b => !b.length) ?
@@ -833,8 +869,12 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     }
     $('cue-name').textContent = `${NAMES[l.role]} / ${state.waiting?'Your line':phase || 'Listen'} / beat ${l.beat+1}`;
     $('cue-text').textContent = l.silent ? '[Silence]' : l.text;
-    $('cue-bottom').textContent = state.waiting ? 'Say it aloud. Then tap Done or press Space.' :
-      l.silent ? 'A silent two-second beat.' : 'Your scene partner is speaking.';
+    $('cue-detail').hidden = true;
+    $('cue-bottom').textContent = phase==='Stopped' ? 'Stopped. Tap Start for a new run, or choose another role.' :
+      state.waiting ? (l.silent ? (state.silenceReady ? 'Silence held. Tap Done or press Space.' : 'Hold two seconds of silence.') :
+        'Say it aloud. Then tap Done or press Space.') :
+      l.silent ? 'A silent two-second beat.' : phase==='Pause before' ? 'Take the pause before this beat.' :
+      'Your scene partner is speaking.';
   }
   function setMode(mode) {
     if (mode===state.mode) {
@@ -902,16 +942,26 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
       if (token!==runToken) return;
       if (state.performing && (state.role==='all' || state.role===l.role)) {
         state.waiting = true;
+        state.silenceReady = !l.silent;
         updateCue(l);
         renderControls();
-        hint(`${NAMES[l.role]}: your line. Say it aloud, then tap Done or press Space.`);
+        hint(l.silent ? `${NAMES[l.role]}: hold two seconds of silence.` :
+          `${NAMES[l.role]}: your line. Say it aloud, then tap Done or press Space.`);
         Curio.tone(650,.12,.025,'triangle');
+        if (l.silent) {
+          if (!await delay(2000,token)) return;
+          state.silenceReady = true;
+          updateCue(l);
+          hint(`${NAMES[l.role]}: silence held. Tap Done or press Space.`);
+          renderControls();
+        }
         while (state.waiting) if (!await delay(50,token)) return;
       } else {
         if (state.performing) updateCue(l);
         hint(`${NAMES[l.role]} is speaking. Tap a card to jump, or Stop to end.`);
         if (!await speakCharacter(l,token)) return;
       }
+      if (!state.covered.includes(l.id)) state.covered.push(l.id);
     }
     if (token===runToken && state.playing) {
       const lastBeat = lines.at(-1).beat;
@@ -928,6 +978,9 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     state.performing = state.mode==='perform';
     state.waiting = false;
     state.cursor = 0;
+    state.covered = [];
+    state.runJumped = false;
+    state.silenceReady = true;
     state.result = null;
     $('offer').hidden = true;
     state.offerNow = null;
@@ -939,6 +992,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
   }
   function jumpTo(index) {
     if (!state.playing || index<0) return;
+    state.runJumped = true;
     V.hush();
     speechRole = null;
     state.waiting = false;
@@ -946,7 +1000,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     if (document.activeElement?.disabled) $('play').focus({preventScroll:true});
   }
   function done() {
-    if (!state.waiting) return;
+    if (!state.waiting || !state.silenceReady) return;
     state.waiting = false;
     $('play').focus({preventScroll:true});
     renderControls();
@@ -958,13 +1012,24 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     stop(false);
     if (performing) {
       const difference = Math.round(elapsed-plannedAtStart);
-      state.result = {elapsed,planned:plannedAtStart,difference};
-      $('cue-name').textContent = 'Your scene / rehearsal complete';
-      $('cue-text').textContent = `${elapsed.toFixed(1)} s live. ${plannedAtStart.toFixed(1)} s planned.`;
-      $('cue-bottom').textContent = difference>0 ? `You took ${difference} s longer than planned. Pauses or slower lines?` :
-        difference<0 ? `You took ${Math.abs(difference)} s less than planned. Did the turn have room?` : 'Right on your plan. Did the turn have room?';
-      hint('Rehearsal complete. Try another role, or return to Tighten and revise the timing.');
-      sayLine('runDone',{valid:() => !!state.result && !state.playing});
+      const lines = sequence();
+      const complete = state.covered.length===lines.length && !state.runJumped;
+      state.result = {elapsed,planned:plannedAtStart,difference,complete,covered:state.covered.length};
+      $('cue').classList.remove('other','live');
+      $('cue-name').textContent = complete ? 'Your scene / full cue run' : 'Your scene / partial or replayed cue run';
+      $('cue-text').textContent = `${elapsed.toFixed(1)} s live. ${plannedAtStart.toFixed(1)} s planned at Start.`;
+      const comparison = difference>0 ? `${difference} s longer than planned.` :
+        difference<0 ? `${Math.abs(difference)} s less than planned.` : 'Right on your plan.';
+      $('cue-bottom').textContent = complete ? `${comparison} Timing only; spoken delivery is not checked.` :
+        `${state.covered.length} of ${lines.length} cues covered, with jumps. Start again to compare a full run.`;
+      const counts = Object.keys(NAMES).map(role => `${NAMES[role]} ${lines.filter(l => l.role===role).length}`).join(' / ');
+      const turn = state.board[4].map(id => byId[id]).find(l => l.turn);
+      $('cue-detail').textContent = `${counts}. `+(turn ? `Your turn: ${NAMES[turn.role]} says, "${turn.text}"` :
+        'Your beat 5 has no change of situation yet. Return to Tighten to revise it.');
+      $('cue-detail').hidden = false;
+      hint(complete ? 'Cue run complete. Try another role, or return to Tighten and revise the timing.' :
+        'Some cues were skipped or replayed. Tap Start for a full run, or Tighten to revise.');
+      sayLine(complete?'runDone':'runPartial',{valid:() => !!state.result && !state.playing});
     } else {
       hint('Scene complete. Tap a card to revise it, or switch to Tighten to shape the turn.');
       showOffer();
@@ -979,7 +1044,7 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     V.hush();
     speechRole = l.role;
     setSpot(l.role);
-    hint(`Hear ${NAMES[l.role]}'s line. Then try Move up, Move down, or ${state.mode==='tighten'?'Cut':'Remove'}.`);
+    hint(`Hear ${NAMES[l.role]}'s line. Then use ${state.mode==='tighten'?'Cut':'Remove'}, or select another card.`);
     if (l.silent) await Curio.wait(2000);
     else await sayLine(l.id,{hint:false,wait:true,valid:() => state.selected===l.id && !state.playing});
     if (token===hearToken && !state.playing && state.selected===l.id) { speechRole = null; setSpot(null); }
@@ -1003,11 +1068,17 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
   $('yes-and').onclick = () => answerOffer(true);
   $('pass-offer').onclick = () => answerOffer(false);
   $('offers').onclick = openOffers;
-  $('close-offers').onclick = () => { $('offer-dialog').close(); defaultHint(); $('offers').focus({preventScroll:true}); };
-  $('offer-dialog').addEventListener('cancel',() => { defaultHint(); });
+  $('close-offers').onclick = () => {
+    V.hush();
+    $('offer-dialog').close();
+    defaultHint();
+    $('offers').focus({preventScroll:true});
+  };
+  $('offer-dialog').addEventListener('cancel',() => { V.hush(); defaultHint(); });
   $('offer-list').onclick = event => {
     const b = event.target.closest('[data-reopen]');
     if (!b) return;
+    V.hush();
     $('offer-dialog').close();
     showOffer(Number(b.dataset.reopen));
     hint('Jules’s offer is open. Tap Yes, and to try it, or Not this one to set it aside.');
@@ -1043,9 +1114,22 @@ body[data-mode="perform"] .curve-wrap { flex-basis:75px; }
     done();
   });
   ['devise','tighten','perform'].forEach(m => { $(`m-${m}`).onclick = () => setMode(m); });
-  $('reset').onclick = () => { stop(false); $('reset-dialog').showModal(); $('cancel-reset').focus({preventScroll:true}); };
-  $('cancel-reset').onclick = () => { $('reset-dialog').close(); $('reset').focus({preventScroll:true}); };
+  $('reset').onclick = () => {
+    stop(false);
+    $('reset-dialog').showModal();
+    hint(L.resetHow);
+    sayLine('resetHow',{valid:() => $('reset-dialog').open,needs:'#cancel-reset'});
+    $('cancel-reset').focus({preventScroll:true});
+  };
+  $('cancel-reset').onclick = () => {
+    V.hush();
+    $('reset-dialog').close();
+    defaultHint();
+    $('reset').focus({preventScroll:true});
+  };
+  $('reset-dialog').addEventListener('cancel',() => { V.hush(); defaultHint(); });
   $('confirm-reset').onclick = () => {
+    V.hush();
     const mode = state.mode;
     Object.assign(state,fresh());
     state.mode = mode;

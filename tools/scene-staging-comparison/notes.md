@@ -26,14 +26,19 @@ a fourth replaces the oldest. Reaction symbols always have word labels in the co
 Compare shows both viewers. The sample viewers are fictional, with different experiences rather than correct answers.
 Gold top borders mark production differences; blue edges mark differences between viewers.
 Each difference counts distinct reaction types present in only one set. Duplicates do not increase it.
-Viewer comparisons combine each viewer's two production sets at a moment. Earlier moments break ties.
-The top three moments are highlighted, including zero differences when all remaining moments tie.
+Viewer comparisons compare the same production for each viewer, then add the differences across productions.
+Only productions with stamps from both viewers at that moment contribute. Swapping feelings between productions
+does not cancel the disagreement. Production differences range from 0 to 5; viewer totals from 0 to 10.
+The top three moments are ranked with earlier moments breaking ties; only nonzero differences are highlighted.
+A blank means no recorded reaction, not neutrality, agreement or a feeling.
 Missing data from either viewer is not treated as a disagreement between viewers.
 
 Layers shows the same words, blocking, light, sound, costumes and props, and time context.
 The top-down arrows show moves from the preceding moment, rather than precise walking paths.
 Personal reason chips are saved per viewer and moment. They are offered in the opinion builder.
 An opinion requires that viewer's stamp on the selected production and moment plus a reason, up to 120 characters.
+This is an authored opinion, not an automatically graded answer. The tool checks ownership and a nonempty reason;
+it asks the student to check whether the detail supports the feeling. It does not certify the truth of their explanation.
 Up to six opinions are saved across the pair.
 
 ## Talk questions
@@ -53,7 +58,7 @@ and TH:Cn11 by inspecting the time cards and linking them to staging.
 The productions are invented. The Parlor is labeled 1890 but deliberately borrows a realistic acting style
 associated with the Moscow Art Theatre a decade later; it is not presented as a reconstruction of a real production.
 Chekhov wrote the play in 1888 to 1889. Source references are in tool.draft.json and the supplied spec.
-The final captions give 77.7 seconds for Production 1 and 63.4 seconds for Production 2 by the specified formula.
+The final captions give 77.3 seconds for Production 1 and 63.0 seconds for Production 2 by the specified formula.
 Role labels and bracketed action captions are included in the whitespace word count, consistently in code and checks.
 
 Everything works offline. Reactions, reason chips and opinions are saved only in this browser on this device.
@@ -66,3 +71,18 @@ On phones, use P1 / P2 to view one production at a time. Compare's wide evidence
 ## Credits and licenses
 Original adaptation, fictional staging and viewer data: Curio Class. Educational content CC BY 4.0; code MIT.
 Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+
+## Source checks
+- Plot, characters, age 25, land dispute, dogs Guess and Squeezer, symptoms, faint and ending:
+  Anton Chekhov, Julius West translation, Project Gutenberg ebook 7986,
+  https://www.gutenberg.org/cache/epub/7986/pg7986-images.html . Flour, specific moves and staging are original adaptations.
+- Writing in 1888 to 1889, first performed in 1890: the spec's A Marriage Proposal reference,
+  https://en.wikipedia.org/wiki/A_Marriage_Proposal .
+- Moscow Art Theatre, founded in 1898, and its productions of Chekhov's longer plays:
+  the theatre's History, https://www.art.theatre.ru/english/history/ .
+- Farce and physical exaggeration: World Mime Organisation, Farce,
+  https://www.worldmime.org/en/about-mime/liaisons/101-liaisons/259-farce.html .
+- Response, interpretation, evaluation and cultural context: National Core Arts Standards,
+  https://www.nationalartsstandards.org/ .
+The historical cards offer possible interpretations, not claims that all people of an era react alike.
+The two productions and all sample viewers are invented, not historical records or model answers.

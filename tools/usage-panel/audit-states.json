@@ -1,0 +1,29 @@
+{
+  "keep": ["#docket", "#hint"],
+  "states": [
+    {"name":"voted", "steps":[{"click":"#role-1"},{"click":"#persuasive"},{"click":"[data-vote=accept]"}],
+     "keep":["#sentence-sheet", "#vote-row"]},
+    {"name":"personal-they", "steps":[{"click":"#next", "times":3},{"click":"#role-2"}],
+     "keep":["#sentence-sheet"]},
+    {"name":"long-voted", "steps":[{"click":"#next"},{"click":"#role-2"},{"click":"#persuasive"},{"click":"[data-vote=avoid]"}],
+     "keep":["#sentence-sheet", "#panelists"], "sizes":["680x425", "1366x768"]},
+    {"name":"record-recent", "steps":[{"click":"#m-record"},{"click":"#marker-8"}],
+     "keep":["#year", "#play"]},
+    {"name":"ruling-with-work", "steps":[{"click":"#m-ruling"},{"click":"#setting-0-0"},{"click":"#setting-1-2"}],
+     "keep":["#settings"]},
+    {"name":"evidence-open", "steps":[{"click":"#evidence"}],
+     "keep":["#close-evidence"], "sizes":["680x425", "1366x768", "375x812"]},
+    {"name":"playing", "steps":[{"click":"#m-record"},{"click":"#play"},{"wait":450}],
+     "keep":["#year", "#stop"], "sizes":["680x425", "1366x768"]},
+    {"name":"personal-marked", "steps":[{"click":"#next", "times":3},{"click":"#role-2"},{"click":"#persuasive"}],
+     "keep":["#sentence-sheet"], "sizes":["680x425", "1366x768", "375x812"]},
+    {"name":"own-ruling", "steps":[{"click":"#m-ruling"},{"click":"#setting-0-0"},{"click":"#setting-1-1"},
+      {"click":"#setting-2-2"},{"click":"#setting-3-0"},{"click":"#m-record"},{"click":"#your-ruling"}],
+     "keep":["#year", "#your-ruling"], "sizes":["680x425", "1366x768", "375x812"]},
+    {"name":"confirm-open", "steps":[{"click":"#m-ruling"},{"click":"#clear"}],
+     "keep":["#cancel-confirm", "#yes-confirm"], "sizes":["680x425", "1366x768", "375x812"]},
+    {"name":"own-ruling-interrupt", "steps":[{"click":"#m-ruling"},{"click":"#setting-0-0"},
+      {"click":"#m-record"},{"click":"#your-ruling"},{"click":"#play"},{"click":"#your-marker"}],
+     "keep":["#year", "#your-marker"], "sizes":["680x425", "1366x768"]}
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "target": 44,
+  "keep": [],
+  "states": [
+    {
+      "name": "review-port-rain",
+      "steps": [
+        {
+          "click": "#thread-map"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#rains"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "keep": [
+        "#world",
+        "#rains",
+        "#next",
+        "#hint",
+        "#more",
+        "#dollar-open"
+      ]
+    },
+    {
+      "name": "rains-farm",
+      "steps": [
+        {
+          "click": "#thread-map"
+        },
+        {
+          "click": "#rains"
+        },
+        {
+          "click": "#both"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "keep": [
+        "#world",
+        "#rains",
+        "#next",
+        "#hint",
+        "#more",
+        "#hard",
+        "#dollar-open"
+      ]
+    },
+    {
+      "name": "hard-facts",
+      "steps": [
+        {
+          "click": "#thread-map"
+        },
+        {
+          "click": "#hard"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "keep": [
+        "#dialog",
+        "#close"
+      ]
+    },
+    {
+      "name": "dollar-four",
+      "steps": [
+        {
+          "click": "[data-dollar='1']",
+          "times": 3,
+          "gap": 0.2
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ],
+      "keep": [
+        "#dollars",
+        "#hint"
+      ]
+    },
+    {
+      "name": "explanation-in-progress",
+      "steps": [
+        {
+          "click": "#m-explain"
+        },
+        {
+          "click": "#tile-q7"
+        },
+        {
+          "click": "#slot-0"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "keep": [
+        "#check",
+        "#slot-0",
+        "#hint"
+      ]
+    }
+  ]
+}

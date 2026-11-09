@@ -21,8 +21,23 @@ Ten new images were made with the built-in image tool. The previously supplied c
 ## Engine changes wanted
 None. No shared-kit edits were made.
 
+## Cold review repairs
+- Invalidating a charge, condition, verdict or filed sentence clears later approvals and stale session results. Answer selectors also invalidate a filed conclusion as soon as they change.
+- Admissibility asks explicit mixed Yes/No questions. Corrections persist per case in the page's session record and are identified as guided practice, including after reopening. There is no mastery score.
+- Evidence exposure and late-alpha flags persist across Lineup visits and case reopening. Previously chosen standards survive reopening so opening a folder does not silently change alpha.
+- At true p = 0.50, Docket labels its second bar as a rejection rate and explains why the unshaded area is not Type II error.
+- Stage changes hush obsolete speech. Voice manifest uses a high school clerk style; native browser speech remains unrecorded.
+- Proof cards show the error tradeoff. Cereal evidence was redrawn with the box physically on the scale, using built-in imagegen; its prompt and raw PNG are preserved.
+- Evidence paintings fit their full frames instead of losing objects to wide or phone crops. Large screens give the art more height; the cereal label follows the painted box on load and resize. Compact headers retain the privacy disclosure even when the session panel has little room.
+- Audit paths use the revised condition answers, a real Lineup drag and an added Sentencing state.
+- College Board revised the AP numbering for 2026-27 to Units 3 and 4. The legacy spec/catalog labels need an owner-level migration outside this review's write scope.
+- The official Common Core text includes simulation requirements in S-IC.B.4 and S-IC.B.5. The specified analytical intervals and treatment tests support only parts of those standards; Docket's coin power simulation does not fill those clauses. Notes now state this limit. Changing curriculum mappings or adding a different simulation would exceed this review's spec and write scope.
+
+## Sensitivity
+All seven cases are fictional statistical examples. The clinic case concerns appointment attendance, with no medical advice. The courtroom is a teaching metaphor, not legal guidance. No depicted people, cultural traditions, real defendants or historical trials. Keep the notes' limits on population generalization and legal analogy.
+
 ## Next review
-Build only. No polish round or git commit. Review classroom phrasing, supplied-data assumptions and listening quality, then use the build report for verification evidence and remaining limitations.
+Follow REFINE.md for the next cold lenses. The original build report remains historical evidence; this review's repairs and curriculum limits are described above. Native narration still needs listening review when recorded clips are produced. No git commits were made.
 
 ## Build verification and repairs
 - One complete mechanical audit finished with 51 leads. Its 97 screenshots were visually reviewed. The report is in _scratch/courtroom-statistics/audit/audit.md.
@@ -33,3 +48,9 @@ Build only. No polish round or git commit. Review classroom phrasing, supplied-d
 - Final audit-states.json also includes the two Docket extremes for the next review. The completed audit used the original nine named states, plus its automatic mode checks.
 - The remaining zero-font header leads are intentional icon buttons: visible 18 to 23 px glyphs, 44 px targets and explicit accessible names. A case-folder first tap deliberately skips the general welcome and speaks the case instruction, as STANDARDS requires.
 - The context builder uses two compact native selectors for sentence fragments, selectable in either order, with a live sentence preview and File sentence control.
+
+## Cold review verification
+- The single cold-review audit finished with 18 leads and 145 inspected frames. Its report is _scratch/courtroom-statistics/review-audit/audit.md. Compact Docket cutoff labels and a visually detected Lineup bracket crossing were repaired, then checked at the affected sizes without repeating the full audit.
+- Independent SciPy comparisons passed for six case statistics/tails, 30 intervals and 75 Docket settings. Held-click voice events passed 5/5; keyboard-only Seeds reached Sentencing; the default main path was walked with Motion and Sound on.
+- Final before/after regressions preserve poll dismissal through subsequent answers and preserve a pre-evidence alpha change through reopening without a late-change flag. Final focused captures have no console errors, warnings or exceptions. Bundle: 600853 bytes.
+- Temporary host removed. Review evidence, previous cereal art and scripts remain in the authorized Scratch folder.

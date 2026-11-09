@@ -159,7 +159,7 @@ footer {padding:5px 20px;display:flex;align-items:center;gap:18px;background:#10
 .roll-wrap {min-height:0;position:relative;border:1px solid #374451;border-radius:4px;overflow:hidden;background:#0e1520}
 #roll {width:100%;height:100%;display:block}.roll-caption {position:absolute;left:10px;right:10px;bottom:6px;
   font:10px Consolas,monospace;color:#a6b3c4;pointer-events:none}
-.ratings {overflow:auto;min-height:0}.rating-row {display:grid;
+.ratings {overflow:auto;min-height:0;grid-auto-rows:max-content}.rating-row {display:grid;
   grid-template-columns:minmax(75px,1fr) repeat(4,44px) minmax(85px,1.2fr);gap:4px;align-items:center;border-bottom:1px solid #ffffff10;min-height:48px}
 .rating-name {font-size:11px}.rate {padding:0;font:13px Consolas,monospace}.meter-value {font-size:10px;color:var(--ok);line-height:1.35;padding-left:6px}
 .meter-value:empty::after {content:'Hidden';color:#9ba9bb;letter-spacing:.04em}
@@ -170,8 +170,10 @@ footer {padding:5px 20px;display:flex;align-items:center;gap:18px;background:#10
   background:var(--library-art) center/cover;box-shadow:inset 0 0 100px #0007}
 .recital-stage::before {content:'';position:absolute;inset:0;background:linear-gradient(#050a1222,#050a1244 65%,#050a12d9)}
 .recital-card {z-index:1;padding:28px 35px;width:min(460px,78%);background:#10161fe8;border:1px solid #a58c50;border-radius:3px;
-  box-shadow:0 9px 35px #0009;display:flex;flex-direction:column;gap:13px;min-height:250px}
+  box-shadow:0 9px 35px #0009;display:flex;flex-direction:column;gap:13px;min-height:250px;
+  max-height:calc(100% - 16px);overflow-y:auto}
 .recital-card h2 {font-size:36px;color:#f4dda4}#recital-message {font:19px/1.5 Georgia,serif;min-height:60px;overflow-wrap:anywhere}
+.recital-card>* {flex-shrink:0}#recital-message {max-height:180px;overflow-y:auto}
 .recital-program {font-size:12px;color:#bac7d1;line-height:1.8}
 .audience {position:absolute;bottom:-2px;left:8%;right:8%;height:55px;display:flex;align-items:flex-end;justify-content:space-around;opacity:.85}
 .audience i {width:45px;height:34px;background:linear-gradient(100deg,#1b2530,#080e17);border-radius:45% 45% 0 0;position:relative}
@@ -198,6 +200,10 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
 .ratings {display:grid;grid-template-columns:1fr 1fr;gap:0 8px;align-content:start}
 .rating-row {grid-template-columns:minmax(62px,1fr) repeat(4,44px);gap:3px}
 .meter-value {grid-column:1/-1;padding:0 0 3px}.meter-value:empty {display:none}
+.practice-layout.blind .readiness,.practice-layout.blind .compact-readiness {visibility:hidden}
+.recital-keyboard {width:100%;height:54px;display:block;flex-shrink:0;border:1px solid #74603e;border-radius:3px;
+  background:linear-gradient(#493322,#211911);box-shadow:inset 0 2px 5px #000b,0 3px 8px #0005}
+@media (max-height:640px) {.recital-keyboard {height:36px}.recital-card {gap:5px}}
 .listen {padding:10px;gap:6px;grid-template-rows:auto minmax(150px,1fr) 44px auto 44px}
 @media (max-width:1100px) {
   header {padding:7px 12px;gap:8px}h1 {font-size:19px;min-width:150px}h1 small {font-size:10px}
@@ -264,6 +270,17 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   .rating-row {grid-template-columns:minmax(60px,1fr) repeat(4,36px);gap:2px;min-height:44px}
   .rate {min-width:36px;min-height:36px;font-size:11px}.meter-value {grid-column:1/-1;font-size:10px;padding:0 0 4px}
   .ratings {grid-template-columns:1fr}.rating-row .rate {min-width:44px;min-height:44px}.rating-row {grid-template-columns:60px repeat(4,44px)}
+  .practice-layout.listening .listen {grid-template-columns:repeat(12,minmax(0,1fr));
+    grid-template-rows:44px minmax(0,1fr);gap:6px;padding:8px}
+  .listen-head,.transport,.listen-bottom {display:contents}
+  .listen-head h2,.transport #take-status,.listen-bottom p {display:none}
+  #close-listen {grid-column:1/3;grid-row:1;padding:0 4px;font-size:10px}
+  #listen-piece {grid-column:3/6;grid-row:1;width:100%}
+  #listen-week {grid-column:6/8;grid-row:1;width:100%}
+  #play-take {grid-column:8/10;grid-row:1;padding:0 4px;font-size:10px;margin:0}
+  #stop-take {grid-column:10/11;grid-row:1;padding:0;font-size:10px}
+  #meter {grid-column:11/13;grid-row:1;padding:0 4px;font-size:10px}
+  .roll-wrap {grid-column:1/7;grid-row:2}.ratings {grid-column:7/13;grid-row:2}
   .meter-value:empty {display:none}.rubric-layout {padding:10px;gap:7px;grid-template-rows:40px 50px minmax(0,1fr)}
   .section-head h2 {font-size:21px}.section-head p {margin:0;font-size:10px}.section-head .btn {font-size:11px}
   .rubric-layout .section-head .eyebrow {display:none}
@@ -272,6 +289,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   .rubric-table textarea {font-size:10px;min-height:44px;padding:4px}.rubric-empty h3 {font-size:22px}
   .recital-layout {padding:8px;gap:8px;grid-template-columns:minmax(0,1fr) 240px}
   .recital-card {padding:15px;gap:7px;min-height:190px}.recital-card h2 {font-size:26px}#recital-message {font-size:14px;min-height:38px}
+  #recital-message {max-height:90px}
   .recital-program {font-size:10px;line-height:1.5}.recital-side {gap:6px;overflow:auto}.recital-side .sec {padding:8px;gap:5px}
   .recital-side .sec h2 {font-size:20px}.recital-side .small {font-size:10px}.recital-side .btn {font-size:10px}
   #recital-actions h2,#recital-actions p {display:none}
@@ -292,6 +310,11 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   .practice-layout.listening.playing .rating-name {grid-column:1/-1}
   .practice-layout.listening.playing .listen-head select {max-width:none}
 }
+@media (min-width:1101px) and (min-height:641px) and (max-height:760px) {
+  .practice-layout {padding:10px;gap:6px}
+  .practice-top {min-height:54px}
+  .metronome {height:54px;width:38px}
+}
 @media (max-width:599px) {
   body {grid-template-rows:108px minmax(0,1fr) 68px}header {padding:5px 9px;gap:5px;display:grid;grid-template-columns:1fr auto}
   h1 {font-size:16px;min-width:0;max-width:140px}h1 small {display:none}.utilities {gap:3px}
@@ -301,7 +324,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   #save-note {font-size:10px;max-width:none;line-height:1.3}
   .set-layout {display:flex;flex-direction:column;overflow:auto;padding:9px;gap:10px}
   .program-world {display:contents}.venue-scene {min-height:150px;order:0}.venue-copy {padding:14px;width:65%}
-  .venue-copy h2 {font-size:24px}.venue-copy p {font-size:11px}.program {min-height:172px;max-height:172px;order:2;flex-shrink:0}
+  .venue-copy h2 {font-size:24px}.venue-copy p {font-size:11px}.program {min-height:140px;max-height:140px;order:2;flex-shrink:0}
   .repertoire {display:contents}.venue-choices {order:1;min-height:76px}.venue-card {min-height:76px;font-size:10px;padding-top:40px}
   .venue-card[aria-pressed=true] {padding-top:39px}.rep-heading {order:3}.piece-cards {order:4;min-height:510px;gap:7px;flex-shrink:0}
   .piece-card {min-height:96px}.piece-card h3 {font-size:12px}.set-bottom {order:5;flex-shrink:0;min-height:50px}
@@ -318,6 +341,15 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   .time-display small {font-size:10px}#total {font-size:17px}.program-track {margin:0 10px}.empty-program {min-height:55px}
   .empty-program strong {font-size:18px}.empty-program p {font-size:10px}.rep-heading {min-height:16px}
   .set-bottom p {max-width:45%;font-size:10px}.set-bottom .btn {font-size:10px}
+  .set-layout.has-program .venue-scene,.set-layout.has-program .set-bottom {display:none}
+  .set-layout.has-program .program {min-height:0;max-height:none;flex:0 0 auto}
+  .set-layout.has-program .program-head {padding:6px 10px 4px}
+  .set-layout.has-program .program-head h2 {font-size:17px}
+  .set-layout.has-program .time-display small {display:none}
+  .set-layout.has-program .program-track {height:3px}
+  .set-layout.has-program #program-list {padding:0 10px;gap:0;grid-auto-rows:44px;flex:none;overflow:visible}
+  .set-layout.has-program #set-warning {min-height:24px;padding:4px 10px;font-size:10px;line-height:1.2}
+  .utilities #program-notes {width:52px;min-height:44px;font-size:10px;padding:0 3px}
   .rubric-layout {padding:10px;gap:9px;grid-template-rows:auto auto minmax(0,1fr)}.section-head h2 {font-size:23px}
   .section-head p {font-size:11px}.criterion-choices {grid-template-columns:repeat(3,1fr);gap:5px}.criterion {min-height:63px;font-size:11px;padding:8px}
   .criterion span {font-size:10px}.criterion[aria-pressed=true]::after {display:none}.rubric-table {min-width:620px}
@@ -340,6 +372,8 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   .practice-layout.listening .unit-row {grid-template-columns:minmax(80px,1fr) 75px 30px 44px;gap:5px}
   .practice-layout.listening .listen {position:absolute;inset:0;z-index:5;padding:9px;border-radius:0;
     grid-template-rows:auto minmax(155px,1fr) 44px minmax(100px,1fr) auto;gap:8px;background:#131b27}
+  .practice-layout.listening .listen.many-criteria {
+    grid-template-rows:auto minmax(100px,.6fr) 44px minmax(220px,1fr) auto}
   .practice-layout.listening .practice-top,.practice-layout.listening .week-tabs,
   .practice-layout.listening .board {visibility:hidden}
   .listen-head {flex-wrap:wrap}.listen-head h2 {font-size:24px;flex:1}.listen-head select {max-width:none;font-size:11px}
@@ -353,6 +387,11 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   .recital-side .sec h2 {font-size:22px}.recital-side .small {font-size:10px}.recital-side .button-pair {grid-template-columns:1fr}
   .recital-side .btn {font-size:11px;padding:0 6px}#recital-actions {grid-column:1/-1}
   .recital-stage {min-height:260px;flex:1 0 300px}.recital-side {display:flex;gap:6px}
+  .recital-card {display:grid;height:calc(100% - 16px);min-height:0;padding:10px;gap:5px;
+    grid-template-rows:auto auto minmax(44px,1fr) auto 40px 4px;overflow:hidden}
+  .recital-card h2 {font-size:26px}.recital-program {font-size:10px;line-height:1.25}
+  #recital-message {min-height:0;max-height:none;overflow-y:auto;font-size:15px;line-height:1.3}
+  .recital-keyboard {height:40px}
   #recital-actions h2,#recital-actions p {display:none}.recital-side .button-pair {grid-template-columns:1fr 1fr}
   .recital-side>.sec:last-child {display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
   .recital-side>.sec:last-child .btn {padding:0 4px;min-width:44px}.recital-side .sec {padding:9px;gap:6px}
@@ -437,7 +476,8 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
           <div class="roll-caption" id="roll-caption" aria-hidden="true">Hard passage · both hands</div></div>
         <div class="transport"><button class="btn primary" id="play-take">▶ Play take</button>
           <output class="small" id="take-status">First read</output><button class="btn" id="stop-take">■ Stop</button></div>
-        <div id="ratings" class="ratings"></div><div class="listen-bottom"><p id="listen-guidance"></p>
+        <div id="ratings" class="ratings" role="region" aria-label="Rubric ratings. Scroll for more criteria when needed."
+          tabindex="0"></div><div class="listen-bottom"><p id="listen-guidance"></p>
           <button class="btn" id="meter" disabled>Show the meter</button></div>
       </section>
     </div>
@@ -445,7 +485,10 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   <section id="view-recital" class="view recital-layout" aria-label="Present your recital" hidden>
     <div class="recital-stage" id="recital-stage"><div class="recital-card"><span class="eyebrow" id="recital-venue"></span>
       <h2 id="recital-title">Recital night</h2><div id="recital-message">Four weeks. One program.</div>
-      <div class="recital-program" id="recital-program"></div><div class="recital-progress"><i id="recital-progress"></i></div></div>
+      <div class="recital-program" id="recital-program"></div>
+      <svg id="recital-keyboard" class="recital-keyboard" viewBox="0 0 540 70" role="img"
+        aria-label="Piano keys light as the saved recital passage sounds"></svg>
+      <div class="recital-progress"><i id="recital-progress"></i></div></div>
       <div class="audience" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
     <aside class="recital-side">
       <div class="sec" id="recital-actions"><span class="eyebrow">The program, in miniature</span><h2>Let it play.</h2>
@@ -478,17 +521,18 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     welcomeSet:'Pick a venue, then tap Add on the pieces you want. Keep the total between nine and ten minutes.',
     setFits:'That set fits.',
     welcomeRubric:'Tap three to five things you will listen for. Write what a four sounds like.',
-    welcomePractice:"Drag the minutes sliders. Put the most time where it's hardest, then tap Practice the week.",
-    listenHow:'Tap Play take. Listen, then rate it before you look at the meter.',
+    welcomePractice:'Drag the minutes sliders, then tap Practice the week.',
+    listenHow:'Tap Play take.',
+    rateHow:'Rate each criterion by ear, then tap Show the meter.',
     meterHow:'Now tap Show the meter.',
     agree:'Your ears and the meter agree.',
-    tired:'Seven days at an hour each. Tired hands learn less. Try a rest day.',
-    welcomeRecital:'Tap Begin recital to hear the whole program.'
+    tired:'This budget has seven hour-long days. In this model, try a rest day.',
+    welcomeRecital:'Tap Begin recital.'
   };
   const defaults = () => ({
     version:1,mode:'set',set:[],tempos:Object.fromEntries(P.map(p => [p.id,100])),venue:0,
     rubric:[],descriptors:{},why:'',intros:{},completed:0,week:1,plans:{},progress:{},flow:0,
-    weeks:{},takes:{},ratings:{},recitalDone:false
+    weeks:{},takes:{},ratings:{},recitalDone:false,recitalReviewed:false,recitalSkipped:[],recitalMissing:[]
   });
   let state = defaults();
   let storageOK = true;
@@ -497,6 +541,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     if (saved && saved.version === 1 && Array.isArray(saved.set)) {
       state = {...state,...saved};
       state.set = state.set.filter(id => P.some(p => p.id === id));
+      if (!Object.hasOwn(saved,'recitalReviewed')) state.recitalDone = false;
       state.mode = 'set';
     }
   } catch { storageOK = false; }
@@ -532,6 +577,12 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     $('save-note').textContent = storageOK ? 'Saved here. Your plan never leaves this device.' : 'Saving unavailable. Keep this page open.';
   }
   function feedback() { Curio.tone(440,.08,.018,'triangle'); }
+  function invalidateRecital() {
+    state.recitalDone = false;
+    state.recitalReviewed = false;
+    state.recitalSkipped = [];
+    state.recitalMissing = [];
+  }
   function retainFocus(fn) {
     const id = document.activeElement?.id;
     fn();
@@ -621,6 +672,23 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     if (!state.ratings[key]) state.ratings[key] = {current:{},first:{},revealed:false,heard:false};
     return state.ratings[key];
   }
+  function revealedCriteria(rr) {
+    if (!Array.isArray(rr.revealedIds)) rr.revealedIds = rr.revealed ? Object.keys(rr.current) : [];
+    return rr.revealedIds;
+  }
+  function diagnosticsVisible() {
+    const rr = ratingRecord();
+    const metered = state.rubric.filter(id => C.find(c => c.id === id).meter);
+    return rr.heard && metered.length > 0 && metered.every(id => revealedCriteria(rr).includes(id));
+  }
+  function syncEvidence() {
+    const visible = diagnosticsVisible();
+    $('view-practice').classList.toggle('blind',listenOpen && !visible);
+    const take = currentTake();
+    const target = take ? Math.round(piece(take.piece).tempo*take.tempo/100) : 0;
+    $('roll-caption').textContent = (visible ? 'RH gold · LH blue · x wrong · ticks · ' : 'RH gold · LH blue · ')+target+' bpm target';
+    $('roll').setAttribute('aria-label',$('roll-caption').textContent);
+  }
   const V = Curio.voice({
     lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
     welcome:() => {
@@ -631,14 +699,31 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
       return null;
     }
   });
+  function relocateNotes() {
+    const compact = innerWidth < 600 && state.mode === 'set' && state.set.length >= 2;
+    $('view-set').classList.toggle('has-program',state.set.length >= 2);
+    const button = $('program-notes');
+    const parent = document.querySelector(compact ? '.utilities' : '.set-bottom');
+    if (button.parentElement !== parent) {
+      const focused = document.activeElement === button;
+      parent.append(button);
+      if (focused) button.focus({preventScroll:true});
+    }
+    button.textContent = compact ? 'Notes' : 'Venue notes & introductions';
+    button.setAttribute('aria-label','Venue notes & introductions');
+    button.title = 'Venue notes & introductions';
+  }
   function modeHint() {
-    if (state.mode === 'set') hint(state.set.length ?
-      'Tap Add or Remove to shape your program. Use the tempo sliders to fit nine to ten minutes.' : L.welcomeSet);
+    if (state.mode === 'set') hint(!state.set.length ? L.welcomeSet : fits() ?
+      'Open Rubric to choose your listening criteria. Use '+
+        (innerWidth < 600 && state.set.length >= 2 ? 'Notes' : 'Venue notes & introductions')+' to explain your set.' :
+      'Tap Add or Remove to shape your program. Use the tempo sliders to fit nine to ten minutes.');
     if (state.mode === 'rubric') hint(state.rubric.length >= 3 ?
       'Edit the descriptions for levels 4 and 1. Then open Practice to plan a week.' : L.welcomeRubric);
     if (state.mode === 'practice') {
       if (state.rubric.length < 3) hint('Open Rubric and choose three to five criteria before listening or practicing a week.');
       else if (listenOpen) hint(L.listenHow);
+      else if (state.completed === 4) hint('Open Recital to present your program, or tap Listen to compare your takes.');
       else if (state.week <= state.completed) hint('This week is recorded. Tap Listen to compare its take, or choose the next open Week tab.');
       else hint(L.welcomePractice);
     }
@@ -647,7 +732,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   function setMode(m) {
     if (m === state.mode) return;
     if (m === 'practice' && state.set.length < 2) return;
-    if (m === 'recital' && state.completed < 4) return;
+    if (m === 'recital' && (state.completed < 4 || state.set.length < 2)) return;
     V.hush();
     stopRecital(false);
     stopTake(false);
@@ -663,13 +748,14 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
       if (listenOpen) renderListen();
     }
     if (m === 'recital') renderRecital();
+    relocateNotes();
     modeHint();
     V.welcome();
     save();
   }
   function gates() {
     $('m-practice').disabled = state.set.length < 2;
-    $('m-recital').disabled = state.completed < 4;
+    $('m-recital').disabled = state.completed < 4 || state.set.length < 2;
   }
   function changeSet(action) {
     if (state.completed) confirmAction('Change the set?',
@@ -678,6 +764,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   }
   function togglePiece(id) {
     changeSet(() => {
+      invalidateRecital();
       const ix = state.set.indexOf(id);
       if (ix >= 0) state.set.splice(ix,1);
       else state.set.push(id);
@@ -690,6 +777,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     });
   }
   function updateSet() {
+    relocateNotes();
     const venue = VENUES[state.venue];
     $('venue-title').textContent = venue.name;
     $('venue-description').textContent = venue.description;
@@ -719,11 +807,13 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     $('time-fill').style.width = Math.min(100,t/6)+'%';
     $('time-fill').style.background = legal ? 'var(--ok)' : t>600 ? 'var(--warn)' : 'var(--brand)';
     $('set-warning').textContent = !state.set.length ? 'Tap Add on a piece to begin your program.' :
-      legal ? 'Fits the room: nine to ten minutes.' : t>600 ? `Over by ${fmt(t-600)}: drop a piece or speed one up.` :
-      `Under by ${fmt(540-t)}: add a piece or slow one down.`;
+      legal ? 'Fits the room: nine to ten minutes.' : t>600 ?
+        (t-600 < 1 ? 'Just over 10:00: drop a piece or speed one up.' : `Over by ${fmt(t-600)}: drop a piece or speed one up.`) :
+        (540-t < 1 ? 'Just under 9:00: add a piece or slow one down.' : `Under by ${fmt(540-t)}: add a piece or slow one down.`);
     $('set-warning').classList.toggle('ok',legal);
     if (legal && !fitted) V.say('setFits',{valid:() => state.mode === 'set' && fits()});
     fitted = legal;
+    if (state.mode === 'set') modeHint();
   }
   function renderProgram() {
     const list = $('program-list');
@@ -782,6 +872,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
           const from=state.set.indexOf(id), to=state.set.indexOf(target.dataset.piece);
           if (from < 0 || to < 0) return;
           state.set.splice(to,0,state.set.splice(from,1)[0]);
+          invalidateRecital();
           renderProgram();
           feedback();
           save();
@@ -802,6 +893,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     const i = state.set.indexOf(id), j = i+delta;
     if (j < 0 || j >= state.set.length) return;
     [state.set[i],state.set[j]] = [state.set[j],state.set[i]];
+    invalidateRecital();
     retainFocus(renderProgram);
     if (document.activeElement?.disabled) $('program-notes').focus({preventScroll:true});
     feedback();
@@ -820,6 +912,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
       $('add-'+p.id).onclick = () => togglePiece(p.id);
       $('tempo-'+p.id).oninput = e => {
         state.tempos[p.id] = +e.target.value;
+        invalidateRecital();
         updateSet();
         feedback();
         save();
@@ -933,6 +1026,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     }
     updateBudget();
     $('view-practice').classList.toggle('listening',listenOpen);
+    $('view-practice').classList.toggle('blind',listenOpen && !diagnosticsVisible());
     $('listen').hidden = !listenOpen;
     syncSheet();
     $('flow-label').textContent = 'Flow '+pct(state.weeks[state.week]?.flow ?? state.flow)+'%';
@@ -1024,6 +1118,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     listenOpen = true;
     listenWeek = w;
     if (!state.takes[w+':'+listenPiece]) listenPiece = state.set.find(id => state.takes[w+':'+id]) || state.set[0];
+    if (V.playing !== L.tired) V.hush();
     $('view-practice').classList.add('listening');
     $('listen').hidden = false;
     renderListen();
@@ -1044,33 +1139,41 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     $('listen-week').value = listenWeek;
     const target = piece(listenPiece).tempo*currentTake().tempo/100;
     $('take-status').textContent = (listenWeek ? 'Week '+listenWeek : 'First read')+' · target '+Math.round(target)+' bpm';
-    if (playback && !playback.isRecital && playback.take.piece === listenPiece && playback.take.week === listenWeek) {
+    if (diagnosticsVisible() && playback && !playback.isRecital &&
+        playback.take.piece === listenPiece && playback.take.week === listenWeek) {
       $('take-status').textContent = (listenWeek ? 'Week '+listenWeek : 'First read')+
         ' · '+Math.round(playback.take.bpm)+'/'+Math.round(target)+' bpm';
     }
-    $('roll-caption').textContent = 'Gold RH · blue LH · x wrong · tick on grid';
+    syncEvidence();
     renderRatings();
     drawRoll();
   }
   function renderRatings() {
     const rr = ratingRecord(), take = currentTake();
+    $('listen').classList.toggle('many-criteria',state.rubric.length > 3);
     $('ratings').innerHTML = state.rubric.map(id => {
       const c = C.find(c => c.id === id);
       return `<div class="rating-row"><span class="rating-name">${c.name}</span>`+
         [1,2,3,4].map(n => `<button class="btn rate" id="rate-${id}-${n}" aria-label="${c.name}: ${n}"
-          aria-pressed="${rr.current[id] === n}" ${rr.heard ? '' : 'disabled'}>${n}</button>`).join('')+
-        `<span class="meter-value" id="meter-${id}">${rr.revealed ? meterText(take,id,rr) : ''}</span></div>`;
+          aria-pressed="${rr.current[id] === n}" ${rr.heard ? '' : 'disabled'}
+          title="${esc(n === 4 ? (state.descriptors[id]?.[4] || c.high) :
+            n === 1 ? (state.descriptors[id]?.[1] || c.low) : n === 3 ? 'Mostly meets level 4.' : 'Some control, with room to grow.')}">
+          ${n}</button>`).join('')+
+        `<span class="meter-value" id="meter-${id}">${revealedCriteria(rr).includes(id) ? meterText(take,id,rr) : ''}</span></div>`;
     }).join('');
     for (const id of state.rubric) for (const n of [1,2,3,4]) $('rate-'+id+'-'+n).onclick = () => rate(id,n);
     updateMeterGate();
     $('listen-guidance').textContent = !state.rubric.length ? 'Choose criteria in Rubric before you rate.' :
-      !rr.heard ? 'Play the take to the end, then rate what you heard.' : 'Rate by ear. First ratings stay on your recital sheet.';
+      !rr.heard ? 'Play the take to the end, then rate what you heard.' :
+        diagnosticsVisible() && state.rubric.length > 3 ? 'Scroll ratings to compare every criterion. First ear stays saved.' :
+          'Rate by ear. First ratings stay on your recital sheet.';
   }
   function updateMeterGate() {
     const rr = ratingRecord();
     const metered = state.rubric.filter(id => C.find(c => c.id === id).meter);
-    $('meter').disabled = !rr.heard || state.rubric.length < 3 || !metered.every(id => rr.current[id]);
-    $('meter').textContent = rr.revealed ? 'Meter revealed' : 'Show the meter';
+    const revealed = metered.every(id => revealedCriteria(rr).includes(id));
+    $('meter').disabled = !rr.heard || state.rubric.length < 3 || !metered.every(id => rr.current[id]) || revealed;
+    $('meter').textContent = revealed ? 'Meter revealed' : 'Show the meter';
   }
   function rate(id,n) {
     const rr = ratingRecord();
@@ -1078,12 +1181,12 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     rr.current[id] = n;
     if (!rr.first[id]) rr.first[id] = n;
     for (const k of [1,2,3,4]) $('rate-'+id+'-'+k).setAttribute('aria-pressed',String(k === n));
-    if (rr.revealed) $('meter-'+id).innerHTML = meterText(currentTake(),id,rr);
+    if (revealedCriteria(rr).includes(id)) $('meter-'+id).innerHTML = meterText(currentTake(),id,rr);
     updateMeterGate();
-    if (!$('meter').disabled && !rr.revealed) {
+    if (!$('meter').disabled) {
       hint(L.meterHow);
       const w = listenWeek, p = listenPiece;
-      V.how('meterHow',{valid:() => listenOpen && listenWeek === w && listenPiece === p && !ratingRecord().revealed,needs:'#meter'});
+      V.how('meterHow',{valid:() => listenOpen && listenWeek === w && listenPiece === p && !$('meter').disabled,needs:'#meter'});
     }
     feedback();
     save();
@@ -1091,22 +1194,30 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   function metricLabel(t,id) {
     const m = t.metrics;
     const lower = (v,n) => (Math.floor(v*10**n+1e-8)/10**n).toFixed(n);
-    return id === 'notes' ? m.wrong+' wrong notes' : id === 'beat' ? lower(m.wobble,1)+' ms wobble' :
+    return id === 'notes' ? m.wrong+' wrong '+(m.wrong === 1 ? 'note' : 'notes') : id === 'beat' ? lower(m.wobble,1)+' ms wobble' :
       id === 'tempo' ? lower(m.tempo,1)+'% of target' : id === 'dynamics' ? lower(m.dynamics,2)+' range' : 'Ears only';
   }
   function meterText(t,id,rr) {
     if (!C.find(c => c.id === id).meter) return 'Ears only. Your judgment.';
     const n = t.levels[id];
-    return esc(metricLabel(t,id))+'<br>'+(rr.current[id] === n ? 'You heard it the same.' :
-      `The meter says ${n}; you gave ${rr.current[id] || 'no rating'}.`);
+    const first = rr.first[id];
+    const comparison = first === n ? 'Your first ear matched.' : `Meter ${n}; first ear ${first || 'not rated'}.`;
+    const revision = rr.current[id] !== first ? ` Now ${rr.current[id]}.` : '';
+    return esc(metricLabel(t,id))+'<br>'+comparison+revision;
   }
   function showMeter() {
     if ($('meter').disabled) return;
+    const fromMeter = document.activeElement === $('meter');
+    V.hush();
     const rr = ratingRecord(), w = listenWeek, id = listenPiece;
+    const metered = state.rubric.filter(cid => C.find(c => c.id === cid).meter);
+    revealedCriteria(rr).push(...metered.filter(cid => !revealedCriteria(rr).includes(cid)));
     rr.revealed = true;
     retainFocus(renderRatings);
-    const metered = state.rubric.filter(id => C.find(c => c.id === id).meter);
-    const agree = metered.length && metered.every(id => rr.current[id] === currentTake().levels[id]);
+    if (fromMeter) $('ratings').focus({preventScroll:true});
+    syncEvidence();
+    drawRoll();
+    const agree = metered.length && metered.every(cid => rr.first[cid] === currentTake().levels[cid]);
     hint(agree ? 'Your ears and the meter agree. Compare an earlier Play week, or return to the Week board.' :
       'Compare your ratings with the meter, then choose an earlier Play week to hear the difference.');
     if (agree) V.say('agree',{valid:() => listenOpen && listenWeek === w && listenPiece === id});
@@ -1174,7 +1285,8 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     document.documentElement.style.setProperty('--beat',(60/t.bpm)+'s');
     $('play-take').textContent = '↻ Replay take';
     const target = piece(t.piece).tempo*t.tempo/100;
-    $('take-status').textContent = (t.week ? 'Week '+t.week : 'First read')+' · '+Math.round(t.bpm)+'/'+Math.round(target)+' bpm';
+    $('take-status').textContent = (t.week ? 'Week '+t.week : 'First read')+' · '+
+      (!isRecital && diagnosticsVisible() ? Math.round(t.bpm)+'/'+Math.round(target)+' bpm' : 'target '+Math.round(target)+' bpm');
     hint(isRecital ? 'Recital playing. Tap Stop to finish now, or Skip piece to move to the next introduction.' :
       Curio.sound ? 'Listen to the take. Stop cuts the sound immediately. Rate it when it finishes.' :
       'Sound is off. Watch the notes, or turn Sound on to listen. Rate the take when it finishes.');
@@ -1182,6 +1294,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
       if (!playback || serial !== playSerial) return;
       const elapsed = (performance.now()-playback.start)/1000;
       if (listenOpen) drawRoll(elapsed);
+      if (isRecital) drawRecitalKeys(t,elapsed);
       if (elapsed >= t.duration) {
         const callback = playback.onEnd, recitalTake = playback.isRecital;
         playback = null;
@@ -1192,7 +1305,10 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
         ratingRecord(t.week,t.piece).heard = true;
         if (!recitalTake && listenPiece === t.piece && listenWeek === t.week) {
           retainFocus(renderRatings);
-          hint('Tap a rating from 1 to 4 for each criterion. Then tap Show the meter.');
+          syncEvidence();
+          hint(L.rateHow);
+          V.how('rateHow',{valid:() => listenOpen && listenPiece === t.piece && listenWeek === t.week,
+            needs:'#rate-'+state.rubric[0]+'-1'});
         }
         save();
         if (callback) callback();
@@ -1223,6 +1339,8 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     const t = playback && !playback.isRecital ? playback.take : currentTake();
     if (!t) return;
     const notes = t.notes;
+    const diagnosed = diagnosticsVisible();
+    const heard = ratingRecord().heard;
     const lo = Math.min(...notes.map(n => Math.min(n.pitch,n.actual)))-2;
     const hi = Math.max(...notes.map(n => Math.max(n.pitch,n.actual)))+2;
     const pad = 30, bottom = 25, top = 20;
@@ -1264,15 +1382,18 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     ctx.rect(pad,top,W-pad,H-top-bottom);
     ctx.clip();
     for (const n of notes) {
+      if (!diagnosed && !heard && (!playback || n.time > elapsed)) continue;
       const xx = x(n.time), yy = y(n.actual), width = Math.max(3,n.seconds*scale-2);
       const active = playback && elapsed>=n.time && elapsed<n.time+n.seconds;
-      ctx.strokeStyle = '#ffffff50';
-      ctx.beginPath();
-      ctx.moveTo(x(n.beat*beat),yy-5);
-      ctx.lineTo(x(n.beat*beat),yy+5);
-      ctx.stroke();
-      ctx.fillStyle = n.wrong ? '#ffb8a8' : n.hand === 'L' ? '#789cba' : '#f0c75e';
-      ctx.globalAlpha = active ? 1 : .55+.4*n.velocity;
+      if (diagnosed) {
+        ctx.strokeStyle = '#ffffff50';
+        ctx.beginPath();
+        ctx.moveTo(x(n.beat*beat),yy-5);
+        ctx.lineTo(x(n.beat*beat),yy+5);
+        ctx.stroke();
+      }
+      ctx.fillStyle = diagnosed && n.wrong ? '#ffb8a8' : n.hand === 'L' ? '#789cba' : '#f0c75e';
+      ctx.globalAlpha = active ? 1 : diagnosed ? .55+.4*n.velocity : .85;
       if (active && !Curio.reduce) {
         ctx.shadowColor=ctx.fillStyle;
         ctx.shadowBlur=9;
@@ -1282,7 +1403,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
       ctx.fill();
       ctx.shadowBlur=0;
       ctx.globalAlpha=1;
-      if (n.wrong) {
+      if (diagnosed && n.wrong) {
         ctx.strokeStyle='#33140d';
         ctx.lineWidth=1.2;
         ctx.beginPath();
@@ -1304,7 +1425,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     } else if (playback) {
       ctx.fillStyle='#f0c75e';
       ctx.font='10px Consolas, monospace';
-      ctx.fillText(fmt(elapsed)+' / '+fmt(t.duration),W-95,12);
+      ctx.fillText(fmt(elapsed)+(diagnosed ? ' / '+fmt(t.duration) : ' elapsed'),W-95,12);
     }
   }
   function syncSheet() {
@@ -1316,6 +1437,34 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     $('listen').setAttribute('role',covered ? 'dialog' : 'region');
     $('listen').setAttribute('aria-modal','false');
     if (covered && focusCovered) $('play-take').focus({preventScroll:true});
+  }
+  function drawRecitalKeys(t=null,elapsed=0) {
+    const active = new Set(t ? t.notes.filter(n => elapsed >= n.time && elapsed < n.time+n.seconds).map(n => n.actual) : []);
+    const keys = [];
+    let white = 0;
+    for (let pitch=36;pitch<=95;pitch++) {
+      const black = [1,3,6,8,10].includes(pitch%12);
+      keys.push({pitch,black,x:black ? white*15-4.8 : white++*15});
+    }
+    const svg = $('recital-keyboard');
+    if (!svg.childElementCount) {
+      svg.innerHTML = '<defs><linearGradient id="ivory" x2="0" y2="1">'+
+        '<stop stop-color="#c8c2b3"/><stop offset=".2" stop-color="#fff6df"/>'+
+        '<stop offset=".9" stop-color="#dfd8c7"/><stop offset="1" stop-color="#a69d8c"/></linearGradient>'+
+        '<linearGradient id="ebony" x2="0" y2="1"><stop stop-color="#070a10"/>'+
+        '<stop offset=".7" stop-color="#29313a"/><stop offset="1" stop-color="#090e15"/></linearGradient></defs>'+
+        '<rect x="0" y="0" width="540" height="70" rx="3" fill="#35271e"/>'+
+        '<path d="M7 5H533" stroke="#bd955b" stroke-width="2"/>'+
+        keys.sort((a,b) => a.black-b.black).map(k =>
+          `<rect data-pitch="${k.pitch}" data-black="${k.black}" x="${7+k.x}" y="9"
+            width="${k.black ? 9.6 : 14.4}" height="${k.black ? 34 : 53}" rx="1"
+            stroke="#4b463f" stroke-width=".7" fill="url(#${k.black ? 'ebony' : 'ivory'})"/>`).join('')+
+        '<path d="M7 64H533" stroke="#100e0d" stroke-width="3"/>';
+    }
+    svg.querySelectorAll('[data-pitch]').forEach(key => {
+      const down = active.has(+key.dataset.pitch);
+      key.setAttribute('fill',down ? '#f0c75e' : `url(#${key.dataset.black === 'true' ? 'ebony' : 'ivory'})`);
+    });
   }
   function restoreDialog() {
     [document.querySelector('header'),$('stage'),document.querySelector('footer')].forEach(el => { el.inert = false; });
@@ -1358,6 +1507,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     };
     for (const id of state.set) $('intro-'+id).oninput = e => {
       state.intros[id]=e.target.value;
+      invalidateRecital();
       save();
     };
   }
@@ -1377,16 +1527,19 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
       'The marker on each bar is last week’s value.</p>');
   }
   function renderRecital() {
+    drawRecitalKeys();
     $('recital-stage').style.backgroundImage = ART[state.venue];
     $('recital-venue').textContent = VENUES[state.venue].name;
-    $('recital-title').textContent = state.recitalDone ? 'Your recital, on record.' : 'Recital night';
-    $('recital-message').textContent = state.recitalDone ? 'Hear the choices you made.' : 'Four weeks. One program.';
+    $('recital-title').textContent = state.recitalDone ? 'Your recital, on record.' :
+      state.recitalReviewed ? 'Program ended with skips.' : 'Recital night';
+    $('recital-message').textContent = state.recitalDone ? 'Hear the choices you made.' : state.recitalReviewed ?
+      `${state.recitalSkipped.length} skipped; ${state.recitalMissing.length} without a week 4 take.` : 'Four weeks. One program.';
     $('recital-program').innerHTML = state.set.map((id,i) =>
       `${String(i+1).padStart(2,'0')} &nbsp; ${esc(piece(id).short)}`).join('<br>');
     $('recital-flow').textContent = 'Flow '+pct(state.flow)+'%';
     $('recital-flow-fill').style.width = pct(state.flow)+'%';
     $('recital-flow-note').textContent = `${(4-3*state.flow).toFixed(1)} seconds between pieces. Run-throughs help you find the next page.`;
-    $('begin-recital').textContent = state.recitalDone ? 'Play recital again' : 'Begin recital';
+    $('begin-recital').textContent = state.recitalDone || state.recitalReviewed ? 'Play recital again' : 'Begin recital';
     $('begin-recital').disabled = false;
     $('stop-recital').disabled = true;
     $('skip-piece').disabled = true;
@@ -1399,6 +1552,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     recitalTimer = null;
     if (recital) stopTake(false);
     recital = null;
+    drawRecitalKeys();
     if (update) {
       $('begin-recital').disabled = false;
       $('stop-recital').disabled = true;
@@ -1409,9 +1563,10 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     }
   }
   function beginRecital() {
+    if (state.completed < 4 || state.set.length < 2) return;
     stopRecital(false);
     V.hush();
-    recital = {index:0,serial:recitalSerial};
+    recital = {index:0,serial:recitalSerial,skipped:[],currentHeard:false};
     $('begin-recital').disabled = true;
     $('stop-recital').disabled = false;
     $('skip-piece').disabled = false;
@@ -1420,18 +1575,24 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   }
   function playRecitalPiece() {
     if (!recital) return;
+    drawRecitalKeys();
     const serial = recital.serial;
     if (recital.index >= state.set.length) {
+      state.recitalSkipped = [...recital.skipped];
+      state.recitalMissing = state.set.filter(id => !state.takes['4:'+id]);
       stopRecital(false);
-      state.recitalDone = true;
+      state.recitalReviewed = true;
+      state.recitalDone = state.recitalSkipped.length === 0 && state.recitalMissing.length === 0;
       renderRecital();
       $('recital-progress').style.width = '100%';
-      hint('Your recital is complete. Open Recital sheet to see your plan, takes and first ear ratings.');
+      hint(state.recitalDone ? 'Your recital is complete. Open Recital sheet to see your plan, takes and first ear ratings.' :
+        'Your program ended with skipped or unprepared passages. Open Recital sheet to review them.');
       save();
       showSheet();
       return;
     }
     const id = state.set[recital.index], take = state.takes['4:'+id];
+    recital.currentHeard = false;
     $('recital-title').textContent = piece(id).short;
     $('recital-message').textContent = state.intros[id] || 'No introduction written for this piece.';
     $('recital-progress').style.width = (recital.index/state.set.length*100)+'%';
@@ -1443,16 +1604,22 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
         recitalTimer = setTimeout(nextRecitalPiece,1000);
         return;
       }
-      $('recital-message').textContent = 'Week 4 · '+piece(id).passage+' · '+Math.round(take.bpm)+' bpm';
+      const rr = state.ratings['4:'+id];
+      const tempoRevealed = rr?.heard && revealedCriteria(rr).includes('tempo');
+      const bpm = tempoRevealed ? Math.round(take.bpm)+' bpm' :
+        'target '+Math.round(piece(id).tempo*take.tempo/100)+' bpm';
+      $('recital-message').textContent = 'Week 4 · '+piece(id).passage+' · '+bpm;
       startTake(take,() => {
         if (!recital || serial !== recitalSerial) return;
+        recital.currentHeard = true;
         $('recital-message').textContent = state.flow < .95 ? 'Finding the page…' : 'Next piece.';
         recitalTimer = setTimeout(nextRecitalPiece,(4-3*state.flow)*1000);
       },true);
     },3000);
   }
-  function nextRecitalPiece() {
+  function nextRecitalPiece(skipped=false) {
     if (!recital) return;
+    if (skipped && !recital.currentHeard) recital.skipped.push(state.set[recital.index]);
     if (recitalTimer) clearTimeout(recitalTimer);
     recitalTimer = null;
     stopTake(false);
@@ -1463,18 +1630,19 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     return `<div class="sheet"><span class="eyebrow" style="color:#5c4d26">Curio Class · Preparing a Recital</span>
       <h2>My recital practice plan</h2><p>${esc(VENUES[state.venue].name)} · ${fmt(total())} program, including introductions</p>
       <p>Flow ${pct(state.flow)}% · ${(4-3*state.flow).toFixed(1)} seconds between pieces · ${state.completed} weeks practiced</p>
+      ${state.recitalReviewed ? `<p>Last playback: ${state.recitalSkipped.length} skipped; `+
+        `${state.recitalMissing.length} without a week 4 take.</p>` : ''}
       <h3>Why this set</h3><p>${esc(state.why || 'No reflection written yet.')}</p>`+
       state.set.map((id,i) => {
         const p = piece(id), t = state.takes['4:'+id], rr = state.ratings['4:'+id], progress = state.progress[id];
         const metered = state.rubric.filter(cid => C.find(c => c.id === cid).meter);
-        const canShow = rr?.heard && metered.every(cid => rr.current[cid]);
         return `<article><h3>${i+1}. ${esc(p.title)}</h3><p>${esc(p.composer)} · ${p.year} · ${fmt(length(id))} at target tempo</p>
           <p>Hard passage ${pct(progress.hard)}% ${word(progress.hard)} · Rest ${pct(progress.rest)}% ${word(progress.rest)}</p>
           <p>${esc(VENUES[state.venue].notes[id])}</p><p>Introduction: ${esc(state.intros[id] || 'Not written.')}</p>
           <table><thead><tr><th>Criterion</th><th>First ear</th><th>Latest rating</th><th>Week 4 meter</th></tr></thead><tbody>`+
           state.rubric.map(cid => {
             const c = C.find(c => c.id === cid);
-            const meter = !c.meter ? 'Ears only' : !t ? 'No week 4 take' : canShow ?
+            const meter = !c.meter ? 'Ears only' : !t ? 'No week 4 take' : rr?.heard && revealedCriteria(rr).includes(cid) ?
               `${t.levels[cid]} · ${metricLabel(t,cid)}` : 'Rate this take to reveal';
             return `<tr><td>${c.name}</td><td>${rr?.first[cid] || 'Not rated'}</td><td>${rr?.current[cid] || 'Not rated'}</td>
               <td>${esc(meter)}</td></tr>`;
@@ -1496,6 +1664,9 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
       state.ratings={};
       state.flow=0;
       state.recitalDone=false;
+      state.recitalReviewed=false;
+      state.recitalSkipped=[];
+      state.recitalMissing=[];
       listenOpen=false;
       moved=false;
       ensureInitial();
@@ -1514,6 +1685,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   document.querySelectorAll('[data-venue]').forEach(b => {
     b.onclick = () => {
       state.venue=+b.dataset.venue;
+      invalidateRecital();
       updateSet();
       feedback();
       save();
@@ -1542,10 +1714,12 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   $('close-listen').onclick = () => {
     listenOpen=false;
     $('view-practice').classList.remove('listening');
+    $('view-practice').classList.remove('blind');
     $('listen').hidden=true;
     syncSheet();
     hint(playback ? 'The take keeps playing. Tap First read to return to listening and Stop.' :
-      'Choose the next open Week tab to plan again, or tap First read to compare takes.');
+      state.completed === 4 ? 'Open Recital to present your program, or tap Listen to compare your takes.' :
+        'Choose the next open Week tab to plan again, or tap First read to compare takes.');
     $('practice-week').focus({preventScroll:true});
   };
   $('play-take').onclick = () => startTake();
@@ -1571,7 +1745,7 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
   $('dialog').addEventListener('close',restoreDialog);
   $('begin-recital').onclick = beginRecital;
   $('stop-recital').onclick = () => stopRecital();
-  $('skip-piece').onclick = nextRecitalPiece;
+  $('skip-piece').onclick = () => nextRecitalPiece(true);
   $('view-sheet').onclick = showSheet;
   $('print-sheet').onclick = () => {
     $('print-area').innerHTML=sheetHTML();
@@ -1593,7 +1767,11 @@ dialog::backdrop {background:#050a14bb;backdrop-filter:blur(5px)}
     save();
   });
   document.body.dataset.mode=state.mode;
-  addEventListener('resize',syncSheet);
+  addEventListener('resize',() => {
+    syncSheet();
+    relocateNotes();
+    if (state.mode === 'set') modeHint();
+  });
   gates();
   updateSet();
   modeHint();

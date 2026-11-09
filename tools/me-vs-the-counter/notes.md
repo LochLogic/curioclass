@@ -33,6 +33,8 @@ Paper totals have no timestamps, so the hand row is hidden. The sensor row stays
 The edge table keeps the latest three finished class counts per ball. A fourth replaces the oldest. The sensor count
 stays the same. Show the chart unlocks only when every ball has been measured. Tap the longest row to answer.
 Back to gym returns to the experiment; Start over clears this mode. Switching modes keeps each mode's finished work.
+The prediction star stays with that ball in the graph. Compare it with the longest row after measuring.
+The chart is an unscored discussion: a corrected choice gets an explanation, not first-choice praise.
 
 ## Talk together
 
@@ -51,6 +53,8 @@ Every ball starts 1.8 meters above the floor. Gravity is 9.8 meters per second s
 Slow plays the same physical times at half speed, and the timeline always covers ten physical seconds.
 
 Taps match hits in order within 0.15 seconds early to 0.40 seconds late, maximizing pairs before minimizing time gaps.
+Equal totals alone do not prove accurate timing. Counting praise requires every tap to pair with a hit.
+Equal paper totals receive a neutral comparison because a paper total contains no timing evidence.
 An unfinished drop is discarded if restarted or interrupted by a mode switch. All controls stay available during a drop.
 D drops; Space taps the hand, including while another button has focus. Enter activates the focused control.
 Motion off keeps real timing and sound but replaces arcs with still floor and peak positions.
@@ -63,7 +67,13 @@ EK-DAT-DI-09; predicting and using the measured longest row teaches EK-DAT-IM-10
 
 ## Sources and model
 
-- FIBA Official Basketball Rules, Basketball Equipment: 1.8 m drop, rebound 1.2 to 1.4 m.
-- ITF Rules of Tennis, Appendix I: 254 cm drop, rebound 135 to 147 cm.
-- OpenStax College Physics 2e, sections 2.7 and 8.5: free fall and bounce factors.
+- [FIBA Basketball Equipment 2024](https://refereeing.fiba.basketball/en/rule-zone/basketball-equipment):
+  a 1.8 m drop now specifies a 1.035 to 1.085 m rebound, both measured at the underside of the ball.
+  The spec's older 1.2 to 1.4 m range measured the rebound at the top. The model retains the spec's required
+  basketball factor 0.85 and ten hits; it is a chosen model, not a current FIBA certification test.
+- [ITF Rules of Tennis 2026, Appendix I](https://www.itftennis.com/media/7221/2026-rules-of-tennis-english.pdf):
+  Type 2 ball rebound 135 to 147 cm. The [ITF Technical Booklet 2026](https://www.itftennis.com/media/15639/2026-technical-booklet.pdf)
+  specifies a 254 cm drop onto a rigid block. The tool's tennis factor extrapolates this to its common 1.8 m drop.
+- [OpenStax College Physics 2e, 2.7](https://openstax.org/books/college-physics-2e/pages/2-7-falling-objects):
+  ideal free fall with g = 9.8; section 8.5 explains kinetic energy lost in inelastic collisions.
 - The rubber-ball factor, visibility cut-off and matching window are chosen by this tool, as specified in spec.md.

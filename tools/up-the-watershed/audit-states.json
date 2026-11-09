@@ -1,10 +1,14 @@
 {
+  "keep": [
+    ".desk",
+    ".power"
+  ],
   "states": [
     {
       "name": "sample-result",
       "steps": [
         {
-          "click": "#open-beach"
+          "click": "#spot-S9"
         },
         {
           "click": "#take-sample"
@@ -12,73 +16,8 @@
       ],
       "keep": [
         "#map-view",
-        "#take-sample",
-        "#kits-left"
-      ]
-    },
-    {
-      "name": "logbook",
-      "steps": [
-        {
-          "click": "#open-beach"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#logbook"
-        }
-      ],
-      "keep": [
-        "#dialog"
-      ]
-    },
-    {
-      "name": "claim-solved",
-      "steps": [
-        {
-          "click": "#open-creek"
-        },
-        {
-          "click": "#storm"
-        },
-        {
-          "click": "#spot-S5"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#spot-S6"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#m-claim"
-        },
-        {
-          "click": "#claim-C"
-        },
-        {
-          "click": "#evidence-C"
-        },
-        {
-          "click": "#log-0"
-        },
-        {
-          "click": "#log-1"
-        },
-        {
-          "click": "#use-log"
-        },
-        {
-          "click": "#submit-claim"
-        }
-      ],
-      "keep": [
-        "#map-view",
-        "#submit-claim"
+        "#map-result",
+        "#take-sample"
       ],
       "sizes": [
         "680x425",
@@ -87,20 +26,8 @@
       ]
     },
     {
-      "name": "fix-tested",
+      "name": "compare-load",
       "steps": [
-        {
-          "click": "#open-creek"
-        },
-        {
-          "click": "#storm"
-        },
-        {
-          "click": "#spot-S5"
-        },
-        {
-          "click": "#take-sample"
-        },
         {
           "click": "#spot-S6"
         },
@@ -108,13 +35,13 @@
           "click": "#take-sample"
         },
         {
-          "click": "#m-claim"
+          "click": "#spot-S7"
         },
         {
-          "click": "#claim-C"
+          "click": "#take-sample"
         },
         {
-          "click": "#evidence-C"
+          "click": "#compare"
         },
         {
           "click": "#log-0"
@@ -124,10 +51,21 @@
         },
         {
           "click": "#use-log"
-        },
-        {
-          "click": "#submit-claim"
-        },
+        }
+      ],
+      "keep": [
+        "#dialog",
+        "#comparison"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "interventions",
+      "steps": [
         {
           "click": "#m-fix"
         },
@@ -136,12 +74,6 @@
         },
         {
           "click": "#fix-A"
-        },
-        {
-          "click": "#test-plan"
-        },
-        {
-          "wait": 550
         }
       ],
       "keep": [
@@ -156,160 +88,8 @@
       ]
     },
     {
-      "name": "whole-creek",
+      "name": "all-interventions",
       "steps": [
-        {
-          "click": "#open-creek"
-        },
-        {
-          "click": "#storm"
-        },
-        {
-          "click": "#spot-S5"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#spot-S6"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#m-claim"
-        },
-        {
-          "click": "#claim-C"
-        },
-        {
-          "click": "#evidence-C"
-        },
-        {
-          "click": "#log-0"
-        },
-        {
-          "click": "#log-1"
-        },
-        {
-          "click": "#use-log"
-        },
-        {
-          "click": "#submit-claim"
-        },
-        {
-          "click": "#whole-creek"
-        }
-      ],
-      "keep": [
-        "#map-view"
-      ],
-      "sizes": [
-        "680x425",
-        "1366x768",
-        "375x812"
-      ]
-    },
-    {
-      "name": "fix-details",
-      "steps": [
-        {
-          "click": "#open-creek"
-        },
-        {
-          "click": "#storm"
-        },
-        {
-          "click": "#spot-S5"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#spot-S6"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#m-claim"
-        },
-        {
-          "click": "#claim-C"
-        },
-        {
-          "click": "#evidence-C"
-        },
-        {
-          "click": "#log-0"
-        },
-        {
-          "click": "#log-1"
-        },
-        {
-          "click": "#use-log"
-        },
-        {
-          "click": "#submit-claim"
-        },
-        {
-          "click": "#m-fix"
-        },
-        {
-          "click": "#fix-details"
-        }
-      ],
-      "keep": [
-        "#dialog"
-      ],
-      "sizes": [
-        "680x425",
-        "1366x768",
-        "375x812"
-      ]
-    },
-    {
-      "name": "over-budget",
-      "steps": [
-        {
-          "click": "#open-creek"
-        },
-        {
-          "click": "#storm"
-        },
-        {
-          "click": "#spot-S5"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#spot-S6"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#m-claim"
-        },
-        {
-          "click": "#claim-C"
-        },
-        {
-          "click": "#evidence-C"
-        },
-        {
-          "click": "#log-0"
-        },
-        {
-          "click": "#log-1"
-        },
-        {
-          "click": "#use-log"
-        },
-        {
-          "click": "#submit-claim"
-        },
         {
           "click": "#m-fix"
         },
@@ -343,6 +123,7 @@
       ],
       "keep": [
         "#budget",
+        "#gauges",
         "#test-plan"
       ],
       "sizes": [
@@ -352,127 +133,10 @@
       ]
     },
     {
-      "name": "out-of-kits",
+      "name": "manual",
       "steps": [
         {
-          "click": "#open-beach"
-        },
-        {
-          "click": "#take-sample",
-          "times": 8,
-          "gap": 0.15
-        }
-      ],
-      "keep": [
-        "#map-view",
-        "#kits-left",
-        "#go-claim"
-      ],
-      "sizes": [
-        "680x425",
-        "1366x768",
-        "375x812"
-      ]
-    },
-    {
-      "name": "empty-evidence",
-      "steps": [
-        {
-          "click": "#open-beach"
-        },
-        {
-          "click": "#m-claim"
-        },
-        {
-          "click": "#claim-A"
-        },
-        {
-          "click": "#evidence-A"
-        }
-      ],
-      "keep": [
-        "#dialog"
-      ],
-      "sizes": [
-        "680x425",
-        "1366x768",
-        "375x812"
-      ]
-    },
-    {
-      "name": "empty-over-budget-portfolio",
-      "steps": [
-        {
-          "click": "#open-creek"
-        },
-        {
-          "click": "#storm"
-        },
-        {
-          "click": "#spot-S5"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#spot-S6"
-        },
-        {
-          "click": "#take-sample"
-        },
-        {
-          "click": "#m-claim"
-        },
-        {
-          "click": "#claim-C"
-        },
-        {
-          "click": "#evidence-C"
-        },
-        {
-          "click": "#log-0"
-        },
-        {
-          "click": "#log-1"
-        },
-        {
-          "click": "#use-log"
-        },
-        {
-          "click": "#submit-claim"
-        },
-        {
-          "click": "#m-fix"
-        },
-        {
-          "click": "#fix-A"
-        },
-        {
-          "click": "#fix-B1"
-        },
-        {
-          "click": "#fix-B2"
-        },
-        {
-          "click": "#fix-C"
-        },
-        {
-          "click": "#fix-D1"
-        },
-        {
-          "click": "#fix-D2"
-        },
-        {
-          "click": "#fix-E"
-        },
-        {
-          "click": "#fix-F"
-        },
-        {
-          "click": "#fix-G"
-        },
-        {
-          "click": "#view-plans"
+          "click": "#manual"
         }
       ],
       "keep": [

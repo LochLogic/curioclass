@@ -92,7 +92,7 @@
     },
     {
       "name": "raccoon-night",
-      "prompt": "A raccoon walking, black and white infrared photograph, its face mask washed out pale, glowing eye shine, full side view. Isolated on flat pure magenta (#FF00FF). No ground shadow. No people, text, letters, numbers or logos.",
+      "prompt": "A raccoon walking, black and white infrared photograph, its face mask washed out pale, gentle eye shine, full side view with all four paws and a complete ringed tail. Fine realistic fur, clean natural fur edges. Isolated on flat pure magenta (#FF00FF). No ground shadow. No people, text, letters, numbers or logos.",
       "cutout": true,
       "key": "magenta",
       "aspect": "1:1",
@@ -100,8 +100,9 @@
       "quality": 78,
       "drawn_by": "codex",
       "despill": false,
-      "review": "ok",
-      "holes": true
+      "review": "cold review: redrawn for clean fur and less overexposed eye; washed-out mask retained; inspected keyed and in-scene",
+      "holes": true,
+      "review_source": "OpenAI gpt-image, revised 2026-11-07"
     },
     {
       "name": "grass-wind",

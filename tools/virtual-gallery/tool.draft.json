@@ -6,7 +6,12 @@
   "outcome": "Select, arrange and interpret a portfolio through an exhibition, its labels and its artist statement.",
   "driver": "students",
   "minutes": "25-45",
-  "modes": ["Select", "Hang", "Walk", "Checklist"],
+  "modes": [
+    "Select",
+    "Hang",
+    "Walk",
+    "Checklist"
+  ],
   "grades_label": "Grades 9-12",
   "sources": [
     "National Core Arts Standards, Visual Arts VA:Pr4, VA:Pr5, VA:Pr6: https://www.nationalartsstandards.org/",
@@ -17,5 +22,5 @@
     "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
   ],
   "third_party": [],
-  "updated": "2026-10-30"
+  "updated": "2026-11-04"
 }

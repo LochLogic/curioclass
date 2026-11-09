@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="data:,">
 <title>Span and Spire · Pulled or squeezed? · Curio Class</title>
-<meta name="description" content="Build a bridge, roll real axle loads across it, then pluck a tower and try a steady shake. Grades 6-12 engineering design. Works offline.">
+<meta name="description"
+  content="Build a bridge, roll real axle loads across it, then pluck a tower and try a steady shake. Grades 6-12 engineering design. Works offline.">
 <!--
 Span and Spire (Curio Class). Starter: kit/starter/src.html.
 Students, grades 6-12. MS-ETS1-1 through MS-ETS1-4 and HS-ETS1-2 through HS-ETS1-4.
@@ -20,266 +21,324 @@ Content CC BY 4.0. Code MIT. One offline file, no network requests. curioclass.o
 <link rel="stylesheet" href="kit:curio">
 <style>
 :root {
-  --paper:#0f1a24; --panel:#16232f; --ink:#eef3f7; --muted:#a7b6c2; --line:#2b3d4c;
-  --brand:#ff6fae; --focus:#7aa2ff; --btn:#20323f; --btn-line:#465867; --head-ink:#eef3f7;
+  --paper:#0b1c2b; --panel:#162b3b; --ink:#eef3f7; --muted:#b4c9d6; --line:#405c70;
+  --brand:#ff6fae; --focus:#7aa2ff; --btn:#20394b; --btn-line:#5e7b8d;
   --pull:#3fc8ff; --push:#ffab2e; --good:#95e1b5;
   font-variant-numeric:tabular-nums;
 }
-body { height:100%; overflow:hidden; }
-header { background:linear-gradient(#192a38,#101b25); border-bottom:1px solid #445260; padding:10px 18px; gap:8px; }
-h1 { font-size:25px; letter-spacing:.02em; }
-h1 small { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); }
-h1 b { color:var(--brand); font-weight:800; }
-button { min-height:44px; min-width:44px; }
-.seg { border:1px solid #465867; border-radius:10px; }
-.seg button { min-height:44px; font-size:14px; padding:0 15px; }
-.seg button[aria-pressed="true"] { background:var(--brand); color:#2a0614; }
-.icon-btn { min-height:44px; font-size:13px; padding:0 12px; border-radius:9px; border-width:1px; }
-main { grid-template-columns:minmax(0,1fr) 324px; grid-template-rows:minmax(0,1fr) auto; }
-.stage { grid-column:1; grid-row:1; min-height:0; background:#243944; isolation:isolate; }
+* { box-sizing:border-box; }
+body { display:block; height:100dvh; overflow:hidden; margin:0; background:#0b1c2b; }
+button { min-height:44px; min-width:44px; cursor:pointer; }
+button:focus-visible, input:focus-visible, summary:focus-visible { outline:3px solid var(--focus); outline-offset:2px; }
+main { display:grid; height:100%; grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) auto 48px; gap:0; }
+.stage { grid-column:1; grid-row:1; position:relative; min-height:0; isolation:isolate; overflow:hidden;
+  background:#102f4a; border:1px solid #7eabb355; margin:8px 8px 0; box-shadow:inset 0 0 40px #0008; }
 #world { position:absolute; inset:0; width:100%; height:100%; touch-action:none; cursor:crosshair; }
-#world:focus-visible { outline-offset:-5px; }
-.panel { grid-column:2; grid-row:1 / span 2; border-left:1px solid #485260; padding:12px; gap:9px;
-  background:linear-gradient(115deg,#1c2c38,#14212d); }
-.panel h2 { font-size:11px; text-transform:uppercase; letter-spacing:.16em; color:var(--muted); margin:0 0 5px; }
-.row { display:flex; gap:6px; }
-.row>* { flex:1; min-width:0; }
-.btn { background:linear-gradient(#2b3e4b,#1e303d); border:1px solid #4a5e6e; border-radius:7px; padding:5px 8px;
-  font-weight:650; font-size:13px; box-shadow:inset 0 1px #ffffff12,0 2px 2px #0003; }
-.btn:hover { border-color:#9daebb; }
-.btn[aria-pressed="true"] { border-color:var(--brand); background:#573148; color:#fff; box-shadow:inset 0 -3px var(--brand); }
+#world:focus-visible { outline:3px solid var(--focus); outline-offset:-4px; }
+.btn { border:1px solid #628092; border-radius:2px; padding:5px 8px; font-size:12px; font-weight:600;
+  color:var(--ink); background:linear-gradient(160deg,#324f62,#192f40); box-shadow:inset 0 1px #daeaf025,0 2px 2px #0007; }
+.btn:hover { border-color:#dce8ed; }
+.btn[aria-pressed=true] { border-color:#ffc7df; background:linear-gradient(#723c59,#422b41); box-shadow:inset 0 -3px var(--brand); }
 .btn:disabled { opacity:.45; cursor:default; }
-.run { min-height:52px; background:linear-gradient(#ff92c2,#ff6fae); color:#2a0614; border:1px solid #ffbad8;
-  font-size:22px; letter-spacing:.04em; box-shadow:inset 0 1px #ffe3ef,0 4px 0 #733852; }
-.run kbd { font:11px 'Segoe UI',sans-serif; opacity:.8; }
-.shelf { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; }
-.truck { padding:3px 1px 5px; font-size:10px; line-height:1.2; }
-.truck img { display:block; width:100%; height:32px; object-fit:contain; margin-bottom:2px; pointer-events:none; }
-.truck strong { display:block; font-size:11px; }
-.piece { padding:4px 1px; font-size:10px; line-height:1.1; }
-.piece i { display:block; width:26px; height:6px; margin:3px auto 5px; border:1px solid #d0a172;
+.panel { grid-column:1; grid-row:2; border:0; border-top:3px solid #526e7b; min-height:0; overflow:visible;
+  padding:8px 12px; display:grid; grid-template-columns:150px minmax(0,1fr) 252px; gap:6px 14px;
+  background:repeating-linear-gradient(90deg,#ffffff03 0 1px,transparent 1px 4px),linear-gradient(#2b414d,#152733);
+  box-shadow:0 -4px 12px #0006; }
+.station-label,.panel h2 { font:11px Consolas,monospace; color:#c8d8e2; letter-spacing:.08em; margin:0 0 4px; }
+.rig-selector { grid-column:1; grid-row:1; display:grid; grid-template-columns:1fr 1fr; gap:4px; }
+.rig-selector .station-label { grid-column:1 / -1; }
+#m-yard { grid-column:1 / -1; min-height:44px; }
+.panel-primary { grid-column:2; grid-row:1; display:grid; grid-template-columns:92px minmax(0,1fr) minmax(0,1fr); gap:10px; }
+.row { display:flex; gap:5px; }
+.row>* { flex:1; min-width:0; }
+.run-row { flex-direction:column; padding-top:17px; }
+.run { background:linear-gradient(#ff9ec8,#ed639f); color:#2a0614; border:1px solid #ffd6e8; min-height:62px;
+  font:700 20px Consolas,monospace; box-shadow:inset 0 1px #ffe3ef,0 4px 0 #5b2a43; }
+.run kbd { display:block; font:10px Consolas,monospace; opacity:.8; }
+.shelf { display:grid; grid-template-columns:repeat(5,minmax(44px,1fr)); gap:4px; }
+.truck,.piece { padding:4px 1px; font-size:11px; line-height:1.1; }
+.truck { height:80px; }
+.truck img { display:block; width:100%; height:36px; object-fit:contain; margin-bottom:3px; pointer-events:none; }
+.truck strong,.piece strong { display:block; font:11px Consolas,monospace; margin-top:3px; }
+.piece { height:80px; }
+.piece i { display:block; width:26px; height:7px; margin:8px auto 10px; border:1px solid #d0a172;
   background:repeating-linear-gradient(0deg,#755039 0 2px,#b48d61 2px 3px); box-shadow:0 1px 2px #0008; }
-.piece[data-piece="1"] i { height:9px; }
-.piece[data-piece="2"] i,.piece[data-piece="3"] i { background:linear-gradient(#f3f7fc,#71879b,#d2dee9); border-color:#b0c5d4; }
-.piece[data-piece="3"] i { height:9px; }
-.piece[data-piece="4"] i { height:3px; border:0; background:#c0cbd3; }
-.piece strong { display:block; font-size:10px; font-weight:600; margin-top:3px; color:var(--muted); }
-.tools .btn { padding:4px 2px; font-size:12px; }
-.tools { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px; }
-.switches { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
-.switches .btn { font-size:12px; }
-.cost { font:700 14px Consolas,monospace; display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px;
-  padding:8px; background:#0d1922; border:1px solid #344855; border-radius:5px; color:#e9d2ac; }
-.cost small { font:11px 'Segoe UI',sans-serif; color:var(--muted); }
-.promises { border:1px solid #3e5261; border-radius:6px; background:#0f1a2480; }
-summary { min-height:44px; display:flex; align-items:center; padding:5px 9px; font-size:13px; font-weight:700; cursor:pointer; }
-summary::before { content:'▸'; margin-right:7px; color:var(--brand); }
-details[open]>summary::before { content:'▾'; }
-.promise-list { padding:0 6px 6px; }
-.promise { display:grid; grid-template-columns:44px 35px 1fr 22px; gap:5px; align-items:center; min-height:44px;
-  border-top:1px solid #31414e; font-size:11px; cursor:pointer; line-height:1.25; }
-.promise input { appearance:none; width:44px; height:44px; margin:0; display:grid; place-items:center; border-radius:5px; cursor:pointer; }
-.promise input::after { content:''; width:17px; height:17px; border:1px solid #adc0cd; border-radius:3px; background:#172936; }
-.promise input:checked::after { content:'✓'; color:#2a0614; background:var(--brand); border-color:var(--brand); text-align:center; font-weight:900; }
-.promise img { width:33px; height:32px; object-fit:contain; }
-.promise strong { display:block; font-size:12px; }
-.promise output { color:var(--good); font-size:16px; }
-.hint { margin:0; font-size:13px; line-height:1.4; color:#eef3f7; min-height:54px; padding:7px 9px;
-  background:#0e1b25; border-left:3px solid var(--brand); border-radius:3px; }
-.privacy { margin:0; font-size:10px; color:var(--muted); line-height:1.3; }
-.apron { grid-column:1; grid-row:2; background:linear-gradient(#182a37,#0e1a24); border-top:1px solid #3e5261; padding:8px 14px; min-height:42px;
-  display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:6px; font-size:11px; color:var(--muted); }
-.legend { display:flex; gap:16px; align-items:center; }
-.legend span { display:flex; align-items:center; gap:6px; }
-.legend i { font-size:18px; color:var(--pull); font-style:normal; }
+.piece[data-piece='1'] i { height:10px; }
+.piece[data-piece='2'] i,.piece[data-piece='3'] i { background:linear-gradient(#f3f7fc,#71879b,#d2dee9); border-color:#b0c5d4; }
+.piece[data-piece='3'] i { height:10px; }
+.piece[data-piece='4'] i { height:3px; border:0; background:#c0cbd3; }
+.tools { grid-column:3; grid-row:1; display:grid; grid-template-columns:repeat(4,1fr); gap:4px; padding-top:17px; align-content:start; }
+.tools .btn { padding:4px 2px; font-size:11px; }
+.switches { grid-column:3; grid-row:1; display:flex; gap:5px; align-self:end; }
+.switches .btn { flex:1; }
+.power-panel { grid-column:3; grid-row:2; display:grid; grid-template-columns:repeat(4,minmax(44px,1fr)); gap:4px; }
+.power-panel button { padding:3px; font-size:11px; }
+#save-row { grid-column:1; grid-row:2; }
+#save-row .btn { padding:3px; font-size:11px; }
+.cost { grid-column:2; grid-row:2; justify-self:end; align-self:start; font:12px Consolas,monospace; color:#e9d2ac; }
+.hint { grid-column:2; grid-row:2; align-self:end; margin:0; padding:4px 0; min-height:28px; max-width:100%;
+  color:#eff5fa; font-size:12px; line-height:1.3; border:0; background:none; border-radius:0; }
+.apron { grid-column:1; grid-row:3; display:flex; justify-content:space-between; align-items:center; gap:12px;
+  padding:0 12px; background:#0a1924; border-top:1px solid #516874; font:11px Consolas,monospace; color:#c5d7e2; }
+.maker { display:flex; align-items:center; gap:10px; }
+.maker>span { font-size:10px; letter-spacing:.04em; color:#d3d7ca; padding:8px 12px; border:1px solid #8b9483;
+  background:linear-gradient(120deg,#424d48,#25332f); box-shadow:inset 0 0 0 2px #17241e,0 2px 3px #0008; }
+.maker .btn { min-height:44px; }
+.legend { display:flex; gap:16px; }
+.legend span { display:flex; gap:5px; align-items:center; }
+.legend i { font:16px Consolas,monospace; color:var(--pull); }
 .legend span:nth-child(2) i { color:var(--push); }
-.legend span:nth-child(3) i { color:#b9c5ce; }
-.sliders { display:grid; grid-template-columns:1fr 1fr; gap:0 10px; }
-.slider { display:flex; flex-direction:column; font-size:11px; color:var(--muted); gap:2px; }
-.slider output { color:var(--ink); font-weight:700; }
-input[type=range] { width:100%; height:44px; margin:0; accent-color:var(--brand); }
-.tower-controls { display:flex; flex-direction:column; gap:4px; }
-.tower-controls h2 { margin-top:3px; }
-.tower-controls .row button { font-size:11px; }
-.wind-row { display:grid; grid-template-columns:65px 1fr; gap:8px; align-items:center; }
-.wind-scale { color:var(--muted); font-size:10px; line-height:1.3; }
-#tower-readout { font-size:12px; color:#ddeaf5; padding:4px 0; min-height:20px; }
-#stage-chips { position:absolute; top:12px; left:12px; right:12px; pointer-events:none; display:flex; flex-wrap:wrap; gap:6px;
-  align-content:flex-start; z-index:2; }
-.chip { background:#0f1a24ed; border:1px solid #69808b70; box-shadow:0 2px 7px #0003; color:#eef3f7; padding:7px 10px;
-  font-size:12px; line-height:1.2; border-radius:5px; }
-.chip strong { color:#fff; }
-.chip.sub { color:#b9cad7; }
-#result { position:absolute; left:50%; bottom:48px; transform:translateX(-50%); padding:11px 22px; font-size:18px;
-  font-weight:800; color:#ffecf4; background:#392336ef; border:2px solid var(--brand); border-radius:4px; text-align:center;
+.legend span:nth-child(3) i { color:#bdcbd3; }
+#stage-chips { position:absolute; top:112px; left:16px; right:16px; pointer-events:none; display:flex; flex-wrap:wrap; gap:6px; z-index:2; }
+.chip { background:#081e32ed; border-left:2px solid #8aa6b8; color:#eef3f7; padding:6px 8px; font:11px/1.3 Consolas,monospace; }
+.chip.sub { color:#c8d7e2; }
+#gauges { position:absolute; left:16px; top:10px; display:flex; gap:8px; pointer-events:none; z-index:2; }
+.gauge { width:122px; background:linear-gradient(130deg,#304b5c,#142b3d); border:1px solid #8aa7b8; padding:4px;
+  box-shadow:inset 0 0 0 2px #0c1c29,0 3px 8px #0006; text-align:center; }
+.gauge svg { display:block; width:100%; height:60px; }
+.gauge output { display:block; font:700 12px Consolas,monospace; color:#e5edf2; }
+.gauge-label { font:10px Consolas,monospace; letter-spacing:.06em; color:#c8d9e4; }
+.gauge[data-over=true] output { color:#ffc5c5; }
+#result { position:absolute; left:50%; bottom:44px; transform:translateX(-50%); padding:10px 18px; font-size:18px;
+  font-weight:700; color:#ffecf4; background:#271d31f5; border:1px solid var(--brand); text-align:center;
   pointer-events:none; box-shadow:0 5px 18px #0005; z-index:3; max-width:90%; }
-#result small { display:block; font-size:11px; font-weight:500; margin-top:4px; }
-#build-cue { position:absolute; bottom:12px; left:12px; color:#eef3f7; background:#0f1a24e8; border:1px solid #617484;
-  border-radius:4px; padding:5px 8px; font-size:11px; pointer-events:none; }
-#tag-toast { position:absolute; right:15px; bottom:65px; padding:12px 16px; background:#ffd6e8; color:#40213a;
-  border:3px double #83445e; transform:rotate(-5deg); box-shadow:0 8px 20px #0005; font-size:14px; z-index:4; pointer-events:none; }
-#tag-toast.stamp { animation:stamp .45s ease-out; }
-@keyframes stamp { from { transform:scale(1.5) rotate(-14deg); opacity:0; } to { transform:scale(1) rotate(-5deg); opacity:1; } }
-.go-breathe { animation:breathe 1.2s ease-out 1; }
-@keyframes breathe { 50% { box-shadow:0 0 0 7px #ff6fae40,0 4px 0 #733852; } }
-.calm .go-breathe,.calm #tag-toast.stamp { animation:none; }
-#yard { position:absolute; inset:0; overflow:auto; background:radial-gradient(ellipse at 40% 0,#283748,#101c27 75%); padding:20px; }
-#yard h2 { font:800 24px 'Trebuchet MS',sans-serif; margin:0; }
+#result small { display:block; font-size:11px; font-weight:400; margin-top:4px; }
+#build-cue { position:absolute; bottom:12px; left:12px; padding:5px 8px; color:#eff6fc; background:#0a2034ed;
+  border-left:2px solid #ff9cc9; font:11px Consolas,monospace; pointer-events:none; }
+.sliders { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.slider { display:flex; flex-direction:column; font:11px Consolas,monospace; color:#bdd2e0; }
+.slider output { color:#fff; }
+input[type=range] { width:100%; height:44px; margin:0; accent-color:#ff8cbd; }
+.tower-controls { grid-column:2; grid-row:2; display:grid; grid-template-columns:1fr 150px 1.2fr; gap:8px; }
+.wind-row { display:grid; grid-template-columns:56px minmax(0,1fr); gap:6px; align-items:start; }
+.wind-scale { font-size:10px; }
+#tower-readout { grid-column:1 / -1; font:11px Consolas,monospace; }
+#top-loads { grid-column:2; grid-row:1; align-self:end; }
+body[data-mode=tower] .panel-primary { grid-template-columns:100px minmax(0,1fr) minmax(0,1fr); }
+body[data-mode=tower] .pieces { grid-column:3; }
+body[data-mode=tower] .panel { grid-template-columns:150px minmax(0,1fr) 252px; }
+body[data-mode=tower] .hint { grid-row:3; }
+body[data-mode=tower] .cost { grid-row:3; }
+body[data-mode=tower] .power-panel { align-self:start; }
+#budget-panel { position:fixed; z-index:10; inset:0; margin:auto; width:290px; height:max-content; padding:12px; border:1px solid #b5c8d4;
+  background:linear-gradient(140deg,#324b5a,#142a3c); box-shadow:0 8px 30px #0009; font:12px Consolas,monospace; }
+#budget-status { display:block; }
+#borrow-row { grid-column:1; grid-row:3; }
+#yard { position:absolute; inset:0; overflow:auto; background:linear-gradient(140deg,#153551,#0b1e31); padding:20px; }
+#yard h2 { font:700 24px Consolas,monospace; margin:0; }
 #yard p { font-size:12px; color:var(--muted); margin:6px 0 15px; }
-.cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(90px,1fr)); gap:8px; margin-bottom:14px; }
-.design-card { min-width:0; max-width:200px; text-align:left; padding:8px; border:1px solid #5d6e79; background:linear-gradient(145deg,#293d4c,#172836);
-  border-radius:6px; box-shadow:0 6px 10px #0004; }
-.design-card[aria-pressed="true"] { border:2px solid var(--brand); padding:7px; background:linear-gradient(145deg,#58384d,#26313f); }
-.design-card svg { display:block; width:100%; height:85px; background:#0b1924; border:1px solid #4c6171; margin-bottom:8px; }
+.cards { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:8px; margin-bottom:14px; }
+.design-card { min-width:0; max-width:220px; text-align:left; padding:8px; border:1px solid #7898ab;
+  background:linear-gradient(145deg,#294a63,#112b40); border-radius:2px; }
+.design-card[aria-pressed=true] { border-color:#ffc7df; background:#54354b; }
+.design-card svg { display:block; width:100%; height:74px; background:#0b1924; border:1px solid #4c6171; margin-bottom:8px; }
 .design-card strong { display:block; font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.design-card small { display:block; font-size:11px; margin-top:5px; color:#cedae4; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
-.cards.crowded .design-card svg { height:28px; }
-.compare-wrap { overflow:auto; border:1px solid #566674; border-radius:5px; }
-table { border-collapse:collapse; width:100%; font-size:12px; background:#12212c; }
-th,td { border-bottom:1px solid #364957; padding:10px; text-align:left; min-width:115px; }
-th:first-child { min-width:160px; color:#b8c8d6; }
+.design-card small { display:block; font-size:11px; margin-top:5px; color:#d3e1eb; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.compare-wrap { overflow:auto; border:1px solid #7898ab; }
+table { border-collapse:collapse; width:100%; font:12px Consolas,monospace; background:#122b40; }
+th,td { border-bottom:1px solid #466277; padding:10px; text-align:left; min-width:115px; }
+th:first-child { min-width:160px; color:#c6d8e5; }
 thead th { color:#ffd6e8; background:#293a48; }
-#yard-actions { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
-.drawer { position:fixed; inset:0; background:#0009; z-index:20; display:grid; place-items:center; padding:14px; }
-.book { background:linear-gradient(130deg,#233441,#14212d); border:1px solid #8193a1; border-radius:8px; padding:16px;
-  width:min(860px,100%); max-height:90vh; overflow:auto; box-shadow:0 15px 90px #0009; }
-.book .book-head { display:flex; justify-content:space-between; align-items:center; gap:8px; }
-.book h2 { margin:0; font-size:21px; }
-.tag-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:10px; margin-top:14px; }
-.tag { border:1px dashed #78909f; border-radius:3px 14px 3px 3px; padding:10px; min-height:112px; background:#142530;
-  position:relative; font-size:11px; color:#b7c9d8; }
-.tag.found { background:linear-gradient(130deg,#f5cfdb,#c9a5b2); border:3px double #70354e; color:#3c1b2c; }
+#yard-actions { grid-column:2; grid-row:1; display:grid; grid-template-columns:repeat(6,1fr); gap:6px; align-self:center; }
+body[data-mode=yard] .panel { min-height:160px; }
+body[data-mode=yard] .hint { grid-column:2; grid-row:2; }
+dialog { color:var(--ink); background:#132a3c; border:1px solid #8eabbc; border-radius:2px; padding:18px;
+  max-width:calc(100vw - 20px); max-height:calc(100dvh - 20px); }
+dialog::backdrop { background:#000b; }
+dialog p { font-size:13px; line-height:1.6; }
+.book-head { display:flex; justify-content:space-between; align-items:center; gap:8px; }
+.book-head h2 { margin:0; font:700 20px Consolas,monospace; }
+#manual-drawer { position:fixed; inset:auto auto 52px 12px; margin:0; width:580px; max-height:calc(100dvh - 64px);
+  background:repeating-linear-gradient(0deg,#ffffff03 0 1px,transparent 1px 25px),#152d40; }
+#manual-drawer h3 { color:#ffc6df; font:14px Consolas,monospace; margin:18px 0 6px; }
+.privacy { color:#b8cddc; font-size:11px; line-height:1.4; }
+.drawer { padding:0; width:900px; }
+.book { padding:18px; }
+.tag-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:0; margin-top:14px; border-top:1px solid #5a788b; }
+.tag { border-bottom:1px solid #5a788b; border-right:1px solid #5a788b; padding:14px; min-height:120px;
+  font-size:12px; line-height:1.5; color:#b9cfdd; }
+.tag.found { background:#253f4d; color:#eff6fa; border-left:3px solid #a8ddc7; }
 .tag img { width:42px; height:30px; object-fit:contain; float:right; }
-.tag strong { display:block; font-size:13px; margin:4px 0; }
-.tag time { display:block; margin-top:5px; font:10px Consolas,monospace; }
-dialog { color:var(--ink); background:#1b2e3d; border:1px solid #8e9dad; border-radius:8px; padding:20px; max-width:90vw; }
-dialog::backdrop { background:#000a; }
-dialog p { max-width:350px; font-size:15px; line-height:1.5; }
-dialog input { min-height:44px; background:#10202c; color:var(--ink); border:1px solid #8e9dad; padding:8px; width:100%; margin-bottom:12px; }
+.tag strong { display:block; font:700 13px Consolas,monospace; margin:4px 0; }
+.tag time { display:block; margin-top:8px; font:10px Consolas,monospace; color:#a8ddc7; }
+.promises { border:1px solid #7898ab; margin-top:14px; }
+summary { min-height:44px; padding:10px; cursor:pointer; font-size:13px; }
+.promise-list { display:grid; grid-template-columns:1fr 1fr; gap:0 12px; padding:0 10px 10px; }
+.promise { display:grid; grid-template-columns:44px 28px 1fr 20px; align-items:center; gap:5px; min-height:62px;
+  border-top:1px solid #4a667b; font-size:11px; cursor:pointer; }
+.promise input { width:44px; height:44px; margin:0; accent-color:var(--brand); }
+.promise img { width:28px; height:30px; object-fit:contain; }
+.promise strong { display:block; font-size:12px; }
+.promise .reason { display:block; color:#d4e0e9; margin-top:3px; font-size:11px; }
+.promise output { color:var(--good); font-size:16px; }
+#confirm-dialog p { max-width:350px; }
+#confirm-dialog input { min-height:44px; background:#10202c; color:var(--ink); border:1px solid #8e9dad; padding:8px; width:100%; margin-bottom:12px; }
 .sr { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
-body.compact header { padding:4px 7px; gap:4px; flex-wrap:nowrap; }
-body.compact h1 { font-size:16px; white-space:nowrap; }
-body.compact h1 small { display:none; }
-body.compact .seg button { padding:0 8px; font-size:12px; }
-body.compact .icon-btn { padding:0 7px; font-size:11px; }
-body.compact main { grid-template-columns:minmax(0,1fr) 270px; }
-body.compact .panel { padding:7px; gap:5px; }
-body.compact .panel h2 { display:none; }
-body.compact .truck img { height:22px; }
-body.compact .truck { font-size:10px; }
-body.compact .run { min-height:44px; font-size:18px; }
-body.compact .cost { padding:4px 6px; font-size:11px; }
-body.compact .cost small { font-size:10px; }
-body.compact .hint { font-size:11px; min-height:44px; padding:5px 7px; position:fixed; left:8px; bottom:43px;
-  width:calc(100vw - 290px); max-width:530px; z-index:5; background:#0e1b25f5; }
-body.compact #build-cue { display:none; }
-body.compact[data-mode="yard"] .hint { position:static; width:auto; max-width:none; }
-body.compact[data-mode="tower"] .hint { top:118px; bottom:auto; width:clamp(130px,calc((100vw - 345px)/2 - 12px),300px); }
-body.compact #result { bottom:100px; }
-body.compact .apron { padding:4px 8px; min-height:31px; font-size:10px; }
-body.compact .legend { gap:8px; }
-body.compact .legend i { font-size:14px; }
-body.compact .privacy { font-size:10px; }
-body.compact .chip { padding:5px 7px; font-size:10px; }
-body.compact #stage-chips { top:8px; left:8px; right:8px; gap:4px; }
-body.compact #result { bottom:100px; padding:8px 12px; font-size:14px; }
-body.compact .tower-controls { gap:0; }
-body.compact .tower-controls .row button { min-height:44px; }
-body.compact #tower-readout { font-size:10px; }
-body.compact #yard { padding:12px; }
-body.compact .design-card { padding:5px; }
-body.compact .design-card[aria-pressed="true"] { padding:4px; }
-body.compact .design-card svg { height:34px; margin-bottom:4px; }
-body.compact .design-card strong { font-size:11px; }
-body.compact .design-card small { font-size:10px; margin-top:3px; }
-body.stack { height:100%; }
-body.stack main { grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(180px,1fr) auto auto; }
-body.stack .stage { grid-row:1; }
-body.stack .apron { grid-row:2; }
-body.stack .panel { grid-column:1; grid-row:3; max-height:48vh; border-left:0; border-top:1px solid #51616f; }
-body.stack .panel-primary { display:grid; grid-template-columns:110px 1fr 1fr; gap:8px; align-items:stretch; }
-body.stack[data-mode="tower"] .panel-primary { grid-template-columns:110px minmax(0,1fr); }
-body.stack[data-mode="tower"] .pieces { grid-column:auto; }
-body.stack .panel h2 { display:none; }
-body.stack .run-row { align-self:stretch; }
-body.stack .run-row .run { width:100%; }
-body.stack .truck img { height:23px; }
-body.stack .truck { font-size:10px; }
-body.stack .piece strong { display:none; }
-body.stack .piece { font-size:10px; }
-body.stack #hint { order:-1; min-height:42px; }
-body.stack .panel-primary { order:-2; }
-body.stack .cost,body.stack #yard-actions { order:0; }
-@media (max-width:560px) {
-  header { padding:6px; gap:5px; }
-  h1 { font-size:18px; }
-  h1 small { display:none; }
-  .seg { order:2; width:100%; display:grid; grid-template-columns:1fr 1fr 1fr; }
-  .seg button { font-size:13px; }
-  .icon-btn { font-size:11px; padding:0 7px; }
-  #tags { margin-left:auto; }
-  #motion,#sound,#read { min-width:44px; max-width:72px; }
-  body.stack main { grid-template-rows:minmax(200px,1fr) auto auto; }
-  body.stack .panel { max-height:47vh; padding:7px; gap:5px; }
-  body.stack .panel-primary { grid-template-columns:84px 1fr; gap:5px; }
-  body.stack[data-mode="tower"] .panel-primary { grid-template-columns:84px minmax(0,1fr); }
-  body.stack .run-row { flex-direction:column; }
-  body.stack .run { font-size:18px; min-height:44px; padding:4px 3px; white-space:nowrap; }
-  body.stack .pieces { grid-column:1 / -1; }
-  body.stack .piece strong { display:block; font-size:10px; }
-  body.stack .piece i { display:none; }
-  body.stack .run kbd { display:none; }
-  .chip { font-size:10px; padding:4px 6px; }
-  #stage-chips { left:7px; top:7px; right:7px; gap:4px; }
-  #build-cue { font-size:10px; bottom:8px; left:7px; max-width:95%; }
-  .apron { min-height:29px; padding:4px 7px; font-size:10px; }
-  .legend { gap:10px; }
-  .apron .scale-note { display:none; }
-  .legend i { font-size:14px; }
+@media (max-width:1100px) {
+  .panel,body[data-mode=tower] .panel { grid-template-columns:108px minmax(0,1fr) 196px; padding:6px; gap:5px 8px; }
+  .panel-primary { grid-template-columns:64px minmax(0,1fr); gap:5px; }
+  .panel-primary .pieces { grid-column:2; }
+  .panel-primary .run-row { grid-row:1 / span 2; padding-top:0; }
+  .panel h2,.station-label { display:none; }
+  .shelf { gap:3px; }
+  .truck { height:50px; display:flex; flex-direction:column; align-items:center; font-size:10px; }
+  .truck img { height:19px; margin:0; }
+  .truck strong { font-size:10px; margin:1px 0 0; }
+  .piece { height:44px; font-size:10px; }
+  .piece i { display:none; }
+  .piece strong { font-size:10px; }
+  .tools { padding-top:0; }
+  .switches { align-self:end; }
+  .cost { font-size:10px; }
+  .hint { font-size:11px; min-height:32px; }
+  .power-panel { grid-template-columns:repeat(4,1fr); }
+  .power-panel button { font-size:10px; }
+  .rig-selector { grid-template-columns:1fr; }
+  #m-yard { grid-column:1; }
+  .rig-selector .btn { min-height:32px; }
+  .rig-selector { grid-template-columns:1fr 1fr; }
+  #m-yard { grid-column:1 / -1; }
+  .rig-selector .btn { min-height:44px; }
+  .apron { padding:0 6px; gap:8px; }
+  .maker>span { max-width:280px; padding:4px 10px; }
+  .scale-note { display:none; }
+  .legend { font-size:10px; gap:7px; }
+  body[data-mode=tower] .panel-primary { grid-template-columns:64px minmax(0,1fr); }
+  body[data-mode=tower] .pieces { grid-column:2; grid-row:1; }
+  #top-loads { grid-row:2; }
+  #top-loads .btn { font-size:10px; padding:3px; }
+  .tower-controls { grid-template-columns:1fr 1fr; }
+  #valley { grid-column:1; grid-row:2; font-size:10px; }
+  .wind-row { grid-column:2; grid-row:1 / span 2; }
+  #tower-readout { display:none; }
+  body[data-mode=tower] .cost { grid-column:3; grid-row:3; }
+  body[data-mode=tower] .hint { grid-column:2; }
+}
+@media (max-height:560px) and (min-width:600px) {
+  .stage { margin:4px 4px 0; }
+  main { grid-template-rows:minmax(0,1fr) auto 45px; }
+  .panel,body[data-mode=tower] .panel { grid-template-columns:96px minmax(0,1fr) 190px; gap:4px 6px; padding:5px; }
+  .panel-primary { grid-template-columns:56px minmax(0,1fr); }
+  .run { font-size:16px; }
+  .run kbd { display:none; }
+  .hint { font-size:10px; min-height:28px; }
+  .cost { font-size:10px; }
+  .maker>span { max-width:240px; }
+  #gauges { top:6px; left:8px; gap:4px; }
+  .gauge { width:88px; padding:2px; }
+  .gauge svg { height:36px; }
+  .gauge output,.gauge-label { font-size:10px; }
+  #stage-chips { top:76px; left:8px; gap:3px; }
+  .chip { font-size:10px; padding:3px 5px; }
+  #build-cue { display:none; }
+  #result { bottom:12px; padding:6px 10px; font-size:13px; }
+  body[data-mode=tower] .panel { grid-template-columns:96px minmax(0,1fr) 190px; }
+  body[data-mode=tower] .tower-controls { grid-column:3; grid-row:1 / span 2; gap:3px; }
+  body[data-mode=tower] .tools { grid-column:1; grid-row:2; grid-template-columns:1fr 1fr; }
+  body[data-mode=tower] .switches { grid-column:2; grid-row:2; align-self:start; }
+  body[data-mode=tower] #save-row { grid-column:2; grid-row:2; align-self:end; }
+  body[data-mode=tower] .power-panel { grid-column:3; grid-row:3; }
+  body[data-mode=tower] .hint { grid-column:1 / span 2; grid-row:3; }
+  body[data-mode=tower] .cost { grid-column:2; grid-row:2; align-self:center; }
+  body[data-mode=tower] .wind-scale { display:none; }
+  body[data-mode=tower] #valley { padding:2px; }
+}
+@media (max-width:599px) {
+  main { grid-template-rows:minmax(0,1fr) auto 76px; }
+  .stage { margin:4px 4px 0; }
+  .panel,body[data-mode=tower] .panel { grid-template-columns:76px minmax(0,1fr); padding:5px; gap:5px; }
+  .rig-selector { grid-column:1; grid-row:1; grid-template-columns:1fr; align-content:start; }
+  .rig-selector #m-yard { grid-column:1; }
+  .panel-primary,body[data-mode=tower] .panel-primary { grid-column:2; grid-row:1; grid-template-columns:1fr; gap:4px; }
+  .panel-primary .run-row { grid-column:1; grid-row:1; flex-direction:row; padding:0; }
+  .run { min-height:44px; font-size:18px; }
+  .run kbd { display:none; }
+  .panel-primary #trucks { grid-column:1; grid-row:2; }
+  .panel-primary .pieces,body[data-mode=tower] .panel-primary .pieces { grid-column:1; grid-row:3; }
+  .truck { height:50px; }
+  .tools { grid-column:1 / -1; grid-row:2; padding:0; }
+  .switches { grid-column:1 / -1; grid-row:3; justify-self:start; width:50%; }
+  #save-row { grid-column:1 / -1; grid-row:3; justify-self:end; width:48%; }
+  .power-panel { grid-column:1 / -1; grid-row:4; }
+  .cost { grid-column:1 / -1; grid-row:5; justify-self:start; }
+  .hint { grid-column:1 / -1; grid-row:6; font-size:11px; min-height:30px; }
+  .apron { flex-wrap:wrap; justify-content:center; gap:0; padding:0 5px; }
+  .maker { width:100%; gap:6px; }
+  .maker>span { max-width:none; flex:1; font-size:10px; padding:4px 10px; }
+  .legend { width:100%; justify-content:center; }
+  #gauges { top:6px; left:6px; gap:4px; }
+  .gauge { width:92px; padding:2px; }
+  .gauge svg { height:39px; }
+  .gauge output,.gauge-label { font-size:10px; }
+  #stage-chips { top:82px; left:6px; right:6px; }
+  .chip { font-size:10px; padding:4px; }
+  #build-cue { display:none; }
+  #result { bottom:14px; font-size:13px; padding:6px 8px; }
+  #top-loads { grid-column:1; grid-row:2; }
+  body[data-mode=tower] .tower-controls { grid-column:1 / -1; grid-row:2; grid-template-columns:1fr 1fr; gap:3px; }
+  body[data-mode=tower] .tools { grid-row:3; }
+  body[data-mode=tower] .switches,body[data-mode=tower] #save-row { grid-row:4; }
+  body[data-mode=tower] .power-panel { grid-row:5; }
+  body[data-mode=tower] .cost { grid-column:1 / -1; grid-row:6; }
+  body[data-mode=tower] .hint { grid-column:1 / -1; grid-row:7; }
+  body[data-mode=tower] .wind-scale { display:none; }
+  .book { padding:10px; }
+  .book-head h2 { font-size:16px; }
+  .promise-list { grid-template-columns:1fr; }
+  #manual-drawer { left:5px; bottom:80px; max-height:calc(100dvh - 90px); }
+  .cards { grid-template-columns:repeat(2,minmax(0,1fr)); }
   #yard { padding:10px; }
-  .design-card { padding:5px; }
-  .design-card[aria-pressed="true"] { padding:4px; }
-  .design-card svg { height:34px; margin-bottom:4px; }
-  .design-card strong { font-size:11px; }
-  .design-card small { font-size:10px; margin-top:3px; }
-  #yard h2 { font-size:19px; }
+  #yard-actions { grid-column:2; grid-row:1; grid-template-columns:repeat(2,1fr); }
+  body[data-mode=yard] .hint { grid-column:1 / -1; grid-row:6; }
+  #borrow-row { grid-column:1 / -1; grid-row:7; }
 }
-@media (min-width:1000px) {
-  body.compact main { grid-template-columns:minmax(0,1fr) 324px; }
-  body.compact .hint { width:calc(100vw - 350px); }
+
+
+.utility { display:contents; }
+@media (min-width:600px) and (max-width:1100px), (min-width:600px) and (max-height:560px) {
+  body[data-mode=tower] .panel { grid-template-columns:90px minmax(0,1fr) 240px; }
+  body[data-mode=tower] .panel-primary { grid-column:2; grid-row:1; }
+  body[data-mode=tower] .tower-controls { grid-column:3; grid-row:1; grid-template-columns:1fr 1fr; gap:3px; }
+  body[data-mode=tower] .sliders { grid-column:1 / -1; grid-row:1; }
+  body[data-mode=tower] .slider { display:grid; grid-template-columns:auto 1fr; align-items:center; gap:0 3px; }
+  body[data-mode=tower] .slider input { grid-column:1 / -1; }
+  body[data-mode=tower] .slider output { text-align:right; }
+  body[data-mode=tower] .wind-row { grid-column:2; grid-row:2; gap:3px; grid-template-columns:44px 1fr; }
+  body[data-mode=tower] .wind-row label { font-size:0; }
+  body[data-mode=tower] .wind-row output { font-size:10px; }
+  body[data-mode=tower] .wind-row input { grid-column:2; }
+  body[data-mode=tower] .wind-scale { display:none; }
+  body[data-mode=tower] #valley { grid-column:1; grid-row:2; min-height:44px; padding:3px; }
+  body[data-mode=tower] .utility { grid-column:1 / -1; grid-row:2; display:grid; grid-template-columns:1.1fr 1fr 1fr 1.2fr; gap:4px; }
+  body[data-mode=tower] .utility>* { grid-column:auto!important; grid-row:auto!important; width:auto; justify-self:stretch; align-self:stretch; }
+  body[data-mode=tower] .tools { grid-template-columns:repeat(4,1fr); }
+  body[data-mode=tower] .hint { grid-column:1 / span 2; grid-row:3; }
+  body[data-mode=tower] .cost { grid-column:3; grid-row:3; align-self:center; }
 }
-/* The primary shelves remain available while the test notebook scrolls. */
-.panel-primary { position:sticky; top:-7px; z-index:6; background:#1a2b38; }
-#top-loads { margin-top:5px; }
-body.stack #top-loads { grid-column:1 / -1; margin-top:0; }
-.promise .reason { display:block; margin-top:3px; color:#d4e0e9; font-size:11px; font-weight:400; }
-.cards { grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); }
-body.compact .design-card svg, .cards.crowded .design-card svg { height:64px; }
-@media (max-width:560px) { .design-card svg { height:60px; } }
-#promise-dialog { width:min(650px,calc(100vw - 24px)); max-height:calc(100vh - 24px); padding:12px; }
-#promise-dialog .book-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
-#promise-dialog h2 { margin:0; font-size:18px; }
-#promise-dialog .promise-list { padding:6px 0 0; }
-@media (min-width:600px) {
-  #promise-dialog .promise-list { display:grid; grid-template-columns:1fr 1fr; gap:0 12px; }
-  #promise-dialog .promise { grid-template-columns:44px 28px 1fr 18px; }
-  #promise-dialog .promise img { width:26px; }
+
+body[data-mode=tower] #stage-chips { max-width:270px; }
+@media (max-width:599px) {
+  body[data-mode=tower] #stage-chips { display:grid; max-width:130px; right:auto; top:92px; }
+}
+
+@media (min-width:600px) and (max-width:1100px), (min-width:600px) and (max-height:560px) {
+  body[data-mode=tower] .sliders .slider { display:block; position:relative; height:44px; font-size:10px; }
+  body[data-mode=tower] .sliders .slider output { position:absolute; top:0; right:0; font-size:10px; }
+  body[data-mode=tower] .sliders .slider input { position:absolute; left:0; top:0; height:44px; }
+  body[data-mode=tower] .wind-row label { height:44px; position:relative; display:block; }
+  body[data-mode=tower] .wind-row output { position:absolute; top:0; right:0; }
+  body[data-mode=tower] .wind-row input { position:absolute; left:0; top:0; height:44px; }
+}
+
+@media (max-width:599px) {
+  body[data-mode=tower] #gauges { flex-direction:column; gap:4px; }
+  body[data-mode=tower] .gauge-label { display:block; line-height:12px; }
+  body[data-mode=tower] .gauge output { line-height:12px; }
+  body[data-mode=tower] #stage-chips { left:auto; right:6px; top:10px; max-width:130px; }
 }
 </style>
 </head>
 <body>
-<header>
-  <h1>Span <b>&amp;</b> Spire <small>Pulled or squeezed?</small></h1>
-  <div class="seg" role="group" aria-label="Mode">
-    <button id="m-bridge" aria-pressed="true">Bridge</button>
-    <button id="m-tower" aria-pressed="false">Tower</button>
-    <button id="m-yard" aria-pressed="false">Yard</button>
-  </div>
-  <button class="icon-btn" id="tags" aria-haspopup="dialog">Tags <span id="tag-count">0</span></button>
-  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
-  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
-  <button class="icon-btn" id="read">Read</button>
-</header>
 <main>
   <section class="stage" id="stage" aria-label="Structure test yard">
     <canvas id="world" tabindex="0" aria-label="Build grid. Arrows move. Enter starts and ends a beam. Delete erases. Shift drag moves a joint."></canvas>
@@ -289,7 +348,7 @@ body.compact .design-card svg, .cards.crowded .design-card svg { height:64px; }
     </div>
     <div id="result" hidden></div>
     <div id="build-cue">Drag from a joint to build · Space to Go</div>
-    <div id="tag-toast" hidden></div>
+
     <section id="yard" hidden aria-label="Saved designs">
       <h2>The county test yard</h2>
       <p id="yard-intro">Save your design, then compare it here. Saved on this device, never sent anywhere.</p>
@@ -297,18 +356,24 @@ body.compact .design-card svg, .cards.crowded .design-card svg { height:64px; }
       <div class="compare-wrap"><table id="compare" aria-label="Design comparison"></table></div>
     </section>
   </section>
-  <aside class="panel" id="panel">
+  <aside class="panel" id="panel" aria-label="Yard test console">
+    <nav class="rig-selector" aria-label="Test rigs">
+      <span class="station-label">TEST YARD / 01</span>
+      <button class="btn" id="m-bridge" aria-pressed="true">Bridge</button>
+      <button class="btn" id="m-tower" aria-pressed="false">Tower</button>
+      <button class="btn" id="m-yard" aria-pressed="false">Yard</button>
+    </nav>
     <div class="panel-primary" id="primary">
       <div class="row run-row">
         <button class="btn run go-breathe" id="go">▶ Go <kbd>Space</kbd></button>
         <button class="btn" id="rebuild" hidden>Rebuild</button>
       </div>
       <section id="trucks">
-        <h2>Choose a load</h2>
+        <h2>01 / Truck tray</h2>
         <div class="shelf" id="truck-shelf"></div>
       </section>
       <section class="pieces" id="pieces">
-        <h2>New pieces · game prices per meter</h2>
+        <h2>02 / Material rack · $/m</h2>
         <div class="shelf" id="piece-shelf"></div>
       </section>
       <div class="row" id="top-loads" role="group" aria-label="Top load">
@@ -324,7 +389,7 @@ body.compact .design-card svg, .cards.crowded .design-card svg { height:64px; }
         <label class="slider">Speed <output id="speed-out">1.20 a second</output>
           <input id="speed" type="range" min="0.40" max="4" step="0.05" value="1.20"></label>
       </div>
-      <button class="btn" id="valley">Valley quake · 0.30 g / 1.20 a second</button>
+      <button class="btn" id="valley" title="Valley quake: 0.30 g at 1.20 shakes per second">Valley quake</button>
       <div class="wind-row">
         <button class="btn" id="wind" aria-pressed="false">Wind</button>
         <label class="slider">Wind speed <output id="wind-out">30 m/s</output>
@@ -343,11 +408,14 @@ body.compact .design-card svg, .cards.crowded .design-card svg { height:64px; }
       <button class="btn" id="worst" aria-pressed="false">Worst spots</button>
       <button class="btn" id="true-size" aria-pressed="false">True size</button>
     </div>
+    <dialog id="budget-panel" hidden aria-label="Budget constraint">
+      <div class="book-head"><strong>Budget limit</strong><button class="btn" id="close-budget">Done</button></div>
+      <label for="budget-limit">Limit $ <output id="budget-out">9,000</output></label>
+      <input type="range" id="budget-limit" min="3000" max="30000" step="100" value="9000" aria-label="Budget limit in dollars">
+      <output id="budget-status"></output>
+      <p class="privacy">Done returns to the yard. Budget stays on until you switch it off.</p>
+    </dialog>
     <div class="cost" id="cost"></div>
-    <details class="promises" id="promises">
-      <summary>Promises <span id="promise-ticks"></span></summary>
-      <div class="promise-list" id="promise-list"></div>
-    </details>
     <div class="row" id="save-row">
       <button class="btn" id="save">Save to Yard</button>
       <button class="btn" id="new">New</button>
@@ -365,23 +433,64 @@ body.compact .design-card svg, .cards.crowded .design-card svg { height:64px; }
       <button class="btn" id="delete">Delete</button>
     </div>
     <p class="hint" id="hint" aria-live="polite">Press Go to send the pickup across. Or drag the truck onto the road.</p>
-    <p class="privacy" id="storage-note">Save on this device. Your designs never leave it.</p>
+    <div class="power-panel" aria-label="Yard power panel">
+      <button class="btn" id="budget" aria-pressed="false">Budget</button>
+      <button class="btn" id="motion" aria-pressed="true">Motion</button>
+      <button class="btn" id="sound" aria-pressed="true">Sound</button>
+      <button class="btn" id="read">Read</button>
+    </div>
   </aside>
   <footer class="apron">
+    <div class="maker"><span>Curio Class Instruments · No. 01 · Span and Spire</span>
+      <button class="btn" id="manual" aria-haspopup="dialog">Manual</button></div>
     <div class="legend"><span><i>↔</i> Pull</span><span><i>⇥⇤</i> Squeeze</span><span><i>∿</i> Slack</span></div>
     <span class="scale-note" id="magnification">Sag ×20 · each side carries half the truck</span>
   </footer>
 </main>
-<div class="drawer" id="tag-drawer" role="dialog" aria-modal="true" aria-labelledby="tag-title" hidden>
+<dialog id="manual-drawer" aria-labelledby="manual-title">
+  <div class="book-head"><h2 id="manual-title">Span and Spire / Field manual</h2><button class="btn" id="close-manual">Close</button></div>
+  <button class="btn" id="tags" aria-haspopup="dialog">Open yard logbook / briefs and test records</button>
+  <h3>At the test yard</h3>
+  <p>Choose Bridge or Tower at the console. Any load, wind or shake is yours to try, in any order.</p>
+  <h3>Build and measure</h3>
+  <p>Drag from a joint to make a beam. Close triangles. Pick a piece, then tap a beam to change its material.
+  Tap a member to read its length, price and force limits. Shift drag moves a free joint.</p>
+  <p>Press Go or drag a truck across. Worst spots shows the whole crossing. In Tower, drag the top sideways to pluck it,
+  then compare its own sway rate with Speed. Shake runs for 15 seconds. Wind records a steady 5 seconds.</p>
+  <h3>The dials</h3>
+  <p>Load reads vehicle mass or top mass. Worst member reads the current force as a percent of its limit;
+  a loose frame has no valid reading. Sway reads the actual top displacement, before visual magnification.
+  Gauge needles stop at the end of their scale; the number keeps reading beyond it.</p>
+  <p>Budget starts off. Switch it on, set a limit and choose Done. Budget stays on;
+  an over-limit design still builds and tests.
+  The county brief always uses $9,000 independently of your dial. Costs are classroom estimates, not construction quotes.</p>
+  <h3>Honesty notes</h3>
+  <p>A two-dimensional, pin-jointed axial model. The bridge draws one of two sides, each carrying half the truck
+  and 2.0 kN/m of road. Members carry their full stated self-weight. Timber has one simplified 20 MPa strength.
+  Euler buckling assumes pinned ends. Cables pull only; crossing beams connect only at a joint.</p>
+  <p>Shakes are synthetic sine waves with 5% damping, not historic earthquakes. Sag and wind displacement are shown
+  ×20 and shake sway ×5; True size removes that magnification. Motion off keeps the same test duration.</p>
+  <h3>Keep a record</h3>
+  <p>Save to Yard keeps designs here. Test all compares them; Open edits a copy. Borrow overlays a saved design so you
+  can adopt its members and materials. Old farm bridge is always available to test.</p>
+  <p class="privacy" id="storage-note">Saved designs and logbook records stay on this device. Nothing is sent anywhere.</p>
+  <h3>Keyboard</h3>
+  <p>Tab to controls or the grid. Arrows move the cursor; Enter starts and ends a member; Delete erases.
+  Keys 1 to 5 pick a material. Space runs or stops. R rebuilds after a collapse. Shift with an arrow plucks a tower.</p>
+  <p class="privacy">Model sources: Hibbeler, Structural Analysis; USDA Wood Handbook FPL-GTR-282;
+  ASTM A36; FHWA Bridge Formula Weights; Chopra, Dynamics of Structures; OpenStax hydrostatics.</p>
+</dialog>
+<dialog class="drawer" id="tag-drawer" aria-labelledby="tag-title" hidden>
   <div class="book">
-    <div class="book-head"><h2 id="tag-title">Inspection tags</h2><button class="btn" id="close-tags">Close</button></div>
-    <p class="privacy">Optional targets. Nothing is locked. Tags stay on this device.</p>
+    <div class="book-head"><h2 id="tag-title">Yard logbook</h2><button class="btn" id="close-tags">Close</button></div>
+    <p class="privacy">Recorded observations, kept on this device. Pick up a brief if it helps your investigation.</p>
+    <details class="promises" id="promises">
+      <summary>Promises <span id="promise-ticks"></span></summary>
+      <div class="promise-list" id="promise-list"></div>
+    </details>
+
     <div class="tag-grid" id="tag-grid"></div>
   </div>
-</div>
-<dialog id="promise-dialog" aria-labelledby="promise-title">
-  <div class="book-head"><h2 id="promise-title">Choose your promises</h2><button class="btn" id="close-promises">Done</button></div>
-  <div id="promise-slot"></div>
 </dialog>
 <dialog id="confirm-dialog"><form method="dialog">
   <p id="confirm-text"></p>
@@ -443,16 +552,16 @@ const L = {
   bBuckle:'A squeezed beam buckled.', bSnap:'A stretched beam snapped.',
   bSlack:'The cables went slack. A cable can pull but never push.',
   bWorst:'Each beam shows its hardest moment as the truck crosses. Tap Worst spots again for live forces.',
-  bPromise:'Tick the promises your bridge must keep. The Yard scores them.',
+  bPromise:'Choose a brief in the logbook. Save to Yard, then Test all to compare its promises.',
   bLimit:'The yard is out of members. Erase one to add one.',
   tWelcome:'Drag up from the table to build. Then press Shake or turn on the wind.',
   tPluck:'Drag the top sideways and let go to feel its sway.',
   tFold:'A loose part folded. Connect it with a triangle.', tShakeFail:'It shook apart.', tWindFail:'The wind pushed it over.',
   tHold:'It rode out the shake.', tResonance:"The table shook at the tower's own sway speed. That is resonance.",
-  yWelcome:'Tap up to three designs to compare them. Tap Borrow to copy parts.', tag:'New inspection tag.'
+  yWelcome:'Tap up to three designs to compare them. Tap Borrow to copy parts.'
 };
 const EVENT_IDS = new Set(['bLoose','bGap','bPass0','bPass1','bPass2','bPass3','bPass4','bBuckle','bSnap','bSlack',
-  'bLimit','tFold','tShakeFail','tWindFail','tHold','tResonance','tag']);
+  'bLimit','tFold','tShakeFail','tWindFail','tHold','tResonance']);
 const BP = [
   ['Farmer','Carry the grain truck (23.4 t)','sas-grain'],
   ['Fire chief','Carry the fire engine (20.0 t)','sas-fire'],
@@ -490,7 +599,7 @@ function fresh(mode) {
 }
 const state = {
   mode:'bridge', designs:{bridge:fresh('bridge'),tower:fresh('tower')}, piece:0, tool:'build', running:false,
-  run:null, failed:false, worst:false, trueSize:false, selected:[], yard:[], tags:{}, firstSaved:false,
+  run:null, budget:false, budgetLimit:9000, worst:false, trueSize:false, selected:[], yard:[], tags:{}, firstSaved:false,
   ghost:null, origin:'bridge', cursor:{x:0,y:0}, anchor:null, pointer:null, result:null,
   storageOK:true, failures:[], lastBuckle:null, frames:[], time:0, testBusy:false
 };
@@ -509,7 +618,8 @@ let activeDesignRef = state.designs.bridge;
 const D = () => state.designs[state.mode === 'yard' ? state.origin : state.mode];
 const V = Curio.voice({
   lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
-  welcome:() => !$('tag-drawer').hidden || $('confirm-dialog').open || $('promise-dialog').open ? null : state.mode === 'bridge'
+  welcome:() => !$('tag-drawer').hidden || $('confirm-dialog').open || $('manual-drawer').open
+    || $('budget-panel').open ? null : state.mode === 'bridge'
     ? (!state.running && !D().tests.first && D().truck === 0
       ? ['bWelcome',{valid:() => !state.running && !D().tests.first && D().truck === 0}] : null)
     : state.mode === 'tower' ? ['tWelcome',{valid:() => !state.running}] : 'yWelcome',
@@ -532,7 +642,6 @@ function sound(kind,m = state.piece) {
   if (kind === 'splash') { Curio.tone(85,.4,.13,'sawtooth');
     Curio.tone(125,.23,.1,'triangle');
   }
-  if (kind === 'tag') Curio.tone(110,.1,.18,'triangle');
   if (kind === 'pass') {
     [440,554,659].forEach((f,i) => setTimeout(() => Curio.tone(f,.22,.1,'sine'),i*120));
   }
@@ -1105,7 +1214,6 @@ let H = 500;
 let view = {scale:20,x:0,y:0};
 let baseView = null;
 let wantsFrame = true;
-let tagTimer = null;
 let resultTimer = null;
 let lastUI = 0;
 let tagReturn = null;
@@ -1172,31 +1280,57 @@ function persist() {
   } catch { storageFailed();
   }
 }
-function earn(n) {
+// Retain the original 25 observation checks, but store the test evidence instead of a reward.
+function earn(n,d = D()) {
   if (state.tags[n]) return;
-  state.tags[n] = new Date().toLocaleDateString('en-US');
-  $('tag-count').textContent = Object.keys(state.tags).length;
-  const toast = $('tag-toast');
-  toast.textContent = TAGS[n-1][0]+' · inspection stamped';
-  toast.hidden = false;
-  toast.classList.remove('stamp');
-  void toast.offsetWidth;
-  toast.classList.add('stamp');
-  clearTimeout(tagTimer);
-  tagTimer = setTimeout(() => { toast.hidden = true;
-  },2400);
-  sound('tag');
-  voice('tag',() => !toast.hidden);
+  const truck = TRUCKS[d.truck].name;
+  const test = d.tests.trucks?.[d.truck];
+  const max = test?.max ?? current?.max;
+  const worst = Number.isFinite(max) ? (max*100).toFixed(1)+'%' : 'not measurable (loose frame)';
+  const height = topHeight(d);
+  const shake = d.settings.strength.toFixed(2)+' g at '+d.settings.speed.toFixed(2)+'/s';
+  const statements = {
+    1:truck+' crossed; worst member '+worst+'.',
+    2:d.mode+' test found a loose frame.',
+    3:'A squeezed member buckled; use '+worst+'.',
+    4:'A stretched member snapped; use '+worst+'.',
+    5:truck+' crossed; worst member '+worst+'.',
+    6:truck+' crossed; worst member '+worst+'.',
+    7:truck+' crossed; worst member '+worst+'.',
+    8:truck+' crossed; worst member '+worst+'.',
+    9:'Old farm bridge failed under '+truck+'.',
+    10:'Semi crossed; worst member '+worst+': little margin.',
+    11:'Semi crossed; worst member '+worst+': margin kept.',
+    12:'Semi margin kept for '+formatCost(cost(d))+', within $9,000.',
+    13:'Semi margin kept for '+formatCost(cost(d))+', within $8,500.',
+    14:'Semi crossed with '+d.b.filter(b => b.m === 4).length+' cable members.',
+    15:truck+' crossed while a cable went slack.',
+    16:truck+' crossed after a failed member was braced.',
+    17:'Semi crossed with a footing below the flood line.',
+    18:'All six bridge brief checks held for this design; cost '+formatCost(cost(d))+'.',
+    19:height+' m tank tower stood under its own weight; worst member '+worst+'.',
+    20:'At least three free sways observed; own rate '+(towerModel?.f || 0).toFixed(2)+'/s.',
+    21:height+' m tank tower held 50 m/s wind for 5 s; worst member '+worst+'.',
+    22:height+' m tank tower held 70 m/s wind for 5 s; worst member '+worst+'.',
+    23:'Tower failed at '+shake+' near its own '+(towerModel?.f || 0).toFixed(2)+'/s sway rate.',
+    24:'Held '+shake+' for 15 s; a stiffer design failed this same test.',
+    25:height+' m tank tower held 50 m/s wind and the full Valley quake.'
+  };
+  state.tags[n] = {date:new Date().toLocaleString('en-US'),evidence:statements[n],mode:d.mode,
+    cost:cost(d),members:d.b.length,joints:d.p.length};
   persist();
+  if ($('tag-drawer').open) renderLogbookEntries();
 }
+
 function checkpoint() {
   const h = history[D().mode];
   h.undo.push(clone(D()));
   if (h.undo.length > 50) h.undo.shift();
   h.redo.length = 0;
 }
-function editDone(text = 'Drag from another joint to add a beam. Press Go to test.') {
+function editDone(text = null) {
   const d = D();
+  text ||= 'Drag from another joint to add a beam. Press '+(d.mode === 'bridge' ? 'Go' : 'Shake')+' to test.';
   designRevision++;
   state.windHold = 0;
   pluck = null;
@@ -1270,7 +1404,8 @@ function addBeam(a,p,material = state.piece,saveStep = true) {
     return false;
   }
   const len = Math.hypot(from.x-p.x,from.y-p.y);
-  if (len > (material === 4 ? 30 : 12)+.001) { reject(material === 4 ? 'Cable reaches 30 m. Choose a nearer joint.' : 'Beams reach 12 m. Choose a nearer joint.');
+  if (len > (material === 4 ? 30 : 12)+.001) {
+    reject(material === 4 ? 'Cable reaches 30 m. Choose a nearer joint.' : 'Beams reach 12 m. Choose a nearer joint.');
     return false;
   }
   if (d.b.length >= 60 || (existing < 0 && d.p.length >= 40)) {
@@ -1284,7 +1419,8 @@ function addBeam(a,p,material = state.piece,saveStep = true) {
     d.p.push({x:p.x,y:p.y});
   }
   d.b.push({a,b,m:material});
-  if (saveStep) editDone(d.mode === 'bridge' ? 'Close a triangle with the next beam. Press Go to test.' : 'Build up in triangles. Drag the top sideways to pluck.');
+  if (saveStep) editDone(d.mode === 'bridge' ? 'Close a triangle with the next beam. Press Go to test.'
+    : 'Build up in triangles. Drag the top sideways to pluck.');
   return true;
 }
 function deleteBeam(e) {
@@ -1374,19 +1510,22 @@ function setMode(mode) {
   state.pointer = null;
   state.anchor = null;
   $('result').hidden = true;
-  $('tag-toast').hidden = true;
+  if ($('tag-drawer').open) $('tag-drawer').close();
+  if ($('budget-panel').open) $('budget-panel').close();
   $('tag-drawer').hidden = true;
   towerModel = null;
   worstResult = null;
   for (const m of ['bridge','tower','yard']) $('m-'+m).setAttribute('aria-pressed',m === mode);
   $('yard').hidden = mode !== 'yard';
-  for (const id of ['primary','tower-controls','tools','views','cost','promises','save-row']) {
+  for (const id of ['primary','tower-controls','tools','views','cost','save-row']) {
     $(id).hidden = mode === 'yard' || (id === 'tower-controls' && mode !== 'tower');
   }
   $('trucks').hidden = mode !== 'bridge';
   $('top-loads').hidden = mode !== 'tower';
   $('yard-actions').hidden = mode !== 'yard';
   $('stage-chips').hidden = mode === 'yard';
+  $('gauges').hidden = mode === 'yard';
+  $('budget-panel').hidden = mode === 'yard' || !state.budget;
   $('build-cue').hidden = mode === 'yard';
   canvas.hidden = mode === 'yard';
   $('borrow-row').hidden = !state.ghost || mode === 'yard';
@@ -1571,9 +1710,9 @@ function passed() {
     if (!result.pass && !result.completed) { refresh();
       return;
     }
-    if (d.truck !== 0 || result.pass) earn([1,5,6,7,8][d.truck]);
-    if (result.slack || run.slack) earn(15);
-    if (d.truck === 4) {
+    if (result.pass) earn([1,5,6,7,8][d.truck]);
+    if (result.pass && (result.slack || run.slack)) earn(15);
+    if (d.truck === 4 && result.pass) {
       if (result.max >= .95 && result.max <= 1) earn(10);
       if (result.max <= .667) {
         earn(11);
@@ -1583,7 +1722,7 @@ function passed() {
       if (d.b.filter(b => b.m === 4).length >= 8) earn(14);
       if (d.p.some((p,i) => fixed(d,i)[0] && p.y < -2)) earn(17);
     }
-    if (braceRepaired(d)) earn(16);
+    if (result.pass && braceRepaired(d)) earn(16);
     voice('bPass'+truckAtFinish,() => !state.failed && D() === d && d.truck === truckAtFinish
       && designRevision === revisionAtFinish && d.tests.trucks?.[truckAtFinish]?.pass);
     reportResult(TRUCKS[d.truck].name+' crossed',result.removed ? result.removed+' member lost · rebuild before another test'
@@ -1619,7 +1758,7 @@ function checkTown(d) {
   if (d.top !== 8000 || topHeight(d) < 26) return;
   const quake = d.tests.valley || d.tests.shake;
   if (d.tests.wind?.[50]?.pass && quake?.pass && quake.duration >= 15
-    && !quake.wind && Math.abs(quake.strength-.3) < .00001 && Math.abs(quake.speed-1.2) < .00001) earn(25);
+    && !quake.wind && Math.abs(quake.strength-.3) < .00001 && Math.abs(quake.speed-1.2) < .00001) earn(25,d);
 }
 function refreshWorst() {
   const d = D();
@@ -1645,7 +1784,7 @@ function makePromises() {
     box.onchange = () => {
       d.promises[i] = box.checked;
       if (d.mode === 'bridge') voice('bPromise',() => D().promises.some(Boolean));
-      hint('Save to Yard, then use Test all to score the promises you chose.');
+      hint('Save to Yard, then use Test all to compare the promises in your brief.');
       refreshPromises();
       sound('place');
     };
@@ -1745,15 +1884,15 @@ function refresh() {
   for (const b of document.querySelectorAll('[data-piece]')) b.setAttribute('aria-pressed',+b.dataset.piece === state.piece);
   for (const b of document.querySelectorAll('[data-truck]')) b.setAttribute('aria-pressed',+b.dataset.truck === d.truck);
   for (const b of document.querySelectorAll('[data-top]')) b.setAttribute('aria-pressed',+b.dataset.top === d.top);
-  $('cost').innerHTML = '<span>'+formatCost(cost(d))+' <small>game prices</small></span><small>'+d.b.length+'/60 members · '+d.p.length+'/40 joints</small>';
-  $('tag-count').textContent = Object.keys(state.tags).length;
+  $('cost').textContent = formatCost(cost(d))+' · '+d.b.length+'/60 members · '+d.p.length+'/40 joints';
+  refreshBudget();
   if (state.mode !== 'yard') refreshPromises();
   if (d.mode === 'tower') {
     $('strength').value = d.settings.strength;
     $('speed').value = d.settings.speed;
     $('wind-speed').value = d.settings.wind;
     $('strength-out').textContent = d.settings.strength.toFixed(2)+' g';
-    $('speed-out').textContent = d.settings.speed.toFixed(2)+' a second';
+    $('speed-out').textContent = d.settings.speed.toFixed(2)+'/s';
     $('wind-out').textContent = d.settings.wind+' m/s';
     $('wind').setAttribute('aria-pressed',d.settings.windOn);
     const height = topHeight(d);
@@ -1762,7 +1901,8 @@ function refresh() {
       +(d.plucked && towerModel && !towerModel.loose ? ' · Sway '+towerModel.f.toFixed(2)+'/s' : '');
   }
   $('magnification').textContent = d.mode === 'bridge' ? (state.trueSize ? 'True sag' : 'Sag ×20')+' · each side carries half'
-    : state.trueSize ? 'True displacement' : ['shake','explicit-shake'].includes(state.run?.kind) ? 'Sway ×5 · table at true size' : 'Sway ×20 · table at true size';
+    : state.trueSize ? 'True displacement' : ['shake','explicit-shake'].includes(state.run?.kind)
+      ? 'Sway ×5 · table at true size' : 'Sway ×20 · table at true size';
   $('build-cue').textContent = state.ghost ? 'Pink ghost: tap a beam to adopt it · Borrow all / Done'
     : state.tool === 'erase' ? 'Tap a beam to erase · choose Build to add'
     : state.mode === 'bridge' ? 'Drag from a joint · Shift drag to move · Space to Go'
@@ -1794,6 +1934,7 @@ function updateChips() {
       su = current.use[i];
     }
   }
+  updateGauges();
   $('force-chip').textContent = current?.loose ? 'Loose joints · triangles close the load path'
     : '↔ '+Math.round(pull/1000)+' kN ('+Math.round(pu*100)+'%) · ⇥⇤ '+Math.round(push/1000)+' kN ('+Math.round(su*100)+'%)';
 }
@@ -1859,12 +2000,11 @@ function relayout() {
     const scale = Math.min((W-24)/36,(H-54)/18);
     view = {scale,x:W/2-12*scale,y:Math.min(H-6*scale-12,68+12*scale)};
   } else {
-    const scale = Math.min((H-65)/33,(W-34)/16);
+    const scale = Math.min((H-30)/36,(W-34)/16);
     view = {scale,x:W/2,y:H-28-scale};
   }
   baseView = {...view};
-  if (compact || stack) $('promises').open = false;
-  else if (innerHeight >= 900) $('promises').open = true;
+
   wantsFrame = true;
   draw();
 }
@@ -1946,15 +2086,17 @@ function drawBackdrop() {
       }
       ctx.restore();
     }
+
+  }
+}
+function drawRuler() {
     const rulerX = px(-4.8);
     for (let y=0;y<=30;y+=2) {
       const sy = py(y);
       line(rulerX-4,sy,rulerX,sy,'#243d4eaa');
-      if (H > 380 || y%4 === 0) text(y+' m',rulerX-8,sy+3,10,'#193a4f','right');
+      if (H > 380 || y%4 === 0) text(y+' m',rulerX-8,sy+3,10,'#e0edf6','right');
     }
-    line(rulerX,py(0),rulerX,py(32),'#244455aa');
-    drawResonance(d);
-  }
+    line(rulerX,py(0),rulerX,py(32),'#b0cedeaa');
 }
 function drawTerrain() {
   const terrain = (left) => {
@@ -1994,30 +2136,45 @@ function drawTerrain() {
 }
 function drawGrid() {
   const d = D();
+  ctx.save();
+  ctx.fillStyle = '#071e38b8';
+  ctx.fillRect(0,0,W,H);
+  ctx.strokeStyle = '#8ebdd91a';
+  ctx.lineWidth = 1;
+  const grid = Math.max(10,view.scale);
+  ctx.beginPath();
+  for (let x=view.x%grid;x<W;x+=grid) { ctx.moveTo(x,0); ctx.lineTo(x,H); }
+  for (let y=view.y%grid;y<H;y+=grid) { ctx.moveTo(0,y); ctx.lineTo(W,y); }
+  ctx.stroke();
+  ctx.restore();
   const minX = d.mode === 'bridge' ? -6 : -8;
   const maxX = d.mode === 'bridge' ? 30 : 8;
   const minY = d.mode === 'bridge' ? -5 : 0;
   const maxY = d.mode === 'bridge' ? 12 : 32;
-  ctx.fillStyle = d.mode === 'bridge' ? '#e4eee52d' : '#1c425c2c';
+  ctx.fillStyle = '#d3ebff55';
   for (let x=minX;x<=maxX;x++) for (let y=minY;y<=maxY;y++) {
     if (d.mode === 'bridge' && y < ground(x)) continue;
     ctx.beginPath();
     ctx.arc(px(x),py(y),.85,0,TAU);
     ctx.fill();
   }
+  if (d.mode === 'tower') {
+    drawRuler();
+    drawResonance(d);
+  }
 }
 function drawResonance(d) {
   const width = Math.max(95,Math.min(210,W*.25));
-  const height = Math.max(90,Math.min(145,H*.25));
+  const height = Math.max(88,Math.min(145,H*.3));
   const x = W-width-12;
-  const y = Math.max(88,H*.28);
+  const y = Math.min(Math.max(W < 600 ? 124 : 88,H*.28),H-height-8);
   if (W < 280) return;
   roundRect(x,y,width,height,5,'#11232eeb','#6d8a9a');
   text('RESONANCE',x+10,y+17,10,'#c8d8e4');
   const gx = x+25;
   const gy = y+height-25;
   const gw = width-40;
-  const gh = height-(width < 160 ? 70 : 55);
+  const gh = height-70;
   line(gx,gy-gh,gx,gy,'#8198a5');
   line(gx,gy,gx+gw,gy,'#8198a5');
   text('0.4',gx,gy+13,10,'#a8bfce','center');
@@ -2043,8 +2200,7 @@ function drawResonance(d) {
       ctx.setLineDash([]);
     }
   }
-  if (width >= 160) text('top sway cm · '+Math.round(largest),x+width-8,y+17,10,'#a8bfce','right');
-  else text('top sway (cm)',x+width/2,y+32,10,'#a8bfce','center');
+  text('top sway cm · '+Math.round(largest),x+width/2,y+32,10,'#a8bfce','center');
   if (!d.dots.length) text(width < 160 ? 'Shake → dot' : 'Shake to add a dot',x+width/2,gy-gh*.4,10,'#afc6d6','center');
 }
 function displacedPoints() {
@@ -2712,7 +2868,7 @@ function renderCompare() {
       if (value?.reason) td.title = value.reason;
     }
   };
-  row('Cost · game prices',d => formatCost(cost(d)));
+  row('Estimated cost',d => formatCost(cost(d)));
   row('Members / joints',d => d.b.length+' / '+d.p.length);
   row('Heaviest crossed',d => {
     const best = Object.entries(d.tests.trucks || {}).filter(([k,r]) => r.pass).map(([k]) => +k).sort((a,b) => b-a)[0];
@@ -2782,7 +2938,7 @@ async function testAll() {
       d.tests.shake = d.tests.valley;
       checkTown(d);
     }
-    if (d.mode === 'bridge' && d.promises.every(Boolean) && promiseResults(d).every(r => r.pass)) earn(18);
+    if (d.mode === 'bridge' && d.promises.every(Boolean) && promiseResults(d).every(r => r.pass)) earn(18,d);
   }
   state.testBusy = false;
   persist();
@@ -2884,11 +3040,7 @@ function ask(message,yes,no,action,rename = false,value = '') {
   dlg.showModal();
   (rename ? $('name-input') : $('confirm-no')).focus({preventScroll:true});
 }
-function showTags() {
-  V.hush();
-  tagHint = {previous:$('hint').textContent,text:'Browse the inspection tags. Press Close to return to your design.'};
-  hint(tagHint.text);
-  tagReturn = document.activeElement;
+function renderLogbookEntries() {
   $('tag-grid').replaceChildren();
   TAGS.forEach(([name,target,img],i) => {
     const el = document.createElement('article');
@@ -2899,19 +3051,33 @@ function showTags() {
     const title = document.createElement('strong');
     title.textContent = (i+1)+'. '+name;
     const desc = document.createElement('span');
-    desc.textContent = target;
+    const record = state.tags[i+1];
+    desc.textContent = record ? typeof record === 'object' ? record.evidence : 'Earlier inspection; measurements were not stored.'
+      : 'No matching test recorded. Record when: '+target+'.';
     el.append(icon,title,desc);
     if (state.tags[i+1]) {
       const time = document.createElement('time');
-      time.textContent = 'INSPECTED '+state.tags[i+1];
+      time.textContent = 'RECORDED '+(typeof record === 'object' ? record.date : record);
       el.append(time);
     }
     $('tag-grid').append(el);
   });
+}
+function showTags() {
+  $('manual-drawer').close();
+  V.hush();
+  tagHint = {previous:$('hint').textContent,text:'Browse the recorded tests and choose a brief. Press Close to return to the yard.'};
+  hint(tagHint.text);
+  tagReturn = $('manual');
+  makePromises();
+  refreshPromises();
+  renderLogbookEntries();
   $('tag-drawer').hidden = false;
+  $('tag-drawer').showModal();
   $('close-tags').focus({preventScroll:true});
 }
 function closeTags() {
+  if ($('tag-drawer').open) $('tag-drawer').close();
   $('tag-drawer').hidden = true;
   if (tagHint && $('hint').textContent === tagHint.text) hint(tagHint.previous);
   tagReturn?.focus({preventScroll:true});
@@ -3003,7 +3169,8 @@ canvas.addEventListener('pointerdown',event => {
       const b = d.b[e];
       const mat = MATERIALS[b.m];
       const limit = Math.min(mat.pull,Math.PI**2*mat.E*mat.I/length(d,b)**2);
-      hint(mat.name+' · '+length(d,b).toFixed(2)+' m · pull '+Math.round(mat.pull/1000)+' kN · squeeze '+Math.round(limit/1000)+' kN.');
+      hint(mat.name+' · '+length(d,b).toFixed(2)+' m · '+formatCost(length(d,b)*mat.price)
+        +' · pull '+Math.round(mat.pull/1000)+' kN · squeeze '+Math.round(limit/1000)+' kN.');
     } else if (d.mode === 'tower' && snap.y === 0 && snap.x >= -6 && snap.x <= 6) {
       if (d.p.length >= 40) { reject('The yard is out of joints (40). Erase one to add one.');
         return;
@@ -3118,12 +3285,9 @@ canvas.addEventListener('keydown',event => {
   wantsFrame = true;
 });
 document.addEventListener('keydown',event => {
-  if ($('promise-dialog').open) return;
+  if ($('manual-drawer').open || $('budget-panel').open) return;
   if (!$('tag-drawer').hidden) {
     if (event.key === 'Escape') closeTags();
-    if (event.key === 'Tab') { event.preventDefault();
-      $('close-tags').focus({preventScroll:true});
-    }
     return;
   }
   if ($('confirm-dialog').open || ['INPUT','TEXTAREA','SELECT'].includes(event.target.tagName)) return;
@@ -3169,18 +3333,24 @@ MATERIALS.forEach((m,i) => {
   b.id = 'piece-'+i;
   b.dataset.piece = i;
   b.setAttribute('aria-pressed',i === 0);
-  b.title = m.name+' · $'+m.price+'/m. Game prices, not real quotes.';
-  b.setAttribute('aria-label',m.name+', '+m.price+' game dollars per meter');
+  b.title = m.name+' · $'+m.price+'/m. Classroom estimate; see Manual.';
+  b.setAttribute('aria-label',m.name+', '+m.price+' dollars per meter');
   b.innerHTML = '<i></i>'+m.name+'<strong>$'+m.price+'/m</strong>';
   b.onclick = () => {
     state.piece = i;
-    hint('Drag from a joint to add '+m.name.toLowerCase()+', or tap an existing beam to change it. Game prices, not real costs.');
+    hint('Drag from a joint to add '+m.name.toLowerCase()+', or tap a beam to change its material.');
     sound('place',i);
     refresh();
   };
   $('piece-shelf').append(b);
 });
-for (const m of ['bridge','tower','yard']) $('m-'+m).onclick = () => setMode(m);
+for (const m of ['bridge','tower','yard']) $('m-'+m).onclick = () => {
+  if (state.mode === m) {
+    V.welcome();
+    return;
+  }
+  setMode(m);
+};
 $('go').onclick = beginRun;
 $('rebuild').onclick = rebuild;
 $('build').onclick = () => { state.tool = 'build';
@@ -3299,7 +3469,8 @@ $('wind').onclick = () => {
   D().settings.windOn = !D().settings.windOn;
   restartShakeWindow();
   state.windHold = 0;
-  hint(D().settings.windOn ? 'Move Wind speed to change the pressure. Let it hold for 5 seconds.' : 'Wind is off. Drag the top sideways to pluck it, or press Shake.');
+  hint(D().settings.windOn ? 'Move Wind speed to change the pressure. Let it hold for 5 seconds.'
+    : 'Wind is off. Drag the top sideways to pluck it, or press Shake.');
   solveLive();
   refresh();
   sound('place');
@@ -3309,19 +3480,27 @@ for (const b of document.querySelectorAll('[data-top]')) b.onclick = () => {
   D().top = +b.dataset.top;
   editDone('Top load changed. Pluck it again, then press Shake at the same speed to compare.');
 };
-// Compact promise choices use the available width, without hiding a short set in the panel scroll.
-$('promises').addEventListener('toggle',() => {
-  if (!$('promises').open || !document.body.matches('.compact,.stack')) return;
-  $('promise-slot').append($('promise-list'));
-  $('promises').open = false;
-  $('promise-dialog').showModal();
-  $('close-promises').focus({preventScroll:true});
-});
-$('close-promises').onclick = () => $('promise-dialog').close();
-$('promise-dialog').addEventListener('close',() => {
-  $('promises').append($('promise-list'));
-  $('promises').querySelector('summary').focus({preventScroll:true});
-});
+$('manual').onclick = () => {
+  V.hush();
+  $('manual-drawer').showModal();
+};
+$('close-manual').onclick = () => $('manual-drawer').close();
+$('manual-drawer').addEventListener('close',() => $('manual').focus({preventScroll:true}));
+$('tag-drawer').addEventListener('cancel',event => { event.preventDefault(); closeTags(); });
+$('budget').onclick = () => {
+  state.budget = !state.budget;
+  refreshBudget();
+  if (state.budget) $('budget-panel').showModal();
+  else $('budget-panel').close();
+  sound('place');
+  relayout();
+};
+$('close-budget').onclick = () => $('budget-panel').close();
+$('budget-panel').addEventListener('close',() => $('budget').focus({preventScroll:true}));
+$('budget-limit').oninput = () => {
+  state.budgetLimit = +$('budget-limit').value;
+  refreshBudget();
+};
 $('tags').onclick = showTags;
 $('close-tags').onclick = closeTags;
 $('tag-drawer').addEventListener('click',event => { if (event.target === $('tag-drawer')) closeTags();
@@ -3330,6 +3509,59 @@ Curio.onMotion(() => { wantsFrame = true;
   draw();
 });
 Curio.onSound(updateAmbience);
+// Needles show physical readings, independent of rendered displacement magnification.
+const gaugePanel = document.createElement('div');
+gaugePanel.id = 'gauges';
+gaugePanel.setAttribute('aria-label','Live instrument readings');
+for (const [id,label,left,right] of [['load','LOAD','0','40 t'],['use','WORST MEMBER','0','100%'],['sway','TOP SWAY','0','50 cm']]) {
+  const face = document.createElement('div');
+  face.className = 'gauge';
+  face.id = 'gauge-'+id;
+  face.innerHTML = '<span class="gauge-label">'+label+'</span>'
+    +'<svg viewBox="0 0 120 62" aria-hidden="true"><defs><radialGradient id="dial-'+id+'">'
+    +'<stop stop-color="#16334a"/><stop offset="1" stop-color="#081c2d"/></radialGradient></defs>'
+    +'<path d="M8 55 A52 52 0 0 1 112 55" fill="url(#dial-'+id+')" stroke="#b4cddc"/>'
+    +'<path d="M12 55h8 M20 29l7 4 M60 4v8 M100 29l-7 4 M108 55h-8" stroke="#a9c6d8" fill="none"/>'
+    +'<path id="needle-'+id+'" d="M60 55 L16 55" stroke="#ff95bf" stroke-width="2.5"/>'
+    +'<circle cx="60" cy="55" r="4" fill="#d4c6a0"/>'
+    +'<text x="8" y="61" fill="#c0d4df" font-size="10">'+left+'</text>'
+    +'<text x="112" y="61" text-anchor="end" fill="#c0d4df" font-size="10">'+right+'</text></svg>'
+    +'<output id="gauge-'+id+'-out">---</output>';
+  gaugePanel.append(face);
+}
+$('stage').append(gaugePanel);
+function meter(id,value,max,reading) {
+  const ratio = Math.max(0,Math.min(1,value/max));
+  const angle = ratio*Math.PI;
+  $('needle-'+id).setAttribute('d','M60 55 L'+(60-44*Math.cos(angle)).toFixed(2)+' '+(55-44*Math.sin(angle)).toFixed(2));
+  $('gauge-'+id+'-out').textContent = reading;
+  $('gauge-'+id).dataset.over = value > max;
+}
+function updateGauges() {
+  if (!$('gauges')) return;
+  const d = D();
+  const load = d.mode === 'bridge' ? TRUCKS[d.truck].mass : d.top/1000;
+  const use = current?.max || 0;
+  let sway = 0;
+  if (d.mode === 'tower' && current?.u && !current.loose) {
+    const h = topHeight(d);
+    d.p.forEach((p,i) => { if (p.y === h) sway = Math.max(sway,Math.abs(current.u[2*i])*100); });
+  }
+  meter('load',load,40,load.toFixed(1)+' t');
+  const hasFrame = d.b.length > 0 && (d.mode === 'bridge' || topHeight(d) > 0);
+  meter('use',use,1,!hasFrame ? 'NO FRAME' : current?.loose ? 'LOOSE' : (use*100).toFixed(1)+' %');
+  meter('sway',sway,50,!hasFrame || d.mode === 'bridge' || current?.loose ? '--- cm' : sway.toFixed(1)+' cm');
+}
+function refreshBudget() {
+  $('budget').setAttribute('aria-pressed',state.budget);
+  $('budget').textContent = state.budget ? 'Budget '+formatCost(state.budgetLimit) : 'Budget';
+  $('budget-panel').hidden = !state.budget || state.mode === 'yard';
+  $('budget-out').textContent = state.budgetLimit.toLocaleString('en-US');
+  const remaining = state.budgetLimit-cost(D());
+  $('budget-status').textContent = remaining < 0 ? 'OVER LIMIT '+formatCost(-remaining) : formatCost(remaining)+' remaining';
+  $('budget-status').style.color = remaining < 0 ? '#ffc5c5' : '#c0e8d3';
+}
+
 Curio.init({clips:"voice:*",rate:.9,readFallback:() => $('hint').textContent});
 loadStorage();
 setMode('bridge');
@@ -3337,6 +3569,11 @@ new ResizeObserver(relayout).observe($('stage'));
 addEventListener('resize',relayout);
 // The panel comes before the grid in the DOM; CSS keeps the stage to its left.
 $('stage').before($('panel'));
+const utility = document.createElement('div');
+utility.className = 'utility';
+$('panel').append(utility);
+for (const id of ['tools','views','save-row']) utility.append($(id));
+utility.append(document.querySelector('.power-panel'));
 canvas.addEventListener('focus',() => { wantsFrame = true;
 });
 window.__tool = {

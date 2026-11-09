@@ -9,7 +9,7 @@
 <!--
 Launch Pad, Curio Class. Grade 9 Algebra 1, A-REI.B.4a and 4b. Students drive Launch and Missions.
 Model: h(t) = -16t² + vt + h0 in feet, no air resistance, g = 32 ft/s².
-Sources: Common Core HSA-REI; OpenStax Elementary Algebra 2e 10.6; Intermediate Algebra 2e chapter 9;
+Sources: Common Core HSA-REI; OpenStax Elementary Algebra 2e 10.4; Intermediate Algebra 2e chapter 9;
 NIST standard acceleration of gravity. Source URLs and model qualifications are in notes.md.
 Illustrations generated with OpenAI gpt-image, edited for Curio Class.
 One offline file. Content CC BY 4.0, code MIT. No network requests.
@@ -229,6 +229,7 @@ margin-bottom:8px
 border-top:1px solid var(--line);
 padding:12px 16px;
 min-height:95px;
+min-width:0;
 background:#0a101aaa
 }
 
@@ -529,6 +530,40 @@ color:#d3deed
 .square-derivation span{
 display:block;
 color:var(--brand)
+}
+
+.proof-record{
+border-left:2px solid var(--brand);
+padding:8px 10px;
+background:linear-gradient(110deg,#20364a,#152334);
+font:13px/1.7 var(--readout-font)
+}
+
+.proof-record strong,.proof-record span{
+display:block
+}
+
+.proof-record strong{
+color:#ffd4b8;
+font:600 12px/1.5 system-ui,sans-serif;
+margin-bottom:3px
+}
+
+@media(max-height:640px),(max-width:599px){
+.proof-record{
+grid-column:1/-1;
+grid-row:4;
+font-size:11px;
+line-height:1.4;
+padding:4px 7px
+}
+.proof-record strong{
+font-size:11px;
+margin:0
+}
+.work:has(.proof-record:not([hidden])) #feedback{
+grid-row:5
+}
 }
 
 @media(max-height:899px){
@@ -887,7 +922,9 @@ align-items:center
 
   .telemetry p{
 font-size:10px;
-line-height:1.2
+line-height:1.2;
+min-width:0;
+overflow-wrap:anywhere
 }
 
   .telemetry #crossings{
@@ -1028,6 +1065,10 @@ font-size:14px;
 margin-bottom:3px
 }
 
+  .graph-lock.deriving{
+inset:0 5% auto
+}
+
   .square-derivation{
 font-size:10px;
 line-height:1.3
@@ -1082,7 +1123,8 @@ line-height:1.3
           <button class="btn" data-method="Complete the square" aria-pressed="false">Complete<br>the square</button>
           <button class="btn" data-method="Formula" aria-pressed="false">Formula</button>
         </div>
-        <p class="formula" id="work-equation"></p><div class="fields" id="fields"></div>
+        <p class="formula" id="work-equation"></p><div class="proof-record" id="proof-record" hidden></div>
+        <div class="fields" id="fields"></div>
         <p class="answer-help" id="answer-help" hidden>Commas, fractions, sqrt( ), √ or ±. Decimals within 0.01 s count.</p>
         <button class="btn" id="check">Write it</button><p id="feedback" aria-live="polite"></p>
       </section>
@@ -1103,7 +1145,9 @@ line-height:1.3
   const L = {
     wLaunch:'Set Speed v and Height h0, then press Launch. Watch the curve it draws.',
     wMissions:'Each mission is one equation. Press Write it, pick a method and solve. Then launch to check.',
-    disc:'Check the discriminant first. Type how many real answers it means, then the roots.',
+    coeff:'Type a, b and c from the tidied equation. Then press Check work.',
+    disc:'Check the discriminant. Type how many real answers it means, then press Check work.',
+    derive:'Fill the three denominators to derive the formula. Then press Check work.',
     launchNow:'Your answer checks. Press Launch and watch the clock stop at your time.',
     neg:'Negative time is before launch. Pick the other answer.',
     never:'No real answer. The ball never gets that high.',
@@ -1171,7 +1215,7 @@ line-height:1.3
   }
   function how(key,valid,needs) {
     hint(key);
-    if(!V.heard(key)) V.how(key,{valid,needs});
+    if(!V.heard(key)) V.how(key,{valid,needs,now:true});
   }
   function feedback(message,good=false) {
     state.feedback=message;
@@ -1198,20 +1242,12 @@ line-height:1.3
   }
   // Arithmetic-only parser. No eval or Function, including when a student enters an exact radical.
   function real(raw) {
-    let s=String(raw).toLowerCase().replace(/[−–]/g,'-').replace(/\s+/g,'');
+    let s=String(raw).toLowerCase().replace(/[−–]/g,'-').replace(/\s+/g,'').replace(/²/g,'^2');
     s=s.replace(/√(\d+(?:\.\d+)?)/g,'sqrt($1)').replace(/√\(/g,'sqrt(');
     s=s.replace(/(\d|\))(?=sqrt|\()/g,'$1*').replace(/\)(?=\d)/g,')*');
     if(!s||s.length>160||/[^\d.()+*/^a-z-]/.test(s)) return NaN;
     let i=0;
     function atom() {
-      if(s[i]==='+') {
-        i++;
-        return atom();
-      }
-      if(s[i]==='-') {
-        i++;
-        return -atom();
-      }
       if(s.slice(i,i+5)==='sqrt(') {
         i+=5;
         const v=add();
@@ -1233,14 +1269,22 @@ line-height:1.3
       let v=atom();
       if(s[i]==='^') {
         i++;
-        v=v**atom();
+        v=v**unary();
       }
       return v;
     }
+    function unary() {
+      if(s[i]==='+'||s[i]==='-') {
+        const sign=s[i++];
+        const v=unary();
+        return sign==='-'?-v:v;
+      }
+      return power();
+    }
     function mul() {
-      let v=power();
+      let v=unary();
       while(s[i]==='*'||s[i]==='/') {
-        const op=s[i++],q=power();
+        const op=s[i++],q=unary();
         v=op==='*'?v*q:v/q;
       }
       return v;
@@ -1273,6 +1317,15 @@ line-height:1.3
   function complex(raw) {
     const s=String(raw).replace(/\s+/g,'').replace(/[−–]/g,'-').replace(/\+\/-/g,'±').toLowerCase();
     return ['2±i','2+i,2-i','2-i,2+i','2+1i,2-1i','2-1i,2+1i'].includes(s);
+  }
+  function denominator(raw,squared=false) {
+    let s=String(raw).toLowerCase().replace(/\s+/g,'').replace(/²/g,'^2');
+    if(!s||s.length>80||/[^a\d.()+*/^−-]/.test(s))return false;
+    s=s.replace(/(\d|\))(?=a)/g,'$1*').replace(/a(?=a|\(|\d)/g,'a*');
+    return [1,2,3,5,-2].every(a=>{
+      const value=real(s.replace(/a/g,'('+a+')'));
+      return Math.abs(value-(squared?4*a*a:2*a))<1e-8;
+    });
   }
   let plane=null,trace=null,curve=null,curveDomain=[0,0],ball=null,trail=null,ring=null;
   let geometry={},runGeneration=0;
@@ -1313,15 +1366,16 @@ line-height:1.3
     if(tiny) text(svg,w/2,h-2,'time (s)',10,'#a6b3c4').setAttribute('text-anchor','middle');
     const locked=state.mode==='Missions'&&!state.revealed&&!state.running;
     $('graph-lock').hidden=!locked;
-    if(locked&&state.method==='Complete the square'&&['roots','answer','ready'].includes(state.step)) {
-      $('graph-lock').innerHTML='<b>One identity becomes the formula</b><div class="square-derivation">'+
-        'at² + bt + c = 0, a ≠ 0'+
-        '<span>(t + b/(2a))² = (b² − 4ac)/(4a²)</span>'+
-        'Take both square roots, then subtract b/(2a).'+
-        '<span>t = (−b ± √(b² − 4ac))/(2a)</span></div>';
+    $('graph-lock').classList.toggle('deriving',locked&&state.step==='derive');
+    if(locked&&state.step==='derive') {
+      $('graph-lock').innerHTML='<b>Derive the formula</b>'+
+        '<div class="square-derivation">Divide by a, then complete the square.'+
+        '<span>Use a in each box.</span></div>';
     }else $('graph-lock').innerHTML='<b>Your equation. Your prediction.</b>Solve first. Launch reveals the flight.';
     plane.fn(()=>cfg().H,{color:2,width:2,label:'Target height '+cfg().H+' feet'});
-    plane.label(maxT*.96,cfg().H,'H = '+cfg().H+' ft',{anchor:'end',dy:-7,layer:'labels'});
+    const targetLabel=plane.label(maxT*.96,cfg().H,'H = '+cfg().H+' ft',
+      {anchor:'end',dy:tiny?0:-7,layer:'labels'});
+    if(tiny)targetLabel.el.style.fontSize='10px';
     if(!locked) {
       curveDomain=[0,state.revealed||Curio.reduce?land():state.t];
       curve=plane.fn(height,{color:1,width:3.5,domain:curveDomain,label:equation()});
@@ -1346,7 +1400,8 @@ line-height:1.3
     const bottom=short?34:Math.min(82,h*.13)+24;
     const maxH=Math.max(20,peak()*1.15,cfg().H*1.12);
     const y=z=>h-bottom-z/maxH*(h-top-bottom);
-    const x=short?left+(w-left-right)*.38:left+(w-left-right)*.47;
+    const catching=state.mode==='Missions'&&state.mission===9;
+    const x=left+(w-left-right)*(catching?.20:short?.38:.47);
     const launcherH=short?28:Math.min(82,h*.13),launcherW=launcherH*180/320;
     // Equipment is symbolic: the ruler measures the ball at the tube mouth, not the tripod feet.
     const baseY=y(cfg().h)+launcherH;
@@ -1371,9 +1426,12 @@ line-height:1.3
       mk('circle',{cx:x+dw*.24,cy:y(cfg().H),r:2,fill:'#6fdca6',class:'live-light'},svg);
     }
     if(state.mode==='Missions'&&state.mission===9) {
-      const bw=Math.min(short?80:130,w*.63),bh=bw*133/240;
-      // The painted rail is 27 percent down the inspected, trimmed image.
-      image(svg,'balcony',x-bw*.5,y(40)-bh*.27,bw,bh);
+      const ratio=226/320,rail=.47,glove=.14;
+      const bw=Math.max(12,Math.min(short?95:170,(w-x-8)/(1-glove),
+        (y(40)-2)/(ratio*rail),(h-y(40)-2)/(ratio*(1-rail))));
+      const bh=bw*ratio;
+      // The redrawn rail is 47 percent down, and the glove is 14 percent across.
+      image(svg,'balcony',x-bw*glove,y(40)-bh*rail,bw,bh);
       mk('line',{x1:0,x2:w,y1:y(40),y2:y(40),stroke:'#c9a0ff','stroke-width':1,'stroke-dasharray':'3 4',opacity:.6},svg);
     }
     trail=mk('line',{x1:x,x2:x,y1:y(cfg().h),y2:y(Math.max(0,height(state.t))),stroke:'#ff7a5c','stroke-width':2,opacity:.35},svg);
@@ -1426,6 +1484,25 @@ line-height:1.3
     store();
     showProgress();
     $('next').hidden=state.mission===9;
+    const record=$('proof-record');
+    record.replaceChildren();
+    record.hidden=false;
+    const title=document.createElement('strong');
+    title.textContent=state.method+' · flight verified';
+    record.appendChild(title);
+    for(const event of state.events) {
+      const row=document.createElement('span');
+      const direction=cfg().v-32*event.time;
+      const phase=Math.abs(direction)<1e-7?'Peak':direction>0?'↑ Rising':'↓ Falling';
+      row.textContent=state.mission===5?'64 ft peak · 16 ft below the drone':
+        phase+' · '+event.time.toFixed(2)+' s · '+fmt(event.height)+' ft';
+      record.appendChild(row);
+    }
+    if(state.mission===9) {
+      const note=document.createElement('span');
+      note.textContent='Ground time assumes no catch.';
+      record.appendChild(note);
+    }
     feedback('Mission complete · '+(state.mission===5?'64 ft peak, below the 80 ft drone.':m().eventExact+' s verified.'),true);
     hint('again');
     V.say('done',{valid:()=>!state.running});
@@ -1506,13 +1583,15 @@ line-height:1.3
     state.step=step;
     state.visits++;
     $('fields').replaceChildren();
+    $('proof-record').hidden=true;
     $('answer-help').hidden=true;
     $('methods').hidden=!['method','coeff','discriminant'].includes(step);
     $('check').hidden=false;
     feedback('');
     const c=m();
     const titles={write:'Write it',height:'Set the height',method:'Choose a method',coeff:'Formula coefficients',
-      discriminant:'Read the discriminant',roots:'Algebraic roots',answer:'Answer the mission',ready:'Prediction checked'};
+      discriminant:'Read the discriminant',derive:'Derive the formula',roots:'Algebraic roots',
+      answer:'Answer the mission',ready:'Prediction checked'};
     $('step-title').textContent=titles[step];
     $('step-count').textContent=['write','height'].includes(step)?'01 / 03':step==='answer'||step==='ready'?'03 / 03':'02 / 03';
     if(step==='write') {
@@ -1525,6 +1604,14 @@ line-height:1.3
       $('check').textContent='Tidy';
       how('tidy',()=>state.step==='height','#check');
     }else if(step==='method')method(state.method,false);
+    else if(step==='derive') {
+      $('work-equation').textContent='(t + b/u)² = (b² − 4ac)/v;  t = (−b ± √(b² − 4ac))/w';
+      addField('derive-u','u: shift');
+      addField('derive-v','v: square');
+      addField('derive-w','w: formula');
+      $('check').textContent='Check work';
+      how('derive',()=>state.step==='derive','#check');
+    }
     else if(step==='roots') {
       $('work-equation').textContent=state.identity||poly(c.a,c.b,c.c)+' = 0';
       addField('root-input','Both algebraic roots (one if repeated)');
@@ -1549,7 +1636,7 @@ line-height:1.3
     }
   }
   function method(name,announce=true) {
-    if(state.mode!=='Missions'||['write','height','answer','ready','roots'].includes(state.step))return;
+    if(state.mode!=='Missions'||['write','height','derive','answer','ready','roots'].includes(state.step))return;
     const normalized={'factor':'Factor','square root':'Square root','complete the square':'Complete the square','formula':'Formula'};
     name=normalized[String(name).toLowerCase()]||name;
     if(!Object.values(normalized).includes(name))return;
@@ -1586,7 +1673,7 @@ line-height:1.3
       addField('a','a');
       addField('b','b');
       addField('c','c');
-      if(announce)how('disc',()=>['coeff','discriminant'].includes(state.step),'#check');
+      if(announce)how('coeff',()=>state.step==='coeff','#check');
     }
     if(announce&&name!=='Formula')how('method',()=>state.step==='method','#check');
   }
@@ -1632,6 +1719,10 @@ line-height:1.3
     if(state.step==='method') {
       if(state.method==='Factor') {
         const p=real($('p').value),q=real($('q').value);
+        if(!Number.isFinite(p)||!Number.isFinite(q)) {
+          feedback('Type a number or exact expression in both p and q. Then press Check work.');
+          return;
+        }
         if(!close(-(p+q),c.b/c.a)||!close(p*q,c.c/c.a)) {
           feedback('Expansion: t² − ('+fmt(p+q)+')t + ('+fmt(p*q)+'). Match both coefficients.');return;
         }
@@ -1649,9 +1740,18 @@ line-height:1.3
           feedback('Divide by a. Halve the t coefficient, square it, and add that to both sides.');return;
         }
         state.identity='(t − '+fraction(-c.b,2*c.a)+')² = '+fraction(c.b*c.b-4*c.a*c.c,4*c.a*c.a);
-        newStep('roots',true);
+        newStep(state.mission===7?'derive':'roots',true);
         feedback('Square completed. Take both signs of the square root.',true);
       }
+      return;
+    }
+    if(state.step==='derive') {
+      if(!denominator($('derive-u').value)||!denominator($('derive-v').value,true)||!denominator($('derive-w').value)) {
+        feedback('Halve b/a for the shift. Square its denominator, then take both square-root signs. Use a in each box.');
+        return;
+      }
+      newStep('roots',true);
+      feedback('The completed square gives the formula. Now solve this flight using both signs.',true);
       return;
     }
     if(state.step==='roots') {
@@ -1679,7 +1779,7 @@ line-height:1.3
         feedback(L.neg);
         hint('Type the time after launch, then press Check answer.');
         const visit=state.visits;
-        V.say('neg',{valid:()=>state.visits===visit&&!state.ready});
+        V.say('neg',{valid:()=>state.visits===visit&&!state.ready,now:true});
         return false;
       }
       if(state.mission===1&&got.includes(0)){feedback('0 s is the launch. Choose when it comes back to ground.');return false;}
@@ -1762,6 +1862,7 @@ line-height:1.3
   $('next').onclick=()=>mission(Math.min(9,state.mission+1));
   $('mission-select').onchange=()=>mission($('mission-select').value);
   $('clear').onclick=()=>{
+    if(state.mode==='Missions')mission(state.mission);
     state.completed={};
     store();
     showProgress();

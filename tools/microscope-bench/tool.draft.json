@@ -1,0 +1,277 @@
+{
+  "id": "microscope-bench",
+  "stage": "built",
+  "status": "beta",
+  "curiosity": true,
+  "plate": 6,
+  "hook": "Turn the focus knob. Pond life resolves and swims across the glass.",
+  "outcome": "Explore physically scaled photographic specimens, prepare mounts, follow pond organisms, change focus through measured depth planes, and keep private observations.",
+  "driver": "students or teacher",
+  "minutes": "open-ended",
+  "modes": [],
+  "grades_label": "Grades 6-12",
+  "sources": [
+    "Nikon MicroscopyU, Properties of microscope objectives: https://www.microscopyu.com/microscopy-basics/properties-of-microscope-objectives . Copyrighted reference only; no reproduced illustrations or text.",
+    "Nikon MicroscopyU, Depth of field and depth of focus: https://www.microscopyu.com/microscopy-basics/depth-of-field-and-depth-of-focus . Copyrighted reference only; original implementation of wave-optical term.",
+    "Nikon MicroscopyU, Eyepiece reticle calibration: https://www.microscopyu.com/tutorials/reticlecalibration . Copyrighted reference only; no reproduced material.",
+    "Rice University, Measuring with the microscope: https://www.ruf.rice.edu/~bioslabs/methods/microscopy/measuring.html . Copyrighted independent factual reference; no reproduced material.",
+    "Merck, Measuring eyepiece calibration: https://www.merckmillipore.com/Web-IN-Site/en_US/-/EUR/ShowDocument-Pronet?id=201605.071 . Copyrighted independent factual reference; no reproduced material.",
+    "Original Curio Class instrument and exact micrometer/reticle geometry.",
+    "Hooke, Micrographia (1665), public domain. https://www.gutenberg.org/ebooks/15491",
+    "OpenStax Biology 2e, Studying Cells, current CC BY-NC-SA 4.0; factual reference only, no quoted text or images. https://openstax.org/books/biology-2e/pages/4-1-studying-cells",
+    "Royal Society, original letter catalogue, copyrighted reference. https://catalogues.royalsociety.org/CalmView/Record.aspx?id=EL%2FL1%2F23&src=CalmView.Catalog",
+    "Leeuwenhoek, Collected Letters, letter 26, original letter public domain; edition reference only. https://www.dbnl.org/tekst/leeu027alle02_01/leeu027alle02_01_0006.php",
+    "OpenStax Biology 2e, Lophotrochozoa, current CC BY-NC-SA 4.0; factual reference only, no quoted text or images. https://openstax.org/books/biology-2e/pages/28-3-superphylum-lophotrochozoa",
+    "Zeng and colleagues, Adineta beysunae, CC BY 4.0. https://doi.org/10.3897/zookeys.941.50465",
+    "OpenStax Anatomy and Physiology, Erythrocytes, current CC BY-NC-SA 4.0; factual reference only, no quoted text or images. https://openstax.org/books/anatomy-and-physiology/pages/18-3-erythrocytes",
+    "Clinical Methods, Peripheral Blood Smear, copyrighted reference. https://www.ncbi.nlm.nih.gov/books/NBK263/",
+    "OpenStax Biology 2e, The Cell Cycle, current CC BY-NC-SA 4.0; factual reference only, no quoted text or images. https://openstax.org/books/biology-2e/pages/10-2-the-cell-cycle",
+    "Nikon MicroscopyU, Depth of Field and Depth of Focus, copyrighted reference. https://www.microscopyu.com/microscopy-basics/depth-of-field-and-depth-of-focus",
+    "Rice University, Oil Immersion, copyrighted reference. https://www.ruf.rice.edu/~bioslabs/methods/microscopy/oilimm.html",
+    "Nikon MicroscopyU, Properties of Microscope Objectives, copyrighted reference. https://www.microscopyu.com/microscopy-basics/properties-of-microscope-objectives",
+    "Rice University, Light Microscopy, copyrighted reference. https://www.ruf.rice.edu/~bioslabs/methods/microscopy/microscopy.html",
+    "Nikon MicroscopyU, Specimen Contrast, copyrighted reference. https://www.microscopyu.com/techniques/phase-contrast/specimen-contrast-in-optical-microscopy",
+    "Curio Class model settings: actual objective powers 3.9, 9.8, 41, 98; focal offsets; compressed logarithmic blur; hair gradient and swimming paths. Original code, repository licence. These are explicit simulation choices, not measured facts.",
+    "Marine Biological Laboratory, Seeing Cells in Life. Copyrighted factual reference; no text or imagery reproduced. https://www.mbl.edu/research/research-centers/eugene-bell-center/featured-projects/seeing-cells-exhibit/seeing-cells-life",
+    {
+      "title": "Cheek size inference cross-checks",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3001196/",
+      "license": "CC BY as stated in Journal of Cytology; factual citation only",
+      "crossCheck": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2732433/",
+      "crossCheckLicense": "Author manuscript; no reuse licence stated; factual citation only, no text or image copied."
+    },
+    {
+      "title": "Characterization of Crystals in Ciliate Paramecium bursaria, Fig. 1a, three transmitted-light panels",
+      "credit": "Yuuki Kodama, Ayasa Kitatani, Yuriko Morita",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11246328/",
+      "doi": "10.1007/s00284-024-03793-8",
+      "scale": "First two panels: shared 20 micrometre bar measures about 69 pixels. Right panel: its separate 20 micrometre bar is 37 pixels end-to-end on row 362 of the original download. These are three distinct cultured individuals, not one natural pond sample.",
+      "magnification": "source optical microscopy; reproduced scale bar determines pixel size"
+    },
+    {
+      "title": "Adineta beysunae (10.3897-zookeys.941.50465) Figure 3.jpg",
+      "credit": "Zeng Y, Wei N, Wang Q, Iakovenko NS, Li Y, Yang Y (2020)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Adineta_beysunae_(10.3897-zookeys.941.50465)_Figure_3.jpg",
+      "scale": "Photographic panel B only. Vertical 50 µm bar = approximately 538 original pixels. Drawing A excluded.",
+      "magnification": "source light microscopy"
+    },
+    {
+      "title": "Bancsó 2021 Fig 7-8 Pinnularia viridis.jpg",
+      "credit": "Sándor Bancsó",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Bancs%C3%B3_2021_Fig_7-8_Pinnularia_viridis.jpg",
+      "scale": "20 µm bar = approximately 165 pixels in the downloaded 1280 px thumbnail. Scale measured after thumbnail resampling.",
+      "magnification": "source light microscopy"
+    },
+    {
+      "title": "41396 2020 676 Fig4b.jpg",
+      "credit": "H. S. Tee, D. Waite, L. Payne, M. Middleditch, S. Wood, K. M. Handley",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:41396_2020_676_Fig4b.jpg",
+      "scale": "Lower-right panel: 20 µm bar = approximately 89 pixels. One unlabelled filament crop.",
+      "magnification": "source light microscopy"
+    },
+    {
+      "title": "Hemocytometer grid with human hair 100x.jpg",
+      "credit": "Jeffrey M. Vinocur",
+      "license": "CC BY 2.5",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.5/",
+      "url": "https://commons.wikimedia.org/wiki/File:Hemocytometer_grid_with_human_hair_100x.jpg",
+      "scale": "Known-size object: central haemocytometer fine squares, 50 µm, approximately 50 px. Inferred standard Neubauer grid pitch, not a camera calibration. Both axes agree within about 2%.",
+      "magnification": "100× stated by photographer",
+      "calibrationReferences": [
+        "https://asset-downloads.zeiss.com/catalogs/download/mic/96e9e3a7-f2fd-4989-94e3-d12412701623/EN_wp_How-to-Use-a-Hemocytometer.pdf",
+        "https://www.marienfeld-superior.com/counting-grids.html"
+      ]
+    },
+    {
+      "title": "Marine biogenous aragonite sand (modern; sandy beach at French Bay, San Salvador Island, Bahamas) (48739969587).jpg",
+      "credit": "Sara Beth Kopczynski, shared by James St. John",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Marine_biogenous_aragonite_sand_(modern%3B_sandy_beach_at_French_Bay,_San_Salvador_Island,_Bahamas)_(48739969587).jpg",
+      "scale": "2 mm white bar = approximately 280 pixels. Reflected-light source; not transmitted-light sand.",
+      "magnification": "source light microscopy"
+    },
+    {
+      "title": "Tipula dechangensis (10.3897-zookeys.1040.64376) Figures 1, 2.jpg",
+      "credit": "Men Q-L, Starkevich P, Saldaitis A (2021)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Tipula_dechangensis_(10.3897-zookeys.1040.64376)_Figures_1,_2.jpg",
+      "scale": "Full available source (1512 x 1314 px): 2.0 mm bar measures 206 px, or 9.71 um/px. The 1420 px crop is 13.79 mm wide including background; this is not an anatomical wing length. Article reports 14.3-16.8 mm wing length for the species. Source resolution limits high-power use.",
+      "magnification": "source light microscopy"
+    },
+    {
+      "title": "Mobile-phone-based Rheinberg microscope with an LED array, Fig. 9a",
+      "credit": "Yuma Ogasawara, Ryo Sugimoto, Ryoji Maruyama, Hidenobu Arimoto, Yosuke Tamada, Wataru Watanabe",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6975239/",
+      "doi": "10.1117/1.JBO.24.3.031007",
+      "scale": "100 µm bar = approximately 47 pixels. Brightfield panel a only.",
+      "magnification": "source optical microscopy; reproduced scale bar determines pixel size"
+    },
+    {
+      "title": "Low-cost 3D-printed lenses for brightfield and fluorescence microscopy, Figs. 5C, 5E, 6D and 6F",
+      "credit": "Jay Christopher, Liam M Rooney, Mark Donnachie, Deepak Uttamchandani, Gail McConnell, Ralf Bauer",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11019669/",
+      "doi": "10.1364/BOE.514653",
+      "scale": "Fig. 5: 250 µm bar ≈64 px; Fig. 6: 50 µm bar ≈76 px. Unlabelled crops strictly within commercial-lens lower-left halves. Onion uses Lugol iodine; Hosta epidermis is a water mount.",
+      "magnification": "source optical microscopy; reproduced scale bar determines pixel size"
+    },
+    {
+      "title": "Human epithelial cells stained with methylene blue dye",
+      "credit": "Daliasalloum",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Human_epithelial_cells_stained_with_methylene_blue_dye.jpg",
+      "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Human_epithelial_cells_stained_with_methylene_blue_dye.jpg",
+      "scale": "Approximate only: 0.22 um per original pixel, using a roughly 250-pixel cell edge and a 55 um reference size. Prasad et al. control cells average 54.97 um; Romeo et al. independently describe mature buccal cells as 50-60 um on edge. These are variable biological sizes, not a camera calibration. Do not use this slide for precision measurement; use the source-bar-scaled blood fields instead.",
+      "calibrationReferences": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC3001196/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC2732433/"
+      ],
+      "magnification": "Not stated by photographer; never used to invent a calibrated pixel size.",
+      "fetchedUtc": "2026-11-06T19:29:00.264902+00:00"
+    },
+    {
+      "title": "Exogenous application of mycotoxin fusaric acid, Fig. 4, control root-tip mitosis",
+      "credit": "Kürşat Çavuşoğlu, Dilek Çavuşoğlu",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10960845/",
+      "doi": "10.1038/s41598-024-57762-z",
+      "scale": "10 µm bar = approximately 35 pixels. Four control fields; Feulgen staining, original photographic panels a–d.",
+      "magnification": "source optical microscopy; reproduced scale bar determines pixel size"
+    },
+    {
+      "title": "Human Plasmodium knowlesi Infection, Fig. 1",
+      "credit": "J. J. van Hellemond and coauthors; CDC Emerging Infectious Diseases (2009)",
+      "license": "Public domain",
+      "licenseUrl": "https://wwwnc.cdc.gov/eid/page/copyright-and-disclaimers",
+      "url": "https://wwwnc.cdc.gov/eid/article/15/9/09-0358_article",
+      "downloadUrl": "https://wwwnc.cdc.gov/eid/images/09-0358-F1.jpg",
+      "scale": "Caption: 5 µm bar, approximately 28 pixels in this 600 px figure. Eight Giemsa-stained blood fields with malaria parasites. The uninfected cell near source x105,y50 spans about 42 pixels, independently approximately 7.5 µm.",
+      "magnification": "source blood-smear optical micrograph, magnification not stated"
+    },
+    {
+      "title": "High-contrast multifocus microscopy with a single camera and z-splitter prism, Supplement 1, Fig. S9b",
+      "credit": "Sheng Xiao, Howard Gritton, Hua-an Tseng, Dana Zemel, Xue Han, Jerome Mertz (2020)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://doi.org/10.6084/m9.figshare.12964487.v3",
+      "downloadUrl": "https://ndownloader.figshare.com/files/52747868",
+      "scale": "100 µm bar = approximately 98 pixels in extracted PDF JPEG. Nine simultaneous focal planes spaced 25 µm, +100 to -100 µm. Fixed Volvox in Eukitt; darkfield, original ImageJ green-fire-blue lookup table retained. Same registered crop for every plane.",
+      "magnification": "source 20×/0.5 NA objective; source darkfield, not a fluorescence simulation"
+    },
+    {
+      "title": "CIL:43552, Allium cepa, root tip",
+      "credit": "Shoba Shanti (2013), Cell Image Library",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "url": "https://www.cellimagelibrary.org/images/43552",
+      "doi": "10.7295/W9CIL43552",
+      "scale": "Approximate 0.22 um per pixel: nuclei around 80-110 pixels compared with roughly 18-24 um nuclei in the independently scaled Cavusoglu control fields. Archive supplies no pixel calibration. This is a size-based inference, unsuitable for precision measurement.",
+      "magnification": "40x / 0.65 NA stated by archive; not used to calculate pixel size",
+      "fetchedUtc": "2026-11-06 (licence rechecked; original TIFF retained from build)"
+    },
+    {
+      "title": "New biological observations cross-check",
+      "license": "current CC BY-NC-SA 4.0; factual reference only, no quoted text or images",
+      "urls": [
+        "https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells",
+        "https://openstax.org/books/biology-2e/pages/23-3-groups-of-protists"
+      ]
+    }
+  ],
+  "third_party": [
+    {
+      "name": "Characterization of Crystals in Ciliate Paramecium bursaria, Fig. 1a centre",
+      "license": "CC BY 4.0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11246328/"
+    },
+    {
+      "name": "Adineta beysunae (10.3897-zookeys.941.50465) Figure 3.jpg",
+      "license": "CC BY 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Adineta_beysunae_(10.3897-zookeys.941.50465)_Figure_3.jpg"
+    },
+    {
+      "name": "Bancsó 2021 Fig 7-8 Pinnularia viridis.jpg",
+      "license": "CC BY 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Bancs%C3%B3_2021_Fig_7-8_Pinnularia_viridis.jpg"
+    },
+    {
+      "name": "41396 2020 676 Fig4b.jpg",
+      "license": "CC BY 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:41396_2020_676_Fig4b.jpg"
+    },
+    {
+      "name": "Hemocytometer grid with human hair 100x.jpg",
+      "license": "CC BY 2.5",
+      "url": "https://commons.wikimedia.org/wiki/File:Hemocytometer_grid_with_human_hair_100x.jpg"
+    },
+    {
+      "name": "Marine biogenous aragonite sand (modern; sandy beach at French Bay, San Salvador Island, Bahamas) (48739969587).jpg",
+      "license": "CC BY 2.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Marine_biogenous_aragonite_sand_(modern%3B_sandy_beach_at_French_Bay,_San_Salvador_Island,_Bahamas)_(48739969587).jpg"
+    },
+    {
+      "name": "Tipula dechangensis (10.3897-zookeys.1040.64376) Figures 1, 2.jpg",
+      "license": "CC BY 4.0",
+      "url": "https://commons.wikimedia.org/wiki/File:Tipula_dechangensis_(10.3897-zookeys.1040.64376)_Figures_1,_2.jpg"
+    },
+    {
+      "name": "Mobile-phone-based Rheinberg microscope with an LED array, Fig. 9a",
+      "license": "CC BY 4.0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6975239/"
+    },
+    {
+      "name": "Low-cost 3D-printed lenses for brightfield and fluorescence microscopy, Figs. 5C, 5E, 6D and 6F",
+      "license": "CC BY 4.0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11019669/"
+    },
+    {
+      "name": "Exogenous application of mycotoxin fusaric acid, Fig. 4, control root-tip mitosis",
+      "license": "CC BY 4.0",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10960845/"
+    },
+    {
+      "name": "Human Plasmodium knowlesi Infection, Fig. 1",
+      "license": "Public domain",
+      "url": "https://wwwnc.cdc.gov/eid/article/15/9/09-0358_article"
+    },
+    {
+      "name": "High-contrast multifocus microscopy with a single camera and z-splitter prism, Supplement 1, Fig. S9b",
+      "license": "CC BY 4.0",
+      "url": "https://doi.org/10.6084/m9.figshare.12964487.v3"
+    },
+    {
+      "name": "CIL:43552, Allium cepa, root tip",
+      "license": "Public domain",
+      "url": "https://www.cellimagelibrary.org/images/43552"
+    },
+    {
+      "name": "Human epithelial cells stained with methylene blue dye",
+      "url": "https://commons.wikimedia.org/wiki/File:Human_epithelial_cells_stained_with_methylene_blue_dye.jpg",
+      "license": "CC BY 4.0"
+    }
+  ],
+  "updated": "2026-11-06",
+  "limitations": [
+    "Finite photographic fields; high zoom does not create new source detail.",
+    "Animated pond paths; no recorded ciliary motion.",
+    "Water, coverslip, air and oil are optical models; staining does not change source chemistry.",
+    "Hair scale inferred from a known grid; source darkfield/reflected-light contrast retained where declared.",
+    "Prepared cheek field scale is inferred from variable biological size, not camera-calibrated. Use the source-bar-scaled blood fields for measurement.",
+    "Broad contiguous root/blood/onion fields and resolved wing hairs remain unavailable. No gate pass is claimed."
+  ]
+}

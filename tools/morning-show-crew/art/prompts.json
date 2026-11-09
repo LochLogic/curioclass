@@ -1,0 +1,95 @@
+{
+  "house_style": "Bright painted illustration, school morning light. Rich gouache and colored-pencil texture, clean cinematic shapes, warm sunlight from the upper left, tactile materials, soft shadows, red, cream and blue school palette. A convincing foreground, middle ground and background. No people. No text, letters, numbers, logos or watermarks.",
+  "assets": [
+    {
+      "name": "shot-ghost-light",
+      "prompt": "An empty school auditorium stage with a single bare ghost light on a stand, deep red velvet curtains, polished wooden floor, stage wings and warm morning light. Wide cinematic view.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-signup-sheet",
+      "prompt": "A classroom door with a large blank sign-up sheet on a clipboard and pencil on a string. The paper is central and clearly visible, with faint blank ruled lines, no writing. Warm blue door, brushed metal handle, tactile hallway details.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-music-room",
+      "prompt": "A middle school music room with a beautiful upright piano, music stands with blank sheets and choir risers. Sun streams from tall left windows onto a wooden floor. Wide view with rich depth.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-costume-rack",
+      "prompt": "A rolling rack of colorful school theater costumes and hats backstage, layered fabrics, empty hangers, realistic caster wheels, sunlit velvet and cotton textures, wide view.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-scripts",
+      "prompt": "A tall stack of stapled play scripts with entirely blank cream covers on a wooden school theater table. Close view, pencil, paper edges and staple details, warm sunlight, deep stage background.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-hallway",
+      "prompt": "A school hallway with blue lockers and a blank bulletin board, long morning sunlight on the polished floor, realistic locker vents and handles, inviting perspective into the school.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-clock",
+      "prompt": "A close-up of a round school wall clock centered on a softly textured cream wall, dark metal rim, plain white face completely empty of hands and numbers, subtle hour tick marks only. Clock fills most of the image height. Warm side light.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "shot-tickets",
+      "prompt": "A folding table in a school lobby with a blank roll of cream paper tickets and a metal cash box, brass latch, small hinges, tactile paper and sunlit school lobby in the background. Wide view.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "studio-set",
+      "prompt": "An empty school morning show studio with a wooden news desk, two cameras on tripods in the foreground and a large blank screen behind the desk. Rich red acoustic panels, warm morning light from the left. Wide cinematic view, depth and tactile details.",
+      "aspect": "16:9",
+      "width": 1600,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "corkboard",
+      "prompt": "A big entirely empty cork bulletin board with a thick wooden frame in a school hallway, nearly full frame. Rich tactile cork grain, tiny old pinholes, blue hallway wall at the edges and warm morning sunlight from the left. Straight-on view, reserved central space for a poster added in code.",
+      "aspect": "4:3",
+      "width": 1600,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

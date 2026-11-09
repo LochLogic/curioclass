@@ -1,0 +1,1691 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Estimation Station · Curio Class</title>
+<meta name="description" content="Guess, choose a measuring tool, and load a freight train. Grade 2 length and number-line stories. Works offline.">
+<!--
+Estimation Station, Curio Class. Grade 2, 2.MD.1 through 2.MD.6.
+Teacher-led Freight and exploratory Yard. No timer. Runs stay on this device.
+Length facts: NIST Handbook 44 Appendix C; NIST SP 811; BIPM SI Brochure.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0. Code MIT. Started from kit/starter/src.html.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="icon" href="data:,">
+<style>
+:root {
+  --paper:#f7f2e7; --ink:#231f1a; --muted:#5e574d; --line:#c4aa7d; --focus:#1f6f8b;
+  --brand:#9c3520; --btn:#87311f; --btn-line:#d6875d; --head-ink:#fff; --panel:#f7f2e7;
+}
+body {overflow:hidden; min-height:100%;}
+header {padding:8px 18px; gap:10px; border-bottom:5px solid #612b1a; box-shadow:0 2px 6px #231f1a55; z-index:2;}
+h1 {font:800 clamp(21px,2.6vw,33px)/1 Georgia,serif; letter-spacing:-.7px;}
+h1 small {font-size:13px; letter-spacing:2px; margin-top:7px; text-transform:uppercase;}
+header button,.seg button {min-height:60px;}
+.seg {border-radius:12px;}
+.seg button[aria-pressed="true"] {background:#e8a917; color:var(--ink);}
+.icon-btn {border-radius:12px; padding:0 12px;}
+main {grid-template-columns:minmax(0,1fr) 330px; overflow:hidden;}
+.stage {min-height:0; display:flex; flex-direction:column; background:#d6b77e url('art:station-platform') center/cover;}
+.race {height:100px; flex:none; position:relative; background:linear-gradient(#fff5d4ef,#f1dab9eb); border-bottom:3px solid #7d5433;}
+.track {position:absolute; left:112px; right:24px; height:27px; border-block:3px solid #74614a;
+  background:linear-gradient(90deg,transparent 40%,#9c352077 40% 60%,transparent 60%);
+  background-size:calc(100% / 44) 100%; background-repeat:repeat-x;}
+.track.this {top:15px;}
+.track.last {top:56px;}
+.track-label {position:absolute; left:12px; top:13px; font-size:13px; font-weight:800;}
+.track-label.last {top:54px;}
+.train {position:absolute; width:150px; height:43px; bottom:2px; display:flex; align-items:end;
+  transition:left 1.2s cubic-bezier(.3,.7,.3,1); filter:drop-shadow(0 3px 2px #231f1a55);}
+.train img {width:90px; height:40px; object-fit:contain;}
+.train img:first-child {width:62px;}
+.ghost {filter:grayscale(1) opacity(.65); border-bottom:2px dashed #485665;}
+.job-dots {position:absolute; bottom:0; left:14px; font-weight:800; letter-spacing:6px; color:#6b3b27; font-size:12px;}
+.work {position:relative; flex:1; min-height:0; margin:14px 15px 0; border:6px solid #6c4329;
+  border-radius:7px 7px 0 0; background:#c9b48e url('art:tabletop') center/100% 100%;
+  box-shadow:0 7px 0 #452a1a,0 14px 28px #231f1a55,inset 0 0 28px #50301633;}
+.work.standing {background:#e5d7b7 url('art:platform-floor') center/100% 100%;}
+#board {width:100%; height:100%; display:block; touch-action:none; user-select:none;}
+#board text {font-family:'Trebuchet MS','Segoe UI',sans-serif; fill:var(--ink);}
+.card {position:absolute; right:16px; top:13px; padding:9px 18px; min-width:175px; max-width:48%;
+  background:linear-gradient(110deg,#fffbee,#f3dfb7); border:1px solid #ac8754; transform:rotate(2deg);
+  box-shadow:2px 4px 6px #432b2255; border-radius:2px; font-size:15px; line-height:1.4; pointer-events:none;}
+.card:before {content:''; position:absolute; left:45%; top:-8px; width:32px; height:13px; background:#ac775c99;}
+.card b {display:block; font:800 22px Georgia,serif; text-transform:capitalize;}
+.card .stamp {color:#28633d; border:2px solid #28633d; display:inline-block; padding:0 4px; transform:rotate(-6deg); font-weight:800;}
+.card .stars {color:#704100; font-size:21px; letter-spacing:2px;}
+.step-tag {position:absolute; left:12px; top:12px; background:#492d1c; color:#fff4d9; padding:6px 12px;
+  font-size:13px; letter-spacing:2px; font-weight:800; border:1px solid #f7e0b588; border-radius:3px;}
+.slip {position:absolute; top:10px; left:12px; right:12px; background:#fff9e8; padding:10px 14px;
+  border-left:6px solid #9c3520; box-shadow:0 4px 6px #321d1c44; max-width:640px; font-size:17px;}
+.slip strong {font:800 25px Georgia,serif; display:block; margin-top:6px;}
+.tool-controls {display:flex; gap:6px; justify-content:center; min-height:68px; padding:7px 10px 3px; flex:none;}
+.unit-relation {align-self:center; padding:5px 10px; background:#fff8df; border:1px solid #785034;
+  border-radius:3px; font-size:14px; font-weight:800; box-shadow:0 2px 2px #432b2233;}
+button.station {border:2px solid #785034; border-radius:7px; background:linear-gradient(#fff9e9,#e6cda0);
+  min-height:60px; padding:4px 12px; font-weight:800; box-shadow:0 3px 0 #66432c;}
+button:active {filter:brightness(1.08);}
+button[aria-disabled="true"] {opacity:.53; cursor:default;}
+button.station:hover {background:#fff3cc;}
+.rack-wrap {background:linear-gradient(#5e3d29,#3e271d); border-top:4px solid #c49a5a; padding:8px 15px 6px; flex:none;}
+.rack-label {color:#fff0cf; font-size:11px; font-weight:800; letter-spacing:3px; margin-bottom:4px;}
+.rack {display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:7px;}
+.rack button {height:82px; min-width:0; border:2px solid #c7a271; border-radius:5px;
+  background:linear-gradient(135deg,#f8e7c3,#d3b17b); box-shadow:0 3px 0 #17100c; padding:1px 2px;
+  font-size:14px; line-height:1.1; font-weight:800;}
+.rack button svg {width:100%; height:38px; display:block;}
+.tool-capacity {display:block; font-size:10px; line-height:11px;}
+.rack button[aria-pressed="true"] {outline:4px solid #e8a917; outline-offset:-4px; background:#fff2c4;}
+.shelf {display:flex; gap:8px; min-height:38px; align-items:center; color:#fff0cf; padding-top:6px; font-size:12px; overflow:hidden;}
+.shelf span {display:flex; align-items:center; gap:4px; white-space:nowrap;}
+.shelf img {width:32px; height:23px; object-fit:contain;}
+.shelf .empty {font-style:italic; opacity:.8;}
+.panel {padding:12px 14px; gap:10px; border-left:6px solid #65452d; background:
+  repeating-linear-gradient(0deg,transparent 0 30px,#aa8b5c15 30px 31px),linear-gradient(110deg,#fff9e9,#ead9b8);
+  overflow:hidden; box-shadow:inset 5px 0 15px #4f29152b;}
+.portrait-row {display:flex; align-items:center; min-height:177px; gap:4px; position:relative;}
+.portrait-row img {width:116px; height:150px; object-fit:contain; flex:none; align-self:end; filter:drop-shadow(1px 3px 1px #4f291544);}
+.hint {font-size:20px; line-height:1.28; margin:0; font-weight:650;}
+.ledger-title {font-size:11px; letter-spacing:3px; font-weight:800; color:#6d4731; margin:0;}
+.display {background:#fffdf4; border:3px solid #826441; box-shadow:inset 0 3px 8px #5c3e2233; min-height:76px;
+  border-radius:5px; display:flex; align-items:center; justify-content:space-between; padding:0 14px;}
+#digits {font:800 52px/1 'Trebuchet MS',sans-serif; min-width:1ch;}
+#display-unit {font-size:15px; color:var(--muted);}
+.pad {display:grid; grid-template-columns:repeat(3,1fr); gap:7px;}
+.pad button {height:60px; min-width:0; border-radius:7px; border:2px solid #b99b6c; background:linear-gradient(#fffdf3,#ecdfc5);
+  font:800 26px 'Trebuchet MS',sans-serif; box-shadow:0 3px 0 #9e8256;}
+.pad button.hit {background:#f3c758;}
+.pad #back {font-size:17px;}
+.pad #check {background:linear-gradient(#f7c64d,#e8a917); border-color:#8e5e13; font-size:18px;}
+.panel .big-btn {font-size:20px; border-radius:7px; flex:none; background:#e8a917; color:#231f1a;}
+.panel #new-run {background:#fff5dd; color:#714225; border:2px solid #ac865a; margin-top:auto; min-height:60px; font-size:17px;}
+.privacy {font-size:11px; line-height:1.2; margin:0; color:var(--muted);}
+.yard-shelf {background:#f7e7c9f2; border-bottom:4px solid #6b442b; padding:6px 10px; flex:none;}
+.yard-items {display:grid; grid-template-columns:repeat(6,1fr); gap:5px;}
+.yard-items button {min-height:65px; border:1px solid #9d774d; background:#fff6e2; border-radius:5px; padding:2px; font-size:11px;}
+.yard-items img {width:48px; height:37px; object-fit:contain; display:block; margin:auto;}
+.pages {display:flex; justify-content:space-between; align-items:center; margin-top:5px; font-size:12px;}
+.pages button {min-height:60px; min-width:95px;}
+.yard .shelf,.yard .rack-label {display:none;}
+.yard .tool-controls.empty {display:none;}
+.ended .tool-controls {display:none;}
+.summary {position:absolute; inset:10px; z-index:3; background:#fff7e3f5; border:4px double #956134; padding:20px;
+  overflow:auto; box-shadow:0 4px 20px #321b1855;}
+.summary h2 {font:800 36px Georgia,serif; margin:0 0 8px; color:#9c3520;}
+.summary .totals {font-size:23px; margin-bottom:15px;}
+.recaps {display:grid; grid-template-columns:repeat(4,1fr); gap:10px;}
+.recaps article {padding:9px; background:#f5e3bc; border:1px solid #ad8852; font-size:13px;}
+.recaps img {width:55px; height:35px; object-fit:contain; float:right;}
+.recaps b {display:block; font-size:16px; text-transform:capitalize;}
+.badge {display:inline-block; margin:12px 0; padding:8px 16px; border:3px double #28633d; color:#28633d; font-weight:800;}
+.summary {padding:12px;}
+.summary h2 {font-size:28px; margin-bottom:5px;}
+.summary .totals {font-size:18px; margin-bottom:8px;}
+.recaps {gap:6px;}
+.recaps article {padding:5px; font-size:11px;}
+.recaps b {font-size:13px;}
+.recaps img {width:40px; height:25px;}
+.summary .badge {font-size:13px; padding:4px 9px; margin:6px 0;}
+.summary p {font-size:12px; margin:5px 0;}
+@media (min-width:600px) and (max-height:850px) {
+  .panel {gap:7px;}
+  .portrait-row {display:block; min-height:130px;}
+  .portrait-row img {float:left; width:96px; height:108px; margin-right:5px;}
+  .hint {font-size:18px; line-height:1.25;}
+  .ledger-title {display:none;}
+}
+.lantern {position:absolute; top:18px; right:12px; width:10px; height:10px; border-radius:50%; background:#ffd34d;
+  box-shadow:0 0 15px 6px #ffc84777; animation:glimmer 3s ease-in-out infinite alternate; pointer-events:none;}
+@keyframes glimmer {to {opacity:.5; box-shadow:0 0 8px 2px #ffc84733;}}
+@keyframes pulse {50% {filter:drop-shadow(0 0 7px #9c3520);}}
+@keyframes load {
+  30% {transform:translateY(-18px) rotate(-3deg);}
+  90% {opacity:1;}
+  100% {transform:translate(var(--load-x,180px),var(--load-y,55px)) scale(.15); opacity:0;}
+}
+.load-item {transform-box:fill-box; transform-origin:center; animation:load 1.2s ease-in forwards;}
+.wrong-lens {animation:pulse .5s ease-in-out 2;}
+.calm .lantern,.calm .wrong-lens {animation:none;}
+.calm .wrong-lens > circle {stroke:#9c3520; stroke-width:5px;}
+.calm .load-item {animation:none; opacity:0;}
+.calm .train {transition:none;}
+.sr {position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap;}
+@media (max-width:1100px) {
+  main {grid-template-columns:minmax(0,1fr) 270px;}
+  header {gap:7px; padding:6px 10px;}
+  .seg button,.icon-btn {padding:0 9px; font-size:14px;}
+  .portrait-row {min-height:135px;}
+  .portrait-row img {width:85px; height:115px;}
+  .hint {font-size:17px;}
+  .rack button {font-size:12px;}
+}
+@media (max-height:650px) and (min-width:600px) {
+  header {padding:4px 8px; gap:5px; border-bottom-width:3px; flex-wrap:nowrap;}
+  h1 {font-size:20px; letter-spacing:-.5px;}
+  h1 small {display:none;}
+  header button,.seg button {min-height:44px; padding:0 8px; font-size:12px;}
+  main {grid-template-columns:minmax(0,1fr) 210px;}
+  .race {height:45px;}
+  .track {left:87px; height:14px; right:16px;}
+  .track.this {top:6px;}
+  .track.last {top:26px;}
+  .track-label {left:6px; top:3px; font-size:10px;}
+  .track-label.last {top:25px;}
+  .train {height:23px; width:75px;}
+  .train img {width:40px; height:23px;}
+  .train img:first-child {width:34px;}
+  .job-dots {left:auto; right:6px; font-size:10px; letter-spacing:3px;}
+  .work {margin:7px 8px 0; border-width:4px;}
+  .card {font-size:10px; min-width:110px; padding:4px 9px; top:8px; right:8px;}
+  .card b {font-size:15px;}
+  .card .stars {font-size:14px;}
+  .step-tag {top:7px; left:7px; font-size:10px; padding:4px 6px; letter-spacing:1px;}
+  .tool-controls {min-height:50px; padding:3px 5px; gap:4px;}
+  button.station {min-height:44px; padding:2px 6px; font-size:11px;}
+  .rack-wrap {padding:3px 7px; border-top-width:2px;}
+  .rack-label {font-size:10px; letter-spacing:1px; margin-bottom:2px;}
+  .rack {gap:4px;}
+  .rack button {height:56px; font-size:10px;}
+  .rack button svg {height:25px;}
+  .shelf {min-height:25px; padding-top:3px; font-size:10px;}
+  .shelf span:nth-last-child(n+4):not(:first-child) {display:none;}
+  .shelf img {width:20px; height:16px;}
+  .panel {padding:4px 7px; gap:3px; border-left-width:4px;}
+  .portrait-row {min-height:68px;}
+  .portrait-row img {width:48px; height:65px;}
+  .hint {font-size:13px; line-height:1.2;}
+  .ledger-title {font-size:10px; letter-spacing:2px;}
+  .display {min-height:44px; padding:0 8px;}
+  #digits {font-size:32px;}
+  #display-unit {font-size:12px;}
+  .pad {grid-template-columns:repeat(4,1fr); gap:4px;}
+  .pad button {height:44px; font-size:21px;}
+  .pad #back,.pad #check {font-size:11px;}
+  .panel .big-btn,.panel #new-run {min-height:44px; font-size:14px;}
+  .privacy {font-size:10px;}
+  .panel .privacy {display:none;}
+  .slip {font-size:12px; padding:5px 8px;}
+  .slip strong {font-size:20px; margin-top:2px;}
+  .yard-items button {min-height:44px; font-size:10px;}
+  .yard-items img {height:25px; width:40px;}
+  .pages button {min-height:44px;}
+  .summary {padding:10px;}
+  .summary h2 {font-size:24px;}
+  .summary .totals {font-size:16px;}
+  .recaps {gap:4px;}
+  .recaps article {font-size:10px; padding:4px;}
+  .recaps b {font-size:11px;}
+}
+@media (max-width:599px) {
+  header {padding:5px 7px; gap:5px; justify-content:space-between;}
+  h1 {font-size:20px; width:100%; text-align:center; margin:0;}
+  h1 small {display:none;}
+  header button,.seg button {min-height:44px; font-size:11px; padding:0 6px;}
+  .icon-btn {min-height:44px; font-size:11px; padding:0 6px;}
+  .seg {border-radius:7px;}
+  .icon-btn {border-radius:7px;}
+  main {grid-template-columns:1fr; grid-template-rows:minmax(280px,1fr) 260px;}
+  .race {height:60px;}
+  .track {left:85px; height:15px; right:12px;}
+  .track.this {top:9px;}
+  .track.last {top:33px;}
+  .track-label {font-size:10px; top:7px; left:7px;}
+  .track-label.last {top:32px;}
+  .train {width:86px; height:25px;}
+  .train img {width:48px; height:25px;}
+  .train img:first-child {width:35px;}
+  .job-dots {font-size:10px; right:4px; left:auto; letter-spacing:3px;}
+  .work {margin:6px 7px 0; border-width:4px;}
+  .card {font-size:10px; min-width:110px; padding:4px 7px; right:6px; top:6px;}
+  .card b {font-size:14px;}
+  .card .stars {font-size:13px;}
+  .step-tag {left:6px; top:6px; font-size:10px; letter-spacing:1px; padding:4px;}
+  .rack-wrap {padding:4px 6px;}
+  .rack-label {font-size:10px; margin-bottom:2px;}
+  .rack {gap:4px;}
+  .rack button {height:60px; font-size:10px;}
+  .rack button svg {height:27px;}
+  .shelf {min-height:24px; font-size:10px; padding-top:3px;}
+  .shelf img {width:20px; height:17px;}
+  .shelf span:nth-last-child(n+4):not(:first-child) {display:none;}
+  .tool-controls {min-height:49px; padding:3px 5px; gap:3px;}
+  button.station {min-height:44px; padding:2px 5px; font-size:10px;}
+  .panel {display:grid; grid-template-columns:138px minmax(0,1fr); grid-template-rows:44px 1fr 44px;
+    gap:6px; padding:7px; border-top:4px solid #65452d; border-left:0;}
+  .portrait-row {grid-row:1/3; grid-column:1; display:block; min-height:0;}
+  .portrait-row img {float:left; width:55px; height:68px; margin-right:3px;}
+  .hint {font-size:13px; line-height:1.23;}
+  .ledger-title {display:none;}
+  .display {grid-column:2; grid-row:1; min-height:44px; padding:0 7px;}
+  #digits {font-size:30px;}
+  #display-unit {font-size:10px;}
+  .pad {grid-column:2; grid-row:2; grid-template-columns:repeat(4,1fr); gap:4px;}
+  .pad button {height:44px; font-size:20px;}
+  .pad #back,.pad #check {font-size:10px;}
+  .panel .big-btn,.panel #new-run {grid-row:3; margin:0; min-height:44px; font-size:13px; padding:0 4px;}
+  #next,#show-me {grid-column:2;}
+  #new-run {grid-column:1;}
+  .privacy {display:none;}
+  .slip {font-size:12px; padding:5px 7px;}
+  .slip strong {font-size:20px; margin-top:3px;}
+  .yard-items {grid-template-columns:repeat(3,1fr);}
+  .yard-items button {min-height:44px; font-size:10px;}
+  .yard-items img {width:40px; height:24px;}
+  .pages {margin-top:3px;}
+  .pages button {min-height:44px;}
+  .yard-shelf {padding:4px 7px;}
+  body.yard .work {min-height:110px;}
+  .summary {padding:10px;}
+  .summary h2 {font-size:24px;}
+  .summary .totals {font-size:16px;}
+  .recaps {grid-template-columns:repeat(2,1fr); gap:4px;}
+  .recaps article {font-size:10px; padding:5px;}
+  .recaps b {font-size:12px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Estimation Station<small>Guess it. Measure it. Load it.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-freight" aria-pressed="true">🚂 Freight</button>
+    <button id="m-yard" aria-pressed="false">🧰 Yard</button>
+  </div>
+  <button class="icon-btn" id="read">🔊 Read</button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✨ Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Station work table">
+    <div class="race" id="race">
+      <span class="track-label">This run <b id="points">0</b></span>
+      <span class="track-label last" id="ghost-label">Starter ghost</span>
+      <div class="track this"><div class="train" id="train"><img src="art:freight-car" alt=""><img src="art:engine" alt=""></div></div>
+      <div class="track last"><div class="train ghost" id="ghost"><img src="art:freight-car" alt=""><img src="art:engine" alt=""></div></div>
+      <div class="job-dots" id="job-dots"></div><i class="lantern"></i>
+    </div>
+    <div class="yard-shelf" id="yard-shelf" hidden>
+      <div class="yard-items" id="yard-items"></div>
+      <div class="pages"><button class="station" id="page-back">← Back page</button><span id="page-label"></span>
+        <button class="station" id="page-next">Next page →</button></div>
+    </div>
+    <div class="work" id="work">
+      <svg id="board" role="img" tabindex="0" aria-label="Item and measuring tools. Use arrow keys to move a tool or trace a curve."></svg>
+      <div class="step-tag" id="step-tag">1 · GUESS</div>
+      <div class="card" id="card"></div>
+      <div class="slip" id="slip" hidden></div>
+      <section class="summary" id="summary" hidden aria-label="Your completed freight run"></section>
+    </div>
+    <div class="tool-controls" id="tool-controls">
+      <button class="station" id="left" hidden>← Nudge left</button>
+      <button class="station" id="right" hidden>Nudge right →</button>
+      <button class="station" id="flip" hidden>⤾ Flip</button>
+      <button class="station" id="mark" hidden>✎ Mark and move</button>
+      <button class="station" id="place-zero" hidden>⇤ At zero</button>
+      <button class="station" id="place-end" hidden>⇥ At end</button>
+      <output class="unit-relation" id="unit-relation" hidden></output>
+    </div>
+    <div class="rack-wrap">
+      <div class="rack-label" id="rack-label">THE TOOL RACK</div>
+      <div class="rack" id="rack"></div>
+      <div class="shelf" id="shelf"><span>Measured</span><span class="empty">Your finds go here.</span></div>
+    </div>
+  </section>
+  <aside class="panel">
+    <div class="portrait-row"><img id="hollis" src="art:mr-hollis" alt="Mr. Hollis, the station master">
+      <p class="hint" id="hint" aria-live="polite"></p></div>
+    <p class="ledger-title">YOUR FREIGHT LEDGER</p>
+    <div class="display" aria-label="Your typed number"><output id="digits" aria-live="polite">?</output><span id="display-unit">inches</span></div>
+    <div class="pad" id="pad"></div>
+    <button class="big-btn" id="next" hidden>🚂 Next crate</button>
+    <button class="big-btn" id="show-me" hidden>◉ Show me</button>
+    <button class="big-btn" id="new-run">↻ New run</button>
+    <p class="privacy">Runs stay only on this device.</p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const DATA = "json:content";
+  const ART = {
+    'paperclip':'art:paperclip', 'toy-car':'art:toy-car', 'crayon':'art:crayon', 'pencil':'art:pencil',
+    'spoon':'art:spoon', 'comb':'art:comb', 'paintbrush':'art:paintbrush', 'picture-book':'art:picture-book',
+    'keyboard':'art:keyboard', 'bead':'art:bead', 'eraser':'art:eraser', 'leaf':'art:leaf', 'chalk':'art:chalk',
+    'glue-stick':'art:glue-stick', 'scissors':'art:scissors', 'feather':'art:feather', 'banana':'art:banana',
+    'notebook':'art:notebook', 'suitcase':'art:suitcase', 'small-table':'art:small-table', 'chair':'art:chair',
+    'broom':'art:broom', 'crate-stack':'art:crate-stack', 'lamp':'art:lamp', 'sunflower':'art:sunflower',
+    'mailbox-post':'art:mailbox-post', 'rug':'art:rug', 'bench':'art:bench', 'door':'art:door', 'ladder':'art:ladder',
+    'snake-head':'art:snake-head', 'rope-handle':'art:rope-handle', 'hose-nozzle':'art:hose-nozzle',
+    'braided-rope':'art:braided-rope', 'green-hose':'art:green-hose', 'shoelace-weave':'art:shoelace-weave'
+  };
+  const PORTRAITS = ['art:mr-hollis','art:mr-hollis-point','art:mr-hollis-cheer'];
+  const TOOLS = [
+    {id:'inch', name:'Inch ruler', short:'Inch ruler', unit:'inches', length:12, inset:.25, color:'#e2c48a'},
+    {id:'cm', name:'Centimeter ruler', short:'cm ruler', unit:'centimeters', length:30, inset:.5, color:'#e2c48a'},
+    {id:'yard', name:'Yardstick', short:'Yardstick', unit:'inches', length:36, inset:0, color:'#e2c48a'},
+    {id:'meter', name:'Meter stick', short:'Meter stick', unit:'centimeters', length:100, inset:0, color:'#e2c48a'},
+    {id:'tape', name:'Tape', short:'Tape', unit:'inches', length:60, inset:0, color:'#f2c230'}
+  ];
+  const L = {
+    welcome:"Hello there, I'm Mr. Hollis, the station master. Freight's in! We guess first, then we measure.",
+    guessHow:'Guess first. Tap the numbers, then Check.',
+    readHow:'Read the End circle. Type it, then Check.',
+    markHow:'Tap Mark and move. Add up the pieces.',
+    nextHow:'Tap Next crate.',
+    placeHow:'Place the piece: drag, or tap At zero or At end.',
+    yardWelcome:'This is the yard. Tap anything on the shelf, tap any tool, and measure it. Tap Show me to check.',
+    guessed:'Now tap a tool on the rack.',
+    noBend:"A stick can't bend around this item. Tap a tool that bends.",
+    flop:'The tape flops over. Tap a tool that stands up.',
+    noUnit:'This tool does not show the unit we need. Tap another tool.',
+    wrong1:'Not quite. Look at the zero, and look where the item ends. Try again.',
+    diffWrong1:'Not quite. Count the spaces between the ribbon ends. Type the difference, then tap Check.',
+    slipWrong1:'Not quite. Does the story put the pieces end to end, or side by side? Move the second piece, then tap Check.',
+    badSpot:'Put it at zero, or at the end of the first piece.',
+    align:'Line up the zero first. Drag the tool or use the Nudge buttons. Then read it and tap Check.',
+    face:'The tape is on its other side. Tap Flip, then read the asked unit.',
+    trace:'Drag the tape along the curve, or press Right arrow to follow it. Then read it and tap Check.',
+    wrong2:'Look at the end circle. Read the revealed length.',
+    endHow:'Tap New run to race your score.',
+    ready:'Type the number, then tap Check.',
+    positiveGuess:'Guess a length above zero. Tap numbers, then Check.',
+    ribbonCrate:'Two ribbons! How much longer is the red one? Tap a tool first.',
+    readRed:'Read the red striped ribbon, then tap Check.',
+    readBlue:'Now read the blue dotted ribbon, then tap Check.',
+    askDiff:'How much longer is the red ribbon? Tap the numbers, then tap Check.',
+    secondMeasure:'Now read it in the other unit. Tap the numbers, then tap Check.',
+    toolLying:'Drag the tool so its zero line sits at the item start. Then read it and tap Check.',
+    toolAlign:'Drag the tool so its zero line sits at the item start. Or use the Nudge buttons.',
+    toolLong:'Read this piece. Tap Mark and move, then add up the pieces.',
+    showHint:'Tap an item, tap a tool, then tap Show me to check.',
+    yardMeasure:'Line up the zero, then read the far end. Tap Show me to check.',
+    yardStand:'Read the number at the top. Tap Show me to check.',
+    yardLong:'Read this piece. Tap Mark and move, then add the pieces. Tap Show me to check.',
+    yardCurve:'Drag the tape along the curve. Tap Show me to check.'
+  };
+  const spoken = new Set(Object.values(L));
+  const state = {mode:'freight', job:0, step:'guess', item:null, jobs:[], entry:'', tool:null,
+    offset:-2, moved:0, traced:false, traceProgress:0, firstPick:null, stamp:false, points:0,
+    jobPoints:0, guess:null, guess2:null, stars:0, stars2:0, tries:0, results:[], page:0,
+    shown:false, second:false, layout:null, done:false, reveal:false, wrong:false};
+  let saved = {last:null,best:null};
+  const validRun = run => run && Array.isArray(run.jobs) && run.jobs.length===8 &&
+    run.jobs.every(n=>Number.isInteger(n) && n>=0 && n<=11) &&
+    run.points===run.jobs.reduce((a,b)=>a+b,0) && run.points<=44 &&
+    Array.isArray(run.items) && run.items.every(item=>typeof item==='string');
+  try {
+    const parsed = JSON.parse(localStorage.getItem('estimation-station-runs'));
+    if (parsed && validRun(parsed.last)) saved = {last:parsed.last,best:validRun(parsed.best)?parsed.best:parsed.last};
+  } catch {}
+  let freightSnapshot = null;
+  let yardSnapshot = null;
+  let geometry = null;
+  let drag = null;
+  let stableTimer = 0;
+  let wrongTimer = 0;
+  let loadTimer = 0;
+  const random = (lo,hi) => lo + Math.floor(Math.random() * (hi-lo+1));
+  const pick = list => list[random(0,list.length-1)];
+  const shuffle = list => list.map(x => [Math.random(),x]).sort((a,b) => a[0]-b[0]).map(x => x[1]);
+  const copy = value => JSON.parse(JSON.stringify(value));
+  const small = () => innerHeight <= 650 || innerWidth < 600;
+  const sing = unit => ({inches:'inch',feet:'foot',centimeters:'centimeter',meters:'meter'})[unit];
+  function words(number) {
+    const ones = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven',
+      'twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+    const tens = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+    if (number < 20) return ones[number];
+    if (number < 100) return tens[Math.floor(number/10)] + (number%10 ? ' '+ones[number%10] : '');
+    return ones[Math.floor(number/100)]+' hundred'+(number%100 ? ' '+words(number%100) : '');
+  }
+  const lengthWords = (n,u) => words(n)+' '+(n===1 ? sing(u) : u);
+  const lengthText = (n,u) => n+' '+(n===1 ? sing(u) : u);
+  const itemIntro = name => name==='scissors' ? 'Scissors' : (/^[aeiou]/i.test(name)?'An ':'A ')+name;
+  function speechParts(text) {
+    return (text.replace(/Mr\./g,'Mister').match(/[^.!?]+[.!?]?/g) || []).map(part=>part.trim()).filter(Boolean);
+  }
+  function speech(text, options={}) {
+    const parts = speechParts(text);
+    parts.forEach(part=>spoken.add(part));
+    return V.say(parts,{hint:false,...options});
+  }
+  function hint(text) {
+    $('hint').textContent = text;
+  }
+  function readLines() {
+    const current=$('hint').textContent;
+    const pieces=[];
+    if(state.item?.kind==='slip' && !['result','end'].includes(state.step)) {
+      if(!current.includes(state.item.text))pieces.push('Order slip! '+state.item.text);
+      if(state.layout)pieces.push('Your number sentence: '+equation()+'.');
+    }
+    if(state.step==='guess2')pieces.push('First reading: '+lengthWords(state.firstLength,state.firstUnit)+'.');
+    pieces.push(current);
+    return pieces.flatMap(piece=>speechParts(spokenNumbers(piece)));
+  }
+  const V = Curio.voice({
+    lines:L,
+    scope:() => state.mode+':'+state.job+':'+(['place','slip'].includes(state.step) ? 'order' : state.step),
+    hint:false,
+    read:readLines,
+    welcome:() => state.mode === 'yard' ? (state.yardChosen ? null : 'yardWelcome') : state.step === 'guess' ? 'welcome' : null
+  });
+  function how(key, needs, valid) {
+    V.how(key,{hint:false,needs,valid});
+  }
+  function crateLine() {
+    if (!state.item) return L.welcome;
+    return 'Guess the '+state.item.name+' in '+state.item.unit+'.';
+  }
+  function freshItem(source) {
+    const item = copy(source);
+    item.fill = .55 + Math.random()*.25;
+    item.L = source.lengths ? pick(source.lengths) : random(source.lo,source.hi);
+    if (source.kind === 'two') {
+      const factor = source.unit === 'feet' ? 12 : 100;
+      item.bigUnit = source.unit;
+      item.bigL = item.L;
+      item.smallUnit = source.unit === 'feet' ? 'inches' : 'centimeters';
+      item.smallL = item.bigL * factor;
+      if (Math.random()<.5) {
+        item.unit = item.smallUnit;
+        item.L = item.smallL;
+        item.secondUnit = item.bigUnit;
+        item.secondL = item.bigL;
+      } else {
+        item.secondUnit = item.smallUnit;
+        item.secondL = item.smallL;
+      }
+    }
+    return item;
+  }
+  function makeJobs() {
+    const excluded = new Set(saved.last?.items || []);
+    const jobs = ['inch','cm','curvy','standing','two'].map(kind => {
+      const pool = DATA.items.filter(item => item.kind === kind);
+      const available = pool.filter(item => !excluded.has(item.name));
+      return freshItem(pick(available.length ? available : pool));
+    });
+    const ribbonKey = ribbon=>ribbon.a+'-'+ribbon.b+'-'+ribbon.unit;
+    const ribbonPool=DATA.ribbons.filter(ribbon=>ribbonKey(ribbon)!==saved.last?.ribbonKey);
+    const ribbon = copy(pick(ribbonPool.length?ribbonPool:DATA.ribbons));
+    const slips = shuffle(DATA.slips).slice(0,2).map(s => ({...copy(s),kind:'slip',storyKind:s.kind,name:'order slip',L:s.answer}));
+    return [...shuffle(jobs),{...ribbon,kind:'ribbon',name:'two ribbons',L:ribbon.a,fill:.7,orientation:'lying'},...slips];
+  }
+  function resetJob(item) {
+    clearTimeout(wrongTimer);
+    clearTimeout(stableTimer);
+    state.generation = (state.generation || 0)+1;
+    state.rejectedTool = null;
+    state.item = copy(item);
+    state.entry = '';
+    state.tool = null;
+    state.offset = -2;
+    state.moved = 0;
+    state.chalkMax = 0;
+    state.traced = false;
+    state.traceProgress = 0;
+    state.firstPick = null;
+    state.stamp = false;
+    state.jobPoints = 0;
+    state.guess = null;
+    state.guess2 = null;
+    state.stars = 0;
+    state.stars2 = 0;
+    state.tries = 0;
+    state.shown = false;
+    state.second = false;
+    state.firstLength = null;
+    state.firstUnit = null;
+    state.layout = null;
+    state.reveal = false;
+    state.wrong = false;
+    state.done = false;
+    state.step = item.kind === 'slip' ? 'place' : item.kind === 'ribbon' ? 'tool' : 'guess';
+    state.rejected = [];
+    $('summary').hidden = true;
+    updateHint();
+    render();
+  }
+  function updateHint() {
+    const item = state.item;
+    if (state.mode === 'yard') return hint(L.showHint);
+    if (state.step === 'end') return hint('The train is loaded! Tap New run to race it, or tap Yard to explore.');
+    if (state.step === 'guess') {
+      return hint('Freight is here! Guess the length of the '+item.name+' in '+item.unit+'. Tap the numbers, then tap Check.');
+    }
+    if (state.step === 'guess2') {
+      return hint('Now guess the same '+item.name+' in '+item.secondUnit+'. Tap the numbers, then tap Check.');
+    }
+    if (state.step === 'tool') return hint(item.kind === 'ribbon' ? L.ribbonCrate : L.guessed);
+    if (state.step === 'place') return hint(L.placeHow);
+    if (state.step === 'slip') return hint('Read the order. Use the tape to find the box. Type it, then tap Check.');
+    if(state.tool && ['measure','red','blue'].includes(state.step) && Math.abs(state.offset)>.14 &&
+      (item.orientation!=='curvy' || state.traced)) return hint(L.toolAlign);
+    if(state.tool && ['measure','red','blue'].includes(state.step) && remains()) return hint(L.toolLong);
+    if (state.step === 'red') return hint(L.readRed);
+    if (state.step === 'blue') return hint(L.readBlue);
+    if (state.step === 'difference') return hint(L.askDiff);
+    if (state.step === 'result') return hint('Crate ready! Tap Next crate.');
+    if(state.tool==='tape' && state.face!==(item.unit==='centimeters'?'centimeters':'inches')) return hint(L.face);
+    if (item.orientation === 'curvy' && !state.traced) return hint(L.trace);
+    if (state.tool && remains()) return hint('Read this piece. Tap Mark and move, add the pieces, then type the total and tap Check.');
+    return hint(L.readHow);
+  }
+  function announceJob() {
+    if (state.item.kind === 'slip') {
+      how('placeHow','#place-zero',() => state.step === 'place');
+      speech('Order slip! '+spokenNumbers(state.item.text));
+    } else if (state.item.kind === 'ribbon') {
+      speech(L.ribbonCrate);
+    } else {
+      how('guessHow','#check',() => state.step === 'guess');
+      speech(crateLine());
+    }
+  }
+  function newRun() {
+    V.hush();
+    if (state.mode !== 'freight') {
+      yardSnapshot = copy(state);
+      state.mode = 'freight';
+    }
+    state.jobs = makeJobs();
+    state.job = 0;
+    state.points = 0;
+    state.results = [];
+    state.ghostJobs = copy(saved.last?.jobs || Array(8).fill(4));
+    state.ghostWasSaved = !!saved.last;
+    resetJob(state.jobs[0]);
+    renderMode();
+    if (V.tapped) announceJob();
+  }
+  function setMode(mode) {
+    if (state.mode === mode) return;
+    clearTimeout(stableTimer);
+    V.hush();
+    if (state.mode === 'freight') freightSnapshot = copy(state);
+    else yardSnapshot = copy(state);
+    const snapshot = mode === 'freight' ? freightSnapshot : yardSnapshot;
+    if (snapshot) Object.assign(state,copy(snapshot));
+    else {
+      state.mode = mode;
+      state.page = 0;
+      state.yardChosen = false;
+      state.results = [];
+      resetJob(freshItem(DATA.items[0]));
+      state.step = 'yard';
+    }
+    state.mode = mode;
+    updateHint();
+    renderMode();
+    render();
+    if (state.step === 'end') renderSummary();
+    V.welcome();
+  }
+  function renderMode() {
+    const yard = state.mode === 'yard';
+    document.body.classList.toggle('yard',yard);
+    $('m-freight').setAttribute('aria-pressed',!yard);
+    $('m-yard').setAttribute('aria-pressed',yard);
+    $('race').hidden = yard;
+    $('yard-shelf').hidden = !yard;
+    $('show-me').hidden = !yard;
+    $('new-run').textContent = yard ? '↻ Freight run' : '↻ New run';
+    if (yard) renderYard();
+  }
+  function supports(tool, unit) {
+    if (unit === 'feet') return ['inch','yard','tape'].includes(tool.id);
+    if (unit === 'meters') return tool.id === 'meter';
+    return unit === 'centimeters' ? ['cm','meter','tape'].includes(tool.id) : ['inch','yard','tape'].includes(tool.id);
+  }
+  function capacity(tool, unit=state.item.unit) {
+    if(tool.id==='tape') {
+      if(unit==='feet') return state.face==='centimeters' ? 150/30.48 : 5;
+      if(unit==='inches') return state.face==='centimeters' ? 150/2.54 : 60;
+      if(unit==='centimeters') return state.face==='centimeters' ? 150 : 60*2.54;
+    }
+    if (unit === 'feet') return tool.id === 'inch' ? 1 : tool.id === 'yard' ? 3 : 5;
+    if (unit === 'meters') return 1;
+    if (tool.id === 'tape') return state.face === 'centimeters' ? 150 : 60;
+    return tool.length;
+  }
+  function working(tool) {
+    return supports(tool,state.item.unit) &&
+      !(state.item.orientation === 'curvy' && tool.id !== 'tape') &&
+      !(state.item.orientation === 'standing' && tool.id === 'tape');
+  }
+  function bestTools() {
+    const works = TOOLS.filter(working);
+    const moves = tool => Math.ceil(state.item.L / capacityFor(tool,state.item.unit));
+    const best = Math.min(...works.map(moves));
+    return works.filter(tool => moves(tool) === best).map(tool => tool.id);
+  }
+  function capacityFor(tool,unit) {
+    if (tool.id === 'tape') return unit === 'centimeters' ? 150 : unit === 'feet' ? 5 : 60;
+    return unit === 'feet' ? tool.length/12 : unit === 'meters' ? 1 : tool.length;
+  }
+  function chooseTool(id) {
+    if (state.mode === 'freight' && !['tool','measure','red','blue','difference'].includes(state.step)) return;
+    V.hush();
+    const tool = TOOLS.find(t => t.id === id);
+    if (!state.firstPick && state.mode === 'freight') {
+      state.firstPick = id;
+      state.stamp = bestTools().includes(id);
+      if (state.stamp) state.jobPoints++;
+    }
+    let reason = '';
+    if (state.item.orientation === 'curvy' && id !== 'tape') reason = 'noBend';
+    else if (state.item.orientation === 'standing' && id === 'tape') reason = 'flop';
+    else if (!supports(tool,state.item.unit)) reason = 'noUnit';
+    if (reason) {
+      state.wrong = true;
+      state.rejectedTool = id;
+      render();
+      Curio.tone(150,.15,.05,'triangle');
+      const key = reason+id;
+      if (!state.rejected.includes(key)) {
+        state.rejected.push(key);
+        speech(L[reason]);
+      }
+      hint(L[reason]);
+      const generation=state.generation;
+      const mode=state.mode;
+      setTimeout(()=>{
+        if(state.generation===generation && state.mode===mode && state.rejectedTool===id) {
+          state.rejectedTool=null;
+          renderBoard();
+        }
+      },1200);
+      return;
+    }
+    state.wrong = false;
+    state.tool = id;
+    state.reveal = false;
+    if(state.mode==='yard')state.shown=false;
+    state.face = ['centimeters','meters'].includes(state.item.unit) ? 'centimeters' : 'inches';
+    state.offset = state.item.orientation === 'standing' ? 0 : -2;
+    state.moved = 0;
+    state.chalkMax = 0;
+    state.traced = false;
+    state.traceProgress = 0;
+    if (state.mode === 'freight' && state.step === 'tool') state.step = state.item.kind === 'ribbon' ? 'red' : 'measure';
+    updateHint();
+    render();
+    Curio.tone(470,.07,.04,'triangle');
+    const instruction = state.mode==='yard' ? (state.item.orientation==='curvy' ? 'yardCurve' :
+      remains() ? 'yardLong' : state.item.orientation==='standing' ? 'yardStand' : 'yardMeasure') :
+      state.item.orientation==='curvy' ? 'trace' : Math.abs(state.offset)>.14 ? 'toolAlign' :
+        remains() ? 'markHow' : 'readHow';
+    speech('The '+tool.name+'.');
+    how(instruction,state.mode==='yard' ? '#show-me' : instruction==='markHow' ? '#mark' : '#check',
+      ()=>state.tool===id && !['result','end'].includes(state.step));
+    if(state.mode==='freight' && state.step==='red')speech(L.readRed);
+    scheduleRead();
+  }
+  function scheduleRead() {
+    clearTimeout(stableTimer);
+    if(state.mode==='yard')return;
+    const job = state.job;
+    const generation = state.generation;
+    stableTimer = setTimeout(() => {
+      if (state.mode!=='freight' || state.generation!==generation || state.job!==job || !state.tool || state.entry ||
+        !['measure','red','blue'].includes(state.step) || Math.abs(state.offset)>.14) return;
+      const instructions = remains() ? [['markHow',{needs:'#mark',valid:()=>remains()}]] : [['readHow',{needs:'#check'}]];
+      V.how(instructions,{hint:false,valid:()=>!!state.tool && !state.entry && ['measure','red','blue'].includes(state.step) &&
+        (state.item.orientation!=='curvy' || state.traced)});
+    },1000);
+  }
+  function remains() {
+    if (!state.tool || state.item.kind === 'slip') return false;
+    const tool = TOOLS.find(t => t.id === state.tool);
+    const target = state.step==='blue' ? state.item.b : state.item.L;
+    return target > state.moved + capacity(tool) + .01;
+  }
+  function nudge(direction) {
+    if (!state.tool || state.step === 'result') return;
+    state.offset = Math.max(-5,Math.min(state.item.L,state.offset + direction*.25));
+    state.wrong = false;
+    Curio.tone(direction>0 ? 500 : 410,.035,.025,'sine');
+    renderBoard();
+    updateHint();
+    scheduleRead();
+  }
+  function markMove() {
+    if(state.tool==='tape' && state.face!==(state.item.unit==='centimeters'?'centimeters':'inches')) {
+      hint(L.face);
+      speech(L.face);
+      return;
+    }
+    if (!remains() || Math.abs(state.offset)>.14 || (state.item.orientation === 'curvy' && !state.traced)) {
+      if (state.tool) {hint(L.align); speech(L.align);}
+      return;
+    }
+    const tool = TOOLS.find(t => t.id === state.tool);
+    state.moved += capacity(tool);
+    state.chalkMax = Math.max(state.chalkMax || 0,state.moved);
+    state.offset = 0;
+    Curio.tone(670,.08,.035,'triangle');
+    render();
+    updateHint();
+    scheduleRead();
+  }
+  function flip() {
+    if (state.tool !== 'tape') return;
+    state.face = state.face === 'inches' ? 'centimeters' : 'inches';
+    state.moved = 0;
+    state.chalkMax = 0;
+    Curio.tone(620,.07,.04,'triangle');
+    updateHint();
+    render();
+  }
+  function stars(guess,length) {
+    const difference = Math.abs(guess-length);
+    if (difference <= Math.max(1,length*.1)) return 3;
+    if (difference <= Math.max(1,length*.2)) return 2;
+    if (difference <= Math.max(2,length*.3)) return 1;
+    return 0;
+  }
+  function type(value) {
+    if (!canType()) return;
+    if(state.step==='guess' && !V.heard('guessHow')) {
+      if(V.playing===L.welcome)V.hush();
+      how('guessHow','#check',()=>state.step==='guess');
+    }
+    if (value === 'back') state.entry = state.entry.slice(0,-1);
+    else if (state.entry.length < 3) state.entry += value;
+    $('digits').textContent = state.entry || '?';
+    Curio.tone(value==='back' ? 240 : 330 + Number(value || 0)*19,.035,.025,'sine');
+    $('display-unit').textContent = state.step === 'guess2' ? state.item.secondUnit : state.item.unit;
+    $('hollis').src = PORTRAITS[0];
+  }
+  function canType() {
+    return state.mode === 'freight' && !['tool','place','result','end'].includes(state.step);
+  }
+  function check() {
+    if (!canType() || !state.entry) return;
+    const number = Number(state.entry);
+    const item = state.item;
+    state.entry = '';
+    if(['guess','guess2'].includes(state.step) && number===0) {
+      render();
+      hint(L.positiveGuess);
+      speech(L.positiveGuess,{now:true});
+      return;
+    }
+    if (state.step === 'guess') {
+      if(V.playing===L.welcome)V.hush();
+      state.guess = number;
+      state.stars = stars(number,item.L);
+      state.jobPoints += state.stars;
+      state.step = 'tool';
+      updateHint();
+      render();
+      speech('You guessed '+lengthWords(number,item.unit)+'. Now tap a tool on the rack.');
+      return;
+    }
+    if (state.step === 'guess2') {
+      state.guess2 = number;
+      state.stars2 = stars(number,item.secondL);
+      state.jobPoints += state.stars2;
+      const factor = item.secondL/item.L;
+      state.moved *= factor;
+      state.chalkMax *= factor;
+      state.offset *= factor;
+      item.unit = item.secondUnit;
+      item.L = item.secondL;
+      state.second = true;
+      state.step = 'measure';
+      state.tries = 0;
+      state.face = ['centimeters','meters'].includes(item.unit) ? 'centimeters' : 'inches';
+      updateHint();
+      render();
+      speech(L.secondMeasure);
+      return;
+    }
+    if (state.step === 'slip') return checkSlip(number);
+    const target = state.step === 'blue' ? item.b : state.step === 'difference' ? item.a-item.b : item.L;
+    const faceRight = state.tool !== 'tape' || state.face === (item.unit === 'centimeters' ? 'centimeters' : 'inches');
+    const ready = state.step === 'difference' || (state.tool && Math.abs(state.offset)<.14 && !remains() &&
+      faceRight && (item.orientation !== 'curvy' || state.traced));
+    const correct = number === target && ready;
+    state.tries++;
+    if (!correct && state.tries < 2) {
+      state.wrong = true;
+      render();
+      hint(!ready ? (!faceRight ? L.face : item.orientation === 'curvy' && !state.traced ? L.trace :
+        Math.abs(state.offset)<.14 && remains() ? L.markHow : L.align) :
+        state.step === 'difference' ? L.diffWrong1 : L.wrong1);
+      speech($('hint').textContent);
+      Curio.tone(155,.14,.045,'triangle');
+      clearTimeout(wrongTimer);
+      wrongTimer = setTimeout(() => {state.wrong=false; renderBoard();},1100);
+      return;
+    }
+    const earned = correct ? (state.step === 'red' || state.step === 'blue' ? 1 : state.tries === 1 ? 2 : 1) : 0;
+    state.jobPoints += earned;
+    state.reveal = !correct;
+    let feedback = '';
+    if (!correct) {
+      state.offset = 0;
+      state.traced = true;
+      state.face = ['centimeters','meters'].includes(item.unit)?'centimeters':'inches';
+      const tool = TOOLS.find(t=>t.id===state.tool);
+      state.moved = tool ? Math.floor((target-.0001)/capacity(tool))*capacity(tool) : 0;
+      state.chalkMax = Math.max(state.chalkMax || 0,state.moved);
+      feedback = "It's "+lengthWords(target,item.unit)+'. Look at where the item ends.';
+    } else Curio.yes();
+    const oldStep = state.step;
+    state.tries = 0;
+    state.wrong = false;
+    if (oldStep === 'red' || oldStep === 'blue') {
+      if(oldStep==='red') {
+        const cap=capacity(TOOLS.find(tool=>tool.id===state.tool));
+        state.moved=Math.min(state.moved,Math.floor((item.b-.0001)/cap)*cap);
+      }
+      state.step = oldStep === 'red' ? 'blue' : 'difference';
+      state.reveal = false;
+      updateHint();
+      render();
+      speech((feedback ? feedback+' ' : '')+(oldStep === 'red' ? L.readBlue : L.askDiff));
+      return;
+    }
+    if (item.kind === 'two' && !state.second) {
+      state.firstRead = correct ? earned : 0;
+      state.firstLength = item.L;
+      state.firstUnit = item.unit;
+      state.step = 'guess2';
+      updateHint();
+      render();
+      speech((correct?'Yes, ':'')+lengthWords(item.L,item.unit)+'. Now guess: how many '+item.secondUnit+
+        ' long is it? Tap the numbers, then tap Check.');
+      return;
+    }
+    if (correct) {
+      if (oldStep === 'difference') feedback = 'Yes! '+words(item.a)+' take away '+words(item.b)+' is '+words(target)+
+        '. The red ribbon is '+lengthWords(target,item.unit)+' longer.';
+      else if (item.kind === 'two') feedback = lengthWords(item.bigL,item.bigUnit)+' is '+lengthWords(item.smallL,item.smallUnit)+
+        '. '+item.bigUnit+' are bigger, so it takes fewer of them.';
+      else feedback = 'Yes, '+lengthWords(target,item.unit)+'. You guessed '+words(state.guess)+'. '+
+        (state.stars ? words(state.stars)+(state.stars===1?' star!':' stars!') : "Keep guessing, you'll get closer.");
+    }
+    finishJob(correct,feedback);
+  }
+  function equation(layout=state.layout,filled=false) {
+    const item = state.item;
+    const box = filled ? item.answer : '□';
+    if (layout === 'end') return item.a+' + '+item.b+' = '+box;
+    if (item.b > item.a) return item.a+' + '+box+' = '+item.b;
+    return item.a+' − '+item.b+' = '+box;
+  }
+  function spokenNumbers(text) {
+    return text.replace(/\d+/g,n => words(Number(n))).replace(/□/g,'box').replace(/−/g,'take away')
+      .replace(/\+/g,'plus').replace(/=/g,'equals');
+  }
+  function place(layout) {
+    if (state.item.kind !== 'slip' || state.step === 'result') return;
+    const changed = state.layout !== layout;
+    state.layout = layout;
+    state.step = 'slip';
+    state.entry = '';
+    updateHint();
+    render();
+    Curio.tone(510,.08,.035,'triangle');
+    if (changed) speech('Your number sentence: '+spokenNumbers(equation())+'. Type the box, then tap Check.');
+  }
+  function rightLayout() {
+    return state.item.storyKind === 'join' ? 'end' : 'zero';
+  }
+  function checkSlip(number) {
+    const item = state.item;
+    state.tries++;
+    const layoutCorrect = state.layout === rightLayout() || (item.storyKind === 'take' && state.layout === 'cut');
+    const correct = number === item.answer && layoutCorrect;
+    if (!correct && state.tries === 1) {
+      state.wrong = true;
+      render();
+      hint(L.slipWrong1);
+      speech(L.slipWrong1);
+      Curio.tone(155,.14,.04,'triangle');
+      return;
+    }
+    let feedback;
+    if (correct) {
+      state.jobPoints += state.tries === 1 ? 2 : 1;
+      Curio.yes();
+      feedback = 'Yes! '+spokenNumbers(equation(state.layout,true))+'.';
+    } else {
+      state.layout = rightLayout();
+      feedback = "It's "+words(item.answer)+'. '+spokenNumbers(equation(state.layout,true))+'.';
+    }
+    state.reveal = true;
+    finishJob(correct,feedback);
+  }
+  function finishJob(correct,feedback) {
+    if(state.item.kind==='ribbon' && state.tool) {
+      const cap=capacity(TOOLS.find(tool=>tool.id===state.tool));
+      state.moved=Math.floor((state.item.L-.0001)/cap)*cap;
+      state.offset=0;
+    }
+    state.step = 'result';
+    state.shown = true;
+    state.lastCorrect = correct;
+    state.loadStart = performance.now();
+    state.points += state.jobPoints;
+    state.results.push({name:state.item.name,asset:state.item.asset,L:state.item.L,unit:state.item.unit,
+      guess:state.guess,guess2:state.guess2,guessUnit:state.firstUnit || state.item.unit,
+      firstLength:state.firstLength,stars:state.stars,stars2:state.stars2,
+      stamp:state.stamp,points:state.jobPoints,kind:state.item.kind,b:state.item.b,
+      equation:state.item.kind==='slip'?equation(state.layout,true):null});
+    updateHint();
+    render();
+    $('hollis').src = PORTRAITS[correct ? 2 : 1];
+    if (correct && state.item.kind!=='ribbon') $('item-paint')?.classList.add('load-item');
+    if(!V.heard('nextHow'))how('nextHow','#next',() => state.step === 'result');
+    if (feedback) speech(feedback);
+  }
+  function next() {
+    if (state.step !== 'result') return;
+    V.hush();
+    if (state.job === 7) return endRun();
+    state.job++;
+    resetJob(state.jobs[state.job]);
+    announceJob();
+    Curio.tone(380,.1,.035,'triangle');
+  }
+  function endRun() {
+    state.step = 'end';
+    state.done = true;
+    const previous = state.ghostJobs.reduce((a,b)=>a+b,0);
+    state.previous = previous;
+    const run = {points:state.points,jobs:state.results.map(r => r.points),
+      items:state.jobs.slice(0,5).map(i => i.name),cards:copy(state.results),
+      ribbonKey:state.jobs[5].a+'-'+state.jobs[5].b+'-'+state.jobs[5].unit};
+    saved.last = run;
+    if (!saved.best || run.points > saved.best.points) saved.best = copy(run);
+    try {localStorage.setItem('estimation-station-runs',JSON.stringify(saved));} catch {}
+    updateHint();
+    render();
+    renderSummary();
+    const opponent=state.ghostWasSaved?'Your last run had '+words(previous)+'. ':'The Starter ghost had thirty two. ';
+    speech('The train is loaded! '+words(state.points)+(state.points===1?' point.':' points.')+' '+opponent+
+      (state.points>previous ? 'You beat it!' : 'Race it again next time!'));
+    how('endHow','#new-run',() => state.step === 'end');
+  }
+  function renderSummary() {
+    $('summary').hidden = false;
+    $('summary').innerHTML = '<h2>Freight delivered!</h2><div class="totals">Your run <b>'+state.points+
+      '</b> · '+(state.ghostWasSaved?'Last':'Starter')+' <b>'+(state.previous ?? 32)+'</b> · Best <b>'+(saved.best?.points ?? state.points)+
+      '</b></div><div class="recaps">'+state.results.map((r,i) => '<article>'+
+      (r.asset ? '<img src="'+ART[r.asset]+'" alt="">' : '')+'<b>'+ (i+1)+'. '+r.name+'</b>'+
+      (r.guess!==null ? 'Guess '+lengthText(r.guess,r.guessUnit)+'<br>Measured '+lengthText(r.firstLength || r.L,r.guessUnit)+'<br>' : '')+
+      (r.guess2!==null ? 'Then '+r.guess2+' → '+lengthText(r.L,r.unit)+'<br>' : '')+
+      (r.kind==='slip' ? r.equation+'<br>' : '')+
+      (r.kind==='ribbon' ? r.L+' − '+r.b+' = '+(r.L-r.b)+'<br>' : '')+'★'.repeat(r.stars)+
+      (r.guess2!==null ? ' + '+'★'.repeat(r.stars2) : '')+'<br>'+r.points+(r.points===1?' point':' points')+
+      (r.stamp ? ' · ✓ Tool' : '')+
+      '</article>').join('')+'</div>'+(state.results.filter(r => r.stamp).length === 6 ?
+      '<div class="badge">✓ TOOL SENSE · Six first-pick stamps</div>' : '')+
+      '<p>Your runs are saved only on this device.</p><p>Tap New run to race this train, or tap Yard.</p>';
+  }
+  function renderYard() {
+    const count = small() ? 6 : 12;
+    const pages = Math.ceil(DATA.items.length/count);
+    const focused = document.activeElement?.closest('#yard-items [data-item]')?.dataset.item;
+    if(focused!==undefined)state.page=Math.floor(Number(focused)/count);
+    state.page = Math.min(pages-1,state.page);
+    const rows = DATA.items.slice(state.page*count,(state.page+1)*count);
+    $('yard-items').innerHTML = rows.map((item,i) => '<button data-item="'+(state.page*count+i)+'">'+
+      '<img src="'+ART[item.asset]+'" alt="">'+item.name+'</button>').join('');
+    $('page-label').textContent = (state.page+1)+' / '+pages;
+    $('page-back').setAttribute('aria-disabled',state.page===0);
+    $('page-next').setAttribute('aria-disabled',state.page===pages-1);
+    if(focused!==undefined) {
+      $('yard-items').querySelector('[data-item="'+focused+'"]')?.focus({preventScroll:true});
+    }
+  }
+  function showMe() {
+    if (state.mode !== 'yard') return;
+    state.shown = true;
+    state.reveal = true;
+    if(state.tool) {
+      state.offset=0;
+      state.face=['centimeters','meters'].includes(state.item.unit)?'centimeters':'inches';
+      state.traced=true;
+      state.traceProgress=1;
+      const span=capacity(TOOLS.find(tool=>tool.id===state.tool));
+      state.moved=Math.max(0,Math.ceil(state.item.L/span)-1)*span;
+      state.chalkMax=state.moved;
+    }
+    render();
+    speech('The '+state.item.name+(state.item.name==='scissors' ? ' measure ' : ' is ')+
+      lengthWords(state.item.L,state.item.unit)+'.',{now:true});
+    hint('Tap another item on the shelf, or tap a tool to measure again.');
+    Curio.yes();
+  }
+  function drawRack() {
+    $('rack').innerHTML = TOOLS.map((tool,i) => {
+      const uid='rack-grain-'+tool.id;
+      const legend=['12 in','30 cm','3 ft','1 m','in / cm'][i];
+      const paint='<defs><linearGradient id="'+uid+'" x2="0" y2="1">'+
+        '<stop stop-color="#fff0c8"/><stop offset=".5" stop-color="'+(i===4?'#efbf2b':'#d5ac6e')+'"/>'+
+        '<stop offset="1" stop-color="#ac7b37"/></linearGradient></defs>';
+      const shape=tool.id==='tape' ?
+        '<path d="M9 25 Q19 1 44 12 T89 15 Q112 15 108 27 L99 31 Q105 21 85 24 T40 21 Q21 11 17 30Z" '+
+          'fill="url(#'+uid+')" stroke="#76501d" stroke-width="1.5"/>'+
+        '<path d="M19 17l2 -5m7 3l1 -5m8 8l1 -5m8 8l1 -5m9 8v-5m10 6v-5m10 5v-5m10 4v-5" stroke="#624218"/>'+
+        '<path d="M9 25l8 5 2 -8 -6 -4Z" fill="#d7dedb" stroke="#6d6b5d"/>' :
+        '<rect x="8" y="8" width="104" height="25" rx="2" fill="#4a2b19" opacity=".2"/>'+
+        '<rect x="6" y="6" width="104" height="25" rx="2" fill="url(#'+uid+')" stroke="#77512c"/>'+
+        '<path d="M8 29h100 M9 25q20 -2 40 0t45 0" stroke="#b08549" fill="none" opacity=".6"/>'+
+        Array.from({length:21},(_,n)=>'<path d="M'+(10+n*4.8)+' 6v'+(n%5===0?12:6)+'" stroke="#50391e"/>').join('')+
+        '<circle cx="11" cy="25" r="1.6" fill="#714c26"/>';
+      return '<button id="tool-'+tool.id+'" data-tool="'+tool.id+'" aria-pressed="false" aria-label="'+tool.name+'">'+
+        '<svg viewBox="0 0 120 38" aria-hidden="true">'+paint+shape+'</svg>'+
+        '<span class="tool-capacity">'+legend+'</span>'+tool.short+'</button>';
+    }).join('');
+  }
+  function render() {
+    const focusedBefore = document.activeElement;
+    document.body.classList.toggle('ended',state.step==='end');
+    $('digits').textContent = state.entry || '?';
+    $('display-unit').textContent = state.step === 'guess2' ? state.item.secondUnit : state.item.unit;
+    $('pad').setAttribute('aria-label',canType() ? 'Type your number' : 'Number pad, waiting for the next step');
+    $('pad').querySelectorAll('button').forEach(button => button.setAttribute('aria-disabled',!canType()));
+    $('next').hidden = state.mode !== 'freight' || state.step !== 'result';
+    $('hollis').src = PORTRAITS[['result','end'].includes(state.step) ? 2 : state.tool ? 1 : 0];
+    const isSlip = state.item.kind === 'slip';
+    const hasTool = !!state.tool && !isSlip && state.step !== 'end';
+    for (const id of ['left','right']) $(id).hidden = !hasTool || state.step === 'result';
+    $('flip').hidden = !hasTool || state.tool !== 'tape' || state.step === 'result';
+    $('flip').textContent = '⤾ Flip: '+(state.face==='centimeters'?'cm':'in');
+    $('mark').hidden = !hasTool || !remains() || state.step === 'result';
+    $('place-zero').hidden = !isSlip || ['result','end'].includes(state.step);
+    $('place-end').hidden = !isSlip || ['result','end'].includes(state.step);
+    $('tool-controls').style.visibility = state.step === 'end' ? 'hidden' : 'visible';
+    $('tool-controls').classList.toggle('empty',!hasTool && !isSlip);
+    $('rack').querySelectorAll('button').forEach(button => {
+      button.setAttribute('aria-pressed',button.dataset.tool===state.tool);
+      button.setAttribute('aria-disabled',state.mode==='freight' && !['tool','measure','red','blue','difference'].includes(state.step));
+    });
+    $('rack-label').textContent = state.step === 'guess' ? 'GUESS FIRST · THEN CHOOSE A TOOL' : 'THE TOOL RACK';
+    $('step-tag').textContent = ({guess:'1 · GUESS',guess2:'GUESS AGAIN',tool:'2 · CHOOSE',measure:'3 · MEASURE',
+      red:'READ RED',blue:'READ BLUE',difference:'FIND THE GAP',result:'CRATE READY',end:'DELIVERED',yard:'EXPLORE'})[state.step] || '';
+    $('step-tag').hidden = isSlip;
+    $('card').hidden = isSlip || state.step === 'end';
+    const card = state.item;
+    const starRow = count => '★'.repeat(count)+'☆'.repeat(Math.max(0,3-count));
+    $('card').innerHTML = '<b>'+card.name+'</b>'+card.unit+
+      (state.guess!==null ? '<br>Guess: '+lengthText(state.guess,state.firstUnit || card.unit)+
+        (state.guess2!==null ? '<br>Then: '+lengthText(state.guess2,card.secondUnit) : '') : '<br>How long?')+
+      (state.firstLength && !state.shown ? '<br>Read: '+lengthText(state.firstLength,state.firstUnit) : '')+
+      (state.shown ? '<br>Measured: '+lengthText(card.L,card.unit) : '')+
+      (state.step === 'result' ? '<br>'+(state.guess!==null ? '<span class="stars">'+
+        (state.second ? 'First '+starRow(state.stars)+'<br>Then '+starRow(state.stars2) : starRow(state.stars))+
+        '</span> ' : '')+(state.stamp ? '<span class="stamp">✓ TOOL</span>' : '') : '');
+    $('slip').hidden = !isSlip || state.step==='end';
+    if (isSlip) $('slip').innerHTML = card.text+(state.layout ? '<strong>'+equation(state.layout,state.step==='result')+'</strong>' : '');
+    $('work').classList.toggle('standing',card.orientation === 'standing');
+    renderRace();
+    renderShelf();
+    renderBoard();
+    const active = document.activeElement;
+    if(focusedBefore===$('check') && !canType()) {
+      const target = state.step==='result' ? $('next') : state.step==='end' ? $('new-run') : $('tool-inch');
+      target.focus({preventScroll:true});
+    } else if(focusedBefore===$('next') && $('next').hidden) {
+      const target = state.step==='end' ? $('new-run') : state.step==='place' ? $('place-zero') :
+        state.step==='tool' ? $('tool-inch') : $('key-1');
+      target.focus({preventScroll:true});
+    } else if(focusedBefore===$('mark') && $('mark').hidden) {
+      (state.mode==='yard' ? $('show-me') : $('key-1')).focus({preventScroll:true});
+    }
+  }
+  function renderRace() {
+    $('points').textContent = state.points;
+    const ghostPoints = (state.ghostJobs || Array(8).fill(4)).slice(0,state.results.length).reduce((a,b)=>a+b,0);
+    const progress = Math.min(100,state.points/44*100);
+    $('train').style.left = 'calc('+progress+'% - '+(progress/100*$('train').offsetWidth)+'px)';
+    const ghostProgress = Math.min(100,ghostPoints/44*100);
+    $('ghost').style.left = 'calc('+ghostProgress+'% - '+(ghostProgress/100*$('ghost').offsetWidth)+'px)';
+    $('ghost-label').textContent = state.ghostWasSaved ? 'Last run '+ghostPoints : 'Starter ghost';
+    $('job-dots').textContent = Array.from({length:8},(_,i)=>i<state.results.length ? '●' : i===state.job ? '◉' : '○').join('');
+  }
+  function renderShelf() {
+    $('shelf').innerHTML = '<span>Measured</span>'+state.results.slice(-7).map(r => '<span>'+
+      (r.asset ? '<img src="'+ART[r.asset]+'" alt="'+r.name+'">' : r.kind==='ribbon'?'🎀 ':'✉ ')+
+      lengthText(r.L,r.unit)+'</span>').join('')+
+      (!state.results.length ? '<span class="empty">Your finds go here.</span>' : '');
+  }
+  function image(asset,x,y,width,height,extra='') {
+    return '<image href="'+ART[asset]+'" x="'+x+'" y="'+y+'" width="'+width+'" height="'+height+
+      '" preserveAspectRatio="none" '+extra+'/>';
+  }
+  function text(x,y,label,size=15,extra='') {
+    return '<text x="'+x+'" y="'+y+'" font-size="'+size+'" '+extra+'>'+label+'</text>';
+  }
+  function tickTool(tool,start,y,px,max,unit=state.item.unit,major=1,inset=0,showOtherUnits=true) {
+    const w = max*px;
+    const isTape = tool.id === 'tape';
+    let s = '<g><rect x="'+(start-inset*px-3)+'" y="'+y+'" width="'+(w+inset*px+9)+'" height="38" rx="3" '+
+      'fill="url(#wood)" stroke="#74542d" stroke-width="1.5"/>';
+    if (isTape) s += '<rect x="'+(start-5)+'" y="'+y+'" width="9" height="38" fill="url(#metal)"/>';
+    const cap = Math.ceil(max);
+    const labelEvery = [1,5,10,20,25,50,100].find(interval=>px*interval>=18) || 100;
+    for (let n=0;n<=cap;n++) {
+      const x = start+n*px;
+      const long = n%5===0;
+      s += '<path d="M'+x+' '+(y+1)+'v'+(long?15:8)+'" stroke="#31271e" stroke-width="'+(n===0?2:1)+'"/>';
+      const nearEnd = n!==0 && n!==cap && n+labelEvery>cap && (cap-n)*px<18;
+      if ((n%labelEvery===0 && !nearEnd) || (n===cap && cap*px>=18)) {
+        s += text(x,y+31,n,Math.min(13,Math.max(10,px*.65)),'text-anchor="middle"');
+      }
+    }
+    if (showOtherUnits && ['yard','tape'].includes(tool.id) && unit === 'inches') {
+      for (let n=12;n<=max;n+=12) s += text(start+n*px,y+50,(n/12)+' ft',11,'text-anchor="middle" font-weight="800"');
+    }
+    s += '<circle cx="'+(start+8)+'" cy="'+(y+24)+'" r="2" fill="#775837"/>';
+    return s+'</g>';
+  }
+  function renderBoard() {
+    const svg = $('board');
+    const W = svg.clientWidth || 600;
+    const H = svg.clientHeight || 300;
+    svg.setAttribute('viewBox','0 0 '+W+' '+H);
+    const item = state.item;
+    const compact = W<600 || H<270;
+    $('unit-relation').hidden = !(compact && state.step==='result' && item.kind==='two');
+    if(!$('unit-relation').hidden) {
+      $('unit-relation').textContent=lengthText(item.bigL,item.bigUnit)+' = '+lengthText(item.smallL,item.smallUnit);
+    }
+    const font = compact ? 11 : 15;
+    const margin = compact ? 35 : 75;
+    const x = margin;
+    const dimensions = DATA.imageSizes[item.asset] || [5,1];
+    const aspect = dimensions[0]/dimensions[1];
+    const span = item.orientation === 'lying' && item.kind !== 'ribbon' ?
+      Math.min((W-margin*2)*(item.fill || .7),H*.43*aspect) : (W-margin*2)*(item.fill || .7);
+    const standing = item.orientation === 'standing';
+    const length = item.L || 1;
+    const roomH = H-25;
+    const px = standing ? Math.max(.1,Math.min(roomH*(item.fill||.7),(W*.44)/aspect)/length) : span/length;
+    const y = standing ? H-15 : Math.min(H-65,H*.68);
+    geometry = {W,H,x,y,px,span,standing,compact};
+    let s = '<defs><linearGradient id="wood" x2="0" y2="1"><stop stop-color="'+
+      (state.tool==='tape'?'#ffe47e':'#f3dfb4')+'"/><stop offset="1" stop-color="'+
+      (state.tool==='tape'?'#e9b722':'#cda66a')+'"/></linearGradient>'+ 
+      '<linearGradient id="metal"><stop stop-color="#c4c9c4"/><stop offset=".5" stop-color="#fff"/>'+ 
+      '<stop offset="1" stop-color="#929a91"/></linearGradient>'+ 
+      '<pattern id="stripes" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">'+
+      '<rect width="12" height="12" fill="#ad3b2c"/><rect width="4" height="12" fill="#fff1d7"/></pattern>'+ 
+      '<pattern id="dots" width="12" height="12" patternUnits="userSpaceOnUse"><rect width="12" height="12" '+
+      'fill="#1f6f8b"/><circle cx="4" cy="4" r="2" fill="#fff1d7"/></pattern>'+ 
+      Object.entries(ART).filter(([key])=>['braided-rope','green-hose','shoelace-weave'].includes(key)).map(([key,url])=>
+        '<pattern id="'+key+'" width="100" height="30" patternUnits="userSpaceOnUse"><image href="'+url+
+        '" width="100" height="30" preserveAspectRatio="none"/></pattern>').join('')+'</defs>';
+    if (item.kind === 'slip') {
+      s += drawSlip(W,H);
+      svg.innerHTML = s;
+      return;
+    }
+    if (state.step==='end') {svg.innerHTML=s; return;}
+    if (state.rejectedTool) {
+      s += state.rejectedTool==='tape' ? '<path d="M'+W*.48+' '+H*.45+'q40 -10 45 35t65 18" '+
+        'fill="none" stroke="#f2c230" stroke-width="12" stroke-linecap="round"/>' :
+        '<path d="M'+W*.25+' '+H*.75+'l'+W*.25+' -18" stroke="#9c3520" stroke-width="18"/>';
+    }
+    const objectH = standing ? Math.min(length*px,(W*.44)/aspect) : span/aspect;
+    const objectW = standing ? objectH*aspect : span;
+    const ix = standing ? W*.45-objectW*.5 : x;
+    const iy = standing ? y-objectH : y-objectH;
+    svg.style.setProperty('--load-x',(W-80-(ix+objectW/2))+'px');
+    svg.style.setProperty('--load-y',(H-40-(iy+objectH/2))+'px');
+    const loaded = state.step==='result' && state.lastCorrect && item.kind!=='ribbon';
+    const elapsed = loaded ? Math.min(1200,performance.now()-state.loadStart) : 0;
+    s += '<g id="item-paint"'+(loaded?' class="load-item" style="animation-delay:-'+elapsed+'ms"':'')+'>';
+    if (item.kind === 'ribbon') {
+      s += '<rect x="'+x+'" y="'+(y-35)+'" width="'+item.a*px+'" height="22" fill="url(#stripes)" stroke="#7b2c23"/>';
+      s += '<rect x="'+x+'" y="'+(y-2)+'" width="'+item.b*px+'" height="22" fill="url(#dots)" stroke="#16475b"/>';
+      if (state.step==='result') {
+        const sx = x+item.b*px;
+        const ex = x+item.a*px;
+        const arcY = Math.max(32,y-45);
+        s += '<path d="M'+sx+' '+arcY+' Q'+(sx+ex)/2+' '+Math.max(15,arcY-55)+' '+ex+' '+arcY+
+          '" fill="none" stroke="#1f6f8b" stroke-width="4"/>'+text((sx+ex)/2,Math.max(20,arcY-30),
+            item.a-item.b,font+4,'text-anchor="middle"');
+      }
+    } else if (item.orientation === 'curvy') {
+      const points = curvePoints(x,y-20,span,H*.15);
+      geometry.curve = points;
+      const arcLength = points.slice(1).reduce((sum,p,i) => sum+Math.hypot(p[0]-points[i][0],p[1]-points[i][1]),0);
+      geometry.px = arcLength/item.L;
+      const path = 'M'+points.map(p=>p.join(',')).join(' L');
+      const pattern = item.name==='garden hose' ? 'green-hose' : item.name==='shoelace' ? 'shoelace-weave' : 'braided-rope';
+      s += '<path d="'+path+'" fill="none" stroke="#593b27" stroke-width="20" stroke-linecap="round"/>'+
+        '<path d="'+path+'" fill="none" stroke="url(#'+pattern+')" stroke-width="15" stroke-linecap="round"/>';
+      if (item.name==='bead necklace') {
+        s += points.filter((_,i)=>i%3===0).map((p,i)=>'<circle cx="'+p[0]+'" cy="'+p[1]+
+          '" r="8" fill="'+['#9c3520','#e8a917','#1f6f8b'][i%3]+'" stroke="#f9dda2"/>').join('');
+      }
+      if (['toy snake','jump rope','garden hose'].includes(item.name)) {
+        const flipped=item.name==='garden hose';
+        const partH=item.name==='jump rope'?42:40/aspect;
+        const partW=item.name==='jump rope'?42*aspect:40;
+        const tip=DATA.imageTips[item.asset][flipped?'left':'right'];
+        const transform=flipped?'transform="translate('+(2*(x+span)-partW)+' 0) scale(-1 1)"':'';
+        s += image(item.asset,x+span-partW,y-20-partH*tip,partW,partH,transform);
+      }
+      if (state.tool && !state.traced) {
+        const till = Math.max(1,Math.round(state.traceProgress*(points.length-1)));
+        s += '<path d="M'+points.slice(0,till+1).map(p=>p.join(',')).join(' L')+
+          '" stroke="#f2c230" stroke-width="8" fill="none" stroke-dasharray="4 3"/>';
+        s += '<circle cx="'+points[till][0]+'" cy="'+points[till][1]+'" r="15" fill="#fff4c7" stroke="#9c3520" stroke-width="3"/>';
+      }
+    } else s += image(item.asset,ix,iy,objectW,objectH);
+    s += '</g>';
+    if (['guess','guess2'].includes(state.step)) {
+      const referencePx = geometry.px*(state.step === 'guess2' ? item.L/item.secondL : 1);
+      const referenceUnit = state.step === 'guess2' ? item.secondUnit : item.unit;
+      const square = referencePx;
+      const bx = compact ? 12 : 20;
+      const by = H-square-18;
+      const trueSquare = referencePx <= H*.24 && referencePx <= W*.18;
+      if(trueSquare) {
+        s += '<rect x="'+bx+'" y="'+by+'" width="'+square+'" height="'+square+
+          '" fill="#fff8df99" stroke="#67472e" stroke-width="'+Math.min(2,referencePx/8)+'"/>';
+        s += text(bx,by-7,'1 '+sing(referenceUnit),font,'font-weight="800"');
+      } else {
+        const guideY=H-22;
+        s += '<path d="M'+bx+' '+guideY+'h'+referencePx+'" stroke="#67472e" stroke-width="2"/>'+
+          '<path d="M'+bx+' '+(guideY-5)+'v10 M'+(bx+referencePx)+' '+(guideY-5)+'v10" stroke="#67472e"/>';
+        s += text(bx+referencePx/2,guideY-8,'1 '+sing(referenceUnit),font,'text-anchor="middle"');
+      }
+    }
+    if (state.tool) {
+      s += drawMeasureTool(geometry);
+      if (state.step==='result' && item.kind==='two') {
+        const n = item.bigL;
+        const start = standing ? W*.45 : x;
+        for (let k=0;k<n;k++) {
+          if(standing) {
+            const a=y-k*item.L*px/n;
+            const b=y-(k+1)*item.L*px/n;
+            s += '<path d="M'+W*.10+' '+a+' Q'+W*.04+' '+(a+b)/2+' '+W*.10+' '+b+
+              '" fill="none" stroke="#1f6f8b" stroke-width="3"/>';
+          } else {
+            const a=start+k*span/n;
+            const b=start+(k+1)*span/n;
+            s += '<path d="M'+a+' '+(H*.24)+' Q'+(a+b)/2+' '+(H*.13)+' '+b+' '+(H*.24)+
+              '" fill="none" stroke="#1f6f8b" stroke-width="3"/>';
+          }
+        }
+        if(!compact) s += text(W*.5,H*.13,lengthText(item.bigL,item.bigUnit)+' = '+lengthText(item.smallL,item.smallUnit),
+          font+3,'text-anchor="middle" font-weight="800"');
+      }
+    }
+    const crateX = W-(compact?70:110);
+    const crateY = H-(compact?43:62);
+    const crateW = compact?54:86;
+    const crateH = compact?31:46;
+    s += '<g><path d="M'+crateX+' '+crateY+'l8 -10h'+crateW+'l-8 10" fill="#e3c389" stroke="#795130"/>'+
+      '<rect x="'+crateX+'" y="'+crateY+'" width="'+crateW+'" height="'+crateH+'" fill="#ab733f" stroke="#634024" stroke-width="2"/>'+
+      '<path d="M'+crateX+' '+(crateY+crateH/3)+'h'+crateW+' M'+crateX+' '+(crateY+crateH*2/3)+'h'+crateW+
+      ' M'+(crateX+4)+' '+(crateY+crateH-4)+'l'+(crateW-8)+' '+(-crateH+8)+'" stroke="#e1b875" stroke-width="4"/>'+
+      [5,crateW-5].map(n=>'<circle cx="'+(crateX+n)+'" cy="'+(crateY+5)+'" r="2" fill="#584232"/>').join('')+'</g>';
+    svg.innerHTML = s;
+  }
+  function curvePoints(x,y,width,amplitude) {
+    return Array.from({length:101},(_,i) => [x+width*i/100,y+Math.sin(i/100*Math.PI*2)*amplitude]);
+  }
+  function drawMeasureTool(g) {
+    const {W,H,x,y,px,standing,compact} = g;
+    const item = state.item;
+    const tool = TOOLS.find(t=>t.id===state.tool);
+    let unit = item.unit;
+    let unitPx = px;
+    let readingFactor = 1;
+    if (tool.id==='tape' && state.face==='centimeters' && item.unit!=='centimeters') {
+      readingFactor = item.unit==='feet' ? 30.48 : 2.54;
+      unit = 'centimeters';
+      unitPx = px/readingFactor;
+    } else if(tool.id==='tape' && state.face==='inches' && item.unit==='centimeters') {
+      readingFactor = 1/2.54;
+      unit = 'inches';
+      unitPx = px*2.54;
+    }
+    const max = capacity(tool,unit);
+    const major = ['meters','feet'].includes(unit) ? 1 : tool.id==='meter' || tool.id==='tape' ? 10 : 1;
+    const start = x+(state.moved+state.offset)*px;
+    const ty = item.kind==='ribbon' ? y+30 : y+15;
+    const length = max*unitPx;
+    g.toolStart = start;
+    g.toolY = ty;
+    g.toolLength = length;
+    let s = '';
+    const factor = unit==='feet' ? 12 : unit==='meters' ? 100 : 1;
+    const drawUnit = unit==='feet' ? 'inches' : unit==='meters' ? 'centimeters' : unit;
+    const drawMajor = drawUnit==='centimeters' && ['meter','tape'].includes(tool.id) ? 10 :
+      tool.id==='tape' ? 10 : 1;
+    // Keep the first unit's face during the second estimate. Smaller-unit numerals would reveal that guess.
+    const guessingAgain = state.step==='guess2';
+    const rawRuler = guessingAgain ? tickTool(tool,start,ty,unitPx,max,unit,major,0,false) :
+      tickTool(tool,start,ty,unitPx/factor,max*factor,drawUnit,drawMajor,tool.inset);
+    if (standing) {
+      const pivotX = W*.68;
+      const pivotY = y-(state.moved+state.offset)*px;
+      s += '<g transform="translate('+pivotX+' '+pivotY+') rotate(-90) translate('+(-start)+' '+(-ty)+')">'+rawRuler+'</g>';
+      g.verticalX = pivotX;
+    } else if (item.orientation!=='curvy' || state.traced) s += rawRuler;
+    for(let mark=max;mark<=(state.chalkMax || 0)+.001;mark+=max) {
+      const markX = standing ? W*.68 : x+mark*px;
+      const markY = standing ? y-mark*px : ty;
+      s += '<path d="M'+(markX-5)+' '+(markY-8)+'l10 16" stroke="#fff8e7" stroke-width="4"/>'+
+        text(markX+(standing?-10:10),markY-12,max,compact?11:16,
+          'font-weight="800"'+(standing?' text-anchor="end"':''));
+    }
+    if (item.orientation==='curvy' && !state.traced) return s;
+    const r = compact ? 32 : Math.min(75,H*.24);
+    const lensY = compact ? Math.max(r+42,H*.29) : H*.30;
+    const endY = compact ? Math.min(H-r-5,$('card').offsetTop+$('card').offsetHeight+r+8) : lensY;
+    const endX = Math.min(W*.73,W-$('card').offsetWidth-r-(compact?16:25));
+    const endTarget = state.step==='blue' ? item.b : item.L;
+    const endReading = (endTarget-state.moved-state.offset)*readingFactor;
+    s += lens(compact ? W*.25 : W*.20,lensY,r,'Start',-state.offset*readingFactor,unitPx,tool,unit,compact);
+    s += lens(endX,endY,r,'End',endReading,unitPx,tool,unit,compact);
+    return s;
+  }
+  function lens(cx,cy,r,label,value,px,tool,unit,compact) {
+    const id='clip-'+label;
+    const zoom = Math.max(.2,px*4);
+    let s = '<defs><clipPath id="'+id+'"><circle cx="'+cx+'" cy="'+cy+'" r="'+(r-3)+'"/></clipPath></defs>'+
+      '<g class="'+(state.wrong?'wrong-lens':'')+'"><circle cx="'+cx+'" cy="'+cy+'" r="'+r+
+      '" fill="#fff8df" stroke="'+(state.reveal && label==='End'?'#1f6f8b':'#765138')+
+      '" stroke-width="6"/><circle cx="'+cx+'" cy="'+cy+'" r="'+(r-4)+'" fill="none" stroke="#e8c78c"/>'+
+      '<g clip-path="url(#'+id+')">'+
+      '<rect x="'+(cx-r)+'" y="'+cy+'" width="'+r*2+'" height="'+r+'" fill="url(#wood)"/>'+
+      '<path d="M'+(cx-r)+' '+cy+'h'+r*2+'" stroke="#6b4c29" stroke-width="2"/>'+
+      '<path d="M'+(cx-r)+' '+(cy+r-8)+'h'+r*2+'" stroke="#b48749" opacity=".5"/>';
+    const nearest = Math.floor(value);
+    const max = capacity(tool,unit);
+    const reach = Math.ceil(r/zoom)+1;
+    const candidates=[];
+    for (let n=nearest-reach;n<=nearest+reach;n++) {
+      if (n<0 || n>max) continue;
+      const tx=cx+(n-value)*zoom;
+      s += '<path d="M'+tx+' '+cy+'v'+(compact?(n===0?10:7):(n===0?18:12))+
+        '" stroke="#34271a" stroke-width="'+(n===0?3:1.5)+'"/>';
+      if(tool.id!=='meter' || unit!=='centimeters' || n%10===0) candidates.push({n,tx});
+    }
+    const size=compact?11:18;
+    const baseline=compact?24:38;
+    const safeHalf=Math.sqrt(Math.max(0,(r-4)*(r-4)-baseline*baseline));
+    const used=[];
+    candidates.sort((a,b)=>Math.abs(a.n-value)-Math.abs(b.n-value));
+    for(const candidate of candidates) {
+      const width=String(candidate.n).length*size*.62;
+      if(Math.abs(candidate.tx-cx)+width/2>safeHalf-2)continue;
+      if(used.some(other=>Math.abs(other.tx-candidate.tx)<(other.width+width)/2+3))continue;
+      used.push({...candidate,width});
+      s+=text(candidate.tx,cy+baseline,candidate.n,size,'text-anchor="middle"');
+    }
+    s += '<path d="M'+cx+' '+(cy-r)+'v'+r+'" stroke="#9c3520" stroke-width="3"/>'+
+      '<path d="M'+(cx-5)+' '+(cy-8)+'l5 8 5-8" fill="none" stroke="#9c3520" stroke-width="3"/>';
+    const labelX = compact && label==='End' ? cx-r-5 : cx;
+    const labelY = compact && label==='End' ? cy : cy-r-7;
+    const anchor = compact && label==='End' ? 'end' : 'middle';
+    return s+'</g>'+text(labelX,labelY,label,compact?11:15,'text-anchor="'+anchor+'" font-weight="800"')+'</g>';
+  }
+  function drawSlip(W,H) {
+    const item=state.item;
+    const x=22;
+    const px=(W-44)/100;
+    const compact=geometry.compact;
+    const tapeHeight=compact?30:38;
+    const y=H-tapeHeight;
+    const paperBottom=$('slip').offsetTop+$('slip').offsetHeight;
+    const barH=Math.max(12,Math.min(compact?18:27,(y-paperBottom-15)/2));
+    geometry.slip={x,px,y,barH};
+    let s='<rect x="'+x+'" y="'+y+'" width="'+100*px+'" height="'+tapeHeight+'" fill="url(#wood)" stroke="#715026"/>';
+    for(let n=0;n<=100;n++) {
+      s+='<path d="M'+(x+n*px)+' '+y+'v'+(n%10===0?(compact?12:16):n%5===0?(compact?9:11):6)+'" stroke="#3d3020"/>';
+      if(n%10===0) s+=text(x+n*px,y+(compact?26:31),n,compact?10:13,'text-anchor="middle"');
+    }
+    const ay=y-barH*2-10;
+    let bx=x;
+    let by=y-barH-5;
+    if(!state.layout) {bx=x+W*.2; by=y-barH-5;}
+    if(state.layout==='end') {bx=x+item.a*px; by=ay;}
+    if(state.layout==='cut') {bx=x+(item.a-item.b)*px; by=ay;}
+    if(drag?.type==='piece') {bx=drag.liveX; by=drag.liveY;}
+    geometry.slip.bx=bx;
+    geometry.slip.by=by;
+    s+='<rect x="'+x+'" y="'+ay+'" width="'+item.a*px+'" height="'+barH+'" rx="3" fill="url(#dots)" stroke="#174459"/>';
+    const labelSize=Math.min(compact?12:18,barH-2);
+    s+=text(x+item.a*px/2,ay+barH*.78,item.a,labelSize,'text-anchor="middle" style="fill:white" font-weight="800"');
+    s+='<rect x="'+bx+'" y="'+by+'" width="'+item.b*px+'" height="'+barH+'" rx="3" fill="url(#stripes)" stroke="#7b2c23"/>';
+    s+=text(bx+item.b*px/2,by+barH*.78,item.b,labelSize,'text-anchor="middle" style="fill:white" font-weight="800"');
+    if(state.step==='result') {
+      const answerX=x+item.answer*px;
+      s+='<circle cx="'+answerX+'" cy="'+y+'" r="9" fill="#e8a917" stroke="#1f6f8b" stroke-width="3"/>';
+    }
+    return s;
+  }
+  function localPoint(event) {
+    const rect=$('board').getBoundingClientRect();
+    return [event.clientX-rect.left,event.clientY-rect.top];
+  }
+  $('board').addEventListener('pointerdown',event => {
+    if(state.step==='end' || state.step==='result') return;
+    const [x,y]=localPoint(event);
+    if(state.item.kind==='slip') {
+      const b=geometry.slip;
+      if(x>=b.bx-12 && x<=b.bx+state.item.b*b.px+12 && y>=b.by-20 && y<=b.by+b.barH+20) {
+        drag={type:'piece',dx:x-b.bx,dy:y-b.by,liveX:b.bx,liveY:b.by};
+      }
+    } else if(state.tool) {
+      if(state.item.orientation==='curvy' && !state.traced) drag={type:'trace'};
+      else drag={type:'tool',x,y,offset:state.offset};
+    }
+    if(drag) {$('board').setPointerCapture(event.pointerId); event.preventDefault();}
+  });
+  $('board').addEventListener('pointermove',event => {
+    if(!drag) return;
+    const [x,y]=localPoint(event);
+    if(drag.type==='piece') {
+      drag.liveX=x-drag.dx;
+      drag.liveY=y-drag.dy;
+    } else if(drag.type==='trace') {
+      const points=geometry.curve;
+      let nearest=0;
+      let distance=Infinity;
+      points.forEach((p,i)=>{const d=Math.hypot(x-p[0],y-p[1]); if(d<distance) {nearest=i; distance=d;}});
+      if(distance<=30 && nearest/100<=state.traceProgress+.09) {
+        state.traceProgress=Math.max(state.traceProgress,nearest/100);
+        if(state.traceProgress>=.97) {
+          state.traced=true;
+          state.offset=-2;
+          drag=null;
+          Curio.tone(660,.12,.05,'triangle');
+          updateHint();
+          scheduleRead();
+        }
+      }
+    } else {
+      const delta=geometry.standing ? drag.y-y : x-drag.x;
+      state.offset=Math.max(-5,Math.min(state.item.L,drag.offset+delta/geometry.px));
+    }
+    renderBoard();
+  });
+  function release(event) {
+    if(!drag) return;
+    if(drag.type==='piece') {
+      const tick=(drag.liveX-geometry.slip.x)/geometry.slip.px;
+      const item=state.item;
+      if(Math.abs(tick)<3) place('zero');
+      else if(Math.abs(tick-item.a)<3) place('end');
+      else if(item.storyKind==='take' && Math.abs(tick-(item.a-item.b))<3) place('cut');
+      else {hint(L.badSpot); speech(L.badSpot);}
+    }
+    drag=null;
+    renderBoard();
+    scheduleRead();
+  }
+  $('board').addEventListener('pointerup',release);
+  $('board').addEventListener('pointercancel',release);
+  addEventListener('resize',()=>{
+    if(!drag)return;
+    drag=null;
+    renderBoard();
+    updateHint();
+    scheduleRead();
+  });
+  $('m-freight').onclick=()=>setMode('freight');
+  $('m-yard').onclick=()=>setMode('yard');
+  $('new-run').onclick=newRun;
+  $('next').onclick=next;
+  $('show-me').onclick=showMe;
+  $('left').onclick=()=>nudge(-1);
+  $('right').onclick=()=>nudge(1);
+  $('flip').onclick=flip;
+  $('mark').onclick=markMove;
+  $('place-zero').onclick=()=>place('zero');
+  $('place-end').onclick=()=>place('end');
+  $('rack').onclick=event=>{const button=event.target.closest('[data-tool]'); if(button)chooseTool(button.dataset.tool);};
+  $('yard-items').onclick=event=>{
+    const button=event.target.closest('[data-item]');
+    if(!button)return;
+    const page=state.page;
+    resetJob(freshItem(DATA.items[Number(button.dataset.item)]));
+    state.page=page;
+    state.yardChosen=true;
+    state.step='yard';
+    updateHint();
+    render();
+    speech(itemIntro(state.item.name)+'. Tap a tool to measure it. Tap Show me to check.');
+  };
+  for(const [id,direction] of [['page-back',-1],['page-next',1]]) $(id).onclick=()=>{
+    const pages=Math.ceil(DATA.items.length/(small()?6:12));
+    state.page=Math.max(0,Math.min(pages-1,state.page+direction));
+    renderYard();
+    Curio.tone(400,.04,.025,'sine');
+  };
+  $('pad').innerHTML=['1','2','3','4','5','6','7','8','9','back','0','check'].map(key=>
+    '<button id="'+(key==='back'?'back':key==='check'?'check':'key-'+key)+'" data-key="'+key+'">'+
+    (key==='back'?'⌫ Back':key==='check'?'✓ Check':key)+'</button>').join('');
+  $('pad').onclick=event=>{
+    const button=event.target.closest('[data-key]');
+    if(!button)return;
+    if(button.dataset.key==='check')check();
+    else type(button.dataset.key);
+    button.classList.add('hit');
+    setTimeout(()=>button.classList.remove('hit'),140);
+  };
+  addEventListener('keydown',event=>{
+    if(event.altKey || event.ctrlKey || event.metaKey)return;
+    if(/^\d$/.test(event.key)) {type(event.key); event.preventDefault();}
+    if(event.key==='Backspace') {type('back'); event.preventDefault();}
+    if(event.key==='Enter' && !event.target.closest('button')) {check(); event.preventDefault();}
+    if(event.key==='ArrowLeft' && state.tool) {nudge(-1); event.preventDefault();}
+    if(event.key==='ArrowRight' && state.tool) {
+      if(state.item.orientation==='curvy' && !state.traced) {
+        state.traceProgress=Math.min(1,state.traceProgress+.05);
+        if(state.traceProgress>=.99) {state.traced=true; state.offset=-2; updateHint(); scheduleRead();}
+        renderBoard();
+        Curio.tone(350+state.traceProgress*300,.03,.02,'sine');
+      } else nudge(1);
+      event.preventDefault();
+    }
+  });
+  new ResizeObserver(()=>{
+    if(state.item) {renderBoard(); renderRace(); if(state.mode==='yard')renderYard();}
+  }).observe($('work'));
+  drawRack();
+  Curio.init({clips:"voice:*",rate:.9,readFallback:()=>$('hint').textContent});
+  newRun();
+  function allLines() {
+    const lines=new Set([...Object.values(L),...spoken]);
+    const add = text => speechParts(text).forEach(part=>lines.add(part));
+    Object.values(L).forEach(add);
+    TOOLS.forEach(tool=>add('The '+tool.name+'.'));
+    const readings=new Map();
+    const remember=(length,unit)=>readings.set(length+'|'+unit,{length,unit});
+    DATA.items.forEach(item=>{
+      const variants=[];
+      if(item.kind==='two') {
+        const smallUnit=item.unit==='feet'?'inches':'centimeters';
+        const factor=item.unit==='feet'?12:100;
+        for(const bigLength of item.lengths) {
+          variants.push({length:bigLength,unit:item.unit},{length:bigLength*factor,unit:smallUnit});
+          add(lengthWords(bigLength,item.unit)+' is '+lengthWords(bigLength*factor,smallUnit)+
+            '. '+item.unit+' are bigger, so it takes fewer of them.');
+        }
+      } else {
+        for(let length=item.lo;length<=item.hi;length++)variants.push({length,unit:item.unit});
+      }
+      add(itemIntro(item.name)+'. Tap a tool to measure it. Tap Show me to check.');
+      for(const {length,unit} of variants) {
+        remember(length,unit);
+        add('The '+item.name+(item.name==='scissors' ? ' measure ' : ' is ')+lengthWords(length,unit)+'.');
+        add('Freight is here! Guess the length of the '+item.name+' in '+unit+'. Tap the numbers, then tap Check.');
+        for(let n=1;n<=5;n++) {
+          const line='Guess the '+item.name+' in '+unit+'.';
+          lines.add(line);
+          add(line);
+        }
+        if(item.kind==='two') {
+          add(lengthWords(length,unit)+'.');
+          add('First reading: '+lengthWords(length,unit)+'.');
+          add('Now guess the same '+item.name+' in '+unit+'. Tap the numbers, then tap Check.');
+        }
+      }
+    });
+    for(const unit of ['inches','feet','centimeters','meters']) {
+      for(let number=0;number<=999;number++) {
+        add('You guessed '+lengthWords(number,unit)+'. Now tap a tool on the rack.');
+        add('You guessed '+words(number)+'.');
+      }
+      add('Now guess: how many '+unit+' long is it?');
+    }
+    for(let n=0;n<=44;n++) {
+      add('The train is loaded! '+words(n)+(n===1?' point.':' points.')+' Your last run had '+words(n)+'.');
+      if(n<=3)add(words(n)+(n===1?' star!':' stars!'));
+    }
+    add("Keep guessing, you'll get closer. You beat it! Race it again next time!");
+    add('The Starter ghost had thirty two.');
+    add('Crate ready! Tap Next crate.');
+    add('The train is loaded! Tap New run to race it, or tap Yard to explore.');
+    add('Read the order. Use the tape to find the box. Type it, then tap Check.');
+    add('Read this piece. Tap Mark and move, add the pieces, then type the total and tap Check.');
+    add('Tap another item on the shelf, or tap a tool to measure again.');
+    DATA.ribbons.forEach(ribbon=>{
+      [ribbon.a,ribbon.b,ribbon.a-ribbon.b].forEach(length=>remember(length,ribbon.unit));
+      add('Yes! '+words(ribbon.a)+' take away '+words(ribbon.b)+' is '+words(ribbon.a-ribbon.b)+'. '+
+        'The red ribbon is '+lengthWords(ribbon.a-ribbon.b,ribbon.unit)+' longer.');
+    });
+    DATA.slips.forEach(slip=>{
+      add('Order slip! '+spokenNumbers(slip.text));
+      const equations=[slip.a+' + '+slip.b+' = □',slip.b>slip.a ? slip.a+' + □ = '+slip.b : slip.a+' − '+slip.b+' = □'];
+      equations.forEach(eq=>{
+        add('Your number sentence: '+spokenNumbers(eq)+'. Type the box, then tap Check.');
+      });
+      const correctEquation=slip.kind==='join'?equations[0]:equations[1];
+      const filled=spokenNumbers(correctEquation.replace('□',slip.answer));
+      add('Yes! '+filled+'.');
+      add("It's "+words(slip.answer)+'. '+filled+'.');
+    });
+    for(const {length,unit} of readings.values()) {
+      add('Yes, '+lengthWords(length,unit)+'.');
+      add("It's "+lengthWords(length,unit)+'. Look at where the item ends.');
+    }
+    return [...lines];
+  }
+  window.__tool={state,setMode,allLines,vlog:V.log,get vq(){return V.queue;},
+    stars,bestTools,working,capacityFor,DATA,TOOLS,geometry:()=>geometry};
+})();
+</script>
+</body>
+</html>

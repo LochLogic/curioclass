@@ -1,0 +1,24 @@
+{
+  "id":"trade-island",
+  "stage":"built",
+  "status":"beta",
+  "hook":"Run Pell. Bargain across the strait. Decide who gains.",
+  "outcome":"Explain comparative advantage and use evidence to assess the distributional effects of trade policies.",
+  "driver":"students",
+  "minutes":"35-45",
+  "modes":["Islands","Policy","Case"],
+  "grades_label":"Grade 12",
+  "sources":[
+    "David Ricardo, Principles of Political Economy and Taxation (1817), chapter 7",
+    "OpenStax, Principles of Economics 3e, chapters 33 and 34 (19 and 20 in Microeconomics 3e)",
+    "Krugman, Obstfeld and Melitz, International Economics, chapters 3 and 9",
+    "Flaaen, Hortacsu and Tintelnot, AER 110(7), 2020; AEA research highlight",
+    "USTR, U.S.-Cambodian Textile Agreement, January 2002; ILO, Cambodian factories, 2005",
+    "CRS Insight IN10230, The Swiss National Bank's Recent Currency Actions, 2015",
+    "UNEP, Sustainability and Circularity in the Textile Value Chain, 2020",
+    "All island quantities and policy estimates are a fictional teaching model specified in spec.md",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party":[],
+  "updated":"2026-11-07"
+}

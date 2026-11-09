@@ -1,0 +1,9 @@
+{
+  "keep":["#bake","#ingredients","#hint",".scale-station"],
+  "states":[
+    {"name":"biscuit-result","steps":[{"click":"#bake"},{"wait":3200}],"sizes":["680x425","1366x768","375x812"]},
+    {"name":"mass-ledger","steps":[{"click":"#bake"},{"click":"#mass-details summary"}],"sizes":["1366x768"]},
+    {"name":"bakery-board","steps":[{"click":"#m-bakery"}],"sizes":["680x425","1366x768","375x812"]},
+    {"name":"cookie-reaction","steps":[{"click":"#reaction"},{"key":"ArrowDown"},{"key":"ArrowDown"},{"key":"ArrowDown"},{"key":"Enter"}],"sizes":["680x425","1366x768"]}
+  ]
+}

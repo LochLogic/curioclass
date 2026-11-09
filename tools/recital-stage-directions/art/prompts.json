@@ -18,6 +18,29 @@
       "drawn_by": "codex"
     },
     {
+      "name": "dancer-cast",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "width": 2048,
+      "quality": 82,
+      "drawn_by": "codex",
+      "prompt": "Rich theatrical gouache and colored pencil illustration, deep blue stage palette and warm upper-left light. Four full-body young recital dancers in one horizontal row, equally spaced on flat pure magenta. First three face front in a precise T pose, arms horizontal, palms down, legs straight slightly apart. First: dark brown skin, short natural curls, warm rust short-sleeve rehearsal top and cream leggings, sturdy build. Second: light skin, short wavy chestnut hair, sage short-sleeve top and navy leggings, slender build. Third: medium brown skin, black hair tied back, golden short-sleeve top and violet leggings, rounded build. Fourth: back view of first dancer, same T pose and clothes, no visible face. Complete bodies with wide margins and clear gaps between legs, no floor shadows. Neat soft dance shoes. Friendly natural proportions, ordinary school-age children, no text or badges. This is an articulated puppet source sheet: shoulders elbows wrists hips knees ankles must be visible and straight; heads neutral."
+    },
+    {
+      "name": "dancer-backs",
+      "people": true,
+      "cutout": true,
+      "key": "magenta",
+      "width": 2048,
+      "quality": 82,
+      "drawn_by": "codex",
+      "prompt": "Rich theatrical gouache and colored pencil illustration, deep blue stage palette and warm upper-left light. Four full-body young recital dancers in one horizontal row, equally spaced on flat pure magenta. All four face away from the viewer in a precise T pose, arms horizontal, palms down, legs straight slightly apart. First: dark brown skin, short natural curls, warm rust short-sleeve rehearsal top and cream leggings, sturdy build. Second: light skin, short wavy chestnut hair, sage short-sleeve top and navy leggings, slender build. Third: medium brown skin, black hair tied back, golden short-sleeve top and violet leggings, rounded build. Fourth: back view of first dancer, same T pose and clothes, no visible face. Complete bodies with wide margins and clear gaps between legs, no floor shadows. Neat soft dance shoes. Friendly natural proportions, ordinary school-age children, no text or badges. This is an articulated puppet source sheet: shoulders elbows wrists hips knees ankles must be visible and straight; heads neutral.",
+      "ref": "dancer-cast"
+    }
+  ],
+  "replaced_pose_requirements": [
+    {
       "name": "dancer-stand",
       "people": true,
       "cutout": true,
@@ -182,5 +205,6 @@
       "prompt": "Future painter only. Consistent full-body recital dancers in bow pose or gait keyframes. Three identifiable dancers with circle, square and triangle badges. Front, back, left and right facings; left and right variants where the move changes side. Include start, midpoint and end keyframes. Clothing variants: default pink and cream, mint and navy, gold and violet; ballet rust and gold or sage and cream; jazz black and yellow or red and white; neutral cream and navy. Child-appropriate rehearsal clothing, complete bodies with space around feet and hands. Flat pure magenta key. Match house style. Pose geometry must preserve engine movement clues.",
       "movement_requirements": "Move from standing into a respectful forward bow, then return upright for the repeat. Include front and back views."
     }
-  ]
+  ],
+  "pose_strategy": "One articulated T pose per facing, for each of three dancers. The two sheets replace fifteen proposed pose sets. Engine joints preserve all move shapes."
 }

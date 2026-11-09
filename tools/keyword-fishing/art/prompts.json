@@ -22,7 +22,8 @@
       "people": false,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "kf-fish-night",
@@ -34,7 +35,8 @@
       "people": false,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "kf-fish-earth",
@@ -46,7 +48,8 @@
       "people": false,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "kf-fish-space",
@@ -58,7 +61,8 @@
       "people": false,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "kf-bobber",
@@ -70,11 +74,12 @@
       "people": false,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok"
+      "review": "ok",
+      "despill": true
     },
     {
       "name": "kf-bucket",
-      "prompt": "A small dented tin fishing pail seen from the front, arched wire handle, rolled rim, subtle water reflections, scratches and soft blue-gray metal shading. Entire object centered, perfectly flat pure green (#00FF00) background, no ground or cast shadow.",
+      "prompt": "A small dented tin fishing pail from the front, water inside, a sturdy arched silver handle, a clear rolled oval rim, warm morning highlights from upper left, blue-gray metal with small scratches. Warm storybook gouache and colored pencil. Clear at 48 pixels high. Transparent background, no text, letters, numbers, logos or people.",
       "aspect": "1:1",
       "cutout": true,
       "width": 220,
@@ -82,7 +87,10 @@
       "people": false,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok"
+      "review": "cold review: redrawn with clearer handle and clean transparent edge",
+      "despill": true,
+      "holes": true,
+      "local_note": "Generated transparent alpha composited on green solely for art.py --rekey processing."
     }
   ],
   "house_style": "Warm storybook gouache and colored-pencil illustration for Grades 3 to 5. Rich natural colors, directional golden morning light from upper left, delicate paper grain, beautiful rounded forms with volume and true small details. No text, letters, numbers, logos or people."

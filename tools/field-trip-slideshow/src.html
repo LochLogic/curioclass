@@ -113,6 +113,11 @@ main { display:block; min-height:0; padding:12px 18px 6px; position:relative; }
 .bubble { display:block; padding:7px; font-size:15px; line-height:1.2; background:#fff; min-height:38px; }
 .slide-card .number { position:absolute; top:5px; left:5px; border-radius:5px; background:#102e3a; color:#fff; padding:1px 6px; }
 .slide-card.matched { border-color:#155e75; }
+.slide-card.just-matched { border-color:#bc8525; box-shadow:0 0 0 3px #f9d66a; animation:caption-arrives .45s ease-out; }
+.slide-card.misfit { border-color:#996136; animation:caption-returns .35s ease-in-out; }
+.slide-card.misfit .bubble { background:#fbf1dc; color:#653f25; }
+@keyframes caption-arrives { from { transform:translateY(5px); } to { transform:translateY(0); } }
+@keyframes caption-returns { 25% { transform:translateX(-4px); } 75% { transform:translateX(4px); } }
 #sentence-cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); grid-template-rows:repeat(3,minmax(60px,1fr)); gap:10px; }
 .sentence { text-align:left; padding:9px; background:linear-gradient(#fffdf5,#f7ebd0); border:2px solid #c5b48e;
   border-radius:12px; font-weight:650; font-size:clamp(14px,1.35vw,20px); line-height:1.3; }
@@ -132,13 +137,14 @@ main { display:block; min-height:0; padding:12px 18px 6px; position:relative; }
 .beam-path { fill:#fff4a330; }
 #projector { position:absolute; left:51%; top:51%; width:15%; height:35%; object-fit:contain; }
 #screen-prop { position:absolute; left:3%; top:9%; width:38%; height:59%; object-fit:fill; }
-#projection { position:absolute; left:5%; top:13%; width:34%; height:50%; overflow:hidden; background:#fff; }
+#projection { position:absolute; left:4.6%; top:17.7%; width:34.6%; height:43.8%; overflow:hidden; background:#fff; }
 #projection .photo { width:100%; height:100%; opacity:1; }
 #projection .wash { position:absolute; inset:0; background:#fff; opacity:.6; transition:opacity .4s; }
 #room-stage.dim .wash { opacity:.25; }
 #room-stage.off .wash { opacity:.05; }
 #room-stage.up #projection { transform:skewY(-10deg) scale(.9); opacity:.45; }
-#shadow { position:absolute; inset:15% 20%; background:#0a1726e6; clip-path:polygon(50% 0,61% 33%,98% 35%,70% 57%,83% 98%,50% 76%,17% 98%,30% 57%,2% 35%,39% 33%); }
+#shadow { position:absolute; inset:15% 20%; background:#0a1726e6;
+  clip-path:polygon(50% 0,61% 33%,98% 35%,70% 57%,83% 98%,50% 76%,17% 98%,30% 57%,2% 35%,39% 33%); }
 #speaker-marker { position:absolute; left:19%; top:36%; z-index:3; font-size:clamp(25px,5vw,65px); color:#ffd05e;
   filter:drop-shadow(0 2px 2px #0008); transition:left .25s,top .25s; }
 #speaker-marker.beside { left:41%; top:51%; }
@@ -246,14 +252,18 @@ dialog .actions { margin-top:14px; }
   .sentence .animal { display:inline; font-size:17px; margin-right:3px; } .bubble { font-size:10px; padding:3px; min-height:25px; }
   #practice { padding:6px; gap:6px; } #practice p { font-size:18px; line-height:1.25; }
   .practice-icon { font-size:28px; line-height:1; }
-  #room { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 194px; gap:7px; }
-  #room-controls { grid-template-columns:1fr 1fr; grid-template-rows:repeat(3,60px); gap:6px; }
+  #room { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 324px; gap:7px; }
+  #room-controls { grid-template-columns:1fr; grid-template-rows:repeat(5,60px); gap:6px; }
   .room-toggle span { font-size:12px; } .room-toggle b { font-size:15px; }
   #show-bar { grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px; }
   #show-bar .b { font-size:13px; } #show-title { left:5%; right:5%; padding:12px 7px; }
   #show-title h2 { font-size:29px; } #show-title p { font-size:16px; }
   .check-row { grid-template-columns:24px 1fr 92px; gap:5px; } .check-row p { font-size:14px; }
   .check-row button { font-size:13px; padding:3px; } dialog { padding:12px; }
+}
+@media(min-width:600px) and (max-width:999px) and (min-height:651px) {
+  #room { grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) 194px; }
+  #room-controls { grid-template-columns:1fr 1fr; grid-template-rows:repeat(3,60px); gap:6px; }
 }
 </style>
 </head>
@@ -431,11 +441,26 @@ dialog .actions { margin-top:14px; }
     speakerPractice:'Speaker: practice together, then tap We practiced.',
     roomFix:['Room: dim the lights. Tap Room to fix it.','Room: pull the screen down. Tap Room to fix it.',
       'Room: turn the chairs toward the screen. Tap Room to fix it.',
-      'Room: move the speaker beside the screen. Tap Room to fix it.','Room: set the volume to Medium. Tap Room to fix it.']
+      'Room: move the speaker beside the screen. Tap Room to fix it.','Room: set the volume to Medium. Tap Room to fix it.'],
+    savedTake:slides.map((s,i) => ['clear','blur','dark','crop','glare'].map(type =>
+      `Slide ${i+1} saved. ${type === 'glare' ? 'A flash bounced off the glass.' :
+        type === 'clear' ? `Clear, and the ${s.name} is in the middle. Good camera work!` :
+        type === 'blur' ? `That one is blurry. Can you see the ${s.name} clearly?` :
+        type === 'dark' ? `That one is too dark. Families won't see the ${s.name}.` : `Part of the ${s.name} is cut off.`}`)),
+    testAgain:'The music changed during the test. Tap Test it again and listen at this level.',
+    testOn:'Turn Sound on. Then tap Test it and listen.',
+    roomSet:{lights:{1:'Lights are dim. Change another room control.',2:'Lights are off. Change another room control.'},
+      screen:{1:'The screen is down. Change another room control.'},
+      chairs:{0:'The chairs face the screen. Change another room control.'},
+      spot:{1:'The speaker is beside the screen. Change another room control.'},
+      volume:{1:'The volume is medium. Change another room control.'}}
   };
   let testGeneration = 0;
   let highlightTimer = null;
   let testTimer = null;
+  let testChanged = false;
+  let savedSlide = null;
+  let speakerFeedbackTimer = null;
   let currentHint = '';
   let welcomeValid = true;
   let initialized = false;
@@ -518,6 +543,8 @@ dialog .actions { margin-top:14px; }
     $('camera').classList.toggle('zoom',state.selectedTake !== null);
     $('camera-bar').hidden = state.selectedTake !== null;
     $('camera-title').textContent = `${i+1} of 6 · ${slides[i].name}`;
+    document.querySelector('.film-label').textContent = savedSlide === null ? 'Choose a take' :
+      `Saved ${savedSlide+1}: ${slides[savedSlide].name}`;
     $('takes').hidden = state.selectedTake !== null;
     $('closer').hidden = state.selectedTake === null;
     for (let t=0; t<3; t++) $('take-'+t).innerHTML = photoHTML(i,takes[i][t])+`<span>Take ${'ABC'[t]}</span>`;
@@ -541,6 +568,7 @@ dialog .actions { margin-top:14px; }
     V.hush();
     welcomeValid = false;
     state.selectedTake = t;
+    savedSlide = null;
     renderCamera();
     Curio.tone(440,.07,.05);
     const type = takes[state.slide][t];
@@ -561,11 +589,13 @@ dialog .actions { margin-top:14px; }
     if (type === 'clear') Curio.yes();
     else Curio.tone(220,.1,.07);
     state.slide = (i+1)%6;
+    savedSlide = i;
     renderCamera();
     badges();
-    hint(takeNote(type,i)+' '+(readiness()[0] ? 'Tap Sound to help families hear the words.' :
+    const savedLine = L.savedTake[i][['clear','blur','dark','crop','glare'].indexOf(type)];
+    hint(savedLine+' '+(readiness()[0] ? 'Tap Sound to help families hear the words.' :
       'Tap a take for '+slides[state.slide].name+'.'));
-    event(takeNote(type,i));
+    event(savedLine,() => savedSlide === i && state.mode === 'camera');
     if (readiness()[0]) event(L.cameraDone,() => readiness()[0]);
     $('take-0').focus({preventScroll:true});
   }
@@ -575,6 +605,7 @@ dialog .actions { margin-top:14px; }
     const leavingCloser = state.mode === 'camera' && state.selectedTake !== null;
     state.slide = (state.slide+delta+6)%6;
     state.selectedTake = null;
+    savedSlide = null;
     if (state.mode === 'camera') renderCamera();
     else renderSound();
     hint(state.mode === 'camera' ? `Tap a take for the ${slides[state.slide].name}.` : L.hSound);
@@ -603,6 +634,10 @@ dialog .actions { margin-top:14px; }
     else V.hush();
     const before = state.music;
     state.music = Math.max(1,Math.min(5,state.music+delta));
+    if (before !== state.music) {
+      state.tested = false;
+      if (state.testing) testChanged = true;
+    }
     welcomeValid = false;
     renderLevel();
     setMusicGain();
@@ -615,7 +650,8 @@ dialog .actions { margin-top:14px; }
     V.hush();
     welcomeValid = false;
     state.testing = true;
-    state.tested = true;
+    state.tested = false;
+    testChanged = false;
     const generation = testGeneration;
     const slide = state.slide;
     $('test').textContent = '↻ Test again';
@@ -633,16 +669,22 @@ dialog .actions { margin-top:14px; }
     event(slides[slide].sentence,() => state.testing && testGeneration === generation);
     testTimer = setTimeout(() => {
       if (testGeneration !== generation) return;
+      const completed = !testChanged && Curio.sound;
       stopPlayback();
+      state.tested = completed;
+      badges();
       const face = state.music <= 3 ? 0 : state.music === 4 ? 1 : 2;
       const level = state.music;
-      hint(L.listen[face]+' '+L.hSound);
-      V.say(L.listen[face], {now:true,valid:() => state.mode === 'sound' && !state.testing && state.music === level});
+      const result = completed ? L.listen[face] : Curio.sound ? L.testAgain : L.testOn;
+      hint(result+' '+L.hSound);
+      V.say(result, {now:true,valid:() => state.mode === 'sound' && !state.testing && state.music === level});
       if (state.music >= 4) V.how('softer',{valid:() => state.music >= 4});
     },6000);
   }
   function renderSpeaker() {
+    clearTimeout(speakerFeedbackTimer);
     for (let i=0; i<6; i++) {
+      $('picture-'+i).classList.remove('just-matched','misfit');
       $('picture-'+i).innerHTML = photoHTML(i,typeOf(i))+`<span class="number">${i+1}</span>`+
         `<span class="bubble">${state.matches[i] ? '✓ '+slides[i].sentence : '💬 …'}</span>`;
       $('picture-'+i).classList.toggle('matched',state.matches[i]);
@@ -687,6 +729,13 @@ dialog .actions { margin-top:14px; }
     state.selectedSentence = null;
     if (selected !== i) {
       renderSpeaker();
+      const picture = $('picture-'+i);
+      picture.classList.add('misfit');
+      picture.querySelector('.bubble').textContent = '↩ '+slides[selected].sentence;
+      speakerFeedbackTimer = setTimeout(() => {
+        picture.classList.remove('misfit');
+        picture.querySelector('.bubble').textContent = state.matches[i] ? '✓ '+slides[i].sentence : '💬 …';
+      },1200);
       hint(L.wrong+' '+L.hSentence);
       event('wrong');
       Curio.tone(190,.12,.05);
@@ -695,6 +744,7 @@ dialog .actions { margin-top:14px; }
     state.matches[i] = true;
     Curio.yes();
     renderSpeaker();
+    $('picture-'+i).classList.add('just-matched');
     badges();
     if (state.matches.every(Boolean)) {
       hint(L.hPractice);
@@ -705,6 +755,28 @@ dialog .actions { margin-top:14px; }
       event(slides[i].sentence);
     }
   }
+  function layoutRoomProps() {
+    if (state.mode !== 'room') return;
+    const stage = $('room-stage');
+    const width = stage.clientWidth;
+    const height = stage.clientHeight;
+    if (!width || !height) return;
+    const down = state.room.screen === 1;
+    const prop = $('screen-prop');
+    const ratio = down && prop.complete && prop.naturalWidth ? prop.naturalWidth / prop.naturalHeight : 600 / 477;
+    const propWidth = down ? Math.min(width * .38, height * .59 * ratio) : width * .38;
+    const propHeight = down ? propWidth / ratio : height * .07;
+    prop.style.width = propWidth + 'px';
+    prop.style.height = propHeight + 'px';
+    // Keep the slide inside the painted fabric even in a tall Room stage.
+    const box = down ? {x:width * .03 + propWidth * .045, y:height * .09 + propHeight * .157,
+      w:propWidth * .91, h:propHeight * .75} : {x:width * .05, y:height * .2, w:width * .34, h:height * .5};
+    Object.assign($('projection').style, {left:box.x + 'px', top:box.y + 'px', width:box.w + 'px', height:box.h + 'px'});
+    const x = (box.x / width * 1000).toFixed(1);
+    const top = (box.y / height * 600).toFixed(1);
+    const bottom = ((box.y + box.h) / height * 600).toFixed(1);
+    $('beam').firstElementChild.setAttribute('d', `M585 375 L${x} ${top} L${x} ${bottom} Z`);
+  }
   function renderRoom() {
     const r = state.room;
     $('room-stage').className = [r.lights === 1 ? 'dim' : r.lights === 2 ? 'off' : '',r.screen === 0 ? 'up' : '',
@@ -712,8 +784,7 @@ dialog .actions { margin-top:14px; }
     $('room-photo').innerHTML = photoHTML(0,typeOf(0));
     $('room-photo').firstElementChild.style.height = '100%';
     $('screen-prop').src = r.screen === 0 ? art.screenUp : art.screenDown;
-    $('screen-prop').style.height = r.screen === 0 ? '7%' : '59%';
-    $('projection').style.top = r.screen === 0 ? '20%' : '13%';
+    layoutRoomProps();
     $('shadow').hidden = r.spot !== 0;
     $('speaker-marker').className = r.spot === 1 ? 'beside' : r.spot === 2 ? 'behind' : '';
     $('volume-rings').innerHTML = Array.from({length:[1,3,5][r.volume]},(_,i) => `<i style="height:${12+i*7}px"></i>`).join('');
@@ -746,6 +817,7 @@ dialog .actions { margin-top:14px; }
       event(note,() => state.room[key] === value);
     } else {
       hint(roomMeta[key][1]+': '+roomOptions[key][value]+'. Change another room control.');
+      event(L.roomSet[key][value],() => state.room[key] === value && !readiness()[3]);
       Curio.tone(440,.07,.04);
     }
   }
@@ -978,11 +1050,12 @@ dialog .actions { margin-top:14px; }
   $('louder').onclick = () => changeLevel(1);
   $('test').onclick = testSound;
   $('practiced').onclick = () => {
+    V.hush();
     state.practiced = true;
     renderSpeaker();
     badges();
     hint(L.hReady);
-    event('practiced');
+    event('practiced',() => state.practiced && state.matches.every(Boolean));
     Curio.yes();
   };
   $('rehearse').onclick = rehearse;
@@ -1026,6 +1099,7 @@ dialog .actions { margin-top:14px; }
     state.selectedSentence = null;
     state.music = 5;
     state.tested = false;
+    savedSlide = null;
     state.practiced = false;
     state.room = {lights:0,screen:0,chairs:1,spot:0,volume:0};
     $('reset-dialog').close();
@@ -1067,6 +1141,9 @@ dialog .actions { margin-top:14px; }
   window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },
     slides,takes,readiness,roomPass,checks,selectTake,useTake,changeSlide,testSound,changeLevel,
     selectSentence,matchSentence,toggleRoom,showSlide,audioInfo,stopPlayback,renderSpeaker,renderCamera};
+  $('screen-prop').addEventListener('load',layoutRoomProps);
+  const roomSizeObserver = new ResizeObserver(layoutRoomProps);
+  roomSizeObserver.observe($('room-stage'));
   setMode('camera');
 })();
 </script>

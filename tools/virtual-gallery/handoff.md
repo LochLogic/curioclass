@@ -1,5 +1,88 @@
 # Virtual Gallery build handoff
 
+## Claude Refine fixes, 2026-11-05
+
+This section supersedes the historical camera, landscape-art and compact-label descriptions below. The active list
+is refine.md, unchanged. The scoped result and evidence map are in polish.md after the final audit.
+
+The door camera stays straight ahead and adjusts its focal length to include a back- or side-wall first-seen frame's edges.
+That frame has a double outline. The floor cone projects from the doorway toward those edges. Hang keeps the main
+three-wall room and unfolds the inward-facing door wall below it, with the door gap and both sets of pictures.
+The unfolded surfaces use the same placement data and collision solver. Pointer coordinates on them are mapped
+back into physical centimeters, so moving a picture there remains an actual hang operation.
+
+Walk's large duplicate label is a disclosure below the room. The current wall label is drawn at readable screen
+resolution at every width. Neighboring label cards keep blank paper rather than enlarged 3 px text. Squeezed cards
+carry a persistent data-squeezed flag through camera redraws and travel. A jump stop awaits the voice promise as well
+as the usual two seconds, while Stop, Step, Back, strip taps and Route retain their immediate interruption behavior.
+
+The checklist uses two columns with Why and Show me side by side. Why opens the same explanation in a dialog.
+Blank, whitespace-only or punctuation-only notes keep a visible missing-note warning. Blank notes still meet the
+specified format check. One-word statements, matching tags and starring the named first-seen work remain possible
+mechanical passes by the settled calls; meaning and prediction are not graded. Do not silently add new writing
+requirements or a locked star. The 145 cm default is explicitly the tool's standing-viewer starting height, not
+Smithsonian guidance. The guide's lower small-item recommendation is explained in Line Why and notes.md.
+
+Seven landscape works were redrawn with built-in OpenAI imagegen at 3:4 portrait and processed using art.py --rekey.
+They are 600 by 800 pixels and each is under 50,000 bytes. Kitchen Window has a clean right window jamb.
+Map of My Block and Fire Escape Garden were also compressed below 50,000 bytes and inspected at card and detail size.
+No people, lettering, new topics, shared-engine changes or git commits were added. Spec open questions stay open.
+
+### Round 2 first-seen repair, 2026-11-06
+
+The exit check explicitly resolves the earlier door-wall question: inward-facing door-wall works are behind a
+visitor looking straight ahead, so firstSeen() excludes them. With no back- or side-wall work, it returns null,
+Anchor fails, and Walk says no work is in view from the door. The visitor may still walk to every hung work.
+The end comparison also requires a real first-seen id before claiming it matched the star.
+
+The legal Kitchen Window left corner, placed through place() at x=577 cm, reproduced the missing picture despite
+its visible DOM box. The left wall's flattened compositing surface clipped its far-end children in Chrome.
+Only the Walk left wall now preserves its 3D children. A controlled preserve-3d probe paints the frame; removing
+the child transform, allowing backfaces, and promoting only the frame do not. Do not apply preserve-3d to every
+wall: that introduces a texture seam on the back wall. Keep Hang's existing flat wall surfaces.
+
+Compact wall choices read Back, Right, Door R, Door L, Left. The selected wall's full name is in its accessible
+label and its full name and dimensions remain in the title. This fits the 63 px preview selector without
+changing its 44 px target. Legal-left-corner and all-door-wall fixtures are in audit-states.json.
+
+The corner stop also exposed that drawWalkArt() skipped its readable label when the physical card was squeezed.
+The readable overlay now uses the work's projected label-height center and available screen space independently
+of the physical card width. The physical squeezed card still stays hidden during travel and at a stop.
+
+Round 2 evidence and the report draft are in _scratch/virtual-gallery/round2/. The final polish.md distinguishes
+new before/after repairs from the twelve should-fix items already closed by the cold exit check.
+
+### Round 3 empty Show me repair, 2026-11-07
+
+The updated refine verdict leaves only the empty Checklist Show me cases from should-fix 8. The three paths
+reproduced at both 1366x768 and 680x425: Selection, Theme and Labels lost focus to BODY, and Labels referred to
+a Label control which empty Hang does not render.
+
+showProblem() now checks an empty chosen list before choosing any work or per-work target. Every empty request
+except Statement enters Hang, retains L.emptyHang and focuses m-select with preventScroll. Statement keeps its
+existing enabled editor button, and a selected-work request bypasses this guard. No score, label-writing rule,
+voice string, camera, art, room geometry or timing changed. The six matching after frames and focus/hint numbers
+are in _scratch/virtual-gallery/round3/after/ and its sibling JSON files. Three dedicated audit states exercise
+Selection, Theme and Labels with real clicks at both named sizes. See the new polish.md for the final checks.
+
+## Cold review, 2026-11-04
+
+The build notes below are historical. The compact scrolling limitation is repaired: all workbench controls retain 44 px targets and fit at every required size, including the desktop Plan supplement. Panel controls precede the tray in keyboard order.
+
+The review preserves the room and portfolio. Seed Packets, Map of My Block and Fire Escape Garden were redrawn with built-in OpenAI imagegen and processed with art.py --rekey. All assets explicitly mark people false. Paintings keep their native aspect within physical frames; dense map/photo replacements exceed the old individual 50 KB target while the whole bundle remains about 1.1 MB.
+
+Checklist claims are limited to measured conditions. Punctuation-only titles/statements fail; length and shared-tag checks remain mechanical. Notes explain the need for human interpretation, and allow fictional home settings. Do not add an arbitrary word minimum or treat nine ticks as an artistic grade.
+
+Other repairs synchronize every gap readout, reject cramped Auto space with corrective feedback, show room gap rulers while dragging, constrain label paper to available frame gaps, preserve between-stop camera state without a stale label, expire obsolete jump speech, bound long text, repair empty diagnostics, and re-arm readiness events. Modal how lines and generic own-work/theme events are in voice/lines.json. The upper metric label range converts to about 66 inches; the Smithsonian guide prints 67, an inconsistency now identified in notes.
+
+Independent evidence is under S:/CurioClass-codex/_scratch/virtual-gallery/: cold/, checks/, student-review/, side/, final-checks/, last/, pre-audit/ and scope-recheck/. Functional checks passed 39/39; imports passed 6/6; actual keyboard deltas were +5/-25 cm, Delete and Enter; the eight-work Motion-off walk took 24.158 seconds. Main-path and side-path voice logs are saved. The one final audit under review-audit/ was interrupted by the session restart after the size/state/Motion-off stages. Its 17 grouped leads concern the specified scrolling checklist and inert modal backgrounds. All 89 frames were inspected; full automated resize/control-walk coverage is incomplete and is not claimed as passing. Focused post-audit re-checks and the disposition are recorded in codex-review.md.
+
+Final state guidance also keeps Hang on a chosen work after removal, directs an unhung selection to hanging, and lets empty-phone text span the strip. Checkmarks now say Meets check, with an explicit limit to measured conditions.
+
+Fresh restarted checks passed the corrected state guidance, all 36 declared narration lines, an actual slider sweep, and a Motion-on mid-walk resize from 1366 to 760 and back. All task Chrome/server sessions are closed; host.html is removed.
+
+No shared engine, scripts or documentation changes. No git commits. The requested review report is the final write and stop point.
+
 ## Structure
 
 src.html begins with the shared kit and grade 9-12 theme, followed by gallery-specific responsive styles. The script contains the exact portfolio, physical room geometry, persistence, voice table, nine independent checks, four views, camera projection, pointer and keyboard input, and editors. Images use art tokens. window.__tool exposes state, geometry, checks, voice log and actions for independent review.

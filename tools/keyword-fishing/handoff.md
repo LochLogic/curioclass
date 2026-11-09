@@ -61,6 +61,30 @@ The final voice test contains one how line, two solved-event starts and Read pri
 
 None required. No kit, docs, scripts or other tool sources were edited.
 
+## Cold review repairs (November 7, 2026)
+
+The cold reviewer played all six levels and both modes before reading this handoff or src.html. Responsive fish positions now reserve a distinct target of at least 44 pixels per page, including nonmatches. Painted cutouts remain 110 pixels in roomy scenes and 70 in compact scenes; their overhangs do not intercept neighbouring targets. Focused title tags stay within the lake. The school leaves a clear bobber window, re-aims on resize, and distributes rejected fish instead of stacking them on top of each other.
+
+The swap popup anchors to the Swap button, follows panel scrolling and stays inside the viewport. It can cover bucket contents or part of the word area while open, keeping the question, hint and Cast available. Empty casts have an expanding surface ripple when Motion is on. The pail was redrawn with a clearer handle via the [imagegen skill](C:/Users/Cory/.codex/skills/.system/imagegen/SKILL.md). Its prompt is in art/prompts.json; the original is preserved in Scratch. All six cutouts were reprocessed only with art.py --rekey, with spill removal. No people were added to this first-person dock scene.
+
+Answer fins now survive Motion changes and resize whenever the line still matches the displayed catch, including answers beyond the first twelve bucket entries. A new line clears obsolete fins. Editing a line stops a spoken result that no longer fits while preserving an active Read. Voice text and the once-only how/repeatable-event distinction remain unchanged.
+
+The lake now says that only the words in a page's list count. This makes the supplied find/hunt limitation visible to students. Notes correct the full-I.A.1 teaching claim and use the current AASL framework URL. The fixed supplied questions do not independently teach question formulation; changing the catalog alignment would need an out-of-scope shared edit.
+
+The live count and freely repeatable casts intentionally support exploration. A sticker records a valid query rather than proof of mastery. The spec explicitly accepts cold alone in Level 5 and lava alone in Level 6. Preventing brute-force discovery of those valid answers would require changing the specified goal or adding an assessment mechanic; the review does neither and reports the limitation.
+
+## Sensitivity
+
+M3 names Mars as a Roman god of war and refers to the planet's naming story. NASA's Mars facts support that association. A cultural reviewer should check the neutral treatment of Roman religion/mythology and the use of this title as a meaning distractor, plus the familiar fable title T11 and cricket vocabulary B5. No tradition is dated by European contact, no people appear in art, and there is no hard-history material.
+
+## Cold review audit disposition
+
+The review audit ran once with the 2400-second deadline on Chrome 9941 and host 8745. It reached resize stress checks but did not finish. Its saved audit.md contains 175 leads and 58 frames, all inspected in eight contact sheets. The completed control walks have no console errors or lost focus; repeat and quick-tap rows are clean. Remaining stress coverage is uncertified. No second audit was started.
+
+Confirmed fixes from that audit: empty Add now gives a prompt, focuses the text field without scrolling, and reuses the existing Free fishing how-to; compact answer fins stay on one line; compact page tags reserve more Close clearance. Swap and page-tag popups have nonmodal dialog labels, and opening a page tag focuses Close; closing restores the fish. The voice manifest remains unchanged.
+
+Other leads are expected popup/modal coverage, compact school decoration overlapping the count, pointer-events-none artwork misclassified as hidden text, long tackle-drawer scrolling, and first-tap welcome skips permitted by BASELINE rule 16. The audit could not locate its phone iframe context; separate real 375-pixel iframe frames cover that size and the affected popup states. The diagnostic host's favicon 404 is separate from the offline tool, whose resources are all inline. Process-tree termination was denied at the deadline; the owned Chrome was closed through CDP and lingering preview servers were stopped directly.
+
 ## Scope
 
 Build only. No git commits, branch changes, deployments or polish round. The generated offline HTML remains git-ignored. Browser profiles, temporary scripts, reference copies and frames remain in Scratch. The phone host server is stopped after its shots and host.html is removed.

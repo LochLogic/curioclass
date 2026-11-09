@@ -1,5 +1,33 @@
 # Is the Historian Right? handoff
 
+## Cold review changes, 2026-11-07
+
+The reviewer played the complete Titanic path and language mode before reading this handoff or the builder report. Evidence lives in `_scratch/is-the-historian-right/review-*`, `probe-before` and `probe-after`.
+
+Step buttons now compute unlocks on every click instead of capturing stale values. Writing separates the original claim from the student's revision. Clue changes clear their reasons and update the preview afterward. Help changes invalidate filed seals. The language-part check rejects one-letter reasons, a bare vocabulary list, repeated filler and a contradictory Lots of help overall chip; it remains a transparent structural aid, not semantic grading.
+
+Language drawers now show all word titles in a physical card index beside the selected large card. The Hear it control reads only that selected card. The extra pair, Chicago stamp and photograph how-to lines use Curio.voice and are listed in voice/lines.json. The primary photograph remains unchanged and can be inspected at readable width. Stamp handles have wood grain and join their bases; filed seals identify this student's clue references and verdict. No shared engine, topic, score or network request was added.
+
+The source check independently confirmed the Senate arithmetic, Turner quotes and report pages, Indian Removal Act title/date, Homestead terms, Mississippi barriers, Jamestown date, Chicago human cost and resolution year, and AIC attribution/date/public-domain status. Current evidence is in `facts-live.md` and `museum-source.json` in Scratch.
+
+## Review verification and remaining tooling gap
+
+The cold review completed one full audit, `review-audit/audit.md`, with 36 mechanical leads, then only targeted rechecks. Confirmed faults were compact clue/title overlap, hidden writing inputs, unnamed reason fields, the clipped Frontier effect, hidden comparison actions and a moving Sound header. Layout repairs keep all guided frames visible at seven STANDARDS sizes and in a real 375-pixel iframe. The fixed Sound width no longer shifts adjacent controls. The filed badge is contained in its action button and was checked after its animation settled.
+
+Rotated folder bounding boxes and native modal background occlusion were false positives, confirmed on frames. The full audit could not attach to the 375 iframe context; it did not pass that size. Separate hosted drive checks accessed the actual child document, exercised real taps and captured its claim, evidence, four-frame writing and filed screens. A shared audit_tool.py context fallback may be useful later; it was not changed here. Motion off, repeat clicks and resize stress completed without runtime faults.
+
+All 4,096 possible scales matched an independent rules calculation. Cheap one-letter, word-soup, punctuated-soup, contradictory-chip, stale-reason and seal-reuse attempts were rerun after their repairs. Pair positions now vary; each pair retains its first response across drawer re-entry, preventing wrong-then-right praise farming. Guided annotation retries and reasoning chips remain specified scaffolding, not independent mastery evidence.
+
+The final default Some help, Sound-on main path used held clicks at two-second gaps and filed. Short once-only effect, tray, wording and Write it cues preserve the next action when longer how-to lines are interrupted by fast progress. The final runtime fixed-line inventory exactly matches all 95 manifest lines. Browser speech remains the fallback; no recordings were made or listening-reviewed. All started browser/server processes were closed. Evidence and source checks remain in Scratch.
+
+## Sensitivity
+
+Unresolved specification faults: Chicago's “did not start” and “not true,” with a keyed Convincing verdict, are stronger than the museum's uncertain finding. F4's “before any state did” overlooks property-qualified women voters in New Jersey before 1807. CODEX-REVIEW.md directs the reviewer to leave faulty specification changes open. These need specification resolution before release; the review does not declare historical accuracy passed. No outside contact or approval was requested during this unattended session.
+
+A cultural reviewer should examine Turner's “free land” framing, continuing Native sovereignty, whose voting rights count as democracy, colonial exclusions, and anti-Irish/anti-Catholic scapegoating in the cow legend. No people illustrations were introduced; the survey-object cover avoids depicting Native homelands as empty.
+
+## Builder record, superseded by the cold review above
+
 Build only. No commits or polish round. Read spec.md and codex-report.md before changing this tool.
 
 ## Structure

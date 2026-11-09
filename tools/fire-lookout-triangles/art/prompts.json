@@ -1,6 +1,6 @@
 {
   "house_style": "Painterly landscape illustration for a high school trigonometry map tool: calm dusk colors, deep blue haze over forested ridges, soft warm light at the horizon, quiet and empty. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
-  "style": "Shown dimmed behind the welcome card and in the preview.",
+  "style": "Painterly calm dusk field instruments, warm light from upper left. No people or text.",
   "assets": [
     {
       "name": "flt-lookout-dusk",
@@ -10,7 +10,111 @@
       "width": 1280,
       "quality": 70,
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "Cold review: inspected welcome at display scale; no people or text.",
+      "people": false
+    },
+    {
+      "name": "forest-canopy",
+      "prompt": "Top-down aerial view of a dense dark green conifer forest at dusk, scattered rocky clearings and meadows, soft even light, painterly, full frame. A continuous forest texture for a surveying map. No lakes, roads, buildings or smoke.",
+      "aspect": "3:4",
+      "width": 900,
+      "cutout": false,
+      "key": "magenta",
+      "people": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex image tool)",
+      "review": "checked at final size, no people or text"
+    },
+    {
+      "name": "lookout-tower",
+      "prompt": "A small wooden fire lookout tower on four tall timber legs with cross braces, a square glass cab, wraparound deck and pointed roof, seen slightly from above, dusk light, painterly. Entire isolated tower on flat pure magenta #FF00FF.",
+      "aspect": "1:1",
+      "width": 120,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex image tool)",
+      "review": "Cold review: re-keyed with hole detection and spill removal, checked at display scale.",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "smoke-plume",
+      "prompt": "A thin opaque neutral gray curling smoke column, pale highlights, clean edges, flat pure green #00FF00 background.",
+      "aspect": "9:16",
+      "width": 130,
+      "cutout": true,
+      "key": "green",
+      "people": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "redrawn": "Original magenta cutout had a colored edge; replaced with opaque gray on green.",
+      "source": "OpenAI gpt-image (Codex image tool)",
+      "review": "Cold review: re-keyed with hole detection and spill removal, checked at display scale.",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "flame",
+      "prompt": "A small bright orange and yellow campfire-sized flame with a few sparks, painterly. Entire isolated flame on flat pure magenta #FF00FF.",
+      "aspect": "1:1",
+      "width": 100,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex image tool)",
+      "review": "Cold review: re-keyed with hole detection and spill removal, checked at display scale.",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "crew-truck",
+      "prompt": "A red wildland fire engine truck seen from directly above, front facing the top edge, hose reel, ladder and silver equipment lockers on roof, painterly, realistic proportions. Entire isolated truck on flat pure magenta #FF00FF.",
+      "aspect": "4:3",
+      "width": 160,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex image tool)",
+      "review": "Cold review: re-keyed with hole detection and spill removal, checked at display scale.",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "radio-handset",
+      "prompt": "Painterly realistic gouache rugged graphite handheld radio, slight three-quarter front view, blank green-gray screen, ribbed speaker, short rubber antenna, metal belt clip, tactile knobs, warm dusk light from upper left. Whole object centered with margin on flat pure magenta #FF00FF. No text, letters, numbers, logos, people, ground or cast shadow.",
+      "aspect": "3:4",
+      "width": 180,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in image tool), cold review redraw",
+      "review": "Cold review: re-keyed with hole detection and spill removal, checked at display scale.",
+      "despill": true,
+      "holes": true,
+      "redrawn": "Cold review: clearer instrument form, complete silhouette, clean keyed edge."
+    },
+    {
+      "name": "burn-scar",
+      "prompt": "Top-down view of burned forest ground, black ash and charred logs with gray embers and patches of scorched orange needles, painterly, full frame texture. Quiet and cooled.",
+      "aspect": "1:1",
+      "width": 600,
+      "cutout": false,
+      "key": "magenta",
+      "people": false,
+      "quality": 74,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (Codex image tool)",
+      "review": "checked at final size, no people or text"
     }
   ]
 }

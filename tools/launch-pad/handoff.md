@@ -26,7 +26,7 @@ rejects negative times, launch time for mission 1, and the upward balcony crossi
 ## Art and voice
 
 Six images were made with the built-in image tool during this build. Full prompts are in art/prompts.json; selected
-raw PNGs are in art/raw and their free rekeyed WebP versions are bundled. No people appear. The older lp-field-dusk
+raw PNGs are in art/raw and their free rekeyed WebP versions are bundled. The cold review replaced the balcony with a teenage catcher; that asset is marked people: true. The older lp-field-dusk
 asset was preserved and is not used. The ruler measures the ball at the tube mouth. The launcher and base are
 symbolic equipment below that reference; their own physical dimensions are not extra terms in the height equation.
 The balcony rail is aligned to 40 ft using the inspected painting's rail position, and its glove aligns to the ball.
@@ -81,3 +81,42 @@ two 0.7-second held taps on each mode; and the exact (t - 3/2)² = 41/16 display
 no axis-label overlaps, named fields and no welcome cuts. The full audit and full size sweep were not rerun.
 Clear missions was separately tested from nine records to zero and through a fresh reload. Final bundle is
 228,174 bytes. The task's Chrome ports 9970 and 9971 and host 8775 were confirmed closed; host.html is removed.
+
+## Cold review changes, 2026-11-07
+
+The arithmetic parser now applies exponentiation before a leading sign, including negative exponents.
+Mission 7 Complete the square has a derive step: u = 2a, v = 4a squared, w = 2a. Inputs are checked for
+equivalence across several nonzero a values. The graph withholds the filled identity during that step.
+Formula narration separately names coefficients and the discriminant, in the matching screen state.
+Clear missions resets an active mission flight before clearing, preventing it from immediately re-saving.
+The final flight card keeps the chosen method and actual directional events as the earned result.
+
+The redrawn balcony is 320 by 226 pixels after rekeying. Its horizontal top rail is 47 percent down;
+the glove is 14 percent across. The scene moves that flight column left to keep the full painting in view.
+The replacement raw image is balcony.png; the built-in image generator was used and art.py rekeyed it.
+The installed default Python lacks numpy, so free rekeying uses existing S:/AI/tts/.venv/Lib/site-packages
+on the default interpreter's sys.path, with no package installation or shared-file edits.
+
+## Sensitivity
+
+No culture, religion, hard history or body teaching. A newly illustrated teenage catcher has brown skin,
+ordinary clothing and natural proportions. The fresh visual reviewer should check the small-size crop,
+hands, glove pose and respectful depiction. No identity is presented as representative of a whole group.
+
+## Cold review verification and audit
+
+The independent review ran 105 passing functional/cheat assertions, held-click main and side voice paths,
+keyboard completion, grayscale and Motion off. Evidence uses review-* names in Scratch; the builder's evidence stays.
+How-to lines now start immediately when their controls appear, through V.how with now:true and V.heard gating.
+Repeated negative-time events also use now:true. Read retains the queue helper's priority.
+
+One full review audit finished on port 9961, host 8765: 46 leads, all 89 frames inspected. Forty-five visibility
+rows are transparent SVG hit-test artifacts, confirmed visually. The first-Launch welcome skip follows BASELINE 16.
+Motion off, control walks, five-click repetition, quick taps and resize stress were clean.
+The frames also exposed cropped high target labels on phones. Tiny graphs now use 10 px target text at the line's
+baseline; settled phone bounding checks and frames confirm the 80 ft and 330 ft labels fit. The mission 9 record
+explains that ground time assumes no catch. Its final phone capture is clear and console-clean.
+
+The final all-size audit precedes these small label/record changes. Desktop re-shoots failed twice with Chrome
+timeouts and connection refusal; they were not retried again. The affected phone cases passed. This verification
+gap is explicit in codex-review.md. No second full audit was run. All assigned ports were closed and host.html removed.

@@ -1,0 +1,1249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Punnett Predictor · Curio Class</title>
+<meta name="description" content="Follow meiosis, breed painted peas, test Mendel's data and investigate linked fly genes. Grade 9 science. Offline.">
+<!-- Curio Class. Grade 9, HS-LS3-2 (meiosis component), HS-LS3-3.
+Sources: Mendel (1866), OpenStax Biology 2e 11-13, NIST chi-square table, Campbell Biology 12th ed. 15.3.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0. Code MIT. No network. -->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#a3ffaf; --brand-ink:#10161f; --paper:#10161a; --panel:#182324; --ink:#eaf1ed;
+  --muted:#b4c5bc; --line:#3b514c; --focus:#fff0a8; --btn:#243632; --btn-line:#789680; --head-ink:#eaf1ed;
+  --gr-text:#b4c5bc; --gr-grid:#33423f; --gr-grid-major:#3d5048; --gr-axis:#78988b;
+}
+body {height:100dvh; min-height:0; grid-template-rows:auto auto minmax(0,1fr) auto; overflow:hidden;}
+body > header {grid-row:1;}
+body > .setup {grid-row:2;}
+body > main {grid-row:3;}
+body > footer {grid-row:4;}
+header {background:#131d1e; border-bottom:1px solid var(--line); padding:10px 20px; gap:10px;}
+h1 {font:700 clamp(19px,2.2vw,28px)/1.1 Georgia,serif; letter-spacing:-.6px;}
+h1 small {font:11px/1.8 'Segoe UI',sans-serif; text-transform:uppercase; letter-spacing:2px; color:var(--brand);}
+button,input,select {min-height:44px; min-width:44px; border-radius:6px;}
+button {background:#243632; border:1px solid var(--btn-line); padding:6px 12px; font-weight:600;}
+button:hover {background:#344b40;}
+button:active {transform:translateY(1px);}
+.seg {border:1px solid var(--btn-line); border-radius:7px; flex-shrink:0;}
+.seg button {font-size:13px; min-height:44px; padding:4px 12px; border-radius:0;}
+.seg button[aria-pressed="true"] {background:var(--brand); color:var(--brand-ink);}
+.icon-btn {font-size:12px; padding:4px 10px; min-height:44px; border-radius:7px;}
+#motion::after {content:'on device'; display:block; font-size:10px; line-height:11px; font-weight:400;}
+.setup {display:flex; align-items:center; gap:20px; padding:10px 22px; background:linear-gradient(110deg,#22352b,#182623);}
+.setup-group {display:flex; flex-direction:column; gap:4px;}
+.eyebrow {font-size:10px; font-weight:700; text-transform:uppercase; letter-spacing:1.8px; color:var(--muted);}
+.options {display:flex; gap:8px; align-items:center;}
+select {background:#1d3029; color:var(--ink); border:1px solid var(--btn-line); font:inherit; padding:5px; width:134px;}
+.parent {display:flex; align-items:center; gap:6px;}
+.parent-art {width:64px; height:64px; object-fit:contain; filter:drop-shadow(3px 5px 4px #0008);}
+.parent-controls {display:flex; flex-direction:column; gap:3px;}
+.parent-controls .seg button {padding:4px 10px;}
+.second-gene {display:none;}
+.two .second-gene {display:inline-flex;}
+.setup .open {margin-left:auto; border-color:#a3ffaf88; color:var(--brand); max-width:160px;}
+.linked-setup {display:none; align-items:center; gap:14px; width:100%;}
+.linked-setup p {margin:0; font-size:13px; max-width:560px;}
+.linked-setup strong {color:var(--brand);}
+.linked-setup b {white-space:nowrap;}
+body[data-mode="linked"] .cross-setup {display:none;}
+body[data-mode="linked"] .linked-setup {display:flex;}
+body[data-mode="mendel"] .setup {display:none;}
+main {display:grid; grid-template-columns:minmax(0,1.48fr) minmax(260px,1fr); min-height:0; gap:14px; padding:14px 20px;}
+.workbench,.mendel-view {grid-column:1; grid-row:1;}
+.brood-column {grid-column:2; grid-row:1;}
+.workbench {min-width:0; min-height:0; display:flex; flex-direction:column; border:1px solid #506853;
+  border-radius:10px; padding:12px; background:radial-gradient(ellipse at 30% 5%,#354d37aa,transparent 70%),#17231f;
+  box-shadow:inset 0 1px #b9d99833,0 12px 30px #0004;}
+.board-top {display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:8px;}
+.board-top h2 {margin:0; font:600 20px Georgia,serif;}
+.board-top span {font-size:11px; color:var(--muted);}
+#square {flex:1; min-height:0; display:grid; gap:5px;}
+.corner {display:flex; align-items:center; justify-content:center; font:italic 13px Georgia,serif; color:var(--muted);}
+.gamete {padding:2px; background:#263c32; color:#cbf4ce; font:15px monospace; border:1px solid #527561;}
+.gamete small {display:block; font:10px/1.2 'Segoe UI',sans-serif; color:#d0ebd2;}
+.cell.impossible img {opacity:.25;}
+.cell {display:grid; grid-template-rows:minmax(0,1fr) auto; justify-items:center; align-items:center; min-height:44px;
+  min-width:0; padding:4px; border:1px solid #63846666; background:linear-gradient(125deg,#a8be9624,#4e68481a);
+  box-shadow:inset 0 1px #d1e0b322; overflow:hidden;}
+.cell img {width:80%; height:100%; min-height:0; max-height:150px; object-fit:contain; filter:drop-shadow(2px 4px 2px #0008);}
+.vestigial {--specimen-scale:.85; transform:scale(.85);}
+.cell-label {display:flex; flex-wrap:wrap; justify-content:center; align-items:baseline; gap:3px 7px; width:100%;}
+.cell b {font:600 16px monospace;}
+.four .cell-label b {line-height:1;}
+.cell small {font-size:11px; font-weight:400; color:#d2dfce;}
+.cell.selected {outline:2px solid var(--focus); outline-offset:-3px; background:#6f8c4e55;}
+.prediction {display:flex; justify-content:space-between; gap:8px; align-items:center; min-height:38px; padding-top:6px;}
+.prediction strong {font:600 clamp(15px,2vw,23px) Georgia,serif; color:var(--brand);}
+.prediction span {font-size:11px; color:var(--muted); max-width:210px;}
+.workbench:has(#meiosis:not([hidden])) .prediction {display:none;}
+.brood-column {--controls-gap:9px; min-width:0; min-height:0; display:flex; flex-direction:column;
+  gap:var(--controls-gap); overflow:hidden;}
+.brood-results {flex:1; min-height:0; display:flex; flex-direction:column; gap:var(--controls-gap); overflow:auto;}
+.brood-results > * {flex-shrink:0;}
+.breed-controls {display:flex; align-items:center; gap:5px; flex-wrap:wrap; flex-shrink:0;
+  position:relative; top:auto; z-index:3; background:var(--paper);}
+.breed-controls strong {font:600 17px Georgia,serif; margin-right:auto;}
+.breed-buttons {display:flex; gap:4px;}
+.breed-buttons button {padding:4px 8px; background:var(--brand); color:var(--brand-ink); border-color:var(--brand);}
+.seed-controls {display:flex; align-items:center; gap:5px; font-size:12px; position:relative; top:auto;
+  z-index:3; background:var(--paper);}
+.seed-controls input {width:65px; background:#172220; border:1px solid #607867; color:var(--ink); font:inherit; padding:5px;}
+.seed-controls button {margin-left:auto; color:var(--brand); font-size:12px; padding:4px 6px;}
+.seed-controls::before {content:''; position:absolute; left:0; right:0;
+  top:calc(0px - var(--controls-gap)); bottom:calc(0px - var(--controls-gap));
+  background:var(--paper); z-index:-1; pointer-events:none; display:none;}
+.tray {height:clamp(90px,19vh,200px); min-height:76px; position:relative; flex-shrink:0; border:4px solid #746148;
+  border-radius:8px; overflow:hidden; box-shadow:inset 0 0 20px #000b,0 4px 8px #0004;}
+.tray-texture {position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.4;}
+.tray-contents {position:absolute; inset:7px; display:grid; grid-template-columns:repeat(20,1fr); grid-template-rows:repeat(5,1fr);}
+.tray-contents img {width:100%; height:100%; object-fit:contain; min-height:0; filter:drop-shadow(1px 2px 1px #0008);}
+.tray-contents.fresh img {animation:seed-drop .35s both; animation-delay:calc(var(--i) * 2ms);}
+.empty-tray {position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:5px;}
+.empty-tray img {width:clamp(50px,6vw,75px); height:clamp(50px,6vw,75px); filter:drop-shadow(3px 5px 3px #000b); animation:breathe 6s ease-in-out infinite;}
+.empty-tray span {font:italic 15px Georgia,serif; text-shadow:0 2px 2px #000;}
+.tray-total {position:absolute; right:6px; bottom:4px; font:11px/1.6 monospace; background:#10161aeb; padding:0 5px; border-radius:3px;}
+.tally {width:100%; border-collapse:collapse; font-size:12px; font-variant-numeric:tabular-nums;}
+.tally th {text-align:right; color:var(--muted); font-size:10px; font-weight:500; padding:3px;}
+.tally th:first-child,.tally td:first-child {text-align:left;}
+.tally td {text-align:right; padding:4px 3px; border-top:1px solid #40534b;}
+.tally .look {display:flex; gap:4px; align-items:center;}
+.tally img {width:28px; height:28px; object-fit:contain;}
+.chart-card {min-height:124px; flex:1; background:#17231f; border:1px solid #3d574a; border-radius:7px; padding:6px;}
+.chart-title {display:flex; justify-content:space-between; gap:5px; font-size:11px; color:var(--muted);}
+.chart-title b {color:var(--ink); font-size:12px;}
+#chart {width:100%; height:calc(100% - 19px); min-height:100px; display:block;}
+.fit-card {padding:9px; border:1px solid #546d5a; border-radius:7px; background:#203029; font-size:12px;}
+.fit-card p {margin:5px 0 0; line-height:1.45;}
+.fit-value {display:block; font:600 21px Georgia,serif; color:#f7d579; margin-top:6px;}
+.status {min-height:18px; font-size:11px; color:var(--muted);}
+footer {border-top:1px solid #40564b; background:#15201e; padding:7px 20px;}
+#hint {font-size:13px; line-height:1.4; min-height:36px; margin:0; display:flex; align-items:center; color:#d5e3d8;}
+.privacy {font-size:10px; color:var(--muted); margin:0;}
+.mendel-view {display:none; min-width:0; min-height:0; overflow:auto; padding:8px 12px; background:#182721;
+  border:1px solid #4d6755; border-radius:8px;}
+body[data-mode="mendel"] main {grid-template-columns:minmax(0,2.5fr) minmax(230px,1fr);}
+body[data-mode="mendel"] .mendel-view {display:block;}
+body[data-mode="mendel"] .workbench,body[data-mode="mendel"] .cross-only {display:none;}
+.mendel-view h2 {font:600 23px Georgia,serif; margin:4px 0 3px;}
+.mendel-view p {font-size:12px; margin:3px 0 8px; color:var(--muted);}
+.mendel-table {width:100%; border-collapse:collapse; font-size:12px; font-variant-numeric:tabular-nums;}
+.mendel-table th {font-size:10px; color:var(--muted); text-align:left; padding:5px;}
+.mendel-table td {padding:4px; border-top:1px solid #425747;}
+.trait-button {display:flex; align-items:center; text-align:left; gap:4px; width:100%; min-height:54px; background:transparent; border:0; padding:2px;}
+.trait-button[aria-pressed="true"] {background:#a3ffaf18; color:var(--brand);}
+.trait-pair {display:flex; flex-shrink:0;}
+.trait-pair img {width:48px; height:48px; object-fit:contain;}
+.trait-button b {font-size:12px; font-weight:500;}
+.bars {min-width:80px; display:grid; grid-template-columns:10px 1fr; align-items:center; gap:2px 3px;}
+.bars small {font:10px/1 monospace; color:var(--muted);}
+.bars i {display:block; height:5px; background:#e8d586; border-radius:1px;}
+.bars i:last-child {background:#a3ffaf;}
+.row-comparison {border-left:3px solid var(--brand); padding:7px 9px; background:#314637; font-variant-numeric:tabular-nums;}
+.row-comparison strong {display:block; color:var(--brand); margin-bottom:3px;}
+.mendel-only .row-comparison {margin:8px 0;}
+.mendel-only.changed #mini-square {animation:chromosome-arrive .35s ease-out;}
+.calm .mendel-only.changed #mini-square {animation:none;}
+.data-card {background:#1d3027; border:1px solid #4b6651; padding:12px; border-radius:7px; font-size:12px;}
+.data-card h3 {font:600 19px Georgia,serif; margin:0 0 8px; color:var(--brand);}
+.data-card p {line-height:1.5;}
+#mini-square {display:grid; grid-template-columns:repeat(2,1fr); gap:4px; margin:10px 0;}
+#mini-square div {display:flex; flex-direction:column; align-items:center; background:#99b47d15; padding:7px; border:1px solid #63846666;}
+#mini-square img {height:55px; width:80%; object-fit:contain;}
+.mendel-only {display:none;}
+body[data-mode="mendel"] .mendel-only {display:block;}
+.meiosis {flex:1; min-height:0; display:flex; flex-direction:column;}
+.meiosis-head {display:flex; align-items:center; gap:8px; font-size:13px;}
+.meiosis-head strong {margin-right:auto; color:var(--brand);}
+#meiosis-scene {flex:1; min-height:50px; width:100%;}
+.meiosis-caption {font-size:12px; color:#cfdfd1; min-height:34px; margin:3px 0;}
+.step-controls {display:flex; gap:6px; align-items:center; justify-content:center;}
+.step-controls span {font:12px monospace; color:var(--muted);}
+.gamete-links {display:grid; grid-template-columns:repeat(4,1fr); gap:5px;}
+.gamete-links button {font-family:monospace; color:var(--brand);}
+.distance {padding:6px 0 0; font-size:12px;}
+.distance label {display:flex; justify-content:space-between; gap:8px;}
+.distance input {width:100%; height:44px; accent-color:var(--brand);}
+.real-data {font-size:12px; background:#372f22; border:1px solid #837149; border-radius:7px; padding:9px;}
+.real-data p {margin:4px 0;}
+.real-data strong {color:#f7d579;}
+@keyframes breathe {50% {transform:translateY(-3px) rotate(4deg);}}
+@keyframes seed-drop {
+  from {transform:translateY(-10px) rotate(25deg) scale(var(--specimen-scale,1)); opacity:.3;}
+  to {transform:scale(var(--specimen-scale,1)); opacity:1;}
+}
+.calm .empty-tray img,.calm .tray-contents img {animation:none!important;}
+@keyframes chromosome-arrive {from {opacity:.15;} to {opacity:1;}}
+#meiosis-scene > g {animation:chromosome-arrive .35s ease-out;}
+.calm #meiosis-scene > g {animation:none!important;}
+.model-limits {font-size:11px; color:var(--muted); line-height:1.4; margin:4px 0;}
+@media (min-width:1600px) {
+  main {padding:20px 40px; gap:24px;}
+  .setup {padding:16px 40px; gap:36px;}
+  .parent-art {width:85px; height:85px;}
+  .cell img {max-height:200px;}
+}
+@media (max-height:800px) and (min-width:600px) {
+  header {padding:5px 12px; gap:6px;}
+  h1 small {display:none;}
+  .setup {padding:5px 12px; gap:10px;}
+  .parent-art {width:48px; height:48px;}
+  main {padding:8px 12px; gap:10px;}
+  .tray {height:110px;}
+  .brood-column {--controls-gap:6px;}
+  .seed-controls {top:auto;}
+  .chart-card {min-height:115px;}
+  footer {padding:4px 12px;}
+  #hint {min-height:34px; font-size:12px;}
+  .privacy {display:none;}
+}
+@media (max-width:1050px) and (min-width:600px) {
+  h1 {font-size:19px;}
+  header .seg button {font-size:12px; padding:4px 8px;}
+  .icon-btn {font-size:11px; padding:4px 6px;}
+  .setup {gap:8px;}
+  .setup .seg button {padding:3px 4px; font-size:12px;}
+  .setup .parent-art {width:42px; height:42px;}
+  select {width:95px; font-size:11px;}
+  .setup .open {max-width:98px; padding:4px 6px; font-size:12px;}
+  .cell b {font-size:13px;}
+  .cell small {font-size:10px;}
+  .prediction strong {font-size:17px;}
+  .prediction span {max-width:130px; font-size:10px;}
+  .board-top h2 {font-size:16px;}
+  .board-top span {font-size:10px;}
+  .breed-controls {flex-wrap:nowrap; gap:2px;}
+  .breed-controls strong {font-size:12px; flex:1; min-width:0; margin-right:0;}
+  .breed-buttons {flex:0 0 auto;}
+  .breed-buttons button {padding:4px 5px; font-size:12px;}
+  .breed-controls > button {padding:4px 5px; font-size:12px; min-width:44px; flex:0 0 44px;}
+  .trait-pair img {width:36px; height:44px;}
+  .mendel-table {font-size:11px;}
+  .mendel-table th {padding:2px;}
+  .mendel-view {padding:5px;}
+  .mendel-table td {padding:2px;}
+}
+@media (max-height:550px) and (min-width:600px) {
+  header {padding:1px 8px; gap:4px; flex-wrap:nowrap;}
+  h1 {font-size:17px; white-space:nowrap;}
+  header .seg button {padding:2px 6px; font-size:11px;}
+  .icon-btn {padding:2px 5px; font-size:10px;}
+  .setup {padding:1px 8px; gap:8px;}
+  .parent-controls {gap:0;}
+  .parent-controls .seg {border:0;}
+  .setup-group {gap:0;}
+  .eyebrow {font-size:10px; line-height:10px; letter-spacing:.6px;}
+  .parent-art {display:none;}
+  .options {gap:3px;}
+  select {width:85px;}
+  .cross-setup:first-child .options {flex-direction:column; align-items:flex-start;}
+  .cross-setup:first-child select {display:block; width:130px;}
+  .setup.two .cross-setup:first-child select {display:none;}
+  .setup .open {max-width:90px;}
+  main {padding:2px 8px; gap:8px; grid-template-columns:minmax(0,1.2fr) minmax(270px,1fr);}
+  .workbench {padding:2px; border-radius:6px;}
+  .board-top {display:none;}
+  #square {gap:2px;}
+  .four .prediction {display:none;}
+  .four .corner {font:600 10px/1.4 monospace; color:var(--brand); text-align:center;}
+  .cell {padding:1px;}
+  .cell img {max-height:87px;}
+  .four .cell img {height:18px; max-height:18px;}
+  .four .cell small {display:block; font-size:10px; line-height:10px; white-space:nowrap;}
+  .four .cell-label {flex-direction:column; align-items:center; gap:0; line-height:11px;}
+  .cell b {font-size:11px;}
+  .prediction {min-height:26px; padding-top:2px;}
+  .prediction strong {font-size:14px;}
+  .prediction span {font-size:10px; max-width:105px;}
+  .brood-column {--controls-gap:3px; display:flex; overflow:hidden;}
+  .brood-results {display:grid; grid-template-columns:1fr 1fr; grid-template-rows:auto 1fr; align-content:start;}
+  .breed-controls {grid-column:1/-1; flex-wrap:nowrap;}
+  .seed-controls {grid-column:1/-1;}
+  .seed-controls {top:auto;}
+  .tray {height:77px; min-height:77px; grid-column:1; grid-row:1;}
+  .tray-contents {grid-template-columns:repeat(10,1fr); grid-template-rows:repeat(10,1fr);}
+  .empty-tray img {width:40px; height:40px;}
+  .empty-tray span {font-size:10px;}
+  .tally {grid-column:2; grid-row:1; font-size:10px; align-self:start;}
+  .tally img {display:none;}
+  .tally td {padding:3px 1px;}
+  .tally th {font-size:10px; padding:1px;}
+  .tally th:nth-child(3),.tally td:nth-child(3) {display:none;}
+  .chart-card {grid-column:1/-1; min-height:90px; padding:2px;}
+  #chart {min-height:65px;}
+  .fit-card,.status,.real-data {grid-column:1/-1;}
+  footer {padding:0 8px;}
+  #hint {font-size:10px; min-height:29px;}
+  .meiosis-head {font-size:11px;}
+  .meiosis-head button {padding:2px 5px;}
+  .meiosis-caption {font-size:10px; min-height:24px;}
+  #meiosis-scene > text {display:none;}
+  #meiosis-scene g text {font-size:42px;}
+  .step-controls {gap:3px;}
+  .step-controls button {padding:3px 6px;}
+  .meiosis {display:grid; grid-template-columns:1fr auto; grid-template-rows:44px minmax(90px,1fr) auto auto;}
+  .meiosis-head {grid-column:1/-1; grid-row:1; justify-content:flex-end;}
+  .meiosis-head strong {position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%);}
+  .meiosis-head button {margin-left:auto;}
+  #meiosis-scene {grid-column:1/-1; grid-row:2; height:100%; min-height:90px;}
+  .meiosis-caption {grid-column:1/-1; grid-row:3;}
+  .gamete-links {grid-column:1/-1; grid-row:4;}
+  .step-controls {grid-column:1; grid-row:1; justify-self:start; align-self:center;}
+  .distance {font-size:10px;}
+  body[data-mode="mendel"] main {grid-template-columns:minmax(0,2.6fr) minmax(180px,1fr);}
+  body[data-mode="mendel"] .brood-column,body[data-mode="mendel"] .brood-results {display:flex;}
+  .mendel-view h2 {font-size:18px;}
+  .mendel-view > h2,.mendel-view > p {display:none;}
+  .mendel-view {padding:0;}
+  .mendel-table td {padding:0;}
+  .mendel-table .bars {min-width:45px; grid-template-columns:8px 1fr; gap:2px;}
+  .trait-pair img {width:26px; height:44px;}
+  .trait-button b {font-size:10px;}
+  .trait-button {min-height:44px; height:44px; padding:0;}
+  .mendel-table th {line-height:11px; padding:0;}
+  .mendel-view p {font-size:10px;}
+  .data-card {padding:6px; font-size:10px;}
+  #mini-square img {height:38px;}
+  .linked-setup p {font-size:10px;}
+}
+@media (max-width:599px) {
+  body {height:100dvh; min-height:0; overflow:hidden; display:flex; flex-direction:column;}
+  body > header,body > .setup {flex-shrink:0;}
+  header {padding:6px; gap:5px;}
+  h1 {width:100%; font-size:23px;}
+  h1 small {display:none;}
+  header .seg {width:100%;}
+  header .seg button {flex:1; padding:4px 7px; font-size:12px;}
+  .icon-btn {flex:1;}
+  .setup {padding:8px; gap:6px; flex-wrap:wrap;}
+  .cross-setup:first-child {width:100%;}
+  .setup .parent-art {width:30px; height:44px;}
+  .parent {flex:1; min-width:0;}
+  .parent-controls {gap:0;}
+  .parent-controls .seg {border:0;}
+  .parent .seg button {padding:3px 4px;}
+  .setup .open {max-width:none; width:100%; margin:0;}
+  .linked-setup {flex-wrap:wrap;}
+  .linked-setup p {width:100%;}
+  main {display:flex; flex:1; min-height:0; flex-direction:column; padding:8px; gap:10px; overflow:auto; margin-bottom:115px;}
+  main > * {flex-shrink:0;}
+  .workbench,.mendel-view {order:1;}
+  .brood-column {order:2;}
+  .workbench {height:330px; min-height:330px; padding:7px;}
+  .workbench.four {min-height:370px;}
+  body[data-mode="cross"] .workbench.four {height:294px; min-height:294px;}
+  body[data-mode="cross"] .four .board-top {display:none;}
+  .workbench:has(#meiosis:not([hidden])) {height:100%!important; min-height:340px!important;}
+  .workbench:has(#meiosis:not([hidden])) .board-top {display:none;}
+  body[data-mode="cross"] .four .prediction {min-height:26px; padding-top:2px;}
+  body[data-mode="cross"] .four .prediction span {display:none;}
+  .four .cell {padding:1px;}
+  .four .cell img {height:20px;}
+  .four .cell small {display:block; font-size:10px; line-height:10px;}
+  .four .cell-label {flex-direction:column; align-items:center; gap:0; line-height:11px;}
+  .cell b {font-size:11px;}
+  .board-top h2 {font-size:18px;}
+  .prediction strong {font-size:17px;}
+  .prediction span {font-size:10px; max-width:120px;}
+  .brood-column {flex:none; overflow:visible;}
+  .brood-results {flex:none; overflow:visible;}
+  .tray {height:180px;}
+  .chart-card {height:170px; flex:none;}
+  footer {padding:7px 9px;}
+  #hint {font-size:12px; min-height:42px;}
+  .mendel-view {overflow:visible; padding:4px;}
+  .mendel-table {font-size:10px;}
+  .trait-pair img {width:24px; height:44px;}
+  .trait-button b {font-size:10px;}
+  .trait-button {gap:2px; min-height:52px;}
+  .mendel-table td,.mendel-table th {padding:2px;}
+  .mendel-table .bars {min-width:36px;}
+  .meiosis {display:grid; grid-template-columns:1fr auto; grid-template-rows:44px minmax(90px,1fr) auto auto auto; min-height:0;}
+  .meiosis-head {grid-column:1/-1; grid-row:1; justify-content:flex-end;}
+  .meiosis-head strong {position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%);}
+  .meiosis-head button {margin-left:auto;}
+  #meiosis-scene {grid-column:1/-1; grid-row:2; height:100%; min-height:90px;}
+  .meiosis-caption {grid-column:1/-1; grid-row:3;}
+  .gamete-links {grid-column:1/-1; grid-row:4;}
+  .step-controls {grid-column:1; grid-row:1; justify-self:start; align-self:center;}
+  .distance {grid-column:1/-1; grid-row:5;}
+  #meiosis-scene > text {display:none;}
+  #meiosis-scene g text {font-size:32px;}
+  body {padding-bottom:0;}
+  .breed-controls {position:fixed; bottom:0; left:0; right:0; z-index:5; padding:7px 9px; background:#1b2c24; border-top:1px solid #78987f;}
+  .breed-controls {top:auto;}
+  .breed-controls {padding-right:79px;}
+  .breed-controls strong {font-size:14px;}
+  .breed-controls > button {padding:4px 5px; font-size:12px; min-width:44px;}
+  .breed-buttons button {padding:4px 5px; font-size:12px;}
+  #test {position:fixed; bottom:7px; right:9px; width:60px; z-index:7; margin:0; font-size:11px;}
+  body[data-mode="mendel"] #try-total {position:fixed; bottom:7px; left:9px; right:9px; width:calc(100% - 18px); z-index:7;}
+  .seed-controls {position:static; z-index:auto;}
+  .seed-controls::before {display:none;}
+  footer {position:fixed; bottom:59px; left:0; right:0; z-index:4; background:#15201ef5;}
+  footer .privacy {display:none;}
+  body[data-mode="mendel"] footer::after {content:""; position:fixed; left:0; right:0; bottom:0; height:59px;
+    background:#1b2c24; border-top:1px solid #78987f;}
+}
+</style>
+</head>
+<body data-mode="cross">
+<header>
+  <h1>Punnett Predictor<small>A field guide to chance</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-cross" aria-pressed="true">Cross</button>
+    <button id="m-mendel" aria-pressed="false">Mendel's data</button>
+    <button id="m-linked" aria-pressed="false">Linked genes</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true" title="Motion preference stays on this device">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">🔔 Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<section class="setup" id="setup" aria-label="Cross settings">
+  <div class="setup-group cross-setup"><span class="eyebrow">Genes &amp; trait</span><div class="options">
+    <div class="seg" role="group" aria-label="Number of genes">
+      <button id="one" aria-pressed="true">One gene</button><button id="two" aria-pressed="false">Two genes</button>
+    </div>
+    <select id="trait" aria-label="Trait"><option value="R">Seed shape</option><option value="Y">Seed color</option></select>
+  </div></div>
+  <div class="parent cross-setup" id="parent1"><img class="parent-art" id="parent1-art" alt="Parent 1 pea">
+    <div class="parent-controls"><span class="eyebrow">Parent 1</span>
+      <div class="seg p-r" role="group" aria-label="Parent 1 first gene"></div>
+      <div class="seg p-y second-gene" role="group" aria-label="Parent 1 seed color"></div>
+    </div>
+  </div>
+  <div class="parent cross-setup" id="parent2"><img class="parent-art" id="parent2-art" alt="Parent 2 pea">
+    <div class="parent-controls"><span class="eyebrow">Parent 2</span>
+      <div class="seg p-r" role="group" aria-label="Parent 2 first gene"></div>
+      <div class="seg p-y second-gene" role="group" aria-label="Parent 2 seed color"></div>
+    </div>
+  </div>
+  <button class="open cross-setup" id="open">Open the square</button>
+  <div class="linked-setup"><p><strong>A testcross.</strong> Gray normal female <b>BV / bv</b> × black vestigial male <b>bv / bv</b>.</p>
+    <button id="real">Show real data</button><button id="chromosome">Chromosome view</button>
+  </div>
+</section>
+<main>
+  <aside class="brood-column" id="brood-column" aria-label="Breed and compare">
+    <div class="breed-controls cross-only"><strong>Breed</strong><div class="breed-buttons" role="group" aria-label="Add offspring">
+      <button id="breed1" aria-label="Breed 1">1</button><button id="breed10" aria-label="Breed 10">10</button>
+      <button id="breed100" aria-label="Breed 100">100</button><button id="breed1000" aria-label="Breed 1,000">1,000</button>
+    </div><button id="clear">Clear</button></div>
+    <div class="seed-controls cross-only"><label for="seed">Seed</label><input id="seed" type="number" min="0" max="4294967295" value="1">
+      <span id="total">0 offspring</span><button id="test">Test the fit</button></div>
+    <div class="brood-results" id="brood-results">
+    <div class="tray cross-only" id="tray"><img class="tray-texture" id="tray-texture" alt="">
+      <div class="tray-contents" id="tray-contents"></div><div class="empty-tray" id="empty-tray"><img id="tray-specimen" alt="">
+        <span>Make chance visible. Press Breed.</span></div><span class="tray-total" id="tray-total">Your first 100 offspring</span></div>
+    <table class="tally cross-only" aria-label="Offspring tally"><thead><tr><th>Look</th><th>Count</th><th>Fraction</th><th>Predicted</th></tr></thead>
+      <tbody id="tally-rows"></tbody></table>
+    <div class="real-data cross-only" id="real-data" hidden></div>
+    <div class="chart-card cross-only"><div class="chart-title"><b>Converge</b><span id="chart-legend"></span></div>
+      <svg id="chart" role="img" aria-label="Dominant phenotype fraction against number bred, logarithmic horizontal axis"></svg></div>
+    <div class="fit-card cross-only" id="fit-card"><strong>Test the fit</strong><div id="fit-output"></div></div>
+    <div class="status cross-only" id="status" role="status" aria-live="polite"></div>
+    <p class="model-limits cross-only">Real traits often depend on many genes and on the environment.
+      Real crossing over can happen more than once between distant genes; this model counts one.</p>
+    <section class="data-card mendel-only"><h3 id="row-name"></h3><p id="row-cross"></p><button id="try-total">Try this total</button>
+      <div id="mini-square"></div><p id="row-detail"></p><div class="row-comparison" id="row-comparison"></div></section>
+    <div class="data-card mendel-only"><h3>A fit is not proof</h3><p>A right prediction still fails a 5% test about one run in twenty.</p>
+      <p>Simulate the same total in Cross. How far from 3 to 1 do your runs land?</p></div>
+    </div>
+  </aside>
+  <section class="workbench" id="board" aria-label="Punnett square and meiosis">
+    <div class="board-top"><h2 id="board-title">The chance model</h2><span id="board-note">One allele from each parent</span></div>
+    <div id="square" role="group" aria-label="Punnett square"></div>
+    <section class="meiosis" id="meiosis" hidden aria-label="Meiosis view">
+      <div class="meiosis-head"><strong id="meiosis-title">Inside Parent 1</strong><button id="close">Close</button></div>
+      <svg id="meiosis-scene" viewBox="0 0 600 300" role="img" aria-label="Chromosomes during meiosis"></svg>
+      <p class="meiosis-caption" id="meiosis-caption"></p><div class="gamete-links" id="gamete-links" hidden></div>
+      <div class="step-controls"><button id="back">Back</button><span id="step-number">1 / 6</span>
+        <button id="next">Next</button><button id="play">Play</button></div>
+    </section>
+    <div class="distance" id="distance" hidden><label for="crossing">Crossing over <strong id="distance-value">17 map units</strong></label>
+      <input id="crossing" type="range" min="0" max="50" step="1" value="17"></div>
+    <div class="prediction"><strong id="prediction"></strong><span id="cell-detail">Each box is a chance, not a promise.</span></div>
+  </section>
+  <section class="mendel-view" id="mendel-view" aria-label="Mendel's seven F2 traits">
+    <h2>Seven traits. Thousands of peas.</h2><p>Are the ratios exactly 3 to 1? Click a row to inspect the cross.</p>
+    <table class="mendel-table"><thead><tr><th>Trait &amp; forms</th><th>Counts<br>dom : rec</th><th>Ratio</th><th>χ²</th>
+      <th>Observed<br>Expected</th></tr></thead><tbody id="mendel-rows"></tbody></table>
+    <p>Bars: O is observed dominant share; E is the 75% prediction. All seven fit at the 5% level, df 1.</p>
+    <div class="data-card"><h3>Two genes, one prediction</h3>
+      <p>Round yellow 315 · round green 108 · wrinkled yellow 101 · wrinkled green 32.</p>
+      <p>556 seeds against 9 : 3 : 3 : 1. Expected: 312.75, 104.25, 104.25, 34.75.</p><strong id="two-gene-stat"></strong>
+    </div>
+  </section>
+
+</main>
+<footer><p class="hint" id="hint"></p><p class="privacy">Runs stay on this device. Meiosis here; mutations are explored in Protein Factory.</p></footer>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const image = {
+    ry:'art:pp-pea-round-yellow', rg:'art:pp-pea-round-green', wy:'art:pp-pea-wrinkled-yellow', wg:'art:pp-pea-wrinkled-green',
+    violet:'art:pp-flower-violet', white:'art:pp-flower-white', inflated:'art:pp-pod-inflated', constricted:'art:pp-pod-constricted',
+    green:'art:pp-pod-green', yellow:'art:pp-pod-yellow', axial:'art:pp-stem-axial', terminal:'art:pp-stem-terminal',
+    tall:'art:pp-plant-tall', short:'art:pp-plant-short', gn:'art:pp-fly-gray-normal', bv:'art:pp-fly-black-vestigial',
+    gv:'art:pp-fly-gray-vestigial', bn:'art:pp-fly-black-normal', tray:'art:pp-seed-tray', plate:'art:pp-culture-plate'
+  };
+  const L = {
+    welcomeCross:"Welcome to Punnett Predictor. Pick each parent's genotype, then press Open the square to see where each row comes from.",
+    welcomeMendel:"Mendel's data. Click a row and see how close he got to three to one.",
+    welcomeLinked:'Linked genes. Press Show real data, then press Chromosome view.',
+    openSquare:'Each row and column is one sex cell. Press Next to step through meiosis, or Play to watch.',
+    breedHow:'Now press Breed 1,000 and watch the ratio settle on the chart.',
+    settle:'At least a thousand peas. Compare your ratio with the prediction now.',
+    settleFly:'At least a thousand flies. Compare the observed fractions with the prediction.',
+    fitYes:'Close enough. The data fit the prediction; this does not prove the model.',
+    fitNo:'That gap would be rare by chance alone. A different rule may be at work, or this is a rare run.',
+    crossing:'More crossing over, more of the rare combinations.',
+    crossHint:'Cross. Pick the parents, then press Open the square. Press Breed 1,000 and watch the ratio settle.',
+    mendelHint:"Mendel's data. Click a trait row. Compare its ratio with three to one, then press Try this total.",
+    mendelSelected:'Compare observed and expected counts. Press Try this total to simulate this sample size in Cross.',
+    linkedHint:'Linked genes. Press Show real data, then press Chromosome view and adjust Crossing over.',
+    limits:'Real traits often depend on many genes and on the environment. Real crossing over can happen more than once between distant genes; this model counts one.',
+    needMore:'Breed more for a fair test: every expected count should be 5 or more.',
+    nothing:'Every offspring is predicted to look the same: nothing to test.',
+    fitGood:'With this prediction, a gap at least this large occurs in more than 1 run in 20. These data fit; a fit is not proof.',
+    fitBad:'With this prediction, a gap at least this large occurs in fewer than 1 run in 20. A different rule may be needed; even a right model fails about 1 run in 20.',
+    meiosisHint:'Press Next to step through meiosis, or Play to watch. Close returns to the square.',
+    meiosisNext:'Press Next to follow the chromosomes, Back to revisit, or Close to breed.',
+    gameteHint:'Tap a sex cell to find its row or column, or press Close.',
+    afterBreed:'Press Test the fit to compare your brood with the model, or press Breed to add more offspring.',
+    afterFit:'Press Breed to gather more evidence. A fit supports this prediction; it does not prove it.',
+    moreHint:'Breed more for a fair test. Press Breed until every expected count is at least five.',
+    uniformHint:'This cross predicts one look: nothing to test. Pick different parents to explore variation.',
+    linkEvidenceHint:'The independent model misses the parental excess. Press Chromosome view to investigate linkage.',
+    crossingHint:'Move Crossing over to change the recombinant share. Close, then press Breed to test the model.',
+    clearHint:'Brood cleared. Press Breed to test the current prediction.'
+  };
+  const rows = [
+    ['Seed shape',5474,1850,'R','round','wrinkled','ry','wy'],
+    ['Seed color',6022,2001,'Y','yellow','green','ry','rg'],
+    ['Flower color',705,224,'P','violet','white','violet','white'],
+    ['Pod shape',882,299,'I','inflated','constricted','inflated','constricted'],
+    ['Pod color',428,152,'G','green','yellow','green','yellow'],
+    ['Flower position',651,207,'A','along stem','at tip','axial','terminal'],
+    ['Stem length',787,277,'T','long','short','tall','short']
+  ];
+  const state = {mode:'cross',genes:1,trait:'R',parents:[{R:'Rr',Y:'Yy'},{R:'Rr',Y:'Yy'}],seed:1,distance:17,
+    linkage:false,real:false,row:0,meiosis:false,parent:0,step:0,playing:false,cross:null,linked:null,animation:0,tested:false,version:0};
+  // The named shared engines are absent from this checkout. This local model follows the spec.
+  function Rand(seed) {
+    let a=seed>>>0;
+    return () => {
+      a=(a+0x6D2B79F5)>>>0;
+      let t=a;
+      t=Math.imul(t^t>>>15,t|1);
+      t^=t+Math.imul(t^t>>>7,t|61);
+      return ((t^t>>>14)>>>0)/4294967296;
+    };
+  }
+  function newBrood(seed=state.seed) {return {n:0,counts:{},first:[],history:[],rand:Rand(seed),seed};}
+  state.cross=newBrood();
+  state.linked=newBrood();
+  const brood=()=>state[state.mode==='linked'?'linked':'cross'];
+  const activeGenes=()=>state.genes===2?['R','Y']:[state.trait];
+  function gametes(parent) {
+    if (state.mode==='linked') {
+      if (parent===1) return Array.from({length:4},()=>({seq:'bv',p:.25}));
+      const d=state.linkage?state.distance/100:.5;
+      return [{seq:'BV',p:(1-d)/2},{seq:'bv',p:(1-d)/2},{seq:'Bv',p:d/2},{seq:'bV',p:d/2}];
+    }
+    let out=[{seq:'',p:1}];
+    for (const g of activeGenes()) out=out.flatMap(a=>[...state.parents[parent][g]].map(letter=>({seq:a.seq+letter,p:a.p/2})));
+    return out;
+  }
+  function genotype(a,b) {
+    return [...a].map((x,i)=>[x,b[i]].sort((u,v)=>u===u.toUpperCase()?-1:v===v.toUpperCase()?1:0).join('')).join('');
+  }
+  function look(a,b) {
+    if (state.mode==='linked') {
+      const gray=a[0]==='B'||b[0]==='B',normal=a[1]==='V'||b[1]==='V';
+      return gray?(normal?'gn':'gv'):(normal?'bn':'bv');
+    }
+    const genes=activeGenes();
+    const dom=g=>!genes.includes(g)||a[genes.indexOf(g)]===g||b[genes.indexOf(g)]===g;
+    if (state.genes===1&&state.trait==='R') return dom('R')?'ry':'wy';
+    return (dom('R')?'r':'w')+(dom('Y')?'y':'g');
+  }
+  function name(k) {
+    const names={ry:'round yellow',rg:'round green',wy:'wrinkled yellow',wg:'wrinkled green',
+      gn:'gray normal',bv:'black vestigial',gv:'gray vestigial',bn:'black normal'};
+    if (state.mode!=='linked'&&state.genes===1) {
+      return state.trait==='R'?(k.startsWith('r')?'round':'wrinkled'):(k.endsWith('y')?'yellow':'green');
+    }
+    return names[k];
+  }
+  function distribution() {
+    const out={};
+    for (const a of gametes(0)) for (const b of gametes(1)) {
+      const k=look(a.seq,b.seq);
+      out[k]=(out[k]||0)+a.p*b.p;
+    }
+    const order=state.mode==='linked'?['gn','bv','gv','bn']:['ry','rg','wy','wg'];
+    return order.filter(k=>k in out).map(k=>({k,p:out[k]}));
+  }
+  function chiSquare(obs,probs) {
+    const total=obs.reduce((a,b)=>a+b,0);
+    if (probs.some((p,i)=>p===0&&obs[i]>0)) return {value:Infinity,df:probs.filter(p=>p>0).length-1,ok:false,valid:false};
+    const items=probs.map((p,i)=>({e:p*total,o:obs[i]})).filter((x,i)=>probs[i]>0);
+    const df=items.length-1,critical=[0,3.84,5.99,7.81,9.49,11.07][df];
+    const value=total?items.reduce((s,x)=>s+(x.o-x.e)**2/x.e,0):0;
+    return {value,df,critical,ok:value<=critical,valid:total>=10&&items.every(x=>x.e>=5),nothing:df===0};
+  }
+  function sample(items,rand) {
+    let u=rand();
+    for (const a of items) {u-=a.p;if(u<0)return a.seq;}
+    return items[items.length-1].seq;
+  }
+  const percent=p=>Number((p*100).toFixed(2))+'%';
+  const fmt=n=>n.toLocaleString('en-US');
+  const V=Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,welcome:()=>{
+    if(state.meiosis)return null;
+    if(state.mode==='cross')return ['welcomeCross',{valid:()=>!state.cross.n&&state.version===0,needs:'#open'}];
+    if(state.mode==='mendel')return ['welcomeMendel',{needs:'.trait-button'}];
+    return ['welcomeLinked',{valid:()=>!state.real,needs:'#real'}];
+  }});
+  const hint=text=>{$('hint').textContent=text;};
+  let playTimer=0,animationFrame=0,returnFocus=null,squareCells=[];
+  function haltPlay() {
+    clearTimeout(playTimer);
+    state.playing=false;
+    $('play').textContent='Play';
+  }
+  function stopAnimation() {
+    cancelAnimationFrame(animationFrame);
+    if(state.animation) {
+      const pool=brood();
+      $('status').textContent=`${fmt(pool.n)} offspring, seed ${pool.seed}.`;
+    }
+    state.animation=0;
+  }
+  function clearBrood(message='Brood cleared') {
+    stopAnimation();
+    V.hush();
+    state[state.mode==='linked'?'linked':'cross']=newBrood();
+    state.tested=false;
+    $('brood-results').scrollTop=0;
+    drawBrood();
+    $('status').textContent=message;
+    hint(L.clearHint);
+  }
+  function updateParents() {
+    $('setup').classList.toggle('two',state.genes===2);
+    $('one').setAttribute('aria-pressed',state.genes===1);
+    $('two').setAttribute('aria-pressed',state.genes===2);
+    $('trait').disabled=state.genes===2;
+    $('trait').value=state.genes===2?'R':state.trait;
+    $('trait').options[0].textContent=state.genes===2?'Shape + color':'Seed shape';
+    for(let p=0;p<2;p++) {
+      for(const [cls,g] of [['p-r',state.genes===2?'R':state.trait],['p-y','Y']]) {
+        const el=$('parent'+(p+1)).querySelector('.'+cls),lower=g.toLowerCase(),variants=[g+g,g+lower,lower+lower];
+        if([...el.children].map(b=>b.textContent).join(',')!==variants.join(',')) {
+          el.replaceChildren(...variants.map(value=>{
+            const b=document.createElement('button');
+            b.textContent=value;
+            b.id=`p${p+1}-${cls}-${value}`;
+            b.onclick=()=>changeParent(p,g,value);
+            return b;
+          }));
+        }
+        el.setAttribute('aria-label',`Parent ${p+1} ${g==='R'?'seed shape':'seed color'}`);
+        [...el.children].forEach(b=>b.setAttribute('aria-pressed',b.textContent===state.parents[p][g]));
+      }
+      const gs=activeGenes(),a=gs.map(g=>state.parents[p][g][0]).join(''),b=gs.map(g=>state.parents[p][g][1]).join(''),k=look(a,b);
+      $('parent'+(p+1)+'-art').src=image[k];
+      $('parent'+(p+1)+'-art').alt=`Parent ${p+1}, ${name(k)}, ${gs.map(g=>state.parents[p][g]).join('')}`;
+    }
+  }
+  function changeParent(p,g,value) {
+    if(state.parents[p][g]===value)return;
+    closeMeiosis(false);
+    state.parents[p][g]=value;
+    state.version++;
+    clearBrood('Brood cleared: new parents');
+    updateParents();
+    drawSquare();
+    Curio.tone(370,.08,.035);
+  }
+  function changeGenes(n) {
+    if(state.genes===n)return;
+    closeMeiosis(false);
+    state.genes=n;
+    state.version++;
+    clearBrood('Brood cleared: new genes');
+    updateParents();
+    drawSquare();
+  }
+  function genotypeProbability(gt) {
+    let p=0;
+    for(const a of gametes(0))for(const b of gametes(1))if(genotype(a.seq,b.seq)===gt)p+=a.p*b.p;
+    return p;
+  }
+  function drawSquare() {
+    const a=gametes(0),b=gametes(1),n=a.length,root=$('square');
+    root.style.gridTemplateColumns=`44px repeat(${n},minmax(0,1fr))`;
+    root.style.gridTemplateRows=`44px repeat(${n},minmax(44px,1fr))`;
+    $('board').classList.toggle('four',n===4);
+    root.replaceChildren();
+    const corner=document.createElement('span');
+    corner.className='corner';
+    corner.textContent=n===4?'9 : 3 : 3 : 1':'P₂ × P₁';
+    root.append(corner);
+    const header=(g,p,i)=>{
+      const btn=document.createElement('button');
+      btn.className='gamete';
+      btn.innerHTML=`<span>${g.seq}</span>`+(state.mode==='linked'&&p===0?`<small>${percent(g.p)}</small>`:'');
+      btn.id=`header-${p}-${i}`;
+      btn.setAttribute('aria-label',`Parent ${p+1} gamete ${g.seq}, ${percent(g.p)}. Open meiosis`);
+      btn.onclick=()=>openMeiosis(p,btn);
+      return btn;
+    };
+    a.forEach((g,i)=>root.append(header(g,0,i)));
+    squareCells=[];
+    b.forEach((gb,j)=>{
+      root.append(header(gb,1,j));
+      a.forEach((ga,i)=>{
+        const k=look(ga.seq,gb.seq),gt=genotype(ga.seq,gb.seq),p=ga.p*gb.p,button=document.createElement('button');
+        button.className='cell'+(p===0?' impossible':'');
+        button.innerHTML=`<img class="${k==='gv'||k==='bv'?'vestigial':''}" src="${image[k]}" alt="">`+
+          `<span class="cell-label"><b>${gt}</b><small>${name(k)}</small></span>`;
+        button.setAttribute('aria-label',`${gt}, ${name(k)}, this box ${percent(p)}; genotype total ${percent(genotypeProbability(gt))}`);
+        button.onclick=()=>{
+          squareCells.forEach(el=>el.classList.remove('selected'));
+          button.classList.add('selected');
+          $('cell-detail').textContent=`${ga.seq} + ${gb.seq} → ${gt}. This box: ${percent(p)}.`;
+          Curio.tone(300+i*45+j*20,.07,.03);
+        };
+        squareCells.push(button);
+        root.append(button);
+      });
+    });
+    const d=distribution().filter(x=>x.p>0),min=Math.min(...d.map(x=>x.p));
+    let prediction;
+    if(state.mode==='linked') {
+      prediction=state.linkage?distribution().map(x=>percent(x.p)).join(' : '):'1 : 1 : 1 : 1';
+      $('board-title').textContent=state.linkage?'A weighted chance model':'If the genes were independent';
+      $('board-note').textContent='Female gametes across · male down';
+      $('cell-detail').textContent=state.linkage?'Weighted female headers; repeated male bv headers.':'Repeated male bv gametes. Four unique looks.';
+    } else {
+      prediction=d.length===2?d.map(x=>`${Math.round(x.p/min)} ${name(x.k)}`).join(' : '):d.map(x=>Math.round(x.p/min)).join(' : ');
+      if(d.length===1)prediction='100% '+name(d[0].k);
+      $('board-title').textContent='The chance model';
+      $('board-note').textContent='One allele from each parent';
+      $('cell-detail').textContent=state.genes===2?'Round yellow : round green : wrinkled yellow : wrinkled green':'Each box is a chance, not a promise.';
+    }
+    $('prediction').textContent=prediction;
+    if(n===4) {
+      corner.textContent=state.mode==='linked'?(state.linkage?'weighted':'1:1:1:1'):prediction;
+      corner.title=prediction;
+    }
+  }
+  function breed(n) {
+    const wasAnimating=!!state.animation;
+    stopAnimation();
+    V.dropQueued();
+    const pool=brood(),initial=pool.n;
+    n=Math.min(n,10000-pool.n);
+    if(!n){$('status').textContent='10,000 offspring reached. Clear to start a new run.';return;}
+    const animate=n>=1000&&!Curio.reduce&&!wasAnimating;
+    const snapshots=animate?[{...pool.counts}]:null;
+    const a=gametes(0),b=gametes(1),dominant=distribution()[0].k;
+    for(let i=0;i<n;i++) {
+      const k=look(sample(a,pool.rand),sample(b,pool.rand));
+      pool.counts[k]=(pool.counts[k]||0)+1;
+      pool.n++;
+      if(snapshots)snapshots.push({...pool.counts});
+      if(pool.first.length<100)pool.first.push(k);
+      if(pool.n<=100||pool.n%10===0||i===n-1)pool.history.push([pool.n,(pool.counts[dominant]||0)/pool.n]);
+    }
+    state.animation=animate?1:0;
+    state.animationShown=animate?initial:pool.n;
+    state.animationCounts=animate?snapshots[0]:pool.counts;
+    state.tested=false;
+    drawBrood();
+    $('tray-contents').classList.remove('fresh');
+    void $('tray-contents').offsetWidth;
+    $('tray-contents').classList.add('fresh');
+    const completedStatus=`Added ${fmt(n)}. ${fmt(pool.n)} offspring, seed ${pool.seed}.`;
+    $('status').textContent=animate?`Breeding ${fmt(n)} offspring, seed ${pool.seed}.`:completedStatus;
+    hint(L.afterBreed);
+    if(innerWidth<600) $('tray').scrollIntoView({block:'center',behavior:'instant'});
+    Curio.tone(540,.07,.04);
+    const announceThousand=()=>{
+      if(pool.n<1000||pool.announcedThousand)return;
+      pool.announcedThousand=true;
+      const mode=state.mode;
+      V.say(mode==='linked'?'settleFly':'settle',{now:true,valid:()=>state.mode===mode&&brood()===pool&&pool.n>=1000});
+    };
+    if(animate) {
+      const started=performance.now();
+      state.animation=1;
+      const step=now=>{
+        if(!state.animation)return;
+        const t=Math.max(0,Math.min(1,(now-started)/1000)),shown=Math.round(initial+(pool.n-initial)*t);
+        state.animationShown=shown;
+        state.animationCounts=snapshots[shown-initial];
+        $('total').textContent=fmt(shown)+' offspring';
+        const reveal=$('observed-reveal');
+        if(reveal) {
+          const fraction=Math.log10(Math.max(1,shown))/Number(reveal.dataset.logMax);
+          reveal.setAttribute('width',String(Number(reveal.dataset.plotWidth)*fraction));
+        }
+        [...$('tally-rows').rows].forEach(row=>{
+          const count=state.animationCounts[row.dataset.key]||0;
+          row.cells[1].textContent=fmt(count);
+          row.cells[2].textContent=shown?count+'/'+fmt(shown):'0';
+        });
+        [...$('tray-contents').children].forEach((img,i)=>{img.hidden=i>=shown;});
+        $('tray-total').textContent=`First ${Math.min(100,shown)} shown · ${fmt(shown)} counted`;
+        if(t<1)animationFrame=requestAnimationFrame(step);
+        else{state.animation=0;drawBrood();$('status').textContent=completedStatus;announceThousand();}
+      };
+      animationFrame=requestAnimationFrame(step);
+    } else announceThousand();
+  }
+  function drawBrood() {
+    const pool=brood(),d=distribution();
+    const shown=state.animation?state.animationShown:pool.n;
+    const counts=state.animation?state.animationCounts:pool.counts;
+    $('total').textContent=fmt(shown)+' offspring';
+    $('seed').value=pool.seed;
+    $('tray-texture').src=state.mode==='linked'?image.plate:image.tray;
+    $('tray-specimen').src=state.mode==='linked'?image.gn:image.ry;
+    $('empty-tray').hidden=pool.n>0;
+    $('tray-total').hidden=pool.n===0;
+    $('tray-total').textContent=shown>100?`First 100 shown · ${fmt(shown)} counted`:`${fmt(shown)} of first 100 shown`;
+    $('tray-contents').innerHTML=pool.first.map((k,i)=>
+      `<img class="${k==='gv'||k==='bv'?'vestigial':''}" src="${image[k]}" alt="" style="--i:${i}"${i>=shown?' hidden':''}>`).join('');
+    $('tally-rows').innerHTML=d.map(x=>{
+      const n=counts[x.k]||0;
+      return `<tr data-key="${x.k}"><td><span class="look">`+
+        `<img class="${x.k==='gv'||x.k==='bv'?'vestigial':''}" src="${image[x.k]}" alt="">${name(x.k)}</span></td>`+
+        `<td>${fmt(n)}</td><td>${shown?n+'/'+fmt(shown):'0'}</td><td>${percent(x.p)}</td></tr>`;
+    }).join('');
+    if(!state.tested) {
+      const r=chiSquare(d.map(x=>counts[x.k]||0),d.map(x=>x.p));
+      $('fit-output').textContent=r.nothing?L.nothing:shown<10?'Breed at least 10 offspring to start.':
+        !r.valid?L.needMore:'Ready: all expected counts are at least 5.';
+    }
+    drawChart();
+    drawReal();
+  }
+  function drawChart() {
+    if(state.mode==='mendel')return;
+    const svg=$('chart'),box=svg.getBoundingClientRect(),width=Math.max(200,box.width),height=Math.max(80,box.height);
+    svg.setAttribute('viewBox',`0 0 ${width} ${height}`);
+    svg.replaceChildren();
+    const pool=brood(),p=distribution()[0].p,logMax=Math.max(1,Math.log10(Math.max(10,pool.n)));
+    const g=Plane(svg,{x:[0,logMax],y:[0,1],width:width-82,height:height-30,left:56,top:3,
+      grid:[1,.25],labels:[1,.5],axes:false,ticks:'edge',tickFormat:(v,axis)=>axis==='x'?fmt(Math.round(10**v)):percent(v)});
+    g.fn(()=>p,{color:'#a3ffaf',dashed:true,width:2,label:`Predicted ${name(distribution()[0].k)} fraction ${percent(p)}`});
+    const path=document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('d',pool.history.map((pt,i)=>{
+      const [x,y]=g.px(Math.log10(pt[0]),pt[1]);
+      return (i?'L':'M')+x.toFixed(2)+','+y.toFixed(2);
+    }).join(''));
+    path.setAttribute('fill','none');
+    path.setAttribute('stroke','#f7d579');
+    path.setAttribute('stroke-width','2');
+    const ns='http://www.w3.org/2000/svg',defs=document.createElementNS(ns,'defs');
+    const clip=document.createElementNS(ns,'clipPath'),reveal=document.createElementNS(ns,'rect');
+    clip.id='observed-clip';
+    clip.setAttribute('clipPathUnits','userSpaceOnUse');
+    reveal.id='observed-reveal';
+    reveal.dataset.plotWidth=g.width;
+    reveal.dataset.logMax=logMax;
+    const share=state.animation?Math.log10(Math.max(1,state.animationShown))/logMax:1;
+    reveal.setAttribute('width',String(g.width*share));
+    reveal.setAttribute('height',String(g.height));
+    clip.append(reveal);
+    defs.append(clip);
+    svg.append(defs);
+    path.setAttribute('clip-path','url(#observed-clip)');
+    g.layer('plot').append(path);
+    svg.setAttribute('aria-label',`${name(distribution()[0].k)} fraction versus number bred, log axis. Predicted ${percent(p)}.`);
+    $('chart-legend').textContent=`${name(distribution()[0].k)} · dashed ${percent(p)} · log N`;
+  }
+  function testFit() {
+    stopAnimation();
+    drawBrood();
+    const d=distribution(),pool=brood(),n=pool.n,r=chiSquare(d.map(x=>pool.counts[x.k]||0),d.map(x=>x.p));
+    if(r.nothing) {
+      $('fit-output').textContent=L.nothing;
+      hint(L.uniformHint);
+      revealFit();
+      V.say('nothing',{now:true,valid:()=>brood()===pool});
+      return;
+    }
+    if(!r.valid) {
+      $('fit-output').textContent=L.needMore;
+      hint(L.moreHint);
+      revealFit();
+      V.say('needMore',{now:true,valid:()=>brood()===pool&&pool.n===n});
+      return;
+    }
+    state.tested=true;
+    $('fit-output').innerHTML=`<strong class="fit-value">χ² = ${r.value.toFixed(3)}</strong>`+
+      `<p>df ${r.df} · 5% cutoff ${r.critical}. ${r.ok?L.fitGood:L.fitBad}</p>`;
+    V.say(r.ok?'fitYes':'fitNo',{now:true,valid:()=>state.tested&&brood()===pool&&pool.n===n});
+    Curio.tone(r.ok?660:240,.1,.04);
+    hint(L.afterFit);
+    revealFit();
+  }
+  function revealFit() {
+    if(innerWidth<600) {
+      $('fit-card').scrollIntoView({block:'center',behavior:'instant'});
+      return;
+    }
+    const column=$('brood-results'),result=$('fit-card').getBoundingClientRect(),box=column.getBoundingClientRect();
+    if(column.scrollHeight>column.clientHeight+1&&result.bottom>box.bottom) column.scrollTop+=result.bottom-box.bottom;
+  }
+  function drawReal() {
+    $('real-data').hidden=state.mode!=='linked'||!state.real;
+    if($('real-data').hidden)return;
+    const r=chiSquare([965,944,206,185],[.25,.25,.25,.25]);
+    $('real-data').innerHTML=`<strong>Morgan-style data · 2,300 flies</strong><p>Gray normal 965 · black vestigial 944 · gray vestigial 206 · black normal 185.</p>`+
+      `<p>Independent model: χ² ${r.value.toFixed(1)}, df 3. Too big for chance alone in most runs.</p>`+
+      '<p>Recombinants 391 of 2,300 = 17%: about 17 map units apart.</p>';
+  }
+  const stepNames=['Copy','Pair','Line up','First split','Second split','Four cells'];
+  function openMeiosis(parent=0,source=$('open')) {
+    if(state.meiosis&&state.parent===parent)return;
+    V.hush();
+    returnFocus=source;
+    haltPlay();
+    state.meiosis=true;
+    state.parent=parent;
+    state.step=0;
+    $('square').hidden=true;
+    $('meiosis').hidden=false;
+    if(state.mode==='linked') {
+      if(parent===0&&!state.linkage) {
+        state.linkage=true;
+        clearBrood('Brood cleared: linked-gene model');
+      }
+      $('distance').hidden=parent!==0;
+      drawSquare();
+    }
+    drawMeiosis();
+    hint(L.meiosisHint);
+    V.how('openSquare',{valid:()=>state.meiosis&&state.step===0,needs:['#next','#play']});
+    $('close').focus({preventScroll:true});
+    if(innerWidth<600) $('meiosis').scrollIntoView({block:'start',behavior:'instant'});
+    Curio.tone(420,.08,.035);
+  }
+  function closeMeiosis(focus=true) {
+    if(!state.meiosis)return;
+    haltPlay();
+    state.meiosis=false;
+    $('meiosis').hidden=true;
+    $('square').hidden=false;
+    $('distance').hidden=true;
+    V.hush();
+    hint(state.mode==='linked'?L.linkedHint:L.crossHint);
+    if(focus) {
+      const target=returnFocus?.isConnected?returnFocus:$(state.mode==='linked'?'chromosome':'open');
+      target.focus({preventScroll:true});
+      if(!brood().n&&!V.heard('breedHow'))V.how('breedHow',{valid:()=>!state.meiosis&&!brood().n,needs:'#breed1000'});
+    }
+  }
+  function products() {
+    if(state.mode==='linked')return state.parent===1?['bv','bv','bv','bv']:state.distance>0?['BV','Bv','bv','bV']:['BV','BV','bv','bv'];
+    const gs=activeGenes(),a=gs.map(g=>state.parents[state.parent][g][0]).join(''),b=gs.map(g=>state.parents[state.parent][g][1]).join('');
+    return [a,a,b,b];
+  }
+  function drawMeiosis() {
+    const fly=state.mode==='linked',p=state.parent,s=state.step,gs=fly?['B','V']:activeGenes();
+    const pairs=fly?(p===0?['Bb','Vv']:['bb','vv']):gs.map(g=>state.parents[p][g]);
+    const blue='#7cb8ff',pink='#ff9db0';
+    $('meiosis-title').textContent=fly?(p===0?'Female':'Male')+' · linked chromosomes':'Parent '+(p+1)+' · chromosome pairs';
+    $('step-number').textContent=(s+1)+' / 6';
+    const cell=(x,y,rx,ry)=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="url(#cell-glow)" stroke="#6f9c85" stroke-width="2"/>`;
+    function chrom(x,y,label,color,copy=true,second='') {
+      return `<g transform="translate(${x},${y})" stroke="${color}" stroke-width="9" stroke-linecap="round">`+
+        (copy?'<path d="M-9 -28 L9 28 M9 -28 L-9 28"/>':'<path d="M0 -28 L0 28"/>')+
+        `<circle r="4" fill="#d6e5df" stroke="none"/><text x="15" y="-22" stroke="none" fill="${color}" font-size="18">${label}</text>`+
+        (second?`<text x="15" y="38" stroke="none" fill="${color}" font-size="18">${second}</text>`:'')+'</g>';
+    }
+    function linkedChrom(x,y,h,copy=true) {
+      const exchange=p===0&&state.distance>0&&s>=2;
+      const color=h?pink:blue,other=h?blue:pink;
+      let drawing=chrom(x,y,pairs[0][h],color,copy,pairs[1][h]);
+      if(exchange&&copy) {
+        drawing+=`<g transform="translate(${x},${y})"><path d="M0 0 L9 28" stroke="${other}" stroke-width="9" stroke-linecap="round"/>`+
+          `<text x="-38" y="38" fill="${other}" font-size="17">${pairs[1][1-h]}</text></g>`;
+      }
+      return drawing;
+    }
+    let art='<defs><radialGradient id="cell-glow"><stop stop-color="#54715a" stop-opacity=".5"/>'+
+      '<stop offset="1" stop-color="#2b493b" stop-opacity=".2"/></radialGradient></defs>';
+    art+=`<text x="15" y="25" fill="#b4c5bc" font-family="sans-serif" font-size="15">${s+1}. ${stepNames[s]}</text>`;
+    if(s<3) {
+      const alternatives=!fly&&gs.length===2&&s===2;
+      (alternatives?[155,445]:[300]).forEach((cx,orientation)=>{
+        art+=cell(cx,155,alternatives?130:190,110);
+        if(fly) {
+          art+=linkedChrom(cx-38,150,0)+linkedChrom(cx+38,150,1);
+          if(s===2&&p===0&&state.distance>0) {
+            art+=`<path d="M${cx-38} 155 C${cx-5} 120 ${cx+5} 190 ${cx+38} 155" fill="none" stroke="#f7d579" stroke-width="3"/>`;
+          }
+        } else pairs.forEach((pair,g)=>{
+          const center=cx+(g-(pairs.length-1)/2)*(alternatives?100:135),flip=orientation===1&&g===1;
+          art+=chrom(center-24,150,pair[flip?1:0],flip?pink:blue)+chrom(center+24,150,pair[flip?0:1],flip?blue:pink);
+        });
+        if(s===2)art+=`<path d="M${cx} 60 L${cx} 250" stroke="#eaf1ed55" stroke-dasharray="5 6"/>`;
+        if(alternatives)art+=`<text x="${cx}" y="285" text-anchor="middle" fill="#cfdfd1" font-size="15">Orientation ${orientation+1}</text>`;
+      });
+      if(s===0)art+='<text x="300" y="290" text-anchor="middle" fill="#cfdfd1" font-size="15">DNA copied: each X has two sister chromatids</text>';
+    } else if(s===3||s===4) {
+      (s===3?[[170,155],[430,155]]:[[78,155],[226,155],[374,155],[522,155]]).forEach(([x,y],i)=>{
+        const h=s===3?i:Math.floor(i/2);
+        art+=cell(x,y,s===3?120:65,95);
+        if(fly&&s===3)art+=linkedChrom(x,y,h);
+        else if(fly) {
+          const seq=products()[i],color=i<2?blue:pink;
+          art+=chrom(x,y,seq[0],color,false,seq[1]);
+          if(p===0&&state.distance>0&&(i===1||i===3)) {
+            art+=`<path d="M${x} ${y}V${y+28}" stroke="${i===1?pink:blue}" stroke-width="9" stroke-linecap="round"/>`;
+          }
+        }
+        else pairs.forEach((pair,g)=>art+=chrom(x+(g-(pairs.length-1)/2)*50,y,pair[h],h?pink:blue,s===3));
+      });
+    } else products().forEach((seq,i)=>{
+      const x=78+i*148;
+      art+=cell(x,145,65,90);
+      if(fly)art+=chrom(x-10,140,seq[0],i<2?blue:pink,false,seq[1]);
+      else [...seq].forEach((letter,g)=>art+=chrom(x+(g-(seq.length-1)/2)*42,140,letter,i<2?blue:pink,false));
+      art+=`<text x="${x}" y="260" text-anchor="middle" fill="#eaf1ed" font-family="monospace" font-size="20">${seq}</text>`;
+      if(fly&&p===0&&state.distance>0&&(i===1||i===3)) {
+        art+=`<path d="M${x-10} 140V168" stroke="${i===1?pink:blue}" stroke-width="9" stroke-linecap="round"/>`;
+      }
+    });
+    $('meiosis-scene').innerHTML=art;
+    const captions=fly?[
+      'Copy both partner chromosomes. B and V sit on the same chromosome, not on separate pairs.',
+      'The partner chromosomes pair up. Each copied chromosome has two sister chromatids.',
+      'Crossing over swaps pieces between nonsister chromatids. The slider sets the recombinant gamete fraction.',
+      'First division: partner chromosomes separate. A crossover can leave exchanged segments.',
+      'Second division: sister chromatids separate. The next view shows one possible set of products.',
+      'Four haploid cells. Shown: one possible crossover event; many meioses produce the slider probabilities.'
+    ]:[
+      'DNA is copied before division. Each X is one chromosome made of two sister chromatids.',
+      'Homologous chromosomes pair up. Blue and pink mark the two inherited homologs.',
+      gs.length===2?'Two equally likely orientations are shown. One meiosis uses one orientation, not both.':'The homologs line up. Which partner faces each pole is random.',
+      'First division: homologous chromosomes separate. Each cell gets one partner from every pair.',
+      'Second division: sister chromatids separate. The chromosome set has been halved.',
+      'Four haploid products, not necessarily four different genotypes. Tap a gamete to find its square header.'
+    ];
+    const maleCaptions=[
+      'DNA is copied. This male carries b and v on both partner chromosomes.',
+      'The partners pair up. Both carry the same recessive alleles at these two genes.',
+      'Whichever partner faces a pole, it carries b and v. All this male\'s gametes will be bv.',
+      'First division: the partner chromosomes separate. Both resulting cells carry b and v.',
+      'Second division: sister chromatids separate, keeping one chromosome set in each product.',
+      'Four haploid products. All carry bv because this male has two recessive copies at both genes.'
+    ];
+    let caption=fly&&p===1?maleCaptions[s]:captions[s];
+    if(fly&&p===0&&state.distance===0) {
+      const zeroCaptions={
+        2:'No crossing over between these genes in this model. Only the parental combinations are predicted.',
+        3:'First division: partner chromosomes separate. No exchange happened between these genes.',
+        5:'Four haploid products with no exchange between these genes. Only BV and bv appear.'
+      };
+      caption=zeroCaptions[s]||caption;
+    }
+    $('meiosis-caption').textContent=caption;
+    const links=$('gamete-links');
+    links.hidden=s!==5;
+    links.replaceChildren();
+    if(s===5)products().forEach(seq=>{
+      const btn=document.createElement('button');
+      btn.textContent=seq+' ↗';
+      btn.setAttribute('aria-label','Find '+seq+' in Parent '+(p+1)+' square headers');
+      btn.onclick=()=>{
+        closeMeiosis(false);
+        const i=gametes(p).findIndex(g=>g.seq===seq),el=$(`header-${p}-${Math.max(0,i)}`);
+        el?.focus({preventScroll:true});
+        $('cell-detail').textContent=`Sex cell ${seq} supplies this ${p===0?'column':'row'}.`;
+      };
+      links.append(btn);
+    });
+  }
+  function moveStep(delta) {
+    haltPlay();
+    state.step=Math.max(0,Math.min(5,state.step+delta));
+    V.dropQueued();
+    drawMeiosis();
+    hint(state.step===5?L.gameteHint:L.meiosisNext);
+    Curio.tone(330+state.step*40,.07,.025);
+  }
+  function togglePlay() {
+    if(state.playing){haltPlay();return;}
+    if(state.step===5)state.step=0;
+    state.playing=true;
+    $('play').textContent='Pause';
+    V.dropQueued();
+    drawMeiosis();
+    hint(state.step===5?L.gameteHint:L.meiosisNext);
+    const advance=()=>{
+      if(!state.playing||!state.meiosis)return;
+      if(state.step===5){haltPlay();return;}
+      state.step++;
+      drawMeiosis();
+      hint(state.step===5?L.gameteHint:L.meiosisNext);
+      playTimer=setTimeout(advance,3000);
+    };
+    playTimer=setTimeout(advance,3000);
+  }
+  function buildMendel() {
+    $('mendel-rows').innerHTML=rows.map((r,i)=>{
+      const [label,d,rec,,,,a,b]=r,stat=chiSquare([d,rec],[.75,.25]);
+      return `<tr><td><button class="trait-button" id="trait-${i}" aria-pressed="${i===state.row}">`+
+        `<span class="trait-pair"><img src="${image[a]}" alt="${r[4]}"><img src="${image[b]}" alt="${r[5]}"></span>`+
+        `<b>${label}</b></button></td><td>${fmt(d)} : ${fmt(rec)}</td><td>${(d/rec).toFixed(2)}</td><td>${stat.value.toFixed(2)}<br>fit</td>`+
+        `<td><span class="bars" aria-label="Observed ${percent(d/(d+rec))}, expected 75%">`+
+        `<small aria-hidden="true">O</small><i style="width:${d/(d+rec)*100}%"></i>`+
+        '<small aria-hidden="true">E</small><i style="width:75%"></i></span></td></tr>';
+    }).join('');
+    rows.forEach((r,i)=>$('trait-'+i).onclick=()=>selectRow(i));
+    $('two-gene-stat').textContent='χ² '+chiSquare([315,108,101,32],[9/16,3/16,3/16,1/16]).value.toFixed(3)+' · df 3 · fit';
+    selectRow(state.row,false);
+  }
+  function selectRow(i,act=true) {
+    state.row=i;
+    const r=rows[i],g=r[3],pair=g+g.toLowerCase();
+    [...$('mendel-rows').querySelectorAll('button')].forEach((b,j)=>b.setAttribute('aria-pressed',i===j));
+    $('row-name').textContent=r[0];
+    $('row-cross').textContent=pair+' × '+pair+' · F2 cross';
+    $('mini-square').innerHTML=[g+g,pair,pair,g.toLowerCase()+g.toLowerCase()].map((gt,j)=>
+      `<div tabindex="0" role="img" aria-label="${gt}, ${r[j===3?5:4]}, this box 25%; genotype total ${j===1||j===2?'50%':'25%'}">`+
+      `<img src="${image[r[j===3?7:6]]}" alt=""><b>${gt}</b></div>`).join('');
+    $('row-detail').textContent=`${fmt(r[1]+r[2])} offspring. Observed ${r[1]} : ${r[2]}; predicted 3 : 1.`+
+      (i===2?' Flower color was scored using seed coat color.':'');
+    const expected=(r[1]+r[2])*.75,delta=r[1]-expected;
+    const stat=chiSquare([r[1],r[2]],[.75,.25]);
+    $('row-comparison').innerHTML=`<strong>${Math.abs(delta).toLocaleString('en-US')} ${delta<0?'fewer':'more'} than predicted</strong>`+
+      `${r[4]}: expected ${expected.toLocaleString('en-US')}; observed ${fmt(r[1])}. χ² ${stat.value.toFixed(2)} is below 3.84: fits.`;
+    const card=$('row-name').closest('section');
+    card.classList.remove('changed');
+    if(act) {
+      void card.offsetWidth;
+      card.classList.add('changed');
+      V.dropQueued();
+      Curio.tone(400+i*25,.07,.03);
+      V.how('mendelSelected',{now:!V.heard('mendelSelected'),valid:()=>state.mode==='mendel',needs:'#try-total'});
+    }
+    hint(L.mendelSelected);
+  }
+  function setMode(mode) {
+    if(!['cross','mendel','linked'].includes(mode))return;
+    if(mode===state.mode&&!state.meiosis)return;
+    stopAnimation();
+    haltPlay();
+    V.hush();
+    closeMeiosis(false);
+    state.mode=mode;
+    state.seed=brood().seed;
+    $('brood-results').scrollTop=0;
+    state.tested=false;
+    document.body.dataset.mode=mode;
+    for(const m of ['cross','mendel','linked'])$('m-'+m).setAttribute('aria-pressed',m===mode);
+    $('square').hidden=false;
+    $('meiosis').hidden=true;
+    $('distance').hidden=true;
+    if(mode==='mendel')buildMendel();
+    else {
+      if(mode==='cross')updateParents();
+      drawSquare();
+      drawBrood();
+      const pool=brood();
+      $('status').textContent=pool.n?`${fmt(pool.n)} offspring, seed ${pool.seed}.`:'';
+    }
+    hint(L[mode==='cross'?'crossHint':mode==='mendel'?'mendelHint':'linkedHint']);
+    V.welcome();
+  }
+  ['cross','mendel','linked'].forEach(m=>$('m-'+m).onclick=()=>setMode(m));
+  $('one').onclick=()=>changeGenes(1);
+  $('two').onclick=()=>changeGenes(2);
+  $('trait').onchange=()=>{
+    closeMeiosis(false);
+    state.trait=$('trait').value;
+    state.version++;
+    clearBrood('Brood cleared: new trait');
+    updateParents();
+    drawSquare();
+  };
+  [1,10,100,1000].forEach(n=>$('breed'+n).onclick=()=>breed(n));
+  $('clear').onclick=()=>clearBrood();
+  $('test').onclick=testFit;
+  $('seed').onchange=()=>{
+    const v=Number($('seed').value);
+    if(!Number.isInteger(v)||v<0||v>4294967295||$('seed').value==='') {
+      $('seed').value=brood().seed;
+      $('status').textContent='Seed must be a whole number from 0 to 4,294,967,295.';
+      return;
+    }
+    state.seed=v;
+    clearBrood('Brood cleared: new seed');
+  };
+  $('open').onclick=()=>openMeiosis(0,$('open'));
+  $('chromosome').onclick=()=>openMeiosis(0,$('chromosome'));
+  $('close').onclick=()=>closeMeiosis();
+  $('back').onclick=()=>moveStep(-1);
+  $('next').onclick=()=>moveStep(1);
+  $('play').onclick=togglePlay;
+  $('real').onclick=()=>{
+    state.real=true;
+    drawReal();
+    V.dropQueued();
+    hint(L.linkEvidenceHint);
+    V.say('fitNo',{now:true,valid:()=>state.mode==='linked'&&state.real});
+    Curio.tone(225,.12,.04);
+  };
+  $('crossing').oninput=()=>{
+    state.distance=Number($('crossing').value);
+    $('distance-value').textContent=state.distance+' map units';
+    clearBrood('Brood cleared: new crossing-over rate');
+    drawSquare();
+    drawMeiosis();
+    hint(L.crossingHint);
+    V.how('crossing',{valid:()=>state.mode==='linked'&&state.meiosis,needs:'#crossing'});
+  };
+  $('try-total').onclick=()=>{
+    const total=rows[state.row][1]+rows[state.row][2];
+    state.genes=1;
+    state.trait='Y';
+    state.parents=[{R:'Rr',Y:'Yy'},{R:'Rr',Y:'Yy'}];
+    state.version++;
+    setMode('cross');
+    clearBrood('Simulating the selected Mendel total with Yy × Yy');
+    breed(total);
+    $('breed1000').focus({preventScroll:true});
+  };
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&state.meiosis){e.preventDefault();closeMeiosis();}});
+  let resizeFrame=0;
+  new ResizeObserver(()=>{
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame=requestAnimationFrame(drawChart);
+  }).observe($('chart'));
+  Curio.onMotion(()=>{if(state.animation){stopAnimation();drawBrood();}});
+  Curio.init({clips:"voice:*",rate:.94});
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},breed,distribution,gametes,
+    genotype,chiSquare,Rand,clearBrood,openMeiosis,closeMeiosis,moveStep,changeGenes,changeParent,drawSquare};
+  updateParents();
+  drawSquare();
+  drawBrood();
+  hint(L.crossHint);
+})();
+</script>
+</body>
+</html>

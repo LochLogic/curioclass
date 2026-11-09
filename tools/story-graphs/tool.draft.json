@@ -1,0 +1,22 @@
+{
+  "id": "story-graphs",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Read the shape. Tell the story.",
+  "outcome": "Match, sketch, and explain graphs and linear models from everyday stories.",
+  "driver": "students",
+  "minutes": "20-35",
+  "modes": [
+    "Match",
+    "Sketch",
+    "Model"
+  ],
+  "grades_label": "Grade 8",
+  "updated": "2026-11-07",
+  "sources": [
+    "Common Core State Standards, Grade 8 Functions, 8.F.B.4 and 8.F.B.5",
+    "OpenStax Physics 2.3; Calculus Volume 1 4.1; University Physics Volume 1 3.5; Elementary Algebra 2e 4.5",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": []
+}

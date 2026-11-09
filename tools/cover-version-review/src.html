@@ -3,6 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E
+  %3Ccircle cx='16' cy='16' r='15' fill='%23221a20'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23b0185a'/%3E%3C/svg%3E">
 <title>Cover Version Review · Curio Class</title>
 <meta name="description"
   content="Hear two interpretations of Simple Gifts, measure their differences, and pin a music review to evidence. Grades 6-8. Works offline.">
@@ -98,6 +100,9 @@ main {display:flex; flex-direction:column; min-height:0; padding:14px 22px 10px;
 .lane.checked-lane .entered,.lane.checked-lane .true-value {display:block;}
 .lane.checked-lane img {width:11px; height:12px;}
 .lane.checked-lane .check {padding:0 2px;}
+.lane.revealed {animation:reveal-check .7s ease-out;}
+@keyframes reveal-check {from {background:#f3d9e5;} to {background:transparent;}}
+.calm .lane.revealed {animation:none;}
 .playhead {position:absolute; left:0; top:0; bottom:0; background:var(--brand); width:2px; pointer-events:none;
   z-index:3; box-shadow:0 0 8px #b0185a55; opacity:0;}
 .version-cell.playing .playhead {opacity:.8;}
@@ -167,11 +172,11 @@ label select,label input {display:block; margin-top:3px;}
 .taste {margin-top:8px; background:#eee5eb; border:1px solid var(--line); padding:10px; border-radius:7px;
   display:grid; grid-template-columns:1fr 1fr 1.8fr auto; gap:14px; align-items:center;}
 .taste h3 {font:700 16px Georgia,serif; margin:0 0 5px;}
-input[type=range] {width:100%; min-height:26px; accent-color:var(--brand); margin:0;}
+input[type=range] {width:100%; min-height:44px; accent-color:var(--brand); margin:0;}
 .range-ends {display:flex; justify-content:space-between; font-size:10px;}
 .taste .frame {display:flex; gap:5px; align-items:center; font-size:12px; flex-wrap:wrap;}
 .taste select {width:auto; flex:1;}
-.taste input {width:auto; min-width:80px; flex:2;}
+.taste .frame input {width:auto; min-width:80px; flex:2;}
 body[data-mode=review] .stage {flex:0 0 clamp(282px,calc(40dvh - 30px),440px); min-height:282px;}
 body[data-mode=review] #review-panel {flex:1; min-height:100px; max-height:none;}
 body[data-mode=review] .desk-head {display:none;}
@@ -207,6 +212,8 @@ body.has-check .desk-head {display:none;}
   main {padding:9px 12px; gap:7px;}
   #strip {grid-template-columns:120px repeat(8,minmax(0,1fr));}
   .line-head {font-size:10px; padding:5px;}
+  .corner {padding:8px; font-size:10px; line-height:1.3;}
+  .corner strong {font-size:11px;}
   .cap b {font-size:21px;}
   .caption {left:8px; bottom:8px;}
   .version-cell {font-size:10px; padding:5px 4px;}
@@ -354,6 +361,13 @@ body.has-check .desk-head {display:none;}
   body[data-mode=review] .stage {flex:1 1 142px; min-height:142px;}
   body[data-mode=review] #review-panel {flex:0 1 auto; min-height:0; max-height:108px;}
 }
+@media (max-height:650px) and (min-width:600px) {
+  body.showing-claim #evidence {display:none;}
+  body.showing-claim #claims {display:flex; flex-direction:column-reverse; gap:5px;}
+  body.showing-claim .claim {min-height:44px; padding:0 3px; align-items:center; gap:5px;}
+  body.showing-claim .claim-copy p {margin:0; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; font-size:10px;}
+  body.showing-claim .claim-copy small {display:none;}
+}
 @media (max-width:599px) {
   #evidence {gap:3px;}
   #evidence button {flex:1 1 calc(25% - 4px); max-width:calc(25% - 3px); padding:2px;}
@@ -420,7 +434,7 @@ body.has-check .desk-head {display:none;}
   </div>
   <div class="mode-panel" id="review-panel" hidden>
     <div class="review-grid">
-      <label>Version<select id="claim-version"><option value="A">A · Porch</option><option value="B">B · Parade</option>
+      <label>Version<select id="claim-version"><option value="A">A</option><option value="B">B</option>
         <option value="both">Both</option></select></label>
       <label>Criterion<select id="criterion"><option>Expression</option><option>Fits the words</option><option>Steady and in tune</option>
         <option>Surprise</option></select></label>
@@ -519,7 +533,8 @@ body.has-check .desk-head {display:none;}
     claimAdded:'Pinned. Tap the pin to hear both versions.',
     claimAddedSingle:'Pinned. Tap the pin to hear this version.'
   };
-  const fresh = () => ({measurements:{},checked:{},claims:[],taste:{energy:50,decoration:50,preferred:'A',better:'B',betterAt:''}});
+  const fresh = () => ({measurements:{},checked:{},firstChecks:{},claims:[],
+    taste:{energy:50,decoration:50,preferred:'A',better:'B',betterAt:''}});
   const storageKey = 'curio-cover-version-review-v1';
   const state = {mode:'listen',version:'A',line:0,playing:false,playKind:null,beat:0,pin:null,evidence:null,taps:[],...fresh()};
   const safe = text => String(text).replace(/[&<>"']/g,c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -529,26 +544,32 @@ body.has-check .desk-head {display:none;}
     if (data?.measurements && data.checked && Array.isArray(data.claims) && data.taste) {
       state.measurements = data.measurements;
       state.checked = data.checked;
+      for (const [k,r] of Object.entries(state.checked)) {
+        if (r===true) state.checked[k]={...state.measurements[k]};
+      }
+      state.firstChecks=data.firstChecks||JSON.parse(JSON.stringify(state.checked));
       state.claims = data.claims.slice(0,8).filter(c => Number.isInteger(c.line) && c.line>=0 && c.line<8);
       state.taste = {...state.taste,...data.taste};
+      if(state.taste.preferred===state.taste.better) state.taste.better=state.taste.preferred==='A'?'B':'A';
     }
   } catch {saved=false;}
   const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
-    welcome:() => !state.playing ? 'welcome'+state.mode[0].toUpperCase()+state.mode.slice(1) : null,
+    welcome:() => !state.playing&&!$('reset-dialog').open&&!$('taste-dialog').open?
+      'welcome'+state.mode[0].toUpperCase()+state.mode.slice(1):null,
     speaks:'#play-line, #play-all, #plain, #tap, #add, .pin'});
   let deferredSpeech=[],eventSerial=0;
-  function say(key,how=false) {
+  function say(key,how=false,validNow=()=>true) {
     if(state.playing) {
-      if(!how) deferredSpeech.push({key,mode:state.mode});
+      if(!how) deferredSpeech.push({key,mode:state.mode,valid:validNow});
       return;
     }
-    const valid=()=>!state.playing&&(key!=='needEvidence'||evidenceOptions().length>0);
+    const valid=()=>!state.playing&&validNow()&&(key!=='needEvidence'||evidenceOptions().length>0);
     (how?V.how:V.say)(key,{key:how?key:key+':'+(++eventSerial),valid,hint:false});
   }
   function save() {
     try {
       localStorage.setItem(storageKey,JSON.stringify({measurements:state.measurements,checked:state.checked,
-        claims:state.claims,taste:state.taste}));
+        firstChecks:state.firstChecks,claims:state.claims,taste:state.taste}));
       saved=true;
     } catch {saved=false;}
     $('save-note').textContent=saved?'Saved on this device. Never leaves it.':'Saving unavailable. Work lasts for this visit.';
@@ -556,6 +577,7 @@ body.has-check .desk-head {display:none;}
   const keyOf = (v=state.version,l=state.line) => v+l;
   const rec = (v=state.version,l=state.line) => state.measurements[keyOf(v,l)]||{};
   const fields = ['tempo','loudness','instruments','extras'];
+  const isChecked = (f,v,l) => Object.prototype.hasOwnProperty.call(state.checked[keyOf(v,l)]||{},f);
   const trueValue = (f,v,l) => content[v][l][fields.indexOf(f)];
   function matches(f,val,v,l) {
     const truth=trueValue(f,v,l);
@@ -564,14 +586,17 @@ body.has-check .desk-head {display:none;}
     return Array.isArray(val) && [...val].sort().join('|')===[...truth].sort().join('|');
   }
   function known(f,v,l) {
-    if (state.mode==='listen' || state.checked[keyOf(v,l)]) return trueValue(f,v,l);
+    if (state.mode==='listen' || isChecked(f,v,l)) return trueValue(f,v,l);
     const val=rec(v,l)[f];
-    return state.mode==='measure' || matches(f,val,v,l) ? val : undefined;
+    return state.mode==='measure' ? val : undefined;
   }
   function edit(f,val) {
     const k=keyOf();
     state.measurements[k]={...rec(),[f]:val};
-    delete state.checked[k];
+    if(state.checked[k]) {
+      delete state.checked[k][f];
+      if(!Object.keys(state.checked[k]).length) delete state.checked[k];
+    }
     save();
     updateCells();
     updateMeasurementControls();
@@ -583,9 +608,14 @@ body.has-check .desk-head {display:none;}
     for (const [k,r] of Object.entries(state.measurements)) {
       const v=k[0],l=+k.slice(1);
       if (!content[v]?.[l]) continue;
-      state.checked[k]=true;
+      state.checked[k]||={};
+      state.firstChecks[k]||={};
       for (const f of fields) {
         if (r[f]===undefined) continue;
+        state.checked[k][f]=JSON.parse(JSON.stringify(r[f]));
+        if(!Object.prototype.hasOwnProperty.call(state.firstChecks[k],f)) {
+          state.firstChecks[k][f]=JSON.parse(JSON.stringify(r[f]));
+        }
         count++;
         if (f in totals) {totals[f][1]++;if(matches(f,r[f],v,l)) totals[f][0]++;}
       }
@@ -593,12 +623,17 @@ body.has-check .desk-head {display:none;}
     const good=Object.values(totals).reduce((n,x)=>n+x[0],0);
     const total=Object.values(totals).reduce((n,x)=>n+x[1],0);
     const worst=Object.entries(totals).sort((a,b)=>(b[1][1]-b[1][0])-(a[1][1]-a[1][0]))[0];
-    $('summary').textContent=total?`${good} of ${total} recorded tempo, loudness and instrument cells match.`+
-      (worst[1][1]>worst[1][0]?` Revisit ${worst[0]} first.`:' Your recorded cells agree.'):
-      `${count} extras cells checked. Record tempo, loudness or instruments next.`;
     save();
     updateCells();
-    setHint('Checked cells show ✓ or off with the true value. Tap a line to listen again.');
+    updateMeasurementControls();
+    for(const [k,record] of Object.entries(state.checked)) for(const f of Object.keys(record)) {
+      const lane=cells.get(k)?.querySelector('.'+f);
+      if(!lane) continue;
+      lane.classList.remove('revealed');
+      void lane.offsetWidth;
+      lane.classList.add('revealed');
+    }
+    setHint('Only recorded fields are checked. Compare your marks, then press Play line to listen again.');
     say('checkDone');
     return {good,total,totals};
   }
@@ -679,7 +714,7 @@ body.has-check .desk-head {display:none;}
         cell.classList.toggle('playing',i===state.line&&state.playing);
         for(const f of fields) {
           const lane=cell.querySelector('.'+f+' .lane-value'),r=rec(v,i)[f];
-          const checked=state.mode==='measure'&&state.checked[keyOf(v,i)];
+          const checked=state.mode==='measure'&&isChecked(f,v,i);
           const val=state.mode==='measure'?r:known(f,v,i);
           lane.parentElement.classList.toggle('checked-lane',!!checked);
           lane.innerHTML=formatValue(f,val);
@@ -712,9 +747,13 @@ body.has-check .desk-head {display:none;}
     if(state.mode==='measure') return state.playing?`Tap Tap tempo or T with the beat. Recording ${state.version}, line ${state.line+1}.`:
       'Press Play line, then Tap tempo. Choose loudness, instruments and extras for this line and version.';
     if(state.claims.length>=8) return 'Eight claims saved. Tap a pin to hear evidence, or delete a claim to revise.';
+    if(innerWidth>=600&&innerHeight<=650&&document.body.classList.contains('showing-claim')) {
+      return 'Tap a saved pin to hear evidence, or tap a lyric line to start another claim.';
+    }
     if(state.pin===null) return L.welcomeReview;
     if(!evidenceOptions().length) return 'No reliable evidence on this line yet. Tap Measure, then Play line to start a record.';
-    return state.evidence?'Finish the because sentence, then press Add claim.':
+    if(duplicateClaim()) return 'This exact claim is already saved. Change Because or choose another criterion.';
+    return state.evidence?'Write why this evidence supports your judgment in Because, then press Add claim.':
       'Pick an evidence chip. If none is available, measure and Check this line first.';
   }
   function setMode(m) {
@@ -726,6 +765,7 @@ body.has-check .desk-head {display:none;}
     state.pin=null;
     state.evidence=null;
     document.body.dataset.mode=m;
+    document.body.classList.toggle('showing-claim',m==='review'&&state.claims.length>0);
     for(const mode of ['listen','measure','review']) {
       $('m-'+mode).setAttribute('aria-pressed',mode===m);
       $(mode+'-panel').hidden=mode!==m;
@@ -747,6 +787,7 @@ body.has-check .desk-head {display:none;}
       if(state.playing) start(state.playKind==='all'?'all-jump':state.playKind==='plain'?'plain-jump':'line',i);
     }
     if(state.mode==='review') {
+      document.body.classList.remove('showing-claim');
       state.pin=i;
       state.evidence=null;
       updateEvidence();
@@ -765,7 +806,8 @@ body.has-check .desk-head {display:none;}
     document.querySelectorAll('[data-inst]').forEach(b=>b.setAttribute('aria-pressed',(r.instruments||[]).includes(b.dataset.inst)));
     document.querySelectorAll('[data-extra]').forEach(b=>b.setAttribute('aria-pressed',(r.extras||[]).includes(b.dataset.extra)));
     $('check').disabled=!Object.values(state.measurements).some(r=>Object.keys(r).length);
-    $('tap-readout').textContent=state.taps.length?(state.taps.length<4?`${state.taps.length} taps. Tap at least 4 times.`:
+    $('tap-readout').textContent=state.taps.length?(state.taps.length<4?
+      `${state.taps.length} ${state.taps.length===1?'tap':'taps'}. Tap at least 4 times.`:
       `${r.tempo||'?'} bpm · ${state.taps.length} taps · ±8% match window`):
       (r.tempo?`${r.tempo} bpm saved. Play line to measure again.`:'Play line, then tap with the beat.');
     let total=0,good=0,pending=0,extraCount=0;
@@ -775,19 +817,27 @@ body.has-check .desk-head {display:none;}
       if(!content[v]?.[line]) continue;
       for(const f of fields) {
         if(record[f]===undefined) continue;
-        if(!state.checked[k]) {pending++;continue;}
+        if(!isChecked(f,v,line)) pending++;
+      }
+    }
+    for(const [k,initial] of Object.entries(state.firstChecks)) {
+      const v=k[0],line=+k.slice(1);
+      if(!content[v]?.[line]) continue;
+      for(const f of fields) {
+        if(!Object.prototype.hasOwnProperty.call(initial,f)) continue;
         if(f==='extras') {extraCount++;continue;}
         total++;
-        if(matches(f,record[f],v,line)) good++;
+        if(matches(f,initial[f],v,line)) good++;
         else misses[f]++;
       }
     }
     const worst=Object.keys(misses).sort((a,b)=>misses[b]-misses[a])[0];
-    $('summary').textContent=total?`${good} of ${total} checked tempo, loudness and instrument cells match.`+
-      (misses[worst]?` Revisit ${worst} first.`:' Your checked cells agree.')+
-      (pending?` ${pending} fields waiting for Check.`:''):
-      pending?`${pending} fields recorded. Press Check my measurements.`:
-      extraCount?`${extraCount} extras cells checked. Record tempo, loudness or instruments next.`:
+    $('summary').textContent=total?`First checks: ${good} of ${total} recorded ${total===1?'cell':'cells'} matched.`+
+      ' Rechecking keeps this record.'+
+      (misses[worst]?` Revisit ${worst} first.`:'')+
+      (pending?` ${pending} ${pending===1?'field':'fields'} waiting for Check.`:''):
+      pending?`${pending} ${pending===1?'field':'fields'} recorded. Press Check my measurements.`:
+      extraCount?`${extraCount} extras ${extraCount===1?'cell':'cells'} checked. Record tempo, loudness or instruments next.`:
       'Your record starts empty. Nothing is scored.';
   }
   function clearTaps(erase=true) {
@@ -796,7 +846,10 @@ body.has-check .desk-head {display:none;}
       const k=keyOf();
       if(state.measurements[k]) {
         delete state.measurements[k].tempo;
-        delete state.checked[k];
+        if(state.checked[k]) {
+          delete state.checked[k].tempo;
+          if(!Object.keys(state.checked[k]).length) delete state.checked[k];
+        }
         if(!Object.keys(state.measurements[k]).length) delete state.measurements[k];
       }
       save();
@@ -811,11 +864,22 @@ body.has-check .desk-head {display:none;}
       return;
     }
     const ts=state.taps;
+    if(!ts.length) {
+      const k=keyOf();
+      if(state.measurements[k]) delete state.measurements[k].tempo;
+      if(state.checked[k]) delete state.checked[k].tempo;
+      save();
+      updateCells();
+    }
     if(ts.length>=2) {
       const intervals=ts.slice(1).map((t,i)=>t-ts[i]).sort((a,b)=>a-b),mid=intervals.length/2;
       const median=intervals.length%2?intervals[Math.floor(mid)]:(intervals[mid-1]+intervals[mid])/2;
       if(time-ts.at(-1)>1.6*median) {
         ts.length=0;
+        if(state.measurements[keyOf()]) delete state.measurements[keyOf()].tempo;
+        if(state.checked[keyOf()]) delete state.checked[keyOf()].tempo;
+        save();
+        updateCells();
         setHint('Lost the beat? Tap again with the beat.');
         pendingLost=true;
       }
@@ -825,6 +889,10 @@ body.has-check .desk-head {display:none;}
       const bpm=60000/((ts.at(-1)-ts[0])/(ts.length-1));
       if(bpm<30||bpm>240) {
         state.taps=[];
+        if(state.measurements[keyOf()]) delete state.measurements[keyOf()].tempo;
+        if(state.checked[keyOf()]) delete state.checked[keyOf()].tempo;
+        save();
+        updateCells();
         setHint('That was outside 30 to 240 bpm. Press Play line and try a steadier beat.');
         updateMeasurementControls();
         return;
@@ -844,7 +912,14 @@ body.has-check .desk-head {display:none;}
     }
     return out;
   }
-  function updateAdd() {$('add').disabled=state.pin===null||!state.evidence||state.claims.length>=8;}
+  function duplicateClaim() {
+    const because=$('because').value.trim();
+    return state.claims.some(c=>c.line===state.pin&&c.version===$('claim-version').value&&
+      c.criterion===$('criterion').value&&c.judgment===$('judgment').value&&c.evidence===state.evidence?.text&&c.because===because);
+  }
+  function updateAdd() {
+    $('add').disabled=state.pin===null||!state.evidence||!$('because').value.trim()||state.claims.length>=8||duplicateClaim();
+  }
   function updateEvidence() {
     const box=$('evidence');
     box.replaceChildren();
@@ -882,12 +957,16 @@ body.has-check .desk-head {display:none;}
   function appendClaim(c) {
     const card=document.createElement('article');
     card.className='claim';
+    card.title=claimText(c);
     card.innerHTML=`<button class="pin" aria-label="Play evidence for claim on line ${c.line+1}">Pin ${c.line+1} ▶</button>
       <div class="claim-copy"><p>${safe(c.version==='both'?'Both versions':'Version '+c.version)}:
       <strong>${safe(c.criterion)}</strong> ${safe(c.judgment)}${c.because?' because '+safe(c.because):'.'}</p>
       <small>${safe(c.evidence)}</small></div><button class="delete" aria-label="Delete claim on line ${c.line+1}">×</button>`;
     card.querySelector('.pin').onclick=()=>{
       state.line=c.line;
+      state.pin=c.line;
+      state.evidence=null;
+      updateEvidence();
       state.version=c.version==='both'?'A':c.version;
       start('pin',c.line,c.version==='both'?['A','B']:[c.version]);
       updateCells();
@@ -902,6 +981,7 @@ body.has-check .desk-head {display:none;}
     card.querySelector('.delete').onclick=()=>{
       state.claims=state.claims.filter(x=>x.id!==c.id);
       card.remove();
+      if(!state.claims.length) document.body.classList.remove('showing-claim');
       $('copy').focus({preventScroll:true});
       updateAdd();
       save();
@@ -916,13 +996,17 @@ body.has-check .desk-head {display:none;}
     state.claims.push(c);
     save();
     appendClaim(c);
+    document.body.classList.add('showing-claim');
+    if(innerWidth>=600&&innerHeight<=650) $('review-panel').scrollTop=0;
     $('because').value='';
     state.evidence=null;
     $('evidence').querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',false));
     (state.claims.length>=8?$('copy'):$('because')).focus({preventScroll:true});
     updateAdd();
-    setHint(`Claim ${state.claims.length} saved. Tap its pin to hear evidence, or choose another evidence chip.`);
-    say(c.version==='both'?'claimAdded':'claimAddedSingle');
+    setHint(state.claims.length>=8?baseHint():innerWidth>=600&&innerHeight<=650?
+      `Claim ${state.claims.length} saved. Tap its pin to hear evidence, or tap a lyric line to start another.`:
+      `Claim ${state.claims.length} saved. Tap its pin to hear evidence, or choose another evidence chip.`);
+    say(c.version==='both'?'claimAdded':'claimAddedSingle',false,()=>state.claims.some(x=>x.id===c.id));
     if(!state.playing) Curio.tone(660,.06,.025);
   }
   function reviewText() {
@@ -935,7 +1019,8 @@ body.has-check .desk-head {display:none;}
     try {
       if(!navigator.clipboard?.writeText) throw new Error('clipboard unavailable');
       await navigator.clipboard.writeText(reviewText());
-      setHint('Review copied with every claim, line number and evidence. It is also saved on this device.');
+      setHint(saved?'Review copied with every claim, line number and evidence. It is also saved on this device.':
+        'Review copied. Saving is unavailable, so the work here lasts only for this visit.');
     } catch {
       const ta=document.createElement('textarea');
       ta.value=reviewText();
@@ -946,14 +1031,15 @@ body.has-check .desk-head {display:none;}
       const ok=document.execCommand('copy');
       ta.remove();
       $('copy').focus({preventScroll:true});
-      setHint(ok?'Review copied with every claim, line number and evidence.':'Clipboard blocked. Your review is still saved here.');
+      setHint(ok?'Review copied with every claim, line number and evidence.':saved?
+        'Clipboard blocked. Your review is still saved here.':'Clipboard blocked. Your work is on screen for this visit.');
     }
   }
   // Local Web Audio extensions: both version buses share a beat clock, with independent instruments and keys.
   // Changing version changes the rate at the same beat. Kit files remain untouched.
   let ac=null,master=null,buses=null,synthNodes=[],sustains=[];
   let timer=0,raf=0,lastTime=0,nextEvent=0,nextWhole=0,phase='line',phaseBeat=0;
-  let queue=[],pinVersions=[],pendingLost=false;
+  let queue=[],pinVersions=[],pendingLost=false,repeating=false;
   const soundLog=[];
   function audio() {
     if(!Curio.sound) return null;
@@ -1062,9 +1148,12 @@ body.has-check .desk-head {display:none;}
     }
     for(const v of ['A','B']) {
       const c=content[v][state.line],semi=e.semi+(v==='A'?2:7+(state.line>=6?1:0));
-      const duration=secondsAt(state.version,state.line,Math.min(8,e.beat+e.dur))-secondsAt(state.version,state.line,e.beat);
+      const held=v==='A'&&[3,6].includes(state.line);
+      if(held&&e.beat>=6) continue;
+      const endBeat=Math.min(held?6:8,e.beat+e.dur);
+      const duration=secondsAt(state.version,state.line,endBeat)-secondsAt(state.version,state.line,e.beat);
       const f=MS.freq('C',semi),d=duration*.93,gain={soft:.065,medium:.1,loud:.15}[c[1]],b=buses[v];
-      formant(f,t,d,b,v==='A'&&state.line===0&&beat<4?'oo':'ah',gain,e.beat+e.dur*.93);
+      formant(f,t,d,b,v==='A'&&state.line===0&&beat<4?'oo':'ah',gain,e.beat+(endBeat-e.beat)*.93);
       if(c[2].includes('Trumpet')) brass(f,t,d*.8,b,.055,e.beat+e.dur*.8*.85);
       if(c[2].includes('Trombone')) brass(f/2,t,d*.82,b,.04,e.beat+e.dur*.82*.85);
     }
@@ -1078,6 +1167,12 @@ body.has-check .desk-head {display:none;}
         {gain:.075,partials:[[1,1],[2,.45],[3,.16],[4,.06]],type:'triangle',cutoff:1900},b);
       if(c[2].includes('Tuba')) brass(MS.freq('C',transpose+(beat%2?7:0)-24),t,sec*.7,b,.065);
       if(c[2].includes('Snare')&&beat%2===1) snare(t,b,.09);
+      if(v==='A'&&[3,6].includes(state.line)&&beat===6) {
+        const final=melody[state.line].at(-1);
+        const heldSeconds=secondsAt(state.version,state.line,8)-secondsAt(state.version,state.line,6);
+        formant(MS.freq('C',final.semi+2),t,heldSeconds*.98,b,'ah',.065,8);
+        soundLog.push({event:'held-note',version:v,line:state.line,fromBeat:6,toBeat:8,t:performance.now()});
+      }
       if(c[3].includes('shout-back')&&beat===7) formant(MS.freq('C',transpose),t,sec*.55,b,'ah',.16);
     }
   }
@@ -1136,7 +1231,7 @@ body.has-check .desk-head {display:none;}
     if(was) queueMicrotask(()=>{
       if(state.playing) return;
       const waiting=deferredSpeech.splice(0);
-      waiting.filter(x=>x.mode===state.mode).forEach(x=>say(x.key));
+      waiting.filter(x=>x.mode===state.mode).forEach(x=>say(x.key,false,x.valid));
     });
   }
   function allQueue(v,start=0,intro=true) {
@@ -1178,12 +1273,16 @@ body.has-check .desk-head {display:none;}
   function paintClock() {
     if(!state.playing) return;
     const b=Curio.reduce?Math.floor(state.beat):state.beat;
-    const words=heads[state.line].querySelectorAll('.word'),wi=Math.min(words.length-1,Math.floor(state.beat/8*words.length));
+    const words=heads[state.line].querySelectorAll('.word');
+    const heldEnding=[3,6].includes(state.line);
+    const wi=heldEnding?(state.beat>=6?words.length-1:Math.min(words.length-2,Math.floor(state.beat/6*(words.length-1)))):
+      Math.min(words.length-1,Math.floor(state.beat/8*words.length));
     words.forEach((w,i)=>w.classList.toggle('lit',phase==='line'&&i===wi));
     for(const v of ['A','B']) cells.get(v+state.line).querySelector('.playhead').style.left=`${b/8*100}%`;
     $('status').textContent=state.playKind==='plain'?`Plain tune · line ${state.line+1} · piano / 96 bpm`:
-      phase!=='line'?`${state.version} · ${phase} · ${Math.floor(phaseBeat)+1} beats`:
-      `${state.version} / ${state.version==='A'?'Porch':'Parade'} · line ${state.line+1} · beat ${Math.min(8,Math.floor(state.beat)+1)}`;
+      phase!=='line'?`${state.version} · ${phase} · beat ${Math.floor(phaseBeat)+1} of ${phase==='tag'?4:8}`:
+      `${state.version} / ${state.version==='A'?'Porch':'Parade'} · line ${state.line+1}${repeating?' · repeat':''}`+
+      ` · beat ${Math.min(8,Math.floor(state.beat)+1)}`;
     raf=requestAnimationFrame(paintClock);
   }
   function nextSegment() {
@@ -1192,6 +1291,7 @@ body.has-check .desk-head {display:none;}
       else {stop(true);return;}
     }
     const seg=queue.shift();
+    repeating=!!seg.repeat;
     stopAudio();
     phase=seg.phase;
     phaseBeat=0;
@@ -1254,6 +1354,7 @@ body.has-check .desk-head {display:none;}
   function reset() {
     stop();
     V.hush();
+    document.body.classList.remove('showing-claim');
     Object.assign(state,fresh(),{line:0,version:'A',pin:null,evidence:null,taps:[]});
     try{localStorage.removeItem(storageKey);}catch{}
     $('claims').replaceChildren();
@@ -1310,6 +1411,7 @@ body.has-check .desk-head {display:none;}
   });
   $('measure-selector').onchange=()=>selectField($('measure-selector').value);
   $('add').onclick=addClaim;
+  $('because').oninput=()=>{updateAdd();setHint(baseHint());};
   $('copy').onclick=copyReview;
   $('taste-button').onclick=()=>{
     stop();
@@ -1318,19 +1420,42 @@ body.has-check .desk-head {display:none;}
     $('energy').focus({preventScroll:true});
   };
   $('close-taste').onclick=()=>$('taste-dialog').close();
-  $('taste-dialog').addEventListener('close',()=>$('taste-button').focus({preventScroll:true}));
+  $('taste-dialog').addEventListener('close',()=>requestAnimationFrame(()=>{
+    if(state.mode==='review'&&!$('taste-dialog').open) $('taste-button').focus({preventScroll:true});
+    V.welcome();
+    setTimeout(()=>{
+      if(state.mode==='review'&&!$('taste-dialog').open&&
+        (document.activeElement===document.body||$('taste-dialog').contains(document.activeElement))) {
+        $('taste-button').focus({preventScroll:true});
+      }
+    },100);
+  }));
   for(const id of ['claim-version','criterion','judgment']) $(id).onchange=()=>{
-    V.dropQueued();
+    V.dropQueued(line=>line.kind!=='event');
     if(id==='claim-version') {state.evidence=null;updateEvidence();}
+    updateAdd();
     setHint(baseHint());
   };
   for(const [id,k] of [['energy','energy'],['decoration','decoration'],['preferred','preferred'],['better','better'],['better-at','betterAt']]) {
-    $(id).oninput=()=>{state.taste[k]=$(id).type==='range'?+$(id).value:$(id).value;save();};
+    $(id).oninput=()=>{
+      state.taste[k]=$(id).type==='range'?+$(id).value:$(id).value;
+      if(id==='preferred') {
+        state.taste.better=state.taste.preferred==='A'?'B':'A';
+        $('better').value=state.taste.better;
+      } else if(id==='better') {
+        state.taste.preferred=state.taste.better==='A'?'B':'A';
+        $('preferred').value=state.taste.preferred;
+      }
+      save();
+    };
   }
   $('reset').onclick=()=>{stop();V.hush();$('reset-dialog').showModal();$('cancel-reset').focus({preventScroll:true});};
   $('cancel-reset').onclick=()=>$('reset-dialog').close();
   $('confirm-reset').onclick=()=>{reset();$('reset-dialog').close();};
-  $('reset-dialog').addEventListener('close',()=>$('reset').focus({preventScroll:true}));
+  $('reset-dialog').addEventListener('close',()=>{
+    $('reset').focus({preventScroll:true});
+    V.welcome();
+  });
   $('read').addEventListener('click',()=>stop(),true);
   Curio.onSound(on=>{if(!on) stopAudio();else if(state.playing) {audio();V.hush();}});
   addEventListener('keydown',e=>{

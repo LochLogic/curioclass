@@ -1,0 +1,93 @@
+{
+  "keep": [
+    "#run",
+    "#speed",
+    "#tray"
+  ],
+  "states": [
+    {
+      "name": "matter",
+      "steps": [
+        {
+          "click": "#lens"
+        }
+      ],
+      "keep": [
+        "#ledger"
+      ]
+    },
+    {
+      "name": "energy",
+      "steps": [
+        {
+          "click": "#lens"
+        },
+        {
+          "click": "#lens"
+        }
+      ],
+      "keep": [
+        "#ledger"
+      ]
+    },
+    {
+      "name": "net",
+      "steps": [
+        {
+          "click": "#net"
+        },
+        {
+          "drag": "(()=>{const r=document.getElementById('pond').getBoundingClientRect();return Array.from({length:24},(_,i)=>[Math.round(r.x+r.width*(.08+i*.035)),Math.round(r.y+r.height*(.58+.12*Math.sin(i)))])})()"
+        }
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#drawer"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "saved",
+      "steps": [
+        {
+          "click": "#saved"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "life-inspection",
+      "steps": [
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#pond"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

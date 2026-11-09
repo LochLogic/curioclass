@@ -23,8 +23,8 @@ and lens. They compose a skyline, draw over its construction, and revise their o
    roofs and the street grid.
 2. Drag **Turn**. The two red dots (VP L and VP R) slide along the horizon; at 45 degrees they are as close as they get.
    Turn on **Guides** under Overlays: receding horizontal edges run to the two points; uprights stay parallel when Tilt is level.
-3. Press **Ink** and draw a few lines from building corners. They snap to a vanishing point, an upright or a level
-   line, and say which. Then press **Check my drawing**: Snap goes off, you draw by eye, and any line that misses its
+3. Press **Ink** and draw a few lines from building corners. They snap to a side vanishing point or an upright
+   (VP 3 with Tilt), and say which. Then press **Check my drawing**: Snap goes off, you draw by eye, and any line that misses its
    vanishing point turns red until you fix it. Press **Save picture** to keep a PNG.
 
 ## The three modes
@@ -36,11 +36,13 @@ and lens. They compose a skyline, draw over its construction, and revise their o
   the 90 degree angle between the sight lines), Windows, Sun.
 - **Ink:** the camera freezes, the render fades to 20%, and you draw: Line (snaps), Hatch (lines aimed at a face's
   vanishing point), Fill (light, mid, dark, dusk), Erase, Undo, Redo, Save picture. **Check my drawing** turns Snap off,
-  marks lines that miss with red dashes, and ends with one short note on what you changed. If you change the camera later,
+  marks lines that miss with red dashes, and asks for receding edges. The note asks what you revised,
+  or how you aimed the lines if none missed. If you change the camera later,
   Build asks whether to keep or clear the old ink.
 - **Find the Camera:** six outlines drawn from hidden cameras. Read the outline, set eye height, turn and lens (and
-  tilt on the last one), then press **Check camera**. The meter and a score for each setting show only after a check;
-  every setting has to reach 95%. The eye height has to be read from the picture: the target heights are not the stops.
+  tilt on the last one), then press **Check camera**. A coarse overall meter and the settings still off show only after a check.
+  Exact per-setting percentages are hidden. Every setting must match; below 10 m the eye allowance is 0.6 m,
+  because the outline has no floor marks to support finer guesses. The eye height has to be read from the picture: the target heights are not the stops.
   The picture is shrunk when needed so the whole outline fits the stage.
 
 ## How to find a camera
@@ -57,8 +59,8 @@ and lens. They compose a skyline, draw over its construction, and revise their o
 
 - Why does a wider lens put the vanishing points closer together? (The readout gives the distance in focal lengths:
   at the same turn it is the same number for every lens.)
-- At a rooftop, which buildings show their roofs? Which tiers show their undersides, and where are they compared with
-  your eye? (Only where the eye is, not the tilt, decides which faces you see.)
+- At a rooftop, which buildings show their roofs? From below, can you see the uncovered underside of the
+  water tank between its legs? The stepped tiers rest on wider boxes, so their undersides are hidden.
 - Turn close to 0 or 90: one vanishing point runs off forever. That is one-point perspective (see Vanishing Point
   Studio).
 
@@ -70,6 +72,8 @@ and lens. They compose a skyline, draw over its construction, and revise their o
   the distance and the angle down).
 - Keyboard: arrow keys move the selected building (Build) or a drawing cursor (Ink, Enter starts and ends a line);
   Page Up and Page Down jump the eye height between stops.
+- The picture stays upright, like a drafting view. Use Tilt to show the real lean. The angle down to the
+  block describes the eye position; Horizon on page shifts the upright drawing.
 - With Tilt, upright edges aim at the third vanishing point. The last snapped line's direction stays labeled on the drawing until the next action.
 - Standards: NCAS VA:Cr2 (setting up and composing the construction), VA:Cr3 (refining and completing the ink drawing,
   with Check my drawing as the revise step).

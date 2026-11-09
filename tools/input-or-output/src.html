@@ -74,19 +74,19 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
 .hello {position:absolute; top:12%; left:50%; right:auto; transform:translateX(-50%); max-width:90%; text-align:center; background:white; border-radius:18px; padding:5px 12px; color:#14313a;
   font-weight:800; font-size:clamp(14px,1.8vw,24px); opacity:0;}
 .call-on .hello {opacity:1;}
-.class-box {position:absolute; bottom:5%; right:5%; width:28%; height:27%; border-radius:8px; border:3px solid #fff;
+.class-box {position:absolute; bottom:5%; right:5%; width:40%; aspect-ratio:4/3; border-radius:8px; border:3px solid #fff;
   background:#c8e4e7; opacity:0;}
-.class-box svg {width:100%; height:100%;}
+.class-box img {width:100%; height:100%; object-fit:cover; border-radius:5px;}
 .class-on .class-box {opacity:1;}
 .dark-camera .class-box {background:#14202c;}
-.dark-camera .class-box svg {visibility:hidden;}
+.dark-camera .class-box img {visibility:hidden;}
 .class-box:after {content:'?'; display:none; font-size:22px; color:white; text-align:center;}
 .dark-camera .class-box:after {display:block;}
 .ear-question {position:absolute; left:10%; top:8%; bottom:auto; font-size:28px; background:white; border-radius:50%; padding:4px;}
 .tv {position:absolute; left:4%; top:2%; width:92%; height:62%; object-fit:contain;}
 .tv-screen {left:17%; top:3%; width:66%; height:42%; background:linear-gradient(#b5e8f4 70%,#a0c885 70%);}
 .ground {position:absolute; left:0; right:0; bottom:0; height:17%; background:linear-gradient(#5d8748 15%,#b09165 15%);}
-.fox {position:absolute; left:3%; bottom:12%; width:23%; height:57%; object-fit:contain;}
+.fox {position:absolute; left:3%; bottom:12%; width:23%; height:57%; object-fit:contain; object-position:center bottom;}
 .log {position:absolute; left:57%; bottom:8%; width:25%; height:22%; object-fit:contain;}
 .controller {position:absolute; left:13%; bottom:0; width:74%; height:43%; object-fit:contain;}
 .buzz {position:absolute; right:5%; bottom:18%; font-size:42px; font-weight:bold; color:#b8500b; opacity:0;}
@@ -143,9 +143,10 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
   border-radius:2px 2px 7px 2px; vertical-align:middle;}
 .board {align-self:center; min-width:0; background:linear-gradient(110deg,#fffdf1,#f5eed6);
   border:8px solid #bc956b; border-radius:19px; padding:10px; box-shadow:0 8px 18px #3e4c4b26; transform:rotate(1deg);}
+.board.complete {border-color:#368178; box-shadow:0 8px 18px #3e4c4b26,inset 0 0 20px #b9e5d7;}
 .board-title {font-size:17px; margin:0 0 10px; text-align:center;}
 .columns {display:grid; grid-template-columns:1fr .48fr 1fr; gap:5px;}
-.column {min-width:0; text-align:center;}
+.column {position:relative; min-width:0; text-align:center;}
 .column h3 {font-size:15px; margin:0; padding:5px 0; border-bottom:3px solid currentColor;}
 .column h3 small {display:block; font-size:12px;}
 .column.in {color:var(--input);}
@@ -170,7 +171,7 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
 @keyframes breathe {50% {box-shadow:0 0 0 5px #0e6f8640,0 5px 12px #173b4533;}}
 @keyframes slap {from {transform:scale(1.6) rotate(-15deg); opacity:.3;}}
 @keyframes drop {from {transform:translateY(-20px); opacity:0;}}
-.calm .part,.calm .paper,.calm .tile {animation:none!important;}
+.calm .part,.calm .paper,.calm .cover-patch,.calm .tile {animation:none!important;}
 .calm * {transition:none!important;}
 @media (max-width:1100px) {
   main {grid-template-columns:minmax(0,1fr) 336px;}
@@ -215,7 +216,10 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
   .columns {gap:2px;}
   .column h3 {font-size:10px;}
   .column h3 small {display:none;}
-  .column.think h3 {font-size:10px;}
+  .column.think h3 {position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+    overflow:hidden; clip-path:inset(50%); font-size:10px;}
+  .column.think::before {content:''; display:block; height:22px; border-bottom:3px solid currentColor;}
+  .col-arrow {display:none;}
   .tiles {gap:3px; padding-top:3px;}
   .tile span {display:none;}
   .crop {width:25px; height:24px;}
@@ -239,12 +243,12 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
   .crop {width:28px; height:28px;}
   .mini-chip {margin:8px 0; font-size:24px;}
   .result {display:grid; grid-template-columns:50px minmax(0,1fr); gap:2px 8px; align-items:center;}
-  .result .result-symbol {grid-row:1/4; font-size:39px; margin:0;}
+  .result .result-symbol {grid-row:1/4; font-size:22px; margin:0; white-space:nowrap; letter-spacing:-2px;}
   .result h3 {font-size:18px; margin:2px 0;}
   .result p {font-size:14px; margin:2px 0;}
   .result .match {grid-column:2; font-size:12px; padding:4px;}
 }
-@media (max-width:560px), (max-width:900px) and (max-height:650px) { .micro-time {visibility:hidden;} }
+@media (max-width:900px) { .micro-time {visibility:hidden;} }
 @media (max-width:560px) {
   header {display:grid; grid-template-columns:repeat(3,1fr); gap:4px; padding:5px 8px;}
   h1 {grid-column:1/-1; font-size:20px; text-align:center;}
@@ -257,7 +261,11 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
   .board {border-width:4px; padding:3px;}
   .board-title {font-size:10px; margin-bottom:3px;}
   .columns {grid-template-columns:1fr .35fr 1fr; gap:1px;}
-  .column h3,.column.think h3 {font-size:10px;}
+  .column h3 {font-size:10px;}
+  .column.think h3 {position:absolute; width:1px; height:1px; margin:-1px; padding:0;
+    overflow:hidden; clip-path:inset(50%); font-size:10px;}
+  .column.think::before {content:''; display:block; height:22px; border-bottom:3px solid currentColor;}
+  .col-arrow {display:none;}
   .column h3 small {display:none;}
   .tile span {display:none;}
   .tile {padding:1px;}
@@ -405,8 +413,8 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
   const parts = () => gadget().parts;
   const V = Curio.voice({lines:L,scope:() => state.mode,hint:false,read:() => $('hint').textContent,
     speaks:'.part,#go',welcome:() => state.mode==='try'
-      ? [['wTry',{valid:() => !state.running && !state.active}],['tapPart',{valid:() => !state.running && !state.active}]]
-      : [['wCover',{valid:() => !current().note}],['cover',{valid:() => !current().note}]]});
+      ? [['tapPart',{valid:() => !state.running && !state.active}],['wTry',{valid:() => !state.running && !state.active}]]
+      : [['cover',{valid:() => !current().note}],['wCover',{valid:() => !current().note && !current().armed}]]});
   function say(key,valid,opts={}) {return V.say(key,{valid,hint:false,now:true,...opts});}
   function how(key,valid=() => true,needs,now=false) {
     $('hint').textContent=L[key];
@@ -511,10 +519,7 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
       s.innerHTML=`<img class="device" src="${ART.tablet}" alt="Silver tablet">
         <div class="display tablet-screen" id="screen"><img class="otter" src="${ART.otter}" alt="Otter on a pretend call">
         <span class="hello" id="hello">Hello!</span><div class="class-box" id="class-box" aria-label="Pretend class picture">
-        <svg viewBox="0 0 120 70" aria-hidden="true"><g fill="#436b7b">
-        <circle cx="24" cy="24" r="10"/><path d="M7 64Q5 35 24 35T42 64Z"/>
-        <circle cx="60" cy="20" r="10"/><path d="M43 64Q41 31 60 31T78 64Z"/>
-        <circle cx="96" cy="24" r="10"/><path d="M79 64Q77 35 96 35T114 64Z"/></g></svg></div></div>`;
+        <img src="${ART.classWave}" alt="Three children waving in a pretend classroom call"></div></div>`;
     } else if (state.gadget==='game') {
       s.innerHTML=`<img class="tv" src="${ART.tv}" alt="TV"><div class="display tv-screen" id="screen">
         <div class="ground"></div><img class="fox" id="fox" src="${ART.fox}" alt="Fox game hero">
@@ -575,6 +580,8 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
       <span>${p.name}${p.kind==='both' ? ' ↔' : ''}</span></div>`;
   }
   function renderBoard(newId) {
+    const complete=state.mode==='try' && current().found.length===parts().length;
+    $('board').classList.toggle('complete',complete);
     const r=current().result;
     if (state.mode==='cover' && r) {
       $('board').innerHTML=`<div class="result" role="status"><span class="result-symbol" aria-hidden="true">${r.symbol}</span>
@@ -582,10 +589,10 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
       return;
     }
     const found=state.mode==='cover' ? parts() : parts().filter(p => current().found.includes(p.id));
-    $('board').innerHTML=`<h3 class="board-title">In, think, out</h3><div class="columns">
-      <div class="column in"><h3>IN →<small>(input)</small></h3><div class="tiles">${found.filter(p=>p.kind!=='out').map(p=>tile(p,newId)).join('')}</div></div>
+    $('board').innerHTML=`<h3 class="board-title">${complete ? "✓ Every part found!" : "In, think, out"}</h3><div class="columns">
+      <div class="column in"><h3>IN <span class="col-arrow">→</span><small>(input)</small></h3><div class="tiles">${found.filter(p=>p.kind!=='out').map(p=>tile(p,newId)).join('')}</div></div>
       <div class="column think"><h3>THINK</h3><div class="mini-chip" aria-hidden="true">${found.some(p=>p.kind==='both') ? '↔' : '▦'}</div></div>
-      <div class="column out"><h3>→ OUT<small>(output)</small></h3><div class="tiles">${found.filter(p=>p.kind!=='in').map(p=>tile(p,newId)).join('')}</div></div></div>`;
+      <div class="column out"><h3><span class="col-arrow">→</span> OUT<small>(output)</small></h3><div class="tiles">${found.filter(p=>p.kind!=='in').map(p=>tile(p,newId)).join('')}</div></div></div>`;
   }
   function syncClockLabels() {
     const time=$('micro-time');
@@ -593,7 +600,7 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
     if (!time || !button) return;
     const icon=button.querySelector('.part-icon');
     if (!icon) return;
-    const compact=innerWidth<=560 || (innerWidth<=900 && innerHeight<=650);
+    const compact=innerWidth<=900;
     const show=compact && !(state.mode==='cover' && current().note==='display');
     icon.textContent=show ? time.textContent : '▣';
     icon.classList.toggle('clock-icon',show);
@@ -607,8 +614,7 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
     const artWidth=Math.min(lab.width*.86,lab.height*.78*aspect);
     const artHeight=artWidth/aspect;
     Object.assign($('art-space').style,{inset:'auto',left:(lab.width-artWidth)/2+'px',
-      top:(innerWidth>560 && innerWidth<=900 && innerHeight>=700 ? lab.height-artHeight-70
-        : (lab.height-artHeight)/2-15)+'px',width:artWidth+'px',height:artHeight+'px'});
+      top:((lab.height-artHeight)/2-15)+'px',width:artWidth+'px',height:artHeight+'px'});
     const top=36,bottom=lab.height-(innerWidth<=560 ? 56 : 60)-size,rows=parts().length===6 ? 3 : 2;
     positions=parts().map((p,i) => {
       const col=i%2,row=Math.floor(i/2);
@@ -724,7 +730,8 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
       if (token!==state.token) return;
       $('hint').textContent=L.job;
       const teaching=p.kind==='both' ? ['inDefinition','outDefinition'] : [p.kind==='in' ? 'inDefinition' : 'outDefinition'];
-      V.how([...teaching,'job'],{hint:false,valid:() => token===state.token && !state.running,needs:'#go'});
+      // Put the next action before optional definitions so guidance is not buried.
+      V.how(['job',...teaching],{hint:false,valid:() => token===state.token && !state.running,needs:'#go'});
     },1300);
   }
   function partEffect(id) {
@@ -794,7 +801,8 @@ main {grid-template-columns:minmax(0,1fr) 336px; grid-template-areas:"stage pane
     if (state.gadget==='tablet') {
       const key=current().note==='camera' && state.mode==='cover' ? 'where' : 'hello';
       if (!(state.mode==='cover' && ['speaker','touchscreen'].includes(current().note))) {
-        setTimeout(() => {if (token===state.token) say(key,() => token===state.token && state.running,{now:false});},1600);
+        // The on-screen greeting is a timed event, so it takes its turn at that beat.
+        setTimeout(() => {if (token===state.token) say(key,() => token===state.token && state.running,{now:true});},1600);
       }
     }
   }

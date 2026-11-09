@@ -1,0 +1,23 @@
+{
+  "id": "line-leader-picker",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Twenty friends. One rule card. Who gets a turn?",
+  "outcome": "Explain that people choose rules, changing a step changes outcomes, and the chart supplies evidence for a fairness discussion.",
+  "driver": "teacher",
+  "minutes": "10-20",
+  "modes": [
+    "Make a Rule",
+    "Change a Step",
+    "Is It Fair?"
+  ],
+  "grades_label": "Grades K-2",
+  "sources": [
+    "Curio Class Line Leader Picker, authored fictional class and rule definitions (tools/line-leader-picker/spec.md), CC BY 4.0; bundled interpreter src.html, MIT",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class; supplied Curio Class content, CC BY 4.0"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06",
+  "curiosity": true,
+  "plate": null
+}

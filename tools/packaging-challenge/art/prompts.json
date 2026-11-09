@@ -47,7 +47,9 @@
       "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03"
+      "review": "Cold review 2026-11-07: key-color fringes removed with despill and holes; final dark-background frame inspected.",
+      "despill": true,
+      "holes": true
     },
     {
       "name": "pc-can-303",
@@ -60,7 +62,9 @@
       "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03"
+      "review": "Cold review 2026-11-07: key-color fringes removed with despill and holes; final dark-background frame inspected.",
+      "despill": true,
+      "holes": true
     },
     {
       "name": "pc-can-2half",
@@ -73,7 +77,9 @@
       "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03"
+      "review": "Cold review 2026-11-07: key-color fringes removed with despill and holes; final dark-background frame inspected.",
+      "despill": true,
+      "holes": true
     },
     {
       "name": "pc-can-10",
@@ -86,7 +92,9 @@
       "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03"
+      "review": "Cold review 2026-11-07: key-color fringes removed with despill and holes; final dark-background frame inspected.",
+      "despill": true,
+      "holes": true
     },
     {
       "name": "pc-can-top",
@@ -99,7 +107,9 @@
       "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03"
+      "review": "Cold review 2026-11-07: key-color fringes removed with despill and holes; final dark-background frame inspected.",
+      "despill": true,
+      "holes": true
     },
     {
       "name": "pc-order-soup",
@@ -112,23 +122,25 @@
       "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03",
+      "review": "Cold review 2026-11-07: remove key-colored fringes, inspect final WebP on dark workbench.",
       "redraw_note": "Two redraws: first steam took magenta tint, second took green tint. Final steam is opaque ivory-gray.",
       "despill": true
     },
     {
       "name": "pc-order-drink",
-      "prompt": "Tall clear glass of fizzy lemon soda with ice, three quarter view. Subject alone fully in frame on perfectly flat pure green (#00FF00). No cast shadow.",
+      "prompt": "Tall glass of fizzy pale lemon soda with clear ice and small bubbles, three quarter view. Warm clean gouache illustration with restrained painted texture for a Grade 10 design workshop, soft upper-left workshop light, believable clean glass highlights and a solid pale yellow drink. Fully in frame, centered on a perfectly flat pure magenta (#FF00FF) background. Neutral silver and ivory glass highlights, crisp silhouette; no key color reflected in the glass, no cast shadow, no text or people.",
       "aspect": "1:1",
       "width": 160,
       "quality": 76,
       "cutout": true,
       "people": false,
-      "key": "green",
+      "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03",
-      "redraw_note": "Neutral steam and glass rim; first magenta-key image had tinted reflections."
+      "review": "Cold review 2026-11-07: key-color fringes removed with despill and holes; final dark-background frame inspected.",
+      "redraw_note": "Cold review: redraw the green-fringed glass to match the painted set, with neutral highlights.",
+      "despill": true,
+      "holes": true
     },
     {
       "name": "pc-order-tomatoes",
@@ -141,7 +153,9 @@
       "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03"
+      "review": "Cold review 2026-11-07: key-color fringes removed with despill and holes; final dark-background frame inspected.",
+      "despill": true,
+      "holes": true
     },
     {
       "name": "pc-order-gift",
@@ -154,7 +168,9 @@
       "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03"
+      "review": "Cold review 2026-11-07: key-color fringes removed with despill and holes; final dark-background frame inspected.",
+      "despill": true,
+      "holes": true
     },
     {
       "name": "pc-order-seedlings",
@@ -167,7 +183,9 @@
       "key": "magenta",
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok: final-size art and in-tool frame inspected 2026-11-03"
+      "review": "Cold review 2026-11-07: key-color fringes removed with despill and holes; final dark-background frame inspected.",
+      "despill": true,
+      "holes": true
     }
   ]
 }

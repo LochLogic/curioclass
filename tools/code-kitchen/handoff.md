@@ -1,6 +1,7 @@
 # Code Kitchen handoff
 
-Build only. No commits and no polish round. Read spec.md and codex-report.md before further work.
+Built by an earlier agent; cold review completed 2026-11-08, without commits. See codex-review.md for current findings.
+For another cold review, follow CODEX-REVIEW.md's play-before-maker-reports order.
 
 ## Structure
 
@@ -40,7 +41,7 @@ None. No kit, script, documentation or other tool source was changed.
 
 ## Follow-up
 
-Read the final report for measured checks and remaining limitations. No narration was recorded in this build.
+Read codex-review.md for the cold review's measured checks and remaining limitations. No narration was recorded.
 The browser's installed voice is used, so the intended Umbriel timbre cannot be guaranteed by lines.json alone.
 
 The one full mechanical audit finished with 34 leads. Default sizes, calm mode and resize stress were clean.
@@ -49,3 +50,21 @@ and a welcome interrupted by Restart. Focused follow-up checks passed; the full 
 Native dialogs intentionally cover the background card and rail. audit-states.json now keeps their foreground
 dialog instead of requiring the covered background to remain unobscured.
 The audit's missing-welcome flags for first Cook, Step and C7-C9 are expected first-action suppression.
+
+## Cold review changes
+
+Menu transitions clear Undo history. Keeping old snapshots allowed a pre-written changed-menu answer to be restored
+with zero counted edits. changeEdits records each phase; D12's ring requires both rated changes to meet par.
+Saved par flags need parVersion 2. Older served dots remain, while older rings are re-earned under verified rules.
+Pantry excludes assignments local to other recipes. New fixed voice lines cover incomplete runs, saved kitchen,
+ticket forms and line composition. Dialog close restores its prior hint and drops instructions for hidden controls.
+The pass now names the actual served food and summarizes the student's orders and measured changes.
+The syrup was redrawn with built-in imagegen as a thin amber glaze; original art is preserved in Scratch.
+Compact Cook starts and level selection restore the panel to its top, so the sticky controls cannot cover the edit counter.
+Completed short-landscape runs expose Levels beside the primary controls. Open kitchen shares Cook's row with New ticket
+at those sizes, keeping Add a line and Pantry visible. The Manager's note is a named nonmodal dialog; closing it returns
+focus to Cook without scrolling. A changed menu clears the old plate and its success message.
+Step, Ticket sets and Clear saved have their own once-only instructions. Stop and an actual error edit hush stale error speech.
+The single cold-review audit completed within its 40-minute limit, with 89 leads assessed and 75 frames inspected.
+Compact layout, current-menu feedback and contextual voice fixes received scoped rechecks in Scratch's review-audit-fixes/
+and review-voice-final/. The final verification manifest is _scratch/code-kitchen/review-verification.json.

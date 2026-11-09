@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Algebra Tile Studio · Curio Class</title>
+<meta name="description" content="Build expressions, close factor rectangles and complete the square with signed algebra tiles. Grade 9. Works offline.">
+<link rel="icon" href="data:,">
+<!--
+Algebra Tile Studio, Curio Class. Grade 9, A-SSE.A.1, A-SSE.A.2, A-SSE.B.3a and A-SSE.B.3b.
+Started from kit/starter/src.html. Uses the kit frame, theme, sound and Curio.voice.
+Sources: CCSS Seeing Structure in Expressions; OpenStax Elementary Algebra 2e 7.3 and Intermediate Algebra 2e 9.2;
+NCTM Illuminations Algebra Tiles. All card expansions independently recomputed in Scratch.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+The specified algebra-tiles engine is absent. Local polynomial and signed-cell helpers are isolated below.
+One offline file. Nothing saved. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#6cc4ff;--brand-ink:#04192a;--focus:#a4e5ff}
+body{overflow:hidden;min-height:0}
+header{padding:12px 20px;gap:10px;flex-wrap:nowrap}
+h1{font-size:24px;letter-spacing:-.6px}
+h1 small{font-size:12px;letter-spacing:.03em;margin-top:5px}
+.seg{border-radius:8px;border-width:1px}
+.seg button,.icon-btn{min-height:44px;min-width:44px;font-size:14px;padding:0 13px}
+.icon-btn{border-radius:8px;border-width:1px}
+main{grid-template-columns:minmax(0,1fr) 328px;grid-template-areas:'stage panel';gap:12px;padding:12px;overflow:hidden}
+.panel{grid-area:panel;border:1px solid #344253;border-radius:12px;padding:16px;gap:12px;
+  background:linear-gradient(145deg,#202b39,#141b25 45%);box-shadow:inset 0 1px #ffffff16;overflow:auto}
+.stage{grid-area:stage;min-height:0;border:1px solid #425468;border-radius:14px;display:flex;flex-direction:column;
+  background:#0c1724;box-shadow:0 14px 24px #0004,inset 0 1px #ffffff30;overflow:hidden}
+.tray{display:flex;gap:6px;align-items:center;padding:10px 12px;background:linear-gradient(#263447,#192533);
+  border-bottom:1px solid #4c5d70;flex-wrap:wrap;z-index:2;box-shadow:0 4px 10px #0004}
+.tray .btn{padding:0 12px;font-size:13px;background:linear-gradient(#354457,#243243);box-shadow:inset 0 1px #ffffff15}
+.tray .kind{color:#0b1017;font-size:20px;min-width:54px;border:2px solid #0b1017;box-shadow:inset 0 2px #ffffff70,0 3px #0004}
+#add-x2{background:linear-gradient(#a3dcff,#6cc4ff)}
+#add-x{background:linear-gradient(#b2edb9,#7ee08a)}
+#add-one{background:linear-gradient(#ffe4a6,#ffd166)}
+.tray .sep{height:26px;width:1px;background:#607184;margin:0 3px}
+.tray .btn:disabled{opacity:.45}
+.matbox{position:relative;flex:1;min-height:0;overflow:hidden;background:#172a3a url('art:studio-mat') center/cover}
+.matbox::before{content:'';position:absolute;inset:0;background:#07152270;pointer-events:none}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none}
+.bench-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:36px;padding:5px 14px;
+  background:#101c29;color:#b6c7da;border-top:1px solid #415268;font-size:11px;letter-spacing:.03em}
+.lamp{width:6px;height:6px;background:#9ee5ff;border-radius:50%;box-shadow:0 0 8px #6cc4ff;display:inline-block;
+  margin-right:7px;animation:breathe 3.8s ease-in-out infinite}
+@keyframes breathe{50%{opacity:.35}}
+.calm .lamp{animation:none!important}
+.eyebrow{font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:#a6b3c4;margin:0 0 6px}
+.expression{font:600 25px/1.45 var(--readout-font);color:#e8edf3;min-height:38px;margin:0;overflow-wrap:anywhere}
+.term{cursor:help;border-bottom:1px dotted #6f8398;display:inline-flex;min-width:44px;min-height:44px;
+  align-items:center;white-space:nowrap}
+.value{font-size:13px;color:#c1d2e3;line-height:1.5;margin:6px 0 0}
+.hint{font-size:14px;line-height:1.45;min-height:62px;margin:0;flex-shrink:0}
+.tip{font-size:13px;padding:10px 12px;min-height:55px;line-height:1.45;display:block!important}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.actions .btn{font-size:13px;padding:0 10px}
+.actions .primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand)}
+.card-picker{display:flex;flex-direction:column;gap:5px}
+label{font-size:12px;color:#c6d3e2}
+select{min-height:44px;width:100%;border:1px solid #62789a;border-radius:6px;background:#0e1722;color:#e8edf3;
+  font:600 14px 'Segoe UI',sans-serif;padding:0 8px}
+.rewrite{border-top:1px solid #465368;padding-top:12px;font:14px/1.7 var(--readout-font);overflow-wrap:anywhere}
+.rewrite strong{color:var(--brand);font-size:19px;font-weight:600;display:block}
+.rewrite .minimum{font:14px/1.5 'Segoe UI',sans-serif;color:#d1efda;margin-top:8px}
+.measure{border-top:1px solid #465368;padding-top:10px;margin-top:auto}
+.measure label{display:flex;justify-content:space-between;align-items:center}
+.measure output{font:13px var(--readout-font);color:var(--brand)}
+.measure p{font-size:11px;margin:0;color:#a6b3c4}
+.xprobe{border-top:1px solid #465368;padding-top:8px}
+.xprobe label{display:flex;justify-content:space-between}
+.xprobe p{font:12px/1.4 var(--readout-font);margin:0;min-height:34px}
+body[data-mode="square"][data-filled="true"] #split,
+body[data-mode="square"][data-filled="true"] #fill{display:none}
+.tile{cursor:grab;outline:none}
+.tile:active{cursor:grabbing}
+.tile:focus-visible .tile-rim{stroke:#ffffff;stroke-width:4;stroke-dasharray:4 2}
+.tile .tile-rim{stroke:#0b1017;stroke-width:2}
+.tile.selected .tile-rim{stroke:#ffffff;stroke-width:3}
+.tile-preview.selected .tile-rim{stroke:#ffffff;stroke-width:3}
+.tile-preview{pointer-events:none}
+.dense-diagram .cell{pointer-events:none;cursor:default}
+.tile-nav{display:flex;align-items:center;gap:4px;padding:4px 8px;background:linear-gradient(#263447,#192533);
+  border-top:1px solid #4c5d70;min-height:52px}
+.tile-nav[hidden]{display:none}
+.tile-nav label{flex:1;min-width:0}
+.tile-nav select{font-size:12px;padding:0 4px}
+.tile-nav .btn{width:44px;min-width:44px;padding:0;font-size:21px}
+.tile-nav select:focus-visible,.tile-nav .btn:focus-visible{outline:3px solid #8fe3ff;outline-offset:1px}
+.tile-nav.square-nav .move-tile{display:none}
+.frame-closed{animation:edgeClose .4s ease-out}
+@keyframes edgeClose{from{stroke:#fff;filter:drop-shadow(0 0 8px #9de9c6)}to{stroke:#9de9c6}}
+.calm .frame-closed{animation:none}
+.tile.bad .tile-rim{stroke:#ffb2a8;stroke-width:4}
+.cell{fill:#07142155;stroke:#ffd16699;stroke-width:1.2;stroke-dasharray:4 5;cursor:crosshair}
+.cell:hover{fill:#6cc4ff25;stroke:#eaf8ff}
+.tile-label{font:700 16px 'Segoe UI',sans-serif;fill:#0b1017;pointer-events:none}
+.sv-label{font:12px 'Segoe UI',sans-serif;fill:#d9e6f3;pointer-events:none}
+.sv-small{font:11px 'Segoe UI',sans-serif;fill:#aec4d8;pointer-events:none}
+.edge-label{font:600 20px var(--readout-font);fill:#bfeaff;pointer-events:none}
+.scene-title{font:600 12px 'Segoe UI',sans-serif;fill:#b9cedf;letter-spacing:2px}
+.ghost-tile{pointer-events:none;animation:cancelPair .25s ease-out forwards}
+@keyframes cancelPair{to{opacity:0}}
+.corner-new{animation:cornerIn .4s ease-out}
+@keyframes cornerIn{from{opacity:.2;filter:brightness(2)}to{opacity:1}}
+.calm .ghost-tile{display:none}
+.sr{position:fixed;left:-10000px;width:1px;height:1px;overflow:hidden}
+@media(max-height:899px){
+  body:not([data-mode="mat"]) #expression-box{display:none}
+  .panel{padding:12px;gap:8px}.panel .hint{font-size:13px;line-height:1.4;min-height:0}
+  .panel .tip{font-size:12px;min-height:38px;padding:8px 10px}
+  .rewrite{font-size:13px;line-height:1.5}.rewrite strong{font-size:18px}
+  .rewrite .minimum{font-size:13px;line-height:1.35}.xprobe p{min-height:18px}
+  .measure p{display:none}
+}
+@media(min-width:1000px) and (min-height:900px){
+  .tray{gap:10px;padding:14px 16px}.tray .btn{font-size:14px}.panel{gap:16px}
+}
+@media(max-width:1100px){
+  header{padding:8px 12px;gap:6px}h1{font-size:20px}h1 small{font-size:11px}
+  .icon-btn{font-size:12px;padding:0 9px}main{grid-template-columns:minmax(0,1fr) 284px;gap:8px;padding:8px}
+  .panel{padding:12px;gap:9px}.tray{padding:6px;gap:4px}.tray .btn{padding:0 8px}.tray .kind{min-width:44px}
+  .expression{font-size:22px}.hint{font-size:13px}.bench-foot{font-size:10px;padding:4px 8px}
+}
+@media(max-height:650px) and (min-width:600px){
+  header{padding:5px 8px;gap:5px}h1{font-size:17px}h1 small{display:none}
+  .seg button,.icon-btn{font-size:12px;padding:0 8px}main{padding:6px;gap:6px;grid-template-columns:minmax(0,1fr) 244px}
+  .panel{padding:9px;gap:6px}.eyebrow{display:none}.expression{font-size:20px;min-height:29px}
+  .hint{font-size:12px;min-height:51px}.tip{font-size:12px;min-height:44px;padding:6px 8px}
+  .value{font-size:12px;margin:0}.measure{padding-top:4px}.measure p{display:none}
+  .rewrite{font-size:12px;line-height:1.5;padding-top:5px}.rewrite strong{font-size:16px}
+  .rewrite .minimum{font-size:12px;margin-top:4px}.xprobe{padding-top:3px}.xprobe p{min-height:17px}
+  .actions .btn{font-size:12px;padding:0 7px}.tray .sep{display:none}.tray .btn{font-size:12px;padding:0 7px}
+  .bench-foot .keys-help{display:none}.bench-foot{min-height:26px}
+  body:not([data-mode="mat"]) #expression-box{display:none}
+  .panel .hint{min-height:35px;font-size:12px;line-height:1.35}
+  .panel .tip{min-height:30px}.rewrite .minimum{line-height:1.3}
+  body[data-mode="square"][data-filled="true"] #probe-box,
+  body[data-mode="square"][data-filled="true"] #tip{display:none!important}
+}
+@media(max-width:999px) and (min-height:651px){
+  main{grid-template-columns:1fr;grid-template-rows:minmax(310px,1fr) auto;grid-template-areas:'stage' 'panel'}
+  .panel{display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:8px 16px;overflow:auto;max-height:370px}
+  .panel .measure{margin:0}.panel .hint{min-height:40px}.card-picker{grid-column:1/-1}
+  .xprobe{grid-column:2;grid-row:3/6}.rewrite{grid-column:1}.actions{grid-column:1/-1}
+  body:not([data-mode="mat"]) #expression-box{display:none}
+  body:not([data-mode="mat"]) .panel{max-height:400px;grid-template-columns:1fr 1fr;
+    grid-template-areas:'picker picker' 'hint hint' 'actions actions' 'tip rewrite' 'measure probe'}
+  body:not([data-mode="mat"]) #picker{grid-area:picker}
+  body:not([data-mode="mat"]) #hint{grid-area:hint;min-height:24px}
+  body:not([data-mode="mat"]) .actions{grid-area:actions}
+  body:not([data-mode="mat"]) #tip{grid-area:tip}
+  body:not([data-mode="mat"]) #rewrite{grid-area:rewrite}
+  body:not([data-mode="mat"]) .measure{grid-area:measure}
+  body:not([data-mode="mat"]) .xprobe{grid-area:probe}
+}
+@media(max-width:599px){
+  header{display:grid;grid-template-columns:repeat(3,1fr);padding:7px;gap:5px}
+  h1{grid-column:1/-1;font-size:20px;text-align:center}h1 small{display:none}
+  .seg{grid-column:1/-1;display:flex}.seg button{flex:1}
+  .icon-btn{min-width:0;padding:0 4px;font-size:12px}
+  main{padding:5px;gap:5px;grid-template-columns:1fr;grid-template-rows:minmax(250px,1fr) auto;grid-template-areas:'stage' 'panel'}
+  .tray{padding:4px;gap:3px;justify-content:center}.tray .btn{font-size:11px;padding:0 2px;min-width:44px;
+    width:44px;flex:0 0 44px;white-space:normal}
+  .tray .sep{display:none}.tray .kind{font-size:17px}.bench-foot{min-height:25px;font-size:10px}
+  .keys-help{display:none}.panel{max-height:310px;display:grid;grid-template-columns:1fr 1fr;padding:8px;gap:5px 10px}
+  .eyebrow{display:none}.expression{font-size:19px;min-height:28px}.hint{font-size:12px;min-height:36px}
+  .value{font-size:11px;margin:0}.tip{font-size:12px;padding:6px 8px;min-height:38px}
+  .card-picker,.actions{grid-column:1/-1}.measure{padding-top:4px;margin:0}.measure p{display:none}
+  .rewrite{font-size:11px;line-height:1.4;padding-top:5px}.rewrite strong{font-size:15px}.rewrite .minimum{font-size:12px}
+  .xprobe{padding-top:3px;grid-column:2;grid-row:3/6}.xprobe p{font-size:11px;min-height:25px}
+  body:not([data-mode="mat"]) #expression-box{display:none}
+  body:not([data-mode="mat"]) .panel{max-height:355px;grid-template-columns:1fr 1fr;
+    grid-template-areas:'picker picker' 'hint hint' 'actions actions' 'tip rewrite' 'measure probe'}
+  body:not([data-mode="mat"]) #picker{grid-area:picker}
+  body:not([data-mode="mat"]) #picker label{position:absolute;left:-10000px}
+  body:not([data-mode="mat"]) #hint{grid-area:hint;min-height:28px}
+  body:not([data-mode="mat"]) .actions{grid-area:actions}
+  body:not([data-mode="mat"]) #tip{grid-area:tip}
+  body:not([data-mode="mat"]) #rewrite{grid-area:rewrite}
+  body:not([data-mode="mat"]) .measure{grid-area:measure}
+  body:not([data-mode="mat"]) .xprobe{grid-area:probe}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Algebra Tile Studio<small>Close the rectangle. Read the factors.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-mat" aria-pressed="true">Mat</button>
+    <button id="m-frame" aria-pressed="false">Frame</button>
+    <button id="m-square" aria-pressed="false">Square</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <div class="card-picker" id="picker" hidden>
+      <label for="card">Choose an expression</label>
+      <select id="card"></select>
+    </div>
+    <section id="expression-box">
+      <p class="eyebrow" id="expression-label">Signed area on your mat</p>
+      <p class="expression" id="expression" aria-live="polite">0</p>
+      <p class="value" id="value"></p>
+    </section>
+    <p class="hint" id="hint"></p>
+    <div class="actions" id="mat-actions"><button class="btn" id="clear">Clear mat</button></div>
+    <div class="actions" id="frame-actions" hidden>
+      <button class="btn primary" id="check">Check</button>
+      <button class="btn" id="restart-frame">Start over</button>
+      <button class="btn" id="no-rectangle">No rectangle</button>
+    </div>
+    <div class="actions" id="square-actions" hidden>
+      <button class="btn primary" id="split">Split strips</button>
+      <button class="btn primary" id="fill" disabled>Fill the corner</button>
+      <button class="btn" id="restart-square">Start over</button>
+    </div>
+    <p class="tip" id="tip" aria-live="polite">Solid is positive. Hatched with a minus is negative.</p>
+    <div class="rewrite" id="rewrite" hidden></div>
+    <section class="xprobe" id="probe-box" hidden>
+      <label for="probe">Number-line x <output id="probe-x">0</output></label>
+      <input id="probe" type="range" min="-8" max="8" step="0.5" value="0">
+      <p id="probe-value"></p>
+    </section>
+    <section class="measure">
+      <label for="x-length">x length <output id="x-readout">x = 2.6</output></label>
+      <input id="x-length" type="range" min="1.3" max="4.7" step="0.1" value="2.6">
+      <p>Drawing length only. Unit tiles stay one unit.</p>
+    </section>
+  </aside>
+  <section class="stage" id="stage" aria-label="Algebra working mat">
+    <div class="tray" id="tray" role="group" aria-label="Tile tray">
+      <button class="btn kind" id="add-x2" aria-label="Drop x squared tile">x²</button>
+      <button class="btn kind" id="add-x" aria-label="Drop x tile">x</button>
+      <button class="btn kind" id="add-one" aria-label="Drop unit tile">1</button>
+      <span class="sep"></span>
+      <button class="btn" id="flip" disabled>Flip</button>
+      <button class="btn" id="turn" disabled>Turn</button>
+      <button class="btn" id="remove" disabled>Remove</button>
+      <button class="btn" id="zero">Zero pair</button>
+    </div>
+    <div class="matbox" id="matbox"><svg id="scene" role="group" aria-label="Algebra tiles and factor frame"></svg></div>
+    <div class="tile-nav" id="tile-nav" hidden aria-label="Tile controls for the compact diagram">
+      <label><span class="sr">Choose a tile</span><select id="tile-select" aria-label="Choose a tile"></select></label>
+      <button class="btn move-tile" id="move-left" aria-label="Move selected tile left">←</button>
+      <button class="btn move-tile" id="move-up" aria-label="Move selected tile up">↑</button>
+      <button class="btn move-tile" id="move-down" aria-label="Move selected tile down">↓</button>
+      <button class="btn move-tile" id="move-right" aria-label="Move selected tile right">→</button>
+    </div>
+    <div class="bench-foot"><span><i class="lamp"></i><span id="bench-mode">FREE MAT</span></span>
+      <span class="keys-help">Arrows move · F flip · T turn · Delete remove</span><span id="bench-count">0 tiles</span></div>
+  </section>
+</main>
+<p class="sr" id="announce" aria-live="polite"></p>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const svg = $('scene');
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const minus = n => String(n).replace(/-/g, '−');
+  const text = (parent, x, y, value, cls = 'sv-label', more = {}) => {
+    const el = node('text', {x, y, class: cls, ...more}, parent);
+    el.textContent = value;
+    return el;
+  };
+  function node(tag, attrs = {}, parent = svg) {
+    const el = document.createElementNS(NS, tag);
+    for (const [key, value] of Object.entries(attrs)) el.setAttribute(key, value);
+    parent.appendChild(el);
+    return el;
+  }
+
+  // Exact integer coefficients in descending order. No numeric-value equivalence tests.
+  const poly = tiles => tiles.reduce((p, t) => {
+    p[t.kind === 'x2' ? 0 : t.kind === 'x' ? 1 : 2] += t.sign;
+    return p;
+  }, [0, 0, 0]);
+  const equal = (a, b) => a.every((v, i) => v === b[i]);
+  const product = (p, q) => [p[0] * q[0], p[0] * q[1] + p[1] * q[0], p[1] * q[1]];
+  function fmt(p) {
+    const parts = [];
+    p.forEach((v, i) => {
+      if (!v) return;
+      const part = (i < 2 && Math.abs(v) === 1 ? '' : Math.abs(v)) + ['x²', 'x', ''][i];
+      parts.push((parts.length ? (v < 0 ? ' − ' : ' + ') : (v < 0 ? '−' : '')) + part);
+    });
+    return parts.join('') || '0';
+  }
+  const linear = p => fmt([0, p[0], p[1]]);
+  const FRAME = [
+    [1, 5, 6], [1, 7, 12], [1, 6, 9], [1, -5, 6], [1, 1, -6], [1, 0, -9],
+    [2, 7, 3], [2, 5, 2], [1, 1, 1], [1, 0, 4],
+  ];
+  const SQUARE = [[1, 6, 5], [1, 4, 7], [1, 8, 16], [1, -6, 10], [1, 2, -3], [1, -4, 0]];
+  const L = {
+    wMat: 'Press x squared, x or 1 to drop a tile, or drag one onto the mat. A red tile on a matching solid tile makes zero.',
+    wFrame: 'Pick a card from the list. Then drag its tiles into the frame until they close into a rectangle.',
+    wSquare: 'Pick a card from the expression list to start a square.',
+    matAct: 'Press a tile button to add a tile. Select a tile to use its enabled tray controls, or move it with the arrow keys.',
+    frameAct: 'Drag a pile tile into the frame, or select a tile and tap a dashed cell.',
+    squareAct: 'Press Split strips to share the x strips evenly between two edges.',
+    fillAct: 'Press Fill the corner. Every unit added inside gets a negative unit outside, so the expression stays the same.',
+    probeAct: 'Drag the number-line dot, or use its arrow keys. Find where the inset square vanishes.',
+    restoreAct: 'Press Start over to restore this expression and rebuild its square.',
+    zeroHint: 'Stuck? Press Zero pair. It changes the picture, not the value.',
+    gap: 'Not closed yet. Read the tip, move a tile, then press Check.',
+    closed: 'It closes. The edges are the factors.',
+    noRect: 'Right. No whole-number rectangle exists for this one.',
+    noRectWrong: 'This one does close. Read the tip and keep building.',
+    square: 'The square is done. What is left over is the smallest value.',
+    zero: 'A positive tile and its matching negative make zero. The expression stays the same.',
+    added: 'Added zero.',
+    compactAct: 'Choose a tile from the tile list. Use the arrow buttons to place and move it. The enabled tray buttons edit that tile.',
+    frameDone: 'Read the factors and zeros. Choose another expression card, or press Start over to build this one again.',
+    pairProof: 'Compare every factor-pair sum in the tip with the middle coefficient. Then choose another expression card.',
+  };
+  const fresh = () => ({tiles: [], selected: null, lastKind: 'x', card: null, solved: false, noRect: false, message: '', revision: 0});
+  const state = {mode: 'mat', xLen: 2.6, mat: fresh(), frame: fresh(),
+    square: {...fresh(), split: false, filled: false, altered: false, probe: 0}};
+  let nextId = 1;
+  let geom = {};
+  let pointer = null;
+  let ghosts = [];
+  let renderQueued = false;
+  let modeReady = false;
+  let eventSerial = 0;
+  let denseInput = false;
+  const current = () => state[state.mode];
+  const V = Curio.voice({
+    lines: L,
+    scope: () => state.mode,
+    hint: false,
+    read: () => $('hint').textContent,
+    welcome: () => {
+      const m = current();
+      if (state.mode === 'mat') return m.tiles.length ? null : 'wMat';
+      return m.card === null ? (state.mode === 'frame' ? 'wFrame' : 'wSquare') : null;
+    },
+  });
+  function speak(key, valid = () => true, how = false) {
+    const options = {valid, hint: false};
+    if (!how) options.key = key + '-' + (++eventSerial);
+    V[how ? 'how' : 'say'](key, options);
+  }
+  function actionHint() {
+    if (state.mode === 'mat') return current().tiles.length ? (denseInput ? L.compactAct : L.matAct) : L.wMat;
+    if (current().card === null) return state.mode === 'frame' ? L.wFrame : L.wSquare;
+    if (state.mode === 'frame' && current().noRect) return L.pairProof;
+    if (state.mode === 'frame' && current().solved) return L.frameDone;
+    if (state.mode === 'frame') return denseInput ? L.compactAct : L.frameAct;
+    if (state.square.altered) return L.restoreAct;
+    return state.square.filled ? L.probeAct : state.square.split ? L.fillAct : L.squareAct;
+  }
+  function newTile(kind, sign = 1, extra = {}) {
+    return {id: nextId++, kind, sign, turned: false, zone: 'pile', col: 0, row: 0, ...extra};
+  }
+  function load(card) {
+    if (state.mode === 'mat') return;
+    V.hush();
+    const m = current();
+    const list = state.mode === 'frame' ? FRAME : SQUARE;
+    const index = Number(card);
+    if (!Number.isInteger(index) || !list[index]) return;
+    Object.assign(m, fresh(), {card: index});
+    if (state.mode === 'square') Object.assign(m, {split: false, filled: false, altered: false, probe: 0});
+    const [a, b, c] = list[index];
+    for (let i = 0; i < a; i++) m.tiles.push(newTile('x2', 1));
+    for (let i = 0; i < Math.abs(b); i++) m.tiles.push(newTile('x', Math.sign(b)));
+    for (let i = 0; i < Math.abs(c); i++) m.tiles.push(newTile('1', Math.sign(c)));
+    if (state.mode === 'square') Object.assign(m.tiles[0], {zone: 'frame', col: 0, row: 0});
+    m.message = state.mode === 'frame' ? 'Start with x² at the corner. Choose how to share the strips between the edges.' : '';
+    $('card').value = String(index);
+    update();
+    speak(state.mode === 'frame' ? (denseInput ? 'compactAct' : 'frameAct') : 'squareAct',
+      () => current().card === index, true);
+    Curio.tone(300, .05, .04);
+  }
+  function setMode(mode) {
+    const m = mode.toLowerCase();
+    if (!['mat', 'frame', 'square'].includes(m)) return;
+    if (modeReady && state.mode === m) {
+      V.welcome();
+      return;
+    }
+    modeReady = true;
+    finishVisuals();
+    V.hush();
+    state.mode = m;
+    document.body.dataset.mode = m;
+    for (const name of ['mat', 'frame', 'square']) $('m-' + name).setAttribute('aria-pressed', String(m === name));
+    $('picker').hidden = m === 'mat';
+    for (const name of ['mat', 'frame', 'square']) $(name + '-actions').hidden = name !== m;
+    $('probe-box').hidden = m !== 'square' || !state.square.filled;
+    $('card').replaceChildren();
+    if (m !== 'mat') {
+      const blank = document.createElement('option');
+      blank.value = '';
+      blank.textContent = 'Pick a card…';
+      $('card').append(blank);
+      (m === 'frame' ? FRAME : SQUARE).forEach((p, i) => {
+        const opt = document.createElement('option');
+        opt.value = String(i);
+        opt.textContent = `${i + 1}. ${fmt(p)}`;
+        $('card').append(opt);
+      });
+      $('card').value = current().card === null ? '' : String(current().card);
+    }
+    update();
+    V.welcome();
+  }
+  function finishVisuals() {
+    ghosts = [];
+    state.square.animUntil = 0;
+    svg.querySelectorAll('.ghost-tile').forEach(el => el.remove());
+    svg.querySelectorAll('.corner-new').forEach(el => el.classList.remove('corner-new'));
+  }
+  function mutate(keepAdded = false) {
+    const m = current();
+    m.revision++;
+    m.solved = false;
+    m.noRect = false;
+    m.message = '';
+    if (state.mode === 'square' && m.card !== null) {
+      clearOldSpeech();
+      m.altered = true;
+      m.filled = false;
+      m.message = 'Tiles changed. Press Start over to rebuild this card’s square.';
+    }
+    V.dropQueued(it => it.kind !== 'welcome' && !(keepAdded && String(it.key).startsWith('added-')));
+  }
+  function clearOldSpeech() {
+    // Read has priority. Only queued or ordinary state narration gives way to a new action.
+    if (V.playing) V.hush();
+    else V.dropQueued();
+  }
+  function freeMatSpot(kind, paired = false) {
+    const width = (kind === '1' ? 1 : state.xLen) +
+      (paired ? (kind === 'x' ? Math.ceil(state.xLen) + 1 : 2) : 0);
+    const height = kind === 'x2' ? state.xLen : 1;
+    const cols = (geom.w - 28) / geom.unit;
+    const rows = (geom.h - 54) / geom.unit;
+    for (let row = 0; row + height <= rows; row++) {
+      for (let col = 0; col + width <= cols; col++) {
+        const overlap = state.mat.tiles.some(t => {
+          const [tw, th] = dims(t, 1);
+          return col < t.col + tw + .1 && col + width + .1 > t.col &&
+            row < t.row + th + .1 && row + height + .1 > t.row;
+        });
+        if (!overlap) return {zone: 'mat', col, row};
+      }
+    }
+    return null;
+  }
+  function add(kind, sign = 1, point = null) {
+    finishVisuals();
+    const m = current();
+    if (state.mode !== 'mat' && m.card === null) return null;
+    if (state.mode === 'mat' && V.playing === L.wMat) V.hush();
+    mutate();
+    const tile = newTile(kind, sign);
+    if (state.mode === 'mat') {
+      const at = point ? {zone: 'mat', ...point} : freeMatSpot(kind);
+      if (!at) {
+        m.message = 'The mat is full. Remove tiles or use Clear mat to make room.';
+        update();
+        return null;
+      }
+      Object.assign(tile, at);
+    }
+    m.tiles.push(tile);
+    m.selected = tile.id;
+    if (kind !== 'x2') m.lastKind = kind;
+    update();
+    if (state.mode === 'mat') speak(denseInput ? 'compactAct' : 'matAct',
+      () => state.mode === 'mat' && state.mat.tiles.length > 0, true);
+    Curio.tone(kind === 'x2' ? 260 : kind === 'x' ? 390 : 520, .055, .045);
+    return tile;
+  }
+  function zeroPair() {
+    finishVisuals();
+    const m = current();
+    if (state.mode !== 'mat' && m.card === null) return;
+    mutate(true);
+    const kind = m.lastKind === '1' ? '1' : 'x';
+    const at = state.mode === 'mat' ? freeMatSpot(kind, true) : {};
+    if (!at) {
+      m.message = 'The mat is full. Remove tiles or use Clear mat to make room.';
+      update();
+      return;
+    }
+    const separation = kind === 'x' ? Math.ceil(state.xLen) + 1 : 2;
+    m.tiles.push(newTile(kind, 1, at), newTile(kind, -1, {...at, col: (at.col || 0) + separation}));
+    m.message = 'Added 0. Same expression, more ways to build.';
+    update();
+    const mode = state.mode;
+    const card = m.card;
+    V.say('added', {key: 'added-' + m.revision, hint: false,
+      valid: () => state.mode === mode && current().card === card});
+    Curio.tone(460, .08, .04);
+  }
+  function select(id, focus = false) {
+    current().selected = id;
+    update(false);
+    svg.querySelectorAll('.tile,.tile-preview').forEach(el => el.classList.toggle('selected', +el.dataset.id === id));
+    syncNavigator();
+    if (focus) svg.querySelector(`[data-id="${id}"]`)?.focus({preventScroll: true});
+  }
+  function edit(what) {
+    finishVisuals();
+    const m = current();
+    const tile = m.tiles.find(t => t.id === m.selected);
+    if (!tile) return;
+    mutate();
+    if (what === 'flip') tile.sign *= -1;
+    if (what === 'turn' && tile.kind === 'x') tile.turned = !tile.turned;
+    if (what === 'remove') {
+      m.tiles = m.tiles.filter(t => t.id !== tile.id);
+      m.selected = null;
+      $('add-one').focus({preventScroll: true});
+    }
+    update();
+    Curio.tone(what === 'flip' ? 220 : 420, .055, .04);
+  }
+
+  // A frame is an outer product of symbolic edge pieces. It grows from the student's placed cells.
+  // The second x² may extend either axis. Nothing consults a card's precomputed factor answer.
+  function frameRead(m = state.frame) {
+    const placed = m.tiles.filter(t => t.zone === 'frame');
+    let nx = 1;
+    let ny = 1;
+    placed.filter(t => t.kind === 'x2').forEach(t => {
+      nx = Math.max(nx, t.col + 1);
+      ny = Math.max(ny, t.row + 1);
+    });
+    nx = Math.min(nx, 2);
+    ny = Math.min(ny, 2);
+    const cols = Math.max(nx + 1, ...placed.map(t => t.col + 1));
+    const rows = Math.max(ny + 1, ...placed.map(t => t.row + 1));
+    const map = new Map();
+    const bad = [];
+    for (const t of placed) {
+      const k = `${t.row},${t.col}`;
+      if (map.has(k)) bad.push({tile: t, why: 'Two tiles overlap in this cell.'});
+      else map.set(k, t);
+    }
+    const origin = map.get('0,0');
+    const colSigns = Array.from({length: cols}, (_, c) => map.get(`0,${c}`)?.sign || 1);
+    const rowSigns = Array.from({length: rows}, (_, r) => (map.get(`${r},0`)?.sign || 1) * (origin?.sign || 1));
+    const gaps = [];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        const kind = r < ny && c < nx ? 'x2' : r < ny || c < nx ? 'x' : '1';
+        const sign = rowSigns[r] * colSigns[c];
+        const t = map.get(`${r},${c}`);
+        const turned = kind === 'x' && r < ny;
+        if (!t) gaps.push({row: r, col: c, kind, sign, turned});
+        else if (t.kind !== kind || t.sign !== sign || (kind === 'x' && t.turned !== turned)) {
+          const why = t.kind !== kind ? `This cell needs ${kind === 'x2' ? 'x²' : kind === 'x' ? 'an x strip' : 'a unit tile'}.` :
+            t.sign !== sign ? 'Its sign must be the row sign times the column sign.' : 'Turn this strip to match the edge.';
+          bad.push({tile: t, why});
+        }
+      }
+    }
+    const f = [colSigns.slice(0, nx).reduce((a, b) => a + b, 0), colSigns.slice(nx).reduce((a, b) => a + b, 0)];
+    const g = [rowSigns.slice(0, ny).reduce((a, b) => a + b, 0), rowSigns.slice(ny).reduce((a, b) => a + b, 0)];
+    return {full: !gaps.length, consistent: !bad.length, gaps, bad, rows, cols, nx, ny, factors: [f, g], map};
+  }
+  function place(id, col, row, zone = 'frame') {
+    finishVisuals();
+    const m = current();
+    const tile = m.tiles.find(t => t.id === id);
+    if (!tile) return false;
+    mutate();
+    if (state.mode === 'mat') {
+      const [tw, th] = dims(tile, 1);
+      col = clamp(col, 0, Math.max(0, Math.floor((geom.w - 28) / geom.unit - tw)));
+      row = clamp(row, 0, Math.max(0, Math.floor((geom.h - 54) / geom.unit - th)));
+      const other = m.tiles.find(t => t.id !== id && t.kind === tile.kind && t.sign === -tile.sign &&
+        t.col === col && t.row === row);
+      if (other) {
+        const unchanged = poly(m.tiles);
+        ghosts = [{...tile, col, row}, {...other}];
+        m.tiles = m.tiles.filter(t => t.id !== id && t.id !== other.id);
+        m.selected = null;
+        if (!equal(unchanged, poly(m.tiles))) throw new Error('Zero-pair invariant');
+        m.message = 'Zero pair: the two tiles cancel. Same expression.';
+        speak('zero');
+        Curio.tone(720, .09, .04);
+        update();
+        if (!Curio.reduce) setTimeout(() => { ghosts = []; }, 260);
+        return true;
+      }
+      Object.assign(tile, {zone: 'mat', col, row});
+    } else {
+      Object.assign(tile, {zone, col: clamp(col, 0, 7), row: clamp(row, 0, 7)});
+    }
+    m.selected = id;
+    update();
+    if (state.mode === 'frame') {
+      const read = frameRead();
+      const bad = read.bad.find(b => b.tile.id === id);
+      const label = `${tile.kind === '1' ? 'unit' : tile.kind} tile, ${bad ? "doesn't fit. " + bad.why : 'fits'}`;
+      $('announce').textContent = `row ${row + 1}, column ${col + 1}: ${label}`;
+      if (m.card !== null && read.full && read.consistent && m.tiles.every(t => t.zone === 'frame') &&
+        equal(product(...read.factors), FRAME[m.card]) && equal(poly(m.tiles), FRAME[m.card])) check();
+    }
+    Curio.tone(340 + 25 * row, .045, .035);
+    return true;
+  }
+  function check() {
+    if (state.mode !== 'frame' || state.frame.card === null) return false;
+    const m = state.frame;
+    const read = frameRead();
+    const target = FRAME[m.card];
+    const exact = read.full && read.consistent && m.tiles.every(t => t.zone === 'frame') &&
+      equal(product(...read.factors), target) && equal(poly(m.tiles), target);
+    m.solved = exact;
+    const rev = m.revision;
+    if (exact) {
+      m.message = 'Closed. Every cell agrees with its row and column.';
+      m.closedUntil = Date.now() + 400;
+      Curio.yes();
+      speak('closed', () => m.solved && m.revision === rev);
+      speak('frameDone', () => m.solved && m.revision === rev, true);
+    } else {
+      const gap = read.gaps[0];
+      m.message = read.bad.length ? `Doesn't fit: ${read.bad[0].why}` :
+        gap ? `A hole at row ${gap.row + 1}, column ${gap.col + 1}: ` +
+          `${gap.kind === '1' ? 'a unit tile' : gap.kind === 'x2' ? 'an x² tile' : 'an x strip'} fits here.` :
+        m.tiles.some(t => t.zone !== 'frame') ? 'Use the remaining pile tiles. The whole expression must be in the rectangle.' :
+        'The rectangle expands to a different expression. Restore the card’s tiles.';
+      if ([4, 5].includes(m.card) && m.tiles.every(t => t.zone === 'frame')) {
+        speak('zeroHint', () => m.revision === rev, true);
+      } else speak('gap', () => m.revision === rev);
+      Curio.tone(155, .08, .04);
+    }
+    update();
+    return exact;
+  }
+  function noRectangle() {
+    const m = state.frame;
+    if (m.card === null) return false;
+    const [a, b, c] = FRAME[m.card];
+    let possible = false;
+    for (let p = -a; p <= a; p++) {
+      if (!p || a % p) continue;
+      for (let q = -Math.abs(c); q <= Math.abs(c); q++) {
+        if (!q || c % q) continue;
+        if (p * (c / q) + q * (a / p) === b) possible = true;
+      }
+    }
+    // A binary claim is an explanation request, never evidence of a student's mastery.
+    m.solved = false;
+    m.noRect = !possible;
+    const pairs = [];
+    if (!possible) {
+      for (let q = -Math.abs(c); q <= Math.abs(c); q++) {
+        if (!q || c % q || q > c / q) continue;
+        pairs.push(`${minus(q)} + ${minus(c / q)} = ${minus(q + c / q)}`);
+      }
+    }
+    m.message = possible ? ([4, 5].includes(m.card) ? 'This one does close. Try a zero pair of x strips.' :
+      'This one does close. Try moving the strips between the two edges.') :
+      `Worked check: ${pairs.join('; ')}. None sums to ${b}. No whole-number rectangle.`;
+    update();
+    const card = m.card;
+    const revision = m.revision;
+    speak(possible ? 'noRectWrong' : 'pairProof', () => state.frame.card === card && m.revision === revision);
+    return !possible;
+  }
+
+  function splitStrips() {
+    const m = state.square;
+    if (m.card === null || m.split || m.altered) return;
+    const heldFocus = document.activeElement === $('split');
+    finishVisuals();
+    clearOldSpeech();
+    const target = SQUARE[m.card];
+    if (!equal(poly(m.tiles), target)) {
+      m.message = 'The tiles changed. Press Start over to restore this expression before splitting.';
+      update();
+      return;
+    }
+    const h = Math.abs(target[1] / 2);
+    const strips = m.tiles.filter(t => t.kind === 'x');
+    strips.forEach((t, i) => Object.assign(t, {zone: 'frame', row: i < h ? 0 : i - h + 1,
+      col: i < h ? i + 1 : 0, turned: i < h}));
+    m.split = true;
+    m.message = `${h} strips on each edge. The corner needs ${h} by ${h}: ${h * h} units.`;
+    update();
+    if (heldFocus) $('fill').focus({preventScroll: true});
+    speak('fillAct', () => m.split && !m.filled, true);
+    Curio.tone(440, .09, .045);
+  }
+  function dragSquareStrip(id, x, y) {
+    const m = state.square;
+    const f = geom.square;
+    const tile = m.tiles.find(t => t.id === id);
+    if (!f || m.split || m.altered || tile?.kind !== 'x') return;
+    const top = x >= f.x + f.xedge && y < f.y + f.xedge;
+    const left = y >= f.y + f.xedge && x < f.x + f.xedge;
+    if (!top && !left) return;
+    const index = Math.floor(((top ? x - f.x : y - f.y) - f.xedge) / geom.unit) + 1;
+    if (index < 1 || index > f.n) return;
+    const col = top ? index : 0;
+    const row = top ? 0 : index;
+    if (m.tiles.some(t => t.id !== id && t.zone === 'frame' && t.col === col && t.row === row)) return;
+    Object.assign(tile, {zone: 'frame', col, row, turned: top});
+    m.split = Array.from({length: f.n}, (_, i) => i + 1).every(i =>
+      m.tiles.some(t => t.kind === 'x' && t.zone === 'frame' && t.col === i && t.row === 0) &&
+      m.tiles.some(t => t.kind === 'x' && t.zone === 'frame' && t.col === 0 && t.row === i));
+    m.message = m.split ? `${f.n} strips on each edge. The corner needs ${f.n * f.n} units.` :
+      'Share the remaining strips between the top and left edges, or press Split strips.';
+    update();
+    if (m.split) speak('fillAct', () => m.split && !m.filled, true);
+    Curio.tone(440, .055, .04);
+  }
+  function fillCorner() {
+    const m = state.square;
+    if (!m.split || m.filled || m.card === null || m.altered) return;
+    const heldFocus = document.activeElement === $('fill');
+    finishVisuals();
+    clearOldSpeech();
+    const [a, b, c] = SQUARE[m.card];
+    const h = Math.abs(b / 2);
+    if (!equal(poly(m.tiles), [a, b, c])) {
+      m.message = 'The expression changed. Press Start over, then Split strips.';
+      update();
+      return;
+    }
+    for (let r = 1; r <= h; r++) {
+      for (let col = 1; col <= h; col++) {
+        m.tiles.push(newTile('1', 1, {zone: 'frame', col, row: r, corner: true}));
+        m.tiles.push(newTile('1', -1, {zone: 'remainder', col, row: r}));
+      }
+    }
+    const outside = m.tiles.filter(t => t.zone !== 'frame' && t.kind === '1');
+    const positives = outside.filter(t => t.sign > 0);
+    const negatives = outside.filter(t => t.sign < 0);
+    const cancelCount = Math.min(positives.length, negatives.length);
+    const cancelIds = new Set([...positives.slice(0, cancelCount), ...negatives.slice(0, cancelCount)].map(t => t.id));
+    m.tiles = m.tiles.filter(t => !cancelIds.has(t.id));
+    m.canceledPairs = cancelCount;
+    m.filled = true;
+    m.animUntil = Date.now() + 400;
+    m.message = `Added ${h * h} inside and ${h * h} negatives outside: added 0.`;
+    update();
+    if (heldFocus) svg.querySelector('[role="slider"]')?.focus({preventScroll: true});
+    speak('square', () => m.filled);
+    speak('probeAct', () => m.filled, true);
+    Curio.yes();
+  }
+  function update(draw = true) {
+    const m = current();
+    const target = state.mode === 'mat' || m.card === null ? null : (state.mode === 'frame' ? FRAME : SQUARE)[m.card];
+    const p = poly(m.tiles);
+    document.body.dataset.filled = String(state.square.filled);
+    $('expression-label').textContent = state.mode === 'mat' ? 'Signed area on your mat' : 'Expression card';
+    if (state.mode === 'mat') {
+      $('expression').replaceChildren();
+      const shown = p.map((v, i) => {
+        if (!v) return null;
+        const e = document.createElement('span');
+        e.className = 'term';
+        e.tabIndex = 0;
+        e.textContent = fmt(p.map((x, j) => i === j ? x : 0));
+        e.title = i === 2 ? `constant ${minus(v)}` : `term ${e.textContent}, coefficient ${minus(v)}`;
+        e.setAttribute('aria-label', e.title);
+        return e;
+      }).filter(Boolean);
+      shown.forEach((e, i) => {
+        if (i) e.textContent = e.textContent.startsWith('−') ? ' − ' + e.textContent.slice(1) : ' + ' + e.textContent;
+        $('expression').append(e);
+      });
+      if (!shown.length) $('expression').textContent = '0';
+      const value = p[0] * state.xLen ** 2 + p[1] * state.xLen + p[2];
+      $('value').textContent = `Value at x = ${state.xLen.toFixed(1)}: ${minus(Number(value.toFixed(2)))}`;
+    } else {
+      $('expression').textContent = target ? fmt(target) : 'Choose a card';
+      $('value').textContent = target && !equal(p, target) ? `Tiles now: ${fmt(p)}. Restore the card before checking.` :
+        state.mode === 'frame' ? 'Build with signed areas. Hatched tiles subtract.' : 'Build a square. Keep the expression unchanged.';
+    }
+    $('hint').textContent = actionHint();
+    $('tip').textContent = m.message || defaultTip();
+    const selected = m.tiles.find(t => t.id === m.selected);
+    for (const id of ['add-x2', 'add-x', 'add-one', 'zero']) {
+      $(id).disabled = state.mode !== 'mat' && m.card === null;
+    }
+    $('flip').disabled = !selected;
+    $('turn').disabled = !selected || selected.kind !== 'x';
+    $('remove').disabled = !selected;
+    $('check').disabled = state.frame.card === null;
+    $('no-rectangle').disabled = state.frame.card === null;
+    $('restart-frame').disabled = state.frame.card === null;
+    $('restart-square').disabled = state.square.card === null;
+    $('split').disabled = state.square.card === null || state.square.split || state.square.altered;
+    $('fill').disabled = !state.square.split || state.square.filled || state.square.altered;
+    $('bench-mode').textContent = {mat: 'FREE MAT', frame: 'FACTOR FRAME', square: 'COMPLETE THE SQUARE'}[state.mode];
+    $('bench-count').textContent = `${m.tiles.length} ${m.tiles.length === 1 ? 'tile' : 'tiles'}`;
+    $('x-readout').textContent = `x = ${state.xLen.toFixed(1)}`;
+    $('x-length').value = state.xLen;
+    $('rewrite').hidden = true;
+    $('probe-box').hidden = state.mode !== 'square' || !state.square.filled;
+    if (state.mode === 'frame' && m.solved && !m.noRect) {
+      const read = frameRead();
+      const [f, g] = read.factors;
+      const zeros = [minus(Number((-f[1] / f[0]).toFixed(4))), minus(Number((-g[1] / g[0]).toFixed(4)))];
+      const note = f[0] === g[0] && f[1] === g[1] ? 'A perfect square.' : m.card === 5 ? 'A difference of squares.' : '';
+      $('rewrite').hidden = false;
+      $('rewrite').innerHTML = `${fmt(target)} =<strong>(${linear(f)})(${linear(g)})</strong>` +
+        `<div class="minimum">Zeros: x = ${zeros[0]} and x = ${zeros[1]}<br>(each factor is 0 there). ${note}</div>`;
+    }
+    if (state.mode === 'square' && m.filled && target) {
+      const h = target[1] / 2;
+      const corner = h * h;
+      const rem = target[2] - corner;
+      const side = linear([1, h]);
+      const rest = rem ? ` ${rem < 0 ? '−' : '+'} ${Math.abs(rem)}` : '';
+      $('rewrite').hidden = false;
+      $('rewrite').innerHTML = `${fmt(target)}<br>= (${fmt([1, target[1], corner])}) − ${corner} ${target[2] < 0 ? '−' : '+'} ` +
+        `${Math.abs(target[2])}<strong>= (${side})²${rest}</strong>` +
+        `<div class="minimum">Smallest value: ${minus(rem)}, when x = ${minus(-h)}` +
+        `${rem === 0 ? '<br>Nothing left over: a perfect square.' : ''}</div>`;
+      $('probe').value = m.probe;
+      $('probe-x').textContent = minus(m.probe);
+      const val = (m.probe + h) ** 2 + rem;
+      $('probe-value').textContent = `(${side})²${rest} = ${minus(val)} at x = ${minus(m.probe)}`;
+    }
+    if (draw) render();
+    if (state.mode === 'square' && m.altered) speak('restoreAct', () => state.square.altered, true);
+  }
+  function defaultTip() {
+    if (state.mode === 'frame') return denseInput ? 'Use the tile list and arrow buttons. A loose tile starts at the corner.' :
+      'Select a pile tile, then tap a cell. Empty cells extend the frame.';
+    return state.mode === 'square' ? 'A square plus a remainder reveals the smallest value.' :
+      'Solid is positive. Hatched with a minus is negative.';
+  }
+
+  function definitions() {
+    const d = node('defs');
+    for (const [kind, color, light] of [['x2', '#6cc4ff', '#b9e4ff'], ['x', '#7ee08a', '#c3f6ca'],
+      ['1', '#ffd166', '#ffedbf'], ['negative', '#ff8a8a', '#ffcdcd']]) {
+      const g = node('linearGradient', {id: 'paint-' + kind, x2: '90%', y2: '100%'}, d);
+      node('stop', {offset: '0', 'stop-color': light}, g);
+      node('stop', {offset: '.3', 'stop-color': color}, g);
+      node('stop', {offset: '1', 'stop-color': color}, g);
+    }
+    const hatch = node('pattern', {id: 'hatch', width: 8, height: 8, patternUnits: 'userSpaceOnUse', patternTransform: 'rotate(35)'}, d);
+    node('line', {x1: 0, y1: 0, x2: 0, y2: 8, stroke: '#5a1c27', 'stroke-width': 2, opacity: .55}, hatch);
+    const grid = node('pattern', {id: 'grid', width: geom.unit, height: geom.unit, patternUnits: 'userSpaceOnUse'}, d);
+    node('path', {d: `M ${geom.unit} 0 H 0 V ${geom.unit}`, fill: 'none', stroke: '#668198', 'stroke-opacity': .22}, grid);
+  }
+  function tileShape(t, x, y, w, h, parent = svg, attrs = {}) {
+    const g = node('g', {transform: `translate(${x},${y})`, ...attrs}, parent);
+    node('rect', {x: 2, y: 4, width: Math.max(2, w - 3), height: Math.max(2, h - 2), rx: 3, fill: '#0008'}, g);
+    node('rect', {x: 0, y: 0, width: w - 2, height: h - 2, rx: 3, fill: `url(#paint-${t.sign < 0 ? 'negative' : t.kind})`,
+      class: 'tile-rim'}, g);
+    if (t.sign < 0) node('rect', {x: 2, y: 2, width: w - 6, height: h - 6, rx: 2, fill: 'url(#hatch)', 'pointer-events': 'none'}, g);
+    node('path', {d: `M 5 ${h - 7} V 5 H ${w - 7}`, stroke: '#ffffff70', 'stroke-width': 1.4, fill: 'none',
+      'pointer-events': 'none'}, g);
+    node('path', {d: `M 5 ${h - 4} H ${w - 4} V 5`, stroke: '#07121e66', 'stroke-width': 2,
+      fill: 'none', 'pointer-events': 'none'}, g);
+    if (w > 55 && h > 40) {
+      node('path', {d: `M 9 10 H ${Math.min(w - 12, 27)} M 10 13 H 18`, stroke: '#ffffff48',
+        'stroke-width': 1, fill: 'none', 'pointer-events': 'none'}, g);
+    }
+    const label = (t.sign < 0 ? '−' : '') + (t.kind === 'x2' ? 'x²' : t.kind);
+    text(g, (w - 2) / 2, (h - 2) / 2 + 5, label, 'tile-label', {'text-anchor': 'middle',
+      style: `font-size:${Math.min(18, Math.max(10, Math.min(w, h) * .48))}px`});
+    return g;
+  }
+  function dims(t, u = geom.unit) {
+    return [t.kind === 'x2' || (t.kind === 'x' && !t.turned) ? state.xLen * u : u,
+      t.kind === 'x2' || (t.kind === 'x' && t.turned) ? state.xLen * u : u];
+  }
+  function wireTile(g, t) {
+    g.dataset.id = t.id;
+    if (denseInput) {
+      g.classList.remove('tile');
+      g.classList.add('tile-preview');
+      g.setAttribute('aria-hidden', 'true');
+      return;
+    }
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button');
+    g.setAttribute('aria-label', `${t.sign < 0 ? 'negative' : 'positive'} ${t.kind === 'x2' ? 'x squared' : t.kind === '1' ? 'unit' : 'x'} tile. ` +
+      (t.zone === 'frame' ? `Row ${t.row + 1}, column ${t.col + 1}. ` : 'Loose tile. ') + 'Arrow keys move, F flips, T turns, Delete removes.');
+    g.addEventListener('focus', () => select(t.id));
+    g.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      finishVisuals();
+      select(t.id);
+      g.focus({preventScroll: true});
+      pointer = {id: t.id, startX: e.clientX, startY: e.clientY, moved: false, group: g,
+        base: g.getAttribute('transform')};
+      svg.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+    g.addEventListener('keydown', e => {
+      const arrows = {ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1]};
+      if (arrows[e.key]) {
+        e.preventDefault();
+        const [dc, dr] = arrows[e.key];
+        if (t.zone === 'pile') place(t.id, 0, 0);
+        else place(t.id, t.col + dc, t.row + dr);
+        svg.querySelector(`[data-id="${t.id}"]`)?.focus({preventScroll: true});
+      } else if (/^[fFtT]$/.test(e.key) || e.key === 'Delete') {
+        e.preventDefault();
+        edit(e.key.toLowerCase() === 'f' ? 'flip' : e.key.toLowerCase() === 't' ? 'turn' : 'remove');
+      } else if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        select(t.id);
+      }
+    });
+  }
+  function pileTiles(tiles, x, y, availableW, availableH) {
+    const groups = new Map();
+    tiles.forEach(t => {
+      const key = t.kind + ':' + t.sign;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(t);
+    });
+    const groupList = [...groups.values()];
+    const gap = Math.min(100, Math.max(48, availableH / Math.max(1, groupList.length)));
+    groupList.forEach((list, i) => {
+      const selected = list.find(t => t.id === current().selected);
+      const t = selected || list[0];
+      const yy = y + i * gap;
+      const scale = Math.min(1, (availableW - 12) / (state.xLen * geom.unit), (gap - 14) / (state.xLen * geom.unit));
+      const [w, h] = dims(t, Math.max(10, geom.unit * scale));
+      for (let k = Math.min(3, list.length - 1); k > 0; k--) {
+        tileShape(t, x + k * 3, yy + k * 2, w, h, svg, {'aria-hidden': 'true', opacity: .55});
+      }
+      const g = tileShape(t, x, yy, w, h, svg, {class: 'tile' + (t.id === current().selected ? ' selected' : '')});
+      node('rect', {x: 0, y: 0, width: Math.max(44, w), height: Math.max(44, h), fill: 'transparent'}, g);
+      wireTile(g, t);
+      text(svg, x + Math.max(44, w) + 8, yy + 16, '×' + list.length, 'sv-label');
+    });
+  }
+  function render() {
+    if (pointer && !pointer.probe) {
+      renderQueued = true;
+      return;
+    }
+    renderQueued = false;
+    const activeId = document.activeElement?.dataset?.id;
+    const activeSlider = document.activeElement?.getAttribute('role') === 'slider';
+    const m = current();
+    const box = $('matbox').getBoundingClientRect();
+    geom = {w: Math.max(200, box.width), h: Math.max(120, box.height), unit: 44};
+    svg.setAttribute('viewBox', `0 0 ${geom.w} ${geom.h}`);
+    svg.replaceChildren();
+    definitions();
+    node('rect', {width: geom.w, height: geom.h, fill: 'url(#grid)', opacity: .7});
+    if (state.mode === 'mat') renderMat(m);
+    else if (m.card === null) renderInvitation();
+    else if (state.mode === 'frame') renderFrame(m);
+    else renderSquare(m);
+    svg.classList.toggle('dense-diagram', denseInput);
+    syncNavigator();
+    $('hint').textContent = actionHint();
+    if (!m.message) $('tip').textContent = defaultTip();
+    const grid = svg.querySelector('#grid');
+    grid.setAttribute('width', geom.unit);
+    grid.setAttribute('height', geom.unit);
+    grid.querySelector('path').setAttribute('d', `M ${geom.unit} 0 H 0 V ${geom.unit}`);
+    if (activeId && denseInput && !$('tile-nav').hidden) $('tile-select').focus({preventScroll: true});
+    else if (activeId) svg.querySelector(`[data-id="${activeId}"]`)?.focus({preventScroll: true});
+    else if (activeSlider) svg.querySelector('[role="slider"]')?.focus({preventScroll: true});
+  }
+  function renderInvitation() {
+    const {w, h} = geom;
+    const u = Math.min(48, w / 10, h / 6);
+    const x = Math.max(22, w / 2 - 2.6 * u);
+    const y = Math.max(40, h / 2 - 1.5 * u);
+    node('path', {d: `M ${x - 10} ${y + 4.3 * u} V ${y - 10} H ${x + 4.3 * u}`,
+      stroke: '#e8edf3', 'stroke-width': 3, fill: 'none'});
+    tileShape({kind: 'x2', sign: 1}, x, y, 2.6 * u, 2.6 * u);
+    tileShape({kind: 'x', sign: 1}, x + 2.6 * u, y, u, 2.6 * u);
+    tileShape({kind: 'x', sign: 1}, x, y + 2.6 * u, 2.6 * u, u);
+    node('rect', {x: x + 2.6 * u, y: y + 2.6 * u, width: u, height: u, class: 'cell', 'pointer-events': 'none'});
+    text(svg, 22, 28, state.mode === 'frame' ? 'CLOSE A RECTANGLE' : 'FIND THE MISSING CORNER', 'scene-title');
+    text(svg, w / 2, h - 20, 'Choose an expression card to begin', 'sv-label', {'text-anchor': 'middle'});
+  }
+  function renderMat(m) {
+    geom.unit = clamp(Math.min(geom.w / 15, geom.h / 10), 20, 54);
+    denseInput = geom.unit < 44;
+    const pattern = svg.querySelector('#grid');
+    pattern.setAttribute('width', geom.unit);
+    pattern.setAttribute('height', geom.unit);
+    text(svg, 20, 27, 'MAKE AN EXPRESSION', 'scene-title');
+    if (!m.tiles.length) {
+      text(svg, geom.w / 2, geom.h / 2 - 8, 'Start with a tile.', 'edge-label', {'text-anchor': 'middle'});
+      text(svg, geom.w / 2, geom.h / 2 + 22, 'Its signed area becomes part of your expression.', 'sv-label', {'text-anchor': 'middle'});
+    }
+    for (const t of [...m.tiles, ...ghosts]) {
+      const [w, h] = dims(t);
+      const x = clamp(20 + t.col * geom.unit, 6, Math.max(6, geom.w - w - 8));
+      const y = clamp(46 + t.row * geom.unit, 36, Math.max(36, geom.h - h - 8));
+      t.screen = {x, y, w, h};
+      const ghost = ghosts.includes(t);
+      const g = tileShape(t, x, y, w, h, svg, {class: ghost ? 'ghost-tile' : 'tile' + (t.id === m.selected ? ' selected' : '')});
+      if (!ghost) {
+        node('rect', {x: 0, y: 0, width: Math.max(44, w), height: Math.max(44, h), fill: 'transparent'}, g);
+        wireTile(g, t);
+      }
+    }
+  }
+  function frameLayout(read) {
+    const {w, h} = geom;
+    const pileW = w < 500 ? 82 : Math.min(145, w * .2);
+    const stageW = w - pileW - 64;
+    const closed = state.frame.solved && !state.frame.noRect;
+    const cols = Math.min(8, read.cols + (!closed && read.cols < 6 ? 1 : 0));
+    const rows = Math.min(8, read.rows + (!closed && read.rows < 6 ? 1 : 0));
+    const u = Math.min(90, stageW / (read.nx * 4.7 + cols - read.nx),
+      (h - 122) / (read.ny * 4.7 + rows - read.ny));
+    geom.unit = Math.max(12, u);
+    const offsets = (n, nx) => Array.from({length: n + 1}, (_, i) => (Math.min(i, nx) * state.xLen + Math.max(0, i - nx)) * geom.unit);
+    const xs = offsets(cols, read.nx);
+    geom.frame = {x: 40 + Math.max(0, (stageW - xs[cols]) / 2), y: 68,
+      xs, ys: offsets(rows, read.ny), cols, rows,
+      pileX: w - pileW, pileW};
+    return geom.frame;
+  }
+  function renderFrame(m) {
+    const read = frameRead(m);
+    const f = frameLayout(read);
+    denseInput = geom.unit < 46;
+    text(svg, 20, 24, 'BUILD THE WHOLE EXPRESSION', 'scene-title');
+    text(svg, f.pileX + 3, 24, m.tiles.some(t => t.zone !== 'frame') ? 'PILE' : 'ALL USED', 'scene-title');
+    for (let r = 0; r < f.rows; r++) {
+      for (let c = 0; c < f.cols; c++) {
+        if (read.map.has(`${r},${c}`)) continue;
+        const cell = node('rect', {x: f.x + f.xs[c], y: f.y + f.ys[r], width: f.xs[c + 1] - f.xs[c] - 2,
+          height: f.ys[r + 1] - f.ys[r] - 2, class: 'cell', 'data-row': r, 'data-col': c});
+        cell.addEventListener('pointerdown', e => {
+          if (m.selected) place(m.selected, c, r);
+          e.stopPropagation();
+        });
+      }
+    }
+    const width = f.xs[read.cols];
+    const height = f.ys[read.rows];
+    node('path', {d: `M ${f.x - 7} ${f.y + height} V ${f.y - 7} H ${f.x + width}`,
+      stroke: m.solved && !m.noRect ? '#9de9c6' : '#e8edf3', 'stroke-width': m.solved ? 4 : 2.5, fill: 'none',
+      class: m.solved && Date.now() < m.closedUntil ? 'frame-closed' : ''});
+    for (const t of m.tiles.filter(t => t.zone === 'frame')) {
+      const bad = read.bad.some(b => b.tile.id === t.id);
+      const [tw, th] = dims(t);
+      const x = f.x + (f.xs[t.col] || 0);
+      const y = f.y + (f.ys[t.row] || 0);
+      t.screen = {x, y, w: tw, h: th};
+      const g = tileShape(t, x, y, tw, th, svg, {class: 'tile' + (bad ? ' bad' : '') + (t.id === m.selected ? ' selected' : '')});
+      wireTile(g, t);
+      if (bad && t.id === m.selected) text(svg, x, y + th + 13, "doesn't fit", 'sv-small', {fill: '#ffb8a8'});
+    }
+    pileTiles(m.tiles.filter(t => t.zone !== 'frame'), f.pileX, 48, f.pileW - 18, geom.h - 58);
+    if (read.full && read.consistent && equal(product(...read.factors), FRAME[m.card]) && m.tiles.every(t => t.zone === 'frame')) {
+      text(svg, f.x + width / 2, f.y - 18, linear(read.factors[0]), 'edge-label', {'text-anchor': 'middle'});
+      text(svg, f.x + 3, Math.min(geom.h - 16, f.y + height + 24), 'Other edge: ' + linear(read.factors[1]), 'edge-label');
+    } else {
+      text(svg, denseInput ? 20 : f.x + 6, denseInput ? geom.h - 16 : Math.min(geom.h - 16, f.y + height + 28),
+        denseInput ? 'Dashed cells extend the frame.' : 'Dashed cells are open. Build either edge first.', 'sv-small');
+    }
+  }
+  function renderSquare(m) {
+    const [a, b, c] = SQUARE[m.card];
+    const half = b / 2;
+    const n = Math.abs(half);
+    const {w, h} = geom;
+    const low = m.filled ? Math.min(105, h * .28) : 0;
+    const u = Math.min(120, (w * .70 - 50) / (4.7 + n), (h - 83 - low) / (4.7 + n));
+    geom.unit = Math.max(12, u);
+    denseInput = geom.unit < 46;
+    const size = (state.xLen + n) * geom.unit;
+    const x = Math.max(30, (w * .74 - size) / 2);
+    const y = 48;
+    const xedge = state.xLen * geom.unit;
+    geom.square = {x, y, xedge, size, n};
+    text(svg, 20, 24, half < 0 ? 'SIGNED-AREA SQUARE' : 'COMPLETE THE SQUARE', 'scene-title');
+    if (m.split) {
+      node('rect', {x: x + xedge, y: y + xedge, width: n * geom.unit, height: n * geom.unit,
+        class: 'cell', 'pointer-events': 'none'});
+      if (!m.filled && !m.altered) {
+        text(svg, x + size + 12, y + size / 2, `${n} by ${n}`, 'sv-label');
+        text(svg, x + size + 12, y + size / 2 + 19, `${n * n} units`, 'sv-label');
+      }
+    }
+    for (const t of m.tiles.filter(t => t.zone === 'frame')) {
+      const xx = x + (t.col ? xedge + (t.col - 1) * geom.unit : 0);
+      const yy = y + (t.row ? xedge + (t.row - 1) * geom.unit : 0);
+      const [tw, th] = dims(t);
+      const g = tileShape(t, xx, yy, tw, th, svg, {class: 'tile' + (t.id === m.selected ? ' selected' : '') +
+        (t.corner && Date.now() < m.animUntil && !Curio.reduce ? ' corner-new' : '')});
+      wireTile(g, t);
+    }
+    if (!m.split) pileTiles(m.tiles.filter(t => t.zone === 'pile'), Math.min(w - 94, x + size + 18), 50, 84, h - 75);
+    if (m.split && !m.filled) text(svg, 24, Math.min(h - 14, y + size + 26),
+      m.altered ? 'Tiles changed. Start over to restore the card.' :
+      half < 0 ? 'Hatched strips subtract. Edges are signed algebraic pieces.' : 'Equal strip counts. One missing corner.', 'sv-small');
+    if (m.filled) {
+      const rem = c - half * half;
+      if (half < 0) text(svg, 20, h - low - 12, 'Signed bands: hatching subtracts; widths show magnitude.', 'sv-small');
+      text(svg, x + size / 2, h < 270 ? y - 4 : y - 12, linear([1, half]), 'edge-label',
+        {'text-anchor': 'middle', style: h < 270 ? 'font-size:16px' : ''});
+      const rx = Math.min(w - 95, x + size + 16);
+      const small = h < 270;
+      text(svg, rx, y - 8, 'OUTSIDE', 'sv-small');
+      const loose = m.tiles.filter(t => t.zone !== 'frame');
+      const pos = loose.filter(t => t.sign > 0).length;
+      const neg = loose.filter(t => t.sign < 0).length;
+      const count = Math.min(16, Math.max(pos, neg));
+      const outsideRows = Math.max(1, Math.ceil(count / 2));
+      const ru = Math.min(30, Math.max(10, (h - low - y - 62) / outsideRows));
+      for (let i = 0; i < count; i++) {
+        if (i < pos) tileShape({kind: '1', sign: 1}, rx + i % 2 * ru, y + 12 + Math.floor(i / 2) * ru, ru, ru);
+        if (i < neg) tileShape({kind: '1', sign: -1}, rx + 5 + i % 2 * ru, y + 20 + Math.floor(i / 2) * ru, ru, ru,
+          svg, {opacity: i < pos ? .65 : 1});
+      }
+      const netY = y + 20 + (count ? outsideRows * ru : 0) + 18;
+      text(svg, rx, netY, `Net ${minus(rem)}`, 'sv-label');
+      if (m.canceledPairs && netY + 18 < h - low - 10) {
+        text(svg, rx, netY + 18, `${m.canceledPairs} pairs cancel`, 'sv-small');
+      }
+      renderInset(half, rem, low);
+    }
+  }
+  function syncNavigator() {
+    const m = current();
+    const show = denseInput && m.tiles.length > 0;
+    $('tile-nav').hidden = !show;
+    $('tile-nav').classList.toggle('square-nav', state.mode === 'square');
+    if (!show) return;
+    const list = $('tile-select');
+    const labels = m.tiles.map(t => ({id: t.id, label: `${t.sign < 0 ? '−' : '+'}${t.kind === 'x2' ? 'x²' : t.kind}` +
+      (t.zone === 'frame' ? ` · r${t.row + 1} c${t.col + 1}` : ' · loose')}));
+    const signature = JSON.stringify(labels);
+    if (list.dataset.signature !== signature) {
+      list.replaceChildren(...labels.map(t => {
+        const option = document.createElement('option');
+        option.value = t.id;
+        option.textContent = t.label;
+        return option;
+      }));
+      list.dataset.signature = signature;
+    }
+    if (!m.tiles.some(t => t.id === m.selected)) m.selected = m.tiles[0].id;
+    list.value = m.selected;
+    const selected = m.tiles.find(t => t.id === m.selected);
+    $('flip').disabled = !selected;
+    $('turn').disabled = !selected || selected.kind !== 'x';
+    $('remove').disabled = !selected;
+  }
+  function renderInset(half, rem, low) {
+    const {w, h, unit} = geom;
+    const baseY = h - low + 8;
+    node('line', {x1: 20, y1: baseY - 10, x2: w - 20, y2: baseY - 10, stroke: '#8aabbc55'});
+    const left = 35;
+    const lineW = w * .50;
+    const yy = h - 31;
+    node('line', {x1: left, y1: yy, x2: left + lineW, y2: yy, stroke: '#b9cede', 'stroke-width': 2});
+    for (const v of [-8, -4, 0, 4, 8]) {
+      const xx = left + (v + 8) / 16 * lineW;
+      node('line', {x1: xx, y1: yy - 4, x2: xx, y2: yy + 4, stroke: '#b9cede'});
+      text(svg, xx, yy + 18, minus(v), 'sv-small', {'text-anchor': 'middle'});
+    }
+    const dotX = left + (state.square.probe + 8) / 16 * lineW;
+    const dot = node('g', {tabindex: 0, role: 'slider', 'aria-label': 'Number-line x dot',
+      'aria-valuemin': -8, 'aria-valuemax': 8, 'aria-valuenow': state.square.probe, style: 'cursor:ew-resize'});
+    node('rect', {x: dotX - 22, y: yy - 22, width: 44, height: 44, fill: 'transparent'}, dot);
+    node('circle', {cx: dotX, cy: yy, r: 6, fill: '#6cc4ff', stroke: '#ffffff', 'stroke-width': 2}, dot);
+    dot.addEventListener('pointerdown', e => {
+      pointer = {probe: true, left, lineW, yy, dot};
+      svg.setPointerCapture(e.pointerId);
+      e.preventDefault();
+    });
+    dot.addEventListener('keydown', e => {
+      if (!['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+      e.preventDefault();
+      state.square.probe = clamp(state.square.probe + (e.key === 'ArrowRight' ? .5 : -.5), -8, 8);
+      update();
+      svg.querySelector('[role="slider"]')?.focus({preventScroll: true});
+    });
+    const sideText = `x = ${minus(state.square.probe)} · side |${linear([1, half])}|`;
+    const compactText = `(${linear([1, half])})² ${rem < 0 ? '−' : '+'} ${Math.abs(rem)} = ` +
+      `${minus((state.square.probe + half) ** 2 + rem)} at x = ${minus(state.square.probe)}`;
+    text(svg, left, baseY + 7, innerHeight <= 650 ? compactText : sideText, 'sv-small');
+    const side = Math.abs(state.square.probe + half);
+    const maxSide = Math.max(12, low - 34);
+    const scale = Math.min(unit, maxSide / 12);
+    const drawn = side * scale;
+    const sx = w * .68;
+    const sy = h - 22 - drawn;
+    node('rect', {x: sx, y: sy, width: drawn, height: drawn, fill: '#6cc4ff55', stroke: '#bfeaff',
+      'stroke-width': side ? 2 : 0, id: 'inset-square'});
+    text(svg, sx, h - 7, side === 0 ? '0 area' : `area ${minus(side * side)}`, 'sv-small');
+    text(svg, sx, baseY + 5, `1 unit: ${scale.toFixed(1)} px`, 'sv-small');
+  }
+
+  svg.addEventListener('pointermove', e => {
+    if (!pointer) return;
+    if (pointer.probe) {
+      const x = e.clientX - svg.getBoundingClientRect().left;
+      state.square.probe = clamp(Math.round(((x - pointer.left) / pointer.lineW * 16 - 8) * 2) / 2, -8, 8);
+      update();
+      pointer.dot = svg.querySelector('[role="slider"]');
+      return;
+    }
+    const dx = e.clientX - pointer.startX;
+    const dy = e.clientY - pointer.startY;
+    if (Math.hypot(dx, dy) > 4) pointer.moved = true;
+    if (pointer.moved && pointer.group) {
+      pointer.group.setAttribute('transform', `${pointer.base} translate(${dx},${dy})`);
+      pointer.group.style.opacity = '.85';
+    }
+  });
+  function endPointer(e) {
+    if (!pointer) return;
+    const p = pointer;
+    pointer = null;
+    if (svg.hasPointerCapture(e.pointerId)) svg.releasePointerCapture(e.pointerId);
+    if (p.probe) {
+      update();
+      return;
+    }
+    if (p.group) {
+      p.group.setAttribute('transform', p.base);
+      p.group.style.opacity = '';
+    }
+    if (p.moved) {
+      const box = svg.getBoundingClientRect();
+      const x = e.clientX - box.left;
+      const y = e.clientY - box.top;
+      if (state.mode === 'mat') {
+        const dragged = current().tiles.find(t => t.id === p.id);
+        const opposite = current().tiles.find(t => t.id !== p.id && t.kind === dragged?.kind && t.sign === -dragged.sign &&
+          t.screen && x >= t.screen.x && x <= t.screen.x + t.screen.w && y >= t.screen.y && y <= t.screen.y + t.screen.h);
+        if (opposite) place(p.id, opposite.col, opposite.row);
+        else place(p.id, Math.round((x - 20) / geom.unit), Math.round((y - 46) / geom.unit));
+      } else if (state.mode === 'frame' && geom.frame) {
+        const f = geom.frame;
+        const index = (v, arr) => clamp(arr.findIndex((a, i) => i < arr.length - 1 && v >= a && v < arr[i + 1]), 0, arr.length - 2);
+        if (x < f.pileX - 15) place(p.id, index(x - f.x, f.xs), index(y - f.y, f.ys));
+        else place(p.id, 0, 0, 'pile');
+      } else if (state.mode === 'square' && !state.square.split) dragSquareStrip(p.id, x, y);
+    }
+    if (renderQueued || p.moved) render();
+  }
+  svg.addEventListener('pointerup', endPointer);
+  svg.addEventListener('pointercancel', e => { pointer = null; render(); });
+  for (const [id, kind] of [['add-x2', 'x2'], ['add-x', 'x'], ['add-one', '1']]) {
+    $(id).addEventListener('click', () => add(kind));
+    $(id).addEventListener('pointerdown', e => {
+      const start = {x: e.clientX, y: e.clientY};
+      const up = ev => {
+        if (Math.hypot(ev.clientX - start.x, ev.clientY - start.y) < 10) return;
+        const box = svg.getBoundingClientRect();
+        if (ev.clientY >= box.top && ev.clientY < box.bottom && ev.clientX >= box.left && ev.clientX < box.right) {
+          const t = add(kind);
+          if (state.mode === 'mat' && t) place(t.id, Math.round((ev.clientX - box.left - 20) / geom.unit),
+            Math.round((ev.clientY - box.top - 46) / geom.unit));
+        }
+      };
+      addEventListener('pointerup', up, {once: true});
+    });
+  }
+  for (const k of ['mat', 'frame', 'square']) $('m-' + k).onclick = () => setMode(k);
+  for (const k of ['flip', 'turn', 'remove']) $(k).onclick = () => edit(k);
+  $('tile-select').onchange = () => select(Number($('tile-select').value));
+  for (const [name, dc, dr] of [['left', -1, 0], ['up', 0, -1], ['down', 0, 1], ['right', 1, 0]]) {
+    $('move-' + name).onclick = () => {
+      const tile = current().tiles.find(t => t.id === current().selected);
+      if (!tile) return;
+      if (tile.zone === 'pile') place(tile.id, 0, 0, state.mode === 'mat' ? 'mat' : 'frame');
+      else place(tile.id, tile.col + dc, tile.row + dr, state.mode === 'mat' ? 'mat' : 'frame');
+    };
+  }
+  $('zero').onclick = zeroPair;
+  $('card').onchange = () => { if ($('card').value !== '') load(+$('card').value); };
+  $('clear').onclick = () => {
+    finishVisuals();
+    if (state.mat.tiles.length) V.hush();
+    Object.assign(state.mat, fresh());
+    update();
+    speak('matAct', () => state.mode === 'mat', true);
+  };
+  $('check').onclick = check;
+  $('no-rectangle').onclick = noRectangle;
+  $('split').onclick = splitStrips;
+  $('fill').onclick = fillCorner;
+  $('restart-frame').onclick = () => load(state.frame.card);
+  $('restart-square').onclick = () => load(state.square.card);
+  $('x-length').oninput = e => {
+    state.xLen = Number(e.target.value);
+    finishVisuals();
+    update();
+  };
+  $('probe').oninput = e => {
+    state.square.probe = Number(e.target.value);
+    update();
+  };
+  new ResizeObserver(() => render()).observe($('matbox'));
+  Curio.onMotion(() => { finishVisuals(); render(); });
+  Curio.init({clips: 'voice:*', rate: .95, readFallback: () => $('hint').textContent});
+  window.__tool = {state, setMode, load, check, expression: () => fmt(poly(current().tiles)),
+    allLines: V.allLines, vlog: V.log, V, frameRead, add, place, edit, zeroPair, splitStrips, fillCorner, noRectangle,
+    poly, product, equal, fmt, update, get geometry() { return geom; }, FRAME, SQUARE};
+  setMode('mat');
+})();
+</script>
+</body>
+</html>

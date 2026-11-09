@@ -1,0 +1,23 @@
+{
+  "id": "work-rate-crew",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Dispatch the crews. Predict exactly when their paint will meet.",
+  "outcome": "Combine work rates, solve rational equations and reject extraneous roots.",
+  "driver": "students",
+  "minutes": "20-40",
+  "modes": [
+    "Calls",
+    "Quote sheet",
+    "Office audit"
+  ],
+  "grades_label": "Grade 11",
+  "sources": [
+    "Common Core State Standards: A-APR.D.6, A-APR.D.7, A-REI.A.2",
+    "OpenStax Intermediate Algebra 2e, 7.4 Solve Rational Equations and 7.5 Solve Applications with Rational Equations",
+    "Crews, jobs, prices and hours are made up. Exact arithmetic checked during build.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-05"
+}

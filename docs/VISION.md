@@ -45,6 +45,48 @@ written (of 8,947 planned); Word Walls for 762 of 797 modules; about 700 Reading
 | Supply Closet expansion: worksheets, printables, course cartridges, district pack | Supply Closet; worksheets and a 15-generator test group live; LMS cartridges with the Binder | Worksheets now |
 | Beyond school: test prep, certifications, trades | Beyond School track | Late; ACT/SAT-style practice first, never trademarked names |
 
+## Curiosities: the second shape (Cory, 2026-11-04; approved with the look)
+
+Approved by Cory on 2026-11-04: the idea, the qualities, the short test, one tool with two doors, and the look in
+docs/CURIOSITIES.md ("The look"). These are standing decisions; change them only with Cory.
+
+Most tools are lessons: shaped around a standard, with a hook, practice, a check and a finish line. That is the
+coverage that makes Curio Class useful every day, and it stays the main build. A few tools are curiosities instead:
+shaped around a real thing, where the standard is learned as a side effect of using it. Beat Lab (a real music
+studio) and Elements Inspector (a real atom and NIST spectra) are the models and Cory's two favorites. Lessons are
+why teachers come back; curiosities are what kids remember.
+
+**The qualities**
+
+1. **The subject is the interface.** The visuals are the content (spectrum lines, waveforms, the pump), not
+   decoration around it. That is why they look stunning without trying.
+2. **Low floor, no ceiling.** Two minutes of poking gets a reaction; a month of use still finds more.
+3. **The learner drives.** No correct path, no score, no finish line. The student asks; the tool answers by showing.
+   A little game essence is fine when it makes the tool more fun to explore (Cory, 2026-11-06): the test is that it
+   stays purely fun and exploratory, never a ladder to climb or a grade to earn.
+4. **They respect the kid.** Something an adult would use for fun: made approachable, never dumbed down.
+5. **Real material.** Real data, real physics, real sound. The authenticity is load-bearing.
+
+**The short test** (a curiosity passes all four)
+
+- Would a kid open it when no teacher assigned it?
+- Would an adult play with it for fun?
+- Is the real thing (sound, light, data, motion) the interface itself?
+- Does it work with no score and no finish line? (A light game touch may sit on top if it adds fun; the tool must
+  not need it.)
+
+**How it differs from super tools** (docs/agents/SUPER.md). Super tools took Beat Lab as their model and share the
+first three qualities, but they add a goal ladder and a sticker book: a designed toy with a game layer. A curiosity
+needs neither. A super tool can also be a curiosity when it passes the short test; the label follows the test, not
+the size.
+
+**One tool, two doors.** A curiosity is a normal tool on the curriculum map: it fills its anchor module (Beat Lab
+fills arts-9-12-composing-and-producing; Elements Inspector fills science-10-atomic-structure-and-the-periodic-table)
+and lists the other modules it reaches, like any tool. It also appears on a Curiosities shelf, which is a view of
+those tools, never a copy. It takes over the anchor's lesson card only when its teacher plan teaches that module's
+standard (Beat Lab's plan.md does); otherwise it is a second card in the module, beside the lesson tool. Concepts
+and open choices: docs/CURIOSITIES.md.
+
 ## What we will not do
 
 - Accounts, ads, tracking or student analytics, ever.

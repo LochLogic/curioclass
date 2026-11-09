@@ -1,0 +1,8 @@
+{
+  "voice": "knowing-guide",
+  "style": "Knowledgeable and friendly, like a museum curator.",
+  "lines": [
+    "Tap an atom in the tray to snap it on."
+  ],
+  "dynamic": "Read speaks the current formula, name, open spots, selected atom, angle and test result. Browser speech fallback; no audio recordings."
+}

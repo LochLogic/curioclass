@@ -22,9 +22,12 @@ The Review writer keeps My taste and Copy review next to Add claim, including on
   implementations are in the source because the shared kit is read-only during this build.
 - During music, narration stays silent. Events are deferred to stop. Repeated event instances get unique
   queue keys so a newer claim does not erase an earlier pending claim. Read stops music first.
-- Measurements are per line and version. Check covers all recorded fields, including extras, and reveals
-  truth only on recorded lines. The count covers tempo, loudness and instrument cells, excluding extras.
-- Review evidence accepts matching measurements or checked truth. It does not accept an unchecked guess.
+- Measurements and checks are per field, line and version. Check never exposes an unattempted field.
+  `checked[k]` stores attempted values by field; old boolean checks migrate only fields actually recorded.
+  `firstChecks[k]` preserves first responses, so exposed answers cannot erase a miss. The count excludes extras.
+  This compares a record; it does not score listening skill.
+- Review evidence requires an explicitly checked field. It does not reveal whether an unchecked guess matches.
+  A Because explanation is required, and exact duplicate claims are disabled. Interpretations are not auto-graded.
   A Both pin plays A and then B. A named-version pin plays only that version.
 - All saves are wrapped localStorage calls. Reset uses a native dialog with a safe initial focus and clears
   every saved field. Clipboard has a plain-text fallback. Nothing is recorded or sent anywhere.
@@ -56,7 +59,8 @@ The Review writer keeps My taste and Copy review next to Add claim, including on
   to preserve legibility. Full windows put the true value beneath the recorded value.
 
 ## Art
-Eight original generated paintings, all present and used: two venue sleeves and six instrument cutouts.
+Eight generated paintings, all present and used: two venue sleeves and six instrument cutouts.
+Cold review redrew the trombone with a recognizable long slide; the original is retained in Scratch.
 Full prompts and provenance are in `art/prompts.json`; raw originals are in `art/raw/`.
 The images contain no people. No artwork remains to paint.
 
@@ -80,4 +84,37 @@ widths, explanation-input name, unknown/check lane spacing, 760-pixel instrument
 wrapping and same-mode clicks preserving a welcome already in progress. The compact recorded-state fixture now
 opens the measurement selector before choosing loudness. Modal fixtures keep the modal itself in view.
 Phone lyric rows intentionally scroll as the spec requires. A music-first tap intentionally suppresses the welcome
-so narration cannot overlap music. The full audit was not rerun after the targeted fixes.
+so narration cannot overlap music. The full build audit was not rerun after the builder's targeted fixes.
+
+## Cold review changes
+- Real held clicks reproduced answer flooding, overwrite-to-perfect feedback and a blank tempo claim without tapping.
+  Repaired those paths with per-field checking, first-response preservation and the explanation requirement.
+- A fresh tap attempt clears and saves removal of the previous tempo. Lost or invalid attempts cannot reuse it.
+- A's final notes on lines 4 and 7 now occupy beats 6 through 8. The final word lights for those beats in both versions;
+  flipping preserves the displayed word. `soundLog` records held-note events for verification.
+- Repeat sections identify themselves in the transport. Check visibly reveals attempted lanes; Motion off removes the effect.
+- Narrow strip-corner copy and Version choices were made readable. Preference selectors credit the other version.
+- Replay pins synchronize the draft pin and clear stale evidence. No kit, scripts or shared docs changed.
+- The review audit confirmed that a first claim's pin was below the 680x425 writer fold. At heights up to 650 pixels,
+  `body.showing-claim` swaps the evidence row for the newest playable claim, with full text in its title and DOM.
+  Tapping a lyric line clears the class and restores all evidence choices. The strip and transport stay in place.
+- The dialog close handler restores focus on the next frame, with a guarded 100-millisecond fallback only if focus
+  otherwise fell to the body or the closed dialog. The final held-click mode entry, native End key and dialog-close
+  path passes. An earlier custom fixture sent input before the mode's controls were painted; it had no focused range.
+
+## Sensitivity
+Shaker religious dance song: check attribution to Elder Joseph Brackett Jr., 1848, and distinguish invented modern
+performances from Shaker practice. All eight assets contain no people and explicitly have `people: false`.
+The pre-1930 printing requirement remains unresolved; the modern score does not verify a historical printing.
+
+## Cold review audit and final evidence
+The one review audit completed within its 40-minute limit with eight leads. Four were the specified scrolling phone
+strip, three were intentional music-first welcome suppression, and one was the confirmed compact saved-pin issue.
+The compact pin repair passes at 680x425, 800x500 and 1000x625; pin replay and returning to evidence choices pass.
+All 40 audit frames were inspected. Audit controls, repeated narration, Motion off and resize stress checks were clean.
+The semantic Reset-dialog welcome mismatch, full-width 44-pixel taste tracks, singular wording and truthful blocked-save
+feedback were also repaired. A data favicon keeps the tool self-contained. The temporary host's favicon metadata had to
+precede its iframe; the final hosted phone run has zero errors. No shared host or script was edited.
+Final evidence: `_scratch/cover-version-review/review-validation.json`, `review-audit/audit.md`, `post-audit-frames/`,
+`voice-recheck/voice-main.json`, `review-numbers.json`, `full-A-review.json`, `full-B-review.json`, and `end-focus-final.json`.
+Full plays measured 68.8349 seconds for A and 50.1025 for B. Historical-printing verification remains open.

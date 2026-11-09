@@ -1,40 +1,37 @@
-# Neighborhood Issue Play: build handoff
+# Neighborhood Issue Play: handoff after cold review
 
-## Scope and owner decision
-Build only. No git commits and no polish round. Writes limited to this tool and its Scratch folder.
+## Scope
+One cold review, with repairs and targeted rechecks. No commits. Writes stayed in this tool and its Scratch folder. The builder report remains historical evidence; codex-review.md records the current review.
 
-The spec's sole open question is resolved by the owner's explicit decision: restore the idea card's third issue. The UI says a new family moved in and neighbors cannot yet talk to each other. The family is never framed as the problem. Six fictional viewpoints and three fixes were authored for that restored scenario, emphasizing shared understanding, two-way greetings, pictures and language help. No real language or ethnicity is assigned. A cold sensitivity/content review is still useful. This build does not add a family viewpoint outside the specified six-neighbor cast.
+## Owner decision and sensitivity
+Problem C is neighbors who cannot yet talk to one another after a family moves in. The family is never the problem. Fern speaks as a member of the new family, with her own ideas to share. Greetings and pictures work both ways; interpreter help is an option. No language, nationality or accent is assigned, and appearance does not identify language. Do not invite accent imitation or ask students to represent a community.
 
-The cast is human, retaining the six supplied names and roles without their animal species. All six puppet assets are marked `people: true` for the next painter. `paintedPeople` in src.html remains false. Set it true only after reviewed art is available, then tune head/body anchors. Until then tasteful faceless paper silhouettes work in all steps.
-
-The empty-lot problem is removed. The empty-lot backdrop is retained because the owner replaced the problem and the spec separately lists it as a theater set. It introduces no garden-versus-parking scenario.
+Six human puppets are painted, people: true, and enabled. The set includes different ages and skin tones, a walking stick, wheelchair and stroller. These are ordinary parts of the cast. The courtyard replaces the empty-lot set selection; old lot art remains preserved. A future fresh cultural lens should check the reciprocal communication, the family viewpoint, and whether the chosen character blocker encourages blame despite the framing.
 
 ## Source map
-src.html has responsive paper scenery CSS, then the six neighbors and three issue datasets, asset tokens, fixed voice lines, saved play state, live checks, and one render/bind pair per step. `window.__tool` exposes state, run, data, checks, suggestion, lineText, render and the voice log for review.
+src.html contains the responsive paper scenery, neighbor/problem data, asset tokens, voice table, saved authoring state, plan checks, and a render/bind pair for each step. window.__tool exposes state, run, data, checks, suggestion, lineText, readback, render and the voice log.
 
-`state` is the saved authored play. `run` holds temporary performance state and is not saved. Scene lines store either a suggestion slot or custom text, so suggested dialogue follows changes to wants, blockers and the fix. Custom dialogue stays unchanged. The two initial lines in each scene are clearly labeled starter lines. Students can edit them or add up to six.
+state is the saved authored play. run is temporary performance state. Scene lines store a suggestion slot or custom text; suggestions follow changes to wants, blockers and the fix. Custom dialogue stays unchanged. If removing a character leaves a scene short, ensureScenes restores a two-line starter and preserves a setup/proposal line.
 
-The three checks intentionally follow the specified simple rules. They do not validate the causal logic of a student-chosen blocker or the merits of a fix. Students explicitly tick whom a fix helps; the tool does not silently choose for them. Wants have a noun phrase, full first-person sentence and reported form so dialogue and read-backs keep pronouns natural. All four clash template slots are available when a character blocker makes the reply fit.
+## Checks and content
+The three checks verify declared plan choices. They do not assess the meaning of custom dialogue or whether a proposed fix actually works. This is stated beside the checks; reasons name the chosen blocker and proposed beneficiaries. Blank or punctuation-only wants/fixes fail. The street counter says Views opened, because opening material does not establish understanding. There is no mastery score or saved best score.
 
-## Layout and controls
-Wide layout uses a paper stage and a fixed action row on the right. The rest of the workbench scrolls. Short landscapes keep the panel beside the stage; phones stack the stage above the workbench. `fitTheater()` measures available real pixels after the speech bubble. Scenes uses one scene at a time at every width, preserving room for readable script lines.
+The school issue now asks the town to study crossings, traffic, speeds and pedestrian needs. The removed claims that crossing guards cannot stop cars without paint, or that every town must count cars before painting, are not safe general rules. Notes link FHWA guidance. All park dates, neighbors, reasons and proposed local fixes are fictional.
 
-Theater category buttons sit below the painted theater. This keeps all four categories visible while all six props or costumes fit in the compact workbench. Default props use available slots at 26, 50 and 74 percent to avoid accidental overlap. Students can still overlap props deliberately by dragging. Character wants and blockers come first; voice, movement and other character management controls follow in the scrolling editor. Scenes is also a scrolling editor on compact screens. These long forms are not a hidden answer-card set.
+## Layout and art
+The stage remains the focus. Short landscapes keep the workbench alongside it; phones stack it below. Main actions stay visible; long editors scroll. An empty casting stage now shows a painted audition lineup. Costume anchors correspond to the reviewed full cutouts, including their wooden sticks. Ball artwork scales with the theater independently of its 44-pixel tap target. Props stay within normalized floor bounds and support pointer capture and arrow keys.
 
-Props move with pointer capture or arrow keys, bounded to the stage floor. Resizing does not discard normalized prop positions. Costume pieces use CSS anchor positions corresponding to prompts.json head/body anchors. People assets override the nonpeople house-style prohibition for the next painter, while staying marked people: true and unpainted in this build.
+The original street, proscenium, scenery and paper shelves are retained. Six people and a courtyard were generated with the built-in image tool, inspected, copied to art/raw, and processed with art.py --rekey. Gail's blank paddle was redrawn as an octagon. Several older cutouts were re-keyed to remove magenta fringes. art/prompts.json records prompts, source and anchors. The contact sheet is _scratch/neighborhood-issue-play/art-contact.png.
 
-Curtain, Next line, Auto and From the top stay live during entrances. Next line ends the entrance at once. Mode changes, reset and From the top clear all performance and preview timers. Auto uses 1500 + 60 * line length milliseconds. The flat preview uses six seconds even with Motion off.
+## Voice and timing
+Curio.voice scopes speech to the step. Read speaks the current hint. The neighbors and script are read by the student. Each theater category has an instruction; repeated selection of the current category leaves its speech running. Perform entry no longer starts a flat preview over its welcome. Closing the curtain, changing roles or leaving an own-role line stops stale role narration. All fixed hints are in voice/lines.json and allLines().
 
-## Voice
-Curio.voice uses scope `state.step`, owns no hint writes, and Read explicitly reads the current hint. Neighbors and student scripts stay silent. Voice bank is friendly-dad / Achird; voice/lines.json contains 21 fixed instruction lines. No recordings were made, per the build instruction. Browser voice is the fallback and cannot guarantee the bank timbre. How lines use V.how; checkFail, flat, checkPass and bow use V.say with validity checks. A problem tap speaks the next listening action. Dialogs hush speech and suppress welcomes. Full scenes name Edit, not the disabled Add line button.
+No recordings were made. Browser speech is the current fallback, so bank metadata does not guarantee Achird's timbre. Main-path starts, repeats, Read, Sound and stale-line behavior are logged in Scratch. A cut in that log may be a deliberate later action, not a failed clip. The kit watchdog also bounds headless fallback speech.
 
-## Art
-The spec says 30 images but enumerates 27: 21 nonpeople images and six people puppets. All 21 nonpeople images were generated with the built-in image tool, raw PNGs copied here, and processed only with art.py --rekey. Prompts and source credit are in art/prompts.json and tool.draft.json. Scene, curtain, text, silhouettes, audience and bubbles are code. Some fixed paper wing images include their own framing, appropriate to miniature scenery.
+Flat Preview lasts six seconds. Auto uses 1500 + 60 times the current line's character count milliseconds. Motion off removes movement and retains these times. Curtain focuses Next line, so Space and Enter advance immediately; other buttons retain their native keyboard actions. Next skips an entrance; Curtain closes during it; From the top clears run timers. The closing question is accompanied by the student's selected issue title.
+
+## Verification
+See codex-review.md and the Scratch evidence it names. The single final audit completed in under 23 minutes with a 40-minute limit: 50 leads and 76 frames. Phone card spacing, the compact fix/beneficiary group, and the closing hint were repaired afterward and re-shot at the affected sizes. The full audit was not repeated. audit-states.json reaches all five steps with real input and adds a people/costume state for the restored language scenario. An automatic discovery count of zero modes is expected because reached tabs are outside the header.
 
 ## Engine changes wanted
-None. No kit files changed.
-
-## Checks and remaining work
-Build verification evidence and mechanical audit disposition are in codex-report.md. The single audit completed with 75 leads and 73 frames. Focus, textarea naming, default prop spacing, the compact theater shelves and the closing answer were repaired afterward and checked with targeted input and frames. The full audit was not repeated. Step tabs are outside the header, so the audit's automatic mode discovery found zero; audit-states.json explicitly reaches every step using real input.
-
-Review should inspect the restored scenario, the compact workbench scrolling, temporary silhouettes and browser narration. Secondary editor fields and New play can require page scrolling on phones. The modal intentionally covers the page. Do not treat these documented choices, or targeted repair checks, as a clean repeated full audit.
+None. No kit or shared-script edits were made.

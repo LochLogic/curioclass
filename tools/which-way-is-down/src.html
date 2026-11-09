@@ -1,0 +1,1559 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Which Way Is Down? · Curio Class</title>
+<meta name="description" content="Drop an apple at four schools around Earth, record down, then build and test a gravity argument. Grade 5.">
+<!--
+Which Way Is Down? Curio Class. Grade 5 science, NGSS 5-PS2-1.
+Sources: NGSS clarification, NASA planetary facts and Apollo 15, NOAA NGS plumb-line guidance.
+Geography: GeoNames city points and Argentina government Esperanza base information.
+Natural Earth public-domain land recovered from the repository's Equal Earth map.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f6f1e7; --ink:#1f2430; --muted:#5b6170; --line:#d9c9af; --focus:#1676ba;
+  --brand:#b4400f; --btn:#99360c; --btn-line:#d6895f; --head-ink:#fff; --panel:#fcf8ef;
+}
+body { height:100dvh; overflow:hidden; }
+header { min-height:56px; padding:5px 14px; gap:8px; background:linear-gradient(100deg,#8d300c,#b4400f); }
+h1 { font-size:23px; font-family:Georgia,serif; white-space:nowrap; }
+h1 small { font:11px 'Segoe UI',sans-serif; letter-spacing:.12em; text-transform:uppercase; }
+.seg button,.icon-btn { min-height:44px; min-width:44px; font-size:13px; padding:0 12px; }
+.icon-btn { width:94px; padding:0 5px; }
+main { grid-template-columns:minmax(0,1fr) 410px; overflow:hidden; }
+.stage { min-height:0; background:#0d1626; isolation:isolate; }
+canvas { position:absolute; inset:0; width:100%; height:100%; touch-action:none; }
+canvas:focus-visible { outline-offset:-5px; }
+.panel { gap:9px; padding:14px; border-left:4px solid #d8c3a2; background:linear-gradient(100deg,#f0e6d3,#fcf8ef 12%); }
+.panel section { display:flex; flex-direction:column; gap:8px; }
+button:not(.icon-btn) { transition:background .12s,box-shadow .12s; }
+.b { min-height:44px; border:1px solid #cab593; border-radius:9px; background:#fffdf7; padding:7px 10px;
+  font-weight:700; font-size:14px; box-shadow:0 2px 0 #74583320; }
+.b:hover { background:#fff2cf; }
+.b[aria-pressed="true"] { background:#f4d49a; border-color:#a15c22; box-shadow:inset 0 0 0 1px #a15c22; }
+.b:disabled { opacity:.48; cursor:default; }
+.primary { background:#b4400f; color:white; border-color:#98320b; }
+.primary:hover { background:#96350b; }
+.gold { background:#ffd166; color:#322605; border-color:#cda13c; }
+.row { display:flex; align-items:center; gap:7px; }
+.row>* { flex:1; min-width:0; }
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.places .b { text-align:left; font-size:13px; }
+.places small { display:block; font-size:10px; font-weight:500; margin-top:2px; }
+.eyebrow { color:#8b431e; font-size:11px; letter-spacing:.12em; font-weight:800; text-transform:uppercase; margin:0; }
+.hint { min-height:70px; margin:0; padding:10px 12px; font-size:15px; line-height:1.35;
+  background:#efe2c9; border-left:3px solid #b4400f; border-radius:3px 9px 9px 3px; }
+label.toggle { min-height:44px; display:flex; align-items:center; gap:10px; font-size:14px; font-weight:600; }
+input[type="checkbox"] { width:23px; height:23px; accent-color:#a43c13; }
+.notebook { border-top:2px solid #b99868; padding-top:8px; }
+table { border-collapse:collapse; width:100%; font-size:12px; }
+th,td { padding:7px 3px; text-align:left; border-bottom:1px solid #ddd0b8; }
+th { font-weight:700; color:#644b32; }
+.privacy,.footnote { color:var(--muted); font-size:11px; margin:5px 0; line-height:1.4; }
+.claims { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.claims .b { font-size:12px; font-weight:600; line-height:1.35; text-align:left; min-height:100px; }
+.evidence .b { min-height:44px; font-size:12px; padding:5px; }
+.status { font-size:12px; font-weight:800; padding:4px 9px; border:1px solid #b89e73; border-radius:5px; background:#f5e5c4; }
+#argumentCard { position:absolute; z-index:2; left:16px; top:18px; bottom:18px; width:43%; overflow:auto;
+  border-radius:4px 12px 12px 4px; padding:17px; background:linear-gradient(95deg,#e6d7b8,#fcf5e4 5%);
+  border:1px solid #d7be8b; box-shadow:5px 7px 25px #0008; color:#302a22; }
+#argumentCard::before { content:''; position:absolute; top:0; bottom:0; left:8px; border-left:1px solid #c4755c55; }
+#argumentCard h2 { font:700 24px Georgia,serif; margin:5px 0 12px; }
+#argumentCard h3 { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:#815329; margin:12px 0 4px; }
+#argumentCard p { font-size:13px; line-height:1.4; margin:5px 0; }
+#argumentCard textarea { width:100%; min-height:70px; resize:vertical; border:1px solid #b79d73;
+  background:#fffdf5; border-radius:5px; color:#302a22; font:13px/1.4 'Segoe UI',sans-serif; padding:8px; }
+#cardEvidence { font-size:12px; line-height:1.7; }
+#tests { padding-left:20px; font-size:12px; line-height:1.65; }
+.old { color:#726b61; }
+body.testing #argumentCard { width:28%; padding:12px; }
+body.testing #argumentCard h2 { font-size:18px; }
+.badge { position:absolute; z-index:3; top:16px; left:18px; padding:10px 15px; background:#fff9ebf2;
+  border:1px solid #b99868; border-radius:5px 14px 14px 5px; box-shadow:0 4px 12px #0003; pointer-events:none; }
+.badge b { font:700 23px Georgia,serif; display:block; }
+.badge small { color:#614b36; font-size:12px; }
+#bubble { position:absolute; z-index:3; left:1%; top:20%; max-width:23%; background:#fffcf1;
+  border:1px solid #c7b293; border-radius:18px 18px 18px 3px; padding:12px; font-size:15px;
+  box-shadow:0 3px 8px #0002; pointer-events:none; }
+#placeNote { position:absolute; bottom:12px; left:15px; max-width:80%; color:#fff; background:#172b30e8;
+  padding:7px 12px; border-radius:5px; font-size:12px; pointer-events:none; }
+dialog { max-width:340px; border:2px solid #ba9462; border-radius:14px; background:#fcf8ef; padding:22px; }
+dialog::backdrop { background:#10202bd0; }
+dialog h2 { font:24px Georgia,serif; }
+@media (max-height:899px) {
+  .panel { padding:10px 12px; gap:7px; }
+  .panel section { gap:6px; }
+  .hint { min-height:62px; padding:8px 10px; }
+}
+@media (max-width:1100px) {
+  main { grid-template-columns:minmax(0,1fr) 34%; }
+  header { gap:5px; padding:5px 8px; }
+  h1 { font-size:19px; }
+  h1 small { display:none; }
+  .seg button { padding:0 8px; font-size:12px; }
+  .icon-btn { width:82px; font-size:12px; }
+  #argumentCard { left:10px; top:12px; bottom:12px; padding:10px; }
+  #argumentCard h2 { font-size:19px; }
+  #argumentCard h3 { margin-top:7px; }
+  #argumentCard p { font-size:11px; }
+  #argumentCard textarea { font-size:11px; min-height:52px; }
+  .claims .b { font-size:11px; min-height:85px; padding:5px; }
+}
+@media (min-width:761px) and (max-height:550px) {
+  header { min-height:50px; }
+  h1 { max-width:160px; white-space:normal; font-size:17px; }
+  .panel { padding:6px; gap:4px; }
+  .panel section { gap:4px; }
+  .b { font-size:12px; padding:4px; }
+  .places .b { font-size:11px; }
+  .places small { display:none; }
+  .eyebrow { display:none; }
+  .hint { min-height:44px; font-size:12px; padding:5px; }
+  .claims .b { font-size:10.5px; line-height:1.15; min-height:70px; }
+  .evidence .b { font-size:10px; }
+  .notebook { margin-top:10px; }
+  .badge { top:10px; left:10px; padding:7px 10px; }
+  .badge b { font-size:18px; }
+  #bubble { font-size:12px; padding:8px; }
+  #placeNote { font-size:10px; }
+}
+@media (min-width:761px) and (max-width:720px) { main { grid-template-columns:60% 40%; } }
+@media (min-width:761px) { #hint { order:2; } .secondaryInfo { order:3; } }
+@media (max-width:760px) and (orientation:landscape) {
+  main { grid-template-columns:60% 40%; }
+  header { min-height:50px; }
+  h1 { font-size:16px; }
+  .seg button { font-size:11px; padding:0 6px; }
+  .icon-btn { width:77px; font-size:11px; }
+  .panel { padding:5px; gap:4px; }
+  .panel section { gap:4px; }
+  .b { padding:4px; font-size:12px; }
+  .places .b { font-size:11px; }
+  .places small,.eyebrow { display:none; }
+  .hint { min-height:42px; font-size:12px; padding:5px; }
+  .claims .b { font-size:10.5px; line-height:1.15; min-height:70px; padding:4px; }
+  .evidence .b { font-size:10px; }
+  #argumentCard h2 { font-size:16px; margin:2px 0 5px; }
+  #argumentCard h3 { font-size:10px; }
+  #cardEvidence,#tests { font-size:10px; }
+  .badge { top:10px; left:10px; padding:6px 9px; }
+  .badge b { font-size:17px; }
+  #bubble { font-size:11px; padding:7px; }
+  #placeNote { font-size:10px; max-width:95%; }
+}
+@media (max-width:760px) {
+  #evidence:has(#evidence-feather:not([hidden])):has(#evidence-worlds:not([hidden])) {
+    grid-template-columns:repeat(3,minmax(0,1fr));
+  }
+}
+@media (max-width:760px) and (orientation:portrait) {
+  body { overflow:auto; height:auto; min-height:100dvh; }
+  header { padding:6px; gap:5px; }
+  h1 { width:100%; font-size:22px; text-align:center; }
+  .seg { margin:auto; }
+  .seg button { padding:0 9px; }
+  .icon-btn { flex:1; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .stage { flex:none; width:100%; aspect-ratio:16/9; min-height:0; }
+  .panel { overflow:visible; border-left:0; border-top:4px solid #d8c3a2; padding:9px; }
+  .claims .b { min-height:68px; font-size:11.5px; line-height:1.3; padding:5px; }
+  .badge { top:4px; left:auto; right:6px; padding:4px 6px; max-width:49%; }
+  .badge b { font-size:14px; }
+  .badge small { font-size:10px; }
+  #placeNote { font-size:10px; padding:4px 6px; bottom:5px; left:6px; }
+  #bubble { font-size:10px; padding:5px; top:4%; max-width:23%; }
+  #argumentCard { left:5px; top:6px; bottom:6px; padding:6px; width:43%; }
+  #argumentCard h2 { font-size:12px; margin:2px 0 4px; }
+  #argumentCard h3 { font-size:10px; margin:3px 0 2px; }
+  #argumentCard p,#cardEvidence { font-size:10px; }
+  #argumentCard textarea { min-height:44px; }
+}
+@media (min-width:600px) and (max-width:760px) and (orientation:portrait) {
+  .claims .b { min-height:44px; line-height:1.2; padding:6px; }
+  .panel { padding:6px 9px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Which Way Is Down?<small>Around the world, one pull</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-drop" aria-pressed="true">Drop</button>
+    <button id="m-globe" aria-pressed="false">Globe</button>
+    <button id="m-argue" aria-pressed="false">Argue</button>
+    <button id="m-worlds" aria-pressed="false">Other worlds</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <canvas id="scene" tabindex="0" role="application" aria-label="Schoolyard. Pick an object and tap Drop."></canvas>
+    <div class="badge" id="placeBadge"><b id="placeTitle">Anchorage</b><small id="placeSub">Alaska · Jonah's school</small></div>
+    <div id="bubble" hidden></div>
+    <div id="placeNote"></div>
+    <article id="argumentCard" hidden aria-label="Your argument card">
+      <span class="eyebrow">Gravity field notebook</span>
+      <h2>Your argument <span class="status" id="cardStatus">Building</span></h2>
+      <h3>Claim</h3><p id="cardClaim">Choose a claim from the cards.</p>
+      <h3>Evidence</h3><div id="cardEvidence">Attach at least three recorded places.</div>
+      <h3>Check</h3><p id="cardCheck">Compare your claim with your arrows.</p>
+      <h3><label for="reasoning">My evidence supports my claim because</label></h3>
+      <textarea id="reasoning" aria-label="Reasoning: My evidence supports my claim because" maxlength="1200"
+        placeholder="Explain how the places connect to your claim."></textarea>
+      <h3>Tests</h3><ol id="tests"></ol>
+      <p class="privacy">Saved only on this device. Your teacher reads your reasoning.</p>
+    </article>
+  </div>
+  <aside class="panel" id="panel">
+    <section id="dropPanel">
+      <button class="b gold" id="zoom" hidden>Zoom out</button>
+      <p class="eyebrow">Four schools, four directions</p>
+      <div class="grid2 places" id="places"></div>
+      <div id="yardControls">
+        <div class="row" id="objects">
+          <button class="b" id="obj-apple" aria-pressed="true">Apple</button>
+          <button class="b" id="obj-ball" aria-pressed="false">Ball</button>
+          <button class="b" id="obj-feather-tube" aria-pressed="false">Feather tube</button>
+        </div>
+        <div class="row" style="margin-top:6px">
+          <button class="b primary" id="drop">Drop ↓</button>
+          <button class="b" id="mark" disabled>Mark on globe</button>
+        </div>
+        <label class="toggle"><input id="slow" type="checkbox">Slow motion ×10</label>
+      </div>
+      <div id="markControls" hidden>
+        <div class="row"><button class="b" id="left">Turn left</button><button class="b" id="right">Turn right</button></div>
+        <div class="row" style="margin-top:6px">
+          <button class="b primary" id="record">Record</button><button class="b" id="back">Back to yard</button>
+        </div>
+      </div>
+    </section>
+    <section id="globePanel" hidden>
+      <p class="eyebrow">Follow the pull</p>
+      <label class="toggle"><input id="xray" type="checkbox">X-ray</label>
+      <label class="toggle"><input id="extend" type="checkbox">Extend lines</label>
+      <div class="row"><button class="b" id="clearKids">Clear kids</button><button class="b" id="resetView">Reset view</button></div>
+      <button class="b gold" id="replay">Replay</button>
+    </section>
+    <section id="arguePanel" hidden>
+      <p class="eyebrow" id="claimHeading">Pick a claim</p><div class="claims" id="claims"></div>
+      <p class="eyebrow" id="evidenceHeading">Attach evidence</p><div class="grid2 evidence" id="evidence"></div>
+      <div class="row" id="claimControls">
+        <button class="b primary" id="check" disabled>Check claim</button>
+        <button class="b gold" id="test" disabled>Test it</button>
+        <button class="b" id="goDrop">Go to Drop</button>
+      </div>
+      <div id="testControls" hidden>
+        <div class="row"><button class="b" id="testLeft">Turn left</button><button class="b" id="testRight">Turn right</button></div>
+        <div class="row" style="margin-top:6px">
+          <button class="b primary" id="predict">Predict</button><button class="b gold" id="next" disabled>Next place</button>
+        </div>
+      </div>
+    </section>
+    <section id="worldsPanel" hidden>
+      <button class="b primary" id="dropAll">Drop all ↓</button>
+      <label class="toggle"><input id="slowWorlds" type="checkbox" checked>Slow motion ×10</label>
+    </section>
+    <p class="hint" id="hint" aria-live="polite">Pick something to drop, then tap Drop.</p>
+    <div class="secondaryInfo notebook" id="notebook">
+      <p class="eyebrow">Your drop records</p>
+      <table><thead><tr><th>Place</th><th>Dropped</th><th>Arrow</th></tr></thead><tbody id="notebookRows"></tbody></table>
+      <p class="privacy">Saved only on this device.</p>
+      <button class="b" id="startOver">Start over</button>
+    </div>
+    <div class="secondaryInfo" id="worldTable" hidden>
+      <table><thead><tr><th>World</th><th>Gravity</th><th>Fall time</th></tr></thead>
+        <tbody><tr><td>Earth</td><td>9.8 (1)</td><td>0.55 s</td></tr>
+          <tr><td>Moon</td><td>1.6 (0.17)</td><td>1.36 s</td></tr>
+          <tr><td>Mars</td><td>3.7 (0.38)</td><td>0.90 s</td></tr></tbody></table>
+      <p class="footnote">Gravity: m/s each second. In brackets: Earth's pull. Rounded values. Drop height: 1.5 m. No air resistance.</p>
+      <p>Slower or faster, every apple falls toward its own world's center.</p>
+    </div>
+  </aside>
+</main>
+<dialog id="clearDialog"><h2>Clear all four records?</h2><p>This also clears your argument and tests.</p>
+  <div class="row"><button class="b primary" id="clear">Clear</button><button class="b" id="keep">Keep</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const TAU = Math.PI * 2;
+  const RAD = Math.PI / 180;
+  const LAND = "json:land";
+  const SCHOOLS = [
+    {name:'Anchorage', full:'Anchorage, Alaska', lat:61.2, lon:-149.9, side:'left', kid:'jonah', sub:"Alaska · Jonah's school",
+      edge:118.8, true:298.8, color:'#7cc8ff', note:'Anchorage, Alaska, USA. 61 degrees north.',
+      bubble:'Down is down here in Alaska.', fell:'fellA'},
+    {name:'Quito', full:'Quito, Ecuador', lat:-.2, lon:-78.5, side:'right', kid:'sofia', sub:"Ecuador · Sofia's school",
+      edge:359.8, true:179.8, color:'#9be08a', note:'Quito, Ecuador. Almost on the equator.',
+      bubble:'Here near the equator, it fell straight down too.', fell:'fellQ'},
+    {name:'Sydney', full:'Sydney, Australia', lat:-33.9, lon:151.2, side:'left', kid:'ruby', sub:"Australia · Ruby's school",
+      edge:213.9, true:33.9, color:'#f4a3ff', note:'Sydney, Australia. 34 degrees south.',
+      bubble:'In Sydney, the ground is under my feet, same as yours.', fell:'fellS'},
+    {name:'Esperanza', full:'Esperanza Base, Antarctica', lat:-63.4, lon:-57, side:'right', kid:'valentina',
+      sub:"Antarctica · Valentina's school", edge:296.6, true:116.6, color:'#ffd166',
+      note:'Esperanza Base, an Argentine research base in Antarctica where families live and children go to school. 63 degrees south.',
+      bubble:'Esperanza Base has a school, and here the apple falls straight down too.', fell:'fellE'}
+  ];
+  const POOL = [
+    {name:'Tokyo',lat:35.7,lon:139.7}, {name:'Cairo',lat:30,lon:31.2}, {name:'Oslo',lat:59.9,lon:10.8},
+    {name:'Honolulu',lat:21.3,lon:-157.9}, {name:'Nairobi',lat:-1.3,lon:36.8},
+    {name:'Cape Town',lat:-33.9,lon:18.4}, {name:'Ushuaia',lat:-54.8,lon:-68.3}, {name:'Buenos Aires',lat:-34.6,lon:-58.4}
+  ];
+  const CLAIMS = {
+    A:"Gravity pulls things toward Earth's center, so down points a different way at each place.",
+    B:'Gravity pulls things toward the South Pole, so down points to the bottom of the globe.',
+    C:'Gravity pulls every place the same one way, so people in Australia hang upside down.',
+    D:'Gravity pulls toward Earth in the north, but in the south it pulls things off into space.'
+  };
+  const L = {
+    "wDrop": "Welcome to Anchorage, Alaska. Pick something to drop, then tap Drop.",
+    "fellA": "Straight down.",
+    "fellQ": "Straight down again, just like in Alaska.",
+    "fellS": "Down under, it still falls straight down to the ground.",
+    "fellE": "Even in Antarctica, straight down along the plumb line.",
+    "hMarkBtn": "Now tap Mark on globe.",
+    "hMark": "Drag the arrow the way the apple fell there, then tap Record.",
+    "recOk": "Recorded.",
+    "recMiss": "Not quite. Here is the yard turned to sit on the globe. Line the arrow up with its plumb line.",
+    "hNext": "Pick the next school, then tap Drop.",
+    "hZoom": "All four schools are recorded. Tap Zoom out.",
+    "rv1": "Watch what happens when we make the arrows longer.",
+    "rv2": "They all meet at one spot, the center of Earth.",
+    "rv3": "So down is not one direction in space. Down is toward Earth's center, wherever you stand.",
+    "wGlobe": "This is all of Earth. Drag to spin it, or tap the globe to stand a kid anywhere.",
+    "wArgue": "Build your argument. Tap a claim, then tap at least three place cards.",
+    "hCheck": "Tap Check claim to test it against your arrows.",
+    "fits": "Your claim fits every arrow. Now tap Test it.",
+    "noFit": "The dashed arrows miss your evidence. Try a claim that fits all of it.",
+    "hTest": "A new place. Drag the arrow to show which way down is there, then tap Predict.",
+    "hit": "Hit. Your claim predicted it.",
+    "miss": "Missed. See where the plumb line really points.",
+    "strong": "Three in a row. Your claim keeps predicting new places. That's a strong argument.",
+    "needWords": "Finish your reasoning in the box to complete the card.",
+    "nextReady": "Tap Next place.",
+    "needRec": "Record at least three places in Drop first. Tap Go to Drop.",
+    "wWorlds": "Same apple, three worlds. Tap Drop all.",
+    "worlds": "The Moon's apple is slowest, but on every world it falls toward the center."
+};
+  const images = {};
+  const IMAGE_URLS = {
+    'yard-anchorage':'art:wwd-yard-anchorage', 'yard-quito':'art:wwd-yard-quito',
+    'yard-sydney':'art:wwd-yard-sydney', 'yard-esperanza':'art:wwd-yard-esperanza',
+    'kid-jonah-hold':'art:wwd-kid-jonah-hold', 'kid-jonah-point':'art:wwd-kid-jonah-point',
+    'kid-sofia-hold':'art:wwd-kid-sofia-hold', 'kid-sofia-point':'art:wwd-kid-sofia-point',
+    'kid-ruby-hold':'art:wwd-kid-ruby-hold', 'kid-ruby-point':'art:wwd-kid-ruby-point',
+    'kid-valentina-hold':'art:wwd-kid-valentina-hold', 'kid-valentina-point':'art:wwd-kid-valentina-point',
+    apple:'art:wwd-apple', ball:'art:wwd-ball', 'feather-tube':'art:wwd-feather-tube', bob:'art:wwd-bob', stars:'art:wwd-stars',
+    'ground-earth':'art:wwd-ground-earth', 'ground-moon':'art:wwd-ground-moon', 'ground-mars':'art:wwd-ground-mars',
+    'globe-moon':'art:wwd-globe-moon', 'globe-mars':'art:wwd-globe-mars'
+  };
+  for (const [key,url] of Object.entries(IMAGE_URLS)) {
+    const img = new Image();
+    img.src = url;
+    images[key] = img;
+  }
+  const state = {
+    mode:'drop', view:'yard', place:0, object:'apple', slow:false, slowWorlds:true, dropped:{}, records:{},
+    fall:null, flight:null, landed:false, landingTag:0, markMiss:null, angle:270, xray:false, extend:false,
+    centerLat:0, centerLon:-100, kids:[], reveal:null, revealCount:0, revealDot:false,
+    claim:null, attached:[], checked:false, fits:false, reasoning:'', tests:[], revision:0,
+    test:null, testIndex:0, testOrder:[], extraFeather:false, extraWorlds:false, worlds:null
+  };
+  const canvas = $('scene');
+  const ctx = canvas.getContext('2d');
+  let W = 1;
+  let H = 1;
+  let epoch = 0;
+  let lastFrame = performance.now();
+  let globeGeo = {x:0,y:0,r:0};
+  let arrowGeo = null;
+  let pointer = null;
+  const firstLandings = new Set();
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    speaks:'#drop, #dropAll, #places button, #record, #predict, #zoom, #replay',
+    welcome:() => {
+      if (state.mode==='drop') {
+        return state.place===0 && !state.fall && state.view==='yard'
+          ? ['wDrop',{valid:() => state.place===0 && !state.fall && !state.landed}] : null;
+      }
+      if (state.mode==='globe') return state.reveal ? null : 'wGlobe';
+      if (state.mode==='argue') {
+        if (Object.keys(state.records).length<3) return ['needRec-'+epoch,L.needRec,{needs:'#goDrop'}];
+        return !state.claim ? 'wArgue' : null;
+      }
+      return !state.worlds ? 'wWorlds' : null;
+    }
+  });
+  function hint(text) { $('hint').textContent = L[text] || text; }
+  function how(key,options={}) {
+    hint(key);
+    V.how(key,{hint:false,...options});
+  }
+  function say(key,options={}) { return V.say(key,{hint:false,...options}); }
+  function mod(a) { return (a%360+360)%360; }
+  function gap(a,b) { return Math.abs((a-b+540)%360-180); }
+  function shuffle(a) {
+    const out = [...a];
+    for (let i=out.length-1;i>0;i--) {
+      const j = Math.floor(Math.random()*(i+1));
+      [out[i],out[j]] = [out[j],out[i]];
+    }
+    return out;
+  }
+  function wordCount() {
+    return (state.reasoning.match(/[\p{L}\p{N}]+(?:['’][\p{L}\p{N}]+)*/gu)||[]).length;
+  }
+  function streak() {
+    let n = 0;
+    for (let i=state.tests.length-1;i>=0;i--) {
+      const t = state.tests[i];
+      if (t.revision!==state.revision || !t.hit) break;
+      n++;
+    }
+    return n;
+  }
+  function strong() {
+    return state.fits && state.checked && placeEvidence().length>=3 && streak()>=3 && wordCount()>=8 &&
+      (!state.test || state.test.ready);
+  }
+  function placeEvidence() { return state.attached.filter(id => /^p\d$/.test(id) && state.records[id.slice(1)]); }
+  function claimGap(key,school) {
+    if (key==='A') return 0;
+    if (key==='B') return (90-school.lat)/2;
+    if (key==='C') return 90-school.lat;
+    return school.lat>=0 ? 0 : 180;
+  }
+  function save() {
+    const data = {records:state.records,claim:state.claim,attached:state.attached,reasoning:state.reasoning,
+      tests:state.tests,revision:state.revision,testIndex:state.testIndex,testOrder:state.testOrder,
+      extraFeather:state.extraFeather,extraWorlds:state.extraWorlds};
+    try { localStorage.setItem('wwd-v1',JSON.stringify(data)); } catch {}
+  }
+  function restore() {
+    try {
+      const data = JSON.parse(localStorage.getItem('wwd-v1')||'null');
+      if (!data) return;
+      for (const [id,rec] of Object.entries(data.records||{})) {
+        if (SCHOOLS[id] && ['apple','ball','feather-tube'].includes(rec.object) && gap(rec.angle,SCHOOLS[id].true)<=8) {
+          state.records[id] = {object:rec.object,angle:SCHOOLS[id].true};
+          state.dropped[id] = rec.object;
+        }
+      }
+      state.claim = CLAIMS[data.claim] ? data.claim : null;
+      state.attached = Array.isArray(data.attached) ? [...new Set(data.attached)].filter(x => /^p[0-3]$|^feather$|^worlds$/.test(x)) : [];
+      state.reasoning = typeof data.reasoning==='string' ? data.reasoning.slice(0,1200) : '';
+      state.extraFeather = !!data.extraFeather;
+      state.extraWorlds = !!data.extraWorlds;
+      state.revision = Number.isSafeInteger(data.revision) ? data.revision+1 : 1;
+      state.tests = Array.isArray(data.tests) ? data.tests.filter(t => POOL.some(p => p.name===t.name)) : [];
+      state.testIndex = Number.isSafeInteger(data.testIndex) && data.testIndex>=0 ? data.testIndex : 0;
+      if (Array.isArray(data.testOrder) && new Set(data.testOrder).size===8 && data.testOrder.every(x => POOL[x])) {
+        state.testOrder = data.testOrder;
+      }
+    } catch {}
+  }
+  restore();
+  if (!state.testOrder.length) state.testOrder = shuffle(POOL.map((_,i) => i));
+  function addButton(parent,id,text,fn) {
+    const button = document.createElement('button');
+    button.id = id;
+    button.className = 'b';
+    button.textContent = text;
+    button.onclick = fn;
+    $(parent).append(button);
+    return button;
+  }
+  SCHOOLS.forEach((p,i) => {
+    addButton('places','place-'+i,p.full,() => selectPlace(i));
+    addButton('evidence','evidence-p'+i,p.name,() => attach('p'+i));
+  });
+  shuffle(Object.keys(CLAIMS)).forEach((key,i) => {
+    const b = addButton('claims','claim-'+i,CLAIMS[key],() => chooseClaim(key));
+    b.dataset.choice = i;
+    b._claim = key;
+  });
+  addButton('evidence','evidence-feather','Feather tube',() => attach('feather'));
+  addButton('evidence','evidence-worlds','Other worlds',() => attach('worlds'));
+  function setMode(mode) {
+    if (state.mode===mode) return;
+    if (state.mode==='argue') {
+      state.suspendedTest = state.test;
+      if (state.test) {
+        state.test.aim = state.angle;
+        if (state.test.spent) {
+          state.test.ready = true;
+          state.test.progress = 1;
+        }
+      }
+    }
+    epoch++;
+    V.hush();
+    state.reveal = null;
+    state.fall = null;
+    state.worlds = null;
+    state.flight = null;
+    state.mode = mode;
+    state.view = 'yard';
+    state.landed = !!state.dropped[state.place];
+    state.test = mode==='argue' ? state.suspendedTest || null : null;
+    if (state.test) state.angle = state.test.aim ?? 270;
+    $('bubble').hidden = true;
+    sync();
+    if (mode==='drop') hint('Pick something to drop, then tap Drop.');
+    if (mode==='globe') hint('Tap the globe to stand a kid anywhere, or record drops in Drop.');
+    if (mode==='argue') {
+      if (state.test) hint(state.test.spent ? 'Tap Next place to test another prediction.' : L.hTest);
+      else hint(Object.keys(state.records).length<3 ? L.needRec : L.wArgue);
+    }
+    if (mode==='worlds') hint('wWorlds');
+    V.welcome();
+  }
+  function selectPlace(i) {
+    if (state.place===i && state.view==='yard') return;
+    V.hush();
+    epoch++;
+    const previous = state.place;
+    state.place = i;
+    state.fall = null;
+    state.view = 'yard';
+    state.landed = false;
+    state.markMiss = null;
+    state.flight = Curio.reduce ? null : {start:performance.now(),from:SCHOOLS[previous],to:SCHOOLS[i]};
+    $('bubble').hidden = true;
+    hint('Pick something to drop, then tap Drop.');
+    Curio.tone(440,.05,.03);
+    sync();
+  }
+  function drop() {
+    if (state.mode!=='drop' || state.view!=='yard') return;
+    V.hush();
+    state.flight = null;
+    state.landed = false;
+    state.fall = {t:0,object:state.object};
+    $('bubble').hidden = true;
+    hint('Watch the object beside the plumb line.');
+    Curio.tone(650,.07,.04);
+    sync();
+  }
+  function landed() {
+    const i = state.place;
+    const school = SCHOOLS[i];
+    state.fall = null;
+    state.landed = true;
+    state.landingTag = performance.now()+3000;
+    state.dropped[i] = state.object;
+    if (state.object==='feather-tube') state.extraFeather = true;
+    Curio.tone(150,.12,.07,'triangle');
+    sync();
+    hint(state.object==='feather-tube' ? 'With no air in the way, the feather falls as fast as the apple. Tap Mark on globe.' : L.hMarkBtn);
+    if (!firstLandings.has(i)) {
+      firstLandings.add(i);
+      $('bubble').textContent = school.bubble;
+      $('bubble').hidden = false;
+      say(school.fell,{valid:() => state.place===i && state.view==='yard'});
+    }
+    V.how('hMarkBtn',{hint:false,needs:'#mark',valid:() => state.view==='yard' && state.landed});
+    save();
+  }
+  function mark() {
+    if (!state.landed) return;
+    V.hush();
+    state.view = 'mark';
+    state.angle = 270;
+    state.markMiss = null;
+    $('bubble').hidden = true;
+    sync();
+    canvas.focus({preventScroll:true});
+    how('hMark',{valid:() => state.view==='mark',needs:'#record'});
+  }
+  function turn(delta) {
+    if (state.test && state.test.spent) return;
+    state.angle = mod(state.angle+delta);
+    state.markMiss = null;
+    if (state.test) hint('Turn the arrow, then tap Predict. One try at this place.');
+    else hint('Turn the arrow, then tap Record.');
+    Curio.tone(330+state.angle,.035,.02);
+  }
+  function record() {
+    if (state.view!=='mark') return;
+    const i = state.place;
+    const g = gap(state.angle,SCHOOLS[i].true);
+    if (g<=8) {
+      state.angle = SCHOOLS[i].true;
+      state.records[i] = {object:state.dropped[i]||state.object,angle:state.angle};
+      state.markMiss = null;
+      Curio.yes();
+      sync();
+      hint('Recorded. Pick the next school, then tap Drop.');
+      say('recOk',{now:true,valid:() => state.view==='mark' && state.place===i});
+      if (Object.keys(state.records).length===4) {
+        hint('hZoom');
+        V.how('hZoom',{hint:false,needs:'#zoom',valid:() => state.mode==='drop'});
+      } else {
+        V.how('hNext',{hint:false,valid:() => state.mode==='drop' && !state.fall});
+      }
+      save();
+      sync();
+    } else {
+      state.markMiss = {gap:g,start:performance.now()};
+      hint('Miss: '+Math.round(g)+' degrees off. Match the turned yard, then tap Record.');
+      say('recMiss',{now:true,valid:() => !!state.markMiss});
+      Curio.tone(170,.09,.04);
+    }
+  }
+  function invalidate() {
+    state.checked = false;
+    state.fits = false;
+    state.revision++;
+    state.test = null;
+    state.suspendedTest = null;
+  }
+  function chooseClaim(key) {
+    if (state.claim===key) return;
+    state.claim = key;
+    invalidate();
+    Curio.tone(440,.06,.025);
+    sync();
+    if (placeEvidence().length>=3) how('hCheck',{needs:'#check',valid:() => !state.checked});
+    else hint(Object.keys(state.records).length<3 ? L.needRec : 'Tap at least three recorded place cards.');
+    save();
+  }
+  function attach(id) {
+    if (/^p/.test(id) && !state.records[id.slice(1)]) {
+      hint('needRec');
+      V.how('needRec',{hint:false,needs:'#goDrop',key:'needRec-'+epoch});
+      return;
+    }
+    const index = state.attached.indexOf(id);
+    if (index>=0) state.attached.splice(index,1);
+    else if (state.attached.length<5) state.attached.push(id);
+    else { hint('Five cards attached. Tap one to remove it first.'); return; }
+    invalidate();
+    Curio.tone(520,.05,.025);
+    sync();
+    if (state.claim && placeEvidence().length>=3) how('hCheck',{needs:'#check',valid:() => !state.checked});
+    else hint('Tap a claim and at least three recorded place cards.');
+    save();
+  }
+  function checkClaim() {
+    if (!state.claim || placeEvidence().length<3) return;
+    state.checked = true;
+    state.fits = placeEvidence().every(id => claimGap(state.claim,SCHOOLS[id.slice(1)])<=8);
+    sync();
+    hint(state.fits ? 'fits' : 'noFit');
+    say(state.fits ? 'fits' : 'noFit',{valid:() => state.checked});
+    Curio.tone(state.fits ? 660 : 180,.1,.04);
+    save();
+  }
+  function nextTest() {
+    if (!state.fits || !state.checked || (state.test && !state.test.ready)) return;
+    V.hush();
+    const idx = state.testIndex++;
+    if (idx>0 && idx%8===0) state.testOrder = shuffle(POOL.map((_,i) => i));
+    const place = POOL[state.testOrder[idx%8]];
+    const side = (idx+Math.floor(idx/8))%2===0 ? 'right' : 'left';
+    const edge = mod(side==='left' ? 180-place.lat : place.lat);
+    state.test = {...place,side,edge,true:mod(edge+180),spent:false,ready:false,progress:0};
+    state.angle = 270;
+    sync();
+    canvas.focus({preventScroll:true});
+    how('hTest',{valid:() => !!state.test && !state.test.spent,needs:'#predict'});
+    save();
+  }
+  async function predict() {
+    const t = state.test;
+    if (!t || t.spent) return;
+    t.spent = true;
+    t.gap = gap(state.angle,t.true);
+    t.hit = t.gap<=8;
+    t.start = performance.now();
+    t.progress = 0;
+    state.tests.push({name:t.name,lat:t.lat,side:t.side,angle:state.angle,gap:t.gap,hit:t.hit,revision:state.revision});
+    hint('Watch the true plumb line.');
+    Curio.tone(490,.09,.035);
+    sync();
+    canvas.focus({preventScroll:true});
+    const token = epoch;
+    await Curio.wait(1500);
+    if (state.test!==t || token!==epoch) return;
+    hint((t.hit ? 'Hit. Your claim predicted it.' : 'Missed. See where the plumb line really points.')+' Watch the result.');
+    sync();
+    if (t.hit) Curio.yes();
+    const valid = () => state.test===t;
+    if (Curio.sound) {
+      await say(t.hit ? 'hit' : 'miss',{wait:true,valid});
+      if (state.test!==t) return;
+      if (streak()===3 && wordCount()>=8) await say('strong',{wait:true,valid:() => valid() && wordCount()>=8});
+    } else {
+      say(t.hit ? 'hit' : 'miss',{valid});
+      if (streak()===3 && wordCount()>=8) say('strong',{valid:() => valid() && wordCount()>=8});
+    }
+    if (state.test!==t) return;
+    t.ready = true;
+    sync();
+    if (streak()>=3 && wordCount()<8) how('needWords',{valid:() => wordCount()<8,needs:'#reasoning'});
+    else {
+      hint('Tap Next place to test another prediction.');
+      say('nextReady',{valid,needs:'#next'});
+    }
+    if (document.activeElement===canvas) $('next').focus({preventScroll:true});
+    save();
+  }
+  async function reveal() {
+    if (state.mode!=='globe') setMode('globe');
+    V.hush();
+    const token = ++epoch;
+    state.reveal = {start:performance.now(),token,turning:true,fromLat:state.centerLat,fromLon:state.centerLon};
+    state.revealCount = 0;
+    state.revealDot = false;
+    state.extend = false;
+    state.xray = false;
+    sync();
+    hint('Watch what happens when we make the arrows longer. Tap the scene to finish the reveal.');
+    const valid = () => state.reveal && epoch===token;
+    await Curio.wait(Curio.reduce ? 0 : 600);
+    if (!valid()) return;
+    state.centerLat = -20;
+    state.centerLon = -100;
+    state.reveal.turning = false;
+    state.reveal.start = performance.now();
+    state.xray = true;
+    sync();
+    await say('rv1',{wait:true,valid});
+    if (!valid()) return;
+    for (let i=1;i<=4;i++) {
+      state.revealCount = i;
+      state.reveal.lineStart = performance.now();
+      await Curio.wait(800);
+      if (!valid()) return;
+    }
+    state.revealDot = true;
+    hint('rv2');
+    await say('rv2',{wait:true,valid});
+    if (!valid()) return;
+    hint('rv3');
+    await say('rv3',{wait:true,valid});
+    if (valid()) finishReveal(false);
+  }
+  function finishReveal(stop=true) {
+    if (stop) V.hush();
+    epoch++;
+    state.reveal = null;
+    state.revealCount = 4;
+    state.revealDot = true;
+    state.xray = true;
+    state.extend = true;
+    state.centerLat = -20;
+    state.centerLon = -100;
+    sync();
+    hint('Drag to spin, tap the globe to stand a kid, or tap Argue to build your argument.');
+    if (!stop) V.how('wGlobe',{hint:false,valid:() => state.mode==='globe' && !state.reveal});
+  }
+  function sync() {
+    for (const mode of ['drop','globe','argue','worlds']) {
+      $('m-'+mode).setAttribute('aria-pressed',String(state.mode===mode));
+      $(mode==='argue' ? 'arguePanel' : mode+'Panel').hidden = state.mode!==mode;
+    }
+    document.body.classList.toggle('testing',state.mode==='argue' && !!state.test);
+    $('argumentCard').hidden = state.mode!=='argue';
+    $('placeBadge').hidden = state.mode!=='drop' || state.view!=='yard';
+    $('placeNote').hidden = state.mode!=='drop' || state.view!=='yard';
+    $('placeTitle').textContent = SCHOOLS[state.place].name;
+    $('placeSub').textContent = SCHOOLS[state.place].sub;
+    $('placeNote').textContent = SCHOOLS[state.place].note;
+    $('notebook').hidden = state.mode!=='drop';
+    $('worldTable').hidden = state.mode!=='worlds';
+    $('yardControls').hidden = state.view!=='yard';
+    $('markControls').hidden = state.view!=='mark';
+    $('mark').disabled = !state.landed;
+    $('zoom').hidden = Object.keys(state.records).length!==4;
+    $('xray').checked = state.xray;
+    $('extend').checked = state.extend;
+    $('slow').checked = state.slow;
+    $('slowWorlds').checked = state.slowWorlds;
+    $('replay').disabled = Object.keys(state.records).length!==4;
+    for (let i=0;i<4;i++) {
+      const recorded = !!state.records[i];
+      const b = $('place-'+i);
+      b.textContent = (recorded ? '✓ ' : '')+SCHOOLS[i].full;
+      b.setAttribute('aria-pressed',String(state.place===i));
+      const e = $('evidence-p'+i);
+      e.textContent = SCHOOLS[i].name+(recorded ? '' : ': Record in Drop');
+      e.setAttribute('aria-pressed',String(state.attached.includes('p'+i)));
+    }
+    for (const object of ['apple','ball','feather-tube']) $('obj-'+object).setAttribute('aria-pressed',String(state.object===object));
+    $('notebookRows').replaceChildren(...SCHOOLS.map((p,i) => {
+      const row = document.createElement('tr');
+      const rec = state.records[i];
+      for (const text of [p.name,rec?.object || state.dropped[i] || 'Not yet',rec ? '✓ Recorded' : 'Not yet']) {
+        const td = document.createElement('td');
+        td.textContent = text;
+        row.append(td);
+      }
+      return row;
+    }));
+    for (const b of $('claims').children) b.setAttribute('aria-pressed',String(state.claim===b._claim));
+    $('evidence-feather').hidden = !state.extraFeather;
+    $('evidence-worlds').hidden = !state.extraWorlds;
+    for (const id of ['feather','worlds']) $('evidence-'+id).setAttribute('aria-pressed',String(state.attached.includes(id)));
+    $('check').disabled = !state.claim || placeEvidence().length<3;
+    $('test').disabled = !state.fits;
+    $('goDrop').hidden = Object.keys(state.records).length>=3;
+    $('testControls').hidden = !state.test;
+    $('claimHeading').hidden = !!state.test;
+    $('evidenceHeading').hidden = !!state.test;
+    $('claims').hidden = !!state.test;
+    $('evidence').hidden = !!state.test;
+    $('claimControls').hidden = !!state.test;
+    $('predict').disabled = !state.test || state.test.spent;
+    $('next').disabled = !state.test || !state.test.ready;
+    $('testLeft').disabled = !!state.test?.spent;
+    $('testRight').disabled = !!state.test?.spent;
+    $('cardClaim').textContent = CLAIMS[state.claim] || 'Choose a claim from the cards.';
+    $('cardStatus').textContent = strong() ? 'Strong' : state.fits ? 'Fits your evidence' : 'Building';
+    $('cardEvidence').textContent = state.attached.length ? state.attached.map(id => /^p/.test(id)
+      ? SCHOOLS[id.slice(1)].name+' · '+state.records[id.slice(1)]?.object+' · recorded'
+      : (id==='feather' ? 'Feather tube' : 'Other worlds')+' · about how fast, not which way').join('\n') : 'Attach at least three recorded places.';
+    $('cardEvidence').style.whiteSpace = 'pre-line';
+    $('cardCheck').textContent = !state.checked ? 'Compare your claim with your arrows.' : placeEvidence().map(id => {
+      const p = SCHOOLS[id.slice(1)];
+      return p.name+': '+claimGap(state.claim,p).toFixed(1)+'°';
+    }).join(' · ')+(state.fits ? ' · Fits' : ' · Misses');
+    if ($('reasoning').value!==state.reasoning) $('reasoning').value = state.reasoning;
+    $('tests').replaceChildren(...state.tests.map(t => {
+      const li = document.createElement('li');
+      li.textContent = t.name+': '+(t.hit ? 'Hit' : 'Miss')+', '+Math.round(t.gap)+'°'+
+        (t.revision!==state.revision ? ' · before you changed your claim' : '');
+      if (t.revision!==state.revision) li.className = 'old';
+      return li;
+    }));
+    const interactiveScene = state.mode==='globe' || state.view==='mark' || !!state.test;
+    canvas.tabIndex = interactiveScene ? 0 : -1;
+    canvas.setAttribute('role',interactiveScene ? 'application' : 'img');
+    canvas.setAttribute('aria-label',state.mode==='worlds' ? 'Three drop lanes: Earth, Moon and Mars. Tap Drop all in the panel.'
+      : state.mode==='drop' && state.view==='yard'
+      ? 'Schoolyard. Pick an object and tap Drop.'
+      : state.mode==='argue' && !state.test ? 'Evidence globe. Solid arrows show recorded observations; Check claim adds dashed claim arrows.'
+      : 'Globe. Drag to spin. In Mark or Test, turn the arrow with Left and Right, Shift for one degree, Enter to submit.');
+  }
+  for (const mode of ['drop','globe','argue','worlds']) $('m-'+mode).onclick = () => setMode(mode);
+  $('drop').onclick = drop;
+  $('mark').onclick = mark;
+  $('left').onclick = () => turn(5);
+  $('right').onclick = () => turn(-5);
+  $('record').onclick = record;
+  $('back').onclick = () => {
+    V.hush();
+    state.view = 'yard';
+    sync();
+    $('drop').focus({preventScroll:true});
+    hint('Pick something to drop, then tap Drop.');
+  };
+  $('zoom').onclick = reveal;
+  $('replay').onclick = reveal;
+  for (const obj of ['apple','ball','feather-tube']) $('obj-'+obj).onclick = () => {
+    if (state.object===obj) return;
+    state.object = obj;
+    if (state.fall) state.fall.object = obj;
+    Curio.tone(430,.04,.02);
+    sync();
+  };
+  $('slow').onchange = e => { state.slow = e.target.checked; };
+  $('slowWorlds').onchange = e => { state.slowWorlds = e.target.checked; };
+  $('xray').onchange = e => { state.xray = e.target.checked; Curio.tone(500,.05,.025); };
+  $('extend').onchange = e => { state.extend = e.target.checked; Curio.tone(600,.05,.025); };
+  $('clearKids').onclick = () => { state.kids = []; hint('Tap the globe to stand a kid anywhere.'); Curio.tone(250,.06,.02); };
+  $('resetView').onclick = () => { state.centerLat = -20; state.centerLon = -100; Curio.tone(400,.06,.025); };
+  $('check').onclick = checkClaim;
+  $('test').onclick = nextTest;
+  $('testLeft').onclick = () => turn(5);
+  $('testRight').onclick = () => turn(-5);
+  $('predict').onclick = predict;
+  $('next').onclick = nextTest;
+  $('goDrop').onclick = () => {
+    setMode('drop');
+    $('drop').focus({preventScroll:true});
+  };
+  $('reasoning').oninput = e => {
+    const wasStrong = strong();
+    state.reasoning = e.target.value;
+    $('cardStatus').textContent = strong() ? 'Strong' : state.fits ? 'Fits your evidence' : 'Building';
+    if (!wasStrong && strong()) {
+      hint('Your argument is Strong. Tap Next place to keep testing it.');
+      say('strong',{valid:strong});
+    } else if (wasStrong && !strong()) {
+      hint('needWords');
+      say('needWords',{now:true,valid:() => wordCount()<8,needs:'#reasoning'});
+    }
+    save();
+  };
+  $('dropAll').onclick = () => {
+    V.hush();
+    state.worlds = {t:0,landed:[]};
+    state.extraWorlds = true;
+    hint('Watch the three apples. The times show real seconds.');
+    Curio.tone(650,.08,.04);
+    save();
+  };
+  $('startOver').onclick = () => $('clearDialog').showModal();
+  $('keep').onclick = () => { $('clearDialog').close(); $('startOver').focus({preventScroll:true}); };
+  $('clear').onclick = () => {
+    epoch++;
+    V.hush();
+    Object.assign(state,{records:{},dropped:{},claim:null,attached:[],reasoning:'',tests:[],checked:false,fits:false,
+      test:null,suspendedTest:null,testIndex:0,revision:state.revision+1,fall:null,landed:false,view:'yard',reveal:null,
+      revealDot:false,revealCount:0,xray:false,extend:false,extraFeather:false,extraWorlds:false});
+    $('clearDialog').close();
+    $('bubble').hidden = true;
+    save();
+    sync();
+    hint('Pick something to drop, then tap Drop.');
+    $('drop').focus({preventScroll:true});
+  };
+  function resize() {
+    const r = $('stage').getBoundingClientRect();
+    W = Math.max(1,r.width);
+    H = Math.max(1,r.height);
+    const dpr = Math.min(devicePixelRatio,2);
+    canvas.width = Math.round(W*dpr);
+    canvas.height = Math.round(H*dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  new ResizeObserver(resize).observe($('stage'));
+  function img(name,x,y,w,h,cover=false) {
+    const image = images[name];
+    if (!image?.complete || !image.naturalWidth) return;
+    if (cover) {
+      const ratio = Math.max(w/image.naturalWidth,h/image.naturalHeight);
+      const sw = w/ratio;
+      const sh = h/ratio;
+      ctx.drawImage(image,(image.naturalWidth-sw)/2,(image.naturalHeight-sh)/2,sw,sh,x,y,w,h);
+    } else ctx.drawImage(image,x,y,w,h);
+  }
+  function text(str,x,y,size=14,color='#e8eef7',align='left') {
+    ctx.font = '600 '+size+'px "Segoe UI", sans-serif';
+    ctx.fillStyle = color;
+    ctx.textAlign = align;
+    ctx.fillText(str,x,y);
+  }
+  function line(x1,y1,x2,y2,color,width=2,dash=[]) {
+    ctx.strokeStyle = color;
+    ctx.lineWidth = width;
+    ctx.setLineDash(dash);
+    ctx.beginPath();
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+  function arrow(x,y,angle,len,color,dashed=false) {
+    const dx = Math.cos(angle*RAD);
+    const dy = -Math.sin(angle*RAD);
+    const ex = x+dx*len;
+    const ey = y+dy*len;
+    line(x,y,ex,ey,color,dashed ? 2 : 4,dashed ? [7,5] : []);
+    ctx.fillStyle = color;
+    ctx.beginPath();
+    ctx.moveTo(ex,ey);
+    ctx.lineTo(ex-dx*14+dy*7,ey-dy*14-dx*7);
+    ctx.lineTo(ex-dx*14-dy*7,ey-dy*14+dx*7);
+    ctx.closePath();
+    ctx.fill();
+    return {x:ex,y:ey};
+  }
+  function object(name,x,y,size) {
+    if (name!=='feather-tube') img(name,x-size/2,y-size/2,size,size);
+    else {
+      const h = size*4;
+      const image = images[name];
+      const w = h*(image?.naturalWidth/image?.naturalHeight || .2);
+      img(name,x-w*.5,y-h*.5,w,h);
+    }
+  }
+  function vacuumTube(x,releaseY,ground,size,progress) {
+    const image = images['feather-tube'];
+    if (!image?.complete || !image.naturalWidth) return;
+    const h = ground-releaseY+size*2;
+    const w = h*image.naturalWidth/image.naturalHeight;
+    const top = releaseY-size;
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x-w/2,top,w,h*.41);
+    ctx.rect(x-w/2,top+h*.60,w,h*.40);
+    ctx.rect(x-w/2,top,w*.12,h);
+    ctx.rect(x+w*.38,top,w*.12,h);
+    ctx.clip();
+    img('feather-tube',x-w/2,top,w,h);
+    ctx.restore();
+    const contentH = h*.19;
+    const contentY = releaseY+(ground-releaseY-contentH*.5)*progress-contentH*.5;
+    ctx.drawImage(image,image.naturalWidth*.12,image.naturalHeight*.41,image.naturalWidth*.76,image.naturalHeight*.19,
+      x-w*.38,contentY,w*.76,contentH);
+  }
+  function yard(x=0,y=0,w=W,h=H,inset=false,now=performance.now()) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(x,y,w,h);
+    ctx.clip();
+    const p = SCHOOLS[state.place];
+    img('yard-'+p.name.toLowerCase(),x,y,w,h,true);
+    const ground = y+h*.81;
+    const kidH = h*.66;
+    const holdImage = images['kid-'+p.kid+'-hold'];
+    const holdW = kidH*(holdImage?.naturalWidth/holdImage?.naturalHeight || .61);
+    const kidX = x+w*.26;
+    const handY = ground-kidH+kidH*.165;
+    const dropX = kidX+holdW*.94;
+    const standX = dropX+w*.15;
+    const stroke = Math.max(1,w*.004);
+    const platform = ctx.createLinearGradient(0,ground-3,0,ground+22);
+    platform.addColorStop(0,'#d8c49b');
+    platform.addColorStop(1,'#6b5a42');
+    ctx.fillStyle = platform;
+    ctx.fillRect(x+w*.46,ground,w*.43,h*.035);
+    line(standX,ground,standX,y+h*.25,'#4d4c45',stroke*2);
+    line(standX,y+h*.25,dropX+w*.07,y+h*.25,'#68685b',stroke*2);
+    line(standX-w*.06,ground,standX+w*.06,ground,'#5a5547',stroke*2);
+    line(standX,y+h*.27,standX-w*.03,y+h*.31,'#aaa998',stroke);
+    const sway = !Curio.reduce && !state.fall ? Math.sin(now/1100)*w*.0015 : 0;
+    const plumbX = dropX+w*.07+sway;
+    line(dropX+w*.07,y+h*.25,plumbX,ground-h*.09,'#242a2c',Math.max(1,w*.002));
+    img('bob',plumbX-w*.013,ground-h*.095,w*.026,h*.075);
+    const pose = state.landed ? 'point' : 'hold';
+    const kidImage = images['kid-'+p.kid+'-'+pose];
+    const kidW = kidH*(kidImage?.naturalWidth/kidImage?.naturalHeight || .61);
+    img('kid-'+p.kid+'-'+pose,kidX,ground-kidH,kidW,kidH);
+    const duration = Math.sqrt(3/9.81);
+    const progress = state.fall ? Math.min(1,(state.fall.t/duration)**2) : state.landed ? 1 : 0;
+    const displayProgress = Curio.reduce && progress<1 ? 0 : progress;
+    const oy = handY+(ground-handY)*displayProgress;
+    if (state.fall || state.landed) line(dropX,handY,dropX,oy,'#fff3bd',Math.max(2,w*.004),[3,7]);
+    if (state.object==='feather-tube') {
+      vacuumTube(dropX,handY,ground,Math.max(14,w*.045),displayProgress);
+    } else object(state.object,dropX,oy,Math.max(14,w*.045));
+    if (state.landed) {
+      line(dropX,ground,dropX+w*.035,ground,'#fff4c0',stroke);
+      line(dropX+w*.035,ground,dropX+w*.035,ground-h*.045,'#fff4c0',stroke);
+      line(dropX+w*.035,ground-h*.045,dropX,ground-h*.045,'#fff4c0',stroke);
+    }
+    line(x+w*.12,ground,x+w*.12,ground-(ground-handY)/1.5,'#16313be6',Math.max(5,w*.009));
+    line(x+w*.12,ground,x+w*.12,ground-(ground-handY)/1.5,'#fffdf1',Math.max(1,w*.003));
+    line(x+w*.105,ground,x+w*.135,ground,'#fffdf1',Math.max(1,w*.003));
+    line(x+w*.105,ground-(ground-handY)/1.5,x+w*.135,ground-(ground-handY)/1.5,'#fffdf1',Math.max(1,w*.003));
+    if (!inset) {
+      ctx.fillStyle = '#16313be6';
+      ctx.fillRect(x+w*.09-Math.max(25,w*.045),ground-(ground-handY)/3-Math.max(12,w*.019),
+        Math.max(29,w*.05),Math.max(17,w*.026));
+      text('1 m',x+w*.09,ground-(ground-handY)/3,Math.max(11,w*.017),'#fffdf1','right');
+      if (state.landed && now<state.landingTag) {
+        ctx.fillStyle = '#163b35eb';
+        ctx.fillRect(x+w*.44,y+h*.87,w*.5,h*.06);
+        text('Fell along the plumb line',x+w*.69,y+h*.91,Math.max(11,w*.018),'#fff4c0','center');
+      }
+    }
+    ctx.restore();
+  }
+  function project(lat,lon,viewLat=state.centerLat,viewLon=state.centerLon) {
+    const p = lat*RAD;
+    const d = (lon-viewLon)*RAD;
+    const v = viewLat*RAD;
+    return {x:Math.cos(p)*Math.sin(d),y:-(Math.sin(p)*Math.cos(v)-Math.cos(p)*Math.cos(d)*Math.sin(v)),
+      z:Math.sin(p)*Math.sin(v)+Math.cos(p)*Math.cos(d)*Math.cos(v)};
+  }
+  const atlas = document.createElement('canvas');
+  atlas.width = 1440;
+  atlas.height = 720;
+  const atlasCtx = atlas.getContext('2d',{willReadFrequently:true});
+  atlasCtx.fillStyle = '#1d4f7a';
+  atlasCtx.fillRect(0,0,1440,720);
+  atlasCtx.fillStyle = '#6fa36b';
+  for (const ring of LAND) {
+    atlasCtx.beginPath();
+    ring.forEach(([lo,la],i) => {
+      const x = (lo+180)*4;
+      const y = (90-la)*4;
+      if (i) atlasCtx.lineTo(x,y);
+      else atlasCtx.moveTo(x,y);
+    });
+    atlasCtx.closePath();
+    atlasCtx.fill();
+  }
+  const atlasPixels = atlasCtx.getImageData(0,0,1440,720).data;
+  const sphereCache = document.createElement('canvas');
+  const sphereCtx = sphereCache.getContext('2d');
+  let sphereKey = '';
+  function sphere(radius,latitude,longitude) {
+    const size = Math.min(640,Math.max(64,Math.round(radius*2)));
+    const lat = Math.round(latitude*2)/2;
+    const lon = Math.round(longitude*2)/2;
+    const key = [size,lat,lon].join('/');
+    if (key===sphereKey) return sphereCache;
+    sphereKey = key;
+    sphereCache.width = size;
+    sphereCache.height = size;
+    const pixels = sphereCtx.createImageData(size,size);
+    const sinLat = Math.sin(lat*RAD);
+    const cosLat = Math.cos(lat*RAD);
+    for (let row=0;row<size;row++) {
+      const y = (row+.5)/size*2-1;
+      for (let col=0;col<size;col++) {
+        const x = (col+.5)/size*2-1;
+        const square = x*x+y*y;
+        if (square>1) continue;
+        const z = Math.sqrt(1-square);
+        const la = Math.asin(-y*cosLat+z*sinLat)/RAD;
+        const lo = mod(lon+Math.atan2(x,z*cosLat+y*sinLat)/RAD+180);
+        const tx = Math.min(1439,Math.floor(lo*4));
+        const ty = Math.max(0,Math.min(719,Math.floor((90-la)*4)));
+        const source = (ty*1440+tx)*4;
+        const dest = (row*size+col)*4;
+        const shade = .48+.52*Math.max(0,-x*.4-y*.4+z*.82);
+        pixels.data[dest] = atlasPixels[source]*shade;
+        pixels.data[dest+1] = atlasPixels[source+1]*shade;
+        pixels.data[dest+2] = atlasPixels[source+2]*shade;
+        pixels.data[dest+3] = Math.min(255,(1-square)*size*90);
+      }
+    }
+    sphereCtx.putImageData(pixels,0,0);
+    return sphereCache;
+  }
+  function globe(cx,cy,r,lat,lon,xray=false) {
+    globeGeo = {x:cx,y:cy,r,lat,lon};
+    ctx.save();
+    const glow = ctx.createRadialGradient(cx-r*.15,cy-r*.12,r*.7,cx,cy,r*1.14);
+    glow.addColorStop(0,'#56c9ff00');
+    glow.addColorStop(.9,'#56c9ff38');
+    glow.addColorStop(1,'#56c9ff00');
+    ctx.fillStyle = glow;
+    ctx.beginPath();
+    ctx.arc(cx,cy,r*1.14,0,TAU);
+    ctx.fill();
+    ctx.beginPath();
+    ctx.arc(cx,cy,r,0,TAU);
+    ctx.clip();
+    const fade = state.reveal && !Curio.reduce ? Math.min(1,(performance.now()-state.reveal.start)/1000) : 1;
+    ctx.globalAlpha = xray ? 1-.62*fade : 1;
+    ctx.drawImage(sphere(r,lat,lon),cx-r,cy-r,r*2,r*2);
+    ctx.globalAlpha = 1;
+    ctx.lineWidth = .65;
+    ctx.strokeStyle = '#b2dcdf44';
+    for (let la=-60;la<=60;la+=30) {
+      ctx.beginPath();
+      let pen = false;
+      for (let lo=-180;lo<=180;lo+=3) {
+        const p = project(la,lo,lat,lon);
+        if (p.z<0) { pen = false; continue; }
+        if (pen) ctx.lineTo(cx+r*p.x,cy+r*p.y);
+        else ctx.moveTo(cx+r*p.x,cy+r*p.y);
+        pen = true;
+      }
+      ctx.stroke();
+    }
+    for (let lo=-180;lo<180;lo+=30) {
+      ctx.beginPath();
+      let pen = false;
+      for (let la=-90;la<=90;la+=3) {
+        const p = project(la,lo,lat,lon);
+        if (p.z<0) { pen = false; continue; }
+        if (pen) ctx.lineTo(cx+r*p.x,cy+r*p.y);
+        else ctx.moveTo(cx+r*p.x,cy+r*p.y);
+        pen = true;
+      }
+      ctx.stroke();
+    }
+    ctx.restore();
+    ctx.strokeStyle = '#9acddd99';
+    ctx.lineWidth = 1.4;
+    ctx.beginPath();
+    ctx.arc(cx,cy,r,0,TAU);
+    ctx.stroke();
+  }
+  function pin(x,y,color) {
+    ctx.fillStyle = '#0d1626';
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.arc(x,y,5,0,TAU);
+    ctx.fill();
+    ctx.stroke();
+  }
+  function tangent(x,y,edge,length) {
+    const a = (edge+90)*RAD;
+    line(x-Math.cos(a)*length,y+Math.sin(a)*length,x+Math.cos(a)*length,y-Math.sin(a)*length,'#d9b98d',5);
+    line(x-Math.cos(a)*length,y+Math.sin(a)*length-2,x+Math.cos(a)*length,y-Math.sin(a)*length-2,'#fff2d1',1);
+  }
+  function markScene(now) {
+    const school = state.test || SCHOOLS[state.place];
+    const cardW = state.mode==='argue' ? W*.3 : 0;
+    const r = Math.min((W-cardW)*.34,H*.36,320);
+    const cx = cardW+(W-cardW)*.5;
+    const len = Math.min(120,r*.5);
+    const edgeY = -Math.sin(school.edge*RAD);
+    const cy = Math.min(H*.47,H-24-r*Math.max(0,edgeY)-len);
+    const lon = school.side==='left' ? school.lon+90 : school.lon-90;
+    const spent = !!state.test?.spent;
+    globe(cx,cy,r,0,lon,spent);
+    const a = school.edge*RAD;
+    const px = cx+r*Math.cos(a);
+    const py = cy-r*Math.sin(a);
+    tangent(px,py,school.edge,Math.min(40,r*.19));
+    pin(px,py,'#ffd166');
+    const end = arrow(px,py,state.angle,len,state.markMiss || (spent && !school.hit) ? '#ff8a5c' : '#ffd166');
+    arrowGeo = {x:px,y:py,end};
+    ctx.strokeStyle = '#fff7db';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    ctx.arc(end.x,end.y,12,0,TAU);
+    ctx.stroke();
+    const title = state.test ? school.name+' · '+Math.abs(school.lat)+'° '+(school.lat>=0 ? 'N' : 'S') : school.full;
+    if (state.test) {
+      text(spent ? (school.progress>=1 ? (school.hit ? 'Hit: ' : 'Miss: ')+Math.round(school.gap)+' degrees off' : 'Following the true plumb line…')
+        : 'Which way is down here?',cx,H-24,Math.max(11,Math.min(17,W*.022)),spent && !school.hit ? '#ff8a5c' : '#ffd166','center');
+      if (spent) {
+        const t = school.progress;
+        line(px,py,px+(cx-px)*t,py+(cy-py)*t,'#ffd166',3,[5,5]);
+        object('apple',px+(cx-px)*t,py+(cy-py)*t,Math.max(12,r*.1));
+        if (t>=1) { pin(cx,cy,'#ffd166'); text("Earth's center",cx,cy+22,11,'#fff0bf','center'); }
+      }
+    } else {
+      const iw = W<600 ? W*.25 : 260;
+      const ih = iw*146/260;
+      const hold = images['kid-'+school.kid+'-hold'];
+      const pivotX = iw*.33+ih*.66*(hold?.naturalWidth/hold?.naturalHeight || .61)*.94;
+      ctx.save();
+      let ix = 15;
+      let iy = 45;
+      let rotation = 0;
+      if (state.markMiss) {
+        const u = Curio.reduce ? 1 : Math.min(1,(now-state.markMiss.start)/1000);
+        ix += (px-pivotX-ix)*u;
+        iy += (py-ih*.81-iy)*u;
+        rotation = (270-school.true)*RAD*u;
+      }
+      ctx.translate(ix+pivotX,iy+ih*.81);
+      ctx.rotate(rotation);
+      ctx.translate(-pivotX,-ih*.81);
+      yard(0,0,iw,ih,true,now);
+      ctx.strokeStyle = '#e5d1a7';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(0,0,iw,ih);
+      ctx.restore();
+      text(state.markMiss ? 'Miss: '+Math.round(state.markMiss.gap)+' degrees off' : 'Drag the arrow head. Record when it matches the drop.',
+        W*.5,H-20,Math.max(11,Math.min(15,W*.022)),state.markMiss ? '#ff8a5c' : '#e8eef7','center');
+    }
+    const titleSize = Math.max(11,Math.min(19,W*.025));
+    ctx.font = '600 '+titleSize+'px "Segoe UI", sans-serif';
+    const titleWidth = Math.min(W-cardW-12,ctx.measureText(title).width+20);
+    const titleX = cardW+(W-cardW)*.5;
+    ctx.fillStyle = '#0d1626ee';
+    ctx.fillRect(titleX-titleWidth*.5,9,titleWidth,29);
+    text(title,titleX,30,titleSize,'#e8eef7','center');
+  }
+  function drawGlobe(now) {
+    const arguing = state.mode==='argue';
+    const cardW = arguing ? W*.45 : 0;
+    const cx = cardW+(W-cardW)*.5;
+    const cy = H*.48;
+    const r = Math.min((W-cardW)*.38,H*.37,320);
+    globe(cx,cy,r,state.centerLat,state.centerLon,state.xray || arguing);
+    const recs = arguing ? placeEvidence().map(x => +x.slice(1)) : Object.keys(state.records).map(Number);
+    recs.forEach((id,index) => {
+      const school = SCHOOLS[id];
+      const p = project(school.lat,school.lon);
+      if (p.z<0 && !state.xray && !arguing) return;
+      const px = cx+r*p.x;
+      const py = cy+r*p.y;
+      const full = state.extend || arguing || (state.reveal && index<state.revealCount);
+      const progress = state.reveal && index===state.revealCount-1 ? Math.min(1,(now-state.reveal.lineStart)/800) : 1;
+      const u = Curio.reduce && state.reveal && progress<1 ? 0 : progress;
+      const toward = Math.atan2(cy-py,cx-px);
+      const dist = Math.hypot(cx-px,cy-py);
+      const shortLength = Math.min(120,r*.5);
+      const len = full ? (Curio.reduce && state.reveal && u<1 ? shortLength : dist*u) : shortLength;
+      arrow(px,py,-toward/RAD,len,school.color);
+      pin(px,py,school.color);
+      const labelX = Math.min(W-14,Math.max(cardW+14,px));
+      text(school.name,labelX,Math.min(H-45,Math.max(20,py-14)),Math.max(11,Math.min(15,W*.018)),school.color,
+        px<cx ? 'left' : 'right');
+      if (!arguing && Math.abs(p.z)<.174) {
+        const kidH = Math.min(65,r*.22);
+        ctx.save();
+        ctx.translate(px,py);
+        ctx.rotate(Math.atan2(py-cy,px-cx)+Math.PI/2);
+        img('kid-'+school.kid+'-point',-kidH*.27,-kidH,kidH*.54,kidH);
+        ctx.restore();
+      }
+      if (arguing && state.checked) {
+        const rule = state.claim;
+        let vx = -p.x;
+        let vy = -p.y;
+        if (rule==='B') {
+          const pole = project(-90,0);
+          vx = pole.x-p.x;
+          vy = pole.y-p.y;
+        }
+        if (rule==='C') { vx = 0; vy = 1; }
+        if (rule==='D' && school.lat<0) { vx = p.x; vy = p.y; }
+        arrow(px,py,-Math.atan2(vy,vx)/RAD,Math.min(120,r*.6),'#ffffff',true);
+        text(claimGap(rule,school).toFixed(1)+'°',px,Math.min(H-20,py+21),11,'#fff','center');
+      }
+    });
+    state.kids.forEach((kid,index) => {
+      const p = project(kid.lat,kid.lon);
+      if (p.z<0 && !state.xray) return;
+      const px = cx+r*p.x;
+      const py = cy+r*p.y;
+      line(px,py,cx,cy,'#ffd166',1.5,[3,4]);
+      pin(px,py,'#ffd166');
+      if (Math.abs(p.z)<.174) {
+        const kidH = Math.min(55,r*.2);
+        ctx.save();
+        ctx.translate(px,py);
+        ctx.rotate(Math.atan2(py-cy,px-cx)+Math.PI/2);
+        img('kid-'+SCHOOLS[index%4].kid+'-point',-kidH*.28,-kidH,kidH*.56,kidH);
+        ctx.restore();
+      }
+    });
+    if ((recs.length>=2 && state.extend) || state.revealDot || (arguing && state.checked)) {
+      const glow = ctx.createRadialGradient(cx,cy,0,cx,cy,18);
+      glow.addColorStop(0,'#fff8ce');
+      glow.addColorStop(.3,'#ffd166');
+      glow.addColorStop(1,'#ffd16600');
+      ctx.fillStyle = glow;
+      ctx.beginPath();
+      ctx.arc(cx,cy,18,0,TAU);
+      ctx.fill();
+      text("Earth's center",cx,cy+33,Math.max(11,Math.min(17,W*.022)),'#fff1c3','center');
+    }
+    if (!arguing) {
+      const recordCount = Object.keys(state.records).length;
+      const title = recordCount===4 ? 'Four places. Follow each down.' : recordCount ? 'Follow your recorded directions.' : 'One Earth. Stand anywhere.';
+      text(title,W*.5,31,
+        Math.max(13,Math.min(23,W*.03)),'#e8eef7','center');
+      if (state.revealDot) {
+        text("Earth's center: 6,371 km down in this model",W*.5,H-50,Math.max(11,Math.min(18,W*.023)),'#ffd166','center');
+        text(L.rv2,W*.5,H-26,Math.max(10,Math.min(15,W*.019)),'#e8eef7','center');
+      } else text('Drag to spin · Tap the surface to add a kid ('+state.kids.length+'/8)',W*.5,H-25,
+        Math.max(11,Math.min(16,W*.021)),'#e8eef7','center');
+    }
+  }
+  const WORLDS = [{name:'Earth',g:9.81,time:.55,key:'earth'}, {name:'Moon',g:1.62,time:1.36,key:'moon'},
+    {name:'Mars',g:3.71,time:.90,key:'mars'}];
+  function drawWorlds() {
+    const lw = W/3;
+    for (let i=0;i<3;i++) {
+      const world = WORLDS[i];
+      const x = i*lw;
+      const top = H*.22;
+      const ground = H*.66;
+      const laneTint = ['#244d3c','#3e485b','#6b3827'][i];
+      const laneLight = ctx.createLinearGradient(x,0,x+lw,H);
+      laneLight.addColorStop(0,laneTint+'c0');
+      laneLight.addColorStop(.55,'#0d162680');
+      laneLight.addColorStop(1,'#0d1626d9');
+      ctx.fillStyle = laneLight;
+      ctx.beginPath();
+      ctx.roundRect(x+lw*.035,12,lw*.93,H-24,Math.min(18,lw*.08));
+      ctx.fill();
+      ctx.strokeStyle = '#bfd4e144';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      text(world.name,x+lw*.5,H*.1,Math.max(14,Math.min(25,W*.028)),'#e8eef7','center');
+      text('1.5 m',x+lw*.5,H*.16,Math.max(10,Math.min(14,W*.017)),'#bfd4e1','center');
+      ctx.save();
+      ctx.beginPath();
+      ctx.roundRect(x+lw*.06,ground,lw*.88,H*.09,Math.min(7,lw*.03));
+      ctx.clip();
+      img('ground-'+world.key,x+lw*.06,ground,lw*.88,H*.09,true);
+      ctx.restore();
+      line(x+lw*.06,ground,x+lw*.94,ground,'#d4d0af88',1);
+      line(x+lw*.20,top,x+lw*.20,ground,'#c5d9df66',1);
+      for (let tick=0;tick<=6;tick++) {
+        const ty = top+(ground-top)*tick/6;
+        line(x+lw*.18,ty,x+lw*.22,ty,'#c5d9df66',1);
+      }
+      const elapsed = state.worlds?.t || 0;
+      const p = Math.min(1,world.g*elapsed*elapsed/3);
+      const display = Curio.reduce && p<1 ? 0 : p;
+      if (elapsed>0) line(x+lw*.5,top,x+lw*.5,top+(ground-top)*display,'#ffd166',2,[3,6]);
+      const appleSize = Math.min(48,lw*.21);
+      const appleY = top+(ground-top-appleSize*.4)*display;
+      ctx.fillStyle = '#00000055';
+      ctx.beginPath();
+      ctx.ellipse(x+lw*.5,ground+3,appleSize*(.25+.18*display),3+display*2,0,0,TAU);
+      ctx.fill();
+      object('apple',x+lw*.5,appleY,appleSize);
+      if (p>=1) {
+        const landedAt = state.worlds?.landingAt?.[i];
+        const pulse = Curio.reduce || !landedAt ? 1 : Math.min(1,(performance.now()-landedAt)/650);
+        if (pulse<1) {
+          ctx.strokeStyle = 'rgba(255,209,102,'+(1-pulse)+')';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.ellipse(x+lw*.5,ground+3,appleSize*(.4+pulse),5+pulse*5,0,0,TAU);
+          ctx.stroke();
+        }
+        text(world.time.toFixed(2)+' s',x+lw*.5,ground-appleSize*.72,Math.max(12,Math.min(22,W*.025)),'#ffd166','center');
+      }
+      const radius = Math.min(lw*.17,H*.1);
+      const centerY = H*.86;
+      line(x+lw*.5,ground+H*.09,x+lw*.5,centerY-radius,'#ffd16688',1,[3,5]);
+      if (i===0) {
+        ctx.save();
+        globe(x+lw*.5,centerY,radius,10,-40,false);
+        ctx.restore();
+      } else img('globe-'+world.key,x+lw*.5-radius,centerY-radius,radius*2,radius*2);
+      line(x+lw*.5,centerY-radius,x+lw*.5,centerY,'#ffd166',2);
+      pin(x+lw*.5,centerY,'#ffd166');
+    }
+  }
+  function frame(now) {
+    const dt = Math.max(0,(now-lastFrame)/1000);
+    lastFrame = now;
+    const hidePlaceNote = state.mode!=='drop' || state.view!=='yard' ||
+      (H<450 && (!!state.fall || (state.landed && now<state.landingTag)));
+    if ($('placeNote').hidden!==hidePlaceNote) $('placeNote').hidden = hidePlaceNote;
+    if (state.fall) {
+      state.fall.t += dt/(state.slow ? 10 : 1);
+      if (state.fall.t>=Math.sqrt(3/9.81)) landed();
+    }
+    if (state.worlds) {
+      state.worlds.t += dt/(state.slowWorlds ? 10 : 1);
+      for (let i=0;i<3;i++) {
+        if (state.worlds.t>=Math.sqrt(3/WORLDS[i].g) && !state.worlds.landed.includes(i)) {
+          state.worlds.landed.push(i);
+          (state.worlds.landingAt ||= {})[i] = now;
+          Curio.tone(180+i*90,.1,.045);
+          if (state.worlds.landed.length===3) {
+            hint('worlds');
+            say('worlds',{valid:() => state.worlds?.landed.length===3});
+          }
+        }
+      }
+    }
+    if (state.test?.spent) state.test.progress = Curio.reduce ? (now-state.test.start>=1500 ? 1 : 0)
+      : Math.min(1,(now-state.test.start)/1500);
+    if (state.reveal?.turning) {
+      const u = Math.min(1,(now-state.reveal.start)/600);
+      state.centerLat = state.reveal.fromLat+(-20-state.reveal.fromLat)*u;
+      const delta = (state.reveal.fromLon+100+540)%360-180;
+      state.centerLon = state.reveal.fromLon-delta*u;
+    }
+    ctx.clearRect(0,0,W,H);
+    arrowGeo = null;
+    if (state.mode==='drop' && state.view==='yard' && !state.flight) yard(0,0,W,H,false,now);
+    else {
+      img('stars',0,0,W,H,true);
+      ctx.fillStyle = '#0d162640';
+      ctx.fillRect(0,0,W,H);
+      if (!Curio.reduce) {
+        const a = .2+.15*Math.sin(now/900);
+        ctx.fillStyle = 'rgba(231,243,255,'+a+')';
+        ctx.beginPath();
+        ctx.arc(W*.9,H*.17,2,0,TAU);
+        ctx.fill();
+      }
+      if (state.flight) {
+        const f = state.flight;
+        const u = Math.min(1,(now-f.start)/1200);
+        const lon = f.from.lon+(f.to.lon-f.from.lon)*u;
+        globe(W*.5,H*.5,Math.min(W,H)*.35,10,lon,false);
+        text('Flying to '+f.to.name,W*.5,H*.9,Math.max(12,W*.025),'#ffd166','center');
+        if (u>=1) state.flight = null;
+      } else if (state.mode==='worlds') drawWorlds();
+      else if ((state.mode==='drop' && state.view==='mark') || state.test) markScene(now);
+      else drawGlobe(now);
+    }
+    requestAnimationFrame(frame);
+  }
+  function coords(e) {
+    const r = canvas.getBoundingClientRect();
+    return {x:e.clientX-r.left,y:e.clientY-r.top};
+  }
+  function aim(p) {
+    if (!arrowGeo || state.test?.spent) return;
+    state.angle = mod(Math.round(Math.atan2(arrowGeo.y-p.y,p.x-arrowGeo.x)/RAD));
+    state.markMiss = null;
+  }
+  canvas.onpointerdown = e => {
+    if (state.reveal) { finishReveal(); return; }
+    const p = coords(e);
+    if (arrowGeo && Math.hypot(p.x-arrowGeo.end.x,p.y-arrowGeo.end.y)>24) return;
+    pointer = {...p,startX:p.x,startY:p.y,drag:false,lat:state.centerLat,lon:state.centerLon,
+      kind:arrowGeo ? 'arrow' : 'globe'};
+    canvas.setPointerCapture(e.pointerId);
+  };
+  canvas.onpointermove = e => {
+    if (!pointer) return;
+    const p = coords(e);
+    const dx = p.x-pointer.startX;
+    const dy = p.y-pointer.startY;
+    if (Math.hypot(dx,dy)>4) pointer.drag = true;
+    if (pointer.kind==='arrow' && pointer.drag) aim(p);
+    else if (state.mode==='globe') {
+      state.centerLon = pointer.lon-dx*.4;
+      state.centerLat = Math.max(-89,Math.min(89,pointer.lat+dy*.4));
+    }
+  };
+  canvas.onpointerup = e => {
+    if (!pointer) return;
+    const p = coords(e);
+    if (!pointer.drag && state.mode==='globe' && state.kids.length<8) {
+      const {x,y,r,lat,lon} = globeGeo;
+      const sx = (p.x-x)/r;
+      const sy = -(p.y-y)/r;
+      const d = sx*sx+sy*sy;
+      if (d<=1) {
+        const z = Math.sqrt(1-d);
+        const v = lat*RAD;
+        const latitude = Math.asin(sy*Math.cos(v)+z*Math.sin(v));
+        const longitude = lon*RAD+Math.atan2(sx,z*Math.cos(v)-sy*Math.sin(v));
+        state.kids.push({lat:latitude/RAD,lon:longitude/RAD});
+        Curio.tone(760,.08,.035);
+      }
+    }
+    pointer = null;
+  };
+  canvas.onpointercancel = () => { pointer = null; };
+  canvas.onkeydown = e => {
+    if (['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','Enter'].includes(e.key)) e.preventDefault();
+    if (state.reveal) { finishReveal(); return; }
+    if (arrowGeo) {
+      if (e.key==='ArrowLeft') turn(e.shiftKey ? 1 : 5);
+      if (e.key==='ArrowRight') turn(e.shiftKey ? -1 : -5);
+      if (e.key==='Enter') state.test ? predict() : record();
+    } else if (state.mode==='globe') {
+      if (e.key==='ArrowLeft') state.centerLon -= 5;
+      if (e.key==='ArrowRight') state.centerLon += 5;
+      if (e.key==='ArrowUp') state.centerLat = Math.min(89,state.centerLat+5);
+      if (e.key==='ArrowDown') state.centerLat = Math.max(-89,state.centerLat-5);
+      if (e.key==='Enter' && state.kids.length<8) state.kids.push({lat:state.centerLat,lon:state.centerLon});
+    }
+  };
+  document.addEventListener('pointerdown',e => {
+    if (state.reveal && e.target!==canvas && e.target.id!=='replay' && e.target.id!=='zoom') finishReveal();
+  },true);
+  Curio.onMotion(() => { if (Curio.reduce) state.flight = null; });
+  Curio.init({clips:"voice:*",rate:.95});
+  sync();
+  hint('Pick something to drop, then tap Drop.');
+  requestAnimationFrame(frame);
+  window.__tool = {state,setMode,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },
+    gap,claimGap,strong,streak,SCHOOLS,POOL,CLAIMS,project,wordCount,
+    get geometry() { return {globe:globeGeo,arrow:arrowGeo,W,H}; }};
+})();
+</script>
+</body>
+</html>

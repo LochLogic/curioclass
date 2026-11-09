@@ -1,0 +1,1082 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Grid Operator · Keep Ridgeport powered · Curio Class</title>
+<meta name="description" content="Plan an island city's power fleet, dispatch three test weeks and compare cost, reliability and fuel CO2. Grade 12. Works offline.">
+<!--
+Grid Operator, Curio Class. Grade 12 environmental science, HS-ESS3-2.
+Students drive Plan, Run and Compare. Started from kit/starter/src.html.
+Sources: EIA AEO2023 technology costs, Electric Power Annual and Monthly, EIA emissions coefficients,
+FERC/NERC Winter Storm Elliott inquiry. Ridgeport and weather profiles are invented teaching scenarios.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#ffbf66;--brand-ink:#10161f;--paper:#0c1219;--line:#344255;--muted:#b5c2d2}
+body{height:100dvh;min-height:0;grid-template-rows:auto auto minmax(0,1fr) auto;overflow:hidden}
+header{padding:8px 18px;gap:8px;flex-wrap:nowrap}
+h1{font-size:25px;letter-spacing:-.5px}
+h1 small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;margin-top:4px}
+.seg{border-radius:7px;border-width:1px}
+.seg button,.icon-btn{min-height:44px;min-width:44px;font-size:13px;padding:0 12px}
+.icon-btn{border-radius:7px;border-width:1px}
+button,select{touch-action:manipulation}
+button{transition:background .12s,border-color .12s}
+button:active{filter:brightness(1.3)}
+.btn{border-radius:5px;font-size:13px}
+.primary{background:var(--brand);color:var(--brand-ink);border-color:var(--brand);font-weight:800}
+.status{height:60px;position:relative;display:flex;align-items:center;gap:18px;padding:0 20px;overflow:hidden;border-bottom:1px solid #415369}
+.status>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 63%;opacity:.65}
+.status:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#07101bef,#07101b80 55%,#07101b40)}
+.status>*:not(img){z-index:1;position:relative}
+.city{font-size:12px;font-weight:800;letter-spacing:.18em;color:#ffdb9c}
+.city small{display:block;font-size:10px;color:#e8edf3;letter-spacing:.05em;margin-top:3px}
+#clock{margin-left:auto;font:700 17px var(--readout-font);white-space:nowrap}
+#gridStatus{font-size:12px}
+#lamps{position:absolute;inset:0;z-index:0;background:#000;opacity:0;pointer-events:none}
+.status.dark #lamps{opacity:.73}
+.signal{display:inline-block;width:7px;height:7px;background:#5fd39a;border-radius:50%;margin-right:7px;box-shadow:0 0 10px #5fd39a}
+body:not(.calm) .signal{animation:breathe 3s infinite}
+@keyframes breathe{50%{opacity:.4}}
+.calm *{animation:none!important;transition:none!important}
+main{display:grid;grid-template-columns:minmax(0,1fr) 260px;position:relative;min-height:0;min-width:0;width:100%}
+.stage{min-height:0;min-width:0;padding:14px;overflow:auto;position:relative;background:#0c1219;isolation:isolate}
+.stage:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(#0c12192a,#0c121977),url('art:go-control-room') center/cover;opacity:.15}
+.panel{padding:14px;gap:10px;border-left:1px solid #344255;overflow:auto;background:linear-gradient(145deg,#1a2431,#101720)}
+.eyebrow{font-size:10px;text-transform:uppercase;letter-spacing:.15em;color:var(--brand);font-weight:800}
+h2{font-size:18px;margin:5px 0 10px}
+p{margin:0}
+.sub{font-size:12px;color:var(--muted);line-height:1.4}
+.fleet{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:12px;height:100%}
+.plant{border:1px solid #526072;border-radius:8px;overflow:hidden;background:linear-gradient(135deg,#253142ee,#111a25f5);display:flex;flex-direction:column;min-width:0}
+.photo{height:clamp(74px,13vh,146px);position:relative;flex:1 1 auto;min-height:48px;overflow:hidden;border-bottom:2px solid var(--source)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo:after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 20%,#07111bf0)}
+.photo h3{position:absolute;z-index:1;bottom:7px;left:9px;right:5px;margin:0;font-size:14px;text-shadow:0 1px 3px #000}
+.plant.retired .photo img{filter:grayscale(1);opacity:.5}
+.plant.retired{border-style:dashed}
+.plant.retired:has(.added:not(:empty)){opacity:1}
+.plant-body{padding:8px 9px 0}
+.capacity{font:700 23px var(--readout-font);color:var(--source);letter-spacing:-1px}
+.capacity small{font-size:11px;letter-spacing:0}
+.peakers .capacity{color:#9ccaff}
+.specs{font-size:10px;line-height:1.6;color:#c4d0df}
+.specs span{display:block}
+.plant-controls{display:flex;gap:4px;padding:7px 7px 8px;margin-top:auto}
+.plant-controls button{padding:0 4px;min-width:44px;flex:1;font-size:11px;min-height:44px}
+.swatch{display:inline-block;width:10px;height:10px;background:var(--source);margin-right:5px;border:1px solid #ffffff80}
+.coal .swatch{background:repeating-linear-gradient(135deg,#9aa3ad 0 3px,#344255 3px 5px)}
+.battery .swatch{background:repeating-linear-gradient(90deg,#ff9f43 0 3px,#344255 3px 5px)}
+.peakers .swatch{background:radial-gradient(#fff 1px,#2f6fb8 1px);background-size:4px 4px}
+.plan-actions{display:grid;gap:8px}
+select{min-height:44px;background:#0f1823;color:var(--ink);border:1px solid #6c829e;border-radius:5px;font:12px 'Segoe UI';width:100%;padding:5px}
+label.sub{display:block;margin:5px 0}
+.budget{padding:12px;border:1px solid #506078;border-radius:6px;background:#0a111a}
+.budget strong{font:700 22px var(--readout-font);display:block;margin:5px 0;color:#ffdb9c}
+.rule{font-size:11px;color:var(--muted);line-height:1.45}
+.run-top{display:flex;gap:7px;flex-wrap:wrap;align-items:center;padding:9px 14px;border-bottom:1px solid #344255;background:#141d29;grid-column:1/-1}
+.weeks,.run-buttons,.commit{display:flex;gap:5px}
+.run-buttons{margin-left:auto}
+.weeks .btn[aria-pressed=true]{background:#ffbf66;color:#10161f}
+.run-top .btn{padding:0 10px;white-space:nowrap}
+.commit .btn{font-size:11px}
+.commit .btn[aria-pressed=true]{border-color:#9aa3ad;background:repeating-linear-gradient(135deg,#293645 0 4px,#1b2532 4px 8px);color:#e8edf3}
+body[data-mode=Run] main{grid-template-rows:auto minmax(0,1fr)}
+body[data-mode=Run] .stage{display:flex;flex-direction:column;padding:12px;overflow:hidden}
+.chart-title{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:5px}
+.chart-title h2{margin:0;font-size:16px}
+#chartBox{flex:1;position:relative;min-height:180px;border:1px solid #344255;border-radius:6px;background:radial-gradient(ellipse at 35% 20%,#172335,#090f17)}
+canvas{display:block;width:100%;height:100%}
+.chart-note{font-size:10px;color:#bdcbdb;margin-top:6px;line-height:1.4}
+#event{min-height:35px;padding:8px 10px;background:#28303a;border-left:3px solid var(--brand);font-size:12px;margin-bottom:8px}
+#event.alarm{border-color:#ff5a5a;background:#382025}
+.readout-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.metric{background:#0d1520;border:1px solid #36465a;border-radius:5px;padding:8px;min-width:0}
+.metric label{display:block;color:#b5c2d2;font-size:10px;margin-bottom:4px}
+.metric strong{font:700 17px var(--readout-font);display:block;overflow-wrap:anywhere}
+.metric small{font-size:10px;color:var(--muted)}
+.source-list{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:11px;line-height:1.4}
+.source-list div{border-bottom:1px solid #344255;padding:4px 0}
+.source-list b{display:block;font-family:var(--readout-font)}
+.battery-meter{height:8px;border:1px solid #75849a;border-radius:2px;overflow:hidden;margin:8px 0;background:#0c1219}
+.battery-meter div{background:repeating-linear-gradient(90deg,#ff9f43 0 6px,#4e311b 6px 8px);height:100%;width:0}
+footer{padding:7px 18px;background:#101821;border-top:1px solid #344255;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:center}
+.hint{font-size:12px;line-height:1.4;min-height:34px;max-width:1000px}
+.footer-credit{font-size:10px;color:#a8b7c8;white-space:nowrap}
+.model-note{font-size:10px;line-height:1.4;color:#becbda;margin-top:auto;padding-top:8px}
+#modelNote{grid-column:1/-1;margin:0;padding:0}
+body:not([data-mode=Plan]) #modelNote{display:none}
+.compare-wrap{overflow:auto;min-width:0}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:11px;table-layout:fixed}
+th,td{text-align:left;vertical-align:top;padding:10px;border-bottom:1px solid #435269;border-right:1px solid #344255}
+th{background:#253343;color:#ffdb9c;position:sticky;top:0;z-index:2;font-size:13px}
+th:first-child{width:105px}
+td{background:#111c28e8;line-height:1.55}
+td small{display:block;color:#bdcbdb;font-size:10px}
+.compare-metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px 9px}
+.compare-metric{min-width:0;overflow-wrap:normal}
+.scroll-instruction{display:none}
+.compare-wide .compare-metrics{grid-template-columns:repeat(3,minmax(0,1fr))}
+.best{color:#83e9b1;font-size:10px;margin-left:3px;font-family:'Segoe UI'}
+.mini-charts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px}
+.mini{background:#121d2b;border:1px solid #435269;border-radius:6px;padding:10px;min-width:0}
+.mini h3{font-size:11px;margin:0 0 10px}
+.barrow{font-size:10px;display:grid;grid-template-columns:38px minmax(0,1fr);gap:6px;margin-top:7px;align-items:center}
+.bar{background:linear-gradient(90deg,#bd7831,#ffca7d);height:15px;min-width:1px;border-radius:2px}
+.empty{display:grid;place-content:center;text-align:center;min-height:250px;padding:20px}
+.empty h2{font-size:28px}
+.challenge{padding:10px;border:1px solid #51637b;border-radius:5px;background:#152131;font-size:12px;margin-top:8px}
+.challenge.met{border-color:#72dba5}
+.challenge small{display:block;margin-top:5px;color:var(--muted);font-size:10px}
+#comparePanel:has(#challengeDrawer:not([hidden]))>.eyebrow,
+#comparePanel:has(#challengeDrawer:not([hidden]))>h2+p.sub,
+#comparePanel:has(#challengeDrawer:not([hidden])) #savedList{display:none}
+#comparePanel .challenge{padding:8px;margin-top:6px;font-size:11px;line-height:1.3}
+dialog{background:linear-gradient(145deg,#253345,#101923);color:var(--ink);border:1px solid #8596ad;border-radius:12px;width:min(680px,94vw);max-height:90dvh;padding:22px;box-shadow:0 25px 100px #000c}
+dialog::backdrop{background:#02070dbd}
+dialog h2{font-size:25px}
+.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:15px}
+.score-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0}
+.score-grid .metric strong{font-size:22px;color:#ffdb9c}
+.score-detail{display:grid;grid-template-columns:1fr 1fr;gap:7px;font:12px/1.5 var(--readout-font)}
+.saved{padding:9px;border:1px solid #435269;font-size:12px;border-radius:5px;margin-bottom:7px}
+.saved .btn{width:100%;margin-top:6px}
+.toast{color:#83e9b1;min-height:18px;font-size:12px}
+#save small{display:block;font-size:10px;font-weight:400;line-height:1.2;margin-top:2px}
+.comparison-rule{font-size:11px;line-height:1.4;color:#d5deeb;margin-bottom:8px}
+.score-moment{position:relative;isolation:isolate;overflow:hidden;margin:10px 0 0;padding:10px 12px;
+  border:1px solid #6f8095;border-radius:6px;background:#101d2a;font-size:12px;line-height:1.5}
+.score-moment:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.22;
+  background:linear-gradient(90deg,#07111bee,#07111b44),url('art:go-skyline') center 60%/cover}
+.score-moment b{display:block;color:#ffdb9c}
+.coverage-track{height:6px;margin-top:5px;background:repeating-linear-gradient(135deg,#ff5a5a 0 3px,#602727 3px 5px);
+  border:1px solid #a1b0c2;border-radius:2px;overflow:hidden}
+.coverage-track span{display:block;height:100%;background:linear-gradient(90deg,#5aa9ff,#9ccaff)}
+@media(min-width:1600px){.specs{font-size:12px}.photo h3{font-size:18px}.plant-body{padding:10px 14px}.capacity{font-size:30px}}
+@media(max-height:820px){.fleet{gap:8px}.stage{padding:10px}.photo{min-height:42px}.plant-body{padding:5px 7px 0}.capacity{font-size:21px}.specs{line-height:1.4}.plant-controls{padding:5px}.panel{gap:8px;padding:10px}.budget{padding:8px}}
+@media(max-width:1100px){
+  .compare-wide .compare-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
+  header{padding:5px 8px;gap:5px}h1{font-size:19px}h1 small{display:none}
+  .seg button,.icon-btn{padding:0 9px;font-size:12px}main{grid-template-columns:minmax(0,1fr) 230px}
+  .run-top{gap:5px;padding:6px}.run-top .btn{padding:0 6px;font-size:11px}
+  .commit{order:3}.run-buttons{gap:4px}.plant-controls button{font-size:10px}
+  .status{height:44px}.photo h3{font-size:12px}.specs{font-size:10px}
+}
+@media(max-width:1000px){
+  body[data-mode=Plan] main{display:flex;flex-direction:column}
+  body[data-mode=Plan] .panel{order:-1;flex:none;overflow:visible;padding:5px 8px;border-left:0;border-bottom:1px solid #435269}
+  body[data-mode=Plan] .panel>.eyebrow,body[data-mode=Plan] .panel>h2,body[data-mode=Plan] .budget,
+  body[data-mode=Plan] .panel>.rule,body[data-mode=Plan] .panel>.sub{display:none}
+  .plan-actions{display:flex;gap:5px;align-items:center}
+  .plan-actions>label{display:none}.plan-actions select{max-width:205px;min-width:0}
+  .plan-actions .btn{flex:1;white-space:nowrap;padding:0 6px;font-size:11px}
+  body[data-mode=Plan] .model-note{padding:0;font-size:10px;line-height:1.25}
+  body[data-mode=Plan] .stage{flex:1;min-height:0}
+  body[data-mode=Plan] #notice{display:none}
+  .fleet{gap:6px}.plant .photo{min-height:38px}.photo h3{bottom:4px;left:6px}
+  .plant-body{padding:3px 6px 0}.capacity{font-size:17px;line-height:1.15}
+  .specs{line-height:1.18}.plant-controls{padding:3px;gap:3px}
+  .plant-controls button{padding:0 2px}.footer-credit{display:none}footer{padding:5px 10px;display:block}.hint{min-height:30px;font-size:11px}
+}
+@media(max-width:760px){
+  body[data-mode=Run] main{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(210px,1fr) auto}
+  body[data-mode=Run] .panel{border:0;border-top:1px solid #435269;overflow:visible;display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:7px}
+  body[data-mode=Run] .panel>.eyebrow,body[data-mode=Run] .panel>h2{display:none}
+  .readout-grid{gap:5px}.metric{padding:5px}.metric strong{font-size:13px}.source-list{gap:3px;font-size:10px}
+  body[data-mode=Run] .panel>.sub{display:none}.run-top{padding:5px;gap:5px}.run-buttons{margin:0}.commit{order:0}
+  body[data-mode=Compare] main{grid-template-columns:minmax(0,1fr) 185px}
+  .source-list div{padding:2px 0}.status{padding:0 10px;gap:7px}#clock{font-size:13px}#gridStatus{font-size:10px}
+  .city{font-size:10px}.city small{font-size:10px}.chart-title h2{font-size:13px}
+}
+@media(max-height:540px) and (min-width:600px){
+  .status{height:32px}.city small{display:none}.plant .photo{min-height:27px}.photo h3{font-size:10px}
+  .plant-body{padding:2px 4px 0}.capacity{font-size:15px}.specs{font-size:10px;line-height:1.05}
+  .specs .cf{display:inline}.specs .build{display:inline}.plant-controls{padding:2px}
+  .fleet{gap:5px}.stage{padding:5px}.model-note{font-size:10px}.plan-actions{gap:4px}
+  body[data-mode=Run] main{grid-template-columns:minmax(0,1fr) 190px;grid-template-rows:auto minmax(0,1fr)}
+  body[data-mode=Run] .panel{display:flex;overflow:auto;padding:6px}.metric strong{font-size:12px}
+  #event{font-size:10px;min-height:27px;padding:5px;margin-bottom:4px}#chartBox{min-height:140px}
+  .chart-note{font-size:10px}.hint{min-height:27px}
+}
+@media(max-width:560px){
+  header{flex-wrap:wrap;gap:5px;padding:5px 7px}h1{width:100%;font-size:18px}
+  .seg{flex:1}.seg button{padding:0 10px}.icon-btn{font-size:10px;padding:0 6px}
+  .status{height:40px}.city small{display:none}#gridStatus{max-width:90px}.city{letter-spacing:.08em}
+  body[data-mode=Plan]{overflow:auto;height:auto;min-height:100dvh}
+  body[data-mode=Plan] .stage{overflow:visible}.fleet{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:none;height:auto}
+  .plant .photo{height:82px;min-height:82px}.photo h3{font-size:12px}.capacity{font-size:20px}
+  .specs{line-height:1.4}.plant-controls{padding:5px}.plant-controls button{font-size:10px}
+  .plan-actions{flex-wrap:wrap}.plan-actions select{max-width:none;width:100%;flex-basis:100%}
+  .model-note{margin-top:3px}.plant-body{padding:5px 6px}
+  body[data-mode=Run] .stage{padding:6px}body[data-mode=Run] .panel{font-size:10px}
+  .weeks{width:100%;display:grid;grid-template-columns:1fr 1fr 1fr}.weeks .btn{font-size:10px;padding:0 4px}
+  .run-top .commit{display:flex;width:100%;order:2}.commit .btn{flex:1}
+  .run-buttons{width:100%;display:grid;grid-template-columns:1fr 1fr 1fr 1fr}
+  .run-buttons .btn{padding:0 3px;font-size:10px}.run-top{gap:4px}
+  .chart-title .sub{display:none}.chart-note{line-height:1.2}.source-list b{font-size:10px}.metric label{font-size:10px}
+  body[data-mode=Compare]{height:auto;min-height:100dvh;overflow:auto}
+  body[data-mode=Compare] main{display:flex;flex-direction:column}.compare-wrap{overflow-x:auto}
+  table{min-width:500px}.mini-charts{grid-template-columns:1fr}.mini h3{margin-bottom:4px}
+  .scroll-instruction{display:block;margin-bottom:8px}
+  dialog{padding:13px}.score-grid{gap:5px}.score-grid .metric strong{font-size:13px}
+}
+@media(max-height:540px) and (min-width:600px){
+  body[data-mode=Plan] footer{padding:3px 8px}.hint{min-height:16px}
+  .plant{position:relative;isolation:isolate}
+  .plant .photo{position:absolute;inset:0;min-height:0;height:100%;z-index:-1;border:0}
+  .plant .photo:after{background:linear-gradient(#07111b55,#07111bd9 20%,#07111bef)}
+  .plant .photo h3{top:4px;bottom:auto;max-width:calc(100% - 52px);font-size:10px;line-height:1.1}
+  .plant-body{margin-top:20px;padding:0 4px}
+  .capacity{position:absolute;right:4px;top:3px;font-size:11px;letter-spacing:0}
+  .capacity small{font-size:10px}.specs{line-height:1.05}
+  .specs .cf,.specs .build{display:block}.plant-controls{padding:2px;margin-top:auto}
+  .plant-controls button{font-size:10px}
+  .nuclear .photo h3,.battery .photo h3{width:max-content;right:auto}
+  .battery .capacity{font:10px 'Segoe UI',sans-serif;letter-spacing:0}
+  #comparePanel{padding:6px;gap:6px}
+  #comparePanel>.eyebrow,#comparePanel>h2+p.sub{display:none}
+  #comparePanel>h2{font-size:13px;margin:0}
+  #comparePanel #savedList{display:grid;grid-template-columns:1fr 1fr;gap:4px}
+  #comparePanel .saved{font-size:10px;padding:3px;margin:0}
+  #comparePanel .saved>b,#comparePanel .saved-summary{display:none}
+  #comparePanel .saved .btn{font-size:10px;margin:0;padding:0 2px}
+  #comparePanel>p.sub{font-size:10px}
+  #comparePanel:has(#challengeDrawer:not([hidden])){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start}
+  #comparePanel:has(#challengeDrawer:not([hidden]))>h2{grid-column:1/-1}
+  #comparePanel:has(#challengeDrawer:not([hidden])) #challenges{grid-column:1;grid-row:2;font-size:10px;padding:0 4px}
+  #comparePanel:has(#challengeDrawer:not([hidden])) #clearSaved{grid-column:2;grid-row:2;font-size:10px;padding:0 4px}
+  #comparePanel:has(#challengeDrawer:not([hidden]))>p.sub{grid-column:1/-1}
+  #comparePanel:has(#challengeDrawer:not([hidden])) #challengeDrawer{grid-column:1/-1}
+  #comparePanel .challenge{font-size:10px;padding:4px 6px;line-height:1.2;margin-top:4px}
+  #comparePanel .challenge small{margin-top:3px}
+  #scoreDialog{padding:12px}
+  #scoreDialog .dialog-head h2{font-size:19px;margin:4px 0}
+  #scoreDialog .score-grid{margin:8px 0}
+  #scoreDialog .score-grid .metric strong{font-size:18px}
+  #scoreDialog .score-detail{grid-template-columns:repeat(3,minmax(0,1fr));font-size:11px;line-height:1.3;gap:4px}
+  #scoreDialog>p.sub:not(#scoreFleet){display:none}
+  #scoreDialog .score-moment{margin-top:5px;padding:4px 8px;font-size:10px;line-height:1.25}
+  #scoreDialog .score-moment b{display:inline;margin-right:6px}
+  #scoreDialog .coverage-track{height:4px;margin-top:3px}
+}
+@media(max-width:560px){
+  header h1{width:auto;flex:1 1 100px;font-size:16px;order:0}
+  header .icon-btn{order:1;padding:0 4px;flex:none}
+  header .seg{order:2;flex:0 0 100%;width:100%;display:flex}
+  header .seg button{flex:1}
+  body[data-mode=Plan],body[data-mode=Compare]{height:100dvh;min-height:0;overflow:hidden;padding-bottom:0}
+  body[data-mode=Plan] main,body[data-mode=Compare] main{min-height:0;overflow:hidden}
+  body[data-mode=Plan] .stage,body[data-mode=Compare] .stage{flex:1;min-height:0;overflow:auto}
+  body[data-mode=Plan] footer,body[data-mode=Compare] footer{
+    position:static;border-top:1px solid #71849c;
+  }
+  #comparePanel{order:-1;padding:8px;gap:6px;display:grid;grid-template-columns:1fr 1fr}
+  #comparePanel>.eyebrow,#comparePanel>h2+p.sub{display:none}
+  #comparePanel>h2{grid-column:1/-1;order:0;margin:0;font-size:15px}
+  #challenges{order:1;grid-column:1}
+  #clearSaved{order:2;grid-column:2}
+  #comparePanel #savedList{order:3;grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+  #comparePanel .saved{padding:3px;margin:0;font-size:10px}
+  #comparePanel .saved>b,#comparePanel .saved-summary{display:none}
+  #comparePanel .saved .btn{margin:0;font-size:11px}
+  #comparePanel>p.sub{order:4;grid-column:1/-1;font-size:10px}
+  #challengeDrawer{order:5;grid-column:1/-1}
+}
+</style>
+</head>
+<body data-mode="Plan">
+<header>
+  <h1>Grid Operator <small>Ridgeport energy dispatch · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-Plan" aria-pressed="true">Plan</button>
+    <button id="m-Run" aria-pressed="false">Run</button>
+    <button id="m-Compare" aria-pressed="false">Compare</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+  <button class="icon-btn" id="reset">Reset</button>
+</header>
+<div class="status" id="status">
+  <img src="art:go-skyline" alt="Ridgeport's coastal skyline at dusk">
+  <div id="lamps"></div>
+  <div class="city"><span class="signal"></span>RIDGEPORT<small>Island grid · no imports · model city</small></div>
+  <div id="gridStatus">Fleet planning</div>
+  <div id="clock">SPRING / MON 00:00</div>
+</div>
+<main>
+  <div class="run-top" id="runTop" hidden>
+    <div class="weeks" role="group" aria-label="Test week">
+      <button class="btn" id="week0" aria-pressed="true">Spring</button>
+      <button class="btn" id="week1" aria-pressed="false">Heat wave</button>
+      <button class="btn" id="week2" aria-pressed="false">Still winter week</button>
+    </div>
+    <div class="commit" role="group" aria-label="Weekly coal commitment">
+      <button class="btn" id="coal1" aria-pressed="true">Coal 1 on</button>
+      <button class="btn" id="coal2" aria-pressed="true">Coal 2 on</button>
+    </div>
+    <div class="run-buttons">
+      <button class="btn primary" id="play">▶ Play</button>
+      <button class="btn" id="step">Step hour</button>
+      <button class="btn" id="scorecard" hidden>Scorecard</button>
+      <button class="btn" id="speed">6 h/s</button>
+      <button class="btn" id="skip">Skip to end</button>
+    </div>
+  </div>
+  <div class="stage" id="stage">
+    <div class="fleet" id="fleet"></div>
+    <section id="runStage" hidden style="display:flex;flex-direction:column;flex:1;min-height:0">
+      <div class="chart-title"><h2>Supply and demand</h2><span class="sub">168 hours · one isolated grid</span></div>
+      <div id="event" role="status">Ready for dispatch. Press Play or Step hour.</div>
+      <div id="chartBox"><canvas id="chart" role="img" aria-label="Hourly supply stack and electricity demand in megawatts"></canvas></div>
+      <p class="chart-note">MW above zero: supply. Below zero: battery charging. Hollow line: curtailed wind and solar. Red cross-hatch: unserved.</p>
+    </section>
+    <section id="compareStage" hidden></section>
+  </div>
+  <aside class="panel" id="planPanel">
+    <div class="eyebrow">01 / Fleet design</div><h2>What powers the island?</h2>
+    <div class="plan-actions">
+      <button class="btn primary" id="runWeek">Run week →</button>
+      <button class="btn" id="save" title="Saved plans never leave this device">Save plan<small>Stays on this device</small></button>
+      <button class="btn" id="startOver">Start over</button>
+      <label for="charging" class="sub">Battery charging</label>
+      <select id="charging" aria-label="Battery charging">
+        <option value="renewable">Spare sun and wind only</option>
+        <option value="gas">Also from gas overnight</option>
+      </select>
+    </div>
+    <p class="toast" id="notice" role="status"></p>
+    <div class="budget"><span class="eyebrow">Weekly fixed + capital</span><strong id="fixedCost"></strong><p class="sub">Before the first megawatt-hour.</p></div>
+    <p class="rule">Existing plants are paid off. New builds add a weekly capital charge and fixed upkeep. Each battery block holds four hours at full power.</p>
+    <p class="sub">Build costs are 2022 dollars. Coal and gas use 2024 fuel prices; nuclear fuel uses 2025.
+    Use them to compare plans, not as a bill.</p>
+  </aside>
+  <aside class="panel" id="runPanel" hidden>
+    <div class="eyebrow">02 / Live dispatch</div><h2 id="liveTitle">Spring shift</h2>
+    <div class="readout-grid" id="readouts"></div>
+    <div>
+      <div class="source-list" id="sourceList"></div>
+      <div class="battery-meter" aria-hidden="true"><div id="batteryFill"></div></div>
+      <p class="sub" id="batteryText">Battery: 0 MWh / no storage built</p>
+      <p class="sub" id="spillText">Spilled: 0 MWh</p>
+    </div>
+    <p class="sub">Operating CO2 only. Cost per MWh includes fixed upkeep and new-build capital. Unserved energy has no dollar price.</p>
+  </aside>
+  <aside class="panel" id="comparePanel" hidden>
+    <div class="eyebrow">03 / Design evidence</div><h2>Three scores. Your call.</h2>
+    <p class="sub">Every saved fleet is tested through all 504 hours. Cost, reliability and fuel CO2 remain separate.</p>
+    <button class="btn" id="challenges" aria-expanded="false">Challenge cards</button>
+    <div id="savedList"></div>
+    <p class="sub">Saved plans stay on this device. Nothing leaves it.</p>
+    <button class="btn" id="clearSaved">Clear saved plans</button>
+    <div id="challengeDrawer" hidden></div>
+  </aside>
+</main>
+<footer>
+  <p class="hint" id="hint"></p><span class="footer-credit">MODEL / EIA INPUTS · THREE TEST WEEKS</span>
+  <p class="model-note" id="modelNote">Leaves out: power lines inside the city, start-up costs, ramp limits, spinning reserves,
+  maintenance outages, water use, land use, mining and fuel supply chains, and emissions other than CO2 from burning fuel.
+  Costs: builds 2022; fuel 2024 coal/gas, 2025 nuclear. New nuclear: large-reactor upkeep.</p>
+</footer>
+<dialog id="scoreDialog" aria-labelledby="scoreTitle">
+  <div class="dialog-head"><div><div class="eyebrow">168-hour shift report</div><h2 id="scoreTitle">Week complete</h2></div><button class="btn" id="closeScore">Close</button></div>
+  <p class="sub" id="scoreFleet"></p><div class="score-moment" id="scoreMoment"></div><div class="score-grid" id="scoreGrid"></div>
+  <div class="score-detail" id="scoreDetail"></div>
+  <p class="sub" style="margin:12px 0">Full-week cost = running cost + fixed upkeep + weekly capital. Battery starts half full each test week.</p>
+  <div style="display:flex;gap:8px"><button class="btn primary" id="nextWeek">Try next week</button><button class="btn" id="editFleet">Revise fleet</button></div>
+</dialog>
+<dialog id="replaceDialog" aria-labelledby="replaceTitle">
+  <h2 id="replaceTitle">Replace which plan?</h2><p class="sub">Four plans are saved on this device.</p>
+  <div id="replaceOptions" style="display:flex;gap:8px;margin:18px 0"></div><button class="btn" id="cancelReplace">Cancel</button>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const copy = obj => JSON.parse(JSON.stringify(obj));
+  const fmt = (n,d=0) => Number.isFinite(n) ? n.toLocaleString('en-US',{maximumFractionDigits:d,minimumFractionDigits:d}) : 'n/a';
+  const money = n => '$'+fmt(n);
+  const weekNames = ['Spring','Heat wave','Still winter week'];
+  const days = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+  const plants = [
+    {id:'nuclear',name:'Nuclear',art:'go-nuclear',base:300,run:9.31,co2:0,build:834.9,fixed:136.91,cf:'90.8%',color:'#c9a0ff'},
+    {id:'coal1',name:'Coal unit 1',art:'go-coal',base:200,run:31.67919,co2:1.0477983747,build:0,fixed:45.68,cf:'42.6%',color:'#9aa3ad'},
+    {id:'coal2',name:'Coal unit 2',art:'go-coal',base:200,run:31.67919,co2:1.0477983747,build:0,fixed:45.68,cf:'42.6%',color:'#9aa3ad'},
+    {id:'cc',name:'Gas combined cycle',art:'go-gas-cc',base:300,run:19.7449,co2:.337046573248385,build:117.6,fixed:13.73,cf:'60.5%',color:'#5aa9ff'},
+    {id:'peakers',name:'Gas peakers',art:'go-peakers',base:200,run:32.49685,co2:.5240889023587525,
+      build:86.7,fixed:7.88,cf:'13.9%',color:'#2f6fb8'},
+    {id:'wind',name:'Wind',art:'go-wind',base:150,run:0,co2:0,build:209.8,fixed:29.64,cf:'34.3%',color:'#5fd39a'},
+    {id:'solar',name:'Solar',art:'go-solar',base:100,run:0,co2:0,build:144.8,fixed:17.16,cf:'23.2%',color:'#ffe066'},
+    {id:'battery',name:'Battery',art:'go-battery',base:0,run:0,co2:0,build:127,fixed:45.76,cf:'n/a',color:'#ff9f43'}
+  ];
+  const art = {
+    'go-nuclear':'art:go-nuclear','go-coal':'art:go-coal','go-gas-cc':'art:go-gas-cc','go-peakers':'art:go-peakers',
+    'go-wind':'art:go-wind','go-solar':'art:go-solar','go-battery':'art:go-battery'
+  };
+  const peaks = [[760,770,760,750,740,660,640],[880,930,980,1000,990,900,850],[870,890,900,900,880,800,780]];
+  const shapes = [
+    [.70,.67,.65,.65,.66,.70,.78,.86,.91,.93,.94,.95,.95,.94,.93,.93,.94,.97,1,.99,.95,.88,.80,.74],
+    [.62,.58,.56,.55,.55,.57,.62,.68,.73,.78,.83,.87,.91,.94,.97,.99,1,1,.97,.93,.88,.82,.74,.67],
+    [.66,.63,.62,.62,.64,.70,.82,.93,.96,.92,.88,.85,.83,.81,.80,.81,.86,.96,1,.98,.94,.88,.80,.72]
+  ];
+  const windDays = [[.55,.48,.40,.45,.52,.38,.42],[.20,.15,.10,.08,.10,.15,.22],[.30,.12,.04,.03,.03,.05,.25]];
+  const clouds = [[1,1,.6,.9,1,.7,1],[1,1,1,1,1,.95,1],[.6,.3,.2,.2,.25,.3,.5]];
+  const basePlan = () => ({keep:[true,true,true,true,true,true,true,true],added:Array(8).fill(0),charging:'renewable'});
+  const state = {mode:'Plan',plan:basePlan(),week:0,hour:-1,coal:[true,true],playing:false,speed:6,score:null,events:[]};
+  let saved = [];
+  let results = null;
+  let revision = 0;
+  let runRevision = 0;
+  let dirtyPlan = false;
+  let darkSaid = false;
+  let lastFlash = 0;
+  let frameTime = 0;
+  let accumulator = 0;
+  let lastChallenge = '';
+  const L = {
+    wPlan:'Set your fleet on the plant cards. Then press Run week to test it.',
+    wRun:'Pick a week chip and press Play. Watch the stack rise to meet the demand line.',
+    trip:'A coal unit just tripped. The rest of the fleet has to cover the gap.',
+    tripGas:'A gas unit just tripped. The rest of the fleet has to cover the gap.',
+    squeeze:'Gas supply is tight for two days. Combined cycle is held to seventy percent.',
+    dark:'Demand is above supply. Some customers are in the dark.',
+    done:'Week complete. Read the scorecard, then try another week.',
+    wCompareEmpty:'Save plans in Plan with Save plan. Then compare them here, week by week.',
+    wCompare:'Read across each row. The word best marks the lowest number.',
+    challenge:'Challenge met. Check the other two scores before you celebrate.'
+  };
+  const welcomeKey = () => state.mode==='Plan' ? (!dirtyPlan?'wPlan':null) :
+    state.mode==='Run' ? (state.hour<0?'wRun':null) : (saved.length<2?'wCompareEmpty':!$('challengeDrawer').hidden?null:'wCompare');
+  const V = Curio.voice({lines:L,scope:()=>state.mode,welcome:welcomeKey,hint:false,read:()=>$('hint').textContent,
+    speaks:'#play, #step, #skip, .plant-controls button'});
+  function capacity(plan) {
+    return plants.map((p,i)=>(plan.keep[i]?p.base:0)+plan.added[i]);
+  }
+  function capital(i) {
+    return plants[i].build*1e6*(i===7?.109795:.080586)/52;
+  }
+  function fixedCost(plan) {
+    const cap=capacity(plan);
+    return plants.reduce((s,p,i)=>s+cap[i]*1000*p.fixed/52+plan.added[i]/100*capital(i),0);
+  }
+  function emptyScore() {
+    return {run:0,cost:0,co2:0,unserved:0,shortHours:0,curtailed:0,served:0,ws:0,spill:0,perMWh:null,co2PerMWh:null,wsShare:0};
+  }
+  function finishScore(s,fixed) {
+    s.cost=s.run+fixed;
+    s.perMWh=s.served>1e-7?s.cost/s.served:null;
+    s.co2PerMWh=s.served>1e-7?s.co2/s.served:null;
+    s.wsShare=s.served>1e-7?s.ws/s.served:0;
+    return s;
+  }
+  // Pure hourly model. Comparison, playback and challenges all consume this same record.
+  function simulate(plan,week,coal=[true,true]) {
+    const cap=capacity(plan);
+    let stored=cap[7]*2;
+    const rows=[];
+    const totals=emptyScore();
+    const fixed=fixedCost(plan);
+    const tripped=cap[2]>0&&coal[1]?2:cap[1]>0&&coal[0]?1:3;
+    for(let t=0;t<168;t++) {
+      const day=Math.floor(t/24),h=t%24;
+      const demand=peaks[week][day]*shapes[week][h];
+      const c=[cap[1]*(coal[0]?1:0),cap[2]*(coal[1]?1:0)];
+      let ccCap=cap[3];
+      if(week===1&&t>=63) {
+        if(tripped===2)c[1]=0;
+        else if(tripped===1)c[0]=0;
+        else ccCap=Math.max(0,ccCap-200);
+      }
+      if(week===2&&(day===2||day===3))ccCap*=.7;
+      const nuclear=cap[0],coalMin=(c[0]+c[1])*.4;
+      let wind=cap[5]*Math.min(1,windDays[week][day]*(1+.15*Math.cos(2*Math.PI*(h-3)/24)));
+      const x=(h+.5-[6,6,8][week])/[13,14,9][week];
+      let solar=x>0&&x<1?cap[6]*[.8,.85,.55][week]*clouds[week][day]*Math.sin(Math.PI*x):0;
+      let surplus=Math.max(0,nuclear+coalMin+wind+solar-demand);
+      const renewableCharge=Math.max(0,Math.min(surplus,wind+solar,cap[7],(cap[7]*4-stored)/.85));
+      stored+=renewableCharge*.85;
+      surplus-=renewableCharge;
+      const cutSolar=Math.min(solar,surplus);
+      solar-=cutSolar;
+      surplus-=cutSolar;
+      const cutWind=Math.min(wind,surplus);
+      wind-=cutWind;
+      surplus-=cutWind;
+      let gap=Math.max(0,demand-nuclear-coalMin-wind-solar);
+      const cc=Math.min(gap,ccCap);
+      gap-=cc;
+      const coalAbove=Math.min(gap,(c[0]+c[1])*.6);
+      gap-=coalAbove;
+      const battery=Math.min(gap,cap[7],stored);
+      gap-=battery;
+      stored-=battery;
+      const peakers=Math.min(gap,cap[4]);
+      gap-=peakers;
+      let gasCharge=0;
+      if(plan.charging==='gas'&&h<6) {
+        gasCharge=Math.max(0,Math.min(ccCap-cc,cap[7]-renewableCharge,(cap[7]*4-stored)/.85));
+        stored+=gasCharge*.85;
+      }
+      const row={t,demand,nuclear,coalMin,wind,solar,cc,coalAbove,battery,peakers,stored,
+        charge:renewableCharge+gasCharge,gasCharge,unserved:gap,curtailed:cutSolar+cutWind,spill:surplus};
+      row.run=nuclear*plants[0].run+(coalMin+coalAbove)*plants[1].run+(cc+gasCharge)*plants[3].run+peakers*plants[4].run;
+      row.co2=(coalMin+coalAbove)*plants[1].co2+(cc+gasCharge)*plants[3].co2+peakers*plants[4].co2;
+      for(const [k,v] of Object.entries({run:row.run,co2:row.co2,unserved:gap,shortHours:gap>1e-7?1:0,
+        curtailed:row.curtailed,served:demand-gap,ws:wind+solar,spill:surplus}))totals[k]+=v;
+      row.score=finishScore({...totals},fixed);
+      rows.push(row);
+    }
+    return {rows,score:finishScore(totals,fixed),tripped};
+  }
+  function hint(text) {$('hint').textContent=text;}
+  function clickTone() {Curio.tone(520,.035,.025,'sine');}
+  function pause() {state.playing=false;$('play').textContent=state.hour===167?'Replay':'▶ Play';}
+  function resetRun() {
+    pause();
+    V.hush();
+    state.hour=-1;
+    state.events=[];
+    state.score=null;
+    darkSaid=false;
+    runRevision++;
+    accumulator=0;
+    results=simulate(state.plan,state.week,state.coal);
+    $('event').textContent='Ready for dispatch. Press Play or Step hour.';
+    $('event').classList.remove('alarm');
+    $('status').classList.remove('dark');
+    $('scorecard').hidden=true;
+    updateRun();
+  }
+  function planChanged() {
+    dirtyPlan=true;
+    revision++;
+    resetRun();
+    updateFleet();
+    hint('Plan changed: run the week again. Press Run week to test this fleet.');
+    $('notice').textContent='Plan changed';
+    clickTone();
+  }
+  function buildFleet() {
+    $('fleet').innerHTML=plants.map((p,i)=>{
+      const cls=i===1||i===2?'coal':p.id;
+      const retire=p.base?`<button class="btn" id="keep${i}" aria-label="Retire ${p.name}">Retire</button>`:'';
+      const steps=p.build?`<button class="btn" id="minus${i}" aria-label="Remove 100 megawatts of new ${p.name}">−100</button>
+        <button class="btn" id="plus${i}" aria-label="Add 100 megawatts of new ${p.name}">+100</button>`:'';
+      return `<article class="plant ${cls}" id="plant${i}" style="--source:${p.color}">
+        <div class="photo"><img src="${art[p.art]}" alt="${p.name} generating equipment"><h3><span class="swatch"></span>${p.name}</h3></div>
+        <div class="plant-body"><div class="capacity" id="cap${i}"></div>
+        <div class="specs"><span>$${fmt(p.run,2)}/MWh · ${fmt(p.co2,3)} t CO2/MWh</span>
+        <span class="cf">US 2024 typical CF: ${p.cf}</span>
+        ${p.build?`<span class="build">${i===0?'SMR build':'Build'} $${p.build.toFixed(1)}m / 100 MW</span><span>Capital ${money(capital(i))}/week</span>`:
+        '<span>Existing only · 40% minimum on</span><span>Paid off · fixed upkeep remains</span>'}</div></div>
+        <div class="plant-controls">${retire}${steps}</div></article>`;
+    }).join('');
+    plants.forEach((p,i)=>{
+      if(p.base)$('keep'+i).onclick=()=>{state.plan.keep[i]=!state.plan.keep[i];planChanged();};
+      if(p.build)for(const [key,delta] of [['minus',-100],['plus',100]])$(key+i).onclick=()=>{
+        const next=Math.max(0,Math.min(1000,state.plan.added[i]+delta));
+        if(next===state.plan.added[i]){
+          hint(next===0?'No new '+p.name+' to remove. Press +100 to build.':
+            'Build limit: 1,000 MW of new '+p.name+'. Press −100 to remove a block.');
+          clickTone();
+          return;
+        }
+        state.plan.added[i]=next;
+        planChanged();
+      };
+    });
+    updateFleet();
+  }
+  function updateFleet() {
+    const cap=capacity(state.plan);
+    plants.forEach((p,i)=>{
+      $('cap'+i).innerHTML=(i===7?String(cap[i]):fmt(cap[i]))+
+        ' <small>MW'+(i===7?' / '+String(cap[i]*4)+' MWh':'')+'</small>';
+      $('plant'+i).classList.toggle('retired',!state.plan.keep[i]);
+      if(p.base){
+        $('keep'+i).textContent=state.plan.keep[i]?'Retire':'Keep';
+        $('keep'+i).setAttribute('aria-label',(state.plan.keep[i]?'Retire ':'Keep ')+p.name+' existing capacity');
+        $('keep'+i).setAttribute('aria-pressed',state.plan.keep[i]);
+      }
+      // Keep steppers focusable at bounds. Their click clamps and explains the limit.
+      if(p.build){
+        $('minus'+i).setAttribute('aria-disabled',state.plan.added[i]===0);
+        $('plus'+i).setAttribute('aria-disabled',state.plan.added[i]===1000);
+      }
+    });
+    $('fixedCost').textContent=money(fixedCost(state.plan));
+    $('charging').value=state.plan.charging;
+    [1,2].forEach((n)=>{
+      $('coal'+n).disabled=!state.plan.keep[n];
+      $('coal'+n).textContent='Coal '+n+(!state.plan.keep[n]?' retired':state.coal[n-1]?' on':' off');
+      $('coal'+n).setAttribute('aria-pressed',state.coal[n-1]&&state.plan.keep[n]);
+    });
+  }
+  function setMode(mode) {
+    if(!['Plan','Run','Compare'].includes(mode))return;
+    if(mode===state.mode){clickTone();return;}
+    pause();
+    V.hush();
+    state.mode=mode;
+    document.body.dataset.mode=mode;
+    for(const m of ['Plan','Run','Compare'])$('m-'+m).setAttribute('aria-pressed',mode===m);
+    $('fleet').hidden=mode!=='Plan';
+    $('runStage').hidden=mode!=='Run';
+    $('compareStage').hidden=mode!=='Compare';
+    $('runTop').hidden=mode!=='Run';
+    for(const m of ['plan','run','compare'])$(m+'Panel').hidden=mode.toLowerCase()!==m;
+    if(mode==='Run'){
+      if(!results)resetRun();
+      $('scorecard').hidden=state.hour!==167;
+      hint(state.hour<0?L.wRun:state.hour===167?'Press Scorecard to review, Replay to run again, or choose a week chip.':
+        'Press Play to continue, Step hour to inspect, or choose another week chip.');
+      updateRun();
+    }else if(mode==='Plan'){
+      hint(L.wPlan);
+      $('gridStatus').textContent='Fleet planning';
+    }else{
+      renderCompare();
+      hint(saved.length<2?L.wCompareEmpty:L.wCompare);
+      $('gridStatus').textContent=saved.length+' saved plan'+(saved.length===1?'':'s');
+    }
+    V.welcome();
+    requestAnimationFrame(drawChart);
+    clickTone();
+  }
+  function banner(text,alarm=false) {
+    $('event').textContent=text;
+    $('event').classList.toggle('alarm',alarm);
+  }
+  function eventSay(key,at) {
+    const token=runRevision;
+    V.say(key,{valid:()=>runRevision===token&&state.hour>=at&&state.hour<167});
+  }
+  function advance(skip=false) {
+    if(state.hour>=167)return;
+    state.hour++;
+    const row=results.rows[state.hour];
+    state.score=row.score;
+    if(!skip) {
+      if(state.hour===0)banner('Dispatch started. Watch the demand line and the supply stack.');
+      if(state.week===1&&state.hour===63) {
+        const lost=results.tripped===3?Math.min(200,capacity(state.plan)[3]):200;
+        if(lost>0){
+          const fossil=results.tripped===3?fmt(lost)+' MW of combined cycle':'Coal unit '+results.tripped;
+          banner(fossil+' tripped. Out for the rest of the week.',true);
+          eventSay(results.tripped===3?'tripGas':'trip',63);
+          Curio.tone(160,.13,.06,'triangle');
+        }else banner('Trip test: no fossil capacity in this fleet, so no output is removed.');
+        state.events.push({hour:63,type:'trip',unit:results.tripped,affectedMW:lost});
+      }
+      if(state.week===2&&state.hour===48) {
+        banner('Gas squeeze: combined cycle limited to 70% for Wed and Thu.',true);
+        state.events.push({hour:48,type:'squeeze'});
+        eventSay('squeeze',48);
+        Curio.tone(160,.13,.06,'triangle');
+      }
+      if(state.week===2&&state.hour===96)banner('Gas supply restored. Combined cycle capacity returns.');
+      if(row.unserved>1e-7&&!darkSaid) {
+        darkSaid=true;
+        eventSay('dark',state.hour);
+        banner('Demand exceeds supply: '+fmt(row.unserved,1)+' MW unserved.',true);
+      }
+    }
+    if(state.hour===167)complete(skip);
+  }
+  function complete(skip) {
+    pause();
+    if(skip)V.hush();
+    state.score=results.score;
+    state.events=state.week===1?[{hour:63,type:'trip',unit:results.tripped}]:state.week===2?[{hour:48,type:'squeeze'}]:[];
+    $('scorecard').hidden=false;
+    banner('Week complete: '+state.score.shortHours+' hours with unserved demand.',state.score.shortHours>0);
+    hint('Read the scorecard. Press Try next week, or Revise fleet to change your design.');
+    const token=revision,w=state.week;
+    V.say('done',{valid:()=>state.hour===167&&revision===token&&state.week===w});
+    Curio.tone(660,.12,.04,'sine');
+    openScore();
+  }
+  function play() {
+    if(state.playing){pause();hint('Paused. Press Play to continue or Step hour for one hour.');return;}
+    if(state.hour===167)resetRun();
+    state.playing=true;
+    frameTime=performance.now();
+    accumulator=0;
+    $('play').textContent='Ⅱ Pause';
+    if(state.hour<0)advance();
+    updateRun();
+    hint('Press Pause to inspect this hour. Step hour pauses and advances once.');
+    clickTone();
+  }
+  function frame(now) {
+    if(state.playing){
+      const previous=state.hour;
+      accumulator+=(now-frameTime)/1000*state.speed;
+      frameTime=now;
+      while(accumulator>=1&&state.playing){advance();accumulator--;}
+      if(previous!==state.hour)updateRun();
+    }
+    requestAnimationFrame(frame);
+  }
+  function updateRun() {
+    if(!results)return;
+    $('step').hidden=state.hour===167;
+    const row=state.hour>=0?results.rows[state.hour]:null;
+    const s=row?row.score:emptyScore();
+    const cap=capacity(state.plan);
+    const stored=row?row.stored:cap[7]*2;
+    const time=Math.max(0,state.hour);
+    $('clock').textContent=weekNames[state.week].toUpperCase()+' / '+days[Math.floor(time/24)].toUpperCase()+' '+String(time%24).padStart(2,'0')+':00';
+    $('liveTitle').textContent=weekNames[state.week]+' shift';
+    if(state.mode==='Run')$('gridStatus').textContent=row?(row.unserved>1e-7?'Supply short · '+fmt(row.unserved,1)+' MW':'Demand served · '+(state.hour+1)+'/168 h'):'Awaiting dispatch';
+    const items=[['Demand now',row?fmt(row.demand,1):'0','MW'],['Running cost',money(s.run),'so far'],
+      ['Fuel CO2',fmt(s.co2),'t so far'],['Unserved',fmt(s.unserved,1),'MWh / '+s.shortHours+' hours']];
+    $('readouts').innerHTML=items.map(([label,val,unit])=>`<div class="metric"><label>${label}</label><strong>${val}</strong><small>${unit}</small></div>`).join('');
+    const sources=[['Nuclear','nuclear',0],['Coal min','coalMin',1],['Wind','wind',5],['Solar','solar',6],
+      ['CC','cc',3],['Coal extra','coalAbove',1],['Battery','battery',7],['Peakers','peakers',4]];
+    $('sourceList').innerHTML=sources.map(([name,key,i])=>{
+      const value=row?row[key]+(key==='cc'?row.gasCharge:0):0;
+      return `<div><span class="swatch" style="--source:${plants[i].color}"></span>${name}<b>${fmt(value,1)} MW</b></div>`;
+    }).join('');
+    $('batteryFill').style.width=(cap[7]?stored/(cap[7]*4)*100:0)+'%';
+    $('batteryText').textContent='Battery: '+fmt(stored,1)+' / '+fmt(cap[7]*4)+' MWh'+(cap[7]?' ('+fmt(stored/(cap[7]*4)*100)+'%)':' / not built');
+    $('spillText').textContent='Spilled: '+fmt(s.spill,1)+' MWh';
+    if(row&&row.unserved>1e-7&&state.playing&&!Curio.reduce&&performance.now()-lastFlash>650){
+      lastFlash=performance.now();
+      $('status').classList.add('dark');
+      setTimeout(()=>$('status').classList.remove('dark'),300);
+    }
+    if(Curio.reduce)$('status').classList.toggle('dark',!!row&&row.unserved>1e-7);
+    drawChart();
+  }
+  function hatch(ctx,color,kind) {
+    const tile=document.createElement('canvas');
+    tile.width=8;tile.height=8;
+    const c=tile.getContext('2d');
+    c.fillStyle=color;c.fillRect(0,0,8,8);
+    c.strokeStyle='#07101b99';c.lineWidth=1.5;
+    c.beginPath();
+    if(kind==='coal'||kind==='short')for(let i=-8;i<16;i+=7){c.moveTo(i,8);c.lineTo(i+8,0);}
+    if(kind==='short')for(let i=-8;i<16;i+=7){c.moveTo(i,0);c.lineTo(i+8,8);}
+    if(kind==='battery'){c.moveTo(4,0);c.lineTo(4,8);}
+    c.stroke();
+    if(kind==='peakers'){c.fillStyle='#e8edf3';c.beginPath();c.arc(4,4,1,0,7);c.fill();}
+    return ctx.createPattern(tile,'repeat');
+  }
+  function drawChart() {
+    if(state.mode!=='Run'||!results)return;
+    const box=$('chartBox'),canvas=$('chart');
+    const w=box.clientWidth,h=box.clientHeight;
+    if(!w||!h)return;
+    const dpr=devicePixelRatio||1;
+    canvas.width=w*dpr;canvas.height=h*dpr;
+    const c=canvas.getContext('2d');
+    c.scale(dpr,dpr);
+    const left=38,right=w<420?79:105,top=24,bottom=34;
+    const pw=w-left-right,ph=h-top-bottom;
+    const maxSupply=Math.max(...results.rows.map(r=>r.demand+r.curtailed+r.spill+r.charge),1100);
+    const ymax=Math.ceil(maxSupply/250)*250;
+    const maxCharge=Math.max(120,...results.rows.map(r=>r.charge));
+    const ymin=-Math.ceil(maxCharge/100)*100;
+    const xx=t=>left+t/168*pw;
+    const yy=v=>top+(ymax-v)/(ymax-ymin)*ph;
+    c.font='10px Segoe UI';c.textBaseline='middle';
+    for(let v=0;v<=ymax;v+=ymax>2000?500:250){
+      c.strokeStyle=v===0?'#a3b5ca':'#263347';c.lineWidth=v===0?1.2:.7;
+      c.beginPath();c.moveTo(left,yy(v));c.lineTo(left+pw,yy(v));c.stroke();
+      c.fillStyle='#becbdb';c.textAlign='right';c.fillText(fmt(v),left-5,yy(v));
+    }
+    c.textAlign='left';c.fillStyle='#b5c2d2';c.fillText('MW',8,12);
+    for(let d=0;d<7;d++){
+      const x=xx(d*24);
+      c.strokeStyle='#263347';c.beginPath();c.moveTo(x,top);c.lineTo(x,h-bottom);c.stroke();
+      c.fillStyle='#becbdb';c.fillText(days[d],x+2,h-15);
+    }
+    // A faint full-week demand forecast helps students anticipate the evening peak.
+    c.strokeStyle='#8091a880';c.setLineDash([3,4]);c.beginPath();
+    results.rows.forEach((r,t)=>t?c.lineTo(xx(t+.5),yy(r.demand)):c.moveTo(xx(.5),yy(r.demand)));
+    c.stroke();c.setLineDash([]);
+    const series=[['nuclear','Nuclear','#c9a0ff',''],['coalMin','Coal min','#9aa3ad','coal'],
+      ['wind','Wind','#5fd39a',''],['solar','Solar','#ffe066',''],['cc','CC','#5aa9ff',''],
+      ['coalAbove','Coal extra','#9aa3ad','coal'],['battery','Battery','#ff9f43','battery'],['peakers','Peakers','#2f6fb8','peakers']];
+    const shown=results.rows.slice(0,state.hour+1);
+    const bottoms=shown.map(()=>0);
+    for(const [key,label,color,pattern] of series){
+      c.fillStyle=pattern?hatch(c,color,pattern):color;
+      shown.forEach((r,t)=>{
+        const a=bottoms[t],b=a+r[key]+(key==='cc'?r.gasCharge:0);
+        c.fillRect(Math.floor(xx(t)),yy(b),Math.ceil(pw/168)+1,Math.max(0,yy(a)-yy(b)));
+        bottoms[t]=b;
+      });
+      // Keep neighboring solid bands distinct when the screen has no color.
+      c.strokeStyle='#07101b';
+      c.lineWidth=1;
+      c.beginPath();
+      shown.forEach((r,t)=>{
+        const value=r[key]+(key==='cc'?r.gasCharge:0);
+        if(value>1e-7){
+          if(!t||shown[t-1][key]<=1e-7)c.moveTo(xx(t),yy(bottoms[t]));
+          else c.lineTo(xx(t),yy(bottoms[t]));
+          c.lineTo(xx(t+1),yy(bottoms[t]));
+        }
+      });
+      c.stroke();
+    }
+    shown.forEach((r,t)=>{
+      if(r.unserved>1e-7){c.fillStyle=hatch(c,'#ff5a5a','short');c.fillRect(xx(t),yy(r.demand),Math.max(1,pw/168+.3),yy(r.demand-r.unserved)-yy(r.demand));}
+      if(r.charge>0){c.fillStyle=hatch(c,'#ff9f43','battery');c.fillRect(xx(t),yy(0),Math.max(1,pw/168+.3),yy(-r.charge)-yy(0));}
+    });
+    if(shown.length){
+      c.strokeStyle='#e8edf3';c.lineWidth=1.8;c.beginPath();
+      shown.forEach((r,t)=>t?c.lineTo(xx(t+.5),yy(r.demand)):c.moveTo(xx(.5),yy(r.demand)));
+      c.stroke();
+      c.strokeStyle='#c3e5a1';c.lineWidth=1;c.beginPath();
+      shown.forEach((r,t)=>{
+        const y=yy(bottoms[t]+r.curtailed);
+        if(r.curtailed>0){if(!t||shown[t-1].curtailed<=0)c.moveTo(xx(t+.5),y);else c.lineTo(xx(t+.5),y);}
+      });
+      c.stroke();
+      const x=xx(state.hour+1);
+      c.strokeStyle='#ffbf66';c.setLineDash([2,3]);c.beginPath();c.moveTo(x,top);c.lineTo(x,h-bottom);c.stroke();c.setLineDash([]);
+    }
+    const markers=state.week===1?[[63,'Trip']]:state.week===2?[[48,'Gas 70%'],[96,'Restored']]:[];
+    markers.forEach(([t,text])=>{
+      c.strokeStyle=t<=state.hour?'#ffbf66':'#71829a';c.setLineDash([2,4]);c.beginPath();c.moveTo(xx(t),top);c.lineTo(xx(t),h-bottom);c.stroke();c.setLineDash([]);
+      c.fillStyle=t<=state.hour?'#ffdb9c':'#a1b0c2';c.textAlign='left';c.fillText(text,Math.min(xx(t)+3,left+pw-45),12);
+    });
+    c.textAlign='left';
+    const legends=[['Demand','#e8edf3',''],...series.map(s=>[s[1],s[2],s[3]]),['Unserved','#ff5a5a','short']];
+    const spacing=Math.max(12,Math.min(22,(h-38)/legends.length));
+    legends.forEach(([name,color,pattern],i)=>{
+      const x=w-right+12,y=top+i*spacing;
+      c.fillStyle=pattern?hatch(c,color,pattern):color;c.fillRect(x,y-4,10,8);
+      c.fillStyle='#e8edf3';c.font='10px Segoe UI';c.fillText(name,x+14,y);
+    });
+    canvas.setAttribute('aria-label','Supply and demand, '+weekNames[state.week]+', '+(state.hour+1)+' of 168 hours. '+
+      (state.score?fmt(state.score.unserved,1):'0')+' megawatt-hours unserved. Legend at right.');
+  }
+  function openScore() {
+    if(state.hour!==167)return;
+    $('scorecard').hidden=true;
+    const s=results.score;
+    $('scoreTitle').textContent=weekNames[state.week]+' complete';
+    $('scoreFleet').textContent='Your current fleet · '+fmt(capacity(state.plan).reduce((a,b)=>a+b,0))+' MW installed';
+    const moment=results.rows.reduce((a,b)=>s.unserved>1e-7?
+      (b.unserved>a.unserved?b:a):(b.demand>a.demand?b:a));
+    const when=days[Math.floor(moment.t/24)]+' '+String(moment.t%24).padStart(2,'0')+':00';
+    const covered=moment.demand-moment.unserved;
+    $('scoreMoment').innerHTML='<b>'+(s.unserved>1e-7?'Largest supply gap':'Peak demand covered')+' · '+when+'</b>'+
+      fmt(covered,1)+' MW supplied of '+fmt(moment.demand,1)+' MW needed'+
+      '<div class="coverage-track" aria-hidden="true"><span style="width:'+(covered/moment.demand*100)+'%"></span></div>';
+    $('scoreGrid').innerHTML=[['Total cost',money(s.cost),'$'+fmt(s.perMWh,2)+' / MWh served'],
+      ['Unserved',fmt(s.unserved,1)+' MWh',s.shortHours+' hours with shortages'],
+      ['Fuel CO2',fmt(s.co2)+' t',fmt(s.co2PerMWh,3)+' t / MWh served']]
+      .map(([k,v,sub])=>`<div class="metric"><label>${k}</label><strong>${v}</strong><small>${sub}</small></div>`).join('');
+    $('scoreDetail').innerHTML=[['Running cost',money(s.run)],['Fixed + capital',money(fixedCost(state.plan))],
+      ['Wind + solar share',fmt(s.wsShare*100,1)+'%'],['Curtailed',fmt(s.curtailed,1)+' MWh'],
+      ['Served',fmt(s.served,1)+' MWh'],['Spilled',fmt(s.spill,1)+' MWh']].map(([k,v])=>`<div>${k}<br><b>${v}</b></div>`).join('');
+    if(!$('scoreDialog').open)$('scoreDialog').showModal();
+  }
+  function normalizedPlan(p) {
+    if(!p||!Array.isArray(p.keep)||!Array.isArray(p.added)||p.keep.length!==8||p.added.length!==8)return null;
+    return {keep:p.keep.map(Boolean),added:p.added.map((n,i)=>plants[i].build?Math.max(0,Math.min(1000,Math.round((+n||0)/100)*100)):0),
+      charging:p.charging==='gas'?'gas':'renewable'};
+  }
+  function loadSaved() {
+    try {
+      const data=JSON.parse(localStorage.getItem('grid-operator')||'[]');
+      if(Array.isArray(data))saved=data.slice(0,4).map((entry,i)=>({name:'Plan '+String.fromCharCode(65+i),plan:normalizedPlan(entry.plan)})).filter(p=>p.plan);
+    } catch {saved=[];}
+  }
+  function persist() {
+    try {localStorage.setItem('grid-operator',JSON.stringify(saved));return true;}
+    catch {$('notice').textContent='Storage unavailable. Plans stay for this session only.';return false;}
+  }
+  function saveAt(index) {
+    const entry={name:'Plan '+String.fromCharCode(65+index),plan:copy(state.plan)};
+    saved[index]=entry;
+    const stored=persist();
+    $('notice').textContent=stored?entry.name+' saved on this device':entry.name+' saved for this session only';
+    hint($('notice').textContent+'. Press Run week to test it.');
+    clickTone();
+  }
+  function savePlan() {
+    if(saved.length<4){saveAt(saved.length);return;}
+    $('replaceDialog').showModal();
+    hint('Four plans saved. Choose Plan A, B, C or D to replace, or Cancel.');
+  }
+  function totalScore(weeks) {
+    const total=emptyScore();
+    for(const s of weeks)for(const key of ['run','cost','co2','unserved','shortHours','curtailed','served','ws','spill'])total[key]+=s[key];
+    total.perMWh=total.served>0?total.cost/total.served:null;
+    total.co2PerMWh=total.served>0?total.co2/total.served:null;
+    total.wsShare=total.served>0?total.ws/total.served:0;
+    return total;
+  }
+  function comparisons() {
+    return saved.map(p=>{
+      const weeks=weekNames.map((_,w)=>simulate(p.plan,w).score);
+      return {...p,weeks,total:totalScore(weeks)};
+    });
+  }
+  function challengeResults(plans) {
+    const reliable=p=>p.weeks.every(s=>s.unserved<1e-7&&s.served>1e-7);
+    const candidates=plans.filter(reliable);
+    const cheapest=candidates.length?candidates.reduce((a,b)=>a.total.perMWh<=b.total.perMWh?a:b):null;
+    return [
+      {title:'Coal free, lights on',match:plans.filter(p=>!p.plan.keep[1]&&!p.plan.keep[2]&&reliable(p)).map(p=>p.name)},
+      {title:'Under 0.2 t per MWh every week, lights on',match:plans.filter(p=>reliable(p)&&p.weeks.every(s=>s.co2PerMWh<.2)).map(p=>p.name)},
+      {title:'Spring at 40 percent wind and solar',match:plans.filter(p=>p.weeks[0].wsShare>=.4&&p.weeks[0].served>0).map(p=>p.name)},
+      {title:'Cheapest lights-on plan',match:cheapest?[cheapest.name]:[],note:cheapest?'Best saved so far: $'+fmt(cheapest.total.perMWh,2)+'/MWh':'No lights-on plan saved yet'}
+    ];
+  }
+  function renderCompare() {
+    const plans=comparisons();
+    if(!plans.length)$('compareStage').innerHTML='<div class="empty"><span class="eyebrow">No evidence yet</span><h2>Give your fleet a rival.</h2><p class="sub">Save a plan, change the fleet, then save another.</p></div>';
+    else {
+      const keys=[['cost','Total cost',money],['perMWh','$/MWh served',n=>'$'+fmt(n,2)],['unserved','Unserved MWh',n=>fmt(n,1)],
+        ['shortHours','Shortage hours',n=>fmt(n)],['co2','CO2 t',n=>fmt(n)],['co2PerMWh','t/MWh',n=>fmt(n,3)],
+        ['wsShare','W+S / served',n=>fmt(n*100,1)+'%'],['curtailed','Curtailed MWh',n=>fmt(n,1)]];
+      let html='<p class="comparison-rule">504-hour tests; retained coal on. “Best” labels the lowest value in each measure, including W+S share.</p>';
+      html+=plans.length>1?'<p class="sub scroll-instruction">Scroll the table sideways for more saved plans.</p>':'';
+      html+='<div class="compare-wrap '+(plans.length<=2?'compare-wide':'')+'">';
+      html+='<table style="min-width:'+(105+plans.length*220)+'px"><thead><tr><th scope="col">Test week</th>';
+      html+=plans.map(p=>'<th scope="col">'+p.name+'</th>').join('')+'</tr></thead><tbody>';
+      for(let w=0;w<4;w++) {
+        const scores=plans.map(p=>w===3?p.total:p.weeks[w]);
+        html+='<tr><td><b>'+(w===3?'Three-week total':weekNames[w])+'</b></td>';
+        for(let j=0;j<plans.length;j++)html+='<td><div class="compare-metrics">'+keys.map(([key,name,format])=>{
+          const values=scores.map(s=>s[key]).filter(v=>v!==null);
+          const best=values.length?Math.min(...values):null;
+          const badge=scores[j][key]!==null&&Math.abs(scores[j][key]-best)<1e-7&&plans.length>1?' <span class="best">best</span>':'';
+          return '<div class="compare-metric"><small>'+name+'</small><b>'+format(scores[j][key])+badge+'</b></div>';
+        }).join('')+'</div></td>';
+        html+='</tr>';
+      }
+      html+='</tbody></table></div><div class="mini-charts">';
+      for(const [key,title,d] of [['perMWh','Cost / MWh served',2],['unserved','Unserved MWh',1],['co2','Fuel CO2 t',0]]) {
+        const max=Math.max(1,...plans.map(p=>p.total[key]||0));
+        html+='<div class="mini"><h3>'+title+' · three weeks</h3>'+plans.map(p=>'<div class="barrow"><span>'+p.name+'</span><div><div class="bar" style="width:'+((p.total[key]||0)/max*100)+'%"></div><span>'+fmt(p.total[key],d)+'</span></div></div>').join('')+'</div>';
+      }
+      html+='</div><p class="sub" style="margin-top:10px">“Best” marks the lowest value, including share and curtailment. ';
+      html+='Coal defaults on. W+S share = accepted wind and solar / served energy, including charging input.</p>';
+      $('compareStage').innerHTML=html;
+    }
+    $('savedList').innerHTML=plans.map((p,i)=>'<div class="saved"><b>'+p.name+'</b><span class="saved-summary"> · '+
+      fmt(capacity(p.plan).reduce((a,b)=>a+b,0))+' MW</span><button class="btn" data-load="'+i+'">Load '+p.name+'</button></div>').join('');
+    $('savedList').querySelectorAll('[data-load]').forEach(button=>button.onclick=()=>{
+      state.plan=copy(saved[+button.dataset.load].plan);
+      dirtyPlan=true;revision++;
+      resetRun();updateFleet();setMode('Plan');
+      $('runWeek').focus({preventScroll:true});
+    });
+    const challenges=challengeResults(plans);
+    $('challengeDrawer').innerHTML=challenges.map(c=>'<div class="challenge '+(c.match.length?'met':'')+'"><b>'+(c.match.length?'✓ ':'○ ')+c.title+'</b><small>'+(c.note||(c.match.length?c.match.join(', '):'No saved plan meets this yet'))+'</small></div>').join('');
+    const stamp=challenges.filter(c=>c.match.length).map(c=>c.title+':'+c.match.join(',')).join('|');
+    if(!$('challengeDrawer').hidden){
+      const changed=stamp&&stamp!==lastChallenge;
+      lastChallenge=stamp;
+      if(changed)V.say('challenge',{valid:()=>!$('challengeDrawer').hidden&&lastChallenge===stamp});
+    }
+  }
+  function reset() {
+    const alreadyBase=state.mode==='Plan'&&state.hour===-1&&state.week===0&&state.speed===6&&
+      state.coal.every(Boolean)&&JSON.stringify(state.plan)===JSON.stringify(basePlan());
+    if(alreadyBase){
+      dirtyPlan=false;
+      $('notice').textContent='Base fleet ready. Saved plans kept.';
+      hint(L.wPlan);
+      V.welcome();
+      clickTone();
+      return;
+    }
+    $('scoreDialog').close();$('replaceDialog').close();
+    $('challengeDrawer').hidden=true;
+    $('challenges').setAttribute('aria-expanded','false');
+    lastChallenge='';
+    state.plan=basePlan();state.week=0;state.coal=[true,true];state.speed=6;
+    dirtyPlan=false;revision++;
+    resetRun();updateFleet();
+    $('speed').textContent='6 h/s';
+    weekNames.forEach((_,i)=>$('week'+i).setAttribute('aria-pressed',i===0));
+    $('notice').textContent='Base fleet restored. Saved plans kept.';
+    setMode('Plan');
+    hint(L.wPlan);
+    V.welcome();
+  }
+  for(const mode of ['Plan','Run','Compare'])$('m-'+mode).onclick=()=>setMode(mode);
+  $('runWeek').onclick=()=>{setMode('Run');$('play').focus({preventScroll:true});};
+  $('save').onclick=savePlan;
+  $('startOver').onclick=reset;
+  $('reset').onclick=reset;
+  $('charging').onchange=()=>{state.plan.charging=$('charging').value;planChanged();};
+  $('play').onclick=play;
+  $('step').onclick=()=>{
+    pause();advance();updateRun();clickTone();
+    if(state.hour<167)hint('Hour '+(state.hour+1)+' of 168. Press Step hour again, or Play to continue.');
+  };
+  $('speed').onclick=()=>{state.speed=state.speed===6?24:6;$('speed').textContent=state.speed+' h/s';clickTone();};
+  $('skip').onclick=()=>{
+    pause();V.hush();runRevision++;
+    while(state.hour<167)advance(true);
+    updateRun();
+  };
+  weekNames.forEach((_,i)=>$('week'+i).onclick=()=>{
+    state.week=i;resetRun();
+    weekNames.forEach((_,j)=>$('week'+j).setAttribute('aria-pressed',j===i));
+    hint(L.wRun);V.welcome();clickTone();
+  });
+  [1,2].forEach(n=>$('coal'+n).onclick=()=>{
+    state.coal[n-1]=!state.coal[n-1];resetRun();updateFleet();
+    hint('Coal commitment changed for the whole week. Press Play to test it.');clickTone();
+  });
+  $('scorecard').onclick=openScore;
+  $('scoreDialog').addEventListener('close',()=>{
+    $('scorecard').hidden=state.hour!==167;
+    if(state.mode==='Run'&&state.hour===167){
+      hint('Press Scorecard to review, select a week chip, or return to Plan.');
+      const focused=document.activeElement;
+      if(focused===document.body||!focused.getClientRects().length)$('scorecard').focus({preventScroll:true});
+    }
+  });
+  $('replaceDialog').addEventListener('close',()=>{if(state.mode==='Plan')hint(L.wPlan);});
+  $('closeScore').onclick=()=>{$('scoreDialog').close();hint('Press Scorecard to review, select a week chip, or return to Plan.');};
+  $('nextWeek').onclick=()=>{
+    $('scoreDialog').close();$('week'+((state.week+1)%3)).click();$('play').focus({preventScroll:true});
+  };
+  $('editFleet').onclick=()=>{$('scoreDialog').close();setMode('Plan');$('runWeek').focus({preventScroll:true});};
+  $('challenges').onclick=()=>{
+    const open=$('challengeDrawer').hidden;
+    $('challengeDrawer').hidden=!open;
+    $('challenges').setAttribute('aria-expanded',open);
+    renderCompare();
+    hint(open?'Check each challenge against the saved fleets, then compare their other scores.':L.wCompare);
+    clickTone();
+  };
+  $('clearSaved').onclick=()=>{
+    V.hush();saved=[];persist();renderCompare();hint(L.wCompareEmpty);V.how('wCompareEmpty');clickTone();
+  };
+  for(let i=0;i<4;i++){
+    const b=document.createElement('button');b.className='btn';b.textContent='Plan '+String.fromCharCode(65+i);
+    b.onclick=()=>{saveAt(i);$('replaceDialog').close();hint('Plan replaced. Press Run week to test it.');};
+    $('replaceOptions').append(b);
+  }
+  $('cancelReplace').onclick=()=>{$('replaceDialog').close();hint(L.wPlan);};
+  Curio.init({clips:"voice:*",rate:.95});
+  Curio.onMotion(()=>{if(Curio.reduce)$('status').classList.remove('dark');drawChart();});
+  new ResizeObserver(drawChart).observe($('chartBox'));
+  loadSaved();buildFleet();resetRun();hint(L.wPlan);
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,simulate,basePlan,capacity,fixedCost,comparisons,challengeResults,
+    get mode(){return state.mode;},get plan(){return state.plan;},get week(){return state.week;},get hour(){return state.hour;},
+    get score(){return state.score;},get events(){return state.events;},get saved(){return saved;},get vq(){return V.queue;}};
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

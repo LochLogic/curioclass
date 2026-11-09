@@ -1,0 +1,229 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "rung-six",
+      "steps": [
+        {
+          "click": ".rung[data-rung='6']"
+        },
+        {
+          "click": "#step"
+        }
+      ],
+      "keep": [
+        "#show",
+        "#start",
+        "#cues"
+      ]
+    },
+    {
+      "name": "sample",
+      "steps": [
+        {
+          "click": "#m-log"
+        },
+        {
+          "click": "#empty-sample"
+        }
+      ],
+      "keep": [
+        "#chart-frame",
+        "#reflection"
+      ]
+    },
+    {
+      "name": "setup",
+      "steps": [
+        {
+          "click": "#setup"
+        }
+      ],
+      "keep": [
+        "#setup-dialog",
+        "#close-setup"
+      ]
+    },
+    {
+      "name": "try",
+      "steps": [
+        {
+          "click": "#start"
+        },
+        {
+          "wait": 5000
+        }
+      ],
+      "keep": [
+        "#timer",
+        "#done",
+        "#stop"
+      ]
+    },
+    {
+      "name": "partner",
+      "steps": [
+        {
+          "click": "#partner"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "wait": 5000
+        },
+        {
+          "click": "#catch"
+        },
+        {
+          "click": "#drop"
+        }
+      ],
+      "keep": [
+        "#count-controls",
+        "#done"
+      ]
+    },
+    {
+      "name": "entry",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#start"
+        },
+        {
+          "wait": 16000
+        },
+        {
+          "click": "#done"
+        }
+      ],
+      "keep": [
+        "#entry-view",
+        "#save-try"
+      ]
+    },
+    {
+      "name": "saved",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#start"
+        },
+        {
+          "wait": 16000
+        },
+        {
+          "click": "#done"
+        },
+        {
+          "wait": 1500
+        },
+        {
+          "click": "#save-try"
+        }
+      ],
+      "keep": [
+        "#saved-view",
+        "#again",
+        "#see-log"
+      ]
+    },
+    {
+      "name": "reset-entry",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "js": "document.querySelector('#settings').open=true"
+        },
+        {
+          "click": "[data-reset='Breathe']"
+        },
+        {
+          "click": "#start"
+        },
+        {
+          "wait": 16000
+        },
+        {
+          "click": "#done"
+        }
+      ],
+      "keep": [
+        "#reset-help",
+        "#save-try"
+      ]
+    },
+    {
+      "name": "chart-answers",
+      "steps": [
+        {
+          "click": "#m-log"
+        },
+        {
+          "click": "#empty-sample"
+        },
+        {
+          "click": ".dot[data-index='2']"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#reflection",
+        ".answers"
+      ]
+    }
+  ]
+}

@@ -17,11 +17,15 @@ Students use volume and surface area to design packages with a fixed capacity an
 Open Orders and choose O2. Drag Radius and release at five different values. Watch the dots become a curve. Before selecting Reveal best, describe the shape you think would use least material.
 
 ## Modes
-Orders has six requests: soup, drink, bulk food, a closed gift box, an open seed tray and a drink can with costlier lids. Radius or base side changes while height keeps the volume fixed. The package is a true-scale front view; the viewport zooms out for tall towers. Release the handle or slider to plot a trial. Show curve can reveal the curve early. Reveal best marks the exact formula-based minimum without moving the student's design. Clear dots affects only the current order. Shapes and dots last for this page session; no work is saved.
+Orders has six requests: soup, drink, bulk food, a closed gift box, an open seed tray and a drink can with costlier lids. Radius or base side changes while height keeps the volume fixed. The package is a true-scale front view; the viewport zooms out for tall towers. Release the handle or slider to plot a trial. Show curve can reveal the model curve early. Reveal best marks the exact formula-based minimum without moving the student's design; its dimensions and material also appear on the bench. Clear dots affects only the current order. Shapes and dots last for this page session; no work is saved.
+
+This is an explorer, with no mastery score or pass gate. Lowest sampled material (or cost for O6) describes the plotted trials, not a skill rating. A near-minimum trial gets a factual comparison, not achievement praise; trials copied after Reveal best do not trigger that event. Five repeated releases may show the model curve, just as Show curve does, but they do not establish five different designs.
 
 Net opens the flat pieces, sharing one scale. It starts open on screens at least 900 pixels tall; shorter screens start with it closed. Closed cans have two disks and a wall rectangle; closed boxes have two square faces and four wall panels; trays have one square base and four walls. Dashed lines are folds.
 
 For O6, Lid cost weights both the lid and bottom. Actual metal mass continues to use unweighted area. Earlier dots are recalculated for the new price so the graph compares one consistent cost rule.
+
+Increasing that price makes the minimum taller and thinner; decreasing it makes the minimum shorter and wider. A box accepts only finite numbers, rounds to the supported step and clamps to its range. Invalid text restores the last valid price.
 
 Shelf uses four unbranded cans at one outside-size scale. Tap each to compare it with the best closed cylinder of its own model volume. The nominal capacity on a label differs from the volume of a cylinder modeled from outside dimensions. These are simplified cylinders without a detailed rim, wall thickness or neck model.
 

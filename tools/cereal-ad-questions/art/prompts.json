@@ -1,5 +1,5 @@
 {
-  "house_style": "Premium illustrated children's media literacy tool for ages five to eight. Clean confident shapes, tactile painted shading, directional light from upper left, delightful true object details. Animal characters only. No people or human body parts. All surfaces completely free of text, letters, numbers, logos and watermarks. The commercial assets use exuberant glossy cartoon rendering; daily life and plain bowl use quiet textured picture book gouache.",
+  "house_style": "Premium illustrated children's media literacy tool for ages five to eight. Clean confident shapes, tactile painted shading, directional light from upper left, delightful true object details. Animal mascots in the commercial. People only in the breakfast family photograph, shown warmly and without stereotypes. All surfaces completely free of text, letters, numbers, logos and watermarks. The commercial assets use exuberant glossy cartoon rendering; daily life and plain bowl use quiet textured picture book gouache.",
   "assets": [
     {
       "name": "ad-box",
@@ -82,13 +82,14 @@
     },
     {
       "name": "day-breakfast",
-      "prompt": "Quiet detailed gouache picture book kitchen seen at child height, wide 16:10. Exactly six clearly separated focal objects: cereal box with cartoon kangaroo on table at lower left; tablet game with a blank colorful banner lower center; yogurt cup with cartoon animal lower right; pizza shop magnet upper left on refrigerator; blank paper school menu upper center on refrigerator; framed still life family keepsake photo of a tree and house upper right. Blank text areas. Empty kitchen, no people even in the framed photograph. Warm cream and teal kitchen, strong spatial separation, all six objects large and easy to spot.",
+      "prompt": "Quiet detailed gouache picture book kitchen seen at child height, wide 16:10. Preserve six clearly separated focal objects and their positions: cereal box with cartoon kangaroo on table lower left; tablet game with blank colorful banner lower center; yogurt cup with cartoon animal lower right; pizza shop magnet upper left on refrigerator; blank school menu upper center; framed photograph upper right showing a smiling family with varied skin tones, two adults and two children in everyday clothes, shoulders together. Keep the existing cream and teal kitchen, sunshine from upper left, tactile painted details. No text, letters, numbers or logos anywhere. The family photo should clearly show people, not scenery.",
       "aspect": "16:10",
       "width": 1200,
       "quality": 78,
       "drawn_by": "codex",
-      "review": "ok",
-      "redraws": 0
+      "review": "reviewed: family portrait visible, no stereotypes, six target positions preserved",
+      "redraws": 1,
+      "people": true
     },
     {
       "name": "day-street",

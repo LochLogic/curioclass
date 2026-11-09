@@ -25,7 +25,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Stretch at high level: tiptoes, arms stretching overhead. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-stretch-high",
       "superseded_by": "painted-dancers",
@@ -42,7 +42,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Stretch at middle level: standing, arms stretching wide. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-stretch-middle",
       "superseded_by": "painted-dancers",
@@ -59,7 +59,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Stretch at low level: straddle sit and reach toward toes. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-stretch-low",
       "superseded_by": "painted-dancers",
@@ -76,7 +76,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Twist at high level: tiptoes, raised arms, torso twisting side to side. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-twist-high",
       "superseded_by": "painted-dancers",
@@ -93,7 +93,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Twist at middle level: standing, wide arms, torso twisting side to side. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-twist-middle",
       "superseded_by": "painted-dancers",
@@ -110,7 +110,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Twist at low level: kneeling back on heels, hands on hips, torso twisting side to side. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-twist-low",
       "superseded_by": "painted-dancers",
@@ -127,7 +127,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Bend at high level: tiptoes, arms overhead, side bend. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-bend-high",
       "superseded_by": "painted-dancers",
@@ -144,7 +144,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Bend at middle level: standing forward bend and upright return. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-bend-middle",
       "superseded_by": "painted-dancers",
@@ -161,7 +161,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Bend at low level: kneeling back on heels, side bend. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-bend-low",
       "superseded_by": "painted-dancers",
@@ -178,7 +178,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Swing at high level: tiptoes, arms swinging side to side overhead. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-swing-high",
       "superseded_by": "painted-dancers",
@@ -195,7 +195,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Swing at middle level: standing, arms swinging forward and back. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-swing-middle",
       "superseded_by": "painted-dancers",
@@ -212,7 +212,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Swing at low level: kneeling back on heels, arms swinging close to floor. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-swing-low",
       "superseded_by": "painted-dancers",
@@ -229,7 +229,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Shake at high level: tiptoes, hands shaking overhead. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-shake-high",
       "superseded_by": "painted-dancers",
@@ -246,7 +246,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Shake at middle level: standing, small whole-body shake. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-shake-middle",
       "superseded_by": "painted-dancers",
@@ -263,7 +263,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Shake at low level: lying on back, hands shaking close to floor. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-shake-low",
       "superseded_by": "painted-dancers",
@@ -280,7 +280,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Curl at high level: tiptoes, self-hug opening wide. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-curl-high",
       "superseded_by": "painted-dancers",
@@ -297,7 +297,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Curl at middle level: standing round curl opening wide. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-curl-middle",
       "superseded_by": "painted-dancers",
@@ -314,7 +314,7 @@
         "A",
         "B"
       ],
-      "deferred": false,
+      "deferred": true,
       "prompt": "For the next owner-reviewed painter: one consistent full-body dancer in a teal top, charcoal leggings and cream shoes, with diamond chest badge. Curl at low level: seated tuck opening into a seated star, head always below 0.62 standing height. Produce matching A and B keyframes using src.html MOVES as the pose reference. Preserve grounded support and full limbs. Pure green background. This build must use the kit figure until the owner reviews the paintings.",
       "token": "art:dancer-curl-low",
       "superseded_by": "painted-dancers",
@@ -327,7 +327,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -352,7 +352,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -377,7 +377,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -402,7 +402,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -427,7 +427,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -452,7 +452,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -477,7 +477,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -502,7 +502,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -527,7 +527,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -552,7 +552,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -577,7 +577,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -602,7 +602,7 @@
       "aspect": "9:16",
       "width": 320,
       "quality": 78,
-      "deferred": false,
+      "deferred": true,
       "frames": [
         "0",
         "quarter",
@@ -626,7 +626,7 @@
       "cutout": true,
       "aspect": "9:16",
       "width": 420,
-      "deferred": false,
+      "deferred": true,
       "prompt": "Next painter: same consistent full-body dancer, neutral standing ready pose, pure green background. Include high tiptoe readiness and low deep-squat readiness, matching Dance.level stand.",
       "token": "art:dancer-stand",
       "frames": [
@@ -643,7 +643,7 @@
       "cutout": true,
       "aspect": "9:16",
       "width": 420,
-      "deferred": false,
+      "deferred": true,
       "prompt": "Next painter: same consistent full-body dancer, a clear hip fold angled toward the ribbon gallery, pure green background.",
       "token": "art:dancer-bow",
       "superseded_by": "painted-gallery-bow",

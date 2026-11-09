@@ -1,53 +1,182 @@
 {
-  "keep": ["#cv", "#hint"],
+  "keep": [
+    "#cv",
+    "#hint"
+  ],
   "states": [
     {
       "name": "helicopter-guides-plan",
       "steps": [
-        {"click": ".stop[data-e='400']"},
-        {"click": "#ov-guides"},
-        {"click": "#ov-plan"}
+        {
+          "click": ".stop[data-e='400']"
+        },
+        {
+          "click": "#ov-guides"
+        },
+        {
+          "click": "#ov-plan"
+        }
       ],
-      "sizes": ["680x425", "1366x768", "1920x1080", "760x900", "375"]
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "1920x1080",
+        "760x900",
+        "375"
+      ]
     },
     {
       "name": "tilted",
       "steps": [
-        {"click": "#tilt"},
-        {"key": "ArrowRight"}, {"key": "ArrowRight"}, {"key": "ArrowRight"},
-        {"key": "ArrowRight"}, {"key": "ArrowRight"}, {"key": "ArrowRight"},
-        {"key": "ArrowRight"}, {"key": "ArrowRight"}, {"key": "ArrowRight"},
-        {"key": "ArrowRight"}, {"key": "ArrowRight"}, {"key": "ArrowRight"},
-        {"key": "ArrowRight"}, {"key": "ArrowRight"}, {"key": "ArrowRight"}
+        {
+          "click": "#tilt"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        }
       ],
-      "sizes": ["680x425", "1366x768", "375"]
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375"
+      ]
     },
     {
       "name": "ink-line",
       "steps": [
-        {"click": "#m-ink"},
-        {"drag": "return (()=>{const r=document.querySelector('#cv').getBoundingClientRect();return [[r.x+r.width*.35,r.y+r.height*.6],[r.x+r.width*.45,r.y+r.height*.6],[r.x+r.width*.55,r.y+r.height*.6]]})()"}
+        {
+          "click": "#m-ink"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#cv').getBoundingClientRect();return [[r.x+r.width*.35,r.y+r.height*.6],[r.x+r.width*.45,r.y+r.height*.6],[r.x+r.width*.55,r.y+r.height*.6]]})()"
+        }
       ],
-      "sizes": ["680x425", "1366x768", "760x900", "375"]
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "760x900",
+        "375"
+      ]
     },
     {
       "name": "find-missed-check",
-      "steps": [{"click": "#m-find"}, {"click": "#checkCam2"}],
-      "sizes": ["680x425", "1366x768", "375"]
+      "steps": [
+        {
+          "click": "#m-find"
+        },
+        {
+          "click": "#checkCam2"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375"
+      ]
     },
     {
       "name": "return-to-build",
-      "steps": [{"click": "#m-find"}, {"click": "#m-build"}],
-      "sizes": ["680x425", "1366x768", "375"]
+      "steps": [
+        {
+          "click": "#m-find"
+        },
+        {
+          "click": "#m-build"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375"
+      ]
     },
     {
       "name": "ink-check-wrong-line",
       "steps": [
-        {"click": "#m-ink"},
-        {"click": "#check"},
-        {"drag": "return (()=>{const r=document.querySelector('#cv').getBoundingClientRect();return [[r.x+r.width*.35,r.y+r.height*.3],[r.x+r.width*.42,r.y+r.height*.45],[r.x+r.width*.49,r.y+r.height*.6]]})()"}
+        {
+          "click": "#m-ink"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "drag": "return (()=>{const r=document.querySelector('#cv').getBoundingClientRect();return [[r.x+r.width*.35,r.y+r.height*.3],[r.x+r.width*.42,r.y+r.height*.45],[r.x+r.width*.49,r.y+r.height*.6]]})()"
+        }
       ],
-      "sizes": ["1366x768"]
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "turn-before-eye",
+      "steps": [
+        {
+          "click": "#turn"
+        },
+        {
+          "key": "ArrowRight"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "empty-city",
+      "steps": [
+        {
+          "click": "#clearCity"
+        },
+        {
+          "click": "#clearCity"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "375"
+      ]
     }
   ]
 }

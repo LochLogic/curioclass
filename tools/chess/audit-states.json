@@ -1,0 +1,12 @@
+{
+  "target": 44,
+  "keep": [],
+  "states": [
+    {"name":"friend","steps":[{"click":"#choose-friend"}],"keep":["#board","#playbill","#hints","#flip"]},
+    {"name":"computer-picker","steps":[{"click":"#choose-cpu"}],"keep":["#start-cpu"]},
+    {"name":"computer","steps":[{"click":"#choose-cpu"},{"click":"#start-cpu"}],"keep":["#board","#playbill"]},
+    {"name":"puzzles","steps":[{"click":"#choose-puzzles"}],"keep":[]},
+    {"name":"puzzle","steps":[{"click":"#choose-puzzles"},{"click":"[data-act='m1-1']"},{"wait":600}],"keep":["#board","#clue"]},
+    {"name":"daily","steps":[{"click":"#choose-daily"},{"wait":600}],"keep":["#board","#clue"]}
+  ]
+}

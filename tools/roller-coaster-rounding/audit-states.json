@@ -1,0 +1,320 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "after-drop",
+      "steps": [
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 1200
+        }
+      ],
+      "keep": [
+        "#drop",
+        "#track-window"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "hundreds",
+      "steps": [
+        {
+          "click": "#hundreds"
+        }
+      ],
+      "keep": [
+        "#drop",
+        "#track-window"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "ticket-columns",
+      "steps": [
+        {
+          "click": "#m-line"
+        },
+        {
+          "click": "#station-300"
+        },
+        {
+          "click": "#station-300"
+        },
+        {
+          "click": "#key-6"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#key-enter"
+        }
+      ],
+      "keep": [
+        "#bin"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "ticket-columns-compact",
+      "steps": [
+        {
+          "click": "#m-line"
+        },
+        {
+          "click": "#station-300"
+        },
+        {
+          "click": "#station-300"
+        },
+        {
+          "click": "#keys-toggle"
+        },
+        {
+          "click": "#key-6"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#key-enter"
+        }
+      ],
+      "keep": [
+        "#bin"
+      ],
+      "sizes": [
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "train-array",
+      "steps": [
+        {
+          "click": "#m-trains"
+        },
+        {
+          "click": "#n-plus"
+        },
+        {
+          "click": "#c-plus"
+        }
+      ],
+      "keep": [
+        "#train-array"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "keys-open",
+      "steps": [
+        {
+          "click": "#keys-toggle"
+        }
+      ],
+      "keep": [
+        "#key-enter"
+      ],
+      "sizes": [
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "halfway",
+      "steps": [
+        {
+          "click": "#tricky"
+        },
+        {
+          "click": "#drop"
+        },
+        {
+          "wait": 2100
+        }
+      ],
+      "keep": [
+        "#drop",
+        "#track-window"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "maximum-trains",
+      "steps": [
+        {
+          "click": "#m-trains"
+        },
+        {
+          "click": "#n-plus",
+          "times": 3,
+          "gap": 0.15
+        },
+        {
+          "click": "#c-plus",
+          "times": 5,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#train-array"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "compact-1000",
+      "steps": [
+        {
+          "click": "#keys-toggle"
+        },
+        {
+          "click": "#key-1"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#key-enter"
+        }
+      ],
+      "keep": [
+        "#drop",
+        "#held"
+      ],
+      "sizes": [
+        "680x425",
+        "800x500",
+        "1000x625",
+        "375x812"
+      ]
+    },
+    {
+      "name": "capacity-compact",
+      "steps": [
+        {
+          "click": "#m-trains"
+        },
+        {
+          "js": "const p=document.getElementById('train-picker');p.value='6';p.dispatchEvent(new Event('change'));"
+        },
+        {
+          "click": "#keys-toggle"
+        },
+        {
+          "click": "#key-2"
+        },
+        {
+          "click": "#key-4"
+        },
+        {
+          "click": "#key-enter"
+        },
+        {
+          "click": "#keys-toggle"
+        },
+        {
+          "click": "#key-2"
+        },
+        {
+          "click": "#key-4"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#key-enter"
+        }
+      ],
+      "keep": [
+        "#capacity",
+        "#reset"
+      ],
+      "sizes": [
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "clerk-columns-compact",
+      "steps": [
+        {
+          "click": "#m-line"
+        },
+        {
+          "js": "const p=document.getElementById('line-picker');p.value='12';p.dispatchEvent(new Event('change'));"
+        },
+        {
+          "click": "#station-150"
+        },
+        {
+          "click": "#station-240"
+        },
+        {
+          "click": "#keys-toggle"
+        },
+        {
+          "click": "#key-3"
+        },
+        {
+          "click": "#key-9"
+        },
+        {
+          "click": "#key-0"
+        },
+        {
+          "click": "#key-enter"
+        },
+        {
+          "click": "#sense"
+        }
+      ],
+      "keep": [
+        "#bin",
+        "#reset"
+      ],
+      "sizes": [
+        "680x425",
+        "375x812"
+      ]
+    }
+  ]
+}

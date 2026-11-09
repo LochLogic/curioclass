@@ -1,0 +1,20 @@
+{
+  "id": "thesis-workshop",
+  "status": "beta",
+  "stage": "built",
+  "hook": "A thesis is a promise. See which passages yours asks you to explain.",
+  "outcome": "Build an arguable literary thesis, test its scope and fit, and connect textual evidence to an analysis paragraph.",
+  "driver": "students",
+  "minutes": "30-45",
+  "modes": ["Build", "Prove", "Draft"],
+  "grades_label": "Grade 10",
+  "sources": [
+    "Saki, The Open Window, Beasts and Super-Beasts (John Lane, 1914), Project Gutenberg #269: https://www.gutenberg.org/ebooks/269",
+    "Robert Frost, The Road Not Taken, Mountain Interval (Henry Holt, 1916), Project Gutenberg #29345: https://www.gutenberg.org/ebooks/29345",
+    "Robert Frost, A Group of Poems, The Atlantic Monthly, August 1915: https://www.theatlantic.com/magazine/archive/1915/08/a-group-of-poems/306620/",
+    "Passage tags, readings and counter-readings are original editorial analysis for Curio Class.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

@@ -59,7 +59,9 @@ Live tools move to it when they are next touched. Until then, a tool not yet mov
 from `tools/collision-lab/src.html` (narrate, hush, readNow, firstTap) and these rules.
 
 - One welcome per mode, queued when the mode is entered. On the very first tap, decide only after that tap's own click
-  handler has run: if the tap queued its own line, or was Read, skip the welcome without marking it said.
+  handler has run: if the tap queued its own line, or was Read, skip the welcome without marking it said. A first tap
+  may cut or skip the welcome, and it need not come back (Cory, 2026-11-05, BASELINE rule 16); anything the tool needs
+  later (a premise, a role) lives in the hint and Read, and is said again where it is needed.
 - Mark a line said when it starts playing, never when it is queued. A stop (mode switch, Read, Reset) drops lines that
   never started, unmarked, so their trigger can queue them again. Drop a queued line whose moment has passed (a
   different pair or target is showing, the probe left the zero point).

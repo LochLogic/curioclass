@@ -5,6 +5,21 @@
   ],
   "states": [
     {
+      "name": "invalid-lid-restores-price",
+      "sizes": ["680x425", "1366x768", "375x812"],
+      "steps": [
+        {"js": "document.querySelector('#orderSelect').focus({preventScroll:true});"},
+        {"key": "ArrowDown"},
+        {"key": "ArrowDown"},
+        {"key": "ArrowDown"},
+        {"key": "ArrowDown"},
+        {"key": "ArrowDown"},
+        {"js": "const n=document.querySelector('#lidSlider .num'); n.focus({preventScroll:true}); n.value='invalid';"},
+        {"key": "Enter"}
+      ],
+      "keep": ["#lidSlider", "#hint", "#liveMaterial"]
+    },
+    {
       "name": "drink-best",
       "steps": [
         {

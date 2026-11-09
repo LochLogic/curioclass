@@ -270,6 +270,35 @@ body[data-mode=mystery] #guess {top:0;height:44px}
 @media(min-width:601px) and (max-width:750px) and (max-height:550px) {
   main {grid-template-columns:minmax(0,1fr) 230px}
 }
+.radio {container-type:inline-size}
+.dial-scale {min-width:450px;margin:0 28px;width:calc(100% - 56px)}
+.mark {font-size:clamp(11px,1.65cqw,21px);justify-content:flex-start;padding-top:5px;gap:5px}
+.mark::before {height:18%;flex-shrink:0}
+.mark::after {top:12%}
+.side-station::before {width:5px;height:5px;background:transparent;border:1px solid #57442a;transform:rotate(45deg)}
+#needle {top:4%;height:16%;width:2px}
+.time-caption {gap:10px}
+#time-year {text-align:right;line-height:1.4}
+.mix-control input {touch-action:none}
+.footer-note {max-width:340px;line-height:1.3}
+@media(min-width:801px) and (max-height:800px) {
+  .feature-panel {gap:4px}
+  .postcard {width:160px}
+  .feature {padding:4px 0}
+  .feature p {line-height:1.3}
+  #listen-for {min-height:0}
+}
+@media(min-width:1600px) {
+  .airline,.time-caption,.time-ends {font-size:13px}
+  #hint {font-size:16px}
+}
+@media(max-height:550px) and (min-width:601px) {
+  .mark {font-size:11px;padding-top:3px}
+  .time-caption {flex-wrap:wrap;gap:0 6px}
+  #time-year {font-size:10px}
+  .footer-note {max-width:205px;font-size:10px}
+  #key-help {display:none}
+}
 
 </style>
 </head>
@@ -303,7 +332,7 @@ body[data-mode=mystery] #guess {top:0;height:44px}
         <img class="radio-art" src="art:mhr-radio" alt="Painted 1940s bakelite radio with woven grille and cream dial">
         <div class="maker" aria-hidden="true">CURIO CLASS <span>THE TRAVELER</span></div>
         <div id="eye" aria-hidden="true"><i></i></div>
-        <div class="dial-window" id="dial-window">
+        <div class="dial-window" id="dial-window" tabindex="-1">
           <div class="dial-scale" id="dial-scale">
             <div id="marks" aria-hidden="true"></div>
             <div id="needle" aria-hidden="true"></div>
@@ -355,7 +384,8 @@ body[data-mode=mystery] #guess {top:0;height:44px}
   </aside>
 </main>
 <footer><p id="hint">Press Power, then drag the tuning knob or tap Station to find a station.</p>
-  <span class="footer-note">SYNTHESIZED ARRANGEMENTS<br><span id="key-help">SPACE pause · C compare · F flip · M mix</span></span></footer>
+  <span class="footer-note">SYNTHESIZED ARRANGEMENTS<br>
+    <span id="key-help">Shift+SPACE pause · Shift+C compare · Shift+F flip · Shift+M mix</span></span></footer>
 <script src="kit:curio"></script>
 <script src="kit:music-studio"></script>
 <script>
@@ -367,7 +397,7 @@ const STATIONS = [
     "bpm": 100,
     "features": [
       "One melody, no harmony (monophony).",
-      "Follows the words, no beat.",
+      "Free, unmeasured; each phrase stretches at its end.",
       "None.",
       "Voices only.",
       "Memorized and sung; neumes reminded singers of the shape. Staff lines came about 1025."
@@ -386,9 +416,9 @@ const STATIONS = [
     "features": [
       "A held voice under a moving one.",
       "Repeating long-short patterns.",
-      "Open fifths and octaves.",
+      "Held D and A; moving intervals include open fifths and octaves.",
       "Voices.",
-      "Cathedral manuscripts; Perotin’s four-voice Viderunt omnes was sung at Christmas 1198."
+      "Cathedral manuscripts; Perotin’s four-voice Viderunt omnes was probably sung at Christmas 1198."
     ],
     "giveaways": [
       2,
@@ -422,7 +452,7 @@ const STATIONS = [
     "features": [
       "Tune over a busy bass line.",
       "Driving and steady.",
-      "Chords built on the bass.",
+      "Harmony implied by the bass line.",
       "Harpsichord, cello.",
       "Courts, churches and printed parts; Bach’s Brandenburg Concertos are dated 1721."
     ],
@@ -478,7 +508,8 @@ const STATIONS = [
       "Gongs mark repeating cycles.",
       "Melodic layers rather than Western chord progressions.",
       "Bronze metallophones and gongs, with drums.",
-      "A living Indonesian tradition. Sundanese and Javanese artists performed in Paris in 1889; an encounter, not an origin."
+      "Taught by ear in court and village ensembles. In Paris in 1889, Sundanese and Javanese musicians were shown " +
+      "at a Dutch colonial exhibit at the world's fair."
     ],
     "giveaways": [
       0,
@@ -496,7 +527,7 @@ const STATIONS = [
       "Syncopated over a steady march beat.",
       "I, IV, V with passing chords.",
       "Upright piano.",
-      "African American roots; sheet music and piano rolls carried Joplin’s Maple Leaf Rag (1899)."
+      "Sheet music and piano rolls carried Black composer Scott Joplin’s Maple Leaf Rag (1899)."
     ],
     "giveaways": [
       1,
@@ -514,7 +545,8 @@ const STATIONS = [
       "Swing.",
       "Sixth and seventh chords.",
       "Brass, saxes, rhythm section.",
-      "African American jazz; records, radio, dance halls; Goodman’s integrated 1938 concert used Henderson’s arrangements."
+      "Black bands led by Fletcher Henderson, Count Basie and Duke Ellington built swing; records, radio and Harlem's Savoy carried it. " +
+      "Benny Goodman's integrated 1938 Carnegie Hall concert used Henderson's arrangements."
     ],
     "giveaways": [
       1,
@@ -532,7 +564,7 @@ const STATIONS = [
       "Strong backbeat.",
       "Three chords.",
       "Electric guitar, bass, drums.",
-      "Black rhythm and blues roots: Tharpe, Berry, Little Richard; 45s (1949), jukeboxes and radio DJs."
+      "Black gospel and rhythm and blues roots: Sister Rosetta Tharpe, Chuck Berry, Little Richard; 45s (1949), jukeboxes and radio DJs."
     ],
     "giveaways": [
       1,
@@ -568,7 +600,8 @@ const STATIONS = [
       "Heavy, laid-back beat.",
       "Whatever the sample has.",
       "Turntables, sampler, drum machine.",
-      "Black and Latino youth in the Bronx; Kool Herc’s 1973 party, mixtapes, then records and radio."
+      "Black, Latino and Caribbean youth in the Bronx; Cindy Campbell organized the 1973 party with Jamaican-born DJ Kool Herc. " +
+      "Mixtapes, then records and radio."
     ],
     "giveaways": [
       3,
@@ -589,6 +622,12 @@ const DESK_SOUND = ['synthesized choir','synthesized voices','recorder','harpsic
 const indexOf = id => STATIONS.findIndex(s => s.id === id);
 const stationAt = i => STATIONS[Math.max(0,Math.min(STATIONS.length - 1,Math.round(i)))];
 const config = i => ({beat:i,harmony:i,sound:i});
+const mysteryChoices = () => STATIONS.map((s,i) => i).filter(i => STATIONS[i].id !== 'gamelan');
+function closestStation(guess,index) {
+  if (!mysteryChoices().includes(index)) return false;
+  const gap = Math.abs(guess-stationAt(index).year);
+  return mysteryChoices().filter(i => i!==index).every(i => Math.abs(guess-stationAt(i).year)>gap);
+}
 
 function compileBar(settings, bar) {
   const beat = stationAt(settings.beat);
@@ -626,8 +665,9 @@ function compileBar(settings, bar) {
       at = cursor;
     }
     if (bid === 'ragtime') {
-      at = notes.length === 1 ? .5 : [0,.5,1.5,2.5][n];
-      if (dur >= 2) len = 4 - at;
+      const onsets = notes.length === 1 ? [.5] : [0,.5,1.5,2.5];
+      at = onsets[n];
+      len = n + 1 < notes.length ? onsets[n+1] - at : 4 - at;
     }
     let time = unit(at);
     let duration = unit(len) * .9;
@@ -647,13 +687,17 @@ function compileBar(settings, bar) {
     if (sid === 'renaissance' && bar === 0 && n < 2 && hid !== 'chant') {
       add('recorder',p - 12,time + unit(2),duration,.53,'imitation');
     }
-    if (sid === 'gamelan' && hid !== 'chant') {
-      add('metal',p + 12,time + .08,duration * .65,.32,'elaboration');
-      if (duration > .45) add('metal',p + 12,time + duration/2,.3,.28,'elaboration');
-    }
     cursor = bid === 'chant' ? time + len : at + len;
   });
   const duration = bid === 'chant' ? cursor + .12 : unit(units);
+  if (sid === 'gamelan' && hid !== 'chant') {
+    const melody = events.filter(e => e.layer === 'melody');
+    for (let half = .5; half < units; half += .5) {
+      const time = half * duration/units;
+      const pitch = melody.filter(e => e.time <= time).at(-1)?.pitch ?? melody[0].pitch;
+      add('metal',pitch + 12,time,.3,.29,'elaboration');
+    }
+  }
   const H = (k,p,t,d=.35,a=.5,l='harmony') => add(k,p,t,d,a,l);
   const chordKind = {
     choir:'voice',recorder:'recorder',harpsichord:'harpsichord',fortepiano:'fortepiano',grand:'grand',
@@ -662,7 +706,8 @@ function compileBar(settings, bar) {
   let chord = CHORDS[bar].slice();
   if (hid === 'hiphop') chord = CHORDS[bar % 2].slice();
   if (hid === 'classical' || hid === 'ragtime' || hid === 'rocknroll') {
-    chord = [[0,4,7],[5,9,12],[0,4,7],[7,11,14],[0,4,7],[5,9,12],[7,11,14],[0,4,7]][bar];
+    chord = [[0,4,7],[0,4,7],[0,4,7],[7,11,14],[0,4,7],[5,9,12],[7,11,14],[0,4,7]][bar];
+    if (hid === 'rocknroll' && bar === 1) chord = [5,9,12];
   }
   if (hid === 'romantic') {
     if (bar === 1) chord = [9,12,16,19];
@@ -679,7 +724,7 @@ function compileBar(settings, bar) {
     const bass = [3].includes(bar % 4) ? 9 : 2;
     H('voice',bar === 7 ? 2 - 24 : bass - 24,0,duration,.65,'drone');
   } else if (hid === 'gamelan') {
-    H('gong',0 - 24,Math.max(0,duration - .18),1.8,.8,'gong');
+    if (bid !== 'gamelan') H('gong',0 - 24,3 * duration/4,1.8,.8,'gong');
     notes.forEach(([p,d],n) => H('metal',p - 12,n * duration/notes.length,.9,.4,'layer'));
   } else if (hid === 'baroque') {
     for (let q = 0; q < units; q += .5) {
@@ -712,7 +757,10 @@ function compileBar(settings, bar) {
     chord.forEach(p => H('pad',p-12,0,duration,.26));
     for (let q=0;q<8;q++) H('synthbass',chord[0] - (q%2 ? 12 : 24),q * duration/8,.18,.5,'octave bass');
   } else {
-    if (sid !== 'renaissance' || bar >= 2) chord.forEach(p => H(chordKind,p-12,0,duration,.28));
+    if (sid !== 'renaissance' || bar >= 2) {
+      chord.filter(p => !(sid === 'renaissance' && hid === 'renaissance' && bar === 6 && p === 11))
+        .forEach(p => H(chordKind,p-12,0,duration,.28));
+    }
   }
   if (sid === 'renaissance' && bar === 1 && hid !== 'chant') {
     H('recorder',4-12,0,seconds,.53,'imitation');
@@ -730,7 +778,7 @@ function compileBar(settings, bar) {
       t += d;
     });
     for (let q=0;q<8;q++) {
-      const c = CHORDS[sampleBar];
+      const c = [0,4,7];
       H('sample',c[[0,2,1,2][q%4]]-24,q * duration/8,.2,.22,'sample loop');
     }
     [0,.73,1.31].forEach(t => H('crackle',0,t % duration,.025,.1,'surface'));
@@ -755,7 +803,7 @@ function compileBar(settings, bar) {
   }
   if (bid === 'gamelan') {
     [0,2].forEach(q => H('handdrum',0,q * duration/4,.1,.3,'drums'));
-    H('gong',bar%2 ? -24:-12,duration-.12,1.4,.5,'cycle');
+    H('gong',bar%2 ? -24:-12,3 * duration/4,1.4,.5,'cycle');
   }
   events.sort((a,b) => a.time-b.time);
   return {duration,events,bar,settings:{...settings},bpm:beat.bpm,units};
@@ -775,6 +823,8 @@ const RadioAudio = (() => {
   const impulses = new Map();
   let pianoBuffer;
   const active = new Set();
+  // Output trims measured on the synthesized graph, not guesses from event amplitudes.
+  const trims = [2.64,2.14,-3.45,6.74,2.19,-1.80,-3.12,-1.25,.25,-5.27,-1.28,9.37];
   function setup() {
     if (ctx) {ctx.resume();return;}
     ctx = MS.ctx();
@@ -834,7 +884,9 @@ const RadioAudio = (() => {
     const sid = stationAt(settings.sound).id;
     const output = ctx.createGain();
     output.gain.value = 1;
-    output.connect(music);
+    const trim = ctx.createGain();
+    trim.gain.value = Math.pow(10,trims[settings.sound]/20);
+    output.connect(trim).connect(music);
     const dry = ctx.createGain();
     dry.connect(output);
     const wet = ctx.createGain();
@@ -996,7 +1048,8 @@ const RadioAudio = (() => {
     generation++;
     if (ctx && currentBus) {
       currentBus.output.gain.cancelScheduledValues(ctx.currentTime);
-      currentBus.output.gain.setValueAtTime(0,ctx.currentTime);
+      currentBus.output.gain.setValueAtTime(currentBus.output.gain.value,ctx.currentTime);
+      currentBus.output.gain.linearRampToValueAtTime(0,ctx.currentTime+.02);
       const old = currentBus;
       setTimeout(() => {old.output.disconnect();old.m.disconnect();old.r.disconnect();},4200);
     }
@@ -1066,7 +1119,7 @@ const RadioAudio = (() => {
   }
   function signal(strength,on) {
     if (!ctx) return;
-    staticGain.gain.setTargetAtTime(on && Curio.sound ? (1-strength)*.12:0,ctx.currentTime,.015);
+    staticGain.gain.setTargetAtTime(on && Curio.sound ? (1-strength)*.062:0,ctx.currentTime,.015);
   }
   function queue(settings,apply) {
     if (!scheduled) {apply?.();return;}
@@ -1089,13 +1142,13 @@ const state = {
 };
 const L = {
   welcome:'Press Power, then drag the tuning knob or tap Station to find a station.',
-  powerHow:'Press Power to hear the station. Then use the controls below the radio.',
-  compareHow:'Station A is pinned. Now turn the dial to a second station.',
-  flipHow:'Press Flip to switch between the two stations at the next bar.',
-  deskHow:'Turn the Beat, Harmony or Sound knob to another era. The change starts at the next bar.',
-  mysteryHow:'Listen, then drag the pin to the year you hear and press Tune in.',
+  powerHow:'Press Power. Then tune with the knob or Station.',
+  compareHow:'A pinned. Tune another station.',
+  flipHow:'Press Flip. Hear the next bar.',
+  deskHow:'Drag knobs. Arrow keys work too.',
+  mysteryHow:'Place the pin, then Tune in.',
   setDone:'Set done. Your count is on the screen.',
-  dialReady:'Tap Station or drag the tuning knob. Press Compare to pin this sound, then find another station.',
+  dialReady:'Tune with the knob or Station.',
   compareReady:'Press Flip to compare A and B at the next bar, or turn the dial.',
   tuningHow:'Keep turning the tuning knob until the green eye closes and the station locks.',
   mysteryPower:'Press Power to hear the hidden station. Then move the year pin and press Tune in.',
@@ -1107,8 +1160,10 @@ const L = {
   pausedHow:'Press Resume to hear the radio again. You can still change the controls while paused.'
 };
 STATIONS.forEach(s => {
-  L['ident-'+s.id] = `${s.year}. ${s.name}.`;
-  L['result-'+s.id] = `It was ${s.year}. ${s.name}.`;
+  const gamelan = 'Javanese gamelan. A living tradition, heard in Paris in 1889.';
+  L['ident-'+s.id] = s.id === 'gamelan' ? gamelan : `${s.year}. ${s.name}.`;
+  L['result-'+s.id] = s.id === 'gamelan' ? gamelan : `It was ${s.year}. ${s.name}.`;
+  L['clues-'+s.id] = `Clues: ${s.giveaways.map(i=>NAME[i]).join(' and ')}. Press Next station.`;
   NAME.forEach((name,i) => {
     L[`feature-${s.id}-${i}`] = `${name}. ${s.features[i]}`;
     L[`mix-feature-${s.id}-${i}`] = `${name}. ${s.name}: ${s.features[i]}`;
@@ -1121,6 +1176,26 @@ STATIONS.forEach(s => {
 });
 L.deskSolo = 'Texture. Chant: one melody without accompaniment.';
 L.deskDrone = 'Texture. Chant harmony: one melody over an organum drone.';
+function deskRows(mix) {
+  const beat = stationAt(mix.beat);
+  const harmony = stationAt(mix.harmony);
+  const sound = stationAt(mix.sound);
+  const drums = ['swing','rocknroll','disco','hiphop','gamelan'].includes(beat.id);
+  let texture = harmony.id === 'chant' ?
+    (sound.id === 'organum' ? 'One melody over a held organum drone.' : 'One melody without chord accompaniment.') :
+    `${sound.name} melody with ${harmony.name} accompaniment.`;
+  if (sound.id === 'hiphop' && harmony.id !== 'chant') texture += ' A sample loops beneath it.';
+  if (drums) texture += ` ${beat.name} adds drums.`;
+  let rhythm = `${beat.name}: ${beat.features[1]}`;
+  if (beat.id === 'chant' && harmony.id !== 'chant') rhythm = 'Chant: free phrase lengths; accompaniment can still pulse.';
+  const chord = harmony.id === 'chant' && sound.id === 'organum' ? 'Chant: no chords; a held D drone.' :
+    `${harmony.name}: ${harmony.features[2]}`;
+  const instruments = `${sound.name} melody: ${DESK_SOUND[mix.sound]}; ${harmony.name} accompaniment${drums?`; ${beat.name} drums`:''}.`;
+  return [texture,rhythm,chord,instruments,`${sound.name}: ${sound.features[4]}`];
+}
+for (let beat=0;beat<12;beat++) for (let harmony=0;harmony<12;harmony++) for (let sound=0;sound<12;sound++) {
+  L[`desk-rows-${beat}-${harmony}-${sound}`] = deskRows({beat,harmony,sound}).map((text,i) => `${NAME[i]}. ${text}`);
+}
 const IMAGES = {
   chant:'art:mhr-pc-chant',organum:'art:mhr-pc-organum',renaissance:'art:mhr-pc-renaissance',
   baroque:'art:mhr-pc-baroque',classical:'art:mhr-pc-classical',romantic:'art:mhr-pc-romantic',
@@ -1131,20 +1206,15 @@ const ALTS = {
   chant:'Candlelit stone monastery cloister',organum:'Gothic cathedral interior with rose window',
   renaissance:'Four wooden recorders on green cloth',baroque:'Harpsichord and cello in a palace room',
   classical:'Early wooden fortepiano in an empty salon',romantic:'Black grand piano in a Victorian parlor',
-  ragtime:'Upright piano and player-piano roll',swing:'Instruments on an empty art deco ballroom bandstand',
-  rocknroll:'Glowing jukebox in a diner',disco:'Mirror ball above an empty illuminated dance floor',
+  ragtime:'Upright piano and player-piano roll',swing:'Instruments on an empty Harlem ballroom bandstand and a long dance floor',
+  rocknroll:'Glowing jukebox and low bandstand in a neighborhood juke joint',disco:'Mirror ball above an empty illuminated dance floor',
   hiphop:'A young Black woman DJ and neighbors at a Bronx courtyard party, including a wheelchair user',
-  gamelan:'Bronze metallophones and gongs in a Javanese pavilion'
+  gamelan:'Bronze metallophones and gongs under a Central Javanese joglo roof, on a plain tiled pendopo floor'
 };
 const V = Curio.voice({
   lines:L,scope:() => state.mode,hint:false,
   welcome:() => {
-    if (state.powered && !state.paused) return null;
-    if (!state.powered && state.mode !== 'dial') return ['powerHow',{needs:'#power'}];
-    if (state.mode === 'dial' && !state.powered) return ['welcome',{valid:() => !state.powered,needs:'#power'}];
-    if (state.mode === 'desk') return ['deskHow',{needs:'#mix-beat'}];
-    if (state.mode === 'mystery' && !state.mystery?.revealed) return ['mysteryHow',{needs:'#reveal'}];
-    return null;
+    return instruction();
   },
   speaks:'#power, #reveal',
   read:() => {
@@ -1165,21 +1235,33 @@ function settings() {
 }
 function featureText(i) {
   if (state.mode !== 'desk') return panelStation().features[i];
-  if (i === 0) {
-    if (stationAt(state.mix.harmony).id === 'chant') {
-      return (panelStation().id === 'organum' ? L.deskDrone : L.deskSolo).slice(9);
-    }
-    return L[`desk-texture-${panelStation().id}-${stationAt(state.mix.harmony).id}`].slice(9);
+  return deskRows(state.mix)[i];
+}
+function instruction() {
+  if (!state.powered) {
+    const key = state.mode === 'dial' ? 'welcome' : state.mode === 'desk' ? 'deskPower' : 'mysteryPower';
+    return [key,{needs:'#power',valid:() => !state.powered}];
   }
-  if (i === 3) return L['desk-instrument-'+panelStation().id].slice(13);
-  const source = i === 1 ? state.mix.beat : i === 2 ? state.mix.harmony : state.mix.sound;
-  return `${stationAt(source).name}: ${stationAt(source).features[i]}`;
+  if (state.paused) return ['pausedHow',{needs:'#power',valid:() => state.paused}];
+  if (state.mode === 'desk') return ['deskHow',{needs:'#mix-beat',valid:() => !state.pending}];
+  if (state.mode === 'mystery') {
+    const m = state.mystery;
+    if (m.revealed) return [m.done ? 'newHow' : 'nextHow',{needs:'#advance',valid:() => m.revealed}];
+    return ['mysteryHow',{needs:'#guess',valid:() => !m.revealed}];
+  }
+  if (state.a !== null && state.b === null) return ['compareHow',{needs:'#next',valid:() => state.a!==null && state.b===null}];
+  if (state.b !== null) return ['flipHow',{needs:'#flip',valid:() => state.b!==null && !state.paused && !state.pending}];
+  return ['dialReady',{needs:'#next',valid:() => state.a===null && state.locked}];
+}
+function narrateInstruction() {
+  const [key,opts] = instruction();
+  if (!V.heard(key)) V.how(key,{...opts,hint:false,now:true});
 }
 function showHint(text) {$('hint').textContent = text;}
 function updateHint() {
   if (state.mode === 'mystery' && state.mystery.revealed) {
     showHint(state.mystery.done ? 'Press New set to hear six different stations. Results are not saved.' :
-      'Compare the two highlighted clues, then press Next station.');
+      L['clues-'+panelStation().id]);
     return;
   }
   if (!state.powered) {
@@ -1209,18 +1291,30 @@ function drawTimeline() {
   const selected = panelStation();
   let svg = '<path d="M0 26H1200" stroke="#8e7d60" stroke-width="1"/>';
   for (const s of STATIONS) {
-    const x = s.year - 800;
+    if (state.mode==='mystery' && s.id==='gamelan') continue;
+    const x = 24 + (s.year - 800)*.96;
     const active = !hidden && selected.id === s.id;
-    svg += `<path d="M${x} ${active?3:17}V31" stroke="${active?'#4fd18b':'#b0a184'}" stroke-width="2"/>`;
+    svg += `<path d="M${x} ${active?3:17}V31" stroke="${active?'#4fd18b':'#b0a184'}" stroke-width="2"
+      ${s.id==='gamelan'?'stroke-dasharray="3 2"':''}/>`;
     if (active) svg += `<circle cx="${x}" cy="5" r="4" fill="#4fd18b"/>`;
+  }
+  if (state.mode==='mystery' && state.mystery.revealed) {
+    const guessX = 24+(state.mystery.guess-800)*.96;
+    const answerX = 24+(selected.year-800)*.96;
+    svg += `<path class="guess-gap" d="M${guessX} 12H${answerX}" stroke="#d1b995" stroke-width="2" stroke-dasharray="5 4"/>
+      <path d="M${guessX} 5V31" stroke="#b3a993" stroke-width="2"/>
+      <circle class="guess-pin" cx="${guessX}" cy="9" r="5" fill="#756b58" stroke="#ddd0b5" stroke-width="2"/>`;
   }
   $('time-svg').innerHTML = svg;
   $('time-year').textContent = hidden ? `Your year: ${state.mystery.guess}` :
-    selected.id === 'gamelan' ? '1889 encounter' : `about ${selected.year}`;
-  $('strip-title').textContent = state.mode === 'mystery' ? 'MYSTERY / PLACE THE YEAR PIN' : 'TRUE TIME / YEARS TO SCALE';
+    selected.id === 'gamelan' ? 'A living tradition, heard in Paris in 1889' : `about ${selected.year}`;
+  $('strip-title').textContent = selected.id === 'gamelan' && !hidden ? 'SIDE STATION / JAVANESE GAMELAN' :
+    state.mode === 'mystery' ? (hidden ? 'MYSTERY / PLACE THE YEAR PIN' : 'YOUR PIN ··· ANSWER / YEARS TO SCALE') :
+    'TRUE TIME / YEARS TO SCALE';
 }
 function notation(s,hidden) {
   const svg = $('notation');
+  svg.setAttribute('viewBox',s.id==='organum' && !hidden ? '0 0 360 92' : '0 0 360 68');
   const label = $('notation-label');
   if (hidden) {
     label.textContent = 'HOW IT MIGHT BE WRITTEN / SEALED';
@@ -1246,11 +1340,75 @@ function notation(s,hidden) {
     ['TUNE','LAYER','GONG'].forEach((t,row) => {
       out += `<text x="4" y="${18+row*20}" font-size="10" fill="#2b2418">${t}</text>`;
       out += `<path d="M50 ${14+row*20}H345" stroke="#ad9b72"/>`;
-      for (let n=0;n<(row===2?4:row===1?16:8);n++) {
-        out += `<circle cx="${58+n*(row===2?90:row===1?18:40)}" cy="${14+row*20}"
+      const beats = row===2 ? [3,7,11,15] : row===1 ? Array.from({length:28},(_,n) => Math.floor(n/7)*4+(n%7+1)/2) :
+        [0,1,2,3,4,5,6,8,9,10,11,12];
+      for (const beat of beats) {
+        out += `<circle cx="${55+beat/16*288}" cy="${14+row*20}"
           r="${row===2?5:3}" fill="#4e3a23"/>`;
       }
     });
+  } else if (s.id === 'organum') {
+    label.textContent = 'FOUR PHRASES / SEVEN BARS OF 3/4';
+    for (let n=0;n<4;n++) out += `<path d="M31 ${20+n*7}H351" stroke="#9a8966"/>`;
+    out += '<text x="5" y="25" fill="#2b2418" font-size="14">3</text><text x="5" y="49" fill="#2b2418" font-size="14">4</text>';
+    let beat = 0;
+    for (let bar=0;bar<4;bar++) {
+      const plan = compileBar(config(indexOf('organum')),bar);
+      for (const e of plan.events.filter(e => e.layer==='melody')) {
+        const at = beat + e.time/(60/s.bpm);
+        const d = e.dur/(60/s.bpm)/.9;
+        const x = 35+at/21*305;
+        const degree = {2:1,4:2,5:3,9:5,11:6,14:8}[e.pitch];
+        const y = 48-degree*3;
+        out += `<g data-beat="${at}" data-duration="${d.toFixed(2)}">
+          <rect x="${x-3}" y="${y-2}" width="6" height="5" fill="${d>=3?'#e5d8b9':'#2b2418'}" stroke="#2b2418"/>
+          <path d="M${x+3} ${y}v-15" stroke="#2b2418"/></g>`;
+      }
+      beat += plan.units;
+    }
+    for (let b=3;b<=21;b+=3) out += `<path d="M${35+b/21*305} 19V43" stroke="#9a8966"/>`;
+    out += '<text x="4" y="76" font-size="10" fill="#2b2418">HELD</text>';
+    for (const [start,end,note] of [[0,18,'D'],[18,21,'A']]) {
+      const x = 35+start/21*305;
+      const endX = 35+end/21*305;
+      out += `<path class="held-voice" d="M${x} 69H${endX-2}" stroke="#59452c" stroke-width="3"/>
+        <text x="${x+3}" y="86" fill="#2b2418" font-size="10">${note}</text>`;
+    }
+  } else if (s.id !== 'chant') {
+    for (let n=0;n<5;n++) out += `<path d="M8 ${18+n*7}H351" stroke="#9a8966"/>`;
+    out += '<text class="treble-clef" x="7" y="49" font-size="42" fill="#2b2418">&#119070;</text>';
+    const chords = {ragtime:['C','C','C','G'],swing:['C6','Am7','Em7','G7'],
+      rocknroll:['C','F','C','G'],disco:['Cmaj7','Am7','Em7','G7']}[s.id];
+    const xAt = beat => 43+beat/16*301;
+    const head = (pitch,beat,duration,tie=false) => {
+      const degree = {0:0,2:1,4:2,7:4,9:5,12:7}[pitch];
+      const y = 53-degree*3.5;
+      const x = xAt(beat);
+      let mark = `<g data-beat="${beat.toFixed(2)}" data-duration="${duration.toFixed(2)}">`;
+      if (pitch===0) mark += `<path d="M${x-6} 53h12" stroke="#2b2418"/>`;
+      mark += `<ellipse cx="${x}" cy="${y}" rx="3.5" ry="2.6" fill="${duration>=2?'#e5d8b9':'#2b2418'}"
+        stroke="#2b2418" transform="rotate(-20 ${x} ${y})"/><path d="M${x+3} ${y}v-20" stroke="#2b2418"/>`;
+      if (duration<1) mark += `<path class="eighth-flag" d="M${x+3} ${y-20}q9 4 4 12" fill="none" stroke="#2b2418"/>`;
+      if (Math.abs(duration-1.5)<.01 || Math.abs(duration-3)<.01) {
+        mark += `<circle cx="${x+7}" cy="${y-2}" r="1.3" fill="#2b2418"/>`;
+      }
+      if (tie) mark += `<path d="M${x-29} ${y+5}q14 9 27 0" fill="none" stroke="#2b2418"/>`;
+      return mark+'</g>';
+    };
+    for (let bar=0;bar<4;bar++) {
+      if (bar) out += `<path d="M${xAt(bar*4)-6} 17V53" stroke="#8d7b57"/>`;
+      if (chords) out += `<text x="${xAt(bar*4)}" y="11" fill="#2b2418" font-size="10">${chords[bar]}</text>`;
+      const plan = compileBar(config(indexOf(s.id)),bar);
+      const seconds = plan.duration/4;
+      for (const e of plan.events.filter(e => e.layer==='melody')) {
+        const at = bar*4+e.time/seconds;
+        const d = Math.round(e.dur/seconds/.9*2)/2;
+        if (d===2.5 || d===3.5) {
+          out += head(e.pitch,at,d-.5)+head(e.pitch,at+d-.5,.5,true);
+        } else out += head(e.pitch,at,d);
+      }
+      if (bar===3 && s.id!=='ragtime') out += `<text x="${xAt(15)}" y="39" font-size="15" fill="#2b2418">&#119101;</text>`;
+    }
   } else {
     if (s.id !== 'chant') {
       for (let n=0;n<(s.id==='organum'?4:5);n++) out += `<path d="M7 ${18+n*7}H351" stroke="#9a8966"/>`;
@@ -1294,23 +1452,22 @@ function renderPanel() {
     $('postcard').alt = ALTS[s.id];
   }
   $('station-number').textContent = masked ? 'MYSTERY BROADCAST' : state.mode === 'desk' ?
-    `MIXING DESK ${state.pending?' / NEXT BAR':''}` : `STATION ${String(targetIndex()+1).padStart(2,'0')} / 12`;
+    `MIXING DESK ${state.pending?' / NEXT BAR':''}` : s.id==='gamelan' ? 'SIDE STATION / A LIVING TRADITION' :
+    `STATION ${String(targetIndex()+1).padStart(2,'0')} / 12`;
   $('station-name').textContent = masked ? 'What do you hear?' : state.mode === 'desk' ? 'Your era mix' : s.name;
   const beat = state.mode === 'desk' ? stationAt(state.mix.beat) : s;
   const tempo = beat.id === 'chant' ? 'free rhythm' : `${beat.bpm} bpm`;
   $('station-meta').textContent = masked ? `Round ${state.mystery.round+1} of 6 · no dates revealed` :
     state.mode === 'desk' ? `Beat: ${beat.name} · ${tempo}${state.pending?' · next bar':''}` :
-    `${s.id === 'gamelan'?'Paris encounter, 1889':'about '+s.year} · ${tempo}`;
+    s.id === 'gamelan' ? 'A living tradition, heard in Paris in 1889.' : `about ${s.year} · ${tempo}`;
   $('listen-for').textContent = masked ? 'Listen to the layers, the pulse, and the instruments. Place your year pin above the radio.' :
     state.mode === 'desk' ? `${s.name} timbre, ${beat.name} timing, ${stationAt(state.mix.harmony).name} harmony.` : s.listen;
   const children = [...$('features').children];
-  const previous = stationAt(Math.max(0,targetIndex()-1));
   for (let i=0;i<5;i++) {
     const row = children[i];
     row.classList.toggle('giveaway',state.mode === 'mystery' && !masked && s.giveaways.includes(i));
     row.querySelector('p').textContent = masked ? ['One line or several?', 'Free, steady, or syncopated?',
       'Open intervals or chords?', 'Which sound carries the tune?', 'What setting might carry this music?'][i] : featureText(i);
-    row.querySelector('.changed').hidden = masked || state.mode !== 'dial' || targetIndex()===0 || s.features[i]===previous.features[i];
   }
   notation(s,masked);
   if (state.mode === 'desk') $('notation-label').textContent = `${s.name.toUpperCase()} REFERENCE / NOT THE MIXED SCORE`;
@@ -1321,13 +1478,15 @@ function renderPanel() {
     const m = state.mystery;
     const current = m.history[m.history.length-1];
     if (m.done) {
-      result.innerHTML = `<strong>Within 50 years: ${m.history.filter(h=>h.gap<=50).length} of 6</strong>`+
+      result.innerHTML = `<strong>Closest station: ${m.history.filter(h=>h.correct).length} of 6</strong>`+
+        '<p>The year pin counts when this station is its nearest marker. Results are not saved.</p>'+
         '<div class="recap">'+m.history.map(h =>
-          `<span>${h.name}</span><span>${h.guess} → ${h.year} · ${h.gap} off</span>`).join('')+'</div>';
+          `<span>${h.name}</span><span>${h.guess} → ${h.year} · ${h.gap} off${h.correct?' ✓':''}</span>`).join('')+'</div>';
     } else {
-      result.innerHTML = `<strong>${s.name} · ${s.year}</strong>`+
-        `You said ${current.guess}: ${current.gap} ${current.gap===1?'year':'years'} off. `+
-        'Listen again for the two highlighted clues.';
+      result.innerHTML = `<strong>${s.id==='gamelan'?L['result-gamelan']:s.name+' · '+s.year}</strong>`+
+        (s.id==='gamelan' ? 'This living tradition has no scored year.' :
+          `You said ${current.guess}: ${current.gap} ${current.gap===1?'year':'years'} off. `)+
+        `<br>Clues: ${s.giveaways.map(i=>NAME[i]).join(' and ')}.`;
     }
   }
 }
@@ -1364,7 +1523,8 @@ function render() {
     $('dial-window').scrollLeft = shownPosition/11 * $('dial-scale').clientWidth - $('dial-window').clientWidth/2;
   }
   $('tuner').value = state.position*100;
-  const label = `${stationAt(state.position).name}, about ${stationAt(state.position).year}${state.locked?', locked':', between stations'}`;
+  const tuned = stationAt(state.position);
+  const label = `${tuned.id==='gamelan'?L['ident-gamelan']:`${tuned.name}, about ${tuned.year}`}${state.locked?', locked':', between stations'}`;
   $('tuner').setAttribute('aria-valuetext',label);
   $('knob').setAttribute('aria-valuenow',state.position.toFixed(2));
   $('knob').setAttribute('aria-valuetext',label);
@@ -1374,7 +1534,7 @@ function render() {
   $('flip').disabled = state.b === null;
   $('flip').textContent = state.pending && state.mode === 'dial' ? 'Next bar…' : 'Flip A / B';
   $('comparison').textContent = state.mode === 'desk' ? 'The dial shows Sound. Turn the three knobs below to combine eras.' : state.a === null ?
-    'Equal dial spacing is for tuning. The thin strip above shows real time.' :
+    (panelStation().id==='gamelan' ? L['ident-gamelan'] : 'Equal dial spacing is for tuning. The thin strip above shows real time.') :
     `A: ${stationAt(state.a).name} (${tempoLabel(state.a)}) · B: `+
     (state.b === null ? 'tune a second station' : `${stationAt(state.b).name} (${tempoLabel(state.b)})`);
   if (mystery) {
@@ -1383,7 +1543,7 @@ function render() {
     if (state.mystery.revealed) {
       const m=state.mystery;
       const gap=m.history[m.history.length-1].gap;
-      $('guess-label').textContent = m.done ? `Within 50 years: ${m.history.filter(h=>h.gap<=50).length} / 6` :
+      $('guess-label').textContent = m.done ? `Closest station: ${m.history.filter(h=>h.correct).length} / 6` :
         `You: ${m.guess} · ${gap} ${gap===1?'year':'years'} off`;
     }
     $('guess').value = state.mystery.guess;
@@ -1402,10 +1562,19 @@ function render() {
   renderPanel();
   updateHint();
 }
+let identTimer = 0;
 function identify(i) {
+  clearTimeout(identTimer);
   if (!state.powered || state.paused || !state.locked || state.mode === 'mystery') return;
+  const mode = state.mode;
   const s = stationAt(i);
-  V.how('ident-'+s.id,{hint:false,valid:() => state.mode !== 'mystery' && panelStation().id===s.id && state.locked && !state.paused});
+  identTimer = setTimeout(() => {
+    const valid = () => state.mode===mode && panelStation().id===s.id && state.locked && !state.paused;
+    if (!valid()) return;
+    const [key,opts] = instruction();
+    if (!V.heard(key)) V.how([[key,opts],['ident-'+s.id,{valid}]],{hint:false});
+    else V.how('ident-'+s.id,{hint:false,valid});
+  },500);
 }
 function tempoLabel(i) {return stationAt(i).id === 'chant' ? 'free rhythm' : `${stationAt(i).bpm} bpm`;}
 function restart() {
@@ -1415,6 +1584,7 @@ function restart() {
   RadioAudio.signal(state.strength,true);
 }
 let staticTimer = 0;
+let signalLostAt = null;
 function tune(value) {
   if (state.mode !== 'dial') return;
   value = Math.max(0,Math.min(11,value));
@@ -1427,10 +1597,13 @@ function tune(value) {
   state.strength = Math.max(0,1-Math.abs(value-state.index)/.5);
   state.locked = Math.abs(value-state.index) <= .150001;
   state.pending = false;
+  clearTimeout(identTimer);
+  if (oldLock && !state.locked) signalLostAt = performance.now();
   const powerHint = !state.powered && [L.welcome,L.powerHow].includes(V.playing);
   if ((old !== state.index || oldLock && !state.locked) && !powerHint) V.hush();
   if (old !== state.index) restart();
-  if (!oldLock && state.locked && old === state.index) restart();
+  if (!oldLock && state.locked && old === state.index && signalLostAt!==null && performance.now()-signalLostAt>700) restart();
+  if (state.locked) signalLostAt = null;
   if (state.a !== null && state.index !== state.a && state.locked) state.b = state.index;
   if (state.powered && !state.paused) {
     RadioAudio.signal(Curio.reduce && old!==state.index ? 0:state.strength,true);
@@ -1440,35 +1613,33 @@ function tune(value) {
     }
   }
   render();
-  if (state.locked && (old !== state.index || !oldLock)) identify(state.index);
-  if (state.b !== null && !V.heard('flipHow') && state.paused) V.how('flipHow',{needs:'#flip',hint:false});
+  if (state.locked) identify(state.index);
+  if (state.b !== null && state.powered && !state.paused) narrateInstruction();
 }
 function power() {
   state.powered = true;
   state.paused = !state.paused;
   state.pending = false;
+  clearTimeout(identTimer);
   V.hush();
   if (state.paused) {
     RadioAudio.silence();
     RadioAudio.signal(1,false);
   } else {
     restart();
-    identify(state.mode === 'desk' ? state.mix.sound : state.index);
   }
   render();
+  narrateInstruction();
+  if (!state.paused) identify(state.mode === 'desk' ? state.mix.sound : state.index);
 }
 function compare() {
   if (state.mode !== 'dial') return;
   if (state.a !== null) {state.a=null;state.b=null;}
   else {
     state.a=state.index;
-    if (state.paused) {
-      const needsPower = !state.powered;
-      V.how(needsPower ? 'powerHow' : 'compareHow',{hint:false,needs:needsPower ? '#power' : '#next',
-        valid:() => needsPower ? !state.powered : state.a!==null && state.b===null});
-    }
   }
   render();
+  narrateInstruction();
 }
 function flip() {
   if (state.mode !== 'dial' || state.b === null || state.pending) return;
@@ -1496,7 +1667,7 @@ function changeMix(key,value) {
   render();
 }
 function newSet() {
-  const list = STATIONS.map((s,i)=>i);
+  const list = mysteryChoices();
   for (let i=list.length-1;i>0;i--) {
     const j = Math.floor(Math.random()*(i+1));
     [list[i],list[j]]=[list[j],list[i]];
@@ -1508,12 +1679,12 @@ function reveal() {
   if (!m || m.revealed) return;
   const s = stationAt(m.stations[m.round]);
   m.revealed = true;
-  m.history.push({guess:m.guess,year:s.year,name:s.name,gap:Math.abs(m.guess-s.year)});
+  m.history.push({guess:m.guess,year:s.year,name:s.name,gap:Math.abs(m.guess-s.year),correct:closestStation(m.guess,m.stations[m.round])});
   m.done = m.round === 5;
   V.dropQueued();
   render();
   $('advance').focus({preventScroll:true});
-  V.say('result-'+s.id,{hint:false,valid:() => state.mode==='mystery' && m.revealed});
+  V.say('result-'+s.id,{hint:false,now:true,valid:() => state.mode==='mystery' && m.revealed});
   if (m.done) V.say('setDone',{hint:false,valid:() => m.done});
 }
 function advance() {
@@ -1533,6 +1704,7 @@ function advance() {
 function setMode(mode) {
   if (!['dial','desk','mystery'].includes(mode) || mode===state.mode) return;
   V.hush();
+  clearTimeout(identTimer);
   state.mode=mode;
   if (mode === 'dial') state.position=state.index;
   state.pending=false;
@@ -1541,15 +1713,15 @@ function setMode(mode) {
   if (mode==='mystery' && !state.mystery) newSet();
   restart();
   render();
-  if (state.paused) V.welcome();
-  else if (mode!=='mystery') identify(mode==='desk'?state.mix.sound:state.index);
+  narrateInstruction();
+  if (!state.paused && mode!=='mystery') identify(mode==='desk'?state.mix.sound:state.index);
 }
 
 // Make controls once. Updates change text, never replace the focused input.
 STATIONS.forEach(s => {
   const mark = document.createElement('span');
-  mark.className='mark';
-  mark.textContent=String(s.year);
+  mark.className='mark'+(s.id==='gamelan'?' side-station':'');
+  mark.textContent=String(s.year)+(s.id==='gamelan'?'*':'');
   $('marks').append(mark);
 });
 NAME.forEach(name => {
@@ -1558,10 +1730,6 @@ NAME.forEach(name => {
   const label = document.createElement('div');
   label.className='feature-label';
   label.append(document.createTextNode(name));
-  const badge = document.createElement('span');
-  badge.className='changed';
-  badge.textContent='changed';
-  label.append(badge);
   row.append(label,document.createElement('p'));
   $('features').append(row);
 });
@@ -1581,10 +1749,27 @@ NAME.forEach(name => {
   select.step=1;
   select.id='mix-'+key;
   select.setAttribute('aria-label',key[0].toUpperCase()+key.slice(1)+' era');
+  select.setAttribute('aria-description','Drag the knob right or up, 32 pixels per era, or use arrow keys.');
   select.oninput=() => {
     select.setAttribute('aria-valuetext',stationAt(Number(select.value)).name);
     changeMix(key,select.value);
   };
+  let drag = null;
+  select.onpointerdown = e => {
+    e.preventDefault();
+    select.focus({preventScroll:true});
+    drag = {x:e.clientX,y:e.clientY,value:state.mix[key]};
+    select.setPointerCapture(e.pointerId);
+  };
+  select.onpointermove = e => {
+    if (!drag) return;
+    e.preventDefault();
+    const delta = e.clientX-drag.x-(e.clientY-drag.y);
+    const value = Math.max(0,Math.min(11,Math.round(drag.value+delta/32)));
+    if (value !== state.mix[key]) changeMix(key,value);
+  };
+  select.onpointerup = () => {drag=null;};
+  select.onpointercancel = () => {drag=null;};
   const output=document.createElement('output');
   output.id='mix-value-'+key;
   output.htmlFor=select.id;
@@ -1660,7 +1845,7 @@ $('reveal').onclick=reveal;
 $('advance').onclick=advance;
 document.addEventListener('keydown',e => {
   if (e.altKey || e.ctrlKey || e.metaKey) return;
-  if (e.key===' ' && !e.target.matches('button,select,textarea')) {
+  if (e.key===' ' && e.shiftKey && !e.target.matches('button,select,textarea')) {
     e.preventDefault();
     power();
     return;
@@ -1668,6 +1853,7 @@ document.addEventListener('keydown',e => {
   if (e.target.matches('input,select,textarea,[role=slider]')) return;
   if (e.key==='ArrowRight' && state.mode==='dial') {e.preventDefault();tune(state.index+1);}
   if (e.key==='ArrowLeft' && state.mode==='dial') {e.preventDefault();tune(state.index-1);}
+  if (!e.shiftKey) return;
   if (e.key.toLowerCase()==='c') compare();
   if (e.key.toLowerCase()==='f') flip();
   if (e.key.toLowerCase()==='m') setMode('desk');

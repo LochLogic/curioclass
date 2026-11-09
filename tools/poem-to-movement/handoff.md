@@ -4,15 +4,17 @@
 
 `src.html` starts from the kit starter, with a real-pixel responsive stage and a controls-first DOM. `content.json` is inlined by the bundler. It holds six profiles, highlight defaults and the two poem texts. The shared dance engine supplies floor, actor, poses, qualities, clock, counts, music, pathways and path recognition.
 
-The tool's `basePose` adapter expresses the thirteen verbs. `createActor` is the single replacement point for painted dancers. The future painter has 156 people requests in `art/prompts.json`: thirteen verbs, three levels, light/strong weight and two keyframes. Actual generated images contain no people. Keep the code figure until those assets have owner review; do not replace the destination with permanent code art.
+The tool's `basePose` adapter expresses the thirteen verbs. `createActor` and `paintActor` isolate the
+painted renderer. Two generated atlases contain front and rear views of the same three children, one base
+pose per child per view. SVG windows articulate their painted limbs at the shared engine's projected joints.
+Card icons use the same painter. The hidden engine actor supplies geometry and a floor shadow only.
+The cast is selected independently of the source and stored under `_cast` in this tool's local saved object.
 
-Light-weight pose reference samples are in `_scratch/poem-to-movement/candidate-frames/pose-guide-a.png` and `pose-guide-b.png`.
-The four generated non-person images include a painted empty studio, added because the code floor alone looked flat.
-
-Every people asset has a reserved art token in `PAINTED_POSES`, exported as `__tool.paintedPoses`.
-Actor frames carry `artKey`, `artPhase`, `verb`, `weight`, `level` and `flow`; the current kit actor ignores those extra fields.
-A painted adapter should keep the previous painted frame for freeze, rather than substituting a standing freeze picture.
-Deduplicate shared poses or pack a pose sheet when painting so the final bundle remains below 2 MB.
+To swap the figure, replace those two assets and the reference rectangles/joint anchors in `paintActor`, or
+replace that factory while preserving the actor interface. Timing, qualities, pathways and scoring stay shared.
+Both assets are marked `people: true`. The superseded 156 undrawn pose requests are preserved for provenance
+in `_scratch/poem-to-movement/prompts-before-review.json`, rather than retained as missing art tokens.
+The originals' detailed paintings and studio were kept. Contact sheets and pose checks are in review Scratch.
 
 ## Open question decision
 
@@ -43,7 +45,7 @@ How lines use Curio.voice, with state-scoped validity and repeating result event
 
 ## Next
 
-Cold review is next. This is a Build only run. No commits or polish round. Verification results and unresolved limits are in codex-report.md.
+Cold review repairs and validation are recorded in codex-review.md. The original build record remains in codex-report.md. No commits or second full audit.
 
 ## Build verification and remaining limits
 
@@ -53,10 +55,51 @@ Evidence is in `_scratch/poem-to-movement/`, including the full audit, numbers, 
 
 All six defaults and the storm/rain river revisions passed. Real S and zigzag drags, live edits, backward/forward reorder,
 Stop, keyboard creation, Alt-arrow reorder, partner concealment, Motion off and saved-work reloads passed.
-Five Viewer plays produced five spoken result events with how lines heard once. The 75 runtime lines match the recording manifest.
+Five Viewer plays produced five spoken result events with how lines heard once. The review rechecks the runtime line list against the recording manifest after instruction changes.
 
 The short preview moves the six Viewer source cards below the studio so all are visible together. Both phone poems fit
 with 44-pixel highlights. Counts live beside the move caption in Moves and Viewer to clear traveling dancers.
 The phrase strip scrolls sideways as the spec requires. Start over and the closing sentence can need vertical scrolling
 in short or phone layouts. The miniature Map studio is small in portrait layouts. Narration and synthesized audio still
 need a listening review; all Chrome testing was muted. No recorded narration was made, per the build instruction.
+
+## Cold review changes
+
+Fixed stale Viewer results after drawing or clearing a map, retained still-relevant mode narration when Play
+starts, shortened entry instructions, and made freeze keep the actual preceding pose without reapplying
+different weight/level modifiers. Balanced quality averages are described as equal mixtures.
+The result now lands in the studio caption as well as the Viewer's bubble. Model matching has no victory chime.
+Partner choices require a complete phrase performance; a solitary card preview or skipped/reordered tail
+cannot stand in for watching the whole phrase. Final review evidence and remaining limits are in codex-review.md.
+
+## Sensitivity
+
+Fresh cultural review should check the River's woodblock influence is named without claiming an authentic
+Japanese artwork or representing a whole culture. Neither landscape is a historical reproduction.
+Inspect both painted cast atlases and articulated low/turning poses for respectful bodies, natural skin tones,
+believable prosthesis attachment and equal agency. The children are not tied to a source or stereotyped role.
+Students may use their own comfortable seated or standing movement; no body type is graded.
+
+## Spec corrections wanted
+
+The spec's smooth/sharp Flow label disagrees with Gilbert's energy versus free/bound flow distinction.
+Notes explain the limit; changing the required student control needs a spec correction.
+Broad module anchors do not mean every grade 3-5 substandard is covered by this single-dancer tool.
+The old family registration question remains outside the allowed write scope.
+
+## Final audit layout repairs
+
+The single review audit had 23 leads, grouped in codex-review.md. Map's four qualities now share one row,
+which restores the desktop Reset at 680 and 1280 widths without reducing the scene. Viewer captions reserve
+space for the eye badge and use a short subline so they clear the dancer's feet at 680 width.
+Play is sticky while the panel/body scrolls, and the phone result explicitly directs the student to the
+personal sentence. Secondary Viewer fields/Reset and the phone Map footer can still need vertical scrolling.
+The specified compact phrase strip remains horizontal. All 51 audit frames were inspected; only affected
+layout frames were re-shot after the audit. No second full audit was run.
+
+## Saved map slot repair
+
+`state.map` is aligned with cards and contains null for an in-place move. Restore and reorder must preserve
+those slots. Filtering them out shifted subsequent travel onto the wrong card. The final real-drag save,
+reload, in-place-card reorder and second reload checks preserve all geometry exactly. Evidence:
+`_scratch/poem-to-movement/map-slots-*.json` and `map-slot-frames/`.

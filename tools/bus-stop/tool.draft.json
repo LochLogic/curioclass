@@ -1,0 +1,38 @@
+{
+  "id": "bus-stop",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Drive the bus. Show the riders. Tell the number story.",
+  "outcome": "Model addition and subtraction within ten, record decompositions, make ten and practice facts within five.",
+  "driver": "teacher",
+  "minutes": "8-15",
+  "modes": [
+    "Drive",
+    "Split",
+    "Express",
+    "Fill up"
+  ],
+  "grades_label": "Kindergarten",
+  "sources": [
+    {
+      "name": "Curio Class original route stories and finite arithmetic",
+      "url": "https://creativecommons.org/licenses/by/4.0/",
+      "licence": "CC BY 4.0",
+      "coverage": "All six fictional route paths, nine fill starts and all 25 Express facts; no external data."
+    },
+    {
+      "name": "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+      "licence": "Original project illustrations, CC BY 4.0"
+    },
+    {
+      "name": "NGA Center / CCSSO, Kindergarten Operations and Algebraic Thinking",
+      "url": "https://www.thecorestandards.org/Math/Content/K/OA/",
+      "licence": "CCSS Public License, reference link only; no text or examples incorporated",
+      "checked": "2026-11-06"
+    }
+  ],
+  "third_party": [],
+  "updated": "2026-11-06",
+  "curiosity": true,
+  "plate": null
+}

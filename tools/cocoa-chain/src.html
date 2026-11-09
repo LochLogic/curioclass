@@ -1,0 +1,1271 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cocoa Chain · One bar, a connected world · Curio Class</title>
+<meta name="description" content="Follow cocoa from Ghana through the Netherlands to the US.
+Explore the 2023 rains and explain distant effects with dated numbers. Grades 4-6. Works offline.">
+<!--
+Cocoa Chain, Curio Class. Grade 5 geography and economics.
+D2.Eco.14.3-5, D2.Eco.15.3-5, D2.Geo.12.3-5, D4.2.3-5.
+Sources: spec.md and notes.md. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Natural Earth coastline, public domain. Fictional people, real dated source numbers.
+Content CC BY 4.0, code MIT. One offline file, no network requests. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fbf6ee; --panel:#f3e7d6; --ink:#2b1d14; --muted:#6b5646; --brand:#9a3f12;
+  --line:#cfb896; --focus:#1f5f8b; --btn:#82330d; --btn-line:#d9966c; --head-ink:#fff;
+}
+body {height:100dvh; min-height:0; overflow:hidden}
+header {padding:9px 18px; gap:9px; border-bottom:4px solid #692807}
+h1 {font:700 29px Georgia,serif; letter-spacing:-1px}
+h1 small {font-size:12px; letter-spacing:.12em; margin-top:4px}
+button {min-width:44px; min-height:44px; border:1px solid var(--line); border-radius:9px; padding:7px 12px;
+  background:#fffaf2; font-weight:650}
+button:hover {box-shadow:inset 0 0 0 2px #9a3f1255}
+button:disabled {opacity:.5; cursor:default; box-shadow:none}
+button[aria-pressed="true"] {background:#f2c14e; color:var(--ink); border-color:#8a6424}
+.seg button,.icon-btn {min-height:44px; font-size:14px; padding:0 12px}
+#sound {width:100px; min-width:100px; white-space:nowrap}
+main {grid-template-columns:minmax(0,1fr) 410px; overflow:hidden}
+.panel {grid-column:2; grid-row:1; padding:14px; gap:10px; border-left:2px solid var(--line);
+  background:linear-gradient(135deg,#f9efdf,#eadac2); overflow:auto; position:relative}
+.stage {grid-column:1; grid-row:1; min-height:0; padding:12px; display:grid;
+  grid-template-rows:135px minmax(0,1fr) auto 125px; gap:8px;
+  background:radial-gradient(ellipse at 20% 0,#fffaf1,#eee0c8)}
+.hint {margin:0; min-height:88px; flex-shrink:0; font-size:16px; line-height:1.4; border-left:4px solid #c0392b;
+  padding:10px 12px; background:#fffaf0; border-radius:0 12px 12px 0}
+h2,h3,p {margin:0}
+h2 {font:700 25px/1.1 Georgia,serif}
+h3 {font-size:15px}
+.controls {display:grid; gap:7px}
+.seasons,.nav {display:grid; grid-template-columns:1fr 1fr; gap:7px}
+.seasons button {font-size:13px; line-height:1.2}
+#rains {background:#e3edf4; color:#1f5f8b; border-color:#7397af}
+#rains[aria-pressed="true"] {background:#1f5f8b; color:white}
+.nav button {background:var(--brand); color:white; border-color:var(--brand)}
+.stop-head {display:flex; align-items:center; justify-content:space-between; gap:8px}
+.stop-head small {color:var(--muted); font-size:12px}
+.worker-card {background:#fffaf1; border:1px solid var(--line); border-radius:10px; padding:11px;
+  box-shadow:1px 3px 0 #6b442118; line-height:1.4; font-size:14px; margin-top:8px}
+.worker-card strong {display:block; font-size:17px; font-family:Georgia,serif; margin-bottom:4px}
+.tag {font-size:10px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); margin-top:7px}
+.minor-row {display:flex; gap:7px; margin-top:8px; order:1}
+.minor-row button {flex:1; font-size:12px; padding:5px}
+.needs-box {padding:10px; border:2px dashed #bc8a60; border-radius:9px; font-size:14px; line-height:1.4; margin-top:9px}
+.needs-box strong {display:block; font-size:12px; color:var(--brand); margin-bottom:3px}
+.needs-box p {min-height:40px}
+#link-count {display:block; font-size:12px; margin-top:5px; color:var(--muted)}
+#impact {margin-top:9px}
+.rains-on #follow-panel {display:flex; flex-direction:column}
+.rains-on .stop-head {order:0}
+.rains-on .worker-card {order:1}
+.rains-on #impact {order:2}
+.rains-on .needs-box {order:3}
+.judgments {display:grid; grid-template-columns:repeat(3,1fr); gap:5px; margin-top:7px}
+.judgments button {padding:6px 2px; font-size:13px}
+#countries {font-size:11px; margin-top:7px; color:var(--muted)}
+#reveal {font-size:13px; line-height:1.4; background:#fffaf0; border-left:4px solid #1f5f8b; padding:9px; margin-top:8px}
+#reveal b {display:block; color:#1f5f8b; font-size:12px; margin-bottom:3px}
+.map {border:1px solid #b6b9a6; border-radius:12px; overflow:hidden; position:relative;
+  background:linear-gradient(#dbe8e4,#eaf0e6); box-shadow:inset 0 0 35px #798b6d18}
+.map svg {position:absolute; width:100%; height:100%; inset:0}
+.land {fill:none; stroke:#8b9b7b; stroke-width:2; opacity:.8}
+.map-label {font-size:15px; fill:#344b47; font-weight:650; paint-order:stroke; stroke:#eaf0e6; stroke-width:4px}
+.ocean {font:italic 19px Georgia,serif; fill:#5f7974; letter-spacing:3px}
+.map-note {position:absolute; right:10px; bottom:5px; font-size:10px; color:#344b47; max-width:52%; text-align:right}
+.geo-label {position:absolute; font-size:12px; font-weight:700; color:#344b47; text-shadow:0 1px #fff}
+.geo-us {left:3%; top:5px}
+.geo-nl {right:18%; top:5px}
+.geo-ghana {right:12%; bottom:5px}
+.geo-ivory {left:47%; bottom:16px; font-size:11px}
+.geo-ocean {left:30%; top:70%; font:italic 15px Georgia,serif; letter-spacing:1px}
+.geo-rain {left:46%; top:8px; background:#1f5f8b; color:white; padding:4px 7px; border-radius:5px; text-shadow:none}
+.geo-label.linked {background:#f2c14e; border-radius:3px; box-shadow:0 0 0 3px #f2c14e}
+.map-note {left:9px; right:auto; text-align:left; max-width:54%; font-size:10px}
+.pins {position:absolute; inset:0; pointer-events:none}
+.pin {pointer-events:auto; position:absolute; width:44px; height:44px; padding:2px; transform:translate(-50%,-50%);
+  border-radius:50%; background:var(--paper); border:2px solid #6e452d; font-size:12px; box-shadow:0 2px 3px #43281738}
+.pin[aria-current="step"] {background:var(--brand); color:#fff; border:3px solid #fff; outline:2px solid var(--brand)}
+.pin.done::after {content:'✓'; position:absolute; right:-5px; top:-5px; background:#1d6b45; color:white;
+  border-radius:50%; font-size:11px; width:17px; height:17px}
+#thread-map {position:absolute; left:38%; top:10%; width:46px; height:46px; padding:0; background:#fff7eb;
+  border:4px solid #c0392b; border-radius:50%; color:#c0392b; font-size:22px; animation:pulse 1.8s infinite}
+@keyframes pulse {50% {box-shadow:0 0 0 10px #c0392b25}}
+.world {position:relative; min-height:0; border-radius:14px; border:2px solid #8b633f; overflow:hidden;
+  isolation:isolate; background:#b59a6f; box-shadow:0 6px 12px #56371d2b}
+.backdrop {position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center}
+.world::after {content:''; position:absolute; inset:0; pointer-events:none;
+  box-shadow:inset 0 0 45px #3f230b30; border-radius:12px; z-index:8}
+.worker {position:absolute; right:3%; bottom:5%; height:76%; width:29%; object-fit:contain; object-position:bottom;
+  filter:drop-shadow(5px 7px 3px #36231350); z-index:4}
+.world-label {position:absolute; left:3%; top:4%; background:#fbf6eef0; border:1px solid #c4a880;
+  padding:6px 12px; border-radius:5px; font:700 clamp(13px,1.65vw,24px) Georgia,serif; z-index:5}
+.world-label span {font:600 10px 'Segoe UI',sans-serif; display:block; color:var(--muted); margin-top:2px}
+.number-tag {position:absolute; left:5%; bottom:6%; width:54%; padding:10px 14px; z-index:6;
+  background:linear-gradient(100deg,#fffaf0,#f0e0bc); border:2px solid #9a7145; border-radius:6px;
+  box-shadow:2px 4px 0 #3b25133a; font-size:clamp(13px,1.5vw,22px); font-weight:800; line-height:1.25}
+.number-tag small {display:block; font-size:clamp(10px,.95vw,13px); font-weight:500; margin-top:4px}
+.objects {position:absolute; left:4%; bottom:27%; width:58%; height:30%; display:flex; align-items:end;
+  justify-content:center; flex-wrap:wrap; gap:0; z-index:3}
+.objects .bag {width:7%; height:70%; object-fit:contain; filter:drop-shadow(2px 3px 1px #432b2355)}
+.objects.buying {display:block; width:26%; left:8%; bottom:25%; height:52%}
+.objects.buying .bag {position:absolute; width:16%; height:30%; min-height:0}
+.objects.buying::before {content:''; position:absolute; bottom:-5%; left:13%; width:74%; height:8%;
+  background:linear-gradient(#ba8d50,#704822); border:2px solid #694220; transform:skewX(-8deg);
+  box-shadow:4px 7px 3px #39261b44}
+.world[data-stop="1"] .number-tag {left:34%; top:14%; bottom:auto; width:28%; padding:8px;
+  background:#293128; color:#fff7dc; border:2px solid #675a43; box-shadow:inset 0 0 5px #0007;
+  font-size:clamp(13px,1.3vw,18px)}
+.objects.port {bottom:48%; height:24%; width:50%; left:12%; display:grid; grid-template-columns:repeat(5,1fr);
+  grid-template-rows:repeat(2,minmax(0,1fr))}
+.objects.port img {min-width:0; min-height:0; width:100%; height:100%; object-fit:contain;
+  filter:drop-shadow(1px 2px 1px #30231870)}
+.objects.store {height:34%; width:54%; bottom:29%; left:5%; align-items:center; flex-wrap:nowrap; gap:12px}
+.objects.store img {width:95%; max-height:100%; object-fit:contain; filter:drop-shadow(3px 6px 3px #48211166)}
+.objects.store.after img {width:50%}
+.objects.store.after img.small {width:34%}
+#thread-scene {position:absolute; left:0; top:32%; width:61%; height:29%; border:0; padding:0; border-radius:0;
+  background:none; z-index:7; box-shadow:none}
+#thread-scene svg {width:100%; height:100%; overflow:visible}
+.rain {position:absolute; inset:0; pointer-events:none; z-index:5; background:#123c5517; overflow:hidden}
+.rain i {position:absolute; width:2px; height:22px; background:#d5effbb0; transform:rotate(16deg);
+  animation:rain .9s linear infinite}
+@keyframes rain {from {translate:0 -90px} to {translate:-45px 370px}}
+.crossfade {animation:crossfade .6s ease}
+@keyframes crossfade {from {opacity:.35} to {opacity:1}}
+.reeling .route-thread {stroke-dasharray:1200; animation:reel 1.5s ease}
+@keyframes reel {from {stroke-dashoffset:1200} to {stroke-dashoffset:0}}
+.caption {font-size:12px; line-height:1.35; min-height:18px; padding:1px 3px; color:var(--muted)}
+.caption.raining {background:#e1ebef; color:#183f58; border-left:4px solid #1f5f8b; padding:7px 10px}
+.dollars {background:#fffaf0; border:1px solid var(--line); border-radius:9px; padding:6px 9px; min-width:0;
+  display:grid; grid-template-columns:145px minmax(0,1fr); grid-template-rows:44px 44px auto; gap:3px 9px}
+.dollar-head {display:flex; align-items:center; gap:6px; margin-bottom:4px; font-size:11px}
+.dollar-head {grid-column:1; grid-row:1 / 3; flex-wrap:wrap; justify-content:center}
+.dollar-head strong {margin-right:auto; font-family:Georgia,serif; font-size:17px}
+.dollar-head strong {width:100%; text-align:center; margin:0}
+.dollar-head button {width:44px; height:44px; padding:0}
+.study {display:grid; grid-template-columns:103px 1fr; align-items:center; gap:5px; font-size:10px; margin-top:3px}
+.shares {display:flex; height:44px; gap:2px}
+.share {min-height:44px; padding:0 2px; border-radius:3px; border:1px solid #a98c61; min-width:44px;
+  font-size:11px; white-space:nowrap; background:#efe1c6}
+.share.active {background:#f2c14e; outline:2px solid #805221; outline-offset:-2px}
+.share-name {display:block; font-size:10px; line-height:12px; font-weight:500}
+.share b {display:block; font-size:11px; line-height:15px}
+.dollar-note {font-size:10px; color:var(--muted); margin:0; grid-column:1 / -1}
+#dollar-open {display:none}
+.explain {grid-column:1; grid-row:1; padding:16px; overflow:auto; min-width:0;
+  background:radial-gradient(at 10% 5%,#fffaf0,#eadac0); display:grid; grid-template-rows:auto minmax(0,1fr) auto; gap:12px}
+.explain h2 {font-size:23px; line-height:1.15}
+.explain-work {display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:14px; min-height:0}
+.ladder {display:grid; grid-template-rows:repeat(6,minmax(54px,1fr)); gap:7px; position:relative}
+.rung {display:grid; grid-template-columns:28px minmax(0,1fr) auto; align-items:stretch; gap:5px;
+  border:1px solid #bd996f; border-radius:10px; background:#fffaf0; box-shadow:0 3px 0 #91613d26; position:relative}
+.rung::after {content:'↓'; position:absolute; bottom:-16px; left:15px; color:var(--brand); font-weight:800; z-index:2}
+.rung:last-child::after {display:none}
+.complete .rung {grid-template-columns:28px minmax(0,1fr) auto 46px}
+.connection {display:flex; align-items:center; justify-content:center; gap:2px; font-size:16px; color:var(--brand)}
+.connection img {width:31px; height:31px; object-fit:cover; border-radius:50%; border:1px solid #a47b50}
+.rung-number {display:grid; place-items:center; background:#e3c79f; border-radius:9px 0 0 9px; font-size:15px; font-weight:800}
+.slot {border:0; background:none; text-align:left; padding:7px; font-size:13px; line-height:1.3; font-weight:500}
+.socket {width:90px; border:2px dashed #b9976b; font-size:11px; padding:4px; margin:4px;
+  background:#efe4cf; font-weight:600; line-height:1.25; min-height:44px}
+.socket.empty {color:var(--muted)}
+.tray {display:grid; grid-template-rows:repeat(8,minmax(44px,1fr)); gap:6px; min-width:0}
+.tile {background:linear-gradient(110deg,#fffdf5,#f4e7d0); border:1px solid #bca07b;
+  box-shadow:2px 3px 0 #91613d26; border-radius:5px; text-align:left; font-size:12px; font-weight:500;
+  line-height:1.25; padding:7px 10px; min-width:0; cursor:grab}
+.tile.used,.chip.used {background:#e5dccd; border-style:dashed; box-shadow:none; color:var(--ink)}
+.tile.picked,.chip.picked,.slot.picked {outline:3px solid var(--brand); outline-offset:-3px; background:#ffe4ac}
+.chips {display:grid; grid-template-columns:repeat(3,1fr); gap:7px}
+.chip {background:#e3edf0; border:1px solid #8fa9b3; font-size:12px; padding:7px; cursor:grab; font-weight:700}
+.explain-actions {display:grid; gap:8px}
+#check {background:var(--brand); color:white; border-color:var(--brand)}
+#check-result {font-size:16px; line-height:1.45; padding:12px; background:#fffaf0; border-left:4px solid var(--brand);
+  min-height:90px; border-radius:0 8px 8px 0; margin-top:12px}
+.paragraph {font:19px/1.7 Georgia,serif; padding:24px; background:#fffaf0; border:1px solid var(--line); border-radius:8px}
+.paragraph-route {display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; position:relative;
+  padding:8px 0 20px; margin-bottom:16px; border-bottom:2px solid #c0392b}
+.paragraph-route figure {margin:0; position:relative; z-index:1; min-width:0; font:12px/1.3 'Segoe UI',sans-serif}
+.paragraph-route img {display:block; width:100%; aspect-ratio:1.3; object-fit:cover; border:2px solid #a47b50;
+  border-radius:6px; box-shadow:2px 3px 0 #5b351733; margin-bottom:5px}
+.paragraph-route figcaption {font-weight:700}
+.paragraph-route small {display:block; color:var(--muted)}
+.source-label {font-size:12px; color:var(--muted); line-height:1.4; margin-top:12px}
+dialog {max-width:min(680px,calc(100vw - 28px)); max-height:calc(100dvh - 30px); padding:22px;
+  border:2px solid #a47b50; border-radius:14px; background:var(--paper); color:var(--ink);
+  box-shadow:0 20px 80px #29170a66; overflow:auto}
+dialog::backdrop {background:#281b0d88}
+dialog h2 {margin-bottom:14px}
+dialog p {font-size:16px; line-height:1.6; margin:10px 0}
+dialog #close {float:right; min-width:70px; margin-left:12px}
+.dialog-controls {display:flex; justify-content:flex-end; gap:8px; position:sticky; top:0;
+  padding:5px 0; background:var(--paper); z-index:2; margin-bottom:8px}
+dialog .dialog-controls #close {float:none; margin:0}
+.calm *,.calm .rain i {animation:none!important; transition:none!important}
+.calm #thread-map {box-shadow:0 0 0 5px #c0392b28}
+.sr {position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%)}
+@media (max-width:1100px) {
+  #sound {width:76px; min-width:76px}
+  main {grid-template-columns:minmax(0,1fr) 310px}
+  .panel {padding:10px; gap:8px}
+  .stage {padding:8px; grid-template-rows:106px minmax(0,1fr) auto 125px}
+  h1 {font-size:25px}
+  header {padding:7px 10px; gap:6px}
+  .icon-btn,.seg button {padding:0 8px; font-size:13px}
+}
+@media (max-height:650px) and (min-width:600px) {
+  header {padding:5px 8px; gap:5px}
+  h1 {font-size:20px}
+  h1 small {display:none}
+  main {grid-template-columns:minmax(0,1fr) 270px}
+  .stage {grid-template-rows:72px minmax(0,1fr) auto; gap:5px; padding:7px}
+  .map-label,.ocean,.map-note,.geo-label {display:none}
+  .pin {top:50%!important}
+  #thread-map {top:1px; left:42%; width:44px; height:44px}
+  .dollars {display:none}
+  #dollar-open {display:block}
+  .panel {gap:6px; padding:8px}
+  .hint {font-size:13px; padding:6px 8px; min-height:70px}
+  body[data-mode="explain"] .hint {min-height:106px}
+  .stop-head h2 {font-size:19px}
+  .worker-card {padding:7px; font-size:12px}
+  .worker-card strong {font-size:15px}
+  .tag {font-size:10px; margin-top:3px}
+  .minor-row {margin-top:4px}
+  .needs-box {padding:6px; font-size:12px}
+  .needs-box p {min-height:31px}
+  body:not(.rains-on) #follow-panel {display:flex; flex-direction:column}
+  body:not(.rains-on) .stop-head {order:0}
+  body:not(.rains-on) .needs-box {order:1}
+  body:not(.rains-on) .worker-card {order:2}
+  .minor-row {order:0}
+  #reveal {font-size:12px}
+  .rains-on #impact {order:1}
+  .rains-on .worker-card {order:2}
+  .number-tag {padding:6px 9px; bottom:5%}
+  .caption {font-size:10px}
+  .explain {padding:8px; display:block}
+  .explain h2 {font-size:16px}
+  .explain-work {grid-template-columns:1fr; grid-template-rows:auto auto; gap:10px; margin-top:10px}
+  .ladder {gap:4px; grid-template-rows:repeat(6,minmax(44px,1fr))}
+  .rung {grid-template-columns:22px minmax(0,1fr) auto; border-radius:6px}
+  .rung::after {display:none}
+  .slot {font-size:12px; padding:3px 5px}
+  .socket {width:86px; font-size:10px; padding:3px; margin:2px}
+  .tray {grid-template-columns:repeat(2,1fr); grid-template-rows:repeat(4,auto); gap:4px}
+  .tile {font-size:12px; padding:5px; min-height:44px}
+  .chip {font-size:11px; padding:5px}
+  .chips {gap:4px; margin-top:10px}
+  body[data-mode="explain"] main {grid-template-columns:minmax(0,1fr) 190px}
+}
+@media (min-width:950px) and (max-height:650px) {
+  body[data-mode="explain"] .explain {display:grid; grid-template-rows:auto minmax(0,1fr) auto; gap:8px}
+  body[data-mode="explain"] .explain-work {grid-template-columns:1.15fr 1fr;
+    grid-template-rows:minmax(0,1fr); margin:0; min-height:0}
+  body[data-mode="explain"] .tray {grid-template-rows:repeat(4,minmax(44px,1fr))}
+  body[data-mode="explain"] .chips {margin:0}
+}
+@media (max-width:800px) and (min-width:600px) {
+  h1 {font-size:19px}
+  header {gap:4px}
+  .icon-btn,.seg button {font-size:11px; padding:0 7px}
+  .panel {border-width:1px}
+}
+@media (max-width:599px) {#sound {width:68px; min-width:68px}}
+@media (max-width:599px), (min-width:600px) and (max-width:800px) and (min-height:651px) {
+  body {height:auto; min-height:100dvh; overflow:auto; display:block}
+  header {padding:7px; gap:5px}
+  h1 {font-size:25px; width:100%; text-align:center}
+  h1 small {display:none}
+  .seg {margin-right:auto}
+  .seg button,.icon-btn {font-size:11px; padding:0 7px}
+  main {display:flex; flex-direction:column; overflow:visible}
+  .stage {grid-template-rows:80px auto auto; padding:7px; gap:6px; flex:none}
+  #follow-stage {order:-1}
+  .world {height:clamp(190px,min(54vw,calc(100dvh - 600px)),400px)}
+  .map-note {display:none}
+  .map-label {font-size:17px}
+  .panel {overflow:visible; padding:8px; border:0; gap:9px; display:flex}
+  .controls {order:-2}
+  .hint {order:-1; font-size:14px; min-height:66px}
+  .dollars {display:none}
+  #dollar-open {display:block}
+  .number-tag {font-size:13px; padding:6px 8px}
+  .caption {font-size:11px}
+  .rains-on #impact {order:1}
+  .rains-on .worker-card {order:2}
+  .explain {display:block; overflow:visible; padding:10px}
+  .explain h2 {font-size:21px; margin-bottom:12px}
+  .explain-work {grid-template-columns:1fr; gap:15px}
+  .ladder {grid-template-rows:repeat(6,minmax(70px,auto))}
+  .tray {grid-template-columns:1fr 1fr; grid-template-rows:repeat(4,auto); margin-top:14px}
+  .chips {margin-top:14px; grid-template-columns:1fr 1fr}
+  .paragraph {padding:12px; font-size:17px}
+  .paragraph-route {grid-template-columns:repeat(3,minmax(0,1fr))}
+  body[data-mode="explain"] .panel {order:-1}
+  body[data-mode="explain"] .hint {order:0}
+  .explain-actions {grid-template-columns:1fr 1fr}
+  #read-explanation {grid-column:1 / -1}
+  #check-result {min-height:50px}
+}
+@media (min-width:600px) and (max-width:800px) and (min-height:651px) {
+  body[data-mode="explain"] main {display:grid; grid-template-columns:minmax(0,1fr) 215px;
+    height:calc(100dvh - 100px); overflow:hidden}
+  body[data-mode="explain"] .panel {grid-column:2; grid-row:1; order:0; overflow:auto}
+  body[data-mode="explain"] .explain {display:grid; grid-template-rows:auto minmax(0,1fr) auto;
+    grid-column:1; grid-row:1; padding:8px; gap:8px; overflow:auto}
+  body[data-mode="explain"] .explain h2 {font-size:18px; margin:0}
+  body[data-mode="explain"] .explain-work {grid-template-columns:1.2fr 1fr; gap:8px; margin:0}
+  body[data-mode="explain"] .ladder {grid-template-rows:repeat(6,minmax(70px,1fr)); gap:6px}
+  body[data-mode="explain"] .slot {font-size:12px; padding:5px}
+  body[data-mode="explain"] .socket {width:73px; padding:2px; font-size:10px}
+  body[data-mode="explain"] .tray {grid-template-columns:1fr; grid-template-rows:repeat(8,minmax(44px,1fr));
+    margin:0; gap:6px}
+  body[data-mode="explain"] .tile {font-size:12px; padding:6px}
+  body[data-mode="explain"] .chips {grid-template-columns:1fr 1fr; margin:0; gap:6px}
+}
+</style>
+</head>
+<body data-mode="follow">
+<header>
+  <h1>Cocoa Chain <small>One bar. A world connected.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-follow" aria-pressed="true">Follow the bar</button>
+    <button id="m-explain" aria-pressed="false">Explain it</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <aside class="panel" id="panel">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="controls" id="follow-controls">
+      <div class="seasons" role="group" aria-label="Season">
+        <button id="before" aria-pressed="true">2022: before the rains</button>
+        <button id="rains" aria-pressed="false">Bring the 2023 rains</button>
+      </div>
+      <div class="nav"><button id="back">← Back</button><button id="next">Next stop →</button></div>
+    </div>
+    <section id="follow-panel">
+      <div class="stop-head"><h2 id="stop-name"></h2><small id="country-name"></small></div>
+      <div class="worker-card">
+        <strong id="worker-name"></strong><p id="worker-text"></p>
+        <p class="tag">Made-up person, real numbers</p>
+      </div>
+      <div class="minor-row"><button id="more">More</button><button id="hard" hidden>Hard facts</button>
+        <button id="dollar-open">Your dollar</button></div>
+      <div class="needs-box"><strong>This stop needs</strong><p id="needs-question"></p><span id="link-count">0 of 6 links</span></div>
+      <section id="impact" hidden>
+        <h3>Helped, hurt, or both?</h3>
+        <div class="judgments" role="group" aria-label="How was this worker affected?">
+          <button id="helped" aria-pressed="false">↑ Helped</button><button id="hurt" aria-pressed="false">↓ Hurt</button>
+          <button id="both" aria-pressed="false">↕ Both</button>
+        </div>
+        <p id="countries"></p><div id="reveal" hidden></div>
+      </section>
+    </section>
+    <section id="explain-panel" hidden>
+      <div class="explain-actions"><button id="check">Check</button><button id="clear">Clear</button>
+        <button id="read-explanation" disabled>Read my explanation</button></div>
+      <p id="check-result" aria-live="polite">Six sentences. Four pieces of number evidence.</p>
+      <p class="source-label">Tap a sentence then a step, or a number chip then its socket.
+        Drag, or use Tab and Enter.</p>
+    </section>
+  </aside>
+  <section class="stage" id="follow-stage" aria-label="Chocolate supply chain">
+    <div class="map" id="map">
+      <svg id="map-svg" viewBox="0 0 1000 300" preserveAspectRatio="none" aria-hidden="true"></svg>
+      <span class="geo-label geo-us" data-country="United States">United States</span>
+      <span class="geo-label geo-nl" data-country="Netherlands">Netherlands</span>
+      <span class="geo-label geo-ghana" data-country="Ghana">Ghana</span><span class="geo-label geo-ivory">Côte d’Ivoire</span>
+      <span class="geo-label geo-ocean">Atlantic Ocean</span><span class="geo-label geo-rain" id="map-rain" hidden>2023 rains · Ghana</span>
+      <div class="pins" id="pins" role="group" aria-label="Stops on the map"></div>
+      <button id="thread-map" aria-label="Follow the red thread back to the farm">↶</button>
+      <div class="map-note">In 2023-24, Ghana and Côte d’Ivoire were the world’s two biggest cocoa growers.</div>
+    </div>
+    <div class="world" id="world">
+      <img class="backdrop" id="backdrop" alt=""><div class="world-label" id="world-label"></div>
+      <div class="objects" id="objects"></div><img class="worker" id="worker" alt="">
+      <div class="number-tag" id="number-tag"></div><div class="rain" id="rain" hidden aria-hidden="true"></div>
+      <button id="thread-scene" aria-label="Pull the red thread to the farm">
+        <svg viewBox="0 0 500 150" preserveAspectRatio="none" aria-hidden="true">
+          <path d="M-20 15 C95 130 175 -50 258 84 S375 160 475 80" fill="none" stroke="#fbf6ee" stroke-width="12"/>
+          <path d="M-20 15 C95 130 175 -50 258 84 S375 160 475 80" fill="none" stroke="#c0392b" stroke-width="7"/>
+          <circle cx="475" cy="80" r="12" fill="#fbf6ee" stroke="#c0392b" stroke-width="6"/>
+        </svg>
+      </button>
+    </div>
+    <p id="scene-caption" class="caption"></p><section class="dollars" id="dollars" aria-label="Your dollar"></section>
+  </section>
+  <section class="explain" id="explain-stage" hidden aria-label="Build a causal explanation">
+    <h2>How did rain in Ghana change a chocolate bar here?</h2>
+    <div class="explain-work" id="explain-work"><div class="ladder" id="ladder" aria-label="Six-step explanation"></div>
+      <div class="tray" id="tray" aria-label="Sentence tiles"></div></div>
+    <div class="chips" id="chips" aria-label="Number evidence"></div><div id="paragraph" class="paragraph" hidden></div>
+  </section>
+</main>
+<dialog id="dialog" aria-labelledby="dialog-title">
+  <div class="dialog-controls"><button id="read-card">Read card</button><button id="close">Close</button></div>
+  <h2 id="dialog-title"></h2><div id="dialog-body"></div></dialog>
+<p id="live" class="sr" aria-live="polite"></p>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const mapData = "json:map";
+  const ART = {
+    store:'art:store-shelf', dry:'art:farm-dry', wet:'art:farm-wet', buying:'art:buying-shed',
+    port:'art:port-quay', grind:'art:grind-hall', mould:'art:mould-line', bag:'art:cocoa-bag',
+    container:'art:container', full:'art:bar-full', small:'art:bar-small',
+    people:[['art:akosua-kwame-working','art:akosua-kwame-thinking'], ['art:yaw-working','art:yaw-thinking'],
+      ['art:kojo-working','art:kojo-thinking'], ['art:sanne-working','art:sanne-thinking'],
+      ['art:luis-working','art:luis-thinking'], ['art:dana-working','art:dana-thinking']]
+  };
+  const stops = [
+    {name:'Farm', country:'Ghana', person:'Akosua and Kwame Boateng', job:'Cocoa farmers',
+      short:'Akosua and Kwame grow cocoa on about 2 hectares. They cut ripe pods by hand, then ferment and dry the beans.',
+      card:'Akosua and Kwame Boateng grow cocoa on about 2 hectares, like many of Ghana’s roughly 800,000 cocoa families. '
+        + 'They cut ripe pods by hand, ferment the beans under plantain leaves for about a week, and dry them in the sun. '
+        + 'Their two children go to school.',
+      question:'Where does our money come from in the end? Tap that stop on the map.', supplier:5,
+      answer:'Shoppers far away pay for every bar. That money flows back along the thread.',
+      reveal:'Ghana harvested about 531,000 tonnes, down from about 656,000: about 1 bag in 5 lost. '
+        + 'Ghana raised its farm price from GH¢800 a bag to GH¢1,308, then GH¢2,070. '
+        + 'Fewer bags, more for each bag. The world price rose even faster, more than 4 times.',
+      reason:'Both: less cocoa to sell, a better price for each bag.'},
+    {name:'Buying station', country:'Ghana', person:'Yaw', job:'Purchasing clerk',
+      short:'Yaw weighs cocoa bags and pays the price Ghana’s cocoa board sets. He sells the bags on for export.',
+      card:'Yaw is a purchasing clerk. He weighs each bag and pays the price Ghana’s cocoa board sets '
+        + '(16 bags make a tonne). He sells the bags on to the board’s marketing company for export.',
+      question:'Where do the cocoa bags for Yaw’s shed come from? Tap that stop on the map.', supplier:0,
+      answer:'The farms fill Yaw’s shed.', reveal:'Fewer bags came in, so Yaw had less to weigh and buy.',
+      reason:'Less cocoa means less buying work.'},
+    {name:'Port', country:'Ghana', person:'Kojo', job:'Dockworker at Takoradi',
+      short:'Kojo loads cocoa onto ships at Takoradi. Most of Ghana’s cocoa leaves as beans for factories abroad.',
+      card:'Kojo loads cocoa onto ships at Takoradi. Most of Ghana’s cocoa leaves as beans for factories abroad.',
+      question:'Who sends the bags to Kojo’s port? Tap that stop on the map.', supplier:1,
+      answer:'The buying station sends bags on for export.',
+      reveal:'In the first half of 2024, Ghana shipped less cocoa and earned less from cocoa sold abroad than a year earlier. '
+        + 'Fewer bags means less loading work.',
+      reason:'Fewer bags to load can mean less work.'},
+    {name:'Grinding factory', country:'Netherlands', person:'Sanne', job:'Grinder operator',
+      short:'Sanne runs a grinder in the Netherlands. Factories turn beans into cocoa butter, powder and paste.',
+      card:'Sanne runs a grinder. The Netherlands brings in more cocoa beans than any other country; '
+        + 'factories roast and grind them into cocoa butter, cocoa powder and cocoa paste for chocolate makers.',
+      question:'Who brings beans across the sea to Sanne’s factory? Tap that stop on the map.', supplier:2,
+      answer:'The port ships cocoa beans to the grinding factory.',
+      reveal:'Beans cost over 4 times as much. Late in 2024, factories in Europe ground less cocoa than in any '
+        + 'three months in 4 years. Less grinding can mean fewer shifts.',
+      reason:'Paying more for beans does not mean more work for Sanne.'},
+    {name:'Candy maker', country:'United States', person:'Luis', job:'Chocolate line worker',
+      short:'Luis works the line where chocolate fills bar moulds. His factory needs cocoa ingredients from grinders.',
+      card:'Luis works the line where chocolate fills bar moulds.',
+      question:'Who supplies the cocoa ingredients for chocolate? Tap that stop on the map.', supplier:3,
+      answer:'Grinding factories supply cocoa butter, powder and paste.',
+      reveal:'Cocoa cost far more. In 2025 a big US chocolate maker announced price rises of about 10% or more '
+        + 'and smaller packs.', reason:'Higher costs can lead to higher prices or smaller packs.'},
+    {name:'Store', country:'United States', person:'Dana', job:'Cashier',
+      short:'Dana runs the register. This chocolate bar reached her shelf through five other stops.',
+      card:'Dana runs the register.', question:'Who supplies the bars on Dana’s shelf? Tap that stop on the map.', supplier:4,
+      answer:'The candy maker supplies the store’s bars.',
+      reveal:'Shoppers here pay more for a bar, or get a smaller one. Rain in Ghana reached this shelf.',
+      reason:'These shelf prices are examples, not a measured price for one real bar.'}
+  ];
+  const rainCaption = '2023: very heavy rain fell on cocoa farms in West Africa. Black pod disease rotted many pods. '
+    + 'A tree virus and illegal gold mining on farmland made it worse. The world’s cocoa harvest fell about 14%.';
+  const hardFacts = 'Cocoa farming is hard, and many families earn very little. In 2018-19 a study counted about '
+    + '1.56 million children doing child labor in cocoa-growing areas of Ghana and Côte d’Ivoire. Most of it was '
+    + 'dangerous work, like using sharp machetes or carrying heavy loads. Ghana’s rules forbid dangerous work for children under 18.';
+  const origin = 'Cacao trees first grew in South America, where people in what is now Ecuador used cacao more than '
+    + '5,000 years ago. In Ghana, people honor Tetteh Quarshie, a blacksmith who brought cocoa pods home from the '
+    + 'island of Fernando Po and started a farm at Mampong in 1879. Ghanaian farmers built it into one of the world’s '
+    + 'biggest cocoa crops; missionaries had planted some trees earlier.';
+  const tiles = [
+    'In 2023, very heavy rain fell on cocoa farms in West Africa, and black pod disease rotted the pods.',
+    'Ghana’s farms harvested much less cocoa.',
+    'With less cocoa in the world, buyers paid much more for every tonne.',
+    'Grinding factories in Europe paid more for beans and ground less cocoa.',
+    'Chocolate makers paid more for cocoa, so they raised prices or made bars smaller.',
+    'So rain in Ghana reached our store: shoppers here pay more or get less chocolate.',
+    'Shoppers here wanted more chocolate, so stores raised the price.',
+    'The rain only changed things for people in Ghana.'
+  ];
+  const chips = ['656,000 → 531,000 tonnes', '$2,400 → over $10,000 a tonne', 'least in 4 years',
+    'about 10% or more', 'GH¢800 → GH¢2,070 a bag', '16 bags in a tonne'];
+  const chipSpoken = ['from six hundred fifty-six thousand to five hundred thirty-one thousand tonnes',
+    'from about two thousand four hundred to over ten thousand dollars a tonne', 'least in four years',
+    'about ten percent or more'];
+  const paragraphText = tiles.slice(0,6).map((t,i) => i > 0 && i < 5 ?
+    t.slice(0,-1) + ' (' + chipSpoken[i - 1] + ').' : t).join(' ');
+  const paragraphDisplay = tiles.slice(0,6).map((t,i) => i > 0 && i < 5 ?
+    t.slice(0,-1) + ' (' + chips[i - 1] + ').' : t).join(' ');
+  const state = {mode:'follow', stop:5, started:false, rains:false, dollar:1, links:Array(6).fill(false),
+    visited:[false,false,false,false,false,true],
+    wrong:Array(6).fill(false), choices:Array(6).fill(null), order:Array(6).fill(null), evidence:Array(6).fill(null),
+    tileOrder:[], chipOrder:[], selected:null, passed:false, paragraph:false, dialog:null, reel:false};
+  const L = {
+    wFollow:'This chocolate bar came a long way. Tap the red thread to follow it back to the farm.',
+    readStop:'Read about the people here. Then tap Next stop.',
+    needs:'Where does this stop get its cocoa? Tap that stop on the map.',
+    needsFarm:'Where does the farm’s money come from in the end? Tap that stop on the map.',
+    needRight:'Yes. Cocoa comes this way, and money goes back.',
+    needWrong:'Not that one. Follow the thread one step back.', farmWrong:'Follow the money all the way to the end.',
+    atStore:'You followed the whole chain. Now tap Bring the 2023 rains.',
+    storeExplore:'Tap Back to explore the chain, or tap Bring the 2023 rains.',
+    atStoreAfter:'Compare with 2022: before the rains, or tap Explain it.',
+    tryPin:'Tap another stop on the map.',
+    workerInfo:'Read about this worker, or tap Close to return to the chain.',
+    hardInfo:'Read these facts, or tap Close to return to the farm.',
+    dollarInfo:'Tap a part of the dollar to open its stop, or tap Close to return.',
+    rainsOn:'In 2023, very heavy rain fell on cocoa farms in West Africa, and a disease rotted the pods. Watch every stop change.',
+    rainsOff:'Back to 2022, before the rains.', askHurt:'Was this person helped, hurt, or both? Tap one.',
+    reveal:'Here is what the numbers show.', allLinks:'Goods go one way and money comes back. Each country needs the others.',
+    wExplain:'Build the explanation. Drag a sentence into step 1, or tap it, then tap the step.',
+    wExplainPhone:'Scroll down to the sentence tray. Tap a sentence, then scroll back up and tap a step.',
+    wExplainCompact:'Scroll down in the workspace to find the sentence tray. Tap a sentence, then scroll up and tap a step.',
+    placeSentence:'Tap a step to place this sentence. A filled step swaps sentences.',
+    placeSentencePhone:'Scroll back up to the ladder. Tap a step to place this sentence.',
+    placeSentenceCompact:'Scroll up in the workspace and tap a step to place this sentence.',
+    placeChip:'Tap a number chip, then tap a number socket beside the sentence it backs.',
+    afterPlace:'Add another sentence or number chip. Then tap Check.',
+    pass:'Every step follows the one before, with its number. Tap Read my explanation.',
+    paragraph:paragraphText, hardFacts, origin, rainCaption,
+    farmPrice:'That is the price Ghana pays its farmers for a bag, not the world price for a tonne.'
+  };
+  for (let n = 1; n <= 6; n++) {
+    L['empty' + n] = `Put a sentence in step ${n}.`;
+    L['shopper' + n] = `Step ${n} blames shoppers. What made cocoa cost more in the first place?`;
+    L['local' + n] = `Step ${n} says only Ghana changed. Look at the store.`;
+    L['order' + n] = n === 1 ? 'Step 1 is not the beginning. What had to happen first?' :
+      `Step ${n} doesn’t follow from step ${n - 1}. What had to happen first?`;
+    L['missing' + n] = `Step ${n} needs a number. Pick one from the row.`;
+    L['units' + n] = `That number doesn’t back step ${n}. Check its units.`;
+  }
+  stops.forEach((s,i) => {
+    L['card' + i] = s.card;
+    L['data' + i] = s.reveal;
+  });
+  const V = Curio.voice({lines:L, hint:false, scope:() => state.mode,
+    welcome:() => state.mode === 'follow' ? ['wFollow', {valid:() => !state.started && !state.dialog}] :
+      [explainWelcomeKey(), {valid:() => !state.order.some(x => x !== null)}],
+    read:() => {
+      if (state.dialog === 'hard') return [$('hint').textContent, stops[state.stop].card, hardFacts, origin];
+      if (state.dialog === 'more') return [$('hint').textContent, stops[state.stop].card];
+      if (state.dialog === 'dollars') return [$('hint').textContent,
+        ...shares.map((study,j) => (j === 0 ? 'One study from 2015. ' : 'Another study from 2020. ')
+          + study.map(part => part.label + ': ' + dollarPart(part,j).cents + ' cents.').join(' '))];
+      if (state.mode === 'explain') return state.paragraph ? paragraphText : $('hint').textContent;
+      return [$('hint').textContent, stops[state.stop].card];
+    }
+  });
+  const EVENT_KEYS = new Set(['needRight','needWrong','farmWrong','rainsOn','rainsOff','reveal','allLinks',
+    'pass','paragraph','farmPrice', ...Object.keys(L).filter(x => /^(empty|shopper|local|order|missing|units)\d/.test(x))]);
+  let revision = 0;
+  let reelTimer = null;
+  let fadeTimer = null;
+  let dialogReturn = null;
+  let trayStamp = '';
+  const esc = text => String(text).replace(/[&<>"']/g, x => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[x]));
+  function hint(text) {$('hint').textContent = text;}
+  function finishMotion() {
+    clearTimeout(reelTimer);
+    clearTimeout(fadeTimer);
+    state.reel = false;
+    $('map').classList.remove('reeling');
+    $('world').classList.remove('crossfade');
+  }
+  function howNow() {
+    if (state.mode === 'explain') return state.passed ? 'pass' :
+      state.order.some(x => x !== null) ? 'afterPlace' : explainWelcomeKey();
+    if (!state.started) return 'wFollow';
+    if (state.rains && !state.choices[state.stop]) return 'askHurt';
+    if (state.stop === 5 && !state.rains) return state.visited.every(Boolean) ? 'atStore' : 'storeExplore';
+    if (state.stop === 5 && state.rains) return 'atStoreAfter';
+    if (!state.links[state.stop]) return state.stop === 0 ? 'needsFarm' : 'needs';
+    return 'readStop';
+  }
+  function explainWelcomeKey() {
+    if (innerWidth < 600) return 'wExplainPhone';
+    return innerHeight <= 650 && innerWidth < 950 ? 'wExplainCompact' : 'wExplain';
+  }
+  function syncHint(speak = false) {
+    const k = howNow();
+    if (state.mode === 'follow' && state.started && !state.rains && !state.links[state.stop] && state.stop !== 5) {
+      hint(stops[state.stop].question + ' Or tap Next stop.');
+    } else if (state.mode === 'follow' && state.started && state.rains && state.choices[state.stop]) {
+      hint(state.stop === 5 ? 'Compare the shelf with 2022: before the rains, or tap Explain it.' :
+        'Compare with 2022: before the rains, or tap Next stop.');
+    } else hint(L[k]);
+    if (speak && !V.heard(k)) V.how(k, {valid:() => howNow() === k,
+      needs:k === 'askHurt' ? '#both' : k === 'atStore' ? '#rains' : k === 'readStop' ? '#next' : undefined});
+  }
+  const pinPositions = [[64,66],[74,66],[84,66],[88,35],[12,32],[24,32]];
+  const mapAnchors = [[821,249],[819,247],[819,255],[874,37],[108,83],[216,92]];
+  const tileKeys = ['q7','b9','v4','a8','j2','f6','s3','k5'];
+  const chipKeys = ['r6','d8','m3','w9','h4','c7'];
+  stops.forEach((s,i) => {
+    const b = document.createElement('button');
+    b.id = 'pin-' + i;
+    b.className = 'pin';
+    b.style.left = pinPositions[i][0] + '%';
+    b.style.top = pinPositions[i][1] + '%';
+    b.textContent = i + 1;
+    b.setAttribute('aria-label', `${i + 1}. ${s.name}, ${s.country}`);
+    b.title = `${i + 1}. ${s.name}, ${s.country}`;
+    b.onclick = () => pinTap(i);
+    $('pins').appendChild(b);
+  });
+  for (let i = 0; i < 30; i++) {
+    const drop = document.createElement('i');
+    drop.style.left = ((i * 37) % 100) + '%';
+    drop.style.top = ((i * 23) % 100) + '%';
+    drop.style.animationDelay = (-i * .13) + 's';
+    $('rain').appendChild(drop);
+  }
+  function mapPoint(i) {return [pinPositions[i][0] * 10, pinPositions[i][1] * 3];}
+  function drawMap() {
+    if (!$('map').clientWidth || !$('map').clientHeight) return;
+    const linkedCountries = new Set();
+    state.links.forEach((linked,i) => {
+      if (!linked) return;
+      linkedCountries.add(stops[i].country);
+      linkedCountries.add(stops[stops[i].supplier].country);
+    });
+    $('map').querySelectorAll('[data-country]').forEach(el =>
+      el.classList.toggle('linked',linkedCountries.has(el.dataset.country)));
+    const narrow = $('map').clientWidth < 800 || matchMedia('(max-height:650px)').matches;
+    const initialPositions = [7,21,35,63,77,91];
+    stops.forEach((s,i) => {
+      const x = !state.started ? initialPositions[i] : 8 + i * 16.8;
+      $('pin-' + i).style.left = (narrow ? x : pinPositions[i][0]) + '%';
+      $('pin-' + i).style.top = (narrow ? 50 : pinPositions[i][1]) + '%';
+    });
+    $('thread-map').style.left = narrow ? 'calc(49% - 22px)' : '38%';
+    $('map-rain').hidden = !state.rains;
+    $('map').querySelectorAll('.geo-label').forEach(el => el.style.visibility = narrow ? 'hidden' : '');
+    let svg = '<defs><marker id="goods-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">'
+      + '<path d="M0 0L6 3L0 6Z" fill="#7a4a2a"/></marker>'
+      + '<marker id="money-arrow" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">'
+      + '<path d="M0 0L6 3L0 6Z" fill="#f2c14e" stroke="#2b1d14" stroke-width=".6"/></marker></defs>';
+    svg += `<path class="land" d="${mapData.coast}"/>`;
+    svg += '<path d="M130 42L160 90 M825 28L874 37 M875 280L821 249 M550 270L791 255"'
+      + ' fill="none" stroke="#657d71" stroke-width="1.5"/>';
+    mapAnchors.forEach((a,i) => {
+      const b = mapPoint(i);
+      svg += `<path d="M${b[0]} ${b[1]}L${a[0]} ${a[1]}" stroke="#657d71" stroke-width="2"/>`;
+      svg += `<circle cx="${a[0]}" cy="${a[1]}" r="4" fill="#344b47"/>`;
+    });
+    const path = stops.map((_,i) => mapPoint(i).join(',')).join(' ');
+    svg += `<polyline class="route-thread" points="${path}" fill="none" stroke="#fbf6ee" stroke-width="11"/>`;
+    svg += `<polyline class="route-thread" points="${path}" fill="none" stroke="#c0392b" stroke-width="6" stroke-dasharray="12 6"/>`;
+    state.links.forEach((done,i) => {
+      if (!done) return;
+      const a = mapPoint(i === 0 ? 0 : stops[i].supplier);
+      const b = mapPoint(i === 0 ? 5 : i);
+      const d = `M${a[0]} ${a[1]-15} Q${(a[0]+b[0])/2} ${Math.min(a[1],b[1])-55} ${b[0]} ${b[1]-15}`;
+      const r = `M${b[0]} ${b[1]+15} Q${(a[0]+b[0])/2} ${Math.max(a[1],b[1])+36} ${a[0]} ${a[1]+15}`;
+      svg += `<path class="goods-link" d="${d}" fill="none" stroke="#7a4a2a" stroke-width="4" marker-end="url(#goods-arrow)"/>`;
+      svg += `<path d="${r}" fill="none" stroke="#2b1d14" stroke-width="6"/>`;
+      svg += `<path class="money-link" d="${r}" fill="none" stroke="#f2c14e" stroke-width="3" marker-end="url(#money-arrow)"/>`;
+    });
+    if (state.rains) svg += '<rect x="770" y="210" width="110" height="80" rx="8" fill="#1f5f8b" opacity=".2"/>';
+    if (narrow) {
+      const w = $('map').clientWidth;
+      const h = $('map').clientHeight;
+      const point = i => (!state.started ? initialPositions[i] : 8 + i * 16.8) * w / 100;
+      $('map-svg').setAttribute('viewBox',`0 0 ${w} ${h}`);
+      svg = '<defs><marker id="goods-arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">'
+        + '<path d="M0 0L5 2.5L0 5Z" fill="#7a4a2a"/></marker>'
+        + '<marker id="money-arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto">'
+        + '<path d="M0 0L5 2.5L0 5Z" fill="#f2c14e" stroke="#2b1d14" stroke-width=".5"/></marker></defs>';
+      svg += `<path d="M${point(0)} ${h/2}H${point(5)}" fill="none" stroke="#c0392b" stroke-width="2" stroke-dasharray="8 5"/>`;
+      state.links.forEach((done,i) => {
+        if (!done) return;
+        const a = point(i === 0 ? 0 : stops[i].supplier);
+        const b = point(i === 0 ? 5 : i);
+        const offset = i === 0 ? 3 : 8;
+        const goods = `M${a} ${h/2-23} Q${(a+b)/2} ${offset} ${b} ${h/2-23}`;
+        const money = `M${b} ${h/2+23} Q${(a+b)/2} ${h-offset} ${a} ${h/2+23}`;
+        svg += `<path class="goods-link" d="${goods}" fill="none" stroke="#7a4a2a" stroke-width="2" marker-end="url(#goods-arrow)"/>`;
+        svg += `<path d="${money}" fill="none" stroke="#2b1d14" stroke-width="4"/>`;
+        svg += `<path class="money-link" d="${money}" fill="none" stroke="#f2c14e" stroke-width="2" marker-end="url(#money-arrow)"/>`;
+      });
+      if (state.rains) svg += `<rect x="2" y="2" width="${w*.48}" height="${h-4}" rx="8" fill="#1f5f8b" opacity=".12"/>`;
+    } else $('map-svg').setAttribute('viewBox','0 0 1000 300');
+    $('map-svg').innerHTML = svg;
+    stops.forEach((s,i) => {
+      $('pin-' + i).setAttribute('aria-current', i === state.stop ? 'step' : 'false');
+      $('pin-' + i).classList.toggle('done',state.links[i]);
+    });
+  }
+  function sceneValues(i = state.stop, wet = state.rains) {
+    if (i === 0) return {art: wet ? ART.wet : ART.dry, big:wet ? '11 bags' : '14 bags',
+      detail:wet ? 'was 14 · illustrative farm, not measured family yield' : 'Illustrative farm · 2022, before the rains'};
+    if (i === 1) return {art:ART.buying, big:wet ? 'GH¢1,308 → GH¢2,070' : 'GH¢800 a bag',
+      detail:wet ? 'Sep 2023 → Apr 2024 · was GH¢800 (2022-23)' : 'Ghana farm price · 2022-23'};
+    if (i === 2) return {art:ART.port, big:wet ? '8 containers' : '10 containers',
+      detail:wet ? 'was 10 · illustrative loads; fewer bags to ship' : 'Illustrative loads · bags leave as beans'};
+    if (i === 3) return {art:ART.grind, big:wet ? 'Over $10,000 a tonne' : '$2,400 a tonne of beans',
+      detail:wet ? 'Dec 2024 · was about $2,400 (2022) · grind: least in 4 years, late 2024' : 'About the world price · 2022 · busy'};
+    if (i === 4) return {art:ART.mould, big:wet ? 'Cocoa: over $10,000 a tonne' : 'Cocoa: about $2,400 a tonne',
+      detail:wet ? 'was about $2,400 · 2025 price plan: up about 10% or more' : 'World cocoa price · 2022'};
+    return {art:ART.store, big:wet ? 'About $1.10 or more' : '$1.00',
+      detail:wet ? 'was $1.00 · or a smaller bar · example prices' : 'Example price · 2022, before the rains'};
+  }
+  function renderScene() {
+    const i = state.stop;
+    const s = stops[i];
+    const v = sceneValues();
+    $('world').dataset.stop = i;
+    $('backdrop').src = v.art;
+    $('backdrop').alt = `${s.name}, ${s.country}, ${state.rains ? 'after the 2023 rains' : 'before the rains'}`;
+    $('worker').src = ART.people[i][state.rains ? 1 : 0];
+    $('worker').alt = `${s.person}, ${state.rains ? 'thinking' : 'working'}`;
+    $('world-label').innerHTML = esc(s.name) + '<span>' + esc(s.country) + '</span>';
+    $('number-tag').innerHTML = esc(v.big) + '<small>' + esc(v.detail) + '</small>';
+    let objectClass = i === 2 ? ' port' : i === 5 ? ' store' : i === 1 ? ' buying' : '';
+    if (state.rains) objectClass += ' after';
+    $('objects').className = 'objects' + objectClass;
+    let objects = '';
+    if (i < 2) {
+      for (let j = 0; j < (state.rains ? 11 : 14); j++) {
+        const row = j < 5 ? 0 : j < 9 ? 1 : j < 12 ? 2 : 3;
+        const col = j - [0,5,9,12][row];
+        const style = i === 1 ? ` style="left:${18 + col * 13 + row * 6.5}%;bottom:${row * 24}%"` : '';
+        objects += `<img class="bag" src="${ART.bag}" alt=""${style}>`;
+      }
+    } else if (i === 2) {
+      for (let j = 0; j < (state.rains ? 8 : 10); j++) {
+        const column = j % 5 + 1;
+        const row = j < 5 ? 2 : 1;
+        objects += `<img src="${ART.container}" alt="" style="grid-column:${column};grid-row:${row}">`;
+      }
+    } else if (i === 3) {
+      objects = '<svg viewBox="0 0 200 130" aria-hidden="true" style="height:100%;width:55%">'
+        + '<defs><radialGradient id="dial"><stop stop-color="#fffdf5"/><stop offset="1" stop-color="#d8c9aa"/></radialGradient></defs>'
+        + '<circle cx="100" cy="65" r="57" fill="url(#dial)" stroke="#6d6b60" stroke-width="8"/>'
+        + '<path d="M58 71 A44 44 0 0 1 142 71" fill="none" stroke="#728e68" stroke-width="12"/>'
+        + `<path d="M100 67L${state.rains ? '65 55' : '130 39'}" stroke="#9a3f12" stroke-width="6"/>`
+        + '<circle cx="100" cy="67" r="7" fill="#514335"/>'
+        + `<text x="100" y="102" text-anchor="middle" font-size="17" fill="#2b1d14">${state.rains ? 'less grinding' : 'busy'}</text></svg>`;
+    } else if (i === 5) {
+      objects = `<img src="${ART.full}" alt="Full-size chocolate bar">`;
+      if (state.rains) objects += `<img class="small" src="${ART.small}" alt="Smaller chocolate bar">`;
+    }
+    $('objects').innerHTML = objects;
+    $('rain').hidden = !(state.rains && i === 0);
+    $('thread-scene').hidden = state.started;
+    $('thread-map').hidden = state.started;
+    $('scene-caption').classList.toggle('raining',state.rains);
+    $('scene-caption').textContent = state.rains ? rainCaption :
+      '1 Farm · 2 Buying station · 3 Port · 4 Grinder · 5 Candy maker · 6 Store';
+  }
+  function renderFollow() {
+    const s = stops[state.stop];
+    $('stop-name').textContent = s.name;
+    $('country-name').textContent = s.country;
+    renderWorkerCard();
+    $('hard').hidden = state.stop !== 0;
+    $('needs-question').textContent = state.links[state.stop] ? s.answer : s.question;
+    const count = state.links.filter(Boolean).length;
+    $('link-count').textContent = count + ' of 6 links' + (count === 6 ? ' · Goods go one way, money comes back.' : '');
+    $('impact').hidden = !state.rains;
+    document.body.classList.toggle('rains-on',state.rains);
+    for (const c of ['helped','hurt','both']) $(c).setAttribute('aria-pressed',state.choices[state.stop] === c);
+    $('countries').textContent = 'Marked: ' + ['Ghana','Netherlands','United States'].map(c =>
+      (stops.some((s,i) => s.country === c && state.choices[i]) ? '✓ ' : '○ ') + c).join(' · ');
+    $('reveal').hidden = !state.choices[state.stop] || !state.rains;
+    $('reveal').innerHTML = '<b>What the numbers show</b>' + esc(s.reveal) + '<p style="margin-top:5px">' + esc(s.reason) + '</p>';
+    $('before').setAttribute('aria-pressed',!state.rains);
+    $('rains').setAttribute('aria-pressed',state.rains);
+    $('back').disabled = state.started && state.stop === 0;
+    $('next').disabled = state.started && state.stop === 5;
+    drawMap();
+    renderScene();
+    renderDollars();
+  }
+  function renderWorkerCard() {
+    const s = stops[state.stop];
+    const compact = innerHeight <= 650;
+    const name = compact && state.stop === 0 ? 'Akosua & Kwame' : s.person;
+    $('worker-name').textContent = compact && state.stop === 0 ? name : name + ' · ' + s.job;
+    $('worker-text').textContent = state.rains || compact ? s.short.split('.')[0] + '.' : s.short;
+  }
+  function openStop(i,speak = true) {
+    const focused = document.activeElement;
+    finishMotion();
+    revision++;
+    state.started = true;
+    state.stop = Math.max(0,Math.min(5,i));
+    state.visited[state.stop] = true;
+    if (V.playing === L.rainsOn) V.dropQueued(x => x.key !== 'rainsOn');
+    else V.hush();
+    renderFollow();
+    if (focused === $('next') && $('next').disabled) $('back').focus({preventScroll:true});
+    if (focused === $('back') && $('back').disabled) $('next').focus({preventScroll:true});
+    syncHint(speak);
+    Curio.tone(270 + i * 55,.09,.08);
+  }
+  function pullThread() {
+    const focused = document.activeElement;
+    openStop(0,false);
+    if (focused === $('thread-scene') || focused === $('thread-map')) $('next').focus({preventScroll:true});
+    if (!Curio.reduce) {
+      state.reel = true;
+      $('map').classList.add('reeling');
+      reelTimer = setTimeout(finishMotion,1500);
+    }
+    syncHint(true);
+  }
+  function pinTap(i) {
+    finishMotion();
+    if (!state.started) return openStop(i);
+    const from = state.stop;
+    if (state.links[from]) return openStop(i);
+    if (i === stops[from].supplier) {
+      state.links[from] = true;
+      renderFollow();
+      hint(stops[from].answer + (from < 5 ? ' Tap Next stop.' : ' Tap Bring the 2023 rains.'));
+      V.say(state.links.every(Boolean) ? 'allLinks' : 'needRight',
+        {valid:() => state.stop === from, now:!rainVoicePending()});
+      Curio.yes();
+    } else {
+      hint((from === 0 ? L.farmWrong : L.needWrong) + ' ' + L.tryPin);
+      if (!V.heard('wrong-' + from)) {
+        state.wrong[from] = true;
+        V.say([[from === 0 ? 'farmWrong' : 'needWrong',{key:'wrong-' + from}], ['tryPin',{kind:'how'}]],
+          {valid:() => state.stop === from && !state.links[from], now:!rainVoicePending()});
+      }
+      Curio.tone(140,.12,.09);
+    }
+  }
+  function season(wet) {
+    finishMotion();
+    if (!wet && !state.started) {
+      syncHint();
+      V.welcome();
+      return;
+    }
+    revision++;
+    state.started = true;
+    state.rains = wet;
+    V.hush();
+    renderFollow();
+    syncHint();
+    if (!Curio.reduce) {
+      $('world').classList.add('crossfade');
+      fadeTimer = setTimeout(() => $('world').classList.remove('crossfade'),600);
+    }
+    V.say(wet ? 'rainsOn' : 'rainsOff', {valid:() => state.rains === wet, hold:16000});
+    if (wet) V.how('askHurt', {valid:() => state.rains && !state.choices[state.stop], needs:'#both'});
+    Curio.tone(wet ? 185 : 440,.18,.07);
+  }
+  function judge(choice) {
+    finishMotion();
+    if (!state.rains) return;
+    const i = state.stop;
+    state.choices[i] = choice;
+    renderFollow();
+    syncHint();
+    V.say('reveal',{valid:() => state.stop === i && state.rains, now:!rainVoicePending()});
+    Curio.tone(370,.12,.06);
+  }
+  const shares = [
+    [{label:'Farm family',value:6.6,stop:0}, {label:'Buying, shipping, grinding and government',value:14,stop:1},
+      {label:'Candy maker',value:35.2,stop:4}, {label:'Store and taxes',value:44.2,stop:5}],
+    [{label:'Farm family',value:11,stop:0}, {label:'Buying, shipping and grinding',value:19,stop:1},
+      {label:'Candy maker and store',value:70,stop:4}]
+  ];
+  function dollarPart(part,j) {
+    const active = part.stop === state.stop || (part.stop === 1 && [1,2,3].includes(state.stop)) ||
+      (j === 1 && part.stop === 4 && state.stop === 5);
+    const cents = Math.round(part.value * state.dollar * 10) / 10;
+    const label = part.stop === 0 ? 'Farm' : part.stop === 1 ? 'Trade + grind' :
+      part.stop === 5 ? 'Store + taxes' : j === 1 ? 'Maker + store' : 'Maker';
+    return {active,cents,label};
+  }
+  function dollarHTML(large = false) {
+    let out = '<div class="dollar-head"><strong>Your dollar</strong><button data-dollar="-1" aria-label="One dollar less">−</button>'
+      + `<b>$${state.dollar}</b><button data-dollar="1" aria-label="One dollar more">+</button></div>`;
+    shares.forEach((study,j) => {
+      out += '<div class="study"><span>' + (j === 0 ? 'One study (2015)' : 'Another study (2020)') + '</span><div class="shares">';
+      study.forEach(part => {
+        const {active,cents,label} = dollarPart(part,j);
+        out += `<button class="share${active ? ' active' : ''}" style="flex:${part.value}" data-stop="${part.stop}"`
+          + ` title="${esc(part.label)}: ${cents} cents" aria-label="${esc(part.label)}: ${cents} cents, open stop">`
+          + `<span class="share-name">${label}</span><b>${cents}¢</b></button>`;
+      });
+      out += '</div></div>';
+    });
+    out += '<p class="dollar-note">Studies differ, but in both the farm family gets the smallest part. Older studies, unchanged by the rains.</p>';
+    if (large) out += '<p class="source-label">2015: Farm 6.6%, buying/shipping/grinding and government 14%, '
+      + 'maker 35.2%, store and taxes 44.2%. 2020: Farm 11%, buying/shipping/grinding 19%, maker and store 70%. '
+      + 'The second study concerns dark chocolate in France. Shares are not profit.</p>';
+    return out;
+  }
+  function wireDollars(el) {
+    el.querySelectorAll('[data-dollar]').forEach(b => {
+      const delta = Number(b.dataset.dollar);
+      b.disabled = state.dollar + delta < 1 || state.dollar + delta > 4;
+      b.onclick = () => {
+        state.dollar = Math.max(1,Math.min(4,state.dollar + delta));
+        renderDollars();
+        const parent = state.dialog === 'dollars' ? $('dialog-body') : $('dollars');
+        if (state.dialog === 'dollars') syncDollars(parent);
+        const target = parent.querySelector(`[data-dollar="${delta}"]:not(:disabled)`)
+          || parent.querySelector('[data-dollar]:not(:disabled)');
+        target.focus({preventScroll:true});
+        Curio.tone(330 + state.dollar * 60,.08,.06);
+      };
+    });
+    el.querySelectorAll('[data-stop]').forEach(b => b.onclick = () => {
+      if ($('dialog').open) closeDialog();
+      openStop(Number(b.dataset.stop));
+    });
+  }
+  function syncDollars(el) {
+    el.querySelector('.dollar-head > b').textContent = '$' + state.dollar;
+    el.querySelectorAll('[data-dollar]').forEach(b => {
+      const value = state.dollar + Number(b.dataset.dollar);
+      b.disabled = value < 1 || value > 4;
+    });
+    const buttons = [...el.querySelectorAll('.share')];
+    let index = 0;
+    shares.forEach((study,j) => study.forEach(part => {
+      const b = buttons[index++];
+      const {active,cents} = dollarPart(part,j);
+      b.classList.toggle('active',active);
+      b.querySelector('b').textContent = cents + '¢';
+      b.title = part.label + ': ' + cents + ' cents';
+      b.setAttribute('aria-label',part.label + ': ' + cents + ' cents, open stop');
+    }));
+  }
+  function renderDollars() {
+    if (!$('dollars').children.length) {
+      $('dollars').innerHTML = dollarHTML();
+      wireDollars($('dollars'));
+    }
+    syncDollars($('dollars'));
+  }
+  function showDialog(kind,button) {
+    finishMotion();
+    state.dialog = kind;
+    dialogReturn = button;
+    $('dialog-title').textContent = kind === 'hard' ? 'Hard facts' : kind === 'more' ? stops[state.stop].person : 'Your dollar';
+    $('dialog-body').innerHTML = kind === 'hard' ? '<p>' + esc(hardFacts) + '</p><h3>Whose idea was cocoa?</h3><p>'
+      + esc(origin) + '</p><p class="source-label">NORC (2020), Ghana Hazardous Child Labour Activity Framework; '
+      + 'COCOBOD, Cocoa; Zarrillo and colleagues (2018).</p>' : kind === 'more' ?
+      '<p>' + esc(stops[state.stop].card) + '</p><p class="source-label">Made-up person, real numbers.</p>' :
+      '<div class="dollars" style="display:block">' + dollarHTML(true) + '</div>';
+    if (kind === 'dollars') wireDollars($('dialog-body'));
+    $('dialog').showModal();
+    $('close').focus({preventScroll:true});
+    const key = kind === 'hard' ? 'hardInfo' : kind === 'more' ? 'workerInfo' : 'dollarInfo';
+    hint(L[key]);
+    V.how(key,{valid:() => state.dialog === kind, needs:'#close'});
+  }
+  function closeDialog() {
+    const keepRain = V.playing === L.rainsOn;
+    if (keepRain) V.dropQueued(line => ['hardInfo','workerInfo','dollarInfo'].includes(line.key));
+    else V.hush();
+    $('dialog').close();
+    state.dialog = null;
+    syncHint(keepRain);
+    if (dialogReturn) dialogReturn.focus({preventScroll:true});
+  }
+  $('dialog').addEventListener('cancel',e => {
+    e.preventDefault();
+    closeDialog();
+  });
+  $('close').onclick = closeDialog;
+  $('read-card').onclick = () => V.read();
+  $('more').onclick = () => showDialog('more',$('more'));
+  $('hard').onclick = () => showDialog('hard',$('hard'));
+  $('dollar-open').onclick = () => showDialog('dollars',$('dollar-open'));
+  function shuffled(n) {
+    const a = Array.from({length:n},(_,i) => i);
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i],a[j]] = [a[j],a[i]];
+    }
+    return a;
+  }
+  function invalidate() {
+    revision++;
+    state.passed = false;
+    $('ladder').classList.remove('complete');
+    document.querySelectorAll('.connection').forEach(el => el.hidden = true);
+    state.paragraph = false;
+    $('read-explanation').disabled = true;
+    $('paragraph').hidden = true;
+    $('explain-work').hidden = false;
+    $('chips').hidden = false;
+    V.dropQueued();
+    if ([L.paragraph,L.pass,L.wExplain,L.wExplainPhone,L.wExplainCompact,L.placeChip,
+      L.placeSentence,L.placeSentencePhone,L.placeSentenceCompact].includes(V.playing)) V.hush();
+    $('check-result').textContent = 'Your explanation changed. Tap Check when it is ready.';
+  }
+  function choose(kind,id,source = null) {
+    finishMotion();
+    state.selected = {kind,id,source};
+    renderExplain();
+    const instructionKey = innerWidth < 600 ? 'placeSentencePhone' :
+      innerHeight <= 650 && innerWidth < 950 ? 'placeSentenceCompact' : 'placeSentence';
+    hint(kind === 'tile' ? L[instructionKey] : L.placeChip);
+    const key = kind === 'tile' ? instructionKey : 'placeChip';
+    if (!V.heard(key)) V.how(key, {valid:() => state.selected?.kind === kind, now:true});
+    Curio.tone(kind === 'tile' ? 440 : 560,.06,.04);
+  }
+  function placeTile(index,id) {
+    const from = state.order.indexOf(id);
+    const previous = state.order[index];
+    if (from === index) return;
+    if (from !== -1) state.order[from] = previous;
+    state.order[index] = id;
+    if (from !== -1) [state.evidence[index],state.evidence[from]] = [state.evidence[from],state.evidence[index]];
+    else state.evidence[index] = null;
+    invalidate();
+    state.selected = null;
+    renderExplain();
+    syncHint(true);
+    Curio.tone(380 + index * 35,.1,.06);
+  }
+  function placeChip(index,id) {
+    if (![1,2,3,4].includes(state.order[index])) {
+      hint('Pick a sentence with a number socket.');
+      return;
+    }
+    const from = state.evidence.indexOf(id);
+    if (from === index) return;
+    const old = state.evidence[index];
+    if (from !== -1) state.evidence[from] = old;
+    state.evidence[index] = id;
+    invalidate();
+    state.selected = null;
+    renderExplain();
+    syncHint(true);
+    Curio.tone(620,.08,.05);
+  }
+  function slotTap(index) {
+    if (state.selected?.kind === 'tile') placeTile(index,state.selected.id);
+    else if (state.selected?.kind === 'chip') placeChip(index,state.selected.id);
+    else if (state.order[index] !== null) choose('tile',state.order[index],index);
+    else hint('Tap a sentence tile first, then tap this step.');
+  }
+  function socketTap(index) {
+    if (state.selected?.kind === 'chip') placeChip(index,state.selected.id);
+    else hint(L.placeChip);
+  }
+  function validate(order,evidence) {
+    for (let i = 0; i < 6; i++) {
+      const n = i + 1;
+      const tile = order[i];
+      if (tile === null || tile === undefined) return 'empty' + n;
+      if (tile === 6) return 'shopper' + n;
+      if (tile === 7) return 'local' + n;
+      if (tile !== i) return 'order' + n;
+      if (i > 0 && i < 5) {
+        const chip = evidence[i];
+        if (chip === null || chip === undefined) return 'missing' + n;
+        if (chip === 4) return 'farmPrice';
+        if (chip !== i - 1) return 'units' + n;
+      }
+    }
+    return 'pass';
+  }
+  function check() {
+    const result = validate(state.order,state.evidence);
+    state.passed = result === 'pass';
+    $('ladder').classList.toggle('complete',state.passed);
+    document.querySelectorAll('.connection').forEach(el => el.hidden = !state.passed);
+    $('read-explanation').disabled = !state.passed;
+    $('check-result').textContent = L[result];
+    hint(L[result]);
+    const version = revision;
+    V.say(result,{valid:() => revision === version, hold:16000,
+      now:V.playing !== L.pass && V.playing !== L.paragraph});
+    if (state.passed) Curio.yes();
+    else Curio.tone(150,.12,.06);
+    return result;
+  }
+  function clearExplain() {
+    V.hush();
+    state.order.fill(null);
+    state.evidence.fill(null);
+    state.selected = null;
+    state.tileOrder = shuffled(8);
+    state.chipOrder = shuffled(6);
+    invalidate();
+    renderExplain();
+    syncHint(true);
+    Curio.tone(250,.1,.05);
+  }
+  function initExplain() {
+    state.tileOrder = shuffled(8);
+    state.chipOrder = shuffled(6);
+    for (let i = 0; i < 6; i++) {
+      const rung = document.createElement('div');
+      rung.className = 'rung';
+      rung.innerHTML = `<span class="rung-number">${i + 1}</span><button class="slot" id="slot-${i}"></button>`
+        + `<button class="socket empty" id="socket-${i}" hidden></button>`
+        + `<span class="connection" hidden>→<img src="${[ART.wet,ART.dry,ART.port,ART.grind,ART.mould,ART.store][i]}"`
+        + ` alt="${['Rain on the farm','Farm','Port','Grinding factory','Candy maker','Store'][i]}"></span>`;
+      $('ladder').appendChild(rung);
+      $('slot-' + i).onclick = () => slotTap(i);
+      $('socket-' + i).onclick = () => socketTap(i);
+      for (const target of [rung,$('slot-' + i),$('socket-' + i)]) {
+        target.addEventListener('dragover',e => e.preventDefault());
+        target.addEventListener('drop',e => {
+          e.preventDefault();
+          e.stopPropagation();
+          if (state.selected?.kind === 'tile') placeTile(i,state.selected.id);
+          else if (state.selected?.kind === 'chip') placeChip(i,state.selected.id);
+        });
+      }
+    }
+    for (let i = 0; i < 8; i++) {
+      const b = document.createElement('button');
+      b.id = 'tile-' + tileKeys[i];
+      b.className = 'tile';
+      b.draggable = true;
+      b.textContent = tiles[i];
+      b.onclick = () => choose('tile',i);
+      b.addEventListener('dragstart',e => {
+        choose('tile',i);
+        e.dataTransfer.setData('text/plain',tiles[i]);
+      });
+      $('tray').appendChild(b);
+    }
+    for (let i = 0; i < 6; i++) {
+      const b = document.createElement('button');
+      b.id = 'chip-' + chipKeys[i];
+      b.className = 'chip';
+      b.textContent = chips[i];
+      b.draggable = true;
+      b.onclick = () => choose('chip',i);
+      b.addEventListener('dragstart',e => {
+        choose('chip',i);
+        e.dataTransfer.setData('text/plain',chips[i]);
+      });
+      $('chips').appendChild(b);
+    }
+    renderExplain();
+  }
+  function renderExplain() {
+    const stamp = state.tileOrder.join(',') + '|' + state.chipOrder.join(',');
+    if (stamp !== trayStamp) {
+      state.tileOrder.forEach(id => $('tray').appendChild($('tile-' + tileKeys[id])));
+      state.chipOrder.forEach(id => $('chips').appendChild($('chip-' + chipKeys[id])));
+      trayStamp = stamp;
+    }
+    state.order.forEach((id,i) => {
+      const slot = $('slot-' + i);
+      slot.textContent = id === null ? 'Tap a sentence, then here' : tiles[id];
+      slot.setAttribute('aria-label',`Step ${i + 1}: ${slot.textContent}`);
+      slot.classList.toggle('picked',state.selected?.kind === 'tile' && state.selected.source === i);
+      const socket = $('socket-' + i);
+      socket.hidden = ![1,2,3,4].includes(id);
+      socket.textContent = state.evidence[i] === null ? '+ number' : chips[state.evidence[i]];
+      socket.classList.toggle('empty',state.evidence[i] === null);
+      socket.setAttribute('aria-label',`Number socket for step ${i + 1}: ${socket.textContent}`);
+    });
+    state.tileOrder.forEach((id,index) => {
+      const b = $('tile-' + tileKeys[id]);
+      b.style.order = index;
+      b.classList.toggle('used',state.order.includes(id));
+      b.classList.toggle('picked',state.selected?.kind === 'tile' && state.selected.id === id);
+      b.setAttribute('aria-pressed',state.selected?.kind === 'tile' && state.selected.id === id);
+    });
+    state.chipOrder.forEach((id,index) => {
+      const b = $('chip-' + chipKeys[id]);
+      b.style.order = index;
+      b.classList.toggle('used',state.evidence.includes(id));
+      b.classList.toggle('picked',state.selected?.kind === 'chip' && state.selected.id === id);
+      b.setAttribute('aria-pressed',state.selected?.kind === 'chip' && state.selected.id === id);
+    });
+  }
+  function setMode(mode,quiet = false) {
+    if (state.mode === mode && !quiet) return;
+    finishMotion();
+    V.hush();
+    state.mode = mode;
+    document.body.dataset.mode = mode;
+    $('m-follow').setAttribute('aria-pressed',mode === 'follow');
+    $('m-explain').setAttribute('aria-pressed',mode === 'explain');
+    for (const id of ['follow-stage','follow-panel','follow-controls']) $(id).hidden = mode !== 'follow';
+    for (const id of ['explain-stage','explain-panel']) $(id).hidden = mode !== 'explain';
+    syncHint();
+    if (!quiet) {
+      V.welcome();
+      if (mode === 'follow' && state.started) syncHint(true);
+    }
+    Curio.tone(400,.08,.05);
+  }
+  function rainVoicePending() {
+    return V.playing === L.rainsOn || V.queue.some(line => line.key === 'rainsOn');
+  }
+  $('thread-map').onclick = pullThread;
+  $('thread-scene').onclick = pullThread;
+  $('back').onclick = () => openStop(state.started ? state.stop - 1 : 0);
+  $('next').onclick = () => openStop(state.started ? state.stop + 1 : 0);
+  $('rains').onclick = () => season(true);
+  $('before').onclick = () => season(false);
+  for (const c of ['helped','hurt','both']) $(c).onclick = () => judge(c);
+  $('m-follow').onclick = () => setMode('follow');
+  $('m-explain').onclick = () => setMode('explain');
+  $('check').onclick = check;
+  $('clear').onclick = clearExplain;
+  $('read-explanation').onclick = () => {
+    if (validate(state.order,state.evidence) !== 'pass') return;
+    state.paragraph = true;
+    $('explain-work').hidden = true;
+    $('chips').hidden = true;
+    $('paragraph').hidden = false;
+    const sceneArt = [ART.wet,ART.dry,ART.port,ART.grind,ART.mould,ART.store];
+    const sceneNames = ['2023 rains','Less cocoa','World price','Less grinding','Chocolate maker','Our shelf'];
+    const places = ['West Africa','Ghana','World market','Netherlands','United States','United States'];
+    $('paragraph').innerHTML = '<div class="paragraph-route" aria-hidden="true">' + sceneArt.map((art,i) =>
+      `<figure><img src="${art}" alt=""><figcaption>${sceneNames[i]}</figcaption><small>${places[i]}</small></figure>`
+    ).join('') + '</div><p>' + esc(paragraphDisplay) + '</p>';
+    hint('Your explanation follows the rain all the way to the shelf. Tap Clear to build it again.');
+    V.say('paragraph',{valid:() => state.paragraph, hold:75000});
+  };
+  document.addEventListener('pointerdown',finishMotion,{capture:true});
+  document.addEventListener('keydown',finishMotion,{capture:true});
+  Curio.onMotion(finishMotion);
+  addEventListener('resize',() => {
+    if (state.mode === 'follow') renderWorkerCard();
+    if (!state.dialog) syncHint();
+  });
+  new ResizeObserver(drawMap).observe($('map'));
+  L.readHints = [
+    ...stops.map(s => s.question + ' Or tap Next stop.'),
+    ...stops.map((s,i) => s.answer + (i < 5 ? ' Tap Next stop.' : ' Tap Bring the 2023 rains.')),
+    L.farmWrong + ' ' + L.tryPin,
+    L.needWrong + ' ' + L.tryPin,
+    'Compare the shelf with 2022: before the rains, or tap Explain it.',
+    'Compare with 2022: before the rains, or tap Next stop.',
+    'Pick a sentence with a number socket.',
+    'Tap a sentence tile first, then tap this step.',
+    'Your explanation follows the rain all the way to the shelf. Tap Clear to build it again.'
+  ];
+  L.dollarRead = Array.from({length:4},(_,i) => shares.map((study,j) =>
+    (j === 0 ? 'One study from 2015. ' : 'Another study from 2020. ')
+    + study.map(part => part.label + ': ' + (Math.round(part.value * (i+1) * 10) / 10) + ' cents.').join(' ')));
+  Curio.init({clips:"voice:*", rate:.93});
+  initExplain();
+  renderFollow();
+  setMode('follow',true);
+  window.__tool = {state, setMode, openStop, season, pinTap, judge, sceneValues, stops, tiles, chips, validate,
+    placeTile, placeChip, choose, check, clearExplain, renderExplain, allLines:V.allLines, vlog:V.log,
+    get vq() {return V.queue;}, V, L, EVENT_KEYS};
+})();
+</script>
+</body>
+</html>

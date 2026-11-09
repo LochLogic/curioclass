@@ -22,125 +22,28 @@
       "drawn_by": "codex"
     },
     {
-      "name": "dancer-tiny-ball",
-      "people": true,
+      "name": "dancers-rig",
+      "prompt": "A production sprite sheet, exactly three columns by two rows, on perfectly flat pure green #00FF00. Each cell contains one complete child, front view in top row and the SAME child back view in bottom row. Children aged 6 to 8 in modest loose grey-violet short-sleeve shirts, charcoal trousers and soft plum shoes. Left column: slender warm brown skin, straight dark chin-length hair. Center: fuller body, deep brown skin, short natural curls. Right: light warm freckled skin, short red hair, visible athletic below-knee prosthesis on anatomical right leg. All stand in the same neutral rigging pose: arms straight out horizontally, hands relaxed, legs slightly apart. Friendly small natural faces. Full body, all fingers and feet entirely within each cell, generous green separation, absolutely no objects or scarf. Matching gouache and colored-pencil texture, morning light from upper left, soft shading, clear edges. Each row reads as the same three children, never six different children. No text, numbers, labels or borders.",
+      "aspect": "3:2",
+      "width": 1800,
+      "quality": 82,
       "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-tiny-ball",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Low curled shape, close to the ground, knees bent deeply and arms enclosing the body. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Low curled shape, close to the ground, knees bent deeply and arms enclosing the body.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-tall-tower",
       "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-tall-tower",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. High shape on tiptoes, both arms reaching straight overhead. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "High shape on tiptoes, both arms reaching straight overhead.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-wide-star",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-wide-star",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Standing wide star shape with arms extended sideways and feet apart. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Standing wide star shape with arms extended sideways and feet apart.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-twisty",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-twisty",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Standing twist at the torso, arms extended sideways. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Standing twist at the torso, arms extended sideways.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-lean",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-lean",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Standing side bend with the right arm reaching overhead. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Standing side bend with the right arm reaching overhead.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-float",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-float",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Four keyframes, right scarf arm in low, rising, high and falling broad arcs; slow side step and return. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Four keyframes, right scarf arm in low, rising, high and falling broad arcs; slow side step and return.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-swirl",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-swirl",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Eight keyframes, outstretched scarf arm turning a complete circle over four counts, front, side, back, side. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Eight keyframes, outstretched scarf arm turning a complete circle over four counts, front, side, back, side.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-zap",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-zap",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Four keyframes, sharp right-arm punches up, out, down and across. Feet grounded. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Four keyframes, sharp right-arm punches up, out, down and across. Feet grounded.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-melt",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-melt",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Five keyframes, standing to bent knees to crouch to sitting, arms gradually sliding down. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Five keyframes, standing to bent knees to crouch to sitting, arms gradually sliding down.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-shiver",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-shiver",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Four small alternating arm and shoulder shake keyframes in a grounded standing shape. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Four small alternating arm and shoulder shake keyframes in a grounded standing shape.",
-      "status": "deferred to next painter by owner"
-    },
-    {
-      "name": "dancer-leap",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 500,
-      "token": "art:dancer-leap",
-      "prompt": "Future painter only. One consistent full-length dancer in soft grey-violet top and dark trousers. Right hand holds the scarf attachment. Paint the body without a scarf so the exact simulated ribbon stays visible. Warm picture-book gouache, morning light from upper left. Eight gait keyframes, running preparation, takeoff, airborne split leap, landing, then opposite direction. Include full body and grounded support, consistent proportions and hand registration. Use one separate cutout per keyframe. Pure green key background. No text.",
-      "phase_plan": "Eight gait keyframes, running preparation, takeoff, airborne split leap, landing, then opposite direction.",
-      "status": "deferred to next painter by owner"
+      "drawn_by": "codex",
+      "rig_note": "One articulated pose per child plus reverse view for turning. Engine joints drive the cutout pieces; not an emotion-to-person mapping.",
+      "despill": true,
+      "registration": {
+        "raw_crop": [
+          38,
+          15,
+          1462,
+          992
+        ],
+        "columns": 3,
+        "rows": 2,
+        "cast": "brown skin straight hair; fuller body dark skin curls; freckled red hair prosthetic right lower leg"
+      },
+      "review": "Front and reverse checked; articulated crops checked in review frames. Owner contact sheet in Scratch."
     }
   ]
 }

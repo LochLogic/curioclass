@@ -1,0 +1,22 @@
+{
+  "id": "cocoa-chain",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Pull one red thread from a chocolate shelf back to Ghana.",
+  "outcome": "Explain how a natural disaster changes lives along an international supply chain.",
+  "driver": "students or teacher",
+  "minutes": "25-35",
+  "modes": [
+    "Follow the bar",
+    "Explain it"
+  ],
+  "grades_label": "Grades 4-6",
+  "content_note": "The farm Hard facts card names child labor in cocoa plainly.",
+  "sources": [
+    "Sources documented in spec.md and notes.md",
+    "Natural Earth 1:50m coastline, public domain",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

@@ -47,6 +47,7 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
   border:5px solid #fff1dc; box-shadow:0 6px 0 #893b09,0 0 0 3px #c16c2a; background:radial-gradient(at 35% 25%,#e9973b,#b45309);
   color:white; display:flex; flex-direction:column; align-items:center; justify-content:center; font-weight:800; font-size:22px}
 .hand-icon {width:62px; height:65px; display:block; fill:currentColor; filter:drop-shadow(0 2px 0 #5e2b1633)}
+.painted-hand {object-fit:contain}
 #tap small {font-size:11px; font-weight:500}
 #tap.tap {transform:scale(.95); background:#8d3f08; box-shadow:0 2px 0 #893b09,0 0 0 6px #ffd23f}
 .first-pulse {animation:invite 2.2s ease-in-out infinite}
@@ -135,6 +136,7 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
 #skip {height:60px; min-width:120px; border:2px solid #b99a72; background:#fffaf2; border-radius:14px; font-size:20px; font-weight:800}
 .prediction-star {position:absolute; right:2px; top:-5px; color:#9b6100; font-size:16px; line-height:1;
   width:18px; height:18px; text-align:center}
+.result-cell .prediction-star {left:0; right:auto}
 #graph {align-items:stretch; padding:14px; gap:10px}
 #graph h2 {font-size:25px; margin:0 0 8px}
 .graph-row {flex:1; min-height:60px; display:flex; align-items:center; padding:5px 10px; gap:12px;
@@ -146,10 +148,15 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
 @keyframes dot-in {from {transform:scale(.2); opacity:0}}
 .graph-row.correct {border:4px solid var(--teal); background:#e3f4e8; box-shadow:0 0 0 3px #ffd23f}
 .graph-row.wrong {border-color:#b45309; background:#fff0d4}
+.graph-row {position:relative}
+.graph-row .prediction-star {right:4px; top:3px; font-size:20px}
+.graph-row.wrong .dots {outline:2px dashed #b45309; outline-offset:4px; border-radius:8px}
+.graph-row.correct .dot {box-shadow:0 1px 2px #183a3933}
 .graph-row strong {font-size:24px; min-width:28px}
 .plate {height:auto; aspect-ratio:1.25}
 .stage.data .plate {height:auto; aspect-ratio:1.4}
 .calm .first-pulse,.calm .lights i,.calm .dot,.calm .timeline,.calm .plate.pop .number {animation:none!important}
+.calm #tap.tap {transform:none}
 @media (max-width:1100px) {
   h1 {font-size:23px}
   .seg button {font-size:15px; padding:0 10px}
@@ -339,7 +346,7 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
     <div class="action-deck">
       <button class="big-btn gold" id="drop">⬇ Drop</button>
       <button id="tap" class="first-pulse" aria-label="Bounce! Tap for each hit. Space bar.">
-        <svg class="hand-icon" aria-hidden="true"><use href="#hand"/></svg><span>Bounce!</span><small>SPACE</small>
+        <img class="hand-icon painted-hand" src="art:tap-hand" alt=""><span>Bounce!</span><small>SPACE</small>
       </button>
       <button class="big-btn" id="again">↻ Again</button>
     </div>
@@ -370,7 +377,7 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
       <div id="ball-shadow"></div><img id="ball" src="art:ball-bouncy" alt="Bouncy ball">
     </div>
     <div class="plate me" id="me-plate">
-      <div class="plate-label"><svg class="hand-icon" aria-hidden="true"><use href="#hand"/></svg>Me</div>
+      <div class="plate-label"><img class="hand-icon painted-hand" src="art:tap-hand" alt="">Me</div>
       <div class="number" id="me-number">0</div><div class="tallies" id="me-tallies" aria-hidden="true"></div>
     </div>
     <div class="plate counter" id="counter-plate">
@@ -395,7 +402,6 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
     <div class="overlay" id="graph" aria-label="Picture graph" hidden>
       <h2 id="graph-title">Which row is the longest?</h2>
     </div>
-    <img src="art:tap-hand" alt="" hidden>
   </div>
 </main>
 <script src="kit:curio"></script>
@@ -411,6 +417,9 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
     'drop-all': 'Now tap a ball and press Drop. Drop every ball, one at a time.',
     paper: 'Did you count on paper? Tap plus or minus to show your count.',
     same: 'The computer counted the same as you! Nice counting!',
+    timing: 'Our totals match, but some taps did not match hits. Look at the circles. Tap Again to try.',
+    paperSame: 'Our paper total matches the computer total. Tap Again to count once more.',
+    corrected: 'The bouncy ball has the longest row. Compare its dots with the row you tried first.',
     fewer: 'You counted fewer than the computer. Look for the yellow circles. Those are the bounces you missed.',
     more: 'You counted more than the computer. The gray circles are extra taps.',
     fast: 'The bounces got small and fast at the end. Those are the hardest to count.',
@@ -451,7 +460,7 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
     b.hits = [FALL];
     for (let n = 1; 2 * FALL * b.e ** n >= .25; n++) b.hits.push(b.hits.at(-1) + 2 * FALL * b.e ** n);
   }
-  const fresh = () => ({ball:'bouncy', last:null, rows:{}, prediction:null, ask:true, graph:false});
+  const fresh = () => ({ball:'bouncy', last:null, rows:{}, prediction:null, ask:true, graph:false, firstRow:null});
   const state = {mode:'lab', modes:{lab:fresh(), data:fresh()}, slow:false, running:false, time:0, taps:[],
     hitLog:[], hits:0, token:0, firstDrop:true, phase:'idle', selectedRow:null};
   const current = () => state.modes[state.mode];
@@ -525,6 +534,7 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
       row.querySelector('.tries').textContent = tries ? tries.map(t => t.me).join(',') : '?';
       row.querySelector('strong').textContent = tries ? tries.at(-1).count : '?';
       row.querySelector('.prediction-star').textContent = current().prediction === b.id ? '★' : '';
+      $('graph-' + b.id).querySelector('.prediction-star').textContent = current().prediction === b.id ? '★' : '';
     }
     const ready = BALLS.every(b => current().rows[b.id]?.length);
     $('chart-toggle').disabled = !ready;
@@ -689,7 +699,8 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
     if (state.wasAgain) event('again',token);
     if (!last.me) {
       hint('paper');
-      how('paper',{valid:() => token === state.token && !state.running && !last.paper, needs:'#plus'});
+      const keys = V.heard('sensor') ? ['paper'] : ['paper','sensor'];
+      how(keys,{valid:() => token === state.token && !state.running && !last.paper, needs:'#plus'});
     } else compare();
     if (state.mode === 'data' && first && BALLS.every(x => current().rows[x.id]?.length)) {
       hint('ready');
@@ -702,22 +713,29 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
     const key = last.me === last.count ? 'same' : last.me < last.count ? 'fewer' : 'more';
     const token = state.token;
     // Paper tallies have no timestamps, so never point at absent timeline rings.
-    const spokenKey = last.paper && key !== 'same' ? (key === 'fewer' ? 'paperFewer' : 'paperMore') : key;
+    const fullyMatched = !last.matching.missed.length && !last.matching.extra.length;
+    const spokenKey = last.paper ? (key === 'same' ? 'paperSame' : key === 'fewer' ? 'paperFewer' : 'paperMore') :
+      key === 'same' && !fullyMatched ? 'timing' : key;
     event(spokenKey,token);
+    teachSensor(token);
     const b = BALLS.find(x => x.id === last.ball);
     const late = !last.paper && (last.matching.missed.some(i => i >= 5) ||
       last.matching.extra.some(j => b.hits.length > 5 && last.taps[j] > b.hits[4]));
     if (key !== 'same' && late) event('fast',token);
     hint(last.paper ? 'totals' : 'replay');
-    if (!V.heard('sensor')) how('sensor',{valid:() => token === state.token && !state.running});
+  }
+  function teachSensor(token) {
+    if (!V.heard('sensor')) {
+      how('sensor',{valid:() => token === state.token && !state.running && !current().graph && !current().ask});
+    }
   }
   function paper(delta) {
     const last = current().last;
     if (!last || state.running) return;
     last.paper = true;
     last.me = Math.max(0,Math.min(30,last.me+delta));
-    const compareKeys = new Set(['same','fewer','more','paperFewer','paperMore','paper','fast','sensor']);
-    const oldComparePlaying = ['same','fewer','more','paperFewer','paperMore','fast'].some(k => L[k] === V.playing);
+    const compareKeys = new Set(['same','timing','paperSame','fewer','more','paperFewer','paperMore','paper','fast','sensor']);
+    const oldComparePlaying = ['same','timing','paperSame','fewer','more','paperFewer','paperMore','fast'].some(k => L[k] === V.playing);
     if (oldComparePlaying) V.hush();
     else V.dropQueued(line => compareKeys.has(line.key));
     render();
@@ -741,7 +759,7 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
     if (wasRunning) { start(); return; }
     render();
     hint(ball().pick);
-    V.how([ball().pick,'tap-along'],{hint:false, valid:() => !state.running && state.phase === 'idle', needs:'#drop'});
+    V.how(['tap-along',ball().pick],{hint:false, valid:() => !state.running && state.phase === 'idle', needs:'#drop'});
     Curio.tone(330,.04,.07);
   }
   function predict(id) {
@@ -791,15 +809,18 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
   }
   function chooseRow(id) {
     state.selectedRow = id;
+    current().firstRow ||= id;
     const correct = id === 'bouncy';
+    const independent = current().firstRow === 'bouncy';
     for (const b of BALLS) {
       $('graph-' + b.id).classList.toggle('correct',correct && b.id === id);
       $('graph-' + b.id).classList.toggle('wrong',!correct && b.id === id);
     }
     V.hush();
-    event(correct ? 'correct' : 'wrong',state.token,{valid:() => current().graph && state.selectedRow === id});
-    hint(correct ? 'correct' : 'wrong');
-    if (correct) Curio.yes();
+    const key = correct ? (independent ? 'correct' : 'corrected') : 'wrong';
+    event(key,state.token,{valid:() => current().graph && state.selectedRow === id});
+    hint(key);
+    if (correct && independent) Curio.yes();
     else Curio.tone(210,.09,.08);
   }
   function drawTimeline() {
@@ -861,7 +882,7 @@ main {grid-template-columns:minmax(0,1fr) 332px; overflow:hidden}
     row.id = 'graph-' + b.id;
     row.className = 'graph-row';
     row.setAttribute('aria-label',b.name + ': ' + b.hits.length + ' dots');
-    row.innerHTML = `<img src="${b.art}" alt=""><span class="dots">` +
+    row.innerHTML = `<img src="${b.art}" alt=""><span class="prediction-star" aria-hidden="true"></span><span class="dots">` +
       b.hits.map((_,i) => `<i class="dot" style="animation-delay:${i*.045}s"></i>`).join('') +
       `</span><strong>${b.hits.length}</strong>`;
     row.onclick = () => chooseRow(b.id);

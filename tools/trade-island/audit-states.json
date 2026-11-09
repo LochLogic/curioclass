@@ -1,0 +1,249 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "accepted-deal",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#season-1"
+        },
+        {
+          "drag": "const r=document.getElementById('workers').getBoundingClientRect();return [[r.x+r.width*.5,r.y+r.height/2],[r.x+r.width*.7,r.y+r.height/2],[r.x+r.width*.86,r.y+r.height/2]]"
+        },
+        {
+          "js": "for(const [id,v] of [['send',150],['get',100]]){const e=document.getElementById(id);e.value=v;e.dispatchEvent(new Event('change',{bubbles:true}));}"
+        },
+        {
+          "click": "#offer"
+        }
+      ],
+      "keep": [
+        "#workers",
+        "#offer",
+        "#bars"
+      ]
+    },
+    {
+      "name": "cost-card",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#season-1"
+        },
+        {
+          "click": "#cost-open"
+        },
+        {
+          "click": "[data-step='cost-pell:0.5']",
+          "times": 4,
+          "gap": 0.05
+        },
+        {
+          "click": "[data-step='cost-wren:0.5']",
+          "times": 2,
+          "gap": 0.05
+        },
+        {
+          "click": "#choose-wren"
+        },
+        {
+          "click": "#cost-check"
+        }
+      ],
+      "keep": [
+        "#cost-check",
+        "#cost-feedback"
+      ]
+    },
+    {
+      "name": "factory-moved",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-policy"
+        },
+        {
+          "click": "#factory-choice"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#factory-choice"
+      ]
+    },
+    {
+      "name": "extreme-deal-inputs",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#season-1"
+        },
+        {
+          "js": "const w=document.getElementById('workers');w.value=100;w.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "js": "for(const id of ['send','get']){const e=document.getElementById(id);e.value=300;e.dispatchEvent(new Event('change',{bubbles:true}));}"
+        },
+        {
+          "click": "#offer"
+        }
+      ],
+      "keep": [
+        "#workers",
+        "#send",
+        "#get",
+        "#offer",
+        "#reply"
+      ]
+    },
+    {
+      "name": "case-with-evidence",
+      "steps": [
+        {
+          "click": "#m-policy"
+        },
+        {
+          "click": "#tariff"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "js": "__tool.pinEvidence('group',0); __tool.pinEvidence('group',6); __tool.pinEvidence('metric','Pell','Jobs');"
+        },
+        {
+          "click": "#m-case"
+        },
+        {
+          "js": "const e=document.getElementById('sentence');e.value='I support this tariff because Pell weavers gain jobs while shoppers pay more and Wren loses weaving income.';e.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#check-case"
+        }
+      ],
+      "keep": [
+        "#check-case",
+        "#save-case",
+        "#pins"
+      ]
+    },
+    {
+      "name": "policy-real-page",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-policy"
+        },
+        {
+          "js": "document.getElementById('policy-real-toggle').click();"
+        }
+      ],
+      "keep": [
+        "#policy-real",
+        "#policy-real-toggle"
+      ]
+    },
+    {
+      "name": "small-positive-gain",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-policy"
+        },
+        {
+          "click": "#tariff"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#exchange"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#pin-group-4"
+      ]
+    },
+    {
+      "name": "motor-reference",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#season-3"
+        },
+        {
+          "js": "const w=document.getElementById('workers');w.value=75;w.dispatchEvent(new Event('input'));for(const [id,v] of [['send',150],['get',100]]){const e=document.getElementById(id);e.value=v;e.dispatchEvent(new Event('change'));}"
+        },
+        {
+          "click": "#offer"
+        }
+      ],
+      "keep": [
+        "#offer",
+        "#bars",
+        "#both-banner"
+      ]
+    },
+    {
+      "name": "empty-case-check",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "#m-case"
+        },
+        {
+          "click": "#check-case"
+        }
+      ],
+      "keep": [
+        "#check-case",
+        "#save-case",
+        "#case-result"
+      ]
+    }
+  ]
+}

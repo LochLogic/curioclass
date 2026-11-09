@@ -9,8 +9,8 @@
 <!--
 Dance Hall Decades, Curio Class. Built from kit/starter/src.html. Content CC BY 4.0, code MIT.
 NCAS DA:Re7, Re8, Re9, Cn10, Cn11. Sources and teaching adaptations are in notes.md.
-Illustrations generated with OpenAI gpt-image, edited for Curio Class. Generated images contain no people.
-The temporary faceless figure comes from kit/dance.js. Original synthesized grooves, no song recordings.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Painted dancers and imagined halls are generated illustrations.
+Reusable painted pose sheets replace the temporary kit figure. Original synthesized grooves, no song recordings.
 No network requests, tracking or uploads. Only the comparison is saved on this device.
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -81,7 +81,7 @@ main {display:block;min-width:0;min-height:0;overflow:hidden}
 .dance-floor {transition:filter .3s}
 .count-strip {position:absolute;bottom:0;left:0;right:0;display:grid;grid-template-columns:100px minmax(0,1fr);
   gap:8px;align-items:center;background:linear-gradient(transparent,#170f0bf0 15%);min-height:70px;padding:7px 22px}
-#big-count {font:700 clamp(48px,5.4vw,90px)/1 Georgia,serif;color:var(--brand);text-align:center;font-variant-numeric:tabular-nums}
+#big-count {font:700 clamp(48px,5.4vw,90px)/1 Georgia,serif;color:var(--brand);text-align:center;font-variant-numeric:tabular-nums;transform:translateY(-5px)}
 #step-cue {font:600 clamp(15px,1.6vw,24px)/1.2 'Segoe UI',sans-serif}
 #step-detail {font:12px/1.4 'Segoe UI',sans-serif;color:var(--muted);margin-top:3px}
 .panel {border:0;background:linear-gradient(135deg,#33241b,#211711);padding:22px 18px;gap:12px;min-height:0;overflow:visible}
@@ -119,7 +119,7 @@ main {display:block;min-width:0;min-height:0;overflow:hidden}
 .story-card h3 {font:400 25px/1.2 Georgia,serif;color:#f3cc99;margin:0 0 8px}
 .story-card p {font-size:15px;line-height:1.5;margin:8px 0}
 .story-card .fact {border-left:3px solid var(--brand);background:#e07be00d;padding:10px 14px;margin:12px 0;font:17px/1.4 Georgia,serif}
-.story-card .talk {color:#f5c68f;font-size:16px;border-top:1px solid #79604e;padding-top:12px;margin-top:12px}
+.story-card .talk {color:#f5c68f;font-size:16px;border-bottom:1px solid #79604e;padding-bottom:10px;margin:0 0 12px}
 .story-card a {color:#a8dfff;display:inline-block;min-height:44px;padding:12px 0;font-size:12px}
 #moving {height:100%;overflow:auto;padding:22px;scrollbar-width:thin;background:radial-gradient(ellipse at top,#483026,#1d1410 75%)}
 .moving-heading {display:flex;justify-content:space-between;gap:12px;align-items:start;margin-bottom:16px}
@@ -134,6 +134,7 @@ label {font-size:12px;display:block;min-width:0}
 select,textarea,input[type=text] {color:var(--ink);font:inherit;background:#1d1410;border:1px solid #97785e;
   border-radius:5px;min-height:44px;padding:8px;max-width:100%}
 select {width:100%;font-size:13px}
+select:focus-visible {outline-offset:-3px}
 .picks label {flex:1}
 .chart-row {position:relative;margin:12px 0}
 .row-ends {display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px}
@@ -237,6 +238,7 @@ select {width:100%;font-size:13px}
   .pin.b {top:1px}
   .pin.me {top:12px}
   .chart-row input {left:10px;width:calc(100% - 20px)}
+  .chart-row:focus-within .track {outline-width:2px;outline-offset:1px}
   .chart-note {font-size:10px;line-height:12px;margin:2px 0 0}
   .judge {margin-top:4px;padding-top:4px}
   .judge h4 {font-size:11px;line-height:12px;margin:0}
@@ -401,7 +403,7 @@ select {width:100%;font-size:13px}
           <label>Dance B<select id="pick-b"></select></label>
         </div>
         <div id="chart"></div>
-        <p class="chart-note">◆ Me · ● A · ▲ B · Curio Class descriptions, not measured. Hover a row for reasons.</p>
+        <p class="chart-note" id="chart-note">◆ Me · ● A · ▲ B · Curio Class descriptions, not measured. Hover or focus a slider for reasons.</p>
       </div>
       <div class="sheet">
         <h3>Judge with a criterion</h3>
@@ -414,6 +416,7 @@ select {width:100%;font-size:13px}
       </div>
       <div class="sheet frame">
         <h3>Make your case</h3>
+        <p class="chart-note">Your draft judgment. Check that each reason fits your chosen criterion.</p>
         <div class="sentence-fields">
           <label>I move most like<select id="like"></select></label>
           <label>Because<textarea id="because" aria-label="Why this dance fits my movement" maxlength="400"
@@ -429,7 +432,6 @@ select {width:100%;font-size:13px}
   </section>
 </main>
 <script src="kit:curio"></script>
-<script src="kit:dance"></script>
 <script>
 (() => {
   'use strict';
@@ -463,7 +465,7 @@ select {width:100%;font-size:13px}
         'while rooms such as the Cotton Club excluded Black customers.',
       fact:'Frankie Manning remembered a room where dancing mattered more than skin color. This is a paraphrase of his recollection.',
       talk:'What would it change to be judged by your dancing rather than your skin?',
-      source:'https://www.bklynlibrary.org/blog/2022/12/01/cutting-rug-evidences', sourceName:'Manning recollection · Brooklyn Public Library',
+      source:'https://en.wikipedia.org/wiki/Savoy_Ballroom', sourceName:'Manning recollection · Savoy Ballroom (Wikipedia)',
       story:'At the Savoy, people said you were judged by your dancing, not your skin.',
       reasons:['One-hand partner connection','Triple steps take practice','Dancers invent variations'],
       descriptors:['A partner connection','Bouncing body and feet','Room for variations','Triple steps need practice'],
@@ -479,7 +481,7 @@ select {width:100%;font-size:13px}
         'exclusion. We do not assume that every ballroom welcomed everyone.',
       fact:'One shared floor let dancers exchange ideas across communities.',
       talk:'Why might a dance spread faster in a room open to everyone?',
-      source:'https://teachrock.org/wp-content/uploads/Handout_3_-_1950s_Manhattan_2.pdf', sourceName:'Palladium history · TeachRock',
+      source:'https://www.lincolncenter.org/feature/legacies-of-san-juan-hill/latin-jazz-and-san-juan-hill', sourceName:'Palladium history · Lincoln Center',
       story:'At the Palladium, dancers from different New York communities shared the floor and exchanged ideas.',
       reasons:['Forward-and-back basic','Often danced with a partner','Pauses on counts four and eight here'],
       descriptors:['Often partnered, also solo','Weight shifts through body','Basic with variations','Weight changes take practice'],
@@ -537,16 +539,16 @@ select {width:100%;font-size:13px}
     {
       name:'The Hustle', year:'1975', decade:'1975', place:'A New York disco', art:'art:hall-disco',
       marker:'art:marker-ball', learn:100, party:120, counts:3, groove:'Four-on-the-floor · original learning groove',
-      formation:'Partner basic: and-one, two, three. Tap left, step left, back right, in place left.',
+      formation:'Short tap introduction: and-one, two, three. Mark the cues separately before trying a loop.',
       room:['A dark dance floor, colored lights, and a DJ mixing records.',
         'Disco grew at welcoming parties such as David Mancuso\'s Loft, begun in 1970.'],
-      made:'Black, Latino and gay dancers helped shape disco. Latino teens in the Bronx and Brooklyn danced the Hustle before the 1975 hit song.',
+      made:'Black, Latino and gay dancers helped shape disco. Latino teens in the Bronx and Brooklyn danced the Hustle before Van McCoy\'s 1975 hit song.',
       out:'Many clubs had turned these communities away. In 1979, Disco Demolition Night destroyed disco ' +
         'records at a Chicago ballpark; many saw a backlash against the people disco belonged to.',
       fact:'A welcoming dance culture could still become a target of hostility outside its own rooms.',
       talk:'What does it mean when a crowd destroys another crowd\'s music?',
       source:'https://www.britannica.com/art/disco', sourceName:'Disco communities and backlash · Britannica',
-      story:'Disco welcomed Black, Latino and gay dancers. The later backlash was also about the people who belonged there.',
+      story:'Disco welcomed Black, Latino and gay dancers. Many saw the backlash as hostility toward those communities.',
       reasons:['Partner basic','Quick lead-in before one','Room for turns and variations'],
       descriptors:['Partner basic','Feet and connected body','Basic with variations','Quick timing needs practice'],
     },
@@ -557,8 +559,8 @@ select {width:100%;font-size:13px}
       room:['A party where people join the same line and pattern.',
         'Wooden dance floors, a DJ and guests learning from each other.',
         'This common eighteen-count version differs from Ric Silver\'s original twenty-two counts.'],
-      made:'Ric Silver dates his first version to 1976, an origin date that has been disputed. Marcia ' +
-        'Griffiths\'s Electric Boogie helped make the dance famous.',
+      made:'Ric Silver dates his first version to 1976, an origin date that has been disputed. Bunny Wailer wrote Electric Boogie; Marcia ' +
+        'Griffiths\'s recording helped make the dance famous.',
       out:'A line dance can invite people to join without a partner. Access still depends on the setting. ' +
         'In 2007, Silver\'s copyright claim and objections to posted versions raised questions about ' +
         'ownership.',
@@ -578,8 +580,9 @@ select {width:100%;font-size:13px}
   ];
   const L = {
     welcomeHalls:'Every dot on this line is a room where people danced. Tap one, and press Play to learn its steps.',
-    learnHow:'Stand up and face the screen. Press Play and follow the lit footprints.',
-    roomHow:'Every dance has a story about who got in and who did not. Read it, then talk it over.',
+    learnHow:'Press Play.',
+    roomHow:'Discuss Talk about it.',
+    roomViewHow:'Open Who made it.',
     welcomeMoving:'Set where you stand on each line. Then pick two dances to put beside you.',
   };
   HALLS.forEach((h,i) => L['story'+i] = h.story);
@@ -622,11 +625,13 @@ select {width:100%;font-size:13px}
     $('hint').textContent = s;
   }
   function narrateCurrent() {
+    if (state.mode==='moving') {V.welcome();return;}
     if (state.playing) {
       if (state.tab==='people') pendingStory = {hall:state.hall, tab:state.tab};
       return;
     }
     if (state.tab==='dance') V.how('learnHow',{valid:() => !state.playing && state.tab==='dance',needs:'#play'});
+    if (state.tab==='room') V.how('roomViewHow',{needs:'#tab-people'});
     if (state.tab==='people') {
       const i = state.hall;
       const lines = !V.heard('roomHow') ? ['roomHow','story'+i] : ['story'+i];
@@ -646,8 +651,9 @@ select {width:100%;font-size:13px}
   function setHall(i) {
     if(i===state.hall) {narrateCurrent();return;}
     const focused=document.activeElement;
+    const keepHow=state.mode==='halls' && state.tab==='dance' && V.playing===L.learnHow;
     stop(false);
-    V.hush();
+    if(keepHow) V.dropQueued(); else V.hush();
     state.hall = Math.max(0,Math.min(7,i));
     state.visited.add(state.hall);
     state.count = 0;
@@ -660,8 +666,9 @@ select {width:100%;font-size:13px}
     Curio.tone(220 + state.hall*28,.08,.035,'sine');
   }
   function setTab(tab,force=false) {
-    if(tab===state.tab && !force) {hint();return;}
-    V.hush();
+    if(tab===state.tab && !force) {hint();narrateCurrent();return;}
+    const keepHow=tab==='dance' && state.mode==='halls' && V.playing===L.learnHow;
+    if(keepHow) V.dropQueued(); else V.hush();
     state.tab = tab;
     pendingStory = null;
     for (const t of ['dance','room','people']) {
@@ -674,6 +681,7 @@ select {width:100%;font-size:13px}
     $('story-people').hidden = tab!=='people';
     hint();
     narrateCurrent();
+    if (tab==='dance') requestAnimationFrame(layoutFigure);
   }
   function setMode(mode) {
     if(mode===state.mode) {V.welcome();return;}
@@ -709,10 +717,13 @@ select {width:100%;font-size:13px}
     $('tempo-label').textContent = 'Learning tempos: '+h.learn+' / '+h.party+' beats per minute.';
     $('story-room').innerHTML = '<article class="story-card"><div class="eyebrow">Inside the room</div><h3>'+h.place+
       '</h3>'+h.room.map(s => '<p>'+s+'</p>').join('')+'</article>';
-    $('story-people').innerHTML = '<article class="story-card"><div class="eyebrow">Credit & access</div><h3>Who made it?</h3><p>'+h.made+
+    $('story-people').innerHTML = '<article class="story-card"><p class="talk"><strong>Talk about it</strong><br>'+h.talk+
+      '</p><div class="eyebrow">Credit & access</div><h3>Who made it?</h3><p>'+h.made+
       '</p><h3>Who was kept out?</h3><p>'+h.out+'</p><div class="fact"><div class="eyebrow">Fact card · summary</div>'+h.fact+
       '</div><a target="_blank" rel="noopener" href="'+h.source+'">Source: '+h.sourceName+
-      ' ↗</a><p class="talk"><strong>Talk about it</strong><br>'+h.talk+'</p></article>';
+      ' ↗</a></article>';
+    $('story-room').scrollTop=0;
+    $('story-people').scrollTop=0;
     markerButtons.forEach((b,i) => {
       b.classList.toggle('active',i===state.hall);
       b.classList.toggle('visited',state.visited.has(i));
@@ -768,7 +779,7 @@ select {width:100%;font-size:13px}
     if (h===6) pattern = [
       e('and','L','Tap left',-36,0,.5,'point','Quick lead-in before one.'),
       e(1,'L','Step onto left',-28,0,1,'step'),e(2,'R','Step right back',28,45,1,'step'),
-      e(3,'L','Left in place',-28,0,.5,'stand'),
+      e(3,'L','Left in place',-28,0,.5,'stand','Reset weight onto right before the next left tap.'),
     ];
     if (h===7) pattern = [
       e(1,'R','Step right side',25,0),e(2,'L','Left behind right',10,15),e(3,'R','Step right side',70,0),
@@ -777,8 +788,8 @@ select {width:100%;font-size:13px}
       e(9,'R','Step right back',-20,30),e(10,'L','Step left back',-45,55),e(11,'R','Step right back',-20,80),
       e(12,'L','Touch left',-45,80,1,'point'),e(13,'L','Step left forward',-45,45),
       e(14,'R','Touch right',-20,45,1,'point'),e(15,'R','Rock right back',-20,80),
-      e(16,'L','Touch left',-45,80,1,'point'),e(17,'L','Step left forward',-45,45),
-      e(18,'R','Scuff right, quarter turn left',-20,10,1,'kick','Repeat the pattern facing the next wall.'),
+      e(16,'L','Touch left',-45,80,1,'point'),e(17,'L','Step left forward, quarter turn left',-45,45),
+      e(18,'R','Scuff right',-20,10,1,'kick','Repeat the pattern facing the next wall.'),
     ];
     let at=0;
     pattern.forEach(p => {p.at=at;at+=p.dur;});
@@ -805,7 +816,8 @@ select {width:100%;font-size:13px}
     const cx=w/2, cy=height/2;
     // The visible diagram follows the current foot position. Faint numbered locations show the phrase path.
     const coords = p => [cx + p.x*scale*(state.mirror?-1:1),cy+p.y*scale*.8];
-    let prev={L:[cx-25*scale,cy],R:[cx+25*scale,cy]};
+    const direction=state.mirror?-1:1;
+    let prev={L:[cx-25*scale*direction,cy],R:[cx+25*scale*direction,cy]};
     printGroups=pattern.map((p,i) => {
       const [x,y]=coords(p);
       if (p.foot==='L'||p.foot==='R') {
@@ -821,9 +833,12 @@ select {width:100%;font-size:13px}
       }
       const g=svgEl('g',{class:'print-group',opacity:.35},root);
       // Stacked visits to the same spot become labels beside the live footprint, not overlapping stamps.
-      const rank=pattern.slice(0,i).filter(q => q.foot===p.foot && q.x===p.x && q.y===p.y).length;
+      const effectiveFoot=(q,j)=>q.foot || pattern[Math.max(0,j-1)].foot;
+      const foot=effectiveFoot(p,i);
+      const crowded=[1,3,4,6,7].includes(state.hall) || height<140;
+      const rank=crowded?0:pattern.slice(0,i).filter((q,j) => effectiveFoot(q,j)===foot && q.x===p.x && q.y===p.y).length;
       const isBoth=p.foot==='LR';
-      const targets=isBoth ? [{foot:'L',x:cx-24*scale,y:cy},{foot:'R',x:cx+24*scale,y:cy}] : [{foot:p.foot,x,y}];
+      const targets=isBoth ? [{foot:'L',x:cx-24*scale*direction,y:cy},{foot:'R',x:cx+24*scale*direction,y:cy}] : [{foot,x,y}];
       targets.forEach(t => {
         if (!t.foot) return;
         const color=t.foot==='L'?'#6fc3ff':'#ffb36b';
@@ -834,7 +849,10 @@ select {width:100%;font-size:13px}
         const txt=svgEl('text',{x:0,y:7,fill:'#1d1410','text-anchor':'middle','font-size':15,'font-weight':800},f);
         txt.textContent=t.foot;
       });
-      const label=svgEl('text',{'data-count-label':'true',x:x+17+rank*17,y:y-12,fill:'#fff1dc','font-size':Math.max(14,17*scale),
+      const side=x<cx?-1:1, fontSize=Math.max(14,17*scale);
+      const labelX=isBoth?cx+24*scale+20:x+side*(17+rank*17);
+      const label=svgEl('text',{'data-count-label':'true',x:labelX,y:Math.max(fontSize+3,y-12),fill:'#fff1dc','font-size':fontSize,
+        'text-anchor':isBoth||side>0?'start':'end',
         'font-weight':700,'paint-order':'stroke',stroke:'#1d1410','stroke-width':3},g);
       label.textContent=p.count==='and'?'&':p.count;
       return g;
@@ -859,119 +877,77 @@ select {width:100%;font-size:13px}
     });
     [...phraseCounts.children].forEach((e,i)=>e.classList.toggle('current',i===index));
   }
-  let dancer=null;
-  // Deferred art tokens resolve to draft SVGs until the owner's painter supplies the WebP files.
-  // The renderer deliberately uses only real painted files, so no placeholder enters the classroom scene.
-  const PAINTED_POSES=[
-    ['art:dancer-charleston-left-forward','art:dancer-charleston-right-kick',
-      'art:dancer-charleston-right-back','art:dancer-charleston-left-back-tap'],
-    ['art:dancer-lindy-left-rock-back','art:dancer-lindy-right-recover',
-      'art:dancer-lindy-left-triple','art:dancer-lindy-right-triple','art:dancer-lindy-left-triple',
-      'art:dancer-lindy-right-triple','art:dancer-lindy-left-triple','art:dancer-lindy-right-triple'],
-    ['art:dancer-mambo-left-forward','art:dancer-mambo-right-replace','art:dancer-mambo-left-center',
-      'art:dancer-mambo-left-center','art:dancer-mambo-right-back','art:dancer-mambo-left-replace',
-      'art:dancer-mambo-right-center','art:dancer-mambo-right-center'],
-    ['art:dancer-stroll-right-side','art:dancer-stroll-left-touch','art:dancer-stroll-left-side','art:dancer-stroll-right-touch',
-      'art:dancer-stroll-right-side','art:dancer-stroll-left-touch','art:dancer-stroll-left-side','art:dancer-stroll-right-touch'],
-    ['art:dancer-twist-hips-left-shoulders-right','art:dancer-twist-hips-right-shoulders-left',
-      'art:dancer-twist-low-left','art:dancer-twist-low-right','art:dancer-twist-low-left','art:dancer-twist-low-right',
-      'art:dancer-twist-hips-left-shoulders-right','art:dancer-twist-hips-right-shoulders-left'],
-    ['art:dancer-toprock-right-cross-front','art:dancer-toprock-center-from-right',
-      'art:dancer-toprock-left-cross-front','art:dancer-toprock-center-from-left'],
-    ['art:dancer-hustle-left-tap-and','art:dancer-hustle-left-weight-one',
-      'art:dancer-hustle-right-back','art:dancer-hustle-left-in-place'],
-    ['art:dancer-electric-right-side','art:dancer-electric-left-behind','art:dancer-electric-right-side',
-      'art:dancer-electric-left-touch','art:dancer-electric-left-side','art:dancer-electric-right-behind',
-      'art:dancer-electric-left-side','art:dancer-electric-right-touch','art:dancer-electric-right-back',
-      'art:dancer-electric-left-back','art:dancer-electric-right-back','art:dancer-electric-left-touch',
-      'art:dancer-electric-left-forward','art:dancer-electric-right-touch','art:dancer-electric-right-back',
-      'art:dancer-electric-left-touch','art:dancer-electric-left-forward','art:dancer-electric-right-scuff-turn-left'],
-  ];
-  let paintedFigure=null;
-  // Single swap seam for future painted people: replace this renderer, leaving clock and event data intact.
+  // One replacement seam: character sheets, count-to-pose choices and their rendering.
+  // Each sheet is 4 x 2. The extra sheet has Avery on row one and Jo on row two.
+  const PAINTED_DANCERS=['art:dancer-avery','art:dancer-jo'];
+  const PAINTED_DETAILS='art:dancer-details';
+  const PAINTED_TURN='art:dancer-jo-turn-step';
+  const HALL_DANCER=[0,0,1,1,0,0,1,1];
+  let paintedFigure=null, paintedTile=null, paintedFlip=null;
+  function paintedPose(index) {
+    const p=pattern[index], actor=HALL_DANCER[state.hall];
+    if (!p.foot && index>0) return paintedPose(index-1);
+    if (state.hall===7 && index===16) return {actor,frame:0,extra:false,single:true,flip:state.mirror};
+    let frame=0, extra=false, flip=p.foot==='R';
+    if (state.hall===4) {
+      frame=index>=2 && index<=5?7:6;
+      flip=index%2===1;
+    } else if (/quarter turn/.test(p.cue) || (state.hall===7 && index===17)) {
+      frame=3;extra=true;flip=false;
+    } else if (/behind (right|left)/i.test(p.cue)) {
+      frame=0;extra=true;
+    } else if (p.pose==='point') {
+      frame=/behind/i.test(p.cue)?2:1;extra=true;
+    } else if (/cross/i.test(p.cue)) frame=4;
+    else if (p.pose==='kick') {
+      frame=5;
+      // The actual painted kick is right for Avery, left for Jo.
+      flip=actor===0?p.foot!=='R':p.foot==='R';
+    } else if (/back/i.test(p.cue) && !/center/i.test(p.cue)) frame=2;
+    else if (/forward/i.test(p.cue)) frame=1;
+    else if (/side|Triple/i.test(p.cue)) frame=3;
+    return {actor,frame,extra,flip:flip!==state.mirror};
+  }
   const figureRenderer = {
     mount() {
       $('figure').replaceChildren();
-      dancer= Dance.dancer($('figure'),{floor:Dance.flat(130,90,170),height:1,
-        top:'#e07be0',bottom:'#252b3b',skin:'#b98965',hair:'#2a1a13',shoe:'#f5ece2',badge:'diamond'});
-      paintedFigure=svgEl('image',{'preserveAspectRatio':'xMidYMax meet',display:'none'},$('figure'));
+      paintedFlip=svgEl('g',{},$('figure'));
+      paintedTile=svgEl('svg',{overflow:'hidden',preserveAspectRatio:'xMidYMax meet'},paintedFlip);
+      paintedFigure=svgEl('image',{x:0,y:0,width:1536,height:1024},paintedTile);
     },
-    render(pose,x=0,y=0,facing=180) {
-      if (!dancer) return;
-      const uri=PAINTED_POSES[state.hall][state.event];
-      const ready=uri.startsWith('data:image/webp');
-      dancer.g.style.display=ready?'none':'';
-      paintedFigure.setAttribute('display',ready?'':'none');
-      if(ready) {
-        const box=$('figure').viewBox.baseVal;
-        paintedFigure.setAttribute('href',uri);
-        paintedFigure.setAttribute('x',0);
-        paintedFigure.setAttribute('y',0);
-        paintedFigure.setAttribute('width',box.width);
-        paintedFigure.setAttribute('height',box.height);
-        paintedFigure.setAttribute('transform',state.mirror?`translate(${box.width} 0) scale(-1 1)`:'');
-      }
-      dancer.set({pose,x,y:0,z:y,facing});
+    render(index) {
+      const pose=paintedPose(index), box=$('figure').viewBox.baseVal;
+      const h=box.height, w=h*.75, x=(box.width-w)/2;
+      const col=pose.frame%4, row=pose.extra?pose.actor:Math.floor(pose.frame/4);
+      paintedTile.setAttribute('x',x);
+      paintedTile.setAttribute('y',pose.single?h*.03:0);
+      paintedTile.setAttribute('width',w);
+      paintedTile.setAttribute('height',pose.single?h*.9:h);
+      paintedTile.setAttribute('viewBox',`${col*384} ${row*512} 384 512`);
+      paintedFigure.setAttribute('width',pose.single?384:1536);
+      paintedFigure.setAttribute('height',pose.single?512:1024);
+      paintedFigure.setAttribute('href',pose.single?PAINTED_TURN:pose.extra?PAINTED_DETAILS:PAINTED_DANCERS[pose.actor]);
+      paintedFlip.setAttribute('transform',pose.flip?`translate(${box.width} 0) scale(-1 1)`:'');
     },
   };
   function layoutFigure() {
     if (state.mode!=='halls') return;
     const box=$('figure').getBoundingClientRect();
     if (box.width<1 || box.height<1) return;
-    const k=Math.min(box.height*.83,box.width*.9);
-    if (!dancer) figureRenderer.mount();
-    dancer.floor = Dance.flat(k,box.width/2,box.height*.92);
     $('figure').setAttribute('viewBox',`0 0 ${box.width} ${box.height}`);
     drawFootprints();
     poseFigure(state.event,1);
   }
-  function eventPose(i) {
-    const p=pattern[i];
-    let pose=Dance.pose(p.pose);
-    const s=p.foot==='R' ? -1 : 1;
-    if (p.pose==='step') {
-      const hip=/back|behind/i.test(p.cue)?-22:22;
-      const out=/side/i.test(p.cue)?24:/behind/i.test(p.cue)?-14:8;
-      pose=Dance.pose({lLeg:s>0?[hip,out,12]:[-8,8,15],rLeg:s<0?[hip,out,12]:[-8,8,15],
-        lArm:[30,s>0?-80:80,35,80],rArm:[30,s>0?80:-80,35,-80],lean:3});
-    }
-    if (p.pose==='point') {
-      pose=Dance.pose({lLeg:p.foot==='L'?[12,15,5]:[0,4,8],rLeg:p.foot==='R'?[12,15,5]:[0,4,8],
-        lToe:p.foot==='L'?1:0,rToe:p.foot==='R'?1:0,arms:[20,20,25,50]});
-    }
-    if (state.hall===0 && i===2) pose=Dance.pose({rLeg:[-25,3,8],lLeg:[0,3,8],
-      lArm:[30,80,35,80],rArm:[30,-80,35,-80]});
-    if (state.hall===0 && i===3) pose=Dance.pose({lLeg:[-25,3,8],rLeg:[0,3,10],lToe:1});
-    if (state.hall===1 && i<2) pose=Dance.pose({lLeg:i===0?[-22,5,10]:[0,5,10],rLeg:[0,5,10],arms:[35,60,55,90]});
-    if (state.hall===2) pose=Dance.pose({lLeg:[i<2?28:0,5,8],rLeg:[i===4||i===5?-28:0,5,8],
-      side:i===1||i===4?-4:4,arms:[35,20,50,80]});
-    if (state.hall===3) {
-      const phase=i%4;
-      pose=Dance.pose({lLeg:[0,phase===2?24:5,10],rLeg:[0,phase===0?24:5,10],
-        lToe:phase===1?1:0,rToe:phase===3?1:0,arms:[25,20,30,50]});
-    }
-    if (state.hall===4) {
-      const dip=Math.sin((i/7)*Math.PI);
-      pose=Dance.pose({yaw:i%2?-18:18,twist:i%2?40:-40,side:i%2?8:-8,
-        legs:[dip*25,12,dip*48],arms:[45,40,70,90]});
-    }
-    if (state.hall===5) {
-      if (i%2===0) pose=Dance.pose({lLeg:i===2?[25,-24,12]:[0,8,12],
-        rLeg:i===0?[25,-24,12]:[0,8,12],arms:[75,0,85,0],lean:5});
-      else pose=Dance.pose({legs:[8,7,16],arms:[25,30,35,60]});
-    }
-    return pose;
-  }
   function poseFigure(i,u) {
-    if (!dancer || !pattern.length) return;
-    const previous=eventPose((i+pattern.length-1)%pattern.length), current=eventPose(i);
-    const pose=Curio.reduce ? current : Dance.mix(previous,current,Math.min(1,u*4));
-    const p=pattern[i];
-    const facing=state.mirror ? 35 : 145;
-    const turn=state.hall===7 ? state.turns*90 + (i===17 ? 90*(Curio.reduce?1:Math.min(1,u*2)) : 0) : 0;
-    figureRenderer.render(pose,0,0,facing + turn);
-    $('figure-caption').textContent=state.mirror?'Mirror: face the screen':'Face the same way';
-    $('figure').setAttribute('aria-label',HALLS[state.hall].name+': '+p.cue);
+    if (!paintedFigure || !pattern.length) return;
+    figureRenderer.render(i);
+    const wall=(state.turns+(i>=16?1:0))%4;
+    const arrows=state.mirror?['↑','→','↓','←']:['↑','←','↓','→'];
+    const facing=state.hall===7?' · wall '+(wall+1)+' '+arrows[wall]:'';
+    $('figure-caption').textContent=(state.mirror?'Mirrored teaching view':'Follow from behind')+facing;
+    $('figure').setAttribute('aria-label',HALLS[state.hall].name+': '+pattern[i].cue+facing);
+    $('diagram-title').textContent=state.hall===7?'Your feet · relative to wall '+(wall+1)+' '+arrows[wall]:
+      'Your feet · looking down';
   }
   function showEvent(i) {
     state.event=i;
@@ -1087,7 +1063,6 @@ select {width:100%;font-size:13px}
       trace.push({...active,display:now,hall:state.hall});
       if(trace.length>256) trace.shift();
     }
-    if(active && state.tab==='dance' && !Curio.reduce) poseFigure(active.i,(now-active.time)/active.duration);
     raf=requestAnimationFrame(frame);
   }
   async function play() {
@@ -1122,7 +1097,7 @@ select {width:100%;font-size:13px}
     $('play').setAttribute('aria-pressed','false');
     $('halls').classList.remove('playing');
     hint();
-    if(speak && pendingStory && pendingStory.hall===state.hall && state.tab==='people') narrateCurrent();
+    if(speak) narrateCurrent();
     pendingStory=null;
   }
   function setSpeed(speed) {
@@ -1184,6 +1159,14 @@ select {width:100%;font-size:13px}
       V.dropQueued();
       $('hint').textContent='Pick two dances to compare with Me. Choose a criterion and a fact for each dance.';
     };
+    const range=div.querySelector('input');
+    range.setAttribute('aria-describedby','chart-note');
+    const explain=()=>{
+      const p=state.profile;
+      $('chart-note').textContent='Not measured. A: '+HALLS[p.picks[0]].descriptors[i]+'. B: '+HALLS[p.picks[1]].descriptors[i]+'.';
+    };
+    range.onfocus=explain;
+    div.onmouseenter=explain;
     $('chart').appendChild(div);return div;
   });
   const judges=['a','b'].map((side,j)=>{
@@ -1226,6 +1209,8 @@ select {width:100%;font-size:13px}
     });
   }
   function updateJudges() {
+    if ($('chart').contains(document.activeElement)) document.activeElement.onfocus?.();
+    else $('chart-note').textContent='◆ Me · ● A · ▲ B · Curio Class descriptions, not measured. Hover or focus a slider for reasons.';
     const p=state.profile;
     judges.forEach((box,j)=>{
       const h=HALLS[p.picks[j]];
@@ -1264,6 +1249,9 @@ select {width:100%;font-size:13px}
   ['a','b'].forEach((side,j)=>$('pick-'+side).onchange=e=>{
     const value=Number(e.target.value),p=state.profile;
     if(value===p.picks[1-j]) {e.target.value=p.picks[j];return;}
+    const previous=p.picks[j];
+    if(p.like===previous) {p.because='';$('because').value='';}
+    if(p.stronger===previous) {p.why='';$('why').value='';}
     p.picks[j]=value;p.strengths[j]='';p.reasons[j]=-1;
     const other=$('pick-'+(side==='a'?'b':'a'));
     [...other.options].forEach(o=>o.disabled=Number(o.value)===value);
@@ -1275,13 +1263,15 @@ select {width:100%;font-size:13px}
   $('criterion').onchange=e=>{
     state.profile.criterion=e.target.selectedIndex;
     state.profile.strengths=['',''];state.profile.reasons=[-1,-1];
+    state.profile.why='';$('why').value='';
     updateJudges();updateSentence();save();
   };
   for(const id of ['like','stronger','because','why']) $(id).addEventListener('input',e=>{
     state.profile[id]=id==='like'||id==='stronger'?Number(e.target.value):e.target.value;
     if(id==='stronger') {
       const p=state.profile, side=p.picks.indexOf(p.stronger), r=p.reasons[side];
-      if(r>=0) {p.why=HALLS[p.stronger].reasons[r].toLowerCase();$('why').value=p.why;}
+      p.why=r>=0?HALLS[p.stronger].reasons[r].toLowerCase():'';
+      $('why').value=p.why;
     }
     updateSentence();save();V.dropQueued();
   });

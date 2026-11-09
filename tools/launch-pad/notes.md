@@ -31,7 +31,7 @@ Launch is an open checker with speed 0 to 120 ft/s in steps of 4, starting heigh
 
 Missions contains nine ordered setups. The curve is hidden until a prediction checks. A method checks the student's
 work before the contextual answer. Formula includes a discriminant call; completing the square includes its identity
-and both roots. A flight pauses at each accepted event time, showing its height. Progress saves on this device only.
+and both roots. Mission 7 also asks students to derive the general formula by filling its three denominators. A flight pauses at each accepted event time, showing its height. Progress saves on this device only.
 Clear missions clears these local records. Every mission can be revisited.
 
 ## Talk questions
@@ -50,7 +50,7 @@ The height equation measures the foam ball, with equipment drawn symbolically be
 The model is educational, not a real launcher or safety calculator.
 
 Exact expressions accept fractions, sqrt(41), √41 and ±. Separate roots with a comma. Decimals within 0.01 s of
-the exact answer count, and a correct answer shows its exact form. The flight uses the exact time, avoiding the
+the exact answer count, and a correct answer shows its exact form. A leading minus applies after powers: -2^2 is -4. The flight uses the exact time, avoiding the
 large height error that a rounded time can create near a fast landing.
 
 Negative roots are valid algebra but precede launch. Mission 1 excludes its launch root; mission 9 excludes its
@@ -63,13 +63,17 @@ Enter to submit a box. All files work offline. There are no network requests or 
 
 ## Standards and sources
 
-A-REI.B.4a: mission 7 completes a square and connects the identity to the general quadratic formula.
+A-REI.B.4a: mission 7 completes a square, then derives the general formula by supplying the shift, square and formula denominators.
 A-REI.B.4b: missions 1 to 4 emphasize factoring; 6 square roots; 8 and 9 formula; 5 complex solutions.
 Students may choose another applicable method.
 
 - [Common Core HSA-REI](https://www.thecorestandards.org/Math/Content/HSA/REI/)
-- [OpenStax Elementary Algebra 2e, 10.6](https://openstax.org/books/elementary-algebra-2e/pages/10-6-solve-applications-modeled-by-quadratic-equations)
+- [OpenStax Elementary Algebra 2e, 10.4](https://openstax.org/books/elementary-algebra-2e/pages/10-4-solve-applications-modeled-by-quadratic-equations)
 - [OpenStax Intermediate Algebra 2e, chapter 9](https://openstax.org/books/intermediate-algebra-2e/pages/9-3-solve-quadratic-equations-using-the-quadratic-formula)
-- [NIST standard gravity](https://physics.nist.gov/cgi-bin/cuu/Value?gn)
+- [NIST standard gravity](https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8)
 
 Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+
+A verified flight keeps a record of the chosen method and the measured rising, peak or falling event.
+
+In mission 9, the ground-time readout is the uncaught continuation of the model. The verified clock stops at the catch.

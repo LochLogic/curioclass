@@ -2,7 +2,7 @@
   "id": "neighborhood-issue-play",
   "status": "beta",
   "stage": "built",
-  "hook": "Hear the neighbors. Give them clashing wants. Put your play on a paper stage.",
+  "hook": "Meet the neighbors. Give them clashing wants. Put your play on a paper stage.",
   "outcome": "Invent and perform a three-scene play drawn from a community issue and different viewpoints.",
   "driver": "students or teacher",
   "minutes": "20-40",
@@ -15,14 +15,16 @@
   ],
   "grades_label": "Grades 3-5",
   "sources": [
-    "Victoria and Albert Museum, Toy theatres",
+    "Victoria and Albert Museum, The story of pantomime; Pollock’s Toy Museum, history of toy theaters",
     "Viola Spolin, Theater Games for the Classroom (1986)",
     "National Core Arts Standards, Theater TH:Cr1, TH:Pr6, TH:Cn10, TH:Cn11",
     "FHWA, Guide for Improving Pedestrian Safety at Uncontrolled Crossing Locations (2018)",
     "NACTO, Play Streets",
     "Fictional neighbors, problems and lines written for Curio Class",
-    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "FHWA, MUTCD 11th Edition with Revision 1 (December 2025), school crossing guards",
+    "Office of Head Start, family engagement and communication in families’ preferred languages"
   ],
   "third_party": [],
-  "updated": "2026-11-02"
+  "updated": "2026-11-05"
 }

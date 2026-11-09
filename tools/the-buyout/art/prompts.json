@@ -1,0 +1,208 @@
+{
+  "house_style": "Sophisticated editorial gouache illustration for an economics tool for 17-year-olds. Tactile painted materials, precise real objects, subtle paper grain, warm light from upper left, deep navy shadows and muted jewel colors. Restrained, dimensional, beautifully observed. No text, letters, numbers, logos or watermarks anywhere.",
+  "assets": [
+    {
+      "name": "shelf",
+      "prompt": "Front elevation of an empty modern electronics store aisle, three wooden shelves on dark brushed metal uprights, blank ivory price-tag strips, a blank header sign, warm overhead store lighting. Unoccupied central shelf has wide open space for four charger boxes. Rich wood grain, small metal screws, soft reflections. Full bleed 16:9 composition.",
+      "width": 1200,
+      "aspect": "16:9",
+      "cutout": false,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "box-ohmly",
+      "prompt": "One upright retail phone charger carton, front view with a slight visible right edge, whole carton visible. Clear upper window showing one realistic white charger brick, blank solid violet lower front panel and blank ivory label strip. Crisp folded cardboard, plastic window reflections, realistic seams. Centered on flat pure magenta (#FF00FF).",
+      "width": 210,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "box-tidewatt",
+      "prompt": "One upright retail phone charger carton, front view with a slight visible right edge, whole carton visible. Clear upper window showing one realistic white charger brick, blank solid teal lower front panel and blank ivory label strip. Crisp folded cardboard, plastic window reflections, realistic seams. Centered on flat pure magenta (#FF00FF).",
+      "width": 210,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "box-sparrow",
+      "prompt": "One upright retail phone charger carton, front view with a slight visible right edge, whole carton visible. Clear upper window showing one realistic white charger brick, blank solid amber lower front panel and blank ivory label strip. Crisp folded cardboard, plastic window reflections, realistic seams. Centered on flat pure magenta (#FF00FF).",
+      "width": 210,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "box-kite",
+      "prompt": "One upright retail phone charger carton, front view with a slight visible right edge, whole carton visible. Clear upper window showing one realistic white charger brick, blank solid green lower front panel and blank ivory label strip. Crisp folded cardboard, plastic window reflections, realistic seams. Centered on flat pure magenta (#FF00FF).",
+      "width": 210,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "box-nova",
+      "prompt": "One upright retail phone charger carton, front view with a slight visible right edge, whole carton visible. Clear upper window showing one realistic white charger brick, blank solid cool grey lower front panel and blank ivory label strip. Crisp folded cardboard, plastic window reflections, realistic seams. Centered on flat pure magenta (#FF00FF).",
+      "width": 210,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "box-brisk",
+      "prompt": "One upright retail phone charger carton, front view with a slight visible right edge, whole carton visible. Clear upper window showing one realistic white charger brick, blank solid warm grey lower front panel and blank ivory label strip. Crisp folded cardboard, plastic window reflections, realistic seams. Centered on flat pure magenta (#FF00FF).",
+      "width": 210,
+      "aspect": "3:4",
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "shopper-1",
+      "prompt": "One young adult woman with deep brown skin, short natural hair, indigo jacket and ochre trousers, walking in side view to the right while holding a phone. Natural respectful proportions, friendly neutral expression, realistic hands. Full body including both shoes, clear gap between legs, generous margins. Flat pure magenta (#FF00FF) background.",
+      "width": 90,
+      "aspect": "9:16",
+      "cutout": true,
+      "people": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "shopper-2",
+      "prompt": "One middle-aged man with light skin, dark wavy hair, teal overshirt and tan trousers, walking in side view to the right while holding a phone. Natural respectful proportions, friendly neutral expression, realistic hands. Full body including both shoes, clear gap between legs, generous margins. Flat pure magenta (#FF00FF) background.",
+      "width": 90,
+      "aspect": "9:16",
+      "cutout": true,
+      "people": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "shopper-3",
+      "prompt": "One older woman with medium brown skin, grey hair, burgundy cardigan, using a cane naturally, walking in side view to the right while holding a phone. Natural respectful proportions, friendly neutral expression, realistic hands. Full body including both shoes, clear gap between legs, generous margins. Flat pure magenta (#FF00FF) background.",
+      "width": 90,
+      "aspect": "9:16",
+      "cutout": true,
+      "people": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "shopper-4",
+      "prompt": "One young adult man with East Asian features, navy hoodie and light grey trousers, walking in side view to the right while holding a phone. Natural respectful proportions, friendly neutral expression, realistic hands. Full body including both shoes, clear gap between legs, generous margins. Flat pure magenta (#FF00FF) background.",
+      "width": 90,
+      "aspect": "9:16",
+      "cutout": true,
+      "people": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "shopper-5",
+      "prompt": "One middle-aged woman with olive skin, dark curly hair, rust sweater and dark trousers, fuller body, walking in side view to the right while holding a phone. Natural respectful proportions, friendly neutral expression, realistic hands. Full body including both shoes, clear gap between legs, generous margins. Flat pure magenta (#FF00FF) background.",
+      "width": 90,
+      "aspect": "9:16",
+      "cutout": true,
+      "people": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "shopper-6",
+      "prompt": "One older man with dark brown skin, grey beard, cream shirt and blue trousers, walking in side view to the right while holding a phone. Natural respectful proportions, friendly neutral expression, realistic hands. Full body including both shoes, clear gap between legs, generous margins. Flat pure magenta (#FF00FF) background.",
+      "width": 90,
+      "aspect": "9:16",
+      "cutout": true,
+      "people": true,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "old-charger",
+      "prompt": "A worn white phone charging cable coiled loosely, slightly frayed outer sleeve, intact plug, detailed rubber and metal. Centered, whole object on pure magenta (#FF00FF).",
+      "width": 72,
+      "aspect": "1:1",
+      "cutout": true,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex",
+      "key": "magenta"
+    },
+    {
+      "name": "remedy-nothing",
+      "prompt": "An open factory gate with a small delivery truck rolling out at dawn. Brick factory, golden light, detailed metal gate, open road in foreground. Full bleed composition.",
+      "width": 320,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "remedy-block",
+      "prompt": "A brick factory road with a striped barrier gate lowered across the road. Warm dawn light, a waiting delivery truck beyond the closed barrier, foreground road. Full bleed composition.",
+      "width": 320,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "remedy-breakup",
+      "prompt": "A brick factory yard split into two clearly separate yards by a new metal fence, each yard with its own open gate and warehouse entrance, slightly elevated view. Full bleed composition.",
+      "width": 320,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "remedy-cap",
+      "prompt": "A large blank ivory paper price tag held firmly down under a heavy brushed steel bar on a warm wooden workbench, tactile paper, sharp glint of light on the steel. Full bleed composition.",
+      "width": 320,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "remedy-standard",
+      "prompt": "A close low-angle view of a realistic phone, ivory earbuds case and tablet side by side on a warm wooden workbench. Their bottom edges face the viewer, clearly showing three identical oval USB-C receptacles. One loose USB-C cable lies in front with its reversible metal connector clearly visible. Blank dark screens, precise real connectors, tactile painted metal, wood grain and soft contact shadows. Full bleed 4:3 composition; the matching ports remain legible at 160x120.",
+      "width": 320,
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "quality": 78,
+      "drawn_by": "codex"
+    }
+  ]
+}

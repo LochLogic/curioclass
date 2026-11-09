@@ -1,0 +1,54 @@
+/* Curio Class Recess shell (kit/recess.js). Only the corner controls and the cards; each game owns the rest of the page.
+   A game can set --rc-accent (buttons, stars) and --rc-glass (the control bar) on body. */
+body.recess{--rc-accent:#ffd23f;--rc-accent-ink:#1b1630;--rc-glass:rgba(20,18,38,.62);--rc-ink:#fff;--rc-font:ui-rounded,'SF Pro Rounded','Nunito','Segoe UI Variable Display','Segoe UI',system-ui,sans-serif;margin:0;min-height:100vh;font-family:var(--rc-font)}
+.rc-hud{position:fixed;top:max(10px,env(safe-area-inset-top));right:max(10px,env(safe-area-inset-right));left:max(10px,env(safe-area-inset-left));z-index:50;display:flex;align-items:center;gap:6px;pointer-events:none}
+.rc-hud>*{pointer-events:auto}
+.rc-info{display:flex;align-items:center;gap:10px;margin-right:auto;padding:7px 14px;border-radius:999px;background:var(--rc-glass);color:var(--rc-ink);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:700 15px/1.1 var(--rc-font);min-width:0}
+.rc-title{white-space:nowrap}
+.rc-level{opacity:.8;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc-level:empty{display:none}
+.rc-stars{color:var(--rc-accent);white-space:nowrap}
+.rc-btn{display:inline-flex;align-items:center;gap:6px;min-height:44px;min-width:44px;padding:0 13px;border:0;border-radius:999px;background:var(--rc-glass);color:var(--rc-ink);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:700 14px var(--rc-font);cursor:pointer;transition:transform .12s,background .12s}
+.rc-btn:hover:not(:disabled){transform:translateY(-1px);background:rgba(40,36,70,.8)}
+.rc-btn:active:not(:disabled){transform:scale(.94)}
+.rc-btn:disabled{opacity:.4;cursor:default}
+.rc-btn[aria-pressed="false"] .rc-ic{opacity:.5}
+.rc-ic{font-size:17px;line-height:1}
+.rc-btn:focus-visible,.rc-card button:focus-visible,.rc-card input:focus-visible{outline:3px solid var(--rc-accent);outline-offset:2px}
+@media (max-width:760px){.rc-lb{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.rc-btn{padding:0;justify-content:center}.rc-level{display:none}}
+/* cards */
+.rc-veil{position:fixed;inset:0;z-index:60;display:grid;place-items:center;padding:16px;background:rgba(10,8,24,.55);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);animation:rc-fade .2s ease-out}
+.rc-card{width:min(400px,100%);max-height:calc(100vh - 32px);overflow:auto;padding:24px 22px 20px;border-radius:24px;background:#fffdf7;color:#1b1630;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.35);animation:rc-pop .32s cubic-bezier(.2,1.4,.4,1)}
+.rc-h{margin:0;font:800 30px/1.1 var(--rc-font)}
+.rc-sub{margin:10px 0 0;font:600 15px/1.4 var(--rc-font);color:#5a5470}
+.rc-score{margin:10px 0 0;font:600 18px var(--rc-font)}
+.rc-new{color:#d9480f;font-weight:800}
+.rc-empty{margin:16px 0;color:#5a5470}
+.rc-starrow{display:flex;justify-content:center;gap:6px;margin-top:10px;font-size:46px;line-height:1}
+.rc-starrow span{color:#e2ddd0;transform:scale(.6);animation:rc-star .45s calc(.15s + var(--i) * .16s) cubic-bezier(.2,1.6,.4,1) forwards}
+.rc-starrow span.on{color:#ffb703;text-shadow:0 2px 0 #c77d00}
+.rc-row{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.rc-go,.rc-ghost{min-height:46px;padding:0 22px;border-radius:999px;font:800 16px var(--rc-font);cursor:pointer;border:0}
+.rc-go{background:var(--rc-accent);color:var(--rc-accent-ink);box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.rc-go:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.18)}
+.rc-ghost{background:#efeadf;color:#1b1630}
+.rc-init{margin-top:14px;padding-top:12px;border-top:2px dashed #e7e0d0}
+.rc-slots{display:flex;justify-content:center;gap:10px;margin:8px 0 12px}
+.rc-slot{display:flex;flex-direction:column;align-items:center;gap:2px}
+.rc-slot input{width:52px;height:60px;border:3px solid #1b1630;border-radius:12px;text-align:center;font:800 32px var(--rc-font);text-transform:uppercase;background:#fff;color:#1b1630}
+.rc-arr{width:44px;height:30px;border:0;border-radius:8px;background:#efeadf;color:#1b1630;font-size:13px;cursor:pointer}
+.rc-board{list-style:none;counter-reset:r;margin:14px 0 0;padding:0;text-align:left;font:700 17px var(--rc-font)}
+.rc-board li{counter-increment:r;display:flex;gap:12px;padding:7px 10px;border-radius:10px}
+.rc-board li:nth-child(odd){background:#f5f0e4}
+.rc-board li::before{content:counter(r);width:1.6em;color:#8a83a0}
+.rc-board b{flex:1;letter-spacing:.12em}
+/* burst */
+.rc-burst{position:fixed;inset:0;pointer-events:none;z-index:70}
+.rc-burst i{position:absolute;width:9px;height:9px;border-radius:2px;animation:rc-fly .9s cubic-bezier(.15,.7,.3,1) forwards}
+@keyframes rc-fly{to{transform:translate(var(--dx),calc(var(--dy) + 80px)) rotate(var(--r));opacity:0}}
+@keyframes rc-pop{from{transform:scale(.85);opacity:0}}
+@keyframes rc-fade{from{opacity:0}}
+@keyframes rc-star{to{transform:scale(1)}}
+body.calm .rc-veil,body.calm .rc-card{animation:none}
+body.calm .rc-starrow span{animation:none;transform:none}
+body.calm .rc-btn{transition:none}

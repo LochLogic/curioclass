@@ -1,0 +1,2510 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<meta name="description" content="An offline seismic map station with real earthquakes, sea-floor relief, volcanoes and plate reconstructions.">
+<title>Living Earth · Curio Class Curiosities</title>
+<!-- Source-driven scientific instrument. Dataset permissions and sampling are in the Manual. -->
+<style>
+:root {
+  color-scheme: dark;
+  --desk: #101a1e;
+  --ink: #efe1c1;
+  --muted: #bdc5bf;
+  --brass: #d1b27b;
+  --line: #53615e;
+  font: 13px/1.4 Consolas, 'Courier New', monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
+body { color: var(--ink); background: var(--desk); }
+button, input, select { font: inherit; color: inherit; }
+button, select { min-height: 44px; border: 1px solid #7a8275; border-radius: 2px; }
+button {
+  cursor: pointer;
+  padding: 6px 12px;
+  background: linear-gradient(#35413f, #202b2c);
+  box-shadow: inset 0 1px #ffffff14, 0 2px 3px #0007;
+}
+button:hover { border-color: #e4c68d; background: #3c4741; }
+button[aria-pressed=true] { color: #fff0cb; border-color: #e5c080; box-shadow: inset 0 -3px #d3b274; }
+button:active { box-shadow: inset 0 2px 5px #0008; }
+button:disabled { opacity: .55; cursor: default; }
+select, input[type=search] { background: #152226; padding: 6px; min-width: 0; width: 100%; }
+input[type=range] { width: 100%; min-width: 0; height: 44px; margin: 0; accent-color: var(--brass); cursor: pointer; }
+:focus-visible { outline: 3px solid #fff1bd; outline-offset: 3px; }
+.station {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 42px minmax(130px, 1fr) 143px 64px;
+  background: radial-gradient(ellipse at 47% 30%, #243639 0, #132227 42%, #0c1519 75%);
+  border: 7px solid #283335;
+  box-shadow: inset 0 0 0 1px #6a7164;
+}
+.survey { display: flex; align-items: center; gap: 25px; padding: 0 18px; border-bottom: 1px solid #62706a; }
+.survey b { font-size: 22px; color: #efd29a; font-weight: normal; }
+.survey small { color: var(--muted); font-size: 10px; letter-spacing: .1em; }
+.survey .identity { margin-right: auto; letter-spacing: .2em; font-size: 12px; }
+.coverage { font-size: 11px; color: #d2d6c6; }
+.observatory { position: relative; min-height: 0; overflow: hidden; }
+#globe { width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+#globe:active { cursor: grabbing; }
+.caption { position: absolute; bottom: 8px; left: 18px; pointer-events: none; color: #c5d2cb; font-size: 11px; }
+#hint { position: absolute; bottom: 13%; left: 50%; transform: translateX(-50%); margin: 0; color: #fff1ce; }
+.legend { position: absolute; left: 18px; top: 14px; font-size: 10px; color: #d2d7cf; pointer-events: none; }
+.legend .depth { display: flex; gap: 10px; margin-top: 5px; }
+.legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 3px; }
+.record {
+  position: absolute; left: 18px; top: 73px; width: 225px; padding: 10px 0;
+  border-top: 1px solid #768073; border-bottom: 1px solid #768073;
+  background: #111e22d9; pointer-events: none;
+}
+.record small { display: block; color: #bac6bc; letter-spacing: .12em; font-size: 10px; }
+.record h1 { font: normal 19px/1.3 Georgia, serif; margin: 9px 0; color: #f2e3c5; }
+.record .magnitude { font-size: 35px; color: #e7c58f; }
+.record dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 8px; margin: 8px 0 0; }
+.record dd { margin: 0; text-align: right; }
+.record dt { color: #bdc9bf; }
+.toolbelt { position: absolute; right: 12px; top: 14px; display: grid; gap: 7px; width: 94px; }
+.toolbelt button { color: #f0d49e; background: linear-gradient(100deg, #5c5038, #322f26); border-color: #aa9163; }
+.toolbelt button[aria-pressed=true] { background: #c5aa75; color: #171b19; box-shadow: inset 0 -3px #fff1c2; }
+.tool-panel {
+  position: absolute; right: 119px; bottom: 12px; width: min(420px, 40%); max-height: calc(100% - 28px);
+  overflow: auto; border: 1px solid #9d9274; padding: 12px; background: #142125f5;
+  box-shadow: 0 8px 30px #0008; scrollbar-color: #ac976e #142125;
+}
+.panel-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 8px; }
+.tool-panel > .panel-head { position: sticky; top: -12px; z-index: 2; background: #142125; }
+.panel-head h2 { margin: 0; font: normal 21px Georgia, serif; color: #f1d7a5; }
+.panel-head button { padding: 4px 12px; }
+.instrument-note { margin: 7px 0; color: #d0d5c8; font-size: 11px; }
+.tool-panel canvas { display: block; width: 100%; height: 180px; background: #0a151a; border: 1px solid #53645f; }
+.data-line { padding: 7px 0; color: #f0d5a4; border-bottom: 1px solid #4c5d57; font-size: 12px; }
+.row { display: flex; gap: 6px; align-items: center; }
+.row > * { min-width: 0; flex: 1; }
+.tool-panel label { display: block; font-size: 11px; color: #d0d3c7; }
+.markers { display: grid; grid-template-columns: 25px 1fr 1fr; align-items: center; gap: 6px; padding: 5px 0; }
+.markers label { white-space: nowrap; }
+.markers input { height: 33px; display: block; }
+.markers output { display: inline-block; min-width: 40px; color: #f2d39b; }
+.trace { height: 57px !important; }
+.console {
+  position: relative; z-index: 2; display: grid; grid-template-columns: 70px minmax(150px, 1.6fr) minmax(100px, 1fr)
+    minmax(160px, 1.1fr) minmax(200px, 1.3fr); grid-template-rows: 58px 60px; gap: 10px 16px;
+  padding: 11px 18px; background: linear-gradient(#33413e, #202d2f); border-top: 2px solid #819084;
+  box-shadow: 0 -4px 10px #0004;
+}
+.play { grid-row: 1 / 3; font-size: 18px; color: #16201c; background: linear-gradient(#e7ca91, #b3925a); }
+.play:hover { color: #0c1716; background: #ecd9ab; }
+.fader { min-width: 0; display: block; }
+.fader .lab { display: flex; justify-content: space-between; gap: 5px; color: #e2dfcb; font-size: 11px; }
+.fader output { color: #ffe3af; white-space: nowrap; }
+.depth-faders { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.archive { align-self: start; grid-column: 2; grid-row: 2; }
+.archive label { color: #d9decf; display: block; font-size: 10px; }
+.archive select { height: 44px; }
+.layers { grid-column: 3 / 5; grid-row: 2; display: flex; gap: 6px; align-items: center; }
+.layers button { padding: 5px 9px; font-size: 11px; min-width: 70px; }
+.zoom { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+.zoom button { min-width: 44px; font-size: 19px; padding: 3px; }
+#zoom-read { min-width: 42px; }
+.drum-wrap { position: relative; grid-column: 5; grid-row: 2; overflow: hidden; background: #e9e3d3; }
+#drum { width: 100%; height: 100%; display: block; }
+.drum-tag { position: absolute; top: 2px; left: 6px; color: #343c36; font-size: 10px; pointer-events: none; }
+.stylus { position: absolute; top: 0; bottom: 0; right: 10%; width: 1px; background: #875a38; pointer-events: none; }
+.foot {
+  display: flex; align-items: center; gap: 9px; padding: 7px 18px; z-index: 3;
+  border-top: 1px solid #738075; background: #142126;
+}
+.maker {
+  max-width: 390px; color: #eedcb3; border: 1px solid #9e9c80; padding: 8px 13px;
+  font-size: 10px; letter-spacing: .025em; background: linear-gradient(110deg, #3d443d, #242f2f);
+  box-shadow: inset 0 0 0 2px #26312f, inset 0 0 0 3px #727a65;
+}
+.power { display: flex; align-items: center; gap: 5px; margin-left: 6px; border-left: 1px solid #66736b; padding-left: 12px; }
+.power button { font-size: 11px; min-width: 77px; }
+.source-label { margin-left: auto; font-size: 10px; color: #c0cabe; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+dialog {
+  position: fixed; margin: 0; left: 16px; top: auto; bottom: 77px; width: min(570px, calc(100% - 32px));
+  max-height: calc(100% - 100px); padding: 22px; color: #292d27; background: #e9e2d0;
+  border: 2px solid #a48b59; box-shadow: 0 12px 60px #0009;
+}
+dialog::backdrop { background: #06101380; }
+dialog h2 { font: normal 28px Georgia, serif; margin: 0; }
+dialog h3 { font: normal 20px Georgia, serif; margin: 22px 0 6px; }
+dialog p, dialog li { font: 14px/1.6 system-ui, sans-serif; }
+dialog a {
+  color: #174f68; overflow-wrap: anywhere; display: inline-block;
+  min-width: 44px; min-height: 44px; padding: 10px 0;
+}
+dialog .panel-head { position: sticky; top: -22px; background: #e9e2d0; padding: 5px 0; z-index: 1; }
+dialog .panel-head h2 { color: #282e26; }
+dialog button { color: #efe1c1; }
+@media (max-width: 1050px) {
+  .record { width: 180px; font-size: 11px; }
+  .record h1 { font-size: 16px; }
+  .survey { gap: 15px; }
+  .survey .identity { font-size: 10px; letter-spacing: .09em; }
+  .console { grid-template-columns: 60px 1.4fr .8fr 1.2fr 1.2fr; gap: 9px; padding: 10px; }
+  .layers button { min-width: 55px; }
+  .foot { padding: 7px 10px; }
+  .source-label { display: none; }
+  .tool-panel { right: 108px; width: min(365px, 48%); }
+  .toolbelt { right: 8px; width: 90px; }
+}
+@media (min-width: 601px) and (max-width: 900px) {
+  #grid { display: none; }
+  .layers { gap: 3px; }
+  .zoom { gap: 3px; }
+  .zoom button { min-width: 44px; }
+  .depth-name { display: none; }
+}
+@media (max-height: 570px) and (min-width: 601px) {
+  .station { grid-template-rows: 34px minmax(120px, 1fr) 125px 56px; border-width: 4px; }
+  .survey b { font-size: 17px; }
+  .console { grid-template-rows: 48px 51px; padding-top: 8px; padding-bottom: 8px; gap: 7px; }
+  .record { top: 58px; padding: 5px 0; width: 155px; }
+  .record .magnitude { font-size: 23px; }
+  .record h1 { margin: 3px 0; }
+  .record dl { margin: 3px 0; gap: 1px; }
+  .maker { font-size: 10px; max-width: 300px; padding: 6px 8px; }
+  .power { gap: 4px; padding-left: 7px; margin-left: auto; }
+  .power button { min-width: 67px; padding: 4px; }
+  .foot { gap: 6px; padding: 4px 8px; }
+  .toolbelt { gap: 3px; top: 5px; }
+  .tool-panel { bottom: 5px; max-height: calc(100% - 10px); }
+  .legend { top: 6px; }
+  .legend .depth { gap: 5px; }
+  .tool-panel canvas { height: 130px; }
+  .record:not([hidden]) ~ .caption { display: none; }
+}
+@media (max-width: 600px) {
+  .station { grid-template-rows: 48px minmax(250px, 1fr) 237px 109px; border: 4px solid #34413e; }
+  .survey { padding: 0 9px; gap: 12px; flex-wrap: wrap; align-content: center; }
+  .survey .identity { width: 100%; font-size: 10px; line-height: 12px; }
+  .survey small { font-size: 10px; }
+  .survey b { font-size: 16px; }
+  .coverage { font-size: 10px; }
+  .legend { top: 8px; left: 10px; }
+  .record { top: auto; bottom: 52px; left: 10px; width: 154px; padding: 4px 6px; font-size: 10px; }
+  .record .magnitude { font-size: 21px; }
+  .record h1 { font-size: 13px; margin: 3px 0; }
+  .record dl { gap: 2px 5px; margin-top: 2px; }
+  .caption { left: auto; right: 9px; bottom: 55px; font-size: 10px; }
+  .toolbelt { top: auto; bottom: 3px; left: 7px; right: 7px; width: auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 5px; }
+  .toolbelt button { padding: 5px; font-size: 12px; }
+  #hint { bottom: 27%; font-size: 11px; width: 210px; text-align: center; }
+  .tool-panel {
+    position: absolute; right: 4px; bottom: 50px; width: calc(100% - 8px);
+    max-height: min(210px, calc(100% - 170px)); z-index: 5;
+  }
+  .instrument-open .record { display: none; }
+  .instrument-open .caption { top: 8px; bottom: auto; right: 8px; }
+  .tool-panel canvas { height: 135px; }
+  .tool-panel .trace { height: 42px !important; }
+  .tool-panel label { font-size: 10px; }
+  .tool-panel .panel-head { margin-bottom: 3px; }
+  .tool-panel .instrument-note { margin: 3px 0; }
+  .console { grid-template-columns: 58px 1.2fr 1fr; grid-template-rows: 55px 55px 44px 44px; gap: 7px 9px; padding: 9px; }
+  .play { grid-row: 1 / 3; padding: 4px; font-size: 15px; }
+  .year-fader { grid-column: 2; grid-row: 1; }
+  .speed-fader { grid-column: 3; grid-row: 1; }
+  .mag-fader { grid-column: 2; grid-row: 2; }
+  .depth-faders { grid-column: 3; grid-row: 2; gap: 3px; }
+  .fader .lab { display: block; font-size: 10px; }
+  .fader input { height: 33px; }
+  .fader output { display: inline; margin-left: 3px; }
+  .archive { grid-column: 1 / 3; grid-row: 3; }
+  .archive label { display: none; }
+  .archive select { font-size: 11px; }
+  .layers { grid-column: 1 / 4; grid-row: 4; gap: 6px; }
+  .layers > button { display: block; }
+  .zoom { gap: 2px; margin-left: auto; }
+  .zoom button { min-width: 44px; width: 44px; }
+  #zoom-read { min-width: 32px; font-size: 10px; text-align: center; }
+  .drum-wrap { grid-column: 3; grid-row: 3; }
+  .foot { display: grid; grid-template-columns: 74px 1fr; grid-template-rows: 44px 44px; gap: 5px 6px; padding: 6px; }
+  .maker { grid-row: 2; grid-column: 1 / 3; width: 100%; max-width: none; height: 44px; padding: 12px 8px; text-align: center; }
+  .power { grid-column: 2; grid-row: 1; margin: 0; border: 0; padding: 0; display: grid; grid-template-columns: repeat(3,1fr); }
+  .power button { min-width: 0; padding: 3px; font-size: 10px; }
+  #manual { grid-column: 1; grid-row: 1; padding: 4px; }
+  dialog { left: 6px; bottom: 115px; width: calc(100% - 12px); max-height: calc(100% - 130px); padding: 15px; }
+}
+
+/* Source-driven surface and five brass instruments. */
+#earth { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+#globe { position:relative; z-index:1; }
+.legend,.caption,#hint,.record { z-index:2; }
+.legend,.caption { background:#111e22ed; padding:3px 5px; }
+.toolbelt,.tool-panel { z-index:3; }
+.toolbelt { width:100px; }
+.tool-panel { right:126px; width:min(420px,42%); }
+.layers { gap:4px; }
+.layers button { min-width:44px; padding:5px; font-size:10px; }
+.trace-caption { display:flex; align-items:center; justify-content:space-between; gap:5px; font-size:10px; }
+.trace-caption button { min-width:44px; min-height:44px; padding:2px 8px; }
+.station-inputs select { flex:2.4; font-size:10px; }
+.station-inputs button { flex:.8; padding:3px; }
+#station-trace { height:85px!important; touch-action:none; }
+.marker-row label,.wave-faders label { flex:1; }
+.marker-row label > span { display:block; }
+.marker-row output { color:#ffe3af; }
+.marker-row input { display:block; }
+#city-form input { min-height:44px; flex:3; }
+#city-form button { flex:1; padding:3px; }
+#city-results { min-height:44px; margin-top:5px; font-size:11px; }
+.pin-coordinate { font-size:12px; margin-bottom:7px; }
+#pin-read { font-size:11px; }
+#pin-read dl { display:grid; grid-template-columns:98px 1fr; gap:7px; margin:0; }
+#pin-read dt { color:#c0c9be; }
+#pin-read dd { margin:0; overflow-wrap:anywhere; }
+.layer-short { display:none; }
+.rewind-key { display:grid; gap:8px; margin:14px 0; font-size:12px; }
+.instrument-note { color:#c9d1c5; }
+@media (max-width:1050px) and (min-width:601px) {
+  .toolbelt { width:84px; }
+  .tool-panel { right:101px; width:44%; }
+  .layers { gap:2px; }
+  .layers button { min-width:44px; padding:2px; font-size:10px; }
+  .zoom { gap:1px; }
+  #zoom-read { min-width:27px; font-size:10px; }
+  .console { grid-template-columns:52px 1.1fr .7fr 1fr 1.1fr; gap:7px; }
+  .layers { grid-column:2 / 6; }
+  .archive { position:fixed; left:12px; bottom:215px; width:190px; z-index:4; }
+  .caption { left:205px; right:auto; bottom:8px; }
+  .archive label { display:none; }
+  .drum-wrap { display:none; }
+}
+@media (min-width:601px) and (max-width:1100px) and (min-height:571px) and (max-height:700px) {
+  .tool-panel { padding:8px; }
+  .tool-panel > .panel-head { top:-8px; margin-bottom:3px; }
+  .tool-panel .instrument-note { display:none; }
+  .tool-panel .data-line { font-size:11px; padding:4px 0; }
+  #cutaway { height:120px; }
+  #station-trace { height:44px!important; }
+  #section { height:140px; }
+  #pin-read dl { gap:3px; }
+  .pin-coordinate { margin-bottom:3px; }
+}
+@media (max-height:570px) and (min-width:601px) {
+  .record { left:10px; top:53px; width:230px; padding:4px 0; font-size:10px; line-height:1.2; }
+  .record small { font-size:10px; letter-spacing:.04em; }
+  .record h1 { font-size:14px; line-height:1.2; margin:2px 0; }
+  .record dl { font-size:10px; line-height:12px; gap:1px; margin-top:2px; }
+  .instrument-open .record { display:none; }
+  .toolbelt { width:78px; }
+  .tool-panel { right:93px; width:42%; padding:7px; }
+  .panel-head h2 { font-size:16px; }
+  .tool-panel > .panel-head { top:-7px; margin-bottom:4px; }
+  .tool-panel .instrument-note { display:none; }
+  .tool-panel canvas { height:90px; }
+  #station-trace { height:50px!important; }
+  .tool-panel label { font-size:10px; }
+  .data-line { padding:3px 0; font-size:10px; }
+  .rewind-key { gap:4px; margin:5px 0; font-size:10px; }
+  .toolbelt { position:fixed; left:auto; right:124px; top:auto; bottom:68px; width:244px;
+    display:grid; grid-template-columns:repeat(5,1fr); gap:2px; }
+  .toolbelt button { padding:2px 1px; font-size:10px; letter-spacing:-.3px; }
+  .tool-panel { right:8px; width:43%; padding:4px; max-height:calc(100% - 8px); }
+  .tool-panel > .panel-head { top:-4px; margin-bottom:0; }
+  .panel-head h2 { font-size:15px; }
+  #close-panel { min-width:48px; width:48px; padding:2px; margin-left:auto; }
+  .archive { left:auto; right:10px; bottom:186px; width:180px; }
+  .caption { left:18px; }
+  .station:has(.instrument-open) .archive { left:10px; right:auto; }
+  .instrument-open .caption { left:205px; }
+  .layers .layer-name { display:none; }
+  .layers .layer-short { display:inline; }
+  .layers button { width:44px; padding:2px; font-size:11px; }
+  .tool-panel .data-line { font-size:10px; line-height:12px; padding:2px 0; }
+  .tool-panel:has(#wave-panel:not([hidden])) .panel-head h2,
+  .tool-panel:has(#stations-panel:not([hidden])) .panel-head h2,
+  .tool-panel:has(#pin-panel:not([hidden])) .panel-head h2 { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  .wave-controls { position:absolute; top:4px; left:4px; width:calc(100% - 60px); gap:3px; z-index:3; }
+  .wave-controls button { padding:2px; font-size:10px; }
+  #cutaway { height:60px; }
+  .wave-faders input { height:33px; }
+  #stations-panel { display:grid; position:relative; grid-template-columns:minmax(0,1fr) 88px; grid-template-rows:44px 24px 66px; }
+  #station-read { grid-row:2; grid-column:1 / 3; min-height:24px; }
+  .station-inputs { grid-row:1; width:50%; gap:3px; }
+  .station-inputs select { position:absolute; left:0; top:-44px; width:calc(100% - 102px); z-index:3; }
+  .station-inputs button { font-size:10px; }
+  .station-actions { position:absolute; top:0; right:0; width:49%; gap:3px; }
+  .station-actions button { padding:2px; font-size:10px; }
+  .trace-caption { display:contents; }
+  #sp-gap { display:none; }
+  #stations-clear { position:absolute; top:-44px; right:52px; width:46px; padding:2px; z-index:3; }
+  #station-trace { grid-row:3; grid-column:1; height:66px!important; }
+  .marker-row { grid-row:3; grid-column:2; display:grid; gap:0; padding-left:4px; }
+  .marker-row label { position:relative; height:33px; }
+  .marker-row label > span { position:absolute; top:0; left:0; z-index:1; pointer-events:none; line-height:11px; }
+  .marker-row input { position:absolute; inset:0; height:33px; }
+  #pin-panel { display:grid; grid-template-columns:minmax(0,1fr) 77px; gap:0 4px; }
+  #city-form { position:absolute; top:4px; left:4px; width:calc(100% - 60px); z-index:3; }
+  #city-form input { width:0; }
+  #city-results { grid-column:1; grid-row:1; margin-top:0; font-size:10px; }
+  #pin-centre { grid-column:2; grid-row:1; padding:2px; font-size:10px; }
+  #pin-read { grid-column:1 / 3; grid-row:2; padding-bottom:0; }
+  #pin-read dl { gap:2px 4px; grid-template-columns:100px 1fr; font-size:10px; }
+  .pin-coordinate { font-size:10px; margin:2px 0; }
+  #rewind-panel .rewind-key { display:none; }
+  #rewind-panel label { font-size:10px; }
+  #section { height:70px; }
+}
+@media (max-width:600px) {
+  .station { grid-template-rows:48px minmax(250px,1fr) 230px 99px; }
+  .console { grid-template-rows:52px 52px 44px 44px; gap:6px 8px; padding:8px; }
+  .toolbelt { width:auto; grid-template-columns:repeat(5,1fr); gap:4px; }
+  .toolbelt button { padding:3px; font-size:10px; }
+  .tool-panel { right:4px; bottom:50px; width:calc(100% - 8px); max-height:calc(100% - 115px); padding:7px; }
+  .tool-panel > .panel-head { top:-7px; margin:0 0 3px; }
+  .panel-head h2 { font-size:17px; }
+  .tool-panel .instrument-note { display:none; }
+  .tool-panel canvas { height:110px; }
+  .tool-panel .data-line { padding:4px 0; font-size:10px; }
+  #station-trace { height:50px!important; }
+  .trace-caption button { min-height:44px; }
+  .marker-row input { height:33px; }
+  .station-inputs select { font-size:10px; }
+  .wave-faders input { height:33px; }
+  .layers { grid-column:1 / 4; gap:4px; }
+  .layers button { flex:1; font-size:10px; padding:3px; }
+  .zoom { position:absolute; right:8px; bottom:58px; }
+  .zoom button { width:44px; min-width:44px; }
+  #zoom-read { min-width:30px; }
+  .archive { grid-column:1 / 3; margin-right:8px; }
+  .drum-wrap { display:none; }
+  .foot { padding:3px 6px; gap:3px; }
+  .maker { padding:10px 5px; }
+  .rewind-key { gap:7px; margin:10px 0; font-size:11px; }
+  #pin-read dl { gap:2px; grid-template-columns:110px 1fr; }
+  #stations-panel { padding-bottom:0; }
+  .tool-panel .marker-row input { height:30px; }
+  .pin-coordinate { margin-bottom:3px; font-size:11px; }
+  dialog { bottom:103px; max-height:calc(100% - 115px); }
+  #section { height:130px; }
+  #rewind-panel .rewind-key { display:none; }
+  #close-panel { margin-left:auto; min-width:48px; width:48px; padding:2px; }
+  .tool-panel:has(#wave-panel:not([hidden])) .panel-head h2,
+  .tool-panel:has(#stations-panel:not([hidden])) .panel-head h2,
+  .tool-panel:has(#pin-panel:not([hidden])) .panel-head h2 { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  .wave-controls { position:absolute; top:7px; left:7px; width:calc(100% - 70px); gap:3px; z-index:3; }
+  .wave-controls button { padding:3px; }
+  #cutaway { height:130px; }
+  #stations-panel { display:grid; position:relative; grid-template-columns:minmax(0,1fr) 88px; grid-template-rows:44px 24px 66px; }
+  #station-read { grid-row:2; grid-column:1 / 3; min-height:24px; line-height:12px; }
+  .station-inputs { grid-row:1; width:50%; gap:3px; }
+  .station-inputs select { position:absolute; left:0; top:-47px; width:calc(100% - 109px); z-index:3; }
+  .station-inputs button { padding:2px; }
+  .station-actions { position:absolute; top:0; right:0; width:49%; gap:3px; }
+  .station-actions button { padding:2px; }
+  .trace-caption { display:contents; }
+  #sp-gap { display:none; }
+  #stations-clear { position:absolute; top:-47px; right:59px; width:46px; padding:2px; z-index:3; }
+  #station-trace { grid-row:3; grid-column:1; height:66px!important; }
+  .marker-row { grid-row:3; grid-column:2; display:grid; gap:0; padding-left:4px; }
+  .marker-row label { position:relative; height:33px; }
+  .marker-row label > span { position:absolute; top:0; left:0; z-index:1; pointer-events:none; line-height:11px; }
+  .tool-panel .marker-row input { position:absolute; inset:0; height:33px; }
+  #pin-panel { display:grid; grid-template-columns:minmax(0,1fr) 77px; gap:0 4px; }
+  #city-form { position:absolute; top:7px; left:7px; width:calc(100% - 70px); z-index:3; }
+  #city-form input { width:0; }
+  #city-results { grid-column:1; grid-row:1; margin-top:0; font-size:10px; }
+  #pin-centre { grid-column:2; grid-row:1; padding:2px; font-size:10px; }
+  #pin-read { grid-column:1 / 3; grid-row:2; padding-bottom:0; }
+}
+
+/* Station lettering and hardware remain part of the desk. */
+.survey small,.coverage,.legend,.caption,.fader .lab,.archive label,.layers button,
+.tool-panel label,.instrument-note,.trace-caption,.station-inputs select,#pin-read { font-size:12px; }
+.power button { font-size:13px; }
+.survey { gap:18px; }
+.survey .identity { letter-spacing:.12em; }
+.instrument-open .record { position:static; width:100%; margin:10px 0 0; padding:7px; display:block; }
+.instrument-open .record h1 { font-size:15px; margin:3px 0; }
+.instrument-open .record .magnitude { font-size:20px; }
+.instrument-open .record dl { display:none; }
+.instrument-open .record small { display:inline; }
+.instrument-open .record h1 { display:inline; }
+#record-dock:empty { display:none; }
+#station-trace { height:130px!important; }
+.sp-help { font-size:12px; margin:5px 0; color:#d0d5c8; }
+#cutaway { height:280px; }
+.tool-panel:has(#wave-panel:not([hidden])) { max-height:calc(100% - 8px); bottom:4px; }
+.tool-panel:has(#slice-panel:not([hidden])) #section { height:220px; }
+.speed-fader { position:relative; }
+input.speed-knob {
+  appearance:none; width:48px; height:44px; display:block; margin:0 auto;
+  border:1px solid #ddc58c; border-radius:50%;
+  background:repeating-conic-gradient(from 40deg,#b1b9a1 0deg 3deg,transparent 3deg 90deg),
+    radial-gradient(circle,#bd9c60 0 43%,#514b36 46% 60%,#172625 64%);
+  transform:none;
+}
+input.speed-knob::-webkit-slider-runnable-track { height:32px; background:transparent; }
+input.speed-knob::-webkit-slider-thumb {
+  appearance:none; width:5px; height:20px; background:#fff1c3; border:1px solid #403b2e;
+  transform:translateY(0) rotate(var(--angle,-45deg)); transform-origin:center 16px;
+}
+.depth-faders { position:relative; height:62px; display:block; }
+.depth-faders::after { content:''; position:absolute; top:34px; height:5px; left:9px; right:9px; background:#b99459; pointer-events:none; }
+.depth-faders .fader { position:absolute; inset:0; pointer-events:none; }
+.depth-faders .lab { width:49%; justify-content:flex-start; }
+.depth-faders .fader:last-child .lab { margin-left:51%; }
+.depth-faders input { position:absolute; left:0; top:15px; background:transparent; appearance:none; pointer-events:none; z-index:1; }
+.depth-faders input::-webkit-slider-runnable-track { height:5px; background:transparent; }
+.depth-faders input::-webkit-slider-thumb { appearance:none; margin-top:-8px; width:18px; height:21px; border:1px solid #e9d6a7; background:#9e7d48; pointer-events:auto; }
+#depth-min::-webkit-slider-thumb { border-radius:8px 2px 2px 8px; }
+#depth-max::-webkit-slider-thumb { border-radius:2px 8px 8px 2px; }
+@media (min-width:601px) and (max-width:1050px) {
+  .station { grid-template-rows:36px minmax(150px,1fr) 176px 58px; }
+  .survey { gap:12px; padding:0 10px; }
+  .survey .identity { font-size:10px; letter-spacing:.03em; }
+  .survey b { font-size:18px; }
+  .survey small,.coverage { font-size:10px; }
+  .coverage { display:none; }
+  .console { grid-template-columns:58px 1.25fr .8fr 1.15fr 1.3fr; grid-template-rows:51px 44px 40px; gap:7px 10px; padding:8px 10px; }
+  .fader .lab { gap:3px; font-size:11px; }
+  .fader { border-left:1px solid #657368; padding-left:5px; }
+  .depth-name { display:inline; }
+  .depth-faders .fader { border:0; padding:0; }
+  .layers { grid-column:2 / 6; grid-row:2; gap:4px; }
+  .layers .layer-name { display:inline; }
+  .layers .layer-short { display:none; }
+  .layers button { width:auto; min-width:49px; padding:3px; font-size:11px; }
+  .zoom { margin-left:auto; }
+  .archive { position:static; grid-row:3; grid-column:1 / 4; width:auto; margin:0; }
+  .archive select { height:40px; min-height:40px; font-size:11px; }
+  .drum-wrap { position:relative; display:block; grid-column:4 / 6; grid-row:3; height:40px; }
+  .toolbelt { position:absolute; top:8px; bottom:auto; right:8px; left:auto; width:90px; display:grid; grid-template-columns:1fr; }
+  .toolbelt button { font-size:12px; padding:3px; }
+  .tool-panel { right:8px; bottom:8px; width:calc(100% - 16px); max-height:330px; padding:7px; }
+  .tool-panel > .panel-head { top:-7px; }
+  .instrument-open .toolbelt { position:absolute; top:4px; right:8px; width:90px; }
+  .instrument-open .caption { top:5px; right:110px; bottom:auto; left:auto; }
+  .record { top:auto; bottom:8px; left:10px; width:calc(100% - 120px); padding:4px 7px; }
+  .record h1 { font-size:13px; display:inline; margin:0; }
+  .record .magnitude { font-size:17px; }
+  .record dl { display:none; }
+  .record small { display:inline; font-size:10px; }
+  .instrument-open .record { font-size:11px; }
+  #section { height:190px; }
+  .tool-panel:has(#slice-panel:not([hidden])) #section { height:190px; }
+  #station-trace { height:120px!important; }
+  .tool-panel .instrument-note { display:block; }
+  .foot { padding:4px 8px; gap:6px; }
+  .maker { font-size:10px; padding:8px; }
+  .power { padding-left:7px; margin-left:auto; }
+  .power button { min-width:65px; font-size:12px; padding:4px; }
+}
+@media (min-width:601px) and (max-width:1050px) and (max-height:700px) {
+  .station { grid-template-rows:30px minmax(175px,1fr) 136px 52px; border-width:4px; }
+  .console { grid-template-rows:44px 44px 40px; gap:2px 9px; padding:3px 7px; }
+  .fader .lab { font-size:10px; }
+  .fader input { height:30px; }
+  input.speed-knob { height:29px; width:35px; }
+  input.speed-knob::-webkit-slider-runnable-track { height:24px; }
+  input.speed-knob::-webkit-slider-thumb { height:15px; transform-origin:center 12px; }
+  .depth-faders { height:44px; }
+  .depth-faders::after { top:28px; }
+  .depth-faders input { top:14px; }
+  .toolbelt { position:absolute; top:4px; right:8px; width:88px; gap:2px; }
+  .toolbelt button { min-height:32px; font-size:11px; }
+  .instrument-open .toolbelt { left:5px; top:auto; bottom:3px; width:34%; grid-template-columns:repeat(5,1fr); gap:1px; }
+  .instrument-open .toolbelt button { font-size:9px; padding:1px; min-height:32px; }
+  .tool-panel { width:64%; right:4px; top:2px; bottom:2px; max-height:none; padding:3px; }
+  .tool-panel > .panel-head { top:-3px; height:44px; margin:0; }
+  .tool-panel .panel-head h2 { position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; }
+  .tool-panel .instrument-note,.sp-help { display:none; }
+  .tool-panel .data-line { font-size:11px; line-height:13px; padding:3px 0; }
+  #slice-panel > .row { position:absolute; top:3px; left:3px; width:calc(100% - 60px); }
+  #slice-panel > .row button { font-size:11px; padding:2px; }
+  .tool-panel:has(#slice-panel:not([hidden])) #section { height:calc(100vh - 310px); min-height:112px; }
+  #stations-panel { grid-template-columns:minmax(0,1fr) 98px; grid-template-rows:44px 24px minmax(84px,1fr); }
+  #station-read { grid-row:2; line-height:13px; }
+  .station-inputs { width:49%; }
+  .station-inputs select { top:-44px; width:calc(100% - 103px); font-size:11px; }
+  .station-inputs button,.station-actions button { font-size:11px; padding:2px; }
+  .station-actions { top:0; width:50%; }
+  #stations-clear { top:-44px; right:52px; }
+  #station-trace { height:calc(100vh - 337px)!important; min-height:84px; }
+  .marker-row { grid-template-rows:44px 44px; }
+  .marker-row label { height:44px; }
+  .marker-row label>span { font-size:10px; }
+  .marker-row input { top:10px; height:34px; }
+  .wave-controls { top:3px; left:3px; width:calc(100% - 60px); }
+  .wave-controls button { font-size:11px; }
+  #wave-panel { display:grid; grid-template-columns:1fr 100px; }
+  #wave-read { grid-column:1 / 3; }
+  #cutaway { height:calc(100vh - 305px); min-height:120px; }
+  .wave-faders { display:grid; grid-template-rows:1fr 1fr; padding-left:5px; }
+  .wave-faders label { font-size:10px; }
+  .wave-faders input { height:36px; }
+  .instrument-open .record { margin:2px 0; padding:2px; }
+  .record { left:6px; bottom:3px; width:calc(100% - 106px); }
+  .instrument-open .caption { top:3px; left:5px; right:auto; font-size:10px; }
+  .instrument-open .legend { display:none; }
+}
+@media (max-width:600px) {
+  .station { grid-template-rows:62px minmax(300px,1fr) 248px 99px; }
+  .survey { gap:10px; }
+  .survey .identity { width:100%; }
+  .survey b { font-size:16px; }
+  .survey small { font-size:10px; }
+  .coverage { display:none; }
+  .console { grid-template-rows:48px 48px 44px 44px 40px; gap:3px 8px; padding:6px 8px; }
+  .fader .lab { font-size:11px; }
+  .fader input { height:32px; }
+  .depth-faders { height:48px; }
+  .depth-name { display:inline; }
+  .depth-faders .lab { font-size:10px; display:flex; gap:1px; width:51%; }
+  .depth-faders .fader:last-child .lab { margin-left:50%; }
+  .depth-faders::after { top:32px; }
+  .depth-faders input { top:17px; }
+  input.speed-knob { height:32px; width:38px; }
+  input.speed-knob::-webkit-slider-runnable-track { height:25px; }
+  input.speed-knob::-webkit-slider-thumb { height:16px; transform-origin:center 12px; }
+  .layers .layer-name { display:inline; }
+  .layers .layer-short { display:none; }
+  .layers button { font-size:10px; min-width:44px; }
+  .zoom { bottom:89px; }
+  .drum-wrap { display:block; grid-column:1 / 4; grid-row:5; height:40px; }
+  .tool-panel { max-height:250px; bottom:48px; padding:5px; }
+  .tool-panel > .panel-head { top:-5px; height:44px; margin:0; }
+  #stations-panel { grid-template-columns:minmax(0,1fr) 90px; grid-template-rows:44px 30px 100px; }
+  .station-inputs { width:49%; }
+  .station-inputs select { top:-44px; width:calc(100% - 109px); font-size:11px; }
+  .station-actions { top:0; width:50%; }
+  #stations-clear { top:-44px; }
+  #station-trace { height:100px!important; }
+  .marker-row { grid-template-rows:50px 50px; }
+  .marker-row label { height:50px; }
+  .tool-panel .marker-row input { top:14px; height:36px; }
+  .marker-row label > span { font-size:10px; }
+  #station-read { font-size:11px; line-height:14px; }
+  .tool-panel:has(#slice-panel:not([hidden])) #section { height:154px; }
+  #slice-panel > .row { position:absolute; top:5px; left:5px; width:calc(100% - 62px); }
+  #slice-panel > .row button { font-size:10px; padding:2px; }
+  .tool-panel:has(#slice-panel:not([hidden])) .panel-head h2 { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+  #cutaway { height:150px; }
+  #wave-panel { display:grid; grid-template-columns:1fr 100px; }
+  #wave-read { grid-column:1 / 3; font-size:11px; line-height:14px; }
+  .wave-faders { display:grid; grid-template-rows:1fr 1fr; padding-left:5px; }
+  .wave-faders label { font-size:10px; }
+  .wave-controls { left:5px; top:5px; width:calc(100% - 65px); }
+  .tool-panel .data-line { font-size:11px; }
+  .sp-help { display:none; }
+  .instrument-open .record { padding:2px; margin:2px 0; font-size:10px; }
+  .record small { font-size:10px; }
+  .record { left:8px; right:8px; width:auto; bottom:48px; }
+  .record h1 { display:inline; font-size:12px; }
+  .record dl { display:none; }
+  .record .magnitude { font-size:16px; }
+  .power button { font-size:12px; }
+}
+
+
+/* Keep the active scientific controls in the visible panel. */
+.instrument-open .record { height:25px; margin:0 0 4px; padding:3px; overflow:hidden; white-space:nowrap; text-overflow:ellipsis; font-size:11px; }
+.trace-caption { min-height:20px; }
+#station-trace { height:115px!important; }
+.tool-panel:has(#wave-panel:not([hidden])) .instrument-note:first-of-type { display:none; }
+#wave-panel { display:grid; grid-template-columns:minmax(0,1fr) 105px; }
+#wave-read,.wave-controls,#wave-panel > .instrument-note { grid-column:1 / 3; }
+#cutaway { height:250px; }
+.wave-faders { display:grid; grid-template-rows:1fr 1fr; padding:8px 0 0 6px; }
+.wave-faders label { font-size:11px; }
+.wave-faders input { height:44px; }
+#slice-panel > .row { z-index:3; }
+@media (min-width:601px) and (max-width:1050px) and (max-height:700px) {
+  #station-trace { height:calc(100vh - 350px)!important; min-height:74px; }
+  .marker-row { grid-template-rows:38px 38px; }
+  .marker-row label { height:38px; }
+  .marker-row input { top:10px; height:28px; }
+  #cutaway { height:calc(100vh - 315px); min-height:110px; }
+  .wave-faders { padding-top:0; }
+  .wave-faders input { height:34px; }
+  .instrument-open .toolbelt button { font-size:10px; padding:0; letter-spacing:-.4px; }
+  .instrument-open .toolbelt .tool-icon { display:none; }
+  .instrument-open:has(#record:not([hidden])) #station-trace { height:calc(100vh - 378px)!important; min-height:52px; }
+  .instrument-open:has(#record:not([hidden])) #stations-panel { grid-template-rows:44px 24px 52px; }
+}
+@media (min-width:601px) and (max-width:1050px) and (min-height:571px) {
+  #station-trace { height:115px!important; }
+}
+@media (max-width:600px) {
+  #station-trace { height:100px!important; }
+  #cutaway { height:150px; }
+  .wave-faders { padding-top:0; }
+  .wave-faders input { height:34px; }
+  .instrument-open:has(#record:not([hidden])) #station-trace { height:74px!important; }
+  .instrument-open:has(#record:not([hidden])) #stations-panel { grid-template-rows:44px 30px 74px; }
+}
+
+
+@media (max-width:600px) {
+  .tool-panel:has(#wave-panel:not([hidden])) { bottom:48px; max-height:250px; }
+}
+
+
+/* The station selector belongs to the header, independent of record height. */
+#station-header { display:flex; gap:5px; flex:1; min-width:0; }
+#station-header #station-channel { position:static; width:0; flex:1; min-width:0; font-size:12px; }
+#station-header #stations-clear { position:static; width:44px; flex:0 0 44px; padding:2px; min-height:44px; }
+.tool-panel:has(#stations-panel:not([hidden])) > .panel-head h2 { position:absolute; width:1px; height:1px; clip-path:inset(50%); overflow:hidden; }
+input.speed-knob {
+  background:conic-gradient(from var(--angle,-45deg),#fff1c3 0deg 8deg,transparent 8deg 360deg) center / 28px 28px no-repeat,
+    radial-gradient(circle,#bd9c60 0 47%,transparent 49%),
+    repeating-conic-gradient(from -135deg,#c8d0b6 0deg 4deg,#172625 4deg 90deg);
+}
+input.speed-knob::-webkit-slider-thumb { width:1px; height:1px; opacity:0; border:0; transform:none; }
+@media (min-width:601px) and (max-width:1050px) and (max-height:700px) {
+  .tool-panel:has(#stations-panel:not([hidden])) { display:grid; grid-template-rows:44px auto minmax(0,1fr); }
+  #stations-panel,.instrument-open:has(#record:not([hidden])) #stations-panel { height:100%; min-height:0; grid-template-rows:44px 24px minmax(0,1fr); }
+  #station-trace,.instrument-open:has(#record:not([hidden])) #station-trace { height:100%!important; min-height:0; }
+  .marker-row { height:100%; min-height:0; grid-template-rows:1fr 1fr; }
+  .marker-row label { height:auto; min-height:0; }
+  .marker-row input { top:11px; height:calc(100% - 11px); min-height:15px; }
+  .instrument-open .record { height:18px; margin:0 0 2px; padding:1px; font-size:10px; }
+  #station-header #station-channel { font-size:11px; }
+}
+@media (max-width:600px) {
+  .tool-panel:has(#stations-panel:not([hidden])) { height:250px; display:grid; grid-template-rows:44px auto minmax(0,1fr); }
+  #stations-panel,.instrument-open:has(#record:not([hidden])) #stations-panel { height:100%; min-height:0; grid-template-rows:44px 30px minmax(0,1fr); }
+  #station-trace,.instrument-open:has(#record:not([hidden])) #station-trace { height:100%!important; min-height:0; }
+  .marker-row { height:100%; min-height:0; grid-template-rows:1fr 1fr; }
+  .marker-row label { height:auto; min-height:0; }
+  .tool-panel .marker-row input { top:13px; height:calc(100% - 13px); min-height:22px; }
+  .instrument-open .record { height:18px; margin:0 0 2px; padding:1px; font-size:10px; }
+  #station-header #station-channel { font-size:11px; }
+}
+
+
+@media (min-width:601px) and (max-width:1050px) and (max-height:700px) {
+  #stations-panel { display:grid; position:relative; grid-template-columns:minmax(0,1fr) 98px; }
+  #station-read { grid-row:2; grid-column:1 / 3; min-height:24px; }
+  .station-inputs { grid-row:1; width:49%; gap:3px; }
+  .station-actions { position:absolute; top:0; right:0; width:50%; gap:3px; }
+  .trace-caption { display:contents; }
+  #sp-gap { display:none; }
+  #station-trace { grid-row:3; grid-column:1; }
+  .marker-row { grid-row:3; grid-column:2; display:grid; gap:0; padding-left:4px; }
+  .marker-row label { position:relative; }
+  .marker-row label > span { position:absolute; top:0; left:0; z-index:1; pointer-events:none; font-size:10px; }
+  .marker-row input { position:absolute; inset:11px 0 0; }
+  .wave-controls { position:absolute; z-index:3; }
+}
+@media (min-width:601px) and (max-width:1050px) and (min-height:701px) {
+  .tool-panel { max-height:420px; }
+  .tool-panel .instrument-note { display:none; }
+  .instrument-open .toolbelt { top:4px; left:8px; right:8px; width:auto; display:grid; grid-template-columns:repeat(5,1fr); }
+}
+
+#close-panel { margin-left:auto; min-width:48px; }
+@media (min-width:601px) and (max-width:1050px) and (min-height:701px) {
+  .instrument-open .legend { top:56px; left:8px; }
+  .instrument-open .caption { top:56px; right:8px; }
+}
+
+/* Confirmed final-audit leads: visible range ends and full-size touch targets. */
+#close-panel { width:48px; flex:0 0 48px; padding:2px; }
+@media (min-width:601px) and (max-width:1050px) {
+  .archive select { height:44px; min-height:44px; }
+  .drum-wrap { height:44px; }
+  .console { grid-template-rows:51px 44px 44px; }
+  .station { grid-template-rows:36px minmax(150px,1fr) 180px 58px; }
+}
+@media (min-width:601px) and (max-width:1050px) and (max-height:700px) {
+  .station { grid-template-rows:30px minmax(170px,1fr) 140px 52px; }
+  .console { grid-template-rows:44px 44px 44px; }
+  .toolbelt { top:auto; bottom:3px; left:5px; right:5px; width:auto; grid-template-columns:repeat(5,1fr); gap:2px; }
+  .toolbelt button,.instrument-open .toolbelt button { min-height:44px; }
+  .instrument-open .toolbelt { top:auto; bottom:3px; left:5px; right:auto; width:calc(36% - 10px); }
+  .tool-panel:has(#slice-panel:not([hidden])) #section { height:calc(100vh - 316px); min-height:110px; }
+  .caption { top:50px; bottom:auto; left:10px; right:auto; }
+  .instrument-open .caption { top:3px; }
+  #hint { bottom:57px; }
+  .record { bottom:52px; left:6px; width:calc(100% - 12px); height:24px; overflow:hidden; white-space:nowrap; }
+  .instrument-open .record { position:static; width:100%; height:18px; }
+  .marker-row { align-items:stretch; }
+  .marker-row label { align-self:stretch; }
+  .marker-row input { top:9px; height:calc(100% - 9px); min-height:0; }
+}
+@media (max-width:600px) {
+  .marker-row { align-items:stretch; }
+  .marker-row label { align-self:stretch; }
+  .tool-panel .marker-row input { top:12px; height:calc(100% - 12px); min-height:0; }
+}
+
+@media (min-width:601px) and (max-width:1050px) and (max-height:570px) {
+  #pin-read { font-size:10px; line-height:12px; padding:2px 0; max-height:calc(100vh - 330px); overflow:auto; }
+  #pin-read dl { grid-template-columns:98px 1fr; gap:1px 4px; line-height:12px; }
+  .pin-coordinate { font-size:10px; line-height:12px; margin:1px 0; }
+}
+</style>
+</head>
+<body>
+<main class="station" aria-label="Living Earth seismic map station">
+  <div class="survey" aria-label="Survey readout">
+    <span class="identity">LIVING EARTH / MAP STATION</span>
+    <span><small id="time-label">YEAR </small><b id="year-read">1970</b></span>
+    <span><small>QUAKES </small><b id="count-read">0</b></span>
+    <span><small>IN VIEW </small><b id="view-read">0</b></span>
+    <span class="coverage" id="coverage">UNPACKING REAL MATERIAL</span>
+  </div>
+  <section class="observatory" id="observatory" aria-label="Globe and instruments">
+    <canvas id="earth" aria-hidden="true"></canvas>
+    <canvas id="globe" tabindex="0" role="application"
+      aria-label="Earth globe. Arrows rotate, plus and minus zoom. Enter inspects the nearest filtered earthquake to the centre, or places the active instrument."></canvas>
+    <div class="legend">DEPTH / km
+      <div class="depth">
+        <span><i style="background:#ff987e"></i>0–70</span>
+        <span><i style="background:#edc675"></i>70–300</span>
+        <span><i style="background:#c4a0ef"></i>300–700</span>
+      </div>
+    </div>
+    <section class="record" id="record" hidden aria-label="Selected earthquake"></section>
+    <p id="hint">Drag to spin. Press play.</p>
+    <span class="caption" id="position">20.0° N / 150.0° E</span>
+    <nav class="toolbelt" aria-label="Station instruments">
+      <button id="slice-tool" data-tool="slice" aria-pressed="false"><span class="tool-icon">╱ </span>Slice</button>
+      <button id="stations-tool" data-tool="stations" aria-pressed="false"><span class="tool-icon">△ </span>Stations</button>
+      <button id="wave-tool" data-tool="wave" aria-pressed="false"><span class="tool-icon">◉ </span>Wave</button>
+      <button id="rewind-tool" data-tool="rewind" aria-pressed="false"><span class="tool-icon">↶ </span>Rewind</button>
+      <button id="pin-tool" data-tool="pin" aria-pressed="false"><span class="tool-icon">⌖ </span>Pin</button>
+    </nav>
+    <section class="tool-panel" id="tool-panel" hidden aria-label="Active instrument">
+      <div class="panel-head"><h2 id="panel-title">Slice</h2><div id="station-header" hidden></div><button id="close-panel" aria-label="Close instrument">Close</button></div>
+      <div id="record-dock" hidden></div>
+      <div id="slice-panel" hidden>
+        <div class="data-line" id="slice-read">LENGTH 0 km · QUAKES 0</div>
+        <p class="instrument-note">Drag a line on the globe. Enter sets an end at the centre.</p>
+        <div class="row"><button id="slice-centre">Set end at centre</button><button id="slice-clear">Clear line</button></div>
+        <canvas id="section" role="img" aria-label="Earthquake cross-section with distance and true depth axes"></canvas>
+        <p class="instrument-note">True quake depths · sea-floor strip ×20</p>
+      </div>
+      <div id="stations-panel" hidden>
+        <div class="data-line" id="station-read">STATIONS 0 / 3</div>
+        <div class="row station-inputs">
+          <select id="station-channel" aria-label="Station trace channel"><option>No station placed</option></select>
+          <button id="station-centre" aria-label="Place station at globe centre">Place</button>
+          <button id="strike">Strike</button><button id="stations-clear">Clear</button>
+        </div>
+        <div class="trace-caption"><span id="sp-gap">MODEL TRACE / 0–26 min</span></div>
+        <canvas class="trace" id="station-trace" role="img" aria-label="Selected station model trace, zero to 26 minutes"></canvas>
+        <div class="row marker-row">
+          <label><span title="S minus P is the wait between the two waves">P <output id="marker-p-out">0.0 s</output></span><input id="marker-p" type="range" min="0" max="1560" step="0.5" value="0"></label>
+          <label><span>S <output id="marker-s-out">1560.0 s</output></span><input id="marker-s" type="range" min="0" max="1560" step="0.5" value="1560"></label>
+        </div>
+        <div class="row station-actions"><button id="circles" aria-pressed="false">Circles</button><button id="reveal" aria-pressed="false">Reveal</button></div>
+        <p class="instrument-note" id="station-status">Tap three places for stations</p>
+        <p class="sp-help">S minus P is the wait between the two waves.</p>
+      </div>
+      <div id="wave-panel" hidden>
+        <div class="data-line" id="wave-read">P SHADOW · S SHADOW</div>
+        <p class="instrument-note">Tap a source on the globe. Fire sends rays through the model Earth.</p>
+        <div class="row wave-controls">
+          <button id="fire">Fire</button><button id="p-wave" aria-pressed="true">P rays</button>
+          <button id="s-wave" aria-pressed="true">S rays</button>
+        </div>
+        <canvas id="cutaway" tabindex="0" role="application"
+          aria-label="Wave section. Left and right change receiver distance; up and down change elapsed time."></canvas>
+        <div class="row wave-faders"><label>ELAPSED <output id="elapsed-read">0:00</output>
+          <input id="elapsed" type="range" min="0" max="1560" step="1" value="0" aria-label="Elapsed wave time in seconds"></label>
+        <label>RECEIVER <output id="receiver-read">120°</output>
+          <input id="receiver" type="range" min="0" max="180" step="1" value="120" aria-label="Receiver distance in degrees"></label></div>
+        <p class="instrument-note">Rays bend through a model Earth</p>
+      </div>
+      <div id="rewind-panel" hidden>
+        <div class="data-line" id="ma-read">0 Ma · Merdith et al. 2021</div>
+        <label>DEEP TIME <output id="ma-out">0 Ma</output>
+          <input id="ma" type="range" min="0" max="200" step="1" value="0" aria-label="Million years ago"></label>
+        <div class="row"><button id="fossils" aria-pressed="true">Fossil belts</button><button id="rocks" aria-pressed="false">Rock belts</button></div>
+        <div class="rewind-key"><span style="color:#83d7b1">━ Glossopteris</span><span style="color:#9ecbec">┄ Mesosaurus</span>
+          <span style="color:#f4b6cb">┄ Mountain belts</span></div>
+        <p class="instrument-note">Turn the dial to move the continents back in time</p>
+      </div>
+      <div id="pin-panel" hidden>
+        <form id="city-form" class="row"><input id="city-search" type="search" placeholder="Town or city" aria-label="Search bundled cities" autocomplete="off">
+          <button id="city-go" type="submit">Find</button></form>
+        <select id="city-results" aria-label="Matching cities"><option>No matching bundled city</option></select>
+        <div class="data-line" id="pin-read">NO PIN</div>
+        <button id="pin-centre">Pin centre</button>
+        <p class="instrument-note">Pin a place · speed is a model average with global drift removed</p>
+      </div>
+    </section>
+  </section>
+  <section class="console" aria-label="Transport and filters">
+    <button class="play" id="play" aria-pressed="false" aria-label="Play earthquake archive">▶<br>Play</button>
+    <label class="fader year-fader"><span class="lab">TIME <output id="year-out">1970</output></span>
+      <input id="year" type="range" min="1970" max="2025" step="1" value="1970" aria-label="Archive year"></label>
+    <label class="fader speed-fader"><span class="lab">SPEED <output id="speed-out">3 yr/s</output></span>
+      <input id="speed" type="range" class="speed-knob" min="0" max="3" step="1" value="1" aria-label="Playback speed, four detents"></label>
+    <label class="fader mag-fader"><span class="lab">MAGNITUDE ≥ <output id="mag-out">5.0</output></span>
+      <input id="mag" type="range" min="5" max="9" step="0.1" value="5" aria-label="Minimum earthquake magnitude"></label>
+    <div class="depth-faders">
+      <label class="fader"><span class="lab"><span class="depth-name">D</span> ≥ <output id="depth-min-out">0 km</output></span>
+        <input id="depth-min" type="range" min="0" max="700" step="10" value="0" aria-label="Minimum depth in kilometres"></label>
+      <label class="fader"><span class="lab"><span class="depth-name">D</span> ≤ <output id="depth-max-out">700 km</output></span>
+        <input id="depth-max" type="range" min="0" max="700" step="10" value="700" aria-label="Maximum depth in kilometres"></label>
+    </div>
+    <div class="archive"><label for="event-list">CATALOG / M8+</label>
+      <select id="event-list" aria-label="Select a large earthquake"><option value="">Inspect an M8+ event…</option></select></div>
+    <div class="layers" aria-label="Map layers">
+      <button aria-label="Quakes layer" title="Quakes (Q)" id="quakes" aria-pressed="true"><span class="layer-name">Quakes</span><span class="layer-short" aria-hidden="true">Q</span></button>
+      <button aria-label="Volcanoes layer" title="Volcanoes (V)" id="volcanoes" aria-pressed="false"><span class="layer-name">Volcanoes</span><span class="layer-short" aria-hidden="true">V</span></button>
+      <button aria-label="Edges layer" title="Edges (P)" id="edges" aria-pressed="false"><span class="layer-name">Edges</span><span class="layer-short" aria-hidden="true">P</span></button>
+      <button aria-label="Relief layer" title="Relief (F)" id="relief" aria-pressed="true"><span class="layer-name">Relief</span><span class="layer-short" aria-hidden="true">F</span></button>
+      <button aria-label="Arrows layer" title="Arrows (A)" id="arrows" aria-pressed="false"><span class="layer-name">Arrows</span><span class="layer-short" aria-hidden="true">A</span></button>
+      <div class="zoom"><button id="zoom-out" aria-label="Zoom out">−</button><output id="zoom-read">1.0×</output>
+        <button id="zoom-in" aria-label="Zoom in">+</button></div>
+    </div>
+    <div class="drum-wrap"><canvas id="drum" aria-label="Synthetic station drum trace"></canvas>
+      <span class="drum-tag">SYNTHETIC DRUM</span><span class="stylus"></span></div>
+  </section>
+  <footer class="foot">
+    <button id="manual" aria-haspopup="dialog">Manual</button>
+    <span class="maker">Curio Class Curiosities · No. 04 · Living Earth</span>
+    <div class="power" role="group" aria-label="Station power panel">
+      <button id="motion" aria-pressed="true">Motion</button><button id="sound" aria-pressed="true">Sound</button><button id="read">Read</button>
+    </div>
+    <span class="source-label" id="render-label">ETOPO 2022 / offline station</span>
+  </footer>
+</main>
+<dialog id="manual-drawer" aria-labelledby="manual-title">
+  <div class="panel-head"><h2 id="manual-title">Living Earth / Manual</h2><button id="close-manual">Close</button></div>
+  <h3>At the station</h3>
+  <p>Drag the globe to turn it. Press Play to watch real earthquakes appear through time.</p>
+  <p><strong>For the curious</strong></p>
+  <p>Drag to spin. Play lets the plate margins emerge from the catalogue. Wheel, pinch or + and − zoom from 1× to 6×.
+    Focus the globe and use arrows to turn 5 degrees, Shift for 20. With no instrument open, Enter inspects the filtered earthquake nearest the centre. Space plays when the globe or Play has focus; on another button it presses that button. Letter shortcuts and [ and ] also work after a button click. The five brass tabs open instruments.</p>
+  <h3>The dots</h3>
+  <p>Each dot is a real earthquake. Bigger dots mean bigger quakes; colour shows how deep they were.</p>
+  <p><strong>For the curious</strong></p>
+  <p>Every ComCat earthquake of magnitude 5.5 or greater from 1 January 1970 through 31 December 2025 is bundled: 26,230 events,
+    retrieved 5 November 2026. The M5.0 coordinate pack exceeded the specified 700 KB threshold, so this is the stated M5.5 fallback.
+    Millions of smaller quakes are left out. About 500 ComCat place names contain a question mark where an accent letter was lost at the source; they are kept as supplied. The catalogue is an observation history, never a forecast or a measure of local safety.</p>
+  <p>Positions are rounded to 0.01 degree, depth to 0.1 km, magnitude to a tenth, origin date to a UTC day. A few negative catalogue
+    depths are clamped to the surface. Early magnitudes include older scales; origin solutions can be revised.
+    Dot diameter encodes magnitude. Shallow quakes are salmon (0–70 km), intermediate quakes amber (70–300 km), deep quakes violet (300–700 km).
+    Tap a dot for its date, place and numerical depth. The event selector lists M8+ events; every smaller bundled event is still tappable.</p>
+  <p>QUAKES counts the whole sphere under the filters; IN VIEW counts the half facing you. Turn from the Pacific to the Atlantic to compare them. The time fader includes
+    the chosen calendar year; Play moves continuously through the dates. Q, V, P, F and A switch quakes, volcanoes, plate edges,
+    relief and motion arrows. Present-day geography remains fixed during catalogue playback.</p>
+  <h3>Slice</h3>
+  <p>Draw a line across the globe to look below it. Dots in the section show how deep the quakes were.</p>
+  <p><strong>For the curious</strong></p>
+  <p>Drag A to B, up to 3,000 km. Earthquakes within 150 km of either side of the shortest great-circle path are projected into the section.
+    Turn the globe and use Set end at centre twice for a keyboard section. Try Japan and the Mid-Atlantic, changing only depth to compare the patterns. Quake depths use equal horizontal and vertical kilometres.
+    The ETOPO sea-floor profile has its own strip above the quake plot, exaggerated ×20. Its sea-level line is separate from the true-depth 0 km line. The 0.5 degree relief grid cannot resolve a narrow trench in detail.</p>
+  <h3>Stations</h3>
+  <p>Tap three places, then Strike to record a quake. Move P to the first wave and S to the second; the longer the wait, the farther away the quake.</p>
+  <p><strong>For the curious</strong></p>
+  <p>Place three stations on the globe, or turn it and press Place. Strike starts at a random event, then cycles through 20 geographically spread, shallow M6.5+ catalogue
+    epicentres. Tap A, B or C on the globe, or use the channel selector, to inspect its trace. Move the P and S markers to the packet onsets. Arrow keys nudge a marker 0.5 s; Shift jumps 10 s. Each marker has its own labelled grab handle.
+    A drag on the trace moves the nearer marker; Shift drags S. The horizontal trace is 0 to 26 minutes, with a five-minute ruler.</p>
+  <p>Circles uses the measured S minus P gaps and the bundled iasp91 arrival table to infer surface distance. Reveal shows the catalogue
+    epicentre and its separation from the three-plane intersection, in kilometres. Coincident or badly placed stations can be ambiguous.
+    If the three measured distances cannot meet in one place, the offset is not known. The mathematical intersection uses normalized three-plane fitting with a 200 km residual limit. A station in a direct-wave shadow has no usable S minus P circle. These are drawn traces, never recordings; the model uses a surface
+    focus even for a catalogue quake whose actual focus was below it. It is an idealized measuring instrument.</p>
+  <h3>Wave</h3>
+  <p>Choose a place and press Fire. Watch waves bend through the Earth; S waves cannot pass through the liquid outer core.</p>
+  <p><strong>For the curious</strong></p>
+  <p>Tap a source, then Fire, or use Enter on the globe and the Fire control. Scrub elapsed time, or change receiver angle.
+    Amber P rays and violet S rays follow PREM. The arrival readout separately uses iasp91, both calculated by TauP and bundled as numbers.
+    The outer core is liquid: no direct S ray crosses it. This bundled iasp91 table ends direct S at 99 degrees and direct P at 98 degrees; far-side P returns at 140 degrees. The ring and shadow arc use these same edges. The common textbook shadow edge is about 104 degrees. Diffracted waves bend round the core in the gap; they are not drawn. Weak inner-core and converted arrivals can also exist there.</p>
+  <p>Ray coordinates are quantized to 0.01 degree, 0.1 km and 0.1 s. Arrival times are sampled every degree and linearly interpolated.
+    P includes Pn and far-side PKP/PKIKP; S includes Sn. Reflections, diffraction and S-to-P conversions are left out.
+    These radial model Earths smooth over the real interior’s variations. The cutaway always takes the source as its top.</p>
+  <h3>Rewind</h3>
+  <p>Turn the deep-time dial or press Play to move the continents into the past. The fossil outlines move with the rocks that hold them.</p>
+  <p><strong>For the curious</strong></p>
+  <p>The deep-time dial rotates continental fragments using Merdith and colleagues’ 2021 model, from now to 200 million years ago (Ma).
+    Finite rotations are resolved through the published plate circuit relative to plate 000, sampled every 5 Ma, with quaternion
+    interpolation between samples. These are reconstructed crustal outlines, not ancient coastlines or ancient sea-floor relief.
+    Only fragments with a continuous usable rotation circuit across 0–200 Ma are drawn. Modern dots, volcanoes and relief are withheld.</p>
+  <p>Fossil belts are broad schematic regions redrawn after the USGS This Dynamic Earth figure, not specimen locations. Glossopteris
+    and Mesosaurus are older evidence carried on the moving crust, not organisms asserted to live at the dial’s date. The dotted pink
+    rock traces mark the broad Appalachian, Scottish and Scandinavian mountain belts. Solid fossil-region outlines mark Glossopteris;
+    dashed outlines mark Mesosaurus, so colour is not the only key. Other reconstructions differ, especially farther back.</p>
+  <h3>Pin and plate motion</h3>
+  <p>Tap a place, or search for a city and press Find. Read the plate speed and whether its nearest edge is opening or closing.</p>
+  <p><strong>For the curious</strong></p>
+  <p>Tap any point or search the bundled Natural Earth city list, choose the matching city and press Find. It is a limited gazetteer;
+    a town not listed can still be pinned on the globe. Escape removes the pin. Distances use a spherical radius of 6,371 km.
+    Local earthquake counts always use the whole 1970–2025 M5.5+ archive, independently of the current filters.</p>
+  <p>Plate identity and nearest edge use resolved present-day Merdith topology. Forty-four polygons could be resolved from this archive;
+    missing small regions say plate not known here. Polyline joins and decimation limit edge precision; two source joins span about 100 km.
+    Within 100 km the readout says boundary area. A model boundary is not a surveyed fault, and these values do not measure hazard.</p>
+  <p>Speed and heading average the model from 5 Ma to now, with its shared global rotation removed. This is an area-weighted no-net-rotation estimate, not a GPS measurement. A 5 degree equal-angle grid, weighted by surface area, covers 99.81 percent of the globe in resolved plates. Arrows use the same numbers, with length scaled for visibility. EDGE MOTION compares the two plates normal to their nearest shared edge: opening means apart, closing means together. Sliding along an edge can still occur when this number is near zero. The model’s own README explicitly excludes Pacific hotspot-track analysis:
+    do not use these arrows to explain the Hawaiian-Emperor bend. A missing rotation says UNAVAILABLE. Nearest volcano uses all 1,609 NOAA locations;
+    a white triangle does not assert that the volcano is currently erupting.</p>
+  <h3>Things people have found</h3>
+  <p>Deep quakes under Japan tilt inland. Mid-Atlantic quakes stay shallow. Some station layouts give no single intersection.</p>
+  <ul class="field-notes">
+    <li>Under Tonga and Fiji, some quakes approach 700 km deep inside the descending Pacific plate.
+      <a target="_blank" rel="noopener" href="https://www.usgs.gov/faqs/what-depth-do-earthquakes-occur-what-significance-depth">USGS depth notes</a>;
+      <a target="_blank" rel="noopener" href="https://dev.iris.edu/hq/files/publications/iris_proposals/doc/IRIS_Core_Proposal_2010_Vol_II_Accomplishments_lorez.pdf">IRIS source studies</a>.</li>
+    <li>USGS estimates that the Pacific rim hosts about 81 percent of the world's largest earthquakes. That is a historical summary,
+      not a percentage measured from this filtered display.
+      <a target="_blank" rel="noopener" href="https://www.usgs.gov/faqs/where-do-earthquakes-occur">USGS earthquake belts</a>;
+      <a target="_blank" rel="noopener" href="https://www.ready.gov/sites/default/files/2019.CERT_.HazardAnnexes.PM_.FINAL_.508c.pdf">FEMA hazard annex</a>.</li>
+    <li>The largest instrumentally recorded earthquake was M9.5 in Chile on 22 May 1960, before this catalogue begins.
+      <a target="_blank" rel="noopener" href="https://pubs.usgs.gov/of/2010/1152/of2010-1152.pdf">USGS record</a>;
+      <a target="_blank" rel="noopener" href="https://www.ncei.noaa.gov/news/day-1960-chilean-earthquake-and-tsunami">NOAA record</a>.</li>
+    <li>Direct S waves cannot traverse the liquid outer core. Their far-side shadow is evidence for that liquid layer.
+      The USGS and IRIS sources below explain the textbook shadow; this instrument uses the bundled table edges stated above.</li>
+    <li>In 1936, Inge Lehmann used P-wave observations to propose a solid inner core inside the liquid core.
+      <a target="_blank" rel="noopener" href="https://nbi.ku.dk/english/www/inge/lehmann/">University of Copenhagen</a>;
+      <a target="_blank" rel="noopener" href="https://www.aps.org/apsnews/2023/08/seismologist-lehmann-earth-inner-core">American Physical Society</a>.</li>
+    <li>Plates can open an ocean by a few centimetres a year, about the pace of fingernail growth. Compare EDGE MOTION across the Mid-Atlantic Ridge; the model rate varies along it.
+      <a target="_blank" rel="noopener" href="https://pubs.usgs.gov/gip/dynamic/understanding.html">USGS plate motion</a>;
+      <a target="_blank" rel="noopener" href="https://www.um.edu.mt/library/oar/bitstream/123456789/123491/1/THINK36-Mantle.pdf">University of Malta research account</a>.</li>
+    <li>Hawaii lies far inside the Pacific plate; its island and seamount chain becomes older toward the northwest.
+      <a target="_blank" rel="noopener" href="https://www.usgs.gov/observatories/hvo/evolution-hawaiian-volcanoes">USGS Hawaiian Volcano Observatory</a>;
+      <a target="_blank" rel="noopener" href="https://oceanservice.noaa.gov/facts/hawaii.html">NOAA island formation</a>.</li>
+    <li>Mesosaurus fossils occur in southern Africa and South America, evidence that those continents were connected.
+      The USGS fossil figure and Freie Universität Berlin source below corroborate the connection.</li>
+  </ul>
+  <h3>Sources and permissions</h3>
+  <ul>
+    <li><a target="_blank" rel="noopener" href="https://earthquake.usgs.gov/fdsnws/event/1/">USGS ANSS Comprehensive Catalog / ComCat</a>.
+      US public domain under the <a target="_blank" rel="noopener" href="https://www.usgs.gov/information-policies-and-instructions/copyrights-and-credits">USGS copyright policy</a>.</li>
+    <li><a target="_blank" rel="noopener" href="https://doi.org/10.25921/fd45-gt74">NOAA NCEI, ETOPO 2022</a>.
+      <a target="_blank" rel="noopener" href="https://www.ncei.noaa.gov/metadata/geoportal/rest/metadata/item/gov.noaa.ngdc.mgg.dem:etopo_2022/html">CC0 1.0 at source</a>.
+      The 60 arc-second ice-surface product is sampled at 10 arc-minute intervals for a code-shaded 2048×1024 texture,
+      and at 0.5 degree intervals for section heights, rounded to metres.</li>
+    <li><a target="_blank" rel="noopener" href="https://www.naturalearthdata.com/">Made with Natural Earth</a>, 50m coastline and 1,251 populated places.
+      <a target="_blank" rel="noopener" href="https://www.naturalearthdata.com/about/terms-of-use/">Public domain</a>. Coasts are thinned to approximately 0.1 degree.</li>
+    <li><a target="_blank" rel="noopener" href="https://catalog.data.gov/dataset/global-volcano-locations-database">NOAA NCEI Global Volcano Locations Database</a>, CC0 1.0.
+      Obtained from NOAA HazEL, compiled from Smithsonian Volcanoes of the World. No Smithsonian GVP download is used.</li>
+    <li><a target="_blank" rel="noopener" href="https://doi.org/10.5281/zenodo.4485738">Andrew Merdith et al. (2021), Extending Full-Plate Tectonic Models into Deep Time</a>,
+      model v1.1b, <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Modified for this instrument: quaternion circuit resolution, 5 Ma sampling, thinned outlines, simplified
+      topology resolution, area-weighted removal of shared rotation, relative edge-motion calculations and browser projection. Original authors do not endorse this derivative.</li>
+    <li>Dziewonski and Anderson (1981), <a target="_blank" rel="noopener" href="https://doi.org/10.1016/0031-9201(81)90046-7">PREM</a>;
+      Kennett and Engdahl (1991), <a target="_blank" rel="noopener" href="https://doi.org/10.1111/j.1365-246X.1991.tb06724.x">iasp91</a>.
+      Published physical numerical facts, calculated using the <a target="_blank" rel="noopener" href="https://www.seis.sc.edu/webtaup/">TauP numerical service</a>.
+      No TauP or ObsPy software is included.</li>
+    <li><a target="_blank" rel="noopener" href="https://pubs.usgs.gov/gip/dynamic/continents.html">Kious and Tilling (1996), USGS This Dynamic Earth, fossil figure</a>,
+      public domain; schematic regions redrawn, mountain traces after its
+      <a target="_blank" rel="noopener" href="https://pubs.usgs.gov/gip/dynamic/historical.html">historical perspective</a>.
+      Fossil connection checked against <a target="_blank" rel="noopener" href="https://www.geo.fu-berlin.de/en/v/geolearning/gondwana/evidences/flora_and_fauna/index.html">Freie Universität Berlin</a>.
+      Mountain connection corroborated by <a target="_blank" rel="noopener" href="https://www.nps.gov/subjects/fossils/supercontinent-pangea.htm">National Park Service</a>. Shadow geometry: <a target="_blank" rel="noopener" href="https://www.usgs.gov/media/images/shadowzonegif">USGS Shadow Zone</a> and
+      <a target="_blank" rel="noopener" href="https://www.iris.edu/hq/inclass/software-web-app/seismic_waves_viewer">IRIS Seismic Waves Viewer</a>, factual corroboration.</li>
+  </ul>
+  <h3>Power and privacy</h3>
+  <p>Motion stops the slow turn. Read speaks the measurements you can see.</p>
+  <p><strong>For the curious</strong></p>
+  <p>Motion off stops automatic rotation and the drum, and plays the archive in year steps. Sound controls switch tones and voice.
+    Read speaks the current measurements. After a first drag, the hint says Press play; after first Play, it says Drag to spin. Opening an instrument keeps that hint silent. After that only Read speaks.
+    Everything used by the instrument is in this one file. No network, account or location request is made. Settings stay on this device;
+    no student work is recorded. Source links open in a new tab only when you choose them.</p>
+</dialog>
+<div id="announce" class="sr" role="status" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script>
+'use strict';
+const MATERIAL = "json:material";
+const $ = id => document.getElementById(id);
+const RAD = Math.PI / 180;
+const R = 6371;
+const SPEEDS = [1, 3, 10, 30];
+const L = {spin: 'Drag to spin.', play: 'Press play.'};
+const TRACE_MAX = 1560;
+const NNR = [0.0013777579532194726, -0.030938102039324226, -0.020541093643229258];
+const state = {
+  year: 1970.999, speed: 1, magnitude: 5.5, minDepth: 0, maxDepth: 700,
+  lon: 150, lat: 20, zoom: 1, running: false, tool: null, selected: -1,
+  quakes: true, grid: true, volcanoes: false, edges: false, relief: true, arrows: false,
+  ma: 0, fossils: true, rocks: false, channel: 0, strikeCursor: -1, volcano: -1, pinName: null, slice: [], pin: null, stations: [], strike: -1,
+  circles: false, reveal: false, source: [20,150], elapsed: 0, receiver: 120,
+  waveRunning: false, waveClock: 0, rewindClock: 0, rewindDirection: 1, p: true, s: true, touched: false, spun: false, played: false, ready: false
+};
+const V = Curio.voice({lines: L, hint: false, read: readState, welcome: () => null});
+let events = [];
+let visible = [];
+let globeHit = [];
+let geometry = {x: 0, y: 0, r: 1};
+let drag = null;
+const touchPoints = new Map();
+let pinch = null;
+let pulse = 0;
+let dirty = true;
+let previous = performance.now();
+let drumPhase = 0;
+let lastYear = 1970;
+let frameTimes = [];
+
+function clamp(x, a, b) { return Math.max(a, Math.min(b, x)); }
+function wrap(x) { return ((x + 180) % 360 + 360) % 360 - 180; }
+function vec(point) {
+  const [lat, lon] = point.map(x => x * RAD);
+  return [Math.cos(lat) * Math.cos(lon), Math.cos(lat) * Math.sin(lon), Math.sin(lat)];
+}
+function dot(a, b) { return a[0]*b[0] + a[1]*b[1] + a[2]*b[2]; }
+function cross(a, b) { return [a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0]]; }
+function unit(a) { const n = Math.hypot(...a); return n > 1e-10 ? a.map(x => x/n) : null; }
+function point(a) { return [Math.asin(clamp(a[2],-1,1))/RAD, Math.atan2(a[1],a[0])/RAD]; }
+function angular(a, b) { return Math.acos(clamp(dot(vec(a),vec(b)),-1,1)); }
+function distance(a, b) { return angular(a,b) * R; }
+function bearing(a,b) {
+  const p=a[0]*RAD, q=b[0]*RAD, d=(b[1]-a[1])*RAD;
+  return Math.atan2(Math.sin(d)*Math.cos(q), Math.cos(p)*Math.sin(q)-Math.sin(p)*Math.cos(q)*Math.cos(d));
+}
+function destination(a, angle, heading) {
+  const p=a[0]*RAD, l=a[1]*RAD;
+  const q=Math.asin(clamp(Math.sin(p)*Math.cos(angle)+Math.cos(p)*Math.sin(angle)*Math.cos(heading),-1,1));
+  return [q/RAD, wrap((l+Math.atan2(Math.sin(heading)*Math.sin(angle)*Math.cos(p),Math.cos(angle)-Math.sin(p)*Math.sin(q)))/RAD)];
+}
+function interpolate(a,b,f) {
+  const d=angular(a,b);
+  if (d < 1e-8) return a.slice();
+  if (Math.PI-d < 1e-6) return destination(a,d*f,0);
+  const u=vec(a), v=vec(b), x=Math.sin((1-f)*d)/Math.sin(d), y=Math.sin(f*d)/Math.sin(d);
+  return point(unit(u.map((n,i) => n*x+v[i]*y)));
+}
+function coord(p, digits=2) {
+  return `${Math.abs(p[0]).toFixed(digits)}° ${p[0]<0?'S':'N'} / ${Math.abs(p[1]).toFixed(digits)}° ${p[1]<0?'W':'E'}`;
+}
+function timeText(t) {
+  if(t==null)return 'no direct wave here';
+  const total=Math.round(t);
+  return `${Math.floor(total/60)}:${String(total%60).padStart(2,'0')}`;
+}
+function arrival(degrees, phase) {
+  const a=clamp(Math.floor(degrees),0,180), b=Math.min(180,a+1), f=degrees-a;
+  const x=MATERIAL.times[phase][a], y=MATERIAL.times[phase][b];
+  if(f<1e-10)return x;
+  if (x == null || y == null) return null;
+  return x+(y-x)*f;
+}
+function color(depth) { return depth < 70 ? '#ff987e' : depth < 300 ? '#edc675' : '#c4a0ef'; }
+function speakUpdate(text) { $('announce').textContent=text; }
+function touch(action='other') {
+  if(action==='spin')state.spun=true;
+  if(action==='play')state.played=true;
+  if (!state.touched) {
+    state.touched=true;
+    $('hint').hidden=true;
+    if(!state.tool && action==='spin')V.how('play',{hint:false,valid:()=>!state.tool&&!state.played});
+    if(!state.tool && action==='play')V.how('spin',{hint:false,valid:()=>!state.tool&&!state.spun});
+  }
+  dirty=true;
+}
+function filtered(e) {
+  return e.year < state.year && e.mag >= state.magnitude && e.depth >= state.minDepth && e.depth <= state.maxDepth;
+}
+function update() {
+  const count=visible.length;
+  visible=events.filter(filtered);
+  if(visible.length>count)pulse=Math.max(pulse,...visible.slice(-40).map(e=>clamp((e.mag-5)/4,0,1)));
+  $('time-label').textContent=state.tool==='rewind'?'Ma ':'YEAR ';
+  $('year-read').textContent=state.tool==='rewind'?state.ma:Math.floor(state.year);
+  $('year-out').textContent=Math.floor(state.year);
+  $('year').value=Math.floor(state.year);
+  $('count-read').textContent=state.tool==='rewind'?'OFF':visible.length.toLocaleString();
+  if(state.ready)$('coverage').textContent=state.tool==='rewind'?'Merdith et al. 2021':`USGS · M${MATERIAL.floor.toFixed(1)}+ · ${events.length.toLocaleString()}`;
+  $('speed-out').textContent=`${SPEEDS[state.speed]} ${state.tool==='rewind'?'Ma':'yr'}/s`;
+  $('speed').style.setProperty('--angle',`${-135+state.speed*90}deg`);
+  $('speed').setAttribute('aria-valuenow',state.speed);
+  document.querySelector('.legend').hidden=state.tool==='rewind';
+  $('view-read').textContent=state.tool==='rewind'?'OFF':inViewCount().toLocaleString();
+  $('speed').setAttribute('aria-valuetext',`${SPEEDS[state.speed]} ${state.tool==='rewind'?'million years':'years'} per second`);
+  $('mag-out').textContent=state.magnitude.toFixed(1);
+  $('depth-min-out').textContent=state.minDepth+' km';
+  $('depth-max-out').textContent=state.maxDepth+' km';
+  $('position').textContent=coord([state.lat,state.lon],1);
+  $('zoom-read').textContent=state.zoom.toFixed(1)+'×';
+  $('play').setAttribute('aria-pressed',state.running);
+  $('play').setAttribute('aria-label',state.running?'Pause':state.tool==='rewind'?'Play continental rewind':'Play earthquake archive');
+  $('play').innerHTML=state.running?'Ⅱ<br>Pause':'▶<br>Play';
+  renderRecord();
+  if (state.tool==='slice') renderSection();
+  if (state.tool==='pin') renderPin();
+  if (state.tool==='rewind') renderRewind();
+  dirty=true;
+}
+function renderRecord() {
+  const box=$('record'), e=events[state.selected];
+  const dock=$('record-dock');
+  if(state.tool)dock.append(box);else $('observatory').insertBefore(box,$('hint'));
+  dock.hidden=!state.tool;
+  const v=MATERIAL.volcanoes?.[state.volcano];
+  box.hidden=!e&&!v;
+  if(v) {
+    box.innerHTML=`<small>NOAA / VOLCANO LOCATION</small><h1>${escapeHTML(v[0])}</h1>
+      <dl><dt>ELEVATION</dt><dd>${v[3]==null?'UNKNOWN':v[3]+' m'}</dd><dt>TYPE</dt><dd>${escapeHTML(v[4])}</dd>
+      <dt>POSITION</dt><dd>${coord([v[1],v[2]],1)}</dd></dl>`;
+    return;
+  }
+  if (!e) return;
+  box.title=`${e.date} / M${e.mag.toFixed(1)} / ${e.name}`;
+  if(state.tool){box.textContent=`${e.date} / M${e.mag.toFixed(1)} / ${e.name}`;box.title=box.textContent;return;}
+  box.innerHTML=`<small>${e.date} / USGS COMCAT</small><h1>${escapeHTML(e.name)}</h1>
+    <span class="magnitude">M ${e.mag.toFixed(1)}</span>
+    <dl><dt>DEPTH</dt><dd>${e.depth.toFixed(0)} km</dd><dt>LAT</dt><dd>${Math.abs(e.lat).toFixed(2)}° ${e.lat<0?'S':'N'}</dd>
+    <dt>LON</dt><dd>${Math.abs(e.lon).toFixed(2)}° ${e.lon<0?'W':'E'}</dd></dl>
+    ${filtered(e)||(state.reveal&&state.selected===state.strike)?'':'<small>OUTSIDE FILTERS</small>'}`;
+}
+function selectEvent(i) {
+  const e=events[i];
+  if (!e) return;
+  state.selected=i;state.volcano=-1;
+  state.lat=e.lat;
+  state.lon=e.lon;
+  state.year=Math.max(state.year,e.year+.001);
+  $('event-list').value=e.mag>=8?i:'';
+  pulse=1;
+  touch(); update();
+  speakUpdate(`${e.name}, ${e.date}, magnitude ${e.mag}, depth ${Math.round(e.depth)} kilometres.`);
+}
+function togglePlay() {
+  if (!state.ready) return;
+  if(state.tool==='rewind') {
+    if(state.ma>=200)state.rewindDirection=-1;
+    if(state.ma<=0)state.rewindDirection=1;
+  } else if (!state.running && state.year>=2025.99)state.year=1970;
+  state.running=!state.running;
+  touch('play'); update();
+}
+function setTool(name) {
+  if(!state.ready)return;
+  V.hush();
+  if(state.tool==='rewind')state.running=false;
+  state.tool=state.tool===name?null:name;
+  $('observatory').classList.toggle('instrument-open',Boolean(state.tool));
+  state.waveRunning=false;
+  $('tool-panel').hidden=!state.tool;
+  for (const id of ['slice','stations','wave','rewind','pin']) {
+    $(id+'-panel').hidden=state.tool!==id;
+    $(id+'-tool').setAttribute('aria-pressed',state.tool===id);
+  }
+  if (state.tool) $('panel-title').textContent=({slice:'Earth section',stations:'Station records',wave:'Through the Earth',rewind:'Continental reconstruction',pin:'Survey pin'})[state.tool];
+  const stationHeader=$('station-header');
+  stationHeader.hidden=state.tool!=='stations';
+  if(state.tool==='stations')stationHeader.append($('station-channel'),$('stations-clear'));
+  else {
+    document.querySelector('.station-inputs').prepend($('station-channel'));
+    document.querySelector('.station-inputs').append($('stations-clear'));
+  }
+  const ancient=state.tool==='rewind';
+  if(ancient){state.running=false;state.selected=-1;state.volcano=-1;}
+  for(const id of ['year','mag','depth-min','depth-max','quakes','volcanoes','edges','relief','arrows','event-list'])
+    $(id).disabled=ancient;
+  touch(); update();
+  if (name==='stations') renderStations();
+  if (name==='wave') renderWave();
+}
+function project(p) {
+  const lat=p[0]*RAD, lon=(p[1]-state.lon)*RAD, tilt=state.lat*RAD;
+  const x=Math.cos(lat)*Math.sin(lon);
+  const y=Math.sin(lat)*Math.cos(tilt)-Math.cos(lat)*Math.cos(lon)*Math.sin(tilt);
+  const z=Math.sin(lat)*Math.sin(tilt)+Math.cos(lat)*Math.cos(lon)*Math.cos(tilt);
+  return [geometry.x+x*geometry.r, geometry.y-y*geometry.r, z];
+}
+function unproject(x,y) {
+  const u=(x-geometry.x)/geometry.r, v=-(y-geometry.y)/geometry.r;
+  if (u*u+v*v > 1) return null;
+  const z=Math.sqrt(Math.max(0,1-u*u-v*v)), tilt=state.lat*RAD;
+  return [Math.asin(clamp(v*Math.cos(tilt)+z*Math.sin(tilt),-1,1))/RAD,
+    wrap(state.lon+Math.atan2(u,z*Math.cos(tilt)-v*Math.sin(tilt))/RAD)];
+}
+function fitCanvas(id) {
+  const canvas=$(id), box=canvas.getBoundingClientRect();
+  const ratio=Math.min(devicePixelRatio||1,2);
+  const w=Math.max(1,Math.round(box.width*ratio)), h=Math.max(1,Math.round(box.height*ratio));
+  if (canvas.width!==w || canvas.height!==h) { canvas.width=w; canvas.height=h; }
+  const ctx=canvas.getContext('2d');
+  ctx.setTransform(ratio,0,0,ratio,0,0);
+  return [ctx,box.width,box.height];
+}
+function globeLine(ctx, points, stroke, width=1, dash=[]) {
+  ctx.strokeStyle=stroke; ctx.lineWidth=width; ctx.setLineDash(dash); ctx.beginPath();
+  let pen=false;
+  for (const p of points) {
+    const q=project(p);
+    if (q[2]<0) { pen=false; continue; }
+    if (pen) ctx.lineTo(q[0],q[1]); else ctx.moveTo(q[0],q[1]);
+    pen=true;
+  }
+  ctx.stroke(); ctx.setLineDash([]);
+}
+function ring(ctx,p,d,stroke,width=1) {
+  const points=[];
+  for (let h=0;h<=360;h+=2) points.push(destination(p,d,h*RAD));
+  globeLine(ctx,points,stroke,width);
+}
+function mark(ctx,p,label,stroke='#f3dcb1',shape='cross') {
+  const q=project(p);
+  if (q[2]<0) return;
+  ctx.strokeStyle=stroke; ctx.fillStyle=stroke; ctx.lineWidth=1.5; ctx.beginPath();
+  if (shape==='triangle') { ctx.moveTo(q[0],q[1]-7); ctx.lineTo(q[0]-6,q[1]+5); ctx.lineTo(q[0]+6,q[1]+5); ctx.closePath(); }
+  else { ctx.moveTo(q[0]-7,q[1]);ctx.lineTo(q[0]+7,q[1]);ctx.moveTo(q[0],q[1]-7);ctx.lineTo(q[0],q[1]+7); }
+  ctx.stroke(); ctx.font='11px Consolas, monospace'; ctx.fillText(label,q[0]+10,q[1]-8);
+}
+function drawGlobe() {
+  const [ctx,w,h]=fitCanvas('globe');
+  ctx.clearRect(0,0,w,h);
+  const narrow=w<600;
+  const panel=state.tool && !narrow;
+  geometry={x:panel?w*.29:w*.51,y:h*(narrow?.43:.5),r:Math.min(h*(narrow?.46:.46),w*(narrow?.47:panel?.23:.36))*state.zoom};
+  if(w>600 && w<=1050 && state.tool && innerHeight>700) {
+    const room=Math.max(90,$('tool-panel').offsetTop);
+    geometry={x:w*.5,y:(room+50)/2,r:Math.min(w*.43,Math.max(60,room-50)*.43)*state.zoom};
+  }
+  if(narrow && state.tool) {
+    const room=Math.max(64,$('tool-panel').offsetTop);
+    geometry={x:w*.5,y:room/2,r:Math.min(w*.47,room*.45)*state.zoom};
+  }
+  if(w<=1050 && w>600 && innerHeight<=700 && state.tool)geometry={x:w*.18,y:h*.49,r:Math.min(h*.42,w*.16)*state.zoom};
+  if(w>600&&w<=1050&&innerHeight<=700) {
+    const available=Math.max(80,h-50-(!state.tool&&!$('record').hidden?26:0));
+    geometry=state.tool?{x:w*.18,y:available*.5,r:Math.min(available*.43,w*.16)*state.zoom}:
+      {x:w*.51,y:available*.5,r:Math.min(available*.46,w*.36)*state.zoom};
+  }
+  const {x,y,r}=geometry;
+  if(performance.now()-viewStamp>200){$('view-read').textContent=state.tool==='rewind'?'OFF':inViewCount().toLocaleString();viewStamp=performance.now();}
+  const glow=ctx.createRadialGradient(x,y,r*.94,x,y,r*1.12);
+  glow.addColorStop(0,'#6a9eac38');glow.addColorStop(1,'#25414c00');
+  ctx.fillStyle=glow;ctx.beginPath();ctx.arc(x,y,r*1.12,0,Math.PI*2);ctx.fill();
+  ctx.save();ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.clip();
+  updateCamera();
+  if(earthImage)paintEarth(ctx,w,h);
+  drawGeography(ctx,narrow);
+  if (state.grid && !earthGL) {
+    for (let lat=-75;lat<=75;lat+=15) {
+      const pts=[]; for(let lon=-180;lon<=180;lon+=2) pts.push([lat,lon]);
+      globeLine(ctx,pts,lat===0?'#8aa29785':'#8aa29735',lat===0?1.2:.65);
+    }
+    for(let lon=-180;lon<180;lon+=15) {
+      const pts=[];for(let lat=-90;lat<=90;lat+=2) pts.push([lat,lon]);
+      globeLine(ctx,pts,'#8aa29735',.65);
+    }
+  }
+  const selected=events[state.selected];
+  if(selected&&state.quakes&&state.tool!=='rewind') {
+    const q=projectVector(selected.xyz);
+    if(q[2]>=0){
+      ctx.strokeStyle='#fff0cb';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(q[0],q[1],9+pulse*7,0,Math.PI*2);ctx.stroke();
+      if(!narrow){ctx.fillStyle='#f7e2bd';ctx.font='11px Consolas';ctx.fillText('M '+selected.mag.toFixed(1),q[0]+13,q[1]-4);}
+    }
+  }
+  if(state.slice.length&&state.tool==='slice') {
+    mark(ctx,state.slice[0],'A');
+    if(state.slice[1]) {
+      mark(ctx,state.slice[1],'B');
+      globeLine(ctx,Array.from({length:80},(_,i)=>interpolate(state.slice[0],state.slice[1],i/79)),'#fff1cb',2);
+    }
+  }
+  if(state.pin&&state.tool==='pin') {mark(ctx,state.pin,'PIN');ring(ctx,state.pin,300/R,'#d8dfbb',1,[3,3]);}
+  if(state.tool==='stations')state.stations.forEach((s,i)=> {
+    mark(ctx,s.point,String.fromCharCode(65+i),'#9be6db','triangle');
+    if(state.circles && s.radius!=null) ring(ctx,s.point,s.radius/R,['#9be6db','#e5c885','#c6a7ec'][i],1.6);
+  });
+  if(state.tool==='stations' && state.reveal && events[state.strike]) {
+    const e=events[state.strike], epicentre=[e.lat,e.lon], solution=solveStations();
+    const offset=solution?` · ${Math.round(distance(solution,epicentre))} km`:'';
+    mark(ctx,epicentre,'CATALOG'+offset,'#fff2cf');
+    if(solution)mark(ctx,solution,'','#95e8da');
+  }
+  if(state.tool==='wave') {
+    mark(ctx,state.source,'SOURCE','#e6c381');
+    if(shadowVisible())ring(ctx,state.source,directEdge(1)*RAD,'#b799e1',1.3);
+  }
+  ctx.restore();ctx.strokeStyle='#7192a3';ctx.lineWidth=1;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.strokeStyle='#a19c78';ctx.lineWidth=1;
+  for(let angle=0;angle<360;angle+=5) {
+    const a=angle*RAD, inner=r+5, outer=r+(angle%30===0?13:8);
+    ctx.beginPath();ctx.moveTo(x+Math.cos(a)*inner,y+Math.sin(a)*inner);ctx.lineTo(x+Math.cos(a)*outer,y+Math.sin(a)*outer);ctx.stroke();
+  }
+  if(!narrow && r<Math.min(w,h)) {
+    ctx.fillStyle='#cac5a3';ctx.font='10px Consolas';ctx.textAlign='center';
+    ctx.fillText('N',x,y-r-19);ctx.fillText('S',x,y+r+23);ctx.textAlign='left';
+  }
+}
+function canvasText(ctx,text,x,y) { ctx.fillStyle='#d5d8c9';ctx.font='10px Consolas';ctx.fillText(text,x,y); }
+function sectionData() {
+  if(state.slice.length<2)return {length:0,points:[]};
+  const [a,b]=state.slice, d=angular(a,b), h=bearing(a,b), length=d*R;
+  const points=[];
+  for(const e of visible) {
+    const p=[e.lat,e.lon], s=angular(a,p), delta=bearing(a,p)-h;
+    const crossDistance=Math.asin(clamp(Math.sin(s)*Math.sin(delta),-1,1))*R;
+    const along=Math.atan2(Math.sin(s)*Math.cos(delta),Math.cos(s))*R;
+    if(Math.abs(crossDistance)<=150 && along>=0 && along<=length)points.push({along,depth:e.depth,event:e});
+  }
+  return {length,points};
+}
+function renderSection() {
+  if($('slice-panel').hidden)return;
+  const [ctx,w,h]=fitCanvas('section'),data=sectionData();
+  ctx.clearRect(0,0,w,h);
+  const heights=data.length&&MATERIAL.relief.values?Array.from({length:151},(_,i)=>
+    elevation(interpolate(state.slice[0],state.slice[1],i/150))/1000):[0];
+  const low=Math.min(0,...heights),high=Math.max(0,...heights),span=high-low;
+  const left=38,scale=Math.max(.01,Math.min((w-left-14)/Math.max(data.length,700),(h-62)/(700+span*20)));
+  const stripHeight=28+span*20*scale,baseline=12+high*20*scale,top=stripHeight+14;
+  const end=left+Math.max(data.length,700)*scale;
+  ctx.fillStyle='#122f3c';ctx.fillRect(left,3,end-left,stripHeight);
+  ctx.strokeStyle='#8eb9c6';ctx.beginPath();ctx.moveTo(left,baseline);ctx.lineTo(end,baseline);ctx.stroke();
+  canvasText(ctx,'sea level',left+3,Math.max(12,baseline-3));canvasText(ctx,'sea floor ×20',left+3,stripHeight-1);
+  if(data.length&&heights.length>1) {
+    ctx.beginPath();ctx.strokeStyle='#d3d3aa';ctx.lineWidth=1.3;
+    for(let i=0;i<heights.length;i++) {
+      const x=left+data.length*i/150*scale,y=baseline-heights[i]*20*scale;
+      if(i)ctx.lineTo(x,y);else ctx.moveTo(x,y);
+    }
+    ctx.stroke();
+  }
+  ctx.strokeStyle='#516563';ctx.lineWidth=1;
+  for(const depth of (scale<.12?[0,350,700]:[0,100,200,300,400,500,600,700])) {
+    const y=top+depth*scale;
+    ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(end,y);ctx.stroke();canvasText(ctx,String(depth),5,y+3);
+  }
+  canvasText(ctx,'km ↓',4,top-5);canvasText(ctx,'A',left,h-5);
+  const label=data.length?`${Math.round(data.length)} km → B`:'Set A and B';
+  canvasText(ctx,label,Math.max(left+20,end-ctx.measureText(label).width),h-5);
+  for(const p of data.points) {
+    ctx.fillStyle=color(p.depth);ctx.beginPath();ctx.arc(left+p.along*scale,top+p.depth*scale,3.2,0,Math.PI*2);ctx.fill();
+  }
+  const deepest=data.points.length?Math.max(...data.points.map(p=>p.depth)):null;
+  $('slice-read').textContent=`LENGTH ${Math.round(data.length)} km · QUAKES ${data.points.length} · DEEPEST ${deepest==null?'NONE':Math.round(deepest)+' km'}`;
+  $('section').setAttribute('aria-label',$('slice-read').textContent+'. True quake depths. Sea-floor relief in a separate strip, exaggerated twenty times.');
+}
+function sliceEnd(p) {
+  if(state.slice.length!==1)state.slice=[p];
+  else {
+    const d=angular(state.slice[0],p);
+    state.slice.push(d*R>3000?interpolate(state.slice[0],p,3000/(d*R)):p);
+  }
+  touch();update();speakUpdate($('slice-read').textContent);
+}
+function placeStation(p) {
+  clearStationReveal();
+  if(state.stations.length>=3)state.stations=[];
+  state.stations.push({point:p,p:0,s:TRACE_MAX,pSet:false,sSet:false,radius:null});
+  state.reveal=false;state.circles=false;
+  refreshArrivals();renderStations();touch();
+}
+function refreshArrivals() {
+  const e=events[state.strike];
+  state.stations.forEach(s=> {
+    const d=e?angular(s.point,[e.lat,e.lon])/RAD:0;
+    s.trueP=e?arrival(d,0):null;s.trueS=e?arrival(d,1):null;
+    s.p=0;s.s=TRACE_MAX;s.pSet=false;s.sSet=false;s.radius=null;
+  });
+}
+function invertGap(gap) {
+  if(gap<0)return null;
+  let best=null;
+  for(let d=0;d<103;d++) {
+    const p=arrival(d,0),s=arrival(d,1),p2=arrival(d+1,0),s2=arrival(d+1,1);
+    if([p,s,p2,s2].some(x=>x==null))continue;
+    const a=s-p,b=s2-p2;
+    if(gap>=Math.min(a,b) && gap<=Math.max(a,b) && b!==a) {
+      const degrees=d+(gap-a)/(b-a);
+      if(best==null || degrees<best)best=degrees;
+    }
+  }
+  return best==null?null:best*RAD*R;
+}
+function drawTrace(id,s) {
+  const [ctx,w,h]=fitCanvas(id), max=TRACE_MAX;
+  const traceHeight=h-14;
+  ctx.fillStyle='#e9e3d3';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#aaa38f';ctx.lineWidth=.5;
+  for(let t=0;t<=max;t+=300) {
+    const x=t/max*w;
+    ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,traceHeight);ctx.stroke();
+    ctx.fillStyle='#383b31';ctx.font='10px Consolas';
+    const label=String(t/60);
+    if(t===1500)continue;
+    ctx.fillText(label,clamp(x-5,2,w-ctx.measureText(label).width-2),h-2);
+  }
+  ctx.fillStyle='#383b31';ctx.font='10px Consolas';ctx.fillText('26 min',w-ctx.measureText('26 min').width-2,h-2);
+  ctx.strokeStyle='#292d26';ctx.lineWidth=.9;ctx.beginPath();
+  for(let x=0;x<w;x++) {
+    const t=x/w*max;
+    const packet=(start,amp)=>start==null || t<start?0:amp*Math.exp(-(t-start)/95)*Math.sin((t-start)*.43)*Math.sin((t-start)*.77);
+    const y=traceHeight/2+packet(s.trueP,traceHeight*.3)+packet(s.trueS,traceHeight*.43);
+    if(x)ctx.lineTo(x,y);else ctx.moveTo(x,y);
+  }
+  ctx.stroke();
+  [[s.p,'#73511e','P',0],[s.s,'#563976','S',18]].forEach(([t,c,label,lane])=> {
+    ctx.strokeStyle=c;ctx.lineWidth=1.5;const x=t/max*w;ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,traceHeight);ctx.stroke();
+    ctx.fillStyle=c;ctx.fillRect(clamp(x-13,0,w-26),lane,26,17);
+    ctx.fillStyle='#fff4d5';ctx.font='bold 12px Consolas';ctx.fillText(label,clamp(x-4,5,w-15),lane+13);
+  });
+}
+function solveStations() {
+  if(state.stations.length!==3 || state.stations.some(s=>!s.pSet || !s.sSet || s.radius==null || s.trueS==null))return null;
+  const [a,b,c]=state.stations.map(s=>vec(s.point));
+  const determinant=dot(a,cross(b,c));
+  if(Math.abs(determinant)<.015)return null;
+  const d=state.stations.map(s=>Math.cos(s.radius/R));
+  const x=cross(b,c),y=cross(c,a),z=cross(a,b);
+  const answer=unit(x.map((v,i)=>(v*d[0]+y[i]*d[1]+z[i]*d[2])/determinant));
+  if(!answer)return null;
+  const fit=point(answer);
+  const residual=Math.max(...state.stations.map(s=>Math.abs(distance(fit,s.point)-s.radius)));
+  return residual<=200?fit:null;
+}
+function strike() {
+  if(!events.length)return;
+  state.strikeCursor=state.strikeCursor<0?Math.floor(Math.random()*MATERIAL.stationEvents.length):(state.strikeCursor+1)%MATERIAL.stationEvents.length;
+  state.strike=MATERIAL.stationEvents[state.strikeCursor];
+  state.selected=-1;state.volcano=-1;renderRecord();
+  state.reveal=false;state.circles=false;refreshArrivals();renderStations();pulse=1;touch();
+}
+function renderWave() {
+  if($('wave-panel').hidden)return;
+  const [ctx,w,h]=fitCanvas('cutaway'), x=w/2,y=h/2,r=Math.min(w*.45,(h-34)/2);
+  ctx.clearRect(0,0,w,h);
+  const disk=(radius,fill)=> {ctx.beginPath();ctx.arc(x,y,radius,0,Math.PI*2);ctx.fillStyle=fill;ctx.fill();};
+  disk(r,'#354c52');disk(r*(R-2891)/R,'#755c38');disk(r*(R-5149.5)/R,'#c4ab76');
+  for(const ray of MATERIAL.rays) {
+    if(ray.phase===1?!state.p:!state.s)continue;
+    ctx.strokeStyle=ray.phase===1?'#eed08c':'#c9a4f1';ctx.lineWidth=.7;
+    for(const sign of [-1,1]) {
+      ctx.beginPath();let pen=false;
+      for(let i=0;i<ray.path.length;i++) {
+        let [a,radius,t]=ray.path[i];
+        if(t>state.elapsed) {
+          if(i===0)break;
+          const previous=ray.path[i-1], f=clamp((state.elapsed-previous[2])/(t-previous[2]),0,1);
+          a=previous[0]+(a-previous[0])*f;radius=previous[1]+(radius-previous[1])*f;
+        }
+        const px=x+sign*Math.sin(a)*radius/R*r,py=y-Math.cos(a)*radius/R*r;
+        if(pen)ctx.lineTo(px,py);else ctx.moveTo(px,py);pen=true;
+        if(t>state.elapsed)break;
+      }
+      ctx.stroke();
+    }
+  }
+  if(shadowVisible()) {
+    const edge=directEdge(1);
+    ctx.strokeStyle='#d2b1ee';ctx.lineWidth=3;ctx.beginPath();ctx.arc(x,y,r+4,(edge-90)*RAD,(270-edge)*RAD);ctx.stroke();
+  }
+  const a=state.receiver*RAD,px=x+Math.sin(a)*(r+7),py=y-Math.cos(a)*(r+7);
+  ctx.fillStyle='#fff2cf';ctx.beginPath();ctx.arc(px,py,4,0,Math.PI*2);ctx.fill();
+  canvasText(ctx,'SOURCE',x-18,y-r-5);
+  if(shadowVisible())canvasText(ctx,'S SHADOW',x-25,y+r+16);
+  canvasText(ctx,'MANTLE',x-r*.84,y+2);
+  canvasText(ctx,'LIQUID',x-18,y+r*.29);canvasText(ctx,'OUTER CORE',x-30,y+r*.29+12);
+  $('elapsed-read').textContent=timeText(state.elapsed);$('elapsed').value=state.elapsed;
+  $('receiver-read').textContent=state.receiver+'°';
+  const p=arrival(state.receiver,0),s=arrival(state.receiver,1);
+  const phaseText=(value,phase)=>value!=null?timeText(value):
+    state.elapsed>=arrival(directEdge(phase),phase)?'no direct wave here':'await rays';
+  const pText=phaseText(p,0),sText=phaseText(s,1);
+  $('wave-read').textContent=`P ${pText} · S ${sText} · T+ ${timeText(state.elapsed)}`;
+}
+function drawDrum(dt=0) {
+  const [ctx,w,h]=fitCanvas('drum');
+  if(!Curio.reduce)drumPhase+=dt*45;
+  ctx.fillStyle='#e9e3d3';ctx.fillRect(0,0,w,h);ctx.strokeStyle='#aaa48f';ctx.lineWidth=.5;
+  for(let x=-(drumPhase%18);x<w;x+=18) {ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}
+  for(let y=12;y<h;y+=12) {ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
+  ctx.strokeStyle='#292f29';ctx.lineWidth=1;ctx.beginPath();
+  for(let x=0;x<w;x++) {
+    const t=(x+drumPhase)/9;
+    const amplitude=state.running?3+pulse*14:2;
+    const v=Math.sin(t*1.9)*Math.sin(t*.31)*Math.exp(-Math.pow((x-w*.68)/(w*.2),2))*amplitude;
+    if(x)ctx.lineTo(x,h*.6+v);else ctx.moveTo(x,h*.6+v);
+  }
+  ctx.stroke();
+}
+function actAt(p) {
+  if(state.tool==='slice')sliceEnd(p);
+  else if(state.tool==='stations')placeStation(p);
+  else if(state.tool==='wave') {state.source=p;state.elapsed=0;state.waveRunning=false;renderWave();}
+  else if(state.tool==='pin') {state.pin=p;state.pinName=null;renderPin();}
+  touch();dirty=true;
+}
+function readState() {
+  if(state.tool==='rewind')return `${state.ma} million years ago. Merdith and colleagues, 2021 reconstruction.`;
+  let text=`${Math.floor(state.year)}. ${visible.length.toLocaleString('en-US')} earthquake${visible.length===1?'':'s'} of magnitude ${state.magnitude.toFixed(1)} or more so far. ${inViewCount().toLocaleString('en-US')} on this face of the globe.`;
+  const e=events[state.selected];
+  if(e) {
+    text+=` ${e.name}. ${e.date}. Magnitude ${e.mag}. Depth ${Math.round(e.depth)} kilometres.`;
+    if(!filtered(e)&&!(state.reveal&&state.selected===state.strike))text+=' This selected earthquake is outside the current filters.';
+  }
+  const volcano=MATERIAL.volcanoes?.[state.volcano];
+  if(volcano)text+=` Volcano ${volcano[0]}, elevation ${volcano[3]==null?'unknown':volcano[3]+' metres'}. ${volcano[4]}.`;
+  if(state.tool==='slice') {
+    const data=sectionData();
+    text+=` Section length ${Math.round(data.length)} kilometres. ${data.points.length} earthquake${data.points.length===1?'':'s'} in the section.`;
+    if(data.points.length)text+=` Deepest ${Math.round(Math.max(...data.points.map(p=>p.depth)))} kilometres.`;
+    text+=' Quake depths use equal horizontal and vertical kilometres. Surface relief is exaggerated twenty times.';
+  }
+  if(state.tool==='stations') {
+    const station=state.stations[state.channel];
+    text+=` ${state.stations.length} station${state.stations.length===1?'':'s'} placed.`;
+    if(station) {
+      text+=` Station ${String.fromCharCode(65+state.channel)}. P marker ${station.p.toFixed(1)} seconds.`;
+      text+=` S marker ${station.s.toFixed(1)} seconds. S minus P ${(station.s-station.p).toFixed(1)} seconds.`;
+      if(state.strike>=0&&station.trueS==null)text+=' This station is in the direct S wave shadow.';
+      if(state.circles)text+=!station.pSet||!station.sSet?' Set P and S first.':station.radius==null||station.trueS==null?' No usable distance circle.':
+        ` Inferred distance ${Math.round(station.radius/10)*10} kilometres.`;
+    }
+    if(state.reveal&&events[state.strike]) {
+      const fit=solveStations(),event=events[state.strike];
+      text+=fit?` Intersection offset from the catalog epicentre ${Math.round(distance(fit,[event.lat,event.lon]))} kilometres.`:
+        ' The station intersection is ambiguous.';
+    }
+  }
+  if(state.tool==='wave') {
+    const duration=t=>`${Math.floor(Math.round(t)/60)} minutes ${Math.round(t)%60} seconds`;
+    const arrivalText=(phase,index)=>{
+      const value=arrival(state.receiver,index);
+      if(value==null&&state.elapsed<arrival(directEdge(index),index))
+        return state.elapsed===0?`${phase} front ${state.waveRunning?'has just started':'is ready'}.`:
+          `${phase} waves have not reached the far side yet.`;
+      return value==null?`${phase} has no direct arrival at this receiver.`:`${phase} arrival ${duration(value)}.`;
+    };
+    text+=` Wave source ${coord(state.source,1)}. Elapsed ${duration(state.elapsed)}. Receiver ${state.receiver} degrees.`;
+    text+=' '+arrivalText('P',0)+' '+arrivalText('S',1);
+    if(state.elapsed===0&&!state.waveRunning)text+=' Press Fire to send the model waves.';
+  }
+  if(state.tool==='pin'&&state.pin) {
+    const d=pinData(),v=MATERIAL.volcanoes[d.volcano];
+    text+=` Pin ${state.pinName||coord(state.pin,1)}. Plate ${d.plate?plateName(d.plate):'plate not known here'}.`;
+    text+=` Nearest model edge ${Math.round(d.edge/10)*10} kilometres.`;
+    if(d.relative)text+=` Across the nearest edge, ${d.relative.rate>=0?'opening':'closing'} at ${Math.abs(d.relative.rate).toFixed(1)} centimetres per year relative to ${d.relative.other}.`;
+    if(d.motion)text+=` Model average with the shared global rotation removed ${d.motion.speed.toFixed(1)} centimetres per year, heading ${Math.round(d.motion.heading)} degrees.`;
+    text+=` Whole history within 300 kilometres: ${d.count} earthquake${d.count===1?'':'s'} since 1970.`;
+    text+=` Nearest volcano ${v[0]}, ${Math.round(d.vd)} kilometres.`;
+  }else if(state.tool==='pin')text+=' No survey pin placed.';
+  return text;
+}
+$('play').onclick=togglePlay;
+for(const button of document.querySelectorAll('[data-tool]'))button.onclick=()=>setTool(button.dataset.tool);
+$('close-panel').onclick=()=> {const old=state.tool;setTool(old);$(old+'-tool').focus({preventScroll:true});};
+$('event-list').onchange=e=> {if(e.target.value!=='')selectEvent(Number(e.target.value));};
+const controls={year:'year',speed:'speed',mag:'magnitude','depth-min':'minDepth','depth-max':'maxDepth'};
+for(const [id,key] of Object.entries(controls)) {
+  $(id).oninput=e=> {
+    state[key]=Number(e.target.value);
+    if(id==='year'){state.running=false;state.year=Number(e.target.value)+.999;}
+    if(state.minDepth>state.maxDepth) {
+      if(id==='depth-min')state.maxDepth=state.minDepth;else state.minDepth=state.maxDepth;
+      $('depth-min').value=state.minDepth;$('depth-max').value=state.maxDepth;
+    }
+    touch();update();
+  };
+  $(id).onkeydown=e=> {
+    if(!e.shiftKey || !['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key))return;
+    e.preventDefault();const sign=['ArrowRight','ArrowUp'].includes(e.key)?1:-1;
+    const jump=id==='year'?10:id==='mag'?.5:Number($(id).step)*5;
+    $(id).value=clamp(Number($(id).value)+jump*sign,Number($(id).min),Number($(id).max));
+    $(id).dispatchEvent(new Event('input'));
+  };
+}
+for(const id of ['quakes','volcanoes','edges','relief','arrows'])$(id).onclick=()=> {state[id]=!state[id];$(id).setAttribute('aria-pressed',state[id]);touch();};
+function zoom(amount) {state.zoom=clamp(state.zoom+amount,1,6);touch();update();}
+$('zoom-in').onclick=()=>zoom(.25);$('zoom-out').onclick=()=>zoom(-.25);
+$('slice-centre').onclick=()=>sliceEnd([state.lat,state.lon]);
+$('slice-clear').onclick=()=> {state.slice=[];update();};
+$('station-centre').onclick=()=>placeStation([state.lat,state.lon]);
+$('stations-clear').onclick=()=> {
+  clearStationReveal();markerDrag=null;state.stations=[];state.circles=false;renderStations();dirty=true;
+};
+$('strike').onclick=strike;
+$('circles').onclick=()=> {
+  state.circles=!state.circles;
+  state.stations.forEach(s=>s.radius=!s.pSet||!s.sSet||s.trueS==null?null:invertGap(s.s-s.p));
+  $('circles').setAttribute('aria-pressed',state.circles);stationReadout();dirty=true;
+};
+$('reveal').onclick=()=> {
+  state.reveal=!state.reveal;state.selected=state.reveal?state.strike:-1;renderRecord();
+  $('reveal').setAttribute('aria-pressed',state.reveal);stationReadout();dirty=true;
+};
+$('fire').onclick=()=> {state.elapsed=0;state.waveClock=0;state.waveRunning=true;renderWave();touch();};
+$('elapsed').oninput=e=> {state.elapsed=Number(e.target.value);state.waveRunning=false;renderWave();};
+$('receiver').oninput=e=> {state.receiver=Number(e.target.value);renderWave();};
+for(const phase of ['p','s'])$(phase+'-wave').onclick=()=> {
+  state[phase]=!state[phase];$(phase+'-wave').setAttribute('aria-pressed',state[phase]);renderWave();
+};
+$('cutaway').onkeydown=e=> {
+  if(e.key==='Enter') {e.preventDefault();$('fire').click();return;}
+  if(!e.key.startsWith('Arrow'))return;
+  e.preventDefault();
+  if(e.key==='ArrowLeft'||e.key==='ArrowRight') {
+    state.receiver=clamp(state.receiver+(e.key==='ArrowRight'?1:-1)*(e.shiftKey?10:1),0,180);$('receiver').value=state.receiver;
+  } else {state.elapsed=clamp(state.elapsed+(e.key==='ArrowUp'?10:-10),0,TRACE_MAX);state.waveRunning=false;}
+  renderWave();
+};
+$('pin-centre').onclick=()=> {state.pin=[state.lat,state.lon];state.pinName=null;renderPin();touch();};
+$('manual').onclick=()=> {V.hush();$('manual-drawer').showModal();};
+$('close-manual').onclick=()=> {V.hush();$('manual-drawer').close();$('manual').focus({preventScroll:true});};
+$('manual-drawer').addEventListener('cancel',()=>V.hush());
+$('globe').onpointerdown=e=> {
+  if(e.button!==0)return;
+  $('globe').setPointerCapture(e.pointerId);const b=$('globe').getBoundingClientRect();
+  touchPoints.set(e.pointerId,[e.clientX,e.clientY]);
+  if(touchPoints.size===2) {
+    const [a,c]=[...touchPoints.values()];
+    pinch={distance:Math.hypot(a[0]-c[0],a[1]-c[1]),zoom:state.zoom};drag=null;return;
+  }
+  drag={x:e.clientX,y:e.clientY,lon:state.lon,lat:state.lat,moved:false,start:unproject(e.clientX-b.x,e.clientY-b.y)};
+};
+$('globe').onpointermove=e=> {
+  if(touchPoints.has(e.pointerId))touchPoints.set(e.pointerId,[e.clientX,e.clientY]);
+  if(pinch && touchPoints.size===2) {
+    const [a,b]=[...touchPoints.values()];
+    state.zoom=clamp(pinch.zoom*Math.hypot(a[0]-b[0],a[1]-b[1])/Math.max(1,pinch.distance),1,6);
+    touch();update();return;
+  }
+  if(!drag)return;
+  const dx=e.clientX-drag.x,dy=e.clientY-drag.y;
+  if(Math.hypot(dx,dy)>4)drag.moved=true;
+  if(state.tool==='slice' && drag.start) {
+    const b=$('globe').getBoundingClientRect(),end=unproject(e.clientX-b.x,e.clientY-b.y);
+    if(end) {state.slice=[drag.start];const d=angular(drag.start,end);state.slice.push(d*R>3000?interpolate(drag.start,end,3000/(d*R)):end);}
+    renderSection();
+  } else {state.lon=wrap(drag.lon-dx*.28/state.zoom);state.lat=clamp(drag.lat+dy*.28/state.zoom,-89.9,89.9);}
+  touch(state.tool?'other':'spin');dirty=true;
+};
+$('globe').onpointerup=e=> {
+  touchPoints.delete(e.pointerId);
+  if(pinch) {if(touchPoints.size<2)pinch=null;drag=null;return;}
+  if(!drag)return;
+  const b=$('globe').getBoundingClientRect(),x=e.clientX-b.x,y=e.clientY-b.y,p=unproject(x,y);
+  if(!drag.moved && p) {
+    if(state.tool==='stations'&&selectStationAt(x,y)){}
+    else if(state.tool)actAt(p);
+    else {
+      const hit=nearestMapItem(x,y);
+      if(hit?.event!=null)selectEvent(hit.event);
+      else if(hit?.volcano!=null){state.volcano=hit.volcano;state.selected=-1;touch();update();}
+      else touch();
+    }
+  }
+  drag=null;update();
+};
+$('globe').onpointercancel=e=> {touchPoints.delete(e.pointerId);drag=null;pinch=null;};
+$('globe').onwheel=e=> {e.preventDefault();zoom(e.deltaY<0?.2:-.2);};
+$('globe').onkeydown=e=> {
+  const jump=e.shiftKey?20:5;
+  if(e.key==='ArrowLeft')state.lon=wrap(state.lon-jump);
+  else if(e.key==='ArrowRight')state.lon=wrap(state.lon+jump);
+  else if(e.key==='ArrowUp')state.lat=clamp(state.lat+jump,-89.9,89.9);
+  else if(e.key==='ArrowDown')state.lat=clamp(state.lat-jump,-89.9,89.9);
+  else if(e.key==='+'||e.key==='=')zoom(.25);
+  else if(e.key==='-')zoom(-.25);
+  else if(e.key==='Enter') {
+    e.preventDefault();
+    if(state.tool) {
+      actAt([state.lat,state.lon]);
+      speakUpdate(readState());
+      return;
+    }
+    else {
+      const centre=vec([state.lat,state.lon]);
+      let best=null,near=-2;
+      for(const event of visible){const alignment=dot(centre,event.xyz);if(alignment>near){near=alignment;best=event;}}
+      if(best)selectEvent(best.index);
+      else $('announce').textContent='No earthquake under these filters. Change time, magnitude or depth.';
+      touch();update();return;
+    }
+  }
+  else return;
+  e.preventDefault();touch('spin');update();
+  speakUpdate(coord([state.lat,state.lon],1));
+};
+addEventListener('keydown',e=> {
+  if($('manual-drawer').open)return;
+  if(e.key==='Escape'&&state.pin){state.pin=null;renderPin();dirty=true;return;}
+  if(['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;
+  if(e.code==='Space'&&e.target.tagName==='BUTTON'&&e.target.id!=='play')return;
+  if(e.code==='Space') {e.preventDefault();togglePlay();}
+  if(e.key==='['||e.key===']') {state.speed=clamp(state.speed+(e.key===']'?1:-1),0,3);$('speed').value=state.speed;update();}
+  if(e.key.toLowerCase()==='s'&&state.tool==='stations')strike();
+  const layers={q:'quakes',v:'volcanoes',p:'edges',f:'relief',a:'arrows'};
+  if(layers[e.key.toLowerCase()])$(layers[e.key.toLowerCase()]).click();
+  if(e.key==='Escape') {state.pin=null;renderPin();dirty=true;}
+});
+document.addEventListener('click',e=> {if(e.target.closest('button') && !['read','sound'].includes(e.target.id))Curio.tone(270,.025,.012,'sine');});
+Curio.init({clips:"voice:*",rate:.88,readFallback:readState});
+Curio.onMotion(()=> {state.waveRunning=false;dirty=true;drawDrum();});
+addEventListener('resize',()=> {
+  dirty=true;renderSection();renderWave();
+  if(state.tool==='stations')updateStation(state.channel);
+  drawDrum();
+});
+function frame(now) {
+  const dt=Math.min((now-previous)/1000,.1);previous=now;
+  frameTimes.push(dt*1000);if(frameTimes.length>600)frameTimes.shift();
+  if(state.running && state.tool==='rewind' && !$('manual-drawer').open) {
+    state.rewindClock+=dt*SPEEDS[state.speed];
+    if(state.rewindClock>=1){
+      const step=Math.floor(state.rewindClock);state.rewindClock-=step;
+      state.ma=clamp(state.ma+step*state.rewindDirection,0,200);
+      if(state.ma===0||state.ma===200)state.rewindDirection*=-1;update();
+    }
+  }
+  if(state.running && state.tool!=='rewind' && !$('manual-drawer').open) {
+    state.year=Math.min(2025.999,state.year+dt*SPEEDS[state.speed]);
+    if(state.year>=2025.999){state.running=false;update();}
+    const step=Curio.reduce?Math.floor(state.year):Math.floor(state.year*10);
+    if(step!==lastYear){update();lastYear=step;}
+    if(!Curio.reduce)dirty=true;
+  }
+  if(!Curio.reduce && !drag && !state.tool && !state.spun && !$('manual-drawer').open) {
+    state.lon=wrap(state.lon+dt*1.3);dirty=true;
+  }
+  if(state.waveRunning && !$('manual-drawer').open) {
+    state.waveClock+=dt*70;
+    const next=Math.min(TRACE_MAX,Curio.reduce?Math.floor(state.waveClock/60)*60:state.waveClock);
+    if(next!==state.elapsed){state.elapsed=next;renderWave();dirty=true;}
+    if(state.waveClock>=TRACE_MAX){state.elapsed=TRACE_MAX;state.waveRunning=false;renderWave();}
+  }
+  if(!Curio.reduce)pulse=Math.max(0,pulse-dt*.8);
+  if(dirty) {drawGlobe();dirty=false;}
+  if(!Curio.reduce && now%50<20)drawDrum(dt*3);
+  requestAnimationFrame(frame);
+}
+// The scientific working surface. Orthographic projection of a sampled NOAA
+// elevation texture, with catalog events rendered as individual GPU points.
+let earthGL = null;
+let earthTexture = null;
+let earthImage = null;
+let cameraBasis = null;
+const shaderLocations = new WeakMap();
+let coastVectors = [];
+let plateVectors = [];
+let earthCPU = document.createElement('canvas');
+let cpuKey = '';
+
+function xyzPath(path) { return path.map(vec); }
+function updateCamera() {
+  const lat=state.lat*RAD, lon=state.lon*RAD;
+  cameraBasis={east:[-Math.sin(lon),Math.cos(lon),0],
+    north:[-Math.sin(lat)*Math.cos(lon),-Math.sin(lat)*Math.sin(lon),Math.cos(lat)],
+    front:[Math.cos(lat)*Math.cos(lon),Math.cos(lat)*Math.sin(lon),Math.sin(lat)]};
+}
+function projectVector(v) {
+  return [geometry.x+dot(v,cameraBasis.east)*geometry.r,
+    geometry.y-dot(v,cameraBasis.north)*geometry.r,dot(v,cameraBasis.front)];
+}
+function vectorLine(ctx,path,stroke,width=1,dash=[]) {
+  ctx.strokeStyle=stroke; ctx.lineWidth=width; ctx.setLineDash(dash); ctx.beginPath();
+  let pen=false;
+  for (const p of path) {
+    const q=projectVector(p);
+    if(q[2]<0) {pen=false;continue;}
+    if(pen)ctx.lineTo(q[0],q[1]);else ctx.moveTo(q[0],q[1]);
+    pen=true;
+  }
+  ctx.stroke();ctx.setLineDash([]);
+}
+function shader(gl,type,source) {
+  const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);
+  if(!gl.getShaderParameter(s,gl.COMPILE_STATUS))throw new Error(gl.getShaderInfoLog(s));
+  return s;
+}
+function program(gl,vertex,fragment) {
+  const p=gl.createProgram();
+  gl.attachShader(p,shader(gl,gl.VERTEX_SHADER,vertex));
+  gl.attachShader(p,shader(gl,gl.FRAGMENT_SHADER,fragment));gl.linkProgram(p);
+  if(!gl.getProgramParameter(p,gl.LINK_STATUS))throw new Error(gl.getProgramInfoLog(p));
+  shaderLocations.set(p,{uniforms:{},attributes:{}});
+  return p;
+}
+function attributeLocation(gl,p,name) {
+  const cache=shaderLocations.get(p).attributes;
+  if(!(name in cache))cache[name]=gl.getAttribLocation(p,name);
+  return cache[name];
+}
+function setupEarth(image) {
+  earthImage=image;
+  coastVectors=MATERIAL.coasts.map(xyzPath);
+  plateVectors=MATERIAL.plateModel.plates.map(p=>xyzPath(p.ring));
+  for(const p of MATERIAL.plateModel.plates) {
+    p.vectors=xyzPath(p.ring);
+    const centre=p.vectors.reduce((a,b)=>a.map((v,i)=>v+b[i]),[0,0,0]);
+    let orientation=0;
+    for(let i=1;i<p.vectors.length;i++)orientation+=dot(cross(p.vectors[i-1],p.vectors[i]),centre);
+    p.orientation=orientation<0?-1:1;
+  }
+  const canvas=$('earth');
+  const gl=canvas.getContext('webgl',{alpha:true,antialias:false,premultipliedAlpha:false});
+  if(!gl) {window.__earthFallback='WebGL context unavailable';$('render-label').textContent='CANVAS / sampled relief';return;}
+  try {
+    const surface=program(gl,`
+      attribute vec2 position;
+      uniform vec2 viewport, centre;
+      uniform float radius;
+      varying vec2 sphere;
+      void main(){sphere=position;vec2 p=centre+vec2(position.x,-position.y)*radius;
+        gl_Position=vec4(p/viewport*2.0-1.0,0,1);gl_Position.y=-gl_Position.y;}`,`
+      precision highp float;
+      varying vec2 sphere;
+      uniform sampler2D terrain;
+      uniform float latitude, longitude, relief, ancient;
+      void main(){float d=dot(sphere,sphere);if(d>1.0)discard;
+        float z=sqrt(1.0-d);float s=sin(latitude),c=cos(latitude);
+        float lat=asin(clamp(sphere.y*c+z*s,-1.0,1.0));
+        float lon=atan(sphere.x,z*c-sphere.y*s)+longitude;
+        vec3 rgb=texture2D(terrain,vec2(fract(lon/6.28318530718+.5),lat/3.14159265359+.5)).rgb;
+        if(relief<.5)rgb=rgb.b>rgb.r?vec3(.055,.155,.235):vec3(.45,.43,.30);
+        if(ancient>.5)rgb=vec3(.035,.105,.16);
+        float lighting=.63+.37*max(0.0,dot(normalize(vec3(-.3,.35,.88)),vec3(sphere,z)));
+        gl_FragColor=vec4(rgb*lighting,1.0);}`);
+    const dots=program(gl,`
+      attribute vec3 position;
+      attribute vec3 event;
+      uniform vec3 east,north,front;
+      uniform vec2 viewport,centre,depth;
+      uniform float radius,year,magnitude,pixelRatio;
+      varying float band;
+      void main(){float z=dot(position,front);
+        if(z<0.0||event.x>=year||event.y<magnitude||event.z<depth.x||event.z>depth.y){
+          gl_Position=vec4(4,4,0,1);gl_PointSize=1.0;
+        }else{vec2 p=centre+vec2(dot(position,east),-dot(position,north))*radius;
+          gl_Position=vec4(p/viewport*2.0-1.0,0,1);gl_Position.y=-gl_Position.y;
+          float bloom=max(0.0,1.0-(year-event.x)*2.0);
+          gl_PointSize=(2.2+pow(max(0.0,event.y-5.0),1.4)*1.4+bloom*3.0)*pixelRatio;}
+        band=event.z<70.0?0.0:event.z<300.0?1.0:2.0;}`,`
+      precision mediump float;
+      varying float band;
+      void main(){float r=length(gl_PointCoord-vec2(.5));if(r>.5)discard;
+        vec3 c=band<.5?vec3(1,.596,.494):band<1.5?vec3(.929,.776,.459):vec3(.769,.627,.937);
+        gl_FragColor=vec4(c,r>.40?.45:.9);}`);
+    const geography=program(gl,`
+      attribute vec3 position;
+      uniform vec3 east,north,front;
+      uniform vec2 viewport,centre;
+      uniform float radius;
+      varying float facing;
+      void main(){facing=dot(position,front);
+        vec2 p=centre+vec2(dot(position,east),-dot(position,north))*radius;
+        gl_Position=vec4(p/viewport*2.0-1.0,0,1);gl_Position.y=-gl_Position.y;}`,`
+      precision mediump float;
+      varying float facing;
+      uniform vec4 ink;
+      uniform float dashed;
+      void main(){if(facing<0.0)discard;
+        if(dashed>.5&&mod(gl_FragCoord.x+gl_FragCoord.y,9.0)>6.0)discard;
+        gl_FragColor=ink;}`);
+    const volcanoPoints=program(gl,`
+      attribute vec3 position;
+      uniform vec3 east,north,front;
+      uniform vec2 viewport,centre;
+      uniform float radius,pixelRatio,pointSize;
+      void main(){float facing=dot(position,front);
+        vec2 p=centre+vec2(dot(position,east),-dot(position,north))*radius;
+        gl_Position=vec4(p/viewport*2.0-1.0,0,1);gl_Position.y=-gl_Position.y;
+        if(facing<0.0)gl_Position=vec4(4,4,0,1);
+        gl_PointSize=pointSize*pixelRatio;}`,`
+      precision mediump float;
+      void main(){vec2 p=gl_PointCoord;
+        float edge=p.y*.5-abs(p.x-.5);
+        if(edge<0.0)discard;
+        gl_FragColor=edge<.07||p.y>.9?vec4(.07,.15,.19,1):vec4(.95,.95,.87,1);}`);
+    const volcanoBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,volcanoBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(MATERIAL.volcanoes.flatMap(v=>vec([v[1],v[2]]))),gl.STATIC_DRAW);
+    const quad=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,quad);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+    const eventBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,eventBuffer);
+    const data=new Float32Array(events.length*6);
+    events.forEach((e,i)=>data.set([...e.xyz,e.year,e.mag,e.depth],i*6));
+    gl.bufferData(gl.ARRAY_BUFFER,data,gl.STATIC_DRAW);
+    const lines=[];
+    const addLines=paths=>{for(const path of paths)for(let i=1;i<path.length;i++)lines.push(...path[i-1],...path[i]);};
+    addLines(coastVectors);const coastCount=lines.length/3;
+    addLines(plateVectors);const edgeCount=lines.length/3-coastCount;
+    const gridPaths=[];
+    for(let lat=-75;lat<=75;lat+=15)if(lat!==0)
+      gridPaths.push(Array.from({length:181},(_,i)=>vec([lat,-180+i*2])));
+    for(let lon=-180;lon<180;lon+=15)
+      gridPaths.push(Array.from({length:91},(_,i)=>vec([-90+i*2,lon])));
+    addLines(gridPaths);const gridCount=lines.length/3-coastCount-edgeCount;
+    addLines([Array.from({length:181},(_,i)=>vec([0,-180+i*2]))]);const equatorCount=360;
+    const geoBuffer=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,geoBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(lines),gl.STATIC_DRAW);
+    const texture=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,texture);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL,true);
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGB,gl.RGB,gl.UNSIGNED_BYTE,image);
+    gl.generateMipmap(gl.TEXTURE_2D);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.REPEAT);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    earthGL={gl,surface,dots,geography,volcanoPoints,volcanoBuffer,quad,eventBuffer,geoBuffer,coastCount,edgeCount,gridCount,equatorCount,texture};
+    $('render-label').textContent='ETOPO 2022 / orthographic';
+  } catch(error) {
+    window.__earthFallback=String(error);
+    earthGL=null;$('render-label').textContent='CANVAS / sampled relief';
+  }
+  canvas.addEventListener('webglcontextlost',e=>{e.preventDefault();earthGL=null;dirty=true;});
+}
+function paintEarth(ctx,w,h) {
+  const canvas=$('earth'), ratio=Math.min(devicePixelRatio||1,2);
+  if(!earthGL) {
+    canvas.hidden=true;
+    paintEarthCPU(ctx,w,h);
+    return;
+  }
+  canvas.hidden=false;
+  if(canvas.width!==Math.round(w*ratio)||canvas.height!==Math.round(h*ratio)) {
+    canvas.width=Math.round(w*ratio);canvas.height=Math.round(h*ratio);
+  }
+  const {gl,surface,dots,geography,quad,eventBuffer,geoBuffer,coastCount,edgeCount,gridCount,equatorCount,texture}=earthGL;
+  gl.viewport(0,0,canvas.width,canvas.height);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+  const uniform=(p,name)=>{
+    const cache=shaderLocations.get(p).uniforms;
+    if(!(name in cache))cache[name]=gl.getUniformLocation(p,name);
+    return cache[name];
+  };
+  const common=p=>{
+    gl.uniform2f(uniform(p,'viewport'),w,h);gl.uniform2f(uniform(p,'centre'),geometry.x,geometry.y);
+    gl.uniform1f(uniform(p,'radius'),geometry.r);
+  };
+  gl.useProgram(surface);common(surface);gl.bindBuffer(gl.ARRAY_BUFFER,quad);
+  const a=attributeLocation(gl,surface,'position');gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,2,gl.FLOAT,false,0,0);
+  gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,texture);gl.uniform1i(uniform(surface,'terrain'),0);
+  gl.uniform1f(uniform(surface,'latitude'),state.lat*RAD);gl.uniform1f(uniform(surface,'longitude'),state.lon*RAD);
+  gl.uniform1f(uniform(surface,'relief'),state.relief?1:0);gl.uniform1f(uniform(surface,'ancient'),state.tool==='rewind'?1:0);
+  gl.drawArrays(gl.TRIANGLE_STRIP,0,4);gl.disableVertexAttribArray(a);
+  if(state.tool!=='rewind') {
+    gl.useProgram(geography);common(geography);gl.bindBuffer(gl.ARRAY_BUFFER,geoBuffer);
+    const g=attributeLocation(gl,geography,'position');gl.enableVertexAttribArray(g);gl.vertexAttribPointer(g,3,gl.FLOAT,false,0,0);
+    for(const key of ['east','north','front'])gl.uniform3fv(uniform(geography,key),cameraBasis[key]);
+    gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+    gl.uniform4f(uniform(geography,'ink'),.76,.78,.67,.4);gl.uniform1f(uniform(geography,'dashed'),0);
+    gl.drawArrays(gl.LINES,0,coastCount);
+    if(state.edges) {
+      gl.uniform4f(uniform(geography,'ink'),.95,.84,.64,.85);gl.uniform1f(uniform(geography,'dashed'),1);
+      gl.drawArrays(gl.LINES,coastCount,edgeCount);
+    }
+    gl.disable(gl.BLEND);gl.disableVertexAttribArray(g);
+  }
+  if(state.grid) {
+    gl.useProgram(geography);common(geography);gl.bindBuffer(gl.ARRAY_BUFFER,geoBuffer);
+    const g=attributeLocation(gl,geography,'position');gl.enableVertexAttribArray(g);gl.vertexAttribPointer(g,3,gl.FLOAT,false,0,0);
+    for(const key of ['east','north','front'])gl.uniform3fv(uniform(geography,key),cameraBasis[key]);
+    gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+    gl.uniform1f(uniform(geography,'dashed'),0);gl.uniform4f(uniform(geography,'ink'),.54,.64,.59,.18);
+    gl.drawArrays(gl.LINES,coastCount+edgeCount,gridCount);
+    gl.uniform4f(uniform(geography,'ink'),.54,.64,.59,.45);
+    gl.drawArrays(gl.LINES,coastCount+edgeCount+gridCount,equatorCount);
+    gl.disable(gl.BLEND);gl.disableVertexAttribArray(g);
+  }
+  if(state.quakes&&state.tool!=='rewind') {
+  gl.useProgram(dots);common(dots);gl.bindBuffer(gl.ARRAY_BUFFER,eventBuffer);
+  const p=attributeLocation(gl,dots,'position'),e=attributeLocation(gl,dots,'event');
+  gl.enableVertexAttribArray(p);gl.vertexAttribPointer(p,3,gl.FLOAT,false,24,0);
+  gl.enableVertexAttribArray(e);gl.vertexAttribPointer(e,3,gl.FLOAT,false,24,12);
+  for(const key of ['east','north','front'])gl.uniform3fv(uniform(dots,key),cameraBasis[key]);
+  gl.uniform2f(uniform(dots,'depth'),state.minDepth,state.maxDepth);
+  gl.uniform1f(uniform(dots,'year'),state.year);gl.uniform1f(uniform(dots,'magnitude'),state.magnitude);
+  gl.uniform1f(uniform(dots,'pixelRatio'),ratio);
+  gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE_MINUS_SRC_ALPHA);
+  gl.drawArrays(gl.POINTS,0,events.length);gl.disable(gl.BLEND);
+  gl.disableVertexAttribArray(p);gl.disableVertexAttribArray(e);
+  }
+  if(state.volcanoes&&state.tool!=='rewind') {
+    const {volcanoPoints:vp,volcanoBuffer:vb}=earthGL;
+    gl.useProgram(vp);common(vp);gl.bindBuffer(gl.ARRAY_BUFFER,vb);
+    const a=attributeLocation(gl,vp,'position');gl.enableVertexAttribArray(a);gl.vertexAttribPointer(a,3,gl.FLOAT,false,0,0);
+    for(const key of ['east','north','front'])gl.uniform3fv(uniform(vp,key),cameraBasis[key]);
+    gl.uniform1f(uniform(vp,'pixelRatio'),ratio);gl.uniform1f(uniform(vp,'pointSize'),state.zoom>2?9:6.5);
+    gl.drawArrays(gl.POINTS,0,MATERIAL.volcanoes.length);gl.disableVertexAttribArray(a);
+  }
+}
+function paintEarthCPU(ctx,w,h) {
+  // Bounded fallback for browsers whose graphics context is unavailable.
+  const key=[state.lat.toFixed(1),state.lon.toFixed(1),geometry.r.toFixed(1),state.relief,state.tool==='rewind'].join('/');
+  if(key!==cpuKey) {
+    cpuKey=key;
+    const n=Math.min(384,Math.max(128,Math.ceil(geometry.r*2)));
+    earthCPU.width=earthCPU.height=n;
+    const c=earthCPU.getContext('2d'),im=c.createImageData(n,n);
+    const source=document.createElement('canvas');source.width=2048;source.height=1024;
+    source.getContext('2d').drawImage(earthImage,0,0);
+    const pixels=source.getContext('2d').getImageData(0,0,2048,1024).data;
+    for(let y=0;y<n;y++)for(let x=0;x<n;x++) {
+      const u=(x-n/2)/(n/2),v=-(y-n/2)/(n/2),d=u*u+v*v;if(d>1)continue;
+      const z=Math.sqrt(1-d),a=state.lat*RAD;
+      const lat=Math.asin(v*Math.cos(a)+z*Math.sin(a));
+      const lon=Math.atan2(u,z*Math.cos(a)-v*Math.sin(a))+state.lon*RAD;
+      const sx=Math.floor(((lon/(2*Math.PI)+.5)%1+1)%1*2048);
+      const sy=clamp(Math.floor((.5-lat/Math.PI)*1024),0,1023),si=(sy*2048+sx)*4,di=(y*n+x)*4;
+      const stationHeader=$('station-header');
+  stationHeader.hidden=state.tool!=='stations';
+  if(state.tool==='stations')stationHeader.append($('station-channel'),$('stations-clear'));
+  else {
+    document.querySelector('.station-inputs').prepend($('station-channel'));
+    document.querySelector('.station-inputs').append($('stations-clear'));
+  }
+  const ancient=state.tool==='rewind';
+      const flat=pixels[si+2]>pixels[si]?[14,40,60]:[115,110,77];
+      for(let k=0;k<3;k++)im.data[di+k]=ancient?[9,27,41][k]:
+        (state.relief?pixels[si+k]:flat[k])*(.65+.35*z);
+      im.data[di+3]=255;
+    }
+    c.putImageData(im,0,0);
+  }
+  ctx.drawImage(earthCPU,geometry.x-geometry.r,geometry.y-geometry.r,geometry.r*2,geometry.r*2);
+  if(state.quakes&&state.tool!=='rewind') {
+    for(let band=0;band<3;band++) {
+      ctx.fillStyle=color([0,100,500][band]);ctx.beginPath();
+      for(const e of visible) {
+        if((e.depth<70?0:e.depth<300?1:2)!==band)continue;
+        const q=projectVector(e.xyz);if(q[2]<0)continue;
+        const r=1.3+Math.pow(e.mag-5,1.4)*.7;
+        ctx.moveTo(q[0]+r,q[1]);ctx.arc(q[0],q[1],r,0,Math.PI*2);
+      }
+      ctx.fill();
+    }
+  }
+}
+
+function escapeHTML(text) {
+  return String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function qmix(a,b,f) {
+  let d=a.reduce((n,v,i)=>n+v*b[i],0);
+  if(d<0){b=b.map(x=>-x);d=-d;}
+  if(d>.999999){const q=a.map((v,i)=>v+(b[i]-v)*f),n=Math.hypot(...q);return q.map(v=>v/n);}
+  const angle=Math.acos(clamp(d,-1,1)),s=Math.sin(angle);
+  return a.map((v,i)=>(v*Math.sin((1-f)*angle)+b[i]*Math.sin(f*angle))/s);
+}
+function qvector(q,v) {
+  const u=q.slice(1), t=cross(u,v).map(x=>2*x), b=cross(u,t);
+  return v.map((x,i)=>x+q[0]*t[i]+b[i]);
+}
+function plateRotation(id,ma) {
+  const list=MATERIAL.plateModel.rotations[id];
+  if(!list)return null;
+  const i=Math.min(39,Math.floor(ma/5));
+  return qmix(list[i],list[i+1],(ma-i*5)/5);
+}
+function insidePlate(p,plate) {
+  const v=vec(p), path=plate.vectors;
+  let angle=0;
+  for(let i=1;i<path.length;i++) {
+    const a=path[i-1],b=path[i];
+    angle+=Math.atan2(dot(v,cross(a,b)),dot(a,b)-dot(a,v)*dot(b,v));
+  }
+  return angle*plate.orientation>Math.PI;
+}
+function plateAt(p) {
+  return MATERIAL.plateModel.plates.find(plate=>insidePlate(p,plate))||null;
+}
+function segmentDistance(p,a,b) {
+  const av=vec(a),bv=vec(b),pv=vec(p),normal=unit(cross(av,bv));
+  if(!normal)return distance(p,a);
+  const projection=unit(pv.map((v,i)=>v-normal[i]*dot(pv,normal)));
+  if(projection) {
+    for(const sign of [1,-1]) {
+      const q=projection.map(v=>v*sign);
+      if(dot(cross(av,q),normal)>=-1e-10&&dot(cross(q,bv),normal)>=-1e-10)
+        return Math.acos(clamp(dot(pv,q),-1,1))*R;
+    }
+  }
+  return Math.min(distance(p,a),distance(p,b));
+}
+function nearestEdge(p) {
+  let best=Infinity;
+  for(const plate of MATERIAL.plateModel.plates)for(let i=1;i<plate.ring.length;i++)
+    best=Math.min(best,segmentDistance(p,plate.ring[i-1],plate.ring[i]));
+  return best;
+}
+function plateOmega(plate) {
+  const q=plate&&MATERIAL.plateModel.velocity[plate.id];
+  if(!q)return null;
+  const n=Math.hypot(...q.slice(1)),a=-2*Math.atan2(n,q[0]);
+  return q.slice(1).map((v,i)=>(n?a*v/n:0)-NNR[i]);
+}
+function plateMotion(p,plate) {
+  const omega=plateOmega(plate);if(!omega)return null;
+  const d=cross(omega,vec(p)),lat=p[0]*RAD,lon=p[1]*RAD;
+  const east=[-Math.sin(lon),Math.cos(lon),0];
+  const north=[-Math.sin(lat)*Math.cos(lon),-Math.sin(lat)*Math.sin(lon),Math.cos(lat)];
+  return {speed:Math.hypot(...d)*R*.02,heading:(Math.atan2(dot(d,east),dot(d,north))/RAD+360)%360};
+}
+function edgeMotion(p,plate) {
+  if(!plate)return null;
+  let best=Infinity,pair=null;
+  for(const shape of MATERIAL.plateModel.plates.filter(q=>q.id===plate.id))for(let i=1;i<shape.ring.length;i++) {
+    const a=shape.ring[i-1],b=shape.ring[i],d=segmentDistance(p,a,b);
+    if(d<best){best=d;pair=[a,b];}
+  }
+  if(!pair)return null;
+  const [a,b]=pair,av=vec(a),bv=vec(b),pv=vec(p),normal=unit(cross(av,bv));if(!normal)return null;
+  const projected=unit(pv.map((v,i)=>v-normal[i]*dot(pv,normal)));
+  let at=projected&&dot(cross(av,projected),normal)>=0&&dot(cross(projected,bv),normal)>=0?point(projected):
+    distance(p,a)<distance(p,b)?a:b;
+  const side=dot(normal,pv)>=0?-1:1,outward=normal.map(v=>v*side);
+  let other=null;
+  for(const km of [30,70,150,250]) {
+    const step=unit(vec(at).map((v,i)=>v+outward[i]*km/R)),candidate=plateAt(point(step));
+    if(candidate&&candidate.id!==plate.id){other=candidate;break;}
+  }
+  const own=plateOmega(plate),across=other&&plateOmega(other);if(!own||!across)return null;
+  const rate=dot(cross(across.map((v,i)=>v-own[i]),vec(at)),outward)*R*.02;
+  return {rate,other:plateName(other),at,distance:best};
+}
+function elevation(p) {
+  const g=MATERIAL.relief;
+  const x=((p[1]-g.lon0)/g.step%g.w+g.w)%g.w;
+  const y=clamp((p[0]-g.lat0)/g.step,0,g.h-1);
+  const ix=Math.floor(x),iy=Math.floor(y),fx=x-ix,fy=y-iy;
+  const at=(a,b)=>g.values[clamp(b,0,g.h-1)*g.w+(a%g.w)];
+  return (at(ix,iy)*(1-fx)+at(ix+1,iy)*fx)*(1-fy)+(at(ix,iy+1)*(1-fx)+at(ix+1,iy+1)*fx)*fy;
+}
+let pinCache=null;
+function pinData() {
+  if(!state.pin)return null;
+  const key=state.pin.join(',');
+  if(pinCache?.key===key)return pinCache;
+  const plate=plateAt(state.pin),edge=nearestEdge(state.pin),motion=plateMotion(state.pin,plate);
+  let volcano=null,vd=Infinity;
+  MATERIAL.volcanoes.forEach((v,i)=>{const d=distance(state.pin,[v[1],v[2]]);if(d<vd){volcano=i;vd=d;}});
+  const nearby=events.filter(e=>distance(state.pin,[e.lat,e.lon])<=300);
+  pinCache={key,plate,edge,motion,relative:edgeMotion(state.pin,plate),volcano,vd,count:nearby.length,
+    nearest:nearby.length?nearby.reduce((a,b)=>distance(state.pin,[a.lat,a.lon])<distance(state.pin,[b.lat,b.lon])?a:b):null};
+  return pinCache;
+}
+function renderPin() {
+  if(!state.pin){$('pin-read').textContent='NO PIN';return;}
+  const d=pinData(),v=MATERIAL.volcanoes[d.volcano];
+  const name=d.plate?plateName(d.plate):'plate not known here';
+  const rows=[['PLATE',name],['EDGE',`${Math.round(d.edge/10)*10} km${d.edge<100?' · boundary area':''}`],
+    ['EDGE MOTION',d.relative?`${d.relative.rate>=0?'opening':'closing'} ${Math.abs(d.relative.rate).toFixed(1)} cm/yr · ${d.relative.other}`:'not known here'],
+    ['SPEED',d.motion?`${d.motion.speed.toFixed(1)} cm/yr · ${Math.round(d.motion.heading)}°`:'UNAVAILABLE'],
+    ['QUAKES / 300 km',`${d.count} · M${MATERIAL.floor.toFixed(1)}+ · 1970–2025`],
+    ['VOLCANO',`${v[0]} · ${Math.round(d.vd)} km`]];
+  $('pin-read').innerHTML=`<div class="pin-coordinate">${escapeHTML(state.pinName||coord(state.pin,1))}</div><dl>`+
+    rows.map(([a,b])=>`<dt>${a}</dt><dd>${escapeHTML(b)}</dd>`).join('')+'</dl>';
+  $('pin-read').setAttribute('aria-label',rows.map(r=>r.join(' ')).join('. '));
+}
+function plateName(plate) {
+  const names={101:'North America',201:'South America',301:'Eurasia',701:'Africa',709:'Somalia',
+    801:'Australia',802:'Antarctica',901:'Pacific',911:'Nazca',909:'Cocos',903:'Juan de Fuca',
+    501:'India',511:'Capricorn',503:'Arabia',608:'Philippine Sea',224:'Caribbean'};
+  return names[plate.id]||plate.name;
+}
+function searchCities() {
+  const fold=text=>text.normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+  const query=fold($('city-search').value);
+  const rank=city=>fold(city[0])===query?0:fold(city[0]).startsWith(query)?1:fold(city[0]).includes(query)?2:3;
+  const matches=query?MATERIAL.cities.filter(c=>fold(c[0]+' '+c[1]).includes(query))
+    .sort((a,b)=>rank(a)-rank(b)).slice(0,30):[];
+  $('city-results').innerHTML=matches.length?matches.map(c=>{
+    const index=MATERIAL.cities.indexOf(c);
+    return `<option value="${index}">${escapeHTML(c[0]+', '+c[1])}</option>`;
+  }).join(''):'<option value="">No matching bundled city</option>';
+  $('city-go').disabled=!matches.length;
+}
+function goCity() {
+  const i=$('city-results').value;if(i==='')return;
+  const c=MATERIAL.cities[Number(i)];state.pin=[c[2],c[3]];state.pinName=c[0]+', '+c[1];
+  state.lat=c[2];state.lon=c[3];state.running=false;touch();update();
+  speakUpdate($('pin-read').textContent);
+}
+const FOSSILS=[
+  {name:'Mesosaurus',id:201,color:'#9ecbec',path:[[-35,-57],[-28,-50],[-21,-45],[-25,-44],[-33,-51],[-35,-57]]},
+  {name:'Mesosaurus',id:701,color:'#9ecbec',path:[[-34,17],[-28,17],[-22,17],[-21,20],[-29,22],[-34,20],[-34,17]]},
+  {name:'Glossopteris',id:201,color:'#83d7b1',path:[[-38,-65],[-30,-55],[-23,-50],[-20,-44],[-25,-42],[-34,-51],[-38,-65]]},
+  {name:'Glossopteris',id:701,color:'#83d7b1',path:[[-34,19],[-27,25],[-15,30],[-12,35],[-23,35],[-34,27],[-34,19]]},
+  {name:'Glossopteris',id:501,color:'#83d7b1',path:[[12,75],[18,77],[25,84],[22,87],[16,83],[12,75]]},
+  {name:'Glossopteris',id:802,color:'#83d7b1',path:[[-72,0],[-78,30],[-78,90],[-70,140],[-66,135],[-72,80],[-72,20],[-72,0]]},
+  {name:'Glossopteris',id:801,color:'#83d7b1',path:[[-35,115],[-29,126],[-29,140],[-30,152],[-36,151],[-36,137],[-35,115]]}
+];
+// Broad hand-drawn region traces after the public-domain USGS historical
+// perspective figure. These are schematic extents, never specimen coordinates.
+const ROCKS=[
+  {id:101,path:[[32,-86],[37,-82],[42,-75],[47,-66],[51,-58]]},
+  {id:302,path:[[55,-8],[57,-5],[59,-3]]},
+  {id:301,path:[[60,5],[64,12],[69,18]]}
+];
+let rewindKey=-1,rewindPaths=[],fossilPaths=[],rockPaths=[];
+function prepareRewind() {
+  if(rewindKey===state.ma)return;
+  rewindKey=state.ma;
+  const rotatePath=(path,id)=>{
+    const q=plateRotation(id,state.ma);
+    return q?path.map(p=>qvector(q,vec(p))):null;
+  };
+  rewindPaths=MATERIAL.plateModel.continents.map(c=>rotatePath(c.ring,c.id)).filter(Boolean);
+  fossilPaths=FOSSILS.map(f=>({...f,vectors:rotatePath(f.path,f.id)})).filter(f=>f.vectors);
+  rockPaths=ROCKS.map(f=>rotatePath(f.path,f.id)).filter(Boolean);
+}
+function polygon(ctx,path,fill,stroke,dash=[]) {
+  const qs=path.map(projectVector);
+  if(!qs.some(q=>q[2]>=0))return;
+  ctx.beginPath();let pen=false;
+  for(let i=0;i<qs.length;i++) {
+    const a=qs[(i+qs.length-1)%qs.length],b=qs[i];
+    if((a[2]>=0)!==(b[2]>=0)) {
+      const f=a[2]/(a[2]-b[2]);let x=a[0]+(b[0]-a[0])*f,y=a[1]+(b[1]-a[1])*f;
+      const n=Math.hypot(x-geometry.x,y-geometry.y);x=geometry.x+(x-geometry.x)/n*geometry.r;
+      y=geometry.y+(y-geometry.y)/n*geometry.r;
+      if(pen)ctx.lineTo(x,y);else{ctx.moveTo(x,y);pen=true;}
+    }
+    if(b[2]>=0){if(pen)ctx.lineTo(b[0],b[1]);else{ctx.moveTo(b[0],b[1]);pen=true;}}
+  }
+  ctx.closePath();ctx.fillStyle=fill;ctx.fill();ctx.strokeStyle=stroke;ctx.lineWidth=.65;
+  ctx.setLineDash(dash);ctx.stroke();ctx.setLineDash([]);
+}
+function drawRewind(ctx) {
+  prepareRewind();
+  for(const p of rewindPaths)polygon(ctx,p,'#8d8060','#c1ad7e');
+  if(state.fossils) {
+    const ordered=[...fossilPaths].sort((a,b)=>(a.name==='Mesosaurus')-(b.name==='Mesosaurus'));
+    for(const f of ordered)polygon(ctx,f.vectors,f.color+'66',f.color,f.name==='Mesosaurus'?[4,3]:[]);
+  }
+  if(state.rocks)for(const path of rockPaths)vectorLine(ctx,path,'#f4b6cb',4,[3,3]);
+}
+function renderRewind() {
+  $('ma-read').textContent=`${state.ma} Ma · Merdith et al. 2021`;
+  $('ma-out').textContent=state.ma+' Ma';$('ma').value=state.ma;
+  $('ma').setAttribute('aria-valuetext',state.ma+' million years ago');
+}
+function drawGeography(ctx,narrow) {
+  if(state.tool==='rewind'){drawRewind(ctx);return;}
+  if(!earthGL)for(const p of coastVectors)vectorLine(ctx,p,'#c2c7aa70',.65);
+  if(!earthGL&&state.edges)for(const p of plateVectors)vectorLine(ctx,p,'#f1d5a4cc',1.1,[4,3]);
+  if(state.volcanoes&&!earthGL) {
+    ctx.fillStyle='#f3f1dd';ctx.strokeStyle='#122630';ctx.lineWidth=.6;ctx.beginPath();
+    const size=state.zoom>2?4:2.7;
+    for(const v of MATERIAL.volcanoes) {
+      const p=project([v[1],v[2]]);if(p[2]<0)continue;
+      ctx.moveTo(p[0],p[1]-size);ctx.lineTo(p[0]-size,p[1]+size);ctx.lineTo(p[0]+size,p[1]+size);ctx.closePath();
+    }
+    ctx.fill();ctx.stroke();
+  }
+  if(state.arrows) {
+    ctx.strokeStyle='#b7fff3';ctx.lineWidth=2;ctx.beginPath();
+    for(const site of arrowSites) {
+      const q=projectVector(site.vector),v=projectVector(site.endVector);if(q[2]<.15||v[2]<0)continue;
+      const a=Math.atan2(v[1]-q[1],v[0]-q[0]);
+      ctx.moveTo(q[0],q[1]);ctx.lineTo(v[0],v[1]);
+      ctx.lineTo(v[0]-7*Math.cos(a-.5),v[1]-7*Math.sin(a-.5));
+      ctx.moveTo(v[0],v[1]);ctx.lineTo(v[0]-7*Math.cos(a+.5),v[1]-7*Math.sin(a+.5));
+    }
+    ctx.stroke();
+  }
+}
+let arrowSites=[];
+function prepareArrows() {
+  arrowSites=[];
+  for(const plate of MATERIAL.plateModel.plates) {
+    const centre=unit(plate.vectors.reduce((a,b)=>a.map((v,i)=>v+b[i]),[0,0,0]));if(!centre)continue;
+    const c=point(centre),used=[];
+    for(let i=0;i<plate.ring.length;i+=Math.max(1,Math.floor(plate.ring.length/5))) {
+      const p=interpolate(plate.ring[i],c,.1),motion=plateMotion(p,plate);
+      if(!motion||!insidePlate(p,plate)||used.some(q=>distance(p,q)<500))continue;
+      used.push(p);
+      const end=destination(p,clamp(motion.speed*80,120,650)/R,motion.heading*RAD);
+      arrowSites.push({point:p,end,vector:vec(p),endVector:vec(end)});
+    }
+  }
+}
+function selectStationAt(x,y) {
+  const index=state.stations.findIndex(s=>{const q=project(s.point);return q[2]>=0&&Math.hypot(q[0]-x,q[1]-y)<22;});
+  if(index<0)return false;
+  state.channel=index;renderStations();dirty=true;return true;
+}
+let viewStamp=0;
+function inViewCount() {
+  const centre=vec([state.lat,state.lon]);
+  return visible.reduce((count,e)=>count+(dot(e.xyz,centre)>=0?1:0),0);
+}
+function directEdge(phase) {
+  return MATERIAL.times[phase].findIndex((value,i)=>i>1&&value==null)-1;
+}
+function shadowVisible() {
+  const edge=directEdge(1),time=arrival(edge,1);
+  return state.elapsed>=(time||TRACE_MAX);
+}
+
+function nearestMapItem(x,y) {
+  let item=null,best=12;
+  if(state.quakes)for(const e of visible) {
+    const q=projectVector(e.xyz);if(q[2]<0)continue;
+    const d=Math.hypot(q[0]-x,q[1]-y);
+    if(d<best){best=d;item={event:e.index};}
+  }
+  if(state.volcanoes)MATERIAL.volcanoes.forEach((v,i)=>{
+    const q=project([v[1],v[2]]);if(q[2]<0)return;
+    const d=Math.hypot(q[0]-x,q[1]-y);
+    if(d<Math.min(best,7)){best=d;item={volcano:i};}
+  });
+  return item;
+}
+function renderStations() {
+  $('circles').setAttribute('aria-pressed',state.circles);
+  $('reveal').setAttribute('aria-pressed',state.reveal);
+  const index=clamp(state.channel||0,0,Math.max(0,state.stations.length-1));state.channel=index;
+  $('station-channel').innerHTML=state.stations.length?state.stations.map((s,i)=>
+    `<option value="${i}">Station ${String.fromCharCode(65+i)} / ${coord(s.point,0)}</option>`).join(''):
+    '<option value="0">No station placed</option>';
+  $('station-channel').value=index;
+  const s=state.stations[index];
+  for(const phase of ['p','s']) {
+    $('marker-'+phase).disabled=!s;
+    $('marker-'+phase).value=s?s[phase]:0;
+    $('marker-'+phase).setAttribute('aria-label',`Station ${String.fromCharCode(65+index)} ${phase.toUpperCase()} marker in seconds`);
+  }
+  updateStation(index);stationReadout();
+}
+function stationReadout() {
+  const s=state.stations[state.channel],letter=String.fromCharCode(65+state.channel);
+  let text=`STATIONS ${state.stations.length} / 3`;
+  if(s)text+=s.pSet&&s.sSet?` · ${letter} S−P ${(s.s-s.p).toFixed(1)} s`:' · SET P AND S';
+  if(state.circles&&s&&s.pSet&&s.sSet)text=`${letter} S−P ${(s.s-s.p).toFixed(1)} s · DIST `+
+    (s.radius==null||s.trueS==null?'NO CIRCLE':Math.round(s.radius/10)*10+' km');
+  if(state.reveal&&events[state.strike]) {
+    const p=solveStations(),e=events[state.strike];
+    text+=p?` · OFFSET ${Math.round(distance(p,[e.lat,e.lon]))} km`:' · OFFSET not known';
+  }
+  if(state.stations.length<3)text=`Tap three places for stations · ${state.stations.length}/3`;
+  else if(state.strike<0)text='Strike to record a quake';
+  else if(state.stations.some(s=>!s.pSet||!s.sSet))text='Set P and S on each trace';
+  $('station-read').textContent=text;
+  $('station-status').textContent=state.stations.length<3?'Tap three places for stations':state.strike<0?'Strike to record a quake':
+    state.stations.some(s=>!s.pSet||!s.sSet)?'Set P and S on each trace':!state.circles?'Circles':!state.reveal?'Reveal':'Catalog location shown';
+  $('reveal').setAttribute('aria-pressed',state.reveal);
+  $('circles').setAttribute('aria-pressed',state.circles);
+}
+function updateStation(index) {
+  const s=state.stations[index];
+  if(s) {
+    $('marker-p-out').textContent=s.p.toFixed(1)+' s';$('marker-s-out').textContent=s.s.toFixed(1)+' s';
+    $('sp-gap').textContent=(!s.pSet||!s.sSet?'SET P AND S':`S−P ${(s.s-s.p).toFixed(1)} s`)+
+      (s.trueS==null&&state.strike>=0?' / S SHADOW':'');
+    drawTrace('station-trace',s);
+  }else {
+    $('marker-p-out').textContent='0.0 s';$('marker-s-out').textContent='0.0 s';
+    const [ctx,w,h]=fitCanvas('station-trace');ctx.fillStyle='#e9e3d3';ctx.fillRect(0,0,w,h);
+    ctx.fillStyle='#383b31';ctx.font='11px Consolas';ctx.fillText('Tap three places on the globe.',10,h/2);
+    $('sp-gap').textContent='MODEL TRACE / 0–26 min';
+  }
+  stationReadout();
+}
+async function inflate(encoded,json=false) {
+  const bytes=Uint8Array.from(atob(encoded),c=>c.charCodeAt(0));
+  const buffer=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer();
+  return json?JSON.parse(new TextDecoder().decode(buffer)):buffer;
+}
+async function load() {
+  try {
+    const [quakes,names,coasts,cities,volcanoes,plates,relief,rays]=await Promise.all([
+      inflate(MATERIAL.quakes),inflate(MATERIAL.namesPacked,true),inflate(MATERIAL.coastsBinary),
+      inflate(MATERIAL.citiesPacked,true),inflate(MATERIAL.volcanoesPacked,true),inflate(MATERIAL.platesPacked,true),
+      inflate(MATERIAL.relief.data),inflate(MATERIAL.raysBinary)]);
+    const view=new DataView(quakes);
+    for(let offset=0,index=0;offset<view.byteLength;offset+=9,index++) {
+      const day=view.getUint16(offset,true),date=new Date(day*86400000).toISOString().slice(0,10);
+      const year=Number(date.slice(0,4)),start=Date.UTC(year,0,1),end=Date.UTC(year+1,0,1);
+      const lat=view.getInt16(offset+2,true)/100,lon=view.getInt16(offset+4,true)/100;
+      events.push({date,year:year+(day*86400000-start)/(end-start),lat,lon,
+        depth:view.getUint16(offset+6,true)/10,mag:view.getUint8(offset+8)/10,
+        name:names[index][0],id:names[index][1],index,xyz:vec([lat,lon])});
+    }
+    MATERIAL.cities=cities;MATERIAL.volcanoes=volcanoes;MATERIAL.plateModel=plates;
+    const planes=new Uint8Array(coasts),raw=new Uint8Array(planes.length),half=planes.length/2;
+    for(let i=0;i<half;i++){raw[i*2]=planes[i];raw[i*2+1]=planes[half+i];}
+    const c=new DataView(raw.buffer);let offset=2;MATERIAL.coasts=[];
+    for(let i=0;i<c.getUint16(0,true);i++) {
+      const count=c.getUint16(offset,true);offset+=2;const path=[];
+      let lat=0,lon=0;
+      for(let j=0;j<count;j++){
+        lat+=c.getInt16(offset,true);lon=(lon+c.getInt16(offset+2,true)+54000)%36000-18000;
+        path.push([lat/100,lon/100]);offset+=4;
+      }
+      MATERIAL.coasts.push(path);
+    }
+    const a=new Uint8Array(relief),n=a.length/2,g=MATERIAL.relief;g.values=new Int16Array(n);
+    for(let i=0;i<n;i++) {
+      const value=(a[i]|a[n+i]<<8)<<16>>16;
+      g.values[i]=value+(i%g.w?g.values[i-1]:0);
+    }
+    const rv=new DataView(rays);offset=2;MATERIAL.rays=[];
+    for(let i=0;i<rv.getUint16(0,true);i++) {
+      const phase=rv.getUint8(offset),angle=rv.getUint16(offset+1,true)/100,time=rv.getUint16(offset+3,true)/10;
+      const count=rv.getUint16(offset+5,true);offset+=7;const path=[];
+      for(let j=0;j<count;j++) {
+        path.push([rv.getUint16(offset,true)/100*RAD,rv.getUint16(offset+2,true)/10,rv.getUint16(offset+4,true)/10]);offset+=6;
+      }
+      MATERIAL.rays.push({phase,angle,time,path});
+    }
+    const giants=events.filter(e=>e.mag>=8).sort((a,b)=>b.mag-a.mag);
+    for(const e of giants) {
+      const option=document.createElement('option');option.value=e.index;
+      option.textContent=`${e.date} / M${e.mag.toFixed(1)} / ${e.name}`;$('event-list').append(option);
+    }
+    $('coverage').textContent=`USGS · M${MATERIAL.floor.toFixed(1)}+ · ${events.length.toLocaleString()}`;
+    $('mag').min=MATERIAL.floor;$('mag').value=MATERIAL.floor;state.magnitude=MATERIAL.floor;
+    const image=new Image();image.src=MATERIAL.texture;
+    await image.decode();setupEarth(image);state.ready=true;
+    prepareArrows();searchCities();renderStations();renderRewind();update();
+  }catch(error){
+    $('coverage').textContent='Material could not be unpacked';$('play').disabled=true;
+    $('announce').textContent='This browser could not unpack the scientific data.';console.error(error);
+  }
+}
+
+$('city-search').oninput=searchCities;
+$('city-results').onchange=()=>{$('city-go').disabled=$('city-results').value==='';};
+$('city-form').onsubmit=e=>{e.preventDefault();goCity();};
+$('station-channel').onchange=e=>{state.channel=Number(e.target.value);renderStations();};
+function clearStationReveal() {
+  if(state.reveal&&state.selected===state.strike) {state.selected=-1;renderRecord();}
+  state.reveal=false;
+}
+for(const phase of ['p','s'])$('marker-'+phase).oninput=e=>{
+  const s=state.stations[state.channel];if(!s)return;
+  clearStationReveal();
+  s[phase]=Number(e.target.value);s[phase+'Set']=true;s.radius=s.pSet&&s.sSet?invertGap(s.s-s.p):null;
+  updateStation(state.channel);dirty=true;
+};
+for(const phase of ['p','s'])$('marker-'+phase).onkeydown=e=>{
+  if(!e.shiftKey||!e.key.startsWith('Arrow'))return;e.preventDefault();
+  const slider=e.currentTarget,sign=['ArrowRight','ArrowUp'].includes(e.key)?1:-1;
+  slider.value=clamp(Number(slider.value)+sign*10,0,TRACE_MAX);slider.dispatchEvent(new Event('input'));
+};
+let markerDrag=null;
+$('station-trace').onpointerdown=e=>{
+  const s=state.stations[state.channel];if(!s)return;
+  const b=e.target.getBoundingClientRect(),t=clamp((e.clientX-b.x)/b.width*TRACE_MAX,0,TRACE_MAX);
+  const y=e.clientY-b.y;
+  markerDrag=e.shiftKey?'s':y<18&&Math.abs(t-s.p)/TRACE_MAX*b.width<22?'p':
+    y>=18&&y<36&&Math.abs(t-s.s)/TRACE_MAX*b.width<22?'s':Math.abs(t-s.p)<=Math.abs(t-s.s)?'p':'s';
+  e.target.setPointerCapture(e.pointerId);$('station-trace').onpointermove(e);
+};
+$('station-trace').onpointermove=e=>{
+  if(!markerDrag)return;
+  const b=e.target.getBoundingClientRect(),s=state.stations[state.channel];
+  if(!s){markerDrag=null;return;}
+  clearStationReveal();
+  s[markerDrag]=Math.round(clamp((e.clientX-b.x)/b.width*TRACE_MAX,0,TRACE_MAX)*2)/2;
+  s[markerDrag+'Set']=true;
+  $('marker-'+markerDrag).value=s[markerDrag];s.radius=s.pSet&&s.sSet?invertGap(s.s-s.p):null;state.reveal=false;
+  updateStation(state.channel);dirty=true;
+};
+$('station-trace').onpointerup=$('station-trace').onpointercancel=()=>{markerDrag=null;};
+$('ma').oninput=e=>{state.running=false;state.ma=Number(e.target.value);renderRewind();update();touch();};
+$('ma').onkeydown=e=>{
+  if(!e.shiftKey||!e.key.startsWith('Arrow'))return;e.preventDefault();
+  $('ma').value=clamp(state.ma+(['ArrowRight','ArrowUp'].includes(e.key)?10:-10),0,200);
+  $('ma').dispatchEvent(new Event('input'));
+};
+for(const id of ['fossils','rocks'])$(id).onclick=()=>{
+  state[id]=!state[id];$(id).setAttribute('aria-pressed',state[id]);touch();
+};
+window.__tool={state,allLines:V.allLines,vlog:V.log,setMode:setTool,update,selectEvent,
+  material:MATERIAL,plateAt,plateMotion,edgeMotion,inViewCount,directEdge,shadowVisible,nearestEdge,elevation,pinData,searchCities,goCity,renderPin,renderRewind,readState,
+  get renderer(){return earthGL?'WebGL':'Canvas';},get events(){return events;},get visible(){return visible;},get geometry(){return geometry;},
+  distance,angular,interpolate,destination,arrival,invertGap,solveStations,sectionData,renderStations,renderWave,
+  get performance(){return {frames:frameTimes.length,meanMs:frameTimes.reduce((a,b)=>a+b,0)/Math.max(1,frameTimes.length)};}};
+load();drawDrum();requestAnimationFrame(frame);
+</script>
+</body>
+</html>

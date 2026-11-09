@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thesis Workshop · A thesis is a promise · Curio Class</title>
+<meta name="description" content="Build a literary thesis, see its scope in the text, and turn evidence into a paragraph. Grade 10. Works offline.">
+<link rel="icon" href="data:,">
+<!--
+Thesis Workshop, Curio Class. Grade 10 ELA: W.9-10.2, W.9-10.9, RL.9-10.1.
+Student-driven Build, Prove and Draft. Based on kit/starter/src.html.
+Texts: Project Gutenberg #269 and #29345, public domain in the USA.
+Passage tags are original interpretive suggestions, never an exhaustive reading.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Source whitespace and italic markup normalized; long dash typography becomes double hyphens.
+Content CC BY 4.0 except source texts; code MIT. No network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper: #f4f4fa;
+  --panel: #ffffff;
+  --ink: #1c1d2b;
+  --muted: #555870;
+  --line: #d9dae8;
+  --brand: #5b63a6;
+  --btn: #ffffff;
+  --btn-line: #c9cce1;
+  --head-ink: #1c1d2b;
+  --focus: #b3541e;
+  --topic: #0b6e75;
+  --move: #8a4b00;
+  --meaning: #8a2b6e;
+  --warn: #b02a1a;
+  color-scheme: light;
+}
+body {height: 100dvh; min-height: 0; overflow: hidden; grid-template-rows: auto auto minmax(0, 1fr) auto;}
+header {background: #fff; color: var(--ink); padding: 10px 22px; gap: 14px; border-bottom: 1px solid var(--line);}
+h1 {font: 500 clamp(21px, 2.2vw, 30px)/1.05 Georgia, serif; letter-spacing: -.7px;}
+h1 small {font: 12px/1.5 'Segoe UI', sans-serif; letter-spacing: .04em; color: var(--muted); opacity: 1;}
+button, select, textarea {font: inherit;}
+button, select {min-height: 44px; min-width: 44px;}
+button {border: 1px solid var(--line); background: #fff; border-radius: 7px; padding: 7px 12px;}
+button:hover {border-color: var(--brand); background: #f0f0fa;}
+button:active {box-shadow: inset 0 2px 5px #20233b20;}
+button:disabled {opacity: .5; cursor: default;}
+:focus-visible {outline: 3px solid var(--focus); outline-offset: 2px;}
+label {display: block;}
+.book-select {display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--muted);}
+select {background: #fafafe; border: 1px solid var(--btn-line); border-radius: 7px; color: var(--ink); padding: 7px 28px 7px 10px;}
+.prefs {display: flex; gap: 5px;}
+.icon-btn {min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 7px; font-size: 13px; font-weight: 500;}
+.ribbon {display: flex; align-items: center; justify-content: space-between; padding: 5px 22px; gap: 12px;}
+.seg {border: none; border-radius: 0; overflow: visible; gap: 6px;}
+.seg button {background: transparent; color: var(--muted); min-height: 44px; border-radius: 7px; padding: 0 18px; font-size: 14px;}
+.seg button[aria-pressed="true"] {background: var(--brand); color: #fff; box-shadow: 0 2px 5px #40477a25;}
+.step-number {display: inline-grid; place-items: center; width: 20px; height: 20px; border: 1px solid currentColor; border-radius: 50%; margin-right: 7px; font-size: 11px;}
+.ribbon-note {font: italic 14px Georgia, serif; color: var(--muted); margin: 0;}
+main {grid-template-columns: minmax(0, 1.06fr) minmax(0, 1fr); gap: 16px; padding: 0 22px 10px; overflow: hidden;}
+.manuscript {position: relative; min-width: 0; min-height: 0; display: flex; flex-direction: column; background: white;
+  border: 1px solid #d5d5e3; border-radius: 9px 9px 3px 3px; box-shadow: 0 6px 18px #282b4820, 3px 3px #e3e3ee; overflow: hidden;}
+.painting {height: 96px; flex: none; position: relative; overflow: hidden; border-bottom: 1px solid #d7d6dd;}
+.painting img {width: 100%; height: 100%; object-fit: cover; object-position: center 52%; opacity: .85;}
+.painting::after {content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, #fff6, transparent 70%); pointer-events: none;}
+.book-title {position: absolute; left: 18px; bottom: 12px; z-index: 1; background: #fffffff2; border: 1px solid #ffffff;
+  padding: 6px 12px; box-shadow: 0 2px 9px #161d3b14;}
+.book-title h2 {font: 500 clamp(19px, 2vw, 27px)/1.1 Georgia, serif; margin: 0;}
+.book-title small {display: block; font-size: 10px; letter-spacing: .13em; text-transform: uppercase; color: var(--muted); margin-top: 4px;}
+.text-toolbar {display: flex; align-items: center; padding: 5px 12px; gap: 8px; border-bottom: 1px solid #e8e8ef; flex: none;}
+.text-toolbar p {margin: 0 auto 0 0; color: var(--muted); font-size: 11px;}
+.signal-strip {display: flex; gap: 3px; margin-top: 5px; height: 9px; max-width: 300px;}
+.signal-strip i {display: block; flex: 1; min-width: 3px; max-width: 11px; height: 7px; background: #e0e1eb;
+  border: 1px solid #c7cada; border-radius: 1px; transition: background-color 150ms;}
+.signal-strip i.on {background: var(--brand); border-color: #444c8c; box-shadow: 0 0 4px #636cb75c;}
+.signal-strip i.against {background: var(--warn); border-color: #7e1d14; transform: translateY(2px);}
+.text-toolbar button {font-size: 12px; padding: 6px 10px;}
+.status-lamp {display: inline-block; width: 7px; height: 7px; background: #8f96cf; border-radius: 50%; box-shadow: 0 0 7px #8b91c755;
+  margin-right: 5px; animation: breathe 4s ease-in-out infinite;}
+@keyframes breathe {50% {box-shadow: 0 0 11px #727bc5aa; opacity: .5;}}
+.text-scroll {position: relative; overflow: auto; padding: 14px 17px 28px 57px; flex: 1; min-height: 0; scroll-behavior: smooth;
+  background: linear-gradient(90deg, #eeeef580, #fff 9%, #fff 96%, #f1f1f8);}
+.text-content {font: 17px/1.68 Georgia, 'Times New Roman', serif; color: #303142;}
+.passage {position: relative; border: 1px solid transparent; border-radius: 3px; padding: 6px 8px; margin: 0 0 7px;
+  transition: background-color 150ms, border-color 150ms, box-shadow 150ms;}
+.passage .margin-id {position: absolute; right: calc(100% + 8px); top: 8px; width: 37px; text-align: right;
+  font: 11px/1.5 'Segoe UI', sans-serif; color: #656779;}
+.margin-id .mark {display: block; font-size: 14px; font-weight: 700; color: var(--brand);}
+.passage.lit {border-color: var(--brand); background: #ededfa; box-shadow: inset 3px 0 var(--brand), 0 2px 7px #555f9e15;}
+.passage.against {border-color: var(--warn); background: #fff0ec; box-shadow: inset 3px 0 var(--warn);}
+.passage.against .mark {color: var(--warn);}
+.passage.evidence {background-image: linear-gradient(90deg, #fff7d988, transparent);}
+.passage.flash {animation: passage-flash .7s ease-out;}
+@keyframes passage-flash {30% {box-shadow: 0 0 0 5px #5b63a635;}}
+.gap {margin: 3px 8px 13px;}
+.poem .passage {padding: 4px 7px; margin-bottom: 0; line-height: 1.45;}
+.poem .passage:nth-of-type(5n) {margin-bottom: 13px;}
+.context {font: 12px/1.5 'Segoe UI', sans-serif; color: var(--muted); padding: 14px 8px 0; border-top: 1px solid var(--line); margin-top: 20px;}
+.bench {min-height: 0; min-width: 0; display: flex; flex-direction: column; gap: 8px;}
+.hint {flex: none; font-size: 13px; line-height: 1.45; margin: 0; min-height: 43px; padding: 9px 12px;
+  border-left: 3px solid var(--brand); background: #e9eaf5; border-radius: 0 6px 6px 0;}
+.work-page {min-height: 0; overflow: auto; padding: 0 3px 5px; flex: 1;}
+.eyebrow {font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted);}
+.chip-row {margin-bottom: 9px;}
+.chip-row h3 {margin: 0 0 5px; font-size: 11px; font-weight: 700; letter-spacing: .04em;}
+.chip-row h3 span {font-weight: 400; letter-spacing: 0; opacity: .85; margin-left: 8px;}
+.chip-row.topic {--row-ink: var(--topic);}
+.chip-row.move {--row-ink: var(--move);}
+.chip-row.meaning {--row-ink: var(--meaning);}
+.chip-row h3 {color: var(--row-ink);}
+.chips {display: flex; flex-wrap: wrap; gap: 5px;}
+.chip {min-height: 44px; color: var(--row-ink); font-size: 12px; font-weight: 550; padding: 5px 11px;
+  border-color: #d8d9e4; background: linear-gradient(#fff, #fafafe); line-height: 1.25; box-shadow: 0 1px 1px #262b4410;}
+.chip[aria-pressed="true"] {background: var(--row-ink); color: #fff; border-color: var(--row-ink); box-shadow: inset 0 1px #ffffff30, 0 2px 4px #262b4425;}
+.meaning .chips {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));}
+.meaning .chip {text-align: left; font-weight: 450;}
+.meaning .chip:last-child {text-align: center;}
+.short-label {display: none;}
+.promise-frame {position: relative; border: 1px solid #d7d8e7; background: linear-gradient(115deg, #fff, #f5f5fc); padding: 12px 15px;
+  border-radius: 3px; box-shadow: 2px 3px #e2e3ef; margin: 10px 1px 12px;}
+.promise-frame::before {content: '“'; position: absolute; left: 5px; top: 2px; font: 36px Georgia, serif; color: #cccfe4;}
+.promise-frame p {position: relative; margin: 6px 0 0; font: 17px/1.4 Georgia, serif;}
+.promise-frame .topic-word {color: var(--topic);}
+.promise-frame .move-word {color: var(--move);}
+.promise-frame .meaning-word {color: var(--meaning);}
+.meter {border: 1px solid #d5d7e7; background: #fff; border-radius: 7px; padding: 10px 11px; margin: 0 0 9px;}
+.meter-head {display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; font-size: 10px; color: var(--muted);}
+.meter-grid {display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;}
+.readout {min-width: 0; padding-left: 8px; border-left: 1px solid #e2e3ed;}
+.readout:first-child {border: 0; padding-left: 0;}
+.readout b {font-size: 11px; display: block; color: var(--muted); font-weight: 500;}
+.readout strong {display: block; font-size: 14px; font-weight: 600; margin-top: 4px;}
+.readout small {display: block; font-size: 10px; line-height: 1.3; margin-top: 4px; color: var(--muted);}
+.warning {color: var(--warn);}
+.muted {color: var(--muted);}
+.meter-detail {margin: 8px 0 0; font-size: 11px; line-height: 1.5; color: var(--muted);}
+.meter-detail:empty {display: none;}
+.against-links {display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px;}
+.against-links button {color: var(--warn); padding: 5px 8px;}
+.actions {display: flex; gap: 6px; flex-wrap: wrap;}
+.primary {background: var(--brand); color: white; border-color: var(--brand); font-weight: 600;}
+.primary:hover {background: #4d5598; color: #fff;}
+.actions button {font-size: 12px; flex: 1;}
+.bench-footer {flex: none; background: var(--paper); padding: 5px 3px 0;}
+.save-inline {display: none;}
+.disclosure {border-top: 1px solid var(--line); margin-top: 10px; padding-top: 4px;}
+summary {min-height: 44px; cursor: pointer; font-size: 12px; display: flex; align-items: center; gap: 6px;}
+summary::before {content: '+'; font-size: 18px; color: var(--brand);}
+details[open] > summary::before {content: '−';}
+details:not([open]) > :not(summary) {display: none;}
+textarea {width: 100%; resize: vertical; min-height: 82px; padding: 10px; color: var(--ink); background: #fff;
+  border: 1px solid #b8bdd5; border-radius: 5px; font: 14px/1.5 Georgia, serif;}
+.small-note {font-size: 11px; line-height: 1.5; color: var(--muted); margin: 7px 0;}
+.saved-item {padding: 10px; border: 1px solid var(--line); border-radius: 5px; margin-top: 6px; font-size: 12px;}
+.saved-item p {font: 14px/1.4 Georgia, serif; margin: 0 0 8px;}
+.saved-item .actions {margin-top: 6px;}
+.evidence-intro {margin: 0 0 10px; font: 18px/1.4 Georgia, serif;}
+.evidence-count {display: flex; align-items: center; gap: 8px; margin: 10px 0; font-size: 12px;}
+.pin {width: 12px; height: 12px; border: 1px solid var(--brand); border-radius: 50%; background: white;}
+.pin.on {background: var(--brand); box-shadow: inset 0 0 0 2px white;}
+.quote-card {position: relative; background: #fff; border: 1px solid #d5d7e5; border-left: 3px solid var(--brand);
+  border-radius: 3px; padding: 12px 14px; margin-bottom: 10px; box-shadow: 2px 3px #e3e3ef;}
+.quote-card.against-card {border-left-color: var(--warn); background: #fff9f6;}
+.quote-card h3 {margin: 0 0 6px; font-size: 12px; color: var(--brand);}
+.quote-card blockquote {margin: 0 0 8px; font: 15px/1.5 Georgia, serif;}
+.quote-card label {font-size: 12px; margin-bottom: 4px; line-height: 1.5;}
+.quote-card textarea {min-height: 85px;}
+.quote-card button {font-size: 12px;}
+.nudges {display: flex; flex-wrap: wrap; gap: 5px 12px; font-size: 11px; color: var(--muted); margin: 6px 0;}
+.nudges .met {color: var(--topic);}
+.quote-card.selected {animation: card-in .2s ease-out;}
+@keyframes card-in {from {opacity: .6;}}
+.evidence-pool {display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 5px;
+  max-height: 150px; overflow: auto; padding: 3px;}
+.evidence-pool > p {grid-column: 1 / -1;}
+.evidence-choice {min-height: 44px; padding: 5px 7px; text-align: left; font-size: 11px; line-height: 1.2;
+  background: linear-gradient(#fff, #f4f4fb); border-color: #c1c6df;}
+.evidence-choice strong {display: block; color: var(--brand); font-size: 11px; margin-bottom: 2px;}
+.prove-selection {padding-bottom: 6px; grid-column: 1 / -1;}
+.prove-selection .eyebrow {margin: 3px 3px 4px;}
+.pool-item {padding: 10px 12px; background: #fff; border: 1px solid var(--line); border-radius: 5px;}
+.pool-item p {margin: 0 0 8px; font: 14px/1.45 Georgia, serif;}
+.pool-item .actions {justify-content: flex-end;}
+.pool-item button {flex: initial;}
+.pool-item small {font: 11px 'Segoe UI', sans-serif; color: var(--muted);}
+.empty {font-size: 13px; padding: 15px; border: 1px dashed #b8bdd5; line-height: 1.6; border-radius: 5px;}
+.draft-top {display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;}
+.draft-top h2 {font: 22px Georgia, serif; margin: 0;}
+#draft-box {min-height: 230px; height: 48vh; resize: none; font-size: 18px; line-height: 1.8; padding: 20px 24px;
+  background: linear-gradient(90deg, #f7f7fc, #fff 3%, #fff 97%, #f9f9fe); box-shadow: 2px 3px #dedfeb;}
+.checklist {display: grid; gap: 9px; background: #fff; border: 1px solid var(--line); border-radius: 5px; padding: 13px; margin-top: 12px; font-size: 12px;}
+.checklist h3 {margin: 0 0 1px; font-size: 11px; letter-spacing: .06em;}
+.checklist p {margin: 0; line-height: 1.5;}
+.drafting main {grid-template-columns: 84px minmax(0, 1fr);}
+.drafting .painting {height: 96px;}
+.drafting .book-title, .drafting .text-toolbar, .drafting .context, .drafting .gap {display: none;}
+.drafting .text-scroll {padding: 7px;}
+.drafting .passage {height: 44px; overflow: hidden; padding: 0; color: transparent; margin: 0 0 3px;}
+.drafting .passage .margin-id {position: static; display: flex; width: 100%; height: 100%; justify-content: center; align-items: center;
+  color: var(--muted); gap: 3px; font-size: 11px;}
+.drafting .passage .margin-id .mark {display: inline; font-size: 10px;}
+.drafting .bench {max-width: 1400px; width: 100%; margin-inline: auto;}
+.mobile-tabs {display: none;}
+footer {display: flex; align-items: center; padding: 0 23px 6px; gap: 10px; font-size: 10px; color: var(--muted);}
+footer span:first-child {margin-right: auto;}
+.toast {color: var(--brand); min-height: 14px;}
+dialog {border: 1px solid var(--line); border-radius: 10px; padding: 22px; max-width: 460px; width: calc(100% - 28px);
+  color: var(--ink); box-shadow: 0 18px 60px #1b1c3840;}
+dialog::backdrop {background: #26284266;}
+dialog h2 {font: 23px Georgia, serif; margin: 0 0 12px;}
+dialog p {font-size: 13px; line-height: 1.6;}
+dialog .actions {margin-top: 15px;}
+#replace-options {display: grid; gap: 6px;}
+#replace-options button {text-align: left; font-size: 12px;}
+.calm *, .calm *::after, .calm *::before {animation: none !important; transition: none !important; scroll-behavior: auto !important;}
+@media (min-width: 1600px) {
+  header {padding: 14px 32px;}
+  main {padding: 0 32px 14px; gap: 24px;}
+  .bench {gap: 12px;}
+  .chip {font-size: 14px; min-height: 49px;}
+  .chip-row {margin-bottom: 16px;}
+  .text-content {font-size: 20px;}
+  .text-scroll {padding-top: 22px;}
+  .promise-frame p {font-size: 21px;}
+}
+@media (max-height: 800px) and (min-width: 1001px) {
+  .chip-row {margin-bottom: 6px;}
+  .chips {gap: 4px;}
+  .promise-frame {padding: 8px 13px; margin: 8px 1px;}
+  .promise-frame p {font-size: 15px; margin-top: 3px;}
+  .meter {padding: 7px 10px;}
+  .readout small {display: none;}
+  .meter-head {margin-bottom: 5px;}
+}
+@media (max-width: 1000px) {
+  header {padding: 7px 12px; gap: 8px;}
+  h1 {font-size: 22px;}
+  .book-select > span {display: none;}
+  .icon-btn {font-size: 11px; padding: 0 8px;}
+  .ribbon {padding: 3px 12px;}
+  main {padding: 0 12px 8px; gap: 10px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);}
+  .text-content {font-size: 15px;}
+  .text-scroll {padding: 10px 9px 20px 47px;}
+  .painting {height: 96px;}
+  .chip {font-size: 11px; padding: 5px 7px;}
+  .hint {font-size: 12px; padding: 7px 10px; min-height: 46px;}
+  .readout {padding-left: 5px;}
+  .meter-grid {gap: 4px;}
+  .readout strong {font-size: 12px;}
+  .readout small {display: none;}
+  .promise-frame p {font-size: 15px;}
+  footer {padding: 0 13px 5px;}
+}
+@media (max-width: 760px) and (min-height: 601px) {
+  .ribbon-note {display: none;}
+  .mobile-tabs {display: flex; gap: 6px; margin-left: auto;}
+  .mobile-tabs button {font-size: 12px; padding: 5px 10px;}
+  .mobile-tabs button[aria-pressed="true"] {border-color: var(--brand); background: #e7e9f6;}
+  main {display: block; position: relative;}
+  .manuscript, .bench {height: 100%;}
+  body[data-view="bench"] .manuscript {display: none;}
+  body[data-view="text"] .bench {display: none;}
+  .drafting main {display: block;}
+  .drafting .manuscript {display: none;}
+  .drafting .bench {display: flex;}
+}
+@media (max-width: 1100px) and (max-height: 700px) {
+  .full-label {display: none;}
+  .short-label {display: inline;}
+  .meaning .chips {display: flex;}
+  .meaning .chip {flex: 1; text-align: center;}
+  .chip-row {margin-bottom: 4px;}
+  .chip-row h3 {font-size: 10px; line-height: 1; margin: 0 0 2px;}
+}
+@media (min-width: 1101px) and (max-height: 750px) {
+  .move .full-label {display: none;}
+  .move .short-label {display: inline;}
+}
+@media (max-height: 600px) {
+  header {padding: 4px 10px; gap: 7px;}
+  h1 {font-size: 20px;}
+  h1 small {display: none;}
+  .ribbon {padding: 2px 10px;}
+  .ribbon-note {font-size: 12px;}
+  .seg button {padding: 0 13px; font-size: 12px;}
+  .step-number {width: 17px; height: 17px; font-size: 10px; margin-right: 4px;}
+  main {gap: 8px; padding: 0 10px 5px; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);}
+  .painting {height: 96px;}
+  .book-title {left: 9px; bottom: 8px; padding: 5px 8px;}
+  .book-title h2 {font-size: 18px;}
+  .book-title small {display: none;}
+  .text-toolbar {padding: 0 6px;}
+  .text-toolbar p {font-size: 10px;}
+  .text-toolbar button {padding: 3px 6px; font-size: 10px;}
+  .text-content {font-size: 13px;}
+  .text-scroll {padding: 8px 5px 16px 42px;}
+  .passage {padding: 4px 6px;}
+  .bench {gap: 4px;}
+  .hint {font-size: 11px; min-height: 36px; padding: 4px 7px; line-height: 1.35;}
+  .chip-row {margin-bottom: 4px;}
+  .chip-row h3 {font-size: 10px; line-height: 1; margin: 0 0 2px;}
+  .chip-row h3 span {display: none;}
+  .chip {font-size: 10px; padding: 3px 5px;}
+  .full-label {display: none;}
+  .short-label {display: inline;}
+  .meaning .chips {display: flex;}
+  .meaning .chip {text-align: center; flex: 1;}
+  .chips {gap: 3px;}
+  .promise-frame {padding: 5px 10px; margin: 6px 0;}
+  .promise-frame .eyebrow {display: none;}
+  .promise-frame p {font-size: 12px; margin-top: 0;}
+  .meter {padding: 5px 7px; margin-bottom: 5px;}
+  .meter-head, .readout small, .meter-detail {display: none;}
+  .readout b {font-size: 10px;}
+  .readout b {white-space: nowrap;}
+  .readout b .meter-symbol {display: block; line-height: 10px; margin-bottom: 2px;}
+  .readout b .compact-hide {display: none;}
+  .readout strong {font-size: 11px; margin-top: 2px;}
+  .bench-footer {padding-top: 0; display: grid; grid-template-columns: minmax(0, 1fr) 76px; gap: 4px; align-items: stretch;}
+  .bench-footer .meter {margin: 0; align-self: stretch;}
+  .bench-footer .meter-grid {height: 100%; align-items: center;}
+  .bench-footer #build-actions {grid-column: 2;}
+  .bench-footer #build-actions button {min-width: 0;}
+  .bench-footer #save-thesis {display: none;}
+  .bench-footer #prove-actions, .bench-footer #draft-actions {grid-column: 1 / -1;}
+  .bench-footer #against-links {display: none;}
+  .save-inline {display: block; width: 100%; margin-top: 8px;}
+  .bench-footer button {font-size: 11px; padding: 4px 7px;}
+  .drafting main {grid-template-columns: 64px minmax(0, 1fr);}
+  #draft-box {font-size: 14px; padding: 12px; min-height: 130px; height: 38vh;}
+  .quote-card {padding: 8px;}
+  .quote-card blockquote {font-size: 13px;}
+  .quote-card textarea {min-height: 60px; height: 60px;}
+  .evidence-pool {grid-template-columns: repeat(4, minmax(0, 1fr));}
+  .evidence-choice {padding: 4px; font-size: 10px;}
+  .evidence-choice strong {font-size: 10px;}
+  .evidence-intro {font-size: 15px;}
+  footer {padding-bottom: 3px;}
+}
+@media (max-width: 520px) {
+  header {display: grid; grid-template-columns: 1fr auto; padding: 6px 9px; gap: 5px;}
+  h1 {font-size: 23px;}
+  h1 small {display: none;}
+  .book-select {grid-column: 1; grid-row: 2;}
+  .book-select select {width: 100%; font-size: 12px;}
+  .prefs {grid-column: 2; grid-row: 1 / 3; gap: 4px; align-self: end;}
+  .icon-btn {width: 48px; padding: 0 2px; font-size: 10px; overflow: hidden;}
+  .ribbon {padding: 3px 9px; gap: 4px; flex-wrap: wrap;}
+  .seg {gap: 3px;}
+  .seg button {padding: 0 8px; font-size: 12px;}
+  .step-number {display: none;}
+  .mobile-tabs {gap: 3px;}
+  .mobile-tabs button {font-size: 10px; padding: 4px 6px;}
+  main {padding: 0 8px 7px;}
+  .hint {font-size: 12px;}
+  .chip-row h3 span {display: none;}
+  .chip {font-size: 11px; padding: 5px 7px;}
+  .full-label {display: none;}
+  .short-label {display: inline;}
+  .meaning .chips {display: grid; grid-template-columns: 1fr 1fr;}
+  .meaning .chip {text-align: left;}
+  .meaning .full-label {display: inline;}
+  .meaning .short-label {display: none;}
+  .promise-frame p {font-size: 15px;}
+  .text-content {font-size: 17px;}
+  footer {padding-left: 10px; padding-right: 10px; font-size: 10px;}
+  footer .footer-caption {display: none;}
+  #draft-box {height: 42vh; min-height: 180px; font-size: 16px; padding: 14px;}
+}
+</style>
+</head>
+<body data-view="bench">
+<header>
+  <h1>Thesis Workshop <small>A thesis is a promise.</small></h1>
+  <label class="book-select"><span>On your desk</span>
+    <select id="text-picker" aria-label="Choose a text">
+      <option value="window">The Open Window</option>
+      <option value="road">The Road Not Taken</option>
+    </select>
+  </label>
+  <div class="prefs">
+    <button class="icon-btn" id="motion" aria-pressed="true" title="Turn motion on or off">Motion</button>
+    <button class="icon-btn" id="sound" aria-pressed="true" title="Turn sound on or off">Sound</button>
+    <button class="icon-btn" id="read" title="Read the current hint">Read</button>
+  </div>
+</header>
+<div class="ribbon">
+  <nav class="seg" aria-label="Workshop mode">
+    <button id="m-build" aria-pressed="true"><span class="step-number">1</span>Build</button>
+    <button id="m-prove" aria-pressed="false"><span class="step-number">2</span>Prove</button>
+    <button id="m-draft" aria-pressed="false"><span class="step-number">3</span>Draft</button>
+  </nav>
+  <p class="ribbon-note">Make a claim. See what it asks of you.</p>
+  <div class="mobile-tabs" aria-label="Workspace view">
+    <button id="view-text" aria-pressed="false">Text <span id="tab-count">0</span></button>
+    <button id="view-bench" aria-pressed="true">Bench</button>
+  </div>
+</div>
+<main>
+  <article class="manuscript" id="manuscript" aria-label="Literary text and promise lights">
+    <div class="painting">
+      <img id="window-art" src="art:tw-open-window" alt="An empty country drawing room opens onto a lawn at dusk.">
+      <img id="road-art" src="art:tw-yellow-wood" alt="Two equally grassy paths divide in a yellow autumn wood." hidden>
+      <div class="book-title"><h2 id="book-title">The Open Window</h2><small id="book-author">Saki · 1914</small></div>
+    </div>
+    <div class="text-toolbar">
+      <p><span class="status-lamp" aria-hidden="true"></span><span id="lit-count">No passages lit yet</span>
+        <span class="signal-strip" id="signal-strip" aria-hidden="true"></span></p>
+      <button id="show-me">Show me</button>
+    </div>
+    <div class="text-scroll" id="text-scroll" tabindex="0" aria-label="Scroll the full text">
+      <div class="text-content" id="text-content"></div>
+    </div>
+  </article>
+  <section class="bench" aria-label="Writing workbench">
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div class="work-page" id="build-page">
+      <div id="chip-rows"></div>
+      <div class="promise-frame"><span class="eyebrow">Your promise to a reader</span><p id="thesis-sentence"></p></div>
+      <button class="save-inline" id="save-inline">Save this thesis</button>
+      <div class="meter" id="meter" aria-live="polite">
+        <div class="meter-head"><span class="eyebrow">Promise meter</span><span>Based on chips and editorial tags</span></div>
+        <div class="meter-grid">
+          <div class="readout"><b><span class="meter-symbol">◇ </span>Arguable</b><strong id="arguable">Choose</strong><small id="arguable-small"></small></div>
+          <div class="readout"><b><span class="meter-symbol">◉ </span>Scope</b><strong id="scope">Choose</strong><small id="scope-small"></small></div>
+          <div class="readout"><b><span class="meter-symbol">✓ </span>Fit</b><strong id="fit">Pick a meaning</strong><small id="fit-small"></small></div>
+          <div class="readout"><b><span class="meter-symbol">× </span>Against<span class="compact-hide"> you</span></b>
+            <strong id="against">None found</strong><small id="against-small"></small></div>
+        </div>
+        <p class="meter-detail" id="counter-reading"></p>
+        <p class="meter-detail warning" id="fit-warning"></p>
+        <div class="against-links" id="against-links"></div>
+      </div>
+      <details class="disclosure" id="own-details">
+        <summary>My own words <span class="muted">· light still follows the chips</span></summary>
+        <label class="small-note" for="own-words">Rewrite your thesis freely. The meter tests your chips, not this sentence.</label>
+        <textarea id="own-words" aria-label="My own words" maxlength="4000" placeholder="Write your version of the thesis..."></textarea>
+        <p class="small-note warning" id="drift"></p>
+      </details>
+      <details class="disclosure" id="saved-details"><summary>Saved theses <span id="saved-count">0 / 5</span></summary><div id="saved-list"></div></details>
+    </div>
+    <div class="work-page" id="prove-page" hidden>
+      <span class="eyebrow">Your claim on the line</span>
+      <p class="evidence-intro" id="prove-thesis"></p>
+      <p class="small-note warning" id="summary-note" hidden>Most teachers would ask for a claim, not a summary.</p>
+      <div class="evidence-count"><span id="evidence-count">0 of 3 selected</span><span class="pin"></span><span class="pin"></span><span class="pin"></span></div>
+      <p class="small-note">Checks only spot word connections. Explain how the quoted words support your reading.</p>
+      <div id="evidence-cards"></div>
+      <div id="answer-card"></div>
+      <div class="eyebrow" id="pool-title">Lit passages · choose three</div>
+      <div class="evidence-pool" id="evidence-pool"></div>
+    </div>
+    <div class="work-page" id="draft-page" hidden>
+      <div class="draft-top"><h2>Your working paragraph</h2><span class="eyebrow">Editable · saved here</span></div>
+      <label class="small-note" for="draft-box">Edit your assembled paragraph. Return to Prove to revise its evidence.</label>
+      <textarea id="draft-box" aria-label="Your paragraph" maxlength="40000"></textarea>
+      <div class="checklist" id="checklist"></div>
+      <p class="small-note" id="draft-sync-note"></p>
+    </div>
+    <div class="bench-footer">
+      <div class="actions" id="build-actions"><button id="save-thesis">Save this thesis</button><button class="primary" id="use-thesis">Use this one →</button></div>
+      <div class="prove-selection" id="prove-selection" hidden></div>
+      <div class="actions" id="prove-actions" hidden><button id="back-build">← Tune the thesis</button>
+        <button class="primary" id="to-draft">Make my draft →</button></div>
+      <div class="actions" id="draft-actions" hidden><button id="back-prove">← Prove</button>
+        <button class="primary" id="copy">Copy</button><button id="clear">Clear my work</button></div>
+    </div>
+  </section>
+</main>
+<footer><span id="storage-status">Your work stays in this browser. Nothing is sent.</span><span class="toast" id="toast" role="status"></span>
+  <span class="footer-caption">Curio Class · Literary Analysis</span></footer>
+<dialog id="clear-dialog" aria-labelledby="clear-title">
+  <h2 id="clear-title">Clear this workshop?</h2>
+  <p>This removes your theses, evidence and paragraphs for both texts from this browser.</p>
+  <div class="actions"><button id="cancel-clear">Keep my work</button><button class="primary" id="confirm-clear">Clear my work</button></div>
+</dialog>
+<dialog id="replace-dialog" aria-labelledby="replace-title">
+  <h2 id="replace-title">Your five thesis slots are full</h2><p>Choose a thesis to replace, or keep all five.</p>
+  <div id="replace-options"></div><div class="actions"><button id="cancel-replace">Keep all five</button></div>
+</dialog>
+<dialog id="copy-dialog" aria-labelledby="copy-title">
+  <h2 id="copy-title">Copy your paragraph</h2><p>The browser blocked automatic copying. Select the paragraph below, then press Control + C (Command + C on a Mac).</p>
+  <textarea id="copy-fallback" aria-label="Select paragraph to copy" readonly></textarea>
+  <div class="actions"><button id="close-copy">Back to draft</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const TEXTS = "json:content";
+  const STORE = 'tw.v1';
+  const MODES = ['build', 'prove', 'draft'];
+  const emptyWork = () => ({topic: null, move: null, meaning: null, own: '', saved: [], evidence: [], answer: '', draft: '', draftBase: ''});
+  const state = {mode: 'build', text: 'window', view: 'bench', works: {window: emptyWork(), road: emptyWork()}, revision: 0};
+  let storageOK = true;
+  let toastTimer = 0;
+  const L = {
+    'w-build': 'Tap a topic chip and a move chip. Watch which passages light up.',
+    meaning: 'Now tap a meaning chip. Checks show where it fits.',
+    broad: 'That promise covers too much. Tap a narrower chip.',
+    narrow: "One line can't carry a whole essay. Tap a wider chip, or Any.",
+    against: "A crossed passage cuts against your claim. You'll have to answer it in Prove.",
+    'w-prove': 'Tap Use as evidence on three lit passages, then finish each Because box.',
+    'w-draft': 'Here is your paragraph. Edit it in the box, then tap Copy.',
+    proveBecause: 'Finish each Because box. Name words from its quote and explain how they link to your meaning.',
+    popular: 'The popular reading has to get past these four lines.',
+    ready: 'Tap Use this one to choose three passages and explain your reading.',
+    draftEmpty: 'Build a thesis and tap Use this one. Then choose evidence in Prove before editing your draft.',
+    noEvidence: 'No passages are lit. Tap Tune the thesis, then choose a topic and a wider move.',
+    needBuild: 'Tap Tune the thesis. Choose a topic, a move and a meaning in Build.',
+    chooseFirst: 'Tap a topic, a move and a meaning before using this thesis.',
+    revision: 'Edit the paragraph, or tap Prove to compare it with your revised evidence.'
+  };
+  const work = () => state.works[state.text];
+  const text = () => TEXTS[state.text];
+  const meaning = () => text().meanings.find(m => m.id === work().meaning);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+  const quoted = s => '“' + s.replace(/“/g, '‘').replace(/”/g, '’') + '”';
+  const words = s => s.toLowerCase().match(/[a-z]+(?:['’][a-z]+)?/g) || [];
+  const STOP = new Set(('that this with from have were been they them their there then than when what which would could should '
+    + 'your about into only some said says also does will just more most very here whom over under').split(' '));
+
+  function validChoice(list, value) {
+    return value === null || value === '*' || list.some(v => v[0] === value);
+  }
+
+  function load() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(STORE) || 'null');
+      if (!stored || typeof stored !== 'object') return;
+      state.text = TEXTS[stored.text] ? stored.text : 'window';
+      state.mode = MODES.includes(stored.mode) ? stored.mode : 'build';
+      for (const key of Object.keys(TEXTS)) {
+        const d = TEXTS[key];
+        const old = stored.works?.[key];
+        if (!old || typeof old !== 'object') continue;
+        const w = state.works[key];
+        w.topic = validChoice(d.topics, old.topic) ? old.topic : null;
+        w.move = validChoice(d.moves, old.move) ? old.move : null;
+        w.meaning = old.meaning === '*' || d.meanings.some(m => m.id === old.meaning) ? old.meaning : null;
+        for (const k of ['own', 'answer', 'draft', 'draftBase']) w[k] = typeof old[k] === 'string' ? old[k].slice(0, 40000) : '';
+        const validSnapshot = s => s && validChoice(d.topics, s.topic) && validChoice(d.moves, s.move)
+          && (s.meaning === '*' || d.meanings.some(m => m.id === s.meaning)) && typeof s.own === 'string';
+        w.saved = Array.isArray(old.saved) ? old.saved.filter(validSnapshot).slice(0, 5) : [];
+        const seen = new Set();
+        w.evidence = Array.isArray(old.evidence) ? old.evidence.filter(e => {
+          if (!e || seen.has(e.id) || !d.passages.some(p => p.id === e.id) || typeof e.because !== 'string') return false;
+          seen.add(e.id);
+          return true;
+        }).slice(0, 3).map(e => ({id: e.id, because: e.because.slice(0, 8000)})) : [];
+      }
+    } catch {
+      storageOK = false;
+    }
+  }
+
+  function persist() {
+    try {
+      localStorage.setItem(STORE, JSON.stringify({text: state.text, mode: state.mode, works: state.works}));
+    } catch {
+      storageOK = false;
+    }
+    $('storage-status').textContent = storageOK ? 'Your work stays in this browser. Nothing is sent.'
+      : 'Storage unavailable. Work lasts this session. Nothing is sent.';
+  }
+
+  function toast(message) {
+    clearTimeout(toastTimer);
+    $('toast').textContent = message;
+    toastTimer = setTimeout(() => { $('toast').textContent = ''; }, 4200);
+  }
+
+  function litPassages(w = work(), d = text()) {
+    if (!w.topic || !w.move) return [];
+    return d.passages.filter(p => (w.topic === '*' || p.topics.includes(w.topic)) && (w.move === '*' || p.moves.includes(w.move)));
+  }
+
+  function meter(w = work(), d = text()) {
+    const lit = litPassages(w, d);
+    const m = d.meanings.find(v => v.id === w.meaning);
+    const n = lit.length;
+    const scope = !w.topic || !w.move ? 'Choose' : n <= 1 ? 'Too narrow' : n === 2 ? 'Thin' : n <= 8 ? 'Workable' : 'Too broad';
+    const fit = m && !m.summary ? lit.filter(p => p.fit.includes(m.id)) : [];
+    const against = m && !m.summary ? lit.filter(p => p.against.includes(m.id)) : [];
+    return {lit, n, scope, fit, against, summary: !!m?.summary};
+  }
+
+  function sentence(w = work(), d = text()) {
+    if (w.own.trim()) return w.own.trim();
+    const t = d.topics.find(v => v[0] === w.topic)?.[1] || (w.topic === '*' ? 'any topic' : '[topic]');
+    const move = d.moves.find(v => v[0] === w.move)?.[1] || (w.move === '*' ? 'any move' : '[move]');
+    const m = d.meanings.find(v => v.id === w.meaning)?.text || '[meaning]';
+    return `In ${d.title}, ${d.author} uses ${move.toLowerCase()} with ${t} to show that ${m}`;
+  }
+
+  function hasThesis() {
+    return !!(work().topic && work().move && meaning());
+  }
+
+  const V = Curio.voice({
+    lines: L,
+    scope: () => state.mode + state.text,
+    hint: false,
+    read: () => $('hint').textContent,
+    welcome: () => {
+      if (state.mode === 'build') return !work().topic || !work().move ? ['w-build', {valid: () => !work().topic || !work().move}] : null;
+      if (state.mode === 'prove') return hasThesis() && meter().n && work().evidence.length < 3
+        ? ['w-prove', {valid: () => work().evidence.length < 3, needs: '#evidence-pool'}] : null;
+      return hasThesis() ? ['w-draft', {valid: () => work().draft === assembled(), needs: '#draft-box'}] : null;
+    }
+  });
+
+  function setHint() {
+    let key;
+    if (state.mode === 'build') {
+      const scope = meter().scope;
+      key = !work().topic || !work().move ? 'w-build' : scope === 'Too broad' ? 'broad'
+        : scope === 'Too narrow' ? 'narrow' : !meaning() ? 'meaning' : 'ready';
+    } else if (state.mode === 'prove') {
+      key = !hasThesis() ? 'needBuild' : !meter().n ? 'noEvidence' : work().evidence.length < 3 ? 'w-prove' : 'proveBecause';
+    } else {
+      key = !hasThesis() ? 'draftEmpty' : work().draft !== assembled() ? 'revision' : 'w-draft';
+    }
+    $('hint').textContent = L[key];
+    return key;
+  }
+
+  function narrateHow() {
+    const key = setHint();
+    if (key === 'broad' || key === 'narrow') return;
+    if (!V.heard(key)) V.how(key, {valid: () => setHint() === key});
+  }
+
+  const short = {
+    V: 'Vera', W: 'Window', F: 'Framton', A: 'Mrs. Sappleton', C: 'Choice', R: 'Roads', T: 'Later telling',
+    window: {P: 'Details', I: 'Irony', H: 'Hiding', S: 'Story', E: 'Ending', N1: 'Story > truth', N2: 'Manners', N3: 'Fear', N0: 'Summary'},
+    road: {Q: 'Equal', G: 'Regret', F: 'Future', S: 'Sigh', D: 'Repeat',
+      N1: 'Meaning later', N2: 'Lost choices', N3: 'Better road', N0: 'Summary'}
+  };
+
+  function renderChips() {
+    const groups = [
+      ['topic', 'Topic', 'what you study', text().topics],
+      ['move', 'Move', 'what the author does', text().moves],
+      ['meaning', 'Meaning', 'what it adds up to', text().meanings.map(m => [m.id, m.text])]
+    ];
+    $('chip-rows').innerHTML = groups.map(([kind, title, subtitle, options]) => {
+      const buttons = [...options, ['*', 'Any']].map(([id, label]) => {
+        const brief = id === '*' ? 'Any' : kind === 'topic' ? short[id] : short[state.text][id];
+        const clean = label.charAt(0).toUpperCase() + label.slice(1).replace(/\.$/, '');
+        return `<button class="chip" id="${kind}-${id === '*' ? 'any' : id}" data-kind="${kind}" data-value="${id}"
+          aria-pressed="${work()[kind] === id}" aria-label="${esc(clean)}" title="${esc(clean)}">
+          <span class="full-label">${esc(clean)}</span><span class="short-label" aria-hidden="true">${esc(brief)}</span></button>`;
+      }).join('');
+      return `<section class="chip-row ${kind}" aria-labelledby="label-${kind}"><h3 id="label-${kind}">${title}<span>${subtitle}</span></h3>
+        <div class="chips" role="group" aria-labelledby="label-${kind}">${buttons}</div></section>`;
+    }).join('');
+    $('chip-rows').querySelectorAll('button').forEach(b => {
+      b.onclick = () => choose(b.dataset.kind, b.dataset.value);
+    });
+  }
+
+  function choose(kind, value) {
+    const before = meter();
+    const changed = work()[kind] !== value;
+    if (!changed) {
+      Curio.tone(310, .04, .02);
+      return;
+    }
+    work()[kind] = value;
+    state.revision++;
+    const rev = state.revision;
+    V.dropQueued();
+    const lit = litPassages();
+    work().evidence = work().evidence.filter(e => lit.some(p => p.id === e.id));
+    work().answer = '';
+    document.querySelectorAll(`button[data-kind="${kind}"]`).forEach(b => b.setAttribute('aria-pressed', b.dataset.value === value));
+    updateBuild();
+    lightText();
+    persist();
+    const after = meter();
+    Curio.tone(after.against.length ? 220 : 460 + after.n * 14, .07, .035, 'sine');
+    const valid = () => state.revision === rev;
+    if (after.scope !== before.scope && ['Too broad', 'Too narrow'].includes(after.scope)) {
+      V.say(after.scope === 'Too broad' ? 'broad' : 'narrow', {valid, now: true});
+    }
+    if (after.against.length) {
+      const popular = state.text === 'road' && work().topic === 'R' && work().move === 'Q' && work().meaning === 'N3';
+      if (!V.heard('against')) V.how(popular ? ['against', 'popular'] : 'against', {valid, now: true});
+      else if (popular && !V.heard('popular')) V.how('popular', {valid});
+      if (popular) {
+        toast(L.popular);
+      }
+    }
+    const key = setHint();
+    if (key === 'meaning' && !V.heard(key)) V.how(key, {valid: () => valid() && !meaning(), now: true});
+  }
+
+  function renderText() {
+    $('book-title').textContent = text().title;
+    $('book-author').textContent = state.text === 'window' ? 'Saki · 1914' : 'Robert Frost · 1916';
+    $('window-art').hidden = state.text !== 'window';
+    $('road-art').hidden = state.text !== 'road';
+    $('text-content').classList.toggle('poem', state.text === 'road');
+    let offset = 0;
+    let html = '';
+    for (const p of text().passages) {
+      const gap = text().full.slice(offset, p.start).trim();
+      if (gap) html += `<p class="gap">${esc(gap)}</p>`;
+      html += `<div class="passage" id="passage-${p.id}" data-id="${p.id}">
+        <span class="margin-id">${p.id}<span class="mark" aria-hidden="true"></span></span><span class="passage-words">${esc(p.quote)}</span></div>`;
+      offset = p.end;
+    }
+    html += `<p class="context">${esc(text().context)}<br>Passage tags are one reading of the text. Unlit words still matter.</p>`;
+    $('text-content').innerHTML = html;
+    $('signal-strip').innerHTML = text().passages.map(p => `<i data-signal="${p.id}"></i>`).join('');
+    $('text-scroll').scrollTop = 0;
+    lightText();
+  }
+
+  function lightText() {
+    const m = meter();
+    const lit = new Set(m.lit.map(p => p.id));
+    const fit = new Set(m.fit.map(p => p.id));
+    const against = new Set(m.against.map(p => p.id));
+    for (const p of text().passages) {
+      const el = $('passage-' + p.id);
+      el.classList.toggle('lit', lit.has(p.id));
+      el.classList.toggle('against', against.has(p.id));
+      el.classList.toggle('evidence', work().evidence.some(e => e.id === p.id));
+      el.querySelector('.mark').textContent = !lit.has(p.id) ? '' : against.has(p.id) ? '💡 ×' : fit.has(p.id) ? '💡 ✓' : '💡';
+      const signal = $('signal-strip').querySelector(`[data-signal="${p.id}"]`);
+      signal.classList.toggle('on', lit.has(p.id));
+      signal.classList.toggle('against', against.has(p.id));
+      el.setAttribute('aria-label', p.id + (against.has(p.id) ? ', lit, cuts against your claim' : fit.has(p.id) ? ', lit, fits meaning' : lit.has(p.id) ? ', lit' : ''));
+    }
+    $('lit-count').textContent = m.n ? `${m.n} of ${text().passages.length} passages lit` : 'No passages lit yet';
+    $('tab-count').textContent = m.n;
+  }
+
+  function jumpTo(id) {
+    if (!id) {
+      toast('Choose a topic and a move to light passages.');
+      return;
+    }
+    setView('text');
+    const el = $('passage-' + id);
+    const container = $('text-scroll');
+    container.scrollTo({top: el.offsetTop - 12, behavior: Curio.reduce ? 'instant' : 'smooth'});
+    el.classList.remove('flash');
+    void el.offsetWidth;
+    el.classList.add('flash');
+    Curio.tone(540, .06, .03);
+  }
+
+  function updateBuild() {
+    const w = work();
+    const m = meter();
+    const chosen = meaning();
+    const topicLabel = text().topics.find(v => v[0] === w.topic)?.[1] || (w.topic === '*' ? 'any topic' : '[topic]');
+    const moveLabel = text().moves.find(v => v[0] === w.move)?.[1] || (w.move === '*' ? 'any move' : '[move]');
+    $('thesis-sentence').innerHTML = `In <i>${esc(text().title)}</i>, ${esc(text().author)} uses
+      <span class="move-word">${esc(moveLabel.toLowerCase())}</span> with <span class="topic-word">${esc(topicLabel)}</span>
+      to show that <span class="meaning-word">${esc(chosen?.text || '[meaning]')}</span>`;
+    $('arguable').textContent = !chosen ? 'Choose' : chosen.summary ? 'Summary' : 'Yes';
+    $('arguable-small').textContent = chosen?.summary ? 'What happens, not what it means' : chosen ? 'A reader could disagree' : 'Pick a meaning';
+    $('scope').textContent = m.scope;
+    $('scope').className = ['Too broad', 'Too narrow'].includes(m.scope) ? 'warning' : '';
+    $('scope-small').textContent = m.scope === 'Choose' ? 'Pick topic + move' : `${m.n} lit passages`;
+    $('fit').textContent = !m.n ? 'Nothing lit yet' : !chosen ? 'Pick a meaning' : chosen.summary ? 'Summary' : `${m.fit.length} of ${m.n}`;
+    $('fit').className = chosen?.summary ? 'muted' : chosen && m.n && m.fit.length < m.n / 2 ? 'warning' : '';
+    $('fit-small').textContent = chosen?.summary ? 'Fit is not tested' : 'Lit passages fitting meaning';
+    $('against').textContent = m.against.length ? String(m.against.length) + ' lit' : 'None found';
+    $('against').className = m.against.length ? 'warning' : '';
+    $('against-small').textContent = 'In the tagged set';
+    $('counter-reading').textContent = chosen?.summary ? 'Summary: this is what happens, not what it means.'
+      : chosen ? 'A reader could disagree: ' + chosen.counter : 'Pick a meaning to test fit and a counter-reading.';
+    $('fit-warning').textContent = !m.n && w.topic && w.move ? 'Nothing lit yet. Change one chip.'
+      : chosen && !chosen.summary && m.fit.length < m.n / 2 ? "This meaning doesn't fit most of your passages. Change one chip."
+      : m.scope === 'Too broad' ? 'Too broad: you would have to explain most of the text.'
+      : m.scope === 'Too narrow' ? "Too narrow: one line can't carry an essay." : '';
+    $('against-links').innerHTML = m.against.map(p => `<button data-jump="${p.id}">${p.id} ×</button>`).join('');
+    $('against-links').querySelectorAll('button').forEach(b => b.onclick = () => jumpTo(b.dataset.jump));
+    $('own-words').value = w.own;
+    updateDrift();
+    renderSaved();
+    setHint();
+  }
+
+  function updateDrift() {
+    const w = work();
+    const topicWords = {
+      window: {V: ['vera'], W: ['window'], F: ['framton', 'nuttel'], A: ['sappleton', 'aunt']},
+      road: {C: ['choice', 'choices', 'choose', 'chooses', 'choosing'], R: ['road', 'roads', 'path', 'paths'], T: ['tell', 'telling', 'later', 'story', 'stories']}
+    };
+    const expected = topicWords[state.text][w.topic] || [];
+    const typed = new Set(words(w.own));
+    $('drift').textContent = w.own.trim() && expected.length && !expected.some(v => typed.has(v))
+      ? 'Your sentence and your chips have drifted apart.' : '';
+  }
+
+  function renderSaved() {
+    $('saved-count').textContent = `${work().saved.length} / 5`;
+    $('saved-list').innerHTML = work().saved.length ? work().saved.map((s, i) => {
+      const m = meter(s);
+      return `<div class="saved-item"><p>${esc(sentence(s))}</p><small>${m.summary ? 'Summary' : 'Arguable'} · ${m.scope} ·
+        ${m.fit.length} of ${m.n} fit · ${m.against.length} against</small><div class="actions">
+        <button data-load="${i}">Compare this one</button><button class="primary" data-use="${i}">Use this one</button></div></div>`;
+    }).join('') : '<p class="small-note">Save a thesis to compare its scope and fit with your next version.</p>';
+    $('saved-list').querySelectorAll('[data-load]').forEach(b => b.onclick = () => loadSaved(+b.dataset.load, false));
+    $('saved-list').querySelectorAll('[data-use]').forEach(b => b.onclick = () => loadSaved(+b.dataset.use, true));
+  }
+
+  function snapshot() {
+    const {topic, move, meaning, own} = work();
+    return {topic, move, meaning, own};
+  }
+
+  function saveThesis() {
+    if (!hasThesis()) {
+      toast('Choose a topic, move and meaning first.');
+      return;
+    }
+    if (work().saved.length < 5) {
+      work().saved.push(snapshot());
+      renderSaved();
+      persist();
+      toast('Thesis saved on this device.');
+      Curio.tone(620, .08, .03);
+      return;
+    }
+    $('replace-options').innerHTML = work().saved.map((s, i) => `<button data-replace="${i}">${i + 1}. ${esc(sentence(s))}</button>`).join('');
+    $('replace-options').querySelectorAll('button').forEach(b => b.onclick = () => {
+      work().saved[+b.dataset.replace] = snapshot();
+      $('replace-dialog').close();
+      renderSaved();
+      persist();
+      $('save-thesis').focus({preventScroll: true});
+      toast('Saved thesis replaced.');
+    });
+    $('replace-dialog').showModal();
+  }
+
+  function loadSaved(index, go) {
+    const s = work().saved[index];
+    if (!s) return;
+    const changed = ['topic', 'move', 'meaning'].some(k => work()[k] !== s[k]);
+    Object.assign(work(), s);
+    state.revision++;
+    if (changed) {
+      work().evidence = [];
+      work().answer = '';
+    }
+    renderChips();
+    updateBuild();
+    lightText();
+    persist();
+    if (go) {
+      setMode('prove');
+      $('m-prove').focus({preventScroll: true});
+    }
+    else {
+      $('own-details').open = !!work().own;
+      $('save-thesis').focus({preventScroll: true});
+      toast('Saved thesis on the bench. Compare its lights.');
+    }
+  }
+
+  function becauseCheck(passage, because, m = meaning()) {
+    const typed = words(because);
+    const quoteWords = new Set(words(passage.quote).filter(w => w.length >= 4 && !STOP.has(w)));
+    const names = typed.some(w => quoteWords.has(w));
+    const link = !!m && !m.summary && typed.some(w => m.keywords.includes(w));
+    // These prescribed checks detect words, not reasoning. Never turn them into a grade or readiness badge.
+    const unique = new Set(typed.filter(w => !STOP.has(w)));
+    const copied = typed.length >= 6 && words(passage.quote).join(' ').includes(typed.join(' '));
+    const terse = unique.size < 5;
+    return {names, link, needsReason: names && link && (terse || copied)};
+  }
+
+  function renderNudges(id) {
+    const e = work().evidence.find(e => e.id === id);
+    const p = text().passages.find(p => p.id === id);
+    const c = becauseCheck(p, e.because);
+    const node = $('nudges-' + id);
+    node.innerHTML = `<span class="${c.names ? 'met' : ''}">${c.names ? '✓' : '○'} Names words from the quote</span>
+      <span class="${c.link ? 'met' : ''}">${c.link ? '✓' : '○'} Links to your meaning</span>`;
+    $('reason-' + id).textContent = c.needsReason ? 'Words found, but an explanation is still needed. How do those words support your reading?' : '';
+  }
+
+  function renderProve() {
+    const m = meter();
+    $('prove-thesis').textContent = hasThesis() ? sentence() : 'Build a thesis before choosing evidence.';
+    $('summary-note').hidden = !m.summary;
+    $('evidence-count').textContent = `${work().evidence.length} of 3 selected`;
+    document.querySelectorAll('.pin').forEach((p, i) => p.classList.toggle('on', i < work().evidence.length));
+    $('evidence-cards').innerHTML = work().evidence.map((e, i) => {
+      const p = text().passages.find(p => p.id === e.id);
+      return `<section class="quote-card selected" id="card-${e.id}" aria-label="Evidence ${i + 1}, ${e.id}">
+        <h3>Evidence ${i + 1} · ${e.id}${m.against.some(v => v.id === e.id) ? ' · × cuts against' : ''}</h3>
+        <blockquote>${esc(quoted(p.quote))}</blockquote>
+        <label for="because-${e.id}">This shows ${esc(meaning()?.text || '[meaning]')} because...</label>
+        <textarea id="because-${e.id}" data-because="${e.id}" aria-label="Because explanation for ${e.id}"
+          maxlength="8000">${esc(e.because)}</textarea>
+        <div class="nudges" id="nudges-${e.id}"></div><p class="small-note warning" id="reason-${e.id}"></p>
+        <div class="actions"><button data-jump="${e.id}">Find ${e.id} in text</button><button data-swap="${e.id}">Swap evidence</button></div></section>`;
+    }).join('');
+    for (const e of work().evidence) renderNudges(e.id);
+    $('evidence-cards').querySelectorAll('[data-because]').forEach(el => el.oninput = () => {
+      work().evidence.find(e => e.id === el.dataset.because).because = el.value;
+      renderNudges(el.dataset.because);
+      persist();
+    });
+    $('evidence-cards').querySelectorAll('[data-swap]').forEach(b => b.onclick = () => swapEvidence(b.dataset.swap));
+    $('evidence-cards').querySelectorAll('[data-jump]').forEach(b => b.onclick = () => jumpTo(b.dataset.jump));
+    if (m.against.length) {
+      $('answer-card').innerHTML = `<section class="quote-card against-card"><h3>× Answer the line against you</h3>
+        <p class="small-note">Some readers will point to ${m.against.map(p => p.id).join(', ')}. Here is why it doesn't sink my claim:</p>
+        <blockquote>${esc(quoted(m.against[0].quote))} (${m.against[0].id})</blockquote>
+        <label for="answer">Answer this challenge, including any of the other crossed lines.</label>
+        <textarea id="answer" maxlength="8000">${esc(work().answer)}</textarea></section>`;
+      $('answer').oninput = () => { work().answer = $('answer').value; persist(); };
+    } else {
+      $('answer-card').innerHTML = hasThesis() ? '<p class="small-note">None found in these tags. Hunt for a line against your claim in your own words.</p>' : '';
+    }
+    const pool = m.lit.filter(p => !work().evidence.some(e => e.id === p.id));
+    $('pool-title').hidden = !pool.length;
+    $('pool-title').textContent = work().evidence.length >= 3 ? 'Three passages chosen' : 'Lit passages · choose three';
+    $('evidence-pool').innerHTML = !hasThesis() || !m.n ? '<p class="empty">No lit evidence yet. Return to Build and tune your topic and move.</p>'
+      : work().evidence.length >= 3 ? '<p class="small-note">Three pieces chosen. Finish each Because box, or tap Swap evidence to try a different passage.</p>'
+      : pool.map(p => `<button class="evidence-choice" data-pick="${p.id}" title="${esc(p.quote)}"
+        aria-label="Use ${p.id} as evidence${m.against.some(v => v.id === p.id) ? ', cuts against your claim' : ''}">
+        <strong>${p.id}${m.against.some(v => v.id === p.id) ? ' ×' : ''}</strong><span>Use as evidence</span></button>`).join('');
+    $('evidence-pool').querySelectorAll('[data-pick]').forEach(b => b.onclick = () => pickEvidence(b.dataset.pick));
+  }
+
+  function pickEvidence(id) {
+    if (work().evidence.length >= 3 || work().evidence.some(e => e.id === id) || !meter().lit.some(p => p.id === id)) return;
+    work().evidence.push({id, because: ''});
+    renderProve();
+    lightText();
+    setHint();
+    persist();
+    $('because-' + id).focus({preventScroll: true});
+    $('because-' + id).scrollIntoView({block: 'nearest', behavior: Curio.reduce ? 'instant' : 'smooth'});
+    Curio.tone(520 + work().evidence.length * 70, .08, .035);
+    if (work().evidence.length === 3) V.how('proveBecause', {valid: () => work().evidence.length === 3, needs: '#evidence-cards'});
+  }
+
+  function swapEvidence(id) {
+    work().evidence = work().evidence.filter(e => e.id !== id);
+    renderProve();
+    lightText();
+    setHint();
+    persist();
+    const b = $('evidence-pool').querySelector(`[data-pick="${id}"]`);
+    if (b) {
+      b.focus({preventScroll: true});
+      b.scrollIntoView({block: 'nearest', behavior: 'instant'});
+    }
+    Curio.tone(350, .06, .03);
+  }
+
+  function assembled() {
+    if (!hasThesis()) return '';
+    const parts = [sentence()];
+    for (const e of work().evidence) {
+      const p = text().passages.find(p => p.id === e.id);
+      parts.push(`${quoted(p.quote)} (${e.id}).`);
+      if (e.because.trim()) {
+        const claim = (meaning()?.text || 'the chosen meaning').replace(/\.$/, '');
+        parts.push(`This shows ${claim} because ${e.because.trim()}`);
+      }
+    }
+    if (meter().against.length && work().answer.trim()) {
+      parts.push(`Some readers will point to ${meter().against.map(p => p.id).join(', ')}. ${work().answer.trim()}`);
+    }
+    return parts.join(' ');
+  }
+
+  function renderDraft() {
+    const w = work();
+    const base = assembled();
+    const handEdited = w.draft && w.draft !== w.draftBase;
+    if (!handEdited) {
+      w.draft = base;
+      w.draftBase = base;
+    }
+    $('draft-box').value = w.draft;
+    $('draft-sync-note').textContent = handEdited && base !== w.draftBase
+      ? 'Your edited paragraph is preserved. Your evidence has changed since it was assembled; bring those changes into your paragraph.' : '';
+    updateChecklist();
+  }
+
+  function updateChecklist() {
+    const m = meter();
+    const w = work();
+    const checked = w.evidence.map(e => becauseCheck(text().passages.find(p => p.id === e.id), e.because));
+    const connected = checked.filter(c => c.names && c.link).length;
+    const reasonNeeded = checked.filter(c => c.needsReason).length;
+    const scopeOK = m.scope === 'Workable' && !m.summary && !($('drift').textContent);
+    const answered = !m.against.length || w.answer.trim().length >= 40 && new Set(words(w.answer)).size >= 8;
+    const lines = [
+      `${scopeOK ? '✓' : '○'} Chip scope: ${m.summary ? 'Summary needs an arguable claim' : m.scope}${$('drift').textContent ? '; sentence has drifted from chips' : ''}.`,
+      `${connected === 3 ? '✓' : '○'} ${connected} of 3 Because lines contain both word connections.`,
+      m.against.length ? `${answered ? '✓' : '○'} ${answered ? 'An answer is written' : 'Answer the line against you'} (${m.against.map(p => p.id).join(', ')}).`
+        : '○ No line against you is tagged. Hunt for a challenge yourself.'
+    ];
+    if (reasonNeeded) lines.push('○ Word matches can be copied. Develop the explanation flagged in Prove.');
+    if (!m.summary && meaning() && m.n && m.fit.length < m.n / 2) {
+      lines.push(`○ Meaning fits ${m.fit.length} of ${m.n} lit passages. Revisit the claim in Build.`);
+    }
+    if (w.draft !== assembled()) lines.push('○ You edited the paragraph. Recheck that its claim and quotations still match your evidence.');
+    $('checklist').innerHTML = '<h3>REVISION CHECKLIST</h3>' + lines.map(s => `<p>${esc(s)}</p>`).join('')
+      + '<p class="muted">These are prompts, not a grade. A reader still judges your reasoning.</p>';
+  }
+
+  function setView(view) {
+    state.view = view;
+    document.body.dataset.view = view;
+    $('view-text').setAttribute('aria-pressed', view === 'text');
+    $('view-bench').setAttribute('aria-pressed', view === 'bench');
+    const tabsVisible = getComputedStyle(document.querySelector('.mobile-tabs')).display !== 'none';
+    document.body.classList.toggle('drafting', state.mode === 'draft' && (!tabsVisible || view === 'bench'));
+    if (view === 'text' && tabsVisible) $('hint').textContent = 'Read the lit passages. Tap Bench to tune the thesis or choose evidence.';
+    else setHint();
+  }
+
+  function setMode(mode, initial = false) {
+    if (!MODES.includes(mode)) return;
+    const trigger = document.activeElement;
+    V.hush();
+    state.mode = mode;
+    state.revision++;
+    for (const m of MODES) {
+      $('m-' + m).setAttribute('aria-pressed', m === mode);
+      $(m + '-page').hidden = m !== mode;
+      $(m + '-actions').hidden = m !== mode;
+    }
+    $('meter').hidden = mode !== 'build';
+    $('prove-selection').hidden = mode !== 'prove';
+    document.body.classList.toggle('drafting', mode === 'draft');
+    setView('bench');
+    if (mode === 'build') updateBuild();
+    if (mode === 'prove') renderProve();
+    if (mode === 'draft') renderDraft();
+    setHint();
+    if (!initial && trigger?.closest('[hidden]')) $('m-' + mode).focus({preventScroll: true});
+    if (!initial) {
+      Curio.tone(mode === 'draft' ? 650 : 440, .08, .025);
+      V.welcome() || narrateHow();
+      persist();
+    }
+  }
+
+  function selectText(key) {
+    if (!TEXTS[key]) return;
+    V.hush();
+    state.text = key;
+    state.revision++;
+    $('text-picker').value = key;
+    renderChips();
+    renderText();
+    updateBuild();
+    setMode(state.mode);
+    persist();
+  }
+
+  async function copyDraft() {
+    const paragraph = $('draft-box').value;
+    if (!paragraph.trim()) {
+      toast('Build your claim and choose evidence first.');
+      return;
+    }
+    work().draft = paragraph;
+    persist();
+    try {
+      await navigator.clipboard.writeText(paragraph);
+      toast('Paragraph copied.');
+      Curio.tone(740, .08, .03);
+    } catch {
+      // Native copy is local and works on browsers without the async clipboard API.
+      const box = $('draft-box');
+      box.focus({preventScroll: true});
+      box.select();
+      let copied = false;
+      try { copied = document.execCommand('copy'); } catch { /* Offer manual selection below. */ }
+      if (copied) toast('Paragraph copied.');
+      else {
+        $('copy-fallback').value = paragraph;
+        $('copy-dialog').showModal();
+        $('copy-fallback').select();
+      }
+    }
+  }
+
+  $('text-picker').onchange = e => selectText(e.target.value);
+  for (const m of MODES) $('m-' + m).onclick = () => {
+    if (state.mode !== m) setMode(m);
+    else {
+      setView('bench');
+      Curio.tone(440, .04, .02);
+    }
+  };
+  $('view-text').onclick = () => setView('text');
+  $('view-bench').onclick = () => setView('bench');
+  $('show-me').onclick = () => jumpTo(meter().lit[0]?.id);
+  $('save-thesis').onclick = saveThesis;
+  $('save-inline').onclick = saveThesis;
+  $('use-thesis').onclick = () => {
+    if (!hasThesis()) { toast('Choose a topic, move and meaning first.'); V.how('chooseFirst'); return; }
+    setMode('prove');
+  };
+  $('back-build').onclick = () => setMode('build');
+  $('back-prove').onclick = () => setMode('prove');
+  $('to-draft').onclick = () => setMode('draft');
+  $('own-words').oninput = () => { work().own = $('own-words').value; updateDrift(); persist(); };
+  $('draft-box').oninput = () => { work().draft = $('draft-box').value; updateChecklist(); setHint(); persist(); };
+  $('copy').onclick = copyDraft;
+  $('clear').onclick = () => $('clear-dialog').showModal();
+  $('cancel-clear').onclick = () => $('clear-dialog').close();
+  $('confirm-clear').onclick = () => {
+    V.hush();
+    try { localStorage.removeItem(STORE); } catch { storageOK = false; }
+    state.works = {window: emptyWork(), road: emptyWork()};
+    state.text = 'window';
+    $('text-picker').value = 'window';
+    $('clear-dialog').close();
+    renderChips();
+    renderText();
+    setMode('build', true);
+    $('m-build').focus({preventScroll: true});
+    toast('Workshop cleared.');
+  };
+  $('cancel-replace').onclick = () => $('replace-dialog').close();
+  $('close-copy').onclick = () => $('copy-dialog').close();
+  for (const [id, returnTo] of [['clear-dialog', 'clear'], ['replace-dialog', 'save-thesis'], ['copy-dialog', 'copy']]) {
+    $(id).addEventListener('close', () => { if (!$(returnTo).closest('[hidden]')) $(returnTo).focus({preventScroll: true}); });
+  }
+  load();
+  $('build-actions').before($('meter'));
+  $('prove-selection').append($('pool-title'), $('evidence-pool'));
+  $('text-picker').value = state.text;
+  renderChips();
+  renderText();
+  updateBuild();
+  Curio.init({clips: "voice:*", rate: .94, readFallback: () => $('hint').textContent});
+  setMode(state.mode, true);
+  if (!storageOK) $('storage-status').textContent = 'Storage unavailable. Work lasts this session. Nothing is sent.';
+  window.__tool = {
+    state, setMode, selectText, choose, meter, litPassages, sentence, becauseCheck, assembled, pickEvidence, swapEvidence,
+    saveThesis, allLines: () => V.allLines(), vlog: V.log,
+    get vq() { return V.queue; },
+    texts: TEXTS
+  };
+})();
+</script>
+</body>
+</html>

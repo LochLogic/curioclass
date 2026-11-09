@@ -82,6 +82,149 @@
         "680x425",
         "375x812"
       ]
+    },
+    {
+      "name": "painted-turn",
+      "steps": [
+        {
+          "click": "#hall-7"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.event===16",
+          "max": 12000
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#figure",
+        "#count-strip",
+        "#play"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "changed-criterion",
+      "steps": [
+        {
+          "click": "#m-moving"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#judge-a .reasons button"
+        },
+        {
+          "click": "#criterion"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#chart"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "mambo-centre-labels",
+      "steps": [
+        {
+          "click": "#hall-2"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.event===3",
+          "max": 12000
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#figure",
+        "#count-strip",
+        "#play"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "painted-scuff",
+      "steps": [
+        {
+          "click": "#hall-7"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.event===17",
+          "max": 12000
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#figure",
+        "#count-strip",
+        "#play"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "twist-last-count",
+      "steps": [
+        {
+          "click": "#hall-4"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.event===7",
+          "max": 12000
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#figure",
+        "#count-strip",
+        "#play"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
     }
   ]
 }

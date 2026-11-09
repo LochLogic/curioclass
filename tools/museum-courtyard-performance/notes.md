@@ -39,9 +39,12 @@ Opening night unlocks after six weeks. The model renders each section in ten sec
 
 The museum, piece, prices, weather event and numerical model are made up. This is a simple model, not a law or a predictor of actual injury. Monday-only site rehearsal and the dusk rule are fictional museum conditions. The model multiplies geometric sightlines by level, light and spacing, so Seen is not just geometric visibility. Read the on-screen How the model works note for the tables and assumptions.
 
-Vinyl marley over stone provides grip, not sprung-floor cushioning. The model deliberately gives these surfaces different load factors. The over-120 line is a teaching assumption. Follow appropriate professional guidance for real rehearsal and flooring decisions.
+Vinyl marley over stone provides grip, not sprung-floor cushioning. The model deliberately gives these surfaces different fictional load factors. A low model bar is not safety clearance;
+neither vinyl nor a warm-up gives stone the shock absorption of a sprung floor. Rise uses the hardest surface under
+the six planned landing positions, including positions beyond the edge of a purchased floor. The over-120 line is a teaching assumption. Follow appropriate professional guidance for real rehearsal and flooring decisions.
 
-The given spec does not define basin radius. This build uses 0.75 meters and labels it in the model note. The balcony eye height is 6.2 meters, using the given 5 meter floor plus a 1.2 meter eye height. Seat views use painted architectural billboards in a perspective projection; the numerical sightlines use the exact stated 2D ray test. Dancers are provisional kit figures, ready for painted pose assets.
+The given spec does not define basin radius. This build uses 0.75 meters and labels it in the model note. The balcony eye height is 6.2 meters, using the given 5 meter floor plus a 1.2 meter eye height. Seat views use painted architectural billboards in a perspective projection; the numerical sightlines use the exact stated 2D ray test. The six painted dancers share five essential poses, with supported partner-lift artwork. These are illustrative billboards,
+not a technique demonstration. Both audiences see the same cast and pathway; their percentages are audience averages.
 
 Saving uses localStorage on this device only; nothing is transmitted. Narration uses the browser speech fallback because no audio was recorded during this build. Sound controls narration, music and fountain noise; Read can speak the current hint independently. Motion off preserves show duration and changes poses on count boundaries.
 
@@ -50,3 +53,29 @@ Saving uses localStorage on this device only; nothing is transmitted. Narration 
 DA:Pr4 is practiced by moving zones and adapting Pool, Columns and Arrival to the site. DA:Pr5 is practiced through floor choices, jump options and rehearsal load. DA:Pr6 is practiced through sound, light, audience sightlines, crew and opening-night production.
 
 Sources supplied by the spec: National Core Arts Standards, Dance DA:Pr4, DA:Pr5 and DA:Pr6; Quin, Rafferty and Tomlinson, Safe Dance Practice (Human Kinetics, 2015); International Association for Dance Medicine and Science, Dance Floors; Kloetzel and Pavlik, Site Dance: Choreographers and the Lure of Alternative Spaces (University Press of Florida, 2009). Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+
+## Source checks and scenario limits
+
+- Safe flooring: [Ausdance National, Safe dance floors](https://ausdance.org.au/articles/details/safe-dance-floors),
+  checked 2026-11-06, distinguishes surface grip from underlying shock absorption and cautions against hard floors.
+- Warm-up and cool-down: [Human Kinetics, Safe Dance Practice](https://us.humankinetics.com/products/safe-dance-practice)
+  and its [session-planning excerpt](https://us.humankinetics.com/blogs/excerpt/structure-and-content-of-individual-dance-sessions),
+  checked 2026-11-06, confirm authors, 2015 publication and safe preparation principles.
+  IADMS's indexed 2025 warm-up revision is consistent; its old resource links now redirect, so no inaccessible paper
+  is represented as a freshly read source. The specific IADMS Dance Floors title in the brief could not be verified.
+- The numerical factors, soreness threshold and two-week injury rule are invented, not values from those bodies.
+- The spec scripts S3 and S4 after dusk, but also says a six-minute piece starts thirty minutes before sunset.
+  Those times are inconsistent: the piece would finish twenty-four minutes before sunset. The requested light model
+  is retained pending a spec correction; do not present that timetable as a real sunset calculation.
+- Independent ray calculations give 83.13% at (10,8) with spray, 97.96% without; behind spray at (10,13), 33.54%,
+  versus the brief's 37%. Computed geometry is retained rather than altering it to fit a printed answer.
+
+## Sensitivity
+
+This tool concerns dancers' bodies and injury. Discuss an injured dancer as a person who needs care, not as a penalty
+to production. The original contemporary piece represents no named cultural tradition. Review the varied painted cast,
+the supported lift and the distinction between a numerical model and real safe practice before publication.
+
+The modeled injury selects a resting cast member independently of appearance. The remaining complete pairs perform
+the two low supported lifts. The six-person rehearsal and injury rules are fictional production decisions, not guidance
+that an injured dancer is cleared to perform the other sections. Real participation needs individual care and advice.

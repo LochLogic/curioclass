@@ -1,5 +1,5 @@
 {
-  "house_style": "Editorial gouache and colored pencil painting for an older student research studio. Rich natural colors, visible pigment texture, directional light, convincing depth and clear shapes. Landscape composition, edge to edge, no border. No people, faces, body parts, text, lettering, numbers or logos.",
+  "house_style": "Editorial gouache and colored pencil painting for an older student research studio. Rich natural colors, visible pigment texture, directional light, convincing depth and clear shapes. Landscape composition, edge to edge, no border. No text, lettering, numbers or logos. People use the same textured paint and directional light.",
   "assets": [
     {
       "name": "cc-glow",
@@ -92,7 +92,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the arms-wide pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-reach-up",
@@ -101,7 +102,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the reach-up pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-releve",
@@ -110,7 +112,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the releve pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-stand",
@@ -119,7 +122,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the stand pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-curl",
@@ -128,7 +132,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the curl pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-crouch",
@@ -137,7 +142,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the crouch pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-contraction",
@@ -146,7 +152,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the contraction pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-step",
@@ -155,7 +162,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the step pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-point",
@@ -164,7 +172,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the point pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-twist",
@@ -173,7 +182,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the twist pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-bend-side",
@@ -182,7 +192,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the bend-side pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-star-jump",
@@ -191,7 +202,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the star-jump pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-arabesque",
@@ -200,7 +212,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the arabesque pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-plie",
@@ -209,7 +222,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the plie pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-sit",
@@ -218,7 +232,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the sit pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-lie",
@@ -227,7 +242,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the lie pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-lunge",
@@ -236,7 +252,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the lunge pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-stamp",
@@ -245,7 +262,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the stamp pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-bend-fwd",
@@ -254,7 +272,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the bend-fwd pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-clap",
@@ -263,7 +282,8 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the clap pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
     },
     {
       "name": "dancer-kneel",
@@ -272,7 +292,36 @@
       "aspect": "9:16",
       "width": 340,
       "prompt": "Paint a full-length faceless contemporary dancer in the kneel pose. Consistent realistic teen or adult proportions and floor contact. Make three coordinated variants: blue #2c6fbb with circle chest badge, rust #c2410c with triangle badge, teal #0f766e with square badge. Provide high, middle and low variants and intermediate transition poses in the same registration. Flat pure green background. Keep entire body, limbs and floor gap visible.",
-      "production_note": "Deferred to next painter by owner. Match Dance.skeleton registration; preserve dynamic transitions, front/mirror facings and device exaggerations. No static one-image replacement."
+      "production_note": "Superseded by cc-cast: one painted neutral pose per performer, articulated through the original skeleton.",
+      "superseded_by": "cc-cast"
+    },
+    {
+      "name": "cc-cast",
+      "prompt": "Three full-body contemporary dancers in a neutral front-facing T pose, arms straight horizontally at shoulder height, separated with clear space. Left dancer: deep brown skin, short natural dark curls, blue short sleeve top, charcoal slim rehearsal trousers, blue soft dance shoes, tall lean build. Center dancer: warm light brown skin, dark hair tied in a bun, rust orange short sleeve top, charcoal rehearsal trousers, rust soft dance shoes, broad strong build. Right dancer: light skin, short wavy brown hair, teal short sleeve top, charcoal rehearsal trousers, teal soft dance shoes, shorter stockier build. Natural older teen or adult proportions, relaxed faces, clothed studio performers, a natural range of gender presentation. Whole bodies, fingers and shoes visible. All three at the same scale and on a common floor line. Front orthographic view. Arms perfectly horizontal, straight legs separated hip width. Editorial gouache with colored pencil texture and soft light from upper left. Isolated on flat pure green #00FF00. This is an articulated animation source, so limbs must be clearly separated, wrists and elbows visible. No shadows on the green backdrop. No lettering or logos.",
+      "width": 1536,
+      "quality": 82,
+      "aspect": "3:2",
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "production_note": "One neutral pose per performer, articulated by the original engine skeleton. Registration and painted-render adapter live in src.html.",
+      "despill": true,
+      "review": "Inspected full cast and runtime cutouts; varied skin tones, builds and gender presentation. Contact sheet in scratch."
+    },
+    {
+      "name": "cc-floor-cast",
+      "people": true,
+      "cutout": "keyed",
+      "width": 1536,
+      "quality": 82,
+      "aspect": "1:1",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true,
+      "prompt": "Editorial gouache matching the cc-cast reference exactly. A clean three column by three row contact sheet of nine full-body floor dance poses, each isolated in its own equal square cell on pure green #00FF00. Columns are the same blue top dark brown skinned dancer, rust top warm brown skinned broad dancer, teal top light skinned stocky dancer, with charcoal trousers and matching soft shoes. Row one: kneeling sitting back on heels, upright torso, hands resting naturally near thighs, three-quarter front view. Row two: kneeling on heels curled forward, head gently lowered, forearms wrapping above the head, a compact rounded protective shape with shoulders clearly visible, three-quarter view. Row three: lying on the back along the floor, head at left and feet at right, arms extended beyond the head along the floor, viewed from slightly above and from the side. Keep all hands, heads and feet fully inside their cells with clear green gutters. Same individual faces, hair, bodies and clothing as the cast reference. Respectful, ordinary rehearsal movement, anatomically clear, warm directional upper-left light. No writing, letters, numbers, logos or props.",
+      "production_note": "Three necessary floor poses per performer complement the single neutral articulated pose. Full 3x3 canvas registration is preserved by keyed reprocessing.",
+      "review": "Inspected raw and keyed nine-pose cast; anatomical kneeling, curled protective gesture and lying on back, no lettering. Runtime bounds registered in FLOOR_RECTS."
     }
   ]
 }

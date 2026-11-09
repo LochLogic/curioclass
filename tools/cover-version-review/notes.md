@@ -25,8 +25,15 @@ Open Review, pick a criterion, pin the measured line, select an evidence chip an
   In compact windows, the measurement selector shows one complete set of controls at a time.
   Tempo is 60 divided by the mean tap interval. Four taps are required; matching uses an 8 percent tolerance.
   A gap over 1.6 times the median interval begins a fresh count. Estimates outside 30 to 240 bpm are discarded.
-  Check compares recorded fields and reveals the true values for that recorded line. Unrecorded lines stay unknown.
-- Review accepts up to eight claims. Reliable evidence comes from matching measurements or a checked line.
+  Check compares only recorded fields. Unattempted fields stay unknown, including on a checked line.
+  The summary preserves each field's first checked response. Revising an exposed answer cannot erase that comparison.
+  Corrections still show the current values and can be used as evidence. This compares a record; it does not score listening skill.
+  A fresh tap attempt clears the old tempo estimate, so partial or discarded retries cannot reuse it.
+- Review accepts up to eight claims. Reliable evidence comes from an explicitly checked field.
+  A claim needs a pin, an evidence chip and a Because explanation. Exact duplicates are not added.
+  The tool stores arguments; it does not grade the truth or quality of an interpretation.
+  In short previews, saving shows the newest playable claim in place of the evidence chips. Tap a lyric line to
+  start the next claim and show its evidence choices again. Saved claims remain available by scrolling the writer.
   Use Both for a pin that plays A and then B. A named-version claim plays that version.
   Taste sliders and the closing sentence connect personal preference to the evaluation.
   Open My taste for the closing card; all of its controls fit together in a dialog.
@@ -44,8 +51,9 @@ The performers June Avery and Ninth Street Band, and their Porch and Parade arra
 The voice is an ah/oo formant synthesizer. It does not pronounce words. Lyrics appear on screen only.
 Use headphones. The synthesized instruments are simplified timbres, not recordings of real performers.
 A cover is a new performance or recording of a song first made by someone else.
-Simple Gifts is a Shaker song from 1848, attributed to Joseph Brackett. Aaron Copland used its tune in
-[Appalachian Spring (1944)](https://www.loc.gov/collections/aaron-copland/). Copland's arrangement is not reproduced.
+Simple Gifts is a Shaker dance song from 1848, attributed to Elder Joseph Brackett Jr. Aaron Copland used its tune in
+[Appalachian Spring (1944)](https://blogs.loc.gov/loc/2014/10/documenting-dance-the-making-of-appalachian-spring/).
+Copland's arrangement is not reproduced. Porch and Parade are fictional interpretations, not reconstructions of Shaker worship.
 
 ## Standards in student actions
 - MU:Re8: interpret how tempo, dynamics and instrumentation express the words, using a pinned claim.
@@ -53,6 +61,12 @@ Simple Gifts is a Shaker song from 1848, attributed to Joseph Brackett. Aaron Co
 - MU:Cn10: set personal taste sliders and finish the preference sentence while crediting the other version.
 
 ## Sources and transcription limits
+- [Canterbury Shaker Village, Roger Lee Hall Collection finding aid, page 4](https://www.shakers.org/wp-content/uploads/2020/05/ROGER-LEE-HALL-COLLECTION-Canterbury-Shaker-Village.pdf):
+  text and tune credited to Elder Joseph Brackett Jr., Alfred, Maine, 1848; classified as a dance song.
+- [Roger Lee Hall, Joseph Brackett's Simple Gifts](https://www.americanmusicpreservation.com/JosephBrackettSimpleGifts.htm):
+  original words and Shaker dance context. Arrangement labels describe the fictional versions only.
+- [Oxford Learner's Dictionary, cover version](https://www.oxfordlearnersdictionaries.com/us/definition/english/cover-version):
+  a new version by another performer.
 - [National Core Arts Standards](https://www.nationalartsstandards.org/), Music responding and connecting.
 - Brackett's 1848 words and melody are public domain. Lyrics follow the supplied specification.
 - [John Chambers tune transcription](https://trillian.mit.edu/~jc/music/abc/Contra/NEFR/NEFRT.abc),
@@ -71,3 +85,9 @@ Simple Gifts is a Shaker song from 1848, attributed to Joseph Brackett. Aaron Co
 The A slowdown eases linearly from the listed tempo to 80 percent over the last two beats of lines 4 and 7.
 This gives 68.82 seconds for A, within one second of the specification's 69.4-second upper estimate.
 B has ten eight-beat lines, eight-beat intro and outro, and a four-beat tag: 50 seconds at 120 bpm.
+In A, the final word of lines 4 and 7 is sustained over the last two beats while the tempo eases down.
+
+## Sensitivity
+The source is a religious dance song from the Shaker community. Name the community and songwriter, and distinguish
+the fictional porch/band treatments from Shaker practice. A cultural reviewer should check that questions about
+simplicity do not imply that one modern arrangement is the authentic or morally better tradition.

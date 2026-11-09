@@ -1,5 +1,5 @@
 {
-  "house_style": "Warm painted illustration for a middle-school dance history explorer, layered gouache and colored-pencil texture, cinematic directional light, deep walnut shadows and luminous amber highlights, believable period objects, richly detailed yet readable. No text, letters, numbers, logos, people, faces or body parts.",
+  "house_style": "Warm painted illustration for a middle-school dance history explorer, layered gouache and colored-pencil texture, cinematic directional light, deep walnut shadows and luminous amber highlights, believable period objects, richly detailed yet readable. No text, letters, numbers, logos.",
   "assets": [
     {
       "name": "hall-1920s-club",
@@ -170,466 +170,91 @@
       "source": "OpenAI gpt-image"
     },
     {
-      "name": "dancer-charleston-left-forward",
+      "name": "dancer-avery",
+      "prompt": "Warm painted gouache and colored-pencil dance illustration, realistic friendly adult proportions, walnut shadows, amber light from upper left, no text, numerals, logos or borders. A precise sprite sheet with four equal columns and two equal rows. Each cell has the same full-length person, head and shoes fully visible, same size and baseline, clear empty margin, all on flat pure green (#00FF00). Viewed from behind so anatomical left is image left. Eight poses read row by row: relaxed feet apart; left foot forward weight on left; left foot back weight on left; left side step weight on left; left foot crossed in front weight on left; right knee raised with low forward kick weight on left; hips swivel left while shoulders counter-rotate right and feet pivot left in place; the same counter-rotation with a shallow knee bend. Arms naturally balance the pose. Comfortable modest modern practice clothing, not historical costume. A young adult Black man with dark brown skin, short textured hair, average build, violet short-sleeve shirt, dark navy trousers, pale flat shoes.",
+      "house_style": "Warm gouache and colored-pencil illustration matching the amber-lit halls.",
+      "aspect": "3:2",
+      "width": 1536,
+      "quality": 80,
+      "cutout": "keyed",
       "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for charleston, pose left-forward. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "sheet": {
+        "columns": 4,
+        "rows": 2,
+        "poses": [
+          "stand",
+          "forward",
+          "back",
+          "side",
+          "cross",
+          "kick",
+          "twist",
+          "dip"
+        ]
+      },
+      "revision": "Cold review: replace the last two generic poses with clear high and low counter-rotation for the Twist; preserve the other six cells."
     },
     {
-      "name": "dancer-charleston-right-kick",
+      "name": "dancer-jo",
+      "prompt": "Warm painted gouache and colored-pencil dance illustration, realistic friendly adult proportions, walnut shadows, amber light from upper left, no text, numerals, logos or borders. A precise sprite sheet with four equal columns and two equal rows. Each cell has the same full-length person, head and shoes fully visible, same size and baseline, clear empty margin, all on flat pure green (#00FF00). Viewed from behind so anatomical left is image left. Eight poses read row by row: relaxed feet apart; left foot forward weight on left; left foot back weight on left; left side step weight on left; left foot crossed in front weight on left; left knee raised with low forward kick weight on right; torso gently twisting left feet planted; gentle shallow knee bend feet apart. Arms naturally balance the pose. Comfortable modest modern practice clothing, not historical costume. A middle-aged East Asian woman with light tan skin, short silver-streaked hair, fuller body, amber short-sleeve blouse, dark navy trousers, pale flat shoes, small visible behind-ear hearing aid.",
+      "house_style": "Warm gouache and colored-pencil illustration matching the amber-lit halls.",
+      "aspect": "3:2",
+      "width": 1536,
+      "quality": 80,
+      "cutout": "keyed",
       "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for charleston, pose right-kick. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "sheet": {
+        "columns": 4,
+        "rows": 2,
+        "poses": [
+          "stand",
+          "forward",
+          "back",
+          "side",
+          "cross",
+          "kick",
+          "twist",
+          "dip"
+        ]
+      }
     },
     {
-      "name": "dancer-charleston-right-back",
+      "name": "dancer-details",
       "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for charleston, pose right-back. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
+      "cutout": "keyed",
+      "aspect": "3:2",
+      "width": 1536,
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "house_style": "Warm gouache and colored-pencil dance illustration, amber directional light.",
+      "prompt": "Four columns by two rows, equal cells, complete figures at matching scale on pure green. Row one Avery, row two Jo, matching the two character pose sheets. Each row: left foot crossed BEHIND right weight on left; weight supported RIGHT left toes lightly touching out to side; weight supported RIGHT left toes tapping behind; weight supported LEFT, right foot scuffing forward while beginning a quarter turn LEFT. Rear view for first three, side profile facing image left for the fourth. Modern modest practice clothes, natural anatomy, no text or logos.",
+      "sheet": {
+        "columns": 4,
+        "rows": 2,
+        "poses": [
+          "behind",
+          "touch",
+          "back-tap",
+          "turn"
+        ]
+      }
     },
     {
-      "name": "dancer-charleston-left-back-tap",
+      "name": "dancer-jo-turn-step",
       "people": true,
       "cutout": true,
       "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for charleston, pose left-back-tap. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-lindy-left-rock-back",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for lindy, pose left-rock-back. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-lindy-right-recover",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for lindy, pose right-recover. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-lindy-left-triple",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for lindy, pose left-triple. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-lindy-right-triple",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for lindy, pose right-triple. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-mambo-left-forward",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for mambo, pose left-forward. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-mambo-right-replace",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for mambo, pose right-replace. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-mambo-left-center",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for mambo, pose left-center. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-mambo-right-back",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for mambo, pose right-back. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-mambo-left-replace",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for mambo, pose left-replace. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-mambo-right-center",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for mambo, pose right-center. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-stroll-right-side",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for stroll, pose right-side. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-stroll-left-touch",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for stroll, pose left-touch. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-stroll-left-side",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for stroll, pose left-side. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-stroll-right-touch",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for stroll, pose right-touch. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-stroll-couple-strut",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for stroll, pose couple-strut. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-twist-hips-left-shoulders-right",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for twist, pose hips-left-shoulders-right. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-twist-hips-right-shoulders-left",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for twist, pose hips-right-shoulders-left. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-twist-low-left",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for twist, pose low-left. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-twist-low-right",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for twist, pose low-right. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-toprock-right-cross-front",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for toprock, pose right-cross-front. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-toprock-center-from-right",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for toprock, pose center-from-right. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-toprock-left-cross-front",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for toprock, pose left-cross-front. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-toprock-center-from-left",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for toprock, pose center-from-left. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-hustle-left-tap-and",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for hustle, pose left-tap-and. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-hustle-left-weight-one",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for hustle, pose left-weight-one. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-hustle-right-back",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for hustle, pose right-back. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-hustle-left-in-place",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for hustle, pose left-in-place. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-right-side",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose right-side. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-left-behind",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose left-behind. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-left-touch",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose left-touch. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-left-side",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose left-side. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-right-behind",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose right-behind. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-right-touch",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose right-touch. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-right-back",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose right-back. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-left-back",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose left-back. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-left-forward",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose left-forward. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-right-scuff-turn-left",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for the common eighteen-count Electric Slide, count eighteen: weight supported on the left foot, right foot scuffing forward during a quarter turn left. Whole body and both feet visible, space around limbs, consistent character and clothing across all dance poses. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
-    },
-    {
-      "name": "dancer-electric-quarter-left",
-      "people": true,
-      "cutout": true,
-      "aspect": "9:16",
-      "height": 420,
-      "prompt": "Full-length painted dance demonstrator for electric, pose quarter-left. Entire body and both feet visible with space around limbs. Comfortable modest practice clothes, consistent inclusive character across poses, anatomically clear weight and foot placement. Pure green background. Future owner-reviewed painter asset.",
-      "status": "deferred-owner-painter",
-      "reference_note": "Use the count cues and PAINTED_POSES mapping in src.html, not a generic named engine pose.",
-      "house_style": "Warm painted gouache and colored-pencil dance illustration for grades six to eight, consistent inclusive demonstrator, modest comfortable practice clothes, accurate weight and foot positions, entire figure visible, directional amber light, no text or logos."
+      "height": 512,
+      "quality": 80,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "house_style": "Warm gouache and colored-pencil illustration, amber light from upper left, matching Jo in the other pose sheets.",
+      "prompt": "Same middle-aged East Asian woman as dancer-jo, fuller body, short silver-streaked hair, amber blouse, navy trousers and pale flat shoes, small behind-ear hearing aid. Full-length left-facing side profile on pure green, completing a quarter turn LEFT while stepping onto the LEFT foot forward. Left foot flat and bearing weight under the body, right foot a short distance behind with toes lightly on the floor and heel raised, preparing to scuff next. Both feet remain at floor level; this is the grounded step before the scuff. Natural arms, quiet knees, no lettering or props. Clear full-body margins and precise feet."
     }
   ]
 }

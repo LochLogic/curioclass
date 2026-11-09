@@ -1,0 +1,2071 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Usage Panel · Curio Class</title>
+<meta name="description" content="Chair five contested-usage hearings, explore dated rulings, and write your own usage note. Grade 11 ELA. Offline.">
+<link rel="icon" href="data:,">
+<!-- Usage Panel, Curio Class. Based on kit/starter/src.html. Grade 11, L.11-12.1a and SL.11-12.1.
+Sources for the dated record are in the DATA block, teacher notes and codex-report.md.
+Panelist arguments are scripted perspectives, not quotations from those authorities.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Content CC BY 4.0; code MIT.
+Everything runs offline. Device storage is optional. No personal information is requested. -->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#ff6f61;
+  --brand-ink:#1c1203;
+  --cream:#f8ecd6;
+  --brown:#332416;
+}
+body {height:100dvh; min-height:0; overflow:hidden; grid-template-rows:auto auto minmax(0,1fr) auto}
+button,input,textarea {font:inherit}
+button {min-height:44px; min-width:44px}
+button:active {filter:brightness(1.15)}
+button:disabled {cursor:default}
+header {padding:10px 22px; gap:10px; flex-wrap:nowrap}
+h1 {font:normal clamp(22px,2.5vw,32px)/1.05 Georgia,serif; letter-spacing:.2px}
+h1 small {font:11px/1.4 ui-monospace,monospace; letter-spacing:1.8px; margin-top:5px; text-transform:uppercase}
+.seg {border-radius:5px; border-width:1px}
+.seg button,.icon-btn {min-height:44px; padding:0 15px; font-size:13px}
+.icon-btn {border-radius:5px; border-width:1px}
+.docket {display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); padding:0 22px; background:#18202b;
+  border-bottom:1px solid #3b4654}
+.case-tab {background:none; border:0; border-right:1px solid #37404b; padding:9px 15px; text-align:left;
+  position:relative; color:var(--muted); min-height:66px}
+.case-tab:first-child {border-left:1px solid #37404b}
+.case-tab[aria-pressed=true] {background:linear-gradient(#ff6f6117,#ff6f6106); color:var(--ink)}
+.case-tab[aria-pressed=true]:after {content:""; position:absolute; bottom:0; height:3px; left:0; right:0; background:var(--brand)}
+.case-tab strong {display:block; font:normal clamp(18px,2.1vw,25px)/1.1 Georgia,serif}
+.case-tab small {display:block; font-size:10px; letter-spacing:.5px; margin-top:5px}
+.case-tab small:before {content:"○ "; color:var(--brand)}
+.case-tab.ruled small:before {content:"● "}
+main {display:block; min-height:0; position:relative; overflow:hidden}
+.view {height:100%; min-height:0}
+.eyebrow {font:600 11px/1.3 ui-monospace,monospace; letter-spacing:1.6px; text-transform:uppercase}
+.toolbar {display:flex; gap:7px; align-items:center; flex-wrap:wrap}
+.btn {border-radius:4px; font-size:13px}
+.primary {background:var(--brand); color:var(--brand-ink); border-color:var(--brand)}
+.foot {border-top:1px solid #394252; padding:7px 22px; display:flex; gap:18px; align-items:center; background:#10161f}
+.hint {font-size:13px; line-height:1.4; margin:0; flex:1; min-height:36px; display:flex; align-items:center}
+.privacy {font-size:10px; color:var(--muted); max-width:150px; line-height:1.4}
+.hearing {display:grid; grid-template-columns:minmax(0,1fr) clamp(270px,29vw,410px)}
+.hearing-room {position:relative; min-width:0; min-height:0; display:flex; flex-direction:column;
+  padding:clamp(16px,3.5vh,45px) clamp(16px,3.5vw,55px) 12px; background:url('art:hearing-room') center/100% 100%}
+.hearing-room:before {content:""; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(at 8% 20%,#ffd79725,transparent 65%); animation:lamplight 7s ease-in-out infinite alternate}
+@keyframes lamplight {to {opacity:.25}}
+.calm .hearing-room:before {animation:none}
+.sentence-sheet {background:linear-gradient(110deg,#fff8e8,#f0dfc0); color:#322417; border:1px solid #b8a17e;
+  box-shadow:0 7px 24px #0006,inset 0 0 0 5px #fff7e040; padding:16px 18px; position:relative;
+  max-width:930px; width:100%; margin:0 auto; flex-shrink:0}
+.sentence-sheet:before {content:""; position:absolute; width:42px; height:5px; background:#9b7450;
+  box-shadow:0 1px 2px #0005; top:-3px; left:calc(50% - 21px); border-radius:2px}
+.sentence-meta {display:flex; justify-content:space-between; align-items:center; gap:10px; color:#755a3c}
+.sentence-nav {display:grid; grid-template-columns:44px minmax(0,1fr) 44px; align-items:center; gap:10px}
+.sentence-nav button {border:1px solid #bca17a; color:#583e25; background:#eeddbd88; border-radius:50%; padding:0; font-size:23px}
+.test-sentence {font:normal clamp(25px,2.8vw,45px)/1.25 Georgia,serif; margin:15px 0; text-align:center}
+u {text-decoration-color:#bb3f32; text-decoration-thickness:2px; text-underline-offset:6px}
+.sentence-note {font-size:12px; line-height:1.35; color:#6a4c2d; margin:0 0 7px; text-align:center}
+.vote-row {display:grid; grid-template-columns:1fr 1.6fr 1fr; gap:7px}
+.vote-row button {border:1px solid #a44135; border-radius:4px; background:#fff8e588; color:#633529;
+  font-size:13px; font-weight:600; padding:5px 7px; line-height:1.2}
+.vote-row button[aria-pressed=true] {background:#9f392f; border-color:#9f392f; color:#fff8eb; box-shadow:inset 0 0 0 2px #fff7}
+.real-panel {min-height:57px; display:flex; align-items:center; font-size:12px; line-height:1.45; margin-top:9px;
+  padding:6px 10px; border-left:2px solid #9f392f; background:#dfc59d44}
+.real-panel:empty {visibility:hidden}
+.real-panel.revealed {animation:reveal .32s ease-out}
+@keyframes reveal {from {opacity:0; transform:translateY(-7px)} to {opacity:1; transform:none}}
+.panelists {display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:7px; position:relative;
+  margin:auto 0 0; padding-top:16px; align-items:end; flex-shrink:0}
+.panelist {background:transparent; border:0; padding:0; min-width:0; color:var(--cream); text-align:center; position:relative}
+.object-wrap {display:block; height:clamp(100px,20vh,220px); position:relative; margin:0 auto 3px;
+  filter:drop-shadow(3px 6px 3px #0007); transition:transform .15s ease-out}
+.object-wrap img {width:100%; height:100%; object-fit:contain}
+.panelist[aria-pressed=true] .object-wrap {transform:translateY(-8px)}
+.calm .panelist[aria-pressed=true] .object-wrap {transform:none}
+.panelist .plate {display:flex; min-height:49px; align-items:center; justify-content:center; padding:5px;
+  background:linear-gradient(115deg,#eed69b,#ba8f48 52%,#ebd39b); color:#2e2314; border:2px solid #977340;
+  box-shadow:0 4px 6px #0006,inset 0 0 0 1px #f7dba9; font:600 12px/1.2 Georgia,serif}
+.panelist[aria-pressed=true] .plate {outline:2px solid var(--brand); outline-offset:2px}
+.mark {display:block; height:23px; font-size:10px; padding-top:6px; color:#fff2d7; text-shadow:0 1px 2px #000}
+.teacher-check {position:absolute; left:40%; top:42%; color:#bd382d; font:bold 38px Georgia,serif; transform:rotate(-12deg)}
+.hearing-side {border-left:1px solid #493a2b; padding:clamp(18px,3vw,40px); background:linear-gradient(120deg,#202831,#121a23);
+  display:flex; flex-direction:column; min-height:0; position:relative; overflow:hidden}
+.hearing-side:before {content:"“"; position:absolute; right:22px; top:13px; font:140px/1 Georgia,serif; color:#ff6f6112}
+.side-kicker {color:var(--brand); margin:0 0 14px; position:relative}
+.speaker-name {font:normal clamp(21px,2.2vw,30px)/1.2 Georgia,serif; margin:0 0 20px; position:relative}
+.statement-wrap {flex:1; overflow:auto; min-height:0}
+.statement {font:normal clamp(17px,1.55vw,22px)/1.65 Georgia,serif; margin:0; position:relative}
+.private-label {color:var(--muted); margin:20px 0 8px; font-size:11px}
+.mark-buttons {display:grid; grid-template-columns:1fr 1fr; gap:8px}
+.mark-buttons button {font-size:12px; padding:4px}
+.side-bottom {font-size:11px; color:var(--muted); margin:18px 0 0; line-height:1.5}
+.record {padding:16px 24px; display:flex; flex-direction:column; gap:12px; background:radial-gradient(at 10% 0,#4c322c50,transparent 65%)}
+.record-controls {display:grid; grid-template-columns:100px minmax(100px,1fr) auto; gap:20px; align-items:center; flex:none}
+.year-label {font-size:11px; color:var(--muted)}
+.year-readout {display:block; font:normal clamp(29px,3.3vw,45px)/1.1 Georgia,serif; color:var(--brand)}
+#year {height:44px; min-width:44px}
+.record-body {display:grid; grid-template-columns:minmax(0,1fr) clamp(240px,27vw,370px); gap:20px; min-height:0; flex:1}
+.record-left {min-height:0; display:flex; flex-direction:column; gap:12px}
+.timeline {position:relative; flex:1; min-height:260px; background:linear-gradient(#222b3540,#12192380);
+  border:1px solid #3e4956; padding:8px 14px 10px; display:flex; flex-direction:column}
+.timeline-ticks {display:flex; justify-content:space-between; font:11px/1 ui-monospace,monospace; color:var(--muted); padding-bottom:6px}
+.axis {position:relative; height:25px; margin:0 8px; border-top:2px solid #9aa5b5; flex:none}
+.axis-pin {position:absolute; top:-6px; width:9px; height:9px; border:1px solid #c6ad7d; background:#1b2430; border-radius:50%}
+.axis-pin.square {border-radius:0}
+.axis-pin.lit {background:#ff9785; border-color:#ff9785}
+.year-line {position:absolute; top:-9px; width:2px; height:30px; background:var(--brand); box-shadow:0 0 8px #ff6f6150}
+.marker-field {position:relative; min-height:0; flex:1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:7px}
+.marker-field:has(.yours) {grid-template-columns:repeat(4,minmax(0,1fr))}
+.leaders {position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible}
+.marker {position:relative; min-width:0; text-align:left; display:grid; grid-template-columns:20px minmax(0,1fr);
+  align-items:center; gap:4px; background:#141b25f0; border:1px dashed #637080; color:#b3bdc9; padding:5px 7px; border-radius:3px}
+.marker.lit {border-style:solid; color:var(--ink); background:linear-gradient(120deg,#44302b,#1c2530); border-color:#a17b5d}
+.marker.selected {border-color:var(--brand); box-shadow:inset 3px 0 var(--brand)}
+.marker span {min-width:0; font:12px/1.25 'Segoe UI',sans-serif}
+.marker b {display:block; font:normal 16px/1.15 Georgia,serif; color:inherit}
+.marker .shape {font-size:18px; color:var(--brand); text-align:center}
+.marker.yours {border-color:#d9c195; grid-column:span 2}
+.marker .your-summary {display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:2px; margin-top:2px}
+.marker .your-summary,.marker .your-summary span {font:10px/1.2 'Segoe UI',sans-serif}
+.legend {font-size:11px; color:var(--muted); margin:0}
+.stance-board {display:grid; gap:7px; grid-template-columns:repeat(2,minmax(0,1fr)); flex:none}
+.stance-row {background:#18202b; border:1px solid #465364; padding:6px 10px; min-height:56px}
+.stance-row.unknown {border-style:dashed; color:var(--muted)}
+.stance-row h3 {font-size:12px; font-weight:600; margin:0 0 3px}
+.stance-row p {font-size:13px; margin:0; line-height:1.35}
+.percent {display:flex; align-items:center; gap:7px; font-size:10px; line-height:1.2; margin-top:3px}
+.percent-track {height:4px; background:#53606d; flex:1}
+.percent-track span {display:block; height:100%; background:var(--brand)}
+.record-detail {border:1px solid #bca27c; color:#332719; background:linear-gradient(110deg,#fff7e6,#e4d0ac);
+  padding:25px; box-shadow:4px 6px 16px #0003; min-height:0; overflow:auto; position:relative}
+.record-detail .detail-year {color:#9b3c31; font:normal clamp(25px,3vw,43px)/1 Georgia,serif; margin:0 0 15px}
+.record-detail h2 {font:normal 23px/1.2 Georgia,serif; margin:0 0 16px}
+.record-detail .detail-body {font:17px/1.65 Georgia,serif; margin:0 0 20px}
+.source-line {font-size:11px; line-height:1.5; border-top:1px solid #b19b79; padding-top:10px; overflow-wrap:anywhere}
+.record-detail.your-card {background:radial-gradient(ellipse at 90% 8%,#b85b3820,transparent 45%),
+  linear-gradient(110deg,#fff7e6,#e4d0ac)}
+.record-detail.your-card:before {content:"◆"; float:right; color:#9b3c31; border:2px double #9b3c31;
+  width:44px; height:44px; display:grid; place-items:center; transform:rotate(-9deg); font-size:25px; margin:0 0 10px 12px}
+.record-detail.your-card .detail-body {white-space:pre-line}
+.usage-sheet.inked h2 {animation:ink-settle .45s ease-out}
+@keyframes ink-settle {from {color:#aa3e30; text-shadow:0 0 12px #bd7b5155} to {color:#322417; text-shadow:none}}
+.calm .usage-sheet.inked h2 {animation:none}
+.ruling {padding:20px 24px; overflow:auto; background:radial-gradient(at 15% 0,#47312e50,transparent 60%)}
+.ruling-layout {display:grid; grid-template-columns:minmax(0,1.12fr) minmax(0,1fr); gap:24px; height:100%; min-height:0}
+.ruling-left {min-width:0; display:flex; flex-direction:column; gap:10px}
+.ruling-heading {margin:0; font:normal 24px/1.2 Georgia,serif}
+.setting-grid {display:grid; grid-template-columns:minmax(120px,1.1fr) repeat(3,minmax(75px,1fr)); gap:5px; align-items:stretch}
+.column-label {display:flex; align-items:center; justify-content:center; color:var(--muted); font-size:12px; text-align:center; min-height:30px}
+.setting-label {display:flex; align-items:center; padding:8px; font:normal 16px/1.3 Georgia,serif; background:#19222e}
+.setting-choice {position:relative; min-height:44px; cursor:pointer; display:flex; align-items:center; justify-content:center;
+  border:1px solid #697789; background:linear-gradient(#263140,#1b2430); border-radius:3px; font-size:12px; color:var(--muted)}
+.setting-choice input {position:absolute; inset:0; width:100%; height:100%; opacity:0; margin:0; cursor:pointer}
+.setting-choice:has(input:checked) {background:var(--brand); color:var(--brand-ink); border-color:var(--brand); font-weight:700}
+.setting-choice:has(input:focus-visible) {outline:3px solid var(--focus); outline-offset:2px}
+.choice-symbol {font-size:20px; margin-right:6px}
+.reasons-heading {font-size:12px; color:var(--muted); margin:0 0 6px; letter-spacing:1px; text-transform:uppercase}
+.reasons {display:grid; grid-template-columns:1fr 1fr; gap:4px}
+.reason {position:relative; display:flex; align-items:center; gap:10px; min-height:44px; font-size:12px; line-height:1.4;
+  cursor:pointer; padding:5px 8px; background:#1a222e; border:1px solid #3a4757}
+.reason input {position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer}
+.reason-box {width:18px; height:18px; border:1px solid #99a5b5; background:#0e1520; flex:none; text-align:center}
+.reason:has(input:checked) .reason-box {background:var(--brand); border-color:var(--brand); color:var(--brand-ink)}
+.reason:has(input:checked) .reason-box:after {content:"✓"; font-weight:700}
+.reason:has(input:focus-visible) {outline:3px solid var(--focus); outline-offset:2px}
+.usage-sheet {min-height:0; display:flex; flex-direction:column; padding:25px; border:1px solid #bfa887;
+  background:linear-gradient(110deg,#fff7e6,#ead9b9); color:#322417; box-shadow:4px 7px 18px #0004}
+.usage-sheet h2 {font:normal 28px/1 Georgia,serif; margin:0 0 7px}
+.usage-sheet .eyebrow {color:#6a4c2d; margin-bottom:18px}
+#note {width:100%; flex:1; min-height:150px; resize:none; border:0; border-top:1px solid #c5b08e; border-bottom:1px solid #c5b08e;
+  padding:15px 0; background:transparent; color:#322417; font:18px/1.7 Georgia,serif; border-radius:0}
+#note::placeholder {color:#6a4c2d; opacity:1}
+.usage-sheet .toolbar {margin-top:15px}
+.usage-sheet .btn {color:#4c3321; border-color:#aa8861; background:#f3e2c2; flex:1; font-size:12px}
+.save-status {font-size:11px; min-height:16px; color:#6a4c2d; margin:9px 0 0}
+dialog {background:#17212d; color:var(--ink); border:1px solid #8797aa; padding:25px; max-width:min(520px,92vw); max-height:85vh}
+dialog::backdrop {background:#000b; backdrop-filter:blur(3px)}
+dialog h2 {font:normal 26px/1.2 Georgia,serif; margin:0 0 16px}
+.drawer {position:fixed; left:50%; top:var(--drawer-top,150px); transform:translateX(-50%); margin:0;
+  width:min(850px,calc(100vw - 20px)); max-width:none; max-height:var(--drawer-height,65vh); box-shadow:0 8px 35px #000b}
+.drawer-top {display:flex; justify-content:space-between; align-items:center; gap:15px; margin-bottom:15px}
+.drawer-top h2 {margin:0}
+.evidence-cards {display:grid; grid-template-columns:1fr 1fr; gap:12px;
+  max-height:calc(var(--drawer-height,65vh) - 100px); overflow:auto; padding:4px}
+.evidence-card {background:linear-gradient(110deg,#fff6e2,#e7d4b0); color:#3b2b1b; padding:18px; border:1px solid #af936b}
+.evidence-card strong {font:normal 29px Georgia,serif; color:#96382f}
+.evidence-card h3 {font:normal 19px Georgia,serif; margin:8px 0}
+.evidence-card p {font-size:13px; line-height:1.5}
+.evidence-card small {font-size:10px; line-height:1.4; display:block}
+.confirm-text {font-size:16px; line-height:1.5; margin:0 0 18px}
+@media (min-width:1600px) {
+  .hearing-room {padding-top:5vh}
+  .sentence-sheet {padding:25px}
+  .marker-field {gap:12px}
+  .marker b {font-size:20px}
+  .marker span {font-size:14px}
+  .record {padding:28px 40px; gap:20px}
+  .ruling {padding:35px 50px}
+}
+@media (max-width:999px) and (min-width:600px) {
+  .hearing {grid-template-columns:minmax(0,1fr) 240px}
+  .hearing-side {padding:18px}
+  .statement {font-size:16px; line-height:1.5}
+  .ruling-layout {display:flex; flex-direction:column; height:auto}
+  .ruling-left {display:grid; grid-template-columns:minmax(0,1fr) 235px; gap:12px}
+  .reasons {grid-template-columns:1fr}
+  .ruling-heading {grid-column:1/-1}
+  .usage-sheet {min-height:270px}
+  .setting-grid {grid-template-columns:minmax(90px,1fr) repeat(3,minmax(60px,1fr))}
+  .setting-label {font-size:14px}
+  .choice-symbol {margin:0}
+  .choice-text {display:none}
+}
+@media (max-height:650px) and (min-width:600px) {
+  header {padding:4px 12px; gap:6px}
+  h1 {font-size:18px}
+  h1 small {display:none}
+  .seg button,.icon-btn {padding:0 10px; font-size:12px}
+  .docket {padding:0 12px}
+  .case-tab {min-height:48px; padding:3px 12px}
+  .case-tab strong {font-size:19px}
+  .case-tab small {margin-top:2px}
+  .foot {padding:2px 12px; gap:10px}
+  .hint {font-size:11px; min-height:30px}
+  .privacy {max-width:95px; font-size:10px}
+  .hearing {grid-template-columns:minmax(0,1fr) 220px}
+  .hearing-room {padding:8px 12px 2px}
+  .sentence-sheet {padding:5px 8px}
+  .sentence-meta {font-size:10px}
+  .sentence-nav {gap:5px}
+  .test-sentence {font-size:21px; line-height:1.17; margin:6px 0}
+  .sentence-note {font-size:10px; margin-bottom:3px}
+  .vote-row {gap:4px}
+  .vote-row button {font-size:10px; padding:3px}
+  .real-panel {font-size:10px; line-height:1.2; min-height:28px; margin-top:3px; padding:3px 5px}
+  .panelists {gap:4px; padding-top:4px}
+  .object-wrap {height:clamp(55px,calc(30vh - 72px),115px); margin-bottom:0}
+  .hearing-room:has(.long-sentence) .object-wrap {height:clamp(28px,calc(30vh - 99px),95px)}
+  .hearing-room:has(.dense-result) .object-wrap {height:clamp(40px,calc(30vh - 87px),100px)}
+  .sentence-sheet.long-sentence .test-sentence {font-size:20px; line-height:1.12; margin:4px 0}
+  .sentence-sheet.long-sentence .real-panel {padding:2px 5px; line-height:1.1; min-height:24px}
+  .hearing-room:has(.long-sentence) .panelists {padding-top:2px}
+  .hearing-room:has(.long-sentence.dense-result) .object-wrap {height:clamp(28px,calc(30vh - 99px),95px)}
+  .panelist .plate {min-height:44px; font-size:10px; padding:2px}
+  .mark {height:15px; font-size:10px; padding-top:2px}
+  .teacher-check {font-size:20px}
+  .hearing-side {padding:12px}
+  .side-kicker {font-size:10px; margin-bottom:6px}
+  .speaker-name {font-size:19px; margin-bottom:10px}
+  .statement {font-size:14px; line-height:1.45}
+  .private-label {margin:7px 0 4px; font-size:10px}
+  .mark-buttons {gap:4px}
+  .mark-buttons button {font-size:10px}
+  .side-bottom {display:none}
+  .record {padding:7px 12px; gap:5px}
+  .record-controls {grid-template-columns:75px minmax(80px,1fr) auto; gap:10px}
+  .record-controls {position:sticky; top:-4px; background:#10161f; z-index:4}
+  .year-readout {font-size:27px}
+  .record-controls .btn {padding:0 7px; font-size:11px}
+  .record {overflow:auto; padding-top:4px; padding-bottom:4px}
+  .record-body {display:block; flex:none}
+  .record-left {gap:5px; overflow:visible; position:relative}
+  .timeline {padding:4px 6px; min-height:215px; height:215px; flex:none}
+  .timeline-ticks {font-size:10px; padding-bottom:4px}
+  .timeline-ticks span:nth-child(2):after {content:" · ● In use · ■ Ruling"; font-size:10px}
+  .axis {height:16px}
+  .marker-field {grid-template-columns:repeat(4,minmax(0,1fr)); gap:3px; width:calc(100% - 151px)}
+  .marker-field:has(.yours) {grid-template-columns:repeat(5,minmax(0,1fr))}
+  .marker {padding:2px 4px; grid-template-columns:13px minmax(0,1fr); gap:2px}
+  .marker span {font-size:10px}
+  .marker b {font-size:12px}
+  .marker .shape {font-size:14px}
+  .legend {display:none}
+  .stance-board {gap:3px; position:absolute; top:34px; right:7px; width:144px; grid-template-columns:1fr}
+  .stance-row {padding:4px 6px; min-height:43px}
+  .stance-row h3,.stance-row p {font-size:10px; line-height:1.2; margin:0}
+  .percent {font-size:10px; line-height:1.1; margin-top:1px}
+  .record-detail {padding:12px; min-height:170px; margin-top:8px}
+  .record-detail .detail-year {font-size:25px; margin-bottom:8px}
+  .record-detail h2 {font-size:18px; margin-bottom:8px}
+  .record-detail .detail-body {font-size:13px; line-height:1.4; margin-bottom:8px}
+  .source-line {font-size:10px; padding-top:5px}
+  .ruling {padding:8px 12px}
+  .ruling-heading {display:none}
+  .ruling-left {gap:5px}
+  .setting-choice {min-height:44px}
+  .setting-label {font-size:12px; padding:4px}
+  .column-label {min-height:20px; font-size:10px}
+  .reason {font-size:10px; padding:3px 5px; gap:5px}
+  .reasons {gap:3px}
+  .reasons-heading {font-size:10px; margin-bottom:3px}
+}
+@media (max-width:599px) {
+  header {flex-wrap:wrap; padding:5px 8px; gap:5px}
+  h1 {font-size:22px; flex:1; white-space:nowrap; min-width:0}
+  h1 small {display:none}
+  .seg {order:2; flex:1 0 100%; width:100%; min-width:0; height:44px}
+  .seg button {font-size:12px; padding:0 14px; flex:1}
+  .icon-btn {font-size:10px; padding:0 7px; width:44px; flex:none; overflow:hidden; text-indent:-9999px; position:relative}
+  .icon-btn:before {font-size:18px; position:absolute; inset:0; display:grid; place-items:center; text-indent:0}
+  #motion:before {content:"◈"}
+  #sound:before {content:"♪"}
+  #read:before {content:"▤"}
+  .docket {padding:0 5px}
+  .case-tab {padding:6px 3px; min-height:55px; text-align:center}
+  .case-tab strong {font-size:17px}
+  .case-tab small {font-size:10px; letter-spacing:0; margin-top:4px}
+  .foot {padding:3px 8px; gap:8px}
+  .hint {font-size:10px; min-height:44px; line-height:1.3}
+  .privacy {display:block; max-width:72px; font-size:10px; line-height:1.25}
+  #evidence {font-size:11px; padding:0 8px}
+  .hearing {display:flex; flex-direction:column}
+  .hearing-room {padding:9px 10px 3px; flex:1; background-size:100% 100%; min-height:0}
+  .sentence-sheet {padding:6px 8px; flex:none}
+  .sentence-meta {font-size:10px; letter-spacing:1px}
+  .sentence-nav {gap:4px}
+  .test-sentence {font-size:22px; line-height:1.2; margin:7px 0}
+  .sentence-note {font-size:10px; margin-bottom:4px}
+  .vote-row {gap:4px}
+  .vote-row button {font-size:10px; padding:4px}
+  .real-panel {font-size:10px; min-height:34px; line-height:1.3; margin-top:4px; padding:4px 6px}
+  .panelists {grid-template-columns:repeat(6,minmax(0,1fr)); gap:4px; padding-top:6px; margin:auto 0}
+  .panelist {grid-column:span 2}
+  .panelist:nth-child(4) {grid-column:2/4}
+  .object-wrap {height:55px; margin:0 auto; width:85%}
+  .hearing-room:has(.long-sentence) .object-wrap {height:43px}
+  .panelist .plate {min-height:30px; font-size:10px; padding:2px; border-width:1px}
+  .mark {font-size:10px; height:13px; padding-top:2px}
+  .teacher-check {font-size:20px}
+  .hearing-side {height:165px; flex:none; padding:8px 12px; border-top:1px solid #6c5136; border-left:0}
+  .side-kicker {display:none}
+  .speaker-name {font-size:18px; margin-bottom:5px}
+  .statement {font-size:14px; line-height:1.4}
+  .private-label,.side-bottom {display:none}
+  .mark-buttons {margin-top:6px; gap:6px}
+  .mark-buttons button {font-size:11px}
+  .record {padding:8px; gap:6px; overflow:auto}
+  .record-controls {grid-template-columns:70px minmax(0,1fr); gap:3px 12px; position:sticky; top:-8px; background:#10161f; z-index:4}
+  .record-controls .toolbar {grid-column:1/-1; justify-content:space-between; gap:5px}
+  .record-controls .toolbar .btn {flex:1; font-size:11px; padding:0 7px}
+  .year-readout {font-size:30px}
+  .record-body {display:flex; flex-direction:column; gap:8px; flex:none}
+  .record-left {gap:7px}
+  .timeline {min-height:275px; flex:none; padding:7px}
+  .timeline-ticks {font-size:10px}
+  .axis {height:20px}
+  .marker-field {grid-template-columns:repeat(3,minmax(0,1fr)); gap:5px}
+  .marker-field:has(.yours) {grid-template-columns:repeat(3,minmax(0,1fr))}
+  .marker {padding:4px; grid-template-columns:13px minmax(0,1fr); gap:3px; min-height:48px}
+  .marker b {font-size:14px}
+  .marker span {font-size:10px}
+  .marker .shape {font-size:14px}
+  .legend {font-size:10px}
+  .stance-board {gap:5px}
+  .stance-row {min-height:62px; padding:7px}
+  .stance-row h3 {font-size:10px}
+  .stance-row p {font-size:11px}
+  .record-detail {min-height:130px; max-height:230px; padding:12px; flex:none}
+  .record-detail .detail-year {font-size:24px; margin:0 0 5px}
+  .record-detail h2 {font-size:18px; margin-bottom:5px}
+  .record-detail .detail-body {font-size:13px; line-height:1.4; margin-bottom:8px}
+  .ruling {padding:10px 8px}
+  .ruling-layout {display:flex; flex-direction:column; height:auto; gap:12px}
+  .ruling-left {gap:10px}
+  .ruling-heading {font-size:21px}
+  .setting-grid {grid-template-columns:90px repeat(3,minmax(0,1fr)); gap:4px}
+  .column-label {font-size:10px; min-height:28px}
+  .setting-label {font-size:13px; padding:5px}
+  .setting-choice {min-height:44px}
+  .choice-text {display:none}
+  .choice-symbol {margin:0}
+  .reasons {grid-template-columns:1fr 1fr; gap:5px}
+  .reason {font-size:10px; gap:5px; padding:4px; min-height:68px}
+  .reason-box {width:16px; height:16px}
+  .usage-sheet {min-height:310px; padding:15px}
+  .usage-sheet h2 {font-size:24px}
+  #note {font-size:16px; line-height:1.5; min-height:180px}
+  .usage-sheet .eyebrow {margin-bottom:8px; font-size:10px}
+  .usage-sheet .toolbar {gap:4px; margin-top:8px}
+  .usage-sheet .btn {padding:0 6px; font-size:10px}
+  .evidence-cards {grid-template-columns:1fr}
+  dialog {padding:16px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Usage Panel<small>A word. Five voices. Your ruling.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-hearing" aria-pressed="true">Hearing</button>
+    <button id="m-record" aria-pressed="false">Record</button>
+    <button id="m-ruling" aria-pressed="false">Ruling</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-label="Motion" aria-pressed="true" title="Motion">◈ Motion</button>
+  <button class="icon-btn" id="sound" aria-label="Sound" aria-pressed="true" title="Sound">♪ Sound</button>
+  <button class="icon-btn" id="read" aria-label="Read" title="Read visible text">▤ Read</button>
+</header>
+<nav class="docket" id="docket" aria-label="Case docket"></nav>
+<main id="stage">
+  <section class="view hearing" id="hearing" aria-label="Hearing">
+    <div class="hearing-room">
+      <article class="sentence-sheet" id="sentence-sheet">
+        <div class="sentence-meta eyebrow"><span>Before the panel</span><span id="sentence-count"></span></div>
+        <div class="sentence-nav">
+          <button id="previous" aria-label="Previous sentence">‹</button>
+          <p class="test-sentence" id="sentence"></p>
+          <button id="next" aria-label="Next sentence">›</button>
+        </div>
+        <p class="sentence-note" id="sentence-note" hidden></p>
+        <div class="vote-row" id="vote-row" role="group" aria-label="Your vote">
+          <button data-vote="accept" aria-pressed="false">Acceptable</button>
+          <button data-vote="casual" aria-pressed="false">Acceptable in casual use only</button>
+          <button data-vote="avoid" aria-pressed="false">Not acceptable</button>
+        </div>
+        <div class="real-panel" id="real-panel" aria-live="polite"></div>
+      </article>
+      <div class="panelists" id="panelists" role="group" aria-label="Panelists, keyboard shortcuts 1 to 5"></div>
+    </div>
+    <aside class="hearing-side">
+      <p class="eyebrow side-kicker">You are the chair</p>
+      <h2 class="speaker-name" id="speaker-name">Five seats. Five perspectives.</h2>
+      <div class="statement-wrap"><p class="statement" id="statement">Pick a panelist's emblem to hear the case.</p></div>
+      <p class="private-label">Your private margin note</p>
+      <div class="mark-buttons">
+        <button class="btn" id="persuasive" aria-pressed="false">✎ Persuasive</button>
+        <button class="btn" id="not-for-me" aria-pressed="false">○ Not for me</button>
+      </div>
+      <p class="side-bottom">These are scripted arguments.<br>Your vote is yours. There is no score.</p>
+    </aside>
+  </section>
+  <section class="view record" id="record" aria-label="Record" hidden>
+    <div class="record-controls">
+      <label class="year-label" for="year">Year <output class="year-readout" id="year-readout">1300</output></label>
+      <input id="year" type="range" min="1300" max="2026" value="1300" step="1" aria-label="Year">
+      <div class="toolbar">
+        <button class="btn primary" id="play">▷ Play the record</button>
+        <button class="btn" id="stop">Stop</button>
+        <button class="btn" id="your-ruling">◇ Your ruling</button>
+      </div>
+    </div>
+    <div class="record-body">
+      <div class="record-left">
+        <div class="timeline" id="timeline">
+          <div class="timeline-ticks" id="ticks"></div>
+          <div class="axis" id="axis"><div class="year-line" id="year-line"></div></div>
+          <div class="marker-field" id="markers"></div>
+        </div>
+        <p class="legend">● In use &nbsp; ■ Ruling &nbsp; ◆ Your panel &nbsp; · &nbsp; Leaders show actual dates</p>
+        <div class="stance-board" id="stances" aria-label="Authority stances as of selected year"></div>
+      </div>
+      <aside class="record-detail" id="record-detail" aria-label="Selected evidence">
+        <p class="detail-year" id="detail-year"></p>
+        <h2 id="detail-title"></h2>
+        <p class="detail-body" id="detail-body"></p>
+        <p class="source-line" id="detail-source"></p>
+      </aside>
+    </div>
+  </section>
+  <section class="view ruling" id="ruling" aria-label="Ruling" hidden>
+    <div class="ruling-layout">
+      <div class="ruling-left">
+        <h2 class="ruling-heading">Rule for the setting.</h2>
+        <div class="setting-grid" id="settings" role="group" aria-label="Ruling by setting"></div>
+        <div class="reason-block"><h3 class="reasons-heading">Reasons</h3><div class="reasons" id="reasons"></div></div>
+      </div>
+      <section class="usage-sheet">
+        <h2>Usage note</h2>
+        <div class="eyebrow" id="note-subtitle">Your panel · 2026</div>
+        <textarea id="note" aria-label="Editable usage note" spellcheck="true"
+          placeholder="Choose a ruling for at least one setting to build a usage note."></textarea>
+        <div class="toolbar">
+          <button class="btn" id="rebuild">Rebuild note</button>
+          <button class="btn" id="copy">Copy note</button>
+          <button class="btn" id="clear">Clear ruling</button>
+        </div>
+        <p class="save-status" id="save-status" role="status">Saved only on this device. Nothing leaves it.</p>
+      </section>
+    </div>
+  </section>
+</main>
+<footer class="foot">
+  <p class="hint" id="hint">You are the chair. Pick a panelist, vote on the sentence, then compare the real panel.</p>
+  <button class="btn" id="evidence">▤ Evidence</button>
+  <span class="privacy" id="privacy">Notes stay on this device.<br>Nothing leaves it.</span>
+</footer>
+<dialog class="drawer" id="evidence-dialog" aria-labelledby="evidence-title">
+  <div class="drawer-top"><h2 id="evidence-title">Dated evidence</h2><button class="btn" id="close-evidence">Close</button></div>
+  <div class="evidence-cards" id="evidence-cards"></div>
+</dialog>
+<dialog id="confirm-dialog" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+  <h2 id="confirm-title">Confirm</h2>
+  <p class="confirm-text" id="confirm-text"></p>
+  <div class="toolbar"><button class="btn" id="cancel-confirm">Cancel</button><button class="btn primary" id="yes-confirm">Confirm</button></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  // CASE DATA, TIMELINE AND STANCE RULES. Dates are records, never student-answer keys.
+  // Split sources: Layamon, Brut; Wycliffe, cited by Hall (1882); P., New-England Magazine 7(6), 1834, pp. 467-470;
+  // Alford (1864); Fowler (1926), p. 559; MWDEU (1994); Economist Style Guide 10 (2012), p. 70, and 12 (2018).
+  // Less sources: OED's Alfred example (888), via the supplied secondary account; Baker (1770), p. 55;
+  // MWDEU (1995); The Cambridge Guide to English Usage (2004), p. 205. Original editions are not all inspected.
+  const DATA = {
+  "cases": [
+    {
+      "id": "they",
+      "label": "They",
+      "use": "generic singular they",
+      "start": 1300,
+      "first": 1993,
+      "sentences": [
+        {
+          "html": "If anyone calls, tell <u>them</u> I can't come to the phone.",
+          "panel": "In 2008, 56 percent of the AHD Usage Panel accepted this sentence.",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "A person at that level should not have to keep track of the hours <u>they</u> put in.",
+          "panel": "In 2015, 48 percent of the AHD Usage Panel rejected this sentence. In 1996, 80 percent did.",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "We thank the anonymous reviewer for <u>their</u> helpful comments.",
+          "panel": "In 2015, 58 percent of the AHD Usage Panel rejected this sentence.",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "Jordan uses <u>they</u> as their pronoun, and they will chair the meeting.",
+          "panel": "",
+          "note": "For a person who uses they, AP (2017), Chicago (2017), APA (2019) and Merriam-Webster (2019) all use the person's pronoun.",
+          "personal": true
+        }
+      ],
+      "events": [
+        {
+          "year": 1300,
+          "label": "Early use",
+          "title": "Singular reference in use",
+          "body": "Plural pronouns with singular antecedents are documented from at least about 1300.",
+          "source": "ahdThey",
+          "kind": "use",
+          "date": "about 1300"
+        },
+        {
+          "year": 1592,
+          "label": "Shakespeare",
+          "title": "The Comedy of Errors",
+          "body": "There's not a man I meet but doth salute me / As if I were their well-acquainted friend.",
+          "source": "shakespeare",
+          "kind": "use",
+          "date": "early 1590s"
+        },
+        {
+          "year": 1813,
+          "label": "Austen",
+          "title": "Pride and Prejudice",
+          "body": "everybody said, they never saw so fat a haunch",
+          "source": "austen",
+          "kind": "use",
+          "date": "1813"
+        },
+        {
+          "year": 1993,
+          "label": "Chicago 14",
+          "title": "Chicago's earlier discussion",
+          "body": "The 14th edition spoke in favor of reviving singular they, according to the later reviser's account. This" +
+                  " marker is not a stance-board ruling on formal generic they.",
+          "source": "chicago1993",
+          "kind": "ruling",
+          "date": "1993"
+        },
+        {
+          "year": 1996,
+          "label": "AHD: 20%",
+          "title": "AHD Usage Panel, sentence (b)",
+          "body": "80 percent rejected the sentence about a person at that level: 20 percent accepted it.",
+          "source": "ahdThey",
+          "kind": "ruling",
+          "date": "1996"
+        },
+        {
+          "year": 2008,
+          "label": "AHD: 56%",
+          "title": "AHD Usage Panel, indefinite pronouns",
+          "body": "56 percent accepted the anyone calls sentence. 59 percent accepted Everyone returned to their seats. " +
+                  "These are different sentences from the stance-board example.",
+          "source": "ahdThey",
+          "kind": "ruling",
+          "date": "2008"
+        },
+        {
+          "year": 2015,
+          "label": "AHD: 52%",
+          "title": "AHD Usage Panel, sentences (b) and (c)",
+          "body": "48 percent rejected sentence (b), so 52 percent accepted it. 58 percent rejected the anonymous-reviewer sentence (c).",
+          "source": "ahdThey",
+          "kind": "ruling",
+          "date": "2015"
+        },
+        {
+          "year": 2017,
+          "label": "AP",
+          "title": "AP Stylebook",
+          "body": "AP uses a person's pronoun. Generic they is allowed in limited cases where rewording is overly awkward.",
+          "source": "apChicago",
+          "kind": "ruling",
+          "date": "March 2017"
+        },
+        {
+          "year": 2017,
+          "label": "Chicago 17",
+          "title": "Chicago, 17th edition",
+          "body": "Uses they for a person who uses that pronoun. Generic they is still not fully accepted in formal writing.",
+          "source": "apChicago",
+          "kind": "ruling",
+          "date": "2017"
+        },
+        {
+          "year": 2019,
+          "label": "APA 7",
+          "title": "APA, 7th edition",
+          "body": "Endorses singular they as a generic pronoun.",
+          "source": "apa",
+          "kind": "ruling",
+          "date": "2019"
+        },
+        {
+          "year": 2019,
+          "label": "Merriam-Webster",
+          "title": "A new dictionary sense",
+          "body": "Adds the nonbinary sense in September; names they its Word of the Year in December.",
+          "source": "mwThey",
+          "kind": "ruling",
+          "date": "2019"
+        },
+        {
+          "year": 2024,
+          "label": "Chicago 18",
+          "title": "Chicago, 18th edition",
+          "body": "Generic singular they is acceptable even in formal writing.",
+          "source": "chicago",
+          "kind": "ruling",
+          "date": "September 2024"
+        }
+      ],
+      "rows": [
+        {
+          "name": "AP Stylebook",
+          "changes": [
+            {
+              "year": 2017,
+              "stance": "limited",
+              "percent": null
+            }
+          ]
+        },
+        {
+          "name": "Chicago",
+          "changes": [
+            {
+              "year": 2017,
+              "stance": "against",
+              "percent": null
+            },
+            {
+              "year": 2024,
+              "stance": "accept",
+              "percent": null
+            }
+          ]
+        },
+        {
+          "name": "APA",
+          "changes": [
+            {
+              "year": 2019,
+              "stance": "accept",
+              "percent": null
+            }
+          ]
+        },
+        {
+          "name": "AHD, sentence (b)",
+          "changes": [
+            {
+              "year": 1996,
+              "stance": "against",
+              "percent": 20
+            },
+            {
+              "year": 2015,
+              "stance": "accept",
+              "percent": 52
+            }
+          ]
+        }
+      ],
+      "reasons": [
+        "Reader expectations and house style matter.",
+        "People have used singular they for centuries.",
+        "Students should know both the clear form and possible objections.",
+        "They preserves rhythm and includes everyone.",
+        "Naming the person or recasting the subject can help readers."
+      ],
+      "statements": [
+        "Many readers were taught that they must be plural. If a sentence makes them stop and wonder, it costs us. I " +
+        "rewrite when I can, and I allow it when rewriting is clumsy.",
+        "Speakers have used they for one unknown person since around 1300. Shakespeare and Austen did it. A rule that " +
+        "most fluent speakers break every day is describing a style, not the language.",
+        "He or she is clunky, and alternating he and she confuses readers. Generic they is clear. I want students to " +
+        "know some readers still object, so I teach both.",
+        "He or she breaks the rhythm of a sentence. They keeps it moving and includes everyone.",
+        "Our readers range widely. I use it for anyone or a person, but I would rather name the person or make the subject plural."
+      ]
+    },
+    {
+      "id": "literally",
+      "label": "Literally",
+      "use": "literally as an intensifier",
+      "start": 1838,
+      "first": 2026,
+      "sentences": [
+        {
+          "html": "I <u>literally</u> died laughing.",
+          "panel": "",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "He <u>literally</u> glowed.",
+          "panel": "",
+          "note": "Fitzgerald, The Great Gatsby (1925).",
+          "personal": false
+        },
+        {
+          "html": "Tom was <u>literally</u> rolling in wealth.",
+          "panel": "",
+          "note": "Twain, Tom Sawyer (1876).",
+          "personal": false
+        }
+      ],
+      "events": [
+        {
+          "year": 1838,
+          "label": "Dickens",
+          "title": "Nicholas Nickleby",
+          "body": "after he had literally feasted his eyes",
+          "source": "dickens",
+          "kind": "use",
+          "date": "1838-1839"
+        },
+        {
+          "year": 1876,
+          "label": "Twain",
+          "title": "The Adventures of Tom Sawyer",
+          "body": "Tom was literally rolling in wealth",
+          "source": "twain",
+          "kind": "use",
+          "date": "1876"
+        },
+        {
+          "year": 1925,
+          "label": "Fitzgerald",
+          "title": "The Great Gatsby",
+          "body": "He literally glowed",
+          "source": "gatsby",
+          "kind": "use",
+          "date": "1925"
+        },
+        {
+          "year": 2026,
+          "label": "Current entry",
+          "title": "Merriam-Webster",
+          "body": "Lists the in effect, virtually sense with a usage note. Its usage guide treats this as hyperbole needing " +
+                  "care. 2026 marks the current entry, not a confirmed first-inclusion year.",
+          "source": "mwLiteral",
+          "kind": "ruling",
+          "date": "2026"
+        }
+      ],
+      "rows": [
+        {
+          "name": "Merriam-Webster",
+          "changes": [
+            {
+              "year": 2026,
+              "stance": "limited",
+              "percent": null
+            }
+          ]
+        }
+      ],
+      "reasons": [
+        "Readers expect literally to promise no exaggeration.",
+        "Published writers use it as hyperbole.",
+        "Cutting it can strengthen an essay.",
+        "Overstatement can create force and effect.",
+        "News readers may take the word literally."
+      ],
+      "statements": [
+        "Literally is the one word that promises no exaggeration. If it can also mean the opposite, I lose a tool. I cut it from formal copy.",
+        "Dickens, Twain and Fitzgerald all used it to intensify. Merriam-Webster lists the sense, and its usage guide " +
+        "calls it hyperbole, not a mistake.",
+        "In an essay it usually adds nothing and can make a reader laugh at the wrong moment. Cut it and the sentence gets stronger.",
+        "Gatsby literally glowed is a great line. Overstatement is a figure of speech, and this is how you mark it.",
+        "A reader might take it at its word. In news, literally should mean literally."
+      ]
+    },
+    {
+      "id": "hopefully",
+      "label": "Hopefully",
+      "use": "hopefully meaning I hope",
+      "start": 1648,
+      "first": 1960,
+      "sentences": [
+        {
+          "html": "<u>Hopefully</u>, the treaty will be ratified.",
+          "panel": "In 1999, 34 percent of the AHD Usage Panel accepted this sentence. In 2012, 63 percent did. In 2012, 89 " +
+                   "percent accepted the same kind of sentence with mercifully.",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "<u>Hopefully</u>, the bus is on time.",
+          "panel": "",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "She looked <u>hopefully</u> at the door.",
+          "panel": "",
+          "note": "The sense no one disputes: in a hopeful manner.",
+          "personal": false
+        }
+      ],
+      "events": [
+        {
+          "year": 1648,
+          "label": "Early use",
+          "title": "Samuel Hartlib",
+          "body": "Merriam-Webster cites a sentence-adverb use in Samuel Hartlib's A Further Discoverie of the Office of " +
+                  "Publick Address for Accomodations.",
+          "source": "mwHope",
+          "kind": "use",
+          "date": "1648"
+        },
+        {
+          "year": 1960,
+          "label": "Objections",
+          "title": "Criticism begins",
+          "body": "Critics begin objecting to the sentence-adverb use during the 1960s. The axis uses 1960 for this decade, " +
+                  "not an exact first-objection year.",
+          "source": "ahdHope",
+          "kind": "ruling",
+          "date": "1960s"
+        },
+        {
+          "year": 1999,
+          "label": "AHD: 34%",
+          "title": "AHD Usage Panel",
+          "body": "34 percent accepted the treaty sentence.",
+          "source": "ahdHope",
+          "kind": "ruling",
+          "date": "1999"
+        },
+        {
+          "year": 2012,
+          "label": "AP accepts",
+          "title": "AP Stylebook",
+          "body": "AP accepts hopefully in the it is hoped sense.",
+          "source": "mwHope",
+          "kind": "ruling",
+          "date": "April 2012"
+        },
+        {
+          "year": 2012,
+          "label": "AHD: 63%",
+          "title": "AHD Usage Panel",
+          "body": "63 percent accepted the treaty sentence. 89 percent accepted the comparable mercifully sentence.",
+          "source": "ahdHope",
+          "kind": "ruling",
+          "date": "2012"
+        }
+      ],
+      "rows": [
+        {
+          "name": "AP Stylebook",
+          "changes": [
+            {
+              "year": 2012,
+              "stance": "accept",
+              "percent": null
+            }
+          ]
+        },
+        {
+          "name": "AHD, sentence (a)",
+          "changes": [
+            {
+              "year": 1999,
+              "stance": "against",
+              "percent": 34
+            },
+            {
+              "year": 2012,
+              "stance": "accept",
+              "percent": 63
+            }
+          ]
+        }
+      ],
+      "reasons": [
+        "Naming who hopes can help clarity.",
+        "The sentence-adverb use has a long record.",
+        "Students should know that some readers still object.",
+        "No single word does quite the same job.",
+        "AP accepted this use in 2012."
+      ],
+      "statements": [
+        "Who is doing the hoping? The sentence does not say. I write we hope, which is clearer.",
+        "The use goes back to at least 1648. Nobody objects to frankly or mercifully at the start of a sentence. The objection started in the 1960s.",
+        "Students hear this one argued about in class. I tell them it is accepted now, and that some graders still circle it.",
+        "There is no single word that does its job. It sounds natural, which is the point.",
+        "AP accepted it in 2012. It is fine in our pages."
+      ]
+    },
+    {
+      "id": "split",
+      "label": "To boldly",
+      "use": "the split infinitive",
+      "start": 1200,
+      "first": 1834,
+      "sentences": [
+        {
+          "html": "She decided <u>to quickly finish</u> the essay.",
+          "panel": "",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "We expect <u>to more than double</u> the club's members.",
+          "panel": "",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "He wanted <u>to really try</u>.",
+          "panel": "",
+          "note": "",
+          "personal": false
+        }
+      ],
+      "events": [
+        {
+          "year": 1200,
+          "label": "Layamon",
+          "title": "Layamon's Brut",
+          "body": "A split infinitive appears in the early 1200s. 1200 is an approximate axis placement.",
+          "source": "split",
+          "kind": "use",
+          "date": "early 1200s"
+        },
+        {
+          "year": 1350,
+          "label": "Wycliffe",
+          "title": "John Wycliffe",
+          "body": "Wycliffe often splits infinitives in the 1300s. 1350 represents the century, not a precise dated example.",
+          "source": "split",
+          "kind": "use",
+          "date": "1300s"
+        },
+        {
+          "year": 1834,
+          "label": "Proposed rule",
+          "title": "New-England Magazine",
+          "body": "A writer proposes a rule against splitting infinitives.",
+          "source": "split",
+          "kind": "ruling",
+          "date": "1834"
+        },
+        {
+          "year": 1864,
+          "label": "Alford",
+          "title": "A Plea for the Queen's English",
+          "body": "Henry Alford condemns split infinitives.",
+          "source": "split",
+          "kind": "ruling",
+          "date": "1864"
+        },
+        {
+          "year": 1926,
+          "label": "Fowler",
+          "title": "Modern English Usage",
+          "body": "Avoiding a split may require rewriting the sentence, not merely moving one word, and is not always worth it.",
+          "source": "split",
+          "kind": "ruling",
+          "date": "1926"
+        },
+        {
+          "year": 1994,
+          "label": "MWDEU",
+          "title": "Merriam-Webster's Dictionary of English Usage",
+          "body": "The guide says the objection never had a rational basis.",
+          "source": "split",
+          "kind": "ruling",
+          "date": "1994"
+        },
+        {
+          "year": 2012,
+          "label": "Economist 10",
+          "title": "Economist Style Guide, 10th edition",
+          "body": "Advises against splitting infinitives.",
+          "source": "split",
+          "kind": "ruling",
+          "date": "2012"
+        },
+        {
+          "year": 2018,
+          "label": "Economist 12",
+          "title": "Economist Style Guide, 12th edition",
+          "body": "Allows a split when moving the modifier would ruin rhythm or meaning.",
+          "source": "split",
+          "kind": "ruling",
+          "date": "2018"
+        }
+      ],
+      "rows": [
+        {
+          "name": "Alford",
+          "changes": [
+            {
+              "year": 1864,
+              "stance": "against",
+              "percent": null
+            }
+          ]
+        },
+        {
+          "name": "Fowler",
+          "changes": [
+            {
+              "year": 1926,
+              "stance": "limited",
+              "percent": null
+            }
+          ]
+        },
+        {
+          "name": "Merriam-Webster guide",
+          "changes": [
+            {
+              "year": 1994,
+              "stance": "accept",
+              "percent": null
+            }
+          ]
+        },
+        {
+          "name": "The Economist",
+          "changes": [
+            {
+              "year": 2012,
+              "stance": "against",
+              "percent": null
+            },
+            {
+              "year": 2018,
+              "stance": "limited",
+              "percent": null
+            }
+          ]
+        }
+      ],
+      "reasons": [
+        "Moving an adverb can avoid distracting readers.",
+        "Split infinitives predate the rule against them.",
+        "Clarity can require a split infinitive.",
+        "Rhythm can place an adverb next to its verb.",
+        "A clean reading matters to news readers."
+      ],
+      "statements": [
+        "Many readers still notice it. When the adverb can move without harm, I move it.",
+        "Writers split infinitives in the 1200s and 1300s. The rule against it first appeared in print in the 1800s, " +
+        "with no reason older than taste.",
+        "Try sentence (b) unsplit. To double more than our members? The split is the only clear version. Clarity wins.",
+        "Sometimes the adverb belongs right against the verb, for the beat.",
+        "Readers do not complain about it any more than they complain about commas. If it reads cleanly, it stays."
+      ]
+    },
+    {
+      "id": "less",
+      "label": "Less",
+      "use": "less with things you count",
+      "start": 888,
+      "first": 1770,
+      "sentences": [
+        {
+          "html": "Ten items or <u>less</u>.",
+          "panel": "",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "<u>Less</u> people came this year.",
+          "panel": "",
+          "note": "",
+          "personal": false
+        },
+        {
+          "html": "The school is <u>less</u> than 50 miles away.",
+          "panel": "",
+          "note": "Distance, time and money take less even for strict editors.",
+          "personal": false
+        }
+      ],
+      "events": [
+        {
+          "year": 888,
+          "label": "Alfred",
+          "title": "Alfred the Great",
+          "body": "læs worda: less of words. The OED example is reported by the secondary source cited here.",
+          "source": "less",
+          "kind": "use",
+          "date": "888"
+        },
+        {
+          "year": 1770,
+          "label": "Baker",
+          "title": "Robert Baker, Reflections on the English Language",
+          "body": "Baker states his preference for fewer with a number: most commonly used in speaking of a Number; where I " +
+                  "should think Fewer would do better.",
+          "source": "less",
+          "kind": "ruling",
+          "date": "1770"
+        },
+        {
+          "year": 1995,
+          "label": "MWDEU",
+          "title": "Merriam-Webster's Dictionary of English Usage",
+          "body": "The guide describes Baker's preference becoming an absolute rule.",
+          "source": "less",
+          "kind": "ruling",
+          "date": "1995"
+        },
+        {
+          "year": 2004,
+          "label": "Cambridge",
+          "title": "The Cambridge Guide to English Usage",
+          "body": "The guide treats the choice as a matter of style.",
+          "source": "less",
+          "kind": "ruling",
+          "date": "2004"
+        }
+      ],
+      "rows": [
+        {
+          "name": "Baker",
+          "changes": [
+            {
+              "year": 1770,
+              "stance": "against",
+              "percent": null
+            }
+          ]
+        },
+        {
+          "name": "Merriam-Webster guide",
+          "changes": [
+            {
+              "year": 1995,
+              "stance": "limited",
+              "percent": null
+            }
+          ]
+        },
+        {
+          "name": "Cambridge Guide",
+          "changes": [
+            {
+              "year": 2004,
+              "stance": "limited",
+              "percent": null
+            }
+          ]
+        }
+      ],
+      "reasons": [
+        "Readers expect fewer for countable things and less for amounts.",
+        "Less with countable nouns has a long history.",
+        "Tests may expect the conventional distinction.",
+        "Less is short and effective on a sign.",
+        "Fewer may avoid distracting news readers."
+      ],
+      "statements": [
+        "Fewer for things you count, less for amounts. It is a clean rule and readers expect it.",
+        "Less with countable nouns goes back to King Alfred in 888. The rule began in 1770 as one writer's personal preference.",
+        "Students lose points for this on tests. Know the rule, then decide when it matters.",
+        "Ten items or fewer is clunky on a sign. Less is shorter and sounds better.",
+        "Less people sounds wrong to many of our readers. I use fewer in copy."
+      ]
+    }
+  ],
+  "sources": {
+    "ahdThey": [
+      "AHD, they usage note",
+      "https://ahdictionary.com/word/search.html?q=they"
+    ],
+    "ahdHope": [
+      "AHD, hopefully usage note",
+      "https://ahdictionary.com/word/search.html?q=hopefully"
+    ],
+    "apChicago": [
+      "CJR, AP and Chicago changes, 27 March 2017",
+      "https://www.cjr.org/language_corner/stylebooks-single-they-ap-chicago-gender-neutral.php"
+    ],
+    "chicago": [
+      "Chicago, 18th edition, What's New, 5.51 and 5.266",
+      "https://www.chicagomanualofstyle.org/help-tools/what-s-new.html"
+    ],
+    "chicago1993": [
+      "Russell Harper, Chicago reviser, Five Changes That Matter (Writer's Digest)",
+      "https://www.writersdigest.com/write-better-fiction/5-changes-that-matter-from-the-chicago-manual-of-style-18th-edition"
+    ],
+    "apa": [
+      "APA 7, 2019; singular they guidance",
+      "https://apastyle.apa.org/style-grammar-guidelines/grammar/singular-they"
+    ],
+    "mwThey": [
+      "Associated Press via WHYY, 10 December 2019",
+      "https://whyy.org/articles/merriam-webster-declares-they-its-2019-word-of-the-year/"
+    ],
+    "shakespeare": [
+      "Shakespeare, The Comedy of Errors, 4.3",
+      "https://www.gutenberg.org/ebooks/1504"
+    ],
+    "austen": [
+      "Austen, Pride and Prejudice, 1813",
+      "https://www.gutenberg.org/ebooks/1342"
+    ],
+    "dickens": [
+      "Dickens, Nicholas Nickleby, 1838-1839",
+      "https://www.gutenberg.org/ebooks/967"
+    ],
+    "twain": [
+      "Twain, Tom Sawyer, chapter 2, 1876",
+      "https://www.gutenberg.org/ebooks/74"
+    ],
+    "gatsby": [
+      "Fitzgerald, The Great Gatsby, chapter 5, 1925",
+      "https://www.gutenberg.org/ebooks/64317"
+    ],
+    "mwLiteral": [
+      "Merriam-Webster, Did we change the definition of literally?",
+      "https://www.merriam-webster.com/grammar/misuse-of-literally"
+    ],
+    "mwHope": [
+      "Merriam-Webster, Can hopefully mean I hope?",
+      "https://www.merriam-webster.com/grammar/yes-you-can-use-hopefully-to-mean-i-hope"
+    ],
+    "split": [
+      "Split infinitive, cited works: Layamon; Wycliffe; New-England Magazine (1834); Alford (1864); Fowler (1926); " +
+      "MWDEU (1994); Economist (2012, 2018)",
+      "https://en.wikipedia.org/wiki/Split_infinitive"
+    ],
+    "less": [
+      "Fewer versus less, cited works: OED; Robert Baker (1770); MWDEU (1995); Cambridge Guide (2004)",
+      "https://en.wikipedia.org/wiki/Fewer_versus_less"
+    ]
+  }
+};
+  const CASES = DATA.cases;
+  const SOURCES = DATA.sources;
+  const ROLES = ['The Copy Editor', 'The Linguist', 'The Teacher', 'The Poet', 'The Reporter'];
+  const ART = ['art:pencil', 'art:trumpet', 'art:papers', 'art:quill', 'art:notebook'];
+  const SETTINGS = ['Text to a friend', 'News story', 'School essay', 'Graduation speech'];
+  const PHRASES = ['a text to a friend', 'a news story', 'a school essay', 'a graduation speech'];
+  const OPTIONS = ['Accept', 'Accept with a note', 'Avoid'];
+  const STANCES = {
+    accept: ['✓', 'Accepts'], limited: ['◐', 'Accepts in limited cases'],
+    against: ['×', 'Advises against'], unknown: ['□', 'No ruling on record']
+  };
+  const PERSONAL = 'We use the pronoun a person uses; the open question here is the generic use. Tap Next sentence to return to that question.';
+  const L = {
+    welcome: 'Welcome to the Usage Panel. You are the chair. Tap a panelist to hear their case.',
+    vote: 'When you have heard enough, tap Acceptable, Acceptable in casual use only, or Not acceptable.',
+    record: 'This is the record. Drag the Year slider, or tap Play the record, and watch the rulings change.',
+    ruling: 'Now rule. Pick Accept, Accept with a note or Avoid for each setting, and the usage note writes itself.',
+    'case-they': 'Singular they. Can one person, or anyone at all, be they?',
+    'case-literally': 'Literally. Can a word that means exactly also mean the opposite?',
+    'case-hopefully': 'Hopefully. Can it mean I hope, at the start of a sentence?',
+    'case-split': 'The split infinitive. Is it wrong to put a word between to and its verb?',
+    'case-less': 'Less or fewer. Does ten items or less break a rule, and whose rule is it?',
+    'record-end': 'That is the record so far. Tap Your ruling to add your panel to it.',
+    'note-done': 'Your usage note is ready. Edit it in the box, or tap Copy note.',
+    personal: PERSONAL
+  };
+  for (const c of CASES) {
+    c.statements.forEach((s, i) => { L[c.id + '-role-' + i] = s; });
+  }
+  const state = {mode:'hearing', case:0, sentence:0, speaker:-1, year:1300, marker:0, playing:false, showYours:false};
+  const fresh = () => ({votes:{}, marks:[null,null,null,null,null], choices:[null,null,null,null], reasons:[false,false,false,false,false], note:''});
+  let saved = CASES.map(fresh);
+  let storageOK = true;
+  try {
+    const raw = JSON.parse(localStorage.getItem('usage-panel-rulings') || 'null');
+    if (Array.isArray(raw)) {
+      saved = CASES.map((c, i) => {
+        const x = raw[i] || {};
+        const y = fresh();
+        for (let s = 0; s < c.sentences.length; s++) {
+          if (['accept','casual','avoid'].includes(x.votes?.[s]) && !c.sentences[s].personal) y.votes[s] = x.votes[s];
+        }
+        y.marks = y.marks.map((v, j) => ['yes','no'].includes(x.marks?.[j]) ? x.marks[j] : null);
+        y.choices = y.choices.map((v, j) => [0,1,2].includes(x.choices?.[j]) ? x.choices[j] : null);
+        y.reasons = y.reasons.map((v, j) => x.reasons?.[j] === true);
+        y.note = typeof x.note === 'string' ? x.note.slice(0,30000) : '';
+        return y;
+      });
+    }
+  } catch { storageOK = false; }
+  const C = () => CASES[state.case];
+  const S = () => saved[state.case];
+  const sentence = () => C().sentences[state.sentence];
+  const ruled = () => S().choices.some(v => v !== null);
+  let frame = 0;
+  let sweepToken = 0;
+  let confirmAction = null;
+  let returnFocus = null;
+  const V = Curio.voice({
+    lines:L,
+    scope:() => state.mode + ':' + state.case,
+    hint:false,
+    read:() => readText(),
+    welcome:() => {
+      if ($('evidence-dialog').open || $('confirm-dialog').open) return null;
+      if (state.mode === 'record') return ['record', {valid:() => !state.playing}];
+      if (state.mode === 'ruling') return ['ruling', {valid:() => !ruled()}];
+      if (state.speaker < 0) return [['welcome', {valid:() => state.speaker < 0}],
+        ['case-' + C().id, {valid:() => state.speaker < 0}]];
+      return null;
+    }
+  });
+  function beep(freq=370) { Curio.tone(freq, .055, .018, 'sine'); }
+  function persist() {
+    try {
+      localStorage.setItem('usage-panel-rulings', JSON.stringify(saved));
+      storageOK = true;
+    }
+    catch { storageOK = false; }
+    const message = storageOK ? 'Saved only on this device. Nothing leaves it.' : 'Storage unavailable. Notes last for this session only.';
+    $('save-status').textContent = message;
+    $('privacy').textContent = storageOK ? 'Notes stay on this device. Nothing leaves it.' : 'Session only. Storage unavailable.';
+    updateDocket();
+  }
+  function setHint(text) { $('hint').textContent = text; }
+  function modeHint() {
+    if (state.mode === 'record') return 'Drag Year or tap Play the record. Tap a marker to inspect its source; tap Your ruling to add your panel.';
+    if (state.mode === 'ruling') return 'Choose Accept, Accept with a note or Avoid for each setting. ' +
+      (innerWidth < 1000 ? 'Check reasons, then scroll down to edit or copy your usage note.' :
+        'Check reasons, then edit or copy your usage note.');
+    if (sentence().personal) return PERSONAL;
+    return 'You are the chair. Pick a panelist, vote on the sentence, then compare the real panel.';
+  }
+  function updateDocket() {
+    CASES.forEach((c, i) => {
+      const b = $('case-' + c.id);
+      const has = saved[i].choices.some(v => v !== null);
+      b.setAttribute('aria-pressed', i === state.case);
+      b.classList.toggle('ruled', has);
+      b.querySelector('small').textContent = has ? 'ruled' : 'not ruled';
+    });
+  }
+  function stopSweep() {
+    sweepToken++;
+    cancelAnimationFrame(frame);
+    state.playing = false;
+    $('play').setAttribute('aria-pressed', 'false');
+  }
+  function setMode(mode) {
+    if (!['hearing','record','ruling'].includes(mode)) return;
+    if (mode === state.mode && !$('evidence-dialog').open) {
+      stopSweep();
+      setHint(modeHint());
+      beep();
+      return;
+    }
+    if ($('evidence-dialog').open) $('evidence-dialog').close();
+    stopSweep();
+    V.hush();
+    Curio.stop();
+    state.mode = mode;
+    ['hearing','record','ruling'].forEach(m => {
+      $(m).hidden = m !== mode;
+      $('m-' + m).setAttribute('aria-pressed', m === mode);
+    });
+    $('evidence').hidden = mode !== 'hearing';
+    setHint(modeHint());
+    if (mode === 'record') {
+      drawRecord();
+      V.how('record', {valid:() => !state.playing, needs:'#play'});
+    } else if (mode === 'ruling') {
+      drawRuling();
+      $('ruling').scrollTop = 0;
+      V.how('ruling', {needs:'#settings'});
+    } else {
+      drawHearing();
+      V.welcome();
+    }
+    beep();
+  }
+  function selectCase(index) {
+    if (index < 0 || index >= CASES.length) return;
+    if (index === state.case && !$('evidence-dialog').open) {
+      stopSweep();
+      setHint(modeHint());
+      beep(420);
+      return;
+    }
+    if ($('evidence-dialog').open) $('evidence-dialog').close();
+    stopSweep();
+    V.hush();
+    Curio.stop();
+    state.case = index;
+    state.sentence = 0;
+    state.speaker = -1;
+    state.year = C().start;
+    state.marker = 0;
+    state.showYours = false;
+    updateDocket();
+    if (state.mode === 'hearing') drawHearing();
+    if (state.mode === 'record') drawRecord();
+    if (state.mode === 'ruling') drawRuling();
+    setHint(modeHint());
+    V.how('case-' + C().id, {valid:() => state.case === index});
+    beep(420);
+  }
+  function drawHearing() {
+    const s = sentence();
+    $('sentence').innerHTML = s.html;
+    $('sentence-sheet').classList.toggle('long-sentence', $('sentence').textContent.length > 55);
+    $('sentence-sheet').classList.toggle('dense-result', s.panel.length > 140);
+    $('sentence-count').textContent = (state.sentence + 1) + ' / ' + C().sentences.length;
+    $('sentence-note').textContent = s.note;
+    $('sentence-note').hidden = !s.note;
+    $('vote-row').hidden = s.personal;
+    const result = S().votes[state.sentence] ? s.panel || 'No real panel vote on record for this sentence.' : '';
+    $('real-panel').textContent = s.personal ? '' : result;
+    $('real-panel').hidden = s.personal;
+    $('real-panel').classList.remove('revealed');
+    document.querySelectorAll('[data-vote]').forEach(b => b.setAttribute('aria-pressed', S().votes[state.sentence] === b.dataset.vote));
+    ROLES.forEach((role, i) => {
+      const b = $('role-' + i);
+      b.setAttribute('aria-pressed', state.speaker === i);
+      b.querySelector('.mark').textContent = S().marks[i] === 'yes' ? '✎ Persuasive' : S().marks[i] === 'no' ? '○ Not for me' : '';
+    });
+    const active = state.speaker >= 0;
+    $('speaker-name').textContent = active ? ROLES[state.speaker] : 'Five seats. Five perspectives.';
+    $('statement').textContent = active ? s.personal ? PERSONAL : C().statements[state.speaker] : 'Pick a panelist’s emblem to hear the case.';
+    $('persuasive').disabled = !active;
+    $('not-for-me').disabled = !active;
+    $('persuasive').setAttribute('aria-pressed', active && S().marks[state.speaker] === 'yes');
+    $('not-for-me').setAttribute('aria-pressed', active && S().marks[state.speaker] === 'no');
+    requestAnimationFrame(fitHearing);
+  }
+  function fitHearing() {
+    if (state.mode !== 'hearing') return;
+    const room = document.querySelector('.hearing-room');
+    const objects = [...document.querySelectorAll('.object-wrap')];
+    objects.forEach(e => { e.style.height = ''; });
+    const style = getComputedStyle(room);
+    const available = room.clientHeight - parseFloat(style.paddingTop) - parseFloat(style.paddingBottom);
+    const required = $('sentence-sheet').offsetHeight + $('panelists').offsetHeight;
+    const excess = required - available;
+    if (excess <= 0) return;
+    const rows = innerWidth < 600 ? 2 : 1;
+    for (const object of objects) {
+      const preferred = parseFloat(getComputedStyle(object).height);
+      object.style.height = Math.max(18, preferred - excess / rows - 2) + 'px';
+    }
+  }
+  function selectSpeaker(index) {
+    V.hush();
+    state.speaker = index;
+    drawHearing();
+    setHint(sentence().personal ? PERSONAL : 'You are the chair. ' + L.vote);
+    V.dropQueued();
+    const key = sentence().personal ? 'personal' : C().id + '-role-' + index;
+    const valid = () => state.speaker === index && state.mode === 'hearing';
+    V.say([[key, {kind:'event'}],
+      ['vote', {kind:'how', valid:() => !sentence().personal && !S().votes[state.sentence], needs:'#vote-row'}]], {valid});
+    beep(300 + index * 65);
+  }
+  function moveSentence(delta) {
+    V.hush();
+    state.sentence = (state.sentence + delta + C().sentences.length) % C().sentences.length;
+    drawHearing();
+    setHint(modeHint());
+    if (sentence().personal) V.how('personal');
+    else V.how('vote', {needs:'#vote-row', valid:() => !S().votes[state.sentence]});
+    beep(460);
+  }
+  function vote(value) {
+    if (sentence().personal) return;
+    S().votes[state.sentence] = value;
+    drawHearing();
+    $('real-panel').classList.add('revealed');
+    setHint('Compare your vote with the dated record. Tap Next sentence, Evidence, or Record to keep investigating.');
+    V.dropQueued();
+    persist();
+    beep(540);
+  }
+  function mark(value) {
+    if (state.speaker < 0) return;
+    S().marks[state.speaker] = value;
+    S().reasons[state.speaker] = value === 'yes';
+    if (ruled()) S().note = buildNote(C(), S());
+    drawHearing();
+    persist();
+    setHint(sentence().personal ? 'Private note marked. Tap Next sentence to return to generic usage, or tap another panelist.' :
+      'Private note marked. Tap another panelist, or choose a sentence vote.');
+    beep(430);
+  }
+  function asOf(row, year) {
+    return row.changes.filter(c => c.year <= year).at(-1) || {stance:'unknown', percent:null};
+  }
+  function position(year) { return 100 * (year - C().start) / (2026 - C().start); }
+  function drawRecord() {
+    $('year').min = C().start;
+    $('year').value = state.year;
+    const midpoint = Math.round((C().start + 2026) / 2);
+    $('ticks').innerHTML = `<span>${C().start}</span><span>${midpoint}</span><span>2026</span>`;
+    $('axis').querySelectorAll('.axis-pin').forEach(e => e.remove());
+    $('markers').replaceChildren();
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.classList.add('leaders');
+    svg.setAttribute('aria-hidden','true');
+    $('markers').append(svg);
+    C().events.forEach((e, i) => {
+      const pin = document.createElement('span');
+      pin.className = 'axis-pin ' + (e.kind === 'use' ? 'use' : 'square');
+      pin.style.left = `calc(${position(e.year)}% - 4px)`;
+      pin.dataset.year = e.year;
+      $('axis').append(pin);
+      const button = document.createElement('button');
+      button.className = 'marker';
+      button.id = 'marker-' + i;
+      button.dataset.year = e.year;
+      const glyph = e.kind === 'use' ? '●' : '■';
+      button.innerHTML = `<span class="shape">${glyph}</span><span><b>${e.date}</b>${e.label}</span>`;
+      button.setAttribute('aria-label', `${e.date}, ${e.kind === 'use' ? 'in use' : 'ruling'}, ${e.label}`);
+      button.onclick = () => {
+        stopSweep();
+        V.hush();
+        state.marker = i;
+        state.year = e.year;
+        updateYear();
+        showEvidence(i);
+        const below = $('record-detail').getBoundingClientRect().top >= $('stage').getBoundingClientRect().bottom;
+        setHint(below ? 'Scroll below the axis for this card and its source. Drag Year or tap another marker to compare the record.' :
+          'This card names the evidence and its source. Tap another marker, or drag Year to compare authority stances.');
+        beep(490);
+      };
+      $('markers').append(button);
+    });
+    if (state.showYours) addYourMarker();
+    updateYear();
+    showEvidence(state.marker);
+    requestAnimationFrame(drawLeaders);
+  }
+  function drawLeaders() {
+    if (state.mode !== 'record') return;
+    const field = $('markers');
+    const rect = field.getBoundingClientRect();
+    const svg = field.querySelector('svg');
+    if (!svg || !rect.width) return;
+    svg.replaceChildren();
+    svg.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`);
+    for (const button of field.querySelectorAll('.marker')) {
+      const r = button.getBoundingClientRect();
+      const line = document.createElementNS('http://www.w3.org/2000/svg','path');
+      const axisWidth = $('axis').getBoundingClientRect().width;
+      const x = position(Number(button.dataset.year)) * axisWidth / 100;
+      const bx = r.x - rect.x + r.width / 2;
+      const by = r.y - rect.y;
+      line.setAttribute('d', `M${x},-24 L${x},-7 L${bx},${by}`);
+      line.setAttribute('stroke','#ac917255');
+      line.setAttribute('fill','none');
+      line.setAttribute('stroke-width','1');
+      svg.append(line);
+    }
+  }
+  function updateYear() {
+    $('year').value = state.year;
+    $('year-readout').textContent = state.year;
+    $('year').setAttribute('aria-valuetext', state.year + ', evidence and stances as of this year');
+    $('year-line').style.left = position(state.year) + '%';
+    document.querySelectorAll('[data-year]').forEach(e => e.classList.toggle('lit', Number(e.dataset.year) <= state.year));
+    C().events.forEach((e, i) => $('marker-' + i)?.classList.toggle('selected', i === state.marker));
+    $('your-marker')?.classList.toggle('selected', state.marker === -1);
+    $('stances').replaceChildren();
+    for (const row of C().rows) {
+      const x = asOf(row, state.year);
+      const [shape, label] = STANCES[x.stance];
+      const div = document.createElement('div');
+      div.className = 'stance-row ' + (x.stance === 'unknown' ? 'unknown' : '');
+      const name = document.createElement('h3');
+      name.textContent = row.name;
+      const stance = document.createElement('p');
+      stance.textContent = shape + ' ' + label;
+      div.append(name, stance);
+      if (x.percent !== null) {
+        const percent = document.createElement('div');
+        percent.className = 'percent';
+        percent.innerHTML = `<span class="percent-track"><span style="width:${x.percent}%"></span></span>` +
+          `<span>${x.percent}% accepted · ${x.year} survey</span>`;
+        div.append(percent);
+      }
+      $('stances').append(div);
+    }
+  }
+  function showEvidence(index) {
+    if (index === -1) return showYourCard();
+    $('record-detail').classList.remove('your-card');
+    const e = C().events[index] || C().events[0];
+    $('detail-year').textContent = e.date;
+    $('detail-title').textContent = e.title;
+    $('detail-body').textContent = e.body;
+    $('detail-source').textContent = SOURCES[e.source][0];
+    $('detail-source').title = SOURCES[e.source][1];
+  }
+  function changeYear(value) {
+    stopSweep();
+    V.hush();
+    state.year = Math.max(C().start, Math.min(2026, Math.round(Number(value))));
+    state.marker = C().events.findLastIndex(e => e.year <= state.year);
+    updateYear();
+    showEvidence(state.marker);
+    setHint('The board shows only rulings recorded by this year. Tap a marker for its card, or tap Play the record.');
+  }
+  function playRecord() {
+    stopSweep();
+    V.hush();
+    state.playing = true;
+    $('play').setAttribute('aria-pressed','true');
+    state.year = C().start;
+    state.marker = 0;
+    const token = sweepToken;
+    const start = performance.now();
+    const events = C().events;
+    const phases = [];
+    let duration = 0;
+    let previous = C().start;
+    for (let i = 0; i < events.length; i++) {
+      const e = events[i];
+      const moving = 8000 * (e.year - previous) / (2026 - C().start);
+      if (moving) phases.push({at:duration, end:duration + moving, from:previous, to:e.year, index:Math.max(0,i-1), moving:true});
+      duration += moving;
+      phases.push({at:duration, end:duration + 1500, from:e.year, to:e.year, index:i, moving:false});
+      duration += 1500;
+      previous = e.year;
+    }
+    const finalMoving = 8000 * (2026 - previous) / (2026 - C().start);
+    phases.push({at:duration, end:duration + finalMoving, from:previous, to:2026, index:events.length-1, moving:true});
+    duration += finalMoving;
+    let lastYear = -1;
+    let lastIndex = -1;
+    setHint('The record is playing. Tap Stop, a marker, a case, or Year to take over immediately.');
+    const tick = now => {
+      if (token !== sweepToken || !state.playing) return;
+      const elapsed = now - start;
+      if (elapsed >= duration) {
+        state.year = 2026;
+        state.marker = events.length - 1;
+        updateYear();
+        showEvidence(state.marker);
+        stopSweep();
+        setHint(L['record-end']);
+        V.say('record-end', {valid:() => state.year === 2026 && !state.playing, needs:'#your-ruling'});
+        beep(620);
+        return;
+      }
+      const p = phases.find(p => elapsed < p.end) || phases.at(-1);
+      const ratio = p.end > p.at ? Math.max(0, Math.min(1, (elapsed-p.at)/(p.end-p.at))) : 1;
+      state.year = Curio.reduce && p.moving ? p.from : Math.round(p.from + (p.to-p.from) * ratio);
+      state.marker = p.index;
+      if (state.year !== lastYear || state.marker !== lastIndex) updateYear();
+      if (state.marker !== lastIndex) {
+        showEvidence(state.marker);
+        if (!p.moving) beep(330 + state.marker * 17);
+      }
+      lastYear = state.year;
+      lastIndex = state.marker;
+      frame = requestAnimationFrame(tick);
+    };
+    updateYear();
+    showEvidence(0);
+    frame = requestAnimationFrame(tick);
+    beep(370);
+  }
+  function addYourMarker() {
+    if ($('your-marker')) return;
+    const b = document.createElement('button');
+    b.id = 'your-marker';
+    b.className = 'marker yours lit';
+    b.dataset.year = 2026;
+    b.innerHTML = '<span class="shape">◆</span><span><b>2026</b>Your panel</span>';
+    const shortNames = ['Text','News','Essay','Speech'];
+    const summary = shortNames.map((name, i) => name + ': ' +
+      (S().choices[i] === null ? 'not ruled' : OPTIONS[S().choices[i]].toLowerCase())).join('; ');
+    const visibleSummary = document.createElement('span');
+    visibleSummary.className = 'your-summary';
+    shortNames.forEach((name, i) => {
+      const item = document.createElement('span');
+      const choice = S().choices[i];
+      item.textContent = name + ': ' + (choice === null ? 'not ruled' : ['accept','note','avoid'][choice]);
+      visibleSummary.append(item);
+    });
+    b.lastElementChild.append(visibleSummary);
+    b.title = summary;
+    b.setAttribute('aria-label','Your panel, 2026. ' + summary);
+    b.onclick = () => {
+      stopSweep();
+      V.hush();
+      state.marker = -1;
+      state.year = 2026;
+      updateYear();
+      showYourCard();
+      setHint(ruled() ? 'Your panel is on the record. Tap Ruling to revise it, or inspect earlier evidence.' :
+        'Not ruled yet. Tap Ruling to decide for each setting.');
+      beep(560);
+    };
+    $('markers').append(b);
+  }
+  function showYourCard() {
+    $('record-detail').classList.add('your-card');
+    $('detail-year').textContent = '2026';
+    $('detail-title').textContent = 'Your panel, 2026';
+    const summary = SETTINGS.map((name, i) => name + ': ' + (S().choices[i] === null ? 'not ruled' : OPTIONS[S().choices[i]].toLowerCase()));
+    $('detail-body').textContent = ruled() ? summary.join('\n') : 'Not ruled yet. Tap Ruling to decide for each setting.';
+    $('detail-source').textContent = 'Your own contextual judgment. This is not an authority ruling or a score.';
+    $('detail-source').removeAttribute('title');
+  }
+  // END CASE DATA, TIMELINE AND STANCE RULES.
+  function list(items) {
+    if (items.length < 2) return items.join('');
+    if (items.length === 2) return items[0] + ' and ' + items[1];
+    return items.slice(0,-1).join(', ') + ', and ' + items.at(-1);
+  }
+  function buildNote(c, s) {
+    if (!s.choices.some(x => x !== null)) return '';
+    const clauses = [];
+    const verbs = ['accepts it in ', 'accepts it with a note in ', 'advises against it in '];
+    for (let value = 0; value < 3; value++) {
+      const settings = PHRASES.filter((x, i) => s.choices[i] === value);
+      if (settings.length) clauses.push(verbs[value] + list(settings));
+    }
+    const reasons = c.reasons.filter((x, i) => s.reasons[i]);
+    const ending = c.first < 2026 ?
+      'This ruling was made in 2026; earlier authorities ruled differently, beginning in ' +
+        (c.id === 'hopefully' ? 'the 1960s' : c.first) + '.' :
+      'This ruling was made in 2026; the authority record here shows a current entry, not its first-inclusion year.';
+    return 'Usage: ' + c.use + '. Our panel ' + list(clauses) + '. ' + (reasons.length ? reasons.join(' ') + ' ' : '') + ending;
+  }
+  function drawRuling() {
+    $('settings').replaceChildren();
+    const blank = document.createElement('span');
+    $('settings').append(blank);
+    OPTIONS.forEach(name => {
+      const e = document.createElement('span');
+      e.className = 'column-label';
+      e.textContent = name;
+      $('settings').append(e);
+    });
+    SETTINGS.forEach((name, row) => {
+      const text = document.createElement('span');
+      text.className = 'setting-label';
+      text.id = 'setting-label-' + row;
+      text.textContent = name;
+      $('settings').append(text);
+      OPTIONS.forEach((option, value) => {
+        const label = document.createElement('label');
+        label.className = 'setting-choice';
+        const input = document.createElement('input');
+        input.type = 'radio';
+        input.name = 'setting-' + row;
+        input.id = 'setting-' + row + '-' + value;
+        input.setAttribute('aria-label', name + ': ' + option);
+        input.checked = S().choices[row] === value;
+        input.onchange = () => {
+          S().choices[row] = value;
+          rebuildLive();
+          const below = $('note').getBoundingClientRect().top >= $('stage').getBoundingClientRect().bottom;
+          setHint(below ? 'Your usage note is ready below. Scroll down to edit it or tap Copy note.' : L['note-done']);
+          const caseId = state.case;
+          V.how('note-done', {key:'note-done-' + C().id, needs:'#note', valid:() => state.case === caseId && ruled()});
+          beep(370 + value * 75);
+        };
+        const symbol = document.createElement('span');
+        symbol.className = 'choice-symbol';
+        symbol.textContent = ['✓','◐','×'][value];
+        symbol.setAttribute('aria-hidden','true');
+        const nameText = document.createElement('span');
+        nameText.className = 'choice-text';
+        nameText.textContent = option;
+        label.append(input, symbol, nameText);
+        $('settings').append(label);
+      });
+    });
+    $('reasons').replaceChildren();
+    C().reasons.forEach((text, i) => {
+      const label = document.createElement('label');
+      label.className = 'reason';
+      const input = document.createElement('input');
+      input.type = 'checkbox';
+      input.id = 'reason-' + i;
+      input.checked = S().reasons[i];
+      input.onchange = () => {
+        S().reasons[i] = input.checked;
+        rebuildLive();
+        beep();
+      };
+      const span = document.createElement('span');
+      span.textContent = ROLES[i] + ': ' + text;
+      const box = document.createElement('span');
+      box.className = 'reason-box';
+      box.setAttribute('aria-hidden','true');
+      label.append(input, box, span);
+      $('reasons').append(label);
+    });
+    $('note').value = S().note;
+    $('note-subtitle').textContent = C().use + ' · Your panel, 2026';
+    $('save-status').textContent = storageOK ? 'Saved only on this device. Nothing leaves it.' : 'Storage unavailable. Session only.';
+  }
+  function rebuildLive() {
+    S().note = buildNote(C(), S());
+    $('note').value = S().note;
+    const sheet = document.querySelector('.usage-sheet');
+    sheet.classList.remove('inked');
+    void sheet.offsetWidth;
+    sheet.classList.add('inked');
+    persist();
+  }
+  function ask(text, action) {
+    V.hush();
+    returnFocus = document.activeElement;
+    confirmAction = action;
+    $('confirm-text').textContent = text;
+    $('confirm-dialog').showModal();
+    $('cancel-confirm').focus({preventScroll:true});
+  }
+  function closeConfirm() {
+    $('confirm-dialog').close();
+    confirmAction = null;
+    returnFocus?.focus({preventScroll:true});
+  }
+  function readText() {
+    if ($('confirm-dialog').open) return $('confirm-text').textContent;
+    if ($('evidence-dialog').open) {
+      const viewport = $('evidence-cards').getBoundingClientRect();
+      const cards = [...document.querySelectorAll('.evidence-card')];
+      const firstVisible = cards.find(card => {
+        const r = card.getBoundingClientRect();
+        return r.top >= viewport.top - 1 && r.bottom <= viewport.bottom + 1;
+      }) || cards.find(card => {
+        const r = card.getBoundingClientRect();
+        return r.bottom > viewport.top && r.top < viewport.bottom;
+      });
+      return firstVisible?.innerText || $('evidence-title').textContent;
+    }
+    if (state.mode === 'hearing') return [
+      $('sentence').textContent, sentence().note,
+      state.speaker >= 0 ? ROLES[state.speaker] + '. ' + $('statement').textContent : '',
+      $('hint').textContent
+    ].filter(Boolean);
+    if (state.mode === 'record') return [
+      $('detail-year').textContent + '. ' + $('detail-title').textContent,
+      $('detail-body').textContent, $('hint').textContent
+    ];
+    return [$('note').value || $('note').placeholder, $('hint').textContent];
+  }
+  CASES.forEach((c, i) => {
+    const b = document.createElement('button');
+    b.className = 'case-tab';
+    b.id = 'case-' + c.id;
+    b.innerHTML = `<strong>${c.label}</strong><small>not ruled</small>`;
+    b.onclick = () => selectCase(i);
+    $('docket').append(b);
+  });
+  ROLES.forEach((role, i) => {
+    const b = document.createElement('button');
+    b.className = 'panelist';
+    b.id = 'role-' + i;
+    b.setAttribute('aria-label', role + ', key ' + (i+1));
+    b.setAttribute('aria-pressed','false');
+    const check = i === 2 ? '<span class="teacher-check" aria-hidden="true">✓</span>' : '';
+    b.innerHTML = `<span class="object-wrap"><img src="${ART[i]}" alt="">${check}</span>` +
+      `<span class="plate">${role}</span><span class="mark"></span>`;
+    b.onclick = () => selectSpeaker(i);
+    $('panelists').append(b);
+  });
+  ['hearing','record','ruling'].forEach(mode => { $('m-' + mode).onclick = () => setMode(mode); });
+  $('previous').onclick = () => moveSentence(-1);
+  $('next').onclick = () => moveSentence(1);
+  document.querySelectorAll('[data-vote]').forEach(b => { b.onclick = () => vote(b.dataset.vote); });
+  $('persuasive').onclick = () => mark('yes');
+  $('not-for-me').onclick = () => mark('no');
+  $('year').onpointerdown = () => { stopSweep(); V.dropQueued(); };
+  $('year').oninput = event => changeYear(event.target.value);
+  $('year').onkeydown = event => {
+    const keys = ['PageUp','PageDown','Home','End'];
+    if (!keys.includes(event.key)) return;
+    event.preventDefault();
+    if (event.key === 'PageUp' || event.key === 'PageDown') {
+      const forward = event.key === 'PageUp';
+      const matches = (e, i) => forward ? e.year > state.year ||
+        (e.year === state.year && state.marker >= 0 && i > state.marker) : e.year < state.year ||
+        (e.year === state.year && state.marker >= 0 && i < state.marker);
+      const index = forward ? C().events.findIndex(matches) : C().events.findLastIndex(matches);
+      if (index >= 0) $('marker-' + index).click();
+      else if (forward && state.showYours) $('your-marker').click();
+      else changeYear(forward ? 2026 : C().start);
+      return;
+    }
+    changeYear(event.key === 'Home' ? C().start : 2026);
+  };
+  $('play').onclick = playRecord;
+  $('stop').onclick = () => {
+    stopSweep();
+    setHint('Record stopped. Drag Year, tap a marker, or tap Play the record to start again.');
+    beep();
+  };
+  $('your-ruling').onclick = () => {
+    stopSweep();
+    V.hush();
+    state.showYours = true;
+    state.year = 2026;
+    state.marker = -1;
+    addYourMarker();
+    updateYear();
+    showYourCard();
+    requestAnimationFrame(drawLeaders);
+    setHint(ruled() ? 'Your panel is on the record. Tap Ruling to revise it, or inspect earlier evidence.' :
+      'Not ruled yet. Tap Ruling to decide for each setting.');
+    beep(610);
+  };
+  $('note').oninput = () => {
+    S().note = $('note').value;
+    V.dropQueued();
+    persist();
+    setHint('Edit your usage note freely. Tap Copy note when ready, or Rebuild note to use the current grid and reasons.');
+  };
+  $('rebuild').onclick = () => ask('Rebuild the note from your current settings and reasons? This overwrites your edits.', () => {
+    rebuildLive();
+    setHint(ruled() ? 'Note rebuilt. Edit it in the box, or tap Copy note.' : 'Choose a ruling for at least one setting to build a usage note.');
+  });
+  $('clear').onclick = () => ask("Clear this case's ruling?", () => {
+    S().choices = [null,null,null,null];
+    S().reasons = S().marks.map(x => x === 'yes');
+    S().note = '';
+    persist();
+    drawRuling();
+    setHint(modeHint());
+  });
+  $('copy').onclick = async () => {
+    if (!$('note').value.trim()) {
+      setHint('Choose a ruling for at least one setting to build a usage note.');
+      return;
+    }
+    let copied = false;
+    try { await navigator.clipboard.writeText($('note').value); copied = true; }
+    catch {
+      const oldFocus = document.activeElement;
+      $('note').focus({preventScroll:true});
+      $('note').select();
+      try { copied = document.execCommand('copy'); } catch { /* Keep the selected text available. */ }
+      if (copied) oldFocus?.focus({preventScroll:true});
+    }
+    $('save-status').textContent = copied ? 'Copied note.' : 'Copy unavailable. Select the note and use your keyboard to copy it.';
+    setHint(copied ? 'Note copied. You can revise the grid or open another case.' : 'Select your note and press Control C to copy it.');
+    beep(580);
+  };
+  $('cancel-confirm').onclick = closeConfirm;
+  $('yes-confirm').onclick = () => {
+    const action = confirmAction;
+    closeConfirm();
+    action?.();
+    beep();
+  };
+  $('confirm-dialog').addEventListener('cancel', () => { confirmAction = null; });
+  $('evidence').onclick = () => {
+    V.hush();
+    $('evidence-title').textContent = C().label + ': dated evidence';
+    $('evidence-cards').replaceChildren();
+    for (const e of C().events) {
+      const card = document.createElement('article');
+      card.className = 'evidence-card';
+      const year = document.createElement('strong');
+      year.textContent = e.date;
+      const title = document.createElement('h3');
+      title.textContent = (e.kind === 'use' ? '● In use: ' : '■ Ruling: ') + e.title;
+      const body = document.createElement('p');
+      body.textContent = e.body;
+      const source = document.createElement('small');
+      source.textContent = SOURCES[e.source][0];
+      card.append(year,title,body,source);
+      $('evidence-cards').append(card);
+    }
+    fitEvidence();
+    $('evidence-dialog').show();
+    setHint('Read speaks the first visible evidence card. Scroll for more, or tap Close to return to the hearing.');
+    beep();
+  };
+  $('close-evidence').onclick = () => {
+    $('evidence-dialog').close();
+    V.hush();
+    setHint(modeHint());
+    $('evidence').focus({preventScroll:true});
+  };
+  addEventListener('keydown', event => {
+    if ($('evidence-dialog').open && event.key === 'Escape') {
+      event.preventDefault();
+      $('close-evidence').click();
+      return;
+    }
+    if (state.mode !== 'hearing' || $('evidence-dialog').open || $('confirm-dialog').open) return;
+    if (event.target.matches('input,textarea') || event.ctrlKey || event.altKey || event.metaKey) return;
+    if (/^[1-5]$/.test(event.key)) {
+      event.preventDefault();
+      selectSpeaker(Number(event.key)-1);
+    }
+  });
+  function fitEvidence() {
+    const r = $('stage').getBoundingClientRect();
+    $('evidence-dialog').style.setProperty('--drawer-top', (r.top + 5) + 'px');
+    $('evidence-dialog').style.setProperty('--drawer-height', Math.max(100,r.height-10) + 'px');
+  }
+  new ResizeObserver(() => {
+    requestAnimationFrame(drawLeaders);
+    requestAnimationFrame(fitHearing);
+    if ($('evidence-dialog').open) fitEvidence();
+  }).observe($('stage'));
+  Curio.init({clips:"voice:*", rate:.96, readFallback:readText});
+  updateDocket();
+  drawHearing();
+  if (!storageOK) $('privacy').textContent = 'Session only. Storage unavailable.';
+  window.__tool = {
+    state, setMode, selectCase, allLines:V.allLines, vlog:V.log, CASES, SOURCES, buildNote, asOf,
+    get saved() { return saved; }, get vq() { return V.queue; }, get sweepSeconds() { return 8 + 1.5 * C().events.length; }
+  };
+})();
+</script>
+</body>
+</html>

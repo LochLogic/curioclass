@@ -115,7 +115,7 @@
     },
     {
       "name": "turtle-scared",
-      "prompt": "A small turtle animal character, startled, wide eyes, alert raised posture. Whole animal isolated with ample margin on flat pure magenta (#FF00FF). Animal anatomy, no human hands. Consistent species markings and colors across poses.",
+      "prompt": "The same friendly young turtle as turtle-happy, mildly startled, wide brown eyes and a gently open mouth. Rounded honey-brown domed shell with warm gold scute centers, olive softly spotted skin, buttery belly, short rounded legs and small rounded toes. Three-quarter standing pose with head slightly toward shell. Rich soft gouache and fine ink, visible paper grain, gentle warm upper-left light. Whole animal centered with ample margin on perfectly flat pure magenta (#FF00FF). No people, text, letters, numbers, logos, ground, cast shadow or extra objects.",
       "aspect": "1:1",
       "width": 280,
       "quality": 76,
@@ -124,7 +124,9 @@
       "people": false,
       "drawn_by": "codex",
       "despill": true,
-      "holes": true
+      "holes": true,
+      "ref": "turtle-happy",
+      "review_redraw": "2026-11-06: matched the happy turtle identity; reference target was the previous scared pose."
     },
     {
       "name": "turtle-sleepy",

@@ -9,7 +9,7 @@
 <!--
 Zipline Energy, Curio Class. Adapted from kit/starter/src.html.
 Grade 11: HS-PS3-1, HS-PS3-2, HS-PS3-3. Students drive.
-Sources: OpenStax College Physics 2e chapters 5, 7 and 23; Precalculus 2e 8.1; NASA Glenn atmosphere model.
+Sources: OpenStax College Physics 2e chapters 5, 7 and 23; Precalculus 2e 10.1; NASA Glenn atmosphere model.
 Friction, drag areas, brake settings, battery share and safety limits are lab settings.
 Illustrations generated with OpenAI gpt-image, edited for Curio Class.
 Code MIT. Content CC BY 4.0. One offline file, no network requests.
@@ -59,17 +59,18 @@ main { display:block; min-width:0; min-height:0; width:100%; }
 .sliders { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .slider label { display:flex; justify-content:space-between; font-size:12px; color:#b9c5d3; gap:3px; }
 .slider output { color:var(--brand); font-family:var(--readout-font); white-space:nowrap; }
-input[type=range] { height:34px; display:block; }
+input[type=range] { height:44px; display:block; }
 .rule-row b { white-space:nowrap; }
-.hardware { display:none; text-align:center; padding-top:16px; border-top:1px solid #43505d; margin-top:12px; }
-.hardware img { display:block; width:180px; height:110px; object-fit:contain; margin:0 auto; }
-.hardware p { font:12px var(--readout-font); color:var(--brand); }
+.hardware { display:none; text-align:center; padding-top:8px; border-top:1px solid #43505d; margin-top:8px; }
+.hardware img { display:block; width:180px; height:90px; object-fit:contain; margin:0 auto; }
+.hardware p { font:12px var(--readout-font); color:var(--brand); margin:6px 0; }
 @media (min-width:1100px) and (min-height:700px) { .hardware { display:block; } }
 .row { display:flex; gap:5px; }
 .row>* { flex:1; min-width:0; }
 .btn { font-size:13px; padding:0 6px; }
 .pair { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
 .rider-choice svg { width:18px; height:25px; vertical-align:middle; margin-right:3px; }
+.rider-choice img { width:27px; height:38px; object-fit:contain; vertical-align:middle; margin-right:3px; }
 .tog-label { font-size:11px; color:var(--muted); display:block; margin:0 0 3px; }
 .brake-setting { margin-top:5px; }
 .brake-setting label { font-size:12px; }
@@ -90,7 +91,9 @@ select { background:#202c38; border:1px solid #62789a; border-radius:6px; color:
 .energy-title { grid-column:1/-1; margin:0; font-size:13px; }
 .energy-tower { display:flex; flex-direction:column-reverse; min-height:180px; border:1px solid #b4c1cd; border-radius:5px;
   background:#0d141d; overflow:hidden; }
-.energy-tower div { min-height:0; position:relative; box-shadow:inset 0 1px #ffffff55; flex-shrink:0; }
+.energy-tower div { min-height:0; position:relative; box-shadow:inset 0 1px #ffffff55; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; }
+.energy-tower span { color:#10161f; font-size:10px; font-weight:700; z-index:1; }
 .energy-tower div::after { content:''; position:absolute; inset:0; background:linear-gradient(90deg,#ffffff25,transparent,#0003); }
 .energy-key { display:flex; flex-direction:column; justify-content:space-around; min-width:0; }
 .energy-key p { font-size:12px; margin:2px 0; }
@@ -105,12 +108,14 @@ select { background:#202c38; border:1px solid #62789a; border-radius:6px; color:
 .calc p { margin:4px 0; }
 .small { font-size:11px; color:var(--muted); line-height:1.4; }
 #notebook { display:grid; grid-template-columns:minmax(0,1fr) 320px; grid-template-rows:1fr 48px; }
-.notebook-main { min-height:0; min-width:0; max-width:100%; overflow:auto; padding:16px; }
+.notebook-main { min-height:0; min-width:0; max-width:100%; overflow:hidden; padding:16px;
+  display:flex; flex-direction:column; }
+.notebook-body { min-height:0; flex:1; overflow:auto; }
 .plot-wrap { background:#121d28; border:1px solid #3a4d60; border-radius:12px; padding:12px; }
 .plot-wrap h2 { font-size:14px; margin:0 0 3px; }
 #mass-plot { width:100%; height:300px; display:block; }
 .plot-legend { display:flex; gap:20px; color:var(--muted); font-size:12px; }
-.table-bar { display:flex; gap:8px; align-items:center; margin:12px 0 6px; }
+.table-bar { display:flex; gap:8px; align-items:center; margin:12px 0 6px; flex:none; }
 .table-bar span { flex:1; font-size:12px; }
 .table-scroll { overflow:auto; max-width:100%; max-height:260px; border:1px solid #344456; }
 table { border-collapse:collapse; font:11px var(--readout-font); white-space:nowrap; }
@@ -122,6 +127,10 @@ textarea { width:100%; min-height:120px; background:#0d141d; color:var(--ink); b
   border-radius:8px; font:14px 'Segoe UI',sans-serif; padding:9px; margin:10px 0; resize:vertical; }
 #copy-fallback { min-height:80px; }
 #compare-result { font-size:13px; line-height:1.5; }
+#compare-result:not(:empty) { padding:10px; margin:8px 0; border:1px solid #62789a; border-radius:9px; background:#1c2834; }
+#compare-result.has-evidence { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 12px; }
+#compare-result.has-evidence>strong,#compare-result.has-evidence>p:last-child { grid-column:1/-1; }
+#compare-result p { margin:4px 0; }
 .svg-label { fill:#e8edf3; font:12px 'Segoe UI',sans-serif; paint-order:stroke; stroke:#111c29; stroke-width:4px; }
 .svg-label.small-label { font-size:10px; }
 .scene-number { fill:#d0c440; font:700 26px var(--readout-font); }
@@ -132,7 +141,7 @@ body.compact header { padding:4px 7px; gap:5px; flex-wrap:nowrap; }
 body.compact h1 { font-size:17px; white-space:nowrap; }
 body.compact h1 small { display:none; }
 body.compact .seg button,body.compact .icon-btn { font-size:12px; padding:0 7px; }
-body.compact #design { grid-template-columns:minmax(0,1fr) 235px; grid-template-rows:minmax(0,1fr) 150px 42px; }
+body.compact #design { grid-template-columns:minmax(0,1fr) 235px; grid-template-rows:minmax(0,1fr) 160px 42px; }
 body.compact .stage { grid-row:1; }
 body.compact .lab { padding:6px 8px; }
 body.compact .rules { gap:3px; }
@@ -152,11 +161,15 @@ body.compact .control-block { padding-top:0; border:0; }
 body.compact .control-block h2 { font-size:10px; margin-bottom:3px; }
 body.compact .sliders { grid-template-columns:1fr; gap:0; }
 body.compact .slider label { font-size:10px; }
-body.compact input[type=range] { height:27px; }
+body.compact .slider { display:grid; grid-template-columns:58px minmax(0,1fr); align-items:center; gap:3px; }
+body.compact .slider label { flex-wrap:wrap; }
+body.compact input[type=range] { height:44px; }
 body.compact .pair { display:flex; flex-direction:column; gap:3px; }
 body.compact .pair .tog-label { display:none; }
 body.compact .btn { font-size:11px; padding:0 3px; }
 body.compact .rider-choice svg { display:none; }
+body.compact .rider-choice { display:flex; align-items:center; justify-content:center; }
+body.compact .rider-choice img { width:22px; height:32px; }
 body.compact .rider-mass { display:block; margin-top:4px; }
 body.compact .hintbar { padding:3px 9px; }
 body.compact #hint { font-size:11px; min-height:30px; }
@@ -213,6 +226,48 @@ body.stack .keys { display:none; }
   body.stack .table-bar { flex-wrap:wrap; }
   body.stack .table-bar span { flex-basis:100%; }
 }
+/* The narrow Design deck keeps every short choice beside the live lab. */
+body.stack #design-scroll { display:flex; flex-direction:column; overflow:hidden; }
+body.stack #design .stage { height:auto; flex:1; min-height:135px; }
+body.stack #design .lab { min-height:0; padding:5px 8px; }
+body.stack #design .lab h2 { font-size:12px; margin:4px 0 2px; }
+body.stack #design .lab-sub { font-size:10px; margin-bottom:3px; }
+body.stack #design .stamp,body.stack #design .challenge-row,body.stack #design .hardware { display:none; }
+body.stack #design .rules { gap:2px; }
+body.stack #design .rule-row { font-size:10px; grid-template-columns:35px repeat(3,1fr); }
+body.stack #design .rule-row b { font-size:10px; }
+body.stack #design .rule-row span { padding:2px 1px; }
+body.stack #design #lab-status { min-height:26px; margin:3px 0 0; font-size:10px; }
+body.stack #design .controls { grid-template-columns:1fr 1fr; padding:4px 8px; gap:5px 8px; }
+body.stack #design .control-block { padding-top:3px; }
+body.stack #design .control-block h2 { font-size:10px; margin-bottom:2px; }
+body.stack #design .sliders { grid-template-columns:1fr; gap:0; }
+body.stack #design .slider { display:grid; grid-template-columns:58px minmax(0,1fr); gap:3px; align-items:center; }
+body.stack #design .slider label { font-size:10px; flex-wrap:wrap; }
+body.stack #design .pair { display:flex; flex-direction:column; gap:3px; }
+body.stack #design .tog-label { display:none; }
+body.stack #design .btn { font-size:11px; padding:0 3px; }
+body.stack #design #friction { width:100%; }
+body.stack #design .rider-choice { display:flex; flex-direction:column; align-items:center; justify-content:center; }
+body.stack #design .rider-choice img { height:24px; width:20px; margin:0; }
+body.stack #design .brake-setting { margin-top:0; }
+body.stack #design .hintbar { min-height:52px; padding:3px 8px; }
+body.stack #design #hint { font-size:11px; }
+@media (max-width:800px) and (orientation:landscape) {
+  body.compact .rider-choice img { display:none; }
+}
+@media (max-height:500px) {
+  body.compact .lab { padding:4px 8px; }
+  body.compact .rule-row span { padding:1px; }
+  body.compact .lab h2 { margin:4px 0 1px; }
+}
+body.stack #notebook-scroll { display:grid; grid-template-rows:minmax(0,1fr) 228px; overflow:hidden; }
+body.stack #notebook .notebook-main { min-height:0; overflow:hidden; padding:8px; }
+body.stack #notebook .notebook-side { min-height:0; height:228px; overflow:auto; padding:6px 8px; }
+body.stack #notebook .notebook-side label { font-size:12px; line-height:1.3; }
+body.stack #notebook .notebook-side textarea { min-height:60px; height:60px; margin:6px 0; font-size:12px; }
+body.stack #notebook .notebook-side>.small { margin:4px 0; line-height:1.25; }
+body.stack #notebook #mass-plot { height:150px; }
 </style>
 </head>
 <body>
@@ -240,7 +295,7 @@ body.stack .keys { display:none; }
         <button class="btn" id="reset" aria-label="Reset design" title="Reset design (R)">↺</button>
       </div>
       <h2>One design. Three riders.</h2>
-      <p class="lab-sub">Zone ≥ 1 m/s · Stop &lt; 296 m · Peak ≤ 1.5 g</p>
+      <p class="lab-sub">Lab: zone ≥ 1 m/s · x &lt; 296 m · peak ≤ 1.5 g</p>
       <div class="rules" id="rules" aria-live="polite"></div>
       <p id="lab-status">Ready at the launch. Press Ride.</p>
       <div class="challenge-row"><span id="challenge-status"></span></div>
@@ -318,22 +373,26 @@ body.stack .keys { display:none; }
   <section id="notebook" class="view" aria-label="Ride notebook" hidden>
     <div class="mode-scroll" id="notebook-scroll">
     <div class="notebook-main">
+      <div class="notebook-body">
       <div class="plot-wrap"><h2>Same cable, different masses</h2>
         <p class="small">Speed at the brake zone for the current design. × means stalled before the zone.</p>
         <svg id="mass-plot" role="img" aria-label="Brake zone speed versus rider mass"></svg>
         <div class="plot-legend"><span>● With friction</span><span>◇ Friction off</span></div>
       </div>
-      <div class="table-bar"><span id="saved-status">Notebook stays on this device.</span>
-        <button class="btn" id="copy">Copy table</button><button class="btn" id="clear">Clear notebook</button></div>
+      <div id="compare-result" aria-live="polite"></div>
       <div class="table-scroll"><table id="ride-table"></table></div>
       <textarea id="copy-fallback" aria-label="Table text to copy" readonly hidden></textarea>
+      </div>
+      <div class="table-bar"><span id="saved-status">Notebook stays on this device.</span>
+        <button class="btn" id="copy">Copy table</button><button class="btn" id="clear">Clear notebook</button></div>
     </div>
     <aside class="notebook-side">
-      <label for="conclusion">Why does a brake that pushes harder at higher speed treat light and heavy riders more evenly?</label>
+      <label for="conclusion">How did the two brakes change stopping point and peak braking for light and heavy riders?
+        Use their force rules to explain your results.</label>
       <textarea id="conclusion" aria-label="Explain how the two brakes treat different masses."
         placeholder="Use a speed, stopping point or peak g from your tests."></textarea>
       <p class="small">This conclusion is unsaved. Saved rides never leave this device.</p>
-      <button class="btn" id="compare">Compare</button><p id="compare-result" aria-live="polite"></p>
+      <button class="btn" id="compare">Compare</button>
       <div class="calc"><h2>Lab assumptions</h2><p>g = 9.81 m/s² · ρ = 1.20 kg/m³</p>
         <p>New μ = 0.015 · Worn μ = 0.030</p><p>Upright CᵈA = 0.50 m² · Tuck = 0.30 m²</p>
         <p>The three safety rules are lab settings, not industry standards.</p></div>
@@ -365,7 +424,7 @@ body.stack .keys { display:none; }
     sample:null,rides:[],passed:[],challenge:'',revision:0,elapsed:0,active:[],storage:true};
   const ART = {valley:'art:zl-valley',cliff:'art:zl-cliff',tree:'art:zl-tree',platform:'art:zl-platform',
     trolley:'art:zl-trolley',pad:'art:zl-pad',generator:'art:zl-magnet'};
-  // These tokens mark the future approved paintings. Code silhouettes are used until owner review.
+  // Painted rider assets are sized from their overhead attachment, independently of trolley rotation.
   const RIDER_ART = {light:['art:zl-rider-light-up','art:zl-rider-light-tuck'],
     mid:['art:zl-rider-mid-up','art:zl-rider-mid-tuck'],heavy:['art:zl-rider-heavy-up','art:zl-rider-heavy-tuck']};
   function primaryVisible() {
@@ -376,27 +435,43 @@ body.stack .keys { display:none; }
   const L = {
     design:'Set the cable and the brake, then press Ride. The card checks three safety rules.',
     three:'Now press Test all three. One design has to work for every rider.',
-    stall:'Stuck in the middle. Not enough height for that cable.',
+    stall:'Stuck before the brake zone. Lower Tree anchor or Cable sag, then press Ride or Test all three.',
     edge:'Too fast at the platform. Pick a brake or make it stronger.',
     hard:'That brake grabbed too hard for this rider.',
     pass:'All three riders safe. That is a design.',
     ledger:'Drag the scrubber along the ride. The bars always add up to the energy you started with.',
     notebook:'Compare the plot and your ride table. Write a reason, then press Compare.',
-    notebookScroll:'Inspect the plot. Scroll down to write a reason, then press Compare.',
     reset:'Set the cable and the brake, then press Ride.',
     changed:'Press Ride to test this changed design, or press Test all three.',
     changedUp:'Scroll up to Ride or Test all three to test this changed design.',
     off:'Press Ride to compare height and motion energy with friction and the brake off.',
     offDone:'Open Ledger to compare height and motion. Press Ride to run this what-if again.',
     good:'This rider passes all three rules. Press Test all three to check the other masses.',
-    compare:'A pad gives the same force to every rider. A generator pushes harder at higher speed, so slower light riders feel less force.'
+    compare:'Compare each brake\'s stopping point and peak braking for light and heavy riders. Use those measurements to review your explanation.',
+    compareNeed:'Open Design. Press Test all three with each brake on the same cable, trolley and posture. Then open Notebook and press Compare.',
+    compareWrite:'Write your explanation in the conclusion box. Then press Compare to inspect your measured evidence.',
+    watch:'Watch the ride. Change a setting to cancel and redesign.',
+    passedNext:'All three riders safe. Open Ledger to follow the energy, or choose a new challenge.',
+    failedNext:'Review the crosses, adjust the brake, then press Test all three again.',
+    singleFailedNext:'Review the crossed rule. Adjust the brake, then press Ride or Test all three.',
+    offSingleDone:'Open Ledger to compare height and speed. Change a setting or press Ride again.',
+    cards:'Choose a challenge, then press Back to design.',
+    copyDone:'Ride table copied. It stays under your control on this device.',
+    copyManual:'Select the table text below, then copy it with Control C.',
+    cleared:'Notebook cleared. Your earned challenges remain on this device.',
+    briefs:{
+      Z1:'Safe for everyone. Choose a brake and press Test all three.',
+      Z2:'Low tree: anchor at 25 meters. Choose a brake and press Test all three.',
+      Z3:'Rainy day: worn trolley. Choose a brake and press Test all three.'
+    }
   };
   const V = Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,
     speaks:'#ride, #test',welcome:()=>{
       if (state.mode==='design') return state.hasRidden || $('cards').open || !primaryVisible() ? null :
-        ['design',{valid:()=>!state.running && !state.hasRidden && !$('cards').open && primaryVisible(),needs:'#ride'}];
+        [state.design.off ? 'off' : 'design',
+          {valid:()=>!state.running && !state.hasRidden && !$('cards').open && primaryVisible(),needs:'#ride'}];
       if (state.mode==='ledger') return ['ledger',{valid:()=>!state.scrubbed}];
-      return document.body.classList.contains('stack') ? 'notebookScroll' : 'notebook';
+      return 'notebook';
     }});
   function hint(value) { $('hint').textContent=value; }
   function mk(tag,attrs,parent) {
@@ -411,7 +486,11 @@ body.stack .keys { display:none; }
     return el;
   }
   const fmt = (n,d=1) => Number.isFinite(n) ? n.toFixed(d) : 'not reached';
-  const stopLabel = x => x<296 && 296-x<.05 ? x.toFixed(3) : fmt(x);
+  const stopLabel = x => {
+    if (x>=296 || 296-x>=.05) return fmt(x);
+    const shown=x.toFixed(3);
+    return +shown>=296 ? '<296' : shown;
+  };
   const joules = n => Math.round(n).toLocaleString('en-US');
   function geometry(d) {
     const D=Math.hypot(300,d.H-45),ex=300/D,ey=(d.H-45)/D,a2=d.b*d.b+D*D/4;
@@ -502,11 +581,14 @@ body.stack .keys { display:none; }
   }
   function change() {
     stopRide();
+    V.hush();
     state.revision++;
     state.results={};
     state.ghosts=[];
     state.sample=null;
     state.batchVerdict=null;
+    $('compare-result').textContent='';
+    $('compare-result').classList.remove('has-evidence');
     V.dropQueued();
     const above=!primaryVisible();
     hint(above ? L.changedUp : state.design.off ? L.off : L.changed);
@@ -554,7 +636,7 @@ body.stack .keys { display:none; }
       const r=state.results[m],values=r ? [[r.reached,r.zone===null ? 'no zone' : fmt(r.zone,2)+' m/s'],
         [r.stopped,stopLabel(r.x)+' m'],[r.gentle,fmt(r.peak,2)+' g']] : [[null,'zone'],[null,'stop'],[null,'peak']];
       return `<div class="rule-row"><b>${m} kg</b>${values.map(([pass,v])=>
-        `<span class="${pass===null ? '' : pass ? 'ok' : 'warn'}">${pass===null ? '·' : pass ? '✓' : '×'} ${v}</span>`).join('')}</div>`;
+        `<span class="${pass===null ? '' : pass ? 'ok' : 'warn'}">${pass===null ? '·' : pass ? '✓' : '×'} ${v.replaceAll('<','&lt;')}</span>`).join('')}</div>`;
     }).join('');
     $('rules').hidden=state.design.off;
     if (state.design.off) $('lab-status').textContent='What-if: friction, drag and brake off. No lab verdict.';
@@ -618,7 +700,7 @@ body.stack .keys { display:none; }
   }
   function start(batch=false) {
     stopRide();
-    V.dropQueued();
+    V.hush();
     state.revision++;
     state.results={};
     state.ghosts=[];
@@ -633,7 +715,7 @@ body.stack .keys { display:none; }
     $('ride').textContent='↻ Ride again';
     $('test').textContent=batch ? 'Testing at 4×' : 'Test all three';
     $('lab-status').textContent=batch ? 'Three masses. Two seconds between launches.' : 'Riding in real time. Watch the brake zone.';
-    hint('Watch the ride. Change a setting to cancel and redesign.');
+    hint(L.watch);
     Curio.tone(420,.07,.04);
     soundStart();
     lab();
@@ -670,7 +752,7 @@ body.stack .keys { display:none; }
     if (state.design.off) { hint(L.offDone); return; }
     if (all && !state.design.off) {
       $('lab-status').textContent='All three riders safe. One design passes every lab rule.';
-      hint('All three riders safe. Open Ledger to follow the energy, or choose a new challenge.');
+      hint(L.passedNext);
       V.say('pass',{valid:()=>state.revision===rev});
       Curio.yes();
       if (state.challenge && challengeFits(state.challenge) && !state.passed.includes(state.challenge)) {
@@ -683,7 +765,7 @@ body.stack .keys { display:none; }
       if (r) $('lab-status').textContent=r.kind==='stall' ? `${r.m} kg: stuck at ${fmt(r.x)} m, before the brake zone.` :
         r.kind==='edge' ? `${r.m} kg: hit the platform at ${fmt(r.v,2)} m/s.` :
         `${r.m} kg: ${fmt(r.peak,2)} g exceeds the 1.5 g limit. Change the brake and test again.`;
-      hint('Review the crosses, adjust the brake, then press Test all three again.');
+      hint(r?.kind==='stall' ? L.stall : L.failedNext);
       if (r) V.say(r.kind==='stall' ? 'stall' : r.kind==='edge' ? 'edge' : 'hard',{valid:()=>state.revision===rev});
     }
   }
@@ -706,9 +788,10 @@ body.stack .keys { display:none; }
         if (batch) finishBatch();
         else {
           const r=state.last;
-          hint(r.d.off ? 'Open Ledger to compare height and speed. Change a setting or press Ride again.' :
-            r.pass ? L.good : 'Review the crossed rule. Adjust the brake, then press Ride or Test all three.');
-          if (!V.heard('three')) {
+          hint(r.d.off ? L.offSingleDone :
+            r.pass ? L.good : r.kind==='stall' ? L.stall :
+            L.singleFailedNext);
+          if (!r.d.off && !V.heard('three')) {
             V.how('three',{valid:()=>state.revision>0 && !state.running && state.mode==='design',needs:'#test'});
           }
         }
@@ -717,27 +800,20 @@ body.stack .keys { display:none; }
     }
     requestAnimationFrame(tick);
   }
+  function riderArt(m,tuck) {
+    return RIDER_ART[m<53 ? 'light' : m>95 ? 'heavy' : 'mid'][tuck ? 1 : 0];
+  }
   function silhouetteIcon(m,tuck) {
-    const w=m<53 ? 6 : m>95 ? 10 : 8;
-    return `<svg viewBox="-15 0 35 50" aria-hidden="true"><circle cx="0" cy="8" r="5" fill="currentColor"/>
-      <path d="M0 16v${tuck ? 13 : 19}m0 -13l12 -9m-12 22l${tuck ? '13 -3 0 12' : '3 16m-3 -16l-5 15'}"
-      stroke="currentColor" stroke-width="${w}" fill="none" stroke-linecap="round"/></svg>`;
+    return `<img src="${riderArt(m,tuck)}" alt="">`;
   }
   function rider(parent,x,y,dataX,geo,d,m,opacity=1,label=false,scale=1,xScale=scale) {
     const angle=Math.atan(geo.slope(dataX)*scale/xScale)*180/Math.PI;
     const g=mk('g',{transform:`translate(${x},${y})`,opacity},parent);
     const trolley=mk('g',{transform:`rotate(${-angle})`},g);
     mk('image',{href:ART.trolley,x:-1.8*scale,y:-2.2*scale,width:3.6*scale,height:3.6*scale},trolley);
-    const h=(m<53 ? 7.5 : 8.5)*scale,w=(m<53 ? 1.4 : m>95 ? 2.3 : 1.8)*scale;
-    mk('path',{d:`M0 4L0 ${h*.3}`,stroke:'#d8c99b','stroke-width':2},g);
-    const body=mk('g',{transform:`translate(0,${scale*1.2})`},g);
-    mk('circle',{cx:0,cy:h*.1,r:h*.1,fill:'#c4d2dc',stroke:'#111f2b','stroke-width':1},body);
-    mk('path',{d:`M0 ${h*.27}L0 ${h*.58}M0 ${h*.35}L${w*2} ${h*.13}`,stroke:'#c4d2dc',
-      'stroke-width':w,fill:'none','stroke-linecap':'round'},body);
-    mk('path',{d:d.tuck ? `M0 ${h*.56}L${h*.27} ${h*.45}L${h*.2} ${h*.68}` :
-      `M0 ${h*.56}L${h*.1} ${h*.88}M0 ${h*.56}L${-h*.12} ${h*.86}`,
-      stroke:'#a2b6c6','stroke-width':w*.8,fill:'none','stroke-linecap':'round'},body);
-    mk('path',{d:`M${-w} ${h*.48}L${w} ${h*.53}`,stroke:'#d0c440','stroke-width':2},body);
+    const h=(m<53 ? 9.7 : 11)*(d.tuck ? .86 : 1)*scale,w=h*.66;
+    mk('image',{href:riderArt(m,d.tuck),x:-w*.46,y:scale*.5,width:w,height:h,
+      preserveAspectRatio:'xMidYMin meet'},g);
     if (label) text(g,0,-3.2*scale,m+' kg','svg-label small-label','middle');
     return g;
   }
@@ -780,14 +856,15 @@ body.stack .keys { display:none; }
       text(svg,16,20,'ZIPLINE / ENERGY & WORK','svg-label small-label');
       text(svg,16,37,'300 m span · ellipse cable','svg-label small-label').id='stage-subtitle';
       text(svg,W-16,29,'0.0 m/s','scene-number','end').id='speed-number';
-      for (const h of [-15,0,15,30,45].filter(h=>h>=floor)) {
+      const heightTicks=W<400 && H<200 ? [0,45] : [-15,0,15,30,45];
+      for (const h of heightTicks.filter(h=>h>=floor)) {
         mk('line',{x1:4,y1:Y(h),x2:24,y2:Y(h),stroke:'#d6dfe9','stroke-opacity':.6},svg);
         text(svg,6,Y(h)-4,h+' m','svg-label small-label');
       }
       for (const x of [0,100,200,300]) text(svg,X(x),bottom+16,x+' m','svg-label small-label',
         x===0 ? 'start' : x===300 ? 'end' : 'middle');
       text(svg,W-12,53,'rider not to scale · 5×','svg-label small-label','end');
-      text(svg,X(270)-6,Y(geo.y(276))-14,'brake 276 to 296 m','svg-label small-label','end');
+      text(svg,X(240)-6,Y(geo.y(276))-14,'brake 276 to 296 m','svg-label small-label','end');
       text(svg,16,H-traceH+4,'SPEED TRACE / m/s','svg-label small-label');
       const trace=mk('g',{id:'speed-trace'},svg),ph=Math.max(25,traceH-35);
       const plane=Plane(trace,{x:[4,296],y:[0,30],left:42,top:H-traceH+12,width:Math.max(80,W-70),height:ph,
@@ -843,7 +920,7 @@ body.stack .keys { display:none; }
       }
     } else {
       rider(dynamic,X(4),Y(geo.y(4)),4,geo,state.design,state.design.m,1,false,scale,X(1)-X(0));
-      text(dynamic,W/2,H*.4,'Design it. Ride it. Account for it.','svg-label','middle');
+      if (W>=500 && H>=200) text(dynamic,W/2,H*.4,'Design it. Ride it. Account for it.','svg-label','middle');
     }
     if (state.running && state.sample?.x>=276 && state.design.brake!=='none' && !state.design.off) {
       const s=state.sample,color=state.design.brake==='generator' ? '#9ee6d8' : '#ffb070';
@@ -862,8 +939,12 @@ body.stack .keys { display:none; }
     const s=atTime(r,r.time*+$('scrub').value/1000),battery=r.d.brake==='generator' ? s.work*.8 : 0;
     const e={...s,battery,brakeHeat:s.work-battery},total=energies.reduce((a,[key])=>a+e[key],0);
     $('energy-title').textContent=`Start total ${joules(r.total)} J`;
-    $('energy-tower').innerHTML=energies.map(([key,name,color])=>
-      `<div style="height:${100*e[key]/r.total}%;background:${color}" title="${name}: ${joules(e[key])} J"></div>`).join('');
+    const shortNames=['Height','Motion','Roll','Drag','Brake','Store'];
+    $('energy-tower').innerHTML=energies.map(([key,name,color],i)=>{
+      const fraction=e[key]/r.total;
+      const label=fraction*$('energy-tower').clientHeight>=26 ? shortNames[i] : '';
+      return `<div style="height:${100*fraction}%;background:${color}" title="${name}: ${joules(e[key])} J"><span>${label}</span></div>`;
+    }).join('');
     $('energy-tower').setAttribute('aria-label',energies.map(([key,name])=>`${name} ${joules(e[key])} joules`).join(', '));
     $('energy-key').innerHTML=energies.map(([key,name,color])=>
       `<p><i style="background:${color}"></i>${name}<strong>${joules(e[key])} J${key==='battery' ? ` · ${(e[key]/3600).toFixed(2)} Wh` : ''}</strong></p>`).join('');
@@ -895,7 +976,7 @@ body.stack .keys { display:none; }
   }
   function notebook() {
     $('ride-table').innerHTML='<thead><tr>'+headers.map(h=>`<th>${h}</th>`).join('')+'</tr></thead><tbody>'+
-      state.rides.map((r,i)=>'<tr>'+rowValues(r,i).map(v=>`<td>${v}</td>`).join('')+'</tr>').join('')+'</tbody>';
+      state.rides.map((r,i)=>'<tr>'+rowValues(r,i).map(v=>`<td>${String(v).replaceAll('<','&lt;')}</td>`).join('')+'</tr>').join('')+'</tbody>';
     $('saved-status').textContent=state.storage ? `${state.rides.length} rides saved on this device only.` : 'Storage unavailable. Rides last this session.';
     drawPlot();
   }
@@ -935,7 +1016,7 @@ body.stack .keys { display:none; }
       hint(L.ledger);
       ledger();
     } else if (mode==='notebook') {
-      hint(document.body.classList.contains('stack') ? L.notebookScroll : L.notebook);
+      hint(L.notebook);
       notebook();
     }
     else { hint(!primaryVisible() ? L.changedUp : state.hasRidden ? L.changed : L.design); drawScene(); }
@@ -976,9 +1057,11 @@ body.stack .keys { display:none; }
   $('test').onclick=()=>start(true);
   $('reset').onclick=reset;
   $('briefs').onclick=()=>{
+    if (state.running) stopRide();
+    V.hush();
     state.beforeCardsHint=$('hint').textContent;
     state.cardHint='';
-    hint('Choose a challenge, then press Back to design.');
+    hint(L.cards);
     $('cards').showModal();
     Curio.tone(400,.05,.03);
   };
@@ -991,10 +1074,15 @@ body.stack .keys { display:none; }
   $('challenge').onchange=()=>{
     const id=$('challenge').value;
     state.challenge=id;
-    if (!id) return;
+    if (!id) {
+      state.cardHint=L.changed;
+      hint(L.cards);
+      $('brief-text').textContent='Free design. Keep testing and revising the current cable, trolley and brake.';
+      return;
+    }
     state.design={...defaults,H:id==='Z2' ? 25 : 15,worn:id==='Z3'};
     change();
-    hint(`${id==='Z1' ? 'Safe for everyone' : id==='Z2' ? 'Low tree: anchor at 25 m' : 'Rainy day: worn trolley'}. Choose a brake and press Test all three.`);
+    hint(L.briefs[id]);
     state.cardHint=$('hint').textContent;
     $('brief-text').textContent=(id==='Z1' ? 'Default cable and new trolley.' :
       id==='Z2' ? 'Tree anchor at 25 meters and new trolley.' : 'Default cable and worn trolley.')+
@@ -1003,20 +1091,67 @@ body.stack .keys { display:none; }
   $('scrub').oninput=()=>{ state.scrubbed=true; V.dropQueued(); ledger(); };
   $('copy').onclick=async()=>{
     const value=[headers.join('\t'),...state.rides.map((r,i)=>rowValues(r,i).join('\t'))].join('\n');
-    try { await navigator.clipboard.writeText(value); hint('Ride table copied. It stays under your control on this device.'); }
+    try { await navigator.clipboard.writeText(value); hint(L.copyDone); }
     catch {
       $('copy-fallback').hidden=false;
       $('copy-fallback').value=value;
       $('copy-fallback').focus({preventScroll:true});
       $('copy-fallback').select();
-      hint('Select the table text below, then copy it with Control C.');
+      hint(L.copyManual);
     }
     Curio.tone(500,.06,.03);
   };
-  $('clear').onclick=()=>{ state.rides=[]; save(); notebook(); hint('Notebook cleared. Your earned challenges remain on this device.'); };
+  $('clear').onclick=()=>{
+    state.rides=[];
+    $('compare-result').textContent='';
+    $('compare-result').classList.remove('has-evidence');
+    $('copy-fallback').value='';
+    $('copy-fallback').hidden=true;
+    save();
+    notebook();
+    hint(L.cleared);
+  };
   $('compare').onclick=()=>{
-    $('compare-result').textContent=L.compare;
-    hint('Compare your explanation with the evidence. Adjust your conclusion if needed.');
+    $('compare-result').classList.remove('has-evidence');
+    const showEvidence=()=>{
+      const scroller=$('compare-result').parentElement;
+      scroller.scrollTop=Math.max(0,$('compare-result').offsetTop-scroller.offsetTop);
+    };
+    const groups=new Map();
+    for (const r of state.rides) {
+      const d=r.d,c=state.design;
+      if (r.off || !masses.includes(r.m) || !['pad','generator'].includes(d.brake) ||
+        d.H!==c.H || d.b!==c.b || d.worn!==c.worn || d.tuck!==c.tuck) continue;
+      const key=JSON.stringify([d.brake,d.pad,d.generator]);
+      if (!groups.has(key)) groups.set(key,{});
+      groups.get(key)[r.m]=r;
+    }
+    const complete=[...groups.values()].filter(g=>masses.every(m=>g[m]));
+    const pad=complete.filter(g=>g[35].d.brake==='pad').at(-1);
+    const gen=complete.filter(g=>g[35].d.brake==='generator').at(-1);
+    if (!pad || !gen) {
+      $('compare-result').textContent=L.compareNeed;
+      hint(L.compareNeed);
+      V.how('compareNeed',{valid:()=>state.mode==='notebook'});
+      showEvidence();
+      Curio.tone(280,.07,.03);
+      return;
+    }
+    if (!$('conclusion').value.trim()) {
+      $('compare-result').textContent=L.compareWrite;
+      hint(L.compareWrite);
+      V.how('compareWrite',{valid:()=>state.mode==='notebook',needs:'#conclusion'});
+      showEvidence();
+      return;
+    }
+    const rows=[['Pad',pad],['Generator',gen]].map(([name,group])=>
+      `<p><strong>${name} ${name==='Pad' ? group[35].d.pad+' N' : group[35].d.generator+' N·s/m'}</strong><br>`+
+      [35,120].map(m=>`${m} kg: ${stopLabel(group[m].x)} m, ${fmt(group[m].peak,2)} g`).join('<br>')+'</p>');
+    $('compare-result').innerHTML='<strong>Your measured evidence</strong>'+rows.join('')+
+      '<p>Which force rule explains this pattern? Revise your explanation using these measurements.</p>';
+    $('compare-result').classList.add('has-evidence');
+    showEvidence();
+    hint(L.compare);
     V.how('compare',{valid:()=>state.mode==='notebook'});
     Curio.tone(550,.07,.03);
   };

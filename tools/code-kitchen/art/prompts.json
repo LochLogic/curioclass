@@ -10,7 +10,8 @@
       "quality": 66,
       "local_note": "used faded (about 25 percent) behind the station and rail",
       "source": "flux1-schnell (local)",
-      "review": "checked at display size and in scene, 2026-11-02"
+      "review": "checked at display size and in scene, 2026-11-02",
+      "people": false
     },
     {
       "name": "griddle",
@@ -126,7 +127,7 @@
     },
     {
       "name": "syrup",
-      "prompt": "a glossy amber pool of maple syrup with a short drip over its front edge, isolated topping overlay. On flat pure magenta (#FF00FF).",
+      "prompt": "Warm painterly diner illustration in cream and copper, upper-left morning light, gouache texture. Thin glossy translucent amber maple syrup glaze, wide horizontal elliptical pool with gently scalloped edge and two short delicate drips. Liquid lying flat, low three-quarter view. Syrup alone on flat magenta #FF00FF, no pancake, plate, bottle, people, text or cast shadows. References: original syrup and pancake for style.",
       "aspect": "1:1",
       "cutout": true,
       "key": "magenta",
@@ -136,9 +137,14 @@
       "despill": false,
       "people": false,
       "drawn_by": "codex",
-      "review": "checked at display size and in scene, 2026-11-02",
+      "review": "Cold review redraw: thinner maple glaze, checked in scene 2026-11-08",
       "source": "OpenAI gpt-image, built-in imagegen",
-      "generation_prompt": "Make one game asset only. Warm painterly diner illustration for a middle school coding tool, cream and copper palette, soft morning light from upper left, gentle gouache brush texture, richly shaded clean silhouette with accurate small details. Subject: a glossy amber pool of maple syrup with a short drip over its front edge, isolated topping overlay. Complete object centered with generous margin, isolated on flat pure magenta (#FF00FF), no cast shadow beyond object. No people, faces, body parts, letters, text, numbers, logo or watermark. Square composition. Save the output image."
+      "generation_prompt": "Use case: precise-object-edit. Asset type: one isolated food topping sprite for the Curio Class Code Kitchen educational tool. First reference is the syrup target to replace, second reference is only the style and perspective of the pancake it overlays. Redraw only the syrup as a THIN glossy translucent amber maple syrup glaze, seen slightly above at a low three-quarter view, wide horizontal elliptical pool with irregular gently scalloped edge and two short delicate drips below the front edge. Keep the same warm painterly diner illustration, cream and copper palette, soft upper-left morning light, gouache brush texture, delicious golden amber color and clean silhouette. The glaze should look like liquid lying flat on a pancake, not a mound or jam. Aspect square with generous margin, isolated on perfectly uniform pure magenta #FF00FF. Syrup alone with no pancake, plate, spoon, bottle, people, letters, numbers, logos or shadows outside the object. Save the output image.",
+      "previous_generation_prompt": "Make one game asset only. Warm painterly diner illustration for a middle school coding tool, cream and copper palette, soft morning light from upper left, gentle gouache brush texture, richly shaded clean silhouette with accurate small details. Subject: a glossy amber pool of maple syrup with a short drip over its front edge, isolated topping overlay. Complete object centered with generous margin, isolated on flat pure magenta (#FF00FF), no cast shadow beyond object. No people, faces, body parts, letters, text, numbers, logo or watermark. Square composition. Save the output image.",
+      "review_references": [
+        "../../../_scratch/code-kitchen/syrup-original.webp",
+        "pancake.webp"
+      ]
     },
     {
       "name": "butter",

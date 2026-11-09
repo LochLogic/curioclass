@@ -1,0 +1,1331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Warming Evidence Desk · Curio Class</title>
+<meta name="description" content="Question real climate records, collect evidence and compare your claims with scientists. Grade 8 science. Works offline.">
+<!--
+Warming Evidence Desk, Curio Class. Derived from kit/starter/src.html.
+Grade 8 Earth science, MS-ESS3-5. Students drive. Ask and Argue.
+Frozen 2026-11-05 source records independently recomputed 2026-11-06:
+NASA GISTEMP v4; NOAA GML Mauna Loa; MacFarling Meure et al. 2006 Law Dome;
+LASP NRLTSI2; CMIP7 v2.2.1 volcanic aerosol via NASA GISS; GCB via OWID.
+Attribution: IPCC AR6 WG1 SPM A.1.3 and chapter 3.3.1.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Code MIT, educational content CC BY 4.0. See notes.md for sources and record qualifications.
+One offline file. Only localStorage for this device's evidence and picks, wrapped in try/catch.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#14120f; --panel:#1e1a15; --sec-bg:#27211a; --ink:#f3ede2; --muted:#bfb3a1;
+  --line:#3a332a; --focus:#fff; --brand:#ffb36b; --brand-ink:#1a1208;
+  --btn:#282219; --btn-line:#6f5941; --head-ink:#f3ede2;
+}
+body { height:100dvh; overflow:hidden; }
+button { border:1px solid #655341; border-radius:6px; background:linear-gradient(#342b21,#241e17); min-height:44px; }
+button:hover { border-color:var(--brand); background:#3b3022; }
+button:active { transform:translateY(1px); }
+button[aria-pressed="true"] { border-color:var(--brand); color:var(--brand); background:#453020; box-shadow:inset 0 0 0 1px #ffb36b33; }
+button:disabled { opacity:.46; cursor:default; }
+:focus-visible { outline:3px solid white; outline-offset:2px; }
+header { padding:11px 20px; gap:10px; background:linear-gradient(100deg,#33271b,#1d1914 65%); border-bottom:1px solid #66503a; }
+h1 { font:500 clamp(20px,2.3vw,30px)/1.1 Georgia,serif; letter-spacing:.2px; }
+h1 small { color:#d3c2ac; font-size:12px; letter-spacing:.4px; margin-top:6px; }
+.seg { border-radius:6px; border-width:1px; }
+.seg button { min-height:44px; min-width:44px; font-size:14px; padding:0 17px; border-radius:0; }
+.seg button[aria-pressed="true"] { background:var(--brand); color:var(--brand-ink); }
+.icon-btn { min-height:44px; min-width:44px; font-size:12px; padding:0 12px; border-width:1px; border-radius:6px; }
+main { grid-template-columns:minmax(0,1fr) 340px; min-height:0; }
+.stage { min-width:0; min-height:0; padding:17px 20px 12px; display:flex; flex-direction:column; gap:9px;
+  background:radial-gradient(ellipse at 4% 0%,#76512b40,transparent 60%),repeating-linear-gradient(2deg,#2a2117 0,#2a2117 2px,#271e16 3px,#30251a 5px); }
+.desk-label { display:flex; justify-content:space-between; color:#d6b587; text-transform:uppercase; font-size:10px;
+  letter-spacing:2px; padding:0 2px; }
+.lamp { display:inline-block; width:6px; height:6px; margin-right:8px; border-radius:50%; background:#ffc279;
+  box-shadow:0 0 12px 3px #eeb55966; animation:lamp 5s ease-in-out infinite alternate; }
+@keyframes lamp { from { opacity:.55; } to { opacity:1; } }
+.question { font:500 clamp(16px,1.6vw,22px)/1.3 Georgia,serif; margin:0; min-height:34px; }
+.question strong { display:inline-block; color:var(--brand); font-weight:500; }
+#ask-view { display:flex; flex:1; min-height:0; flex-direction:column; gap:8px; }
+.charts { flex:1; display:grid; grid-template-rows:1fr 1fr; min-height:0; gap:10px; }
+.chart-card { position:relative; min-width:0; min-height:0; border:1px solid #6b5942; border-radius:7px;
+  background:linear-gradient(120deg,#29251d,#1a1916 65%); box-shadow:0 5px 14px #0005,inset 0 1px #c2a27420; overflow:hidden; }
+.chart-card::before,.chart-card::after { content:''; position:absolute; top:7px; width:4px; height:4px; border:1px solid #76634b;
+  border-radius:50%; background:#16130e; z-index:2; }
+.chart-card::before { left:7px; }
+.chart-card::after { right:7px; }
+.chart-head { display:flex; align-items:center; gap:10px; height:62px; padding:4px 20px; }
+.art { width:48px; height:48px; border:2px solid #a38358; border-radius:50%; object-fit:cover; box-shadow:0 3px 8px #0009; flex:none; }
+.chart-head .art { width:58px; height:58px; }
+.chart-head h2 { margin:0; font:500 17px Georgia,serif; }
+.chart-head small { display:block; color:var(--muted); font-size:11px; margin-top:4px; }
+.chart-head .source-label { margin-left:auto; font:10px/1.3 'Segoe UI',sans-serif; color:#c8b391; text-align:right; }
+.chart-svg { display:block; width:100%; height:calc(100% - 62px); touch-action:none; cursor:crosshair; }
+.chart-svg text { font-family:'Segoe UI',sans-serif; }
+.reveal { animation:record-in .4s ease-out; }
+@keyframes record-in { from { opacity:.1; } to { opacity:1; } }
+.tray { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px;
+  background:radial-gradient(ellipse,#50402a30,transparent 75%); }
+.tray h2 { font:20px Georgia,serif; font-weight:400; color:#dbc5a1; margin:0; }
+.tray-records { display:flex; justify-content:center; gap:16px; }
+.tray-records button { display:flex; flex-direction:column; align-items:center; padding:8px; gap:6px; min-width:95px;
+  border-color:#746044; font-size:11px; }
+.tray-records .art { width:64px; height:64px; }
+.readout { min-height:24px; color:#d9c9b3; font:12px/1.4 Consolas,monospace; padding:1px 4px; }
+.answer { min-height:95px; padding:13px 18px; background:linear-gradient(100deg,#392f20,#28231a); border:1px solid #a38255;
+  border-left:4px solid var(--brand); border-radius:5px; box-shadow:0 5px 12px #0005; }
+.answer-top { display:flex; align-items:baseline; gap:12px; margin-bottom:6px; }
+.answer-tag { color:#cdb797; font-size:10px; letter-spacing:1.5px; text-transform:uppercase; }
+.verdict { display:inline-block; font-size:13px; font-weight:700; padding:3px 8px; border-radius:4px; white-space:nowrap; }
+.v0 { color:#b6f0bd; background:#24402b; }
+.v1 { color:#ffd76b; background:#3d3518; }
+.v2 { color:#ffaaa0; background:#44201f; }
+.answer p { margin:0; font-size:14px; line-height:1.5; }
+.answer .note { color:#d7c7ac; font-size:11px; margin-top:7px; }
+.answer.empty { display:flex; align-items:center; color:#cab99d; font:17px Georgia,serif; }
+.data-date { color:#c0ad92; font-size:10px; margin:0; line-height:1.3; }
+.panel { position:relative; min-height:0; min-width:0; gap:9px; padding:12px; overflow:hidden;
+  background:radial-gradient(ellipse at 80% 0%,#4e372533,transparent 55%),var(--panel); border-left:1px solid #766044; }
+.panel h2 { margin:0 0 6px; font:10px/1.1 'Segoe UI',sans-serif; color:#d5be9e; letter-spacing:1.6px; text-transform:uppercase; }
+#ask-controls { display:flex; flex-direction:column; gap:9px; }
+.records { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.record-btn { display:flex; align-items:center; gap:8px; padding:4px 7px; min-height:56px; text-align:left; font-size:12px; }
+.record-btn .art { width:44px; height:44px; }
+.spans { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:4px; }
+.spans button { min-height:64px; padding:4px 1px; font-size:10px; line-height:1.35; }
+.spans small { display:block; font-size:10px; }
+.short-label { display:none; }
+.axis { display:flex; align-items:center; gap:6px; }
+#axis[hidden] { display:flex!important; visibility:hidden; pointer-events:none; }
+.axis span { color:var(--muted); font-size:11px; margin-right:auto; }
+.axis button { min-width:85px; padding:4px 8px; font-size:11px; }
+.board { background:linear-gradient(130deg,#30291f,#211d17); padding:7px; border:1px solid #786044; border-radius:5px; }
+.board-grid { display:grid; grid-template-columns:67px repeat(5,minmax(0,1fr)); gap:2px; align-items:center; }
+.board-grid .col { font-size:10px; text-align:center; color:#d2bda0; padding-bottom:4px; }
+.board-grid .row { color:#dfd2bf; font-size:10px; }
+.cell { min-height:44px; min-width:0; padding:2px 0; border-radius:3px; border-color:#574733; font-size:10px; background:#211c16; }
+.cell:disabled { opacity:1; color:#b8a98e; }
+.cell span { display:block; font-size:12px; }
+.stamp { animation:stamp .25s ease-out; }
+@keyframes stamp { from { transform:scale(1.15); filter:brightness(1.8); } to { transform:scale(1); } }
+.privacy { margin:5px 0 0; font-size:10px; color:var(--muted); }
+.hint { margin:0; font-size:12px; line-height:1.45; min-height:54px; color:#e6d8c1; }
+.panel-bottom { margin-top:auto; display:flex; gap:8px; }
+.panel-bottom button { flex:1; padding:4px 8px; font-size:12px; }
+#board-toggle { display:none; }
+.span-dock { display:none; }
+#argue-view { display:flex; flex:1; min-height:0; flex-direction:column; gap:8px; }
+.claim-table { flex:1; min-height:0; display:grid; grid-template-rows:repeat(4,1fr); gap:8px; }
+.claim-row { display:grid; grid-template-columns:140px 150px minmax(0,1fr); align-items:center; gap:12px; min-height:0;
+  padding:4px 12px; background:linear-gradient(120deg,#322b20,#211e18); border:1px solid #735c40; border-left:4px solid #735c40;
+  border-radius:5px; box-shadow:0 3px 7px #0004; }
+.claim-name { display:flex; align-items:center; gap:9px; font:15px Georgia,serif; }
+.claim-name .art { width:64px; height:64px; }
+.mini { width:150px; height:60px; background:#171713; border:1px solid #4e4636; border-radius:3px; }
+.chips { display:flex; flex-wrap:wrap; gap:5px; }
+.claim-chip { font-size:11px; padding:4px 6px; flex:1 0 22%; }
+.evidence-list { display:flex; gap:4px; flex-wrap:wrap; margin-top:5px; }
+.evidence-chip { padding:3px 4px; font-size:10px; flex:1; min-width:0; }
+.evidence-short { display:none; }
+.no-evidence { color:var(--muted); font-size:10px; margin:5px 0 0; }
+.claim-content { min-width:0; }
+.scientists { display:none; font-size:10px; line-height:1.2; margin-top:0; color:#e0ceb3; }
+.scientists .outline { display:inline-block; padding:1px 4px; border:1px solid #d1af7b; color:#f4d6a8; border-radius:4px; margin:1px; }
+.scientists button { min-width:44px; min-height:44px; font-size:10px; padding:4px 7px; margin:0 2px; }
+.scientists p { margin:2px 0; }
+.science-top { min-height:18px; }
+.science-top b { margin-right:5px; }
+.science-links { display:flex; align-items:center; flex-wrap:wrap; }
+.science-links span { margin-right:4px; }
+.comparison { display:block; font:600 10px/1.3 'Segoe UI',sans-serif; color:#ffd0a0; margin-top:3px; margin-bottom:4px; }
+.claim-row.same { border-left-color:var(--brand); }
+.claim-row.different { border-left:4px dashed #ae9b7f; }
+body.compared .scientists { display:block; }
+body.compared .mini { display:none; }
+body.compared .claim-row { grid-template-columns:140px minmax(0,1fr) minmax(220px,.9fr); }
+body.compared .claim-content { display:contents; }
+body.compared .choice-block { align-self:center; }
+body.compared .scientists { grid-column:3; }
+.overall { padding:9px 12px; background:#2b241a; border:1px solid #806745; border-radius:5px; }
+.overall p { margin:0 0 7px; font:15px Georgia,serif; }
+.overall .privacy { display:inline-block; margin:0 0 0 10px; font:10px 'Segoe UI',sans-serif; }
+.comparison-limit { margin:6px 0 0; font:10px/1.4 'Segoe UI',sans-serif; color:var(--muted); }
+.overall .chips { flex-wrap:nowrap; }
+.overall button { flex:1; font-size:11px; padding:4px 8px; }
+.compare-bar { display:flex; align-items:center; gap:15px; }
+#compare { background:linear-gradient(#ffc78e,#e9a15d); color:#211408; border-color:#ffca94; min-width:155px; padding:7px 16px;
+  font-size:16px; font-weight:600; box-shadow:0 3px 0 #694221; }
+#compare-status { color:#d5c4a9; font-size:12px; }
+.argue-summary { padding:12px; border:1px solid #aa8557; border-radius:5px; background:#33281c; }
+.argue-summary h2 { font:20px Georgia,serif; color:var(--brand); letter-spacing:0; text-transform:none; line-height:1.3; }
+.argue-summary p { font-size:13px; line-height:1.6; }
+.argue-summary .finding { font-size:12px; color:#d4c4aa; }
+body[data-mode="argue"] #ask-controls,body[data-mode="argue"] #ask-view { display:none; }
+body[data-mode="ask"] #argue-view,body[data-mode="ask"] #argue-panel { display:none; }
+body[data-mode="argue"] .panel-bottom { display:none; }
+.calm .lamp { animation:none; }
+.phone-dock { display:none; }
+.compare-privacy { display:none; }
+.board-veil { position:fixed; inset:0; z-index:19; background:#0009; }
+@media (min-height:900px) and (min-width:1000px) {
+  main { grid-template-columns:minmax(0,1fr) 380px; }
+  .stage { padding:26px; gap:13px; }
+  .panel { padding:20px; gap:16px; }
+  .record-btn { min-height:68px; font-size:13px; }
+  .record-btn .art { width:48px; height:48px; }
+  .spans button { min-height:75px; font-size:12px; }
+  .board { padding:12px; }
+  .answer { min-height:122px; padding:18px 22px; }
+  .answer p { font-size:17px; }
+  .chart-head { height:78px; }
+  .chart-head .art { width:72px; height:72px; }
+  .chart-svg { height:calc(100% - 78px); }
+}
+@media (min-height:641px) and (max-height:820px) and (min-width:600px) {
+  header { padding:8px 20px; }
+  .panel { gap:7px; }
+  #ask-controls { gap:7px; }
+  .panel h2 { margin-bottom:4px; }
+  .record-btn { min-height:52px; padding:3px 7px; }
+  .spans button { min-height:52px; }
+  .board { padding:5px; }
+  .hint { min-height:44px; }
+}
+@media (max-width:1100px) {
+  main { grid-template-columns:minmax(0,1fr) 330px; }
+  header { padding:7px 12px; gap:6px; }
+  .icon-btn { padding:0 8px; }
+  .stage { padding:10px; }
+  .panel { padding:8px; gap:7px; }
+  .record-btn { font-size:11px; gap:5px; padding:3px; }
+  .spans button { font-size:10px; }
+  .board-grid { grid-template-columns:54px repeat(5,minmax(0,1fr)); }
+  .board { padding:5px; }
+  .claim-row { grid-template-columns:108px minmax(0,1fr); padding:7px; gap:7px; }
+  .mini { display:none; }
+  .claim-name { font-size:12px; }
+  .claim-name .art { width:44px; height:44px; }
+  .claim-table { grid-template-rows:repeat(4,minmax(112px,1fr)); overflow:auto; }
+  body.compared .claim-row { grid-template-columns:92px minmax(0,1fr); }
+  body.compared .claim-content { display:block; }
+  body.compared .claim-table { display:block; overflow:auto; }
+  body.compared .claim-name { flex-direction:column; align-items:flex-start; gap:5px; }
+  body.compared .scientists { grid-column:2; }
+}
+@media (max-height:640px) and (min-width:600px) {
+  header { padding:4px 9px; gap:5px; }
+  h1 { font-size:18px; }
+  header .seg button { padding:0 10px; font-size:12px; }
+  .icon-btn { font-size:11px; padding:0 7px; }
+  main { grid-template-columns:minmax(0,1fr) 218px; }
+  .stage { gap:5px; padding:4px; }
+  .desk-label { display:none; }
+  .question { font-size:14px; min-height:34px; }
+  #ask-view { gap:4px; }
+  .charts { grid-template-columns:1fr 1fr; grid-template-rows:1fr; gap:6px; }
+  .chart-head { height:52px; padding:4px 9px; gap:5px; }
+  .chart-head .art { width:40px; height:40px; }
+  .chart-head h2 { font-size:11px; }
+  .chart-head small { font-size:10px; }
+  .source-label { display:none; }
+  .chart-svg { height:calc(100% - 52px); }
+  .readout { font-size:10px; min-height:18px; }
+  .answer { min-height:42px; padding:5px 8px; }
+  .answer-top { margin:0; gap:7px; }
+  .answer-tag { display:none; }
+  .answer p,.answer .note { display:none; }
+  .answer .compact-number { display:inline; font:11px Consolas,monospace; }
+  .data-date { font-size:10px; max-height:27px; overflow:hidden; }
+  .panel { padding:7px; gap:7px; }
+  .panel h2 { margin-bottom:4px; }
+  .record-btn { min-height:44px; font-size:10px; }
+  .record-btn .art { width:28px; height:28px; }
+  .span-dock { display:block; }
+  .spans { grid-template-columns:repeat(5,minmax(0,1fr)); }
+  .spans button { min-height:44px; font-size:10px; }
+  .spans .long-label { display:none; }
+  .short-label { display:inline; }
+  #span-section h2 { display:none; }
+  .axis button { min-width:68px; padding:2px 4px; font-size:10px; }
+  #axis[hidden] { display:flex!important; visibility:hidden; pointer-events:none; }
+.axis span { font-size:10px; }
+  .board { display:none; }
+  .board.open { display:block; position:fixed; z-index:20; top:60px; right:5px; width:332px;
+    max-width:calc(100vw - 20px); box-shadow:0 10px 35px #0009; }
+  #board-toggle { display:block; }
+  .board-grid { grid-template-columns:45px repeat(5,minmax(0,1fr)); }
+  .board-grid .col,.board-grid .row { font-size:10px; }
+  .hint { font-size:10px; line-height:1.35; min-height:65px; }
+  .panel-bottom { margin-top:0; }
+  .tray { padding:6px; gap:7px; }
+  .tray h2 { font-size:12px; text-align:center; }
+  .tray-records { display:grid; grid-template-columns:1fr 1fr; gap:5px; }
+  .tray-records button { min-width:80px; flex-direction:row; font-size:10px; padding:3px; }
+  .tray-records .art { width:28px; height:28px; }
+  #argue-view { gap:4px; }
+  #argue-view .question { min-height:26px; }
+  .claim-table { gap:4px; }
+  .claim-table { grid-template-rows:repeat(4,minmax(48px,1fr)); overflow:auto; }
+  .claim-table:has(.evidence-list:not([hidden])) { grid-template-rows:repeat(4,minmax(96px,1fr)); }
+  .claim-row { padding:1px 4px; gap:5px; grid-template-columns:68px minmax(0,1fr); }
+  .claim-name { display:block; font-size:10px; }
+  .claim-name .art { display:none; }
+  .claim-chip { min-height:44px; font-size:10px; padding:2px; flex-basis:22%; }
+  .evidence-list { margin-top:2px; gap:2px; }
+  .evidence-chip { font-size:10px; min-height:44px; }
+  .no-evidence { display:none; }
+  .overall { padding:5px; }
+  .overall p { font-size:12px; margin-bottom:4px; }
+  .overall button { min-height:44px; font-size:10px; padding:2px; }
+  #compare { min-width:115px; min-height:44px; font-size:13px; padding:4px; }
+  .compare-bar { gap:7px; }
+  #compare-status { font-size:10px; }
+  body.compared .claim-row { grid-template-columns:68px minmax(0,1fr); }
+  body.compared .claim-table { overflow:auto; display:block; }
+  body.compared .claim-row { margin-bottom:4px; }
+  body.compared .scientists { font-size:10px; }
+  .argue-summary { padding:8px; }
+  .argue-summary h2 { font-size:15px; }
+  .argue-summary p { font-size:11px; line-height:1.45; }
+  body[data-mode="argue"] main { grid-template-columns:minmax(0,1fr) 90px; }
+  body[data-mode="argue"] .panel { padding:4px; gap:6px; }
+  body[data-mode="argue"] .hint { order:-1; min-height:0; font-size:10px; flex:none; }
+  body[data-mode="argue"] #argue-panel { overflow:auto; min-height:0; }
+  body[data-mode="argue"] .argue-summary { padding:4px; }
+  body[data-mode="argue"] .argue-summary h2 { font-size:12px; }
+  body[data-mode="argue"] .argue-summary p { font-size:10px; }
+  .claim-table,body.compared .claim-table { display:grid; grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-template-rows:minmax(0,1fr); align-items:start; gap:4px; overflow:auto; }
+  .claim-table:has(.evidence-list:not([hidden])) { grid-template-rows:minmax(0,1fr); }
+  .claim-row,body.compared .claim-row { display:block; padding:2px; min-height:0; margin:0; border-left-width:2px; }
+  .claim-name,body.compared .claim-name { display:block; margin:0 0 4px; font:600 10px/1.3 'Segoe UI',sans-serif; }
+  .comparison { display:inline; margin-left:3px; }
+  .claim-content,body.compared .claim-content { display:block; }
+  .choice-block { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; }
+  .choice-block .chips,.choice-block .evidence-list { display:contents; }
+  .choice-block .evidence-list[hidden] { display:none; }
+  .choice-block .claim-chip,.choice-block .evidence-chip { min-width:0; min-height:44px; padding:1px; font-size:10px; line-height:1.2; }
+  .evidence-long { display:none; }
+  .evidence-short { display:inline; }
+  .choice-block .evidence-chip { background:#181916; border-style:dashed; }
+  .choice-block .evidence-chip[aria-pressed="true"] { background:#453020; border-style:solid; }
+  body.compared .scientists { margin-top:6px; font-size:10px; }
+  .scientists .science-links { display:block; }
+  .scientists button { margin:2px 0; padding:2px; }
+  .overall .privacy { margin-left:5px; }
+}
+@media (min-height:641px) { .compact-number { display:none; } }
+@media (max-width:599px) {
+  body { height:100dvh; min-height:100dvh; overflow:hidden; padding-bottom:95px; }
+  header { gap:5px; padding:8px; }
+  h1 { flex-basis:100%; font-size:22px; margin-bottom:4px; }
+  header .seg { flex:1; }
+  header .seg button { flex:1; padding:0 8px; font-size:12px; }
+  .icon-btn { font-size:10px; padding:0 6px; }
+  main { display:flex; flex-direction:column; overflow:auto; min-height:0; }
+  .stage { padding:10px; min-height:600px; flex-shrink:0; }
+  .desk-label { font-size:10px; letter-spacing:1px; }
+  .question { font-size:17px; min-height:46px; }
+  #ask-view { min-height:520px; }
+  .charts { min-height:330px; }
+  .chart-head { height:51px; padding:3px 12px; }
+  .chart-head .art { width:44px; height:44px; }
+  .chart-head h2 { font-size:13px; }
+  .chart-head small { font-size:10px; }
+  .chart-svg { height:calc(100% - 51px); }
+  .chart-head .source-label { display:none; }
+  .tray h2 { font-size:14px; }
+  .tray-records { gap:4px; }
+  .tray-records button { min-width:0; width:75px; padding:4px; font-size:10px; }
+  .tray-records .art { width:42px; height:42px; }
+  .answer { min-height:105px; padding:10px; }
+  .answer p { font-size:12px; }
+  .answer-tag { font-size:10px; }
+  .readout { font-size:10px; }
+  .panel { overflow:visible; flex-shrink:0; border-left:0; border-top:1px solid #806745; padding:12px; }
+  .spans button { min-height:64px; }
+  .record-btn { min-height:56px; font-size:12px; }
+  .record-btn .art { width:44px; height:44px; }
+  .board-grid { grid-template-columns:65px repeat(5,minmax(0,1fr)); }
+  .hint { min-height:40px; }
+  #argue-view { min-height:660px; }
+  .claim-table { display:block; overflow:visible; flex:none; }
+  .claim-row,body.compared .claim-row { display:block; margin-bottom:8px; padding:10px; }
+  .claim-name { margin-bottom:7px; font-size:15px; }
+  body.compared .claim-name { flex-direction:row; align-items:center; }
+  .claim-name .art { width:44px; height:44px; }
+  .claim-chip { min-height:44px; }
+  .overall .chips { flex-wrap:wrap; }
+  .overall button { flex-basis:45%; }
+  .compare-bar { position:fixed; bottom:0; left:0; right:0; z-index:40; min-height:95px; align-items:flex-start;
+    background:#211b13;
+    padding:7px 7px 42px; border:1px solid #8c6e48; }
+  .phone-dock { display:flex; position:fixed; left:0; right:0; bottom:0; z-index:40; gap:5px;
+    background:#241d15; border-top:1px solid #bd925f; padding:7px 7px 43px; box-shadow:0 -5px 18px #0006; }
+  .phone-dock select { min-width:0; min-height:44px; border:1px solid #9e7a50; border-radius:5px;
+    background:#34291d; color:var(--ink); font:12px 'Segoe UI',sans-serif; padding:4px; flex:1; }
+  .phone-dock button { font-size:11px; min-width:77px; padding:4px; }
+  .phone-dock small { position:absolute; bottom:2px; left:9px; font-size:10px; color:var(--muted); }
+  .phone-dock .hint,.compare-bar .hint { position:absolute; left:8px; right:8px; bottom:15px;
+    margin:0; min-height:0; font-size:10px; line-height:1.2; }
+  .compare-privacy { display:block; position:absolute; left:8px; bottom:2px; font-size:10px; color:var(--muted); }
+  body[data-mode="argue"] .phone-dock { display:none; }
+.board-veil { position:fixed; inset:0; z-index:19; background:#0009; }
+}
+</style>
+</head>
+<body data-mode="ask">
+<header>
+  <h1>Warming Evidence Desk<small>Line up the records. Ask what each one did.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-ask" aria-pressed="true">Ask</button>
+    <button id="m-argue" aria-pressed="false">Argue</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Climate evidence desk">
+    <div class="desk-label"><span><i class="lamp"></i>Global records / evidence desk</span><span>1880 to 2025</span></div>
+    <div id="ask-view">
+      <h2 class="question" id="question">What explains the rise?</h2>
+      <div class="charts">
+        <section class="chart-card" id="temperature-card" aria-label="Global temperature record">
+          <div class="chart-head"><img class="art" src="art:icon-temp" alt="Painted weather station">
+            <div><h2>Global temperature</h2><small>°C compared with the 1951 to 1980 average</small></div>
+            <span class="source-label">NASA GISTEMP v4<br>Land + ocean</span></div>
+          <svg class="chart-svg" id="temp-chart" role="img" aria-label="Annual global temperature, 1880 to 2025"></svg>
+        </section>
+        <section class="chart-card" id="record-card" aria-label="Selected factor record">
+          <div class="chart-head" id="record-head" hidden><img class="art" id="record-art" src="art:icon-co2" alt="">
+            <div><h2 id="record-title"></h2><small id="record-unit"></small></div><span class="source-label" id="record-source"></span></div>
+          <svg class="chart-svg" id="record-chart" role="img" aria-label="Pick a record to compare" hidden></svg>
+          <div class="tray" id="tray"><h2>Pick a record to line it up</h2><div class="tray-records" id="tray-records"></div></div>
+        </section>
+      </div>
+      <div class="readout" id="readout" role="status" aria-live="polite" aria-atomic="true">Move over a chart to inspect a year. Arrow keys move one year; Shift moves ten.</div>
+      <div class="span-dock" id="span-dock"></div>
+      <section class="answer empty" id="answer" aria-live="polite">One question. Two records. What fits?</section>
+      <p class="data-date">Data as of: NASA GISTEMP v4, NOAA Mauna Loa and Law Dome, NRLTSI2, CMIP7 volcanic haze,
+        Global Carbon Budget (pulled 2026-11-05; checked 2026-11-06).</p>
+    </div>
+    <div id="argue-view">
+      <h2 class="question">What does <strong>your evidence</strong> support?</h2>
+      <div class="claim-table" id="claim-table"></div>
+      <section class="overall"><p>What explains most of the rise since 1900?<small class="privacy">Saved on this device only.</small></p>
+        <div class="chips" id="overall-choices"></div></section>
+      <div class="compare-bar"><button id="compare" disabled>Compare</button><span id="compare-status">Pick a claim for every record.</span>
+        <small class="compare-privacy">Saved on this device only.</small></div>
+    </div>
+  </section>
+  <aside class="panel" aria-label="Evidence controls">
+    <div id="ask-controls">
+      <section id="records-section"><h2>01 / Records</h2><div class="records" id="records"></div></section>
+      <section id="span-home"><div id="span-section"><h2>02 / Spans</h2><div class="spans" id="spans"></div></div></section>
+      <div class="axis" id="axis" hidden><span>Axis</span><button id="zoomed" aria-pressed="true">Zoomed</button>
+        <button id="zero" aria-pressed="false">From zero</button></div>
+      <section class="board" id="board" aria-labelledby="board-title"><h2 id="board-title">03 / Your evidence board</h2><div class="board-grid" id="board-grid"></div>
+        <p class="privacy">Saved on this device only.</p><button id="board-close" hidden>Close board</button></section>
+    </div>
+    <div id="argue-panel"><div class="argue-summary"><h2 id="summary-title">Make your case</h2>
+      <p id="summary-text" role="status" aria-live="polite">Choose claims for each record. Your own answers can back them up.</p>
+      <p class="comparison-limit">Same compares claims only. Check whether your chosen answers support them.</p>
+      <p class="finding" id="finding"></p></div></div>
+    <p class="hint" id="hint">Tap Carbon dioxide, Sun, Volcanoes or Fossil fuels to line it up under temperature.</p>
+    <div class="panel-bottom"><button id="board-toggle" aria-expanded="false">Board</button><button id="clear">Clear desk</button></div>
+  </aside>
+</main>
+<div class="board-veil" id="board-veil" hidden aria-hidden="true"></div>
+<div class="phone-dock" aria-label="Quick question controls">
+  <select id="mobile-record" aria-label="Choose a record"><option value="">Pick a record</option></select>
+  <select id="mobile-span" aria-label="Choose a span"></select>
+  <button id="mobile-axis" hidden>From zero</button>
+  <small>Saved on this device only.</small>
+</div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const data = "json:data";
+  const R = data.records;
+  const keys = ['co2', 'sun', 'volcano', 'fossil'];
+  const art = {co2:'art:icon-co2', sun:'art:icon-sun', volcano:'art:icon-volcano', fossil:'art:icon-fossil'};
+  const meta = {
+    temp:{name:'Global temperature', color:'#ff7a6e', unit:'°C', source:'NASA GISTEMP v4', digits:2},
+    co2:{name:'Carbon dioxide', color:'#7cc8ff', unit:'ppm', source:'Law Dome + NOAA Mauna Loa', digits:1},
+    sun:{name:'Sun', color:'#ffe066', unit:'W/m²', source:'NRLTSI2 / LASP', digits:2},
+    volcano:{name:'Volcanoes', color:'#c7a6ff', unit:'haze', source:'CMIP7 v2.2.1 / NASA GISS', digits:3},
+    fossil:{name:'Fossil fuels', color:'#a8d18d', unit:'billion tonnes CO₂ / year', source:'Global Carbon Budget / OWID', digits:2}
+  };
+  const spans = [
+    {name:'Long run', short:'Long', question:'the long run, 1900-1919 vs 2004-2023', a:1900, b:2023},
+    {name:'Early rise', short:'Early', years:'1910-1945', question:'the early rise, 1910 to 1945', a:1910, b:1945},
+    {name:'Pause', short:'Pause', years:'1945-1975', question:'the pause, 1945 to 1975', a:1945, b:1975},
+    {name:'Fast rise', short:'Fast', years:'1975-2023', question:'the fast rise, 1975 to 2023', a:1975, b:2023},
+    {name:'Short dips', short:'Dips', question:'the short dips after eruptions', a:1880, b:2023}
+  ];
+  const verdicts = ['Fits', 'Partly', "Doesn't fit"];
+  const symbols = ['✓', '◐', '×'];
+  const answers = {
+    co2:[
+      [0,'Rose from 299 to 399 ppm, up a third, while temperature rose 1.10 °C. It climbed the whole way.'],
+      [0,'Rising slowly, 3.6 ppm per decade, while temperature rose 0.14 °C per decade.'],
+      [2,'Kept rising, 7.0 ppm per decade, while temperature held about flat (0.02 °C per decade). Something held temperature back.'],
+      [0,'Rose fastest of all, 18.4 ppm per decade, while temperature rose fastest, 0.20 °C per decade.'],
+      [2,'Climbed smoothly through all four eruptions. It has no dips to match.']
+    ],
+    sun:[
+      [1,'Up 0.37 W/m², about 0.03 percent, most of it before 1950. Small next to its own 11-year swing of about 1 W/m².'],
+      [0,'Rose 0.11 W/m² per decade while temperature rose 0.14 °C per decade.'],
+      [0,'Dipped slightly, 0.07 W/m² per decade, while temperature held about flat.'],
+      [2,'About flat (-0.02 W/m² per decade). Averaged over each 11-year cycle it slipped from 1361.11 to 1360.94. Temperature rose fastest anyway.'],
+      [2,'Its 11-year cycle changes sunlight by less than 0.1 percent, too small to make the dips after eruptions.']
+    ],
+    volcano:[
+      [2,'No steady trend: eruptions come and go. Haze averaged 0.007 in 1900 to 1919 and 0.005 in 2004 to 2023, both thin.'],
+      [0,'The sky cleared: haze averaged 0.014 from 1880 to 1909 and 0.005 from 1910 to 1945, so more sunlight got through.'],
+      [1,'Quiet until Agung in 1963: haze averaged 0.004 from 1945 to 1962, then 0.009 from 1963 to 1975.'],
+      [2,"Two spikes, El Chichón (1982) and Pinatubo (1991), then thin haze. Spikes can't make a steady rise."],
+      [0,'After 3 of the 4 biggest eruptions the next year was cooler than the 3 years before: '
+        + 'Krakatau -0.16 °C, Agung -0.22, Pinatubo -0.15. El Chichón (+0.06) was hidden by a strong El Niño.']
+    ],
+    fossil:[
+      [0,'Rose 12 times over, from 2.8 to 34.3 billion tonnes of CO₂ a year.'],
+      [0,'Rising slowly, up 0.5 billion tonnes a year each decade.'],
+      [2,'Took off, up 4.4 billion tonnes a year each decade, while temperature held about flat.'],
+      [0,'Kept climbing, up 4.7 billion tonnes a year each decade, as temperature rose fastest.'],
+      [2,'Burning fell about a quarter from 1929 to 1932 and 5 percent in 2020; temperature did not dip with it. Burning acts through CO₂ that builds up for years.']
+    ]
+  };
+  const hazeNote = 'Scientists trace much of the pause to haze from burning coal and oil, which reflects sunlight, plus ocean swings. '
+    + 'That pollution haze is not a record on this desk.';
+  const sourceNote = 'From 1880 to 2024 people released about 2,650 billion tonnes of CO₂ (fuels, cement and cleared land). '
+    + 'The air gained about 1,050 billion tonnes (135 ppm): about 4 of every 10. Oceans and plants took up the rest.';
+  const dipsNote = 'Not every dip is a volcano: El Niño and La Niña swing temperature too.';
+  const claims = ['Drove the long rise', 'Helped in some decades', 'Explains short dips', "Doesn't fit the record"];
+  const scientists = {co2:[0], sun:[1], volcano:[1,2], fossil:[0]};
+  const citations = {co2:[0,3], sun:[1,3], volcano:[4,1], fossil:[0,3]};
+  const reasons = {
+    co2:'It rose the whole century and fastest when temperature rose fastest.',
+    sun:'It helped the early rise, then went flat while temperature climbed fastest.',
+    volcano:'Big eruptions cool the next year or two, and quiet decades helped the early rise.',
+    fossil:'Burning added the carbon dioxide that drove the rise.'
+  };
+  const overall = ['Carbon dioxide from burning fuels', 'The sun', 'Volcanoes', "Can't tell yet"];
+  const finding = 'Scientists find that people caused about all of the warming since the late 1800s: '
+    + 'about 1.07 °C of human-caused warming (1850-1900 to 2010-2019), alongside 1.09 °C measured to 2011-2020. '
+    + 'The sun and volcanoes together added between -0.1 and +0.1 °C.';
+  const L = {
+    ask:'Temperature rose about one degree in a century. Tap Carbon dioxide, Sun, Volcanoes or Fossil fuels to line it up under temperature.',
+    span:'Now tap a span, like Fast rise, to ask the same record a sharper question.',
+    zoom:"The sun's axis is zoomed in. Tap From zero to see how big the change really is.",
+    dips:'The four lines mark the biggest eruptions. Look at temperature the year after each one.',
+    board:'Every record has an answer on your board. Ask more, or tap Argue.',
+    argue:'For each record, tap the claims your evidence supports.',
+    evidence:'Tap up to two of your answers to back that claim.',
+    agree0:'You and the scientists agree on none of the records.',
+    agree1:'You and the scientists agree on 1 of 4 records.',
+    agree2:'You and the scientists agree on 2 of 4 records.',
+    agree3:'You and the scientists agree on 3 of 4 records.',
+    agree4:'You and the scientists agree on all 4 records.',
+    finding:'Scientists find that people caused about all of the warming since the late 1800s.'
+  };
+  const state = {
+    mode:'ask', record:null, span:0, year:1992, cursor:false, zero:{co2:false,sun:false},
+    board:{}, claims:{co2:[],sun:[],volcano:[],fossil:[]}, evidence:{co2:[],sun:[],volcano:[],fossil:[]},
+    overall:null, compared:false, spanTapped:false, axisTouched:{co2:false,sun:false}, claimTapped:false, evidenceTapped:false
+  };
+  const storageKey = 'curio-warming-evidence-desk';
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey));
+    if (saved && saved.version === 1) {
+      for (const k of keys) {
+        state.board[k] = [...new Set((saved.board?.[k] || []).filter(n => Number.isInteger(n) && n >= 0 && n <= 4))];
+        let pick = [...new Set((saved.claims?.[k] || []).filter(n => Number.isInteger(n) && n >= 0 && n <= 3))];
+        if (pick.includes(3)) pick = [3];
+        state.claims[k] = pick;
+        state.evidence[k] = [...new Set((saved.evidence?.[k] || []).filter(n => state.board[k].includes(n)))].slice(-2);
+      }
+      state.overall = Number.isInteger(saved.overall) && saved.overall >= 0 && saved.overall <= 3 ? saved.overall : null;
+    }
+  } catch {}
+  const welcomeAsk = () => !state.record && !$('board').classList.contains('open');
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false,
+    read:() => state.mode === 'ask' && state.record ? readAnswer() : $('hint').textContent,
+    welcome:() => state.mode === 'ask' ? (welcomeAsk() ? ['ask',{valid:welcomeAsk}] : null)
+      : ['argue',{valid:() => !state.claimTapped}]
+  });
+  function save() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({version:1, board:state.board, claims:state.claims,
+        evidence:state.evidence, overall:state.overall}));
+    } catch {}
+  }
+  function mean(k,a,b) {
+    let total = 0;
+    for (let y=a; y<=b; y++) total += R[k][y];
+    return total / (b-a+1);
+  }
+  function regression(k,a,b) {
+    const mx = (a+b)/2;
+    const my = mean(k,a,b);
+    let numerator = 0;
+    let denominator = 0;
+    for (let y=a; y<=b; y++) {
+      numerator += (y-mx)*(R[k][y]-my);
+      denominator += (y-mx)**2;
+    }
+    const slope = numerator/denominator;
+    return {slope, a:my+slope*(a-mx), b:my+slope*(b-mx)};
+  }
+  const signed = (v,d=2) => (v >= 0 ? '+' : '') + v.toFixed(d);
+  const number = (k,v) => k === 'temp' ? signed(v) : v.toFixed(meta[k].digits);
+  function validateNumbers() {
+    const failures = [];
+    const expected = {temp:[.14,.02,.20], co2:[3.6,7.0,18.4], sun:[.11,-.07,-.02], fossil:[.5,4.4,4.7]};
+    for (const [k,values] of Object.entries(expected)) {
+      values.forEach((v,i) => {
+        const s = spans[i+1];
+        const decimals = ['co2','fossil'].includes(k) ? 1 : 2;
+        const actual = +(regression(k,s.a,s.b).slope*10).toFixed(decimals);
+        if (actual !== v) failures.push(k + ' ' + s.name + ': ' + actual + ' != ' + v);
+      });
+    }
+    const longs = {temp:[-.32,.78],co2:[299,399],sun:[1360.60,1360.97],volcano:[.007,.005],fossil:[2.8,34.3]};
+    for (const [k,values] of Object.entries(longs)) {
+      const digits = k === 'co2' ? 0 : k === 'fossil' ? 1 : meta[k].digits;
+      [mean(k,1900,1919),mean(k,2004,2023)].forEach((v,i) => {
+        if (+v.toFixed(digits) !== values[i]) failures.push(k + ' long average mismatch');
+      });
+    }
+    [1883,1963,1982,1991].forEach((y,i) => {
+      if (+(R.temp[y+1]-mean('temp',y-3,y-1)).toFixed(2) !== [-.16,-.22,.06,-.15][i]) failures.push('dip '+y);
+    });
+    if (failures.length) throw new Error('Climate data check failed: '+failures.join('; '));
+    return {pass:true, checks:26};
+  }
+  const dataCheck = validateNumbers();
+  function answerNote() {
+    if (state.span === 2 && ['co2','fossil'].includes(state.record)) return hazeNote;
+    if (state.span === 0 && state.record === 'fossil') return sourceNote;
+    return state.span === 4 ? dipsNote : '';
+  }
+  function readAnswer() {
+    if (!state.record) return $('hint').textContent;
+    const [v,text] = answers[state.record][state.span];
+    return meta[state.record].name + '. ' + spans[state.span].name + '. ' + verdicts[v] + '. ' + text + ' ' + answerNote();
+  }
+  function hint() {
+    let text;
+    if (state.mode === 'argue') {
+      const missing = keys.filter(k => !state.claims[k].length);
+      if (missing.length) text = 'Pick at least one claim for every record to turn on Compare.';
+      else if (!state.compared) text = 'Tap your answers to back your claims. Then tap Compare.';
+      else if (matchMedia('(max-height:640px) and (min-width:600px), (max-width:599px)').matches) {
+        text = (state.overall === null ? 'Pick your overall answer too. ' : '')
+          + 'Scroll the record cards for scientists’ reasons and evidence, or revise your claims.';
+      } else text = state.overall === null ? 'Pick your overall answer too. Tap a scientist’s evidence to inspect it in Ask.'
+        : 'Compare your reasons. Tap a scientist’s evidence to inspect it in Ask.';
+    } else if (!state.record) text = 'Tap Carbon dioxide, Sun, Volcanoes or Fossil fuels to line it up under temperature.';
+    else if (matchMedia('(max-height:640px) and (min-width:600px)').matches) text = readAnswer();
+    else if (keys.every(k => state.board[k]?.length)) text = 'Tap another span to test the pattern, or tap Argue to build your claims.';
+    else text = 'Tap another span to test this record, or pick another record to ask the same question.';
+    $('hint').textContent = text;
+  }
+  function narrateAsk() {
+    if (!state.record) return;
+    const k = state.record;
+    const s = state.span;
+    if (s === 4 && !V.heard('dips')) V.how('dips',{valid:() => state.span === 4});
+    else if (k === 'sun' && !state.zero.sun && !state.axisTouched.sun && !V.heard('zoom')) {
+      V.how('zoom',{valid:() => state.record === 'sun' && !state.zero.sun && !state.axisTouched.sun, needs:'#zero'});
+    } else if (keys.every(key => state.board[key]?.length) && !V.heard('board')) {
+      V.how('board',{valid:() => state.mode === 'ask', needs:'#m-argue'});
+    } else if (!state.spanTapped && !V.heard('span')) {
+      V.how('span',{valid:() => !state.spanTapped, needs:'#span-3'});
+    }
+  }
+  function updateAnswer() {
+    const el = $('answer');
+    if (!state.record) {
+      el.className = 'answer empty';
+      el.textContent = 'One question. Two records. What fits?';
+      return;
+    }
+    const [v,text] = answers[state.record][state.span];
+    const note = answerNote();
+    const k = state.record;
+    let compact = '';
+    if (state.span > 0 && state.span < 4) {
+      const s = spans[state.span];
+      compact = signed(regression(k,s.a,s.b).slope*10,['co2','fossil'].includes(k)?1:meta[k].digits)+' '+meta[k].unit+' per decade';
+    } else if (state.span === 0) compact = number(k,mean(k,1900,1919))+' → '+number(k,mean(k,2004,2023))+' '+meta[k].unit;
+    else compact = '4 eruptions / next-year comparison';
+    el.className = 'answer';
+    el.innerHTML = '<div class="answer-top"><span class="verdict v'+v+'">'+symbols[v]+' '+verdicts[v]+'</span>'
+      + '<span class="answer-tag">'+meta[k].name+' / '+spans[state.span].name+' / pattern fit, not proof</span>'
+      + '<span class="compact-number">'+compact+'</span></div>'
+      + '<p>'+text+'</p>'+(note ? '<p class="note">'+note+'</p>' : '');
+    $('question').innerHTML = 'What did <strong>'+meta[k].name+'</strong> do during <strong>'+spans[state.span].question+'</strong>?';
+  }
+  function ask(record,span,origin='pick') {
+    if (state.record === record && state.span === span) return;
+    if (!state.record && V.playing === L.ask) V.hush();
+    const active = document.activeElement;
+    const phone = matchMedia('(max-width:599px)').matches;
+    const fromSpan = $('spans').contains(active);
+    const transferFocus = $('tray').contains(active)
+      || (phone && ($('records').contains(active) || fromSpan || $('board').contains(active)));
+    const changedRecord = state.record !== record;
+    state.record = record;
+    state.span = span;
+    // An instruction stops when the student's action has completed its step.
+    if ((V.playing === L.zoom && record !== 'sun') || (V.playing === L.dips && span !== 4)
+      || (V.playing === L.span && (origin === 'span' || state.spanTapped))) V.hush();
+    syncMobile();
+    if (origin === 'span') state.spanTapped = true;
+    const fresh = !state.board[record]?.includes(span);
+    if (!state.board[record]) state.board[record] = [];
+    if (fresh) state.board[record].push(span);
+    for (const key of keys) {
+      $('record-'+key).setAttribute('aria-pressed',key === record);
+    }
+    spans.forEach((s,i) => $('span-'+i).setAttribute('aria-pressed',i === span));
+    $('tray').hidden = true;
+    if (transferFocus) {
+      const target = phone ? (fromSpan ? 'mobile-span' : 'mobile-record') : 'record-'+record;
+      $(target).focus({preventScroll:true});
+    }
+    $('record-head').hidden = false;
+    $('record-chart').removeAttribute('hidden');
+    $('record-art').src = art[record];
+    $('record-art').alt = 'Painted '+meta[record].name+' record';
+    $('record-title').textContent = meta[record].name;
+    $('record-title').style.color = meta[record].color;
+    const recordUnits = {sun:'W/m² at the top of the air', volcano:'Stratospheric aerosol optical depth, 550 nm',
+      fossil:'Fuels + cement, billion tonnes of CO₂ a year', co2:'ppm'};
+    $('record-unit').textContent = recordUnits[record];
+    $('record-source').textContent = meta[record].source;
+    $('axis').hidden = !['co2','sun'].includes(record);
+    $('zoomed').setAttribute('aria-pressed',!state.zero[record]);
+    $('zero').setAttribute('aria-pressed',!!state.zero[record]);
+    updateAnswer();
+    updateBoard();
+    updateEvidence();
+    drawAll();
+    updateReadout();
+    hint();
+    narrateAsk();
+    if (fresh) {
+      Curio.tone(180,.06,.04);
+      const cell = $('cell-'+record+'-'+span);
+      cell.classList.remove('stamp');
+      void cell.offsetWidth;
+      cell.classList.add('stamp');
+    }
+    if (changedRecord) {
+      $('record-chart').classList.remove('reveal');
+      void $('record-chart').offsetWidth;
+      $('record-chart').classList.add('reveal');
+    }
+    save();
+  }
+  function selectSpan(i) {
+    state.spanTapped = true;
+    if (state.record) ask(state.record,i,'span');
+    else {
+      if (state.span === i) return;
+      state.span = i;
+      syncMobile();
+      spans.forEach((s,n) => $('span-'+n).setAttribute('aria-pressed',i === n));
+      drawAll();
+      hint();
+    }
+  }
+  function updateBoard() {
+    for (const k of keys) for (let i=0; i<5; i++) {
+      const cell = $('cell-'+k+'-'+i);
+      const filled = state.board[k]?.includes(i);
+      const v = answers[k][i][0];
+      cell.disabled = !filled;
+      cell.className = 'cell'+(filled?' v'+v:'');
+      cell.innerHTML = filled ? '<span>'+symbols[v]+'</span>'+(v === 2 ? 'No fit' : verdicts[v]) : '·';
+      cell.setAttribute('aria-label',meta[k].name+', '+spans[i].name+': '+(filled?verdicts[v]:'not asked'));
+      cell.title = filled ? meta[k].name+' / '+spans[i].name+': '+verdicts[v] : 'Ask this question first';
+    }
+  }
+  function agreement() {
+    return keys.filter(k => state.claims[k].length === scientists[k].length && scientists[k].every(v => state.claims[k].includes(v))).length;
+  }
+  function updateClaims() {
+    for (const k of keys) {
+      claims.forEach((c,i) => $('claim-'+k+'-'+i).setAttribute('aria-pressed',state.claims[k].includes(i)));
+      const same = state.claims[k].length === scientists[k].length && scientists[k].every(v => state.claims[k].includes(v));
+      $('row-'+k).className = 'claim-row'+(state.compared ? same?' same':' different' : '');
+      $('comparison-'+k).textContent = same ? '✓ Same' : '⇄ Different';
+      $('comparison-'+k).hidden = !state.compared;
+    }
+    overall.forEach((v,i) => $('overall-'+i).setAttribute('aria-pressed',state.overall === i));
+    const ready = keys.every(k => state.claims[k].length);
+    $('compare').disabled = !ready;
+    document.body.classList.toggle('compared',state.compared);
+    // Scientist content is inserted only by Compare. It is absent from accessible content beforehand.
+    if (state.compared) {
+      $('summary-title').textContent = 'Your comparison';
+      $('summary-text').textContent = 'You and the scientists agree on '+agreement()+' of 4 records.';
+      $('finding').textContent = finding;
+      $('compare-status').textContent = state.overall === null ? 'Pick your overall answer too.'
+        : state.overall === 0 ? 'Overall: same as the scientists.' : 'Overall: different from the scientists.';
+    } else {
+      $('summary-title').textContent = 'Make your case';
+      $('summary-text').textContent = 'Choose claims for each record. Your own answers can back them up.';
+      $('finding').textContent = '';
+      $('compare-status').textContent = ready ? 'Ready to compare your claims.' : 'Pick a claim for every record.';
+    }
+    hint();
+  }
+  function toggleClaim(k,i) {
+    state.claimTapped = true;
+    let pick = state.claims[k];
+    if (i === 3) pick = pick.includes(3) ? [] : [3];
+    else pick = pick.includes(i) ? pick.filter(v => v !== i) : [...pick.filter(v => v !== 3),i];
+    state.claims[k] = pick;
+    updateClaims();
+    if (state.board[k]?.length && !state.evidenceTapped) {
+      V.how('evidence',{valid:() => !state.evidenceTapped && state.mode === 'argue', needs:'.evidence-chip'});
+    }
+    save();
+  }
+  function updateEvidence() {
+    for (const k of keys) {
+      const list = $('evidence-'+k);
+      const have = state.board[k] || [];
+      for (let i=0; i<5; i++) {
+        const button = $('evidence-'+k+'-'+i);
+        button.hidden = !have.includes(i);
+        button.setAttribute('aria-pressed',state.evidence[k].includes(i));
+      }
+      list.hidden = !have.length;
+      $('no-evidence-'+k).hidden = !!have.length;
+    }
+  }
+  let compareSerial = 0;
+  function compare() {
+    if (!keys.every(k => state.claims[k].length)) return;
+    if (!state.compared) {
+      for (const k of keys) {
+        const box = $('scientist-'+k);
+        box.innerHTML = '<div class="science-top"><b>Scientists</b>'
+          + scientists[k].map(i => '<span class="outline">'+claims[i]+'</span>').join('')
+          + '</div><p>'+reasons[k]+'</p><div class="science-links"><span>Scientists also point to:</span></div>';
+        citations[k].forEach(i => {
+          const b = document.createElement('button');
+          b.textContent = spans[i].name;
+          b.setAttribute('aria-label','Inspect scientists’ '+meta[k].name+' evidence: '+spans[i].name);
+          b.onclick = () => {
+            setMode('ask');
+            ask(k,i,'citation');
+            const focusTarget = matchMedia('(max-width:599px)').matches ? 'mobile-record' : 'record-'+k;
+            $(focusTarget).focus({preventScroll:true});
+          };
+          box.querySelector('.science-links').append(b);
+        });
+      }
+    }
+    state.compared = true;
+    updateClaims();
+    const count = agreement();
+    const serial = ++compareSerial;
+    V.say([
+      ['agree'+count,{key:'compare-'+serial+'-agreement'}],
+      ['finding',{key:'compare-'+serial+'-finding'}]
+    ],{kind:'event', valid:() => state.compared && state.mode === 'argue' && agreement() === count});
+  }
+  function setMode(m) {
+    if (state.mode === m) return;
+    V.hush();
+    Curio.stop();
+    closeBoard();
+    state.mode = m;
+    document.body.dataset.mode = m;
+    positionHint();
+    if (matchMedia('(max-width:599px)').matches) document.querySelector('main').scrollTop = 0;
+    $('m-ask').setAttribute('aria-pressed',m === 'ask');
+    $('m-argue').setAttribute('aria-pressed',m === 'argue');
+    document.body.classList.toggle('compared',m === 'argue' && state.compared);
+    hint();
+    if (m === 'argue') {
+      updateEvidence();
+      updateClaims();
+      V.welcome();
+      drawMinis();
+    } else {
+      drawAll();
+      V.welcome();
+    }
+  }
+  function axis(zero) {
+    if (!['co2','sun'].includes(state.record) || state.zero[state.record] === zero) return;
+    state.axisTouched[state.record] = true;
+    state.zero[state.record] = zero;
+    if (state.record === 'sun' && V.playing === L.zoom) V.hush();
+    syncMobile();
+    $('zoomed').setAttribute('aria-pressed',!zero);
+    $('zero').setAttribute('aria-pressed',zero);
+    drawAll();
+    hint();
+  }
+  function limits(k) {
+    if (k === 'temp') return [-.6,1.4];
+    if (k === 'co2') return state.zero.co2 ? [0,450] : [280,440];
+    if (k === 'sun') return state.zero.sun ? [0,1400] : [1360,1362.2];
+    return k === 'volcano' ? [0,.11] : [0,40];
+  }
+  const SVG = 'http://www.w3.org/2000/svg';
+  function node(tag,attrs={},text='') {
+    const n = document.createElementNS(SVG,tag);
+    for (const [k,v] of Object.entries(attrs)) n.setAttribute(k,v);
+    if (text !== '') n.textContent = text;
+    return n;
+  }
+  function drawChart(id,k) {
+    const svg = $(id);
+    if (svg.hidden || !svg.clientWidth || !svg.clientHeight) return;
+    const w = svg.clientWidth;
+    const h = svg.clientHeight;
+    const compact = w < 300;
+    const left = k === 'sun' ? (compact?46:56) : (compact?35:49);
+    const right = 16;
+    const top = state.span === 4 ? 43 : 25;
+    let note = '';
+    if (k === 'co2') note = '1959: ice core before, Mauna Loa air after.';
+    if (k === 'sun') note = (state.zero.sun ? 'From zero: ' : 'Zoomed in: ')+'the whole swing is under 0.2 percent';
+    if (k === 'volcano') note = 'Haze 0.10 dims a vertical sunbeam by about 10 percent.';
+    const noteLines = [];
+    if (note) {
+      const capacity = Math.max(18,Math.floor((w-left-right)/5.2));
+      for (const word of note.split(' ')) {
+        if (!noteLines.length || noteLines.at(-1).length+word.length+1>capacity) noteLines.push(word);
+        else noteLines[noteLines.length-1] += ' '+word;
+      }
+    }
+    const bottom = note ? 22+noteLines.length*12 : 23;
+    const ph = Math.max(25,h-top-bottom);
+    const pw = Math.max(60,w-left-right);
+    const [lo,hi] = limits(k);
+    const x = y => left+(y-1880)/145*pw;
+    const y = v => top+(hi-v)/(hi-lo)*ph;
+    svg.setAttribute('viewBox','0 0 '+w+' '+h);
+    svg.replaceChildren();
+    const defs = node('defs');
+    const clip = node('clipPath',{id:id+'-clip'});
+    clip.append(node('rect',{x:left,y:top-2,width:pw,height:ph+4}));
+    defs.append(clip);
+    svg.append(defs);
+    const s = spans[state.span];
+    const shade = (a,b) => svg.append(node('rect',{x:x(a),y:top,width:x(b)-x(a),height:ph,fill:'#ffb36b',opacity:.14}));
+    if (state.span === 0) {
+      shade(1900,1919);
+      shade(2004,2023);
+    } else if (state.span !== 4) shade(s.a,s.b);
+    const ticks = Math.max(1,Math.min(compact ? 3 : 4,Math.floor(ph/24)));
+    for (let i=0; i<=ticks; i++) {
+      const v = lo+(hi-lo)*i/ticks;
+      svg.append(node('line',{x1:left,x2:w-right,y1:y(v),y2:y(v),stroke:'#625543',opacity:.4}));
+      const d = k === 'volcano' ? 3 : k === 'temp' || (k === 'sun' && !state.zero.sun) ? 1 : 0;
+      svg.append(node('text',{x:left-7,y:y(v)+3,'text-anchor':'end',fill:'#cabba4','font-size':10},v.toFixed(d)));
+    }
+    const yearTicks = compact ? [1880,1950,2025] : [1880,1900,1940,1980,2025];
+    yearTicks.forEach(yr => {
+      svg.append(node('line',{x1:x(yr),x2:x(yr),y1:top,y2:top+ph,stroke:'#65543c',opacity:.3}));
+      svg.append(node('text',{x:x(yr),y:top+ph+16,'text-anchor':yr===1880?'start':yr===2025?'end':'middle',fill:'#cabba4','font-size':10},yr));
+    });
+    const vals = Object.entries(R[k]).map(([yr,v]) => [+yr,v]);
+    const points = vals.map(([yr,v]) => x(yr).toFixed(2)+','+y(v).toFixed(2)).join(' ');
+    const plot = node('g',{'clip-path':'url(#'+id+'-clip)'});
+    const color = meta[k].color;
+    if (k === 'volcano') {
+      vals.forEach(([yr,v]) => plot.append(node('rect',{x:x(yr)-Math.max(.5,pw/145*.34),y:y(v),
+        width:Math.max(1,pw/145*.68),height:y(0)-y(v),fill:color,opacity:.82})));
+    } else {
+      if (k === 'fossil') plot.append(node('polygon',{points:x(vals[0][0])+','+y(0)+' '+points+' '+x(vals.at(-1)[0])+','+y(0),
+        fill:color,opacity:.14}));
+      plot.append(node('polyline',{points,fill:'none',stroke:color,'stroke-width':k==='temp'?2.7:k==='sun'?1.2:2,
+        'stroke-dasharray':k==='fossil'?'2 3':'','stroke-linejoin':'round'}));
+      if (k === 'sun') vals.forEach(([yr,v]) => plot.append(node('circle',{cx:x(yr),cy:y(v),r:1.3,fill:color})));
+    }
+    svg.append(plot);
+    if (state.record || state.spanTapped) {
+      if (state.span === 0) {
+        [[1900,1919],[2004,2023]].forEach(([a,b]) => {
+          const v = mean(k,a,b);
+          svg.append(node('line',{x1:x(a),x2:x(b),y1:y(v),y2:y(v),stroke:color,'stroke-width':4}));
+          const labelX = (x(a)+x(b))/2;
+          svg.append(node('rect',{x:labelX-30,y:y(v)-21,width:60,height:16,rx:3,fill:'#14120f',opacity:.95}));
+          svg.append(node('text',{x:labelX,y:y(v)-9,'text-anchor':'middle',fill:color,'font-size':11},number(k,v)));
+        });
+        svg.append(node('text',{x:left,y:13,fill:'#dbc29f','font-size':10},compact?'20-year means':'20-year means: 1900-1919 / 2004-2023'));
+      } else if (state.span < 4) {
+        const reg = regression(k,s.a,s.b);
+        svg.append(node('line',{x1:x(s.a),x2:x(s.b),y1:y(reg.a),y2:y(reg.b),stroke:'#111','stroke-width':5}));
+        svg.append(node('line',{x1:x(s.a),x2:x(s.b),y1:y(reg.a),y2:y(reg.b),stroke:color,'stroke-width':2.3,'stroke-dasharray':'8 4'}));
+        const unit = k === 'fossil' ? 'billion tonnes / year' : k === 'volcano' ? 'haze' : meta[k].unit;
+        const d = ['co2','fossil'].includes(k) ? 1 : meta[k].digits;
+        const label = signed(reg.slope*10,d)+' '+unit+' per decade';
+        svg.append(node('text',{x:left,y:13,fill:color,'font-size':compact?10:12},label));
+      }
+    }
+    if (state.span === 4) {
+      const eruptions = [[1883,'Krakatau'],[1963,'Agung'],[1982,'El Chichón'],[1991,'Pinatubo']];
+      eruptions.forEach(([yr,name],i) => {
+        svg.append(node('line',{x1:x(yr),x2:x(yr),y1:top,y2:top+ph,stroke:'#e4ceb1','stroke-dasharray':'3 3',opacity:.7}));
+        const tight = w < 480;
+        const ty = tight ? (i < 2 ? 11 : 27) : (i%2 === 0 ? 11 : 27);
+        const lx = tight ? (i%2 === 0 ? left : w-right) : x(yr);
+        const anchor = tight ? (i%2 === 0 ? 'start' : 'end') : (i === 0 ? 'start' : 'middle');
+        svg.append(node('text',{x:lx,y:ty,'text-anchor':anchor,fill:'#e1c9a6','font-size':10},name+' '+yr));
+        if (k === 'temp') {
+          const before = mean(k,yr-3,yr-1);
+          const after = R[k][yr+1];
+          const bx = x(yr+1)+3;
+          svg.append(node('path',{d:'M'+(bx-3)+','+y(before)+'H'+(bx+3)+'M'+bx+','+y(before)+'V'+y(after)
+            +'M'+(bx-3)+','+y(after)+'H'+(bx+3),stroke:'#fff0d7','stroke-width':1.5,fill:'none'}));
+          const labelY = Math.min(top+ph-4,Math.max(top+12,y(after)+ (i%2 ? 17 : -7)));
+          svg.append(node('rect',{x:bx-22,y:labelY-11,width:48,height:15,rx:2,fill:'#15130f',opacity:.9}));
+          svg.append(node('text',{x:bx+2,y:labelY,'text-anchor':'middle',fill:'#fff0d7','font-size':10},signed(after-before)));
+        }
+      });
+    }
+    noteLines.forEach((line,i) => {
+      svg.append(node('text',{x:left,y:h-3-(noteLines.length-1-i)*12,fill:'#bfb3a1','font-size':10},line));
+    });
+    const cursor = node('g',{'data-cursor':id,opacity:state.cursor?1:0});
+    cursor.append(node('line',{x1:x(state.year),x2:x(state.year),y1:top,y2:top+ph,stroke:'#fff3de','stroke-width':1}));
+    if (R[k][state.year] !== undefined) cursor.append(node('circle',{cx:x(state.year),cy:y(R[k][state.year]),r:4,fill:color,stroke:'#18140d','stroke-width':2}));
+    svg.append(cursor);
+    svg._plot = {left,pw};
+    svg.setAttribute('aria-label',meta[k].name+', 1880 to '+Object.keys(R[k]).at(-1)+'. '+(state.record?readAnswer():''));
+  }
+  function drawAll() {
+    if (state.mode !== 'ask') return;
+    drawChart('temp-chart','temp');
+    if (state.record) drawChart('record-chart',state.record);
+  }
+  function updateReadout() {
+    if (!state.cursor) return;
+    let text = state.year+': temperature '+number('temp',R.temp[state.year])+' °C';
+    if (state.record) {
+      const k = state.record;
+      text += ', '+(k === 'volcano'?'volcanic haze':meta[k].name.toLowerCase())+' '
+        +(R[k][state.year] === undefined ? 'no data' : number(k,R[k][state.year])+' '+(k==='volcano'?'':meta[k].unit));
+    }
+    $('readout').textContent = text;
+  }
+  function cursorAt(yr) {
+    state.year = Math.max(1880,Math.min(2025,yr));
+    state.cursor = true;
+    drawAll();
+    updateReadout();
+  }
+  function drawMinis() {
+    for (const k of keys) {
+      const svg = $('mini-'+k);
+      svg.replaceChildren();
+      svg.setAttribute('viewBox','0 0 150 60');
+      ['temp',k].forEach((record,i) => {
+        const d = R[record];
+        const vals = Object.entries(d).filter(([yr]) => +yr<=2023);
+        const low = Math.min(...vals.map(p=>p[1]));
+        const high = Math.max(...vals.map(p=>p[1]));
+        svg.append(node('polyline',{points:vals.map(([yr,v]) => (4+(yr-1880)/143*142)+','+(i*29+26-(v-low)/(high-low)*22)).join(' '),
+          fill:'none',stroke:meta[record].color,'stroke-width':1.3}));
+      });
+    }
+  }
+  function buildControls() {
+    for (const k of keys) {
+      for (const target of ['records','tray-records']) {
+        const button = document.createElement('button');
+        button.innerHTML = '<img class="art" src="'+art[k]+'" alt=""><span>'+meta[k].name+'</span>';
+        if (target === 'records') {
+          button.id = 'record-'+k;
+          button.className = 'record-btn';
+          button.setAttribute('aria-pressed','false');
+        }
+        button.onclick = () => ask(k,state.span);
+        $(target).append(button);
+      }
+    }
+    spans.forEach((s,i) => {
+      const b = document.createElement('button');
+      b.id = 'span-'+i;
+      b.innerHTML = '<span class="long-label">'+s.name+(s.years?'<small>'+s.years+'</small>':'')+'</span>'
+        + '<span class="short-label">'+s.short+'</span>';
+      b.setAttribute('aria-label',s.name+(s.years?' '+s.years:''));
+      b.setAttribute('aria-pressed',i === 0);
+      b.onclick = () => selectSpan(i);
+      $('spans').append(b);
+    });
+    const board = $('board-grid');
+    board.append(document.createElement('span'));
+    spans.forEach(s => {
+      const label = document.createElement('span');
+      label.className = 'col';
+      label.textContent = s.short;
+      board.append(label);
+    });
+    for (const k of keys) {
+      const label = document.createElement('span');
+      label.className = 'row';
+      label.textContent = meta[k].name;
+      board.append(label);
+      spans.forEach((s,i) => {
+        const b = document.createElement('button');
+        b.id = 'cell-'+k+'-'+i;
+        b.onclick = () => { closeBoard(); ask(k,i,'board'); };
+        board.append(b);
+      });
+    }
+    for (const k of keys) {
+      const row = document.createElement('section');
+      row.id = 'row-'+k;
+      row.className = 'claim-row';
+      row.innerHTML = '<div class="claim-name"><img class="art" src="'+art[k]+'" alt=""><span>'+meta[k].name
+        + '<b class="comparison" id="comparison-'+k+'" hidden></b></span></div>'
+        + '<svg class="mini" id="mini-'+k+'" role="img" aria-label="Temperature above '+meta[k].name+'; independent vertical scales"></svg>'
+        + '<div class="claim-content"><div class="choice-block"><div class="chips" id="claims-'+k+'"></div>'
+        + '<div class="evidence-list" id="evidence-'+k+'"></div><p class="no-evidence" id="no-evidence-'+k
+        + '">No questions asked yet. Tap Ask to question this record.</p></div><div class="scientists" id="scientist-'+k+'"></div></div>';
+      $('claim-table').append(row);
+      claims.forEach((c,i) => {
+        const b = document.createElement('button');
+        b.className = 'claim-chip';
+        b.id = 'claim-'+k+'-'+i;
+        b.textContent = c;
+        b.setAttribute('aria-pressed','false');
+        b.setAttribute('aria-label',meta[k].name+': '+c);
+        b.onclick = () => toggleClaim(k,i);
+        $('claims-'+k).append(b);
+      });
+      spans.forEach((s,i) => {
+        const b = document.createElement('button');
+        b.className = 'evidence-chip';
+        b.id = 'evidence-'+k+'-'+i;
+        const verdict = verdicts[answers[k][i][0]];
+        b.innerHTML = '<span class="evidence-long">'+s.name+': '+verdict+'</span><span class="evidence-short">'
+          + s.short+': '+(verdict === "Doesn't fit" ? 'No fit' : verdict)+'</span>';
+        b.setAttribute('aria-label',meta[k].name+' evidence: '+s.name+': '+verdict);
+        b.title = s.name+': '+verdict;
+        b.onclick = () => {
+          state.evidenceTapped = true;
+          let picks = state.evidence[k];
+          picks = picks.includes(i) ? picks.filter(v => v !== i) : [...picks,i].slice(-2);
+          state.evidence[k] = picks;
+          updateEvidence();
+          save();
+        };
+        $('evidence-'+k).append(b);
+      });
+    }
+    overall.forEach((text,i) => {
+      const b = document.createElement('button');
+      b.id = 'overall-'+i;
+      b.textContent = text;
+      b.onclick = () => { state.overall = state.overall === i ? null : i; updateClaims(); save(); };
+      $('overall-choices').append(b);
+    });
+    for (const k of keys) {
+      const option = document.createElement('option');
+      option.value = k;
+      option.textContent = meta[k].name;
+      $('mobile-record').append(option);
+    }
+    spans.forEach((s,i) => {
+      const option = document.createElement('option');
+      option.value = i;
+      option.textContent = s.name;
+      $('mobile-span').append(option);
+    });
+  }
+  function syncMobile() {
+    $('mobile-record').value = state.record || '';
+    $('mobile-span').value = state.span;
+    const enabled = ['co2','sun'].includes(state.record);
+    $('mobile-axis').hidden = !enabled;
+    $('mobile-axis').textContent = state.zero[state.record] ? 'Zoomed' : 'From zero';
+  }
+  let clearUntil = 0;
+  let clearTimer;
+  function clearDesk() {
+    if (performance.now() > clearUntil) {
+      clearUntil = performance.now()+3000;
+      $('clear').textContent = 'Tap again to clear';
+      clearTimeout(clearTimer);
+      clearTimer = setTimeout(() => { clearUntil=0; $('clear').textContent='Clear desk'; },3000);
+      return;
+    }
+    V.hush();
+    Curio.stop();
+    clearUntil = 0;
+    clearTimeout(clearTimer);
+    $('clear').textContent = 'Clear desk';
+    for (const k of keys) {
+      state.board[k] = [];
+      state.claims[k] = [];
+      state.evidence[k] = [];
+      $('scientist-'+k).replaceChildren();
+    }
+    state.overall = null;
+    state.compared = false;
+    state.record = null;
+    state.span = 0;
+    syncMobile();
+    state.cursor = false;
+    state.claimTapped = false;
+    state.evidenceTapped = false;
+    $('readout').textContent = 'Move over a chart to inspect a year. Arrow keys move one year; Shift moves ten.';
+    $('question').textContent = 'What explains the rise?';
+    $('tray').hidden = false;
+    $('record-head').hidden = true;
+    $('record-chart').setAttribute('hidden','');
+    $('axis').hidden = true;
+    keys.forEach(k => $('record-'+k).setAttribute('aria-pressed','false'));
+    spans.forEach((s,i) => $('span-'+i).setAttribute('aria-pressed',i===0));
+    updateBoard();
+    updateEvidence();
+    updateClaims();
+    updateAnswer();
+    hint();
+    drawAll();
+    save();
+  }
+  function closeBoard() {
+    const restore = $('board').classList.contains('open') && $('board').contains(document.activeElement);
+    $('board').classList.remove('open');
+    $('board').removeAttribute('role');
+    $('board').removeAttribute('aria-modal');
+    $('board-veil').hidden = true;
+    $('board-toggle').setAttribute('aria-expanded','false');
+    $('board-close').hidden = true;
+    if (restore) {
+      const compact = matchMedia('(max-height:640px) and (min-width:600px)').matches;
+      const target = compact ? 'board-toggle' : 'record-'+(state.record || 'co2');
+      $(target).focus({preventScroll:true});
+    }
+  }
+  function positionHint() {
+    const phone = matchMedia('(max-width:599px)').matches;
+    const panel = document.querySelector('.panel');
+    const host = phone ? document.querySelector(state.mode === 'ask' ? '.phone-dock' : '.compare-bar') : panel;
+    const element = $('hint');
+    if (element.parentElement === host) return;
+    if (phone) host.append(element);
+    else panel.insertBefore(element,panel.querySelector('.panel-bottom'));
+  }
+  function responsive() {
+    positionHint();
+    const compact = matchMedia('(max-height:640px) and (min-width:600px)').matches;
+    const home = compact ? $('span-dock') : $('span-home');
+    if ($('span-section').parentElement !== home) {
+      const focus = document.activeElement;
+      const restore = $('span-section').contains(focus);
+      home.append($('span-section'));
+      if (restore) focus.focus({preventScroll:true});
+    }
+    if (!compact) closeBoard();
+    hint();
+    drawAll();
+    drawMinis();
+  }
+  buildControls();
+  // Charts come after the evidence controls in keyboard order, irrespective of visual position.
+  for (const id of ['temp-chart','record-chart']) {
+    const svg = $(id);
+    svg.setAttribute('tabindex','-1');
+    svg.onpointermove = e => {
+      if (!svg._plot) return;
+      const rect = svg.getBoundingClientRect();
+      cursorAt(Math.round(1880+(e.clientX-rect.left-svg._plot.left)/svg._plot.pw*145));
+    };
+    svg.onpointerdown = e => { svg.setPointerCapture(e.pointerId); svg.onpointermove(e); };
+    svg.onkeydown = e => {
+      if (e.key === 'Tab') {
+        e.preventDefault();
+        const next = e.shiftKey ? (id === 'temp-chart' ? 'clear' : 'temp-chart')
+          : (id === 'temp-chart' && state.record ? 'record-chart'
+            : matchMedia('(max-width:599px)').matches ? 'mobile-record' : 'm-ask');
+        $(next).focus({preventScroll:true});
+        return;
+      }
+      if (!['ArrowLeft','ArrowRight','Home','End'].includes(e.key)) return;
+      e.preventDefault();
+      cursorAt(e.key==='Home'?1880:e.key==='End'?2025:state.year+(e.key==='ArrowRight'?1:-1)*(e.shiftKey?10:1));
+    };
+  }
+  // A keyboard portal places the two chart cursors after the panel and board controls.
+  $('clear').onkeydown = e => {
+    if (e.key === 'Tab' && !e.shiftKey && state.mode === 'ask') {
+      e.preventDefault();
+      $('temp-chart').focus({preventScroll:true});
+    }
+  };
+  $('m-ask').onclick = () => setMode('ask');
+  $('m-argue').onclick = () => setMode('argue');
+  $('zoomed').onclick = () => axis(false);
+  $('zero').onclick = () => axis(true);
+  $('mobile-record').onchange = e => { if (e.target.value) ask(e.target.value,state.span); };
+  $('mobile-span').onchange = e => selectSpan(+e.target.value);
+  $('mobile-axis').onclick = () => axis(!state.zero[state.record]);
+  $('compare').onclick = compare;
+  $('clear').onclick = clearDesk;
+  $('board-toggle').onclick = () => {
+    const open = !$('board').classList.contains('open');
+    if (!open) return closeBoard();
+    $('board').classList.add('open');
+    $('board').setAttribute('role','dialog');
+    $('board').setAttribute('aria-modal','true');
+    $('board-veil').hidden = false;
+    $('board-toggle').setAttribute('aria-expanded','true');
+    $('board-close').hidden = false;
+    $('board-close').focus({preventScroll:true});
+  };
+  $('board-close').onclick = closeBoard;
+  $('board-veil').onclick = closeBoard;
+  $('board').addEventListener('keydown',e => {
+    if (e.key !== 'Tab' || !$('board').classList.contains('open')) return;
+    const buttons = [...$('board').querySelectorAll('button')].filter(b => !b.disabled && !b.hidden);
+    const first = buttons[0];
+    const last = buttons.at(-1);
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus({preventScroll:true});
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus({preventScroll:true});
+    }
+  });
+  $('mobile-record').addEventListener('keydown',e => {
+    if (e.key === 'Tab' && e.shiftKey) {
+      e.preventDefault();
+      $(state.record ? 'record-chart' : 'temp-chart').focus({preventScroll:true});
+    }
+  });
+  addEventListener('keydown',e => { if(e.key==='Escape') closeBoard(); });
+  addEventListener('resize',responsive);
+  new ResizeObserver(() => { drawAll(); drawMinis(); }).observe($('stage'));
+  Curio.init({clips:"voice:*", rate:.95});
+  window.__tool = {state, setMode, allLines:V.allLines, vlog:V.log, get vq(){return V.queue;},
+    ask, selectSpan, regression, mean, validateNumbers, dataCheck, agreement, answers, cursorAt, drawAll, compare, toggleClaim};
+  updateBoard();
+  updateEvidence();
+  updateClaims();
+  responsive();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,241 @@
+{
+  "id": "worry-size-sorter",
+  "status": "beta",
+  "stage": "built",
+  "hook": "A desk for making room for a worry.",
+  "outcome": "Explore written worries, body clues, coping tools and routes to trusted-adult help.",
+  "driver": "students",
+  "minutes": "15-30",
+  "modes": [
+    "Sort",
+    "Body clues",
+    "Tools"
+  ],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "Nemours KidsHealth · Anxiety: https://kidshealth.org/en/teens/anxiety.html | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "CDC · Anxiety and Depression in Children: https://www.cdc.gov/children-mental-health/about/about-anxiety-and-depression-in-children.html | US federal text is generally public domain; third-party exceptions. Facts referenced, no CDC assets copied; no endorsement. Free at the source.",
+    "NIMH · Children and Mental Health: https://www.nimh.nih.gov/health/publications/children-and-mental-health | US federal government public-domain information; no third-party assets copied. Fact-check reference only.",
+    "Cleveland Clinic · Box Breathing: https://health.clevelandclinic.org/box-breathing-benefits | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "WebMD · Box Breathing: https://www.webmd.com/balance/what-is-box-breathing | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "WebMD · Respiratory Therapist Breathing Exercises: https://www.webmd.com/lung-cancer/features/respiratory-therapist-breathing-exercises-for-lung-cancer-patients | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "Michigan Medicine · Progressive Muscle Relaxation: https://www.uofmhealth.org/health-library/ta4146 | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "HealthLink BC · Progressive Muscle Relaxation: https://www.healthlinkbc.ca/healthwise/progressive-muscle-relaxation | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "HereToHelp BC / Anxiety Canada · Healthy Thinking for Younger Children: https://www.heretohelp.bc.ca/sites/default/files/healthy-thinking-for-younger-children.pdf | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "YoungMinds · How to make a worry box: https://www.youngminds.org.uk/parent/blog/how-to-make-a-worry-box-a-guide-for-parents/ | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "NHS Every Mind Matters · Tackling your worries: https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/tackling-your-worries/ | NHS website content: Open Government Licence v3.0, with stated exceptions. Reference only; no source text or assets bundled.",
+    "Just One Norfolk NHS · Worry box: https://www.justonenorfolk.nhs.uk/media/us1bjpvw/worry-box.pdf | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "Childhelp · Safe vs Unsafe Secrets: https://childhelp.org/safe-vs-unsafe-secrets-how-to-talk-to-kids-about-the-difference/ | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "eSafety Commissioner · Secrets and surprises: https://www.esafety.gov.au/sites/default/files/2026-09/secrets-and-surprises-sept-2026.pdf | Australian Government copyright; no blanket open licence verified for this PDF. Fact reference only; no PDF/text/art copied.",
+    "Advocates for Youth · Seeking Help: https://www.advocatesforyouth.org/wp-content/uploads/2023/07/2.5_Seeking-Help_3Rs2023.pdf | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "NCMEC · NetSmartz / CyberTipline: https://www.missingkids.org/gethelpnow/cybertipline | Copyright NCMEC, all rights reserved. Facts and service names only; no banner, text or dataset copied.",
+    "US Attorney · Online safety tip sheet: https://www.justice.gov/usao-ri/file/765166/dl | DOJ federal text: public domain unless otherwise marked. No source assets copied.",
+    "US DOJ · Threats to Children Online: https://www.justice.gov/criminal/media/1437006/dl?inline= | DOJ federal text: public domain unless otherwise marked. Facts independently checked with NCMEC; no logos or illustrations copied.",
+    "NCMEC · Take It Down: https://takeitdown.ncmec.org/ | Copyright NCMEC, all rights reserved. Service facts only; no assets copied.",
+    "Childhelp · Responding to a disclosure: https://childhelp.org/what-to-do-if-a-child-tells-you-theyre-being-abused-a-step-by-step-guide/ | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "Childhelp · National Child Abuse Hotline: https://childhelphotline.org/ | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "Michigan Department of Education · Reporting duties: https://www.michigan.gov/mde/services/ed-serv/educator-conduct/abuse-neglect | State of Michigan copyright; fact-check reference only, no source text copied.",
+    "American Red Cross · Children’s swim lessons: https://www.redcross.org/take-a-class/swimming/swim-lessons/kids-swim-lessons | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "SHAPE America · NHES 2024: https://shapeamerica.org/standards/health/new-he-standards/ | Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+    "Curio Class fictional situations and original explanatory text: CC BY 4.0; code MIT.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class. No external image dataset."
+  ],
+  "third_party": [],
+  "updated": "2026-11-06",
+  "curiosity": true,
+  "plate": null,
+  "source_details": [
+    {
+      "name": "Nemours KidsHealth · Anxiety",
+      "url": "https://kidshealth.org/en/teens/anxiety.html",
+      "claim": "Body readiness, fast heart/breathing, tummy feelings, sleep, sweaty hands, trusted adult help.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "CDC · Anxiety and Depression in Children",
+      "url": "https://www.cdc.gov/children-mental-health/about/about-anxiety-and-depression-in-children.html",
+      "claim": "Physical signs and worry interfering with school, home or play.",
+      "licence": "US federal text is generally public domain; third-party exceptions. Facts referenced, no CDC assets copied; no endorsement. Free at the source.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "NIMH · Children and Mental Health",
+      "url": "https://www.nimh.nih.gov/health/publications/children-and-mental-health",
+      "claim": "Persistent worry and sleep problems: ask a caregiver, counselor or doctor for help.",
+      "licence": "US federal government public-domain information; no third-party assets copied. Fact-check reference only.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Cleveland Clinic · Box Breathing",
+      "url": "https://health.clevelandclinic.org/box-breathing-benefits",
+      "claim": "Four equal phases, three to four rounds, comfort and practice when calm; 48 and 36 seconds computed from the chosen count.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "WebMD · Box Breathing",
+      "url": "https://www.webmd.com/balance/what-is-box-breathing",
+      "claim": "Four phases and a shorter count when needed; primary page returned 403 in this pass. Cross-checked with Cleveland Clinic and WebMD respiratory therapist article.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "WebMD · Respiratory Therapist Breathing Exercises",
+      "url": "https://www.webmd.com/lung-cancer/features/respiratory-therapist-breathing-exercises-for-lung-cancer-patients",
+      "claim": "Independent explanation of box breathing, four equal phases and three to four repeats; no disease-specific advice imported.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Michigan Medicine · Progressive Muscle Relaxation",
+      "url": "https://www.uofmhealth.org/health-library/ta4146",
+      "claim": "Muscle tension and release; chosen timing is five seconds tight and ten seconds loose.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "HealthLink BC · Progressive Muscle Relaxation",
+      "url": "https://www.healthlinkbc.ca/healthwise/progressive-muscle-relaxation",
+      "claim": "Tension/release technique and comfortable practice. Shares a Healthwise origin with Michigan Medicine; not an independent trial.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "HereToHelp BC / Anxiety Canada · Healthy Thinking for Younger Children",
+      "url": "https://www.heretohelp.bc.ca/sites/default/files/healthy-thinking-for-younger-children.pdf",
+      "claim": "Realistic helpful self-talk. All example replies here are fictional, authored for Curio Class.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "YoungMinds · How to make a worry box",
+      "url": "https://www.youngminds.org.uk/parent/blog/how-to-make-a-worry-box-a-guide-for-parents/",
+      "claim": "Put a written worry aside for time with a grown-up; avoid immediately before bed. The ten-minute choice is supported by NHS worry-time guidance.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "NHS Every Mind Matters · Tackling your worries",
+      "url": "https://www.nhs.uk/every-mind-matters/mental-wellbeing-tips/self-help-cbt-techniques/tackling-your-worries/",
+      "claim": "Ten to fifteen minutes as one possible worry-time length. The no-bedtime choice comes from child-focused YoungMinds, not this adult page.",
+      "licence": "NHS website content: Open Government Licence v3.0, with stated exceptions. Reference only; no source text or assets bundled.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Just One Norfolk NHS · Worry box",
+      "url": "https://www.justonenorfolk.nhs.uk/media/us1bjpvw/worry-box.pdf",
+      "claim": "A physical worry box and discussion with an adult. Reference only, not a downloaded template.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Childhelp · Safe vs Unsafe Secrets",
+      "url": "https://childhelp.org/safe-vs-unsafe-secrets-how-to-talk-to-kids-about-the-difference/",
+      "claim": "Tell an adult about unsafe secrets; identify more than one trusted adult and keep telling.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "eSafety Commissioner · Secrets and surprises",
+      "url": "https://www.esafety.gov.au/sites/default/files/2026-09/secrets-and-surprises-sept-2026.pdf",
+      "claim": "Unsafe secrets and help with picture requests. Australian emergency numbers were not imported.",
+      "licence": "Australian Government copyright; no blanket open licence verified for this PDF. Fact reference only; no PDF/text/art copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Advocates for Youth · Seeking Help",
+      "url": "https://www.advocatesforyouth.org/wp-content/uploads/2023/07/2.5_Seeking-Help_3Rs2023.pdf",
+      "claim": "Seeking help from trusted adults. Reference only; no lesson or activity copied.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "NCMEC · NetSmartz / CyberTipline",
+      "url": "https://www.missingkids.org/gethelpnow/cybertipline",
+      "claim": "Trusted-adult support and the adult-facing US reporting route.",
+      "licence": "Copyright NCMEC, all rights reserved. Facts and service names only; no banner, text or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "US Attorney · Online safety tip sheet",
+      "url": "https://www.justice.gov/usao-ri/file/765166/dl",
+      "claim": "Historical spec reference for photo requests. Original endpoint unavailable in this pass; current DOJ source below used for the changes.",
+      "licence": "DOJ federal text: public domain unless otherwise marked. No source assets copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "US DOJ · Threats to Children Online",
+      "url": "https://www.justice.gov/criminal/media/1437006/dl?inline=",
+      "claim": "Children are victims, not wrongdoers; trusted adult, CyberTipline phone/URL and Take It Down. Adult notes only for reporting routes.",
+      "licence": "DOJ federal text: public domain unless otherwise marked. Facts independently checked with NCMEC; no logos or illustrations copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "NCMEC · Take It Down",
+      "url": "https://takeitdown.ncmec.org/",
+      "claim": "Can help limit sharing of eligible images on participating platforms. Adult notes only.",
+      "licence": "Copyright NCMEC, all rights reserved. Service facts only; no assets copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Childhelp · Responding to a disclosure",
+      "url": "https://childhelp.org/what-to-do-if-a-child-tells-you-theyre-being-abused-a-step-by-step-guide/",
+      "claim": "Stay calm, reassure, listen without investigating, document own words, explain next steps. Adult notes only.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Childhelp · National Child Abuse Hotline",
+      "url": "https://childhelphotline.org/",
+      "claim": "1-800-422-4453 is support, not a replacement for mandated reporting. Adult notes only.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "Michigan Department of Education · Reporting duties",
+      "url": "https://www.michigan.gov/mde/services/ed-serv/educator-conduct/abuse-neglect",
+      "claim": "Applicable reporting law and agency reporting can differ from internal school policy. Adult notes only.",
+      "licence": "State of Michigan copyright; fact-check reference only, no source text copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "American Red Cross · Children’s swim lessons",
+      "url": "https://www.redcross.org/take-a-class/swimming/swim-lessons/kids-swim-lessons",
+      "claim": "A swim instructor can help learn safely; no promise about water depth or instructor position.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    },
+    {
+      "name": "SHAPE America · NHES 2024",
+      "url": "https://shapeamerica.org/standards/health/new-he-standards/",
+      "claim": "Adult-facing curriculum reference for health understanding and coping practice, S1 and S7. S6 weekly goal flow removed under the Curiosity brief.",
+      "licence": "Copyright retained by the named publisher; fact-check reference only. No article text, images or dataset copied.",
+      "checked": "2026-11-06",
+      "sampling": "No dataset imported; original fictional examples and original explanatory wording."
+    }
+  ]
+}

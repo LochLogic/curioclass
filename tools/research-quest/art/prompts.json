@@ -11,7 +11,8 @@
       "local_note": "stage map under the code-drawn stops, marker and Trail back lines",
       "sd": "An illustrated parchment treasure map seen from above, a winding dotted trail crossing the whole map from left to right, five empty round grassy clearings spaced evenly along the trail, small drawings of a library building, a cabin in the woods, a flower garden and a school building beside the trail, pine trees, no words, no labels, no banners.",
       "source": "flux1-schnell (local)",
-      "review": "ok"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "rq-garden-bed",
@@ -21,7 +22,8 @@
       "width": 800,
       "quality": 76,
       "source": "flux1-schnell (local)",
-      "review": "ok"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "rq-garden-bloom",
@@ -32,7 +34,8 @@
       "quality": 76,
       "source": "OpenAI gpt-image",
       "review": "ok",
-      "drawn_by": "codex"
+      "drawn_by": "codex",
+      "people": false
     },
     {
       "name": "rq-caterpillar",

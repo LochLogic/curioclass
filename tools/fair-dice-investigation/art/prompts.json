@@ -1,16 +1,17 @@
 {
-  "house_style": "Sophisticated painted gouache illustration for a high school statistics mystery. Moody noir, deep green felt, walnut wood, warm amber lamp light from upper left, tactile brushwork and rich shading. No people, faces, body parts, text, letters, numbers, logos or watermarks.",
+  "house_style": "Sophisticated painted gouache illustration for a high school statistics mystery. Moody noir, deep green felt, walnut wood, warm amber lamp light from upper left, tactile brushwork and rich shading. No text, letters, numbers, logos or watermarks.",
   "style": "One consistent late-night board game cafe world.",
   "assets": [
     {
       "name": "cafe-after-hours",
-      "prompt": "A cozy board game cafe after closing: wooden shelves of game boxes with plain blank spines, a green felt table with a few scattered dice under a single warm hanging lamp, chairs pushed in, dark windows.",
+      "prompt": "A cozy board game cafe after closing: walnut shelves of game boxes with plain blank spines, green felt table and a few blank dice under a single hanging amber lamp, empty chairs pushed in, dark windows. Foreground, middle distance and background, tactile painted gouache and convincing soft shadows, warm light from upper left, no people, text, letters, numbers, logos or watermarks.",
       "aspect": "16:9",
       "cutout": false,
       "width": 1280,
       "quality": 70,
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "source": "OpenAI gpt-image",
+      "review": "redrawn in cold review; painted scene replaces flat geometric backdrop",
+      "drawn_by": "codex"
     },
     {
       "name": "felt-table",
@@ -85,17 +86,27 @@
     },
     {
       "name": "librarian",
-      "prompt": "Portrait deferred for owner review. Use a faceless silhouette.",
+      "prompt": "Chest-up portrait of a friendly game librarian in her sixties, warm medium-brown skin, silver hair in a bun, reading glasses on a chain and a plum cardigan, holding a worn blank record book. Calm curious expression. Full head and shoulders comfortably in frame. Painterly light from upper left. Isolated on perfectly flat pure green #00FF00, no cast shadow.",
       "people": true,
       "cutout": true,
-      "width": 180
+      "width": 240,
+      "aspect": "1:1",
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "reviewed in context; contact sheet in Scratch"
     },
     {
       "name": "suspect",
-      "prompt": "Portrait deferred for owner review. Use a faceless silhouette.",
+      "prompt": "Chest-up portrait of a board game cafe tournament player in his forties, light skin, neat mustache, tweed vest and rolled cream sleeves, arms folded, mildly self-assured expression. Natural anatomy, welcoming classroom mystery tone. Full head and shoulders comfortably in frame. Painterly light from upper left. Isolated on perfectly flat pure green #00FF00, no cast shadow.",
       "people": true,
       "cutout": true,
-      "width": 180
+      "width": 240,
+      "aspect": "1:1",
+      "quality": 78,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "reviewed in context; contact sheet in Scratch"
     }
   ]
 }

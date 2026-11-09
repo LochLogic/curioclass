@@ -1,0 +1,233 @@
+{
+  "house_style": "Clean naturalist painting for a serious grade 9 science workbench. Fine gouache and colored-pencil texture, soft daylight from upper left, true natural colors, realistic botanical or insect detail. Blank surfaces, no text, letters, numbers, logos, borders or people.",
+  "assets": [
+    {
+      "name": "pp-pea-round-yellow",
+      "prompt": "A single smooth round golden yellow garden pea seed, macro. Tiny hilum, subtly waxy surface. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-pea-round-green",
+      "prompt": "A single smooth round green garden pea seed, macro. Tiny hilum, subtly waxy surface. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-pea-wrinkled-yellow",
+      "prompt": "A single deeply wrinkled golden yellow garden pea seed, macro, clearly irregular collapsed seed coat with deep creases. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-pea-wrinkled-green",
+      "prompt": "A single deeply wrinkled green garden pea seed, macro, clearly irregular collapsed seed coat with deep creases. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-flower-violet",
+      "prompt": "A single violet purple garden pea flower, botanical study, side view, true pea butterfly-shaped petals and short green calyx. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-flower-white",
+      "prompt": "A single white garden pea flower, botanical study, side view, true pea butterfly-shaped petals and short green calyx. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-pod-inflated",
+      "prompt": "A single plump inflated smooth green garden pea pod, botanical study, diagonal, continuous rounded sides. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-pod-constricted",
+      "prompt": "A single green garden pea pod deeply constricted between its seeds, botanical study, diagonal, scalloped pinched outline. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-pod-green",
+      "prompt": "A single bright green garden pea pod, botanical study, diagonal, smooth sides and fine veins. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-pod-yellow",
+      "prompt": "A single pale yellow garden pea pod, botanical study, diagonal, smooth sides and fine veins. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-stem-axial",
+      "prompt": "A short green pea stem with several violet pea flowers along the sides at separate leaf nodes; tip is just foliage. Botanical study. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-stem-terminal",
+      "prompt": "A short green pea stem with violet pea flowers clustered together at its very tip; lower stem has leaves only. Botanical study. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-plant-tall",
+      "prompt": "An entire tall garden pea plant climbing a slender bamboo cane, tendrils, leaves and a few violet flowers. Complete roots to tip, occupying 85 percent of frame height. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-plant-short",
+      "prompt": "An entire short bushy dwarf garden pea plant beside a tall slender bamboo cane. Plant reaches only the lower third of the cane; cane occupies 85 percent of frame height. Complete plant. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure magenta (#FF00FF) background, no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-fly-gray-normal",
+      "prompt": "A single fruit fly Drosophila, top view, head at top, red eyes, tan-gray body, six legs, one pair of full clear veined wings extending beyond abdomen. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure green (#00FF00) background, no ground or cast shadow. The full wings are neutral pale gray with fine charcoal veins, not pink or green. Paint their translucent material as very pale neutral gray so they can be cleanly cut out. Keep the six legs and red eyes anatomically accurate.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "people": false,
+      "drawn_by": "codex",
+      "review": "Redrawn once for neutral wings; green edge spill removed with the standard art pipeline.",
+      "despill": true
+    },
+    {
+      "name": "pp-fly-gray-vestigial",
+      "prompt": "A single fruit fly Drosophila, top view, head at top, red eyes, tan-gray body, six legs, tiny crumpled vestigial wing stubs shorter than abdomen. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure green (#00FF00) background, no ground or cast shadow. Match the normal-wing body shape and natural leg colors. Two clearly crumpled, tiny neutral gray wing stubs attach to the thorax. No pink fringe.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "Cold review redraw: matched normal-wing body, visible vestigial stubs, neutral edges."
+    },
+    {
+      "name": "pp-fly-black-normal",
+      "prompt": "A single fruit fly Drosophila, top view, head at top, red eyes, black body, six legs, one pair of full clear veined wings extending beyond abdomen. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure green (#00FF00) background, no ground or cast shadow. The full wings are neutral pale gray with fine charcoal veins, not pink or green. Paint their translucent material as very pale neutral gray so they can be cleanly cut out. Keep the six legs and red eyes anatomically accurate.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "people": false,
+      "drawn_by": "codex",
+      "review": "Redrawn once for neutral wings; green edge spill removed with the standard art pipeline.",
+      "despill": true
+    },
+    {
+      "name": "pp-fly-black-vestigial",
+      "prompt": "A single fruit fly Drosophila, top view, head at top, red eyes, black body, six legs, tiny crumpled vestigial wing stubs shorter than abdomen. Subject alone, fully in frame, centered, fills 80 percent of square; flat pure green (#00FF00) background, no ground or cast shadow. Match the normal-wing body shape and natural leg colors. Two clearly crumpled, tiny neutral gray wing stubs attach to the thorax. No pink fringe.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 78,
+      "cutout": true,
+      "key": "green",
+      "people": false,
+      "drawn_by": "codex",
+      "despill": true,
+      "review": "Cold review redraw: matched normal-wing body, visible vestigial stubs, neutral edges."
+    },
+    {
+      "name": "pp-seed-tray",
+      "prompt": "An even full-frame texture of a shallow worn wooden seed tray, warm fine light oak grain, top view, thin rim around edge, empty flat middle for laying seeds.",
+      "aspect": "16:10",
+      "width": 720,
+      "quality": 72,
+      "cutout": false,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "pp-culture-plate",
+      "prompt": "An even full-frame texture of a frosted pale laboratory culture surface, faint soft speckle, top view, subtle glass rim at edge, empty flat middle.",
+      "aspect": "16:10",
+      "width": 720,
+      "quality": 72,
+      "cutout": false,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

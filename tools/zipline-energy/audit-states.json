@@ -220,6 +220,48 @@
       "keep": [
         "#lab-status"
       ]
+    },
+    {
+      "name": "notebook-comparison",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#test"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 16000
+        },
+        {
+          "click": "#generator"
+        },
+        {
+          "click": "#test"
+        },
+        {
+          "until": "!__tool.state.running",
+          "max": 16000
+        },
+        {
+          "click": "#m-notebook"
+        },
+        {
+          "js": "document.querySelector('#conclusion').scrollIntoView({block:'center'}); document.querySelector('#conclusion').value='Pad 800 gives the light rider 2.39 g. Generator 70 gives 1.44 g. Its force depends on speed.';"
+        },
+        {
+          "click": "#compare"
+        },
+        {
+          "js": "document.querySelector('#compare-result').scrollIntoView({block:'center'});"
+        }
+      ],
+      "keep": [
+        "#compare-result"
+      ]
     }
   ]
 }

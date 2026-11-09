@@ -1,0 +1,292 @@
+{
+  "keep": [
+    "#stage",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "identify",
+      "steps": [
+        {
+          "click": "#case1"
+        },
+        {
+          "click": "#test-1"
+        }
+      ],
+      "keep": [
+        "#specimen",
+        "#tray",
+        "#notebook"
+      ]
+    },
+    {
+      "name": "same-ph",
+      "steps": [
+        {
+          "click": "#case2"
+        },
+        {
+          "click": "#test-0"
+        },
+        {
+          "click": "#soda-1"
+        }
+      ],
+      "keep": [
+        "#specimen",
+        "#tray"
+      ]
+    },
+    {
+      "name": "spill-locked",
+      "steps": [
+        {
+          "click": "#case3"
+        }
+      ],
+      "keep": [
+        "#spill-focus"
+      ]
+    },
+    {
+      "name": "spill",
+      "steps": [
+        {
+          "click": "#case3"
+        },
+        {
+          "click": "#tell"
+        },
+        {
+          "click": "#soda-1",
+          "times": 42,
+          "gap": 0.03
+        },
+        {
+          "click": "#soda-001"
+        }
+      ],
+      "keep": [
+        "#spill-focus",
+        "#soda-row"
+      ]
+    },
+    {
+      "name": "bench",
+      "steps": [
+        {
+          "click": "#m-bench"
+        },
+        {
+          "click": "#test-1"
+        }
+      ],
+      "keep": [
+        "#specimen",
+        "#tray"
+      ]
+    },
+    {
+      "name": "acid-reserves",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#case2"
+        },
+        {
+          "click": "#soda-1",
+          "times": 7,
+          "gap": 0.03
+        },
+        {
+          "click": "#bottle-B"
+        },
+        {
+          "click": "#soda-001",
+          "times": 4,
+          "gap": 0.03
+        },
+        {
+          "click": "#bottle-A"
+        },
+        {
+          "click": "#fresh"
+        },
+        {
+          "click": "#test-6"
+        },
+        {
+          "click": "#test-0"
+        },
+        {
+          "click": "#bottle-B"
+        },
+        {
+          "click": "#fresh"
+        },
+        {
+          "click": "#test-6"
+        },
+        {
+          "click": "#test-0"
+        }
+      ],
+      "keep": [
+        "#reserve-compare",
+        "#specimen"
+      ]
+    },
+    {
+      "name": "full-notebook",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#case1"
+        },
+        {
+          "click": "#bottle-A"
+        },
+        {
+          "click": "#test-1"
+        },
+        {
+          "click": "#test-2"
+        },
+        {
+          "click": "#test-3"
+        },
+        {
+          "click": "#test-4"
+        },
+        {
+          "click": "#test-5"
+        },
+        {
+          "click": "#bottle-B"
+        },
+        {
+          "click": "#test-1"
+        },
+        {
+          "click": "#test-2"
+        },
+        {
+          "click": "#test-3"
+        },
+        {
+          "click": "#test-4"
+        },
+        {
+          "click": "#test-5"
+        },
+        {
+          "click": "#bottle-C"
+        },
+        {
+          "click": "#test-1"
+        },
+        {
+          "click": "#test-2"
+        },
+        {
+          "click": "#test-3"
+        },
+        {
+          "click": "#test-4"
+        },
+        {
+          "click": "#test-5"
+        },
+        {
+          "click": "#bottle-D"
+        },
+        {
+          "click": "#test-1"
+        },
+        {
+          "click": "#test-2"
+        },
+        {
+          "click": "#test-3"
+        },
+        {
+          "click": "#test-4"
+        },
+        {
+          "click": "#test-5"
+        },
+        {
+          "click": "#bottle-E"
+        },
+        {
+          "click": "#test-1"
+        },
+        {
+          "click": "#test-2"
+        },
+        {
+          "click": "#test-3"
+        },
+        {
+          "click": "#test-4"
+        },
+        {
+          "click": "#test-5"
+        },
+        {
+          "click": "#bottle-F"
+        },
+        {
+          "click": "#test-1"
+        },
+        {
+          "click": "#test-2"
+        },
+        {
+          "click": "#test-3"
+        },
+        {
+          "click": "#test-4"
+        },
+        {
+          "click": "#test-5"
+        }
+      ],
+      "keep": [
+        "#labels"
+      ]
+    },
+    {
+      "name": "litmus-paper",
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-bench"
+        },
+        {
+          "click": "#bottle-vinegar"
+        },
+        {
+          "click": "#test-4"
+        }
+      ],
+      "keep": [
+        "#specimen",
+        "#instrument-wrap"
+      ]
+    }
+  ]
+}

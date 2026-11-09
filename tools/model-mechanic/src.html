@@ -40,7 +40,8 @@ h1 small {font:500 12px/1.5 ui-monospace,Consolas,monospace; letter-spacing:1px;
 .icon-btn {flex:none; border-width:1px}
 main {grid-template-columns:minmax(0,1fr) 366px; gap:14px; padding:14px; min-height:0}
 .panel {grid-column:2; grid-row:1; border:1px solid #48533e; border-radius:12px; padding:12px; gap:9px;
-  box-shadow:0 14px 30px #0005,inset 0 1px #ffffff0d; background:linear-gradient(120deg,#252d22,#191f19)}
+  box-shadow:0 14px 30px #0005,inset 0 1px #ffffff0d; background:linear-gradient(120deg,#252d22,#191f19); overflow:hidden}
+.toolbox-body {display:flex; flex-direction:column; gap:7px; overflow:auto; min-height:0; scroll-padding-top:24px}
 .stage {grid-column:1; grid-row:1; min-height:0; overflow:auto; padding:0 4px 0 0; background:transparent;
   display:flex; flex-direction:column; gap:9px}
 .eyebrow {font:700 11px/1.3 ui-monospace,Consolas,monospace; letter-spacing:1.5px; color:var(--muted); text-transform:uppercase}
@@ -51,8 +52,8 @@ main {grid-template-columns:minmax(0,1fr) 366px; gap:14px; padding:14px; min-hei
 .calm .led {animation:none}
 .hint {font-size:14px; line-height:1.4; min-height:59px; margin:0; color:#dce7d5}
 .panel {scroll-padding-top:calc(var(--hint-height) + 65px)}
-.panel .hint {position:sticky; top:0; z-index:5; background:#20291e}
-.panel .actions {position:sticky; top:calc(var(--hint-height) + 7px); z-index:4; background:#20291e}
+.panel .hint {flex:none; background:#20291e}
+.panel .actions {background:#20291e}
 .actions {display:grid; grid-template-columns:1fr 72px; gap:8px; flex:none}
 .big-btn {min-height:47px; font-size:17px; border-radius:7px; background:var(--brand); color:var(--brand-ink);
   box-shadow:0 3px 0 #536f19; text-align:center; padding:0 8px}
@@ -61,14 +62,17 @@ main {grid-template-columns:minmax(0,1fr) 366px; gap:14px; padding:14px; min-hei
 .sec {border-top:1px solid #46503d; padding-top:7px; flex:none}
 .sec h2 {font-size:13px; margin:0 0 5px; display:flex; align-items:center; justify-content:space-between}
 .sec h2 span {color:var(--muted); font-weight:500}
-.train-table {width:100%; border-collapse:collapse; font-size:13px}
+.train-table {width:100%; border-collapse:collapse; font-size:13px; table-layout:fixed}
+.train-table th:first-child {width:76px}
+.train-table td {padding:0}
 .train-table th {text-align:left; font-weight:550}
 .train-table thead th {font-size:11px; color:var(--muted); padding:0 0 3px}
+.train-table thead {position:sticky; top:0; z-index:2; background:#20291e}
 .train-table thead th:not(:first-child) {text-align:center}
 .train-table tbody tr {border-top:1px solid #ffffff09}
 .stepper {display:flex; align-items:center; justify-content:center; gap:0}
 .stepper button {border-color:#465540; border-radius:5px; width:44px; height:44px; padding:0; font-size:21px}
-.stepper output {width:30px; text-align:center; font:700 15px ui-monospace,Consolas,monospace}
+.stepper output {width:25px; flex:none; text-align:center; font:700 15px ui-monospace,Consolas,monospace}
 .tag-letter {font-weight:850; display:inline-block; width:18px; text-align:center}
 .training-total {font-size:11px; color:var(--muted); margin:5px 0 0}
 #warning {font-size:12px; color:#ffd166; margin:4px 0 0}
@@ -131,6 +135,14 @@ button.photo {min-height:44px}
 .dirty #matrix,.dirty .photos {opacity:.42}
 .dirty #status {color:#ffd166}
 .dirty .scores {border-color:#a58b49}
+.dirty .scores strong {color:#ffd166}
+.dirty .led {background:#ffd166; animation:none}
+.dirty #evidence::before {content:'Evidence from the last test. Run the test after your edits.'; display:block;
+  color:#ffd166; font-size:12px; margin-bottom:8px}
+.repair-traces {position:absolute; inset:0; width:100%; height:100%; pointer-events:none; overflow:visible}
+.repair-traces path {fill:none; stroke:#c4f184; stroke-width:2; opacity:.6; stroke-dasharray:3 5}
+.repair-traces circle {fill:#d4fa95; stroke:#142000; stroke-width:2; filter:drop-shadow(0 0 5px #a3e635)}
+.run-change {display:block; color:#d8f5b5; font:700 12px/1.5 ui-monospace,Consolas,monospace; margin-bottom:4px}
 .evidence {border:1px solid #495840; border-radius:10px; padding:10px; background:linear-gradient(115deg,#20291e,#181f18);
   box-shadow:inset 0 1px #ffffff0a; flex:none}
 .evidence-heading {display:flex; align-items:center; justify-content:space-between; gap:9px; margin-bottom:8px}
@@ -195,6 +207,7 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
   header {gap:6px}
   .seg button,.icon-btn {padding:0 9px; font-size:12px}
   .stepper output {width:23px}
+  .train-table th:first-child {width:60px}
   .photos {display:none}
   .photos button.photo {min-height:32px}
   .idle-evidence {grid-template-columns:160px 1fr; gap:10px}
@@ -214,6 +227,7 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
   .panel {padding:5px}
   .train-table th {font-size:11px}
   .train-table .animal-name {display:none}
+  .train-table th:first-child {width:29px}
   .stepper output {width:21px; font-size:13px}
   .hint {font-size:12px; min-height:69px}
   .clue-row {gap:3px}
@@ -245,6 +259,9 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
   header {display:grid; grid-template-columns:repeat(3,1fr); padding:8px; gap:6px}
   header {position:sticky; top:0; z-index:20}
   header .actions {grid-column:1/-1; width:100%}
+  header .actions #next {display:none}
+  .orders-mode header .actions {grid-template-columns:minmax(0,1fr) 64px 92px}
+  .orders-mode header .actions #next {display:block}
   h1 {grid-column:1/-1; font-size:24px}
   h1 small {display:block; font-size:11px}
   .seg {grid-column:1/-1; display:grid; grid-template-columns:1fr 1fr}
@@ -252,6 +269,8 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
   main {display:flex; flex-direction:column; padding:8px; gap:10px}
   .stage {order:0; overflow:visible; padding:0; gap:7px}
   .panel {order:1; overflow:visible; padding:11px; gap:9px}
+  .toolbox-body {overflow:visible}
+  .order-card {grid-template-columns:1fr}
   .scores {gap:8px; padding:6px 8px}
   .scores strong {font-size:18px}
   .scores span {font-size:10px}
@@ -281,15 +300,18 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
 }
 @media (min-width:801px) and (max-height:800px) {
   .k-row {gap:2px}
-  .panel > .sec:not(#training) {display:grid; grid-template-columns:65px 1fr; gap:6px; align-items:center}
-  .panel > .sec:not(#training) h2 {font-size:12px; flex-direction:column; align-items:flex-start; margin:0; gap:3px}
+  .toolbox-body > .sec:not(#training) {display:grid; grid-template-columns:65px 1fr; gap:6px; align-items:center}
+  .toolbox-body > .sec:not(#training) h2 {font-size:12px; flex-direction:column; align-items:flex-start; margin:0; gap:3px}
   #clue-row {gap:4px}
   #clue-row button {font-size:11px}
   #clue-row {grid-column:2}
   #clue-row::before {display:none}
-  .panel > .sec:last-child h2 span {display:none}
+  .toolbox-body > .sec:last-child h2 span {display:none}
 }
 @media (min-width:601px) and (max-width:800px) and (max-height:600px) {
+  .no-model .scores {padding-top:0; padding-bottom:0; gap:3px}
+  .no-model .scores .eyebrow {display:inline; font-size:10px; letter-spacing:0; text-transform:none}
+  .no-model .matrix-foot {display:none}
   .matrix-bench {min-height:292px; flex-basis:292px}
   .bench-top {position:absolute; right:6px; top:65px}
   .bench-top h2 {display:none}
@@ -314,14 +336,15 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
 @media (min-width:601px) and (max-height:700px) {
   #photo-dialog[open] {display:grid; grid-template-columns:1.3fr 1fr; gap:8px 14px; padding:12px}
   #photo-dialog .modal-top {grid-column:1/-1; grid-row:1; margin:0}
-  #large-photo {grid-column:1; grid-row:2/4; align-self:center}
-  #bars {grid-column:2; grid-row:2; grid-template-columns:1fr; gap:6px; margin:0}
-  #label-tools {grid-column:2; grid-row:3}
+  #inspector-hint {grid-column:1/-1; grid-row:2; margin:0; font-size:11px}
+  #large-photo {grid-column:1; grid-row:3/5; align-self:center}
+  #bars {grid-column:2; grid-row:3; grid-template-columns:1fr; gap:6px; margin:0}
+  #label-tools {grid-column:2; grid-row:4}
   #current-label {font-size:12px; margin:4px 0 6px}
   .relabels {display:grid; grid-template-columns:1fr 1fr; gap:6px}
   .relabels button {min-width:0; font-size:12px}
-  #test-caption {grid-column:1/-1; grid-row:4; margin:0}
-  #photo-dialog .model-note {grid-column:1/-1; grid-row:5; margin:0; font-size:10px}
+  #test-caption {grid-column:1/-1; grid-row:5; margin:0}
+  #photo-dialog .model-note {grid-column:1/-1; grid-row:6; margin:0; font-size:10px}
 }
 </style>
 </head>
@@ -338,9 +361,10 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
 </header>
 <main>
   <aside class="panel" aria-label="Model toolbox">
-    <p class="toolbox-label eyebrow">Model toolbox <span><i class="led"></i> Bench ready</span></p>
+    <p class="toolbox-label eyebrow">Model toolbox <span><i class="led"></i> <span id="bench-state">Bench ready</span></span></p>
     <p id="hint" class="hint"></p>
     <div class="actions"><button class="big-btn" id="run">▶ Run the test</button><button id="reset">↻ Reset</button></div>
+    <div class="toolbox-body" id="toolbox-body">
     <section id="order-card" class="order-card" hidden>
       <div class="eyebrow" id="order-number"></div><h2 id="order-title"></h2><p id="complaint"></p>
       <ul id="goals"></ul><button id="next" disabled>Next work order →</button><p id="debrief" hidden></p>
@@ -354,6 +378,7 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
       <div id="k-row" class="k-row" role="group" aria-label="Number of neighbors"></div></section>
     <section class="sec"><h2>Clues <span>Camera measurements</span></h2>
       <div id="clue-row" class="clue-row" role="group" aria-label="Clues used by the model"></div></section>
+    </div>
   </aside>
   <section class="stage" id="stage" aria-label="Trail camera test bench">
     <div class="scores" id="scores" aria-live="polite">
@@ -370,17 +395,21 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
       <div class="matrix-foot"><span class="diag">▱ Diagonal = right answers</span><span id="status">Tap a square to inspect</span></div>
     </section>
     <section class="evidence" id="evidence"></section>
-    <p class="fact" id="fact">Motion cameras take many photos with no animal at all: wind, moving grass, rain.</p>
+    <p class="fact" id="fact">Motion cameras can capture empty frames: moving grass, rain. Cedar Hollow and its clue values are simulated.</p>
   </section>
 </main>
 <dialog id="photo-dialog" aria-labelledby="photo-title">
-  <div class="modal-top"><h2 id="photo-title">Camera evidence</h2><button id="close-photo">Close</button></div>
+  <div class="modal-top"><h2 id="photo-title">Camera evidence</h2>
+    <button id="read-photo" aria-label="Read photo instructions">Read</button><button id="close-photo">Close</button></div>
+  <p class="caption" id="inspector-hint"></p>
   <div id="large-photo"></div><p class="caption" id="test-caption" hidden></p><div id="bars"></div>
   <div id="label-tools"><p id="current-label"></p><div class="relabels" id="relabels" role="group" aria-label="Relabel as"></div></div>
-  <p class="model-note">Synthetic camera data. Paintings vary in size; the four bars are the measured clues used by this model.</p>
+  <p class="model-note">Simulated data: this model compares the four bars, not image pixels. Paintings change with Size only.</p>
 </dialog>
 <dialog id="photos-dialog" aria-labelledby="photos-title">
-  <div class="modal-top"><h2 id="photos-title">The 40 test photos</h2><button id="close-photos">Close</button></div>
+  <div class="modal-top"><h2 id="photos-title">The 40 test photos</h2>
+    <button id="read-photos" aria-label="Read test photo instructions">Read</button><button id="close-photos">Close</button></div>
+  <p class="caption" id="photos-hint"></p>
   <div id="all-photos" style="display:grid;grid-template-columns:repeat(4,1fr);gap:6px"></div>
 </dialog>
 <script src="kit:curio"></script>
@@ -391,6 +420,10 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
   const $ = id => document.getElementById(id);
   const C = ['Deer', 'Fox', 'Raccoon', 'Empty'];
   const F = ['Size', 'Legs', 'Tail', 'Mask'];
+  const featureNames = {
+    Size:'Height in the camera frame', Legs:'Leg length for the body',
+    Tail:'Tail length and bushiness', Mask:'Face mask and ringed-tail contrast',
+  };
   const letters = ['D', 'F', 'R', 'E'];
   const colors = ['#f2b866', '#ff8a5b', '#9ec5ff', '#c9c9c9'];
   const ranges = [
@@ -409,12 +442,22 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     wGarage:'This camera AI names every animal it sees. Each square shows what an animal really was and what the model said. Tap a square off the diagonal.',
     diagonal:'That square holds the right answers. Tap a square off the diagonal to see the mistakes.',
     drawer:'Each wrong photo shows the training photos it was matched to. Look for the reason, then change something in the toolbox.',
+    emptyCell:'No test photos landed in that square. Tap a square with a count to inspect its photos and training matches.',
+    noMatches:'That run had no training photos. Press a plus button in the toolbox, then Run the test.',
     changed:'You changed the model. Press Run the test.',
     wOrders:'The rangers sent work orders. Read the complaint, then tap the square where the mistakes are.',
     order1:'Work order one. Where are the foxes?', order2:'Work order two. Night shift.', order3:'Work order three. Ghost deer.',
     goalMet:'Goal met. Read what was wrong, then press Next work order.',
     tradeOff:'That fixed one thing and broke another. Check the other rows.',
-    relabel:'Label changed. Press Run the test to see what it does.',
+    relabel:'Label changed. Press Close, then Run the test to see what it does.',
+    trainingPhoto:'Compare the clue bars and the animal with its current label. If the label is wrong, tap the right animal. Then press Close.',
+    testPhoto:'Compare the clue bars with the model answer and the real animal. Press Close to return to the evidence.',
+    photos:'Tap a test photo to compare its answer with the real animal, or press Close to return to the matrix.',
+    resultAction:'Tap an error square, or change the toolbox and press Run the test.',
+    inspectAgain:'Tap a square off the diagonal to inspect a mistake.',
+    tabAll:'All test photos. Tap a square to inspect the photos and nearest training matches.',
+    tabDay:'Day test photos. Tap a square to inspect the photos and nearest training matches.',
+    tabNight:'Night test photos. Tap a square to inspect the photos and nearest training matches.',
     allDone:'All three work orders are done. Read the last note, then press Start again or open the Garage.',
   };
   for (let n = 0; n <= 40; n++) L['score' + n] = 'The model got ' + n + ' of 40 right.';
@@ -423,9 +466,8 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
       debrief:"Class imbalance: with 50 raccoon photos and 3 fox photos, a fox's 5 nearest neighbors are mostly raccoons. " +
         'Fixes: add fox photos, use fewer raccoons, or k = 1.'},
     {title:'Night shift', complaint:'It works all day and gets confused at night.', counts:C.map(() => [30,0]), k:5,
-      debrief:"Missing data: the model never saw a night photo, and at night a raccoon's mask disappears. " +
-        'Fixes: add night photos, or stop trusting the Mask clue. The animals hurt most were the ones that live at night, ' +
-        'which is how biased data works.'},
+      debrief:"Missing data: the model never saw a night photo. In this simulation, infrared reduces the Mask clue. " +
+        'Fixes: add night photos, or stop trusting Mask. Raccoons in this test set appear mostly at night, so missing night data hurts them most.'},
     {title:'Ghost deer', complaint:'Deer keep coming up as empty frames.', counts:C.map(() => [15,15]), k:1,
       debrief:'Label noise: 8 deer were labeled Empty, and with k = 1 one wrong neighbor decides. ' +
         'Fixes: find and relabel them, or raise k so one wrong photo gets outvoted.'},
@@ -465,15 +507,16 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     return {
       counts:order < 0 ? C.map(() => [20,20]) : orders[order].counts.map(row => row.slice()),
       k:order < 0 ? 5 : orders[order].k, features:F.slice(), labels, dirty:false, ev:null, goals:[], runs:0, revision:0,
-      announced:false,
+      announced:false, delta:null,
     };
   }
-  const state = {mode:'garage', order:0, tab:'All', garage:config(), work:config(0), cell:null, selected:null, epoch:0};
+  const state = {mode:'garage', order:0, tab:'All', garage:config(), work:config(0), cell:null, selected:null, epoch:0, hintParts:[]};
   const active = () => state.mode === 'garage' ? state.garage : state.work;
   let view;
   let frame = 0;
   let tween = null;
   let restorePhotoFocus = null;
+  let matrixFocusIndex = null;
   const glyphs = Object.fromEntries(C.map((c, i) => [c, {shape:['circle','triangle','square','diamond'][i], color:colors[i], letter:letters[i]}]));
   const V = Curio.voice({
     lines:L, scope:() => state.mode + ':' + state.order,
@@ -482,9 +525,18 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
         !(state.mode === 'orders' && active().goals.length && active().goals.every(Boolean)),
     }]],
     speaks:'#run, #next, #reset, .stepper button, #k-row button, #clue-row button, #matrix [role="button"]',
-    hint:false, read:() => $('hint').textContent,
+    hint:false, read:() => $('photo-dialog').open ? $('inspector-hint').textContent :
+      $('photos-dialog').open ? L.photos : state.hintParts,
   });
-  function hint(text) { $('hint').textContent = text; }
+  function hint(text) {
+    state.hintParts = Array.isArray(text) ? text : [text];
+    $('hint').textContent = state.hintParts.join(' ');
+  }
+  function transitionSpeech() {
+    // Stop speech whose screen has gone away. A student-requested Read keeps priority.
+    if (V.playing) V.hush();
+    else V.dropQueued();
+  }
   function trainList(s = active()) {
     const train = [];
     C.forEach((c, a) => {
@@ -523,7 +575,7 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     const seededLeft = 10 + ((p.tags.number * 37 + C.indexOf(animal) * 13) % 51);
     const height = animal === 'Empty' ? 27 : p.v.Size * 100;
     const ratio = animal === 'Deer' ? (night ? 600 / 406 : 600 / 435) :
-      animal === 'Fox' ? (night ? 600 / 265 : 600 / 284) : animal === 'Raccoon' ? (night ? 600 / 303 : 600 / 284) : 360 / 308;
+      animal === 'Fox' ? (night ? 600 / 265 : 600 / 284) : animal === 'Raccoon' ? (night ? 600 / 296 : 600 / 284) : 360 / 308;
     const left = Math.max(10, Math.min(seededLeft, 98 - height * ratio / 1.6));
     const flip = (p.tags.number + 1) % 2 ? 'scaleX(-1)' : 'none';
     const cls = `photo ${night ? 'night' : ''} ${wrong ? 'wrong' : ''}`;
@@ -553,9 +605,13 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     $('k-label').textContent = 'k = ' + s.k + (total < s.k ? ' · ' + total + ' available' : '');
     for (const f of F) $('clue-' + f).setAttribute('aria-pressed', s.features.includes(f));
     $('stage').classList.toggle('dirty', s.dirty);
+    $('bench-state').textContent = s.dirty ? 'Test needed' : 'Bench ready';
     $('status').textContent = s.dirty ? 'Changed: run the test' : 'Tap a square to inspect';
     $('run').setAttribute('aria-label', s.dirty ? 'Run the test with changed model' : 'Run the test');
-    if (state.mode === 'orders') $('next').disabled = s.dirty || !s.goals.every(Boolean);
+    if (state.mode === 'orders') {
+      $('next').disabled = s.dirty || !s.goals.every(Boolean);
+      if (s.dirty) $('order-title').textContent = orders[state.order].title;
+    }
   }
   function change() {
     snapTween();
@@ -563,8 +619,16 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     active().dirty = true;
     active().revision++;
     syncControls();
+    $('debrief').hidden = true;
+    if (!state.cell) {
+      paintIdle();
+      $('evidence').hidden = false;
+    }
     hint(L.changed);
-    V.how('changed', {valid:() => active().dirty, needs:'#run'});
+    if (!$('photo-dialog').open) {
+      if (!V.heard('changed') || [L.wGarage,L.wOrders,L.drawer,L.diagonal].includes(V.playing)) transitionSpeech();
+      V.how('changed', {valid:() => active().dirty, needs:'#run'});
+    }
     Curio.tone(290, .035, .035, 'triangle');
   }
   function buildControls() {
@@ -585,7 +649,7 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
       active().k = k;
       change();
     };
-    $('clue-row').innerHTML = F.map(f => `<button id="clue-${f}" aria-pressed="true">${f}</button>`).join('');
+    $('clue-row').innerHTML = F.map(f => `<button id="clue-${f}" title="${featureNames[f]}" aria-pressed="true">${f}</button>`).join('');
     for (const f of F) $('clue-' + f).onclick = () => {
       const s = active();
       s.features = s.features.includes(f) ? s.features.filter(x => x !== f) : F.filter(x => x === f || s.features.includes(x));
@@ -602,22 +666,32 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
         $('relabels').querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', x === b));
         V.say('relabel', {valid:() => active().dirty});
         hint(L.relabel);
+        $('inspector-hint').textContent = L.relabel;
       };
     });
   }
   function filtered(e = active().ev) { return state.tab === 'All' ? e : {...e.byGroup[state.tab], classes:e.classes}; }
+  function evidenceKey(cell) {
+    const items = filtered().cells[cell.truth]?.[cell.pred] || [];
+    if (!items.length) return 'emptyCell';
+    const result = active().ev.results.find(r => r.item.id === items[0].id);
+    if (!result.out.neighbors.length) return 'noMatches';
+    return cell.truth === cell.pred ? 'diagonal' : 'drawer';
+  }
   function updateMatrix(e = active().ev) {
     const focused = $('matrix').contains(document.activeElement) ? document.activeElement.getAttribute('aria-label') : null;
-    $('matrix').style.minHeight = e.classes.length > 4 ? (e.classes.length * 48 + 72) + 'px' : '';
+    const shortEmpty = e.classes.length > 4 && innerWidth >= 601 && innerWidth <= 800 && innerHeight <= 600;
+    $('matrix').style.minHeight = e.classes.length > 4 ? (e.classes.length * 48 + (shortEmpty ? 54 : 72)) + 'px' : '';
     const box = $('matrix').getBoundingClientRect();
     const sideTabs = innerWidth >= 601 && innerWidth <= 800 && innerHeight <= 600;
-    const available = $('matrix-bench').clientWidth - (sideTabs ? 76 : 26);
+    const available = $('matrix-bench').clientWidth - (sideTabs ? (shortEmpty ? 60 : 76) : 26);
     const width = Math.min(available, box.height + 65);
     $('matrix').style.width = width + 'px';
     const compact = sideTabs || innerWidth <= 600 || Math.min((width - 100) / 4, (box.height - 64) / 4) < 45;
     const names = compact ? {...Object.fromEntries(C.map((c,i) => [c,letters[i]])), 'No answer':'?'} : {Raccoon:'Racc.'};
     $('stage').classList.toggle('no-model', e.classes.length > 4);
-    const options = {classes:e.classes, glyphs, names, onCell:openCell};
+    const options = {classes:e.classes, glyphs, names, onCell:openCell,
+      rowTitle:shortEmpty ? 'Rows: real' : 'Rows: real animal', colTitle:'Columns: model answer'};
     if (!view) {
       view = MLLab.view.confusion($('matrix'), filtered(e), options);
       view.redraw();
@@ -639,6 +713,7 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
   }
   function paintScores() {
     const e = active().ev;
+    $('scores').querySelector('.eyebrow').textContent = e.classes.length > 4 ? '? No answer' : 'Fixed test set · 40 frames';
     $('score').textContent = e.ok + ' of 40';
     $('day-score').textContent = e.byGroup.Day.ok + ' of 15';
     $('night-score').textContent = e.byGroup.Night.ok + ' of 25';
@@ -662,7 +737,14 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     $('next').disabled = !done || s.dirty;
     $('debrief').hidden = !done;
     $('evidence').hidden = Boolean(done);
-    $('debrief').textContent = orders[state.order].debrief;
+    $('debrief').replaceChildren();
+    if (s.delta) {
+      const line = document.createElement('strong');
+      line.className = 'run-change';
+      line.textContent = `${s.delta.fixed} errors corrected · ${s.delta.introduced} new errors · ${40 - s.ev.ok} still wrong`;
+      $('debrief').append(line);
+    }
+    $('debrief').append(document.createTextNode(orders[state.order].debrief));
   }
   function paintIdle() {
     const e = active().ev;
@@ -693,12 +775,13 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
         frameHTML(n.item, active().labels[n.item.id] || n.item.tags.animal, false, true)).join('')}</div></div></div>`).join('') :
       '<p class="caption">No test photos in this square. Tap another square in the matrix.</p>'}</div>`;
     $('close-drawer').onclick = () => {
+      transitionSpeech();
       state.cell = null;
       paintIdle();
       paintOrder();
       const completed = state.mode === 'orders' && active().goals.every(Boolean);
       hint(active().dirty ? L.changed : completed ? (state.order === 2 ? L.allDone : L.goalMet) :
-        'Tap a square off the diagonal to inspect a mistake.');
+        L.inspectAgain);
       Curio.tone(250, .035, .03);
       $('tab-' + state.tab).focus({preventScroll:true});
     };
@@ -706,6 +789,7 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
   function openCell(cell) {
     const fromInspect = document.activeElement === $('inspect');
     snapTween();
+    transitionSpeech();
     state.cell = {truth:cell.truth, pred:cell.pred};
     state.epoch++;
     $('evidence').hidden = false;
@@ -714,13 +798,14 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     if (fromInspect) $('close-drawer').focus({preventScroll:true});
     Curio.tone(cell.truth === cell.pred ? 520 : 320, .055, .035, 'triangle');
     const thisCell = state.cell;
-    const key = cell.truth === cell.pred ? 'diagonal' : 'drawer';
+    const key = evidenceKey(cell);
     hint(L[key]);
-    V.how(key, {valid:() => state.cell === thisCell});
+    V.how(key, {valid:() => state.cell === thisCell && !$('photo-dialog').open});
     if ($('evidence').getBoundingClientRect().top > innerHeight - 80) $('evidence').scrollIntoView({block:'nearest', behavior:'instant'});
   }
   function openPhoto(p, isTrain, from) {
     snapTween();
+    transitionSpeech();
     restorePhotoFocus = from;
     state.selected = p;
     $('photo-title').textContent = (isTrain ? 'Training' : 'Test') + ' photo · ' + p.tags.time;
@@ -730,14 +815,19 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     $('test-caption').hidden = isTrain;
     $('test-caption').textContent = isTrain ? '' : 'Really ' + p.label + '. The model said ' + label + '.';
     $('bars').innerHTML = F.map(f => `<div class="feature"><span>${f}</span>
-      <div class="bar-track"><i style="width:${p.v[f] * 100}%"></i></div><b>${p.v[f].toFixed(2)}</b></div>`).join('');
+      <div class="bar-track" title="${featureNames[f]}"><i style="width:${p.v[f] * 100}%"></i></div><b>${p.v[f].toFixed(2)}</b></div>`).join('');
     $('label-tools').hidden = !isTrain;
     $('current-label').textContent = 'Relabel as... Current label: ' + label;
     $('relabels').querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.label === label));
     $('photo-dialog').showModal();
+    const key = isTrain ? 'trainingPhoto' : 'testPhoto';
+    $('inspector-hint').textContent = L[key];
+    hint(L[key]);
+    V.how(key, {valid:() => $('photo-dialog').open && state.selected === p, needs:'#close-photo'});
     Curio.tone(460, .045, .03, 'triangle');
   }
   function closePhoto() {
+    transitionSpeech();
     $('photo-dialog').close();
     state.selected = null;
     if (active().dirty && state.cell) paintDrawer();
@@ -746,7 +836,8 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     if (restorePhotoFocus?.isConnected) restorePhotoFocus.focus({preventScroll:true});
     else if (replacement) replacement.focus({preventScroll:true});
     else $('run').focus({preventScroll:true});
-    V.welcome();
+    hint(active().dirty ? L.changed : state.cell ? L[evidenceKey(state.cell)] : L[state.mode === 'garage' ? 'wGarage' : 'wOrders']);
+    if (active().dirty) V.how('changed', {valid:() => active().dirty, needs:'#run'});
   }
   function snapTween() {
     if (!tween) return;
@@ -755,18 +846,62 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     $('photos').classList.remove('testing');
     updateMatrix();
     $('matrix-bench').querySelector('.scanline')?.remove();
+    $('matrix-bench').querySelector('.repair-traces')?.remove();
+  }
+  function movementTraces(old, next) {
+    const n = next.classes.length;
+    const cells = [...$('matrix').querySelectorAll('[role="button"]')];
+    const box = $('matrix-bench').getBoundingClientRect();
+    const changes = new Map();
+    old.results.forEach((r,i) => {
+      const after = next.results[i];
+      if (r.pred === after.pred) return;
+      const a = next.classes.indexOf(r.item.label) * n + next.classes.indexOf(r.pred);
+      const b = next.classes.indexOf(after.item.label) * n + next.classes.indexOf(after.pred);
+      if (a < 0 || b < 0 || !cells[a] || !cells[b]) return;
+      const key = a + ':' + b;
+      changes.set(key, {a,b,count:(changes.get(key)?.count || 0) + 1});
+    });
+    const ns = 'http://www.w3.org/2000/svg';
+    const overlay = document.createElementNS(ns,'svg');
+    overlay.setAttribute('class','repair-traces');
+    overlay.setAttribute('aria-hidden','true');
+    const tracks = [];
+    changes.forEach(({a,b,count}) => {
+      const from = cells[a].getBoundingClientRect();
+      const to = cells[b].getBoundingClientRect();
+      const x1 = from.x + from.width / 2 - box.x, y1 = from.y + from.height / 2 - box.y;
+      const x2 = to.x + to.width / 2 - box.x, y2 = to.y + to.height / 2 - box.y;
+      const cx = (x1 + x2) / 2, cy = (y1 + y2) / 2 - Math.min(35,Math.abs(x2-x1) / 4 + 12);
+      const path = document.createElementNS(ns,'path');
+      path.setAttribute('d',`M${x1},${y1} Q${cx},${cy} ${x2},${y2}`);
+      overlay.append(path);
+      for (let i=0;i<Math.min(count,5);i++) {
+        const dot = document.createElementNS(ns,'circle');
+        dot.setAttribute('r',count > 1 ? 4 : 5);
+        overlay.append(dot);
+        tracks.push({dot,x1,y1,x2,y2,cx,cy,i,count:Math.min(count,5)});
+      }
+    });
+    $('matrix-bench').append(overlay);
+    return tracks;
   }
   function animateCounts(old, next) {
     if (Curio.reduce || String(old.classes) !== String(next.classes)) {
       updateMatrix();
       return;
     }
-    tween = {start:performance.now()};
+    tween = {start:performance.now(), tracks:movementTraces(old,next)};
     $('photos').classList.add('testing');
     $('matrix-bench').insertAdjacentHTML('beforeend', '<div class="scanline"><i></i></div>');
     function tick(now) {
       if (!tween) return;
       const t = Math.min(1, (now - tween.start) / 400);
+      tween.tracks.forEach(p => {
+        const u = Math.max(0,Math.min(1,t * 1.3 - p.i * .06));
+        p.dot.setAttribute('cx',(1-u)**2*p.x1 + 2*(1-u)*u*p.cx + u*u*p.x2);
+        p.dot.setAttribute('cy',(1-u)**2*p.y1 + 2*(1-u)*u*p.cy + u*u*p.y2);
+      });
       const source = state.tab === 'All' ? old : old.byGroup[state.tab];
       const target = state.tab === 'All' ? next : next.byGroup[state.tab];
       const cm = Object.fromEntries(next.classes.map(a => [a, Object.fromEntries(next.classes.map(b =>
@@ -780,17 +915,23 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
         tween = null;
         $('photos').classList.remove('testing');
         $('matrix-bench').querySelector('.scanline')?.remove();
+        $('matrix-bench').querySelector('.repair-traces')?.remove();
       }
     }
     frame = requestAnimationFrame(tick);
   }
   function run() {
     snapTween();
+    if (active().dirty) transitionSpeech();
     const s = active();
     const previous = s.ev;
     const oldGoals = s.goals.slice();
     const start = performance.now();
     s.ev = evaluate(s);
+    s.delta = {
+      fixed:previous.results.filter((r,i) => !r.ok && s.ev.results[i].ok).length,
+      introduced:previous.results.filter((r,i) => r.ok && !s.ev.results[i].ok).length,
+    };
     s.computeMs = performance.now() - start;
     s.dirty = false;
     s.runs++;
@@ -809,9 +950,9 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     const valid = () => active() === s && s.revision === revision && !s.dirty;
     const done = state.mode === 'orders' && s.goals.every(Boolean);
     if (innerWidth <= 600) window.scrollTo({top:0, behavior:'instant'});
-    else if (done) document.querySelector('.panel').scrollTop = 0;
+    else if (done) $('toolbox-body').scrollTop = 0;
     hint(done ? (state.order === 2 ? L.allDone : L.goalMet) :
-      `The model got ${s.ev.ok} of 40 right. Tap an error square, or change the toolbox and press Run the test.`);
+      [L['score' + s.ev.ok],L.resultAction]);
     const lines = ['score' + s.ev.ok];
     if (done) lines.push(state.order === 2 ? 'allDone' : 'goalMet');
     else if (s.goals.some((x,i) => x && !oldGoals[i]) && s.goals.some((x,i) => !x && oldGoals[i])) lines.push('tradeOff');
@@ -825,11 +966,12 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     if ($('photos-dialog').open) $('photos-dialog').close();
     if (state.mode === 'garage' && mode === 'orders') state.garage = config();
     state.mode = mode;
+    document.body.classList.toggle('orders-mode', mode === 'orders');
     state.tab = 'All';
     state.cell = null;
     state.selected = null;
     state.epoch++;
-    document.querySelector('.panel').scrollTop = 0;
+    $('toolbox-body').scrollTop = 0;
     if (innerWidth <= 600) window.scrollTo({top:0, behavior:'instant'});
     if (!active().ev) active().ev = evaluate(active());
     if (mode === 'orders' && !active().goals.length) active().goals = goalValues(active().ev);
@@ -864,34 +1006,46 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     state.order = (state.order + 1) % 3;
     state.work = config(state.order);
     setMode('orders');
+    $('run').focus({preventScroll:true});
   }
   for (const mode of ['garage','orders']) $('m-' + mode).onclick = () => setMode(mode);
   for (const tab of ['All','Day','Night']) $('tab-' + tab).onclick = () => {
     snapTween();
+    transitionSpeech();
     state.tab = tab;
     for (const t of ['All','Day','Night']) $('tab-' + t).setAttribute('aria-pressed', t === tab);
     updateMatrix();
     paintDrawer();
-    hint(active().dirty ? L.changed : `${tab} test photos. Tap a square to inspect the photos and nearest training matches.`);
+    hint(active().dirty ? L.changed : L['tab' + tab]);
     Curio.tone(380, .045, .03, 'triangle');
   };
   $('run').onclick = run;
   $('reset').onclick = reset;
   $('next').onclick = nextOrder;
   $('close-photo').onclick = closePhoto;
+  $('read-photo').onclick = () => V.read();
+  $('read-photos').onclick = () => V.read();
   $('photo-dialog').addEventListener('cancel', e => {
     e.preventDefault();
     closePhoto();
   });
   $('photos-toggle').onclick = () => {
+    transitionSpeech();
+    $('photos-hint').textContent = L.photos;
     $('all-photos').innerHTML = active().ev.results.map(r => frameHTML(r.item, r.pred, !r.ok, true)).join('');
     $('photos-dialog').showModal();
+    V.how('photos', {valid:() => $('photos-dialog').open && !$('photo-dialog').open});
     Curio.tone(410, .045, .03);
   };
-  $('close-photos').onclick = () => {
+  function closePhotos() {
+    transitionSpeech();
     $('photos-dialog').close();
-    V.welcome();
-  };
+  }
+  $('close-photos').onclick = closePhotos;
+  $('photos-dialog').addEventListener('cancel', e => {
+    e.preventDefault();
+    closePhotos();
+  });
   document.addEventListener('click', e => {
     const button = e.target.closest('button[data-photo]');
     if (!button) return;
@@ -912,6 +1066,15 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     }
   }, {capture:true});
   document.addEventListener('keydown', snapTween, {capture:true});
+  document.addEventListener('focusin', e => {
+    const cell = e.target.closest('#matrix [role="button"]');
+    matrixFocusIndex = cell ? [...$('matrix').querySelectorAll('[role="button"]')].indexOf(cell) : null;
+  });
+  new MutationObserver(() => {
+    if (matrixFocusIndex !== null && document.activeElement === document.body) {
+      $('matrix').querySelectorAll('[role="button"]')[matrixFocusIndex]?.focus({preventScroll:true});
+    }
+  }).observe($('matrix'), {childList:true, subtree:true});
   Curio.onMotion(reduce => { if (reduce) snapTween(); });
   new ResizeObserver(() => {
     if (view && !tween) updateMatrix();
@@ -925,13 +1088,18 @@ dialog::backdrop {background:#060b06d9; backdrop-filter:blur(4px)}
     if (innerWidth <= 600) {
       if ($('hint').parentElement !== $('stage')) $('stage').insertBefore($('hint'), $('scores'));
       if (actions.parentElement !== document.querySelector('header')) document.querySelector('header').appendChild(actions);
+      if ($('next').parentElement !== actions) actions.appendChild($('next'));
     } else {
-      if ($('hint').parentElement !== toolbox) toolbox.insertBefore($('hint'), $('order-card'));
-      if (actions.parentElement !== toolbox) toolbox.insertBefore(actions, $('order-card'));
+      if ($('next').parentElement !== $('order-card')) $('order-card').appendChild($('next'));
+      if ($('hint').parentElement !== toolbox) toolbox.insertBefore($('hint'), $('toolbox-body'));
+      if (actions.parentElement !== toolbox) toolbox.insertBefore(actions, $('toolbox-body'));
     }
     if (focused && focused !== document.body && document.activeElement !== focused) focused.focus({preventScroll:true});
   }
-  addEventListener('resize', responsiveControls);
+  addEventListener('resize', () => {
+    snapTween();
+    responsiveControls();
+  });
   responsiveControls();
   Curio.init({clips:"voice:*", rate:.95, readFallback:() => $('hint').textContent});
   setMode('garage');

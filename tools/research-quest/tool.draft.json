@@ -2,21 +2,30 @@
   "id": "research-quest",
   "stage": "built",
   "status": "beta",
-  "hook": "Every research shortcut comes back as a question at Friday's garden council.",
-  "outcome": "Plan, gather, organize and present research, then trace audience questions back to research choices.",
+  "hook": "Follow an idea back to its source on an open research desk.",
+  "outcome": "Explore how wording, source retention and organization change evidence trails.",
   "driver": "students or teacher",
   "minutes": "20-30",
   "modes": [],
   "grades_label": "Grades 6-8",
   "sources": [
-    "AASL National School Library Standards, Framework for Learners (2018): Inquire, Collaborate and Engage. https://standards.aasl.org/framework/",
+    "AASL National School Library Standards, Framework for Learners (2018): Inquire and Engage. https://standards.aasl.org/framework/",
     "U.S. Fish and Wildlife Service, Monarch: milkweed, nectar and migration. https://www.fws.gov/species/monarch-danaus-plexippus",
     "Xerces Society, Monarch Butterfly Conservation and Milkweeds: A Conservation Practitioner's Guide. https://xerces.org/monarchs",
     "USDA PLANTS Database: Asclepias syriaca and Asclepias tuberosa. https://plants.usda.gov/",
     "School, people, source documents and council rules are fictional, designed for Curio Class.",
     "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
-    "Two retained illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class"
+    "Two retained illustrations drawn with FLUX.1-schnell (Apache 2.0) on a local computer, edited for Curio Class",
+    "Original six example documents, note variants, notebook count and evidence rules: Curio Class, CC BY 4.0. Fictional, no observed dataset.",
+    "U.S. Fish and Wildlife Service biological facts: federal-authored text public domain, 17 USC 105. Rights: https://www.fws.gov/disclaimer . No third-party media copied.",
+    "Xerces biological facts paraphrased only in original Curio Class text, CC BY 4.0. Xerces text and images not bundled; copyright remains with Xerces.",
+    "USDA PLANTS federal species records public domain. Species examples belong to a fictional region; not local planting guidance.",
+    "Independent verification: National Park Service, Protecting Western Monarchs; Monarchs on the Move in Cuyahoga Valley; Monarch Butterfly Migration Game. Federal text public domain; https://www.nps.gov/aboutus/disclaimer.htm . No media copied.",
+    "Independent species verification: University of Connecticut Home Garden Education Office, Milkweed, https://homegarden.cahnr.uconn.edu/factsheets/milkweed/ . Copyright UConn; reference only, no text or media copied.",
+    "AASL framework copyright AASL. Codes and reference only; no licensed framework text bundled."
   ],
   "third_party": [],
-  "updated": "2026-10-31"
+  "updated": "2026-11-06",
+  "curiosity": true,
+  "plate": null
 }

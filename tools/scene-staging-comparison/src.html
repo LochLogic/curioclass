@@ -26,6 +26,7 @@ h1 small {font:400 12px/1.5 'Segoe UI',sans-serif; letter-spacing:0; color:#cabc
 .seg {border-radius:6px; border-width:1px; flex:none;}
 .seg button {min-height:44px; padding:0 16px; font-size:14px;}
 .seg button[aria-pressed=true] {background:var(--brand); color:#17131a;}
+#sound {width:74px; flex:none;}
 .icon-btn {min-height:44px; padding:0 10px; font-size:12px; border-width:1px; border-radius:6px;}
 button,select,input {font-family:inherit;}
 button {min-width:44px; min-height:44px; border:1px solid #79677f; border-radius:6px; background:#322936;
@@ -36,7 +37,7 @@ button:disabled {opacity:.45; cursor:default;}
 button[aria-pressed=true],button.gold {background:var(--brand); border-color:var(--brand); color:#17131a;}
 main {grid-template-columns:minmax(0,1fr) 242px; gap:0; height:100%; min-height:0;}
 .panel {padding:16px 13px; border-left:1px solid #6f573f; gap:10px; order:0; grid-column:2; grid-row:1;}
-.hint {font-size:13px; line-height:1.4; margin:0; min-height:74px; color:#f1ebf2;}
+.hint {font-size:13px; line-height:1.4; margin:0; min-height:74px; flex-shrink:0; color:#f1ebf2;}
 .field-label,.eyebrow {font-size:10px; color:#c5b6c9; text-transform:uppercase; letter-spacing:.12em;}
 .viewer-row {display:flex; gap:5px;}
 .viewer-row button {flex:1; font-size:12px; padding:4px;}
@@ -81,13 +82,29 @@ main {grid-template-columns:minmax(0,1fr) 242px; gap:0; height:100%; min-height:
 .floor-shadow {position:absolute; left:5%; right:5%; bottom:4%; height:9%; background:radial-gradient(ellipse,#0008,transparent 70%);}
 .actor {position:absolute; width:15%; height:66%; left:0; top:24%; z-index:3;
   transform:translate(-50%,0); transition:left var(--travel,1.3s) ease-in-out,top var(--travel,1.3s) ease-in-out,opacity .5s;}
+.production:not(.running) .actor,.production:not(.running) .actor .body {transition:none;}
 .actor svg {width:100%; height:100%; overflow:visible; filter:drop-shadow(3px 5px 3px #0009);}
 .actor .body {transform-origin:50% 80%; transition:transform .7s;}
+.actor-initial {position:absolute; left:80%; top:20%; transform:translateX(-50%); font-size:10px;
+  color:#fff; background:#17131ae6; border:1px solid #b4a2ad; border-radius:50%; width:15px; height:15px;
+  text-align:center; line-height:13px;}
 .actor.sit .body {transform:translateY(13%) scaleY(.76);}
 .actor.lean .body {transform:rotate(-18deg);}
 .actor.slump .body {transform:translateY(15%) rotate(-22deg) scaleY(.78);}
 .actor.lift .body {transform:translateY(-18%) rotate(9deg);}
 .actor.fall .body {transform:translateY(-5%) rotate(82deg);}
+.running .actor.fall .body {animation:pratfall .7s cubic-bezier(.4,0,.8,1) both;}
+@keyframes pratfall {
+  0% {transform:translateY(-12%) rotate(-8deg);}
+  65% {transform:translateY(-5%) rotate(88deg);}
+  82% {transform:translateY(-11%) rotate(77deg);}
+  100% {transform:translateY(-5%) rotate(82deg);}
+}
+.impact {position:absolute; left:25%; bottom:11%; width:27%; height:12%; z-index:4; opacity:0;
+  border-bottom:3px solid #e8cc92; border-radius:50%; transform:scaleX(.4); pointer-events:none;}
+.running .set.farce-faint .impact {animation:impact .55s .4s both;}
+@keyframes impact {20% {opacity:.85;transform:scaleX(1);} 100% {opacity:0;transform:scaleX(1.3);}}
+.calm .impact {animation:none!important;opacity:0;}
 .actor.crawl .body {transform:translateY(27%) rotate(-65deg);}
 .actor.hop .body {animation:hop .45s ease-in-out infinite alternate;}
 .actor.shout .body {animation:shout .45s ease-in-out infinite alternate;}
@@ -144,7 +161,7 @@ main {grid-template-columns:minmax(0,1fr) 242px; gap:0; height:100%; min-height:
 .split-prod {box-shadow:inset 0 3px #f2c14e; background:#443522;}
 .split-view {border-left:3px solid #6fc3ff;}
 .split-prod.split-view {background:repeating-linear-gradient(135deg,#443522 0 10px,#293748 10px 20px);}
-#split-key {font-size:11px; color:#e7d0a4; min-height:16px;}
+#split-key {font-size:11px; color:#e7d0a4; min-height:16px; flex:none; line-height:1.35;}
 .empty-viewer {font-size:11px; padding:8px; color:#cbb9cf; background:#302432; border:1px solid #655269; border-radius:5px;}
 .sample-notes {display:grid; grid-template-columns:repeat(3,1fr); gap:7px; font-size:11px; line-height:1.4; color:#d4c0d5;}
 .sample-notes p {margin:0; padding:8px; border:1px solid #6b5542; background:#302432; border-radius:5px;}
@@ -177,6 +194,10 @@ select,input {min-height:44px; min-width:44px; width:100%; color:#f1ebf2; backgr
 .chips {display:grid; grid-template-columns:repeat(7,minmax(44px,1fr)); gap:5px;}
 .chips button {font-size:11px; padding:5px 3px;}
 .chips-title {font:500 17px Georgia,serif; margin:2px 0 5px;}
+/* Keep every short choice set above the long staging evidence, at every size. */
+body[data-mode=layers] #layer-response {display:contents;}
+body[data-mode=layers] #layer-tabs {order:-2;}
+body[data-mode=layers] .chips-title,body[data-mode=layers] #chips {order:-1;}
 body[data-mode=layers] .frames {flex:0 0 clamp(195px,32vh,350px);}
 body[data-mode=layers] .actor,body[data-mode=layers] .body {transition:none;}
 body[data-mode=layers] .program {display:none;}
@@ -200,6 +221,7 @@ dialog p {font-size:14px; line-height:1.5;}
   h1 small {font-size:10px;}
   .seg button {padding:0 11px; font-size:12px;}
   .icon-btn {padding:0 7px; font-size:11px;}
+  #sound {width:60px;}
   main {grid-template-columns:minmax(0,1fr) 185px;}
   .panel {padding:10px 8px; gap:7px;}
   .stage {padding:9px; gap:7px;}
@@ -226,7 +248,8 @@ dialog p {font-size:14px; line-height:1.5;}
   h1 small {display:none;}
   main {grid-template-columns:minmax(0,1fr) 168px;}
   .panel {gap:5px; padding:7px;}
-  .hint {font-size:11px; min-height:60px;}
+  .hint {font-size:11px; line-height:1.25; min-height:44px;}
+  .panel>.field-label {display:none;}
   #status {font-size:10px; min-height:26px;}
   #moment-label {font-size:15px;}
   .field-label {font-size:10px;}
@@ -234,7 +257,9 @@ dialog p {font-size:14px; line-height:1.5;}
   .transport {gap:4px;}
   .transport button {font-size:11px;}
   .step-row button {font-size:10px;}
-  .panel footer {padding-top:4px;}
+  .panel footer {padding-top:4px; display:flex; align-items:center; gap:6px;}
+  .panel footer #reset {width:56px; flex:none; padding:4px;}
+  .panel footer #save-note {margin:0; flex:1;}
   #save-note {margin-top:3px; font-size:10px;}
   .stage {padding:6px; gap:5px;}
   .program {display:none;}
@@ -259,7 +284,12 @@ dialog p {font-size:14px; line-height:1.5;}
   #compare {gap:5px;}
   #comparison-grid {grid-template-columns:58px repeat(10,minmax(44px,1fr));}
   .comparison-scroll {min-height:110px;}
-  .reaction-cell {min-height:45px;}
+  #sample-notes {order:5;}
+  .opinion-builder {order:3;}
+  #opinions {order:4;}
+  body[data-mode=layers] #layer-tabs {order:-2;}
+  body[data-mode=layers] #layer-response {order:-1;}
+  .reaction-cell {min-height:45px; padding:4px 0;}
   .row-label {font-size:10px; padding:3px;}
   .row-label strong {font-size:10px;}
   .opinion-builder {padding:6px;}
@@ -282,6 +312,7 @@ dialog p {font-size:14px; line-height:1.5;}
   .seg {flex:1; display:flex;}
   .seg button {padding:0 7px; flex:1; font-size:11px;}
   .icon-btn {font-size:10px; padding:0 5px;}
+  #sound {width:44px;}
   main {display:flex; flex-direction:column; overflow:hidden;}
   .panel {order:0; flex:none; display:grid; grid-template-columns:1fr 1fr; gap:5px; border:0; padding:7px;}
   .panel>.field-label,.panel>#status,.panel footer {display:none;}
@@ -337,7 +368,9 @@ dialog p {font-size:14px; line-height:1.5;}
   body[data-mode=layers] .frames {flex:0 0 220px;}
   .detail-pair {grid-template-columns:1fr; gap:12px;}
   .detail-pair p,#layer-detail p {font-size:12px;}
-  .layer-stamps {flex-direction:column;}
+  .layer-stamps {flex-direction:row;}
+  body[data-mode=layers] #layer-tabs {order:-2;}
+  body[data-mode=layers] #layer-response {order:-1;}
   .costume-art {height:180px;}
   .chips button {font-size:10px; flex:1 1 28%;}
   .chips-title {font-size:16px;}
@@ -394,13 +427,13 @@ dialog p {font-size:14px; line-height:1.5;}
       <div id="split-key">Gold top: between productions. Blue edge: between viewers.</div>
       <div class="phone-scroll-note">Swipe the strip for moments 1 to 10.</div>
       <div class="comparison-scroll"><div id="comparison-grid" aria-label="Reaction comparison, ten moments"></div></div>
-      <div id="viewer-empty" class="empty-viewer">Viewer 2 hasn't watched yet. Pass the laptop and pick Viewer 2.</div>
-      <div id="sample-notes" class="sample-notes" hidden></div>
+      <div id="viewer-empty" class="empty-viewer">No stamps for Viewer 2 yet. Pass the laptop and pick Viewer 2.</div>
+      <div id="sample-notes" class="sample-notes" aria-label="Fictional sample viewers, not model answers" hidden></div>
       <div class="opinion-builder"><h3>Turn a feeling into an opinion.</h3>
         <div class="opinion-fields">
           <label>In moment<select id="op-moment"></select></label>
           <label>Production<select id="op-production"><option value="0">1 · Parlor</option><option value="1">2 · Bare Stage</option></select></label>
-          <label>Made me feel<select id="op-feeling"></select></label>
+          <label>My reaction<select id="op-feeling"></select></label>
           <label>Because of its<select id="op-layer"></select></label>
         </div>
         <div class="reason-row"><label>My evidence · up to 120 characters<input id="op-reason" maxlength="120"
@@ -433,7 +466,7 @@ dialog p {font-size:14px; line-height:1.5;}
     'Lomov: "As you know, my family has long owned the Oxen Meadows..."',
     'Natalya: "Your meadows? The Oxen Meadows are ours." Lomov: "Ours." Natalya: "Ours!"',
     'Lomov: "My heart is pounding. My foot\'s gone to sleep."',
-    '[Insults fly. Chubukov takes Natalya\'s side. Lomov slowly leaves.]',
+    '[Insults fly. Chubukov takes Natalya\'s side. Lomov leaves.]',
     'Chubukov: "And he came here to propose to you!" Natalya: "Propose? Bring him back! Bring him back!"',
     '[They try again, and argue about whose hunting dog is better, Guess or Squeezer.]',
     'Chubukov: "He\'s dead!" Natalya: "Ivan! Ivan!"',
@@ -457,10 +490,10 @@ dialog p {font-size:14px; line-height:1.5;}
       'A quick kiss, then straight back to the dog fight; blackout.']
   ];
   const timeCards = [
-    'Chekhov called it a joke in one act. Realistic acting, slow and detailed, grew in Russia around 1900 at the Moscow Art Theatre, '+
-      'which staged Chekhov\'s longer plays. An audience then knew these country neighbors: land and a good dog really mattered.',
+    'This fictional production uses slow, detailed realistic acting. It borrows from the Moscow Art Theatre, founded in 1898, '+
+      'which staged Chekhov\'s longer plays. These landowners argue over property and hunting dogs; that can matter to an audience in any era.',
     'Farce is comedy played fast and big, with physical gags. Playing an old play on a bare stage today shifts the focus to the '+
-      'actors\' bodies and timing. Today\'s audience may not own land, so the meadow fight becomes pure silliness.'
+      'actors\' bodies and timing. A viewer might find the meadow fight silly, or recognize a serious dispute. Your experience can change your response.'
   ];
   const reactions = [
     {word:'Laughing',icon:'✦',color:'#f2c14e'}, {word:'Leaning in',icon:'↗',color:'#6fc3ff'},
@@ -472,12 +505,12 @@ dialog p {font-size:14px; line-height:1.5;}
   const L = {
     welcomeWatch:'Same scene, two productions. Press Play Production 1, and tap how you feel as it happens.',
     stampHow:'Tap a reaction button whenever you feel something.',
-    bothDone:"You've seen both. Open Compare to see where they split.",
+    bothDone:'You have reactions for both. Open Compare to look for a difference.',
     viewer2How:'Viewer 2, press Play and tap your own reactions.',
     welcomeCompare:'Tap Show splits to find where you reacted differently.',
-    emptyCompare:'Press Watch, then Play and tap a reaction. Or turn on Sample viewers to explore their responses.',
+    emptyCompare:'Press Watch to record reactions, or explore the fictional Sample viewers.',
     welcomeLayers:'Tap a layer to see what each production did here.',
-    opinionAdded:"Added. That's an opinion with evidence."
+    opinionAdded:'Opinion saved. Check that your detail supports your feeling.'
   };
   const storageKey = 'curio-scene-staging-comparison-v1';
   const fresh = () => ({stamps:[{},{}],chips:[{},{}],opinions:[]});
@@ -534,9 +567,9 @@ dialog p {font-size:14px; line-height:1.5;}
       return `Tap a reaction for Viewer ${state.viewer+1}. ${stepName} keeps playing; Stop freezes the scene.`;
     }
     if (state.mode==='watch') return both(state.viewer)?'Open Compare to find your splits, or press Play to watch again.':L.welcomeWatch;
-    if (state.mode==='compare') return any(state.viewer)?'Tap Show splits, then tap a highlighted moment to open Layers. Add an opinion using your own stamp.':
-      'Press Watch, then Play and tap a reaction. Or turn on Sample viewers to explore their different responses.';
-    return `Tap a layer for moment ${state.moment+1}. Choose a reason under What made the difference, then open Compare to use it.`;
+    if (state.mode==='compare') return any(state.viewer)?'Tap Show splits, then a marked moment for Layers. Add an opinion using your own stamp.':
+      L.emptyCompare;
+    return 'Tap a layer, then pick a reason below it. Open Compare to add your opinion.';
   }
   function event(key,valid=()=>true) {V.say(key,{key:key+':'+(++serial),valid:()=>!state.playing&&valid(),hint:false});
   }
@@ -603,11 +636,19 @@ dialog p {font-size:14px; line-height:1.5;}
   }
   function silhouette(p,c) {
     const fill=p?'#225eaa':'#211a27',edge=p?'#b6d7f3':'#b4a2ad';
-    const torso = c===0?'M33 31 L49 31 L57 65 L51 67 L54 95 L44 83 L40 96 L37 65 L27 69 Z':
+    const torso = p?
+      (c===2?'M24 32 Q40 27 57 33 L63 77 L53 94 L27 94 L20 75 Z':
+        'M30 32 L49 32 L56 76 L50 94 L30 94 L25 76 Z'):
+      c===0?'M33 31 L49 31 L57 65 L51 67 L54 95 L44 83 L40 96 L37 65 L27 69 Z':
       c===1?'M31 31 L49 31 L57 48 L52 61 L65 99 L16 99 L27 61 L24 48 Z':
       'M24 31 Q40 24 57 33 L65 73 L56 80 L54 100 L27 100 L24 77 L17 69 Z';
-    const apron=c===1?'<path d="M34 43 L48 43 L55 86 L27 86 Z" fill="'+(p?'#377dc4':'#b4a8a8')+'" opacity=".9"/>':'';
-    const detail=c===0?'<path d="M35 33 L41 47 L47 33 L43 55 L38 55 Z" fill="#e1d9d3"/><path d="M38 37 L44 37 L41 42 Z" fill="#1c1420"/>':
+    const apron=!p&&c===1?'<path d="M34 43 L48 43 L55 86 L27 86 Z" fill="'+(p?'#377dc4':'#b4a8a8')+'" opacity=".9"/>':'';
+    const detail=p?`<path d="M29 33 L34 53 M51 33 L47 53" stroke="#9cc9f2" stroke-width="3"/>
+      <path d="M33 48 L48 48 L50 77 L31 77 Z" fill="#3478b4" stroke="#a7cef2" stroke-width="1"/>
+      <path d="M35 60 L46 60 L45 69 L37 69 Z" fill="#235f98" stroke="#79b5e3"/>
+      <circle cx="34" cy="50" r="1.8" fill="#e9bc66"/><circle cx="47" cy="50" r="1.8" fill="#e9bc66"/>
+      ${c===0?'<path d="M35 33 L46 33 L45 42 L37 42 Z" fill="#e7e4d9"/><path d="M37 35 L41 38 L44 35 L44 40 L41 38 L37 40 Z" fill="#17131a"/>':''}`:
+      c===0?'<path d="M35 33 L41 47 L47 33 L43 55 L38 55 Z" fill="#e1d9d3"/><path d="M38 37 L44 37 L41 42 Z" fill="#1c1420"/>':
       c===2?'<path d="M33 34 L42 76 L51 34 M28 65 L54 65" stroke="'+edge+'" fill="none" stroke-width="2"/>':'';
     return `<svg viewBox="0 0 80 120" aria-hidden="true"><defs><linearGradient id="coat-${p}-${c}" x2="1" y2=".3">
       <stop stop-color="${fill}"/><stop offset=".5" stop-color="${p?'#397bb9':'#44374a'}"/><stop offset="1" stop-color="${fill}"/>
@@ -619,7 +660,7 @@ dialog p {font-size:14px; line-height:1.5;}
       <path class="heart-arm" d="M29 39 L23 59 L44 46 M52 39 L59 60 L51 66" fill="none" stroke="${edge}" stroke-width="4"/>
       <path class="kiss-arm" d="M29 39 L22 59 M52 39 L65 49 L78 44" fill="none" stroke="${edge}" stroke-width="4"/>
       <path class="leash" d="M60 59 Q84 51 91 95 Q96 112 105 104" fill="none" stroke="#e6bd78" stroke-width="1.5"/>
-      ${c===2?'<path d="M64 60 Q72 54 72 65 L71 111" stroke="#c4a273" stroke-width="3" fill="none"/>':''}
+      ${!p&&c===2?'<path d="M64 60 Q72 54 72 65 L71 111" stroke="#c4a273" stroke-width="3" fill="none"/>':''}
       ${p&&c===1?'<path d="M17 47 Q11 52 16 67 L29 67 L30 52 Z" fill="#d0c7a6" stroke="#85795a"/>':''}
       <path d="M33 71 L35 87" stroke="${edge}" opacity=".45"/>
       </g></svg>`;
@@ -648,15 +689,15 @@ dialog p {font-size:14px; line-height:1.5;}
       node.innerHTML=`<div class="production-head"><b>${p+1} · ${names[p]}</b><span><i class="play-signal"></i>${p?'Fast farce':'Played straight'}</span></div>
         <div class="set" id="set-${p}"><img src="${p?'art:set-bare-stage':'art:set-parlor-1890'}" alt="${p?
           'Empty bare stage, two folding chairs, even white light':'Empty Russian country-house parlor, samovar, lamp, tall clock and window'}">
-          <div class="lighting"></div><div class="floor-shadow"></div>
-          <div class="actor-labels"><span>Lomov</span><span>Natalya</span><span>Chubukov</span></div></div>
+          <div class="lighting"></div><div class="floor-shadow"></div><div class="impact"></div>
+          <div class="actor-labels"><span>L · Lomov</span><span>N · Natalya</span><span>C · Chubukov</span></div></div>
         <div class="progress"><i id="progress-${p}"></i></div><div class="caption" id="caption-${p}"></div>`;
       $('frames').append(node);
   actors[p]=[];
       for(let c=0;c<3;c++) {
         const a=document.createElement('div');
   a.className='actor';
-  a.innerHTML=silhouette(p,c);
+  a.innerHTML=silhouette(p,c)+`<span class="actor-initial">${['L','N','C'][c]}</span>`;
   $('set-'+p).append(a);
   actors[p].push(a);
       }
@@ -670,6 +711,7 @@ dialog p {font-size:14px; line-height:1.5;}
       frame.classList.toggle('phone-hidden',state.production!==p);
       frame.classList.toggle('running',state.playing&&state.production===p);
       set.classList.toggle('faint',p===0&&m===8);
+      set.classList.toggle('farce-faint',p===1&&m===8);
       set.classList.remove('blackout');
       for(let c=0;c<3;c++) {
         const [x,y,pose,visible=1]=positions[p][m][c],a=actors[p][c];
@@ -691,7 +733,7 @@ dialog p {font-size:14px; line-height:1.5;}
   }
   function updateLabels() {
     $('moment-label').textContent=`Moment ${state.moment+1} / 10`;
-    $('status').textContent=`${state.playing?'Playing':'Stopped'} · ${titles[state.moment]} · ${state.production?'63.4':'77.7'} s full production`;
+    $('status').textContent=`${state.playing?'Playing':'Stopped'} · ${titles[state.moment]} · ${captions.reduce((sum,_,m)=>sum+duration(state.production,m),0).toFixed(1)} s full production`;
     $('reaction-target').textContent=`Viewer ${state.viewer+1} · Production ${state.production+1} · moment ${state.moment+1}`;
     for(let p=0;p<2;p++) {
       $('play-'+p).textContent=state.playing&&state.production===p?'■ Stop':`▶ Play Production ${p+1}`;
@@ -707,6 +749,9 @@ dialog p {font-size:14px; line-height:1.5;}
   cancelAnimationFrame(raf);
   clearTimeout(stampTimer);
   stopAudio();
+    for(const cast of actors) for(const actor of cast) {
+      for(const animation of actor.getAnimations({subtree:true})) animation.cancel();
+    }
     updateFrames();
     if(flush) flushEvents();
   }
@@ -728,6 +773,11 @@ dialog p {font-size:14px; line-height:1.5;}
     if(!state.playing) return;
     const p=state.production,m=state.moment,elapsed=(t-startedAt)/1000,wait=pauses[p][m];
     const caption=$('caption-'+p);
+    // A hop follows the chair's edge; a crawling exit actually clears the stage.
+    if(p===1&&m===4&&!Curio.reduce) actors[p][0].style.left=(27+10*Math.sin(elapsed*2.4))+'%';
+    if(m===5) {
+      actors[p][0].style.opacity=elapsed>(p?1.1:1.6)?0:1;
+    }
     if(t<cueAt) {caption.textContent=`[${wait.toFixed(1)} s pause] ${staging[p][m]}`;
   caption.classList.add('waiting');
   }
@@ -782,7 +832,7 @@ dialog p {font-size:14px; line-height:1.5;}
     if(m===state.moment) return;
     state.moment=m;
   Curio.tone(260+25*m,.035,.02);
-    if(state.playing) beginMoment();
+    if(state.playing) {stopAudio();enableAudio();beginMoment();}
   else updateFrames();
     if(document.activeElement===$('next')&&state.moment===9) $('previous').focus({preventScroll:true});
     if(document.activeElement===$('previous')&&state.moment===0) $('next').focus({preventScroll:true});
@@ -831,8 +881,14 @@ dialog p {font-size:14px; line-height:1.5;}
     return Array.from({length:10},(_,m)=>({m,d:score(m)})).sort((a,b)=>b.d-a.d||a.m-b.m).slice(0,3);
   }
   function splits() {
-    return {productions:topThree(m=>difference(stamps(state.viewer,0,m),stamps(state.viewer,1,m))),
-      viewers:any(0)&&any(1)?topThree(m=>difference([0,1].flatMap(p=>stamps(0,p,m)),[0,1].flatMap(p=>stamps(1,p,m)))):[]};
+    const shared = (p,m) => stamps(0,p,m).length && stamps(1,p,m).length;
+    const hasShared = [0,1].some(p=>Array.from({length:10},(_,m)=>shared(p,m)).some(Boolean));
+    // Compare the same production before adding differences. A production swap must not cancel.
+    return {
+      productions:topThree(m=>difference(stamps(state.viewer,0,m),stamps(state.viewer,1,m))),
+      viewers:hasShared?topThree(m=>[0,1].reduce((total,p)=>total+
+        (shared(p,m)?difference(stamps(0,p,m),stamps(1,p,m)):0),0)):[]
+    };
   }
   const sampleData = [
     {name:'Vera',about:'Grandparent, grew up in a farming village',rows:[{3:[3],4:[3],5:[3],9:[0]},{3:[2],8:[0],9:[0]}],
@@ -862,7 +918,7 @@ dialog p {font-size:14px; line-height:1.5;}
   grid.append(b);
     }
     const rows=[];
-    for(let v=0;v<2;v++) for(let p=0;p<2;p++) rows.push({name:'Viewer '+(v+1),p,rs:m=>stamps(v,p,m)});
+    for(let v=0;v<2;v++) for(let p=0;p<2;p++) rows.push({name:'Viewer '+(v+1),v,p,rs:m=>stamps(v,p,m)});
     if(state.samples) for(const s of sampleData) for(let p=0;p<2;p++) rows.push({name:s.name,p,rs:m=>s.rows[p][m]||[],sample:s});
     for(const row of rows) {
       const label=document.createElement('div');
@@ -873,8 +929,8 @@ dialog p {font-size:14px; line-height:1.5;}
       for(let m=0;m<10;m++) {
         const b=document.createElement('button'),rs=row.rs(m);
   b.className='reaction-cell';
-        if(state.showSplits&&result.productions.some(x=>x.m===m)) b.classList.add('split-prod');
-        if(state.showSplits&&result.viewers.some(x=>x.m===m)) b.classList.add('split-view');
+        if(state.showSplits&&row.v===state.viewer&&result.productions.some(x=>x.m===m&&x.d>0)) b.classList.add('split-prod');
+        if(state.showSplits&&!row.sample&&result.viewers.some(x=>x.m===m&&x.d>0)) b.classList.add('split-view');
         b.innerHTML=rs.map(r=>`<span class="stamp" style="--r:${reactions[r].color}">${reactions[r].icon} ${reactions[r].word}</span>`).join('')||'·';
         b.setAttribute('aria-label',`${row.name}, Production ${row.p+1}, moment ${m+1}: ${rs.map(r=>reactions[r].word).join(', ')||'no stamp'}. Open layers.`);
         b.onclick=()=>{state.production=row.p;
@@ -887,12 +943,13 @@ dialog p {font-size:14px; line-height:1.5;}
     $('splits').disabled=!any(state.viewer);
     $('samples').setAttribute('aria-pressed',state.samples);
     $('sample-notes').hidden=!state.samples;
-    $('sample-notes').innerHTML=sampleData.map(s=>`<p><b>${s.name}</b> · ${safe(s.about)}${s.quote?'<br>“'+safe(s.quote)+'”':''}</p>`).join('');
+    $('sample-notes').innerHTML=sampleData.map(s=>`<p><b>${s.name} (fictional)</b> · ${safe(s.about)}${s.quote?'<br>“'+safe(s.quote)+'”':''}</p>`).join('');
     $('splits').setAttribute('aria-pressed',state.showSplits);
     if(state.showSplits) {
-      const a=result.productions.map(x=>x.m+1).join(', ')||'none',b=result.viewers.map(x=>x.m+1).join(', ')||'none';
-      $('split-key').textContent=`Gold top: production splits ${a}. Blue edge: viewer splits ${b}. Earlier moments break ties.`;
-    } else $('split-key').textContent='Gold top: between productions. Blue edge: between viewers. Different is not wrong.';
+      const ranked = list => list.filter(x=>x.d>0).map(x=>x.m+1).join(', ')||'none';
+      $('split-key').textContent=`Gold top: productions ${ranked(result.productions)}. `+
+        `Blue edge: viewers ${ranked(result.viewers)}. Only differences are marked. Blanks are unrecorded.`;
+    } else $('split-key').textContent='Gold top: your productions. Blue edge: same-production viewers. Blanks are unrecorded.';
     updateOpinion();
   renderOpinions();
   }
@@ -920,15 +977,17 @@ dialog p {font-size:14px; line-height:1.5;}
   renderOpinions();
   $('op-reason').value='';
   updateOpinion();
-  Curio.yes();
+  Curio.tone(440,.06,.018);
   event('opinionAdded');
     if(document.activeElement===$('add')) $('op-reason').focus({preventScroll:true});
   }
   function renderOpinions() {
-    const reasonPhrase=layer=>layer==='My own life'?'because of my own life':
+    const responsePhrase=['made me laugh','made me lean in','made me feel uneasy','made me feel sorry for them','made me feel lost'];
+    const reasonPhrase=layer=>layer==='My own life'?'because it connected to my own life':
+      layer==='Where they stand'?'because of where the actors stood':
       layer==="I'm not sure"?'and I am not sure which layer caused it':'because of its '+safe(layer.toLowerCase());
-    $('opinions').innerHTML=state.opinions.map(o=>`<p class="opinion">In moment ${o.m+1}, Production ${o.p+1} made me feel
-      ${safe(reactions[o.r].word.toLowerCase())} ${reasonPhrase(o.layer)}: ${safe(o.reason)}
+    $('opinions').innerHTML=state.opinions.map(o=>`<p class="opinion">In moment ${o.m+1}, Production ${o.p+1}
+      ${responsePhrase[o.r]} ${reasonPhrase(o.layer)}: ${safe(o.reason)}
       <small>Viewer ${o.v+1} · pinned to their own reaction</small></p>`).join('');
   }
   function diagram(p) {
@@ -999,12 +1058,17 @@ dialog p {font-size:14px; line-height:1.5;}
   $('phone-switch').hidden=mode==='compare';
     updateFrames();
   updateMini();
-    if(mode==='compare') updateCompare();
+    if(mode==='compare') {
+      $('op-moment').value=state.moment;
+      $('op-production').value=state.production;
+      updateCompare();
+    }
     if(mode==='layers') updateLayers();
     setHint(hintForMode());
   if(!quiet) {V.welcome();flushEvents();}
   }
   function viewer(v) {
+    if(state.viewer!==v) {V.hush();$('op-reason').value='';}
     state.viewer=v;
     for(let i=0;i<2;i++) $('viewer-'+i).setAttribute('aria-pressed',i===v);
     updateLabels();
@@ -1068,12 +1132,12 @@ dialog p {font-size:14px; line-height:1.5;}
   $('next').onclick=()=>step(1);
   $('splits').onclick=()=>{state.showSplits=!state.showSplits;
   updateCompare();
-  setHint('Tap a gold or blue marked moment to open its staging layers.');
+  setHint(state.showSplits?'Tap a moment number for Layers. Marks show recorded differences.':hintForMode());
   };
     $('samples').onclick=()=>{
       state.samples=!state.samples;
       updateCompare();
-      setHint('Read the sample viewers’ backgrounds below their strips. Tap a reaction to open its moment, then inspect Its time.');
+      setHint(state.samples?'Samples are fictional. Scroll their strips; tap a moment to open Layers.':hintForMode());
     };
   for(const id of ['reset','mobile-reset']) $(id).onclick=()=>{stop();
   V.hush();

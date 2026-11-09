@@ -9,7 +9,7 @@
 <!--
 Based on kit/starter/src.html. Curio Class. Code MIT, content CC BY 4.0.
 NCAS DA:Pr4, DA:Pr5, DA:Pr6. Safe Dance Practice (Quin, Rafferty and Tomlinson, 2015);
-IADMS Dance Floors; Site Dance (Kloetzel and Pavlik, 2009). Sources and model assumptions in notes.md.
+Ausdance National, Safe dance floors; Site Dance (Kloetzel and Pavlik, 2009). Sources and model assumptions in notes.md.
 Illustrations generated with OpenAI gpt-image, edited for Curio Class. Offline, saved on this device only.
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -81,6 +81,7 @@ select {font:12px 'Segoe UI',sans-serif;color:var(--ink);background:#fffdf7;bord
 .pair {display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .tiny {font-size:10px!important;color:var(--muted);line-height:1.4}
 .panel-bottom {margin-top:auto;display:grid;gap:7px}
+.site-actions {position:sticky;bottom:0;z-index:2;background:var(--panel);flex-shrink:0;grid-column:1/3}
 #floor-label:not([hidden]) {display:block}
 .seat-mode #site-panel .description,.seat-mode #site-panel .tiny {display:none}
 .floor-mode #site-panel .description,.floor-mode #site-panel .tiny {display:none}
@@ -125,6 +126,8 @@ footer {display:flex;gap:14px;align-items:center;padding:5px 20px;border-top:1px
 .seat-pair {display:grid;grid-template-columns:1fr 1fr;gap:2px;min-height:0;background:#b7a88a}
 .seat-box {position:relative;min-height:0;overflow:hidden;background:#ded0ae}
 .seat-box svg {height:100%;width:100%}
+.audience-receipt {position:absolute;bottom:8px;left:7px;right:7px;font:10px/1.3 Consolas,monospace;
+  background:#fbf9f4ed;color:#23211c;padding:3px 5px;pointer-events:none}
 .show-progress {height:6px;background:#ddd4c1;width:100%}
 .show-progress i {display:block;background:#4d6b14;height:100%;width:0}
 .night-title {font:italic 28px Georgia,serif}
@@ -187,7 +190,7 @@ th {font-size:11px;color:var(--muted)}
   footer {padding:4px 12px}.save {font-size:10px;max-width:135px}#hint {font-size:11px}
 }
 @media (max-width:600px) {
-  body {grid-template-rows:108px 54px minmax(0,1fr) 65px}header {display:grid;grid-template-columns:1fr auto;gap:4px;padding:7px 9px}
+  body {grid-template-rows:108px 80px minmax(0,1fr) 65px}header {display:grid;grid-template-columns:1fr auto;gap:4px;padding:7px 9px}
   h1 {font-size:20px}h1 small {display:none}.seg {grid-column:1}.utilities {grid-column:2;grid-row:1/3;flex-direction:column;gap:2px}
   header h1 {grid-column:1/3;grid-row:1}
   .seg {grid-column:1;grid-row:2}
@@ -218,6 +221,7 @@ th {font-size:11px;color:var(--muted)}
   .week-report {clear:both;margin-top:5px;font-size:10px;padding:6px}.week-report p {font-size:10px}
   .night-workspace {grid-template-rows:minmax(0,1fr) 200px}.night-stage {grid-template-rows:52px minmax(0,1fr) 42%}
   .night-panel #show-detail {display:none}
+  .night-panel .site-secondary {display:block}
   .night-stage .hero h2 {font-size:24px}.night-panel {display:block}.night-panel .night-title {display:none}
   .night-panel .cue {font-size:19px!important}.night-panel .pair {margin-top:5px}.night-panel .tiny {display:none}
   .night-panel #sheet-button {margin-top:5px;width:100%}.show-progress {margin:5px 0}.seat-caption {font-size:10px}
@@ -228,6 +232,23 @@ th {font-size:11px;color:var(--muted)}
   .sheet-hero {height:80px}.sheet-hero h2 {font-size:22px}
   .seat-mode #floor-label,.seat-mode #site-panel .section-head {display:none!important}
   .seat-mode #adaptation-dots {display:none}
+}
+
+/* Keep the load estimate beside the rehearsal decisions, even in the short site preview. */
+@media (max-height:650px) and (min-width:601px), (max-width:600px) {
+  .week-side {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:5px;
+    grid-template-rows:80px auto auto auto;align-content:start;overflow:auto}
+  .week-side .mini-map {grid-column:1;grid-row:1;width:100%;height:80px;min-height:80px;margin:0;float:none}
+  .week-side h3 {grid-column:2;grid-row:1;align-self:start;font-size:10px;line-height:1.2;margin:0}
+  .week-side #load-preview {grid-column:2;grid-row:1;align-self:end}
+  .week-side #load-preview .tiny {display:block;font-size:10px!important;line-height:1.15}
+  .week-side .load-wrap {height:8px;margin-top:4px}
+  .week-side .rehearse-options {grid-column:1/3;grid-row:2;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px}
+  .week-side .rehearse-options button {min-width:0;padding:2px 3px;font-size:10px;line-height:1.15}
+  .week-side label {grid-column:1/3;grid-row:3;margin:0}
+  .week-side .week-report {grid-column:1/3;grid-row:4;margin:0;clear:none}
+  .week-history .week-side .rehearse-options,.week-history .week-side label {display:none}
+  .week-history .week-side .week-report {grid-row:2}
 }
 @media print {
   body>*:not(#sheet) {display:none!important}body {display:block;height:auto;overflow:visible}
@@ -284,12 +305,12 @@ th {font-size:11px;color:var(--muted)}
       <label>Adaptation<select id="adaptation"></select></label>
       <label>Fountain<select id="fountain"></select></label>
       <div class="panel-bottom">
-        <div class="pair"><button class="btn" id="seat-toggle" aria-pressed="false">Seat view</button>
-          <button class="btn primary" id="to-week">Plan week</button></div>
         <label class="site-secondary" id="floor-label" hidden>Move installed floor<select id="floor-pick"></select></label>
         <label class="site-secondary" id="seat-pick-label" hidden>Choose seat<select id="seat-pick"></select></label>
         <p class="tiny">A made-up museum, piece, prices and model. Zone: 6 × 4 m. Two site rehearsals per section steady the spacing.</p>
       </div>
+      <div class="pair site-actions"><button class="btn" id="seat-toggle" aria-pressed="false">Seat view</button>
+        <button class="btn primary" id="to-week">Plan week</button></div>
     </aside>
   </section>
   <section class="workspace week-workspace" id="week-view" hidden>
@@ -316,9 +337,9 @@ th {font-size:11px;color:var(--muted)}
       <div class="map-wrap"><canvas id="night-map" aria-label="Opening-night plan. Tap a ground or balcony seat to change the view."></canvas></div>
       <div class="seat-pair">
         <div class="seat-box"><svg id="ground-view" role="img" aria-label="View from the ground"></svg>
-          <span class="seat-caption" id="ground-caption"></span></div>
+          <span class="seat-caption" id="ground-caption"></span><span class="audience-receipt" id="ground-receipt"></span></div>
         <div class="seat-box"><svg id="balcony-view" role="img" aria-label="View from the balcony"></svg>
-          <span class="seat-caption" id="balcony-caption"></span></div>
+          <span class="seat-caption" id="balcony-caption"></span><span class="audience-receipt" id="balcony-receipt"></span></div>
       </div>
     </div>
     <aside class="panel night-panel">
@@ -358,7 +379,7 @@ th {font-size:11px;color:var(--muted)}
   <h3>Dancer load</h3><p>Jumps × three runs × floor factor: stone 3, vinyl marley 2, sprung 1. The warm-up plan reduces later
   weeks' loads to 80%. Marking counts as 30% of jumps. Over 120 is a sore week. Two consecutive sore weeks injure one dancer;
   Rise then has five dancers. Studio rehearsal on a sprung floor is not counted.</p>
-  <p>The floor factor is taken at the center of the Rise zone. This version does not model landings across a floor edge.</p>
+  <p>The floor factor uses the hardest surface under the six planned Rise landing positions. A center on a panel does not protect landings beyond its edge.</p>
   <p>Vinyl over stone gives grip, not cushioning. These simplified load factors are teaching assumptions, not medical advice
   or real injury probabilities. Here the fountain basin radius is 0.75 meters; spray radius is 1.5 meters.
   Rain in week 6 cancels site rehearsal; a booked lobby backup gives one section a dot.</p>
@@ -366,7 +387,7 @@ th {font-size:11px;color:var(--muted)}
   1.2 meter eye height. Balcony floor height is 5 meters. This fictional museum permits Monday rehearsals only and a show
   starting 30 minutes before sunset. Keep zones and floors clear of the basin and audience.</p>
   <p>Sources: NCAS Dance DA:Pr4, DA:Pr5 and DA:Pr6; Quin, Rafferty and Tomlinson, Safe Dance Practice (2015);
-  International Association for Dance Medicine and Science, Dance Floors; Kloetzel and Pavlik, Site Dance (2009).</p>
+  Ausdance National, Safe dance floors; Kloetzel and Pavlik, Site Dance (2009).</p>
   </div><div class="dialog-actions"><button class="btn primary" id="close-model">Close model</button></div>
 </dialog>
 <dialog id="confirm" aria-labelledby="confirm-heading"><div class="dialog-body"><h2 id="confirm-heading">Change the plan for the show?</h2>
@@ -413,8 +434,7 @@ th {font-size:11px;color:var(--muted)}
     still:'art:mcp-fountain-still',marley:'art:mcp-marley',speaker:'art:mcp-speaker',uplight:'art:mcp-uplight',risers:'art:mcp-risers'
   };
   const PAINTED_POSES = {
-    procession:'art:dancer-procession',floor:'art:dancer-floor-roll',kneel:'art:dancer-kneel-sit',
-    standing:'art:dancer-standing-pool',weave:'art:dancer-weave',rise:'art:dancer-rise'
+    ensemble:'art:dancer-ensemble',lift:'art:dancer-lift'
   };
   const cardArt = {'mcp-marley':ART.marley,'mcp-speaker':ART.speaker,'mcp-uplight':ART.uplight,'mcp-risers':ART.risers};
   const L = {
@@ -422,7 +442,7 @@ th {font-size:11px;color:var(--muted)}
     seatHow:'Tap Seat view, then tap any seat to sit there.',
     welcomeWeek:'Tap action cards for this week, then tap End week.',
     sore:'Your dancers are sore this week. Their landings were too hard.',
-    injured:'A dancer is hurt. Rise goes on with five.',
+    injured:'A dancer is hurt after two sore weeks. Rise goes on with five.',
     rain:'Rain on Monday. The courtyard was closed for rehearsal.',
     welcomeNight:'Tap Begin. Tap any seat on the plan to watch from there.',
     siteAll:'You used the fountain, the columns and the balcony. The courtyard became part of the dance.',
@@ -430,11 +450,12 @@ th {font-size:11px;color:var(--muted)}
     openNow:'Six weeks are complete. Tap Opening night to present your production.',
     chooseSeat:'Tap a ground or balcony seat on the plan. Use the seat menu for keyboard selection.',
     sheetHow:'Compare the ground and balcony on your program sheet. Tap Close sheet to return to the courtyard.',
-    reviewWeek:'Tap the next week number to plan another Monday, or tap Undo week.'
+    reviewWeek:'Tap the next week number to plan another Monday, or tap Undo week.',
+    rehearsalHow:'Choose two section buttons under Monday site rehearsal, then tap End week.'
   };
   const fresh = () => ({version:1,mode:'site',week:1,money:3000,used:{},pending:[],dots:[0,0,0,0],
     zones:[{x:7,y:5.4},{x:14,y:7},{x:3,y:8.5},{x:12.5,y:4.9}],choices:[0,0,0,0],
-    fountain:'running',floors:{},reports:[],soreStreak:0,injured:false,selected:0,rehearse:[0,3],jump:'full',
+    fountain:'running',floors:{},reports:[],soreStreak:0,injured:false,injuredDancer:5,selected:0,rehearse:[0,3],jump:'full',
     groundSeat:10,balconySeat:19,seatView:false,seatKind:'ground',showFinished:false});
   let state = fresh();
   let undo = null;
@@ -532,9 +553,9 @@ th {font-size:11px;color:var(--muted)}
   }
   function recalc() { metricCache=SECTIONS.map((_,i) => metrics(i));
   }
-  function activeFloor(z) {
+  function activeFloor(z,floors=state.floors) {
     for (const name of ['sprung','marley']) {
-      const f=state.floors[name];
+      const f=floors[name];
       if (f && Math.abs(z.x-f.x)<=f.size/2 && Math.abs(z.y-f.y)<=f.size/2) return name;
     }
     return 'stone';
@@ -546,12 +567,15 @@ th {font-size:11px;color:var(--muted)}
       if (state.rehearse[0]!==3) return 0;
       return (state.jump==='full' ? 24 : state.jump==='half' ? 12 : 7.2)*3*(useWarm ? .8 : 1);
     }
-    let surface=activeFloor(state.zones[3]);
-    for (const name of ['marley','sprung']) if (state.pending.includes(name) && !state.floors[name]) {
-      const f={x:4,y:name==='marley' ? 6.7 : 6,size:name==='marley' ? 8 : 6},z=state.zones[3];
-      if (Math.abs(z.x-f.x)<=f.size/2 && Math.abs(z.y-f.y)<=f.size/2) surface=name;
+    const floors={...state.floors};
+    for (const name of ['marley','sprung']) if (state.pending.includes(name) && !floors[name]) {
+      floors[name]={x:4,y:name==='marley' ? 6.7 : 6,size:name==='marley' ? 8 : 6};
     }
-    const factor={stone:3,marley:2,sprung:1}[surface];
+    const factors=Array.from({length:6},(_,i) => {
+      const p=actorPosition(3,0,i);
+      return {stone:3,marley:2,sprung:1}[activeFloor(p,floors)];
+    });
+    const factor=Math.max(...factors);
     return (state.jump==='full' ? 24 : state.jump==='half' ? 12 : 7.2)*3*factor*(useWarm ? .8 : 1);
   }
   function pendingTotals() {
@@ -632,6 +656,7 @@ th {font-size:11px;color:var(--muted)}
   }
   function renderWeek() {
     const historical=viewingWeek<state.week;
+    document.body.classList.toggle('week-history',historical);
     const report=state.reports[viewingWeek-1];
     for (let w=1;w<=6;w++) {
       const b=$('w-'+w);
@@ -656,7 +681,7 @@ th {font-size:11px;color:var(--muted)}
     $('end-week').disabled=historical || state.week>=7;
     $('undo-week').disabled=!undo;
     const load=historical && report ? report.load : weekLoad();
-    $('load-preview').innerHTML='<span class="tiny">'+(historical ? 'Week load ' : 'Projected load ')+load.toFixed(1)+' · sore above 120</span>'+
+    $('load-preview').innerHTML='<span class="tiny">'+'Model load '+load.toFixed(1)+' · sore above 120</span>'+
       '<div class="load-wrap"><i style="width:'+clamp(load/216*100,0,100)+'%;background:'+(load>120 ? '#9a3412' : '#4d6b14')+'"></i></div>';
     document.querySelectorAll('#rehearse-options button').forEach((b,i) => {
       b.setAttribute('aria-pressed',String(state.rehearse.includes(i)));
@@ -671,7 +696,7 @@ th {font-size:11px;color:var(--muted)}
         '<p>'+dotText+'</p><p>'+report.message+'</p>';
     } else {
       $('week-report').textContent=state.week===6 ? 'Rain Monday. A lobby backup preserves one section’s rehearsal.' :
-        'Choose actions. Rehearsal dots steady spacing; safe floors and jump choices protect dancers.';
+        'Model load is not safety clearance. Vinyl gives grip, not cushioning; warm-up cannot make stone absorb impact.';
     }
   }
   function renderNight() {
@@ -680,12 +705,19 @@ th {font-size:11px;color:var(--muted)}
     $('stop').disabled=!running;
     $('skip').disabled=!running;
     $('night-site').disabled=running;
-    $('show-cue').textContent=running ? 'S'+(sec+1)+' · '+SECTIONS[sec].name : state.showFinished ? 'The performance is yours.' : 'Ready in the courtyard.';
-    $('show-detail').textContent=running ? (sec>=2 ? 'After dusk · ' : 'Late sun · ')+(sec===3 && state.injured ? 'Five dancers in Rise.' : 'Six dancers.') :
+    $('show-cue').textContent=running ? 'S'+(sec+1)+' · '+SECTIONS[sec].name :
+      state.showFinished ? 'Your production, seen from both sides.' : 'Ready in the courtyard.';
+    $('show-detail').textContent=running ? (sec>=2 ? 'After dusk · ' : 'Late sun · ')+(sec===3 && state.injured ? 'Five dancers in Rise.' : 'Six dancers.')+
+      ' Ground average: Seen '+Math.round(metricCache[sec].ground)+'%, Heard '+heard()[0]+'%.'+
+      ' Balcony: Seen '+Math.round(metricCache[sec].balcony)+'%, Heard '+heard()[1]+'%.' :
       'Four sections, ten seconds each. Tap seats to compare your audiences.';
     $('show-progress').style.width=(showPosition/64*100)+'%';
     $('ground-caption').textContent='GROUND · row '+(seats[state.groundSeat].row+1)+', seat '+(state.groundSeat%20+1);
-    $('balcony-caption').textContent='BALCONY · seat '+(state.balconySeat+1)+' · '+(state.used.safety ? 40 : 20)+' admitted';
+    $('balcony-caption').textContent='BALCONY · seat '+(state.balconySeat+1)+' / '+(state.used.safety ? 40 : 20)+' admitted';
+    for (const [i,aud] of ['ground','balcony'].entries()) {
+      const m=metricCache[sec];
+      $(aud+'-receipt').textContent='Audience averages · Seen '+Math.round(m[aud])+'% · Heard '+heard()[i]+'% · Lit '+m.lit+'%';
+    }
     $('night-ground-pick').value=state.groundSeat;
     $('night-balcony-pick').value=state.balconySeat;
   }
@@ -754,6 +786,9 @@ th {font-size:11px;color:var(--muted)}
     }
     hint(id==='rehearsal' && state.pending.includes(id) ? 'Choose two sections under Monday site rehearsal, then tap End week.' :
       'Choose more action cards, or tap End week to apply this plan.');
+    if (id==='rehearsal' && state.pending.includes(id)) {
+      V.how('rehearsalHow',{valid:() => state.pending.includes('rehearsal'),needs:'#end-week'});
+    }
     Curio.tone(490,.12,.025);
     renderStats();
     renderWeek();
@@ -787,7 +822,10 @@ th {font-size:11px;color:var(--muted)}
     const sore=load>120;
     state.soreStreak=sore ? state.soreStreak+1 : 0;
     const newInjury=state.soreStreak>=2 && !state.injured;
-    if (newInjury) state.injured=true;
+    if (newInjury) {
+      state.injured=true;
+      state.injuredDancer=Math.floor(Math.random()*6);
+    }
     const message=[];
     if (rehearsed.length) message.push('Adapted '+rehearsed.map(i => SECTIONS[i].name).join(' + ')+'.');
     if (sore) message.push('Sore week: hard landings exceeded 120.');
@@ -810,8 +848,9 @@ th {font-size:11px;color:var(--muted)}
     hint(w===6 ? L.openNow : 'Review week '+w+'. Tap week '+state.week+' to plan the next Monday, or tap Undo week.');
     Curio.tone(sore ? 170 : 620,.25,.035);
     const valid=() => viewingWeek===w && state.mode==='week';
-    if (sore) V.say('sore',{valid});
+    // The injury result includes its sore-week cause and must start before another week can stale it.
     if (newInjury) V.say('injured',{valid});
+    else if (sore) V.say('sore',{valid});
     if (w===6) V.say('rain',{valid});
     if (w===6) V.how('openNow',{valid,needs:'#m-night'});
     else V.how('reviewWeek',{valid,needs:'#undo-week'});
@@ -1054,7 +1093,8 @@ th {font-size:11px;color:var(--muted)}
         c.fillText('△',X(z.x+2),Y(z.y+1));
       }
       if (night) {
-        for (let d=0;d<(i===3 && state.injured ? 5 : 6);d++) {
+        for (let d=0;d<6;d++) {
+          if (i===3 && state.injured && d===(state.injuredDancer ?? 5)) continue;
           const p=actorPosition(i,(showPosition%16)/16,d),rr=Math.max(2.3,k*.12);
           c.beginPath();
           c.arc(X(p.x),Y(p.y),rr,0,2*Math.PI);
@@ -1145,11 +1185,28 @@ th {font-size:11px;color:var(--muted)}
     }
   }
   function actorPosition(section,u,index) {
-    const z=state.zones[section],spread=(index-2.5)*.42;
-    if (section===0) return {x:z.x+(state.choices[0] ? 1 : -1)*(1.4-2.8*u)+spread,y:z.y+(index%2 ? .18 : -.18)};
-    if (section===1) return {x:z.x+spread,y:z.y+Math.sin(u*Math.PI*2+index)*.7};
-    if (section===2) return {x:z.x+Math.sin(u*Math.PI*4+index*.6)*1.4,y:z.y-1.4+2.8*u};
-    return {x:z.x+spread,y:z.y+(index%2 ? .65 : -.65)};
+    const z=state.zones[section],spread=(index-2.5)*.65;
+    if (section===0) return {x:z.x+(state.choices[0] ? 1 : -1)*(1-2*u)+spread,y:z.y+(index%2 ? .25 : -.25)};
+    if (section===1) {
+      return {x:z.x+(index%3-1)*1.65,y:z.y+(index<3 ? -.85 : .85)+Math.sin(u*Math.PI*2)*.18};
+    }
+    if (section===2) {
+      const y=z.y+(index-2.5)*.5+(u-.5)*.7;
+      if (state.choices[2]===0 && inArcade(z)) {
+        const arcade=z.x<10 ? 3 : 17;
+        const edge=3*Math.sqrt(Math.max(0,1-((y-z.y)/2)**2))-.15;
+        let x=clamp(arcade+1.1*Math.cos((y-4)*Math.PI/3),z.x-edge,z.x+edge);
+        for (const col of columns) if (Math.hypot(x-col.x,y-col.y)<.5) {
+          const clearance=Math.sqrt(.25-(y-col.y)**2)+.01;
+          const options=[col.x-clearance,col.x+clearance].filter(v => v>=z.x-edge && v<=z.x+edge);
+          options.sort((a,b) => Math.abs(a-x)-Math.abs(b-x));
+          if (options.length) x=options[0];
+        }
+        return {x,y};
+      }
+      return {x:z.x+Math.sin(u*Math.PI*4+index*.6)*1.4,y};
+    }
+    return {x:z.x+(index%3-1)*1.45,y:z.y+(index<3 ? -.75 : .75)};
   }
   const phrases = [
     Dance.phrase([{gait:'walk',counts:16,level:'middle'}]),
@@ -1164,11 +1221,252 @@ th {font-size:11px;color:var(--muted)}
     if (parent) parent.appendChild(e);
     return e;
   }
-  // All provisional figures pass through this adapter. A painted-pose renderer can replace it without changing the model.
-  // Pose assets are listed with people:true in art/prompts.json and intentionally remain ungenerated in this build.
+  const DANCER_ATLAS = {
+  "ensemble": {
+    "w": 1374,
+    "h": 1145,
+    "frames": [
+      [
+        [
+          31,
+          6,
+          200,
+          280
+        ],
+        [
+          271,
+          27,
+          173,
+          259
+        ],
+        [
+          491,
+          18,
+          184,
+          268
+        ],
+        [
+          725,
+          20,
+          177,
+          267
+        ],
+        [
+          949,
+          9,
+          181,
+          279
+        ],
+        [
+          1180,
+          25,
+          180,
+          264
+        ]
+      ],
+      [
+        [
+          3,
+          345,
+          228,
+          90
+        ],
+        [
+          229,
+          357,
+          229,
+          78
+        ],
+        [
+          459,
+          350,
+          227,
+          84
+        ],
+        [
+          688,
+          352,
+          227,
+          84
+        ],
+        [
+          917,
+          346,
+          228,
+          89
+        ],
+        [
+          1147,
+          350,
+          225,
+          85
+        ]
+      ],
+      [
+        [
+          6,
+          486,
+          223,
+          188
+        ],
+        [
+          248,
+          500,
+          203,
+          174
+        ],
+        [
+          468,
+          495,
+          215,
+          179
+        ],
+        [
+          699,
+          498,
+          212,
+          176
+        ],
+        [
+          930,
+          489,
+          210,
+          185
+        ],
+        [
+          1162,
+          504,
+          210,
+          170
+        ]
+      ],
+      [
+        [
+          11,
+          705,
+          220,
+          180
+        ],
+        [
+          229,
+          720,
+          223,
+          165
+        ],
+        [
+          467,
+          714,
+          216,
+          171
+        ],
+        [
+          689,
+          715,
+          213,
+          170
+        ],
+        [
+          918,
+          709,
+          218,
+          176
+        ],
+        [
+          1155,
+          721,
+          211,
+          164
+        ]
+      ],
+      [
+        [
+          40,
+          897,
+          165,
+          242
+        ],
+        [
+          281,
+          910,
+          144,
+          226
+        ],
+        [
+          494,
+          905,
+          161,
+          232
+        ],
+        [
+          715,
+          911,
+          178,
+          223
+        ],
+        [
+          955,
+          904,
+          151,
+          237
+        ],
+        [
+          1185,
+          910,
+          155,
+          228
+        ]
+      ]
+    ]
+  },
+  "lifts": {
+    "w": 1200,
+    "h": 400,
+    "frames": [
+      [
+        [
+          21,
+          5,
+          339,
+          391
+        ],
+        [
+          420,
+          11,
+          358,
+          385
+        ],
+        [
+          820,
+          7,
+          372,
+          389
+        ]
+      ]
+    ]
+  }
+};
+  // Swappable painted figures: five essential poses per dancer, plus supported partner lifts.
+  // Atlas rectangles include the whole body. Height is in world meters, with a shared ground anchor.
   function makeDancer(parent,projector,color,index) {
-    return Dance.dancer(parent,{floor:projector,height:1.7,top:color,bottom:'#383830',skin:'#b88d69',hair:'#302b24',
-      shoe:'#dfd5bc',badge:['circle','square','triangle','diamond'][index%4],noShadow:true,lineScale:.65});
+    const g=svgEl('g',{'data-painted-dancer':index},parent);
+    const crop=svgEl('svg',{overflow:'hidden',preserveAspectRatio:'xMidYMax meet'},g);
+    const picture=svgEl('image',{},crop);
+    return {g,set({x,z,row=0,lift=0,pair=-1}) {
+      const data=pair>=0 ? DANCER_ATLAS.lifts : DANCER_ATLAS.ensemble;
+      const rect=data.frames[pair>=0 ? 0 : row][pair>=0 ? pair : index];
+      const heights=[1.7,.58,.98,1.16,1.5];
+      const height=pair>=0 ? 2.1 : heights[row];
+      const bottom=projector.project(x,lift,z),top=projector.project(x,height+lift,z);
+      const h=Math.max(1,Math.abs(bottom[1]-top[1])),w=h*rect[2]/rect[3];
+      crop.setAttribute('x',bottom[0]-w/2);
+      crop.setAttribute('y',Math.min(top[1],bottom[1]));
+      crop.setAttribute('width',w);
+      crop.setAttribute('height',h);
+      crop.setAttribute('viewBox',rect.join(' '));
+      picture.setAttribute('href',pair>=0 ? PAINTED_POSES.lift : PAINTED_POSES.ensemble);
+      picture.setAttribute('width',data.w);
+      picture.setAttribute('height',data.h);
+    }};
   }
   function initSeatView(svg) {
     svg.textContent='';
@@ -1248,23 +1546,33 @@ th {font-size:11px;color:var(--muted)}
     const pos=Curio.reduce ? Math.floor(showPosition) : showPosition;
     for (let i=0;i<6;i++) {
       const d=view.actors[i],p=actorPosition(section,night ? (pos%16)/16 : .4,i);
-      const hide=(section===3 && state.injured && i===5) || (kind==='balcony' && p.y>13);
+      const hide=(section===3 && state.injured && i===(state.injuredDancer ?? 5)) || (kind==='balcony' && p.y>13);
       d.g.style.display=hide ? 'none' : '';
-      const phrase=section===1 && state.choices[1]!==0 ? Dance.phrase([{poses:state.choices[1]===1 ? ['sit','kneel'] : ['stand','release'],counts:16}]) :
-        phrases[section];
       const finaleU=(pos%16)/16;
-      const phrasePos=section===3 ? (Math.min(finaleU/.75,1)*(state.choices[3]===0 ? 48 : 24))%16 : pos%16;
-      const st=phrase.at(night ? phrasePos : 1);
-      if (section===3 && night && finaleU>=.75) {
-        const liftPhase=((finaleU-.75)/.125)%1;
-        st.pose=Dance.pose(i%2 ? 'reach-up' : 'plie');
-        const lifted=finaleU<.875 ? i===1 : i===3;
-        st.lift=lifted ? Math.sin(liftPhase*Math.PI)*.45 : 0;
+      let row=section===0 ? 0 : section===1 ? [1,2,0][state.choices[1]] : 3;
+      let lift=0,pair=-1;
+      if (section===3 && night) {
+        if (finaleU<.75) {
+          const cycle=finaleU/.75*(state.choices[3]===0 ? 24 : 12);
+          const airborne=Math.sin((cycle%1)*Math.PI);
+          row=airborne>.35 ? 4 : 3;
+          lift=airborne*.23;
+        } else {
+          // Two sequential partnered lifts, using two people per painted pair, never an unsupported floating figure.
+          const rest=state.injured ? (state.injuredDancer ?? 5) : -1;
+          const available=[0,1,2].filter(k => k*2!==rest && k*2+1!==rest);
+          const pairIndex=available[finaleU<.875 ? 0 : 1];
+          const leader=pairIndex*2;
+          if (i===leader) {
+            pair=pairIndex;
+            const other=actorPosition(section,finaleU,leader+1);
+            p.x=(p.x+other.x)/2;
+            p.y=(p.y+other.y)/2;
+          }
+          if (i===leader+1) d.g.style.display='none';
+        }
       }
-      d.set({pose:st.pose,lift:st.lift,x:p.x,z:p.y,facing:kind==='balcony' ? 180 : 0});
-      d.g.querySelectorAll('path').forEach(el => {
-        if (el===d.parts.torso.top) el.setAttribute('fill',COLORS[section]);
-      });
+      d.set({x:p.x,z:p.y,row,lift,pair});
       objects.push({el:d.g,depth:P(p.x,0,p.y)[2]});
     }
     objects.sort((a,b) => b.depth-a.depth).forEach(o => world.appendChild(o.el));
@@ -1277,8 +1585,9 @@ th {font-size:11px;color:var(--muted)}
       svgEl('line',{x1:0,y1:h-8,x2:w,y2:h-8,stroke:'#dfca9c','stroke-width':3},overlay);
     }
     if (!night) {
+      $('seat-pick').value=(kind==='ground' ? 'g'+state.groundSeat : 'b'+state.balconySeat);
       $('site-seat-caption').textContent=(kind==='ground' ? 'GROUND · row '+(seats[state.groundSeat].row+1) : 'BALCONY')+
-        ' · S'+(section+1)+' Seen '+Math.round(kind==='ground' ? m.ground : m.balcony)+'%';
+        ' · S'+(section+1)+' audience avg. '+Math.round(kind==='ground' ? m.ground : m.balcony)+'% seen';
     }
   }
   function drawAll() {
@@ -1403,7 +1712,12 @@ th {font-size:11px;color:var(--muted)}
     const sore=state.reports.filter(r => r.sore).map(r => r.week);
     const hours=state.reports.reduce((n,r) => n+r.hours,0);
     $('sheet-body').innerHTML='<p>Original Curio Class dance · 6 minutes · 4 sections of 90 seconds. A fictional museum and a simple model.</p>'+
-      '<h3>Ground audience · 60 seats</h3>'+table('ground')+
+      '<p><b>Your most limited view:</b> '+(() => {
+        const views=metricCache.flatMap((m,i) => ['ground','balcony'].map(aud => ({i,aud,value:m[aud]})));
+        views.sort((a,b) => a.value-b.value);
+        const v=views[0];
+        return v.aud+' audience, '+SECTIONS[v.i].name+': '+Math.round(v.value)+'% Seen. Compare the causes below.';
+      })()+'</p><h3>Ground audience · 60 seats</h3>'+table('ground')+
       '<h3>Balcony audience · '+(state.used.safety ? 40 : 20)+' seats admitted</h3>'+table('balcony')+
       '<div class="sheet-facts"><div><b>Site use</b><br>Fountain: '+
       (use.fountain ? (state.fountain==='score' ? 'recorded into the score' : 'dancing by the still pool') : 'not used')+
@@ -1418,6 +1732,7 @@ th {font-size:11px;color:var(--muted)}
   }
   function openSheet() {
     stopShow(false);
+    V.hush();
     renderNight();
     const use=buildSheet();
     if (!$('sheet').open) $('sheet').showModal();
@@ -1492,8 +1807,10 @@ th {font-size:11px;color:var(--muted)}
       });
     };
     $('seat-toggle').onclick=() => {
+      V.hush();
       state.seatView=!state.seatView;
       hint(state.seatView ? L.chooseSeat : L.welcomeSite);
+      if (state.seatView) V.how('chooseSeat',{valid:() => state.seatView,needs:'#seat-toggle'});
       renderSite();
       drawAll();
       save();
@@ -1536,7 +1853,8 @@ th {font-size:11px;color:var(--muted)}
     $('stop').onclick=() => stopShow();
     $('skip').onclick=skipSection;
     $('sheet-button').onclick=openSheet;
-    $('close-sheet').onclick=() => { $('sheet').close();
+    $('close-sheet').onclick=() => { V.hush();
+    $('sheet').close();
     hint(L.welcomeNight);
     };
     $('print-sheet').onclick=() => window.print();
@@ -1594,7 +1912,7 @@ th {font-size:11px;color:var(--muted)}
     get showPosition() { return showPosition;
     },get viewingWeek() { return viewingWeek;
     },
-    render,chooseSection,toggleCard,beginShow,stopShow,skipSection,save,openSheet,paintedPoses:PAINTED_POSES};
+    render,chooseSection,toggleCard,beginShow,stopShow,skipSection,save,openSheet,actorPosition,paintedPoses:PAINTED_POSES};
   const initialMode=state.mode;
   state.mode='';
   setMode(initialMode);

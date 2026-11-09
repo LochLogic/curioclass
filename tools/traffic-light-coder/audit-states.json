@@ -1,6 +1,20 @@
 {
   "states": [
     {
+      "name": "setups-ready",
+      "steps": [
+        {
+          "click": "#m-setups"
+        }
+      ],
+      "keep": [
+        "#setup-select",
+        "#run",
+        "#strip",
+        "#add"
+      ]
+    },
+    {
       "name": "call-sent",
       "steps": [
         {
@@ -45,7 +59,7 @@
       "name": "job-report",
       "steps": [
         {
-          "click": "#m-jobs"
+          "click": "#m-setups"
         },
         {
           "click": "#run"
@@ -64,10 +78,10 @@
       "name": "unsafe-report",
       "steps": [
         {
-          "click": "#m-jobs"
+          "click": "#m-setups"
         },
         {
-          "click": "#job-3"
+          "js": "__tool.openSetup(2)"
         },
         {
           "click": "#run"
@@ -85,10 +99,10 @@
       "name": "replay",
       "steps": [
         {
-          "click": "#m-jobs"
+          "click": "#m-setups"
         },
         {
-          "click": "#job-3"
+          "js": "__tool.openSetup(2)"
         },
         {
           "click": "#run"
@@ -112,10 +126,10 @@
       "name": "rush-hour",
       "steps": [
         {
-          "click": "#m-jobs"
+          "click": "#m-setups"
         },
         {
-          "click": "#job-4"
+          "js": "__tool.openSetup(3)"
         },
         {
           "click": "#run"
@@ -133,10 +147,10 @@
       "name": "ambulance",
       "steps": [
         {
-          "click": "#m-jobs"
+          "click": "#m-setups"
         },
         {
-          "click": "#job-5"
+          "js": "__tool.openSetup(4)"
         },
         {
           "click": "#run"
@@ -159,7 +173,7 @@
       ],
       "steps": [
         {
-          "click": "#m-jobs"
+          "click": "#m-setups"
         },
         {
           "js": "__tool.loadRules([...__tool.DEFAULT,{light:'ANY',extras:['ambulance','30'],action:'KEEP'},{light:null,extras:[],action:null}])"
@@ -199,7 +213,7 @@
       ],
       "steps": [
         {
-          "click": "#m-jobs"
+          "click": "#m-setups"
         },
         {
           "js": "__tool.loadRules([])"
@@ -214,6 +228,23 @@
       "keep": [
         "#report",
         "#run"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manual-drawer",
+        "#close-manual"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
       ]
     }
   ]

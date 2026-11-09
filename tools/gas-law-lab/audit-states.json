@@ -1,0 +1,334 @@
+{
+  "keep": [
+    "#bath",
+    "#record",
+    "#readout-deck",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "four-weights",
+      "steps": [
+        {
+          "click": "#add-weight",
+          "times": 4,
+          "gap": 0.15
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "piston-stop",
+      "steps": [
+        {
+          "click": "#pump",
+          "times": 6,
+          "gap": 0.12
+        },
+        {
+          "click": "#boil"
+        },
+        {
+          "wait": 2500
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "can-safety-stop",
+      "steps": [
+        {
+          "click": "#apparatus"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#pump",
+          "times": 13,
+          "gap": 0.12
+        },
+        {
+          "click": "#boil"
+        },
+        {
+          "wait": 2500
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "balloon-high-ridge",
+      "steps": [
+        {
+          "click": "#apparatus"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#altitude"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "notebook-work",
+      "steps": [
+        {
+          "click": "#ice"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#hot"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#v-notebook"
+        },
+        {
+          "click": "#fit"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "guided-graph",
+      "steps": [
+        {
+          "click": "#m-zero"
+        },
+        {
+          "click": "#ice"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#room"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#hot"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#boil"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        }
+      ],
+      "keep": [
+        "#fit"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "guided-result",
+      "steps": [
+        {
+          "click": "#m-zero"
+        },
+        {
+          "click": "#ice"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#room"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#hot"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#boil"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#fit"
+        },
+        {
+          "click": "#pump",
+          "times": 4,
+          "gap": 0.12
+        },
+        {
+          "click": "#ice"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#room"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#hot"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#boil"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#record"
+        },
+        {
+          "click": "#fit"
+        }
+      ],
+      "keep": [
+        "#result-card"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "can-to-piston-amount-limit",
+      "steps": [
+        {
+          "click": "#apparatus"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#ice"
+        },
+        {
+          "wait": 2300
+        },
+        {
+          "click": "#pump",
+          "times": 16,
+          "gap": 0.12
+        },
+        {
+          "click": "#apparatus"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    }
+  ]
+}

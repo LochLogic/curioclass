@@ -1,13 +1,320 @@
 {
-  "keep":["#hint"],
-  "states":[
-    {"name":"pool-seat","steps":[{"click":"#s-1"},{"click":"#seat-toggle"}],"keep":["#seat-toggle","#adaptation","#fountain"]},
-    {"name":"week-booking","steps":[{"click":"#m-week"},{"click":"#a-rehearsal"},{"click":"#a-warm"}],"keep":["#end-week"]},
-    {"name":"sore-week","steps":[{"click":"#m-week"},{"click":"#a-rehearsal"},{"click":"#end-week"}],"keep":["#end-week"]},
-    {"name":"opening-night","steps":[{"click":"#m-week"},{"click":"#end-week"},{"click":"#w-2"},{"click":"#end-week"},
-      {"click":"#w-3"},{"click":"#end-week"},{"click":"#w-4"},{"click":"#end-week"},{"click":"#w-5"},
-      {"click":"#end-week"},{"click":"#w-6"},{"click":"#end-week"},{"click":"#m-night"},{"click":"#begin"},
-      {"click":"#skip"},{"click":"#stop"}],"keep":["#begin","#skip","#stop"],"sizes":["1366x768","680x425","375x812"]},
-    {"name":"model-note","steps":[{"click":"#model-button"}],"keep":["#close-model"],"sizes":["1366x768"]}
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "pool-seat",
+      "steps": [
+        {
+          "click": "#s-1"
+        },
+        {
+          "click": "#seat-toggle"
+        }
+      ],
+      "keep": [
+        "#seat-toggle",
+        "#adaptation",
+        "#fountain"
+      ]
+    },
+    {
+      "name": "week-booking",
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#a-rehearsal"
+        },
+        {
+          "click": "#a-warm"
+        }
+      ],
+      "keep": [
+        "#end-week"
+      ]
+    },
+    {
+      "name": "sore-week",
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#a-rehearsal"
+        },
+        {
+          "click": "#end-week"
+        }
+      ],
+      "keep": [
+        "#end-week"
+      ]
+    },
+    {
+      "name": "opening-night",
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-2"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-3"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-4"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-5"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-6"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#m-night"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "click": "#stop"
+        }
+      ],
+      "keep": [
+        "#begin",
+        "#skip",
+        "#stop"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "model-note",
+      "steps": [
+        {
+          "click": "#model-button"
+        }
+      ],
+      "keep": [
+        "#close-model"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "painted-pool",
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-2"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-3"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-4"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-5"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-6"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#m-night"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "click": "#stop"
+        }
+      ],
+      "keep": [
+        "#ground-receipt",
+        "#balcony-receipt",
+        "#begin"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "painted-lift",
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-2"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-3"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-4"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-5"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-6"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#m-night"
+        },
+        {
+          "click": "#begin"
+        },
+        {
+          "click": "#skip",
+          "times": 3,
+          "gap": 0.1
+        },
+        {
+          "wait": 7800
+        },
+        {
+          "click": "#stop"
+        }
+      ],
+      "keep": [
+        "#ground-receipt",
+        "#balcony-receipt",
+        "#begin"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "production-sheet",
+      "steps": [
+        {
+          "click": "#m-week"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-2"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-3"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-4"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-5"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#w-6"
+        },
+        {
+          "click": "#end-week"
+        },
+        {
+          "click": "#m-night"
+        },
+        {
+          "click": "#sheet-button"
+        }
+      ],
+      "keep": [
+        "#close-sheet"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    }
   ]
 }

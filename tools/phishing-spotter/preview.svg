@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="425" viewBox="0 0 680 425">
+<defs>
+  <linearGradient id="room" x2="1" y2="1"><stop stop-color="#241238"/><stop offset="1" stop-color="#111b32"/></linearGradient>
+  <linearGradient id="cab" x2="0" y2="1"><stop stop-color="#343e52"/><stop offset="1" stop-color="#101621"/></linearGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="5"/></filter>
+</defs>
+<rect width="680" height="425" fill="url(#room)"/>
+<path d="M0 70H680M80 0V425M600 0V425" fill="none" stroke="#a755e2" stroke-width="8" opacity=".35"/>
+<path d="M0 330L340 260L680 330M0 375L340 260L680 375" fill="none" stroke="#3ee6ff" opacity=".3"/>
+<rect x="38" y="23" width="604" height="382" rx="19" fill="url(#cab)" stroke="#70809a" stroke-width="3"/>
+<text x="62" y="66" fill="#c6faff" font-family="sans-serif" font-size="28" font-weight="900" letter-spacing="2">PHISHING SPOTTER</text>
+<circle cx="602" cy="54" r="17" fill="#12141c" stroke="#3ee6ff" stroke-width="3"/>
+<text x="593" y="60" fill="#fff" font-family="monospace" font-size="19">∞</text>
+<rect x="57" y="88" width="566" height="259" rx="10" fill="#fbfbf8" stroke="#070e19" stroke-width="8"/>
+<rect x="64" y="96" width="551" height="27" fill="#e9ebef"/>
+<text x="78" y="115" font-family="monospace" font-size="12" fill="#555c6b">MAPLE GROVE IT / EMAIL</text>
+<text x="79" y="153" font-family="sans-serif" font-weight="700" font-size="19" fill="#1c1f26">Your school account closes today</text>
+<rect x="76" y="171" width="365" height="29" rx="6" fill="#fff2b9" stroke="#ffd23f" stroke-width="3"/>
+<text x="84" y="191" font-family="monospace" font-size="15" fill="#1c1f26">it-help@rnaplegrove.example</text>
+<text x="79" y="229" font-family="sans-serif" font-size="16" fill="#1c1f26">We are updating accounts.</text>
+<rect x="76" y="243" width="513" height="30" rx="6" fill="#fff2b9" stroke="#ffd23f" stroke-width="3"/>
+<text x="84" y="264" font-family="sans-serif" font-size="16" fill="#1c1f26">Sign in within 1 hour or your account will be closed.</text>
+<text x="80" y="306" font-family="monospace" font-size="15" text-decoration="underline" fill="#1a56c4">portal.maplegrove.example</text>
+<rect x="174" y="361" width="146" height="34" rx="7" fill="#283247" stroke="#7ee0a8"/>
+<text x="213" y="384" font-family="sans-serif" font-size="20" font-weight="700" fill="#7ee0a8">✓ Keep</text>
+<rect x="333" y="361" width="160" height="34" rx="7" fill="#283247" stroke="#ff8f80"/>
+<text x="363" y="384" font-family="sans-serif" font-size="20" font-weight="700" fill="#ff8f80">⚑ Report</text>
+</svg>

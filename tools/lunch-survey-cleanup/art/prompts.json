@@ -1,0 +1,103 @@
+{
+  "house_style": "Warm painted editorial illustration for grades 6 to 8. Soft gouache and colored-pencil texture, confident clean contours, realistic school objects, gentle shading, rich natural greens and warm cream. Soft morning light from upper left. No text, letters, numbers, logos, watermark or border.",
+  "assets": [
+    {
+      "name": "lsc-cafeteria",
+      "prompt": "A bright middle school cafeteria serving line with steel steam trays, stacked green lunch trays and a blank chalkboard menu board, morning light. Wide empty school interior with background windows, middle serving counter and foreground tray stack. No people.",
+      "aspect": "5:1",
+      "width": 1000,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "reyes",
+      "prompt": "A friendly middle-aged school cafeteria manager with warm brown skin, dark hair tied back, green apron and a blank clipboard, warm smile, waist-up with the whole head and both arms in frame. Draw the subject alone on flat pure magenta #FF00FF with no cast shadow.",
+      "aspect": "3:4",
+      "width": 210,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": true,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "marcus-ask",
+      "prompt": "A friendly eighth grade student council member, a boy with dark brown skin and short curly black hair, mustard shirt, blue lanyard and a clipboard of blank paper surveys, curious look, pencil raised. Waist-up, head and arms completely in frame. Draw the subject alone on flat pure green #00FF00 with no cast shadow.",
+      "aspect": "3:4",
+      "width": 210,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "marcus-think",
+      "prompt": "The same eighth grade student council member as marcus-ask, dark brown skin, short curly black hair, mustard shirt, blue lanyard, blank clipboard. Hand on chin, looking at the clipboard thoughtfully. Waist-up, head and arms fully in frame. Draw the subject alone on flat pure green #00FF00 with no cast shadow.",
+      "ref": "marcus-ask",
+      "aspect": "3:4",
+      "width": 210,
+      "quality": 80,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "despill": true
+    },
+    {
+      "name": "prop-paper",
+      "prompt": "A single loose blank cream survey page with an empty staple hole in the corner, subtle paper grain, curling corner and shading. Subject alone centered fully in frame on flat pure green #00FF00 with no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 112,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "prop-notes",
+      "prompt": "Three blank sticky notes in slightly different yellows, side by side and slightly overlapping, soft paper texture and curled edges. Subject alone centered fully in frame on flat pure magenta #FF00FF with no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 112,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "prop-double",
+      "prompt": "Two identical blank cream paper cards stacked slightly offset beside a blue computer mouse, tactile paper edges and small mouse buttons. Subject alone centered fully in frame on flat pure green #00FF00 with no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 112,
+      "quality": 80,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "tray-veg",
+      "prompt": "A green school lunch tray with hot vegetable lasagna, steamed broccoli and a red apple, seen from directly above, appetizing warm painted food, detailed layers and softly highlighted molded tray compartments. Whole tray in frame. Subject alone on flat pure magenta #FF00FF with no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "tray-tacos",
+      "prompt": "A green school lunch tray with two beef tacos in crisp folded shells, corn and a whole orange, seen from directly above, appetizing warm painted food with detailed textures and softly highlighted molded compartments. Whole tray in frame. Subject alone on flat pure magenta #FF00FF with no ground or cast shadow.",
+      "aspect": "1:1",
+      "width": 300,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

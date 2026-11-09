@@ -40,14 +40,14 @@
     },
     {
       "name": "prop-dale",
-      "prompt": "One single worn grey metal folding chair with a clipboard of blank cream papers leaning against the backrest and a burgundy school lanyard draped over the chair back. Empty seat, complete chair with all four legs visible, isolated on flat pure green #00FF00, no other furniture or objects. Soft painted gouache, warm work light from upper left. No people, faces, masks, body parts, text, letters, numbers or logos.",
+      "prompt": "One worn charcoal grey metal folding chair with an aged wooden clipboard of blank cream papers and a burgundy school lanyard draped over the upper chair back. One blank ID badge hangs beside the clipboard, clearly separated from the paper. Complete chair legs with tactile metal wear. Warm amber work light from upper left, soft painted gouache matching the rehearsal props. Whole isolated prop with comfortable margins on flat pure green #00FF00. No people, lettering, logos, numerals or other furniture.",
       "aspect": "1:1",
       "cutout": true,
       "width": 380,
       "quality": 80,
       "drawn_by": "codex",
       "despill": true,
-      "redrawn": 1,
+      "redrawn": 2,
       "review": "ok",
       "people": false,
       "source": "OpenAI gpt-image through the built-in image tool"

@@ -27,8 +27,10 @@ Flip again. Turn on Calls and try the first three calls. Enter Recital and choos
 Stage map allows free placement, including three dancers in one area. Calls remain optional and never lock.
 Use the plan or stage tiles. Select a dancer and use arrow keys to move it in screen directions; V flips the view.
 
-In Recital, dress and light Autumn Leaves, then Watch from your seat. Select clues and tap Show me to examine
-their moments. Main idea offers three readings. Read Rush Hour too, then Compare the eight traits.
+In Recital, dress and light Autumn Leaves, then Watch from your seat. Select four clues supported by the movement and tap Show me to examine
+their moments. The replay asks students to decide, without naming the right cards. Main idea offers three readings.
+A supported reading needs a completed watch, the four fitting clues and the intended idea. After a wrong idea,
+watch again before trying another. Compare opens after two supported readings. Read Rush Hour too, then Compare the eight traits.
 Clues describe these two pieces, not everything ballet or jazz can be.
 
 For Your turn, clear a safe space and mark nine squares with paper. Face the laptop as the audience.
@@ -53,4 +55,28 @@ Choices are stored only on this device. Start over clears this tool's saved choi
 
 The ballet history card follows the Library of Congress overview and Gail Grant's ballet dictionary.
 The jazz card follows Jacob's Pillow Dance Interactive's account of African American social dance and jazz music.
-The activities address grades 3-5 Dance DA:Pr4, DA:Pr6, DA:Re8 and DA:Re9.
+The activities practice grades 3-5 Dance DA:Pr4, DA:Pr6 and DA:Re8. The comparison board practices identifying
+movement traits. The spec's DA:Re9 claim needs a standards decision: comparing style traits belongs chiefly to
+DA:Re7, while DA:Re9 asks for criteria and reasons for evaluating dance. This tool does not fully teach that evaluation.
+
+
+## Checked references
+
+- Stage geography: National Park Service, Wolf Trap, Language of the Theater;
+  The Music Center, Stage Geography (nine positions, performer viewpoint).
+- Ballet's court development: Paris Opera, A Certain Air of Italy, How It All Started, Court Ballets.
+- Releve means rising onto the balls of the feet in these soft shoes, not pointe work. Arabesque extends a leg behind;
+  port de bras concerns arm movement: San Francisco Ballet, Nutcracker Family Guide, ballet vocabulary; Pittsburgh Ballet Theatre, Ballet Vocabulary.
+- Jazz roots, rhythmic variation and the limits of a theatrical-jazz sample: Jacob's Pillow Dance Interactive,
+  Jazz Dance, Music, and the Importance of Swing, by Philip Szporer; Uncovering Jazz Elements, by Melanie George.
+- Standards: National Core Arts Standards, Dance grades 3-5 handbook. The pieces and synthesized music are original
+  teaching studies. Their movement traits describe these pieces and do not define all ballet or all jazz.
+
+## Sensitivity
+
+The jazz history credits African American social dance. A cultural reviewer should check that the deliberately
+short theatrical study does not stand for the whole tradition. All three painted dancers perform both pieces;
+skin tone and body type do not determine style or role. Review the cast's skin tones, hair, bodies and movement
+readability together. Smaller and seated student movements can preserve direction, timing and focus.
+
+An incomplete set of fitting clues receives an evidence prompt; it is not described as a mistaken observation.

@@ -1,0 +1,1872 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<meta name="description" content="An offline compound microscope bench with exact micrometry, focus, illumination and a private sketchbook.">
+<title>Microscope Bench · Curio Class Curiosities</title>
+<!-- Original instrument and exact geometry, Curio Class. Licensed photographs: see the Manual and art/manifest.json.
+Optics references: Nikon MicroscopyU and Rice University microscopy methods.
+Scientific relationships are paraphrased in the Manual; no source illustrations are copied. -->
+<style>
+:root {
+  color-scheme: dark;
+  --bench: #3c4a45;
+  --cream: #e8e2d0;
+  --ink: #202923;
+  --metal: #b2b6a5;
+  --mono: ui-monospace, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  height: 100dvh;
+  overflow: hidden;
+  color: var(--cream);
+  font: 14px/1.4 system-ui, sans-serif;
+  background: radial-gradient(ellipse at 52% 38%, #53615a, #3c4a45 62%, #26352e);
+}
+button, input, textarea, select { font: inherit; }
+button {
+  min-height: 44px;
+  padding: 8px 13px;
+  color: var(--cream);
+  border: 1px solid #8a9386;
+  border-radius: 3px;
+  background: linear-gradient(#465049, #29342e);
+  box-shadow: inset 0 1px #ffffff20, 0 2px 2px #0005;
+  cursor: pointer;
+}
+button:hover { background: #536258; }
+button:active { transform: translateY(1px); }
+button[aria-pressed="true"] { border-color: #efce77; box-shadow: inset 0 -3px #efce77; }
+button:disabled { opacity: .55; cursor: default; }
+:focus-visible { outline: 3px solid #ffdc79; outline-offset: 3px; }
+[hidden] { display: none !important; }
+.engraving { font: 11px var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+main {
+  height: calc(100dvh - 88px);
+  display: grid;
+  grid-template-columns: 190px minmax(280px, 1fr) 284px;
+  grid-template-rows: minmax(0, 1fr);
+  gap: 26px;
+  padding: 24px 30px 12px;
+}
+.tray {
+  align-self: start;
+  border: 1px solid #212b24;
+  border-radius: 6px;
+  background: linear-gradient(100deg, #28332d, #35433b);
+  box-shadow: inset 0 2px 8px #0008, 0 9px 14px #0003;
+  padding: 16px 12px;
+}
+.tray h2 { margin: 0 0 15px; font: 12px var(--mono); letter-spacing: .15em; }
+.glass {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  min-height: 132px;
+  padding: 10px;
+  background: linear-gradient(135deg, #c4ded030, #e5f3e217 60%, #d2e7dc45);
+  border: 1px solid #a2b8a5;
+  box-shadow: inset 0 0 4px #d8ffeb55, 0 3px 8px #0007;
+}
+.glass svg { width: 100%; height: 47px; margin-bottom: 8px; }
+.glass span { background: #e8e2d0; color: #202923; padding: 5px; font: 12px var(--mono); }
+.tray .tag { margin: 12px 0 20px; color: #d8dfd4; font: 11px var(--mono); }
+.tray .tray-actions { display: grid; gap: 10px; }
+.notebook-button {
+  margin-top: 24px;
+  width: 100%;
+  min-height: 90px;
+  color: #292c23;
+  background: repeating-linear-gradient(0deg, #e8e2d0 0 20px, #bac3ae 21px 22px);
+  border-left: 9px solid #9e7351;
+  transform: rotate(-2deg);
+  text-align: left;
+  padding-left: 18px;
+  font-family: Georgia, serif;
+  font-size: 19px;
+  box-shadow: 4px 7px 9px #0005;
+}
+.notebook-button:hover { background-color: #eee9d9; color: #161b16; }
+.notebook-button small { display: block; font: 10px var(--mono); margin-top: 8px; }
+.instrument { min-width: 0; min-height: 0; display: flex; flex-direction: column; align-items: center; position: relative; }
+.optical-spec { width: 100%; display: flex; justify-content: space-between; color: #d4dfd3; font: 11px var(--mono); }
+.ocular {
+  position: relative;
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  display: grid;
+  place-items: center;
+}
+.ocular::before {
+  content: '';
+  position: absolute;
+  height: 80%;
+  width: 36%;
+  background: linear-gradient(90deg, #a8ae9d, #e0dcc7 35%, #a2aa99);
+  bottom: -2%;
+  border-radius: 35% 35% 6% 6%;
+  box-shadow: 6px 8px 9px #0005;
+}
+.eyepiece {
+  width: var(--diameter, 300px);
+  height: var(--diameter, 300px);
+  aspect-ratio: 1;
+  max-height: 100%;
+  position: absolute;
+  background: #101612;
+  border: 15px solid #172019;
+  outline: 2px solid #7e877a;
+  border-radius: 50%;
+  box-shadow: 0 0 0 7px #303b32, 0 0 0 12px #17221a, 11px 14px 24px #142219b0, inset 0 0 15px #000;
+  overflow: hidden;
+}
+canvas#view { width: 100%; height: 100%; display: block; cursor: grab; touch-action: none; }
+canvas#view:active { cursor: grabbing; }
+.lens-caption { font: 10px var(--mono); letter-spacing: .13em; color: #c0cabe; margin-top: 11px; }
+#hint { position: absolute; bottom: 17%; width: 100%; text-align: center; pointer-events: none; }
+#hint span { background: #202a22ee; color: #fff0c7; padding: 9px 14px; border: 1px solid #9d9f80; border-radius: 2px; }
+.base {
+  width: min(100%, 620px);
+  flex-shrink: 0;
+  padding: 14px 18px;
+  border-radius: 14px 14px 30px 30px;
+  background: linear-gradient(#ded9c5, #adae98);
+  color: var(--ink);
+  border: 2px solid #89927d;
+  box-shadow: inset 0 3px #f1efdf, 0 10px 13px #0004;
+  position: relative;
+}
+.turret { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; margin: 8px 0 12px; }
+.objective {
+  border-radius: 6px 6px 14px 14px;
+  min-height: 52px;
+  background: linear-gradient(90deg,#1e2820,#4b5548 50%,#202a21);
+  border-bottom: 6px solid var(--ring);
+  font: 15px var(--mono);
+}
+.objective[aria-pressed="true"] { outline: 2px solid #283a28; box-shadow: 0 0 0 3px #f1edcf, inset 0 2px #fff8; }
+.objective small { font-size: 10px; display: block; }
+.light-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.light-controls label { display: block; font: 11px var(--mono); }
+input[type="range"] { accent-color: #273d2b; width: 100%; height: 26px; margin: 0; cursor: ew-resize; }
+.arm { min-width: 0; min-height: 0; display: flex; flex-direction: column; gap: 15px; }
+.readouts {
+  position: relative;
+  color: #212b22;
+  background: #e8e2d0;
+  padding: 17px;
+  border-radius: 3px;
+  border: 2px solid #b9bba7;
+  box-shadow: 4px 6px 9px #0004, inset 0 1px #fff9;
+}
+.readouts::before, .readouts::after { content: '⊕'; color: #697260; position: absolute; top: 5px; font: 10px var(--mono); }
+.readouts::before { left: 5px; }
+.readouts::after { right: 5px; }
+.readout-main { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #a6ad99; padding-bottom: 12px; gap: 12px; }
+.readout-main span { font: 10px var(--mono); display: block; letter-spacing: .12em; }
+.readout-main strong { font: 28px var(--mono); display: block; margin-top: 3px; }
+.readout-main small { font: 11px var(--mono); }
+.data-row { font: 11px/1.9 var(--mono); display: flex; justify-content: space-between; gap: 8px; }
+.data-row:first-of-type { margin-top: 10px; }
+#mount-name { margin-top: 10px; padding-top: 10px; border-top: 1px solid #a6ad99; font: 12px var(--mono); }
+.focus-bank, .stage-bank { border-top: 1px solid #92a18e66; padding-top: 12px; }
+.knobs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.knob-wrap { text-align: center; min-width: 0; }
+.knob-wrap label { display: block; font: 11px var(--mono); letter-spacing: .08em; margin-bottom: 7px; }
+.dial {
+  width: 91px;
+  height: 91px;
+  margin: auto;
+  border-radius: 50%;
+  background: repeating-conic-gradient(#172018 0deg 6deg,#445044 7deg 10deg);
+  border: 3px solid #0f1811;
+  box-shadow: 3px 5px 6px #0007, 0 0 0 2px #76836f;
+  position: relative;
+  cursor: ns-resize;
+  touch-action: none;
+}
+.dial::before { content: ''; position: absolute; inset: 9px; background: radial-gradient(circle at 35% 28%,#465344,#1c291f 75%); border-radius: 50%; }
+.dial::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 28%;
+  left: calc(50% - 1.5px);
+  top: 12%;
+  background: #eee1ad;
+  transform-origin: 50% 135%;
+  transform: rotate(var(--angle, 0deg));
+}
+.knob-wrap output { font: 11px var(--mono); display: block; margin-top: 8px; }
+.stage-bank .dial { width: 60px; height: 60px; }
+.stage-bank .dial::before { inset: 6px; }
+.arm-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.status { font: 11px var(--mono); min-height: 30px; color: #e7dfc9; margin: 0; }
+.footer {
+  position: fixed;
+  left: 0; bottom: 0; right: 0;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 9px 28px;
+  border-top: 1px solid #6f7d6e;
+  background: linear-gradient(#344239,#26372c);
+}
+.identity { display: flex; gap: 9px; align-items: center; }
+.plate {
+  color: #242c23;
+  background: linear-gradient(120deg,#a2aa93,#d1cfb7 45%,#a9ae97);
+  border: 1px solid #e1dcc0;
+  border-radius: 2px;
+  box-shadow: inset 0 0 0 2px #7b866f, 1px 3px 3px #0005;
+  padding: 10px 15px;
+  font: 10px/1.6 var(--mono);
+  text-shadow: 0 1px #ffffff55;
+}
+.plate span { display: block; font-size: 12px; letter-spacing: .05em; }
+.power { display: flex; align-items: center; gap: 5px; padding: 5px; background: #1a281f; border: 1px solid #5e6f5c; }
+.power button { font: 11px var(--mono); min-width: 69px; }
+.power-label { color: #d9e1cf; font: 10px var(--mono); writing-mode: vertical-rl; padding: 0 3px; }
+.footer-note { margin-left: auto; font: 10px var(--mono); color: #d8dfd0; }
+dialog { color-scheme: light; color: #222b23; background: #e8e2d0; border: 1px solid #a4ab97; box-shadow: 0 16px 50px #0008; }
+dialog::backdrop { background: #0b150e66; }
+dialog button { color: #202b23; background: linear-gradient(#f1eddd,#cbd0ba); border-color: #7d8d75; }
+dialog button:hover { background: #e9efd9; }
+.drawer { position: fixed; inset: auto auto 88px 16px; margin: 0; width: min(680px, calc(100vw - 32px)); max-height: calc(100dvh - 115px); padding: 24px; }
+.drawer h2 { margin: 0; font: 24px Georgia,serif; }
+.drawer h3 { margin-bottom: 4px; font: 17px Georgia,serif; }
+.drawer p, .drawer li { font-size: 14px; line-height: 1.6; }
+.drawer a { color: #214d46; }
+.drawer a { display: inline-block; min-height: 44px; padding: 10px 0; }
+.drawer-head { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin-bottom: 18px; }
+.drawer-head button { flex: 0 0 auto; }
+.drawer details { border-top: 1px solid #a7b09c; padding: 12px 0; }
+.drawer summary { font: 16px Georgia,serif; cursor: pointer; min-height: 44px; padding: 9px 0; }
+.book {
+  margin: 0;
+  position: fixed;
+  top: 18px; right: 18px; bottom: 88px; left: auto;
+  width: min(520px, calc(100vw - 36px));
+  padding: 20px;
+  max-height: none;
+  height: calc(100dvh - 106px);
+  overflow: auto;
+}
+.book h2 { font: 23px Georgia,serif; margin: 0; }
+.book-preview { display: none; }
+.book .privacy { font-size: 12px; margin: 0 0 10px; }
+.book-meta { display: flex; justify-content: space-between; font: 11px var(--mono); margin: 8px 0; }
+#paper {
+  display: block;
+  width: min(100%, 46dvh);
+  height: auto;
+  margin: auto;
+  clear: both;
+  background: #fcf9e9;
+  border: 1px solid #a9b69c;
+  touch-action: none;
+  cursor: crosshair;
+}
+.book-tools { display: flex; flex-wrap: wrap; gap: 5px; margin: 8px 0; }
+.book-tools button { flex: 1; padding: 7px; font-size: 12px; }
+.book label { display: block; font: 11px var(--mono); margin-top: 9px; }
+.book input, .book textarea, .book select { color: #202b23; background: #fcf9e9; border: 1px solid #7b8c72; width: 100%; padding: 8px; }
+.book input { min-height: 44px; }
+.book textarea { min-height: 62px; resize: vertical; }
+.book-nav { display: grid; grid-template-columns: 44px 1fr 44px 75px; gap: 5px; margin-top: 10px; }
+.book-nav select { min-width: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+#calibration { width: min(420px, calc(100vw - 32px)); padding: 22px; }
+#calibration label { display: block; margin: 12px 0; font: 12px var(--mono); }
+#calibration input { width: 100%; color: #19251b; background: #fffbed; padding: 9px; min-height: 44px; border: 1px solid #6d8066; }
+#calibration input { display: block; margin-top: 6px; }
+#calibration .buttons { display: flex; gap: 8px; margin-top: 20px; }
+#calibration {
+  position: fixed;
+  inset: auto 16px 88px auto;
+  margin: 0;
+  width: 310px;
+  max-height: calc(100dvh - 110px);
+  overflow: auto;
+  padding: 18px;
+  z-index: 5;
+}
+#calibration h2 { font: 21px Georgia, serif; margin: 0 0 10px; }
+#calibration p { margin: 8px 0; }
+#calibration .buttons { gap: 6px; margin-top: 14px; }
+#calibration .buttons button { padding: 8px; }
+@media (min-width: 601px) and (max-width: 999px) {
+  #calibration { width: 255px; right: 12px; bottom: 72px; padding: 14px; }
+}
+@media (min-width: 601px) and (max-height: 530px) {
+  #calibration { max-height: calc(100dvh - 88px); padding: 12px; }
+  #calibration h2 { font-size: 20px; margin-bottom: 4px; }
+  #calibration p { font-size: 12px; margin: 4px 0; }
+  #calibration label { font-size: 11px; margin: 6px 0; }
+  #calibration input { padding: 6px; margin-top: 3px; }
+  #calibration .buttons { margin-top: 8px; }
+}
+@media (max-width: 600px) {
+  #calibration { inset: 340px 10px 108px; width: auto; max-height: none; padding: 14px; }
+  #calibration label { margin: 7px 0; }
+  #calibration input { margin-top: 3px; padding: 6px; }
+  #calibration .buttons { margin-top: 9px; }
+}
+@media (min-width: 1000px) and (max-height: 800px) {
+  main { gap: 18px; padding: 14px 22px 8px; grid-template-columns: 164px minmax(250px,1fr) 258px; }
+  .readouts { padding: 13px; }
+  .readout-main strong { font-size: 22px; }
+  .readout-main small { font-size: 10px; }
+  .readout-main { padding-bottom: 7px; }
+  .data-row { font-size: 10px; line-height: 1.5; }
+  #mount-name { font-size: 10px; margin-top: 5px; padding-top: 5px; }
+  .arm { gap: 8px; }
+  .dial { width: 70px; height: 70px; }
+  .stage-bank .dial { width: 48px; height: 48px; }
+  .base { padding: 8px 14px; }
+  .turret { margin: 4px 0 6px; }
+}
+@media (min-width: 601px) and (max-width: 999px) {
+  main { grid-template-columns: 120px minmax(190px,1fr) 202px; gap: 12px; padding: 12px; height: calc(100dvh - 72px); }
+  .tray { padding: 12px 7px; }
+  .glass { min-height: 106px; padding: 5px; }
+  .glass span { font-size: 10px; }
+  .tray h2 { font-size: 10px; }
+  .tray .tag { margin: 8px 0; font-size: 10px; }
+  .tray .tray-actions { gap: 7px; }
+  .tray button { font-size: 11px; }
+  .notebook-button { min-height: 68px; margin-top: 14px; padding-left: 8px; }
+  .notebook-button small { font-size: 10px; }
+  .readouts { padding: 10px; }
+  .readout-main { gap: 4px; padding-bottom: 5px; }
+  .readout-main strong { font-size: 21px; }
+  .data-row { font-size: 10px; line-height: 1.6; }
+  #mount-name { margin-top: 5px; padding-top: 5px; font-size: 10px; }
+  .arm { gap: 8px; }
+  .focus-bank, .stage-bank { padding-top: 6px; }
+  .knobs { gap: 8px; }
+  .dial { width: 64px; height: 64px; }
+  .stage-bank .dial { width: 46px; height: 46px; }
+  .knob-wrap label { font-size: 10px; margin-bottom: 4px; }
+  .knob-wrap output { font-size: 10px; margin-top: 4px; }
+  .arm-tools { gap: 5px; }
+  .arm-tools button { font-size: 11px; padding: 5px; }
+  .status { font-size: 10px; min-height: 15px; }
+  .base { padding: 7px 9px; border-radius: 10px 10px 20px 20px; }
+  .turret { gap: 5px; margin: 5px 0; }
+  .objective { font-size: 12px; min-height: 44px; padding: 4px; }
+  .objective small { font-size: 10px; }
+  .light-controls { gap: 8px; }
+  .light-controls label { font-size: 10px; }
+  .footer { height: 66px; gap: 9px; padding: 6px 12px; }
+  .plate { font-size: 10px; padding: 5px 9px; }
+  .plate span { font-size: 10px; }
+  .power { gap: 3px; padding: 3px; }
+  .power button { min-width: 56px; font-size: 10px; padding: 6px; }
+  .footer-note { display: none; }
+  .optical-spec { font-size: 10px; }
+  .eyepiece { border-width: 9px; }
+  .lens-caption { margin: 6px 0; }
+}
+@media (min-width: 601px) and (max-height: 530px) {
+  main { grid-template-columns: 108px minmax(180px,1fr) 195px; gap: 10px; padding: 8px 12px; }
+  .readouts { padding: 8px; }
+  .data-row { display: none; }
+  .data-row.scale, .data-row.focus { display: flex; }
+  .readout-main { padding-bottom: 2px; }
+  .readout-main small { display: none; }
+  #mount-name { display: none; }
+  .focus-bank, .stage-bank { border: 0; padding: 0; }
+  .dial { width: 48px; height: 48px; }
+  .stage-bank .dial { width: 44px; height: 44px; }
+  .stage-bank output { display: none; }
+  .knob-wrap output { margin-top: 3px; }
+  .knob-wrap label { margin-bottom: 2px; }
+  .arm { gap: 6px; }
+  .arm-tools button { min-height: 44px; }
+  .status { display: none; }
+  .glass { min-height: 90px; }
+  .glass svg { height: 30px; }
+  .tray .tag { margin: 7px 0; }
+  .notebook-button { margin-top: 10px; min-height: 60px; }
+  .notebook-button { min-height: 44px; font-size: 12px; }
+  .notebook-button small { display: none; }
+  .base { padding: 5px 7px; }
+  .optical-spec { display: none; }
+  .lens-caption { display: none; }
+  .turret { margin: 2px 0 4px; }
+  .base>.engraving { display: none; }
+  .light-controls input { height: 20px; }
+}
+@media (max-width: 600px) {
+  main { display: grid; grid-template-columns: 1fr; grid-template-rows: minmax(230px,1fr) auto 58px; padding: 12px 15px 0; gap: 8px; height: calc(100dvh - 106px); }
+  .instrument { grid-row: 1; min-height: 0; padding-bottom: 103px; }
+  .optical-spec { font-size: 10px; }
+  .ocular { min-height: 0; width: 100%; }
+  .eyepiece { max-width: 100%; border-width: 10px; }
+  .lens-caption { display: none; }
+  .base { position: absolute; height: 97px; bottom: 0; width: 100%; padding: 5px 10px; border-radius: 9px 9px 18px 18px; }
+  .base>.engraving { display: none; }
+  .turret { margin: 0 0 4px; gap: 8px; }
+  .objective { min-height: 44px; font-size: 13px; padding: 4px; border-bottom-width: 4px; }
+  .objective small { display: none; }
+  .light-controls label { font-size: 10px; }
+  .light-controls { gap: 12px; }
+  .light-controls input { height: 23px; }
+  .arm { grid-row: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 7px 12px; }
+  .focus-bank { grid-row: 1; grid-column: 1/-1; border: none; padding: 0; }
+  .dial { width: 67px; height: 67px; }
+  .knobs { gap: 20px; }
+  .knob-wrap label { font-size: 10px; margin-bottom: 4px; }
+  .knob-wrap output { font-size: 10px; margin-top: 4px; }
+  .readouts { padding: 8px 10px; grid-column: 1; grid-row: 2; }
+  .readout-main { padding: 0; gap: 4px; border: 0; }
+  .readout-main strong { font-size: 18px; }
+  .readout-main span, .readout-main small { font-size: 10px; }
+  .readout-main small { display: none; }
+  .data-row { display: none; }
+  .data-row.scale { display: flex; font-size: 10px; line-height: 1.4; margin-top: 5px; }
+  #mount-name { display: none; }
+  .stage-bank { grid-column: 2; grid-row: 2; border: 0; padding: 0; }
+  .stage-bank .knobs { gap: 12px; }
+  .stage-bank .dial { width: 44px; height: 44px; }
+  .stage-bank output { font-size: 10px; }
+  .stage-bank label { margin-bottom: 3px; }
+  .arm-tools { grid-column: 1/-1; grid-template-columns: repeat(4,1fr); gap: 6px; }
+  .arm-tools button { padding: 4px; font-size: 11px; }
+  .status { display: none; }
+  .tray { grid-row: 3; padding: 6px; display: flex; align-items: center; gap: 9px; border-radius: 3px; overflow-x: auto; }
+  .tray h2,.tray .tag { display: none; }
+  .glass { min-height: 44px; min-width: 142px; padding: 3px; flex-direction: row; align-items: center; gap: 5px; }
+  .glass svg { width: 35px; height: 28px; margin: 0; }
+  .glass span { font-size: 10px; }
+  .tray .tray-actions { display: flex; gap: 6px; }
+  .tray .tray-actions button { font-size: 11px; white-space: nowrap; padding: 5px 10px; }
+  .notebook-button { margin: 0; min-height: 44px; min-width: 94px; font-size: 13px; padding: 5px 7px; border-left-width: 5px; transform: none; }
+  .notebook-button small { display: none; }
+  .footer { height: 100px; display: grid; grid-template-columns: 1fr; padding: 5px 12px; gap: 4px; }
+  .identity { grid-row: 2; gap: 6px; }
+  .plate { padding: 4px 8px; font-size: 10px; flex: 1; line-height: 1.4; }
+  .plate span { font-size: 10px; }
+  #manual { min-height: 44px; font-size: 12px; }
+  .power { grid-row: 1; justify-content: space-between; padding: 0 4px; border: 0; background: none; }
+  .power button { font-size: 11px; min-width: 79px; min-height: 44px; padding: 5px 10px; }
+  .power-label { writing-mode: initial; font-size: 10px; }
+  .footer-note { display: none; }
+  .drawer { inset: auto 10px 108px 10px; width: auto; max-height: calc(100dvh - 130px); padding: 18px; }
+  .book { top: 12px; left: 12px; right: 12px; bottom: 108px; width: auto; padding: 14px; }
+  .book { height: calc(100dvh - 120px); }
+  .book-preview {
+    display: block;
+    float: right;
+    width: 62px;
+    height: 62px;
+    margin: -3px 0 8px 8px;
+    border-radius: 50%;
+    border: 4px solid #27342a;
+  }
+  .book .privacy { font-size: 11px; }
+  .book .book-meta { display: block; font-size: 10px; min-height: 30px; }
+  .book-meta span { display: block; }
+  #paper { max-height: 30dvh; }
+  .book-tools button { font-size: 11px; }
+  .book textarea { min-height: 48px; }
+}
+#print-notes { display:none; }
+@media print {
+  body { height: auto; background: white; color: black; overflow: visible; }
+  main, .footer, #manual-drawer, #calibration, #live { display: none !important; }
+  #sketchbook { display: block !important; position: static; width: 100%; max-height: none; height: auto; border: 0; box-shadow: none; margin: 0; background: white; }
+  #sketchbook::backdrop { display: none; }
+  #sketchbook button, .book-tools, .book-nav, #label-text, label[for="label-text"], #save-status { display: none; }
+  .book-preview { display: none !important; }
+  #paper { display: block; width: 80%; max-height: none; margin: 25px auto; }
+  #paper { outline: none; }
+  #notes { border: 0; resize: none; height: auto; color: black; background: white; }
+  #notes { display:none; }
+  #print-notes { display:block;white-space:pre-wrap;overflow-wrap:anywhere;font:14px/1.6 system-ui,sans-serif;color:black; }
+  .book-meta { font-size: 14px; }
+}
+
+.tray { display: flex; flex-direction: column; gap: 8px; max-height: 100%; overflow-y: auto; }
+.tray > * { flex-shrink: 0; }
+.tray .tray-actions { grid-template-columns:1fr 1fr;gap:6px; }
+.tray h2 { display: none; }
+.tray .glass { min-height: 64px; padding: 5px; }
+.tray .glass svg { height: 22px; margin: 0; }
+.tray .glass span { font-size: 10px; }
+.tray .tag { margin: 2px 0; line-height: 1.5; }
+.tray .notebook-button { margin-top: 5px; min-height: 66px; }
+#glass-map { width: 100%; height: 70px; flex-shrink: 0; border: 1px solid #879b87; background: #dce4d022; }
+#guide { position: absolute; bottom: 5px; left: 5px; right: 5px; z-index: 3; color: #202923;
+ background: #e8e2d0f5; border: 1px solid #798471; display: flex; align-items: center; padding: 4px 6px 4px 12px; gap: 10px;
+ box-shadow: 0 3px 12px #0006; font: 12px/1.4 var(--mono); }
+#guide span { flex: 1; } #guide button { color: #202923; background: #dedfc9; min-width: 44px; }
+.slide-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
+.slide-grid button { text-align: left; display: flex; flex-direction: column; align-items: stretch;
+ min-height: 122px; padding: 9px; background: #d9decf; color: #202923; border: 1px solid #84947c; }
+.slide-grid img { height: 65px; width: 100%; object-fit: contain; background: #c9ceba; margin-bottom: 7px; }
+.slide-grid small { font: 10px var(--mono); display: block; margin-top: 4px; }
+.slide-grid button[aria-pressed=true] { outline: 2px solid #384f3c; }
+.drawer-actions { position: static; padding: 15px 0; background: #e8e2d0; display: flex; gap: 8px; flex-wrap: wrap; }
+.mount-controls { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.mount-controls fieldset { min-width: 0; border: 1px solid #a0ae95; padding: 12px; }
+.mount-controls legend { font: 12px var(--mono); padding: 0 7px; }
+.mount-controls button { width: 100%; margin: 4px 0; text-align: left; min-height: 48px; }
+.dropper::before { content: ''; display: inline-block; width: 13px; height: 19px; border: 2px solid #506c60;
+ border-top: 8px solid #263c31; background: var(--liquid,#bccfd0); margin-right: 12px; vertical-align: middle; border-radius: 3px; }
+.slide-plate { border: 1px solid #8c9d84; background: #cbd8c355; padding: 12px; font: 12px/1.6 var(--mono); }
+.photo-credit { font-size: 12px; border-top: 1px solid #b0b89f; padding-top: 12px; }
+@media(min-width:601px) and (max-height:530px) { .tray { gap: 5px; padding: 5px; } .tray button { padding: 4px; }
+ .tray .glass { min-height: 58px; } .glass svg,#glass-map,.tray .tag { display:none; } .tray .notebook-button { min-height:44px; } }
+@media(max-width:600px) { .tray { flex-direction:row; overflow-y:hidden; gap:7px; } .tray>button { flex:0 0 auto; white-space:nowrap; }
+ .tray .glass { min-height:44px; min-width:125px; width:125px; } .tray .glass svg { display:none; }
+ #glass-map { display:none; } .tray .notebook-button { min-height:44px; margin:0; }
+ .slide-grid { grid-template-columns:1fr 1fr; } .slide-grid button { min-height:115px; }
+ .mount-controls { gap:8px; } .mount-controls fieldset { padding:6px; }
+ .drawer { padding:16px; } .drawer-actions { bottom:-16px; } #guide { bottom:0; font-size:11px; }
+ .focus-bank { grid-row:1;grid-column:1; }
+ .stage-bank { grid-row:1;grid-column:2;align-self:center; }
+ .readouts { grid-row:2;grid-column:1; }
+ .arm-tools { grid-row:2;grid-column:2;grid-template-columns:1fr 1fr; }
+ .focus-bank .knobs { gap:10px; }
+ .focus-bank .dial { width:62px;height:62px; }
+ .stage-bank .knobs { gap:10px; }
+}
+
+
+#print-sheet { display:none; }
+@media print {
+  dialog, #sketchbook { display:none !important; }
+  dialog::backdrop { display:none !important; }
+  #print-sheet { display:block;max-width:180mm;margin:0 auto;padding:6mm 0;color:#111;background:#fff; }
+  #print-sheet h1 { font:24px Georgia,serif;margin:0 0 6mm; }
+  #print-sheet .printed-meta { font:12px/1.5 monospace;margin-bottom:6mm; }
+  #print-sheet canvas { width:160mm;max-width:100%;height:auto;display:block;margin:0 auto 6mm; }
+  #print-sheet h2 { font:16px Georgia,serif;margin:0 0 3mm; }
+  #print-text { white-space:pre-wrap;overflow-wrap:anywhere;font:13px/1.5 system-ui,sans-serif; }
+}
+
+/* Repair the instrument at desk, preview and phone sizes without a lesson frame. */
+.status { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); }
+.readouts { padding-top:19px; }
+.readouts::before,.readouts::after { top:-2px; font-size:8px; }
+.readout-main span,.readout-main small,.data-row,.knob-wrap output,.knob-wrap label,
+.optical-spec,.light-controls label,#mount-name { font-size:12px; }
+.light-controls input[type=range] { height:44px; }
+#mount-drawer { position:fixed; inset:16px auto auto 16px; margin:0; width:300px; max-height:calc(100dvh - 126px); padding:14px; }
+#mount-drawer .drawer-head h2 { font-size:20px; }
+#mount-drawer .mount-controls { gap:6px; }
+#mount-drawer fieldset { padding:5px; }
+#mount-drawer .mount-controls button { min-height:44px; font-size:12px; padding:5px; }
+#mount-drawer .dropper::before { display:none; }
+#mount-drawer .slide-plate { padding:6px; }
+#mount-description { font-size:12px; line-height:1.4; }
+@media(min-width:601px) and (max-height:530px) {
+ .readout-main span,.readout-main small,.data-row,.knob-wrap output,.knob-wrap label,.light-controls label { font-size:10px; }
+ .base { padding-bottom:0; }
+ #mount-drawer { width:230px; max-height:calc(100dvh - 85px); font-size:11px; }
+ #mount-description { display:none; }
+}
+@media(max-width:600px) {
+ main { grid-template-rows:minmax(170px,1fr) auto 112px; gap:5px; padding:8px 15px 0; }
+ .instrument { padding-bottom:119px; }
+ .base { height:114px; }
+ .data-row.focus { display:flex; font-size:10px; line-height:1.5; }
+ .readout-main strong { font-size:15px; white-space:nowrap; }
+ .readout-main span,.data-row.scale,.knob-wrap output,.knob-wrap label,.optical-spec,.light-controls label { font-size:10px; }
+ .readouts { padding:10px 6px 5px; }
+ .tray { display:flex; flex-wrap:wrap; align-content:center; gap:5px; padding:5px; overflow:hidden; }
+ .tray>button { min-width:0; flex:1 1 28%; font-size:10px; padding:3px; min-height:44px; }
+ .tray .glass { width:auto; min-width:0; flex:1 1 28%; }
+ .tray .glass span { font-size:9px; }
+ .tray .tray-actions { display:flex; flex:1 1 28%; gap:4px; }
+ .tray .tray-actions button { min-width:0; flex:1; font-size:10px; padding:3px; }
+ .tray .notebook-button { min-width:0; flex:1 1 28%; font-size:12px; }
+ #mount-drawer { inset:auto 12px 111px 12px; width:auto; max-height:270px; padding:10px; }
+ #mount-drawer .mount-controls { grid-template-columns:repeat(4,1fr); gap:4px; }
+ #mount-drawer legend { font-size:9px; padding:0; }
+ #mount-drawer .mount-controls button { font-size:10px; }
+ #mount-drawer .drawer-head { margin-bottom:3px; }
+ #mount-drawer .slide-plate,#mount-description { display:none; }
+ #mount-drawer .drawer-actions { padding:3px 0 0; }
+}
+
+
+@media(min-width:601px) and (max-height:680px) {
+ .arm { gap:8px; }
+ .readout-main small,#mount-name { display:none; }
+ .data-row { display:none; }
+ .data-row.scale,.data-row.focus { display:flex; }
+ .focus-bank,.stage-bank { padding-top:6px; }
+ .footer-note { display:none; }
+}
+@media(max-width:600px) {
+ .tray .glass span,#mount-drawer legend { font-size:10px; }
+}
+
+/* Compact previews keep the bottom instrument buttons above the maker's plate. */
+@media (min-width: 601px) and (max-height: 530px) {
+  .arm { gap: 3px; }
+  .arm .knob-wrap label, .arm .knob-wrap output { font-size: 10px; line-height: 1.2; }
+  .arm .dial, .arm .stage-bank .dial { width: 44px; height: 44px; }
+  .arm .readouts { padding: 6px; }
+  .arm .readout-main strong { font-size: 18px; }
+  .arm .data-row { line-height: 1.3; }
+  .arm-tools { gap: 4px; }
+}
+</style>
+</head>
+<body>
+<main aria-label="Microscope bench">
+  <aside class="tray" aria-label="Slide tray">
+    <button id="specimens">Specimen tray</button>
+    <button id="prepared">Prepared slides</button>
+    <button id="supplies">Prepare mount</button>
+    <h2>SLIDE TRAY</h2>
+    <button class="glass" id="micrometer" draggable="true" aria-pressed="false" aria-label="Stage micrometer, select then place on stage">
+      <svg viewBox="0 0 150 45" aria-hidden="true">
+        <rect x="5" y="3" width="140" height="39" rx="2" fill="#d9e4cd22" stroke="#c7d9bb"/>
+        <path d="M40 18h70m-70-6v18m10-14v10m10-10v10m10-14v18m10-14v10m10-10v10m10-10v10m10-14v18" stroke="#e8e2d0"/>
+      </svg>
+      <span>STAGE MICROMETER<br>0.01 mm divisions</span>
+    </button>
+    <p class="tag" id="glass-label">POND WATER · WET MOUNT</p><canvas id="glass-map" width="220" height="100" aria-label="Glass slide locator. The outlined circle is the eyepiece field."></canvas>
+    <div class="tray-actions">
+      <button id="place" aria-label="Place selected specimen on stage">Place</button>
+      <button id="wash" title="Wash the slide (X)" aria-label="Wash slide">Wash</button>
+    </div>
+    <button id="book" class="notebook-button">Sketchbook<small>PENCIL · NOTES · PRINT</small></button>
+  </aside>
+  <section class="instrument" aria-label="Optical instrument">
+    <div class="optical-spec"><span>COMPOUND LIGHT MICROSCOPE</span><span>10× / FN 18</span></div>
+    <div class="ocular">
+      <div class="eyepiece">
+        <canvas id="view" tabindex="0" role="img" aria-label="Eyepiece view. Drag or arrow keys to move the slide. Enter inspects the centre."></canvas>
+      </div>
+      <p id="hint"><span>Turn the focus knob.</span></p>
+      <div id="guide" hidden><span id="guide-text"></span><button id="close-guide" aria-label="Close field note">×</button></div>
+    </div>
+    <div class="lens-caption" id="contrast-name">TRANSMITTED LIGHT · INVERTED IMAGE</div>
+    <div class="base">
+      <div class="engraving">Objective turret</div>
+      <div class="turret" aria-label="Objective turret">
+        <button class="objective" data-objective="4" id="obj4" style="--ring:#b9493d" aria-pressed="true">4×<small>0.10 NA</small></button>
+        <button class="objective" data-objective="10" id="obj10" style="--ring:#cfb740" aria-pressed="false">10×<small>0.25 NA</small></button>
+        <button class="objective" data-objective="40" id="obj40" style="--ring:#6892b3" aria-pressed="false">40×<small>0.65 NA</small></button>
+        <button class="objective" data-objective="100" id="obj100" style="--ring:#e9e2c7" aria-pressed="false">100×<small>1.25 OIL</small></button>
+      </div>
+      <div class="light-controls">
+        <label for="lamp">LAMP <output id="lamp-value">80%</output><input id="lamp" type="range" min="0" max="100" step="5" value="80"></label>
+        <label for="iris">IRIS <output id="iris-value">70%</output><input id="iris" type="range" min="0" max="100" step="10" value="70"></label>
+      </div>
+    </div>
+  </section>
+  <section class="arm" aria-label="Microscope controls and readouts">
+    <div class="readouts" aria-label="Optical readouts">
+      <div class="readout-main">
+        <div><span>MAG</span><strong id="mag">40×</strong><small>total magnification</small></div>
+        <div><span>FIELD</span><strong id="field">4.50</strong><small>field diameter</small></div>
+      </div>
+      <div class="data-row scale"><span>SCALE</span><output id="scale">25.0 µm · nominal</output></div>
+      <div class="data-row"><span>STAGE X / Y</span><output id="position">0.00 / 0.00 mm</output></div>
+      <div class="data-row focus"><span>FOCUS</span><output id="focus">+50 µm</output></div>
+      <div class="data-row"><span>DEPTH (est.)</span><output id="depth">55.0 µm</output></div>
+      <div id="mount-name">Stage micrometer · dry</div>
+    </div>
+    <div class="focus-bank">
+      <div class="knobs">
+        <div class="knob-wrap">
+          <label id="coarse-label">COARSE FOCUS</label>
+          <div class="dial" id="coarse" role="slider" tabindex="0" aria-labelledby="coarse-label" aria-valuemin="0" aria-valuemax="10"
+            aria-valuenow="5.05" aria-valuetext="5.05 millimetres"></div>
+          <output id="coarse-value">5.05 mm</output>
+        </div>
+        <div class="knob-wrap">
+          <label id="fine-label">FINE FOCUS</label>
+          <div class="dial" id="fine" role="slider" tabindex="0" aria-labelledby="fine-label" aria-valuemin="-50" aria-valuemax="50" aria-valuenow="0"
+            aria-valuetext="0 micrometres"></div>
+          <output id="fine-value">0 µm</output>
+        </div>
+      </div>
+    </div>
+    <div class="stage-bank">
+      <div class="knobs">
+        <div class="knob-wrap"><label id="x-label">STAGE X</label>
+          <div class="dial" id="stage-x" role="slider" tabindex="0" aria-labelledby="x-label" aria-valuemin="-10" aria-valuemax="10" aria-valuenow="0"
+            aria-valuetext="0 millimetres"></div>
+          <output id="x-value">0.00 mm</output>
+        </div>
+        <div class="knob-wrap"><label id="y-label">STAGE Y</label>
+          <div class="dial" id="stage-y" role="slider" tabindex="0" aria-labelledby="y-label" aria-valuemin="-10" aria-valuemax="10" aria-valuenow="0"
+            aria-valuetext="0 millimetres"></div>
+          <output id="y-value">0.00 mm</output>
+        </div>
+      </div>
+    </div>
+    <div class="arm-tools">
+      <button id="oil" aria-pressed="false">Oil</button>
+      <button id="reticle" aria-pressed="false">Reticle</button>
+      <button id="rotate" title="Rotate reticle (R)">Rotate</button>
+      <button id="calibrate">Calibrate</button>
+    </div>
+    <p id="status" class="status" role="status"></p>
+  </section>
+</main>
+<footer class="footer">
+  <div class="identity">
+    <div class="plate">Curio Class Curiosities<span>No. 06 · Microscope Bench</span></div>
+    <button id="manual" aria-haspopup="dialog">Manual</button>
+  </div>
+  <div class="power" aria-label="Instrument power panel">
+    <span class="power-label">POWER</span>
+    <button id="motion" aria-pressed="true">Motion</button>
+    <button id="sound" aria-pressed="true">Sound</button>
+    <button id="read">Read</button>
+  </div>
+  <span class="footer-note">MEASURE · LOOK · DRAW</span>
+</footer>
+<dialog id="slide-drawer" class="drawer" aria-labelledby="slide-title">
+ <div class="drawer-head"><h2 id="slide-title">Specimen tray</h2><button id="close-slides">Close</button></div>
+ <div class="slide-grid" id="slide-grid"></div>
+ <p id="slide-description"></p>
+ <div class="drawer-actions"><button id="mount-selected">Place on stage</button><button id="prepare-selected">Prepare mount</button></div>
+</dialog>
+<dialog id="mount-drawer" class="drawer" aria-labelledby="mount-title">
+ <div class="drawer-head"><h2 id="mount-title">Prepare mount</h2><button id="close-mount">Close</button></div>
+ <div class="slide-plate" id="mount-plate"></div>
+ <div class="mount-controls">
+  <fieldset><legend>Mounting medium</legend><button id="water" class="dropper">Water drop</button><button id="dry">Dry glass</button></fieldset>
+  <fieldset><legend>Stain</legend><button id="no-stain">None</button><button id="iodine" class="dropper" style="--liquid:#b98130">Iodine</button></fieldset>
+  <fieldset><legend>Cover glass</legend><button id="cover">Lower cover slip</button><button id="bare">Lift cover slip</button></fieldset>
+  <fieldset><legend>Handling</legend><button id="bubbles">Drop cover slip flat</button><button id="clear-bubbles">Lift and lower gently</button></fieldset>
+ </div>
+ <p id="mount-description"></p>
+ <div class="drawer-actions"><button id="apply-mount">Place on stage</button></div>
+</dialog>
+<dialog id="manual-drawer" class="drawer" aria-labelledby="manual-title">
+  <div class="drawer-head"><h2 id="manual-title">Microscope Bench / Manual</h2><button id="close-manual">Close</button></div>
+  <details open><summary>At the bench</summary>
+    <p>Turn either focus knob by dragging up or down, by scrolling, or with arrow keys. The coarse knob moves 50 µm per step.
+    Shift with arrows on coarse focus moves 1 µm. Fine focus spans ±50 µm in 1 µm steps. Home and End reach each limit.</p>
+    <p>The stage moves 0.05 mm per step. Shift moves 1 mm. Dragging the view moves the slide:
+    push right and the image moves left. When the eyepiece has focus, arrows move the stage.</p>
+    <p>Choose an objective with 1, 2, 3 or 4. The labelled total magnification is ten times the nominal objective power.
+    E inserts the eyepiece reticle; R turns it a quarter turn. X washes the slide; K opens the sketchbook.</p>
+  </details>
+  <details><summary>Making a mount</summary>
+    <p>Open Specimen tray or Prepared slides, choose a glass slide, then Place on stage. A tray item can also be dragged to the
+    eyepiece. With the keyboard, Enter selects a tray item and returns to the eyepiece; Enter there puts it on the stage.</p>
+    <p>Prepare mount holds the water dropper, dry glass, iodine and cover slips. Water lets the pond organisms move.
+    Dry glass stops them. Lowering a cover slip changes the focus model; dropping it flat traps modelled air bubbles.
+    Lift and lower gently removes those bubbles. Wash slide or X leaves empty glass.</p>
+    <p>Iodine is available for onion skin. It exchanges a real unstained photographic field for real Lugol-stained fields.
+    These are different cells from different preparations, not a before-and-after record of one cell. Prepared slides keep
+    their original stain and medium. The prepared cheek field is already stained with methylene blue; its biological-size scale is approximate, so use the blood fields for measurement. No unstained version of that same cheek field is supplied, so it has no stain-switch bottle.</p>
+    <p>The small glass locator shows the slide outline and which area the eyepiece covers. Finds are not marked.
+    Empty space beyond the photographs is glass, not additional sampled tissue. Scan at low power before changing the objective.</p>
+  </details>
+  <details><summary>Reading the instrument</summary>
+    <p>MAG is the labelled objective power × 10. FIELD uses the modelled true objective powers: 3.9, 9.8, 41 and 98 times. Their small deviations from the labels stand for manufacturing variation; they are declared model settings, not measurements of a physical microscope.
+    These are optical field diameters, independent of screen size. STAGE is slide displacement; FOCUS is displacement from the reference focal plane.</p>
+    <p>DEPTH is an estimate using 0.55 µm × refractive index / numerical aperture squared. It is the wave-optical term,
+    not a full model of a real microscope or the eye. At 100×, oil uses index 1.515 and aperture 1.25. Without oil,
+    aperture is modelled as 0.65; the image is softer and dimmer. Lower lamp settings darken the field.</p>
+    <p>Closing the iris reduces light, raises contrast and softens small details. This bounded rendering effect is an optical approximation,
+    not a measurement of the source microscope’s aperture. The depth readout is the nominal wave-optical estimate, before the iris approximation.</p>
+  </details>
+  <details><summary>Calibrating and measuring</summary>
+    <p>The eyepiece has a 10 mm reticle with 100 divisions, fixed in the eyepiece plane. Its nominal specimen division is
+    100 µm divided by objective power. Calibration is kept separately for each objective.</p>
+    <p>Focus the micrometer. Rotate the reticle if needed and move the stage so both scales begin together.
+    Count the micrometer intervals and the reticle intervals over the same distance. Calibrate opens beside the live view: keep moving the slide if needed, then enter the two counts.
+    The factor is 10 µm × micrometer intervals / reticle intervals.</p>
+    <p>The numbers you enter determine the scale. There is no automatic approval or adjustment of your observation.
+    The micrometer geometry always keeps its exact dimensions. Changing the objective recalls its own calibration.</p>
+  </details>
+  <details><summary>Sketchbook</summary>
+    <p>Pencil draws freehand. Eraser removes a stroke where it touches. Write a label, choose Label pin and tap the paper.
+    For keyboard drawing, focus the paper: arrows move the pencil, Space puts it down or lifts it, Enter adds a label in Label pin.</p>
+    <p>Notes, labels, date, mount and magnification save after each change. New page adds a blank sheet.
+    Your sketches stay on this device. Print prints the current page alone. If storage is unavailable, a visible message says so.</p>
+  </details>
+  <details><summary>Photographs, depth and motion</summary>
+    <p>All biological and mineral material is photographed. The body, glass, bubbles, lamp, exact stage micrometer and reticle are code.
+    No cell, organism, vein, grain or tissue structure has been generated or drawn. Crop boundaries remain finite; enlarging cannot recover
+    information absent from the source. Some fine structures remain unresolved even with the strongest objective.</p>
+    <p>The pond is assembled from six distinct photographic cutouts, each placed once. This assemblage does not represent natural abundance or one natural pond field. Moving cutouts follow wandering computed paths; it is not recorded swimming.
+    Motion off freezes that path exactly. Dry mounting also stops movement. The still cutouts do not animate their hairs: this source cannot show its cilia beating.</p>
+    <p>Most defocus is computed blur around each mount’s reference plane, scaled to the field diameter. Its logarithmic response compresses the full mechanical travel so focus keeps changing visibly. Defocus uses a reduced-resolution layer with linear reconstruction, avoiding an expensive Gaussian filter on every pan. This is a rendering approximation, not an optical point-spread measurement. Dry mounting and lifting a cover slip shift the modelled focal plane; the offsets are declared instrument settings. Hair spans a modelled depth gradient of 15 micrometres per 100 micrometres along its length: focus blurs different lengths of the single photograph, not newly measured surfaces. The fixed pond colony is different:
+    nine registered photographs, taken 25 µm apart, are blended as focus travels from +100 to −100 µm. Outside that range, extra blur is computed.
+    Its original darkfield and pseudocolour are retained. This is not fluorescence, living motion or a reconstruction of hidden anatomy.</p>
+    <p>The sand source uses reflected light. Other source contrast methods and stains remain as photographed; this instrument cannot turn them into
+    new measurements. Water, cover glass, air and immersion oil change a simplified optical model, not the chemistry inside those photographs.
+    The 100× objective is dimmer and softer without oil. Turret changes shift focus by only a few micrometres in the model.</p>
+    <p>Each material is one particular specimen someone else prepared. Source scale bars were measured in the exact downloaded files, usually
+    with about one pixel endpoint uncertainty. Hair uses a standard counting-grid pitch, an inference stated in its source entry. Objective power
+    alone was never used to invent a digital pixel size.</p>
+  </details>
+  <details><summary>Things people have found</summary>
+<p>Robert Hooke named the cells he saw in cork in his book Micrographia, published in 1665.<br><small><a href="https://www.gutenberg.org/ebooks/15491" target="_blank" rel="noreferrer">Hooke, Micrographia (1665), public domain</a>; <a href="https://www.mbl.edu/research/research-centers/eugene-bell-center/featured-projects/seeing-cells-exhibit/seeing-cells-life" target="_blank" rel="noreferrer">Marine Biological Laboratory, Seeing Cells in Life, copyrighted factual reference</a>.</small></p>
+<p>In a letter of 1676, Antonie van Leeuwenhoek described tiny moving animals in water. It was published in 1677.<br><small><a href="https://catalogues.royalsociety.org/CalmView/Record.aspx?id=EL%2FL1%2F23&amp;src=CalmView.Catalog" target="_blank" rel="noreferrer">Royal Society, original letter catalogue, copyrighted reference</a>; <a href="https://www.dbnl.org/tekst/leeu027alle02_01/leeu027alle02_01_0006.php" target="_blank" rel="noreferrer">Leeuwenhoek, Collected Letters, letter 26, original letter public domain; edition reference only</a>.</small></p>
+<p>A rotifer’s crown of tiny hairs can look like a turning wheel.<br><small><a href="https://openstax.org/books/biology-2e/pages/28-3-superphylum-lophotrochozoa" target="_blank" rel="noreferrer">OpenStax Biology 2e, Lophotrochozoa, current CC BY-NC-SA 4.0; factual reference only, no quoted text or images</a>; <a href="https://doi.org/10.3897/zookeys.941.50465" target="_blank" rel="noreferrer">Zeng and colleagues, Adineta beysunae, CC BY 4.0</a>.</small></p>
+<p>A red blood cell is about 7 to 8 micrometres across.<br><small><a href="https://openstax.org/books/anatomy-and-physiology/pages/18-3-erythrocytes" target="_blank" rel="noreferrer">OpenStax Anatomy and Physiology, Erythrocytes, current CC BY-NC-SA 4.0; factual reference only, no quoted text or images</a>; <a href="https://www.ncbi.nlm.nih.gov/books/NBK263/" target="_blank" rel="noreferrer">Clinical Methods, Peripheral Blood Smear, copyrighted reference</a>.</small></p>
+<p>Most of a cell’s cycle is spent between divisions. In a root tip, dividing cells are scattered among many cells with an intact nucleus.<br><small><a href="https://openstax.org/books/biology-2e/pages/10-2-the-cell-cycle" target="_blank" rel="noreferrer">OpenStax Biology 2e, The Cell Cycle, current CC BY-NC-SA 4.0; factual reference only, no quoted text or images</a>; <a href="https://www.cellimagelibrary.org/images/43552" target="_blank" rel="noreferrer">Shoba Shanti, CIL:43552, public domain</a>.</small></p>
+<p>Immersion oil has a refractive index of about 1.52, close to glass. It helps an oil objective gather light.<br><small><a href="https://www.microscopyu.com/microscopy-basics/depth-of-field-and-depth-of-focus" target="_blank" rel="noreferrer">Nikon MicroscopyU, Depth of Field and Depth of Focus, copyrighted reference</a>; <a href="https://www.ruf.rice.edu/~bioslabs/methods/microscopy/oilimm.html" target="_blank" rel="noreferrer">Rice University, Oil Immersion, copyrighted reference</a>.</small></p>
+<p>The microscope flips the view: move the slide right and its image goes left.<br><small><a href="https://openstax.org/books/biology-2e/pages/4-1-studying-cells" target="_blank" rel="noreferrer">OpenStax Biology 2e, Studying Cells, current CC BY-NC-SA 4.0; factual reference only, no quoted text or images</a>; <a href="https://www.microscopyu.com/microscopy-basics/properties-of-microscope-objectives" target="_blank" rel="noreferrer">Nikon MicroscopyU, Properties of Microscope Objectives, copyrighted reference</a>.</small></p>
+<p>Closing the iris can help a pale specimen stand out. Closing it too far loses fine detail.<br><small><a href="https://www.ruf.rice.edu/~bioslabs/methods/microscopy/microscopy.html" target="_blank" rel="noreferrer">Rice University, Light Microscopy, copyrighted reference</a>; <a href="https://www.microscopyu.com/techniques/phase-contrast/specimen-contrast-in-optical-microscopy" target="_blank" rel="noreferrer">Nikon MicroscopyU, Specimen Contrast, copyrighted reference</a>.</small></p>
+  </details>
+  <details><summary>Sources and licences</summary>
+    <p>Scientific relationships are independently checked against these named sources. The tool uses original code and paraphrases;
+    no text passages or diagrams are reproduced from these optical reference sites. Photographic credits and changes follow below.</p>
+    <ul>
+      <li><a href="https://www.microscopyu.com/microscopy-basics/properties-of-microscope-objectives" target="_blank" rel="noreferrer">Nikon
+        MicroscopyU: Properties of microscope objectives</a>.
+      Field number and numerical aperture. Reference only; copyrighted.</li>
+      <li><a href="https://www.microscopyu.com/microscopy-basics/depth-of-field-and-depth-of-focus" target="_blank" rel="noreferrer">Nikon
+        MicroscopyU: Depth of field and depth of focus</a>.
+      Reference only; copyrighted. Only the wave-optical term is implemented.</li>
+      <li><a href="https://www.microscopyu.com/tutorials/reticlecalibration" target="_blank" rel="noreferrer">Nikon MicroscopyU: Eyepiece reticle
+        calibration</a>.
+      Reference only; copyrighted.</li>
+      <li><a href="https://www.ruf.rice.edu/~bioslabs/methods/microscopy/measuring.html" target="_blank" rel="noreferrer">Rice University: Measuring
+        with the microscope</a>.
+      Independent calibration reference; copyrighted; no copied material.</li>
+      <li><a href="https://www.merckmillipore.com/Web-IN-Site/en_US/-/EUR/ShowDocument-Pronet?id=201605.071" target="_blank" rel="noreferrer">Merck:
+        Measuring eyepiece calibration</a>.
+      Independent 0.01 mm stage-division reference; copyrighted; no copied material.</li>
+    </ul>
+  </details>
+<details><summary>Pond water / photographic sources</summary>
+<p>Six distinct photographic cutouts, each placed once. Three different photographed ciliates move on computed paths. The source cultures and freshwater mat are assembled, not a natural abundance sample.</p>
+<div class="photo-credit"><p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11246328/" target="_blank" rel="noreferrer">Characterization of Crystals in Ciliate Paramecium bursaria, Fig. 1a, three transmitted-light panels</a><br>
+Yuuki Kodama, Ayasa Kitatani, Yuriko Morita. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>First two panels: shared 20 micrometre bar measures about 69 pixels. Right panel: its separate 20 micrometre bar is 37 pixels end-to-end on row 362 of the original download. These are three distinct cultured individuals, not one natural pond sample.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+<div class="photo-credit"><p><a href="https://commons.wikimedia.org/wiki/File:Adineta_beysunae_(10.3897-zookeys.941.50465)_Figure_3.jpg" target="_blank" rel="noreferrer">Adineta beysunae (10.3897-zookeys.941.50465) Figure 3.jpg</a><br>
+Zeng Y, Wei N, Wang Q, Iakovenko NS, Li Y, Yang Y (2020). <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>Photographic panel B only. Vertical 50 µm bar = approximately 538 original pixels. Drawing A excluded.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+<div class="photo-credit"><p><a href="https://commons.wikimedia.org/wiki/File:Bancs%C3%B3_2021_Fig_7-8_Pinnularia_viridis.jpg" target="_blank" rel="noreferrer">Bancsó 2021 Fig 7-8 Pinnularia viridis.jpg</a><br>
+Sándor Bancsó. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>20 µm bar = approximately 165 pixels in the downloaded 1280 px thumbnail. Scale measured after thumbnail resampling.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+<div class="photo-credit"><p><a href="https://commons.wikimedia.org/wiki/File:41396_2020_676_Fig4b.jpg" target="_blank" rel="noreferrer">41396 2020 676 Fig4b.jpg</a><br>
+H. S. Tee, D. Waite, L. Payne, M. Middleditch, S. Wood, K. M. Handley. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>Lower-right panel: 20 µm bar = approximately 89 pixels. One unlabelled filament crop.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+</details>
+<details><summary>Onion skin / photographic sources</summary>
+<p>Unstained skin with the source LED cast corrected by per-channel white balance, and separate Lugol-iodine fields from a monochrome camera. These are different cells, not a before-and-after record.</p>
+<div class="photo-credit"><p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6975239/" target="_blank" rel="noreferrer">Mobile-phone-based Rheinberg microscope with an LED array, Fig. 9a</a><br>
+Yuma Ogasawara, Ryo Sugimoto, Ryoji Maruyama, Hidenobu Arimoto, Yosuke Tamada, Wataru Watanabe. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>100 µm bar = approximately 47 pixels. Brightfield panel a only.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+<div class="photo-credit"><p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11019669/" target="_blank" rel="noreferrer">Low-cost 3D-printed lenses for brightfield and fluorescence microscopy, Figs. 5C, 5E, 6D and 6F</a><br>
+Jay Christopher, Liam M Rooney, Mark Donnachie, Deepak Uttamchandani, Gail McConnell, Ralf Bauer. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>Fig. 5: 250 µm bar ≈64 px; Fig. 6: 50 µm bar ≈76 px. Unlabelled crops strictly within commercial-lens lower-left halves. Onion uses Lugol iodine; Hosta epidermis is a water mount.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+</details>
+<details><summary>Human hair / photographic sources</summary>
+<p>Human hair over a ruled counting chamber. The known grid provides the physical scale.</p>
+<div class="photo-credit"><p><a href="https://commons.wikimedia.org/wiki/File:Hemocytometer_grid_with_human_hair_100x.jpg" target="_blank" rel="noreferrer">Hemocytometer grid with human hair 100x.jpg</a><br>
+Jeffrey M. Vinocur. <a href="https://creativecommons.org/licenses/by/2.5/" target="_blank" rel="noreferrer">CC BY 2.5</a>.</p>
+<p>Known-size object: central haemocytometer fine squares, 50 µm, approximately 50 px. Inferred standard Neubauer grid pitch, not a camera calibration. Both axes agree within about 2%.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+</details>
+<details><summary>Bahamas sand / photographic sources</summary>
+<p>Real shell-rich sand from French Bay, San Salvador. Original reflected-light photograph.</p>
+<div class="photo-credit"><p><a href="https://commons.wikimedia.org/wiki/File:Marine_biogenous_aragonite_sand_(modern%3B_sandy_beach_at_French_Bay,_San_Salvador_Island,_Bahamas)_(48739969587).jpg" target="_blank" rel="noreferrer">Marine biogenous aragonite sand (modern; sandy beach at French Bay, San Salvador Island, Bahamas) (48739969587).jpg</a><br>
+Sara Beth Kopczynski, shared by James St. John. <a href="https://creativecommons.org/licenses/by/2.0/" target="_blank" rel="noreferrer">CC BY 2.0</a>.</p>
+<p>2 mm white bar = approximately 280 pixels. Reflected-light source; not transmitted-light sand.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+</details>
+<details><summary>Hosta leaf / photographic sources</summary>
+<p>Two finite epidermis fields from a water-mounted Hosta leaf, at different source samplings.</p>
+<div class="photo-credit"><p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11019669/" target="_blank" rel="noreferrer">Low-cost 3D-printed lenses for brightfield and fluorescence microscopy, Figs. 5C, 5E, 6D and 6F</a><br>
+Jay Christopher, Liam M Rooney, Mark Donnachie, Deepak Uttamchandani, Gail McConnell, Ralf Bauer. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>Fig. 5: 250 µm bar ≈64 px; Fig. 6: 50 µm bar ≈76 px. Unlabelled crops strictly within commercial-lens lower-left halves. Onion uses Lugol iodine; Hosta epidermis is a water mount.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+</details>
+<details><summary>Crane-fly wing / photographic sources</summary>
+<p>A photographed crane-fly wing. The 2 mm source bar measures 206 pixels; the cropped tile is 13.79 mm wide, including background. It is not a measured wing length. Fine hairs are not resolved in this source.</p>
+<div class="photo-credit"><p><a href="https://commons.wikimedia.org/wiki/File:Tipula_dechangensis_(10.3897-zookeys.1040.64376)_Figures_1,_2.jpg" target="_blank" rel="noreferrer">Tipula dechangensis (10.3897-zookeys.1040.64376) Figures 1, 2.jpg</a><br>
+Men Q-L, Starkevich P, Saldaitis A (2021). <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>Full available source (1512 x 1314 px): 2.0 mm bar measures 206 px, or 9.71 um/px. The 1420 px crop is 13.79 mm wide including background; this is not an anatomical wing length. Article reports 14.3-16.8 mm wing length for the species. Source resolution limits high-power use.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+</details>
+<details><summary>Onion root tip / photographic sources</summary>
+<p>A real acetocarmine root-tip field from CIL:43552, with four separate Feulgen control close-ups inset at their physical sizes. They are different specimens and stains. Base-field scale is inferred, not calibrated; the insets retain measured 10 micrometre source bars.</p>
+<div class="photo-credit"><p><a href="https://www.cellimagelibrary.org/images/43552" target="_blank" rel="noreferrer">CIL:43552, Allium cepa, root tip</a><br>
+Shoba Shanti (2013), Cell Image Library. <a href="https://creativecommons.org/publicdomain/mark/1.0/" target="_blank" rel="noreferrer">Public domain</a>.</p>
+<p>Approximate 0.22 um per pixel: nuclei around 80-110 pixels compared with roughly 18-24 um nuclei in the independently scaled Cavusoglu control fields. Archive supplies no pixel calibration. This is a size-based inference, unsuitable for precision measurement.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+<div class="photo-credit"><p><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10960845/" target="_blank" rel="noreferrer">Exogenous application of mycotoxin fusaric acid, Fig. 4, control root-tip mitosis</a><br>
+Kürşat Çavuşoğlu, Dilek Çavuşoğlu. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>10 µm bar = approximately 35 pixels. Four control fields; Feulgen staining, original photographic panels a–d.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+</details>
+<details><summary>Blood smear / photographic sources</summary>
+<p>Eight separately photographed Giemsa fields spread across the glass. Figure letters, gutters and scale bars are removed. Original sample context is on this slide’s Manual source page.</p>
+<div class="photo-credit"><p><a href="https://wwwnc.cdc.gov/eid/article/15/9/09-0358_article" target="_blank" rel="noreferrer">Human Plasmodium knowlesi Infection, Fig. 1</a><br>
+J. J. van Hellemond and coauthors; CDC Emerging Infectious Diseases (2009). <a href="https://wwwnc.cdc.gov/eid/page/copyright-and-disclaimers" target="_blank" rel="noreferrer">Public domain</a>.</p>
+<p>Caption: 5 µm bar, approximately 28 pixels in this 600 px figure. Eight Giemsa-stained blood fields with malaria parasites. The uninfected cell near source x105,y50 spans about 42 pixels, independently approximately 7.5 µm.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+</details>
+<details><summary>Cheek swab / photographic sources</summary>
+<p>A real methylene-blue cheek field with dark nuclei. Pale source glass is alpha-masked using blue minus red; retained RGB pixels are unchanged. Scale is inferred from a typical cell edge, not measured on this camera. Cell size varies; this approximate field is for observation, not precision measurement.</p>
+<div class="photo-credit"><p><a href="https://commons.wikimedia.org/wiki/File:Human_epithelial_cells_stained_with_methylene_blue_dye.jpg" target="_blank" rel="noreferrer">Human epithelial cells stained with methylene blue dye</a><br>
+Daliasalloum. <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>Approximate only: 0.22 um per original pixel, using a roughly 250-pixel cell edge and a 55 um reference size. Prasad et al. control cells average 54.97 um; Romeo et al. independently describe mature buccal cells as 50-60 um on edge. These are variable biological sizes, not a camera calibration. Do not use this slide for precision measurement; use the source-bar-scaled blood fields instead.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+<p>Size inference: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3001196/" target="_blank" rel="noreferrer">Prasad, Ramesh and Balamurali (2010), Table 1 control cells</a>, CC BY as stated at source; 
+<a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC2732433/" target="_blank" rel="noreferrer">Romeo, Mohlenhoff, Jennings and Diem (2006)</a>, author manuscript with no reuse licence stated, factual citation only. No text or image copied from either reference.</p>
+</div>
+</details>
+<details><summary>Pond colony / photographic sources</summary>
+<p>A fixed pond colony, photographed at nine focus positions, 25 micrometres apart. Turn focus through the field to see different depths.</p>
+<div class="photo-credit"><p><a href="https://doi.org/10.6084/m9.figshare.12964487.v3" target="_blank" rel="noreferrer">High-contrast multifocus microscopy with a single camera and z-splitter prism, Supplement 1, Fig. S9b</a><br>
+Sheng Xiao, Howard Gritton, Hua-an Tseng, Dana Zemel, Xue Han, Jerome Mertz (2020). <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noreferrer">CC BY 4.0</a>.</p>
+<p>100 µm bar = approximately 98 pixels in extracted PDF JPEG. Nine simultaneous focal planes spaced 25 µm, +100 to -100 µm. Fixed Volvox in Eukitt; darkfield, original ImageJ green-fire-blue lookup table retained. Same registered crop for every plane.</p>
+<p>Changes: photographed pixels cropped, transparent masks at printed labels and edges, WebP encoding. No anatomy reconstructed.</p>
+</div>
+</details>
+<details><summary>Independent size and contrast references</summary>
+<p>Licence labels were checked on 6 November 2026. Current OpenStax pages state CC BY-NC-SA 4.0. Their links here are factual references only; this tool reproduces no OpenStax images, diagrams or text passages. The photographic assets retain their separately verified Public Domain or CC BY licences.</p>
+
+<p>The new cheek nucleus observation is checked against the source photograph and
+<a href="https://openstax.org/books/biology-2e/pages/4-3-eukaryotic-cells" target="_blank" rel="noreferrer">OpenStax Biology 2e, Eukaryotic Cells</a> (current CC BY-NC-SA 4.0; factual reference only, no quoted text or images).
+The new pond individuals are checked against Kodama et al., Figure 1 and
+<a href="https://openstax.org/books/biology-2e/pages/23-3-groups-of-protists" target="_blank" rel="noreferrer">OpenStax Biology 2e, Groups of Protists</a> (current CC BY-NC-SA 4.0; factual reference only, no quoted text or images).
+The assemblage and defocus rendering are declared model choices.</p>
+
+ <p>Red-cell size is checked independently against <a href="https://www.ncbi.nlm.nih.gov/books/NBK263/" target="_blank" rel="noreferrer">Clinical Methods: Peripheral Blood Smear</a>
+ and <a href="https://openstax.org/books/anatomy-and-physiology/pages/18-3-erythrocytes" target="_blank" rel="noreferrer">OpenStax: Erythrocytes</a>: about 7–8 µm.
+ These are factual references; no illustrations or wording are reproduced.</p>
+ <p>The hair grid pitch follows <a href="https://www.marienfeld-superior.com/counting-grids.html" target="_blank" rel="noreferrer">Marienfeld: counting grids</a>
+ and <a href="https://asset-downloads.zeiss.com/catalogs/download/mic/96e9e3a7-f2fd-4989-94e3-d12412701623/EN_wp_How-to-Use-a-Hemocytometer.pdf" target="_blank" rel="noreferrer">ZEISS: Using a hemocytometer</a>, 0.05 mm fine squares.
+ Both are copyrighted factual references only.</p>
+ <p>Contrast and iris behaviour also follow <a href="https://www.microscopyu.com/techniques/phase-contrast/specimen-contrast-in-optical-microscopy" target="_blank" rel="noreferrer">Nikon: Specimen contrast</a>.
+ Scale-bar measurement and reticle calibration follow Nikon and Rice independently, listed above.</p>
+<p>Chromosome appearances are compared with <a href="https://openstax.org/books/biology-2e/pages/10-2-the-cell-cycle"
+ target="_blank" rel="noreferrer">OpenStax Biology 2e: The Cell Cycle</a>, CC BY 4.0.
+ This is a factual reference; no text or diagrams are reproduced.</p>
+</details>
+</dialog>
+<dialog id="sketchbook" class="book" aria-labelledby="book-title">
+  <div class="drawer-head"><h2 id="book-title">Observations</h2><button id="close-book">Close</button></div>
+  <canvas class="book-preview" id="book-view" width="140" height="140" aria-hidden="true"></canvas>
+  <p class="privacy">Your sketches stay on this device.</p>
+  <div class="book-meta"><span id="page-mount"></span><span id="page-date"></span></div>
+  <canvas id="paper" width="600" height="380" tabindex="0" role="img" aria-label="Sketch paper. Arrows move the pencil; Space toggles drawing; Enter
+    adds a label."></canvas>
+  <div class="book-tools" aria-label="Sketch tools">
+    <button id="pencil" aria-pressed="true">Pencil</button><button id="eraser" aria-pressed="false">Eraser</button>
+    <button id="label-pin" aria-pressed="false">Label pin</button><button id="undo">Undo</button><button id="print">Print</button>
+  </div>
+  <label for="label-text">Label</label><input id="label-text" aria-label="Sketch label" maxlength="70" placeholder="A label for your drawing">
+  <label for="notes">Notes</label><textarea id="notes" aria-label="Observation notes" maxlength="4000" placeholder="What you noticed"></textarea>
+  <div id="print-notes"></div>
+  <div class="book-nav"><button id="previous" aria-label="Previous page">‹</button><select id="pages" aria-label="Sketchbook page"></select>
+    <button id="next" aria-label="Next page">›</button><button id="new-page">New page</button></div>
+  <p id="save-status" role="status" style="font:11px var(--mono)"></p>
+</dialog>
+<dialog id="calibration" aria-labelledby="cal-title">
+  <h2 id="cal-title">Reticle calibration</h2>
+  <p>Read both scales across the same span.</p>
+  <label for="stage-intervals">Stage micrometer intervals (10 µm each)<input type="number" id="stage-intervals" aria-label="Stage micrometer intervals, ten micrometres each" min="0.1" max="100" step="0.1"
+    placeholder="Count on the slide"></label>
+  <label for="reticle-intervals">Reticle intervals across that span<input type="number" id="reticle-intervals" aria-label="Reticle intervals across the same span" min="0.1" max="100" step="0.1" placeholder="Count on the reticle"></label>
+  <output id="cal-result">25.0 µm per division</output>
+  <div class="buttons"><button id="store-cal">Store calibration</button><button id="cancel-cal">Cancel</button></div>
+</dialog>
+<section id="print-sheet" aria-label="Printable observation">
+ <h1>Observations</h1><div id="print-meta" class="printed-meta"></div>
+ <canvas id="print-paper" width="600" height="380"></canvas><h2>Notes</h2><div id="print-text"></div>
+</section>
+<div id="live" class="sr" aria-live="polite"></div>
+<script src="kit:curio"></script>
+<script>
+'use strict';
+const $ = id => document.getElementById(id);
+const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+const objectives = [4, 10, 40, 100];
+const apertures = {4: .1, 10: .25, 40: .65, 100: 1.25};
+const state = {
+  objective: 10, coarse: 5.05, fine: 0, x: 0, y: 0, lamp: 90, iris: 80,
+  oil: false, reticle: false, rotation: 0, mounted: true, selected: false,
+  touchedFocus: false, calibrations: {}, bookIndex: 0, tool: 'pencil',
+  specimen: 'pond', selectedSpecimen: 'pond', water: true, stain: 'none', cover: true, bubbles: false, clock: 0
+};
+const lines = {hint: 'Turn the focus knob.'};
+// Small declared manufacturing deviations make calibration an observation.
+const actualObjectives = {4: 3.9, 10: 9.8, 40: 41, 100: 98};
+const field = () => 18 / actualObjectives[state.objective];
+const focalOffsets = {pond: 0, onion: 12, hair: -15, sand: 28, leaf: 6, wing: 30, root: -18, blood: 8, cheek: 14, colony: 0, micrometer: 0};
+const bestFocus = () => !state.mounted ? 0 : (focalOffsets[state.specimen] || 0) +
+  (!specimen().prepared && !state.water ? 22 : 0) + (!specimen().prepared && !state.cover ? 18 : 0) +
+  ({4: -2, 10: 0, 40: 2, 100: 3}[state.objective]);
+const nominal = () => 100 / state.objective;
+const scale = () => state.calibrations[state.objective] || nominal();
+const scaleText = value => value < .1 ? value.toPrecision(2) : value.toFixed(1);
+const displacement = () => Math.round((state.coarse - 5) * 1000 + state.fine - bestFocus());
+const depth = () => {
+  const na = state.objective === 100 && !state.oil ? .65 : apertures[state.objective];
+  return .55 * (state.objective === 100 && state.oil ? 1.515 : 1) / (na * na);
+};
+const material = "json:material";
+const photos = {};
+photos['paramecium'] = new Image(); photos['paramecium'].src = 'art:paramecium';
+photos['paramecium-clear'] = new Image(); photos['paramecium-clear'].src = 'art:paramecium-clear';
+photos['paramecium-long'] = new Image(); photos['paramecium-long'].src = 'art:paramecium-long';
+photos['rotifer'] = new Image(); photos['rotifer'].src = 'art:rotifer';
+photos['diatom'] = new Image(); photos['diatom'].src = 'art:diatom';
+photos['mat'] = new Image(); photos['mat'].src = 'art:mat';
+photos['hair'] = new Image(); photos['hair'].src = 'art:hair';
+photos['sand'] = new Image(); photos['sand'].src = 'art:sand';
+photos['wing'] = new Image(); photos['wing'].src = 'art:wing';
+photos['onion-clear'] = new Image(); photos['onion-clear'].src = 'art:onion-clear';
+photos['onion-iodine'] = new Image(); photos['onion-iodine'].src = 'art:onion-iodine';
+photos['onion-detail'] = new Image(); photos['onion-detail'].src = 'art:onion-detail';
+photos['leaf'] = new Image(); photos['leaf'].src = 'art:leaf';
+photos['leaf-detail'] = new Image(); photos['leaf-detail'].src = 'art:leaf-detail';
+photos['cheek'] = new Image(); photos['cheek'].src = 'art:cheek';
+photos['blood0'] = new Image(); photos['blood0'].src = 'art:blood0';
+photos['blood1'] = new Image(); photos['blood1'].src = 'art:blood1';
+photos['blood2'] = new Image(); photos['blood2'].src = 'art:blood2';
+photos['blood3'] = new Image(); photos['blood3'].src = 'art:blood3';
+photos['blood4'] = new Image(); photos['blood4'].src = 'art:blood4';
+photos['blood5'] = new Image(); photos['blood5'].src = 'art:blood5';
+photos['blood6'] = new Image(); photos['blood6'].src = 'art:blood6';
+photos['blood7'] = new Image(); photos['blood7'].src = 'art:blood7';
+photos['meristem'] = new Image(); photos['meristem'].src = 'art:meristem';
+photos['root0'] = new Image(); photos['root0'].src = 'art:root0';
+photos['root1'] = new Image(); photos['root1'].src = 'art:root1';
+photos['root2'] = new Image(); photos['root2'].src = 'art:root2';
+photos['root3'] = new Image(); photos['root3'].src = 'art:root3';
+photos['plane0'] = new Image(); photos['plane0'].src = 'art:plane0';
+photos['plane1'] = new Image(); photos['plane1'].src = 'art:plane1';
+photos['plane2'] = new Image(); photos['plane2'].src = 'art:plane2';
+photos['plane3'] = new Image(); photos['plane3'].src = 'art:plane3';
+photos['plane4'] = new Image(); photos['plane4'].src = 'art:plane4';
+photos['plane5'] = new Image(); photos['plane5'].src = 'art:plane5';
+photos['plane6'] = new Image(); photos['plane6'].src = 'art:plane6';
+photos['plane7'] = new Image(); photos['plane7'].src = 'art:plane7';
+photos['plane8'] = new Image(); photos['plane8'].src = 'art:plane8';
+const loaded = Promise.all(Object.values(photos).map(im => im.decode()));
+const specimen = () => material.slides.find(s => s.id === state.specimen);
+const selection = () => material.slides.find(s => s.id === state.selectedSpecimen);
+const mountName = () => !state.mounted ? 'Empty slide' : specimen().name +
+  (specimen().prepared ? ', ' + specimen().preparation : `, ${state.water ? 'wet mount' : 'dry mount'}, ${state.stain === 'none' ? 'no stain' : state.stain}, cover slip ${state.cover ? 'on' : 'off'}`);
+
+const readText = () => `${mountName()}. ${state.objective * 10} times. Field ${field().toFixed(2)} millimetres.`;
+Curio.init({rate: .9});
+const V = Curio.voice({lines, hint: false, read: readText, welcome: () => state.touchedFocus ? null : ['hint', {valid: () => !document.querySelector('dialog[open]') && !state.touchedFocus}]});
+const status = text => { $('status').textContent = text; $('live').textContent = text; };
+const view = $('view');
+const context = view.getContext('2d');
+let dirty = false;
+let renders = 0;
+let size = 400;
+function schedule() {
+  if (dirty) return;
+  dirty = true;
+  requestAnimationFrame(() => { dirty = false; draw(); });
+}
+let motionFrame = 0, lastTime = 0;
+function moving() { return !Curio.reduce && state.touchedFocus && state.mounted && state.specimen === 'pond' && state.water && !document.hidden; }
+function animate(now) {
+  motionFrame = 0;
+  if (!moving()) { lastTime = 0; return; }
+  if (lastTime) state.clock += Math.min(.05, (now - lastTime) / 1000);
+  lastTime = now;
+  draw();
+  motionFrame = requestAnimationFrame(animate);
+}
+function syncMotion() {
+  if (!moving()) { if (motionFrame) cancelAnimationFrame(motionFrame); motionFrame = 0; lastTime = 0; }
+  else if (!motionFrame) motionFrame = requestAnimationFrame(animate);
+}
+Curio.onMotion(() => { $('motion').textContent = 'Motion'; syncMotion(); schedule(); });
+$('motion').textContent = 'Motion';
+$('sound').textContent = 'Sound';
+$('sound').addEventListener('click', () => { $('sound').textContent = 'Sound'; });
+document.addEventListener('visibilitychange', syncMotion);
+function pose(o) {
+  if (!o.swim) return {x:o.x,y:o.y,a:o.a || 0};
+  const t = state.clock + (o.phase || 0) * 9;
+  // Several incommensurate turns wander across the glass, without a short repeating loop.
+  const dx = .8 * Math.sin(t * .047) + .34 * Math.sin(t * .119);
+  const dy = .65 * Math.sin(t * .061) + .22 * Math.sin(t * .137);
+  const vx = .8 * .047 * Math.cos(t * .047) + .34 * .119 * Math.cos(t * .119);
+  const vy = .65 * .061 * Math.cos(t * .061) + .22 * .137 * Math.cos(t * .137);
+  return {x: o.x + dx, y: o.y + dy, a: Math.atan2(vy, vx) - Math.PI / 2};
+}
+function objects() {
+  if (!state.mounted || state.specimen === 'micrometer') return [];
+  const slide=specimen();
+  return (state.specimen === 'onion' ? (state.stain === 'iodine' ? slide.iodine : slide.objects) : slide.objects);
+}
+let hairTextureCache = null;
+function hairTextures(im, widthMm) {
+  const key = field() + ':' + depth();
+  if (hairTextureCache && hairTextureCache.key === key) return hairTextureCache;
+  const radii = [0, 2, 4, 6, 8, 12, 18, 26];
+  const textures = radii.map(radius => {
+    const c = document.createElement('canvas');
+    c.width = Math.min(1024, im.naturalWidth);
+    c.height = Math.round(c.width * im.naturalHeight / im.naturalWidth);
+    const x = c.getContext('2d');
+    x.filter = `blur(${radius * field() * c.width / (450 * widthMm)}px)`;
+    x.drawImage(im, 0, 0, c.width, c.height);
+    return c;
+  });
+  hairTextureCache = {key, radii, textures};
+  return hairTextureCache;
+}
+function photograph(ctx,o,alpha=1) {
+  const asset=material.assets[o.art], im=photos[o.art];
+  if (!im || !im.complete || !im.naturalWidth) return;
+  const q=pose(o), w=asset.width*asset.umPerPixel/1000*(o.sizeFactor || 1), h=asset.height*asset.umPerPixel/1000*(o.sizeFactor || 1);
+  if((Math.abs(q.x+state.x)>field()/2+Math.hypot(w,h)/2 || Math.abs(q.y+state.y)>field()/2+Math.hypot(w,h)/2)) return;
+  ctx.save(); ctx.translate(q.x,q.y); ctx.rotate(q.a); ctx.globalAlpha=alpha;
+  if (o.art === 'hair') {
+    // The source is one photograph. Depth along the hair is an explicit rendering model, not a measured z-stack.
+    const strips = 96, cache = hairTextures(im, w);
+    for (let i = 0; i < strips; i++) {
+      const z = ((i + .5) / strips - .5) * h * 1000 * .15;
+      const radius = 2.5 * Math.log1p(Math.abs(displacement() - z) / Math.max(1, depth()));
+      let j = 0;
+      while (j < cache.radii.length - 2 && cache.radii[j + 1] < radius) j++;
+      const blend = clamp((radius - cache.radii[j]) / (cache.radii[j + 1] - cache.radii[j]), 0, 1);
+      for (const [index, opacity] of [[j, alpha], [j + 1, alpha * blend]]) {
+        const texture = cache.textures[index];
+        ctx.globalAlpha = opacity;
+        ctx.drawImage(texture, 0, i * texture.height / strips, texture.width, texture.height / strips,
+          -w / 2, -h / 2 + i * h / strips, w, h / strips + .0001);
+      }
+    }
+  } else ctx.drawImage(im,-w/2,-h/2,w,h);
+  ctx.restore();
+}
+function drawMaterial(ctx) {
+  if (state.specimen === 'colony') {
+    const f=clamp((100-displacement())/25,0,8), i=Math.floor(f), j=Math.min(8,i+1);
+    photograph(ctx,{art:'plane'+i,x:.07,y:.02},1);
+    if(j!==i) photograph(ctx,{art:'plane'+j,x:.07,y:.02},f-i);
+    return;
+  }
+  for(const o of objects()) photograph(ctx,o);
+  if(state.cover && state.bubbles && !specimen().prepared) {
+    for(const [x,y,r] of [[-.14,.03,.045],[.2,.16,.022],[-.23,-.25,.065]]) {
+      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.strokeStyle='#101c16ed';ctx.lineWidth=.011;ctx.stroke();
+      ctx.beginPath();ctx.arc(x+.003,y+.002,r-.006,0,Math.PI*2);ctx.strokeStyle=Math.abs(displacement()) < 15 ? '#fffc' : '#fff5';ctx.lineWidth=.004;ctx.stroke();
+    }
+  }
+}
+let mapCache=null, mapCacheKey='';
+function glassMap() {
+  const c=$('glass-map'), x=c.getContext('2d');
+  let extent=.6;
+  for(const o of objects()) {
+    const a=material.assets[o.art],r=Math.hypot(a.width,a.height)*a.umPerPixel/1000;
+    extent=Math.max(extent,2*Math.abs(o.x)+(o.swim ? .46 : 0)+r,2*Math.abs(o.y)+(o.swim ? .26 : 0)+r);
+  }
+  const f=Math.max(field()*1.5,extent+.2);
+  x.clearRect(0,0,c.width,c.height); x.fillStyle='#d3dfc8';x.fillRect(4,12,212,76);
+  x.fillStyle='#9da98f';x.fillRect(7,16,32,68);
+  x.save();x.translate(125,50);x.scale(c.width/f,c.width/f);
+  x.strokeStyle='#1e382b';x.lineWidth=1.5*f/c.width;x.beginPath();x.arc(-state.x,-state.y,field()/2,0,Math.PI*2);x.stroke();x.restore();
+}
+function paintSpecimens(ctx, p) {
+  if (state.mounted && state.specimen !== 'micrometer') drawMaterial(ctx);
+  if (state.mounted && state.specimen === 'micrometer') {
+    ctx.strokeStyle = '#26332c';
+    ctx.lineWidth = Math.max(.0008, .65 / p);
+    ctx.beginPath();
+    ctx.moveTo(-.5, .05);
+    ctx.lineTo(.5, .05);
+    for (let i = 0; i <= 100; i++) {
+      const x = -.5 + i * .01;
+      const length = i % 10 === 0 ? .1 : i % 5 === 0 ? .07 : .045;
+      ctx.moveTo(x, .05);
+      ctx.lineTo(x, .05 + length);
+    }
+    ctx.stroke();
+    // Numbers live on the slide, so both they and the engraved lines invert.
+    ctx.fillStyle = '#26332c';
+    ctx.font = '.028px monospace';
+    ctx.textAlign = 'center';
+    for (let i = 0; i <= 10; i++) ctx.fillText((i / 10).toFixed(1), -.5 + i * .1, .19);
+  }
+}
+const specimenLayer = document.createElement('canvas');
+const softenedLayer = document.createElement('canvas');
+const defocusLayer = document.createElement('canvas');
+let mapState = '';
+function blurAmount() {
+  const delta = state.specimen === 'colony' ? Math.max(0, Math.abs(displacement()) - 100) :
+    state.specimen === 'hair' ? 0 : Math.abs(displacement());
+  // Compressed defocus remains responsive throughout the mechanical travel. Never clamp it to a constant.
+  return size * .012 * Math.log1p(delta / Math.max(.3, depth()));
+}
+function draw() {
+  renders++;
+  const ctx = context;
+  const d = size;
+  const p = d / field();
+  ctx.clearRect(0, 0, d, d);
+  ctx.fillStyle = state.specimen === 'colony' && state.mounted ? '#030a15' : state.specimen === 'pond' ? '#c2c4bf' : '#fff4dc';
+  ctx.fillRect(0, 0, d, d);
+  const blur = blurAmount();
+  const irisBlur = Math.max(0, 50 - state.iris) / 25 * d / 450;
+  const oilBlur = state.objective === 100 && !state.oil ? 2.8 * d / 450 : 0;
+  const contrast = (1 + Math.max(0,70-state.iris)/100) * (!specimen().prepared && !state.water ? .9 : 1);
+  const work = blur + irisBlur + oilBlur > .15 ? 256 : Math.max(320, Math.ceil(d));
+  if (specimenLayer.width !== work) {
+    specimenLayer.width = specimenLayer.height = work;
+    softenedLayer.width = softenedLayer.height = work;
+  }
+  const layer = specimenLayer.getContext('2d');
+  layer.clearRect(0, 0, work, work);
+  layer.save();
+  const lp = work / field();
+  layer.translate(work / 2 - state.x * lp, work / 2 - state.y * lp);
+  layer.scale(-lp, -lp);
+  paintSpecimens(layer, lp);
+  layer.restore();
+  const soft = softenedLayer.getContext('2d');
+  soft.clearRect(0, 0, work, work);
+  // A reduced-resolution optical layer avoids a new software Gaussian filter on every pan.
+  // Linear reconstruction is a declared defocus approximation; no source detail is invented.
+  const radius = (blur + irisBlur + oilBlur) * work / d;
+  soft.filter = contrast === 1 ? 'none' : `contrast(${contrast})`;
+  if (radius > .15) {
+    const resolution = Math.max(2, Math.min(work, Math.round(work / (1 + radius * 1.8))));
+    if (defocusLayer.width !== resolution) defocusLayer.width = defocusLayer.height = resolution;
+    const reduced = defocusLayer.getContext('2d');
+    reduced.clearRect(0, 0, resolution, resolution);
+    reduced.imageSmoothingEnabled = true;
+    reduced.imageSmoothingQuality = 'low';
+    reduced.drawImage(specimenLayer, 0, 0, resolution, resolution);
+    soft.imageSmoothingEnabled = true;
+    soft.drawImage(defocusLayer, 0, 0, work, work);
+  } else soft.drawImage(specimenLayer, 0, 0);
+  soft.filter = 'none';
+  ctx.drawImage(softenedLayer, 0, 0, d, d);
+  const oilLight = state.objective === 100 && !state.oil ? .45 : 1;
+  const light = state.lamp / 100 * state.iris / 100 * oilLight;
+  ctx.fillStyle = `rgba(0,0,0,${1 - light})`;
+  ctx.fillRect(0, 0, d, d);
+  if (state.reticle) {
+    ctx.save();
+    ctx.translate(d / 2, d / 2);
+    ctx.rotate(state.rotation);
+    ctx.strokeStyle = state.specimen === 'colony' ? '#e8e2d0' : '#3b1711';
+    ctx.fillStyle = ctx.strokeStyle;
+    ctx.lineWidth = 1;
+    const spacing = d / 180;
+    ctx.beginPath();
+    ctx.moveTo(-50 * spacing, 0);
+    ctx.lineTo(50 * spacing, 0);
+    for (let i = 0; i <= 100; i++) {
+      const x = (i - 50) * spacing;
+      const tick = i % 10 === 0 ? 13 : i % 5 === 0 ? 9 : 5;
+      ctx.moveTo(x, -tick);
+      ctx.lineTo(x, tick);
+    }
+    ctx.stroke();
+    ctx.font = '10px monospace';
+    ctx.textAlign = 'center';
+    const halo=state.specimen==='colony'?'#102015':'#fff9e8';
+    ctx.strokeStyle=halo;ctx.lineWidth=3;
+    for(let i=0;i<=100;i+=10){ctx.strokeText(i,(i-50)*spacing,-18);ctx.fillText(i,(i-50)*spacing,-18);}
+    ctx.restore();
+  }
+  const glow = ctx.createRadialGradient(d / 2, d / 2, d * .25, d / 2, d / 2, d * .51);
+  glow.addColorStop(0, 'rgba(0,0,0,0)');
+  glow.addColorStop(.85, 'rgba(13,24,15,.10)');
+  glow.addColorStop(1, 'rgba(0,0,0,.75)');
+  ctx.fillStyle = glow;
+  ctx.fillRect(0, 0, d, d);
+  // Source contrast stays visible even where the compact layout hides the arm caption.
+const visibleSampling = objects().filter(o => {
+    const q = pose(o), a = material.assets[o.art];
+    return Math.abs(q.x + state.x) < field() / 2 + a.width * a.umPerPixel / 2000 &&
+      Math.abs(q.y + state.y) < field() / 2 + a.height * a.umPerPixel / 2000;
+  }).some(o => material.assets[o.art].umPerPixel / (field() * 1000 / d) > 1.8);
+  const captions = [];
+  if (state.specimen === 'sand') captions.push('REFLECTED-LIGHT SOURCE');
+  if (state.specimen === 'colony') captions.push('DARKFIELD SOURCE · FIXED');
+  if (visibleSampling) captions.push('SOURCE RESOLUTION LIMIT');
+  if (state.specimen === 'onion' && state.stain === 'iodine') captions.push('MONOCHROME CAMERA');
+  if (state.specimen === 'root') captions.push('BASE SCALE APPROXIMATE');
+  if (state.specimen === 'cheek') captions.push('SCALE APPROXIMATE');
+  if (state.mounted && captions.length) {
+    const caption = captions.join(' / ');
+    ctx.font = '10px monospace';
+    ctx.textAlign = 'center';
+    captions.forEach((line, i) => {
+      const width = ctx.measureText(line).width + 12;
+      const top = Math.max(18, d / 2 - Math.sqrt(Math.max(0, (d / 2) ** 2 - (width / 2) ** 2)) + 8) + i * 20;
+      ctx.fillStyle = '#172019e8';
+      ctx.fillRect((d - width) / 2, top, width, 18);
+      ctx.fillStyle = '#fff4dc';
+      ctx.fillText(line, d / 2, top + 13);
+    });
+  }
+  const nextMap = [state.x, state.y, state.objective, state.specimen, state.stain, state.mounted].join(':');
+  if (mapState !== nextMap) { glassMap(); mapState = nextMap; }
+  if ($('sketchbook').open) {
+    const preview = $('book-view');
+    preview.getContext('2d').drawImage(view, 0, 0, preview.width, preview.height);
+  }
+}
+function update() {
+  // A field note describes the view that was tapped, not a later optical state.
+  if (!$('guide').hidden) {
+    if ($('status').textContent === $('guide-text').textContent) status('');
+    $('guide').hidden = true;
+  }
+  $('mag').textContent = `${state.objective * 10}×`;
+  $('field').textContent = field().toFixed(2) + ' mm';
+  $('scale').textContent = `${scaleText(scale())} µm · ${state.calibrations[state.objective] ? 'calibrated' : 'nominal'}`;
+  $('position').textContent = `${state.x.toFixed(2)} / ${state.y.toFixed(2)} mm`;
+  $('focus').textContent = `${displacement() >= 0 ? '+' : ''}${displacement()} µm`;
+  $('depth').textContent = `${depth().toFixed(1)} µm`;
+  $('mount-name').textContent = mountName().replace(',', ' ·');
+  $('lamp-value').textContent = `${state.lamp}%`;
+  $('iris-value').textContent = `${state.iris}%`;
+  $('lamp').value = state.lamp;
+  $('iris').value = state.iris;
+  $('lamp').setAttribute('aria-valuetext', `${state.lamp} percent`);
+  $('iris').setAttribute('aria-valuetext', `${state.iris} percent open`);
+  $('oil').setAttribute('aria-pressed', state.oil);
+  $('reticle').setAttribute('aria-pressed', state.reticle);
+  document.querySelectorAll('[data-objective]').forEach(b => b.setAttribute('aria-pressed', +b.dataset.objective === state.objective));
+  $('glass-label').textContent = state.mounted ? specimen().name.toUpperCase() : 'EMPTY GLASS';
+  $('contrast-name').textContent = state.mounted && state.specimen === 'colony' ? 'SOURCE DARKFIELD · NINE FOCAL PLANES' :
+    state.mounted && state.specimen === 'sand' ? 'SOURCE REFLECTED LIGHT · INVERTED IMAGE' : 'TRANSMITTED LIGHT · INVERTED IMAGE';
+  syncDials();
+  syncMotion();
+  schedule();
+}
+function focusTouched() {
+  if (state.touchedFocus) return;
+  state.touchedFocus = true;
+  $('hint').hidden = true;
+  V.hush();
+}
+function setObjective(value) {
+  if (!objectives.includes(value)) return;
+  if (state.objective === value) return;
+  if ($('calibration').open) $('calibration').close();
+  state.objective = value;
+  update();
+  status(`${value} times objective. ${value * 10} times total. Field ${field().toFixed(2)} millimetres.`);
+  Curio.tone(220 + value, .06, .025);
+}
+const dialDefs = [
+  {id: 'coarse', key: 'coarse', min: 0, max: 10, step: .05, shift: .001, units: 'millimetres', short: 'mm', digits: 3, output: 'coarse-value'},
+  {id: 'fine', key: 'fine', min: -50, max: 50, step: 1, shift: 1, units: 'micrometres', short: 'µm', digits: 0, output: 'fine-value'},
+  {id: 'stage-x', key: 'x', min: -10, max: 10, step: .05, shift: 1, units: 'millimetres', short: 'mm', digits: 2, output: 'x-value'},
+  {id: 'stage-y', key: 'y', min: -10, max: 10, step: .05, shift: 1, units: 'millimetres', short: 'mm', digits: 2, output: 'y-value'}
+];
+function syncDials() {
+  for (const d of dialDefs) {
+    const el = $(d.id);
+    const n = state[d.key];
+    el.setAttribute('aria-valuenow', +n.toFixed(d.digits));
+    el.setAttribute('aria-valuetext', `${n.toFixed(d.digits)} ${d.units}`);
+    el.style.setProperty('--angle', `${n * (d.key === 'fine' ? 3 : 160)}deg`);
+    $(d.output).textContent = `${n.toFixed(d.digits === 3 && Math.round(n * 1000) % 10 === 0 ? 2 : d.digits)} ${d.short}`;
+  }
+}
+function dialSet(d, number) {
+  state[d.key] = Math.round(clamp(number, d.min, d.max) * 1000) / 1000;
+  if (d.key === 'coarse' || d.key === 'fine') focusTouched();
+  update();
+}
+for (const d of dialDefs) {
+  const el = $(d.id);
+  let pointer = null;
+  el.addEventListener('keydown', event => {
+    const step = event.shiftKey ? d.shift : d.step;
+    const dirs = {ArrowUp: 1, ArrowRight: 1, ArrowDown: -1, ArrowLeft: -1};
+    if (event.key in dirs) {
+      event.preventDefault();
+      dialSet(d, state[d.key] + dirs[event.key] * step);
+    } else if (event.key === 'Home' || event.key === 'End') {
+      event.preventDefault();
+      dialSet(d, event.key === 'Home' ? d.min : d.max);
+    }
+  });
+  el.addEventListener('wheel', event => {
+    event.preventDefault();
+    dialSet(d, state[d.key] - Math.sign(event.deltaY) * (event.shiftKey ? d.shift : d.step));
+  }, {passive: false});
+  el.addEventListener('pointerdown', event => {
+    el.focus({preventScroll: true});
+    el.setPointerCapture(event.pointerId);
+    pointer = {y: event.clientY, x: event.clientX, value: state[d.key], step: event.shiftKey ? d.shift : d.step};
+  });
+  el.addEventListener('pointermove', event => {
+    if (!pointer) return;
+    const pixels = pointer.y - event.clientY + event.clientX - pointer.x;
+    const delta = d.key === 'coarse' ? pixels / 50 : pixels / 7;
+    dialSet(d, pointer.value + delta * pointer.step);
+  });
+  const end = () => { pointer = null; };
+  el.addEventListener('pointerup', end);
+  el.addEventListener('pointercancel', end);
+  el.addEventListener('lostpointercapture', end);
+}
+document.querySelectorAll('[data-objective]').forEach(b => b.onclick = () => setObjective(+b.dataset.objective));
+for (const key of ['lamp', 'iris']) {
+  $(key).oninput = () => { state[key] = +$(key).value; update(); };
+}
+$('oil').onclick = () => { state.oil = !state.oil; update(); status(state.oil ? 'Immersion oil applied.' : 'Immersion oil removed.'); };
+$('reticle').onclick = () => { state.reticle = !state.reticle; update(); status(state.reticle ? 'Eyepiece reticle inserted.' : 'Eyepiece reticle removed.'); };
+$('rotate').onclick = () => { state.rotation = (state.rotation + Math.PI / 2) % (Math.PI * 2); update(); status('Reticle rotated 90 degrees.'); };
+function choose(id) {
+  state.selectedSpecimen=id;state.selected=true;
+  const n=selection();
+  document.querySelectorAll('[data-slide]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.slide===id));
+  $('slide-description').textContent=n.trayDescription || n.description;
+  $('mount-selected').disabled=false;$('prepare-selected').disabled=false;
+  status(n.name+' selected. Place on stage or press Enter in the eyepiece.');
+}
+function place() {
+  state.specimen=state.selectedSpecimen;state.mounted=true;state.selected=false;
+  state.x=0;state.y=0;state.oil=false;state.bubbles=false;
+  state.water=specimen().water !== false;state.cover=true;state.stain='none';
+  $('guide').hidden=true;
+  $('micrometer').setAttribute('aria-pressed',state.specimen==='micrometer');
+  update();status(mountName()+'.');
+}
+$('micrometer').onclick=()=>choose('micrometer');
+$('micrometer').ondragstart=e=>{choose('micrometer');e.dataTransfer.setData('text/plain','micrometer');};
+view.ondragover=e=>e.preventDefault();
+view.ondrop=e=>{e.preventDefault();const id=e.dataTransfer.getData('text/plain');if(material.slides.some(s=>s.id===id)){choose(id);place();}};
+$('place').onclick=place;
+$('wash').onclick=()=>{state.mounted=false;state.selected=false;state.oil=false;state.bubbles=false;$('guide').hidden=true;update();status('Slide washed. Stage empty.');};
+function showSlides(prepared) {
+  $('slide-title').textContent=prepared?'Prepared-slide box':'Specimen tray';
+  $('slide-grid').replaceChildren();
+  for(const n of material.slides.filter(n=>n.id!=='micrometer' && !!n.prepared===prepared)) {
+    const b=document.createElement('button');b.dataset.slide=n.id;b.draggable=true;
+    b.setAttribute('aria-pressed',state.selectedSpecimen===n.id);
+    const im=new Image();im.src=photos[n.thumb].src;im.alt='';b.append(im);
+    const label=document.createElement('span');label.textContent=n.name;b.append(label);
+    const small=document.createElement('small');small.textContent=n.prepared?n.preparation:'glass slide';b.append(small);
+    b.onclick=()=>choose(n.id);
+    b.ondragstart=e=>{choose(n.id);e.dataTransfer.setData('text/plain',n.id);$('slide-drawer').close();};
+    b.onkeydown = e => {
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      choose(n.id);
+      closeToView('slide-drawer');
+    };
+    $('slide-grid').append(b);
+  }
+  const active=[...$('slide-grid').querySelectorAll('[data-slide]')].some(b=>b.dataset.slide===state.selectedSpecimen);
+  $('slide-description').textContent=active?(selection().trayDescription || selection().description):'Choose a glass slide.';
+  $('mount-selected').disabled=!active;$('prepare-selected').disabled=!active;
+  openDialog('slide-drawer',prepared?'prepared':'specimens');
+}
+$('specimens').onclick=()=>showSlides(false);$('prepared').onclick=()=>showSlides(true);
+$('close-slides').onclick=()=>$('slide-drawer').close();
+$('mount-selected').onclick = () => { place(); closeToView('slide-drawer'); };
+$('prepare-selected').onclick=()=>{place();$('slide-drawer').close();showMount();};
+function mountUpdate() {
+  const n=specimen(), fixed=!!n.prepared;
+  $('mount-plate').textContent=mountName();
+  for(const id of ['water','dry','no-stain','iodine','cover','bare','bubbles','clear-bubbles']) $(id).disabled=!state.mounted || fixed || (id==='iodine' && state.specimen!=='onion');
+  for(const [id,on] of [['water',state.water],['dry',!state.water],['no-stain',state.stain==='none'],['iodine',state.stain==='iodine'],['cover',state.cover],['bare',!state.cover],['bubbles',state.bubbles]]) $(id).setAttribute('aria-pressed',on);
+  $('mount-description').textContent=fixed ? 'This prepared slide keeps the source’s stain and mounting medium. Oil is applied at the objective.' :
+   state.specimen==='onion' ? 'Iodine exchanges the unstained field for real Lugol-stained photographic fields. They are different cells. Water, cover glass and bubbles are optical models.' :
+   'The photograph retains its original preparation. Water, cover glass and trapped air change the optical model; dry pond material stops moving.';
+}
+function showMount() {
+  mountUpdate();
+  const tray = $('mount-drawer');
+  if (tray.open) { tray.close(); return; }
+  if ($('calibration').open) $('calibration').close();
+  tray.dataset.trigger = 'supplies';
+  tray.show();
+  document.body.classList.add('mount-open');
+}
+$('mount-drawer').addEventListener('close', () => document.body.classList.remove('mount-open'));
+$('supplies').onclick=showMount;$('close-mount').onclick=()=>$('mount-drawer').close();
+for(const [id,key,value] of [['water','water',true],['dry','water',false],['no-stain','stain','none'],['iodine','stain','iodine'],['cover','cover',true],['bare','cover',false],['bubbles','bubbles',true],['clear-bubbles','bubbles',false]]) {
+  $(id).onclick=()=>{
+    state[key]=value;
+    if(id==='bubbles'||id==='clear-bubbles')state.cover=true;
+    mountUpdate();
+    update();
+    status(mountName()+'.');
+  };
+}
+$('apply-mount').onclick = () => closeToView('mount-drawer');
+$('close-guide').onclick=()=>{$('guide').hidden=true;view.focus();};
+let drag = null;
+view.onpointerdown = event => {
+  view.focus({preventScroll: true});
+  view.setPointerCapture(event.pointerId);
+  drag = {x: event.clientX, y: event.clientY, sx: state.x, sy: state.y};
+};
+view.onpointermove = event => {
+  if (!drag) return;
+  const rect = view.getBoundingClientRect();
+  state.x = clamp(drag.sx + (event.clientX - drag.x) / rect.width * field(), -10, 10);
+  state.y = clamp(drag.sy + (event.clientY - drag.y) / rect.height * field(), -10, 10);
+  update();
+};
+view.onpointerup = event => {
+  if (!drag) return;
+  const distance = Math.hypot(event.clientX - drag.x, event.clientY - drag.y);
+  drag = null;
+  if (distance < 4) inspect(event.clientX,event.clientY);
+};
+view.onpointercancel = () => { drag = null; };
+view.onlostpointercapture = () => { drag = null; };
+function inspect(clientX,clientY) {
+  if(state.selected) return place();
+  let text='Look closer.';
+  if(state.objective>=40) {
+    const rect=view.getBoundingClientRect(), px=clientX===undefined?rect.width/2:clientX-rect.left, py=clientY===undefined?rect.height/2:clientY-rect.top;
+    const x=(.5-px/rect.width)*field()-state.x,y=(.5-py/rect.height)*field()-state.y;
+    text=!state.mounted?'Empty glass.':state.specimen==='micrometer'?'Etched micrometer. Each interval is 10 µm.':'Glass between photographic fields.';
+    if(state.mounted && state.specimen==='colony' && Math.hypot(x-.07,y-.02)<.24) text='A Volvox colony: many cells form a hollow ball. Focusing shows different depths.';
+    for(const o of objects()) {
+      const q=pose(o),a=material.assets[o.art],w=a.width*a.umPerPixel/1000,h=a.height*a.umPerPixel/1000;
+      const dx=x-q.x,dy=y-q.y,xx=dx*Math.cos(q.a)+dy*Math.sin(q.a),yy=-dx*Math.sin(q.a)+dy*Math.cos(q.a);
+      if(Math.abs(xx)<w/2 && Math.abs(yy)<h/2) text=o.note;
+    }
+    if(!specimen().prepared && state.cover && state.bubbles && [[-.14,.03,.045],[.2,.16,.022],[-.23,-.25,.065]].some(([bx,by,r])=>Math.abs(Math.hypot(x-bx,y-by)-r)<.008)) text='An air bubble. Its dark rim marks air trapped under the cover slip.';
+    if(Math.abs(displacement())>Math.max(30,depth()*3) && state.specimen!=='colony')text='The specimen is out of focus.';
+    if(state.iris===0)text='The iris is closed.';
+    if(state.lamp===0)text='The lamp is off.';
+  }
+  $('guide-text').textContent=text;$('guide').hidden=false;status(text);
+}
+view.onkeydown = event => {
+  const dirs = {ArrowLeft: ['x', -1], ArrowRight: ['x', 1], ArrowUp: ['y', -1], ArrowDown: ['y', 1]};
+  if (dirs[event.key]) {
+    event.preventDefault();
+    const [key, direction] = dirs[event.key];
+    state[key] = clamp(state[key] + direction * (event.shiftKey ? 1 : .05), -10, 10);
+    update();
+    status(`Stage ${key}, ${state[key].toFixed(2)} millimetres.`);
+  } else if (event.key === 'Enter') inspect();
+};
+const observer = new ResizeObserver(entries => {
+  const rect = entries[0].contentRect;
+  size = Math.max(1, Math.round(Math.min(rect.width, rect.height) * Math.min(devicePixelRatio, 2)));
+  view.width = view.height = size;
+  schedule();
+});
+observer.observe(view);
+new ResizeObserver(entries => {
+  const rect = entries[0].contentRect;
+  const diameter = Math.max(1, Math.min(rect.width - 24, rect.height - 24, innerWidth <= 600 ? 340 : 510));
+  document.querySelector('.eyepiece').style.setProperty('--diameter', `${diameter}px`);
+}).observe(document.querySelector('.ocular'));
+function openDialog(id, trigger) {
+  if (id !== 'calibration' && $('calibration').open) $('calibration').close();
+  if ($('mount-drawer').open) $('mount-drawer').close();
+  V.hush();
+  $(id).showModal();
+  $(id).dataset.trigger = trigger;
+}
+function closeToView(id) {
+  $(id).dataset.focusAfterClose = 'view';
+  $(id).close();
+  view.focus({preventScroll: true});
+}
+for (const id of ['manual-drawer', 'sketchbook', 'calibration', 'slide-drawer', 'mount-drawer']) {
+  $(id).addEventListener('close', () => {
+    const trigger = $($(id).dataset.focusAfterClose || $(id).dataset.trigger);
+    delete $(id).dataset.focusAfterClose;
+    if (trigger) trigger.focus({preventScroll: true});
+  });
+}
+$('manual').onclick = () => openDialog('manual-drawer', 'manual');
+$('close-manual').onclick = () => $('manual-drawer').close();
+$('calibrate').onclick = () => {
+  if ($('calibration').open) {
+    $('calibration').close();
+    return;
+  }
+  state.reticle = true;
+  update();
+  $('stage-intervals').value = '';
+  $('reticle-intervals').value = '';
+  calPreview();
+  // Keep the actual scales visible and operable while counts are entered.
+  $('calibration').dataset.trigger = 'calibrate';
+  $('calibration').show();
+};
+function calPreview() {
+  const stageCount = +$('stage-intervals').value;
+  const reticleCount = +$('reticle-intervals').value;
+  const valid = Number.isFinite(stageCount) && Number.isFinite(reticleCount) && stageCount >= .1 && stageCount <= 100 && reticleCount >= .1 && reticleCount <= 100;
+  $('store-cal').disabled = !valid;
+  const factor = valid ? 10 * stageCount / reticleCount : null;
+  $('cal-result').textContent = valid ? `${scaleText(factor)} µm per division` : 'Enter positive counts from 0.1 to 100.';
+  return factor;
+}
+$('stage-intervals').oninput = calPreview;
+$('reticle-intervals').oninput = calPreview;
+$('store-cal').onclick = () => {
+  const factor = calPreview();
+  if (factor === null) return;
+  state.calibrations[state.objective] = factor;
+  update();
+  $('calibration').close();
+  status(`Calibration stored for ${state.objective} times: ${scaleText(factor)} micrometres per division.`);
+};
+$('cancel-cal').onclick = () => $('calibration').close();
+// The kit has no save API in this checkout. Use a guarded localStorage adapter.
+const storageKey = 'curio-class-microscope-sketchbook-v1';
+let pages = [];
+let storageAvailable = true;
+function newPage() {
+  return {date: new Date().toLocaleDateString(), mount: mountName(), magnification: state.objective * 10, strokes: [], labels: [], notes: ''};
+}
+try {
+  const raw = JSON.parse(localStorage.getItem(storageKey) || 'null');
+  if (Array.isArray(raw)) {
+    pages = raw.filter(p => p && typeof p.notes === 'string' && Array.isArray(p.strokes) && Array.isArray(p.labels));
+  }
+} catch { storageAvailable = false; }
+if (!pages.length) pages.push(newPage());
+const page = () => pages[state.bookIndex];
+function saveBook() {
+  try {
+    localStorage.setItem(storageKey, JSON.stringify(pages));
+    storageAvailable = true;
+  } catch { storageAvailable = false; }
+  $('save-status').textContent = storageAvailable ? 'Saved on this device.' : 'Storage unavailable. Keep this page open or print it.';
+}
+const paper = $('paper');
+const pen = paper.getContext('2d');
+let currentStroke = null;
+let cursor = {x: 300, y: 190};
+let penDown = false;
+let bookUndo = [];
+function drawPaper() {
+  pen.fillStyle = '#fcf9e9';
+  pen.fillRect(0, 0, 600, 380);
+  pen.strokeStyle = '#c4c7b3';
+  pen.lineWidth = 1;
+  pen.beginPath();
+  pen.arc(300, 190, 172, 0, Math.PI * 2);
+  pen.stroke();
+  pen.strokeStyle = '#394435';
+  pen.lineWidth = 2;
+  pen.lineCap = 'round';
+  for (const stroke of [...page().strokes, ...(currentStroke ? [currentStroke] : [])]) {
+    if (!Array.isArray(stroke) || !stroke.length) continue;
+    pen.beginPath();
+    pen.moveTo(stroke[0][0], stroke[0][1]);
+    if (stroke.length === 1) pen.lineTo(stroke[0][0] + .1, stroke[0][1]);
+    for (const [x, y] of stroke.slice(1)) pen.lineTo(x, y);
+    pen.stroke();
+  }
+  pen.font = '16px Georgia';
+  pen.fillStyle = '#233120';
+  for (const label of page().labels) {
+    pen.beginPath();
+    pen.arc(label.x, label.y, 3, 0, Math.PI * 2);
+    pen.fill();
+    pen.fillText(label.text, clamp(label.x + 9, 5, 400), clamp(label.y - 8, 18, 370), 190);
+  }
+  if (document.activeElement === paper && !printing) {
+    pen.strokeStyle = '#9c392a';
+    pen.beginPath();
+    pen.moveTo(cursor.x - 5, cursor.y);
+    pen.lineTo(cursor.x + 5, cursor.y);
+    pen.moveTo(cursor.x, cursor.y - 5);
+    pen.lineTo(cursor.x, cursor.y + 5);
+    pen.stroke();
+  }
+}
+let printing = false;
+function bookUpdate() {
+  $('print-notes').textContent=page().notes;
+  $('page-mount').textContent = `${page().mount} · ${page().magnification}×`;
+  $('page-date').textContent = page().date;
+  $('notes').value = page().notes;
+  $('pages').replaceChildren(...pages.map((p, i) => {
+    const option = document.createElement('option');
+    option.value = i;
+    option.textContent = `Page ${i + 1} · ${p.magnification}×`;
+    return option;
+  }));
+  $('pages').value = state.bookIndex;
+  $('previous').disabled = state.bookIndex === 0;
+  $('next').disabled = state.bookIndex === pages.length - 1;
+  drawPaper();
+}
+function openBook() {
+  if (!page().strokes.length && !page().labels.length && !page().notes) {
+    page().magnification = state.objective * 10;
+    page().mount = mountName();
+  }
+  bookUpdate();
+  openDialog('sketchbook', 'book');
+  saveBook();
+}
+$('book').onclick = openBook;
+$('close-book').onclick = () => { endStroke(); $('sketchbook').close(); };
+for (const name of ['pencil', 'eraser', 'label-pin']) {
+  $(name).onclick = () => {
+    state.tool = name;
+    for (const id of ['pencil', 'eraser', 'label-pin']) $(id).setAttribute('aria-pressed', name === id);
+    penDown = false;
+  };
+}
+function point(event) {
+  const rect = paper.getBoundingClientRect();
+  return [clamp((event.clientX - rect.left) * 600 / rect.width, 0, 600), clamp((event.clientY - rect.top) * 380 / rect.height, 0, 380)];
+}
+function snapshot() { bookUndo.push(JSON.stringify(page())); if (bookUndo.length > 30) bookUndo.shift(); }
+function addLabel(x, y) {
+  const text = $('label-text').value.trim();
+  if (!text) { $('save-status').textContent = 'Write a label in the Label field first.'; return; }
+  snapshot();
+  page().labels.push({x, y, text});
+  drawPaper();
+  saveBook();
+}
+function eraseAt(x, y) {
+  page().strokes = page().strokes.filter(stroke => !stroke.some(([a,b]) => Math.hypot(a-x,b-y) < 17));
+  page().labels = page().labels.filter(label => Math.hypot(label.x-x,label.y-y) >= 20);
+  drawPaper();
+}
+paper.onpointerdown = event => {
+  paper.focus({preventScroll: true});
+  paper.setPointerCapture(event.pointerId);
+  const [x, y] = point(event);
+  cursor = {x,y};
+  if (state.tool === 'label-pin') return addLabel(x, y);
+  snapshot();
+  currentStroke = [[x, y]];
+  if (state.tool === 'eraser') eraseAt(x, y);
+  drawPaper();
+};
+paper.onpointermove = event => {
+  if (!currentStroke) return;
+  const [x, y] = point(event);
+  cursor = {x,y};
+  if (state.tool === 'eraser') eraseAt(x, y);
+  else if (currentStroke.length < 12000) currentStroke.push([x, y]);
+  drawPaper();
+};
+function endStroke() {
+  if (!currentStroke) return;
+  if (state.tool === 'pencil') page().strokes.push(currentStroke);
+  currentStroke = null;
+  drawPaper();
+  saveBook();
+}
+paper.onpointerup = endStroke;
+paper.onpointercancel = endStroke;
+paper.onlostpointercapture = endStroke;
+paper.onfocus = drawPaper;
+paper.onblur = () => { endStroke(); penDown = false; drawPaper(); };
+paper.onkeydown = event => {
+  const directions = {ArrowLeft: [-1,0], ArrowRight: [1,0], ArrowUp: [0,-1], ArrowDown: [0,1]};
+  if (directions[event.key]) {
+    event.preventDefault();
+    const [dx,dy] = directions[event.key];
+    const step = event.shiftKey ? 1 : 5;
+    cursor.x = clamp(cursor.x + dx * step, 0, 600);
+    cursor.y = clamp(cursor.y + dy * step, 0, 380);
+    if (penDown && state.tool === 'pencil') currentStroke.push([cursor.x, cursor.y]);
+    if (penDown && state.tool === 'eraser') eraseAt(cursor.x, cursor.y);
+    drawPaper();
+  } else if (event.key === ' ') {
+    event.preventDefault();
+    if (state.tool === 'label-pin') return addLabel(cursor.x, cursor.y);
+    penDown = !penDown;
+    if (penDown) { snapshot(); currentStroke = [[cursor.x, cursor.y]]; }
+    else endStroke();
+  } else if (event.key === 'Enter' && state.tool === 'label-pin') {
+    event.preventDefault();
+    addLabel(cursor.x, cursor.y);
+  }
+};
+$('notes').oninput = () => { page().notes = $('notes').value; $('print-notes').textContent=page().notes; saveBook(); };
+$('undo').onclick = () => {
+  if (!bookUndo.length) return;
+  pages[state.bookIndex] = JSON.parse(bookUndo.pop());
+  bookUpdate();
+  saveBook();
+};
+function changePage(index) {
+  endStroke();
+  state.bookIndex = clamp(index, 0, pages.length - 1);
+  bookUndo = [];
+  bookUpdate();
+  saveBook();
+}
+$('previous').onclick = () => changePage(state.bookIndex - 1);
+$('next').onclick = () => changePage(state.bookIndex + 1);
+$('pages').onchange = () => changePage(+$('pages').value);
+$('new-page').onclick = () => { pages.push(newPage()); changePage(pages.length - 1); };
+$('print').onclick = () => { endStroke(); window.print(); };
+addEventListener('beforeprint', () => {
+  printing=true;drawPaper();
+  const observation=page();
+  $('print-meta').textContent=observation.mount+' | '+observation.magnification+' times | '+observation.date;
+  $('print-text').textContent=observation.notes;
+  const c=$('print-paper'),x=c.getContext('2d');x.clearRect(0,0,c.width,c.height);x.drawImage(paper,0,0);
+});
+addEventListener('afterprint', () => { printing = false; drawPaper(); });
+addEventListener('keydown', event => {
+  if (event.key === 'Escape' && $('calibration').open) { $('calibration').close(); return; }
+  if (/^(INPUT|TEXTAREA|SELECT)$/.test(event.target.tagName) || document.querySelector('dialog:modal')) return;
+  if (event.ctrlKey || event.metaKey || event.altKey) return;
+  if (/^[1-4]$/.test(event.key)) {
+    if ($('calibration').open) $('calibration').close();
+    setObjective(objectives[+event.key - 1]);
+  }
+  else if (event.key.toLowerCase() === 'e') $('reticle').click();
+  else if (event.key.toLowerCase() === 'r') $('rotate').click();
+  else if (event.key.toLowerCase() === 'x') $('wash').click();
+  else if (event.key.toLowerCase() === 'k') openBook();
+});
+window.__tool = {
+  bestFocus, blurAmount, actualObjectives, state, allLines: V.allLines, vlog: V.log, field, depth, scale, displacement, draw, update,
+  loaded, material, photos, pose, objects, choose, place, inspect, syncMotion,
+  get renders() { return renders; },
+  get pages() { return pages; },
+  setObjective, dialSet, dialDefs, saveBook, bookUpdate
+};
+loaded.then(()=>{mapCache=null;update();}).catch(()=>status("A photographic asset could not be decoded."));
+update();
+</script>
+</body>
+</html>

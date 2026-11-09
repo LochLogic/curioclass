@@ -1,0 +1,23 @@
+{
+  "id": "cooler-challenge",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Build a lunchbox that buys time against the heat.",
+  "outcome": "Design against heat transfer and investigate how mass, matter and heating affect temperature change.",
+  "driver": "students or teacher",
+  "minutes": "30-45",
+  "modes": [
+    "Build",
+    "Bench"
+  ],
+  "grades_label": "Grade 6",
+  "sources": [
+    "USDA FSIS: Keeping Bag Lunches Safe",
+    "DOE Building Science Education: Heat Flow",
+    "OpenStax College Physics 2e, chapters 13 and 14",
+    "McLaren, Null and Quinn, Pediatrics 2005;116:e109",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

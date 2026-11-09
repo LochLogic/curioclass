@@ -1,0 +1,228 @@
+{
+  "states": [
+    {
+      "name": "room",
+      "steps": [
+        {
+          "click": "#room-0"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "compare",
+      "steps": [
+        {
+          "click": "#room-0"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#peek-1"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ]
+    },
+    {
+      "name": "fixed-towel",
+      "steps": [
+        {
+          "click": "#room-0"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#tell"
+        },
+        {
+          "click": "#put-away"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "gummies-adult",
+      "steps": [
+        {
+          "click": "#room-3"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#tell"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#controls"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "heater-ruler",
+      "steps": [
+        {
+          "click": "#room-2"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#object",
+        ".ruler"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "alarm-hold",
+      "steps": [
+        {
+          "click": "#room-2"
+        },
+        {
+          "click": "#spot-0"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#tell"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#hold-action"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "chat-controls",
+      "steps": [
+        {
+          "click": "#room-4"
+        },
+        {
+          "click": "#monitor"
+        },
+        {
+          "click": "#monitor-chat"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#block",
+        "#report"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "monitor",
+      "steps": [
+        {
+          "click": "#room-4"
+        },
+        {
+          "click": "#monitor"
+        }
+      ],
+      "keep": [
+        ".monitor-focus"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manual-close"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "pills-target",
+      "steps": [
+        {
+          "click": "#room-1"
+        },
+        {
+          "click": "#spot-1"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#tell"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#object",
+        "#target"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

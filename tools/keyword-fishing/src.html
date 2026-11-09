@@ -60,20 +60,37 @@ main {grid-template-columns:minmax(0, 1.5fr) minmax(420px, 1fr); gap:0; overflow
   z-index:2; border-radius:50%;}
 .fish:focus-visible {outline-offset:4px; z-index:12; background:#fff6;}
 .fish img {width:100%; height:58px; object-fit:contain; filter:drop-shadow(0 4px 2px #053b463d);
-  animation:swim 3s ease-in-out infinite alternate;}
+  animation:swim 3s ease-in-out infinite alternate; pointer-events:none;}
+.stage .fish {width:var(--fish-hit-width,110px); height:var(--fish-hit-height,72px);}
+.stage .fish img {position:absolute; left:50%; top:0; margin-left:calc(var(--fish-art-width,110px) / -2);
+  width:var(--fish-art-width,110px); height:var(--fish-art-height,58px);}
+.fish .fin {pointer-events:none;}
+.stage.compact-school .fish .fish-title {display:none;}
+.stage.compact-school .fish:hover .fish-title,.stage.compact-school .fish:focus-visible .fish-title {display:block;}
+.stage.compact-school .lake-label b {display:none;}
+.stage .fish:hover {z-index:12;}
+#bobber.empty-cast::after {content:''; position:absolute; inset:20%; border:2px solid #fff5c4;
+  border-radius:50%; animation:empty-ring .8s ease-out forwards;}
+@keyframes empty-ring {from {transform:scale(.3); opacity:1;} to {transform:scale(2.5); opacity:0;}}
+.calm #bobber.empty-cast::after {animation:none; opacity:0;}
 @keyframes swim {from {transform:translateY(-2px) rotate(-2deg) scaleX(var(--face,1));}
   to {transform:translateY(2px) rotate(2deg) scaleX(var(--face,1));}}
 .fish .fish-title {position:absolute; left:50%; top:41px; transform:translateX(-50%); width:var(--tag-width,126px);
   font-size:12px; font-weight:600; line-height:1.1; color:#1d2a24; background:#fff7d6; border:1px solid #b7ac83;
   border-radius:4px; box-shadow:0 2px 2px #0a39382b; padding:3px 4px; pointer-events:none;}
+.stage .fish .fish-title {left:var(--fish-title-left,50%);}
+.stage .fish[data-tag-above] .fish-title {top:auto; bottom:calc(100% - 8px);}
 .fish.away {opacity:.48; z-index:1;}
 .fish.away .fish-title {display:none;}
 .fish.away:hover,.fish.away:focus-visible {opacity:1; z-index:12;}
 .fish.away:hover .fish-title,.fish.away:focus-visible .fish-title {display:block;}
 .stage.tight.crowded .fish .fish-title {display:none;}
 .stage.tight.crowded .fish:hover .fish-title,.stage.tight.crowded .fish:focus-visible .fish-title {display:block;}
-.fish .fin {position:absolute; left:22px; top:3px; background:#f2b632; color:#3b2c00;
+.fish .fin {position:absolute; left:50%; top:3px; transform:translateX(-50%); white-space:nowrap;
+  background:#f2b632; color:#3b2c00;
   border-radius:12px 12px 0 0; padding:3px 5px; font-size:10px; font-weight:800; display:none;}
+.stage.compact-school .fish .fin {top:auto; bottom:0;}
+.stage.compact-school .fish:hover .fin,.stage.compact-school .fish:focus-visible .fin {top:3px; bottom:auto;}
 .fish.answer .fin {display:block;}
 .fish.reeling {animation:reel .8s ease-in forwards; pointer-events:auto;}
 .reel-copy {position:fixed; z-index:80; pointer-events:none; object-fit:contain;
@@ -221,7 +238,7 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
   .lake-label {font-size:10px;} .lake-label b {font-size:14px;}
   #free-words {max-height:49px;} .drawer-tabs {margin-bottom:3px;}
   .type-row {margin-top:2px;} #unknown-note {min-height:12px; font-size:10px;}
-  #tag-card {bottom:8px; padding:8px 44px 8px 10px;} #tag-card b {font-size:15px;}
+  #tag-card {bottom:8px; padding:8px 56px 8px 10px;} #tag-card b {font-size:15px;}
   #tag-card p {font-size:12px;}
 }
 @media(min-width:601px) and (max-width:999px) and (min-height:641px) {
@@ -317,7 +334,7 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
     <div class="footer"><span>Made-up pages · Stickers stay on this device.</span>
       <button id="clear-stickers">Clear stickers</button></div>
   </aside>
-  <div id="swaps" hidden>
+  <div id="swaps" hidden role="dialog" aria-modal="false" aria-labelledby="swap-label">
     <button id="swap-close" aria-label="Close swap choices">×</button>
     <p id="swap-label">Swap for another word</p>
     <div id="swap-options"></div>
@@ -325,12 +342,13 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
   <section class="stage" id="stage" aria-label="Lake of 30 made-up web pages">
     <img class="lake-art" src="art:kf-lake-dock" alt="A misty morning lake with a wooden dock, reeds and lily pads.">
     <div class="water-wash"></div><div class="water-glint"></div>
-    <div class="lake-label"><b>A lake of possibilities</b>30 fish. Each fish is a made-up page.</div>
+    <div class="lake-label"><b>A lake of possibilities</b>30 fish. Each fish is a made-up page.<br>Only words in a page's list count.</div>
     <div class="line-in-lake"></div><div id="tangle"></div>
     <div id="bobber"><div class="ripple"></div><img src="art:kf-bobber" alt="">
       <div id="nibble" aria-live="polite"><strong>30</strong> fish nibbling</div></div>
     <div id="fish-layer"></div>
-    <section id="tag-card" hidden aria-label="Page tag">
+    <section id="tag-card" hidden role="dialog" aria-modal="false" aria-labelledby="tag-title"
+      aria-describedby="tag-site tag-snippet">
       <button id="close-tag" aria-label="Close page tag">×</button>
       <b id="tag-title"></b><small id="tag-site"></small><p id="tag-snippet"></p>
     </section>
@@ -850,6 +868,7 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
     state.generation++;
     state.casting = false;
     $('bobber').classList.remove('casting');
+    $('bobber').classList.remove('empty-cast');
     fishButtons.forEach(b => b.classList.remove('reeling'));
     reelCopies.splice(0).forEach(node => node.remove());
     document.querySelector('.bucket').classList.remove('landed');
@@ -857,7 +876,10 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
   function changeLine() {
     invalidateCast();
     state.revision++;
-    V.dropQueued();
+    // A result no longer describes this line. Read still keeps priority:
+    // it has no V.playing item, so editing does not hush an active Read.
+    if (V.playing && [...EVENT_IDS].some(key => L[key] === V.playing)) V.hush();
+    else V.dropQueued();
     closeSwaps();
     $('unknown-note').textContent = '';
     renderLine();
@@ -966,14 +988,18 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
   }
   function positionSwaps() {
     if (!state.swaps) return;
-    const r = $('stage').getBoundingClientRect();
-    const width = Math.min(300,r.width-20);
+    const anchor = $('swap').getBoundingClientRect();
+    const width = Math.min(300,innerWidth-20);
     $('swaps').style.width = width + 'px';
-    $('swaps').style.left = (r.left+(r.width-width)/2) + 'px';
     const height = $('swaps').offsetHeight;
-    $('swaps').style.top = Math.max(r.top+5,Math.min(r.bottom-height-8,r.top+r.height*.62)) + 'px';
+    const left = Math.max(10,Math.min(innerWidth-width-10,anchor.right-width));
+    const below = anchor.bottom+8;
+    const top = below+height <= innerHeight-8 ? below : anchor.top-height-8;
+    $('swaps').style.left = left + 'px';
+    $('swaps').style.top = Math.max(8,Math.min(innerHeight-height-8,top)) + 'px';
   }
   addEventListener('resize',positionSwaps);
+  document.querySelector('.panel').addEventListener('scroll',positionSwaps);
   function makeTile(word) {
     const b = document.createElement('button');
     b.textContent = word;
@@ -1065,10 +1091,47 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
   function aimFish() {
     const matches = fishCatch(state.words);
     const ids = new Set(matches.map(p => p.id));
-    let near = 0;
-    let far = 0;
     const crowded = matches.length > 12;
     const stageRect = $('stage').getBoundingClientRect();
+    const width = stageRect.width;
+    const height = stageRect.height;
+    if (!width || !height) return;
+    // Every page keeps its own 44-pixel target, including the rejected pages.
+    // Rich cutouts can overhang their compact targets without stealing a neighbour's tap.
+    const columns = Math.max(1,Math.floor((width-12)/Math.min(132,Math.max(44,(width-12)/6))));
+    const maximumColumns = Math.max(1,Math.floor((width-12)/44));
+    let fittedColumns = columns;
+    while (Math.ceil(32/fittedColumns)*44 > height-26 && fittedColumns < maximumColumns) fittedColumns++;
+    const rows = Math.ceil(32/fittedColumns);
+    const top = Math.max(22,Math.min(height*.23,height-rows*44-4));
+    const cellWidth = (width-12)/fittedColumns;
+    const bottom = cellWidth >= 120 && height >= 600 ? 48 : 4;
+    const cellHeight = (height-top-bottom)/rows;
+    const hitWidth = Math.max(44,Math.min(110,cellWidth-6));
+    const hitHeight = Math.max(44,Math.min(72,cellHeight-4));
+    $('stage').style.setProperty('--fish-hit-width',hitWidth+'px');
+    $('stage').style.setProperty('--fish-hit-height',hitHeight+'px');
+    const compact = cellWidth < 120 || cellHeight < 72;
+    $('stage').classList.toggle('compact-school',compact);
+    $('stage').style.setProperty('--fish-art-width',(compact ? 70 : 110)+'px');
+    $('stage').style.setProperty('--fish-art-height',(compact ? 44 : 58)+'px');
+    const spots = [];
+    for (let row=0; row<rows; row++) {
+      for (let col=0; col<fittedColumns; col++) {
+        const x = 6+cellWidth*(col+.5);
+        const y = top+cellHeight*(row+.5);
+        // Leave the bobber and its count a window whenever there is room.
+        const distance = Math.hypot((x-width/2)/width,(y-height/2)/height);
+        spots.push({x,y,distance});
+      }
+    }
+    spots.sort((a,b) => a.distance-b.distance || a.y-b.y || a.x-b.x);
+    // Keep a window for the bobber and its count without hiding a page target.
+    spots.splice(0,Math.min(4,spots.length-POND.length));
+    const nearSpots = spots.slice(0,matches.length);
+    const farSpots = spots.slice(matches.length).sort((a,b) => b.distance-a.distance);
+    let near = 0;
+    let far = 0;
     const currentX = fishButtons.map(b => {
       const r = b.getBoundingClientRect();
       return (r.left+r.width/2-stageRect.left)/stageRect.width*100;
@@ -1079,36 +1142,25 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
     fishButtons.forEach((b,i) => {
       const match = ids.has(POND[i].id);
       b.classList.toggle('away',!match);
-      b.classList.remove('answer');
-      let x, y;
-      if (match) {
-        const j = near++;
-        if (crowded) {
-          // Five rows leave a central window; the four displaced fish fill a sixth row.
-          const spots = [];
-          for (let row=0; row<5; row++) {
-            for (let col=0; col<6; col++) {
-              if ((row === 1 || row === 2) && (col === 2 || col === 3)) continue;
-              spots.push([12+col*15.2,25+row*12.4]);
-            }
-          }
-          spots.push([25,87],[42,87],[59,87],[76,87]);
-          [x,y] = spots[j];
-        } else {
-          const spots = [[31,33],[69,33],[27,70],[73,70],[18,48],[82,48],
-            [46,25],[54,78],[17,29],[83,29],[14,77],[86,77]];
-          [x,y] = spots[j];
-        }
-      } else {
-        const j = far++;
-        x = j%2 === 0 ? 6 + (Math.floor(j/12)%2)*5 : 94 - (Math.floor(j/12)%2)*5;
-        y = 25 + (Math.floor(j/2)%12)*5.4;
-      }
+      const spot = match ? nearSpots[near++] : farSpots[far++];
+      const x = spot.x/width*100;
+      const y = spot.y/height*100;
+      const tagWidth = parseFloat(getComputedStyle(b).getPropertyValue('--tag-width')) || 126;
+      const titleX = Math.max(tagWidth/2+4,Math.min(width-tagWidth/2-4,spot.x));
+      b.style.setProperty('--fish-title-left',(hitWidth/2+titleX-spot.x)+'px');
+      b.toggleAttribute('data-tag-above',compact && spot.y+hitHeight/2+38 > height);
       const before = currentX[i];
       b.style.setProperty('--face',x < before ? -1 : 1);
       b.style.left = x + '%';
       b.style.top = y + '%';
     });
+    syncAnswerFins();
+  }
+  function syncAnswerFins() {
+    const current = state.mode === 'levels' && state.castMode === 'levels' && state.level === state.castLevel &&
+      JSON.stringify(state.words) === JSON.stringify(state.castWords);
+    fishButtons.forEach((b,i) => b.classList.toggle('answer',current &&
+      state.bucket.some(p => p.id === POND[i].id) && LEVELS[state.level].answers.includes(POND[i].id)));
   }
   function tagText(p) { return p.title + '. ' + p.site + '. ' + p.snippet; }
   function openTag(id) {
@@ -1118,6 +1170,7 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
     $('tag-site').textContent = p.site + ' · Made-up page';
     $('tag-snippet').textContent = p.snippet;
     $('tag-card').hidden = false;
+    $('close-tag').focus({preventScroll:true});
     Curio.tone(740,.05,.025);
   }
   function closeTag(restore=true) {
@@ -1158,6 +1211,7 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
       $('bucket-list').append(p);
     }
     if (!state.bucket.length) $('bucket-list').innerHTML = '<p class="empty-bucket">An empty catch. Change a word on your line.</p>';
+    syncAnswerFins();
   }
   function cast() {
     if (!state.words.length) {
@@ -1178,6 +1232,7 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
     state.casting = true;
     $('bucket-count').textContent = 'Reeling in ' + caught.length + '…';
     $('bobber').classList.add('casting');
+    if (!caught.length) $('bobber').classList.add('empty-cast');
     const bucketRect = document.querySelector('.bucket-heading img').getBoundingClientRect();
     caught.forEach((p,i) => {
       const fish = $('fish-' + p.id);
@@ -1210,6 +1265,7 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
       state.castLevel = level;
       state.castMode = mode;
       $('bobber').classList.remove('casting');
+      $('bobber').classList.remove('empty-cast');
       fishButtons.forEach(b => b.classList.remove('reeling'));
       reelCopies.splice(0).forEach(node => node.remove());
       document.querySelector('.bucket').classList.add('landed');
@@ -1303,7 +1359,14 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
   $('type-form').onsubmit = e => {
     e.preventDefault();
     const word = $('typed-word').value.trim().toLowerCase();
-    if (!word) return;
+    if (!word) {
+      $('unknown-note').textContent = 'Type one word at a time, then press Add.';
+      hint(L['w-free']);
+      how('w-free',{needs:'#typed-word'});
+      $('typed-word').focus({preventScroll:true});
+      Curio.tone(240,.06,.03);
+      return;
+    }
     if (/\s/.test(word)) {
       $('unknown-note').textContent = 'Type one word at a time, then press Add.';
       return;
@@ -1384,6 +1447,7 @@ dialog button {min-height:44px; min-width:90px; border:1px solid #6d824d; border
     const width = $('stage').clientWidth;
     $('stage').style.setProperty('--tag-width',Math.max(88,Math.min(126,width*.145))+'px');
     $('stage').classList.toggle('tight',width < 700);
+    aimFish();
   }).observe($('stage'));
   Curio.init({clips:"voice:*", rate:.9});
   window.__tool = {state, setMode, openLevel, allLines:V.allLines, vlog:V.log,

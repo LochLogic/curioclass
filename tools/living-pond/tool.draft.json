@@ -1,0 +1,31 @@
+{
+  "id": "living-pond",
+  "stage": "built",
+  "status": "beta",
+  "curiosity": true,
+  "plate": 13,
+  "hook": "Stock a pond. Change one thing. Watch the seasons carry it through a food web.",
+  "outcome": "Explore matter cycling, energy flow, trophic cascades and inherited shade in a deterministic ecosystem tank.",
+  "driver": "students or teacher",
+  "minutes": "open-ended",
+  "modes": [],
+  "grades_label": "Grades 3–8",
+  "sources": [
+    "Curio Class Living Pond specification, git 018ace9b: original illustrative model parameters and starting pools, not a measured dataset. Model documentation and owner-authored content CC BY 4.0 under LICENSE-CONTENT.md; code MIT under LICENSE, copyright 2026 LochLogic (Curio Class).",
+    "USGS Water Science School, Dissolved Oxygen and Water, https://www.usgs.gov/water-science-school/science/dissolved-oxygen-and-water (public domain US government material; checked 2026-11-05).",
+    "US EPA, Nutrient Pollution: Effects on the Environment, https://www.epa.gov/nutrientpollution/effects-environment (EPA lists document-specific reuse conditions; reference only, no text, figures or data reproduced; checked 2026-11-05).",
+    "OpenStax Biology 2e 45.6, 46.1–46.3, https://openstax.org/books/biology-2e/pages/46-2-energy-flow-through-ecosystems (current licence CC BY-NC-SA; reference only; no text, figures or datasets reproduced).",
+    "Minnesota DNR, Winterkill and Other Fish Kills, https://www.dnr.state.mn.us/areas/fisheries/waterville/winterkill.html (copyright Minnesota DNR; reference only, no text, figures or data reproduced; checked 2026-11-05).",
+    "Holling 1959; Gillooly et al. 2001; Lindeman 1942; Endler 1980; Carpenter, Kitchell and Hodgson 1985: model provenance citations only; no copyrighted text, figures or data reproduced.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class; owner-authored content CC BY 4.0 under LICENSE-CONTENT.md.",
+    "Cornell Lab of Ornithology, Great Blue Heron Life History, https://www.allaboutbirds.org/guide/great_blue_heron/lifehistory and Audubon, Great Blue Heron, https://www.audubon.org/field-guide/bird/great-blue-heron (copyrighted references only; no content copied; shallow-water fish hunting checked 2026-11-05).",
+    "Connecticut DEEP, Painted Turtle, https://portal.ct.gov/deep/wildlife/fact-sheets/painted-turtle and Missouri Department of Conservation, Western Painted Turtle, https://mdc.mo.gov/discover-nature/field-guide/western-painted-turtle (reference only; no open reuse licence asserted, no content copied; diet, basking and overwintering checked 2026-11-05).",
+    "British Dragonfly Society, Life Cycle and Biology, https://british-dragonflies.org.uk/odonata/life-cycle-and-biology/ (copyright BDS) and Missouri Department of Conservation, Dragonfly Larvae, https://mdc.mo.gov/discover-nature/field-guide/dragonfly-larvae (copyrighted reference; no open reuse licence asserted): six-legged aquatic nymphs, extendable lower lip, small-fish prey; BDS also lists snails. Reference only, no content copied; checked 2026-11-05.",
+    "California Water Boards, Dissolved Oxygen, https://www.waterboards.ca.gov/water_issues/programs/swamp/docs/cwt/guidance/3110en.pdf: sea-level freshwater saturation reference 9.1 mg/L at 20 C; model fit gives 9.6. Reference only; no open reuse licence asserted, no source table or illustrations copied; checked 2026-11-05.",
+    "Photosynthesis: OpenStax Biology 2e 8.1, https://openstax.org/books/biology-2e/pages/8-1-overview-of-photosynthesis (CC BY-NC-SA 4.0, reference only); NOAA Ocean Exploration, https://origin.oceanexplorer.noaa.gov/ocean-fact/photochemo/ (public domain federal text). Carbon dioxide and water build sugars using sunlight. No text, figures or data reproduced. Checked 2026-11-06.",
+    "OpenStax Biology 2e 19.3, https://openstax.org/books/biology-2e/pages/19-3-adaptive-evolution (CC BY-NC-SA 4.0, reference only): selection among inherited traits. Endler 1980, https://doi.org/10.1111/j.1558-5646.1980.tb04790.x (copyright Society for the Study of Evolution; citation only), and Carpenter et al. 1985, https://doi.org/10.2307/1309989 (copyright American Institute of Biological Sciences; citation only). No source text, data or figures copied. Checked 2026-11-06.",
+    "OpenStax Biology 2e 31.1, https://openstax.org/books/biology-2e/pages/31-1-nutritional-requirements-of-plants (CC BY-NC-SA 4.0; reference only, no source text, figure or dataset copied). Carbon, hydrogen and oxygen make most plant body matter; mineral nutrients are a small share. Checked 2026-11-06."
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

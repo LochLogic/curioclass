@@ -1,0 +1,1208 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Worry Size Sorter · Curio Class</title>
+<meta name="description" content="Explore written worries, body clues and four coping tools on an open-ended sorting desk. Grades 3 to 5. Works offline.">
+<!-- Worry Size Sorter, Curio Class. NHES.S1, NHES.S7. Students, grades 3-5.
+Sources: spec.md and notes.md. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file, no network. Content CC BY 4.0, code MIT. Curiosity surface; voice and settings use the shared kit. -->
+
+<style>
+:root {
+  --paper:#fdf7ee; --ink:#2a211a; --muted:#6b5b4c; --line:#ecdcc8; --focus:#2f5bd3;
+  --brand:#9a4a1c; --btn:#793914; --btn-line:#d39165; --head-ink:#fff; --panel:#fff;
+  --small:#2f6e4a; --medium:#8a5a00; --big:#2c4f8f;
+}
+body {height:100dvh; min-height:0; overflow:hidden}
+
+main {grid-template-columns:minmax(0,1fr) 380px; overflow:hidden}
+.stage {min-height:0; isolation:isolate; background:#f8eddb}
+.stage::before {content:''; position:absolute; inset:0; background:url('art:ws-bg') center/cover; opacity:.3; z-index:-2}
+.stage::after {content:''; position:absolute; inset:0; pointer-events:none; z-index:-1;
+  background:radial-gradient(ellipse at 28% 0%,#fff9eaa0,transparent 65%),linear-gradient(transparent 70%,#e4cba570);
+  animation:daylight 12s ease-in-out infinite}
+.panel {gap:10px; padding:17px 20px; border-left:2px solid #d5bfa1; background:#fffcf6}
+#hint {margin:0; min-height:62px; font-size:17px; line-height:1.4; padding:10px 12px;
+  border:1px solid var(--line); border-radius:14px; background:#fff4df}
+#panelContent {display:flex; flex-direction:column; gap:10px}
+h2,h3,p {margin:0}
+h2 {font:700 25px/1.2 Georgia,serif}
+h3 {font-size:17px}
+p {line-height:1.42}
+button {min-height:44px}
+.action {min-height:46px; padding:9px 13px; border:1px solid #cdb79a; border-radius:12px;
+  background:linear-gradient(#fffefb,#f4e8d4); font-weight:700; box-shadow:0 3px 0 #bca17d40}
+.action:hover {filter:brightness(.97)}
+.action:active {transform:translateY(2px)}
+.primary {background:linear-gradient(#ad5a28,#904019); color:#fff; border-color:#85401a}
+button[aria-pressed=true].choice,button[aria-pressed=true].reply-btn {outline:3px solid var(--brand); outline-offset:-3px; background:#ffe6b6}
+.action:disabled {opacity:.5; cursor:default}
+.row {display:flex; gap:7px; flex-wrap:wrap}
+.row>* {flex:1}
+.muted {color:var(--muted); font-size:14px}
+.eyebrow {font-size:12px; letter-spacing:.13em; text-transform:uppercase; font-weight:800; color:var(--brand)}
+.note {padding:12px; background:#f4ebdc; border-radius:13px}
+.privacy {font-size:13px; color:#605143; line-height:1.35; padding-top:8px}
+.sort-world {height:100%; display:flex; flex-direction:column; justify-content:space-evenly; align-items:center; padding:12px 24px 20px}
+.card-stack {position:relative; width:min(380px,76%); flex:none}
+.card-stack::before,.card-stack::after {content:''; position:absolute; inset:5px -4px -5px; z-index:-1;
+  background:#fffcf6; border:1px solid #ccb69a; border-radius:19px; transform:rotate(-4deg)}
+.card-stack::after {transform:rotate(3deg); inset:3px -2px -7px}
+.worry-card {display:block; width:100%; padding:8px; background:#fffdf7; border:1px solid #cbb398;
+  border-radius:18px; box-shadow:0 12px 24px #74502b33; touch-action:none; position:relative; transition:transform .25s,box-shadow .25s}
+.worry-card img {display:block; width:100%; height:175px; object-fit:cover; border-radius:12px}
+.card-text {display:block; font:700 22px/1.27 Georgia,serif; padding:13px 8px 9px; min-height:76px}
+.worry-card.picked {transform:translateY(-8px) rotate(-2deg); box-shadow:0 18px 28px #74502b55; outline:3px solid var(--brand)}
+.worry-card.placed {transform:scale(.94); opacity:.85}
+.card-caption {font-size:12px; color:var(--muted); text-align:center; margin-top:10px; min-height:17px}
+.principle {font-size:15px; text-align:center; padding:8px 0}
+.baskets {width:100%; display:flex; gap:10px; align-items:flex-end; justify-content:center}
+.basket {width:31%; max-width:260px; border:2px solid transparent; border-radius:22px;
+  background:transparent; padding:4px 4px 0; transition:background .15s,transform .2s}
+.basket-art {width:100%; height:132px; object-fit:contain; display:block; filter:drop-shadow(0 9px 5px #79573122)}
+.basket:nth-child(1) .basket-art {transform:scale(.7); transform-origin:bottom}
+.basket:nth-child(2) .basket-art {transform:scale(.85); transform-origin:bottom}
+.basket.over {background:#fff0bc; border-color:var(--brand); transform:translateY(-5px)}
+.basket-label {display:block; padding:8px 6px; border-radius:11px; color:#fff; background:var(--basket); box-shadow:0 4px 0 #0002}
+.basket-label b {display:block; font:700 24px Georgia,serif}
+.meaning {display:block; font-size:13px; line-height:1.25; min-height:34px; padding-top:3px}
+.thumbs {display:flex; height:30px; align-items:center; justify-content:center; gap:2px; margin-top:7px}
+.thumbs img {width:23px; min-width:0; flex-shrink:1; height:22px; object-fit:cover; border:1px solid #fff; border-radius:4px}
+.basket-count {font-size:12px; color:var(--muted); font-weight:700; display:block; min-height:17px}
+.ghost {position:fixed; z-index:30; width:190px; pointer-events:none; opacity:.9; transform:rotate(-6deg)}
+.big-panel {border-left:4px solid var(--big); padding:10px 12px; border-radius:8px; background:#eaf0fa; display:grid; gap:9px}
+.big-panel h3 {color:var(--big)}
+.adult-chips {display:flex; flex-wrap:wrap; gap:4px}
+.adult-chips span {font-size:12px; background:#fff; border:1px solid #c5d3e9; border-radius:20px; padding:5px 8px}
+.ways {font-size:13px; line-height:1.5}
+.kid-world {height:100%; display:grid; place-items:center; padding:16px}
+.kid-wrap {position:relative; height:min(560px,calc(100dvh - 130px)); aspect-ratio:.53; max-width:94%}
+.kid-wrap>img {height:100%; width:100%; object-fit:contain; filter:drop-shadow(0 12px 9px #8b62352a)}
+.body-leaders {display:none; position:absolute; inset:0; width:100%; height:100%; pointer-events:none}
+.body-leaders path,.body-leaders line {fill:none; stroke:#9a4a1c; stroke-width:2; vector-effect:non-scaling-stroke}
+.hotspot {position:absolute; width:48px; height:48px; border:3px solid var(--brand); border-radius:50%;
+  background:#fff9eae6; color:var(--brand); font-weight:800; box-shadow:0 3px 8px #0002}
+.hotspot[aria-pressed=true] {color:#fff; background:var(--brand)}
+#clue0 {left:42%; top:10%} #clue1 {left:31%; top:28%} #clue2 {left:52%; top:32%}
+#clue3 {left:42%; top:43%} #clue4 {left:20%; top:51%}
+.clue-index {display:flex; gap:5px; flex-wrap:wrap}
+.clue-index span {font-size:12px; border-radius:20px; background:#eee2d0; padding:5px 7px}
+details {border:1px solid #c9d5e6; background:#edf2fa; border-radius:12px; padding:10px}
+summary {min-height:44px; cursor:pointer; font-weight:800; color:var(--big); display:flex; align-items:center}
+.tools-world {height:100%; display:flex; flex-direction:column; gap:8px; padding:15px 24px}
+.worry-context {text-align:center; font-size:14px; min-height:22px}
+.tool-tiles {display:grid; grid-template-columns:repeat(4,1fr); gap:8px; flex:none}
+.tool-tile {border:1px solid #c6ad8a; border-radius:14px; background:#fffcf5; font-size:13px; font-weight:750; padding:7px 4px}
+.tool-icon {font-size:24px; display:block}
+.tool-tile[aria-pressed=true] {background:#ffe6bb; border:3px solid var(--brand); padding:5px 2px}
+.tool-picture {flex:1; min-height:0; display:flex; flex-direction:column; align-items:center; justify-content:center; position:relative}
+.breath {width:min(420px,75%); max-height:92%; aspect-ratio:1; position:relative}
+.breath svg {display:block; width:100%; height:100%; overflow:visible}
+.breath-label {position:absolute; inset:0; display:grid; place-content:center; text-align:center; pointer-events:none; gap:6px}
+.breath-label strong {font:700 30px Georgia,serif}
+.breath-label b {font-size:68px; line-height:1.1; color:var(--brand)}
+.breath-label small {font-size:14px}
+.breath-label.check-in b {font-size:42px; letter-spacing:.03em}
+.breath-label.check-in small {max-width:210px; margin:auto; line-height:1.4}
+.bubble {padding:15px 20px; border-radius:22px; background:#fffdf8; box-shadow:0 5px 14px #7a5d3522;
+  border:1px solid #d8c5aa; font:700 23px/1.3 Georgia,serif; text-align:center; max-width:90%; z-index:1}
+.cloud {width:320px; height:230px; object-fit:contain; animation:drift 5s ease-in-out infinite; transition:width .6s,height .6s}
+.cloud.mid {width:240px; height:180px}
+.cloud.small {width:150px; height:130px}
+.thought-scene {position:absolute; width:80%; height:70%; object-fit:cover; border-radius:50%; opacity:.18; z-index:-1}
+.reply {max-width:90%; font-size:18px; padding:12px 16px; border-radius:18px 18px 18px 3px; background:#e2eddd;
+  border:1px solid #adc7a3; margin-top:10px}
+.squeeze-kid {height:82%; max-width:90%; object-fit:contain}
+.practice-caption {font:700 22px Georgia,serif; margin:8px 0; text-align:center}
+.progress-track {height:12px; background:#e6d6be; border-radius:20px; overflow:hidden; width:80%; margin:8px auto}
+.progress-track>div {height:100%; width:0; background:var(--brand); border-radius:20px}
+.box-picture {height:100%; width:100%; position:relative; display:flex; align-items:flex-end; justify-content:center; padding-bottom:12px}
+.box-picture img {width:min(480px,90%); max-height:62%; object-fit:contain; filter:drop-shadow(0 12px 9px #77552a33)}
+.slip {position:absolute; top:7%; left:20%; width:60%; padding:22px 15px; background:linear-gradient(135deg,#fffefb,#e8ddc6);
+  border:1px solid #cdbb98; box-shadow:0 7px 12px #0002; font-size:20px; text-align:center; transition:transform .8s,opacity .7s; z-index:2}
+.slip.folded {transform:scale(.45,.5) rotate(8deg)}
+.slip.boxed {transform:translateY(200%) scale(.1); opacity:0}
+.steps {display:flex; gap:6px; align-items:center; font-size:12px; color:var(--muted)}
+.steps span {flex:1; padding:8px 4px; border-bottom:3px solid #e0cfb6; text-align:center}
+.steps .current {color:var(--brand); font-weight:800; border-color:var(--brand)}
+.meter {display:flex; flex-direction:column-reverse; gap:5px; max-width:220px; margin:0 auto; width:100%;
+  border-left:12px solid #e3c8a2; border-radius:16px; padding-left:8px}
+.meter button {min-height:44px; border-radius:9px; border:1px solid #bca788; background:#fff; text-align:left; padding:5px 12px}
+.meter button.chosen {background:#f5d8a9; outline:3px solid var(--brand); font-weight:800}
+.meter b {display:inline-block; width:25px; font-size:20px}
+.talk-answers {display:grid; gap:7px}
+.talk-answers button {text-align:left; font-size:14px}
+.talk-answers small {display:block; color:var(--brand); font-weight:800; margin-bottom:3px}
+select {min-height:44px; width:100%; font:inherit; border-radius:10px; background:#fff; color:var(--ink); padding:6px; border:1px solid #bca788}
+.tool-controls,.result-actions {display:flex; flex-direction:column; gap:7px}
+@keyframes drift {50% {transform:translateY(-8px) rotate(1deg)}}
+@keyframes daylight {50% {opacity:.7}}
+@keyframes settle {0% {transform:translateY(-15px)} 70% {transform:translateY(5px)} 100% {transform:translateY(0)}}
+.settle {animation:settle .6s ease}
+.calm .cloud {animation:none}
+.calm .stage::after {animation:none}
+.calm .worry-card,.calm .slip,.calm .cloud {transition:none}
+@media (max-width:1150px) {
+
+  main {grid-template-columns:minmax(0,1fr) 310px}
+  .panel {padding:12px; gap:8px} .sort-world {padding:12px}
+  .worry-card img {height:145px} .card-text {font-size:20px}
+
+}
+@media (min-width:600px) and (min-height:641px) and (max-height:760px) {
+  .result-actions {display:grid; grid-template-columns:repeat(2,1fr)}
+  .result-actions:has(#backSort) #helps {grid-column:1/-1}
+.result-actions .privacy {grid-column:1/-1}
+}
+@media (max-height:640px) and (min-width:600px) {
+
+  main {grid-template-columns:minmax(0,1fr) 240px} .panel {padding:8px 4px; gap:6px}
+  #hint {font-size:13px; min-height:50px; padding:7px} #panelContent {gap:7px; font-size:13px}
+  h2 {font-size:20px} h3 {font-size:14px} .muted {font-size:12px} .action {padding:6px 8px; font-size:13px}
+  .sort-world {padding:6px 10px; justify-content:space-around} .card-stack {width:min(290px,80%)}
+  .worry-card {padding:5px; border-radius:12px} .worry-card img {height:85px}
+  .card-text {font-size:16px; padding:7px 5px; min-height:48px} .card-caption {margin-top:6px; font-size:11px}
+  .principle,.meaning {display:none} .basket-art {height:78px} .basket-label {padding:5px}
+  .basket-label b {font-size:19px} .thumbs {height:18px; margin-top:4px} .thumbs img {width:16px; height:15px}
+  .basket-count {font-size:10px; min-height:13px} .big-panel {gap:6px; padding:7px; font-size:12px}
+  .adult-chips span {font-size:10px; padding:3px 5px} .ways {font-size:11px}
+  .tools-world {padding:7px 10px; gap:5px} .worry-context {font-size:11px; min-height:16px}
+  .tool-tile {font-size:10px; padding:3px} .tool-icon {font-size:18px} .tool-name {display:none}
+  .meter {flex-direction:row; border:0; max-width:none; gap:2px; padding:0}
+  .meter button {padding:2px; flex:1; text-align:center; font-size:10px} .meter b {display:block; width:auto; font-size:17px}
+  .steps span {padding:5px 2px; font-size:11px} .breath-label strong {font-size:20px} .breath-label b {font-size:40px}
+  .bubble {font-size:17px; padding:9px 14px} .reply {font-size:14px; padding:7px; margin-top:5px}
+  .cloud {height:130px; width:180px} .cloud.mid {height:95px; width:135px} .cloud.small {height:70px; width:100px}
+  .talk-answers {gap:5px} .talk-answers button {font-size:11px; padding:5px 7px}
+  .practice-caption {font-size:17px; margin:3px} .slip {font-size:15px; padding:12px}
+
+  #nextWorry,#boxDone,.tool-controls,.result-actions {order:-1}
+  .result-actions {display:grid; grid-template-columns:repeat(2,1fr)}
+  .result-actions #helps,.result-actions #anotherTool:last-child {grid-column:auto}
+  .result-actions:has(#backSort) #helps {grid-column:1/-1}
+.result-actions .privacy {grid-column:1/-1}
+  .talk-answers~.muted {display:none}
+  .note {padding:7px}
+  .kid-wrap {height:calc(100dvh - 100px)}
+  .body-leaders {display:block}
+  #clue1 {left:10%; top:28%} #clue2 {left:70%; top:34%}
+  #clue3 {left:42%; top:44%} #clue4 {left:0; top:58%}
+}
+@media (max-width:599px) {
+  body {height:100dvh; overflow:auto}
+
+  main {display:flex; flex-direction:column; overflow:visible} .stage {height:350px; flex:none; min-height:0}
+  .panel {overflow:visible; border-left:0; border-top:2px solid #d5bfa1; padding:10px; gap:8px}
+  #hint {min-height:0; font-size:14px} .sort-world {padding:10px; gap:5px} .card-stack {width:250px}
+  .worry-card img {height:100px} .card-text {font-size:17px; min-height:54px; padding:8px 5px}
+  .card-caption {margin-top:4px} .principle,.meaning {display:none} .basket-art {height:65px}
+  .basket-label b {font-size:19px} .basket-label {padding:6px 3px} .thumbs {height:16px; margin:4px 0}
+  .thumbs img {width:13px; height:14px} .basket-count {font-size:10px} .baskets {gap:3px}
+  .tools-world {padding:8px; gap:5px} .tool-tile {font-size:11px; padding:4px 1px}
+  .tool-icon {font-size:20px} .tool-name {display:none} .worry-context {font-size:11px}
+  .meter {max-width:none; flex-direction:row; border:0; gap:4px; padding:0}
+  .meter button {flex:1; padding:3px; text-align:center; font-size:10px} .meter b {display:block; width:auto; font-size:18px}
+  .breath-label strong {font-size:21px} .breath-label b {font-size:40px} .bubble {font-size:17px; padding:10px 12px}
+  .breath {width:180px; max-height:100%}
+  .breath-label.check-in strong {font-size:18px}
+  .breath-label.check-in small {max-width:145px; font-size:12px}
+  .cloud {height:125px; width:180px} .cloud.mid {height:90px; width:130px} .cloud.small {height:65px; width:95px}
+  .reply {font-size:14px; padding:8px; margin-top:4px} .slip {font-size:15px; padding:12px}
+
+  body[data-mode=tools] .stage {height:290px}
+  body[data-mode=clues] .stage {height:290px}
+  #nextWorry,#tryTool,#boxDone,.result-actions {order:-1}
+  .result-actions {display:grid; grid-template-columns:repeat(2,1fr)}
+  .result-actions #helps,.result-actions #anotherTool:last-child {grid-column:auto}
+  .result-actions:has(#backSort) #helps {grid-column:1/-1}
+.result-actions .privacy {grid-column:1/-1}
+  .kid-wrap {height:258px; aspect-ratio:.7}
+  .body-leaders {display:block}
+  #clue1 {left:10%; top:28%} #clue2 {left:70%; top:34%}
+  #clue3 {left:42%; top:44%} #clue4 {left:0; top:58%}
+}
+
+* {box-sizing:border-box}
+[hidden] {display:none!important}
+html,body {margin:0; height:100%}
+body {display:grid; grid-template-rows:minmax(0,1fr) 58px; background:#ead7b7;
+  color:var(--ink); font:16px 'Segoe UI',system-ui,sans-serif}
+button {font:inherit; color:inherit; cursor:pointer}
+:focus-visible {outline:4px solid var(--focus); outline-offset:3px}
+main {display:grid; min-height:0}
+.stage {position:relative; overflow:hidden}
+.panel {display:flex; flex-direction:column; overflow:auto; min-width:0}
+.desk-switches {position:absolute; top:6px; left:12px; z-index:3; display:flex; gap:6px}
+.sort-world {padding-top:58px}
+.tools-world {padding-top:60px}
+.kid-world {padding-top:54px}
+.desk-switches button,.desk-rail button {border:1px solid #a98b65; border-radius:5px;
+  background:linear-gradient(#fffcf4,#e2ceb0); box-shadow:0 2px 2px #64432644; min-height:44px; padding:5px 15px; font-size:14px; font-weight:700}
+.desk-switches button[aria-pressed=true] {background:#694c32; color:#fff8eb; box-shadow:inset 0 2px 4px #23150888}
+.desk-rail {display:flex; align-items:center; gap:12px; padding:5px 12px;
+  background:linear-gradient(#d7bd97,#b99970); border-top:2px solid #ac8459; z-index:3}
+.maker-plate {font:11px/1.4 Consolas,monospace; letter-spacing:.04em; padding:6px 14px;
+  border:1px solid #aa895c; border-radius:3px; background:linear-gradient(120deg,#ecd9b5,#c2a170,#e0c89f);
+  text-shadow:0 1px #fff8; box-shadow:inset 0 1px #fff8}
+.power {display:flex; gap:5px; margin-left:auto}
+.desk-rail button {padding:5px 12px}
+.power button[aria-pressed=false] {background:#bca582}
+.panel {background:#f8efdf; border-left:1px solid #c9ac82}
+.panel:has(#meterResult) .meter {flex-direction:row; max-width:none; border:0; padding:0; gap:2px}
+.panel:has(#meterResult) .meter button {flex:1; padding:4px; text-align:center; font-size:11px}
+.panel:has(#meterResult) .meter b {display:block; width:auto}
+.result-actions {display:grid; grid-template-columns:repeat(2,minmax(0,1fr))}
+.result-actions:has(#backSort) #helps {grid-column:1/-1}
+.result-actions .privacy {grid-column:1/-1}
+#hint {background:transparent; border:0; border-radius:0; padding:4px 0; min-height:48px}
+.worry-card.placed {opacity:0; visibility:hidden; pointer-events:none; transform:none}
+.card-stack:has(.placed)::before,.card-stack:has(.placed)::after {background:repeating-linear-gradient(45deg,#eadbc0,#eadbc0 4px,#e5d3b6 4px,#e5d3b6 8px)}
+.tool-icon {height:27px; display:grid; place-items:center; color:var(--brand)}
+.tool-icon svg {width:27px; height:27px}
+.try-tools {display:flex; flex-wrap:wrap; align-items:center; gap:7px}
+.try-tools button {font-size:14px}
+.body-leaders {display:block}
+.kid-wrap {aspect-ratio:184/600}
+.hotspot {transform:translate(-50%,-50%)}
+#clue0 {left:12%; top:10%} #clue1 {left:100%; top:29%} #clue2 {left:0%; top:31%}
+#clue3 {left:50%; top:43%} #clue4 {left:-9%; top:57%}
+.slip {transform-origin:center; overflow:hidden}
+.slip.folded {transform:translateY(30%) scale(.5,.5); color:transparent;
+  background:linear-gradient(90deg,#e7d9bb 49%,#bca885 50%,#fff6df 51%); border-radius:0}
+.slip.folded::after {content:''; position:absolute; inset:49% 0 auto; border-top:1px solid #b29b76}
+@keyframes paperFold {0% {transform:scale(1,1)} 49% {transform:scale(1,.5)} 100% {transform:translateY(30%) scale(.5,.5)}}
+.slip.folded:not(.boxed) {animation:none}
+.slip.boxed {animation:none; transform:translateY(190%) scale(.1); opacity:0}
+.calm .slip.folded {animation:none}
+dialog {position:fixed; inset:auto auto 58px 12px; margin:0; width:min(640px,calc(100vw - 24px));
+  max-height:calc(100dvh - 90px); overflow:auto; padding:24px; border:2px solid #ab8a5b;
+  border-radius:7px 7px 0 0; background:#fff9e9; color:var(--ink); box-shadow:0 0 50px #33200b55}
+dialog::backdrop {background:#2a211a55}
+dialog p {margin:12px 0; font-size:15px}
+dialog h3 {margin-top:22px}
+dialog small {overflow-wrap:anywhere; font-size:12px}
+#manualTitle {clear:both}
+#closeManual {float:right; margin:0 0 14px 12px}
+@media (max-height:640px) and (min-width:600px) {
+  body {grid-template-rows:minmax(0,1fr) 50px}
+  .panel:has(#meterResult) .steps {display:none}
+  .panel:has(#meterResult) #meterResult {padding:5px}
+  .desk-rail {padding:2px 7px; gap:6px}
+  .desk-rail button {font-size:11px; padding:3px 8px}
+  .maker-plate {font-size:10px; padding:5px}
+  .kid-wrap {height:calc(100dvh - 130px); aspect-ratio:184/600}
+  #clue0 {left:2%; top:8%} #clue1 {left:125%; top:27%} #clue2 {left:-22%; top:31%}
+  #clue3 {left:50%; top:43%} #clue4 {left:-31%; top:59%}
+  .body-leaders {overflow:visible}
+  .slip {top:0}
+}
+@media (max-width:599px) {
+  body {grid-template-rows:auto 94px; overflow:auto; min-height:100dvh}
+  .panel:has(#meterResult) .steps {display:none}
+  .panel:has(#meterResult) #meterResult {padding:8px}
+  .desk-switches {right:12px; justify-content:center; padding:0}
+  .desk-switches button {flex:1; padding:3px 8px; font-size:12px}
+  .desk-rail {position:sticky; bottom:0; display:grid; grid-template-columns:auto 1fr; gap:3px; padding:4px 7px}
+  .power {grid-row:1; grid-column:2; margin-left:auto}
+  .desk-rail button {font-size:11px; padding:3px 9px}
+  .maker-plate {grid-column:1/-1; text-align:center; font-size:10px; padding:3px}
+  main {display:flex; flex-direction:column}
+  .stage {height:430px}
+  body[data-mode=clues] .stage {height:350px}
+  body[data-mode=tools] .stage {height:330px}
+  .kid-wrap {height:258px; aspect-ratio:184/600}
+  #clue0 {left:-20%; top:7%} #clue1 {left:140%; top:29%} #clue2 {left:-35%; top:32%}
+  #clue3 {left:50%; top:43%} #clue4 {left:-40%; top:60%}
+  .body-leaders {overflow:visible}
+  .try-tools {gap:5px}
+}
+</style>
+</head>
+<body>
+<nav class="desk-switches" aria-label="Desk view">
+  <button id="m-sort" data-mode="sort" aria-pressed="true">Sort</button>
+  <button id="m-clues" data-mode="clues" aria-pressed="false">Body clues</button>
+  <button id="m-tools" data-mode="tools" aria-pressed="false">Tools</button>
+</nav>
+<main>
+  <section class="stage" id="stage" aria-label="Activity"></section>
+  <aside class="panel" aria-label="Instructions and choices"><p id="hint" role="status"></p><div id="panelContent"></div></aside>
+</main>
+<footer class="desk-rail">
+  <button id="manual" aria-expanded="false" aria-controls="manualDrawer">Manual</button>
+  <span class="maker-plate">Curio Class Curiosities · Worry Size Sorter</span>
+  <div class="power" aria-label="Power panel">
+    <button id="motion" aria-pressed="true">Motion</button>
+    <button id="sound" aria-pressed="true">Sound</button>
+    <button id="read">Read</button>
+  </div>
+</footer>
+<dialog id="manualDrawer" aria-labelledby="manualTitle">
+  <button id="closeManual" class="action">Close Manual</button>
+  <h2 id="manualTitle">Worry Size Sorter · Manual</h2>
+  <h3>At the desk</h3>
+  <p>Drag a written worry into a basket, or pick it up and choose a basket with the keyboard.
+  Small and Medium are flexible ways to think about help. Big situations always bring up adult help.
+  Next worry keeps the desk open. There is no last card to reach.</p>
+  <p>Body clues opens five places worry can show up. The Try buttons open the matching tool.
+  Tools has a breathing square, helpful replies, muscle relaxation and a worry box.</p>
+  <h3>The readouts</h3>
+  <p>The 1 to 5 meter is your own rating, never a diagnosis or a test. A lower rating describes what you reported;
+  it cannot tell us why it changed. No number is a target. Stop is always available during practice.</p>
+  <p>Breathing uses three rounds of four equal phases: 48 seconds at count 4, or 36 seconds at count 3.
+  One more round is optional. Stay comfortable; never strain. Muscle practice uses 5 seconds tight and 10 seconds loose.</p>
+  <p>The worry box is a reminder to talk, not a way to hide a Big worry. Choose about 10 minutes with a grown-up,
+  earlier than bedtime. Do not put off getting help if someone is unsafe.</p>
+  <h3>Privacy and limits</h3>
+  <p>Only your helper-tool choices and Motion setting are saved on this device. No personal worry is typed or saved.
+  Nothing is sent anywhere. Sound and Read use the device's voice when a recording is unavailable.</p>
+  <h3>Things people have found</h3>
+  <p>A tool can feel useful even when a rating stays the same. Different replies can feel useful on different days.
+  Asking an adult is always an available choice.</p>
+  <h3>The real material and permissions</h3>
+  <p>The 13 situations, example replies and flexible basket sizes are Curio Class's fictional examples, not survey or clinical data.
+  Curio Class wording: CC BY 4.0. Code: MIT. Illustrations: generated with OpenAI gpt-image and edited for Curio Class;
+  no outside photographs or artwork are included. Source articles are references for facts, not bundled datasets or copied text.</p>
+  <div id="manualSources"></div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const D = "json:worry-data";
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const art = {
+    'ws-kid-stand':'art:ws-kid-stand','ws-kid-fists':'art:ws-kid-fists','ws-kid-shoulders':'art:ws-kid-shoulders',
+    'ws-kid-toes':'art:ws-kid-toes','ws-kid-loose':'art:ws-kid-loose','ws-basket':'art:ws-basket',
+    'ws-cloud-big':'art:ws-cloud-big','ws-cloud-mid':'art:ws-cloud-mid','ws-cloud-small':'art:ws-cloud-small',
+    'ws-worry-box':'art:ws-worry-box','ws-icon-morning':'art:ws-icon-morning',
+    'ws-icon-afterschool':'art:ws-icon-afterschool','ws-icon-bedtime':'art:ws-icon-bedtime',
+    'ws-card-test':'art:ws-card-test','ws-card-book':'art:ws-card-book','ws-card-podium':'art:ws-card-podium',
+    'ws-card-pool':'art:ws-card-pool','ws-card-bench':'art:ws-card-bench','ws-card-boxes':'art:ws-card-boxes',
+    'ws-card-kitchen':'art:ws-card-kitchen','ws-card-folder':'art:ws-card-folder','ws-card-door':'art:ws-card-door',
+    'ws-card-bedside':'art:ws-card-bedside','ws-card-tablet':'art:ws-card-tablet',
+    'ws-card-bus':'art:ws-card-bus','ws-card-calendar':'art:ws-card-calendar'
+  };
+  const names = ['Box breathing','Talk back','Squeeze and let go','Worry box'];
+  const icons = [
+    '<path d="M5 27V5h22v22Z"/><circle cx="5" cy="27" r="2"/>',
+    '<path d="M7 23c-8-2-5-12 2-12 0-10 17-11 18 0 8 2 7 12-1 12H14l-7 5Z"/>',
+    '<path d="M6 27V14c0-3 4-3 4 0V7c0-3 4-3 4 0v6-8c0-3 4-3 4 0v8-6c0-3 4-3 4 0v10l3-3c3-2 6 1 4 4l-6 9Z"/>',
+    '<path d="M4 12h24v16H4ZM2 8h28v5H2Zm10 1h8"/>'
+  ].map(path=>`<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">${path}</svg>`);
+  const sizes = ['Small','Medium','Big'];
+  const meanings = ['I can handle it with a tool.','A tool, and talk it over with someone.','Tell a trusted adult. Now.'];
+  const adults = ['Parent or caregiver','Grandparent','Teacher','School counselor','Coach','Doctor'];
+  const ways = ['I need to tell you something important.','Something is worrying me and I need help.',
+    "Someone told me to keep a secret, and it doesn't feel right."];
+  const tooBig = 'Tell a trusted adult if a worry: lasts for weeks, gets in the way of school, home or play, '
+    + 'keeps you from sleeping, or is about someone being hurt or not safe.';
+  const L = {
+    wSort:'Every worry is real. Its size is how much help it needs. Drag the card into Small, Medium or Big.',
+    sortPremise:'Every worry is real. Its size is about how much help it needs.',
+    wClues:'Worry shows up in your body. Tap a ring on the kid to see where.',
+    wTools:'Pick a tool. First, tap the meter to show how worried your body feels.',
+    howAfter:'Tap the meter again. How does your body feel now?',
+    big:'This one is Big. Tell a trusted adult. Keep telling until someone helps.',
+    bIn:'Breathe in.',bHold:'Hold.',bOut:'Breathe out.',sqz:'Squeeze your fists.',letgo:'Now let go.',
+    sqzShoulders:'Lift your shoulders.',sqzFeet:'Curl your toes.',
+    meterDown:'Your meter went down. You reported feeling calmer.',meterOther:"That's okay. Try another tool, or talk to a grown-up you trust.",
+    meterCalm:'You started calm. Practicing can help you get ready for a hard day.',
+    meterStopped:'You stopped early. Check how you feel. You can try again, or talk to a grown-up you trust.',
+    breathDone:'Tap Done to check your meter, or tap One more round.',
+    breathLimit:'Tap Done, then rate your meter again.',
+    squeezeShoulders:'Tap Next part. Pull your shoulders up to your ears, then let go when the picture changes.',
+    squeezeFeet:'Tap Next part. Curl your toes, then let go when the picture changes.',
+    startBreath:'Tap Start. Follow the dot around the square. Stay comfortable; never strain.',
+    startTalk:'Tap a Facts, Plan or Brave reply. Say it out loud, or in your head.',
+    startSqueeze:'Tap Start. Make two tight fists, then let go when the picture changes.',
+    startBox:'Tap Fold it. Then tap Put it in the box.',
+    boxed:'Your worry is in the box. Pick a worry time with a grown-up, 10 minutes, not at bedtime, to open it and talk.',
+    private:'You never have to tell the class. Tell one grown-up you trust.',
+    keepTelling:"If that grown-up doesn't help, keep telling until someone does.",danger:'Danger right now? Call 911.',
+    cardText:D.cards.map(c=>c.text),cardReasons:D.cards.map(c=>c.reason),clueText:D.clues.map(c=>c.text),
+    talkText:Object.values(D.talk).flat(),ways,tooBig
+  };
+  Object.assign(L,{
+    think:'Think about this worry for a moment.',
+    saved:'Saved on this device only.',
+    notSaved:"This browser won't save it.",
+    threeRounds:'Three rounds, then check your meter.',
+    nextBig:'Tap Next worry when you are ready.',
+    bigHeader:'Big worries go to a trusted adult, every time.',
+    bigAdults:'A parent or caregiver, a grandparent, a teacher, a school counselor, a coach or a doctor.',
+    clueIntro:'Worry is your body getting ready for a challenge. Tap a ring to see where it shows up.',
+    clueTools:D.clues.map(c=>'Try: '+c.tools+'.'),
+    basketMeanings:sizes.map((s,i)=>s+'. '+meanings[i]),
+    squeezeInstructions:['Make two tight fists.','Pull your shoulders up to your ears.','Curl your toes tight.'],
+    squeezeComfort:'Keep it comfortable. Never squeeze into pain.',
+    putBox:'Tap Put it in the box.',
+    manualRead:'Drag a written worry into a basket, explore Body clues, or choose Tools. The meter is your own rating. Saved choices stay on this device. Sources and permissions are in the Manual.',
+    meterResults:Array.from({length:25},(_,i)=>meterResult(Math.floor(i/5)+1,i%5+1)),
+    hints:[
+      'Picked up. Tap Small, Medium or Big. Or use an arrow key and Enter.',
+      'Drag the card into Small, Medium or Big. Or tap the card, then tap a basket.',
+      'Tap Next worry when you are ready.',
+      'Tap Try a tool on it, or tap Next worry.',
+      ...sizes.map((s,i)=>s+': '+meanings[i]+' Tap the card to pick it up.'),
+      'Tap a numbered ring to open a body clue.',
+      'How worried does your body feel right now? Tap a meter step.',
+      'Follow the dot. Tap Stop whenever you want to finish.',
+      'Tap Done, then rate your meter again.',
+      'Tap Done to check your meter, or tap One more round.',
+      'Tap Start, or choose a shorter count if four feels long.',
+      'Tap a Facts, Plan or Brave reply. Say it out loud, or in your head.',
+      'Follow the picture. Tap Stop to finish now.',
+      'Tap Start to try Hands.','Tap Next part to try Shoulders.','Tap Next part to try Feet.',
+      'Tap Put it in the box.','Tap Fold it.',
+      'Tap the meter again. How does your body feel now?',
+      'Tap This one helps me to keep it, or try another tool.'
+    ]
+  });
+  const state = {
+    mode:'sort',order:[],index:0,picked:false,placements:[],last:null,ended:false,
+    tool:0,toolStep:1,before:null,after:null,sourceCard:null,worry:'s1',replies:[],running:false,
+    phase:0,count:4,phaseCount:4,rounds:0,targetRounds:3,squeezePart:0,folded:false,boxed:false,practiceDone:false,
+    clue:null,results:{},tried:[],helpers:[],storageOK:true,bigUntil:0
+  };
+  let timer=0;
+  let raf=0;
+  let runToken=0;
+  let ghost=null;
+  let dragStart=null;
+  let suppressClick=false;
+  const V = Curio.voice({
+    lines:L,scope:()=>state.mode+(state.mode==='tools'?state.tool:''),hint:false,
+    speaks:'#worryCard,.basket,.meter button',
+    welcome:()=> {
+      if($('manualDrawer').open) return null;
+      if(state.mode==='sort' && !state.picked && !state.last && !state.ended) return 'wSort';
+
+      return null;
+    },
+    read:()=>$('manualDrawer').open?[L.manualRead]:[L.hints[hintKey],...readPanel()]
+  });
+  function readPanel() {
+    if($('manualDrawer').open) return [L.manualRead];
+    if(state.mode==='sort') {
+      const c=state.last?.card||currentCard();
+      if(state.last?.card.size==='Big') {
+        return [L.sortPremise,c.text,c.reason,L.bigHeader,L.bigAdults,...ways,L.keepTelling,L.danger,L.private];
+      }
+      return [L.sortPremise,c.text,...L.basketMeanings,...(state.last?[c.reason]:[])];
+    }
+    if(state.mode==='clues') {
+      return state.clue===null?[L.clueIntro,L.tooBig]:
+        [L.clueText[state.clue],L.clueTools[state.clue],L.tooBig];
+    }
+    if(state.toolStep===1) return state.sourceCard || [1,3].includes(state.tool)?[worryCard().text,L.think]:[];
+    if(state.toolStep===3) return state.after===null?[]:[L.meterResults[(state.before-1)*5+state.after-1],L.saved,
+      ...(state.storageOK?[]:[L.notSaved])];
+    if(state.tool===0) return [L.startBreath,L.threeRounds];
+    if(state.tool===1) return [D.talk[state.worry][0],...(state.replies.length?[D.talk[state.worry][state.replies.at(-1)+1]]:[])];
+    if(state.tool===2) return [L.squeezeInstructions[state.squeezePart],L.squeezeComfort];
+    return [state.boxed?L.boxed:state.folded?L.putBox:L.startBox];
+  }
+  // A Curiosity speaks its first quiet hint once; further narration is requested with Read.
+  function cue() {}
+  function how() {}
+  let hintKey=0;
+  function hint(text) {
+    hintKey=L.hints.indexOf(text);
+    if(hintKey<0) throw new Error('Unregistered hint: '+text);
+    $('hint').textContent=L.hints[hintKey];
+  }
+  function img(name,cls='',alt='') {
+    return `<img src="${art[name]}" class="${cls}" alt="${esc(alt)}" draggable="false">`;
+  }
+  function btn(id,text,primary=false,extra='') {
+    return `<button id="${id}" class="action ${primary?'primary':''}" ${extra}>${text}</button>`;
+  }
+  function bind(id,fn) {
+    const el=$(id);
+    if(el) el.onclick=()=>{Curio.tone(440,.045,.025);fn();};
+  }
+  function preserveRender(fn) {
+    const id=document.activeElement?.id;
+    fn();
+    if(id && $(id) && !$(id).disabled) $(id).focus({preventScroll:true});
+  }
+  function shuffle(a) {
+    const arr=[...a];
+    for(let i=arr.length-1;i>0;i--) {
+      const j=Math.floor(Math.random()*(i+1));
+      [arr[i],arr[j]]=[arr[j],arr[i]];
+    }
+    return arr;
+  }
+  function newSort() {
+    const small=shuffle(D.cards.filter(c=>c.size==='Small'));
+    const medium=shuffle(D.cards.filter(c=>c.size==='Medium'));
+    const easy=shuffle([...small.slice(1),...medium.slice(1)]);
+    const big=shuffle(D.cards.filter(c=>c.size==='Big'));
+    state.order=[small[0],medium[0]];
+    const slots=shuffle([0,1,2,3,4,5,6]).slice(0,5);
+    for(let i=0;i<=easy.length;i++) {
+      if(slots.includes(i)) state.order.push(big.pop());
+      if(i<easy.length) state.order.push(easy[i]);
+    }
+    state.index=0;
+    state.picked=false;
+    state.last=null;
+    state.placements=[];
+    state.ended=false;
+  }
+  function currentCard() {return state.order[state.index];}
+  function stopRun() {
+    runToken++;
+    clearTimeout(timer);
+    cancelAnimationFrame(raf);
+    state.running=false;
+  }
+  function setMode(mode,fromSort=false) {
+    if(!['sort','clues','tools'].includes(mode) || state.mode===mode && !fromSort) return;
+    const moveFocus=document.activeElement?.tagName!=='BODY' && !document.activeElement?.closest('.desk-switches');
+    stopRun();
+    V.hush();
+    removeGhost();
+    state.mode=mode;
+    if(mode==='tools') resetTool();
+    if(mode==='tools' && !fromSort) state.sourceCard=null;
+
+    render();
+    if(moveFocus) {
+      const next=mode==='tools'?$('meter3'):mode==='sort'?($('nextWorry')||$('worryCard')):$('clue0');
+      next?.focus({preventScroll:true});
+    }
+
+  }
+  function render() {
+    document.body.dataset.mode=state.mode;
+    document.querySelectorAll('button[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode===state.mode));
+    if(state.mode==='sort') renderSort();
+    if(state.mode==='clues') renderClues();
+    if(state.mode==='tools') renderTools();
+
+  }
+  function renderSort() {
+    const c=currentCard();
+    const held=state.picked?'Picked up. Tap a basket.':'Tap or drag to pick up';
+    const card=`<div class="card-stack"><button id="worryCard" class="worry-card ${state.picked?'picked':''} ${state.last?'placed':''}"
+      aria-pressed="${state.picked}" aria-label="${esc(c.text)} ${state.last?'Sorted':'Pick up worry card'}" ${state.last?'aria-disabled="true"':''}>
+      ${img(c.art)}<span class="card-text">${esc(c.text)}</span></button>
+      <p class="card-caption">${state.last?'Sorted into '+state.last.basket+'.':held}</p></div>`;
+    $('stage').innerHTML=`<div class="sort-world">${card}
+      <p class="principle">${L.sortPremise}</p>
+      <div class="baskets">${sizes.map((s,i)=> {
+        const items=state.placements.filter(p=>p.basket===s);
+        return `<button id="basket${i}" class="basket" style="--basket:var(--${s.toLowerCase()})" aria-label="${s}. ${meanings[i]}">
+          ${img('ws-basket','basket-art')}<span class="basket-label"><b>${s}</b><span class="meaning">${meanings[i]}</span></span>
+          <span class="thumbs">${items.map(p=>img(p.card.art,'',p.card.text)).join('')}</span>
+          <span class="basket-count">${items.length?items.length+' sorted':''}</span></button>`;
+      }).join('')}</div></div>`;
+    sizes.forEach((s,i)=>bind('basket'+i,()=>place(s)));
+    if(c && !state.ended) {
+      bind('worryCard',()=> {
+        if(suppressClick) {suppressClick=false;return;}
+        if(state.last) return;
+        state.picked=!state.picked;
+        preserveRender(renderSort);
+      });
+      $('worryCard').onpointerdown=startDrag;
+    }
+
+    if(!state.last) {
+      hint(state.picked?'Picked up. Tap Small, Medium or Big. Or use an arrow key and Enter.':
+        'Drag the card into Small, Medium or Big. Or tap the card, then tap a basket.');
+      $('panelContent').innerHTML=`<p class="eyebrow">How much help?</p><h2>Make room for the worry.</h2>
+        <p>Small and Medium can feel different to different people.</p>
+        <p class="note">Big worries go to a trusted adult, every time.</p>`;
+      return;
+    }
+    const last=state.last;
+    if(last.card.size==='Big') {
+      hint(L.nextBig);
+      $('panelContent').innerHTML=`<h2>${last.requested==='Big'?'Yes, this one is Big.':'This one is Big.'}</h2>
+        <p>${esc(last.card.reason)}</p><div class="big-panel"><h3>Big worries go to a trusted adult, every time.</h3>
+        <div class="adult-chips">${adults.map(a=>`<span>${a}</span>`).join('')}</div>
+        <div class="ways"><b>Ways to start</b>${ways.map(w=>`<p>“${esc(w)}”</p>`).join('')}</div>
+        <p>${L.keepTelling}</p><b>${L.danger}</b><p>${L.private}</p></div>
+        ${btn('nextWorry','Next worry ▶',true)}`;
+    } else {
+      hint('Tap Try a tool on it, or tap Next worry.');
+      const note=last.basket==='Big'?'<p>Telling a trusted adult is never wrong. A coping tool could also help with this worry.</p>':
+        `<p>${last.basket===last.card.size?'One way to size it: '+last.card.size+'.':'You can put this in '+last.card.size+'. '+last.basket+' is fine too.'}</p><p class="note"><b>It gets bigger if</b> ${esc(last.card.reason)}</p>`;
+      $('panelContent').innerHTML=`<h2>${last.basket==='Big'?'Telling is never wrong.':'You put it in '+last.basket+'.'}</h2>
+        ${note}${last.card.size==='Medium'?'<p>Who could you talk this over with?</p>':''}${btn('tryTool','Try a tool on it',true)}${btn('nextWorry','Next worry ▶')}`;
+      bind('tryTool',()=> {
+        state.sourceCard=last.card.id;
+        state.worry=last.card.id;
+        setMode('tools',true);
+      });
+    }
+    bind('nextWorry',nextWorry);
+  }
+  function place(requested) {
+    if(state.ended) return;
+    if(state.last) {finishBigSlide();return;}
+    if(!state.picked) {
+      hint(requested+': '+meanings[sizes.indexOf(requested)]+' Tap the card to pick it up.');
+      return;
+    }
+    const focusID=document.activeElement?.id||'';
+    const card=currentCard();
+    const basket=card.size==='Big'?'Big':requested;
+    state.last={card,basket,requested};
+    state.placements=state.placements.filter(p=>p.card.id!==card.id);
+    state.placements.push(state.last);
+    state.picked=false;
+    V.dropQueued(line=>line.key!=='big');
+    state.bigUntil=0;
+    renderSort();
+    const target=$('basket'+sizes.indexOf(basket));
+    if(focusID==='worryCard' || focusID.startsWith('basket')) target.focus({preventScroll:true});
+    if(!Curio.reduce) target.classList.add('settle');
+    Curio.tone(card.size==='Big'?330:550,.15,.06);
+    // Animate every destination; the final opacity persists even when Motion is off.
+    const el=$('worryCard');
+    if(!Curio.reduce) {
+      el.style.visibility='visible';
+      const a=el.getBoundingClientRect();
+      const b=target.querySelector('.basket-art').getBoundingClientRect();
+      const flight=el.animate([{transform:'none',opacity:1},
+        {transform:`translate(${b.x+b.width/2-a.x-a.width/2}px,${b.y+b.height/2-a.y-a.height/2}px) scale(.12)`,opacity:0}],
+        {duration:600,easing:'ease-in-out',fill:'forwards'});
+      flight.finished.then(()=>{el.style.visibility='hidden';}).catch(()=>{});
+    }
+  }
+  function finishBigSlide() {$('worryCard')?.getAnimations().forEach(a=>a.finish());}
+  function nextWorry() {
+    if(!state.last) return;
+    finishBigSlide();
+    if(performance.now()<state.bigUntil) {
+      $('nextWorry').textContent='Listening…';
+      const item=state.last;
+      setTimeout(()=>{if(state.mode==='sort' && state.last===item) nextWorry();},Math.max(1,state.bigUntil-performance.now()));
+      return;
+    }
+    V.dropQueued(line=>line.key!=='big');
+    state.index++;
+    state.last=null;
+    state.picked=false;
+    if(state.index>=state.order.length) state.index=0;
+    renderSort();
+    $('worryCard')?.focus({preventScroll:true});
+  }
+  function inside(e,r) {return e.clientX>=r.left && e.clientX<=r.right && e.clientY>=r.top && e.clientY<=r.bottom;}
+  function removeGhost() {
+    ghost?.remove();
+    ghost=null;
+    dragStart=null;
+    document.querySelectorAll('.over').forEach(e=>e.classList.remove('over'));
+  }
+  function startDrag(e) {
+    if(state.last || e.button!==0) return;
+    removeGhost();
+    dragStart={x:e.clientX,y:e.clientY,id:e.pointerId};
+    const card=e.currentTarget;
+    card.setPointerCapture(e.pointerId);
+    card.onpointermove=ev=> {
+      if(!dragStart) return;
+      if(!ghost && Math.hypot(ev.clientX-dragStart.x,ev.clientY-dragStart.y)>7) {
+        state.picked=true;
+        ghost=card.cloneNode(true);
+        ghost.removeAttribute('id');
+        ghost.className='worry-card ghost';
+        ghost.setAttribute('aria-hidden','true');
+        ghost.tabIndex=-1;
+        document.body.append(ghost);
+        Curio.tone(440,.05,.04);
+      }
+      if(ghost) {
+        ghost.style.left=(ev.clientX-95)+'px';
+        ghost.style.top=(ev.clientY-70)+'px';
+        document.querySelectorAll('.basket').forEach(b=>b.classList.toggle('over',inside(ev,b.getBoundingClientRect())));
+      }
+    };
+    card.onpointerup=ev=> {
+      const dragged=!!ghost;
+      const target=[...document.querySelectorAll('.basket')].find(b=>inside(ev,b.getBoundingClientRect()));
+      if(dragged && !target && !Curio.reduce) {
+        const returning=ghost;
+        const home=card.getBoundingClientRect();
+        dragStart=null;
+        document.querySelectorAll('.over').forEach(b=>b.classList.remove('over'));
+        returning.animate([{opacity:.9},{left:(home.x+home.width/2-95)+'px',top:home.y+'px',
+          transform:'rotate(0deg)',opacity:0}],{duration:300,easing:'ease-out',fill:'forwards'});
+        Curio.wait(300).then(()=>{if(ghost===returning) removeGhost();});
+      } else removeGhost();
+      if(dragged) {
+        suppressClick=true;
+        if(target) place(sizes[Number(target.id.slice(-1))]);
+        else {state.picked=false;renderSort();}
+        setTimeout(()=>{suppressClick=false;},100);
+      }
+    };
+    card.onpointercancel=()=>{removeGhost();state.picked=false;renderSort();};
+  }
+  function renderClues() {
+    $('stage').innerHTML=`<div class="kid-world"><div class="kid-wrap">${img('ws-kid-stand','','A child standing relaxed')}
+      <svg class="body-leaders" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M25 11L40 10 M76 30L57 29 M25 31L43 31 M15 57L19 54"/></svg>
+      ${D.clues.map((c,i)=>`<button class="hotspot" id="clue${i}" aria-pressed="${state.clue===i}"
+        aria-label="${i+1}. ${c.name}">${i+1}</button>`).join('')}</div></div>`;
+    requestAnimationFrame(layoutClues);
+    const c=state.clue===null?null:D.clues[state.clue];
+    hint('Tap a numbered ring to open a body clue.');
+    $('panelContent').innerHTML=`<p class="eyebrow">Listen to your body</p><h2>${c?esc(c.name):'Where do you notice worry?'}</h2>
+      <p>${c?esc(c.text):'Worry is your body getting ready for a challenge. Tap a ring to see where it shows up.'}</p>
+      ${c?`<div class="try-tools"><b>Try:</b> ${clueToolIndices(c).map(i=>btn('clueTool'+i,names[i])).join('')}</div>`:''}
+      <div class="clue-index">${D.clues.map((c,i)=>`<span>${i+1} ${c.name}</span>`).join('')}</div>
+      <details ${innerHeight>640?'open':''}><summary>When is a worry too big to carry?</summary><p>${tooBig}</p></details>`;
+    if(c) clueToolIndices(c).forEach(i=>bind('clueTool'+i,()=>{state.tool=i;setMode('tools');}));
+    D.clues.forEach((c,i)=>bind('clue'+i,()=> {
+      state.clue=i;
+      V.hush();
+      preserveRender(renderClues);
+
+    }));
+  }
+  function layoutClues() {
+    const wrap=document.querySelector('.kid-wrap');
+    if(!wrap) return;
+    const r=wrap.getBoundingClientRect();
+    const anchors=[[40,10],[57,29],[43,31],[50,43],[19,54]];
+    wrap.querySelector('svg').innerHTML=anchors.map(([x,y],i)=> {
+      if(i===3) return '';
+      const b=$('clue'+i).getBoundingClientRect();
+      return `<line x1="${(b.x+b.width/2-r.x)*100/r.width}" y1="${(b.y+b.height/2-r.y)*100/r.height}"
+        x2="${x}" y2="${y}"/>`;
+    }).join('');
+  }
+  addEventListener('resize',()=>{layoutClues();layoutPaper();});
+  function clueToolIndices(c) {return names.map((n,i)=>c.tools.includes(n)?i:-1).filter(i=>i>=0);}
+  function resetTool() {
+    state.toolStep=1;
+    state.before=null;
+    state.after=null;
+    state.replies=[];
+    state.folded=false;
+    state.boxed=false;
+    state.rounds=0;
+    state.targetRounds=3;
+    state.phase=0;
+    state.squeezePart=0;
+    state.practiceDone=false;
+  }
+  function chooseTool(i) {
+    if(state.tool===i) return;
+    stopRun();
+    V.hush();
+    state.tool=i;
+    resetTool();
+    preserveRender(renderTools);
+
+  }
+  function worryCard() {return D.cards.find(c=>c.id===state.worry)||D.cards[0];}
+  function renderTools() {
+    $('stage').innerHTML=`<div class="tools-world"><p class="worry-context">${state.sourceCard || [1,3].includes(state.tool)?esc(worryCard().text):''}</p>
+      <div class="tool-tiles" role="group" aria-label="Coping tool">${names.map((n,i)=>
+        `<button class="tool-tile" id="tool${i}" aria-label="${n}" aria-pressed="${state.tool===i}">
+        <span class="tool-icon" aria-hidden="true">${icons[i]}</span><span class="tool-name">${n}</span></button>`).join('')}</div>
+      <div class="tool-picture" id="toolPicture"></div></div>`;
+    names.forEach((n,i)=>bind('tool'+i,()=>chooseTool(i)));
+    renderToolPicture();
+    renderToolPanel();
+  }
+  function renderToolPicture() {
+    const p=$('toolPicture');
+    if(!p) return;
+    if(state.tool===0) {
+      const checkIn=state.toolStep===3 && state.after!==null;
+      p.innerHTML=`<div class="breath"><svg viewBox="0 0 440 440" aria-label="Breathing square">
+        <defs><linearGradient id="squareWash" x2="1" y2="1"><stop stop-color="#fffaf0"/><stop offset="1" stop-color="#edd9b5"/></linearGradient></defs>
+        <rect x="30" y="30" width="380" height="380" rx="32" fill="url(#squareWash)" stroke="#d7bb8d" stroke-width="2"/>
+        <path d="M45 395V45H395V395Z" fill="none" stroke="#bc9464" stroke-width="8" stroke-linejoin="round"/>
+        <path id="activeSide" d="M45 395V45" fill="none" stroke="#9a4a1c" stroke-width="12" stroke-linecap="round"/>
+        <circle id="breathDot" cx="45" cy="395" r="15" fill="#9a4a1c" stroke="#fff5d9" stroke-width="3"/>
+        </svg><div class="breath-label ${checkIn?'check-in':''}"><strong id="phaseLabel">${checkIn?'Your check-in':'Box breathing'}</strong>
+        <b id="breathCount">${checkIn?state.before+' → '+state.after:'□'}</b>
+        <small id="roundLabel">${checkIn?'Before to after. Your own rating.':'Follow the square'}</small></div></div>`;
+    }
+    if(state.tool===1) {
+      const level=state.replies.length===0?'big':state.replies.length===1?'mid':'small';
+      const talk=D.talk[worryCard().id];
+      p.innerHTML=`${img(worryCard().art,'thought-scene')}<div class="bubble">“${esc(talk[0])}”</div>
+        ${img('ws-cloud-'+level,'cloud '+level,'A worry cloud becoming smaller as you talk back')}
+        ${state.replies.length?`<div class="reply">“${esc(talk[state.replies.at(-1)+1])}”</div>`:''}`;
+    }
+    if(state.tool===2) {
+      const pose=state.running && !state.relaxing?['fists','shoulders','toes'][state.squeezePart]:'loose';
+      p.innerHTML=`${img('ws-kid-'+pose,'squeeze-kid','A child demonstrating squeeze and let go')}
+        <p class="practice-caption">${state.running?(state.relaxing?'Let go. Notice loose.':squeezeWords()):'Notice how loose feels after tight.'}</p>`;
+    }
+    if(state.tool===3) {
+      p.innerHTML=`<div class="box-picture">${img('ws-worry-box','','A blue worry box with stars and a slot')}
+        <div class="slip ${state.folded?'folded':''} ${state.boxed?'boxed':''}">${esc(worryCard().text)}</div></div>`;
+      requestAnimationFrame(()=>layoutPaper());
+    }
+  }
+  function layoutPaper(animate=false) {
+    const el=document.querySelector('.slip');
+    const image=document.querySelector('.box-picture img');
+    if(!el || !image || !state.folded) return;
+    el.getAnimations().forEach(a=>a.cancel());
+    el.style.transition='none';
+    el.style.transform='none';
+    const a=el.getBoundingClientRect();
+    const b=image.getBoundingClientRect();
+    const ratio=480/312;
+    const width=Math.min(b.width,b.height*ratio);
+    const height=width/ratio;
+    const slotX=b.x+b.width/2;
+    const slotY=b.y+(b.height-height)/2+height*.22;
+    const x=slotX-a.x-a.width/2;
+    const y=slotY-a.y-a.height/2-(state.boxed?0:50);
+    const end=`translate(${x}px,${y}px) scale(${state.boxed?'.12,.05':'.5,.5'})`;
+    el.style.transform=end;
+    el.style.opacity=state.boxed?'0':'1';
+    if(animate && !Curio.reduce) {
+      const frames=state.boxed?
+        [{transform:`translate(${x}px,${y-50}px) scale(.5,.5)`,opacity:1},{transform:end,opacity:0}]:
+        [{transform:'none'},{transform:`translate(${x/2}px,${y/2}px) scale(1,.5)`,offset:.5},{transform:end}];
+      el.animate(frames,{duration:state.boxed?600:800,easing:'ease-in-out'});
+    }
+  }
+  function meterHTML() {
+    const labels=['Calm','A little','Some','A lot','Very'];
+    const selected=state.toolStep===1?state.before:state.after;
+    return `<div class="meter" role="group" aria-label="Your own worry rating">${labels.map((l,i)=>
+      `<button id="meter${i+1}" class="${selected===i+1?'chosen':''}" aria-pressed="${selected===i+1}"><b>${i+1}</b>${l}</button>`).join('')}</div>`;
+  }
+  function renderToolPanel() {
+    const step=state.toolStep;
+    let html=`<div class="steps"><span class="${step===1?'current':''}">Before</span>
+      <span class="${step===2?'current':''}">Practice</span><span class="${step===3?'current':''}">After</span></div><h2>${names[state.tool]}</h2>`;
+    if(step===1) {
+      hint('How worried does your body feel right now? Tap a meter step.');
+      html+=`${state.sourceCard || [1,3].includes(state.tool)?`<p class="muted">${L.think}</p>`:''}${meterHTML()}`;
+      if(!state.sourceCard && [1,3].includes(state.tool)) {
+        html+=`<label for="worryChoice" class="muted">Choose a written worry</label><select id="worryChoice">${D.cards.filter(c=>c.size!=='Big').map(c=>
+          `<option value="${c.id}" ${state.worry===c.id?'selected':''}>${esc(c.text)}</option>`).join('')}</select>`;
+      }
+    } else if(step===2) {
+      if(state.tool===0) {
+        hint(state.running?'Follow the dot. Tap Stop whenever you want to finish.':state.rounds>=4?L.breathLimit:
+          state.rounds>=3?L.breathDone:'Tap Start, or choose a shorter count if four feels long.');
+        html+=`<p>Stay comfortable. Never strain.</p><p class="note">${state.rounds>=3?'Another round?':'Three rounds, then check your meter.'}</p>
+          <div class="tool-controls"><div class="row">${btn('startTool',state.rounds>=3?'One more round':'Start',true,state.running||state.rounds>=4?'disabled':'')}
+          ${btn('stopTool',state.rounds>=3?'Done':'Stop',false,!state.running&&state.rounds<3?'disabled':'')}</div>
+          ${btn('countToggle','Shorter count (3)',false,`aria-pressed="${state.count===3}"`)}</div>
+          <p class="muted">A count of 3 is shorter, for when 4 feels long.</p>`;
+      }
+      if(state.tool===1) {
+        hint('Tap a Facts, Plan or Brave reply. Say it out loud, or in your head.');
+        html+=`<div class="talk-answers">${D.talk[worryCard().id].slice(1).map((t,i)=>
+          `<button id="reply${i}" class="action reply-btn" aria-pressed="${state.replies.includes(i)}">
+          <small>${['Facts','Plan','Brave'][i]}</small>${esc(t)}</button>`).join('')}</div>
+          <p class="muted">Worry talks less when you talk back.</p>${btn('talkDone','Done',true,!state.replies.length?'disabled':'')}`;
+      }
+      if(state.tool===2) {
+        const label=state.squeezePart?'Next part':'Start';
+        hint(state.running?'Follow the picture. Tap Stop to finish now.':`Tap ${label} to try ${['Hands','Shoulders','Feet'][state.squeezePart]}.`);
+        html+=`<h3>${['Hands','Shoulders','Feet'][state.squeezePart]}</h3><p>${squeezeWords()}</p>
+          <p class="muted">Keep it comfortable. Never squeeze into pain.</p>
+          <div class="progress-track"><div id="squeezeProgress"></div></div><p id="squeezeSeconds" class="muted">5 seconds tight, 10 seconds loose.</p>
+          <div class="row">${btn('startTool',state.squeezePart?'Next part ▶':'Start',true,state.running?'disabled':'')}
+          ${btn('stopTool','Stop',false,!state.running?'disabled':'')}</div>`;
+      }
+      if(state.tool===3) {
+        hint(state.boxed?'Tap Done, then rate your meter again.':state.folded?'Tap Put it in the box.':'Tap Fold it.');
+        html+=!state.boxed?btn('boxAction',state.folded?'Put it in the box':'Fold it',true):
+          `<p class="note">${L.boxed} At home, write it on real paper.</p>${btn('boxDone','Done',true)}`;
+      }
+    } else {
+      hint(state.after===null?L.howAfter:'Tap This one helps me to keep it, or try another tool.');
+      html+=meterHTML();
+      if(state.after!==null) {
+        html+=`${!state.practiceDone?'<p class="muted">You stopped early. This is a check-in, not a finished practice.</p>':''}
+          <p class="note" id="meterResult">${meterResult(state.before,state.after)}</p>
+          <div class="result-actions">${btn('helps',state.helpers.includes(state.tool)?'In My helpers ✓':'This one helps me',true,
+            `aria-pressed="${state.helpers.includes(state.tool)}"`)}${btn('anotherTool','Try another tool')}
+          ${state.sourceCard?btn('backSort','Back to sorting'):''}${privacy()}</div>`;
+      }
+    }
+    if((state.sourceCard || [1,3].includes(state.tool)) && ['m3','m4'].includes(state.worry)) {
+      html+=`<p class="note">It gets bigger if ${esc(worryCard().reason)} Tell a trusted adult.</p>`;
+    }
+    $('panelContent').innerHTML=html;
+    if(step===1 || step===3) for(let n=1;n<=5;n++) bind('meter'+n,()=>rate(n));
+    if($('worryChoice')) $('worryChoice').onchange=e=> {
+      state.worry=e.target.value;
+      Curio.tone(440,.045,.025);
+      V.hush();
+      preserveRender(renderTools);
+    };
+    bind('startTool',()=>state.tool===0?startBreathing():startSqueeze());
+    bind('stopTool',afterTool);
+    bind('countToggle',()=> {
+      state.count=state.count===4?3:4;
+      $('countToggle').textContent='Shorter count (3)';
+      $('countToggle').setAttribute('aria-pressed',state.count===3);
+    });
+    for(let i=0;i<3;i++) bind('reply'+i,()=> {
+      const oldWidth=document.querySelector('.cloud')?.getBoundingClientRect().width||320;
+      if(!state.replies.includes(i)) state.replies.push(i);
+      V.hush();
+      preserveRender(()=>{renderToolPicture();renderToolPanel();});
+      const cloud=document.querySelector('.cloud');
+      if(!Curio.reduce && cloud) {
+        const scale=oldWidth/cloud.getBoundingClientRect().width;
+        cloud.animate([{transform:`scale(${scale})`},{transform:'scale(1)'}],{duration:600,easing:'ease-out'});
+      }
+      cue(D.talk[worryCard().id][i+1],()=>state.toolStep===2);
+    });
+    bind('talkDone',()=>{state.practiceDone=state.replies.length>0;afterTool();});
+    bind('boxAction',()=> {
+      if(!state.folded) state.folded=true;
+      else state.boxed=true;
+      document.querySelector('.slip').classList.toggle('folded',state.folded);
+      document.querySelector('.slip').classList.toggle('boxed',state.boxed);
+      layoutPaper(true);
+      preserveRender(renderToolPanel);
+      if(state.boxed) $('boxDone')?.focus({preventScroll:true});
+      if(state.boxed) cue('boxed',()=>state.toolStep===2);
+    });
+    bind('boxDone',()=>{state.practiceDone=state.boxed;afterTool();});
+    bind('helps',()=> {
+      if(!state.helpers.includes(state.tool)) state.helpers.unshift(state.tool);
+      saveHelpers();
+      preserveRender(renderToolPanel);
+    });
+    bind('anotherTool',()=> {
+      stopRun();
+      V.hush();
+      resetTool();
+      renderTools();
+      $('tool'+state.tool).focus({preventScroll:true});
+    });
+    bind('backSort',()=>setMode('sort'));
+  }
+  function rate(n) {
+    if(state.toolStep===1) {
+      state.before=n;
+      state.toolStep=2;
+      V.hush();
+      renderToolPanel();
+      ($('startTool')||$('reply0')||$('boxAction'))?.focus({preventScroll:true});
+      how(['startBreath','startTalk','startSqueeze','startBox'][state.tool]);
+    } else if(state.toolStep===3) {
+      state.after=n;
+      state.results[state.tool]={before:state.before,after:n};
+      if(!state.tried.includes(state.tool)) state.tried.push(state.tool);
+      V.hush();
+      preserveRender(()=>{renderToolPicture();renderToolPanel();});
+      const key=!state.practiceDone?'meterStopped':n===1 && state.before===1?'meterCalm':n<state.before?'meterDown':'meterOther';
+      cue(key,()=>state.toolStep===3);
+    }
+  }
+  function meterResult(b,a) {
+    if(a<b) return `Your meter went from ${b} to ${a}. You reported feeling calmer.`;
+    if(a>b) return 'Your meter went up. That happens. Try a different tool, or talk to a grown-up you trust.';
+    if(b===1) return "You started calm. Practicing when you're calm makes a tool ready for a hard day.";
+    return "Same as before. That's okay. Not every tool works every time. Try another one.";
+  }
+  function afterTool(manual=true) {
+    stopRun();
+    if(manual) V.hush();
+    else V.dropQueued();
+    state.toolStep=3;
+    state.after=null;
+    renderTools();
+    $('meter3').focus({preventScroll:true});
+    how('howAfter');
+  }
+  function startBreathing() {
+    if(state.running || state.rounds>=4) return;
+    state.targetRounds=state.rounds>=3?state.rounds+1:3;
+    state.running=true;
+    state.phase=0;
+    V.hush();
+    renderToolPanel();
+    $('stopTool').focus({preventScroll:true});
+    breathingPhase(++runToken);
+  }
+  function breathingPhase(token) {
+    if(token!==runToken || !state.running) return;
+    const phase=state.phase%4;
+    state.phaseCount=state.count;
+    const duration=state.phaseCount*1000;
+    const serial=state.phase;
+    V.dropQueued();
+    cue(['bIn','bHold','bOut','bHold'][phase],()=>state.running && state.phase===serial);
+    const paths=['M45 395V45','M45 45H395','M395 45V395','M395 395H45'];
+    $('activeSide').setAttribute('d',paths[phase]);
+    $('phaseLabel').textContent=['Breathe in','Hold','Breathe out','Hold'][phase];
+    $('roundLabel').textContent='Round '+(state.rounds+1)+' · count of '+state.phaseCount;
+    const starts=[[45,395],[45,45],[395,45],[395,395]];
+    const ends=[[45,45],[395,45],[395,395],[45,395]];
+    const start=performance.now();
+    function frame(now) {
+      if(token!==runToken || !state.running) return;
+      const f=Curio.reduce?0:Math.min(1,(now-start)/duration);
+      $('breathDot').setAttribute('cx',starts[phase][0]+(ends[phase][0]-starts[phase][0])*f);
+      $('breathDot').setAttribute('cy',starts[phase][1]+(ends[phase][1]-starts[phase][1])*f);
+      $('breathCount').textContent=Math.min(state.phaseCount,Math.floor((now-start)/1000)+1);
+      raf=requestAnimationFrame(frame);
+    }
+    raf=requestAnimationFrame(frame);
+    timer=setTimeout(()=> {
+      cancelAnimationFrame(raf);
+      state.phase++;
+      if(state.phase%4===0) state.rounds++;
+      if(state.rounds>=state.targetRounds) {
+        state.running=false;
+        state.practiceDone=true;
+        V.dropQueued();
+        $('phaseLabel').textContent='Another round?';
+        $('breathCount').textContent='✓';
+        $('roundLabel').textContent=state.rounds+' rounds practiced';
+        preserveRender(renderToolPanel);
+        $('stopTool').focus({preventScroll:true});
+        how(state.rounds>=4?'breathLimit':'breathDone');
+      } else breathingPhase(token);
+    },duration);
+  }
+  function squeezeWords() {
+    return ['Make two tight fists.','Pull your shoulders up to your ears.','Curl your toes tight.'][state.squeezePart];
+  }
+  function startSqueeze() {
+    if(state.running) return;
+    state.running=true;
+    state.relaxing=false;
+    V.hush();
+    renderToolPicture();
+    renderToolPanel();
+    $('stopTool').focus({preventScroll:true});
+    const token=++runToken;
+    squeezePhase(false,5000,token,()=> {
+      state.relaxing=true;
+      renderToolPicture();
+      squeezePhase(true,10000,token,()=> {
+        state.running=false;
+        V.dropQueued();
+        if(state.squeezePart===2) {state.practiceDone=true;afterTool(false);}
+        else {
+          state.squeezePart++;
+          renderToolPicture();
+          renderToolPanel();
+          $('startTool').focus({preventScroll:true});
+          how(state.squeezePart===1?'squeezeShoulders':'squeezeFeet');
+        }
+      });
+    });
+  }
+  function squeezePhase(loose,duration,token,done) {
+    V.dropQueued();
+    cue(loose?'letgo':['sqz','sqzShoulders','sqzFeet'][state.squeezePart],
+      ()=>state.running && state.relaxing===loose);
+    const start=performance.now();
+    function frame(now) {
+      if(token!==runToken || !state.running) return;
+      const f=Math.min(1,(now-start)/duration);
+      if($('squeezeProgress')) $('squeezeProgress').style.width=(100*f)+'%';
+      if($('squeezeSeconds')) {
+        const seconds=Math.max(0,Math.ceil((duration-now+start)/1000));
+        $('squeezeSeconds').textContent=(loose?'Let go: ':'Squeeze: ')+seconds+' '+(seconds===1?'second':'seconds');
+      }
+      raf=requestAnimationFrame(frame);
+    }
+    raf=requestAnimationFrame(frame);
+    timer=setTimeout(()=>{cancelAnimationFrame(raf);if(token===runToken) done();},duration);
+  }
+  function saveHelpers() {
+    try {localStorage.setItem('wss-helpers',JSON.stringify(state.helpers));}
+    catch {state.storageOK=false;}
+  }
+  function loadHelpers() {
+    try {
+      const saved=JSON.parse(localStorage.getItem('wss-helpers')||'[]');
+      state.helpers=Array.isArray(saved)?saved.filter(i=>Number.isInteger(i)&&i>=0&&i<4):[];
+    } catch {state.storageOK=false;}
+  }
+  function privacy() {
+    return `<p class="privacy">${L.saved}${state.storageOK?'':' '+L.notSaved}</p>`;
+  }
+  document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{Curio.tone(440,.05,.025);setMode(b.dataset.mode);});
+  addEventListener('keydown',e=> {
+    if(e.altKey || e.ctrlKey || e.metaKey || e.target.tagName==='SELECT') return;
+    if(state.mode==='sort' && state.picked) {
+      if(['1','2','3'].includes(e.key)) {e.preventDefault();place(sizes[Number(e.key)-1]);return;}
+      if(e.key==='Escape') {
+        e.preventDefault();
+        state.picked=false;
+        renderSort();
+        $('worryCard').focus({preventScroll:true});
+        return;
+      }
+      if(e.key.startsWith('Arrow')) {
+        e.preventDefault();
+        const old=Number(document.activeElement.id.slice(-1));
+        const delta=['ArrowLeft','ArrowUp'].includes(e.key)?-1:1;
+        const next=Number.isFinite(old)?(old+delta+3)%3:0;
+        $('basket'+next).focus({preventScroll:true});
+        return;
+      }
+    }
+    if(e.target.closest('.meter') && ['1','2','3','4','5'].includes(e.key)) {
+      e.preventDefault();
+      rate(Number(e.key));
+      return;
+    }
+    if(e.target.closest('.desk-switches') && ['1','2','3'].includes(e.key)) {
+      e.preventDefault();
+      setMode(['sort','clues','tools'][Number(e.key)-1]);
+    }
+  });
+  bind('manual',()=>{
+    V.hush();
+    $('manualDrawer').showModal();
+    $('manual').setAttribute('aria-expanded','true');
+    $('closeManual').focus({preventScroll:true});
+  });
+  bind('closeManual',()=>$('manualDrawer').close());
+  $('manualDrawer').addEventListener('close',()=>{
+    $('manual').setAttribute('aria-expanded','false');
+    $('manual').focus({preventScroll:true});
+  });
+  const adultReferenceURLs=new Set([
+    'https://www.missingkids.org/gethelpnow/cybertipline',
+    'https://takeitdown.ncmec.org/',
+    'https://childhelphotline.org/',
+    'https://childhelp.org/what-to-do-if-a-child-tells-you-theyre-being-abused-a-step-by-step-guide/',
+    'https://www.michigan.gov/mde/services/ed-serv/educator-conduct/abuse-neglect',
+    'https://shapeamerica.org/standards/health/new-he-standards/',
+    'https://www.justice.gov/usao-ri/file/765166/dl'
+  ]);
+  $('manualSources').innerHTML=D.sourceNotes.filter(s=>!adultReferenceURLs.has(s.url)).map(s=>`<p><b>${esc(s.name)}</b>: ${esc(s.url.includes('/criminal/media/1437006/')?
+      'Children who are harmed are not at fault; trusted adults can help.':
+      s.url.includes('/balance/what-is-box-breathing')?
+      'Four breathing phases and a shorter count for comfort.':s.claim)}
+    <br><small>${esc(s.licence)} Reference: ${esc(s.url)}</small></p>`).join('');
+  Curio.init({clips:"voice:*",rate:.95});
+  Curio.onMotion(reduce=> {
+    if(reduce) document.getAnimations().filter(a=>a.effect.getTiming().iterations!==Infinity).forEach(a=>a.finish());
+  });
+  loadHelpers();
+  newSort();
+  render();
+  window.__tool={state,setMode,allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},
+    meterResult,newSort,place,rate,afterTool,render,readPanel};
+})();
+</script>
+</body>
+</html>

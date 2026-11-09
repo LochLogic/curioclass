@@ -1,5 +1,5 @@
 {
-  "house_style": "Realistic close-up natural stone texture photograph seen straight down, even soft light, no shadows, seamless and edge to edge. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
+  "house_style": "Sunlit field geology, realistic painterly gouache with fine natural grain, restrained warm sandstone and cream palette, soft upper-left illumination. Edge-to-edge, no text, letters, numbers, logos, watermarks or people.",
   "style": "A texture behind a coordinate plane, cropped square; it fills the whole frame with nothing else in it.",
   "assets": [
     {
@@ -11,7 +11,56 @@
       "quality": 70,
       "sd": "Top-down photograph of a flat rippled sandstone rock surface filling the entire frame, many gentle wavy parallel ripple ridges running across it, warm tan, ochre and sandy beige colors, fine sand grain, soft even daylight, natural stone texture.",
       "source": "flux1-schnell (local)",
-      "review": "pending"
+      "review": "ok"
+    },
+    {
+      "name": "rmt-plaster",
+      "prompt": "A flat smooth surface of white casting plaster seen straight down, faint diagonal brush strokes and tiny air bubbles, soft even light, full frame.",
+      "aspect": "1:1",
+      "width": 512,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in)"
+    },
+    {
+      "name": "rmt-mud",
+      "prompt": "A flat surface of dark damp brown mudstone seen straight down, fine cracks and grit, soft even light, full frame.",
+      "aspect": "1:1",
+      "width": 512,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in)"
+    },
+    {
+      "name": "rmt-trackway",
+      "prompt": "A wide riverside shelf of pale sandstone with a long line of three-toed dinosaur footprints pressed into it, ferns and a slow brown river beyond, low warm evening sun, painted illustration. Wide panoramic composition with footprints across the middle, richly layered foreground rock, middle riverbank and distant wooded hills.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in)",
+      "trim": 0.035
+    },
+    {
+      "name": "rmt-notebook",
+      "prompt": "An open field notebook page of pale cream graph paper seen straight down, faint blue grid, a soft shadow at the spine on the left, blank page, soft even light. Full-frame paper, subtle fibers and worn page corners.",
+      "aspect": "4:3",
+      "width": 1000,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "review": "ok",
+      "source": "OpenAI gpt-image (built-in)"
     }
   ]
 }

@@ -77,6 +77,7 @@ select { min-height:44px; min-width:44px; width:100%; border:1px solid #546d7b; 
 .groups-label { display:flex; align-items:center; gap:8px; font-size:12px; }
 #count { width:60px; }
 #book-open { margin-left:auto; }
+#book-open small { display:block; font-size:10px; line-height:1.2; font-weight:400; }
 .hintbar { display:flex; align-items:center; padding:9px 20px; min-height:50px; background:#101a22; border-top:1px solid #334a56; }
 #hint { font-size:13px; line-height:1.4; margin:0; color:#d0dfe3; }
 .hintbar.warn #hint { color:#ffb8a8; }
@@ -174,6 +175,8 @@ body.calm .frost-glint { animation:none; opacity:.4; }
   .actions { grid-row:4; position:sticky; top:0; z-index:10; flex-wrap:wrap; padding:6px 10px; gap:6px; }
   main { grid-row:6; }
   .hintbar { grid-row:5; }
+  body[data-step="plan"] #plan-panel { grid-row:1; }
+  body[data-step="plan"] .stage { grid-row:2; }
   body[data-step="conclude"] #conclude-panel { grid-row:1; }
   body[data-step="conclude"] .stage { grid-row:2; }
   body[data-step="conclude"] textarea { min-height:100px; }
@@ -225,8 +228,8 @@ body.calm .frost-glint { animation:none; opacity:.4; }
   </aside>
   <aside class="panel" id="conclude-panel" hidden>
     <h2>Make a claim from your evidence</h2>
-    <label class="claim-label" for="claim">Changing ___ made ___ because water ___.</label>
-    <textarea id="claim" placeholder="Use a result from your tests to explain your claim."></textarea>
+    <label class="claim-label" id="claim-label" for="claim">Changing ___ made ___ because water ___.</label>
+    <textarea id="claim" aria-labelledby="claim-label" placeholder="Use a result from your tests to explain your claim."></textarea>
     <button class="btn primary" id="compare">Compare</button>
     <div class="answer" id="answer" aria-live="polite"></div>
     <div class="diagram-card" id="chemistry" hidden>
@@ -244,7 +247,7 @@ body.calm .frost-glint { animation:none; opacity:.4; }
   <label class="groups-label">Groups <select id="count" aria-label="Number of test groups">
     <option>2</option><option selected>3</option><option>4</option></select></label>
   <span class="eyebrow" id="trial-label">Trials: 3</span>
-  <button class="btn" id="book-open">Lab book <span id="book-count">0</span></button>
+  <button class="btn" id="book-open">Lab book <span id="book-count">0</span><small>On this device</small></button>
 </div>
 <footer class="hintbar" id="hintbar"><p id="hint"></p></footer>
 <section class="dialog" id="book" role="dialog" aria-modal="true" aria-label="Lab book" hidden>
@@ -294,8 +297,8 @@ body.calm .frost-glint { animation:none; opacity:.4; }
       fields:[['rock','Rock',['limestone','marble','granite']], ['water','Water',['distilled','rainwater','CO2-rich']],
         ['temp','Temperature',[5,25]], ['weeks','Weeks',Array.from({length:12},(_,i) => i+1)]],
       defaults:['distilled','rainwater','CO2-rich','CO2-rich'].map(water => ({rock:'limestone',water,temp:25,weeks:8}))},
-    stream:{name:'Stream Table', property:'Moving water is heavy', detail:'Water: about 1,000 kg/m³, about 830 times denser than air.',
-      note:'Manning model: n = 0.03, hydraulic radius ≈ depth. Grain thresholds are rounded from Hjulström’s curve.',
+    stream:{name:'Stream Table', property:'Moving water is heavy', detail:'Water: about 1,000 kg/m³, about 830 times denser than air near sea level.',
+      note:'Wide-channel Manning model: n = 0.03, hydraulic radius ≈ depth. Rounded grain cutoffs; mixed includes already-suspended silt.',
       fields:[['slope','Slope',[.25,1,4]], ['flow','Flow',['low','medium','high','flood']],
         ['sediment','Sediment',['sand','gravel','pebbles','mixed']]],
       defaults:[.25,1,4,4].map(slope => ({slope,flow:'medium',sediment:'mixed'}))}
@@ -316,8 +319,9 @@ body.calm .frost-glint { animation:none; opacity:.4; }
   let breakSaid = false;
   let size = {w:900,h:460};
   const V = Curio.voice({lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
-    speaks:'#run', welcome:() => state.step === 'plan' && !state.running && !currentRun() && !state.edited[state.mode] ?
-      [state.mode, {valid:() => state.step === 'plan' && !state.running && !currentRun() && !state.edited[state.mode], needs:'#run'}] : null});
+    speaks:'#run', welcome:() => $('book').hidden && state.step === 'plan' && !state.running && !currentRun() && !state.edited[state.mode] ?
+      [state.mode, {valid:() => $('book').hidden && state.step === 'plan' && !state.running &&
+        !currentRun() && !state.edited[state.mode], needs:'#run'}] : null});
 
   function currentPlan() { return state.plans[state.mode]; }
   function currentRun() { return state.runs[state.mode]; }
@@ -405,6 +409,7 @@ body.calm .frost-glint { animation:none; opacity:.4; }
     V.welcome();
   }
   function setStep(step) {
+    if (state.step !== step) V.hush();
     state.step = step;
     document.body.dataset.step = step;
     for (const key of STEPS) $('s-' + key).setAttribute('aria-selected',key === step);
@@ -591,7 +596,7 @@ body.calm .frost-glint { animation:none; opacity:.4; }
     if (state.mode === 'freeze' && !breakSaid && run.groups.some(g =>
       g.trials[0].breakCycle && state.elapsed / 250 >= g.trials[0].breakCycle)) {
       breakSaid = true;
-      V.say('break',{valid:() => currentRun() === run && !run.changed});
+      V.say('break',{valid:() => currentRun() === run && !run.changed && $('book').hidden});
       Curio.tone(110,.2,.06,'triangle');
     }
     if (state.elapsed >= state.duration) { finishRun(); return; }
@@ -599,7 +604,7 @@ body.calm .frost-glint { animation:none; opacity:.4; }
     animation = requestAnimationFrame(tick);
   }
   function finishRun() {
-    if (!currentRun()) return;
+    if (!state.running || !currentRun() || currentRun().changed) return;
     const run = currentRun();
     const skipFocused = document.activeElement === $('skip');
     state.elapsed = state.duration;
@@ -608,7 +613,7 @@ body.calm .frost-glint { animation:none; opacity:.4; }
     if (skipFocused) $('run').focus({preventScroll:true});
     if (state.mode === 'freeze' && !breakSaid && run.groups.some(g => g.trials[0].breakCycle)) {
       breakSaid = true;
-      V.say('break',{valid:() => currentRun() === run && !run.changed});
+      V.say('break',{valid:() => currentRun() === run && !run.changed && $('book').hidden});
     }
     state.done = true;
     if (!state.book.some(entry => entry.id === run.id && entry.seed === run.seed)) {
@@ -617,6 +622,10 @@ body.calm .frost-glint { animation:none; opacity:.4; }
     }
     hint();
     draw();
+    if (state.step === 'run') {
+      V.how('finished',{valid:() => currentRun() === run && run.complete && state.step === 'run' && $('book').hidden,
+        needs:'#s-graph'});
+    }
     Curio.tone(520,.12,.035);
   }
   function saveBook() {
@@ -652,6 +661,7 @@ body.calm .frost-glint { animation:none; opacity:.4; }
     if (!availableRun()) return 0;
     if (!state.running) return 1;
     if (state.previewGroup === i) return 1;
+    if (Curio.reduce) return 0;
     return Math.max(0,Math.min(1,(state.elapsed - i * 5000) / 5000));
   }
   function renderResults() {
@@ -785,7 +795,8 @@ body.calm .frost-glint { animation:none; opacity:.4; }
       const shrink = group.rock === 'granite' ? 1 : Math.sqrt(mass/20);
       const chipW = jarW*.7*shrink;
       picture(ART[group.rock+'Chip'],center-chipW/2,baseY-jarH*.4*shrink,chipW,jarH*.28*shrink);
-      picture(ART.jar,center-jarW/2,jarTop,jarW,jarH);
+      picture(ART.jar,center-jarW/2,jarTop,jarW,jarH,$('scene'),
+        {style:'filter:saturate(0)',preserveAspectRatio:'xMidYMax meet'});
       if (group.water === 'CO2-rich' && availableRun()) {
         for (let j=0;j<8;j++) {
           const p = Curio.reduce ? j/8 : (state.elapsed/1300+j/8)%1;
@@ -805,6 +816,11 @@ body.calm .frost-glint { animation:none; opacity:.4; }
   function drawStream(w,h) {
     background(ART.lab,w,h);
     node('rect',{x:0,y:0,width:w,height:h,fill:'#0b1b23',opacity:.68});
+    const d = defs();
+    const deltaShade = node('linearGradient',{id:'delta-shade',x1:0,y1:0,x2:.3,y2:1},d);
+    node('stop',{offset:0,'stop-color':'#f2dfac'},deltaShade);
+    node('stop',{offset:.65,'stop-color':'#cbb27e'},deltaShade);
+    node('stop',{offset:1,'stop-color':'#9c8052'},deltaShade);
     const ratio = h < 200 ? 2.5 : 1.85;
     const trayW = Math.min(w*.82,(h-12)*ratio);
     const trayH = trayW/ratio;
@@ -823,17 +839,34 @@ body.calm .frost-glint { animation:none; opacity:.4; }
     const bend = trayW*.085;
     const route = `M ${cx} ${channelTop} C ${cx-bend} ${y+trayH*.28}, ${cx+bend} ${y+trayH*.45}, ${cx} ${channelBottom}`;
     node('ellipse',{cx,cy:channelTop,rx:Math.max(8,trayW*.023),ry:Math.max(4,trayH*.025),fill:'#79c3db',stroke:'#cfedf1'});
-    const channelW = (4+speed*11)*(.2+.8*p);
+    const carried = trial?.moving || [];
+    const channelW = (4+speed*11)*(.2+(carried.length ? .8*p : 0));
     node('path',{d:route,fill:'none',stroke:'#2a2622','stroke-width':channelW+5*p,opacity:.68,'stroke-linecap':'round'});
     node('path',{d:route,fill:'none',stroke:'#4f8fd0','stroke-width':channelW,opacity:.7,'stroke-linecap':'round'});
     node('path',{d:route,fill:'none',stroke:'#c8efff','stroke-width':1.5,opacity:.65,'stroke-dasharray':'4 14',
       'stroke-dashoffset':Curio.reduce ? 0 : -state.elapsed/75});
     const mouthY = channelBottom;
-    if (p > 0) {
-      node('path',{d:`M ${cx} ${mouthY-10} Q ${cx-trayW*.17*p} ${mouthY+trayH*.13} ${cx-trayW*.23*p} ${y+trayH*.89}
-        Q ${cx} ${y+trayH*.99} ${cx+trayW*.23*p} ${y+trayH*.89} Q ${cx+trayW*.13*p} ${mouthY+trayH*.1} ${cx} ${mouthY-10}`,
-        fill:'#d8c08a',opacity:.85});
-      node('ellipse',{cx,cy:y+trayH*.9,rx:trayW*.23*p,ry:trayH*.065,fill:'#b8a888',opacity:.4});
+    if (p > 0 && carried.length) {
+      const deltaPath = `M ${cx} ${mouthY-10} Q ${cx-trayW*.17*p} ${mouthY+trayH*.13} ${cx-trayW*.23*p} ${y+trayH*.89}
+        Q ${cx} ${y+trayH*.99} ${cx+trayW*.23*p} ${y+trayH*.89} Q ${cx+trayW*.13*p} ${mouthY+trayH*.1} ${cx} ${mouthY-10}`;
+      node('path',{d:deltaPath,fill:'url(#delta-shade)',opacity:.95,'data-delta':'true'});
+      const clip = node('clipPath',{id:'delta-clip'},d);
+      node('path',{d:deltaPath},clip);
+      const deposits = node('g',{'clip-path':'url(#delta-clip)'});
+      for (let ridge=0;ridge<4;ridge++) {
+        const ry = mouthY+trayH*(.06+ridge*.048);
+        const reach = trayW*(.04+ridge*.045)*p;
+        node('path',{d:`M ${cx-reach} ${ry} Q ${cx} ${ry+trayH*.045} ${cx+reach} ${ry}`,
+          fill:'none',stroke:ridge%2 ? '#795c38' : '#f5e5b6','stroke-width':1.2,opacity:.35},deposits);
+      }
+      for (let grain=0;grain<48;grain++) {
+        const gx = cx+Math.sin(grain*2.399)*trayW*.23*p;
+        const gy = mouthY+trayH*(.015+(grain%17)/17*.24);
+        node('circle',{cx:gx,cy:gy,r:.65,fill:grain%2 ? '#6d5637' : '#f8e7bd',opacity:.55},deposits);
+      }
+    }
+    if (p > 0 && group.sediment === 'mixed') {
+      node('ellipse',{cx,cy:y+trayH*.9,rx:trayW*.23*p,ry:trayH*.065,fill:'#b8a888',opacity:.4,'data-silt':'true'});
     }
     const thresholds = {sand:.2,gravel:.8,pebbles:1.5};
     const kinds = group.sediment === 'mixed' ? ['pebbles','gravel','sand'] : [group.sediment];
@@ -856,19 +889,25 @@ body.calm .frost-glint { animation:none; opacity:.4; }
       }
     }
     const sideW = Math.min(110,w*.17);
-    const sideX = h < 200 ? 10 : w-sideW-10;
-    const sideY = h < 200 ? Math.max(4,h-64) : 10;
+    const compact = innerHeight <= 640 && innerWidth >= 601;
+    const sideX = compact || h < 200 ? 10 : w-sideW-10;
+    const sideY = compact || h < 200 ? Math.max(4,h-64) : 10;
     node('rect',{x:sideX,y:sideY,width:sideW,height:54,rx:4,fill:'#10212b',stroke:'#718892'});
     node('path',{d:`M ${sideX+8} ${sideY+26} L ${sideX+sideW-8} ${sideY+26+group.slope*3}
       L ${sideX+sideW-8} ${sideY+43} L ${sideX+8} ${sideY+43} Z`,fill:'#aa926b'});
     text(sideX+8,sideY+15,group.slope+'% slope',{'font-size':10});
     if (w>650 && p>0) {
-      const carried = trial.moving;
       const ordering = ['pebbles','gravel','sand'].filter(grain => carried.includes(grain));
-      text(x+trayW*.75,y+trayH*.73,ordering.length ? titleCase(ordering[0])+' first' : 'Grains stay put',
+      const labelY = y+trayH*.73;
+      const labelStep = Math.max(15,trayH*.085);
+      node('rect',{x:x+trayW*.72,y:labelY-13,width:trayW*.27,height:labelStep*2+20,
+        rx:4,fill:'#10212b',opacity:.94,stroke:'#718892'});
+      text(x+trayW*.75,labelY,ordering.length ? titleCase(ordering[0])+' first' : 'Grains stay put',
         {'font-size':11,fill:'#f1e9d1'});
-      text(x+trayW*.75,y+trayH*.81,ordering.slice(1).join(' → '),{'font-size':11,fill:'#f1e9d1'});
-      text(x+trayW*.75,y+trayH*.9,'Silt in still lake',{'font-size':11,fill:'#f1e9d1'});
+      text(x+trayW*.75,labelY+labelStep,ordering.slice(1).join(' → '),{'font-size':11,fill:'#f1e9d1'});
+      if (group.sediment === 'mixed') {
+        text(x+trayW*.75,labelY+labelStep*2,'Silt in still lake',{'font-size':11,fill:'#f1e9d1'});
+      }
     }
   }
   function drawGraph(w,h) {
@@ -910,18 +949,39 @@ body.calm .frost-glint { animation:none; opacity:.4; }
   function modelAnswer() {
     const run = availableRun();
     if (!run) return 'Press Run first, then compare a claim with the results.';
-    const first = run.groups[0];
-    const last = run.groups.at(-1);
     const mean = g => (g.trials.reduce((sum,t) => sum+t.value,0)/3).toFixed(2);
-    const warning = !run.fairness.fair ? 'This plan does not isolate one variable, so these results cannot identify a single cause. ' : '';
-    if (state.mode === 'freeze') return warning + `Group A added ${mean(first)} mm; group ${GROUPS[run.groups.length-1]} added ${mean(last)} mm. ` +
-      'Water needs about 9% more room as ice. In this model only fills above 91.7% widen the crack; oil causes no widening. A split stops at 1.00 mm.';
-    if (state.mode === 'dissolve') return warning + `Group A ended at ${mean(first)} g; group ${GROUPS[run.groups.length-1]} at ${mean(last)} g. ` +
-      'Water with more dissolved CO2 is a weak acid and dissolves calcite faster. Cold water holds more CO2. ' +
-      'Marble dissolves more slowly; granite barely changes.';
-    return warning + `Group A flowed at ${mean(first)} m/s; group ${GROUPS[run.groups.length-1]} at ${mean(last)} m/s. ` +
-      'In this model, steeper slopes and deeper flows increase speed. Dense moving water pushes grains; larger grains need more speed. ' +
-      'Grains settle largest first as water slows.';
+    const pairs = run.fairness.pairs.filter(pair => pair.fair);
+    if (!pairs.length) {
+      return run.fairness.unfair ?
+        'More than one variable changes in every comparison, so these results cannot identify a single cause. Return to Plan and hold all but one variable constant.' :
+        'These groups repeat the same test; any trial differences come from model noise. Return to Plan and change one variable to investigate a cause.';
+    }
+    const pair = pairs.at(-1);
+    const first = run.groups[pair.a];
+    const last = run.groups[pair.b];
+    const variable = CONFIG[state.mode].fields.find(([,label]) => label.toLowerCase() === pair.changed[0]);
+    const [key,label] = variable;
+    const values = `${formatCell(key,first.plan[key])} to ${formatCell(key,last.plan[key])}`;
+    const unit = state.mode === 'freeze' ? 'mm added crack width' : state.mode === 'dissolve' ? 'g mass left' : 'm/s';
+    const measured = `Groups ${GROUPS[pair.a]} and ${GROUPS[pair.b]} change only ${label.toLowerCase()} (${values}): ` +
+      `${mean(first)} to ${mean(last)} ${unit}. `;
+    const reasons = {
+      freeze:{rock:'The invented rock rates differ, while freezing water supplies the expansion.',
+        fill:'Water needs about 9% more room as ice; only fills above 91.7% widen this model crack.',
+        liquid:'Water expands as it freezes; the oil control produces no widening in this model.',
+        cycles:'More cycles can repeat expansion damage, until the model stops a split at 1.00 mm.'},
+      dissolve:{rock:'The calcite rocks dissolve faster than granite at these invented lab rates.',
+        water:'Dissolved CO2 makes water weakly acidic, increasing calcite loss in this model.',
+        temp:'Colder water can hold more CO2; this model increases loss only for calcite in rainwater or CO2-rich water.',
+        weeks:'More weeks allow more dissolving at the same invented weekly rate.'},
+      stream:{slope:'A steeper slope increases model speed; dense moving water can then move larger grains.',
+        flow:'Deeper flow increases model speed; larger grains need more speed to start moving.',
+        sediment:'Changing sediment does not change model speed; only grains above their motion threshold can travel.'}
+    };
+    const baselineEqual = Math.abs(first.baseline.value-last.baseline.value) < 1e-9;
+    const limit = baselineEqual ? ' No modeled change in this measurement; any trial difference is noise.' : '';
+    const warning = run.fairness.unfair ? ' Other pairs are confounded; use only this controlled pair for a claim.' : '';
+    return measured + reasons[state.mode][key] + limit + warning;
   }
   function bookRows() {
     return state.book.flatMap((run,index) => run.groups.map((group,i) => {
@@ -935,8 +995,14 @@ body.calm .frost-glint { animation:none; opacity:.4; }
     }));
   }
   const BOOK_HEADERS = ['Run','Bench','Group','Plan','Fairness','Noise','Three trials','Mean','Session claim (unsaved)'];
+  function bookBackground(inert) {
+    document.querySelectorAll('body > header,body > nav,body > .property,body > main,body > .actions,body > footer')
+      .forEach(element => { element.inert = inert; });
+  }
   function openBook() {
+    V.hush();
     $('book').hidden = false;
+    bookBackground(true);
     $('book-table').replaceChildren();
     for (const [i,row] of [BOOK_HEADERS,...bookRows()].entries()) {
       const tr = document.createElement('tr');
@@ -951,11 +1017,18 @@ body.calm .frost-glint { animation:none; opacity:.4; }
       'Saved only on this device. Nothing leaves the device. Draft claims are unsaved.' :
       'Device storage is unavailable. Runs stay in this open session. Draft claims are unsaved.';
     hint();
+    V.how('book',{valid:() => !$('book').hidden,needs:['#copy','#book-close']});
     $('book-close').focus({preventScroll:true});
   }
   function closeBook() {
+    V.hush();
     $('book').hidden = true;
-    hint();
+    bookBackground(false);
+    setStep(state.step);
+    if (state.step === 'plan') V.welcome();
+    if (state.step === 'run' && availableRun()?.complete) {
+      V.how('finished',{valid:() => state.step === 'run' && $('book').hidden,needs:'#s-graph'});
+    }
     $('book-open').focus({preventScroll:true});
   }
   for (const mode of Object.keys(CONFIG)) $('m-'+mode).onclick = () => setMode(mode);

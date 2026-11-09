@@ -145,6 +145,57 @@
         "680x425",
         "1366x768"
       ]
+    },
+    {
+      "name": "partner-hidden",
+      "steps": [
+        {
+          "click": "#source-river"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#highlight-0"
+        },
+        {
+          "click": "#highlight-1"
+        },
+        {
+          "click": "#highlight-2"
+        },
+        {
+          "click": "#highlight-3"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#m-viewer"
+        },
+        {
+          "click": "#partner"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#hint",
+        "#viewer-cards"
+      ]
+    },
+    {
+      "name": "rain-source",
+      "steps": [
+        {
+          "click": "#source-rain"
+        }
+      ],
+      "keep": [
+        "#listen",
+        "#moments",
+        "#make",
+        "#hint"
+      ]
     }
   ]
 }

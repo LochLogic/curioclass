@@ -1,0 +1,344 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "marked",
+      "steps": [
+        {
+          "click": "#words [data-word='0']"
+        },
+        {
+          "click": "#words [data-word='5']"
+        },
+        {
+          "click": "#species-band"
+        }
+      ],
+      "keep": [
+        "#log"
+      ]
+    },
+    {
+      "name": "test-open",
+      "steps": [
+        {
+          "click": "#species-hasty"
+        },
+        {
+          "click": "#field-test"
+        },
+        {
+          "click": "#test-no"
+        }
+      ],
+      "keep": [
+        "#dialog"
+      ]
+    },
+    {
+      "name": "long-comment",
+      "steps": [
+        {
+          "click": "#habitat-1"
+        },
+        {
+          "click": "#select-F10"
+        }
+      ],
+      "keep": [
+        "#words",
+        "#kit"
+      ]
+    },
+    {
+      "name": "long-headline",
+      "steps": [
+        {
+          "click": "#habitat-2"
+        },
+        {
+          "click": "#select-F18"
+        }
+      ],
+      "keep": [
+        "#words",
+        "#kit"
+      ]
+    },
+    {
+      "name": "chat",
+      "steps": [
+        {
+          "click": "#habitat-3"
+        },
+        {
+          "click": "#select-F20"
+        }
+      ],
+      "keep": [
+        "#words",
+        "#kit"
+      ]
+    },
+    {
+      "name": "guide-open",
+      "steps": [
+        {
+          "click": "#m-guide"
+        },
+        {
+          "click": "#card-authority"
+        }
+      ],
+      "keep": [
+        "#dialog"
+      ]
+    },
+    {
+      "name": "reset-prompt",
+      "steps": [
+        {
+          "click": "#m-guide"
+        },
+        {
+          "click": "#reset"
+        }
+      ],
+      "keep": [
+        "#dialog"
+      ]
+    },
+    {
+      "name": "longest-headline",
+      "steps": [
+        {
+          "click": "#habitat-2"
+        },
+        {
+          "click": "#select-F13"
+        }
+      ],
+      "keep": [
+        "#words",
+        "#kit"
+      ]
+    },
+    {
+      "name": "make-marked",
+      "steps": [
+        {
+          "click": "#m-make"
+        },
+        {
+          "js": "const a=document.getElementById('slip-0');const b=document.getElementById('slip-1');\ndocument.getElementById('make-species').value='band';document.getElementById('make-species').dispatchEvent(new Event('change'));\na.value='Everyone hikes this trail so it must be the safest';b.value='Many people hike this trail on weekends so expect crowds';\na.dispatchEvent(new Event('input'));b.dispatchEvent(new Event('input'));"
+        },
+        {
+          "click": "#mark-0"
+        },
+        {
+          "click": "#make-words-0 [data-word='0']"
+        },
+        {
+          "click": "#make-words-0 [data-word='3']"
+        },
+        {
+          "click": "#mark-1"
+        },
+        {
+          "click": "#make-words-1 [data-word='0']"
+        },
+        {
+          "click": "#make-words-1 [data-word='4']"
+        }
+      ],
+      "keep": [
+        "#make-test"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "760x900",
+        "375x812"
+      ]
+    },
+    {
+      "name": "long-writing-bounded",
+      "steps": [
+        {
+          "js": "\n__tool.setMode('make');for(let i=0;i<2;i++){const t=document.querySelector('#slip-'+i);t.value=('Reason evidence comparison statement '.repeat(114)).slice(0,4000);t.dispatchEvent(new Event('input'));document.querySelector('#mark-'+i).click();}\nreturn {scroll:document.querySelector('#make').scrollHeight,test:document.querySelector('#make-test').getBoundingClientRect().toJSON()};\n"
+        }
+      ],
+      "keep": [
+        "#make-test",
+        "#mark-0",
+        "#mark-1"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "confirmed-comparison",
+      "steps": [
+        {
+          "click": "#m-guide"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#confirm-reset"
+        },
+        {
+          "click": "#m-field"
+        },
+        {
+          "click": "#select-F2"
+        },
+        {
+          "click": "#words [data-word='0']"
+        },
+        {
+          "click": "#words [data-word='4']"
+        },
+        {
+          "click": "#species-authority"
+        },
+        {
+          "click": "#log"
+        },
+        {
+          "click": "#select-F3"
+        },
+        {
+          "click": "#words [data-word='2']"
+        },
+        {
+          "click": "#words [data-word='10']"
+        },
+        {
+          "click": "#legit"
+        },
+        {
+          "click": "#species-authority"
+        },
+        {
+          "click": "#log"
+        },
+        {
+          "click": "#m-guide"
+        },
+        {
+          "click": "#card-authority"
+        }
+      ],
+      "keep": [
+        "#dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "writing-self-check-result",
+      "steps": [
+        {
+          "click": "#m-make"
+        },
+        {
+          "js": "const a=document.getElementById('slip-0');const b=document.getElementById('slip-1');\ndocument.getElementById('make-species').value='band';document.getElementById('make-species').dispatchEvent(new Event('change'));\na.value='Everyone hikes this trail so it must be the safest';b.value='Many people hike this trail on weekends so expect crowds';\na.dispatchEvent(new Event('input'));b.dispatchEvent(new Event('input'));"
+        },
+        {
+          "click": "#mark-0"
+        },
+        {
+          "click": "#make-words-0 [data-word='0']"
+        },
+        {
+          "click": "#make-words-0 [data-word='3']"
+        },
+        {
+          "click": "#mark-1"
+        },
+        {
+          "click": "#make-words-1 [data-word='0']"
+        },
+        {
+          "click": "#make-words-1 [data-word='4']"
+        },
+        {
+          "click": "#make-test"
+        },
+        {
+          "click": "#make-no"
+        },
+        {
+          "click": "#make-yes"
+        }
+      ],
+      "keep": [
+        "#dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "practice-long-comment",
+      "steps": [
+        {
+          "click": "#m-guide"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#confirm-reset"
+        },
+        {
+          "click": "#m-field"
+        },
+        {
+          "click": "#habitat-1"
+        },
+        {
+          "click": "#select-F10"
+        },
+        {
+          "click": "#words [data-word='9']"
+        },
+        {
+          "click": "#words [data-word='20']"
+        },
+        {
+          "click": "#legit"
+        },
+        {
+          "click": "#species-authority"
+        },
+        {
+          "click": "#log"
+        },
+        {
+          "click": "#log"
+        }
+      ],
+      "keep": [
+        "#words",
+        "#kit",
+        "#show"
+      ],
+      "sizes": [
+        "375x812",
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}

@@ -6,7 +6,13 @@
   "outcome": "Choose clear pictures, balance music under speech, match true captions, and prepare a presentation room.",
   "driver": "teacher",
   "minutes": "25-35",
-  "modes": ["Camera", "Sound", "Speaker", "Room", "Show"],
+  "modes": [
+    "Camera",
+    "Sound",
+    "Speaker",
+    "Room",
+    "Show"
+  ],
   "grades_label": "Grades K-2",
   "sources": [
     "National Core Arts Standards: Media Arts MA:Pr5, MA:Pr6, MA:Cn10, grades K-2",
@@ -20,5 +26,5 @@
     "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
   ],
   "third_party": [],
-  "updated": "2026-11-02"
+  "updated": "2026-11-06"
 }

@@ -248,6 +248,27 @@ button {
 #trialSummary strong {
   color:#f1cc89
 }
+#trialSummary .reference {
+  display:block;
+  color:#e8edf3;
+  font-size:inherit
+}
+.best-label {
+  paint-order:stroke;
+  stroke:var(--gr-bg);
+  stroke-width:4px;
+  stroke-linejoin:round
+}
+.best-arrival {
+  animation:best-arrival .45s ease-out both
+}
+@keyframes best-arrival {
+  from { opacity:.15 }
+  to { opacity:1 }
+}
+.calm .best-arrival {
+  animation:none
+}
 .live-material {
   flex:none;
   font:600 25px var(--readout-font);
@@ -1176,8 +1197,8 @@ select {
         <p class="density">Outside sizes are bigger than what the label says the can holds. Can sizes as listed 2026-10-27.</p>
         <p class="formula">Why might a drink can be tall and thin? Think of hands, cup holders, machines that sell them, and the lid.</p>
       </section>
-      <section id="caseReadout" hidden><div class="metric"><span>Case fill</span><div><strong id="fillValue"></strong> <span class="units">%</span></div></div>
-        <dl class="readouts"><dt>Inside volume</dt><dd id="insideVolume"></dd><dt>Product volume</dt><dd id="productVolume"></dd>
+      <section id="caseReadout" hidden><div class="metric"><span>Full-case fill</span><div><strong id="fillValue"></strong> <span class="units">%</span></div></div>
+        <dl class="readouts"><dt>Inside volume</dt><dd id="insideVolume"></dd><dt>Product in 24</dt><dd id="productVolume"></dd>
           <dt>Inside dimensions</dt><dd id="caseDimensions"></dd></dl><p class="formula" id="fillFormula"></p>
         <p class="density" id="caseMetal"></p><p class="formula">Case uses this order’s current shape. Change it in Orders, then return here.</p>
       </section>
@@ -1214,9 +1235,11 @@ select {
     wOrders:"Here's an order. Drag the handle on the package's edge, or the slider. The volume stays locked, so watch the material.",
     wShelf:'Tap a real can to put it on the graph next to the best can of its size.',
     wCase:'Pick an order, then tap Pack the case. Compare how much space cans and boxes leave empty.',
-    curve:'Your dots made a curve. Its lowest point is the best package. Tap Reveal best to check.',
-    best:"That's within half a percent of the best. Great build.",
+    curve:'The model curve shows material for every width. Tap Reveal best to check its lowest point.',
+    best:'This trial is within half a percent of the minimum material for this order.',
+    bestCost:'This trial is within half a percent of the minimum cost for this lid price.',
     lidShift:'Pricier lids push the best can taller and thinner.',
+    lidLower:'Cheaper lids push the best can shorter and wider.',
     afterBest:'Compare your trials with the best point. Drag the handle again, or pick another Order.',
     afterPack:'Pick another Order and tap Pack the case to compare the space left empty.',
     afterShelf:'Tap another real can to compare it with the best can of its own size.'
@@ -1276,7 +1299,13 @@ select {
   const boxSlider = Plane.slider($('boxSlider'),{id:'side',label:'Base side (cm)',min:2,max:30,step:.01,value:16,
     format:f2,onInput:(v,source)=>{set(v,false);if(source==='box') release();}});
   const lidSlider = Plane.slider($('lidSlider'),{id:'lidCost',label:'Lid cost × wall cost',min:1,max:4,step:.5,value:3,
-    format:v=>f1(v)+'×',parse:t=>Number.parseFloat(t),onInput:v=>lidCost(v)});
+    format:v=>f1(v)+'×',parse:t=>{
+      const cleaned=t.replace(/×$/,'').trim();
+      const value=cleaned===''?NaN:Number(cleaned);
+      if(Number.isFinite(value)) return value;
+      hint('Type a Lid cost from 1 to 4, or use the Lid cost slider.');
+      return s().k;
+    },onInput:v=>lidCost(v)});
   for (const sl of [canSlider,boxSlider]) {
     sl.range.addEventListener('change',release);
     sl.range.addEventListener('keydown',e=>{
@@ -1375,9 +1404,9 @@ select {
     renderOrders();
     const latest=$('graph').querySelector('.trial-last');
     if (latest && !Curio.reduce) latest.classList.add('dot-new');
-    if (m.cost<=optimum().cost*1.005) {
-      Curio.yes();
-      V.say('best',{valid:()=>state.orderId===id && state.revision===rev});
+    if (m.cost<=optimum().cost*1.005 && !s().revealed) {
+      Curio.tone(620,.09,.04,'triangle');
+      V.say(state.orderId==='O6'?'bestCost':'best',{valid:()=>state.orderId===id && state.revision===rev && !s().revealed});
     } else Curio.tone(430,.09,.04,'triangle');
     if (!wasCurve && s().curve && !V.heard('curve')) {
       V.how('curve',{valid:()=>state.orderId===id && s().curve && !s().revealed,needs:'#reveal'});
@@ -1397,14 +1426,24 @@ select {
     s().revealed=true;
     hint(L.afterBest);
     renderOrders();
+    if (!Curio.reduce) $('graph').querySelector('.best-point')?.classList.add('best-arrival');
     V.how('afterBest',{needs:'#orderSelect'});
     Curio.tone(660,.14,.04,'sine');
     return optimum();
   }
   function lidCost(k) {
     if(state.orderId!=='O6') return;
+    if(!Number.isFinite(Number(k))) {
+      lidSlider.set(s().k,true);
+      lidSlider.box.value=f1(s().k)+'×';
+      hint('Type a Lid cost from 1 to 4, or use the Lid cost slider.');
+      return;
+    }
+    const previous=s().k;
+    const next=Math.max(1,Math.min(4,Math.round(Number(k)*2)/2));
+    if(next===previous) return;
     finishMotion();
-    s().k=Math.max(1,Math.min(4,Math.round(Number(k)*2)/2));
+    s().k=next;
     state.revision++;
     const rev=state.revision;
     lidSlider.set(s().k,true);
@@ -1412,7 +1451,8 @@ select {
     s().record=s().dots.length?s().dots.reduce((a,b)=>a.y<b.y?a:b):null;
     hint('Drag Radius again, or tap Reveal best. Lid and bottom cost '+f1(s().k)+' times the wall per square centimeter.');
     renderOrders();
-    V.say('lidShift',{valid:()=>state.orderId==='O6' && state.revision===rev,needs:'#lidCost'});
+    V.say(next>previous?'lidShift':'lidLower',
+      {valid:()=>state.orderId==='O6' && state.revision===rev,needs:'#lidCost',now:true});
     Curio.tone(260+s().k*90,.08,.04,'triangle');
   }
   function updateCard() {
@@ -1479,10 +1519,18 @@ select {
     $('ghostLine').hidden=state.orderId!=='O4';
     const record=s().record;
     if(record) {
-      $('trialSummary').innerHTML='<strong>Your least material: '+f2(record.y)+(kCost?' wall-cm²':' cm²')+'</strong> · '+
+      $('trialSummary').innerHTML='<strong>Lowest sampled '+(kCost?'cost: ':'material: ')+f2(record.y)+(kCost?' wall-cm²':' cm²')+'</strong> · '+
         s().dots.length+' '+(s().dots.length===1?'trial':'trials')+
         (s().revealed?' · '+f1(Math.max(0,(record.y/optimum().cost-1)*100))+'% above best':' · Keep building your curve.');
     } else $('trialSummary').textContent='Drag the handle or slider, then release to leave your first trial.';
+    if(s().revealed) {
+      const b=optimum();
+      const bestText='Best '+f2(b.cost)+(kCost?' wall-cm²':' cm²')+' · '+(o().type==='can'?'r ':'s ')+f2(b.x)+' · h '+f2(b.h)+' cm';
+      const reference=document.createElement('span');
+      reference.className='reference';
+      reference.textContent=bestText;
+      $('trialSummary').appendChild(reference);
+    }
     drawPackage(m);
     drawGraph();
     drawNet(m);
@@ -1561,7 +1609,7 @@ select {
     const b=optimum();
     const current=model();
     const ymax=Math.ceil(Math.max(b.cost*1.65,current.cost*1.13,...s().dots.map(d=>d.y*1.1))/50)*50;
-    const left=W<220?37:48,top=18,bottom=42,right=14;
+    const left=Math.max(W<220?37:48,20+String(ymax).length*6.5),top=18,bottom=42,right=14;
     const pw=Math.max(60,W-left-right),ph=Math.max(35,H-top-bottom);
     const key=[state.orderId,W,H,ymax,s().k].join('/');
     if(key!==graphKey) {
@@ -1581,7 +1629,7 @@ select {
     });
     graph.point(current.x,current.cost,{color:'#c08a2a',r:5,shape:'diamond',class:'graph-current',hit:0});
     if(s().revealed) {
-      const mark=graph.point(b.x,b.cost,{color:'#c08a2a',r:W<220?6:8,hit:0});
+      const mark=graph.point(b.x,b.cost,{color:'#c08a2a',r:W<220?6:8,hit:0,class:'best-point'});
       mk('circle',{r:W<220?10:13,fill:'none',stroke:'#efc881','stroke-width':1.5},mark.body);
       graph.label(b.x,b.cost,'BEST',{anchor:'middle',dy:22,layer:'labels',class:'best-label'});
     }
@@ -1652,11 +1700,11 @@ select {
     const c=CANS[state.shelfId],v=Math.PI*(c.d/2)**2*c.h;
     const order={v,type:'can'},m=model(order,c.d/2,1),b=optimum(order,1);
     const percent=(m.material/b.material-1)*100;
-    $('shelfResult').innerHTML=c.name+' uses<strong>'+f1(percent)+'%</strong>more metal than the best can of the same size.';
+    $('shelfResult').innerHTML=c.name+' cylinder model uses<strong>'+f1(percent)+'%</strong>more area than the best cylinder of the same model volume.';
     $('shelfNumbers').innerHTML='<dt>Height ÷ diameter</dt><dd>'+f2(c.h/c.d)+' / best 1.00</dd>'+
       '<dt>Outside diameter</dt><dd>'+f2(c.d)+' cm</dd><dt>Outside height</dt><dd>'+f2(c.h)+' cm</dd>'+
       '<dt>Own model volume</dt><dd>'+f1(v)+' cm³</dd><dt>Label capacity</dt><dd>'+c.label.toLocaleString('en-US')+' mL</dd>'+
-      '<dt>Actual material</dt><dd>'+f1(m.material)+' cm²</dd><dt>Best at own volume</dt><dd>'+f1(b.material)+' cm²</dd>';
+      '<dt>Model material</dt><dd>'+f1(m.material)+' cm²</dd><dt>Best at own volume</dt><dd>'+f1(b.material)+' cm²</dd>';
     $('shelfGraphTitle').textContent=c.name+' / own '+f1(v)+' cm³';
     const max=Math.max(b.x,c.d/2)*2.3,ymax=b.material*1.5;
     const g=Plane(svg,{x:[0,max],y:[b.material*.9,ymax],left:44,top:14,width:Math.max(50,gw-62),height:Math.max(30,gh-58),
@@ -1668,7 +1716,7 @@ select {
     const bestPoint=g.point(b.x,b.material,{color:'#c08a2a',r:6,hit:0});
     mk('circle',{r:11,fill:'none',stroke:'#e3bd79','stroke-width':1.5},bestPoint.body);
     g.label(c.d/2,m.material,'Real',{dx:12,dy:-18,layer:'labels'});
-    g.label(b.x,b.material,'Best',{anchor:'middle',dy:13,layer:'labels'});
+    g.label(b.x,b.material,'Best',{anchor:'start',dx:28,dy:18,layer:'labels',class:'best-label'});
   }
   function finishPack() {
     clearTimeout(caseTimer);

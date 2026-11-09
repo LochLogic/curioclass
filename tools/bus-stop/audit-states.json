@@ -1,0 +1,208 @@
+{
+  "target": 60,
+  "target_reason": "Check kindergarten controls at 60 pixels. The spec explicitly permits 44 pixels only in the 680x425 preview; classify those leads separately.",
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "seat-work",
+      "steps": [
+        {
+          "click": "[data-road='park']"
+        },
+        {
+          "click": "#cup"
+        }
+      ],
+      "keep": [
+        "#floor",
+        "#done",
+        "#cup",
+        "#see-again"
+      ]
+    },
+    {
+      "name": "sentence-cards",
+      "steps": [
+        {
+          "click": "[data-road='park']"
+        },
+        {
+          "click": "#cup",
+          "times": 2
+        },
+        {
+          "click": "#done"
+        }
+      ],
+      "keep": [
+        "#cards",
+        "#floor"
+      ]
+    },
+    {
+      "name": "split-ten",
+      "steps": [
+        {
+          "click": "#m-split"
+        },
+        {
+          "click": "#more",
+          "times": 3
+        },
+        {
+          "click": "#keep"
+        }
+      ],
+      "keep": [
+        "#areas",
+        "#ways",
+        "#keep"
+      ]
+    },
+    {
+      "name": "split-small",
+      "steps": [
+        {
+          "click": "#m-split"
+        },
+        {
+          "click": "#fewer",
+          "times": 5
+        },
+        {
+          "click": "#keep"
+        },
+        {
+          "click": "[data-kid='0']"
+        },
+        {
+          "click": "#keep"
+        }
+      ],
+      "keep": [
+        "#areas",
+        "#ways",
+        "#keep",
+        "#split-equation"
+      ]
+    },
+    {
+      "name": "express-reveal",
+      "steps": [
+        {
+          "click": "#m-express"
+        },
+        {
+          "click": "#show-me"
+        },
+        {
+          "wait": 1600
+        }
+      ],
+      "keep": [
+        "#five",
+        "#number-tiles"
+      ]
+    },
+    {
+      "name": "fill-start",
+      "steps": [
+        {
+          "click": "#m-fill"
+        }
+      ],
+      "keep": [
+        "#floor",
+        "#cup",
+        "#done",
+        "#see-again"
+      ]
+    },
+    {
+      "name": "fill-cards",
+      "steps": [
+        {
+          "click": "#m-fill"
+        },
+        {
+          "click": "#cup",
+          "times": 10,
+          "gap": 0.1
+        },
+        {
+          "click": "#done"
+        }
+      ],
+      "keep": [
+        "#cards",
+        "#floor"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#manual-drawer",
+        "#manual-close"
+      ]
+    },
+    {
+      "name": "drive-split",
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ],
+      "steps": [
+        {
+          "click": "[data-road='park']"
+        },
+        {
+          "click": "#drive-on"
+        },
+        {
+          "until": "__tool.state.drive.index===1",
+          "max": 12000
+        },
+        {
+          "click": "#drive-on"
+        },
+        {
+          "until": "__tool.state.drive.phase==='fork'",
+          "max": 12000
+        },
+        {
+          "click": "[data-road='0']"
+        },
+        {
+          "click": "#drive-on"
+        },
+        {
+          "until": "__tool.state.drive.phase==='split'",
+          "max": 12000
+        },
+        {
+          "click": "#keep"
+        },
+        {
+          "click": "[data-kid='0']"
+        },
+        {
+          "click": "#keep"
+        }
+      ],
+      "keep": [
+        "#split-stage",
+        "#areas",
+        "#ways",
+        "#keep",
+        "#drive-on"
+      ]
+    }
+  ]
+}

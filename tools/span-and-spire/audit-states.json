@@ -175,8 +175,11 @@
       ]
     },
     {
-      "name": "tag-book",
+      "name": "manual-and-logbook",
       "steps": [
+        {
+          "click": "#manual"
+        },
         {
           "click": "#tags"
         }
@@ -198,8 +201,14 @@
       ]
     },
     {
-      "name": "compact-promise-choices",
+      "name": "logbook-brief-choices",
       "steps": [
+        {
+          "click": "#manual"
+        },
+        {
+          "click": "#tags"
+        },
         {
           "click": "#promises summary"
         },
@@ -209,12 +218,53 @@
       ],
       "keep": [
         "#promise-list",
-        "#close-promises"
+        "#close-tags"
       ],
       "sizes": [
         "680x425",
         "1366x768",
         "375x812"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual"
+        }
+      ],
+      "keep": [
+        "#close-manual"
+      ]
+    },
+    {
+      "name": "budget-on",
+      "steps": [
+        {
+          "click": "#budget"
+        }
+      ],
+      "keep": [
+        "#budget-limit",
+        "#budget-status",
+        "#close-budget"
+      ]
+    },
+    {
+      "name": "budget-enabled-dial-closed",
+      "steps": [
+        {
+          "click": "#budget"
+        },
+        {
+          "click": "#close-budget"
+        }
+      ],
+      "keep": [
+        "#go",
+        "#piece-shelf",
+        "#budget",
+        "#hint"
       ]
     }
   ]

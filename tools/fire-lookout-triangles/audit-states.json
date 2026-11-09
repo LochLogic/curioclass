@@ -1,0 +1,270 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "spot-worked",
+      "steps": [
+        {
+          "click": "#map"
+        },
+        {
+          "wait": 450
+        },
+        {
+          "click": "#sines"
+        },
+        {
+          "click": "#towerC"
+        }
+      ]
+    },
+    {
+      "name": "dispatch-angles",
+      "steps": [
+        {
+          "click": "#m-dispatch"
+        },
+        {
+          "click": "#smoke1"
+        },
+        {
+          "drag": "return (()=>{const e=document.querySelector(\"#handleA\"),r=e.getBoundingClientRect();const p=__tool.screen(__tool.state.fire),m=document.querySelector(\"#map\").getBoundingClientRect();const a=[r.x+r.width/2,r.y+r.height/2],b=[p.x+m.x,p.y+m.y];return Array.from({length:20},(_,i)=>[Math.round(a[0]+(b[0]-a[0])*i/19),Math.round(a[1]+(b[1]-a[1])*i/19)]);})();"
+        },
+        {
+          "drag": "return (()=>{const e=document.querySelector(\"#handleB\"),r=e.getBoundingClientRect();const p=__tool.screen(__tool.state.fire),m=document.querySelector(\"#map\").getBoundingClientRect();const a=[r.x+r.width/2,r.y+r.height/2],b=[p.x+m.x,p.y+m.y];return Array.from({length:20},(_,i)=>[Math.round(a[0]+(b[0]-a[0])*i/19),Math.round(a[1]+(b[1]-a[1])*i/19)]);})();"
+        }
+      ],
+      "keep": [
+        "#angleStep",
+        "#check"
+      ]
+    },
+    {
+      "name": "dispatch-ready-guided",
+      "steps": [
+        {
+          "click": "#m-dispatch"
+        },
+        {
+          "click": "#smoke1"
+        },
+        {
+          "drag": "return (()=>{const e=document.querySelector(\"#handleA\"),r=e.getBoundingClientRect();const p=__tool.screen(__tool.state.fire),m=document.querySelector(\"#map\").getBoundingClientRect();const a=[r.x+r.width/2,r.y+r.height/2],b=[p.x+m.x,p.y+m.y];return Array.from({length:20},(_,i)=>[Math.round(a[0]+(b[0]-a[0])*i/19),Math.round(a[1]+(b[1]-a[1])*i/19)]);})();"
+        },
+        {
+          "drag": "return (()=>{const e=document.querySelector(\"#handleB\"),r=e.getBoundingClientRect();const p=__tool.screen(__tool.state.fire),m=document.querySelector(\"#map\").getBoundingClientRect();const a=[r.x+r.width/2,r.y+r.height/2],b=[p.x+m.x,p.y+m.y];return Array.from({length:20},(_,i)=>[Math.round(a[0]+(b[0]-a[0])*i/19),Math.round(a[1]+(b[1]-a[1])*i/19)]);})();"
+        },
+        {
+          "click": "#check",
+          "times": 2,
+          "gap": 0.3
+        },
+        {
+          "click": "#showMe"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#check",
+          "times": 2,
+          "gap": 0.3
+        },
+        {
+          "click": "#showMe"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#check",
+          "times": 2,
+          "gap": 0.3
+        },
+        {
+          "click": "#showMe"
+        },
+        {
+          "click": "#check"
+        }
+      ],
+      "keep": [
+        "#dispatchCrew"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "crew-on-scene",
+      "steps": [
+        {
+          "click": "#m-dispatch"
+        },
+        {
+          "click": "#smoke1"
+        },
+        {
+          "drag": "return (()=>{const e=document.querySelector(\"#handleA\"),r=e.getBoundingClientRect();const p=__tool.screen(__tool.state.fire),m=document.querySelector(\"#map\").getBoundingClientRect();const a=[r.x+r.width/2,r.y+r.height/2],b=[p.x+m.x,p.y+m.y];return Array.from({length:20},(_,i)=>[Math.round(a[0]+(b[0]-a[0])*i/19),Math.round(a[1]+(b[1]-a[1])*i/19)]);})();"
+        },
+        {
+          "drag": "return (()=>{const e=document.querySelector(\"#handleB\"),r=e.getBoundingClientRect();const p=__tool.screen(__tool.state.fire),m=document.querySelector(\"#map\").getBoundingClientRect();const a=[r.x+r.width/2,r.y+r.height/2],b=[p.x+m.x,p.y+m.y];return Array.from({length:20},(_,i)=>[Math.round(a[0]+(b[0]-a[0])*i/19),Math.round(a[1]+(b[1]-a[1])*i/19)]);})();"
+        },
+        {
+          "click": "#check",
+          "times": 2,
+          "gap": 0.3
+        },
+        {
+          "click": "#showMe"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#check",
+          "times": 2,
+          "gap": 0.3
+        },
+        {
+          "click": "#showMe"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#check",
+          "times": 2,
+          "gap": 0.3
+        },
+        {
+          "click": "#showMe"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "click": "#dispatchCrew"
+        },
+        {
+          "wait": 3300
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "radio-two-solved",
+      "steps": [
+        {
+          "click": "#m-radio"
+        },
+        {
+          "click": "#count2"
+        },
+        {
+          "drag": "return (()=>{const p=__tool.screen({x:4.157229767793522,y:4.954393511007523}),r=document.querySelector(\"#map\").getBoundingClientRect();return [[p.x+r.x,p.y+r.y],[p.x+r.x,p.y+r.y]];})();"
+        },
+        {
+          "drag": "return (()=>{const p=__tool.screen({x:11.42954141054622,y:13.621197037722753}),r=document.querySelector(\"#map\").getBoundingClientRect();return [[p.x+r.x,p.y+r.y],[p.x+r.x,p.y+r.y]];})();"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "burn-worked",
+      "steps": [
+        {
+          "click": "#m-burn"
+        },
+        {
+          "click": "#burn2"
+        },
+        {
+          "wait": 650
+        },
+        {
+          "click": "#checkArea",
+          "times": 2
+        },
+        {
+          "click": "#showArea"
+        },
+        {
+          "click": "#checkArea"
+        }
+      ],
+      "keep": [
+        "#checkArea"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "burn-edited-result",
+      "steps": [
+        {
+          "click": "#m-burn"
+        },
+        {
+          "js": "for(const [id,v] of [['area','.40'],['acres','257']]){const e=document.getElementById(id);e.value=v;e.dispatchEvent(new Event('input',{bubbles:true}));}"
+        },
+        {
+          "click": "#checkArea"
+        },
+        {
+          "js": "const e=document.getElementById('area');e.value='999';e.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#checkArea"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#checkArea",
+        "#burnMsg"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "radio-zero-confirm",
+      "steps": [
+        {
+          "click": "#m-radio"
+        },
+        {
+          "click": "#call3"
+        },
+        {
+          "click": "#count0"
+        }
+      ],
+      "keep": [
+        "#noSpot",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

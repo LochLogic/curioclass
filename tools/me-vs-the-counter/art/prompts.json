@@ -126,15 +126,19 @@
     },
     {
       "name": "tap-hand",
-      "prompt": "A child's open hand raised high, palm facing the viewer, warm brown skin, orange sleeve cuff. Isolated on flat pure green (#00FF00).",
+      "prompt": "A child's open hand raised high, palm facing the viewer, five naturally proportioned fingers, warm brown skin, an orange sleeve cuff ending neatly at the wrist. Bright warm picture-book gouache and colored-pencil texture, softly shaded volume, light from upper left. Isolated on flat pure green (#00FF00), complete silhouette with generous margins, no text or symbols.",
       "aspect": "1:1",
       "width": 200,
       "cutout": true,
       "quality": 76,
       "key": "green",
       "people": true,
-      "review": "Deferred to owner-reviewed painter; code silhouette used."
+      "review": "Cold review: five fingers, palm and cuff inspected; people asset marked for final representation review.",
+      "drawn_by": "codex",
+      "source": "gpt-image (Codex built-in)",
+      "despill": true,
+      "holes": true
     }
   ],
-  "house_style": "Bright, warm picture-book gouache and colored-pencil illustration for kindergarten. Confident clean silhouettes, tactile painted texture, softly shaded volume, warm maple and cream, light from upper left. Blank surfaces. No text, letters, numbers, logos, people, faces or body parts."
+  "house_style": "Bright, warm picture-book gouache and colored-pencil illustration for kindergarten. Confident clean silhouettes, tactile painted texture, softly shaded volume, warm maple and cream, light from upper left. Blank surfaces. Blank surfaces without text, letters, numbers or logos. People appear only in assets explicitly marked people:true."
 }

@@ -30,13 +30,17 @@ Set prepares the audience and repertoire choice. Each tempo factor changes lengt
 
 Rubric asks students to establish criteria before judging. Shape and Keeps going are deliberately ears-only. Meter levels for the other four use the fixed thresholds in the spec; edited descriptors do not change that numerical meter. A disagreement invites another listen rather than treating the meter as a complete musical judgment.
 
+Listen keeps error marks, timing reference ticks, actual BPM and readiness readouts hidden until the first judgments and meter reveal. A new criterion must be rated before its meter appears. Feedback compares the immutable first ear rating with the meter; revising a rating afterward does not earn first-ear agreement. Hover over a rating's endpoints to review your own descriptions.
+
 Practice runs four weeks within one 30 to 45 minute class period. The daily and weekly time values are a planning model, not time students must wait. Sliders use 15 minute increments and never exceed the available total. Unplanned minutes are unused. Recorded weeks cannot be rewritten. The next week inherits the previous plan for revision.
 
 Recital presents each introduction and week 4 hard passage, not the entire ten-minute program. Run-through Flow changes the pause between pieces. Stop and Skip piece interrupt immediately. The final sheet includes readiness, meter values, first ear ratings, venue notes and the student's reflection. Print sheet is black on white.
 
+The recital's shaded keyboard lights the pitches of the saved take, including its slips. It uses the same timed note events as the audio, and is a presentation aid rather than a play-along task.
+
 ## Talk about it
 
-- Which hard passage gained most from your plan, and which did you neglect?
+- Which hard passage gained most from your plan? Did any unit need more time?
 - What did a change of tempo cost in running time and difficulty?
 - Which rating changed after a second listen? Why might a meter miss musical shape?
 - How would you explain this set differently in a library and a quiet community room?

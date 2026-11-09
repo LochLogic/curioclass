@@ -1,0 +1,88 @@
+{
+  "keep": [],
+  "states": [
+    {
+      "name": "hamlet-comparison",
+      "steps": [
+        {
+          "click": "#scene-hamlet"
+        },
+        {
+          "click": "#prod-2"
+        }
+      ],
+      "keep": [
+        "#productionTabs"
+      ]
+    },
+    {
+      "name": "ruling-no-line",
+      "steps": [
+        {
+          "click": "#scene-hamlet"
+        },
+        {
+          "click": "[data-kind=\"allows\"]"
+        }
+      ]
+    },
+    {
+      "name": "direct-work",
+      "steps": [
+        {
+          "click": "#scene-macbeth"
+        },
+        {
+          "click": "#m-direct"
+        },
+        {
+          "click": ".option input[value=\"1\"]"
+        }
+      ]
+    },
+    {
+      "name": "production-page",
+      "steps": [
+        {
+          "click": "#scene-shrew"
+        },
+        {
+          "click": "#m-direct"
+        },
+        {
+          "click": "#readProduction"
+        }
+      ],
+      "keep": [
+        "#closeProduction",
+        "#copyProduction"
+      ]
+    },
+    {
+      "name": "guest-company",
+      "steps": [
+        {
+          "click": "#scene-trifles"
+        },
+        {
+          "click": "#prod-2"
+        }
+      ]
+    },
+    {
+      "name": "clear-prompt",
+      "steps": [
+        {
+          "click": "#scene-hamlet"
+        },
+        {
+          "click": "#clearWork"
+        }
+      ],
+      "keep": [
+        "#clearNo",
+        "#clearYes"
+      ]
+    }
+  ]
+}

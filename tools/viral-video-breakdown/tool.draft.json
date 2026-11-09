@@ -1,0 +1,25 @@
+{
+  "id": "viral-video-breakdown",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Follow the crumbs from Nina’s bakery film to five very different reposts.",
+  "outcome": "Analyze shot choices and support judgments about reposts with evidence.",
+  "driver": "students",
+  "minutes": "25-40",
+  "grades_label": "Grades 6-8",
+  "modes": [
+    "The video",
+    "The reposts",
+    "The verdict"
+  ],
+  "sources": [
+    "National Core Arts Standards, Media Arts MA:Re7, MA:Re8, MA:Re9, MA:Cn11: https://www.nationalartsstandards.org/",
+    "Library of Congress, Analyzing Motion Pictures: https://memory.loc.gov/static/programs/teachers/getting-started-with-primary-sources/documents/Analyzing_Motion_Pictures.pdf",
+    "U.S. Copyright Office, What is copyright?: https://www.copyright.gov/what-is-copyright/",
+    "Common Sense Education, Giving Credit: https://www.commonsense.org/education/digital-literacy/giving-credit",
+    "All case accounts, film, captions and statistics are fictional, written for Curio Class.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

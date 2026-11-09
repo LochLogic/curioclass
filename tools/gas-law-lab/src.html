@@ -1,0 +1,1573 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gas Law Lab · Measure the gas. Find the law. · Curio Class</title>
+<meta name="description" content="Run a gas bench and discover absolute zero from your own measurements. Grade 10 chemistry. Works offline.">
+<!--
+Gas Law Lab (Curio Class). Grade 10 chemistry, HS-PS3-2. Students drive, 20-40 minutes.
+Ideal gas model: OpenStax Chemistry 2e 9.2 and 9.5. Constants: NIST CODATA.
+Atmosphere: U.S. Standard Atmosphere 1976. Full source and model notes in notes.md.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+The particle picture is a scaled 2D illustration, independent of all SI readouts.
+One file, no network requests. Content CC BY 4.0, code MIT. curioclass.org
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#9ec9e8;
+  --brand-ink:#10141a;
+  --brass:#e8bd73;
+  --gas:#ffd36b;
+}
+body {height:100%;overflow:hidden}
+header {padding:10px 18px;gap:10px;min-height:74px}
+h1 {font-size:27px;letter-spacing:-.7px}
+h1 small {font-size:13px;letter-spacing:.4px;margin-top:3px}
+.seg {border-radius:8px;border-width:1px}
+.seg button,.icon-btn {min-height:44px;font-size:14px;padding:0 13px}
+.icon-btn {border-width:1px;border-radius:7px}
+#read {min-width:44px}
+main {grid-template-columns:minmax(0,1fr) 344px;overflow:hidden}
+.workspace {display:grid;grid-template-rows:44px minmax(0,1fr) auto;min-width:0;min-height:0;position:relative}
+.workspace {grid-column:1;grid-row:1}
+.panel {grid-column:2;grid-row:1}
+.viewbar {display:flex;gap:5px;padding:0 12px;background:#121b24;align-items:center;border-bottom:1px solid #354151}
+.viewbar button {height:44px;min-width:88px;border:0;border-bottom:3px solid transparent;background:transparent;font-size:13px}
+.viewbar button[aria-pressed=true] {color:var(--brand);border-color:var(--brand)}
+.viewbar .meta {margin-left:auto;font:11px var(--readout-font);color:var(--muted)}
+#visual {position:relative;min-width:0;min-height:0;overflow:hidden;background:#0b111a}
+#apparatus-stage {position:absolute;inset:0;overflow:hidden}
+#scene-svg {width:100%;height:100%;display:block}
+#particles {position:absolute;border-radius:50%;pointer-events:none}
+.scene-tag {position:absolute;left:18px;top:16px;max-width:60%;background:#101923ed;border:1px solid #738c9d66;
+  padding:8px 11px;border-radius:5px;box-shadow:0 3px 15px #0003}
+.scene-tag strong {display:block;font-size:12px;letter-spacing:1.8px;text-transform:uppercase;color:var(--brass)}
+.scene-tag span {display:block;font-size:12px;color:#e1e7ed;margin-top:3px}
+#record-flash {position:absolute;left:50%;top:72%;transform:translateX(-50%);background:var(--brand);color:var(--brand-ink);
+  border-radius:5px;padding:9px 16px;font:700 14px var(--readout-font);opacity:0;pointer-events:none;transition:opacity .14s}
+#record-flash.show {opacity:1}
+.readout-deck {padding:10px 14px 9px;background:linear-gradient(#1b2530,#121b24);border-top:1px solid #53677c;
+  box-shadow:inset 0 1px #ffffff12;z-index:2}
+.primary {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}
+.instrument {padding:7px 10px;background:#0b121a;border:1px solid #405165;border-radius:5px;min-width:0}
+.instrument small {font-size:10px;text-transform:uppercase;letter-spacing:1.1px;color:var(--muted);display:block}
+.instrument b {font:500 clamp(17px,2.2vw,29px)/1.3 var(--readout-font);color:var(--brand);white-space:nowrap}
+.instrument b em {font:11px 'Segoe UI',sans-serif;color:#c1cbd5;font-style:normal}
+.aux {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px 12px;margin-top:8px;font-size:11px;line-height:1.25}
+.aux span {color:var(--muted)}
+.aux b {color:var(--ink);font:500 11px var(--readout-font);white-space:nowrap}
+.law {display:flex;gap:8px;align-items:center;margin-top:8px;font:12px var(--readout-font);color:var(--brass)}
+.law .tiny-bar {margin-left:auto;width:45px;height:3px;background:#40576a}
+.law .tiny-bar i {display:block;height:100%;width:100%;background:var(--brand)}
+.law .local-note {margin-left:auto;font:10px 'Segoe UI',sans-serif;color:var(--muted);white-space:nowrap}
+.bath-line {min-height:44px;margin-top:0!important}
+.toggle input,.viewbar #guided-options input {
+  width:44px;height:44px;flex:0 0 44px;margin:0;appearance:none;position:relative;background:none;cursor:pointer;
+}
+.toggle input::before {
+  content:'';position:absolute;inset:12px;border:1px solid #9ec9e8;border-radius:2px;background:#111f2b;
+}
+.toggle input:checked::after {
+  content:'✓';position:absolute;inset:11px;background:var(--brand);color:var(--brand-ink);
+  text-align:center;font:700 19px/22px 'Segoe UI',sans-serif;border-radius:2px;
+}
+.panel {padding:15px;gap:12px;background:linear-gradient(110deg,#1b2530,#141b25);border-left:1px solid #475469;overflow:auto}
+.eyebrow {font:700 10px 'Segoe UI',sans-serif;letter-spacing:2px;text-transform:uppercase;color:var(--brass);margin:0 0 6px}
+.rack {display:grid;gap:9px}
+.row {display:flex;gap:6px;align-items:center;min-width:0}
+.row>* {flex:1;min-width:0}
+label.field {display:grid;gap:3px;font-size:11px;color:var(--muted);letter-spacing:.3px}
+select {width:100%;min-height:44px;border:1px solid #64778d;border-radius:5px;background:#101923;color:var(--ink);
+  padding:0 8px;font:600 14px 'Segoe UI',sans-serif}
+.btn {border-radius:5px;font-size:13px;box-shadow:inset 0 1px #ffffff0d;padding:0 8px;white-space:nowrap}
+.btn.primary-btn {background:var(--brand);border-color:var(--brand);color:var(--brand-ink);font-size:16px;font-weight:750}
+.btn:active {filter:brightness(1.2)}
+.preset {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}
+.preset button {white-space:normal;font-size:12px;line-height:1.15;padding:3px}
+.preset span {display:block;color:#d5e2ec;font:11px var(--readout-font)}
+.preset [aria-pressed=true] {border-color:var(--brand);background:#2a3f50}
+.bath-label {display:flex;justify-content:space-between;align-items:center;font-size:13px}
+.bath-label output {font:600 16px var(--readout-font);color:var(--brand)}
+.bath-line {height:44px;display:flex;gap:7px;align-items:center}
+.bath-line .end {font-size:11px;color:var(--muted)}
+input[type=range] {min-width:0;flex:1;height:44px}
+.weight-label {font:11px var(--readout-font);text-align:center;color:var(--brass);margin:0}
+.amount-row .btn {font-size:13px}
+.record-row {display:grid;grid-template-columns:1fr auto;gap:7px}
+#record {min-width:125px;display:flex;align-items:center;justify-content:center;gap:10px}
+#record::before {content:'';width:8px;height:8px;border-radius:50%;background:#263f52;box-shadow:0 0 0 3px #10141a20}
+#row-count {font:12px var(--readout-font);min-width:52px;border:1px solid #526173;border-radius:5px;display:grid;place-content:center}
+.hint {min-height:72px;padding:10px 11px;border-left:2px solid var(--brass);background:#0d151e;font-size:14px;line-height:1.45}
+.hint.warn {border-color:var(--warn);color:var(--warn)}
+#status {color:var(--brand);font-size:12px;line-height:1.3;min-height:16px;margin:0}
+.energy {border-top:1px solid #3c4b5c;padding-top:11px;display:grid;gap:9px}
+.energy-label {display:flex;justify-content:space-between;font-size:11px;color:var(--muted);gap:5px}
+.energy-label b {color:var(--brass);font:11px var(--readout-font)}
+.energy-track {height:10px;background:#0b1219;border:1px solid #435269;border-radius:2px;margin-top:4px;display:flex}
+.energy-track i {display:block;background:#e2b66b;height:100%;max-width:100%}
+.energy-track .spin {background:#f8ddad}
+.energy-note {font-size:10px;color:#c6d2df;margin:3px 0 0}
+.privacy {margin:auto 0 0;color:var(--muted);font-size:10px;line-height:1.4}
+#guide {border:1px solid #617a8e;background:#172a38;padding:9px 10px;border-radius:5px}
+.step-line {display:flex;gap:6px;align-items:center;font-size:12px}
+.step-line b {font:700 11px var(--readout-font);color:var(--brand);white-space:nowrap}
+.step-line span {font-size:12px}
+.step-dots {display:flex;gap:5px;margin-bottom:7px}
+.step-dots i {height:3px;flex:1;background:#506273}
+.step-dots i.past {background:var(--brass)}
+.step-dots i.now {background:var(--brand)}
+.toggle {min-height:44px;display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer}
+.toggle input {width:44px;height:44px;accent-color:var(--brand)}
+#guided-options {display:flex;gap:8px;align-items:center}
+#guided-options .toggle {flex:1}
+#new-zero {font-size:12px}
+#notebook {position:absolute;inset:0;padding:12px;display:grid;grid-template-rows:auto minmax(130px,1fr) auto;
+  grid-template-columns:minmax(0,1fr);gap:8px;background:linear-gradient(130deg,#182535,#0d151f);overflow:auto}
+#notebook>* {min-width:0}
+.graph-tools {display:flex;align-items:end;gap:7px}
+.graph-tools label {max-width:150px;flex:1;min-width:0;width:0}
+.graph-tools select {min-width:0}
+.graph-tools .btn {min-width:82px}
+#plot {width:100%;height:100%;min-height:130px;display:block;background:#0b1420;border:1px solid #43566b;border-radius:5px}
+.plot-wrap {min-height:130px;position:relative}
+.fit-result {font:12px/1.45 var(--readout-font);color:var(--brass);margin:0;min-height:18px}
+.table-top {display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:4px}
+.table-top p {font-size:11px;color:var(--muted);margin:0}
+.table-top button {min-height:44px}
+.table-wrap {max-height:145px;overflow:auto;border:1px solid #3e5268;border-radius:4px}
+table {border-collapse:collapse;width:100%;font:11px var(--readout-font);white-space:nowrap}
+th,td {padding:4px 7px;text-align:right;border-bottom:1px solid #2e4052}
+th {color:var(--muted);background:#14202d;position:sticky;top:0;font-weight:500;z-index:1}
+td:first-child,th:first-child {text-align:left}
+td .btn {font-size:12px;width:44px;padding:0;min-height:44px}
+th:last-child,td:last-child {position:sticky;right:0;background:#14202d;z-index:2}
+.set-a {color:var(--brand)}
+.set-b {color:var(--brass)}
+#empty-rows {margin:0;padding:13px;font-size:12px;color:var(--muted)}
+#result-card {position:absolute;inset:9% 11%;z-index:4;display:grid;align-content:center;gap:10px;padding:18px;
+  border:1px solid #9ec9e8;background:linear-gradient(120deg,#20374a,#101d29);box-shadow:0 12px 50px #0009;border-radius:8px}
+#result-card .eyebrow {margin:0}
+#result-card h2 {font-size:clamp(19px,3vw,33px);letter-spacing:-.6px;margin:0}
+#result-card .crossings {display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.crossing {border-top:2px solid var(--brand);padding-top:8px}
+.crossing:nth-child(2) {border-color:var(--brass)}
+.crossing small {display:block;font-size:11px;color:var(--muted)}
+.crossing b {font:500 clamp(17px,2.3vw,28px) var(--readout-font)}
+#result-card p {font-size:13px;line-height:1.45;margin:0}
+#result-card .accepted {font:16px var(--readout-font);color:var(--brand)}
+#result-card .accepted span {display:block}
+#close-result {justify-self:start}
+@media (min-width:1100px) {
+  #result-card {left:auto;right:2%;width:43%;padding:15px}
+  #result-card h2 {font-size:26px}
+  #result-card .crossing b {font-size:23px}
+}
+.sr {position:absolute;width:1px;height:1px;clip-path:inset(50%);overflow:hidden;white-space:nowrap}
+body.graph-focus #apparatus-stage {width:24%;opacity:.45;pointer-events:none}
+body.graph-focus #notebook {left:24%}
+body.graph-focus #particles,body.graph-focus .scene-tag {display:none}
+body.graph-focus .magnifier {display:none}
+body[data-view="Notebook"] #record-flash {display:none}
+@media (min-height:900px) and (min-width:1100px) {
+  .workspace {grid-template-rows:44px minmax(0,1fr) auto 300px}
+  #notebook {position:relative;inset:auto;grid-row:4;display:grid!important;grid-template-columns:1fr 35%;
+    grid-template-rows:auto minmax(0,1fr);padding:12px;min-height:0}
+  #notebook .graph-tools {grid-area:1/1}
+  #notebook .plot-wrap {grid-area:2/1}
+  #notebook .table-section {grid-area:1/2/3/3;min-width:0;overflow:hidden}
+  #notebook .table-wrap {max-height:225px}
+  body.graph-focus .workspace {grid-template-rows:44px minmax(0,1fr) auto}
+  body.graph-focus #notebook {position:absolute;top:44px;bottom:160px;left:20%;display:grid!important;grid-row:auto}
+}
+@media (max-height:650px), (max-width:1000px) and (min-width:600px) {
+  header {padding:4px 8px;gap:6px;min-height:54px;flex-wrap:nowrap}
+  h1 {font-size:18px;white-space:nowrap;letter-spacing:-.4px}
+  h1 small {display:none}
+  .seg button,.icon-btn {font-size:12px;padding:0 8px}
+  main {grid-template-columns:minmax(0,1fr) 288px}
+  .panel {padding:7px;gap:6px}
+  .rack {gap:4px}
+  .eyebrow,.field-caption {display:none}
+  .row label.field {gap:0}
+  select {font-size:12px}
+  .btn {font-size:12px;padding:0 5px}
+  .preset button {font-size:10px}
+  .hint {font-size:12px;line-height:1.3;min-height:47px;padding:6px 8px}
+  .energy {padding-top:6px;gap:4px}
+  .energy-track {height:6px;margin-top:2px}
+  .energy-label,.energy-label b {font-size:10px}
+  .energy-note,.privacy {display:none}
+  .bath-label {font-size:12px}
+  .bath-label output {font-size:13px}
+  .bath-line {margin-top:-4px}
+  .viewbar {padding:0 7px}
+  .viewbar .meta {font-size:10px}
+  .viewbar button {min-width:80px;padding:0 5px;font-size:12px}
+  .readout-deck {padding:6px 7px}
+  .primary {gap:4px}
+  .instrument {padding:5px}
+  .instrument small {font-size:10px;letter-spacing:0}
+  .instrument b {font-size:16px}
+  .instrument b em {font-size:10px}
+  .aux {gap:4px;margin-top:5px;font-size:10px}
+  .aux b {font-size:10px}
+  .law {margin-top:5px;font-size:10px}
+  .scene-tag {left:8px;top:8px;padding:5px 7px}
+  .scene-tag strong,.scene-tag span {font-size:10px;letter-spacing:.3px}
+  #guide {padding:5px 7px}
+  .step-dots {margin-bottom:4px}
+  .step-line span {font-size:11px}
+  #status {font-size:11px;min-height:14px}
+  #notebook {padding:6px;gap:4px;grid-template-rows:auto minmax(105px,1fr) auto}
+  .graph-tools {gap:4px}
+  .graph-tools label {font-size:10px}
+  .graph-tools .btn {min-width:66px;font-size:11px}
+  .table-wrap {max-height:69px}
+  .fit-result {font-size:10px}
+  #result-card {inset:4%;padding:12px;gap:8px}
+  #result-card p {font-size:11px}
+  #result-card .eyebrow,#slope-comparison {display:none}
+  #result-card h2 {font-size:18px}
+}
+@media (max-height:500px) and (min-width:600px) {
+  .rack {gap:2px}
+  .field {font-size:10px}
+  .weight-label {font-size:10px}
+  .bath-label {margin-top:0}
+  .bath-line {margin-top:-9px;height:40px}
+  .preset button {min-height:44px}
+  .energy {display:none}
+  #status {display:none}
+  .panel {gap:4px}
+  .hint {min-height:44px}
+  .weight-label {display:none}
+  .amount-row {display:flex}
+  body[data-apparatus=Can] .amount-row {display:flex}
+  body[data-apparatus=Balloon] .weight-row {display:none}
+  #guided-options {margin-top:-4px}
+  #guide {padding:4px 7px}
+  .step-dots {display:none}
+  body[data-mode="Absolute zero"] #guide {display:none}
+  body[data-mode="Absolute zero"] .hint {border-top:2px solid var(--brand)}
+  .aux {grid-template-columns:1fr 1fr}
+  .aux .molecules {grid-column:1/3}
+}
+@media (max-width:599px) {
+  body {height:100%;overflow:auto;grid-template-rows:auto minmax(0,1fr)}
+  header {padding:5px 8px;gap:5px;display:grid;grid-template-columns:1fr auto auto auto;min-height:98px}
+  h1 {grid-column:1/5;font-size:22px;line-height:1.1}
+  h1 small {display:none}
+  .seg button,.icon-btn {padding:0 7px;font-size:11px;min-height:44px}
+  .seg button {font-size:12px}
+  main {grid-template-columns:1fr;grid-template-rows:minmax(280px,1fr) auto;overflow:visible;min-height:0}
+  .workspace {min-height:300px;grid-template-rows:44px minmax(120px,1fr) auto}
+  .panel {border-left:0;border-top:1px solid #52677b;padding:7px;gap:5px;overflow:visible}
+  .panel {grid-column:1;grid-row:2}
+  .rack {gap:3px}
+  .eyebrow,.field-caption,.energy,.privacy,.weight-label {display:none}
+  .row label.field {gap:0}
+  .rack .setup-row {display:grid;grid-template-columns:1fr 1fr}
+  select,.btn {font-size:12px}
+  .amount-row {position:static}
+  .weight-row .btn {font-size:12px}
+  .weight-row {padding-right:0}
+  .readout-deck {padding:5px 7px}
+  .primary {gap:4px}
+  .instrument {padding:4px}
+  .instrument small {font-size:10px;letter-spacing:0}
+  .instrument b {font-size:16px}
+  .instrument b em {font-size:10px}
+  .aux {grid-template-columns:1fr 1fr;gap:3px;font-size:10px;margin-top:4px}
+  .aux b {font-size:10px}
+  .aux .molecules {grid-column:1/3}
+  .law {margin-top:4px;font-size:10px}
+  .scene-tag {top:6px;left:7px;padding:4px 6px;max-width:55%}
+  .scene-tag strong,.scene-tag span {font-size:10px;letter-spacing:0}
+  .hint {min-height:44px;font-size:12px;line-height:1.3;padding:6px 8px}
+  .bath-label {font-size:12px}
+  .bath-label output {font-size:13px}
+  .bath-line {margin-top:-6px;height:36px}
+  #status {display:none}
+  #notebook {padding:6px;gap:4px;grid-template-rows:auto minmax(100px,1fr) auto}
+  .table-wrap {max-height:60px}
+  .table-top {display:flex}
+  .fit-result {font-size:10px}
+  .graph-tools select {font-size:11px}
+  .graph-tools {gap:4px}
+  .graph-tools .btn {min-width:64px;font-size:11px}
+  .plot-wrap,#plot {min-height:100px}
+  body.graph-focus #notebook {left:0}
+  body.graph-focus #apparatus-stage {display:none}
+  #guide {padding:5px 8px}
+  .step-dots {display:none}
+  #guided-options {margin-top:-5px}
+  #result-card {inset:4%;padding:12px;gap:7px}
+  #result-card h2 {font-size:18px}
+  #result-card p {font-size:11px}
+  #result-card .accepted {font-size:12px}
+  #result-card .eyebrow,#slope-comparison {display:none}
+}
+/* No endless animation under reduced motion. The physics loop draws still arrows once a second. */
+.calm * {animation:none!important;transition:none!important}
+/* In short boxes Real lab lives in the notebook tab rail, leaving the experiment controls in view. */
+.viewbar #guided-options {margin:0 0 0 auto;gap:4px}
+.viewbar #guided-options .toggle {font-size:10px;gap:4px;white-space:nowrap}
+.viewbar #guided-options .btn {font-size:10px;padding:0 5px;min-width:44px}
+.viewbar #guided-options input {width:44px;height:44px}
+body[data-mode="Absolute zero"] .viewbar:has(#guided-options) .meta {display:none}
+@media (max-height:650px),(max-width:599px) {
+  #result-card {padding:4px;gap:2px}
+  #result-card h2 {font-size:16px;line-height:1.1}
+  #result-card .crossings {gap:7px}
+  #result-card .crossing {padding-top:3px}
+  #result-card .crossing small {font-size:10px;line-height:1.1}
+  #result-card .crossing b {font-size:15px;line-height:1.1}
+  #result-card p {font-size:11px;line-height:1.2}
+  #result-card .accepted {font-size:10px;line-height:1.2}
+  #result-card .accepted span {display:inline}
+  #result-card .accepted span+span::before {content:' · '}
+  #close-result {font-size:11px;min-height:44px}
+  #result-card .model-note {font-size:10px;line-height:1.15}
+}
+@media (max-width:599px) {
+  #result-card h2 {display:none}
+}
+.aux .inline-energy {padding-bottom:4px;position:relative}
+.aux .inline-energy::after {content:'';height:2px;position:absolute;bottom:0;left:0;width:var(--fill,0%);background:var(--brass)}
+</style>
+</head>
+<body data-mode="Bench" data-apparatus="Piston">
+<header>
+  <h1>Gas Law Lab <small>Measure the gas. Find the law.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-bench" aria-pressed="true">Bench</button>
+    <button id="m-zero" aria-pressed="false">Absolute zero</button>
+  </div>
+  <button id="motion" class="icon-btn" aria-pressed="true">Motion</button>
+  <button id="sound" class="icon-btn" aria-pressed="true">Sound</button>
+  <button id="read" class="icon-btn">Read</button>
+</header>
+<main>
+  <section class="workspace" aria-label="Gas apparatus and notebook">
+    <div class="viewbar">
+      <button id="v-readouts" aria-pressed="true">Readouts</button>
+      <button id="v-notebook" aria-pressed="false">Notebook <span id="tab-count">0</span></button>
+      <span class="meta">IDEAL GAS · SI</span>
+    </div>
+    <div id="visual">
+      <div id="apparatus-stage">
+        <svg id="scene-svg" role="img" aria-label="Gas apparatus in a water bath with particle magnifier"></svg>
+        <canvas id="particles" aria-label="Scaled particle picture with wall collisions"></canvas>
+        <div class="scene-tag"><strong id="scene-title">The weighted piston</strong><span id="scene-sub">Heat it. Watch it rise.</span></div>
+      </div>
+      <div id="record-flash" role="status">Measurement recorded</div>
+      <section id="result-card" role="dialog" aria-modal="false" aria-label="Your absolute zero result" hidden>
+        <p class="eyebrow">Your two experiments</p>
+        <h2>Your absolute zero</h2>
+        <div class="crossings">
+          <div class="crossing"><small>SET A · zero crossing</small><b id="cross-a"></b></div>
+          <div class="crossing"><small>SET B · zero crossing</small><b id="cross-b"></b></div>
+        </div>
+        <p id="cross-mean"></p>
+        <p class="accepted"><span>Accepted: −273.15 °C</span><span>Kelvin starts here: 0 K</span></p>
+        <p id="slope-comparison"></p>
+        <p class="model-note">Ideal-gas extrapolation. Real gases condense before zero volume.</p>
+        <button id="close-result" class="btn">Look at my lines</button>
+      </section>
+    </div>
+    <div class="readout-deck" id="readout-deck">
+      <div class="primary">
+        <div class="instrument"><small>Pressure</small><b id="r-p"></b></div>
+        <div class="instrument"><small>Volume</small><b id="r-v"></b></div>
+        <div class="instrument"><small>Gas temp.</small><b id="r-t"></b></div>
+        <div class="instrument"><small>Amount / mol</small><b id="r-n"></b></div>
+      </div>
+      <div class="aux">
+        <div><span>Temperature </span><b id="r-k"></b></div>
+        <div><span>RMS speed </span><b id="r-speed"></b></div>
+        <div><span>KE / molecule </span><b id="r-ke"></b></div>
+        <div class="molecules"><span>Molecules </span><b id="r-molecules"></b></div>
+        <div class="inline-energy" id="inline-energy"><span>Particle motion </span><b id="r-energy"></b></div>
+        <div id="lift-readout" class="inline-energy"><span>Weights lifted </span><b id="r-lift"></b></div>
+      </div>
+      <div class="law"><span>PV ÷ nT (SI) = <b id="r-law">8.314</b> J/(mol·K)</span>
+        <span class="local-note">Stays on this device</span></div>
+    </div>
+  </section>
+  <aside class="panel" aria-label="Bench controls">
+    <div id="guide" hidden>
+      <div class="step-dots"><i></i><i></i><i></i><i></i></div>
+      <div class="step-line"><b id="step-number">01 / 04</b><span id="step-title">Measure set A</span></div>
+    </div>
+    <div class="rack">
+      <p class="eyebrow">01 / Prepare the bench</p>
+      <div class="row setup-row">
+        <label class="field"><span class="field-caption">Apparatus</span>
+          <select id="apparatus" aria-label="Apparatus"><option>Piston</option><option>Can</option><option>Balloon</option></select>
+        </label>
+        <label class="field"><span class="field-caption">Gas</span>
+          <select id="gas" aria-label="Gas"><option>Helium</option><option>Nitrogen</option><option>Argon</option></select>
+        </label>
+      </div>
+      <div id="weight-controls">
+        <div class="row weight-row">
+          <button id="add-weight" class="btn">+ Add weight</button>
+          <button id="remove-weight" class="btn">− Remove weight</button>
+        </div>
+        <p class="weight-label" id="weight-label">0 × 5.00 kg · 20.0 cm² piston</p>
+      </div>
+      <div class="row amount-row" id="amount-controls">
+        <button id="pump" class="btn">+ Pump</button>
+        <button id="valve" class="btn">− Valve</button>
+      </div>
+      <label class="field" id="altitude-controls" hidden><span class="field-caption">Altitude</span>
+        <select id="altitude" aria-label="Altitude">
+          <option value="0">Sea level</option><option value="1600">1,600 m</option>
+          <option value="3000">3,000 m</option><option value="5000">5,000 m</option>
+        </select>
+      </label>
+      <div>
+        <div class="bath-label"><label for="bath" id="bath-name">Bath</label><output id="bath-value">25 °C</output></div>
+        <div class="bath-line"><span class="end">0</span><input type="range" id="bath" min="0" max="100" step="1" value="25">
+          <span class="end">100 °C</span></div>
+        <div class="preset">
+          <button class="btn" id="ice" data-temp="0" aria-label="Ice water 0 degrees Celsius">Ice water<span>0 °C</span></button>
+          <button class="btn" id="room" data-temp="25" aria-label="Room 25 degrees Celsius">Room<span>25 °C</span></button>
+          <button class="btn" id="hot" data-temp="80" aria-label="Hot water 80 degrees Celsius">Hot water<span>80 °C</span></button>
+          <button class="btn" id="boil" data-temp="100" aria-label="Boiling 100 degrees Celsius">Boiling<span>100 °C</span></button>
+        </div>
+      </div>
+      <div class="record-row">
+        <button id="record" class="btn primary-btn">Record</button><span id="row-count">0 rows</span>
+      </div>
+    </div>
+    <div id="guided-options" hidden>
+      <label class="toggle"><input id="real-lab" type="checkbox" aria-label="Real lab reading error" checked>Real lab</label>
+      <button id="new-zero" class="btn">Start again</button>
+    </div>
+    <p class="hint" id="hint"></p>
+    <p id="status" aria-live="polite"></p>
+    <div class="energy">
+      <p class="eyebrow">02 / Follow the energy</p>
+      <div>
+        <div class="energy-label"><span>Energy in particle motion</span><b id="energy-value"></b></div>
+        <div class="energy-track"><i id="energy-fill"></i><i id="spin-fill" class="spin"></i></div>
+        <p class="energy-note" id="spin-note">Moving from place to place</p>
+      </div>
+      <div id="lift-bar">
+        <div class="energy-label"><span>Weights lifted since Record</span><b id="lift-value"></b></div>
+        <div class="energy-track"><i id="lift-fill"></i></div>
+        <p class="energy-note" id="rise-value"></p>
+      </div>
+    </div>
+    <p class="privacy">Notebook saved on this device only. Nothing leaves it.<br>Ideal gas model · 2D particle picture, scaled.</p>
+  </aside>
+</main>
+<!-- Notebook is moved into the workspace once, never rebuilt under a pointer. -->
+<section id="notebook" aria-label="Notebook" hidden>
+  <div class="graph-tools">
+    <label class="field">x axis<select id="x-axis" aria-label="Graph x axis">
+      <option value="T">T (°C)</option><option value="K">T (K)</option><option value="P">P (kPa)</option>
+      <option value="inverseV">1/V (1/mL)</option><option value="n">n (mol)</option>
+    </select></label>
+    <label class="field">y axis<select id="y-axis" aria-label="Graph y axis">
+      <option value="V">V (mL)</option><option value="P">P (kPa)</option><option value="PV">P × V (J)</option>
+    </select></label>
+    <button id="fit" class="btn" disabled>Fit line</button>
+    <button id="clear" class="btn" title="Clear notebook" aria-label="Clear notebook">Clear</button>
+  </div>
+  <div class="plot-wrap"><svg id="plot" role="img" aria-label="Notebook data graph"></svg></div>
+  <div class="table-section">
+    <p class="fit-result" id="fit-result">Record at least two rows.</p>
+    <div class="table-top"><p>Saved on this device only.</p></div>
+    <div class="table-wrap">
+      <table><thead><tr><th scope="col">Setup</th><th scope="col">n / mol</th><th scope="col">T / °C</th>
+        <th scope="col">T / K</th><th scope="col">P / kPa</th><th scope="col">V / mL</th><th scope="col">Delete</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p id="empty-rows">Your measurements will appear here.</p>
+    </div>
+  </div>
+</section>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const R = 8.314462618;
+  const NA = 6.02214076e23;
+  const KB = 1.380649e-23;
+  const G = 9.80665;
+  const A = .002;
+  const P0 = 101.325;
+  const WEIGHT_KPA = 5 * G / A / 1000;
+  const STORE = 'curio-gas-law-lab';
+  const GASES = {
+    Helium: {mass:.0040026, color:'#ffd36b', radius:2.5, symbol:'He'},
+    Nitrogen: {mass:.028014, color:'#7fb3ff', radius:3.5, symbol:'N₂'},
+    Argon: {mass:.03995, color:'#d59cff', radius:4.5, symbol:'Ar'}
+  };
+  const ART = {
+    lab:'art:gl-lab', bath:'art:gl-bath', cylinder:'art:gl-cylinder', piston:'art:gl-piston',
+    weight:'art:gl-weight', can:'art:gl-can', balloon:'art:gl-balloon',
+    sea:'art:gl-alt-sea', high:'art:gl-alt-1600', alpine:'art:gl-alt-3000', ridge:'art:gl-alt-5000'
+  };
+  const L = {
+    "wBench":"Pick an apparatus. Change the bath or the weights, then press Record to log a row.",
+    "weightTip":"More weight, more pressure. Watch the gas shrink until it pushes back equally.",
+    "fitTip":"Press Fit line to draw the best straight line through your rows.",
+    "wZero":"Use four bath settings spanning at least 60 degrees. Press Record at each, then open Notebook to compare your measurements.",
+    "second":"Now change one thing: the gas, the amount or the weights. Record a second set and fit it.",
+    "zero":"Your line meets zero near minus 273 degrees Celsius.",
+    "stop":"The piston hit the stop. Now the pressure climbs instead.",
+    "canStop":"A real can could burst. The gauge stops here."
+  };
+  const state = {
+    mode:'Bench', apparatus:'Piston', gas:'Helium', n:.004, T:25, bath:25, weights:0, altitude:0,
+    realLab:true, rows:[], view:'Readouts', step:1, session:0, fits:[], recipeB:null,
+    recordV:0, revision:0, lastAction:0, warning:'', flashUntil:0, fit:null
+  };
+  let randomState = (Date.now() ^ Math.floor(performance.now() * 1000)) >>> 0;
+  let rowID = 0;
+  let lastRender = 0;
+  let lastTime = performance.now();
+  let stillTime = 0;
+  let wasStop = false;
+  let shownVolume = 97.8616147863;
+  let settlingUntil = 0;
+  let displayed = null;
+  let sceneGeometry = null;
+  let hintOverride = '';
+  const V = Curio.voice({
+    lines:L,
+    scope:() => state.mode,
+    hint:false,
+    read:() => $('hint').textContent,
+    welcome:() => state.mode === 'Bench'
+      ? ['wBench', {valid:() => state.lastAction === 0}]
+      : ['wZero', {valid:() => state.step === 1 && activeRows().length === 0}],
+    speaks:'#add-weight, #fit, #record, #m-zero'
+  });
+  function rng() {
+    randomState = (Math.imul(randomState, 1664525) + 1013904223) >>> 0;
+    return randomState / 4294967296;
+  }
+  const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+  const f = (n, digits=2) => Number(n).toFixed(digits);
+  const signed = (n, digits=1) => (n < 0 ? '−' : '')
+    + (Math.round((Math.abs(n)+1e-10)*10**digits)/10**digits).toFixed(digits);
+  const sci = n => n.toExponential(2).replace('e-', ' × 10⁻').replace('e+', ' × 10');
+  const pressureAt = h => P0 * Math.pow(1 - 2.25577e-5 * h, 5.25588);
+  function model(s=state) {
+    const K = s.T + 273.15;
+    const n = s.apparatus === 'Balloon' ? .1 : s.n;
+    let P = s.apparatus === 'Balloon' ? pressureAt(s.altitude) : P0 + WEIGHT_KPA * s.weights;
+    let volume = n * R * K / (P * 1000) * 1e6;
+    let atStop = false;
+    if (s.apparatus === 'Can' || (s.apparatus === 'Piston' && volume > 300)) {
+      atStop = s.apparatus === 'Piston';
+      volume = s.apparatus === 'Can' ? 250 : 300;
+      P = n * R * K / (volume / 1e6) / 1000;
+    }
+    const ke = 1.5 * KB * K;
+    const energy = 1.5 * n * R * K;
+    const spin = s.gas === 'Nitrogen' ? n * R * K : 0;
+    const speed = Math.sqrt(3 * R * K / GASES[s.gas].mass);
+    const rise = s.apparatus === 'Piston' ? (volume - state.recordV) / 1e6 / A : 0;
+    const lift = s.apparatus === 'Piston' ? s.weights * 5 * G * rise : 0;
+    return {P, V:volume, K, n, ke, energy, spin, speed, rise, lift, atStop, molecules:n * NA};
+  }
+  function changed() {
+    state.lastAction++;
+    state.warning = '';
+    state.flashUntil = 0;
+    $('record-flash').classList.remove('show');
+    hintOverride = '';
+    Curio.tone(280 + state.bath * 3, .06, .035, 'sine');
+  }
+  function canStop() {
+    state.warning = 'A real can could burst. The pump and bath stop at 200 kPa.';
+    const token = state.lastAction;
+    V.say('canStop', {now:true, valid:() => token === state.lastAction});
+    Curio.tone(160, .12, .05, 'triangle');
+  }
+  function limitTemp() {
+    return state.apparatus === 'Can' ? clamp(Math.floor(200000 * .00025 / (state.n * R) - 273.15 + 1e-9), 0, 100) : 100;
+  }
+  function setBath(value) {
+    changed();
+    const requested = clamp(Math.round(value), 0, 100);
+    const maximum = limitTemp();
+    state.bath = Math.min(requested, maximum);
+    if (requested > maximum) canStop();
+    if (Curio.reduce) state.T = state.bath;
+    render();
+  }
+  function recipe() {
+    return {apparatus:state.apparatus, gas:state.gas, n:state.n, weights:state.weights};
+  }
+  const baseRecipe = {apparatus:'Piston', gas:'Helium', n:.004, weights:0};
+  const sameRecipe = (a, b) => !!a && !!b && a.apparatus === b.apparatus && a.gas === b.gas
+    && Math.abs(a.n - b.n) < 1e-8 && a.weights === b.weights;
+  function differentFactors(a, b) {
+    return ['gas', 'n', 'weights'].filter(key => a[key] !== b[key]).length;
+  }
+  function activeGroup() {
+    return state.step < 3 ? 'A' : 'B';
+  }
+  function activeRows(group=activeGroup()) {
+    if (state.mode === 'Bench') return state.rows;
+    return state.rows.filter(row => row.session === state.session && row.group === group);
+  }
+  function qualified(rows) {
+    const temperatures = rows.map(row => row.trueT).sort((a, b) => a - b);
+    const distinct = temperatures.filter((t, i) => i === 0 || t - temperatures[i - 1] >= .8);
+    const span = temperatures.length ? temperatures[temperatures.length - 1] - temperatures[0] : 0;
+    const stable = rows.length && rows.every(row => sameRecipe(row, rows[0]));
+    const bathCount = new Set(rows.map(row => row.bath)).size;
+    const count = Math.min(distinct.length,bathCount);
+    return {pass:count >= 4 && span >= 60 - 1e-7 && stable, count, span};
+  }
+  function save() {
+    try { localStorage.setItem(STORE, JSON.stringify({rows:state.rows, rowID})); } catch { /* The bench still works. */ }
+  }
+  function load() {
+    try {
+      const data = JSON.parse(localStorage.getItem(STORE) || '{}');
+      state.rows = (Array.isArray(data.rows) ? data.rows : []).filter(row =>
+        ['Piston', 'Can', 'Balloon'].includes(row.apparatus) && GASES[row.gas]
+        && ['T', 'K', 'P', 'V', 'n'].every(key => Number.isFinite(row[key])));
+      rowID = Math.max(0, ...state.rows.map(row => Number(row.id) || 0));
+    } catch { state.rows = []; }
+  }
+  function invalidateFits(removed=null) {
+    V.hush();
+    state.revision++;
+    if (state.mode === 'Absolute zero' && removed && (removed.session !== state.session || !removed.group)) return;
+    state.fit = null;
+    if (state.mode === 'Absolute zero' && removed?.group === 'B') {
+      state.fits = state.fits.filter(item => item.group === 'A');
+      state.step = 3;
+      $('result-card').hidden = true;
+      return;
+    }
+    if (state.mode === 'Absolute zero') {
+      state.fits = [];
+      state.step = qualified(activeRows('A')).pass ? 2 : 1;
+      state.rows.forEach(row => {
+        if (row.session === state.session && row.group === 'B') row.group = null;
+      });
+      state.recipeB = null;
+      for (const row of state.rows) {
+        const tr = document.querySelector(`tr[data-id="${row.id}"]`);
+        if (!tr) continue;
+        tr.className = row.group === 'A' ? 'set-a' : row.group === 'B' ? 'set-b' : '';
+        tr.firstElementChild.textContent = `${row.group ? row.group + ' · ' : ''}${row.apparatus} / ${row.gas}`;
+      }
+    }
+    $('result-card').hidden = true;
+  }
+  function record() {
+    changed();
+    const m = displayed || {...model(), T:state.T};
+    const measuredT = m.T;
+    let group = null;
+    if (state.mode === 'Absolute zero' && state.step !== 4) {
+      const current = recipe();
+      if (state.step <= 2 && sameRecipe(current, baseRecipe)) group = 'A';
+      else if (state.step === 3 && current.apparatus === 'Piston' && differentFactors(current, baseRecipe) === 1) {
+        if (!state.recipeB) state.recipeB = current;
+        if (sameRecipe(current, state.recipeB)) group = 'B';
+      }
+      if (!group) hintOverride = 'Saved as a bench row. For this set, keep one fixed piston setup; change just one factor for set B.';
+      if (m.atStop) {
+        group = null;
+        hintOverride = 'Saved as a bench row. Remove gas or add weight so the piston leaves its stop before fitting a set.';
+      }
+    }
+    const noisy = state.mode === 'Absolute zero' && state.realLab;
+    const errorT = noisy ? (rng() * 2 - 1) * .2 : 0;
+    const errorV = noisy ? (rng() * 2 - 1) * .001 : 0;
+    const row = {
+      id:++rowID, ...recipe(), n:m.n, T:measuredT + errorT, K:measuredT + errorT + 273.15,
+      P:m.P, V:m.V * (1 + errorV), trueT:measuredT, bath:state.bath, noisy,
+      group, session:state.session, atStop:m.atStop
+    };
+    state.rows.push(row);
+    state.recordV = m.V;
+    state.revision++;
+    state.fit = null;
+    if (state.mode === 'Absolute zero' && group === 'A' && qualified(activeRows('A')).pass) {
+      state.step = 2;
+      state.view = 'Notebook';
+      $('x-axis').value = 'T';
+      $('y-axis').value = 'V';
+    }
+    if (state.mode === 'Absolute zero' && group === 'B' && qualified(activeRows('B')).pass) state.view = 'Notebook';
+    save();
+    addRow(row);
+    state.flashUntil = performance.now() + 1100;
+    $('record-flash').textContent = `Recorded ${f(row.T, 1)} °C · ${f(row.V)} mL${group ? ' · set ' + group : ''}`;
+    $('record-flash').classList.add('show');
+    Curio.tone(700, .07, .045, 'sine');
+    render();
+    offerFitTip();
+    return row;
+  }
+  function offerFitTip() {
+    if (plottedRows().length < 2 || $('fit').disabled || V.heard('fitTip')) return;
+    if (state.view !== 'Notebook' && !largeLayout()) return;
+    V.how('fitTip', {needs:'#fit', valid:() => !state.fit && plottedRows().length >= 2});
+  }
+  function addRow(row) {
+    const tr = document.createElement('tr');
+    tr.dataset.id = row.id;
+    const vals = [`${row.group ? row.group + ' · ' : ''}${row.apparatus} / ${row.gas}`,
+      f(row.n, 5), f(row.T, 1), f(row.K, 2), f(row.P), f(row.V)];
+    vals.forEach(value => {
+      const td = document.createElement('td');
+      td.textContent = value;
+      tr.append(td);
+    });
+    tr.className = row.group === 'A' ? 'set-a' : row.group === 'B' ? 'set-b' : '';
+    const td = document.createElement('td');
+    const button = document.createElement('button');
+    button.className = 'btn';
+    button.textContent = '×';
+    button.setAttribute('aria-label', `Delete row ${row.id}`);
+    button.onclick = () => {
+      changed();
+      const next = tr.nextElementSibling?.querySelector('button') || tr.previousElementSibling?.querySelector('button') || $('clear');
+      state.rows = state.rows.filter(item => item.id !== row.id);
+      invalidateFits(row);
+      tr.remove();
+      next.focus({preventScroll:true});
+      save();
+      render();
+    };
+    td.append(button);
+    tr.append(td);
+    $('rows').append(tr);
+  }
+  function plottedRows() {
+    return state.mode === 'Bench' ? state.rows : activeRows();
+  }
+  function val(row, key) {
+    if (key === 'inverseV') return 1 / row.V;
+    if (key === 'PV') return row.P * row.V / 1000;
+    return row[key];
+  }
+  function regression(rows, xKey, yKey) {
+    if (rows.length < 2) return null;
+    const points = rows.map(row => [val(row, xKey), val(row, yKey)]);
+    const xm = points.reduce((sum, p) => sum + p[0], 0) / points.length;
+    const ym = points.reduce((sum, p) => sum + p[1], 0) / points.length;
+    const xx = points.reduce((sum, p) => sum + (p[0] - xm) ** 2, 0);
+    if (xx < 1e-20) return null;
+    const slope = points.reduce((sum, p) => sum + (p[0] - xm) * (p[1] - ym), 0) / xx;
+    if (!Number.isFinite(slope) || Math.abs(slope) < 1e-12) return null;
+    const intercept = ym - slope * xm;
+    return {slope, intercept, crossing:-intercept / slope, xKey, yKey,
+      minX:Math.min(...points.map(p => p[0])), maxX:Math.max(...points.map(p => p[0]))};
+  }
+  function fit(xKey=$('x-axis').value, yKey=$('y-axis').value) {
+    changed();
+    $('x-axis').value = xKey;
+    $('y-axis').value = yKey;
+    const rows = plottedRows();
+    const result = regression(rows, xKey, yKey);
+    if (!result) {
+      $('fit-result').textContent = rows.length < 2 ? 'Record at least two rows.' : "These rows don't make a sloped line.";
+      hintOverride = $('fit-result').textContent;
+      state.fit = null;
+      render();
+      return null;
+    }
+    state.fit = {...result, group:state.mode === 'Bench' ? null : activeGroup(), revision:state.revision};
+    let openSecond = false;
+    if (state.mode === 'Absolute zero' && xKey === 'T' && yKey === 'V' && qualified(rows).pass) {
+      const group = activeGroup();
+      state.fits = state.fits.filter(item => item.group !== group);
+      state.fits.push({...state.fit, rowIDs:rows.map(row => row.id)});
+      if (group === 'A') {
+        state.step = 3;
+        state.view = 'Notebook';
+        openSecond = true;
+      } else if (state.fits.some(item => item.group === 'A')) {
+        state.step = 4;
+        state.view = 'Notebook';
+        showResult();
+      }
+    } else if (state.mode === 'Absolute zero') {
+      hintOverride = xKey !== 'T' || yKey !== 'V' ? 'Choose x: T (°C) and y: V (mL), then press Fit line.'
+        : progressHint(qualified(rows));
+    }
+    const rev = state.revision;
+    const fitted = state.fit;
+    if (xKey === 'T' && yKey === 'V' && Math.abs(result.crossing + 273.15) < 10) {
+      V.say('zero', {now:true, valid:() => state.revision === rev && state.fit === fitted
+        && $('x-axis').value === xKey && $('y-axis').value === yKey && (state.view === 'Notebook' || largeLayout())});
+    }
+    if (openSecond) V.how('second', {valid:() => state.step === 3 && activeRows('B').length === 0});
+    Curio.tone(520, .13, .045, 'sine');
+    render();
+    if (openSecond) $('pump').focus({preventScroll:true});
+    return result;
+  }
+  function showResult() {
+    const a = state.fits.find(item => item.group === 'A');
+    const b = state.fits.find(item => item.group === 'B');
+    if (!a || !b) return;
+    $('cross-a').textContent = signed(a.crossing) + ' °C';
+    $('cross-b').textContent = signed(b.crossing) + ' °C';
+    $('cross-mean').textContent = `Mean: ${signed((a.crossing + b.crossing) / 2, 2)} °C`;
+    const ratio = b.slope / a.slope;
+    const same = !!state.recipeB && state.recipeB.gas !== baseRecipe.gas
+      && Math.abs(state.recipeB.n-baseRecipe.n) < 1e-8 && state.recipeB.weights === 0;
+    $('slope-comparison').textContent = same
+      ? 'Changing gas alone keeps the same slope: equal amounts at equal pressure occupy equal volumes.'
+      : `Set B's slope is ${f(ratio, 2)} times set A's. Their zero crossings still agree.`;
+    $('result-card').querySelector('h2').textContent = 'Your absolute zero';
+    $('result-card').hidden = false;
+    $('close-result').focus({preventScroll:true});
+  }
+  function progressHint(q) {
+    const set = activeGroup();
+    if (q.count < 4) return `Set ${set}: ${q.count}/4 temperatures. Change Bath, then Record across a 60 °C span.`;
+    if (q.span < 60) return `Set ${set} spans ${f(q.span, 1)} °C. Widen the gap by ${f(60 - q.span, 1)} °C; change Bath and press Record.`;
+    return 'Choose x: T (°C), y: V (mL), then press Fit line.';
+  }
+  function setHint() {
+    let hint = state.warning || hintOverride;
+    if (!hint && state.mode === 'Bench') {
+      if (state.view === 'Notebook') hint = state.fit
+        ? `The line crosses zero at ${crossingText(state.fit)}. Change a graph axis or delete a row.`
+        : plottedRows().length < 2 ? 'Record at least two rows. Use Readouts to return to the bath controls.' : L.fitTip;
+      else hint = model().atStop ? 'Piston at the stop: pressure now rises instead. Add weight or use Valve to release it.'
+        : state.apparatus === 'Balloon' ? 'Change the Bath or Altitude, then press Record. Open Notebook to compare your rows.'
+        : state.apparatus === 'Can' ? 'Change the Bath or use Pump, then press Record. Watch the pressure gauge.'
+        : state.rows.length ? 'Change the Bath, weights or amount, then press Record. Open Notebook to compare your rows.' : L.wBench;
+    }
+    if (!hint && state.mode === 'Absolute zero') {
+      const q = qualified(activeRows());
+      if (state.step <= 2 && !sameRecipe(recipe(),baseRecipe)) {
+        hint = 'Set A needs Piston, Helium, 0.00400 mol and no weights. Restore that setup, then change Bath and Record.';
+      } else if (state.step === 3 && state.apparatus !== 'Piston') {
+        hint = 'Choose Piston for set B. Change one factor from set A, then change Bath and press Record.';
+      } else if (state.step === 4) hint = 'Compare your crossings in Notebook. Press Start again for another two-set experiment.';
+      else if (state.step === 3 && activeRows('B').length === 0) {
+        const a = state.fits.find(item => item.group === 'A');
+        hint = `${a ? 'Set A: ' + crossingText(a) + '. ' : ''}Use Pump or Add weight to change one factor,`
+          + ' then Record four temperatures spanning 60 °C.';
+      } else hint = progressHint(q);
+    }
+    $('hint').textContent = hint;
+    $('hint').classList.toggle('warn', !!state.warning);
+  }
+  function setMode(mode) {
+    const next = ['zero', 'Absolute zero'].includes(mode) ? 'Absolute zero' : 'Bench';
+    V.hush();
+    state.mode = next;
+    state.view = 'Readouts';
+    state.warning = '';
+    hintOverride = '';
+    state.lastAction = 0;
+    state.fit = null;
+    $('result-card').hidden = true;
+    if (next === 'Absolute zero') {
+      Object.assign(state, baseRecipe, {T:25, bath:25, step:1, fits:[], recipeB:null, session:Date.now() + rowID});
+      state.realLab = true;
+      $('real-lab').checked = true;
+      $('x-axis').value = 'T';
+      $('y-axis').value = 'V';
+    }
+    state.recordV = model().V;
+    syncParticles(true);
+    render();
+    V.welcome();
+  }
+  function set(values) {
+    if (V.playing === L.weightTip && ((values.apparatus && values.apparatus !== 'Piston')
+      || (Number.isFinite(values.weights) && values.weights < state.weights) || Number.isFinite(values.n))) V.hush();
+    changed();
+    if (values.apparatus && ['Piston', 'Can', 'Balloon'].includes(values.apparatus)) {
+      const old = state.apparatus;
+      state.apparatus = values.apparatus;
+      if (old === 'Balloon' && state.apparatus !== 'Balloon') state.n = .004;
+      if (state.apparatus === 'Balloon') state.n = .1;
+      else state.n = clamp(state.n, .001, state.apparatus === 'Can' ? .02 : .01);
+    }
+    if (values.gas && GASES[values.gas]) state.gas = values.gas;
+    if (Number.isFinite(values.weights)) state.weights = clamp(Math.round(values.weights), 0, 4);
+    if (Number.isFinite(values.altitude) && [0, 1600, 3000, 5000].includes(values.altitude)) state.altitude = values.altitude;
+    if (typeof values.realLab === 'boolean') {
+      state.realLab = values.realLab;
+      $('real-lab').checked = values.realLab;
+    }
+    if (Number.isFinite(values.n) && state.apparatus !== 'Balloon') {
+      const maximum = state.apparatus === 'Can' ? .02 : .01;
+      const proposed = clamp(values.n, .001, maximum);
+      const checkT = Number.isFinite(values.T) ? clamp(values.T,0,100) : state.T;
+      if (state.apparatus === 'Can' && proposed * R * (checkT + 273.15) / .00025 > 200000 + 1e-6) canStop();
+      else state.n = proposed;
+    }
+    if (Number.isFinite(values.T)) {
+      state.T = clamp(values.T, 0, limitTemp());
+      state.bath = state.T;
+    }
+    if (state.apparatus === 'Can') {
+      const maximum = limitTemp();
+      if (state.T > maximum || state.bath > maximum) {
+        state.T = Math.min(state.T, maximum);
+        state.bath = Math.min(state.bath, maximum);
+        canStop();
+      }
+    }
+    if ('apparatus' in values) state.recordV = model().V;
+    if (state.mode === 'Absolute zero' && state.step === 3 && differentFactors(recipe(), baseRecipe) > 0
+      && ('gas' in values || 'n' in values || 'weights' in values || 'apparatus' in values)) state.view = 'Readouts';
+    syncParticles();
+    render();
+    const focused = document.activeElement;
+    if (focused === $('pump') && focused.disabled) $('valve').focus({preventScroll:true});
+    if (focused === $('valve') && focused.disabled) $('pump').focus({preventScroll:true});
+    return model();
+  }
+  function addWeight(delta) {
+    const before = state.weights;
+    set({weights:state.weights + delta});
+    if (delta > 0 && state.weights !== before) {
+      const token = state.lastAction;
+      settlingUntil = performance.now() + 900;
+      if (!V.heard('weightTip')) {
+        V.how('weightTip', {now:true,
+          valid:() => state.apparatus === 'Piston' && state.lastAction === token && performance.now() < settlingUntil});
+      }
+    }
+    if (delta > 0 && state.weights === 4) $('remove-weight').focus({preventScroll:true});
+    if (delta < 0 && state.weights === 0) $('add-weight').focus({preventScroll:true});
+  }
+  function largeLayout() {
+    return innerHeight >= 900 && innerWidth >= 1100;
+  }
+  function setView(view) {
+    changed();
+    state.view = view;
+    render();
+    offerFitTip();
+  }
+
+  // Tool-local 2D hard-disk picture. The specified kit/particles.js is absent in this checkout.
+  // No particle result ever feeds an SI readout, a notebook row or a fitted line.
+  class Box {
+    constructor(canvas) {
+      this.canvas = canvas;
+      this.ctx = canvas.getContext('2d');
+      this.particles = [];
+      this.hitsWindow = [];
+      this.flashes = [];
+      this.clock = 0;
+      this.gas = 'Helium';
+      this.count = 0;
+      this.width = 200;
+      this.height = 200;
+      this.targetT = 298.15;
+      this.volume = 98;
+      this.apparatus = 'Piston';
+    }
+    configure(gas, count, volume, apparatus, temperature, reset=false) {
+      const changedGas = this.gas !== gas;
+      const changedApparatus = this.apparatus !== apparatus;
+      const oldBounds = this.bounds();
+      const changedVolume = Math.abs(this.volume-volume) > 1e-8;
+      this.gas = gas;
+      this.count = count;
+      this.volume = volume;
+      this.apparatus = apparatus;
+      this.targetT = temperature;
+      if (reset || changedGas || changedApparatus) this.particles = [];
+      const b = this.bounds();
+      if (Curio.reduce && changedVolume && !changedApparatus && apparatus !== 'Balloon') {
+        for (const p of this.particles) {
+          const fraction = (p.y-oldBounds.top)/(oldBounds.bottom-oldBounds.top);
+          p.y = b.top+fraction*(b.bottom-b.top);
+        }
+      }
+      while (this.particles.length < count) {
+        const angle = Math.random() * Math.PI * 2;
+        const rr = Math.sqrt(Math.random()) * .65;
+        const x = apparatus === 'Balloon' ? .5+Math.cos(angle)*rr*.5 : b.left+.03+Math.random()*(b.right-b.left-.06);
+        const y = apparatus === 'Balloon' ? .5+Math.sin(angle)*rr*.5 : b.top+.03+Math.random()*(b.bottom-b.top-.06);
+        this.particles.push({x, y,
+          vx:Math.cos(angle), vy:Math.sin(angle), z:.8 + Math.random()*.4});
+      }
+      this.particles.length = count;
+    }
+    bounds() {
+      const compress = this.apparatus === 'Piston' ? .20+.65*Math.sqrt(clamp(this.volume/300,0,1)) : .80;
+      return {left:.15, right:.85, top:.88 - compress*.8, bottom:.88};
+    }
+    step(dt) {
+      this.clock += dt;
+      const b = this.bounds();
+      const speed = 50 * Math.sqrt(this.targetT / 298.15 * .0040026 / GASES[this.gas].mass);
+      const radius = GASES[this.gas].radius * Math.min(1,this.width/180) / this.width;
+      const hit = (p, x, y) => {
+        this.hitsWindow.push(this.clock);
+        if (this.flashes.length < 50) this.flashes.push({x, y, t:this.clock});
+        const thermal = Math.sqrt(-Math.log(Math.max(.001, Math.random()))) * .65 + .4;
+        p.z = clamp(thermal, .45, 1.8);
+      };
+      for (const p of this.particles) {
+        p.x += p.vx * p.z * speed * dt / this.width;
+        p.y += p.vy * p.z * speed * dt / this.height;
+        if (this.apparatus === 'Balloon') {
+          const dx = p.x - .5;
+          const dy = p.y - .5;
+          const rr = Math.hypot(dx, dy);
+          const boundary = clamp(.39*Math.pow(this.volume/2446.54,1/3),.30,.465)-radius;
+          if (rr > boundary) {
+            const nx = dx / rr;
+            const ny = dy / rr;
+            p.x = .5 + nx * boundary;
+            p.y = .5 + ny * boundary;
+            const dot = p.vx * nx + p.vy * ny;
+            p.vx -= 2 * dot * nx;
+            p.vy -= 2 * dot * ny;
+            hit(p, p.x, p.y);
+          }
+        } else {
+          if (p.x < b.left + radius || p.x > b.right - radius) {
+            p.x = clamp(p.x, b.left + radius, b.right - radius);
+            p.vx = (p.x < .5 ? 1 : -1) * Math.abs(p.vx);
+            hit(p, p.x, p.y);
+          }
+          if (p.y < b.top + radius || p.y > b.bottom - radius) {
+            p.y = clamp(p.y, b.top + radius, b.bottom - radius);
+            p.vy = (p.y < (b.top + b.bottom)/2 ? 1 : -1) * Math.abs(p.vy);
+            hit(p, p.x, p.y);
+          }
+        }
+      }
+      // Equal-mass elastic collisions exchange the components along the line of centers.
+      for (let i = 0; i < this.particles.length; i++) {
+        for (let j = i + 1; j < this.particles.length; j++) {
+          const p = this.particles[i];
+          const q = this.particles[j];
+          const dx = q.x - p.x;
+          const dy = q.y - p.y;
+          const d2 = dx*dx + dy*dy;
+          if (d2 < radius*radius*4 && d2 > 1e-10) {
+            const distance = Math.sqrt(d2);
+            const overlap = (radius*2-distance)/2;
+            p.x -= dx/distance*overlap;
+            p.y -= dy/distance*overlap;
+            q.x += dx/distance*overlap;
+            q.y += dy/distance*overlap;
+            const dot = ((p.vx - q.vx)*dx + (p.vy - q.vy)*dy) / d2;
+            if (dot > 0) {
+              p.vx -= dot * dx;
+              p.vy -= dot * dy;
+              q.vx += dot * dx;
+              q.vy += dot * dy;
+            }
+          }
+        }
+      }
+      this.hitsWindow = this.hitsWindow.filter(t => this.clock - t < 1);
+      this.flashes = this.flashes.filter(v => this.clock - v.t < .18);
+    }
+    frame(still=false) {
+      const c = this.ctx;
+      const w = this.width;
+      const h = this.height;
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      if (this.canvas.width !== Math.round(w*dpr)) {
+        this.canvas.width = Math.round(w*dpr);
+        this.canvas.height = Math.round(h*dpr);
+      }
+      c.setTransform(dpr, 0, 0, dpr, 0, 0);
+      c.clearRect(0, 0, w, h);
+      c.save();
+      c.beginPath();
+      c.arc(w/2, h/2, w/2 - 4, 0, Math.PI*2);
+      c.clip();
+      const glow = c.createRadialGradient(w*.3, h*.2, 1, w*.5, h*.5, w*.6);
+      glow.addColorStop(0, '#1c3448');
+      glow.addColorStop(1, '#08111d');
+      c.fillStyle = glow;
+      c.fillRect(0, 0, w, h);
+      const b = this.bounds();
+      c.strokeStyle = '#9ec9e8';
+      c.lineWidth = 1.5;
+      if (this.apparatus === 'Balloon') {
+        c.beginPath();
+        const balloonRadius = clamp(.39*Math.pow(this.volume/2446.54,1/3),.30,.465);
+        c.arc(w*.5, h*.5, w*balloonRadius, 0, Math.PI*2);
+        c.stroke();
+      } else {
+        c.strokeRect(b.left*w, b.top*h, (b.right-b.left)*w, (b.bottom-b.top)*h);
+        if (this.apparatus === 'Piston') {
+          c.fillStyle = '#728696';
+          c.fillRect(b.left*w-3, b.top*h-5, (b.right-b.left)*w+6, 5);
+        }
+      }
+      const gas = GASES[this.gas];
+      const particleRadius = gas.radius * Math.min(1,w/180);
+      for (const p of this.particles) {
+        if (still && this.apparatus !== 'Balloon') {
+          const pad = particleRadius/w;
+          p.x = clamp(p.x,b.left+pad,b.right-pad);
+          p.y = clamp(p.y,b.top+pad,b.bottom-pad);
+        }
+        const x = p.x*w;
+        const y = p.y*h;
+        c.fillStyle = gas.color;
+        c.beginPath();
+        c.arc(x, y, particleRadius, 0, Math.PI*2);
+        c.fill();
+        if (this.gas === 'Nitrogen') {
+          c.beginPath();
+          c.arc(x+particleRadius*.6, y-particleRadius*.4, particleRadius*.7, 0, Math.PI*2);
+          c.fill();
+        }
+        c.fillStyle = '#ffffff99';
+        c.beginPath();
+        c.arc(x-.7, y-.9, .8, 0, Math.PI*2);
+        c.fill();
+        if (still) {
+          c.strokeStyle = gas.color;
+          c.lineWidth = 1;
+          c.beginPath();
+          c.moveTo(x, y);
+          const arrow = clamp(9*Math.sqrt(this.targetT/298.15*.0040026/gas.mass),4,14);
+          c.lineTo(x+p.vx*arrow, y+p.vy*arrow);
+          c.stroke();
+        }
+      }
+      if (!still) for (const flash of this.flashes) {
+        c.strokeStyle = `rgba(255,220,145,${1-(this.clock-flash.t)/.18})`;
+        c.lineWidth = 2;
+        c.beginPath();
+        c.arc(flash.x*w, flash.y*h, 4+(this.clock-flash.t)*20, 0, Math.PI*2);
+        c.stroke();
+      }
+      c.restore();
+    }
+    still() {
+      const frozen = this.particles.map(p => ({...p}));
+      for (let i=0;i<60;i++) this.step(1/60);
+      this.particles = frozen;
+      this.frame(true);
+    }
+  }
+  const box = new Box($('particles'));
+  function syncParticles(reset=false) {
+    const m = model();
+    const count = state.apparatus === 'Balloon' ? 65 : Math.round(15 + m.n * 6500);
+    box.configure(state.gas, clamp(count, 15, 145), m.V, state.apparatus, m.K, reset);
+  }
+  function imageTag(key, x, y, w, h, extra='') {
+    return `<image href="${ART[key]}" x="${x}" y="${y}" width="${w}" height="${h}" preserveAspectRatio="none" ${extra}/>`;
+  }
+  function text(x, y, value, size=12, fill='#dbe4ed', anchor='start') {
+    return `<text x="${x}" y="${y}" font-size="${size}" fill="${fill}" text-anchor="${anchor}" font-family="Segoe UI,sans-serif">${value}</text>`;
+  }
+  function chip(x, y, w, value, color='#c9dfef', size=12) {
+    return `<rect x="${x}" y="${y-17}" width="${w}" height="26" rx="4" fill="#101923" stroke="#597086"/>`
+      + text(x+w/2, y, value, size, color, 'middle');
+  }
+  function renderScene() {
+    const rect = $('apparatus-stage').getBoundingClientRect();
+    const w = Math.max(100, rect.width);
+    const h = Math.max(100, rect.height);
+    const m = model();
+    const small = w < 500 || h < 240;
+    const fs = small ? 10 : 12;
+    const bottom = h*.87;
+    const ah = Math.min(h*.78, w*.68, 440);
+    const cx = w*.29;
+    const cy = bottom - ah/2;
+    const backdrop = state.apparatus === 'Balloon'
+      ? ({0:'sea', 1600:'high', 3000:'alpine', 5000:'ridge'})[state.altitude] : 'lab';
+    let svg = `<defs><linearGradient id="steel" x2="1" y2="0"><stop stop-color="#6c7f8c"/>`
+      + `<stop offset=".3" stop-color="#d1d9dc"/><stop offset=".5" stop-color="#70808d"/>`
+      + `<stop offset="1" stop-color="#344655"/></linearGradient>`
+      + `<radialGradient id="gas-glow"><stop stop-color="${GASES[state.gas].color}" stop-opacity=".28"/>`
+      + `<stop offset="1" stop-color="${GASES[state.gas].color}" stop-opacity=".04"/></radialGradient></defs>`;
+    svg += `<image href="${ART[backdrop]}" width="${w}" height="${h}" preserveAspectRatio="xMidYMid slice"/>`;
+    svg += `<rect width="${w}" height="${h}" fill="#0b0f17" opacity="${state.apparatus === 'Balloon' ? .35 : .46}"/>`;
+    svg += `<ellipse cx="${cx}" cy="${bottom+3}" rx="${ah*.33}" ry="${ah*.045}" fill="#03070b" opacity=".5"/>`;
+    if (state.apparatus === 'Balloon') {
+      const scale = Math.pow(m.V / 2446.54, 1/3);
+      const maximumVolume = .1 * R * 373.15 / (pressureAt(5000) * 1000) * 1e6;
+      const maximumScale = Math.cbrt(maximumVolume / 2446.54);
+      const bw = Math.min(ah*.55, w*.38/maximumScale) * scale;
+      const bh = bw*1.82;
+      svg += imageTag('balloon', cx-bw/2, Math.max(15, bottom-bh), bw, bh);
+      svg += chip(Math.max(4,cx-65), bottom+15, 130, `${state.altitude.toLocaleString()} m · ${f(m.P)} kPa`, '#dbe4ed', fs);
+    } else {
+      const bathW = ah*.89;
+      const bathH = bathW*.69;
+      const bathX = cx-bathW/2;
+      const bathY = bottom-bathH;
+      const mix = state.bath/100;
+      const color = `rgb(${Math.round(29+(110-29)*mix)},${Math.round(79+(47-79)*mix)},${Math.round(110+(42-110)*mix)})`;
+      svg += `<rect x="${bathX+6}" y="${bathY+14}" width="${bathW-12}" height="${bathH-20}" rx="5" fill="${color}" opacity=".4"/>`;
+      svg += imageTag('bath', bathX, bathY, bathW, bathH, 'opacity=".78"');
+      if (state.apparatus === 'Piston') {
+        const ch = ah*.94;
+        const cw = ch*.423;
+        const x = cx-cw/2;
+        const y = bottom-ch;
+        const insideBottom = bottom-ch*.13;
+        const capacity = ch*.67;
+        const visualV = Curio.reduce ? m.V : shownVolume;
+        const py = insideBottom-capacity*visualV/300;
+        svg += `<rect x="${x+cw*.17}" y="${py}" width="${cw*.66}" height="${insideBottom-py}" fill="url(#gas-glow)"/>`;
+        svg += imageTag('cylinder', x, y, cw, ch);
+        // Gas fill is drawn in front too, keeping the column legible through the painted glass.
+        svg += `<rect x="${x+cw*.19}" y="${py+2}" width="${cw*.62}" height="${Math.max(1,insideBottom-py-2)}" fill="${GASES[state.gas].color}" opacity=".13"/>`;
+        for (let i=0; i<=6; i++) {
+          const yy = insideBottom-capacity*i/6;
+          svg += `<line x1="${x+cw*.8}" x2="${x+cw*.95}" y1="${yy}" y2="${yy}" stroke="#d2e0e8"/>`;
+          if (!small || i%2 === 0) svg += text(x+cw+5, yy+3, String(i*50), fs, '#d7e4ef');
+        }
+        svg += imageTag('piston', x+cw*.14, py-cw*.13, cw*.72, cw*.31);
+        for (let i=0; i<state.weights; i++) {
+          const ww = cw*.49;
+          const wh = ww*.44;
+          const wy = py-cw*.11-(i+1)*wh;
+          svg += imageTag('weight', cx-ww/2, wy, ww, wh);
+          svg += text(cx, wy+wh*.82, '5 kg', Math.max(10,ww*.15), '#221a10', 'middle');
+        }
+        svg += chip(Math.max(4,cx-54), bottom+15, 108, `${f(m.V)} mL`, '#9ec9e8', fs);
+      } else {
+        const canH = ah*.9;
+        const canW = canH*.405;
+        const x = cx-canW/2;
+        const y = bottom-canH;
+        svg += imageTag('can', x, y, canW, canH);
+        // Blank painted gauge face is covered by an exact code dial.
+        const gx = x+canW*.49;
+        const gy = y+canH*.11;
+        const gr = canW*.245;
+        svg += `<circle cx="${gx}" cy="${gy}" r="${gr}" fill="#e6e3d7" stroke="#ad996c" stroke-width="2"/>`;
+        const angle = (-135+270*m.P/220)*Math.PI/180;
+        svg += `<path d="M ${gx+Math.sin(110*Math.PI/180)*gr*.83} ${gy-Math.cos(110*Math.PI/180)*gr*.83}`
+          + ` A ${gr*.83} ${gr*.83} 0 0 1 ${gx+Math.sin(135*Math.PI/180)*gr*.83} ${gy-Math.cos(135*Math.PI/180)*gr*.83}"`
+          + ` stroke="#bd4038" stroke-width="3" fill="none"/>`;
+        svg += `<line x1="${gx}" y1="${gy}" x2="${gx+Math.sin(angle)*gr*.8}" y2="${gy-Math.cos(angle)*gr*.8}" stroke="#2a3641" stroke-width="2"/>`;
+        svg += `<circle cx="${gx}" cy="${gy}" r="2" fill="#2a3641"/>`;
+        for (let i=0;i<=4;i++) {
+          const a = (-135+i*270/4)*Math.PI/180;
+          svg += `<line x1="${gx+Math.sin(a)*gr*.78}" y1="${gy-Math.cos(a)*gr*.78}"`
+            + ` x2="${gx+Math.sin(a)*gr*.9}" y2="${gy-Math.cos(a)*gr*.9}" stroke="#384955"/>`;
+        }
+        if (gr > 24) {
+          svg += text(gx-gr*.65,gy+gr*.42,'0',10,'#263745','middle');
+          svg += text(gx+gr*.51,gy+gr*.42,'200',10,'#94352d','middle');
+        }
+        svg += chip(Math.max(4,cx-58), bottom+15, 116, `${f(m.P)} kPa`, '#9ec9e8', fs);
+      }
+    }
+    const tx = w*.48;
+    const th = Math.min(ah*.6, h*.55);
+    const ty = bottom-th-12;
+    svg += `<rect x="${tx}" y="${ty}" width="12" height="${th}" rx="6" fill="#152431" stroke="#9aafbd"/>`;
+    svg += `<rect x="${tx+3}" y="${ty+th*(1-state.T/100)}" width="6" height="${th*state.T/100}" rx="3" fill="#f0b072"/>`;
+    svg += `<circle cx="${tx+6}" cy="${ty+th}" r="8" fill="#f0b072" stroke="#a9bac5"/>`;
+    svg += chip(tx-25, ty-7, 66, `${f(state.T,1)} °C`, '#eed3a7', fs);
+    const radius = Math.min(w*.205, h*(h < 280 ? .24 : .32), 145);
+    const mx = w*.76;
+    const my = h*(h < 280 ? .36 : .44);
+    svg += `<g class="magnifier"><path d="M ${cx+20} ${cy} L ${mx-radius} ${my}" stroke="#b8c9d7" stroke-width="1" stroke-dasharray="3 5" opacity=".7"/>`;
+    svg += `<circle cx="${mx}" cy="${my}" r="${radius+4}" fill="#121b25" stroke="url(#steel)" stroke-width="6"/>`;
+    svg += `<circle cx="${mx}" cy="${my}" r="${radius+8}" fill="none" stroke="#9ec9e8" stroke-width=".6" opacity=".5"/>`;
+    const labelY = my+radius+(h < 280 ? 17 : 28);
+    const labelWidth = Math.max(radius*2,128);
+    svg += chip(mx-labelWidth/2, labelY, labelWidth,
+      `${GASES[state.gas].symbol} · ${Curio.reduce ? 'still frame' : 'particle view'}`, GASES[state.gas].color, fs);
+    const hitW = Math.max(radius*2+10,small ? 128 : 200);
+    svg += `<rect x="${mx-hitW/2}" y="${labelY+12}" width="${hitW}" height="${small ? 30 : 40}" rx="4" fill="#101923"/>`;
+    svg += text(mx, labelY+25, small ? 'wall hits / s, in the picture' : 'wall hits in the picture per second', small ? 10 : 11, '#c2ceda', 'middle');
+    svg += text(mx, labelY+(small ? 38 : 42), String(box.hitsWindow.length), small ? 11 : 14, '#e6c58b', 'middle');
+    svg += '</g>';
+    $('scene-svg').setAttribute('viewBox', `0 0 ${w} ${h}`);
+    $('scene-svg').innerHTML = svg;
+    Object.assign($('particles').style, {left:`${mx-radius}px`, top:`${my-radius}px`, width:`${radius*2}px`, height:`${radius*2}px`});
+    box.width = radius*2;
+    box.height = radius*2;
+    sceneGeometry = {w,h,radius};
+    box.frame(Curio.reduce);
+  }
+  const AXIS = {T:'T (°C)', K:'T (K)', P:'P (kPa)', inverseV:'1/V (1/mL)', n:'n (mol)', V:'V (mL)', PV:'P × V (J)'};
+  function drawGraph() {
+    if ($('notebook').hidden && !largeLayout()) return;
+    const bounds = $('plot').getBoundingClientRect();
+    const w = Math.max(150,bounds.width);
+    const h = Math.max(100,bounds.height);
+    const xKey = $('x-axis').value;
+    const yKey = $('y-axis').value;
+    const rows = state.mode === 'Bench' ? state.rows : state.rows.filter(row => row.session === state.session && row.group);
+    const points = rows.map(row => ({x:val(row,xKey), y:val(row,yKey), group:row.group}));
+    let xMin = xKey === 'T' ? -300 : 0;
+    let xMax = Math.max(xKey === 'T' ? 110 : 1, ...points.map(p => p.x*1.1));
+    if (xKey === 'n') xMax = Math.max(.005,...points.map(p => p.x*1.15));
+    if (xKey === 'inverseV') xMax = Math.max(.01,...points.map(p => p.x*1.15));
+    let yMax = Math.max(1,...points.map(p => p.y*1.17));
+    if (!points.length) yMax = yKey === 'V' ? 150 : 200;
+    const left = w < 350 ? 38 : 49;
+    const top = 17;
+    const right = 15;
+    const bottom = 33;
+    const pw = Math.max(60,w-left-right);
+    const ph = Math.max(20,h-top-bottom);
+    const X = x => left+(x-xMin)/(xMax-xMin)*pw;
+    const Y = y => top+ph-y/yMax*ph;
+    let svg = `<defs><clipPath id="plot-clip"><rect x="${left}" y="${top}" width="${pw}" height="${ph+1}"/></clipPath></defs>`;
+    for (let i=0;i<=4;i++) {
+      const yy = top+ph*i/4;
+      const value = yMax*(1-i/4);
+      svg += `<line x1="${left}" x2="${w-right}" y1="${yy}" y2="${yy}" stroke="#2a3c4e" stroke-width=".7"/>`;
+      svg += text(left-5,yy+3,value >= 100 ? f(value,0) : f(value,1),10,'#b6c5d4','end');
+      const xx = left+pw*i/4;
+      const v = xMin+(xMax-xMin)*i/4;
+      svg += `<line x1="${xx}" x2="${xx}" y1="${top}" y2="${top+ph}" stroke="#2a3c4e" stroke-width=".7"/>`;
+      svg += text(xx,top+ph+14,xKey === 'n' || xKey === 'inverseV' ? f(v,3) : f(v,0),10,'#b6c5d4','middle');
+    }
+    svg += text(left,11,AXIS[yKey],10,'#d8e7f3');
+    svg += text(w-right,h-3,AXIS[xKey],10,'#d8e7f3','end');
+    svg += `<line x1="${left}" x2="${w-right}" y1="${Y(0)}" y2="${Y(0)}" stroke="#b5c9d9"/>`;
+    const fits = [...state.fits];
+    if (state.fit && !fits.some(item => item.group === state.fit.group && state.mode !== 'Bench')) fits.push(state.fit);
+    for (const fit of fits) {
+      if (fit.xKey !== xKey || fit.yKey !== yKey) continue;
+      const color = fit.group === 'B' ? '#e8bd73' : '#9ec9e8';
+      const start = Math.max(xMin,Math.min(fit.crossing,fit.minX));
+      const path = (a,b,dash) => `<line x1="${X(a)}" y1="${Y(fit.slope*a+fit.intercept)}" x2="${X(b)}"`
+        + ` y2="${Y(fit.slope*b+fit.intercept)}" stroke="${color}" stroke-width="2" ${dash ? 'stroke-dasharray="5 4"' : ''} clip-path="url(#plot-clip)"/>`;
+      svg += path(start,fit.minX,true);
+      svg += path(fit.minX,fit.maxX,false);
+      svg += path(fit.maxX,xMax,true);
+      if (fit.crossing >= xMin && fit.crossing <= xMax) {
+        svg += `<circle cx="${X(fit.crossing)}" cy="${Y(0)}" r="4" fill="${color}"/>`;
+        if (h > 170 && fit.group !== 'B') {
+          svg += chip(X(fit.crossing)+7,Y(0)-20,100,crossingText(fit),color,11);
+        }
+      }
+    }
+    for (const p of points) {
+      const color = p.group === 'B' ? '#e8bd73' : '#9ec9e8';
+      svg += p.group === 'B'
+        ? `<path d="M ${X(p.x)} ${Y(p.y)-4} l 4 4 -4 4 -4 -4 Z" fill="${color}"/>`
+        : `<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="3.5" fill="${color}" stroke="#0b1420"/>`;
+    }
+    if (!points.length) svg += text(left+pw/2,top+ph*.45,'Record a measurement to begin.',11,'#91a7ba','middle');
+    $('plot').setAttribute('viewBox',`0 0 ${w} ${h}`);
+    $('plot').innerHTML = svg;
+  }
+  function crossingText(fit) {
+    const units = {T:'°C', K:'K', P:'kPa', inverseV:'1/mL', n:'mol'};
+    const digits = fit.xKey === 'T' || fit.xKey === 'K' ? 1 : ['n','inverseV'].includes(fit.xKey) ? 6 : 3;
+    return `${signed(fit.crossing,digits)} ${units[fit.xKey]}`;
+  }
+  function render() {
+    const focusBefore = document.activeElement;
+    const m = model();
+    if (Curio.reduce) shownVolume = m.V;
+    displayed = {...m,T:state.T};
+    document.body.dataset.mode = state.mode;
+    document.body.dataset.view = state.view;
+    document.body.dataset.apparatus = state.apparatus;
+    const focusGraph = state.mode === 'Absolute zero' && state.view === 'Notebook' && (state.step === 2 || state.step === 4
+      || (state.step === 3 && state.view === 'Notebook' && (qualified(activeRows('B')).pass || activeRows('B').length === 0)));
+    document.body.classList.toggle('graph-focus',focusGraph);
+    $('apparatus-stage').hidden = state.view === 'Notebook' && !focusGraph && !largeLayout();
+    $('apparatus-stage').setAttribute('aria-hidden',state.view === 'Notebook');
+    $('m-bench').setAttribute('aria-pressed',state.mode === 'Bench');
+    $('m-zero').setAttribute('aria-pressed',state.mode === 'Absolute zero');
+    $('v-readouts').setAttribute('aria-pressed',state.view === 'Readouts');
+    $('v-notebook').setAttribute('aria-pressed',state.view === 'Notebook');
+    $('notebook').hidden = state.view !== 'Notebook' && !largeLayout();
+    $('notebook').inert = !$('result-card').hidden;
+    const workspaceRect = document.querySelector('.workspace').getBoundingClientRect();
+    const deckRect = $('readout-deck').getBoundingClientRect();
+    $('result-card').style.top = '50px';
+    $('result-card').style.bottom = `${workspaceRect.bottom-deckRect.top+6}px`;
+    if (largeLayout()) {
+      if ($('notebook').parentElement !== document.querySelector('.workspace')) document.querySelector('.workspace').append($('notebook'));
+    } else if ($('notebook').parentElement !== $('visual')) $('visual').append($('notebook'));
+    $('guide').hidden = state.mode !== 'Absolute zero';
+    $('guided-options').hidden = state.mode !== 'Absolute zero';
+    const optionsParent = innerHeight < 650 || innerWidth < 600 ? document.querySelector('.viewbar') : document.querySelector('.panel');
+    if ($('guided-options').parentElement !== optionsParent) {
+      if (optionsParent.classList.contains('panel')) optionsParent.insertBefore($('guided-options'),$('hint'));
+      else optionsParent.append($('guided-options'));
+    }
+    $('apparatus').value = state.apparatus;
+    $('gas').value = state.gas;
+    $('altitude').value = state.altitude;
+    $('weight-controls').hidden = state.apparatus !== 'Piston';
+    $('amount-controls').hidden = state.apparatus === 'Balloon';
+    $('altitude-controls').hidden = state.apparatus !== 'Balloon';
+    $('lift-bar').hidden = state.apparatus !== 'Piston';
+    $('lift-readout').hidden = state.apparatus !== 'Piston';
+    $('bath').value = state.bath;
+    $('bath-name').textContent = state.apparatus === 'Balloon' ? 'Bath · air temperature' : 'Bath';
+    $('bath-value').textContent = `${state.bath} °C`;
+    $('weight-label').textContent = `${state.weights} × 5.00 kg · 20.0 cm² piston`;
+    $('add-weight').disabled = state.weights === 4;
+    $('remove-weight').disabled = state.weights === 0;
+    const canPumpLimit = state.apparatus === 'Can' ? .02 : .01;
+    $('pump').disabled = state.n >= canPumpLimit - 1e-9;
+    $('valve').disabled = state.n <= .001 + 1e-9;
+    $('r-p').innerHTML = `${f(m.P)} <em>kPa</em>`;
+    $('r-v').innerHTML = m.V >= 1000 ? `${f(m.V/1000)} <em>L</em>` : `${f(m.V)} <em>mL</em>`;
+    $('r-t').innerHTML = `${f(state.T,1)}<em> °C</em>`;
+    $('r-n').textContent = f(m.n,5);
+    $('r-k').textContent = `${f(m.K,2)} K`;
+    $('r-speed').textContent = `${Math.round(m.speed).toLocaleString()} m/s`;
+    $('r-ke').textContent = `${m.ke.toExponential(2)} J`;
+    $('r-molecules').textContent = m.molecules.toExponential(4);
+    $('r-energy').textContent = `${f(m.energy,3)} J`;
+    $('r-lift').textContent = `${signed(m.lift,3)} J`;
+    $('r-law').textContent = f((m.P*1000)*(m.V/1e6)/(m.n*m.K),3);
+    $('energy-value').textContent = `${f(m.energy,3)} J`;
+    const scaleN = state.apparatus === 'Balloon' ? .1 : state.apparatus === 'Can' ? .02 : .01;
+    const maxEnergy = 2.5 * scaleN * R * 373.15;
+    $('energy-fill').style.width = `${m.energy/maxEnergy*100}%`;
+    $('spin-fill').style.width = `${m.spin/maxEnergy*100}%`;
+    $('spin-note').textContent = m.spin ? `Nitrogen also spins: +${f(m.spin,3)} J. Scale: 0 to ${f(maxEnergy,0)} J.`
+      : `Moving from place to place. Scale: 0 to ${f(maxEnergy,0)} J.`;
+    $('lift-value').textContent = `${signed(m.lift,3)} J`;
+    $('lift-fill').style.width = `${Math.min(100,Math.abs(m.lift)/2*100)}%`;
+    $('inline-energy').style.setProperty('--fill',`${m.energy/maxEnergy*100}%`);
+    $('lift-readout').style.setProperty('--fill',`${Math.min(100,Math.abs(m.lift)/2*100)}%`);
+    $('rise-value').textContent = `Piston ${m.rise < 0 ? 'down' : 'up'} ${f(Math.abs(m.rise)*1000,2)} mm. Bar magnitude: 0 to 2 J.`;
+    $('tab-count').textContent = state.rows.length;
+    $('row-count').textContent = `${state.rows.length} ${state.rows.length === 1 ? 'row' : 'rows'}`;
+    $('empty-rows').hidden = state.rows.length > 0;
+    $('fit').disabled = plottedRows().length < 2;
+    const titles = {Piston:['The weighted piston','Heat it. Watch it rise.'], Can:['The rigid can','Fixed volume. Rising pressure.'],
+      Balloon:['The tied balloon','Less outside pressure. More room.']};
+    const compactApparatus = $('apparatus-stage').clientWidth < 600 || $('apparatus-stage').clientHeight < 280;
+    titles.Can[1] = compactApparatus ? 'Model cutoff: 200 kPa.' : 'Fixed 250 mL. Model cutoff: 200 kPa.';
+    $('scene-title').textContent = titles[state.apparatus][0];
+    $('scene-sub').textContent = titles[state.apparatus][1];
+    $('step-number').textContent = `0${state.step} / 04`;
+    $('step-title').textContent = ['Measure set A','Extend the line','Change one thing','Compare your crossings'][state.step-1];
+    document.querySelectorAll('.step-dots i').forEach((dot,i) => {
+      dot.className = i < state.step-1 ? 'past' : i === state.step-1 ? 'now' : '';
+    });
+    document.querySelectorAll('[data-temp]').forEach(button => button.setAttribute('aria-pressed',Number(button.dataset.temp) === state.bath));
+    $('status').textContent = state.warning || (m.atStop ? 'Piston at the stop: pressure now rises instead.'
+      : Math.abs(state.T-state.bath) > .03 ? `Gas approaching ${state.bath} °C. Record stays live.` : 'At bath temperature. Ready to measure.');
+    if (state.fit) {
+      const fit = state.fit;
+      const slopeText = Math.abs(fit.slope) < .001 ? fit.slope.toExponential(3) : f(fit.slope,5);
+      const crossing = `crosses zero at ${crossingText(fit)}`;
+      $('fit-result').textContent = `Slope ${slopeText}; intercept ${signed(fit.intercept,3)}; ${crossing}.`;
+    } else if (plottedRows().length < 2) $('fit-result').textContent = 'Record at least two rows.';
+    else if (!hintOverride) $('fit-result').textContent = 'Choose axes, then press Fit line.';
+    setHint();
+    syncParticles();
+    if (!$('apparatus-stage').hidden) renderScene();
+    drawGraph();
+    if (!m.atStop && wasStop && V.playing === L.stop) V.hush();
+    if (m.atStop && !wasStop) V.say('stop', {now:true, valid:() => model().atStop});
+    wasStop = m.atStop;
+    if (document.activeElement === document.body && focusBefore !== document.body && focusBefore.isConnected
+      && !focusBefore.disabled && !focusBefore.closest('[inert],[hidden]') && focusBefore.getClientRects().length) {
+      focusBefore.focus({preventScroll:true});
+    }
+  }
+  function animate(now) {
+    const dt = Math.min(.04,(now-lastTime)/1000);
+    lastTime = now;
+    if (!Curio.reduce) {
+      state.T += (state.bath-state.T)*(1-Math.exp(-dt/0.44));
+      if (Math.abs(state.T-state.bath) < .005) state.T = state.bath;
+      box.targetT = state.T+273.15;
+      box.step(dt);
+      box.frame(false);
+      shownVolume += (model().V-shownVolume)*(1-Math.exp(-dt/.16));
+    } else if (now-stillTime > 1000) {
+      box.still();
+      stillTime = now;
+    }
+    const changing = Math.abs(state.T-state.bath) > .005 || Math.abs(shownVolume-model().V) > .02;
+    if (now-lastRender > (changing ? 70 : 1000)) {
+      render();
+      lastRender = now;
+    }
+    if (state.flashUntil && now > state.flashUntil) {
+      $('record-flash').classList.remove('show');
+      state.flashUntil = 0;
+    }
+    requestAnimationFrame(animate);
+  }
+  $('m-bench').onclick = () => setMode('Bench');
+  $('m-zero').onclick = () => setMode('Absolute zero');
+  $('v-readouts').onclick = () => setView('Readouts');
+  $('v-notebook').onclick = () => setView('Notebook');
+  $('apparatus').onchange = event => set({apparatus:event.target.value});
+  $('gas').onchange = event => set({gas:event.target.value});
+  $('altitude').onchange = event => set({altitude:Number(event.target.value)});
+  $('bath').oninput = event => setBath(Number(event.target.value));
+  document.querySelectorAll('[data-temp]').forEach(button => button.onclick = () => setBath(Number(button.dataset.temp)));
+  $('add-weight').onclick = () => addWeight(1);
+  $('remove-weight').onclick = () => addWeight(-1);
+  $('pump').onclick = () => set({n:Number((state.n+.001).toFixed(5))});
+  $('valve').onclick = () => set({n:Number((state.n-.001).toFixed(5))});
+  $('record').onclick = record;
+  $('fit').onclick = () => fit();
+  $('x-axis').onchange = $('y-axis').onchange = () => {
+    changed();
+    state.fit = null;
+    render();
+  };
+  $('real-lab').onchange = event => set({realLab:event.target.checked});
+  $('new-zero').onclick = () => setMode('Absolute zero');
+  $('close-result').onclick = () => {
+    $('result-card').hidden = true;
+    $('v-notebook').focus({preventScroll:true});
+    render();
+  };
+  $('clear').onclick = () => {
+    changed();
+    state.rows = [];
+    invalidateFits();
+    $('rows').replaceChildren();
+    save();
+    render();
+  };
+  Curio.init({clips:"voice:*", rate:.98});
+  // Keep experiment controls ahead of the potentially long notebook table in keyboard order.
+  document.querySelector('main').prepend(document.querySelector('.panel'));
+  Curio.onMotion(reduce => {
+    if (reduce) state.T = state.bath;
+    render();
+  });
+  addEventListener('resize',render);
+  load();
+  state.rows.forEach(addRow);
+  state.recordV = model().V;
+  $('visual').append($('notebook'));
+  document.querySelector('.workspace').append($('result-card'));
+  window.__tool = {
+    state, setMode, set, record, fit, model, regression, qualified,
+    seed:n => {randomState = Number(n) >>> 0;},
+    allLines:() => V.allLines(), vlog:V.log,
+    get vq() { return V.queue; },
+    get picture() { return {particles:box.particles.map(p => ({...p})), hits:box.hitsWindow.length}; }
+  };
+  render();
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A naturalist's field guide to eight fallacies and their fair twins. Grade 10 ELA. Works offline.">
+<link rel="icon" href="data:,">
+<title>Fallacy Field Guide · Curio Class</title>
+<!--
+Curio Class, Grade 10 ELA, RI.9-10.8. Based on kit/starter/src.html.
+Definitions paraphrased from Bradley Dowden, Fallacies, Internet Encyclopedia of Philosophy.
+All specimens are fictional. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. No network requests. Sources and limitations in notes.md.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#efe9d4; --panel:#faf6e8; --ink:#23220f; --muted:#57553a; --line:#cfc7a6;
+  --brand:#5c5c08; --btn:#5c5c08; --btn-line:#8f8a66; --head-ink:#fff; --focus:#1f5fa8;
+}
+body { height:100dvh; overflow:hidden; background:repeating-linear-gradient(88deg,#00000003 0 1px,transparent 1px 4px),var(--paper); }
+button { min-height:44px; border:1px solid #aaa17b; background:linear-gradient(#fffdf4,#eae2c7); border-radius:4px;
+  padding:7px 11px; box-shadow:inset 0 1px #fff9,0 2px 2px #362b1514; }
+button:hover { border-color:var(--brand); background:#fffdf5; }
+button:active { box-shadow:inset 0 2px 3px #44341030; }
+button[aria-pressed="true"] { background:var(--brand); color:#fff; border-color:var(--brand); }
+button:disabled { opacity:.5; cursor:default; }
+header { background:var(--panel); color:var(--ink); border-bottom:5px solid var(--brand); padding:10px 20px; gap:12px; }
+h1 { font:700 clamp(20px,2.2vw,31px)/1.12 Georgia,serif; }
+h1 small { font-size:13px; color:var(--muted); opacity:1; margin-top:4px; }
+.seg { border-radius:4px; border:1px solid var(--brand); }
+.seg button { min-height:44px; min-width:44px; font-size:14px; padding:0 16px; background:var(--panel); color:var(--ink); border-radius:0; }
+.seg button[aria-pressed="true"] { background:var(--brand); color:#fff; }
+.icon-btn { border-radius:4px; min-height:44px; padding:0 10px; background:var(--panel); color:var(--ink); font-size:13px; }
+main { display:block; overflow:hidden; min-height:0; }
+.view { height:100%; min-height:0; }
+#field { display:grid; grid-template-columns:minmax(0,1fr) 345px; }
+.field-left { display:grid; grid-template-rows:auto minmax(0,1fr) auto; min-width:0; min-height:0; }
+.habitats { display:flex; gap:6px; padding:12px 18px; background:#e7dfc4; border-bottom:1px solid #b7aa81; }
+.habitats button { flex:1; padding:5px; font-size:14px; }
+.habitat { position:relative; margin:16px 20px 8px; padding:22px; border:10px solid #76583b;
+  box-shadow:inset 0 4px 10px #0004,0 4px 10px #49371d25; background:#a87645 url(art:habitat-cork) center/cover;
+  min-height:0; display:grid; grid-template-rows:auto minmax(0,1fr) auto; gap:12px; }
+.habitat::before { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(130deg,#fff2,transparent 40%,#35291320); }
+.habitat[data-kind="thread"] { background:linear-gradient(120deg,#dce6df,#bdcbc3); border-color:#596e64; }
+.habitat[data-kind="feed"] { background:linear-gradient(120deg,#d9d5c6,#b6afa0); border-color:#706a57; }
+.habitat[data-kind="chat"] { background:#1d2623; border-color:#2c322b; padding:30px 45px; border-radius:18px;
+  container-type:size; }
+.phone-art { display:none; position:absolute; left:50%; top:50%; width:100cqh; height:100cqw;
+  object-fit:fill; transform:translate(-50%,-50%) rotate(90deg); pointer-events:none; }
+.habitat[data-kind="chat"] .phone-art { display:block; }
+.habitat[data-kind="chat"] .specimen { background:linear-gradient(110deg,#eff7e8,#d4e5cb); border-radius:16px 16px 16px 0;
+  margin-inline:40px; }
+.habitat[data-kind="chat"] .specimen::before { display:none; }
+.habitat[data-kind="chat"] .words { font-family:'Segoe UI',sans-serif; }
+.habitat[data-kind="thread"] .specimen { border-radius:5px 18px 18px 18px; border-left:7px solid #466c62; background:#f7fbf6; }
+.habitat[data-kind="thread"] .specimen::before { content:'R'; border-radius:50%; width:28px; height:28px;
+  display:grid; place-items:center; left:14px; top:-18px; background:#466c62; color:#fff; font-size:13px; box-shadow:none; }
+.habitat[data-kind="feed"] .specimen { border-top:7px double #554d39; border-bottom:3px solid #554d39; }
+.habitat[data-kind="feed"] .specimen::before { display:none; }
+.habitat-heading { position:relative; display:flex; justify-content:space-between; align-items:center; gap:8px; color:#fff; }
+.habitat-heading b { background:#302b20d9; padding:7px 11px; font:700 13px Georgia,serif; letter-spacing:.05em; }
+.field-counter { color:var(--ink); background:var(--panel); padding:5px 9px; font-size:12px; }
+.specimen { position:relative; align-self:center; background:linear-gradient(115deg,#fffdf2,#eee3c2); border:2px solid #fff9;
+  outline:3px solid var(--brand); outline-offset:4px; padding:24px 28px; box-shadow:4px 7px 12px #30281950; min-width:0;
+  transform:rotate(-.4deg); }
+.specimen::before { content:''; position:absolute; top:-10px; left:48%; width:13px; height:13px;
+  background:radial-gradient(circle at 35% 25%,#fff8c2,#b88829 45%,#4f3410); border-radius:50%; box-shadow:1px 3px 3px #0005; }
+.spec-label { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; gap:8px; }
+.eyebrow { font:700 11px/1.3 'Segoe UI',sans-serif; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+.spec-id { font:italic 19px Georgia,serif; color:var(--brand); }
+.context { margin:0 0 12px; font-size:12px; color:var(--muted); line-height:1.4; }
+.words { font:clamp(17px,1.8vw,25px)/1.85 Georgia,serif; position:relative; }
+.word { display:inline-block; max-width:100%; overflow-wrap:anywhere; line-height:1.2; vertical-align:middle;
+  padding:5px 1px; cursor:pointer; border-radius:2px; }
+.word:hover { background:#d9d1a8; }
+.word.marked { background:#dfc46280; box-shadow:inset 0 -2px #806d1a; }
+.word.anchor { outline:2px solid var(--brand); }
+.stamp { position:absolute; right:18px; top:6px; color:#a3261b; border:3px double currentColor;
+  padding:4px 12px; font:700 17px Georgia,serif; transform:rotate(3deg); background:#fff8; pointer-events:none; }
+.specimen:has(.stamp:not([hidden])) .eyebrow { visibility:hidden; }
+.stamp.legit { color:#1d6b3e; }
+.stamp.land { animation:stamp .4s ease-out; }
+@keyframes stamp { from { opacity:0; transform:scale(1.7) rotate(12deg); } to { opacity:1; transform:scale(1) rotate(3deg); } }
+.spec-nav { position:relative; display:grid; grid-template-columns:repeat(6,1fr); gap:7px; }
+.spec-nav button { min-height:64px; font:700 15px Georgia,serif; position:relative; transform:rotate(var(--tilt)); }
+.spec-nav small { display:block; font:11px/1.3 'Segoe UI',sans-serif; margin-top:3px; overflow:hidden;
+  white-space:nowrap; text-overflow:ellipsis; max-width:100%; }
+.spec-nav button.logged::after { content:'✓'; position:absolute; right:5px; top:3px; color:#1d6b3e; }
+.field-foot { display:flex; justify-content:space-between; gap:12px; padding:6px 22px 12px; color:var(--muted); font-size:11px; }
+.panel { border-left:4px double #b7aa81; padding:20px 17px; gap:12px; overflow:auto;
+  background:linear-gradient(90deg,#d7cfae80,transparent 12px),var(--panel); }
+.panel h2 { font:italic 25px Georgia,serif; margin:0; border-bottom:1px solid var(--line); padding-bottom:10px; }
+.hint { min-height:65px; margin:0; font-size:14px; line-height:1.45; }
+.kit-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+.species-btn { display:flex; align-items:center; gap:6px; text-align:left; min-width:0; min-height:56px;
+  font:600 12px/1.2 'Segoe UI',sans-serif; padding:4px 6px; }
+.species-btn img { width:38px; height:40px; object-fit:contain; flex:none; }
+.species-btn .glyph { font-size:15px; }
+#legit { grid-column:1/-1; min-height:44px; color:#1d6b3e; font-weight:700; }
+#legit[aria-pressed="true"] { color:#fff; background:#1d6b3e; }
+.primary { background:var(--brand); color:#fff; border-color:var(--brand); font-weight:700; }
+.primary:hover { background:#464602; }
+.actions { display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+.actions button { font-size:13px; }
+.status { font-size:13px; line-height:1.45; min-height:55px; padding:10px; background:#ebe4cd; border-left:3px solid #b5a57b; }
+.status:empty { display:none; }
+.status.good { border-color:#1d6b3e; background:#e1ead8; }
+.status.bad { border-color:#a3261b; background:#f0e2d4; }
+.lookalike { margin:0; font-size:13px; color:var(--brand); font-weight:700; }
+.privacy { margin:0; color:var(--muted); font-size:11px; line-height:1.4; }
+#guide { overflow:auto; background:linear-gradient(90deg,#b8ab7f50,transparent 4%,transparent 49.5%,#8c794c35 50%,transparent 50.5%); padding:22px; }
+.book-head { display:flex; align-items:center; justify-content:space-between; gap:15px; margin-bottom:16px; }
+.book-head h2 { margin:0; font:italic 29px Georgia,serif; }
+.book-head p { margin:3px 0; font-size:13px; color:var(--muted); }
+.guide-grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px; }
+.guide-card { position:relative; min-width:0; min-height:245px; background:linear-gradient(110deg,#fffdf4,#eee4c9);
+  border:1px solid #bdb18a; border-left:5px solid var(--brand); padding:10px; text-align:left; box-shadow:2px 4px 8px #49371d30; }
+.guide-card img.plate { display:block; width:100%; height:155px; object-fit:contain; transition:filter .4s; }
+.guide-card.unseen img.plate { filter:brightness(0) opacity(.75); }
+.guide-card h3 { font:700 17px/1.25 Georgia,serif; margin:8px 0 5px; }
+.guide-card p { font-size:12px; margin:5px 0; color:var(--muted); }
+.guide-card .flower { position:absolute; width:70px; height:70px; right:0; top:0; transform:rotate(12deg); }
+.guide-card.confirmed { border-color:#5e7940; }
+.guide-card.new-confirmation { animation:plate-reveal .4s ease-out; }
+@keyframes plate-reveal { from { transform:rotateY(75deg); opacity:.35; } to { transform:rotateY(0); opacity:1; } }
+.guide-foot { padding-top:15px; font-size:14px; color:var(--muted); }
+#make { overflow:auto; padding:24px; }
+.make-head { display:flex; gap:16px; align-items:center; margin-bottom:16px; }
+.make-head img { width:95px; height:95px; object-fit:contain; }
+.make-head h2 { font:italic 28px Georgia,serif; margin:0 0 7px; }
+select { min-height:44px; max-width:100%; font:inherit; padding:5px; background:var(--panel); color:var(--ink); border:1px solid #aaa17b; }
+.topic-chips { display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 16px; align-items:center; font-size:12px; }
+.topic-chips button { font-size:12px; }
+.slips { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.slip { padding:20px; background:linear-gradient(110deg,#fffdf3,#eee3c2); border:1px solid #c4b68a;
+  box-shadow:3px 6px 10px #4e3a1826; transform:rotate(-.3deg); min-width:0; }
+.slip:nth-child(2) { transform:rotate(.4deg); }
+.slip h3 { font:700 22px Georgia,serif; margin:0 0 10px; }
+.slip label { display:block; margin-bottom:5px; }
+textarea { width:100%; min-height:135px; resize:vertical; border:1px solid #b5a77b; background:#fffaf0;
+  font:17px/1.6 Georgia,serif; padding:10px; color:var(--ink); }
+.slip .words { font-size:18px; min-height:100px; height:clamp(110px,24dvh,200px); overflow:auto; margin:10px 0; }
+textarea { max-height:clamp(135px,24dvh,200px); }
+.sighting-quote { padding:10px 13px; margin:8px 0; border-left:3px solid var(--brand); background:#fff9;
+  font:17px/1.6 Georgia,serif; overflow-wrap:anywhere; }
+.sighting-quote mark { background:#dfc46280; color:var(--ink); box-shadow:inset 0 -2px #806d1a; }
+.slip-foot { display:flex; align-items:center; justify-content:space-between; gap:10px; font-size:12px; color:var(--muted); }
+.make-actions { display:flex; gap:10px; margin:20px 0 10px; }
+.make-hint { font-size:14px; color:var(--muted); min-height:22px; }
+dialog { width:min(680px,calc(100vw - 28px)); max-height:calc(100dvh - 28px); overflow:auto; padding:22px;
+  color:var(--ink); background:linear-gradient(120deg,#fffdf3,#eee4c7); border:4px double var(--brand); box-shadow:0 12px 50px #0006; }
+dialog::backdrop { background:#25230fa8; }
+.dialog-top { display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.dialog-top h2 { margin:0; font:700 24px Georgia,serif; }
+.dialog-art { width:200px; height:180px; object-fit:contain; float:right; }
+.dialog-content { font-size:15px; line-height:1.6; }
+.dialog-content h3 { font:italic 21px Georgia,serif; }
+.dialog-content li { margin:8px 0; }
+.dialog-actions { display:flex; gap:10px; margin:12px 0; }
+.dialog-actions button { flex:1; }
+.sighting-nav { display:flex; flex-wrap:wrap; gap:8px; margin:12px 0; }
+.sighting-nav button { flex:1; min-width:80px; }
+.field-question { font:700 23px/1.4 Georgia,serif; }
+.test-result { padding:12px; border-left:3px solid var(--brand); background:#e4dcc2; min-height:45px; }
+.sunbeam { position:absolute; inset:0; pointer-events:none; opacity:.15; background:linear-gradient(115deg,transparent 15%,#fff8c2 35%,transparent 48%);
+  animation:light 12s ease-in-out infinite alternate; }
+@keyframes light { to { opacity:.3; } }
+.calm .sunbeam { animation:none; }
+.calm .land { animation:none; }
+@media(min-width:1500px) { .habitat { margin:25px 40px 14px; padding:35px; } #field { grid-template-columns:minmax(0,1fr) 390px; }
+  .species-btn { min-height:65px; font-size:14px; } .species-btn img { width:48px; height:48px; } .guide-card img.plate { height:230px; } }
+@media(max-width:1000px) { header { gap:7px; padding:7px 10px; } h1 { font-size:22px; } h1 small { display:none; }
+  .seg button { padding:0 10px; } .icon-btn { padding:0 7px; } #field { grid-template-columns:minmax(0,1fr) 290px; }
+  .habitats { padding:7px 9px; gap:4px; } .habitats button { font-size:12px; }
+  .habitat { margin:10px; padding:15px; border-width:7px; gap:10px; } .specimen { padding:16px; }
+  .words { font-size:18px; line-height:1.8; } .panel { padding:12px; gap:8px; } .panel h2 { font-size:23px; padding-bottom:6px; }
+  .species-btn img { width:29px; height:34px; } .species-btn { font-size:11px; min-height:48px; gap:3px; }
+  .hint { font-size:13px; min-height:58px; } .guide-grid { gap:10px; } .guide-card { min-height:220px; }
+  .guide-card img.plate { height:125px; } .guide-card h3 { font-size:15px; } }
+@media(max-height:650px) and (min-width:600px) {
+  header { padding:4px 9px; gap:6px; } h1 { font-size:20px; } h1 small { display:none; }
+  header .seg button,header .icon-btn { font-size:12px; padding:0 8px; min-height:44px; }
+  #field { grid-template-columns:minmax(0,1fr) 285px; }
+  .habitats { padding:4px 7px; } .habitats button { font-size:11px; }
+  .habitat { margin:8px; padding:10px; border-width:5px; gap:7px; }
+  .habitat[data-kind="chat"] { padding:10px 14px; }
+  .habitat[data-kind="chat"] .specimen { margin-inline:24px; }
+  .habitat-heading b { font-size:10px; padding:4px 6px; } .field-counter { font-size:10px; padding:3px 5px; }
+  .specimen { padding:12px; } .spec-label { margin-bottom:5px; } .spec-id { font-size:14px; }
+  .eyebrow { font-size:10px; } .words { font-size:15px; line-height:1.85; } .word { padding:5px 0; }
+  .context { font-size:10px; margin-bottom:4px; line-height:1.3; }
+  .habitat[data-kind="thread"] .specimen::before { display:none; }
+  .habitat[data-kind="thread"] .spec-id { display:inline-flex; align-items:center; gap:6px; }
+  .habitat[data-kind="thread"] .spec-id::before { content:'R'; display:grid; place-items:center; width:22px; height:22px;
+    border-radius:50%; background:#466c62; color:#fff; font:700 11px Georgia,serif; }
+  .spec-nav { gap:4px; } .spec-nav button { min-height:44px; font-size:12px; padding:4px; }
+  .spec-nav small { display:none; } .field-foot { padding:2px 10px 5px; font-size:10px; }
+  .panel { padding:8px; gap:6px; } .panel h2 { display:none; } .hint { font-size:12px; min-height:48px; }
+  .kit-grid { gap:4px; grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .species-btn { min-height:51px; font-size:10px; padding:3px; gap:2px; flex-direction:column; justify-content:center; text-align:center; }
+  .species-btn img { display:none; } .species-btn .glyph { font-size:12px; } #legit { grid-column:auto; min-height:51px; font-size:12px; }
+  .actions { gap:4px; } .actions button { font-size:12px; padding:5px; }
+  .status { font-size:11px; padding:6px; min-height:36px; } .privacy { font-size:10px; }
+  .lookalike { font-size:11px; } .stamp { font-size:13px; right:6px; top:2px; padding:2px 6px; }
+  .panel:has(#show:not([hidden])) { display:grid; grid-template-columns:minmax(0,1fr) 85px; gap:4px; align-content:start; }
+  .panel:has(#show:not([hidden])) > * { grid-column:1/-1; }
+  .panel:has(#show:not([hidden])) #status { grid-column:1; font-size:10px; }
+  .panel:has(#show:not([hidden])) #show { grid-column:2; padding:5px; font-size:11px; }
+  .panel:has(#show:not([hidden])) .hint { min-height:32px; font-size:11px; }
+  .panel:has(#show:not([hidden])) .species-btn,
+  .panel:has(#show:not([hidden])) #legit { min-height:44px; }
+  #guide { padding:6px; } .book-head { margin-bottom:6px; } .book-head h2 { font-size:20px; }
+  .book-head p { font-size:11px; } .book-head button { font-size:11px; }
+  .guide-card { min-height:128px; padding:5px; } .guide-card img.plate { height:67px; }
+  .guide-card h3 { font-size:12px; margin:4px 0; } .guide-card p { font-size:10px; margin:3px 0; } .guide-grid { gap:6px; }
+  .guide-card .flower { width:38px; height:38px; } .guide-foot { font-size:11px; margin:5px 0; padding-top:4px; }
+  #make { padding:10px; display:grid; grid-template-columns:158px minmax(0,1fr); grid-template-rows:100px 55px 112px auto auto;
+    column-gap:12px; align-content:start; }
+  .make-head { grid-column:1; grid-row:1; margin:0; display:block; } .make-head img { display:none; }
+  .make-head h2 { font-size:15px; line-height:1.1; margin:0 0 3px; } .make-head label { font-size:11px; display:block; }
+  .make-head select { width:158px; font-size:11px; }
+  .make-hint { grid-column:1; grid-row:2; font-size:11px; margin:0; }
+  .topic-chips { grid-column:1; grid-row:3; display:grid; grid-template-columns:1fr 1fr; margin:0; gap:4px; }
+  .topic-chips span { grid-column:1/-1; font-size:10px; } .topic-chips button { font-size:10px; padding:3px; }
+  .slips { grid-column:2; grid-row:1/4; gap:10px; }
+  .slip { padding:9px; } .slip h3 { font-size:18px; } .slip .eyebrow { font-size:10px; }
+  textarea { min-height:110px; font-size:14px; } .slip .words { font-size:14px; min-height:110px; }
+  .slip-foot { font-size:10px; gap:3px; } .slip-foot button { font-size:11px; padding:5px; }
+  .make-actions { grid-column:2; margin:8px 0 4px; }
+  #make > .privacy { grid-column:1/-1; font-size:10px; }
+  #make-result { grid-column:1/-1; }
+}
+@media(max-width:760px) and (min-height:651px), (max-width:599px) {
+  body { height:100dvh; overflow:hidden; } header { gap:5px; padding:6px; justify-content:center; }
+  h1 { width:100%; text-align:center; font-size:22px; margin:0; }
+  .seg button { padding:0 10px; font-size:12px; } .icon-btn { min-width:44px; font-size:11px; padding:0 6px; }
+  #field { display:grid; grid-template-columns:1fr; grid-template-rows:minmax(0,1fr) auto; }
+  .field-left { min-height:0; } .habitats { padding:4px; } .habitats button { font-size:10px; }
+  .habitat { margin:7px; padding:10px; border-width:5px; gap:6px; }
+  .specimen { padding:10px; } .words { font-size:16px; line-height:1.8; }
+  .habitat-heading b { font-size:10px; padding:4px; } .field-counter { font-size:10px; }
+  .spec-label { margin-bottom:4px; } .spec-id { font-size:14px; } .eyebrow { font-size:10px; }
+  .spec-nav { gap:4px; } .spec-nav button { min-height:44px; padding:4px; font-size:12px; } .spec-nav small { display:none; }
+  .field-foot { display:none; } .context { font-size:11px; margin-bottom:4px; }
+  .panel { border-left:0; border-top:4px double #b7aa81; border-radius:14px 14px 0 0; padding:8px; gap:5px; overflow:visible; }
+  .panel h2 { display:none; } .hint { min-height:36px; font-size:12px; }
+  .kit-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:4px; }
+  .species-btn { min-height:44px; flex-direction:row; font-size:10px; padding:3px; gap:2px; }
+  .species-btn img { width:24px; height:30px; } .species-btn .glyph { font-size:12px; }
+  #legit { grid-column:auto; min-height:44px; font-size:12px; }
+  .actions { grid-template-columns:1fr 1fr; } .status { font-size:11px; padding:5px; min-height:0; }
+  .privacy { font-size:10px; } .lookalike { font-size:11px; }
+  .habitat[data-kind="chat"] { padding:12px 16px; }
+  .habitat[data-kind="chat"] .specimen { margin-inline:14px; }
+  #guide { padding:12px; } .book-head { align-items:start; } .book-head h2 { font-size:22px; }
+  .book-head p { font-size:11px; } .book-head button { font-size:11px; max-width:100px; }
+  .guide-grid { grid-template-columns:1fr; } .guide-card { min-height:300px; }
+  .guide-card img.plate { height:220px; } .guide-card h3 { font-size:20px; } .guide-card p { font-size:13px; }
+  #make { padding:12px; } .make-head { gap:8px; } .make-head img { width:60px; height:70px; }
+  .make-head h2 { font-size:22px; } .slips { grid-template-columns:1fr; gap:14px; }
+  #make { padding-bottom:80px; }
+  .make-actions { position:fixed; bottom:0; left:0; right:0; z-index:3; margin:0; padding:10px;
+    background:var(--panel); border-top:3px double var(--line); box-shadow:0 -3px 8px #332b1420; }
+  .topic-chips { gap:4px; } .topic-chips button { font-size:11px; padding:5px; }
+}
+@media(max-width:760px) and (min-width:600px) and (min-height:651px) {
+  .slips { grid-template-columns:1fr 1fr; gap:12px; }
+  .kit-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } .guide-grid { grid-template-columns:repeat(2,1fr); }
+  .guide-card { min-height:156px; padding:7px; }
+  .guide-card img.plate { height:78px; }
+  .guide-card h3 { font-size:16px; margin:4px 0; }
+  .guide-card p { font-size:12px; margin:3px 0; }
+  .guide-grid { gap:8px; } .guide-foot { font-size:11px; }
+  .book-head { margin-bottom:8px; }
+}
+@media(max-width:599px) {
+  .habitat[data-kind="thread"] .specimen::before { display:none; }
+  .habitat[data-kind="thread"] .spec-id { display:inline-flex; align-items:center; gap:6px; }
+  .habitat[data-kind="thread"] .spec-id::before { content:'R'; display:grid; place-items:center; width:22px; height:22px;
+    border-radius:50%; background:#466c62; color:#fff; font:700 11px Georgia,serif; }
+  .panel:has(#show:not([hidden])) { display:grid; grid-template-columns:minmax(0,1fr) 80px; gap:4px; align-content:start; }
+  .panel:has(#show:not([hidden])) > * { grid-column:1/-1; }
+  .panel:has(#show:not([hidden])) #status { grid-column:1; }
+  .panel:has(#show:not([hidden])) #show { grid-column:2; }
+  .panel:has(#show:not([hidden])) .hint { min-height:32px; }
+  #make { padding:8px 12px 80px; }
+  .make-head { gap:6px; margin-bottom:6px; }
+  .make-head img { width:40px; height:50px; }
+  .make-head h2 { font-size:16px; margin-bottom:2px; }
+  .make-head label { font-size:11px; line-height:1.1; }
+  .make-head select { display:block; min-height:44px; width:235px; font-size:12px; }
+  .make-hint { margin:4px 0 6px; font-size:11px; line-height:1.3; min-height:28px; }
+  .topic-chips { flex-wrap:nowrap; gap:3px; margin:2px 0 8px; font-size:10px; }
+  .topic-chips button { font-size:10px; padding:3px; }
+  .slips { gap:8px; }
+  .slip { padding:8px; }
+  .slip h3 { font-size:18px; margin-bottom:4px; }
+  .slip .eyebrow { font-size:10px; line-height:1.2; margin-bottom:4px; }
+  .slip textarea { min-height:90px; height:90px; padding:6px; font-size:14px; line-height:1.45; }
+  .slip .words { min-height:90px; height:90px; max-height:90px; overflow:auto; margin:0; font-size:14px; line-height:1.6; }
+  .slip-foot { font-size:10px; }
+  .slip-foot button { font-size:11px; padding:5px; }
+  .dialog-art { float:none; display:block; width:160px; height:145px; margin:12px auto; }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Fallacy Field Guide<small>Spot it. Then tell it from its twin.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-field" aria-pressed="true">Field</button>
+    <button id="m-guide" aria-pressed="false">Guide</button>
+    <button id="m-make" aria-pressed="false">Make one</button>
+  </div>
+  <button id="motion" class="icon-btn" aria-pressed="true">Motion</button>
+  <button id="sound" class="icon-btn" aria-pressed="true">Sound</button>
+  <button id="read" class="icon-btn">Read</button>
+</header>
+<main>
+  <section id="field" class="view" aria-label="Field">
+    <div class="field-left">
+      <nav id="habitats" class="habitats" aria-label="Habitats"></nav>
+      <div id="habitat" class="habitat" data-kind="board">
+        <img class="phone-art" src="art:habitat-phone" alt="Painted phone frame">
+        <div class="sunbeam"></div>
+        <div class="habitat-heading"><b id="habitat-title"></b><span class="field-counter" id="field-counter"></span></div>
+        <article class="specimen" id="specimen" aria-label="Selected specimen">
+          <div class="spec-label"><span class="spec-id" id="spec-id"></span><span class="eyebrow" id="spec-label"></span></div>
+          <p id="context" class="context" hidden></p>
+          <div class="words" id="words" aria-label="Tap first and last word to mark the reasoning"></div>
+          <span class="stamp" id="stamp" hidden></span>
+        </article>
+        <nav id="spec-nav" class="spec-nav" aria-label="Specimens"></nav>
+      </div>
+      <div class="field-foot"><span>FIELD NOTES / VOLUME 01</span><span>24 specimens · 2 misses = study only · no clock</span></div>
+    </div>
+    <aside class="panel">
+      <h2>Field kit</h2>
+      <p class="hint" id="hint" aria-live="polite"></p>
+      <p class="lookalike" id="lookalike" hidden>It looks like which species?</p>
+      <div class="kit-grid" id="kit"></div>
+      <div class="actions"><button id="field-test">Field test</button><button class="primary" id="log">Log sighting</button></div>
+      <div id="status" class="status" role="status"></div>
+      <button id="show" hidden>Show me</button>
+      <p class="privacy" id="privacy">Sightings and slips stay on this device. Nothing leaves it.</p>
+    </aside>
+  </section>
+  <section id="guide" class="view" hidden aria-label="Guide">
+    <div class="book-head"><div><h2>The collected guide</h2><p id="guide-hint">Catch the fallacy. Let its fair twin go. Tap a card to examine it.</p></div>
+      <button id="reset">Reset field guide</button></div>
+    <div class="guide-grid" id="guide-grid"></div>
+    <p class="guide-foot" id="guide-count"></p>
+  </section>
+  <section id="make" class="view" hidden aria-label="Make one">
+    <div class="make-head"><img id="make-art" src="art:goose" alt="Species plate"><div><h2>Two slips. One difference.</h2>
+      <label for="make-species">Choose a species </label><select id="make-species"></select></div></div>
+    <p class="make-hint" id="make-hint"></p>
+    <div class="topic-chips"><span>Try a topic:</span><button data-topic="lunch rules">Lunch rules</button>
+      <button data-topic="a phone plan">A phone plan</button><button data-topic="a sports team">A sports team</button>
+      <button data-topic="a video game">A video game</button></div>
+    <div class="slips">
+      <article class="slip"><h3>The fallacy</h3><label for="slip-0" class="eyebrow">Your invented specimen</label>
+        <textarea id="slip-0" aria-label="The fallacy: your invented specimen" placeholder="Write your own argument..."></textarea>
+        <div id="make-words-0" class="words" hidden></div>
+        <div class="slip-foot"><span id="word-count-0">0 words</span><button id="mark-0">Mark words</button></div></article>
+      <article class="slip"><h3>Its fair twin</h3><label for="slip-1" class="eyebrow">The similar move, used fairly</label>
+        <textarea id="slip-1" aria-label="Its fair twin: the similar move used fairly" placeholder="Change the reasoning so it is fair..."></textarea>
+        <div id="make-words-1" class="words" hidden></div>
+        <div class="slip-foot"><span id="word-count-1">0 words</span><button id="mark-1">Mark words</button></div></article>
+    </div>
+    <div class="make-actions"><button class="primary" id="make-test" disabled>Field test it</button><button id="clear">Clear my slips</button></div>
+    <p class="privacy">Your writing stays on this device. This is a self-check, based on your answers, not an automatic writing grade.</p>
+    <p id="make-result" class="status" hidden></p>
+  </section>
+</main>
+<dialog id="dialog" aria-labelledby="dialog-title"><div class="dialog-top"><h2 id="dialog-title"></h2>
+  <button id="close-dialog" aria-label="Close dialog">Close</button></div><div class="dialog-content" id="dialog-content"></div></dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const CATALOG = [
+  {
+    "id": "ad",
+    "glyph": "◆",
+    "name": "Ad hominem",
+    "art": "goose",
+    "aka": [
+      "attacking the person"
+    ],
+    "marks": [
+      "The reply targets the speaker instead of the reasons.",
+      "The trait has nothing to do with the claim."
+    ],
+    "lookalike": "Questioning reliability for a reason that bears on the claim, such as who paid for a study.",
+    "test": {
+      "question": "Would this point about the person change whether the reasons are true?",
+      "yes": "This supports the fair lookalike. Check the evidence in the words.",
+      "no": "This raises a concern about the reasoning. Look closely at the field mark."
+    }
+  },
+  {
+    "id": "straw",
+    "glyph": "▲",
+    "name": "Straw man",
+    "art": "scarecrow",
+    "aka": [],
+    "marks": [
+      "The other view is restated as weaker or sillier.",
+      "The reply attacks that distorted version."
+    ],
+    "lookalike": "A fair summary the other side would accept.",
+    "test": {
+      "question": "Would the other side say 'yes, that is what I mean'?",
+      "yes": "This supports the fair lookalike. Check the evidence in the words.",
+      "no": "This raises a concern about the reasoning. Look closely at the field mark."
+    }
+  },
+  {
+    "id": "binary",
+    "glyph": "■",
+    "name": "Black-or-white",
+    "art": "magpie",
+    "aka": [
+      "false dilemma"
+    ],
+    "marks": [
+      "Only two options are offered.",
+      "Other reasonable choices are left out."
+    ],
+    "lookalike": "A choice that really has two options, such as a yes-or-no ballot.",
+    "test": {
+      "question": "Are there really only these two choices?",
+      "yes": "This supports the fair lookalike. Check the evidence in the words.",
+      "no": "This raises a concern about the reasoning. Look closely at the field mark."
+    }
+  },
+  {
+    "id": "slope",
+    "glyph": "●",
+    "name": "Slippery slope",
+    "art": "snail",
+    "aka": [],
+    "marks": [
+      "A chain of steps ends in disaster.",
+      "The steps have no support."
+    ],
+    "lookalike": "A chain where each step is supported by evidence.",
+    "test": {
+      "question": "Is there a reason given for each step, and is the ending likely?",
+      "yes": "This supports the fair lookalike. Check the evidence in the words.",
+      "no": "This raises a concern about the reasoning. Look closely at the field mark."
+    }
+  },
+  {
+    "id": "hasty",
+    "glyph": "✚",
+    "name": "Hasty generalization",
+    "art": "hare",
+    "aka": [],
+    "marks": [
+      "One or two cases are used.",
+      "The claim jumps to all or most cases."
+    ],
+    "lookalike": "A generalization from a large, randomly chosen sample.",
+    "test": {
+      "question": "How many cases, and were they chosen fairly?",
+      "yes": "Many cases, chosen fairly: that supports the fair lookalike.",
+      "no": "Few cases or a biased choice: that raises a hasty-generalization concern."
+    }
+  },
+  {
+    "id": "authority",
+    "glyph": "★",
+    "name": "Unqualified authority",
+    "art": "peacock",
+    "aka": [],
+    "marks": [
+      "A famous or titled person backs a claim.",
+      "The claim is outside that person's field."
+    ],
+    "lookalike": "An expert speaking within their field.",
+    "test": {
+      "question": "Is this person an expert on this exact question?",
+      "yes": "This supports the fair lookalike. Check the evidence in the words.",
+      "no": "This raises a concern about the reasoning. Look closely at the field mark."
+    }
+  },
+  {
+    "id": "band",
+    "glyph": "◗",
+    "name": "Bandwagon",
+    "art": "ducklings",
+    "aka": [],
+    "marks": [
+      "Many people believe or buy it.",
+      "Popularity is used to say it is good or true."
+    ],
+    "lookalike": "Popularity cited when popularity is the point, such as crowds on a busy trail.",
+    "test": {
+      "question": "Is the claim about how popular something is, or about whether it is good or true?",
+      "yes": "Yes means popularity is the point: that supports a fair use of popularity.",
+      "no": "No means the claim is good or true: popularity alone does not establish that."
+    }
+  },
+  {
+    "id": "cause",
+    "glyph": "◇",
+    "name": "Post hoc",
+    "art": "rooster",
+    "aka": [
+      "false cause"
+    ],
+    "marks": [
+      "B happened after A.",
+      "A is called the cause without considering other causes."
+    ],
+    "lookalike": "A fair comparison, such as a randomized trial with a control group.",
+    "test": {
+      "question": "Was anything else different, and was there a comparison?",
+      "yes": "A fair comparison that accounts for other differences supports a causal claim.",
+      "no": "Without a fair comparison, happening afterward alone does not show cause."
+    }
+  }
+];
+  const SPECIMENS = [
+  {
+    "id": "F1",
+    "habitat": 0,
+    "text": "Everyone at Westbrook High is switching to GlowCase phone cases. Don't be the last one with a boring phone.",
+    "mark": [
+      0,
+      5
+    ],
+    "note": "How many people switch says nothing about whether the case is good.",
+    "key": "band"
+  },
+  {
+    "id": "F2",
+    "habitat": 0,
+    "text": "Pro skater Dax Rivera says FocusMint gum boosts your test scores. Ask for it by name.",
+    "mark": [
+      0,
+      4
+    ],
+    "note": "Being a skater does not establish expertise on memory or tests.",
+    "key": "authority"
+  },
+  {
+    "id": "F3",
+    "habitat": 0,
+    "text": "Our town's children's dentists, who see 4,000 kids a year, recommend sealants on back teeth.",
+    "mark": [
+      2,
+      10
+    ],
+    "note": "Dentists speaking about teeth are in their field.",
+    "key": {
+      "legit": "authority"
+    }
+  },
+  {
+    "id": "F4",
+    "habitat": 0,
+    "text": "Give $20 to the Clean Creek Fund, or admit you don't care about our river.",
+    "mark": [
+      7,
+      14
+    ],
+    "note": "You can care about the river and give nothing, or give elsewhere.",
+    "key": "binary"
+  },
+  {
+    "id": "F5",
+    "habitat": 0,
+    "text": "The ballot has two choices on the library levy: yes or no. Read both arguments before you vote.",
+    "mark": [
+      3,
+      11
+    ],
+    "note": "A levy vote really has two options.",
+    "key": {
+      "legit": "binary"
+    }
+  },
+  {
+    "id": "F6",
+    "habitat": 0,
+    "text": "Since I started wearing my lucky socks, our team has won four games straight. These socks work.",
+    "mark": [
+      0,
+      6
+    ],
+    "note": "Winning came after the socks; nothing shows the socks did it.",
+    "key": "cause"
+  },
+  {
+    "id": "F7",
+    "habitat": 1,
+    "text": "Why listen to Councilmember Ortiz about the skatepark budget? She can't even skate.",
+    "mark": [
+      9,
+      12
+    ],
+    "note": "Skating skill has nothing to do with a budget.",
+    "key": "ad"
+  },
+  {
+    "id": "F8",
+    "habitat": 1,
+    "text": "Before we trust that noise study, note it was paid for by the company that wants to build the park.",
+    "mark": [
+      9,
+      19
+    ],
+    "note": "Who paid for a study bears on how much to trust it; it is a reason to check, not a smear.",
+    "key": {
+      "legit": "ad"
+    }
+  },
+  {
+    "id": "F9",
+    "habitat": 1,
+    "text": "So the skatepark people want kids to run wild all night with no rules. No thanks.",
+    "mark": [
+      4,
+      13
+    ],
+    "note": "The plan says 8 to 8 with posted rules.",
+    "key": "straw"
+  },
+  {
+    "id": "F10",
+    "habitat": 1,
+    "text": "If I understand the plan, the park would be open 8 to 8 with posted rules and no staff on site. My worry is the no-staff part.",
+    "mark": [
+      9,
+      20
+    ],
+    "note": "An accurate summary, then a real objection.",
+    "key": {
+      "legit": "straw"
+    }
+  },
+  {
+    "id": "F11",
+    "habitat": 1,
+    "text": "First a skatepark, then they'll want a BMX track, then a stadium, and soon there won't be a blade of grass left in Ridgeway.",
+    "mark": [
+      9,
+      21
+    ],
+    "note": "No reason is given for any step after the first.",
+    "key": "slope"
+  },
+  {
+    "id": "F12",
+    "habitat": 1,
+    "text": "My cousin went to a skatepark once and broke his wrist. Skateparks are a hospital trip waiting to happen.",
+    "mark": [
+      0,
+      6
+    ],
+    "note": "One case can't show what usually happens.",
+    "key": "hasty"
+  },
+  {
+    "id": "F13",
+    "habitat": 2,
+    "text": "Bridge repairs will close Elm Street Bridge for six weeks." +
+      " The transit office says the detour adds 3 miles, so Route 9 will miss its connection at Central Station.",
+    "mark": [
+      14,
+      25
+    ],
+    "note": "Each step has a stated reason from the office that runs the buses.",
+    "key": {
+      "legit": "slope"
+    }
+  },
+  {
+    "id": "F14",
+    "habitat": 2,
+    "text": "A survey of 1,200 randomly chosen county residents found that 58 percent use the library at least once a month.",
+    "mark": [
+      3,
+      7
+    ],
+    "note": "A large random sample.",
+    "key": {
+      "legit": "hasty"
+    }
+  },
+  {
+    "id": "F15",
+    "habitat": 2,
+    "text": "Millions of people can't be wrong: VitaBlast is the country's top-selling energy drink.",
+    "mark": [
+      0,
+      5
+    ],
+    "note": "Sales show popularity, not that it is good for you.",
+    "key": "band"
+  },
+  {
+    "id": "F16",
+    "habitat": 2,
+    "text": "Pine Ridge Trail is the most-hiked trail in the park on weekends, so expect crowds and start early.",
+    "mark": [
+      5,
+      14
+    ],
+    "note": "The claim is about crowds, so popularity is the right evidence.",
+    "key": {
+      "legit": "band"
+    }
+  },
+  {
+    "id": "F17",
+    "habitat": 2,
+    "text": "Attendance fell after the new principal arrived in September. She is driving students away.",
+    "mark": [
+      1,
+      6
+    ],
+    "note": "Autumn colds, schedule changes and more could explain it; nothing was compared.",
+    "key": "cause"
+  },
+  {
+    "id": "F18",
+    "habitat": 2,
+    "text": "In a trial, 200 students were split at random. The group that got reminder texts turned in 20 percent more homework than the group that didn't.",
+    "mark": [
+      3,
+      8
+    ],
+    "note": "A random split with a comparison group.",
+    "key": {
+      "legit": "cause"
+    }
+  },
+  {
+    "id": "F19",
+    "habitat": 3,
+    "text": "Don't listen to Maya about the movie, she still watches cartoons.",
+    "mark": [
+      7,
+      10
+    ],
+    "note": "Watching cartoons does not decide whether a movie recommendation has good reasons.",
+    "key": "ad"
+  },
+  {
+    "id": "F20",
+    "habitat": 3,
+    "text": "Jae: \"Can we skip the arcade this time? I'm low on money.\" Reply: \"So Jae thinks having fun is a waste of money. Okay, grandpa.\"",
+    "mark": [
+      13,
+      22
+    ],
+    "note": "Jae asked to skip one arcade visit because money is tight, not to stop having fun.",
+    "key": "straw"
+  },
+  {
+    "id": "F21",
+    "habitat": 3,
+    "text": "Either we make the 7:00 show or the whole night is ruined.",
+    "mark": [
+      6,
+      11
+    ],
+    "note": "Another show or another plan could still make a good movie night.",
+    "key": "binary"
+  },
+  {
+    "id": "F22",
+    "habitat": 3,
+    "text": "The last two movies I saw at that theater were sold out. That place sells out every night.",
+    "mark": [
+      0,
+      11
+    ],
+    "note": "Two visits cannot show what happens every night.",
+    "key": "hasty"
+  },
+  {
+    "id": "F23",
+    "habitat": 3,
+    "text": "My uncle's a dentist and he says this movie's ending is the best ever made.",
+    "mark": [
+      0,
+      6
+    ],
+    "note": "The uncle may be right, but being a dentist doesn't make him an expert on endings.",
+    "key": "authority"
+  },
+  {
+    "id": "F24",
+    "habitat": 3,
+    "text": "If we let Sam pick the snacks once, he'll pick every time, then he'll pick the movie, and we'll never see anything good again.",
+    "mark": [
+      8,
+      16
+    ],
+    "note": "No reason supports the jump from picking snacks once to controlling every choice.",
+    "key": "slope"
+  }
+];
+  const L = {
+  "w-field": "Tap a specimen. Then tap the first and last word where the reasoning goes wrong.",
+  "pick": "Now tap a species in your field kit, or tap Legit. Then tap Log sighting.",
+  "legit": "Legit ones still look like something. Tap the species it resembles.",
+  "miss": "Not quite. Read the note, or tap Field test.",
+  "logged": "Logged.",
+  "studied": "Studied, not counted. Tap another specimen, or open Guide to review your notes.",
+  "w-guide": "Your field guide. A card is confirmed when you have caught it and let its twin go. Tap a card to open it.",
+  "w-make": "Choose a species in the menu. Write at least eight words in The fallacy and Its fair twin.",
+  "mark": "Tap the first and last word to mark the reasoning. Use arrow keys to move between words, and Enter to mark.",
+  "last": "Now tap the last word of the field mark.",
+  "log": "Tap Log sighting to check your mark and call.",
+  "test": "Read the field question. Tap Yes or No to see what that answer suggests.",
+  "make-mark": "Write at least eight words in The fallacy and Its fair twin.",
+  "make-ready": "Tap Mark words on an unmarked slip. Then tap its first and last field-mark word.",
+  "make-select": "Tap the first and last word of the field mark on this slip.",
+  "make-ready-test": "Tap Field test it to test both slips.",
+  "dialog-close": "Tap Close to return to your work.",
+  "make-test": "Answer the field question for the fallacy slip, then for its fair twin. Tap Yes or No.",
+  "return": "Tap another specimen, or open Guide to examine your sightings.",
+  "show": "Tap Show me to study the field mark and call. A revealed sighting does not count.",
+  "confirmed-ad": "Ad hominem: confirmed. You can tell it from its twin.",
+  "question-ad": "Would this point about the person change whether the reasons are true?",
+  "confirmed-straw": "Straw man: confirmed. You can tell it from its twin.",
+  "question-straw": "Would the other side say 'yes, that is what I mean'?",
+  "confirmed-binary": "Black-or-white: confirmed. You can tell it from its twin.",
+  "question-binary": "Are there really only these two choices?",
+  "confirmed-slope": "Slippery slope: confirmed. You can tell it from its twin.",
+  "question-slope": "Is there a reason given for each step, and is the ending likely?",
+  "confirmed-hasty": "Hasty generalization: confirmed. You can tell it from its twin.",
+  "question-hasty": "How many cases, and were they chosen fairly?",
+  "confirmed-authority": "Unqualified authority: confirmed. You can tell it from its twin.",
+  "question-authority": "Is this person an expert on this exact question?",
+  "confirmed-band": "Bandwagon: confirmed. You can tell it from its twin.",
+  "question-band": "Is the claim about how popular something is, or about whether it is good or true?",
+  "confirmed-cause": "Post hoc: confirmed. You can tell it from its twin.",
+  "question-cause": "Was anything else different, and was there a comparison?",
+  "caveat-band": "Yes means popularity itself. No means a claim about quality or truth.",
+  "caveat-hasty": "Yes means enough fairly chosen cases. No means too few cases or unfair selection.",
+  "caveat-cause": "Yes means a fair comparison accounts for other differences. No means sequence alone.",
+  "test-fallacy": "Test the fallacy slip.",
+  "test-twin": "Test its fair twin.",
+  "slip-how-0": "Now tap the last word on this slip.",
+  "slip-how-1": "Tap Field test it to test both slips.",
+  "slip-how-2": "Tap Mark words on the other slip, then tap its first and last field-mark word.",
+  "slip-how-3": "Tap Close, then Edit slip to revise either argument.",
+  "slip-how-4": "Tap the first and last word of the field mark on this slip.",
+  "slip-how-5": "Write at least eight words about lunch rules in each slip.",
+  "slip-how-6": "Write at least eight words about a phone plan in each slip.",
+  "slip-how-7": "Write at least eight words about a sports team in each slip.",
+  "slip-how-8": "Write at least eight words about a video game in each slip."
+};
+  const HABITATS = ['Ad board', 'Comment section', 'Headlines', 'Group chat'];
+  const KINDS = ['board', 'thread', 'feed', 'chat'];
+  const PLATES = {
+    goose:'art:goose', scarecrow:'art:scarecrow', magpie:'art:magpie', snail:'art:snail', hare:'art:hare',
+    peacock:'art:peacock', ducklings:'art:ducklings', rooster:'art:rooster'
+  };
+  const storageKey = 'fallacy-field-guide:v1';
+  const species = id => CATALOG.find(s => s.id === id);
+  const specimen = () => SPECIMENS.find(s => s.id === state.selected);
+  const clean = text => text.trim().split(/\s+/).filter(Boolean);
+  const escape = text => String(text).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  // BEGIN PURE FALLACIES FAMILY BLOCK. The requested kit/fallacies.js is absent.
+  const fx = {
+    spot(item, picked, call, extra = 5) {
+      const keyId = typeof item.key === 'string' ? item.key : item.key.legit;
+      const legit = typeof item.key !== 'string';
+      const callOk = legit ? !!call && call.legit === keyId : call === keyId;
+      if (!Array.isArray(picked) || picked.length !== 2 || picked.some(x => !Number.isInteger(x))) {
+        return {ok:false,markOk:false,callOk,why:'Tap the first and last word where the reasoning goes wrong.'};
+      }
+      const [a,b] = [...picked].sort((x,y) => x-y);
+      const overlap = Math.max(0, Math.min(b,item.mark[1])-Math.max(a,item.mark[0])+1);
+      const outside = b-a+1-overlap;
+      const markOk = a >= 0 && b < clean(item.text).length && overlap >= Math.ceil((item.mark[1]-item.mark[0]+1)/2) && outside <= extra;
+      let why = outside > extra ? 'Narrow it to where the reasoning goes wrong.' :
+        'Mark the words where the reasoning goes wrong, or where the fair twin earns its reasoning.';
+      if (markOk && !callOk) {
+        why = legit ? 'This may be a fair use of a familiar move. What makes this evidence relevant?' :
+          'Check what the evidence supports. Use Field test to examine the species you picked.';
+        if (item.id === 'F3') why = "This does name a real expert. Is the expert's field the one the claim is about?";
+      }
+      return {ok:markOk && callOk, markOk,callOk,why:markOk && callOk ? 'Logged.' : why,overlap,outside};
+    },
+    test(id) { return species(id)?.test || null; },
+    cards(sightings) {
+      return CATALOG.map(s => {
+        const caught = SPECIMENS.filter(x => x.key === s.id && sightings[x.id]?.counted);
+        const twins = SPECIMENS.filter(x => x.key?.legit === s.id && sightings[x.id]?.counted);
+        return {id:s.id,state:caught.length && twins.length ? 'confirmed' : caught.length ? 'spotted' : 'unseen',
+          count:caught.length+twins.length};
+      });
+    }
+  };
+  // END PURE FALLACIES FAMILY BLOCK.
+
+  const state = {
+    mode:'field',habitat:0,selected:'F1',mark:null,anchor:null,call:null,legit:false,
+    sightings:{},confirmed:[],misses:{},assisted:{},makeSpecies:'ad',
+    slips:[{text:'',mark:null},{text:'',mark:null}],makeMarks:[false,false],makeAnchor:[null,null],revision:0,recent:[]
+  };
+  let storageWorks = true;
+  try {
+    const saved = JSON.parse(localStorage.getItem(storageKey) || 'null');
+    if (saved) {
+      for (const item of SPECIMENS) {
+        const sight = saved.sightings?.[item.id];
+        if (sight && fx.spot(item,sight.mark,sight.call).ok) state.sightings[item.id] = sight;
+      }
+      state.confirmed = (saved.confirmed || []).filter(id => species(id));
+      state.misses = saved.misses || {};
+      state.assisted = saved.assisted || {};
+      state.makeSpecies = species(saved.makeSpecies) ? saved.makeSpecies : 'ad';
+      if (Array.isArray(saved.slips) && saved.slips.length === 2) {
+        state.slips = saved.slips.map(s => ({text:String(s.text || '').slice(0,4000),mark:Array.isArray(s.mark) ? s.mark : null}));
+      }
+    }
+  } catch { storageWorks = false; }
+  function save() {
+    try {
+      localStorage.setItem(storageKey, JSON.stringify({sightings:state.sightings,confirmed:state.confirmed,
+        misses:state.misses,assisted:state.assisted,slips:state.slips,makeSpecies:state.makeSpecies}));
+    } catch { storageWorks = false; }
+    if (!storageWorks) $('privacy').textContent = 'Storage is unavailable. Work stays in this open tab only; nothing leaves it.';
+  }
+  let dialogRead = null;
+  const hintText = () => $('dialog').open && dialogRead ? dialogRead : state.mode === 'guide' ? $('guide-hint').textContent :
+    state.mode === 'make' ? $('make-hint').textContent : $('hint').textContent;
+  const V = Curio.voice({lines:L,scope:() => state.mode+state.habitat,hint:false,read:hintText,
+    welcome:() => 'w-'+state.mode, speaks:'#log,#field-test,#make-test,.species-btn,.word'});
+  function hint(key, speak = true) {
+    const target = state.mode === 'make' ? $('make-hint') : state.mode === 'guide' ? $('guide-hint') : $('hint');
+    target.textContent = L[key] || key;
+    if (speak && !V.heard(key)) V.how(key,{now:true,valid:() => target.textContent === (L[key] || key)});
+  }
+  function clickTone() { Curio.tone(560,.035,.025,'sine'); }
+  document.addEventListener('click', e => { if (e.target.closest('button,.word,select')) clickTone(); });
+  function setMode(mode) {
+    if (mode === state.mode) return;
+    V.hush();
+    finishAnimations();
+    state.mode = mode;
+    for (const m of ['field','guide','make']) {
+      $(m).hidden = m !== mode;
+      $('m-'+m).setAttribute('aria-pressed',String(m === mode));
+    }
+    hint('w-'+mode,false);
+    if (mode === 'guide') renderGuide();
+    if (mode === 'make') renderMake();
+    if (mode === 'field') updateHint();
+    V.welcome();
+  }
+  function finishAnimations() { document.getAnimations().forEach(a => { if (a.effect?.getTiming().iterations !== Infinity) a.finish(); }); }
+  function updateHint() {
+    if (state.anchor !== null) return hint('last',false);
+    if (!state.mark) return hint('w-field',false);
+    if (state.legit && !state.call) return hint('legit',false);
+    return hint(state.call ? 'log' : 'pick',false);
+  }
+  function renderWords(container, text, range, onTap) {
+    container.replaceChildren();
+    clean(text).forEach((word,i) => {
+      if (i) container.append(' ');
+      const w = document.createElement('span');
+      w.className = 'word';
+      w.textContent = word;
+      w.dataset.word = i;
+      w.tabIndex = i === 0 ? 0 : -1;
+      w.setAttribute('role','button');
+      w.setAttribute('aria-label',word+', word '+(i+1));
+      w.setAttribute('aria-pressed',String(!!range && i >= range[0] && i <= range[1]));
+      w.onclick = () => onTap(i);
+      w.onkeydown = e => {
+        if (['ArrowRight','ArrowLeft','ArrowDown','ArrowUp'].includes(e.key)) {
+          e.preventDefault();
+          const delta = ['ArrowRight','ArrowDown'].includes(e.key) ? 1 : -1;
+          const next = container.querySelector('[data-word="'+Math.max(0,Math.min(clean(text).length-1,i+delta))+'"]');
+          w.tabIndex = -1;
+          next.tabIndex = 0;
+          next.focus({preventScroll:true});
+          if (container.scrollHeight > container.clientHeight && getComputedStyle(container).overflowY === 'auto') {
+            const box = container.getBoundingClientRect();
+            const wordBox = next.getBoundingClientRect();
+            if (wordBox.top < box.top) container.scrollTop += wordBox.top-box.top;
+            if (wordBox.bottom > box.bottom) container.scrollTop += wordBox.bottom-box.bottom;
+          }
+        }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onTap(i); clickTone(); }
+      };
+      container.append(w);
+    });
+    paintWords(container,range,null);
+  }
+  function paintWords(container, range, anchor) {
+    container.querySelectorAll('.word').forEach((w,i) => {
+      const marked = range && i >= range[0] && i <= range[1];
+      w.classList.toggle('marked',!!marked);
+      w.classList.toggle('anchor',i === anchor);
+      w.setAttribute('aria-pressed',String(!!marked));
+    });
+  }
+  function invalidate() {
+    if (state.sightings[state.selected]) {
+      delete state.sightings[state.selected];
+      save();
+      renderNav();
+    }
+    state.revision++;
+    $('stamp').hidden = true;
+    $('status').textContent = '';
+    V.hush();
+  }
+  function markWord(i) {
+    finishAnimations();
+    invalidate();
+    if (state.anchor === null) {
+      state.anchor = i;
+      state.mark = [i,i];
+      hint('last');
+    } else {
+      state.mark = [state.anchor,i].sort((a,b) => a-b);
+      state.anchor = null;
+      hint(state.legit && !state.call ? 'legit' : state.call ? 'log' : 'pick');
+    }
+    paintWords($('words'),state.mark,state.anchor);
+    syncKit();
+  }
+  function chooseCall(id) {
+    finishAnimations();
+    const current = typeof state.call === 'string' ? state.call : state.call?.legit;
+    if (current === id) return;
+    invalidate();
+    state.call = state.legit ? {legit:id} : id;
+    updateHint();
+    if (state.mark && state.anchor === null && !V.heard('log')) V.how('log',{now:true});
+    syncKit();
+  }
+  function syncKit() {
+    const id = typeof state.call === 'string' ? state.call : state.call?.legit;
+    document.querySelectorAll('.species-btn').forEach(b => b.setAttribute('aria-pressed',String(b.dataset.species === id)));
+    $('legit').setAttribute('aria-pressed',String(state.legit));
+    // The existing reserved hint voices and displays the Legit prompt, without moving the kit under the pointer.
+    $('lookalike').hidden = true;
+    $('log').disabled = !state.mark || !state.call || state.anchor !== null;
+    $('show').hidden = (state.misses[state.selected] || 0) < 2;
+  }
+  function renderNav() {
+    const items = SPECIMENS.filter(s => s.habitat === state.habitat);
+    if ($('spec-nav').dataset.habitat !== String(state.habitat)) {
+      $('spec-nav').replaceChildren();
+      items.forEach((s,i) => {
+        const b = document.createElement('button');
+        b.id = 'select-'+s.id;
+        b.dataset.id = s.id;
+        b.style.setProperty('--tilt',(i%2 ? 1 : -1)+'deg');
+        b.innerHTML = escape(s.id)+'<small>'+escape(clean(s.text).slice(0,4).join(' '))+'</small>';
+        b.onclick = () => {
+          if (state.selected === s.id) return finishAnimations();
+          select(s.id);
+        };
+        $('spec-nav').append(b);
+      });
+      $('spec-nav').dataset.habitat = state.habitat;
+    }
+    for (const s of items) {
+      const b = $('select-'+s.id);
+      b.setAttribute('aria-pressed',String(s.id === state.selected));
+      b.classList.toggle('logged',!!state.sightings[s.id]?.counted);
+      b.setAttribute('aria-label',s.id+(state.sightings[s.id]?.counted ? ', logged' : ', not logged'));
+    }
+    $('field-counter').textContent = 'Logged '+items.filter(s => state.sightings[s.id]?.counted).length+' of 6';
+  }
+  function select(id) {
+    V.hush();
+    finishAnimations();
+    const s = SPECIMENS.find(x => x.id === id);
+    state.selected = id;
+    state.habitat = s.habitat;
+    state.anchor = null;
+    const old = state.sightings[id];
+    state.mark = old?.mark || null;
+    state.call = old?.call || null;
+    state.legit = !!state.call?.legit;
+    state.revision++;
+    $('habitat').dataset.kind = KINDS[s.habitat];
+    $('habitat-title').textContent = ['WESTBROOK / AD BOARD','RIDGEWAY / COMMENTS','THE DAILY / HEADLINES','MOVIE NIGHT / GROUP CHAT'][s.habitat];
+    document.querySelectorAll('[data-habitat]').forEach(b => b.setAttribute('aria-pressed',String(+b.dataset.habitat === s.habitat)));
+    $('spec-id').textContent = s.id;
+    $('spec-label').textContent = ['Invented advertisement','Invented comment','Invented news item','Invented message'][s.habitat];
+    $('context').hidden = s.habitat !== 1;
+    $('context').textContent = 'Ridgeway council weighs a skatepark open 8 a.m. to 8 p.m., with posted rules and no staff on site.';
+    renderWords($('words'),s.text,state.mark,markWord);
+    $('stamp').hidden = !old;
+    $('stamp').className = 'stamp'+(state.legit ? ' legit' : '');
+    const pickedSpecies = species(typeof state.call === 'string' ? state.call : state.call?.legit);
+    $('stamp').textContent = old ? (!old.counted ? 'Studied' : state.legit ? '✓ Legit' :
+      pickedSpecies.glyph+' '+pickedSpecies.name) : '';
+    $('status').className = 'status';
+    $('status').textContent = old ? s.note : state.assisted[id] ? 'Practice only after two misses. You can still study and test this specimen.' : '';
+    renderNav();
+    syncKit();
+    if (state.mode === 'field') {
+      updateHint();
+      V.how('mark',{valid:() => state.selected === id && !state.mark});
+    }
+  }
+  function logSighting() {
+    if ($('log').disabled) return;
+    const item = specimen();
+    const result = fx.spot(item,state.mark,state.call);
+    const rev = state.revision;
+    $('status').className = 'status '+(result.ok ? 'good' : 'bad');
+    if (!result.ok) {
+      state.misses[item.id] = (state.misses[item.id] || 0)+1;
+      if (state.misses[item.id] >= 2) state.assisted[item.id] = true;
+      $('status').textContent = result.why+(state.assisted[item.id] ? ' Practice only from here; tap Show me to study the key.' : '');
+      Curio.tone(180,.12,.04,'triangle');
+      V.say('miss',{now:true,valid:() => state.revision === rev});
+      if (state.assisted[item.id]) hint('show',false);
+      syncKit();
+      save();
+      return;
+    }
+    state.sightings[item.id] = {mark:[...state.mark],call:state.call,counted:!state.assisted[item.id]};
+    $('status').textContent = (state.assisted[item.id] ? 'Studied, not counted. ' : 'Logged. ')+item.note;
+    $('stamp').hidden = false;
+    const pickedSpecies = species(typeof state.call === 'string' ? state.call : state.call?.legit);
+    $('stamp').textContent = state.assisted[item.id] ? 'Studied' : state.legit ? '✓ Legit' :
+      pickedSpecies.glyph+' '+pickedSpecies.name;
+    $('stamp').className = 'stamp land'+(state.legit ? ' legit' : '');
+    Curio.yes();
+    V.say(state.assisted[item.id] ? 'studied' : 'logged',{now:true,valid:() => state.selected === item.id});
+    const newly = fx.cards(state.sightings).filter(c => c.state === 'confirmed' && !state.confirmed.includes(c.id));
+    newly.forEach(c => {
+      state.confirmed.push(c.id);
+      state.recent.push(c.id);
+      $('status').textContent += ' '+species(c.id).glyph+' '+species(c.id).name+' confirmed.';
+      V.say('confirmed-'+c.id,{valid:() => state.mode === 'field' && state.selected === item.id});
+    });
+    hint('return',false);
+    renderNav();
+    save();
+  }
+  function openDialog(title, html) {
+    V.hush();
+    dialogRead = null;
+    finishAnimations();
+    $('dialog-title').textContent = title;
+    $('dialog-content').innerHTML = html;
+    $('dialog').showModal();
+    hint('dialog-close',false);
+  }
+  function restoreModeHint() {
+    if ($('dialog').open) return;
+    dialogRead = null;
+    if (state.mode === 'field') updateHint();
+    else if (state.mode === 'guide') hint('w-guide',false);
+    else makeInstruction();
+  }
+  function closeDialog() {
+    V.hush();
+    $('dialog').close();
+    restoreModeHint();
+  }
+  function fieldTest() {
+    const id = typeof state.call === 'string' ? state.call : state.call?.legit;
+    if (!id) {
+      $('status').textContent = 'Tap a species in the Field kit first. Its test examines the reasoning without giving the key.';
+      hint('pick');
+      return;
+    }
+    const s = species(id);
+    openDialog(s.glyph+' '+s.name+' / Field test',
+      '<p class="field-question">'+escape(s.test.question)+'</p>'+testCaveat(id)+
+      '<div class="dialog-actions"><button id="test-yes">Yes</button><button id="test-no">No</button></div>'+
+      '<p id="test-result" class="test-result">Choose what the specimen supports. This test never checks its key.</p>');
+    $('test-yes').onclick = () => { $('test-result').textContent = s.test.yes; };
+    $('test-no').onclick = () => { $('test-result').textContent = s.test.no; };
+    hint('test',false);
+    const caveat = L['caveat-'+id];
+    dialogRead = [s.test.question,...(caveat ? [caveat] : []),L.test];
+    V.say(['question-'+id,...(caveat ? [['caveat-'+id,{kind:'how'}]] : []),['test',{kind:'how'}]],
+      {valid:() => $('dialog').open && !!$('test-yes')});
+  }
+  function testCaveat(id) {
+    if (id === 'band') return '<p>Yes = popularity is the point. No = a claim about good or true.</p>';
+    if (id === 'hasty') return '<p>Yes = many cases, chosen fairly. No = too few cases or unfair selection.</p>';
+    if (id === 'cause') return '<p>Yes = a fair comparison accounts for other differences. No = sequence alone.</p>';
+    return '';
+  }
+  function renderGuide() {
+    const cards = fx.cards(state.sightings);
+    $('guide-grid').replaceChildren();
+    cards.forEach(c => {
+      const s = species(c.id);
+      const status = state.confirmed.includes(c.id) ? 'confirmed' : c.state;
+      const b = document.createElement('button');
+      b.id = 'card-'+s.id;
+      b.className = 'guide-card '+status+(state.recent.includes(s.id) ? ' new-confirmation' : '');
+      const alt = status === 'unseen' ? 'Unseen species silhouette' : s.art+' watercolor plate';
+      b.innerHTML = '<img class="plate" src="'+PLATES[s.art]+'" alt="'+escape(alt)+'">'+
+        (status === 'confirmed' ? '<img class="flower" src="art:pressed-flower" alt="Pressed flower">' : '')+
+        '<h3>'+s.glyph+' '+escape(s.name)+'</h3><p>'+status[0].toUpperCase()+status.slice(1)+
+        (status === 'unseen' ? '' : ' · '+c.count+' sighting'+(c.count === 1 ? '' : 's'))+'</p>';
+      b.onclick = () => openCard(s.id);
+      $('guide-grid').append(b);
+    });
+    const confirmed = state.confirmed.length;
+    const spotted = cards.filter(c => c.state !== 'unseen' || state.confirmed.includes(c.id)).length;
+    $('guide-count').textContent = 'Confirmed '+confirmed+' of 8. Spotted '+spotted+' of 8. A confirmed identification stays in your guide until reset.';
+    state.recent = [];
+  }
+  function openCard(id) {
+    const s = species(id);
+    const seen = SPECIMENS.filter(x => (x.key === id || x.key?.legit === id) && state.sightings[x.id]);
+    openDialog(s.glyph+' '+s.name,
+      (seen.length ? '<nav class="sighting-nav" aria-label="Go to a saved specimen">'+seen.map(x =>
+        '<button data-go="'+x.id+'">Go to '+x.id+'</button>').join('')+'</nav>' : '')+
+      '<img class="dialog-art" src="'+PLATES[s.art]+'" alt="'+escape(s.art)+' watercolor plate">'+
+      (s.aka.length ? '<p>Also called '+escape(s.aka.join(', '))+'.</p>' : '')+
+      '<h3>Field marks</h3><ul>'+s.marks.map(m => '<li>'+escape(m)+'</li>').join('')+'</ul>'+
+      '<h3>The fair twin</h3><p>'+escape(s.lookalike)+'</p><h3>Field question</h3><p>'+escape(s.test.question)+'</p>'+
+      '<h3>Your sightings</h3>'+(seen.length ? seen.map(x => {
+        const sight = state.sightings[x.id];
+        const quote = clean(x.text).map((word,i) => i >= sight.mark[0] && i <= sight.mark[1] ?
+          '<mark>'+escape(word)+'</mark>' : escape(word)).join(' ');
+        return '<p><b>'+escape(x.id)+' / '+(sight.counted ? (x.key?.legit ? 'Released as Legit' : 'Logged') : 'Studied')+
+          '</b></p><blockquote class="sighting-quote">'+quote+'</blockquote><p>'+escape(x.note)+'</p>';
+      }).join('') : '<p>No sightings yet. Find this reasoning in the Field.</p>'));
+    $('dialog-content').querySelectorAll('[data-go]').forEach(b => b.onclick = () => {
+      const id = b.dataset.go;
+      closeDialog();
+      setMode('field');
+      select(id);
+      $('select-'+id).focus({preventScroll:true});
+    });
+  }
+  function renderMake() {
+    $('make-species').value = state.makeSpecies;
+    $('make-art').src = PLATES[species(state.makeSpecies).art];
+    for (let i=0;i<2;i++) {
+      $('slip-'+i).value = state.slips[i].text;
+      updateSlip(i);
+    }
+    makeInstruction();
+  }
+  function makeInstruction() {
+    const key = state.slips.some(s => clean(s.text).length < 8) ? 'make-mark' :
+      state.slips.some((s,i) => !s.mark && state.makeMarks[i]) ? 'make-select' :
+      state.slips.some(s => !s.mark) ? 'make-ready' : 'make-ready-test';
+    hint(key,false);
+    return key;
+  }
+  function updateSlip(i) {
+    const slip = state.slips[i];
+    const count = clean(slip.text).length;
+    $('word-count-'+i).textContent = count+' words'+(slip.mark ? ' · marked' : ' · needs a mark');
+    $('slip-'+i).hidden = state.makeMarks[i];
+    $('make-words-'+i).hidden = !state.makeMarks[i];
+    $('mark-'+i).textContent = state.makeMarks[i] ? 'Edit slip' : 'Mark words';
+    if (state.makeMarks[i]) renderWords($('make-words-'+i),slip.text,slip.mark,j => markSlip(i,j));
+    $('mark-'+i).disabled = count < 8;
+    $('make-test').disabled = !state.slips.every((s,j) => clean(s.text).length >= 8 && s.mark && state.makeAnchor[j] === null);
+  }
+  function markSlip(i,j) {
+    if (state.makeAnchor[i] === null) {
+      state.makeAnchor[i] = j;
+      state.slips[i].mark = null;
+      hint('Now tap the last word on this slip.');
+    } else {
+      state.slips[i].mark = [state.makeAnchor[i],j].sort((a,b) => a-b);
+      state.makeAnchor[i] = null;
+      const key = makeInstruction();
+      if (!V.heard(key)) V.how(key,{now:true});
+    }
+    paintWords($('make-words-'+i),state.slips[i].mark,state.makeAnchor[i]);
+    $('word-count-'+i).textContent = clean(state.slips[i].text).length+' words'+(state.slips[i].mark ? ' · marked' : ' · needs a mark');
+    $('make-test').disabled = !state.slips.every((s,j) => clean(s.text).length >= 8 && s.mark && state.makeAnchor[j] === null);
+    $('make-result').hidden = true;
+    save();
+  }
+  let makeAnswers = [];
+  function makeTest(step = 0) {
+    const s = species(state.makeSpecies);
+    const previousAnswer = document.activeElement?.id;
+    if (!step) { makeAnswers = []; openDialog('Test your two slips',''); }
+    $('dialog-content').innerHTML = '<p class="eyebrow">'+(step === 0 ? '1 / THE FALLACY' : '2 / ITS FAIR TWIN')+'</p>'+
+      '<p>'+escape(state.slips[step].text)+'</p><p class="field-question">'+escape(s.test.question)+'</p>'+testCaveat(s.id)+
+      '<div class="dialog-actions"><button id="make-yes">Yes</button><button id="make-no">No</button></div>'+
+      '<p class="privacy">Self-check only. These answers describe your judgment; the tool does not evaluate your writing.</p>';
+    for (const answer of [true,false]) $(answer ? 'make-yes' : 'make-no').onclick = () => {
+      makeAnswers.push(answer);
+      if (step === 0) return makeTest(1);
+      const twinPass = makeAnswers[1];
+      $('dialog-content').innerHTML = '<p class="eyebrow">Self-check / your judgment</p><p class="field-question">'+
+        (twinPass ? 'Your twin passes the test' :
+        'Your twin still fails the test: look at the field mark again')+'</p><p>Based on your answers: the fallacy '+
+        (makeAnswers[0] ? 'also passed. Revise it so the reasoning actually fails.' : 'failed, as intended.')+
+        '</p><p>This is your judgment, not a verified grade. Compare the marked words with the species card.</p>';
+      $('make-result').hidden = false;
+      $('make-result').textContent = 'Self-check: '+(twinPass && !makeAnswers[0] ? 'you judged the slips differently.' : 'revise the slips or your answers.')+
+        ' No guide card is earned from self-checks.';
+      hint('dialog-close');
+      dialogRead = null;
+      $('close-dialog').focus({preventScroll:true});
+    };
+    hint('make-test',false);
+    const caveat = L['caveat-'+s.id];
+    dialogRead = [step ? L['test-twin'] : L['test-fallacy'],s.test.question,...(caveat ? [caveat] : []),L['make-test']];
+    V.say([step ? 'test-twin' : 'test-fallacy','question-'+s.id,
+      ...(caveat ? [['caveat-'+s.id,{kind:'how'}]] : []),['make-test',{kind:'how'}]],
+      {now:true,valid:() => $('dialog').open && state.mode === 'make' && !!$('make-yes')});
+    if (step && ['make-yes','make-no'].includes(previousAnswer)) $(previousAnswer).focus({preventScroll:true});
+  }
+  HABITATS.forEach((name,i) => {
+    const b = document.createElement('button');
+    b.textContent = name;
+    b.id = 'habitat-'+i;
+    b.dataset.habitat = i;
+    b.onclick = () => {
+      if (state.habitat === i) return finishAnimations();
+      select(SPECIMENS[i*6].id);
+    };
+    $('habitats').append(b);
+  });
+  CATALOG.forEach(s => {
+    const b = document.createElement('button');
+    b.className = 'species-btn';
+    b.id = 'species-'+s.id;
+    b.dataset.species = s.id;
+    b.innerHTML = '<img src="'+PLATES[s.art]+'" alt=""><span><span class="glyph">'+s.glyph+'</span> '+escape(s.name)+'</span>';
+    b.onclick = () => chooseCall(s.id);
+    $('kit').append(b);
+    const option = document.createElement('option');
+    option.value = s.id;
+    option.textContent = s.glyph+' '+s.name;
+    $('make-species').append(option);
+  });
+  const legitButton = document.createElement('button');
+  legitButton.id = 'legit';
+  legitButton.textContent = '✓ Legit';
+  legitButton.onclick = () => {
+    invalidate();
+    state.legit = !state.legit;
+    state.call = null;
+    syncKit();
+    hint(state.legit ? 'legit' : 'pick');
+  };
+  $('kit').append(legitButton);
+  for (const m of ['field','guide','make']) $('m-'+m).onclick = () => setMode(m);
+  $('log').onclick = logSighting;
+  $('field-test').onclick = fieldTest;
+  $('show').onclick = () => {
+    state.assisted[state.selected] = true;
+    const s = specimen();
+    state.mark = [...s.mark];
+    state.anchor = null;
+    state.call = s.key;
+    state.legit = !!s.key.legit;
+    paintWords($('words'),state.mark,null);
+    const keySpecies = species(typeof s.key === 'string' ? s.key : s.key.legit);
+    $('status').textContent = (state.legit ? 'Legit, resembling ' : '')+keySpecies.glyph+' '+keySpecies.name+'. '+s.note+' Studied, not counted.';
+    hint('return',false);
+    syncKit();
+    save();
+  };
+  $('close-dialog').onclick = closeDialog;
+  $('dialog').addEventListener('cancel',() => V.hush());
+  $('dialog').addEventListener('close',restoreModeHint);
+  $('reset').onclick = () => {
+    openDialog('Reset field guide?', '<p>This clears sightings, practice history and confirmed cards on this device. Your slips stay.</p>'+
+      '<div class="dialog-actions"><button id="cancel-reset">Keep my guide</button><button id="confirm-reset">Reset field guide</button></div>');
+    $('cancel-reset').onclick = closeDialog;
+    $('confirm-reset').onclick = () => {
+      state.sightings = {};
+      state.confirmed = [];
+      state.recent = [];
+      state.misses = {};
+      state.assisted = {};
+      save();
+      closeDialog();
+      renderGuide();
+      select(state.selected);
+      hint('w-guide',false);
+    };
+  };
+  $('make-species').onchange = () => {
+    V.hush();
+    state.makeSpecies = $('make-species').value;
+    $('make-art').src = PLATES[species(state.makeSpecies).art];
+    $('make-result').hidden = true;
+    const key = makeInstruction();
+    if (!V.heard(key)) V.how(key,{now:true});
+    save();
+  };
+  for (let i=0;i<2;i++) {
+    $('slip-'+i).maxLength = 4000;
+    $('slip-'+i).oninput = () => {
+      state.slips[i] = {text:$('slip-'+i).value,mark:null};
+      state.makeAnchor[i] = null;
+      $('make-result').hidden = true;
+      updateSlip(i);
+      makeInstruction();
+      save();
+    };
+    $('mark-'+i).onclick = () => {
+      state.makeMarks[i] = !state.makeMarks[i];
+      state.makeAnchor[i] = null;
+      updateSlip(i);
+      hint(state.makeMarks[i] ? 'Tap the first and last word of the field mark on this slip.' : 'make-mark');
+    };
+  }
+  document.querySelectorAll('[data-topic]').forEach(b => b.onclick = () => {
+    hint('Write at least eight words about '+b.dataset.topic+' in each slip.');
+    document.querySelectorAll('[data-topic]').forEach(x => x.setAttribute('aria-pressed',String(x === b)));
+  });
+  $('make-test').onclick = () => { if (!$('make-test').disabled) makeTest(); };
+  $('clear').onclick = () => {
+    openDialog('Clear my slips?', '<p>Delete both saved slips from this device?</p><div class="dialog-actions">'+
+      '<button id="keep-slips">Keep slips</button><button id="delete-slips">Clear my slips</button></div>');
+    $('keep-slips').onclick = closeDialog;
+    $('delete-slips').onclick = () => {
+      state.slips = [{text:'',mark:null},{text:'',mark:null}];
+      state.makeMarks = [false,false];
+      state.makeAnchor = [null,null];
+      $('make-result').hidden = true;
+      save();
+      closeDialog();
+      renderMake();
+    };
+  };
+  Curio.init({clips:"voice:*",rate:.95,readFallback:hintText});
+  window.__tool = {state,fx,setMode,select,allLines:V.allLines,vlog:V.log,get vq() { return V.queue; },
+    catalog:CATALOG,specimens:SPECIMENS,save,renderGuide};
+  select('F1');
+  save();
+})();
+</script>
+</body>
+</html>

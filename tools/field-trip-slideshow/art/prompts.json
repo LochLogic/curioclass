@@ -97,13 +97,15 @@
     },
     {
       "name": "screen-down",
-      "prompt": "A pull-down projector screen on a metal wall bracket pulled down, blank warm white surface and dark narrow border, whole object centered on flat pure green #00FF00 background. No cast shadow.",
-      "aspect": "3:4",
-      "width": 400,
+      "prompt": "A classroom wall-mounted pull-down projector screen fully lowered. Straight-on view, landscape white fabric with a 4:3 viewing surface, narrow charcoal edge, slim silver cylindrical housing above with two small wall brackets and visible screws, bottom weighted bar and one small pull ring. Soft realistic gouache and colored-pencil illustration, gentle upper-left highlights and material shading. Whole object centered with margin on flat pure green #00FF00 background. No floor stand, people, cast shadow, text, letters, numbers or logos.",
+      "aspect": "4:3",
+      "width": 600,
       "quality": 76,
       "cutout": true,
       "people": false,
-      "drawn_by": "codex"
+      "drawn_by": "codex",
+      "despill": true,
+      "revision": "Cold review: replace green-fringed portrait prop with a landscape wall-mounted screen; align the live slide inside its fabric."
     },
     {
       "name": "projector",

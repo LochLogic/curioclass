@@ -33,9 +33,11 @@ Students devise a six-beat scene by choosing and ordering dialogue from three vi
 - Did the live performance take more or less time than planned? What would you revise?
 
 ## Good to know
-The four checks are a director's rule of thumb for this exercise, not a universal test of good theater. Empty beats are marked separately. A green check is a prompt to listen and revise, not a score.
+The four checks are a director's rule of thumb for this exercise, not a universal test of good theater. Empty beats are marked and keep Pacing amber until all six beats have a line. A green check is a prompt to listen and revise, not a score.
 
-Timing uses words divided by 2.5, plus 0.4 seconds per line and each beat's pause. The silent offer lasts two seconds. The example passing scene runs 58.4 seconds with 1.5 seconds before the turn and 0.5 seconds before other beats. Actual browser speech and live delivery vary.
+Timing uses words divided by 2.5, plus 0.4 seconds per line and each beat's pause. The silent offer lasts two seconds, including in live mode before Done becomes available. The example passing scene runs 58.4 seconds with 1.5 seconds before the turn and 0.5 seconds before other beats. Actual browser speech and live delivery vary.
+
+The recap measures cue timing, not acting quality or whether a line was spoken. Skipped or replayed cues are labeled; their elapsed time is not treated as a full-scene comparison. The recap recalls this scene's speakers and chosen turn.
 
 This is a fictional school issue. Maya Chen is a seventh-grade first-chair trumpet player. Mr. Ortiz has driven the late bus for twelve years. Ms. Dale must cut $40,000. The scene's proposals are dialogue, not verified transport savings.
 
@@ -46,4 +48,4 @@ NCAS TH:Cr2 is practiced through building on Jules's offers and revising a share
 ## Sources
 National Core Arts Standards, Theatre TH:Cr2, TH:Pr4, TH:Pr6 and TH:Cn10: https://www.nationalartsstandards.org/
 
-Viola Spolin, Improvisation for the Theater (Northwestern University Press); Keith Johnstone, Impro, for devising, offers and blocking. National Center for Voice and Speech, https://ncvs.org/, for the approximate 150-word-per-minute estimate. All characters, lines and exercise checks were written for Curio Class. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Viola Spolin, Improvisation for the Theater (Northwestern University Press); Keith Johnstone, Impro, for devising, offers and blocking. The 2.5-word-per-second rate is this exercise's planning assumption, not a verified norm for every speaker. The spec names NCVS, but its linked homepage does not substantiate that number. All characters, lines and exercise checks were written for Curio Class. Illustrations generated with OpenAI gpt-image, edited for Curio Class.

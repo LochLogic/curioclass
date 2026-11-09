@@ -1,6 +1,6 @@
 {
-  "house_style": "Flat illustration for a high school math roleplay about a house-painting crew: clean simple shapes, warm dusk light, muted colors, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
-  "style": "Used dim behind the wall panel's frame.",
+  "house_style": "Friendly editorial gouache illustration for a high school painting-company simulation. Rich layered painted shapes, visible fine brush texture, careful material details, soft shadows and warm late-afternoon light from upper left. Muted natural colors. No people, text, letters, numbers, logos, borders or watermark.",
+  "style": "A consistent working neighborhood and practical painting gear.",
   "assets": [
     {
       "name": "wrc-house-dusk",
@@ -11,6 +11,112 @@
       "quality": 70,
       "source": "flux1-schnell (local)",
       "review": "pending"
+    },
+    {
+      "name": "wrc-street",
+      "prompt": "A quiet residential street with leafy trees at the left and right edges, soft blue sky, green lawn and sidewalk across the foreground. A broad empty grassy lot in the middle for a separate house. Straight-on view, generous open middle, depth from distant treetops and neighboring roof edges.",
+      "aspect": "16:9",
+      "width": 1100,
+      "cutout": false,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "wrc-house",
+      "prompt": "The complete front elevation of a two-story wooden house, straight-on, fully in frame. Plain weathered pale gray-white clapboard siding, four dark-framed windows, central front door and small porch, dark slate gabled roof, crisp siding grain, trim and porch-step details. Isolated on perfectly flat pure green (#00FF00). No ground or cast shadow.",
+      "aspect": "4:3",
+      "width": 850,
+      "cutout": true,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "wrc-gear-roller",
+      "prompt": "A paint roller resting diagonally in a metal paint tray, three-quarter view. Visible roller fibers, bent metal handle, ridged tray, pale paint. Isolated on perfectly flat pure green (#00FF00).",
+      "aspect": "1:1",
+      "width": 192,
+      "cutout": true,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "wrc-gear-brushes",
+      "prompt": "A metal bucket holding exactly three paintbrushes, three-quarter view. Wood handles, metal ferrules, bristle detail and bucket rim highlights. Isolated on perfectly flat pure green (#00FF00).",
+      "aspect": "1:1",
+      "width": 192,
+      "cutout": true,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "wrc-gear-ladder",
+      "prompt": "A fully opened wooden A-frame stepladder, three-quarter view, complete object. Warm wood grain, secure horizontal steps, realistic hinges, two locked spreader braces and rivets. Isolated on perfectly flat pure magenta (#FF00FF), including every gap between the legs and steps. Crisp clean object edges, no floor or cast shadow.",
+      "aspect": "1:1",
+      "width": 192,
+      "cutout": true,
+      "key": "magenta",
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "redrawn": 1,
+      "despill": true,
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "wrc-gear-can",
+      "prompt": "A closed metal paint can with a plain blank cream label, three-quarter view. Lid concentric rings, wire handle, metallic highlights and subtle paint drips. Isolated on perfectly flat pure green (#00FF00). Every background pixel is uniform pure green, including beneath and inside gaps. No ground, shadow or reflection.",
+      "aspect": "1:1",
+      "width": 192,
+      "cutout": true,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "redrawn": 1,
+      "despill": true,
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "wrc-gear-sprayer",
+      "prompt": "A handheld paint sprayer with its coiled hose neatly beside it, three-quarter view. Spray nozzle, trigger, plain paint reservoir and detailed hose couplings. Isolated on perfectly flat pure green (#00FF00). Every background pixel is uniform pure green, including beneath and inside gaps. No ground, shadow or reflection.",
+      "aspect": "1:1",
+      "width": 192,
+      "cutout": true,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "redrawn": 1,
+      "despill": true,
+      "holes": true,
+      "source": "OpenAI gpt-image",
+      "review": "ok"
+    },
+    {
+      "name": "wrc-paper",
+      "prompt": "A single yellow legal-pad page seen straight down, blank and without writing. Faint blue ruled lines, a thin red left margin line, torn top edge, gently curled bottom corner. Soft paper fibers and light from upper left, full page filling the portrait image.",
+      "aspect": "3:4",
+      "width": 760,
+      "cutout": false,
+      "people": false,
+      "quality": 76,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review": "ok"
     }
   ]
 }

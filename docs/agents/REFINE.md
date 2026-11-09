@@ -91,8 +91,9 @@ Read the log after each run: `__tool.vlog` (on `Curio.voice` it is `V.log`, with
    is hidden or off must not play.
 3. **First-tap timing:** one fresh page per kind of first tap: the stage, a control that speaks for itself, a mode
    button, Read, Sound, a key. Nothing speaks before the tap. A plain tap gets the welcome within about half a second; a
-   control with its own line gets only that line; Read speaks the hint only; Sound says nothing. Then Sound off and on,
-   or the next mode entry, must bring a skipped welcome, once.
+   control with its own line gets only that line; Read speaks the hint only; Sound says nothing. A welcome cut short
+   or skipped by the first tap is fine and is not reported (BASELINE rule 16), and it need not come back. Report it
+   only if what it said is then reachable nowhere: not in the hint, not by Read, not said again where it is needed.
 4. **Read:** Read during a line stops it and speaks the hint, with Sound off too; nothing cuts Read off; a mode change
    right after Read lets the next line start at once.
 5. **Order:** spoken lines follow the order of the actions; no line from an older action plays after a newer one.

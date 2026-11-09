@@ -19,7 +19,7 @@ Open Seeds. Pick the charge, lock 0.05, and inspect all three admissibility chec
 ## Modes
 - Trial: seven made-up cases, six ordered stages, a context sentence and a session record. The viewer call-in poll must be dismissed before evidence. Pair work can divide prosecution and defense.
 - Lineup: drag a claimed value while the data stay fixed. Tests here are always two-sided. Mean-case non-rejection bands equal their t intervals. Proportion cases show the score-test band and the AP interval separately.
-- Docket: compare two independent sets of 1,000 simulated binomial trials with exact values. Type I uses true p = 0.50; power uses the selected true p. The dashed null curve and solid true curve have shaded rejection tails. The unshaded true area is beta.
+- Docket: compare two independent sets of 1,000 simulated binomial trials with exact values. Type I uses true p = 0.50; power uses a selected true p above 0.50. At true p = 0.50 both bars show Type I error, and failing to reject is correct. The dashed null curve and solid true curve have shaded rejection tails. When the alternative is true, the unshaded true area is beta.
 
 ## Talk questions
 - Why must alpha be set before opening evidence?
@@ -40,16 +40,23 @@ Docket uses a normal-z cutoff without a continuity correction, then evaluates ex
 
 Case conclusions stay in page memory and clear on reload. The tool sends no data and works offline. Kit Motion preferences may be remembered on the device. Read uses browser speech because fixed recordings were not produced in this build.
 
+The Yes/No chips answer their written questions. Some questions ask whether a problem is present, so three Yes taps do not admit a case. A corrected charge, condition, verdict or submitted conclusion stays marked in the session record, including after reopening that case. This is guided practice, not a mastery score. Revising a filed answer clears later approvals until the reasoning is filed again. Seeing a case in Lineup also counts as seeing its evidence; a later Trial alpha change is flagged even after reopening.
+
+Large sample sizes support a normal approximation but cannot rule out extreme outliers. The summary-only bus and desk cases explicitly assume their absence. Random assignment supports treatment comparisons for the participants; it does not create a random population sample.
+
 ## Standards and sources
-- S-IC.B.4: sentencing and Lineup estimate parameters with intervals.
-- S-IC.B.5: randomized treatment comparisons in reminder texts and standing desks.
+- S-IC.B.4, partial: sentencing and Lineup estimate parameters with analytical intervals. This tool does not develop a margin of error through repeated-sampling simulation.
+- S-IC.B.5, partial: reminder texts and standing desks compare randomized treatments analytically. Docket simulates coin-court errors and power, not the significance of a two-treatment difference.
 - S-IC.B.6: students judge admissibility, including voluntary-response bias.
 - AP-STAT.U6: one- and two-proportion inference and coin error/power exploration.
 - AP-STAT.U7: one-sample, paired and Welch two-sample mean inference.
+- The spec's AP unit labels are legacy numbering. College Board's revised 2026-27 course places proportion inference in Unit 3 and mean inference in Unit 4. The content remains relevant; catalog/spec code migration is left to the owner because this review cannot edit those files.
+- The full simulation clauses of S-IC.B.4 and S-IC.B.5 need companion work, such as the sampling and study-design tools named in the spec. Do not treat this tool alone as complete coverage of those standards.
 - Common Core Making Inferences and Justifying Conclusions: https://www.thecorestandards.org/Math/Content/HSS/IC/
 - College Board AP Statistics: https://apcentral.collegeboard.org/courses/ap-statistics
 - OpenStax Introductory Statistics 2e, chapters 8 to 10: https://openstax.org/books/introductory-statistics-2e/pages/9-introduction
 - OpenIntro Statistics 4e, sections 5.3 and 6.1: https://www.openintro.org/book/os/
 - Welch inference: https://openstax.org/books/introductory-statistics-2e/pages/10-1-two-population-means-with-unknown-standard-deviations
+- Wilson score-test inversion: NIST/SEMATECH e-Handbook, https://www.itl.nist.gov/div898/handbook/prc/section2/prc241.htm
 
 Illustrations generated with OpenAI gpt-image, edited for Curio Class. Existing courtroom backdrop drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class.

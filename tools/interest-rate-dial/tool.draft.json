@@ -1,0 +1,26 @@
+{
+  "id": "interest-rate-dial",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Turn one brass dial. Watch four neighbors react.",
+  "outcome": "Explain how rate changes affect saving, fixed and variable borrowing, and a business loan decision.",
+  "driver": "students or teacher",
+  "minutes": "20-35",
+  "modes": [
+    "Street",
+    "Predict"
+  ],
+  "grades_label": "Grades 6-8",
+  "sources": [
+    "Federal Reserve Board: Why Do Interest Rates Matter? (2016 transcript)",
+    "SEC Investor.gov: Compound Interest glossary and calculator",
+    "Capital One: Fixed vs. variable interest rates",
+    "Chase: How to calculate your minimum credit card payment",
+    "CFPB: Credit card interest rate margins at all-time high (2024, 2023 data)",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Federal Reserve Board: What is the prime rate? FAQ and Jefferson speech (2025)",
+    "CFPB: How does my credit card company calculate the amount of interest I owe?"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

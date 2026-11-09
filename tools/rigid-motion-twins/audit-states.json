@@ -1,0 +1,211 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "turn-controls",
+      "steps": [
+        {
+          "click": "#turn"
+        }
+      ],
+      "keep": [
+        "#turnParams",
+        "#plane",
+        "#hint"
+      ]
+    },
+    {
+      "name": "flip-controls",
+      "steps": [
+        {
+          "click": "#flip"
+        }
+      ],
+      "keep": [
+        "#flipParams",
+        "#plane",
+        "#hint"
+      ]
+    },
+    {
+      "name": "measure-controls",
+      "steps": [
+        {
+          "click": "#measure"
+        }
+      ],
+      "keep": [
+        "#plane",
+        "#hint"
+      ]
+    },
+    {
+      "name": "criteria-end",
+      "steps": [
+        {
+          "click": "#m-criteria"
+        },
+        {
+          "click": "#nextStep",
+          "times": 3,
+          "gap": 0.2
+        }
+      ],
+      "keep": [
+        "#triangles",
+        "#sentence",
+        "#criteriaControls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "ssa",
+      "steps": [
+        {
+          "click": "#m-criteria"
+        },
+        {
+          "click": "#c-SSA"
+        }
+      ],
+      "keep": [
+        "#triangles",
+        "#sentence",
+        "#criteriaControls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "aaa",
+      "steps": [
+        {
+          "click": "#m-criteria"
+        },
+        {
+          "click": "#c-AAA"
+        }
+      ],
+      "keep": [
+        "#triangles",
+        "#sentence",
+        "#criteriaControls",
+        "#hint"
+      ]
+    },
+    {
+      "name": "self-twins",
+      "steps": [
+        {
+          "click": "#levels"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#flip"
+        }
+      ],
+      "keep": [
+        "#plane",
+        "#shape",
+        "#movebar",
+        "#hint"
+      ]
+    },
+    {
+      "name": "false-twin",
+      "steps": [
+        {
+          "click": "#levels"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#measure"
+        }
+      ],
+      "keep": [
+        "#plane",
+        "#movebar",
+        "#hint"
+      ]
+    },
+    {
+      "name": "earned-proof",
+      "steps": [
+        {
+          "drag": "return (()=>{const a=__tool.screenPoint(-7,-4),b=__tool.screenPoint(2,1);return Array.from({length:25},(_,i)=>[a[0]+(b[0]-a[0])*i/24,a[1]+(b[1]-a[1])*i/24]);})()"
+        },
+        {
+          "until": "__tool.state.won",
+          "max": 3000
+        }
+      ],
+      "keep": [
+        "#plane",
+        "#movebar",
+        "#proof",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

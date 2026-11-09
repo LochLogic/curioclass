@@ -143,6 +143,25 @@
       ]
     },
     {
+      "name": "no-transport",
+      "steps": [
+        {"click": "#m-stream"},
+        {"click": "#noise"},
+        {"click": "#p-0-flow"},
+        {"key": "ArrowUp"},
+        {"key": "Enter"},
+        {"click": "#p-0-sediment"},
+        {"key": "ArrowUp"},
+        {"key": "ArrowUp"},
+        {"key": "ArrowUp"},
+        {"key": "Enter"},
+        {"click": "#run"},
+        {"click": "#skip"},
+        {"click": "#g-0"}
+      ],
+      "keep": ["#scene", "#results", "#run"]
+    },
+    {
       "name": "book",
       "steps": [
         {

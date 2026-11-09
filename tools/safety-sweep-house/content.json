@@ -1,0 +1,540 @@
+{
+  "hazards": [
+    {
+      "id": 0,
+      "room": 0,
+      "title": "Cleaners",
+      "adult": false,
+      "safe": 1,
+      "safer": "Everyone",
+      "before": "cleaners-bucket",
+      "after": "cleaners-apart",
+      "object": "bucket",
+      "action": "move",
+      "target": "Away from the bottles",
+      "tell": "Dad",
+      "situation": "Your cousin set bleach and a glass cleaner with ammonia next to an empty bucket. 'Let’s mix them to make super cleaner!'",
+      "options": [
+        "Mix a little; tell Dad.",
+        "Say no. Keep both closed and apart.",
+        "Ask Dad later. Mix outdoors."
+      ],
+      "outcomes": [
+        "A gas forms that hurts your eyes, nose and lungs. People cough and struggle to breathe.",
+        "No gas forms. The cleaners get used one at a time, as the label says.",
+        "The gas still forms, and you still breathe it."
+      ],
+      "habit": "Never mix cleaners. One at a time.",
+      "fix": "Drag the bucket away from the bottles, then tap Tell Dad.",
+      "help": "You can say no and move the empty bucket without touching either cleaner.",
+      "reason": "Everyone: fumes can harm people throughout the house.",
+      "remaining": "Drag the bucket away from the bottles, then tap Tell Dad."
+    },
+    {
+      "id": 1,
+      "room": 0,
+      "title": "Towel",
+      "adult": true,
+      "safe": 0,
+      "safer": "Everyone",
+      "before": "towel-burner",
+      "after": "towel-hook",
+      "object": "towel",
+      "action": "tap",
+      "target": "Cool towel hook",
+      "tell": "Dad",
+      "situation": "Dad stepped out to answer the door. A dish towel hangs right next to a lit burner.",
+      "options": [
+        "Call Dad back now. Step away.",
+        "Wait for Dad.",
+        "Turn up the burner so Dad can finish cooking sooner"
+      ],
+      "outcomes": [
+        "Dad moves the towel and stays with the cooking.",
+        "A towel by a flame can catch fire fast. Fire can spread to the cabinets.",
+        "A bigger flame, still next to the towel."
+      ],
+      "habit": "Things that burn stay away from the stove, and someone stays with the cooking.",
+      "fix": "Tap Tell Dad. Then tap Watch Dad move the towel. Stand back from the stove.",
+      "help": "The lit burner and hot towel are for Dad to handle. Step back.",
+      "reason": "Everyone: a stove fire can spread beyond the kitchen.",
+      "remaining": "Stand back. Tap Watch Dad move the towel."
+    },
+    {
+      "id": 2,
+      "room": 1,
+      "title": "Candle",
+      "adult": true,
+      "safe": 2,
+      "safer": "Everyone",
+      "before": "candle-sill",
+      "after": "candle-out",
+      "action": "hold",
+      "duration": 1000,
+      "tell": "Grandma June",
+      "situation": "A lit candle sits on the windowsill. The curtain is moving in the breeze, and no one is in the room.",
+      "options": [
+        "Push the curtain back and tell Grandma after your game",
+        "Leave it for a grown-up to notice when they come back into the room",
+        "Ask Grandma to blow it out now"
+      ],
+      "outcomes": [
+        "The curtain can blow back into the flame.",
+        "A candle left alone near cloth can start a fire.",
+        "The flame is out, and no one has to watch it."
+      ],
+      "habit": "Candles stay a foot away from anything that can burn, and go out when you leave the room.",
+      "fix": "Tap Tell Grandma June, then hold the candle for 1 second to watch her blow it out.",
+      "help": "Grandma handles the flame. You can stand back and watch.",
+      "reason": "Everyone: a candle fire can spread beyond the living room.",
+      "remaining": "hold the candle for 1 second to watch her blow it out."
+    },
+    {
+      "id": 3,
+      "room": 1,
+      "title": "Pills",
+      "adult": true,
+      "safe": 0,
+      "safer": "Theo",
+      "before": "pillbox-table",
+      "after": "pillbox-gone",
+      "object": "block-bin",
+      "action": "move",
+      "target": "Blocks beside Theo, away from the table",
+      "tell": "Grandma June",
+      "situation": "Grandma June’s pill box is open on the low coffee table. Theo is building blocks right beside it.",
+      "options": [
+        "Tell Grandma now. Keep Theo with his blocks.",
+        "Leave it. Tell Grandma later.",
+        "Hide it under a cushion."
+      ],
+      "outcomes": [
+        "She puts it up high, out of sight.",
+        "This box is open. Even safety caps are not childproof.",
+        "Theo can still find it. Medicine belongs up high and out of sight."
+      ],
+      "habit": "Medicine lives up high, out of sight.",
+      "fix": "Tap Tell Grandma June, then drag the block bin toward Theo, away from the table.",
+      "help": "Grandma handles the medicine. You can keep Theo busy away from the table.",
+      "reason": "Mostly Theo this time: the open pill box is within his reach. Grandma puts it up and out of sight.",
+      "remaining": "drag the block bin toward Theo, away from the table."
+    },
+    {
+      "id": 4,
+      "room": 2,
+      "title": "Smoke alarm",
+      "adult": true,
+      "safe": 1,
+      "safer": "Everyone",
+      "before": "alarm-floor",
+      "after": "alarm-ceiling",
+      "action": "hold",
+      "duration": 2000,
+      "tell": "Dad",
+      "situation": "The smoke alarm is on the floor with its battery out. The battery is in a toy car.",
+      "options": [
+        "Keep the battery. Tell Dad later.",
+        "Ask Dad to replace the battery and test the alarm.",
+        "Climb up yourself, then ask a grown-up if it looks okay"
+      ],
+      "outcomes": [
+        "With no battery, the alarm cannot warn anyone about smoke.",
+        "The alarm is back on the ceiling and works.",
+        "You could fall, and no one checks that it works."
+      ],
+      "habit": "A grown-up tests smoke alarms every month with the test button.",
+      "fix": "Tap Tell Dad. Help Dad test it: hold the alarm’s Test button for 2 seconds.",
+      "help": "Dad handles the battery and ceiling work. Help test only with Dad beside you.",
+      "reason": "Everyone: a working smoke alarm warns the household.",
+      "remaining": "Help Dad test it: hold the alarm’s Test button for 2 seconds."
+    },
+    {
+      "id": 5,
+      "room": 2,
+      "title": "Heater",
+      "adult": false,
+      "safe": 2,
+      "safer": "Everyone",
+      "before": "heater-blanket",
+      "after": "heater-clear",
+      "object": "blanket",
+      "action": "ruler",
+      "target": "At least 3 feet from the heater",
+      "tell": "Dad",
+      "situation": "A space heater is running. A blanket is draped over a chair about one foot away.",
+      "options": [
+        "Drape the blanket over the heater and show Dad how warm it gets",
+        "Turn the heater up, then tell a grown-up the hallway is warm",
+        "Pull the cool blanket 3 feet away."
+      ],
+      "outcomes": [
+        "The blanket can catch fire.",
+        "More heat, still close to the blanket.",
+        "Nothing that burns is near the heater."
+      ],
+      "habit": "Keep a 3-foot space around heaters.",
+      "fix": "Drag the cool blanket to 3 feet or more. Leave the heater untouched. Then tap Tell Dad.",
+      "help": "The heater stays untouched; a cool blanket you can pull away is safe to move.",
+      "reason": "Everyone: keeping things that burn away from heat protects the household.",
+      "remaining": "Drag the blanket at least 3 feet away on the ruler, then tap Tell Dad. Arrow keys move it 6 inches."
+    },
+    {
+      "id": 6,
+      "room": 3,
+      "title": "Gummies",
+      "adult": true,
+      "safe": 2,
+      "safer": "Theo",
+      "before": "gummies-open",
+      "after": "cabinet-high",
+      "object": "gummy-bottle",
+      "action": "tap",
+      "target": "High medicine cabinet",
+      "tell": "Dad",
+      "situation": "A bottle of gummy vitamins is open on the counter. They look just like candy.",
+      "options": [
+        "Try two; ask Dad.",
+        "Leave it for Dad.",
+        "Tell Dad. Keep Theo away."
+      ],
+      "outcomes": [
+        "Vitamins are medicine. Only take them when a grown-up gives them.",
+        "Too many can make a child very sick, and Theo could find them.",
+        "The bottle is closed and put away."
+      ],
+      "habit": "Vitamins are medicine too. Up high, out of sight.",
+      "fix": "Tap Tell Dad. Stay away from the counter. Tap Watch Dad put the bottle away.",
+      "help": "Dad handles the bottle. You can keep Theo away from the counter.",
+      "reason": "Mostly Theo this time: the gummies look like candy and are within his reach. Dad puts them away.",
+      "remaining": "Stay away from the counter. Tap Watch Dad put the bottle away."
+    },
+    {
+      "id": 7,
+      "room": 3,
+      "title": "Tub",
+      "adult": false,
+      "safe": 1,
+      "safer": "Theo",
+      "before": "tub-full",
+      "after": "tub-empty",
+      "object": "plug-chain",
+      "action": "move",
+      "target": "Pull the plug chain up",
+      "tell": "Dad",
+      "situation": "The tub is still full after Theo’s bath, and Theo is heading back toward it.",
+      "options": [
+        "Fetch a towel.",
+        "Stay with Theo. Pull the plug. Call out for help.",
+        "Call Dad from the hall and leave Theo waiting by the water until you get back."
+      ],
+      "outcomes": [
+        "A young child can slip under in a few seconds, without a sound.",
+        "The water drains, and Theo is never alone near it.",
+        "A young child can drown in only a few inches of water."
+      ],
+      "habit": "Empty the tub right after a bath, and stay with little kids near water.",
+      "fix": "Stay with Theo. Drag the plug chain up to drain the tub, then tap Tell Dad.",
+      "help": "Stay beside Theo and call Dad while you drain the tub. Do not leave Theo to fetch help.",
+      "reason": "Mostly Theo this time: he is near the bath water. Stay beside him and call Dad.",
+      "remaining": "Stay with Theo. Drag the plug chain up to drain the tub, then tap Tell Dad."
+    },
+    {
+      "id": 8,
+      "room": 4,
+      "title": "Chat",
+      "adult": false,
+      "safe": 0,
+      "safer": "You",
+      "before": "screen-glow",
+      "after": "screen-glow-check",
+      "action": "chat",
+      "tell": "Dad",
+      "situation": "CoinKing_77 asks: “what school do you go to? I’ll send you free coins”. You don’t know this player.",
+      "options": [
+        "Do not reply. Block and report.",
+        "Give your school name, then ask Dad if you can keep the coins",
+        "Ask for the coins first. Show a grown-up the messages after you get them."
+      ],
+      "outcomes": [
+        "They can’t message you again, and a grown-up knows.",
+        "A stranger now knows where to find you every day.",
+        "You keep talking with someone you don’t know, who wants your details."
+      ],
+      "habit": "Never share your school, address or phone online. Block, report, tell.",
+      "fix": "Tap Block in the chat, then Report, then Tell Dad.",
+      "help": "You can stop replying and block the player without sharing anything.",
+      "reason": "Mostly you this time: your school and personal details stay private.",
+      "remaining": "Tap Block in the chat, then Report, then Tell Dad."
+    },
+    {
+      "id": 9,
+      "room": 4,
+      "title": "Pop-up",
+      "adult": false,
+      "safe": 2,
+      "safer": "You",
+      "before": "screen-glow",
+      "after": "screen-glow-check",
+      "action": "close",
+      "tell": "Dad",
+      "situation": "A pop-up says: “YOU WON 10,000 COINS! Type your password to claim.”",
+      "options": [
+        "Type it; ask Dad.",
+        "Tap it. Show Dad.",
+        "Close it. Type nothing."
+      ],
+      "outcomes": [
+        "Someone else can now get into your account.",
+        "Tapping can open a trick page that asks for more.",
+        "Your password stays yours."
+      ],
+      "habit": "A message that asks for your password is a trick. Close it and tell.",
+      "fix": "Tap the pop-up’s X close button, then tap Tell Dad.",
+      "help": "You can close the pop-up without typing anything.",
+      "reason": "Mostly you this time: your password and account stay private.",
+      "remaining": "Tap the pop-up’s X close button, then tap Tell Dad."
+    },
+    {
+      "id": 10,
+      "room": 5,
+      "title": "Gate",
+      "adult": false,
+      "safe": 1,
+      "safer": "Theo",
+      "before": "gate-propped",
+      "after": "gate-latched",
+      "object": "flowerpot",
+      "action": "move",
+      "target": "Patio, clear of the gate",
+      "tell": "Dad",
+      "situation": "The pool gate is propped open with a flowerpot. Theo’s ball is by the pool.",
+      "options": [
+        "Leave it for Dad.",
+        "Move the pot. Let the gate latch.",
+        "Run in for the ball, then tell a grown-up the gate was open"
+      ],
+      "outcomes": [
+        "Theo can walk straight to the water.",
+        "The gate is closed and latched.",
+        "Now you are at the pool with no grown-up watching."
+      ],
+      "habit": "Pool gates close and latch by themselves. Never prop them open.",
+      "fix": "Drag the flowerpot off the gate onto the patio, then tap Tell Dad.",
+      "help": "From the patio side, move the pot without going through the pool gate.",
+      "reason": "Mostly Theo this time: the latched gate blocks his unsupervised path to the pool. An adult still watches near water.",
+      "remaining": "Drag the flowerpot off the gate onto the patio, then tap Tell Dad."
+    },
+    {
+      "id": 11,
+      "room": 5,
+      "title": "Lighter",
+      "adult": true,
+      "safe": 0,
+      "safer": "Everyone",
+      "before": "lighter-table",
+      "after": "lighter-shelf",
+      "action": "tap",
+      "tell": "Dad",
+      "situation": "A lighter is on the patio table next to the grill.",
+      "options": [
+        "Leave it alone. Tell Dad now.",
+        "Click it once and ask Dad if the flame is big enough for the grill",
+        "Carry it in your pocket until a grown-up has time to put it away"
+      ],
+      "outcomes": [
+        "The lighter goes up high, where kids can’t reach.",
+        "A flame near the table and grill can start a fire.",
+        "You are carrying a fire tool around."
+      ],
+      "habit": "Matches and lighters are grown-up tools. Don’t touch, tell.",
+      "fix": "Tap Tell Dad. Then tap the lighter to watch Dad put it on the high shelf.",
+      "help": "Leave the lighter untouched. Dad puts it away.",
+      "reason": "Everyone: keeping a fire tool out of children’s reach helps prevent fire.",
+      "remaining": "Tap Watch Dad put the lighter away. Leave it untouched."
+    }
+  ],
+  "rooms": [
+    {
+      "name": "Kitchen",
+      "art": "room-kitchen",
+      "look": "pot-back-burner",
+      "why": "The handle points to the back, so no one can bump it."
+    },
+    {
+      "name": "Living room",
+      "art": "room-living",
+      "look": "battery-candle",
+      "why": "A battery candle has no flame."
+    },
+    {
+      "name": "Hallway",
+      "art": "room-hallway",
+      "look": "escape-map",
+      "why": "It shows two ways out of every room and the meeting spot outside."
+    },
+    {
+      "name": "Bathroom",
+      "art": "room-bathroom",
+      "look": "medicine-cabinet-high",
+      "why": "Up high and closed."
+    },
+    {
+      "name": "Game room",
+      "art": "room-gameroom",
+      "look": null,
+      "why": "You know Maya in real life, and she isn’t asking for anything."
+    },
+    {
+      "name": "Backyard",
+      "art": "room-backyard",
+      "look": "life-jacket-hook",
+      "why": "Ready for anyone who needs it."
+    }
+  ],
+  "lines": {
+    "house": "Tap a room. Explore what changes when you move things.",
+    "roomIn": "Tap an object for a closer look.",
+    "inspect": "Compare any action, or tap Try the fix to change the scene.",
+    "fix": "The hint shows what to move or tap. Room view takes you back any time.",
+    "lookalike": "That object looks fine. Tap Close to return to the room.",
+    "manual": "The Manual holds the controls, safety notes, habits and sources."
+  },
+  "sources": [
+    {
+      "name": "CDC: Cleaning and Disinfecting with Bleach",
+      "url": "https://www.cdc.gov/hygiene/about/cleaning-and-disinfecting-with-bleach.html",
+      "claims": "Cleaners: mixing bleach with other cleaners can release harmful vapours",
+      "check": "https://doh.wa.gov/community-and-environment/contaminants/bleach-mixing-dangers",
+      "licence": "US federal public domain guidance; original paraphrase CC BY 4.0",
+      "policy": "https://www.cdc.gov/other/agencymaterials.html",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "CDC: PROTECT / medicine safety",
+      "url": "https://www.cdc.gov/medication-safety/protect/index.html",
+      "claims": "Pills and gummies: adults give and store medicines and vitamins up, away and out of sight",
+      "check": "https://poisonhelp.hrsa.gov/what-you-can-do/up-away-campaign",
+      "licence": "US federal public domain guidance; original paraphrase CC BY 4.0",
+      "policy": "https://www.cdc.gov/other/agencymaterials.html",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "USFA: Cooking Fire Safety",
+      "url": "https://www.usfa.fema.gov/prevention/home-fires/prevent-fires/cooking/",
+      "claims": "Towel and pot: stay with cooking, keep combustibles away, turn handles to the back",
+      "check": "https://www.nfpa.org/education-and-research/home-fire-safety/cooking",
+      "licence": "US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "USFA: Candle Fire Safety",
+      "url": "https://www.usfa.fema.gov/prevention/home-fires/prevent-fires/candle/",
+      "claims": "Candle: 12 inches from combustibles, blow out when leaving, flameless alternatives",
+      "check": "https://www.nfpa.org/education-and-research/home-fire-safety/candles",
+      "licence": "US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "USFA: Smoke Alarms",
+      "url": "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/",
+      "claims": "Alarm: monthly test button check, working batteries; grown-up handles ceiling work",
+      "check": "https://www.nfpa.org/-/media/project/storefront/catalog/files/safety-tip-sheets/manufacturedhomessafetytips.pdf",
+      "licence": "US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "USFA: Heating Fire Safety",
+      "url": "https://www.usfa.fema.gov/prevention/home-fires/prevent-fires/heating/",
+      "claims": "Heater: at least 3 feet from anything that burns; model uses 12 inches per foot and 6-inch key steps",
+      "check": "https://www.nfpa.org/en/about-nfpa/press-room/news-releases/2025/us-home-heating-fires-peak-during-winter-months",
+      "licence": "US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "CPSC: In-Home Drowning",
+      "url": "https://www.cpsc.gov/Safety-Education/Safety-Education-Centers/In-Home-Drowning-Safety-Information-Center",
+      "claims": "Tub and gate: young children can drown quickly and quietly in shallow water; supervision and barriers",
+      "check": "https://www.healthychildren.org/English/safety-prevention/at-home/Pages/Bathroom-Safety.aspx",
+      "licence": "CPSC public information, freely distributable with credit; original paraphrase CC BY 4.0",
+      "policy": "https://www.cpsc.gov/About-CPSC/Policies-Statements-and-Directives/Privacy-Policy",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "CPSC: Pool Safely",
+      "url": "https://www.cpsc.gov/s3fs-public/360.pdf",
+      "claims": "Gate: self-closing, self-latching barriers and adult water supervision",
+      "check": "https://www.watersafetyusa.org/prevent-unsupervised-access.html",
+      "licence": "CPSC public information, freely distributable with credit; original paraphrase CC BY 4.0",
+      "policy": "https://www.cpsc.gov/About-CPSC/Policies-Statements-and-Directives/Privacy-Policy",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "FTC: Kids and Video Games",
+      "url": "https://consumer.ftc.gov/articles/kids-and-video-games",
+      "claims": "Chat and pop-up: keep personal information and passwords private; block, report and tell a trusted adult",
+      "check": "https://www.missingkids.org/netsmartz/topics/gaming",
+      "licence": "US federal public domain guidance; original paraphrase CC BY 4.0",
+      "policy": "https://www.ftc.gov/policy-notices/website-policy",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "HRSA: Calling Poison Help",
+      "url": "https://poisonhelp.hrsa.gov/faq/calling-poison-help",
+      "claims": "US Poison Help: 1-800-222-1222, free, 24 hours a day, 7 days a week",
+      "check": "https://www.poison.org/need-immediate-assistance",
+      "licence": "US government authored factual guidance; original paraphrase CC BY 4.0",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "USFA: Escape Planning",
+      "url": "https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/home-fire-escape-plans/",
+      "claims": "Map and fire: two ways out, outside meeting place; get out, stay out and call 911 outside",
+      "check": "https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/fire/home-fire-escape-plan.html",
+      "licence": "US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance paraphrased into original fictional scenarios. No measurements, statistics, source images or third-party text packed.",
+      "verification_licence": "Independent pages are reference checks only, copyright retained by their publisher; nothing copied."
+    },
+    {
+      "name": "CDC MMWR: childhood poisoning prevention",
+      "url": "https://stacks.cdc.gov/view/cdc/28658/cdc_28658_DS1.pdf",
+      "claims": "Pills: child-resistant containers are not childproof; store them beyond young children’s reach",
+      "check": "https://www.healthychildren.org/English/safety-prevention/at-home/medication-safety/Pages/Medication-Safety-Tips.aspx",
+      "licence": "US federal factual guidance, public domain in the US; original paraphrase CC BY 4.0",
+      "policy": "https://www.cdc.gov/other/agencymaterials.html",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance only, paraphrased into the existing fictional cases. No source text or pictures imported.",
+      "verification_licence": "Independent reference only; publisher retains copyright; nothing copied."
+    },
+    {
+      "name": "USFA: Youth Firesetting Interviewing (2025)",
+      "url": "https://apps.usfa.fema.gov/ax/sm/sm_0621.pdf",
+      "claims": "Lighter: children leave matches and lighters alone and tell a grown-up; adults store them out of reach",
+      "check": "https://www.nfpa.org/-/media/project/storefront/catalog/files/home-fire-safety/emac/educationalmessagesdeskreference.pdf",
+      "licence": "US government authored factual guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0",
+      "checked": "2026-11-06",
+      "sampling": "Factual guidance only, paraphrased into the existing fictional cases. No source text or pictures imported.",
+      "verification_licence": "Independent reference only; publisher retains copyright; nothing copied."
+    }
+  ]
+}

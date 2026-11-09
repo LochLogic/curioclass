@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<defs><linearGradient id="bg" x2="0" y2="1"><stop stop-color="#344c46"/><stop offset="1" stop-color="#11151c"/></linearGradient>
+<linearGradient id="metal" x2="1" y2="1"><stop stop-color="#667c89"/><stop offset="1" stop-color="#293c4a"/></linearGradient></defs>
+<rect width="800" height="500" fill="url(#bg)"/><path d="M0 390H800V500H0" fill="#2a342e"/>
+<text x="35" y="64" fill="#f0b429" font-family="sans-serif" font-size="34" font-weight="bold">Rules Referee</text>
+<text x="35" y="94" fill="#e9edf2" font-family="sans-serif" font-size="17">Twelve close calls. Four locked lockers.</text>
+<g fill="url(#metal)" stroke="#8b9eaa" stroke-width="3">
+<rect x="44" y="135" width="155" height="290" rx="5"/><rect x="228" y="135" width="155" height="290" rx="5"/>
+<rect x="412" y="135" width="155" height="290" rx="5"/><rect x="596" y="135" width="155" height="290" rx="5"/></g>
+<g fill="#111c26"><rect x="58" y="170" width="127" height="48"/><rect x="242" y="170" width="127" height="48"/>
+<rect x="426" y="170" width="127" height="48"/><rect x="610" y="170" width="127" height="48"/></g>
+<g fill="#fff" font-family="sans-serif" font-size="17" text-anchor="middle">
+<text x="121" y="201">Soccer</text><text x="305" y="201">Basketball</text><text x="489" y="201">Volleyball</text>
+<text x="673" y="201">Softball</text></g><g fill="#f0b429" stroke="#ffe4a1" stroke-width="2">
+<circle cx="97" cy="300" r="9"/><circle cx="121" cy="300" r="9"/><circle cx="145" cy="300" r="9"/>
+<circle cx="281" cy="300" r="9"/><circle cx="305" cy="300" r="9"/><circle cx="329" cy="300" r="9"/>
+<circle cx="465" cy="300" r="9"/><circle cx="489" cy="300" r="9"/><circle cx="513" cy="300" r="9"/>
+<circle cx="649" cy="300" r="9"/><circle cx="673" cy="300" r="9"/><circle cx="697" cy="300" r="9"/></g>
+<text x="35" y="472" fill="#e9edf2" font-family="sans-serif" font-size="16">Step into the replay booth. Make the call.</text></svg>

@@ -65,6 +65,14 @@ The matching window is two words before through six words after a planned change
 planned change; an equally distant tie goes to the earlier mark. Multiple flags can refer to the same change, but
 the count includes each planned change once. A match is an approximate listening aid, not proof of a correct choice.
 No marks or flags is a useful starting point; this tool awards no grade or points.
+The headline describes flags near boundaries, not proof that a tactic read. Broad or random flagging can create
+accidental matches; discuss the specific words and repeat the performance with a listener. Agreement on a closest
+want also does not prove the listener understood every part of the actor's own wording.
+When at least 12 flags put three quarters of possible boundaries inside a matching window, Compare shows a broad-flag
+notice and a flag count instead of a matched-change ratio or all-changes narration. This is a tool guard against
+indiscriminate sampling, not a psychological threshold. The full listener record remains available in the overlay.
+During a take, the actor's modes stay locked until the listener submits both a want and a feeling word.
+After Compare, Plan a change in Score or Revise a choice in Score returns to that take's monologue and version.
 
 The on-screen duration assumes 150 spoken words per minute. The texts have 207, 179, 208 and 161 spoken words.
 Mrs Hale's two `[...]` cut markers are not spoken words, but remain tokens when placing marks and flags. Shakespeare's
@@ -73,7 +81,9 @@ suggestions, not rules or claims about the author's intended performance.
 
 Content note: Trifles concerns a woman held for her husband's death. This selected speech concerns loneliness,
 neighbors, regret and solidarity. Teachers may choose a different speech when that subject does not fit a group.
-The Shakespeare speeches include romantic confusion, rejection, public anger and shaming. Discuss the distinction
+The Shakespeare speeches include romantic confusion, rejection, public anger and shaming. Any student can play any
+character; no gender, accent or body type is prescribed. Treat older generalizations about women as character speech,
+not facts. Tactic tips are experiments, not rules, and physical choices can be adapted for comfort and access. Discuss the distinction
 between a character's beliefs and a student's beliefs when using the Connect prompts.
 
 Keyboard: all controls have visible focus. In Score and the listener's script, Tab enters the words once; arrow
@@ -92,6 +102,11 @@ TH:Cn10 in the three Connect reflections. The character belief is the student's 
 - [A Midsummer Night's Dream, Gutenberg 1514](https://www.gutenberg.org/ebooks/1514), Act 1, Scene 1, Helena's speech.
 - [Plays by Susan Glaspell, Gutenberg 10623](https://www.gutenberg.org/ebooks/10623), Trifles, the specified Mrs Hale cut.
 - Konstantin Stanislavski, An Actor Prepares (1936), Given Circumstances and Units and Objectives.
-- Dates and circumstances follow the build spec. Texts were retrieved directly from Gutenberg on 2026-11-02.
+- Dates: Folger Shakespeare Library, Twelfth Night (about 1601), Julius Caesar (1599), and Folgerpedia,
+  A Midsummer Night's Dream (likely 1595-6). Trifles' first-production credit is in Gutenberg 10623: August 8, 1916,
+  Provincetown Players, Wharf Theatre. Texts were retrieved on 2026-11-02 and checked against live Gutenberg editions
+  during the cold review. Helena's escape context is tomorrow night; the scene heading specifies a palace room.
+  The garden painting is an atmospheric setting, not the scene's literal location. The Mrs Hale cut joins three
+  speeches with two cut markers; the spec calls these two speeches.
 - Illustrations generated with OpenAI gpt-image, edited for Curio Class. Public domain play texts; tool content
   CC BY 4.0 and code MIT. No third-party runtime libraries.

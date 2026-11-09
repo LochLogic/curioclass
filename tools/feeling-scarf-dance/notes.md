@@ -20,8 +20,8 @@ Children can organize and perform a dance with a beginning, middle and end that 
 1. Open Build and tap a feeling. Invite a child to connect it to a moment in their life, without requiring a personal disclosure.
 2. Choose a start shape, a middle move and an end shape. Tap their part cards to change choices in any order.
 3. Feeling idea offers one suggestion. It is a starting point, not a correct answer.
-4. Tap Watch it, then Play. Watch what the scarf does in each part.
-5. Tap Your turn. Find a little space and a start shape, then tap Go. The four-count introduction comes before the dance.
+4. Tap Watch it, then Play. The first spoken Watch instruction finishes before music starts. Watch what the scarf does in each part.
+5. Tap Your turn. Find a little space and a start shape, then tap Go. The first spoken instruction finishes, then the four-count introduction comes before the dance. Play or Go again can cancel a pending start.
 
 ## The modes
 
@@ -33,7 +33,7 @@ The choice menu has its own Read button. It stops an active dance before reading
 
 **Your turn:** The dancer disappears, leaving the scarf and a very faint hand-location mark. Go includes four count-in clicks. Mirror flips the view. Freeze holds the final image for three quiet seconds. The spoken freeze reminder follows the quiet hold. An empty hand works as well as a soft cloth. A solo child can perform for an imagined audience or a toy.
 
-**Share:** Audience members name what they saw, then the teacher taps the matching chips. They are observations, not a score. Swap clears the observations for the other half of the class. Go again returns to Your turn.
+**Share:** Audience members name what they saw, then the teacher taps the matching chips. Repeated taps keep an observation selected. Changing the feeling or a part clears the old observations; Swap clears them for the other half of the class. They are observations, not a score. Go again returns to Your turn.
 
 ## Talk together
 
@@ -52,7 +52,7 @@ The choice menu has its own Read button. It stops an active dance before reading
 - Motion off keeps the same timing but shows one pose per count with a straight hanging scarf. The picture shifts upward when needed to keep the straight cloth visible.
 - Read stops an active run before reading the current instruction. Sound controls narration and music. The shared kit remembers only Motion preference; dance choices and audience observations stay only in page memory.
 - Keyboard: Space on the scene plays or stops in Watch or Your turn. Keys 1 to 5 choose feelings. S, M and E jump to the corresponding Build choices. Tab and Enter reach every control; Escape closes a choice menu.
-- The current dancer is the temporary Dance kit figure. The owner requested painted dancers for the next art pass. No people were generated in this build.
+- Three painted dancers model the same moves, with varied skin tones, bodies and a prosthetic lower leg. Again changes the demonstrator. Any child can adapt a move to a seated or smaller version.
 - Narration currently uses browser speech. The requested bank voice and every authored narration line are listed in voice/lines.json; no recordings were made.
 
 ## Sources

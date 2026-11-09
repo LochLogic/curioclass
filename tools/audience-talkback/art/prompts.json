@@ -125,16 +125,15 @@
     },
     {
       "name": "bike",
-      "prompt": "An old blue step-through bicycle, complete side view, leaning slightly on its kickstand, visibly bent oval front wheel with warped rim, loose chain hanging off the front chainring. Weathered blue enamel, brown saddle, silver spokes and bell. Full bicycle in frame. Flat pure magenta (#FF00FF) background, no cast shadow.",
+      "prompt": "Old blue step-through bicycle facing right, weathered enamel, brown saddle, rear rack, bell and kickstand. Visibly buckled right front wheel; chain hangs loose off the chainring in a clear slack loop. Warm gouache and colored pencil, whole bicycle, clean transparent background including all spoke gaps. No text or people.",
       "aspect": "4:3",
       "width": 540,
       "quality": 80,
-      "cutout": true,
-      "key": "magenta",
-      "holes": true,
+      "cutout": false,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "despill": true
+      "transparent": true,
+      "redraw": "Cold review: clearer loose chain and damaged wheel. Generated alpha is preserved instead of chroma keying."
     }
   ]
 }

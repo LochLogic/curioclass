@@ -1,0 +1,247 @@
+{
+  "house_style": "Sophisticated editorial gouache illustration for a Grade 12 economics field notebook. Rich sunlit harbor blues, warm sandstone, madder cloth, tactile brushwork and colored pencil details. Believable scale and anatomy, calm adults, no mascots. Light from upper left. No text, letters, numbers, logos or watermarks.",
+  "assets": [
+    {
+      "name": "strait",
+      "prompt": "Wide elevated view of two complete islands separated by an open sunny turquoise strait. Left: whitewashed stone harbor town, stone loom shed, fishing dock and sailing fishing boats. Right: timber houses on stilts, terraced green slopes, open-sided loom sheds and colored cloth drying. Blank wooden signboards on both docks. Rocky and grassy foreground, sunlit middle-ground islands, distant hazy horizon. Open water center for an animated trade boat. No people.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 75,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "boat-sail",
+      "prompt": "Small wooden fishing sailboat in three-quarter side view, cream triangular sail, rigging, ribs and coiled rope, whole boat visible. Flat pure green background #00FF00.",
+      "aspect": "4:3",
+      "width": 180,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "boat-motor",
+      "prompt": "Small wooden motor fishing boat, visible outboard motor, propeller housing, fishing net and rope, three-quarter side view, whole boat visible. Flat pure green background #00FF00.",
+      "aspect": "4:3",
+      "width": 180,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "boat-broken",
+      "prompt": "Small wooden fishing sailboat with a visibly snapped mast and torn cream sail, still afloat, three-quarter side view, whole boat visible. Flat pure green background #00FF00.",
+      "aspect": "4:3",
+      "width": 180,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "trade-boat",
+      "prompt": "Small wooden cargo boat with a broad hull, fish crates and rolled madder and cream cloth bolts on deck, rope and cleats, whole vessel in three-quarter side view. Flat pure green background #00FF00.",
+      "aspect": "4:3",
+      "width": 220,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "storm",
+      "prompt": "Wide bank of dark blue-grey storm clouds, layered slate-blue undersides, subtle warm upper-left highlights and fine slanting rain below. Sophisticated editorial gouache and pencil texture. Whole isolated cloud and rain with margins, wide horizontal composition on flat pure magenta #FF00FF. No text, people or scenery.",
+      "aspect": "4:1",
+      "width": 600,
+      "quality": 74,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "key": "magenta",
+      "despill": true,
+      "holes": true
+    },
+    {
+      "name": "pell-fisher",
+      "prompt": "Full-length standing middle-aged woman with brown skin, sturdy build, sea-blue linen work clothes, boots, holding a fishing net. Natural confident posture, complete head and feet with margins. Flat pure green background #00FF00.",
+      "aspect": "3:4",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "pell-weaver",
+      "prompt": "Full-length standing older man with light skin, grey curly hair, sea-blue linen shirt, work trousers, holding a wooden weaving shuttle. Complete head and feet with margins. Flat pure green background #00FF00.",
+      "aspect": "3:4",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "pell-factory-worker",
+      "prompt": "Full-length standing young adult woman with dark skin, sea-blue work overalls and rolled sleeves, holding a folded bolt of cloth. Complete head and feet with margins. Flat pure green background #00FF00.",
+      "aspect": "3:4",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "pell-owner",
+      "prompt": "Full-length standing middle-aged man with medium brown skin, sea-blue linen jacket, round glasses, holding an open blank ledger. Complete head and feet with margins. Flat pure green background #00FF00.",
+      "aspect": "3:4",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "pell-shopper",
+      "prompt": "Full-length standing older woman with light olive skin, silver hair, sea-blue linen clothes, holding a woven market basket, comfortable practical shoes. Complete head and feet with margins. Flat pure green background #00FF00.",
+      "aspect": "3:4",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "wren-fisher",
+      "prompt": "Full-length standing middle-aged man with light brown skin, sand cotton trousers and rust work shirt, holding a fishing net. Complete head and feet with margins. Flat pure green background #00FF00.",
+      "aspect": "3:4",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "wren-weaver",
+      "prompt": "Full-length standing young adult woman with medium brown skin, short dark hair, sand and rust cotton work clothes, holding a wooden weaving shuttle. Complete head and feet with margins. Flat pure green background #00FF00.",
+      "aspect": "3:4",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "wren-factory-worker",
+      "prompt": "Full-length standing middle-aged woman with light skin, broad build, rust cotton overalls and sand shirt, holding a rolled cloth bolt. Complete head and feet with margins. Flat pure green background #00FF00.",
+      "aspect": "3:4",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "wren-shopper",
+      "prompt": "Full-length standing young adult man with dark brown skin, sand linen shirt and rust trousers, holding a woven market basket. Complete head and feet with margins. Flat pure green background #00FF00.",
+      "aspect": "3:4",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "basket",
+      "prompt": "Woven willow basket visibly holding exactly three silvery fish and one folded madder cloth, detailed weave and shaded rim. Flat pure green background #00FF00.",
+      "aspect": "1:1",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "crate",
+      "prompt": "Wooden fish crate with silvery fish inside, wood grain, nail heads and rope handles, three-quarter view. Flat pure green background #00FF00.",
+      "aspect": "1:1",
+      "width": 100,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "bolt",
+      "prompt": "One rolled madder coral cloth bolt with soft fabric folds and wooden core, three-quarter view. Flat pure green background #00FF00.",
+      "aspect": "1:1",
+      "width": 100,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "chest",
+      "prompt": "Small open wooden treasury coin chest with brass fittings and plain round coins, detailed grain and warm reflected light. Flat pure green background #00FF00.",
+      "aspect": "1:1",
+      "width": 120,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "factory",
+      "prompt": "Two-story brick cloth mill with tall divided windows, chimney, sawtooth roof details, blank signboard, whole building visible in three-quarter view. Flat pure green background #00FF00.",
+      "aspect": "4:3",
+      "width": 260,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "reef-healthy",
+      "prompt": "Underwater coral reef in clear turquoise water, healthy bright coral and small fish, sunlight rays from upper left, richly detailed natural marine scene, close view.",
+      "aspect": "4:3",
+      "width": 280,
+      "quality": 75,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "reef-murky",
+      "prompt": "Underwater coral reef in cloudy brown water, pale stressed coral and sparse small fish, muted sunlight from upper left, natural marine scene matching a healthy reef view.",
+      "aspect": "4:3",
+      "width": 280,
+      "quality": 75,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    }
+  ]
+}

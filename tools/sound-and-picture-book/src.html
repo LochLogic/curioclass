@@ -60,6 +60,8 @@ body[data-mode="make"] .page-folio { display:none; }
   cursor:grab; transform:translate(-50%,-50%); touch-action:none; display:flex; align-items:center; justify-content:center; }
 .piece img { width:100%; height:100%; object-fit:contain; pointer-events:none; filter:drop-shadow(2px 5px 2px #102b2a30); }
 .piece img { flex:none; }
+.piece:active { transform:translate(-50%,-50%); }
+.handle:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
 .piece[data-flip="true"] img { transform:scaleX(-1); }
 .piece.selected { outline:3px dashed #fff; outline-offset:3px; filter:drop-shadow(0 0 2px #1e3a8a); z-index:5; }
 .piece .handle { position:absolute; right:0; bottom:0; width:60px; height:60px;
@@ -114,6 +116,7 @@ body[data-mode="make"] .page-folio { display:none; }
 .plan-rows { display:none; }
 .plan-pages .slot { display:none; }
 .compact-slot { width:100%; flex:none; }
+.compact-slot .plan-event { display:block; margin-top:3px; font-size:12px; font-weight:600; }
 .plan-pages { align-content:stretch; }
 .plan-pages .stage { flex:1; }
 .plan-pages .page-card { min-height:0; }
@@ -231,7 +234,8 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
   <div class="bottom"><p class="hint" id="hint" aria-live="polite"></p><p class="privacy" id="save-status">Book stays on this device.</p></div>
 </main>
 <dialog id="chooser" aria-labelledby="dialog-title">
-  <div class="dialog-head"><h2 id="dialog-title"></h2><button id="close-dialog">✓ Close</button></div>
+  <div class="dialog-head"><h2 id="dialog-title"></h2>
+    <button id="dialog-read">🔊 Read</button><button id="close-dialog">✓ Close</button></div>
   <div id="dialog-content"></div>
   <p class="dialog-hint" id="dialog-hint"></p>
 </dialog>
@@ -260,12 +264,22 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
   const FX = [['thunder','Thunder','⛈'],['splash','Splash','💦'],['footsteps','Footsteps','🐾'],['snore','Snore','☾'],
     ['munch','Munch','🫐'],['hoot','Hoot','🦉'],['snap','Snap','ϟ'],['tada','Ta-da','✦']];
   const WORDS = ['Beginning','Middle','End'];
-  const IDEAS = ['Swap the Snap on page 2 with the Snore on page 3.','Put Thunder on page 2.',
-    'Swap pages 1 and 3.','Give page 2 Crickets instead of Wind.'];
+  const IDEAS = ['Tap Snap on page 2, then Snore on page 3.',
+    'Tap Make, page 2, then Action. Choose Thunder.',
+    'Tap page 1, then page 3 to swap whole pages.',
+    'Tap Make, page 2, then Background. Choose Crickets.'];
   const L = {
-    plan:'Every good story has a beginning, a middle and an end. Tap a Who card, then a page.',
-    where:'Now, where does each part happen? Tap a Where card, then a page.',
-    ready:"That's a plan. Tap Make it.", make:'Build page one. Tap a place, then add a character.',
+    plan:'Our book has a beginning, a middle and an end. Tap Who, choose a character, then tap a page.',
+    where:'Now, where does each part happen? Tap Where, choose a place, then tap a page.',
+    ready:"That's a plan. Tap Make it.", make:'Build this page. Tap Place, then add a character.',
+    makeReady:'Your pictures are ready. Tap Background, then Action to choose the sounds.',
+    editPiece:'Drag the piece. Use Size, Flip or Remove. Tap empty paper for the trays.',
+    makeSetting:'Tap Place to choose where this page happens. Then choose its sounds.',
+    sameSound:'These sounds are the same. Tap two different sounds to hear a change.',
+    samePage:'These pages are the same. Tap Make to change a picture or sound first.',
+    pickBackground:'Tap another background chip to swap sounds.',
+    pickAction:'Tap another action chip to swap sounds.',
+    pickPage:'Tap another page number to swap whole pages.',
     sounds:'Now give the page sounds. Pick a background sound and an action sound.',
     play:'Tell the story out loud while the book plays. Tap Next page to turn.',
     end:'The end. Now try Swap, and see what changes.',
@@ -273,6 +287,7 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     swapped:'Swapped! Tap Play. Is it a different story now?',
     wrong:'Swap a background with a background, or an action with an action.',
     limit:'Four pieces is the most on a page.', sample:"Raccoon's Night Walk. Tap Play to hear the book.",
+    whoFull:'A page is full. Tap Make and remove a thing, then choose Who again.',
     choose:'Tap a card. Then tap a page.', select:'Tap a piece to change its pose, move it, or remove it.',
     newBook:'Start a new book? Tap Yes, start new, or Keep my book.',
     undo:'Swap undone. Tap Play to hear your book again.',
@@ -289,6 +304,19 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
   L.extra.push('Happy.','Scared.','Sleepy.','Tap a card. Then tap a page.',
     'Tap a picture to put it on this page.',
     'Tap a sound name to add or remove it. Tap Hear to listen.');
+  L.extra.push('Tap a piece to edit it. Or choose Background and Action sounds.',
+    'Tap a filled card to clear it. Tap Close to choose a new card.',
+    'Tap a Who, Where or What happens card first.', 'Card cleared. Tap a card, then a page.',
+    'Tap another card, then a page.', 'Tap Characters or Things to build your page.',
+    'Drag the piece. Use Size, Flip or Remove. Tap empty paper for the trays.',
+    'Tap Place, Characters, Things, Background or Action to change this page.',
+    'Sound removed. Tap another sound.', 'Listen to this page. Tap a sound to change what happens.',
+    'Auto turns each page after six seconds. Tell the story aloud.', 'Drag a sound onto another sound chip.');
+  for (let i=1;i<=3;i++) L.extra.push(`Page ${i}. Tap Place, Characters, Things or a sound.`);
+  for (const x of [...ANIMALS,...PLACES,...EVENTS]) L.extra.push(x[1]+'. Tap Beginning, Middle or End.');
+  for (const x of [...BG,...FX]) L.extra.push(x[1]+'. Tap Play book to hear your story.',
+    x[1]+' assigned. Tap Close to return to your page.', x[1]+' removed. Tap another sound.',
+    'Listening: '+x[1]+'. Tap its name to put it on the page.');
   const blank = () => ({place:null,event:null,pieces:[],bg:null,fx:null});
   const state = {mode:'plan',page:0,book:{who:null,pages:[blank(),blank(),blank()]},selected:null,card:null,
     swapPage:null,swapChip:null,undo:[],idea:0,change:'',end:false,auto:false,revision:0};
@@ -310,6 +338,7 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     const b = JSON.parse(localStorage.getItem('curio-spb-book'));
     if (validBook(b)) state.book = b;
   } catch {}
+  let lastSavedBook = JSON.stringify(state.book);
   const audio = {ctx:null,bg:null,fx:null,timers:[],generation:0,log:[],actionUntil:0};
   function context() {
     if (!audio.ctx) audio.ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -468,13 +497,18 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     audio.bg.gain.gain.setTargetAtTime(audio.bg.peak*(speaking ? .5 : 1),context().currentTime,.06);
   }
   setInterval(duck,100);
+  const makeHowKey = () => state.selected !== null ? 'editPiece' :
+    page().pieces.length ? (page().place ? 'makeReady' : 'makeSetting') : 'make';
   const V = Curio.voice({lines:L,scope:() => state.mode+':'+state.page,hint:false,
     read:() => $('chooser').open ? $('dialog-hint').textContent : $('hint').textContent,
     welcome:() => {
       if (state.mode === 'play') return null;
       if (state.mode === 'plan' && state.book.who) return null;
-      return [state.mode,{valid:() => state.mode !== 'play' &&
-        (state.mode !== 'make' || (state.page === 0 && page().pieces.length === 0))}];
+      if (state.mode === 'make') {
+        const key = makeHowKey();
+        return [key,{valid:() => state.mode === 'make' && !$('chooser').open && makeHowKey() === key}];
+      }
+      return [state.mode,{valid:() => !$('chooser').open}];
     }
   });
   function hint(text) { $('hint').textContent = text; }
@@ -482,10 +516,17 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     if (how) V.how(text,{valid});
     else V.say(text,{valid});
   }
-  function save() {
+  function save(swapOnly=false) {
+    // A later edit starts a new history, so Undo swap can never erase that edit.
+    const serialized = JSON.stringify(state.book);
+    if (!swapOnly && state.undo.length && serialized !== lastSavedBook) {
+      state.undo = [];
+      state.change = 'Book edited. Earlier swaps cleared.';
+    }
+    lastSavedBook = serialized;
     state.revision++;
     try {
-      localStorage.setItem('curio-spb-book',JSON.stringify(state.book));
+      localStorage.setItem('curio-spb-book',serialized);
       $('save-status').textContent = 'Saved on this device.';
     } catch { $('save-status').textContent = 'For this visit. Storage unavailable.'; }
   }
@@ -526,6 +567,7 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
       b.append(w);
     }
     for (const a of p.pieces) {
+      clampPiece(a);
       const node = editable ? button('piece-'+a.uid,'',() => selectPiece(a.uid),'piece') : el('div','piece');
       node.style.left = a.x/10+'%';
       node.style.top = a.y/6.25+'%';
@@ -597,10 +639,13 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     for (const k of ['plan','make','play','swap']) $('m-'+k).setAttribute('aria-pressed',k === m);
     refresh();
     if (moveFocus) $('m-'+m).focus({preventScroll:true});
-    hint(m === 'plan' && state.book.who ? 'Tap a Where card, then a page. Or tap Sample book.' :
-      m === 'make' && page().pieces.length ? 'Tap a piece to edit it. Or choose Background and Action sounds.' : L[m]);
+    hint(m === 'plan' && state.book.who ?
+      (state.book.pages.every(p => p.place) ? L.ready : L.where) : m === 'make' ? L[makeHowKey()] : L[m]);
     if (m === 'play') startPage();
-    else V.welcome();
+    else {
+      V.welcome();
+      if (m === 'swap') speakIdea();
+    }
   }
   function sample() {
     stopAudio();
@@ -621,6 +666,7 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     ps[0].pieces.push(lantern);
     state.book = {who:'raccoon',pages:ps};
     state.undo = [];
+    state.card = null; state.change = ''; state.swapPage = null; state.swapChip = null; state.idea = 0;
     state.page = 0;
     state.selected = null;
     save();
@@ -642,10 +688,15 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
       const stage = el('div','stage');
       stage.append(picture);
       card.append(stage);
-      card.append(button('set-page-'+i,'📄 '+WORDS[i],() => {
+      const slot = button('set-page-'+i,'📄 '+WORDS[i],() => {
         if (state.card) applyCard(i);
         else pageSlots(i);
-      },'compact-slot'));
+      },'compact-slot');
+      if (p.event) {
+        const event = EVENTS.find(x => x[0] === p.event);
+        slot.append(el('span','plan-event',event[2]+' '+event[1]));
+      }
+      card.append(slot);
       card.append(button('plan-who-'+i,'🐾 '+label(ANIMALS,state.book.who),() => applyCard(i,'who'),'slot'));
       card.append(button('plan-place-'+i,'⌖ '+label(PLACES,p.place),() => applyCard(i,'place'),'slot'));
       card.append(button('plan-event-'+i,(EVENTS.find(x => x[0] === p.event)?.[2] || '✧')+' '+label(EVENTS,p.event),
@@ -665,6 +716,7 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
   }
   function pageSlots(i) {
     openChooser(WORDS[i]+' plan','Tap a filled card to clear it. Tap Close to choose a new card.');
+    speak($('dialog-hint').textContent,true,() => $('chooser').open && $('dialog-title').textContent === WORDS[i]+' plan');
     const grid = el('div','dialog-grid');
     grid.append(button('clear-who','🐾 '+label(ANIMALS,state.book.who),() => clearSlot('who')),
       button('clear-place','⌖ '+label(PLACES,state.book.pages[i].place),() => clearSlot('place')),
@@ -689,7 +741,11 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     } else b.append(el('span','symbol',x[2]));
     b.append(el('span','',x[1]));
     b.draggable = true;
-    b.ondragstart = e => { state.card = {kind,id:x[0]}; e.dataTransfer.setData('text/plain',x[0]); };
+    b.ondragstart = e => {
+      state.card = {kind,id:x[0]}; e.dataTransfer.setData('text/plain',x[0]);
+      // Let Chrome capture the drag image, then expose the page drop targets.
+      requestAnimationFrame(() => { if ($('chooser').open) closeChooser(false); });
+    };
     return b;
   }
   function applyCard(i,clearKind=null) {
@@ -707,6 +763,9 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     }
     const wasReady = state.book.pages.every(q => q.place);
     if (c.kind === 'who') {
+      if (state.book.pages.some(q => q.pieces.length >= 4 && !q.pieces.some(a => a.kind === 'animal'))) {
+        hint(L.whoFull); V.say('whoFull',{now:true}); return;
+      }
       state.book.who = c.id;
       state.book.pages.forEach(q => {
         let a = q.pieces.find(t => t.main);
@@ -791,8 +850,10 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     node.append(handle);
     if (a.kind === 'animal') ['happy','scared','sleepy'].forEach((pose,i) => {
       const b = button('pose-'+pose,['☺ Happy','◉ Scared','☾ Sleepy'][i],() => {
+        stopAudio();
         a.pose = pose; node.querySelector('img').src = ART[a.id+'-'+pose];
         node.querySelector('img').alt = label(ANIMALS,a.id)+', '+pose;
+        node.setAttribute('aria-label',node.querySelector('img').alt+'. Drag or use arrow keys to move.');
         save(); updatePoseButtons(a); Curio.tone(400+i*100,.07,.03);
         speak(pose[0].toUpperCase()+pose.slice(1)+'.',false,() => a.pose === pose && page().pieces.includes(a));
       });
@@ -807,13 +868,16 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     for (const pose of ['happy','scared','sleepy']) $('pose-'+pose)?.setAttribute('aria-pressed',a.pose === pose);
   }
   function selectPiece(id) {
+    stopAudio();
     if (state.selected === id) return;
     state.selected = id;
     updateSelection();
-    hint('Drag the piece. Use Size, Flip or Remove. Tap empty paper for the trays.');
+    hint(L.editPiece);
+    V.how('editPiece',{now:!V.heard('editPiece'),valid:() => state.mode === 'make' && state.selected !== null});
     Curio.tone(380,.06,.025);
   }
   function positionPiece(a,node) {
+    clampPiece(a);
     node.style.left = a.x/10+'%'; node.style.top = a.y/6.25+'%';
     node.style.width = a.size/10+'%'; node.style.height = a.size/6.25+'%';
     node.dataset.size = a.size;
@@ -822,14 +886,36 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     node.querySelector('img').style.height = pixels+'px';
     fitHandle(node);
   }
+  function clampPiece(a) {
+    const half = a.size*.5;
+    a.x = Math.max(half,Math.min(1000-half,a.x));
+    a.y = Math.max(half,Math.min(625-half,a.y));
+  }
   function fitHandle(node) {
     const h = node.querySelector('.handle');
     if (!h || !$('page-canvas')) return;
     h.style.translate = '0 0';
-    const r = h.getBoundingClientRect(), b = $('page-canvas').getBoundingClientRect();
-    const dx = Math.max(0,b.left+6-r.left)-Math.max(0,r.right-b.right+6);
-    const dy = Math.max(0,b.top+6-r.top)-Math.max(0,r.bottom-b.bottom+6);
-    h.style.translate = dx+'px '+dy+'px';
+    const r = h.getBoundingClientRect(), a = node.getBoundingClientRect(), b = $('page-canvas').getBoundingClientRect();
+    const gap = 5, w = r.width, ht = r.height;
+    const candidates = [[a.left-w-gap,a.bottom-ht], [a.right+gap,a.bottom-ht],
+      [a.left-w-gap,a.top], [a.right+gap,a.top], [a.left,a.bottom+gap], [a.right-w,a.bottom+gap],
+      [a.left,a.top-ht-gap], [a.right-w,a.top-ht-gap]];
+    const occupied = [...$('page-canvas').querySelectorAll('.piece,.reminder')].map(e =>
+      ({rect:e.getBoundingClientRect(),weight:e.classList.contains('reminder') ? 20 : 1}));
+    const overlap = (x,y,c) => Math.max(0,Math.min(x+w,c.right)-Math.max(x,c.left))*
+      Math.max(0,Math.min(y+ht,c.bottom)-Math.max(y,c.top));
+    const choices = candidates.map(([x,y],index) => {
+      x = Math.max(b.left+6,Math.min(b.right-w-6,x));
+      y = Math.max(b.top+6,Math.min(b.bottom-ht-6,y));
+      return {x,y,index,score:overlap(x,y,a)*20+occupied.reduce((n,c) => n+overlap(x,y,c.rect)*c.weight,0)};
+    });
+    const best = h.dataset.resizing ? choices[Number(h.dataset.corner)] :
+      choices.reduce((v,c) => c.score < v.score ? c : v);
+    h.dataset.corner = best.index;
+    h.style.translate = (best.x-r.x)+'px '+(best.y-r.y)+'px';
+    const left = best.x+w/2 < a.x+a.width/2, top = best.y+ht/2 < a.y+a.height/2;
+    h.textContent = (left ? (top ? '↖' : '↙') : (top ? '↗' : '↘'))+' Size';
+    h.style.cursor = left === top ? 'nwse-resize' : 'nesw-resize';
   }
   function pieceDown(e,a,node,book,resizing=false) {
     if (e.button !== 0) return;
@@ -838,16 +924,23 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     node.focus({preventScroll:true});
     const rect = book.getBoundingClientRect(), start = {x:e.clientX,y:e.clientY,px:a.x,py:a.y,size:a.size};
     const target = resizing ? node.querySelector('.handle') : node;
+    const handleRect = target.getBoundingClientRect(), pieceRect = node.getBoundingClientRect();
+    const sx = handleRect.x+handleRect.width/2 < pieceRect.x+pieceRect.width/2 ? -1 : 1;
+    const sy = handleRect.y+handleRect.height/2 < pieceRect.y+pieceRect.height/2 ? -1 : 1;
+    if (resizing) target.dataset.resizing = 'true';
     target.setPointerCapture(e.pointerId);
     const move = ev => {
       const dx = (ev.clientX-start.x)*1000/rect.width;
       const dy = (ev.clientY-start.y)*625/rect.height;
-      if (resizing) a.size = Math.max(80,Math.min(460,start.size+Math.max(dx,dy)*1.5));
-      else { a.x = Math.max(a.size*.3,Math.min(1000-a.size*.3,start.px+dx));
-        a.y = Math.max(a.size*.3,Math.min(625-a.size*.3,start.py+dy)); }
+      if (resizing) a.size = Math.max(80,Math.min(460,start.size+Math.max(dx*sx,dy*sy)*1.5));
+      else { a.x = start.px+dx; a.y = start.py+dy; }
       positionPiece(a,node);
     };
-    const up = () => { target.removeEventListener('pointermove',move); target.removeEventListener('pointerup',up); save(); };
+    const up = () => {
+      target.removeEventListener('pointermove',move); target.removeEventListener('pointerup',up);
+      delete target.dataset.resizing;
+      fitHandle(node); save();
+    };
     target.addEventListener('pointermove',move);
     target.addEventListener('pointerup',up,{once:true});
     target.addEventListener('pointercancel',up,{once:true});
@@ -860,11 +953,12 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     if (e.key === 'Delete') { e.preventDefault(); state.selected = a.uid; removePiece(); }
     if (!e.key.startsWith('Arrow')) return;
     e.preventDefault(); selectPiece(a.uid);
-    a.x = Math.max(0,Math.min(1000,a.x+(e.key === 'ArrowRight' ? 10 : e.key === 'ArrowLeft' ? -10 : 0)));
-    a.y = Math.max(0,Math.min(625,a.y+(e.key === 'ArrowDown' ? 10 : e.key === 'ArrowUp' ? -10 : 0)));
+    a.x += e.key === 'ArrowRight' ? 10 : e.key === 'ArrowLeft' ? -10 : 0;
+    a.y += e.key === 'ArrowDown' ? 10 : e.key === 'ArrowUp' ? -10 : 0;
     positionPiece(a,$('piece-'+a.uid)); save();
   }
   function removePiece() {
+    stopAudio();
     page().pieces = page().pieces.filter(a => a.uid !== state.selected);
     state.selected = null; save(); refresh(); $('characters-tray').focus({preventScroll:true});
     hint(L.remove); speak('remove');
@@ -887,6 +981,13 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     if (restore && dialogReturn && $(dialogReturn)) $(dialogReturn).focus({preventScroll:true});
   }
   $('close-dialog').onclick = () => closeChooser();
+  $('dialog-read').onclick = () => {
+    stopAudio();
+    if ($('dialog-hint').textContent.startsWith('Listening:')) {
+      $('dialog-hint').textContent = 'Tap a sound name to add or remove it. Tap Hear to listen.';
+    }
+    V.read();
+  };
   $('chooser').addEventListener('cancel',() => {
     stopAudio(); V.hush();
     hint(state.mode === 'plan' ? (state.book.who ? L.where : L.plan) :
@@ -916,9 +1017,18 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
         assign.setAttribute('aria-pressed',page()[kind] === x[0]);
         const audition = button('audition-'+x[0],'▷ Hear',() => {
           V.hush(); stopAudio();
-          if (kind === 'bg') { background(x[0]); audio.timers.push(setTimeout(stopAudio,3500)); }
+          if (kind === 'bg') background(x[0]);
           else action(x[0]);
-          $('dialog-hint').textContent = 'Listening: '+x[1]+'. Tap its name to put it on the page.';
+          const gen = audio.generation;
+          const listening = 'Listening: '+x[1]+'. Tap its name to put it on the page.';
+          $('dialog-hint').textContent = listening;
+          audio.timers.push(setTimeout(() => {
+            if (gen !== audio.generation) return;
+            stopAudio();
+            if ($('chooser').open && $('dialog-hint').textContent === listening) {
+              $('dialog-hint').textContent = 'Tap a sound name to add or remove it. Tap Hear to listen.';
+            }
+          },kind === 'bg' ? 3500 : fxDuration(x[0])*1000+100));
         },'audition');
         audition.setAttribute('aria-label','Hear '+x[1]);
         wrap.append(assign,audition); grid.append(wrap);
@@ -1027,7 +1137,18 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     state.end = true; state.auto = false;
     refresh(); $('end-swap').focus({preventScroll:true}); hint(L.end); speak('end');
   }
+  function availableIdeas() {
+    const middle = state.book.pages[1], end = state.book.pages[2];
+    return [0,1,2,3].filter(i => i === 0 ? middle.fx === 'snap' && end.fx === 'snore' :
+      i === 1 ? middle.fx !== 'thunder' : i === 3 ? middle.bg === 'wind' : true);
+  }
+  function speakIdea() {
+    const idea = state.idea;
+    speak(IDEAS[idea],false,() => state.mode === 'swap' && state.idea === idea && availableIdeas().includes(idea));
+  }
   function renderSwap() {
+    const ideas = availableIdeas();
+    if (!ideas.includes(state.idea)) state.idea = ideas[0];
     const {studio} = base('Change a sound. Hear a new story.');
     const pages = el('div','swap-pages');
     state.book.pages.forEach((p,i) => {
@@ -1052,10 +1173,10 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     panel.append(button('swap-play','📖 Play',() => setMode('play'),'gold'));
     const undo = button('undo','↶ Undo swap',undoSwap); undo.disabled = state.undo.length === 0; panel.append(undo);
     const another = button('another','',() => {
-      state.idea = (state.idea+1)%IDEAS.length;
-      const idea = state.idea;
-      another.lastChild.textContent = IDEAS[idea]; hint(IDEAS[idea]);
-      speak(IDEAS[idea],false,() => state.idea === idea);
+      const ideas = availableIdeas();
+      state.idea = ideas[(ideas.indexOf(state.idea)+1)%ideas.length];
+      another.lastChild.textContent = IDEAS[state.idea]; hint(IDEAS[state.idea]);
+      speakIdea();
     });
     another.append(el('strong','','✧ Another idea'),el('div','idea',IDEAS[state.idea]));
     panel.append(another);
@@ -1067,26 +1188,42 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
   }
   function swapped(text) {
     state.change = text; state.swapPage = null; state.swapChip = null;
-    save(); preserveFocus(refresh); hint(L.swapped); V.say('swapped',{now:true}); Curio.yes();
+    save(true); preserveFocus(refresh); hint(L.swapped); V.say('swapped',{now:true}); Curio.yes();
   }
   function pickPage(i) {
     stopAudio();
+    state.swapChip = null;
+    document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed','false'));
     if (state.swapPage === null || state.swapPage === i) {
       state.swapPage = state.swapPage === i ? null : i;
       document.querySelectorAll('[id^="swap-page-"]').forEach((b,n) => b.setAttribute('aria-pressed',state.swapPage === n));
-      hint('Tap another page number to swap whole pages.'); return;
+      hint(state.swapPage === null ? L.swap : L.pickPage);
+      if (state.swapPage !== null) speak('pickPage',true,() => state.swapPage !== null);
+      Curio.tone(380,.06,.025); return;
     }
-    recordSwap();
     const j = state.swapPage;
+    if (JSON.stringify({...state.book.pages[i],pieces:state.book.pages[i].pieces.map(({uid,...a}) => a)}) ===
+        JSON.stringify({...state.book.pages[j],pieces:state.book.pages[j].pieces.map(({uid,...a}) => a)})) {
+      state.swapPage = null;
+      document.querySelectorAll('[id^="swap-page-"]').forEach(b => b.setAttribute('aria-pressed','false'));
+      hint(L.samePage); V.say('samePage',{now:true}); return;
+    }
+    const before = [i,j].map(n => $('swap-page-'+n).closest('.page-card').getBoundingClientRect());
+    recordSwap();
     [state.book.pages[i],state.book.pages[j]] = [state.book.pages[j],state.book.pages[i]];
     swapped(`📄 Page ${j+1} ⇄ Page ${i+1}. Pictures and sounds moved together.`);
+    animateExchange([i,j].map(n => $('swap-page-'+n).closest('.page-card')),before);
   }
   function pickChip(i,kind) {
     stopAudio();
+    state.swapPage = null;
+    document.querySelectorAll('[id^="swap-page-"]').forEach(b => b.setAttribute('aria-pressed','false'));
     if (!state.swapChip) {
       state.swapChip = {i,kind};
       $('chip-'+kind+'-'+i).setAttribute('aria-pressed','true');
-      hint('Tap another '+(kind === 'bg' ? 'background' : 'action')+' chip to swap sounds.'); return;
+      const key = kind === 'bg' ? 'pickBackground' : 'pickAction';
+      hint(L[key]); speak(key,true,() => state.swapChip?.i === i && state.swapChip?.kind === kind);
+      Curio.tone(440,.06,.025); return;
     }
     const from = state.swapChip;
     if (from.i === i && from.kind === kind) {
@@ -1103,16 +1240,32 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
       hint(L.wrong); V.say('wrong',{now:true}); return;
     }
     if (i === j) return;
+    if (state.book.pages[i][kind] === state.book.pages[j][kind]) {
+      state.swapChip = null;
+      document.querySelectorAll('.chip').forEach(b => b.setAttribute('aria-pressed','false'));
+      hint(L.sameSound); V.say('sameSound',{now:true}); return;
+    }
+    const before = [i,j].map(n => $('chip-'+kind+'-'+n).getBoundingClientRect());
     recordSwap();
     const moving = soundData(kind,state.book.pages[i][kind]);
     [state.book.pages[i][kind],state.book.pages[j][kind]] = [state.book.pages[j][kind],state.book.pages[i][kind]];
     swapped(`${moving?.[2] || '⇄'} ${moving?.[1] || 'Empty sound'} moved to page ${j+1}. Only sounds moved.`);
+    animateExchange([i,j].map(n => $('chip-'+kind+'-'+n)),before);
+  }
+  function animateExchange(nodes,before) {
+    if (Curio.reduce) return;
+    nodes.forEach((node,index) => {
+      const from = before[1-index], to = node.getBoundingClientRect();
+      node.animate([{transform:`translate(${from.x-to.x}px,${from.y-to.y}px)`,opacity:.65},
+        {transform:`translate(${(from.x-to.x)*.5}px,${(from.y-to.y)*.5+(index ? -14 : 14)}px)`,opacity:1},
+        {transform:'translate(0,0)',opacity:1}],{duration:420,easing:'cubic-bezier(.2,.7,.3,1)'});
+    });
   }
   function undoSwap() {
     const item = state.undo.pop();
     if (!item) return;
     state.book = item.book; state.change = item.change;
-    save(); preserveFocus(refresh); hint(L.undo); V.say('undo',{now:true});
+    save(true); preserveFocus(refresh); hint(L.undo); V.say('undo',{now:true});
     if (!$('undo').disabled) $('undo').focus({preventScroll:true}); else $('swap-play').focus({preventScroll:true});
   }
   function chipDown(e,i,kind,b) {
@@ -1160,6 +1313,9 @@ dialog::backdrop { background:#172746aa; backdrop-filter:blur(3px); }
     }
   });
   Curio.init({clips:"voice:*",rate:.88});
+  Curio.onMotion(() => {
+    if (Curio.reduce) document.getAnimations().forEach(a => a.cancel());
+  });
   Curio.onSound(on => {
     stopAudio();
     if (state.mode === 'play') { preserveFocus(refresh); if (on && !state.end) startPage(); }

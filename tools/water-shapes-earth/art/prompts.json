@@ -111,8 +111,8 @@
       "despill": true,
       "review": "ok",
       "people": false,
-      "redraws": 1,
-      "processing_note": "Redrawn opaque green source; cropped outer margin; keyed scene treatment neutralizes tinted clear glass."
+      "redraws": 2,
+      "processing_note": "Cold review replaced the glass; art.py --rekey processes its green key. The SVG uses saturate(0) on this colorless-glass asset to remove residual key tint at final size."
     },
     {
       "name": "ws-scale",

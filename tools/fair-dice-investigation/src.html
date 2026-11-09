@@ -10,7 +10,7 @@
 Fair Dice Investigation, Curio Class. Grade 12, AP-STAT.U8 and AP-STAT.U9. Students drive.
 Sources: College Board AP Statistics; OpenStax Introductory Statistics 2e, 11.2 and 11.4;
 OpenIntro Statistics 4e, 7.5 and 8.4. All café data are made up.
-Illustrations generated with OpenAI gpt-image, edited for Curio Class. Existing café illustration: FLUX.1-schnell, Apache 2.0.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
 Content CC BY 4.0. Code MIT. Offline, no collection or network requests.
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -22,7 +22,7 @@ header { padding:10px 18px; gap:8px; flex-wrap:nowrap; }
 h1 { font-size:24px; letter-spacing:-.5px; }
 h1 small { font-size:13px; letter-spacing:.15px; }
 header button, .seg button { min-height:44px; font-size:14px; padding:0 12px; }
-.icon-btn { font-size:14px; padding:0 10px; }
+.icon-btn { min-width:44px; font-size:14px; padding:0 10px; }
 .seg button { min-width:44px; }
 #sound { width:90px; flex-shrink:0; }
 .lab-mode .hint { min-height:80px; }
@@ -149,11 +149,24 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
   border:1px solid #b8a886; box-shadow:0 20px 90px #000b; padding:24px; }
 .modal h2 { font:27px Georgia,serif; margin:0 0 14px; }
 .modal p { font-size:15px; line-height:1.5; }
+@media (max-height:650px) { .modal { padding:12px 16px; } .modal h2 { font-size:22px; margin-bottom:7px; } .modal p { font-size:13px; line-height:1.35; margin:7px 0; } }
 .modal .btn { background:#263d33; color:#fff3dd; }
 .modal { display:flex; flex-direction:column; overflow:hidden; }
 #dialog-body { min-height:0; overflow:auto; }
 #close-dialog { flex-shrink:0; align-self:flex-start; margin-top:10px; }
 .brief-img { width:100%; max-height:200px; object-fit:cover; }
+.portrait { float:right; width:100px; height:120px; object-fit:contain; object-position:bottom; margin:0 0 12px 16px; }
+.opening-brief .portrait { width:64px; height:82px; margin:0 0 0 14px; }
+.citation-fields { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+.citation-fields label:has(select),.citation-fields #file-evidence,.citation-fields #citation-error { grid-column:1 / -1; }
+.citation-fields #citation-error:empty { display:none; }
+.citation-fields label { display:grid; min-width:0; gap:4px; font-size:13px; }
+.citation-fields input,.citation-fields select { width:100%; min-height:44px; border:1px solid #6f796e; border-radius:3px; padding:8px; }
+.citation-fields input { background:#fffaf0; color:#202c26; font-size:16px; }
+.citation-fields select { background:#263d33; }
+.finding-choice { outline:3px solid #ffe5ad; outline-offset:-3px; }
+.stamp.reviewed { transform:none; color:#ffe1aa; border-color:#a9834b; font-size:11px; letter-spacing:1px; }
+@media (max-height:520px), (max-width:599px) { .opening-brief .portrait { width:34px; height:42px; margin-left:6px; } }
 .silhouette { float:right; width:86px; height:110px; background:#d8d0bc; border:1px solid #aea188; margin:0 0 12px 16px; }
 .mini { font-size:11px!important; }
 @media (min-width:1700px) { main { grid-template-columns:minmax(0,1fr) 380px; } .stage { padding:24px 40px; } .die-art { width:100px; height:100px; } }
@@ -291,6 +304,14 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
   #case2 .table-scene { grid-column:1; grid-row:2; }
   #table-card { grid-column:2; grid-row:2; align-self:center; }
 }
+.device-note { display:none; }
+@media (min-width:600px) and (max-height:650px) {
+  .panel .privacy,.lab-mode .privacy { display:block; grid-column:1 / -1; font-size:10px; line-height:12px; }
+}
+@media (max-width:599px) {
+  .device-note { display:block; min-width:0; font-size:10px; line-height:12px; color:#d1d6d0; }
+  .bottom-row { gap:4px; }
+}
 </style>
 </head>
 <body>
@@ -374,10 +395,11 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
 </div>
     <div class="bottom-row">
       <button class="btn" id="help">Test help</button>
+      <span class="device-note">Saves stay on this device.</span>
       <button class="btn" id="clear">Clear</button>
       <button class="btn primary" id="next-case" hidden>Next case</button>
     </div>
-    <div class="privacy">Made-up café, made-up data. Cases save only on this device.</div>
+    <div class="privacy">Made-up data. Saves stay on this device.</div>
   </aside>
   <div class="stage" id="stage" style="grid-column:1;grid-row:1">
     <section class="work" id="case1" aria-label="Case 1 evidence">
@@ -416,7 +438,7 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
       <div class="test-card" id="lab-card">
 <div class="card-head">Investigation record</div>
 <div id="lab-single">Each test assumes a fair die: expected count n ÷ 6, df = 5.</div>
-        <table class="lab-table"><thead><tr><th>n</th><th>α</th><th>Share flagged</th><th>Die</th></tr></thead><tbody id="lab-history"></tbody></table></div>
+        <table class="lab-table"><thead><tr><th>n</th><th>α</th><th>Share flagged</th><th>Die / weights 1 to 6</th></tr></thead><tbody id="lab-history"></tbody></table></div>
     </section>
   </div>
 </main>
@@ -444,10 +466,10 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
   const L = {
     wCases:'One of these four dice is loaded. Tap a die and press Roll 100, then press Test this die.',
     budget:'Careful with the budget. Give every die a quick look, then keep rolling whichever one looks most suspicious.',
-    wrongDie:'That die was honest. Test enough dice and one will look guilty by chance. Pick another die and press Accuse.',
+    wrongDie:'That die was honest. Read its true weights, then press Back to evidence.',
     outOfEvidence:'The evidence ran out on this one. Here are the true weights. On to Case 2.',
     wCase2:'Drag a row total and a column total into each cell to build the expected count.',
-    pointCell:'Now press Point to the cell, and tap the cell that adds the most to chi-square.',
+    pointCell:'Press Point to the cell to choose your finding.',
     wCase3:'Two suspects for the higher rolls. Press Test the slope on each plot, then pick the real link.',
     closed:"Case closed. I'll file it.",
     wLab:'Set the weights, pick a number of rolls, then press Run 1,000 investigations.',
@@ -455,11 +477,15 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     selectDie:'Press Roll 1, Roll 10, or Roll 100 to collect evidence for the selected die.',
     exhausted:'The roll budget is spent. Choose a die, review its tests, then press Accuse.',
     fill:'Three cells built. Press Fill the rest, or keep building cells with the totals.',
-    cellWrong:'Compare all twelve contributions. Tap the cell that adds the most to chi-square.',
-    decoy:'The temperature interval crosses zero. Reconsider the link, then choose your evidence.',
-    citation:'Choose p-value or Interval to defend your decision.',
+    cellWrong:'Your finding is filed. Compare its contribution with the largest one, then press Next case.',
+    decoy:'That conclusion is unsupported. Review the temperature evidence and the weight-depth result.',
+    citation:'Choose p-value or Interval. Enter your chosen plot’s evidence, then press File evidence.',
     chooseLink:'Both slopes are tested. Press Weights are the link or Temperature is the link.',
-    labDone:'The simulations are complete. Change the sample size or weights and run another investigation.',
+    labDone:'Run complete.',
+    testedFirst:'Test this die before accusing it. Roll at least thirty times, then press Test this die.',
+    reviewed:'Evidence reviewed. Read the finding and compare it with the test result.',
+    fileCell:'Choose one cell, then press File finding. Your first filed conclusion stays in the record.',
+    fileEvidence:'Enter the evidence and its meaning. Then press File evidence to commit your conclusion.',
     next:'Press Next case to open the next evidence file, or review this case.',
   };
   let randomState = 1;
@@ -471,11 +497,11 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     mode:'cases', caseId:1, selected:0, budget:1200, counts:Array.from({length:4},() => [0,0,0,0,0,0]),
     faces:[1,1,1,1], tested:[null,null,null,null], log:[], alpha:.05, attempts:0, rejected:[], reveal:[],
     solved:[], outcomes:{}, built:Array(12).fill(false), parts:Array.from({length:12},() => ({row:false,col:false})),
-    row:null, col:null, pointing:false, set:'weight', slopes:{}, decision:null, shuffled:null, shuffleProgress:1,
+    row:null, col:null, pointing:false, cellChoice:null, set:'weight', slopes:{}, decision:null, shuffled:null, shuffleProgress:1,
     weights:[4,4,4,4,4,4], n:600, labResult:null, labProgress:1, history:[], once:null,
   };
   function rng() {
-    randomState += 0x6D2B79F5;
+    randomState = (randomState + 0x6D2B79F5) >>> 0;
     let z = randomState;
     z = Math.imul(z ^ z >>> 15, z | 1);
     z ^= z + Math.imul(z ^ z >>> 7, z | 61);
@@ -610,6 +636,7 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
   }
   const V = Curio.voice({lines:L, scope:() => state.mode+':'+state.caseId, hint:false, read:() => $('hint').textContent,
     welcome:() => {
+      if(!$('overlay').hidden) return null;
       if(state.mode==='lab') return ['wLab',{valid:() => !state.labResult}];
       if(state.caseId===1 && state.budget===1200 && !state.attempts && !state.outcomes[1]) {
         return ['wCases',{needs:'#roll100'}];
@@ -711,8 +738,8 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     if(!state.solved.includes(id)) state.solved.push(id);
     state.outcomes[id]=outcome;
     save();
-    hint(id<3?L.next:'All three files are closed. Open Dice lab to investigate false alarms and power.');
-    V.say('closed',{valid:() => Boolean(state.outcomes[id])});
+    hint(id<3?L.next:'All three files are reviewed. Open Dice lab to investigate false alarms and power.');
+    V.say(outcome.status==='Case closed'?'closed':'reviewed',{valid:() => Boolean(state.outcomes[id])});
     Curio.tone(440,.2,.035);
     render();
     if(active.disabled || !active.getClientRects().length) {
@@ -721,7 +748,6 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
   }
   function accuse(die=state.selected) {
     stopRoll();
-    V.hush();
     if(state.outcomes[1]) return;
     if(state.rejected.includes(die)) {
       hint('This die was already cleared. Select another die, then press Accuse.');
@@ -729,9 +755,17 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
       return;
     }
     state.selected=die;
+    if(!state.tested[die] && state.budget>0) {
+      hint(L.testedFirst,'testedFirst',{needs:'#test-die'});
+      Curio.tone(140,.12,.03);
+      return;
+    }
+    V.hush();
     state.reveal.push(die);
     if(die===loadedIndex) {
-      closeCase(1,{status:'Case closed',die:names[die],trueWeights:loaded,tests:state.log.length,spent:1200-state.budget});
+      const supported=Boolean(state.tested[die] && state.tested[die].p<state.alpha);
+      closeCase(1,{status:supported?'Case closed':'Loaded, not established',die:names[die],trueWeights:loaded,
+        supported,testP:state.tested[die]?.p??null,tests:state.log.length,spent:1200-state.budget});
     } else {
       state.attempts++;
       state.rejected.push(die);
@@ -743,9 +777,9 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
         hint('Case 1 closed: the evidence ran out. Press Briefing to review the honest-die note. Now build expected cells using the totals.');
       } else {
         hint(L.wrongDie);
-        V.say('wrongDie',{valid:() => state.caseId===1 && state.attempts===1,needs:'#accuse'});
         render();
         showDialog('An honest die',silhouette('librarian')+`<p><b>${names[die]} is honest.</b> Its six probabilities are all 1/6.</p><p>${falseAlarmNote()}</p><p>One more accusation remains. Pick another die and press Accuse.</p>`);
+        V.say('wrongDie',{valid:() => state.caseId===1 && state.attempts===1 && !$('overlay').hidden,needs:'#close-dialog'});
       }
     }
     render();
@@ -755,11 +789,11 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
   }
   function silhouette(who) {
     const token=who==='suspect'?'art:suspect':'art:librarian';
-    return `<svg class="silhouette" role="img" aria-label="${who} portrait awaiting painting" viewBox="0 0 86 110" data-art="${token}">
-      <circle cx="43" cy="33" r="18" fill="#59564f"/><path d="M12 110V85Q12 57 43 57T74 85V110" fill="#59564f"/>
-      <path d="M15 95H70" stroke="#b4a586" stroke-width="10"/></svg>`;
+    const label=who==='suspect'?'Tournament player':'The game librarian';
+    return `<img class="portrait" src="${token}" alt="${label}">`;
   }
   function showDialog(title,body) {
+    V.hush();
     returnFocus=document.activeElement;
     $('dialog-title').textContent=title;
     $('dialog-body').innerHTML=body;
@@ -770,7 +804,11 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     $('close-dialog').focus({preventScroll:true});
   }
   function closeDialog() {
+    V.hush();
+    const wasHonest=$('dialog-title').textContent==='An honest die';
     $('overlay').hidden=true;
+    if(wasHonest) hint(state.budget?'Choose another die. Collect rolls and press Test this die before your final accusation.':
+      'No rolls remain. Choose another die and press Accuse to file an unsupported final guess.');
     document.querySelector('main').inert=false;
     document.querySelector('header').inert=false;
     requestAnimationFrame(() => {
@@ -842,6 +880,10 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     document.querySelectorAll('[data-cell]').forEach(b => {
       const idx=+b.dataset.cell;
       b.onclick=() => {
+        if(state.outcomes[2]) {
+          hint(`${games[Math.floor(idx/4)]}, seat ${idx%4+1} contributes ${fmt(table().contributions.flat()[idx],3)}. Compare the table or press Next case.`);
+          return;
+        }
         if(state.pointing) return pointCell(idx);
         if(state.row===null || state.col===null) {
           hint('Select a row total, select a column total, then tap their cell. You can also drag each total into it.');
@@ -883,21 +925,19 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     updateControls();
   }
   function pointCell(idx) {
-    state.pointing=false;
-    if(idx===8) closeCase(2,{status:'Case closed',contribution:table().contributions[2][0],cell:'Castle game, Seat 1'});
-    else {
-      state.pointing=true;
-      hint(L.cellWrong,'cellWrong');
-      $('note').textContent=`That cell adds ${fmt(table().contributions.flat()[idx],3)}. Press Point to the cell and compare the largest contribution.`;
-      Curio.tone(130,.14,.035);
-    }
+    if(state.outcomes[2]) return;
+    state.cellChoice=idx;
+    document.querySelectorAll('[data-cell]').forEach(b => b.classList.toggle('finding-choice',+b.dataset.cell===idx));
+    hint(L.fileCell,'fileCell',{needs:'#point-cell',valid:() => state.pointing && !state.outcomes[2]});
+    Curio.tone(310,.09,.03);
     updateControls();
   }
   function testSlope() {
     const set=state.set;
     state.slopes[set]=slope(set);
     Curio.tone(380,.13,.035);
-    if(Object.keys(state.slopes).length===2) hint(L.chooseLink,'chooseLink',{needs:['#weight-link','#temp-link']});
+    if(state.outcomes[3]) hint('Your first finding stays in the record. Select the other plot, press Shuffle the y values, or open Dice lab.');
+    else if(Object.keys(state.slopes).length===2) hint(L.chooseLink,'chooseLink',{needs:['#weight-link','#temp-link']});
     else hint(`Now select ${set==='weight'?'Temperature':'Weight depth'} and press Test the slope.`);
     renderSlopeCard();
     updateControls();
@@ -908,14 +948,37 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     updateControls();
   }
   function cite(type) {
-    if(!state.decision) return;
-    if(state.decision==='weight') closeCase(3,{status:'Case closed',citation:type,interval:slope().interval,p:slope().p});
-    else {
-      state.decision=null;
-      hint('Temperature: p = 0.7805 (about 0.781); 95% interval (-0.0081, 0.0104) crosses zero. Choose the link again.','decoy');
-      Curio.tone(130,.14,.03);
-      updateControls();
-    }
+    if(!state.decision || state.outcomes[3]) return;
+    const label=data[state.decision].label;
+    const fields=type==='p-value'?
+      '<label>Two-sided p-value<input id="evidence-p" aria-label="Two-sided p-value" type="number" step="any" min="0" max="1"></label>'+ 
+      '<label>Compare with α = 0.05<select id="evidence-meaning"><option value="">Choose the comparison</option>'+ 
+      '<option value="below">Below α: evidence against zero slope</option><option value="above">At or above α: insufficient evidence</option></select></label>':
+      '<label>95% interval lower endpoint<input id="evidence-low" aria-label="95 percent interval lower endpoint" type="number" step="any"></label>'+ 
+      '<label>95% interval upper endpoint<input id="evidence-high" aria-label="95 percent interval upper endpoint" type="number" step="any"></label>'+ 
+      '<label>Compare with zero<select id="evidence-meaning"><option value="">Choose the comparison</option>'+ 
+      '<option value="below">Excludes zero: evidence against zero slope</option><option value="above">Contains zero: insufficient evidence</option></select></label>';
+    showDialog('File '+label+' evidence',
+      '<p>Use the tested '+label+' plot. Your first filed conclusion stays in the record. Back returns to the evidence.</p>'+ 
+      '<div class="citation-fields">'+fields+'<p id="citation-error" role="status"></p>'+ 
+      '<button class="btn" id="file-evidence">File evidence</button></div>');
+    V.how('fileEvidence',{needs:'#file-evidence',valid:() => !$('overlay').hidden});
+    $('file-evidence').onclick=() => {
+      const ids=type==='p-value'?['evidence-p']:['evidence-low','evidence-high'];
+      if(ids.some(id => !$(id).value.trim() || !Number.isFinite(+$(id).value)) || !$('evidence-meaning').value) {
+        $('citation-error').textContent='Complete the evidence and its comparison before filing.';
+        return;
+      }
+      const r=slope(state.decision), values=ids.map(id => +$(id).value);
+      const matches=type==='p-value'?Math.abs(values[0]-r.p)<=.00005+1e-12:
+        values.every((v,i) => Math.abs(v-r.interval[i])<(state.decision==='weight'?.0006:.00006));
+      const supports=state.decision==='weight' && matches && $('evidence-meaning').value==='below';
+      const outcome={status:supports?'Case closed':'Evidence reviewed',citation:type,decision:state.decision,
+        values,comparison:$('evidence-meaning').value,supported:supports,interval:r.interval,p:r.p};
+      closeDialog();
+      closeCase(3,outcome);
+      if(!supports) hint('The filed conclusion is unsupported. Weight depth has p ≈ 0.00048 and interval (0.160, 0.410). Temperature includes zero. Review both plots.');
+    };
   }
   function cancelDraw() { drawToken++;
     state.labProgress=1;
@@ -954,7 +1017,8 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     state.shuffleProgress=1;
     $('plot-weight').setAttribute('aria-pressed',set==='weight');
     $('plot-temp').setAttribute('aria-pressed',set==='temp');
-    hint(state.slopes[set]?'Review this interval. Test the other plot or choose the link.':'Press Test the slope for this plot.');
+    hint(state.outcomes[3]?'Your first finding stays in the record. Review both plots, press Shuffle the y values, or open Dice lab.':
+      state.slopes[set]?'Review this interval. Test the other plot or choose the link.':'Press Test the slope for this plot.');
     renderSlopeCard();
     drawPlots();
     Curio.tone(270,.08,.025);
@@ -971,12 +1035,13 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
       state.labResult=r;
       const isFair=r.weights.every(v => Math.abs(v-1/6)<1e-8);
       const same=state.history.findIndex(h => h.n===state.n && h.a===state.alpha && h.weights.join()===r.weights.join());
-      const entry={...r,label:isFair?'Fair':'Weighted'};
+      const entry={...r,label:isFair?'Fair':'Weighted',relative:[...state.weights]};
       if(same>=0) state.history.splice(same,1);
       state.history.unshift(entry);
       state.history=state.history.slice(0,6);
       renderLabHistory();
-      hint(L.labDone,'labDone',{valid:() => Boolean(state.labResult)});
+      hint('Run complete. Change the sample size or weights, or press Run 1,000 investigations again.');
+      V.say('labDone',{now:true,valid:() => state.labResult===r});
       animateDots('lab');
     }
     drawLab();
@@ -1010,7 +1075,7 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     state.caseId=id;
     render();
     const entry=id===1?(state.budget?L.wCases:L.exhausted):id===2?L.wCase2:L.wCase3;
-    hint(state.outcomes[id]?(id<3?L.next:'All three files are closed. Explore Dice lab.'):entry);
+    hint(state.outcomes[id]?(id<3?L.next:'All three files are reviewed. Explore Dice lab.'):entry);
     if(id!==1 && !state.outcomes[id]) briefing();
     else V.welcome();
   }
@@ -1028,7 +1093,7 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     if(state.mode!=='lab') state.mode='cases';
     if(!$('overlay').hidden) closeDialog();
     render();
-    const closedHint=state.caseId<3?L.next:'All three files are closed. Open Dice lab to investigate further.';
+    const closedHint=state.caseId<3?L.next:'All three files are reviewed. Open Dice lab to investigate further.';
     hint(state.mode==='lab'?L.wLab:state.outcomes[state.caseId]?closedHint:
       state.caseId===1?(state.budget?L.selectDie:L.exhausted):state.caseId===2?L.wCase2:L.wCase3);
     V.welcome();
@@ -1060,8 +1125,10 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
       `<div class="contrib"><span>Face</span>${counts.map((_,j)=>`<span>${j+1}</span>`).join('')}<span>O</span>`+
       counts.map(o=>`<span>${o}</span>`).join('')+'<span>χ² part</span>'+
       counts.map((o,j)=>`<span>${r?fmt(r.contributions[j],2):'?'}</span>`).join('')+trueRow+'</div>'+
-      `<div class="conclusion">${state.outcomes[1]?state.outcomes[1].status:r?(r.p<state.alpha?'Reject H₀':'Do not reject H₀')+` at α = ${state.alpha}. A test is not proof of guilt.`:
-        n<30?'Collect at least 30 rolls so every expected count is at least 5.':'Press Test this die. χ² = Σ (O − E)² / E.'}</div>`;
+      `<div class="conclusion">${state.outcomes[1]?(state.outcomes[1].die?state.outcomes[1].die+': ':'Case file: ')+state.outcomes[1].status+(state.outcomes[1].supported===false?(state.outcomes[1].testP===null?': unsupported guess; no current test.':': p ≥ α. Correct guess, insufficient statistical evidence.'):''):r?(r.p<state.alpha?'Reject H₀':'Do not reject H₀')+` at α = ${state.alpha}. A test is not proof of guilt.`:
+        n<30?(state.budget?'Collect at least 30 rolls so every expected count is at least 5.':
+          'Fewer than 30 rolls. No budget remains. Select a sampled die, or file an unsupported accusation.'):
+          'Press Test this die. χ² = Σ (O − E)² / E.'}</div>`;
   }
   function renderTable() {
     const r=table();
@@ -1073,12 +1140,13 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
         if(!part) { part=document.createElement('small'); part.className='part'; b.appendChild(part); }
         part.textContent='χ² '+fmt(r.contributions[row][col],3);
       }
+      b.classList.toggle('finding-choice',state.cellChoice===i);
       b.setAttribute('aria-label',`${games[row]}, seat ${col+1}, observed ${observed[row][col]}, expected ${built?fmt(r.expected[row][col],2):'unknown'}`+
         (state.built.every(Boolean)?`, contribution ${fmt(r.contributions[row][col],3)}`:''));
     });
     $('table-card').innerHTML='<div class="card-head">Homogeneity · H₀: same seat pattern for every game</div>'+
       (state.built.every(Boolean)?`<div class="metrics"><div class="metric">χ²<b>${fmt(r.statistic,3)}</b></div><div class="metric">df<b>6</b></div>`+
-      `<div class="metric">p-value<b>${fmt(r.p)}</b></div></div><div class="conclusion">${state.outcomes[2]?'Case closed. Castle game, seat 1 adds 6.403.':
+      `<div class="metric">p-value<b>${fmt(r.p)}</b></div></div><div class="conclusion">${state.outcomes[2]?state.outcomes[2].status+'. Castle game, seat 1 adds 6.403.':
         r.p<.05?'Reject H₀ at α = 0.05. The seat pattern differs by game.':'Do not reject H₀ at α = 0.05.'}</div>`:
       `<div class="conclusion">${state.built.filter(Boolean).length} / 12 expected cells built. E = row total × column total ÷ grand total. df = (3 − 1)(4 − 1) = 6.</div>`);
   }
@@ -1090,11 +1158,12 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
       `<div class="metric">p-value<b>${r?fmt(r.p):'?'}</b></div><div class="metric">95% interval<b style="font-size:16px">`+
       `${r?'('+r.interval.map(v=>fmt(v,set==='weight'?3:4)).join(', ')+')':'?'}</b></div></div>`+
       `<div class="conclusion">${r?`SE(b) = ${fmt(r.se,set==='weight'?4:5)}. `+
-        (set==='weight'?'p ≈ 0.00048. Interval excludes zero.':'p ≈ 0.781. Interval crosses zero.'):
-        'Press Test the slope. Each dot is a mean of '+d.rolls.toLocaleString()+' rolls.'}</div>`;
+        (set==='weight'?'p ≈ 0.00048.':'p ≈ 0.781.')+' Compare p with 0.05, or the interval with zero.':
+        'Press Test the slope. Each dot is a mean of '+d.rolls.toLocaleString()+' rolls.'}${state.outcomes[3]?'<br>'+data[state.outcomes[3].decision||'weight'].label+': '+state.outcomes[3].status+(state.outcomes[3].supported===false?': first conclusion unsupported. Weight-depth interval excludes zero.':' with '+state.outcomes[3].citation+' evidence.'):''}</div>`;
   }
   function renderLabHistory() {
-    $('lab-history').innerHTML=state.history.map(h=>`<tr><td>${h.n}</td><td>${h.a}</td><td>${fmt(h.share*100,1)}%</td><td>${h.label}</td></tr>`).join('');
+    $('lab-history').innerHTML=state.history.map(h=>`<tr><td>${h.n}</td><td>${h.a}</td><td>${fmt(h.share*100,1)}%</td>`+
+      `<td>${h.label==='Fair'?'Fair':h.relative.join(':')}</td></tr>`).join('');
   }
   function renderWeights() {
     const w=normalize(state.weights);
@@ -1115,6 +1184,7 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     }
     $('fill-rest').disabled=state.built.filter(Boolean).length<3 || state.built.every(Boolean);
     $('point-cell').disabled=!state.built.every(Boolean) || Boolean(state.outcomes[2]);
+    $('point-cell').textContent=state.pointing?'File finding':'Point to the cell';
     const both=Object.keys(state.slopes).length===2;
     $('weight-link').disabled=!both || Boolean(state.outcomes[3]);
     $('temp-link').disabled=!both || Boolean(state.outcomes[3]);
@@ -1141,8 +1211,9 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     $('test-log').innerHTML=state.log.slice().reverse().map(r=>`<div class="log-row">${r.die} · n ${r.n} · χ² ${fmt(r.statistic,2)}<br>p ${fmt(r.p)} · α ${r.alpha}</div>`).join('');
     const out=state.outcomes[state.caseId];
     if(out && !labMode) {
-      $('note').innerHTML=`<span class="stamp">${out.status}</span><p>${state.caseId===1?`${out.tests} tests filed. ${out.spent??1200-state.budget} rolls spent.`:
-        state.caseId===2?'The game and the seat pattern are linked.':`Weight depth: ${out.citation} evidence filed.`}</p>`;
+      $('note').innerHTML=`<span class="stamp ${out.status==='Case closed'?'':'reviewed'}">${out.status}</span><p>${state.caseId===1?`${out.tests} tests filed. ${out.spent??1200-state.budget} rolls spent.${out.supported===false?(out.testP===null?' The true die was selected without a current test.':' The true die was selected, but p ≥ α: the sample did not establish loading.'):''}`:
+        state.caseId===2?`Your selected cell contributes ${fmt(out.contribution,3)}. Largest: Castle seat 1, 6.403.`:
+        `${data[out.decision||'weight'].label}: ${out.citation} filed. ${out.supported===false?'Compare the correct evidence below.':''}`}</p>`;
     } else if(state.caseId===1 && !labMode) {
       $('note').innerHTML='Four dice. One hidden difference. Spend your rolls where the evidence leads.';
     } else if(!labMode) $('note').textContent=state.caseId===2?'Rows are separate game samples. Check expected counts, then compare contributions.':
@@ -1210,7 +1281,8 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
       text(c,String(i+1),x+width/2,h-9,small?11:14,'#e9e9d7','center');
     });
     line(c,left,y(expected),w-10,y(expected),'#ffe5ad',[5,4]);
-    if(!n) text(c,'Choose a die. Roll to put evidence on the table.',w/2,(top+bottom)/2,small?11:17,'#d5d7bc','center');
+    if(!n) text(c,state.outcomes[1]?'No rolls were collected for this die.':state.budget?
+      'Choose a die. Roll to put evidence on the table.':'No rolls for this die. Select a sampled die to review.',w/2,(top+bottom)/2,small?11:17,'#d5d7bc','center');
     $('bar-canvas').setAttribute('aria-label',names[state.selected]+': observed '+counts.join(', ')+'. Expected each '+fmt(expected,2));
   }
   function drawPlots() {
@@ -1245,8 +1317,8 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
   }
   function drawShuffle(c,w,h) {
     const d=state.shuffled, x=44,y=h*.68, pw=w-65,ph=h*.25;
-    c.fillStyle='#0b1317f5';
-    c.fillRect(x-5,y-15,pw+15,ph+21);
+    c.fillStyle='#0b1317';
+    c.fillRect(0,h*.61-13,w,h*.39+13);
     const min=Math.min(...d.slopes,d.real)*1.15,max=Math.max(...d.slopes,d.real)*1.15;
     const px=v=>x+(v-min)/(max-min)*pw;
     const bins=Array(55).fill(0),count=Math.floor(d.slopes.length*state.shuffleProgress);
@@ -1259,6 +1331,9 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
       c.fillStyle=Math.abs(v)>=Math.abs(d.real)?'#ff758e':'#c9d3bf'; c.fill();
     });
     line(c,px(d.real),y+2,px(d.real),y+ph,'#ff758e',[3,3]);
+    text(c,fmt(min,3),x,h-14,10,'#dddcc3');
+    text(c,fmt(max,3),x+pw,h-14,10,'#dddcc3','right');
+    text(c,'Shuffled slope (mean roll / '+data[state.set].unit+')',w/2,h-1,10,'#dddcc3','center');
     text(c,`1,000 shuffled slopes · ${d.extreme}/1,000 as extreme · real ${fmt(d.real,4)}`,x,y-3,10,'#ffe6b0');
   }
   function drawLab() {
@@ -1324,7 +1399,8 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     b.onclick=() => {
       stopRoll(); state.selected=i; render();
       Curio.tone(210+i*35,.08,.025);
-      hint(state.outcomes[1]?'Case closed. Review the true weights or press Next case.':state.budget?L.selectDie:L.exhausted);
+      hint(state.outcomes[1]?(state.outcomes[1].die?state.outcomes[1].die+': ':'Case file: ')+state.outcomes[1].status+'. Review the true weights or press Next case.':
+        state.budget?L.selectDie:state.tested[i]?L.exhausted:'No rolls remain. Select a sampled die to test, or press Accuse to file an unsupported guess.');
     };
     $('dice').appendChild(b);
   });
@@ -1361,10 +1437,20 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
     hint(L.pointCell,'pointCell',{needs:'#point-cell',valid:() => !state.pointing && !state.outcomes[2]});
     Curio.tone(430,.15,.035);
   };
-  $('point-cell').onclick=() => { state.pointing=true;
-    hint('Tap the table cell with the largest χ² contribution.');
+  $('point-cell').onclick=() => {
+    if(state.pointing) {
+      if(state.cellChoice===null) { hint('Tap one table cell before pressing File finding.'); return; }
+      const idx=state.cellChoice, correct=idx===8;
+      state.pointing=false;
+      closeCase(2,{status:correct?'Case closed':'Evidence reviewed',cell:idx,
+        contribution:table().contributions.flat()[idx],supported:correct});
+      if(!correct) hint('Your first finding is filed. Castle game, seat 1 contributes 6.403, the largest part of χ². Compare it with your selected cell, then press Next case.');
+      return;
+    }
+    state.pointing=true;
+    hint(L.fileCell,'fileCell',{needs:'#point-cell',valid:() => state.pointing && !state.outcomes[2]});
     Curio.tone(320,.08,.025);
-    };
+  };
   $('test-slope').onclick=testSlope;
   $('plot-weight').onclick=() => setPlot('weight');
   $('plot-temp').onclick=() => setPlot('temp');
@@ -1417,7 +1503,7 @@ select { background:#111820; border:1px solid #62789a; color:#eee9dc; border-rad
       if(savedEvidence) {
         for(const key of ['counts','faces','tested','budget','log','selected','reveal']) state[key]=savedEvidence[key];
       }
-      if(state.solved.includes(2)) state.built.fill(true);
+      if(state.solved.includes(2)) { state.built.fill(true); state.cellChoice=state.outcomes[2]?.cell??null; }
       if(state.solved.includes(3)) state.slopes={weight:slope('weight'),temp:slope('temp')};
     }
   } catch {}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="desk" x2="1" y2="1"><stop stop-color="#c8a479"/><stop offset="1" stop-color="#8d6843"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="3" dy="6" stdDeviation="5" flood-opacity=".25"/></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#desk)"/>
+  <path d="M0 65h800M0 173h800M0 337h800M0 461h800" stroke="#694c2f" opacity=".18"/>
+  <g filter="url(#shadow)">
+    <rect x="46" y="37" width="432" height="421" rx="3" fill="#fffdf8"/>
+    <rect x="515" y="109" width="240" height="303" rx="2" fill="#f4f1ea"/>
+  </g>
+  <text x="72" y="70" font-family="sans-serif" font-size="13" letter-spacing="2" fill="#5d5a52">THE PINE HOLLOW LEDGER</text>
+  <path d="M72 81h376" stroke="#3f3d39"/>
+  <text x="72" y="120" font-family="Georgia,serif" font-size="28" font-weight="bold" fill="#1c1b19">Sales are SOARING!</text>
+  <path d="M110 157v225h330" stroke="#3f3d39" fill="none" stroke-width="2"/>
+  <rect x="164" y="282" width="79" height="100" fill="#3f3d39"/>
+  <rect x="316" y="182" width="79" height="200" fill="#3f3d39"/>
+  <text x="78" y="386" font-family="sans-serif" font-size="14">950</text>
+  <text x="184" y="405" font-family="sans-serif" font-size="15">2024</text>
+  <text x="336" y="405" font-family="sans-serif" font-size="15">2025</text>
+  <path d="M247 282h24v100h-24M399 182h22v200h-22" fill="none" stroke="#a21caf" stroke-width="4" stroke-dasharray="7 4"/>
+  <text x="540" y="151" font-family="Georgia,serif" font-style="italic" font-size="26" font-weight="bold">Correction</text>
+  <path d="M540 160h190M556 191v163h167" stroke="#2563eb" fill="none" stroke-width="2"/>
+  <rect x="579" y="217" width="48" height="137" fill="#2563eb"/>
+  <rect x="657" y="210" width="48" height="144" fill="#2563eb"/>
+  <text x="539" y="357" font-family="sans-serif" font-size="14">0</text>
+  <rect x="230" y="419" width="221" height="31" fill="#f9c6f2"/>
+  <text x="239" y="441" font-family="sans-serif" font-size="17" fill="#74177c">Picture 2×. Numbers 1.05×.</text>
+</svg>

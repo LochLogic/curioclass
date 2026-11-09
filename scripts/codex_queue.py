@@ -34,10 +34,62 @@ morning-show-crew viral-video-breakdown mini-documentary-crew model-mechanic gri
 spot-the-ai shadow-measure rules-referee ph-mystery-liquids packaging-challenge me-vs-the-counter launch-pad
 keyword-fishing is-the-historian-right input-or-output fire-lookout-triangles fair-dice-investigation
 design-the-study courtroom-statistics code-kitchen zipline-energy water-shapes-earth
-energy-accountant medical-test-paradox data-table-builder""".split()
+energy-accountant medical-test-paradox data-table-builder personal-essay-studio usage-panel body-thermostat
+algebra-tile-studio
+gas-law-lab punnett-predictor misleading-charts phishing-spotter paycheck-decoder fallacy-field-guide mole-bakery
+equation-balancer rigid-motion-twins thesis-workshop star-life-story globe-theatre-stage""".split()
+# Added 2026-11-05 (Cory: the token budget has room). circuit-builder and sound-studio stay out: they overlap the
+# Circuit Bench and Voice Lab instruments.
 # Refined tools whose fixes Codex makes (Cory, 2026-11-04). The merged list is tools/<id>/refine.md, brought over from main.
 # sight-words left the queue 2026-11-04: it is live on the site, so a Codex review would rework a live tool (Cory).
-FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio""".split()
+FIX = """city-skyline-studio levels-and-pathways first-aid-responder music-history-radio span-and-spire pocket-universe
+sky-dome living-earth virtual-gallery flipbook-studio puppet-show-feelings moon-base-drama
+circuit-bench voice-lab microscope-bench poets-workbench
+graph-studio compass-and-straightedge cipher-vault molecule-forge living-pond
+safety-sweep-house traffic-light-coder research-quest up-the-watershed
+worry-size-sorter bus-stop letter-lanterns line-leader-picker""".split()
+# 2026-11-05 evening: Claude Refine (lenses + merge) done in the Codex checkout, then Codex fixes first in the run (Cory).
+# span-and-spire and pocket-universe: the instruments pivot (Cory, 2026-11-04); their refine.md is a pivot list.
+
+# Curiosities (Cory, 2026-11-05): first in the queue, with their own build and review prompts (CURIO_BUILD, CURIO_REVIEW
+# below) so nothing of the lesson-tool brief bleeds in. Each joins the queue only once its spec is in the Curiosity shape.
+CURIO = """voice-lab living-earth sky-dome microscope-bench circuit-bench graph-studio compass-and-straightedge
+poets-workbench cipher-vault molecule-forge living-pond
+safety-sweep-house traffic-light-coder research-quest up-the-watershed
+worry-size-sorter bus-stop letter-lanterns line-leader-picker""".split()
+
+
+def curio_ready(t):
+    spec = BASE / 'tools' / t / 'spec.md'
+    return spec.exists() and '(Curiosity No.' in spec.read_text(encoding='utf-8', errors='replace')[:400]
+
+
+# Spec test (Cory, 2026-11-05): ten specs written under SPEC.md's "Lessons from ten full Refines", built right after
+# the Curiosities so their Refine counts can be compared (docs/agents/MEASURE-FIRST.md). The run caps stay as set, so
+# the end of the list waits for the next run.
+SPEC_TEST = """safety-sweep-house worry-size-sorter bus-stop letter-lanterns line-leader-picker bug-hunt
+warming-evidence-desk cocoa-chain roller-coaster-rounding the-buyout""".split()
+# Second spec test (2026-11-06): the first specs written in the new format (SPEC.md's "Can it be beaten?" and "Heard in
+# order" sections). Their Refines check the 2026-11-06 decision in docs/agents/MEASURE-FIRST.md.
+SPEC_TEST_2 = """estimation-station which-way-is-down box-plot-builder story-graphs illusion-lab""".split()
+# Third spec batch (2026-11-06), same new format, spec checked like the second.
+SPEC_TEST_3 = """vibration-station skate-park-angles cooler-challenge lunch-survey-cleanup trade-island""".split()
+# Fourth spec batch (2026-11-06); trade-island's factory card was also revised (no Rana Plaza).
+SPEC_TEST_4 = """push-the-pumpkin egg-carton-factory scarf-juggling-ladder interest-rate-dial electromagnet-lab""".split()
+# Fifth spec batch (2026-11-07).
+SPEC_TEST_5 = """tap-to-start-puppets paper-plane-assembly-line box-packer front-line leaf-factory""".split()
+_SPEC = SPEC_TEST + SPEC_TEST_2 + SPEC_TEST_3 + SPEC_TEST_4 + SPEC_TEST_5
+# Recess games (docs/GAMES.md, Cory 2026-11-08): built from docs/agents/CODEX-RECESS.md, not CODEX-BUILD.md. Add a game
+# here only once its spec is final, so a build never starts on a spec still being written.
+RECESS = """chess untangle checkers go sliding-blocks""".split()
+QUEUE = ([t for t in CURIO if curio_ready(t)] + RECESS + _SPEC
+         + [t for t in QUEUE if t not in CURIO and t not in _SPEC])
+# Specs reserved for an outside helper (drafts/paste-ready/helper-process.txt), tool id -> GitHub handle. Codex skips
+# these. Remove the line to hand a tool back to Codex.
+HELPERS = {
+    'correlation-guessing-game': 'abi (Abinanthan, from Artcraft Discord; GitHub handle pending), 2026-11-08',
+}
+QUEUE = [t for t in QUEUE if t not in HELPERS]
 DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
          "with a natural range of dancers. Draw the fewest poses that teach the moves well, and keep the figure easy to swap.")
 NOTES = {  # desk answers the spec does not hold yet (docs/agents/decisions/DESK-ANSWERS.md)
@@ -51,6 +103,26 @@ PLAIN = ("Owner's decision: this tool is plain on purpose, for a grade 2 teacher
          "and gameplay above: parchment, a blue border, one quiet word at a time, one small flourish in the top bar. Build it as a sibling "
          "of the other word tool (nonsense-words and sight-words share a layout).")
 NOTES['nonsense-words'] = NOTES['sight-words'] = PLAIN
+# Rebuilds (Cory, 2026-11-05: "go back to the data starved ones and do them right"). The runner adds these to the build
+# prompt only. The first build's report was renamed codex-report-1.md, so the tool counts as unbuilt again.
+_REDO = ("Second build (owner's decision, Cory, 2026-11-05). The first build of this Curiosity ran before the sandbox had "
+         "network access, so it came out without its real material. Its report is tools/{t}/codex-report-1.md: read it, "
+         "above all Left open, before you plan. Keep what works in the existing files and do it right this time: gather the "
+         "real material the spec names, as \"Gathering data\" in the brief says (network is on now, and for this build the "
+         "gathering cap is 75 minutes, not 45), then build the parts that were left out for lack of it. The instrument "
+         "should feel finished, not a frame waiting for data. Write a fresh tools/{t}/codex-report.md covering the whole "
+         "tool; under Built, say what changed from the first build. Leave codex-report-1.md where it is.")
+REDO = {t: _REDO.format(t=t) + ' ' + more for t, more in {
+    'living-earth': "First build's gaps: the earthquake catalogue (M5.0, or the spec's M5.5 fallback), ETOPO relief, Natural "
+                    "Earth, NOAA volcanoes and licensed plate material, and the layers, city search, plate and volcano "
+                    "readouts and Rewind that depend on them.",
+    'sky-dome': "First build's gaps: the full star catalogue fields (including B-V colour), the Natural Earth place list, "
+                "checked distances, the full constellation figure set and the deep-sky markers, each confirmed against two "
+                "sources.",
+    'microscope-bench': "First build's gaps: genuinely scaled real micrographs under PD, CC0 or CC BY with their scale, the "
+                        "specimen and prepared-slide tray, stains and mounts, pond motion and focal stacks. This is the heart "
+                        "of the instrument: without real images it is not a microscope.",
+}.items()}
 EXTRA = {}  # tools outside the catalog, as {'id': {'title': ..., 'subject': ..., 'grade': ...}}
 for _t in ("levels-and-pathways dance-pattern-puzzle choreography-board dance-styles-explorer feeling-scarf-dance family-dance-night "
            "poem-to-movement recital-stage-directions dancers-on-tour dance-hall-decades choreography-for-a-cause "
@@ -102,6 +174,64 @@ Play it before you read what the builder said. Try to break every score and chec
 FIXP = """Fix the Curio Class tool {t} from its Claude Refine. Read docs/agents/CODEX-FIX.md first and follow it exactly, along with the rules in docs/agents/CODEX-BUILD.md. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits and do not edit refine.md. Use Chrome ports {c} and host port {h}.
 
 The list is tools/{t}/refine.md. Reproduce each blocker and should fix before you fix it, fix the cause, and prove every fix with a frame or a number at the size the item names. For every score, check or meter an item touches, try the cheapest way to pass without the skill after your fix. Mark an item FIXED only when you saw it fixed. Put a time limit on every command. When tools/{t}/polish.md is written, say "Fix done" and stop."""
+
+CURIO_BUILD = """Build the Curio Class Curiosity {t}. This is a Curiosity, not a lesson tool. Read docs/agents/CODEX-CURIOSITY.md first and follow it exactly: it replaces docs/agents/CODEX-BUILD.md, and you read only the sections of CODEX-BUILD.md it names. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. This is Build only: make no git commits and do not start a polish round. Use Chrome ports {c} and host port {h}.
+
+Build the real instrument the spec describes, working on real rules and real material, filling the screen, with the family marks of Span and Spire and Pocket Universe (maker's plate and Manual drawer lower-left, Motion, Sound and Read on its own power panel). No score, goal, level, sticker, quiz, finish screen, mode pills or kit header, even where a habit says to add one. Draw the working surface in code so the material stays exact; paint only real objects or places that add something.
+
+Before you build anything, tell me in seven lines what real instrument this is, what the first two minutes look like with nothing read, what a month of use would still find, which controls and readouts it has, which images (if any) you will make, your size budget against the 2 MB goal, and any place the spec contradicts the brief. Then go ahead without waiting for me. Put a time limit on every command. When tools/{t}/codex-report.md is written, say "Build done" and stop."""
+
+CURIO_REVIEW = """Review the Curio Class Curiosity {t} cold. You did not build it. This is a Curiosity, not a lesson tool: read docs/agents/CODEX-CURIOSITY.md first, including "For the reviewer", then docs/agents/CODEX-REVIEW.md for the process and report file. Judge it against the Curiosity brief and the short test, never against lesson norms. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits. Use Chrome ports {c} and host port {h}.
+
+Play it before you read what the builder said. Try to break the instrument (extreme values, every control at both ends, rapid input, resize while running), walk it with the voice on, and hold every dataset and fact to a named source and licence. Never add a goal, score, level, quiz, finish screen or kit header; remove any that slipped in. If it fails a question of the short test, make the real material more central. Fix every blocker and should fix, lift the flattest moment, keep what is strong. One pass only. Put a time limit on every command. When tools/{t}/codex-review.md is written, say "Review done" and stop."""
+
+
+RECESS_BUILD = """Build the Curio Class Recess game {t}. This is a Recess game, not a lesson tool. Read docs/agents/CODEX-RECESS.md first and follow it exactly: it replaces docs/agents/CODEX-BUILD.md. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/; never edit kit/recess.js, kit/recess.css or data/recess.json. This is Build only: make no git commits and do not start a polish round. Use Chrome ports {c} and host port {h}.
+
+Build the game the spec describes on the Recess shell (kit:recess), in its own world. It must be visually amazing (owner's decision): follow "Visually amazing" in the brief, paint the world and the three-frame look board before writing game logic, and paint everything that is not pure geometry. No kit header, voice, lesson card, standard code or classroom look. Re-solve every shipped puzzle and level with your own solver and play every computer level against the one below it. Put a time limit on every command. When tools/{t}/codex-report.md is written, say "Build done" and stop."""
+
+RECESS_REVIEW = """Self-check the Curio Class Recess game {t} cold. You did not build it. Read docs/agents/CODEX-RECESS.md first, including "For the self-checker", then docs/agents/CODEX-REVIEW.md for the process and report file. Judge it against the Recess brief, GAMES.md and the spec, never against lesson norms. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits. Use Chrome ports {c} and host port {h}.
+
+Play it before you read what the builder said. Try to break it: illegal moves, rapid input, undo at every point, resize mid-move, the computer at every level, cheating for stars. Fix every blocker and should fix, lift the flattest moment, keep what is strong. One pass only. Put a time limit on every command. When tools/{t}/codex-review.md is written, say "Review done" and stop."""
+
+
+class _Pick(str):
+    """A prompt template that hands a Curiosity its own prompt. The runner calls template.format(t=..., c=..., h=...)."""
+    def __new__(cls, plain, curio):
+        s = super().__new__(cls, plain)
+        s.curio = curio
+        return s
+
+    def format(self, *a, **k):
+        t = k.get('t')
+        recess = getattr(self, 'recess', None)
+        return (recess if recess and t in RECESS else self.curio if t in CURIO else str(self)).format(*a, **k)
+
+
+BUILD = _Pick(BUILD, CURIO_BUILD)
+REVIEW = _Pick(REVIEW, CURIO_REVIEW)
+BUILD.recess, REVIEW.recess = RECESS_BUILD, RECESS_REVIEW
+CURIO_FIX = """Fix the Curio Class Curiosity {t} from its Claude Refine. This is a Curiosity, not a lesson tool: read docs/agents/CODEX-CURIOSITY.md first, then docs/agents/CODEX-FIX.md for the process and polish.md report, and the rules in docs/agents/CODEX-BUILD.md that the Curiosity brief names. Where the fix brief or the gate leans on lesson norms (a welcome, a goal, a score, a finish), the Curiosity brief wins: never add a goal, score, level, quiz, finish screen or kit header. Your folder must be S:\\CurioClass-codex; if it is not, say so and stop. Write only in tools/{t}/ and _scratch/{t}/. Make no git commits and do not edit refine.md. Use Chrome ports {c} and host port {h}.
+
+The list is tools/{t}/refine.md. Reproduce each blocker and should fix before you fix it, fix the cause, and prove every fix with a frame or a number at the size the item names. Hold every fact and dataset you touch to a named source and licence; you may go online to gather or re-check material as the Curiosity brief's "Gathering data" says. Mark an item FIXED only when you saw it fixed. Put a time limit on every command. When tools/{t}/polish.md is written, say "Fix done" and stop."""
+FIXP = _Pick(FIXP, CURIO_FIX)
+EXTRA.update({  # Recess games (titles from data/recess.json; grade is the low end of the shelf band)
+    'sliding-blocks': {'title': 'Cargo Hold', 'subject': 'recess', 'grade': '2'},
+    'untangle': {'title': 'Untangle', 'subject': 'recess', 'grade': '3'},
+    'chess': {'title': 'Chess', 'subject': 'recess', 'grade': '3'},
+    'go': {'title': 'Go', 'subject': 'recess', 'grade': 'K'},
+    'checkers': {'title': 'Checkers', 'subject': 'recess', 'grade': 'K'},
+})
+EXTRA.update({
+    'voice-lab': {'title': 'Voice Lab', 'subject': 'science', 'grade': '8'},
+    'living-earth': {'title': 'Living Earth', 'subject': 'science', 'grade': '6'},
+    'sky-dome': {'title': 'Sky Dome', 'subject': 'science', 'grade': '1'},
+    'microscope-bench': {'title': 'Microscope Bench', 'subject': 'science', 'grade': '6'},
+    'circuit-bench': {'title': 'Circuit Bench', 'subject': 'science', 'grade': '8'},
+    'graph-studio': {'title': 'Graph Studio', 'subject': 'math', 'grade': '9'},
+    'compass-and-straightedge': {'title': 'Compass and Straightedge', 'subject': 'math', 'grade': '10'},
+    'poets-workbench': {'title': "Poet's Workbench", 'subject': 'ela', 'grade': '7'},
+})
 
 
 def group(i, groups='ABC'):

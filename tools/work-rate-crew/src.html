@@ -1,0 +1,1549 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Work Rate Crew · Add the rates, not the hours · Curio Class</title>
+<meta name="description" content="Run a painting company's schedule board. Combine work rates, build rational equations
+and check extraneous roots. Grade 11 Algebra 2. Works offline.">
+<!--
+Work Rate Crew, Curio Class. Grade 11 Algebra 2. Students drive.
+A-APR.D.6, A-APR.D.7 and A-REI.A.2. All crews, jobs and prices are made up.
+Mathematics: CCSS High School Algebra; OpenStax Intermediate Algebra 2e 7.4 and 7.5.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. One offline file, no network requests.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#b8e0a0; --brand-ink:#10200a; --panel:#18222c; --sec-bg:#1b2430;
+  --paper:#10191e; --ink:#eff3ee; --muted:#b6c2c5; --line:#3d5058;
+  --head-bg:#111d23; --btn:#25353e; --btn-line:#667e86; --focus:#ffe298;
+}
+
+
+body { grid-template-rows:auto minmax(0,1fr) auto; }
+header { padding:12px 20px; gap:12px; }
+.mark { width:44px; height:44px; border-radius:9px; background:var(--brand); flex:none; }
+h1 { font-size:25px; letter-spacing:-.7px; }
+h1 small { font-size:13px; margin-top:5px; }
+.seg { border-radius:7px; border-width:1px; }
+.seg button,.icon-btn { min-height:44px; min-width:44px; font-size:14px; padding:0 13px; }
+.icon-btn { border-radius:7px; border-width:1px; }
+main { display:grid; grid-template-columns:230px minmax(0,1fr) 310px; gap:14px; padding:14px 18px; }
+.board { display:flex; flex-direction:column; gap:12px; min-height:0; min-width:0; }
+.eyebrow { font-size:10px; font-weight:750; letter-spacing:.15em; text-transform:uppercase; color:var(--muted); }
+.callcard { position:relative; background:#e6e9da; color:#23322d; padding:17px 15px 14px; border-radius:3px 3px 10px 3px;
+  box-shadow:0 3px 0 #0004; border-top:6px solid #b8e0a0; }
+.callcard:before { content:''; position:absolute; top:-10px; left:40%; width:45px; height:12px;
+  border-radius:4px; background:linear-gradient(#aeb8ae,#66746e); box-shadow:0 1px 3px #0004; }
+.callcard .eyebrow { color:#435b4b; }
+.callcard h2 { font-size:21px; margin:6px 0 10px; letter-spacing:-.5px; }
+.callcard p { margin:0; font-size:14px; line-height:1.45; }
+.calls-nav { display:flex; gap:5px; margin-top:12px; }
+.calls-nav button { flex:1; min-width:0; padding:0; background:#d4dccc; color:#253a2a; border-color:#83977f; }
+.calls-nav button[aria-pressed=true] { background:#263f32; color:white; border-color:#263f32; }
+.crew-title { display:flex; justify-content:space-between; align-items:center; }
+.crew-title span:last-child { font-size:10px; color:var(--muted); }
+.crews { display:grid; gap:8px; }
+.crew { display:grid; grid-template-columns:64px 1fr; align-items:center; text-align:left; min-height:90px; padding:7px 10px 7px 4px;
+  border:1px solid #51636b; border-left:4px solid var(--crew-color); border-radius:6px;
+  background:linear-gradient(110deg,#30414b,#1c2c35); box-shadow:0 3px 7px #0003; position:relative; }
+.crew img { width:64px; height:70px; object-fit:contain; filter:drop-shadow(1px 4px 2px #0005); }
+.crew b { display:block; font-size:15px; margin-bottom:4px; }
+.crew small { display:block; color:#c5d1d1; font-size:12px; line-height:1.4; }
+.crew[aria-pressed=true] { border-color:var(--crew-color); background:linear-gradient(110deg,#3b514f,#263a3a); }
+.crew[aria-pressed=true]:after { content:'ASSIGNED'; position:absolute; top:4px; right:7px; font-size:8px;
+  letter-spacing:.08em; color:var(--crew-color); }
+.crew[aria-pressed=true] img { transform:rotate(-6deg); }
+.privacy { margin-top:auto; color:#b3c1bd; font-size:11px; line-height:1.4; }
+.wallcol { min-width:0; min-height:0; display:flex; flex-direction:column; border:1px solid #657568; border-radius:10px;
+  overflow:hidden; box-shadow:0 8px 25px #0003; background:#253b33; }
+.scenehead { padding:12px 16px; background:#23362f; display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.scenehead b { font-size:14px; }
+.live { display:inline-flex; gap:7px; align-items:center; font-size:10px; letter-spacing:.1em; color:#d5e7cf; }
+.live:before { content:''; width:6px; height:6px; border-radius:50%; background:#b8e0a0; animation:light 3s ease-in-out infinite; }
+@keyframes light { 50% { opacity:.35; box-shadow:0 0 10px #c6edb9; } }
+.street { flex:1; position:relative; min-height:180px; isolation:isolate; overflow:hidden;
+  background:#acbea5 url(art:wrc-street) center/cover; }
+.street:after { content:''; position:absolute; inset:auto 0 0; height:20%; background:linear-gradient(transparent,#13282088);
+  z-index:2; pointer-events:none; }
+.housewrap { position:absolute; left:50%; bottom:13%; width:min(88%,680px); aspect-ratio:850/689;
+  transform:translateX(-50%); filter:drop-shadow(7px 12px 6px #273c3444); }
+.house { position:absolute; width:100%; height:100%; object-fit:fill; }
+.paintmask { position:absolute; inset:0; mask:url(art:wrc-house) center/100% 100% no-repeat; mix-blend-mode:multiply; }
+.paintband { position:absolute; top:0; bottom:0; opacity:.79; }
+.rolling { box-shadow:inset -4px 0 0 #fff8; }
+.crew-pills { position:absolute; bottom:4%; left:14px; right:14px; display:flex; justify-content:space-between; z-index:3; gap:5px; }
+.crew-pill { background:#13251ff0; border:1px solid var(--crew-color); border-radius:5px; padding:5px 9px;
+  font-size:12px; color:#fff; box-shadow:0 2px 6px #0004; }
+.crew-pill:before { content:''; display:inline-block; width:8px; height:8px; margin-right:5px; background:var(--crew-color); }
+.dispatch { position:absolute; top:16px; left:16px; padding:9px 12px; background:#f3f0ddeb; color:#283c31;
+  font:700 12px var(--readout-font); box-shadow:1px 3px 7px #0003; border-radius:2px; }
+.clock { position:absolute; top:14px; right:14px; background:#192d25ed; color:#f4f0dc; padding:9px 12px;
+  border-radius:6px; font:700 17px var(--readout-font); box-shadow:0 3px 7px #0004; }
+.scene-gear { position:absolute; width:64px; height:78px; object-fit:contain; bottom:12%; z-index:3;
+  filter:drop-shadow(3px 5px 3px #0004); }
+.site-readout { background:#1c2d27; padding:13px 16px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.site-readout strong { font:600 23px var(--readout-font); color:#e9e8cf; }
+.site-readout small { display:block; font-size:10px; color:#c7d4c4; margin-top:4px; }
+.site-readout p { font-size:12px; line-height:1.4; margin:0; text-align:right; max-width:65%; }
+.progress { height:5px; background:#14231d; }
+.progress span { display:block; height:100%; width:0; background:#b8e0a0; }
+.panel { border:1px solid #52666b; border-radius:8px; padding:16px; overflow:visible; gap:10px; min-width:0;
+  background:radial-gradient(at top right,#293c43,#18242c 70%); }
+.panel h2 { margin:0; font-size:20px; letter-spacing:-.4px; }
+.steps { display:flex; gap:5px; margin:2px 0 7px; }
+.steps span { flex:1; height:3px; background:#47575c; }
+.steps span.current { background:var(--brand); }
+.sum { padding:15px 8px; color:#e8e8cb; font:600 23px var(--readout-font); text-align:center; background:#0f1e25;
+  border-radius:5px; border-bottom:1px solid #5c7068; margin-bottom:12px; overflow-wrap:anywhere; }
+.field-label { display:block; font-size:12px; margin:9px 0 5px; color:#d9e2de; }
+input.num,.panel select,.quote select { width:100%; min-height:44px; min-width:0; }
+.panel input.num { font-size:18px; }
+select { color:var(--ink); background:#10222b; border:1px solid #6b828a; border-radius:6px; padding:5px 8px; font:14px system-ui; }
+.actionrow { display:flex; gap:8px; margin-top:12px; }
+.actionrow button { flex:1; }
+.feedback { font-size:13px; line-height:1.4; min-height:39px; margin:5px 0; color:#d9e3d5; }
+.feedback.bad { color:#ffd0b4; }
+.feedback.good { color:#c7edb1; }
+.hint { font-size:13px; line-height:1.45; min-height:60px; padding-top:10px; border-top:1px solid #42565b; margin-top:auto; }
+.rootrow { display:grid; grid-template-columns:46px 1fr; gap:6px; align-items:center; margin:8px 0; }
+.rootrow .readout { grid-row:span 2; color:#ffe9bc; font-size:18px; }
+.root-proof-label { display:block; font-size:11px; line-height:1.25; margin:4px 0; }
+#root-proof { font-size:14px; }
+@media (max-height:650px) {
+  .roots-step #sum { display:none; }
+}
+@media (max-width:760px) and (max-aspect-ratio:1.3) {
+  .roots-step #sum { display:none; }
+  body.root-check .wallcol { min-height:180px; }
+  body.root-check .street { min-height:110px; }
+}
+.time-answer { color:#d3e9bf; font:600 20px/1.6 var(--readout-font); padding:8px 0; }
+.tiny { color:var(--muted); font-size:11px; line-height:1.4; }
+.ledger { display:grid; gap:5px; margin:8px 0; }
+.ledger div { font:12px/1.5 var(--readout-font); color:#dbe4dc; background:#20332d; padding:6px; border-radius:4px; }
+.board>.ledger { order:4; margin:0; }
+.board>.ledger div { font-size:11px; line-height:1.4; }
+footer { display:flex; align-items:center; gap:12px; padding:9px 18px; background:#101c22; border-top:1px solid #35494b; }
+.jobstamps { display:flex; gap:7px; flex:1; }
+.stamp { border:1px dashed #586d6e; color:#a8b9b5; padding:5px 10px; border-radius:4px; font-size:11px; }
+.stamp.done { color:#d4edbf; border:1px solid #b8e0a0; background:#233a2c; }
+#clear { font-size:12px; }
+.footerbrand { color:#bac8c2; font-size:11px; }
+.quote { grid-column:1/-1; min-height:0; display:grid; grid-template-columns:minmax(0,1fr) 310px; gap:16px; }
+.quotesheet { display:flex; flex-direction:column; min-height:0; min-width:0; padding:16px 24px 12px;
+  border:1px solid #6c8073; border-radius:8px; background:radial-gradient(at top,#293d39,#152727); }
+.quotehead { display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.quotehead h2 { margin:4px 0; font-size:24px; }
+.rewrite { display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap;
+  margin:10px 0; font:20px var(--readout-font); }
+.rewrite input.num { width:70px; text-align:center; }
+.frac { display:inline-flex; flex-direction:column; text-align:center; vertical-align:middle; }
+.frac span:first-child { border-bottom:1px solid #c4d8bf; padding:0 8px 4px; }
+.frac span:last-child { padding-top:4px; }
+.graphframe { flex:1; min-height:160px; position:relative; }
+#graph { width:100%; height:100%; display:block; overflow:visible; }
+.quote .sliderrow { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:18px; }
+.quote .gr-slider label { font-size:12px; color:var(--muted); }
+.quoteread { font:700 19px var(--readout-font); color:#d6edc5; }
+.audit { grid-column:1/-1; display:grid; grid-template-columns:210px minmax(0,1fr) 280px; min-height:0; gap:16px; }
+.auditboard { display:flex; flex-direction:column; gap:10px; }
+.sheetnav { display:grid; gap:8px; }
+.sheetnav .btn { text-align:left; padding:12px; }
+.paper { color:#1b1b1b; background:#d8c68c url(art:wrc-paper) center/100% 100%; border-radius:3px; min-height:0;
+  padding:clamp(18px,4vh,38px) clamp(20px,5vw,65px); box-shadow:0 12px 25px #0004; min-width:0;
+  display:flex; flex-direction:column; justify-content:center; position:relative; }
+.paper:before { content:''; position:absolute; top:-6px; left:42%; width:16%; height:13px;
+  background:linear-gradient(#aeb7b3,#596961); border-radius:4px; box-shadow:0 2px 4px #0003; }
+.paper h2 { font-size:14px; text-transform:uppercase; letter-spacing:.12em; margin:0 0 16px; }
+.paper .worksheet { background:#f3efe4f5; border:1px solid #b5aa90; padding:24px; border-radius:3px; }
+.equation { font:600 clamp(16px,1.7vw,25px)/1.7 var(--readout-font); overflow-wrap:anywhere; }
+.workings { font:14px/1.9 var(--readout-font); border-top:1px solid #b8b2a3; margin-top:12px; padding-top:12px; }
+.original { background:#e6e6d2; padding:10px; margin-top:12px; font:13px/1.6 var(--readout-font); min-height:62px; }
+.paper[data-seal] .worksheet { border:2px solid #53734b; box-shadow:inset 0 0 0 3px #53734b18; }
+.paper[data-seal="WORKED EXAMPLE"] .worksheet { border-color:#947037; }
+.paper[data-seal]:after { content:attr(data-seal); position:absolute; right:16px; bottom:10px;
+  border:2px solid #48623d; border-radius:3px; padding:3px 7px; color:#344e2c;
+  background:#f3efe4ed; font:700 10px var(--readout-font); letter-spacing:.08em; transform:rotate(-4deg); }
+.auditrow { display:grid; grid-template-columns:48px minmax(0,1fr); align-items:center; gap:6px; margin-bottom:10px; }
+.auditrow input { grid-column:1/-1; }
+.auditrow .num { font-size:13px; }
+.audit .btn { white-space:normal; }
+.calm .live:before { animation:none!important; }
+.calm .crew img { transform:none!important; }
+.calm .rolling { box-shadow:none; }
+.calls-nav { display:none; }
+#call-picker { width:100%; min-height:44px; background:#d4dccc; color:#253a2a; border-color:#83977f;
+  font-size:13px; margin-top:10px; }
+.deadline-solve #workform { display:grid; grid-template-columns:1fr 1fr; gap:5px 8px; }
+.deadline-solve #sum { grid-column:1/-1; }
+.deadline-solve #deadline-fields { display:contents; }
+.deadline-solve #answer-fields { grid-column:1; grid-row:2; }
+.deadline-solve #cost-fields { grid-column:2; grid-row:2; }
+.deadline-solve #meet-fields,.deadline-solve .actionrow { grid-column:1/-1; }
+.deadline-solve .field-label { min-height:28px; }
+#audit-check { margin-top:9px; }
+.dispatch,.clock { z-index:4; }
+.feedback:empty { min-height:0; margin:0; }
+.sum.compact { font-size:14px; padding:6px; }
+input::placeholder { font:12px system-ui; }
+@media (max-height:500px) and (min-aspect-ratio:1.3) {
+  .quotehead .eyebrow { display:none; }
+  .quotehead h2 { margin:0; }
+  .quotehead .tiny { display:none; }
+  .rewrite { font-size:14px; gap:6px; margin:3px 0; }
+  .rewrite input.num { width:55px; font-size:14px; }
+  .quote .panel { padding:6px; gap:1px!important; }
+  .quote .panel .big-btn { min-height:44px; }
+  .quote .panel .hint { font-size:10px; line-height:1.2; }
+  .quote .field-label { margin:2px 0; }
+  .graphframe { min-height:120px; }
+  .panel>.eyebrow { display:none; }
+  .panel { gap:4px; }
+  .panel .hint { min-height:0; font-size:10px; }
+  .panel .sum { padding:6px; margin-bottom:3px; }
+  .panel .feedback { min-height:0; font-size:10px; }
+  .panel .tiny { margin:2px 0; }
+  .quote .panel { gap:3px; }
+  .quote .field-label { margin:2px 0; font-size:10px; }
+  .quote .tiny { display:none; }
+  .quote .panel h2 { font-size:14px; }
+  .audit .panel h2 { font-size:14px; }
+  .audit .panel h2 { display:none; }
+  .auditboard { gap:5px; }
+  .auditboard>.eyebrow { display:none; }
+  .auditboard h2 { font-size:16px; line-height:1.2; }
+  .auditboard .tiny { font-size:10px; line-height:1.25; margin:0; }
+  .sheetnav { gap:4px; }
+  .audit .panel { padding:7px; gap:3px; }
+  .audit .panel .big-btn { min-height:44px; }
+  #audit-rows { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; }
+  .auditrow { grid-template-columns:1fr!important; gap:2px; margin-bottom:0!important; }
+  .auditrow .readout { white-space:nowrap; }
+  .auditrow:only-child { grid-column:1/-1; grid-template-columns:44px minmax(0,1fr)!important; }
+  .auditrow select { font-size:11px; padding:2px; }
+  #audit-check { margin-top:6px; }
+  .audit .field-label { margin:4px 0; }
+  .deadline-solve #sum { display:none; }
+  .deadline-solve #answer-fields,.deadline-solve #cost-fields { grid-row:1; }
+  .deadline-solve .field-label { min-height:28px; }
+  .deadline-solve #meet-fields .field-label { min-height:14px; }
+  .deadline-solve #meet-fields .field-label { margin:0 0 3px; }
+  .deadline-solve .actionrow { margin-top:0; }
+}
+@media (min-width:1600px) {
+  main { grid-template-columns:270px minmax(0,1fr) 350px; gap:22px; padding:22px 28px; }
+  .crew { min-height:110px; grid-template-columns:82px 1fr; }
+  .crew img { width:78px; height:86px; }
+  .crew b { font-size:18px; } .crew small { font-size:14px; } .callcard p { font-size:16px; }
+}
+@media (max-height:800px) {
+  .housewrap { width:min(80%,560px); max-height:88%; }
+  .callcard { padding:12px; } .callcard h2 { font-size:19px; margin:4px 0 6px; }
+  .crew { min-height:77px; } .crew img { height:59px; }
+  .panel { padding:12px; } .sum { padding:10px 6px; margin-bottom:8px; }
+  .privacy { margin:0; } .site-readout { padding:10px 12px; }
+}
+@media (max-width:1100px) and (min-width:761px) {
+  main { grid-template-columns:185px minmax(0,1fr) 260px; gap:8px; padding:10px; }
+  h1 { font-size:21px; } .mark { display:none; } header { gap:8px; padding:9px 12px; }
+  .seg button,.icon-btn { padding:0 9px; font-size:12px; } .callcard p { font-size:12px; }
+  .crew { grid-template-columns:51px 1fr; padding-right:4px; } .crew img { width:48px; }
+  .crew b { font-size:13px; } .crew small { font-size:11px; } .quote { grid-template-columns:1fr 260px; }
+  .audit { grid-template-columns:150px 1fr 250px; gap:8px; }
+  .paper { padding:20px; } .paper .worksheet { padding:16px; }
+}
+@media (max-height:650px) and (min-width:761px) {
+  .callcard>.eyebrow { display:none; }
+  .callcard { padding:8px; }
+  .callcard p { font-size:11px!important; line-height:1.3; }
+  .crew { padding:3px 5px; grid-template-columns:45px 1fr; min-height:50px!important; }
+  .crew img { width:43px; height:40px!important; }
+  .crew b { font-size:13px; margin-bottom:2px; }
+  .crew small { font-size:10px; line-height:1.2; }
+  .rootrow { grid-template-columns:35px .7fr 1fr; gap:4px; }
+  .rootrow .readout { grid-row:auto; }
+  .rootrow select { font-size:11px; padding:3px; }
+  header { padding:6px 10px; } h1 small { display:none; }
+  main { gap:8px; padding:8px; } .callcard p { font-size:12px; line-height:1.3; }
+  .callcard h2 { font-size:16px; } .crew { min-height:64px; } .crew img { height:49px; }
+  .crews { gap:5px; } .board { gap:7px; } .crew-title { display:none; }
+  .panel { padding:10px; gap:5px; } .panel h2 { font-size:17px; }
+  .hint { min-height:42px; padding-top:6px; font-size:12px; } .steps { margin:0; }
+  .sum { font-size:18px; } .feedback { min-height:32px; font-size:12px; }
+  .field-label { margin-top:4px; } .actionrow { margin-top:7px; }
+  .scenehead { padding:8px 10px; } .site-readout strong { font-size:18px; } footer { padding:5px 10px; }
+  .quotesheet { padding:10px 18px; } .quotehead h2 { font-size:18px; } .rewrite { margin:4px 0; }
+  .paper .worksheet { padding:12px; } .paper h2 { margin-bottom:8px; }
+  .workings { margin-top:5px; padding-top:5px; }
+}
+@media (max-width:760px) and (min-aspect-ratio:1.3) {
+  header { gap:6px; padding:6px 8px; } .mark { display:none; } h1 { font-size:18px; } h1 small { display:none; }
+  .seg button,.icon-btn { font-size:11px; padding:0 7px; }
+  main { grid-template-columns:140px minmax(0,1fr) 205px; padding:7px; gap:7px; }
+  .board { gap:6px; } .callcard { padding:8px; border-top-width:4px; }
+  .callcard h2 { font-size:14px; margin:3px 0; } .callcard p { font-size:10px; line-height:1.3; }
+  .eyebrow { font-size:9px; } .calls-nav { gap:2px; margin-top:6px; } .calls-nav button { font-size:11px; }
+  .crew-title,.privacy { display:none; } .crews { gap:4px; }
+  .crew { min-height:51px; padding:3px; grid-template-columns:37px 1fr; }
+  .crew img { width:35px; height:43px; } .crew b { font-size:11px; margin:1px 0; }
+  .crew small { font-size:10px; line-height:1.15; } .crew[aria-pressed=true]:after { display:none; }
+  .scenehead { padding:7px; } .scenehead b { font-size:11px; } .live { display:none; }
+  .street { min-height:130px; } .housewrap { width:92%; bottom:19%; }
+  .dispatch { top:8px; left:6px; padding:5px; font-size:10px; }
+  .clock { top:37px; right:6px; padding:5px; font-size:13px; }
+  .crew-pills { left:4px; right:4px; bottom:4%; } .crew-pill { font-size:10px; padding:4px; }
+  .scene-gear { width:40px; height:50px; } .site-readout { padding:8px; gap:5px; flex-wrap:wrap; }
+  .site-readout strong { font-size:16px; } .site-readout p { font-size:10px; max-width:100%; text-align:left; }
+  .panel { padding:9px; gap:4px; } .panel h2 { font-size:16px; }
+  .sum { font-size:17px; padding:8px 4px; margin-bottom:5px; }
+  .field-label { font-size:11px; margin:4px 0; } .panel input.num { font-size:15px; }
+  .panel .btn,.panel .big-btn { font-size:12px; padding:0 6px; } .steps { margin:2px 0; }
+  .actionrow { gap:5px; margin-top:6px; } .feedback { font-size:11px; min-height:31px; margin:2px 0; }
+  .hint { font-size:11px; min-height:45px; line-height:1.3; padding-top:5px; } .tiny { font-size:10px; }
+  footer { padding:4px 8px; gap:6px; } .stamp { font-size:10px; padding:3px 5px; }
+  .footerbrand { display:block; font-size:10px; } .jobstamps { gap:4px; }
+  .quote { grid-template-columns:minmax(0,1fr) 205px; gap:7px; } .quotesheet { padding:8px 15px; }
+  .quotehead h2 { font-size:16px; } .rewrite { font-size:14px; gap:6px; margin:3px 0; }
+  .rewrite input.num { width:55px; font-size:14px; } .quotehead .tiny { display:none; }
+  .quoteread { font-size:14px; } .quote .sliderrow { gap:8px; } .graphframe { min-height:120px; }
+  .audit { grid-template-columns:105px minmax(0,1fr) 205px; gap:7px; } .paper { padding:12px; }
+  .paper .worksheet { padding:10px; } .paper h2 { font-size:10px; margin-bottom:8px; }
+  .equation { font-size:12px; } .workings { font-size:11px; margin-top:5px; padding-top:4px; }
+  .original { font-size:10px; padding:6px; min-height:42px; margin-top:5px; }
+  .sheetnav .btn { font-size:11px; padding:5px; } .auditrow { margin-bottom:5px; }
+  .rootrow { grid-template-columns:30px 1fr; margin:3px 0; gap:3px; }
+  .rootrow select { font-size:11px; padding:3px; } .time-answer { font-size:15px; }
+  main { grid-template-columns:140px minmax(0,1fr) 230px; }
+  .crew { min-height:44px; } .crew img { height:36px; }
+  .callcard>.eyebrow { display:none; } #call-picker { margin-top:6px; font-size:11px; }
+  .rootrow { grid-template-columns:28px .7fr 1fr; gap:3px; }
+  .rootrow .readout { grid-row:auto; font-size:14px; }
+  .auditrow { grid-template-columns:42px 1fr; } .auditrow .readout { font-size:11px; }
+  .audit .hint { min-height:0; font-size:10px; }
+  .board>.ledger { gap:3px; }
+  .board>.ledger div { font-size:10px; line-height:1.3; padding:4px; }
+}
+@media (max-width:760px) and (max-aspect-ratio:1.3) {
+  body { display:flex; flex-direction:column; min-height:100dvh; }
+  header { padding:8px; gap:6px; } .mark { display:none; } h1 { font-size:20px; flex-basis:100%; } h1 small { display:none; }
+  .seg { flex:1; } .seg button { flex:1; padding:0 7px; font-size:11px; }
+  .icon-btn { padding:0 8px; font-size:11px; } #read { margin-left:auto; }
+  main { display:contents; } .board { display:contents; }
+  .callcard { margin:8px 8px 0; padding:8px 10px; order:1; } .callcard:before { display:none; }
+  .callcard h2 { font-size:17px; margin:0 0 3px; padding-right:170px; min-height:44px; }
+  .callcard .eyebrow { display:none; } .callcard p { font-size:12px; line-height:1.3; }
+  .calls-nav { position:absolute; right:8px; top:3px; margin:0; gap:3px; }
+  .calls-nav button { width:30px; min-width:30px; font-size:11px; }
+  .panel { order:2; margin:8px 8px 0; padding:9px 10px; display:grid; grid-template-columns:1fr; gap:4px; }
+  .panel .eyebrow,.steps { display:none; } .panel h2 { font-size:16px; }
+  .sum { padding:5px; font-size:18px; margin:0; } .field-label { margin:4px 0; font-size:11px; }
+  .actionrow { margin-top:5px; } .feedback { min-height:0; font-size:12px; margin:2px 0; }
+  .hint { min-height:0; font-size:11px; padding-top:5px; }
+  .wallcol { order:3; margin:8px 8px 0; min-height:210px; }
+  .street { min-height:175px; } .housewrap { width:190px; max-height:95%; bottom:10%; }
+  .scenehead { padding:6px 10px; } .scenehead b { font-size:11px; } .site-readout { padding:6px 10px; }
+  .site-readout strong { font-size:17px; } .site-readout small { display:none; } .site-readout p { font-size:10px; }
+  .dispatch { font-size:10px; top:7px; left:7px; padding:5px; }
+  .clock { font-size:12px; top:7px; right:7px; padding:5px; }
+  .crew-pills { bottom:4%; left:7px; right:7px; } .crew-pill { font-size:10px; padding:3px 5px; }
+  .scene-gear { width:38px; height:44px; } .crew-title { display:none; }
+  .crews { order:4; display:flex; margin:8px 8px 0; gap:5px; }
+  .crew { flex:1; grid-template-columns:36px 1fr; min-width:0; min-height:65px; padding:3px; border-left-width:3px; }
+  .crew img { width:35px; height:45px; } .crew b { font-size:11px; margin:0; }
+  .crew small { font-size:10px; line-height:1.25; } .crew[aria-pressed=true]:after { display:none; }
+  .privacy { order:5; margin:5px 10px; font-size:10px; }
+  footer { order:6; padding:5px 8px; gap:5px; margin-top:auto; }
+  .footerbrand { display:none; } .jobstamps { gap:3px; } .stamp { font-size:10px; padding:4px; }
+  #clear { padding:0 7px; font-size:10px; }
+  .quote,.audit { display:contents; } .quotesheet { order:1; margin:8px 8px 0; padding:12px 16px; height:340px; flex:none; }
+  .quotehead h2 { font-size:19px; } .quotehead .tiny { display:none; }
+  .rewrite { font-size:16px; gap:6px; margin:6px 0; } .rewrite input.num { width:57px; }
+  .quoteread { font-size:14px; } .graphframe { min-height:130px; }
+  .auditboard { order:1; margin:8px 8px 0; } .sheetnav { grid-template-columns:repeat(4,1fr); gap:4px; }
+  .sheetnav .btn { padding:4px; font-size:11px; } .auditboard p { margin:0; font-size:12px; }
+  .paper { order:2; margin:8px 8px 0; min-height:255px; padding:22px; }
+  .paper .worksheet { padding:14px; } .paper h2 { font-size:11px; margin-bottom:8px; }
+  .equation { font-size:14px; } .workings { font-size:12px; margin-top:6px; padding-top:6px; }
+  .original { font-size:11px; min-height:45px; margin-top:8px; padding:6px; }
+  .audit .panel { order:3; } .rootrow { margin:4px 0; }
+  #call-picker { position:absolute; top:3px; right:8px; width:155px; font-size:11px; margin:0; }
+  .callcard h2 { padding-right:0; width:calc(100% - 165px); }
+  .panel { padding:8px 10px; gap:3px; } .panel h2 { font-size:15px; }
+  .sum { font-size:16px; padding:3px; } .hint { font-size:10px; line-height:1.25; }
+  .wallcol { min-height:clamp(210px,40vw,320px); }
+  .street { min-height:clamp(140px,30vw,250px); }
+  .housewrap { height:calc(100% - 12px); width:auto; max-width:80%; max-height:none; bottom:5%; }
+  .scenehead .live { display:none; } .site-readout { flex:none; } .privacy { margin:3px 10px; }
+  .rootrow { grid-template-columns:35px .7fr 1fr; } .rootrow .readout { grid-row:auto; font-size:16px; }
+  .quotesheet { height:350px; padding:10px 14px; } .quotehead .eyebrow { display:none; }
+  .rewrite { font-size:14px; gap:5px; margin:5px 0; }
+  .rewrite>span:first-child { flex-basis:100%; text-align:center; font-size:13px; }
+  .rewrite input.num { width:50px; } .quote .quoteread { font-size:12px; }
+  .quote .sliderrow { gap:6px; } .quote .gr-slider label { font-size:10px; }
+  #quotepanel { display:grid; grid-template-columns:1fr 1fr; gap:4px 8px; }
+  #quotepanel h2,#quote-feedback,#quote-hint { grid-column:1/-1; }
+  #quotepanel>.tiny { display:none; }
+  #quotepanel label[for=under2] { grid-column:1; grid-row:2; } #under2 { grid-column:1; grid-row:3; }
+  #quotepanel label[for=four] { grid-column:2; grid-row:2; } #four { grid-column:2; grid-row:3; }
+  #quotepanel label[for=sign] { grid-column:1; grid-row:4; } #sign { grid-column:1; grid-row:5; }
+  #quote-check { grid-column:2; grid-row:5; font-size:13px; }
+  #quotepanel .field-label { font-size:11px; margin:2px 0; } #quotepanel select { font-size:12px; }
+  .auditboard h2 { font-size:18px; } .auditboard .eyebrow { display:none; }
+  .auditboard { gap:5px; } .auditboard .tiny { font-size:11px; }
+  .paper { min-height:225px; padding:14px; } .audit .panel { margin-top:6px; }
+  .auditrow { grid-template-columns:60px 1fr; margin-bottom:5px; } #auditpanel h2 { font-size:15px; }
+  .audit .paper { min-height:195px; padding:12px; }
+  .audit .paper .worksheet { padding:10px; }
+  .audit .workings { font-size:11px; line-height:1.6; }
+  #audit-rows { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+  .auditrow { grid-template-columns:1fr; gap:2px; }
+  .auditrow .readout { white-space:nowrap; }
+  .deadline-solve #sum,.deadline-solve .feedback.good { display:none; }
+  .deadline-solve #workform { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .deadline-solve #answer-fields { grid-column:1; grid-row:1; }
+  .deadline-solve #cost-fields { grid-column:2; grid-row:1; }
+  .deadline-solve #meet-fields { grid-column:3; grid-row:1; }
+  .deadline-solve .actionrow { grid-column:1/-1; grid-row:2; }
+  .deadline-solve .field-label { min-height:36px; font-size:10px; margin:3px 0; }
+  .deadline-solve select { font-size:11px; padding:3px; }
+}
+
+@media (max-height:500px) and (min-aspect-ratio:1.3) {
+  .deadline-solve #workform { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .deadline-solve #answer-fields { grid-column:1; grid-row:1; }
+  .deadline-solve #cost-fields { grid-column:2; grid-row:1; }
+  .deadline-solve #meet-fields { grid-column:3; grid-row:1; }
+  .deadline-solve .actionrow { grid-column:1/-1; grid-row:2; }
+  .deadline-solve .field-label,
+  .deadline-solve #meet-fields .field-label { min-height:36px; font-size:10px; margin:3px 0; }
+  .deadline-solve select { font-size:11px; padding:3px; }
+}
+
+@media (max-height:500px) and (min-aspect-ratio:1.3) {
+  .panel.roots-step { gap:1px; }
+  .roots-step .rootrow { margin:1px 0; }
+  .roots-step .root-proof-label { margin:2px 0; font-size:10px; }
+  .audit .panel { gap:2px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <svg class="mark" viewBox="0 0 44 44" aria-hidden="true"><path d="M7 17L22 6 37 17V37H7Z" fill="#314d36"/>
+    <path d="M12 20H32M12 25H32M12 30H32" stroke="#b8e0a0" stroke-width="2"/>
+    <path d="M20 29H26V38H20Z" fill="#b8e0a0"/></svg>
+  <h1>Work Rate Crew<small>Add the rates, not the hours.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-calls" aria-pressed="true">Calls</button>
+    <button id="m-quote" aria-pressed="false">Quote sheet</button>
+    <button id="m-audit" aria-pressed="false">Office audit</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main id="workspace">
+  <div class="board" id="board">
+    <section class="callcard" id="callcard" aria-label="Current call">
+      <div class="eyebrow">Dispatch / Call <span id="callnum">01</span></div>
+      <h2 id="calltitle">Average myth</h2><p id="calltext"></p>
+      <nav class="calls-nav" aria-label="Choose call">
+        <button class="btn" id="call1">1</button><button class="btn" id="call2">2</button>
+        <button class="btn" id="call3">3</button><button class="btn" id="call4">4</button>
+        <button class="btn" id="call5">5</button>
+      </nav>
+      <select id="call-picker" aria-label="Choose call"><option value="1">1 · Average myth</option>
+        <option value="2">2 · Deadline</option><option value="3">3 · New hire</option>
+        <option value="4">4 · Late start</option><option value="5">5 · Sprayer</option></select>
+    </section>
+    <div class="crew-title"><span class="eyebrow">Available crews</span><span>Tap to assign</span></div>
+    <div class="crews" id="crews" role="group" aria-label="Assign crews"></div>
+    <p class="privacy">Made-up company. Constant rates.<br>Board saved only on this device.</p>
+  </div>
+  <section class="wallcol" id="wallcol" aria-label="Paint the house">
+    <div class="scenehead"><b id="site-title">Lee house / work site</b><span class="live">DISPATCH LIVE</span></div>
+    <div class="street" id="street">
+      <div class="dispatch" id="dispatch">CREWS NOT ASSIGNED</div><div class="clock" id="clock">0.00 h</div>
+      <div class="housewrap">
+        <img class="house" id="house" src="art:wrc-house" alt="Weathered clapboard house with four windows and a small porch">
+        <div class="paintmask" aria-hidden="true">
+          <div class="paintband" id="band0"></div><div class="paintband" id="band1"></div><div class="paintband" id="band2"></div>
+        </div>
+      </div>
+      <img class="scene-gear" id="gear0" alt="" hidden><img class="scene-gear" id="gear1" alt="" hidden>
+      <img class="scene-gear" id="gear2" alt="" hidden><div class="crew-pills" id="crew-pills"></div>
+    </div>
+    <div class="progress" role="progressbar" aria-label="House painted" aria-valuemin="0" aria-valuemax="100" id="paint-progress">
+      <span id="progress-fill"></span></div>
+    <div class="site-readout"><div><strong id="coverage">0 houses</strong><small>PROGRESS STAYS ON THIS DEVICE</small></div>
+      <p id="site-status">Choose your crews. Predict when their paint will meet.</p></div>
+  </section>
+  <aside class="panel" id="callpanel">
+    <div class="eyebrow">Work order / your calculation</div><h2 id="step-title">1. Rate sum</h2>
+    <div class="steps" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+    <form id="workform" autocomplete="off">
+      <div class="sum" id="sum">? + ?</div>
+      <div id="answer-fields"><label class="field-label" id="answer-label" for="answer">Total rate, as one fraction</label>
+        <input class="num" id="answer" spellcheck="false" inputmode="text" aria-describedby="feedback"></div>
+      <div id="deadline-fields" hidden>
+        <div id="cost-fields">
+        <label class="field-label" for="cost">Total cost, dollars</label>
+        <input class="num" id="cost" inputmode="decimal" aria-label="Total crew cost, dollars">
+        </div><div id="meet-fields">
+        <label class="field-label" for="deadline">Finish within 3 h?</label>
+        <select id="deadline"><option value="">Choose</option><option value="yes">Yes, including exactly 3 h</option>
+          <option value="no">No</option></select>
+        </div>
+      </div>
+      <div id="roots-fields" hidden></div>
+      <div id="paint-fields" hidden><div class="time-answer" id="exact-answer"></div><p class="tiny" id="solve-note"></p></div>
+      <div id="cheapest-fields" hidden>
+        <label class="field-label" for="cheapest">Cheapest crew that meets the deadline</label>
+        <select id="cheapest"><option value="">Choose</option><option value="AC">Ana + Cy</option><option value="BC">Ben + Cy</option>
+          <option value="ABC">All three</option><option value="AB">Ana + Ben</option></select>
+        <label class="field-label" for="cheapest-cost">Total cost, dollars</label>
+        <input class="num" id="cheapest-cost" aria-label="Cost of cheapest qualifying crew, dollars">
+      </div>
+      <div class="actionrow"><button class="big-btn" id="check" type="submit">Check rate</button>
+        <button class="btn" id="paint" type="button">Paint</button></div>
+    </form>
+    <div class="ledger" id="ledger" hidden></div><p class="feedback" id="feedback" aria-live="polite"></p>
+    <p class="hint" id="hint">Tap crew cards to assign them, then type their rate sum as one fraction.</p>
+  </aside>
+  <section class="quote" id="quote" hidden>
+    <div class="quotesheet">
+      <div class="quotehead"><div><div class="eyebrow">Back office / rational rewrite</div><h2>A partner for Ana</h2></div>
+        <span class="tiny">Partner takes x hours alone.<br>Constant rates, one house.</span></div>
+      <div class="rewrite"><span>T(x) = 4x/(x + 4) =</span><input class="num" id="q" aria-label="Polynomial part q">
+        <span>+</span><span class="frac"><span><input class="num" id="r" aria-label="Remainder r"></span><span>x + 4</span></span>
+        <button class="btn" id="rewrite-check">Check</button></div>
+      <div class="graphframe" id="graphframe"><svg id="graph" role="img" aria-label="Combined time T(x) = 4x/(x+4), below four hours"></svg></div>
+      <div class="sliderrow"><div id="slider"></div><output class="quoteread" id="quote-read"></output></div>
+    </div>
+    <aside class="panel" id="quotepanel"><div class="eyebrow">Read the remainder</div><h2>How fast is fast?</h2>
+      <p class="tiny">Can a partner get the job under 2 hours? Give the strict upper bound on the partner's time.</p>
+      <label class="field-label" for="under2">For positive x, T &lt; 2 when x &lt; …</label>
+      <input class="num" id="under2" aria-label="Strict upper bound on partner hours for a job under two hours">
+      <label class="field-label" for="four">Can T reach 4 h or more?</label>
+      <select id="four"><option value="">Choose</option><option value="yes">Yes</option><option value="no">No</option></select>
+      <label class="field-label" for="sign">16/(x + 4), for x &gt; 0:</label>
+      <select id="sign"><option value="">Choose a sign</option><option value="zero">Zero</option><option value="positive">Positive</option>
+        <option value="negative">Negative</option></select>
+      <button class="big-btn" id="quote-check">Check reasoning</button>
+      <p class="feedback" id="quote-feedback" aria-live="polite"></p>
+      <p class="hint" id="quote-hint">Fill q and r, then press Check. Drag the x slider to test your rewrite.</p>
+    </aside>
+  </section>
+  <section class="audit" id="audit" hidden>
+    <aside class="auditboard"><div class="eyebrow">Crew lead's checking sheets</div><h2 style="margin:0">Office audit</h2>
+      <p class="tiny">Practice sheets, not jobs. Test each root in the original equation.</p>
+      <nav class="sheetnav" aria-label="Choose practice sheet">
+        <button class="btn" id="sheet1">Sheet 1</button><button class="btn" id="sheet2">Sheet 2</button>
+        <button class="btn" id="sheet3">Sheet 3</button><button class="btn" id="sheet4">Sheet 4</button>
+      </nav></aside>
+    <article class="paper" id="paper"><h2>Practice sheet <span id="sheetnum">01</span> / new hire's work</h2>
+      <div class="worksheet"><div class="equation" id="audit-equation"></div><div class="workings" id="audit-work"></div>
+        <div class="original" id="original">Substitute each root yourself to file an audit. Check in the original opens worked practice.</div></div>
+    </article>
+    <aside class="panel" id="auditpanel"><div class="eyebrow">Your verdict</div><h2>Does the answer survive?</h2>
+      <button class="btn" id="substitute">Check in the original</button>
+      <form id="auditform" autocomplete="off"><div id="audit-rows"></div>
+        <label class="field-label" for="audit-denominator">Evidence in root order (use ;)</label>
+        <input class="num" id="audit-denominator" aria-label="For each root: zero denominator or equal value of both sides; separate with semicolons">
+        <button class="big-btn" id="audit-check" style="width:100%">File audit</button></form>
+      <p class="feedback" id="audit-feedback" aria-live="polite"></p>
+      <p class="hint" id="audit-hint">Tap Check in the original. Then mark each root and name any denominator it makes zero.</p>
+    </aside>
+  </section>
+</main>
+<footer><div class="jobstamps" id="jobstamps"></div><span class="footerbrand">Curio Class / made-up company</span>
+  <button class="btn" id="clear">Clear board</button></footer>
+
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+'use strict';
+// Exact rational arithmetic and a small, bounded expression grammar. No executable input.
+const gcd = (a, b) => {
+  a = a < 0n ? -a : a;
+  b = b < 0n ? -b : b;
+  while (b) [a, b] = [b, a % b];
+  return a || 1n;
+};
+function F(n, d = 1n) {
+  n = BigInt(n);
+  d = BigInt(d);
+  if (!d) throw Error('A denominator is zero.');
+  if (d < 0n) { n = -n; d = -d; }
+  const g = gcd(n, d);
+  return {n: n / g, d: d / g};
+}
+const add = (a, b) => F(a.n * b.d + b.n * a.d, a.d * b.d);
+const neg = a => F(-a.n, a.d);
+const sub = (a, b) => add(a, neg(b));
+const mul = (a, b) => F(a.n * b.n, a.d * b.d);
+const div = (a, b) => F(a.n * b.d, a.d * b.n);
+const num = a => Number(a.n) / Number(a.d);
+const fs = a => a.d === 1n ? String(a.n) : `${a.n}/${a.d}`;
+const same = (a, b) => a.n === b.n && a.d === b.d;
+function decimal(s) {
+  if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(s)) throw Error('Use a number or a fraction.');
+  const sign = s.startsWith('-') ? -1n : 1n;
+  const [a, b = ''] = s.replace(/^[+-]/, '').split('.');
+  return F(sign * BigInt((a || '0') + b), 10n ** BigInt(b.length));
+}
+const trim = p => {
+  while (p.length > 1 && p.at(-1).n === 0n) p.pop();
+  return p;
+};
+const pzero = p => p.length === 1 && !p[0].n;
+function padd(a, b) {
+  return trim(Array.from({length: Math.max(a.length, b.length)}, (_, i) => add(a[i] || F(0), b[i] || F(0))));
+}
+const pneg = a => a.map(neg);
+function pmul(a, b) {
+  if (a.length + b.length > 15) throw Error('Keep the equation to the job on the board.');
+  const out = Array.from({length: a.length + b.length - 1}, () => F(0));
+  a.forEach((u, i) => b.forEach((v, j) => { out[i + j] = add(out[i + j], mul(u, v)); }));
+  return trim(out);
+}
+function pdiv(a, b) {
+  if (pzero(b)) throw Error('A denominator is zero.');
+  const r = a.slice();
+  const q = Array.from({length: Math.max(1, a.length - b.length + 1)}, () => F(0));
+  while (!pzero(r) && r.length >= b.length) {
+    const k = r.length - b.length;
+    const c = div(r.at(-1), b.at(-1));
+    q[k] = c;
+    b.forEach((v, i) => { r[i + k] = sub(r[i + k], mul(c, v)); });
+    trim(r);
+  }
+  return [trim(q), trim(r)];
+}
+const monic = a => pzero(a) ? a : a.map(v => div(v, a.at(-1)));
+function pgcd(a, b) {
+  while (!pzero(b)) [a, b] = [b, pdiv(a, b)[1]];
+  return monic(a);
+}
+function rational(n, d = [F(1)], holes = []) {
+  if (pzero(d)) throw Error('A denominator is zero.');
+  const g = pgcd(n, d);
+  n = pdiv(n, g)[0];
+  d = pdiv(d, g)[0];
+  const lead = d.at(-1);
+  return {n: n.map(v => div(v, lead)), d: d.map(v => div(v, lead)), holes};
+}
+function op(a, b, sign) {
+  const holes = [...a.holes, ...b.holes];
+  if (sign === '+') return rational(padd(pmul(a.n, b.d), pmul(b.n, a.d)), pmul(a.d, b.d), holes);
+  if (sign === '-') return rational(padd(pmul(a.n, b.d), pneg(pmul(b.n, a.d))), pmul(a.d, b.d), holes);
+  if (sign === '*') return rational(pmul(a.n, b.n), pmul(a.d, b.d), holes);
+  return rational(pmul(a.n, b.d), pmul(a.d, b.n), [...holes, b.n]);
+}
+function parse(text, variable = 'x') {
+  text = String(text).replaceAll('−', '-').replaceAll('×', '*').replaceAll('²', '^2').replaceAll('÷', '/');
+  if (text.length > 180) throw Error('Keep the expression short.');
+  const tokens = text.match(/\d*\.\d+|\d+|[xt()+\-*/^]/g) || [];
+  if (tokens.join('') !== text.replace(/\s/g, '') || tokens.length > 90) throw Error('Use numbers, the job variable and + - * / ( ).');
+  const ts = [];
+  tokens.forEach((t, i) => {
+    const prev = tokens[i - 1];
+    if (prev && /^(?:\d|\.|x|t|\))/.test(prev) && /^(?:x|t|\()$/.test(t)) ts.push('*');
+    ts.push(t);
+  });
+  let at = 0;
+  function atom() {
+    const t = ts[at++];
+    if (t === '-') return op(rational([F(0)]), atom(), '-');
+    if (t === '+') return atom();
+    let v;
+    if (t === '(') {
+      v = expr();
+      if (ts[at++] !== ')') throw Error('Close each parenthesis.');
+    } else if (t === variable) {
+      v = rational([F(0), F(1)]);
+    } else if (/^(?:\d|\.)/.test(t || '')) {
+      v = rational([decimal(t)]);
+    } else throw Error(`Use ${variable} for the unknown.`);
+    if (ts[at] === '^') {
+      at++;
+      const power = Number(ts[at++]);
+      if (!Number.isInteger(power) || power < 0 || power > 4) throw Error('Use powers from 0 to 4.');
+      let out = rational([F(1)]);
+      for (let i = 0; i < power; i++) out = op(out, v, '*');
+      v = out;
+    }
+    return v;
+  }
+  function term() {
+    let a = atom();
+    while (ts[at] === '*' || ts[at] === '/') {
+      const sign = ts[at++];
+      a = op(a, atom(), sign);
+    }
+    return a;
+  }
+  function expr() {
+    let a = term();
+    while (ts[at] === '+' || ts[at] === '-') {
+      const sign = ts[at++];
+      a = op(a, term(), sign);
+    }
+    return a;
+  }
+  const result = expr();
+  if (at !== ts.length) throw Error('Check the expression.');
+  return result;
+}
+const peval = (p, x) => p.reduceRight((v, c) => add(mul(v, x), c), F(0));
+function eqcheck(text, target, variable) {
+  try {
+    const residual = s => {
+      const sides = s.split('=');
+      if (sides.length !== 2) throw Error('Include one equals sign.');
+      return op(parse(sides[0], variable), parse(sides[1], variable), '-');
+    };
+    const a = residual(text);
+    const b = residual(target);
+    if (pzero(a.n) || a.n.length !== b.n.length) return false;
+    const an = monic(a.n);
+    const bn = monic(b.n);
+    if (!an.every((v, i) => same(v, bn[i]))) return false;
+    // Five exact probes, plus polynomial identity above, stop sampled-value interpolation cheats.
+    for (const value of [F(7,3), F(11,2), F(17,3), F(23,2), F(31,3)]) {
+      if ([...a.holes, a.d, ...b.holes, b.d].some(p => !peval(p, value).n)) continue;
+      if (!same(peval(an, value), peval(bn, value))) return false;
+    }
+    // A rewritten equation must not exclude an actual root of the target.
+    const roots = b.n.length === 2 ? [-num(b.n[0]) / num(b.n[1])] :
+      b.n.length === 3 ? (() => {
+        const [c, d, e] = b.n.map(num);
+        const disc = Math.sqrt(d * d - 4 * e * c);
+        return [(-d + disc) / (2 * e), (-d - disc) / (2 * e)];
+      })() : [];
+    return !roots.some(x => a.holes.some(p => Math.abs(p.reduceRight((v, c) => v*x + num(c), 0)) < 1e-8));
+  } catch { return false; }
+}
+function exprcheck(text, target, variable = 'x') {
+  try {
+    const a = parse(text, variable);
+    const b = parse(target, variable);
+    return pzero(padd(pmul(a.n, b.d), pneg(pmul(b.n, a.d))));
+  } catch { return false; }
+}
+function oneFraction(text) {
+  let s = text.replace(/\s/g,'');
+  const outer = () => {
+    let depth = 0;
+    for (let i=0; i<s.length; i++) {
+      if (s[i] === '(') depth++;
+      if (s[i] === ')') depth--;
+      if (!depth && i<s.length-1) return false;
+    }
+    return s[0] === '(' && s.at(-1) === ')' && depth === 0;
+  };
+  while (outer()) s = s.slice(1,-1);
+  let depth = 0;
+  let divisions = 0;
+  for (let i=0; i<s.length; i++) {
+    if (s[i] === '(') depth++;
+    if (s[i] === ')') depth--;
+    if (!depth && s[i] === '/') divisions++;
+    if (!depth && i>0 && /[+-]/.test(s[i])) return false;
+  }
+  return divisions === 1 && (s.match(/\//g) || []).length === 1;
+}
+function answerValue(text, clock = false) {
+  text = String(text).trim().toLowerCase().replaceAll('−', '-');
+  if (clock && /^\d{1,2}:\d{2}$/.test(text)) {
+    const [h, m] = text.split(':').map(Number);
+    if (h < 8 || h > 12 || m > 59) throw Error('Use a morning clock time after 8:00.');
+    return F((h-8)*60 + m, 60);
+  }
+  const hm = text.match(/^(\d+)\s*h(?:ours?)?\s*(\d+)\s*min(?:utes?)?$/);
+  if (hm) {
+    if (+hm[2] > 59) throw Error('Minutes must be below 60.');
+    return add(F(hm[1]), F(hm[2], 60));
+  }
+  text = text.replace(/\s*(?:hours?|h)$/, '').trim();
+  if (/^[+-]?\d+\s*\/\s*\d+$/.test(text)) {
+    const [n, d] = text.split('/').map(s => s.trim());
+    return F(n, d);
+  }
+  return decimal(text);
+}
+function answerMatches(text, exact, clock = false) {
+  try {
+    const v = answerValue(text, clock);
+    return /\//.test(text) ? same(v, exact) : Math.abs(num(v) - num(exact)) <= .01000000001;
+  } catch { return false; }
+}
+
+const $ = id => document.getElementById(id);
+const show = (id, visible) => { $(id).hidden = !visible; };
+const fmt = (n, digits = 3) => Number(n.toFixed(digits)).toString();
+const COLORS = ['#ffd166', '#5aa9ff', '#ff8a8a'];
+const CREWS = {
+  A: {name:'Ana', hours:4, cost:90, art:'roller', color:COLORS[0]},
+  B: {name:'Ben', hours:6, cost:50, art:'brushes', color:COLORS[1]},
+  C: {name:'Cy', hours:12, cost:30, art:'ladder', color:COLORS[2]},
+  D: {name:'Dee', hours:12, cost:null, art:'can', color:COLORS[1]},
+  S: {name:'Sprayer', hours:4, cost:null, art:'sprayer', color:COLORS[2]}
+};
+const ART = {
+  roller:'art:wrc-gear-roller', brushes:'art:wrc-gear-brushes', ladder:'art:wrc-gear-ladder',
+  can:'art:wrc-gear-can', sprayer:'art:wrc-gear-sprayer'
+};
+const CALLS = [null,
+  {title:'Average myth', site:'Lee house', crews:['A','B'], variable:'t', time:F(12,5),
+    text:'Ana and Ben team up. The office guessed 5 hours, the average of 4 and 6. How long will it really take?'},
+  {title:'Deadline', site:'Park house', crews:['A','B','C'], variable:'t',
+    text:'One house, a 3-hour deadline. Which pairs make it, and which is cheapest? Test all three pairs.'},
+  {title:'New hire', site:'New hire / one house', crews:['A','D'], variable:'x', time:F(3), answer:F(12),
+    equation:'1/4+1/x=1/3', rate:'(x+4)/(4*x)',
+    text:'Ana and Dee finished a house together in 3 hours. How long would Dee take alone?'},
+  {title:'Late start', site:'8:00 start / one house', crews:['A','B'], variable:'t', time:F(14,5),
+    equation:'t/4+(t-1)/6=1',
+    text:'Ana starts at 8:00. Ben joins at 9:00. When is the house done? Let t be hours after 8:00.'},
+  {title:'Sprayer', site:'Brush + sprayer / one house', crews:['B','S'], variable:'x', time:F(12,5),
+    equation:'1/x+1/(x-2)=5/12', rate:'(2*x-2)/(x*(x-2))',
+    text:'The sprayer takes 2 hours less than the brush crew. Together: 2.4 hours. Find both possible brush times, then check them.'}
+];
+const L = {
+  wCalls:'Calls are on the board. Tap crew cards to put them on the job, then type their rate sum as one fraction.',
+  assign:'Tap a second crew card. Then combine the rates in the box.',
+  rate:'Add the rates, not the hours. Each card says what part of a house that crew paints in an hour. Type the total in the box.',
+  equation:'Type an equation for one complete house, then press Check equation. Use the variable named on the call.',
+  solve:'Type the time, then press Check time. You can press Paint to test a positive time estimate on the house.',
+  roots:'Type both possible brush times, separated by a comma. Press Check roots, then judge each one.',
+  fit:'Mark each root and pick a reason. Type the sprayer times for those roots, in order, separated by a semicolon. Then press Check fit.',
+  paint:'Press Paint to test your checked calculation on the house. You can change crews or calls at any time.',
+  pair:'Type the time and total cost. Choose whether this crew meets the deadline, then press Check quote.',
+  cheapest:'All three pairs are tested. Choose the cheapest crew that meets the deadline and type its total cost.',
+  done:'Job done, right on time.',
+  late:'House complete, but this crew misses the three hour deadline. Try another pair.',
+  nextPair:'Tap crew cards to assign another pair. Your tested quotes stay on the ledger.',
+  wQuote:'Fill the two boxes to write the time as 4 minus something. Then drag the x slider.',
+  quote:'Use the remainder form to answer both questions, then press Check reasoning.',
+  wAudit:'Mark each root and type its evidence. Press File audit. Check in the original shows a worked example with no credit.',
+  audit:'Type a zero denominator or the equal value of both sides for each root; use ; between roots. Press File audit.',
+  auditNext:'Choose another sheet, or change a verdict and press File audit.',
+  callNext:'Choose another call with the call picker, or open Quote sheet.',
+  extra:'Caught it. That value breaks the equation.'
+};
+const state = {
+  mode:'calls', call:1, crews:[], step:'rate', rateOK:false, equationOK:false, solved:false, rootsOK:false,
+  running:false, elapsed:0, painted:0, completed:{}, trials:{}, quoteOK:false, quoteReason:false,
+  x:12, sheet:1, audits:{}, auditHelp:{}, callHelp:{}, practice:{}, rejected:0, runToken:0
+};
+try {
+  const saved = JSON.parse(localStorage.getItem('curio-work-rate-crew') || '{}');
+  if (saved.version === 1 && saved.completed && typeof saved.completed === 'object') {
+    for (let i = 1; i <= 5; i++) {
+      const value = saved.completed[i];
+      if (value && value.verified === true && typeof value.summary === 'string') state.completed[i] = value;
+    }
+  }
+} catch {}
+const hintId = () => state.mode === 'calls' ? 'hint' : state.mode === 'quote' ? 'quote-hint' : 'audit-hint';
+const V = Curio.voice({
+  lines:L, scope:() => `${state.mode}:${state.call}:${state.sheet}`,
+  hint:false, read:() => $(hintId()).textContent,
+  welcome:() => state.mode === 'calls' ? ['wCalls', {valid:() => !state.crews.length}] :
+    state.mode === 'quote' ? ['wQuote', {valid:() => !state.quoteOK}] : ['wAudit', {valid:() => !state.audits[state.sheet]}]
+});
+function hint(key, speak = true) {
+  $(hintId()).textContent = L[key];
+  if (speak) V.how(key, {hint:false, valid:() => $(hintId()).textContent === L[key]});
+}
+function feedback(text, good = false, id = 'feedback') {
+  $(id).textContent = text;
+  $(id).className = `feedback ${good ? 'good' : 'bad'}`;
+  if (text) Curio.tone(good ? 580 : 200, .12, .04, good ? 'sine' : 'triangle');
+}
+function saveCall(summary) {
+  if (state.callHelp[state.call]) {
+    state.practice[state.call] = true;
+    return false;
+  }
+  state.completed[state.call] = {verified:true, summary};
+  try { localStorage.setItem('curio-work-rate-crew', JSON.stringify({version:1, completed:state.completed})); } catch {}
+  renderStamps();
+  return true;
+}
+function renderStamps() {
+  $('jobstamps').replaceChildren();
+  for (let i = 1; i <= 5; i++) {
+    const stamp = document.createElement('span');
+    stamp.className = 'stamp' + (state.completed[i] ? ' done' : '');
+    stamp.textContent = `${i} ${state.completed[i] ? 'Job done' : CALLS[i].title}`;
+    stamp.title = state.completed[i]?.summary || CALLS[i].title;
+    $('jobstamps').append(stamp);
+  }
+}
+function stopRun(reset = false) {
+  const wasRunning = state.running;
+  state.runToken++;
+  state.running = false;
+  $('paint').textContent = 'Paint';
+  document.querySelectorAll('.paintband').forEach(el => el.classList.remove('rolling'));
+  if (reset) drawPaint(0);
+  else if (wasRunning) {
+    $('dispatch').textContent = 'RUN STOPPED / READY';
+    $('site-status').textContent = 'Run stopped. Press Paint to start again.';
+  }
+}
+function setMode(mode) {
+  const aliases = {'Calls':'calls', 'Quote sheet':'quote', 'Office audit':'audit'};
+  mode = aliases[mode] || mode;
+  if (!['calls','quote','audit'].includes(mode)) return;
+  if (mode === state.mode) return;
+  stopRun();
+  V.hush();
+  state.mode = mode;
+  document.body.classList.toggle('root-check',mode === 'calls' && state.step === 'roots');
+  for (const m of ['calls','quote','audit']) $('m-' + m).setAttribute('aria-pressed', m === mode);
+  for (const id of ['board','wallcol','callpanel']) show(id, mode === 'calls');
+  show('quote', mode === 'quote');
+  show('audit', mode === 'audit');
+  if (mode === 'calls') hint(stepHint(), false);
+  if (mode === 'quote') { hint(state.quoteOK ? 'quote' : 'wQuote', false); requestAnimationFrame(drawGraph); }
+  if (mode === 'audit') hint('wAudit', false);
+  V.welcome() || hint(mode === 'calls' ? stepHint() : mode === 'quote' ? (state.quoteOK ? 'quote' : 'wQuote') : 'audit');
+}
+function stepHint() {
+  if (state.step === 'rate' && state.crews.length < 2) return state.crews.length ? 'assign' : 'wCalls';
+  return {rate:'rate', equation:'equation', solve:state.call === 2 ? 'pair' : state.call === 5 ? 'roots' : 'solve',
+    roots:'fit', paint:'paint', cheapest:'cheapest'}[state.step];
+}
+function call(n) {
+  n = Number(n);
+  if (!Number.isInteger(n) || n < 1 || n > 5) return;
+  stopRun(true);
+  V.hush();
+  state.call = n;
+  state.crews = [];
+  resetWork();
+  $('callnum').textContent = '0' + n;
+  $('call-picker').value = String(n);
+  $('calltitle').textContent = CALLS[n].title;
+  $('calltext').textContent = CALLS[n].text;
+  $('site-title').textContent = CALLS[n].site + ' / work site';
+  for (let i = 1; i <= 5; i++) $('call' + i).setAttribute('aria-pressed', i === n);
+  for (const [id, crew] of Object.entries(CREWS)) {
+    const button = $('crew-' + id);
+    button.hidden = !CALLS[n].crews.includes(id);
+    const unknown = n === 3 && id === 'D' || n === 5;
+    button.querySelector('small').textContent = unknown ?
+      id === 'S' ? 'x − 2 h alone · 1/(x − 2)' : 'x h alone · 1/x house/h' :
+      `${crew.hours} h alone · $${crew.cost}/h`;
+    button.querySelector('.crew-rate').textContent = unknown ? '' : `1/${crew.hours} house per hour`;
+  }
+  updateAssignment();
+  $('site-status').textContent = 'Choose your crews. Predict when their paint will meet.';
+  hint('wCalls', false);
+}
+function resetWork() {
+  state.step = 'rate';
+  state.rateOK = false;
+  state.equationOK = false;
+  state.solved = false;
+  state.rootsOK = false;
+  $('answer').value = '';
+  $('cost').value = '';
+  $('deadline').value = '';
+  feedback('');
+}
+function assign(crews) {
+  if (!Array.isArray(crews)) return;
+  const aliases = {Ana:'A', Ben:'B', Cy:'C', Dee:'D', Sprayer:'S'};
+  const ids = [...new Set(crews.map(id => aliases[id] || id))].filter(id => CALLS[state.call].crews.includes(id));
+  stopRun(true);
+  V.hush();
+  state.crews = ids.sort();
+  resetWork();
+  updateAssignment();
+  $('site-status').textContent = ids.length ? 'Crew assignment changed. Recalculate the combined rate.' :
+    'Choose your crews. Predict when their paint will meet.';
+  Curio.tone(330 + ids.length * 95, .09, .04);
+  hint(ids.length >= 2 ? 'rate' : ids.length ? 'assign' : 'wCalls');
+}
+function updateAssignment() {
+  for (const id of Object.keys(CREWS)) $('crew-' + id).setAttribute('aria-pressed', state.crews.includes(id));
+  $('crew-pills').replaceChildren();
+  state.crews.forEach((id, i) => {
+    const crew = CREWS[id];
+    const pill = document.createElement('span');
+    pill.className = 'crew-pill';
+    pill.style.setProperty('--crew-color', crew.color);
+    pill.textContent = `${crew.name}${state.call === 4 && id === 'B' ? ' · joins 9:00' : ''}`;
+    $('crew-pills').append(pill);
+    $('gear' + i).src = ART[crew.art];
+    $('gear' + i).hidden = false;
+    $('gear' + i).style.left = `${7 + i * 33}%`;
+  });
+  for (let i = state.crews.length; i < 3; i++) show('gear' + i, false);
+  $('dispatch').textContent = state.crews.length ? 'CREW ASSIGNED / READY' : 'CREWS NOT ASSIGNED';
+  updateWork();
+}
+function numericRate() {
+  return state.crews.reduce((sum, id) => add(sum, F(1, CREWS[id].hours)), F(0));
+}
+function activeTime() {
+  return state.call === 2 ? div(F(1), numericRate()) : CALLS[state.call].time;
+}
+function activeEquation() {
+  return CALLS[state.call].equation || `t*(${fs(numericRate())})=1`;
+}
+function assignedCorrectly() {
+  return state.call === 2 ? state.crews.length >= 2 :
+    CALLS[state.call].crews.every(id => state.crews.includes(id)) && state.crews.length === 2;
+}
+function updateWork() {
+  const step = state.step;
+  $('callpanel').classList.toggle('roots-step',step === 'roots');
+  document.body.classList.toggle('root-check',state.mode === 'calls' && step === 'roots');
+  $('callpanel').classList.toggle('deadline-solve', state.call === 2 && step === 'solve');
+  const titles = {rate:'1. Rate sum', equation:'2. Equation', solve:'3. Solve', roots:'3. Check both roots',
+    paint:'4. Paint', cheapest:'File the cheapest quote'};
+  $('step-title').textContent = titles[step];
+  document.querySelectorAll('.steps span').forEach((el, i) => {
+    el.classList.toggle('current', i <= ({rate:0,equation:1,solve:2,roots:2,paint:3,cheapest:3}[step]));
+  });
+  let rateText = state.crews.map(id => {
+    if (state.call === 3 && id === 'D' || state.call === 5 && id === 'B') return '1/x';
+    if (state.call === 5 && id === 'S') return '1/(x − 2)';
+    return '1/' + CREWS[id].hours;
+  }).join(' + ');
+  if (!rateText) rateText = '? + ?';
+  $('sum').textContent = rateText;
+  show('sum', step !== 'cheapest');
+  $('sum').classList.toggle('compact', step !== 'rate');
+  const labels = {
+    rate:state.call === 3 || state.call === 5 ? 'Combine into one fraction in x' : 'Total rate, as one fraction (house/h)',
+    equation:`Equation in ${CALLS[state.call].variable} for one house`,
+    solve:state.call === 3 ? 'Dee’s time alone, hours' : state.call === 5 ? 'Both brush times, separated by a comma' :
+      state.call === 4 ? 'Hours after 8:00, or a clock time' : 'Time to paint one house, hours'
+  };
+  $('answer-label').textContent = labels[step] || '';
+  $('answer').setAttribute('aria-label',labels[step] || 'Work order answer');
+  show('answer-fields', ['rate','equation','solve'].includes(step));
+  show('deadline-fields', state.call === 2 && step === 'solve');
+  show('roots-fields', step === 'roots');
+  show('paint-fields', step === 'paint');
+  show('cheapest-fields', step === 'cheapest');
+  const checks = {rate:'Check rate', equation:'Check equation', solve:state.call === 2 ? 'Check quote' :
+    state.call === 5 ? 'Check roots' : 'Check time', roots:'Check fit', paint:'Next call', cheapest:'File quote'};
+  $('check').textContent = checks[step];
+  $('paint').textContent = state.running ? 'Paint again' : 'Paint';
+  show('paint', step !== 'cheapest');
+  const compare = state.call === 2 && step === 'cheapest';
+  show('crews', !compare);
+  document.querySelector('.crew-title').hidden = compare;
+  show('ledger', compare);
+  if (compare) $('board').insertBefore($('ledger'),document.querySelector('.privacy'));
+  else $('callpanel').insertBefore($('ledger'),$('feedback'));
+  $('ledger').replaceChildren();
+  if (state.call === 2) Object.values(state.trials).forEach(trial => {
+    const row = document.createElement('div');
+    row.textContent = trial.summary;
+    $('ledger').append(row);
+  });
+}
+function nextStep(step) {
+  const fromAnswer = document.activeElement === $('answer');
+  const fromRoots = $('roots-fields').contains(document.activeElement);
+  V.hush();
+  state.step = step;
+  $('answer').value = '';
+  updateWork();
+  if (fromAnswer && step === 'roots') $('fit0').focus({preventScroll:true});
+  if ((fromAnswer || fromRoots) && step === 'paint') $('paint').focus({preventScroll:true});
+  hint(stepHint());
+}
+function checkWork() {
+  if (!assignedCorrectly()) {
+    feedback(state.call === 2 ? 'Assign at least two crews to compare their work.' : 'Assign the two crews named on this call.');
+    return false;
+  }
+  const text = $('answer').value.trim();
+  if (state.step === 'rate') {
+    const target = CALLS[state.call].rate || fs(numericRate());
+    const singleFraction = oneFraction(text) &&
+      (state.call === 3 || state.call === 5 || /^\s*[+-]?\d+\s*\/\s*\d+\s*$/.test(text));
+    if (!singleFraction || !exprcheck(text, target, CALLS[state.call].variable)) {
+      feedback('Combine the rates over one denominator. A sum of two fractions is still unfinished.');
+      return false;
+    }
+    state.rateOK = true;
+    nextStep(CALLS[state.call].equation ? 'equation' : 'solve');
+    feedback('Rate combined. Now use it to predict the job.', true);
+    return true;
+  }
+  if (state.step === 'equation') {
+    if (!eqcheck(text, activeEquation(), CALLS[state.call].variable)) {
+      feedback('That equation does not describe this job. Count each crew’s share of one house.');
+      return false;
+    }
+    state.equationOK = true;
+    nextStep('solve');
+    feedback('Equivalent equation checked, including its domain.', true);
+    return true;
+  }
+  if (state.step === 'solve') {
+    if (state.call === 5) {
+      const parts = text.split(/[,;]/).map(s => s.trim());
+      if (parts.length !== 2 || !parts.some(s => answerMatches(s, F(6))) || !parts.some(s => answerMatches(s, F(4,5)))) {
+        feedback('Keep both roots from the quadratic, even if one looks impossible.');
+        return false;
+      }
+      state.solved = true;
+      makeRootFields();
+      nextStep('roots');
+      feedback('');
+      return true;
+    }
+    const target = CALLS[state.call].answer || activeTime();
+    if (!answerMatches(text, target, state.call === 4)) {
+      state.rejected++;
+      feedback('That time does not make one complete house. Press Paint to test your estimate, then revise it.');
+      return false;
+    }
+    if (state.call === 2) {
+      const cost = mul(activeTime(), F(state.crews.reduce((v, id) => v + CREWS[id].cost, 0)));
+      const meets = num(activeTime()) <= 3;
+      if (!answerMatches($('cost').value, cost) || $('deadline').value !== (meets ? 'yes' : 'no')) {
+        feedback('Check total cost: combined hourly price × job time. Exactly 3 hours meets the deadline.');
+        return false;
+      }
+    }
+    state.solved = true;
+    preparePaint();
+    return true;
+  }
+  if (state.step === 'roots') {
+    const proof = $('root-proof').value.split(';').map(s=>s.trim());
+    if ($('fit0').value !== 'fits' || $('reason0').value !== 'fits' ||
+        $('fit1').value !== 'no' || $('reason1').value !== 'negative' || proof.length !== 2 ||
+        !answerMatches(proof[0],F(4)) || !answerMatches(proof[1],F(-6,5))) {
+      feedback('Check the sprayer’s time x − 2 for each root. Distinguish negative time from a zero denominator.');
+      return false;
+    }
+    state.rootsOK = true;
+    preparePaint();
+    return true;
+  }
+  if (state.step === 'cheapest') {
+    if (!['AB','AC','BC'].every(key => state.trials[key])) {
+      feedback('Test all three pairs on the house before filing a quote.');
+      return false;
+    }
+    if ($('cheapest').value !== 'AB' || !answerMatches($('cheapest-cost').value, F(336))) {
+      feedback('Compare the cost of crews that finish by 3 h.');
+      return false;
+    }
+    const earned = saveCall('Ana + Ben: 12/5 h, $336, cheapest before the 3 h deadline.');
+    V.hush();
+    feedback(earned ? 'Quote filed: Ana + Ben, $336.' :
+      'Worked quote checked: Ana + Ben, $336. The estimate revealed a finish time, so this earns no independent job stamp.', true);
+    hint('callNext');
+    $('site-status').textContent = 'Job done / cheapest qualifying quote: $336.';
+    return true;
+  }
+  if (state.step === 'paint') {
+    if (state.call === 2) {
+      if (['AB','AC','BC'].every(key => state.trials[key])) nextStep('cheapest');
+      else feedback('Paint this checked crew, then assign another pair. Your tested results stay on the ledger.');
+    } else if (state.completed[state.call] || state.practice[state.call]) {
+      if (state.call < 5) call(state.call + 1);
+      else {
+        setMode('audit');
+        feedback('Five call slots are on the board. Audit the new hire’s practice sheets next.', true, 'audit-feedback');
+      }
+    } else feedback('Press Paint to verify the house before moving to the next call.');
+  }
+  return false;
+}
+function makeRootFields() {
+  $('roots-fields').innerHTML = [6,'4/5'].map((root, i) => `<div class="rootrow">
+    <span class="readout">${root}</span><select id="fit${i}" aria-label="Root ${root}, fits the story">
+    <option value="">Verdict</option><option value="no">Doesn’t fit</option><option value="fits">Fits</option></select>
+    <select id="reason${i}" aria-label="Reason for root ${root}"><option value="">Reason</option>
+    <option value="zero">Makes a denominator zero</option><option value="fits">Fits</option>
+    <option value="negative">Negative time</option></select></div>`).join('') +
+    '<label class="root-proof-label" for="root-proof">Sprayer times, x − 2: for 6; for 4/5 (hours)</label>' +
+    '<input class="num" id="root-proof" aria-label="Sprayer times for roots 6 then 4/5, separated by a semicolon">';
+}
+function timeString(f) {
+  const minutes = Math.round(num(f) * 60);
+  return `${fs(f)} h = ${fmt(num(f))} h = ${Math.floor(minutes/60)} h ${minutes%60} min`;
+}
+function preparePaint() {
+  nextStep('paint');
+  $('exact-answer').textContent = state.call === 3 ? 'Dee: 12 h alone' : state.call === 5 ? 'Brush 6 h / sprayer 4 h' :
+    `${fs(activeTime())} h = ${fmt(num(activeTime()))} h`;
+  $('solve-note').textContent = state.call === 4 ? `${timeString(activeTime())}. Finished at 10:48.` :
+    state.call === 3 ? 'Ana’s 1/4 plus Dee’s 1/12 makes 1/3 house per hour.' : state.call === 5 ?
+      'The other root gives the sprayer −1.2 h. It solves the equation but cannot fit this story.' : timeString(activeTime());
+  feedback('Calculation checked. Press Paint to put the crew to work.', true);
+}
+function clockText(hours) {
+  if (state.call !== 4) return hours.toFixed(2) + ' h';
+  const minutes = Math.round(hours*60) + 480;
+  return `${Math.floor(minutes/60)}:${String(minutes%60).padStart(2,'0')}`;
+}
+let cumulative = null;
+function measureHouse() {
+  const im = $('house');
+  if (!im.complete || !im.naturalWidth) return;
+  const canvas = document.createElement('canvas');
+  canvas.width = im.naturalWidth;
+  canvas.height = im.naturalHeight;
+  const ctx = canvas.getContext('2d', {willReadFrequently:true});
+  ctx.drawImage(im, 0, 0);
+  const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  const columns = new Array(canvas.width).fill(0);
+  for (let i = 3; i < data.length; i += 4) columns[((i-3)/4)%canvas.width] += data[i];
+  const total = columns.reduce((a, b) => a+b, 0);
+  let sum = 0;
+  cumulative = columns.map(v => (sum += v)/total);
+}
+function xForMass(fraction) {
+  if (!cumulative) return fraction*100;
+  if (fraction <= 0) return 0;
+  if (fraction >= 1) return 100;
+  let lo = 0;
+  let hi = cumulative.length-1;
+  while (lo < hi) {
+    const mid = (lo+hi)>>1;
+    if (cumulative[mid] < fraction) lo = mid+1;
+    else hi = mid;
+  }
+  return lo/cumulative.length*100;
+}
+function workAt(h) {
+  return state.crews.map(id => Math.max(0, h - (state.call === 4 && id === 'B' ? 1 : 0)) / CREWS[id].hours);
+}
+function drawPaint(hours, exact = null) {
+  state.elapsed = hours;
+  const work = workAt(hours);
+  const total = work.reduce((a, b) => a+b, 0);
+  state.painted = exact ? num(exact) : total;
+  let leftMass = 0;
+  for (let i = 0; i < 3; i++) {
+    const band = $('band' + i);
+    const amount = Math.min(work[i] || 0, Math.max(0, 1-leftMass));
+    // Second crew grows inwards from the right, third grows next to the first.
+    const start = i === 1 ? 1-amount : leftMass;
+    band.style.left = `${xForMass(start)}%`;
+    band.style.width = `${Math.max(0, xForMass(start+amount)-xForMass(start))}%`;
+    band.style.background = state.crews[i] ? CREWS[state.crews[i]].color : 'transparent';
+    if (i !== 1) leftMass += amount;
+  }
+  const visible = Math.min(1, total);
+  $('progress-fill').style.width = `${visible*100}%`;
+  $('paint-progress').setAttribute('aria-valuenow', Math.round(visible*100));
+  $('clock').textContent = clockText(hours);
+  $('coverage').textContent = `${exact ? fs(exact) : fmt(total,2)} ${Math.abs(total-1)<1e-8 ? 'house' : 'houses'}`;
+  if (state.running) $('dispatch').textContent = state.call === 4 && hours < 1 ? '8:00 / ANA WORKING ALONE' : 'CREWS PAINTING';
+}
+async function paint() {
+  stopRun(true);
+  if (!assignedCorrectly()) { feedback('Assign the crews named on this call first.'); return; }
+  let requested;
+  let verified = state.step === 'paint' && state.solved && state.rateOK &&
+    (!CALLS[state.call].equation || state.equationOK) && (state.call !== 5 || state.rootsOK);
+  if (verified) requested = activeTime();
+  else {
+    if (state.step !== 'solve' || state.call === 3 || state.call === 5) {
+      feedback('Combine the rate and work through your equation before painting this job.');
+      return;
+    }
+    try { requested = answerValue($('answer').value, state.call === 4); } catch {
+      feedback('Type a positive time estimate first.'); return;
+    }
+    if (num(requested) <= 0 || num(requested) > 48) {
+      feedback('Use a positive estimate up to 48 hours.'); return;
+    }
+  }
+  V.hush();
+  const finish = num(activeTime());
+  const duration = Math.min(num(requested), finish, 4);
+  const token = ++state.runToken;
+  const callId = state.call;
+  state.running = true;
+  $('paint').textContent = 'Paint again';
+  $('site-status').textContent = 'Watch each crew add its share. One second represents one hour.';
+  document.querySelectorAll('.paintband').forEach(el => el.classList.add('rolling'));
+  Curio.tone(290, .12, .04, 'triangle');
+  const began = performance.now();
+  const frame = now => {
+    if (token !== state.runToken) return;
+    const h = Math.min(duration, (now-began)/1000);
+    if (!Curio.reduce) drawPaint(h);
+    else {
+      $('progress-fill').style.width = `${Math.min(1,workAt(h).reduce((a,b)=>a+b,0))*100}%`;
+      $('clock').textContent = clockText(h);
+      $('dispatch').textContent = state.call === 4 && h < 1 ? '8:00 / ANA WORKING ALONE' : 'CREWS PAINTING';
+    }
+    if (h < duration) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+  await Curio.wait(duration*1000);
+  if (token !== state.runToken || state.call !== callId || state.mode !== 'calls') return;
+  const actualWork = state.call === 4 ? add(div(requested,F(4)), div(num(requested)<1 ? F(0) : sub(requested,F(1)),F(6))) :
+    mul(requested,numericRate());
+  const finalWork = num(requested) >= finish-1e-8 ? F(1) : actualWork;
+  state.running = false;
+  drawPaint(Math.min(num(requested),finish), finalWork);
+  document.querySelectorAll('.paintband').forEach(el => el.classList.remove('rolling'));
+  $('paint').textContent = 'Paint';
+  $('dispatch').textContent = verified ? 'CALCULATION VERIFIED' : 'ESTIMATE TEST / REVISE';
+  if (!verified) {
+    if (num(requested) >= finish-1e-8) state.callHelp[state.call] = true;
+    $('site-status').textContent = num(actualWork) > 1 ?
+      `In ${fs(requested)} hours they could paint ${fs(actualWork)} houses (${fmt(num(actualWork))}). The wall stops at 1.` :
+      `${fs(actualWork)} of a house at your estimate. Check the time to file this call.`;
+    feedback(num(requested) >= finish-1e-8 ?
+      'The estimate revealed the finish time. Check it to finish worked practice; this call will not earn an independent stamp.' :
+      'Estimate tested. Revise and check the exact finish time to save this job.');
+    return;
+  }
+  const t = activeTime();
+  if (state.call === 2) {
+    const key = state.crews.join('');
+    const cost = mul(t, F(state.crews.reduce((sum, id) => sum+CREWS[id].cost, 0)));
+    const meets = num(t) <= 3;
+    const names = state.crews.map(id=>CREWS[id].name).join('+');
+    state.trials[key] = {summary:`${names}: ${fs(t)} h, $${fs(cost)}, ${meets?'on time':'late'}`};
+    $('site-status').textContent = state.trials[key].summary;
+    feedback(meets ? 'This crew meets the deadline. Test another pair.' : 'House complete, but this crew misses the 3-hour deadline.', true);
+    updateWork();
+    if (['AB','AC','BC'].every(k=>state.trials[k])) {
+      nextStep('cheapest');
+      feedback('');
+    } else hint('nextPair',false);
+  } else {
+    const summary = state.call === 3 ? 'Dee takes 12 h alone; together 3 h.' : state.call === 5 ?
+      'Brush 6 h, sprayer 4 h; 4/5 root rejected for negative sprayer time.' : timeString(t);
+    const earned = saveCall(summary);
+    $('site-status').textContent = `Job done. ${state.call === 4 ? 'Finished 10:48. ' : ''}${timeString(t)}`;
+    feedback(earned ? 'Job done. Your prediction and the house agree.' :
+      'Worked practice complete. Your time agrees with the house; the revealed estimate earns no independent stamp.', true);
+  }
+  Curio.yes();
+  if (state.call === 2 && state.step === 'paint') {
+    V.how('nextPair',{hint:false,valid:()=>state.mode==='calls'&&state.call===2&&state.step==='paint'});
+  }
+  V.say(state.call === 2 && num(t) > 3 ? 'late' : 'done',
+    {hint:false, valid:() => state.mode === 'calls' && state.call === callId && state.painted === 1 &&
+      (callId !== 2 || !state.completed[2] && !state.practice[2])});
+}
+let graph = null;
+let trace = null;
+let slider = null;
+function quoteRead() {
+  const f = div(mul(F(4), decimal(String(state.x))), add(decimal(String(state.x)),F(4)));
+  $('quote-read').textContent = `T = ${fs(f)} h = ${fmt(num(f))} h`;
+}
+function drawGraph() {
+  if (state.mode !== 'quote') return;
+  const frame = $('graphframe');
+  const width = Math.max(220, frame.clientWidth);
+  const height = Math.max(140, frame.clientHeight);
+  $('graph').setAttribute('viewBox', `0 0 ${width} ${height}`);
+  $('graph').replaceChildren();
+  graph = Plane($('graph'), {x:[0,60], y:[0,4.5], width:width-58, height:height-53, left:43, top:10,
+    grid:[10,1], labels:[10,1], ticks:'edge', xLabel:'Partner alone, x (hours)'});
+  graph.fn(x=>4*x/(x+4), {color:'#b8e0a0', width:3.5, domain:[0,60], label:'T(x) = 4x/(x + 4)'});
+  graph.fn(()=>4, {color:'#ffd166', dashed:true, label:'T = 4 h, Ana alone'});
+  graph.label(35,4,'Ana alone: 4 h', {dy:-8, layer:'labels'});
+  graph.label(12,1,'Combined time T (hours)', {layer:'labels'});
+  trace = graph.trace(x=>4*x/(x+4), {x:state.x, color:'#f2e8cb', draggable:false, domain:[.5,60]});
+  quoteRead();
+}
+function checkRewrite() {
+  const exact = (text, value) => {
+    try { return same(answerValue(text), F(value)); } catch { return false; }
+  };
+  state.quoteOK = exact($('q').value,4) && exact($('r').value,-16);
+  if (state.quoteOK) {
+    V.hush();
+    feedback('Rewrite checked: 4 − 16/(x + 4). The remainder shows the gap below 4.', true, 'quote-feedback');
+    hint('quote');
+  } else feedback('Multiply your rewrite by x + 4. Its numerator must be exactly 4x.', false, 'quote-feedback');
+}
+function checkQuote() {
+  if (!state.quoteOK) { feedback('Check the two rewrite boxes first.', false, 'quote-feedback'); return; }
+  let boundary = false;
+  try { boundary = same(answerValue($('under2').value),F(4)); } catch {}
+  state.quoteReason = boundary && $('four').value === 'no' && $('sign').value === 'positive';
+  feedback(state.quoteReason ? 'For 0 < x < 4, T < 2. A positive amount is subtracted from 4, so T is always below 4.' :
+    'Test both sides of your boundary, then use the sign of the fraction subtracted from four to explain the upper limit.',
+    state.quoteReason, 'quote-feedback');
+}
+const SHEETS = [null,
+  {eq:'x/(x − 3) = 3/(x − 3) + 2', work:['x = 3 + 2(x − 3)', 'x = 3'],
+    roots:[{x:'3', valid:false, denominators:['x-3']}], original:'x = 3: x − 3 = 0. Original equation undefined.'},
+  {eq:'1/(x − 2) + 1/(x + 2) = 4/(x² − 4)', work:['(x + 2) + (x − 2) = 4', '2x = 4; x = 2'],
+    roots:[{x:'2', valid:false, denominators:['x-2','x^2-4']}],
+    original:'x = 2: x − 2 = 0; x + 2 = 4; x² − 4 = 0. Original equation undefined.'},
+  {eq:'x/(x − 1) = 1/(x − 1) + 2x', work:['x = 1 + 2x(x − 1)', '2x² − 3x + 1 = 0', 'x = 1/2 or 1'],
+    roots:[{x:'1/2', valid:true, value:F(-1)}, {x:'1', valid:false, denominators:['x-1']}],
+    original:'x = 1/2: x − 1 = −1/2; left = −1, right = −1. x = 1: x − 1 = 0; undefined.'},
+  {eq:'2/(x + 1) + 1 = 6/(x + 1)', work:['2 + (x + 1) = 6', 'x = 3'], roots:[{x:'3',valid:true,value:F(3,2)}],
+    original:'x = 3: x + 1 = 4; left = 2/4 + 1 = 3/2, right = 6/4 = 3/2.'}
+];
+function audit(n, verdict) {
+  n = Number(n);
+  if (!Number.isInteger(n) || n < 1 || n > 4) return;
+  V.hush();
+  state.sheet = n;
+  delete $('paper').dataset.seal;
+  const sheet = SHEETS[n];
+  $('sheetnum').textContent = '0' + n;
+  $('audit-equation').textContent = sheet.eq;
+  $('audit-work').replaceChildren();
+  sheet.work.forEach(text => {
+    const row = document.createElement('div');
+    row.textContent = text;
+    $('audit-work').append(row);
+  });
+  $('original').textContent = 'Substitute each root yourself to file an audit. Check in the original opens worked practice.';
+  $('audit-rows').innerHTML = sheet.roots.map((root,i) => `<div class="auditrow">
+    <span class="readout">x = ${root.x}</span><select id="verdict${i}" aria-label="Verdict for x = ${root.x}">
+    <option value="">Verdict</option><option value="valid">Valid</option><option value="extra">Extraneous</option></select>
+    </div>`).join('');
+  $('audit-denominator').value = '';
+  for (let i=1; i<=4; i++) $('sheet'+i).setAttribute('aria-pressed', i===n);
+  if (verdict) $('verdict0').value = /extraneous|extra/i.test(verdict) ? 'extra' : 'valid';
+  feedback('',false,'audit-feedback');
+  $('audit-hint').textContent = L.wAudit;
+}
+function checkAudit() {
+  const sheet = SHEETS[state.sheet];
+  const evidence = $('audit-denominator').value.split(';').map(s=>s.trim());
+  const good = sheet.roots.every((root,i) => {
+    const verdict = $('verdict'+i).value;
+    if (root.valid) {
+      try { return verdict === 'valid' && same(answerValue(evidence[i]),root.value); } catch { return false; }
+    }
+    return verdict === 'extra' && root.denominators.some(target=>exprcheck(evidence[i],target));
+  }) && evidence.length === sheet.roots.length;
+  if (!good) {
+    feedback('Recheck the verdicts and substitution evidence.',false,'audit-feedback');
+    hint('wAudit');
+    return false;
+  }
+  if (state.auditHelp[state.sheet]) {
+    $('paper').dataset.seal = 'WORKED EXAMPLE';
+    feedback('Worked example checked. This sheet earns no independent audit credit after its answer was shown. Try another sheet.',
+      true,'audit-feedback');
+    hint('auditNext',false);
+    return false;
+  }
+  state.audits[state.sheet] = true;
+  $('paper').dataset.seal = 'AUDIT FILED';
+  $('original').textContent = sheet.original;
+  const summary = state.sheet < 3 ? 'No solution. Clearing denominators introduced an undefined candidate.' :
+    state.sheet === 3 ? 'Only x = 1/2 survives. x = 1 makes x − 1 zero.' : 'x = 3 is valid: both sides equal 3/2.';
+  feedback('Audit filed. '+summary,true,'audit-feedback');
+  hint('auditNext',false);
+  if (sheet.roots.some(root=>!root.valid)) V.say('extra',{hint:false, valid:()=>state.mode==='audit'&&state.audits[state.sheet]});
+  return true;
+}
+for (const [id, crew] of Object.entries(CREWS)) {
+  const button = document.createElement('button');
+  button.className = 'crew';
+  button.id = 'crew-'+id;
+  button.style.setProperty('--crew-color',crew.color);
+  button.setAttribute('aria-pressed','false');
+  button.innerHTML = `<img src="${ART[crew.art]}" alt=""><span><b>${crew.name}’s crew</b><small></small><small class="crew-rate"></small></span>`;
+  button.onclick = () => assign(state.crews.includes(id) ? state.crews.filter(item=>item!==id) : [...state.crews,id]);
+  $('crews').append(button);
+}
+for (const m of ['calls','quote','audit']) $('m-'+m).onclick = () => setMode(m);
+for (let i=1; i<=5; i++) $('call'+i).onclick = () => call(i);
+$('call-picker').onchange = () => call($('call-picker').value);
+for (let i=1; i<=4; i++) $('sheet'+i).onclick = () => { audit(i); hint('audit'); };
+$('workform').onsubmit = e => { e.preventDefault(); stopRun(); checkWork(); };
+$('paint').onclick = paint;
+$('auditform').onsubmit = e => { e.preventDefault(); checkAudit(); };
+$('substitute').onclick = () => {
+  if (!state.audits[state.sheet]) state.auditHelp[state.sheet] = true;
+  $('original').textContent = SHEETS[state.sheet].original;
+  $('paper').dataset.seal = state.audits[state.sheet] ? 'AUDIT FILED' : 'WORKED EXAMPLE';
+  if (!state.audits[state.sheet]) {
+    feedback('Worked example shown. Use it to learn the check; this sheet will not earn independent audit credit.',false,'audit-feedback');
+  }
+  Curio.tone(440,.1,.04);
+  hint('audit');
+};
+$('rewrite-check').onclick = checkRewrite;
+$('quote-check').onclick = checkQuote;
+for (const id of ['q','r']) $(id).addEventListener('input', () => {
+  state.quoteOK = false;
+  state.quoteReason = false;
+  feedback('',false,'quote-feedback');
+  $('quote-hint').textContent = L.wQuote;
+});
+for (const id of ['q','r']) $(id).addEventListener('keydown',e=> { if(e.key==='Enter') checkRewrite(); });
+$('under2').addEventListener('keydown',e=> { if(e.key==='Enter') checkQuote(); });
+for (const id of ['under2','four','sign']) $(id).addEventListener('input',()=> {
+  state.quoteReason = false;
+  feedback('',false,'quote-feedback');
+});
+for (const kind of ['input','change']) $('auditform').addEventListener(kind,()=> {
+  delete state.audits[state.sheet];
+  delete $('paper').dataset.seal;
+  feedback('',false,'audit-feedback');
+});
+$('clear').onclick = () => {
+  const empty = !Object.keys(state.completed).length && !Object.keys(state.trials).length && !Object.keys(state.audits).length;
+  if (empty && state.mode === 'calls' && state.call === 1 && !state.crews.length && state.step === 'rate' && !state.running) {
+    feedback('Board cleared on this device.',true);
+    return;
+  }
+  stopRun(true);
+  V.hush();
+  state.completed = {};
+  state.trials = {};
+  state.audits = {};
+  try { localStorage.removeItem('curio-work-rate-crew'); } catch {}
+  renderStamps();
+  call(1);
+  setMode('calls');
+  feedback('Board cleared on this device.',true);
+};
+slider = Plane.slider($('slider'), {label:'Partner time alone, x (hours)', min:.5, max:60, step:.5, value:12, box:false,
+  id:'partner-x', onInput:x => {
+    state.x = x;
+    if (trace) trace.set(x);
+    quoteRead();
+  }});
+slider.range.setAttribute('aria-label','Partner time alone, x, in hours');
+new ResizeObserver(() => { if(state.mode==='quote') drawGraph(); }).observe($('graphframe'));
+$('house').addEventListener('load',measureHouse);
+measureHouse();
+Curio.init({clips:"voice:*", rate:.95, readFallback:()=>$(hintId()).textContent});
+Curio.onMotion(() => { if (!state.running) drawPaint(state.elapsed); });
+audit(1);
+call(1);
+renderStamps();
+window.__tool = {
+  state, setMode, call, assign, answer:text => { $('answer').value = text; return checkWork(); }, audit,
+  allLines:V.allLines, vlog:V.log, get vq() { return V.queue; },
+  checkEquation:eqcheck, checkExpression:exprcheck, answerMatches:(text,n,d=1)=>answerMatches(text,F(n,d)),
+  paint, checkAudit, checkQuote, checkRewrite
+};
+
+})();
+</script>
+</body>
+</html>

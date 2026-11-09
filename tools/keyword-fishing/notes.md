@@ -29,6 +29,8 @@ Students turn a question into useful search keywords. They learn to narrow a bro
 
 ## Talk about it
 
+A sticker records a successful query in this fixed pond, not proof of independent mastery. Trying words and watching results is intentional. Ask a student to explain why the caught page fits; later levels explicitly allow useful one-word queries.
+
 - Why did **what do** catch the same fish as an empty line?
 - Why could **bats food** work while **bats find food** catches nothing?
 - How can a catch of two pages still fail to answer the question?
@@ -52,8 +54,8 @@ Only earned level numbers are saved under **kf-levels**, on this device, inside 
 
 ## Standards and sources
 
-AASL National School Library Standards, Framework for Learners (2018): Inquire I.A.1, formulating questions, is practiced by choosing the searchable parts of each given question; Curate IV.A.2, identifying possible sources, is practiced by collecting and judging the matching fictional pages. The tool does not teach reading or evaluating full sources.
+AASL National School Library Standards, Framework for Learners: Curate IV.A.2, identifying possible sources, is practiced by collecting matching fictional pages. Inquire I.A.1 asks learners to formulate questions; Levels supplies questions and practices turning them into keywords, so it supports that standard without independently teaching its full requirement. In Free fishing, invite students to ask their own question before choosing words. Full question formulation and source evaluation need additional learning beyond this tool.
 
-- [AASL Standards Framework](https://standards.aasl.org/framework/)
+- [AASL Standards Framework](https://standards.aasl.org/standards-framework/), checked November 7, 2026; the current second-edition learner framework retains I.A.1 and IV.A.2.
 - Questions, pages, sites, word lists and the model are fictional Curio Class content supplied in spec.md.
 - Illustrations generated with OpenAI gpt-image, edited for Curio Class.

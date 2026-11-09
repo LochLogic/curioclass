@@ -1,0 +1,1599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Push the Pumpkin · Curio Class</title>
+<meta name="description" content="Push, pull, predict and build on a sunny farm. Kindergarten science, K-PS2-1 and K-PS2-2. Works offline.">
+<!--
+Push the Pumpkin, Curio Class. Teacher led, kindergarten science.
+Sources: NGSS K-PS2-1 and K-PS2-2; NASA Glenn Newton's Laws; OpenStax College Physics 8.2.
+Distances and farm outcomes are illustrative story values, not measurements of real objects.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file. No personal data or saved work. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#fdf7ec; --ink:#2b2118; --muted:#64574a; --line:#d3b98b; --focus:#174a6e;
+  --brand:#b04a00; --btn:#984000; --btn-line:#e6a766; --head-ink:#fff; --panel:#fdf7ec;
+  --gold:#f0c34a; --navy:#174a6e;
+}
+body {height:100dvh; min-height:0; overflow:hidden; font-family:'Trebuchet MS','Segoe UI',sans-serif}
+header {padding:8px 16px; gap:8px; box-shadow:0 3px 12px #38221340; z-index:5; flex-wrap:nowrap}
+h1 {font-size:clamp(19px,2.2vw,30px); letter-spacing:-.6px}
+h1 small {font-size:13px; opacity:1; color:#ffefd9; letter-spacing:1.5px; text-transform:uppercase; margin-top:5px}
+.seg button,.icon-btn {min-height:60px; padding:0 13px; font-size:16px}
+.seg button {display:flex; align-items:center; gap:5px}
+.seg button {min-width:60px}
+.icon-btn {display:flex; align-items:center; gap:5px}
+.icon {width:26px; height:26px; display:inline-block; flex:none; vertical-align:middle}
+main {grid-template-columns:minmax(0,1fr) 330px; min-height:0; overflow:hidden}
+.stage {min-height:0; border:0; background:#a2bd69; isolation:isolate}
+canvas {display:block; width:100%; height:100%; position:absolute; inset:0}
+.panel {padding:16px; gap:10px; overflow:hidden; border-left:4px solid #b88a51;
+  background:radial-gradient(ellipse at 12% 5%,#fffdf5,#f5e7cd); box-shadow:inset 7px 0 18px #89501b15}
+.hint {font-size:22px; line-height:1.28; margin:0; min-height:112px; padding:14px 11px;
+  background:#fffaf1; border:1px solid #e3c99e; border-radius:4px 16px 16px 16px; box-shadow:0 3px 0 #dcc69d}
+.panel h2 {font-size:12px; text-transform:uppercase; letter-spacing:1.4px; color:var(--muted); margin:5px 0 0}
+.row {display:flex; gap:7px; min-width:0}
+.tile {position:relative; min-width:0; flex:1; min-height:70px; border:2px solid #c7a373; border-radius:14px;
+  background:linear-gradient(#fffdf7,#f4e5c9); box-shadow:0 3px 0 #b99564; padding:5px 3px;
+  font-weight:bold; font-size:15px; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:3px}
+.tile img {width:58px; height:51px; object-fit:contain; pointer-events:none; filter:drop-shadow(0 3px 2px #51391630)}
+.tile[aria-pressed="true"] {border:3px solid var(--navy); background:#fff3c2; box-shadow:0 3px 0 var(--navy)}
+.tile[aria-pressed="true"]::after {content:'●'; position:absolute; top:2px; right:5px; color:var(--navy); font-size:13px}
+.tile:active,.big-btn:active {transform:translateY(2px); box-shadow:none}
+.tile:disabled {opacity:.55; cursor:default}
+.arrow {display:block; height:23px; width:64px; color:var(--navy)}
+.action {min-height:75px; width:100%; font-size:28px; border:2px solid #c79724; color:var(--ink)!important;
+  background:linear-gradient(#ffdb70,var(--gold))!important; box-shadow:0 5px 0 #aa7929; display:flex;
+  align-items:center; justify-content:center; gap:14px}
+.action img {height:52px; width:44px; object-fit:contain}
+.clear {min-height:60px; border:2px solid #bca073; border-radius:12px; background:#fff7e8; font-size:17px; font-weight:bold}
+.controls {display:flex; flex-direction:column; gap:10px; min-height:0}
+#choices {display:flex; flex-direction:column; gap:10px}
+#choices .tile {min-height:100px; flex-direction:row; font-size:20px; gap:16px; justify-content:flex-start; padding:8px 16px}
+#choices img {width:70px; height:64px}
+#choices .arrow {width:70px; height:35px}
+.choice-art {display:flex; align-items:center; width:90px; height:64px; flex:none}
+#choices .choice-art img {width:45px; height:58px}
+#choices .choice-art .arrow {width:42px}
+.lock {font-size:14px; color:var(--navy); text-align:center; min-height:18px}
+.strip {display:flex; align-items:center; justify-content:center; gap:10px; min-height:38px; font-size:26px}
+.strip .done {color:var(--brand)}
+.strip .future {opacity:.3}
+.strip .current {text-decoration:underline; text-underline-offset:5px}
+.strip img {width:29px; height:29px; object-fit:contain}
+.strip .future img {filter:grayscale(1)}
+.tray {display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.tray .tile {min-height:100px; font-size:18px}
+.tray img {height:62px; width:100px}
+.tray .selected {transform:translateY(-4px); border:3px solid var(--navy); background:#fff3c2}
+.tray .placed {background:#e6ecd4}
+.thumbs {display:grid; grid-template-columns:1fr 1fr; gap:10px}
+.thumbs .tile {min-height:100px; font-size:20px}
+.thumbs .icon {width:50px; height:50px}
+.spot {position:absolute; min-width:60px; min-height:60px; width:66px; height:66px; border-radius:50%;
+  transform:translate(-50%,-50%); border:3px dashed #6c583d; background:#fff8dd38; font-size:0; z-index:2; touch-action:none}
+.spot.glow {border:4px solid #fff4a4; box-shadow:0 0 0 4px #174a6e,0 0 28px 10px #fff8a3a0; background:#f0c34a65}
+.spot.occupied {border-color:#fdf7ec; background:transparent}
+.spot img {height:76px; width:90px; object-fit:contain; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  pointer-events:none; filter:drop-shadow(2px 5px 3px #34220a50)}
+.spot .board-up {transform:translate(-50%,-50%) rotate(-40deg)}
+.spot .board-down {transform:translate(-50%,-50%) rotate(40deg)}
+.spot .ramp-up {transform:translate(-50%,-50%) scaleX(-1)}
+.spot-label {position:absolute; top:calc(100% + 6px); left:50%; transform:translateX(-50%); white-space:nowrap;
+  font-size:14px; font-weight:bold; background:#fff4d9; color:var(--ink); border-radius:8px; padding:2px 5px; pointer-events:none}
+.compare-hit {position:absolute; border:4px solid #fff1b0; background:transparent; border-radius:22px;
+  width:90%; left:5%; height:27%; z-index:3; color:transparent}
+.compare-hit:hover,.compare-hit:focus-visible {background:#fff1b022; outline:4px solid var(--navy)}
+#lane0 {top:29%}
+#lane1 {top:63%}
+#wall {position:absolute; inset:14% 4% 5%; display:grid; grid-template-columns:1fr 1fr; gap:12px; z-index:3;
+  padding:14px; border:9px solid #8c582d; border-radius:8px; background:repeating-linear-gradient(0deg,#a66e43 0 49px,#956039 50px 53px);
+  box-shadow:0 10px 25px #2b211855}
+.test-card {border:2px solid #d4be8c; border-radius:5px; background:#fff4d9; min-height:60px; padding:10px;
+  color:var(--ink); font-size:17px; font-weight:bold; position:relative; box-shadow:2px 5px 5px #25140040}
+.test-card::before {content:'●'; color:var(--navy); position:absolute; top:0; left:50%; font-size:14px}
+.test-card img {width:45px; height:42px; object-fit:contain; vertical-align:middle}
+.test-card .memory {display:block; font-size:14px; font-weight:normal; margin-top:5px}
+.test-card .memory {display:grid; grid-template-columns:1fr 1fr; gap:6px}
+.record-title {display:flex; align-items:center; justify-content:center; gap:3px}
+.memory-part {display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:3px}
+.memory-picture {display:flex; align-items:center; justify-content:center}
+.memory-part strong {width:100%; font-size:12px}
+.memory-part .arrow {width:38px; height:20px}
+.memory-part .choice-art {width:60px; height:28px}
+.memory-part .choice-art img {width:24px; height:28px}
+.memory-part .choice-symbol {font-size:20px!important}
+.memory-part .memory-words {font-size:12px}
+.stop-record {display:block; width:100%; height:30px; margin-top:3px}
+.test-card:last-child {grid-column:1/-1}
+.privacy {font-size:11px; color:var(--muted); margin:0; text-align:center; margin-top:auto}
+:focus-visible {outline:4px solid var(--navy); outline-offset:3px}
+.calm .spot.glow {box-shadow:0 0 0 4px #174a6e}
+@media (max-width:1100px) {
+  header {padding:6px 10px; gap:5px}
+  h1 {font-size:22px; max-width:220px}
+  h1 small {display:none}
+  .seg button,.icon-btn {padding:0 9px; font-size:14px}
+  main {grid-template-columns:minmax(0,1fr) 290px}
+  .panel {padding:10px}
+}
+@media (max-height:650px) and (min-width:600px) {
+  header {padding:5px 8px; gap:4px}
+  h1 {font-size:18px; max-width:150px}
+  .seg button,.icon-btn {min-height:44px; font-size:12px; padding:0 8px}
+  .icon {width:21px; height:21px}
+  main {grid-template-columns:minmax(0,1fr) 210px}
+  .panel {padding:8px; gap:6px; border-left-width:3px}
+  .hint {font-size:15px; min-height:73px; padding:7px; line-height:1.25}
+  .controls {gap:6px}
+  .row {gap:5px}
+  .tile {min-height:44px; font-size:11px; border-radius:8px; padding:2px; gap:0}
+  .tile img {height:28px; width:38px}
+  .arrow {height:15px; width:45px}
+  .action {min-height:48px; font-size:20px; border-radius:10px}
+  .action img {height:34px; width:32px}
+  .clear {min-height:44px; font-size:13px}
+  #choices {gap:6px}
+  #choices .tile {min-height:61px; font-size:14px; padding:3px 8px; gap:7px}
+  #choices img {height:40px; width:48px}
+  #choices .arrow {height:24px; width:48px}
+  .choice-art {width:64px; height:40px}
+  #choices .choice-art img {width:30px; height:38px}
+  #choices .choice-art .arrow {width:30px}
+  .lock {font-size:11px; min-height:12px}
+  .strip {font-size:22px; min-height:29px}
+  .tray {gap:6px}
+  .tray .tile {min-height:54px; font-size:12px}
+  .tray img {height:34px; width:58px}
+  .thumbs .tile {min-height:65px; font-size:14px}
+  .thumbs .icon {width:30px; height:30px}
+  .spot {min-width:44px; min-height:44px; width:44px; height:44px}
+  .spot img {width:62px; height:54px}
+  .spot-label {font-size:11px; top:calc(100% + 3px)}
+  .test-card {font-size:12px; padding:7px}
+  .test-card .memory {font-size:10px}
+  .memory-part strong,.memory-part .memory-words {font-size:10px}
+  .memory-part .arrow {width:26px; height:14px}
+  .memory-part .choice-art {height:20px; width:42px}
+  .memory-part .choice-art img {width:18px; height:20px}
+  .memory-part .choice-symbol {font-size:16px!important}
+  .stop-record {height:22px}
+  .test-card img {height:30px; width:30px}
+  #wall {gap:8px; padding:8px; border-width:5px}
+  .privacy {font-size:10px}
+  .privacy {display:none}
+}
+@media (max-width:760px) and (min-width:600px) {
+  h1 {font-size:16px; max-width:120px}
+  .seg button,.icon-btn {padding:0 5px; gap:3px}
+}
+@media (max-width:599px) {
+  body {overflow:auto; height:auto; min-height:100dvh; display:block}
+  header {display:grid; grid-template-columns:1fr 1fr 1fr; padding:8px; gap:6px}
+  h1 {grid-column:1/-1; max-width:none; text-align:center; margin:0; font-size:23px}
+  .seg {grid-column:1/-1; display:flex; width:100%}
+  .seg button {flex:1; justify-content:center; min-height:50px; font-size:15px}
+  .icon-btn {justify-content:center; min-height:44px; font-size:13px; padding:0 7px}
+  main {display:flex; flex-direction:column}
+  .stage {height:285px; flex:none; width:100%}
+  .panel {border-left:0; border-top:4px solid #b88a51; padding:10px; gap:8px; overflow:visible}
+  .hint {min-height:65px; font-size:18px; padding:9px}
+  .controls {gap:8px}
+  #push-controls {display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  #push-controls .row:first-child {grid-column:1/-1}
+  #push-controls .tile {font-size:12px; min-height:60px}
+  #push-controls .tile img {height:33px; width:44px}
+  #push-controls .arrow {width:40px}
+  #push-controls .action {min-height:62px}
+  #push-controls .clear {min-height:62px}
+  .action {font-size:24px; min-height:62px}
+  .action img {height:39px}
+  #choices {flex-direction:row; gap:6px}
+  #choices .tile {flex-direction:column; min-height:90px; padding:5px 2px; font-size:13px; gap:4px; text-align:center}
+  #choices img {width:50px; height:43px}
+  #choices .arrow {width:46px; height:28px}
+  .choice-art {width:65px; height:43px}
+  #choices .choice-art img {width:32px; height:40px}
+  #choices .choice-art .arrow {width:30px}
+  .tray {grid-template-columns:repeat(4,1fr); gap:6px}
+  .tray .tile {font-size:12px; min-height:74px}
+  .tray img {height:43px; width:61px}
+  .strip {min-height:32px}
+  .thumbs .tile {min-height:70px; flex-direction:row; font-size:17px}
+  .thumbs .icon {width:36px; height:36px}
+  .spot {width:44px; height:44px; min-width:44px; min-height:44px}
+  .spot img {width:58px; height:50px}
+  .spot-label {font-size:11px}
+  .test-card {font-size:11px; padding:7px}
+  .test-card .memory {font-size:10px}
+  .memory-part strong,.memory-part .memory-words {font-size:10px}
+  .memory-part .arrow {width:25px; height:14px}
+  .stop-record {height:20px}
+  .test-card img {height:26px; width:26px}
+  #wall {gap:6px; padding:7px; border-width:5px}
+  .privacy {margin-top:3px}
+}
+
+/* The compact prediction keeps all choices and Go together. */
+@media (max-height:650px) and (min-width:600px) {
+  #choices {display:grid; grid-template-columns:repeat(2,minmax(0,1fr))}
+  #choices .tile {flex-direction:column; justify-content:center; min-height:61px; font-size:12px; gap:1px}
+  #choices img {height:32px; width:42px}
+  #choices .arrow {height:18px; width:40px}
+}
+@media (max-height:650px) and (min-width:761px) {
+  .seg button,.icon-btn {min-height:60px}
+  .tile,.clear,.action {min-height:60px}
+  #choices .tile {min-height:64px}
+}
+@media (max-height:750px) and (min-width:1001px) {
+  #choices .tile {min-height:88px}
+}
+@media (max-width:599px) {
+  .seg button {min-height:60px}
+  .stage {height:225px}
+  .stage:has(#wall:not([hidden])) {height:350px}
+  #push-controls .row {grid-column:1/-1}
+}
+@media (min-width:600px) and (max-width:999px) and (min-height:651px) {
+  main {grid-template-columns:1fr; grid-template-rows:minmax(240px,1fr) auto}
+  .panel {display:grid; grid-template-columns:210px minmax(0,1fr); border-left:0; border-top:4px solid #b88a51;
+    height:440px; min-height:440px}
+  .hint {grid-column:1; grid-row:1; align-self:start}
+  .controls {grid-column:2; grid-row:1; gap:6px}
+  #choices .tile {min-height:68px}
+  #choices img,#choices .choice-art img {height:42px; width:50px}
+  .choice-art {height:42px}
+  .privacy {grid-column:1/-1; margin:0}
+  .stage:has(#wall:not([hidden])) + .panel {height:250px; min-height:250px}
+}
+@media (max-width:599px), (max-height:650px) {
+  .test-card {padding:4px}
+  .record-title {font-size:11px; line-height:1.12; min-height:22px}
+  .record-title img {width:18px; height:18px}
+  .test-card .memory {margin-top:2px; gap:3px}
+  .memory-part {gap:0}
+  .memory-part strong {font-size:10px; line-height:11px}
+  .memory-picture {height:16px; width:100%}
+  .memory-part .arrow {width:25px; height:14px}
+  .memory-part .choice-art {width:36px; height:16px}
+  .memory-part .choice-art img {width:16px; height:16px}
+  .memory-part .choice-symbol {font-size:13px!important}
+  .memory-part .memory-words {position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap}
+  .stop-record {height:14px; margin-top:1px}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Push the Pumpkin<small>A little push. A big discovery.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-push" aria-pressed="true">✋ <span>Push</span></button>
+    <button id="m-find" aria-pressed="false">⌕ <span>Find out</span></button>
+    <button id="m-barn" aria-pressed="false">⌂ <span>Barn</span></button>
+  </div>
+  <button class="icon-btn" id="read">◖ <span>Read</span></button>
+  <button class="icon-btn" id="motion" aria-pressed="true">✦ <span>Motion</span></button>
+  <button class="icon-btn" id="sound" aria-pressed="true">♫ <span>Sound</span></button>
+</header>
+<main>
+  <div class="stage" id="stage" aria-label="Autumn farm play scene">
+    <canvas id="farm" tabindex="-1" role="img" aria-label="Jo and a ball at the middle of the farm path"></canvas>
+    <button id="lane0" class="compare-hit" aria-label="Choose the object in the upper lane" hidden></button>
+    <button id="lane1" class="compare-hit" aria-label="Choose the object in the lower lane" hidden></button>
+    <div id="spots" hidden></div>
+    <div id="wall" hidden></div>
+  </div>
+  <aside class="panel">
+    <p class="hint" id="hint" aria-live="polite">Tap Go to give the ball a push.</p>
+    <div id="push-controls" class="controls">
+      <div class="row" id="objects"></div>
+      <div class="row" id="strengths"></div>
+      <div class="row" id="sides"></div>
+      <button class="big-btn gold action" id="go"><img src="art:jo-small" alt="">Go <span>➜</span></button>
+      <button class="clear" id="clear">♧ Clear flags</button>
+    </div>
+    <div id="find-controls" class="controls" hidden>
+      <div id="find-strip" class="strip" aria-label="Five farm tests"></div>
+      <div id="choices"></div>
+      <div id="locked" class="lock" hidden>🔒 Our guess</div>
+      <button class="big-btn gold action" id="test-go">Go ➜</button>
+      <button class="big-btn gold action" id="test-next" hidden>Next ➜</button>
+      <button class="big-btn gold action" id="wall-barn" hidden>⌂ Barn</button>
+      <button class="clear" id="wall-push" hidden>✋ Push</button>
+    </div>
+    <div id="barn-controls" class="controls" hidden>
+      <div id="barn-strip" class="strip" aria-label="Three barn designs"></div>
+      <div id="tray" class="tray"></div>
+      <button class="big-btn gold action" id="roll"><img src="art:ball" alt="">Roll ➜</button>
+      <div id="thumbs" class="thumbs" hidden>
+        <button id="yes" class="tile"></button>
+        <button id="no" class="tile"></button>
+      </div>
+      <div id="analysis" class="thumbs" hidden></div>
+      <button class="big-btn gold action" id="barn-next" hidden>Next ➜</button>
+    </div>
+    <p class="privacy">Our tries stay on this page. No work is saved.</p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const canvas = $('farm');
+  const ctx = canvas.getContext('2d');
+  const INK = '#2b2118';
+  const NAVY = '#174a6e';
+  const PAPER = '#fdf7ec';
+  const names = {ball:'Ball', pumpkin:'Pumpkin', wagon:'Wagon', ramp:'Ramp', bale:'Bale', up:'Board up', down:'Board down'};
+  const urls = {
+    'farm-path':'art:farm-path', 'farm-lanes':'art:farm-lanes', 'barn-field':'art:barn-field',
+    'barn-side':'art:barn-side', 'barn-top':'art:barn-top', 'barn-door':'art:barn-door', pond:'art:pond',
+    'pumpkin-patch':'art:pumpkin-patch', 'hay-pile':'art:hay-pile', 'tin-bucket':'art:tin-bucket',
+    ball:'art:ball', pumpkin:'art:pumpkin', 'wagon-body':'art:wagon-body', 'wagon-wheel':'art:wagon-wheel',
+    ramp:'art:ramp', bale:'art:bale', board:'art:board', jo:'art:jo', 'jo-small':'art:jo-small',
+    'jo-big':'art:jo-big', 'jo-pull':'art:jo-pull', 'jo-aside':'art:jo-aside', 'jo-cheer':'art:jo-cheer'
+  };
+  const images = {};
+  for (const [key, url] of Object.entries(urls)) {
+    const image = new Image();
+    image.src = url;
+    images[key] = image;
+    image.onload = () => draw();
+  }
+  const L = {
+    welcome:"Welcome to the farm! Let's push and pull. Tap Go to give the ball a push.",
+    firstPush:'The flag shows where it stopped. Now tap Big, then tap Go.',
+    bigFar:'A bigger push sent it farther!',
+    sideHow:'Tap To the gate, then tap Go.',
+    otherWay:'Jo pushed from the other side, so it went the other way!',
+    wagonHow:'A wagon has a handle. Tap Pull, then tap Go.',
+    pulled:'A pull brings the wagon toward Jo. A push sends it away.',
+    heavy:'The pumpkin is heavy, so the same push moves it less.',
+    findOut:'Tap Find out to test pushes like a scientist.',
+    q1:'Which ball will go farther: the one with a small push, or the one with a big push? Say your guess, then tap a picture.',
+    q2:'Does a different push change how far the pumpkin goes? Say your guess, then tap a picture.',
+    try1:'Tap Go for try one.', try2:'Tap Go for try two.',
+    compareBall:'Tap the ball that went farther.', comparePumpkin:'Tap the pumpkin that went farther.',
+    cmpRight:'Yes! That one went farther.',
+    cmpWrong:'Look again. Count the dots to each flag. Then tap the one that went farther.',
+    r1:'The big push sent the ball farther!', r2:'The big push sent the pumpkin farther!',
+    match:'Just like we thought!', surprise:'A surprise! Now we know.',
+    planSmall:'Try one is the pumpkin with a small push. Tap the try two that changes only the push.',
+    planBig:'Try one is the pumpkin with a big push. Tap the try two that changes only the push.',
+    unfair:"We changed the push and the thing we pushed. We can't tell which one made the difference! Tap the other try two.",
+    fair:"Only the push changed. That's fair! Tap Go.",
+    q3pre:'Jo pushes the wagon to the barn. Tap Go.',
+    q3:'Now Jo is on the other side. Which way will the wagon go? Tap a picture.',
+    r3:'Jo pushed from the other side, so the wagon went the other way!',
+    q4pre:'Jo pushes the wagon to the barn again. Tap Go.',
+    q4:'Now Jo holds the handle and pulls. Which way will the wagon go? Tap a picture.',
+    r4:'The pull brought the wagon toward Jo. A push sends things away. A pull brings them close.',
+    q5pre:'Here comes the ball! Jo steps out of the way. Tap Go.',
+    q5:'This time Jo gives the rolling ball a small push back. What will happen? Tap a picture.',
+    r5:"Jo's push stopped the ball! A push can stop something that is moving.",
+    nextHow:'Tap Next.',
+    claims:'We found out! A bigger push sends things farther. A push from the other side sends them the other way. A pull brings them close. And a push can stop a rolling ball.',
+    toBarn:'Tap Barn to help the ball get into the barn.',
+    b1:'Jo can only give the ball a small push. Can we get it into the barn? First, tap Roll and watch.',
+    goal1:'We need the ball to go faster.',
+    judgeHow:'Did it work? Tap Yes or Not yet.',
+    judgeBuckets:'Did the buckets fall? Tap Yes or Not yet.',
+    yesRight:'Yes! It worked!', noRight:'Right, not yet.',
+    yesWrong:"Look where the ball is. It didn't work yet.", noWrong:'Look! It did work!',
+    cShort:'It stopped before the barn.', cUp:'Rolling up the ramp slowed it down.',
+    cBounce:'It bumped the bale and rolled back.', cWall:'It turned, but it hit the barn wall.',
+    cPatch:'It turned the wrong way, into the pumpkins.', cPond:'Splash! It rolled into the pond.',
+    cWobble:"The buckets wobbled, but they didn't fall. The ball was too slow.",
+    cHay:'It rolled right past the barn, into the hay.',
+    fixHow:'Change our design. Tap a piece, then tap a glowing spot. Then tap Roll.',
+    fixAgain:'Change something, then tap Roll.',
+    a1:'Watch both balls. The faded one has no ramp. Did the ramp make the ball go faster or slower? Tap a picture.',
+    a1Fast:'Faster! The ramp made the ball go faster.',
+    a1Slow:'Look again. The ramp ball got ahead. The ramp made it go faster.',
+    b2:'Now the barn is up here, and the pond is down the path. Tap Roll and watch where the ball goes.',
+    goal2:'We need the ball to turn into the barn.',
+    a2:'Watch both balls. What did the board change: which way the ball went, or how fast? Tap a picture.',
+    a2Way:'Yes! The board turned the ball. It changed which way it went.',
+    a2Fast:'Look again. The board turned the ball. It changed which way it went.',
+    b3:"Last one! Knock down the buckets in the barn. Jo's push is small again. Tap Roll and watch.",
+    goal3:'We need the ball to go faster, and to turn.',
+    barnEnd:'We did it! The ramp made the ball faster, and the board turned it. Our design works!',
+    choices1:'Small push. Big push. Same. Tap a picture.',
+    choices2:'Farther. Not as far. Same. Tap a picture.',
+    choices3:'To the barn. To the gate. Stays still. Tap a picture.',
+    choices4:'Toward Jo. Away from Jo. Stays still. Tap a picture.',
+    choices5:'Keeps going. Stops. Goes back. Tap a picture.',
+    placed:'Tap Roll to try our design.', removed:'The piece is back in the tray. Tap a piece, then a glowing spot.',
+    clear:'The flags are cleared. Tap Go for another push.',
+    ballChoice:'Ball. Tap Go to give it a push.', pumpkinChoice:'Pumpkin. Tap Go to give it a push.',
+    smallChoice:'Small. Tap Go.', mediumChoice:'Medium. Tap Go.', bigChoice:'Big. Tap Go.',
+    barnChoice:'To the barn. Tap Go.', gateChoice:'To the gate. Tap Go.', pullChoice:'Pull. Tap Go.',
+    rampChoice:'Ramp. Tap a glowing spot.', baleChoice:'Bale. Tap a glowing spot.',
+    upChoice:'Board up. Tap a glowing spot.', downChoice:'Board down. Tap a glowing spot.',
+    review:'Our tests are on the barn wall. Tap a card to try that test again, or tap Barn.'
+  };
+  const predictionSets = [
+    [['small','Small push'],['big','Big push'],['same','Same']],
+    [['far','Farther'],['near','Not as far'],['same','Same']],
+    [['barn','To the barn'],['gate','To the gate'],['still','Stays still']],
+    [['toward','Toward Jo'],['away','Away from Jo'],['still','Stays still']],
+    [['keep','Keeps going'],['stop','Stops'],['back','Goes back']]
+  ];
+  for (const [key, words] of predictionSets.flat()) L['pred-' + key] = 'We think: ' + words.toLowerCase() + '.';
+  const state = {
+    mode:'push', step:0, object:'ball', size:1, side:'barn', flags:[], pushes:0, sideChanged:false,
+    pushRun:null, find:null, pages:Array(5).fill(null), tests:[], level:1,
+    barns:[null, ...[1,2,3].map(() => ({design:{}, tries:[], done:false, analysis:null, run:null, phase:'build', verdict:null}))],
+    selected:null, clock:0
+  };
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode + ':' + state.step, hint:false, read:() => $('hint').textContent,
+    welcome:() => state.mode === 'push' && !state.pushes ? ['welcome', {valid:() => !state.pushes}] : null,
+    speaks:'#go,#test-go,#roll'
+  });
+  const say = (line, opts = {}) => V.say(line, {hint:false, ...opts});
+  const how = (line, opts = {}) => V.how(line, {hint:false, ...opts});
+  const hint = text => { $('hint').textContent = text; };
+  const hide = (id, value) => { $(id).hidden = value; };
+  const now = () => performance.now();
+  const shuffle = xs => {
+    const a = [...xs];
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  };
+  const distances = {ball:[1.5,3,5], wagon:[1,2,3.5], pumpkin:[.5,1.5,2.5]};
+  const arrow = (n = 1, reverse = false) => {
+    const end = [25,43,64][n];
+    return `<svg class="arrow" viewBox="0 0 72 25" aria-hidden="true"><g ${reverse ? 'transform="translate(72 0) scale(-1 1)"' : ''}>
+      <path d="M3 12H${end - 10}V5L${end} 12L${end - 10} 20V14H3Z" fill="currentColor"/></g></svg>`;
+  };
+  const thumb = up => `<svg class="icon" viewBox="0 0 64 64" aria-hidden="true"><g ${up ? '' : 'transform="translate(0 64) scale(1 -1)"'}>
+    <path d="M22 28L32 8Q43 4 40 17L37 27H52Q59 28 57 36L52 53Q51 57 45 57H22Z" fill="#f0c34a" stroke="#2b2118" stroke-width="3"/>
+    <path d="M9 28H22V57H9Z" fill="#174a6e"/><circle cx="15" cy="49" r="2" fill="#fff"/></g></svg>`;
+  const artFor = key => key === 'wagon' ? 'wagon-body' : key === 'up' || key === 'down' ? 'board' : key;
+  const imgTag = (key, cls = '') => `<img src="${urls[artFor(key)]}" alt="" class="${cls}">`;
+  const tile = (id, body, label, fn, parent) => {
+    const b = document.createElement('button');
+    b.id = id;
+    b.className = 'tile';
+    b.innerHTML = body;
+    b.setAttribute('aria-label', label);
+    b.onclick = fn;
+    $(parent).append(b);
+    return b;
+  };
+  for (const object of ['ball','pumpkin','wagon']) {
+    tile('pick-' + object, imgTag(object) + names[object], names[object], () => {
+      if (state.object!==object) V.hush();
+      state.object = object;
+      if (object !== 'wagon' && state.side === 'pull') state.side = 'barn';
+      updatePush();
+      hint(object === 'wagon' ? 'Tap Pull, then tap Go.' : 'Tap Go to give the ' + object + ' a push.');
+      if (object === 'wagon') how('wagonHow', {valid:() => state.object === 'wagon'});
+      else how(object + 'Choice', {valid:() => state.object === object});
+      feedback();
+    }, 'objects');
+  }
+  ['Small','Medium','Big'].forEach((name, i) => {
+    tile('size-' + i, arrow(i) + name, name, () => {
+      state.size = i;
+      updatePush();
+      hint('Tap Go for a ' + name.toLowerCase() + ' push.');
+      how(name.toLowerCase() + 'Choice', {valid:() => state.size === i});
+      feedback();
+    }, 'strengths');
+  });
+  [['barn','To the barn'],['gate','To the gate'],['pull','Pull']].forEach(([key, label]) => {
+    tile('side-' + key, arrow(1, key === 'gate') + label, label, () => {
+      state.side = key;
+      state.sideChanged = true;
+      updatePush();
+      hint('Tap Go to ' + (key === 'pull' ? 'pull the wagon.' : 'push ' + label.toLowerCase() + '.'));
+      how(key + 'Choice', {valid:() => state.side === key});
+      feedback();
+    }, 'sides');
+  });
+  function feedback() { Curio.tone(330, .045, .025); draw(); }
+  function updatePush() {
+    for (const o of ['ball','pumpkin','wagon']) $('pick-' + o).setAttribute('aria-pressed', state.object === o);
+    for (let i = 0; i < 3; i++) $('size-' + i).setAttribute('aria-pressed', state.size === i);
+    for (const s of ['barn','gate','pull']) $('side-' + s).setAttribute('aria-pressed', state.side === s);
+    hide('side-pull', state.object !== 'wagon');
+    draw();
+  }
+  function finishPush(run) {
+    if (run.flagged) return;
+    run.flagged = true;
+    state.flags.push({object:run.object, size:run.size, side:run.side, p:run.to});
+    if (state.flags.length > 8) state.flags.shift();
+    if (state.mode !== 'push') return;
+    const lines = [];
+    if (!V.heard('firstPush')) lines.push('firstPush');
+    if (state.flags.some(f => f.object === run.object && f.size < run.size && f.side === run.side)) lines.push('bigFar');
+    if (run.side === 'gate') lines.push('otherWay');
+    if (run.side === 'pull') lines.push('pulled');
+    if (run.object === 'pumpkin' && state.flags.some(f => f.object === 'ball' && f.size === run.size)) lines.push('heavy');
+    if (state.pushes >= 3 && !state.sideChanged) lines.push('sideHow');
+    if (state.pushes >= 5) lines.push('findOut');
+    if (lines.length) how(lines, {valid:() => state.mode === 'push'});
+    hint(!V.heard('firstPush') ? L.firstPush : 'Pick a push, then tap Go. Watch the flags.');
+    Curio.tone(530, .08, .03);
+    draw();
+  }
+  function push() {
+    if (state.pushRun) finishPush(state.pushRun);
+    V.dropQueued(item => !['firstPush','bigFar','otherWay','pulled','heavy'].includes(item.key));
+    const distance = state.side === 'pull' ? 2 : distances[state.object][state.size] + Math.random() * .3 - .15;
+    const run = {
+      object:state.object, size:state.size, side:state.side, from:0,
+      to:distance * (state.side === 'gate' ? -1 : 1), start:now(), duration:900 + 300 * Math.abs(distance), flagged:false
+    };
+    state.pushRun = run;
+    state.pushes++;
+    hint('Watch where it stops. The flag will stay.');
+    Curio.tone(150 + state.size * 70, .12, .055, 'triangle');
+    draw();
+  }
+  $('go').onclick = push;
+  $('clear').onclick = () => {
+    V.hush();
+    state.flags = [];
+    if (state.pushRun) state.pushRun.flagged = true;
+    hint('Tap Go for another push.');
+    how('clear');
+    feedback();
+  };
+  function makeTest(index) {
+    const firstBig = Math.random() < .5;
+    return {index, firstBig, prediction:null, compareFirst:null, comparison:null, plan:null, rejected:false,
+      phase:index < 2 ? 'predict' : 'pre', runs:[null,null], busy:false, done:false,
+      options:shuffle(predictionSets[index]), planOrder:shuffle(['pumpkin','ball'])};
+  }
+  function test() { return state.find; }
+  function questionKey() {
+    const t = test();
+    return 'q' + (t.index + 1) + (t.phase === 'pre' ? 'pre' : '');
+  }
+  function enterTest(index, fresh = false) {
+    state.step = index;
+    if (fresh || !state.tests[index]) state.tests[index] = makeTest(index);
+    state.find = state.tests[index];
+    renderFind(true);
+    const t = test();
+    const phaseHints = {
+      pre:L[questionKey()], predict:predictionHint(t.index), plan:'Tap the try two that changes only the push.',
+      ready:t.index<2?L.try1:L.try2, second:L.try2, rolling:'Watch where it stops.',
+      compare:'Tap the ' + (t.index?'pumpkin':'ball') + ' that went farther.',
+      done:t.readyNext?'Look at our flags. Tap Next.':'Look at our flags. Listen to what we saw.',
+      wall:'Tap a test card, or tap Barn to build.'
+    };
+    hint(phaseHints[t.phase]);
+    if (t.phase === 'pre' || t.phase === 'predict') {
+      say([questionKey(), ...(t.phase === 'predict' ? [['choices' + (index + 1),
+        {valid:() => t.phase==='predict'}]] : [])]);
+    }
+    draw();
+  }
+  function optionPicture(key) {
+    if (key === 'small' || key === 'big') return arrow(key === 'small' ? 0 : 2);
+    if (key === 'same') return arrow(1) + '<span aria-hidden="true">=</span>';
+    if (key==='barn') return '<span class="choice-art">' + arrow(1) + imgTag('barn-side') + '</span>';
+    if (key==='toward') return '<span class="choice-art">' + arrow(1) + imgTag('jo') + '</span>';
+    if (key==='away') return '<span class="choice-art">' + imgTag('jo') + arrow(1) + '</span>';
+    const symbols = {far:'➜➜', near:'➜', gate:'♧ ←', still:'■', keep:'➜➜', stop:'✋', back:'↶'};
+    return '<span class="choice-symbol" aria-hidden="true" style="font-size:27px;color:#174a6e">' + symbols[key] + '</span>';
+  }
+  function predictionHint(index) {
+    return [
+      'Which push goes farther? Tap a picture.',
+      'Will the other push go farther? Tap a picture.',
+      'Jo moved to the other side. Tap which way it will go.',
+      'Jo will pull the handle. Tap which way it will go.',
+      'Jo will push back on the rolling ball. Tap what will happen.'
+    ][index];
+  }
+  function renderFind(rebuild = false) {
+    const t = test();
+    hide('wall', false);
+    $('wall').hidden = t.phase !== 'wall';
+    $('find-strip').innerHTML = [0,1,2,3,4].map(i =>
+      `<span class="${state.pages[i] ? 'done' : i === t.index ? 'current' : 'future'}">${imgTag('pumpkin')}</span>`).join('');
+    const choosing = t.phase === 'predict';
+    const planning = t.phase === 'plan';
+    hide('choices', !choosing && !planning && !(t.prediction && t.phase === 'ready' && t.index !== 1));
+    if (rebuild || choosing || planning) {
+      const focused = document.activeElement?.id;
+      $('choices').replaceChildren();
+      if (planning) {
+        for (const object of t.planOrder) {
+          const size = t.firstBig ? 0 : 2;
+          const b = tile('plan-' + object, imgTag(object) + arrow(size) + names[object], names[object], () => plan(object), 'choices');
+          b.disabled = object === 'ball' && t.rejected;
+        }
+      } else {
+        for (const [key, label] of t.options) {
+          const b = tile('guess-' + key, optionPicture(key) + '<span>' + label + '</span>', label, () => predict(key), 'choices');
+          b.disabled = !choosing;
+          b.setAttribute('aria-pressed', t.prediction === key);
+        }
+      }
+      if (focused && $(focused) && !$(focused).disabled) $(focused).focus({preventScroll:true});
+    }
+    hide('locked', !t.prediction || planning || t.phase === 'wall');
+    hide('test-go', !['pre','ready','second','rolling'].includes(t.phase));
+    $('test-go').setAttribute('aria-busy', t.busy);
+    hide('test-next', !t.readyNext || t.phase === 'wall');
+    hide('wall-barn', t.phase !== 'wall');
+    hide('wall-push', t.phase !== 'wall');
+    const compare = t.phase === 'compare';
+    hide('lane0', !compare);
+    hide('lane1', !compare);
+    if (t.phase === 'wall') renderWall();
+    draw();
+  }
+  function predict(key) {
+    const t = test();
+    if (t.phase !== 'predict') return;
+    t.prediction = key;
+    t.phase = t.index === 1 ? 'plan' : 'ready';
+    for (const b of $('choices').children) {
+      b.setAttribute('aria-pressed', b.id === 'guess-' + key);
+      b.disabled = b.id !== 'guess-' + key;
+    }
+    hide('locked', false);
+    say(['pred-' + key, t.index === 1 ? (t.firstBig ? 'planBig' : 'planSmall') : t.index < 2 ? 'try1' : 'try2']);
+    hint(t.index === 1 ? 'Tap the try two that changes only the push.' : t.index < 2 ? L.try1 : L.try2);
+    if (t.index === 1) {
+      renderFind(true);
+      $('choices').firstElementChild?.focus({preventScroll:true});
+    }
+    else {
+      hide('test-go', false);
+      $('test-go').disabled = false;
+    }
+    feedback();
+  }
+  function plan(object) {
+    const t = test();
+    if (t.phase !== 'plan' || (object === 'ball' && t.rejected)) return;
+    t.plan = object;
+    t.phase = t.runs[0] ? 'second' : 'ready';
+    if (object === 'pumpkin') say('fair');
+    else say('try1');
+    hint(t.runs[0] ? L.try2 : L.try1);
+    renderFind();
+    $('test-go').focus({preventScroll:true});
+    feedback();
+  }
+  function testValues(t, lane) {
+    const size = lane === 0 ? (t.firstBig ? 2 : 0) : (t.firstBig ? 0 : 2);
+    if (t.index < 2) {
+      const object = t.index === 0 ? 'ball' : lane === 1 ? t.plan : 'pumpkin';
+      return {object, size, side:'barn', from:0, to:distances[object][size] + Math.random() * .3 - .15};
+    }
+    if (t.index === 2) return {object:'wagon',size:1,side:lane ? 'gate' : 'barn',from:0,to:lane ? -2 : 2};
+    if (t.index === 3) return {object:'wagon',size:1,side:lane ? 'pull' : 'barn',from:0,to:2};
+    return {object:'ball',size:1,side:lane ? 'stop' : 'aside',from:-5,to:lane ? 2 : 5};
+  }
+  function testGo() {
+    const t = test();
+    if (t.busy || !['pre','ready','second'].includes(t.phase)) return;
+    const lane = t.runs[0] ? 1 : 0;
+    const run = {...testValues(t, lane), start:now(), duration:2100, stopped:false};
+    t.runs[lane] = run;
+    t.busy = true;
+    t.phase = 'rolling';
+    hint('Watch where it stops.');
+    renderFind();
+    Curio.tone(220, .12, .045, 'triangle');
+    draw();
+  }
+  function testStop(t, lane) {
+    const run = t.runs[lane];
+    if (!run || run.stopped) return;
+    run.stopped = true;
+    t.busy = false;
+    if (lane === 0) {
+      t.phase = t.index < 2 ? 'second' : 'predict';
+      hint(t.index < 2 ? L.try2 : predictionHint(t.index));
+      if (t.index < 2) say('try2');
+      else say(['q' + (t.index + 1), ['choices' + (t.index + 1), {valid:() => t.phase==='predict'}]]);
+    } else if (t.index === 1 && t.plan === 'ball') {
+      t.phase = 'plan';
+      t.rejected = true;
+      t.runs[1] = null;
+      hint('Only change the push. Tap the other try two.');
+      say('unfair');
+    } else if (t.index < 2) {
+      t.phase = 'compare';
+      hint('Tap the ' + (t.index ? 'pumpkin' : 'ball') + ' that went farther.');
+      say(t.index ? 'comparePumpkin' : 'compareBall');
+    } else finishTest(t);
+    renderFind(true);
+    if (t.phase === 'compare') $('lane0').focus({preventScroll:true});
+    else if (t.phase === 'second') $('test-go').focus({preventScroll:true});
+    else if (t.phase === 'predict' || t.phase === 'plan') {
+      $('choices').querySelector('button:not(:disabled)')?.focus({preventScroll:true});
+    }
+    Curio.tone(460, .065, .025);
+  }
+  function compare(lane) {
+    const t = test();
+    if (t.phase !== 'compare') return;
+    if (t.compareFirst === null) t.compareFirst = lane;
+    const right = t.runs[lane].to > t.runs[1 - lane].to;
+    if (!right) {
+      t.comparison = 'miss';
+      hint('Count the dots. Tap the one that went farther.');
+      say('cmpWrong');
+    } else {
+      t.comparison = 'right';
+      say('cmpRight');
+      finishTest(t);
+      renderFind();
+    }
+    feedback();
+  }
+  function expected(t) { return ['big', t.firstBig ? 'near' : 'far', 'gate', 'toward', 'stop'][t.index]; }
+  async function finishTest(t) {
+    t.done = true;
+    t.phase = 'done';
+    state.pages[t.index] = {prediction:t.prediction, firstCompare:t.compareFirst, expected:expected(t),
+      firstBig:t.firstBig, runs:t.runs.map(r => ({...r})), rejected:t.rejected};
+    hint('Look at our flags. Listen to what we saw.');
+    canvas.focus({preventScroll:true});
+    await say(['r' + (t.index + 1), t.prediction === expected(t) ? 'match' : 'surprise'], {wait:true});
+    t.readyNext = true;
+    if (state.mode !== 'find' || state.find !== t) return;
+    renderFind();
+    hint('Look at our flags. Tap Next.');
+    how('nextHow', {needs:'#test-next', valid:() => t.done});
+    $('test-next').focus({preventScroll:true});
+  }
+  $('test-go').onclick = testGo;
+  $('lane0').onclick = () => compare(0);
+  $('lane1').onclick = () => compare(1);
+  $('test-next').onclick = () => {
+    const t = test();
+    if (!t.readyNext) return;
+    if (t.index === 4) {
+      t.phase = 'wall';
+      hint('Tap a test card, or tap Barn to build.');
+      say(['claims','toBarn']);
+      renderFind();
+      $('wall-barn').focus({preventScroll:true});
+    } else enterTest(t.index + 1);
+    feedback();
+  };
+  function renderWall() {
+    $('wall').replaceChildren();
+    const titles = ['Bigger push, farther','Bigger push, farther','Other side, other way','A pull brings it close','A push can stop it'];
+    for (let i = 0; i < 5; i++) {
+      const p = state.pages[i];
+      if (!p) continue;
+      const card = document.createElement('button');
+      card.className = 'test-card';
+      const memory = (label, key) => '<span class="memory-part"><strong>' + label + '</strong>' +
+        '<span class="memory-picture">' + optionPicture(key) + '</span><span class="memory-words">' +
+        predictionSets[i].find(a => a[0] === key)[1] + '</span></span>';
+      card.innerHTML = '<span class="record-title">' +
+        imgTag(i < 2 || i === 4 ? i === 1 ? 'pumpkin' : 'ball' : 'wagon') + titles[i] + '</span>' +
+        '<span class="memory">' + memory('We thought',p.prediction) + memory('We saw',p.expected) + '</span>' +
+        stopRecord(p);
+      card.onclick = () => enterTest(i, true);
+      $('wall').append(card);
+    }
+  }
+  function stopRecord(page) {
+    const lanes = page.runs.map((run,i) => {
+      const x = 62 + run.to * 9;
+      const y = 9 + i * 18;
+      return `<path d="M17 ${y+6}H110" stroke="#c7a373" stroke-width="2"/>
+        <path d="M62 ${y+2}V${y+10}" stroke="${NAVY}" stroke-width="2"/>
+        <path d="M${x} ${y+8}V${y-6}h9l-3 4h-6" fill="${NAVY}" stroke="${NAVY}"/>
+        <image href="${urls[artFor(run.object)]}" x="${x-5}" y="${y}" width="10" height="10"/>`;
+    }).join('');
+    return '<svg class="stop-record" viewBox="0 0 124 38" role="img" aria-label="Our two recorded stop flags">' + lanes + '</svg>';
+  }
+  const barn = () => state.barns[state.level];
+  const spotsFor = level => level === 1 ? [0,3,4.5] : level === 2 ? [2,4,6] : [0,3,5,7];
+  function allowed(piece, p, level = state.level) {
+    if (!spotsFor(level).includes(p)) return false;
+    if (p === 0) return piece === 'ramp';
+    if (piece === 'ramp') return level === 1;
+    return true;
+  }
+  function model(level, design) {
+    const start = design.ramp === 0;
+    const reach = start || level === 2 ? 8 : level === 3 ? 6 : 5;
+    const pieces = Object.entries(design).filter(([,p]) => p !== 0 && p <= reach).sort((a,b) => a[1] - b[1]);
+    for (const [name,p] of pieces) {
+      if (name === 'bale') return {outcome:'bounce', p:p - 1, hit:p};
+      if (name === 'ramp') return {outcome:'up', p:p - .5, hit:p};
+      if (name === 'down') return {outcome:'patch', p, hit:p};
+      if (name === 'up') {
+        if (p !== (level === 2 ? 4 : 5)) return {outcome:'wall', p, hit:p};
+        return {outcome:level === 2 || start ? 'worked' : 'wobble', p, hit:p};
+      }
+    }
+    return {outcome:level === 1 && start ? 'worked' : level === 2 ? 'pond' : start ? 'hay' : 'short',
+      p:level === 1 ? start ? 6 : 5 : level === 2 ? 8 : start ? 8 : 6};
+  }
+  for (const piece of ['ramp','bale','up','down']) {
+    const b = tile('piece-' + piece, imgTag(piece) + names[piece], names[piece], () => choosePiece(piece), 'tray');
+    b.onpointerdown = e => startDrag(e, piece);
+  }
+  for (let i = 0; i < 4; i++) {
+    const b = document.createElement('button');
+    b.id = 'spot-' + i;
+    b.className = 'spot';
+    b.onclick = () => tapSpot(i);
+    b.onpointerdown = e => {
+      const p = spotsFor(state.level)[i];
+      const piece = Object.keys(barn().design).find(key => barn().design[key] === p);
+      if (piece) startDrag(e, piece, p);
+    };
+    $('spots').append(b);
+  }
+  let drag = null;
+  let suppressClick = false;
+  function startDrag(e, piece, from = null) {
+    if (state.mode !== 'barn') return;
+    drag = {piece, from, x:e.clientX, y:e.clientY, moving:false, id:e.pointerId};
+  }
+  window.addEventListener('pointermove', e => {
+    if (!drag) return;
+    if (Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 7) {
+      drag.moving = true;
+      if (state.selected !== drag.piece) {
+        state.selected = drag.piece;
+        renderBarn();
+      }
+    }
+  });
+  window.addEventListener('pointerup', e => {
+    if (!drag) return;
+    if (drag.moving) {
+      const hit = document.elementFromPoint(e.clientX, e.clientY)?.closest('.spot');
+      if (hit) place(drag.piece, spotsFor(state.level)[Number(hit.id.split('-')[1])]);
+      suppressClick = true;
+      setTimeout(() => { suppressClick = false; }, 0);
+    }
+    drag = null;
+  });
+  window.addEventListener('pointercancel', () => { drag = null; });
+  function choosePiece(piece) {
+    if (suppressClick || !['build','rolling'].includes(barn().phase)) return;
+    state.selected = state.selected === piece ? null : piece;
+    hint(state.selected ? 'Tap a glowing spot for the ' + names[piece].toLowerCase() + '.' : 'Tap a piece, then a glowing spot.');
+    if (state.selected) say(piece + 'Choice', {valid:() => state.selected === piece});
+    renderBarn();
+    feedback();
+  }
+  function tapSpot(i) {
+    if (suppressClick || !['build','rolling'].includes(barn().phase)) return;
+    const p = spotsFor(state.level)[i];
+    const old = Object.keys(barn().design).find(k => barn().design[k] === p);
+    if (old && !state.selected) {
+      delete barn().design[old];
+      hint('Tap a piece, then a glowing spot.');
+      say('removed');
+      renderBarn();
+      feedback();
+    } else if (state.selected) place(state.selected, p);
+  }
+  function place(piece, p) {
+    const b = barn();
+    if (!['build','rolling'].includes(b.phase) || !allowed(piece, p)) return false;
+    for (const key of Object.keys(b.design)) {
+      if (b.design[key] === p || (['up','down'].includes(piece) && ['up','down'].includes(key))) delete b.design[key];
+    }
+    b.design[piece] = p;
+    state.selected = null;
+    hint(b.phase === 'rolling' ? 'Our change is ready for the next Roll.' : 'Tap Roll to try our design.');
+    if (b.phase !== 'rolling') say('placed');
+    renderBarn();
+    feedback();
+    return true;
+  }
+  function renderBarn() {
+    const b = barn();
+    const available = state.level === 1 ? ['ramp','bale'] : state.level === 2 ? ['up','down','bale'] : ['ramp','bale','up','down'];
+    $('barn-strip').innerHTML = [1,2,3].map(i => `<span class="${state.barns[i].done ? 'done' : i === state.level ? 'current' : 'future'}">⌂</span>`).join('');
+    for (const piece of ['ramp','bale','up','down']) {
+      const tile = $('piece-' + piece);
+      tile.hidden = !available.includes(piece);
+      tile.disabled = !['build','rolling'].includes(b.phase);
+      tile.classList.toggle('selected', state.selected === piece);
+      tile.classList.toggle('placed', piece in b.design);
+      tile.setAttribute('aria-pressed', state.selected === piece);
+    }
+    hide('roll', !['build','rolling'].includes(b.phase));
+    hide('thumbs', b.phase !== 'judge');
+    hide('analysis', b.phase !== 'analysis');
+    hide('barn-next', b.phase !== 'complete' || !b.nextReady || state.level === 3);
+    const rect = $('stage').getBoundingClientRect();
+    for (let i = 0; i < 4; i++) {
+      const spot = $('spot-' + i);
+      const p = spotsFor(state.level)[i];
+      spot.hidden = p === undefined || !['build','rolling'].includes(b.phase);
+      if (p === undefined) continue;
+      const piece = Object.keys(b.design).find(k => b.design[k] === p);
+      spot.style.left = postX(p, rect.width, true) + 'px';
+      spot.style.top = rect.height * .61 + 'px';
+      spot.classList.toggle('glow', !!state.selected && allowed(state.selected, p));
+      spot.classList.toggle('occupied', !!piece);
+      spot.setAttribute('aria-label', (p === 0 ? 'Start' : 'Post ' + p) + (piece ? ': ' + names[piece] + ', tap to remove' : ' spot'));
+      const cls = piece === 'up' ? 'board-up' : piece === 'down' ? 'board-down' : piece === 'ramp' && p > 0 ? 'ramp-up' : '';
+      spot.innerHTML = (piece ? imgTag(piece, cls) : '') +
+        '<span class="spot-label">' + (p === 0 ? 'Start' : '●'.repeat(Math.floor(p))) + '</span>';
+    }
+    draw();
+  }
+  function barnRunPath(level, result, design) {
+    const base = [[0, .61]];
+    if (design.ramp === 0) base[0][1] = .56;
+    const o = result.outcome;
+    if (o === 'bounce' || o === 'up') base.push([result.hit, o === 'up' ? .55 : .61], [result.p,.61]);
+    else if (['worked','wall','patch','wobble'].includes(o) && level !== 1) {
+      const door = level===2 ? 4 : 5;
+      const end = o==='wall' ? door + (result.hit<door ? -1.35 : .65) : result.p;
+      base.push([result.hit,.61], [end, o === 'patch' ? .82 : .32]);
+    } else base.push([result.p,.61]);
+    return base;
+  }
+  function roll() {
+    const b = barn();
+    if (!['build','rolling'].includes(b.phase)) return;
+    const design = {...b.design};
+    const result = model(state.level, design);
+    const run = {design, ...result, start:now(), duration:3000, stopped:false, judged:false,
+      path:barnRunPath(state.level,result,design), trail:[], level:state.level};
+    b.run = run;
+    b.phase = 'rolling';
+    b.verdict = null;
+    state.selected = null;
+    V.dropQueued();
+    hint('Watch the ball. Did our design work?');
+    renderBarn();
+    Curio.tone(180, .15, .05, 'triangle');
+    draw();
+  }
+  function barnStop(b) {
+    if (!b.run || b.run.stopped) return;
+    b.run.stopped = true;
+    b.phase = 'judge';
+    b.tries.push({design:{...b.run.design}, outcome:b.run.outcome, said:null, correct:null});
+    hint(state.level === 3 ? 'Did the buckets fall? Tap Yes or Not yet.' : 'Did it work? Tap Yes or Not yet.');
+    how(state.level === 3 ? 'judgeBuckets' : 'judgeHow', {needs:['#yes','#no']});
+    renderBarn();
+    $('yes').focus({preventScroll:true});
+    if (b.run.outcome === 'pond') {
+      Curio.tone(100,.15,.045,'sine');
+      Curio.tone(280,.1,.025,'sine');
+    } else Curio.tone(400,.08,.025);
+  }
+  const causes = {short:'cShort', up:'cUp', bounce:'cBounce', wall:'cWall', patch:'cPatch', pond:'cPond', wobble:'cWobble', hay:'cHay'};
+  async function judge(yes) {
+    const b = barn();
+    if (b.phase !== 'judge') return;
+    const run = b.run;
+    const worked = run.outcome === 'worked';
+    const record = b.tries[b.tries.length - 1];
+    record.said = yes;
+    record.correct = yes === worked;
+    b.verdict = yes;
+    run.judged = true;
+    const verdict = yes ? worked ? 'yesRight' : 'yesWrong' : worked ? 'noWrong' : 'noRight';
+    if (worked) {
+      b.phase = state.level === 3 ? 'complete' : 'verdict';
+      hint(state.level === 3 ? 'Our design worked! Look at our tries.' : 'It worked! Watch both balls next.');
+      renderBarn();
+      Curio.yes();
+      canvas.focus({preventScroll:true});
+      await say(verdict, {wait:true, now:true, valid:() => b.run === run});
+      if (b.run !== run) return;
+      if (run.level === 3) {
+        b.done = true;
+        if (state.mode==='barn' && barn()===b) {
+          say('barnEnd');
+          renderBarn();
+        }
+      } else {
+        b.phase = 'ghost';
+        run.ghostStart = now();
+        if (state.mode==='barn' && barn()===b) {
+          renderBarn();
+          hint('Watch both balls. The faded ball has no pieces.');
+        }
+      }
+    } else {
+      b.phase = 'build';
+      const lines = [verdict, causes[run.outcome]];
+      if (!V.heard('goal' + state.level)) lines.push(['goal' + state.level,{kind:'how'}]);
+      lines.push([V.heard('fixHow') ? 'fixAgain' : 'fixHow', {kind:V.heard('fixHow') ? 'event' : 'how'}]);
+      say(lines, {now:true, valid:() => b.run === run});
+      hint((b.tries.length >= 6 ? L['goal' + state.level] + ' ' : '') + 'Change a piece, then tap Roll.');
+      renderBarn();
+      $('roll').focus({preventScroll:true});
+    }
+    draw();
+  }
+  function ghostStop(b) {
+    b.phase = 'analysis';
+    const level = state.level;
+    hint(level === 1 ? 'Did the ramp make the ball faster or slower? Tap a picture.' : 'What changed? Tap Which way or How fast.');
+    $('analysis').replaceChildren();
+    const choices = level === 1 ? [['fast','Faster'],['slow','Slower']] : [['way','Which way'],['speed','How fast']];
+    for (const [key,label] of shuffle(choices)) {
+      const b = tile('analysis-' + key, (key === 'way' ? '<span style="font-size:35px">↱</span>' : arrow(key === 'slow' ? 0 : 2)) + label,
+        label, () => analyze(key), 'analysis');
+    }
+    renderBarn();
+    say('a' + level);
+    $('analysis').firstElementChild.focus({preventScroll:true});
+  }
+  async function analyze(key) {
+    const b = barn();
+    if (b.phase !== 'analysis') return;
+    if (b.analysis === null) b.analysis = key;
+    b.phase = 'complete';
+    b.done = true;
+    const line = state.level === 1 ? key === 'fast' ? 'a1Fast' : 'a1Slow' : key === 'way' ? 'a2Way' : 'a2Fast';
+    hint('Look at the two paths. Listen to what changed.');
+    canvas.focus({preventScroll:true});
+    renderBarn();
+    await say(line, {wait:true});
+    b.nextReady = true;
+    if (state.mode !== 'barn' || barn() !== b) return;
+    hint('Our design worked. Tap Next.');
+    renderBarn();
+    how('nextHow', {needs:'#barn-next'});
+    $('barn-next').focus({preventScroll:true});
+    feedback();
+  }
+  $('yes').innerHTML = thumb(true) + '<span>Yes</span>';
+  $('no').innerHTML = thumb(false) + '<span>Not yet</span>';
+  $('yes').onclick = () => judge(true);
+  $('no').onclick = () => judge(false);
+  $('roll').onclick = roll;
+  $('barn-next').onclick = () => {
+    if (!barn().done || state.level >= 3) return;
+    state.level++;
+    state.step = state.level;
+    state.selected = null;
+    hint('Tap Roll and watch. Then change our design.');
+    renderBarn();
+    say('b' + state.level);
+    $('roll').focus({preventScroll:true});
+    feedback();
+  };
+  function setMode(mode) {
+    if (state.mode === mode && state.initialized) return;
+    V.hush();
+    state.mode = mode;
+    for (const key of ['push','find','barn']) $('m-' + key).setAttribute('aria-pressed', mode === key);
+    hide('push-controls', mode !== 'push');
+    hide('find-controls', mode !== 'find');
+    hide('barn-controls', mode !== 'barn');
+    hide('spots', mode !== 'barn');
+    hide('wall', true);
+    hide('lane0', true);
+    hide('lane1', true);
+    if (mode === 'push') {
+      state.step = 0;
+      hint('Tap Go to give the ' + state.object + ' a push.');
+      updatePush();
+      V.welcome();
+    } else if (mode === 'find') {
+      enterTest(state.find ? state.find.index : 0);
+    } else {
+      state.level = state.barns.findIndex((b,i) => i > 0 && !b.done);
+      if (state.level < 1) state.level = 3;
+      state.step = state.level;
+      state.selected = null;
+      renderBarn();
+      const phase = barn().phase;
+      hint(phase === 'judge' ? 'Did it work? Tap Yes or Not yet.' : phase === 'complete' ? 'Look at our designs and tries.' :
+        phase==='analysis' ? state.level===1?'Faster or slower? Tap a picture.':'Which way or how fast? Tap a picture.' :
+        phase==='ghost' || phase==='verdict' ? 'Watch both balls next.' : 'Tap Roll and watch.');
+      if (phase === 'build') say('b' + state.level);
+      else if (phase === 'judge') how(state.level === 3 ? 'judgeBuckets' : 'judgeHow');
+      else if (phase === 'analysis') say('a' + state.level);
+    }
+    state.initialized = true;
+    draw();
+  }
+  for (const mode of ['push','find','barn']) $('m-' + mode).onclick = () => setMode(mode);
+  $('wall-barn').onclick = () => setMode('barn');
+  $('wall-push').onclick = () => setMode('push');
+  let width = 1000;
+  let height = 620;
+  function resize() {
+    const box = $('stage').getBoundingClientRect();
+    width = box.width;
+    height = box.height;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    ctx.setTransform(dpr,0,0,dpr,0,0);
+    if (state.mode === 'barn') renderBarn();
+    draw();
+  }
+  function image(name, x, y, w, h, angle = 0, alpha = 1, flip = false) {
+    const im = images[name];
+    if (!im || !im.complete || !im.naturalWidth) return;
+    const scale = Math.min(w / im.naturalWidth, h / im.naturalHeight);
+    const iw = im.naturalWidth * scale;
+    const ih = im.naturalHeight * scale;
+    ctx.save();
+    ctx.globalAlpha *= alpha;
+    ctx.translate(x,y);
+    ctx.rotate(angle);
+    if (flip) ctx.scale(-1,1);
+    ctx.drawImage(im,-iw/2,-ih/2,iw,ih);
+    ctx.restore();
+  }
+  function cover(name) {
+    const im = images[name];
+    if (!im || !im.complete || !im.naturalWidth) {
+      const g = ctx.createLinearGradient(0,0,0,height);
+      g.addColorStop(0,'#d8ecf5');
+      g.addColorStop(.4,'#b9cf83');
+      g.addColorStop(1,'#759a43');
+      ctx.fillStyle = g;
+      ctx.fillRect(0,0,width,height);
+      return;
+    }
+    ctx.drawImage(im,0,0,width,height);
+  }
+  function roundRect(x,y,w,h,r,fill,stroke) {
+    ctx.beginPath();
+    ctx.roundRect(x,y,w,h,r);
+    ctx.fillStyle = fill;
+    ctx.fill();
+    if (stroke) {
+      ctx.strokeStyle = stroke;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+  function text(s,x,y,size=20,color=INK,align='center') {
+    ctx.font = 'bold ' + size + 'px "Trebuchet MS", sans-serif';
+    ctx.textAlign = align;
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = color;
+    ctx.fillText(s,x,y);
+  }
+  function caption(s, y, size = 22) {
+    const fs = Math.max(12, Math.min(size, width / (s.length * .58)));
+    ctx.font = 'bold ' + fs + 'px "Trebuchet MS", sans-serif';
+    const tw = ctx.measureText(s).width;
+    roundRect((width-tw)/2-16,y-17,tw+32,34,13,'#fff7e9ed','#d6b581');
+    text(s,width/2,y,fs);
+  }
+  function postX(p,w=width,field=false) { return field ? w * (.1 + p * .0975) : w * (.5 + p * .073); }
+  function fence(y, field = false) {
+    const ps = field ? Array.from({length:9},(_,i) => i) : Array.from({length:13},(_,i) => i-6);
+    const unit = field ? width * .0975 : width * .073;
+    const h = Math.min(42,height * .075);
+    ctx.lineWidth = Math.max(3,width * .004);
+    ctx.strokeStyle = '#ad8355';
+    ctx.beginPath();
+    ctx.moveTo(postX(ps[0],width,field),y-h*.55);
+    ctx.lineTo(postX(ps[ps.length-1],width,field),y-h*.55);
+    ctx.stroke();
+    for (const p of ps) {
+      const x = postX(p,width,field);
+      roundRect(x-4,y-h,8,h,2,p === 0 ? NAVY : '#dfbc85','#805b36');
+      ctx.fillStyle = '#f4dbad';
+      ctx.fillRect(x-2,y-h+3,2,h-8);
+      if (p === 0) {
+        roundRect(x-20,y-h-18,40,19,4,PAPER);
+        text('Start',x,y-h-8,Math.max(10,Math.min(13,unit*.4)),NAVY);
+      }
+    }
+  }
+  function shadow(x,y,w) {
+    ctx.fillStyle = '#36240d38';
+    ctx.beginPath();
+    ctx.ellipse(x,y,w*.45,w*.12,0,0,Math.PI*2);
+    ctx.fill();
+  }
+  function toy(object,x,y,size,spin=0,alpha=1,dir=1) {
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    shadow(x,y+size*.35,size);
+    if (object === 'wagon') {
+      image('wagon-body',x,y,size*1.65,size);
+      for (const off of [-.46,.44]) image('wagon-wheel',x+size*off,y+size*.27,size*.4,size*.4,spin);
+    } else image(object,x,y,size,size,object === 'pumpkin' ? spin*.13 : spin*.5);
+    ctx.restore();
+  }
+  function jo(x,y,h,pose='jo',flip=false) {
+    image(pose,x,y-h*.5,h*.8,h,0,1,flip);
+  }
+  function pullHandle(x,y,size,jx,feet,jh) {
+    const handX = jx - jh * (210/324) * .46;
+    const handY = feet - jh * .416;
+    ctx.save();
+    ctx.lineCap = 'round';
+    ctx.lineWidth = Math.max(2,size*.045);
+    ctx.strokeStyle = '#282a28';
+    ctx.beginPath();
+    ctx.moveTo(x+size*.72,y-size*.355);
+    ctx.lineTo(handX,handY);
+    ctx.stroke();
+    ctx.lineWidth = Math.max(1,size*.012);
+    ctx.strokeStyle = '#8a918b';
+    ctx.stroke();
+    ctx.restore();
+  }
+  function flag(f,y,lane=false) {
+    const x = postX(f.p);
+    const h = Math.min(lane ? 43 : 65, height * .12);
+    ctx.strokeStyle = NAVY;
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    ctx.moveTo(x,y);
+    ctx.lineTo(x,y-h);
+    ctx.stroke();
+    roundRect(x,y-h,Math.max(27,h*.68),h*.55,3,NAVY);
+    image(artFor(f.object),x+h*.32,y-h*.73,h*.42,h*.42);
+    if (!lane) {
+      const length = h*(.20+f.size*.10);
+      const ax = x+h*.10;
+      const ay = y-h*.50;
+      const dir = f.side==='gate' ? -1 : 1;
+      ctx.save();
+      ctx.translate(ax+(dir<0?length:0),ay);
+      ctx.scale(dir,1);
+      ctx.strokeStyle = '#fff';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.lineTo(length,0);
+      ctx.lineTo(length-4,-3);
+      ctx.moveTo(length,0);
+      ctx.lineTo(length-4,3);
+      ctx.stroke();
+      ctx.restore();
+    }
+    ctx.fillStyle = NAVY;
+    ctx.beginPath();
+    ctx.ellipse(x,y,6,3,0,0,7);
+    ctx.fill();
+  }
+  function pathArrow(x,y,size,reverse=false) {
+    const d = reverse ? -1 : 1;
+    ctx.save();
+    ctx.translate(x,y);
+    ctx.scale(d,1);
+    ctx.fillStyle = NAVY;
+    ctx.beginPath();
+    ctx.moveTo(0,-4);
+    ctx.lineTo(size-14,-4);
+    ctx.lineTo(size-14,-11);
+    ctx.lineTo(size,0);
+    ctx.lineTo(size-14,11);
+    ctx.lineTo(size-14,4);
+    ctx.lineTo(0,4);
+    ctx.closePath();
+    ctx.fill();
+    ctx.restore();
+  }
+  function progress(run,t=now()) { return Math.max(0, Math.min(1,(t-run.start)/run.duration)); }
+  function eased(p) { return 1 - (1-p)*(1-p); }
+  function drawPush(t) {
+    cover('farm-path');
+    const y = height * .61;
+    fence(y-height*.08);
+    image('barn-side',width*.94,height*.47,width*.16,height*.43);
+    const run = state.pushRun;
+    let p = 0;
+    let object = state.object;
+    let spin = 0;
+    let moving = false;
+    if (run) {
+      const elapsed = t-run.start;
+      if (elapsed < run.duration + 800) {
+        p = Curio.reduce && elapsed < run.duration ? 0 : run.to * eased(progress(run,t));
+        object = run.object;
+        moving = elapsed < run.duration;
+        spin = p*3;
+      } else if (elapsed < run.duration + 1200 && !Curio.reduce) {
+        p = run.to * (1-(elapsed-run.duration-800)/400);
+        object = run.object;
+      }
+    }
+    for (const f of state.flags) flag(f,y-height*.01);
+    const size = Math.min(103, height*.19, width*.13);
+    const jh = Math.min(230,height*.38,width*.25);
+    const flip = state.side === 'gate';
+    const jx = postX(0) + (flip || state.side === 'pull' ? 1 : -1)*size*.95;
+    const pullX = state.side==='pull' && run && object==='wagon' ? postX(p)+size*1.55 : jx;
+    if (moving && state.side==='pull' && object==='wagon') {
+      toy(object,postX(p),y,size,spin);
+      pullHandle(postX(p),y,size,pullX,y+size*.34,jh);
+      jo(pullX,y+size*.34,jh,'jo-pull');
+    } else {
+      jo(pullX,y+size*.34,jh,moving ? state.size === 2 ? 'jo-big' : 'jo-small' : 'jo',flip);
+      toy(object,postX(p),y,size,spin);
+    }
+    pathArrow(postX(0)+(flip?-1:1)*size*.65,y-size*.8,Math.min(110,40+state.size*30),flip);
+    caption('Give it a push. Follow the flags.',Math.max(30,height*.10),width<600?16:24);
+    if (state.flags.length) {
+      const fw = Math.min(width*.65,560);
+      roundRect((width-fw)/2,height*.84,fw,height*.105,12,'#fff6e6e8','#d1ad74');
+      state.flags.forEach((f,i) => {
+        const x = (width-fw)/2 + (i+.5)*fw/8;
+        image(artFor(f.object),x,height*.88,32,32);
+        pathArrow(x-12,height*.92,12+f.size*7,f.side==='gate');
+      });
+    }
+    canvas.setAttribute('aria-label',`${names[state.object]} at the farm path. ${state.flags.length} stop flags. ${moving ? 'Rolling.' : 'Ready.'}`);
+  }
+  function drawFind(t) {
+    cover('farm-lanes');
+    const q = test();
+    if (!q) return;
+    const questions = ['Which push goes farther?','Change only the push.','Which way will it go?','Which way will a pull go?','Can a push stop the ball?'];
+    caption(q.phase === 'wall' ? 'Our tests' : questions[q.index],height*.1,width<600?16:24);
+    if (q.phase === 'wall') return;
+    const y1 = height*.44;
+    const y2 = height*.78;
+    const object = q.index < 2 ? q.index === 0 ? 'ball' : 'pumpkin' : q.index === 4 ? 'ball' : 'wagon';
+    const size = Math.min(65,height*.14,width*.10);
+    for (let lane = 0; lane < 2; lane++) {
+      const y = lane ? y2 : y1;
+      roundRect(width*.04,y-height*.12,width*.92,height*.19,30,'#d0aa77c9');
+      fence(y-height*.08);
+      const run = q.runs[lane];
+      const progressValue = run ? progress(run,t) : 0;
+      const moving = run && !run.stopped;
+      let p = run ? run.from + (run.to-run.from) * (Curio.reduce && moving ? 0 : eased(progressValue)) : 0;
+      if (q.index === 4 && !run) p = -5;
+      const ob = run ? run.object : object;
+      const jh = Math.min(150,height*.25,width*.2);
+      let jx = postX(0)-size*.95;
+      let pose = moving ? 'jo-small' : 'jo';
+      let flip = false;
+      if (q.index === 2 && lane === 1 && q.runs[0]) {
+        jx = postX(0)+size*.95;
+        flip = true;
+      }
+      if (q.index === 3 && lane === 1 && q.runs[0]) {
+        jx = postX(run ? p : 0)+size*1.55;
+        pose = moving ? 'jo-pull' : 'jo';
+      }
+      if (q.index === 4) {
+        jx = postX(2)+size*.65;
+        flip = true;
+        pose = lane === 0 ? 'jo-aside' : moving && p < 1.6 ? 'jo' : 'jo-small';
+      }
+      if (q.index===3 && lane===1 && moving) {
+        toy(ob,postX(p),y,size,p*3);
+        pullHandle(postX(p),y,size,jx,y+size*.32,jh);
+        jo(jx,y+size*.32,jh,pose,flip);
+      } else {
+        jo(jx,y+size*.32,jh,pose,flip);
+        toy(ob,postX(p),y,size,p*3);
+      }
+      if (run?.stopped) flag({object:ob,p:run.to},y,true);
+      if (q.phase !== 'compare') {
+        roundRect(width*.025,y-height*.245,Math.min(130,width*.22),height*.075,8,'#fff6e8', '#d6b581');
+        text('Try ' + (lane+1),width*.07,y-height*.207,Math.max(11,Math.min(16,width*.022)));
+        if (run || (q.index===1 && lane===0)) {
+          image(artFor(ob),width*.14,y-height*.207,28,28);
+          const badgeSize = run ? run.size : q.firstBig ? 2 : 0;
+          pathArrow(width*.18,y-height*.207,badgeSize===2?28:14,run?.side==='gate');
+        }
+      }
+      if (q.comparison === 'miss' && run) {
+        const n = Math.max(1,Math.round(Math.abs(run.to)));
+        for (let i=0;i<n;i++) {
+          ctx.fillStyle = NAVY;
+          ctx.beginPath();
+          ctx.arc(postX((i+1)*run.to/n),y+size*.65,Math.max(3,Math.min(6,width*.007)),0,7);
+          ctx.fill();
+        }
+      }
+    }
+    canvas.setAttribute('aria-label','Two lanes for test ' + (q.index+1) + '. ' + $('hint').textContent);
+  }
+  function samplePath(path, p) {
+    const lengths = path.slice(1).map((v,i) => Math.hypot((v[0]-path[i][0])*.0975,(v[1]-path[i][1])));
+    const total = lengths.reduce((a,b) => a+b,0);
+    let at = total*p;
+    for (let i=0;i<lengths.length;i++) {
+      if (at<=lengths[i] || i===lengths.length-1) {
+        const q = lengths[i] ? Math.min(1,at/lengths[i]) : 1;
+        return [path[i][0]+(path[i+1][0]-path[i][0])*q,path[i][1]+(path[i+1][1]-path[i][1])*q];
+      }
+      at-=lengths[i];
+    }
+    return path[path.length-1];
+  }
+  function drawBuckets(x,y,w,run,t) {
+    const hit = run && progress(run,t) > .83;
+    const tumble = hit && run.outcome === 'worked';
+    const wobble = hit && run.outcome === 'wobble' && t-run.start < 3800;
+    const positions = [[-.22,0],[.22,0],[0,-.5]];
+    positions.forEach(([dx,dy],i) => {
+      const angle = tumble ? [-.7,.8,1.7][i] : wobble && !Curio.reduce ? Math.sin(t*.022+i)*.13 : 0;
+      const tx = x+dx*w+(tumble ? (i-1)*w*.45 : 0);
+      const ty = y+dy*w+(tumble && i===2 ? w*.3 : 0);
+      image('tin-bucket',tx,ty,w*.56,w*.62,angle);
+    });
+  }
+  function drawBarn(t) {
+    cover('barn-field');
+    const level = state.level;
+    const b = barn();
+    const run = b.run;
+    const groundY = height*.61;
+    roundRect(width*.065,groundY-height*.045,width*.87,height*.09,height*.04,'#cfaa78db');
+    fence(groundY-height*.075,true);
+    const doorP = level===1?6:level===2?4:5;
+    const bx = postX(doorP,width,true);
+    const bw = Math.min(width*.26,260);
+    const bh = bw*.789;
+    const doorY = level===1?groundY:height*.32;
+    image('barn-top',bx-bw*.17,doorY-bh*.34,bw,bh);
+    const open = !!run?.judged && run.outcome==='worked';
+    const dw = Math.max(28,bw*.41);
+    const dh = Math.max(36,bh*.46);
+    if (images['barn-door'].complete && images['barn-door'].naturalWidth) {
+      const offset = open ? dw*.94 : 0;
+      ctx.drawImage(images['barn-door'],bx-bw*.20+offset,doorY+bh*.16-dh,dw,dh);
+    }
+    if (level===2) image('pond',postX(8,width,true),groundY,width*.19,height*.21);
+    if (level>1) image('pumpkin-patch',width*.47,height*.84,width*.55,height*.19);
+    if (level===3) image('hay-pile',postX(8,width,true),groundY,width*.17,height*.18);
+    const size = Math.min(57,width*.065,height*.12);
+    const jh = Math.min(height*.30,190);
+    const rolling = b.phase==='rolling';
+    jo(postX(0,width,true)-size*.6,groundY+size*.3,jh,rolling?'jo-small':open?'jo-cheer':'jo');
+    let at = [0,b.design.ramp===0?.56:.61];
+    let prog = 0;
+    if (run) {
+      prog = progress(run,t);
+      at = Curio.reduce && rolling ? run.path[0] : samplePath(run.path,eased(prog));
+      const n = Math.floor(Math.min(t-run.start,run.duration)/200);
+      for (let i=1;i<=n;i++) {
+        const a = samplePath(run.path,eased(i*200/run.duration));
+        ctx.fillStyle = NAVY+'8c';
+        ctx.beginPath();
+        ctx.arc(postX(a[0],width,true),height*a[1]+size*.35,Math.max(2.5,width*.0035),0,7);
+        ctx.fill();
+      }
+    if (run.ghostStart && ['ghost','analysis','complete'].includes(b.phase)) {
+        const gp = b.phase==='ghost' ? Curio.reduce ? 0 : Math.min(1,(t-run.ghostStart)/3000) : 1;
+        const ghostPath = barnRunPath(level,model(level,{}),{});
+        const real = samplePath(run.path,eased(gp));
+        const ghost = samplePath(ghostPath,eased(gp));
+        toy('ball',postX(ghost[0],width,true),height*ghost[1]+size*.5,size,0,.3);
+        at = real;
+        if (b.phase==='ghost') caption('Watch both balls',height*.095,width<600?15:22);
+      }
+      if (run.outcome==='pond' && prog===1) {
+        ctx.strokeStyle = '#e5faff';
+        ctx.lineWidth = 3;
+        for (let i=0;i<3;i++) {
+          ctx.beginPath();
+          ctx.ellipse(postX(at[0],width,true),height*at[1]+size*.3,size*(.5+i*.24),size*(.14+i*.08),0,0,7);
+          ctx.stroke();
+        }
+      }
+      if (run.judged && run.outcome!=='worked') {
+        ctx.strokeStyle = INK;
+        ctx.lineWidth = 3;
+        ctx.setLineDash([7,5]);
+        ctx.beginPath();
+        ctx.ellipse(postX(at[0],width,true),height*at[1],size*.8,size*.63,0,0,7);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+      if (!['build','rolling'].includes(b.phase)) {
+        for (const [piece,p] of Object.entries(run.design)) {
+          image(artFor(piece),postX(p,width,true),groundY,Math.min(90,width*.12),Math.min(75,height*.17),
+            piece==='up'?-.7:piece==='down'?.7:0,1,piece==='ramp' && p>0);
+        }
+      }
+    }
+    if (level===3) drawBuckets(bx,doorY-height*.015,Math.min(75,width*.09),run,t);
+    toy('ball',postX(at[0],width,true),height*at[1],size,at[0]*3);
+    if (b.phase!=='ghost') {
+      caption(level===1?'Get the ball into the barn':level===2?'Turn the ball into the barn':'Knock down the buckets',height*.095,width<600?14:22);
+    }
+    drawTries(b);
+    canvas.setAttribute('aria-label','Barn design ' + level + '. ' + (run?.stopped ? 'Ball stopped. ' : '') + $('hint').textContent);
+  }
+  function drawTries(b) {
+    const compact = width<600 || height<420;
+    const y = height*.91;
+    const max = compact ? 12 : 7;
+    const tries = b.tries.slice(-max);
+    if (!tries.length) return;
+    roundRect(width*.02,y-height*.065,width*.96,height*.13,10,'#fff6e9ed','#b58a52');
+    if (compact) {
+      tries.forEach((r,i) => {
+        const x = width*.09+i*Math.min(29,width*.85/max);
+        ctx.fillStyle = r.said===null?'#b9a388':NAVY;
+        ctx.beginPath();
+        ctx.arc(x,y,7,0,7);
+        ctx.fill();
+        if (r.said!==null && !r.correct) text('×',x,y,13,'#fff');
+      });
+      return;
+    }
+    const cell = width*.92/max;
+    tries.forEach((r,i) => {
+      const x = width*.04+i*cell;
+      roundRect(x,y-height*.05,cell-6,height*.1,4,'#fffdf4','#dcc399');
+      Object.keys(r.design).forEach((piece,j) => image(artFor(piece),x+16+j*20,y-height*.023,24,22));
+      text('we said ' + (r.said===null?'?':r.said?'👍':'👎'),x+7,y+height*.01,11,INK,'left');
+      text('it was ' + (r.said===null?'?':r.outcome==='worked'?'⌂ ●':'○ ●'),x+7,y+height*.035,11,INK,'left');
+    });
+  }
+  function draw() {
+    if (!ctx || !width || !height) return;
+    ctx.clearRect(0,0,width,height);
+    const t = now();
+    if (state.mode==='push') drawPush(t);
+    else if (state.mode==='find') drawFind(t);
+    else drawBarn(t);
+    if (!Curio.reduce) {
+      const x = width*.83 + Math.sin(t/4500)*9;
+      const y = height*.17 + Math.sin(t/2600)*5;
+      ctx.save();
+      ctx.translate(x,y);
+      ctx.rotate(Math.sin(t/1900)*.3);
+      ctx.fillStyle = '#be5926';
+      ctx.beginPath();
+      ctx.ellipse(0,0,6,3,.5,0,7);
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  function tick(t) {
+    if (state.mode==='push' && state.pushRun && !state.pushRun.flagged && progress(state.pushRun,t)>=1) finishPush(state.pushRun);
+    if (state.mode==='find' && state.find?.busy) {
+      for (let i=0;i<2;i++) {
+        const r = test().runs[i];
+        if (r && !r.stopped && progress(r,t)>=1) testStop(test(),i);
+      }
+    }
+    if (state.mode==='barn') {
+      const b = barn();
+      if (b.phase==='rolling' && progress(b.run,t)>=1) barnStop(b);
+      if (b.phase==='ghost' && t-b.run.ghostStart>=3000) ghostStop(b);
+    }
+    draw();
+    requestAnimationFrame(tick);
+  }
+  Curio.init({clips:"voice:*",rate:.9});
+  Curio.onMotion(draw);
+  new ResizeObserver(resize).observe($('stage'));
+  window.__tool = {
+    state, setMode, allLines:V.allLines, vlog:V.log, get vq() { return V.queue; },
+    model, allowed, distances, enterTest, place, renderBarn, draw, progress
+  };
+  updatePush();
+  setMode('push');
+  resize();
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

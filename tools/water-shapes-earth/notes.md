@@ -56,12 +56,28 @@ The requested gravel-ranger voice is specified in voice/lines.json. Build does n
 
 ## Sources and model constants
 
-- USGS Water Science School, [Water Density](https://www.usgs.gov/special-topics/water-science-school/science/water-density): 0.9998 / 0.9167 gives ice volume ratio 1.09065.
+- USGS Water Science School, [Water Density](https://www.usgs.gov/water-science-school/science/water-density): ice is less dense than water and expands about 9% on freezing. The spec's density inputs 0.9998 / 0.9167 give the model volume ratio 1.09065.
 - Fagerlund (1977), Materials and Structures 10:217: critical degree of saturation and frost damage.
-- USGS, [pH and Water](https://www.usgs.gov/special-topics/water-science-school/science/ph-and-water), and Sinkholes: rain pH about 5.6, carbonate dissolution and karst.
+  [FHWA-HRT-06-117, chapter 2](https://www.fhwa.dot.gov/publications/research/infrastructure/pavements/pccp/06117/02.cfm)
+  explains the ideal 91.7% pore-fill argument. It is not a universal threshold for natural rocks.
+- USGS, [pH and Water](https://www.usgs.gov/water-science-school/science/ph-and-water), and Sinkholes: rain pH about 5.6, carbonate dissolution and karst.
 - OpenStax Chemistry 2e, 11.3 Solubility: gas solubility decreases as temperature rises.
 - USGS Water-Supply Paper 2175 (1982): Manning flow relationship.
 - Hjulström (1935), Bulletin of the Geological Institute of Uppsala 25:221: grain thresholds, rounded here.
 - NASA Glenn Research Center, Earth Atmosphere Model: air density about 1.2 kg/m³. Water / air ≈ 833.
 
-All computations were independently recomputed during this Build. The supplied source claims are used as specified; no external recordings or downloaded art are used.
+The exact rock rates, temperature multipliers and grain thresholds are teaching-model assumptions, not measured universal constants.
+Hjulström separates erosion from continued transport: fine silt and clay already in suspension can remain aloft at low speeds;
+this tool does not model lifting cohesive clay from the bed. Mixed sediment includes that pre-suspended fine material.
+The 0.20, 0.80 and 1.50 m/s cutoffs are the spec's rounded choices, not exact values established by the original curve.
+The [original Hjulström paper](https://paleoarchive.com/literature/Hjulstrom1935-MorphologicalActivityRiversRiverFyris.pdf),
+table 7 on page 295, lists 0.81 m/s for 8 mm grains but 2.18-2.21 m/s for 30 mm grains.
+Its page 296 describes a broad, preliminary erosion zone, with depth and grain-size qualifications.
+The spec's 1.50 m/s cutoff for 32 mm pebbles is therefore a chosen teaching threshold, not a verified rounding of that table.
+It remains unchanged here because changing it would change the specified stream outcomes.
+The cold-water multiplier isolates CO2 solubility; real dissolution also depends on reaction kinetics, water chemistry and exposed area.
+The oil control means no modeled widening, rather than a measured prediction for every vegetable-oil mixture.
+
+Compare names a pair that changes exactly one variable and connects its actual means to that variable.
+Identical tests are repeats, not evidence of a changed cause; a confounded plan never receives a causal endorsement.
+There is no score or automatic judgment of the student's claim. Compare is a worked example, available with an empty claim.

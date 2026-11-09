@@ -1,0 +1,1598 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Mini Documentary Crew · Curio Class</title>
+<meta name="description" content="Schedule a nonfiction shoot, cut a five-minute documentary and test your edit. Grades 9 to 12 media arts. Offline.">
+<!--
+Mini Documentary Crew, Curio Class. Built from kit/starter/src.html.
+Grades 9 to 12 media arts: NCAS MA:Pr4, MA:Pr5, MA:Pr6, MA:Cn10.
+Fictional shop, characters, town and attention model from spec.md.
+Production conventions: Hampe, Making Documentary Films and Videos, 2nd edition (2007);
+CMSI, Documentary Filmmakers' Statement of Best Practices in Fair Use (2005).
+Online captions: W3C WCAG 2.1 SC 1.2.2. This simulation's permissions are production rules, not legal advice.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One offline file. No collection or network requests. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  color-scheme:light;
+  --paper:#fbfbf9;
+  --panel:#ffffff;
+  --ink:#1b1d22;
+  --muted:#5a5f69;
+  --line:#dfe2e6;
+  --brand:#b3261e;
+  --brand-ink:#ffffff;
+  --btn:#ffffff;
+  --btn-line:#b6b8bc;
+  --head-ink:#1b1d22;
+  --head-bg:#fbfbf9;
+  --focus:#b3261e;
+  --sec-bg:#f3f2ed;
+  --ok:#355a14;
+  --warn:#a1221b;
+}
+body {height:100%;min-height:0;overflow:hidden;grid-template-rows:82px minmax(0,1fr) 66px;}
+button,input,select,textarea {font:inherit;}
+button,input,select,textarea,summary {min-height:44px;}
+button {min-width:44px;touch-action:manipulation;}
+button:disabled {opacity:.45;cursor:not-allowed;}
+button:hover:not(:disabled) {filter:brightness(.96);}
+button:active:not(:disabled) {transform:translateY(1px);}
+header {padding:10px 22px;gap:10px;flex-wrap:nowrap;border-bottom:1px solid #c8c5bd;background:var(--paper);}
+h1 {font-size:25px;letter-spacing:-.6px;white-space:nowrap;}
+h1 small {font-size:12px;margin-top:6px;letter-spacing:.1px;color:var(--muted);}
+h1 .mark {color:var(--brand);font-weight:900;margin-right:7px;}
+.seg {border-radius:6px;border-width:1px;flex-shrink:0;}
+.seg button {min-height:44px;padding:0 13px;font-size:13px;background:#fff;}
+.seg button[aria-pressed="true"] {background:var(--brand);color:#fff;}
+.icon-btn {border-radius:5px;border-width:1px;min-height:44px;padding:0 10px;font-size:12px;flex-shrink:0;}
+#motion {width:100px;}
+#sound {width:94px;}
+#read {width:70px;}
+main {min-width:0;min-height:0;display:block;}
+section {min-width:0;min-height:0;}
+.workspace {height:100%;min-height:0;}
+footer {display:flex;align-items:center;gap:14px;padding:9px 22px;border-top:1px solid #cbc7bf;background:#fff;}
+#hint {font-size:14px;line-height:1.35;margin:0;flex:1;min-width:0;}
+.save-note {font-size:11px;color:var(--muted);max-width:210px;line-height:1.4;}
+.eyebrow {font-size:11px;text-transform:uppercase;letter-spacing:.15em;font-weight:800;color:var(--muted);}
+.pill {display:inline-block;padding:4px 8px;border:1px solid #bbb6a7;border-radius:3px;font-size:11px;background:#fff;}
+.primary,.secondary {padding:0 13px;border-radius:4px;font-size:13px;font-weight:700;border:1px solid var(--btn-line);}
+.primary {background:var(--brand);border-color:var(--brand);color:#fff;}
+.secondary {background:#fff;}
+.row {display:flex;align-items:center;gap:7px;min-width:0;}
+.row.wrap {flex-wrap:wrap;}
+.push {margin-left:auto;}
+.mono {font-family:Consolas,monospace;font-variant-numeric:tabular-nums;}
+.quiet {font-size:12px;color:var(--muted);line-height:1.4;}
+.schedule {display:grid;grid-template-columns:minmax(0,1fr) 330px;grid-template-rows:minmax(0,1fr);gap:0;background:#eceae3;}
+.board {grid-column:1;grid-row:1;display:grid;grid-template-rows:137px minmax(0,1fr);padding:18px;gap:14px;min-height:0;}
+.hero {position:relative;overflow:hidden;background:#362d25;box-shadow:0 3px 10px #32251026;}
+.hero>img {width:100%;height:100%;object-fit:cover;object-position:center 58%;}
+.hero::after {content:"";position:absolute;inset:0;background:linear-gradient(90deg,#171513e8,#1715136b 57%,transparent);}
+.hero-copy {position:absolute;inset:16px 22px;z-index:1;color:#fff;max-width:500px;}
+.hero-copy .eyebrow {color:#e7c2a4;}
+.hero h2 {font:500 31px/1.1 Georgia,serif;margin:8px 0;letter-spacing:-.4px;}
+.hero p {font-size:12px;line-height:1.45;margin:0;max-width:380px;}
+.hero .film-light {position:absolute;right:18px;top:17px;z-index:2;display:flex;align-items:center;gap:7px;color:white;font-size:11px;}
+.hero #brief {position:absolute;inset:0;z-index:3;width:100%;height:100%;border:0;background:transparent;border-radius:0;}
+.hero #brief:focus-visible {outline-offset:-4px;outline-color:#fff;}
+.led {display:inline-block;width:7px;height:7px;border-radius:50%;background:#ee6555;box-shadow:0 0 9px #ff4433;animation:breathe 3s ease-in-out infinite;}
+@keyframes breathe {50% {opacity:.4;}}
+.cal-wrap {min-height:0;background:#fff;border:1px solid #cbc8c1;box-shadow:0 3px 12px #32251010;display:flex;flex-direction:column;}
+.cal-head {padding:10px 12px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--line);min-height:42px;}
+.week-tabs {display:none;gap:5px;margin-left:auto;}
+.week-tabs button {font-size:11px;background:#fff;border:1px solid #bfbcb5;border-radius:3px;padding:0 8px;}
+.week-tabs button[aria-pressed="true"] {background:#27292d;color:#fff;}
+.calendar {display:grid;grid-template-columns:repeat(6,minmax(0,1fr));grid-template-rows:repeat(3,minmax(0,1fr));flex:1;min-height:0;}
+.day {padding:7px;min-width:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:4px;}
+.day:nth-child(6n) {border-right:0;}
+.day-title {display:flex;justify-content:space-between;gap:4px;font-size:12px;font-weight:700;}
+.weather {font-size:10px;color:var(--muted);}
+.school {font-size:10px;color:#75736c;}
+.slot {display:flex;flex-direction:column;justify-content:center;align-items:flex-start;text-align:left;padding:5px 6px;width:100%;
+  background:#f6f5f0;border:1px dashed #c4c1b8;border-radius:3px;flex:1;font-size:11px;min-height:44px;}
+.slot small {font-size:10px;color:var(--muted);line-height:1.15;}
+.slot[data-filled="true"] {border-style:solid;border-color:#a9b7a0;background:#eff3e9;box-shadow:inset 3px 0 #4d7c0f;}
+.slot.rejected {animation:reject .25s ease-in-out 2;background:#fae3df;border-color:var(--brand);}
+.slot.accepted {animation:stamp .25s ease-out;}
+@keyframes reject {25% {transform:translateX(-3px);}75% {transform:translateX(3px);}}
+@keyframes stamp {0% {transform:scale(.96);box-shadow:0 0 0 6px #4d7c0f33;}100% {transform:scale(1);}}
+.shoot-panel {grid-column:2;grid-row:1;background:#fdfcf8;border-left:1px solid #c8c4bb;padding:16px;display:flex;flex-direction:column;gap:12px;min-height:0;}
+.crew {display:grid;grid-template-columns:1fr 1fr;gap:7px;font-size:11px;line-height:1.35;}
+.crew b {display:block;font-size:12px;color:var(--ink);}
+.crew>div {padding-left:8px;border-left:2px solid #c8c1b1;}
+.shoots {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;}
+.shoot {position:relative;border:1px solid #bdb7a9;border-radius:3px;padding:0;text-align:left;background:#fff;overflow:hidden;min-width:0;}
+.shoot img {width:100%;height:44px;object-fit:cover;display:block;filter:saturate(.75);}
+.shoot .shot-label {display:block;padding:6px;font-size:11px;line-height:1.2;font-weight:700;min-height:39px;}
+.shoot .shot-number {position:absolute;left:4px;top:4px;background:#fff;color:#222;font:700 10px Consolas,monospace;padding:1px 4px;}
+.shoot[aria-pressed="true"] {outline:2px solid var(--brand);outline-offset:1px;}
+.shoot[data-placed="true"]::after {content:"✓";position:absolute;right:4px;top:4px;color:#fff;background:#3b5f1e;
+  border-radius:50%;width:18px;height:18px;text-align:center;font-size:12px;}
+.shoot-info {border-top:1px solid #cbc6b9;padding-top:9px;min-height:95px;}
+.shoot-info h3 {margin:0 0 5px;font-size:14px;}
+.shoot-info p {font-size:12px;line-height:1.45;margin:0;}
+.schedule-actions {margin-top:auto;display:flex;gap:7px;}
+.schedule-actions #wrap {flex:1;}
+.edit {display:grid;grid-template-columns:226px minmax(0,1fr);grid-template-rows:minmax(0,1fr) 155px;background:#e8e5de;}
+.bin-panel {padding:14px;background:#fdfcf8;border-right:1px solid #c5c1b8;display:flex;flex-direction:column;gap:9px;min-height:0;}
+.bin-panel {grid-column:1;grid-row:1;}
+.bin-panel h2 {order:0;}
+.bin-panel .bin {order:1;}
+.bin-panel #add,.bin-panel #start-over {order:2;}
+.bin-panel h2,.edit h2 {font-size:14px;margin:0;}
+.bin {overflow:auto;min-height:0;flex:1;display:flex;flex-direction:column;gap:7px;padding:3px;}
+.bin-group {font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:6px 0 1px;}
+.bin-clip {display:grid;grid-template-columns:65px 1fr;gap:8px;padding:4px;border:1px solid #cfcbc1;background:#fff;
+  border-radius:3px;text-align:left;min-height:54px;}
+.bin-clip img {width:65px;height:43px;object-fit:cover;}
+.bin-clip span {min-width:0;}
+.bin-clip b {font-size:12px;display:block;}
+.bin-clip small {display:block;font-size:10px;line-height:1.25;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:122px;}
+.bin-clip[aria-pressed="true"] {border-color:var(--brand);box-shadow:inset 3px 0 var(--brand);}
+.bin-panel #add {width:100%;flex-shrink:0;}
+.edit-main {padding:14px 20px 10px;display:grid;grid-template-rows:minmax(100px,1fr) auto auto;gap:9px;min-height:0;}
+.edit-main {grid-column:2;grid-row:1;}
+.viewer-shell {min-height:0;display:flex;align-items:center;justify-content:center;background:#292b2c;
+  border:6px solid #343638;border-radius:5px;box-shadow:0 4px 18px #19171130;position:relative;container-type:size;}
+.viewer {position:relative;aspect-ratio:16/9;width:min(100cqw,calc(100cqh * 16 / 9));
+  height:min(100cqh,calc(100cqw * 9 / 16));overflow:hidden;background:#171715;}
+.viewer img {width:100%;height:100%;object-fit:contain;display:block;}
+.viewer img.moving {animation:pan 22s linear infinite alternate;}
+@keyframes pan {from {transform:scale(1.01) translateX(-.2%);}to {transform:scale(1.07) translateX(.6%);}}
+.viewer .subtitle {position:absolute;left:8%;right:8%;bottom:5%;text-align:center;color:#fff;font-size:clamp(11px,1.45vw,20px);
+  line-height:1.35;text-shadow:0 2px 3px #000;padding:4px 9px;background:#000b;}
+.viewer .subtitle:empty {display:none;}
+.viewer .lower {position:absolute;left:5%;bottom:30%;max-width:85%;background:#f7f4e9ed;padding:7px 13px;
+  border-left:4px solid var(--brand);color:#171715;font-size:clamp(11px,1.4vw,18px);box-shadow:0 2px 6px #0004;}
+.viewer .lower:empty {display:none;}
+.timecode {position:absolute;top:10px;right:10px;padding:3px 7px;color:#fff;background:#0009;font:11px Consolas,monospace;z-index:2;}
+.viewer-tag {position:absolute;top:10px;left:10px;padding:4px 8px;background:#f6f0e5ef;color:#24201b;font:11px Consolas,monospace;z-index:2;}
+.transport {display:flex;align-items:center;gap:7px;min-height:44px;}
+.transport .runtime {font-size:14px;font-weight:700;margin-left:auto;}
+.inspector {display:flex;gap:6px;align-items:center;flex-wrap:wrap;min-height:44px;}
+.inspector button {background:#fff;border:1px solid #aaa69c;border-radius:3px;font-size:12px;padding:0 9px;}
+.inspector button[aria-pressed="true"] {background:#27292d;color:#fff;}
+.inspector .clip-detail {font-size:11px;color:var(--muted);min-width:90px;}
+.timeline-shell {grid-column:1/-1;border-top:1px solid #bbb6ab;padding:10px 17px;background:#f9f8f3;min-width:0;display:flex;flex-direction:column;gap:7px;}
+.timeline-top {display:flex;align-items:center;gap:10px;font-size:11px;}
+.legend {display:flex;gap:12px;color:var(--muted);}
+.timeline {position:relative;display:flex;align-items:stretch;gap:3px;overflow-x:auto;overflow-y:hidden;flex:1;min-height:65px;padding:5px 3px 7px;
+  background:linear-gradient(#dad8d033 1px,transparent 1px) 0 0/100% 16px;border-top:1px solid #d7d3c8;}
+.empty-timeline {display:flex;align-items:center;justify-content:center;flex:1;min-width:180px;color:var(--muted);font-size:14px;border:1px dashed #aaa597;}
+.clip {position:relative;flex-shrink:0;min-width:66px;border:2px solid transparent;border-radius:3px;padding:0;overflow:hidden;color:#fff;text-align:left;
+  background:#2563a8;min-height:70px;}
+.clip.broll {background:#4d7c0f;}
+.clip.photo {background:#6d28d9;}
+.clip .strip-image {position:absolute;inset:0 0 20px;width:100%;height:calc(100% - 20px);object-fit:cover;opacity:.65;}
+.clip .clip-id {position:absolute;left:5px;top:4px;font:700 12px Consolas,monospace;background:#000a;padding:2px 4px;}
+.clip .clip-duration {position:absolute;bottom:3px;left:5px;font:11px Consolas,monospace;}
+.clip .cover-band {position:absolute;height:8px;bottom:20px;right:0;background:repeating-linear-gradient(135deg,#dbe7c1 0 3px,#42640b 3px 6px);}
+.clip[aria-pressed="true"] {border-color:#131313;box-shadow:0 0 0 2px white;}
+.clip.low-clip {outline:3px solid var(--brand);outline-offset:-3px;}
+.clip.closer::after {content:"END";position:absolute;bottom:3px;right:3px;font:10px Consolas,monospace;}
+.playhead {position:absolute;top:0;bottom:0;width:2px;background:#b3261e;pointer-events:none;z-index:4;}
+.screen {padding:16px 24px;display:grid;grid-template-columns:minmax(0,1fr) 270px;grid-template-rows:160px minmax(0,1fr) 78px;gap:14px;background:#eae7df;}
+.screen-monitor {grid-column:1;display:flex;gap:17px;min-width:0;min-height:0;}
+.screen-monitor .viewer-shell {width:285px;flex-shrink:0;}
+.screen-copy {align-self:center;max-width:450px;}
+.screen-copy h2 {font:500 26px Georgia,serif;margin:6px 0 10px;}
+.screen-copy p {font-size:13px;color:var(--muted);line-height:1.5;}
+.audience-board {grid-column:1;grid-row:2;min-height:0;background:#fff;border:1px solid #c8c3b8;padding:15px;display:flex;flex-direction:column;}
+.mini-strip {display:flex;gap:1px;height:21px;margin-top:8px;overflow:hidden;flex-shrink:0;}
+.mini-strip span {background:#2563a8;min-width:1px;}
+.mini-strip span.broll {background:#4d7c0f;}
+.mini-strip span.photo {background:#6d28d9;}
+.graph {width:100%;height:100%;flex:1;min-height:0;overflow:visible;}
+.graph text {font-size:12px;fill:var(--muted);font-family:'Segoe UI',sans-serif;}
+.screen-results {grid-column:2;grid-row:1/4;background:#fdfcf8;padding:16px;border:1px solid #c8c3b8;overflow:auto;}
+.screen-results h3 {font-size:13px;text-transform:uppercase;letter-spacing:.09em;margin:0 0 13px;}
+.big-number {font:500 48px/1 Georgia,serif;margin:10px 0;}
+.screen-results p {font-size:12px;line-height:1.45;}
+.question {border-left:3px solid var(--brand);padding:7px;background:#fff1ed;margin:5px 0;font-size:12px;}
+.screen-actions {grid-column:1;grid-row:3;display:flex;gap:7px;flex-wrap:wrap;align-content:start;}
+.screen-actions button {align-self:start;}
+.compare {font-size:11px;color:var(--muted);width:100%;display:flex;gap:9px;flex-wrap:wrap;}
+.premiere {padding:20px;overflow:auto;background:#eae7df;display:flex;justify-content:center;align-items:flex-start;}
+.plan {width:min(1050px,100%);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#fff;
+  box-shadow:0 7px 28px #33291720;border:1px solid #c9c4b8;}
+.plan-fields {padding:23px;display:flex;flex-direction:column;gap:11px;}
+.plan h2 {font:500 28px Georgia,serif;margin:0 0 5px;}
+.plan label {display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:600;}
+.plan input,.plan select,.plan textarea {background:#faf9f5;border:1px solid #b9b3a6;border-radius:3px;color:var(--ink);width:100%;padding:8px;}
+.plan textarea {resize:vertical;min-height:64px;font-weight:400;}
+.poster-side {background:#eee8db;padding:23px;display:flex;flex-direction:column;gap:12px;}
+.poster {position:relative;aspect-ratio:3/4;background:#1c2527;box-shadow:0 5px 12px #28251a40;overflow:hidden;}
+.poster img {width:100%;height:100%;object-fit:cover;object-position:60% center;}
+.poster::after {content:"";position:absolute;inset:45% 0 0;background:linear-gradient(transparent,#131b1ee8);}
+.poster .sign-title {position:absolute;z-index:1;left:6%;right:6%;top:12%;padding:5px 6px;background:#e8ddc6e8;color:#332b21;
+  font:700 clamp(16px,2vw,27px) Georgia,serif;text-align:center;}
+.poster .poster-type {position:absolute;z-index:1;bottom:7%;left:9%;right:9%;color:#fff;}
+.poster .poster-type b {font:500 26px/1.1 Georgia,serif;display:block;margin-bottom:10px;}
+.poster .poster-type span {font-size:12px;}
+.permission {font-size:12px;line-height:1.5;padding:5px 0;}
+.permission.bad {color:var(--brand);}
+.locked-sheet {padding:22px;width:min(900px,100%);background:#fff;box-shadow:0 7px 28px #33291720;}
+.locked-sheet h2 {font:500 32px Georgia,serif;}
+.locked-sheet dl {display:grid;grid-template-columns:140px 1fr;gap:9px;font-size:14px;}
+.locked-sheet dd {margin:0;overflow-wrap:anywhere;}
+.locked-sheet .graph {height:150px;}
+.locked-sheet img {width:100%;max-height:260px;object-fit:cover;}
+.locked-sheet>.row {position:sticky;bottom:0;background:#fff;padding:8px 0;border-top:1px solid #c9c4b8;z-index:3;}
+dialog {color:var(--ink);border:1px solid #b6afa1;border-radius:5px;padding:0;width:min(520px,calc(100vw - 28px));
+  box-shadow:0 15px 70px #0006;max-height:calc(100dvh - 30px);}
+dialog::backdrop {background:#161b22a8;}
+.dialog-body {padding:22px;overflow:auto;max-height:calc(100dvh - 110px);}
+dialog h2 {font:500 25px Georgia,serif;margin:0 0 12px;}
+dialog p {font-size:14px;line-height:1.45;}
+dialog label {display:flex;flex-direction:column;gap:5px;font-size:13px;margin:12px 0;}
+dialog input,dialog select {padding:8px;min-width:0;width:100%;background:#f7f6f0;border:1px solid #aaa498;border-radius:3px;color:var(--ink);}
+.dialog-actions {display:flex;justify-content:flex-end;gap:9px;padding:12px 20px;background:#f4f1e8;border-top:1px solid #d4cfc3;}
+#drag-ghost {position:fixed;z-index:1000;pointer-events:none;padding:12px 18px;background:#fff9ec;border:2px solid var(--brand);
+  box-shadow:0 8px 25px #0004;font-weight:700;}
+.draggable {touch-action:none;user-select:none;}
+.draggable img {pointer-events:none;-webkit-user-drag:none;}
+.calm .led,.calm .moving,.calm .slot {animation:none!important;transition:none!important;}
+@media (max-width:1100px) {
+  header {padding:8px 12px;gap:6px;}
+  h1 {font-size:21px;}
+  .seg button {padding:0 9px;}
+  .schedule {grid-template-columns:minmax(0,1fr) 285px;}
+  .board {padding:12px;gap:10px;grid-template-rows:114px minmax(0,1fr);}
+  .shoot-panel {padding:12px;gap:10px;}
+  .hero-copy {inset:11px 16px;}
+  .hero h2 {font-size:28px;}
+  .shoot img {height:35px;}
+  .shoot-info {min-height:82px;}
+  .screen {padding:12px;grid-template-columns:minmax(0,1fr) 220px;gap:10px;}
+  .screen-copy h2 {font-size:22px;}
+}
+@media (max-width:900px),(max-height:660px) {
+  body {grid-template-rows:64px minmax(0,1fr) 60px;}
+  header {gap:5px;}
+  h1 {font-size:18px;max-width:195px;white-space:normal;}
+  h1 small {display:none;}
+  .icon-btn {font-size:11px;padding:0 5px;}
+  #motion {width:84px;}
+  #sound {width:78px;}
+  #read {width:51px;}
+  .seg button {font-size:11px;padding:0 7px;}
+  .schedule {grid-template-columns:minmax(0,1fr) 250px;}
+  .board {grid-template-rows:68px minmax(0,1fr);padding:8px;gap:7px;}
+  .hero-copy {inset:9px 12px;}
+  .hero h2 {font-size:24px;margin:4px 0;}
+  .hero p,.hero .film-light {display:none;}
+  .week-tabs {display:flex;}
+  .calendar {grid-template-columns:repeat(5,minmax(0,1fr)) minmax(0,1.25fr);grid-template-rows:minmax(0,1fr);}
+  .slot-noise {display:none;}
+  .day {padding:5px;gap:4px;}
+  .day-title {font-size:11px;flex-wrap:wrap;}
+  .cal-head {padding:0 7px;min-height:44px;}
+  .cal-head>.eyebrow {font-size:10px;letter-spacing:.03em;}
+  .slot {padding:4px;font-size:10px;}
+  .slot small {font-size:10px;}
+  .shoot-panel {padding:8px;gap:7px;}
+  .crew {font-size:10px;gap:3px;}
+  .crew b {font-size:10px;}
+  .shoots {gap:5px;}
+  .shoot img {height:22px;}
+  .shoot {display:flex;align-items:center;min-height:44px;}
+  .shoot img {width:24px;height:42px;}
+  .shoot .shot-number {display:none;}
+  .shoot .shot-label {padding:4px;font-size:10px;min-height:27px;}
+  .shoot-info {min-height:55px;padding-top:5px;}
+  .shoot-info h3 {font-size:12px;}
+  .shoot-info p {font-size:11px;line-height:1.25;}
+  .shoot-info {display:none;}
+  .schedule-actions {gap:4px;}
+  .schedule-actions button {font-size:11px;padding:0 7px;}
+  footer {padding:7px 12px;gap:8px;}
+  #hint {font-size:12px;}
+  .save-note {font-size:10px;max-width:130px;}
+  .edit {grid-template-columns:153px minmax(0,1fr);grid-template-rows:minmax(0,1fr) 99px;}
+  .bin-panel {padding:7px;gap:5px;}
+  .bin-clip {grid-template-columns:40px 1fr;gap:5px;min-height:48px;}
+  .bin-clip img {width:40px;height:36px;}
+  .bin-clip small {max-width:80px;}
+  .edit-main {padding:6px 9px;gap:5px;grid-template-columns:minmax(0,1fr) 132px;grid-template-rows:minmax(65px,1fr) 44px;}
+  .edit-main>.viewer-shell {grid-column:1;grid-row:1;}
+  .edit-main>.transport {grid-column:1;grid-row:2;}
+  .transport {gap:4px;}
+  .transport button {font-size:11px;padding:0 7px;}
+  .transport .runtime {font-size:11px;}
+  .inspector {grid-column:2;grid-row:1/3;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,minmax(44px,1fr));overflow:visible;gap:4px;}
+  .inspector button {font-size:10px;padding:0 6px;flex-shrink:0;}
+  .inspector .clip-detail {display:none;}
+  .viewer .lower {bottom:40%;padding:4px 8px;font-size:11px;}
+  .timeline-shell {padding:5px 9px;gap:3px;}
+  .timeline-top {font-size:10px;}
+  .legend {gap:6px;}
+  .timeline {min-height:50px;padding-bottom:3px;}
+  .clip {min-height:48px;}
+  .screen {grid-template-columns:minmax(0,1fr) 185px;grid-template-rows:95px minmax(0,1fr) 55px;padding:8px;gap:7px;}
+  .screen-monitor {gap:8px;}
+  .screen-monitor .viewer-shell {width:160px;}
+  .screen-copy h2 {font-size:18px;margin:0 0 4px;}
+  .screen-copy p {font-size:10px;margin:3px 0;}
+  .screen-copy .eyebrow {display:none;}
+  .audience-board {padding:8px;}
+  .screen-results {padding:10px;}
+  .screen-results h3 {font-size:11px;margin-bottom:7px;}
+  .screen-results .big-number {font-size:32px;margin:6px 0;}
+  .screen-results p,.question {font-size:10px;}
+  .screen-actions button {font-size:11px;padding:0 7px;}
+  .compare {font-size:10px;}
+  .premiere {padding:10px;}
+  .plan-fields,.poster-side {padding:13px;}
+}
+@media (max-height:560px) and (min-width:601px) {
+  #dialog:has(#in-seconds) .dialog-body {display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:14px;}
+  #dialog:has(#in-seconds) .dialog-body>h2 {grid-column:1/-1;margin:0;font-size:22px;}
+  #dialog:has(#in-seconds) .dialog-body>p:first-of-type,
+  #dialog:has(#in-seconds) .dialog-body>img {display:none;}
+  #dialog:has(#in-seconds) .dialog-body>.row {display:contents;}
+  #dialog:has(#in-seconds) label {margin:0;min-width:0;}
+  #dialog:has(#in-seconds) #field-error {grid-column:1/-1;margin:0;font-size:11px;}
+  .plan {grid-template-columns:minmax(0,1fr) 205px;}
+  .plan-fields {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;padding:10px;align-content:start;}
+  .plan-fields>.eyebrow {display:none;}
+  .plan-fields>h2 {grid-column:1/-1;font-size:20px;margin:0;}
+  .plan-fields>.row {display:contents;}
+  .plan-fields>.row>button {grid-column:span 2;}
+  .plan-fields label {font-size:10px;gap:3px;}
+  .plan-fields>.row>label {min-width:0;}
+  .plan-fields>label {grid-column:span 2;}
+  .plan-fields label .quiet {display:none;}
+  .plan-fields input,.plan-fields select,.plan-fields textarea {font-size:11px;padding:5px;min-width:0;}
+  .plan-fields textarea {min-height:52px;height:52px;}
+  #permissions {grid-column:1/-1;display:flex;gap:4px 10px;flex-wrap:wrap;}
+  .permission {font-size:10px;padding:0;}
+  #lock-reasons {grid-column:1/-1;font-size:10px;}
+  .poster-side {padding:10px;gap:5px;}
+  .poster {height:245px;aspect-ratio:auto;}
+  .poster .sign-title {font-size:17px;top:12%;}
+  .poster .poster-type b {font-size:18px;}
+  .poster-side>.quiet {display:none;}
+}
+@media (min-width:901px) and (max-height:740px) {
+  .board {grid-template-rows:100px minmax(0,1fr);padding:12px;gap:9px;}
+  .day {padding:4px;gap:2px;}
+  .shoot-panel {gap:8px;padding:12px;}
+  .shoot img {height:30px;}
+  .shoot .shot-label {min-height:30px;}
+}
+@media (max-width:600px) {
+  body {grid-template-rows:132px minmax(0,1fr) 62px;}
+  header {flex-wrap:wrap;align-content:center;padding:6px 8px;gap:5px;}
+  h1 {font-size:18px;max-width:none;flex:1;white-space:nowrap;}
+  .seg {order:5;flex:0 0 100%;width:100%;}
+  .seg button {flex:1;font-size:12px;}
+  #motion {width:84px;}
+  #sound {width:78px;}
+  #read {width:51px;}
+  header h1 {flex-basis:100%;font-size:18px;margin-bottom:0;}
+  header .icon-btn {position:static;min-height:44px;}
+  h1 .mark {display:none;}
+  h1 {padding-bottom:0;}
+  .schedule {grid-template-columns:1fr;grid-template-rows:minmax(185px,1fr) auto;}
+  .board {grid-template-rows:54px minmax(0,1fr);padding:6px;gap:5px;}
+  .hero-copy {inset:8px 12px;}
+  .hero h2 {font-size:23px;margin:0;}
+  .hero .eyebrow {font-size:10px;}
+  .cal-head {min-height:44px;}
+  .day {padding:3px;}
+  .day-title {font-size:10px;}
+  .school {display:none;}
+  .weather {font-size:10px;}
+  .slot {font-size:10px;padding:3px;}
+  .slot small {display:none;}
+  .shoot-panel {border-left:0;border-top:1px solid #c8c4bb;gap:6px;padding:8px;}
+  .shoot-panel {grid-column:1;grid-row:2;}
+  .crew {grid-template-columns:repeat(4,1fr);font-size:10px;}
+  .crew>div {padding-left:5px;}
+  .shoots {grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;}
+  .shoot {min-height:44px;display:flex;align-items:center;}
+  .shoot img {width:36px;height:43px;}
+  .shoot .shot-label {font-size:10px;padding:4px;min-height:0;}
+  .shoot .shot-number {display:none;}
+  .shoot[data-placed="true"]::after {right:1px;top:1px;width:12px;height:12px;font-size:9px;}
+  .shoot-info {min-height:42px;}
+  .shoot-info h3 {display:none;}
+  .shoot-info p {font-size:11px;}
+  .schedule-actions {margin-top:0;}
+  footer {padding:6px 10px;}
+  .save-note {display:block;flex:0 0 94px;max-width:94px;font-size:10px;line-height:1.2;}
+  #hint {max-height:100%;overflow:auto;}
+  .edit {display:flex;flex-direction:column;overflow:hidden;}
+  .edit-main {order:1;flex:1;min-height:245px;grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(90px,1fr) 44px 92px;}
+  .timeline-shell {order:2;flex:none;height:102px;}
+  .bin-panel {order:3;flex:none;height:169px;border-right:0;border-top:1px solid #c5c1b8;position:relative;}
+  .bin-panel h2 {font-size:12px;min-height:44px;display:flex;align-items:center;gap:5px;max-width:calc(100% - 155px);}
+  .bin {flex-direction:row;overflow-x:auto;overflow-y:hidden;align-items:flex-start;padding-bottom:7px;}
+  .bin-group {display:none;}
+  .bin-clip {grid-template-columns:1fr;flex:0 0 93px;gap:2px;min-height:91px;}
+  .bin-clip img {width:81px;height:43px;}
+  .bin-clip small {max-width:81px;}
+  .bin .draggable,.timeline .draggable {touch-action:pan-x;}
+  .bin-panel #add {position:absolute;top:3px;right:7px;width:145px;min-height:44px;z-index:3;}
+  .timeline-top .legend {display:none;}
+  .transport {position:sticky;top:0;}
+  .inspector {grid-column:1;grid-row:3;padding-right:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+    grid-template-rows:44px 44px;overflow:visible;}
+  .screen {display:grid;grid-template-columns:1fr;grid-template-rows:130px minmax(145px,1fr) 63px 115px;gap:7px;}
+  .screen-monitor {grid-column:1;grid-row:1;}
+  .screen-monitor .viewer-shell {width:180px;}
+  .screen-copy {flex:1;}
+  .screen-copy h2 {font-size:17px;}
+  .audience-board {grid-column:1;grid-row:2;}
+  .screen-actions {grid-column:1;grid-row:3;}
+  .screen-results {grid-column:1;grid-row:4;display:flex;flex-wrap:wrap;align-items:flex-start;gap:4px 10px;overflow:auto;}
+  .screen-results h3 {width:100%;margin:0;}
+  .screen-results .big-number {font-size:27px;margin:0;}
+  .screen-results p {margin:0;max-width:220px;}
+  .screen-results .question {margin:0;}
+  .plan {grid-template-columns:1fr;}
+  .poster-side {order:0;}
+  .plan-fields {order:1;}
+  .plan-fields>.row:has(#lock) {position:fixed;bottom:62px;left:0;width:100%;padding:6px 10px;background:#f9f6ee;
+    border-top:1px solid #bcb5a7;z-index:5;}
+  .premiere:has(#lock) {height:calc(100% - 57px);padding-bottom:10px;}
+  .poster {aspect-ratio:16/10;}
+  .poster .sign-title {top:10%;font-size:22px;}
+  .poster .poster-type b {font-size:23px;}
+}
+@media print {
+  body {display:block;overflow:visible;height:auto;background:#fff;}
+  header,footer,.workspace:not(.premiere),.locked-sheet .row {display:none!important;}
+  main,.premiere {display:block;height:auto;overflow:visible;padding:0;}
+  .locked-sheet {box-shadow:none;width:100%;filter:grayscale(1);}
+  .locked-sheet img {max-height:180px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1><span class="mark">▰</span>Mini Documentary Crew<small>Producing a short documentary · Curio Class</small></h1>
+  <div class="seg" role="group" aria-label="Production mode">
+    <button id="m-schedule" aria-pressed="true">Schedule</button>
+    <button id="m-edit" aria-pressed="false" disabled>Edit</button>
+    <button id="m-screen" aria-pressed="false" disabled>Screen</button>
+    <button id="m-premiere" aria-pressed="false" disabled>Premiere</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main id="main"></main>
+<footer>
+  <p class="hint" id="hint" aria-live="polite"></p>
+  <span class="save-note" id="save-note">Saved on this device only.<br>Fictional people, place and audience.</span>
+</footer>
+<dialog id="dialog" aria-labelledby="dialog-title">
+  <div class="dialog-body" id="dialog-body"></div>
+  <div class="dialog-actions"><button class="secondary" id="cancel">Cancel</button><button class="primary" id="confirm">Apply</button></div>
+</dialog>
+<div id="drag-ghost" hidden></div>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const STORAGE = 'curio-mini-doc';
+  const ART = {
+    shop:'art:mdc-shop', store:'art:mdc-store', main:'art:mdc-main', tools:'art:mdc-tools',
+    boot1:'art:mdc-boot1', boot2:'art:mdc-boot2', boot3:'art:mdc-boot3',
+    p1:'art:mdc-p1', p2:'art:mdc-p2', p3:'art:mdc-p3', p4:'art:mdc-p4',
+    set:'art:mdc-set', ana:'art:mdc-ana', walt:'art:mdc-walt', park:'art:mdc-park',
+  };
+  // The spec keeps people frames behind owner review. All three originals remain bundled for that review.
+  const PORTRAITS_APPROVED = false;
+  const portraitKey = key => ['ana','walt','park'].includes(key);
+  const paintedFrame = key => ART[!PORTRAITS_APPROVED && portraitKey(key) ? 'set' : key];
+  const SHOOTS = [
+    {id:1,short:'Release forms',name:'Release forms',art:'shop',roles:[],rule:'Any slot. Producer only. Schedule before all three interviews.'},
+    {id:2,short:'Ana interview',name:'Interview Ana',art:'ana',roles:['camera','sound'],
+      rule:'Tuesday or Thursday after school: clean. Saturday morning or week 2 Friday morning: noisy. Camera + sound.'},
+    {id:3,short:'Walt interview',name:'Interview Walt',art:'walt',roles:['camera','sound'],rule:'Saturday only. Camera + sound.'},
+    {id:4,short:'Park interview',name:'Interview Dr. Park',art:'park',roles:['camera','sound'],
+      rule:'Wednesday or Thursday after school at the library. Camera + sound. Indoor shoot.'},
+    {id:5,short:'Resole boot',name:'Resoling a boot',art:'boot1',roles:['camera'],rule:'Monday or Wednesday after school, Ana\'s boot days. Camera.'},
+    {id:6,short:'Evening shop',name:'Storefront in evening light',art:'store',roles:['camera'],
+      rule:'Any clear weekday after school. Camera. Rain blocks this outdoor shoot.'},
+    {id:7,short:'Main Street',name:'Main Street storefronts',art:'main',roles:['camera'],
+      rule:'Any clear slot. Camera. Includes the shop\'s tools wall. Rain blocks this outdoor shoot.'},
+    {id:8,short:'Archive scan',name:'Archive scan + license request',art:'p1',roles:[],
+      rule:'Friday after school or week 2 Friday morning. Producer only. Includes the archive license request.'},
+    {id:9,short:'Shop sounds',name:'Shop sounds',art:'tools',roles:['sound'],
+      rule:'Tuesday or Thursday after school, Saturday, or week 2 Friday morning. Sound.'},
+  ];
+  const CLIPS = [
+    ['A1',28,2,'ana','Ana Ruiz','My father opened this shop in 1962. I swept the floor here when I was seven.'],
+    ['A2',40,2,'ana','Ana Ruiz','People think a shoe is done when the sole wears through. That\'s when I start. '+
+      'New sole, new heel, stitch it by hand, and it\'s good for ten more years.'],
+    ['A3',35,2,'ana','Ana Ruiz','There were three shoe repair shops on this street when I was a girl. Now there\'s just me.'],
+    ['A4',45,2,'ana','Ana Ruiz','Shoes are cheap now. A lot of them are glued, not stitched. Glue is hard to fix the same way.'],
+    ['A5',30,2,'ana','Ana Ruiz','Every pair that comes in has a story. Wedding shoes. A soldier\'s boots. A kid\'s first cleats.'],
+    ['A6',25,2,'ana','Ana Ruiz','When I close, I don\'t know who\'ll fix this town\'s shoes. Maybe nobody. Maybe you.'],
+    ['W1',25,3,'walt','Walt','I\'ve brought my boots here for forty years. Same boots.'],
+    ['W2',30,3,'walt','Walt','She fixed my wife\'s dancing shoes the day before our fiftieth anniversary.'],
+    ['W3',20,3,'walt','Walt','You don\'t throw away something that can be fixed.'],
+    ['H1',30,4,'park','Dr. Lena Park','In 1960, Main Street had three shoe repair shops, two tailors and a hat shop.'],
+    ['H2',35,4,'park','Dr. Lena Park','When the mall opened out by the highway in 1974, fewer people walked downtown every year.'],
+    ['H3',25,4,'park','Dr. Lena Park','Repair shops are how a town keeps things instead of replacing them.'],
+    ['B1a',12,5,'boot1','','A worn boot on an iron last.'],
+    ['B1b',10,5,'boot2','','A new sole laid on.'],
+    ['B1c',15,5,'boot3','','An awl through leather, close.'],
+    ['B2',10,6,'store','','The storefront in evening light.'],
+    ['B3',12,7,'main','','Main Street storefronts, several empty.'],
+    ['B4',8,7,'tools','','The wall of tools.'],
+    ['B5',10,9,'store','','Shop sounds: door bell and machines.'],
+    ['P1',6,8,'p1','','Storefront on opening day, 1962.'],
+    ['P2',6,8,'p2','','Main Street, 1960.'],
+    ['P3',6,8,'p3','','Newspaper page, 1974.'],
+    ['P4',6,8,'p4','','Shelves of tagged shoes, 1980s.'],
+  ].map(([id,len,shoot,art,speaker,text]) => ({id,len,shoot,art,speaker,text,kind:speaker?'interview':id[0]==='P'?'photo':'broll'}));
+  const BYID = Object.fromEntries(CLIPS.map(c => [c.id,c]));
+  const DAYS = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const L = {
+    welcomeSchedule:'Drag Release forms onto a day first. Then drag the shoots onto days that work.',
+    scheduleHow:'Select a shoot card, then tap an open calendar slot. Tap a placed shoot to remove it.',
+    fillHow:'Tap Fill in to cover that role yourself.',
+    wrapHow:'Everything\'s scheduled. Tap Wrap shooting to see your footage.',
+    welcomeEdit:'Drag clips onto the timeline. Aim for about five minutes.',
+    editHow:'Select a clip in the bin and tap Add to end. Select a timeline clip to change it.',
+    noFootage:'No footage was shot. Tap Start over to return to the calendar.',
+    coverHow:'Long talking heads lose people. Tap the clip, then tap Cover to lay footage over it.',
+    welcomeScreen:'Tap Screen it and watch the line under your cut.',
+    screenHow:'Tap Screen it to test this cut, or Back to Edit to change it.',
+    screening:'Watch the audience line. Tap Stop to interrupt the screening.',
+    lowPoint:'Tap Back to Edit to fix the highlighted lowest point.',
+    clean:'They stayed with you the whole way, and nobody was confused.',
+    welcomePremiere:'Choose Where and Captions. Fill the title, date, Invite and Who should see this fields.',
+    lockHow:'Your plan is complete. Tap Lock the plan to make the final sheet.',
+    locked:'Your premiere sheet is ready. Tap Print sheet to keep a copy.',
+    trimHow:'Set the in and out seconds, then tap Apply. Keep at least three seconds.',
+    coverDialog:'Choose B-roll, then its cover length. Tap Apply to cover the interview\'s last seconds.',
+    titleHow:'Type the speaker\'s name and role, then tap Apply.',
+    captionHow:'Type the archive date and place, then tap Apply.',
+    modelHow:'Read the model, then tap Close to return to your screening.',
+    confirmWrap:'Tap Wrap anyway to finish without these shoots, or Cancel to return to the calendar.',
+    confirmReset:'Tap Start over to clear this documentary, or Cancel to keep it.',
+    briefOne:'Ruiz Shoe Repair has been on Main Street since 1962. Ana Ruiz, seventy one, runs it alone and plans to close next spring.',
+    briefTwo:'Your crew has three weeks to shoot and one week to cut a five minute documentary for the town. Tap Close to return to the calendar.',
+  };
+  const fresh = () => ({version:1,mode:'schedule',schedule:{},wrapped:false,timeline:[],screenings:[],
+    plan:{title:'The Last Repair',date:'',where:'Library screening',captions:true,invite:'',audience:'',locked:false}});
+  let state = fresh();
+  let saveFailed = false;
+  try {
+    const stored = JSON.parse(localStorage.getItem(STORAGE) || 'null');
+    if (stored && stored.version===1 && stored.schedule && Array.isArray(stored.timeline)) {
+      state = {...fresh(),...stored,plan:{...fresh().plan,...stored.plan}};
+      state.timeline = state.timeline.filter(c => BYID[c.id]).map(c => ({...c,
+        in:Math.max(0,Math.min(BYID[c.id].len-3,Math.round(c.in)||0)),
+        out:Math.min(BYID[c.id].len,Math.max(3,Math.round(c.out)||BYID[c.id].len)),
+      }));
+    }
+  } catch {}
+  const ui = {week:0,shoot:1,slot:null,pending:null,bin:null,selected:null,playing:false,screening:false,playhead:0,run:null,viewMode:null};
+  let serial = Date.now();
+  let dialogApply = null;
+  let dialogHint = '';
+  let previousHint = '';
+  let returnFocus = null;
+  let lastFrame = '';
+  let playbackGeneration = 0;
+  let shopSoundSecond = -1;
+  const V = Curio.voice({
+    lines:L,scope:()=>state.mode,hint:false,
+    read:()=> $('dialog').open ? dialogHint : $('hint').textContent,
+    welcome:()=> {
+      if ($('dialog').open || ui.playing || ui.screening) return null;
+      if (state.mode==='schedule') return Object.keys(state.schedule).length ? null : 'welcomeSchedule';
+      if (state.mode==='edit') return !available().length?'noFootage':state.timeline.length?null:'welcomeEdit';
+      if (state.mode==='screen') return 'welcomeScreen';
+      return state.plan.locked ? null : planIssues().length?'welcomePremiere':'lockHow';
+    },
+  });
+  const escape = value => String(value ?? '').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+  const time = n => `${Math.floor(Math.max(0,n)/60)}:${String(Math.floor(Math.max(0,n)%60)).padStart(2,'0')}`;
+  const length = c => Math.max(3,c.out-c.in);
+  const runtime = () => state.timeline.reduce((sum,c)=>sum+length(c),0);
+  const selected = () => state.timeline.find(c=>c.uid===ui.selected);
+  const available = () => CLIPS.filter(c=>state.schedule[c.shoot]);
+  const has = id => !!state.schedule[id];
+  function save() {
+    try {localStorage.setItem(STORAGE,JSON.stringify(state));}
+    catch {saveFailed=true;}
+    $('save-note').innerHTML = saveFailed ? 'Device save unavailable.<br>Keep this tab open.' :
+      'Saved on this device only.<br>Fictional people, place and audience.';
+  }
+  function hint(text,key,opts={}) {
+    $('hint').textContent = text;
+    if (key) V.how(key,{...opts,hint:false});
+  }
+  function feedback(text,good=true) {
+    hint(text);
+    Curio.tone(good?560:185,.07,.04,good?'sine':'triangle');
+  }
+  function slotInfo(key) {
+    const [week,day,part] = key.split('-').map(Number);
+    return {week,day,part,order:week*30+day*3+part,
+      rain:week===0&&(day===2||day===3)||week===1&&day===1||week===2&&(day===0||day===5)};
+  }
+  function slotLabel(key) {
+    const s=slotInfo(key);
+    return `Week ${s.week+1} ${DAYS[s.day]}, ${s.part===0?'morning':s.part===2?'afternoon':'after school'}`;
+  }
+  function validSlot(key) {
+    const s=slotInfo(key);
+    return s.week>=0&&s.week<3&&s.day>=0&&s.day<6 &&
+      (s.day===5 ? [0,2].includes(s.part) : s.part===1||s.week===1&&s.day===4&&s.part===0);
+  }
+  function placement(id,key,fill=false,schedule=state.schedule) {
+    const s=slotInfo(key);
+    const shot=SHOOTS.find(c=>c.id===id);
+    const reasons=[];
+    if (!shot||!validSlot(key)) return {ok:false,reasons:['Choose a calendar slot.'],missing:[],crew:[]};
+    const occupied=Object.entries(schedule).find(([k,v])=>+k!==id&&v.key===key);
+    if (occupied) reasons.push('One shoot per slot. Remove the shoot already here first.');
+    const after=s.part===1&&s.day<5;
+    const fridayMorning=s.week===1&&s.day===4&&s.part===0;
+    if (id===2 && !([1,3].includes(s.day)&&after||s.day===5&&s.part===0||fridayMorning)) {
+      reasons.push('Ana is free Tuesday or Thursday after school, Saturday morning, or week 2 Friday morning.');
+    }
+    if (id===3&&s.day!==5) reasons.push('Walt is available Saturdays only.');
+    if (id===4&&!(after&&[2,3].includes(s.day))) reasons.push('Dr. Park is available Wednesday or Thursday after school at the library.');
+    if (id===5&&!(after&&[0,2].includes(s.day))) reasons.push('Boot days are Monday and Wednesday after school.');
+    if (id===6&&!after) reasons.push('Evening light needs a weekday after-school slot.');
+    if ([6,7].includes(id)&&s.rain) reasons.push('Rain blocks this outdoor shoot. Choose a clear day.');
+    if (id===8&&!(s.day===4&&s.part===1||fridayMorning)) reasons.push('Archive scans: Friday after school or week 2 Friday morning.');
+    if (id===9&&!(after&&[1,3].includes(s.day)||s.day===5||fridayMorning)) {
+      reasons.push('Shop sounds: Tuesday or Thursday after school, Saturday, or week 2 Friday morning.');
+    }
+    if ([2,3,4].includes(id)&&(!schedule[1]||slotInfo(schedule[1].key).order>=s.order)) reasons.push('Forms first. Release forms must be in an earlier slot.');
+    if (id===1) {
+      const invalid=[2,3,4].filter(k=>schedule[k]&&slotInfo(schedule[k].key).order<=s.order);
+      if (invalid.length) reasons.push('Forms first. This would put release forms after an interview already scheduled.');
+    }
+    const free={camera:s.day===5?s.part===0:after&&s.day!==2,sound:s.day===5||after&&[1,3].includes(s.day)};
+    const missing=shot.roles.filter(role=>!free[role]);
+    if (missing.length>1) reasons.push('Both camera and sound are missing. You can fill only one role per shoot.');
+    else if (missing.length&&!fill) {
+      reasons.push(`${missing[0]==='camera'?'Jae is not free':'Priya is not free'} in this slot. `+
+        `Tap Fill in to run ${missing[0]} yourself.`);
+    }
+    const crew=shot.roles.map(role=>`${!free[role]?'You':role==='camera'?'Jae':'Priya'} ${role}`);
+    if (!crew.length) crew.push('You, producer');
+    return {ok:!reasons.length,reasons,missing,crew,noisy:id===2&&(s.day===5||fridayMorning)};
+  }
+  function place(id,key,fill=false) {
+    if (state.wrapped) return false;
+    const result=placement(id,key,fill);
+    const target=$('slot-'+key);
+    ui.pending=null;
+    if (!result.ok) {
+      ui.pending=result.missing.length===1&&result.reasons.length===1?{id,key}:null;
+      feedback(result.reasons.join(' '),false);
+      if (target) {
+        target.classList.remove('rejected');
+        void target.offsetWidth;
+        target.classList.add('rejected');
+        setTimeout(()=>target.classList.remove('rejected'),650);
+      }
+      $('fill').hidden=!ui.pending;
+      if (ui.pending) V.how('fillHow',{needs:'#fill',valid:()=>!!ui.pending,now:true,hint:false});
+      return false;
+    }
+    state.schedule[id]={key,fill:result.missing.length===1,noisy:result.noisy,crew:result.crew};
+    ui.slot=key;
+    ui.shoot=id;
+    save();
+    updateSchedule();
+    if (target) {
+      target.classList.remove('accepted','rejected');
+      void target.offsetWidth;
+      target.classList.add('accepted');
+    }
+    feedback(`✓ ${SHOOTS[id-1].name}: ${result.crew.join(', ')}.${result.noisy?' Shop open: noisy audio.':''}`);
+    if (Object.keys(state.schedule).length===9) {
+      hint(L.wrapHow,'wrapHow',{needs:'#wrap',valid:()=>!state.wrapped&&Object.keys(state.schedule).length===9});
+    }
+    return true;
+  }
+  function selectShoot(id) {
+    ui.shoot=id;
+    ui.pending=null;
+    ui.slot=state.schedule[id]?.key||null;
+    updateSchedule();
+    hint(state.schedule[id]?$('shoot-rule').textContent:`${SHOOTS[id-1].name}. ${SHOOTS[id-1].rule}`);
+    Curio.tone(420,.035,.025);
+  }
+  function removeShoot() {
+    const id=ui.shoot;
+    if (id===1&&[2,3,4].some(has)) {
+      feedback('Forms first. Remove the interviews before removing their release forms.',false);
+      return;
+    }
+    if (!state.schedule[id]) return;
+    delete state.schedule[id];
+    ui.slot=null;
+    save();updateSchedule();
+    feedback(`${SHOOTS[id-1].name} returned to the shoot cards. Choose its next slot.`);
+  }
+  function scheduleHTML() {
+    const cells=[];
+    for (let week=0;week<3;week++) for (let day=0;day<6;day++) {
+      const base=`${week}-${day}`;
+      const rain=slotInfo(`${base}-1`).rain;
+      const parts=day===5?[0,2]:week===1&&day===4?[0,1]:[1];
+      cells.push(`<div class="day" data-week="${week}">
+        <div class="day-title"><span>W${week+1} ${DAYS[day].slice(0,3)}</span><span class="weather">${rain?'☂ Rain':'☀ Clear'}</span></div>
+        ${day<5&&!(week===1&&day===4)?'<span class="school">Morning: In school</span>':''}
+        ${week===1&&day===4?'<span class="school">Teacher work day</span>':''}
+        ${parts.map(part=>`<button class="slot" id="slot-${base}-${part}" data-slot="${base}-${part}"></button>`).join('')}
+      </div>`);
+    }
+    return `<section class="workspace schedule" aria-label="Shooting schedule">
+      <div class="board">
+        <div class="hero"><img src="${ART.shop}" alt="Warm shoe repair shop with a worn workbench and shelves of shoes">
+          <div class="hero-copy"><span class="eyebrow">The assignment · Open brief</span><h2>A shop. A life. A last repair.</h2>
+          <p>Ruiz Shoe Repair has been on Main Street since 1962. Ana Ruiz, 71, runs it alone and plans to close next spring.
+          You have three weeks to shoot and one week to cut a five-minute documentary for the town.</p></div>
+          <span class="film-light"><i class="led"></i>PRODUCTION BOARD</span>
+          <button id="brief" aria-label="Open the documentary brief" title="Open brief"></button>
+        </div>
+        <div class="cal-wrap"><div class="cal-head"><span class="eyebrow">Shooting calendar</span>
+          <span class="pill" id="scheduled-count">0 / 9</span><div class="week-tabs" aria-label="Calendar week">
+          ${[0,1,2].map(w=>`<button id="week-${w}" data-week-tab="${w}" aria-pressed="${w===ui.week}">W${w+1}</button>`).join('')}</div></div>
+          <div class="calendar" id="calendar">${cells.join('')}</div>
+        </div>
+      </div>
+      <aside class="shoot-panel">
+        <div class="crew"><div><b>Jae · camera</b>After school except Wed; Sat morning</div>
+        <div><b>Priya · sound</b>Tue, Thu after school; Sat both slots</div>
+        <div><b>Sam · editor</b>Edits after wrap</div><div><b>You · producer</b>Any slot. Fill one role per shoot.</div></div>
+        <div class="shoots" aria-label="Shoot cards">${SHOOTS.map(s=>`<button id="shoot-${s.id}" class="shoot draggable"
+          data-shoot="${s.id}" data-drag="shoot:${s.id}" aria-pressed="${ui.shoot===s.id}" title="${escape(s.name)}: ${escape(s.rule)}">
+          <img src="${paintedFrame(s.art)}" alt=""><span class="shot-number">${String(s.id).padStart(2,'0')}</span>
+          <span class="shot-label">${s.short}</span></button>`).join('')}</div>
+        <div class="shoot-info"><h3 id="shoot-name"></h3><p id="shoot-rule"></p></div>
+        <div class="schedule-actions"><button id="fill" class="secondary" hidden>Fill in</button>
+          <button id="remove-shoot" class="secondary">Remove</button><button id="wrap" class="primary">Wrap shooting</button></div>
+      </aside>
+    </section>`;
+  }
+  function updateSchedule() {
+    if (state.mode!=='schedule') return;
+    document.querySelectorAll('[data-slot]').forEach(b=>{
+      const key=b.dataset.slot;
+      const s=slotInfo(key);
+      const entry=Object.entries(state.schedule).find(([,v])=>v.key===key);
+      const label=s.part===0?'Morning 9 to 12':s.part===2?'Afternoon 1 to 5':'After school 3:30 to 6';
+      b.dataset.filled=!!entry;
+      b.innerHTML=entry?`<b>✓ ${escape(SHOOTS[+entry[0]-1].short)}</b><small>${escape(entry[1].crew.join(', '))}
+        ${entry[1].noisy?'<span class="slot-noise"> · noisy</span>':''}</small>`:
+        `<span>${label}</span>`;
+      const detail=entry?SHOOTS[+entry[0]-1].name+', '+entry[1].crew.join(', ')+(entry[1].noisy?', noisy audio':''):label+', open';
+      b.setAttribute('aria-label',`${slotLabel(key)}. ${detail}`);
+    });
+    document.querySelectorAll('[data-shoot]').forEach(b=>{
+      b.setAttribute('aria-pressed',+b.dataset.shoot===ui.shoot);
+      b.dataset.placed=!!state.schedule[b.dataset.shoot];
+    });
+    $('scheduled-count').textContent=`${Object.keys(state.schedule).length} / 9`;
+    $('shoot-name').textContent=SHOOTS[ui.shoot-1].name;
+    $('shoot-rule').textContent=state.schedule[ui.shoot]?
+      `${slotLabel(state.schedule[ui.shoot].key)}. ${state.schedule[ui.shoot].crew.join(', ')}. `+
+        `${state.schedule[ui.shoot].noisy?'Noisy audio. ':''}Tap Remove to return it.`:
+      SHOOTS[ui.shoot-1].rule;
+    $('fill').hidden=!ui.pending;
+    $('remove-shoot').disabled=!has(ui.shoot)||state.wrapped;
+    $('wrap').disabled=state.wrapped;
+    document.querySelectorAll('[data-shoot],[data-slot]').forEach(b=>b.disabled=state.wrapped);
+    updateWeeks();
+  }
+  function updateWeeks() {
+    const compact=matchMedia('(max-width:900px),(max-height:660px)').matches;
+    document.querySelectorAll('.day').forEach(el=>el.hidden=compact&&+el.dataset.week!==ui.week);
+    document.querySelectorAll('[data-week-tab]').forEach(b=>b.setAttribute('aria-pressed',+b.dataset.weekTab===ui.week));
+  }
+  function modal(title,body,action,onApply,line) {
+    returnFocus=document.activeElement?.id;
+    previousHint=$('hint').textContent;
+    V.hush();
+    dialogHint=line;
+    $('hint').textContent=Array.isArray(line)?line.join(' '):line;
+    $('dialog-body').innerHTML=`<h2 id="dialog-title">${escape(title)}</h2>${body}`;
+    $('confirm').textContent=action;
+    dialogApply=onApply;
+    $('dialog').showModal();
+    const first=$('dialog').querySelector('input,select,button');
+    first?.focus({preventScroll:true});
+    if (Object.values(L).includes(line)) V.how(line,{valid:()=>$('dialog').open,hint:false});
+  }
+  function closeModal() {
+    V.hush();
+    $('dialog').close();
+    if (returnFocus) $(returnFocus)?.focus({preventScroll:true});
+    dialogHint='';
+    $('hint').textContent=previousHint;
+  }
+  function wrap() {
+    const missing=SHOOTS.filter(s=>!has(s.id));
+    const finish=()=>{
+      stopPlayback(false);V.hush();
+      state.wrapped=true;state.mode='edit';ui.bin=available()[0]?.id||null;
+      save();render();V.welcome();
+      (available().length?$('add'):$('start-over'))?.focus({preventScroll:true});
+    };
+    if (!missing.length) return finish();
+    modal('Wrap shooting?',`<p>${missing.length} shoots not scheduled. Their clips won't exist.</p>
+      <p>${escape(missing.map(s=>s.name).join(', '))}.</p>`,'Wrap anyway',()=>{closeModal();finish();return true;},L.confirmWrap);
+  }
+  function clipNew(id) {
+    const c=BYID[id];
+    return {uid:'c'+(++serial),id,in:0,out:c.len,lower:'',caption:'',cover:null,closer:false};
+  }
+  function addClip(id=ui.bin,before=null) {
+    if (!state.wrapped||!BYID[id]||!has(BYID[id].shoot)) return false;
+    const c=clipNew(id);
+    const index=state.timeline.findIndex(x=>x.uid===before);
+    if (index<0) state.timeline.push(c);
+    else state.timeline.splice(index,0,c);
+    ui.selected=c.uid;
+    afterEdit(true);
+    Curio.tone(640,.045,.03);
+    hint(`${c.id} added. Select a timeline clip to edit it.`,!V.heard('welcomeEdit')?'welcomeEdit':undefined,
+      {valid:()=>state.mode==='edit'&&state.timeline.length===0});
+    if (BYID[id].kind==='interview'&&c.out>20&&available().some(x=>x.kind==='broll')&&!V.heard('coverHow')) {
+      hint(L.coverHow,'coverHow',{needs:'#cover',valid:()=>state.mode==='edit'&&!!selected()&&BYID[selected().id].kind==='interview'&&!selected().cover});
+    }
+    return true;
+  }
+  function afterEdit(structure=false) {
+    state.plan.locked=false;
+    save();updateModes();
+    if (state.mode==='edit') {
+      if (structure) renderTimeline();
+      updateEditor();
+    }
+    if (ui.screening) ui.run=model(state.timeline);
+    if (ui.playing||ui.screening) showFrame(ui.playhead,true);
+  }
+  function moveClip(uid,delta,before=null) {
+    const i=state.timeline.findIndex(c=>c.uid===uid);
+    let j=before?state.timeline.findIndex(c=>c.uid===before):i+delta;
+    if (i<0||j<0||j>=state.timeline.length||i===j) return;
+    if (before&&i<j) j--;
+    if (i===j) {feedback(`${state.timeline[i].id} is already before that clip.`);return;}
+    const [c]=state.timeline.splice(i,1);
+    state.timeline.splice(j,0,c);
+    ui.selected=uid;afterEdit(true);feedback(`${c.id} moved ${j<i?'earlier':'later'} in the cut.`);
+  }
+  function titleValid(c) {
+    const speaker=BYID[c.id].speaker;
+    const text=String(c.lower||'').toLowerCase();
+    const identities=[
+      {name:'Ana Ruiz',pattern:/\bana\s+ruiz\b/,role:/\b(repairer|repair|cobbler|owner)\b/},
+      {name:'Walt',pattern:/\bwalt\b/,role:/\bcustomer\b/},
+      {name:'Dr. Lena Park',pattern:/\blena\s+park\b/,role:/\bhistorian\b/},
+    ];
+    const named=identities.filter(person=>person.pattern.test(text));
+    return named.length===1&&named[0].name===speaker&&named[0].role.test(text);
+  }
+  function captionValid(c) {
+    const text=String(c.caption||'').toLowerCase().replace(/['’]/g,'');
+    const expected={P1:'1962',P2:'1960',P3:'1974',P4:'1980s'}[c.id];
+    const dates=text.match(/\b\d{4}s?\b/g)||[];
+    return !!expected&&dates.length===1&&dates[0]===expected&&/\b(shop|main street|town|ruiz)\b/.test(text);
+  }
+  function editDialog(kind) {
+    const c=selected();
+    if (!c) return;
+    const source=BYID[c.id];
+    if (kind==='trim') {
+      modal(`Trim ${c.id}`,`<p>${escape(source.text)}</p>
+        <img src="${paintedFrame(source.art)}" alt="Selected source frame" style="width:100%;height:85px;object-fit:cover"><div class="row">
+        <label>In, seconds<input id="in-seconds" type="number" min="0" max="${source.len-3}" step="1" value="${c.in}"></label>
+        <label>Out, seconds<input id="out-seconds" type="number" min="3" max="${source.len}" step="1" value="${c.out}"></label></div>
+        <label>In handle<input id="in-handle" data-sync="in-seconds" type="range" min="0" max="${source.len-3}" step="1" value="${c.in}"></label>
+        <label>Out handle<input id="out-handle" data-sync="out-seconds" type="range" min="3" max="${source.len}" step="1" value="${c.out}"></label>
+        <p id="field-error" role="status">Original length: ${source.len} seconds. Minimum cut: 3 seconds.</p>`, 'Apply',()=>{
+        const a=+$('in-seconds').value,b=+$('out-seconds').value;
+        if (!Number.isInteger(a)||!Number.isInteger(b)||a<0||b>source.len||b-a<3) {
+          $('field-error').textContent='Use whole seconds within the source clip. Keep at least 3 seconds.';return false;
+        }
+        c.in=a;c.out=b;
+        if (c.cover) c.cover.seconds=Math.min(c.cover.seconds,length(c)-3);
+        closeModal();afterEdit(true);feedback(`${c.id} trimmed to ${length(c)} seconds.`);return true;
+      },L.trimHow);
+    }
+    if (kind==='cover') {
+      const roll=available().filter(x=>x.kind==='broll');
+      modal(`Cover ${c.id}`,`<p>The interview sound continues under footage over its last seconds.
+        A cover changes the picture, not noisy sound.</p>
+        <label>B-roll<select id="cover-source"><option value="">No cover</option>${roll.map(x=>
+          `<option value="${x.id}" ${c.cover?.id===x.id?'selected':''}>${x.id}: ${escape(x.text)} (${x.len} s)</option>`).join('')}</select></label>
+        <label>Cover length, seconds<input id="cover-seconds" type="number" min="0" max="${length(c)-3}" step="1"
+          value="${c.cover?.seconds||Math.min(10,length(c)-3)}"></label>
+        <p id="field-error" role="status">Up to ${length(c)-3} seconds. A short B-roll frame holds for the requested cover length.</p>`, 'Apply',()=>{
+          const id=$('cover-source').value,n=+$('cover-seconds').value;
+          if (id&&(!Number.isInteger(n)||n<1||n>length(c)-3)) {
+            $('field-error').textContent=`Choose 1 to ${length(c)-3} whole seconds.`;return false;
+          }
+          c.cover=id?{id,seconds:n}:null;
+          closeModal();
+          afterEdit(true);
+          if (c.cover&&!ui.playing&&!ui.screening) {
+            const start=state.timeline.slice(0,state.timeline.indexOf(c)).reduce((sum,item)=>sum+length(item),0);
+            const tail=length(c)-c.cover.seconds;
+            showSource(c,'edit',tail,start+tail);
+          }
+          feedback(id?`${id} now covers the last ${n} seconds of ${c.id}. Interview sound continues.`:'Cover removed.');
+          return true;
+        },L.coverDialog);
+    }
+    if (kind==='lower'||kind==='caption') {
+      const lower=kind==='lower';
+      const label=lower?'Speaker name and role':'Date and place';
+      const examples=lower?source.speaker+', '+(source.art==='ana'?'shoe repairer':source.art==='walt'?'customer':'city historian'):
+        ({P1:'1962, Ruiz shop',P2:'1960, Main Street',P3:'1974, town newspaper',P4:'1980s, Ruiz shop'})[c.id];
+      modal(`${lower?'Lower third':'Caption'}: ${c.id}`,`<label>${label}<input id="text-line" aria-label="${label}" maxlength="40"
+        value="${escape(lower?c.lower:c.caption)}" placeholder="${escape(examples)}"></label>
+        <p id="field-error" role="status">40 characters maximum. ${escape(label)} must identify this material.</p>`, 'Apply',()=>{
+          const value=$('text-line').value.trim();
+          const candidate={...c,[lower?'lower':'caption']:value};
+          if (value&&!(lower?titleValid(candidate):captionValid(candidate))) {
+            $('field-error').textContent=`Use ${label.toLowerCase()} matching this clip, for example: ${examples}.`;return false;
+          }
+          c[lower?'lower':'caption']=value;
+          closeModal();afterEdit(true);feedback(value?`${lower?'Lower third':'Caption'} applied to ${c.id}.`:'Identification removed.');return true;
+        },lower?L.titleHow:L.captionHow);
+    }
+  }
+  function binHTML() {
+    let last=0;
+    const list=available();
+    return list.map(c=>{
+      const heading=c.shoot!==last?`<div class="bin-group">${escape(SHOOTS[c.shoot-1].name)}</div>`:'';
+      last=c.shoot;
+      return `${heading}<button class="bin-clip draggable" id="bin-${c.id}" data-bin="${c.id}" data-drag="bin:${c.id}"
+        aria-pressed="${c.id===ui.bin}" title="${escape(c.text)}"><img src="${paintedFrame(c.art)}" alt="">
+        <span><b>${c.id} · ${c.len} s</b><small>${escape(c.text)}</small>${state.schedule[c.shoot]?.noisy?'<small>⚠ noisy audio</small>':''}</span></button>`;
+    }).join('')+SHOOTS.filter(s=>s.id!==1&&!has(s.id)).map(s=>`<div class="quiet">Not shot: ${escape(s.name)}.</div>`).join('');
+  }
+  function viewerHTML(prefix) {
+    return `<div class="viewer-shell"><div class="viewer" id="${prefix}-viewer">
+      <img id="${prefix}-image" src="${ART.set}" alt="Empty interview setup in the shoe shop">
+      <span class="viewer-tag" id="${prefix}-tag">SOURCE MONITOR</span><span class="timecode" id="${prefix}-time">00:00</span>
+      <div class="lower" id="${prefix}-lower"></div><div class="subtitle" id="${prefix}-subtitle"></div></div></div>`;
+  }
+  function editHTML() {
+    if (!ui.bin) ui.bin=available()[0]?.id||null;
+    return `<section class="workspace edit" aria-label="Editing desk">
+      <aside class="bin-panel"><h2>Footage bin <span class="quiet">${available().length} clips</span></h2>
+        <button class="primary" id="add">Add to end</button><button class="secondary" id="start-over" hidden>Start over</button>
+        <div class="bin" id="bin">${binHTML()}</div></aside>
+      <div class="edit-main">${viewerHTML('edit')}
+        <div class="transport"><button class="primary" id="play">▶ Play from here</button><button class="secondary" id="stop">■ Stop</button>
+        <span class="runtime mono" id="runtime"></span></div>
+        <div class="inspector" id="inspector"><span class="clip-detail" id="clip-detail">Select a timeline clip</span>
+          <button id="trim">Trim</button><button id="cover">Cover</button><button id="lower">Lower third</button>
+          <button id="caption">Caption</button><button id="closer" aria-pressed="false">Closer</button>
+          <button id="earlier" aria-label="Move selected clip earlier">←</button><button id="later" aria-label="Move selected clip later">→</button>
+          <button id="remove-clip">Remove</button></div>
+      </div>
+      <div class="timeline-shell"><div class="timeline-top"><b class="eyebrow">Your cut</b>
+        <span class="legend">▣ Interview · ▧ B-roll · ▤ Photo · ▨ Cover</span>
+        <span class="push quiet" id="runtime-warning"></span></div><div class="timeline" id="timeline" aria-label="Documentary timeline"></div></div>
+    </section>`;
+  }
+  function renderTimeline() {
+    if (!$('timeline')) return;
+    const focus=document.activeElement?.id;
+    const scroll=$('timeline').scrollLeft;
+    let start=0;
+    const lastScreening=state.screenings.at(-1);
+    const low=lastScreening?.signature===JSON.stringify(state.timeline)?Math.max(0,lastScreening.lowest.time-.001):undefined;
+    $('timeline').innerHTML=state.timeline.length?state.timeline.map(c=>{
+      const source=BYID[c.id];
+      const lowHere=low!==undefined&&low>=start&&low<start+length(c);
+      start+=length(c);
+      return `<button id="clip-${c.uid}" class="clip ${source.kind} draggable ${c.closer?'closer':''} ${lowHere?'low-clip':''}"
+        style="width:${Math.max(66,length(c)*3)}px" data-uid="${c.uid}" data-drag="timeline:${c.uid}" aria-pressed="${ui.selected===c.uid}"
+        title="${c.id}, ${length(c)} seconds. ${escape(source.text)}
+          ${c.lower?' Lower third: '+escape(c.lower):''}${c.caption?' Caption: '+escape(c.caption):''}">
+        <img class="strip-image" src="${paintedFrame(source.art)}" alt="">
+        <span class="clip-id">${source.kind==='interview'?'▣':source.kind==='photo'?'▤':'▧'} ${c.id}</span>
+        <span class="clip-duration">${time(length(c))}</span>${c.cover?`<span class="cover-band"
+          style="width:${c.cover.seconds/length(c)*100}%" title="${c.cover.id}: ${c.cover.seconds} seconds"></span>`:''}</button>`;
+    }).join(''):'<div class="empty-timeline">Drag clips here</div>';
+    $('timeline').scrollLeft=scroll;
+    if (focus?.startsWith('clip-')) $(focus)?.focus({preventScroll:true});
+    const item=$('clip-'+ui.selected);
+    const track=$('timeline');
+    if (item&&!ui.playing) {
+      if (item.offsetLeft<track.scrollLeft) track.scrollLeft=item.offsetLeft;
+      if (item.offsetLeft+item.offsetWidth>track.scrollLeft+track.clientWidth) {
+        track.scrollLeft=item.offsetLeft+item.offsetWidth-track.clientWidth+4;
+      }
+    }
+  }
+  function updateEditor() {
+    if (state.mode!=='edit') return;
+    const c=selected();
+    const source=c?BYID[c.id]:null;
+    $('runtime').textContent=`${time(runtime())} of 4:30 to 5:30`;
+    $('runtime-warning').textContent=runtime()<270?'Need 4:30 to screen':runtime()>330?'Over the 5:30 brief':'Within the brief';
+    $('add').disabled=!ui.bin;
+    $('add').hidden=!available().length;
+    $('start-over').hidden=!!available().length;
+    $('play').disabled=!state.timeline.length||!c;
+    $('stop').disabled=false;
+    for (const id of ['trim','cover','lower','caption','closer','earlier','later','remove-clip']) $(id).disabled=!c;
+    $('cover').disabled=!c||source.kind!=='interview'||length(c)<=3||!available().some(x=>x.kind==='broll');
+    $('lower').disabled=!c||source.kind!=='interview';
+    $('caption').disabled=!c||source.kind!=='photo';
+    $('closer').disabled=!c||source.kind!=='interview';
+    $('closer').setAttribute('aria-pressed',!!c?.closer);
+    $('earlier').disabled=!c||state.timeline[0]===c;
+    $('later').disabled=!c||state.timeline.at(-1)===c;
+    $('clip-detail').textContent=c?`${c.id} · ${length(c)} s`:'Select a timeline clip';
+    document.querySelectorAll('[data-uid]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.uid===ui.selected));
+    document.querySelectorAll('[data-bin]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.bin===ui.bin));
+    if (!ui.playing) showSource(c||BYID[ui.bin]);
+  }
+  function selectClip(uid) {
+    ui.selected=uid;
+    updateEditor();
+    const c=selected();
+    if (c) {
+      const kind=BYID[c.id].kind;
+      const actions=kind==='interview'?`Lower third${!$('cover').disabled?' or Cover':''}`:kind==='photo'?'Caption':'Remove';
+      hint(`${c.id}, ${length(c)} seconds. Select Trim or ${actions}.`);
+    }
+    Curio.tone(440,.03,.02);
+  }
+  function coverAt(c,sec) {return c.cover&&sec>=length(c)-c.cover.seconds&&BYID[c.cover.id];}
+  function sourceAt(t) {
+    let start=0;
+    for (let i=0;i<state.timeline.length;i++) {
+      const c=state.timeline[i];
+      if (t<start+length(c)||i===state.timeline.length-1) return {c,sec:Math.min(length(c)-.01,Math.max(0,t-start)),index:i,start};
+      start+=length(c);
+    }
+    return null;
+  }
+  function showSource(item,prefix='edit',sec=0,at=0) {
+    if (!item||!$(prefix+'-image')) return;
+    const cut=item.uid?item:null;
+    const source=BYID[item.id]||item;
+    const cover=cut&&coverAt(cut,sec);
+    const img=$(prefix+'-image');
+    const key=(cover||source).art;
+    if (img.dataset.key!==key) {img.src=paintedFrame(key);img.dataset.key=key;}
+    img.alt=cover?cover.text:source.speaker&&!PORTRAITS_APPROVED?
+      `Empty interview setup. ${source.speaker}'s testimony appears as subtitles.`:
+      source.speaker?`${source.speaker} in a documentary interview`:source.text;
+    img.classList.toggle('moving',(ui.playing||ui.screening)&&!Curio.reduce);
+    $(prefix+'-tag').textContent=`${source.id}${cover?' / '+cover.id+' COVER':''}${state.schedule[source.shoot]?.noisy?' · NOISY AUDIO':''}`;
+    $(prefix+'-time').textContent=time(at);
+    const sentences=[];
+    for (const sentence of source.text.match(/[^.!?]+[.!?]?/g)||[source.text]) {
+      let chunk='';
+      for (const word of sentence.trim().split(/\s+/)) {
+        if (chunk.length+word.length>64) {sentences.push(chunk);chunk='';}
+        chunk+=(chunk?' ':'')+word;
+      }
+      if (chunk) sentences.push(chunk);
+    }
+    const sourceSecond=(cut?cut.in:0)+sec;
+    const subtitleIndex=Math.min(sentences.length-1,Math.floor(sourceSecond/Math.max(1,source.len/sentences.length)));
+    const subtitle=source.kind==='interview'?sentences[subtitleIndex].trim():source.id==='B5'?'[Door bell and machines]':'';
+    $(prefix+'-subtitle').textContent=subtitle;
+    $(prefix+'-lower').textContent=cut?(source.kind==='interview'?cut.lower:source.kind==='photo'?cut.caption:''):'';
+  }
+  function showFrame(t,force=false) {
+    const item=sourceAt(t);
+    if (!item) return;
+    const prefix=state.mode==='screen'?'screen':'edit';
+    const frameKey=`${prefix}:${item.c.uid}:${Math.floor(t*5)}:${item.c.lower}:${item.c.caption}:${item.c.cover?.id}`;
+    if (!force&&frameKey===lastFrame) return;
+    lastFrame=frameKey;
+    showSource(item.c,prefix,item.sec,t);
+    if (state.mode==='edit') {
+      const tline=$('timeline');
+      let head=$('playhead');
+      if (!head) {head=document.createElement('div');head.id='playhead';head.className='playhead';tline.append(head);}
+      const node=$('clip-'+item.c.uid);
+      if (node) {
+        const x=node.offsetLeft+item.sec/length(item.c)*node.offsetWidth;
+        head.style.left=x+'px';
+        if (x>tline.scrollLeft+tline.clientWidth-35||x<tline.scrollLeft) tline.scrollLeft=Math.max(0,x-100);
+      }
+    }
+  }
+  function model(cut=state.timeline) {
+    let a=80,run=0,previous=null,t=0,park=false;
+    const seen=new Set(),noisyAsked=new Set(),questions=[],points=[{t:0,a:80}],causes=[];
+    const usedSourceSeconds=new Set();
+    let repeatedSeconds=0;
+    const question=(text,id,at=t)=>questions.push({time:at,text,id});
+    for (const c of cut) {
+      const source=BYID[c.id];
+      if (!source) continue;
+      // Count actual cover source seconds once per use. Holding one frame is allowed;
+      // reusing that same footage in another place must not bypass the saved-best guard.
+      const roll=c.cover&&BYID[c.cover.id];
+      if (roll) for (let s=0;s<Math.min(c.cover.seconds,roll.len);s++) {
+        const sourceSecond=roll.id+':'+s;
+        if (usedSourceSeconds.has(sourceSecond)) repeatedSeconds++;
+        usedSourceSeconds.add(sourceSecond);
+      }
+      if (source.kind==='interview'&&!seen.has(source.speaker)) {
+        seen.add(source.speaker);
+        if (!titleValid(c)) {
+          a=Math.max(0,a-5);
+          question(source.speaker==='Walt'?'Who is he?':'Who is she?',c.id);
+        }
+      }
+      if (source.kind==='photo'&&!captionValid(c)&&!park) {a=Math.max(0,a-5);question('When was this?',c.id);}
+      if (source.shoot===4) park=true;
+      for (let s=0;s<length(c);s++) {
+        const sourceSecond=c.id+':'+(c.in+s);
+        if (usedSourceSeconds.has(sourceSecond)) repeatedSeconds++;
+        usedSourceSeconds.add(sourceSecond);
+        const covered=!!coverAt(c,s);
+        const kind=covered?'broll':source.kind;
+        if (previous!==null&&kind!==previous) a=Math.min(100,a+5);
+        previous=kind;
+        let cause='A visual change or a steady image.';
+        if (kind==='interview') {
+          run++;
+          if (run>20) {a-=.5;cause=`After ${run} s of interview without a visual break.`;}
+          if (state.schedule[source.shoot]?.noisy) {
+            a-=1;cause='Noisy interview audio without cover.';
+            if (!noisyAsked.has(source.speaker)) {question("I couldn't hear her.",c.id,t);noisyAsked.add(source.speaker);}
+          }
+        } else {run=0;a=Math.min(90,a+.5);}
+        a=Math.max(0,a);
+        t++;points.push({t,a});causes.push(cause);
+      }
+    }
+    const goodEnding=!!cut.length&&BYID[cut.at(-1).id].kind==='interview'&&cut.at(-1).closer;
+    if (goodEnding) {a=Math.min(100,a+10);points.at(-1).a=a;}
+    const values=points.slice(1);
+    const lowest=values.reduce((lo,p)=>p.a<lo.a?p:lo,{t:0,a:80});
+    return {runtime:t,points,questions,goodEnding,repeatedSeconds,
+      average:values.length?values.reduce((sum,p)=>sum+p.a,0)/values.length:80,
+      lowest:{time:lowest.t,value:lowest.a,cause:causes[Math.max(0,lowest.t-1)]||'Beginning of the cut.'},
+      signature:JSON.stringify(cut),label:`Screening ${state.screenings.length+1}`};
+  }
+  function graphSVG(result,progress=Infinity) {
+    const host=$('graph-host');
+    const width=Math.max(240,host?.clientWidth||780),height=Math.max(60,host?.clientHeight||225);
+    const left=34,right=width-14,top=17,bottom=height-25;
+    const px=t=>left+t/Math.max(1,result?.runtime||runtime())*(right-left);
+    const py=a=>bottom-a/100*(bottom-top);
+    const duration=Math.max(1,result?.runtime||runtime());
+    const points=result?.points.filter(p=>p.t<=progress)||[];
+    const path=points.map((p,i)=>`${i?'L':'M'}${px(p.t)},${py(p.a)}`).join(' ');
+    const previous=state.screenings.slice(-5).filter(r=>r!==result);
+    const ghosts=previous.map(r=>`<path d="${r.points.filter(p=>p.t<=duration).map((p,i)=>`${i?'L':'M'}${px(p.t)},${py(p.a)}`).join(' ')}"
+      fill="none" stroke="#a49b8b" stroke-width="1.3" stroke-dasharray="4 4" opacity=".45"/>`).join('');
+    const tags=result?.questions.filter(q=>q.time<=progress)||[];
+    return `<svg class="graph" viewBox="0 0 ${width} ${height}" preserveAspectRatio="none" role="img"
+      aria-label="Audience attention from zero to one hundred over the cut">
+      ${[0,20,40,60,80,100].map(n=>`<line x1="${left}" y1="${py(n)}" x2="${right}" y2="${py(n)}" stroke="#e4e1da"/>`).join('')}
+      ${(height<100?[0,100]:height<150?[0,50,100]:[0,20,40,60,80,100]).map(n=>`<text x="3" y="${py(n)+4}">${n}</text>`).join('')}
+      <text x="${left}" y="${height-5}">0:00</text><text x="${right-38}" y="${height-5}">${time(duration)}</text>${ghosts}
+      <path d="${path}" fill="none" stroke="#1b1d22" stroke-width="3" stroke-linejoin="round"/>
+      ${tags.map((q,i)=>`<circle cx="${px(q.time)}" cy="${5+(i%2)*6}" r="3" fill="#b3261e"/>`).join('')}
+      ${result&&progress>=result.runtime?`<circle cx="${px(result.lowest.time)}" cy="${py(result.lowest.value)}" r="5" fill="#b3261e"/>`:''}
+    </svg>`;
+  }
+  function miniStrip() {
+    const total=Math.max(1,runtime());
+    return state.timeline.map(c=>`<span class="${BYID[c.id].kind}" style="width:${length(c)/total*100}%" title="${c.id}"></span>`).join('');
+  }
+  function screenHTML() {
+    return `<section class="workspace screen" aria-label="Test screening">
+      <div class="screen-monitor">${viewerHTML('screen')}<div class="screen-copy"><span class="eyebrow">Work print · Test audience</span>
+        <h2>Find the moment you lose them.</h2><p>The line follows your cut at eight times speed. The questions mark moments of confusion.</p></div></div>
+      <div class="audience-board"><div class="row"><b class="eyebrow">Audience attention</b>
+        <span class="push quiet" id="screen-clock">Ready · ${time(runtime())}</span></div>
+        <div class="mini-strip" id="mini-strip">${miniStrip()}</div><div id="graph-host" style="display:flex;flex:1;min-height:0"></div></div>
+      <aside class="screen-results" id="screen-results"></aside>
+      <div class="screen-actions"><button class="primary" id="screen-it">Screen it</button><button class="secondary" id="stop-screen">■ Stop</button>
+        <button class="secondary" id="back-edit">Back to Edit</button><button class="secondary" id="model-note">How it works</button>
+        <div class="compare" id="compare"></div></div>
+    </section>`;
+  }
+  function updateScreen(result=state.screenings.findLast(r=>r.signature===JSON.stringify(state.timeline)),progress=Infinity) {
+    if (state.mode!=='screen') return;
+    $('screen-it').disabled=runtime()<270;
+    const host=$('graph-host');
+    host.innerHTML=graphSVG(result,progress);
+    if (!result) {
+      $('screen-results').innerHTML='<h3>Test audience</h3><p>A model of a test audience, not real viewers.</p><p>Tap Screen it to see the line develop.</p>';
+    } else if (progress<result.runtime) {
+      const p=result.points[Math.min(result.points.length-1,Math.floor(progress))];
+      $('screen-results').innerHTML=`<h3>In the room</h3><div class="big-number">${Math.round(p.a)}</div><p>Model attention right now</p>
+        ${result.questions.filter(q=>q.time<=progress).map(q=>`<div class="question">${time(q.time)} · ${escape(q.text)}</div>`).join('')}`;
+    } else {
+      $('screen-results').innerHTML=`<h3>${escape(result.label)}</h3>
+        <div class="big-number">${Math.round(result.average)}<span class="quiet"> average</span></div>
+        <p><b>Lowest: ${result.lowest.value} at ${time(result.lowest.time)}</b><br>${escape(result.lowest.cause)}</p>
+        ${result.questions.length?result.questions.map(q=>`<div class="question">${time(q.time)} · ${escape(q.text)} (${q.id})</div>`).join(''):
+          '<p>✓ No viewer questions.</p>'}
+        ${result.goodEnding?'<p><b>✓ Good ending</b></p>':''}
+        ${result.repeatedSeconds?`<div class="question">${result.repeatedSeconds} seconds reuse the same source, including covers.
+          This line cannot set your best screening.</div>`:''}
+        <p>Attention model only. This line does not judge your story, truthfulness or relevance.</p>`;
+    }
+    $('compare').innerHTML=state.screenings.map((r,i)=>`<span>${i+1}: avg ${Math.round(r.average)}, low ${r.lowest.value}</span>`).join('');
+    if (!ui.screening) $('screen-clock').textContent=`${result?'Screened':'Ready'} · ${time(runtime())}`;
+  }
+  function startPlayback(screening=false) {
+    if (!state.timeline.length||screening&&runtime()<270) return;
+    stopPlayback(false);
+    V.hush();
+    const selectedIndex=Math.max(0,state.timeline.findIndex(c=>c.uid===ui.selected));
+    ui.playhead=screening?0:state.timeline.slice(0,selectedIndex).reduce((sum,c)=>sum+length(c),0);
+    ui.playing=!screening;ui.screening=screening;
+    const generation=++playbackGeneration;
+    shopSoundSecond=-1;
+    ui.run=screening?model():null;
+    lastFrame='';
+    if (screening) hint(L.screening);
+    else hint('Your cut is playing at real speed. Tap Stop or edit any selected clip.');
+    let last=performance.now(),lastDraw=-1;
+    const tick=now=>{
+      if (generation!==playbackGeneration||!ui.playing&&!ui.screening) return;
+      ui.playhead+=Math.max(0,now-last)/1000*(ui.screening?8:1);
+      last=now;
+      showFrame(ui.playhead);
+      const source=sourceAt(ui.playhead);
+      if (source?.c.id==='B5'&&Math.floor(source.sec)!==shopSoundSecond) {
+        shopSoundSecond=Math.floor(source.sec);
+        Curio.tone(shopSoundSecond===0?1320:110,shopSoundSecond===0?.16:.06,.035,shopSoundSecond===0?'sine':'triangle');
+      }
+      if (ui.screening&&Math.floor(ui.playhead)!==lastDraw) {
+        lastDraw=Math.floor(ui.playhead);
+        updateScreen(ui.run,ui.playhead);
+        $('screen-clock').textContent=`${time(ui.playhead)} / ${time(runtime())} · 8×`;
+      }
+      if (ui.playhead>=runtime()) {
+        const complete=ui.screening;
+        ui.playing=false;ui.screening=false;
+        document.querySelectorAll('.moving').forEach(el=>el.classList.remove('moving'));
+        if (complete) {
+          state.screenings.push(ui.run);
+          state.screenings=state.screenings.slice(-5);
+          save();updateModes();updateScreen(ui.run);
+          const moment=ui.run;
+          const next=moment.lowest.value<60||moment.questions.length||moment.repeatedSeconds?'fix':'review';
+          hint(`Lowest: ${moment.lowest.value} at ${time(moment.lowest.time)}. Tap Back to Edit to ${next} this part.`);
+          const spokenTime=`${Math.floor(moment.lowest.time/60)} minutes ${moment.lowest.time%60} seconds`;
+          V.say(`The lowest point is at ${spokenTime}. Tap Back to Edit to ${next} it.`,
+            {key:'lowPoint',valid:()=>state.mode==='screen'&&!ui.screening&&state.screenings.at(-1)===moment,hint:false});
+          if (moment.lowest.value>=60&&!moment.questions.length&&!moment.repeatedSeconds) {
+            V.say('clean',{valid:()=>state.mode==='screen'&&!ui.screening,hint:false});
+          }
+          Curio.tone(660,.12,.04);
+        } else feedback('End of cut. Select a clip to revise, or open Screen when the cut reaches 4:30.');
+        return;
+      }
+      requestAnimationFrame(tick);
+    };
+    showFrame(ui.playhead,true);
+    requestAnimationFrame(tick);
+  }
+  function stopPlayback(announce=true) {
+    playbackGeneration++;
+    const running=ui.playing||ui.screening;
+    ui.playing=false;ui.screening=false;
+    document.querySelectorAll('.moving').forEach(el=>el.classList.remove('moving'));
+    if (announce) {
+      const next=state.mode==='screen'?'Tap Screen it to try again, or Back to Edit to change the cut.':
+        !state.timeline.length?(available().length?L.welcomeEdit:L.noFootage):'Select a timeline clip, then tap Play from here.';
+      feedback((running?'Stopped at '+time(ui.playhead)+'. ':'Stopped. ')+next);
+    }
+  }
+  function planIssues() {
+    const issues=[];
+    if (![2,3,4].filter(has).every(id=>has(1)&&slotInfo(state.schedule[1].key).order<slotInfo(state.schedule[id].key).order)) {
+      issues.push('Release forms were not done before every shoot with people.');
+    }
+    if (!has(8)) issues.push('Archive license not requested. The archive scan shoot includes this request.');
+    if (state.plan.where==='Online (school channel)'&&!state.plan.captions) issues.push('Online requires captions so viewers can access the spoken content.');
+    if (runtime()<270||runtime()>330) issues.push('The brief needs a cut from 4:30 to 5:30.');
+    if (!state.screenings.some(r=>r.signature===JSON.stringify(state.timeline))) issues.push('Screen the current cut before locking its plan.');
+    if (!/[\p{L}\p{N}]/u.test(state.plan.title)) issues.push('Give your documentary a title.');
+    if (!state.plan.date) issues.push('Choose a premiere date.');
+    if (!filledProse(state.plan.invite,4)) issues.push('Write an invite that tells people what to see.');
+    if (!filledProse(state.plan.audience,5)) {
+      issues.push('Name an audience and explain why this story matters to them.');
+    }
+    return issues;
+  }
+  function filledProse(text,minimum) {
+    const words=text.toLowerCase().match(/\p{L}+(?:'\p{L}+)*/gu)||[];
+    return words.length>=minimum&&new Set(words).size>=4&&words.some(word=>word.length>=2);
+  }
+  function bestScreening() {
+    return state.screenings.filter(r=>!r.repeatedSeconds).sort((a,b)=>b.average-a.average)[0];
+  }
+  function planHTML() {
+    if (state.plan.locked) return sheetHTML();
+    const p=state.plan;
+    return `<section class="workspace premiere" aria-label="Premiere plan"><div class="plan">
+      <div class="plan-fields"><span class="eyebrow">The final week · Bring it to the town</span><h2>Make a place for this story.</h2>
+        <div class="row"><label style="flex:1">Title<input id="plan-title" maxlength="60" value="${escape(p.title)}"></label>
+          <label style="flex:1">Date<input id="plan-date" aria-label="Premiere date" type="date" value="${escape(p.date)}"></label></div>
+        <div class="row"><label style="flex:1">Where<select id="plan-where">${['Library screening','Shop window','Online (school channel)'].map(w=>
+          `<option ${p.where===w?'selected':''}>${w}</option>`).join('')}</select></label>
+          <label>Captions<select id="plan-captions"><option value="on" ${p.captions?'selected':''}>On</option>
+            <option value="off" ${p.captions?'':'selected'}>Off</option></select></label></div>
+        <div id="permissions"></div>
+        <label>Invite <span class="quiet">280 characters</span>
+          <textarea id="plan-invite" aria-label="Invite" maxlength="280">${escape(p.invite)}</textarea></label>
+        <label>Who should see this, and why? <span class="quiet">300 characters</span>
+          <textarea id="plan-audience" aria-label="Who should see this, and why?" maxlength="300"
+          placeholder="Name an audience and connect the film to your community or experience.">${escape(p.audience)}</textarea></label>
+        <div class="row"><button class="primary" id="lock">Lock the plan</button><button class="secondary" id="start-over">Start over</button></div>
+        <div class="quiet" id="lock-reasons" role="status"></div>
+      </div>
+      <div class="poster-side"><div class="poster"><img src="${ART.store}" alt="Evening storefront with a blank sign band">
+        <div class="sign-title"><span id="poster-title">${escape(p.title)}</span>
+          <small id="poster-band-date" style="display:block;font:11px 'Segoe UI',sans-serif">${escape(p.date)}</small></div>
+        <div class="poster-type"><b>A small shop.<br>A town's story.</b>
+          <span id="poster-date">${escape(p.date||'Premiere date to come')}</span><br><span id="poster-where">${escape(p.where)}</span></div></div>
+        <p class="quiet">Shop window: a screen in Ana's window on Main Street. This is a fictional production plan. Nothing is uploaded or sent.</p>
+      </div>
+    </div></section>`;
+  }
+  function updatePlan() {
+    if (state.mode!=='premiere'||state.plan.locked) return;
+    const releaseOK=[2,3,4].filter(has).every(id=>has(1)&&slotInfo(state.schedule[1].key).order<slotInfo(state.schedule[id].key).order);
+    $('permissions').innerHTML=`<div class="permission ${releaseOK?'':'bad'}">${releaseOK?'☑':'☐'} Release forms before every shoot with people.</div>
+      <div class="permission ${has(8)?'':'bad'}">${has(8)?'☑':'☐'} Archive license requested ${has(8)?'during archive scan.':'not done in Schedule.'}</div>
+      ${state.plan.where==='Online (school channel)'?'<div class="permission">Online requires captions: access to prerecorded spoken content.</div>':''}`;
+    const issues=planIssues();
+    $('lock').disabled=!!issues.length;
+    $('lock-reasons').textContent=issues.join(' ');
+    hint(issues.length?L.welcomePremiere:L.lockHow);
+    if (!issues.length) V.how('lockHow',{needs:'#lock',valid:()=>state.mode==='premiere'&&!state.plan.locked&&!planIssues().length});
+    $('poster-title').textContent=state.plan.title;
+    $('poster-date').textContent=state.plan.date||'Premiere date to come';
+    $('poster-band-date').textContent=state.plan.date;
+    $('poster-where').textContent=state.plan.where;
+  }
+  function sheetHTML() {
+    const r=bestScreening();
+    const p=state.plan;
+    return `<section class="workspace premiere"><article class="locked-sheet"><span class="eyebrow">Premiere sheet · Curio Class</span>
+      <h2>${escape(p.title)}</h2><img src="${ART.store}" alt="Ruiz Shoe Repair in evening light">
+      <dl><dt>Runtime</dt><dd>${time(runtime())}</dd><dt>Where</dt><dd>${escape(p.where)}</dd>
+      <dt>Date</dt><dd>${escape(p.date)}</dd><dt>Captions</dt><dd>${p.captions?'On':'Off'}</dd>
+      <dt>Permissions</dt><dd>Forms first: checked. Archive license requested.</dd>
+      <dt>Invite</dt><dd>${escape(p.invite)}</dd><dt>Who and why</dt><dd>${escape(p.audience)}</dd>
+      <dt>Production</dt><dd>${Object.keys(state.schedule).length} shoots scheduled; ${state.timeline.length} clips in this cut.</dd></dl>
+      <p>${r?`Best saved screening: average ${Math.round(r.average)}, lowest ${r.lowest.value}. ${r.goodEnding?'Good ending.':''}`:
+        'No best screening yet: repeated source footage, including covers, cannot set your best line.'}</p>
+      ${graphSVG(r)}<p class="quiet">A model of a test audience, not real viewers. Attention is not an overall quality score.</p>
+      <div class="row"><button class="primary" id="print">Print sheet</button><button class="secondary" id="start-over">Start over</button></div>
+    </article></section>`;
+  }
+  function setMode(mode) {
+    if (mode===state.mode&&ui.viewMode===mode) return;
+    if (mode==='edit'&&!state.wrapped||mode==='screen'&&runtime()<270||mode==='premiere'&&!state.screenings.length) return;
+    stopPlayback(false);V.hush();
+    state.mode=mode;
+    const lastScreening=state.screenings.at(-1);
+    if (mode==='edit'&&lastScreening?.signature===JSON.stringify(state.timeline)) {
+      ui.selected=sourceAt(Math.max(0,lastScreening.lowest.time-.001))?.c.uid||ui.selected;
+    }
+    save();render();
+    V.welcome();
+    if (mode==='edit'&&state.timeline.length&&!V.heard('editHow')) V.how('editHow',{needs:'#add'});
+  }
+  function updateModes() {
+    for (const m of ['schedule','edit','screen','premiere']) $('m-'+m).setAttribute('aria-pressed',state.mode===m);
+    $('m-edit').disabled=!state.wrapped;
+    $('m-screen').disabled=runtime()<270;
+    $('m-premiere').disabled=!state.screenings.length;
+  }
+  function render() {
+    ui.viewMode=state.mode;
+    updateModes();
+    if (state.mode==='schedule') {
+      $('main').innerHTML=scheduleHTML();updateSchedule();
+      const workspace=$('main').firstElementChild;
+      workspace.prepend(workspace.querySelector('.shoot-panel'));
+      hint(state.wrapped?'Shooting is wrapped. Open Edit to work with your footage.':Object.keys(state.schedule).length?L.scheduleHow:L.welcomeSchedule);
+    } else if (state.mode==='edit') {
+      $('main').innerHTML=editHTML();renderTimeline();updateEditor();
+      const workspace=$('main').firstElementChild;
+      workspace.prepend(workspace.querySelector('.edit-main'));
+      hint(!available().length?L.noFootage:state.timeline.length?L.editHow:L.welcomeEdit);
+    } else if (state.mode==='screen') {
+      $('main').innerHTML=screenHTML();updateScreen();
+      showSource(state.timeline[0],'screen');hint(L.welcomeScreen);
+    } else {
+      $('main').innerHTML=planHTML();
+      updatePlan();
+      hint(state.plan.locked?L.locked:planIssues().length?L.welcomePremiere:L.lockHow);
+    }
+  }
+  let suppressClick=false;
+  document.addEventListener('click',e=>{
+    if (suppressClick) {suppressClick=false;return;}
+    const b=e.target.closest('button');
+    if (!b||b.disabled) return;
+    const id=b.id;
+    if (id.startsWith('m-')) return setMode(id.slice(2));
+    if (b.dataset.shoot) return selectShoot(+b.dataset.shoot);
+    if (b.dataset.weekTab) {ui.week=+b.dataset.weekTab;updateWeeks();return;}
+    if (b.dataset.slot) {
+      const entry=Object.entries(state.schedule).find(([,v])=>v.key===b.dataset.slot);
+      if (entry) return selectShoot(+entry[0]);
+      return place(ui.shoot,b.dataset.slot);
+    }
+    if (b.dataset.bin) {
+      ui.bin=b.dataset.bin;
+      if (!ui.playing) ui.selected=null;
+      updateEditor();
+      const source=BYID[ui.bin];
+      const label=source.speaker?`${source.speaker} interview, ${source.len} seconds.`:source.text;
+      hint(`${source.id}: ${label} Tap Add to end.`);
+      Curio.tone(420,.035,.025);
+      return;
+    }
+    if (b.dataset.uid) return selectClip(b.dataset.uid);
+    if (id==='fill'&&ui.pending) return place(ui.pending.id,ui.pending.key,true);
+    if (id==='brief') {
+      modal('Your documentary brief',`<p>Ruiz Shoe Repair has been on Main Street since 1962. Ana Ruiz, 71, runs it alone and plans to close next spring.</p>
+        <p>Your crew has three weeks to shoot and one week to cut a five-minute documentary for the town.</p>
+        <p class="quiet">The people, shop, town, history and test audience are fictional.</p>`,'Close',()=>{closeModal();return true;},[L.briefOne,L.briefTwo]);
+      V.how(['briefOne','briefTwo'],{valid:()=>$('dialog').open,hint:false});return;
+    }
+    if (id==='remove-shoot') return removeShoot();
+    if (id==='wrap') return wrap();
+    if (id==='add') return addClip();
+    if (id==='play') return startPlayback();
+    if (id==='stop'||id==='stop-screen') return stopPlayback();
+    if (id==='screen-it') return startPlayback(true);
+    if (id==='back-edit') return setMode('edit');
+    if (['trim','cover','lower','caption'].includes(id)) return editDialog(id);
+    if (id==='closer') {
+      const c=selected();if (!c) return;
+      const mark=!c.closer;state.timeline.forEach(x=>x.closer=false);c.closer=mark;
+      afterEdit(true);
+      feedback(mark?(state.timeline.at(-1)===c?`${c.id} is your ending line. It is already last.`:
+        `${c.id} marked as the closer. Move it to the end for the ending to land.`):'Closer removed.');
+      return;
+    }
+    if (id==='earlier'||id==='later') return moveClip(ui.selected,id==='earlier'?-1:1);
+    if (id==='remove-clip') {
+      const i=state.timeline.findIndex(c=>c.uid===ui.selected);
+      if (i<0) return;
+      state.timeline.splice(i,1);ui.selected=state.timeline[Math.min(i,state.timeline.length-1)]?.uid||null;
+      afterEdit(true);feedback('Clip removed. Your other edits are kept.');return;
+    }
+    if (id==='cancel') return closeModal();
+    if (id==='confirm') return dialogApply?.();
+    if (id==='model-note') {
+      modal('How the screening works',`<p>A model of a test audience, not real viewers. Starts at 80.</p>
+        <p>After 20 continuous seconds of uncovered interview: minus 0.5 each second. B-roll, covers and photos: plus 0.5 a second, up to 90.
+        Changing visual kind adds 5, up to 100. A cover breaks the interview streak.</p>
+        <p>A first speaker without a name and role costs 5. An undated archive before the historian costs 5. Uncovered noisy audio costs 1 each second.
+        A marked closer in the last slot adds 10. The line never goes below zero.</p>
+        <p>This model waives the noise penalty during covers. Real B-roll does not fix noisy interview sound.</p>
+        <p>Dashed lines show earlier cuts at the same elapsed times. Longer earlier cuts continue beyond this cut's time span.</p>
+        <p>Repeating pretty footage can keep this model high. It cannot tell whether you found a story. Compare the cut, not just the number.</p>`,
+        'Close',()=>{closeModal();return true;},L.modelHow);return;
+    }
+    if (id==='lock') {
+      if (planIssues().length) return;
+      V.hush();
+      state.plan.locked=true;save();render();$('print')?.focus({preventScroll:true});V.say('locked');return;
+    }
+    if (id==='print') return window.print();
+    if (id==='start-over') {
+      modal('Start over?', '<p>This clears your schedule, footage, cut, screenings and premiere plan on this device.</p>', 'Start over',()=>{
+        closeModal();stopPlayback(false);state=fresh();Object.assign(ui,{shoot:1,week:0,bin:null,selected:null,slot:null,pending:null});
+        try {localStorage.removeItem(STORAGE);}catch {}
+        render();return true;
+      },L.confirmReset);
+    }
+  });
+  document.addEventListener('input',e=>{
+    if (e.target.dataset.sync) {$(e.target.dataset.sync).value=e.target.value;return;}
+    if (e.target.id==='in-seconds'&&$('in-handle')) $('in-handle').value=e.target.value;
+    if (e.target.id==='out-seconds'&&$('out-handle')) $('out-handle').value=e.target.value;
+    if (!e.target.id.startsWith('plan-')) return;
+    const name=e.target.id.slice(5);
+    state.plan[name]=name==='captions'?e.target.value==='on':e.target.value;
+    state.plan.locked=false;save();updatePlan();
+  });
+  $('dialog').addEventListener('cancel',e=>{e.preventDefault();closeModal();});
+  let drag=null;
+  document.addEventListener('pointerdown',e=>{
+    if (e.button!==0) return;
+    const b=e.target.closest('[data-drag]');
+    if (!b||b.disabled) return;
+    drag={id:b.dataset.drag,x:e.clientX,y:e.clientY,active:false};
+    b.setPointerCapture(e.pointerId);
+  });
+  document.addEventListener('dragstart',e=>{if (e.target.closest('[data-drag]')) e.preventDefault();});
+  document.addEventListener('pointermove',e=>{
+    if (!drag) return;
+    if (Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>7) drag.active=true;
+    if (!drag.active) return;
+    const ghost=$('drag-ghost');ghost.hidden=false;
+    const [kind,value]=drag.id.split(':');
+    ghost.textContent=kind==='shoot'?SHOOTS[+value-1].short:
+      kind==='timeline'?state.timeline.find(c=>c.uid===value)?.id||'Clip':value;
+    ghost.style.left=(e.clientX+12)+'px';
+    ghost.style.top=(e.clientY+10)+'px';
+  });
+  document.addEventListener('pointerup',e=>{
+    if (!drag) return;
+    const d=drag;drag=null;$('drag-ghost').hidden=true;
+    if (!d.active) return;
+    suppressClick=true;setTimeout(()=>suppressClick=false,100);
+    const target=document.elementFromPoint(e.clientX,e.clientY);
+    const [kind,value]=d.id.split(':');
+    if (kind==='shoot') {
+      const slot=target?.closest('[data-slot]');if (slot) place(+value,slot.dataset.slot);
+    } else {
+      const timeline=target?.closest('#timeline');if (!timeline) return;
+      const before=target.closest('[data-uid]')?.dataset.uid;
+      if (kind==='bin') addClip(value,before);
+      else if (before&&before!==value) moveClip(value,0,before);
+      else if (!before) moveClip(value,state.timeline.length-state.timeline.findIndex(c=>c.uid===value)-1);
+    }
+  });
+  document.addEventListener('pointercancel',()=>{drag=null;$('drag-ghost').hidden=true;});
+  document.addEventListener('keydown',e=>{
+    const b=e.target.closest('[data-uid]');
+    if (!b||$('dialog').open) return;
+    if (e.altKey&&['ArrowLeft','ArrowRight'].includes(e.key)) {
+      e.preventDefault();moveClip(b.dataset.uid,e.key==='ArrowLeft'?-1:1);
+    }
+  });
+  addEventListener('resize',()=>{
+    updateWeeks();
+    if (ui.playing||ui.screening) showFrame(ui.playhead,true);
+    if (state.mode==='screen'&&!ui.screening) updateScreen();
+  });
+  Curio.onMotion(()=>{if (ui.playing||ui.screening) showFrame(ui.playhead,true);});
+  Curio.init({clips:"voice:*",rate:.98});
+  if (!['schedule','edit','screen','premiere'].includes(state.mode)) state.mode='schedule';
+  if (!state.wrapped&&state.mode!=='schedule') state.mode='schedule';
+  if (state.mode==='screen'&&runtime()<270) state.mode='edit';
+  if (state.mode==='premiere'&&!state.screenings.length) state.mode=state.wrapped?'edit':'schedule';
+  for (const screening of state.screenings) {
+    try {
+      const label=screening.label;
+      Object.assign(screening,model(JSON.parse(screening.signature)),{label});
+    } catch {screening.repeatedSeconds=1;}
+  }
+  render();V.welcome();
+  window.__tool={get state(){return state;},ui,SHOOTS,CLIPS,placement,place,model,runtime,available,addClip,clipNew,moveClip,
+    setMode,render,save,planIssues,editDialog,startPlayback,stopPlayback,titleValid,captionValid,bestScreening,
+    allLines:V.allLines,vlog:V.log,get vq(){return V.queue;}};
+})();
+</script>
+</body>
+</html>

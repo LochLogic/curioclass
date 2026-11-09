@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mole Bakery · Weigh in grams. React in moles. · Curio Class</title>
+<meta name="description" content="Run a six-day chemistry bakery. Calculate moles, find limiting reactants and account for every gram. Grade 10. Works offline.">
+<!--
+Mole Bakery, Curio Class. Grade 10, HS-PS1-7. Students drive.
+Chemistry: OpenStax Chemistry 2e 3.1, 4.3, 4.4; Biology 2e 7.5; PubChem; NIST CODATA; FDA CPG 525.825.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Content CC BY 4.0, code MIT. Self-contained offline tool, no network requests.
+The specified shared molecules engine is absent. The small formula adapter below is local to this tool.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root {
+  --brand:#c270bc; --brand-ink:#10141a; --panel:#141b25; --focus:#f6d19b;
+  --line:#40404d; --head-bg:#171820; --sec-bg:#20212c;
+}
+body { overflow:hidden; }
+header { padding:10px 18px; gap:8px; }
+h1 { font-family:Georgia,serif; font-size:29px; letter-spacing:-.8px; }
+h1 small { font:13px 'Segoe UI',sans-serif; letter-spacing:.3px; margin-top:5px; }
+.seg button,.icon-btn { min-height:44px; font-size:14px; padding:0 12px; }
+main { grid-template-columns:minmax(0,1fr) 392px; overflow:hidden; }
+.stage { min-height:0; display:flex; flex-direction:column; padding:18px; gap:12px; isolation:isolate; }
+.backdrop { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-3; }
+.stage::before { content:''; position:absolute; inset:0; background:#1d171499; z-index:-2; }
+.stage::after {
+  content:''; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(transparent 50%,#0d1016bc); z-index:-1;
+}
+.plate { background:var(--panel); border:1px solid #7b6d665e; border-radius:12px; box-shadow:0 8px 24px #0003; }
+.reaction-plate { padding:12px 16px; flex:none; }
+.eyebrow { font-size:11px; text-transform:uppercase; letter-spacing:2px; color:#e9bb84; margin-bottom:6px; }
+#equation { font:600 clamp(12px,1.3vw,18px) var(--readout-font); overflow-wrap:anywhere; }
+#reaction-note { font-size:12px; color:var(--muted); margin-top:7px; }
+.workbench { display:flex; align-items:center; flex:1; min-height:0; gap:5px; position:relative; container-type:size; }
+.bowl-station { width:62%; height:100%; min-height:0; display:flex; flex-direction:column; justify-content:center; }
+.bowl-wrap {
+  position:relative; width:min(100%,calc((100cqh - 70px) * 1.873));
+  aspect-ratio:650/347; flex-shrink:0; align-self:center;
+}
+#dots { position:absolute; inset:0; width:100%; height:100%; }
+.bowl-art { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; pointer-events:none; }
+.bowl-caption { align-self:center; padding:7px 12px; font-size:12px; text-align:center; max-width:100%; }
+#limit-label { color:#e9bb84; font-weight:700; }
+.dotkey { margin-top:6px; font-size:11px; color:#d2dbe4; line-height:1.4; }
+.oven-station {
+  width:min(38%,calc((100cqh - 24px) * 1.24)); position:relative; aspect-ratio:650/524;
+  flex-shrink:0; filter:drop-shadow(0 12px 12px #0006);
+}
+.oven-art { width:100%; height:100%; display:block; }
+.oven-bake {
+  position:absolute; left:21%; top:42%; width:60%; height:35%; object-fit:contain;
+  transform-origin:center bottom; transform:scaleY(var(--rise,.85)); filter:brightness(.85);
+}
+.oven-caption { position:absolute; left:12%; right:12%; bottom:-16px; text-align:center; font-size:12px; padding:5px; }
+.baking .oven-station { width:min(65%,calc((100cqh - 24px) * 1.24)); }
+.baking .bowl-station { width:35%; }
+.baking .oven-bake { filter:brightness(1.13) saturate(1.12); }
+.baking .oven-station::after {
+  content:''; position:absolute; inset:35% 15% 16%; border:2px solid #f8ba71; border-radius:12px;
+  box-shadow:0 0 32px #ff9d3380; pointer-events:none;
+}
+.bench-foot { display:flex; align-items:center; gap:18px; flex:none; }
+.scale-station { position:relative; width:210px; height:105px; flex:none; }
+.scale-station img { width:100%; height:100%; object-fit:fill; }
+#scale-readout {
+  position:absolute; left:27%; right:24%; top:57%; text-align:center; background:#101b1a;
+  color:#c9f2c0; font:700 19px var(--readout-font); border-radius:3px; padding:2px 0;
+}
+.bench-tag { padding:10px 14px; font-size:12px; line-height:1.55; flex:1; }
+.bench-tag strong { color:var(--brand); }
+.pantry { display:flex; gap:8px; flex:none; align-items:end; border-bottom:5px solid #6b4832; padding:0 7px 8px; }
+.jar { flex:1; min-width:0; text-align:center; position:relative; }
+.jar img { height:72px; max-width:100%; object-fit:contain; filter:drop-shadow(0 4px 3px #0005); }
+.jar-label { display:block; background:var(--panel); font-size:11px; border-radius:5px; padding:4px 2px; }
+.jar-label b { display:block; font-weight:600; }
+.jar button { margin-top:4px; width:100%; padding:0 2px; font-size:11px; }
+.panel { padding:16px; gap:10px; }
+.chooser { display:flex; gap:8px; align-items:center; }
+.chooser label { font-size:11px; color:var(--muted); }
+select { width:100%; min-height:44px; border:1px solid var(--btn-line); border-radius:8px; background:var(--btn); color:var(--ink); padding:4px 8px; }
+.actions { display:flex; gap:7px; }
+.actions>* { flex:1; }
+.hint { min-height:46px; line-height:1.35; font-size:14px; }
+.ingredient { border:1px solid var(--line); border-radius:10px; padding:10px 12px; background:var(--sec-bg); margin-bottom:9px; }
+.ingredient.limiting { border-left:4px solid #e9bb84; padding-left:9px; }
+.ingredient h2 { font-size:15px; margin:0 0 3px; }
+.ingredient h2 small { font:11px var(--readout-font); color:var(--muted); margin-left:5px; }
+.ingredient .badge { color:#f3c993; font-size:11px; min-height:14px; }
+.weigh { display:flex; align-items:center; gap:7px; }
+.weigh input.num { width:105px; font-size:17px; }
+.weigh label { font-size:13px; }
+.weigh input[type=range] { min-width:0; flex:1; }
+.chain { display:flex; justify-content:space-between; gap:6px; font:12px/1.4 var(--readout-font); }
+.chain span { color:var(--muted); }
+#mix-log { margin:0; padding:0; font-size:12px; line-height:1.5; color:#e1badd; }
+#mix-log:empty { display:none; }
+.result { padding:12px; background:#101722; border:1px solid #54505e; border-radius:10px; }
+.result h2 { margin:0 0 7px; font-size:12px; color:var(--muted); letter-spacing:1.5px; text-transform:uppercase; }
+.gas-value { font:700 25px var(--readout-font); color:#f1c6e9; }
+.gas-detail { font:12px var(--readout-font); margin-top:3px; }
+#taste { font-size:14px; margin:8px 0 4px; }
+#leftovers { font-size:12px; line-height:1.5; }
+.mass { border-top:1px solid var(--line); margin-top:9px; padding-top:7px; font-size:12px; line-height:1.5; }
+.mass p { margin:4px 0; }
+details summary { cursor:pointer; min-height:44px; display:flex; align-items:center; font-size:13px; color:#d9c3d6; }
+#mass-parts { padding:0; list-style:none; font:11px/1.6 var(--readout-font); margin:0; }
+details:not([open]) #mass-parts { display:none; }
+#receipt { margin:0 0 9px; font-size:14px; line-height:1.45; }
+.meter { position:relative; height:16px; border:1px solid #626a79; background:#080d15; border-radius:4px; margin:8px 0; overflow:hidden; }
+.meter span { display:block; height:100%; background:var(--brand); width:0; }
+.meter::after { content:''; position:absolute; left:63.333%; top:0; bottom:0; width:6.667%; border:1px solid #fff; }
+.orders { flex:none; background:#17201f; padding:12px; border:5px solid #75543f; border-radius:6px; }
+.order-head { display:flex; justify-content:space-between; align-items:center; gap:5px; font-size:15px; }
+.till { display:flex; align-items:center; gap:5px; color:#f0d497; font:700 17px var(--readout-font); }
+.till img { width:28px; height:28px; object-fit:contain; }
+.order-cards { display:flex; gap:8px; margin-top:8px; }
+.order-card { flex:1; min-width:0; background:#26322f; border:1px solid #6c7971; border-radius:6px; min-height:76px; padding:4px; }
+.order-card[aria-pressed=true] { border:2px solid #e5b7de; background:#433345; }
+.order-card img { width:70px; height:52px; object-fit:contain; float:left; }
+.order-card strong { display:block; font-size:13px; }
+.order-card small { display:block; font-size:11px; margin-top:3px; }
+.order-note { color:#d0d9cf; font-size:12px; margin:7px 0 0; }
+.day-actions { display:flex; gap:7px; }
+.day-actions button { flex:1; font-size:13px; }
+.privacy { font-size:11px; color:var(--muted); margin:0; }
+body[data-mode=bakery] .reaction-plate { display:none; }
+body[data-mode=bakery] .scale-station { width:160px; height:78px; }
+body[data-mode=bakery] .jar img { height:56px; }
+body[data-mode=bakery] .order-card { min-height:64px; }
+.ledger { position:absolute; inset:16px; z-index:5; padding:20px; overflow:auto; }
+.ledger h2 { font:29px Georgia,serif; margin:0 0 8px; }
+.ledger table { border-collapse:collapse; width:100%; font-size:13px; margin-top:15px; }
+.ledger th,.ledger td { text-align:left; padding:10px 5px; border-bottom:1px solid var(--line); }
+.ledger strong { color:#f2c7e9; }
+.calm * { animation:none!important; transition:none!important; }
+.steam { position:absolute; left:44%; top:12%; color:#f7e3c99c; font-size:30px; animation:wisp 4s ease-in-out infinite; pointer-events:none; }
+@keyframes wisp { 0%,100% { transform:translateY(0); opacity:.25; } 50% { transform:translateY(-12px); opacity:.65; } }
+@media (max-height:650px) and (min-width:601px) {
+  header { flex-wrap:nowrap; padding:4px 8px; gap:5px; }
+  h1 { font-size:20px; white-space:nowrap; } h1 small { display:none; }
+  .seg button,.icon-btn { font-size:12px; padding:0 8px; }
+  main { grid-template-columns:minmax(0,1fr) 322px; }
+  .stage { padding:8px; gap:6px; }
+  .reaction-plate { padding:7px 9px; }
+  #equation { font-size:11px; } #reaction-note { font-size:10px; margin-top:3px; }
+  .bowl-wrap { width:min(100%,calc((100cqh - 55px) * 1.873)); }
+  .bowl-caption { padding:4px 6px; font-size:10px; } .dotkey { font-size:10px; }
+  .bench-foot { gap:6px; } .scale-station { width:130px; height:61px; }
+  #scale-readout { font-size:12px; } .bench-tag { padding:5px 6px; font-size:10px; }
+  .pantry { display:none; }
+  .mobile-pantry { display:block; }
+  .mobile-pantry .pantry { display:flex; gap:3px; }
+  .mobile-pantry .jar img { height:34px; }
+  .jar-label { font-size:10px; padding:2px; }
+  .panel { padding:7px 8px; gap:3px; }
+  .hint { min-height:34px; font-size:12px; }
+  .ingredient { padding:3px 8px; margin-bottom:3px; }
+  .ingredient.limiting { padding-left:5px; }
+  .ingredient h2 { font-size:12px; line-height:1.1; margin:0; } .ingredient h2 small { font-size:10px; }
+  .ingredient .badge { font-size:10px; min-height:10px; }
+  .chain { font-size:10px; line-height:1.1; }
+  .weigh input.num { width:88px; font-size:14px; }
+  .orders { padding:5px; border-width:3px; } .order-cards { gap:3px; margin-top:3px; }
+  .order-card { min-height:52px; } .order-card img { width:34px; height:30px; }
+  .order-card strong,.order-card small { font-size:10px; }
+  .order-head { font-size:12px; } .order-note { font-size:10px; margin-top:3px; }
+  body[data-mode=bakery] .bowl-wrap { width:min(100%,calc((100cqh - 55px) * 1.873)); }
+  body[data-mode=bakery] .pantry .jar img { display:none; }
+  body[data-mode=bakery] .pantry .btn { min-height:44px; }
+  body[data-mode=bakery] .bench-tag { display:none; }
+  body[data-mode=bakery] .scale-station { width:130px; height:61px; }
+}
+@media (max-width:600px) {
+  body { overflow:auto; height:auto; min-height:100%; }
+  header { padding:6px 10px; gap:5px; }
+  h1 { font-size:22px; width:100%; } h1 small { display:none; }
+  .seg button,.icon-btn { font-size:12px; padding:0 9px; }
+  .seg { border-radius:8px; }
+  main { display:flex; flex-direction:column; overflow:visible; }
+  .stage { height:252px; padding:7px; gap:4px; flex:none; }
+  .reaction-plate { padding:5px 8px; } .eyebrow { display:none; }
+  #equation { font-size:10px; } #reaction-note { font-size:10px; margin-top:3px; }
+  .workbench { min-height:0; } .bowl-wrap { width:min(100%,calc((100cqh - 47px) * 1.873)); }
+  .bowl-caption { padding:3px 5px; font-size:10px; } .dotkey { font-size:10px; margin-top:2px; }
+  .oven-station { width:min(35%,calc((100cqh - 15px) * 1.24)); } .oven-caption { font-size:10px; bottom:-3px; }
+  .bench-foot { gap:5px; } .scale-station { width:115px; height:53px; }
+  #scale-readout { font-size:11px; } .bench-tag { padding:3px 5px; font-size:10px; }
+  .pantry { display:none; } .panel { padding:8px; overflow:visible; gap:5px; }
+  .chooser { order:0; } .actions { order:1; } .hint { order:2; min-height:35px; font-size:12px; }
+  #ingredients { order:3; } .day-actions { order:4; } #mix-log { order:5; }
+  .result { order:6; } .mobile-pantry { order:7; } .privacy { order:8; }
+  .ingredient { padding:5px 8px; margin-bottom:5px; } .ingredient.limiting { padding-left:5px; }
+  .ingredient h2 { font-size:13px; margin:0; } .ingredient .badge { font-size:10px; min-height:12px; }
+  .chain { font-size:11px; } .weigh input.num { font-size:15px; }
+  .orders { padding:5px; border-width:3px; } .order-head { font-size:12px; }
+  .order-cards { gap:3px; margin-top:3px; } .order-card { min-height:44px; padding:2px; }
+  .order-card img { width:30px; height:29px; } .order-card strong,.order-card small { font-size:10px; }
+  .order-note { font-size:10px; margin:3px 0 0; }
+  body[data-mode=bakery] .reaction-plate { display:none; }
+  body[data-mode=bakery] .stage { height:324px; }
+  body[data-mode=bakery] .chooser { display:none; }
+  body[data-mode=bakery] .bowl-wrap { width:min(100%,calc((100cqh - 47px) * 1.873)); }
+  body[data-mode=bakery] .bench-tag { display:none; }
+  body[data-mode=bakery] .scale-station { width:115px; height:53px; }
+  .mobile-pantry .pantry { display:flex; flex-wrap:wrap; }
+  .mobile-pantry .jar { flex:1 1 28%; }
+  .mobile-pantry .jar img { height:60px; }
+}
+@media (min-width:601px) { .mobile-pantry { display:none; } }
+@media (max-height:650px) and (min-width:601px) {
+  body[data-mode=bakery] .chooser { display:none; }
+  body[data-mode=bakery] .mobile-pantry { display:block; }
+}
+</style>
+</head>
+<body data-mode="kitchen">
+<header>
+  <h1>Mole Bakery <small>Weigh in grams. React in moles.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-kitchen" aria-pressed="true">Test kitchen</button>
+    <button id="m-bakery" aria-pressed="false">Bakery</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <div class="stage" id="stage">
+    <img class="backdrop" src="art:mb-counter" alt="">
+    <section class="orders" id="orders" aria-label="Order board" hidden>
+      <div class="order-head"><b id="day-title">Day 1</b><span class="till"><img src="art:mb-coin" alt=""><span id="coins">30</span> coins</span></div>
+      <div class="order-cards" id="order-cards"></div>
+      <p class="order-note" id="order-note"></p>
+      <div class="gas-detail" id="order-equation"></div>
+    </section>
+    <div class="reaction-plate plate">
+      <div class="eyebrow">The reaction recipe</div>
+      <div id="equation"></div>
+      <div id="reaction-note"></div>
+    </div>
+    <div class="workbench">
+      <div class="bowl-station">
+        <div class="bowl-wrap" id="bowl-wrap">
+          <canvas id="dots" aria-label="Ingredient particles reacting in the mixing bowl"></canvas>
+          <img class="bowl-art" src="art:mb-bowl" alt="Clear glass mixing bowl">
+        </div>
+        <div class="bowl-caption plate"><div id="limit-label"></div><div class="dotkey" id="dot-key"></div></div>
+      </div>
+      <div class="oven-station">
+        <img class="oven-art" src="art:mb-oven" alt="Warm bakery oven">
+        <img class="oven-bake" id="oven-bake" src="art:mb-biscuits" alt="Biscuits in the oven">
+        <span class="steam" aria-hidden="true">∿</span>
+        <div class="oven-caption plate" id="oven-caption">Ready to bake</div>
+      </div>
+    </div>
+    <div class="bench-foot">
+      <div class="scale-station"><img src="art:mb-scale" alt="Digital kitchen scale"><output id="scale-readout">13.61 g</output></div>
+      <div class="bench-tag plate" id="bench-tag">Grams <strong>→</strong> moles <strong>→</strong> mole ratio <strong>→</strong> gas<br>Same atoms. Every gram accounted for.</div>
+    </div>
+    <div class="pantry" id="pantry"></div>
+    <section class="ledger plate" id="ledger" aria-label="Week ledger" hidden></section>
+  </div>
+  <aside class="panel">
+    <div class="chooser"><select id="reaction" aria-label="Reaction"></select></div>
+    <div class="actions"><button class="big-btn" id="bake">Bake</button><button class="btn" id="exact">Mix exact</button></div>
+    <p class="hint" id="hint" aria-live="polite"></p>
+    <div id="ingredients"></div>
+    <div class="day-actions" id="day-actions" hidden>
+      <button class="btn" id="decline">Decline order</button><button class="btn" id="end-day">End day</button><button class="btn" id="new-week">New week</button>
+    </div>
+    <p id="mix-log" aria-live="polite"></p>
+    <section class="result" id="results" aria-label="Bake results">
+      <h2 id="result-title">What this mix can make</h2>
+      <p id="receipt" hidden></p>
+      <div class="gas-value" id="gas"></div>
+      <div class="gas-detail" id="gas-detail"></div>
+      <div id="rise-result" hidden><div class="meter"><span id="rise-bar"></span></div><div class="gas-detail" id="rise-text"></div></div>
+      <div id="taste"></div>
+      <div id="leftovers"></div>
+      <div class="mass"><p id="mass-check"></p><details id="mass-details"><summary>Follow every gram</summary><ul id="mass-parts"></ul></details></div>
+    </section>
+    <div class="mobile-pantry" id="mobile-pantry"></div>
+    <p class="privacy" id="save-note">Bakery progress saves only on this device. Nothing leaves it.</p>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const ATOMS = {
+    H:{mass:1.008,cpk:'#ffffff'}, C:{mass:12.011,cpk:'#909090'}, O:{mass:15.999,cpk:'#ff0d0d'},
+    Na:{mass:22.990,cpk:'#ab5cf2'}, K:{mass:39.0983,cpk:'#8f40d4'}, N:{mass:14.007,cpk:'#3050f8'}
+  };
+  // Limited to the simple formulas in this spec. Replace with kit/molecules.js when available.
+  function parse(formula) {
+    const out = {};
+    for (const [,el,n] of formula.matchAll(/([A-Z][a-z]?)(\d*)/g)) out[el] = (out[el] || 0) + Number(n || 1);
+    return out;
+  }
+  function molarMass(formula) {
+    return Object.entries(parse(formula)).reduce((v,[el,n]) => v + ATOMS[el].mass * n, 0);
+  }
+  function tally(side) {
+    const out = {};
+    side.forEach(([formula,coef]) => Object.entries(parse(formula)).forEach(([el,n]) => out[el] = (out[el] || 0) + n * coef));
+    return out;
+  }
+  const ITEMS = {
+    soda:{name:'Baking soda',formula:'NaHCO3',art:'mb-soda',price:2,color:'#f0c8a0',shape:4},
+    tartar:{name:'Cream of tartar',formula:'KHC4H4O6',art:'mb-tartar',price:10,color:'#ab5cf2',shape:0},
+    vinegar:{name:'Vinegar, 5% acidity',formula:'HC2H3O2',art:'mb-vinegar',price:1,color:'#ff8a8a',shape:3},
+    glucose:{name:'Glucose',formula:'C6H12O6',art:'mb-glucose',price:3,color:'#ffd36b',shape:6},
+    ammonia:{name:"Baker's ammonia",formula:'NH4HCO3',art:'mb-ammonia',price:6,color:'#3050f8',shape:4}
+  };
+  Object.values(ITEMS).forEach(i => i.mm = molarMass(i.formula));
+  const REACTIONS = {
+    R1:{name:'Biscuit powder',items:['soda','tartar'],coefs:[1,1],gas:1,art:'mb-biscuits',product:'Biscuits',
+      left:[['NaHCO3',1],['KHC4H4O6',1]],right:[['KNaC4H4O6',1],['H2O',1],['CO2',1]],
+      eq:'NaHCO₃ + KHC₄H₄O₆ → KNaC₄H₄O₆ + H₂O + CO₂',note:'Baking soda + cream of tartar. One mole of each gives one mole of carbon dioxide.'},
+    R2:{name:'Vinegar cake',items:['soda','vinegar'],coefs:[1,1],gas:1,art:'mb-cake',product:'Vinegar cake',
+      left:[['NaHCO3',1],['HC2H3O2',1]],right:[['NaC2H3O2',1],['H2O',1],['CO2',1]],
+      eq:'NaHCO₃ + HC₂H₃O₂ → NaC₂H₃O₂ + H₂O + CO₂',note:'Vinegar is modeled as 5 g acid per 100 g vinegar, using density close to 1 g/mL.'},
+    R3:{name:'Bread fermentation',items:['glucose'],coefs:[1],gas:2,art:'mb-bread',product:'Bread',
+      left:[['C6H12O6',1]],right:[['C2H5OH',2],['CO2',2]],
+      eq:'C₆H₁₂O₆ → 2 C₂H₅OH + 2 CO₂',note:'Yeast ferments glucose. Ethanol bakes off. Test kitchen gas retention: 100%.'},
+    R4:{name:'Crisp cookies',items:['ammonia'],coefs:[1],gas:3,art:'mb-cookies',product:'Crisp cookies',
+      left:[['NH4HCO3',1]],right:[['NH3',1],['CO2',1],['H2O',1]],
+      eq:'NH₄HCO₃ → NH₃ + CO₂ + H₂O',note:'Three gases per formula unit. Thin cookies let the ammonia smell bake out.'},
+    R5:{name:'Leftover soda in the oven',items:['soda'],coefs:[2],gas:1,art:'mb-biscuits',product:'Heated soda',
+      left:[['NaHCO3',2]],right:[['Na2CO3',1],['H2O',1],['CO2',1]],
+      eq:'2 NaHCO₃ → Na₂CO₃ + H₂O + CO₂',note:'Two moles of soda give one mole of carbon dioxide and soapy sodium carbonate.'}
+  };
+  const L = {
+    wKitchen:'Press Bake to see what this batter makes. Then change the grams and bake again.',
+    wBakery:'Read the order, set the grams, then press Bake. Rise and taste both count.',
+    limitTip:'That one runs out first. It decides how much gas you get.',
+    day3:'No delivery today. Count how many batches six grams can make, then bake or decline each order.',
+    day5:"Careful: baker's ammonia gives three gases for every one you weigh.",
+    paid:'Right rise, clean taste. Paid in full.',
+    half:'Close. Check the rise and the leftovers, then try the next one.',
+    mixed:'Mix exact matched the mole ratio. Check the calculation below the grams.',
+    baked:'Bake ready.',
+    missing:'An ingredient is missing. Enter a positive amount of every ingredient, then press Bake.',
+    next:'Choose another open order, or press End day when every order is baked or declined.',
+    end:'Week complete. Read your ledger, then press New week to start again.'
+  };
+  const freshWeek = () => ({version:1,day:1,coins:30,pantry:Object.fromEntries(Object.keys(ITEMS).map(k=>[k,100])),
+    orders:[],ledger:[],finished:false});
+  function ordersFor(day) {
+    const order = (r,target,pay) => ({r,target,pay,status:'open'});
+    return ({1:[order('R1',.05,20)],2:[order('R2',.06,18)],3:Array.from({length:4},()=>order('R1',.01,5)),
+      4:[order('R3',.09,16)],5:[order('R4',.09,14)],6:[order('R1',.04,20),order('R2',.03,18),order('R4',.06,14)]})[day];
+  }
+  let week = freshWeek();
+  try {
+    const saved = JSON.parse(localStorage.getItem('curio-mole-bakery'));
+    if (saved && saved.version === 1 && Number.isInteger(saved.day) && saved.day >= 1 && saved.day <= 6
+      && Number.isFinite(saved.coins) && saved.coins >= 0 && Array.isArray(saved.orders) && Array.isArray(saved.ledger)
+      && Object.keys(ITEMS).every(k => Number.isFinite(saved.pantry?.[k]) && saved.pantry[k] >= 0)) week = saved;
+  } catch (_) { /* Storage can be blocked in classroom embeds. */ }
+  if (!week.orders.length) week.orders = ordersFor(week.day);
+  const state = {mode:'kitchen',reaction:'R1',grams:[4.2,9.41],baking:false,progress:0,selected:0,
+    result:null,week,revision:0,edited:false};
+  const V = Curio.voice({lines:L,scope:()=>state.mode,hint:false,read:()=>$('hint').textContent,speaks:'#bake',
+    welcome:()=>[state.mode === 'kitchen' ? 'wKitchen':'wBakery', {valid:()=>!state.edited && !state.baking && !week.finished}]});
+  const fixed = (v,n=2) => Math.abs(v).toFixed(n);
+  const sig = v => v === 0 ? '0.000' : Number(v).toPrecision(4);
+  const mmText = key => key === 'ammonia' ? '79.06' : fixed(ITEMS[key].mm);
+  const current = () => REACTIONS[state.reaction];
+  const activeOrder = () => week.orders[state.selected];
+  const closed = () => [3,6].includes(week.day);
+  function save() {
+    try { localStorage.setItem('curio-mole-bakery',JSON.stringify(week)); }
+    catch (_) { $('save-note').textContent = 'Saving is unavailable here. Keep this page open to keep your week.'; }
+  }
+  function calculate(rid=state.reaction, grams=state.grams, retention=null) {
+    const r = REACTIONS[rid];
+    const n = r.items.map((key,i) => Math.max(0,grams[i] || 0) * (key==='vinegar' ? .05:1) / ITEMS[key].mm);
+    const capacities = n.map((v,i) => v / r.coefs[i]);
+    const extent = Math.min(...capacities);
+    const limiting = capacities.indexOf(extent);
+    const leftovers = n.map((v,i)=> Math.max(0,v-extent*r.coefs[i]));
+    const sodaIndex = r.items.indexOf('soda');
+    const sodaExtra = ['R1','R2'].includes(rid) ? leftovers[sodaIndex] : 0;
+    const extra = sodaExtra / 2;
+    const made = extent * r.gas + extra;
+    const yieldFactor = retention ?? (rid==='R3' && state.mode==='bakery' && week.day>=4 ? .9:1);
+    const kept = made * yieldFactor;
+    const leftGrams = leftovers.map((v,i)=>v*ITEMS[r.items[i]].mm);
+    const fraction = i => n[i] > 0 ? leftovers[i]/n[i] : 0;
+    let taste = 'clean';
+    if (rid==='R5' && n[0]>0 || sodaIndex>=0 && fraction(sodaIndex)>.02+1e-12) taste='soapy';
+    else if (r.items.some((key,i)=>['tartar','vinegar'].includes(key) && fraction(i)>.02+1e-12)) taste='sour';
+    let co2 = (rid==='R4' ? extent:made)*molarMass('CO2');
+    const parts = [];
+    const add = (name,g,kind='product') => { if (g>1e-10) parts.push({name,g,kind}); };
+    if (['R1','R2'].includes(rid)) {
+      add(rid==='R1'?'Sodium potassium tartrate':'Sodium acetate',extent*molarMass(rid==='R1'?'KNaC4H4O6':'NaC2H3O2'));
+      add('Reaction water',extent*molarMass('H2O'));
+      add('Sodium carbonate (soapy)',extra*molarMass('Na2CO3'));
+      add('Water from heated soda',extra*molarMass('H2O'));
+      r.items.forEach((key,i)=> {
+        if (key!=='soda') add((key==='vinegar'?'Acetic acid':ITEMS[key].name)+' left over',leftGrams[i],'leftover');
+      });
+      if (rid==='R2') add('Water already in vinegar',grams[1]*.95);
+    } else if (rid==='R3') add('Ethanol baked off',extent*2*molarMass('C2H5OH'),'escaped');
+    else if (rid==='R4') {
+      add('Ammonia gas',extent*molarMass('NH3'),'gas');
+      add('Water vapor',extent*molarMass('H2O'),'gas');
+    } else {
+      add('Sodium carbonate (soapy)',extent*molarMass('Na2CO3'));
+      add('Water from heated soda',extent*molarMass('H2O'));
+    }
+    add('Carbon dioxide',co2,'gas');
+    const gasMass = rid==='R4' ? extent*ITEMS.ammonia.mm : co2;
+    const before = grams.reduce((a,b)=>a+b,0);
+    const after = parts.reduce((a,b)=>a+b.g,0);
+    return {rid,grams:[...grams],n,extent,limiting,leftovers,leftGrams,extra,made,kept,yieldFactor,gasMass,taste,
+      before,after,parts,missing:r.items.filter((k,i)=>!n[i]),waste:leftGrams.reduce((a,b)=>a+b,0)};
+  }
+  function cancelBake() {
+    state.baking=false;
+    state.progress=0;
+    state.revision++;
+    $('stage').classList.remove('baking');
+    $('oven-caption').textContent='Ready to bake';
+  }
+  function tell(text) { $('hint').textContent=text; }
+  function resetView() {
+    cancelBake();
+    state.result=null;
+    state.edited=false;
+    $('mix-log').textContent='';
+  }
+  function makeRows() {
+    const r=current();
+    $('ingredients').innerHTML=r.items.map((key,i)=>`
+      <section class="ingredient" id="row-${i}">
+        <h2>${ITEMS[key].name}<small>${ITEMS[key].formula}</small></h2>
+        <div class="badge" id="badge-${i}"></div>
+        <div class="weigh">
+          <input class="num" id="grams-${i}" type="number" min="0" max="${key==='vinegar'?300:100}" step="0.01"
+            inputmode="decimal" aria-label="${ITEMS[key].name}, grams">
+          <label for="grams-${i}">g</label>
+          <input id="slider-${i}" type="range" min="0" max="${key==='vinegar'?300:100}" step="0.01"
+            aria-label="${ITEMS[key].name}, grams slider">
+        </div>
+        <div class="chain"><span>${mmText(key)} g/mol${key==='vinegar'?' acid':''}</span><b id="moles-${i}"></b></div>
+        <div class="chain"><span>could make</span><b id="makes-${i}"></b></div>
+      </section>`).join('');
+    r.items.forEach((key,i)=> {
+      $('grams-'+i).oninput=()=>changeGrams(i,$('grams-'+i).value,false);
+      $('grams-'+i).onchange=()=>syncInputs();
+      $('grams-'+i).onkeydown=e=> { if(e.key==='Enter') { changeGrams(i,e.target.value,true); } };
+      $('slider-'+i).oninput=e=>changeGrams(i,e.target.value,true);
+      $('slider-'+i).onkeydown=e=> {
+        if (['PageUp','PageDown'].includes(e.key)) {
+          e.preventDefault();
+          changeGrams(i,state.grams[i]+(e.key==='PageUp'?1:-1),true);
+        }
+      };
+    });
+    syncInputs();
+  }
+  function syncInputs() {
+    current().items.forEach((key,i)=> {
+      $('grams-'+i).value=fixed(state.grams[i]);
+      $('slider-'+i).value=state.grams[i];
+    });
+  }
+  function changeGrams(i,raw,sync) {
+    const value=Number(raw);
+    const key=current().items[i];
+    if (!Number.isFinite(value) || value<0 || value>(key==='vinegar'?300:100)) {
+      tell('Enter a finite amount from 0 to '+(key==='vinegar'?300:100)+' g.');
+      syncInputs();
+      return false;
+    }
+    const rounded=Math.round(value*100)/100;
+    if (state.mode==='bakery' && rounded>week.pantry[key]+1e-8) {
+      const next=closed() || week.coins<ITEMS[key].price ? 'Enter less, or Decline the order.'
+        :'Enter less, or Buy more from the pantry.';
+      tell('Only '+fixed(week.pantry[key])+' g on the shelf. '+next);
+      Curio.tone(160,.08,.08);
+      syncInputs();
+      return false;
+    }
+    cancelBake();
+    state.result=null;
+    state.edited=true;
+    V.dropQueued();
+    state.grams[i]=rounded;
+    Curio.tone(250+Math.min(rounded,100)*2,.025,.018);
+    if(sync) syncInputs(); else $('slider-'+i).value=rounded;
+    $('mix-log').textContent='';
+    tell(state.mode==='kitchen'?'Press Bake to see this mix react. Change either grams box to test the limiting ingredient.':L.wBakery);
+    render(false);
+    const calc=calculate();
+    if(calc.leftovers.some((v,j)=>calc.n[j] && v/calc.n[j]>.02) && calc.n.every(v=>v>0)) {
+      const revision=state.revision;
+      V.how('limitTip',{valid:()=>state.revision===revision});
+    }
+    return true;
+  }
+  function setReaction(rid,grams=null) {
+    if(!REACTIONS[rid]) return;
+    resetView();
+    state.reaction=rid;
+    state.grams=grams ? current().items.map((k,i)=>Number(grams[i]) || 0):current().items.map(()=>0);
+    makeRows();
+    render(true);
+  }
+  function setMode(mode,force=false) {
+    if(mode==='Test kitchen') mode='kitchen';
+    if(mode==='Bakery') mode='bakery';
+    if(!['kitchen','bakery'].includes(mode)) return;
+    if(state.mode===mode && !force) return;
+    V.hush();
+    state.mode=mode;
+    document.body.dataset.mode=mode;
+    resetView();
+    if(mode==='bakery') {
+      state.selected=Math.max(0,week.orders.findIndex(o=>o.status==='open'));
+      setReaction(activeOrder().r);
+    } else setReaction('R1',[4.2,9.41]);
+    tell(mode==='kitchen'?L.wKitchen:week.finished?L.end:L.wBakery);
+    V.welcome();
+    dayVoice();
+  }
+  function mixExact() {
+    const r=current();
+    if(r.items.length!==2) {
+      tell('This reaction has one weighed ingredient. Use the equation ratio to choose its grams, then press Bake.');
+      return;
+    }
+    const calc=calculate();
+    const key=r.items[1];
+    const exact=calc.n[0]/r.coefs[0]*r.coefs[1]*ITEMS[key].mm/(key==='vinegar'?.05:1);
+    if(!changeGrams(1,exact,true)) return;
+    const acid=key==='vinegar'?' ÷ 0.050 acid fraction':'';
+    $('mix-log').textContent='Mix exact: '+fixed(state.grams[0])+' g ÷ '+mmText(r.items[0])+' g/mol = '
+      +sig(calc.n[0])+' mol → '+sig(calc.n[0]/r.coefs[0]*r.coefs[1])+' mol × '+mmText(key)+' g/mol'+acid+' = '+fixed(state.grams[1])+' g.';
+    V.how('mixed');
+  }
+  function bake() {
+    cancelBake();
+    const result=calculate();
+    if(result.missing.length) {
+      tell('Missing '+result.missing.map(k=>ITEMS[k].name).join(' and ')+'. Enter its grams, then press Bake.');
+      V.say('missing');
+      return false;
+    }
+    let event='baked';
+    if(state.mode==='bakery') {
+      const order=activeOrder();
+      if(week.finished || order.status!=='open') {
+        tell(week.finished?L.end:L.next);
+        return false;
+      }
+      if(current().items.some((key,i)=>state.grams[i]>week.pantry[key]+1e-8)) {
+        tell('Not enough on the shelf. Enter less, or Buy when the supplier is open.');
+        return false;
+      }
+      const pass=Math.abs(result.kept-order.target)<=.05*order.target+1e-12 && result.taste==='clean';
+      result.target=order.target;
+      result.earned=pass?order.pay:order.pay/2;
+      result.pass=pass;
+      order.status='baked';
+      order.result=JSON.parse(JSON.stringify(result));
+      current().items.forEach((key,i)=>week.pantry[key]=Math.max(0,week.pantry[key]-state.grams[i]));
+      week.coins+=result.earned;
+      event=pass?'paid':'half';
+      save();
+    }
+    state.result=result;
+    state.edited=true;
+    state.baking=!Curio.reduce;
+    state.progress=Curio.reduce?1:0;
+    const revision=state.revision;
+    const start=performance.now();
+    Curio.tone(370,.12,.06,'sine');
+    $('oven-caption').textContent=state.baking?'Gas lifting the dough':'Bake ready';
+    render(false);
+    tell(state.mode==='bakery'?L.next:'Bake ready. Change the grams or the reaction, then press Bake.');
+    V.dropQueued();
+    V.say(event,{valid:()=>state.revision===revision,now:true});
+    function frame(now) {
+      if(state.revision!==revision) return;
+      state.progress=Math.min(1,(now-start)/3000);
+      drawDots();
+      drawRise();
+      if(state.progress<1 && state.baking) requestAnimationFrame(frame);
+      else {
+        state.baking=false;
+        state.progress=1;
+        $('stage').classList.remove('baking');
+        $('oven-caption').textContent='Bake ready';
+        drawDots();
+        drawRise();
+        Curio.tone(660,.14,.06,'sine');
+      }
+    }
+    if(state.baking) {
+      $('stage').classList.add('baking');
+      requestAnimationFrame(frame);
+    } else { drawDots(); drawRise(); }
+    return result;
+  }
+  function chooseOrder(index) {
+    cancelBake();
+    V.dropQueued();
+    state.selected=index;
+    setReaction(activeOrder().r);
+    if(activeOrder().result) { state.result=activeOrder().result; state.progress=1; render(false); }
+    tell(activeOrder().status==='open'?L.wBakery:L.next);
+    Curio.tone(280,.05,.04);
+  }
+  function dayVoice() {
+    if(state.mode!=='bakery' || week.finished) return;
+    const day=week.day;
+    if([3,5].includes(day)) {
+      tell(L['day'+day]);
+      V.how('day'+day,{valid:()=>week.day===day && week.orders.every(o=>o.status==='open')});
+    }
+  }
+  function advanceDay(force=null) {
+    if(force===null && week.orders.some(o=>o.status==='open')) {
+      tell('Bake or Decline every open order, then press End day.');
+      return false;
+    }
+    cancelBake();
+    V.hush();
+    if(force===null) {
+      week.ledger.push({day:week.day,coins:week.orders.reduce((a,o)=>a+(o.result?.earned||0),0),
+        waste:week.orders.reduce((a,o)=>a+(o.result?.waste||0),0),
+        limiting:week.orders.map(o=>o.result ? ITEMS[REACTIONS[o.r].items[o.result.limiting]].name:'declined').join('; ')});
+      if(week.day===6) week.finished=true; else week.day++;
+    } else { week.day=Math.max(1,Math.min(6,force)); week.finished=false; }
+    if(!week.finished) {
+      week.orders=ordersFor(week.day);
+      if(week.day===3) week.pantry.tartar=6;
+      if(week.day===6) week.pantry.soda=8;
+    }
+    state.selected=0;
+    setReaction(week.orders[0].r);
+    tell(week.finished?L.end:L.wBakery);
+    dayVoice();
+    if(week.finished) V.say('end');
+    save();
+    render(true);
+    return true;
+  }
+  function buy(key) {
+    if(!ITEMS[key] || state.mode!=='bakery') return false;
+    if(week.finished) { tell(L.end); return false; }
+    if(closed()) { tell('Supplier closed. Use the pantry, or Decline an order.'); return false; }
+    if(week.coins<ITEMS[key].price) { tell('Not enough coins for this delivery. Choose an order you can bake.'); return false; }
+    cancelBake();
+    week.pantry[key]+=100;
+    week.coins-=ITEMS[key].price;
+    save();
+    render(false);
+    tell('Added 100 g of '+ITEMS[key].name+'. Set the grams, then press Bake.');
+    Curio.tone(560,.09,.05);
+    return true;
+  }
+  function newWeek() {
+    cancelBake();
+    V.hush();
+    week=freshWeek();
+    week.orders=ordersFor(1);
+    state.week=week;
+    state.selected=0;
+    save();
+    setMode('bakery',true);
+    tell('New week: 30 coins, pantry full. Set grams, then press Bake.');
+    Curio.tone(440,.06,.04);
+  }
+  function renderPantry() {
+    for(const key of Object.keys(ITEMS)) {
+      document.querySelectorAll('[data-stock="'+key+'"]').forEach(el=>el.textContent=fixed(week.pantry[key])+' g');
+      document.querySelectorAll('[data-buy="'+key+'"]').forEach(el=> {
+        el.hidden=state.mode!=='bakery';
+        el.textContent=closed()?'Closed':'Buy 100 g · '+ITEMS[key].price;
+        el.setAttribute('aria-label','Buy 100 grams of '+ITEMS[key].name+' for '+ITEMS[key].price+' coins');
+        el.setAttribute('aria-disabled',closed() || week.finished || week.coins<ITEMS[key].price);
+      });
+    }
+  }
+  function buildPantry() {
+    const content=Object.entries(ITEMS).map(([key,item])=>`
+      <div class="jar"><img src="${PANTRY_ART[item.art]}" alt="${item.name} container">
+        <span class="jar-label"><b>${item.name.replace(', 5% acidity','')}</b><span data-stock="${key}"></span></span>
+        <button class="btn" data-buy="${key}" hidden></button></div>`).join('');
+    $('pantry').innerHTML=content;
+    $('mobile-pantry').innerHTML='<div class="pantry">'+content+'</div>';
+    document.querySelectorAll('[data-buy]').forEach(el=>el.onclick=()=>buy(el.dataset.buy));
+  }
+  function renderOrders(rebuild) {
+    $('orders').hidden=state.mode!=='bakery';
+    $('day-actions').hidden=state.mode!=='bakery';
+    $('day-title').textContent='Day '+week.day+' / 6'+(closed()?' · Supplier closed':'');
+    $('coins').textContent=week.coins;
+    const shape=week.day+':'+week.orders.map(o=>o.r).join(',');
+    if($('order-cards').dataset.shape!==shape || $('order-cards').children.length!==week.orders.length) {
+      $('order-cards').dataset.shape=shape;
+      $('order-cards').innerHTML=week.orders.map((order,i)=>`
+        <button class="order-card" id="order-${i}" aria-pressed="${i===state.selected}">
+          <img src="${ART[REACTIONS[order.r].art]}" alt=""><strong>${REACTIONS[order.r].product}</strong>
+          <small>${fixed(order.target,3)} mol gas · ${order.pay} coins</small><small id="status-${i}">Open</small>
+        </button>`).join('');
+      week.orders.forEach((order,i)=>$('order-'+i).onclick=()=>chooseOrder(i));
+    }
+    week.orders.forEach((order,i)=> {
+      $('order-'+i).setAttribute('aria-pressed',i===state.selected);
+      $('status-'+i).textContent=order.status==='baked'?(order.result.pass?'Paid in full':'Half price'):order.status;
+    });
+    $('order-note').textContent=week.day===4
+      ?'Proof-box log: 9.01 g glucose gave 3.96 g CO₂ kept, out of 4.40 g possible. Yield 90.0% (fictional bakery data).'
+      :week.day===5?'Three gases per formula unit. Tomorrow the supplier is closed: stock up before End day.'
+      :week.day===3?'Four orders, six grams of cream of tartar. Declining costs nothing.'
+      :'Full payment: rise within 5% of target and clean taste. Coins are game tokens.';
+    $('order-equation').textContent=current().eq;
+    $('ledger').hidden=!(state.mode==='bakery' && week.finished);
+    if(week.finished) {
+      const waste=week.ledger.reduce((a,d)=>a+d.waste,0);
+      $('ledger').innerHTML='<div class="eyebrow">Your six-day bakery</div><h2>The week ledger</h2><p><strong>'
+        +week.coins+' coins</strong> in the till · <strong>'+fixed(waste)+' g</strong> excess ingredients.</p>'
+        +'<p>Leftovers count before soda decomposes. Purchases are deducted from the till.</p>'
+        +'<table><thead><tr><th>Day</th><th>Earned</th><th>Excess</th><th>Runs out first</th></tr></thead><tbody>'
+        +week.ledger.map(d=>'<tr><td>'+d.day+'</td><td>'+d.coins+'</td><td>'+fixed(d.waste)+' g</td><td>'+d.limiting+'</td></tr>').join('')
+        +'</tbody></table><p>Press New week beside the ingredients to start again.</p>';
+    }
+  }
+  function render(rebuild=false) {
+    const r=current();
+    const calc=calculate();
+    const result=state.result || calc;
+    $('m-kitchen').setAttribute('aria-pressed',state.mode==='kitchen');
+    $('m-bakery').setAttribute('aria-pressed',state.mode==='bakery');
+    $('reaction').value=state.reaction;
+    $('reaction').disabled=state.mode==='bakery';
+    $('reaction').title=state.mode==='bakery'?'Reaction fixed by the selected order':'';
+    $('equation').textContent=r.eq;
+    $('reaction-note').textContent=r.note;
+    if(state.reaction==='R3' && state.mode==='bakery') $('reaction-note').textContent='Yeast fermentation. Fictional bakery gas retention: 90.0%.';
+    r.items.forEach((key,i)=> {
+      $('row-'+i).classList.toggle('limiting',calc.limiting===i);
+      $('badge-'+i).textContent=calc.limiting===i?'runs out first':calc.leftovers[i]>.0000001?'in excess':'';
+      $('moles-'+i).textContent=sig(calc.n[i])+' mol';
+      $('makes-'+i).textContent=sig(calc.n[i]/r.coefs[i]*r.gas)+' mol gas';
+    });
+    $('limit-label').textContent=calc.missing.length?'Missing '+calc.missing.map(k=>ITEMS[k].name).join(' + ')
+      :ITEMS[r.items[calc.limiting]].name+' runs out first';
+    const unit=calc.n.some(v=>v/.001>120)?.01:.001;
+    $('dot-key').textContent='1 shape = '+unit+' mol; '+(unit===.001?'6.02 × 10²⁰':'6.02 × 10²¹')+' particles. '
+      +r.items.map(k=>({soda:'■ soda',tartar:'● tartar',vinegar:'▲ acid',glucose:'⬡ glucose',ammonia:'◆ ammonia'})[k]).join(' · ');
+    $('scale-readout').textContent=fixed(calc.before)+' g';
+    $('result-title').textContent=state.result?'Bake result':'What this mix can make';
+    $('gas').textContent=sig(result.kept)+' mol'+(result.yieldFactor<1?' kept':' gas');
+    const displayMass=result.gasMass*result.yieldFactor;
+    $('gas-detail').textContent=fixed(displayMass)+' g '+(result.rid==='R4'?'three gases':'CO₂')
+      +(result.yieldFactor<1?' kept':'')+' · '+Math.round(result.kept*24465).toLocaleString('en-US')
+      +' mL ideal gas at 25 °C, 1 atm';
+    if(result.yieldFactor<1) {
+      $('gas-detail').textContent+=' · '+sig(result.made)+' mol made ('+fixed(result.gasMass)+' g) × 90%';
+    }
+    $('taste').textContent='Taste: '+result.taste+(result.taste==='soapy'?' · sodium carbonate':result.taste==='sour'?' · acid left over':'');
+    $('leftovers').textContent='Left before oven: '+REACTIONS[result.rid].items.map((key,i)=>
+      fixed(result.leftGrams[i])+' g '+(key==='vinegar'?'acetic acid':ITEMS[key].name)).join('; ')
+      +(result.extra>0?' · Heated soda adds '+sig(result.extra)+' mol CO₂ by R5.':'');
+    $('mass-check').textContent='Before '+fixed(result.before)+' g = after '+fixed(result.after)+' g ('+fixed(result.gasMass)+' g leavening gas).';
+    $('mass-parts').innerHTML=result.parts.map(p=>'<li>'+p.name+': '+fixed(p.g)+' g</li>').join('');
+    $('receipt').hidden=result.earned===undefined;
+    $('receipt').textContent=result.earned===undefined?'':result.pass?'Paid in full · +'+result.earned+' coins'
+      :'The customer took it at half price. +'+result.earned+' coins';
+    $('rise-result').hidden=result.target===undefined;
+    if(result.target) {
+      $('rise-bar').style.width=Math.min(100,result.kept/result.target/1.5*100)+'%';
+      $('rise-text').textContent=fixed(result.kept/result.target*100,1)+'% of target · full-price band 95 to 105%';
+    }
+    $('oven-bake').src=ART[r.art];
+    $('oven-bake').alt=r.product+' in the oven';
+    renderOrders(rebuild);
+    renderPantry();
+    drawDots();
+    drawRise();
+  }
+  function drawRise() {
+    const result=state.result || calculate();
+    const ratio=result.target?result.kept/result.target:result.made>0?1:0;
+    const rise=.85+Math.max(0,Math.min(1,ratio))*.15;
+    $('oven-bake').style.setProperty('--rise',state.result?.85+(rise-.85)*state.progress:.85);
+  }
+  function shape(ctx,item,x,y,size,alpha) {
+    ctx.save();
+    ctx.globalAlpha=alpha;
+    ctx.translate(x,y);
+    ctx.fillStyle=item.color;
+    ctx.strokeStyle='#17141f';
+    ctx.lineWidth=1;
+    ctx.beginPath();
+    if(!item.shape) ctx.arc(0,0,size,0,Math.PI*2);
+    else {
+      const offset=item===ITEMS.ammonia ? 0:Math.PI/4;
+      for(let i=0;i<item.shape;i++) {
+        const a=i*Math.PI*2/item.shape+offset;
+        const px=Math.cos(a)*size;
+        const py=Math.sin(a)*size;
+        if(i===0) ctx.moveTo(px,py); else ctx.lineTo(px,py);
+      }
+      ctx.closePath();
+    }
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+  }
+  function drawDots() {
+    const canvas=$('dots');
+    const rect=canvas.getBoundingClientRect();
+    if(!rect.width || !rect.height) return;
+    const dpr=Math.min(2,devicePixelRatio||1);
+    canvas.width=rect.width*dpr;
+    canvas.height=rect.height*dpr;
+    const ctx=canvas.getContext('2d');
+    ctx.scale(dpr,dpr);
+    const w=rect.width;
+    const h=rect.height;
+    const calc=state.result || calculate();
+    const r=REACTIONS[calc.rid];
+    const unit=calc.n.some(v=>v/.001>120)?.01:.001;
+    const p=state.result?state.progress:0;
+    ctx.save();
+    ctx.beginPath();
+    ctx.moveTo(w*.10,h*.18);
+    ctx.lineTo(w*.90,h*.18);
+    ctx.quadraticCurveTo(w*.85,h*.96,w*.5,h*.95);
+    ctx.quadraticCurveTo(w*.15,h*.96,w*.10,h*.18);
+    ctx.clip();
+    r.items.forEach((key,j)=> {
+      const count=Math.ceil(calc.n[j]/unit-1e-9);
+      const consumed=calc.extent*r.coefs[j]/unit;
+      for(let i=0;i<count;i++) {
+        const weight=Math.max(0,Math.min(1,calc.n[j]/unit-i));
+        const consumedFraction=weight?Math.max(0,Math.min(1,(consumed-i)/weight)):0;
+        const x=w*(.17+((i*37+j*19)%101)/101*.66);
+        const y=h*(.32+((i*17+j*31)%61)/61*.48);
+        const reactionProgress=Math.max(0,Math.min(1,p*1.7-i/Math.max(1,consumed)*.7));
+        const reacting=consumedFraction>0;
+        const heatProgress=Math.max(0,(p-.65)/.35);
+        const heatedSoda=key==='soda' && ['R1','R2'].includes(calc.rid);
+        const acidReacted=consumedFraction*reactionProgress;
+        const alpha=weight*(1-acidReacted)*(heatedSoda?1-heatProgress:1);
+        const actual=reacting?reactionProgress:0;
+        const targetX=w*(.44+(i%2)*.12);
+        const targetY=h*.6;
+        shape(ctx,ITEMS[key],x+(targetX-x)*actual,y+(targetY-y)*actual,Math.max(2.7,Math.min(5,w/80)),alpha);
+      }
+    });
+    ctx.restore();
+    if(p>.65 && (calc.extra>0 || calc.rid==='R5')) {
+      const carbonate=calc.rid==='R5'?calc.extent:calc.extra;
+      const count=Math.ceil(carbonate/unit-1e-9);
+      for(let i=0;i<count;i++) {
+        const x=w*(.2+((i*29)%83)/83*.6);
+        const y=h*(.72+((i*11)%17)/17*.12);
+        const weight=Math.max(0,Math.min(1,carbonate/unit-i));
+        shape(ctx,{color:'#ddd4c4',shape:4},x,y,3.5,weight*(p-.65)/.35);
+      }
+    }
+    if(p>0) {
+      const bubbles=Math.min(38,Math.ceil(calc.made/unit));
+      for(let i=0;i<bubbles;i++) {
+        const phase=(p*1.8+i*.137)%1;
+        const x=w*(.2+((i*29)%79)/79*.6);
+        const y=h*(.8-phase*.8);
+        ctx.beginPath();
+        ctx.arc(x,y,3+(i%4)*1.4,0,Math.PI*2);
+        ctx.strokeStyle='#cfe3f1';
+        ctx.lineWidth=1.5;
+        ctx.globalAlpha=state.baking?.75:.3;
+        ctx.stroke();
+      }
+      ctx.globalAlpha=1;
+      if(calc.extra>0 || calc.rid==='R5') {
+        ctx.fillStyle='#141b25';
+        ctx.fillRect(w*.25,h*.84,120,18);
+        ctx.fillStyle='#e9ddcc';
+        ctx.font='11px Segoe UI';
+        ctx.fillText('Na₂CO₃ remains',w*.27,h*.84+13);
+      }
+    }
+  }
+  const ART = {
+    'mb-biscuits':'art:mb-biscuits','mb-cake':'art:mb-cake','mb-bread':'art:mb-bread','mb-cookies':'art:mb-cookies'
+  };
+  const PANTRY_ART = {
+    'mb-soda':'art:mb-soda','mb-tartar':'art:mb-tartar','mb-vinegar':'art:mb-vinegar',
+    'mb-glucose':'art:mb-glucose','mb-ammonia':'art:mb-ammonia'
+  };
+  $('reaction').innerHTML=Object.entries(REACTIONS).map(([key,r])=>'<option value="'+key+'">'+key+' · '+r.name+'</option>').join('');
+  $('reaction').onchange=e=> {
+    V.dropQueued();
+    setReaction(e.target.value);
+    state.edited=true;
+    tell('Enter the ingredient grams, then press Bake. Mix exact matches the second ingredient to the first.');
+  };
+  $('m-kitchen').onclick=()=>setMode('kitchen');
+  $('m-bakery').onclick=()=>setMode('bakery');
+  $('bake').onclick=bake;
+  $('exact').onclick=mixExact;
+  $('end-day').onclick=()=>advanceDay();
+  $('new-week').onclick=newWeek;
+  $('decline').onclick=()=> {
+    if(week.finished || activeOrder().status!=='open') { tell(L.next); return; }
+    cancelBake();
+    activeOrder().status='declined';
+    save();
+    render(false);
+    tell('Order declined, no cost. '+L.next);
+    Curio.tone(220,.07,.04);
+  };
+  Curio.init({clips:"voice:*",rate:.95,readFallback:()=>$('hint').textContent});
+  Curio.onMotion(()=> {
+    if(Curio.reduce && state.baking) {
+      state.baking=false;
+      state.progress=1;
+      $('stage').classList.remove('baking');
+      $('oven-caption').textContent='Bake ready';
+    }
+    drawDots();
+    drawRise();
+  });
+  buildPantry();
+  makeRows();
+  render(true);
+  tell(L.wKitchen);
+  new ResizeObserver(()=> { drawDots(); drawRise(); }).observe($('bowl-wrap'));
+  window.__tool = {
+    state,setMode,set:(rid,grams)=>setReaction(rid,grams),bake,day:n=>advanceDay(n),buy,seed:()=>0,
+    allLines:V.allLines,vlog:V.log,get vq(){return V.queue;},calculate,parse,molarMass,tally,
+    changeGrams,chooseOrder,advanceDay,newWeek,REACTIONS,ITEMS
+  };
+})();
+</script>
+</body>
+</html>

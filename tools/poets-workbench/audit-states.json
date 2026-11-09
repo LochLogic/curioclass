@@ -1,0 +1,15 @@
+{
+  "target": 44,
+  "reason": "Desk controls are 44 pixels. Printed proof annotations have the full-size Stress key and Alt F as equivalent controls without distorting the exact text mirror.",
+  "keep": ["#editor", "#manual"],
+  "states": [
+    {"name":"stress-key", "steps":[{"js":"__tool.setText('hot');"},{"click":"#stress"}], "keep":["#stress","#editor"], "sizes":["680x425","1366x768","375x812"]},
+    {"name":"playing-fast", "steps":[{"js":"__tool.setText('Whose woods these are I think I know.'); const t=document.getElementById('tempo'); t.value=160; t.dispatchEvent(new Event('input'));"},{"click":"#play"}], "keep":["#play","#editor"], "sizes":["680x425","1366x768","375x812"]},
+    {"name":"manual", "steps":[{"click":"#manual"}], "keep":["#close-dialog"], "sizes":["680x425","1366x768","375x812"]},
+    {"name":"drafts", "steps":[{"click":"#drafts"}], "keep":["#close-dialog"], "sizes":["680x425","1366x768","375x812"]},
+    {"name":"meter-lens", "steps":[{"click":"#lens"},{"key":"ArrowDown"},{"key":"Enter"}], "keep":["#editor"]},
+    {"name":"sound-repeats", "steps":[{"click":"#sounds"}], "keep":["#editor"]},
+    {"name":"rhymes", "steps":[{"js":"__tool.setText('orange'); document.getElementById('editor').focus({preventScroll:true});"},
+      {"js":"__tool.chooseWord(__tool.currentToken(),true)"}], "keep":["#rhyme-word","#close-rhymes"], "sizes":["680x425","1366x768","375x812"]}
+  ]
+}

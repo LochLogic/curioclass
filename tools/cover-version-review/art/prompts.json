@@ -69,7 +69,7 @@
     },
     {
       "name": "trombone",
-      "prompt": "brass trombone, side view, centered fully visible single object with detailed real construction. Flat pure green background #00FF00, no cast shadow.",
+      "prompt": "One anatomically correct brass tenor slide trombone, full side view, a very long parallel double-tube slide with a U bend at the far end, small mouthpiece and hand braces, a large flaring bell, realistic golden brass, painted record-sleeve gouache and colored pencil, directional upper-left light. Entire instrument centered and visible on flat pure green #00FF00, no cast shadow, no text or people.",
       "width": 160,
       "cutout": true,
       "holes": true,
@@ -77,9 +77,10 @@
       "quality": 78,
       "people": false,
       "drawn_by": "codex",
-      "review": "ok",
+      "review": "ok: redrawn with long slide, keyed result and final button size checked in cold review",
       "source": "OpenAI gpt-image, built-in image tool",
-      "placed": true
+      "placed": true,
+      "despill": true
     },
     {
       "name": "tuba",

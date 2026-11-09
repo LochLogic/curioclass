@@ -1,45 +1,489 @@
 {
-  "keep": ["#hint"],
+  "keep": [
+    "#hint"
+  ],
   "states": [
     {
       "name": "motif-created",
-      "steps": [{"click":"#choose"},{"click":"#make"},{"click":"#stopMotif"}],
-      "keep": ["#stage-wrap","#make","#playMotif"]
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        }
+      ],
+      "keep": [
+        "#stage-wrap",
+        "#make",
+        "#playMotif"
+      ]
     },
     {
       "name": "structure-filled",
       "steps": [
-        {"click":"#choose"},{"click":"#make"},{"click":"#stopMotif"},
-        {"click":"#m-structure"},{"click":"#structure-library .motif-chip"},
-        {"click":"[data-slot='1']"},{"click":"#structure-library .motif-chip"}
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#m-structure"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "[data-slot='1']"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        }
       ],
-      "keep": ["#strip","#playDance","#stage-wrap"]
+      "keep": [
+        "#strip",
+        "#playDance",
+        "#stage-wrap"
+      ]
     },
     {
       "name": "viewer-replay",
       "steps": [
-        {"click":"#choose"},{"click":"#make"},{"click":"#stopMotif"},
-        {"click":"#m-structure"},{"click":"#structure-library .motif-chip"},
-        {"click":"[data-slot='1']"},{"click":"#structure-library .motif-chip"},
-        {"click":"#m-viewers"},{"click":"#showViewers"},{"wait":18000}
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#m-structure"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "[data-slot='1']"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "#m-viewers"
+        },
+        {
+          "click": "#showViewers"
+        },
+        {
+          "wait": 18000
+        }
       ],
-      "sizes": ["680x425","1366x768","375x812"],
-      "keep": ["#viewer-score","#showViewers","#stage-wrap"]
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#viewer-score",
+        "#showViewers",
+        "#stage-wrap"
+      ]
     },
     {
       "name": "real-viewer-dialog",
       "steps": [
-        {"click":"#choose"},{"click":"#make"},{"click":"#stopMotif"},
-        {"click":"#m-structure"},{"click":"#structure-library .motif-chip"},
-        {"click":"[data-slot='1']"},{"click":"#structure-library .motif-chip"},
-        {"click":"#m-viewers"},{"click":"#addViewer"}
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#m-structure"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "[data-slot='1']"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "#m-viewers"
+        },
+        {
+          "click": "#addViewer"
+        }
       ],
-      "keep": ["#realDialog"]
+      "keep": [
+        "#realDialog"
+      ]
     },
     {
       "name": "change-issue-dialog",
-      "steps": [{"click":"#choose"},{"click":"#m-file"},{"click":"[data-folder='F']"},{"click":"#choose"}],
-      "keep": ["#confirmDialog"]
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#m-file"
+        },
+        {
+          "click": "[data-folder='F']"
+        },
+        {
+          "click": "#choose"
+        }
+      ],
+      "keep": [
+        "#confirmDialog"
+      ]
+    },
+    {
+      "name": "motif-space",
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#motif-page"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#stage-wrap",
+        "#motif-page",
+        "#make",
+        "#playMotif",
+        "#path",
+        "#dancers"
+      ]
+    },
+    {
+      "name": "motif-meaning",
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#motif-page"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#stage-wrap",
+        "#motif-page",
+        "#make",
+        "#playMotif",
+        "#deleteMotif"
+      ]
+    },
+    {
+      "name": "slot-settings",
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#m-structure"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "[data-slot='1']"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "#structure-page"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "keep": [
+        "#slot-controls",
+        "#playDance",
+        "#saveVersion",
+        "#emptySlot"
+      ]
+    },
+    {
+      "name": "variation-check",
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#m-structure"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "[data-slot='1']"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "#form"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#structure-page"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#fix",
+        "#variation-warning",
+        "#playDance"
+      ]
+    },
+    {
+      "name": "six-motif-library",
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make",
+          "times": 6,
+          "gap": 0.15
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#motif-page"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "Enter"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#motif-list",
+        "#make",
+        "#playMotif"
+      ]
+    },
+    {
+      "name": "longest-narrative",
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#m-structure"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "[data-slot='1']"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "js": "__tool.changeForm('Narrative');for(let n=0;n<3;n++)document.querySelector('#addSlot').click();for(let i=0;i<6;i++){__tool.state.slot=i;__tool.placeMotif(__tool.state.selected);__tool.state.slots[i].repeat=2;__tool.state.slots[i].dancers=3;}__tool.renderStructure();"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#strip",
+        "#playDance",
+        "#stage-wrap"
+      ]
+    },
+    {
+      "name": "eight-version-history",
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#m-structure"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "[data-slot='1']"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "#saveVersion",
+          "times": 8,
+          "gap": 0.15
+        },
+        {
+          "click": "#m-viewers"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#viewer-score",
+        "#showViewers",
+        "#clearAll"
+      ]
+    },
+    {
+      "name": "same-picture-rondo",
+      "steps": [
+        {
+          "click": "#choose"
+        },
+        {
+          "click": "[data-card='L-P1']"
+        },
+        {
+          "click": "#make"
+        },
+        {
+          "click": "#stopMotif"
+        },
+        {
+          "click": "#m-structure"
+        },
+        {
+          "click": "#form"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#structure-library .motif-chip"
+        },
+        {
+          "click": "#m-viewers"
+        },
+        {
+          "click": "#showViewers"
+        },
+        {
+          "wait": 18000
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ],
+      "keep": [
+        "#viewer-score",
+        "#showViewers",
+        "#stage-wrap"
+      ]
     }
   ]
 }

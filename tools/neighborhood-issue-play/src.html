@@ -10,7 +10,7 @@ Curio Class. Grades 3-5 theater: TH:Cr1, TH:Pr6, TH:Cn10, TH:Cn11. Students or t
 Sources: V&A, Toy theatres; Spolin, Theater Games for the Classroom (1986); National Core Arts Standards;
 FHWA, Guide for Improving Pedestrian Safety at Uncontrolled Crossing Locations (2018); NACTO Play Streets.
 Fictional neighbors and scenarios written for Curio Class. No network requests. No recording.
-Illustrations generated with OpenAI gpt-image, edited for Curio Class. People art deferred.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class. Six human paper puppets painted and reviewed in the cold review.
 Content CC BY 4.0. Code MIT. curioclass.org.
 -->
 <link rel="stylesheet" href="kit:curio">
@@ -61,7 +61,23 @@ main { grid-template-columns:minmax(0,1fr) 340px; }
 .name-tag { background:#fff7dd; color:var(--ink); border:1px solid #705c42; padding:4px 2px; border-radius:3px;
   display:block; font-size:clamp(10px,1.1vw,15px); white-space:nowrap; box-shadow:0 2px 3px #0003; }
 .neighbor[aria-pressed="true"] .name-tag { background:#ffe08a; outline:2px solid var(--brand); }
-.paper-person { height:100%; width:100%; filter:drop-shadow(2px 3px 1px #0005); overflow:visible; }
+.neighbor .puppet { transition:transform .18s; }
+.neighbor[aria-pressed="true"] .puppet { transform:translateY(-5px) rotate(-2deg); }
+.paper-person { object-fit:contain; height:100%; width:100%; filter:drop-shadow(2px 3px 1px #0005); overflow:visible; }
+.painted-puppet { position:relative; display:block; height:100%; width:auto; max-width:100%; margin:auto;
+  aspect-ratio:var(--puppet-ratio); --head-x:50%; --head-y:10%; --body-x:50%; --body-width:64%; }
+.painted-shell { --puppet-ratio:300/848; }
+.painted-rufus { --puppet-ratio:300/734; }
+.painted-gail { --puppet-ratio:300/712; --head-x:39%; --body-x:40%; }
+.painted-nutmeg { --puppet-ratio:300/1009; }
+.painted-bramble { --puppet-ratio:300/641; --body-width:48%; }
+.painted-fern { --puppet-ratio:300/642; --head-x:32%; --body-x:32%; --body-width:45%; }
+.painted-puppet .costume-hat { top:calc(var(--head-y) - 14%); height:14%; left:calc(var(--head-x) - 30%); width:60%; }
+.painted-puppet .costume-glasses { top:calc(var(--head-y) - 3%); height:6%; left:calc(var(--head-x) - 22%); width:44%; }
+.painted-puppet .costume-scarf { top:calc(var(--head-y) + 7%); height:12%; left:calc(var(--head-x) - 22%); width:44%; }
+.painted-puppet .costume-apron,.painted-puppet .costume-sash,.painted-puppet .costume-backpack {
+  top:23%; height:34%; left:calc(var(--body-x) - var(--body-width)/2); width:var(--body-width);
+}
 .speech { background:#fffaf0; border:2px solid #715335; border-radius:8px; padding:12px 16px;
   box-shadow:2px 5px 0 #52321920; line-height:1.35; font-size:clamp(13px,1.6vw,21px); flex:none; }
 #street-bubble { width:min(95%,750px); margin-top:14px; min-height:90px; position:relative; }
@@ -95,7 +111,13 @@ textarea { resize:vertical; line-height:1.4; }
 .cast-card .puppet { display:block; height:clamp(90px,19vh,225px); position:relative; }
 .cast-card p { font-size:14px; line-height:1.4; }
 .blank-cast { padding:30px; border:2px dashed #967d59; font:700 25px Georgia,serif; color:var(--muted); }
-.theater { position:relative; width:min(100%,1000px); aspect-ratio:4/3; min-height:0; overflow:hidden; flex:0 1 auto; }
+.blank-cast { width:min(100%,850px); background:linear-gradient(120deg,#fff8e7,#eddbb7); text-align:center;
+  box-shadow:4px 7px 0 #967d5928; }
+.audition { display:flex; gap:6px; margin:16px 0 4px; }
+.audition>div { flex:1; min-width:0; }
+.audition .puppet { display:block; position:relative; height:clamp(70px,18vh,170px); }
+.audition small { display:block; font:700 clamp(10px,1.1vw,15px) sans-serif; color:var(--ink); }
+.theater { container-type:inline-size; position:relative; width:min(100%,1000px); aspect-ratio:4/3; min-height:0; overflow:hidden; flex:0 1 auto; }
 .backdrop { position:absolute; left:12%; top:18%; width:76%; height:65%; object-fit:cover; }
 .front { position:absolute; inset:0; width:100%; height:100%; object-fit:fill; pointer-events:none; z-index:10; }
 .stage-floor { position:absolute; left:13%; bottom:13%; width:74%; height:14%; background:linear-gradient(#b98d51,#705030);
@@ -120,6 +142,8 @@ textarea { resize:vertical; line-height:1.4; }
 .prop:hover { background:none; }
 .prop:disabled { opacity:1; cursor:default; }
 .prop[data-type="ball"] { width:8%; height:11%; }
+.prop[data-type="ball"] img { position:absolute; bottom:0; left:50%; transform:translateX(-50%); width:8cqw; height:8cqw; }
+.prop[data-type="sign"] { width:23%; height:30%; }
 .prop[data-type="cones"] { width:13%; height:16%; }
 .prop[data-type="seeds"] { width:10%; height:13%; }
 .prop[data-type="bench"] { width:23%; height:21%; }
@@ -142,8 +166,9 @@ textarea { resize:vertical; line-height:1.4; }
   border:2px solid #f2d7a8; transform-origin:bottom; box-shadow:1px 3px 1px #0003; }
 .audience.droop i { animation:droop 4s forwards; } .audience.clap i { animation:clap .25s ease-in-out 8 alternate; }
 .zzz { position:absolute; right:20%; bottom:6%; z-index:13; font-weight:800; background:#fff3d5; padding:3px 9px; }
-.flat-bubbles { position:absolute; left:20%; right:20%; top:32%; display:flex; justify-content:space-around; z-index:8; }
-.flat-bubbles b { background:#fff9ec; border:2px solid #6a5a48; border-radius:10px; padding:7px; }
+.flat-bubbles { position:absolute; left:27%; right:27%; top:32%; display:flex; justify-content:space-around; z-index:8; }
+.flat-bubbles b { background:#fff9ec; border:2px solid #6a5a48; border-radius:10px; padding:3px 4px;
+  font-size:clamp(10px,1vw,14px); white-space:nowrap; }
 .shelf { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; }
 .shelf button { min-height:77px; padding:5px 2px; font-size:12px; }
 .shelf img { display:block; width:100%; height:42px; object-fit:contain; pointer-events:none; }
@@ -165,10 +190,14 @@ textarea { resize:vertical; line-height:1.4; }
 .script-line { padding:12px; border-bottom:1px solid #d1bd98; display:grid; grid-template-columns:1fr 44px 44px; gap:7px; }
 .script-line b { color:var(--brand); font-size:14px; }
 .script-line p { font:19px/1.45 Georgia,serif; margin:6px 0; }
+.speech,.script-line p,.cast-card p,.readback { overflow-wrap:anywhere; }
 .script-line button { align-self:center; padding:3px; font-size:12px; }
 .script .help { margin:10px 0 0; flex:none; }
 .tick-label { display:flex; align-items:center; gap:7px; min-height:44px; font-size:14px; }
 .tick-label input { width:44px; height:44px; margin:0; accent-color:var(--brand); }
+.helped-cast { display:grid; grid-template-columns:repeat(var(--help-count),minmax(0,1fr)); gap:4px; }
+.helped-cast .tick-label { flex-direction:column; justify-content:center; gap:1px; min-height:60px;
+  font-size:13px; line-height:1.1; }
 dialog { border:2px solid #82633b; border-radius:8px; padding:24px; width:min(90%,420px); background:#fff7e7; color:var(--ink); }
 dialog::backdrop { background:#21170f99; } dialog p { line-height:1.5; }
 .idle-leaf { position:absolute; top:6%; left:7%; width:14px; height:7px; background:#d49a44; border-radius:80% 0;
@@ -211,6 +240,8 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
   .script-line p { font-size:15px; } .scene-tabs { margin-bottom:5px; gap:3px; }
   .scene-tabs button { font-size:11px; padding:3px; } .readback { font-size:12px; padding:6px; }
   .checks li { padding:5px 6px; }
+  body[data-step="Scenes"] #controls .section-label { margin:4px 0 2px; font-size:12px; line-height:1.1; }
+  .helped-cast .tick-label { font-size:11px; min-height:58px; }
   body[data-step="Perform"] #controls .section-label { margin:3px 0; }
   body[data-step="Perform"] #controls .chips { margin:3px 0; }
   body[data-step="Perform"] #controls .chips button { font-size:11px; line-height:1.2; padding:3px; }
@@ -233,6 +264,8 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
   .street .neighbor { width:16%; height:38%; } .name-tag { font-size:10px; }
   #street-bubble { min-height:80px; font-size:13px; margin-top:10px; padding:8px 10px; }
   body[data-step="Street"] #street-bubble { min-height:60px; margin-top:8px; }
+  body[data-step="Street"] .panel { gap:6px; }
+  body[data-step="Street"] .problem-card { margin:4px 0; padding:6px 8px; }
   .bubble-name { font-size:15px; } .theater { width:100%; flex:none; }
   #performance-bubble { min-height:95px; padding:9px; font-size:16px; margin-bottom:8px; }
   body[data-step="Perform"] .stage { min-height:0; }
@@ -307,58 +340,66 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     {title:'A safer school corner',problem:'There is no crosswalk by the school.',spot:'No crosswalk',backdrop:'school',views:[
       view('more time to cross',"I am slow. The cars do not wait.",'The rules'),
       view('to keep my two parking spots','A crosswalk takes the spots in front of my store.','gail'),
-      view('a painted crosswalk and a sign',"I cannot stop cars where there are no lines.",'bramble'),
+      view('a painted crosswalk and a sign','Drivers may miss families crossing at this corner.','bramble'),
       view('to walk to school alone','My mom says no until there is a crosswalk.','Money'),
-      view('a car count first','The town has to count the cars before it can paint lines.','Time'),
+      view('a car count first','I want the town to study traffic, speeds and people crossing first.','Time'),
       view('slower cars','A speed bump would help, too.','rufus')],fixes:[
-        {text:'Kids and neighbors count the cars for a week.',helps:['bramble','nutmeg','gail']},
-        {text:'Move the crosswalk one house down, away from the store.',helps:['rufus','gail']},
-        {text:'A sign that says Slow, children crossing.',helps:['fern','shell']}]},
+        {text:'Ask the town for a crossing study and share what families notice.',helps:['bramble','nutmeg','gail']},
+        {text:'Ask the town to study a crossing away from the store.',helps:['rufus','gail']},
+        {text:'Ask the town about warning signs and safer crossings.',helps:['fern','shell']}]},
     {title:'Finding words together',problem:'A new family has moved in. Neighbors cannot yet talk to each other.',
-      spot:'Hello, neighbors',backdrop:'school',views:[
+      spot:'Hello, neighbors',backdrop:'neighbors',views:[
       view('time to learn a greeting','I want to welcome our new neighbors, but learning new words takes practice.','Time'),
       view('a picture guide for the store','I want us to understand each other, but a long meeting would close my store.','bramble'),
       view('a clear way to explain the school crossing','We need to understand each other so every family knows the safe route.','Time'),
       view('to invite the new child to play','We both want to join in. We do not yet know words the other understands.','Time'),
       view('a welcome meeting with language help','We could meet at the store, but Rufus needs to keep serving customers.','rufus'),
-      view('a garden welcome with picture labels','We could plant together, but printing sturdy picture cards costs money.','Money')],fixes:[
+      view('to share greetings and garden ideas',
+      'My family is new here, and we need ways to share ideas while we learn each other’s words.','Time')],fixes:[
         {text:'Make picture cards together and practice greetings both ways.',helps:['shell','rufus','nutmeg']},
-        {text:'Plan an after-hours welcome with an interpreter and a picture route map.',helps:['bramble','gail','rufus']},
+        {text:'Plan an after-hours welcome with an interpreter and a picture route map.',helps:['bramble','gail','rufus','fern']},
         {text:'Invite neighbors to a garden and ball-game welcome with pictures.',helps:['fern','nutmeg','shell']} ]}
   ];
   const ART = {
-    street:'art:street',front:'art:theater-front',park:'art:backdrop-park',school:'art:backdrop-school',lot:'art:backdrop-lot',
+    street:'art:street',front:'art:theater-front',park:'art:backdrop-park',school:'art:backdrop-school',neighbors:'art:backdrop-neighbors',
     tree:'art:wing-tree',lamp:'art:wing-lamp',fence:'art:wing-fence',bush:'art:wing-bush',
     bench:'art:prop-bench',cones:'art:prop-cones',seeds:'art:prop-seeds',wheelbarrow:'art:prop-wheelbarrow',
     sign:'art:prop-sign',ball:'art:prop-ball',hat:'art:costume-hat',scarf:'art:costume-scarf',glasses:'art:costume-glasses',
     apron:'art:costume-apron',sash:'art:costume-sash',backpack:'art:costume-backpack'
   };
-  // Future painter switches paintedPeople to true only after every people puppet is reviewed.
-  const paintedPeople = false;
+  // Six people puppets reviewed together for this tool.
+  const paintedPeople = true;
   const PEOPLE = {shell:'art:puppet-shell',rufus:'art:puppet-rufus',gail:'art:puppet-gail',
     nutmeg:'art:puppet-nutmeg',bramble:'art:puppet-bramble',fern:'art:puppet-fern'};
   const L = {
-    welcomeStreet:'Pick a problem on the street. Then tap the neighbors to hear what they think.',
-    heardHow:"You've heard enough to start. Tap Make the play, or keep listening.",
+    welcomeStreet:'Pick a problem. Tap neighbors to read their views.',
+    heardHow:'Views are ready. Tap Make the play, or keep reading.',
     welcomeCharacters:'Tap Add character. Pick two or three neighbors for your play.',
     blockerHow:"Now choose who or what is in their way. That's where the drama comes from.",
-    welcomeTheater:'Pick a backdrop, wings and props. Then dress your puppets.',
-    welcomeScenes:'Write three short scenes. Pick a speaker, then a line, or type your own.',
-    checkFail:'The stage check found a problem. Read the cross, then fix it.',
-    flat:"Nobody is in anybody's way, so nothing happens. Tap Characters and give someone a blocker.",
-    checkPass:"All three checks pass. Tap Perform when you're ready.",
-    welcomePerform:'Pick your role, then tap Curtain. Tap Next line after each line.',
+    welcomeTheater:'Tap a backdrop.',
+    welcomeScenes:'Pick a speaker and line. Tap Add line for each scene.',
+    checkFail:'Fix the crossed plan check.',
+    flat:'Those puppets only agree. Tap Characters to give them a clash.',
+    checkPass:'Plan checks pass. Tap Perform.',
+    welcomePerform:'Pick a role. Tap Curtain, then Next line.',
     yourLine:"That's your line. Read it out loud, then tap Next line.",
-    bow:'Take a bow. What does your play say about this street?',
+    bow:'Your play is finished. Write your closing answer.',
     addMore:'Tap Add character to choose one more neighbor. A play needs at least two characters.',
-    writeFix:'Choose What do they try, then tick who the fix helps. You can edit any line in the script.',
-    next:'Read the speech bubble aloud. Tap Next line, or press Space, to continue.',
+    writeFix:'Choose a fix, then tick who it helps.',
+    next:'Read the bubble aloud. Use Next line with Space or Enter, or tap it.',
     finish:'Tap Bow to finish your play. Then write what it says about this neighborhood.',
-    reflect:'Write your closing answer. Tap From the top to perform your play again.',
-    pickNeighbor:'Tap another neighbor on the street. Hear at least three, then tap Make the play.',
-    addLine:'Pick a speaker and a suggested line, or type your own. Tap Add line to put it in this scene.',
+    reflect:'Write your closing answer.',
+    pickNeighbor:'Tap three different neighbors to open their views. Then tap Make the play.',
+    addLine:'Pick a speaker and line, or type one. Tap Add line.',
     editLine:'Choose a speaker and line, or type your own. Tap Save line to replace this line.',
-    fullScene:'This scene has six lines. Tap Edit on a script line to change it, or remove a line to make room.'
+    fullScene:'This scene has six lines. Tap Edit on a script line to change it, or remove a line to make room.',
+    editCharacter:'Choose a character card to edit. Tap Build the theater when ready.',
+    watchFlat:'Watch this six-second preview. Then tap Characters to give someone a character blocker.',
+    backdropHow:'Tap a backdrop to change your stage.',
+    wingsHow:'Choose a left wing and a right wing.',
+    propsHow:'Tap a prop to add it. Drag it on stage, or use arrow keys.',
+    costumesHow:'Pick a character. Tap up to two costume pieces.',
+    costumeFull:'Tap a selected costume piece to take it off. Then choose another piece.'
   };
   const fresh = () => ({version:1,step:'Street',reached:0,problem:0,chosen:false,heard:[],neighbor:null,characters:[],
     theater:{backdrop:'park',wings:['tree','lamp'],props:[],sign:'Hello'},costumes:{},scenes:[[],[],[]],
@@ -368,6 +409,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     const saved = JSON.parse(localStorage.getItem('neighborhood-issue-play'));
     if (saved?.version===1 && Array.isArray(saved.characters) && saved.characters.every(c => N.some(n => n.id===c.id))) {
       Object.assign(state,saved);
+      if (state.theater?.backdrop==='lot') state.theater.backdrop='neighbors';
       if (!STEPS.includes(state.step)) state.step='Street';
     }
   } catch {}
@@ -425,22 +467,25 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     try { localStorage.removeItem('neighborhood-issue-play'); } catch {}
     render(); V.welcome();
   });
+  const hasWords = text => /\p{L}/u.test(text.trim());
   function checks() {
     const enough=state.characters.length>=2;
     const clash=state.characters.some(c => character(c.blocker) && c.blocker!==c.id);
     return [
-      {title:'Everyone wants something.',pass:enough && state.characters.every(c => want(c).length>0),
-        why:!enough?'Add two or three characters.':state.characters.some(c => !want(c))?'Give each character a want.':'Every character has a want.'},
+      {title:'Everyone wants something.',pass:enough && state.characters.every(c => hasWords(want(c))),
+        why:!enough?'Add two or three characters.':
+          state.characters.some(c => !hasWords(want(c)))?'Write a want in words for each character.':'Every character has a want.'},
       {title:'Two wants clash.',pass:clash,
-        why:clash?'A character stands in another character’s way.':'Open Characters and choose another character as a blocker.'},
-      {title:'Scene 3 tries a fix.',pass:!!state.fix.trim() && state.helps.some(id => !!character(id)),
-        why:!state.fix.trim()?'Choose or write a fix in Scene 3.':
-          !state.helps.length?'Tick at least one character it helps.':'Your fix helps someone in this play.'}
+        why:clash?'A character blocker is chosen. Show those competing wants in Scene 2.':'Open Characters and choose another character as a blocker.'},
+      {title:'Scene 3 tries a fix.',pass:hasWords(state.fix) && state.helps.some(id => !!character(id)),
+        why:!hasWords(state.fix)?'Choose or write a fix in words in Scene 3.':
+          !state.helps.length?'Tick at least one character it helps.':'You named who it could help. Read Scene 3 to try it out.'}
     ];
   }
   function checkHTML() {
     return `<ul class="checks">${checks().map(c => `<li class="${c.pass?'pass':''}">
-      <b><span class="check-mark">${c.pass?'✓':'✕'}</span>${c.title}</b>${c.why}</li>`).join('')}</ul>`;
+      <b><span class="check-mark">${c.pass?'✓':'✕'}</span>${c.title}</b>${c.why}</li>`).join('')}</ul>
+      <p class="help plan-note">These checks read your plan choices, not your dialogue. Perform to test the clash and fix.</p>`;
   }
   function changed(redraw=true) {
     revision++; V.dropQueued();
@@ -462,8 +507,8 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
   function stepHint() {
     if (state.step==='Street') return !state.chosen?L.welcomeStreet:state.heard.length>=3?L.heardHow:L.pickNeighbor;
     if (state.step==='Characters') return !state.characters.length?L.welcomeCharacters:state.characters.length<2?L.addMore:
-      'Choose a character card to edit its want, blocker, voice and movement. Tap Build the theater when ready.';
-    if (state.step==='Theater') return L.welcomeTheater;
+      L.editCharacter;
+    if (state.step==='Theater') return L[theaterHow()];
     if (state.step==='Scenes') {
       if (editIndex>=0) return L.editLine;
       if (state.scene===2 && (!state.fix.trim() || !state.helps.length)) return L.writeFix;
@@ -491,7 +536,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     save(); render();
     if (innerWidth<600) window.scrollTo({top:0,behavior:'instant'});
     V.welcome();
-    if (state.step==='Perform' && !checks()[1].pass) stageCheck();
+
   }
   function proceed(step) { state.reached=Math.max(state.reached,STEPS.indexOf(step)); setMode(step); }
   function makeSteps() {
@@ -511,7 +556,8 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     const n=neighbor(id);
     const short=id==='nutmeg';
     const costumes=(state.costumes[id]||[]).map(k => `<img class="costume costume-${k}" src="${ART[k]}" alt="${k}">`).join('');
-    if (paintedPeople) return `<img class="paper-person" src="${PEOPLE[id]}" alt="">${costumes}`;
+    if (paintedPeople) return `<span class="painted-puppet painted-${id}">
+      <img class="paper-person" src="${PEOPLE[id]}" alt="">${costumes}</span>`;
     return `<svg class="paper-person" viewBox="0 0 110 180" aria-hidden="true">
       <defs><linearGradient id="shade-${id}"><stop stop-color="${n.color}"/><stop offset="1" stop-color="#40372e"/></linearGradient></defs>
       <path d="M52 120h7v60h-7z" fill="#ad8350" stroke="#6e4c2b"/>
@@ -540,7 +586,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     $('actions').innerHTML=`<button class="primary" id="make-play" ${state.heard.length<3?'disabled':''}>Make the play →</button>`;
     $('controls').innerHTML=P.map((p,i) => `<button class="problem-card" id="problem-${i}" aria-pressed="${state.chosen&&state.problem===i}">
       <b>${i+1}. ${p.title}</b><small>${i===2?'Neighbors cannot yet talk to each other.':p.problem}</small></button>`).join('')+
-      `<p class="section-label">Heard ${state.heard.length} of 6</p><div class="heard" aria-hidden="true">${N.map(n =>
+      `<p class="section-label">Views opened: ${state.heard.length} of 6</p><div class="heard" aria-hidden="true">${N.map(n =>
       `<i class="${state.heard.includes(n.id)?'yes':''}">${state.heard.includes(n.id)?'✓':''}</i>`).join('')}</div>`;
     P.forEach((p,i) => $('problem-'+i).onclick=() => {
       const pick=() => {
@@ -565,7 +611,9 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     });
   }
   function castHTML() {
-    if (!state.characters.length) return '<div class="blank-cast">Who belongs in your play?<br><small>Tap Add character to choose.</small></div>';
+    if (!state.characters.length) return `<div class="blank-cast">Who belongs in your play?<br>
+      <small>Tap Add character to choose.</small><div class="audition">${N.map(n => `<div>
+      <span class="puppet">${person(n.id)}</span><small>${n.short}</small></div>`).join('')}</div></div>`;
     return `<h2 class="stage-title">A want + someone in the way = drama</h2><div class="cast-cards">${state.characters.map(c =>
       `<article class="cast-card"><span class="puppet">${person(c.id)}</span><h3>${neighbor(c.id).name}</h3>
       <p><b>Wants</b><br>${esc(want(c)||'Choose a want')}</p><p><b>In the way</b><br>${esc(blockerName(c))}</p>
@@ -576,7 +624,8 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     const reported=c.custom?want(c).replace(/\bmy\b/g,'their'):info(c.id).reportedWant;
     return `${neighbor(c.id).name} wants ${reported||'something'}, but ${c.blocker==='Nobody'?'nobody':blockerName(c)} is in the way. `+
       `Talks ${c.volume.toLowerCase()} and ${c.pace.toLowerCase()}. `+
-      `${{Hurry:'Hurries',Shuffle:'Shuffles',Strut:'Struts',Tiptoe:'Tiptoes'}[c.move]}.`;
+      `${c.id==='bramble'?{Hurry:'Rolls quickly',Shuffle:'Rolls slowly',Strut:'Rolls proudly',Tiptoe:'Rolls gently'}[c.move]:
+        {Hurry:'Hurries',Shuffle:'Shuffles',Strut:'Struts',Tiptoe:'Tiptoes'}[c.move]}.`;
   }
   function bindCast() {
     document.querySelectorAll('[data-edit]').forEach(b => b.onclick=() => { selectedCharacter=b.dataset.edit; sound(); render(); });
@@ -604,7 +653,9 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
       ${['Big','Small'].map(x => `<option ${c.volume===x?'selected':''}>${x}</option>`).join('')}</select>
       <select id="pace" aria-label="Voice speed">${['Fast','Slow'].map(x => `<option ${c.pace===x?'selected':''}>${x}</option>`).join('')}</select></div>
       <label class="section-label" for="movement">How they move</label><select id="movement">${['Hurry','Shuffle','Strut','Tiptoe'].map(x =>
-      `<option ${c.move===x?'selected':''}>${x}</option>`).join('')}</select><p class="readback" id="readback">${esc(readback(c))}</p>
+      `<option value="${x}" ${c.move===x?'selected':''}>${c.id==='bramble'?
+        {Hurry:'Roll quickly',Shuffle:'Roll slowly',Strut:'Roll proudly',Tiptoe:'Roll gently'}[x]:x}</option>`).join('')}</select>
+      <p class="readback" id="readback">${esc(readback(c))}</p>
       <button id="remove-character">Remove ${neighbor(c.id).short}</button>
       <div class="chips">${state.characters.map(a => `<button id="pick-${a.id}" data-pick="${a.id}"
       aria-pressed="${c.id===a.id}">${neighbor(a.id).short}</button>`).join('')}</div>${state.characters.length>=2?add:''}`);
@@ -634,6 +685,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
       state.characters.forEach(a => { if (a.blocker===c.id) a.blocker='Nobody'; });
       state.helps=state.helps.filter(id => id!==c.id);
       selectedCharacter=state.characters[0]?.id||null;
+      ensureScenes();
       changed();
     });
   }
@@ -641,7 +693,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     const t=state.theater;
     const item=timeline()[run.index];
     const actors=state.characters.map((c,i) => {
-      const speaking=perform&&run.open&&item?.speaker===c.id&&!run.flat;
+      const speaking=perform&&run.open&&!run.bowed&&item?.speaker===c.id&&!run.flat;
       return `<div class="actor ${c.move.toLowerCase()} ${speaking?'speaking':''} ${run.entering||run.flat?'entering':''} ${run.bowed?'bowing':''}"
         style="left:${state.characters.length===2?28+i*28:21+i*20}%;${!run.open&&perform&&!run.flat?'visibility:hidden':''}"
         aria-label="${neighbor(c.id).name}${speaking?', speaking':''}">${person(c.id)}</div>`;
@@ -654,9 +706,12 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
       ${p.type==='sign'?`<span class="prop-label">${esc(t.sign)}</span>`:''}</button>`).join('')}
       ${perform&&!run.flat?`<div class="curtain ${run.open?'open':''}"><i></i><i></i></div>`:''}
       <img class="front" src="${ART.front}" alt="Decorated paper toy theater with open side curtains">
-      <div class="theater-caption">${run.flat?'A play with no clash':run.bowed?'A bow for your neighborhood play':'The Neighborhood Players'}</div>
+      <div class="theater-caption">${run.flat?'Example: only agreement':run.bowed?'A bow for your neighborhood play':'The Neighborhood Players'}</div>
       <div class="audience ${run.flat?'droop':''} ${run.bowed?'clap':''}">${Array.from({length:9},() => '<i></i>').join('')}</div>
       ${run.flat?`<div class="flat-bubbles">${state.characters.map(() => '<b>Okay!</b>').join('')}</div><span class="zzz">Zzz</span>`:''}</div>`;
+  }
+  function theaterHow() {
+    return {Backdrop:'backdropHow',Wings:'wingsHow',Props:'propsHow',Costumes:'costumesHow'}[theaterTab];
   }
   function theaterControls() {
     $('actions').innerHTML='<button class="primary" id="to-scenes">Write the scenes →</button>';
@@ -665,7 +720,8 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
       aria-pressed="${theaterTab===tab}">${tab}</button>`).join('')}</div>`;
     $('stage').insertAdjacentHTML('beforeend',tabHTML);
     let html='';
-    if (theaterTab==='Backdrop') html+=`<div class="shelf">${[['park','Park gate'],['school','School corner'],['lot','Empty lot']].map(([k,s]) =>
+    const backdrops=[['park','Park gate'],['school','School corner'],['neighbors','Neighbors’ courtyard']];
+    if (theaterTab==='Backdrop') html+=`<div class="shelf">${backdrops.map(([k,s]) =>
       `<button id="backdrop-${k}" data-backdrop="${k}" aria-pressed="${state.theater.backdrop===k}">
       <img src="${ART[k]}" alt="">${s}</button>`).join('')}</div>`;
     if (theaterTab==='Wings') html+=['Left','Right'].map((label,i) => `<label class="section-label" for="wing-${i}">${label} wing</label>
@@ -686,7 +742,11 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
       <p class="help" id="costume-note"></p>`;
     $('controls').innerHTML=html;
     $('to-scenes').onclick=() => proceed('Scenes');
-    document.querySelectorAll('[data-theater-tab]').forEach(b => b.onclick=() => { theaterTab=b.dataset.theaterTab; sound(); render(); });
+    document.querySelectorAll('[data-theater-tab]').forEach(b => b.onclick=() => {
+      if (theaterTab===b.dataset.theaterTab) { sound(); return; }
+      V.hush(); theaterTab=b.dataset.theaterTab; sound(); render();
+      how(theaterHow(),{valid:() => state.step==='Theater'});
+    });
     document.querySelectorAll('[data-backdrop]').forEach(b => b.onclick=() => { state.theater.backdrop=b.dataset.backdrop; sound(); changed(); });
     for (let i=0;i<2;i++) if ($('wing-'+i)) $('wing-'+i).onchange=e => { state.theater.wings[i]=e.target.value; sound(); changed(); };
     document.querySelectorAll('[data-add-prop]').forEach(b => b.onclick=() => {
@@ -713,7 +773,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
       else if (list.length<2) list.push(k);
       else {
         $('costume-note').textContent='Take one piece off before adding another.';
-        $('hint').textContent='Tap a selected costume piece to take it off. Then choose another piece.';
+        how('costumeFull');
         sound(); return;
       }
       sound(); changed();
@@ -775,9 +835,11 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
   function ensureScenes() {
     if (state.characters.length<2) return;
     state.scenes.forEach((lines,i) => {
-      if (!lines.length) {
-        lines.push({speaker:state.characters[0].id,slot:0,text:''});
-        lines.push({speaker:state.characters[1].id,slot:i===0?0:1,text:''});
+      while (lines.length<2) {
+        const c=state.characters.find(c => !lines.some(l => l.speaker===c.id))||state.characters[lines.length];
+        const starter={speaker:c.id,slot:0,text:''};
+        if (i>0 && lines.length && !lines.some(l => l.slot===0)) lines.unshift(starter);
+        else lines.push({...starter,slot:i===0?0:lines.length});
       }
     });
   }
@@ -801,9 +863,12 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     if (i===2) html+=`<label class="section-label" for="fix">What do they try?</label><select id="fix"><option value="">Choose a fix</option>
       ${P[state.problem].fixes.map((f,j) => `<option value="${j}" ${state.fix===f.text?'selected':''}>${esc(f.text)}</option>`).join('')}
       <option value="custom" ${state.fix&&!P[state.problem].fixes.some(f => f.text===state.fix)?'selected':''}>Something else</option></select>
-      <input type="text" id="custom-fix" maxlength="90" aria-label="Write a fix" placeholder="Or write your own fix" value="${esc(state.fix)}">
-      <span class="section-label">Who does it help?</span>${state.characters.map(c => `<label class="tick-label">
-      <input type="checkbox" data-help="${c.id}" id="help-${c.id}" ${state.helps.includes(c.id)?'checked':''}>${neighbor(c.id).name}</label>`).join('')}`;
+      <input type="text" id="custom-fix" maxlength="90" aria-label="Write a fix" placeholder="Write your own fix"
+      ${!state.fix||P[state.problem].fixes.some(f => f.text===state.fix)?'hidden':''} value="${esc(state.fix)}">
+      <span class="section-label">Who does it help?</span><div class="helped-cast" role="group" aria-label="Who could this help?"
+      style="--help-count:${state.characters.length}">${state.characters.map(c => `<label class="tick-label">
+      <input type="checkbox" data-help="${c.id}" id="help-${c.id}" aria-label="This fix could help ${neighbor(c.id).name}"
+      ${state.helps.includes(c.id)?'checked':''}><span>${neighbor(c.id).short}</span></label>`).join('')}</div>`;
     html+=`<label class="section-label" for="speaker">${edit?'Edit line '+(editIndex+1):'Add a line'}: speaker</label><select id="speaker">
       ${state.characters.map(c => `<option value="${c.id}" ${speaker===c.id?'selected':''}>${neighbor(c.id).name}</option>`).join('')}</select>
       <label class="section-label" for="suggestion">Suggested line</label><select id="suggestion"></select>
@@ -832,7 +897,10 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     };
     if ($('cancel-line')) $('cancel-line').onclick=() => { editIndex=-1; render(); };
     document.querySelectorAll('[data-scene]').forEach(b => b.onclick=() => {
-      state.scene=Number(b.dataset.scene); editIndex=-1; sound(); save(); render();
+      V.dropQueued(); state.scene=Number(b.dataset.scene); editIndex=-1; sound(); save(); render();
+      if (state.scene===2 && (!state.fix.trim() || !state.helps.length)) {
+        how('writeFix',{valid:() => state.step==='Scenes'&&state.scene===2});
+      }
     });
     document.querySelectorAll('[data-line-edit]').forEach(b => b.onclick=() => {
       editIndex=Number(b.dataset.lineEdit); render(); $('speaker').focus({preventScroll:true});
@@ -842,7 +910,9 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
       editIndex=-1; changed();
     });
     if ($('fix')) $('fix').onchange=e => {
-      if (e.target.value==='custom') { $('custom-fix').focus({preventScroll:true}); return; }
+      if (e.target.value==='custom') {
+        $('custom-fix').hidden=false; $('custom-fix').focus({preventScroll:true}); return;
+      }
       state.fix=e.target.value===''?'':P[state.problem].fixes[Number(e.target.value)]?.text||'';
       state.helps=[]; sound(); changed();
     };
@@ -856,7 +926,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     $('check').onclick=stageCheck;
     $('perform').onclick=() => {
       state.reached=4; setMode('Perform');
-      if (checks()[1].pass) stageCheck();
+
     };
   }
   function updateScriptAndChecks() {
@@ -875,7 +945,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
       sound(); V.say('checkFail',{valid:() => rev===revision});
       if (!checks()[1].pass && state.characters.length>=2) {
         stopAuto(); run.flat=true; run.flatDone=false; renderStage();
-        $('hint').textContent='Watch this six-second preview. Then give someone a character blocker in Characters.';
+        $('hint').textContent=L.watchFlat;
         clearTimeout(flatTimer); flatTimer=setTimeout(() => endFlat(true),6000);
       }
     }
@@ -890,8 +960,9 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
   }
   function performanceBubble() {
     const l=timeline()[run.index];
-    if (run.flat) return '<b class="bubble-name">They all agree.</b>Is anything getting in anyone’s way?';
-    if (run.bowed) return '<b class="bubble-name">Your play has something to say.</b>'+ 
+    if (run.flat) return '<b class="bubble-name">An example without a clash.</b>'+ 
+      'Everyone only says Okay here. Try a character blocker for your play.';
+    if (run.bowed) return `<b class="bubble-name">Your play: ${esc(P[state.problem].title)}</b>`+
       'What does your play say about this neighborhood? Is there a problem like this on your street?';
     if (!run.open||!l) return '<b class="bubble-name">Places, everyone.</b>Choose your role. Tap Curtain to open your theater.';
     if (l.card) return `<b class="bubble-name">Scene ${l.scene+1}: ${SCENES[l.scene]}</b>Tap Next line to begin this scene.`;
@@ -909,7 +980,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     else if (state.step==='Theater') $('stage').innerHTML=`<h2 class="stage-title">Make a place for your story</h2>${theaterHTML()}`;
     else {
       const l=timeline()[run.index];
-      const mine=l?.speaker&&(state.role==='all'||state.role===l.speaker);
+      const mine=run.open&&!run.bowed&&!run.flat&&l?.speaker&&(state.role==='all'||state.role===l.speaker);
       $('stage').innerHTML=`<div class="speech ${mine?'your':''}" id="performance-bubble" aria-live="polite">
         ${performanceBubble()}</div>${theaterHTML(true)}`;
     }
@@ -930,9 +1001,12 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
     if (run.index<timeline().length-1) run.index++;
     renderStage(); updatePerformanceControls(); $('hint').textContent=stepHint();
     const l=timeline()[run.index];
+    const mine=l?.speaker&&(state.role==='all'||state.role===l.speaker);
+    if (!mine && V.playing===L.yourLine) V.hush();
     if (l?.speaker&&(state.role==='all'||state.role===l.speaker)) {
       const index=run.index;
-      V.how('yourLine',{now:!V.heard('yourLine'),valid:() => run.index===index,needs:'#next-line'});
+      V.how('yourLine',{valid:() => run.open&&!run.bowed&&!run.flat&&run.index===index&&
+        (state.role==='all'||state.role===timeline()[index]?.speaker),needs:'#next-line'});
     }
     sound(); scheduleAuto();
   }
@@ -961,15 +1035,18 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
       <div id="live-checks">${checkHTML()}</div><div id="reflection-wrap" ${!run.bowed?'hidden':''}>
       <label class="section-label" for="reflection">Your closing answer</label>
       <textarea id="reflection" aria-label="Your closing answer" rows="3" maxlength="600">${esc(state.reflection)}</textarea></div>
-      <p class="help">Read the parts live. Nothing is recorded. Space advances the next line when you are not typing.</p>`;
+      <p class="help">Read the parts live. Nothing is recorded. Focus Next line to use Space or Enter.</p>`;
     document.querySelectorAll('[data-role]').forEach(b => b.onclick=() => {
       state.role=b.dataset.role;
+      const l=timeline()[run.index];
+      const mine=l?.speaker&&(state.role==='all'||state.role===l.speaker);
+      if (!mine && V.playing===L.yourLine) V.hush();
       document.querySelectorAll('[data-role]').forEach(el => el.setAttribute('aria-pressed',el===b));
       save(); renderStage(); sound();
     });
     $('curtain').onclick=() => {
       if (run.flat) endFlat(false);
-      if (run.open) { stopAuto(); run.open=false; run.entering=false; clearTimeout(entryTimer); }
+      if (run.open) { V.hush(); stopAuto(); run.open=false; run.entering=false; clearTimeout(entryTimer); }
       else {
         run.open=true; run.bowed=false;
         if (run.index<0) run.index=0;
@@ -979,6 +1056,7 @@ body.calm .audience.droop i { transform:rotate(30deg) scaleY(.65); }
         },1800);
       }
       sound(); renderStage(); updatePerformanceControls(); $('hint').textContent=stepHint();
+      if (run.open) $('next-line').focus({preventScroll:true});
       const curtain=document.querySelector('.curtain');
       if (curtain && !Curio.reduce) {
         curtain.classList.toggle('open',!run.open);

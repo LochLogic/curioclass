@@ -1,0 +1,1392 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="data:,">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skate Park Angles · Curio Class</title>
+<meta name="description" content="Spin, build and measure angles, then plot the crew's fictional jumps in eighths of a foot. Grade 4 math, offline.">
+<!-- Curio Class. Grade 4: CCSS 4.MD.4, 4.MD.5a/b, 4.MD.6, 4.MD.7.
+     Sources: CCSS Mathematics, Math is Fun Using a Protractor, X Games Tricktionary,
+     Guinness World Records First 900, OpenStax University Physics 4.3.
+     Fictional jump data. Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+     Content CC BY 4.0. Code MIT. One offline file, no network requests. -->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f4f2ee; --ink:#1d2026; --muted:#575c66; --line:#d8d2e0; --brand:#5b2bb5;
+  --focus:#e89c15; --btn:#43207e; --btn-line:#9973d6; --head-ink:#fff; --panel:#f4f2ee;
+}
+body {height:100%; min-height:0; overflow:hidden;}
+header {min-height:52px; padding:4px 12px; gap:8px; background:#241a36; flex-wrap:nowrap;}
+h1 {font-size:21px; letter-spacing:-.6px; white-space:nowrap;}
+h1 small {font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#d7c4f4;}
+header .seg {border:0; border-radius:8px;}
+.seg button, .icon-btn {min-height:44px; font-size:14px; padding:0 12px;}
+header button {min-width:44px;}
+.seg button[aria-pressed="true"] {background:#e4d5ff; color:#32125f;}
+.icon-btn {border-radius:8px; border:1px solid #79628d; padding:0 9px;}
+#motion {width:104px; flex:none;}
+#sound {width:110px; flex:none;}
+#read {width:64px; flex:none;}
+main {grid-template-columns:minmax(0,1fr) 420px; min-height:0; overflow:hidden;}
+.stage {min-height:0; background:#2a2d34; border-right:1px solid #14121c;}
+canvas {width:100%; height:100%; display:block; touch-action:none;}
+.stage canvas:focus-visible {outline-offset:-6px;}
+.stage-tag {position:absolute; top:16px; left:22px; color:#f4f2ee; font-weight:800; font-size:12px;
+  letter-spacing:2px; text-transform:uppercase; pointer-events:none; background:#241a36bd; padding:4px 6px; border-radius:4px;}
+#stageStatus {position:absolute; top:43px; left:22px; color:#f5dd9b; font-size:14px; pointer-events:none;}
+#stageStatus:not(:empty) {background:#241a36ed; padding:4px 6px; border-radius:4px;}
+#readout {position:absolute; bottom:25px; left:50%; transform:translateX(-50%); text-align:center;
+  background:#191b22ed; color:#f4f2ee; border:1px solid #74727d; border-radius:12px; padding:10px 26px;
+  min-width:245px; box-shadow:0 7px 20px #0004; pointer-events:none;}
+#readout strong {font:800 29px 'Trebuchet MS',sans-serif; display:block; color:#f2c25c;}
+#readout span {display:block; font-size:14px; line-height:1.35;}
+#readout .landmark {color:#e2ccff; font-weight:800;}
+.job-scene #readout {bottom:64px;}
+#sceneHint {position:absolute; bottom:10px; left:14px; right:14px; background:#f4f2eef5; color:var(--ink);
+  border-left:5px solid #5b2bb5; padding:9px 12px; font-size:14px; border-radius:5px; pointer-events:none;}
+.panel {border:0; padding:20px; gap:12px; overflow:auto; box-shadow:inset 5px 0 12px #241a3609;}
+.panel h2 {font:900 30px/1 'Trebuchet MS',sans-serif; margin:0; letter-spacing:-1px;}
+.eyebrow {font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#654e7c; margin:0 0 6px;}
+.switch {display:grid; grid-template-columns:1fr 1fr; border:1px solid #c7bfd2; padding:3px; border-radius:10px; gap:3px;}
+button {min-height:44px; border:1px solid #bdb4c9; border-radius:8px; background:#fffefa; font-weight:750; padding:6px 10px;}
+button:hover {filter:brightness(.97);}
+button:active {transform:translateY(1px);}
+button:disabled {opacity:.48; cursor:default;}
+.switch button {border:0; background:transparent;}
+.switch button[aria-pressed="true"] {background:var(--brand); color:white; box-shadow:0 2px 5px #32145433;}
+.hint {margin:0; font-size:16px; line-height:1.4; min-height:67px; flex:none;}
+.actions {display:grid; grid-template-columns:1fr 1fr; gap:9px;}
+.actions .wide {grid-column:1/-1;}
+.primary {background:var(--brand); color:#fff; border-color:#46218d; box-shadow:0 3px 0 #341565;}
+.go {background:#f2b705; border-color:#9c7200; color:#332400; font-size:22px; min-height:59px; box-shadow:0 3px 0 #a67800;}
+.card {position:relative; background:#fffefa; border:1px solid #d4cbdc; border-top:5px solid #5b2bb5;
+  border-radius:7px; padding:15px; box-shadow:2px 4px 0 #ded7e4;}
+#prompt {margin:0; font-size:19px; font-weight:750; line-height:1.32; min-height:56px;}
+#jobLabel {font-size:12px; color:#684e81; margin-bottom:7px; font-weight:800; text-transform:uppercase; letter-spacing:1px;}
+.answer-row {display:flex; align-items:center; gap:8px; margin:10px 0 0;}
+.answer-row label {font-size:13px; font-weight:750;}
+#answer {min-width:0; width:100%; height:44px; border:2px solid #aaa0b7; border-radius:6px; background:#f7f3fc;
+  font:750 24px 'Consolas',monospace; color:#241a36; padding:4px 8px;}
+.keypad {display:grid; grid-template-columns:repeat(4,minmax(44px,1fr)); grid-template-rows:repeat(4,44px); gap:6px;}
+.keypad button {font-size:20px; padding:2px; box-shadow:0 2px 0 #c7bfd1;}
+#check {grid-column:4; grid-row:1/4; font-size:17px; overflow-wrap:anywhere;}
+#delete {grid-column:4; grid-row:4;}
+.pager {display:flex; gap:4px; align-items:center; justify-content:space-between;}
+.pager button {min-width:44px; padding:0;}
+.pager button.current {border:2px solid #5b2bb5; background:#e6d8fa;}
+.pager button.done::after {content:' ✓'; font-size:11px;}
+.compact-pager {display:none;}
+.compact-pager button {color:var(--ink);}
+button[aria-disabled="true"] {opacity:.65; cursor:default;}
+.rae {display:flex; align-items:center; gap:12px; padding:8px 10px; background:#e8dff2; border-radius:10px;}
+.rae img {width:54px; height:65px; object-fit:contain; flex:none;}
+.rae p {font-size:14px; line-height:1.4; margin:0;}
+#feedback {font-size:15px; font-weight:700; min-height:38px; margin:0; line-height:1.3;}
+#feedback.good {color:#316022;}
+.foot {margin-top:auto; display:flex; align-items:center; gap:9px; padding-top:8px; border-top:1px solid #d5cedd;}
+.foot small {font-size:11px; color:var(--muted); line-height:1.3;}
+.session-buttons {display:grid; grid-template-columns:repeat(3,1fr); gap:5px;}
+.session-buttons button {font-size:13px; padding:5px;}
+.session-buttons button[aria-pressed="true"] {background:#5b2bb5; color:#fff;}
+.tick-nav {display:none; grid-template-columns:44px minmax(0,1fr) 44px; gap:5px;}
+.tick-nav button {min-width:44px; font-size:14px; padding:3px;}
+.jump-copy {font-size:12px; line-height:1.35; color:var(--muted); margin:0;}
+.record {padding:14px; background:#fffefa; border:1px solid #cfc6d9; border-radius:8px;}
+.record strong {font:900 23px 'Trebuchet MS',sans-serif; display:block;}
+.record p {margin:7px 0 0; font-size:14px;}
+#tip {margin:0; font-size:14px; line-height:1.35;}
+.stage-target {position:absolute; width:48px; height:48px; padding:0; border:2px dashed #f4f2ee;
+  border-radius:50%; background:#5b2bb522; color:white; touch-action:none; font-size:18px;}
+#proBody {border-radius:8px; font-size:12px; width:64px; background:#241a36db;}
+.life {position:absolute; top:18px; right:18px; width:8px; height:8px; border-radius:50%; background:#eacb73;
+  box-shadow:0 0 12px #f2b70588; animation:lamp 3s ease-in-out infinite; pointer-events:none;}
+@keyframes lamp {50% {opacity:.45;}}
+.calm * {animation:none!important; transition:none!important;}
+@media (min-width:1550px) {main {grid-template-columns:minmax(0,1fr) 440px;} .panel {padding:26px; gap:16px;}}
+@media (max-width:1100px) {header {gap:4px;} h1 {font-size:17px;} h1 small {display:none;}
+  .seg button,.icon-btn {padding:0 7px; font-size:12px;} main {grid-template-columns:minmax(0,1fr) 310px;}
+  .panel {padding:12px; gap:8px;} .panel h2 {font-size:24px;} .pager {gap:1px;}
+  .pager button {min-width:44px;} #prompt {font-size:16px;}}
+@media (max-width:1100px) {#motion {width:86px;} #sound {width:90px;} #read {width:44px;}}
+@media (max-width:999px) {.tick-nav {display:grid;}}
+@media (max-height:640px) and (min-width:600px) {
+  header {height:52px;} main {grid-template-columns:minmax(0,1fr) 250px;}
+  h1 {font-size:15px;} .seg button,.icon-btn {font-size:11px; padding:0 5px;}
+  .panel {padding:8px; gap:6px;} .panel h2 {font-size:21px;} .eyebrow {display:none;}
+  .panel.jobs h2,.panel.jobs #hint,.panel.jobs .rae,.panel.jobs .foot {display:none;}
+  .panel.jobs .card {padding:5px; border-top-width:3px;} #jobLabel {margin-bottom:3px; font-size:10px;}
+  .panel.jobs .switch {padding:0; border:0;}
+  .panel.jobs #jobLabel {display:none;}
+  .panel.jobs #tipButton {display:none;}
+  #prompt {font-size:14px; min-height:38px;} .answer-row {margin-top:5px;}
+  .answer-row label {font-size:11px;} .keypad {gap:4px;} .pager {display:none;}
+  .compact-pager {display:flex; position:absolute; left:12px; top:10px; right:12px; align-items:center;
+    justify-content:center; gap:10px; color:#fff; background:#292130df; border-radius:8px; z-index:3;}
+  .compact-pager button {width:44px; padding:0;} .compact-pager span {font-size:12px;}
+  #feedback {font-size:12px; min-height:0;} #readout {bottom:15px; padding:6px 12px;}
+  #readout strong {font-size:22px;} #readout span {font-size:12px;}
+  .hint {font-size:14px; min-height:46px;} .go {min-height:48px; font-size:19px;}
+  .actions {gap:6px;} .rae {padding:5px;} .rae img {height:40px; width:35px;} .rae p {font-size:12px;}
+  .foot {padding-top:4px;} .stage-tag {font-size:10px; top:12px; left:14px;} #stageStatus {font-size:12px; top:30px; left:14px;}
+  .record {padding:8px;} .record strong {font-size:19px;} .jump-copy {font-size:11px;}
+  .panel .rae {display:none;}
+  .job-scene .stage-tag {display:none;}
+  .panel.jump-input h2 {display:none;}
+  .panel.jump-input {gap:5px;}
+  .panel.jump-input > .jump-copy {order:2;}
+  .panel.park-mode h2 {display:none;}
+  .panel.park-mode .record {padding:6px;}
+  .panel.park-mode .record strong {font-size:18px;}
+  .panel.park-mode .record p {font-size:12px; margin-top:4px;}
+  .panel.park-mode .hint {font-size:13px; min-height:0;}
+}
+@media (max-width:599px) {
+  body {overflow:auto; height:auto; min-height:100%;} header {flex-wrap:wrap; padding:6px; gap:4px;}
+  h1 {width:100%; font-size:20px; padding:2px 4px;} header .seg {width:100%; display:flex;}
+  header .seg button {flex:1; font-size:12px;} .icon-btn {flex:1; font-size:12px;}
+  #motion,#sound,#read {width:auto; flex:1;}
+  main {display:flex; flex-direction:column; overflow:visible;} .stage {height:270px; flex:none;}
+  .panel {padding:10px; gap:7px; overflow:visible;} .panel h2 {font-size:25px;}
+  .panel .eyebrow {display:none;}
+  .hint {min-height:0;} .panel .rae {display:none;} .foot {margin-top:0;}
+  #readout {bottom:10px; min-width:220px; padding:5px 10px;} #readout strong {font-size:22px;}
+  #readout span {font-size:12px;} .stage-tag {top:10px; left:12px; font-size:10px;}
+  #stageStatus {top:27px; left:12px; font-size:12px;} .pager {justify-content:center; gap:6px;}
+  #sceneHint {font-size:12px; padding:5px 7px;} .panel.jobs #hint {display:none;}
+  .panel.jobs h2,.panel.jobs .eyebrow {display:none;}
+  .panel.jobs {padding:8px; gap:6px;}
+  .panel.jobs .card {padding:8px;}
+  .panel.jobs #prompt {font-size:16px; min-height:0;}
+  .panel.jobs #jobLabel {margin-bottom:3px;}
+  .panel.jobs .answer-row {margin-top:6px;}
+  .panel.jobs .pager {display:none;}
+  .job-scene .stage-tag {display:none;}
+  .compact-pager {display:flex; position:absolute; left:12px; right:12px; top:10px; align-items:center;
+    justify-content:center; gap:10px; color:#fff; background:#292130df; border-radius:8px; z-index:3;}
+  .compact-pager button {width:44px; padding:0;}
+  .compact-pager span {font-size:12px;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Skate Park Angles<small>Build a turn. Build a park.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-park" aria-pressed="false">Park</button>
+    <button id="m-spin" aria-pressed="true">Spin Deck</button>
+    <button id="m-ramp" aria-pressed="false">Ramp Shop</button>
+    <button id="m-log" aria-pressed="false">Jump Log</button>
+  </div>
+  <button id="motion" class="icon-btn" aria-pressed="true">Motion</button>
+  <button id="sound" class="icon-btn" aria-pressed="true">Sound</button>
+  <button id="read" class="icon-btn">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Skate park workshop">
+    <canvas id="canvas" tabindex="0" aria-label="Turn dial. Drag the board, or use arrow keys to turn one degree."></canvas>
+    <div class="stage-tag" id="stageTag">The turn deck</div>
+    <div id="stageStatus" role="status" aria-live="polite"></div>
+    <div class="life"></div>
+    <div id="readout" aria-live="polite"></div>
+    <div id="sceneHint" hidden></div>
+    <div class="compact-pager" id="compactPager" hidden>
+      <button id="previous" aria-label="Previous job">‹</button><span id="pageText"></span>
+      <button id="next" aria-label="Next job">›</button>
+      <button id="miniTip" hidden>Rae's tip</button>
+    </div>
+    <button class="stage-target" id="lip" aria-label="Ramp lip. Drag or use arrow keys to bend the ramp." hidden>↕</button>
+    <button class="stage-target" id="proBody" aria-label="Protractor. Drag to move, arrows move, Q and E rotate." hidden>Move</button>
+    <button class="stage-target" id="proRotate" aria-label="Rotate protractor. Drag or use Q and E." hidden>↻</button>
+  </section>
+  <aside class="panel" id="panel" aria-label="Workshop controls"></aside>
+</main>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const canvas = $('canvas');
+  const ctx = canvas.getContext('2d');
+  const A = {
+    'park-bg':'art:park-bg', 'ground-strip':'art:ground-strip', 'plywood-texture':'art:plywood-texture',
+    'board-top':'art:board-top', 'dev-roll':'art:dev-roll', 'dev-air':'art:dev-air', 'dev-spin':'art:dev-spin',
+    'dev-land':'art:dev-land', 'dev-bail':'art:dev-bail', 'dev-nod':'art:dev-nod', 'rae-portrait':'art:rae-portrait',
+    'rae-point':'art:rae-point', 'mina-air':'art:mina-air', 'walt-air':'art:walt-air', 'rae-air':'art:rae-air',
+    'prop-rail':'art:prop-rail', 'prop-bench':'art:prop-bench', 'prop-light':'art:prop-light',
+    'prop-planter':'art:prop-planter', 'prop-bikerack':'art:prop-bikerack', 'prop-tree':'art:prop-tree',
+    'scoreboard-blank':'art:scoreboard-blank'
+  };
+  const images = {};
+  const L = {
+    wSpin:"I'm Rae. This is Dev's turn dial. Drag his board around, then tap Go.",
+    addHow:'Tap Add a spin to stack another turn on top.',
+    wRamp:'Every ramp makes an angle with the ground. Drag the protractor onto the corner and read it.',
+    scaleHow:'Start from the zero that lies on the ground. Follow that scale up to the ramp.',
+    bail:"Too steep for Dev today. He's fine. Try a gentler ramp.",
+    wLog:'Watch the jump, read the pole, then tap that height on the line plot.',
+    plotRight:'Got it.', plotMiss:'Count the eighths up from the last number on the pole, then tap again.',
+    plotShown:'I placed that one. Watch where it goes.',
+    askHow:'Use the line plot. Type your answer in feet, then tap Check.',
+    wPark:'Every job you finish adds a piece to the park. Tap Ride to watch Dev skate it.',
+    jobHow:'Type your answer with the keypad, then tap Check.',
+    sketchHow:"Drag the ramp's lip to bend it. Check it with the protractor, then tap Check.",
+    right:'Nailed it.', missLog:'Use the dot heights in feet. Count eighths, then try again.',
+    missAdd:'You added. The total is already known. Take the part you know away from it.',
+    missHundred:'A full turn is 360 degrees, not 100. Try again.',
+    missScale:"That's the other scale. This angle is smaller than a square corner. Try this new ramp.",
+    missCount:"That's how many jumps. The question asks for feet. Try again.",
+    missOther:"Not yet. Check Rae's tip, then try again.", shown:"Here's how I'd do it. Watch the equation.",
+    sessionDone:"Session logged. It's on the scoreboard now."
+  };
+  const LANDMARK = {0:'0 turn',30:'1/12 turn',45:'1/8 turn',60:'1/6 turn',90:'1/4 turn',120:'1/3 turn',
+    135:'3/8 turn',150:'5/12 turn',180:'1/2 turn',210:'7/12 turn',225:'5/8 turn',240:'2/3 turn',
+    270:'3/4 turn',300:'5/6 turn',315:'7/8 turn',330:'11/12 turn',360:'1 full turn'};
+  const TRICKS = {180:'a one-eighty, half a turn',360:'a three-sixty, a full turn',
+    540:'a five-forty, one and a half turns',720:'a seven-twenty, two turns',
+    900:'a nine hundred, two and a half turns. Tony Hawk landed the first one at the 1999 X Games.'};
+  const DATA = [[2,3,3,4,4,4,5,3,4,2],[4,5,6,6,6,7,8,5,6,7,9,6],[6,7,8,9,9,10,11,9,12,8,9,10]];
+  const SESSION = ['Low kicker','Mid kicker','Big kicker'];
+  const QA = [[3/8,2,1/8],[5/8,15/4,9/8],[3/4,9/2,7/8]];
+  const QTEXT = [
+    ['How much higher was the highest jump than the lowest?', 'Add up all the 4/8 ft jumps. How many feet is that?',
+      'How much higher was the highest jump than the most common height?'],
+    ['How much higher was the highest jump than the lowest?', 'Add up all the 6/8 ft jumps. How many feet is that?',
+      'Add the two lowest jumps. How many feet is that?'],
+    ['How much higher was the highest jump than the lowest?', 'Add up all the 9/8 ft jumps. How many feet is that?',
+      "How much higher was Big's highest jump than Low's highest?"]
+  ];
+  const ANSWERTEXT = [['3/8','2','1/8'],['5/8','3 6/8','9/8'],['6/8','36/8','7/8']];
+  const WORK = [
+    ['5/8 - 2/8 = 3/8','4/8 + 4/8 + 4/8 + 4/8 = 16/8 = 2','5/8 - 4/8 = 1/8'],
+    ['9/8 - 4/8 = 5/8','6/8 + 6/8 + 6/8 + 6/8 + 6/8 = 30/8 = 3 6/8','4/8 + 5/8 = 9/8'],
+    ['12/8 - 6/8 = 6/8','9/8 + 9/8 + 9/8 + 9/8 = 36/8 = 4 1/2','12/8 - 5/8 = 7/8']
+  ];
+  const state = {
+    mode:'spin', workshop:'explore', spins:[0], savedTrick:180, ramp:20, flip:false, showAngle:false,
+    pro:{x:.65,y:.75,rot:0}, job:0, variants:{spin:[0,0,0,0,0,0],ramp:[0,0,0,0,0]},
+    attempts:{}, helped:{}, done:{}, jobRamp:20, session:0, logs:[null,null,null], lowOverlay:false,
+    ramps:{}, running:null, runStart:0, runTotal:0, token:0, feedback:'', result:false, tip:false,
+    plotReady:false, jumpStart:0, plotMisses:0, selectedDot:null, selectedRow:0,
+    q:0, qAttempts:0, qHelp:false, checkBusy:false
+  };
+  let W=1, H=1, geo={}, raf=0, resizeQueued=false, drag=null, cardEpoch=0;
+  const storageKey='curio-class-skate-park-angles-v1';
+  try {
+    const s=JSON.parse(localStorage.getItem(storageKey));
+    if (s && s.version===1) {
+      for (const k of ['done','helped','ramps']) if (s[k] && typeof s[k]==='object') state[k]=s[k];
+      if (Number.isInteger(s.savedTrick)) state.savedTrick=Math.max(0,Math.min(900,s.savedTrick));
+      if (Array.isArray(s.logs) && s.logs.length===3) state.logs=s.logs;
+    }
+  } catch {}
+  const V=Curio.voice({lines:L, scope:()=>`${state.mode}:${state.workshop}:${state.job}`,
+    speaks:'#test, #ride', hint:false, read:()=>[$('prompt')?.textContent,$('feedback')?.textContent,$('hint')?.textContent,
+      $('readout').hidden?'':Array.from($('readout').children).map(el=>el.textContent).join('. ')].filter(Boolean).join(' '),
+    welcome:()=>{
+      if (state.workshop==='jobs') return null;
+      if (state.mode==='spin') return total()===0?'wSpin':null;
+      if (state.mode==='log') {
+        const log=state.logs[state.session];
+        if (log && log.dots.length===log.order.length) return log.q<3?'askHow':null;
+        return 'wLog';
+      }
+      return {ramp:'wRamp',park:'wPark'}[state.mode];
+    }
+  });
+  const total=()=>state.spins.reduce((a,b)=>a+b,0);
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
+  const rad=n=>n*Math.PI/180;
+  const currentKey=()=>`${state.mode}-${state.job}`;
+  function persist() {
+    try {localStorage.setItem(storageKey,JSON.stringify({version:1,done:state.done,helped:state.helped,
+      ramps:state.ramps,savedTrick:state.savedTrick,logs:state.logs}));} catch {}
+  }
+  function speak(key,wait=false) {return V.say(key,{hint:false,wait});}
+  function how(key,needs) {V.how(key,{hint:false,needs});}
+  function hint(text) {
+    if ($('hint')) $('hint').textContent=text;
+    $('sceneHint').textContent=text;
+  }
+  function feedback(text,good=false) {
+    state.feedback=text;
+    if ($('feedback')) { $('feedback').textContent=text; $('feedback').className=good?'good':''; }
+    if (!$('sceneHint').hidden) $('sceneHint').textContent=text || $('hint')?.textContent || '';
+    draw();
+  }
+  function stop() {
+    state.token++;
+    state.running=null;
+    cancelAnimationFrame(raf);
+    draw();
+  }
+  function reroll() {
+    if (state.workshop==='jobs' && ['spin','ramp'].includes(state.mode)) {
+      const variants=state.variants[state.mode];
+      variants[state.job]=(variants[state.job]+1)%3;
+      delete state.attempts[currentKey()];
+    }
+  }
+  function setMode(mode) {
+    if (!['spin','ramp','log','park'].includes(mode)) return;
+    if (state.mode===mode) return;
+    reroll(); stop(); V.hush();
+    state.mode=mode; state.workshop='explore'; state.job=0;
+    state.result=false; state.tip=false; state.feedback='';
+    for (const m of ['park','spin','ramp','log']) $('m-'+m).setAttribute('aria-pressed',m===mode);
+    renderPanel();
+    if (mode==='log') visitSession(state.session);
+    V.welcome(); draw();
+  }
+  function setWorkshop(value) {
+    if (state.workshop===value) return;
+    reroll(); stop(); V.hush(); state.workshop=value; state.result=false; state.tip=false; state.feedback='';
+    if (value==='jobs') {
+      if (state.mode==='ramp' && state.job<2 && Math.abs(getJob().angle-state.ramp)<=1) {
+        state.variants.ramp[state.job]=(state.variants.ramp[state.job]+1)%3;
+      }
+      initJob();
+    }
+    renderPanel(); draw();
+    if (value==='jobs') how(state.mode==='ramp' && state.job>=3?'sketchHow':'jobHow',
+      state.mode==='ramp' && state.job>=3?'#lip':'#answer');
+    else V.welcome();
+  }
+  function initJob() {
+    cardEpoch++;
+    state.result=false; state.tip=false; state.feedback=''; state.checkBusy=false;
+    if (state.mode==='ramp') {
+      const j=getJob();
+      // A fixed offset can be solved by counting key presses instead of measuring.
+      const starts=Array.from({length:56},(_,i)=>i+5).filter(a=>Math.abs(a-j.answer)>=10);
+      state.jobRamp=j.sketch?starts[Math.floor(Math.random()*starts.length)]:j.angle;
+      state.pro={x:.66,y:.74,rot:0};
+    }
+  }
+  function page(n) {
+    if (!['spin','ramp'].includes(state.mode)) return;
+    stop(); V.hush(); state.job=(n+(state.mode==='spin'?6:5))%(state.mode==='spin'?6:5);
+    initJob(); renderPanel(); draw();
+    how(state.mode==='ramp' && state.job>=3?'sketchHow':'jobHow',state.job>=3 && state.mode==='ramp'?'#lip':'#answer');
+  }
+  function getJob() {
+    const i=state.job, v=state.variants[state.mode][i];
+    if (state.mode==='spin') {
+      if (i<2) {
+        const fs=i===0?['1/4','1/2','3/4']:['3/8','5/8','1/8'];
+        const answers=i===0?[90,180,270]:[135,225,45];
+        return {prompt:`Dev turns ${fs[v]} of a full turn. How many degrees?`,answer:answers[v],parts:[answers[v]],slices:i===0?4:8,
+          worked:`${fs[v]} × 360 = ${answers[v]} degrees`,tip:`Divide 360 into ${i===0?4:8} equal pieces, then count the pieces.`};
+      }
+      if (i===2) {
+        const degrees=[120,60,240][v];
+        return {prompt:`A ${degrees} degree spin is what fraction of a full turn?`,answer:degrees/360,parts:[degrees],slices:0,
+          worked:`${degrees}/360 = ${['1/3','1/6','2/3'][v]} turn`,tip:'Write the angle over 360. Equal fractions count.'};
+      }
+      if (i===3) {
+        const parts=[[90,45],[180,90],[45,30]][v];
+        return {prompt:parts.join(' + ')+' = ?',answer:parts[0]+parts[1],parts,
+          worked:`${parts.join(' + ')} = ${parts[0]+parts[1]}`,tip:'Both turns sweep forward. Add their degrees.'};
+      }
+      const parts=i===4?[[125],[70],[200]][v]:[[150,90],[100,150],[60,70]][v];
+      const whole=i===4?[180,180,360][v]:[360,360,180][v];
+      const answer=whole-parts.reduce((a,b)=>a+b,0);
+      return {prompt:`${parts.join(' + ')} + ? = ${whole}`,answer,parts,whole,unknown:true,
+        worked:`${whole} - ${parts.join(' - ')} = ${answer}`,tip:'The whole is already known. Take away every known part.'};
+    }
+    if (i<3) {
+      const angle=[[20,35,48],[25,40,15],[30,40,25]][i][v];
+      const answer=i===2?180-angle:angle;
+      return {angle,answer,left:i===1,sketch:false,
+        prompt:i===2?`The bank is ${angle}°. Measure the angle behind it, between the deck and ramp.`:
+          `Measure this ramp. Start at the zero on the ground.`,
+        worked:i===2?`${angle} + ${answer} = 180: a straight line is a half turn.`:`The protractor reads ${answer} degrees.`,
+        tip:i===2?'The deck and ground form a half turn. Subtract the bank angle from 180.':
+          'Center the protractor on the corner. Read from the zero on the ground.'};
+    }
+    const answer=i===3?[15,25,30][v]:[20,35,40][v];
+    return {answer,left:i===4,sketch:true,prompt:`Build a ${answer}° ${i===3?'kicker opening right':'bank opening left'}.`,
+      worked:`Built to ${answer}°.`,tip:'Measure from the zero on the ground. Drag the lip, then check the scale.'};
+  }
+  function shell(body) {
+    const names={spin:'Spin Deck',ramp:'Ramp Shop',log:'Jump Log',park:'Your park'};
+    return `<p class="eyebrow">Rae's workshop / Curio Class</p><h2>${names[state.mode]}</h2>`+body+
+      `<div class="foot"><button id="reset">${state.mode==='log'?'Reset session':'Reset'}</button>`+
+      `<small>${state.mode==='park'?'Reset stops the ride.':'Saved on this device only.'}</small></div>`;
+  }
+  function switchHTML() {
+    return `<div class="switch" role="group" aria-label="Workshop activity"><button id="explore" aria-pressed="${state.workshop==='explore'}">Explore</button>`+
+      `<button id="jobs" aria-pressed="${state.workshop==='jobs'}">Jobs</button></div>`;
+  }
+  function keypadHTML() {
+    return `<div class="keypad" aria-label="Answer keypad">`+
+      ['1','2','3','4','5','6','7','8','9','/','0',' '].map(k=>
+        `<button id="key-${k===' '?'space':k==='/'?'slash':k}" data-key="${k}" `+
+        `aria-label="${k===' '?'Mixed number space':k==='/'?'Fraction bar':k}">${k===' '?'space':k}</button>`).join('')+
+      `<button id="check" class="primary" disabled>Check</button><button id="delete" aria-label="Delete last character">⌫</button></div>`;
+  }
+  function answerHTML(prompt,label) {
+    return `<div class="card"><div id="jobLabel">${label}</div><p id="prompt">${esc(prompt)}</p>`+
+      `<div class="answer-row"><label for="answer">Answer</label><input id="answer" type="text" inputmode="text" `+
+      `autocomplete="off" spellcheck="false" maxlength="24" aria-label="Your answer"></div></div>${keypadHTML()}`;
+  }
+  function renderPanel() {
+    const m=state.mode, jobs=state.workshop==='jobs' && ['spin','ramp'].includes(m);
+    const log=state.logs[state.session];
+    const questions=m==='log' && log && log.dots.length===log.order.length && log.q<3;
+    const focused=document.activeElement?.id;
+    $('panel').classList.toggle('jobs',jobs || questions);
+    $('panel').classList.toggle('jump-input',m==='log' && !questions);
+    $('panel').classList.toggle('park-mode',m==='park');
+    $('stage').classList.toggle('job-scene',jobs || questions);
+    let html='';
+    if (m==='spin' || m==='ramp') {
+      html+=switchHTML();
+      if (jobs) {
+        const j=getJob(), n=m==='spin'?6:5;
+        html+=answerHTML(j.prompt,`${m==='spin'?'Spin':'Ramp'} job ${state.job+1} of ${n}`);
+        if (j.sketch) html=html.replace(/<div class="answer-row">[\s\S]*?<\/div><\/div>[\s\S]*?<\/div>$/,
+          '</div><button id="check" class="primary">Check build</button>');
+        html+=`<div class="pager" aria-label="Job pager">`+Array.from({length:n},(_,i)=>
+          `<button id="job-${i}" data-page="${i}" class="${i===state.job?'current ':''}${state.done[`${m}-${i}`]?'done':''}" `+
+          `aria-label="Job ${i+1}" aria-current="${i===state.job?'step':'false'}">${i+1}</button>`).join('')+'</div>';
+        html+='<p class="hint" id="hint"></p><p id="feedback" aria-live="polite"></p>'+
+          '<button id="tipButton" hidden>Rae\'s tip</button><p id="tip" hidden></p>';
+      } else if (m==='spin') {
+        html+='<p class="hint" id="hint"></p><div class="actions">'+
+          '<button id="go" class="go wide">▶ Go</button><button id="add">Add a spin</button><button id="clear">Clear</button>'+
+          '<button id="saveTrick" class="wide primary">Save as Dev\'s trick</button></div>'+
+          '<div class="rae"><img src="art:rae-portrait" alt="Rae, your crew guide"><p>A turn is a trail. Stack turns and watch their arcs join.</p></div>'+
+          '<p id="feedback" aria-live="polite"></p>';
+      } else {
+        html+='<p class="hint" id="hint"></p><div class="actions"><button id="test" class="go wide">▶ Test ride</button>'+
+          '<button id="flip">Flip ramp</button><button id="showAngle" aria-pressed="false">Show angle</button>'+
+          '<button id="put" class="primary wide">Put in park</button></div><div class="rae">'+
+          '<img src="art:rae-point" alt="Rae pointing"><p>Move the protractor to the corner. Its two scales start at opposite ends.</p></div>'+
+          '<p id="feedback" aria-live="polite"></p>';
+      }
+    } else if (m==='park') {
+      const keys=Object.keys(state.done).filter(k=>state.done[k]);
+      const solo=keys.filter(k=>!state.helped[k]).length;
+      html+='<p class="hint" id="hint"></p><div class="record"><strong>Park pieces '+keys.length+' of 14</strong>'+
+        `<p>${solo} on your own${keys.length-solo?`, ${keys.length-solo} with Rae's help`:''}</p>`+
+        '<p class="jump-copy">Saved on this device only.</p></div>'+
+        '<div class="actions"><button id="ride" class="go">▶ Ride</button><button id="stop">Stop</button></div>'+
+        `<div class="record"><p>Dev's saved trick: <b>${state.savedTrick}°</b></p><p id="rideResult">Ready to roll.</p></div>`+
+        '<p id="feedback" aria-live="polite"></p><button id="startOver">Start over</button>';
+    } else {
+      html+='<div class="session-buttons" role="group" aria-label="Jump session">'+SESSION.map((s,i)=>
+        `<button id="session-${i}" data-session="${i}" aria-pressed="${i===state.session}">${s}</button>`).join('')+'</div>';
+      const log=state.logs[state.session];
+      if (log && log.dots.length===log.order.length && log.q<3) {
+        state.q=log.q;
+        html+=answerHTML(QTEXT[state.session][log.q],`Question ${log.q+1} of 3 · feet`);
+      }
+      html+='<p class="hint" id="hint"></p>';
+      if (!questions) html+='<div class="tick-nav" role="group" aria-label="Line plot height controls">'+
+        '<button id="tickLeft" aria-label="Previous height tick">←</button><button id="plotPlace">Place dot</button>'+
+        '<button id="tickRight" aria-label="Next height tick">→</button></div>';
+      html+='<div class="record"><strong id="jumpCount"></strong><p id="jumpCredit"></p></div>';
+      if (state.session===2) html+='<button id="overlay" aria-pressed="'+state.lowOverlay+'" '+
+        'title="Low kicker uses dashed rings. Big kicker uses filled dots or solid rings.">Show Low kicker too</button>';
+      html+='<p id="feedback" aria-live="polite"></p><p class="jump-copy">Dev\'s crew and their jumps are made up for practice.</p>'+
+        '<p class="jump-copy">Same speed, steeper kicker: the jumps get higher. These jumps are made up.</p>';
+    }
+    const existing=new Map(Array.from($('panel').querySelectorAll('button[id], input[id]')).map(el=>[el.id,el]));
+    const template=document.createElement('template');
+    template.innerHTML=shell(html);
+    for (const fresh of template.content.querySelectorAll('button[id], input[id]')) {
+      const old=existing.get(fresh.id);
+      if (!old || old.tagName!==fresh.tagName) continue;
+      for (const attr of Array.from(old.attributes)) old.removeAttribute(attr.name);
+      for (const attr of fresh.attributes) old.setAttribute(attr.name,attr.value);
+      if (old.tagName==='INPUT') old.value=fresh.value;
+      else old.innerHTML=fresh.innerHTML;
+      fresh.replaceWith(old);
+    }
+    $('panel').replaceChildren(template.content);
+    if (focused && $(focused)) {
+      const next=$(focused).disabled && $('answer')?$('answer'):$(focused);
+      next.focus({preventScroll:true});
+    } else if (questions && ['tickLeft','tickRight','plotPlace'].includes(focused)) {
+      $('key-1').focus({preventScroll:true});
+    }
+    bindPanel();
+    if ($('showAngle')) $('showAngle').setAttribute('aria-pressed',state.showAngle);
+    $('readout').hidden=m!=='spin' || (jobs && !state.result);
+    $('compactPager').hidden=!jobs;
+    $('miniTip').hidden=true;
+    $('sceneHint').hidden=!(jobs || questions);
+    $('pageText').textContent=`Job ${state.job+1} of ${m==='spin'?6:5}`;
+    $('stageTag').textContent={spin:'The turn deck',ramp:'The ramp bench',log:'The jump yard',park:'Made by your crew'}[m];
+    canvas.setAttribute('aria-label',{
+      spin:'Turn dial. Drag the board, or use arrow keys to turn one degree. Shift changes ten degrees.',
+      ramp:'Ramp and protractor. Tab to the lip, Move handle or rotation knob to adjust them with the keyboard.',
+      log:'Jump height line plot. Left and right arrows select an eighth tick. Enter places a dot.',
+      park:'Your skate park. Use Ride and Stop in the control panel.'
+    }[m]);
+    $('stageStatus').textContent='';
+    if (jobs) hint(m==='ramp' && state.job>=3?L.sketchHow:L.jobHow);
+    else hint({spin:"Drag Dev's board around the dial, then tap Go.",ramp:L.wRamp,log:L.wLog,park:L.wPark}[m]);
+    if (state.feedback) feedback(state.feedback);
+    updateExplore(); updateLog();
+  }
+  function bind(id,fn) {if ($(id)) $(id).onclick=fn;}
+  function bindPanel() {
+    bind('explore',()=>setWorkshop('explore')); bind('jobs',()=>setWorkshop('jobs'));
+    bind('go',go); bind('add',addSpin); bind('clear',clearSpin); bind('saveTrick',()=>{
+      state.savedTrick=total(); persist(); feedback(`Saved: Dev will turn ${total()}° in your park.`,true); Curio.yes();
+    });
+    bind('flip',()=>{state.flip=!state.flip; state.pro.rot=0; Curio.tone(300,.06,.05); draw();});
+    bind('showAngle',()=>{state.showAngle=!state.showAngle; $('showAngle').setAttribute('aria-pressed',state.showAngle); draw();});
+    bind('test',()=>ride(false)); bind('ride',()=>ride(true));
+    bind('stop',()=>{stop(); if ($('rideResult')) $('rideResult').textContent='Stopped. Tap Ride to start again.';});
+    bind('put',()=>{
+      state.ramps[state.done['ramp-4']?'extra':4]=state.ramp; persist();
+      feedback('Your ramp is in the park. Tap Park, then Ride.',true); Curio.yes();
+    });
+    bind('reset',resetMode); bind('startOver',()=>{
+      if (!confirm('Start over? This clears all jobs, park pieces and jump sessions on this device.')) return;
+      stop(); V.hush(); state.done={}; state.helped={}; state.attempts={}; state.ramps={}; state.logs=[null,null,null];
+      state.savedTrick=180; persist(); renderPanel(); draw();
+    });
+    bind('check',check);
+    bind('tipButton',()=>{
+      state.tip=!state.tip; $('tip').hidden=!state.tip;
+      $('tip').textContent=getJob().tip;
+      hint(state.tip?getJob().tip:state.mode==='ramp' && state.job>=3?L.sketchHow:L.jobHow);
+      draw();
+    });
+    bind('delete',()=>editAnswer('delete'));
+    document.querySelectorAll('[data-key]').forEach(b=>b.onclick=()=>editAnswer(b.dataset.key));
+    document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>page(+b.dataset.page));
+    document.querySelectorAll('[data-session]').forEach(b=>b.onclick=()=>{
+      stop(); V.hush(); state.session=+b.dataset.session; state.feedback=''; renderPanel(); visitSession(state.session); V.welcome();
+    });
+    bind('overlay',()=>{state.lowOverlay=!state.lowOverlay; $('overlay').setAttribute('aria-pressed',state.lowOverlay); draw();});
+    bind('tickLeft',()=>selectTick(-1)); bind('tickRight',()=>selectTick(1));
+    bind('plotPlace',()=>plot(state.selectedDot??0,state.selectedRow));
+    if ($('answer')) {
+      $('answer').oninput=()=>{$('check').disabled=!$('answer').value.trim();};
+      $('answer').onkeydown=e=>{if (e.key==='Enter') {e.preventDefault(); check();}};
+    }
+  }
+  function editAnswer(key) {
+    const box=$('answer'); if (!box) return;
+    box.value=key==='delete'?box.value.slice(0,-1):(box.value+key).slice(0,24);
+    $('check').disabled=!box.value.trim();
+    Curio.tone(450,.035,.025);
+  }
+  function parseAnswer(raw) {
+    const s=raw.trim();
+    if (/\/\s*0(?:\s|$)/.test(s)) return {error:"A fraction can't have 0 pieces."};
+    if (/^\d+(?:\.\d+)?$/.test(s)) return {value:Number(s)};
+    let m=s.match(/^(\d+)\s+(\d+)\s*\/\s*(\d+)$/);
+    if (m) return +m[3]===0?{error:"A fraction can't have 0 pieces."}:{value:+m[1]+(+m[2]/+m[3])};
+    m=s.match(/^(\d+)\s*\/\s*(\d+)$/);
+    if (m) return +m[2]===0?{error:"A fraction can't have 0 pieces."}:{value:+m[1]/+m[2]};
+    return {error:'Type a number, a fraction like 3/8, or a mixed number like 1 1/8.'};
+  }
+  function award(key,helped,angle) {
+    // First completion owns the record forever. Replaying a shown job cannot upgrade it.
+    if (!state.done[key]) {
+      state.done[key]=true;
+      state.helped[key]=!!helped;
+    }
+    if (key.startsWith('ramp-') && Number.isFinite(angle)) state.ramps[+key.split('-')[1]]=angle;
+    persist();
+  }
+  async function finishJob(line) {
+    const token=state.token, mode=state.mode, job=state.job;
+    await speak(line,true);
+    await Curio.wait(600);
+    if (token!==state.token || state.mode!==mode || state.job!==job || !state.result) return;
+    const count=mode==='spin'?6:5;
+    const next=Array.from({length:count},(_,i)=>(job+i+1)%count).find(i=>!state.done[`${mode}-${i}`]);
+    if (next===undefined) return;
+    state.job=next; initJob(); renderPanel(); draw();
+  }
+  async function check() {
+    if (state.mode==='log') return checkQuestion();
+    if (state.workshop!=='jobs' || state.result || state.checkBusy) return;
+    const j=getJob(), key=currentKey(), sketch=state.mode==='ramp' && j.sketch;
+    const parsed=sketch?{value:state.jobRamp}:parseAnswer($('answer').value);
+    if (parsed.error) {feedback(parsed.error); return;}
+    if (!Number.isFinite(parsed.value)) return;
+    const n=parsed.value, tolerance=state.mode==='ramp'?1:1e-9;
+    const right=Math.abs(n-j.answer)<=tolerance;
+    const misses=state.attempts[key]||0;
+    if (right) {
+      state.result=true; award(key,misses>=2,j.angle??j.answer); Curio.yes();
+      feedback(sketch?`Built to ${j.answer}: yes. Tap another job.`:j.worked+' · Tap another job.',true);
+      $('prompt').textContent=j.worked;
+      $('check').textContent='Done'; $('check').setAttribute('aria-disabled','true');
+      if (state.mode==='spin') {
+        const degrees=j.answer<1?j.answer*360:j.answer;
+        state.spins=[degrees]; updateExplore(); $('readout').hidden=false; animateSpin(degrees);
+      }
+      finishJob('right');
+      draw(); return;
+    }
+    state.attempts[key]=misses+1;
+    Curio.tone(150,.13,.04,'triangle');
+    if (misses>=1) {
+      state.result=true;
+      // Help persists even if the student leaves before the spoken explanation finishes.
+      award(key,true,j.angle??j.answer);
+      if (sketch) state.jobRamp=j.answer;
+      if (state.mode==='ramp') {
+        const g=rampGeo(); state.pro={x:g.x/W,y:g.y/H,rot:0};
+      }
+      $('prompt').textContent=j.worked+' Rae helped.';
+      feedback(`${j.worked} Rae helped. Tap another job.`);
+      $('check').setAttribute('aria-disabled','true'); $('check').textContent='Rae helped';
+      finishJob('shown'); draw(); return;
+    }
+    $('tipButton').hidden=false;
+    $('miniTip').hidden=false;
+    let line='missOther';
+    if (state.mode==='spin' && state.job<2 && [Math.floor(j.answer/3.6),Math.ceil(j.answer/3.6),j.answer/3.6].includes(n)) line='missHundred';
+    if (state.mode==='spin' && state.job>=4 && n===j.whole+j.parts.reduce((a,b)=>a+b,0)) line='missAdd';
+    if (state.mode==='ramp' && state.job<2 && Math.abs(n-(180-j.answer))<=1) line='missScale';
+    feedback(sketch?`Not ${j.answer} yet. Measure it with the protractor.`:L[line]);
+    const epoch=cardEpoch;
+    if (state.mode==='ramp' && !sketch) {
+      state.checkBusy=true; $('check').setAttribute('aria-disabled','true');
+      await speak(line,true);
+      if (epoch!==cardEpoch || state.mode!=='ramp' || state.workshop!=='jobs') return;
+      state.variants.ramp[state.job]=(state.variants.ramp[state.job]+1)%3;
+      state.jobRamp=getJob().angle; state.checkBusy=false; renderPanel();
+      feedback('New ramp. Place the protractor and measure again.');
+      $('tipButton').hidden=false;
+    } else speak(line);
+    draw();
+  }
+  function clearSpin() {
+    stop(); state.spins=[0]; state.feedback=''; $('stageStatus').textContent='';
+    updateExplore(); feedback('');
+    hint("Drag Dev's board around the dial, then tap Go."); draw();
+  }
+  function addSpin() {
+    if (state.spins.length>=3 || state.spins.at(-1)===0 || total()>=900) return;
+    state.spins.push(0); updateExplore();
+    hint(state.spins.length===3?'Three parts ready. Tap Go or Clear.':'Drag the board to add another turn, then tap Go.');
+    Curio.tone(640,.06,.04); draw();
+  }
+  function updateExplore() {
+    if (state.mode!=='spin') return;
+    const t=total();
+    if ($('add')) $('add').setAttribute('aria-disabled',state.spins.length>=3 || state.spins.at(-1)===0 || t>=900);
+    const lap=t>360?`${Math.floor(t/360)} full turn${t>=720?'s':''} + ${t%360} = ${t}`:'';
+    const equation=state.spins.length>1?`<span>${state.spins.join(' + ')} = ${t}</span>`:'';
+    const html=equation+`<strong>${t} ${t===1?'degree':'degrees'}</strong><span>${t} one-degree turn${t===1?'':'s'}</span>`+
+      `<span>${t}/360 of a full turn</span><span class="landmark">${LANDMARK[t]?'= '+LANDMARK[t]:lap}</span>`;
+    if ($('readout').innerHTML!==html) $('readout').innerHTML=html;
+  }
+  function go() {
+    const t=total();
+    if (!t) {
+      state.running='nod'; state.runStart=performance.now(); tick();
+      $('stageStatus').textContent='Ready. Drag the board, then tap Go.';
+      hint("Drag Dev's board around the dial, then tap Go."); Curio.tone(330,.08,.04); return;
+    }
+    feedback(TRICKS[t]||`${t} degrees, your turn.`);
+    animateSpin(t);
+  }
+  function animateSpin(degrees) {
+    stop(); state.running='spin'; state.runTotal=degrees; state.runStart=performance.now();
+    $('stageStatus').textContent=`Dev's turn: ${degrees} degrees`;
+    Curio.tone(320,.15,.04); tick();
+  }
+  function resetMode() {
+    stop(); V.hush();
+    if (state.mode==='spin') {if (state.workshop==='jobs') setWorkshop('explore'); clearSpin();}
+    if (state.mode==='ramp') {state.ramp=20; state.flip=false; state.showAngle=false; state.pro={x:.65,y:.75,rot:0};
+      if (state.workshop==='jobs') setWorkshop('explore'); renderPanel(); draw();}
+    if (state.mode==='log') {
+      state.logs[state.session]=null; state.feedback=''; renderPanel(); visitSession(state.session); persist();
+    }
+    if (state.mode==='park') {renderPanel(); draw();}
+  }
+  async function ride(park) {
+    stop(); V.hush(); state.running=park?'park':'test'; state.runStart=performance.now();
+    state.runTotal=state.savedTrick; state.feedback='';
+    if ($('rideResult')) $('rideResult').textContent='Rolling...';
+    Curio.tone(220,.08,.035); tick();
+  }
+  function shuffled(values) {
+    const a=values.slice();
+    for (let i=a.length-1;i>0;i--) {const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]];}
+    return a;
+  }
+  function visitSession(i) {
+    if (!state.logs[i]) state.logs[i]={order:shuffled(DATA[i]),dots:[],q:0,qMisses:0,helped:false};
+    const log=state.logs[i];
+    if (log.dots.length<log.order.length) startJump();
+    else {state.plotReady=false; updateLog(); draw(); if (log.q<3) how('askHow','#answer');}
+  }
+  function startJump() {
+    state.plotReady=false; state.plotMisses=0; state.jumpStart=performance.now(); state.running='jump';
+    updateLog(); tick();
+  }
+  function updateLog() {
+    if (state.mode!=='log' || !$('jumpCount')) return;
+    const log=state.logs[state.session]; if (!log) return;
+    $('jumpCount').textContent=log.dots.length===log.order.length?'All jumps plotted':`Jump ${log.dots.length+1} of ${log.order.length}`;
+    $('jumpCredit').textContent=`${log.dots.filter(d=>d.helped).length} Rae placed`;
+    const complete=log.dots.length===log.order.length;
+    for (const id of ['tickLeft','tickRight','plotPlace']) {
+      if ($(id)) $(id).setAttribute('aria-disabled',!complete && !state.plotReady);
+    }
+    if ($('plotPlace')) $('plotPlace').textContent=complete?'Inspect dot':state.plotReady?'Place dot':'Wait for jump';
+    if (complete) hint(log.q<3?L.askHow:'Session logged. Tap a dot to see its skater, or choose another session.');
+    else hint(state.plotReady?(innerWidth<1000?'Read the pole. Tap a tick, or use the arrows and Place dot.':
+      'Read the pole. Tap that height on the line plot.'):'Watch the jump. Wait for the board to freeze, then tap a tick.');
+  }
+  function selectTick(delta) {
+    const log=state.logs[state.session];
+    if (!log || (!state.plotReady && log.dots.length<log.order.length)) return;
+    state.selectedDot=clamp((state.selectedDot??0)+delta,0,12);
+    $('stageStatus').textContent=`${state.selectedDot}/8 ft selected. Tap ${log.q===3?'Inspect dot':'Place dot'}.`;
+    Curio.tone(320,.025,.02); draw();
+  }
+  async function plot(index,row=0) {
+    const log=state.logs[state.session]; if (!log) return;
+    if (log.dots.length===log.order.length) {
+      const dots=log.dots.filter(d=>d.height===index);
+      const d=dots[clamp(row,0,dots.length-1)];
+      if (d) feedback(`${['Dev','Mina','Walt','Rae'][d.skater]} · jump ${d.jump+1} · ${d.height}/8 ft${d.helped?' · Rae placed':''}`);
+      return;
+    }
+    if (!state.plotReady) return;
+    const correct=log.order[log.dots.length];
+    if (index!==correct) {
+      state.plotMisses++;
+      if (state.plotMisses===1) {
+        feedback('Count the eighths up from the last label on the pole.'); Curio.tone(140,.12,.035); speak('plotMiss');
+        state.selectedDot=index; state.running='miss'; state.runStart=performance.now(); tick(); return;
+      }
+    }
+    const helped=index!==correct;
+    state.plotReady=false; state.running='landing'; state.runStart=performance.now();
+    for (const id of ['tickLeft','tickRight','plotPlace']) {
+      if ($(id)) $(id).setAttribute('aria-disabled','true');
+    }
+    if ($('plotPlace')) $('plotPlace').textContent='Wait for result';
+    const jump=log.dots.length;
+    log.dots.push({height:correct,helped,skater:jump%4,jump});
+    if (helped) log.helped=true;
+    persist(); feedback(helped?'Rae placed this dot. Follow it from the pole.':'Got it. Your dot is on the plot.',!helped);
+    if (!helped) Curio.yes();
+    const token=state.token;
+    tick(); await speak(helped?'plotShown':'plotRight',true); await Curio.wait(600);
+    if (token!==state.token || state.mode!=='log') return;
+    if (log.dots.length===log.order.length) {
+      state.feedback=''; renderPanel(); how('askHow','#answer'); updateLog(); draw();
+    } else startJump();
+  }
+  async function checkQuestion() {
+    const log=state.logs[state.session];
+    if (!log || log.dots.length!==log.order.length || log.q>=3 || state.running==='answer') return;
+    const parsed=parseAnswer($('answer').value);
+    if (parsed.error) {feedback(parsed.error); return;}
+    const n=parsed.value, correct=Math.abs(n-QA[state.session][log.q])<1e-9;
+    const helped=!correct && log.qMisses>=1;
+    if (!correct && !helped) {
+      log.qMisses++; persist();
+      const line=log.q===1 && n===[4,5,4][state.session]?'missCount':'missLog';
+      feedback(L[line]); speak(line); return;
+    }
+    state.running='answer'; $('check').setAttribute('aria-disabled','true');
+    if (helped) {
+      log.helped=true;
+      // Save before revealing the worked answer, including during its speech beat.
+      persist();
+    }
+    feedback((helped?'Rae helped: ':'Yes: ')+ANSWERTEXT[state.session][log.q]+' ft.',correct);
+    if (helped) $('prompt').textContent=WORK[state.session][log.q]+' ft. Rae helped.';
+    const token=state.token;
+    if (correct) Curio.yes();
+    await speak(helped?'shown':'right',true);
+    if (token!==state.token || state.mode!=='log') return;
+    log.q++; log.qMisses=0; state.running=null; persist();
+    if (log.q===3) {
+      award('log-'+state.session,log.helped); renderPanel();
+      feedback(SESSION[state.session]+' logged. Your scoreboard has a new line.',true); speak('sessionDone');
+    } else {state.feedback=''; renderPanel();}
+    draw();
+  }
+  // Painting helpers use real stage pixels. Geometry is recalculated at every size.
+  function text(s,x,y,size=16,color='#f4f2ee',align='center',weight=700) {
+    ctx.fillStyle=color; ctx.font=`${weight} ${size}px "Segoe UI",sans-serif`; ctx.textAlign=align;
+    ctx.textBaseline='middle'; ctx.fillText(s,x,y);
+  }
+  function line(x1,y1,x2,y2,color,width=1,dash=[]) {
+    ctx.beginPath(); ctx.moveTo(x1,y1); ctx.lineTo(x2,y2); ctx.strokeStyle=color;
+    ctx.lineWidth=width; ctx.setLineDash(dash); ctx.stroke(); ctx.setLineDash([]);
+  }
+  function helpTag(x,y,star=false) {
+    const rows=W<600?[star?'* Rae':'Rae','helped']:[star?'* Rae helped':'Rae helped'];
+    ctx.font='700 10px "Segoe UI",sans-serif';
+    const w=Math.max(...rows.map(s=>ctx.measureText(s).width))+10, h=rows.length*12+4;
+    ctx.beginPath(); ctx.roundRect(x-w/2,y-h/2,w,h,4);
+    ctx.fillStyle='#f4f2eef5'; ctx.fill(); ctx.strokeStyle='#5b2bb5'; ctx.lineWidth=1; ctx.stroke();
+    rows.forEach((s,i)=>text(s,x,y+(i-(rows.length-1)/2)*12,10,'#321b45'));
+  }
+  function image(name,x,y,w,h,alpha=1) {
+    const img=images[name]; if (!img?.complete || !img.naturalWidth) return;
+    ctx.save(); ctx.globalAlpha=alpha;
+    const fit=Math.min(w/img.naturalWidth,h/img.naturalHeight);
+    const dw=img.naturalWidth*fit, dh=img.naturalHeight*fit;
+    ctx.drawImage(img,x+(w-dw)/2,y+h-dh,dw,dh); ctx.restore();
+  }
+  function cover(name,x,y,w,h) {
+    const img=images[name]; if (!img?.complete || !img.naturalWidth) return;
+    const scale=Math.max(w/img.naturalWidth,h/img.naturalHeight);
+    ctx.save(); ctx.beginPath(); ctx.rect(x,y,w,h); ctx.clip();
+    ctx.drawImage(img,x+(w-img.naturalWidth*scale)/2,y+(h-img.naturalHeight*scale)/2,
+      img.naturalWidth*scale,img.naturalHeight*scale); ctx.restore();
+  }
+  function wedge(cx,cy,r,start,sweep,color,label,hatch=false) {
+    const shown=sweep>360?(sweep%360 || 360):Math.min(360,sweep);
+    if (shown<=0) return;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,r,rad(start-90),rad(start+shown-90)); ctx.closePath();
+    ctx.fillStyle=color; ctx.fill(); ctx.strokeStyle='#f4f2ee'; ctx.lineWidth=1.5; ctx.stroke();
+    if (hatch) {
+      ctx.save(); ctx.clip();
+      for (let i=-W;i<W*2;i+=12) line(i,0,i+H,H,'#ddd7e5',2);
+      ctx.restore();
+    }
+    if (label!==undefined) {
+      const a=rad(start+shown/2-90), rr=r*.66;
+      const x=cx+Math.cos(a)*rr, y=cy+Math.sin(a)*rr;
+      if (hatch) {
+        ctx.fillStyle='#f4f2ee'; ctx.beginPath(); ctx.roundRect(x-18,y-15,36,30,6); ctx.fill();
+      }
+      if (Array.isArray(label)) {
+        text(label[0],x,y-7,clamp(r/12,12,22),'#fff');
+        text(label[1],x,y+11,10,'#fff');
+      } else text(label,x,y,clamp(r/12,12,22),hatch?'#1d2026':'#fff');
+    }
+  }
+  function draw() {
+    if (!W || !H) return;
+    if (state.mode==='spin') updateExplore();
+    ctx.clearRect(0,0,W,H);
+    ctx.fillStyle='#2a2d34'; ctx.fillRect(0,0,W,H);
+    const ramp=state.mode==='ramp';
+    $('lip').hidden=!ramp || (state.workshop==='jobs' && state.job<3);
+    $('proBody').hidden=!ramp; $('proRotate').hidden=!ramp;
+    if (state.mode==='spin') drawSpin();
+    if (state.mode==='ramp') drawRamp();
+    if (state.mode==='log') drawLog();
+    if (state.mode==='park') drawPark();
+  }
+  function drawSpin() {
+    const jobs=state.workshop==='jobs', compact=H<500, mobile=W<400;
+    const reserve=state.spins.length>1?20:0;
+    const r=Math.max(65,Math.min(260,(W-75)/2,(H-(jobs?125:compact?165:195)-reserve)/2))-(jobs||mobile?0:4);
+    const cx=W/2, cy=jobs?H*.49:r+(mobile?23:36);
+    geo={cx,cy,r};
+    const wash=ctx.createRadialGradient(cx,cy,15,cx,cy,r*1.6);
+    wash.addColorStop(0,'#48414e'); wash.addColorStop(1,'#252830'); ctx.fillStyle=wash; ctx.fillRect(0,0,W,H);
+    // Chalk scuffs and inset metal edge give the dial a physical surface.
+    for (let i=0;i<24;i++) {
+      const x=(i*173+19)%W, y=(i*97+55)%H;
+      line(x,y,x+20+(i%3)*10,y-3,'#ffffff09');
+    }
+    ctx.shadowColor='#0008'; ctx.shadowBlur=24; ctx.shadowOffsetY=10;
+    ctx.beginPath(); ctx.arc(cx,cy,r+11,0,Math.PI*2); ctx.fillStyle='#17191f'; ctx.fill();
+    ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+    ctx.beginPath(); ctx.arc(cx,cy,r+7,0,Math.PI*2); ctx.strokeStyle='#77717f'; ctx.lineWidth=2; ctx.stroke();
+    ctx.beginPath(); ctx.arc(cx,cy,r,0,Math.PI*2); ctx.fillStyle='#36313f'; ctx.fill();
+    let parts=state.spins, offset=0;
+    const j=jobs?getJob():null;
+    if (jobs) parts=j.parts.concat(j.unknown?[j.answer]:[]);
+    const colors=['#5b2bb5','#b54708','#356d79'];
+    const lapStart=!jobs && total()>360?Math.floor((total()-1)/360)*360:0;
+    parts.forEach((part,i)=>{
+      const unknown=jobs && j.unknown && !state.result && i===parts.length-1;
+      const start=Math.max(offset,lapStart), end=Math.min(offset+part,lapStart+360);
+      const label=jobs?(unknown?'?':j.slices?'':`${part}°`):parts.length<=1?undefined:
+        end-start===part?`${part}°`:[`${end-start}°`,'this lap'];
+      if (end>start) wedge(cx,cy,r-3,start-lapStart,end-start,unknown?'#6b7280':colors[i],label,unknown);
+      offset+=part;
+    });
+    if (!jobs) {
+      for (let d=0;d<360;d++) {
+        if (r<150 && d%5) continue;
+        const a=rad(d-90), major=d%30===0;
+        line(cx+Math.cos(a)*(r-(major?15:5)),cy+Math.sin(a)*(r-(major?15:5)),
+          cx+Math.cos(a)*r,cy+Math.sin(a)*r,major?'#f4f2ee':'#c8bcd44d',major?2:1);
+        if (major && (!mobile || d%90===0)) {
+          const labelR=r+(mobile?16:26);
+          text(d,cx+Math.cos(a)*labelR,cy+Math.sin(a)*labelR,clamp(r/18,11,15),'#f4f2ee');
+        }
+      }
+    } else if (j.slices) {
+      for (let d=0;d<360;d+=360/j.slices) {
+        line(cx,cy,cx+Math.cos(rad(d-90))*r,cy+Math.sin(rad(d-90))*r,'#f2eaf7',2);
+      }
+    }
+    const t=total();
+    if (!jobs && t>=360) {
+      for (let lap=0;lap<Math.floor(t/360);lap++) {
+        ctx.beginPath(); ctx.arc(cx,cy,r-22-lap*10,rad(-90),rad(270));
+        ctx.strokeStyle='#f2b705'; ctx.lineWidth=4; ctx.stroke();
+      }
+    }
+    if (!jobs || state.result) {
+      const progress=state.running==='spin' && !Curio.reduce?
+        clamp((performance.now()-state.runStart)/Math.max(600,state.runTotal/360*1500),0,1):1;
+      ctx.save(); ctx.translate(cx,cy); ctx.rotate(rad((state.running==='spin'?state.runTotal*progress:t)-90));
+      ctx.shadowColor='#0009'; ctx.shadowBlur=6; ctx.shadowOffsetY=5;
+      image('board-top',-r*.67,-r*.18,r*1.34,r*.36); ctx.shadowBlur=0;
+      ctx.beginPath(); ctx.moveTo(r*.78,0); ctx.lineTo(r*.64,-9); ctx.lineTo(r*.64,9);
+      ctx.closePath(); ctx.fillStyle='#f2b705'; ctx.fill(); ctx.restore();
+    }
+    if (!compact && !mobile) {
+      let pose='dev-nod';
+      const elapsed=performance.now()-state.runStart;
+      const duration=Math.max(600,state.runTotal/360*1500);
+      if (state.running==='spin') pose=elapsed<duration*.12?'dev-roll':elapsed<duration*.86?'dev-spin':'dev-land';
+      const h=200;
+      let figureW=150, x=Math.min(W-170,cx+r-60), y=H-h-(jobs?64:15);
+      if (W<600 && !$('readout').hidden) {
+        const box=$('readout').getBoundingClientRect(), stage=$('stage').getBoundingClientRect();
+        if (!jobs && box.top-stage.top-h-12>cy+r+12) y=Math.min(y,box.top-stage.top-h-12);
+        else if (cy-r>h+20) {x=W-figureW-12; y=12;}
+        else {
+          const right=box.right-stage.left;
+          figureW=Math.min(150,W-right-12); x=W-figureW-6;
+        }
+      }
+      ctx.save();
+      const amount=state.running==='spin' && !Curio.reduce?Math.min(1,elapsed/Math.max(600,state.runTotal/360*1500)):0;
+      if (amount) {
+        ctx.translate(x+figureW/2,y+100); ctx.scale(.8+Math.cos(amount*rad(state.runTotal))*.2,1);
+        ctx.translate(-x-figureW/2,-y-100);
+      }
+      const nod=state.running==='nod' && !Curio.reduce?Math.sin(elapsed/550*Math.PI)*8:0;
+      image(pose,x,y-nod,figureW,h); ctx.restore();
+    }
+    if (!jobs && H>470) text('DRAG THE BOARD  ·  ← → 1°  ·  SHIFT 10°',cx,H-9,11,'#bcb4c5');
+  }
+  function rampGeo() {
+    const jobs=state.workshop==='jobs', j=jobs?getJob():null;
+    const angle=jobs?state.jobRamp:state.ramp, left=jobs?j.left:state.flip;
+    const length=Math.min(380,W*(W<650?.42:.55),H*.65);
+    const x=left?W*(W<650?.6:.72):W*(W<650?.4:.27), y=H*.76;
+    const direction=left?-1:1;
+    return {x,y,length,angle,left,direction,lipX:x+direction*Math.cos(rad(angle))*length,
+      lipY:y-Math.sin(rad(angle))*length};
+  }
+  function plywood(g) {
+    ctx.save(); ctx.beginPath(); ctx.moveTo(g.x,g.y); ctx.lineTo(g.lipX,g.lipY); ctx.lineTo(g.lipX,g.y); ctx.closePath();
+    ctx.fillStyle='#b27841'; ctx.fill(); ctx.clip();
+    cover('plywood-texture',Math.min(g.x,g.lipX),g.lipY,Math.abs(g.lipX-g.x),g.y-g.lipY);
+    ctx.fillStyle='#6b380c18'; ctx.fillRect(0,0,W,H); ctx.restore();
+    line(g.x,g.y,g.lipX,g.lipY,'#f5d8a7',6); line(g.x,g.y+5,g.lipX,g.lipY+5,'#603c2c',3);
+    line(g.lipX,g.lipY,g.lipX,g.y,'#6b422c',5);
+    for (let i=1;i<5;i++) {
+      const p=i/5; ctx.beginPath(); ctx.arc(g.x+(g.lipX-g.x)*p,g.y+(g.lipY-g.y)*p+7,2,0,7);
+      ctx.fillStyle='#6a4b3c'; ctx.fill();
+    }
+  }
+  function drawRamp() {
+    cover('ground-strip',0,0,W,H);
+    ctx.fillStyle='#18232b22'; ctx.fillRect(0,0,W,H);
+    const g=rampGeo(); geo=g;
+    line(0,g.y,W,g.y,'#44382e',4); plywood(g);
+    const jobs=state.workshop==='jobs', j=jobs?getJob():null;
+    if ((!jobs && state.showAngle) || (jobs && state.result)) {
+      text(`${g.angle}°`,g.lipX,g.lipY-32,24,'#261738');
+    }
+    if (jobs && state.job===2) text(`${j.angle}° bank`,g.x+g.direction*75,g.y-30,15,'#261738');
+    drawProtractor(g);
+    if (!jobs || j.sketch) positionTarget('lip',g.lipX,g.lipY);
+    const t=performance.now()-state.runStart;
+    if (state.running==='test') drawTestSkater(g,t);
+    else if (state.running==='test-bailed') image('dev-bail',clamp(g.lipX-80,0,W-150),g.y-155,150,150);
+  }
+  function positionTarget(id,x,y) {
+    const el=$(id); el.hidden=false; const w=id==='proBody'?64:48;
+    el.style.left=clamp(x-w/2,0,W-w)+'px'; el.style.top=clamp(y-24,0,H-48)+'px';
+  }
+  function drawProtractor(g) {
+    const p=state.pro, x=p.x*W,y=p.y*H, radius=Math.min(180,g.length*.64,W*.38);
+    geo.proX=x; geo.proY=y; geo.proR=radius;
+    ctx.save(); ctx.translate(x,y); ctx.rotate(rad(p.rot));
+    ctx.beginPath(); ctx.arc(0,0,radius,Math.PI,Math.PI*2); ctx.closePath();
+    ctx.fillStyle='#fff5cfbb'; ctx.fill(); ctx.strokeStyle='#403451'; ctx.lineWidth=2; ctx.stroke();
+    ctx.beginPath(); ctx.arc(0,0,radius*.45,Math.PI,Math.PI*2); ctx.strokeStyle='#5b2bb555'; ctx.stroke();
+    for (let d=0;d<=180;d++) {
+      const a=rad(-d), major=d%10===0;
+      line(Math.cos(a)*(radius-(major?13:6)),Math.sin(a)*(radius-(major?13:6)),
+        Math.cos(a)*radius,Math.sin(a)*radius,'#403451',major?1.4:.6);
+      if (major && (radius>=150 || d%20===0)) {
+        const size=radius<160?10:11;
+        text(d,Math.cos(a)*(radius-25),Math.sin(a)*(radius-25),size,'#36284b');
+        text(180-d,Math.cos(a)*(radius-58),Math.sin(a)*(radius-58),size,'#793815');
+      }
+    }
+    if (state.workshop==='jobs' && state.result && Math.hypot(x-g.x,y-g.y)<2 && Math.abs(p.rot)<1) {
+      const angle=g.left?180-g.angle:g.angle;
+      const inner=g.left || state.job===2;
+      const rr=radius-(inner?58:25), a=rad(-angle);
+      const xx=Math.cos(a)*rr, yy=Math.sin(a)*rr;
+      ctx.beginPath(); ctx.arc(xx,yy,14,0,7); ctx.fillStyle='#f2b705'; ctx.fill();
+      text(getJob().answer,xx,yy,12,'#241a36');
+    }
+    line(-radius,0,radius,0,'#403451',2); line(-10,0,10,0,'#5b2bb5',2); line(0,-10,0,8,'#5b2bb5',2);
+    ctx.restore();
+    positionTarget('proBody',x,y-30);
+    positionTarget('proRotate',x+Math.cos(rad(p.rot-150))*radius,y+Math.sin(rad(p.rot-150))*radius);
+    if (Math.hypot(x-g.x,y-g.y)<2) text('CENTERED',x,y+61,11,'#241a36');
+  }
+  function drawTestSkater(g,t) {
+    const progress=Curio.reduce?.75:clamp(t/2400,0,1);
+    if (g.angle>35 && progress>=.5) {
+      image('dev-bail',clamp(g.lipX-80,0,W-150),g.y-155,150,150);
+      $('stageStatus').textContent='Bailed · Dev is fine'; return;
+    }
+    const hop=g.angle<15?24:g.angle<25?65:120;
+    const room=g.direction>0?W-65-g.lipX:g.lipX-65;
+    const flight=Math.min(160,Math.max(20,room));
+    let x,y,air=0;
+    if (progress<.25) {
+      x=g.x-g.direction*100*(1-progress/.25); y=g.y;
+    } else if (progress<.5) {
+      const p=(progress-.25)/.25;
+      x=g.x+(g.lipX-g.x)*p; y=g.y+(g.lipY-g.y)*p;
+    } else {
+      const p=clamp((progress-.5)/.5,0,1);
+      x=g.lipX+g.direction*flight*p;
+      air=4*Math.min(hop,H*.3)*p*(1-p);
+      y=g.lipY+(g.y-g.lipY)*p-air;
+    }
+    ctx.save(); ctx.setLineDash([5,5]);
+    ctx.beginPath(); ctx.moveTo(g.lipX,g.lipY);
+    ctx.quadraticCurveTo(g.lipX+flight/2*g.direction,(g.lipY+g.y)/2-hop*2,g.lipX+flight*g.direction,g.y);
+    ctx.strokeStyle='#6a3c99'; ctx.lineWidth=2; ctx.stroke(); ctx.restore();
+    const figureH=Math.min(140,H*.3,Math.max(40,g.lipY-12)), figureW=figureH*.82;
+    image(air>5 && g.angle>=15?'dev-air':progress>.8?'dev-land':'dev-roll',
+      clamp(x-figureW/2,0,W-figureW),y-figureH,figureW,figureH);
+    if (g.angle>=25 && g.angle<=35 && air>20) {
+      spinBadge(x,y,figureW,figureH,27);
+    }
+  }
+  function spinBadge(x,bottom,figureW,figureH,radius=24) {
+    const laps=Math.floor(state.savedTrick/360), outer=radius+4*Math.max(0,laps), margin=outer+1;
+    let bx=clamp(x,margin,W-margin), by=bottom-figureH-radius-8;
+    if (by<margin) {
+      bx=x-figureW/2-radius-16;
+      if (bx<margin) bx=x+figureW/2+radius+16;
+      bx=clamp(bx,margin,W-margin); by=clamp(bottom-figureH*.5,margin,H-margin);
+    }
+    wedge(bx,by,radius,0,state.savedTrick,'#5b2bb5');
+    for (let lap=0;lap<laps;lap++) {
+      ctx.beginPath(); ctx.arc(bx,by,radius+4+lap*4,0,7);
+      ctx.strokeStyle='#b47f00'; ctx.lineWidth=3; ctx.stroke();
+    }
+  }
+  function drawLog() {
+    const log=state.logs[state.session]; if (!log) return;
+    const questions=log.dots.length===log.order.length && log.q<3;
+    const smallQuestions=questions && H<330;
+    const sceneHeight=smallQuestions?Math.min(125,H*.48):Math.min(310,H*(questions?.38:.48));
+    const ground=sceneHeight-15;
+    cover('ground-strip',0,0,W,sceneHeight);
+    const plotBase=H-(smallQuestions?85:questions?105:55), left=38, right=W-35, step=(right-left)/12;
+    const dotSpace=smallQuestions?8:H<330?12:21, dotRadius=H<330?5:7;
+    geo={left,right,step,plotBase,sceneHeight,dotSpace};
+    const ph=Math.min(150,sceneHeight*.42);
+    const poleX=W*.86, poleBottom=ground, poleTop=ph+20;
+    const poleStep=(poleBottom-poleTop)/12;
+    const jumpIndex=state.running==='jump' || state.plotReady?log.dots.length:Math.max(0,log.dots.length-1);
+    const height=log.order[Math.min(jumpIndex,log.order.length-1)];
+    const progress=state.running==='jump'?clamp((performance.now()-state.jumpStart)/1200,0,1):1;
+    const wheelsY=poleBottom-height*poleStep;
+    const y=Curio.reduce?wheelsY:ground+(wheelsY-ground)*Math.sin(progress*Math.PI/2);
+    const person=['dev-air','mina-air','walt-air','rae-air'][jumpIndex%4];
+    const x=W*.48;
+    plywood({x:W*.12,y:ground,lipX:W*.29,lipY:ground-27});
+    image(person,x-ph*.45,y-ph,ph*.85,ph);
+    ctx.beginPath(); ctx.roundRect(poleX-13,poleTop-30,63,poleBottom-poleTop+42,4);
+    ctx.fillStyle='#f4f2eef5'; ctx.fill(); ctx.strokeStyle='#93816a'; ctx.lineWidth=1.5; ctx.stroke();
+    line(poleX,poleBottom,poleX,poleBottom-poleStep*12,'#32283f',5);
+    for (let i=0;i<=12;i++) {
+      const yy=poleBottom-i*poleStep;
+      line(poleX-8,yy,poleX+9,yy,'#32283f',i%4?1.5:3);
+      if (i%4===0) text(['0','1/2','1','1 1/2'][i/4],poleX+15,yy,12,'#241a36','left');
+    }
+    text('ft',poleX,poleBottom-poleStep*12-17,12,'#241a36');
+    line(x+ph*.35,y,poleX,y,'#9a6b00',2,[6,4]);
+    const counts=Array(13).fill(0);
+    const chalk=ctx.createLinearGradient(0,sceneHeight,0,H);
+    chalk.addColorStop(0,'#302738'); chalk.addColorStop(1,'#231e2a');
+    ctx.fillStyle=chalk; ctx.fillRect(0,sceneHeight,W,H-sceneHeight);
+    for (let i=0;i<18;i++) {
+      const sx=(i*139+17)%W, sy=sceneHeight+30+(i*53)%Math.max(1,H-sceneHeight-65);
+      line(sx,sy,sx+28,sy-2,'#f4f2ee06');
+    }
+    if (state.session===2 && state.lowOverlay) {
+      const low=Array(13).fill(0);
+      ctx.setLineDash([2,2]);
+      DATA[0].forEach(v=>{const yy=plotBase-24-(low[v]++)*dotSpace;
+        ctx.beginPath(); ctx.arc(left+v*step,yy,dotRadius,0,7); ctx.strokeStyle='#bcb3c6'; ctx.lineWidth=2; ctx.stroke();});
+      ctx.setLineDash([]);
+    }
+    log.dots.forEach((d,i)=>{
+      let yy=plotBase-24-(counts[d.height]++)*dotSpace;
+      let xx=left+d.height*step;
+      if (i===log.dots.length-1 && state.running==='landing' && !Curio.reduce) {
+        const p=clamp((performance.now()-state.runStart)/650,0,1), eased=1-(1-p)**3;
+        xx=x+(xx-x)*eased;
+        yy=y+(yy-y)*eased-Math.sin(p*Math.PI)*24;
+      }
+      ctx.beginPath(); ctx.arc(xx,yy,dotRadius,0,7);
+      ctx.fillStyle=d.helped?'#27212f':'#f3bf48'; ctx.fill(); ctx.strokeStyle='#f3bf48'; ctx.lineWidth=2; ctx.stroke();
+    });
+    if (state.session===2 && state.lowOverlay) {
+      text('Low: dashed rings',W*.26,plotBase-10,10,'#c9bcd9');
+      text('Big: solid edges',W*.74,plotBase-10,10,'#c9bcd9');
+    }
+    line(left,plotBase,right,plotBase,'#f4f2ee',2);
+    for (let i=0;i<=12;i++) {
+      line(left+i*step,plotBase-7,left+i*step,plotBase+7,'#f4f2ee',2);
+      if (W>600 || i%2===0) text(i===0?'0':i===8?'1':i===12?'1 1/2':`${i}/8`,left+i*step,plotBase+24,
+        W<430?10:12,'#f4f2ee');
+    }
+    text('HEIGHT IN FEET · EACH TICK IS 1/8',W/2,H-(smallQuestions?45:questions?61:11),W<430?10:11,'#c9bcd9');
+    if (H>=330) text(state.plotReady?'READ THE POLE → PLACE THE DOT':log.dots.length===log.order.length?'YOUR JUMP RECORD':'WATCH THE JUMP',
+      W/2,sceneHeight+22,W<430?11:13,state.plotReady?'#f3bf48':'#d6c6e8');
+    if (state.running==='miss') {
+      const dx=Curio.reduce?0:Math.sin((performance.now()-state.runStart)/30)*6;
+      ctx.beginPath(); ctx.arc(left+state.selectedDot*step+dx,plotBase-24,9,0,7);
+      ctx.strokeStyle='#fda49c'; ctx.lineWidth=3; ctx.stroke();
+    }
+    if (state.selectedDot!==null && (document.activeElement===canvas || document.activeElement?.closest('.tick-nav'))) {
+      ctx.strokeStyle='#fff'; ctx.lineWidth=3;
+      ctx.strokeRect(left+state.selectedDot*step-10,plotBase-14,20,28);
+    }
+  }
+  function drawPark() {
+    cover('park-bg',0,0,W,H);
+    const ground=H*.78, slots=Object.entries(state.ramps).sort((a,b)=>String(a[0]).localeCompare(String(b[0])));
+    const props=['rail','bench','light','planter','bikerack','tree'];
+    props.forEach((p,i)=>{
+      if (!state.done['spin-'+i]) return;
+      const tall=p==='light'||p==='tree';
+      const width=tall?W*.12:W*.14, height=tall?H*.39:H*.14;
+      const propGround=H*.66;
+      image('prop-'+p,W*(.03+i*.15),propGround-height,width,height);
+      if (state.helped['spin-'+i]) helpTag(W*(.03+i*.15)+width/2,propGround-height-12);
+    });
+    slots.forEach(([id,a],i)=>{
+      const x=W*(.08+i*.15), len=Math.min(W*.12,120), h=Math.sin(rad(a))*len;
+      plywood({x,y:ground,lipX:x+Math.cos(rad(a))*len,lipY:ground-h});
+      text(`${a}°`,x+len/2,ground+22,12,'#261738');
+      if (state.helped['ramp-'+id]) helpTag(x+len/2,ground+44);
+    });
+    const boardW=Math.min(330,W*.43), boardH=boardW*.68, boardX=W-boardW-15, boardY=H*.08;
+    image('scoreboard-blank',boardX,boardY,boardW,boardH);
+    text('CREW JUMP LOG',boardX+boardW/2,boardY+boardH*.18,clamp(W/65,10,16),'#f4e5c4');
+    SESSION.forEach((s,i)=>{
+      const label=W<600?`${s.split(' ')[0]}: ${DATA[i].length} logged`:`${s}: ${DATA[i].length} jumps logged`;
+      if (state.done['log-'+i]) text(`${label}${state.helped['log-'+i]?' *':''}`,
+        boardX+boardW/2,boardY+boardH*(.32+i*.12),
+        clamp(W/80,10,13),'#f4e5c4');
+    });
+    if ([0,1,2].some(i=>state.done['log-'+i] && state.helped['log-'+i])) {
+      helpTag(boardX+boardW/2,boardY+boardH+16,true);
+    }
+    const t=performance.now()-state.runStart;
+    if (state.running==='park') {
+      const p=clamp(t/12000,0,1);
+      const frame=Curio.reduce?Math.floor(p*8)/8:p;
+      const x=20+frame*(W-130);
+      let air=0, angle=0;
+      for (let i=0;i<slots.length;i++) {
+        const rx=W*(.08+i*.15), a=+slots[i][1], local=(x-rx)/Math.max(60,W*.15);
+        if (local>=0 && local<=1) {
+          angle=a;
+          if (a>35 && local>.35) {
+            image('dev-bail',rx,ground-150,130,150);
+            state.running='park-bailed';
+            if ($('rideResult')) $('rideResult').textContent='Bailed. Try a gentler ramp in Ramp Shop.';
+            $('stageStatus').textContent='Bailed'; speak('bail'); return;
+          }
+          air=Math.sin(local*Math.PI)*(a<15?22:a<25?65:Math.min(125,H*.3));
+        }
+      }
+      const last=slots.length?W*(.08+(slots.length-1)*.15):W*.7;
+      const spin=x>last && x<last+W*.2;
+      image(air>5 && angle>=15?'dev-air':spin?'dev-spin':'dev-roll',x,ground-air-140,110,140);
+      if ((angle>=25 && air>20)||spin) {
+        spinBadge(x+55,ground-air,110,140);
+      }
+    } else if (state.running==='park-bailed') image('dev-bail',W*.35,ground-150,130,150);
+    else image('dev-roll',W*.06,ground-170,135,170);
+  }
+  function tick() {
+    cancelAnimationFrame(raf);
+    const now=performance.now(), elapsed=now-state.runStart;
+    draw();
+    if (state.running==='jump' && now-state.jumpStart>=1200) {
+      state.running=null; state.plotReady=true; updateLog(); draw(); return;
+    }
+    if (state.running==='spin' && elapsed>=Math.max(600,state.runTotal/360*1500)) {
+      state.running=null; Curio.tone(720,.09,.05); draw(); return;
+    }
+    if (state.running==='nod' && elapsed>=550) {state.running=null; draw(); return;}
+    if (state.running==='miss' && elapsed>=550) {state.running=null; draw(); return;}
+    if (state.running==='landing' && elapsed>=650) {state.running=null; draw(); return;}
+    if (state.running==='test') {
+      if (state.ramp>35 && elapsed>=1200) {
+        state.running='test-bailed'; drawRamp(); $('stageStatus').textContent='Bailed · Dev is fine';
+        image('dev-bail',clamp(geo.lipX-80,0,W-150),geo.y-155,150,150); speak('bail'); return;
+      }
+      if (elapsed>=2400) {state.running=null; draw(); return;}
+    }
+    if (state.running==='park' && elapsed>=12000) {
+      state.running=null;
+      if ($('rideResult')) $('rideResult').textContent=`Run complete. Your ${state.savedTrick}° finish.`;
+      Curio.yes(); draw(); return;
+    }
+    if (state.running && !state.running.endsWith('bailed') && state.running!=='answer') raf=requestAnimationFrame(tick);
+  }
+  function resize() {
+    const rect=$('stage').getBoundingClientRect(); W=rect.width; H=rect.height;
+    const ratio=Math.min(2,devicePixelRatio||1); canvas.width=Math.round(W*ratio); canvas.height=Math.round(H*ratio);
+    ctx.setTransform(ratio,0,0,ratio,0,0); draw();
+  }
+  function localPoint(e) {const rect=canvas.getBoundingClientRect(); return {x:e.clientX-rect.left,y:e.clientY-rect.top};}
+  function pointerAngle(p,g=geo) {return Math.atan2(p.y-g.cy,p.x-g.cx)*180/Math.PI+90;}
+  canvas.onpointerdown=e=>{
+    const p=localPoint(e);
+    if (state.mode==='spin' && state.workshop==='explore') {
+      stop(); const a=pointerAngle(p); drag={type:'dial',last:a,accum:state.spins.at(-1)};
+      canvas.setPointerCapture(e.pointerId); canvas.focus({preventScroll:true});
+      Curio.tone(250,.04,.025); e.preventDefault();
+    }
+    if (state.mode==='log') {
+      canvas.focus({preventScroll:true});
+      const n=clamp(Math.round((p.x-geo.left)/geo.step),0,12);
+      if (p.y>=geo.sceneHeight) {
+        state.selectedDot=n; state.selectedRow=Math.max(0,Math.round((geo.plotBase-24-p.y)/geo.dotSpace));
+        plot(n,state.selectedRow);
+      }
+    }
+  };
+  canvas.onpointermove=e=>{
+    if (!drag || drag.type!=='dial') return;
+    const a=pointerAngle(localPoint(e));
+    let diff=a-drag.last; if (diff>180) diff-=360; if (diff<-180) diff+=360;
+    drag.last=a;
+    const index=state.spins.length-1, before=total()-state.spins[index];
+    drag.accum=clamp(drag.accum+diff,0,900-before);
+    state.spins[index]=Math.round(drag.accum);
+    updateExplore(); draw();
+  };
+  canvas.onpointerup=()=>{
+    drag=null;
+    if (state.mode==='spin' && $('add')?.getAttribute('aria-disabled')==='false') how('addHow','#add');
+  };
+  canvas.onpointercancel=()=>{drag=null;};
+  canvas.onkeydown=e=>{
+    if (state.mode==='spin' && state.workshop==='explore' && e.key.startsWith('Arrow')) {
+      e.preventDefault(); stop();
+      const i=state.spins.length-1, prev=total()-state.spins[i];
+      state.spins[i]=clamp(state.spins[i]+(['ArrowRight','ArrowUp'].includes(e.key)?1:-1)*(e.shiftKey?10:1),0,900-prev);
+      updateExplore(); draw(); Curio.tone(320,.025,.02);
+      if ($('add')?.getAttribute('aria-disabled')==='false' && !V.heard('addHow')) how('addHow','#add');
+    }
+    if (state.mode==='log') {
+      if (e.key==='ArrowRight' || e.key==='ArrowLeft') {
+        e.preventDefault(); state.selectedDot=clamp((state.selectedDot??0)+(e.key==='ArrowRight'?1:-1),0,12);
+        $('stageStatus').textContent=`${state.selectedDot}/8 ft selected. Press Enter to place.`; draw();
+      }
+      if (e.key==='ArrowUp' || e.key==='ArrowDown') {
+        e.preventDefault(); state.selectedRow=clamp(state.selectedRow+(e.key==='ArrowUp'?1:-1),0,4); draw();
+      }
+      if (e.key==='Enter' || e.key===' ') {e.preventDefault(); plot(state.selectedDot??0,state.selectedRow);}
+    }
+  };
+  function changeRamp(p) {
+    const g=rampGeo();
+    const angle=clamp(Math.round(Math.atan2(g.y-p.y,(p.x-g.x)*g.direction)*180/Math.PI),5,60);
+    if (state.workshop==='jobs') state.jobRamp=angle; else state.ramp=angle;
+    draw();
+  }
+  function snap() {
+    const g=rampGeo(), p=state.pro;
+    if (Math.hypot(p.x*W-g.x,p.y*H-g.y)<=24 && Math.abs(p.rot)<=10) {
+      p.x=g.x/W; p.y=g.y/H; p.rot=0;
+      hint(L.scaleHow);
+      how('scaleHow','#proBody'); Curio.tone(640,.07,.04);
+    }
+  }
+  for (const id of ['lip','proBody','proRotate']) {
+    const el=$(id);
+    el.onpointerdown=e=>{
+      e.preventDefault(); stop(); el.focus({preventScroll:true}); el.setPointerCapture(e.pointerId);
+      const p=localPoint(e); drag={type:id,start:p,pro:{...state.pro}};
+      if (id==='lip') changeRamp(p);
+    };
+    el.onpointermove=e=>{
+      if (!drag || drag.type!==id) return;
+      const p=localPoint(e);
+      if (id==='lip') changeRamp(p);
+      if (id==='proBody') {
+        state.pro.x=clamp(drag.pro.x+(p.x-drag.start.x)/W,.05,.95);
+        state.pro.y=clamp(drag.pro.y+(p.y-drag.start.y)/H,.2,.88); draw();
+      }
+      if (id==='proRotate') {
+        const a=Math.atan2(p.y-state.pro.y*H,p.x-state.pro.x*W)*180/Math.PI+150;
+        state.pro.rot=((Math.round(a)+540)%360)-180; draw();
+      }
+    };
+    el.onpointerup=()=>{if (id!=='lip') snap(); drag=null; draw();};
+    el.onpointercancel=()=>{drag=null;};
+    el.onkeydown=e=>{
+      if (!['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','q','Q','e','E'].includes(e.key)) return;
+      e.preventDefault(); stop();
+      if (id==='lip') {
+        const value=clamp((state.workshop==='jobs'?state.jobRamp:state.ramp)+
+          (['ArrowUp','ArrowRight'].includes(e.key)?1:-1),5,60);
+        if (state.workshop==='jobs') state.jobRamp=value; else state.ramp=value;
+      } else {
+        if (e.key==='ArrowLeft') state.pro.x-=2/W;
+        if (e.key==='ArrowRight') state.pro.x+=2/W;
+        if (e.key==='ArrowUp') state.pro.y-=2/H;
+        if (e.key==='ArrowDown') state.pro.y+=2/H;
+        if (e.key.toLowerCase()==='q') state.pro.rot--;
+        if (e.key.toLowerCase()==='e') state.pro.rot++;
+        state.pro.x=clamp(state.pro.x,.05,.95); state.pro.y=clamp(state.pro.y,.2,.88);
+      }
+      Curio.tone(280,.025,.02); draw();
+    };
+  }
+  $('previous').onclick=()=>page(state.job-1); $('next').onclick=()=>page(state.job+1);
+  $('miniTip').onclick=()=>{hint(getJob().tip); state.tip=true; Curio.tone(400,.05,.03);};
+  for (const mode of ['park','spin','ramp','log']) $('m-'+mode).onclick=()=>setMode(mode);
+  Curio.init({clips:"voice:*",rate:.95});
+  Curio.onMotion(()=>draw());
+  for (const [name,src] of Object.entries(A)) {
+    const img=new Image(); img.onload=()=>draw(); img.src=src; images[name]=img;
+  }
+  new ResizeObserver(()=>{
+    if (resizeQueued) return; resizeQueued=true;
+    requestAnimationFrame(()=>{resizeQueued=false; resize();});
+  }).observe($('stage'));
+  renderPanel(); resize();
+  window.__tool={state,setMode,setWorkshop,page,getJob,draw,allLines:V.allLines,vlog:V.log,
+    parseAnswer,check,plot,total,DATA,QA,award,stop,ride,go,visitSession,
+    get geo(){return geo;}, get vq(){return V.queue;}};
+})();
+</script>
+</body>
+</html>

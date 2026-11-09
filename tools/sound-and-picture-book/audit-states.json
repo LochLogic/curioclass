@@ -1,10 +1,342 @@
 {
-  "keep":[],
-  "states":[
-    {"name":"sample-make","steps":[{"click":"#sample"},{"click":"#m-make"}],"keep":["#page-canvas","#sound-bg","#sound-fx"]},
-    {"name":"sound-tray","steps":[{"click":"#sample"},{"click":"#m-make"},{"click":"#sound-fx"}],"keep":["#chooser","#dialog-hint"],"sizes":["680x425","1366x768","375x812"]},
-    {"name":"swapped","steps":[{"click":"#sample"},{"click":"#m-swap"},{"click":"#chip-fx-1"},{"click":"#chip-fx-2"}],"keep":["#swap-play","#undo"]},
-    {"name":"the-end","steps":[{"click":"#sample"},{"click":"#m-play"},{"click":"#next"},{"click":"#next"},{"click":"#next"}],"keep":["#end-swap","#end-restart"],"sizes":["680x425","1366x768","375x812"]},
-    {"name":"new-book-dialog","steps":[{"click":"#new-book"}],"keep":["#confirm-new","#keep-book","#dialog-hint"],"sizes":["680x425","1366x768","375x812"]}
+  "keep": [],
+  "states": [
+    {
+      "name": "sample-make",
+      "steps": [
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#m-make"
+        }
+      ],
+      "keep": [
+        "#page-canvas",
+        "#sound-bg",
+        "#sound-fx"
+      ]
+    },
+    {
+      "name": "sound-tray",
+      "steps": [
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#m-make"
+        },
+        {
+          "click": "#sound-fx"
+        }
+      ],
+      "keep": [
+        "#chooser",
+        "#dialog-hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "swapped",
+      "steps": [
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#m-swap"
+        },
+        {
+          "click": "#chip-fx-1"
+        },
+        {
+          "click": "#chip-fx-2"
+        }
+      ],
+      "keep": [
+        "#swap-play",
+        "#undo"
+      ]
+    },
+    {
+      "name": "the-end",
+      "steps": [
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#m-play"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#next"
+        }
+      ],
+      "keep": [
+        "#end-swap",
+        "#end-restart"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "new-book-dialog",
+      "steps": [
+        {
+          "click": "#new-book"
+        }
+      ],
+      "keep": [
+        "#confirm-new",
+        "#keep-book",
+        "#dialog-hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "selected-pose",
+      "steps": [
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#m-make"
+        },
+        {
+          "click": "#piece-1"
+        },
+        {
+          "click": "#pose-scared"
+        }
+      ],
+      "keep": [
+        "#page-canvas",
+        "#editing",
+        "#sound-bg",
+        "#sound-fx"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "undo-after-edit",
+      "steps": [
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#m-swap"
+        },
+        {
+          "click": "#chip-fx-1"
+        },
+        {
+          "click": "#chip-fx-2"
+        },
+        {
+          "click": "#m-make"
+        },
+        {
+          "click": "#page-1"
+        },
+        {
+          "click": "#place-tray"
+        },
+        {
+          "click": "#choose-pond"
+        },
+        {
+          "click": "#m-swap"
+        }
+      ],
+      "keep": [
+        "#undo",
+        "#swap-play"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "size-extreme",
+      "steps": [
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#m-make"
+        },
+        {
+          "click": "#piece-1"
+        },
+        {
+          "key": "Tab"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        },
+        {
+          "key": "ArrowRight"
+        }
+      ],
+      "keep": [
+        "#page-canvas",
+        ".handle",
+        "#editing"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "event-card-visible",
+      "steps": [
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#event-tray"
+        },
+        {
+          "click": "#card-event-friend"
+        },
+        {
+          "click": "#set-page-1"
+        }
+      ],
+      "keep": [
+        "#set-page-1",
+        "#make-it"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "page-slot-instructions",
+      "steps": [
+        {
+          "click": "#set-page-1"
+        }
+      ],
+      "keep": [
+        "#chooser",
+        "#dialog-read",
+        "#dialog-hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "who-at-capacity",
+      "steps": [
+        {
+          "click": "#sample"
+        },
+        {
+          "click": "#m-make"
+        },
+        {
+          "click": "#piece-1"
+        },
+        {
+          "click": "#remove"
+        },
+        {
+          "click": "#things-tray"
+        },
+        {
+          "click": "#choose-umbrella"
+        },
+        {
+          "key": "Escape"
+        },
+        {
+          "click": "#things-tray"
+        },
+        {
+          "click": "#choose-basket"
+        },
+        {
+          "key": "Escape"
+        },
+        {
+          "click": "#things-tray"
+        },
+        {
+          "click": "#choose-map"
+        },
+        {
+          "key": "Escape"
+        },
+        {
+          "click": "#m-plan"
+        },
+        {
+          "click": "#who-tray"
+        },
+        {
+          "click": "#card-who-fox"
+        },
+        {
+          "click": "#set-page-0"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#make-it"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
   ]
 }

@@ -1,5 +1,19 @@
 # Recital Practice Plan build handoff
 
+## Cold review changes
+
+Preserved the painted rooms, brass program board, model and deterministic takes. Listen now withholds diagnostic x marks, timing ticks, velocity shading, actual BPM and readiness readouts until meter reveal. Reveals are tracked per criterion, so swapping the rubric cannot expose a new meter without a judgment. Agreement uses immutable first ear values, and each meter can be revealed only once per criterion. The sheet follows the same rule.
+
+Shortened Practice, Listen and Recital how lines and added the rating instruction at take completion. Listen entry drops stale planning narration before its short how line. Match voice/lines.json to the source before recording.
+
+Added a shaded SVG keyboard inside the existing recital program card. It lights actual saved pitches using the existing playback frame, resets between pieces and on Stop, and adds no scoring or input. The metronome was processed again with art.py --rekey and holes:true to remove the green fringe.
+
+Skip-all no longer marks a recital complete. The last finished playback records skipped and missing passages on the sheet. Program changes invalidate that record, fewer than two pieces cannot begin, and old saves without this playback record cannot retain a legacy completion badge. Takes and practice progress remain intact.
+
+Compact Listen uses one toolbar so five first-ear rows fit. Revealed comparisons use content-height rows in a keyboard-scrollable region. Phone recital cards use a compact grid; long introductions scroll inside their own area without covering the program or keyboard. Subsecond timing overruns say Just over rather than Over by 0:00.
+
+The final audit confirmed hidden phone reorder buttons. Selected programs now expand to all rows; Notes moves into the phone header with its full accessible name and keeps focus across resizing. The venue paintings remain in the choice cards and full recital scene. Empty/one-piece panels use less blank height. At 1280x720, tighter practice spacing keeps the Flow control visible. Recital BPM stays labeled as the captured target until that take's tempo judgment has been revealed, closing a side path around Listen's blind comparison.
+
 ## Structure
 
 src.html starts from the kit starter, with kit:curio and kit:theme-912. CSS lays out four responsive views at real pixel sizes. content.json is bundled through json:content and holds piece facts, note attacks, hand labels, criteria, venue notes and score provenance. The script contains state, model, deterministic takes, program editor, rubric, weekly board, piano-roll renderer, Web Audio voice, recital scheduler and device-only persistence. window.__tool exposes the model, state and principal actions for review.
@@ -35,6 +49,10 @@ The spec has no explicit open-question list. These conflicts or unspecified choi
 ## Engine changes wanted
 
 None. No kit engine changes are required.
+
+## Sensitivity
+
+This is a small European and American piano selection, not a survey of musical cultures. Keep Christian Petzold's authorship distinct from Bach's notebook and credit Scott Joplin as the composer of The Entertainer, rather than treating the later film as its origin. A cultural reviewer should consider the senior-center notes' assumptions about listeners' childhood repertoire and film familiarity. The fictional venue notes are guidance, not facts about older adults. All five paintings contain no people; the audience uses code silhouettes.
 
 ## Art
 

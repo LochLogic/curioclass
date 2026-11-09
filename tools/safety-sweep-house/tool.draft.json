@@ -1,0 +1,31 @@
+{
+  "id": "safety-sweep-house",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Search a house. Think it through. Make it safer.",
+  "outcome": "Recognize household and online hazards, compare outcomes, and practice safe actions",
+  "driver": "students or teacher",
+  "minutes": "20-30",
+  "modes": [],
+  "grades_label": "Grades 3-5",
+  "sources": [
+    "CDC: Cleaning and Disinfecting with Bleach: https://www.cdc.gov/hygiene/about/cleaning-and-disinfecting-with-bleach.html | US federal public domain guidance; original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "CDC: PROTECT / medicine safety: https://www.cdc.gov/medication-safety/protect/index.html | US federal public domain guidance; original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "USFA: Cooking Fire Safety: https://www.usfa.fema.gov/prevention/home-fires/prevent-fires/cooking/ | US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "USFA: Candle Fire Safety: https://www.usfa.fema.gov/prevention/home-fires/prevent-fires/candle/ | US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "USFA: Smoke Alarms: https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/smoke-alarms/ | US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "USFA: Heating Fire Safety: https://www.usfa.fema.gov/prevention/home-fires/prevent-fires/heating/ | US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "CPSC: In-Home Drowning: https://www.cpsc.gov/Safety-Education/Safety-Education-Centers/In-Home-Drowning-Safety-Information-Center | CPSC public information, freely distributable with credit; original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "CPSC: Pool Safely: https://www.cpsc.gov/s3fs-public/360.pdf | CPSC public information, freely distributable with credit; original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "FTC: Kids and Video Games: https://consumer.ftc.gov/articles/kids-and-video-games | US federal public domain guidance; original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "HRSA: Calling Poison Help: https://poisonhelp.hrsa.gov/faq/calling-poison-help | US government authored factual guidance; original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "USFA: Escape Planning: https://www.usfa.fema.gov/prevention/home-fires/prepare-for-fire/home-fire-escape-plans/ | US government authored guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "CDC MMWR: childhood poisoning prevention: https://stacks.cdc.gov/view/cdc/28658/cdc_28658_DS1.pdf | US federal factual guidance, public domain in the US; original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "USFA: Youth Firesetting Interviewing (2025): https://apps.usfa.fema.gov/ax/sm/sm_0621.pdf | US government authored factual guidance, public domain in the US (17 USC 105); original paraphrase CC BY 4.0 | checked 2026-11-06",
+    "Original fictional scenario data and text: Curio Class, CC BY 4.0; code and vector drawings MIT",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06",
+  "curiosity": true
+}

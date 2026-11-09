@@ -50,13 +50,51 @@
       "drawn_by": "codex"
     },
     {
+      "name": "dancer-cast-front",
+      "people": true,
+      "cutout": "keyed",
+      "key": "magenta",
+      "aspect": "3:4",
+      "width": 1086,
+      "quality": 82,
+      "drawn_by": "codex",
+      "prompt": "Soft painted gouache and colored-pencil texture. Six columns of the same six adolescent dancers in five rows: arms wide, star jump, ordinary releve with forefeet planted, low crouch, middle traveling step. Natural light to dark skin, varied hairstyles and lean to broad bodies. Comfortable teal, ochre, coral, lilac, blue and green rehearsal clothes. front view. Full figures in equal cells, upper-right light, flat pure magenta background, no text.",
+      "local_note": "Rows cropped by audienceRenderer; full raw atlas preserved. Front releve row redrawn once to show broad forefoot support rather than pointe. Right view mirrored for left."
+    },
+    {
+      "name": "dancer-cast-back",
+      "people": true,
+      "cutout": "keyed",
+      "key": "magenta",
+      "aspect": "3:4",
+      "width": 1086,
+      "quality": 82,
+      "drawn_by": "codex",
+      "prompt": "Soft painted gouache and colored-pencil texture. Six columns of the same six adolescent dancers in five rows: arms wide, star jump, ordinary releve with forefeet planted, low crouch, middle traveling step. Natural light to dark skin, varied hairstyles and lean to broad bodies. Comfortable teal, ochre, coral, lilac, blue and green rehearsal clothes. back view. Full figures in equal cells, upper-right light, flat pure magenta background, no text.",
+      "local_note": "Rows cropped by audienceRenderer; full raw atlas preserved. Front releve row redrawn once to show broad forefoot support rather than pointe. Right view mirrored for left."
+    },
+    {
+      "name": "dancer-cast-right",
+      "people": true,
+      "cutout": "keyed",
+      "key": "magenta",
+      "aspect": "3:4",
+      "width": 1086,
+      "quality": 82,
+      "drawn_by": "codex",
+      "prompt": "Soft painted gouache and colored-pencil texture. Six columns of the same six adolescent dancers in five rows: arms wide, star jump, ordinary releve with forefeet planted, low crouch, middle traveling step. Natural light to dark skin, varied hairstyles and lean to broad bodies. Comfortable teal, ochre, coral, lilac, blue and green rehearsal clothes. right view. Full figures in equal cells, upper-right light, flat pure magenta background, no text.",
+      "local_note": "Rows cropped by audienceRenderer; full raw atlas preserved. Front releve row redrawn once to show broad forefoot support rather than pointe. Right view mirrored for left."
+    }
+  ],
+  "superseded_assets": [
+    {
       "name": "dancer-stand-front",
       "people": true,
       "cutout": true,
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, stand pose, facing front. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -66,7 +104,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, stand pose, facing left. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -76,7 +114,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, stand pose, facing back. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -86,7 +124,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, stand pose, facing right. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -96,7 +134,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, arms-wide pose, facing front. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -106,7 +144,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, arms-wide pose, facing left. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -116,7 +154,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, arms-wide pose, facing back. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -126,7 +164,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, arms-wide pose, facing right. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -136,7 +174,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, releve pose, facing front. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -146,7 +184,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, releve pose, facing left. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -156,7 +194,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, releve pose, facing back. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -166,7 +204,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, releve pose, facing right. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -176,7 +214,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, star-jump pose, facing front. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -186,7 +224,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, star-jump pose, facing left. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -196,7 +234,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, star-jump pose, facing back. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -206,7 +244,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, star-jump pose, facing right. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -216,7 +254,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, crouch-low pose, facing front. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -226,7 +264,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, crouch-low pose, facing left. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -236,7 +274,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, crouch-low pose, facing back. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -246,7 +284,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, crouch-low pose, facing right. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -256,7 +294,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, stand-middle pose, facing front. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -266,7 +304,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, stand-middle pose, facing left. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -276,7 +314,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, stand-middle pose, facing back. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -286,7 +324,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, stand-middle pose, facing right. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -296,7 +334,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, step pose, facing front. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -306,7 +344,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, step pose, facing left. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -316,7 +354,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, step pose, facing back. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -326,7 +364,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, step pose, facing right. Consistent neutral rehearsal clothing, glow-tape green accent. Keep entire body and limbs inside frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Deferred to next painter. Replace through audienceRenderer adapter; kit figure used now.",
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left.",
       "key": "magenta"
     },
     {
@@ -337,7 +375,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, arms-wide standing turn pose. Facing 45 degrees from front toward image right, where 0 faces the audience and 90 faces image right. Consistent neutral rehearsal clothing with glow-tape green accent. Entire body and limbs in frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Additional eighth-turn keyframe for the Wedge arms-and-turns phrase. Deferred to next painter."
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left."
     },
     {
       "name": "dancer-arms-wide-back-quarter-right",
@@ -347,7 +385,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, arms-wide standing turn pose. Facing 135 degrees from front toward image right, where 0 faces the audience and 90 faces image right. Consistent neutral rehearsal clothing with glow-tape green accent. Entire body and limbs in frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Additional eighth-turn keyframe for the Wedge arms-and-turns phrase. Deferred to next painter."
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left."
     },
     {
       "name": "dancer-arms-wide-back-quarter-left",
@@ -357,7 +395,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, arms-wide standing turn pose. Facing 225 degrees from front toward image right, where 0 faces the audience and 90 faces image right. Consistent neutral rehearsal clothing with glow-tape green accent. Entire body and limbs in frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Additional eighth-turn keyframe for the Wedge arms-and-turns phrase. Deferred to next painter."
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left."
     },
     {
       "name": "dancer-arms-wide-quarter-left",
@@ -367,7 +405,7 @@
       "aspect": "3:4",
       "width": 240,
       "prompt": "A full-body painted dancer for Six Lanterns, arms-wide standing turn pose. Facing 315 degrees from front toward image right, where 0 faces the audience and 90 faces image right. Consistent neutral rehearsal clothing with glow-tape green accent. Entire body and limbs in frame. Flat pure magenta (#FF00FF) background. Owner-reviewed future art.",
-      "local_note": "Additional eighth-turn keyframe for the Wedge arms-and-turns phrase. Deferred to next painter."
+      "local_note": "Superseded by the five-pose, six-person cast atlases in three views; side view mirrors left."
     }
   ]
 }

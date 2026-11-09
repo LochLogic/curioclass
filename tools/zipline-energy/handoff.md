@@ -1,5 +1,54 @@
 # Zipline Energy: build handoff
 
+## Cold review update, 2026-11-08
+
+This section supersedes the historical build limitations below. One cold review pass preserved the painted valley,
+physics, real-time single rides and four-speed batches. Evidence is under _scratch/zipline-energy/review-*.
+All design sliders now have 44 px targets. The stacked Design deck keeps the stage, Ride/Test, lab rows and every
+short choice in view at 760x900 and in a real 375x812 iframe. Compact sliders use inline labels to preserve the scene.
+The small-stage slogan is omitted where it collided with the scale annotation; the scale itself stays labeled.
+The audit confirmed crowded phone height ticks, a compact result-text clip and narrow Notebook choices below the fold.
+The phone uses fewer height ticks. Short-screen lab spacing reserves both lines of result text. Notebook now keeps
+its conclusion/Compare area in a fixed lower deck and Copy/Clear outside the plot/table scroller. Comparison evidence
+appears in the main notebook body and scrolls into view while all four controls remain reachable on screen.
+Energy tower segments have direct labels for grayscale use. Near-edge stops cannot round up to a ticked 296.000 m.
+
+Six rider cutouts were generated with built-in imagegen, packed only with art.py --rekey, and wired into rider()
+and the mass buttons. The trolley still rotates independently; upright and tucked people hang from its attachment.
+All people assets carry people:true. The final contact sheet is _scratch/zipline-energy/review-art-sheet.png.
+These are review candidates, not a claim of Cory's personal approval. No live publication or recording was performed.
+
+Compare no longer supplies a canned conclusion to an empty box. It requires completed three-mass results for both
+brakes with matching cable, trolley and posture and one internally consistent setting per brake. It then shows the
+student's actual stop and peak-g measurements for self-review. It never grades prose. The reflection is neutral
+about which brake performed better at the student's chosen strengths. Design edits clear stale comparison evidence.
+Edits, new runs and opening Cards hush old speech. Cards cancels an active ride before taking focus.
+The ellipse citation was corrected from the spec's obsolete 8.1 URL to current OpenStax Precalculus 2e 10.1.
+The lab-rule label is visible in Design; the values remain stated assumptions rather than industry safety standards.
+All 29 fixed spoken strings include Read-only hints and the three brief instructions in voice/lines.json and allLines().
+Clearing Notebook removes comparison evidence and fallback copy text as well as saved rows, retaining earned briefs.
+Free design restores its own modal description rather than retaining the previous brief's wording.
+
+The final mechanical audit completed once, within its 40-minute cap, with 23 leads and 55 frames. Ten layout leads
+were repaired and re-shot; five native-modal coverage leads are intentional, and three first-tap welcome skips plus
+five rapid welcome cuts are permitted by BASELINE 16. Resize stress had no exceptions or stranded disabled controls.
+Final evidence: review-post-a/ (eight Notebook sizes, phone scale, both compact result messages), review-post-b/
+(filled comparisons at phone/680, marginal stopping label, stall-label clearance, voice inventory and Free design),
+and review-walk/ (actual main voice path, five repeated successes, Read with Sound off, Clear and cheat reruns).
+All four Notebook controls passed visibility and center hit tests at all eight sizes and after showing comparisons.
+No second full review or audit was run. The remaining spec/standards scope limits are named in codex-review.md.
+
+The standards note now distinguishes using a supplied computational model from creating one (HS-PS3-1), and a
+simulated device from the physical construction required by HS-PS3-3. Changing catalog standards is outside the
+reviewer's write scope and would alter the spec. Review those mappings before claiming complete assessment.
+
+## Sensitivity
+
+Review the new rider set for respectful representation across body builds, skin tones, age and gender. The fixed
+mass labels are experimental inputs, not a way to infer a person's mass from appearance. All six figures are fully
+clothed, helmeted and harnessed; there is no injury depiction. Cory's personal people-art contact-sheet review is
+still pending. There is no cultural, religious, Indigenous or hard-history content.
+
 Build only, 2026-11-02. No commits, branch changes, deployment, recordings or polish round.
 
 ## Source and structure

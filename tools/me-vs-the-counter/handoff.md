@@ -40,10 +40,10 @@ closed image included a yellow ball and the first open image changed the stand i
 has an empty claw and consistent equipment. All finished assets passed through `scripts/art.py --rekey`.
 The old `gym-wall.webp` and its original prompt were preserved; the new full gym image is used in the stage.
 
-Open question: keep the painted tap-hand rather than permanently substituting an icon. This leans toward the spec's
-painted hand and BASELINE's better-art preference. The build instruction forbids generated body parts, so that one
-asset remains marked `people: true` and referenced by its token, with a tasteful code-drawn hand silhouette in use.
-The owner can arrange and review its painting later. There are no generated people or body parts.
+Cold review resolved the open question toward the spec's painted hand. The current people rule permits this.
+`tap-hand` now has a five-fingered painted palm, warm brown skin and an orange cuff, made with OpenAI image generation.
+It is marked `people: true`, processed with `art.py --rekey` using `holes` and `despill`, and displayed on the hand
+button and Me plate. The final people-art review should check anatomy, age impression, skin tone and representation.
 
 ## Model notes
 
@@ -62,6 +62,27 @@ Read the completed codex-report.md for measured results and mechanical audit lea
 when easy-coach recordings are available, and try the tap-along with a real kindergarten group. This build makes
 no claim of classroom observation. Tiny cutout edge specks on the stand may merit a painter's cleanup later.
 
+## Cold review repairs, 2026-11-07
+
+Equal totals receive counting praise only when every live tap matches a hit. Paper equality and timing mismatches
+get neutral, truthful comparisons. This prevents rapid taps or copying the visible total from claiming counting skill.
+The chart retains its prediction sticker. Its first chosen row is remembered for the current experiment; correcting
+a wrong row gets an explanatory line, without first-choice praise or its chime. It remains an unscored discussion.
+The table's prediction sticker is anchored over the ball picture, away from three large class-count entries.
+The tap-along instruction precedes the ball-pick instruction. The sensor explanation precedes the optional fast-hit
+observation after comparison, and is also available after the no-taps paper prompt. `V.heard` still governs once-only speech.
+
+## Sensitivity
+
+One people asset: `tap-hand`, explicitly marked `people: true`. No cultural, religious or historical claim is made.
+Inspect the painted child's hand for anatomy and respectful representation in the final people-art review.
+
+## Source correction
+
+FIBA's current 2024 equipment document uses 1.035 to 1.085 m rebound measured at the underside, from a 1.8 m drop.
+The spec's 1.2 to 1.4 m reference used a top-of-ball convention. Keep the explicitly mandated factor 0.85 and ten
+model hits until the spec owner changes the model. Notes and metadata now distinguish it from a certification claim.
+
 ## Final build checks
 
 The full audit finished with 28 leads; all base sizes, calm mode, resize stress, console and keyboard activation
@@ -71,3 +92,18 @@ Repeated taps on an active mode or the same idle rack ball preserve its current 
 restarts immediately and makes the tap-along line stale, as required. Read is protected from the first-hit hush.
 Focused layout probes after repairs are clean at 680, 800, 1000, 1366 and 375 through an iframe. Six quick held-click
 pairs passed without cutting their instructions. The original full audit was not repeated after these focused fixes.
+
+## Cold review verification
+
+The single final audit completed within the 40 minute limit with 12 leads. Desktop sizes/states, focus,
+repeated clicks, calm mode and resize stress were clean. The audit's phone iframe context lookup failed;
+separate 375 px host frames and Read logs cover the default, prediction, chart, paper maximum and three large tries.
+This last extreme found a prediction-sticker/count collision. Only that CSS anchor changed after the audit;
+the fixed table was re-shot at 375, 680 and 1366, with no overlapping sticker/text bounds or console errors.
+The main voice walk and five completed counted drops used real browser speech logs, not a speech stub.
+
+Two very-low-delay practice-feedback capture attempts lost Chrome before the Reset fixture; these are inconclusive,
+not visual passes. Normal/audit control walks were clean. Preserve that limitation for the next reviewer.
+The cold-order limitation and first documentation-command timeout omission are recorded in codex-review.md.
+All review Chrome processes and the verified 8745 host were closed. No review ports remain open, and host.html is absent.
+Evidence and the reviewed frames are in _scratch/me-vs-the-counter/review-*.

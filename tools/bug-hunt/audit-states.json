@@ -1,0 +1,225 @@
+{
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "hunt-paused",
+      "steps": [
+        {
+          "click": "#pause"
+        }
+      ],
+      "keep": [
+        "#resume"
+      ]
+    },
+    {
+      "name": "run-history",
+      "steps": [
+        {
+          "click": "#m-run"
+        },
+        {
+          "click": "#history"
+        },
+        {
+          "wait": 4500
+        }
+      ],
+      "keep": [
+        "#play",
+        "#bark-slider"
+      ]
+    },
+    {
+      "name": "run-zero",
+      "steps": [
+        {
+          "click": "#m-run"
+        },
+        {
+          "js": "const b=document.getElementById('bark-slider');b.value=0;b.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#step"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#bark-slider"
+      ]
+    },
+    {
+      "name": "run-hundred",
+      "steps": [
+        {
+          "click": "#m-run"
+        },
+        {
+          "js": "const b=document.getElementById('bark-slider');b.value=100;b.dispatchEvent(new Event('input',{bubbles:true}));"
+        },
+        {
+          "click": "#step"
+        }
+      ],
+      "keep": [
+        "#play",
+        "#bark-slider"
+      ]
+    },
+    {
+      "name": "explain-writing",
+      "steps": [
+        {
+          "click": "#m-explain"
+        },
+        {
+          "js": "document.querySelectorAll('.answer').forEach(b=>{if(b.textContent.startsWith('Some moths'))b.dataset.auditChoice='yes'});"
+        },
+        {
+          "click": "[data-audit-choice]"
+        }
+      ],
+      "keep": [
+        "#copy"
+      ]
+    },
+    {
+      "name": "story-debate",
+      "steps": [
+        {
+          "click": "#m-story"
+        },
+        {
+          "click": "#stop-6"
+        }
+      ],
+      "keep": [
+        "#timeline",
+        "#story-text"
+      ]
+    },
+    {
+      "name": "story-last",
+      "steps": [
+        {
+          "click": "#m-story"
+        },
+        {
+          "click": "#stop-7"
+        }
+      ],
+      "keep": [
+        "#timeline",
+        "#story-text"
+      ]
+    },
+    {
+      "name": "hunt-story-card",
+      "steps": [
+        {
+          "click": "#motion"
+        },
+        {
+          "js": "__tool.state.h.gen=2;__tool.endRound();__tool.finishBreeding(true);"
+        }
+      ],
+      "keep": [
+        "#card-title",
+        "#continue"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "hunt-end",
+      "steps": [
+        {
+          "click": "#motion"
+        },
+        {
+          "js": "const T=__tool,M=T.model,H=T.state.h,R=M.random(101);let p=H.pop;H.history=[];\nfor(let g=1;g<=14;g++){if(g>1)p=M.breed(p,30,R,g);H.history.push(M.snapshot(p,g,M.huntBark(g)));}\nH.pop=p;H.gen=14;T.endRound();"
+        }
+      ],
+      "keep": [
+        "#end-explain",
+        "#end-run",
+        "#again"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "run-phone-bars",
+      "steps": [
+        {
+          "click": "#m-run"
+        },
+        {
+          "click": "#bars-tab"
+        }
+      ],
+      "keep": [
+        "#run-bars",
+        "#play",
+        "#reset-run"
+      ],
+      "sizes": [
+        "375x812"
+      ]
+    },
+    {
+      "name": "prediction-locked",
+      "steps": [
+        {
+          "click": "#m-run"
+        },
+        {
+          "click": "#predict"
+        },
+        {
+          "click": "#step"
+        },
+        {
+          "key": "ArrowRight"
+        }
+      ],
+      "keep": [
+        "#prediction"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "phone-predict-from-bars",
+      "steps": [
+        {
+          "click": "#m-run"
+        },
+        {
+          "click": "#bars-tab"
+        },
+        {
+          "click": "#predict"
+        }
+      ],
+      "keep": [
+        "#run-line",
+        "#prediction",
+        "#predict"
+      ],
+      "sizes": [
+        "375x812"
+      ]
+    }
+  ]
+}

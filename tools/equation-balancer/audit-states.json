@@ -1,0 +1,196 @@
+{
+  "target": 44,
+  "keep": [],
+  "states": [
+    {
+      "name": "balanced water",
+      "steps": [
+        {
+          "click": "#plus-0"
+        },
+        {
+          "click": "#plus-2"
+        }
+      ],
+      "keep": [
+        "#trays",
+        "#ledger",
+        "#hint"
+      ]
+    },
+    {
+      "name": "five substances",
+      "steps": [
+        {
+          "js": "document.querySelector('#pick-L5-4').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#pick-L5-4"
+        }
+      ],
+      "keep": [
+        "#trays",
+        "#ledger",
+        "#hint"
+      ]
+    },
+    {
+      "name": "formula card",
+      "steps": [
+        {
+          "click": "#formula-2"
+        }
+      ],
+      "keep": [
+        ".formula-card",
+        "#put-back"
+      ]
+    },
+    {
+      "name": "predict wrong then correct",
+      "steps": [
+        {
+          "click": "#m-predict"
+        },
+        {
+          "click": "#pick-P6"
+        },
+        {
+          "click": "#choice-0"
+        },
+        {
+          "click": "#choice-1"
+        }
+      ],
+      "keep": [
+        "#trays",
+        "#ledger",
+        "#hint"
+      ]
+    },
+    {
+      "name": "groups nitrate",
+      "steps": [
+        {
+          "js": "document.querySelector('#pick-L3-2').scrollIntoView({block:'center'});"
+        },
+        {
+          "click": "#pick-L3-2"
+        },
+        {
+          "click": "#groups"
+        }
+      ],
+      "keep": [
+        "#trays",
+        "#ledger",
+        "#hint"
+      ]
+    },
+    {
+      "name": "count at thirty",
+      "steps": [
+        {
+          "click": "#coef-0"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        },
+        {
+          "key": "ArrowUp"
+        }
+      ],
+      "keep": [
+        "#trays",
+        "#ledger",
+        "#hint"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers, logos, people, faces or body parts.",
+  "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers, logos.",
   "assets": [
     {
       "name": "street",
@@ -20,7 +20,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "backdrop-park",
@@ -61,7 +63,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "wing-lamp",
@@ -72,7 +76,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "wing-fence",
@@ -83,7 +89,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "wing-bush",
@@ -94,7 +102,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "prop-bench",
@@ -118,7 +128,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "prop-seeds",
@@ -129,7 +141,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "prop-wheelbarrow",
@@ -153,7 +167,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "prop-ball",
@@ -164,121 +180,159 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "puppet-shell",
-      "prompt": "A human neighbor, older neighbor in a cardigan with a walking stick, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
-      "width": 230,
+      "prompt": "An older Black woman with short silver curls, warm brown skin, ochre cardigan over a cream blouse, teal trousers and sturdy shoes, holding a walking stick. One full-body handmade cut-paper puppet mounted on a single long wooden stick. Gentle friendly expression, layered paper fibers, softly shaded forms, precise hands and everyday clothing, light from upper left. Entire figure and stick in frame with generous margin. Flat pure magenta #FF00FF background. No letters, text or logos.",
+      "width": 300,
       "aspect": "3:4",
       "cutout": true,
       "people": true,
       "anchors": {
         "head": [
           0.5,
-          0.16
+          0.1
         ],
         "body": [
           0.5,
-          0.47
+          0.39
         ]
       },
-      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos.",
+      "key": "magenta",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "puppet-rufus",
-      "prompt": "A human neighbor, storekeeper in a shop apron, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
-      "width": 230,
+      "prompt": "A middle-aged East Asian man with short dark hair, broad build, terracotta shirt and cream shop apron, dark trousers and shoes. One full-body handmade cut-paper puppet mounted on a single long wooden stick. Gentle friendly expression, layered paper fibers, softly shaded forms, precise hands and everyday clothing, light from upper left. Entire figure and stick in frame with generous margin. Flat pure magenta #FF00FF background. No letters, text or logos.",
+      "width": 300,
       "aspect": "3:4",
       "cutout": true,
       "people": true,
       "anchors": {
         "head": [
           0.5,
-          0.16
+          0.1
         ],
         "body": [
           0.5,
-          0.47
+          0.39
         ]
       },
-      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos.",
+      "key": "magenta",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "puppet-gail",
-      "prompt": "A human neighbor, school crossing guard with a vest and blank paddle, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
-      "width": 230,
+      "prompt": "A middle-aged woman with fair skin and curly brown hair, wearing a bright yellow reflective crossing-guard vest over a teal shirt, holding a blank octagonal stop paddle. One full-body handmade cut-paper puppet mounted on a single long wooden stick. Gentle friendly expression, layered paper fibers, softly shaded forms, precise hands and everyday clothing, light from upper left. Entire figure and stick in frame with generous margin. Flat pure magenta #FF00FF background. No letters, text or logos.",
+      "width": 300,
       "aspect": "3:4",
       "cutout": true,
       "people": true,
       "anchors": {
         "head": [
-          0.5,
-          0.16
+          0.39,
+          0.1
         ],
         "body": [
-          0.5,
-          0.47
+          0.4,
+          0.39
         ]
       },
-      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos.",
+      "key": "magenta",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "puppet-nutmeg",
-      "prompt": "A human neighbor, nine-year-old who likes ball games, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
-      "width": 230,
+      "prompt": "A nine-year-old child with medium brown skin and short curly hair, terracotta T-shirt, teal shorts and sneakers, holding a red ball. One full-body handmade cut-paper puppet mounted on a single long wooden stick. Gentle friendly expression, layered paper fibers, softly shaded forms, precise hands and everyday clothing, light from upper left. Entire figure and stick in frame with generous margin. Flat pure magenta #FF00FF background. No letters, text or logos.",
+      "width": 300,
       "aspect": "3:4",
       "cutout": true,
       "people": true,
       "anchors": {
         "head": [
           0.5,
-          0.16
+          0.1
         ],
         "body": [
           0.5,
-          0.47
+          0.39
         ]
       },
-      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos.",
+      "key": "magenta",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "puppet-bramble",
-      "prompt": "A human neighbor, town councilor with a jacket and folder, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
-      "width": 230,
+      "prompt": "A middle-aged man with medium brown skin and short graying hair, teal jacket and cream shirt, seated in a manual wheelchair with an ochre folder on his lap. One full-body handmade cut-paper puppet mounted on a single long wooden stick. Gentle friendly expression, layered paper fibers, softly shaded forms, precise hands and everyday clothing, light from upper left. Entire figure and stick in frame with generous margin. Flat pure magenta #FF00FF background. No letters, text or logos.",
+      "width": 300,
       "aspect": "3:4",
       "cutout": true,
       "people": true,
       "anchors": {
         "head": [
           0.5,
-          0.16
+          0.1
         ],
         "body": [
           0.5,
-          0.47
+          0.39
         ]
       },
-      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos.",
+      "key": "magenta",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "puppet-fern",
-      "prompt": "A human neighbor, gardener beside a stroller, as a full-body cut-paper puppet on a wooden stick. Inclusive cast, everyday clothing. Owner reviews people art. Flat pure green background.",
-      "width": 230,
+      "prompt": "A young adult woman with light brown skin and a dark ponytail, cream shirt, terracotta overalls and boots, standing beside a small teal stroller with a calm sleeping baby. One full-body handmade cut-paper puppet mounted on a single long wooden stick. Gentle friendly expression, layered paper fibers, softly shaded forms, precise hands and everyday clothing, light from upper left. Entire figure and stick in frame with generous margin. Flat pure magenta #FF00FF background. No letters, text or logos.",
+      "width": 300,
       "aspect": "3:4",
       "cutout": true,
       "people": true,
       "anchors": {
         "head": [
-          0.5,
-          0.16
+          0.32,
+          0.1
         ],
         "body": [
-          0.5,
-          0.47
+          0.32,
+          0.39
         ]
       },
-      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos."
+      "house_style": "Cut paper collage look, layered colored paper with soft shadows, warm gouache and colored-pencil texture, for a grade 4 theater lesson. Handmade fiber edges, light from upper left, sea green, terracotta, cream and ochre. No text, letters, numbers or logos.",
+      "key": "magenta",
+      "quality": 78,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "costume-hat",
@@ -289,7 +343,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "costume-scarf",
@@ -300,7 +356,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "costume-glasses",
@@ -324,7 +382,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "costume-sash",
@@ -335,7 +395,9 @@
       "quality": 74,
       "key": "magenta",
       "drawn_by": "codex",
-      "source": "OpenAI gpt-image"
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
     },
     {
       "name": "costume-backpack",
@@ -345,6 +407,18 @@
       "cutout": true,
       "quality": 74,
       "key": "magenta",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "holes": true,
+      "despill": true
+    },
+    {
+      "name": "backdrop-neighbors",
+      "prompt": "A welcoming shared front courtyard between two neighborhood houses, open front door, porch steps, small flowerpots, a low garden fence, a table with blank paper cards and two empty chairs. Open foreground for puppets. Rich cut-paper collage miniature scenery, layered colored paper and gouache texture, sea green, terracotta, cream and ochre, upper-left light, no people, no text, letters, numbers or logos.",
+      "width": 1000,
+      "aspect": "16:10",
+      "cutout": false,
+      "quality": 78,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image"
     }

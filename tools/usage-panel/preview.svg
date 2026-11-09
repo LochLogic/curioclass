@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+<defs>
+  <linearGradient id="room" x2="0" y2="1"><stop stop-color="#34231b"/><stop offset="1" stop-color="#131922"/></linearGradient>
+  <linearGradient id="wood" x2="0" y2="1"><stop stop-color="#9b6034"/><stop offset=".18" stop-color="#53321f"/>
+    <stop offset=".3" stop-color="#2c1e17"/><stop offset="1" stop-color="#59351f"/></linearGradient>
+  <linearGradient id="paper" x2="1" y2="1"><stop stop-color="#fff5df"/><stop offset="1" stop-color="#e4cba4"/></linearGradient>
+  <radialGradient id="light"><stop stop-color="#e9b870" stop-opacity=".3"/><stop offset="1" stop-color="#e9b870" stop-opacity="0"/></radialGradient>
+</defs>
+<path fill="url(#room)" d="M0 0h800v500H0z"/>
+<path stroke="#65422a" fill="none" stroke-width="5" d="M35 30h730v280H35z M50 45h700v250H50z"/>
+<ellipse cx="80" cy="150" rx="300" ry="240" fill="url(#light)"/>
+<path fill="url(#paper)" stroke="#b99564" stroke-width="2" d="M82 65h636v176H82z"/>
+<text x="400" y="109" text-anchor="middle" font-family="Georgia,serif" font-size="18" fill="#78573b">BEFORE THE PANEL</text>
+<text x="400" y="162" text-anchor="middle" font-family="Georgia,serif" font-size="34" fill="#352619">Does a rule have a birth year?</text>
+<path d="M104 193h592" stroke="#a23e33" stroke-width="2"/>
+<path fill="url(#wood)" stroke="#b58750" d="M0 360h800v140H0z"/>
+<path fill="#15191e" stroke="#9c744a" stroke-width="3" d="M104 350v-80q0-32 40-32t40 32v80z M232 350v-80q0-32 40-32t40 32v80z
+ M360 350v-80q0-32 40-32t40 32v80z M488 350v-80q0-32 40-32t40 32v80z M616 350v-80q0-32 40-32t40 32v80z"/>
+<g fill="#dfc18b" stroke="#8f6d3e"><path d="M93 376h105v34H93z M221 376h105v34H221z M349 376h105v34H349z
+ M477 376h105v34H477z M605 376h105v34H605z"/></g>
+<g fill="#f0dbaf" stroke="#251c15" stroke-width="2">
+ <path d="M134 355h22l-2-28h-18z M141 329v-69l4-12 5 12v69z"/>
+ <path d="M244 353q9-20 15-45l2-34q27-16 34-8l-30 20-2 23q7 25 24 44z"/>
+ <path d="M374 292h51v62h-51z M385 284h29v12h-29z"/>
+ <path d="M514 355h29v-20h-29z M529 338q-7-67 31-85-1 52-31 85z"/>
+ <path d="M628 314h32v41h-32z M669 350v-30m-10 32h20 M663 294q10-8 14 0v25q-9 10-14 0z"/>
+</g>
+<text x="400" y="465" text-anchor="middle" font-family="Georgia,serif" font-size="30" fill="#fff0d5">Usage Panel</text>
+<path stroke="#ff6f61" stroke-width="4" d="M290 480h220"/>
+</svg>

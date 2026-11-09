@@ -28,7 +28,9 @@ Try str(stack) + " pancakes" in the label slot. The Pantry can wrap an expressio
 Tickets has 12 open levels in four sets. A introduces types, B procedures and nested calls, C parameters,
 and D refactoring across menu changes. A correct first menu in B-D brings a Manager's note and a new menu.
 Edits count one changed slot or one line added, deleted or moved. Undo restores both the card and counter.
-Length does not score. A gold ring records meeting the change in one edit or fewer. D10's first change has no par.
+Length does not score. A gold ring records meeting every rated change in one edit or fewer. D10's first change has no par.
+Undo starts a fresh history when the menu changes, so edits from the old menu cannot erase the new change's work.
+Older saved rings must be earned again under these scoring rules; served dots remain saved.
 
 Open kitchen starts empty. Use New ticket for up to eight orders and Add a line to write the program.
 Both card and tickets save only on this device. Clear saved asks before removing them. No account or network is used.
@@ -49,6 +51,7 @@ Alt+Up and Alt+Down move the selected line. Ctrl+Z undoes up to 40 edits. Step e
 Stop clears the station. Editing pauses a run immediately. The highlighted line stays in the card's scroll window.
 The language intentionally has no loops or conditionals. Kitchen counts have finite ranges and recursive calls stop after 20 nested calls.
 Every call gets its own parameter jars. Those jars vanish when the call returns; global jars persist for the run.
+Pantry shows global jar names and the current recipe's local names and blanks, never another recipe's locals.
 For a to-go order the label must match exactly; dine-in labels are ignored. Toppings match as a set.
 Narration uses the kit's browser speech fallback. The prepared bank voice is easy-coach (Umbriel); recordings were not made.
 

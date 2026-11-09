@@ -1,0 +1,10 @@
+{
+  "_note": "The Recess shelf (docs/GAMES.md). One row per game, in shelf order. band: k2, 35, 68, 912 or all (the colored edge). live turns the box into a link. Art is site/templates/recess/art-<id>.svg.",
+  "games": [
+    {"id": "go", "title": "Go", "blurb": "Surround more of the board than your rival. Stones click down; captured groups wash away like ink.", "band": "all", "band_label": "All grades", "bg": "linear-gradient(160deg,#3a2614,#1d130a)", "live": false},
+    {"id": "chess", "title": "Chess", "blurb": "A paper theatre lit from the side. Play the computer, a friend, or a quick mate-in-one.", "band": "35", "band_label": "Grades 3-12", "bg": "linear-gradient(160deg,#5b1a2b,#26091a)", "live": false},
+    {"id": "checkers", "title": "Checkers", "blurb": "Neon pucks on a glowing grid. Chain your jumps and pop a crown.", "band": "k2", "band_label": "Grades K-12", "bg": "linear-gradient(160deg,#151a4a,#070a22)", "live": false},
+    {"id": "sliding-blocks", "title": "Cargo Hold", "blurb": "Slide the crates to free the hatch. Fewest moves wins the stars.", "band": "35", "band_label": "Grades 2-12", "bg": "linear-gradient(160deg,#0f4c5c,#082a33)", "live": false},
+    {"id": "untangle", "title": "Untangle", "blurb": "Drag the stars until no lines cross, and watch the constellation light up.", "band": "68", "band_label": "Grades 3-12", "bg": "linear-gradient(160deg,#1b1f5e,#0a0b26)", "live": false}
+  ]
+}

@@ -1,7 +1,5 @@
 {
-  "keep": [
-    "#hint"
-  ],
+  "keep": [],
   "states": [
     {
       "name": "clues",
@@ -374,6 +372,9 @@
           "key": "ArrowDown"
         },
         {
+          "key": "ArrowDown"
+        },
+        {
           "key": "Enter"
         },
         {
@@ -432,6 +433,59 @@
       ],
       "keep": [
         "#confirm-clear"
+      ]
+    },
+    {
+      "name": "word-drawer",
+      "steps": [
+        {
+          "click": "#m-tools"
+        },
+        {
+          "click": "#word-6"
+        }
+      ],
+      "keep": [
+        ".word-index",
+        "#word-detail",
+        "#word-hear"
+      ]
+    },
+    {
+      "name": "photo-inspect",
+      "steps": [
+        {
+          "click": "#clear"
+        },
+        {
+          "click": "#do-clear"
+        },
+        {
+          "click": "#m-cases"
+        },
+        {
+          "click": "#folder-1"
+        },
+        {
+          "click": "#claim-cause"
+        },
+        {
+          "click": "#claim-effect"
+        },
+        {
+          "click": "#to-clues"
+        },
+        {
+          "click": "#inspect-photo"
+        }
+      ],
+      "keep": [
+        "#photo-view",
+        "#close-photo"
+      ],
+      "sizes": [
+        "1366x768",
+        "375x812"
       ]
     }
   ]

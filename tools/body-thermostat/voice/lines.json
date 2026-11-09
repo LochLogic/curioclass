@@ -1,0 +1,30 @@
+{
+  "voice": "soft-breath",
+  "style": "Say softly and calmly, like a mindfulness teacher",
+  "lines": [
+    "Welcome to Body Thermostat. Change the air, clothes or activity, then press Play and watch the core temperature hold.",
+    "Experiment. Switch one response on or off, press Run trial, then switch it back and run it again.",
+    "Fever. Press Fever starts, then Play, and watch the body warm itself up to a new set point.",
+    "Sweating switched on. Sweat cools you only as it evaporates.",
+    "Shivering switched on. Muscles are working just to make heat.",
+    "Skin vessels tightened. Warm blood stays in the core.",
+    "The air is humid, so sweat can't evaporate fast enough.",
+    "Trial added. Now change one thing and press Run trial again.",
+    "Two trials. Press Compare to lay their curves on top of each other.",
+    "Chills. The core is normal, but the set point says it is too cold.",
+    "Fever breaks. The set point drops, so the body sweats and flushes.",
+    "Model heat limit. In real life, suspected heat stroke is an emergency. Call 911 and cool the person. Press Reset to start again.",
+    "Model cold limit. In real life, hypothermia needs urgent medical help. Get warm and dry. Press Reset to start again.",
+    "Trial stopped at the model heat limit. In real life, suspected heat stroke is an emergency. Call 911 and cool the person.",
+    "Trial stopped at the model cold limit. In real life, hypothermia needs urgent medical help. Get warm and dry.",
+    "Follow the solid and dotted traces. Check the notebook to see what changed, then run a new trial with one change.",
+    "Lab. Change the air, clothes or activity, then press Play. Watch which response switches on.",
+    "Experiment. Switch one response on or off, press Run trial, then switch it back and press Run trial again. Then press Compare.",
+    "Fever. Press Fever starts to raise the target, then Play. Compare core temperature with the set point.",
+    "Change Air, Clothes or Activity while the clock runs. Press Pause to inspect the responses.",
+    "Paused. Change a condition, then press Play to continue. Press Reset for a fresh trace.",
+    "Pick two trial numbers in the notebook, then press Compare. Change one condition to make a controlled pair.",
+    "Watch the Compare box and the dashed set point. Press Fever breaks to lower the target again.",
+    "Trial added. Change one condition and press Run trial again, or pick two rows and press Compare."
+  ]
+}

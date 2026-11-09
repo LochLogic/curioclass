@@ -75,8 +75,7 @@
       ],
       "sizes": [
         "680x425",
-        "1366x768",
-        "375x812"
+        "1366x768"
       ]
     },
     {
@@ -108,6 +107,25 @@
           "click": "#m-lab"
         },
         {
+          "click": "#sound"
+        },
+        {
+          "click": "#switch-lights"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.line >= 5",
+          "max": 25000
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#notebook .note:last-child .rating button"
+        },
+        {
           "click": "#show-results"
         }
       ],
@@ -133,6 +151,77 @@
       "sizes": [
         "680x425",
         "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "late-switch-excluded",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#sound"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.line >= 5",
+          "max": 25000
+        },
+        {
+          "click": "#switch-lights"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#notebook .note:last-child .rating button"
+        },
+        {
+          "click": "#show-results"
+        }
+      ],
+      "keep": [
+        "#results-dialog"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "notebook-phone",
+      "steps": [
+        {
+          "click": "#m-lab"
+        },
+        {
+          "click": "#sound"
+        },
+        {
+          "click": "#switch-lights"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "until": "__tool.state.line >= 5",
+          "max": 25000
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "keep": [
+        "#stage",
+        "#hint",
+        "#mixer",
+        "#play"
+      ],
+      "sizes": [
         "375x812"
       ]
     }

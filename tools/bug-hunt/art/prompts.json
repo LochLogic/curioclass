@@ -1,0 +1,138 @@
+{
+  "house_style": "Natural-history painting for grade 8, close and real, refined gouache and fine pencil detail, soft daylight from upper left, rich but quiet color. Scientifically credible anatomy and materials. No text, letters, numbers or logos.",
+  "assets": [
+    {
+      "name": "bh-bark-lichen",
+      "prompt": "Full-frame close texture of an old English oak trunk, pale gray-green crusty and leafy lichen covering intricate bark ridges. Even soft daylight, detailed surface, straight-on texture with no horizon.",
+      "aspect": "16:10",
+      "width": 1100,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "bh-bark-clearing",
+      "prompt": "Full-frame close texture of old English oak bark, dark gray with rain streaks and small patches of young pale lichen. Intricate ridges, straight-on texture with no horizon.",
+      "aspect": "16:10",
+      "width": 1100,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "bh-bark-soot",
+      "prompt": "Full-frame close texture of old English oak bark coated with black coal soot, bare of lichen, dull sooty gray-black. Intricate bark ridges, straight-on texture with no horizon.",
+      "aspect": "16:10",
+      "width": 1100,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "bh-moth-typica",
+      "prompt": "Single scientifically accurate Biston betularia typica peppered moth from directly above, wings spread flat at rest, triangular forewings and hindwings, creamy pale wings with fine irregular black speckles, fine antennae and body, entirely within frame. Isolated on flat pure green #00FF00.",
+      "aspect": "4:3",
+      "width": 200,
+      "cutout": true,
+      "quality": 82,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "bh-moth-carbonaria",
+      "prompt": "Single scientifically accurate Biston betularia carbonaria peppered moth from directly above, wings spread flat at rest, broad triangular forewings and rounded hindwings, sooty charcoal wings with readable fine veins, subtle charcoal scale texture and softly shaded thorax. Soft light from upper left. Preserve the almost uniform dark carbonaria form, with no pale wing panels or eye spots. Fine antennae and complete body entirely inside the frame. The cutout appears at 54 pixels wide in a natural-history game, so retain clear anatomy and restrained dimensional shading at that size. Isolated on flat pure green #00FF00, with clean unfringed edges and no cast shadow.",
+      "aspect": "4:3",
+      "width": 200,
+      "cutout": true,
+      "quality": 82,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "bh-bird-watch",
+      "prompt": "A scientifically accurate great tit Parus major perched on a short twig, side view facing right, alert watching pose, yellow breast, black head and bib, white cheeks, olive back, blue-gray wings, fine feather details, complete bird and tail inside frame. Isolated on flat pure magenta #FF00FF.",
+      "aspect": "1:1",
+      "width": 260,
+      "cutout": true,
+      "key": "magenta",
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "bh-bird-peck",
+      "prompt": "A scientifically accurate great tit Parus major perched on a short twig, side view facing right, leaning sharply forward with beak open to peck, yellow breast, black head and bib, white cheeks, olive back, blue-gray wings, complete bird and tail inside frame. Isolated on flat pure magenta #FF00FF.",
+      "aspect": "1:1",
+      "width": 260,
+      "cutout": true,
+      "key": "magenta",
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "bh-bird-full",
+      "prompt": "A scientifically accurate great tit Parus major perched on a short twig, side view facing right, feathers fluffed round and content after feeding, yellow breast, black head and bib, white cheeks, olive back, blue-gray wings, complete bird and tail inside frame. Isolated on flat pure magenta #FF00FF.",
+      "aspect": "1:1",
+      "width": 260,
+      "cutout": true,
+      "key": "magenta",
+      "quality": 80,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "despill": true
+    },
+    {
+      "name": "bh-story-wood",
+      "prompt": "Quiet English oak woodland in the early 1800s, trunks pale with textured lichen, soft morning light from upper left, foreground oak trunk and fern fronds, middle-distance oaks and deep woodland background. Immersive landscape, no people.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "bh-story-mill",
+      "prompt": "An 1800s English mill town under smoky skies, tall brick chimneys and soot-blackened brick walls, dark oak trunks in the foreground, middle-distance factory and river, atmospheric smoky background. Soft upper-left light, historically credible landscape, no people.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "bh-story-clean",
+      "prompt": "English former mill town decades later, clear blue sky, clean brick mill buildings and green trees, pale lichen returning on detailed foreground oak trunks, river and town in middle distance, clear atmospheric background. Soft upper-left sunlight, no people.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "bh-story-branch",
+      "prompt": "A pale finely black-speckled peppered moth and a sooty black peppered moth resting naturally beneath a mossy oak branch in an English garden at dawn. Accurate Biston betularia wings held flat at rest, branch and moths foreground, leafy garden middle ground, softly lit distant background, upper-left light. No people.",
+      "aspect": "16:9",
+      "width": 1100,
+      "quality": 72,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    }
+  ]
+}

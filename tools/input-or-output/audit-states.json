@@ -135,6 +135,31 @@
         "#guess-in",
         "#guess-out"
       ]
+    },
+    {
+      "name": "all-tablet-parts",
+      "steps": [
+        {
+          "click": "#p-touchscreen"
+        },
+        {
+          "click": "#p-camera"
+        },
+        {
+          "click": "#p-microphone"
+        },
+        {
+          "click": "#p-speaker"
+        }
+      ],
+      "keep": [
+        "#board"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
     }
   ]
 }

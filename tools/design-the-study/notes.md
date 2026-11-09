@@ -35,13 +35,17 @@ Negative estimates mean faster with the drink. The model fixes the treatment eff
 
 Two-group shuffle checks re-deal labels among recorded times, keeping group sizes fixed. Paired checks flip each person's difference independently. This is a teaching randomization model; it does not model caffeine biology, carryover, safety, recruitment or generalization beyond the volunteers. The randomization test does not repair an observational comparison.
 
-Survey margins of error and the sampling half of AP Statistics Unit 3 belong to Poll Workshop. This tool teaches S-IC.B.3, B.5 and B.6, and experimental design within AP-STAT.U3. See handoff.md for a specification gap concerning an unblinded placebo with computer timing.
+The specified shuffle rules do not preserve gamer blocks or the exactly half-each day order. Treat these displays as the specified teaching model, not an exact randomization analysis for those restricted designs. An exact analysis would repeat the actual assignment scheme. This source/spec conflict is recorded in the cold review.
+
+Survey margins of error and sampling belong to Poll Workshop. This tool teaches S-IC.B.3, B.5 and B.6 through experimental design and criticism, subject to the shuffle-model limitation above. The spec's AP-STAT.U3 label uses the older course numbering. College Board's revised 2026-27 framework places collecting data in Unit 1; its current Unit 3 concerns inference for proportions. The catalog mapping needs a separate update. See handoff.md for the specification gap concerning an unblinded placebo with computer timing.
 
 Endings are saved only on this device using curio-dts-endings. Clear removes endings and session pins. No information leaves the device. Sound uses browser speech until the news-reader recordings are made; Read always speaks the current hint. Motion off removes decorative movement.
 
 ## Sources
 - Common Core State Standards, S-IC.B: https://www.thecorestandards.org/Math/Content/HSS/IC/
-- College Board AP Statistics, Unit 3: https://apcentral.collegeboard.org/courses/ap-statistics
+- College Board AP Statistics, revised 2026-27 framework, Unit 1 collecting data: https://apcentral.collegeboard.org/courses/ap-statistics
 - OpenStax, Introductory Statistics 2e, 1.4: https://openstax.org/books/introductory-statistics-2e/pages/1-4-experimental-design-and-ethics
 - OpenIntro Statistics 4e, 2.3: https://www.openintro.org/book/os/
 - American Academy of Pediatrics, Pediatrics 127(6), 2011: https://doi.org/10.1542/peds.2011-0965
+- American Academy of Pediatrics, HealthyChildren, Mark Corkins, current caffeine guidance checked November 8, 2026: https://www.healthychildren.org/English/healthy-living/nutrition/Pages/the-effects-of-caffeine-on-kids-a-parents-guide.aspx
+- Tang et al., permutation tests respecting the original assignment scheme, Statistics in Medicine (2009): https://pmc.ncbi.nlm.nih.gov/articles/PMC8318313/

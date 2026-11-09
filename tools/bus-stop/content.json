@@ -1,0 +1,283 @@
+{
+  "routes": {
+    "park": {
+      "name": "Park",
+      "icon": "tree",
+      "start": 3,
+      "stops": [
+        [
+          "Maple Street",
+          "maple",
+          3,
+          2,
+          "+"
+        ],
+        [
+          "Duck Pond",
+          "pond",
+          5,
+          1,
+          "-"
+        ]
+      ],
+      "forks": [
+        [
+          "Duck Bridge",
+          "bridge",
+          4,
+          3,
+          "+",
+          "duck"
+        ],
+        [
+          "Big Hill",
+          "hill",
+          4,
+          4,
+          "+",
+          "hill-icon"
+        ]
+      ],
+      "place": "park",
+      "areas": [
+        "swings",
+        "slide"
+      ],
+      "ten": [
+        "Ice Cream Corner",
+        "icecream"
+      ]
+    },
+    "library": {
+      "name": "Library",
+      "icon": "books",
+      "start": 4,
+      "stops": [
+        [
+          "Bakery",
+          "bakery",
+          4,
+          2,
+          "+"
+        ],
+        [
+          "Fire Station",
+          "fire",
+          6,
+          1,
+          "+"
+        ]
+      ],
+      "forks": [
+        [
+          "Big Street",
+          "street",
+          7,
+          1,
+          "-",
+          "buildings"
+        ],
+        [
+          "Little Lane",
+          "lane",
+          7,
+          2,
+          "-",
+          "cottage"
+        ]
+      ],
+      "place": "library",
+      "areas": [
+        "rug",
+        "puppets"
+      ],
+      "ten": [
+        "Fruit Stand",
+        "fruit"
+      ]
+    },
+    "farm": {
+      "name": "Farm",
+      "icon": "barn",
+      "start": 5,
+      "stops": [
+        [
+          "Mailbox Corner",
+          "mailbox",
+          5,
+          1,
+          "-"
+        ],
+        [
+          "Apple Orchard",
+          "orchard",
+          4,
+          3,
+          "+"
+        ]
+      ],
+      "forks": [
+        [
+          "Barn Road",
+          "barnroad",
+          7,
+          3,
+          "-",
+          "barndoor"
+        ],
+        [
+          "Pumpkin Patch",
+          "pumpkinpatch",
+          7,
+          1,
+          "-",
+          "pumpkin"
+        ]
+      ],
+      "place": "farm",
+      "areas": [
+        "goats",
+        "hens"
+      ],
+      "ten": [
+        "Corn Stand",
+        "corn"
+      ]
+    }
+  },
+  "facts": [
+    [
+      1,
+      1,
+      "+"
+    ],
+    [
+      1,
+      2,
+      "+"
+    ],
+    [
+      1,
+      3,
+      "+"
+    ],
+    [
+      1,
+      4,
+      "+"
+    ],
+    [
+      2,
+      1,
+      "+"
+    ],
+    [
+      2,
+      2,
+      "+"
+    ],
+    [
+      2,
+      3,
+      "+"
+    ],
+    [
+      3,
+      1,
+      "+"
+    ],
+    [
+      3,
+      2,
+      "+"
+    ],
+    [
+      4,
+      1,
+      "+"
+    ],
+    [
+      1,
+      1,
+      "-"
+    ],
+    [
+      2,
+      1,
+      "-"
+    ],
+    [
+      2,
+      2,
+      "-"
+    ],
+    [
+      3,
+      1,
+      "-"
+    ],
+    [
+      3,
+      2,
+      "-"
+    ],
+    [
+      3,
+      3,
+      "-"
+    ],
+    [
+      4,
+      1,
+      "-"
+    ],
+    [
+      4,
+      2,
+      "-"
+    ],
+    [
+      4,
+      3,
+      "-"
+    ],
+    [
+      4,
+      4,
+      "-"
+    ],
+    [
+      5,
+      1,
+      "-"
+    ],
+    [
+      5,
+      2,
+      "-"
+    ],
+    [
+      5,
+      3,
+      "-"
+    ],
+    [
+      5,
+      4,
+      "-"
+    ],
+    [
+      5,
+      5,
+      "-"
+    ]
+  ],
+  "areas": {
+    "swings": "Swings",
+    "slide": "Slide",
+    "rug": "Story rug",
+    "puppets": "Puppet stage",
+    "goats": "Goats",
+    "hens": "Hens"
+  }
+}

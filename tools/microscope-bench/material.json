@@ -1,0 +1,670 @@
+{
+  "slides": [
+    {
+      "id": "pond",
+      "name": "Pond water",
+      "thumb": "paramecium",
+      "description": "Six distinct photographic cutouts, each placed once. Three different photographed ciliates move on computed paths. The source cultures and freshwater mat are assembled, not a natural abundance sample.",
+      "objects": [
+        {
+          "art": "paramecium",
+          "x": 0.1,
+          "y": 0.03,
+          "note": "A paramecium: one cell that swims. The green dots are algae living inside it.",
+          "swim": true,
+          "a": 0.30234093190505185,
+          "sizeFactor": 0.9814998188005666
+        },
+        {
+          "art": "rotifer",
+          "x": -0.16,
+          "y": 0.14,
+          "note": "A rotifer: a tiny animal. Its crown of hairs moves water toward its mouth.",
+          "a": 2.1667632928467206,
+          "sizeFactor": 0.9746316922486412
+        },
+        {
+          "art": "diatom",
+          "x": 0.22,
+          "y": 0.18,
+          "note": "A diatom: one cell inside a patterned shell. The long lines belong to that shell.",
+          "a": 0.06499971730552145,
+          "sizeFactor": 0.981257713490351
+        },
+        {
+          "art": "mat",
+          "x": -0.06,
+          "y": -0.07,
+          "note": "A thread from a freshwater microbial mat. Long strands cross this sample.",
+          "a": -0.5309673097379979,
+          "sizeFactor": 1.056863055556128
+        },
+        {
+          "art": "paramecium-clear",
+          "x": -0.63,
+          "y": -0.27,
+          "a": 0.63,
+          "swim": true,
+          "phase": 1.1,
+          "note": "A paramecium: one cell that swims. This photographed cell has no green algae inside."
+        },
+        {
+          "art": "paramecium-long",
+          "x": 0.61,
+          "y": 0.39,
+          "a": -0.8,
+          "swim": true,
+          "phase": 2.4,
+          "note": "A paramecium: one cell that swims. The long body has a different shape from the green one."
+        }
+      ],
+      "trayDescription": "Wet mount. Scan with the stage knobs."
+    },
+    {
+      "id": "onion",
+      "name": "Onion skin",
+      "thumb": "onion-clear",
+      "description": "Unstained skin with the source LED cast corrected by per-channel white balance, and separate Lugol-iodine fields from a monochrome camera. These are different cells, not a before-and-after record.",
+      "objects": [
+        {
+          "art": "onion-clear",
+          "x": 0.04,
+          "y": 0.03,
+          "note": "Onion skin without stain. Long cell walls mark the edges of neighbouring cells."
+        }
+      ],
+      "iodine": [
+        {
+          "art": "onion-iodine",
+          "x": 0.06,
+          "y": 0.02,
+          "note": "Onion skin stained with iodine. This photograph was taken with a monochrome camera."
+        },
+        {
+          "art": "onion-detail",
+          "x": -0.22,
+          "y": -0.08,
+          "note": "Onion skin stained with iodine. Dark round structures inside the walls are nuclei."
+        }
+      ],
+      "trayDescription": "Compare unstained and iodine photographs with Prepare mount."
+    },
+    {
+      "id": "hair",
+      "name": "Human hair",
+      "thumb": "hair",
+      "water": false,
+      "description": "Human hair over a ruled counting chamber. The known grid provides the physical scale.",
+      "objects": [
+        {
+          "art": "hair",
+          "x": 0.03,
+          "y": 0.02,
+          "note": "A human hair on a counting grid. The small squares are about 50 micrometres wide."
+        }
+      ],
+      "trayDescription": "Hair on a counting grid. Turn focus along its length."
+    },
+    {
+      "id": "sand",
+      "name": "Bahamas sand",
+      "thumb": "sand",
+      "water": false,
+      "description": "Real shell-rich sand from French Bay, San Salvador. Original reflected-light photograph.",
+      "objects": [
+        {
+          "art": "sand",
+          "x": 0.4,
+          "y": 0.15,
+          "note": "Sand from a beach in the Bahamas. Some grains are pieces of shells."
+        }
+      ],
+      "trayDescription": "Beach sand photographed in reflected light."
+    },
+    {
+      "id": "leaf",
+      "name": "Hosta leaf",
+      "thumb": "leaf",
+      "description": "Two finite epidermis fields from a water-mounted Hosta leaf, at different source samplings.",
+      "objects": [
+        {
+          "art": "leaf",
+          "x": 0.018,
+          "y": -0.012,
+          "note": "A leaf surface. Look for the boundaries between its cells."
+        },
+        {
+          "art": "leaf-detail",
+          "x": 0.24,
+          "y": 0.02,
+          "note": "A closer view of a leaf surface. Look for the boundaries between its cells."
+        }
+      ],
+      "trayDescription": "Two photographed leaf-surface fields."
+    },
+    {
+      "id": "wing",
+      "name": "Crane-fly wing",
+      "thumb": "wing",
+      "water": false,
+      "description": "A photographed crane-fly wing. The 2 mm source bar measures 206 pixels; the cropped tile is 13.79 mm wide, including background. It is not a measured wing length. Fine hairs are not resolved in this source.",
+      "objects": [
+        {
+          "art": "wing",
+          "x": -0.25,
+          "y": 0.1,
+          "note": "A crane-fly wing. The dark veins support its thin membrane."
+        }
+      ],
+      "trayDescription": "A crane-fly wing. Follow its veins with the stage knobs."
+    },
+    {
+      "id": "root",
+      "name": "Onion root tip",
+      "thumb": "root2",
+      "prepared": true,
+      "preparation": "acetocarmine / Feulgen insets",
+      "description": "A real acetocarmine root-tip field from CIL:43552, with four separate Feulgen control close-ups inset at their physical sizes. They are different specimens and stains. Base-field scale is inferred, not calibrated; the insets retain measured 10 micrometre source bars.",
+      "objects": [
+        {
+          "art": "meristem",
+          "x": 0,
+          "y": 0,
+          "note": "An onion root tip. Many cells have a round nucleus; a few have visible chromosomes."
+        },
+        {
+          "art": "root0",
+          "x": -0.075,
+          "y": -0.05,
+          "note": "Prophase: chromosomes become thick and visible inside a root-tip cell."
+        },
+        {
+          "art": "root1",
+          "x": 0.065,
+          "y": -0.045,
+          "note": "Metaphase in a squashed root-tip cell. The chromosomes are spread apart in this preparation."
+        },
+        {
+          "art": "root2",
+          "x": -0.055,
+          "y": 0.05,
+          "note": "Anaphase: two groups of chromosomes separate inside a dividing cell."
+        },
+        {
+          "art": "root3",
+          "x": 0.07,
+          "y": 0.055,
+          "note": "Telophase: two new nuclei form as a root-tip cell divides."
+        }
+      ],
+      "trayDescription": "A root-tip field with separate control close-ups."
+    },
+    {
+      "id": "blood",
+      "name": "Blood smear",
+      "thumb": "blood0",
+      "prepared": true,
+      "preparation": "Giemsa",
+      "description": "Eight separately photographed Giemsa fields spread across the glass. Figure letters, gutters and scale bars are removed. Original sample context is on this slide’s Manual source page.",
+      "objects": [
+        {
+          "art": "blood0",
+          "x": -0.16,
+          "y": -0.11,
+          "note": "A blood smear: pale discs are red blood cells. Some cells in this published sample contain malaria parasites."
+        },
+        {
+          "art": "blood1",
+          "x": 0.02,
+          "y": -0.13,
+          "note": "A blood smear: pale discs are red blood cells. Some cells in this published sample contain malaria parasites."
+        },
+        {
+          "art": "blood2",
+          "x": 0.17,
+          "y": -0.08,
+          "note": "A blood smear: pale discs are red blood cells. Some cells in this published sample contain malaria parasites."
+        },
+        {
+          "art": "blood3",
+          "x": -0.22,
+          "y": 0.03,
+          "note": "A blood smear: pale discs are red blood cells. Some cells in this published sample contain malaria parasites."
+        },
+        {
+          "art": "blood4",
+          "x": -0.06,
+          "y": 0.04,
+          "note": "A blood smear: pale discs are red blood cells. Some cells in this published sample contain malaria parasites."
+        },
+        {
+          "art": "blood5",
+          "x": 0.11,
+          "y": 0.07,
+          "note": "A blood smear: pale discs are red blood cells. Some cells in this published sample contain malaria parasites."
+        },
+        {
+          "art": "blood6",
+          "x": -0.14,
+          "y": 0.19,
+          "note": "A blood smear: pale discs are red blood cells. Some cells in this published sample contain malaria parasites."
+        },
+        {
+          "art": "blood7",
+          "x": 0.12,
+          "y": 0.22,
+          "note": "A blood smear: pale discs are red blood cells. Some cells in this published sample contain malaria parasites."
+        }
+      ],
+      "trayDescription": "Eight separate Giemsa-stained fields."
+    },
+    {
+      "id": "cheek",
+      "name": "Cheek swab",
+      "thumb": "cheek",
+      "prepared": true,
+      "preparation": "methylene blue",
+      "description": "A real methylene-blue cheek field with dark nuclei. Pale source glass is alpha-masked using blue minus red; retained RGB pixels are unchanged. Scale is inferred from a typical cell edge, not measured on this camera. Cell size varies; this approximate field is for observation, not precision measurement.",
+      "objects": [
+        {
+          "art": "cheek",
+          "x": 0.025,
+          "y": 0.015,
+          "note": "Cheek cells: flat cells from inside the mouth. A dark oval inside a cell is its nucleus."
+        }
+      ],
+      "trayDescription": "A methylene-blue cheek smear. Scale is approximate."
+    },
+    {
+      "id": "colony",
+      "name": "Pond colony",
+      "thumb": "plane4",
+      "prepared": true,
+      "preparation": "fixed · darkfield · focal series",
+      "description": "A fixed pond colony, photographed at nine focus positions, 25 micrometres apart. Turn focus through the field to see different depths.",
+      "objects": [],
+      "trayDescription": "Fixed pond colony. Turn focus through nine photographs."
+    },
+    {
+      "id": "micrometer",
+      "name": "Stage micrometer",
+      "thumb": "hair",
+      "prepared": true,
+      "water": false,
+      "preparation": "dry · 10 µm divisions",
+      "description": "Exact code-drawn 1 mm stage micrometer: 100 divisions of 10 µm.",
+      "objects": [],
+      "trayDescription": "An etched scale with ten-micrometre divisions."
+    }
+  ],
+  "assets": {
+    "paramecium": {
+      "width": 252,
+      "height": 385,
+      "umPerPixel": 0.2898550724637681,
+      "source": "paramecium"
+    },
+    "rotifer": {
+      "width": 468,
+      "height": 2152,
+      "umPerPixel": 0.09293680297397769,
+      "source": "rotifer"
+    },
+    "diatom": {
+      "width": 780,
+      "height": 1060,
+      "umPerPixel": 0.12121212121212122,
+      "source": "diatom"
+    },
+    "mat": {
+      "width": 400,
+      "height": 65,
+      "umPerPixel": 0.2247191011235955,
+      "source": "mat"
+    },
+    "hair": {
+      "width": 1280,
+      "height": 1024,
+      "umPerPixel": 1.0,
+      "source": "hair"
+    },
+    "sand": {
+      "width": 1500,
+      "height": 900,
+      "umPerPixel": 7.142857142857143,
+      "source": "sand"
+    },
+    "wing": {
+      "width": 1420,
+      "height": 378,
+      "umPerPixel": 9.70873786407767,
+      "source": "wing"
+    },
+    "onion-clear": {
+      "width": 258,
+      "height": 215,
+      "umPerPixel": 2.127659574468085,
+      "source": "onion-clear"
+    },
+    "onion-iodine": {
+      "width": 85,
+      "height": 80,
+      "umPerPixel": 3.90625,
+      "source": "lens"
+    },
+    "onion-detail": {
+      "width": 92,
+      "height": 78,
+      "umPerPixel": 0.6578947368421053,
+      "source": "lens"
+    },
+    "leaf": {
+      "width": 64,
+      "height": 132,
+      "umPerPixel": 3.90625,
+      "source": "lens"
+    },
+    "leaf-detail": {
+      "width": 48,
+      "height": 70,
+      "umPerPixel": 0.6578947368421053,
+      "source": "lens"
+    },
+    "cheek": {
+      "width": 908,
+      "height": 823,
+      "umPerPixel": 0.22,
+      "source": "cheek"
+    },
+    "root0": {
+      "width": 280,
+      "height": 230,
+      "umPerPixel": 0.2857142857142857,
+      "source": "root"
+    },
+    "root1": {
+      "width": 290,
+      "height": 220,
+      "umPerPixel": 0.2857142857142857,
+      "source": "root"
+    },
+    "root2": {
+      "width": 280,
+      "height": 245,
+      "umPerPixel": 0.2857142857142857,
+      "source": "root"
+    },
+    "root3": {
+      "width": 210,
+      "height": 245,
+      "umPerPixel": 0.2857142857142857,
+      "source": "root"
+    },
+    "plane0": {
+      "width": 472,
+      "height": 420,
+      "umPerPixel": 1.0204081632653061,
+      "source": "stack"
+    },
+    "plane1": {
+      "width": 472,
+      "height": 420,
+      "umPerPixel": 1.0204081632653061,
+      "source": "stack"
+    },
+    "plane2": {
+      "width": 472,
+      "height": 420,
+      "umPerPixel": 1.0204081632653061,
+      "source": "stack"
+    },
+    "plane3": {
+      "width": 472,
+      "height": 420,
+      "umPerPixel": 1.0204081632653061,
+      "source": "stack"
+    },
+    "plane4": {
+      "width": 472,
+      "height": 420,
+      "umPerPixel": 1.0204081632653061,
+      "source": "stack"
+    },
+    "plane5": {
+      "width": 472,
+      "height": 420,
+      "umPerPixel": 1.0204081632653061,
+      "source": "stack"
+    },
+    "plane6": {
+      "width": 472,
+      "height": 420,
+      "umPerPixel": 1.0204081632653061,
+      "source": "stack"
+    },
+    "plane7": {
+      "width": 472,
+      "height": 420,
+      "umPerPixel": 1.0204081632653061,
+      "source": "stack"
+    },
+    "plane8": {
+      "width": 472,
+      "height": 420,
+      "umPerPixel": 1.0204081632653061,
+      "source": "stack"
+    },
+    "blood0": {
+      "width": 138,
+      "height": 82,
+      "umPerPixel": 0.17857142857142858,
+      "source": "blood"
+    },
+    "blood1": {
+      "width": 138,
+      "height": 82,
+      "umPerPixel": 0.17857142857142858,
+      "source": "blood"
+    },
+    "blood2": {
+      "width": 138,
+      "height": 82,
+      "umPerPixel": 0.17857142857142858,
+      "source": "blood"
+    },
+    "blood3": {
+      "width": 138,
+      "height": 82,
+      "umPerPixel": 0.17857142857142858,
+      "source": "blood"
+    },
+    "blood4": {
+      "width": 138,
+      "height": 82,
+      "umPerPixel": 0.17857142857142858,
+      "source": "blood"
+    },
+    "blood5": {
+      "width": 138,
+      "height": 82,
+      "umPerPixel": 0.17857142857142858,
+      "source": "blood"
+    },
+    "blood6": {
+      "width": 138,
+      "height": 82,
+      "umPerPixel": 0.17857142857142858,
+      "source": "blood"
+    },
+    "blood7": {
+      "width": 138,
+      "height": 82,
+      "umPerPixel": 0.17857142857142858,
+      "source": "blood"
+    },
+    "meristem": {
+      "width": 1280,
+      "height": 1024,
+      "umPerPixel": 0.22,
+      "source": "meristem"
+    },
+    "paramecium-clear": {
+      "width": 251,
+      "height": 352,
+      "umPerPixel": 0.2898550724637681,
+      "source": "paramecium"
+    },
+    "paramecium-long": {
+      "width": 124,
+      "height": 379,
+      "umPerPixel": 0.5405405405405406,
+      "source": "paramecium"
+    }
+  },
+  "sources": {
+    "paramecium": {
+      "title": "Characterization of Crystals in Ciliate Paramecium bursaria, Fig. 1a, three transmitted-light panels",
+      "credit": "Yuuki Kodama, Ayasa Kitatani, Yuriko Morita",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11246328/",
+      "doi": "10.1007/s00284-024-03793-8",
+      "scale": "First two panels: shared 20 micrometre bar measures about 69 pixels. Right panel: its separate 20 micrometre bar is 37 pixels end-to-end on row 362 of the original download. These are three distinct cultured individuals, not one natural pond sample.",
+      "magnification": "source optical microscopy; reproduced scale bar determines pixel size"
+    },
+    "rotifer": {
+      "title": "Adineta beysunae (10.3897-zookeys.941.50465) Figure 3.jpg",
+      "credit": "Zeng Y, Wei N, Wang Q, Iakovenko NS, Li Y, Yang Y (2020)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Adineta_beysunae_(10.3897-zookeys.941.50465)_Figure_3.jpg",
+      "scale": "Photographic panel B only. Vertical 50 µm bar = approximately 538 original pixels. Drawing A excluded.",
+      "magnification": "source light microscopy"
+    },
+    "diatom": {
+      "title": "Bancsó 2021 Fig 7-8 Pinnularia viridis.jpg",
+      "credit": "Sándor Bancsó",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Bancs%C3%B3_2021_Fig_7-8_Pinnularia_viridis.jpg",
+      "scale": "20 µm bar = approximately 165 pixels in the downloaded 1280 px thumbnail. Scale measured after thumbnail resampling.",
+      "magnification": "source light microscopy"
+    },
+    "mat": {
+      "title": "41396 2020 676 Fig4b.jpg",
+      "credit": "H. S. Tee, D. Waite, L. Payne, M. Middleditch, S. Wood, K. M. Handley",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:41396_2020_676_Fig4b.jpg",
+      "scale": "Lower-right panel: 20 µm bar = approximately 89 pixels. One unlabelled filament crop.",
+      "magnification": "source light microscopy"
+    },
+    "hair": {
+      "title": "Hemocytometer grid with human hair 100x.jpg",
+      "credit": "Jeffrey M. Vinocur",
+      "license": "CC BY 2.5",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.5/",
+      "url": "https://commons.wikimedia.org/wiki/File:Hemocytometer_grid_with_human_hair_100x.jpg",
+      "scale": "Known-size object: central haemocytometer fine squares, 50 µm, approximately 50 px. Inferred standard Neubauer grid pitch, not a camera calibration. Both axes agree within about 2%.",
+      "magnification": "100× stated by photographer",
+      "calibrationReferences": [
+        "https://asset-downloads.zeiss.com/catalogs/download/mic/96e9e3a7-f2fd-4989-94e3-d12412701623/EN_wp_How-to-Use-a-Hemocytometer.pdf",
+        "https://www.marienfeld-superior.com/counting-grids.html"
+      ]
+    },
+    "sand": {
+      "title": "Marine biogenous aragonite sand (modern; sandy beach at French Bay, San Salvador Island, Bahamas) (48739969587).jpg",
+      "credit": "Sara Beth Kopczynski, shared by James St. John",
+      "license": "CC BY 2.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Marine_biogenous_aragonite_sand_(modern%3B_sandy_beach_at_French_Bay,_San_Salvador_Island,_Bahamas)_(48739969587).jpg",
+      "scale": "2 mm white bar = approximately 280 pixels. Reflected-light source; not transmitted-light sand.",
+      "magnification": "source light microscopy"
+    },
+    "wing": {
+      "title": "Tipula dechangensis (10.3897-zookeys.1040.64376) Figures 1, 2.jpg",
+      "credit": "Men Q-L, Starkevich P, Saldaitis A (2021)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Tipula_dechangensis_(10.3897-zookeys.1040.64376)_Figures_1,_2.jpg",
+      "scale": "Full available source (1512 x 1314 px): 2.0 mm bar measures 206 px, or 9.71 um/px. The 1420 px crop is 13.79 mm wide including background; this is not an anatomical wing length. Article reports 14.3-16.8 mm wing length for the species. Source resolution limits high-power use.",
+      "magnification": "source light microscopy"
+    },
+    "onion-clear": {
+      "title": "Mobile-phone-based Rheinberg microscope with an LED array, Fig. 9a",
+      "credit": "Yuma Ogasawara, Ryo Sugimoto, Ryoji Maruyama, Hidenobu Arimoto, Yosuke Tamada, Wataru Watanabe",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6975239/",
+      "doi": "10.1117/1.JBO.24.3.031007",
+      "scale": "100 µm bar = approximately 47 pixels. Brightfield panel a only.",
+      "magnification": "source optical microscopy; reproduced scale bar determines pixel size"
+    },
+    "lens": {
+      "title": "Low-cost 3D-printed lenses for brightfield and fluorescence microscopy, Figs. 5C, 5E, 6D and 6F",
+      "credit": "Jay Christopher, Liam M Rooney, Mark Donnachie, Deepak Uttamchandani, Gail McConnell, Ralf Bauer",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11019669/",
+      "doi": "10.1364/BOE.514653",
+      "scale": "Fig. 5: 250 µm bar ≈64 px; Fig. 6: 50 µm bar ≈76 px. Unlabelled crops strictly within commercial-lens lower-left halves. Onion uses Lugol iodine; Hosta epidermis is a water mount.",
+      "magnification": "source optical microscopy; reproduced scale bar determines pixel size"
+    },
+    "cheek": {
+      "title": "Human epithelial cells stained with methylene blue dye",
+      "credit": "Daliasalloum",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://commons.wikimedia.org/wiki/File:Human_epithelial_cells_stained_with_methylene_blue_dye.jpg",
+      "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Human_epithelial_cells_stained_with_methylene_blue_dye.jpg",
+      "scale": "Approximate only: 0.22 um per original pixel, using a roughly 250-pixel cell edge and a 55 um reference size. Prasad et al. control cells average 54.97 um; Romeo et al. independently describe mature buccal cells as 50-60 um on edge. These are variable biological sizes, not a camera calibration. Do not use this slide for precision measurement; use the source-bar-scaled blood fields instead.",
+      "calibrationReferences": [
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC3001196/",
+        "https://pmc.ncbi.nlm.nih.gov/articles/PMC2732433/"
+      ],
+      "magnification": "Not stated by photographer; never used to invent a calibrated pixel size.",
+      "fetchedUtc": "2026-11-06T19:29:00.264902+00:00"
+    },
+    "root": {
+      "title": "Exogenous application of mycotoxin fusaric acid, Fig. 4, control root-tip mitosis",
+      "credit": "Kürşat Çavuşoğlu, Dilek Çavuşoğlu",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10960845/",
+      "doi": "10.1038/s41598-024-57762-z",
+      "scale": "10 µm bar = approximately 35 pixels. Four control fields; Feulgen staining, original photographic panels a–d.",
+      "magnification": "source optical microscopy; reproduced scale bar determines pixel size"
+    },
+    "blood": {
+      "title": "Human Plasmodium knowlesi Infection, Fig. 1",
+      "credit": "J. J. van Hellemond and coauthors; CDC Emerging Infectious Diseases (2009)",
+      "license": "Public domain",
+      "licenseUrl": "https://wwwnc.cdc.gov/eid/page/copyright-and-disclaimers",
+      "url": "https://wwwnc.cdc.gov/eid/article/15/9/09-0358_article",
+      "downloadUrl": "https://wwwnc.cdc.gov/eid/images/09-0358-F1.jpg",
+      "scale": "Caption: 5 µm bar, approximately 28 pixels in this 600 px figure. Eight Giemsa-stained blood fields with malaria parasites. The uninfected cell near source x105,y50 spans about 42 pixels, independently approximately 7.5 µm.",
+      "magnification": "source blood-smear optical micrograph, magnification not stated"
+    },
+    "stack": {
+      "title": "High-contrast multifocus microscopy with a single camera and z-splitter prism, Supplement 1, Fig. S9b",
+      "credit": "Sheng Xiao, Howard Gritton, Hua-an Tseng, Dana Zemel, Xue Han, Jerome Mertz (2020)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://doi.org/10.6084/m9.figshare.12964487.v3",
+      "downloadUrl": "https://ndownloader.figshare.com/files/52747868",
+      "scale": "100 µm bar = approximately 98 pixels in extracted PDF JPEG. Nine simultaneous focal planes spaced 25 µm, +100 to -100 µm. Fixed Volvox in Eukitt; darkfield, original ImageJ green-fire-blue lookup table retained. Same registered crop for every plane.",
+      "magnification": "source 20×/0.5 NA objective; source darkfield, not a fluorescence simulation"
+    },
+    "meristem": {
+      "title": "CIL:43552, Allium cepa, root tip",
+      "credit": "Shoba Shanti (2013), Cell Image Library",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "url": "https://www.cellimagelibrary.org/images/43552",
+      "doi": "10.7295/W9CIL43552",
+      "scale": "Approximate 0.22 um per pixel: nuclei around 80-110 pixels compared with roughly 18-24 um nuclei in the independently scaled Cavusoglu control fields. Archive supplies no pixel calibration. This is a size-based inference, unsuitable for precision measurement.",
+      "magnification": "40x / 0.65 NA stated by archive; not used to calculate pixel size",
+      "fetchedUtc": "2026-11-06 (licence rechecked; original TIFF retained from build)"
+    }
+  }
+}

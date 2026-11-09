@@ -1,7 +1,5 @@
 {
-  "keep": [
-    "#matrix"
-  ],
+  "keep": [],
   "states": [
     {
       "name": "after-run",
@@ -12,6 +10,9 @@
         {
           "click": "#run"
         }
+      ],
+      "keep": [
+        "#matrix"
       ]
     },
     {
@@ -29,6 +30,9 @@
         {
           "click": "#run"
         }
+      ],
+      "keep": [
+        "#matrix"
       ]
     },
     {
@@ -39,6 +43,7 @@
         }
       ],
       "keep": [
+        "#matrix",
         "#evidence"
       ],
       "sizes": [
@@ -76,6 +81,9 @@
       "sizes": [
         "680x425",
         "1366x768"
+      ],
+      "keep": [
+        "#matrix"
       ]
     },
     {
@@ -89,6 +97,9 @@
       "sizes": [
         "680x425",
         "1366x768"
+      ],
+      "keep": [
+        "#matrix"
       ]
     },
     {
@@ -113,6 +124,9 @@
       "sizes": [
         "1366x768",
         "680x425"
+      ],
+      "keep": [
+        "#matrix"
       ]
     },
     {
@@ -143,6 +157,9 @@
       "sizes": [
         "1366x768",
         "680x425"
+      ],
+      "keep": [
+        "#matrix"
       ]
     },
     {
@@ -196,6 +213,9 @@
         "1366x768",
         "680x425",
         "375x812"
+      ],
+      "keep": [
+        "#matrix"
       ]
     },
     {
@@ -249,6 +269,9 @@
         "1366x768",
         "680x425",
         "375x812"
+      ],
+      "keep": [
+        "#matrix"
       ]
     },
     {
@@ -273,6 +296,76 @@
       "sizes": [
         "1366x768",
         "375x812"
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "goal-reversed",
+      "sizes": [
+        "1366x768",
+        "1280x720"
+      ],
+      "steps": [
+        {
+          "click": "#m-orders"
+        },
+        {
+          "click": "#k-1"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#k-9"
+        },
+        {
+          "click": "#run"
+        }
+      ],
+      "keep": [
+        "#matrix"
+      ]
+    },
+    {
+      "name": "finished-orders",
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ],
+      "steps": [
+        {
+          "click": "#m-orders"
+        },
+        {
+          "click": "#k-1"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#clue-Mask"
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "click": "#k-5"
+        },
+        {
+          "click": "#run"
+        }
+      ],
+      "keep": [
+        "#matrix"
       ]
     }
   ]

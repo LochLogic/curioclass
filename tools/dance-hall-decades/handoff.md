@@ -1,86 +1,89 @@
-# Dance Hall Decades: Build handoff
+# Dance Hall Decades handoff
 
-Built in S:/CurioClass-codex. Build only, no commit and no polish round. Read codex-report.md for the final audit
-disposition. Evidence, temporary scripts, bar bundles, Chrome profiles and screenshots are in
-_scratch/dance-hall-decades/. The final report is written last because the owner explicitly says to stop when it exists.
+Cold review, November 5, 2026. Work stays in this tool and _scratch/dance-hall-decades.
+No commit or deployment. Read codex-review.md for the final evidence and audit disposition.
 
 ## Source map
 
-- src.html starts from kit/starter/src.html and inlines kit:curio and kit:dance at bundle time.
-- CSS lays out the scene at actual pixel sizes. Halls has a scrolling timeline, an explicit bounded workspace row,
-  painted hall and control panel. At short landscape sizes supporting panel text hides so transport stays usable.
-- HALLS contains the content and source cards. ROWS contains all thirty-two authored dance positions.
-- buildPattern stores count labels, active feet, top-down positions, durations, cues and pose hints. Lindy includes
-  swung substeps; Hustle has a lead-in. The audio meter continues through the ends of dance phrases.
-- drawFootprints draws travel arrows, L/R stamps and numbered locations. Repeated-location phrases show the active
-  stamp rather than piling every stamp on top of the same spot. The count strip gives the full phrase on roomy screens.
-- figureRenderer is the swap seam for painted people. It uses Dance.flat, Dance.pose and Dance.mix with tool-specific
-  joint overrides until a corresponding real WebP resolves through PAINTED_POSES. Draft SVG tokens stay hidden.
-- The original eight grooves use a Curio.audio context and a cancellable bus. A 12 ms scheduler looks 35 ms ahead;
-  the visuals consume that same audio-clock event list. Tempo changes affect the next unscheduled interval.
-- Curio.voice owns speech. No recorded clips were made. Story requests during Play are held locally until Stop, then
-  checked against the current hall and tab. Read stops music before the kit reads the current hint. Hint text changes
-  synchronously, including when the same hint node moves into the comparison mode.
-- Comparison controls stay mounted. Me sliders, distinct picks, criterion, strengths, fact choices and writing save
-  through guarded localStorage. Selected evidence can fill the closing reason, which remains editable. Copy uses the
-  clipboard when available and otherwise selects the sentence for manual copying. Reset clears only this comparison.
-- __tool exposes state, hall/tab/mode/speed setters, play/stop, pattern, clock traces, voice log and sentence for checks.
+- src.html uses kit:curio. HALLS holds the eight source-backed cards; ROWS holds the 32 authored chart positions.
+- buildPattern holds counts, active feet, relative floor positions, subdivisions and cues. The same audio clock
+  drives the groove, count, footprint and painted pose. Lindy has eight placements in six beats; Hustle has a pickup.
+- figureRenderer is the painted-person rendering seam. PAINTED_DANCERS selects two 4-by-2 character sheets;
+  PAINTED_DETAILS holds behind-cross, touch, back-tap and scuff studies, with Avery on row one and Jo on row two.
+  PAINTED_TURN is the separate grounded-turn study, before the lifted scuff.
+- HALL_DANCER and paintedPose map a count to a character, cell and mirror. Sheet coordinates are 384 by 512.
+  Replace the four WebPs or this mapping without changing the clock, footprints, content or comparison.
+- The former code figure is removed. Seventeen selected painted poses are reused across the eight dances. The
+  source sheets retain unused candidate cells; these are not additional classroom poses.
+- Painted poses hold on each count, including Motion off. A rear-view teaching model demonstrates relative steps;
+  the Electric Slide wall label follows the quarter turn on 17, with a right scuff on 18. Exact footwork remains
+  in the labeled diagram. The demonstrator is not a reconstruction of a historical patron or costume.
+- The scheduler has a 35 ms lookahead. Tempo changes affect the next unscheduled interval. Tabs leave music running;
+  hall/mode changes, Read and hiding the page stop it. No voice plays over the groove.
+- Curio.voice handles narration, Read and Sound. Short how-to lines fit the two-second action pace; stories
+  are dropped or cut when their hall/tab no longer fits. No recordings were made; browser speech is the fallback.
+- Comparison controls stay mounted. Dance changes clear writing tied to that dance; criterion changes clear
+  the comparison reason. Writing is explicitly a draft, not a machine-graded cultural judgment. Copy can copy a draft.
+- localStorage and clipboard access are guarded. Privacy is stated on screen. Reset clears only this comparison.
+- __tool exposes state, setters, pattern, clock trace, voice log, sentence and renderer for inspection.
 
-## Owner decision: painted dancers
+## Review changes
 
-The final tool should have painted dancers. It currently uses the kit's faceless figure, as directed. There are
-42 deferred people assets with people:true in art/prompts.json. No people were generated in this run. PAINTED_POSES
-references the future art tokens; supplying the WebPs and rebundling activates them without changing the scheduler.
-The painter should read each count cue and inspect the diagram, keep the whole body and both feet in frame, and use
-one consistent demonstrator across a dance. The optional Stroll couple-strut and Electric quarter-left assets give
-the next painter formation and facing coverage. The final scuff pose is right-foot scuff while turning left.
+Painted two varied adult demonstrators and extra touch/turn studies, with people:true on all four assets.
+Redrew Avery's two Twist cells to distinguish standing and shallow-dip counter-rotation.
+Preserved all eight rich halls and eight object markers. Contact sheet:
+_scratch/dance-hall-decades/painted-people-contact.png, on a contrasting background at classroom figure sizes.
 
-The first painted pass should check the body's support leg, touches without weight, partner connection, opposite
-hips and shoulders, and the four-wall turn. The kit figure is deliberately temporary. A painted pose currently
-holds per count; continuous interpolation belongs to the code fallback. Review painted mirroring and turning once
-the real people exist. Existing no-people paintings were inspected individually and as a dark-background sheet.
+Moved Talk about it above the history card, reset historical scrolling on hall changes, repaired stale comparison
+evidence, shortened movement/room how-to lines, fixed mirrored arrow origins and paired L/R labels, raised the
+Georgia count glyph to prevent descender clipping, corrected the Electric Slide turn count, replaced the broken
+Palladium source link, and qualified the spoken disco-backlash interpretation to match the screen.
+The final audit confirmed a quiet first Dance-tab tap and a how-to interrupted by quick Next taps. The current
+tab now narrates, and the still-valid shared Play instruction finishes across hall changes without stale stories.
+Restored the original judge spacing after an overbroad review CSS edit, and separated repeated footprint labels.
+The select focus ring sits inside its control so it cannot cover the label above it.
 
-## Decisions and source conflicts
+## Sensitivity
 
-There is no separate Open questions section in this spec. The owner's explicit painted-dancer decision is recorded
-above. These source conflicts were resolved without changing the teaching topic:
+Fresh cultural review should check creator credit and institutional exclusion across Black American, Cuban,
+Puerto Rican and Latino dance histories; gay communities' role in disco; the attribution of backlash interpretations;
+and the disputed Electric Slide origin date. The cross step avoids a stereotyped Native American label, explained
+only in teacher notes. Do not reenact segregation or ask a learner to stand for a whole community.
 
-- The Electric Slide's specified final counts were incomplete and contradicted an eighteen-count teaching sheet.
-  Use right back, left touch, left forward, right scuff and quarter turn left for counts 15-18. The common version
-  and Silver's original twenty-two-count choreography remain distinct. Silver's claimed 1976 date is attributed.
-- The Stroll is labeled as an eight-count side-touch adaptation; historical reconstructions use other side patterns.
-- Mambo is labeled the requested on-one teaching adaptation. Common ballroom mambo breaks on two. Do not claim this
-  generic teaching pattern precisely reconstructs how everyone danced at the Palladium.
-- The spec requests a short Hustle tap introduction. It is retained and is not presented as a complete partner basic.
-- The unsupported generalized statement about closed hotel ballrooms is softened. The integrated Palladium floor and
-  the broader context of segregation are retained with a concrete source card.
-- The 1973 event was a fundraiser, so "free parties" is not asserted. Neighborhood creativity remains the focus.
-- A line-dance format can welcome newcomers; it cannot establish that no one was ever excluded from wedding settings.
-- The Library of Congress distinguishes Ballard's November 1958 recording session from the January 1959 release.
-  The screen says released in 1959, correcting the spec's conflation of the two dates.
-- No new hard-history mechanics were introduced: no scores, timers, completion rewards or win states.
+The painted modern demonstrators vary in skin tone, age and body shape. Both are ambulant; the prompt requests
+a hearing aid for Jo, but its small scale is not a strong visual accessibility cue. Notes allow seated tracing and
+observation. Review anatomy, support weight and stereotyping, including at the actual display sizes.
+The contact sheet is ready for the owner; this unattended run makes no claim of owner approval.
+
+## Source conflicts and limits
+
+- Salerno's Electric Slide teaching sheet controls the corrected ending: 15 right back, 16 left touch,
+  17 left forward with the quarter turn, 18 right scuff. The supplied spec's ending is inconsistent with it.
+- The Stroll remains the specified eight-count side-touch adaptation. Powers's reconstruction uses six-count patterns.
+- Mambo remains on one as requested. Library of Dance documents historical on-one as well as on-two timing.
+- The requested Hustle tap sequence is not verified as a complete continuous partner basic. It now says short tap
+  introduction, and count 3 asks for a right-weight reset before the next left tap. A full replacement would disagree
+  with the exact spec sequence, so it is left for a spec decision and an embodied dance-teaching check.
+- The fundraiser wording for 1973, attributed 1976 origin date, Ballard recording/release distinction,
+  qualified venue access and modern-summary fact-card labels are preserved and checked again.
+- Synthetic grooves are original learning sketches. No headphone or professional embodied dance review is claimed.
+- No points, timers, completion prizes, cultural rankings or win states were added.
 
 ## Engine changes wanted
 
-None required for this Build. If this scheduling pattern is reused, kit/dance.js, music / clock could expose an
-optional explicit audio-clock scheduling time and cancellable output bus, so a future tool can align custom count
-subdivisions without a local conductor. Do not change the kit as part of this tool's review.
+None. No kit, script, docs or neighboring tool changes were made.
 
-## Review next
+## Evidence
 
-Cold review should prioritize embodied dance accuracy, historical phrasing and source limitations in notes.md,
-then headphone listening for the synthesized timbres and voice pacing. The named bank voice is Vindemiatrix,
-gentle-storyteller; browser speech does not reproduce that actor. Some third-tab text and comparison writing require
-scrolling at compact sizes, while hall navigation and the core dance controls stay visible. The timeline is explicitly
-allowed to scroll sideways on phones. The audit is a mechanical check, not a substitute for this content review.
+All paths below are in Scratch. Cold play: cold/, cold-play/, cold-hall-*.json and cold-moving.json.
+Reproduced stale evidence: cheap-before-stale.json. Fixed comparison: stale-fixed.json and review-cheap/.
+Painted integration: review-quick/. Final sizes, keyboard, grayscale and Motion off: review-sizes/.
+Main voice path and counts: main-after-audit.json, selected-tab-first.json, quick-next.json and read-side.json.
+Focused final rechecks: post-audit-voice/, post-audit-poses/ and post-audit-moving/ with corresponding JSON proofs.
+One final audit: review-audit/audit.md and its frames. See codex-review.md for confirmed leads and limits.
 
+## Cleanup limit
 
-## Final Build checks
-
-One full mechanical audit completed with 52 frames and 276 leads. All audit images were inspected in nine contact
-sheets. The report groups every lead by cause and disposition. No runtime or resize errors were found. Targeted
-repairs address header targets, textarea names, terminal navigation focus, badge bounds, invisible SVG stamps,
-compact comparison layout and repeated-tap narration cuts. Five affected-state snapshots are mechanically clean;
-the phone Sound layout and three rapid-tap narration cases also passed. The full audit was not run again.
-The original audit and all targeted evidence are in Scratch. Chrome 9990 / 9991 and host 8795 are closed, and
-host.html is removed. The final bundle is under 2 MB. No commit or polish round was started.
+Assigned Chrome ports are closed and host.html was removed. Port 8755 still serves this tool after the child
+cleanup attempts; Windows exposes no owning listener PID. Closure could not be verified without stopping an
+unidentified process. Scratch cleanup-verified.json records the final observation.

@@ -1,0 +1,22 @@
+{
+  "id": "warming-evidence-desk",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Line up the records. Ask what each one did.",
+  "outcome": "Ask questions of climate records and support claims about the factors behind warming.",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": ["Ask", "Argue"],
+  "grades_label": "Grade 8",
+  "sources": [
+    "NASA GISTEMP v4 global annual temperature, frozen 2026-11-05",
+    "NOAA GML Mauna Loa annual carbon dioxide; Law Dome, MacFarling Meure et al. 2006",
+    "LASP LISIRD NRLTSI2 annual total solar irradiance, Coddington et al. 2016",
+    "CMIP7 v2.2.1 volcanic aerosol optical depth, Aubry et al., via NASA GISS",
+    "Global Carbon Budget via Our World in Data, CC BY 4.0",
+    "IPCC AR6 WG1 SPM A.1.3; chapter 3.3.1; Robock 2000; Smithsonian GVP",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-06"
+}

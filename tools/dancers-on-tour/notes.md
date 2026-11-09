@@ -30,7 +30,7 @@ Six Lanterns is made up for Curio Class. The lights are simplified rules of thum
 
 The safety calculation follows the explicit points in the spec. A complete gym warm-up removes missing-part points, but the two points for hard-floor jumps remain. The gym note allows keeping jumps after Feet and calves plus Rehearse key moves, yet its Safety light stays medium. Swapping jumps for relevés can lower it further.
 
-The warm-up checklist separately checks starting with Pulse raiser, minimum time, Dynamic stretches, Feet and calves when jumping, and avoiding long holds before the show. The specified risk formula does not penalize every failed checklist item. Read both. Over 15 minutes is shown honestly rather than silently dropping a block.
+The warm-up checklist separately checks starting with Pulse raiser, minimum time, Dynamic stretches, Feet and calves when jumping, and avoiding long holds before the show. The Safety light stays amber until every warm-up check passes, even when the point total is low. The point total still follows the stated formula; it is not an injury probability. Over 15 minutes is shown honestly rather than silently dropping a block.
 
 Settings and warm-ups are saved in this browser on this device only. Reset venue changes the current venue only. In Run, speech is suppressed, numbers and synthesized counts keep time, and live control changes apply immediately. Motion off removes gliding but keeps the same run length. Sound is optional. Narration currently uses the browser voice; no recordings were made.
 
@@ -39,3 +39,12 @@ DA:Pr4: change space and tempo while preserving the fixed piece. DA:Pr5: adapt m
 
 ## Sources
 The supplied spec draws on [National Core Arts Standards](https://www.nationalartsstandards.org/), [IADMS resources](https://iadms.org/resources/) on dance floors and warm-ups, and Behm and Chaouachi, “A review of the acute effects of static and dynamic stretching on performance,” European Journal of Applied Physiology 111 (2011), 2633-2651. All venue dimensions, formations, thresholds, safety points and notes are original educational model data.
+
+
+Current guidance checked during review: [IADMS, The Importance of a Good Warm-Up, revised June 2025](https://iadms.azurewebsites.net/media/glfba5xu/iadms-resource-paper-the_importance_of_a_good_warm-up.pdf), [Ausdance, Safe dance practice](https://ausdance.org.au/articles/details/safe-dance-practice), [CDMT, Safe Dance and Floors](https://cdmt.org.uk/safe-dance-and-floors/), and [Behm and Chaouachi, 2011](https://pubmed.ncbi.nlm.nih.gov/21373870/). Raise the pulse before dynamic work and prepare for the actual dance. Long holds belong outside this pre-performance plan. Warming up does not make concrete-backed or slippery flooring suitable for jumping.
+
+## Sensitivity
+This tool discusses dancers' bodies and safe preparation without ranking bodies or asking students to perform physically. The painted adolescent cast varies skin tone, hairstyle and build. The cast is illustrative rather than a representation of all dancers or abilities. A cultural reviewer should inspect pose accuracy, respectful body depiction and the absence of implied gender or cultural roles. Physical technique under DA:Pr5 requires supervised practice beyond this planning simulation.
+
+
+The park's sprinkler note includes the travel between formations. Clear endpoints alone do not clear a travel path. The supplied positions, audience thresholds and straight travel paths currently prevent a fully green tour solution; this is an unresolved model-design constraint, not evidence that a real venue is unusable. Compare the specific tradeoffs rather than promising students a reachable all-green finish.

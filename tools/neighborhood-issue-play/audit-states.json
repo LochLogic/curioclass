@@ -387,6 +387,77 @@
       "keep": [
         "#confirm-dialog"
       ]
+    },
+    {
+      "name": "language-family-people",
+      "steps": [
+        {
+          "click": "#problem-2"
+        },
+        {
+          "click": "#neighbor-fern"
+        },
+        {
+          "click": "#neighbor-rufus"
+        },
+        {
+          "click": "#neighbor-bramble"
+        },
+        {
+          "click": "#make-play"
+        },
+        {
+          "click": "#add-neighbor"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "ArrowDown"
+        },
+        {
+          "key": "Enter"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#add-character"
+        },
+        {
+          "click": "#to-theater"
+        },
+        {
+          "click": "#backdrop-neighbors"
+        },
+        {
+          "click": "#theater-tab-Costumes"
+        },
+        {
+          "click": "#costume-hat"
+        },
+        {
+          "click": "#costume-glasses"
+        }
+      ],
+      "keep": [
+        "#actions",
+        "#theater"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
     }
   ]
 }

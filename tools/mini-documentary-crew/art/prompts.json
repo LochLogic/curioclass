@@ -1,0 +1,172 @@
+{
+  "house_style": "Cinematic editorial gouache for older teen media arts, mature observational documentary framing, layered warm light from left, tactile brick, worn leather and timber, soft film grain, restrained copper amber and slate palette, detailed foreground middle distance and background. Blank surfaces. No text, letters, numbers, logos or watermark.",
+  "assets": [
+    {
+      "name": "mdc-shop",
+      "prompt": "a painting of the inside of a small old shoe repair shop, a workbench with a sewing machine, shelves of shoes with paper tags, warm light. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-store",
+      "prompt": "a painting of a narrow brick shoe repair storefront on a small town main street in evening light, a plain blank sign band above the window. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-main",
+      "prompt": "A production-ready painted documentary frame. A small American town brick Main Street with nineteenth-century storefronts, sidewalk receding right toward distant hills and a small steeple. The near left shoe-repair shop is the one active business, window glowing warm amber with boots and an old sewing machine. Immediately beside it are three clearly vacant storefronts: bare dusty display windows showing empty rooms and bare wooden floors, one rolled-up shade, light dust and leaves at thresholds. A quiet economic change, respectful and realistic. Overcast daylight with a warmer break from left, after rain has stopped; subtle wet cobbles and pavement reflections. Foreground brick jamb and sidewalk, middle-distance distinct empty shop windows, layered distant town. All signs, hanging boards, paper notices and awnings entirely blank. No people, text, lettering, numbers, logos or watermark. Rich material detail, not a flat diagram.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "review_redraw": "Cold review: B3 described several empty shops, but the original windows appeared stocked. Redrawn with visibly vacant neighboring units."
+    },
+    {
+      "name": "mdc-tools",
+      "prompt": "a painting of a wall of old shoemaking tools on hooks, awls, hammers, knives and lasts. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-boot1",
+      "prompt": "a painting of a worn brown leather work boot upside down on an iron shoe last on a workbench. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-boot2",
+      "prompt": "a painting of a new leather sole laid on a boot on an iron last, a pot of glue and a hammer beside it. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-boot3",
+      "prompt": "a close painting of a curved awl pushed through thick leather with waxed thread. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-p1",
+      "prompt": "a black and white photograph of a small shoe repair storefront on its opening day in the early 1960s, a blank sign band, bunting in the window. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "4:3",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-p2",
+      "prompt": "a black and white photograph of a small town main street in 1960, parked cars, shop awnings, blank signs. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "4:3",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-p3",
+      "prompt": "a faded 1970s newspaper page with columns of gray texture and one large plain blank rectangle. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "4:3",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-p4",
+      "prompt": "a faded color 1980s photograph of shop shelves full of shoes with paper repair tags. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "4:3",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-set",
+      "prompt": "A cinematic painting of an interview setup in a small old shoe repair shop: an empty wooden stool at the right center, a soft light on a stand at the left, a realistic camera with lens and controls on a tripod in the left foreground, shoe workbench and shelves in the background. Warm directional window light, worn wood grain, leather and brass details, subtle dust in a quiet empty room. Composition must leave the stool clearly visible. Blank tags and signs. No people, text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image",
+      "redraw_note": "Build completion pass: strengthen the camera foreground and readable empty interview stool."
+    },
+    {
+      "name": "mdc-ana",
+      "prompt": "a documentary interview frame of a 71-year-old woman shoe repairer in a work apron sitting at her bench, looking just off camera, warm shop light. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-walt",
+      "prompt": "a documentary interview frame of an older man in a flannel shirt in a small shop, holding an old pair of boots, looking just off camera. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mdc-park",
+      "prompt": "a documentary interview frame of a middle-aged woman historian in a library archive room with boxes and a map behind her, looking just off camera. All signs and tags entirely blank. No text, letters, numbers or logos.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 72,
+      "cutout": false,
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    }
+  ]
+}

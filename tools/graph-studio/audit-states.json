@@ -1,0 +1,164 @@
+{
+  "keep": [
+    "#plot",
+    "#equation-0",
+    "#family"
+  ],
+  "states": [
+    {
+      "name": "scrubbed-exponent",
+      "steps": [
+        {
+          "click": "#number-0-0"
+        },
+        {
+          "key": "ArrowUp"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "rulers",
+      "steps": [
+        {
+          "click": "#notebook-open"
+        },
+        {
+          "click": "[data-setup=parabola]"
+        }
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "manual",
+      "steps": [
+        {
+          "click": "#manual-open"
+        }
+      ],
+      "keep": [
+        "#manual"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "data",
+      "steps": [
+        {
+          "click": "#notebook-open"
+        },
+        {
+          "click": "[data-setup=co2]"
+        },
+        {
+          "click": "#data-open"
+        }
+      ],
+      "keep": [
+        "#data",
+        "#fit"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "notebook",
+      "steps": [
+        {
+          "click": "#notebook-open"
+        }
+      ],
+      "keep": [
+        "#notebook"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "trace",
+      "steps": [
+        {
+          "click": "#trace"
+        },
+        {
+          "click": "#pin"
+        }
+      ],
+      "keep": [
+        "#plot",
+        "#trace-tag",
+        "#pin-tag"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "animated-ruler",
+      "steps": [
+        {
+          "click": "#notebook-open"
+        },
+        {
+          "click": "[data-setup=rose]"
+        },
+        {
+          "click": "#play-a"
+        }
+      ],
+      "keep": [
+        "#plot",
+        "#slider-a"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "live-table",
+      "steps": [
+        {
+          "click": "#notebook-open"
+        },
+        {
+          "click": "[data-setup=parabola]"
+        },
+        {
+          "click": "#table-open"
+        }
+      ],
+      "keep": [
+        "#table",
+        "#equation-0",
+        "#slider-a"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    }
+  ]
+}

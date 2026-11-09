@@ -1,0 +1,17 @@
+{
+  "keep": ["#tray", "#matbox", "#hint"],
+  "states": [
+    {"name": "mat-signed", "steps": [{"click": "#add-x2"}, {"click": "#add-x"}, {"click": "#flip"}]},
+    {"name": "frame-card", "steps": [{"click": "#m-frame"}, {"click": "#card"}, {"key": "ArrowDown"}, {"key": "Enter"}]},
+    {"name": "square-split", "steps": [{"click": "#m-square"}, {"click": "#card"}, {"key": "ArrowDown"},
+      {"key": "Enter"}, {"click": "#split"}]},
+    {"name": "square-filled", "steps": [{"click": "#m-square"}, {"click": "#card"}, {"key": "ArrowDown"},
+      {"key": "Enter"}, {"click": "#split"}, {"click": "#fill"}]},
+    {"name": "compact-move", "steps": [{"click": "#m-frame"}, {"click": "#card"}, {"key": "ArrowDown"},
+      {"key": "Enter"}, {"key": "Escape"}, {"click": "#move-right"}], "sizes": ["680x425", "375x812"]},
+    {"name": "negative-square", "steps": [{"click": "#m-square"}, {"click": "#card"},
+      {"key": "ArrowDown"}, {"key": "ArrowDown"}, {"key": "ArrowDown"}, {"key": "ArrowDown"},
+      {"key": "Enter"}, {"key": "Escape"}, {"click": "#split"}, {"click": "#fill"}],
+      "sizes": ["680x425", "1366x768", "375x812"]}
+  ]
+}

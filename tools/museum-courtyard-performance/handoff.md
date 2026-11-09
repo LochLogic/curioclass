@@ -2,55 +2,99 @@
 
 ## Structure
 
-src.html starts from the kit starter and includes curio, the grade 9-12 theme with the specified light palette, and dance. CSS handles Site, Week, Opening night and dialogs. The script contains the content tables, ray model, production state, canvas plan, perspective seat renderer, one show clock, synthesized score and fountain noise, and local persistence. window.__tool exposes the model, state, actions and voice log for review.
+The source contains the light limestone production desk, content tables, ray model, weekly state and undo,
+canvas plan, perspective seat renderer, show clock/music, local saving and dialogs. The kit is unchanged.
+All review evidence is in `_scratch/museum-courtyard-performance/review-*` plus the cold-play folders.
+The builder report remains a historical record of the earlier build, not the review verdict.
 
-Only this tool and its Scratch folder were written. No commits, branch changes, shared-engine edits or polish round.
+## Cold review repairs
 
-## Model and implementation
+- A purchased floor once benefited Rise whenever its center was on the floor. `weekLoad` now checks all six planned
+  Rise landing spots and uses the hardest surface. This closes a real keyboard edge-placement exploit, 72 to 216.
+  New floor reservations use the same geometry as applied floors. The model note explains the assumption.
+- The load preview says model, and the weekly advice makes clear that a low bar is not safety clearance. Vinyl gives
+  grip, not sprung-floor cushioning. The fictional factors remain those required by the spec.
+- On the first injured week, the injury event starts immediately instead of waiting behind soreness. Its line also
+  names the two sore weeks. The next week may stop speech when its moment has passed, as the kit requires.
+- Rehearsal booking and Seat view now speak their own how-to once and keep their hint current.
+- S3's arcade pathway now bends around column coordinates instead of passing through their centers.
+- Opening night shows each audience's model averages while the dancers perform. The sheet leads with this production's
+  most limited audience/section. It remains a production exploration with no points or success gate.
 
-- Zone sampling uses the specified 9 by 9 grid clipped to the ellipse, including its boundary, giving 49 sample points. Each ground seat casts rays against all columns and, when running, the 1.5 meter spray circle. Row factors are applied per row before averaging. Kneeling uses the stated 75% overall factor. Light, spacing and column-uplight effects follow in order.
-- The basin radius is absent from the spec. This build chooses 0.75 meters, explains it on screen, and keeps zone edges at least 0.8 meters from its center. Floor placement keeps clear of seats and basin; marley also keeps 1 meter from the basin edge, since the fountain always runs in rehearsal.
-- The installed floor's factor uses the Rise zone center, a simplification of the landing location. Seat views are perspective geometry with painted billboards and engine figures. The model itself uses the exact specified two-dimensional rays. Painted architecture has illustrative proportions, not surveyed elevations.
-- All three modes share state. Reservations immediately reduce the displayed available budget and hours; End week applies them. Undo stores one complete pre-week snapshot, including booked cards and zone positions. The next End week replaces that snapshot.
-- The warm-up card affects later weeks. A new floor is available in its booking week when End week applies the load. The preview includes the default position of a newly booked floor. Move installed floors in Site; floor factors use the Rise zone center.
-- Rehearsal always asks for two sections. In week 6, the first selected gets a dot in the lobby if backup is booked. Lobby load assumes sprung flooring, matching the studio-floor direction in the spec. With no backup there is no site load or dot.
-- The 40-second show uses one Dance.clock at 96 BPM over 64 counts. Each section has a Dance.phrase and six Dance.dancer figures, or five in injured Rise. Stop ends clock, music and fountain source synchronously. Skip seeks to the next 16-count boundary. Motion off quantizes pose and position without changing duration.
-- Dialogs keep their buttons outside the scrolling body. The phone uses horizontal action cards and a pinned End week footer. Compact Seat view replaces the plan, with a seat menu provided for keyboard access.
-- Installed floors can be selected by clicking an exposed part of their square, or through Move installed floor below the primary Site buttons. That secondary selector may need panel scrolling in a short preview; it remains keyboard accessible.
-- Native localStorage is wrapped in try/catch. The UI states that saving stays on this device. Sound controls score, fountain and narration. No narration recordings were made; browser speech is the fallback.
+## Painted dancers and swapping
 
-## Owner decision: painted dancers
+`makeDancer` is now a small image renderer, not a code body. It receives world coordinates and an art row.
+`PAINTED_POSES` supplies two art tokens. `DANCER_ATLAS` supplies original pixel dimensions and whole-body crop rectangles.
+Replace those tokens and rectangles together to swap the cast without touching sightlines, load or weekly logic.
+All six cast members have walking, floor, kneeling, lateral and airborne poses. Standing Pool uses the walking/middle
+pose. A separate three-pair strip teaches supported low lifts. The show uses two sequential pairs, hides the corresponding
+second individual while the paired picture is shown, and still shows only five people in an injured finale.
+These are illustrative three-quarter billboards, not fully articulated bodies or a survey-accurate rear view.
+Motion off holds count-boundary states and preserves the forty-second clock.
 
-Use painted dancers in the final tool. The current code figure is temporary, as directed. All provisional figures go through makeDancer. PAINTED_POSES holds the art tokens, and art/prompts.json lists six replacement assets with people:true: procession, floor roll, kneeling/sitting, standing Pool, weaving, and Rise landing/jump/lift. The next painter should supply coherent front and rear variants and preserve the renderer's world coordinates and depth sorting. No generated image in this build contains people.
+The resting cast slot is selected once at the modeled injury, independently of appearance, and saved with the
+production. Lift selection uses the two complete pairs still available. All six possible resting slots were checked:
+four visible image groups represent three individuals and one painted pair, hence five people. All three lift cells
+can be used. Older saved productions without a slot retain their original sixth-person rest assignment.
 
-## Open questions and source discrepancies
+The final audit frame review also exposed a compact load display below the fold and a moving Seat view button.
+The compact meeting panel now puts plan, load and four section buttons above the jump menu; historical weeks replace
+disabled rehearsal inputs with the report. Site actions sit after the secondary menus, anchored at the bottom.
+Phone status has space for the show-ready forecast, and secondary opening-night seat menus remain keyboard reachable.
+The Site seat dropdown is synchronized in drawSeat, including when a map tap changes the viewpoint.
+Arcade paths are constrained to their moved ellipse and keep 0.5 m center clearance from columns. The geometric
+site-use check remains the spec's zone-overlap simplification, rather than a full choreographic assessment.
 
-There is no explicit open-question list in this spec. Choices made in its direction are listed above: 0.75 meter basin, later-week warm-up, 75% kneeling factor, first-selected lobby section, sprung lobby, and center-based landing surface.
+Both new assets have people:true, generated by Codex with OpenAI gpt-image. The nine architectural paintings remain.
+The atlas is keyed without trimming the overall margins, so cell coordinates remain stable. Raw originals and WebPs
+live in art/. The cast sheet in Scratch supports the owner's pre-publication contact-sheet review.
 
-The computed Source examples differ at (10,8), which is 97.96% without spray but 83.13% with spray, and at (10,13), which is 33.54% with spray rather than 37%. The stated ray model is implemented and the spec is unchanged. Both arcade examples give 78.50%, and balcony examples give 100%, 59.18% and 26.53%, matching within two points. The extreme of six full site weeks conflicts with week 6 rain, but the two consecutive stone weeks still demonstrate the required injury.
+## Model assumptions and spec discrepancies
 
-Budget totals, weekly loads, sample production cost/hours and contrast ratios match the spec. Scratch numbers.txt and manual-sample-result.json contain independent recomputation evidence.
+The basin radius is unspecified; the inherited 0.75 m choice stays labeled. Rays sample 49 points on the prescribed
+9 by 9 ellipse grid and all 60 ground seats. Individual seat illustrations are separate from audience-average metrics.
+The simplified balcony model sees samples south of y=13. Rehearsal always has the fountain running; show-off permission
+does not apply to Mondays. Week-six backup gives the first selected section one lobby dot, with the inherited sprung
+lobby floor assumption. Warm-up affects later weeks, not its booking week. Money and hours reserve immediately.
 
-## Art and files
+The spec's spray examples differ from independent computation: (10,8) is 83.13% with spray, 97.96% without;
+(10,13) is 33.54% with spray instead of 37%. Preserve the stated ray rule, not the mistaken worked example.
+Its six-minute show starting 30 minutes before sunset cannot have its last three minutes after dusk. Preserve the
+requested scripted light model and expose this contradiction in teacher notes until the spec is corrected.
 
-Nine non-people assets were generated with the built-in image tool, copied into art/raw, and converted only with art.py --rekey. The still fountain was redrawn once because the first version had a spray. Keyed images received despill and hole cleanup. Full prompts, model credit, pending people assets and provenance are in art/prompts.json. The bundle uses only embedded assets and makes no network requests.
+## Sources
+
+NCAS Dance performing standards: https://www.nationalartsstandards.org/customize-handbook
+Floor principles: Ausdance National, https://ausdance.org.au/articles/details/safe-dance-floors
+Warm-up/cool-down: Quin, Rafferty and Tomlinson, Safe Dance Practice, Human Kinetics, 2015,
+https://us.humankinetics.com/products/safe-dance-practice
+Site-specific dance context and credits: Melanie Kloetzel and Carolyn Pavlik (eds.), Site Dance, 2009,
+https://doi.org/10.5744/florida/9780813034003.001.0001
+The brief's exact IADMS Dance Floors resource title could not be located. Old IADMS media links redirect; indexed
+warm-up guidance was cross-checked against the publisher. No medical provenance is claimed for the fictional factors.
+
+## Sensitivity
+
+Fresh sensitivity review should check bodies, injury language, safe-practice framing and the six-person painted cast.
+The cast varies skin tone, apparent age and body shape without assigning ability or injury by appearance. Lift images
+show secure support and modest rehearsal clothing. This is an original contemporary piece, not a named cultural tradition.
+The paintings do not offer a lifting tutorial. The injury is a care issue, not a score penalty.
 
 ## Engine changes wanted
 
-None. The kit was used without changes. Family documentation does not yet list this tool; add it to the dance figure/pose consumers when the owner authorizes documentation updates.
+None. All repairs are tool-local. No shared files or git history were changed.
 
-## Review next
+## Review evidence
 
-Read codex-report.md for final verification, audit dispositions and remaining limits. Inspect the camera framing, physical meaning of center-based landings and the simplified low-work visibility assumption. A human headphone check and actual browser narration timbre review remain useful because automated Chrome is muted. The requested cold review belongs to the next chat.
+Final results, voice counts, targeted frames and the single final audit are summarized in codex-review.md.
+Browser voice is still the allowed fallback; no audio was recorded. A muted automated run establishes triggers and
+timing, not the perceived voice timbre or music mix. Source contradictions above need the spec owner's decision.
 
-The held-click, two-second pace run spoke welcomeWeek once, sore five times and rain once. It dropped the queued injured line when the student opened the next week before the sore line finished. A separate normal-pace test spoke both sore and injured. This follows the requested stale-on-week-change rule, but does not satisfy an unqualified reading of every event being heard at a two-second pace. Review the priority or presentation of simultaneous sore and injury events.
-
-## Final audit and targeted repairs
-
-The single full audit completed in 1,421.91 seconds with 28 leads. Its runtime, Motion off, resize recovery and repeated-tap checks were clean. All 53 frames were reviewed in five contact sheets. Intentional map overlays, the specified sideways phone card list, the locked Opening night tab and the modal covering its background account for the non-actionable groups.
-
-After the audited snapshot, repairs preserve focus through Plan week, End week, Begin and Stop; replace stale end-week instructions with a report-specific how line; move Model into the footer at every size; suppress a warning under the compact seat inset; provide direct and keyboard floor selection; reset show status after plan changes; and show two sequential lifts with camera space for the whole dancer. Targeted follow-up frames and JSON results in Scratch verify those changes. The full audit was not repeated.
-
-At small sizes, close Seat view to edit an installed floor. This removes an irrelevant floor selector while the seat inset replaces the plan and keeps the seat menu in view. Secondary report text or an installed-floor menu may still require panel scrolling in a short preview. All primary actions stay available. The final report records remaining source-number and rapid-event narration limits.
-
-Final bundle: 1,020,229 bytes. Nine WebP images total 324,384 bytes. Source: 1,604 lines, maximum 159 characters. The final phone seat menu fits without horizontal overflow. All started Chrome instances and host servers are closed; host.html is removed. No full audit was repeated after targeted repairs.
+The single review audit finished in 1,670.98 seconds, exit 0, with 25 lead groups and 52 saved frames. Its phone
+execution-context attachment failed; leftover host helpers may have interfered. Targeted iframe checks measured every phone mode without changing
+the shared audit script. Main controls are in view; secondary seat menus scroll into view for keyboard selection.
+The specified horizontal phone action-card list remains. Audit resize, repeated-tap and runtime checks were clean.
+Only the confirmed layouts, path boundaries and cast substitutions were checked after the audit, not a second full pass.
+Final socket checks caught four orphan server children from this review's host helpers. Their exact tool/port command
+lines were verified before terminating them. Future Windows helpers should verify the actual host child stops, rather
+than trusting only a launcher taskkill result. No unrelated process was stopped.

@@ -192,8 +192,164 @@ body:not(.home) #lights-badge{display:none}
     favorite:false,count:0,runId:0,countIn:false,lastAnswer:null};
   const WORDS = ['Fast','Slow','High','Low','Big','Small','Smooth','Sharp','Stamp','Hop','Turn','Shake'];
   const WORD_ICONS = ['»','◷','↑','↓','↔','·','≈','ϟ','▰','↟','⟳','≋'];
-  const painterNames = ['lion-wake','lion-bow','jarabe-stamp','jarabe-swirl','irish-feet','irish-kick',
-    'bhangra-shoulder','bhangra-hop','fan-wave','fan-flower','second-strut','second-twirl','kpanlogo-roll','kpanlogo-low'];
+  // Two painted key poses per move. Change this table and the art manifest to swap the cast.
+  const PAINTED = {
+  "lion": [
+    {
+      "src": "art:dancer-lion-0",
+      "w": 0.8881,
+      "h": 0.6898
+    },
+    {
+      "src": "art:dancer-lion-1",
+      "w": 0.8898,
+      "h": 1.0
+    },
+    {
+      "src": "art:dancer-lion-2",
+      "w": 0.861,
+      "h": 0.7051
+    },
+    {
+      "src": "art:dancer-lion-3",
+      "w": 0.8559,
+      "h": 0.9559
+    }
+  ],
+  "jarabe": [
+    {
+      "src": "art:dancer-jarabe-0",
+      "w": 0.6567,
+      "h": 0.9685
+    },
+    {
+      "src": "art:dancer-jarabe-1",
+      "w": 0.66,
+      "h": 0.9718
+    },
+    {
+      "src": "art:dancer-jarabe-2",
+      "w": 0.927,
+      "h": 0.99
+    },
+    {
+      "src": "art:dancer-jarabe-3",
+      "w": 0.9519,
+      "h": 1.0
+    }
+  ],
+  "irish": [
+    {
+      "src": "art:dancer-irish-0",
+      "w": 0.2627,
+      "h": 0.9644
+    },
+    {
+      "src": "art:dancer-irish-1",
+      "w": 0.2695,
+      "h": 0.9661
+    },
+    {
+      "src": "art:dancer-irish-2",
+      "w": 0.3136,
+      "h": 0.9983
+    },
+    {
+      "src": "art:dancer-irish-3",
+      "w": 0.3017,
+      "h": 1.0
+    }
+  ],
+  "bhangra": [
+    {
+      "src": "art:dancer-bhangra-0",
+      "w": 0.548,
+      "h": 0.8854
+    },
+    {
+      "src": "art:dancer-bhangra-1",
+      "w": 0.5495,
+      "h": 0.9133
+    },
+    {
+      "src": "art:dancer-bhangra-2",
+      "w": 0.5511,
+      "h": 0.9969
+    },
+    {
+      "src": "art:dancer-bhangra-3",
+      "w": 0.5495,
+      "h": 1.0
+    }
+  ],
+  "fan": [
+    {
+      "src": "art:dancer-fan-0",
+      "w": 1.0232,
+      "h": 0.8557
+    },
+    {
+      "src": "art:dancer-fan-1",
+      "w": 1.0265,
+      "h": 0.9254
+    },
+    {
+      "src": "art:dancer-fan-2",
+      "w": 0.5705,
+      "h": 0.995
+    },
+    {
+      "src": "art:dancer-fan-3",
+      "w": 0.5058,
+      "h": 1.0
+    }
+  ],
+  "second": [
+    {
+      "src": "art:dancer-second-0",
+      "w": 0.6705,
+      "h": 0.8109
+    },
+    {
+      "src": "art:dancer-second-1",
+      "w": 0.7235,
+      "h": 0.808
+    },
+    {
+      "src": "art:dancer-second-2",
+      "w": 0.7192,
+      "h": 1.0
+    },
+    {
+      "src": "art:dancer-second-3",
+      "w": 0.649,
+      "h": 0.9885
+    }
+  ],
+  "kpanlogo": [
+    {
+      "src": "art:dancer-kpanlogo-0",
+      "w": 0.4316,
+      "h": 1.0
+    },
+    {
+      "src": "art:dancer-kpanlogo-1",
+      "w": 0.5507,
+      "h": 0.9887
+    },
+    {
+      "src": "art:dancer-kpanlogo-2",
+      "w": 0.8744,
+      "h": 0.942
+    },
+    {
+      "src": "art:dancer-kpanlogo-3",
+      "w": 0.8986,
+      "h": 0.9404
+    }
+  ]
+};
+  const painterNames = Object.values(PAINTED).flat().map(frame=>frame.src.slice(4));
   const move = (name,words,poses,dyn='smooth',turn=false) => ({name,words:words.split(' '),poses,dyn,turn});
   const p = x => Dance.pose(x);
   const mirror = x => Dance.mirror(p(x));
@@ -202,7 +358,7 @@ body:not(.home) #lights-badge{display:none}
   const up = [150,15,165,30];
   const DATA = [
     {id:'lion',name:'Lion Dance',icon:'◉',place:'Guangdong, southern China',pin:[23,113.1],bpm:100,prop:'lion head',
-      origin:'The lion dance comes from southern China. Two dancers become one lion, for good luck at the Lunar New Year.',
+      origin:'This southern lion dance comes from Guangdong in China. Two dancers become one lion, bringing wishes for good luck at Lunar New Year.',
       colors:{top:'#c8102e',bottom:'#c8102e',shoe:'#f2e6da'},moves:[
         move('Lion wakes up','High Low Shake',[{...low,arms:[110,80,130,90],head:20},
           {arms:[165,70,170,80],head:-15,tilt:-14},{arms:[165,70,170,80],head:-15,tilt:14},{...low,head:12}],'shake'),
@@ -217,7 +373,7 @@ body:not(.home) #lights-badge{display:none}
         move('Skirt swirl','Turn Big Smooth',[{arms:[95,0,90,0],lLeg:[0,10,4],rLeg:[0,10,4]},
           {arms:[130,0,135,0],toe:1},{arms:[85,0,90,0],side:8},{arms:[130,0,135,0],toe:1}],'smooth',true)]},
     {id:'irish',name:'Irish Step Dance',icon:'♫',place:'Ireland',pin:[53.3,-6.3],bpm:112,prop:'fiddle',
-      origin:'Irish dancers keep their arms still at their sides while their feet move fast. They dance at ceili parties.',
+      origin:'Irish step dancers keep their arms by their sides while their feet move fast. They share their dancing at performances and competitions.',
       colors:{top:'#1b5e20',bottom:'#1b5e20',shoe:'#111111'},moves:[
         move('Still arms, busy feet','Fast Small Hop',[
           {arms:[0,0,0,0],lLeg:[20,2,10],rLeg:[-8,2,45],toe:1,lift:.03},
@@ -233,13 +389,13 @@ body:not(.home) #lights-badge{display:none}
         move('Bhangra hop','Hop High Big',[
           {arms:up,lLeg:[80,16,110],rToe:1,lift:.08},{arms:up,rLeg:[80,16,110],lToe:1,lift:.08}],'swing')]},
     {id:'fan',name:'Korean Fan Dance',icon:'❀',place:'Korea',pin:[37.6,127],bpm:60,prop:'fans',
-      origin:'In the Korean fan dance, dancers open and close big painted fans. Together the fans look like flowers and waves.',
+      origin:'Korean fan dancers perform on stage with big painted fans. Together the fans make shapes like flowers and waves.',
       colors:{top:'#f06292',bottom:'#4fc3f7',shoe:'#f6f1e7'},moves:[
         move('Fan wave','Smooth Slow Big',[{lArm:[45,0,65,0],rArm:[110,0,125,0],side:5},
           {lArm:[110,0,125,0],rArm:[45,0,65,0],side:-5},{arms:[140,0,150,0]},{arms:[55,0,65,0]}]),
         move('Flower','Turn High Smooth',[{arms:[165,25,165,165],toe:.5},{arms:[170,25,170,165],toe:1}],'smooth',true)]},
     {id:'second',name:'Second Line',icon:'☂',place:'New Orleans, Louisiana, USA',pin:[29.95,-90.07],bpm:100,prop:'umbrella',
-      origin:'In New Orleans, people dance in the street behind a brass band. The dancers who follow the band are called the second line.',
+      origin:'Second line grew in Black communities in New Orleans. At neighborhood parades, dancers follow a brass band in the street.',
       colors:{top:'#ffd23f',bottom:'#1d3557',shoe:'#734b31'},moves:[
         move('Strut','Big Hop Fast',[{lLeg:[75,9,95],rLeg:[0,7,8],rArm:[130,0,145,0],lArm:[80,0,90,0],lift:.06},
           {rLeg:[75,9,95],lLeg:[0,7,8],rArm:[145,0,155,0],lArm:[105,0,110,0],lift:.06}],'swing'),
@@ -256,10 +412,11 @@ body:not(.home) #lights-badge{display:none}
   ];
   const L = {
     welcome:'Welcome to family dance night! Each table has a dance from home. Tap a table.',
-    watch:'Tap Play to watch the dance.',copy:'Want to try it? Tap Copy, then tap a move.',
-    chooseMove:'Tap Move 1 or Move 2. Stand up and copy the dancer like a mirror.',
-    words:'What did you see? Tap a dance word.',favorite:'Why do you like it? Tell a friend.',
-    fromHint:'Tap Read to hear the card. Tap Favorite part to choose what you liked.',
+    watch:'Tap Play.',copy:'Tap Copy, then tap a move.',
+    chooseMove:'Tap a move. Copy it like a mirror.',
+    words:'Tap a dance word for what you saw.',toWords:'Tap Words, then tap a dance word.',
+    favorite:'Why do you like it? Use dance words to say what the moves show.',
+    fromHint:'Tap Read.',
     vote:'Vote with your hands. Tap Move 1, Move 2, The music, or the prop.',
     countIn:'Tap Count me in for four counts, then copy the selected move.',
     lights:'Thank you for sharing your dance! The lights are on.',all:'Every family shared a dance. The whole gym is glowing!',
@@ -276,7 +433,7 @@ body:not(.home) #lights-badge{display:none}
   const hint = text => {$('hint').textContent=text;
   };
   const V = Curio.voice({lines:L,scope:()=>state.table+':'+state.tab,hint:false,
-    read:()=>state.table===null?$('home-hint').textContent:state.tab==='from'?current().origin:$('hint').textContent,
+    read:()=>state.table===null?$('home-hint').textContent:state.tab==='from'&&!state.favorite?current().origin:$('hint').textContent,
     welcome:()=>state.table===null?['welcome',{valid:()=>state.table===null}]:null,
     speaks:'.table-card button,#play,#move-0,#move-1,#count-in,#back',
   });
@@ -308,97 +465,43 @@ body:not(.home) #lights-badge{display:none}
     $('count').hidden=true;
     if(countStrip)countStrip.set(null);
   }
-  // The painter replaces only this renderer. Dance remains the model for joints, timing, root motion and mirroring.
+  // Dance owns timing, travel and mirroring. Only this adapter draws the person.
   function createFigureRenderer(d,index=0) {
-    const model=Dance.dancer(floor.layers.actors,{floor,...d.colors,skin:'#b88b68',hair:'#33261f',scale:d.id==='lion'?.85:1});
+    const model=Dance.dancer(floor.layers.actors,{floor,...d.colors,noShadow:true});
+    model.g.style.display='none';
     const overlay=mk('g',{},floor.layers.actors);
-    const spriteNames=painterNames.slice(state.table*2,state.table*2+2);
-    const clipId='cloth-'+Math.random().toString(36).slice(2);
-    const renderer={model,overlay,spriteNames,clipId,remove(){model.remove();
-    overlay.remove();
-    }};
+    const shadow=mk('ellipse',{fill:'#5b371e',opacity:.18},overlay);
+    const image=mk('image',{preserveAspectRatio:'none'},overlay);
+    const renderer={model,overlay,image,shadow,poseCount:0,
+      remove(){model.remove(); overlay.remove();}};
     model.onMove(()=>decorateFigure(renderer,d,index));
     return renderer;
   }
-  function imageProp(parent,url,x,y,w,h,rotate=0) {
-    return mk('image',{href:url,x:x-w/2,y:y-h/2,width:w,height:h,
-      transform:`rotate(${rotate} ${x} ${y})`,preserveAspectRatio:'xMidYMid meet'},parent);
-  }
   function decorateFigure(renderer,d,index) {
-    const {model:m,overlay:g}=renderer;
-    g.textContent='';
-    const J=m.sj;
-    if(!J)return;
-    const u=floor.scale(m.z)*m.height;
-    const pos=clk?Math.max(0,clk.pos):0;
-    const c=Curio.reduce?Math.floor(pos):pos;
-    const [hx,hy]=J.head;
-    if(d.id==='lion') {
-      for(const k of ['torso','head','hair','lUa','rUa','lFa','rFa'])m.parts[k].e.style.display='none';
-      if(index===0&&figure.length===2) {
-        const other=figure[1].model.sj;
-        if(other) {
-          const a=J.chest,b=other.chest,mid=[(a[0]+b[0])/2,(a[1]+b[1])/2];
-          const angle=Math.atan2(a[1]-b[1],a[0]-b[0])*180/Math.PI;
-          const cloth=imageProp(g,art.body,mid[0],mid[1]+u*.14,
-            Math.hypot(a[0]-b[0],a[1]-b[1])+u*.25,u*.34,angle);
-          cloth.setAttribute('preserveAspectRatio','none');
-          const fold=imageProp(g,art.body,(mid[0]+a[0])/2,(mid[1]+a[1])/2+u*.1,u*.32,u*.3,angle);
-          fold.setAttribute('preserveAspectRatio','none');
-        }
-        imageProp(g,Math.floor(c)%2?art.headOpen:art.headClosed,hx,hy+u*.04,u*.39,u*.39,
-          state.selected===1?m.pose.head*.3:m.pose.tilt);
-        if(state.selected===1&&Math.floor(c)%8===4)mk('path',{
-          d:`M${hx-u*.065} ${hy}l${u*.05} 0 M${hx+u*.025} ${hy}l${u*.05} 0`,
-          stroke:'#6b1923','stroke-width':u*.012,'stroke-linecap':'round'},g);
-      }
-    }
-    if(d.id==='jarabe'||d.id==='fan') {
-      const a=J.lWa,b=J.rWa,y=Math.max(J.lAn[1],J.rAn[1])-u*.045;
-      const swing=d.id==='jarabe'?Math.abs(Math.sin(c*Math.PI/2)):0;
-      const width=u*(d.id==='jarabe'?.26+swing*.1:.23),cx=(a[0]+b[0])/2,cy=(a[1]+b[1])/2;
-      const hem=y-(d.id==='jarabe'&&state.selected===1?swing*u*.14:0);
-      let path=`M${a[0]} ${cy}Q${cx-width*.85} ${cy+u*.18} ${cx-width} ${hem}
-        Q${cx} ${hem+u*.06} ${cx+width} ${hem}Q${cx+width*.85} ${cy+u*.18} ${b[0]} ${cy}Z`;
-      if(d.id==='jarabe'&&state.selected===1){
-        const hands=[J.lHa,J.rHa].sort((v,w)=>v[0]-w[0]);
-        path=`M${a[0]} ${cy}L${hands[0][0]} ${hands[0][1]}Q${cx-width} ${hem} ${cx} ${hem+u*.06}
-          Q${cx+width} ${hem} ${hands[1][0]} ${hands[1][1]}L${b[0]} ${cy}Z`;
-      }
-      mk('path',{d:path,fill:d.colors.bottom,stroke:Dance.shade(d.colors.bottom,.3),'stroke-width':2},g);
-      const clip=mk('clipPath',{id:renderer.clipId},g);
-      mk('path',{d:path},clip);
-      const details=mk('g',{'clip-path':'url(#'+renderer.clipId+')'},g);
-      if(d.id==='jarabe')for(const [k,col] of [[.64,'#2b9348'],[.8,'#f2c14e'],[.94,'#f6f1e7']]) {
-        const yy=cy+(hem-cy)*k,ww=width*k;
-        mk('path',{d:`M${cx-ww} ${yy}Q${cx} ${yy+u*.05} ${cx+ww} ${yy}`,fill:'none',stroke:col,
-          'stroke-width':u*.025,'stroke-dasharray':`${u*.018} ${u*.005}`},details);
-      }
-      for(let k=-2;k<=2;k++)mk('path',{
-        d:`M${cx+k*u*.025} ${cy+u*.04}Q${cx+k*u*.05} ${hem-u*.09} ${cx+k*width/3} ${hem}`,
-        fill:'none',stroke:'#ffffff','stroke-width':u*.009,opacity:.3},details);
-    }
-    if(d.id==='bhangra') {
-      mk('path',{d:`M${hx-u*.067} ${hy-u*.02}Q${hx-u*.06} ${hy-u*.13} ${hx} ${hy-u*.11}
-        Q${hx+u*.07} ${hy-u*.1} ${hx+u*.07} ${hy-u*.02}Z`,fill:'#c2185b',stroke:'#7a103c','stroke-width':2},g);
-      for(let i=0;i<3;i++)mk('path',{d:`M${hx-u*.05} ${hy-u*(.02+i*.022)}l${u*.1} ${-u*.025}`,
-        stroke:'#ef87ae','stroke-width':u*.009,fill:'none'},g);
-    }
-    if(d.id==='fan')for(const [key,side] of [['lHa',1],['rHa',-1]]) {
-      const a=J[key],angle=side*(30+Math.sin(c*Math.PI/4)*22);
-      imageProp(g,Math.floor(c)%8===7?art.fanClosed:art.fanOpen,a[0],a[1]-u*.08,u*.31,u*.31,angle);
-    }
-    if(d.id==='second') {
-      const a=J.rHa,b=J.lHa;
-      imageProp(g,art.umbrella,a[0],a[1]-u*.15,u*.45,u*.45,state.selected===1?c*75:Math.sin(c)*8);
-      mk('path',{d:`M${b[0]} ${b[1]}q${u*.09} ${-u*.02} ${u*.13} ${u*.07}
-        l${-u*.04} ${u*.06}q${-u*.06} ${-u*.08} ${-u*.1} ${-u*.04}Z`,fill:'#fffaf2',stroke:'#b5aaa0','stroke-width':1.2},g);
-    }
-    if(d.id==='kpanlogo')for(let k=0;k<4;k++) {
-      const yy=J.lSh[1]+(J.rWa[1]-J.lSh[1])*(k+.5)/4;
-      mk('path',{d:`M${J.rSh[0]} ${yy}l${u*.1} ${u*.025}l${u*.08} ${-u*.025}`,fill:'none',
-        stroke:k%2?'#00695c':'#ffe5a3','stroke-width':u*.016},g);
-    }
+    // A lion is ONE painted costume over both engine performers, never two floating heads.
+    if(d.id==='lion'&&index===1){renderer.overlay.style.display='none'; return;}
+    const m=renderer.model;
+    const raw=clk?Math.max(0,clk.pos):renderer.poseCount;
+    const count=Curio.reduce?Math.floor(raw):raw;
+    const phase=Math.floor(count)%2;
+    const frame=PAINTED[d.id][state.selected*2+phase];
+    const root=floor.map(d.id==='lion'?48.5:m.x,m.z);
+    const height=Math.min(floor.h*.55,floor.w*.88);
+    const w=height*frame.w,h=height*frame.h;
+    const bob=Curio.reduce||!state.playing?0:Math.sin(count*Math.PI)*height*.012;
+    // The stamping and toe-step sheets face the class; alternate their support without moving a prop hand.
+    const flip=(state.tab==='copy'?-1:1)*
+      (state.selected===0&&['irish','jarabe'].includes(d.id)&&phase?-1:1);
+    renderer.image.setAttribute('href',frame.src);
+    renderer.image.setAttribute('x',-w/2);
+    renderer.image.setAttribute('y',-h);
+    renderer.image.setAttribute('width',w);
+    renderer.image.setAttribute('height',h);
+    renderer.image.setAttribute('transform',`translate(${root.x} ${root.y+bob}) scale(${flip} 1)`);
+    renderer.shadow.setAttribute('cx',root.x);
+    renderer.shadow.setAttribute('cy',root.y+3);
+    renderer.shadow.setAttribute('rx',Math.max(w*.27,18));
+    renderer.shadow.setAttribute('ry',Math.max(5,height*.027));
   }
   function makeFigures() {
     figure.forEach(x=>x.remove());
@@ -424,6 +527,7 @@ body:not(.home) #lights-badge{display:none}
   }
   function poseMove(moveIndex,c=.6) {
     state.selected=moveIndex;
+    figure.forEach(r=>{r.poseCount=c;});
     figure.forEach((r,i)=>r.model.set(phraseFor(moveIndex,state.tab==='copy',i).at(c)));
     figure.forEach((r,i)=>decorateFigure(r,current(),i));
   }
@@ -485,16 +589,19 @@ body:not(.home) #lights-badge{display:none}
     $('favorite').setAttribute('aria-pressed','false');
     countStrip.g.style.display=tab==='copy'?'none':'';
     if(tab==='copy'){
+      state.shown=state.selected;
       poseMove(state.selected);
       hint(L.chooseMove);
       V.how('chooseMove',{valid:()=>state.tab==='copy',needs:'#move-0'});
     }
     if(tab==='words'){hint(L.words);
+    $('stage-title').textContent=current().name+' · '+(state.shown==='both'?'both moves':current().moves[state.shown].name);
     V.how('words',{valid:()=>state.tab==='words',needs:'.word'});
     }
     if(tab==='from'){drawMap();
     hint(L.fromHint);
-    V.say('from'+state.table,{valid:()=>state.tab==='from'});
+    V.how('fromHint',{valid:()=>state.tab==='from'&&!state.favorite,needs:'#read'});
+    V.say('from'+state.table,{valid:()=>state.tab==='from'&&!state.favorite});
     }
     if(tab==='watch'){hint(L.watch);
     V.how('watch',{valid:()=>!state.playing,needs:'#play'});
@@ -506,7 +613,7 @@ body:not(.home) #lights-badge{display:none}
     state.table=i;
     state.tab='watch';
     state.selected=0;
-    state.shown='both';
+    state.shown=0;
     state.slow=false;
     state.favorite=false;
     document.body.classList.remove('home');
@@ -520,7 +627,7 @@ body:not(.home) #lights-badge{display:none}
     $('dance-name').textContent=DATA[i].name;
     $('slow').setAttribute('aria-pressed','false');
     $('vote-badge').hidden=!state.votes[i];
-    if(state.votes[i])$('vote-badge').textContent='♥ '+state.votes[i];
+    if(state.votes[i])$('vote-badge').textContent='♥ Our favorite: '+state.votes[i];
     for(const k of ['watch','copy','words','from']){
       $('tab-'+k).setAttribute('aria-selected',k==='watch');
       $(k).hidden=k!=='watch';
@@ -528,14 +635,18 @@ body:not(.home) #lights-badge{display:none}
     $('favorite-view').hidden=true;
     DATA[i].moves.forEach((m,j)=>{
       $('move-'+j).querySelector('span span').textContent=m.name;
-      Dance.icon($('move-'+j).querySelector('svg'),Dance.mirror(p(m.poses[0])),{...DATA[i].colors,facing:0});
+      const icon=$('move-'+j).querySelector('svg');
+      icon.textContent='';
+      icon.setAttribute('viewBox','0 0 60 60');
+      mk('image',{href:PAINTED[DATA[i].id][j*2].src,x:0,y:0,width:60,height:60,
+        preserveAspectRatio:'xMidYMid meet'},icon);
     });
     makeFavorites();
     makeFigures();
     relayout();
     hint(L.watch);
-    V.say('table'+i);
     V.how('watch',{valid:()=>!state.playing&&state.tab==='watch',needs:'#play'});
+    V.say('table'+i,{valid:()=>state.table===i&&!state.playing});
     $('tab-watch').focus({preventScroll:true});
   }
   function backHome() {
@@ -700,7 +811,8 @@ body:not(.home) #lights-badge{display:none}
     stopRun();
     const d=current(),token=state.runId;
     state.playing=true;
-    state.shown=moveIndex===null?'both':moveIndex;
+    state.watchComplete=false;
+    state.shown=moveIndex===null?0:moveIndex;
     if(moveIndex!==null)state.selected=moveIndex;
     const copy=moveIndex!==null||state.tab==='copy';
     clk=Dance.clock(d.bpm*((copy||state.slow)? .6:1),{meter:['jarabe','fan'].includes(d.id)?3:4,countIn:countIn?4:0});
@@ -721,13 +833,16 @@ body:not(.home) #lights-badge{display:none}
       began=true;
       run=Dance.play(figure.map(r=>r.model),phrases,{clock:clk,loop:moveIndex===null,
         onFrame(pos){
-          if(moveIndex===null)state.selected=Math.floor(Math.max(0,pos)%16/8);
+          if(moveIndex===null){
+            state.selected=Math.floor(Math.max(0,pos)%16/8);
+            state.shown=state.watchComplete?'both':state.selected;
+          }
           figure.forEach((r,i)=>decorateFigure(r,d,i));
         },onEnd(){
           if(token!==state.runId)return;
           stopRun(false);
-          hint('Tap Words to describe the move, or tap another move.');
-          V.how('words',{valid:()=>state.tab==='copy',needs:'#tab-words'});
+          hint(L.toWords);
+          V.how('toWords',{valid:()=>state.tab==='copy',needs:'#tab-words'});
         }});
       if(moveIndex!==null)speakDuring('move'+state.table+moveIndex,{valid:()=>token===state.runId});
     };
@@ -746,7 +861,9 @@ body:not(.home) #lights-badge{display:none}
       speakDuring(line);
       }
       if(moveIndex===null&&n===17){
-        hint('Tap Copy, then tap a move to try it.');
+        state.watchComplete=true;
+        state.shown='both';
+        hint(L.copy);
         if(!V.heard('copy'))speakDuring('copy',{kind:'how',valid:()=>state.tab==='watch',needs:'#tab-copy'});
       }
     });
@@ -760,7 +877,7 @@ body:not(.home) #lights-badge{display:none}
     document.querySelectorAll('.word').forEach(b=>b.setAttribute('aria-pressed',b.dataset.word===w));
     hint(L[key]);
     Curio.tone(fits?660:390,.13,.035);
-    $('stage-title').textContent=d.name+' · '+w;
+    $('stage-title').textContent=d.name+' · '+(state.shown==='both'?'both moves':d.moves[state.shown].name);
     if(state.playing)pendingWord=key;
     else V.say(key,{now:true});
   }
@@ -792,14 +909,17 @@ body:not(.home) #lights-badge{display:none}
       const b=document.createElement('button');
       b.className='big-btn soft';
       b.textContent=['↔ ','↔ ','♫ ','✧ '][i]+name;
+      b.setAttribute('aria-pressed',state.votes[state.table]===(i<2?d.moves[i].name:name));
       b.onclick=()=>{
         state.votes[state.table]=i<2?d.moves[i].name:name;
-        $('vote-badge').textContent='♥ '+state.votes[state.table];
+        if(i<2){state.shown=i; poseMove(i,0);}
+        $('stage-title').textContent=d.name+' · Our favorite';
+        $('vote-badge').textContent='♥ Our favorite: '+state.votes[state.table];
         $('vote-badge').hidden=false;
         [...box.children].forEach(x=>x.setAttribute('aria-pressed',x===b));
         hint(L.favorite);
         Curio.tone(784,.2,.04);
-        V.say('favorite');
+        V.say('favorite',{now:true,valid:()=>state.favorite});
       };
       box.appendChild(b);
     });
@@ -856,7 +976,9 @@ body:not(.home) #lights-badge{display:none}
     if(e.key==='Escape'&&state.table!==null){e.preventDefault();
     backHome();
     }
-    if(e.code==='Space'&&state.table!==null&&!e.repeat){
+    const nativeControl=e.target.closest('button,a,input,select,textarea,[role=button]');
+    if(e.code==='Space'&&!nativeControl&&state.table!==null&&!state.favorite&&
+      ['watch','copy'].includes(state.tab)&&!e.repeat){
       e.preventDefault();
       if(state.playing){stopRun();
       hint(state.tab==='copy'?L.chooseMove:L.watch);
@@ -877,7 +999,15 @@ body:not(.home) #lights-badge{display:none}
     if(state.playing)stopRun(false);
     V.read();
   };
-  Curio.onSound(on=>{if(extraAudio)extraAudio.duck(!on);
+  Curio.onSound(on=>{
+    if(extraAudio)extraAudio.duck(!on);
+    if(!on||state.table===null||state.playing)return;
+    // Sound off never uses up an unheard instruction. Resume only the instruction still on screen.
+    const next=['watch','chooseMove','toWords','words','vote','fromHint'].find(k=>$('hint').textContent===L[k]);
+    if(next)V.how(next,{valid:()=>$('hint').textContent===L[next]});
+    if(state.tab==='from'&&!state.favorite&&!V.heard('from'+state.table)){
+      V.say('from'+state.table,{valid:()=>state.tab==='from'&&!state.favorite});
+    }
   });
   Curio.onMotion(()=>{if(floor)drawLights();
   });

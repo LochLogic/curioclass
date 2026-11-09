@@ -1,5 +1,5 @@
 {
-  "house_style": "Atmospheric precision naturalist gouache for a Grade 11 physics field laboratory. Rich dusk blues, pine greens and warm low sunlight from upper left. Tactile rock, timber and brushed steel, believable engineering materials, restrained cinematic detail. No text, letters, numbers, logos or people.",
+  "house_style": "Atmospheric precision naturalist gouache for a Grade 11 physics field laboratory. Rich dusk blues, pine greens and warm low sunlight from upper left. Tactile rock, timber and brushed steel, believable engineering materials, restrained cinematic detail. No text, letters, numbers, logos.",
   "assets": [
     {
       "name": "zl-valley",
@@ -80,51 +80,87 @@
     },
     {
       "name": "zl-rider-light-up",
-      "prompt": "Slim young teen in helmet, gloves and zipline harness, side view facing right hanging upright from short strap.",
+      "prompt": "Slim young teen in helmet, gloves and zipline harness, side view facing right hanging upright from short strap. Full body and overhead attachment carabiner visible. Warm realistic painterly gouache and pencil, dusk gold highlights from upper left and blue-violet shadows. Correct helmet, gloves, shoes, jacket, trousers, seated harness with leg loops, and two suspension straps. Pure flat green #00FF00. Medium brown skin, orange helmet, blue jacket, gray trousers.",
       "aspect": "3:4",
-      "height": 180,
+      "height": 220,
       "cutout": true,
-      "people": true
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true,
+      "quality": 82,
+      "owner_review": "pending"
     },
     {
       "name": "zl-rider-light-tuck",
-      "prompt": "Same slim young teen in helmet, gloves and zipline harness, side view facing right, knees tucked to chest.",
+      "prompt": "Same slim young teen in helmet, gloves and zipline harness, side view facing right, knees tucked to chest. Full body and overhead attachment carabiner visible. Warm realistic painterly gouache and pencil, dusk gold highlights from upper left and blue-violet shadows. Correct helmet, gloves, shoes, jacket, trousers, seated harness with leg loops, and two suspension straps. Pure flat green #00FF00. Medium brown skin, orange helmet, blue jacket, gray trousers.",
       "aspect": "3:4",
-      "height": 180,
+      "height": 220,
       "cutout": true,
-      "people": true
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true,
+      "quality": 82,
+      "owner_review": "pending"
     },
     {
       "name": "zl-rider-mid-up",
-      "prompt": "Average build adult in helmet, gloves and zipline harness, side view facing right hanging upright from short strap.",
+      "prompt": "Average build adult in helmet, gloves and zipline harness, side view facing right hanging upright from short strap. Full body and overhead attachment carabiner visible. Warm realistic painterly gouache and pencil, dusk gold highlights from upper left and blue-violet shadows. Correct helmet, gloves, shoes, jacket, trousers, seated harness with leg loops, and two suspension straps. Pure flat green #00FF00. Dark brown skin, teal helmet, ochre jacket, navy trousers, adult woman.",
       "aspect": "3:4",
-      "height": 180,
+      "height": 220,
       "cutout": true,
-      "people": true
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true,
+      "quality": 82,
+      "owner_review": "pending"
     },
     {
       "name": "zl-rider-mid-tuck",
-      "prompt": "Same average build adult in helmet, gloves and zipline harness, side view facing right, knees tucked to chest.",
+      "prompt": "Same average build adult in helmet, gloves and zipline harness, side view facing right, knees tucked to chest. Full body and overhead attachment carabiner visible. Warm realistic painterly gouache and pencil, dusk gold highlights from upper left and blue-violet shadows. Correct helmet, gloves, shoes, jacket, trousers, seated harness with leg loops, and two suspension straps. Pure flat green #00FF00. Dark brown skin, teal helmet, ochre jacket, navy trousers, adult woman.",
       "aspect": "3:4",
-      "height": 180,
+      "height": 220,
       "cutout": true,
-      "people": true
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true,
+      "quality": 82,
+      "owner_review": "pending"
     },
     {
       "name": "zl-rider-heavy-up",
-      "prompt": "Tall heavyset adult in helmet, gloves and zipline harness, side view facing right hanging upright from short strap.",
+      "prompt": "Tall heavyset adult in helmet, gloves and zipline harness, side view facing right hanging upright from short strap. Full body and overhead attachment carabiner visible. Warm realistic painterly gouache and pencil, dusk gold highlights from upper left and blue-violet shadows. Correct helmet, gloves, shoes, jacket, trousers, seated harness with leg loops, and two suspension straps. Pure flat green #00FF00. Light skin, silver hair, blue helmet, rust jacket, gray trousers, older adult man.",
       "aspect": "3:4",
-      "height": 180,
+      "height": 220,
       "cutout": true,
-      "people": true
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true,
+      "quality": 82,
+      "owner_review": "pending"
     },
     {
       "name": "zl-rider-heavy-tuck",
-      "prompt": "Same tall heavyset adult in helmet, gloves and zipline harness, side view facing right, knees tucked to chest.",
+      "prompt": "Same tall heavyset adult in helmet, gloves and zipline harness, side view facing right, knees tucked to chest. Full body and overhead attachment carabiner visible. Warm realistic painterly gouache and pencil, dusk gold highlights from upper left and blue-violet shadows. Correct helmet, gloves, shoes, jacket, trousers, seated harness with leg loops, and two suspension straps. Pure flat green #00FF00. Light skin, silver hair, blue helmet, rust jacket, gray trousers, older adult man.",
       "aspect": "3:4",
-      "height": 180,
+      "height": 220,
       "cutout": true,
-      "people": true
+      "people": true,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "holes": true,
+      "despill": true,
+      "quality": 82,
+      "owner_review": "pending"
     }
   ]
 }

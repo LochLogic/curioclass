@@ -1,0 +1,4193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Chess | Curio Class Recess</title>
+<link rel="stylesheet" href="kit:recess">
+<style>
+* {
+  box-sizing: border-box;
+}
+:root {
+  color-scheme: dark;
+  --stage-art: url("art:stage");
+  --board-art: url("art:board");
+  --paper-art: url("art:paper");
+}
+body {
+  margin: 0;
+  color: #fff4e0;
+  background: #26091a;
+  font-family: Georgia, serif;
+}
+body.recess {
+  --rc-accent: #ffd27a;
+  --rc-accent-ink: #301509;
+  --rc-glass: #26091ae8;
+}
+button,
+select {
+  font: inherit;
+}
+button {
+  cursor: pointer;
+  touch-action: manipulation;
+}
+button:focus-visible,
+select:focus-visible,
+input:focus-visible {
+  outline: 3px solid #ffd27a;
+  outline-offset: 3px;
+}
+button:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+[hidden] {
+  display: none !important;
+}
+.theatre {
+  min-height: 100svh;
+  position: relative;
+  isolation: isolate;
+  padding: 88px 30px 25px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: #26091a var(--stage-art) center center / 100% 100% no-repeat;
+}
+.wing-art {
+  display: none;
+  pointer-events: none;
+  position: absolute;
+  z-index: -1;
+}
+.theatre::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  background: radial-gradient(ellipse at 27% 35%, #ffd27a20, transparent 55%);
+  animation: lamplight 9s ease-in-out infinite alternate;
+}
+.stage {
+  display: grid;
+  grid-template-columns: 210px auto 210px;
+  gap: 24px;
+  align-items: center;
+}
+.wing {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: center;
+  min-width: 0;
+}
+.eyebrow {
+  color: #ffd27a;
+  font:
+    700 11px/1.4 system-ui,
+    sans-serif;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin: 0;
+}
+.wing h1 {
+  font-size: 42px;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -0.03em;
+}
+.wing h2 {
+  font-size: 27px;
+  margin: 0;
+  font-weight: 500;
+}
+.puppet {
+  width: 178px;
+  height: 178px;
+  background: url("art:puppets") 0 0 / 700% 200%;
+  filter: drop-shadow(7px 12px 6px #0007);
+}
+.thinking .puppet {
+  animation: thinking 2s ease-in-out infinite;
+}
+.thinking .puppet {
+  background-position-y: 100%;
+}
+.status {
+  min-height: 24px;
+  font:
+    14px/1.4 system-ui,
+    sans-serif;
+  color: #fff4e0;
+}
+.depth {
+  height: 5px;
+  width: 130px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff4e026;
+}
+.depth i {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: #ffd27a;
+  transition: width 0.2s;
+}
+.fallen {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 32px;
+  width: 100%;
+  gap: 0;
+}
+.fallen .piece {
+  width: 30px;
+  height: 32px;
+  transform: scaleY(0.58) rotate(-12deg);
+  margin: -4px;
+}
+.board-wrap {
+  --size: min(600px, calc(100svh - 144px), calc(100vw - 560px));
+  position: relative;
+  padding: 14px;
+  background: #4f2716 var(--board-art) center / 800px;
+  background-blend-mode: multiply;
+  border: 2px solid #d7a259;
+  box-shadow:
+    0 0 0 4px #28100c,
+    0 8px 0 4px #17090b,
+    16px 25px 35px #0008,
+    -9px -8px 30px #ffd27a15;
+}
+.board {
+  width: var(--size);
+  height: var(--size);
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  background: var(--board-art) center / 100% 100%;
+}
+.square {
+  position: relative;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  min-width: 0;
+  min-height: 0;
+}
+.square::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.square.last::before {
+  background: #ffd27a59;
+  box-shadow: inset 0 0 0 2px #ffd27a70;
+}
+.square.selected::before {
+  background: #ffd27a66;
+  box-shadow: inset 0 0 0 3px #ffe1a1;
+}
+.square:focus-visible {
+  outline: 3px solid #fff4e0;
+  outline-offset: -4px;
+  z-index: 3;
+  box-shadow: inset 0 0 0 6px #6b3316;
+}
+.piece {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: url("art:pieces") 0 0 / 600% 200% no-repeat;
+  pointer-events: none;
+  filter: drop-shadow(4px 6px 2px #30150966);
+  transform-origin: 50% 82%;
+}
+.selected .piece {
+  transform: translateY(-6px) rotate(-3deg);
+  filter: drop-shadow(0 0 2px #ffd27a) drop-shadow(7px 12px 3px #30150977);
+}
+.square.dot::after {
+  content: "";
+  width: 22%;
+  height: 22%;
+  border-radius: 50%;
+  background: #2a1a14;
+  border: 2px solid #fff4e0;
+  position: absolute;
+  left: 39%;
+  top: 39%;
+  box-shadow: 1px 3px 3px #30150944;
+  animation: bloom 0.12s ease-out;
+}
+.square.take::after {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 4px solid #2a1a14;
+  outline: 2px solid #fff4e0;
+  border-radius: 50%;
+}
+.square.check::before {
+  box-shadow:
+    inset 0 0 0 3px #fff4e0,
+    inset 0 0 23px 13px #d23a2ebb;
+}
+.square.check .piece {
+  animation: shudder 0.24s;
+}
+.square.clue {
+  box-shadow: inset 0 0 0 4px #ffd27a;
+}
+.board.puzzle-solved .square.last::before {
+  box-shadow: inset 0 0 0 3px #ffe4ab, inset 0 0 24px #ffd27a88;
+}
+.coordinate {
+  position: absolute;
+  pointer-events: none;
+  color: #ffe4ab;
+  font:
+    10px system-ui,
+    sans-serif;
+}
+.coord-file {
+  bottom: 0;
+  width: calc((100% - 28px) / 8);
+  text-align: center;
+}
+.coord-rank {
+  left: 1px;
+  height: calc((100% - 28px) / 8);
+  display: flex;
+  align-items: center;
+}
+.prompt {
+  width: 100%;
+  min-height: 100px;
+  padding: 14px;
+  border-block: 1px solid #c4935866;
+  background: #240e0cd9;
+  font:
+    16px/1.55 Georgia,
+    serif;
+  text-align: left;
+  box-shadow: 0 10px 20px #0002;
+}
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  width: 100%;
+}
+.stage-button {
+  min-height: 44px;
+  padding: 8px 14px;
+  color: #ffe5b6;
+  border: 1px solid #c49358;
+  background: #39150fe8 var(--board-art) 50% 50% / 1200px;
+  background-blend-mode: multiply;
+  border-radius: 5px;
+  box-shadow: 0 3px 0 #190a08;
+  font:
+    600 14px system-ui,
+    sans-serif;
+}
+.stage-button:hover {
+  filter: brightness(1.2);
+}
+.stage-button[aria-pressed="true"] {
+  box-shadow:
+    inset 0 0 0 1px #ffd27a,
+    0 3px 0 #190a08;
+}
+.turn-switch {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: 7px;
+  font:
+    13px/1.3 system-ui,
+    sans-serif;
+  min-height: 44px;
+}
+.turn-switch input {
+  width: 22px;
+  height: 22px;
+  accent-color: #ffd27a;
+}
+.bill-turn {
+  display: none;
+}
+.device-note {
+  color: #e3c8a9;
+  font:
+    11px/1.4 system-ui,
+    sans-serif;
+  margin: 0;
+}
+.act-label {
+  color: #ffd27a;
+  font:
+    14px/1.4 system-ui,
+    sans-serif;
+}
+.veil {
+  position: fixed;
+  inset: 60px 0 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  background: #17081755;
+  backdrop-filter: blur(3px);
+}
+.programme {
+  width: min(760px, 100%);
+  max-height: calc(100svh - 96px);
+  overflow-y: auto;
+  padding: 34px 48px;
+  font-family: Georgia, serif;
+  background: #eeddbb var(--paper-art) center / 100% 100%;
+  color: #351b19;
+  box-shadow: 0 24px 80px #000a;
+  text-align: center;
+  position: relative;
+}
+.programme .eyebrow {
+  color: #8e1530;
+}
+.programme h2 {
+  font-size: clamp(38px, 5vw, 64px);
+  line-height: 1.05;
+  font-weight: 500;
+  margin: 6px 0;
+}
+.programme h3 {
+  font-size: 26px;
+  margin: 12px 0;
+  font-weight: 500;
+}
+.programme p {
+  line-height: 1.5;
+}
+.programme .subtitle {
+  font-size: 17px;
+  margin: 8px 0 22px;
+}
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.bill-button {
+  min-height: 64px;
+  padding: 12px;
+  border: 1px solid #b78858;
+  background: #fff4e088;
+  color: #4c1b20;
+  border-radius: 3px;
+  box-shadow: 0 3px 0 #ae835c44;
+  text-align: left;
+}
+.bill-button b {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+}
+.bill-button small {
+  display: block;
+  font:
+    12px/1.4 system-ui,
+    sans-serif;
+  margin-top: 3px;
+  color: #674c39;
+}
+.bill-button:hover,
+.bill-button.active {
+  background: #fff9e7;
+  border-color: #8e1530;
+}
+.bill-button.primary {
+  background: #8e1530;
+  color: #fff4e0;
+  text-align: center;
+}
+.bill-button.primary small {
+  color: #fff4e0;
+}
+.programme .credit {
+  font:
+    11px/1.6 system-ui,
+    sans-serif;
+  color: #684a38;
+  margin: 20px 0 0;
+}
+.puppet-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+.puppet-choice {
+  padding: 3px;
+  border: 1px solid #b7885888;
+  background: #fff4e050;
+  color: #351b19;
+  min-height: 100px;
+}
+.puppet-choice .puppet {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+}
+.puppet-choice.active {
+  outline: 2px solid #8e1530;
+  background: #fff9e7;
+}
+.puppet-choice span {
+  font:
+    12px system-ui,
+    sans-serif;
+}
+.side-choices {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 12px 0;
+}
+.side-choices button {
+  min-height: 44px;
+  padding: 6px 18px;
+  background: #fff4e0;
+  color: #351b19;
+  border: 1px solid #a77951;
+}
+.side-choices .active {
+  background: #4c1b20;
+  color: #fff4e0;
+}
+.plays-like {
+  min-height: 48px;
+  font-size: 15px;
+}
+.back {
+  background: none;
+  border: none;
+  color: #8e1530;
+  text-decoration: underline;
+  min-height: 44px;
+  padding: 8px 16px;
+}
+.act-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.fan {
+  position: fixed;
+  z-index: 45;
+  background: #eeddbb var(--paper-art) center / 100% 100%;
+  color: #351b19;
+  padding: 10px;
+  box-shadow: 0 8px 30px #0008;
+  border: 1px solid #c49358;
+  max-width: 95vw;
+}
+.fan p {
+  margin: 0 0 5px;
+  text-align: center;
+  font-size: 14px;
+}
+.fan button {
+  width: 66px;
+  height: 80px;
+  background: transparent;
+  color: #351b19;
+  border: 1px solid #c49358;
+}
+.fan .piece {
+  height: 60px;
+}
+.capture-ghost {
+  position: fixed;
+  z-index: 25;
+  pointer-events: none;
+  transform-origin: 50% 85%;
+  animation: foldaway 0.5s ease-in forwards;
+}
+.mover {
+  position: fixed;
+  z-index: 26;
+  pointer-events: none;
+  animation: move-arc 0.2s ease-in-out;
+}
+.curtain-sweep {
+  position: fixed;
+  z-index: 35;
+  pointer-events: none;
+  top: 60px;
+  bottom: 0;
+  width: 25%;
+  background: var(--stage-art) left top / 400% 100%;
+  animation: curtain 0.5s ease-in-out;
+}
+.curtain-sweep.right {
+  right: 0;
+  transform: scaleX(-1);
+}
+.curtain-sweep.left {
+  left: 0;
+}
+.attack-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+.attack-line line {
+  stroke: #2a1a14;
+  stroke-width: 5;
+  stroke-dasharray: 9 7;
+  filter: drop-shadow(0 1px 1px #fff4e0);
+}
+@keyframes lamplight {
+  to {
+    opacity: 0.55;
+  }
+}
+@keyframes thinking {
+  50% {
+    transform: translateY(-4px) rotate(1deg);
+  }
+}
+@keyframes bloom {
+  from {
+    transform: scale(0);
+  }
+}
+@keyframes shudder {
+  25%,
+  75% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+}
+@keyframes foldaway {
+  40% {
+    transform: perspective(300px) rotateX(85deg);
+  }
+  to {
+    transform: translateX(var(--exit)) perspective(300px) rotateX(85deg);
+    opacity: 0;
+  }
+}
+@keyframes move-arc {
+  50% {
+    margin-top: -12px;
+  }
+}
+@keyframes curtain {
+  50% {
+    width: 52%;
+  }
+}
+.calm *,
+.calm *::before,
+.calm *::after {
+  animation: none !important;
+  transition: none !important;
+}
+.calm .selected .piece {
+  transform: none;
+}
+.calm .piece {
+  transition: opacity 0.12s;
+}
+@media (min-width: 1600px) {
+  .board-wrap {
+    --size: min(740px, calc(100svh - 170px));
+  }
+  .stage {
+    gap: 40px;
+  }
+}
+@media (max-width: 1100px) and (min-width: 761px) {
+  .theatre {
+    padding: 76px 16px 18px;
+  }
+  .stage {
+    grid-template-columns: 150px auto 160px;
+    gap: 16px;
+  }
+  .board-wrap {
+    --size: min(600px, calc(100svh - 126px), calc(100vw - 410px));
+  }
+  .puppet {
+    width: 130px;
+    height: 130px;
+  }
+  .wing h1 {
+    font-size: 28px;
+  }
+  .prompt {
+    font-size: 14px;
+    min-height: 90px;
+  }
+}
+@media (max-height: 590px) and (min-width: 600px) {
+  .theatre {
+    padding: 60px 8px 3px;
+  }
+  .stage {
+    grid-template-columns: 110px auto 160px;
+    gap: 12px;
+  }
+  .board-wrap {
+    --size: min(calc(100svh - 73px), calc(100vw - 326px));
+    padding: 4px;
+    border-width: 1px;
+  }
+  .coordinate {
+    color: #321709;
+  }
+  .coord-file {
+    text-align: right;
+    padding-right: 2px;
+  }
+  .wing {
+    gap: 5px;
+  }
+  .puppet {
+    width: 90px;
+    height: 90px;
+  }
+  .wing h1 {
+    font-size: 27px;
+  }
+  .wing h2 {
+    font-size: 20px;
+  }
+  .prompt {
+    min-height: 70px;
+    padding: 8px;
+    font-size: 13px;
+  }
+  .device-note {
+    font-size: 10px;
+  }
+  .controls {
+    gap: 5px;
+  }
+  .programme {
+    padding: 18px 35px;
+  }
+  .programme h2 {
+    font-size: 38px;
+  }
+  .programme .subtitle {
+    margin-bottom: 10px;
+  }
+  .programme .credit {
+    margin-top: 8px;
+  }
+  .bill-button {
+    min-height: 54px;
+    padding: 8px;
+  }
+}
+@media (max-height: 590px) and (min-width: 600px) {
+  .programme:has(.puppet-grid) {
+    padding: 14px 24px;
+  }
+  .programme:has(.puppet-grid) .eyebrow {
+    display: none;
+  }
+  .programme:has(.puppet-grid) h2 {
+    font-size: 28px;
+    margin: 0;
+  }
+  .programme:has(.puppet-grid) h3 {
+    font-size: 18px;
+    margin: 4px 0;
+  }
+  .puppet-choice {
+    min-height: 80px;
+    padding: 1px;
+  }
+  .puppet-choice .puppet {
+    width: 60px;
+    height: 60px;
+    margin: auto;
+  }
+  .plays-like {
+    min-height: 32px;
+    font-size: 12px;
+    line-height: 1.3;
+    margin: 5px 0;
+  }
+  .side-choices {
+    margin: 6px 0;
+  }
+  .side-choices button {
+    padding: 3px 10px;
+  }
+  .programme .bill-button.primary {
+    min-height: 44px;
+    padding: 6px 16px;
+  }
+}
+@media (max-width: 760px) and (min-height: 591px) {
+  .theatre {
+    padding: 70px 8px 20px;
+    display: block;
+    background-size: auto 100%;
+  }
+  .wing-art {
+    display: block;
+    top: 60px;
+    bottom: 0;
+    width: 16px;
+    background: var(--stage-art) left top / auto 100%;
+  }
+  .wing-art.left {
+    left: 0;
+  }
+  .wing-art.right {
+    right: 0;
+    background-position: right top;
+  }
+  .stage {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .wing {
+    width: min(100%, 510px);
+    gap: 7px;
+  }
+  .opponent {
+    flex-direction: row;
+    justify-content: center;
+    min-height: 50px;
+  }
+  .opponent .puppet {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+  .opponent h1,
+  .opponent .eyebrow,
+  .opponent .depth {
+    display: none;
+  }
+  .opponent h2 {
+    font-size: 21px;
+  }
+  .opponent .status {
+    font-size: 12px;
+  }
+  .opponent .fallen {
+    width: auto;
+    flex: 1;
+    justify-content: flex-end;
+  }
+  .board-wrap {
+    --size: min(calc(100vw - 16px), 500px);
+    padding: 0;
+    border: 0;
+  }
+  .coordinate {
+    color: #321709;
+    z-index: 5;
+    font-size: 10px;
+  }
+  .coord-file {
+    bottom: 1px;
+    width: 12.5%;
+    text-align: right;
+    padding-right: 2px;
+  }
+  .coord-rank {
+    left: 2px;
+    align-items: start;
+    height: 12.5%;
+    padding-top: 2px;
+  }
+  .your-wing {
+    gap: 8px;
+  }
+  .prompt {
+    min-height: 72px;
+    padding: 10px 12px;
+    font-size: 16px;
+  }
+  .controls {
+    display: flex;
+    justify-content: center;
+  }
+  .controls .stage-button {
+    flex: 1;
+    padding: 8px 9px;
+  }
+  .turn-switch {
+    display: none;
+  }
+  .bill-turn {
+    display: flex;
+    color: #351b19;
+    justify-content: center;
+  }
+  .programme {
+    padding: 28px 23px;
+    max-height: calc(100svh - 90px);
+  }
+  .programme h2 {
+    font-size: 44px;
+  }
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+  .bill-button {
+    min-height: 60px;
+  }
+  .puppet-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  .puppet-choice {
+    min-height: 82px;
+  }
+  .puppet-choice .puppet {
+    max-width: 70px;
+    margin: auto;
+  }
+  .plays-like {
+    min-height: 66px;
+  }
+  .act-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .act-grid .bill-button b {
+    font-size: 16px;
+  }
+  .programme .subtitle {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+}
+@media (max-height: 590px) and (min-width: 600px) {
+  .programme:has(.act-grid) {
+    padding: 14px 24px;
+  }
+  .programme:has(.act-grid) .eyebrow {
+    display: none;
+  }
+  .programme:has(.act-grid) h2 {
+    font-size: 28px;
+    margin: 0;
+  }
+  .programme:has(.act-grid) h3 {
+    font-size: 18px;
+    margin: 4px 0;
+  }
+  .act-grid .bill-button {
+    min-height: 50px;
+    padding: 6px;
+  }
+}
+.board.finale::after,
+.board.quiet-end::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--mate-x, 50%) var(--mate-y, 50%), #ffd27a22 40px, #26091a80 190px);
+  animation: finale-light 0.5s ease-out;
+}
+.board.quiet-end::after {
+  background: #26091a40;
+}
+@keyframes finale-light {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.rc-arr {
+  min-height: 44px;
+  height: 44px;
+}
+.move-book {
+  width: 100%;
+  padding: 4px 8px 8px;
+  color: #351b19;
+  background: #eeddbb var(--paper-art) center / 100% 100%;
+  border: 1px solid #b78858;
+  box-shadow: 3px 5px 9px #0005;
+  text-align: left;
+}
+.your-wing:has(.move-book:not([hidden])) {
+  gap: 6px;
+}
+.your-wing:has(.move-book:not([hidden])) .prompt {
+  min-height: 76px;
+  padding: 10px;
+}
+.reviewing #prompt,
+.reviewing #act-label {
+  display: none;
+}
+.move-book summary {
+  cursor: pointer;
+  min-height: 44px;
+  padding: 12px 2px;
+  font-size: 15px;
+}
+.review-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+}
+.move-book button {
+  min-height: 44px;
+  padding: 4px 2px;
+  color: #4c1b20;
+  background: #fff4e088;
+  border: 1px solid #b78858;
+  box-shadow: 0 2px 0 #ae835c44;
+  font-size: 13px;
+}
+.move-book button:focus-visible {
+  outline-color: #67172d;
+  outline-offset: -3px;
+}
+.move-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  max-height: 88px;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin-top: 6px;
+}
+.move-list button[aria-current="step"] {
+  background: #67172d;
+  color: #fff4e0;
+  border-color: #351b19;
+  box-shadow: inset 0 0 0 2px #ffd27a;
+}
+.review-ribbon {
+  width: 100%;
+  padding: 8px 12px;
+  margin: 0;
+  color: #351b19;
+  background: #eeddbb var(--paper-art) center / 100% 100%;
+  border-block: 2px solid #b78858;
+  box-shadow: 2px 4px 7px #0005;
+  font: 600 14px/1.4 Georgia, serif;
+}
+.review-ribbon small {
+  display: block;
+}
+#review-return {
+  width: 100%;
+}
+.reviewing .board {
+  box-shadow: inset 0 0 55px #26091a50;
+}
+.reviewing .board .piece {
+  animation: none;
+}
+@media (max-width: 959px) {
+  .move-book {
+    padding-block: 0 5px;
+  }
+  .move-list {
+    max-height: 88px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+</style>
+</head>
+<body>
+<main class="theatre">
+  <div class="wing-art left" aria-hidden="true"></div><div class="wing-art right" aria-hidden="true"></div>
+  <div class="stage">
+    <aside class="wing opponent" id="opponent">
+      <p class="eyebrow">The paper theatre</p><h1>Chess</h1>
+      <div class="puppet" id="portrait" aria-hidden="true"></div>
+      <div><h2 id="opponent-name">Mouse</h2><div class="status" id="think-status">Waiting in the wings</div></div>
+      <div class="depth" id="depth" hidden><i></i></div>
+      <div class="fallen" id="their-fallen" aria-label="Opponent's captured pieces"></div>
+    </aside>
+    <div class="board-wrap" id="board-wrap">
+      <div class="board" id="board" role="grid" aria-label="Chessboard"></div>
+    </div>
+    <aside class="wing your-wing">
+      <p class="eyebrow" id="act-label">A new show awaits</p>
+      <div class="fallen" id="your-fallen" aria-label="Your captured pieces"></div>
+      <div class="prompt" id="prompt" role="status" aria-live="polite">Choose a show from the playbill.</div>
+      <p class="review-ribbon" id="review-ribbon" role="status" hidden></p>
+      <button class="stage-button" id="review-return" hidden>Back to the game</button>
+      <details class="move-book" id="move-book" open hidden>
+        <summary>Move review <span id="review-count"></span></summary>
+        <div class="review-steps" aria-label="Review moves">
+          <button id="review-first" title="First position (Home)">First</button>
+          <button id="review-back" title="Previous move (Left arrow)">Back</button>
+          <button id="review-forward" title="Next move (Right arrow)">Forward</button>
+          <button id="review-latest" title="Live position (End)">Latest</button>
+        </div>
+        <div class="move-list" id="move-list" role="group" aria-label="Moves played"></div>
+      </details>
+      <div class="controls">
+        <button class="stage-button" id="playbill">Playbill</button>
+        <button class="stage-button" id="hints" aria-pressed="true">Hints on</button>
+        <button class="stage-button" id="flip">Flip</button>
+        <button class="stage-button" id="clue" hidden>Clue</button>
+      </div>
+      <label class="turn-switch" id="turn-switch" hidden><input type="checkbox" id="auto-flip">Turn the board each move</label>
+      <p class="device-note">Saved here. Nothing leaves this device.</p>
+    </aside>
+  </div>
+</main>
+<div class="veil" id="menu"><section class="programme" role="dialog" aria-modal="true" aria-labelledby="bill-title" id="programme"></section></div>
+<div class="fan" id="promotion" role="dialog" aria-label="Choose promotion" hidden></div>
+<!-- Same Recess shell, with its documentation closing tag escaped for inline bundling. -->
+<script src="lib:recess-safe"></script>
+<!-- ENGINE -->
+<script>
+/* Chess rules and search, written for the Curio Class paper theatre. */
+function createChessEngine() {
+  const START = 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1';
+  const KNIGHT = new Int16Array([33, 31, 18, 14, -14, -18, -31, -33]);
+  const BISHOP = new Int16Array([17, 15, -15, -17]);
+  const ROOK = new Int16Array([16, 1, -1, -16]);
+  const KING = new Int16Array([17, 16, 15, 1, -1, -15, -16, -17]);
+  const MG = new Int16Array([0, 82, 337, 365, 477, 1025, 0]);
+  const EG = new Int16Array([0, 94, 281, 297, 512, 936, 0]);
+  const VALUE = new Int32Array([0, 100, 300, 300, 500, 900, 20000]);
+  const PASS_MG = new Int16Array([0, 0, 5, 10, 15, 25, 40]);
+  const PASS_EG = new Int16Array([0, 0, 10, 20, 35, 60, 100]);
+  const MOB_BASE = new Int16Array([0, 0, 4, 7, 7, 14]);
+  const MOB_MG = new Int16Array([0, 0, 4, 5, 2, 1]);
+  const MOB_EG = new Int16Array([0, 0, 4, 5, 4, 2]);
+  const ATTACK_UNITS = new Int16Array([0, 0, 2, 2, 3, 5]);
+  const kingDistance = (a, b) => Math.max(Math.abs((a & 7) - (b & 7)), Math.abs((a >> 4) - (b >> 4)));
+  const PHASE = new Int8Array([0, 0, 1, 1, 2, 4, 0]);
+  const names = ' pnbrqk';
+  const square = (s) => String.fromCharCode(97 + (s & 7)) + (1 + (s >> 4));
+  const index = (s) => s.charCodeAt(0) - 97 + (Number(s[1]) - 1) * 16;
+  const from = (m) => m & 127;
+  const to = (m) => (m >> 7) & 127;
+  const promotion = (m) => (m >> 14) & 7;
+  const encode = (a, b, p = 0, flags = 0) => a | (b << 7) | (p << 14) | flags;
+  const uci = (m) => square(from(m)) + square(to(m)) + (promotion(m) ? names[promotion(m)] : '');
+  const EP = 1 << 17,
+    CASTLE = 1 << 18;
+  const pst = new Int16Array(7 * 128),
+    pest = new Int16Array(7 * 128);
+  const rows = [
+    [],
+    [
+      0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -10, -10, 0, 0, 0, 2, 2, 4, 6, 6, 4, 2, 2, 4, 4, 8, 20, 20, 8, 4, 4, 6, 6, 12,
+      24, 24, 12, 6, 6, 12, 12, 18, 28, 28, 18, 12, 12, 40, 40, 40, 40, 40, 40, 40, 40, 0, 0, 0, 0, 0, 0, 0, 0,
+    ],
+    [
+      -40, -25, -20, -20, -20, -20, -25, -40, -25, -10, 0, 5, 5, 0, -10, -25, -20, 5, 10, 12, 12, 10, 5, -20, -20, 0,
+      12, 18, 18, 12, 0, -20, -20, 5, 12, 18, 18, 12, 5, -20, -20, 0, 10, 12, 12, 10, 0, -20, -25, -10, 0, 0, 0, 0, -10,
+      -25, -40, -25, -20, -20, -20, -20, -25, -40,
+    ],
+    [
+      -15, -10, -10, -10, -10, -10, -10, -15, -10, 8, 0, 4, 4, 0, 8, -10, -10, 6, 8, 8, 8, 8, 6, -10, -10, 0, 8, 12, 12,
+      8, 0, -10, -10, 4, 8, 12, 12, 8, 4, -10, -10, 0, 6, 8, 8, 6, 0, -10, -10, 0, 0, 0, 0, 0, 0, -10, -15, -10, -10,
+      -10, -10, -10, -10, -15,
+    ],
+    [
+      0,
+      0,
+      4,
+      8,
+      8,
+      4,
+      0,
+      0,
+      ...Array(5).fill([-4, 0, 0, 0, 0, 0, 0, -4]).flat(),
+      ...Array(8).fill(10),
+      ...Array(8).fill(0),
+    ],
+    [
+      -10,
+      -5,
+      -5,
+      0,
+      0,
+      -5,
+      -5,
+      -10,
+      -5,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -5,
+      ...Array(4).fill([-5, 0, 4, 4, 4, 4, 0, -5]).flat(),
+      -5,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      -5,
+      -10,
+      -5,
+      -5,
+      0,
+      0,
+      -5,
+      -5,
+      -10,
+    ],
+    [10, 20, 15, 0, 0, 5, 20, 10, 5, 5, -5, -10, -10, -5, 5, 5, ...Array(8).fill(-15), ...Array(40).fill(-25)],
+  ];
+  for (let p = 1; p <= 6; p++)
+    for (let s = 0; s < 128; s++) {
+      if (s & 0x88) continue;
+      pst[p * 128 + s] = rows[p][(s >> 4) * 8 + (s & 7)];
+      const dist = Math.min(
+        ...[51, 52, 67, 68].map((t) => Math.max(Math.abs((s & 7) - (t & 7)), Math.abs((s >> 4) - (t >> 4)))),
+      );
+      pest[p * 128 + s] = p === 6 ? 14 - 4 * dist : Math.trunc(pst[p * 128 + s] / 2);
+    }
+  let seed = 0x45b7a231;
+  const rand = () => {
+    seed ^= seed << 13;
+    seed ^= seed >>> 17;
+    seed ^= seed << 5;
+    return seed >>> 0;
+  };
+  const zl = new Uint32Array(13 * 128 + 32),
+    zh = new Uint32Array(zl.length);
+  for (let i = 0; i < zl.length; i++) {
+    zl[i] = rand();
+    zh[i] = rand();
+  }
+  const zpiece = (p, s) => (p + 6) * 128 + s;
+  const rightsMask = new Uint8Array(128).fill(15);
+  rightsMask[4] = 12;
+  rightsMask[0] = 13;
+  rightsMask[7] = 14;
+  rightsMask[116] = 3;
+  rightsMask[112] = 7;
+  rightsMask[119] = 11;
+
+  class Position {
+    constructor(fen = START) {
+      this.b = new Int8Array(128);
+      this.king = new Int16Array(2);
+      this.stack = new Int32Array(1024 * 16);
+      this.moves = new Int32Array(1024 * 256);
+      this.ply = 0;
+      this.load(fen);
+    }
+    toggle(i) {
+      this.lo ^= zl[i];
+      this.hi ^= zh[i];
+    }
+    change(s, p) {
+      const old = this.b[s];
+      if (old) this.addScore(s, old, -1);
+      this.b[s] = p;
+      if (p) this.addScore(s, p, 1);
+    }
+    addScore(s, p, mul) {
+      this.toggle(zpiece(p, s));
+      const side = p > 0 ? 1 : -1,
+        t = Math.abs(p),
+        v = p > 0 ? s : s ^ 112;
+      this.mg += mul * side * (MG[t] + pst[t * 128 + v]);
+      this.eg += mul * side * (EG[t] + pest[t * 128 + v]);
+      this.phase += mul * PHASE[t];
+    }
+    epFile() {
+      if (this.ep < 0) return -1;
+      const dir = this.side * 16,
+        t = this.ep,
+        victim = t - dir;
+      if (this.b[victim] !== -this.side) return -1;
+      for (let j = -1; j <= 1; j += 2) {
+        const a = t - dir + j;
+        if (a & 0x88 || this.b[a] !== this.side) continue;
+        this.b[a] = 0;
+        this.b[victim] = 0;
+        this.b[t] = this.side;
+        const safe = !this.attacked(this.king[this.side > 0 ? 0 : 1], -this.side);
+        this.b[a] = this.side;
+        this.b[victim] = -this.side;
+        this.b[t] = 0;
+        if (safe) return t & 7;
+      }
+      return -1;
+    }
+    stateHash() {
+      this.toggle(13 * 128 + this.rights);
+      if (this.side < 0) this.toggle(13 * 128 + 16);
+      const ep = this.epFile();
+      if (ep >= 0) this.toggle(13 * 128 + 17 + ep);
+    }
+    load(fen) {
+      this.b.fill(0);
+      this.lo = 0;
+      this.hi = 0;
+      this.mg = 0;
+      this.eg = 0;
+      this.phase = 0;
+      this.ply = 0;
+      const fields = fen.trim().split(/\s+/);
+      let s = 112;
+      for (const ch of fields[0]) {
+        if (ch === '/') {
+          s -= 24;
+          continue;
+        }
+        if (/\d/.test(ch)) {
+          s += +ch;
+          continue;
+        }
+        const p = names.indexOf(ch.toLowerCase()) * (ch === ch.toUpperCase() ? 1 : -1);
+        this.change(s, p);
+        if (Math.abs(p) === 6) this.king[p > 0 ? 0 : 1] = s;
+        s++;
+      }
+      this.side = fields[1] === 'b' ? -1 : 1;
+      this.rights = 0;
+      for (let i = 0; i < 4; i++) if ((fields[2] || '').includes('KQkq'[i])) this.rights |= 1 << i;
+      this.ep = fields[3] && fields[3] !== '-' ? index(fields[3]) : -1;
+      this.half = +(fields[4] || 0);
+      this.full = +(fields[5] || 1);
+      this.stateHash();
+      return this;
+    }
+    fen() {
+      let rows = [];
+      for (let r = 7; r >= 0; r--) {
+        let row = '',
+          empty = 0;
+        for (let f = 0; f < 8; f++) {
+          const p = this.b[r * 16 + f];
+          if (!p) {
+            empty++;
+            continue;
+          }
+          if (empty) {
+            row += empty;
+            empty = 0;
+          }
+          row += p > 0 ? names[p].toUpperCase() : names[-p];
+        }
+        if (empty) row += empty;
+        rows.push(row);
+      }
+      const rights =
+        'KQkq'
+          .split('')
+          .filter((_, i) => this.rights & (1 << i))
+          .join('') || '-';
+      return (
+        rows.join('/') +
+        ' ' +
+        (this.side > 0 ? 'w' : 'b') +
+        ' ' +
+        rights +
+        ' ' +
+        (this.ep >= 0 ? square(this.ep) : '-') +
+        ' ' +
+        this.half +
+        ' ' +
+        this.full
+      );
+    }
+    key() {
+      return (this.lo >>> 0).toString(16) + ':' + (this.hi >>> 0).toString(16);
+    }
+    attacks(a, t) {
+      const p = this.b[a],
+        k = Math.abs(p),
+        dx = (t & 7) - (a & 7),
+        dy = (t >> 4) - (a >> 4);
+      if (k === 1) return Math.abs(dx) === 1 && dy === (p > 0 ? 1 : -1);
+      if (k === 2) return Math.abs(dx) * Math.abs(dy) === 2;
+      if (k === 6) return Math.max(Math.abs(dx), Math.abs(dy)) === 1;
+      let step = 0;
+      if ((k === 3 || k === 5) && Math.abs(dx) === Math.abs(dy) && dx !== 0) step = Math.sign(dx) + 16 * Math.sign(dy);
+      if ((k === 4 || k === 5) && (dx === 0) !== (dy === 0)) step = dx === 0 ? 16 * Math.sign(dy) : Math.sign(dx);
+      if (!step) return false;
+      for (let s = a + step; s !== t; s += step) if (this.b[s]) return false;
+      return true;
+    }
+    attacker(t, by) {
+      for (let a = 0; a < 128; a++) {
+        if (a & 0x88) {
+          a += 7;
+          continue;
+        }
+        if (this.b[a] * by > 0 && this.attacks(a, t)) return a;
+      }
+      return -1;
+    }
+    attacked(t, by) {
+      const dir = by * 16;
+      if (!((t - dir - 1) & 0x88) && this.b[t - dir - 1] === by) return true;
+      if (!((t - dir + 1) & 0x88) && this.b[t - dir + 1] === by) return true;
+      for (let i = 0; i < 8; i++) {
+        const a = t + KNIGHT[i];
+        if (!(a & 0x88) && this.b[a] === by * 2) return true;
+      }
+      for (let i = 0; i < 8; i++) {
+        const step = KING[i];
+        let s = t + step,
+          dist = 1;
+        while (!(s & 0x88)) {
+          const p = this.b[s];
+          if (p) {
+            if (p * by > 0) {
+              const k = Math.abs(p);
+              if (
+                k === 5 ||
+                (k === 6 && dist === 1) ||
+                (k === 3 && (step === 17 || step === 15 || step === -17 || step === -15)) ||
+                (k === 4 && (step === 16 || step === -16 || step === 1 || step === -1))
+              )
+                return true;
+            }
+            break;
+          }
+          s += step;
+          dist++;
+        }
+      }
+      return false;
+    }
+    check() {
+      return this.attacked(this.king[this.side > 0 ? 0 : 1], -this.side);
+    }
+    emit(base, n, a, target, promoted = 0, flags = 0) {
+      this.moves[base + n] = encode(a, target, promoted, flags);
+      return n + 1;
+    }
+    generate(ply = this.ply, captures = false) {
+      let n = 0,
+        base = ply * 256;
+      for (let a = 0; a < 128; a++) {
+        if (a & 0x88) {
+          a += 7;
+          continue;
+        }
+        const p = this.b[a];
+        if (p * this.side <= 0) continue;
+        const k = Math.abs(p),
+          dir = this.side * 16;
+        if (k === 1) {
+          const last = a >> 4 === (this.side > 0 ? 6 : 1);
+          const t = a + dir;
+          if (!this.b[t] && (!captures || last)) {
+            if (last) for (let pr = 2; pr <= 5; pr++) n = this.emit(base, n, a, t, pr);
+            else {
+              n = this.emit(base, n, a, t);
+              if (a >> 4 === (this.side > 0 ? 1 : 6) && !this.b[t + dir]) n = this.emit(base, n, a, t + dir);
+            }
+          }
+          for (let j = -1; j <= 1; j += 2) {
+            const b = a + dir + j;
+            if (b & 0x88) continue;
+            if (this.b[b] * this.side < 0 && Math.abs(this.b[b]) !== 6) {
+              if (last) for (let pr = 2; pr <= 5; pr++) n = this.emit(base, n, a, b, pr);
+              else n = this.emit(base, n, a, b);
+            } else if (b === this.ep && this.b[b - dir] === -this.side) n = this.emit(base, n, a, b, 0, EP);
+          }
+          continue;
+        }
+        const dirs = k === 2 ? KNIGHT : k === 3 ? BISHOP : k === 4 ? ROOK : KING;
+        for (let i = 0; i < dirs.length; i++) {
+          let b = a + dirs[i];
+          while (!(b & 0x88)) {
+            const target = this.b[b];
+            if (target * this.side > 0 || Math.abs(target) === 6) break;
+            if (target || !captures) n = this.emit(base, n, a, b);
+            if (target || k === 2 || k === 6) break;
+            b += dirs[i];
+          }
+        }
+        if (k === 6 && !captures && a === (this.side > 0 ? 4 : 116) && !this.check()) {
+          const shift = this.side > 0 ? 0 : 2;
+          if (
+            this.rights & (1 << shift) &&
+            this.b[a + 3] === this.side * 4 &&
+            !this.b[a + 1] &&
+            !this.b[a + 2] &&
+            !this.attacked(a + 1, -this.side) &&
+            !this.attacked(a + 2, -this.side)
+          )
+            n = this.emit(base, n, a, a + 2, 0, CASTLE);
+          if (
+            this.rights & (2 << shift) &&
+            this.b[a - 4] === this.side * 4 &&
+            !this.b[a - 1] &&
+            !this.b[a - 2] &&
+            !this.b[a - 3] &&
+            !this.attacked(a - 1, -this.side) &&
+            !this.attacked(a - 2, -this.side)
+          )
+            n = this.emit(base, n, a, a - 2, 0, CASTLE);
+        }
+      }
+      return n;
+    }
+    make(m) {
+      const a = from(m),
+        t = to(m),
+        p = this.b[a],
+        capSq = m & EP ? t - this.side * 16 : t,
+        cap = this.b[capSq];
+      const z = this.ply * 16,
+        st = this.stack;
+      st[z] = m;
+      st[z + 1] = p;
+      st[z + 2] = cap;
+      st[z + 3] = capSq;
+      st[z + 4] = this.rights;
+      st[z + 5] = this.ep;
+      st[z + 6] = this.half;
+      st[z + 7] = this.king[0];
+      st[z + 8] = this.king[1];
+      st[z + 9] = this.lo;
+      st[z + 10] = this.hi;
+      st[z + 11] = this.mg;
+      st[z + 12] = this.eg;
+      st[z + 13] = this.phase;
+      st[z + 14] = this.full;
+      this.stateHash();
+      this.change(a, 0);
+      if (cap) this.change(capSq, 0);
+      this.change(t, promotion(m) ? this.side * promotion(m) : p);
+      if (Math.abs(p) === 6) this.king[this.side > 0 ? 0 : 1] = t;
+      if (m & CASTLE) {
+        const ra = t > a ? a + 3 : a - 4,
+          rt = t > a ? a + 1 : a - 1;
+        this.change(ra, 0);
+        this.change(rt, this.side * 4);
+      }
+      this.rights &= rightsMask[a] & rightsMask[t];
+      this.ep = Math.abs(p) === 1 && Math.abs(t - a) === 32 ? (a + t) >> 1 : -1;
+      this.half = Math.abs(p) === 1 || cap ? 0 : this.half + 1;
+      if (this.side < 0) this.full++;
+      this.side = -this.side;
+      this.ply++;
+      this.stateHash();
+      return !this.attacked(this.king[this.side < 0 ? 0 : 1], this.side);
+    }
+    unmake() {
+      const z = --this.ply * 16,
+        st = this.stack,
+        m = st[z],
+        a = from(m),
+        t = to(m);
+      this.side = -this.side;
+      this.b[a] = st[z + 1];
+      this.b[t] = 0;
+      this.b[st[z + 3]] = st[z + 2];
+      if (m & CASTLE) {
+        this.b[t > a ? a + 3 : a - 4] = this.side * 4;
+        this.b[t > a ? a + 1 : a - 1] = 0;
+      }
+      this.rights = st[z + 4];
+      this.ep = st[z + 5];
+      this.half = st[z + 6];
+      this.king[0] = st[z + 7];
+      this.king[1] = st[z + 8];
+      this.lo = st[z + 9];
+      this.hi = st[z + 10];
+      this.mg = st[z + 11];
+      this.eg = st[z + 12];
+      this.phase = st[z + 13];
+      this.full = st[z + 14];
+    }
+    hasLegal() {
+      const base = this.ply * 256,
+        count = this.generate();
+      for (let i = 0; i < count; i++) {
+        const ok = this.make(this.moves[base + i]);
+        this.unmake();
+        if (ok) return true;
+      }
+      return false;
+    }
+    legal() {
+      const base = this.ply * 256,
+        n = this.generate(),
+        out = [];
+      for (let i = 0; i < n; i++) {
+        const m = this.moves[base + i],
+          ok = this.make(m);
+        this.unmake();
+        if (ok) out.push(m);
+      }
+      return out;
+    }
+    move(text) {
+      const m = this.legal().find((m) => uci(m) === text);
+      if (m !== undefined) {
+        this.make(m);
+        return m;
+      }
+      return null;
+    }
+    insufficient() {
+      let minors = 0,
+        knights = 0,
+        bishopColors = 0;
+      for (let s = 0; s < 128; s++) {
+        if (s & 0x88) {
+          s += 7;
+          continue;
+        }
+        const p = Math.abs(this.b[s]);
+        if (p === 1 || p === 4 || p === 5) return false;
+        if (p === 2) {
+          minors++;
+          knights++;
+        }
+        if (p === 3) {
+          minors++;
+          bishopColors |= 1 << (((s & 7) + (s >> 4)) & 1);
+        }
+      }
+      return minors <= 1 || (!knights && bishopColors !== 3);
+    }
+    result(keys = []) {
+      const moves = this.legal();
+      if (!moves.length) return this.check() ? 'mate' : 'stalemate';
+      if (this.half >= 100) return 'fifty';
+      if (this.insufficient()) return 'material';
+      if (keys.filter((k) => k === this.key()).length >= 3) return 'repetition';
+      return '';
+    }
+    perft(depth) {
+      if (!depth) return 1;
+      const n = this.generate(),
+        base = this.ply * 256;
+      let total = 0;
+      for (let i = 0; i < n; i++) {
+        const m = this.moves[base + i],
+          ok = this.make(m);
+        if (ok) total += depth === 1 ? 1 : this.perft(depth - 1);
+        this.unmake();
+      }
+      return total;
+    }
+  }
+
+  const LEVELS = [
+    { name: 'Mouse', depth: 1, nodes: 5000, time: 1000, blunder: 0.4, noise: 190, margin: 0 },
+    { name: 'Rabbit', depth: 1, nodes: 20000, time: 1000, blunder: 0.2, noise: 100, margin: 0 },
+    { name: 'Fox', depth: 1, nodes: 60000, time: 1500, blunder: 0.12, noise: 60, margin: 0 },
+    { name: 'Owl', depth: 2, nodes: 150000, time: 2000, blunder: 0.04, noise: 40, margin: 20 },
+    { name: 'Badger', depth: 4, nodes: 500000, time: 3000, blunder: 0.01, noise: 20, margin: 20 },
+    { name: 'Raven', depth: 64, nodes: 12000, time: 5000, blunder: 0, noise: 0, margin: 15 },
+    { name: 'Lion', depth: 64, nodes: 25000, time: 8000, blunder: 0, noise: 0, margin: 10 },
+  ];
+
+  class Search {
+    constructor() {
+      const size = 1 << 21;
+      this.mask = size - 1;
+      this.ttKey = new Uint32Array(size);
+      this.ttMove = new Int32Array(size);
+      this.ttScore = new Int32Array(size);
+      this.ttDepth = new Int8Array(size);
+      this.ttBound = new Uint8Array(size);
+      this.ttAge = new Uint8Array(size);
+      this.killers = new Int32Array(256 * 2);
+      this.history = new Int32Array(2 * 128 * 128);
+      this.counter = new Int32Array(13 * 128);
+      this.orderScores = new Int32Array(256 * 256);
+      this.reductions = new Int8Array(65 * 256);
+      for (let d = 1; d <= 64; d++)
+        for (let m = 1; m < 256; m++)
+          this.reductions[d * 256 + m] = Math.floor(0.75 + (Math.log(d) * Math.log(m)) / 2.25);
+      this.gain = new Int32Array(32);
+      this.seeSquare = new Int16Array(32);
+      this.seePiece = new Int8Array(32);
+      this.pawnFile = new Int8Array(16);
+      this.pawnAttack = new Int8Array(256);
+      this.age = 0;
+    }
+    evaluate(p) {
+      let mg = p.mg,
+        eg = p.eg;
+      const b = p.b,
+        pf = this.pawnFile,
+        pa = this.pawnAttack;
+      pf.fill(0);
+      pa.fill(0);
+      for (let s = 0; s < 128; s++) {
+        if (s & 0x88) {
+          s += 7;
+          continue;
+        }
+        if (Math.abs(b[s]) !== 1) continue;
+        const side = b[s] > 0 ? 1 : -1,
+          offset = side > 0 ? 0 : 128,
+          dir = 16 * side;
+        pf[(side > 0 ? 0 : 8) + (s & 7)]++;
+        for (let j = -1; j <= 1; j += 2) if (!((s + dir + j) & 0x88)) pa[offset + s + dir + j] = 1;
+      }
+      for (let color = 0; color < 2; color++) {
+        const side = color === 0 ? 1 : -1,
+          k = p.king[color],
+          enemyK = p.king[1 - color],
+          off = color * 8,
+          poff = (1 - color) * 128;
+        let bishops = 0,
+          units = 0,
+          attackers = 0;
+        const kf = k & 7,
+          kr = k >> 4;
+        for (let f = Math.max(0, kf - 1); f <= Math.min(7, kf + 1); f++) {
+          let near = 9;
+          for (let r = 0; r < 8; r++)
+            if (b[r * 16 + f] === side) near = Math.min(near, side * (r - kr) > 0 ? Math.abs(r - kr) : 9);
+          if (near === 9) mg -= side * 15;
+          else if (near > 1) mg -= side * 8;
+          if (!pf[off + f] && !pf[(1 - color) * 8 + f]) mg -= side * 20;
+        }
+        for (let s = 0; s < 128; s++) {
+          if (s & 0x88) {
+            s += 7;
+            continue;
+          }
+          if (b[s] * side <= 0) continue;
+          const t = Math.abs(b[s]),
+            f = s & 7,
+            r = s >> 4,
+            rr = side > 0 ? r : 7 - r;
+          if (t === 1) {
+            let isolated = (!f || !pf[off + f - 1]) && (f === 7 || !pf[off + f + 1]);
+            if (pf[off + f] > 1) {
+              mg -= side * 12;
+              eg -= side * 20;
+            }
+            if (isolated) {
+              mg -= side * 10;
+              eg -= side * 12;
+            }
+            let passed = true,
+              clear = true,
+              connected = false;
+            for (let j = -1; j <= 1; j += 2) {
+              const a = s + j,
+                back = s - side * 16 + j;
+              if (!(a & 0x88) && b[a] === side) connected = true;
+              if (!(back & 0x88) && b[back] === side) connected = true;
+            }
+            if (connected) {
+              mg += side * 5;
+              eg += side * 7;
+            }
+            for (let ahead = s + side * 16; !(ahead & 0x88); ahead += side * 16) {
+              if (b[ahead]) clear = false;
+              for (let j = -1; j <= 1; j++) if (!((ahead + j) & 0x88) && b[ahead + j] === -side) passed = false;
+            }
+            if (passed && rr >= 2 && rr <= 6) {
+              mg += side * PASS_MG[rr];
+              eg += side * PASS_EG[rr];
+              if (clear) {
+                mg += side * 5;
+                eg += side * 15;
+              }
+              const target = s + side * 16;
+              eg += side * 5 * (kingDistance(enemyK, target) - kingDistance(k, target));
+            }
+            const ahead = s + side * 16;
+            if (!connected && !isolated && !(ahead & 0x88) && pa[poff + ahead]) {
+              mg -= side * 8;
+              eg -= side * 10;
+            }
+            continue;
+          }
+          if (t === 6) continue;
+          if (t === 3) bishops++;
+          if (t === 4) {
+            if (!pf[off + f]) {
+              mg += side * (pf[(1 - color) * 8 + f] ? 10 : 20);
+              eg += side * (pf[(1 - color) * 8 + f] ? 5 : 10);
+            }
+          }
+          if ((t === 4 || t === 5) && rr === 6 && enemyK >> 4 === (side > 0 ? 7 : 0)) {
+            mg += side * 20;
+            eg += side * 30;
+          }
+          if (t === 2 && rr >= 3 && rr <= 5 && pa[color * 128 + s]) {
+            let outpost = true;
+            for (let a = s + side * 16; !(a & 0x88); a += side * 16)
+              for (let j = -1; j <= 1; j += 2) {
+                if (!((a + j) & 0x88) && b[a + j] === -side) outpost = false;
+              }
+            if (outpost) {
+              mg += side * 15;
+              eg += side * 10;
+            }
+          }
+          const dirs = t === 2 ? KNIGHT : t === 3 ? BISHOP : t === 4 ? ROOK : KING;
+          let mobility = 0,
+            attacksKing = false;
+          for (let j = 0; j < dirs.length; j++) {
+            for (let a = s + dirs[j]; !(a & 0x88); a += dirs[j]) {
+              if (b[a] * side > 0) break;
+              if (!pa[poff + a]) mobility++;
+              if (Math.max(Math.abs((a & 7) - (enemyK & 7)), Math.abs((a >> 4) - (enemyK >> 4))) <= 1)
+                attacksKing = true;
+              if (b[a] || t === 2) break;
+            }
+          }
+          const base = MOB_BASE[t],
+            wmg = MOB_MG[t],
+            weg = MOB_EG[t];
+          mg += side * (mobility - base) * wmg;
+          eg += side * (mobility - base) * weg;
+          if (attacksKing) {
+            units += ATTACK_UNITS[t];
+            attackers++;
+          }
+        }
+        if (bishops >= 2) {
+          mg += side * 30;
+          eg += side * 50;
+        }
+        if (attackers >= 2) mg += side * Math.min(500, units * units * 2);
+      }
+      const phase = Math.min(24, p.phase);
+      let score = (mg * phase + eg * (24 - phase)) / 24;
+      let pawns = 0,
+        material = 0;
+      for (let s = 0; s < 128; s++)
+        if (!(s & 0x88) && p.b[s]) {
+          if (Math.abs(p.b[s]) === 1) pawns++;
+          material += Math.sign(p.b[s]) * VALUE[Math.abs(p.b[s])];
+        }
+      if (!pawns && Math.abs(material) < 500) score /= 4;
+      return Math.trunc(score * p.side) + 10;
+    }
+    see(p, m) {
+      const a = from(m),
+        t = to(m),
+        b = p.b,
+        ep = m & EP ? t - p.side * 16 : t,
+        original = b[t],
+        moving = b[a],
+        captured = b[ep];
+      let count = 0,
+        side = -p.side,
+        occupant = promotion(m) ? p.side * promotion(m) : moving;
+      this.gain[0] = VALUE[Math.abs(captured)] + (promotion(m) ? VALUE[promotion(m)] - 100 : 0);
+      b[a] = 0;
+      b[ep] = 0;
+      b[t] = occupant;
+      while (count < 30) {
+        let least = -1,
+          value = 30000;
+        for (let s = 0; s < 128; s++) {
+          if (s & 0x88) {
+            s += 7;
+            continue;
+          }
+          const piece = b[s];
+          if (piece * side > 0 && VALUE[Math.abs(piece)] < value && p.attacks(s, t)) {
+            least = s;
+            value = VALUE[Math.abs(piece)];
+          }
+        }
+        if (least < 0) break;
+        this.gain[count + 1] = VALUE[Math.abs(occupant)] - this.gain[count];
+        this.seeSquare[count] = least;
+        this.seePiece[count] = b[least];
+        occupant = b[least];
+        b[least] = 0;
+        b[t] = occupant;
+        count++;
+        side = -side;
+      }
+      const depth = count;
+      while (count > 0) {
+        this.gain[count - 1] = -Math.max(-this.gain[count - 1], this.gain[count]);
+        count--;
+      }
+      for (let i = 0; i < depth; i++) b[this.seeSquare[i]] = this.seePiece[i];
+      b[a] = moving;
+      b[t] = original;
+      if (m & EP) b[ep] = captured;
+      return this.gain[0];
+    }
+    tick() {
+      this.nodes++;
+      if (this.nodes >= this.maxNodes || ((this.nodes & 2047) === 0 && performance.now() >= this.deadline))
+        this.stopped = true;
+      return this.stopped;
+    }
+    repetition(p, ply) {
+      for (let i = 0; i < this.pastLo.length; i++) {
+        if (this.pastLo[i] === p.lo >>> 0 && this.pastHi[i] === p.hi >>> 0) return true;
+      }
+      for (let i = Math.max(this.rootPly, p.ply - p.half); i < p.ply; i++) {
+        const z = i * 16;
+        if (p.stack[z + 9] === p.lo && p.stack[z + 10] === p.hi) return true;
+      }
+      return false;
+    }
+    order(p, n, ply, tt) {
+      const base = p.ply * 256,
+        scoreBase = ply * 256,
+        hbase = p.side > 0 ? 0 : 16384;
+      const previous = p.ply > 0 ? p.stack[(p.ply - 1) * 16] : 0;
+      const counter = previous ? this.counter[(p.b[to(previous)] + 6) * 128 + to(previous)] : 0;
+      for (let i = 0; i < n; i++) {
+        const m = p.moves[base + i],
+          a = from(m),
+          t = to(m),
+          capture = p.b[t] || m & EP;
+        let score = this.history[hbase + a * 128 + t];
+        if (m === tt) score = 200000000;
+        else if (capture)
+          score =
+            (this.see(p, m) >= 0 ? 10000000 : -10000000) + VALUE[Math.abs(p.b[t] || 1)] * 10 - VALUE[Math.abs(p.b[a])];
+        else if (promotion(m)) score = 9000000 + VALUE[promotion(m)];
+        else if (m === this.killers[ply * 2]) score = 8000000;
+        else if (m === this.killers[ply * 2 + 1]) score = 7000000;
+        else if (m === counter) score = 6000000;
+        this.orderScores[scoreBase + i] = score;
+      }
+    }
+    pick(p, n, i, ply) {
+      const base = p.ply * 256,
+        sb = ply * 256;
+      let best = i;
+      for (let j = i + 1; j < n; j++) if (this.orderScores[sb + j] > this.orderScores[sb + best]) best = j;
+      const m = p.moves[base + best];
+      p.moves[base + best] = p.moves[base + i];
+      p.moves[base + i] = m;
+      const v = this.orderScores[sb + best];
+      this.orderScores[sb + best] = this.orderScores[sb + i];
+      this.orderScores[sb + i] = v;
+      return m;
+    }
+    qsearch(p, alpha, beta, ply) {
+      if (this.tick()) return 0;
+      if (ply > 100) return this.evaluate(p);
+      const check = p.check();
+      if (p.half >= 100 || this.repetition(p, ply) || p.insufficient()) {
+        if (!check || p.hasLegal()) return 0;
+      }
+      const stand = this.evaluate(p);
+      if (!check) {
+        if (stand >= beta) return stand;
+        if (stand > alpha) alpha = stand;
+      }
+      const n = p.generate(p.ply, !check);
+      this.order(p, n, ply, 0);
+      let count = 0;
+      for (let i = 0; i < n; i++) {
+        const m = this.pick(p, n, i, ply),
+          capture = p.b[to(m)] || m & EP;
+        if (!check && !promotion(m) && capture) {
+          if (stand + VALUE[Math.abs(p.b[to(m)] || 1)] + 180 < alpha || this.see(p, m) < 0) continue;
+        }
+        if (!check && promotion(m) && promotion(m) !== 5) continue;
+        const ok = p.make(m);
+        if (!ok) {
+          p.unmake();
+          continue;
+        }
+        count++;
+        const score = -this.qsearch(p, -beta, -alpha, ply + 1);
+        p.unmake();
+        if (this.stopped) return 0;
+        if (score >= beta) return score;
+        if (score > alpha) alpha = score;
+      }
+      if (check && !count) return -100000 + ply;
+      if (!check && !count && !p.hasLegal()) return 0;
+      return alpha;
+    }
+    search(p, depth, alpha, beta, ply, pv = true, allowNull = true) {
+      if (depth <= 0) return this.qsearch(p, alpha, beta, ply);
+      if (this.tick()) return 0;
+      if (ply > 100) return this.evaluate(p);
+      const check = p.check();
+      if (ply && (p.half >= 100 || this.repetition(p, ply) || p.insufficient())) {
+        if (!check || p.hasLegal()) return 0;
+      }
+      if (check && depth < 60) depth++;
+      const originalAlpha = alpha,
+        idx = p.lo & this.mask,
+        valid = this.ttBound[idx] && this.ttKey[idx] === p.hi >>> 0;
+      const tt = valid ? this.ttMove[idx] : 0;
+      if (valid && this.ttDepth[idx] >= depth && !pv) {
+        let v = this.ttScore[idx];
+        if (v > 99000) v -= ply;
+        if (v < -99000) v += ply;
+        const bound = this.ttBound[idx];
+        if (bound === 1 || (bound === 2 && v >= beta) || (bound === 3 && v <= alpha)) return v;
+      }
+      const evaluation = this.evaluate(p);
+      if (!pv && !check && Math.abs(beta) < 90000) {
+        if (depth <= 6 && evaluation - 90 * depth >= beta) return evaluation;
+        let major = false;
+        for (let s = 0; s < 128; s++)
+          if (!(s & 0x88) && p.b[s] * p.side > 0 && Math.abs(p.b[s]) > 1 && Math.abs(p.b[s]) < 6) {
+            major = true;
+            break;
+          }
+        if (allowNull && depth >= 3 && major && evaluation >= beta) {
+          const ep = p.ep,
+            lo = p.lo,
+            hi = p.hi;
+          p.stateHash();
+          p.ep = -1;
+          p.side = -p.side;
+          p.stateHash();
+          const reduction = 3 + Math.floor(depth / 6);
+          const score = -this.search(p, depth - 1 - reduction, -beta, -beta + 1, ply + 1, false, false);
+          p.ep = ep;
+          p.side = -p.side;
+          p.lo = lo;
+          p.hi = hi;
+          if (this.stopped) return 0;
+          if (score >= beta) {
+            if (depth < 10 || this.search(p, depth - reduction, beta - 1, beta, ply, false, false) >= beta) return beta;
+          }
+        }
+      }
+      const n = p.generate();
+      this.order(p, n, ply, tt);
+      let best = -110000,
+        bestMove = 0,
+        legal = 0,
+        quiets = 0;
+      const hbase = p.side > 0 ? 0 : 16384;
+      for (let i = 0; i < n; i++) {
+        const m = this.pick(p, n, i, ply),
+          a = from(m),
+          t = to(m);
+        const quiet = !p.b[t] && !(m & EP) && !promotion(m);
+        const killer = m === this.killers[ply * 2] || m === this.killers[ply * 2 + 1];
+        const ok = p.make(m);
+        if (!ok) {
+          p.unmake();
+          continue;
+        }
+        legal++;
+        const givesCheck = p.check();
+        if (!pv && !check && quiet && !givesCheck && legal > 1 && Math.abs(alpha) < 90000) {
+          quiets++;
+          if ((depth <= 2 && evaluation + 120 * depth <= alpha) || (depth <= 3 && quiets > 4 + depth * depth)) {
+            p.unmake();
+            continue;
+          }
+        }
+        let reduction = 0;
+        if (depth >= 3 && legal >= (pv ? 4 : 3) && quiet && !killer && !check && !givesCheck) {
+          reduction = this.reductions[Math.min(64, depth) * 256 + Math.min(i + 1, 255)] - (pv ? 1 : 0);
+          if (this.history[hbase + a * 128 + t] > 1000) reduction--;
+          reduction = Math.max(0, Math.min(depth - 2, reduction));
+        }
+        let score;
+        if (legal === 1) score = -this.search(p, depth - 1, -beta, -alpha, ply + 1, pv, true);
+        else {
+          score = -this.search(p, depth - 1 - reduction, -alpha - 1, -alpha, ply + 1, false, true);
+          if (score > alpha && reduction) score = -this.search(p, depth - 1, -alpha - 1, -alpha, ply + 1, false, true);
+          if (score > alpha && score < beta) score = -this.search(p, depth - 1, -beta, -alpha, ply + 1, pv, true);
+        }
+        p.unmake();
+        if (this.stopped) return 0;
+        if (score > best) {
+          best = score;
+          bestMove = m;
+        }
+        if (score > alpha) alpha = score;
+        if (alpha >= beta) {
+          if (quiet) {
+            if (m !== this.killers[ply * 2]) {
+              this.killers[ply * 2 + 1] = this.killers[ply * 2];
+              this.killers[ply * 2] = m;
+            }
+            const bonus = Math.min(10000, depth * depth);
+            this.history[hbase + a * 128 + t] = Math.min(100000, this.history[hbase + a * 128 + t] + bonus);
+            const base = p.ply * 256;
+            for (let j = 0; j < i; j++) {
+              const prior = p.moves[base + j];
+              if (p.b[to(prior)] || promotion(prior)) continue;
+              this.history[hbase + from(prior) * 128 + to(prior)] -= bonus;
+            }
+            if (p.ply > 0) {
+              const prev = p.stack[(p.ply - 1) * 16];
+              this.counter[(p.b[to(prev)] + 6) * 128 + to(prev)] = m;
+            }
+          }
+          break;
+        }
+      }
+      if (!legal) return check ? -100000 + ply : 0;
+      if (this.ttAge[idx] !== this.age || depth >= this.ttDepth[idx] - 2 || !valid) {
+        this.ttKey[idx] = p.hi >>> 0;
+        this.ttMove[idx] = bestMove;
+        this.ttScore[idx] = best > 99000 ? best + ply : best < -99000 ? best - ply : best;
+        this.ttDepth[idx] = Math.min(127, depth);
+        this.ttBound[idx] = best <= originalAlpha ? 3 : best >= beta ? 2 : 1;
+        this.ttAge[idx] = this.age;
+      }
+      return best;
+    }
+    run(p, level = 6, options = {}) {
+      const cfg = { ...LEVELS[level], ...options },
+        begin = performance.now();
+      this.age = (this.age + 1) & 255;
+      this.nodes = 0;
+      this.stopped = false;
+      this.maxNodes = cfg.nodes;
+      this.deadline = begin + cfg.time;
+      this.rootPly = p.ply;
+      const past = options.past || [];
+      this.pastLo = new Uint32Array(past.length);
+      this.pastHi = new Uint32Array(past.length);
+      for (let i = 0; i < past.length; i++) {
+        const pair = past[i].split(':');
+        this.pastLo[i] = parseInt(pair[0], 16);
+        this.pastHi[i] = parseInt(pair[1], 16);
+      }
+      for (let i = 0; i < this.history.length; i++) this.history[i] >>= 1;
+      const root = p.legal();
+      if (!root.length) return { move: null, depth: 0, nodes: 0, ms: 0, score: 0 };
+      const random = options.random || Math.random;
+      let best = root[0],
+        bestScore = -110000,
+        finished = [],
+        depthDone = 0;
+      const margin = Math.max(cfg.noise * 2, cfg.margin),
+        opening = p.full <= 4;
+      for (let depth = 1; depth <= cfg.depth; depth++) {
+        root.sort((a, b) => (b === best) - (a === best));
+        let alpha = depth >= 5 ? bestScore - 25 : -110000,
+          beta = depth >= 5 ? bestScore + 25 : 110000;
+        let current = [],
+          iterationBest = best,
+          iterationScore = -110000,
+          window = 25;
+        while (true) {
+          current = [];
+          iterationScore = -110000;
+          for (let i = 0; i < root.length; i++) {
+            const m = root[i];
+            p.make(m);
+            const low = Math.max(alpha, iterationScore) - margin;
+            const score = -this.search(p, depth - 1, -beta, -low, 1, true, true);
+            p.unmake();
+            if (this.stopped) break;
+            const exact = score <= low ? low - 0.5 : score;
+            current.push({ move: m, score: exact });
+            if (exact > iterationScore) {
+              iterationScore = exact;
+              iterationBest = m;
+            }
+          }
+          if (this.stopped) break;
+          if (iterationScore <= alpha && alpha > -110000) {
+            window *= 4;
+            alpha = window > 400 ? -110000 : bestScore - window;
+            continue;
+          }
+          if (iterationScore >= beta && beta < 110000) {
+            window *= 4;
+            beta = window > 400 ? 110000 : bestScore + window;
+            continue;
+          }
+          break;
+        }
+        if (this.stopped) {
+          if (current.length && current[0].move === best) {
+            const chosen = current.reduce((a, b) => (b.score > a.score ? b : a));
+            best = chosen.move;
+            bestScore = chosen.score;
+            finished = current;
+          }
+          break;
+        }
+        best = iterationBest;
+        bestScore = iterationScore;
+        finished = current;
+        depthDone = depth;
+        if (options.progress) options.progress({ depth, nodes: this.nodes, score: bestScore });
+        if (Math.abs(bestScore) > 99000 || performance.now() >= this.deadline || this.nodes >= this.maxNodes) break;
+      }
+      if (finished.length && Math.abs(bestScore) < 99000) {
+        if (random() < cfg.blunder) best = root[Math.floor(random() * root.length)];
+        else if (opening && cfg.margin) {
+          const choices = finished.filter((x) => x.score >= bestScore - cfg.margin);
+          best = choices[Math.floor(random() * choices.length)].move;
+        } else if (cfg.noise) {
+          best = finished
+            .map((x) => ({ ...x, noisy: x.score + (random() * 2 - 1) * cfg.noise }))
+            .sort((a, b) => b.noisy - a.noisy)[0].move;
+        }
+      }
+      // A knight mate is preferred to a queen promotion; other computer promotions use queens.
+      if (promotion(best) && promotion(best) !== 5) {
+        p.make(best);
+        const mate = p.check() && !p.hasLegal();
+        p.unmake();
+        if (!(mate && promotion(best) === 2))
+          best = root.find((m) => from(m) === from(best) && to(m) === to(best) && promotion(m) === 5) || best;
+      }
+      return {
+        move: uci(best),
+        encoded: best,
+        depth: depthDone,
+        nodes: this.nodes,
+        ms: performance.now() - begin,
+        score: bestScore,
+      };
+    }
+  }
+  return { Position, Search, LEVELS, START, from, to, promotion, encode, uci, index, square, EP, CASTLE, VALUE };
+}
+if (typeof module !== 'undefined') module.exports = createChessEngine;
+
+</script>
+<!-- /ENGINE -->
+<!-- GAME -->
+<script>
+const PUZZLES = [
+  [
+    "m1-1",
+    "yd6eW",
+    639,
+    "3r2k1/pb4p1/4pr1p/1B1qNp1n/3P3P/P7/3Q1PP1/2R1R1K1 w - - 7 26",
+    "b5c4 d5g2",
+    ""
+  ],
+  [
+    "m1-1",
+    "BKLTK",
+    687,
+    "r2r2k1/pb3ppp/1p2p3/3q4/1P1b1P2/P4N2/4B1PP/2RQ1RK1 w - - 0 17",
+    "f3d4 d5g2",
+    ""
+  ],
+  [
+    "m1-1",
+    "FPBtR",
+    693,
+    "r4rk1/ppp2ppp/1bn5/4p3/3qP3/1PN3Pb/PBPN1P1P/R2QK2R w KQ - 3 12",
+    "c3a4 d4f2",
+    ""
+  ],
+  [
+    "m1-1",
+    "Oo2Yb",
+    736,
+    "6k1/1pp2ppp/6r1/2Pp4/pP1Br1P1/P3nPPK/8/R1R5 w - - 0 28",
+    "f3e4 g6h6",
+    ""
+  ],
+  [
+    "m1-1",
+    "9Bsuq",
+    755,
+    "r2q1b1r/ppp1kBp1/2n2n1p/3p1P2/8/4Q3/PPP2PPP/RNB1K2R b KQ - 1 11",
+    "e7f7 e3e6",
+    ""
+  ],
+  [
+    "m1-2",
+    "6FooS",
+    865,
+    "2k1R3/ppb3qp/2p5/2P2p2/PPQr1p2/5P2/5NPP/5K2 b - - 1 25",
+    "c8d7 c4e6",
+    ""
+  ],
+  [
+    "m1-2",
+    "WS1ZL",
+    922,
+    "7r/p4Rk1/2p2Rp1/4p3/4P1Pr/2qn2Q1/P1P1K1P1/8 b - - 0 29",
+    "g7h6 g3h4",
+    ""
+  ],
+  [
+    "m1-2",
+    "OxJo0",
+    925,
+    "1Q6/6bk/3P2q1/3Qp3/4Np2/5P2/3R2bK/2r5 w - - 1 48",
+    "d2g2 g6h6",
+    ""
+  ],
+  [
+    "m1-2",
+    "LKlGq",
+    969,
+    "r1bq1r2/1p3pp1/p1nbN1k1/4p3/3P2Q1/8/PP3PPP/R1B2RK1 b - - 1 15",
+    "g6h7 g4g7",
+    ""
+  ],
+  [
+    "m1-2",
+    "COr8l",
+    986,
+    "8/p6p/6bk/1p5p/4PQ2/2KR4/2P5/6q1 b - - 3 33",
+    "g1g5 f4f8",
+    ""
+  ],
+  [
+    "m1-3",
+    "ITD5U",
+    1037,
+    "r3r1k1/p1pp1p1p/1pn3p1/3N4/2P5/5q2/PP1QBP1P/R3K2R w KQ - 0 15",
+    "d5c7 f3h1",
+    ""
+  ],
+  [
+    "m1-3",
+    "iziys",
+    1068,
+    "r4k1r/pp1b1p2/2pP1n1p/2b3p1/NqQ4B/5P2/PPP2P1P/2K1RB1R w - - 5 16",
+    "a4c5 b4e1",
+    ""
+  ],
+  [
+    "m1-3",
+    "X74cN",
+    1084,
+    "r1b2Qnr/ppk2N1p/3pp1p1/4q3/4P3/8/P1P2PPP/5RK1 b - - 5 19",
+    "e5f6 f8d6",
+    ""
+  ],
+  [
+    "m1-3",
+    "cVJhU",
+    1098,
+    "2kr1q1r/pbpp2pp/1pn2P2/2bN2B1/2B5/6Q1/PPP2PPP/R4RK1 b - - 0 14",
+    "g7f6 g3c7",
+    ""
+  ],
+  [
+    "m1-3",
+    "XkzBv",
+    1098,
+    "r2q1rk1/p1p2ppp/2B5/3QP3/2b1n3/8/PP3bPP/RN3K1R w - - 0 14",
+    "d5c4 d8d1",
+    ""
+  ],
+  [
+    "m2-1",
+    "jqG75",
+    734,
+    "rn4k1/p4ppp/b7/3P4/4qBn1/7P/PP2QPP1/2R1KB1R b K - 1 20",
+    "a6e2 c1c8 e4e8 c8e8",
+    ""
+  ],
+  [
+    "m2-1",
+    "97cz2",
+    754,
+    "2rk4/1b2bppp/p2p1n2/3Pp1B1/B3P3/P6Q/1P3PPP/6K1 w - - 8 24",
+    "g5f6 c8c1 a4d1 c1d1",
+    ""
+  ],
+  [
+    "m2-1",
+    "bkWnP",
+    756,
+    "r2r2k1/p4ppp/8/2QR4/1PP3q1/P7/5PPP/R5K1 w - - 5 23",
+    "a1d1 g4d1 d5d1 d8d1",
+    ""
+  ],
+  [
+    "m2-1",
+    "F8NkT",
+    784,
+    "rnbq1rk1/4bpp1/2p1p2p/p7/1p1PN3/2PQ4/PPB1NPPP/R4RK1 b - - 1 15",
+    "c8a6 e4f6 e7f6 d3h7",
+    ""
+  ],
+  [
+    "m2-1",
+    "pdf76",
+    787,
+    "2r3k1/4ppbp/1Q4p1/1P2p3/8/1qN1B3/5PPP/2R3K1 w - - 1 22",
+    "c3e2 c8c1 e2c1 b3d1",
+    ""
+  ],
+  [
+    "m2-2",
+    "su5D2",
+    982,
+    "r4rk1/pp3pp1/3p4/3Nn3/2P1P3/6P1/PP2BR2/4K3 b - - 0 27",
+    "a8c8 d5e7 g8h7 f2h2",
+    ""
+  ],
+  [
+    "m2-2",
+    "popOX",
+    983,
+    "4r1k1/2R2ppp/3n4/8/8/4BQ2/5PPP/1q4K1 w - - 1 24",
+    "c7c1 b1c1 e3c1 e8e1",
+    ""
+  ],
+  [
+    "m2-2",
+    "hLvdJ",
+    1038,
+    "r4rk1/1b1p1pp1/p1n1p2p/qp2P3/4N1nP/B2Q4/P1B1KPP1/R6R b - - 6 17",
+    "g4e5 e4f6 g7f6 d3h7",
+    ""
+  ],
+  [
+    "m2-2",
+    "1JTIv",
+    1066,
+    "5r1k/Q2R1n2/4qPp1/1p2p1P1/2p1P3/2P2B2/P5K1/8 b - - 0 42",
+    "f7g5 d7h7 g5h7 a7g7",
+    ""
+  ],
+  [
+    "m2-2",
+    "4KfY8",
+    1087,
+    "r2qk2r/4npbp/p1npp1pB/1pp5/2B1P1N1/3P4/PPPQ1PPP/1R3RK1 b kq - 1 17",
+    "g7h6 g4f6 e8f8 d2h6",
+    ""
+  ],
+  [
+    "m2-3",
+    "MS7Mo",
+    1202,
+    "4rrk1/5ppp/2Q5/3p4/8/1NPqp2P/PP1N2P1/R1BK3R w - - 0 21",
+    "b3c5 e3e2 d1e1 d3g3",
+    ""
+  ],
+  [
+    "m2-3",
+    "8tsRc",
+    1234,
+    "r4r1k/bp1pN1pp/4p3/p3q3/2P5/P5p1/1PQ1NP1P/3RKB1R w K - 2 20",
+    "h2g3 a7f2 e1d2 e5e3",
+    ""
+  ],
+  [
+    "m2-3",
+    "ZrgCo",
+    1256,
+    "8/p3P2R/1p1k4/2p2K1p/2P4r/1P6/P6p/8 b - - 0 52",
+    "h2h1q e7e8n d6c6 h7c7",
+    ""
+  ],
+  [
+    "m2-3",
+    "QtZPh",
+    1303,
+    "r2qkbr1/1ppn1pp1/p2p1nNp/4pB2/2Q2P2/7P/PPP3P1/R1B2RK1 b q - 0 16",
+    "f7g6 f5g6 e8e7 c4f7",
+    ""
+  ],
+  [
+    "m2-3",
+    "c4h9d",
+    1392,
+    "8/6k1/5bpp/pp6/2p1pPKP/P1P1r3/1P1qQ3/4R1N1 w - - 0 39",
+    "e2e3 d2g2 e3g3 h6h5",
+    ""
+  ],
+  [
+    "mat-1",
+    "w8biZ",
+    743,
+    "r4rk1/1pp1bppp/1q6/p2Np3/PnP2n2/BP1P1N1b/4BPP1/R2Q1RK1 b - - 1 16",
+    "b6g6 d5e7 g8h8 e7g6",
+    "fork"
+  ],
+  [
+    "mat-1",
+    "mDxnD",
+    760,
+    "3br3/1p3pkp/pnr3p1/n1p5/P3P1N1/2P1BP2/4B1PP/1R1R2K1 w - - 8 26",
+    "e3c5 c6c5 d1d8 e8d8",
+    "loose piece"
+  ],
+  [
+    "mat-1",
+    "ugKOP",
+    773,
+    "r3r1k1/6p1/p4p2/2pqbP1p/3pN2P/P4Q2/1PP3P1/3R1R1K b - - 1 22",
+    "c5c4 e4f6 e5f6 f3d5",
+    "discovered attack"
+  ],
+  [
+    "mat-1",
+    "8BvWL",
+    782,
+    "4r1k1/1ppq1ppp/p1n5/2Pp4/1P1r4/P1RB3P/3Q1PP1/3R2K1 b - - 1 24",
+    "c6e5 d3h7 g8h7 d2d4",
+    "discovered attack"
+  ],
+  [
+    "mat-1",
+    "tHNM3",
+    789,
+    "8/6pp/1R6/5pk1/6P1/2n1K3/P7/8 w - - 3 46",
+    "g4f5 c3d5 e3d4 d5b6",
+    "fork"
+  ],
+  [
+    "mat-2",
+    "RRRzQ",
+    966,
+    "r3kb1r/1pp2pp1/p2pbn2/6Bp/1P1qP3/P2B3P/2P2PP1/R2Q1RK1 b kq - 3 13",
+    "d6d5 d3b5 a6b5 d1d4",
+    "discovered attack"
+  ],
+  [
+    "mat-2",
+    "Xak5l",
+    1041,
+    "r1bqk2r/pppp1ppp/5nn1/3Pp1B1/1bP1P3/2N2N2/PP3PPP/R2QKB1R b KQkq - 6 7",
+    "d7d6 d1a4 c8d7 a4b4",
+    "fork"
+  ],
+  [
+    "mat-2",
+    "P88XH",
+    1057,
+    "r3k1nr/ppp2Bpp/2nq4/8/Nb2p1b1/1P2PN2/PB1P1PPP/R2Q1RK1 b kq - 0 11",
+    "e8f7 f3g5 f7e8 d1g4",
+    "discovered attack"
+  ],
+  [
+    "mat-2",
+    "qMMfE",
+    1086,
+    "8/2r5/p1P4p/4k3/1P5r/P5K1/6Bp/3R4 b - - 0 47",
+    "h4h5 d1d5 e5e6 d5h5",
+    "skewer"
+  ],
+  [
+    "mat-2",
+    "Bv8Tk",
+    1095,
+    "r1b1Rbk1/ppB2ppp/2p5/8/P2P4/8/1P1N1PPP/6K1 b - - 0 18",
+    "f7f6 c7d6 g8f7 e8f8",
+    "pin"
+  ],
+  [
+    "mat-3",
+    "VQjbl",
+    1264,
+    "1kr5/pp3pp1/4p1p1/1NqnP1P1/7P/P4Q2/1PP4R/2K5 w - - 5 29",
+    "b5d6 c5g1 f3d1 g1h2",
+    "fork"
+  ],
+  [
+    "mat-3",
+    "ZuAAs",
+    1345,
+    "rn2k2r/p3pp1p/2p2npb/q4bN1/3P4/N1PBP3/P1Q2PPP/R1B1K2R w KQkq - 4 12",
+    "a3c4 f5d3 c2d3 a5g5",
+    "discovered attack"
+  ],
+  [
+    "mat-3",
+    "LDMBw",
+    1349,
+    "4rrk1/pp1q1ppp/2pp1b2/4nP2/4PB2/1BQ4P/PPP2P1K/3R1R2 w - - 5 20",
+    "f1g1 e5g4 g1g4 f6c3",
+    "discovered attack"
+  ],
+  [
+    "mat-3",
+    "PEWkx",
+    1377,
+    "1rb2rk1/4ppbp/5np1/2p1P3/1n1q4/2NP3P/1P2B1PN/R1BQ1R1K b - - 2 16",
+    "d4e5 c1f4 e5e6 f4b8",
+    "skewer"
+  ],
+  [
+    "mat-3",
+    "Q2ZXU",
+    1388,
+    "r1b3k1/1pNnqrpp/p7/4P3/4p3/1Q2P3/PP3PPP/R4RK1 b - - 2 17",
+    "a8b8 e5e6 d7e5 e6f7",
+    "fork"
+  ]
+];
+(() => {
+  'use strict';
+  const E = createChessEngine();
+  const TEST = new URLSearchParams(location.search).has('test');
+  const $ = (id) => document.getElementById(id);
+  const B = $('board');
+  const PIECE_NAMES = ['', 'pawn', 'knight', 'bishop', 'rook', 'queen', 'king'];
+  const ART_COLUMNS = [0, 0, 2, 3, 1, 4, 5];
+  const PLAYS = [
+    'Just learned how the pieces move. Grabs a free piece when it sees one, misses most threats, often leaves pieces hanging.',
+    'Guards its pieces and trades fairly, still falls for two-move tricks like forks.',
+    'A steady beginner: sees loose pieces and simple forks, rarely hangs a piece, can be out-planned.',
+    'A careful casual player. Looks a few moves ahead and punishes big mistakes, still slips now and then.',
+    'A solid tournament player. Never hangs a piece, sees two-move tactics both ways, plays sensible endgames.',
+    'A sharp club player. Finds deep combinations and punishes loose play.',
+    'The top of the ladder: plays like a strong tournament player and gives grown-up club players a real fight.',
+  ];
+  const DRAW = {
+    stalemate:
+      'Stalemate, a draw. The king is not in check, but there is no safe square left and nothing else can move. ' +
+      'Tip: when you are winning, leave the king a square to breathe.',
+    repetition: 'A draw by repetition. The same position came round three times, so the show ends in a tie.',
+    fifty: 'A draw: fifty moves each with no capture and no pawn move. Nobody could break through.',
+    material:
+      'A draw: there are not enough pieces left for anyone to checkmate. A lone king with one bishop or one knight cannot do it.',
+  };
+  const ACTS = ['m1-1', 'm1-2', 'm1-3', 'm2-1', 'm2-2', 'm2-3', 'mat-1', 'mat-2', 'mat-3'];
+  const actName = (act) =>
+    (act.startsWith('m1') ? 'Mate in one' : act.startsWith('m2') ? 'Mate in two' : 'Win a piece') +
+    ', Act ' +
+    act.slice(-1);
+  const sideName = (side) => (side > 0 ? 'White' : 'Black');
+  let pos = new E.Position();
+  let game = null,
+    run = null,
+    selected = -1,
+    cursor = E.index('e2'),
+    legal = [],
+    flip = false;
+  let hints = true,
+    worker = null,
+    thinking = false,
+    workerToken = 0,
+    busy = false,
+    puzzleCelebrating = false,
+    transient = null;
+  let timers = new Set(),
+    pendingPromotion = null,
+    menuTab = 'main',
+    pickLevel = 0,
+    pickSide = 'white';
+  let audio = null,
+    animationEpoch = 0,
+    lastMove = null;
+  // Review is a display cursor only. It is never saved in game or passed to search/scoring.
+  let reviewIndex = null,
+    reviewSeen = 0,
+    reviewFlip = false,
+    deferredResult = null;
+  $('move-book').open = !matchMedia('(max-width: 959px)').matches;
+  const later = (fn, ms) => {
+    const id = setTimeout(() => {
+      timers.delete(id);
+      fn();
+    }, ms);
+    timers.add(id);
+    return id;
+  };
+  const pieceElement = (p) => {
+    const span = document.createElement('span');
+    span.className = 'piece';
+    span.style.backgroundPosition = `${ART_COLUMNS[Math.abs(p)] * 20}% ${p > 0 ? 0 : 100}%`;
+    span.setAttribute('aria-hidden', 'true');
+    return span;
+  };
+  function paperSound(kind) {
+    if (!Recess.sound) return;
+    try {
+      if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+      audio.resume();
+      const now = audio.currentTime;
+      if (kind === 'check' || kind === 'end') {
+        const tones = kind === 'check' ? [880, 1320] : [196, 165];
+        tones.forEach((freq, i) => {
+          const osc = audio.createOscillator(),
+            gain = audio.createGain();
+          osc.frequency.value = freq;
+          const start = now + (kind === 'end' ? i * 0.2 : 0);
+          gain.gain.setValueAtTime(0.04, start);
+          gain.gain.exponentialRampToValueAtTime(0.001, start + 0.3);
+          osc.connect(gain).connect(audio.destination);
+          osc.start(start);
+          osc.stop(start + 0.31);
+        });
+      } else {
+        const duration = kind === 'sweep' ? 0.35 : 0.06;
+        const buffer = audio.createBuffer(1, Math.ceil(audio.sampleRate * duration), audio.sampleRate);
+        const d = buffer.getChannelData(0);
+        for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length);
+        const src = audio.createBufferSource(),
+          filter = audio.createBiquadFilter(),
+          gain = audio.createGain();
+        src.buffer = buffer;
+        filter.type = kind === 'sweep' ? 'bandpass' : 'highpass';
+        filter.frequency.setValueAtTime(kind === 'sweep' ? 400 : 3000, now);
+        if (kind === 'sweep') filter.frequency.exponentialRampToValueAtTime(1200, now + duration);
+        gain.gain.value = 0.05;
+        src.connect(filter).connect(gain).connect(audio.destination);
+        src.start();
+      }
+    } catch {
+      /* A quiet browser still has the whole game. */
+    }
+  }
+  function prompt(text) {
+    $('prompt').textContent = text;
+  }
+  function stopWorker() {
+    workerToken++;
+    if (worker) worker.terminate();
+    worker = null;
+    thinking = false;
+    $('opponent').classList.remove('thinking');
+    $('think-status').textContent = 'Ready when you are';
+    $('depth').hidden = true;
+  }
+  function cancelPending() {
+    animationEpoch++;
+    for (const timer of timers) clearTimeout(timer);
+    timers.clear();
+    busy = false;
+    puzzleCelebrating = false;
+    document.querySelectorAll('.capture-ghost,.mover,.curtain-sweep').forEach((n) => n.remove());
+    if (transient) {
+      pos.load(transient);
+      transient = null;
+    }
+    cancelPromotion();
+  }
+  function save() {
+    // Wrong tries are only a stage preview. Their penalty was saved before the move;
+    // keep that last playable position if pagehide fires before the spring-back.
+    if (!game || transient) return;
+    game.fen = pos.fen();
+    game.flip = flip;
+    game.last = lastMove;
+    if (run) game.moves = run.moves;
+    Recess.store('session', game);
+    Recess.store('saved:' + game.key, game);
+    Recess.store('lastMode', game.mode);
+    if (run) Recess.store('run:' + game.key, run);
+  }
+  function updateUndo() {
+    let can = false;
+    if (game) {
+      if (game.mode === 'cpu') can = !game.won && game.moves > 0 && game.history.length > 0;
+      else if (game.mode === 'friends') can = game.history.length > 0;
+      else can = !game.finished && game.step > 0 && game.history.length > 0;
+    }
+    Recess.canUndo(can);
+  }
+  function fullGame() {
+    return game && (game.mode === 'cpu' || game.mode === 'friends');
+  }
+  function reviewSnapshot(index) {
+    return index < game.history.length ? game.history[index] : snapshot();
+  }
+  function moveLabel(index) {
+    if (!index) return 'Opening position';
+    const before = game.history[index - 1];
+    const after = reviewSnapshot(index);
+    const parts = before.fen.split(' ');
+    const squares = after.last;
+    return `${parts[5]}${parts[1] === 'w' ? '.' : '…'} ${E.square(squares[0])}-${E.square(squares[1])}`;
+  }
+  function renderReview() {
+    const available = fullGame();
+    $('move-book').hidden = !available;
+    const reviewing = reviewIndex !== null;
+    document.querySelector('.theatre').classList.toggle('reviewing', reviewing);
+    $('review-ribbon').hidden = !reviewing;
+    $('review-return').hidden = !reviewing;
+    B.setAttribute('aria-readonly', String(reviewing));
+    if (!available) return;
+    const length = game.history.length;
+    const index = reviewing ? reviewIndex : length;
+    $('review-count').textContent = `· ${length}`;
+    $('review-first').disabled = !length || (reviewing && !index);
+    $('review-back').disabled = !length || (reviewing && !index);
+    $('review-forward').disabled = index >= length;
+    $('review-latest').disabled = !reviewing;
+    if (reviewing) {
+      $('review-ribbon').textContent = `Looking back · ${moveLabel(index)}`;
+      if (length > reviewSeen) {
+        const cue = document.createElement('small');
+        cue.textContent = 'A new move is waiting in the game';
+        $('review-ribbon').append(cue);
+      }
+      prompt('Move review. The pieces stay still here.');
+    }
+    // Reuse buttons so keyboard focus survives a computer reply or a step.
+    const list = $('move-list');
+    while (list.children.length > length) list.lastElementChild.remove();
+    for (let i = 1; i <= length; i++) {
+      let button = list.children[i - 1];
+      if (!button) {
+        button = document.createElement('button');
+        button.onclick = () => reviewAt(i);
+        list.append(button);
+      }
+      button.textContent = moveLabel(i);
+      button.setAttribute('aria-label', `Review ${moveLabel(i)}`);
+      if (i === index) button.setAttribute('aria-current', 'step');
+      else button.removeAttribute('aria-current');
+    }
+  }
+  function reviewAt(index) {
+    if (!fullGame() || !game.history.length || pendingPromotion) return;
+    if (reviewIndex === null) {
+      reviewSeen = game.history.length;
+      reviewFlip = flip;
+    }
+    reviewIndex = Math.max(0, Math.min(game.history.length, index));
+    selected = -1;
+    drag = null;
+    // Remove visual leftovers without cancelling a worker, reply or earned result timer.
+    document.querySelectorAll('.mover,.capture-ghost,.attack-line').forEach((node) => node.remove());
+    render();
+    const active = $('move-list').querySelector('[aria-current="step"]');
+    if (active) {
+      const list = $('move-list');
+      list.scrollTop += active.getBoundingClientRect().top - list.getBoundingClientRect().top - 44;
+    }
+  }
+  function backToGame() {
+    reviewIndex = null;
+    render();
+    turnPrompt();
+    if (awardComputer()) return;
+    if (deferredResult) {
+      const result = deferredResult;
+      deferredResult = null;
+      resultCard(...result);
+      return;
+    }
+    focusSquare(cursor);
+  }
+  function render() {
+    $('rc-restart').disabled = !game;
+    const reviewing = reviewIndex !== null;
+    const shown = reviewing ? reviewSnapshot(reviewIndex) : null;
+    const boardPos = shown ? new E.Position(shown.fen) : pos;
+    const boardLast = shown ? shown.last : lastMove;
+    const boardFlip = reviewing ? reviewFlip : flip;
+    legal = pos.legal();
+    const destinations = reviewing || selected < 0 ? [] : legal.filter((m) => E.from(m) === selected).map(E.to);
+    const checked = boardPos.check() ? boardPos.king[boardPos.side > 0 ? 0 : 1] : -1;
+    const mated = !reviewing && (game?.finished || puzzleCelebrating) && checked >= 0 && legal.length === 0;
+    const finale = mated && (game.mode === 'friends' || -pos.side === game.human);
+    B.classList.toggle('finale', !!finale);
+    B.classList.toggle('quiet-end', !reviewing && !!game?.finished && !finale);
+    B.classList.toggle('puzzle-solved', puzzleCelebrating);
+    for (let view = 0; view < 64; view++) {
+      const row = view >> 3,
+        col = view & 7;
+      const s = boardFlip ? row * 16 + 7 - col : (7 - row) * 16 + col;
+      const b = B.children[view],
+        p = boardPos.b[s];
+      b.dataset.square = s;
+      b.className =
+        'square' +
+        (boardLast && (s === boardLast[0] || s === boardLast[1]) ? ' last' : '') +
+        (s === selected ? ' selected' : '') +
+        (s === checked ? ' check' : '') +
+        (hints && destinations.includes(s) ? (p ? ' take' : ' dot') : '');
+      b.tabIndex = s === cursor ? 0 : -1;
+      b.setAttribute(
+        'aria-label',
+        `${E.square(s)}, ${p ? sideName(p).toLowerCase() + ' ' + PIECE_NAMES[Math.abs(p)] : 'empty'}`,
+      );
+      b.setAttribute('aria-selected', s === selected ? 'true' : 'false');
+      b.replaceChildren();
+      if (p) {
+        const figure = pieceElement(p);
+        if (mated && s === checked) {
+          figure.style.transform = 'rotate(80deg)';
+          B.style.setProperty('--mate-x', `${((view & 7) + 0.5) * 12.5}%`);
+          B.style.setProperty('--mate-y', `${((view >> 3) + 0.5) * 12.5}%`);
+        }
+        b.append(figure);
+      }
+    }
+    document.querySelectorAll('.coordinate').forEach((n) => n.remove());
+    for (let i = 0; i < 8; i++) {
+      const file = document.createElement('span'),
+        rank = document.createElement('span');
+      file.className = 'coordinate coord-file';
+      rank.className = 'coordinate coord-rank';
+      file.setAttribute('aria-hidden', 'true');
+      rank.setAttribute('aria-hidden', 'true');
+      file.textContent = 'abcdefgh'[boardFlip ? 7 - i : i];
+      rank.textContent = boardFlip ? i + 1 : 8 - i;
+      const inset = parseFloat(getComputedStyle($('board-wrap')).paddingLeft);
+      file.style.left = `calc(${inset}px + ${i} * (100% - ${inset * 2}px) / 8)`;
+      file.style.width = `calc((100% - ${inset * 2}px) / 8)`;
+      rank.style.top = `calc(${inset}px + ${i} * (100% - ${inset * 2}px) / 8)`;
+      rank.style.height = `calc((100% - ${inset * 2}px) / 8)`;
+      $('board-wrap').append(file, rank);
+    }
+    renderReview();
+    if (!game) return;
+    const puzzle = game.mode === 'puzzle' || game.mode === 'daily';
+    $('clue').hidden = !puzzle;
+    $('turn-switch').hidden = game.mode !== 'friends';
+    $('auto-flip').checked = !!game.autoFlip;
+    $('portrait').hidden = game.mode === 'friends';
+    $('portrait').style.backgroundPositionX = game.mode === 'cpu' ? `${(game.level / 6) * 100}%` : '50%';
+    $('opponent-name').textContent =
+      game.mode === 'cpu' ? E.LEVELS[game.level].name : game.mode === 'friends' ? 'White & Black' : 'Puzzle act';
+    $('hints').textContent = hints ? 'Hints on' : 'Hints off';
+    $('hints').setAttribute('aria-pressed', String(hints));
+    $('act-label').textContent = puzzle
+      ? `${game.mode === 'daily' ? 'Today’s puzzle' : actName(game.act)} · ` +
+        `${Math.min(game.ids.length, run.index + (puzzleCelebrating ? 0 : 1))}/${game.ids.length}`
+      : game.finished
+        ? mated ? 'Checkmate' : 'A fair result'
+        : game.mode === 'friends'
+        ? `${sideName(pos.side)}’s turn`
+        : `You play ${sideName(game.human)}`;
+    const ours = puzzle || game.mode === 'cpu' ? game.human : 1;
+    for (const [id, side] of [
+      ['your-fallen', ours],
+      ['their-fallen', -ours],
+    ]) {
+      $(id).replaceChildren(...(shown ? shown.captured : game.captured).filter((p) => p * side > 0).map(pieceElement));
+    }
+    if (!thinking)
+      $('think-status').textContent = puzzle
+        ? 'Find the final flourish'
+        : game.mode === 'friends'
+          ? 'One board. Two players.'
+          : 'Ready when you are';
+    updateUndo();
+  }
+  function turnPrompt() {
+    if (!game) return;
+    if (reviewIndex !== null) {
+      prompt('Move review. The pieces stay still here.');
+      return;
+    }
+    if (game.finished) {
+      const result = pos.result(game.keys);
+      prompt(result === 'mate' ? `${sideName(-pos.side)} wins by checkmate!` :
+        result ? DRAW[result] + ' A draw is a fair result. Nobody lost.' :
+        'A fine finish. Open Playbill for another show.');
+      return;
+    }
+    const puzzle = game.mode === 'puzzle' || game.mode === 'daily';
+    const check = pos.check() ? 'Check! ' : '';
+    if (puzzle)
+      prompt(
+        `${check}Your move. ${sideName(game.human)} to play: ${game.act.startsWith('mat') ? 'win a piece.' : 'find checkmate.'}`,
+      );
+    else if (game.mode === 'cpu' && pos.side !== game.human)
+      prompt(`${check}${E.LEVELS[game.level].name} is thinking…`);
+    else prompt(`${check}${sideName(pos.side)}’s turn. Pick a piece, then a square.`);
+  }
+  function setLevel() {
+    Recess.level(
+      game.key,
+      game.mode === 'cpu'
+        ? `Versus ${E.LEVELS[game.level].name}`
+        : game.mode === 'friends'
+          ? 'Play a friend'
+          : game.mode === 'daily'
+            ? "Today's puzzle"
+            : actName(game.act),
+    );
+  }
+  function snapshot() {
+    return { fen: pos.fen(), captured: game.captured.slice(), last: lastMove, kingMoved: game.kingMoved?.slice() };
+  }
+  function apply(m, record = true) {
+    if (record) game.history.push(snapshot());
+    const a = E.from(m),
+      t = E.to(m),
+      p = pos.b[a],
+      capSq = m & E.EP ? t - pos.side * 16 : t,
+      cap = pos.b[capSq];
+    if (Math.abs(p) === 6) {
+      if (!game.kingMoved) game.kingMoved = [false, false];
+      game.kingMoved[pos.side > 0 ? 0 : 1] = true;
+    }
+    animateMove(a, t, p, cap, capSq, m);
+    pos.make(m);
+    lastMove = [a, t];
+    selected = -1;
+    if (cap) game.captured.push(cap);
+    game.keys.push(pos.key());
+    // Undo has its own snapshots. Keep the working stack bounded in very long games.
+    pos.load(pos.fen());
+    if (game.mode === 'friends' && game.autoFlip) flip = pos.side < 0;
+    cursor = t;
+    render();
+    if (pos.check()) paperSound('check');
+  }
+  function animateMove(a, t, p, cap, capSq, m) {
+    if (reviewIndex !== null) return;
+    const source = [...B.children].find((b) => +b.dataset.square === a);
+    const target = [...B.children].find((b) => +b.dataset.square === t);
+    if (!source || !target) return;
+    if (cap) Recess.play('capture');
+    else Recess.play('place');
+    if (Recess.calm) return;
+    const r = source.getBoundingClientRect(),
+      q = target.getBoundingClientRect();
+    const mover = pieceElement(p);
+    mover.classList.add('mover');
+    mover.style.cssText += `;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;`;
+    document.body.append(mover);
+    mover.animate(
+      [
+        { transform: 'translate(0,0)' },
+        { transform: `translate(${(q.left - r.left) / 2}px,${(q.top - r.top) / 2 - (Math.abs(p) === 2 ? 24 : 10)}px)` },
+        { transform: `translate(${q.left - r.left}px,${q.top - r.top}px)` },
+      ],
+      { duration: 190, easing: 'ease-in-out' },
+    );
+    later(() => mover.remove(), 200);
+    if (cap) {
+      const cell = [...B.children].find((b) => +b.dataset.square === capSq),
+        r = cell.getBoundingClientRect();
+      const ghost = pieceElement(cap);
+      ghost.classList.add('capture-ghost');
+      const owner = game.mode === 'friends' ? 1 : game.human;
+      ghost.style.cssText += `;left:${r.left}px;top:${r.top}px;width:${r.width}px;height:${r.height}px;--exit:${cap * owner > 0 ? 250 : -250}px;`;
+      document.body.append(ghost);
+      later(() => Recess.play('slide'), 200);
+      later(() => ghost.remove(), 520);
+    }
+    if (m & E.CASTLE) later(() => Recess.play('place'), 120);
+    later(() => {
+      const cell = [...B.children].find((b) => +b.dataset.square === t);
+      if (!cell || !cell.firstElementChild || Recess.calm || reviewIndex !== null) return;
+      cell.firstElementChild.animate(
+        E.promotion(m)
+          ? [{ transform: 'rotateY(180deg)' }, { transform: 'rotateY(0)' }]
+          : [{ transform: 'scale(1.09,.9)' }, { transform: 'scale(.97,1.04)' }, { transform: 'scale(1)' }],
+        { duration: 230 },
+      );
+    }, 180);
+  }
+  function sweep() {
+    paperSound('sweep');
+    if (Recess.calm) return;
+    for (const side of ['left', 'right']) {
+      const el = document.createElement('div');
+      el.className = 'curtain-sweep ' + side;
+      document.body.append(el);
+      later(() => el.remove(), 520);
+    }
+  }
+  function workerInstance() {
+    const code =
+      'const createChessEngine=' +
+      createChessEngine.toString() +
+      ';' +
+      'const E=createChessEngine();const S=new E.Search();onmessage=e=>{const d=e.data,p=new E.Position(d.fen||E.START);' +
+      'if(d.kind==="speed"){const r=S.run(p,6,{time:300,nodes:100000000,noise:0,margin:0});postMessage({kind:"speed",nps:r.nodes/r.ms*1000});return;}' +
+      'const r=S.run(p,d.level,{past:d.past||[],progress:x=>postMessage({kind:"progress",token:d.token,...x}),...(d.options||{})});' +
+      'postMessage({kind:"move",token:d.token,...r});};';
+    const url = URL.createObjectURL(new Blob([code], { type: 'text/javascript' }));
+    const w = new Worker(url);
+    URL.revokeObjectURL(url);
+    return w;
+  }
+  function cpuTurn() {
+    if (!game || game.finished || game.mode !== 'cpu' || pos.side === game.human || !$('menu').hidden || thinking)
+      return;
+    thinking = true;
+    busy = false;
+    $('opponent').classList.add('thinking');
+    $('think-status').textContent = 'Thinking…';
+    $('depth').hidden = game.level < 4;
+    $('depth').firstElementChild.style.width = '0';
+    turnPrompt();
+    updateUndo();
+    const token = ++workerToken,
+      start = performance.now();
+    try {
+      worker = worker || workerInstance();
+      worker.onmessage = (e) => {
+        const d = e.data;
+        if (d.token !== workerToken || token !== workerToken) return;
+        if (d.kind === 'progress') {
+          $('think-status').textContent = `Thinking… depth ${d.depth}`;
+          $('depth').firstElementChild.style.width = `${Math.min(100, d.depth * 6)}%`;
+          return;
+        }
+        later(
+          () => {
+            if (token !== workerToken || !thinking) return;
+            thinking = false;
+            $('opponent').classList.remove('thinking');
+            $('think-status').textContent = 'Ready when you are';
+            $('depth').hidden = true;
+            const m = pos.legal().find((m) => E.uci(m) === d.move);
+            if (m === undefined) {
+              prompt('The puppet lost its place. Restart the show to try again.');
+              return;
+            }
+            apply(m);
+            endCheck();
+            save();
+            turnPrompt();
+          },
+          Math.max(0, 500 - (performance.now() - start)),
+        );
+      };
+      worker.onerror = () => {
+        stopWorker();
+        prompt('The puppet could not take the stage. Play a friend or try Restart.');
+      };
+      worker.postMessage({ fen: pos.fen(), level: game.level, token, past: game.keys.slice(0, -1) });
+    } catch {
+      stopWorker();
+      prompt('This browser could not open the puppet worker. Play a friend or a puzzle.');
+    }
+  }
+  function resultCard(title, text, withUndo = false) {
+    if (reviewIndex !== null) {
+      deferredResult = [title, text, withUndo];
+      return;
+    }
+    stopWorker();
+    paperSound('end');
+    showCard(
+      `<p class="eyebrow">The curtain falls</p><h2>${title}</h2><p>${text}</p>` +
+        `<div class="menu-grid"><button class="bill-button primary" id="new-game"><b>New game</b></button>` +
+        `<button class="bill-button" id="look-board"><b>Look at the board</b></button>` +
+        (fullGame() && game.history.length ? '<button class="bill-button" id="result-review"><b>Replay the moves</b></button>' : '') +
+        '</div>' +
+        (withUndo ? '<button class="back" id="result-undo">Take back a few moves</button>' : ''),
+    );
+    $('new-game').onclick = restart;
+    $('look-board').onclick = closeMenu;
+    if ($('result-review')) $('result-review').onclick = () => {
+      closeMenu(false);
+      reviewAt(0);
+      $('move-book').open = true;
+      $('review-return').focus({ preventScroll: true });
+    };
+    if ($('result-undo')) $('result-undo').onclick = undo;
+  }
+  function endCheck() {
+    const result = pos.result(game.keys);
+    if (!result) return false;
+    game.finished = true;
+    prompt(result === 'mate' ? `${sideName(-pos.side)} wins by checkmate!` : DRAW[result] + ' A draw is a fair result. Nobody lost.');
+    if (result !== 'mate') resultCard('A fair result', DRAW[result] + ' A draw is a fair result. Nobody lost.');
+    else {
+      const winner = -pos.side;
+      const mated = [...B.children].find((b) => +b.dataset.square === pos.king[pos.side > 0 ? 0 : 1]);
+      if (reviewIndex === null && mated?.firstChild) mated.firstChild.style.transform = 'rotate(80deg)';
+      if (game.mode === 'friends') resultCard(`${sideName(winner)} wins!`, `${sideName(winner)} wins by checkmate!`);
+      else if (winner === game.human) {
+        game.won = true;
+        game.pendingAward = { score: game.moves, stars: game.takebacks === 0 ? 3 : game.takebacks <= 3 ? 2 : 1 };
+        updateUndo();
+        save();
+        later(awardComputer, 500);
+      } else
+        resultCard(
+          `${E.LEVELS[game.level].name} wins`,
+          `${E.LEVELS[game.level].name} wins this one. Take back a few moves, or start a new show?`,
+          true,
+        );
+    }
+    render();
+    save();
+    return true;
+  }
+  function awardComputer() {
+    if (!game || game.mode !== 'cpu' || !game.won || !game.pendingAward) return false;
+    if (reviewIndex !== null) return false;
+    const award = game.pendingAward;
+    game.pendingAward = null;
+    save();
+    closeMenu(false);
+    Recess.win(award);
+    return true;
+  }
+  function attackLine(attacker, king) {
+    document.querySelector('.attack-line')?.remove();
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.classList.add('attack-line');
+    svg.setAttribute('viewBox', '0 0 800 800');
+    const xy = (s) => (flip ? [7 - (s & 7), s >> 4] : [s & 7, 7 - (s >> 4)]);
+    const a = xy(attacker),
+      k = xy(king),
+      line = document.createElementNS(svg.namespaceURI, 'line');
+    for (const [name, value] of Object.entries({
+      x1: a[0] * 100 + 50,
+      y1: a[1] * 100 + 50,
+      x2: k[0] * 100 + 50,
+      y2: k[1] * 100 + 50,
+    }))
+      line.setAttribute(name, value);
+    svg.append(line);
+    B.append(svg);
+    later(() => svg.remove(), 2000);
+  }
+  function illegal(a, t) {
+    const p = pos.b[a],
+      type = Math.abs(p),
+      side = pos.side,
+      king = pos.king[side > 0 ? 0 : 1];
+    let message = 'Try a square this piece can reach.';
+    if (type === 6 && Math.abs((t & 7) - (a & 7)) > 1) {
+      const right = (t > a ? 1 : 2) << (side > 0 ? 0 : 2),
+        home = side > 0 ? 4 : 116;
+      if (a !== home || game.kingMoved?.[side > 0 ? 0 : 1])
+        message = 'No castling this game: your king has already moved.';
+      else if (!(pos.rights & right)) message = 'No castling this game: that rook has already moved.';
+      else {
+        const between = t > a ? [a + 1, a + 2] : [a - 1, a - 2, a - 3];
+        if (between.some((s) => pos.b[s]))
+          message = 'Castling needs the squares between the king and rook to be empty.';
+        else {
+          const watched = [a, t > a ? a + 1 : a - 1, t].find((s) => pos.attacked(s, -side));
+          const attacker = watched === undefined ? -1 : pos.attacker(watched, -side);
+          message =
+            "You can't castle through check." +
+            (attacker >= 0
+              ? ` The ${PIECE_NAMES[Math.abs(pos.b[attacker])]} on ${E.square(attacker)} watches ${E.square(watched)}.`
+              : '');
+          if (attacker >= 0) attackLine(attacker, watched);
+        }
+      }
+    } else if (pos.check()) {
+      const a = pos.attacker(king, -side);
+      message = `Your king is in check from the ${PIECE_NAMES[Math.abs(pos.b[a])]} on ${E.square(a)}. Move the king, block the line, or take the ${PIECE_NAMES[Math.abs(pos.b[a])]}.`;
+      attackLine(a, king);
+    } else {
+      const base = pos.ply * 256,
+        n = pos.generate();
+      const pseudo = Array.from(pos.moves.subarray(base, base + n)).find((m) => E.from(m) === a && E.to(m) === t);
+      if (pseudo !== undefined) {
+        pos.make(pseudo);
+        const k = pos.king[side > 0 ? 0 : 1],
+          attacker = pos.attacker(k, -side),
+          name = PIECE_NAMES[Math.abs(pos.b[attacker])];
+        pos.unmake();
+        message = `That would leave your king in check. The ${name} on ${E.square(attacker)} could take it.`;
+        attackLine(attacker, k);
+      } else
+        message = [
+          '',
+          'A pawn moves forward and takes one square diagonally.',
+          'A knight jumps in an L.',
+          'A bishop moves on diagonals.',
+          'A rook moves in straight lines.',
+          'A queen moves on straight lines or diagonals.',
+          'A king moves one safe square.',
+        ][type];
+    }
+    prompt(message);
+    Recess.play('nope');
+    const cell = [...B.children].find((b) => +b.dataset.square === a);
+    if (!Recess.calm && cell?.firstChild)
+      cell.firstChild.animate(
+        [{ transform: 'translateX(7px)' }, { transform: 'translateX(-3px)' }, { transform: 'translateX(0)' }],
+        { duration: 250 },
+      );
+  }
+  function activate(s) {
+    if (reviewIndex !== null) return;
+    if (!game || game.finished || busy || pendingPromotion || !$('menu').hidden) return;
+    if (thinking || (game.mode === 'cpu' && pos.side !== game.human)) return;
+    const p = pos.b[s];
+    cursor = s;
+    if (selected < 0) {
+      if (!p) return;
+      if (p * pos.side < 0) {
+        prompt(`That is ${sideName(p)}’s piece. It’s ${sideName(pos.side)}’s turn.`);
+        Recess.play('nope');
+        return;
+      }
+      selected = s;
+      paperSound('rustle');
+      render();
+      return;
+    }
+    if (selected === s) {
+      selected = -1;
+      render();
+      return;
+    }
+    let target = s;
+    if (Math.abs(pos.b[selected]) === 6 && p === pos.side * 4 && s >> 4 === selected >> 4)
+      target = selected + (s > selected ? 2 : -2);
+    else if (p * pos.side > 0) {
+      selected = s;
+      paperSound('rustle');
+      render();
+      return;
+    }
+    const choices = legal.filter((m) => E.from(m) === selected && E.to(m) === target);
+    if (!choices.length) {
+      illegal(selected, target);
+      return;
+    }
+    if (choices.some(E.promotion)) {
+      showPromotion(choices, target);
+      return;
+    }
+    playMove(choices[0]);
+  }
+  function playMove(m) {
+    if (reviewIndex !== null) return;
+    if (game.mode === 'puzzle' || game.mode === 'daily') {
+      puzzleMove(m);
+      return;
+    }
+    game.moves++;
+    apply(m);
+    save();
+    if (!endCheck()) {
+      turnPrompt();
+      cpuTurn();
+    }
+  }
+  function showPromotion(choices, target) {
+    pendingPromotion = { choices, target };
+    const fan = $('promotion');
+    fan.replaceChildren();
+    const label = document.createElement('p');
+    label.textContent = 'Choose a new piece · 1 to 4';
+    fan.append(label);
+    const options = [5, 4, 3, 2];
+    options.forEach((type, i) => {
+      const b = document.createElement('button');
+      b.setAttribute('aria-label', `${i + 1}, ${PIECE_NAMES[type]}`);
+      b.append(pieceElement(pos.side * type), document.createTextNode(String(i + 1)));
+      b.onclick = () => choosePromotion(type);
+      fan.append(b);
+    });
+    fan.hidden = false;
+    const cell = [...B.children].find((b) => +b.dataset.square === target).getBoundingClientRect();
+    fan.style.left = Math.max(8, Math.min(innerWidth - fan.offsetWidth - 8, cell.left - 100)) + 'px';
+    fan.style.top = Math.max(65, Math.min(innerHeight - fan.offsetHeight - 8, cell.top - fan.offsetHeight)) + 'px';
+    fan.querySelector('button').focus({ preventScroll: true });
+  }
+  function cancelPromotion() {
+    const had = !!pendingPromotion;
+    pendingPromotion = null;
+    $('promotion').hidden = true;
+    if (had) focusSquare(cursor);
+  }
+  function choosePromotion(type) {
+    const m = pendingPromotion?.choices.find((m) => E.promotion(m) === type);
+    pendingPromotion = null;
+    $('promotion').hidden = true;
+    if (m !== undefined) {
+      Recess.play('pop');
+      playMove(m);
+      focusSquare(cursor);
+    }
+  }
+  function focusSquare(s) {
+    cursor = s;
+    for (const b of B.querySelectorAll('.square')) b.tabIndex = +b.dataset.square === s ? 0 : -1;
+    if (document.querySelector('.theatre').inert) return;
+    [...B.querySelectorAll('.square')].find((b) => +b.dataset.square === s)?.focus({ preventScroll: true });
+  }
+  function newGame(mode, level = 0, side = 1) {
+    reviewIndex = null;
+    deferredResult = null;
+    stopWorker();
+    cancelPending();
+    run = null;
+    pos.load(E.START);
+    flip = side < 0;
+    selected = -1;
+    lastMove = null;
+    game = {
+      mode,
+      level,
+      human: side,
+      key: mode === 'cpu' ? 'cpu-' + E.LEVELS[level].name.toLowerCase() : 'friends',
+      moves: 0,
+      takebacks: 0,
+      history: [],
+      captured: [],
+      keys: [pos.key()],
+      kingMoved: [false, false],
+      finished: false,
+      won: false,
+      autoFlip: false,
+    };
+    cursor = side > 0 ? E.index('e2') : E.index('e7');
+    setLevel();
+    closeMenu(false);
+    sweep();
+    render();
+    focusSquare(cursor);
+    turnPrompt();
+    save();
+    cpuTurn();
+  }
+  function resume(saved) {
+    reviewIndex = null;
+    deferredResult = null;
+    stopWorker();
+    cancelPending();
+    game = JSON.parse(JSON.stringify(saved));
+    pos.load(game.fen);
+    flip = !!game.flip;
+    selected = -1;
+    lastMove = game.last || null;
+    run = game.mode === 'puzzle' || game.mode === 'daily' ? Recess.store('run:' + game.key) : null;
+    setLevel();
+    closeMenu(false);
+    render();
+    focusSquare(cursor);
+    if (game.finished && (awardComputer() || awardPuzzle())) return;
+    turnPrompt();
+    if (game.pendingReply) playReply();
+    else cpuTurn();
+  }
+  function undo() {
+    if (!game) return;
+    reviewIndex = null;
+    deferredResult = null;
+    stopWorker();
+    cancelPending();
+    Recess.close();
+    $('menu').hidden = true;
+    document.querySelector('.theatre').inert = false;
+    let count = 1;
+    if (game.mode === 'cpu') {
+      if (game.won || !game.moves || !game.history.length) return;
+      count = pos.side === game.human ? 2 : 1;
+      game.takebacks++;
+    } else if (game.mode !== 'friends') {
+      if (!game.step || !game.history.length || game.finished) return;
+      count = game.pendingReply ? 1 : 2;
+      game.step = 0;
+      game.pendingReply = false;
+      run.step = 0;
+    }
+    for (let i = 0; i < count && game.history.length; i++) {
+      const s = game.history.pop();
+      pos.load(s.fen);
+      game.captured = s.captured;
+      lastMove = s.last;
+      game.keys.pop();
+      if (s.kingMoved) game.kingMoved = s.kingMoved;
+    }
+    game.finished = false;
+    game.won = false;
+    selected = -1;
+    render();
+    focusSquare(cursor);
+    turnPrompt();
+    save();
+  }
+  function restart() {
+    if (!game) return;
+    stopWorker();
+    cancelPending();
+    Recess.close();
+    if (game.mode === 'cpu' || game.mode === 'friends') newGame(game.mode, game.level, game.human);
+    else if (game.finished) startAct(game.act, game.mode === 'daily', true);
+    else {
+      game.step = 0;
+      run.step = 0;
+      loadPuzzle();
+    }
+  }
+  function next() {
+    if (!game) return;
+    if (game.mode === 'cpu') newGame('cpu', Math.min(6, game.level + 1), game.human);
+    else if (game.mode === 'puzzle') startAct(ACTS[(ACTS.indexOf(game.act) + 1) % ACTS.length]);
+    else openPlaybill();
+  }
+  function freshRun(encore = false) {
+    return { index: 0, moves: 0, tries: 0, perTries: 0, step: 0, encore };
+  }
+  function startAct(act, daily = false, force = false) {
+    stopWorker();
+    cancelPending();
+    Recess.close();
+    let ids = PUZZLES.map((p, i) => (p[0] === act ? i : -1)).filter((i) => i >= 0),
+      key = 'p-' + act;
+    if (daily) {
+      const r = Recess.daily(),
+        index = Math.floor(r() * 45);
+      ids = [index];
+      act = PUZZLES[index][0];
+      key = 'daily-' + PUZZLES[index][1];
+    }
+    const completed = Recess.store('completed:' + key),
+      stored = Recess.store('run:' + key);
+    const saved = Recess.store('saved:' + key);
+    if ((completed?.pendingAward || saved?.pendingAward) && saved && stored) {
+      resume(saved);
+      return;
+    }
+    if (!force && !completed && saved && !saved.finished && stored && stored.index < ids.length && saved.fen) {
+      resume(saved);
+      if (!game.pendingReply && pos.side !== game.human) loadPuzzle();
+      return;
+    }
+    run = !force && stored && stored.index < ids.length ? stored : freshRun(!!completed);
+    if (completed) run.encore = true;
+    game = {
+      mode: daily ? 'daily' : 'puzzle',
+      act,
+      key,
+      ids,
+      human: 1,
+      level: 0,
+      history: [],
+      captured: [],
+      keys: [],
+      moves: run.moves,
+      step: 0,
+      finished: false,
+      pendingReply: false,
+    };
+    setLevel();
+    closeMenu(false);
+    sweep();
+    loadPuzzle();
+  }
+  function loadPuzzle() {
+    cancelPending();
+    $('menu').hidden = true;
+    document.querySelector('.theatre').inert = !!document.querySelector('.rc-veil');
+    const puzzle = PUZZLES[game.ids[run.index]];
+    pos.load(puzzle[3]);
+    game.human = -pos.side;
+    flip = game.human < 0;
+    game.history = [];
+    game.captured = [];
+    game.keys = [pos.key()];
+    game.step = 0;
+    run.step = 0;
+    game.pendingReply = false;
+    game.finished = false;
+    lastMove = null;
+    selected = -1;
+    prompt('The other side’s last move…');
+    busy = true;
+    render();
+    focusSquare(cursor);
+    later(
+      () => {
+        const lead = pos.legal().find((m) => E.uci(m) === puzzle[4].split(' ')[0]);
+        if (lead === undefined) {
+          prompt('This act could not find its opening. Please choose another act.');
+          busy = false;
+          return;
+        }
+        apply(lead, false);
+        busy = false;
+        const choices = pos.legal();
+        if (choices.length) focusSquare(E.from(choices[0]));
+        turnPrompt();
+        save();
+      },
+      Recess.calm ? 150 : 450,
+    );
+  }
+  function recordTry() {
+    run.tries++;
+    run.perTries++;
+    game.moves = ++run.moves;
+    save();
+  }
+  function puzzleMove(m) {
+    const puzzle = PUZZLES[game.ids[run.index]],
+      line = puzzle[4].split(' '),
+      expected = line[game.step ? 3 : 1];
+    const fen = pos.fen();
+    pos.make(m);
+    const mates = pos.check() && !pos.legal().length;
+    pos.unmake();
+    const good = mates || (!puzzle[0].startsWith('m1') && E.uci(m) === expected);
+    game.moves = ++run.moves;
+    if (!good) {
+      run.tries++;
+      run.perTries++;
+      save();
+      transient = fen;
+      busy = true;
+      const oldCaptured = game.captured.slice(),
+        oldLast = lastMove,
+        oldKeys = game.keys.slice();
+      apply(m, false);
+      const clue = run.perTries >= 2 && puzzle[5] ? ` Look for a ${puzzle[5]}.` : '';
+      prompt(
+        (puzzle[0].startsWith('m2')
+          ? 'Close, but ' + sideName(-game.human) + ' can escape: look for a move that leaves no way out.'
+          : puzzle[0].startsWith('m1')
+            ? 'That leaves the king a way out. Look for checkmate.'
+            : 'A fine move, but there is a stronger one here.') + clue,
+      );
+      Recess.play('nope');
+      later(() => {
+        pos.load(fen);
+        transient = null;
+        game.captured = oldCaptured;
+        lastMove = oldLast;
+        game.keys = oldKeys;
+        busy = false;
+        selected = -1;
+        render();
+        save();
+        if (run.perTries >= 3) showAnswer();
+      }, 900);
+      return;
+    }
+    apply(m);
+    Recess.play('pop');
+    const r = [...B.children].find((b) => +b.dataset.square === E.to(m)).getBoundingClientRect();
+    Recess.burst(r.left + r.width / 2, r.top + r.height / 2, ['#ffd27a', '#fff4e0', '#b3203f']);
+    if (mates || game.step || line.length === 2) {
+      save();
+      puzzleSolved();
+    } else {
+      game.step = 1;
+      run.step = 1;
+      game.pendingReply = true;
+      busy = true;
+      save();
+      prompt('A fine opening. Watch the reply…');
+      later(playReply, 650);
+    }
+  }
+  function playReply() {
+    if (!game.pendingReply) return;
+    const line = PUZZLES[game.ids[run.index]][4].split(' ');
+    const m = pos.legal().find((m) => E.uci(m) === line[2]);
+    if (m === undefined) {
+      busy = false;
+      prompt('The reply could not take the stage. Restart this puzzle.');
+      return;
+    }
+    apply(m);
+    game.pendingReply = false;
+    busy = false;
+    turnPrompt();
+    save();
+  }
+  function clue() {
+    if (!game || game.finished || busy || !['puzzle', 'daily'].includes(game.mode) || !$('menu').hidden) return;
+    recordTry();
+    if (run.perTries >= 3) {
+      showAnswer();
+      return;
+    }
+    const line = PUZZLES[game.ids[run.index]][4].split(' '),
+      from = E.index(line[game.step ? 3 : 1].slice(0, 2));
+    const cell = [...B.children].find((b) => +b.dataset.square === from);
+    cell.classList.add('clue');
+    prompt('Try this piece. A clue counts as a try.');
+    Recess.play('pop');
+    later(() => cell.classList.remove('clue'), 1800);
+  }
+  function showAnswer() {
+    busy = true;
+    selected = -1;
+    prompt('Here is how it goes.');
+    const line = PUZZLES[game.ids[run.index]][4].split(' '),
+      start = game.step ? 3 : 1;
+    let n = start;
+    const step = () => {
+      if (n >= line.length) {
+        busy = false;
+        puzzleSolved();
+        return;
+      }
+      const m = pos.legal().find((m) => E.uci(m) === line[n]);
+      if (m === undefined) {
+        busy = false;
+        prompt('Restart this puzzle to see the whole line.');
+        return;
+      }
+      if (n % 2 === 1) game.moves = ++run.moves;
+      apply(m, false);
+      n++;
+      save();
+      later(step, Recess.calm ? 450 : 850);
+    };
+    later(step, 850);
+  }
+  function puzzleSolved() {
+    busy = true;
+    puzzleCelebrating = true;
+    game.step = 0;
+    game.pendingReply = false;
+    prompt(pos.check() && !pos.hasLegal() ? 'Checkmate! A fine finish.' : 'The piece is yours! A fine finish.');
+    run.index++;
+    run.perTries = 0;
+    run.step = 0;
+    if (run.index >= game.ids.length) {
+      game.finished = true;
+      const old = Recess.store('completed:' + game.key);
+      if (!run.encore && !old) {
+        game.pendingAward = {
+          stars: run.tries === 0 ? 3 : run.tries <= 2 ? 2 : 1,
+          moves: run.moves,
+          pendingAward: true,
+        };
+        Recess.store('completed:' + game.key, game.pendingAward);
+      }
+      updateUndo();
+    }
+    save();
+    render();
+    later(() => {
+      busy = false;
+      if (run.index < game.ids.length) {
+        loadPuzzle();
+        return;
+      }
+      game.finished = true;
+      if (awardPuzzle()) return;
+      const stars = run.tries === 0 ? 3 : run.tries <= 2 ? 2 : 1;
+      const old = Recess.store('completed:' + game.key);
+      if (run.encore || old) {
+        showCard(
+          `<p class="eyebrow">Encore</p><h2>A lovely show</h2><p>You already finished this act with ${old?.stars || stars} stars. Encores are for fun.</p>` +
+            '<button class="bill-button primary" id="encore-back"><b>Back to the playbill</b></button>',
+        );
+        $('encore-back').onclick = openPlaybill;
+      }
+      updateUndo();
+      save();
+    }, 900);
+  }
+  function awardPuzzle() {
+    if (!game || !['puzzle', 'daily'].includes(game.mode)) return false;
+    const record = game.pendingAward || Recess.store('completed:' + game.key);
+    if (!record?.pendingAward) return false;
+    Recess.store('completed:' + game.key, { ...record, pendingAward: false });
+    game.pendingAward = null;
+    game.finished = true;
+    busy = false;
+    closeMenu(false);
+    updateUndo();
+    save();
+    Recess.win({ score: record.moves, stars: record.stars });
+    return true;
+  }
+  function showCard(html) {
+    $('programme').innerHTML = html;
+    const heading = $('programme').querySelector('h2');
+    if (heading) heading.id = 'bill-title';
+    $('menu').hidden = false;
+    document.querySelector('.theatre').inert = true;
+    $('programme').querySelector('button')?.focus({ preventScroll: true });
+  }
+  function closeMenu(resumeWork = true) {
+    $('menu').hidden = true;
+    document.querySelector('.theatre').inert = !!document.querySelector('.rc-veil');
+    if (game && resumeWork) {
+      focusSquare(cursor);
+      if (game.pendingReply) {
+        busy = true;
+        prompt('A fine opening. Watch the reply…');
+        later(playReply, 500);
+      } else {
+        turnPrompt();
+        cpuTurn();
+      }
+    }
+  }
+  function openPlaybill() {
+    reviewIndex = null;
+    deferredResult = null;
+    stopWorker();
+    if (transient) {
+      const saved = Recess.store('session');
+      cancelPending();
+      if (saved) {
+        game = saved;
+        pos.load(saved.fen);
+        lastMove = saved.last;
+      }
+    } else cancelPending();
+    save();
+    if (awardComputer()) return;
+    menuTab = 'main';
+    drawMenu();
+    render();
+  }
+  function drawMenu() {
+    const last = Recess.store('lastMode');
+    const header = '<p class="eyebrow">Curio Class Recess presents</p><h2 id="bill-title">Chess</h2>';
+    if (menuTab === 'main') {
+      showCard(
+        header +
+          '<p class="subtitle">A small stage. A grand game.</p><div class="menu-grid">' +
+          `<button class="bill-button ${last === 'cpu' ? 'active' : ''}" id="choose-cpu"><b>Play the computer</b><small>Seven puppets, from gentle to fierce</small></button>` +
+          `<button class="bill-button ${last === 'friends' ? 'active' : ''}" id="choose-friend"><b>Play a friend</b><small>One board. Two imaginations.</small></button>` +
+          `<button class="bill-button ${last === 'puzzle' ? 'active' : ''}" id="choose-puzzles"><b>Puzzles</b><small>Nine short acts of chess magic</small></button>` +
+          `<button class="bill-button ${last === 'daily' ? 'active' : ''}" id="choose-daily"><b>Today’s puzzle</b><small>A little drama, every day</small></button></div>` +
+          (game ? '<button class="back" id="resume-show">Resume this show</button>' : '') +
+          (game?.mode === 'friends'
+            ? `<label class="turn-switch bill-turn"><input id="bill-flip" type="checkbox" ${game.autoFlip ? 'checked' : ''}>Turn the board each move</label>`
+            : '') +
+          '<p class="credit">Puzzles from the Lichess puzzle database (CC0). Thank you, Lichess.<br>Saved here. Nothing leaves this device.</p>',
+      );
+      $('choose-cpu').onclick = () => {
+        menuTab = 'cpu';
+        drawMenu();
+      };
+      $('choose-friend').onclick = () => {
+        const s = Recess.store('saved:friends');
+        s && !s.finished ? resume(s) : newGame('friends');
+      };
+      $('choose-puzzles').onclick = () => {
+        menuTab = 'puzzles';
+        drawMenu();
+      };
+      $('choose-daily').onclick = () => startAct('m1-1', true);
+      if ($('bill-flip'))
+        $('bill-flip').onchange = (e) => {
+          game.autoFlip = e.target.checked;
+          save();
+        };
+      if ($('resume-show'))
+        $('resume-show').onclick = () => {
+          if (game.ids && run.index >= game.ids.length) {
+            startAct(game.act, game.mode === 'daily', true);
+            return;
+          }
+          if (game.ids && pos.side !== game.human && !game.pendingReply) loadPuzzle();
+          else closeMenu();
+        };
+    } else if (menuTab === 'cpu') {
+      showCard(
+        header +
+          '<h3>Choose your puppet</h3><div class="puppet-grid">' +
+          E.LEVELS.map(
+            (l, i) =>
+              `<button class="puppet-choice ${i === pickLevel ? 'active' : ''}" data-level="${i}" aria-pressed="${i === pickLevel}">` +
+              `<div class="puppet" style="background-position-x:${(i / 6) * 100}%"></div><span>${l.name}</span></button>`,
+          ).join('') +
+          `</div><p class="plays-like" id="plays-like">${PLAYS[pickLevel]}</p><div class="side-choices">` +
+          ['white', 'black', 'either']
+            .map(
+              (side) =>
+                `<button data-side="${side}" class="${side === pickSide ? 'active' : ''}" aria-pressed="${side === pickSide}">${side[0].toUpperCase() + side.slice(1)}</button>`,
+            )
+            .join('') +
+          '</div><button class="bill-button primary" id="start-cpu"><b>Take the stage</b></button><button class="back" id="back-bill">Back</button>',
+      );
+      document.querySelectorAll('[data-level]').forEach(
+        (b) =>
+          (b.onclick = () => {
+            pickLevel = +b.dataset.level;
+            document.querySelectorAll('[data-level]').forEach((n) => {
+              n.classList.toggle('active', n === b);
+              n.setAttribute('aria-pressed', n === b);
+            });
+            $('plays-like').textContent = PLAYS[pickLevel];
+          }),
+      );
+      document.querySelectorAll('[data-side]').forEach(
+        (b) =>
+          (b.onclick = () => {
+            pickSide = b.dataset.side;
+            document.querySelectorAll('[data-side]').forEach((n) => {
+              n.classList.toggle('active', n === b);
+              n.setAttribute('aria-pressed', n === b);
+            });
+          }),
+      );
+      $('start-cpu').onclick = () => {
+        const side = pickSide === 'white' ? 1 : pickSide === 'black' ? -1 : Math.random() < 0.5 ? 1 : -1;
+        const saved = Recess.store('saved:cpu-' + E.LEVELS[pickLevel].name.toLowerCase());
+        if (saved && !saved.finished && saved.human === side) resume(saved);
+        else newGame('cpu', pickLevel, side);
+      };
+      $('back-bill').onclick = () => {
+        menuTab = 'main';
+        drawMenu();
+      };
+    } else {
+      showCard(
+        header +
+          '<h3>Choose a short act</h3><div class="act-grid">' +
+          ACTS.map(
+            (act) =>
+              `<button class="bill-button" data-act="${act}"><b>${actName(act).split(',')[0]}</b><small>Act ${act.slice(-1)} · ` +
+              `${Recess.store('completed:p-' + act) ? 'Encore' : '5 puzzles'}</small></button>`,
+          ).join('') +
+          '</div><button class="back" id="back-bill">Back</button>',
+      );
+      document.querySelectorAll('[data-act]').forEach((b) => (b.onclick = () => startAct(b.dataset.act)));
+      $('back-bill').onclick = () => {
+        menuTab = 'main';
+        drawMenu();
+      };
+    }
+  }
+
+  for (let i = 0; i < 64; i++) {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'square';
+    b.setAttribute('role', 'gridcell');
+    B.append(b);
+  }
+  let drag = null,
+    suppressClick = false;
+  B.addEventListener('pointerdown', (e) => {
+    const b = e.target.closest('.square');
+    if (!b || reviewIndex !== null || busy || thinking || !$('menu').hidden) return;
+    const s = +b.dataset.square;
+    drag = { s, x: e.clientX, y: e.clientY, moved: false, pointer: e.pointerId };
+    const rookCastleTap =
+      selected >= 0 && Math.abs(pos.b[selected]) === 6 && pos.b[s] === pos.side * 4 && s >> 4 === selected >> 4;
+    if (pos.b[s] * pos.side > 0 && !rookCastleTap) {
+      cursor = s;
+      if (selected !== s) {
+        selected = s;
+        paperSound('rustle');
+        render();
+        drag.newSelection = true;
+      }
+      B.setPointerCapture(e.pointerId);
+    }
+  });
+  B.addEventListener('pointermove', (e) => {
+    if (drag && Math.hypot(e.clientX - drag.x, e.clientY - drag.y) > 6) drag.moved = true;
+  });
+  B.addEventListener('pointerup', (e) => {
+    if (!drag) return;
+    const d = drag;
+    drag = null;
+    if (B.hasPointerCapture(e.pointerId)) B.releasePointerCapture(e.pointerId);
+    if (d.moved && pos.b[d.s] * pos.side > 0) {
+      const target = document.elementFromPoint(e.clientX, e.clientY)?.closest('.square');
+      if (target) activate(+target.dataset.square);
+      suppressClick = true;
+      later(() => {
+        suppressClick = false;
+      }, 10);
+    } else if (d.newSelection) {
+      suppressClick = true;
+      later(() => {
+        suppressClick = false;
+      }, 10);
+    }
+  });
+  B.addEventListener('pointercancel', () => {
+    drag = null;
+  });
+  B.addEventListener('click', (e) => {
+    if (suppressClick) return;
+    const b = e.target.closest('.square');
+    if (b) activate(+b.dataset.square);
+  });
+  B.addEventListener('keydown', (e) => {
+    const b = e.target.closest('.square');
+    if (!b) return;
+    const s = +b.dataset.square,
+      step = flip ? -1 : 1;
+    const delta = { ArrowLeft: -step, ArrowRight: step, ArrowUp: 16 * step, ArrowDown: -16 * step }[e.key];
+    if (delta !== undefined) {
+      e.preventDefault();
+      const t = s + delta;
+      if (!(t & 0x88)) focusSquare(t);
+    } else if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      activate(s);
+    } else if (e.key === 'Escape') {
+      selected = -1;
+      render();
+    }
+  });
+  $('promotion').addEventListener('keydown', (e) => {
+    e.stopPropagation();
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      cancelPromotion();
+      return;
+    }
+    if (/^[1-4]$/.test(e.key)) {
+      e.preventDefault();
+      choosePromotion([5, 4, 3, 2][+e.key - 1]);
+      return;
+    }
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+      e.preventDefault();
+      const bs = [...$('promotion').querySelectorAll('button')],
+        i = bs.indexOf(document.activeElement);
+      bs[(i + (e.key === 'ArrowRight' ? 1 : 3)) % 4].focus({ preventScroll: true });
+    }
+  });
+  document.addEventListener('pointerdown', (e) => {
+    if (pendingPromotion && !e.target.closest('#promotion')) {
+      cancelPromotion();
+      e.preventDefault();
+    }
+  });
+  $('menu').addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && game) {
+      e.preventDefault();
+      closeMenu();
+    }
+    if (e.key === 'Tab') {
+      const buttons = [...$('programme').querySelectorAll('button,input,select')].filter((b) => !b.disabled),
+        first = buttons[0],
+        last = buttons.at(-1);
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus({ preventScroll: true });
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus({ preventScroll: true });
+      }
+    }
+  });
+  $('playbill').onclick = openPlaybill;
+  $('review-first').onclick = () => reviewAt(0);
+  $('review-back').onclick = () => reviewAt((reviewIndex ?? game.history.length) - 1);
+  $('review-forward').onclick = () => reviewAt((reviewIndex ?? game.history.length) + 1);
+  $('review-latest').onclick = backToGame;
+  $('review-return').onclick = backToGame;
+  // Board arrows still navigate pieces live. From the move book, or while looking back,
+  // arrows navigate history; Home and End work from either place.
+  document.addEventListener('keydown', (e) => {
+    if (!fullGame() || !$('menu').hidden || document.querySelector('.rc-veil') || pendingPromotion ||
+        e.ctrlKey || e.metaKey || e.altKey || e.target.closest('input,textarea,select')) return;
+    if (reviewIndex === null && B.contains(e.target) && ['ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+    const index = reviewIndex ?? game.history.length;
+    if (!['Home', 'End', 'ArrowLeft', 'ArrowRight'].includes(e.key)) return;
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.key === 'End') backToGame();
+    else reviewAt(e.key === 'Home' ? 0 : index + (e.key === 'ArrowLeft' ? -1 : 1));
+  }, true);
+  $('flip').onclick = () => {
+    if (reviewIndex !== null) reviewFlip = !reviewFlip;
+    else flip = !flip;
+    render();
+    if (reviewIndex === null) save();
+  };
+  $('hints').onclick = () => {
+    hints = !hints;
+    Recess.store('hints', hints);
+    render();
+  };
+  $('clue').onclick = clue;
+  $('auto-flip').onchange = (e) => {
+    if (game) {
+      game.autoFlip = e.target.checked;
+      save();
+    }
+  };
+  document.addEventListener('keydown', (e) => {
+    const scoreCard = document.querySelector('.rc-card');
+    if (scoreCard && e.key === 'Tab') {
+      const buttons = [...scoreCard.querySelectorAll('button,input')].filter(
+        (node) => !node.disabled && node.getClientRects().length,
+      );
+      const first = buttons[0],
+        last = buttons.at(-1);
+      if (!scoreCard.contains(document.activeElement) || (!e.shiftKey && document.activeElement === last)) {
+        e.preventDefault();
+        first?.focus({ preventScroll: true });
+      } else if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last?.focus({ preventScroll: true });
+      }
+      return;
+    }
+    if (
+      e.ctrlKey ||
+      e.metaKey ||
+      e.altKey ||
+      e.target.closest('input,textarea,select') ||
+      pendingPromotion ||
+      document.querySelector('.rc-veil')
+    )
+      return;
+    if (!$('menu').hidden) return;
+    const key = e.key.toLowerCase();
+    if (key === 'p') openPlaybill();
+    else if (key === 'h') $('hints').click();
+    else if (key === 'f') $('flip').click();
+    else if (key === 'c') clue();
+  });
+  Recess.start({
+    id: TEST ? 'chess-test' : 'chess',
+    title: 'Chess',
+    score: { label: 'Moves', lower: true },
+    onUndo: undo,
+    onRestart: restart,
+    onNext: next,
+  });
+  Recess.onMotion((calm) => {
+    if (calm) document.querySelectorAll('.mover,.capture-ghost,.curtain-sweep').forEach((n) => n.remove());
+    document.getAnimations().forEach((a) => {
+      if (calm && a.effect?.target?.classList?.contains('piece')) a.cancel();
+    });
+  });
+  hints = Recess.store('hints') !== false;
+  const saved = Recess.store('session');
+  if (saved?.fen) {
+    game = saved;
+    pos.load(saved.fen);
+    flip = !!saved.flip;
+    lastMove = saved.last;
+    run = ['puzzle', 'daily'].includes(saved.mode) ? Recess.store('run:' + saved.key) : null;
+    if (run && run.index >= saved.ids.length) game.finished = true;
+    setLevel();
+  }
+  render();
+  drawMenu();
+  if (game?.finished) awardComputer();
+  // Worker benchmark is quiet and independent of game state.
+  try {
+    const bench = workerInstance();
+    bench.onmessage = (e) => {
+      if (e.data.kind === 'speed') {
+        Recess.store('nodesPerSecond', e.data.nps);
+        bench.terminate();
+      }
+    };
+    bench.postMessage({ kind: 'speed' });
+    setTimeout(() => bench.terminate(), 1500);
+  } catch {
+    /* The playable modes explain a missing worker if it is needed. */
+  }
+  addEventListener('resize', () => {
+    if (pendingPromotion) cancelPromotion();
+    render();
+  });
+  addEventListener('pagehide', () => {
+    save();
+    stopWorker();
+  });
+  new MutationObserver(() => {
+    document.querySelector('.theatre').inert = !$('menu').hidden || !!document.querySelector('.rc-veil');
+    // The shared shell owns a computer win card. Add only a chess replay exit to that card.
+    const row = document.querySelector('.rc-card:has(.rc-starrow) .rc-row');
+    if (row && fullGame() && game.won && !row.querySelector('.chess-replay')) {
+      const replay = document.createElement('button');
+      replay.className = 'stage-button chess-replay';
+      replay.textContent = 'Replay the moves';
+      replay.onclick = () => {
+        Recess.close();
+        document.querySelector('.theatre').inert = false;
+        reviewAt(0);
+        $('move-book').open = true;
+        $('review-return').focus({ preventScroll: true });
+      };
+      row.append(replay);
+    }
+  }).observe(document.body, { childList: true });
+  // Test hooks are opt-in. Their scores use the isolated chess-test storage namespace.
+  if (TEST) {
+    window.__chess = {
+      E,
+      get state() {
+        return { game, run, fen: pos.fen(), thinking, busy, selected };
+      },
+      newGame,
+      startAct,
+      activate,
+      playMove,
+      undo,
+      restart,
+      openPlaybill,
+      closeMenu,
+      load(fen) {
+        stopWorker();
+        cancelPending();
+        if (!game) newGame('friends');
+        pos.load(fen);
+        game.keys = [pos.key()];
+        game.history = [];
+        game.finished = false;
+        game.won = false;
+        selected = -1;
+        lastMove = null;
+        closeMenu(false);
+        render();
+        turnPrompt();
+      },
+      move(uci) {
+        const m = pos.legal().find((m) => E.uci(m) === uci);
+        if (m === undefined) return false;
+        playMove(m);
+        return true;
+      },
+      engineMatch: async (a, b, options = {}) => {
+        const workers = [workerInstance(), workerInstance()],
+          p = new E.Position(),
+          keys = [p.key()],
+          log = [];
+        let total = 0,
+          max = options.maxPlies || 300;
+        while (total < max && !p.result(keys)) {
+          const level = p.side > 0 ? a : b;
+          const w = workers[p.side > 0 ? 0 : 1];
+          let choice;
+          if (level < 0) {
+            const ms = p.legal();
+            choice = E.uci(ms[Math.floor(Math.random() * ms.length)]);
+          } else
+            choice = await new Promise((resolve, reject) => {
+              const timer = setTimeout(() => reject(Error('worker cap')), E.LEVELS[level].time + 3000);
+              w.onmessage = (e) => {
+                if (e.data.kind === 'move') {
+                  clearTimeout(timer);
+                  log.push(e.data);
+                  resolve(e.data.move);
+                }
+              };
+              w.postMessage({ token: 1, fen: p.fen(), level, past: keys.slice(0, -1), options: options.engine || {} });
+            });
+          if (p.move(choice) === null) throw Error('illegal worker move');
+          keys.push(p.key());
+          total++;
+        }
+        workers.forEach((w) => w.terminate());
+        return { a, b, plies: total, result: p.result(keys), winner: p.result(keys) === 'mate' ? -p.side : 0, log };
+      },
+    };
+  }
+})();
+
+</script>
+<!-- /GAME -->
+</body>
+</html>

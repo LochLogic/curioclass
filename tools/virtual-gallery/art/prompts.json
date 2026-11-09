@@ -3,34 +3,39 @@
   "assets": [
     {
       "name": "window",
-      "prompt": "A loose watercolor painting of a kitchen window at early morning, a mug and a plant on the sill, soft yellow light.",
-      "aspect": "4:3",
+      "prompt": "A loose watercolor painting of a kitchen window at early morning, a mug and a plant on the sill, soft yellow light. Portrait composition, 3:4, no people or lettering. Mug and plant fully visible; clean right window jamb, no cropped orange object.",
+      "aspect": "3:4",
       "cutout": false,
-      "width": 800,
-      "quality": 74,
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "width": 600,
+      "quality": 72,
+      "source": "OpenAI gpt-image",
+      "review": "Portrait redraw inspected during Claude Refine fixes",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "teapot",
-      "prompt": "A colored pencil still life drawing of a blue teapot on a checked cloth.",
-      "aspect": "4:3",
+      "prompt": "A colored pencil still life drawing of a blue teapot on a checked cloth. Portrait composition, 3:4, no people or lettering.",
+      "aspect": "3:4",
       "cutout": false,
-      "width": 800,
-      "quality": 74,
-      "sd": "A colored pencil still life drawing of a round blue teapot sitting on a red and white checked cloth, soft pencil shading, the drawing fills the whole picture edge to edge with clean plain paper margins.",
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "width": 600,
+      "quality": 22,
+      "source": "OpenAI gpt-image",
+      "review": "Portrait redraw inspected during Claude Refine fixes",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "creek",
-      "prompt": "An acrylic painting of a small creek after rain, wet rocks and bright green banks.",
-      "aspect": "4:3",
+      "prompt": "An acrylic painting of a small creek after rain, wet rocks and bright green banks. Portrait composition, 3:4, no people or lettering.",
+      "aspect": "3:4",
       "cutout": false,
-      "width": 800,
-      "quality": 10,
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "width": 600,
+      "quality": 12,
+      "source": "OpenAI gpt-image",
+      "review": "Portrait redraw inspected during Claude Refine fixes",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "busstop",
@@ -40,28 +45,32 @@
       "width": 600,
       "quality": 74,
       "source": "flux1-schnell (local)",
-      "review": "ok"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "crows",
-      "prompt": "A black ink linocut print of crows sitting on a power line, on white paper.",
-      "aspect": "4:3",
+      "prompt": "A black ink linocut print of crows sitting on a power line, on white paper. Portrait composition, 3:4, no people or lettering.",
+      "aspect": "3:4",
       "cutout": false,
-      "width": 800,
-      "quality": 74,
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "width": 600,
+      "quality": 22,
+      "source": "OpenAI gpt-image",
+      "review": "Portrait redraw inspected during Claude Refine fixes",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "laundromat",
-      "prompt": "An ink and gray wash drawing of washing machines in a row in a laundromat.",
-      "aspect": "4:3",
+      "prompt": "An ink and gray wash drawing of washing machines in a row in a laundromat. Portrait composition, 3:4, no people or lettering.",
+      "aspect": "3:4",
       "cutout": false,
-      "width": 800,
-      "quality": 74,
-      "sd": "An ink and gray wash drawing of a long row of front-loading washing machines with round glass doors in a laundromat, tiled floor, the drawing fills the whole picture edge to edge with clean plain paper margins.",
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "width": 600,
+      "quality": 52,
+      "source": "OpenAI gpt-image",
+      "review": "Portrait redraw inspected during Claude Refine fixes",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "tidepool",
@@ -71,17 +80,20 @@
       "width": 800,
       "quality": 74,
       "source": "flux1-schnell (local)",
-      "review": "ok"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "seeds",
-      "prompt": "A gouache painting of plain blank seed packets and small pots of seedlings on a table.",
-      "aspect": "4:3",
+      "prompt": "A carefully observed gouache still life of three folded blank cream paper seed packets and two small terracotta pots of seedlings on a worn kitchen table. Morning light from upper left, leaf shadows, ochre wood, muted blue green background, matte brush marks, paper texture, fold creases and soil flecks. A real high school student painting, photographed flat, artwork edge to edge. No lettering or people.",
+      "aspect": "3:4",
       "cutout": false,
-      "width": 800,
-      "quality": 74,
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "width": 600,
+      "quality": 72,
+      "source": "OpenAI gpt-image",
+      "review": "cold review: inspected at final size",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "bowl",
@@ -93,37 +105,44 @@
       "quality": 40,
       "house_style": "A photograph of a real high school student's ceramic piece, evenly lit studio photo. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
       "source": "gpt-image-2 (Codex)",
-      "review": "ok"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "fireescape",
-      "prompt": "A photograph of potted plants and herbs on a city fire escape, afternoon light.",
-      "aspect": "3:4",
+      "prompt": "A student digital photograph of potted herbs on an unmistakable black steel city fire escape: horizontal grating, angled staircase, vertical rails and diagonal braces against old brick and a plain apartment window. Six plain pots near the perimeter, clear walking route, warm afternoon light from upper left, leaf shadows, believable photographic grain and perspective. No lettering or people.",
+      "aspect": "4:5",
       "cutout": false,
-      "width": 600,
-      "quality": 74,
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "width": 640,
+      "quality": 22,
+      "source": "OpenAI gpt-image",
+      "review": "cold review: inspected at final size",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "rainglass",
-      "prompt": "A photograph of rain drops on a window with blurred city lights behind.",
-      "aspect": "4:3",
+      "prompt": "A photograph of rain drops on a window with blurred city lights behind. Portrait composition, 3:4, no people or lettering.",
+      "aspect": "3:4",
       "cutout": false,
-      "width": 800,
-      "quality": 74,
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "width": 600,
+      "quality": 22,
+      "source": "OpenAI gpt-image",
+      "review": "Portrait redraw inspected during Claude Refine fixes",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "blockmap",
-      "prompt": "A mixed-media collage map of a few city blocks, with paper roofs, painted streets and string paths.",
+      "prompt": "A flat mixed-media collage map of city blocks seen overhead: torn painted paper rooftops, gray painted streets and red cotton string paths. Layered paper edges, glue joins and modest pencil hatching. Courtyards, small trees and a corner garden. Muted warm colors, blue and brick red accents. A real high school student collage photographed flat, edge to edge. No lettering or people.",
       "aspect": "1:1",
       "cutout": false,
       "width": 800,
-      "quality": 50,
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "quality": 22,
+      "source": "OpenAI gpt-image",
+      "review": "cold review: inspected at final size",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "tomatoes",
@@ -134,18 +153,20 @@
       "quality": 10,
       "source": "OpenAI gpt-image",
       "review": "ok",
-      "drawn_by": "codex"
+      "drawn_by": "codex",
+      "people": false
     },
     {
       "name": "nightpool",
-      "prompt": "An acrylic painting of an empty outdoor swimming pool at night, glowing blue water.",
-      "aspect": "4:3",
+      "prompt": "An acrylic painting of an empty outdoor swimming pool at night, glowing blue water. Portrait composition, 3:4, no people or lettering.",
+      "aspect": "3:4",
       "cutout": false,
-      "width": 800,
-      "quality": 74,
-      "sd": "An acrylic painting of a calm empty outdoor swimming pool at night, glowing turquoise water lit from below, a concrete deck, dark trees and a deep blue night sky, the painting fills the whole picture edge to edge.",
-      "source": "flux1-schnell (local)",
-      "review": "ok"
+      "width": 600,
+      "quality": 72,
+      "source": "OpenAI gpt-image",
+      "review": "Portrait redraw inspected during Claude Refine fixes",
+      "people": false,
+      "drawn_by": "codex"
     },
     {
       "name": "vg-wall",
@@ -157,7 +178,8 @@
       "quality": 72,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok"
+      "review": "ok",
+      "people": false
     },
     {
       "name": "vg-floor",
@@ -169,7 +191,8 @@
       "quality": 72,
       "drawn_by": "codex",
       "source": "OpenAI gpt-image",
-      "review": "ok"
+      "review": "ok",
+      "people": false
     }
   ]
 }

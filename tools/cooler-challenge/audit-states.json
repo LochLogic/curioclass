@@ -1,0 +1,242 @@
+{
+  "target": 44,
+  "keep": [
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "bare-result",
+      "steps": [
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        }
+      ],
+      "keep": [
+        "#verdict"
+      ]
+    },
+    {
+      "name": "full-wall",
+      "steps": [
+        {
+          "click": "#wall-foam",
+          "times": 4,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#run",
+        "#wall-meter"
+      ]
+    },
+    {
+      "name": "full-packs",
+      "steps": [
+        {
+          "click": "#pack-ice",
+          "times": 5,
+          "gap": 0.15
+        }
+      ],
+      "keep": [
+        "#pack-meter"
+      ]
+    },
+    {
+      "name": "bench-plan",
+      "steps": [
+        {
+          "click": "#m-bench"
+        },
+        {
+          "click": "#q-mass"
+        },
+        {
+          "click": "#set-b-mass-400"
+        }
+      ],
+      "keep": [
+        "#check-plan"
+      ]
+    },
+    {
+      "name": "bench-locked",
+      "steps": [
+        {
+          "click": "#m-bench"
+        },
+        {
+          "click": "#q-mass"
+        },
+        {
+          "click": "#set-b-mass-400"
+        },
+        {
+          "click": "#check-plan"
+        },
+        {
+          "click": "#predict-a"
+        }
+      ],
+      "keep": [
+        "#bench-run"
+      ]
+    },
+    {
+      "name": "bench-claim",
+      "steps": [
+        {
+          "click": "#m-bench"
+        },
+        {
+          "click": "#q-matter"
+        },
+        {
+          "click": "#set-b-material-steel"
+        },
+        {
+          "click": "#check-plan"
+        },
+        {
+          "click": "#predict-b"
+        },
+        {
+          "click": "#bench-run"
+        },
+        {
+          "until": "__tool.state.bench.done",
+          "max": 15000
+        }
+      ],
+      "keep": [
+        "#claims"
+      ]
+    },
+    {
+      "name": "engineer",
+      "steps": [
+        {
+          "click": "#wall-foam",
+          "times": 2,
+          "gap": 0.15
+        },
+        {
+          "click": "#seal"
+        },
+        {
+          "click": "#pack-ice",
+          "times": 3,
+          "gap": 0.15
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "until": "document.querySelector(\"#engineer-dialog\").open",
+          "max": 20000
+        }
+      ],
+      "keep": [
+        "#engineer-choices"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    },
+    {
+      "name": "bench-answer",
+      "steps": [
+        {
+          "click": "#m-bench"
+        },
+        {
+          "click": "#q-matter"
+        },
+        {
+          "click": "#set-b-material-steel"
+        },
+        {
+          "click": "#check-plan"
+        },
+        {
+          "click": "#predict-b"
+        },
+        {
+          "click": "#bench-run"
+        },
+        {
+          "until": "__tool.state.bench.done",
+          "max": 15000
+        },
+        {
+          "click": "#claim-0"
+        }
+      ],
+      "keep": [
+        "#bench-feedback",
+        "#next-question"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "engineer-note",
+      "steps": [
+        {
+          "click": "#wall-foam",
+          "times": 2,
+          "gap": 0.15
+        },
+        {
+          "click": "#seal"
+        },
+        {
+          "click": "#pack-ice",
+          "times": 3,
+          "gap": 0.15
+        },
+        {
+          "click": "#run"
+        },
+        {
+          "click": "#skip"
+        },
+        {
+          "until": "document.querySelector(\"#engineer-dialog\").open",
+          "max": 20000
+        },
+        {
+          "click": "#engineer-pick-0"
+        },
+        {
+          "click": "#engineer-next"
+        },
+        {
+          "click": "#engineer-pick-0"
+        },
+        {
+          "click": "#engineer-next"
+        }
+      ],
+      "keep": [
+        "#note",
+        "#save-note"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

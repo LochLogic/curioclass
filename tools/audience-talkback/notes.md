@@ -27,9 +27,9 @@ Students compare two stagings of the same scene, isolate one design choice, and 
 ## Modes
 
 Watch offers two complete recipes, numbered line jumps, and feelings after both complete versions have been watched.
-Swap lab offers four live A/B switches. Choose the comparison Base before playing. A completed scene, or a scene stopped after at least five full lines, adds a notebook row. A brief tap-through adds nothing.
+Swap lab offers four live A/B switches. Choose the comparison Base before playing. Watch the first five lines in full before stopping to add a notebook row. A brief tap-through or a set of five shorter lines adds nothing.
 
-The notebook remembers every element that differed from the base during that play. Returning a switch to the base does not erase the earlier change. A test with multiple changed elements is kept and can be rated, but is excluded from the chart. A base replay also has no isolated element and is excluded. Repeated fair ratings are averaged for each element; the chart explains its 0 to 2 scale. There is no official best version or correct feeling.
+The notebook remembers every element that differed from the base during that play. Returning a switch to the base does not erase the earlier change. A test with multiple changed elements is kept and can be rated, but is excluded from the chart. A base replay also has no isolated element and is excluded. A single-swap test enters the chart only after a whole line has played with that change, without flipping it during the line. Changing a switch just before Stop provides no such evidence. Older saved trials are kept with their ratings but need a fresh observation before counting as fair. Repeated fair ratings are averaged for each element; the chart explains its 0 to 2 scale. There is no official best version or correct feeling.
 
 Talkback carries the feelings and count of rated fair tests. It also works without doing the lab. Pick up to three criteria, rate both A and B for each, and write two sentences of up to 140 characters each. Hear the talkback reveals and reads three seat-tag cards with different personal responses. Hiding the cards stops their speech. Class vote is an optional teacher counter, separate from the student's own judgment.
 
@@ -43,13 +43,13 @@ Talkback carries the feelings and count of rated fair tests. It also works witho
 
 ## Good to know
 
-Grades 3-5 theater, TH:Re8 and TH:Re9. Students actively connect experience to interpretation, hear other perspectives, choose criteria, and evaluate design elements. No right-answer badges or scores are used.
+Grades 3-5 theater, TH:Re8 and TH:Re9. The aligned strands are personal experience, criteria and technical-design choices. Students actively connect experience to interpretation, hear other perspectives, choose criteria, and evaluate design elements. No right-answer badges or scores are used.
 
 Sound and Motion use the Curio Class kit. Motion off removes actor movement and drifting dust while preserving story pacing. Read speaks the current next-action hint. Read is held while the actors perform so host narration cannot overlap the scene. Stop first to use Read. Captions remain visible with Sound off. In Swap lab, Space plays or stops even when a switch has focus. In other modes, Space activates a focused button, or plays/stops from the page. C, L, V and M flip lab switches. Text fields use ordinary typing keys.
 
 Feelings, notebook rows, selected criteria, ratings and verdicts are saved under localStorage key `audience-talkback`. Nothing leaves the device. Clear my notes asks once before clearing this work. The class vote is temporary. The shared kit stores only its Motion preference separately. Storage failures leave the tool usable and show a message.
 
-The build brief prohibits audio recording. This build therefore uses browser speech for an explicitly labeled delivery preview. The requested Autonoe and Gacrux acted clips have not been produced, and timing labels remain estimates. The scene cannot yet be considered an authored acting comparison. Narration selects knowing-guide in its manifest and uses the browser fallback until recordings exist.
+The build brief prohibits audio recording. This build therefore uses browser speech for an explicitly labeled delivery preview. The requested Autonoe and Gacrux acted clips have not been produced. Browser timing varies; the buttons say so. Final recordings will display their measured duration, including the pauses. The scene cannot yet be considered an authored acting comparison. Narration selects knowing-guide in its manifest and uses the browser fallback until recordings exist.
 
 ## Sources and original content
 
@@ -59,6 +59,6 @@ The build brief prohibits audio recording. This build therefore uses browser spe
 - J. Michael Gillette, *Theatrical Design and Production*, lighting and costume chapters.
 - NGSS Science and Engineering Practice 3, grades 3-5, planning investigations and fair comparisons: https://www.nextgenscience.org/
 
-These are the supplied spec sources; this build does not claim fresh external verification of these resources.
+Cold review checked the responding framework against [National Core Arts Standards, Theatre](https://www.nationalartsstandards.org/content/theatre), design choices as storytelling against [Educational Theatre Association, Production & Design Elements: Where to Begin](https://schooltheatre.org/production-design-elements-where-to-begin/), and controlled variables against [NGSS Appendix F, Practice 3, grades 3-5](https://www.nextgenscience.org/sites/default/files/resource/files/Appendix%20F%20%20Science%20and%20Engineering%20Practices%20in%20the%20NGSS%20-%20FINAL%20060513.pdf). Warm/cool lighting is a design choice, not a universal rule that blue means sad or warm means happy. The lab asks for each student's response.
 The Borrowed Bike, its two staging recipes, talkback cards and two original synthesized music loops were written for Curio Class.
 Illustrations generated with OpenAI gpt-image, edited for Curio Class. No people were generated.

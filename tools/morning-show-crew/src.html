@@ -1,0 +1,1796 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Morning Show Crew · One story, four ways · Curio Class</title>
+<meta name="description" content="Build four versions of a school audition story, budget twelve crew hours and discover who got the message. Grades 6-8 media arts. Works offline.">
+<!--
+Morning Show Crew, Curio Class. Grades 6-8 media arts: MA:Pr4, MA:Pr6, MA:Cn10.
+Students build a consistent message, distribute it and compare audience outcomes.
+Sources: National Core Arts Standards; all school, reach and attendance data are a fictional Curio Class model.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+One file, no network requests. Local device storage only. Content CC BY 4.0, code MIT.
+-->
+<link rel="stylesheet" href="kit:curio">
+<style>
+:root {
+  --paper:#f5f6f8; --panel:#fff; --ink:#1a1d24; --muted:#565c68;
+  --brand:#c81e2f; --line:#cdd0d6; --focus:#155ea1; --btn:#fff; --btn-line:#cdd0d6; --head-ink:#1a1d24;
+  --good:#2f7a3a; --bad:#b42318;
+}
+body {height:100%; overflow:hidden; grid-template-rows:auto auto minmax(0,1fr) auto;}
+header {background:#fff; border-bottom:1px solid var(--line); padding:9px 18px; gap:10px; flex-wrap:nowrap;}
+h1 {font:850 clamp(18px,2.1vw,28px)/1.05 'Segoe UI',sans-serif; letter-spacing:-1px;}
+h1 small {font-size:12px; color:var(--muted); letter-spacing:0; margin-top:4px;}
+h1::before {content:''; display:inline-block; width:10px; height:22px; background:var(--brand); margin-right:8px;}
+.seg {border:1px solid var(--line); border-radius:8px; flex:none;}
+.seg button,.icon-btn {min-height:44px; min-width:44px; padding:0 13px; font-size:14px;}
+.seg button[aria-pressed=true] {background:var(--brand); color:#fff;}
+.icon-btn {border-width:1px; border-radius:8px;}
+#sound {width:92px; flex:none;}
+button:disabled {opacity:.5; cursor:default;}
+button:hover:not(:disabled) {box-shadow:inset 0 0 0 2px #c81e2f55;}
+.brief {background:#eceef1; padding:8px 18px; display:grid; grid-template-columns:1.3fr 1fr; gap:14px;}
+.facts-reference {display:grid; grid-template-columns:1.15fr .8fr .8fr 1.4fr; gap:6px; align-items:stretch;}
+.fact-reference {border-left:3px solid #9a9ea6; background:#fff; padding:5px 8px; font-size:12px; line-height:1.25;}
+.fact-reference b {display:block; font-size:10px; text-transform:uppercase; letter-spacing:.1em; color:var(--muted);}
+.version-strip {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px;}
+.version-status {display:flex; flex-direction:column; justify-content:center; font-size:10px; line-height:1.3;
+  background:#fff; border:1px solid var(--line); padding:4px 6px; border-radius:4px;}
+.version-status b {font-size:12px;}
+.version-status .checks {letter-spacing:3px; font-size:12px; color:var(--muted); white-space:nowrap;}
+.version-status.match {border-bottom:3px solid var(--good);}
+.version-status.match .checks,.match-text {color:var(--good);}
+.version-status.bad {border-bottom:3px solid var(--bad);}
+main {display:block; min-width:0; min-height:0;}
+.mode {height:100%; min-height:0;}
+.make-layout {display:grid; grid-template-columns:minmax(0,1fr) 345px; height:100%;}
+.workspace {display:grid; grid-template-rows:44px minmax(0,1fr) auto; min-width:0; min-height:0; background:#dddfe2;}
+.media-tabs {display:grid; grid-template-columns:repeat(4,1fr); background:#fff; border-bottom:1px solid var(--line);}
+.media-tabs button {border:0; background:#fff; font-weight:700; min-height:44px; font-size:14px;}
+.media-tabs button[aria-pressed=true] {border-bottom:4px solid var(--brand); color:var(--brand); background:#fbecef;}
+.set {position:relative; display:grid; place-items:center; min-height:0; overflow:hidden;
+  background:linear-gradient(#12172224,#12172266),url('art:studio-set') center/cover; padding:16px; container-type:size;}
+.set.poster-set {background:linear-gradient(#12172215,#12172215),url('art:corkboard') center/cover;}
+.onair {position:absolute; top:10px; left:12px; color:#fff; background:#151b23ee; padding:5px 9px;
+  font-size:10px; font-weight:800; letter-spacing:.13em; border-radius:3px; z-index:2;}
+.onair i {display:inline-block; width:7px; height:7px; border-radius:50%; background:#ff5265; margin-right:5px;
+  animation:tally 2.6s infinite;}
+@keyframes tally {50% {box-shadow:0 0 0 4px #ff526540;}}
+.calm .onair i {animation:none;}
+.monitor {position:relative; width:min(90cqw,calc(177.777cqh - 20px)); aspect-ratio:16/9; max-height:100%; background:#171c23;
+  border:8px solid #252b33; border-bottom-width:19px; border-radius:9px; box-shadow:0 16px 28px #0008,inset 0 0 0 1px #68717b;
+  overflow:hidden;}
+.monitor {max-width:1280px;}
+.monitor::after {position:absolute; content:'WILDCAT TV'; bottom:-17px; color:#fff; font-size:8px; left:44%; letter-spacing:2px;}
+.shot-image {width:100%; height:100%; object-fit:cover; display:block;}
+.image-wrap {position:relative; height:100%; overflow:hidden;}
+.clock-hands {position:absolute; inset:0; width:100%; height:100%; pointer-events:none;}
+.signup-code {position:absolute; left:54%; top:23%; width:23%; color:#17304a; font:700 clamp(10px,1vw,16px)/1.7 'Segoe UI';
+  transform:rotate(1deg); text-align:center;}
+.lower-third {position:absolute; bottom:0; left:0; right:0; background:#ffffffef; border-left:9px solid var(--brand);
+  padding:9px 13px; box-shadow:0 -1px 0 #fff7;}
+.lower-third h2 {margin:0; font-size:clamp(18px,2.4vw,32px); line-height:1.05; letter-spacing:-.5px;}
+.lower-facts {font-size:clamp(11px,1.1vw,15px); line-height:1.3; margin:4px 0 0;}
+.wrong-text {outline:2px solid var(--bad); outline-offset:1px; border-radius:2px; color:#8f2119;}
+.title-card {position:absolute; inset:0; display:grid; place-content:center; text-align:center;
+  background:linear-gradient(145deg,#8c1026ee,#c81e2fdf); color:#fff; padding:20px;}
+.title-card small {font-size:11px; letter-spacing:.25em; margin-bottom:15px;}
+.title-card strong {font-size:clamp(22px,4vw,54px); line-height:1; max-width:620px;}
+.title-card span {font-size:12px; margin-top:18px;}
+.transport {position:absolute; top:10px; right:12px; background:#161c24e8; color:#fff;
+  border-radius:3px; padding:5px 8px; font:600 11px Consolas,monospace; z-index:2;}
+.filmstrip {display:grid; grid-template-columns:repeat(4,minmax(0,1fr)) 128px; gap:7px; padding:10px 14px;
+  background:linear-gradient(#252b32,#171c22); border-top:1px solid #545c66;}
+.slot {position:relative; min-height:66px; border:2px solid #6c7682; border-radius:4px; padding:0;
+  background:#1d2632; overflow:hidden; color:#fff;}
+.slot img {width:100%; height:68px; object-fit:cover; display:block; opacity:.7;}
+.slot span {position:absolute; bottom:2px; left:5px; font-size:11px; text-shadow:0 1px 3px #000;}
+.slot[aria-pressed=true] {border:3px solid #fff;}
+.slot.playing {box-shadow:0 0 0 3px #f04754;}
+.slot.queued::after {content:'NEXT LOOP'; position:absolute; top:2px; left:2px; color:#fff; background:#c81e2f; font-size:10px;}
+.play {background:var(--brand); color:#fff; border:1px solid #fa7c88; border-radius:5px; min-height:44px;
+  padding:0 14px; font-weight:750; font-size:13px;}
+.inspector {border-left:1px solid var(--line); padding:14px; background:#fff; min-height:0; display:flex; flex-direction:column; gap:10px;}
+.inspector h2 {font-size:18px; margin:0; letter-spacing:-.4px;}
+.eyebrow {margin:0; font-size:10px; text-transform:uppercase; letter-spacing:.13em; color:var(--muted); font-weight:800;}
+.edit-tabs {display:grid; grid-template-columns:repeat(3,1fr); border-bottom:1px solid var(--line);}
+.edit-tabs button {border:0; min-height:44px; background:#fff; font-size:13px; font-weight:700;}
+.edit-tabs button[aria-pressed=true] {color:var(--brand); border-bottom:3px solid var(--brand);}
+.edit-page {display:flex; flex-direction:column; gap:9px; min-height:0;}
+label {font-size:12px; font-weight:700;}
+select {font:inherit; font-size:14px; background:#f5f6f8; border:1px solid #a7adb6; border-radius:5px;
+  min-height:44px; width:100%; color:var(--ink); padding:0 8px;}
+.variant {min-height:76px; width:100%; padding:10px 12px; background:#f5f6f8; border:1px solid #b9bfc8;
+  border-radius:6px; text-align:left; font-size:14px; line-height:1.4;}
+.variant[aria-pressed=true] {border:2px solid #1a1d24; background:#e9edf2;}
+.variant.wrong {border:2px solid var(--bad); background:#fff0ed;}
+.variant span {display:block; font-size:10px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:5px; color:var(--muted);}
+.small {font-size:12px; line-height:1.4; margin:0; color:var(--muted);}
+.plain-btn {min-height:44px; min-width:44px; background:#fff; border:1px solid #a8afb8; border-radius:5px; padding:5px 10px;
+  font-size:13px; font-weight:650;}
+.plain-btn[aria-pressed=true] {background:#222a35; color:#fff; border-color:#222a35;}
+.shot-bin {display:grid; grid-template-columns:1fr 1fr; gap:7px;}
+.shot-choice {position:relative; min-height:82px; padding:0; background:#26313c; color:#fff; border:2px solid transparent;
+  border-radius:5px; overflow:hidden;}
+.shot-choice img {width:100%; height:78px; object-fit:cover; display:block; opacity:.85;}
+.shot-choice span {position:absolute; bottom:0; left:0; right:0; padding:3px; background:#141c24df; font-size:11px;}
+.shot-choice[aria-pressed=true] {border-color:var(--brand);}
+.headline-choice {min-height:64px; background:#f5f6f8; border:1px solid #a8afb8; border-radius:5px; padding:8px;
+  font-size:15px; font-weight:750;}
+.headline-choice[aria-pressed=true] {border:2px solid var(--brand); background:#fbecef;}
+.poster {width:min(88cqw,calc(75cqh - 15px)); height:min(117.333cqw,calc(100cqh - 20px));
+  aspect-ratio:3/4; background:#fff7e7; color:#1a1d24; padding:16px;
+  box-shadow:0 9px 18px #0007; display:flex; flex-direction:column; transform:rotate(-1deg); position:relative;}
+.poster::before {content:''; width:55px; height:18px; background:#e7d6acb0; position:absolute; top:-5px; left:39%; transform:rotate(3deg);}
+.poster h2 {margin:0 0 9px; font:900 clamp(16px,2.6vw,39px)/.95 'Segoe UI'; text-transform:uppercase; color:#a81128;}
+.poster .poster-picture {min-height:0; flex:1; overflow:hidden; border-bottom:6px solid #c81e2f;}
+.poster .paper-lines {display:flex; flex-direction:column; gap:6px; padding-top:10px; font-size:clamp(10px,1vw,15px); line-height:1.2;}
+.big-line {font-size:1.4em; font-weight:850;}
+.site-card {width:min(88%,720px); max-height:calc(100cqh - 12px); min-height:0; display:flex; flex-direction:column;
+  background:#fff; box-shadow:0 12px 28px #0007; border-radius:7px; overflow:hidden;}
+.site-top {padding:9px 14px; background:#252e3b; color:#fff; font-size:11px; letter-spacing:.13em;}
+.site-top i {display:inline-block; width:6px; height:6px; background:#cdd0d6; border-radius:50%; margin-right:3px;}
+.site-card .site-picture {height:170px; flex:1 1 170px; min-height:0;}
+.site-top {flex:none;}
+.site-copy {padding:14px; flex:none;}
+.site-copy h2 {font-size:clamp(18px,2.3vw,32px); margin:0 0 8px; line-height:1.1;}
+.site-copy .paper-lines {display:grid; gap:5px; font-size:14px;}
+.script-card {width:min(88%,750px); height:calc(100cqh - 20px); min-height:0; background:#fffbed; box-shadow:0 10px 26px #0007;
+  padding:20px; display:flex; flex-direction:column; border-top:8px solid #c81e2f;}
+.script-head {display:flex; justify-content:space-between; border-bottom:1px solid #c6c1b1; padding-bottom:10px;}
+.script-head h2 {margin:0; font-size:23px;}
+.script-copy {font:600 clamp(14px,1.7vw,24px)/1.6 Georgia,serif; overflow:auto; min-height:0; flex:1;
+  white-space:pre-line; margin:12px 0;}
+.time-bar {height:8px; border-radius:8px; background:#d9d8d1; overflow:hidden;}
+.time-bar i {display:block; height:100%; background:#2f7a3a;}
+.script-time {font:700 12px Consolas,monospace; margin:8px 0 0;}
+.sentences {display:grid; grid-template-columns:1fr 1fr; gap:6px;}
+.sentence {padding:8px; min-height:78px; text-align:left; background:#f5f6f8; border:1px solid #adb5bf;
+  border-radius:5px; font-size:12px; line-height:1.3;}
+.sentence.wrong {border:2px solid var(--bad);}
+.sentence em {display:block; font:700 10px 'Segoe UI'; color:var(--muted); margin-top:3px;}
+.script-actions {display:flex; gap:6px;}
+.script-actions > * {flex:1;}
+.spanish-script {font-size:12px; line-height:1.4; background:#f2ede0; padding:8px; margin-top:5px;}
+.week-layout {display:grid; grid-template-columns:minmax(0,1fr) 345px; height:100%; min-height:0;}
+.week-main {display:grid; grid-template-rows:auto minmax(0,1fr) auto; padding:8px 14px; gap:5px; min-height:0;}
+.week-head {display:flex; align-items:center; gap:15px;}
+.week-head h2 {margin:0 auto 0 0; font-size:25px; letter-spacing:-.6px;}
+.hours {font:800 17px Consolas,monospace; white-space:nowrap;}
+.hour-boxes {display:flex; gap:3px; margin-top:4px;}
+.hour-boxes i {width:10px; height:7px; border:1px solid #7e858f; background:#fff;}
+.hour-boxes i.used {background:#c81e2f; border-color:#c81e2f;}
+.week-board {display:grid; grid-template-columns:138px repeat(4,minmax(0,1fr)); gap:3px;
+  min-height:0; align-content:start; border-top:4px solid #222c38; padding-top:6px;}
+.board-head {font-size:12px; font-weight:800; text-align:center; padding:6px 2px;}
+.row-label {display:flex; align-items:center; font-size:13px; font-weight:750; padding-left:6px;}
+.row-label.sub {font-size:11px; color:var(--muted); padding-left:15px;}
+.board-cell {min-height:44px; background:#fff; border:1px solid #c5cbd3; border-radius:4px; padding:5px;
+  text-align:left; font-size:12px; line-height:1.3; position:relative; box-shadow:0 2px 0 #dce0e5;}
+.board-cell b {display:block; font-size:12px;}
+.board-cell[aria-pressed=true] {outline:2px solid #222c38; outline-offset:-2px; background:#eef1f5;}
+.board-cell.selected {border-color:#c81e2f; box-shadow:inset 0 0 0 2px #c81e2f;}
+.board-cell.done {background:#e4e8ed; color:#444d59;}
+.board-cell.warn::after {content:'!'; position:absolute; right:4px; top:2px; color:#b42318; font-weight:900;}
+.board-cell.progress::before {content:''; position:absolute; bottom:0; left:0; height:4px;
+  background:var(--brand); width:var(--progress,0%);}
+.week-actions {display:flex; gap:7px; align-items:center;}
+.week-actions .play {min-height:44px; flex:1;}
+.map-card {height:145px; background:linear-gradient(#e5edf0,#d3e1df); border:1px solid #b6c6cd;
+  border-radius:6px; overflow:hidden; position:relative;}
+.week-side .map-card {height:100px; min-height:100px; flex:none;}
+.week-side > .eyebrow {display:none;}
+.week-side .audience-list {gap:6px;}
+.week-side .audience-row {font-size:11px;}
+.week-side .audience-count {font-size:10px;}
+.week-side .legend {margin:0;}
+.week-side > .small {display:none;}
+.week-side.busy-day .job-editor {display:none;}
+footer.notice {background:#fff0ed; box-shadow:inset 0 3px 0 #b42318;}
+.map-card svg {width:100%; height:100%; display:block;}
+.map-label {font-size:13px; fill:#26313e; font-weight:700;}
+.map-dot {fill:#e6e9eb; stroke:#677885; stroke-width:.7;}
+.map-dot.lit {fill:var(--group); stroke:#fff;}
+.running .map-dot.lit {animation:meet .7s both; animation-delay:var(--delay);}
+@keyframes meet {from {opacity:.2; transform:translateY(-4px);} to {opacity:1; transform:translateY(0);}}
+.calm .map-dot {animation:none;}
+.map-pulse {fill:none; stroke:var(--group); stroke-width:2; stroke-dasharray:4 5; opacity:.35;}
+.running .map-pulse {animation:dispatch 1.4s linear 2;}
+@keyframes dispatch {to {stroke-dashoffset:-36;}}
+.calm .map-pulse {animation:none;}
+.audience-list {display:grid; gap:9px;}
+.audience-row {font-size:12px;}
+.audience-label {display:flex; justify-content:space-between; gap:5px; margin-bottom:4px;}
+.audience-label b {font-weight:750;}
+.audience-track {position:relative; height:10px; background:#e6e9ed; border-radius:3px; overflow:hidden;}
+.audience-track .heard {position:absolute; inset:0 auto 0 0; background:repeating-linear-gradient(45deg,#b0bac6 0 3px,#d8dfe6 3px 6px);}
+.audience-track .got {position:absolute; inset:0 auto 0 0; background:var(--group);}
+.audience-count {font-size:10px; color:var(--muted); margin-top:3px;}
+.job-editor {background:#f5f6f8; padding:10px; border-radius:5px; display:grid; gap:6px;}
+.job-editor h3 {font-size:14px; margin:0;}
+.job-options {display:grid; grid-template-columns:1fr 1fr; gap:5px;}
+.job-options button {font-size:11px; line-height:1.25;}
+.job-options .wide {grid-column:1/-1;}
+.counter {display:flex; align-items:center; gap:8px; font-size:12px;}
+.counter span {margin-right:auto;}
+.counter output {min-width:18px; font-weight:800; text-align:center;}
+.spanish-row,.caption-row {min-height:44px;}
+.compact-sub {display:none;}
+.friday-layout {height:100%; display:grid; grid-template-columns:minmax(0,1fr) 345px;}
+.results-board {padding:16px 22px; overflow:auto; background:linear-gradient(120deg,#fff,#f1f2f5);}
+.friday-head {display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-bottom:12px;}
+.friday-head h2 {font-size:30px; letter-spacing:-1px; margin:0;}
+.friday-head span {font:700 15px Consolas; color:#c81e2f;}
+.big-results {display:grid; gap:6px;}
+.result-row {display:grid; grid-template-columns:180px minmax(0,1fr) 95px; align-items:center; gap:12px;
+  padding:6px 0; border-bottom:1px solid #d5d9df;}
+.result-row .group-name {font-size:15px; font-weight:750;}
+.result-row .group-name small {display:block; color:var(--muted); font-size:11px; font-weight:400; margin-top:4px;}
+.result-track {height:34px; background:#e4e7ec; border-radius:4px; overflow:hidden;}
+.result-track i {display:block; height:100%; background:var(--group); transition:width .7s;}
+.result-count {font-size:25px; font-weight:850; text-align:right;}
+.result-count small {display:block; font-size:11px; font-weight:500; color:var(--muted);}
+.audition {border-left:5px solid var(--brand); margin-top:12px; padding:8px 12px; background:#fff;
+  box-shadow:0 3px 14px #202b3710;}
+.audition strong {font-size:28px; color:var(--brand);}
+.audition p {font-size:12px; margin:3px 0 0; line-height:1.3;}
+.reach-table {width:100%; border-collapse:collapse; font-size:11px;}
+.reach-table th,.reach-table td {padding:7px 3px; text-align:right; border-bottom:1px solid #d5d9df;}
+.reach-table th:first-child,.reach-table td:first-child {text-align:left;}
+.legend {font-size:10px; line-height:1.5; color:var(--muted);}
+footer {display:flex; align-items:center; gap:12px; padding:7px 18px; border-top:1px solid var(--line); background:#fff;}
+#hint {margin:0; flex:1; min-height:36px; font-size:13px; line-height:1.35; display:flex; align-items:center;}
+#save-label {font-size:10px; color:var(--muted); max-width:170px;}
+#reset {font-size:12px; min-height:44px;}
+.toast {position:fixed; bottom:75px; left:25%; width:50%; padding:12px; color:#fff; background:#252e3bf2;
+  border-radius:6px; box-shadow:0 4px 20px #0003; z-index:10; font-size:14px; pointer-events:none;}
+dialog {border:1px solid #8a929e; border-radius:10px; padding:24px; max-width:min(90vw,430px); color:var(--ink);}
+dialog::backdrop {background:#17212cb0;}
+dialog h2 {margin:0;}
+dialog p {font-size:15px; line-height:1.5;}
+.dialog-actions {display:flex; gap:10px;}
+@media (max-height:850px) {
+  .shot-choice {min-height:67px;} .shot-choice img {height:65px;}
+  .sentence {min-height:69px;}
+  .week-main {padding:8px 14px; gap:5px;}
+  .board-cell {min-height:44px;}
+  .map-card {height:115px;}
+  .inspector {gap:8px; padding:12px;}
+}
+@media (max-height:650px) and (min-width:600px) {
+  header {padding:0 10px; gap:5px;}
+  h1 {font-size:16px; white-space:nowrap;} h1 small {display:none;}
+  .seg button,.icon-btn {font-size:12px; padding:0 8px;}
+  #sound {width:76px;}
+  .brief {padding:4px 10px; gap:7px;}
+  .fact-reference {font-size:10px; padding:3px 5px;}
+  .fact-reference b {font-size:10px; letter-spacing:0;}
+  .version-status {font-size:10px; padding:2px 4px;}
+  .version-status b,.version-status .checks {font-size:10px;}
+  .make-layout,.week-layout,.friday-layout {grid-template-columns:minmax(0,1fr) 270px;}
+  .inspector {padding:8px; gap:5px;}
+  .inspector h2 {font-size:15px;}
+  #editor-title {display:none;}
+  #page-facts > label,#fact-tip {display:none;}
+  .eyebrow {display:none;}
+  .edit-page {gap:5px;}
+  .variant {min-height:44px; padding:4px 7px; font-size:11px;}
+  .variant {line-height:1.2;}
+  .variant span {display:none;}
+  .shot-bin {gap:4px;}
+  .shot-choice {min-height:44px;} .shot-choice img {height:44px;}
+  .shot-choice span {font-size:10px; padding:1px;}
+  .small {font-size:10px;}
+  .media-tabs button {font-size:12px;}
+  .set {padding:8px;}
+  .monitor {width:min(96cqw,calc(177.777cqh - 6px)); border-width:4px; border-bottom-width:10px;}
+  .lower-third {padding:5px 7px; border-left-width:5px;}
+  .lower-third h2 {font-size:17px;}
+  .lower-facts {font-size:10px;}
+  .onair,.transport {top:4px; font-size:10px; padding:3px 5px;}
+  .onair {left:5px;} .transport {right:5px;}
+  .filmstrip {padding:5px 7px; gap:4px; grid-template-columns:repeat(4,minmax(0,1fr)) 88px;}
+  .slot {min-height:44px;} .slot img {height:44px;} .slot span {font-size:10px;}
+  .filmstrip .play {padding:0 7px; font-size:11px; max-width:88px;}
+  .poster {padding:9px;}
+  .poster h2 {font-size:14px; margin-bottom:4px;}
+  .poster .paper-lines {font-size:10px; gap:2px; padding-top:4px; line-height:1.05;}
+  .site-card .site-picture {height:75px;}
+  #page-script > .small {display:none;}
+  #shot-instruction {display:none;}
+  .site-copy {padding:8px;} .site-copy h2 {font-size:17px;}
+  .site-copy .paper-lines {font-size:10px; gap:3px;}
+  .script-card {padding:8px;}
+  .script-head {padding-bottom:4px;}
+  .script-head h2 {font-size:16px; line-height:1.1;}
+  .script-copy {font-size:11px; line-height:1.25; margin:4px 0;}
+  .sentences {gap:4px;}
+  .sentence {font-size:10px; min-height:44px; padding:4px;}
+  .sentence em {display:none;}
+  .script-actions .plain-btn {font-size:10px; padding:2px 5px;}
+  .headline-choice {min-height:44px; font-size:12px;}
+  .week-main {padding:3px 8px; gap:3px; grid-template-rows:minmax(0,1fr) 44px;}
+  .week-head {display:none;}
+  .week-head h2 {font-size:18px;}
+  .hours {font-size:12px;} .hour-boxes {display:none;}
+  .week-board {grid-template-columns:76px repeat(4,minmax(0,1fr)); gap:2px; padding-top:1px; border-top-width:2px;}
+  .board-head {font-size:10px; padding:2px 0;}
+  .row-label {font-size:11px; padding-left:0;}
+  .board-cell {min-height:44px; font-size:10px; padding:3px;}
+  .board-cell b {font-size:10px;}
+  .sub-row {display:none;}
+  .compact-sub {display:block; font-size:10px; color:#344557;}
+  .map-card,.week-side .map-card {display:none;}
+  .week-side .audience-list {gap:5px;}
+  .week-side .audience-row {font-size:10px;}
+  .week-side .audience-count {display:none;}
+  .week-side .audience-track {height:6px;}
+  .week-side .legend {display:none;}
+  .week-side .job-editor {padding:6px; gap:4px;}
+  .week-side .job-editor h3 {font-size:11px;}
+  .week-side .job-options button {font-size:10px; padding:2px 5px;}
+  .week-side .counter {font-size:10px; gap:4px;}
+  .week-side .job-options {gap:3px;}
+  .week-side.more-jobs #job-cost {display:none;}
+  .week-side.more-jobs .audience-list {gap:3px;}
+  .week-side.more-jobs .audience-label {margin-bottom:2px;}
+  .week-actions {gap:4px;}
+  .week-actions .plain-btn,.week-actions .play {font-size:11px; padding:2px 5px;}
+  footer {padding:3px 10px; gap:7px;}
+  #hint {font-size:11px; min-height:36px;}
+  #save-label {display:none;}
+  #reset {min-width:44px; font-size:10px; padding:0 6px;}
+  .results-board {padding:10px 14px;}
+  .friday-head {margin-bottom:5px;} .friday-head h2 {font-size:22px;} .friday-head span {font-size:11px;}
+  .big-results {gap:3px;}
+  .result-row {grid-template-columns:95px minmax(0,1fr) 55px; gap:6px; padding:4px 0;}
+  .result-row .group-name {font-size:11px;}
+  .result-row .group-name small {font-size:10px; margin-top:1px;}
+  .result-track {height:19px;}
+  .result-count {font-size:17px;} .result-count small {font-size:10px;}
+  .audition {margin-top:7px; padding:5px 8px;} .audition strong {font-size:20px;} .audition p {font-size:10px;}
+  .reach-table {font-size:10px;} .reach-table td,.reach-table th {padding:4px 2px;}
+  #mode-friday .inspector > .legend,#mode-friday .inspector > .small {display:none;}
+  #mode-friday .inspector {gap:7px;}
+  .friday-head {margin-bottom:3px;}
+  .friday-head h2 {font-size:19px;}
+  #days-count {font-size:10px; line-height:1.1; margin-bottom:3px;}
+  .big-results {gap:2px;}
+  .result-row {grid-template-columns:95px minmax(0,1fr) 80px; position:relative; padding:0 0 11px; gap:5px;}
+  .result-row .group-name {font-size:10px; line-height:1.1;}
+  .result-row .group-name small {position:absolute; left:100px; bottom:0; font-size:10px; line-height:1; white-space:nowrap;}
+  .result-track {height:16px;}
+  .result-count {font-size:15px; display:flex; justify-content:flex-end; align-items:center; gap:4px; line-height:1.2;}
+  .result-count small {display:inline; font-size:10px; white-space:nowrap;}
+  .audition {margin-top:5px; padding:4px 7px;}
+  .audition strong {font-size:18px;}
+  .audition p {font-size:10px; line-height:1.1;}
+  .friday-head h2 {line-height:1.1;}
+  .result-count {line-height:1.05;}
+  .result-row {padding-bottom:10px;}
+  .audition {line-height:1.2;}
+}
+@media (min-width:600px) and (max-height:850px) {
+  .week-side.more-jobs .map-card {display:none;}
+}
+@media (min-width:600px) and (min-height:651px) and (max-height:750px) {
+  .week-side > .legend {display:none;}
+}
+@media (max-width:900px) and (min-width:600px) {
+  h1 {max-width:none;}
+  h1 small {display:none;}
+  header {gap:4px; padding-left:8px; padding-right:8px;}
+  .seg button,.icon-btn {padding:0 7px; font-size:11px;}
+  #sound {width:64px;}
+  .brief {grid-template-columns:1fr; gap:4px;}
+  .facts-reference {gap:4px;}
+  .fact-reference b {display:inline; margin-right:4px;}
+  .version-status {flex-direction:row; gap:5px; align-items:center;}
+  .version-status .checks {letter-spacing:1px;}
+  .make-layout,.week-layout,.friday-layout {grid-template-columns:minmax(0,1fr) 260px;}
+}
+@media (max-width:599px) {
+  #sound {width:64px;}
+  body {height:auto; overflow:auto; grid-template-rows:auto auto auto auto;}
+  header {flex-wrap:wrap; gap:5px; padding:8px;}
+  h1 {width:100%; font-size:24px; margin-bottom:4px;}
+  h1 small {display:none;}
+  .seg {margin-right:auto;}
+  .seg button,.icon-btn {padding:0 7px; font-size:11px;}
+  .brief {grid-template-columns:1fr; padding:6px 8px; gap:5px;}
+  .facts-reference {grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px;}
+  .fact-reference {font-size:10px; padding:4px 6px;}
+  .fact-reference b {display:block; margin:0 0 2px;}
+  .version-status {font-size:10px; padding:3px;}
+  .version-status b,.version-status .checks {font-size:10px;}
+  .version-status .checks {letter-spacing:1px;}
+  .make-layout,.week-layout,.friday-layout {display:flex; flex-direction:column; height:auto;}
+  .workspace {height:410px; flex:none;}
+  .set {padding:8px;}
+  .monitor {width:min(96cqw,calc(177.777cqh - 6px)); border-width:5px; border-bottom-width:12px;}
+  .lower-third {padding:6px 8px;}
+  .lower-third h2 {font-size:20px;}
+  .lower-facts {font-size:11px;}
+  .filmstrip {padding:7px; gap:5px; grid-template-columns:repeat(4,1fr);}
+  .filmstrip .play {grid-column:1/-1; min-height:44px;}
+  .slot,.slot img {min-height:44px; height:44px;}
+  .inspector {border-left:0; border-top:1px solid var(--line); padding:12px; overflow:visible;}
+  .shot-choice img {height:90px;}
+  .script-card {padding:14px;}
+  .script-copy {font-size:15px;}
+  .script-head h2 {font-size:20px;}
+  .sentence {min-height:80px;}
+  .week-main {height:auto; min-height:475px; padding:10px 8px;}
+  .week-head h2 {font-size:20px;}
+  .hours {font-size:13px;}
+  .week-board {grid-template-columns:66px repeat(4,minmax(0,1fr)); gap:3px;}
+  .row-label {font-size:10px; padding-left:0;}
+  .row-label.sub {font-size:10px; padding-left:3px;}
+  .board-cell {min-height:53px; padding:3px; font-size:10px;}
+  .board-cell b {font-size:10px;}
+  .week-head .hour-boxes {display:none;}
+  .board-head {font-size:10px;}
+  .week-actions .play,.week-actions .plain-btn {font-size:11px; padding:4px 6px;}
+  .map-card {height:145px;}
+  .results-board {padding:14px 10px; overflow:visible;}
+  .friday-head h2 {font-size:27px;}
+  .friday-head span {font-size:12px;}
+  .result-row {grid-template-columns:100px minmax(0,1fr) 60px; gap:7px;}
+  .result-row .group-name {font-size:12px;}
+  .result-track {height:28px;}
+  .result-count {font-size:21px;}
+  footer {padding:8px; flex-wrap:wrap;}
+  #hint {flex-basis:calc(100% - 65px); font-size:12px;}
+  #save-label {order:3; max-width:none; width:100%;}
+  .toast {left:5%; width:90%; bottom:20px;}
+}
+@media (max-width:599px) and (min-height:700px) {
+  body {height:100dvh; overflow:hidden; grid-template-rows:auto auto minmax(0,1fr) auto;}
+  header {padding:5px 8px; gap:3px;}
+  h1 {font-size:21px; margin-bottom:0;}
+  .brief {padding:4px 8px; gap:4px;}
+  .fact-reference {padding:3px 4px;}
+  .version-status {padding:2px 3px; line-height:1.15;}
+  .make-layout {display:grid; height:100%; grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(150px,1fr) auto;}
+  .workspace {height:auto; min-height:0; grid-template-rows:44px minmax(0,1fr) auto;}
+  .set {padding:5px;}
+  .lower-third h2 {font-size:16px;}
+  .lower-third {padding:4px 6px; border-left-width:5px;}
+  .lower-facts {font-size:10px;}
+  .filmstrip {padding:4px; gap:4px;}
+  .slot span {font-size:10px; left:2px;}
+  .inspector {padding:5px 8px; gap:4px;}
+  #make-side > .eyebrow,#editor-title,#make-side .small,#page-facts > label {display:none;}
+  .edit-page {gap:4px;}
+  .variant {min-height:44px; padding:4px 7px; font-size:11px; line-height:1.15;}
+  .variant span {display:none;}
+  .shot-bin {grid-template-columns:repeat(4,minmax(0,1fr)); gap:4px;}
+  .shot-choice,.shot-choice img {min-height:48px; height:48px;}
+  .shot-choice span {font-size:10px; padding:2px;}
+  .headline-choice {min-height:44px; font-size:12px;}
+  .sentences {gap:4px;}
+  .sentence {min-height:44px; padding:4px; font-size:10px; line-height:1.15;}
+  .sentence em {display:none;}
+  .script-actions .plain-btn {font-size:11px;}
+  .script-card {padding:8px;}
+  .script-head {padding-bottom:4px;}
+  .script-head h2 {font-size:16px;}
+  .script-copy {font-size:12px; line-height:1.3; margin:5px 0;}
+  .script-time {font-size:10px; margin:4px 0 0;}
+  .spanish-script {font-size:10px; max-height:60px; overflow:auto;}
+  .week-layout {display:grid; height:100%; grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) auto;}
+  .week-main {min-height:0; height:auto; padding:4px 8px; gap:4px; grid-template-rows:24px minmax(220px,1fr) 44px;}
+  .week-head h2 {font-size:17px;}
+  .week-board {grid-template-columns:66px repeat(4,minmax(0,1fr)); gap:3px;}
+  .week-board {padding-top:2px; border-top-width:2px;}
+  .board-head {padding:2px 0; line-height:1.2;}
+  .board-cell {min-height:44px;}
+  .sub-row {display:none;}
+  .compact-sub {display:block; font-size:10px;}
+  .week-side {display:grid; grid-template-columns:1fr 1fr; gap:7px;}
+  .week-side .map-card,.week-side > .eyebrow,.week-side > .small {display:none;}
+  .week-side .job-editor {padding:5px; gap:4px;}
+  .week-side .job-editor h3 {font-size:10px;}
+  .week-side #job-cost {display:none;}
+  .week-side .job-options {grid-template-columns:1fr; gap:4px;}
+  .week-side .job-options button {font-size:10px; padding:3px;}
+  .week-side .counter {font-size:10px; gap:3px; flex-wrap:wrap;}
+  .week-side .counter span {flex-basis:100%;}
+  .week-side .audience-list {gap:4px;}
+  .week-side .audience-row {font-size:10px; line-height:1.1;}
+  .week-side .audience-label {margin-bottom:2px; line-height:1.1;}
+  .week-side .audience-track {height:6px;}
+  .week-side .audience-count {font-size:10px; line-height:1.1; margin-top:1px;}
+  .week-side .legend {grid-column:1/-1; font-size:10px; line-height:1.2;}
+  .friday-layout {display:grid; height:100%; grid-template-columns:minmax(0,1fr); grid-template-rows:minmax(0,1fr) auto;}
+  .results-board {padding:6px 8px; overflow:auto;}
+  .friday-head {margin-bottom:4px;}
+  .friday-head h2 {font-size:23px;}
+  #days-count {font-size:10px; line-height:1.2;}
+  .result-row {padding:2px 0; grid-template-columns:102px minmax(0,1fr) 60px; gap:6px;}
+  .result-row .group-name {font-size:11px; line-height:1.15;}
+  .result-row .group-name small {font-size:10px; margin-top:2px; line-height:1.1;}
+  .result-track {height:22px;}
+  .result-count {font-size:19px; line-height:1.05;}
+  .result-count small {line-height:1.1;}
+  .audition {margin-top:6px; padding:5px 8px;}
+  .audition strong {font-size:22px;}
+  .audition p {font-size:10px;}
+  #mode-friday .inspector {display:grid; grid-template-columns:minmax(0,1fr) 104px; gap:5px;}
+  #mode-friday .inspector > .eyebrow,#mode-friday .inspector > h2,#mode-friday .inspector > .small {display:none;}
+  #reach-table {grid-column:1; grid-row:1/4; font-size:10px;}
+  #reach-table th,#reach-table td {padding:4px 2px;}
+  #try-again {grid-column:2; grid-row:1; font-size:11px; padding:4px;}
+  #back-make {grid-column:2; grid-row:2; font-size:11px; padding:4px;}
+  #mode-friday .inspector > .legend {grid-column:1/-1; font-size:10px; line-height:1.2;}
+  footer {padding:4px 8px; gap:4px 8px;}
+  #hint {font-size:11px; min-height:36px;}
+  #save-label {font-size:10px; line-height:1;}
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Morning Show Crew<small>One story across media and audiences</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-make" aria-pressed="true">Make</button>
+    <button id="m-week" aria-pressed="false">The week</button>
+    <button id="m-friday" aria-pressed="false">Friday</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<section class="brief" aria-label="Story brief and version checks">
+  <div class="facts-reference">
+    <div class="fact-reference" title="Spring musical auditions, no experience needed."><b>What</b>Auditions, all welcome</div>
+    <div class="fact-reference"><b>When</b>Friday, 3:15</div>
+    <div class="fact-reference"><b>Where</b>Music room</div>
+    <div class="fact-reference" title="Sign up on the sheet outside room 112 by Thursday"><b>Sign up</b>Sheet by room 112, by Thu</div>
+  </div>
+  <div class="version-strip" id="version-strip"></div>
+</section>
+<main>
+  <section class="mode" id="mode-make" aria-label="Make four versions">
+    <div class="make-layout">
+      <div class="workspace">
+        <div class="media-tabs" role="group" aria-label="Medium">
+          <button id="media-video" aria-pressed="true">Video</button>
+          <button id="media-poster" aria-pressed="false">Poster</button>
+          <button id="media-site" aria-pressed="false">Site</button>
+          <button id="media-announcement" aria-pressed="false">Announcement</button>
+        </div>
+        <div class="set" id="set">
+          <div class="onair"><i></i><span id="onair-label">EDIT SUITE</span></div>
+          <div class="transport" id="transport">PREVIEW</div>
+          <div id="canvas" style="display:contents"></div>
+        </div>
+        <div class="filmstrip" id="filmstrip"></div>
+      </div>
+      <aside class="inspector" id="make-side">
+        <p class="eyebrow">Producer's desk</p>
+        <h2 id="editor-title">Build your video</h2>
+        <div class="edit-tabs" id="edit-tabs" role="group" aria-label="Editing tools">
+          <button id="edit-facts" aria-pressed="true">Facts</button>
+          <button id="edit-shots" aria-pressed="false">Shots</button>
+          <button id="edit-title" aria-pressed="false">Headline</button>
+        </div>
+        <div class="edit-page" id="page-facts">
+          <label for="fact-picker">Choose a fact, then tap a version</label>
+          <select id="fact-picker">
+            <option value="0">What</option><option value="1">When</option>
+            <option value="2">Where</option><option value="3">How to sign up</option>
+          </select>
+          <button class="variant" id="variant-a" aria-pressed="false"></button>
+          <button class="variant" id="variant-b" aria-pressed="false"></button>
+          <button class="plain-btn" id="big-line" hidden>Big: off</button>
+          <p class="small" id="fact-tip">Tap a selected chip again to remove it. Shot images can carry visual facts too.</p>
+        </div>
+        <div class="edit-page" id="page-shots" hidden>
+          <p class="small" id="shot-instruction">Tap a slot below the monitor, then choose a shot.</p>
+          <div class="shot-bin" id="shot-bin"></div>
+        </div>
+        <div class="edit-page" id="page-title" hidden>
+          <p class="small">All three headlines fit this story. Which suits this medium?</p>
+          <div id="headline-bin" class="edit-page"></div>
+        </div>
+        <div class="edit-page" id="page-script" hidden>
+          <p class="small">Tap sentence chips to add them in order. Repeat a chip if you want; Undo removes the last.</p>
+          <div class="sentences" id="sentences"></div>
+          <div class="script-actions">
+            <button class="plain-btn" id="undo-sentence">Undo sentence</button>
+            <button class="plain-btn" id="hear-script">Hear it</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+  <section class="mode" id="mode-week" aria-label="Plan the week" hidden>
+    <div class="week-layout">
+      <div class="week-main">
+        <div class="week-head">
+          <h2 id="week-title">Monday's crew call</h2>
+          <div class="hours"><span id="hours">0 / 3 h</span><div class="hour-boxes" id="hour-boxes"></div></div>
+        </div>
+        <div class="week-board" id="week-board" aria-label="Four-day crew board"></div>
+        <div class="week-actions">
+          <button class="play" id="run-day">Run Monday</button>
+          <button class="plain-btn" id="undo-day">Undo day</button>
+          <button class="plain-btn" id="see-friday">See Friday</button>
+        </div>
+      </div>
+      <aside class="inspector week-side">
+        <p class="eyebrow">Distribution desk</p>
+        <div class="job-editor" id="job-editor">
+          <h3 id="job-title">Monday · Announcement</h3>
+          <div class="job-options" id="job-options"></div>
+          <div class="counter" id="copy-counter" hidden>
+            <span>Copies · 0.25 h</span>
+            <button class="plain-btn" id="copies-minus" aria-label="Print one fewer poster">−</button>
+            <output id="copy-count">0</output>
+            <button class="plain-btn" id="copies-plus" aria-label="Print one more poster">+</button>
+          </div>
+          <p class="small" id="job-cost"></p>
+        </div>
+        <div class="map-card" id="map-card" aria-label="School audience map"></div>
+        <div class="audience-list" id="audience-list"></div>
+        <p class="legend">Fictional model. Striped: heard at least once. Solid: got the message, at least two complete, matching meetings.</p>
+        <p class="small">Fictional school. Expected reach, rounded people. A planning model, not a prediction.</p>
+      </aside>
+    </div>
+  </section>
+  <section class="mode" id="mode-friday" aria-label="Friday results" hidden>
+    <div class="friday-layout">
+      <div class="results-board">
+        <div class="friday-head"><h2>Who got the message?</h2><span>FRI 3:15</span></div>
+        <p class="small" id="days-count"></p>
+        <div class="big-results" id="big-results"></div>
+        <div class="audition" id="audition"></div>
+      </div>
+      <aside class="inspector">
+        <p class="eyebrow">Your distribution record</p>
+        <h2>What reached whom</h2>
+        <table class="reach-table" id="reach-table"></table>
+        <p class="legend">Expected total meetings, not unique people. On = on time; Bus = late bus; EL = learning English; Fam = households; Tch = teachers.</p>
+        <button class="play" id="try-again">Try the week again</button>
+        <button class="plain-btn" id="back-make">Back to Make</button>
+        <p class="small">Your versions stay on the desk. Try a different route to the groups you missed.</p>
+      </aside>
+    </div>
+  </section>
+</main>
+<footer>
+  <p id="hint" aria-live="polite"></p>
+  <span id="save-label">Saved on this device only. Nothing leaves this device.</span>
+  <button class="plain-btn" id="reset">Reset</button>
+</footer>
+<div class="toast" id="toast" role="status" hidden></div>
+<dialog id="reset-dialog" aria-labelledby="reset-title">
+  <h2 id="reset-title">Clear the crew's work?</h2>
+  <p>This clears all four versions, the week plan and the saved copy on this device.</p>
+  <div class="dialog-actions">
+    <button class="play" id="reset-yes">Yes, reset</button>
+    <button class="plain-btn" id="reset-no">Keep our work</button>
+  </div>
+</dialog>
+<script src="kit:curio"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const media = ['video', 'poster', 'site', 'announcement'];
+  const names = {video:'Video', poster:'Poster', site:'Site', announcement:'Announcement'};
+  const symbols = {video:'▣', poster:'▤', site:'▦', announcement:'◖'};
+  const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday'];
+  const factNames = ['What', 'When', 'Where', 'How to sign up'];
+  const facts = [
+    ['Spring musical auditions, no experience needed.', 'Spring musical tryouts for chorus members'],
+    ['Friday at 3:15', 'Friday at 3:30'],
+    ['Music room', 'Room 121'],
+    ['Sign up on the sheet outside room 112 by Thursday', 'Sign up at the office']
+  ];
+  const headlines = ['Your Stage Is Waiting', 'Spring Musical Auditions Friday', 'Ever Wanted to Be in a Show?'];
+  const shots = [
+    ['shot-ghost-light', 'Ghost light'], ['shot-signup-sheet', 'Sign-up sheet'],
+    ['shot-music-room', 'Music room'], ['shot-costume-rack', 'Costumes'],
+    ['shot-scripts', 'Scripts'], ['shot-hallway', 'Hallway'],
+    ['shot-clock', 'Clock'], ['shot-tickets', 'Ticket table']
+  ];
+  const images = [
+    'art:shot-ghost-light', 'art:shot-signup-sheet', 'art:shot-music-room', 'art:shot-costume-rack',
+    'art:shot-scripts', 'art:shot-hallway', 'art:shot-clock', 'art:shot-tickets'
+  ];
+  const sentences = [
+    'Good morning, Wildcats!',
+    'Spring musical auditions are Friday at 3:15 in the music room.',
+    'No experience needed.',
+    'Sign up on the sheet outside room 112 by Thursday.',
+    'Auditions start at 3:30 on Friday.',
+    'Ask the office to sign up.',
+    "You don't have to sing alone; you can audition with a friend.",
+    'See you there!'
+  ];
+  const words = [3, 11, 3, 10, 6, 6, 12, 3];
+  const spanish = '¡Buenos días! Las audiciones para el musical de primavera son el viernes a las tres y cuarto de la tarde, '
+    + 'en el salón de música. No se necesita experiencia. Inscríbete en la hoja que está afuera del salón 112 a más tardar el jueves.';
+  const groups = [
+    ['On time', 410, '#2d5f8a', 'Students in homeroom on time'],
+    ['Late bus', 60, '#8a6a12', 'Students who miss homeroom TV and announcements'],
+    ['Learning English', 70, '#2f7a3a', 'Spanish-speaking students in homeroom'],
+    ['Families', 400, '#7a3f86', 'Households, not individual students'],
+    ['Teachers', 45, '#5a6068', 'Teachers']
+  ];
+  const rates = {
+    ann:[.45,0,.10,0,.35], spanAnn:[0,0,.35,0,0], video:[.50,0,.20,0,.30],
+    captions:[.10,0,.15,0,.05], copies:[.08,.12,.08,.01,.05], spanPoster:[0,.02,.10,.02,0],
+    site:[.02,.06,.01,.15,.08], spanSite:[0,0,.03,.12,0]
+  };
+  const jobMedia = {ann:'announcement', spanAnn:'announcement', video:'video', captions:'video',
+    copies:'poster', spanPoster:'poster', site:'site', spanSite:'site'};
+  const L = {
+    welcomeMake:'Good morning, crew! One story, four ways. Tap the fact chips to build each version.',
+    mismatch:"Hold on. That fact doesn't match the others.",
+    allMatch:'All four say the same thing. Now plan your week.',
+    welcomeWeek:'Three hours a day. Tap a job to spend them, then press Run day.',
+    dayDone:"That's the day. Check who heard it.",
+    fridayLine:"It's three fifteen on Friday. Here's who got the message.",
+    noOne:'A whole group never heard about it. Which group, and why?',
+    fridayHow:'Compare the group bars. Tap Try the week again to change your distribution.',
+    factHow:'Choose a fact from the menu, then tap the version to put it on your canvas.',
+    shotHow:'Tap a slot below the monitor, then tap a shot to put it there.',
+    pictureHow:'Tap a picture from the shot bin to put it on this version.',
+    headlineHow:'Tap a headline to put it on this version. All three fit the story.',
+    scriptHow:'Tap sentence chips in order to build your announcement. Tap Hear it to listen.',
+    budget:'That job needs more hours than the crew has today. Cancel a job or choose another day.',
+    locked:'That day has already run. Tap Undo day to change the last day.',
+    planHow:'Tap a cell to buy or cancel its job. Use the desk for copies and translations.',
+    editPending:'The video edit continues tomorrow. It can air when all four editing hours are done.',
+    resetHow:'Tap Yes, reset to clear your work, or Keep our work to return.',
+    wrongFactHow:"That fact doesn't match the story brief. Tap the other variant to change it.",
+    wrongScriptHow:"That sentence doesn't match the story brief. Tap Undo sentence to remove it, then choose the right facts."
+  };
+  const freshVersion = () => ({facts:[null,null,null,null], headline:0, picture:0, big:-1});
+  const freshPlan = () => Array.from({length:4}, () => ({
+    ann:false, spanAnn:false, video:false, skipVideo:false, captions:false,
+    design:false, copies:0, spanPoster:false, site:false, spanSite:false
+  }));
+  const fresh = () => ({
+    mode:'make', medium:'video', editor:'facts', fact:0, slot:0, day:0, selectedDay:0, selectedJob:'announcement',
+    versions:{video:{...freshVersion(), shots:[0,2,6,1]}, poster:freshVersion(), site:freshVersion(), announcement:{script:[0]}},
+    plan:freshPlan(), history:[]
+  });
+  const state = fresh();
+  const STORAGE = 'curio-class-morning-show-crew-v1';
+  let playing = false;
+  let playingScript = false;
+  let scriptToken = 0;
+  let playTimer = null;
+  let playStart = 0;
+  let segmentSlot = -1;
+  let currentShot = 0;
+  let loopShots = [];
+  let nextLoop = new Set();
+  let runTimer = null;
+  let runToken = 0;
+  let running = false;
+  let toastTimer = null;
+  let editRevision = 0;
+  let weekRevision = 0;
+  let allMatched = false;
+  const V = Curio.voice({
+    lines:L, scope:() => state.mode, hint:false, read:() => $('hint').textContent,
+    speaks:'#run-day, #hear-script, #play-segment',
+    welcome:() => {
+      if (playing || playingScript || $('reset-dialog').open) return null;
+      if (state.mode === 'make') return ['welcomeMake', {valid:() => editRevision === 0}];
+      if (state.mode === 'week') return ['welcomeWeek', {valid:() => !running && weekRevision === 0}];
+      return 'fridayHow';
+    }
+  });
+  const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const round = value => Math.floor(value + .5);
+  const copy = value => JSON.parse(JSON.stringify(value));
+  const hoursText = value => Number(value.toFixed(2)).toString();
+  function hint(text) {
+    $('hint').textContent = text;
+    document.querySelector('footer').classList.remove('notice');
+  }
+  function notify(text, voiceKey) {
+    hint(text);
+    document.querySelector('footer').classList.add('notice');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => { document.querySelector('footer').classList.remove('notice'); }, 3400);
+    if (voiceKey && !playing && !playingScript) {
+      V.say(voiceKey, {hint:false, maxAge:3500, valid:() => $('hint').textContent === text});
+    }
+  }
+  function save() {
+    try {
+      localStorage.setItem(STORAGE, JSON.stringify(state));
+      $('save-label').textContent = 'Saved on this device only. Nothing leaves this device.';
+    } catch {
+      $('save-label').textContent = 'Saving unavailable. Work stays in this open tab.';
+    }
+  }
+  function load() {
+    try {
+      const s = JSON.parse(localStorage.getItem(STORAGE));
+      if (!s || !s.versions || !Array.isArray(s.plan) || s.plan.length !== 4 || !Array.isArray(s.history)) return;
+      for (const m of ['video','poster','site']) {
+        const v = s.versions[m];
+        if (!v || !Array.isArray(v.facts) || v.facts.length !== 4) return;
+        if (!v.facts.every(f => f === null || f === 0 || f === 1)) return;
+        if (!Number.isInteger(v.headline) || v.headline < 0 || v.headline > 2) return;
+        if (!Number.isInteger(v.picture) || v.picture < 0 || v.picture > 7) return;
+        if (!Number.isInteger(v.big) || v.big < -1 || v.big > 3) return;
+      }
+      if (!s.versions.video.shots || s.versions.video.shots.length !== 4) return;
+      if (!s.versions.video.shots.every(i => Number.isInteger(i) && i >= 0 && i < 8)) return;
+      if (!Array.isArray(s.versions.announcement.script)) return;
+      if (s.versions.announcement.script.length > 60) return;
+      if (!s.versions.announcement.script.every(i => Number.isInteger(i) && i >= 0 && i < 8)) return;
+      if (s.history.length > 4) return;
+      const flags = ['ann','spanAnn','video','skipVideo','captions','design','spanPoster','site','spanSite'];
+      if (!s.plan.every(p => p && typeof p === 'object' && flags.every(k => typeof p[k] === 'boolean')
+        && Number.isInteger(p.copies) && p.copies >= 0 && p.copies <= 12)) return;
+      if (!s.history.every(d => d && d.jobs && d.matches && Object.keys(rates).every(k =>
+        Number.isFinite(Number(d.jobs[k])) && Number(d.jobs[k]) >= 0)
+        && media.every(m => typeof d.matches[m] === 'boolean') && d.jobs.cost >= 0 && d.jobs.cost <= 3)) return;
+      Object.assign(state, s);
+      state.mode = 'make';
+      state.medium = media.includes(s.medium) ? s.medium : 'video';
+      state.day = state.history.length;
+      state.selectedDay = Math.min(state.day, 3);
+      state.fact = Math.max(0, Math.min(3, Number(s.fact) || 0));
+      state.slot = Math.max(0, Math.min(3, Number(s.slot) || 0));
+      state.editor = ['facts','shots','title'].includes(s.editor) ? s.editor : 'facts';
+      state.selectedJob = media.includes(s.selectedJob) ? s.selectedJob : 'announcement';
+      for (const p of state.plan) p.copies = Math.max(0, Math.min(12, Math.floor(Number(p.copies) || 0)));
+    } catch {}
+  }
+  function coverage(m, version = state.versions[m]) {
+    if (m === 'announcement') {
+      const s = version.script;
+      const what = s.includes(1) && s.includes(2);
+      const values = [what ? 0 : null, s.includes(1) ? 0 : null, s.includes(1) ? 0 : null, s.includes(3) ? 0 : null];
+      if (s.includes(4)) values[1] = 1;
+      if (s.includes(5)) values[3] = 1;
+      return values;
+    }
+    const values = [...version.facts];
+    const pictures = m === 'video' ? version.shots : [version.picture];
+    for (const [image,fact] of [[6,1],[2,2],[1,3]]) {
+      if (values[fact] === null && pictures.includes(image)) values[fact] = 0;
+    }
+    return values;
+  }
+  const matches = m => coverage(m).every(f => f === 0);
+  function updateStrip() {
+    for (const m of media) {
+      const c = coverage(m);
+      const match = c.every(f => f === 0);
+      const el = $('status-' + m);
+      el.className = 'version-status ' + (match ? 'match' : 'bad');
+      el.querySelector('.checks').textContent = c.map(f => f === 0 ? '✓' : f === 1 ? '✕' : '·').join('');
+      el.querySelector('.badge').textContent = match ? '✓ matches' : "✕ doesn't match";
+      el.title = factNames.map((name,i) => name + ': ' + (c[i] === 0 ? 'present' : c[i] === 1 ? 'wrong' : 'missing')).join('; ');
+    }
+  }
+  function imageMarkup(index, thumbnail = false) {
+    let extra = '';
+    if (index === 6) {
+        extra = '<svg class="clock-hands" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice" aria-label="Clock showing 3:15">'
+        + '<g stroke="#252b33" stroke-linecap="round"><path d="M480 251 L654 251" stroke-width="7"/>'
+        + '<path d="M480 251 L594 266" stroke-width="10"/></g><circle cx="480" cy="251" r="9" fill="#a72936"/>'
+        + (thumbnail ? '' : '<text x="480" y="380" fill="#17304a" font-size="30" font-family="Segoe UI, sans-serif" '
+          + 'font-weight="700" text-anchor="middle">FRIDAY</text>') + '</svg>';
+    }
+    if (index === 1 && !thumbnail) {
+      extra = '<svg class="clock-hands" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" '
+        + 'aria-label="Auditions sign-up sheet outside room 112, sign up by Thursday">'
+        + '<g fill="#17304a" font-family="Segoe UI, sans-serif" font-weight="700" font-size="23" text-anchor="middle">'
+        + '<text x="830" y="180">AUDITIONS</text><text x="830" y="216">Outside room 112</text>'
+        + '<text x="830" y="252">Sign up by Thursday</text></g></svg>';
+    }
+    return '<div class="image-wrap"><img class="shot-image" src="' + images[index] + '" alt="'
+      + esc(shots[index][1]) + '">' + extra + '</div>';
+  }
+  function factMarkup(version, vertical = false) {
+    const lines = version.facts.map((value,i) => {
+      if (value === null) return '';
+      const classes = [value === 1 ? 'wrong-text' : '', version.big === i ? 'big-line' : ''].join(' ');
+      return '<span class="' + classes + '">' + esc(facts[i][value]) + '</span>';
+    }).filter(Boolean);
+    const separator = vertical ? '' : ' <span aria-hidden="true"> · </span> ';
+    return lines.length ? lines.join(separator) : '<span>Add the story facts at the producer’s desk.</span>';
+  }
+  function scriptSeconds() {
+    return state.versions.announcement.script.reduce((sum,i) => sum + words[i], 0) / 2.5;
+  }
+  function renderCanvas() {
+    const m = state.medium;
+    const v = state.versions[m];
+    document.querySelector('.onair').hidden = m !== 'video';
+    $('transport').hidden = m !== 'video';
+    $('set').classList.toggle('poster-set', m === 'poster');
+    $('transport').textContent = playing ? (segmentSlot < 0 ? 'TITLE 00:02' : 'SHOT ' + (segmentSlot + 1) + ' / 4') : 'PREVIEW';
+    $('onair-label').textContent = playing ? 'ON AIR' : playingScript ? 'READING SCRIPT' : 'EDIT SUITE';
+    let html = '';
+    if (m === 'video') {
+      const shot = playing && segmentSlot >= 0 ? currentShot : v.shots[state.slot];
+      html = '<div class="monitor" id="video-monitor">' + imageMarkup(shot)
+        + '<div class="lower-third"><h2>' + esc(headlines[v.headline]) + '</h2><p class="lower-facts">'
+        + factMarkup(v) + '</p></div>';
+      if (playing && segmentSlot < 0) {
+        html += '<div class="title-card"><small>WILDCAT TV PRESENTS</small><strong>' + esc(headlines[v.headline])
+          + '</strong><span>SPRING MUSICAL · AUDITIONS</span></div>';
+      }
+      html += '</div>';
+    } else if (m === 'poster') {
+      html = '<article class="poster"><h2>' + esc(headlines[v.headline]) + '</h2><div class="poster-picture">'
+        + imageMarkup(v.picture) + '</div><div class="paper-lines">' + factMarkup(v,true) + '</div></article>';
+    } else if (m === 'site') {
+      html = '<article class="site-card"><div class="site-top"><i></i><i></i><i></i> WILDCAT SCHOOL NEWS</div>'
+        + '<div class="site-picture">' + imageMarkup(v.picture) + '</div><div class="site-copy"><p class="eyebrow">School life</p>'
+        + '<h2>' + esc(headlines[v.headline]) + '</h2><div class="paper-lines">' + factMarkup(v,true) + '</div></div></article>';
+    } else {
+      const seconds = scriptSeconds();
+      const script = v.script.map(i => '<span class="' + ([4,5].includes(i) ? 'wrong-text' : '') + '">'
+        + esc(sentences[i]) + '</span>').join('\n');
+      const translated = schedule()[Math.min(state.selectedDay,3)].spanAnn;
+      html = '<article class="script-card"><div class="script-head"><h2>Morning announcement</h2><span class="eyebrow">MIC 01</span></div>'
+        + '<div class="script-copy">' + (script || 'Tap a sentence chip to begin.') + '</div>'
+        + (translated ? '<div class="spanish-script" lang="es"><b lang="en">Spanish script · audio review pending</b><br>'
+          + esc(spanish) + '</div>' : '')
+        + '<div class="time-bar"><i style="width:' + Math.min(100,seconds / 30 * 100) + '%;background:'
+        + (seconds > 30 ? '#a46e00' : '#2f7a3a') + '"></i></div><p class="script-time">'
+        + seconds.toFixed(1) + ' s / 30 s · model: 2.5 words per second' + (seconds > 30 ? ' · OVER 30 s' : '') + '</p></article>';
+    }
+    $('canvas').innerHTML = html;
+    $('filmstrip').hidden = m !== 'video';
+    for (let i = 0; i < 4; i++) {
+      const b = $('slot-' + i);
+      b.querySelector('.slot-picture').innerHTML = imageMarkup(state.versions.video.shots[i],true);
+      b.querySelector('span').textContent = (i + 1) + ' · ' + shots[state.versions.video.shots[i]][1];
+      b.setAttribute('aria-pressed', state.slot === i);
+      b.classList.toggle('playing', playing && segmentSlot === i);
+      b.classList.toggle('queued', nextLoop.has(i));
+    }
+    $('play-segment').textContent = playing ? '■ Stop' : '▶ Play segment';
+  }
+  function renderEditor() {
+    const m = state.medium;
+    const ann = m === 'announcement';
+    $('editor-title').textContent = ann ? 'Build your script' : 'Build your ' + names[m].toLowerCase();
+    $('edit-tabs').hidden = ann;
+    for (const page of ['facts','shots','title','script']) $('page-' + page).hidden = ann ? page !== 'script' : page !== state.editor;
+    for (const t of ['facts','shots','title']) $('edit-' + t).setAttribute('aria-pressed', state.editor === t);
+    for (const medium of media) $('media-' + medium).setAttribute('aria-pressed', m === medium);
+    if (ann) {
+      for (let i = 0; i < sentences.length; i++) {
+        const count = state.versions.announcement.script.filter(s => s === i).length;
+        $('sentence-' + i).querySelector('em').textContent = words[i] + ' words' + (count ? ' · added ' + count : '');
+        $('sentence-' + i).classList.toggle('wrong', count > 0 && [4,5].includes(i));
+      }
+      $('undo-sentence').setAttribute('aria-disabled', state.versions.announcement.script.length === 0);
+      $('hear-script').textContent = playingScript ? '■ Stop' : 'Hear it';
+      return;
+    }
+    $('fact-picker').value = String(state.fact);
+    const v = state.versions[m];
+    // The source facts are a reference, not a hidden-answer quiz. Alternate the two variant positions by fact.
+    for (let pos = 0; pos < 2; pos++) {
+      const value = (pos + state.fact) % 2;
+      const button = $(pos === 0 ? 'variant-a' : 'variant-b');
+      button.dataset.value = String(value);
+      button.innerHTML = '<span>' + esc(factNames[state.fact]) + '</span>' + esc(facts[state.fact][value]);
+      button.setAttribute('aria-pressed', v.facts[state.fact] === value);
+      button.classList.toggle('wrong', v.facts[state.fact] === value && value === 1);
+    }
+    $('big-line').hidden = m !== 'poster';
+    $('big-line').textContent = 'Big: ' + (v.big >= 0 ? factNames[v.big] : 'off');
+    $('big-line').setAttribute('aria-label', 'Toggle big type for ' + factNames[state.fact]
+      + '. Currently big: ' + (v.big >= 0 ? factNames[v.big] : 'none'));
+    $('big-line').setAttribute('aria-pressed', v.big === state.fact);
+    $('shot-instruction').textContent = m === 'video' ? 'Selected slot ' + (state.slot + 1) + '. Tap a shot to replace it.' : 'Tap a picture for this version.';
+    for (let i = 0; i < 8; i++) $('shot-' + i).setAttribute('aria-pressed', (m === 'video' ? v.shots[state.slot] : v.picture) === i);
+    for (let i = 0; i < 3; i++) $('headline-' + i).setAttribute('aria-pressed', v.headline === i);
+  }
+  function makeHowKey() {
+    return state.medium === 'announcement' ? 'scriptHow'
+      : state.editor === 'shots' ? (state.medium === 'video' ? 'shotHow' : 'pictureHow')
+      : state.editor === 'title' ? 'headlineHow' : 'factHow';
+  }
+  function keepInstruction(keys) {
+    if (keys.some(key => V.playing === L[key])) V.dropQueued();
+    else V.hush();
+  }
+  function makeHint(speak = false) {
+    const key = makeHowKey();
+    hint(L[key]);
+    if (speak && !playing && !playingScript) V.how(key, {valid:() => state.mode === 'make' && !playing && !playingScript, hint:false});
+  }
+  function edited(wrong = false) {
+    editRevision++;
+    const becameMatched = !allMatched && media.every(matches);
+    allMatched = media.every(matches);
+    if (!playing && !playingScript) keepInstruction([makeHowKey()]);
+    updateStrip();
+    renderEditor();
+    renderCanvas();
+    save();
+    Curio.tone(wrong ? 180 : 660, .08, .025);
+    if (wrong && !playing && !playingScript) {
+      const m = state.medium;
+      V.say('mismatch', {valid:() => coverage(m).includes(1), hint:false});
+      const key = m === 'announcement' ? 'wrongScriptHow' : 'wrongFactHow';
+      const revision = editRevision;
+      hint(L[key]);
+      V.how(key, {hint:false, valid:() => state.medium === m && editRevision === revision,
+        needs:m === 'announcement' ? '#undo-sentence' : ['#variant-a','#variant-b']});
+    } else if (becameMatched && !playing && !playingScript) {
+      V.say('allMatch', {valid:() => media.every(matches), hint:false});
+      hint('All four match. Tap The week to plan who will see them.');
+    } else makeHint();
+  }
+  function stopSegment() {
+    playing = false;
+    clearTimeout(playTimer);
+    segmentSlot = -1;
+    nextLoop.clear();
+    V.hush();
+    renderCanvas();
+  }
+  function segmentTick() {
+    if (!playing) return;
+    const elapsed = (performance.now() - playStart) % 14000;
+    const slot = elapsed < 2000 ? -1 : Math.min(3, Math.floor((elapsed - 2000) / 3000));
+    if (slot !== segmentSlot) {
+      if (slot === -1) {
+        loopShots = [...state.versions.video.shots];
+        nextLoop.clear();
+      }
+      segmentSlot = slot;
+      if (slot >= 0) currentShot = loopShots[slot];
+      renderCanvas();
+      Curio.tone(slot < 0 ? 392 : 523 + slot * 55, .05, .015);
+    }
+    playTimer = setTimeout(segmentTick, 50);
+  }
+  function toggleSegment() {
+    if (playing) {
+      stopSegment();
+      makeHint();
+      return;
+    }
+    V.hush();
+    playing = true;
+    playStart = performance.now();
+    segmentSlot = -2;
+    loopShots = [...state.versions.video.shots];
+    nextLoop.clear();
+    hint('Your 14-second segment loops. Change a future slot now; played slots update next loop. Tap Stop to finish.');
+    segmentTick();
+  }
+  function stopScript() {
+    scriptToken++;
+    playingScript = false;
+    V.hush();
+    renderEditor();
+    renderCanvas();
+  }
+  async function hearScript() {
+    if (playingScript) {
+      stopScript();
+      makeHint();
+      return;
+    }
+    const text = state.versions.announcement.script.map(i => sentences[i]).join(' ');
+    if (!text) return notify('Tap sentence chips to build a script first.');
+    V.hush();
+    playingScript = true;
+    const token = ++scriptToken;
+    renderEditor();
+    renderCanvas();
+    hint('Listening to this take. Keep editing, or tap Stop. Edits will be heard on the next take.');
+    await Curio.say(text);
+    if (!playingScript || token !== scriptToken) return;
+    playingScript = false;
+    renderEditor();
+    renderCanvas();
+    makeHint();
+  }
+  function schedule(plan = state.plan) {
+    let written = false;
+    let designed = false;
+    let videoStarted = false;
+    let progress = 0;
+    let captions = false;
+    let posters = 0;
+    let translatedPoster = false;
+    let site = false;
+    let translatedSite = false;
+    const out = [];
+    for (let d = 0; d < 4; d++) {
+      const p = plan[d];
+      let cost = 0;
+      const previousProgress = progress;
+      const c = {ann:false,spanAnn:false,video:false,captions:false,copies:0,spanPoster:false,site:false,spanSite:false};
+      if (p.ann) {
+        cost += .25 + (written ? 0 : .5);
+        written = true;
+        c.ann = true;
+      }
+      if (p.spanAnn && p.ann) {cost += .25; c.spanAnn = true;}
+      if (p.design && !designed) {cost += 2; designed = true;}
+      if (p.copies > 0 && designed) {cost += .25 * p.copies; posters += p.copies;}
+      if (p.spanPoster && designed && !translatedPoster) {cost += 1; translatedPoster = true;}
+      if (p.site && !site) {cost += 1; site = true;}
+      if (p.spanSite && site && !translatedSite) {cost += 1; translatedSite = true;}
+      if (p.video) videoStarted = true;
+      if (p.captions && videoStarted && !captions) {cost += 1; captions = true;}
+      let edit = 0;
+      if (videoStarted && !p.skipVideo) {
+        if (progress < 4) {
+          const left = Math.max(0,3 - cost);
+          const needed = 4 - progress;
+          // Keep the finishing half-hour for airing. Editing uses exact quarter-hour crew blocks.
+          edit = left >= needed + .5 ? needed : Math.min(left, Math.max(0,needed - .25));
+          progress += edit;
+          cost += edit;
+        }
+        if (progress >= 4 && cost + .5 <= 3) {cost += .5; c.video = true;}
+      }
+      c.captions = c.video && captions;
+      c.copies = posters;
+      c.spanPoster = translatedPoster;
+      c.site = site;
+      c.spanSite = translatedSite;
+      out.push({...c, cost, edit, progress, previousProgress, written, designed, videoStarted,
+        captionReady:captions, posterReady:translatedPoster, siteReady:site, spanishSiteReady:translatedSite});
+    }
+    return out;
+  }
+  function results(history = state.history) {
+    const heardM = Array(5).fill(0);
+    const validM = Array(5).fill(0);
+    const mediumMeetings = Object.fromEntries(media.map(m => [m,Array(5).fill(0)]));
+    for (const day of history) {
+      for (const [job,rate] of Object.entries(rates)) {
+        const multiplier = Number(day.jobs[job]) || 0;
+        const m = jobMedia[job];
+        for (let g = 0; g < 5; g++) {
+          const meetings = rate[g] * multiplier;
+          heardM[g] += meetings;
+          if (day.matches[m]) validM[g] += meetings;
+          mediumMeetings[m][g] += meetings * groups[g][1];
+        }
+      }
+    }
+    const rows = groups.map((g,i) => ({
+      heard:round(g[1] * (1 - Math.exp(-heardM[i]))),
+      got:round(g[1] * (1 - Math.exp(-validM[i]) * (1 + validM[i]))),
+      heardShare:1 - Math.exp(-heardM[i]), gotShare:1 - Math.exp(-validM[i]) * (1 + validM[i]),
+      heardM:heardM[i], validM:validM[i]
+    }));
+    return {rows, mediumMeetings, auditions:round(rows.slice(0,3).reduce((n,r) => n + r.got,0) * .08)};
+  }
+  function buy(key, delta) {
+    const d = state.selectedDay;
+    if (d < state.day || state.day >= 4 || running) {
+      notify(running ? 'Undo day or change mode to stop this run.' : L.locked, running ? null : 'locked');
+      return;
+    }
+    const before = copy(state.plan);
+    const p = state.plan[d];
+    const all = schedule();
+    const today = all[d];
+    if (key === 'copies') {
+      if (!today.designed && delta > 0) return notify('Buy Poster design first, on this day or an earlier day.');
+      p.copies = Math.max(0,Math.min(12,p.copies + delta));
+    } else if (key === 'spanAnn') {
+      if (!p.ann && !p.spanAnn) return notify('Buy the English announcement read for this day first.');
+      p[key] = !p[key];
+    } else if (key === 'spanPoster') {
+      if (!today.designed && !p[key]) return notify('Buy Poster design first.');
+      p[key] = !p[key];
+    } else if (key === 'spanSite') {
+      if (!today.siteReady && !p[key]) return notify('Buy the Site post first.');
+      p[key] = !p[key];
+    } else if (key === 'captions') {
+      if (!today.videoStarted && !p[key]) return notify('Start the Video edit first.');
+      p[key] = !p[key];
+    } else if (key === 'video') {
+      const earlier = all[d - 1];
+      if (earlier && earlier.videoStarted) p.skipVideo = !p.skipVideo;
+      else p.video = !p.video;
+    } else {
+      p[key] = !p[key];
+      if (key === 'ann' && !p.ann) p.spanAnn = false;
+    }
+    const next = schedule();
+    const overDay = next.findIndex((day,i) => i >= state.day && day.cost > 3.00001);
+    if (overDay >= 0) {
+      state.plan = before;
+      const spare = 3 - today.cost;
+      notify(overDay === d ? 'Only ' + hoursText(spare) + ' hours left today. Cancel a job or choose another day.'
+        : days[overDay] + ' would exceed 3 hours. Cancel a job there before moving this work.', 'budget');
+      Curio.tone(165,.15,.03);
+      return;
+    }
+    const affected = {ann:'announcement',spanAnn:'announcement',video:'video',captions:'video',
+      design:'poster',copies:'poster',spanPoster:'poster',site:'site',spanSite:'site'}[key];
+    keepInstruction(['welcomeWeek','planHow']);
+    weekRevision++;
+    Curio.tone(440 + next[d].cost * 80,.08,.025);
+    hint((matches(affected) ? '' : 'Warning: this version does not match. ') + 'Tap another job, or press Run ' + days[state.day] + '.');
+    if (!matches(affected)) notify('This ' + names[affected].toLowerCase() + " doesn't match. It can be heard, but it cannot count as got the message.");
+    renderWeek();
+    save();
+  }
+  function selectCell(day,job,action = null) {
+    state.selectedDay = day;
+    state.selectedJob = job;
+    renderWeek();
+    if (running) {
+      hint('The message is moving. Tap Undo day to step back, or choose a mode.');
+      Curio.tone(500,.06,.015);
+      return;
+    }
+    if (day < state.day || state.day >= 4) return notify(L.locked, 'locked');
+    const previous = day > 0 ? schedule()[day - 1] : null;
+    if (action === 'poster') {
+      if (previous && previous.designed) {
+        const count = state.plan[day].copies;
+        buy('copies', count > 0 ? -count : 1);
+      } else buy('design');
+    } else if (action === 'site' && previous && previous.siteReady) {
+      notify('The site post is already published and keeps reaching people. Buy Spanish post on its row to add it.');
+    } else if (action === 'spanPoster' && previous && previous.posterReady) {
+      notify('The Spanish poster is already up and keeps reaching people.');
+    } else if (action === 'spanSite' && previous && previous.spanishSiteReady) {
+      notify('The Spanish site post is already published and keeps reaching people.');
+    } else if (action === 'captions' && previous && previous.captionReady) {
+      notify('Captions are already ready. They add reach whenever the video airs.');
+    } else if (action) buy(action);
+    else hint(L.planHow);
+    Curio.tone(500,.06,.015);
+  }
+  function jobButtons() {
+    const d = state.selectedDay;
+    const p = state.plan[d];
+    const s = schedule()[d];
+    const previous = d > 0 ? schedule()[d - 1] : null;
+    const job = state.selectedJob;
+    $('job-title').textContent = days[d] + ' · ' + names[job] + ' · ' + hoursText(s.cost) + '/3 h';
+    const visible = {
+      announcement:['ann','spanAnn'], video:['video','captions'],
+      poster:['design','spanPoster'], site:['site','spanSite']
+    }[job];
+    const captions = {
+      ann:(previous && previous.written ? 'Read · 0.25 h' : 'Write + read · 0.75 h'),
+      spanAnn:'Spanish read · 0.25 h',
+      video:previous && previous.progress >= 4 ? 'Air · 0.5 h' : previous && previous.videoStarted ? 'Continue edit' : 'Start edit · 4 h total',
+      captions:'Captions · 1 h once', design:'Design · 2 h once',
+      spanPoster:'Spanish poster · 1 h', site:'Post · 1 h once', spanSite:'Spanish post · 1 h'
+    };
+    for (const key of ['ann','spanAnn','video','captions','design','spanPoster','site','spanSite']) {
+      const b = $('job-' + key);
+      b.hidden = !visible.includes(key);
+      b.textContent = captions[key];
+      let bought = !!p[key];
+      if (key === 'video') bought = s.videoStarted && !p.skipVideo;
+      b.setAttribute('aria-pressed', bought);
+      const already = (key === 'design' && previous && previous.designed)
+        || (key === 'captions' && previous && previous.captionReady)
+        || (key === 'spanPoster' && previous && previous.posterReady)
+        || (key === 'site' && previous && previous.siteReady)
+        || (key === 'spanSite' && previous && previous.spanishSiteReady);
+      b.setAttribute('aria-disabled', !!already || d < state.day || running);
+      if (already) b.textContent += ' · ready';
+    }
+    $('copy-counter').hidden = job !== 'poster';
+    $('copy-count').textContent = p.copies;
+    $('job-cost').textContent = job === 'video' ? 'Edit ' + s.progress.toFixed(2) + '/4 h. '
+      + (s.video ? 'Airs today.' : 'Uses spare hours; airing needs 0.5 h when finished.')
+      : job === 'poster' ? s.designed ? 'Copies cost 0.25 h each and stay up from print day.'
+        : 'Buy Design before planned copies can print.'
+      : job === 'site' ? 'A published post keeps reaching people through Thursday.'
+      : 'A fresh read is needed each day. Spanish reaches this model’s Spanish-speaking group.';
+  }
+  function renderWeek() {
+    const all = schedule();
+    document.querySelector('.week-side').classList.toggle('more-jobs', state.selectedJob === 'poster' && !running);
+    document.querySelector('.week-side').classList.toggle('busy-day', running);
+    const day = Math.min(state.day,3);
+    const selected = all[state.selectedDay];
+    $('week-title').textContent = running ? days[Math.max(0,state.day - 1)] + ' is running'
+      : state.day >= 4 ? 'Four days, one message' : days[state.day] + "'s crew call";
+    $('hours').textContent = hoursText(selected.cost) + ' / 3 h · ' + days[state.selectedDay].slice(0,3);
+    for (let i = 0; i < 12; i++) $('hour-' + i).classList.toggle('used', i < selected.cost * 4);
+    const rowKeys = ['announcement','video','poster','site','spanAnn','spanPoster','spanSite','captions'];
+    for (let d = 0; d < 4; d++) {
+      const s = all[d];
+      const p = state.plan[d];
+      const text = {
+        announcement:s.ann ? (d === 0 || !all[d - 1].written ? 'Write + read' : 'Read') : '+ Read',
+        video:s.edit > 0 ? 'Edit ' + hoursText(s.edit) + ' h' + (s.video ? ' + air' : '') : s.video ? 'Air 0.5 h' : s.videoStarted ? 'Edit paused' : '+ Start edit',
+        poster:(p.design ? 'Design' : '') + (p.copies ? (p.design ? ' + ' : '') + p.copies
+          + (p.copies === 1 ? ' copy' : ' copies') : '') || (s.designed ? s.copies + ' up' : '+ Design'),
+        site:p.site ? 'Publish' : s.site ? 'Published' : '+ Publish',
+        spanAnn:s.spanAnn ? 'Spanish read' : '+ Read 0.25 h',
+        spanPoster:s.spanPoster ? (p.spanPoster ? 'Put up 1 copy' : 'Still up') : '+ Copy 1 h',
+        spanSite:s.spanSite ? (p.spanSite ? 'Publish' : 'Published') : '+ Post 1 h',
+        captions:s.captions ? 'On air' : s.captionReady ? 'Ready' : '+ Captions'
+      };
+      if (p.copies > 0 && !s.designed) text.poster = 'Needs design';
+      for (const row of rowKeys) {
+        const b = $('cell-' + row + '-' + d);
+        b.querySelector('b').textContent = text[row];
+        const bought = row === 'announcement' ? s.ann : row === 'video' ? s.videoStarted && !p.skipVideo
+          : row === 'poster' ? p.design || p.copies > 0 : row === 'site' ? s.site
+          : row === 'captions' ? s.captionReady : s[row];
+        b.setAttribute('aria-pressed', !!bought);
+        b.classList.toggle('selected', d === state.selectedDay && (row === state.selectedJob
+          || row === 'captions' && state.selectedJob === 'video'));
+        b.classList.toggle('done', d < state.day);
+        const owner = {spanAnn:'announcement',spanPoster:'poster',spanSite:'site',captions:'video'}[row] || row;
+        const publishedMatch = d < state.history.length ? state.history[d].matches[owner] : matches(owner);
+        b.classList.toggle('warn', bought && !publishedMatch);
+        b.classList.toggle('progress', row === 'video' && s.videoStarted);
+        b.style.setProperty('--progress', s.progress / 4 * 100 + '%');
+        b.title = days[d] + ': ' + text[row] + '. ' + hoursText(s.cost) + ' of 3 crew hours planned.';
+        if (media.includes(row)) {
+          const suffix = row === 'announcement' ? s.spanAnn ? 'Spanish read' : '' : row === 'video'
+            ? s.captionReady ? 'Captions' : '' : row === 'poster' ? s.spanPoster ? 'Spanish copy' : '' : s.spanSite ? 'Spanish post' : '';
+          b.querySelector('.compact-sub').textContent = suffix;
+        }
+      }
+    }
+    $('run-day').textContent = running ? 'Running ' + days[Math.max(0,state.day - 1)] + '…' : state.day < 4 ? 'Run ' + days[state.day] : 'See Friday';
+    $('run-day').setAttribute('aria-disabled', running);
+    $('undo-day').setAttribute('aria-disabled', state.day === 0);
+    jobButtons();
+    renderAudience();
+    renderMap();
+  }
+  function renderAudience() {
+    const result = results(running ? state.history.slice(0,-1) : state.history);
+    for (let g = 0; g < 5; g++) {
+      const r = result.rows[g];
+      const previous = results(state.history.slice(0,-1)).rows[g];
+      const gain = state.history.length && !running ? r.got - previous.got : 0;
+      $('aud-count-' + g).textContent = r.heard + ' heard · ' + r.got + ' got it' + (gain ? ' (+' + gain + ' today)' : '');
+      $('aud-n-' + g).textContent = r.got + ' / ' + groups[g][1];
+      $('aud-heard-' + g).style.width = r.heardShare * 100 + '%';
+      $('aud-got-' + g).style.width = r.gotShare * 100 + '%';
+    }
+  }
+  function renderMap() {
+    const result = results();
+    const xs = [43,124,205,286,367];
+    const places = [
+      '<path d="M-26 49 L0 34 L26 49Z" fill="url(#roof)"/><path d="M-23 49H23V80H-23Z" fill="url(#wall)"/>'
+        + '<path d="M-14 56H-4V65H-14Z M5 56H15V65H5Z" fill="#8baebc"/><path d="M-4 68H4V80H-4Z" fill="#a05a44"/>'
+        + '<path d="M-19 52H19" stroke="#fff" stroke-opacity=".7"/><circle cx="0" cy="44" r="4" fill="#faf5df"/>',
+      '<path d="M-25 53Q-25 47-19 47H18Q25 47 25 55V73H-25Z" fill="url(#bus)" stroke="#9b6d21"/>'
+        + '<path d="M-19 51H-9V60H-19Z M-5 51H5V60H-5Z M9 51H19V64H9Z" fill="#405b6b"/>'
+        + '<path d="M-24 65H7" stroke="#916326" stroke-width="2"/><circle cx="-15" cy="74" r="5" fill="#293747"/>'
+        + '<circle cx="15" cy="74" r="5" fill="#293747"/><path d="M29 42V80M25 43H33" stroke="#687c85" stroke-width="2"/>',
+      '<path d="M-26 40H26V80H-26Z" fill="url(#wall)"/><path d="M-29 40H29V45H-29Z" fill="url(#roof)"/>'
+        + '<path d="M-19 51H19V67H-19Z" fill="#315e76"/><path d="M-15 55H15M-15 60H6" stroke="#fff2c4" stroke-width="2"/>'
+        + '<path d="M-19 73H-2M5 73H20" stroke="#af7754" stroke-width="4"/>',
+      '<path d="M-27 57L-12 44L3 57Z M-1 48L14 34L29 48Z" fill="url(#roof)"/>'
+        + '<path d="M-25 57H1V80H-25Z M1 48H27V80H1Z" fill="url(#wall)"/>'
+        + '<path d="M-20 62H-13V69H-20Z M7 54H14V62H7Z M18 54H24V62H18Z" fill="#9bb9c0"/>'
+        + '<path d="M-8 69H-2V80H-8Z M11 69H18V80H11Z" fill="#ad755c"/>',
+      '<path d="M-25 42H25V80H-25Z" fill="url(#wall)"/><path d="M-28 40H28V46H-28Z" fill="url(#roof)"/>'
+        + '<path d="M-18 52H-2V64H-18Z" fill="#8babb9"/><path d="M6 52H19V66H6Z" fill="#385565"/>'
+        + '<path d="M-18 73H19" stroke="#a87650" stroke-width="4"/><path d="M-14 70V64M16 70V66" stroke="#5a6068"/>'
+    ];
+    let svg = '<svg viewBox="0 0 410 140" role="img" aria-label="Symbolic audience map: homeroom, late bus, classroom, homes and staff room">'
+      + '<defs><linearGradient id="roof" x2=".4" y2="1"><stop stop-color="#8eacb8"/><stop offset="1" stop-color="#415c70"/></linearGradient>'
+      + '<linearGradient id="wall" x2=".5" y2="1"><stop stop-color="#fff9e8"/><stop offset="1" stop-color="#d6bfa0"/></linearGradient>'
+      + '<linearGradient id="bus" x2=".3" y2="1"><stop stop-color="#ffe08a"/><stop offset="1" stop-color="#d89e37"/></linearGradient>'
+      + '<filter id="mapshadow"><feDropShadow dx="2" dy="3" stdDeviation="2" flood-color="#354651" flood-opacity=".2"/></filter></defs>'
+      + '<path d="M0 84Q100 75 206 85T410 83V140H0Z" fill="#b8c7b4"/>'
+      + '<path d="M0 122H410" stroke="#b9aa91" stroke-width="19"/>'
+      + '<path d="M0 122H410" stroke="#f7f1d9" stroke-width="1.5" stroke-dasharray="9 7"/>';
+    for (let g = 0; g < 5; g++) {
+      const x = xs[g];
+      if (result.rows[g].heardM > 0) {
+        svg += '<path class="map-pulse" d="M205 132Q' + x + ' 135 ' + x + ' 81" style="--group:' + groups[g][2] + '"/>';
+      }
+      svg += '<g transform="translate(' + x + ' 0)" filter="url(#mapshadow)">' + places[g] + '</g>'
+        + '<text class="map-label" x="' + x + '" y="22" text-anchor="middle">'
+        + ['On time','Late bus','English','Homes','Teachers'][g] + '</text>';
+      for (let i = 0; i < 12; i++) {
+        const lit = i < Math.round(result.rows[g].heardShare * 12);
+        svg += '<circle class="map-dot' + (lit ? ' lit' : '') + '" cx="' + (x - 22 + i % 6 * 9)
+          + '" cy="' + (92 + Math.floor(i / 6) * 10) + '" r="3" style="--group:' + groups[g][2]
+          + ';--delay:' + (g * .25 + i * .08) + 's"/>';
+      }
+    }
+    $('map-card').innerHTML = svg + '</svg>';
+    $('map-card').classList.toggle('running', running && !Curio.reduce);
+  }
+  function cancelRun() {
+    clearTimeout(runTimer);
+    runToken++;
+    if (running) state.selectedDay = Math.min(state.day,3);
+    running = false;
+    $('map-card').classList.remove('running');
+  }
+  function finishDay(token) {
+    if (token !== runToken) return;
+    clearTimeout(runTimer);
+    runTimer = null;
+    running = false;
+    state.selectedDay = Math.min(state.day,3);
+    $('map-card').classList.remove('running');
+    save();
+    if (state.mode !== 'week') return;
+    renderWeek();
+    if (state.day === 4) setMode('friday', true);
+    else {
+      hint('Day complete. Check the audience bars, then tap jobs for ' + days[state.day] + ' and press Run day.');
+      V.say('dayDone', {valid:() => state.mode === 'week' && !running, hint:false});
+    }
+  }
+  function runDay() {
+    if (running) return;
+    if (state.day >= 4) return setMode('friday');
+    const jobs = schedule()[state.day];
+    if (jobs.cost > 3.00001) return notify('This day is over 3 hours. Cancel a job before running it.', 'budget');
+    V.hush();
+    const snapshot = {jobs:copy(jobs), matches:Object.fromEntries(media.map(m => [m,matches(m)])), versions:copy(state.versions)};
+    state.history.push(snapshot);
+    state.day = state.history.length;
+    running = !Curio.reduce;
+    state.selectedDay = Math.min(running ? state.day - 1 : state.day,3);
+    const token = ++runToken;
+    Curio.tone(392,.2,.025);
+    renderWeek();
+    hint('The message is moving through school. Tap Undo day to step back, or a mode button to leave the map.');
+    save();
+    if (Curio.reduce) finishDay(token);
+    else runTimer = setTimeout(() => finishDay(token), 4000);
+  }
+  function undoDay() {
+    if (!state.history.length) return notify('No day has run yet. Tap a job, then Run day.');
+    cancelRun();
+    V.hush();
+    state.history.pop();
+    state.day = state.history.length;
+    state.selectedDay = state.day;
+    renderWeek();
+    hint('Back to ' + days[state.day] + '. Change the jobs, then press Run day again.');
+    Curio.tone(294,.1,.025);
+    save();
+  }
+  function renderFriday() {
+    const r = results();
+    $('days-count').textContent = state.day + '/4 days run. Model: got it = two complete, matching meetings; not measured understanding.';
+    for (let g = 0; g < 5; g++) {
+      $('result-bar-' + g).style.width = r.rows[g].gotShare * 100 + '%';
+      $('result-percent-' + g).textContent = round(r.rows[g].gotShare * 100) + '%';
+      $('result-number-' + g).textContent = r.rows[g].got + ' / ' + groups[g][1];
+      $('result-heard-' + g).textContent = r.rows[g].heard + ' heard · ' + (groups[g][1] - r.rows[g].heard) + ' never heard';
+    }
+    $('audition').innerHTML = '<strong>' + r.auditions + '</strong> students might audition'
+      + '<p>Model guess: 8% of students who got it. Excludes families and teachers.</p>';
+    for (const m of media) {
+      for (let g = 0; g < 5; g++) $('meetings-' + m + '-' + g).textContent = round(r.mediumMeetings[m][g]);
+    }
+  }
+  function setMode(m, fromThursday = false) {
+    if (!['make','week','friday'].includes(m)) return;
+    const oldFocus = document.activeElement;
+    const oldMode = oldFocus && oldFocus.closest('.mode');
+    const moveFocus = oldMode && oldMode.id !== 'mode-' + m;
+    stopSegment();
+    stopScript();
+    cancelRun();
+    V.hush();
+    state.mode = m;
+    for (const name of ['make','week','friday']) {
+      $('mode-' + name).hidden = m !== name;
+      $('m-' + name).setAttribute('aria-pressed', m === name);
+    }
+    if (m === 'make') {
+      renderEditor();
+      renderCanvas();
+      makeHint();
+    } else if (m === 'week') {
+      weekRevision = 0;
+      renderWeek();
+      hint(state.day >= 4 ? 'All four days have run. Tap See Friday, or Undo day to revise Thursday.' : L.welcomeWeek);
+    } else {
+      renderFriday();
+      hint(L.fridayHow);
+      V.how('fridayHow', {hint:false, valid:() => state.mode === 'friday'});
+      if (fromThursday) {
+        V.say('dayDone', {hint:false, valid:() => state.mode === 'friday'});
+        V.say('fridayLine', {hint:false, valid:() => state.mode === 'friday'});
+      }
+      if (results().rows.some(r => r.heardM === 0)) {
+        V.say('noOne', {hint:false, valid:() => state.mode === 'friday'
+          && results().rows.some(r => r.heardM === 0)});
+      }
+    }
+    if (m !== 'friday' && !(m === 'week' && state.day >= 4)) V.welcome();
+    if (moveFocus) $('m-' + m).focus({preventScroll:true});
+    save();
+  }
+  function setMedium(m) {
+    if (state.medium === m) {
+      makeHint(true);
+      Curio.tone(587,.06,.02);
+      return;
+    }
+    stopSegment();
+    stopScript();
+    V.hush();
+    state.medium = m;
+    renderEditor();
+    renderCanvas();
+    makeHint(true);
+    Curio.tone(587,.06,.02);
+    save();
+  }
+  function buildControls() {
+    for (const m of media) {
+      const div = document.createElement('div');
+      div.id = 'status-' + m;
+      div.className = 'version-status';
+      div.innerHTML = '<b>' + symbols[m] + ' ' + names[m] + '</b><span class="checks"></span><span class="badge"></span>';
+      $('version-strip').append(div);
+      $('media-' + m).onclick = () => setMedium(m);
+    }
+    for (let i = 0; i < 4; i++) {
+      const b = document.createElement('button');
+      b.id = 'slot-' + i;
+      b.className = 'slot';
+      b.setAttribute('aria-label', 'Video shot slot ' + (i + 1));
+      b.innerHTML = '<div class="slot-picture"></div><span></span>';
+      b.onclick = () => {
+        if (state.slot === i && state.editor === 'shots') {
+          makeHint(!playing);
+          Curio.tone(440 + i * 50,.06,.02);
+          return;
+        }
+        state.slot = i;
+        state.editor = 'shots';
+        editRevision++;
+        if (!playing) V.hush();
+        renderEditor();
+        renderCanvas();
+        makeHint(!playing);
+        Curio.tone(440 + i * 50,.06,.02);
+      };
+      $('filmstrip').append(b);
+    }
+    const play = document.createElement('button');
+    play.id = 'play-segment';
+    play.className = 'play';
+    play.textContent = '▶ Play segment';
+    play.onclick = toggleSegment;
+    $('filmstrip').append(play);
+    for (let i = 0; i < 8; i++) {
+      const b = document.createElement('button');
+      b.id = 'shot-' + i;
+      b.className = 'shot-choice';
+      b.innerHTML = imageMarkup(i,true) + '<span>' + esc(shots[i][1]) + '</span>';
+      b.onclick = () => {
+        const v = state.versions[state.medium];
+        if (state.medium === 'video') {
+          v.shots[state.slot] = i;
+          if (playing) {
+            if (state.slot > segmentSlot) loopShots[state.slot] = i;
+            else nextLoop.add(state.slot);
+          }
+        } else v.picture = i;
+        edited();
+      };
+      $('shot-bin').append(b);
+      const sentence = document.createElement('button');
+      sentence.id = 'sentence-' + i;
+      sentence.className = 'sentence';
+      sentence.innerHTML = '<span>' + esc(sentences[i]) + '</span><em>' + words[i] + ' words</em>';
+      sentence.onclick = () => {
+        if (state.versions.announcement.script.length >= 60) return notify('Your script has 60 sentences. Use Undo sentence before adding more.');
+        state.versions.announcement.script.push(i);
+        edited([4,5].includes(i));
+      };
+      $('sentences').append(sentence);
+    }
+    for (let i = 0; i < 3; i++) {
+      const b = document.createElement('button');
+      b.id = 'headline-' + i;
+      b.className = 'headline-choice';
+      b.textContent = headlines[i];
+      b.onclick = () => { state.versions[state.medium].headline = i; edited(); };
+      $('headline-bin').append(b);
+    }
+    $('week-board').innerHTML = '<div class="board-head">CREW HOURS</div>'
+      + days.map(d => '<div class="board-head">' + d.slice(0,3).toUpperCase() + '</div>').join('');
+    for (const [row,label] of [['announcement','Announcement'],['video','Video'],['poster','Poster'],['site','Site'],
+      ['spanAnn','↳ Spanish read'],['spanPoster','↳ Spanish poster'],['spanSite','↳ Spanish site'],['captions','↳ Captions']]) {
+      const sub = !media.includes(row);
+      const lab = document.createElement('div');
+      lab.className = 'row-label' + (sub ? ' sub sub-row' : '');
+      lab.textContent = label;
+      $('week-board').append(lab);
+      for (let d = 0; d < 4; d++) {
+        const b = document.createElement('button');
+        b.className = 'board-cell' + (sub ? ' sub-row' : '');
+        b.id = 'cell-' + row + '-' + d;
+        b.innerHTML = '<b></b>' + (sub ? '' : '<span class="compact-sub"></span>');
+        b.setAttribute('aria-label', days[d] + ' ' + label.replace('↳ ',''));
+        const owner = {spanAnn:'announcement',spanPoster:'poster',spanSite:'site',captions:'video'}[row] || row;
+        const action = row === 'announcement' ? 'ann' : row;
+        b.onclick = () => selectCell(d, owner, action);
+        $('week-board').append(b);
+      }
+    }
+    for (let i = 0; i < 12; i++) {
+      const mark = document.createElement('i');
+      mark.id = 'hour-' + i;
+      $('hour-boxes').append(mark);
+    }
+    for (const key of ['ann','spanAnn','video','captions','design','spanPoster','site','spanSite']) {
+      const b = document.createElement('button');
+      b.id = 'job-' + key;
+      b.className = 'plain-btn';
+      b.onclick = () => {
+        if (b.getAttribute('aria-disabled') === 'true') return notify('This one-time job is already ready, or the day is locked.');
+        buy(key);
+      };
+      $('job-options').append(b);
+    }
+    for (let g = 0; g < 5; g++) {
+      const [name,size,color,description] = groups[g];
+      const row = document.createElement('div');
+      row.className = 'audience-row';
+      row.style.setProperty('--group',color);
+      row.innerHTML = '<div class="audience-label"><b title="' + esc(description) + '">' + name
+        + '</b><span id="aud-n-' + g + '"></span></div><div class="audience-track"><i class="heard" id="aud-heard-'
+        + g + '"></i><i class="got" id="aud-got-' + g + '"></i></div><div class="audience-count" id="aud-count-' + g + '"></div>';
+      $('audience-list').append(row);
+      const result = document.createElement('div');
+      result.className = 'result-row';
+      result.style.setProperty('--group',color);
+      result.innerHTML = '<div class="group-name">' + name + '<small id="result-heard-' + g + '"></small></div>'
+        + '<div class="result-track"><i id="result-bar-' + g + '"></i></div><div class="result-count"><span id="result-percent-'
+        + g + '"></span><small id="result-number-' + g + '"></small></div>';
+      $('big-results').append(result);
+    }
+    $('reach-table').setAttribute('aria-label','Expected meetings by medium and audience, not unique people');
+    $('reach-table').innerHTML = '<thead><tr><th>Medium</th>' + ['On','Bus','EL','Fam','Tch'].map(g => '<th>' + g + '</th>').join('')
+      + '</tr></thead><tbody>' + media.map(m => '<tr><th>' + names[m] + '</th>' + groups.map((g,i) => '<td id="meetings-'
+        + m + '-' + i + '"></td>').join('') + '</tr>').join('') + '</tbody>';
+  }
+  buildControls();
+  load();
+  for (const m of ['make','week','friday']) $('m-' + m).onclick = () => {
+    if (state.mode !== m) return setMode(m);
+    if (!V.welcome()) {
+      if (m === 'make') makeHint(true);
+      else if (m === 'friday') V.how('fridayHow', {hint:false});
+    }
+    Curio.tone(523,.06,.02);
+  };
+  for (const t of ['facts','shots','title']) $('edit-' + t).onclick = () => {
+    if (state.editor === t) {
+      makeHint(true);
+      Curio.tone(523,.06,.02);
+      return;
+    }
+    state.editor = t;
+    if (!playing) V.hush();
+    renderEditor();
+    makeHint(true);
+    Curio.tone(523,.06,.02);
+  };
+  $('fact-picker').onchange = () => {
+    state.fact = Number($('fact-picker').value);
+    if (!playing) keepInstruction([makeHowKey()]);
+    renderEditor();
+    makeHint();
+  };
+  for (const id of ['variant-a','variant-b']) $(id).onclick = () => {
+    const value = Number($(id).dataset.value);
+    const v = state.versions[state.medium];
+    const selected = v.facts[state.fact] === value;
+    v.facts[state.fact] = selected ? null : value;
+    if (selected && v.big === state.fact) v.big = -1;
+    edited(value === 1 && !selected);
+  };
+  $('big-line').onclick = () => {
+    const v = state.versions.poster;
+    if (v.facts[state.fact] === null) return notify('Add this fact line first, then tap Big.');
+    v.big = v.big === state.fact ? -1 : state.fact;
+    edited();
+  };
+  $('undo-sentence').onclick = () => { state.versions.announcement.script.pop(); edited(); };
+  $('hear-script').onclick = hearScript;
+  $('copies-minus').onclick = () => buy('copies',-1);
+  $('copies-plus').onclick = () => buy('copies',1);
+  $('run-day').onclick = runDay;
+  $('undo-day').onclick = undoDay;
+  $('see-friday').onclick = () => setMode('friday');
+  $('back-make').onclick = () => setMode('make');
+  $('try-again').onclick = () => {
+    cancelRun();
+    state.history = [];
+    state.day = 0;
+    state.selectedDay = 0;
+    setMode('week');
+    notify('Same versions and plan, fresh results. Tap cells to change the route before you run Monday.');
+  };
+  $('reset').onclick = () => {
+    stopSegment();
+    stopScript();
+    V.hush();
+    cancelRun();
+    if (state.mode === 'week') renderWeek();
+    $('reset-dialog').showModal();
+    hint(L.resetHow);
+    V.how('resetHow', {hint:false, valid:() => $('reset-dialog').open, needs:['#reset-yes','#reset-no']});
+  };
+  function afterResetCancel() {
+    V.hush();
+    if (state.mode === 'make') makeHint();
+    else if (state.mode === 'friday') hint(L.fridayHow);
+    else hint(state.day < 4 ? 'Tap a job, or press Run ' + days[state.day] + '.'
+      : 'Tap See Friday, or Undo day to revise Thursday.');
+  }
+  $('reset-dialog').addEventListener('cancel', afterResetCancel);
+  $('reset-no').onclick = () => {
+    $('reset-dialog').close();
+    afterResetCancel();
+    $('reset').focus({preventScroll:true});
+  };
+  $('reset-yes').onclick = () => {
+    cancelRun();
+    stopSegment();
+    stopScript();
+    Object.assign(state,fresh());
+    editRevision = 0;
+    allMatched = false;
+    try { localStorage.removeItem(STORAGE); } catch {}
+    $('reset-dialog').close();
+    updateStrip();
+    setMode('make');
+    $('reset').focus({preventScroll:true});
+  };
+  Curio.init({clips:"voice:*", rate:1});
+  Curio.onMotion(() => {
+    if (running && Curio.reduce) finishDay(runToken);
+    renderMap();
+  });
+  Curio.onSound(sound => {
+    if (!sound && playingScript) stopScript();
+    if (playing) V.hush();
+  });
+  $('read').onclick = () => {
+    if (playing) stopSegment();
+    if (playingScript) stopScript();
+    V.read();
+  };
+  window.__tool = {
+    state, setMode, setMedium, allLines:() => V.allLines(), vlog:V.log, V,
+    coverage, matches, schedule, results, buy, runDay, undoDay, renderWeek, renderFriday,
+    get playing() { return playing; }, get running() { return running; },
+    get segmentSlot() { return segmentSlot; }, get currentShot() { return currentShot; }
+  };
+  allMatched = media.every(matches);
+  updateStrip();
+  setMode('make');
+})();
+</script>
+</body>
+</html>

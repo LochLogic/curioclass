@@ -1,0 +1,290 @@
+{
+  "keep": [
+    "#paper-frame",
+    "#hint"
+  ],
+  "states": [
+    {
+      "name": "Federal card linked",
+      "steps": [
+        {
+          "click": "#worker-1"
+        },
+        {
+          "js": "const f=document.getElementById('paper-frame');const e=document.getElementById('line-federal');f.scrollTop+=Math.max(0,e.getBoundingClientRect().bottom-f.getBoundingClientRect().bottom+40);"
+        },
+        {
+          "click": "#line-federal"
+        },
+        {
+          "click": "#show-used"
+        },
+        {
+          "click": "#plain"
+        },
+        {
+          "js": "if(!document.querySelectorAll('.linked').length)throw Error('Dependency highlights lost');"
+        }
+      ],
+      "keep": [
+        "#close-card",
+        "#show-used"
+      ],
+      "sizes": [
+        "1366x768",
+        "680x425",
+        "375x812"
+      ]
+    },
+    {
+      "name": "Plain words and large YTD",
+      "steps": [
+        {
+          "click": "#worker-2"
+        },
+        {
+          "click": "#plain"
+        },
+        {
+          "click": "#m-change"
+        },
+        {
+          "js": "document.getElementById('rate').value=200000;document.getElementById('rate').dispatchEvent(new Event('change'));document.getElementById('number').value=24;document.getElementById('number').dispatchEvent(new Event('change'));"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "All hourly maxima",
+      "steps": [
+        {
+          "click": "#worker-1"
+        },
+        {
+          "click": "#m-change"
+        },
+        {
+          "js": "for(const [id,value] of [['hours1',60],['hours2',60],['rate',60],['k401',15],['number',26]]){const e=document.getElementById(id);e.value=value;e.dispatchEvent(new Event(id.startsWith('hours')||id==='k401'?'input':'change'));}"
+        }
+      ],
+      "keep": [
+        "#hours1",
+        "#hours2",
+        "#rate",
+        "#reset"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "Zero hours",
+      "steps": [
+        {
+          "click": "#m-change"
+        },
+        {
+          "js": "const e=document.getElementById('hours1');e.value=0;e.dispatchEvent(new Event('input'));"
+        }
+      ],
+      "keep": [
+        "#what-moved"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "Cap crossing card",
+      "steps": [
+        {
+          "click": "#worker-2"
+        },
+        {
+          "click": "#m-change"
+        },
+        {
+          "js": "for(const [id,value] of [['rate',200000],['number',23]]){const e=document.getElementById(id);e.value=value;e.dispatchEvent(new Event('change'));}"
+        },
+        {
+          "click": "#m-stub"
+        },
+        {
+          "click": "#line-ss"
+        }
+      ],
+      "keep": [
+        "#show-used"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "Guess result",
+      "steps": [
+        {
+          "click": "#worker-1"
+        },
+        {
+          "click": "#m-guess"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "wait": 2200
+        }
+      ],
+      "keep": [
+        "#guess-apron",
+        "#next",
+        "#retry"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "Next during reveal",
+      "steps": [
+        {
+          "click": "#m-guess"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "wait": 250
+        },
+        {
+          "click": "#next"
+        },
+        {
+          "wait": 2000
+        }
+      ],
+      "keep": [
+        "#guess-apron",
+        "#next"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "Try again during reveal",
+      "steps": [
+        {
+          "click": "#m-guess"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "wait": 250
+        },
+        {
+          "click": "#retry"
+        },
+        {
+          "wait": 2000
+        }
+      ],
+      "keep": [
+        "#guess-apron",
+        "#retry"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "Employer benefit delta",
+      "steps": [
+        {
+          "click": "#worker-1"
+        },
+        {
+          "click": "#m-change"
+        },
+        {
+          "js": "const e=document.getElementById('health');e.value='none';e.dispatchEvent(new Event('change'));document.getElementById('paper-frame').scrollTop=1000;"
+        }
+      ],
+      "keep": [
+        "#line-employerHealth"
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "Underfunded guess guard",
+      "steps": [
+        {
+          "click": "#m-change"
+        },
+        {
+          "js": "for(const [id,value] of [['hours1',.5],['health','plan'],['k401',15]]){const e=document.getElementById(id);e.value=value;e.dispatchEvent(new Event(id==='hours1'||id==='k401'?'input':'change'));}"
+        },
+        {
+          "click": "#m-guess"
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#m-change"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "Zero gross guess result",
+      "steps": [
+        {
+          "click": "#m-change"
+        },
+        {
+          "js": "const e=document.getElementById('hours1');e.value=0;e.dispatchEvent(new Event('input'));"
+        },
+        {
+          "click": "#m-guess"
+        },
+        {
+          "click": "#check"
+        },
+        {
+          "wait": 2200
+        }
+      ],
+      "keep": [
+        "#hint",
+        "#next",
+        "#retry"
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    }
+  ]
+}

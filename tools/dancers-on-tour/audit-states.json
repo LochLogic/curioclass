@@ -136,7 +136,104 @@
         }
       ],
       "keep": [
-        "#warmbar"
+        "#warmbar",
+        "#blockMenu",
+        "#warmList"
+      ]
+    },
+    {
+      "name": "short-prep-amber",
+      "steps": [
+        {
+          "click": "#m-adapt"
+        },
+        {
+          "click": "#reset"
+        },
+        {
+          "click": "#phrase-1"
+        },
+        {
+          "click": "#swap"
+        },
+        {
+          "click": "#m-warm"
+        },
+        {
+          "click": "#block-0"
+        },
+        {
+          "click": "#block-2"
+        },
+        {
+          "click": "#m-adapt"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ],
+      "keep": [
+        "#lights",
+        "#spread",
+        "#run",
+        "#tempo",
+        "#swap"
+      ]
+    },
+    {
+      "name": "static-prep-amber",
+      "steps": [
+        {
+          "click": "#v-theater"
+        },
+        {
+          "click": "#m-warm"
+        },
+        {
+          "click": "#block-2"
+        },
+        {
+          "click": "#block-0"
+        },
+        {
+          "click": "#block-5"
+        },
+        {
+          "click": "#block-3"
+        },
+        {
+          "click": "#m-adapt"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ],
+      "keep": [
+        "#lights"
+      ]
+    },
+    {
+      "name": "park-sprinkler-travel",
+      "steps": [
+        {
+          "click": "#v-park"
+        },
+        {
+          "click": "#m-adapt"
+        },
+        {
+          "click": "#phrase-1"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ],
+      "keep": [
+        "#lights",
+        "#notes",
+        "#run"
       ]
     }
   ]
