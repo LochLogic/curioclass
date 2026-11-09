@@ -1,0 +1,293 @@
+# Research packet list (Cory, 2026-11-09)
+#
+# The 288 tools still to spec outside Sara's claim, in work order (fact-heavy subjects first).
+# Gemini 3.8 Flash writes tools/<id>/research.md for each (docs/agents/RESEARCH-PACKET.md); spec sessions take them in this order.
+
+backpack-pack	social-studies	k	Backpack Pack
+playground-rules	social-studies	k	Playground Rules
+symbol-spotter	social-studies	k	Symbol Spotter
+then-and-now-flip	social-studies	k	Then and Now Flip
+festival-parade	social-studies	1	Festival Parade
+community-helpers-village	social-studies	1	Community Helpers Village
+market-day	social-studies	1	Market Day
+compass-rose-quest	social-studies	1	Compass Rose Quest
+capsule-from-1965	social-studies	1	Capsule From 1965
+teddy-bear-makers	social-studies	1	Teddy Bear Makers
+my-life-timeline	social-studies	1	My Life Timeline
+wonder-kite	social-studies	1	Wonder Kite
+town-council	social-studies	2	Town Council
+changemaker-cards	social-studies	2	Changemaker Cards
+how-do-you-know	social-studies	2	How Do You Know?
+piggy-bank-planner	social-studies	2	Piggy Bank Planner
+pen-pal-parcels	social-studies	2	Pen Pal Parcels
+storm-helpers	social-studies	2	Storm Helpers
+the-last-carousel-ride	social-studies	2	The Last Carousel Ride
+three-towns	social-studies	2	Three Towns
+day-in-the-life	social-studies	3	Day in the Life
+promise-check	social-studies	3	Promise Check
+then-and-now-overlay	social-studies	3	Then-and-Now Overlay
+map-maker	social-studies	3	Map Maker
+pool-repair-vote	social-studies	3	Pool Repair Vote
+ripple-street	social-studies	3	Ripple Street
+school-fix-it-meeting	social-studies	3	School Fix-It Meeting
+barter-bay	social-studies	4	Barter Bay
+skateboard-fund-chances	social-studies	4	Skateboard Fund Chances
+settle-the-valley	social-studies	4	Settle the Valley
+inquiry-ladder	social-studies	4	Inquiry Ladder
+learn-and-earn	social-studies	4	Learn and Earn
+made-for-whom	social-studies	4	Made for Whom?
+state-economy-map	social-studies	4	State Economy Map
+bill-to-law-board-game	social-studies	4	Bill to Law Board Game
+state-story-timeline	social-studies	4	State Story Timeline
+colonial-trade-routes	social-studies	5	Colonial Trade Routes
+ship-s-log	social-studies	5	Ship's Log
+history-article-review	social-studies	5	History Article Review
+interest-seesaw	social-studies	5	Interest Seesaw
+source-scout	social-studies	5	Source Scout
+revolution-road	social-studies	5	Revolution Road
+rights-match	social-studies	5	Rights Match
+tools-for-change	social-studies	5	Tools for Change
+why-the-pony-express-ended	social-studies	5	Why the Pony Express Ended
+agora-assembly	social-studies	6	Agora Assembly
+silk-road-traders	social-studies	6	Silk Road Traders
+rome-republic-to-empire	social-studies	6	Rome: Republic to Empire
+border-trade-post	social-studies	6	Border Trade Post
+hunter-to-farmer	social-studies	6	Hunter to Farmer
+five-themes-field-trip	social-studies	6	Five Themes Field Trip
+river-kingdom	social-studies	6	River Kingdom
+museum-label-writer	social-studies	6	Museum Label Writer
+smoke-and-honey	social-studies	6	Smoke and Honey
+the-shrinking-lake	social-studies	6	The Shrinking Lake
+region-compare	social-studies	6	Region Compare
+columbian-exchange	social-studies	7	Columbian Exchange
+tenochtitlan-builder	social-studies	7	Tenochtitlan Builder
+constantinople-defense	social-studies	7	Constantinople Defense
+historians-disagree	social-studies	7	Historians Disagree
+house-of-wisdom	social-studies	7	House of Wisdom
+salt-and-gold-caravan	social-studies	7	Salt and Gold Caravan
+mongol-messenger	social-studies	7	Mongol Messenger
+manor-life	social-studies	7	Manor Life
+panel-of-experts	social-studies	7	Panel of Experts
+printing-press	social-studies	7	Printing Press
+unlabeled-archive	social-studies	7	Unlabeled Archive
+constitutional-convention	social-studies	8	Constitutional Convention
+evidence-corkboard	social-studies	8	Evidence Corkboard
+levers-of-power	social-studies	8	Levers of Power
+motion-on-the-floor	social-studies	8	Motion on the Floor
+reconstruction-amendments	social-studies	8	Reconstruction Amendments
+mill-town	social-studies	8	Mill Town
+colonial-newsroom	social-studies	8	Colonial Newsroom
+shaping-our-week	social-studies	8	Shaping Our Week
+voices-of-freedom	social-studies	8	Voices of Freedom
+civil-war-map-room	social-studies	8	Civil War Map Room
+two-parties	social-studies	8	Two Parties
+who-gets-to-vote	social-studies	8	Who Gets to Vote?
+expansion-map	social-studies	8	Expansion Map
+scramble-for-africa	social-studies	9	Scramble for Africa
+factory-floor	social-studies	9	Factory Floor
+layers-and-scales	social-studies	9	Layers and Scales
+ideas-that-spread	social-studies	9	Ideas That Spread
+alliance-web	social-studies	9	Alliance Web
+inflation-wallet	social-studies	10	Inflation Wallet
+claim-repair-shop	social-studies	10	Claim Repair Shop
+climate-on-the-move	social-studies	10	Climate on the Move
+independence-timeline	social-studies	10	Independence Timeline
+where-s-my-phone-from	social-studies	10	Where's My Phone From?
+cold-war-crisis-room	social-studies	10	Cold War Crisis Room
+remembrance-archive	social-studies	10	Remembrance Archive
+behind-the-podcast	social-studies	11	Behind the Podcast
+movement-strategy-room	social-studies	11	Movement Strategy Room
+two-space-races	social-studies	11	Two Space Races
+baron-or-builder	social-studies	11	Baron or Builder?
+missing-voices-archive	social-studies	11	Missing Voices Archive
+decades-explorer	social-studies	11	Decades Explorer
+suburb-boom	social-studies	11	Suburb Boom
+muckraker-studio	social-studies	11	Muckraker Studio
+empire-debate	social-studies	11	Empire Debate
+home-front-mobilizer	social-studies	11	Home Front Mobilizer
+brain-explorer	social-studies	12	Brain Explorer
+causes-web	social-studies	12	Causes Web
+who-decides	social-studies	12	Who Decides?
+supreme-court-simulator	social-studies	12	Supreme Court Simulator
+checks-and-balances	social-studies	12	Checks and Balances
+campaign-manager	social-studies	12	Campaign Manager
+build-a-government	social-studies	12	Build a Government
+jury-room	social-studies	12	Jury Room
+train-your-dog	social-studies	12	Train Your Dog
+one-life-many-stages	social-studies	12	One Life, Many Stages
+economy-dashboard	social-studies	12	Economy Dashboard
+fed-chair	social-studies	12	Fed Chair
+trait-lab	social-studies	12	Trait Lab
+two-villages	social-studies	12	Two Villages
+case-conference	social-studies	12	Case Conference
+one-more-hour	social-studies	12	One More Hour
+go-along	social-studies	12	Go Along?
+who-has-the-power	social-studies	12	Who Has the Power?
+beaver-builders	science	k	Beaver Builders
+shade-builder	science	k	Shade Builder
+weather-wardrobe	science	k	Weather Wardrobe
+terrarium-pal	science	k	Terrarium Pal
+shadow-puppet-studio	science	1	Shadow Puppet Studio
+who-s-my-baby	science	1	Who's My Baby?
+nature-inventor	science	1	Nature Inventor
+sky-diary	science	1	Sky Diary
+fast-or-slow	science	2	Fast or Slow?
+island-maker	science	2	Island Maker
+plant-experiment-shelf	science	2	Plant Experiment Shelf
+tug-of-war-arena	science	3	Tug of War Arena
+fossil-clues	science	3	Fossil Clues
+life-cycle-wheel	science	3	Life Cycle Wheel
+wolf-pack-survival	science	3	Wolf Pack Survival
+magnet-maze	science	3	Magnet Maze
+puppy-traits	science	3	Puppy Traits
+climate-postcards	science	3	Climate Postcards
+world-layers-map	science	4	World Layers Map
+bowling-lab	science	4	Bowling Lab
+contraption-workshop	science	4	Contraption Workshop
+town-planner-disaster-ready	science	4	Town Planner: Disaster Ready
+canyon-reader	science	4	Canyon Reader
+secret-code-signals	science	4	Secret Code Signals
+erosion-table	science	4	Erosion Table
+sphere-connections	science	5	Sphere Connections
+particle-zoom	science	5	Particle Zoom
+mystery-powders	science	5	Mystery Powders
+community-solutions	science	5	Community Solutions
+star-lanterns	science	5	Star Lanterns
+shadow-clock	science	5	Shadow Clock
+cell-city	science	6	Cell City
+ocean-conveyor	science	6	Ocean Conveyor
+earth-s-calendar	science	6	Earth's Calendar
+plate-puzzle	science	6	Plate Puzzle
+rock-recycler	science	6	Rock Recycler
+raindrop-s-journey	science	6	Raindrop's Journey
+reaction-kitchen	science	7	Reaction Kitchen
+resource-map	science	7	Resource Map
+invasive-species-alert	science	7	Invasive Species Alert
+predator-prey-island	science	7	Predator-Prey Island
+energy-pyramid	science	7	Energy Pyramid
+nerve-signal-relay	science	7	Nerve Signal Relay
+particle-party	science	7	Particle Party
+made-from	science	7	Made From
+copy-of-a-copy	science	8	Copy of a Copy
+flower-lure	science	8	Flower Lure
+fossil-and-bone-bench	science	8	Fossil and Bone Bench
+crash-test-lab	science	8	Crash Test Lab
+town-footprint	science	8	Town Footprint
+half-pipe-energy	science	8	Half-Pipe Energy
+hazard-forecaster	science	8	Hazard Forecaster
+gene-pool	science	8	Gene Pool
+wave-tank	science	8	Wave Tank
+pattern-block-windows	math	k	Pattern Block Windows
+sheep-count	math	k	Sheep Count
+who-wins	math	k	Who Wins?
+snack-scale	math	k	Snack Scale
+shape-spy	math	k	Shape Spy
+toy-box-sort	math	k	Toy Box Sort
+ten-frame-spillover	math	k	Ten Frame Spillover
+bead-slider	math	1	Bead Slider
+story-replay	math	1	Story Replay
+number-path-rescue	math	1	Number Path Rescue
+make-ten-machine	math	1	Make Ten Machine
+pizza-party	math	1	Pizza Party
+paperclip-ruler	math	1	Paperclip Ruler
+class-poll	math	1	Class Poll
+picky-robot-shapes	math	1	Picky Robot Shapes
+clock-shop	math	1	Clock Shop
+crayon-boxes	math	1	Crayon Boxes
+balance-the-beam	math	1	Balance the Beam
+jump-line	math	2	Jump Line
+fact-rally	math	2	Fact Rally
+place-value-vault	math	2	Place Value Vault
+lunch-line-data	math	2	Lunch Line Data
+garden-grid	math	2	Garden Grid
+lost-and-found	math	2	Lost and Found
+tile-the-floor	math	3	Tile the Floor
+fraction-trail	math	3	Fraction Trail
+equal-groups-zoo	math	3	Equal Groups Zoo
+pattern-painter	math	3	Pattern Painter
+fence-builder	math	3	Fence Builder
+shape-family-tree	math	3	Shape Family Tree
+graph-glow-up	math	3	Graph Glow-Up
+kitchen-lab	math	3	Kitchen Lab
+multiplication-dungeon	math	3	Multiplication Dungeon
+recipe-scaler	math	4	Recipe Scaler
+road-trip-logbook	math	4	Road Trip Logbook
+community-plot-planner	math	4	Community Plot Planner
+money-and-meters	math	4	Money and Meters
+fraction-wall-duel	math	4	Fraction Wall Duel
+quilt-block-studio	math	4	Quilt Block Studio
+unit-ladder	math	4	Unit Ladder
+area-model-builder	math	4	Area Model Builder
+growth-spurt	math	4	Growth Spurt
+rule-machine	math	4	Rule Machine
+stadium-count	math	4	Stadium Count
+fraction-kitchen	math	5	Fraction Kitchen
+shape-sieve	math	5	Shape Sieve
+expression-escape	math	5	Expression Escape
+camp-cook-share-out	math	5	Camp Cook Share-Out
+shrink-ray	math	5	Shrink Ray
+grocery-run	math	5	Grocery Run
+two-rule-race	math	5	Two Rule Race
+zoom-by-tens	math	5	Zoom by Tens
+sea-search-grid	math	5	Sea Search Grid
+seed-sprout-data	math	5	Seed Sprout Data
+sign-shop	math	6	Sign Shop
+net-folder	math	6	Net Folder
+summer-stand	math	6	Summer Stand
+how-many-fit	math	6	How Many Fit?
+expression-garden	math	6	Expression Garden
+deep-sea-dive	math	6	Deep Sea Dive
+balance-puzzle	math	6	Balance Puzzle
+question-lab	math	6	Question Lab
+intersection-angles	math	7	Intersection Angles
+big-wheel-small-wheel	math	7	Big Wheel, Small Wheel
+clay-cutting-bench	math	7	Clay Cutting Bench
+expression-match	math	7	Expression Match
+phone-plan-showdown	math	7	Phone Plan Showdown
+hot-air-and-sandbags	math	7	Hot Air and Sandbags
+carnival-odds	math	7	Carnival Odds
+tax-and-tip	math	7	Tax and Tip
+jellybean-jar	math	7	Jellybean Jar
+blueprint-studio	math	7	Blueprint Studio
+aquarium-builder	math	7	Aquarium Builder
+remainder-loop	math	7	Remainder Loop
+data-detective	math	8	Data Detective
+function-machine-factory	math	8	Function Machine Factory
+square-root-hunt	math	8	Square Root Hunt
+ski-slope-designer	math	8	Ski Slope Designer
+square-slicer	math	8	Square Slicer
+transformation-dock	math	8	Transformation Dock
+snow-globe-maker	math	8	Snow Globe Maker
+question-jar	computer-science	k-2	Question Jar
+attic-gadget-box	computer-science	k-2	Attic Gadget Box
+who-uses-this-device	computer-science	k-2	Who Uses This Device?
+morning-meeting-board	computer-science	k-2	Morning Meeting Board
+tablet-buddy	computer-science	k-2	Tablet Buddy
+three-route-rules	computer-science	3-5	Three Route Rules
+team-code-relay	computer-science	3-5	Team Code Relay
+inventors-hall	computer-science	3-5	Inventors Hall
+job-shadow-day	computer-science	3-5	Job Shadow Day
+fair-survey-kit	computer-science	3-5	Fair Survey Kit
+inside-the-keypress	computer-science	3-5	Inside the Keypress
+family-tech-vote	computer-science	3-5	Family Tech Vote
+adventure-outline-cards	computer-science	3-5	Adventure Outline Cards
+marble-ramp-trials	computer-science	3-5	Marble Ramp Trials
+ai-fit-check	computer-science	6-8	AI Fit Check
+ai-code-inspector	computer-science	6-8	AI Code Inspector
+eras-of-computing	computer-science	6-8	Eras of Computing
+industry-device-tour	computer-science	6-8	Industry Device Tour
+metadata-x-ray	computer-science	6-8	Metadata X-Ray
+accessibility-test-team	computer-science	6-8	Accessibility Test Team
+county-connection-grant	computer-science	6-8	County Connection Grant
+parachute-teamwork	health-pe	k-2	Parachute Teamwork
+fridge-goal-chart	health-pe	k-2	Fridge Goal Chart
+recess-upstander	health-pe	3-5	Recess Upstander
+partner-skill-coach	health-pe	6-12	Partner Skill Coach
+weekend-substance-choices	health-pe	9-12	Weekend Substance Choices
+e-bike-buyer	cte	6-8	E-Bike Buyer
+economy-checkup	cte	6-8	Economy Checkup
+snow-season-prices	cte	6-8	Snow Season Prices
+startup-shares	cte	6-8	Startup Shares
+many-voices-book	library	k-2	Many Voices Book
+windows-and-mirrors-shelf	library	3-5	Windows and Mirrors Shelf
+rabbit-hole-notebook	library	6-8	Rabbit Hole Notebook
