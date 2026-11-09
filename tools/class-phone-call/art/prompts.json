@@ -1,0 +1,499 @@
+{
+  "house_style": "Warm storybook illustration for a children's classroom tool. Bright gouache and colored-pencil texture, clean confident shapes, gentle shading, friendly proportions, rich warm colors. No text, no letters, no numbers, no watermark, no border, no frame.",
+  "assets": [
+    {
+      "name": "classroom",
+      "prompt": "Empty background: a sunny elementary classroom wall seen straight on, with a wooden-framed empty tan corkboard on the left and a wide sunny window on the right looking out onto tall green pine trees and blue sky. Warm pale cream wall, a wooden windowsill below. Completely blank corkboard and walls: no posters, no writing, no letters, no numbers, no people.",
+      "aspect": "16:9",
+      "width": 1280,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "phone",
+      "prompt": "A big friendly cream desk speakerphone seen from a three-quarter front angle, with a round speaker grille in the center, a small glowing indicator light at the top, and one large round green button at the bottom. Chunky, rounded, friendly proportions for a classroom.",
+      "aspect": "1:1",
+      "width": 320,
+      "quality": 80,
+      "cutout": true,
+      "key": "magenta",
+      "despill": true,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "notepad",
+      "prompt": "A yellow lined spiral notepad lying flat, seen straight from above, wire spiral binding across the top edge, horizontal blue ruled lines on warm yellow paper, completely blank with no writing, no letters, no numbers.",
+      "aspect": "4:3",
+      "width": 520,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "owl",
+      "prompt": "A round wooden classroom table badge painted with a friendly brown barn owl face, big warm eyes, soft feathers, circular medallion shape.",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 80,
+      "cutout": true,
+      "key": "green",
+      "despill": true,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "fox",
+      "prompt": "A round wooden classroom table badge painted with a friendly red fox face, perky ears, white cheeks, warm smile, circular medallion shape.",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 80,
+      "cutout": true,
+      "key": "green",
+      "despill": true,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "bear",
+      "prompt": "A round wooden classroom table badge painted with a friendly brown bear face, round ears, warm snout, gentle smile, circular medallion shape.",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 80,
+      "cutout": true,
+      "key": "green",
+      "despill": true,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "deer",
+      "prompt": "A round wooden classroom table badge painted with a friendly fawn deer face, big gentle eyes, soft ears, white spots, circular medallion shape.",
+      "aspect": "1:1",
+      "width": 160,
+      "quality": 80,
+      "cutout": true,
+      "key": "green",
+      "despill": true,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m1-1",
+      "prompt": "A young Black girl with puff pigtails wearing a yellow jacket happily flying a bright red diamond kite with a long tail beside a calm blue park pond, green grass and pine trees in the background.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": true,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m1-2",
+      "prompt": "A strong gust of wind with swirling air currents pulling a bright red diamond kite with a long tail high into the sky above a park pond, the white kite string trailing loose in the air.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m1-3",
+      "prompt": "A bright red diamond kite with a long tail tangled and stuck high up in the green branches of the tallest pine tree in a sunny park.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m1-4",
+      "prompt": "Two friendly firefighters, a Latina woman and an East Asian man in tan turnout gear and helmets, raising a tall ladder from a red fire truck up toward a tall pine tree to rescue a red kite.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": true,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m2-1",
+      "prompt": "A gentle white mother goat resting in soft golden straw inside a cozy wooden farm barn.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m2-2",
+      "prompt": "A tiny newborn white baby goat with one brown ear curled beside its white mother goat in a cozy barn at night, a crescent moon and stars visible through the open barn window.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m2-3",
+      "prompt": "A tiny white baby goat with one brown ear standing up on wobbly legs and taking its first steps on golden straw in a sunny farm barn.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m2-4",
+      "prompt": "Three diverse elementary children, including a South Asian boy in a wheelchair, a white girl with glasses, and a Black boy, smiling and dropping paper slips into a wooden ballot box at a park farm.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": true,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m3-1",
+      "prompt": "A small eastern box turtle with a domed brown and yellow patterned shell walking slowly across a gray park road bordered by green grass.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m3-2",
+      "prompt": "A green park pickup truck stopped safely on a park road in front of a small box turtle crossing the asphalt, pine trees alongside the road, no people visible.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m3-3",
+      "prompt": "Warm tan hands in olive park sleeve cuffs gently holding a small box turtle low above the road, carrying it forward toward the grassy roadside in the direction of a pond.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": true,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m3-4",
+      "prompt": "A small brown and yellow box turtle arriving safely at the grassy edge of a clear blue park pond with lily pads and reeds.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m4-1",
+      "prompt": "A nighttime storm over a pine forest with dark clouds, slanting rain, and pine trees bending in strong wind.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m4-2",
+      "prompt": "A large pine tree trunk fallen right across a dirt path in the woods beside a blue wooden trail post.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m4-3",
+      "prompt": "A wooden barrier and orange cones placed across the entrance of a woodland dirt trail with a fallen tree behind it, showing the trail is closed, no text on the barrier.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m4-4",
+      "prompt": "Two friendly park trail workers, an older Black man and a younger Indigenous woman wearing yellow hard hats and work gloves, clearing cut logs from a woodland path.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": true,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m5-1",
+      "prompt": "A tall old oak tree in a sunny park forest with a dark cozy hollow opening high up in its trunk.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m5-2",
+      "prompt": "Three fluffy gray baby owlets with big round eyes huddled together inside a cozy tree hollow nest.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m5-3",
+      "prompt": "A neat yellow rope tied between short wooden posts forming a protective boundary in front of a tall hollow tree in the park.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m5-4",
+      "prompt": "A grandmother and a young child of Middle Eastern heritage sitting on a wooden park bench beside a blank wooden sign post, looking up through binoculars toward a tall tree.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": true,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "m6-1",
+      "prompt": "Fresh white snow blanketing pine trees and a wooden picnic area in a quiet morning park.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m6-2",
+      "prompt": "A neat straight line of four-toed animal paw prints in fresh white snow looping all around wooden picnic tables in a park.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m6-3",
+      "prompt": "A sleek red fox with a bushy white-tipped tail sniffing in the snow beneath a wooden bird feeder before dawn, early pink and blue sky.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "m6-4",
+      "prompt": "A red fox trotting away into snowy pine woods, leaving a straight trail of paw prints in the snow behind it.",
+      "aspect": "4:3",
+      "width": 300,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-kite",
+      "prompt": "A bright red diamond kite with a long ribbon tail flying against a soft blue sky.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-hat",
+      "prompt": "A cheerful yellow straw sun hat with a blue band on a soft cream background.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-balloon",
+      "prompt": "A shiny blue party balloon on a string floating against a soft cream background.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-pinetree",
+      "prompt": "A tall green pine tree standing in a sunny park meadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-roof",
+      "prompt": "The red shingled pitched roof of a small wooden park cabin.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "q-pond",
+      "prompt": "A calm blue park pond ringed with green reeds and lily pads.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "q-moon",
+      "prompt": "A glowing yellow crescent moon and twinkling stars in a deep night sky.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "q-sun",
+      "prompt": "A bright golden morning sun rising over green hills in a blue sky.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "q-sandwich",
+      "prompt": "A tasty lunch sandwich with lettuce and cheese on a small plate.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "q-votebox",
+      "prompt": "A wooden ballot box with a slot on top and folded paper votes going inside.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-namehat",
+      "prompt": "An upside-down brown felt hat filled with folded slips of paper inside.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-calendar",
+      "prompt": "A wall calendar page with six columns and one Saturday square circled in bright red crayon, no letters or numbers.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-bear",
+      "prompt": "A big brown bear walking in a forest meadow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-truck",
+      "prompt": "A green park pickup truck parked on a gravel drive, no people.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-owlets-1",
+      "prompt": "One fluffy gray baby owlet with big round eyes sitting in a tree hollow nest.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "antigravity"
+    },
+    {
+      "name": "q-owlets-3",
+      "prompt": "Three fluffy gray baby owlets with big round eyes sitting side by side in a tree hollow nest.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-owlets-5",
+      "prompt": "Five fluffy gray baby owlets with big round eyes crowded together in a tree hollow nest.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-fox",
+      "prompt": "A bright red fox with a fluffy white-tipped tail sitting in the snow.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-deer",
+      "prompt": "A gentle brown deer standing in a snowy park clearing.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    },
+    {
+      "name": "q-duck",
+      "prompt": "A mallard duck with a green head standing by the snowy edge of a pond.",
+      "aspect": "1:1",
+      "width": 240,
+      "quality": 76,
+      "cutout": false,
+      "people": false
+    }
+  ]
+}

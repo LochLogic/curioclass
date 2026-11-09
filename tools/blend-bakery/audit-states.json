@@ -1,0 +1,45 @@
+{
+  "target": 44,
+  "reason": "Spec section 'Screens and modes' specifies 60 px controls at 1366x768 and 44 px controls at 680x425 so the customer, tray, oven and two-row pantry fit above the fold.",
+  "keep": ["#privacy-box"],
+  "states": [
+    {
+      "name": "digraph-donuts-ship",
+      "steps": [
+        {"click": "#c-digraph"},
+        {"click": "button[data-jar='sh']:not(.used)"},
+        {"click": "button[data-jar='i']:not(.used)"},
+        {"click": "button[data-jar='p']:not(.used)"},
+        {"click": "#bake-btn"}
+      ],
+      "keep": ["#oven-card", "#tray-card", "#pantry-shelf"]
+    },
+    {
+      "name": "magic-e-muffins",
+      "steps": [
+        {"click": "#c-muffins"},
+        {"click": "#tin-long"},
+        {"click": "button[data-jar='c']:not(.used)"},
+        {"click": "button[data-jar='a']:not(.used)"},
+        {"click": "button[data-jar='p']:not(.used)"},
+        {"click": "button[data-jar='e']:not(.used)"},
+        {"click": "#bake-btn"}
+      ],
+      "keep": ["#oven-card", "#tray-card"]
+    },
+    {
+      "name": "two-layer-cakes",
+      "steps": [
+        {"click": "#c-cakes"},
+        {"click": "button[data-jar='r']:not(.used)"},
+        {"click": "button[data-jar='a']:not(.used)"},
+        {"click": "button[data-jar='b']:not(.used)"},
+        {"click": "button[data-jar='b']:not(.used)"},
+        {"click": "button[data-jar='i']:not(.used)"},
+        {"click": "button[data-jar='t']:not(.used)"},
+        {"click": "#bake-btn"}
+      ],
+      "keep": ["#oven-card", "#tray-card"]
+    }
+  ]
+}
