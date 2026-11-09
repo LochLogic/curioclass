@@ -8,7 +8,7 @@ The student climbs a ladder of four hard public-domain texts (a chapter of Frank
 - living-explainer (9-12, spec, this batch): writing and updating. Here reading.
 - old-patterns-new-stories (8, spec): reading modern stories against old ones. Here the old texts themselves, read whole.
 - poetry-soundboard (7, spec): what sound does in a poem. Here reading a poem with a plan and without help.
-- research-notebook (spec): gathering sources. Here reading one source deeply.
+- research-notebook (9, spec): gathering sources. Here reading one source deeply.
 
 ## Who and how
 - Grades 9 to 12, ELA, module "Reading Range and Text Complexity" (Reading Literature, Reading Informational Text). Standards: RL.9-10.10, RL.11-12.10, RI.9-10.10, RI.11-12.10.

@@ -14,3 +14,8 @@ One line each: `<id>: question (default used: ...)`. Cory moves them to the Desk
 - face-the-grammar: not specced; docs/agents/roadmap/ASL-SIGN-STRIP.md says no ASL tool is specced until Cory approves the three-sign Sign Strip sample. Spec it after that? (default used: left as an idea card, skipped in Sara's queue)
 - asl-story-theater: not specced; docs/agents/roadmap/ASL-SIGN-STRIP.md says no ASL tool is specced until Cory approves the three-sign Sign Strip sample. Spec it after that? (default used: left as an idea card, skipped in Sara's queue)
 - calendario-vivo: Spanish audio is made with the bank voices told to speak Spanish; who listens to it before release? (default used: a fresh agent checks the Spanish text, and Sara or Cory listens to a sample of 20 lines)
+- el-restaurante: Spanish audio review, same as calendario-vivo (default used: a fresh agent checks the Spanish text, and Sara or Cory listens to a sample of 20 lines)
+- hola-hallway: Spanish audio review, same as calendario-vivo (default used: a fresh agent checks the Spanish text, and Sara or Cory listens to a sample of 20 lines)
+- i-choose-because: home-language glossaries for ELD frames (Cory's open question in RUNBOOK.md)? (default used: English only, with pictures and read-aloud)
+- bedtime-retell: home-language glossaries for ELD frames (Cory's open question in RUNBOOK.md)? (default used: English only, with pictures and read-aloud)
+- cause-and-effect-rewind: home-language glossaries for ELD frames (Cory's open question in RUNBOOK.md)? (default used: English only, with pictures and read-aloud)
