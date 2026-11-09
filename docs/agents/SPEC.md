@@ -13,6 +13,10 @@ must stand on its own: anything not in the spec will not be in the tool.
 4. If the tool has a family: `docs/families/<family>.md`. Use its engine; do not invent a second one.
 5. Two approved tools as the quality bar: `tools/calm-corner/src.html` (K-2, teacher-led) and
    `tools/size-of-everything/src.html` (older grades, explore). Skim, don't copy.
+6. If `tools/<tool-id>/research.md` exists (a Gemini Flash research packet, Cory 2026-11-09): read it, then build your
+   Sources from it instead of searching from scratch. Follow "For the spec writer" in `docs/agents/RESEARCH-PACKET.md`
+   (spot-check its sources; say in your report how much of it you used and any claim that failed). Take new tools in
+   the order of `docs/agents/claims/research.txt`, packets first.
 
 ## Rules
 
