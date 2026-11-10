@@ -162,3 +162,5 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - seed-sprout-data: format change (default used: lab instead of data, since the child measures and concludes from a windowsill experiment)
 - sign-shop: trapezoid definition (default used: inclusive, matching shape-sieve and catalog fix 3)
 - net-folder: code move (default used: the rest of 6.G.1 goes to sign-shop; this tool keeps triangle faces, 6.G.2, 6.G.3 and 6.G.4)
+- big-wheel-small-wheel: code move (default used: 7.G.5 goes to intersection-angles and 7.G.6 to aquarium-builder; this tool keeps 7.G.4)
+- clay-cutting-bench: overlap with slice-and-stack (default used: this tool only predicts and names plane sections of prisms and pyramids; slice-and-stack keeps cross sections for volume)
