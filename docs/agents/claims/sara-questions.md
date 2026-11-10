@@ -145,3 +145,5 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - recipe-scaler: format change (default used: builder instead of tycoon, since one recipe card is built and test baked and nothing runs over time)
 - recipe-scaler: overlap with fraction-kitchen (default used: one-size scoops and like denominators here; fraction-kitchen keeps mixed cup sizes and unlike denominators)
 - community-plot-planner: overlap with garden-grid by look (default used: an empty city lot with fence posts and family notes in soil brown, no square seed plots, no "garden" in the title)
+- unit-ladder: code move (default used: 4.MD.3 area and perimeter formulas go to community-plot-planner; this tool keeps 4.MD.1 and 4.MD.2)
+- area-model-builder: code move (default used: 4.NBT.4 column addition and subtraction goes to road-trip-logbook; this tool keeps 4.NBT.5 and 4.NBT.6)
