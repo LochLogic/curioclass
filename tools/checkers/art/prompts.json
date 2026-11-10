@@ -1,0 +1,416 @@
+{
+  "house_style": "Hand-painted premium indie night arcade, luminous acrylic, deep navy glass, cyan and violet rim light, amber highlights, tactile painterly reflections, readable bold silhouettes. No text, letters, logos or numbers.",
+  "assets": [
+    {
+      "name": "amber-halo",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "amber-halo.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        2,
+        2
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "amber-king",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "amber-king.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        1,
+        0
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "amber-man",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "amber-man.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        0,
+        0
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "arcade",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "arcade.webp",
+      "prompt": "Wide late-night arcade cabinet row, blurred magenta cyan marquees, dark central negative space, atmospheric haze, polished floor, jewel-like light. No people, no text.",
+      "width": 1600
+    },
+    {
+      "name": "blaze",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "blaze.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        0,
+        2
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "blue-halo",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "blue-halo.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        3,
+        2
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "blue-king",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "blue-king.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        3,
+        0
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "blue-man",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "blue-man.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        2,
+        0
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "board",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "board.webp",
+      "prompt": "Strict orthographic top down square glass checkers table, exact 8 by 8 grid, navy playable tiles alternating slightly lighter indigo, thin violet glowing lines, luminous beveled cabinet rim, premium acrylic, no pieces, no perspective, no text.",
+      "width": 1200
+    },
+    {
+      "name": "comet",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "comet.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        3,
+        1
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "cover",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "cover.webp",
+      "prompt": "The most striking view of a luminous navy glass checkers arcade table, amber acrylic puck mid jump over blue puck, kinetic sparks, crowns, arcade cabinets receding into haze, strong cyan magenta amber lighting, cinematic collectible game box art, no text.",
+      "width": 1200
+    },
+    {
+      "name": "crown-1",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "crown-1.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        0,
+        3
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "crown-2",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "crown-2.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        1,
+        3
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "crown-3",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "crown-3.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        2,
+        3
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "crown-4",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "crown-4.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        3,
+        3
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "dot",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "dot.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        1,
+        1
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "nova",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "nova.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        2,
+        1
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "pip",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "pip.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        0,
+        1
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    },
+    {
+      "name": "portrait",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "portrait.webp",
+      "prompt": "Portrait crop of arcade painting.",
+      "width": 780
+    },
+    {
+      "name": "spark",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen), cold-review replacement",
+      "people": false,
+      "file": "spark.webp",
+      "prompt": "Single isolated hand-painted luminous cyan four-point capture spark, icy white center, turquoise painterly bloom and blue rim, generous transparent margins; no crown or other objects.",
+      "atlas": "raw/spark-review.png",
+      "crop": [
+        0.88,
+        0.755,
+        0.98,
+        0.84
+      ],
+      "cutout": true,
+      "width": 200
+    },
+    {
+      "name": "titan",
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false,
+      "file": "titan.webp",
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "atlas": "raw/sprites.png",
+      "cell": [
+        1,
+        2
+      ],
+      "grid": [
+        4,
+        4
+      ],
+      "cutout": true,
+      "width": 240
+    }
+  ],
+  "processing": "Resized and cropped generated paintings with Pillow; alpha preserved. Sprite atlas split into 16 equal cells. Nova crop tightened to remove a sliver of the adjacent Comet sprite.",
+  "generations": [
+    {
+      "id": "arcade",
+      "file": "arcade.webp",
+      "width": 1600,
+      "drawn_by": "codex",
+      "prompt": "Wide late-night arcade cabinet row, blurred magenta cyan marquees, dark central negative space, atmospheric haze, polished floor, jewel-like light. No people, no text.",
+      "name": "arcade",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false
+    },
+    {
+      "id": "portrait",
+      "file": "portrait.webp",
+      "width": 780,
+      "drawn_by": "codex",
+      "prompt": "Portrait crop of arcade painting.",
+      "name": "portrait",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false
+    },
+    {
+      "id": "board",
+      "file": "board.webp",
+      "width": 1200,
+      "drawn_by": "codex",
+      "prompt": "Strict orthographic top down square glass checkers table, exact 8 by 8 grid, navy playable tiles alternating slightly lighter indigo, thin violet glowing lines, luminous beveled cabinet rim, premium acrylic, no pieces, no perspective, no text.",
+      "name": "board",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false
+    },
+    {
+      "id": "sprites",
+      "file": "sprites.webp",
+      "width": 1200,
+      "drawn_by": "codex",
+      "cutout": true,
+      "prompt": "Transparent sprite atlas, four acrylic pucks amber man solid dark dot, amber king solid dot and ink crown with stacked rim, blue man dark hollow ring, blue king ring and ink crown with stacked rim. Six round robot badges Pip sleepy, Dot cheerful, Nova bright, Comet streak, Blaze flame-lit, Titan tall calm. Two halos, four crown pop frames and neon spark sprites.",
+      "name": "sprites",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false
+    },
+    {
+      "id": "cover",
+      "file": "cover.webp",
+      "width": 1200,
+      "drawn_by": "codex",
+      "prompt": "The most striking view of a luminous navy glass checkers arcade table, amber acrylic puck mid jump over blue puck, kinetic sparks, crowns, arcade cabinets receding into haze, strong cyan magenta amber lighting, cinematic collectible game box art, no text.",
+      "name": "cover",
+      "source": "OpenAI gpt-image (built-in imagegen)",
+      "people": false
+    }
+  ]
+}

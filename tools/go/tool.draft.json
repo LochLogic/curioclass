@@ -1,0 +1,17 @@
+{
+  "id": "go",
+  "title": "Go",
+  "stage": "built",
+  "recess": true,
+  "kit": "recess",
+  "band": "all",
+  "description": "Surround more of the board than your rival. Stones click down; captured groups wash away like ink.",
+  "sources": [
+    "Gokyo Shumyo (碁経衆妙), Hayashi Genbi (林元美), 1812. Eleven stone positions and answer lines transcribed in spec.md from the 1898 edition, National Diet Library pid 861157. Access Restrictions: PDM (Public Domain Mark). https://dl.ndl.go.jp/pid/861157",
+    "First stones f1-f8: original Curio Class puzzles as specified in spec.md. Ours. Three independently solved forced-extension branches of f8 are accepted so valid ladder moves are not rejected.",
+    "British Go Association, Comparison of Some Go Rules. Rules are not copyrightable; our wording. https://www.britgo.org/rules/compare.html",
+    "British Go Association, A Brief History of Go. https://www.britgo.org/intro/history",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Offline Go engine and synthesized sound: written for Curio Class. Ours."
+  ]
+}
