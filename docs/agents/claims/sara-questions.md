@@ -164,3 +164,5 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - net-folder: code move (default used: the rest of 6.G.1 goes to sign-shop; this tool keeps triangle faces, 6.G.2, 6.G.3 and 6.G.4)
 - big-wheel-small-wheel: code move (default used: 7.G.5 goes to intersection-angles and 7.G.6 to aquarium-builder; this tool keeps 7.G.4)
 - clay-cutting-bench: overlap with slice-and-stack (default used: this tool only predicts and names plane sections of prisms and pyramids; slice-and-stack keeps cross sections for volume)
+- phone-plan-showdown: data source (default used: sample prices from made-up carriers set near current U.S. prepaid plans per FCC and BLS, labeled sample prices with the date, checked again before build)
+- hot-air-and-sandbags: code move (default used: 7.NS.2d goes to remainder-loop; this tool keeps 7.NS.1, 7.NS.2a to 7.NS.2c and 7.NS.3)
