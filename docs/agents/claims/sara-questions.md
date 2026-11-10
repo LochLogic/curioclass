@@ -139,3 +139,5 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - fact-rally: overlap with make-ten-machine and multiplication-dungeon (default used: strategies used fast on a court with rally-spaced repeats; make-ten-machine builds them slowly; multiplication-dungeon gets a different repeat mechanic and look)
 - garden-grid: overlap with prime-garden, now egg-carton-factory (default used: this tool counts square plots in grade 2; egg-carton-factory keeps rows and columns for factors in grade 4)
 - tile-the-floor: code move (default used: 3.G.2 comes here from shape-family-tree through the painters' job; shape-family-tree keeps 3.G.1)
+- shape-family-tree: overlap with shape-courtroom, now shape-sieve (default used: this tool keeps the grade 3 categories; the full hierarchy argument stays in grade 5)
+- shape-family-tree: code move (default used: 3.G.2 goes to tile-the-floor's painters' job; this tool teaches 3.G.1 only)
