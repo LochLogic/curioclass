@@ -92,3 +92,4 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - weather-wardrobe: format change from showdown to data (default used: picture-graph data desk, class vote as the extra)
 - weather-wardrobe: data source (default used: NOAA GHCN-Daily records for Minneapolis, Seattle and Atlanta, one winter and one summer month each, bundled; no network)
 - fast-or-slow: data source (default used: USGS and NPS public domain photos, checked one by one, credits in the data block)
+- fossil-clues: data source (default used: Fossil Butte and Green River Formation facts from NPS and USGS, Trappers Point counts from WYDOT and Sawyer and colleagues (2016), checked before build)
