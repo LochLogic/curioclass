@@ -72,3 +72,9 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - suburb-boom: Sensitivity flag: redlining, covenants and the clearing of Black neighborhoods (default used: named plainly, made-up families labeled with real rules behind them, no stereotypes, fresh-agent read before build).
 - suburb-boom: the idea card flags a data source (default used: metro Detroit, lending map redrawn from the National Archives original, Mapping Inequality license checked at build).
 - muckraker-studio: Sensitivity flag: the lynching case file (default used: Wells's own words and counts only, no images of violence or victims, Wells framed as the investigator, drafts stay on the device, fresh-agent read before build).
+- empire-debate: Sensitivity flag: racist period rhetoric and wartime atrocities (default used: brief framed quotes only where needed, no images of bodies or torture, period cartoons captioned as evidence, fresh-agent read before build).
+- home-front-mobilizer: Sensitivity flag: Japanese American incarceration, racial exclusion and the 1943 riots (default used: told only through evidence and the family's own words, never a lever, real photographs only, no images of beatings, fresh-agent read before build).
+- home-front-mobilizer: the idea card names "one West Coast city" (default used: Los Angeles, for Terminal Island, Little Tokyo and Bronzeville in one place).
+- causes-web: the idea card flags a data source (default used: Boise rents, one U.S. county's recycling program chosen at build, and GM Janesville, each checked against current data before build).
+- who-decides: the idea card flags five codes as too big (default used: one tool whose steps each teach one or two codes, so it can run across class periods; not split).
+- who-decides: the idea card flags a data source (default used: a 51-entry state guide naming each law and check date, checked before build; a state that can't be confirmed shows only the general checklist).
