@@ -59,6 +59,11 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     A Curiosity must stay purely fun and exploratory; a light game touch (a challenge to try, a surprise, a setup to
     break) is fine when it adds to that. A goal ladder, a grade, a forced finish or a game-over still does not belong.
     Lenses flag a game element only when it narrows play or turns exploring into scoring.
+20. **State adoption is the bar we build to** (2026-11-10). Full-course materials (units, Tracks, the Binder and the
+    shelves that feed them) are built to meet the substance of state and national curriculum reviews. We do not
+    pursue formal adoption now; if later data says it is a good path, we pivot and are already well placed. The bar
+    never overrides "What we will not do" in docs/VISION.md (no accounts, tracking or student analytics). What the
+    bar asks, what we took and what we left out: docs/ADOPTION-BAR.md.
 
 ## One module Cory reviews personally
 

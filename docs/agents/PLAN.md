@@ -26,7 +26,8 @@ the default screen and each mode. You are writing about what is on the screen, s
 4. **The tool part** names the tool's own buttons, items and modes in bold, in the order to use them, and the moments
    to stop and ask. Use the tool's real content (which item first, which one is the surprise).
 5. **Questions** go in quotes with the answers we expect in parentheses. Ask about thinking, not just answers.
-6. **Apply, Make or Share** moves the idea off the screen: talk, draw, sort real things, write.
+6. **Apply, Make or Share** moves the idea off the screen: talk, draw, sort real things, write. Real things are
+   what a classroom or home already has, or `materials` names a cheap stand-in (STANDARDS.md, Scope).
 7. **The exit check** is one quick task that shows who got it. K-2: oral or physical.
 8. **Support and stretch** and **Short on time** as the format says.
 

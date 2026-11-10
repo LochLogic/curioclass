@@ -102,4 +102,4 @@ Site requirements from these decisions: browse by grade, by band, by topic and b
 - [x] Check every standards code against official framework lists (2026-10-22)
 - [ ] Optional: a second reader (a teacher) checks best-fit alignment for one subject
 - [x] SEL in (light); languages: Spanish + ASL
-- [ ] Later (not Phase 1): state crosswalks (TX TEKS, CA, FL B.E.S.T., NY, VA SOL), since they cover a large share of US students
+- [ ] Later (not Phase 1): state crosswalks (TX TEKS, CA, FL B.E.S.T., NY, VA SOL), since they cover a large share of US students. Approach set 2026-11-10 (docs/ADOPTION-BAR.md, ROADMAP Track 7): one state outside the Common Core first, as a mapping layer, CASE as the file format

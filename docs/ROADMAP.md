@@ -4,7 +4,8 @@ The one plan for Curio Class: what is done, what comes next, and in what order. 
 "Later phases" section of docs/PHASE0-PLAN.md, the Supply Closet roadmap, docs/agents/SCALE-PLAN.md,
 docs/LIBRARY-PLAN.md, docs/SITE.md ("Not done yet") and docs/agents/roadmap/.
 
-Why and where: docs/VISION.md (the north star, 2026-11-03). This file holds the order and the status. The design detail stays in each track's own plan, linked from its section.
+Why and where: docs/VISION.md (the north star, 2026-11-03). The quality bar for full courses: docs/ADOPTION-BAR.md
+(state adoption is the bar we build to, Cory 2026-11-10; formal adoption is not pursued now). This file holds the order and the status. The design detail stays in each track's own plan, linked from its section.
 When a roadmap item starts, finishes or moves, update it here first, then post it to the Review Desk's Roadmap tab
 (`python scripts/desk_roadmap.py <out.json>`, then ArtifactData set stats/roadmap).
 
@@ -58,6 +59,18 @@ no accounts, no ads, no tracking.
    `C:\Users\Cory\AppData\Local\Temp\claude\_to_delete-2026-11-03` (about 1 GB of old session scratch). Also delete
    the merged branches (`git push origin --delete audit/states codex/biased-bot`, `git branch -D audit/states`) and
    merge `claude/hopeful-dirac-qck82o` (worksheets wave 2) when that session finishes.
+6. **Adoption-bar checks (new 2026-11-10, docs/ADOPTION-BAR.md):** three checks that are cheap now and costly to
+   backfill. None of them changes the tool pipeline or holds up a build.
+   - **a. K-2 reading scan.** A fresh agent reads every K-2 reading tool, plan, worksheet and Word Wall card for
+     prompts that tell a child to guess a word from the picture or the sentence instead of sounding it out. Findings
+     go in a short report; fixes go through the normal Fix step.
+   - **b. Math focus and balance report.** For each math grade, how much of what we have (tools, worksheets, planned
+     rows) sits on the major work of the grade, and how it splits between understanding, fluency and real-world use.
+     Needs a major-or-supporting mark on each cluster in data/standards/ccss-math-clusters.txt (from the published
+     focus documents, licence checked first) and a one-word kind on each tool and sheet. The report shows thin
+     spots; it changes nothing by itself.
+   - **c. Reading Room fields.** Add the text record and topics to the story format before the ten-story pilot
+     (docs/LIBRARY-PLAN.md, "Reading level" and "Topic sets"), so the enrich waves fill them in as they go.
 
 ## Track 1: Tools (the main work)
 
@@ -205,8 +218,10 @@ play-tests.
 
 Detail: docs/LIBRARY-PLAN.md. About 700 stories are curated and processed into readable text. Next:
 
-1. **Pilot:** ten stories in the 3-5 band end to end (format, reader, pipeline).
-2. **Enrich and verify** in waves of about 50: word help, questions, teacher notes, then a cold verify agent.
+1. **Pilot:** ten stories in the 3-5 band end to end (format, reader, pipeline). The format gains a text record and
+   topics first (Now, item 6c; docs/ADOPTION-BAR.md).
+2. **Enrich and verify** in waves of about 50: word help, questions, teacher notes, the text record and topics, then
+   a cold verify agent. Stories that share a topic are shown together as topic sets.
 3. **K-2 read-aloud** as the voice bank allows.
 4. Later: the Excerpts shelf and the Speeches and Documents collection.
 
@@ -245,19 +260,37 @@ Track 5.
 
 ## Track 7: Curriculum (merged 2026-11-03: units, then Tracks, then the Binder)
 
-From single tools to complete courses a teacher can run start to finish, one ladder:
+From single tools to complete courses a teacher can run start to finish, one ladder. This track is where the
+adoption bar applies (docs/ADOPTION-BAR.md, BASELINE rule 20): reviews judge a whole course, so the year's shape
+comes before the units that fill it.
 
-1. **Units** (the capstone, Cory 2026-11-03): worksheets, handouts, topics and ready-made prompts packaged into a 1 to
+1. **Year spine** (new 2026-11-10): for each pilot course (grade 4 math, grade 6 ELA), one page that puts the
+   year's units in order and says why each sits where it does: what it builds on, what it sets up, and for math,
+   how much of the year goes to the major work of the grade. It starts from data/sequence.csv and the module list,
+   and names the gaps. Units are cut from the spine, not gathered from whatever parts are finished. Cory reviews
+   both spines before the unit pilot is written.
+2. **Units** (the capstone, Cory 2026-11-03): worksheets, handouts, topics and ready-made prompts packaged into a 1 to
    5 day, mostly non-tech unit, with daily plans, a partner game, a short assessment and optional practice drills
    (math facts and the like). Projector slides (warm-up, launch, turn and talk, exit ticket) are one part of a unit day.
+   Each day opens and closes by saying where it sits in the unit and the year.
    **Pilot:** grade 4 area and perimeter and a grade 6 argument essay; Cory reviews both before a unit wave.
-2. **Tracks:** units in a year's order with pacing for each subject and grade (the vision's Tracks idea; the public
-   name is to be workshopped when it ships, keeping "Curio Class" whole).
-3. **The Binder:** export a course as a link, a zip or an LMS course cartridge.
+   - **Teacher pages that teach the teacher** (tried on the pilot, 2026-11-10): each unit says why its main model or
+     picture was chosen, what students tend to get wrong with a key that shows what each wrong answer means, and how
+     to shorten or stretch a day without making it easier. Kept for the unit wave, and offered to tool lesson plans,
+     only if Cory finds them useful in the pilot.
+   - **Judged against the bar:** each pilot unit gets a fresh-agent read against the matching part of
+     docs/ADOPTION-BAR.md, and the findings go to Cory with the unit.
+   - Hands-on work uses things a classroom or home already has, or names a cheap stand-in (docs/agents/STANDARDS.md).
+3. **Tracks:** units in a year's order with pacing for each subject and grade, grown from the year spines (the
+   vision's Tracks idea; the public name is to be workshopped when it ships, keeping "Curio Class" whole).
+4. **The Binder:** export a course as a link, a zip or an LMS course cartridge. The cartridge carries content only;
+   nothing in it sends rosters, sign-ons or grades anywhere.
 
 Later: score codes (a code and QR a student shows the teacher, scanned on the teacher's own device; never called
-proof or cryptographic) and the state standards crosswalk. Also open (from PHASE1-SCOPE): a second reader (a
-teacher) checks best-fit standards alignment for one subject.
+proof or cryptographic) and the state standards crosswalk. The crosswalk starts with one state outside the Common
+Core as the test (the state picked when it starts), as a mapping layer over modules and data/sequence.csv, with CASE
+as the file format in and out (docs/ADOPTION-BAR.md). Also open (from PHASE1-SCOPE): a second reader (a teacher)
+checks best-fit standards alignment for one subject.
 
 ## Track 8: Beyond School (new 2026-11-03, late)
 

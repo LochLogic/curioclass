@@ -114,6 +114,9 @@ from `tools/collision-lab/src.html` (narrate, hush, readNow, firstTap) and these
 - No features that ask students to move work between devices by hand. Cory removed game-remix's Share (a remix code to
   copy and load, and a print card): "not feasible for a student to pass a code that long and it doesn't have that much
   of a pull." Save on this device is enough; in class, pairs swap laptops.
+- Hands-on work costs nothing extra (2026-11-10, docs/ADOPTION-BAR.md). Anything a tool, plan, unit or sheet asks a
+  class to handle is something a classroom or home already has, or the page names a cheap stand-in (paper strips
+  for fraction bars, dried beans for counters). Where the real thing can't be had, the tool itself is the stand-in.
 
 ## Facts
 

@@ -146,6 +146,24 @@ old-fashioned vocabulary there is. A human can override it (old texts often fool
 which is a trademark. The grade range shown blends the level with the content (a scene can be easy to read but not
 right for grade 2).
 
+**The text record (new 2026-11-10, docs/ADOPTION-BAR.md).** Curriculum reviews ask why each text sits in its grade.
+So every story keeps a short record in `story.json` under `record`, written in the Enrich step and checked in Verify:
+
+- `level`: the Reading Room level, and the numbers behind it (sentence length, word commonness, old vocabulary).
+- `meaning`, `structure`, `language`, `knowledge`: one plain sentence each on how hard the story is in that way
+  (layers of meaning, how it is built, how its language differs from today's, what a reader needs to know already).
+- `why`: one sentence on why it is worth a class's time and why it sits in this grade range.
+
+The teacher note shows the record in plain words. It is our own description, never a claim of an outside rating.
+
+## Topic sets (new 2026-11-10)
+
+Reading builds knowledge when texts on one topic are read together, so each story also lists `topics` in
+`story.json`: two to four from one shared list (`data/library/topics.txt`, grown as stories are enriched; for
+example ocean life, tricksters, the night sky, growing food). A story page links to others on the same topic, and a
+topic with four or more stories in one band gets its own set page. Topic sets are what the ELA units draw from
+(ROADMAP Track 7). Levels still drive the shelves; topics are a second way in, never a replacement.
+
 ## What a story page has
 
 One HTML file per story, offline, under the tool size cap:
@@ -168,7 +186,8 @@ One HTML file per story, offline, under the tool size cap:
 ```
 data/library/stories-pd.csv     one row per public domain story: id, title, author, source, grades, kind, origin, decision, note, find
 data/library/stories-sw.csv     one row per StoryWeaver book: id, sw_id, title, publisher, grades, kind, license, decision, note
-library/<id>/story.json         source edition, url, translator, credits, curation decision + reason, codes
+library/<id>/story.json         source edition, url, translator, credits, curation decision + reason, codes, record, topics
+data/library/topics.txt         the shared topic list (one per line)
 library/<id>/text.md            the cleaned text (paragraphs, simple markup for glosses)
 library/<id>/art/               cleaned public domain plates
 library/<id>/voice/             later
@@ -304,7 +323,7 @@ Caroling Dusk selection leaves out "Incident" (a slur) and "Song for a Dark Girl
 2. **License and curation pass** (agents only; a second agent checks the first one's "out" and "with a note" calls).
 3. **Bulk download** (after this plan is agreed): text and illustration scans, into an untrusted downloads folder.
 4. **Clean and level** (script plus agent): strip branding, fix OCR, mark chapters, compute the level.
-5. **Enrich** (agent): glosses, questions, teacher note.
+5. **Enrich** (agent): glosses, questions, teacher note, the text record and topics.
 6. **Verify** (fresh agent, cold): text matches the source, glosses and codes are right, notes are fair.
 7. **Bundle and go live** in waves of about 50, onto the Review Desk like the tools.
 8. **Voice** for K-2 stories as the voice bank allows. Grades 3-12 read-aloud and the excerpts shelf come last.

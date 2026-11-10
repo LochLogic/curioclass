@@ -5,7 +5,8 @@ order). This file changes rarely; the roadmap changes every week.
 
 Integrated 2026-11-03 from Cory's master vision (docs/Return/curio_class_master_vision_and_roadmap.md), his notes, the
 existing roadmap and Codex's portfolio meta analysis (docs/Return/PORTFOLIO-META-ANALYSIS-2026-11-02.md). Decisions:
-Review Desk cards q-plan-vision to q-plan-grade2.
+Review Desk cards q-plan-vision to q-plan-grade2. 2026-11-10: "The bar we build to" added from Cory's decision on the
+US Curriculum Design Blueprint (docs/ADOPTION-BAR.md).
 
 ## Mission
 
@@ -34,8 +35,8 @@ written (of 8,947 planned); Word Walls for 762 of 797 modules; about 700 Reading
 
 | Pillar (from the master vision) | Where it lives | When |
 |---|---|---|
-| Standards spine: national frameworks, leaf standards, a state crosswalk, prerequisite maps | Tools track and The Map | The state crosswalk and leaf expansion come after the curriculum ladder starts; prerequisite maps feed The Map |
-| Curriculum spine | Curriculum track: units, then Tracks, then the Binder export | Unit pilot after the worksheets go live |
+| Standards spine: national frameworks, leaf standards, a state crosswalk, prerequisite maps | Tools track and The Map | The state crosswalk and leaf expansion come after the curriculum ladder starts (one state outside the Common Core first); prerequisite maps feed The Map |
+| Curriculum spine | Curriculum track: a year spine, then units, then Tracks, then the Binder export | Year spine and unit pilot after the worksheets go live |
 | Universal shell and Projector Mode | Kit, grown from finished tools; Projector slides become part of a unit day | With the cohort kit fixes, then units |
 | Teacher desk utilities (timers, noise meter, group maker, chimes) | Supply Closet: Teacher Desk shelf, with classroom music and a sound board | After the closet's current items |
 | Live class sync (Class Cast) | Parked | Only with funding and someone to keep a server running |
@@ -87,8 +88,21 @@ those tools, never a copy. It takes over the anchor's lesson card only when its 
 standard (Beat Lab's plan.md does); otherwise it is a second card in the module, beside the lesson tool. Concepts
 and open choices: docs/CURIOSITIES.md.
 
+## The bar we build to (Cory, 2026-11-10)
+
+State adoption is the bar we build to. A full course from Curio Class should meet the substance of what state and
+national curriculum reviews ask for: a year that hangs together, most time on the work that matters most for the
+grade, reading that builds knowledge, an ordered phonics path in K-2, teacher pages that teach the teacher, support
+for every learner, and no errors. We do not pursue formal adoption now. If later data says it is a good path, we
+pivot and are already well placed.
+
+The bar applies to courses (the Curriculum track and the shelves that feed it). Single tools keep their own rules,
+and Curiosities and Recess are not measured against it. It never outranks the list below. What the bar asks, what
+we took into the plan and what we left out: docs/ADOPTION-BAR.md (BASELINE rule 20).
+
 ## What we will not do
 
-- Accounts, ads, tracking or student analytics, ever.
+- Accounts, ads, tracking or student analytics, ever. That holds even where a review or a district system would
+  reward rosters, sign-on or usage data.
 - Claims we can't stand behind: "clinically proven", "cryptographic", or "100% coverage" stated as fact.
 - Copy a branded product (an exam, a game, a curriculum) in name, look or text.
