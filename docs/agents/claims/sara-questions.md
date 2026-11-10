@@ -114,3 +114,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - resource-map: data source (default used: USGS mineral, energy and High Plains aquifer maps, public domain, simplified and bundled, checked before build)
 - resource-map: Sensitivity flag: mining and drilling on Native lands (default used: geology and deposits only, no tribal overlay, one card on tribal governance with a link to NCAI, fresh-agent read before build)
 - invasive-species-alert: data source (default used: zebra mussel effects from USGS NAS, NOAA GLERL and Minnesota Sea Grant, effect sizes checked before build)
+- predator-prey-island: data source (default used: Isle Royale annual wolf and moose counts from the Michigan Tech and NPS reports, bundled with their year, plus three outside cases from the cited papers, checked before build)
+- nerve-signal-relay: accessibility (default used: the sound round always pairs the tone with a visual pulse ring and works with Sound off; cues never flash and change at most once a second)
+- made-from: data source (default used: process steps per product from ACS, Science History Institute, EIA and EPA, checked before build)
