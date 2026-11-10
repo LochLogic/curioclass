@@ -79,3 +79,7 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - who-decides: the idea card flags five codes as too big (default used: one tool whose steps each teach one or two codes, so it can run across class periods; not split).
 - who-decides: the idea card flags a data source (default used: a 51-entry state guide naming each law and check date, checked before build; a state that can't be confirmed shows only the general checklist).
 - campaign-manager: Sensitivity flag: partisan balance (default used: made-up candidates, parties, outlets and groups, no red and blue, mixed issue positions, facts without commentary, fresh-agent read before build).
+- economy-dashboard: data source with a scheduled refresh (default used: FRED, BEA, BLS and NBER series bundled as one data file with its pull date shown, refreshed by a build script each quarter; no network at runtime)
+- fed-chair: D2.Eco.9.9-12 moves to two-villages (default used: fed-chair teaches D2.Eco.12.9-12 only)
+- fed-chair: data source and model calibration (default used: FRED and Federal Reserve statements, a stated teaching model checked against the real paths before build)
+- trait-lab: privacy if answers are stored (default used: answers stay on the device under trait-lab-v1 with a clear button, stated on screen; class mode shares only the change)
