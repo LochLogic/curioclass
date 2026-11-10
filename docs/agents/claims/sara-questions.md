@@ -78,3 +78,4 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - causes-web: the idea card flags a data source (default used: Boise rents, one U.S. county's recycling program chosen at build, and GM Janesville, each checked against current data before build).
 - who-decides: the idea card flags five codes as too big (default used: one tool whose steps each teach one or two codes, so it can run across class periods; not split).
 - who-decides: the idea card flags a data source (default used: a 51-entry state guide naming each law and check date, checked before build; a state that can't be confirmed shows only the general checklist).
+- campaign-manager: Sensitivity flag: partisan balance (default used: made-up candidates, parties, outlets and groups, no red and blue, mixed issue positions, facts without commentary, fresh-agent read before build).
