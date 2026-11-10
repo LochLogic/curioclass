@@ -93,3 +93,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - weather-wardrobe: data source (default used: NOAA GHCN-Daily records for Minneapolis, Seattle and Atlanta, one winter and one summer month each, bundled; no network)
 - fast-or-slow: data source (default used: USGS and NPS public domain photos, checked one by one, credits in the data block)
 - fossil-clues: data source (default used: Fossil Butte and Green River Formation facts from NPS and USGS, Trappers Point counts from WYDOT and Sawyer and colleagues (2016), checked before build)
+- climate-postcards: data source (default used: NOAA 1991-2020 U.S. Climate Normals for Phoenix, Seattle and Anchorage, WMO 1991-2020 normals for Singapore, Nairobi and Buenos Aires, bundled; no network)
+- world-layers-map: data source (default used: USGS ComCat magnitude 5 and up for one stated year, Smithsonian Global Volcanism Program, NOAA ETOPO 2022, simplified and bundled; no network)
+- bowling-lab: code move (default used: 4-PS3-2 moves to contraption-workshop; this tool teaches 4-PS3-1 and 4-PS3-3)
