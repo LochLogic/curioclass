@@ -100,3 +100,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - canyon-reader: Sensitivity flag: the Grand Canyon as the homeland of Native nations (default used: opening card naming six nations and noting eleven associated tribes, links to their own sites, no retelling of their stories or sacred places, fresh-agent read before build)
 - canyon-reader: data source (default used: layer names, fossils and places from NPS Grand Canyon geology pages, checked against USGS)
 - erosion-table: code move (default used: 4-ESS2-2 moves to world-layers-map; this tool teaches 4-ESS2-1 only)
+- sphere-connections: data source (default used: USGS "Where is Earth's water?" table, rounded to 97 ocean and salty, 2 ice, 1 liquid fresh, with the rounding shown on the graph)
+- community-solutions: data source (default used: six cases from EPA, SNWA and Reclamation, Chesapeake Bay Program and NRCS, USACE and NJDEP, Napa County and USACE, NPS and USGS for the Elwha, each fact checked before build)
+- community-solutions: Sensitivity flag: tribal lands and environmental justice (default used: Elwha case credits the Lower Elwha Klallam Tribe as a leader with a link to its own site, Chattanooga told plainly without blame, fresh-agent read of all six cases before build)
