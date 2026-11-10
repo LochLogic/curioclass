@@ -59,8 +59,25 @@ no accounts, no ads, no tracking.
    `C:\Users\Cory\AppData\Local\Temp\claude\_to_delete-2026-11-03` (about 1 GB of old session scratch). Also delete
    the merged branches (`git push origin --delete audit/states codex/biased-bot`, `git branch -D audit/states`) and
    merge `claude/hopeful-dirac-qck82o` (worksheets wave 2) when that session finishes.
-6. **Adoption-bar checks (new 2026-11-10, docs/ADOPTION-BAR.md):** three checks that are cheap now and costly to
-   backfill. None of them changes the tool pipeline or holds up a build.
+6. **Catalog review (planned 2026-11-10, Cory; docs/agents/CATALOG-REVIEW.md). Not started.** Every tool is specced
+   or further along (7 ASL tools held), so the whole catalog is reviewed for standards coverage, duplication and
+   curriculum value, from the specs this time. A cheaper model writes one row per tool, scripts make the tables, the
+   top model judges only what the tables flag, and proposals come to Cory as Desk cards with a pick. Pilot on grade 4
+   math and grade 6 ELA first, then the rest by subject and band. It gives the bench a build order by value, and it
+   takes in checks 8a and 8b below for tools.
+7. **Token plan (planned 2026-11-10, Cory; docs/agents/TOKEN-PLAN.md). Not started.** Token cost is the biggest limit
+   on growth; savings must not reduce quality. The agent logs show that re-read context, not new context, is most of
+   a lens's cost, and that the Exit check and Finish check together cost about as much as the three lenses. Changes to
+   try: script the counting checks, one evidence pack a round, heavy files kept out of context, a spec pre-check, and
+   model tiers. Each is trialled beside the current flow on three tools and kept only if it misses no blocker or
+   should-fix.
+
+   **Order (set 2026-11-10):** items 6 and 7 run first, side by side. Then Cory's picks on the Desk, then the year
+   spines and the unit pilot (Track 7), then Refine resumes in value order on the 119 tools at Self-check. The cohort
+   in item 2 and the Codex queue carry on meanwhile.
+8. **Adoption-bar checks (new 2026-11-10, docs/ADOPTION-BAR.md; on hold behind items 6 and 7):** three checks that
+   are cheap now and costly to backfill. None of them changes the tool pipeline or holds up a build. For tools, a and
+   b are now part of the catalog review; what is left of each is a short scan of the other shelves after it.
    - **a. K-2 reading scan.** A fresh agent reads every K-2 reading tool, plan, worksheet and Word Wall card for
      prompts that tell a child to guess a word from the picture or the sentence instead of sounding it out. Findings
      go in a short report; fixes go through the normal Fix step.
@@ -219,7 +236,7 @@ play-tests.
 Detail: docs/LIBRARY-PLAN.md. About 700 stories are curated and processed into readable text. Next:
 
 1. **Pilot:** ten stories in the 3-5 band end to end (format, reader, pipeline). The format gains a text record and
-   topics first (Now, item 6c; docs/ADOPTION-BAR.md).
+   topics first (Now, item 8c; docs/ADOPTION-BAR.md).
 2. **Enrich and verify** in waves of about 50: word help, questions, teacher notes, the text record and topics, then
    a cold verify agent. Stories that share a topic are shown together as topic sets.
 3. **K-2 read-aloud** as the voice bank allows.
@@ -264,7 +281,8 @@ From single tools to complete courses a teacher can run start to finish, one lad
 adoption bar applies (docs/ADOPTION-BAR.md, BASELINE rule 20): reviews judge a whole course, so the year's shape
 comes before the units that fill it.
 
-1. **Year spine** (new 2026-11-10): for each pilot course (grade 4 math, grade 6 ELA), one page that puts the
+1. **Year spine** (new 2026-11-10; starts after the catalog review's pilot on the same two courses, Now item 6, whose
+   coverage tables it builds on): for each pilot course (grade 4 math, grade 6 ELA), one page that puts the
    year's units in order and says why each sits where it does: what it builds on, what it sets up, and for math,
    how much of the year goes to the major work of the grade. It starts from data/sequence.csv and the module list,
    and names the gaps. Units are cut from the spine, not gathered from whatever parts are finished. Cory reviews

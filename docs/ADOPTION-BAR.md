@@ -54,9 +54,9 @@ the shelves that feed it. Single tools keep their own rules (BASELINE, docs/TOOL
 | Year spine before units: a year's order with reasons, for each pilot course | ROADMAP Track 7, step 1 | Before the unit pilot |
 | Teacher pages that teach the teacher (why this model, watch for, adapt it) | ROADMAP Track 7, step 2 (unit pilot) | Tried on the two pilot units; tool lesson plans stay as they are until the pilot is judged |
 | Pilot units judged against this bar | ROADMAP Track 7, step 2 | With Cory's review of the pilot |
-| K-2 reading scan for guess-the-word prompts | ROADMAP Now, item 6a | Now |
-| Math focus and balance report, per grade | ROADMAP Now, item 6b | Now |
-| Reading Room: a text record and topic sets | docs/LIBRARY-PLAN.md ("Reading level", "Topic sets"); ROADMAP Now 6c and Track 3 | Before the ten-story pilot |
+| K-2 reading scan for guess-the-word prompts | ROADMAP Now, item 8a (tools: the catalog review) | Now |
+| Math focus and balance report, per grade | ROADMAP Now, item 8b (tools: the catalog review) | Now |
+| Reading Room: a text record and topic sets | docs/LIBRARY-PLAN.md ("Reading level", "Topic sets"); ROADMAP Now 8c and Track 3 | Before the ten-story pilot |
 | Hands-on work uses things a classroom or home already has, or names a cheap stand-in | docs/agents/STANDARDS.md (Scope), docs/agents/PLAN.md | Standing, from 2026-11-10 |
 | State crosswalk: one state outside the Common Core first; CASE as a file format in and out | ROADMAP Track 7 ("Later"), docs/PHASE1-SCOPE.md | When the crosswalk starts |
 
