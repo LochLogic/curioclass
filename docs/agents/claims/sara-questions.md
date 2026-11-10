@@ -152,3 +152,7 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - stadium-count: overlap with zoom-by-tens (default used: whole numbers and crowds here; zoom-by-tens zooms a meter stick for decimals)
 - fraction-kitchen: overlap with recipe-scaler (default used: mixed cup sizes and unlike denominators here; recipe-scaler keeps one-size scoops and like denominators)
 - shape-sieve: trapezoid definition (default used: inclusive, at least one pair of parallel sides, with a teacher note naming the exclusive definition)
+- camp-cook-share-out: overlap with how-many-fit and fraction-kitchen (default used: unit fractions and whole numbers only, shared at camp; how-many-fit keeps fraction by fraction division; fraction-kitchen keeps adding unlike fractions)
+- shrink-ray: code move (default used: 5.NF.3 and 5.NF.7 go to camp-cook-share-out; this tool keeps 5.NF.4, 5.NF.5 and 5.NF.6)
+- grocery-run: format change (default used: builder instead of tycoon, since one shopping plan is built and checked and nothing runs over time)
+- grocery-run: data source (default used: sample prices set near the BLS Average Price Data U.S. city average, labeled sample prices with the date, checked again before build)
