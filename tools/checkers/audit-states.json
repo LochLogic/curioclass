@@ -1,0 +1,11 @@
+{
+  "target": 44,
+  "target_reason": "Recess spec uses 44 px phone controls and board targets; expanded circular hits preserve exact board centres.",
+  "states": [
+    {"name":"computer-picker","steps":[{"click":"#play-computer"}],"sizes":["680x425","1366x768","375x812 (iframe host)"]},
+    {"name":"friend-table","steps":[{"click":"#play-friend"}],"keep":["#board"],"sizes":["680x425","1366x768","375x812 (iframe host)"]},
+    {"name":"puzzle-picker","steps":[{"click":"#puzzles"}],"sizes":["680x425","1366x768","375x812 (iframe host)"]},
+    {"name":"help","steps":[{"click":"#how"}],"sizes":["1366x768","375x812 (iframe host)"]},
+    {"name":"puzzle-capture","steps":[{"click":"#puzzles"},{"click":"#round-1"},{"click":"[data-s='13']"},{"click":"[data-s='22']"},{"wait":600}],"keep":["#board","#result"],"sizes":["680x425","1366x768","375x812 (iframe host)"]}
+  ]
+}

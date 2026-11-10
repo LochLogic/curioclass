@@ -1,0 +1,1987 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="icon" href="data:,">
+<title>Go | Curio Class Recess</title>
+<link rel="stylesheet" href="kit:recess">
+<style>
+* { box-sizing: border-box; }
+body.recess {
+  --rc-accent: #f2b544;
+  --rc-accent-ink: #1b1630;
+  --rc-glass: rgba(29,19,10,.84);
+  background: #1d130a url('art:room') center / cover fixed;
+  color: #f3eadb;
+}
+body::before {
+  content: ''; position: fixed; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 25% 15%, #d9952420, transparent 62%), linear-gradient(90deg, #160e08a8, transparent 45%, #160e0855);
+  animation: lamplight 12s ease-in-out infinite;
+}
+button, select { font: inherit; }
+button, select, summary { min-height: 44px; }
+button { cursor: pointer; }
+button:disabled { cursor: default; opacity: .45; }
+button:focus-visible, select:focus-visible, summary:focus-visible { outline: 3px solid #f2b544; outline-offset: 3px; }
+button, select {
+  color: #f3eadb; background: #21150de8; border: 1px solid #ad84534d; border-radius: 10px; padding: 10px 14px;
+}
+.world button:hover:not(:disabled), #toast:hover:not(:disabled) { background: #50351c; }
+button.primary { background: #f2b544; color: #261809; border-color: #ffcf77; font-weight: 800; box-shadow: 0 3px 0 #8e5c21; }
+button.primary:hover:not(:disabled) { background: #ffd17d; }
+.world {
+  position: relative; display: grid; grid-template-columns: minmax(200px,260px) minmax(0,650px) minmax(160px,210px);
+  gap: clamp(12px,2.2vw,34px); align-items: center; justify-content: center;
+  min-height: 100vh; padding: 76px 28px 24px;
+}
+.left { align-self: center; min-width: 0; }
+.wordmark { font-size: 64px; line-height: 1; letter-spacing: .14em; margin: 0 0 10px; font-weight: 350; text-shadow: 0 3px 18px #0007; }
+.eyebrow { color: #e1ad60; letter-spacing: .2em; font-size: 11px; font-weight: 700; text-transform: uppercase; margin: 0 0 22px; }
+.rule { width: 44px; height: 2px; background: #c18d45; margin: 24px 0; }
+h2 { font-size: 23px; font-weight: 650; margin: 0 0 10px; }
+p { line-height: 1.5; margin: 10px 0; }
+.muted, .small { color: #c9b89c; }
+.small { font-size: 12px; }
+.instruction { font-size: 17px; max-width: 260px; }
+.chapter { letter-spacing: .13em; font-size: 11px; text-transform: uppercase; color: #e1ad60; }
+.panel { border-top: 1px solid #ba945340; padding-top: 18px; margin-top: 18px; }
+.setup { display: grid; gap: 10px; }
+.setup label { font-size: 13px; display: grid; gap: 5px; }
+.setup select { width: 100%; }
+.setup .primary { order: -1; }
+.description { font-size: 13px; color: #c9b89c; min-height: 40px; }
+.board-column { min-width: 0; align-self: center; }
+.board-wrap {
+  position: relative; width: min(100%,calc(100vh - 144px)); aspect-ratio: 1; margin: auto;
+  filter: drop-shadow(12px 22px 17px #0009);
+}
+.board-art { width: 100%; height: 100%; position: absolute; inset: 0; pointer-events: none; }
+body[data-stage=count] .board-art { filter:brightness(.88); }
+#board { position: absolute; inset: 9%; touch-action: none; outline: none; }
+#board:focus-visible { outline: 3px solid #1f3f66; outline-offset: 10px; border-radius: 2px; }
+#grid { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.point { position: absolute; width: var(--stone); height: var(--stone); transform: translate(-50%,-50%); pointer-events: none; }
+.stone { position: absolute; width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(1px 2px 2px #0008); }
+.placed .stone { animation: settle .14s ease-out; }
+.ghost { opacity: .55; }
+.wrong { animation: wrong .6s ease-in forwards; }
+.mark { position: absolute; top: 44%; left: 44%; width: 12%; height: 12%; border-radius: 50%; background: #f4efe4; box-shadow: 0 0 2px #0008; }
+.white .mark { background: #1c1d21; }
+.dead::after { content: '×'; position: absolute; inset: 0; color: #f2b544; text-align: center; font-size: calc(var(--stone)*.8); line-height: 1; }
+.white.dead::after { color: #a3341f; }
+.liberty, .cursor, .ko, .area { position: absolute; transform: translate(-50%,-50%); pointer-events: none; }
+.liberty { width: 10px; height: 10px; background: #1f3f66; border-radius: 50%; box-shadow: 0 0 7px #a9c8ea; }
+.cursor { width: var(--stone); height: var(--stone); border: 3px solid #1f3f66; border-radius: 50%; }
+.ko { width: calc(var(--stone)*.65); height: calc(var(--stone)*.65); border: 3px solid #1f3f66; border-radius: 50%; }
+.loss-ring {
+  position:absolute; transform:translate(-50%,-50%); pointer-events:none; width:var(--stone); height:var(--stone);
+  border:3px solid #1f3f66; border-radius:50%; box-shadow:0 0 0 2px #f3eadb80;
+}
+.outcome-ring {
+  position:absolute; transform:translate(-50%,-50%); pointer-events:none; width:var(--stone); height:var(--stone);
+  border:3px solid #1f3f66; border-radius:50%; box-shadow:0 0 0 3px #f3eadb90,0 0 18px 5px #81b9e980;
+  animation:shape-glow .9s ease-out both;
+}
+.rc-card .rc-ghost { color:#1b1630; background:#efeadf; }
+.rc-card .rc-ghost:hover { background:#ded5c4; }
+.rc-card .rc-go:hover { background:#ffd17d; }
+.rc-card .rc-arr:hover { background:#ded5c4; }
+.area { width: 8px; height: 8px; border: 1px solid #4e3e28; background: #1c1d21; border-radius: 2px; }
+.area.white { background: #f4efe4; }
+.bloom {
+  width: calc(var(--stone)*1.8); height: calc(var(--stone)*1.8); position: absolute;
+  transform: translate(-50%,-50%); animation: wash .7s ease-out both; pointer-events: none;
+}
+.capture-stone { animation: captured .7s ease-out both; }
+.tabs { display: flex; justify-content: center; gap: 6px; margin-top: 12px; }
+.tabs button { min-width: 95px; background: #23170ee0; border-color: #9f784c66; border-radius: 30px; font-size: 13px; }
+.tabs button[aria-selected=true] { color: #ffd690; border-color: #d4a45e; background: #66421c99; }
+.right { align-self: stretch; display: flex; flex-direction: column; justify-content: space-evenly; min-width: 0; padding: 15px 0; }
+.bowl { position: relative; width: 100%; aspect-ratio: 1.8; }
+.bowl img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(4px 8px 7px #0007); }
+.bowl.active::before { content: ''; position: absolute; inset: 6% -4%; border-radius: 50%; background: #ffc57016; box-shadow: 0 0 40px #e9ad3330; }
+.bowl .pile { position: absolute; inset: 0; }
+.pile img { position: absolute; width: 17%; height: auto; }
+.bowl-label { display: flex; align-items: baseline; justify-content: space-between; font-size: 13px; margin: 0 8px; color: #c9b89c; }
+.bowl-label b { font-size: 23px; font-weight: 500; color: #f3eadb; }
+.status-box { text-align: center; }
+#status { font-size: 18px; min-height: 54px; margin: 12px 0; }
+.actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.actions button { flex: 1; }
+#undo-count { font-size: 12px; color: #c9b89c; min-height: 18px; margin-top: 14px; }
+.thinking { height: 28px; width: 28px; object-fit: contain; animation: pulse 1.2s ease-in-out infinite; }
+details { margin-top: 14px; font-size: 12px; color: #c9b89c; }
+summary { cursor: pointer; display: list-item; padding: 11px 0 10px 4px; line-height: 22px; }
+details:not([open]) > :not(summary) { display:none; }
+.puzzle-picker { max-height: 220px; overflow: auto; padding-right: 4px; }
+.puzzle-picker button { display: block; width: 100%; text-align: left; margin: 5px 0; font-size: 13px; }
+.puzzle-picker button[aria-current=true] { border-color: #f2b544; color: #ffd68d; }
+.privacy { font-size: 10px; color: #c9b89c; margin-top: 14px; }
+#count { border-top: 1px solid #ad84534d; margin-top: 12px; padding-top: 12px; font-size: 14px; }
+#count button { margin-top: 6px; width: 100%; }
+#toast { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); z-index: 55; box-shadow: 0 4px 25px #000b; }
+#loupe {
+  position: absolute; border: 3px solid #e1ad60; border-radius: 50%; width: 100px; height: 100px;
+  overflow: hidden; pointer-events: none; z-index: 8; background: #d9a95f url('art:board') center / cover;
+}
+#loupe img { width: 75%; height: 75%; margin: 12.5%; }
+[hidden] { display: none !important; }
+@keyframes settle { from { transform: scale(1.06); filter: drop-shadow(2px 5px 4px #0008); } }
+@keyframes wash { from { scale: .55; opacity: .65; } to { scale: 1.1; opacity: 0; } }
+@keyframes captured { to { scale: .25; opacity: 0; } }
+@keyframes wrong { 70% { opacity: .8; } to { opacity: 0; } }
+@keyframes pulse { 50% { opacity: .35; transform: scale(.7); } }
+@keyframes lamplight { 50% { opacity:.82; transform:translate(3px,2px); } }
+@keyframes shape-glow { from { box-shadow:0 0 0 3px #f3eadb90,0 0 24px 8px #81b9e9b0; } }
+body.calm *, body.calm *::before, body.calm *::after { animation: none !important; transition: none !important; }
+body.calm .capture-stone { transition:opacity .2s !important; }
+@media (min-width: 761px) and (max-height: 650px) {
+  .world { padding: 64px 18px 12px; gap: 15px; grid-template-columns: minmax(170px,230px) minmax(200px,550px) minmax(140px,190px); }
+  .wordmark { font-size: 38px; margin-bottom: 6px; }
+  .eyebrow { margin-bottom: 12px; font-size: 10px; }
+  h2 { font-size: 19px; }
+  .instruction { font-size: 14px; }
+  .rule { margin: 12px 0; }
+  .panel { margin-top: 8px; padding-top: 8px; }
+  .puzzle-picker { max-height: 130px; }
+  .board-wrap { width: min(100%,calc(100vh - 128px)); }
+  .setup { gap: 4px; }
+  .setup label { display: flex; align-items: center; justify-content: space-between; }
+  .setup select { width: 65%; }
+  .right { padding: 0; }
+  .bowl { max-height: 100px; }
+  #status { font-size: 14px; min-height: 40px; margin: 5px 0; }
+  .description { font-size: 11px; min-height: 30px; margin: 3px 0; }
+}
+@media (max-width: 760px) {
+  .world { display: flex; flex-direction: column; padding: 72px 8px 24px; gap: 10px; }
+  .board-column { order: 0; width: 100%; }
+  .board-wrap { width: min(100%,440px); }
+  .right { order: 1; display: grid; grid-template-columns: 80px 1fr 80px; align-items: center; width: 100%; max-width: 520px; padding: 0; gap: 8px; }
+  .white-side { order: 3; }
+  .black-side { order: 1; }
+  .status-box { order: 2; }
+  .bowl { height: 52px; aspect-ratio: auto; }
+  .bowl-label { font-size: 11px; margin: 0; }
+  .bowl-label b { font-size: 17px; }
+  #status { font-size: 14px; min-height: 40px; margin: 0 0 8px; }
+  #undo-count { margin: 6px 0; }
+  .left { order: 2; width: 100%; max-width: 520px; }
+  .wordmark, .eyebrow, .rule { display: none; }
+  .instruction { max-width: none; font-size: 15px; }
+  .panel { margin-top: 10px; padding-top: 12px; }
+  .puzzle-picker { max-height: 180px; }
+  .tabs { margin-top: 8px; }
+  .privacy { font-size: 11px; }
+  .thinking { height: 18px; width: 18px; }
+}
+@media (max-height:500px) and (min-aspect-ratio:1/1) {
+  body[data-stage=count] .white-side,body[data-stage=count] .black-side { display:none; }
+  body[data-stage=count] .right { justify-content:center; }
+}
+@media (max-width:760px) and (min-aspect-ratio:1/1) {
+  .world { display:grid; grid-template-columns:155px minmax(180px,1fr) 135px; gap:10px; padding:64px 12px 8px; }
+  .left { order:0; align-self:center; }
+  .board-column { order:1; }
+  .board-wrap { width:min(100%,calc(100vh - 126px)); }
+  .right { order:2; display:flex; flex-direction:column; gap:8px; padding:0; }
+  .white-side, .black-side, .status-box { order:initial; width:100%; }
+  .bowl { height:65px; }
+  .wordmark, .eyebrow, .privacy, .left > details, #mode-panel > details:not(#choose) { display:none; }
+  h2 { font-size:18px; }
+  .chapter { font-size:10px; margin:0 0 8px; }
+  .instruction { font-size:13px; }
+  .description { font-size:11px; min-height:0; }
+  .setup { gap:4px; }
+  .setup label { font-size:11px; gap:0; }
+  .setup select { padding:5px; }
+  .tabs { gap:3px; }
+  .tabs button { min-width:0; padding:8px; font-size:11px; }
+  #status { min-height:38px; font-size:13px; }
+  #undo-count { margin:3px; }
+  #count { font-size:11px; }
+  #count p { margin:3px 0; }
+  body[data-stage=count] .bowl { height:38px; }
+  body[data-stage=count] .right { gap:3px; }
+  body[data-stage=count] #status { min-height:0; font-size:11px; }
+}
+
+.sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip-path:inset(50%); }
+
+</style>
+</head>
+<body>
+<main class="world">
+  <aside class="left">
+    <h1 class="wordmark">GO</h1><p class="eyebrow">Ink &amp; stone</p>
+    <div id="mode-panel"></div>
+    <details><summary>At the table</summary>
+      <p>Place stones on the crossings. Surround a chain to take it. More of the board wins.</p>
+      <p>Arrows aim. Enter places. L shows liberties. P passes. H hints. U undoes.</p>
+      <p>Ko is the Japanese word used in English; in Chinese it is jie (劫) and in Korean pae (패).</p>
+    </details>
+    <p class="privacy">Saved here. Nothing leaves this device.</p>
+  </aside>
+  <section class="board-column" aria-label="Go table">
+    <div class="board-wrap">
+      <img class="board-art" src="art:board" alt="">
+      <div id="board" role="grid" tabindex="0" aria-label="Go board. Arrows aim, Enter places.">
+        <svg id="grid" viewBox="0 0 1000 1000" aria-hidden="true"></svg>
+        <div id="stones"></div><div id="marks"></div><div id="effects"></div>
+      </div>
+      <div id="loupe" hidden></div>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Game mode">
+      <button id="computer-tab" role="tab" data-mode="computer">Computer</button>
+      <button id="friend-tab" role="tab" data-mode="friend">Friend</button>
+      <button id="puzzles-tab" role="tab" data-mode="puzzles">Puzzles</button>
+    </nav>
+  </section>
+  <aside class="right">
+    <div class="white-side"><div class="bowl" id="white-bowl"><img src="art:bowl-white" alt="White stones"><div class="pile" id="white-pile"></div></div>
+      <div class="bowl-label"><span>White captured</span><b id="white-captures">0</b></div></div>
+    <div class="status-box"><img id="thinking" class="thinking" src="art:bloom" alt="" hidden>
+      <p id="status" role="status" aria-live="polite">Your move</p>
+      <div class="actions"><button id="pass" class="primary">Pass</button><button id="hint">Hint</button><button id="confirm" hidden>Place</button></div>
+      <p id="undo-count"></p><div id="count" hidden></div>
+    </div>
+    <div class="black-side"><div class="bowl" id="black-bowl"><img src="art:bowl-black" alt="Black stones"><div class="pile" id="black-pile"></div></div>
+      <div class="bowl-label"><span>Black captured</span><b id="black-captures">0</b></div></div>
+  </aside>
+</main>
+<button id="toast" hidden>Back to that game?</button>
+
+<!-- Canonical shell bundle marker, inert because of its closing-script header example.
+<script src="kit:recess"></script>
+-->
+<script>
+const shellEncoded = [
+  "Ly8gQ3VyaW8gQ2xhc3MgUmVjZXNzIHNoZWxsOiB3aGF0IGV2ZXJ5IFJlY2VzcyBnYW1lIGRvZXMgdGhlIHNhbWUgd2F5LCBhbmQgbm90aGluZyBlbHNlIChk",
+  "b2NzL0dBTUVTLm1kKS4KLy8gSW5saW5lZCBieSBzY3JpcHRzL2J1bmRsZV90b29sLnB5IGZyb20gPHNjcmlwdCBzcmM9ImtpdDpyZWNlc3MiPjwvc2NyaXB0",
+  "PiB3aXRoIDxsaW5rIHJlbD0ic3R5bGVzaGVldCIgaHJlZj0ia2l0OnJlY2VzcyI+LgovLyBUaGUgZ2FtZSBvd25zIGl0cyB3aG9sZSB3b3JsZCAoYm9hcmQs",
+  "IGFydCwgbW90aW9uLCBzb3VuZCBkZXNpZ24pLiBUaGUgc2hlbGwgb3ducyBvbmx5OiB0aGUgY29ybmVyIGNvbnRyb2xzIChVbmRvLAovLyBSZXN0YXJ0LCBT",
+  "b3VuZCwgTW90aW9uLCBTY29yZXMpLCBzdGFycyBhbmQgcGVyc29uYWwgYmVzdHMgcGVyIGxldmVsLCB0aGUgMy1sZXR0ZXIgbG9jYWwgaGlnaCBzY29yZSBi",
+  "b2FyZCwgdGhlCi8vIHdpbiBjYXJkLCBhIHNlZWRlZCBkYWlseSBwdXp6bGUsIGEgZmV3IHN5bnRoIHNvdW5kcyBhbmQgYSBwYXJ0aWNsZSBidXJzdC4gRXZl",
+  "cnl0aGluZyBzYXZlcyBvbiB0aGlzIGRldmljZSBvbmx5LgovLwovLyAgIFJlY2Vzcy5zdGFydCh7aWQsIHRpdGxlLCBzY29yZToge2xhYmVsOiAnTW92ZXMn",
+  "LCBsb3dlcjogdHJ1ZX0sIG9uVW5kbywgb25SZXN0YXJ0LCBvbk5leHR9KQovLyAgIFJlY2Vzcy5sZXZlbChrZXksIGxhYmVsKSAgICAgICBzYXkgd2hpY2gg",
+  "bGV2ZWwgaXMgb24gKGtleSBpcyBzdG9yZWQsIGxhYmVsIGlzIHNob3duKQovLyAgIFJlY2Vzcy5jYW5VbmRvKGJvb2wpICAgICAgICAgICBlbmFibGUgb3Ig",
+  "ZGlzYWJsZSBVbmRvCi8vICAgUmVjZXNzLndpbih7c2NvcmUsIHN0YXJzfSkgICAgIGZpbmlzaCB0aGUgbGV2ZWw6IHNob3dzIHRoZSBjYXJkLCBzYXZlcyBz",
+  "dGFycyBhbmQgYmVzdCwgYXNrcyBmb3IgaW5pdGlhbHMgb24gYSB0b3AgMTAKLy8gICBSZWNlc3Muc3RhcnMoa2V5KSAvIFJlY2Vzcy50b3RhbFN0YXJzKCkg",
+  "LyBSZWNlc3MuYmVzdChrZXkpCi8vICAgUmVjZXNzLnBsYXkobmFtZSkgICAgICAgICAgICAgICd0YXAnICdwbGFjZScgJ2NsYWNrJyAnc2xpZGUnICdwb3An",
+  "ICdjYXB0dXJlJyAnd2luJyAnbm9wZScKLy8gICBSZWNlc3MuYnVyc3QoeCwgeSwgY29sb3JzKSAgICAgYSBzbWFsbCBjb25mZXR0aSBidXJzdCBhdCBwYWdl",
+  "IGNvb3JkaW5hdGVzIChza2lwcGVkIGluIGNhbG0gbW90aW9uKQovLyAgIFJlY2Vzcy5ybmcoc2VlZCkgLyBSZWNlc3MuZGFpbHkoKSAgIHNlZWRlZCByYW5k",
+  "b20gKGRhaWx5KCkgaXMgdG9kYXkncywgdGhlIHNhbWUgZm9yIGV2ZXJ5b25lIHRoYXQgZGF5KQovLyAgIFJlY2Vzcy5jYWxtIC8gUmVjZXNzLm9uTW90aW9u",
+  "KGZuKSAvIFJlY2Vzcy5zdG9yZShrZXksIHZhbHVlPykKY29uc3QgUmVjZXNzID0gKCgpID0+IHsKICBjb25zdCAkID0gaWQgPT4gZG9jdW1lbnQuZ2V0RWxl",
+  "bWVudEJ5SWQoaWQpOwogIGNvbnN0IGVsID0gKHRhZywgY2xzLCB0ZXh0KSA9PiB7IGNvbnN0IGUgPSBkb2N1bWVudC5jcmVhdGVFbGVtZW50KHRhZyk7IGlm",
+  "IChjbHMpIGUuY2xhc3NOYW1lID0gY2xzOyBpZiAodGV4dCAhPSBudWxsKSBlLnRleHRDb250ZW50ID0gdGV4dDsgcmV0dXJuIGU7IH07CiAgbGV0IGNmZyA9",
+  "IHtpZDogJ2dhbWUnLCB0aXRsZTogJ1JlY2VzcycsIHNjb3JlOiB7bGFiZWw6ICdTY29yZScsIGxvd2VyOiBmYWxzZX19OwogIGxldCBsZXZlbEtleSA9ICdt",
+  "YWluJywgbGV2ZWxMYWJlbCA9ICcnLCB1bmRvT2sgPSBmYWxzZTsKCiAgLy8gLS0tLS0tLS0tLSBzdG9yYWdlOiBvbmUgbmFtZXNwYWNlIHBlciBnYW1lLCBu",
+  "ZXZlciBmYWlscyB0aGUgZ2FtZSAtLS0tLS0tLS0tCiAgZnVuY3Rpb24gc3RvcmUoa2V5LCB2YWx1ZSkgewogICAgY29uc3QgayA9IGByZWNlc3M6JHtjZmcu",
+  "aWR9OiR7a2V5fWA7CiAgICB0cnkgewogICAgICBpZiAodmFsdWUgPT09IHVuZGVmaW5lZCkgeyBjb25zdCB2ID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oayk7",
+  "IHJldHVybiB2ID09IG51bGwgPyBudWxsIDogSlNPTi5wYXJzZSh2KTsgfQogICAgICBsb2NhbFN0b3JhZ2Uuc2V0SXRlbShrLCBKU09OLnN0cmluZ2lmeSh2",
+  "YWx1ZSkpOwogICAgfSBjYXRjaCB7fQogICAgcmV0dXJuIHZhbHVlOwogIH0KCiAgLy8gLS0tLS0tLS0tLSBtb3Rpb24gYW5kIHNvdW5kLCBzaGFyZWQgd2l0",
+  "aCB0aGUgY2xhc3Nyb29tIHRvb2xzJyBzZXR0aW5ncyAtLS0tLS0tLS0tCiAgbGV0IGNhbG0gPSBtYXRjaE1lZGlhKCcocHJlZmVycy1yZWR1Y2VkLW1vdGlv",
+  "bjogcmVkdWNlKScpLm1hdGNoZXM7CiAgdHJ5IHsgY29uc3QgbSA9IGxvY2FsU3RvcmFnZS5nZXRJdGVtKCdjdXJpby1tb3Rpb24nKTsgaWYgKG0pIGNhbG0g",
+  "PSBtID09PSAnY2FsbSc7IH0gY2F0Y2gge30KICBsZXQgc291bmQgPSB0cnVlOwogIHRyeSB7IHNvdW5kID0gbG9jYWxTdG9yYWdlLmdldEl0ZW0oJ3JlY2Vz",
+  "cy1zb3VuZCcpICE9PSAnb2ZmJzsgfSBjYXRjaCB7fQogIGNvbnN0IG1vdGlvbkZucyA9IFtdOwoKICBsZXQgYWMgPSBudWxsOwogIGZ1bmN0aW9uIGF1ZGlv",
+  "KCkgewogICAgaWYgKCFhYykgeyBjb25zdCBBID0gd2luZG93LkF1ZGlvQ29udGV4dCB8fCB3aW5kb3cud2Via2l0QXVkaW9Db250ZXh0OyBpZiAoQSkgYWMg",
+  "PSBuZXcgQSgpOyB9CiAgICBpZiAoYWMgJiYgYWMuc3RhdGUgPT09ICdzdXNwZW5kZWQnKSBhYy5yZXN1bWUoKTsKICAgIHJldHVybiBhYzsKICB9CiAgLy8g",
+  "dGlueSBzeW50aCB2b2ljZXM6IFtmcmVxdWVuY3ksIGVuZCBmcmVxdWVuY3ksIHNlY29uZHMsIHdhdmUsIHZvbHVtZSwgbm9pc2VdCiAgY29uc3QgU09VTkRT",
+  "ID0gewogICAgdGFwOiBbWzY2MCwgNjQwLCAuMDUsICdzaW5lJywgLjEyXV0sCiAgICBwbGFjZTogW1syMjAsIDE1MCwgLjA5LCAndHJpYW5nbGUnLCAuM10s",
+  "IFswLCAwLCAuMDQsICdub2lzZScsIC4wOF1dLAogICAgY2xhY2s6IFtbMCwgMCwgLjA1LCAnbm9pc2UnLCAuMjVdLCBbMTgwMCwgMTIwMCwgLjAzLCAnc3F1",
+  "YXJlJywgLjA1XV0sCiAgICBzbGlkZTogW1swLCAwLCAuMTQsICdub2lzZScsIC4wN11dLAogICAgcG9wOiBbWzQyMCwgOTAwLCAuMDgsICdzaW5lJywgLjIy",
+  "XV0sCiAgICBjYXB0dXJlOiBbWzUyMCwgMjYwLCAuMTgsICd0cmlhbmdsZScsIC4yMl0sIFswLCAwLCAuMTIsICdub2lzZScsIC4wN11dLAogICAgbm9wZTog",
+  "W1syMDAsIDE3MCwgLjE2LCAnc2F3dG9vdGgnLCAuMDddXSwKICAgIHdpbjogW1s1MjMsIDUyMywgLjEyLCAndHJpYW5nbGUnLCAuMl0sIFs2NTksIDY1OSwg",
+  "LjEyLCAndHJpYW5nbGUnLCAuMiwgMCwgLjFdLCBbNzg0LCA3ODQsIC4xMiwgJ3RyaWFuZ2xlJywgLjIsIDAsIC4yXSwgWzEwNDcsIDEwNDcsIC4zLCAndHJp",
+  "YW5nbGUnLCAuMjIsIDAsIC4zXV0sCiAgfTsKICBmdW5jdGlvbiBwbGF5KG5hbWUpIHsKICAgIGlmICghc291bmQgfHwgIVNPVU5EU1tuYW1lXSkgcmV0dXJu",
+  "OwogICAgY29uc3QgYyA9IGF1ZGlvKCk7IGlmICghYykgcmV0dXJuOwogICAgZm9yIChjb25zdCBbZjAsIGYxLCBkdXIsIHdhdmUsIHZvbCwgLCBkZWxheSA9",
+  "IDBdIG9mIFNPVU5EU1tuYW1lXSkgewogICAgICBjb25zdCB0ID0gYy5jdXJyZW50VGltZSArIGRlbGF5LCBnID0gYy5jcmVhdGVHYWluKCk7CiAgICAgIGcu",
+  "Z2Fpbi5zZXRWYWx1ZUF0VGltZSh2b2wsIHQpOyBnLmdhaW4uZXhwb25lbnRpYWxSYW1wVG9WYWx1ZUF0VGltZSguMDAwMSwgdCArIGR1cik7CiAgICAgIGxl",
+  "dCBzcmM7CiAgICAgIGlmICh3YXZlID09PSAnbm9pc2UnKSB7CiAgICAgICAgY29uc3QgYiA9IGMuY3JlYXRlQnVmZmVyKDEsIE1hdGguY2VpbChjLnNhbXBs",
+  "ZVJhdGUgKiBkdXIpLCBjLnNhbXBsZVJhdGUpLCBkID0gYi5nZXRDaGFubmVsRGF0YSgwKTsKICAgICAgICBmb3IgKGxldCBpID0gMDsgaSA8IGQubGVuZ3Ro",
+  "OyBpKyspIGRbaV0gPSBNYXRoLnJhbmRvbSgpICogMiAtIDE7CiAgICAgICAgc3JjID0gYy5jcmVhdGVCdWZmZXJTb3VyY2UoKTsgc3JjLmJ1ZmZlciA9IGI7",
+  "CiAgICAgIH0gZWxzZSB7CiAgICAgICAgc3JjID0gYy5jcmVhdGVPc2NpbGxhdG9yKCk7IHNyYy50eXBlID0gd2F2ZTsgc3JjLmZyZXF1ZW5jeS5zZXRWYWx1",
+  "ZUF0VGltZShmMCwgdCk7IHNyYy5mcmVxdWVuY3kuZXhwb25lbnRpYWxSYW1wVG9WYWx1ZUF0VGltZShmMSwgdCArIGR1cik7CiAgICAgIH0KICAgICAgc3Jj",
+  "LmNvbm5lY3QoZykuY29ubmVjdChjLmRlc3RpbmF0aW9uKTsgc3JjLnN0YXJ0KHQpOyBzcmMuc3RvcCh0ICsgZHVyICsgLjAyKTsKICAgIH0KICB9CgogIC8v",
+  "IC0tLS0tLS0tLS0gc2VlZGVkIHJhbmRvbTogc2h1ZmZsZXMgYW5kIGRhaWx5IHB1enpsZXMgLS0tLS0tLS0tLQogIGZ1bmN0aW9uIHJuZyhzZWVkKSB7CiAg",
+  "ICBsZXQgaCA9IDE3NzkwMzM3MDMgXiBTdHJpbmcoc2VlZCkubGVuZ3RoOwogICAgZm9yIChjb25zdCBjaCBvZiBTdHJpbmcoc2VlZCkpIHsgaCA9IE1hdGgu",
+  "aW11bChoIF4gY2guY2hhckNvZGVBdCgwKSwgMzQzMjkxODM1Myk7IGggPSBoIDw8IDEzIHwgaCA+Pj4gMTk7IH0KICAgIGxldCBhID0gaCA+Pj4gMDsKICAg",
+  "IHJldHVybiAoKSA9PiB7IGEgfD0gMDsgYSA9IGEgKyAweDZEMkI3OUY1IHwgMDsgbGV0IHQgPSBNYXRoLmltdWwoYSBeIGEgPj4+IDE1LCAxIHwgYSk7IHQg",
+  "PSB0ICsgTWF0aC5pbXVsKHQgXiB0ID4+PiA3LCA2MSB8IHQpIF4gdDsgcmV0dXJuICgodCBeIHQgPj4+IDE0KSA+Pj4gMCkgLyA0Mjk0OTY3Mjk2OyB9Owog",
+  "IH0KICBjb25zdCB0b2RheSA9ICgpID0+IHsgY29uc3QgZCA9IG5ldyBEYXRlKCk7IHJldHVybiBgJHtkLmdldEZ1bGxZZWFyKCl9LSR7ZC5nZXRNb250aCgp",
+  "ICsgMX0tJHtkLmdldERhdGUoKX1gOyB9OwogIGNvbnN0IGRhaWx5ID0gKCkgPT4gcm5nKGAke2NmZy5pZH06JHt0b2RheSgpfWApOwoKICAvLyAtLS0tLS0t",
+  "LS0tIHBhcnRpY2xlcyAtLS0tLS0tLS0tCiAgZnVuY3Rpb24gYnVyc3QoeCwgeSwgY29sb3JzID0gWycjZmZkMjNmJywgJyNmZjZiNmInLCAnIzRlY2RjNCcs",
+  "ICcjZmZmZmZmJ10pIHsKICAgIGlmIChjYWxtKSByZXR1cm47CiAgICBjb25zdCBsYXllciA9IGVsKCdkaXYnLCAncmMtYnVyc3QnKTsgZG9jdW1lbnQuYm9k",
+  "eS5hcHBlbmQobGF5ZXIpOwogICAgZm9yIChsZXQgaSA9IDA7IGkgPCAyMjsgaSsrKSB7CiAgICAgIGNvbnN0IHAgPSBlbCgnaScpLCBhID0gTWF0aC5yYW5k",
+  "b20oKSAqIE1hdGguUEkgKiAyLCBkID0gNTAgKyBNYXRoLnJhbmRvbSgpICogOTA7CiAgICAgIHAuc3R5bGUuY3NzVGV4dCA9IGBsZWZ0OiR7eH1weDt0b3A6",
+  "JHt5fXB4O2JhY2tncm91bmQ6JHtjb2xvcnNbaSAlIGNvbG9ycy5sZW5ndGhdfTstLWR4OiR7TWF0aC5jb3MoYSkgKiBkfXB4Oy0tZHk6JHtNYXRoLnNpbihh",
+  "KSAqIGQgLSAzMH1weDstLXI6JHtNYXRoLnJhbmRvbSgpICogNTQwIC0gMjcwfWRlZ2A7CiAgICAgIGxheWVyLmFwcGVuZChwKTsKICAgIH0KICAgIHNldFRp",
+  "bWVvdXQoKCkgPT4gbGF5ZXIucmVtb3ZlKCksIDEwMDApOwogIH0KCiAgLy8gLS0tLS0tLS0tLSBzdGFycywgYmVzdHMgYW5kIHRoZSBsb2NhbCBoaWdoIHNj",
+  "b3JlIGJvYXJkIC0tLS0tLS0tLS0KICBjb25zdCBzdGFycyA9IGtleSA9PiBzdG9yZShgc3RhcnM6JHtrZXl9YCkgfHwgMDsKICBjb25zdCBiZXN0ID0ga2V5",
+  "ID0+IHN0b3JlKGBiZXN0OiR7a2V5fWApOwogIGZ1bmN0aW9uIHRvdGFsU3RhcnMoKSB7CiAgICBsZXQgbiA9IDA7CiAgICB0cnkgeyBmb3IgKGxldCBpID0g",
+  "MDsgaSA8IGxvY2FsU3RvcmFnZS5sZW5ndGg7IGkrKykgeyBjb25zdCBrID0gbG9jYWxTdG9yYWdlLmtleShpKTsgaWYgKGsuc3RhcnRzV2l0aChgcmVjZXNz",
+  "OiR7Y2ZnLmlkfTpzdGFyczpgKSkgbiArPSArbG9jYWxTdG9yYWdlLmdldEl0ZW0oaykgfHwgMDsgfSB9IGNhdGNoIHt9CiAgICByZXR1cm4gbjsKICB9CiAg",
+  "Y29uc3QgYmV0dGVyID0gKGEsIGIpID0+IGIgPT0gbnVsbCB8fCAoY2ZnLnNjb3JlLmxvd2VyID8gYSA8IGIgOiBhID4gYik7CiAgY29uc3QgYm9hcmRPZiA9",
+  "IGtleSA9PiBzdG9yZShgYm9hcmQ6JHtrZXl9YCkgfHwgW107CiAgY29uc3QgcmFua3MgPSAobGlzdCwgc2NvcmUpID0+IGxpc3QuZmlsdGVyKHIgPT4gIWJl",
+  "dHRlcihzY29yZSwgci5zY29yZSkpLmxlbmd0aDsgICAvLyBwbGFjZSBhIHNjb3JlIHdvdWxkIHRha2UKCiAgLy8gLS0tLS0tLS0tLSB0aGUgY29ybmVyIGNv",
+  "bnRyb2xzIC0tLS0tLS0tLS0KICBmdW5jdGlvbiBodWQoKSB7CiAgICBjb25zdCBiYXIgPSBlbCgnZGl2JywgJ3JjLWh1ZCcpOyBiYXIuc2V0QXR0cmlidXRl",
+  "KCdyb2xlJywgJ3Rvb2xiYXInKTsgYmFyLnNldEF0dHJpYnV0ZSgnYXJpYS1sYWJlbCcsICdHYW1lIGNvbnRyb2xzJyk7CiAgICBjb25zdCBpbmZvID0gZWwo",
+  "J2RpdicsICdyYy1pbmZvJyk7CiAgICBpbmZvLmFwcGVuZChlbCgnYicsICdyYy10aXRsZScsIGNmZy50aXRsZSksIGVsKCdzcGFuJywgJ3JjLWxldmVsJyks",
+  "IGVsKCdzcGFuJywgJ3JjLXN0YXJzJykpOwogICAgY29uc3QgYnRuID0gKGlkLCBsYWJlbCwgaWNvbiwgZm4sIGtleSkgPT4gewogICAgICBjb25zdCBiID0g",
+  "ZWwoJ2J1dHRvbicsICdyYy1idG4nKTsgYi5pZCA9IGlkOyBiLnR5cGUgPSAnYnV0dG9uJzsgYi50aXRsZSA9IGAke2xhYmVsfSAoJHtrZXl9KWA7IGIuc2V0",
+  "QXR0cmlidXRlKCdhcmlhLWxhYmVsJywgbGFiZWwpOwogICAgICBiLmFwcGVuZChlbCgnc3BhbicsICdyYy1pYycsIGljb24pLCBlbCgnc3BhbicsICdyYy1s",
+  "YicsIGxhYmVsKSk7IGIub25jbGljayA9ICgpID0+IHsgcGxheSgndGFwJyk7IGZuKCk7IH07IHJldHVybiBiOwogICAgfTsKICAgIGJhci5hcHBlbmQoaW5m",
+  "bywKICAgICAgYnRuKCdyYy11bmRvJywgJ1VuZG8nLCAn4oa2JywgKCkgPT4gdW5kb09rICYmIGNmZy5vblVuZG8gJiYgY2ZnLm9uVW5kbygpLCAnVScpLAog",
+  "ICAgICBidG4oJ3JjLXJlc3RhcnQnLCAnUmVzdGFydCcsICfin7InLCAoKSA9PiBjZmcub25SZXN0YXJ0ICYmIGNmZy5vblJlc3RhcnQoKSwgJ1InKSwKICAg",
+  "ICAgYnRuKCdyYy1zb3VuZCcsICdTb3VuZCcsICfimaonLCAoKSA9PiB7IHNvdW5kID0gIXNvdW5kOyB0cnkgeyBsb2NhbFN0b3JhZ2Uuc2V0SXRlbSgncmVj",
+  "ZXNzLXNvdW5kJywgc291bmQgPyAnb24nIDogJ29mZicpOyB9IGNhdGNoIHt9IHBhaW50KCk7IGlmIChzb3VuZCkgcGxheSgncG9wJyk7IH0sICdNJyksCiAg",
+  "ICAgIGJ0bigncmMtbW90aW9uJywgJ01vdGlvbicsICfinKYnLCAoKSA9PiB7IGNhbG0gPSAhY2FsbTsgdHJ5IHsgbG9jYWxTdG9yYWdlLnNldEl0ZW0oJ2N1",
+  "cmlvLW1vdGlvbicsIGNhbG0gPyAnY2FsbScgOiAnb24nKTsgfSBjYXRjaCB7fSBwYWludCgpOyB9LCAnbm9uZScpLAogICAgICBidG4oJ3JjLXNjb3Jlcycs",
+  "ICdTY29yZXMnLCAn4piFJywgKCkgPT4gc2hvd1Njb3JlcygpLCAnUycpKTsKICAgIGRvY3VtZW50LmJvZHkucHJlcGVuZChiYXIpOwogICAgYWRkRXZlbnRM",
+  "aXN0ZW5lcigna2V5ZG93bicsIGUgPT4gewogICAgICBpZiAoZS50YXJnZXQuY2xvc2VzdCAmJiBlLnRhcmdldC5jbG9zZXN0KCdpbnB1dCx0ZXh0YXJlYSwu",
+  "cmMtY2FyZCcpKSByZXR1cm47CiAgICAgIGNvbnN0IGsgPSBlLmtleS50b0xvd2VyQ2FzZSgpOwogICAgICBpZiAoKGUuY3RybEtleSB8fCBlLm1ldGFLZXkp",
+  "ICYmIGsgPT09ICd6JykgeyBlLnByZXZlbnREZWZhdWx0KCk7ICQoJ3JjLXVuZG8nKS5jbGljaygpOyByZXR1cm47IH0KICAgICAgaWYgKGUuY3RybEtleSB8",
+  "fCBlLm1ldGFLZXkgfHwgZS5hbHRLZXkgfHwgZG9jdW1lbnQucXVlcnlTZWxlY3RvcignLnJjLXZlaWwnKSkgcmV0dXJuOwogICAgICBpZiAoayA9PT0gJ3Un",
+  "KSAkKCdyYy11bmRvJykuY2xpY2soKTsKICAgICAgZWxzZSBpZiAoayA9PT0gJ3InKSAkKCdyYy1yZXN0YXJ0JykuY2xpY2soKTsKICAgICAgZWxzZSBpZiAo",
+  "ayA9PT0gJ20nKSAkKCdyYy1zb3VuZCcpLmNsaWNrKCk7CiAgICAgIGVsc2UgaWYgKGsgPT09ICdzJykgJCgncmMtc2NvcmVzJykuY2xpY2soKTsKICAgIH0p",
+  "OwogICAgcGFpbnQoKTsKICB9CiAgZnVuY3Rpb24gcGFpbnQoKSB7CiAgICBkb2N1bWVudC5ib2R5LmNsYXNzTGlzdC50b2dnbGUoJ2NhbG0nLCBjYWxtKTsK",
+  "ICAgIGNvbnN0IHMgPSAkKCdyYy1zb3VuZCcpLCBtID0gJCgncmMtbW90aW9uJyksIHUgPSAkKCdyYy11bmRvJyk7CiAgICBpZiAocykgeyBzLnNldEF0dHJp",
+  "YnV0ZSgnYXJpYS1wcmVzc2VkJywgc291bmQpOyBzLnF1ZXJ5U2VsZWN0b3IoJy5yYy1sYicpLnRleHRDb250ZW50ID0gc291bmQgPyAnU291bmQnIDogJ011",
+  "dGVkJzsgfQogICAgaWYgKG0pIHsgbS5zZXRBdHRyaWJ1dGUoJ2FyaWEtcHJlc3NlZCcsICFjYWxtKTsgbS5xdWVyeVNlbGVjdG9yKCcucmMtbGInKS50ZXh0",
+  "Q29udGVudCA9IGNhbG0gPyAnQ2FsbScgOiAnTW90aW9uJzsgfQogICAgaWYgKHUpIHUuZGlzYWJsZWQgPSAhdW5kb09rOwogICAgY29uc3QgbHYgPSBkb2N1",
+  "bWVudC5xdWVyeVNlbGVjdG9yKCcucmMtbGV2ZWwnKTsgaWYgKGx2KSBsdi50ZXh0Q29udGVudCA9IGxldmVsTGFiZWw7CiAgICBjb25zdCBzdCA9IGRvY3Vt",
+  "ZW50LnF1ZXJ5U2VsZWN0b3IoJy5yYy1zdGFycycpOyBpZiAoc3QpIHN0LnRleHRDb250ZW50ID0gYOKYhSAke3RvdGFsU3RhcnMoKX1gOwogICAgbW90aW9u",
+  "Rm5zLmZvckVhY2goZiA9PiBmKGNhbG0pKTsKICB9CgogIC8vIC0tLS0tLS0tLS0gY2FyZHM6IHdpbiwgaW5pdGlhbHMsIHNjb3JlcyAtLS0tLS0tLS0tCiAg",
+  "bGV0IGxhc3RGb2N1cyA9IG51bGw7CiAgZnVuY3Rpb24gY2FyZChidWlsZCkgewogICAgY2xvc2UoKTsKICAgIGxhc3RGb2N1cyA9IGRvY3VtZW50LmFjdGl2",
+  "ZUVsZW1lbnQ7CiAgICBjb25zdCB2ZWlsID0gZWwoJ2RpdicsICdyYy12ZWlsJyksIGMgPSBlbCgnZGl2JywgJ3JjLWNhcmQnKTsgYy5zZXRBdHRyaWJ1dGUo",
+  "J3JvbGUnLCAnZGlhbG9nJyk7IGMuc2V0QXR0cmlidXRlKCdhcmlhLW1vZGFsJywgJ3RydWUnKTsKICAgIGJ1aWxkKGMpOyB2ZWlsLmFwcGVuZChjKTsgZG9j",
+  "dW1lbnQuYm9keS5hcHBlbmQodmVpbCk7CiAgICB2ZWlsLmFkZEV2ZW50TGlzdGVuZXIoJ2tleWRvd24nLCBlID0+IHsgaWYgKGUua2V5ID09PSAnRXNjYXBl",
+  "JykgY2xvc2UoKTsgfSk7CiAgICB2ZWlsLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgZSA9PiB7IGlmIChlLnRhcmdldCA9PT0gdmVpbCkgY2xvc2UoKTsg",
+  "fSk7CiAgICBjb25zdCBmID0gYy5xdWVyeVNlbGVjdG9yKCdbZGF0YS1maXJzdF0nKSB8fCBjLnF1ZXJ5U2VsZWN0b3IoJ2J1dHRvbicpOyBpZiAoZikgZi5m",
+  "b2N1cygpOwogICAgcmV0dXJuIGM7CiAgfQogIGZ1bmN0aW9uIGNsb3NlKCkgeyBjb25zdCB2ID0gZG9jdW1lbnQucXVlcnlTZWxlY3RvcignLnJjLXZlaWwn",
+  "KTsgaWYgKHYpIHsgdi5yZW1vdmUoKTsgaWYgKGxhc3RGb2N1cyAmJiBsYXN0Rm9jdXMuZm9jdXMpIGxhc3RGb2N1cy5mb2N1cygpOyB9IH0KICBjb25zdCBz",
+  "dGFyUm93ID0gbiA9PiB7IGNvbnN0IHIgPSBlbCgnZGl2JywgJ3JjLXN0YXJyb3cnKTsgci5zZXRBdHRyaWJ1dGUoJ2FyaWEtbGFiZWwnLCBgJHtufSBvZiAz",
+  "IHN0YXJzYCk7IGZvciAobGV0IGkgPSAwOyBpIDwgMzsgaSsrKSB7IGNvbnN0IHMgPSBlbCgnc3BhbicsIGkgPCBuID8gJ29uJyA6ICcnLCAn4piFJyk7IHMu",
+  "c3R5bGUuc2V0UHJvcGVydHkoJy0taScsIGkpOyByLmFwcGVuZChzKTsgfSByZXR1cm4gcjsgfTsKCiAgZnVuY3Rpb24gd2luKHtzY29yZSwgc3RhcnM6IG4g",
+  "PSAwfSA9IHt9KSB7CiAgICBjb25zdCBrZXkgPSBsZXZlbEtleSwgcHJldkJlc3QgPSBiZXN0KGtleSksIG5ld0Jlc3QgPSBzY29yZSAhPSBudWxsICYmIGJl",
+  "dHRlcihzY29yZSwgcHJldkJlc3QpOwogICAgaWYgKG4gPiBzdGFycyhrZXkpKSBzdG9yZShgc3RhcnM6JHtrZXl9YCwgbik7CiAgICBpZiAobmV3QmVzdCkg",
+  "c3RvcmUoYGJlc3Q6JHtrZXl9YCwgc2NvcmUpOwogICAgcGxheSgnd2luJyk7IHBhaW50KCk7CiAgICBjb25zdCBsaXN0ID0gYm9hcmRPZihrZXkpLCBwbGFj",
+  "ZSA9IHNjb3JlID09IG51bGwgPyA5OSA6IHJhbmtzKGxpc3QsIHNjb3JlKTsKICAgIGNhcmQoYyA9PiB7CiAgICAgIGMuYXBwZW5kKGVsKCdoMicsICdyYy1o",
+  "JywgbiA9PT0gMyA/ICdQZXJmZWN0IScgOiBuID8gJ1NvbHZlZCEnIDogJ0RvbmUhJyksIHN0YXJSb3cobikpOwogICAgICBpZiAoc2NvcmUgIT0gbnVsbCkg",
+  "ewogICAgICAgIGNvbnN0IGxpbmUgPSBlbCgncCcsICdyYy1zY29yZScpOyBsaW5lLmFwcGVuZChgJHtjZmcuc2NvcmUubGFiZWx9OiBgLCBlbCgnYicsIG51",
+  "bGwsIFN0cmluZyhzY29yZSkpKTsKICAgICAgICBpZiAobmV3QmVzdCAmJiBwcmV2QmVzdCAhPSBudWxsKSBsaW5lLmFwcGVuZChlbCgnc3BhbicsICdyYy1u",
+  "ZXcnLCAnIE5ldyBiZXN0IScpKTsKICAgICAgICBjLmFwcGVuZChsaW5lKTsKICAgICAgfQogICAgICBpZiAoc2NvcmUgIT0gbnVsbCAmJiBwbGFjZSA8IDEw",
+  "KSBpbml0aWFscyhjLCBrZXksIHNjb3JlKTsKICAgICAgY29uc3Qgcm93ID0gZWwoJ2RpdicsICdyYy1yb3cnKTsKICAgICAgaWYgKGNmZy5vbk5leHQpIHsg",
+  "Y29uc3QgbnggPSBlbCgnYnV0dG9uJywgJ3JjLWdvJywgJ05leHQnKTsgbngub25jbGljayA9ICgpID0+IHsgY2xvc2UoKTsgY2ZnLm9uTmV4dCgpOyB9OyBy",
+  "b3cuYXBwZW5kKG54KTsgfQogICAgICBjb25zdCBhZ2FpbiA9IGVsKCdidXR0b24nLCAncmMtZ2hvc3QnLCAnUGxheSBhZ2FpbicpOyBhZ2Fpbi5vbmNsaWNr",
+  "ID0gKCkgPT4geyBjbG9zZSgpOyBjZmcub25SZXN0YXJ0ICYmIGNmZy5vblJlc3RhcnQoKTsgfTsgcm93LmFwcGVuZChhZ2Fpbik7CiAgICAgIGMuYXBwZW5k",
+  "KHJvdyk7CiAgICB9KTsKICAgIGNvbnN0IHIgPSBkb2N1bWVudC5xdWVyeVNlbGVjdG9yKCcucmMtc3RhcnJvdycpOyBpZiAocikgeyBjb25zdCBiID0gci5n",
+  "ZXRCb3VuZGluZ0NsaWVudFJlY3QoKTsgYnVyc3QoYi5sZWZ0ICsgYi53aWR0aCAvIDIsIGIudG9wICsgYi5oZWlnaHQgLyAyKTsgfQogIH0KCiAgLy8gdGhy",
+  "ZWUgbGV0dGVyIHNsb3RzLCBlYWNoIG9uZSB1cCBvciBkb3duIChvciB0eXBlZCk7IG5ldmVyIGEgbmFtZQogIGZ1bmN0aW9uIGluaXRpYWxzKGMsIGtleSwg",
+  "c2NvcmUpIHsKICAgIGNvbnN0IGJveCA9IGVsKCdkaXYnLCAncmMtaW5pdCcpLCBsZXR0ZXJzID0gKHN0b3JlKCdpbml0aWFscycpIHx8ICdBQUEnKS5zcGxp",
+  "dCgnJyk7CiAgICBib3guYXBwZW5kKGVsKCdwJywgJ3JjLXN1YicsICdBIHRvcCAxMCBzY29yZSEgWW91ciBpbml0aWFsczonKSk7CiAgICBjb25zdCBzbG90",
+  "cyA9IGVsKCdkaXYnLCAncmMtc2xvdHMnKTsgc2xvdHMuc2V0QXR0cmlidXRlKCdyb2xlJywgJ2dyb3VwJyk7IHNsb3RzLnNldEF0dHJpYnV0ZSgnYXJpYS1s",
+  "YWJlbCcsICdJbml0aWFscywgdGhyZWUgbGV0dGVycycpOwogICAgbGV0dGVycy5mb3JFYWNoKChjaCwgaSkgPT4gewogICAgICBjb25zdCBzID0gZWwoJ2Rp",
+  "dicsICdyYy1zbG90JyksIHVwID0gZWwoJ2J1dHRvbicsICdyYy1hcnInLCAn4payJyksIGRuID0gZWwoJ2J1dHRvbicsICdyYy1hcnInLCAn4pa8JyksIHYg",
+  "PSBlbCgnaW5wdXQnKTsKICAgICAgdi5tYXhMZW5ndGggPSAxOyB2LnZhbHVlID0gY2g7IHYuc2V0QXR0cmlidXRlKCdhcmlhLWxhYmVsJywgYExldHRlciAk",
+  "e2kgKyAxfWApOyB2LmF1dG9jb21wbGV0ZSA9ICdvZmYnOyB2LnNwZWxsY2hlY2sgPSBmYWxzZTsKICAgICAgaWYgKCFpKSB2LmRhdGFzZXQuZmlyc3QgPSAn",
+  "JzsKICAgICAgdXAuc2V0QXR0cmlidXRlKCdhcmlhLWxhYmVsJywgYExldHRlciAke2kgKyAxfSB1cGApOyBkbi5zZXRBdHRyaWJ1dGUoJ2FyaWEtbGFiZWwn",
+  "LCBgTGV0dGVyICR7aSArIDF9IGRvd25gKTsKICAgICAgY29uc3Qgc3RlcCA9IGQgPT4geyBsZXR0ZXJzW2ldID0gU3RyaW5nLmZyb21DaGFyQ29kZSgobGV0",
+  "dGVyc1tpXS5jaGFyQ29kZUF0KDApIC0gNjUgKyBkICsgMjYpICUgMjYgKyA2NSk7IHYudmFsdWUgPSBsZXR0ZXJzW2ldOyBwbGF5KCd0YXAnKTsgfTsKICAg",
+  "ICAgdXAub25jbGljayA9ICgpID0+IHN0ZXAoMSk7IGRuLm9uY2xpY2sgPSAoKSA9PiBzdGVwKC0xKTsKICAgICAgdi5vbmZvY3VzID0gKCkgPT4gdi5zZWxl",
+  "Y3QoKTsKICAgICAgdi5vbmlucHV0ID0gKCkgPT4geyB2LnZhbHVlID0gbGV0dGVyc1tpXTsgfTsgIC8vIHBob25lcyBtYXkgdHlwZSB3aXRob3V0IGEga2V5",
+  "ZG93biBsZXR0ZXI6IGtlZXAgdGhlIHNsb3QgaG9uZXN0CiAgICAgIHYub25rZXlkb3duID0gZSA9PiB7CiAgICAgICAgaWYgKGUua2V5ID09PSAnQXJyb3dV",
+  "cCcpIHsgZS5wcmV2ZW50RGVmYXVsdCgpOyBzdGVwKDEpOyB9CiAgICAgICAgZWxzZSBpZiAoZS5rZXkgPT09ICdBcnJvd0Rvd24nKSB7IGUucHJldmVudERl",
+  "ZmF1bHQoKTsgc3RlcCgtMSk7IH0KICAgICAgICBlbHNlIGlmIChlLmtleSA9PT0gJ0VudGVyJykgeyBlLnByZXZlbnREZWZhdWx0KCk7IHNhdmUuY2xpY2so",
+  "KTsgfQogICAgICAgIGVsc2UgaWYgKC9eW2Etel0kL2kudGVzdChlLmtleSkgJiYgIWUuY3RybEtleSAmJiAhZS5tZXRhS2V5KSB7CiAgICAgICAgICBlLnBy",
+  "ZXZlbnREZWZhdWx0KCk7IGxldHRlcnNbaV0gPSBlLmtleS50b1VwcGVyQ2FzZSgpOyB2LnZhbHVlID0gbGV0dGVyc1tpXTsgcGxheSgndGFwJyk7CiAgICAg",
+  "ICAgICAoc2xvdHMucXVlcnlTZWxlY3RvckFsbCgnaW5wdXQnKVtpICsgMV0gfHwgc2F2ZSkuZm9jdXMoKTsKICAgICAgICB9CiAgICAgIH07CiAgICAgIHYu",
+  "YWRkRXZlbnRMaXN0ZW5lcignYmVmb3JlaW5wdXQnLCBlID0+IHsgIC8vIG9uLXNjcmVlbiBrZXlib2FyZHMgc2VuZCBhIGJlZm9yZWlucHV0IHdpdGggdGhl",
+  "IGxldHRlcgogICAgICAgIGNvbnN0IEwgPSAoZS5kYXRhIHx8ICcnKS50b1VwcGVyQ2FzZSgpLnJlcGxhY2UoL1teQS1aXS9nLCAnJyksIGlucyA9IHNsb3Rz",
+  "LnF1ZXJ5U2VsZWN0b3JBbGwoJ2lucHV0Jyk7CiAgICAgICAgaWYgKCFMKSByZXR1cm47IGUucHJldmVudERlZmF1bHQoKTsKICAgICAgICBbLi4uTF0uc2xp",
+  "Y2UoMCwgMyAtIGkpLmZvckVhY2goKGNoLCBqKSA9PiB7IGxldHRlcnNbaSArIGpdID0gY2g7IGluc1tpICsgal0udmFsdWUgPSBjaDsgfSk7ICAvLyBhIHBh",
+  "c3RlZCAiQ0pCIiBmaWxscyBhbGwgdGhyZWUKICAgICAgICAoaW5zW01hdGgubWluKGkgKyBMLmxlbmd0aCwgMyldIHx8IHNhdmUpLmZvY3VzKCk7CiAgICAg",
+  "IH0pOwogICAgICBzLmFwcGVuZCh1cCwgdiwgZG4pOyBzbG90cy5hcHBlbmQocyk7CiAgICB9KTsKICAgIGNvbnN0IHNhdmUgPSBlbCgnYnV0dG9uJywgJ3Jj",
+  "LWdvJywgJ1NhdmUnKTsKICAgIHNhdmUub25jbGljayA9ICgpID0+IHsKICAgICAgY29uc3QgbmFtZSA9IGxldHRlcnMuam9pbignJyk7IHN0b3JlKCdpbml0",
+  "aWFscycsIG5hbWUpOwogICAgICBjb25zdCBsaXN0ID0gYm9hcmRPZihrZXkpOyBsaXN0LnB1c2goe25hbWUsIHNjb3JlLCBhdDogRGF0ZS5ub3coKX0pOwog",
+  "ICAgICBsaXN0LnNvcnQoKGEsIGIpID0+IGNmZy5zY29yZS5sb3dlciA/IGEuc2NvcmUgLSBiLnNjb3JlIDogYi5zY29yZSAtIGEuc2NvcmUpOwogICAgICBz",
+  "dG9yZShgYm9hcmQ6JHtrZXl9YCwgbGlzdC5zbGljZSgwLCAxMCkpOwogICAgICBib3gucmVwbGFjZUNoaWxkcmVuKGVsKCdwJywgJ3JjLXN1YicsIGBTYXZl",
+  "ZCBmb3IgJHtuYW1lfS5gKSk7IHBsYXkoJ3BvcCcpOwogICAgfTsKICAgIGJveC5hcHBlbmQoc2xvdHMsIHNhdmUpOyBjLmFwcGVuZChib3gpOwogIH0KCiAg",
+  "ZnVuY3Rpb24gc2hvd1Njb3JlcygpIHsKICAgIGNhcmQoYyA9PiB7CiAgICAgIGMuYXBwZW5kKGVsKCdoMicsICdyYy1oJywgJ0hpZ2ggc2NvcmVzJyksIGVs",
+  "KCdwJywgJ3JjLXN1YicsIGAke2xldmVsTGFiZWwgfHwgY2ZnLnRpdGxlfS4gU2F2ZWQgb24gdGhpcyBjb21wdXRlciBvbmx5LmApKTsKICAgICAgY29uc3Qg",
+  "bGlzdCA9IGJvYXJkT2YobGV2ZWxLZXkpOwogICAgICBpZiAoIWxpc3QubGVuZ3RoKSBjLmFwcGVuZChlbCgncCcsICdyYy1lbXB0eScsICdObyBzY29yZXMg",
+  "eWV0LiBCZSB0aGUgZmlyc3QhJykpOwogICAgICBlbHNlIHsKICAgICAgICBjb25zdCBvbCA9IGVsKCdvbCcsICdyYy1ib2FyZCcpOwogICAgICAgIGxpc3Qu",
+  "Zm9yRWFjaChyID0+IHsgY29uc3QgbGkgPSBlbCgnbGknKTsgbGkuYXBwZW5kKGVsKCdiJywgbnVsbCwgci5uYW1lKSwgZWwoJ3NwYW4nLCBudWxsLCBTdHJp",
+  "bmcoci5zY29yZSkpKTsgb2wuYXBwZW5kKGxpKTsgfSk7CiAgICAgICAgYy5hcHBlbmQob2wpOwogICAgICB9CiAgICAgIGNvbnN0IGIgPSBiZXN0KGxldmVs",
+  "S2V5KTsKICAgICAgYy5hcHBlbmQoZWwoJ3AnLCAncmMtc3ViJywgYFlvdXIgc3RhcnMgaW4gdGhpcyBnYW1lOiDimIUgJHt0b3RhbFN0YXJzKCl9YCArIChi",
+  "ICE9IG51bGwgPyBgIMK3IEJlc3QgaGVyZTogJHtifWAgOiAnJykpKTsKICAgICAgY29uc3Qgcm93ID0gZWwoJ2RpdicsICdyYy1yb3cnKSwgb2sgPSBlbCgn",
+  "YnV0dG9uJywgJ3JjLWdvJywgJ0JhY2sgdG8gdGhlIGdhbWUnKTsgb2sub25jbGljayA9IGNsb3NlOyByb3cuYXBwZW5kKG9rKTsgYy5hcHBlbmQocm93KTsK",
+  "ICAgIH0pOwogIH0KCiAgZnVuY3Rpb24gc3RhcnQobykgewogICAgY2ZnID0gey4uLmNmZywgLi4ubywgc2NvcmU6IHsuLi5jZmcuc2NvcmUsIC4uLihvLnNj",
+  "b3JlIHx8IHt9KX19OwogICAgZG9jdW1lbnQuYm9keS5jbGFzc0xpc3QuYWRkKCdyZWNlc3MnKTsKICAgIGh1ZCgpOwogICAgYWRkRXZlbnRMaXN0ZW5lcign",
+  "cG9pbnRlcmRvd24nLCAoKSA9PiBhdWRpbygpLCB7b25jZTogdHJ1ZX0pOwogIH0KCiAgcmV0dXJuIHsKICAgIHN0YXJ0LCBwbGF5LCBidXJzdCwgcm5nLCBk",
+  "YWlseSwgc3RvcmUsIHN0YXJzLCBiZXN0LCB0b3RhbFN0YXJzLCB3aW4sIGNsb3NlLAogICAgbGV2ZWwoa2V5LCBsYWJlbCkgeyBsZXZlbEtleSA9IFN0cmlu",
+  "ZyhrZXkpOyBsZXZlbExhYmVsID0gbGFiZWwgfHwgJyc7IHBhaW50KCk7IH0sCiAgICBjYW5VbmRvKGIpIHsgdW5kb09rID0gISFiOyBwYWludCgpOyB9LAog",
+  "ICAgb25Nb3Rpb24oZm4pIHsgbW90aW9uRm5zLnB1c2goZm4pOyBmbihjYWxtKTsgfSwKICAgIGdldCBjYWxtKCkgeyByZXR1cm4gY2FsbTsgfSwKICAgIGdl",
+  "dCBzb3VuZCgpIHsgcmV0dXJuIHNvdW5kOyB9LAogIH07Cn0pKCk7Cg=="
+].join("");
+const shellBytes = Uint8Array.from(atob(shellEncoded), c => c.charCodeAt(0));
+const Recess = Function(new TextDecoder().decode(shellBytes)+";return Recess;")();
+</script>
+<script id="engine">
+/* Offline Go rules and search. This same source is installed in the inline Worker. */
+const Go = (() => {
+  const cache = new Map();
+  function rng(seed) {
+    let h = 1779033703 ^ String(seed).length;
+    for (const ch of String(seed)) {
+      h = Math.imul(h ^ ch.charCodeAt(0), 3432918353);
+      h = h << 13 | h >>> 19;
+    }
+    let a = h >>> 0;
+    return () => {
+      a |= 0;
+      a = a + 0x6D2B79F5 | 0;
+      let t = Math.imul(a ^ a >>> 15, 1 | a);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+  function env(n) {
+    if (cache.has(n)) return cache.get(n);
+    const r = rng('go-zobrist64-' + n);
+    const nb = [], diag = [], z = [];
+    for (let p = 0; p < n*n; p++) {
+      const x = p%n, y = p/n|0;
+      nb[p] = [x ? p-1 : -1, x<n-1 ? p+1 : -1, y ? p-n : -1, y<n-1 ? p+n : -1].filter(q => q>=0);
+      diag[p] = [-1,1].flatMap(dx => [-1,1].map(dy =>
+        x+dx>=0 && x+dx<n && y+dy>=0 && y+dy<n ? p+dx+dy*n : -1)).filter(q => q>=0);
+      z[p] = [null,[r()*4294967296|0,r()*4294967296|0],[r()*4294967296|0,r()*4294967296|0]];
+    }
+    const e = {n, nb, diag, z};
+    cache.set(n,e);
+    return e;
+  }
+  function hash(b,n) {
+    const z = env(n).z;
+    let a=0, c=0;
+    for (let p=0;p<b.length;p++) if (b[p]) {
+      a ^= z[p][b[p]][0];
+      c ^= z[p][b[p]][1];
+    }
+    return (a>>>0).toString(16).padStart(8,'0') + (c>>>0).toString(16).padStart(8,'0');
+  }
+  function group(b,p,n) {
+    const color=b[p], stones=[], libs=new Set(), seen=new Uint8Array(b.length), stack=[p], nb=env(n).nb;
+    if (!color) return {stones,libs};
+    seen[p]=1;
+    while (stack.length) {
+      const q=stack.pop();
+      stones.push(q);
+      for (const t of nb[q]) {
+        if (!b[t]) libs.add(t);
+        else if (b[t]===color && !seen[t]) {
+          seen[t]=1;
+          stack.push(t);
+        }
+      }
+    }
+    return {stones,libs};
+  }
+  function eye(b,p,c,n) {
+    if (b[p]) return false;
+    const e=env(n), nb=e.nb[p], ds=e.diag[p];
+    return nb.every(q => b[q]===c) && ds.filter(q => b[q]===3-c).length <= (nb.length===4 ? 1 : 0);
+  }
+  function trial(b,p,c,n,detail=true) {
+    if (p<0 || p>=b.length || b[p]) return null;
+    const a=Int8Array.from(b), removed=[], checked=new Set();
+    a[p]=c;
+    for (const q of env(n).nb[p]) if (a[q]===3-c && !checked.has(q)) {
+      const g=group(a,q,n);
+      for (const s of g.stones) checked.add(s);
+      if (!g.libs.size) for (const s of g.stones) {
+        a[s]=0;
+        removed.push(s);
+      }
+    }
+    const own=group(a,p,n);
+    if (!own.libs.size) return null;
+    return {board:a, removed, libs:own.libs.size, size:own.stones.length,
+      ko: removed.length===1 && own.stones.length===1 && own.libs.size===1 ? removed[0] : -1};
+  }
+  function create(n=9,b=null,c=1,extra=.0) {
+    const board=b ? Int8Array.from(b) : new Int8Array(n*n);
+    return {n,board,turn:c,history:[hash(board,n)],caps:[0,0,0],passes:0,last:-1,moves:0,ko:-1,extra:extra||7.5};
+  }
+  function play(s,p) {
+    if (p===-1) return {state:{...s,turn:3-s.turn,passes:s.passes+1,last:-1,moves:s.moves+1},removed:[]};
+    const t=trial(s.board,p,s.turn,s.n);
+    if (!t) return {error:s.board[p] ? 'occupied' : 'suicide'};
+    const h=hash(t.board,s.n);
+    if (s.history.includes(h)) return {error:'ko'};
+    const caps=s.caps.slice();
+    caps[s.turn]+=t.removed.length;
+    return {state:{...s,board:t.board,turn:3-s.turn,history:[...s.history,h],caps,passes:0,last:p,
+      ko:t.ko,moves:s.moves+1},removed:t.removed};
+  }
+  function area(board,n,extra=7.5,dead=[]) {
+    const b=Int8Array.from(board), ownership=new Int8Array(b.length), visited=new Uint8Array(b.length), nb=env(n).nb;
+    for (const p of dead) b[p]=0;
+    let black=0,white=extra;
+    for (let p=0;p<b.length;p++) {
+      if (b[p]) {
+        ownership[p]=b[p];
+        if (b[p]===1) black++; else white++;
+        continue;
+      }
+      if (visited[p]) continue;
+      const cells=[], stack=[p], colors=new Set();
+      visited[p]=1;
+      while(stack.length) {
+        const q=stack.pop();
+        cells.push(q);
+        for (const t of nb[q]) {
+          if (b[t]) colors.add(b[t]);
+          else if (!visited[t]) { visited[t]=1; stack.push(t); }
+        }
+      }
+      if (colors.size===1) {
+        const c=[...colors][0];
+        for (const q of cells) ownership[q]=c;
+        if(c===1) black+=cells.length; else white+=cells.length;
+      }
+    }
+    return {black,white,margin:black-white,ownership};
+  }
+  // Benson's fixed point: blocks need two vital regions bounded by remaining blocks.
+  function benson(b,n,c) {
+    const nb=env(n).nb, blocks=[], ids=new Int16Array(b.length).fill(-1), seen=new Uint8Array(b.length), regions=[];
+    for (let p=0;p<b.length;p++) if (b[p]===c && ids[p]<0) {
+      const g=group(b,p,n), id=blocks.length;
+      for (const q of g.stones) ids[q]=id;
+      blocks.push(g);
+    }
+    for (let p=0;p<b.length;p++) if (!b[p] && !seen[p]) {
+      const cells=[], boundary=new Set(), stack=[p];
+      let enemy=false;
+      seen[p]=1;
+      while (stack.length) {
+        const q=stack.pop();cells.push(q);
+        for (const t of nb[q]) {
+          if (b[t]===3-c) enemy=true;
+          else if (b[t]===c) boundary.add(ids[t]);
+          else if (!seen[t]) { seen[t]=1;stack.push(t); }
+        }
+      }
+      if (!enemy && boundary.size) regions.push({cells,boundary,
+        vital:new Set([...boundary].filter(i=>cells.every(q=>blocks[i].libs.has(q))))});
+    }
+    const alive=new Set(blocks.map((_,i)=>i));
+    let changed=true;
+    while (changed) {
+      changed=false;
+      for (const i of [...alive]) {
+        const count=regions.filter(r=>r.vital.has(i) && [...r.boundary].every(j=>alive.has(j))).length;
+        if (count<2) { alive.delete(i);changed=true; }
+      }
+    }
+    return new Set([...alive].flatMap(i=>blocks[i].stones));
+  }
+  function ladder(b,p,attacker,n,depth=40,path=new Set()) {
+    if (!b[p]) return true;
+    const g=group(b,p,n);
+    if (g.libs.size>=3 || !depth) return false;
+    const h=hash(b,n);
+    if(path.has(h)) return false;
+    const nextPath=new Set(path);nextPath.add(h);
+    for(const q of g.libs) {
+      const t=trial(b,q,attacker,n);
+      if(!t) continue;
+      if(!t.board[p]) return true;
+      const a=group(t.board,p,n);
+      if(a.libs.size!==1) continue;
+      let escaped=false;
+      const defenses=new Set(a.libs);
+      for(const u of a.stones) for(const v of env(n).nb[u]) if(t.board[v]===attacker) {
+        const enemy=group(t.board,v,n);
+        if(enemy.libs.size===1) for(const l of enemy.libs) defenses.add(l);
+      }
+      for(const l of defenses) {
+        const reply=trial(t.board,l,3-attacker,n);
+        if(reply && reply.board[p] && !ladder(reply.board,p,attacker,n,depth-2,nextPath)) {escaped=true;break;}
+      }
+      if(!escaped) return true;
+    }
+    return false;
+  }
+  function candidates(s,level,random,ownership=s.ownership||null) {
+    const n=s.n, b=s.board, c=s.turn, nb=env(n).nb, out=[];
+    for(let p=0;p<b.length;p++) {
+      if(b[p] || eye(b,p,c,n)) continue;
+      const t=trial(b,p,c,n);
+      if(!t) continue;
+      const h=hash(t.board,n);
+      if(s.history.includes(h)) continue;
+      let score=10*t.removed.length, save=0;
+      const seen=new Set();
+      for(const q of nb[p]) if(b[q] && !seen.has(q)) {
+        const g=group(b,q,n);
+        for(const v of g.stones) seen.add(v);
+        if(b[q]===c && g.libs.size===1) save+=g.stones.length;
+        if(b[q]===3-c && t.board[q] && group(t.board,q,n).libs.size===1) score+=3;
+        if(b[q]===3-c && t.board[q] && ['stream','mountain'].includes(level) &&
+          group(t.board,q,n).libs.size===2 && ladder(t.board,q,c,n,20)) score+=6;
+      }
+      if(save && t.removed.length) score+=10;
+      if(save && t.libs>=3) score+=8*save;
+      if(t.libs===1 && !t.removed.length) score-=15;
+      if(s.last>=0 && nb[s.last].includes(p)) score+=2;
+      const edge=Math.min(p%n,n-1-p%n,p/n|0,n-1-(p/n|0));
+      if(s.moves<(n===9 ? 6 : n===13 ? 10 : 16)) score+=edge===2 || edge===3 ? 3 : edge<2 ? -4 : 0;
+      if(ownership && ownership[p]*(c===1?1:-1)>.9) score-=6;
+      const noisy=score+(level==='pebble'?12:level==='stream'?4:.001)*random();
+      out.push({p,t,score,noisy,h});
+    }
+    out.sort((a,b)=>b.noisy-a.noisy || a.p-b.p);
+    return out;
+  }
+  // A fast in-place rollout policy. Tree rules use superko; rollouts use simple ko.
+  function rollout(state,random,returnBoard=false) {
+    let b=Int8Array.from(state.board),c=state.turn,ko=state.ko,last=state.last,passes=0;
+    const n=state.n, nb=env(n).nb, ds=env(n).diag;
+    for(let move=0;move<3*b.length && passes<2;move++) {
+      const tries=[], chosen=new Set();
+      if(last>=0) for(const p of [last,...nb[last]]) if(b[p]) {
+        const g=group(b,p,n);
+        if(g.libs.size===1) for(const q of g.libs) if(!chosen.has(q)) {
+          tries.push(q); chosen.add(q);
+        }
+      }
+      if(last>=0 && random()<.6) {
+        const near=[...nb[last],...ds[last]].sort(()=>random()-.5);
+        for(const p of near) if(!b[p] && !chosen.has(p)) {
+          const own=nb[p].filter(q=>b[q]===c).length;
+          const enemy=nb[p].filter(q=>b[q]===3-c).length;
+          const edge=nb[p].length<4;
+          const hane=ds[last].includes(p) && own && enemy;
+          const cut=enemy>=2 && ds[p].some(q=>!b[q]);
+          const block=edge && enemy;
+          if(hane || cut || block) {tries.push(p);chosen.add(p);}
+        }
+      }
+      const offset=random()*b.length|0;
+      for(let i=0;i<b.length;i++) {
+        const p=(offset+i* (n===9?37:n===13?73:173))%b.length;
+        if(!chosen.has(p)) tries.push(p);
+      }
+      let result=null,pick=-1;
+      for(const p of tries) {
+        if(b[p] || p===ko || eye(b,p,c,n)) continue;
+        const t=trial(b,p,c,n,false);
+        if(!t || (t.libs===1 && t.size>=3 && !t.removed.length)) continue;
+        result=t;pick=p;break;
+      }
+      if(result) {b=result.board;ko=result.ko;last=pick;passes=0;}
+      else {passes++;ko=-1;last=-1;}
+      c=3-c;
+    }
+    const a=area(b,n,state.extra);
+    return returnBoard ? {margin:a.margin,ownership:a.ownership,board:b} : a.margin;
+  }
+  function proposal(s,seed='count',limit=5000) {
+    const random=rng(hash(s.board,s.n)+seed), own=new Float32Array(s.board.length), start=performance.now();
+    let runs=0;
+    while(runs<200) {
+      const r=rollout(s,random,true);
+      for(let p=0;p<own.length;p++) own[p]+=r.ownership[p]===1?1:r.ownership[p]===2?-1:0;
+      runs++;
+      if(performance.now()-start>limit) break;
+    }
+    runs=Math.max(1,runs);
+    const alive=new Set([...benson(s.board,s.n,1),...benson(s.board,s.n,2)]), dead=[];
+    const seen=new Set();
+    for(let p=0;p<s.board.length;p++) if(s.board[p] && !seen.has(p)) {
+      const g=group(s.board,p,s.n);
+      for(const q of g.stones) seen.add(q);
+      if(g.stones.some(q=>alive.has(q))) continue;
+      const enemy=s.board[p]===1?-1:1;
+      if(g.stones.every(q=>own[q]*enemy/runs>.7)) dead.push(...g.stones);
+    }
+    return {dead,runs,ms:performance.now()-start,ownership:Array.from(own,x=>x/runs)};
+  }
+  function search(s,level,options={}) {
+    const start=performance.now(), n=s.n;
+    const ceilings={random:30,pebble:100,stream:200,mountain:500,ridge:n===9?1500:n===13?2500:4000,summit:5000};
+    const targets={mountain:n===9?600:n===13?800:1000,ridge:n===9?4000:3000,summit:30000};
+    const ceiling=options.ms??ceilings[level], target=options.playouts??targets[level]??0;
+    const random=rng(hash(s.board,n)+':'+level+(options.seed||''));
+    const legal=candidates(s,level,random);
+    if(!legal.length) return {move:-1,ms:performance.now()-start,playouts:0};
+    if(options.progress) options.progress({move:legal[0].p,playouts:0,ms:performance.now()-start});
+    if(level==='random') return {move:legal[random()*legal.length|0].p,ms:performance.now()-start,playouts:0};
+    // Only pass when no legal productive move changes area after the other player passed.
+    const current=area(s.board,n,s.extra), sign=s.turn===1?1:-1;
+    const productive=legal.filter(x=>x.t.removed.length || (area(x.t.board,n,s.extra).margin-current.margin)*sign>.1);
+    if(s.passes && !productive.length) return {move:-1,ms:performance.now()-start,playouts:0};
+    if(!productive.length && (level==='pebble' || level==='stream')) {
+      const settled=proposal(s,'settled',Math.max(1,ceiling-(performance.now()-start)));
+      if(settled.ownership.every(v=>Math.abs(v)>=.9)) return {move:-1,ms:performance.now()-start,playouts:settled.runs};
+    }
+    if(level==='pebble' || level==='stream') {
+      let choices=legal;
+      if(level==='stream') choices=legal.filter(x=>x.t.libs>1 || x.t.removed.length);
+      if(!choices.length) choices=legal;
+      if(level==='pebble' && random()<.25) {
+        const friendly=choices.filter(x=>x.score>=0);
+        if(friendly.length) return {move:friendly[random()*friendly.length|0].p,ms:performance.now()-start,playouts:0};
+      }
+      return {move:choices[0].p,ms:performance.now()-start,playouts:0};
+    }
+    const makeNode=(state,p=-1,prior=0)=>({state,p,prior,n:0,w:0,sum:0,children:[],todo:null});
+    const root=makeNode(s);
+    root.todo=legal;
+    let count=0;
+    let lastProgress=start;
+    function bestChild() {
+      let best=root.children.reduce((a,b)=>!a || b.n>a.n ? b : a,null);
+      if(level==='mountain' && best && best.sum/Math.max(1,best.n)>(n===9?12:n===13?20:30)) {
+        const kind=root.children.filter(v=>v.n>=best.n/10 && v.sum/v.n>0);
+        kind.sort((a,b)=>Math.abs(a.sum/a.n-6)-Math.abs(b.sum/b.n-6));
+        if(kind.length) best=kind[0];
+      }
+      return best;
+    }
+    const ownership=new Float32Array(s.board.length);
+    while(count<target && performance.now()-start<ceiling) {
+      let node=root;
+      const path=[root];
+      for(let depth=0;depth<2*s.board.length;depth++) {
+        if(node.state.passes>=2) break;
+        if(!node.todo) node.todo=candidates(node.state,level,random);
+        const width=4+1.5*Math.sqrt(node.n);
+        if(node.todo.length && node.children.length<width) {
+          const choice=node.todo.shift(), result=play(node.state,choice.p);
+          if(!result.state) continue;
+          const prior=Math.min(.95,Math.max(.05,.5+.04*choice.score));
+          const child=makeNode(result.state,choice.p,prior);
+          node.children.push(child);node=child;path.push(node);break;
+        }
+        if(!node.children.length) break;
+        let best=-Infinity,next=null;
+        for(const child of node.children) {
+          const v=(child.w+8*child.prior)/(child.n+8)+.8*Math.sqrt(Math.log(node.n+9)/(child.n+8));
+          if(v>best) {best=v;next=child;}
+        }
+        node=next;path.push(node);
+      }
+      const r=rollout(node.state,random,true), margin=r.margin;
+      for(let p=0;p<ownership.length;p++) ownership[p]+=r.ownership[p]===1?1:r.ownership[p]===2?-1:0;
+      for(const v of path) {
+        const mover=3-v.state.turn, sg=mover===1?1:-1;
+        v.n++;v.w+=margin*sg>0 ? 1 : 0;v.sum+=margin*sg;
+      }
+      count++;
+      if(options.progress && performance.now()-lastProgress>=40) {
+        const best=bestChild();
+        options.progress({move:best?best.p:legal[0].p,playouts:count,ms:performance.now()-start,
+          ownership:Array.from(ownership,x=>x/count)});
+        lastProgress=performance.now();
+      }
+    }
+    const best=bestChild();
+    return {move:best ? best.p : legal[0].p,playouts:count,ms:performance.now()-start,
+      ownership:Array.from(ownership,x=>x/Math.max(1,count)),
+      children:options.detail?root.children.map(v=>({move:v.p,visits:v.n,margin:v.sum/v.n})):undefined};
+  }
+  function handicap(n,count) {
+    const low=n===9?2:3, high=n-1-low, mid=n/2|0;
+    const at=(x,y)=>y*n+x;
+    const order=[at(high,low),at(low,high),at(high,high),at(low,low)];
+    if(count===5) order.push(at(mid,mid));
+    if(count>=6) order.push(at(low,mid),at(high,mid));
+    if(count===7 || count===9) order.push(at(mid,mid));
+    if(count>=8) order.push(at(mid,low),at(mid,high));
+    return order.slice(0,count);
+  }
+  function match(a,b,n=9,seed=0) {
+    let state=create(n),times={},nodes={},moves=[];
+    for(let k=0;k<6*n*n && state.passes<2;k++) {
+      const level=state.turn===1?a:b;
+      const r=search(state,level,{seed:':match-'+seed});
+      (times[level]??=[]).push(r.ms);
+      (nodes[level]??=[]).push(r.playouts);
+      const t=play(state,r.move);
+      if(t.error) return {a,b,n,seed,error:t.error,move:r.move};
+      moves.push(r.move);state=t.state;
+    }
+    const count=proposal(state,':match-'+seed,10000),score=area(state.board,n,state.extra,count.dead);
+    return {a,b,n,seed,margin:score.margin,winner:score.margin>0?a:b,ended:state.passes>=2,
+      moves,times,nodes,dead:count.dead,board:Array.from(state.board)};
+  }
+  return {rng,env,hash,group,eye,trial,create,play,area,benson,ladder,candidates,rollout,proposal,search,handicap,match};
+})();
+if(typeof module!=='undefined') module.exports=Go;
+
+</script>
+<script>
+const $ = id => document.getElementById(id);
+const LETTERS = 'ABCDEFGHJKLMNOPQRST';
+const LEVELS = ['pebble','stream','mountain','ridge','summit'];
+const DESCRIPTIONS = {
+  pebble: 'Just learned the rules. Makes friendly mistakes.',
+  stream: 'Knows captures and ladders. A fair first match.',
+  mountain: 'Reads ahead and plays kindly: it wins without crushing.',
+  ridge: 'Plays to win. A real game on 9x9.',
+  summit: 'Our strongest. Thinks a few seconds and gives no gifts.'
+};
+const PUZZLES = [
+  {
+    "id": "f1",
+    "name": "Last liberty",
+    "toPlay": "B",
+    "black": "E6 D5 F5",
+    "white": "E5",
+    "goal": "capture",
+    "lines": [
+      "E4"
+    ]
+  },
+  {
+    "id": "f2",
+    "name": "At the edge",
+    "toPlay": "B",
+    "black": "A7 B6 B5",
+    "white": "A6 A5",
+    "goal": "capture",
+    "lines": [
+      "A4"
+    ]
+  },
+  {
+    "id": "f3",
+    "name": "Two at once",
+    "toPlay": "B",
+    "black": "C5 F5 D6 E6 D4",
+    "white": "D5 E5",
+    "goal": "capture",
+    "lines": [
+      "E4"
+    ]
+  },
+  {
+    "id": "f4",
+    "name": "Run!",
+    "toPlay": "B",
+    "black": "E5",
+    "white": "D5 F5 E6",
+    "goal": "save",
+    "lines": [
+      "E4"
+    ]
+  },
+  {
+    "id": "f5",
+    "name": "Squeeze",
+    "toPlay": "B",
+    "black": "A3 B3 C3 D3 A2 E2 A1 E1",
+    "white": "B2 C2 B1 D1",
+    "goal": "capture",
+    "lines": [
+      "D2 pass C1"
+    ]
+  },
+  {
+    "id": "f6",
+    "name": "Two eyes",
+    "toPlay": "B",
+    "black": "A2 B2 C2 D2 D1",
+    "white": "A3 B3 C3 D3 E3 E2 E1",
+    "goal": "live",
+    "lines": [
+      "B1"
+    ]
+  },
+  {
+    "id": "f7",
+    "name": "Take the eye",
+    "toPlay": "B",
+    "black": "J7 H7 G7 F7 E7 E8 E9",
+    "white": "J8 H8 G8 F8 F9",
+    "goal": "kill",
+    "lines": [
+      "H9"
+    ]
+  },
+  {
+    "id": "f8",
+    "name": "The ladder",
+    "toPlay": "B",
+    "black": "E6 D5 F6",
+    "white": "E5",
+    "goal": "capture",
+    "lines": [
+      "E4 F5 G5 F4 F3 G4 H4 G3 G2 H3 H2 J3 J4 J2 J1",
+      "E4 F5 G5 F4 F3 G4 H4 G3 G2 H3 J3 H2 H1 J2 J1",
+      "E4 F5 G5 F4 F3 G4 H4 G3 G2 H3 H2 J3 J2 J4 J5"
+    ]
+  },
+  {
+    "id": "b01",
+    "book": 1,
+    "toPlay": "W",
+    "view": [
+      "N19",
+      "T13"
+    ],
+    "black": "P18 O17 Q17 R17 R15 S15",
+    "white": "Q18 R18 S18 S17 S16",
+    "lines": [
+      "T19"
+    ],
+    "printed": [
+      "十九ノ一"
+    ]
+  },
+  {
+    "id": "b02",
+    "book": 15,
+    "toPlay": "B",
+    "view": [
+      "A19",
+      "H13"
+    ],
+    "black": "F19 D18 E18 B17 C17 B16",
+    "white": "F18 G18 D17 E17 A16 C16 B15 C15",
+    "lines": [
+      "B19"
+    ],
+    "printed": [
+      "十九ノ十八"
+    ]
+  },
+  {
+    "id": "b03",
+    "book": 3,
+    "toPlay": "B",
+    "view": [
+      "A19",
+      "G11"
+    ],
+    "black": "B18 C18 B17 C16 B15 B14 A13",
+    "white": "D18 C17 D17 F17 E16 C15 A14 C14 B13 C13 B11",
+    "lines": [
+      "A18 A16 B16"
+    ],
+    "printed": [
+      "十八ノ十九・十六ノ十九・十六ノ十八"
+    ]
+  },
+  {
+    "id": "b04",
+    "book": 6,
+    "toPlay": "W",
+    "view": [
+      "M7",
+      "T1"
+    ],
+    "black": "R6 S5 P4 Q4 R4 T4 P3 N2 O2 P1",
+    "white": "S4 Q3 R3 S3 P2 Q2 O1",
+    "lines": [
+      "S2 R1 S1"
+    ],
+    "printed": [
+      "二ノ二・一ノ三・一ノ二"
+    ]
+  },
+  {
+    "id": "b05",
+    "book": 12,
+    "toPlay": "B",
+    "view": [
+      "A7",
+      "G1"
+    ],
+    "black": "A5 B4 B3 C3 D3 D2",
+    "white": "B6 B5 D5 A4 C4 E4 E3 E2",
+    "lines": [
+      "B1 A2 B2"
+    ],
+    "printed": [
+      "一ノ十八・二ノ十九・二ノ十八"
+    ]
+  },
+  {
+    "id": "b06",
+    "book": 8,
+    "toPlay": "B",
+    "view": [
+      "A7",
+      "G1"
+    ],
+    "black": "B4 B3 D3 D2 E1",
+    "white": "B5 D5 C4 E4 E3 E2 G2",
+    "lines": [
+      "A2 A4 B1"
+    ],
+    "printed": [
+      "二ノ十九・四ノ十九・一ノ十八"
+    ]
+  },
+  {
+    "id": "b07",
+    "book": 2,
+    "toPlay": "B",
+    "view": [
+      "N7",
+      "T1"
+    ],
+    "black": "R4 S4 S3 R2",
+    "white": "R5 S5 Q4 O3 Q3 R3",
+    "lines": [
+      "T2 S1 T4 Q2 R1"
+    ],
+    "printed": [
+      "二ノ一・一ノ二・四ノ一・二ノ四・一ノ三"
+    ]
+  },
+  {
+    "id": "b08",
+    "book": 4,
+    "toPlay": "W",
+    "view": [
+      "A7",
+      "G1"
+    ],
+    "black": "B4 C4 D3 E3 G3 F2",
+    "white": "B3 C3 D2 E2",
+    "lines": [
+      "B2 C1 B1 D1 C2"
+    ],
+    "printed": [
+      "二ノ十八・一ノ十七・一ノ十八・一ノ十六・二ノ十七"
+    ]
+  },
+  {
+    "id": "b09",
+    "book": 18,
+    "toPlay": "B",
+    "view": [
+      "N8",
+      "T1"
+    ],
+    "black": "S5 S4 Q3 R3 S2 R1",
+    "white": "R7 P6 R6 Q4 R4 P3 P2 Q2 R2",
+    "lines": [
+      "T3 S6 T5 S3 R3"
+    ],
+    "printed": [
+      "三ノ一・六ノ二・五ノ一・三ノ二・三ノ三"
+    ]
+  },
+  {
+    "id": "b10",
+    "book": 11,
+    "toPlay": "W",
+    "view": [
+      "A19",
+      "G13"
+    ],
+    "black": "E18 D17 E17 C16 A15 C15 B14 C14",
+    "white": "C18 D18 C17 B16 B15",
+    "lines": [
+      "A17 B19 B18 A14 C19 A16 A19 B17 B16"
+    ],
+    "printed": [
+      "十七ノ十九・十九ノ十八・十八ノ十八・十四ノ十九・十九ノ十七・十六ノ十九・十九ノ十九・十七ノ十八・十六ノ十八"
+    ]
+  },
+  {
+    "id": "b11",
+    "book": 7,
+    "toPlay": "W",
+    "view": [
+      "A19",
+      "G10"
+    ],
+    "black": "B17 A16 C16 D16 D15 E14 E13 C12 D12 B11 C10",
+    "white": "B16 B15 C15 D14 B13 C13 D13 B12",
+    "lines": [
+      "C17 C18 D17 E17 B18 D18 A18 B19 A12 A14 B14"
+    ],
+    "printed": [
+      "十七ノ十七・十八ノ十七・十七ノ十六・十七ノ十五・十八ノ十八・十八ノ十六・十八ノ十九・十九ノ十八・十二ノ十九・十四ノ十九・十四ノ十八"
+    ]
+  }
+];
+const ART = {
+  slate: ['art:slate-0','art:slate-1','art:slate-2','art:slate-3'],
+  shell: ['art:shell-0','art:shell-1','art:shell-2','art:shell-3'],
+  bloom: 'art:bloom'
+};
+const nameOf = c => c===1 ? 'Black' : 'White';
+const titleCase = s => s[0].toUpperCase()+s.slice(1);
+const parse = (s,n) => s==='pass' ? -1 : (n-Number(s.slice(1)))*n+LETTERS.indexOf(s[0]);
+const coord = (p,n) => p<0 ? 'pass' : LETTERS[p%n]+(n-(p/n|0));
+let state, history=[], mode='puzzles', stage='play', settings={size:9,level:'pebble',handicap:0};
+let puzzle, puzzleIndex=0, line=[], ply=0, daily=false, key='', view;
+let activeLines=[];
+let undos=0, dead=new Set(), proposed=new Set(), agreements=[false,false], finished=false;
+let cursor=40, cursorOn=false, ghost=-1, liberties=[], thinking=false, wrong=-1, hintPoint=-1;
+let worker=null, request=0, generation=0, replyTimer=0, winTimer=0, hoverTimer=0, toastTimer=0, restore=null;
+let workerTimer=0;
+const replyCache=new Map();
+let largestLoss=[];
+let completedTries=null;
+let outcome=[];
+function status(text) { $('status').textContent=text; }
+function tries() { return Recess.store('tries:'+key) || {wrong:0,hints:0}; }
+function setTries(t) { Recess.store('tries:'+key,t); }
+function starsFor(t) { return t.hints>=2 || t.wrong>2 ? 1 : t.hints || t.wrong ? 2 : 3; }
+function cancel() {
+  generation++;
+  if(worker) worker.terminate();
+  worker=null;
+  clearTimeout(workerTimer);
+  clearTimeout(replyTimer);
+  clearTimeout(winTimer);
+  clearTimeout(hoverTimer);
+  wrong=-1;ghost=-1;hintPoint=-1;liberties=[];outcome=[];
+  touchAim=false;downPoint=-1;touchConfirmed=false;
+  thinking=false;
+  $('thinking').hidden=true;
+  $('effects').replaceChildren();
+  $('loupe').hidden=true;
+}
+function askWorker(action,data) {
+  if(worker) worker.terminate();
+  clearTimeout(workerTimer);
+  const began=performance.now();
+  const id=++request;
+  const code=$('engine').textContent+'\n'+
+    'onmessage = e => { const m=e.data; try { if(m.action==="search") { '+
+    'const options=m.data[2]||{}; options.progress=value=>postMessage({id:m.id,progress:value}); m.data[2]=options; } '+
+    'const value=Go[m.action](...m.data); '+
+    'postMessage({id:m.id,value}); } catch(e) { postMessage({id:m.id,error:String(e.stack)}); } };';
+  const url=URL.createObjectURL(new Blob([code],{type:'text/javascript'}));
+  worker=new Worker(url);
+  const instance=worker;
+  URL.revokeObjectURL(url);
+  return new Promise((resolve,reject)=>{
+    let best=null;
+    if(action==='search') {
+      const [position,level,options]=data;
+      const ceilings={random:30,pebble:100,stream:200,mountain:500,
+        ridge:position.n===9?1500:position.n===13?2500:4000,summit:5000};
+      const ceiling=options?.ms??ceilings[level];
+      workerTimer=setTimeout(()=>{
+        instance.terminate();
+        if(worker===instance) worker=null;
+        if(!best) {
+          let move=-1;
+          for(let p=0;p<position.board.length;p++) {
+            if(!position.board[p] && !Go.eye(position.board,p,position.turn,position.n) && !Go.play(position,p).error) {
+              move=p;break;
+            }
+          }
+          best={move,playouts:0};
+        }
+        resolve({...best,ms:performance.now()-began,ceilingReached:true});
+      },Math.max(0,ceiling-(performance.now()-began)));
+    }
+    worker.onmessage=e=>{
+      if(e.data.id!==id || worker!==instance) return;
+      if(e.data.progress) {best=e.data.progress;return;}
+      clearTimeout(workerTimer);
+      instance.terminate();worker=null;
+      if(e.data.error) reject(Error(e.data.error)); else resolve(e.data.value);
+    };
+    worker.onerror=e=>{
+      if(worker!==instance) return;
+      clearTimeout(workerTimer);instance.terminate();worker=null;
+      reject(Error(e.message));
+    };
+    worker.postMessage({id,action,data});
+  });
+}
+function saveMode() { Recess.store('last-mode',mode); }
+function forgetRestore() {
+  restore=null;clearTimeout(toastTimer);$('toast').hidden=true;
+}
+function setMode(next) {
+  forgetRestore();
+  cancel();Recess.close();
+  mode=next;daily=false;finished=false;
+  saveMode();
+  document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-selected',b.dataset.mode===mode));
+  if(mode==='puzzles') loadPuzzle(0);
+  else showSetup();
+}
+function aboutText() {
+  return 'Go began in China more than 2,500 years ago. It is called weiqi in China, igo in Japan and baduk in Korea.';
+}
+function showSetup() {
+  forgetRestore();
+  const transferFocus=$('mode-panel').contains(document.activeElement);
+  stage='setup';history=[];undos=0;largestLoss=[];
+  state=Go.create(settings.size);view={x:0,y:0,w:state.n,h:state.n};
+  cursor=(state.n*state.n/2|0);cursorOn=false;
+  const cpu=mode==='computer';
+  $('mode-panel').innerHTML=`<p class="chapter">${cpu?'Across the table':'One table. Two players.'}</p>
+    <h2>${cpu?'Make your move.':'Play a friend.'}</h2>
+    <div class="setup"><button id="play" class="primary">Play</button>
+      <label>Board <select id="size"><option value="9">9 × 9</option><option value="13">13 × 13</option>
+      <option value="19">19 × 19</option></select></label>
+      ${cpu?'<label>Opponent <select id="level"></select></label><label>Head start <select id="handicap"></select></label>':''}
+    </div><p class="description" id="level-description"></p>
+    <details><summary>Where Go began</summary><p>${aboutText()}</p></details>`;
+  $('size').value=settings.size;
+  const update=()=>{
+    settings.size=+$('size').value;
+    if(cpu) {
+      if(settings.size!==9 && settings.level==='summit') settings.level='ridge';
+      $('level').innerHTML=LEVELS.filter(l=>settings.size===9 || l!=='summit')
+        .map(l=>`<option value="${l}">${titleCase(l)}</option>`).join('');
+      $('level').value=settings.level;
+      const max=settings.size===9?4:settings.size===13?5:9;
+      if(settings.handicap>max) settings.handicap=0;
+      $('handicap').innerHTML='<option value="0">None</option>'+Array.from({length:max-1},(_,i)=>
+        `<option value="${i+2}">${i+2} stones</option>`).join('');
+      $('handicap').value=settings.handicap;
+      describe();
+    } else $('level-description').textContent='Black first. White gets 7.5 extra points.';
+    state=Go.create(settings.size);view={x:0,y:0,w:state.n,h:state.n};
+    cursor=state.n*state.n/2|0;draw();
+  };
+  $('size').onchange=update;
+  if(cpu) {
+    $('level').onchange=()=>{settings.level=$('level').value;describe();};
+    $('handicap').onchange=()=>settings.handicap=+$('handicap').value;
+  }
+  $('play').onclick=startGame;
+  update();
+  Recess.level(mode==='computer'?'setup-computer':'setup-friend',cpu?'Choose an opponent':'Play a friend');
+  status('The table is yours.');
+  draw();
+  if(transferFocus) $('play').focus({preventScroll:true});
+}
+function describe() {
+  let d=DESCRIPTIONS[settings.level];
+  if(settings.level==='ridge' && settings.size!==9) d='Plays to win, but big boards are hard for it.';
+  if(settings.size===19) d+=' The computer is weak on this full-size board.';
+  $('level-description').textContent=d;
+}
+function startGame() {
+  forgetRestore();
+  cancel();Recess.close();
+  history=[];undos=0;largestLoss=[];stage='play';finished=false;dead.clear();agreements=[false,false];
+  const cpu=mode==='computer', n=settings.size, h=cpu?settings.handicap:0;
+  state=Go.create(n,null,h?2:1,h?.5:7.5);
+  if(h) {
+    for(const p of Go.handicap(n,h)) state.board[p]=1;
+    state.history=[Go.hash(state.board,n)];
+  }
+  view={x:0,y:0,w:n,h:n};cursor=n*n/2|0;cursorOn=false;ghost=-1;liberties=[];
+  key=cpu?`cpu-${n}-${settings.level}${h?'-h'+h:''}`:`friend-${n}`;
+  Recess.level(key,`${n}x${n}${cpu?' · '+titleCase(settings.level):' · Friend'}${h?' · '+h+' stones':''}`);
+  $('mode-panel').innerHTML=`<p class="chapter">${n} × ${n} · ${cpu?titleCase(settings.level):'Friend'}</p>
+    <h2>${cpu?'Find your opening.':'Share the table.'}</h2>
+    <p class="instruction">${cpu?'You are Black. Surround more of the board than your rival.':'Take turns. Surround more of the board.'}</p>
+    <div class="rule"></div><p class="small">White gets ${state.extra} extra points for going second.</p>
+    <button id="new-setup">Change game</button>`;
+  $('new-setup').onclick=()=>{cancel();showSetup();};
+  status(cpu?'Your move':'Black to play');
+  draw();
+  $('board').focus({preventScroll:true});
+  if(cpu && state.turn===2) cpuMove();
+}
+function transformPoint(p,n,sym) {
+  if(p<0) return p;
+  let x=p%n,y=p/n|0;
+  if(sym>=4) x=n-1-x;
+  for(let i=0;i<sym%4;i++) [x,y]=[n-1-y,x];
+  return y*n+x;
+}
+function puzzleData(index,isDaily) {
+  let p=JSON.parse(JSON.stringify(PUZZLES[index]));
+  p.n=p.id[0]==='f'?9:19;
+  p.color=p.toPlay==='B'?1:2;
+  p.goal=p.goal || 'live';
+  p.board=new Int8Array(p.n*p.n);
+  for(const text of (p.black||'').split(' ').filter(Boolean)) p.board[parse(text,p.n)]=1;
+  for(const text of (p.white||'').split(' ').filter(Boolean)) p.board[parse(text,p.n)]=2;
+  p.lines=p.lines.map(l=>l.split(' ').map(s=>parse(s,p.n)));
+  if(p.view) {
+    const a=parse(p.view[0],p.n), b=parse(p.view[1],p.n);
+    p.view={x:a%p.n,y:a/p.n|0,w:b%p.n-a%p.n+1,h:(b/p.n|0)-(a/p.n|0)+1};
+  } else p.view={x:0,y:0,w:9,h:9};
+  if(isDaily) {
+    const r=Recess.daily();
+    r();
+    const sym=r()*8|0,swap=r()<.5;
+    const b=new Int8Array(p.board.length);
+    for(let i=0;i<b.length;i++) b[transformPoint(i,p.n,sym)]=swap && p.board[i]?3-p.board[i]:p.board[i];
+    p.board=b;
+    if(swap) p.color=3-p.color;
+    p.lines=p.lines.map(l=>l.map(q=>transformPoint(q,p.n,sym)));
+    const v=p.view;
+    const corners=[v.y*p.n+v.x,v.y*p.n+v.x+v.w-1,(v.y+v.h-1)*p.n+v.x,
+      (v.y+v.h-1)*p.n+v.x+v.w-1].map(q=>transformPoint(q,p.n,sym));
+    const xs=corners.map(q=>q%p.n),ys=corners.map(q=>q/p.n|0);
+    p.view={x:Math.min(...xs),y:Math.min(...ys),w:Math.max(...xs)-Math.min(...xs)+1,h:Math.max(...ys)-Math.min(...ys)+1};
+    p.symmetry=sym;p.swap=swap;
+  }
+  return p;
+}
+function loadPuzzle(index,isDaily=false) {
+  forgetRestore();
+  const transferFocus=$('mode-panel').contains(document.activeElement);
+  cancel();Recess.close();mode='puzzles';stage='play';finished=false;daily=isDaily;history=[];undos=0;ply=0;completedTries=null;
+  document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-selected',b.dataset.mode==='puzzles'));
+  if(isDaily) index=8+(Recess.daily()()*11|0);
+  puzzleIndex=index;puzzle=puzzleData(index,isDaily);view=puzzle.view;
+  const r=Recess.rng(puzzle.id);
+  line=puzzle.lines[r()*puzzle.lines.length|0];
+  activeLines=puzzle.lines.slice();
+  state=Go.create(puzzle.n,puzzle.board,puzzle.color);
+  cursor=view.y*state.n+view.x+(view.w/2|0)+(view.h/2|0)*state.n;
+  cursorOn=false;ghost=-1;wrong=-1;hintPoint=-1;liberties=[];dead.clear();
+  const date=new Date();
+  const day=`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+  key=isDaily?'daily-'+day:'puzzle-'+puzzle.id;
+  const label=isDaily?"Today's puzzle":index<8?'First stones '+(index+1):'Old book '+(index-7);
+  Recess.level(key,label);
+  renderPuzzlePanel();
+  status(nameOf(puzzle.color)+' to play');
+  draw();
+  if(transferFocus) $('board').focus({preventScroll:true});
+}
+function puzzlePrompt() {
+  if(puzzle.id==='f1') return 'One gap. One stone. Take the white stone.';
+  if(puzzle.goal==='capture') return `Take the ${puzzle.color===1?'white':'black'} stones.`;
+  if(puzzle.goal==='save') return 'Give your stone room to run.';
+  if(puzzle.goal==='kill') return 'Take away the space for two eyes.';
+  return 'Make two separate eyes. Keep your group alive.';
+}
+function renderPuzzlePanel() {
+  const old=puzzleIndex>=8;
+  $('mode-panel').innerHTML=`<p class="chapter">${daily?"Today's puzzle":old?'From an old book · '+(puzzleIndex-7)+' / 11':
+    'First stones · '+(puzzleIndex+1)+' / 8'}</p>
+    <h2>${daily?'A fresh corner.':puzzle.name || 'Make life'}</h2>
+    <p class="instruction">${puzzlePrompt()}</p><p class="small">${nameOf(puzzle.color)} to play</p>
+    <details id="choose"><summary>Choose a puzzle</summary><div class="puzzle-picker">
+      <button id="daily">Today's puzzle</button>
+      ${PUZZLES.map((p,i)=>`<button data-puzzle="${i}" aria-current="${!daily&&i===puzzleIndex}">
+        ${i<8?'First stones '+(i+1):'Old book '+(i-7)}${i<8?' · '+p.name:''} ${'★'.repeat(Recess.stars('puzzle-'+p.id))}</button>`).join('')}
+    </div></details>
+    ${old?'<details><summary>The old book</summary><p>Old book problems from Gokyo Shumyo (碁経衆妙) by Hayashi Genbi (林元美), 1812, '+
+    'read from the public domain scan at the National Diet Library of Japan.</p></details>':''}`;
+  $('daily').onclick=()=>loadPuzzle(8,true);
+  document.querySelectorAll('[data-puzzle]').forEach(b=>b.onclick=()=>loadPuzzle(+b.dataset.puzzle));
+}
+function snapshot() {
+  return {state,ply,stage,dead:[...dead],agreements:agreements.slice(),activeLines:activeLines.slice(),line,
+    largestLoss:largestLoss.slice()};
+}
+function commit(p) {
+  const result=Go.play(state,p);
+  if(result.error) {illegal(result.error,p);return false;}
+  history.push(snapshot());
+  const old=state;
+  state=result.state;
+  if(old.turn===2) for(const p of result.removed) {
+    const group=Go.group(old.board,p,old.n);
+    if(group.stones.length>largestLoss.length) largestLoss=group.stones;
+  }
+  ghost=-1;hintPoint=-1;liberties=[];
+  draw(p);
+  if(p>=0) stoneSound(false);
+  else {
+    Recess.play('tap');
+    const bowl=$(old.turn===1?'black-bowl':'white-bowl');
+    if(!Recess.calm) bowl.animate([{transform:'translateY(0)'},{transform:'translateY(-4px)'},{transform:'translateY(0)'}],{duration:200});
+  }
+  if(result.removed.length) captureEffect(result.removed,old.turn,p);
+  status(p<0?nameOf(old.turn)+' passes':result.removed.length?nameOf(old.turn)+' took '+result.removed.length:
+    mode==='computer'?(state.turn===1?'Your move':titleCase(settings.level)+' is thinking'):nameOf(state.turn)+' to play');
+  return true;
+}
+function act(p) {
+  if(stage!=='play' || thinking || finished || wrong>=0) return;
+  if(mode==='computer' && state.turn!==1) return;
+  if(mode==='puzzles') {
+    const legal=p<0?true:!Go.play(state,p).error;
+    if(!legal) {const e=Go.play(state,p).error;illegal(e,p);return;}
+    const valid=activeLines.filter(candidate=>candidate[ply]===p);
+    if(!valid.length) {wrongTry(p);return;}
+    if(!commit(p)) return;
+    activeLines=valid;
+    if(!activeLines.includes(line)) line=activeLines[0];
+    ply++;
+    if(ply===line.length) {solvePuzzle();return;}
+    const gen=generation;
+    thinking=true;draw();
+    replyTimer=setTimeout(()=>{
+      if(gen!==generation) return;
+      const reply=line[ply];
+      commit(reply);
+      activeLines=activeLines.filter(candidate=>candidate[ply]===reply);
+      ply++;thinking=false;
+      if(reply<0) status(nameOf(3-puzzle.color)+" can't save them. Your move.");
+      else status(nameOf(puzzle.color)+' to play');
+      draw();
+    },550);
+  } else {
+    if(!commit(p)) return;
+    if(state.passes>=2) openCount();
+    else if(mode==='computer') cpuMove();
+  }
+}
+function wrongTry(p) {
+  const t=tries();t.wrong++;setTries(t);
+  wrong=p;
+  Recess.play('nope');
+  const life=['live','kill'].includes(puzzle.goal);
+  status(puzzle.goal==='kill'?'Not this one. Look for the point that stops two separate eyes.':
+    puzzle.goal==='save'?'Not this one. Give your stone more empty points beside it.':
+    life?'Not this one. Look for the point that gives the group two separate eyes.':
+    `Not this one. Count the ${puzzle.color===1?'white':'black'} stones' liberties.`);
+  draw();
+  const gen=generation;
+  replyTimer=setTimeout(()=>{if(gen===generation) {wrong=-1;draw();}},600);
+}
+function illegal(error,p) {
+  Recess.play('nope');ghost=-1;
+  status(error==='ko'?'Ko: play somewhere else first, then you can take back.':
+    error==='suicide'?'No liberties there: that stone would be captured at once.':'There is already a stone there.');
+  if(error==='ko') state={...state,ko:p};
+  if(!Recess.calm) $('board').animate([{transform:'translateX(-3px)'},{transform:'translateX(3px)'},{transform:'none'}],{duration:180});
+  draw();
+}
+function hint() {
+  if(mode!=='puzzles' || finished || thinking || stage!=='play') return;
+  const t=tries();t.hints++;setTries(t);
+  if(t.hints===1) status(puzzle.goal==='capture'?'Follow the last empty points beside the other stones.':
+    puzzle.goal==='save'?'Find the open crossing that gives your stone room to run.':
+    puzzle.goal==='kill'?'Play inside their space so they cannot keep two separate eyes.':
+    'Two eyes need two separate empty spaces inside your group.');
+  else {hintPoint=line[ply];status('Try '+coord(hintPoint,state.n)+'.');}
+  draw();
+}
+function solvePuzzle() {
+  finished=true;
+  completedTries=tries();
+  const stars=starsFor(completedTries);
+  setTries({wrong:0,hints:0});
+  status(puzzle.goal==='capture'?'The stones wash away.':
+    puzzle.goal==='save'?'Room to run. Your stone has three liberties.':
+    puzzle.goal==='kill'?`No room for two eyes. The ${nameOf(3-puzzle.color).toLowerCase()} group is trapped.`:'A living shape.');
+  const alive=Go.benson(state.board,state.n,puzzle.color);
+  liberties=[...new Set([...alive].flatMap(p=>[...Go.group(state.board,p,state.n).libs]))];
+  if(puzzle.goal==='save') liberties=[...Go.group(state.board,state.last,state.n).libs];
+  outcome=puzzle.goal==='capture'?[]:[state.last];
+  draw();
+  winTimer=setTimeout(()=>Recess.win({score:null,stars}),900);
+}
+async function cpuMove() {
+  if(mode!=='computer' || stage!=='play' || state.turn!==2 || finished) return;
+  thinking=true;ghost=-1;
+  status(titleCase(settings.level)+' is thinking');draw();
+  const gen=generation, began=performance.now();
+  const cacheKey=state.n+':'+settings.level+':'+Go.hash(state.board,state.n)+':'+state.history.join(',')+':'+state.passes;
+  try {
+    let result=replyCache.get(cacheKey);
+    if(!result) {
+      result=await askWorker('search',[state,settings.level]);
+      if(gen!==generation) return;
+      replyCache.set(cacheKey,result);
+    }
+    replyTimer=setTimeout(()=>{
+      if(gen!==generation) return;
+      thinking=false;
+      if(!commit(result.move)) {status('That move could not be played. Please undo.');return;}
+      if(result.ownership) state={...state,ownership:result.ownership};
+      if(state.passes>=2) openCount();
+      else {status('Your move');draw();}
+    },Math.max(0,400-(performance.now()-began)));
+  } catch(e) {
+    if(gen!==generation) return;
+    thinking=false;status('The opponent paused. Undo or restart to try again.');draw();
+    console.error(e);
+  }
+}
+async function openCount() {
+  const transferFocus=document.activeElement===$('pass');
+  stage='count';thinking=true;dead=new Set();agreements=[false,false];
+  status('Looking over the board...');draw();
+  if(transferFocus) $('board').focus({preventScroll:true});
+  const gen=generation;
+  try {
+    const p=await askWorker('proposal',[state,'count',10000]);
+    if(gen!==generation) return;
+    proposed=new Set(p.dead);dead=new Set(p.dead);thinking=false;
+    status('Tap a chain to mark it dead or alive.');
+    Recess.play('slide');draw();
+  } catch(e) {if(gen===generation) {thinking=false;status('Mark any dead chains, then agree.');draw();}}
+}
+function countPanel() {
+  const a=Go.area(state.board,state.n,state.extra,[...dead]);
+  $('count').hidden=false;
+  $('count').innerHTML=`<b>Black ${a.black.toFixed(1)} · White ${a.white.toFixed(1)}</b>
+    <p class="small">${finished?resultLine(a):'Crossed stones are removed before counting.'}</p>`;
+  if(finished) {
+    if(mode==='computer' && a.margin<0 && largestLoss.length) {
+      const message=document.createElement('p');message.className='small';
+      message.textContent='Your group fell here. Next time, give it two eyes early.';
+      $('count').append(message);
+    }
+    const b=document.createElement('button');b.textContent='Play again';b.onclick=startGame;
+    $('count').append(b);return;
+  }
+  if(thinking) return;
+  if(mode==='friend') {
+    [1,2].forEach(c=>{
+      const b=document.createElement('button');b.textContent=nameOf(c)+(agreements[c-1]?' agrees ✓':' agrees');
+      b.disabled=agreements[c-1];
+      b.onclick=()=>{
+        agreements[c-1]=true;
+        if(agreements.every(Boolean)) finishGame();
+        else {
+          draw();
+          const next=[...$('count').querySelectorAll('button')].find(button=>!button.disabled);
+          if(next) next.focus({preventScroll:true});
+        }
+      };
+      $('count').append(b);
+    });
+  } else {
+    const b=document.createElement('button');b.className='primary';b.textContent='Count it';
+    b.onclick=()=>{
+      // Changes which help White are always accepted. Unfavorable deviations are played out.
+      const disputed=[...dead].some(p=>state.board[p]===2 && !proposed.has(p)) ||
+        [...proposed].some(p=>state.board[p]===1 && !dead.has(p));
+      if(disputed) {
+        playOn(true);
+        status("I think that group can still live. Let's play it out.");
+      } else finishGame();
+    };
+    $('count').append(b);
+  }
+  const on=document.createElement('button');on.textContent='Play on';on.onclick=()=>playOn(false);$('count').append(on);
+}
+function resultLine(a) {
+  const who=a.margin>0?'Black':'White';
+  const invite=mode==='computer' && a.margin<0 ? (a.margin>-15?' Close one! Play again?':' Another game?') : '';
+  return `${who} by ${Math.abs(a.margin).toFixed(1)}.${invite}`;
+}
+function finishGame() {
+  if(finished) return;
+  finished=true;
+  const a=Go.area(state.board,state.n,state.extra,[...dead]);
+  status(resultLine(a));draw();
+  if(mode==='friend') Recess.win({score:null,stars:0});
+  else if(a.margin>0) {
+    const stars=settings.handicap?undos<=3?2:1:undos===0?3:undos<=3?2:1;
+    Recess.win({score:undos<=3?a.margin:null,stars});
+  } else {
+    for(const p of dead) if(state.board[p]===1) {
+      const group=Go.group(state.board,p,state.n);
+      if(group.stones.length>largestLoss.length) largestLoss=group.stones;
+    }
+    if(largestLoss.length) {
+      liberties=largestLoss.slice();draw();
+      const gen=generation;
+      setTimeout(()=>{if(gen===generation) {liberties=[];draw();}},3000);
+    }
+  }
+}
+function playOn(dispute) {
+  cancel();stage='play';finished=false;state={...state,passes:0,turn:dispute?1:state.turn};
+  dead.clear();agreements=[false,false];status(mode==='computer'?'Your move':nameOf(state.turn)+' to play');draw();
+  $('board').focus({preventScroll:true});
+  if(mode==='computer' && state.turn===2) cpuMove();
+}
+function toggleDead(p) {
+  if(thinking || finished || !state.board[p]) return;
+  const g=Go.group(state.board,p,state.n), remove=dead.has(p);
+  for(const q of g.stones) if(remove) dead.delete(q);else dead.add(q);
+  agreements=[false,false];draw();
+}
+function undo() {
+  if(!history.length) return;
+  const wasCount=stage==='count';
+  if(mode==='puzzles' && finished && completedTries) setTries(completedTries);
+  cancel();Recess.close();finished=false;wrong=-1;ghost=-1;liberties=[];hintPoint=-1;
+  let take=1;
+  if(!wasCount && mode==='computer') take=state.turn===1?2:1;
+  if(!wasCount && mode==='puzzles') take=ply%2===0?2:1;
+  let snap;
+  while(take-- && history.length) snap=history.pop();
+  state=snap.state;ply=snap.ply;stage='play';dead.clear();agreements=[false,false];
+  largestLoss=snap.largestLoss || [];
+  if(mode==='puzzles') {activeLines=snap.activeLines;line=snap.line;}
+  if(mode==='computer') undos++;
+  status(mode==='computer'?'Your move':nameOf(state.turn)+' to play');
+  Recess.play('slide');draw();$('board').focus({preventScroll:true});
+  if(mode==='computer' && state.turn===2) cpuMove();
+}
+function restart() {
+  const old=state && state.moves>=10 && mode!=='puzzles' ? {
+    state,history:history.slice(),undos,mode,settings:{...settings},stage,dead:[...dead],proposed:[...proposed],
+    agreements:agreements.slice(),finished,largestLoss:largestLoss.slice(),countPending:stage==='count' && thinking
+  } : null;
+  cancel();Recess.close();
+  if(mode==='puzzles') loadPuzzle(puzzleIndex,daily);
+  else if(stage==='setup') showSetup();
+  else startGame();
+  restore=old;
+  $('toast').hidden=!old;
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>{$('toast').hidden=true;restore=null;},8000);
+}
+$('toast').onclick=()=>{
+  if(!restore) return;
+  const countPending=restore.countPending;
+  cancel();Recess.close();
+  ({state,history,undos,mode,settings,stage,finished,largestLoss}=restore);
+  dead=new Set(restore.dead);proposed=new Set(restore.proposed);agreements=restore.agreements;
+  restore=null;$('toast').hidden=true;
+  status(stage==='count'?(finished?resultLine(Go.area(state.board,state.n,state.extra,[...dead])):
+    'Tap a chain to mark it dead or alive.'):mode==='computer'?'Your move':nameOf(state.turn)+' to play');draw();
+  if(stage==='count' && countPending) openCount();
+  if(mode==='computer' && state.turn===2 && stage==='play') cpuMove();
+};
+function next() {
+  if(mode==='puzzles') loadPuzzle((puzzleIndex+1)%PUZZLES.length,false);
+  else startGame();
+}
+function localXY(p) {
+  const size=Math.max(view.w,view.h)-1;
+  return [(p%state.n-view.x+(Math.max(view.w,view.h)-view.w)/2)/size*100,
+    ((p/state.n|0)-view.y+(Math.max(view.w,view.h)-view.h)/2)/size*100];
+}
+function visible(p) {
+  return p%state.n>=view.x && p%state.n<view.x+view.w && (p/state.n|0)>=view.y && (p/state.n|0)<view.y+view.h;
+}
+function sprite(c,p) { return ART[c===1?'slate':'shell'][(p*17+(p/state.n|0)*7)%4]; }
+function pointElement(p,c,cls='') {
+  const [x,y]=localXY(p),e=document.createElement('div');
+  e.className='point '+(c===2?'white ':'')+cls;
+  e.style.left=x+'%';e.style.top=y+'%';
+  const im=document.createElement('img');im.src=sprite(c,p);im.className='stone';im.alt='';
+  e.append(im);return e;
+}
+function markElement(p,cls) {
+  const e=document.createElement('div'),[x,y]=localXY(p);
+  e.className=cls;e.style.left=x+'%';e.style.top=y+'%';return e;
+}
+let lastGrid='';
+function drawGrid() {
+  const signature=JSON.stringify([state.n,view]);
+  if(signature===lastGrid) return;
+  lastGrid=signature;
+  const n=state.n, dims=Math.max(view.w,view.h),step=1000/(dims-1);
+  const ox=(dims-view.w)*step/2,oy=(dims-view.h)*step/2;
+  let lines='',labels='',stars='';
+  for(let i=0;i<view.w;i++) {
+    const x=ox+i*step;
+    lines+=`<path d="M${x} ${oy}V${oy+(view.h-1)*step}"/>`;
+    labels+=`<text x="${x}" y="${oy+(view.h-1)*step+32}">${LETTERS[view.x+i]}</text>`;
+  }
+  for(let i=0;i<view.h;i++) {
+    const y=oy+i*step;
+    lines+=`<path d="M${ox} ${y}H${ox+(view.w-1)*step}"/>`;
+    labels+=`<text x="${ox-30}" y="${y+8}">${n-view.y-i}</text>`;
+  }
+  const low=n===9?2:3,high=n-1-low,mid=n/2|0;
+  const positions=n===19?[low,mid,high].flatMap(y=>[low,mid,high].map(x=>y*n+x)):
+    [low*n+low,low*n+high,high*n+low,high*n+high,mid*n+mid];
+  for(const p of positions) if(visible(p)) {
+    const [x,y]=localXY(p);stars+=`<circle cx="${x*10}" cy="${y*10}" r="5"/>`;
+  }
+  $('grid').innerHTML=`<g id="grid-lines" stroke="#3b2a17" stroke-width="${n===19?2.2:2.7}" fill="none">${lines}</g>
+    <g fill="#3b2a17">${stars}</g><g font-family="Segoe UI,sans-serif" font-size="24" text-anchor="middle" fill="#3b2a17">${labels}</g>`;
+  $('board').style.setProperty('--stone',(94/(dims-1))+'%');
+  let a11y=$('a11y');
+  if(!a11y) {
+    a11y=document.createElement('div');a11y.id='a11y';a11y.className='sr-only';$('board').append(a11y);
+  }
+  a11y.setAttribute('role','rowgroup');
+  a11y.innerHTML=Array.from({length:view.h},(_,y)=>`<div role="row" aria-rowindex="${y+1}">`+
+    Array.from({length:view.w},(_,x)=>`<div role="gridcell" aria-colindex="${x+1}" `+
+      `id="cell-${(view.y+y)*n+view.x+x}"></div>`).join('')+'</div>').join('');
+  const mask=[];
+  if(view.x>0) mask.push('linear-gradient(to right,transparent,#000 6%)');
+  if(view.x+view.w<n) mask.push('linear-gradient(to left,transparent,#000 6%)');
+  if(view.y>0) mask.push('linear-gradient(to bottom,transparent,#000 6%)');
+  if(view.y+view.h<n) mask.push('linear-gradient(to top,transparent,#000 6%)');
+  $('grid-lines').style.maskImage=mask.join(',');
+  $('grid-lines').style.maskComposite='intersect';
+}
+function draw(placed=-1) {
+  if(!state) return;
+  const mayPlace=stage==='play' && !thinking && !finished && (mode!=='computer' || state.turn===1);
+  document.body.dataset.stage=stage;
+  drawGrid();
+  const stones=document.createDocumentFragment(),marks=document.createDocumentFragment();
+  for(let p=0;p<state.board.length;p++) if(visible(p)) {
+    const c=state.board[p];
+    const cell=$('cell-'+p);
+    if(cell) {
+      const description=c?nameOf(c).toLowerCase()+', '+Go.group(state.board,p,state.n).libs.size+' liberties':'empty';
+      cell.setAttribute('aria-label',coord(p,state.n)+', '+description);
+    }
+    if(c) {
+      const e=pointElement(p,c,(placed===p?'placed ':'')+(dead.has(p)?'dead':''));
+      if(state.last===p) {const m=document.createElement('i');m.className='mark';e.append(m);}
+      stones.append(e);
+    }
+  }
+  if(ghost>=0 && !state.board[ghost] && !Go.play(state,ghost).error && mayPlace)
+    stones.append(pointElement(ghost,state.turn,'ghost'));
+  if(wrong>=0) stones.append(pointElement(wrong,state.turn,'wrong'));
+  if(cursorOn && visible(cursor)) marks.append(markElement(cursor,'cursor'));
+  if(hintPoint>=0 && visible(hintPoint)) marks.append(markElement(hintPoint,'cursor'));
+  for(const p of outcome) if(visible(p)) marks.append(markElement(p,'outcome-ring'));
+  if(state.ko>=0 && visible(state.ko)) marks.append(markElement(state.ko,'ko'));
+  for(const p of liberties) if(visible(p))
+    marks.append(markElement(p,finished && mode==='computer'?'loss-ring':'liberty'));
+  if(stage==='count') {
+    const a=Go.area(state.board,state.n,state.extra,[...dead]);
+    for(let p=0;p<a.ownership.length;p++) if(a.ownership[p] && (!state.board[p] || dead.has(p)) && visible(p))
+      marks.append(markElement(p,'area'+(a.ownership[p]===2?' white':'')));
+  }
+  $('stones').replaceChildren(stones);$('marks').replaceChildren(marks);
+  $('board').setAttribute('aria-activedescendant','cell-'+cursor);
+  $('board').setAttribute('aria-rowcount',view.h);$('board').setAttribute('aria-colcount',view.w);
+  $('white-captures').textContent=state.caps[2];$('black-captures').textContent=state.caps[1];
+  for(const c of [1,2]) {
+    const side=c===1?'black':'white';
+    $(side+'-bowl').classList.toggle('active',state.turn===c && stage==='play');
+    const pile=document.createDocumentFragment();
+    for(let i=0;i<Math.min(18,state.caps[c]);i++) {
+      const im=document.createElement('img');im.src=sprite(3-c,i);im.alt='';
+      im.style.left=(64+(i*13%20))+'%';im.style.top=(30+(i*23%36))+'%';pile.append(im);
+    }
+    $(side+'-pile').replaceChildren(pile);
+  }
+  $('thinking').hidden=!thinking;
+  $('hint').hidden=mode!=='puzzles';$('hint').disabled=finished || thinking || stage!=='play';
+  $('pass').hidden=mode==='puzzles' || stage==='count';$('pass').disabled=stage!=='play' || thinking || finished;
+  $('confirm').hidden=ghost<0 || state.n===9 || innerWidth>760 || !mayPlace || !!Go.play(state,ghost).error;
+  $('undo-count').textContent=mode==='computer'?'Undos: '+undos:'';
+  $('count').hidden=stage!=='count';
+  if(stage==='count') countPanel();
+  Recess.canUndo(history.length>0);
+}
+function captureEffect(points,c,origin) {
+  Recess.play('capture');stoneSound(true);
+  const sorted=points.slice().sort((a,b)=>Math.abs(a%state.n-origin%state.n)+Math.abs((a/state.n|0)-(origin/state.n|0))-
+    Math.abs(b%state.n-origin%state.n)-Math.abs((b/state.n|0)-(origin/state.n|0)));
+  sorted.forEach((p,i)=>{
+    if(!visible(p)) return;
+    const stone=pointElement(p,3-c,'capture-stone');
+    if(Recess.calm) stone.style.cssText+=';transition:opacity .2s;animation:none';
+    else stone.style.animationDelay=i*40+'ms';
+    $('effects').append(stone);
+    if(!Recess.calm) {
+      const im=document.createElement('img'),[x,y]=localXY(p);
+      im.src=ART.bloom;im.className='bloom';
+      im.style.left=x+'%';im.style.top=y+'%';im.style.animationDelay=i*40+'ms';
+      if(c===1) im.style.filter='sepia(.7) brightness(1.8)';
+      $('effects').append(im);
+      setTimeout(()=>im.remove(),740+i*40);
+    } else requestAnimationFrame(()=>stone.style.opacity=0);
+    setTimeout(()=>stone.remove(),Recess.calm?220:740+i*40);
+  });
+}
+let audioContext;
+function stoneSound(wash) {
+  if(!Recess.sound) return;
+  const AC=window.AudioContext||window.webkitAudioContext;
+  if(!AC) return;
+  audioContext=audioContext||new AC();
+  if(audioContext.state==='suspended') audioContext.resume();
+  const ac=audioContext,t=ac.currentTime,duration=wash?.6:.035;
+  const buffer=ac.createBuffer(1,Math.ceil(ac.sampleRate*duration),ac.sampleRate),data=buffer.getChannelData(0);
+  for(let i=0;i<data.length;i++) data[i]=Math.random()*2-1;
+  const noise=ac.createBufferSource(),filter=ac.createBiquadFilter(),gain=ac.createGain();
+  noise.buffer=buffer;filter.type=wash?'lowpass':'bandpass';filter.Q.value=wash?.7:6;
+  filter.frequency.setValueAtTime(wash?1400:2400,t);
+  if(wash) filter.frequency.exponentialRampToValueAtTime(300,t+.6);
+  gain.gain.setValueAtTime(wash?.06:.35,t);gain.gain.exponentialRampToValueAtTime(.0001,t+duration);
+  noise.connect(filter).connect(gain).connect(ac.destination);noise.start(t);noise.stop(t+duration);
+  if(!wash) {
+    const osc=ac.createOscillator(),g=ac.createGain();
+    osc.frequency.value=160*(.96+Math.random()*.08);g.gain.setValueAtTime(.25,t);
+    g.gain.exponentialRampToValueAtTime(.0001,t+.06);
+    osc.connect(g).connect(ac.destination);osc.start(t);osc.stop(t+.06);
+  }
+}
+function pointerPoint(e) {
+  const r=$('board').getBoundingClientRect(),dims=Math.max(view.w,view.h),step=r.width/(dims-1);
+  const x=Math.round((e.clientX-r.left)/step-(dims-view.w)/2)+view.x;
+  const y=Math.round((e.clientY-r.top)/step-(dims-view.h)/2)+view.y;
+  if(x<view.x || x>=view.x+view.w || y<view.y || y>=view.y+view.h) return -1;
+  return y*state.n+x;
+}
+let touchAim=false,downPoint=-1,touchConfirmed=false,dragDistance=0,downXY=[];
+// Intersections on the grid boundary need their full hit area over the painted margin.
+const boardInput=$('board').parentElement;
+function showLiberties(p) {
+  liberties=p>=0 && state.board[p]?[...Go.group(state.board,p,state.n).libs]:[];draw();
+}
+boardInput.addEventListener('pointerdown',e=>{
+  if(stage==='setup') return;
+  const p=pointerPoint(e);downPoint=p;
+  downXY=[e.clientX,e.clientY];dragDistance=0;touchConfirmed=ghost===p;
+  if(p<0) return;
+  $('board').focus({preventScroll:true});
+  if(state.board[p]) {hoverTimer=setTimeout(()=>showLiberties(p),300);return;}
+  if(e.pointerType==='touch' && state.n>=13 && innerWidth<=760 && stage==='play' && !thinking && !finished &&
+    (mode!=='computer' || state.turn===1)) {
+    touchAim=true;ghost=p;cursorOn=false;
+    $('board').setPointerCapture(e.pointerId);updateLoupe(e);draw();
+  }
+});
+function updateLoupe(e) {
+  const r=$('board').parentElement.getBoundingClientRect();
+  $('loupe').hidden=false;
+  $('loupe').style.left=Math.max(0,Math.min(r.width-100,e.clientX-r.left-50))+'px';
+  $('loupe').style.top=Math.max(-30,e.clientY-r.top-130)+'px';
+  const step=$('board').getBoundingClientRect().width/(Math.max(view.w,view.h)-1)*2.2;
+  let content='<svg viewBox="0 0 100 100" style="position:absolute;inset:0;width:100%;height:100%">';
+  for(let d=-2;d<=2;d++) {
+    const q=50+d*step;
+    content+=`<path d="M${q} 0V100 M0 ${q}H100" stroke="#3b2a17" stroke-width="1"/>`;
+  }
+  content+='</svg>';
+  const x=ghost%state.n,y=ghost/state.n|0;
+  for(let dy=-2;dy<=2;dy++) for(let dx=-2;dx<=2;dx++) {
+    const xx=x+dx,yy=y+dy,p=yy*state.n+xx;
+    if(xx<0 || xx>=state.n || yy<0 || yy>=state.n) continue;
+    const c=state.board[p] || (dx===0 && dy===0 && !Go.play(state,p).error?state.turn:0);
+    if(!c) continue;
+    const w=step*.94;
+    content+=`<img src="${sprite(c,p)}" alt="" style="position:absolute;left:${50+dx*step-w/2}px;`+
+      `top:${50+dy*step-w/2}px;width:${w}px;height:${w}px;margin:0;opacity:${state.board[p]?1:.65}">`;
+  }
+  $('loupe').innerHTML=content;
+}
+boardInput.addEventListener('pointermove',e=>{
+  const p=pointerPoint(e);
+  clearTimeout(hoverTimer);
+  if(touchAim) {
+    dragDistance=Math.max(dragDistance,Math.hypot(e.clientX-downXY[0],e.clientY-downXY[1]));
+    ghost=p;updateLoupe(e);draw();return;
+  }
+  if(e.pointerType==='touch') return;
+  if(p>=0 && state.board[p]) {
+    ghost=-1;hoverTimer=setTimeout(()=>showLiberties(p),600);
+  } else {
+    liberties=[];
+    ghost=p>=0 && !Go.play(state,p).error?p:-1;
+  }
+  draw();
+});
+boardInput.addEventListener('pointerup',e=>{
+  clearTimeout(hoverTimer);
+  const p=pointerPoint(e);
+  if(touchAim) {
+    touchAim=false;$('loupe').hidden=true;
+    const error=p>=0?Go.play(state,p).error:null;
+    if(error) illegal(error,p);
+    else if(touchConfirmed && dragDistance<8 && p===downPoint) act(p);
+    else draw();
+    return;
+  }
+  if(p<0 || p!==downPoint) return;
+  if(stage==='count') toggleDead(p);
+  else if(state.board[p]) showLiberties(p);
+  else if(e.pointerType==='touch' && state.n>=13 && innerWidth<=760) {
+    if(ghost===p) act(p);else {ghost=p;draw();}
+  } else act(p);
+});
+boardInput.addEventListener('pointerleave',e=>{
+  clearTimeout(hoverTimer);
+  if(e.pointerType!=='touch' && !touchAim) {ghost=-1;liberties=[];draw();}
+});
+boardInput.addEventListener('pointercancel',()=>{
+  touchAim=false;downPoint=-1;ghost=-1;clearTimeout(hoverTimer);$('loupe').hidden=true;draw();
+});
+$('confirm').onclick=()=>{if(ghost>=0) act(ghost);};
+$('pass').onclick=()=>act(-1);
+$('hint').onclick=hint;
+document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>setMode(b.dataset.mode));
+addEventListener('keydown',e=>{
+  if(e.ctrlKey || e.metaKey || e.altKey || document.querySelector('.rc-veil') || e.target.closest('input,select,textarea,summary')) return;
+  if(['1','2','3'].includes(e.key)) {e.preventDefault();setMode(['computer','friend','puzzles'][+e.key-1]);return;}
+  const k=e.key.toLowerCase();
+  if(k==='p') {e.preventDefault();act(-1);return;}
+  if(k==='h') {e.preventDefault();hint();return;}
+  if(e.target!==$('board')) return;
+  if(k==='l') {e.preventDefault();showLiberties(cursor);return;}
+  if(e.key.startsWith('Arrow')) {
+    e.preventDefault();
+    let x=cursor%state.n,y=cursor/state.n|0;
+    x+=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0;
+    y+=e.key==='ArrowDown'?1:e.key==='ArrowUp'?-1:0;
+    x=Math.max(view.x,Math.min(view.x+view.w-1,x));y=Math.max(view.y,Math.min(view.y+view.h-1,y));
+    cursor=y*state.n+x;cursorOn=true;ghost=-1;liberties=[];draw();
+  } else if(e.key==='Enter' || e.key===' ') {
+    e.preventDefault();if(stage==='count') toggleDead(cursor);else act(cursor);
+  }
+});
+Recess.start({id:'go',title:'Go',score:{label:'Points',lower:false},onUndo:undo,onRestart:restart,onNext:next});
+// Keep the shell's initials interface, with one save per earned win even on repeated activation.
+const guardedSaves=new WeakSet();
+function guardInitialsSave(button) {
+  if(!button || guardedSaves.has(button)) return;
+  guardedSaves.add(button);
+  const save=button.onclick;
+  let saved=false;
+  button.onclick=e=>{
+    if(saved) return;
+    saved=true;
+    save.call(button,e);
+  };
+}
+document.addEventListener('click',e=>guardInitialsSave(e.target.closest('.rc-init .rc-go')),true);
+new MutationObserver(()=>{
+  const dialog=document.querySelector('.rc-card'),heading=dialog?.querySelector('.rc-h');
+  if(heading) {heading.id='go-dialog-title';dialog.setAttribute('aria-labelledby',heading.id);}
+  document.querySelectorAll('.rc-init .rc-go').forEach(button=>{
+    guardInitialsSave(button);
+  });
+}).observe(document.body,{childList:true,subtree:true});
+addEventListener('keydown',e=>{
+  const dialog=document.querySelector('.rc-card');
+  if(!dialog || e.key!=='Tab') return;
+  const controls=[...dialog.querySelectorAll('button,input')].filter(b=>!b.disabled && b.getBoundingClientRect().width);
+  if(!controls.length) return;
+  const index=controls.indexOf(document.activeElement);
+  if(index<0 || (!e.shiftKey && index===controls.length-1) || (e.shiftKey && index===0)) {
+    e.preventDefault();(e.shiftKey?controls[controls.length-1]:controls[0]).focus({preventScroll:true});
+  }
+},true);
+Recess.onMotion(()=>{
+  if(Recess.calm) {
+    $('effects').replaceChildren();
+    document.getAnimations().filter(a=>a.effect && a.effect.target && !a.effect.target.closest('.rc-card')).forEach(a=>a.cancel());
+  }
+});
+setMode(Recess.store('last-mode') || 'puzzles');
+// Read-only diagnostics plus actual game actions, for offline verification. No award shortcut.
+window.__go = {
+  get state() {return state;},get mode() {return mode;},get stage() {return stage;},get key() {return key;},
+  get ply() {return ply;},get line() {return line.slice();},get tries() {return tries();},get undos() {return undos;},
+  get thinking() {return thinking;},get puzzle() {return puzzle;},get dead() {return [...dead];},
+  rules:Go,puzzles:PUZZLES,act,undo,restart,hint,setMode,loadPuzzle,startGame,
+  workerSearch:async(s,l,options)=>askWorker('search',[s,l,options]),
+  puzzleData,transformPoint
+};
+
+</script>
+</body>
+</html>

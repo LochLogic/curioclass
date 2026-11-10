@@ -88,7 +88,8 @@ bundle_all()
 bad = 0
 for folder in sorted(p for p in (ROOT / 'tools').iterdir() if p.is_dir()):
     if (folder / 'tool.draft.json').exists():  # waiting for art: not on the site yet
-        problems = notes_sections(folder)
+        draft = json.loads((folder / 'tool.draft.json').read_text(encoding='utf-8'))
+        problems = [] if draft.get('recess') else notes_sections(folder)  # Recess games have no lesson notes
         print(f'{"FAIL" if problems else "draft"} {folder.name}')
         for p in problems:
             print('     ', p)

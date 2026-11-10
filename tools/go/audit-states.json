@@ -1,0 +1,99 @@
+{
+  "target": 44,
+  "states": [
+    {
+      "name": "computer-setup",
+      "steps": [
+        {
+          "click": "#computer-tab"
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768",
+        "375x812"
+      ]
+    },
+    {
+      "name": "computer-play",
+      "steps": [
+        {
+          "click": "#computer-tab"
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "friend",
+      "steps": [
+        {
+          "click": "#friend-tab"
+        },
+        {
+          "click": "#play"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "old-book",
+      "steps": [
+        {
+          "click": "#choose summary"
+        },
+        {
+          "click": "[data-puzzle=\"8\"]"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "daily",
+      "steps": [
+        {
+          "click": "#choose summary"
+        },
+        {
+          "click": "#daily"
+        }
+      ],
+      "sizes": [
+        "1366x768"
+      ]
+    },
+    {
+      "name": "friend-count",
+      "steps": [
+        {
+          "click": "#friend-tab"
+        },
+        {
+          "click": "#play"
+        },
+        {
+          "click": "#pass"
+        },
+        {
+          "click": "#pass"
+        },
+        {
+          "until": "!__go.thinking",
+          "max": 12000
+        }
+      ],
+      "sizes": [
+        "680x425",
+        "1366x768"
+      ]
+    }
+  ]
+}
