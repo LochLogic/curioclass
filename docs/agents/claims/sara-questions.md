@@ -184,3 +184,5 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - weekend-substance-choices: Good Samaritan law coverage differs by state (default used: "many states" with NCSL and GAO-21-248 dated, plus a link card for the student's own state; refresh at Build)
 - economy-checkup: overlap with economy-dashboard (default used: keep; this one is grades 6-8 with three signs and four neighbors, no forecasting)
 - many-voices-book: greeting recordings in each family language (default used: native speakers recorded with consent at the Art and voice step; the bank voice reads the rest)
+- e-bike-buyer: e-bike, repair, warranty and insurance prices and theft rates (default used: dated typical 2025 to 2026 ranges with a $700 bike and a $450 battery; refresh at Build)
+- rabbit-hole-notebook: sourced facts behind each short page (default used: each page written from two checked sources credited at its foot; the full source list is built at Build)
