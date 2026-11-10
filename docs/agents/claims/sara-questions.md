@@ -12,3 +12,5 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - my-life-timeline: sensitivity flag (family situations vary); fresh-agent read needed before build (default used: no baby photo, birth facts or family members asked).
 - pen-pal-parcels: sensitivity flag (three real countries, made-up child pen pals); fresh-agent read of letters and art needed before build (default used: ordinary work and one real change per place, no cocoa for Ghana).
 - storm-helpers: sensitivity flag (children who lived through storms); fresh-agent read needed before build (default used: calm morning after only, everyone safe, teacher note).
+- day-in-the-life: sensitivity flag (four real cultures in Kenya, Peru, Japan and Norway); fresh-agent read of scenes and art needed before build (default used: everyday modern life, no costume or poverty framing, art checked against photographs).
+- then-and-now-overlay: Marshalltown, Iowa as the built-in town; the build confirms the 1894 Sanborn map, 1868 bird's-eye view, 1939 FSA photo and 1896 directory are public domain and stops if one isn't (default used: Marshalltown; fallback Grundy Center, Iowa).
