@@ -8,14 +8,14 @@ Why and where: docs/VISION.md (the north star, 2026-11-03). This file holds the 
 When a roadmap item starts, finishes or moves, update it here first, then post it to the Review Desk's Roadmap tab
 (`python scripts/desk_roadmap.py <out.json>`, then ArtifactData set stats/roadmap).
 
-## Where it stands (2026-11-03)
+## Where it stands (2026-11-10)
 
 | | Count |
 |---|---|
-| Tool concepts in the catalog | 800 |
-| Live tools | 83 |
-| Specs written | 238 more, plus 11 built and waiting on voice |
-| Built by Codex, waiting on review | about 80 (8 reviewed) |
+| Tool concepts in the catalog | 805 |
+| Live tools | 84 |
+| Specs written | every tool: 559 waiting on Build (Sara wrote the last 431, 2026-11-08 to 11-10); 7 ASL tools held for the Sign Strip sample |
+| Built, waiting on Refine | 119 at Self-check, 20 at Fix, 10 at Art and voice |
 | Worksheets live | 1,008 of 7,116 planned (live 2026-11-03; trimmed from 8,947 on 2026-11-04) |
 | Modules with Word Wall cards | 762 of 797 (4,413 cards), English and Spanish |
 | Anchor charts / posters / Game Night games | 74 / 54 / 104 |
