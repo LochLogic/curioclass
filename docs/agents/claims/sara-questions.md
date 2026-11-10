@@ -26,3 +26,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - ship-s-log: sensitivity flag; Wampanoag history and the epidemic (default used: Wampanoag-led sources, narrator tells it plainly, fresh-agent read before build).
 - history-article-review: sensitivity flag; the missing-voices article names Black soldiers, enslaved people, Native nations and Loyalists (default used: museum and nation sources for each, fresh-agent read before build).
 - interest-seesaw: rates are read on the build date and baked in with "rate as of" (default used: refresh once a year with the site's yearly check).
+- revolution-road: sensitivity flag; four lanes include slavery, Native nations and the Declaration's words about Native peoples (default used: plain factual lane cards from nation and museum sources, teacher note on the Declaration line, fresh-agent read before build).
+- rights-match: module lists D2.Civ.5.3-5 (structure of government), which a scenario sort can't teach well (default used: it moves to bill-to-law-board-game as a federal-and-state contrast card; module code list left for Cory).
+- tools-for-change: the boycott card's recent example is the 1965 to 1970 grape boycott, since no well-sourced kid-safe boycott from the last 20 years was found (default used: labeled "Later", checked again at build).
