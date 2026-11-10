@@ -129,3 +129,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - gene-pool: data source (default used: woodland strawberry genetics and the MYB10 white-fruit example from the cited papers, checked before build)
 - gene-pool: code move (default used: MS-LS1-4 goes to flower-lure; this tool teaches MS-LS1-5, MS-LS3-1, MS-LS3-2 and MS-LS4-5)
 - wave-tank: code move (default used: MS-PS4-3 goes to copy-of-a-copy; this tool teaches MS-PS4-1 and MS-PS4-2)
+- who-wins: data source (default used: typical adult sizes from the Smithsonian National Zoo and San Diego Zoo Wildlife Alliance, checked before build)
+- snack-scale: overlap with who-wins (default used: one identical snack per round so the seesaw tips by how many, never by weight)
+- toy-box-sort: EK-ALG-ML-02 wording not in the repo (default used: paraphrase, exact wording quoted from the CSTA PDF before build)
