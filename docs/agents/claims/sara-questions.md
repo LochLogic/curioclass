@@ -178,3 +178,4 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - inside-the-keypress: overlap with network-help-desk, which also lists E4-SYS-HW-12 and troubleshooting (default used: keep; this one stays inside one device)
 - adventure-outline-cards: format change from story to builder, as the idea card proposes (default used: builder)
 - ai-fit-check: energy figures for the cost card (default used: a dated range of about 0.2 to 3 Wh per large-model answer from IEA 2024, Google 2025 and Epoch AI 2025; refresh at Build)
+- eras-of-computing: data source for the era cards (default used: Computer History Museum timeline plus one second source per card; the full dated card list is checked at Build)
