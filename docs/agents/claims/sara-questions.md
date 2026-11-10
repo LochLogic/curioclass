@@ -109,3 +109,8 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - earth-s-calendar: data source (default used: 2023 International Chronostratigraphic Chart ages, simplified columns from NPS and BLM sections, index fossils checked per site before build)
 - plate-puzzle: data source (default used: public domain USGS plate positions and NOAA NCEI seafloor age grids, simplified and bundled; no network)
 - plate-puzzle: code move (default used: MS-ESS2-1 and MS-ESS2-2 move to rock-recycler; this tool teaches MS-ESS2-3 only)
+- raindrop-s-journey: code move (default used: MS-ESS2-5 moves to front-line; this tool teaches MS-ESS2-4 only)
+- reaction-kitchen: overlap risk with hand-warmer-lab (default used: kitchen materials and simple design trials only, no bond energies)
+- resource-map: data source (default used: USGS mineral, energy and High Plains aquifer maps, public domain, simplified and bundled, checked before build)
+- resource-map: Sensitivity flag: mining and drilling on Native lands (default used: geology and deposits only, no tribal overlay, one card on tribal governance with a link to NCAI, fresh-agent read before build)
+- invasive-species-alert: data source (default used: zebra mussel effects from USGS NAS, NOAA GLERL and Minnesota Sea Grant, effect sizes checked before build)
