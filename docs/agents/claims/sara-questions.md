@@ -91,3 +91,4 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - who-has-the-power: Sensitivity flag, tribal sovereignty and contested powers (default used: government-to-government framing from tribal and federal sources, both sides on contested cards, fresh-agent read before build)
 - weather-wardrobe: format change from showdown to data (default used: picture-graph data desk, class vote as the extra)
 - weather-wardrobe: data source (default used: NOAA GHCN-Daily records for Minneapolis, Seattle and Atlanta, one winter and one summer month each, bundled; no network)
+- fast-or-slow: data source (default used: USGS and NPS public domain photos, checked one by one, credits in the data block)
