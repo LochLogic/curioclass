@@ -168,3 +168,4 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - hot-air-and-sandbags: code move (default used: 7.NS.2d goes to remainder-loop; this tool keeps 7.NS.1, 7.NS.2a to 7.NS.2c and 7.NS.3)
 - blueprint-studio: the idea card moves 7.G.3 out of this tool; should it go to clay-cutting-bench? (default used: yes, clay-cutting-bench teaches plane sections; this tool keeps 7.G.1 and 7.G.2)
 - data-detective: which paired data ship? (default used: adult foot length and stature from ANSUR II or NHANES, and NOAA daylight and temperature normals; geyser data left to simulation-studio)
+- ski-slope-designer: what slope numbers should the green, blue and black bands use? (default used: game ranges labeled as such, because no sourced national percent cutoffs were found)
