@@ -141,3 +141,7 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - tile-the-floor: code move (default used: 3.G.2 comes here from shape-family-tree through the painters' job; shape-family-tree keeps 3.G.1)
 - shape-family-tree: overlap with shape-courtroom, now shape-sieve (default used: this tool keeps the grade 3 categories; the full hierarchy argument stays in grade 5)
 - shape-family-tree: code move (default used: 3.G.2 goes to tile-the-floor's painters' job; this tool teaches 3.G.1 only)
+- multiplication-dungeon: overlap with fact-rally (default used: missed facts return as sleepy guardians at 2, 4 and 8 door gaps with a hint card and a product map; fact-rally keeps rally-spaced repeats on a court)
+- recipe-scaler: format change (default used: builder instead of tycoon, since one recipe card is built and test baked and nothing runs over time)
+- recipe-scaler: overlap with fraction-kitchen (default used: one-size scoops and like denominators here; fraction-kitchen keeps mixed cup sizes and unlike denominators)
+- community-plot-planner: overlap with garden-grid by look (default used: an empty city lot with fence posts and family notes in soil brown, no square seed plots, no "garden" in the title)
