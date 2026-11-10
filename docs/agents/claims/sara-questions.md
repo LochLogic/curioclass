@@ -29,3 +29,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - revolution-road: sensitivity flag; four lanes include slavery, Native nations and the Declaration's words about Native peoples (default used: plain factual lane cards from nation and museum sources, teacher note on the Declaration line, fresh-agent read before build).
 - rights-match: module lists D2.Civ.5.3-5 (structure of government), which a scenario sort can't teach well (default used: it moves to bill-to-law-board-game as a federal-and-state contrast card; module code list left for Cory).
 - tools-for-change: the boycott card's recent example is the 1965 to 1970 grape boycott, since no well-sourced kid-safe boycott from the last 20 years was found (default used: labeled "Later", checked again at build).
+- agora-assembly: module lists D2.Civ.8.6-8 (principles in the U.S. founding documents), which Athens can't teach well (default used: it moves to constitutional-convention; module code list left for Cory).
+- silk-road-traders: sensitivity flag; Buddhism's spread is a belief system shown in a game (default used: teachings described by what people did, with dates, no ranking; fresh-agent read before build).
+- silk-road-traders: the family tag silk-road has no engine and no siblings (default used: tool-only code; the tag can be dropped to "none" if Cory agrees).
