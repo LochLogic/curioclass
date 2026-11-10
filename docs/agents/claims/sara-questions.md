@@ -46,3 +46,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - constitutional-convention: sensitivity flag; slavery's compromises at the Convention (default used: the Constitution's words and effects told plainly, no images of enslaved people, fresh-agent read before build).
 - constitutional-convention: module change; D2.Civ.8.6-8 added here from agora-assembly as the idea card proposes (default used: added; agora-assembly's spec not touched).
 - evidence-corkboard: sensitivity flag; Haudenosaunee land loss (default used: named plainly with sources from the nations, framed as a gap to research, fresh-agent read before build).
+- reconstruction-amendments: sensitivity flag; racial violence and Jim Crow (default used: named plainly with sources, no images of violence, Black Americans shown acting throughout, fresh-agent read before build).
+- mill-town: sensitivity flag; the mills' cotton came from enslaved people's labor (default used: one plain card with sources, no images, fresh-agent read before build).
+- shaping-our-week: D2.Eco.9.6-8 is about property rights and the rule of law, which the idea card didn't name (default used: a lease, a paycheck and courts added as two institution cards and one replay).
