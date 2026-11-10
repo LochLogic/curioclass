@@ -1,6 +1,6 @@
 r"""Catalog review: write the packet an extract agent works from (docs/agents/CATALOG-REVIEW.md, step 1).
 
-    python scripts/catalog_batch.py <name> <subject> <grade> [<subject> <grade> ...] [--size 12]
+    python scripts/catalog_batch.py <name> <subject> <grade> [<subject> <grade> ...] [--size 12] [--live]
 
 Writes docs/agents/catalog/batches/<name>-<n>.md: for each tool its catalog line, module, the module's standards,
 its stage, its old overlap tags (for house style) and the files to read. One packet holds at most --size tools.
@@ -12,6 +12,8 @@ args = sys.argv[1:]
 size = 12
 if '--size' in args:
     i = args.index('--size'); size = int(args[i + 1]); del args[i:i + 2]
+live_only = '--live' in args
+if live_only: args.remove('--live')
 name, pairs = args[0], list(zip(args[1::2], args[2::2]))
 rd = lambda p: list(csv.DictReader(open(ROOT / p, encoding='utf-8')))
 mods = {r['module_id']: r for r in rd('data/modules.csv')}
@@ -22,6 +24,7 @@ def stage(t):
         if (d / f).exists(): return s
     return 'concept'
 tools = [t for t in rd('data/tools-concepts.csv') if (mods[t['module_id']]['subject'], mods[t['module_id']]['grade']) in pairs]
+if live_only: tools = [t for t in tools if stage(t['tool_id']) == 'live']
 out = ROOT / 'docs/agents/catalog/batches'
 for n in range(0, len(tools), size):
     lines = [f'# Catalog extract packet: {name}-{n // size + 1}', '']
