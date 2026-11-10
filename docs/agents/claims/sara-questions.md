@@ -132,3 +132,5 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - who-wins: data source (default used: typical adult sizes from the Smithsonian National Zoo and San Diego Zoo Wildlife Alliance, checked before build)
 - snack-scale: overlap with who-wins (default used: one identical snack per round so the seesaw tips by how many, never by weight)
 - toy-box-sort: EK-ALG-ML-02 wording not in the repo (default used: paraphrase, exact wording quoted from the CSTA PDF before build)
+- number-path-rescue: overlap with hundred-hop (default used: this tool is about reading and typing numerals to 120; hundred-hop keeps counting aloud to 100)
+- make-ten-machine: overlap with fact-rally (default used: strategies built step by step with counters and no timer; fact-rally keeps speed)
