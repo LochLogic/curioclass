@@ -17,7 +17,7 @@ must stand on its own: anything not in the spec will not be in the tool.
    Sources from it instead of searching from scratch. Follow "For the spec writer" in `docs/agents/RESEARCH-PACKET.md`
    (spot-check its sources; say in your report how much of it you used and any claim that failed). Packets are
    paused since 2026-11-09 (a spot check found half their quotes were not on the cited page), so none are in main:
-   research from scratch. Every remaining spec is Sara's (`docs/agents/claims/sara.txt`, Cory 2026-11-09).
+   research from scratch. Sara wrote every remaining spec (`docs/agents/claims/sara.txt`, done 2026-11-10); new ideas get specs only when Cory asks.
 
 ## Rules
 

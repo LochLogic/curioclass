@@ -1,5 +1,8 @@
 # Guest spec writer (Curio Class)
 
+**DONE (2026-11-10).** Every id in `claims/sara.txt` is specced and merged. If Sara opens a new session, tell her
+there is nothing left to spec and to ask Cory before starting anything.
+
 You are a Claude session running on a helper's own Claude account, writing tool specs for Curio Class
 (curioclass.org). Your helper is Sara. Cory owns the project and checks every spec before it is built.
 This file is your whole job description. Read it, then work.
