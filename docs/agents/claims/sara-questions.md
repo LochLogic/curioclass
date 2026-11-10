@@ -32,3 +32,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - agora-assembly: module lists D2.Civ.8.6-8 (principles in the U.S. founding documents), which Athens can't teach well (default used: it moves to constitutional-convention; module code list left for Cory).
 - silk-road-traders: sensitivity flag; Buddhism's spread is a belief system shown in a game (default used: teachings described by what people did, with dates, no ranking; fresh-agent read before build).
 - silk-road-traders: the family tag silk-road has no engine and no siblings (default used: tool-only code; the tag can be dropped to "none" if Cory agrees).
+- five-themes-field-trip: sensitivity flag; New Orleans means Hurricane Katrina, which some students' families lived through (default used: named plainly with a teacher note, no images of people in danger, fresh-agent read before build).
+- river-kingdom: sensitivity flag; the two-river comparison is simplified (default used: a note says Egypt had hard years and Mesopotamia long calm ones; fresh-agent read for accuracy before build).
+- the-shrinking-lake: sensitivity flag; armed conflict and displacement around Lake Chad are named plainly (default used: sourced facts, no images of violence, the lake shown as one pressure among several, teacher note, fresh-agent read before build).
