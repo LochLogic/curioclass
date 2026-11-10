@@ -59,7 +59,7 @@ no accounts, no ads, no tracking.
    `C:\Users\Cory\AppData\Local\Temp\claude\_to_delete-2026-11-03` (about 1 GB of old session scratch). Also delete
    the merged branches (`git push origin --delete audit/states codex/biased-bot`, `git branch -D audit/states`) and
    merge `claude/hopeful-dirac-qck82o` (worksheets wave 2) when that session finishes.
-6. **Catalog review (planned 2026-11-10, Cory; docs/agents/CATALOG-REVIEW.md). Not started.** Every tool is specced
+6. **Catalog review (planned 2026-11-10, Cory; docs/agents/CATALOG-REVIEW.md). Pilot run 2026-11-10; full run waits on Desk card q-catalog-pilot.** Pilot (36 tools, grade 4 math and grade 6 ELA): no standard without a tool and no duplicates; the issue is depth (math: 17 of 29 standard rows taught in full), and the row format must change before the full run. Every tool is specced
    or further along (7 ASL tools held), so the whole catalog is reviewed for standards coverage, duplication and
    curriculum value, from the specs this time. A cheaper model writes one row per tool, scripts make the tables, the
    top model judges only what the tables flag, and proposals come to Cory as Desk cards with a pick. Pilot on grade 4
