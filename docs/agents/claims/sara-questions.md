@@ -117,3 +117,8 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - predator-prey-island: data source (default used: Isle Royale annual wolf and moose counts from the Michigan Tech and NPS reports, bundled with their year, plus three outside cases from the cited papers, checked before build)
 - nerve-signal-relay: accessibility (default used: the sound round always pairs the tone with a visual pulse ring and works with Sound off; cues never flash and change at most once a second)
 - made-from: data source (default used: process steps per product from ACS, Science History Institute, EIA and EPA, checked before build)
+- copy-of-a-copy: overlap risk with secret-code-signals (default used: that tool keeps making and reading pattern codes; this one teaches only why digital survives noise better than analog)
+- fossil-and-bone-bench: overlap risk with fossil-clues (default used: fossil-clues keeps past environments for grade 3; this one uses fossils, bones and embryos as evidence of shared ancestry)
+- fossil-and-bone-bench: Sensitivity flag: evolution and common ancestry (default used: evidence-first framing as NGSS asks, no comment on beliefs, accurate embryo photos only, fresh-agent read before build)
+- crash-test-lab: overlap risk with collision-lab (default used: force pairs and fair tests only, no momentum math)
+- town-footprint: overlap risk with up-the-watershed and lake-commons (default used: one growing town, three meters and one monitored fix; the high school tools keep basins and fisheries)
