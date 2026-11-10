@@ -147,3 +147,8 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - community-plot-planner: overlap with garden-grid by look (default used: an empty city lot with fence posts and family notes in soil brown, no square seed plots, no "garden" in the title)
 - unit-ladder: code move (default used: 4.MD.3 area and perimeter formulas go to community-plot-planner; this tool keeps 4.MD.1 and 4.MD.2)
 - area-model-builder: code move (default used: 4.NBT.4 column addition and subtraction goes to road-trip-logbook; this tool keeps 4.NBT.5 and 4.NBT.6)
+- rule-machine: mechanic change and overlap with function-machine-factory (default used: start-and-rule patterns with predicted hidden features; in-out rule guessing stays in function-machine-factory; this tool does not use the function-machine engine)
+- stadium-count: data source (default used: official capacities from the University of Michigan and Ohio State athletics sites and the 2020 Census for Green Bay, each shown with its year and checked again before build)
+- stadium-count: overlap with zoom-by-tens (default used: whole numbers and crowds here; zoom-by-tens zooms a meter stick for decimals)
+- fraction-kitchen: overlap with recipe-scaler (default used: mixed cup sizes and unlike denominators here; recipe-scaler keeps one-size scoops and like denominators)
+- shape-sieve: trapezoid definition (default used: inclusive, at least one pair of parallel sides, with a teacher note naming the exclusive definition)
