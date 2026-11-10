@@ -96,3 +96,7 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - climate-postcards: data source (default used: NOAA 1991-2020 U.S. Climate Normals for Phoenix, Seattle and Anchorage, WMO 1991-2020 normals for Singapore, Nairobi and Buenos Aires, bundled; no network)
 - world-layers-map: data source (default used: USGS ComCat magnitude 5 and up for one stated year, Smithsonian Global Volcanism Program, NOAA ETOPO 2022, simplified and bundled; no network)
 - bowling-lab: code move (default used: 4-PS3-2 moves to contraption-workshop; this tool teaches 4-PS3-1 and 4-PS3-3)
+- town-planner-disaster-ready: Sensitivity flag: natural disasters (default used: made-up town, losses only as damaged buildings and a people-safe count, calm telling, preparedness pages at the end, fresh-agent read before build)
+- canyon-reader: Sensitivity flag: the Grand Canyon as the homeland of Native nations (default used: opening card naming six nations and noting eleven associated tribes, links to their own sites, no retelling of their stories or sacred places, fresh-agent read before build)
+- canyon-reader: data source (default used: layer names, fossils and places from NPS Grand Canyon geology pages, checked against USGS)
+- erosion-table: code move (default used: 4-ESS2-2 moves to world-layers-map; this tool teaches 4-ESS2-1 only)
