@@ -65,7 +65,7 @@ no accounts, no ads, no tracking.
    top model judges only what the tables flag, and proposals come to Cory as Desk cards with a pick. Pilot on grade 4
    math and grade 6 ELA first, then the rest by subject and band. It gives the bench a build order by value, and it
    takes in checks 8a and 8b below for tools.
-7. **Token plan (planned 2026-11-10, Cory; docs/agents/TOKEN-PLAN.md). Not started.** Token cost is the biggest limit
+7. **Token plan (planned 2026-11-10, Cory; docs/agents/TOKEN-PLAN.md). Evidence pack script built and checked on two tools 2026-11-10; the three-tool quality trial is next.** Token cost is the biggest limit
    on growth; savings must not reduce quality. The agent logs show that re-read context, not new context, is most of
    a lens's cost, and that the Exit check and Finish check together cost about as much as the three lenses. Changes to
    try: script the counting checks, one evidence pack a round, heavy files kept out of context, a spec pre-check, and

@@ -62,3 +62,34 @@ to a half.
 
 Dropping a lens, the sensitivity agent, the Exit check or the Finish check; trusting a builder's own report; fewer
 frames looked at; anything that BASELINE rules 1, 2 or 5 would not allow.
+
+## Progress (2026-11-10)
+
+**Evidence pack built: scripts/refine_pack.py (helper scripts/refine_pack_lib.py).** Changes 2, 3 and 4.
+
+    python scripts/refine_pack.py <tool-id> <outdir> --port <n> --profile <abs dir> --audit <audit dir>
+
+Writes checks.md (each check PASS, FAIL, LEAD or AGENT), contact sheets (9 to 11 images in place of dozens of frames),
+strings.md (every on-screen string and spoken line with line numbers), outline.md (a map of src.html so an agent reads
+slices) and a README. Always pass --audit; without it the script runs the audit's sizes and states itself.
+
+- **Really tested by the script:** bundle size, safety scan, network and console, allLines() against lines.json word
+  for word, every spoken line in lines.json, art tokens against prompts.json, clips present, em dashes, "Curio" alone,
+  kit header, Sound on at load, nothing spoken before the first tap, the repeats counts table, first-tap timing, Read.
+- **Lead only (an agent confirms):** kit parts redone by hand, people flags, stale lines after a mode switch, order.
+- **Stays with an agent, never marked PASS:** whether a line fits the screen, lines reached only by multi-step play,
+  access, privacy wording, safe language, art by eye, clips by ear, and all Teaching and Play judgment.
+- **Tested on two tools with recorded Craft findings.** levels-and-pathways (K-2, 49 lines): 15.5 minutes, counts
+  table and timings match craft.md, and it re-found craft polish item 3 (Read wired by hand). half-life-dice (grade
+  10): 6.9 minutes, counts and timings match. Gaps: lines reached only by multi-round play are listed as "never
+  heard" for the agent (11 of 49 on the first tool), and the two blockers craft.md found on half-life-dice were
+  already fixed, so the script's checks for them are untested against a failing build.
+- **Steps an agent can now cut to "read checks.md, confirm the FAILs and LEADs":** Craft lens steps 1, 3 (the
+  word-for-word half), 4, 5, 6; Exit check gate items 6 and 7 and the regression frames; Finish check step 5, the
+  counting half of step 3, and frames by contact sheet.
+- **Would make it better:** a queue time and mode scope in the kit's voice log (turns two leads into real tests),
+  and a check_tools.py that can be imported without running everything.
+
+**Not done yet: the quality guard.** The side-by-side trial on three tools (old flow against pack flow, counting
+turns, context and findings) has not run. No pipeline doc points agents at the pack until it passes.
+
