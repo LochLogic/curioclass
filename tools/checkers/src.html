@@ -1,0 +1,3168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Checkers | Curio Class Recess</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="kit:recess">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      :root {
+        color-scheme: dark;
+      }
+      body.recess {
+        --rc-accent: #ffa51f;
+        --rc-accent-ink: #2b1600;
+        --rc-glass: #0b1033df;
+        margin: 0;
+        color: #f4f6ff;
+        background: #070a22 url('art:arcade') center / cover fixed;
+        overflow: hidden;
+        background-position: calc(50% + var(--arcade-x, 0px)) center;
+      }
+      body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(90deg, #070a2230, #070a2260 45%, #070a2230);
+        pointer-events: none;
+      }
+      button,
+      select {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+        touch-action: manipulation;
+      }
+      button:focus-visible,
+      select:focus-visible {
+        outline: 3px solid #7cffb2;
+        outline-offset: 3px;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      .rc-arr {
+        height: 44px;
+      }
+      .screen {
+        position: relative;
+        height: 100dvh;
+        padding: 76px 32px 24px;
+      }
+      .eyebrow {
+        color: #7cffb2;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.26em;
+        text-transform: uppercase;
+      }
+      h1,
+      h2,
+      p {
+        margin: 0;
+      }
+      .marquee {
+        max-width: 1260px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 1.3fr 1fr;
+        align-items: center;
+        gap: 38px;
+      }
+      .hero {
+        position: relative;
+        height: min(77vh, 650px);
+        border-radius: 28px;
+        overflow: hidden;
+        border: 1px solid #8181ff80;
+      }
+      .hero > img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+      }
+      .hero::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(0deg, #070a22ed, transparent 60%);
+      }
+      .hero-copy {
+        position: absolute;
+        bottom: 30px;
+        left: 30px;
+        right: 24px;
+        z-index: 1;
+      }
+      .hero h1 {
+        margin-top: 14px;
+        font-size: clamp(48px, 7.8vw, 108px);
+        font-weight: 950;
+        line-height: 0.94;
+        letter-spacing: -0.055em;
+      }
+      .hero h1 span {
+        color: #ffa51f;
+        text-shadow: 0 0 30px #ffa51f60;
+      }
+      .hero-copy p {
+        margin-top: 18px;
+        color: #e0e5ff;
+        font-size: 18px;
+      }
+      .menu-panel {
+        max-width: 470px;
+        width: 100%;
+      }
+      .menu-panel h2 {
+        font-size: clamp(25px, 3vw, 42px);
+        margin: 10px 0 22px;
+        letter-spacing: -0.035em;
+      }
+      .menu-stack {
+        display: grid;
+        gap: 12px;
+      }
+      .action {
+        min-height: 54px;
+        padding: 13px 19px;
+        color: #f4f6ff;
+        text-align: left;
+        background: #101637eb;
+        border: 1px solid #707de08c;
+        border-radius: 13px;
+        font-weight: 750;
+        transition:
+          border-color 0.15s,
+          transform 0.15s,
+          box-shadow 0.15s;
+      }
+      .action:hover {
+        border-color: #7cffb2;
+        box-shadow: 0 0 25px #546eff2b;
+        transform: translateY(-2px);
+      }
+      .action.primary {
+        background: #ffa51f;
+        border-color: #ffdc86;
+        color: #2b1600;
+        box-shadow:
+          0 5px 0 #9a4d0b,
+          0 0 32px #ffa51f25;
+      }
+      .action small {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        margin-top: 4px;
+        color: #aeb6e8;
+      }
+      .action.primary small {
+        color: #472800;
+      }
+      .action .arr {
+        float: right;
+        font-size: 24px;
+        line-height: 1;
+      }
+      .minor-row {
+        display: flex;
+        gap: 10px;
+      }
+      .minor-row > * {
+        flex: 1;
+      }
+      .privacy {
+        color: #aeb6e8;
+        font-size: 12px;
+        margin-top: 20px;
+        line-height: 1.5;
+      }
+      .ladder {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .opponent {
+        display: grid;
+        grid-template-columns: 52px 1fr;
+        gap: 9px;
+        align-items: center;
+        padding: 8px;
+        min-height: 87px;
+      }
+      .opponent img {
+        width: 52px;
+        height: 58px;
+        object-fit: contain;
+      }
+      .opponent b {
+        font-size: 17px;
+      }
+      .bulbs {
+        display: flex;
+        gap: 4px;
+        margin: 6px 0 4px;
+      }
+      .bulbs i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #606685;
+      }
+      .bulbs i.on {
+        background: #ffa51f;
+        box-shadow: 0 0 6px #ffa51f;
+      }
+      .opponent small {
+        font-size: 11px;
+        line-height: 1.2;
+        margin-top: 0;
+      }
+      .choice-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-top: 14px;
+      }
+      select {
+        min-height: 44px;
+        padding: 8px 14px;
+        border-radius: 9px;
+        color: #f4f6ff;
+        background: #151a4a;
+        border: 1px solid #7d89d6;
+      }
+      .arena {
+        display: grid;
+        grid-template-columns: minmax(150px, 215px) minmax(0, 675px) minmax(180px, 215px);
+        gap: 22px;
+        max-width: 1220px;
+        margin: auto;
+        align-items: center;
+        justify-content: center;
+      }
+      .side {
+        position: relative;
+        padding: 20px 16px;
+        background: #0a1035e8;
+        border: 1px solid #636bc075;
+        border-radius: 18px;
+      }
+      .badge {
+        display: block;
+        width: 148px;
+        height: 155px;
+        object-fit: contain;
+        margin: -12px auto 8px;
+        filter: drop-shadow(0 0 20px #418bff35);
+      }
+      .side h2 {
+        font-size: 28px;
+        letter-spacing: -0.025em;
+      }
+      .side .eyebrow {
+        font-size: 10px;
+        margin-bottom: 8px;
+      }
+      .side p {
+        color: #aeb6e8;
+        line-height: 1.5;
+        font-size: 13px;
+        margin-top: 8px;
+      }
+      .player-name {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .side-mark {
+        width: 13px;
+        height: 13px;
+        background: #ffa51f;
+        border-radius: 50%;
+        display: inline-block;
+        box-shadow: 0 0 15px #ffa51f60;
+      }
+      .side-mark.blue {
+        background: none;
+        border: 3px solid #51c7ff;
+        box-shadow: 0 0 15px #51c7ff60;
+      }
+      .tray {
+        min-height: 40px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0;
+        margin-top: 12px;
+      }
+      .tray img {
+        width: 27px;
+        height: 29px;
+        object-fit: contain;
+        margin-right: -5px;
+      }
+      .prompt {
+        margin: 18px 0;
+        padding: 15px 12px;
+        border-left: 2px solid #7cffb2;
+        background: #151a4a90;
+        border-radius: 0 10px 10px 0;
+      }
+      .prompt p {
+        color: #f4f6ff;
+        margin: 0;
+        font-size: 15px;
+        line-height: 1.45;
+      }
+      .side-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      .side-actions .action {
+        padding: 10px;
+        text-align: center;
+        min-height: 44px;
+        font-size: 13px;
+      }
+      .side-actions .wide {
+        grid-column: 1 / -1;
+      }
+      .board-wrap {
+        width: min(100%, calc(100dvh - 114px));
+        position: relative;
+        justify-self: center;
+      }
+      .board-surface {
+        aspect-ratio: 1;
+        background: url('art:board') center / 100% 100%;
+        position: relative;
+        border-radius: 2%;
+        box-shadow:
+          0 25px 75px #0009,
+          0 0 35px #6967ff38;
+      }
+      .grid {
+        position: absolute;
+        inset: 5.6%;
+        touch-action: none;
+      }
+      .square {
+        clip-path: circle(50%);
+        position: absolute;
+        width: max(12.5%, 44px);
+        height: max(12.5%, 44px);
+        margin-left: min(0px, calc((12.5% - 44px) / 2));
+        margin-top: min(0px, calc((12.5% - 44px) / 2));
+        border: 0;
+        padding: 0;
+        background: transparent;
+        -webkit-tap-highlight-color: transparent;
+      }
+      .square:focus-visible {
+        outline: none;
+      }
+      .puck {
+        position: absolute;
+        width: 94%;
+        height: 94%;
+        left: 3%;
+        top: 1%;
+        object-fit: contain;
+        pointer-events: none;
+      }
+      .square .halo {
+        width: 120%;
+        height: 100%;
+        left: -10%;
+        top: 9%;
+        opacity: 0.35;
+      }
+      .square.selected .puck:not(.halo) {
+        transform: scale(1.08) translateY(-4%);
+        filter: brightness(1.15) drop-shadow(0 0 9px #7cffb2a0);
+      }
+      .square.must::after,
+      .square.selected::after,
+      .square.clue::after,
+      .square:focus-visible::after {
+        content: '';
+        position: absolute;
+        inset: 7%;
+        border-radius: 50%;
+        border: 2px solid #ff5fd2;
+        box-shadow: 0 0 12px #ff5fd2b0;
+        pointer-events: none;
+      }
+      .square.must::after {
+        animation: must 1.2s ease-in-out infinite;
+      }
+      .square.selected::after,
+      .square.clue::after,
+      .square:focus-visible::after {
+        border-color: #7cffb2;
+        box-shadow: 0 0 14px #7cffb280;
+      }
+      .square:focus-visible::after {
+        animation: none;
+      }
+      .square.legal::before {
+        content: '';
+        position: absolute;
+        inset: 40%;
+        border-radius: 50%;
+        background: #7cffb2;
+        box-shadow: 0 0 18px #7cffb2;
+      }
+      .square.legal::before {
+        animation: mint 0.9s ease-in-out infinite alternate;
+      }
+      .square.last {
+        background: #7cffb214;
+        border-radius: 5px;
+        box-shadow: inset 0 0 0 1px #7cffb240;
+      }
+      .board-caption {
+        display: flex;
+        justify-content: space-between;
+        color: #b7c4ff;
+        margin-top: 9px;
+        font-size: 10px;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .chain {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: visible;
+      }
+      .chain polyline {
+        fill: none;
+        stroke: #7cffb2;
+        stroke-width: 1;
+        stroke-linecap: round;
+        filter: drop-shadow(0 0 2px #7cffb2);
+      }
+      .thinking {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        margin: 9px 0;
+        color: #7cffb2;
+        font-size: 12px;
+      }
+      .thinking i {
+        width: 5px;
+        height: 5px;
+        background: #7cffb2;
+        border-radius: 50%;
+        animation: lamps 0.8s infinite alternate;
+      }
+      .thinking i:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .thinking i:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .square .piece {
+        filter: drop-shadow(0 2px 4px #02051b90);
+      }
+      .flying {
+        position: absolute;
+        pointer-events: none;
+        z-index: 10;
+        width: 11.75%;
+        height: 11.75%;
+      }
+      .particle {
+        position: absolute;
+        width: 12%;
+        height: 12%;
+        pointer-events: none;
+        z-index: 12;
+      }
+      .crown-pop {
+        position: absolute;
+        width: 12%;
+        height: 12%;
+        pointer-events: none;
+        z-index: 12;
+      }
+      .result {
+        position: absolute;
+        z-index: 15;
+        top: 35%;
+        left: 9%;
+        width: 82%;
+        background: #0b1138f5;
+        padding: 22px;
+        border: 1px solid #7cffb2;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 50px #000b;
+      }
+      .board-surface::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 13;
+        border-radius: inherit;
+        background: #070a22;
+        opacity: 0;
+        transition: opacity 220ms;
+        pointer-events: none;
+      }
+      .board-surface.game-over::after {
+        opacity: 0.5;
+      }
+      .result h2 {
+        color: #7cffb2;
+        font-size: 26px;
+        margin-bottom: 8px;
+      }
+      .result p {
+        color: #d5dcff;
+        line-height: 1.5;
+        font-size: 14px;
+        margin-bottom: 14px;
+      }
+      .result .action {
+        text-align: center;
+      }
+      .result[data-kind='puzzle'] {
+        top: auto;
+        bottom: 6%;
+        border-color: #7cffb2;
+        box-shadow: 0 10px 50px #000b, 0 0 28px #7cffb22b;
+      }
+      .help-copy {
+        max-height: min(58vh, 470px);
+        overflow: auto;
+        padding-right: 10px;
+        color: #d5dcff;
+        line-height: 1.5;
+        font-size: 15px;
+      }
+      .help-copy p {
+        margin: 0 0 14px;
+      }
+      .help-copy strong {
+        color: #7cffb2;
+      }
+      .round-row {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        align-items: center;
+        gap: 12px;
+      }
+      .round-row span {
+        font-size: 27px;
+        color: #ffa51f;
+      }
+      .round-row small {
+        font-size: 12px;
+      }
+      .toggle-row {
+        display: flex;
+        align-items: center;
+        gap: 9px;
+        font-size: 12px;
+        margin-top: 14px;
+        min-height: 44px;
+      }
+      .toggle-row input {
+        width: 44px;
+        height: 44px;
+        flex: 0 0 44px;
+        accent-color: #7cffb2;
+      }
+      .how-back {
+        margin-top: 15px;
+        width: 100%;
+        text-align: center;
+      }
+      @keyframes must {
+        50% {
+          opacity: 0.5;
+          box-shadow: 0 0 22px #ff5fd2;
+        }
+      }
+      @keyframes lamps {
+        to {
+          opacity: 0.25;
+        }
+      }
+      @keyframes mint {
+        to {
+          transform: scale(0.8);
+          box-shadow: 0 0 7px #7cffb2;
+        }
+      }
+      @keyframes shake {
+        25%,
+        75% {
+          transform: translateX(3px);
+        }
+        50% {
+          transform: translateX(-3px);
+        }
+      }
+      .shake {
+        animation: shake 0.28s;
+      }
+      body.calm *,
+      body.calm *::before,
+      body.calm *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      body.calm .square.selected .puck:not(.halo) {
+        transform: none;
+      }
+      @media (max-width: 1100px) {
+        .screen {
+          padding: 72px 18px 12px;
+        }
+        .arena {
+          grid-template-columns: minmax(125px, 170px) minmax(0, 640px) minmax(150px, 180px);
+          gap: 12px;
+        }
+        .side {
+          padding: 14px 12px;
+        }
+        .badge {
+          width: 100px;
+          height: 112px;
+        }
+        .side h2 {
+          font-size: 23px;
+        }
+      }
+      @media (max-height: 640px) and (min-width: 601px) {
+        .screen {
+          padding: 64px 12px 8px;
+        }
+        .arena {
+          grid-template-columns: 130px minmax(0, 500px) 170px;
+          gap: 10px;
+        }
+        .board-wrap {
+          width: min(100%, calc(100dvh - 108px));
+        }
+        .side {
+          padding: 12px 10px;
+        }
+        .badge {
+          width: 70px;
+          height: 75px;
+          margin: 0 auto 4px;
+        }
+        .side p {
+          font-size: 11px;
+        }
+        .side .prompt {
+          margin: 8px 0;
+          padding: 10px;
+        }
+        .side .prompt p {
+          font-size: 12px;
+        }
+        .side .tray {
+          min-height: 20px;
+          margin-top: 7px;
+        }
+        .side h2 {
+          font-size: 20px;
+        }
+        .your-side .eyebrow,
+        .your-side .player-name,
+        .your-side > .privacy {
+          display: none;
+        }
+        .your-side .tray:empty {
+          display: none;
+        }
+        .marquee {
+          gap: 20px;
+        }
+        .hero {
+          height: calc(100dvh - 88px);
+        }
+        .hero-copy {
+          bottom: 20px;
+          left: 20px;
+        }
+        .hero-copy p {
+          font-size: 13px;
+          margin-top: 10px;
+        }
+        .hero h1 {
+          font-size: 58px;
+        }
+        .menu-panel h2 {
+          font-size: 25px;
+          margin: 7px 0 10px;
+        }
+        .menu-stack {
+          gap: 7px;
+        }
+        .menu-stack > .action {
+          min-height: 47px;
+          padding: 8px 13px;
+        }
+        .privacy {
+          margin-top: 9px;
+          font-size: 10px;
+        }
+        .opponent {
+          min-height: 66px;
+          padding: 5px;
+          grid-template-columns: 35px 1fr;
+          gap: 5px;
+        }
+        .opponent img {
+          width: 35px;
+          height: 40px;
+        }
+        .opponent b {
+          font-size: 14px;
+        }
+        .opponent small {
+          font-size: 10px;
+        }
+        .choice-row {
+          margin-top: 8px;
+        }
+        .ladder {
+          gap: 5px;
+        }
+      }
+      @media (max-width: 600px) {
+        body.recess {
+          background-image: url('art:portrait');
+        }
+        .screen {
+          padding: 68px 8px 10px;
+        }
+        .marquee {
+          display: flex;
+          flex-direction: column;
+          gap: 19px;
+        }
+        .hero {
+          width: 100%;
+          height: 31vh;
+          min-height: 180px;
+          border-radius: 18px;
+        }
+        .hero-copy {
+          bottom: 16px;
+          left: 20px;
+        }
+        .hero h1 {
+          font-size: 54px;
+        }
+        .hero-copy p {
+          font-size: 13px;
+          margin-top: 9px;
+        }
+        .menu-panel {
+          padding: 0 12px;
+        }
+        .menu-panel h2 {
+          font-size: 25px;
+          margin: 7px 0 14px;
+        }
+        .menu-stack {
+          gap: 9px;
+        }
+        .action {
+          min-height: 47px;
+          padding: 10px 14px;
+          font-size: 15px;
+        }
+        .action small {
+          font-size: 12px;
+        }
+        .privacy {
+          margin-top: 12px;
+          font-size: 10px;
+        }
+        .arena {
+          display: flex;
+          flex-direction: column;
+          gap: 9px;
+        }
+        .side.op-side {
+          width: 100%;
+          height: 61px;
+          padding: 7px 12px 7px 69px;
+          border-radius: 12px;
+        }
+        .op-side .badge {
+          position: absolute;
+          left: 8px;
+          top: 5px;
+          width: 49px;
+          height: 50px;
+          margin: 0;
+        }
+        .op-side .eyebrow,
+        .op-side > p {
+          display: none;
+        }
+        .op-side h2 {
+          font-size: 20px;
+        }
+        .op-side .tray {
+          position: absolute;
+          right: 10px;
+          top: 4px;
+          max-width: 130px;
+        }
+        .op-side .thinking {
+          margin: 2px 0;
+          font-size: 10px;
+        }
+        .board-wrap {
+          width: 100%;
+          max-width: min(500px, calc(100dvh - 330px));
+        }
+        .board-caption {
+          font-size: 10px;
+          margin-top: 6px;
+        }
+        .side.your-side {
+          width: 100%;
+          padding: 10px 12px;
+          border-radius: 12px;
+        }
+        .your-side .eyebrow,
+        .your-side .player-name,
+        .your-side > .privacy {
+          display: none;
+        }
+        .your-side .tray {
+          margin: 0;
+          min-height: 25px;
+        }
+        .your-side .tray::before {
+          content: 'TAKEN';
+          color: #aeb6e8;
+          font-size: 10px;
+          letter-spacing: 0.12em;
+          align-self: center;
+          margin-right: 12px;
+        }
+        .prompt {
+          margin: 6px 0 10px;
+          padding: 10px 12px;
+        }
+        .prompt p {
+          font-size: 14px;
+        }
+        .side-actions {
+          grid-template-columns: repeat(4, 1fr);
+        }
+        .side-actions .wide {
+          grid-column: auto;
+        }
+        .side-actions .action {
+          padding: 8px;
+          font-size: 12px;
+        }
+        .toggle-row {
+          margin-top: 3px;
+          min-height: 36px;
+        }
+        .opponent {
+          min-height: 74px;
+        }
+        .opponent img {
+          width: 43px;
+          height: 48px;
+        }
+        .opponent {
+          grid-template-columns: 43px 1fr;
+        }
+        .opponent small {
+          font-size: 10px;
+        }
+        body.submenu .hero {
+          height: 20vh;
+          min-height: 120px;
+        }
+        body.submenu .hero h1 {
+          font-size: 40px;
+        }
+        body.submenu .hero-copy p {
+          display: none;
+        }
+      }
+      @media (max-height: 640px) and (min-width: 601px) {
+        body.submenu .hero {
+          display: none;
+        }
+        body.submenu .marquee {
+          grid-template-columns: 1fr;
+        }
+        body.submenu .menu-panel {
+          max-width: 660px;
+          justify-self: center;
+        }
+        body.submenu .privacy {
+          margin-top: 6px;
+          line-height: 1.3;
+        }
+        .ladder {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+        .opponent small {
+          line-height: 1.1;
+        }
+        body[data-page='rounds'] .menu-stack {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        body[data-page='main'] .menu-stack {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        body[data-page='main'] #resume,
+        body[data-page='main'] #play-computer,
+        body[data-page='main'] .minor-row {
+          grid-column: 1 / -1;
+        }
+        body[data-page='main'] .action small {
+          display: none;
+        }
+        .help-copy {
+          max-height: calc(100dvh - 220px);
+          font-size: 13px;
+        }
+      }
+      @media (max-width: 400px) {
+        .rc-info {
+          gap: 4px;
+          padding: 7px 8px;
+          font-size: 13px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="menu-screen" class="screen marquee">
+      <div class="hero">
+        <img src="art:cover" alt="An amber puck leaps across a luminous arcade checkers table" />
+        <div class="hero-copy">
+          <div class="eyebrow">Curio Class Recess</div>
+          <h1>CHECK<span>ERS</span></h1>
+          <p>Chain your jumps. Pop a crown. Own the night.</p>
+        </div>
+      </div>
+      <section id="menu-panel" class="menu-panel" aria-label="Choose a game"></section>
+    </main>
+    <main id="game-screen" class="screen arena" hidden>
+      <aside class="side op-side">
+        <img class="badge" id="badge" src="art:pip" alt="" />
+        <div class="eyebrow" id="mode-caption">Night arcade</div>
+        <h2 id="opponent-name">Pip</h2>
+        <div id="thinking" class="thinking" hidden>thinking <i></i><i></i><i></i></div>
+        <p id="opponent-detail">A gentle first game.</p>
+        <div id="op-tray" class="tray" aria-label="Opponent's captured pucks"></div>
+      </aside>
+      <section class="board-wrap" aria-label="Checkers table">
+        <div class="board-surface" id="surface">
+          <div id="board" class="grid" role="grid" aria-label="Checkers board, 32 dark squares"></div>
+          <div id="result" class="result" role="status" hidden></div>
+        </div>
+        <div class="board-caption"><span id="board-label">Amber moves first</span><span>Dot / ring</span></div>
+      </section>
+      <aside class="side your-side">
+        <div class="eyebrow" id="your-caption">Your side</div>
+        <h2 class="player-name"><i id="your-mark" class="side-mark"></i><span id="your-name">Amber</span></h2>
+        <div id="your-tray" class="tray" aria-label="Your captured pucks"></div>
+        <div class="prompt"><p id="prompt" aria-live="polite">Tap a puck, then a glowing square.</p></div>
+        <p id="progress" hidden></p>
+        <nav class="side-actions" aria-label="Table controls">
+          <button class="action" id="menu-button" title="Menu (P)">Menu</button>
+          <button class="action" id="clue-button" title="Clue (C)" hidden>Clue</button>
+          <button class="action" id="flip-button" title="Flip (F)">Flip</button>
+          <button class="action" id="hints-button" title="Hints (H)" aria-pressed="true">Hints</button>
+          <button class="action wide" id="more-button" hidden>More</button>
+          <button class="action wide" id="draw-button" hidden>Call it a draw</button>
+        </nav>
+        <label class="toggle-row" id="turn-row" hidden><input type="checkbox" id="auto-flip" />Turn the board each move</label>
+        <p class="privacy">Everything saves on this device only.</p>
+      </aside>
+    </main>
+    <!-- Keep the bundled shell inert until inserted as script text. Its header contains an HTML script end tag. -->
+    <textarea id="recess-shell-source" hidden aria-hidden="true"><script src="kit:recess"></script></textarea>
+    <script>
+      {
+        const source = document.getElementById('recess-shell-source');
+        const shell = document.createElement('script');
+        shell.textContent = source.value.slice(source.value.indexOf('const Recess ='), source.value.lastIndexOf('<'));
+        document.head.append(shell);
+        source.remove();
+      }
+    </script>
+    <!-- GAME_SCRIPT -->
+    <script>
+      // Shared by the table and its offline Worker. Square indices here are zero based.
+      function CheckersEngine() {
+        const row = (s) => s >> 2;
+        const col = (s) => (s % 4) * 2 + (row(s) % 2 ? 0 : 1);
+        const square = (r, c) => (r < 0 || r > 7 || c < 0 || c > 7 || (r + c) % 2 !== 1 ? -1 : r * 4 + (c >> 1));
+        const dirs = [
+          [1, -1],
+          [1, 1],
+          [-1, -1],
+          [-1, 1],
+        ];
+        const step = Array.from({ length: 32 }, (_, s) => dirs.map(([r, c]) => square(row(s) + r, col(s) + c)));
+        const leap = Array.from({ length: 32 }, (_, s) => dirs.map(([r, c]) => square(row(s) + 2 * r, col(s) + 2 * c)));
+        const key = (p) => p.b.join(',') + ':' + p.side;
+        const crowning = (v, s) => Math.abs(v) === 1 && (v > 0 ? row(s) === 7 : row(s) === 0);
+        const notation = (m) => [m.from, ...m.path].map((s) => s + 1).join(m.cap.length ? 'x' : '-');
+        const moveId = (m) => (m ? notation(m) : '');
+        function initial() {
+          return { b: Array.from({ length: 32 }, (_, i) => (i < 12 ? 1 : i >= 20 ? -1 : 0)), side: 1, quiet: 0, ply: 0 };
+        }
+        function position(p) {
+          const b = Array(32).fill(0);
+          for (const [k, v] of [
+            ['am', 1],
+            ['ak', 2],
+            ['bm', -1],
+            ['bk', -2],
+          ])
+            for (const s of p[k]) b[s - 1] = v;
+          return { b, side: p.move === 'B' ? -1 : 1, quiet: 0, ply: 0 };
+        }
+        function moves(p) {
+          const b = p.b,
+            captures = [];
+          for (let from = 0; from < 32; from++) {
+            const v = b[from];
+            if (v * p.side <= 0) continue;
+            const ds = Math.abs(v) === 2 ? [0, 1, 2, 3] : v > 0 ? [0, 1] : [2, 3];
+            function chain(at, path, taken, mask) {
+              let more = false;
+              for (const d of ds) {
+                const mid = step[at][d],
+                  to = leap[at][d];
+                if (to < 0 || b[to] || b[mid] * v >= 0 || !b[mid] || mask & (1 << mid)) continue;
+                more = true;
+                const nextPath = [...path, to],
+                  nextTaken = [...taken, mid];
+                b[at] = 0;
+                b[to] = v;
+                if (crowning(v, to)) captures.push({ from, path: nextPath, cap: nextTaken, promote: true });
+                else chain(to, nextPath, nextTaken, mask | (1 << mid));
+                b[to] = 0;
+                b[at] = v;
+              }
+              if (!more && taken.length) captures.push({ from, path, cap: taken, promote: false });
+            }
+            chain(from, [], [], 0);
+          }
+          if (captures.length) return captures.sort(compare);
+          const quiet = [];
+          for (let from = 0; from < 32; from++) {
+            const v = b[from];
+            if (v * p.side <= 0) continue;
+            for (let d = 0; d < 4; d++) {
+              if (Math.abs(v) === 1 && (v > 0 ? d > 1 : d < 2)) continue;
+              const to = step[from][d];
+              if (to >= 0 && !b[to]) quiet.push({ from, path: [to], cap: [], promote: crowning(v, to) });
+            }
+          }
+          return quiet.sort(compare);
+        }
+        function compare(a, b) {
+          if (a.from !== b.from) return a.from - b.from;
+          for (let i = 0; i < Math.min(a.path.length, b.path.length); i++)
+            if (a.path[i] !== b.path[i]) return a.path[i] - b.path[i];
+          return a.path.length - b.path.length;
+        }
+        function apply(p, m) {
+          const b = p.b.slice(),
+            v = b[m.from],
+            to = m.path[m.path.length - 1];
+          b[m.from] = 0;
+          for (const c of m.cap) b[c] = 0;
+          b[to] = m.promote ? v * 2 : v;
+          const next = { b, side: -p.side, quiet: Math.abs(v) === 1 || m.cap.length ? 0 : p.quiet + 1, ply: (p.ply || 0) + 1 };
+          if (p.z1 !== undefined) {
+            let a = p.z1 ^ sideHash[0],
+              c = p.z2 ^ sideHash[1];
+            for (const s of [m.from, ...m.cap, to]) {
+              if (p.b[s]) {
+                const z = zobrist[s][pieceType(p.b[s])];
+                a ^= z[0];
+                c ^= z[1];
+              }
+              if (b[s]) {
+                const z = zobrist[s][pieceType(b[s])];
+                a ^= z[0];
+                c ^= z[1];
+              }
+            }
+            next.z1 = a;
+            next.z2 = c;
+          }
+          return next;
+        }
+        function outcome(p, repetitions) {
+          if (!moves(p).length) return { winner: -p.side, reason: 'blocked' };
+          if (repetitions && (repetitions[key(p)] || 0) >= 3) return { winner: 0, reason: 'repeat' };
+          if (p.quiet >= 80) return { winner: 0, reason: 'quiet' };
+          return null;
+        }
+        function mirror(p) {
+          return {
+            b: p.b
+              .slice()
+              .reverse()
+              .map((v) => -v),
+            side: -p.side,
+            quiet: p.quiet,
+            ply: p.ply,
+          };
+        }
+        function evaluate(p, strong) {
+          const total = p.b.filter(Boolean).length;
+          let score = 0,
+            material = 0,
+            lead = 0;
+          for (let s = 0; s < 32; s++) {
+            const v = p.b[s];
+            if (!v) continue;
+            const king = Math.abs(v) === 2,
+              sign = Math.sign(v),
+              advance = sign > 0 ? row(s) : 7 - row(s),
+              n = s + 1;
+            let val = king ? (strong ? 140 : 150) : 100;
+            material += king ? 140 : 100;
+            lead += sign * (king ? 140 : 100);
+            if (!king) val += advance * (strong ? (total > 12 ? 3 : 6) : 4);
+            if (strong) {
+              if ([14, 15, 18, 19].includes(n)) val += king ? 8 : 5;
+              if (king && [10, 11, 22, 23].includes(n)) val += 4;
+              if (!king && total > 10 && (sign > 0 ? [1, 3].includes(n) : [30, 32].includes(n))) val += 12;
+              if ([5, 12, 13, 20, 21, 28].includes(n)) val -= 2;
+            } else {
+              if (!king && advance === 0) val += 10;
+              if ([14, 15, 18, 19].includes(n)) val += 6;
+            }
+            score += sign * val;
+          }
+          if (strong && lead) score += (Math.sign(lead) * (2400 - material)) / 30;
+          return score * p.side;
+        }
+        let state = 0x8712acdb;
+        function random32() {
+          state ^= state << 13;
+          state ^= state >>> 17;
+          state ^= state << 5;
+          return state >>> 0;
+        }
+        const zobrist = Array.from({ length: 32 }, () => Array.from({ length: 4 }, () => [random32(), random32()]));
+        const sideHash = [random32(), random32()];
+        const pieceType = (v) => (v > 0 ? v - 1 : v === -1 ? 2 : 3);
+        function hash(p) {
+          if (p.hh) return p.hh;
+          if (p.z1 !== undefined) return (p.hh = (p.z1 >>> 0).toString(36) + '.' + (p.z2 >>> 0).toString(36));
+          let a = p.side > 0 ? sideHash[0] : 0,
+            b = p.side > 0 ? sideHash[1] : 0;
+          for (let i = 0; i < 32; i++)
+            if (p.b[i]) {
+              const t = pieceType(p.b[i]);
+              a ^= zobrist[i][t][0];
+              b ^= zobrist[i][t][1];
+            }
+          p.z1 = a;
+          p.z2 = b;
+          return (p.hh = (a >>> 0).toString(36) + '.' + (b >>> 0).toString(36));
+        }
+        const table = new Map(),
+          history = new Int32Array(1024);
+        function clear() {
+          table.clear();
+          history.fill(0);
+        }
+        function search(p, rung, options = {}) {
+          const now = () => (typeof performance !== 'undefined' ? performance.now() : Date.now());
+          const start = now(),
+            budget = options.budget ?? [0, 700, 900, 1200, 1800, 2600, 3000][rung];
+          const deadline = start + budget,
+            strong = rung >= 4,
+            target = [0, 1, 2, 4, 6, 8, 64][rung];
+          let nodes = 0,
+            reached = 0,
+            scores = [],
+            best = null,
+            completed = false;
+          const abort = {};
+          const counts = new Map();
+          for (const [k, v] of Object.entries(options.repetitions || {})) {
+            const [b, side] = k.split(':');
+            counts.set(strong ? hash({ b: b.split(',').map(Number), side: +side }) : k, v);
+          }
+          if (strong) hash(p);
+          const stateKey = strong ? hash : key;
+          function run(pos, depth, alpha, beta, ply, extension) {
+            nodes++;
+            if ((nodes & 511) === 0 && now() >= deadline) throw abort;
+            if (ply > 100) return evaluate(pos, strong);
+            const list = moves(pos);
+            if (!list.length) return -(strong ? 100000 : 10000) + ply;
+            if (pos.quiet >= 80) return 0;
+            const k = stateKey(pos),
+              times = counts.get(k) || 0;
+            if (times >= 3) return 0;
+            const jump = list[0].cap.length > 0,
+              capLimit = strong ? 8 : 6;
+            if (depth <= 0 && (!jump || extension >= capLimit)) return evaluate(pos, strong);
+            const h = strong ? hash(pos) : null,
+              entry = strong ? table.get(h) : null;
+            const alpha0 = alpha,
+              beta0 = beta;
+            // A quiet counter or repeated path changes draw value. Reuse only in matching contexts.
+            const reusable = entry && entry.quiet === pos.quiet && entry.times === times && times <= 1;
+            if (reusable && entry.depth >= depth && depth > 0 && Math.abs(entry.value) < 99000) {
+              if (entry.bound === 0) return entry.value;
+              if (entry.bound === 1) alpha = Math.max(alpha, entry.value);
+              if (entry.bound === 2) beta = Math.min(beta, entry.value);
+              if (alpha >= beta) return entry.value;
+            }
+            if (strong)
+              list.sort((a, b) => {
+                const av = moveId(a) === entry?.best ? 1 : 0,
+                  bv = moveId(b) === entry?.best ? 1 : 0;
+                return (
+                  bv - av ||
+                  b.cap.length - a.cap.length ||
+                  history[b.from * 32 + b.path.at(-1)] - history[a.from * 32 + a.path.at(-1)] ||
+                  compare(a, b)
+                );
+              });
+            let value = -Infinity,
+              bestId = '';
+            for (const m of list) {
+              const next = apply(pos, m),
+                nk = stateKey(next),
+                old = counts.get(nk) || 0;
+              counts.set(nk, old + 1);
+              let v;
+              try {
+                const used = strong && list.length === 1 && ply < 30 ? 0 : 1;
+                v = -run(next, depth - used, -beta, -alpha, ply + 1, depth <= 0 ? extension + 1 : 0);
+              } finally {
+                if (old) counts.set(nk, old);
+                else counts.delete(nk);
+              }
+              if (v > value) {
+                value = v;
+                bestId = moveId(m);
+              }
+              alpha = Math.max(alpha, v);
+              if (alpha >= beta) {
+                if (strong && !m.cap.length) history[m.from * 32 + m.path.at(-1)] += Math.max(1, depth * depth);
+                break;
+              }
+            }
+            if (strong && depth > 0 && times <= 1) {
+              if (table.size >= 1000000) table.clear();
+              table.set(h, {
+                depth,
+                value,
+                bound: value <= alpha0 ? 2 : value >= beta0 ? 1 : 0,
+                best: bestId,
+                quiet: pos.quiet,
+                times,
+              });
+            }
+            return value;
+          }
+          const root = moves(p);
+          if (!root.length) return { move: null, depth: 0, nodes: 0, ms: 0 };
+          best = root[0];
+          if (root.length === 1)
+            return { move: best, depth: target === 64 ? 10 : target, nodes: 1, ms: now() - start, forced: true };
+          const fromDepth = strong ? 1 : target;
+          for (let depth = fromDepth; depth <= target; depth++) {
+            if (rung === 6 && depth > 10 && now() - start >= 1000) break;
+            const pass = [];
+            const ordered = strong
+              ? root
+                  .slice()
+                  .sort((a, b) => (moveId(b) === moveId(best) ? 1 : 0) - (moveId(a) === moveId(best) ? 1 : 0) || compare(a, b))
+              : root;
+            try {
+              let rootBest = -Infinity;
+              for (const m of ordered) {
+                const next = apply(p, m),
+                  nk = stateKey(next),
+                  old = counts.get(nk) || 0;
+                counts.set(nk, old + 1);
+                let value;
+                const threshold = strong ? rootBest - ((p.ply || 0) < 4 ? 15 : 0.001) : -Infinity;
+                try {
+                  value = -run(next, depth - 1, -Infinity, -threshold, 1, 0);
+                } finally {
+                  if (old) counts.set(nk, old);
+                  else counts.delete(nk);
+                }
+                pass.push({ move: m, value });
+                rootBest = Math.max(rootBest, value);
+              }
+              pass.sort((a, b) => b.value - a.value || compare(a.move, b.move));
+              scores = pass;
+              best = pass[0].move;
+              reached = depth;
+              completed = true;
+            } catch (e) {
+              if (e !== abort) throw e;
+              break;
+            }
+            if (rung === 6 && depth >= 10 && Math.abs(scores[0].value) > 99000) break;
+          }
+          const random = options.random || (() => 0.99);
+          if (scores.length) {
+            if (!strong) {
+              const own = p.b.filter((v) => v * p.side > 0).length,
+                opp = p.b.filter((v) => v * p.side < 0).length;
+              const chance = [0, 0.35, 0.15, 0.05][rung] + (rung <= 2 && own - opp >= 2 ? 0.25 : 0);
+              const others = scores.filter((x) => moveId(x.move) !== moveId(best) && x.value > -5000);
+              if (random() < chance && others.length) best = others[Math.floor(random() * others.length)].move;
+            } else if ((p.ply || 0) < 4) {
+              const close = scores.filter((x) => x.value >= scores[0].value - 15);
+              best = close[Math.floor(random() * close.length)].move;
+            }
+          }
+          return {
+            move: best,
+            depth: reached,
+            nodes,
+            ms: now() - start,
+            completed,
+            scores: scores.map((x) => ({ move: notation(x.move), value: x.value })),
+          };
+        }
+        return {
+          initial,
+          position,
+          moves,
+          apply,
+          key,
+          notation,
+          moveId,
+          outcome,
+          mirror,
+          evaluate,
+          search,
+          clear,
+          row,
+          col,
+          square,
+          hash,
+        };
+      }
+
+      const PUZZLES = [
+        // Round 1: First jumps (our own)
+        {
+          id: 'r1-1',
+          name: 'Hop',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [14],
+          ak: [],
+          bm: [18],
+          bk: [],
+          line: '14x23',
+          goal: 'Jump the blue puck.',
+        },
+        {
+          id: 'r1-2',
+          name: 'Double',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [1, 5, 11],
+          ak: [],
+          bm: [6, 15],
+          bk: [],
+          line: '1x10x19',
+          goal: 'Take both blue pucks in one move.',
+        },
+        {
+          id: 'r1-3',
+          name: 'Triple',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [1, 3],
+          ak: [],
+          bm: [6, 15, 24],
+          bk: [],
+          line: '1x10x19x28',
+          goal: 'Keep jumping: take all three.',
+        },
+        {
+          id: 'r1-4',
+          name: 'Crown',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [1, 26],
+          ak: [],
+          bm: [5, 29],
+          bk: [],
+          line: '26-30 29-25 30x21',
+          goal: 'Make a king, then win.',
+        },
+        {
+          id: 'r1-5',
+          name: 'Fence',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [10, 13, 17],
+          ak: [],
+          bm: [21],
+          bk: [],
+          line: '10-14',
+          goal: 'Win without jumping: leave Blue no move.',
+        },
+        // Round 2: Give one, take two (our own)
+        {
+          id: 'r2-1',
+          name: 'Give one, take two',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [3, 8],
+          ak: [],
+          bm: [14, 16],
+          bk: [],
+          line: '8-11 16x7 3x10x17',
+          goal: 'Give one puck away to take two.',
+        },
+        {
+          id: 'r2-2',
+          name: 'Side door',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [1, 4, 5, 7, 12],
+          ak: [],
+          bm: [13, 15, 17, 21, 26],
+          bk: [],
+          line: '5-9 13x6 1x10x19',
+          goal: 'Give one, take two.',
+        },
+        {
+          id: 'r2-3',
+          name: 'Middle march',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [4, 8, 10, 12, 14],
+          ak: [],
+          bm: [13, 16, 19, 24, 25],
+          bk: [],
+          line: '10-15 19x10 12x19x28',
+          goal: 'Give one, take two.',
+        },
+        {
+          id: 'r2-4',
+          name: 'Edge trick',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [9, 11, 12, 16, 20],
+          ak: [],
+          bm: [17, 21, 26, 28, 32],
+          bk: [],
+          line: '20-24 28x19 16x23x30',
+          goal: 'Give one, take two.',
+        },
+        {
+          id: 'r2-5',
+          name: 'Swing',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [3, 6, 8, 10, 15],
+          ak: [],
+          bm: [20, 22, 24, 30, 31],
+          bk: [],
+          line: '15-18 22x15 10x19x28',
+          goal: 'Give one, take two.',
+        },
+        // Round 3: Shots (our own), then a 1913 king ending
+        {
+          id: 'r3-1',
+          name: 'Long reach',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [3, 6, 11, 15, 18, 20],
+          ak: [],
+          bm: [17, 21, 25, 27, 30, 31],
+          bk: [],
+          line: '18-23 27x18 15x22x29',
+          goal: 'Give one, take two.',
+        },
+        {
+          id: 'r3-2',
+          name: 'Back row',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [1, 2, 7, 8, 13, 14],
+          ak: [],
+          bm: [15, 16, 20, 24, 27, 30],
+          bk: [],
+          line: '7-11 16x7 2x11x18',
+          goal: 'Give one, take two.',
+        },
+        {
+          id: 'r3-3',
+          name: 'Into the corner',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [2, 5, 13, 17, 18, 19],
+          ak: [],
+          bm: [14, 15, 25, 26, 30, 31],
+          bk: [],
+          line: '17-22 26x17 13x22x29',
+          goal: 'Give one, take two.',
+        },
+        {
+          id: 'r3-4',
+          name: 'Three for one',
+          src: 'own',
+          kind: 'line',
+          move: 'A',
+          am: [1, 5, 6, 9, 12, 18],
+          ak: [],
+          bm: [17, 19, 21, 25, 27, 29],
+          bk: [],
+          line: '9-14 17x10 6x15x24x31',
+          goal: 'Give one, take three.',
+        },
+        {
+          id: 'r3-5',
+          name: "Mar's corner",
+          src: 'callMar',
+          kind: 'line',
+          move: 'A',
+          am: [],
+          ak: [10, 14],
+          bm: [11],
+          bk: [3],
+          line: '10-15 11-8 15-11 8-4 11-16 3-8 16-12',
+          goal: 'Amber to play and win.',
+        },
+        // Round 4: Endings from 1913 (Call, Midget Problems)
+        {
+          id: 'r4-1',
+          name: "Sturges' squeeze",
+          src: 'call14',
+          kind: 'line',
+          move: 'A',
+          am: [1],
+          ak: [10],
+          bm: [5, 17],
+          bk: [],
+          line: '10-7 17-14 1-6 5-1 6-9',
+          goal: 'Amber to play and win.',
+        },
+        {
+          id: 'r4-2',
+          name: "Wardell's walk",
+          src: 'call22',
+          kind: 'line',
+          move: 'A',
+          am: [2],
+          ak: [27],
+          bm: [13, 30],
+          bk: [],
+          line: '2-6 30-25 27-23 25-22 6-10 13-9 10-14',
+          goal: 'Amber to play and win.',
+        },
+        {
+          id: 'r4-3',
+          name: "Slocum's pin",
+          src: 'call63',
+          kind: 'line',
+          move: 'A',
+          am: [6],
+          ak: [5],
+          bm: [29],
+          bk: [4],
+          line: '5-9 29-25 9-14 25-22 6-9 4-8 14-10 22-18 10-7',
+          goal: 'Amber to play and win.',
+        },
+        {
+          id: 'r4-4',
+          name: "Potterdon's pair",
+          src: 'call51',
+          kind: 'line',
+          move: 'A',
+          am: [],
+          ak: [3, 23],
+          bm: [12],
+          bk: [20],
+          line: '23-27 20-16 3-7 12-8 7-3 8-4 27-23 16-12 23-19',
+          also: { 6: '27-24', 8: '3-7 23-18' },
+          goal: 'Amber to play and win.',
+        },
+        {
+          id: 'r4-5',
+          name: "Slocum's crown race",
+          src: 'call58',
+          kind: 'line',
+          move: 'A',
+          am: [6],
+          ak: [18],
+          bm: [32],
+          bk: [29],
+          line: '6-10 32-27 10-15 27-24 18-22 24-20 15-18 20-16 22-17 29-25 17-21',
+          also: { 2: '10-14' },
+          goal: 'Amber to play and win.',
+        },
+        // Round 5: Classic finishes (Call 1913)
+        {
+          id: 'r5-1',
+          name: "Wilder's chase",
+          src: 'callWilder',
+          kind: 'line',
+          move: 'A',
+          am: [5],
+          ak: [23],
+          bm: [28],
+          bk: [31],
+          line: '5-9 28-24 9-14 24-20 14-18 20-16 23-19 16-11 18-23',
+          also: { 8: '19-15' },
+          goal: 'Amber to play and win.',
+        },
+        {
+          id: 'r5-2',
+          name: "Brown's long walk",
+          src: 'call12',
+          kind: 'line',
+          move: 'A',
+          am: [1],
+          ak: [9],
+          bm: [30],
+          bk: [4],
+          line: '9-14 30-26 14-18 4-8 1-5 8-11 5-9 11-7 18-15 7-2 15-10 26-23 10-15',
+          also: { 4: '1-6' },
+          goal: 'Amber to play and win.',
+        },
+        {
+          id: 'r5-3',
+          name: "Wardell's tempo",
+          src: 'call13',
+          kind: 'line',
+          move: 'A',
+          am: [5],
+          ak: [9],
+          bm: [25, 26],
+          bk: [],
+          line: '9-14 25-22 5-9 26-23 14-10 22-18 10-7 18-15 9-14 15-10 7-11 10-6 11-15',
+          also: { 12: '11-16 11-7 11-8' },
+          goal: 'Amber to play and win.',
+        },
+        {
+          id: 'r5-4',
+          name: "Brown's chase",
+          src: 'callBrown41',
+          kind: 'line',
+          move: 'A',
+          am: [2],
+          ak: [22],
+          bm: [32],
+          bk: [30],
+          line: '2-7 32-27 7-11 27-24 11-15 24-20 15-18 20-16 22-17 30-25 17-21 25-29 18-22 16-11 21-17',
+          also: { 12: '21-17' },
+          goal: 'Amber to play and win.',
+        },
+        {
+          id: 'r5-5',
+          name: "Brown's pin",
+          src: 'callBrown40',
+          kind: 'line',
+          move: 'A',
+          am: [],
+          ak: [4, 15],
+          bm: [26],
+          bk: [12],
+          line: '15-18 12-16 4-8 16-20 8-11 20-24 11-15 24-27 15-19 27-32 18-14 32-27 14-10 27-32 19-24 32-28 24-27 28-32 27-31 26-23 10-7 32-28 31-27 23-19 7-11',
+          also: { 4: '8-12', 6: '11-16', 12: '14-18 14-9', 14: '10-14', 16: '24-19', 18: '27-24', 22: '31-26' },
+          goal: 'Amber to play and win.',
+        },
+      ];
+      function checkersSelfCheck(E, PUZZLES) {
+        const results = [];
+        const test = (name, value) => {
+          results.push({ name, pass: !!value });
+          if (!value) throw Error('Self-check failed: ' + name);
+        };
+        const pos = (am = [], ak = [], bm = [], bk = [], side = 'A') => E.position({ am, ak, bm, bk, move: side });
+        test('7 opening moves', E.moves(E.initial()).length === 7);
+        test('Men cannot capture backward', !E.moves(pos([18], [], [14])).some((m) => m.cap.length));
+        test(
+          'Kings cannot fly',
+          E.moves(pos([], [14], [], [])).every((m) => m.path.length === 1 && Math.abs(E.row(m.from) - E.row(m.path[0])) === 1),
+        );
+        const short = E.moves(pos([1, 5, 11], [], [6, 15]));
+        test('Shorter captures are allowed', short.some((m) => m.cap.length === 1) && short.some((m) => m.cap.length === 2));
+        test(
+          'Crowning ends a capture',
+          E.moves(pos([22], [], [26, 27]))
+            .map(E.notation)
+            .join() === '22x31',
+        );
+        test(
+          'Existing king continues',
+          E.moves(pos([], [22], [26, 27]))
+            .map(E.notation)
+            .join() === '22x31x24',
+        );
+        const loop = pos([], [14], [17, 18, 25, 26]),
+          before = E.key(loop),
+          ms = E.moves(loop);
+        test(
+          'King may return across start square',
+          ms.some((m) => m.path.at(-1) === m.from && m.cap.length === 4),
+        );
+        test(
+          'Captured pieces remain until apply; no repeated victim',
+          before === E.key(loop) && ms.every((m) => new Set(m.cap).size === m.cap.length),
+        );
+        const removed = E.apply(
+          loop,
+          ms.find((m) => m.path.at(-1) === m.from),
+        );
+        test('Victims removed together at turn end', removed.b.filter((v) => v < 0).length === 0 && removed.b[13] === 2);
+        test('Blocked pieces lose', E.outcome(pos([32], [], [1]), {}).winner === -1);
+        test(
+          'Quiet move forbidden while any jump exists',
+          short.every((m) => m.cap.length > 0),
+        );
+        const repeat = E.initial(),
+          rep = { [E.key(repeat)]: 3 };
+        test('Third repetition draws', E.outcome(repeat, rep).reason === 'repeat');
+        const quiet = pos([], [1], [], [32]);
+        quiet.quiet = 80;
+        test('80 quiet turns draw', E.outcome(quiet, {}).reason === 'quiet');
+        test(
+          'Man move resets quiet counter',
+          E.apply({ ...pos([10], [], [30]), quiet: 79 }, E.moves(pos([10], [], [30]))[0]).quiet === 0,
+        );
+        const sums = Array(5).fill(0);
+        for (let i = 0; i < PUZZLES.length; i++) {
+          const p = PUZZLES[i];
+          let state = E.position(p);
+          for (const [ply, text] of p.line.split(' ').entries()) {
+            const found = E.moves(state).filter((m) => E.notation(m) === text);
+            test(p.id + ' ply ' + ply + ' uniquely legal', found.length === 1);
+            if (ply % 2 === 0) sums[Math.floor(i / 5)]++;
+            state = E.apply(state, found[0]);
+          }
+        }
+        test('Round line move totals 6,10,12,23,40', sums.join() === '6,10,12,23,40');
+        let state = E.initial(),
+          seed = 87291;
+        const rng = () => {
+          seed = (Math.imul(seed, 1664525) + 1013904223) | 0;
+          return (seed >>> 0) / 4294967296;
+        };
+        for (let i = 0; i < 5000; i++) {
+          const moves = E.moves(state),
+            mirror = E.mirror(state);
+          const expected = moves
+            .map((m) => [31 - m.from, ...m.path.map((s) => 31 - s)].map((s) => s + 1).join(m.cap.length ? 'x' : '-'))
+            .sort();
+          const actual = E.moves(mirror).map(E.notation).sort();
+          if (expected.join('|') !== actual.join('|')) throw Error('Mirror mismatch ' + i);
+          if (!moves.length || i % 100 === 99) state = E.initial();
+          else state = E.apply(state, moves[Math.floor(rng() * moves.length)]);
+        }
+        test('5000 random-position daily mirrors', true);
+        return { passed: results.length, results, roundTotals: sums };
+      }
+
+      const E = CheckersEngine();
+      const $ = (id) => document.getElementById(id);
+      const sideName = (side) => (side === 1 ? 'Amber' : 'Blue');
+      const ART = {
+        'amber-man': 'art:amber-man',
+        'amber-king': 'art:amber-king',
+        'blue-man': 'art:blue-man',
+        'blue-king': 'art:blue-king',
+        'amber-halo': 'art:amber-halo',
+        'blue-halo': 'art:blue-halo',
+        pip: 'art:pip',
+        dot: 'art:dot',
+        nova: 'art:nova',
+        comet: 'art:comet',
+        blaze: 'art:blaze',
+        titan: 'art:titan',
+        spark: 'art:spark',
+        crowns: ['art:crown-1', 'art:crown-2', 'art:crown-3', 'art:crown-4'],
+      };
+      const RIVALS = [
+        null,
+        { name: 'Pip', text: 'Sleepy and gentle. A first game.', short: 'Very gentle', depth: 1 },
+        { name: 'Dot', text: 'Cheerful. Spots a simple trap.', short: 'Gentle', depth: 2 },
+        { name: 'Nova', text: 'Bright. Looks four turns ahead.', short: 'Thoughtful', depth: 4 },
+        { name: 'Comet', text: 'No slips. Plays to win.', short: 'Strong · depth 6', depth: 6 },
+        { name: 'Blaze', text: 'No slips. Plays to win.', short: 'Very strong · depth 8', depth: 8 },
+        { name: 'Titan', text: 'No slips. Plays to win. Up to 3 seconds.', short: 'Formidable · 3 seconds', depth: 10 },
+      ];
+      const ROUNDS = ['First jumps', 'Give one, take two', 'Shots', 'Endings from 1913', 'Classic finishes'];
+      let G = null,
+        run = null,
+        selected = null,
+        chain = [],
+        clueSquare = null,
+        focusSquare = 8,
+        diagonal = 1;
+      let worker = null,
+        workerUrl = null,
+        epoch = 0,
+        busy = false,
+        onTable = false,
+        drawOffer = false;
+      let hints = Recess.store('hints') !== false;
+      const timers = new Set();
+      const wait = (ms) =>
+        new Promise((resolve) => {
+          const id = setTimeout(() => {
+            timers.delete(id);
+            resolve();
+          }, ms);
+          timers.add(id);
+        });
+      const clone = (x) => JSON.parse(JSON.stringify(x));
+      const pawnImage = (v) => ART[(v > 0 ? 'amber' : 'blue') + (Math.abs(v) === 2 ? '-king' : '-man')];
+      const seedSource = Recess.rng.toString();
+      const workerSource = `const engine=(${CheckersEngine.toString()})();const seeded=${seedSource};
+onmessage=e=>{
+ const {position,level,repetitions,clear,token,budget}=e.data;
+ if(clear)engine.clear();
+ const result=engine.search(position,level,{repetitions,budget,random:seeded(level+':'+engine.key(position))});
+ postMessage({token,...result});
+};`;
+      function cancel() {
+        epoch++;
+        if (worker) {
+          worker.postMessage({ stop: true });
+          worker.terminate();
+          worker = null;
+        }
+        for (const t of timers) clearTimeout(t);
+        timers.clear();
+        busy = false;
+        $('thinking').hidden = true;
+        document.querySelectorAll('.flying,.particle,.crown-pop').forEach((e) => e.remove());
+        selected = null;
+        chain = [];
+        clueSquare = null;
+        $('surface').style.transform = '';
+      }
+      function store() {
+        if (!G) return;
+        G.hints = hints;
+        Recess.store('active', G);
+        if (isPuzzle() && run && !run.completed) {
+          run.game = clone(G);
+          Recess.store((G.encore ? 'encore:' : 'run:') + G.key, run);
+        }
+      }
+      function isPuzzle() {
+        return G && (G.mode === 'puzzle' || G.mode === 'daily');
+      }
+      function act(label, id, fn, primary = false, small = '') {
+        const b = document.createElement('button');
+        b.className = 'action' + (primary ? ' primary' : '');
+        b.id = id;
+        const text = document.createElement('span');
+        text.textContent = label;
+        b.append(text);
+        if (small) {
+          const s = document.createElement('small');
+          s.textContent = small;
+          b.append(s);
+        }
+        b.onclick = () => {
+          Recess.play('tap');
+          fn();
+        };
+        return b;
+      }
+      function menu(title = 'Make your next move.', kind = 'main') {
+        const moveFocus = onTable || document.activeElement?.tagName === 'BUTTON';
+        cancel();
+        store();
+        onTable = false;
+        Recess.close();
+        Recess.canUndo(false);
+        $('menu-screen').hidden = false;
+        $('game-screen').hidden = true;
+        document.body.classList.toggle('submenu', kind !== 'main');
+        document.body.dataset.page = kind;
+        const panel = $('menu-panel');
+        panel.replaceChildren();
+        const e = document.createElement('div');
+        e.className = 'eyebrow';
+        e.textContent = kind === 'main' ? 'The table is yours' : 'Night arcade';
+        const h = document.createElement('h2');
+        h.textContent = title;
+        panel.append(e, h);
+        const stack = document.createElement('div');
+        stack.className = 'menu-stack';
+        panel.append(stack);
+        if (kind === 'main') {
+          const saved = Recess.store('active');
+          if (saved && !saved.won) stack.append(act('Resume the table', 'resume', resume, true));
+          stack.append(
+            act('Play the computer ↗', 'play-computer', ladder, !saved || saved.won, 'Six rivals. From gentle to formidable.'),
+          );
+          stack.append(act('Play a friend ↗', 'play-friend', () => newGame('friend'), false, 'One table. Two minds.'));
+          stack.append(act('Puzzles ↗', 'puzzles', puzzleMenu, false, '25 little traps with a big payoff.'));
+          const row = document.createElement('div');
+          row.className = 'minor-row';
+          row.append(act("Today's puzzle", 'daily', daily), act('How to play', 'how', help));
+          stack.append(row);
+          Recess.level('marquee', 'Night arcade');
+        }
+        const privacy = document.createElement('p');
+        privacy.className = 'privacy';
+        privacy.textContent = 'No accounts. No ads. Everything stays on this device.';
+        panel.append(privacy);
+        if (moveFocus) queueMicrotask(() => panel.querySelector('button,select')?.focus({ preventScroll: true }));
+        return stack;
+      }
+      function ladder() {
+        const stack = menu('Meet your rivals.', 'ladder'),
+          list = document.createElement('div');
+        list.className = 'ladder';
+        for (let i = 1; i <= 6; i++) {
+          const r = RIVALS[i],
+            b = act('', 'cpu-' + i, () => {
+              const s = $('side-pick').value;
+              newGame('cpu', i, s === 'either' ? (Math.random() < 0.5 ? 1 : -1) : +s);
+            });
+          b.classList.add('opponent');
+          b.replaceChildren();
+          const img = document.createElement('img');
+          img.src = ART[r.name.toLowerCase()];
+          img.alt = '';
+          const text = document.createElement('div'),
+            name = document.createElement('b');
+          name.textContent = r.name;
+          const lights = document.createElement('div');
+          lights.className = 'bulbs';
+          lights.setAttribute('aria-label', i + ' of 6 strength');
+          for (let j = 0; j < 6; j++) {
+            const bulb = document.createElement('i');
+            if (j < i) bulb.className = 'on';
+            lights.append(bulb);
+          }
+          const desc = document.createElement('small');
+          desc.textContent = r.short + (i >= 4 ? '. No slips. Plays to win.' : '. Makes small slips.');
+          text.append(name, lights, desc);
+          b.append(img, text);
+          list.append(b);
+        }
+        const row = document.createElement('label');
+        row.className = 'choice-row';
+        row.textContent = 'Your side';
+        const select = document.createElement('select');
+        select.id = 'side-pick';
+        select.setAttribute('aria-label', 'Your side');
+        for (const [value, label] of [
+          ['1', 'Amber · first'],
+          ['-1', 'Blue · second'],
+          ['either', 'Either'],
+        ]) {
+          const option = document.createElement('option');
+          option.value = value;
+          option.textContent = label;
+          select.append(option);
+        }
+        row.append(select);
+        stack.append(
+          list,
+          row,
+          act('Back', 'back-menu', () => menu()),
+        );
+      }
+      function puzzleMenu() {
+        const stack = menu('Little traps. Big payoffs.', 'rounds');
+        ROUNDS.forEach((name, i) => {
+          const b = act('', 'round-' + (i + 1), () => newPuzzleRound(i));
+          b.classList.add('round-row');
+          const n = document.createElement('span');
+          n.textContent = String(i + 1);
+          const t = document.createElement('div');
+          t.textContent = name;
+          const s = document.createElement('small');
+          s.textContent = Recess.store('run:p-' + (i + 1))?.completed ? 'Encore · 5 puzzles' : '5 puzzles';
+          t.append(s);
+          b.replaceChildren(n, t);
+          stack.append(b);
+        });
+        stack.append(act('Back', 'back-menu', () => menu()));
+      }
+      function help() {
+        const stack = menu('How to play.', 'help'),
+          copy = document.createElement('div');
+        copy.className = 'help-copy';
+        copy.innerHTML = `<p><strong>Amber goes first.</strong> Play only on the dark squares. Tap a puck, then its landing square. You can drag it, too.</p>
+  <p><strong>Men go forward.</strong> One diagonal step into an empty square. Men cannot step or jump backward.</p>
+  <p><strong>In real checkers, if you can jump, you must.</strong> The board shows you when. Jump over a neighboring enemy onto the empty square behind it.</p>
+  <p><strong>Keep jumping.</strong> Finish a chain with the same puck. Choose any complete chain, even a shorter one. Jumped pucks leave at the end and cannot be jumped twice.</p>
+  <p><strong>Reach the far edge: get a crown.</strong> A king goes one diagonal step or jump in any direction. No flying kings. Crowning ends your turn, even during a jump.</p>
+  <p><strong>Take or trap them all.</strong> If the other side has no pucks or no move, you win. Three repeats is a draw. So is 40 moves each with no jumps and no men moving.</p>
+  <p><strong>Your controls.</strong> Undo and Restart are at the top. Hints only show legal landings. Flip turns the table. Menu pauses and saves it.</p>
+  <p><strong>Keyboard.</strong> Enter or Space picks up and lands. Up/Down move diagonally, Left/Right choose the diagonal. Home/End find movable pucks. Escape cancels a chain. H: hints. F: flip. C: clue. P: menu. U or Ctrl+Z: undo. R: restart. M: sound. S: scores.</p>
+  <p><strong>Puzzles.</strong> Follow the book's line. Each clue or wrong try adds a Move and a try. After three tries, watch the answer. Your first run counts; later Encores are for fun.</p>`;
+        stack.append(
+          copy,
+          act('Back to the arcade', 'back-menu', () => menu()),
+        );
+      }
+      function newGame(mode, level = 1, human = 1) {
+        cancel();
+        run = null;
+        const position = E.initial();
+        G = {
+          mode,
+          level,
+          human,
+          key: mode === 'cpu' ? 'cpu-' + level : 'friend',
+          position,
+          history: [],
+          reps: { [E.key(position)]: 1 },
+          moves: 0,
+          takebacks: 0,
+          flip: true,
+          autoFlip: false,
+          result: null,
+          won: false,
+          last: null,
+        };
+        showTable();
+        powerup();
+      }
+      function puzzleForCurrent() {
+        const p = clone(PUZZLES[G.ids[G.index]]);
+        if (G.swap) {
+          [p.am, p.bm] = [p.bm.map((s) => 33 - s), p.am.map((s) => 33 - s)];
+          [p.ak, p.bk] = [p.bk.map((s) => 33 - s), p.ak.map((s) => 33 - s)];
+          p.move = p.move === 'A' ? 'B' : 'A';
+          p.line = p.line.replace(/\d+/g, (s) => String(33 - +s));
+          if (p.also) for (const k in p.also) p.also[k] = p.also[k].replace(/\d+/g, (s) => String(33 - +s));
+          p.goal = p.goal.replace(/Amber|blue|Blue/g, (s) => (s === 'Amber' ? 'Blue' : s === 'Blue' ? 'Amber' : 'amber'));
+        }
+        return p;
+      }
+      function newPuzzleRound(round, dailyInfo = null) {
+        cancel();
+        const key = dailyInfo ? dailyInfo.key : 'p-' + (round + 1),
+          old = Recess.store('run:' + key);
+        run = old && !old.completed ? old : { index: 0, moves: 0, tries: 0, puzzleTries: 0, completed: false };
+        const encore = !!old?.completed;
+        if (run.game && !encore) {
+          G = clone(run.game);
+          showTable();
+          return;
+        }
+        G = {
+          mode: dailyInfo ? 'daily' : 'puzzle',
+          key,
+          level: round + 1,
+          human: 1,
+          ids: dailyInfo ? [dailyInfo.index] : Array.from({ length: 5 }, (_, i) => round * 5 + i),
+          index: run.index || 0,
+          swap: dailyInfo?.swap || false,
+          encore,
+          previousStars: old?.stars || 0,
+          moves: run.moves,
+          takebacks: 0,
+          won: false,
+          autoFlip: false,
+        };
+        resetPuzzle();
+        showTable();
+        powerup();
+      }
+      function daily() {
+        const r = Recess.daily(),
+          index = Math.floor(r() * 25),
+          swap = r() < 0.5,
+          d = new Date();
+        newPuzzleRound(0, { key: `daily-${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`, index, swap });
+      }
+      function resetPuzzle() {
+        const p = puzzleForCurrent();
+        G.position = E.position(p);
+        G.human = G.position.side;
+        G.ply = 0;
+        G.history = [];
+        G.reps = { [E.key(G.position)]: 1 };
+        G.flip = G.human === 1;
+        G.result = null;
+        G.last = null;
+        G.won = false;
+      }
+      function resume() {
+        const saved = Recess.store('active');
+        if (!saved) {
+          menu();
+          return;
+        }
+        cancel();
+        G = saved;
+        run = isPuzzle() ? Recess.store((G.encore ? 'encore:' : 'run:') + G.key) : null;
+        showTable();
+      }
+      function showTable() {
+        onTable = true;
+        document.body.classList.remove('submenu');
+        $('menu-screen').hidden = true;
+        $('game-screen').hidden = false;
+        drawOffer = false;
+        const label =
+          G.mode === 'cpu'
+            ? 'Versus ' + RIVALS[G.level].name
+            : G.mode === 'friend'
+              ? 'Play a friend'
+              : G.mode === 'daily'
+                ? "Today's puzzle"
+                : 'Puzzles: ' + ROUNDS[G.level - 1];
+        Recess.level(G.key, label);
+        render();
+        store();
+        $('board').querySelector('[tabindex="0"]')?.focus({ preventScroll: true });
+        if (G.result) {
+          showResult();
+          return;
+        }
+        if (!isPuzzle() && G.mode === 'cpu' && G.position.side !== G.human) computer();
+        else if (isPuzzle() && G.position.side !== G.human) bookReply();
+      }
+      function render() {
+        if (!G) return;
+        const board = $('board'),
+          list = E.moves(G.position),
+          must = list.length && list[0].cap.length > 0;
+        const movable = new Set(list.map((m) => m.from)),
+          active = selected === null ? [] : list.filter((m) => m.from === selected && chain.every((s, i) => m.path[i] === s));
+        const legal = new Set();
+        for (const m of active) {
+          if (m.path[chain.length] !== undefined) legal.add(m.path[chain.length]);
+          legal.add(m.path.at(-1));
+        }
+        let oldFocus = document.activeElement?.closest('.square')?.dataset.s;
+        board.replaceChildren();
+        if (!board.querySelector('.square') && !movable.has(focusSquare) && selected === null) focusSquare = list[0]?.from ?? 0;
+        for (let s = 0; s < 32; s++) {
+          const b = document.createElement('button'),
+            v = G.position.b[s];
+          b.className = 'square';
+          b.type = 'button';
+          b.disabled = !!G.result || G.won;
+          b.dataset.s = s;
+          let r = E.row(s),
+            c = E.col(s);
+          if (G.flip) {
+            r = 7 - r;
+            c = 7 - c;
+          }
+          b.style.left = c * 12.5 + '%';
+          b.style.top = r * 12.5 + '%';
+          b.setAttribute('role', 'gridcell');
+          b.setAttribute(
+            'aria-label',
+            `square ${s + 1}, ${v ? sideName(Math.sign(v)) + (Math.abs(v) === 2 ? ' king' : ' man') : 'empty'}`,
+          );
+          b.tabIndex = s === focusSquare ? 0 : -1;
+          if (v) {
+            const halo = document.createElement('img');
+            halo.className = 'puck halo';
+            halo.src = ART[(v > 0 ? 'amber' : 'blue') + '-halo'];
+            halo.alt = '';
+            const piece = document.createElement('img');
+            piece.className = 'puck piece';
+            piece.src = pawnImage(v);
+            piece.alt = '';
+            b.append(halo, piece);
+          }
+          if (must && movable.has(s)) b.classList.add('must');
+          if (s === selected) b.classList.add('selected');
+          if (s === clueSquare) b.classList.add('clue');
+          if (hints && legal.has(s)) b.classList.add('legal');
+          if (G.last?.includes(s)) b.classList.add('last');
+          b.setAttribute('aria-selected', String(s === selected));
+          b.addEventListener('click', (ev) => {
+            if (ev.detail === 0) pick(s);
+          });
+          b.addEventListener('keydown', (e) => boardKey(e, s));
+          b.addEventListener('focus', () => {
+            focusSquare = s;
+            for (const x of board.querySelectorAll('.square')) x.tabIndex = +x.dataset.s === s ? 0 : -1;
+          });
+          board.append(b);
+        }
+        if (chain.length && selected !== null) {
+          const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+          svg.classList.add('chain');
+          svg.setAttribute('viewBox', '0 0 100 100');
+          const path = document.createElementNS(svg.namespaceURI, 'polyline');
+          path.setAttribute(
+            'points',
+            [selected, ...chain]
+              .map((s) => {
+                const [x, y] = center(s);
+                return `${x},${y}`;
+              })
+              .join(' '),
+          );
+          svg.append(path);
+          board.append(svg);
+        }
+        if (oldFocus !== undefined) board.querySelector(`[data-s="${focusSquare}"]`)?.focus({ preventScroll: true });
+        const puzzle = isPuzzle(),
+          rival = G.mode === 'cpu' ? RIVALS[G.level] : null;
+        $('badge').src =
+          ART[rival ? rival.name.toLowerCase() : puzzle ? 'nova' : G.position.side === 1 ? 'amber-king' : 'blue-king'];
+        $('opponent-name').textContent = rival
+          ? rival.name
+          : puzzle
+            ? puzzleForCurrent().name
+            : sideName(G.position.side) + "'s turn";
+        $('opponent-detail').textContent = rival
+          ? rival.text
+          : puzzle
+            ? (G.encore ? 'Encore · ' : '') + `${G.index + 1} of ${G.ids.length}`
+            : 'One table. Two minds.';
+        $('mode-caption').textContent = puzzle ? (G.mode === 'daily' ? "Today's puzzle" : ROUNDS[G.level - 1]) : 'Night arcade';
+        $('your-name').textContent = G.mode === 'friend' ? sideName(-G.position.side) : sideName(G.human);
+        $('your-caption').textContent = G.mode === 'friend' ? 'Next turn' : 'Your side';
+        $('your-mark').classList.toggle('blue', (G.mode === 'friend' ? -G.position.side : G.human) === -1);
+        $('board-label').textContent = puzzle
+          ? `${G.index + 1} / ${G.ids.length} · ${puzzleForCurrent().name}`
+          : sideName(G.position.side) + ' to move';
+        $('clue-button').hidden = !puzzle;
+        $('flip-button').hidden = puzzle && innerWidth <= 600;
+        $('more-button').hidden = innerWidth > 600 || puzzle;
+        $('draw-button').hidden = G.mode !== 'friend';
+        $('turn-row').hidden = G.mode !== 'friend';
+        if (!drawOffer) $('draw-button').textContent = 'Call it a draw';
+        $('auto-flip').checked = !!G.autoFlip;
+        $('hints-button').setAttribute('aria-pressed', String(hints));
+        $('progress').hidden = G.position.quiet < 40;
+        $('progress').textContent = `No progress: ${Math.floor(G.position.quiet / 2)} of 40`;
+        if (!busy && !G.result && !G.won) {
+          $('prompt').textContent = puzzle
+            ? puzzleForCurrent().goal
+            : must
+              ? `${sideName(G.position.side)} must jump. Pick a pink-ringed puck.`
+              : G.mode === 'friend'
+                ? `${sideName(G.position.side)}'s turn. Tap a puck, then its landing.`
+                : 'Tap a puck, then a glowing square.';
+        }
+        trays();
+        Recess.canUndo(onTable && !G.won && G.history.length > 0);
+        $('result').hidden = !G.result;
+        $('surface').classList.toggle('game-over', G.result?.kind === 'game');
+      }
+      function trays() {
+        const trays = [$('op-tray'), $('your-tray')];
+        trays.forEach((t) => t.replaceChildren());
+        if (isPuzzle()) return;
+        const human = G.mode === 'friend' ? 1 : G.human;
+        for (let i = 0; i < 2; i++) {
+          const side = i === 0 ? human : -human;
+          const count = 12 - G.position.b.filter((v) => Math.sign(v) === side).length;
+          for (let j = 0; j < count; j++) {
+            const img = document.createElement('img');
+            img.src = pawnImage(side);
+            img.alt = sideName(side) + ' captured';
+            trays[i].append(img);
+          }
+        }
+      }
+      function center(s) {
+        let r = E.row(s),
+          c = E.col(s);
+        if (G.flip) {
+          r = 7 - r;
+          c = 7 - c;
+        }
+        return [(c + 0.5) * 12.5, (r + 0.5) * 12.5];
+      }
+      function canAct() {
+        return onTable && G && !busy && !G.result && !G.won && !document.querySelector('.rc-veil') &&
+          (G.mode === 'friend' || G.position.side === G.human);
+      }
+      function pick(s) {
+        if (!canAct()) return;
+        const list = E.moves(G.position),
+          owned = G.position.b[s] * G.position.side > 0;
+        if (selected === s) {
+          const finish = list.filter(
+            (m) =>
+              m.from === s && m.path.length === chain.length + 1 && m.path.at(-1) === s && chain.every((v, i) => m.path[i] === v),
+          );
+          selected = null;
+          chain = [];
+          if (finish.length === 1) attempt(finish[0]);
+          else render();
+          return;
+        }
+        if (selected !== null) {
+          const available = list.filter((m) => m.from === selected && chain.every((v, i) => m.path[i] === v));
+          const endings = available.filter((m) => m.path.at(-1) === s);
+          if (endings.length === 1) {
+            selected = null;
+            chain = [];
+            attempt(endings[0]);
+            return;
+          }
+          const partial = available.filter((m) => m.path[chain.length] === s);
+          if (partial.length) {
+            chain.push(s);
+            render();
+            $('prompt').textContent = 'Keep jumping with this puck.';
+            return;
+          }
+        }
+        if (owned && list.some((m) => m.from === s)) {
+          selected = s;
+          chain = [];
+          clueSquare = null;
+          Recess.play('tap');
+          render();
+          return;
+        }
+        const square = $('board').querySelector(`[data-s="${s}"]`);
+        square?.classList.add('shake');
+        setTimeout(() => square?.classList.remove('shake'), 300);
+        Recess.play('nope');
+        if (list[0]?.cap.length) $('prompt').textContent = 'A jump must be taken. Pick a pink-ringed puck.';
+      }
+      function boardKey(e, s) {
+        const key = e.key;
+        if (key === 'Enter' || key === ' ') {
+          e.preventDefault();
+          pick(s);
+          return;
+        }
+        if (key === 'Escape') {
+          e.preventDefault();
+          selected = null;
+          chain = [];
+          render();
+          return;
+        }
+        if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(key)) {
+          e.preventDefault();
+          let to = s;
+          if (key === 'ArrowLeft' || key === 'ArrowRight') {
+            diagonal = key === 'ArrowLeft' ? -1 : 1;
+          } else if (key === 'Home' || key === 'End') {
+            const ms = E.moves(G.position);
+            to = key === 'Home' ? ms[0]?.from : ms.at(-1)?.from;
+          } else {
+            const dr = (key === 'ArrowUp' ? -1 : 1) * (G.flip ? -1 : 1),
+              dc = diagonal * (G.flip ? -1 : 1);
+            const first = E.square(E.row(s) + dr, E.col(s) + dc),
+              other = E.square(E.row(s) + dr, E.col(s) - dc);
+            to = first >= 0 ? first : other;
+          }
+          if (to >= 0 && to < 32) {
+            focusSquare = to;
+            $('board').querySelector(`[data-s="${to}"]`)?.focus({ preventScroll: true });
+          }
+        }
+      }
+      let pointer = null;
+      $('board').addEventListener('pointerdown', (e) => {
+        const target = e.target.closest('.square');
+        if (!target || !canAct()) return;
+        e.preventDefault();
+        focusSquare = +target.dataset.s;
+        target.focus({ preventScroll: true });
+        pointer = { s: +target.dataset.s, x: e.clientX, y: e.clientY, id: e.pointerId };
+        $('board').setPointerCapture(e.pointerId);
+      });
+      $('board').addEventListener('pointerup', (e) => {
+        if (!pointer || pointer.id !== e.pointerId) return;
+        const p = pointer;
+        pointer = null;
+        if ($('board').hasPointerCapture(e.pointerId)) $('board').releasePointerCapture(e.pointerId);
+        if (Math.hypot(e.clientX - p.x, e.clientY - p.y) < 6) {
+          pick(p.s);
+          return;
+        }
+        const target = document.elementFromPoint(e.clientX, e.clientY)?.closest('.square');
+        if (!target) return;
+        if (selected !== p.s) pick(p.s);
+        pick(+target.dataset.s);
+      });
+      $('board').addEventListener('pointercancel', () => {
+        pointer = null;
+      });
+      function snap() {
+        return { position: clone(G.position), reps: clone(G.reps), ply: G.ply || 0, last: G.last ? G.last.slice() : null };
+      }
+      function restore(s) {
+        G.position = s.position;
+        G.reps = s.reps;
+        G.ply = s.ply;
+        G.last = s.last;
+        G.result = null;
+        G.won = false;
+      }
+      function payMove() {
+        G.moves++;
+        if (isPuzzle()) {
+          run.moves++;
+          G.moves = run.moves;
+        }
+        store();
+      }
+      async function attempt(m, auto = false) {
+        if (!auto && !canAct()) return;
+        const token = epoch;
+        if (isPuzzle()) {
+          const p = puzzleForCurrent(),
+            name = E.notation(m),
+            book = p.line.split(' ')[G.ply];
+          const next = E.apply(G.position, m),
+            immediate = E.moves(next).length === 0;
+          const also = (p.also?.[G.ply] || '').split(' ').includes(name);
+          if (name !== book && !immediate) {
+            if (also) {
+              busy = true;
+              await animate(m);
+              if (token !== epoch) return;
+              busy = false;
+              render();
+              $('prompt').textContent = "That wins too! This puzzle follows the book's way; try another.";
+              return;
+            }
+            payMove();
+            addTry();
+            busy = true;
+            await animate(m, true);
+            if (token !== epoch) return;
+            await wait(900);
+            if (token !== epoch) return;
+            busy = false;
+            render();
+            const firstJumps = {
+              'r1-2': 'That takes only one. Look for a puck that can jump twice in one chain.',
+              'r1-4': m.promote
+                ? 'That king cannot catch the next jump. Try the other crowning square.'
+                : 'That leaves the crown behind. Try a puck near the far edge.',
+              'r1-5': 'That leaves the other side a move. Look for a square that blocks its jump.',
+            };
+            $('prompt').textContent = firstJumps[p.id] || (p.src === 'own'
+              ? 'After that, the other side is not forced to jump. Look for a puck you can give away.'
+              : 'That lets the other side slip away. Look again.');
+            if (run.puzzleTries >= 3) autoAnswer();
+            return;
+          }
+        }
+        G.history.push(snap());
+        Recess.canUndo(true);
+        payMove();
+        busy = true;
+        store();
+        await animate(m);
+        if (token !== epoch) return;
+        commit(m);
+        busy = false;
+        render();
+        store();
+        if (isPuzzle()) {
+          if (G.ply >= puzzleForCurrent().line.split(' ').length || !E.moves(G.position).length) {
+            finishPuzzle();
+            return;
+          }
+          await bookReply();
+        } else if (!checkEnd() && G.mode === 'cpu') computer();
+      }
+      function commit(m) {
+        G.position = E.apply(G.position, m);
+        G.last = [m.from, ...m.path];
+        const k = E.key(G.position);
+        G.reps[k] = (G.reps[k] || 0) + 1;
+        if (isPuzzle()) G.ply++;
+        if (G.mode === 'friend' && G.autoFlip) G.flip = G.position.side === 1;
+      }
+      async function bookReply() {
+        if (!onTable || !isPuzzle() || G.result || G.position.side === G.human || busy) return;
+        const token = epoch,
+          p = puzzleForCurrent(),
+          text = p.line.split(' ')[G.ply];
+        const m = E.moves(G.position).find((m) => E.notation(m) === text);
+        if (!m) {
+          finishPuzzle();
+          return;
+        }
+        busy = true;
+        $('thinking').hidden = false;
+        await wait(350);
+        if (token !== epoch) return;
+        await animate(m);
+        if (token !== epoch) return;
+        commit(m);
+        busy = false;
+        $('thinking').hidden = true;
+        render();
+        store();
+      }
+      function addTry() {
+        run.tries++;
+        run.puzzleTries++;
+        store();
+      }
+      function clue() {
+        if (!isPuzzle() || !canAct()) return;
+        payMove();
+        addTry();
+        const m = E.moves(G.position).find((m) => E.notation(m) === puzzleForCurrent().line.split(' ')[G.ply]);
+        clueSquare = m?.from ?? null;
+        render();
+        $('prompt').textContent = 'Try the mint-ringed puck. A clue adds one Move and one try.';
+        if (run.puzzleTries >= 3) autoAnswer();
+      }
+      async function autoAnswer() {
+        if (busy || !isPuzzle() || G.result) return;
+        const token = epoch;
+        $('prompt').textContent = 'Here is how it goes.';
+        while (onTable && token === epoch && !G.result && G.ply < puzzleForCurrent().line.split(' ').length) {
+          busy = true;
+          await wait(Recess.calm ? 400 : 800);
+          if (token !== epoch) return;
+          busy = false;
+          if (G.position.side === G.human) {
+            const m = E.moves(G.position).find((m) => E.notation(m) === puzzleForCurrent().line.split(' ')[G.ply]);
+            if (!m) break;
+            await attempt(m, true);
+          } else await bookReply();
+        }
+      }
+      function finishPuzzle() {
+        const p = puzzleForCurrent();
+        const finishes = {
+          'r1-1': ['Clean hop!', 'One jump. The table is yours.'],
+          'r1-2': ['Double jump!', 'Two pucks in one chain.'],
+          'r1-3': ['Triple jump!', 'Three pucks. One unstoppable chain.'],
+          'r1-4': ['Crown and conquer!', 'A new king, a jump, and no way out.'],
+          'r1-5': ['No way through!', 'No jump needed. The other side has no move.'],
+          'r3-4': ['Three for one!', 'One offered. Three taken.'],
+        };
+        const [title, text] = finishes[p.id] || ['The shot lands!', 'One offered. Two taken.'];
+        G.result = {
+          kind: 'puzzle',
+          title: p.src === 'own' ? title : 'The trap is set.',
+          text:
+            p.src === 'own'
+              ? text
+              : `${sideName(-G.human)} is trapped. From here ${sideName(G.human)} wins every time.`,
+        };
+        render();
+        winWave();
+        showResult();
+        store();
+      }
+      function nextPuzzle() {
+        if (!isPuzzle() || G.result?.kind !== 'puzzle') return;
+        cancel();
+        const nextIndex = G.index + 1;
+        run.index = nextIndex;
+        run.puzzleTries = 0;
+        if (nextIndex < G.ids.length) {
+          G.index = nextIndex;
+          resetPuzzle();
+          render();
+          $('board').querySelector('[tabindex="0"]')?.focus({ preventScroll: true });
+          store();
+          return;
+        }
+        G.won = true;
+        G.result = null;
+        run.game = null;
+        const stars = run.tries === 0 ? 3 : run.tries <= 2 ? 2 : 1;
+        if (G.encore) {
+          G.result = {
+            kind: 'encore',
+            title: 'Encore complete.',
+            text: `You already finished this ${G.mode === 'daily' ? 'daily' : 'round'} with ${G.previousStars} stars. Encores are for fun.`,
+          };
+          $('result').hidden = false;
+          showResult();
+          store();
+          Recess.canUndo(false);
+          return;
+        }
+        run.completed = true;
+        run.stars = stars;
+        run.score = run.moves;
+        Recess.store('run:' + G.key, run);
+        store();
+        render();
+        $('prompt').textContent = 'Complete. Open Menu, or press Restart for an Encore.';
+        Recess.canUndo(false);
+        winWave();
+        Recess.win({ score: run.moves, stars });
+      }
+      function checkEnd() {
+        const out = E.outcome(G.position, G.reps);
+        if (!out) return false;
+        if (out.winner && G.mode === 'cpu' && out.winner === G.human) {
+          G.won = true;
+          store();
+          render();
+          Recess.canUndo(false);
+          winWave();
+          Recess.win({ score: G.moves, stars: G.takebacks === 0 ? 3 : G.takebacks <= 3 ? 2 : 1 });
+          return true;
+        }
+        const repeat = 'The same position came up three times. Neither side can get ahead, so it is a draw.';
+        const quiet = '40 moves each with no jumps and no men moving. Nobody can break through, so it is a draw.';
+        G.result = {
+          kind: 'game',
+          title: out.winner
+            ? G.mode === 'cpu'
+              ? RIVALS[G.level].name + ' wins this one.'
+              : sideName(out.winner) + ' wins!'
+            : 'A draw.',
+          text: out.winner
+            ? G.mode === 'cpu'
+              ? 'Take back a few moves, or play again?'
+              : `${sideName(-out.winner)} has no moves left!`
+            : (out.reason === 'repeat' ? repeat : quiet) +
+              (G.mode === 'cpu' && G.level === 6 ? ' A draw with Titan is a real result.' : ''),
+        };
+        lowNotes();
+        store();
+        render();
+        showResult();
+        return true;
+      }
+      function showResult() {
+        const box = $('result');
+        box.replaceChildren();
+        box.dataset.kind = G.result?.kind || '';
+        if (!G.result) {
+          box.hidden = true;
+          return;
+        }
+        box.hidden = false;
+        const h = document.createElement('h2');
+        h.textContent = G.result.title;
+        const p = document.createElement('p');
+        p.textContent = G.result.text;
+        box.append(h, p);
+        if (G.result.kind === 'puzzle')
+          box.append(
+            act(
+              G.index + 1 < G.ids.length ? 'Next puzzle' : 'Finish ' + (G.mode === 'daily' ? 'today' : 'round'),
+              'next-puzzle',
+              nextPuzzle,
+              true,
+            ),
+          );
+        else if (G.result.kind === 'encore') box.append(act('Back to the arcade', 'encore-menu', () => menu(), true));
+        else {
+          if (G.history.length) box.append(act('Take back', 'result-undo', undo));
+          box.append(act('Play again', 'result-restart', restart, true));
+        }
+        if (onTable) box.querySelector('button')?.focus({ preventScroll: true });
+      }
+      async function computer() {
+        if (!onTable || !G || G.mode !== 'cpu' || G.result || G.won || G.position.side === G.human || busy) return;
+        const token = epoch,
+          started = performance.now();
+        busy = true;
+        $('thinking').hidden = false;
+        $('prompt').textContent = RIVALS[G.level].name + ' is thinking. You can Undo or open Menu.';
+        if (!workerUrl) workerUrl = URL.createObjectURL(new Blob([workerSource], { type: 'application/javascript' }));
+        if (!worker) worker = new Worker(workerUrl);
+        worker.onmessage = async (e) => {
+          const r = e.data;
+          if (r.token !== epoch || token !== epoch || !onTable) return;
+          console.info('Checkers engine', RIVALS[G.level].name, { depth: r.depth, nodes: r.nodes, searchMs: r.ms });
+          await wait(Math.max(0, 350 - (performance.now() - started)));
+          if (token !== epoch) return;
+          if (!r.move) {
+            busy = false;
+            $('thinking').hidden = true;
+            checkEnd();
+            return;
+          }
+          const m = E.moves(G.position).find((x) => E.moveId(x) === E.moveId(r.move));
+          if (!m) {
+            busy = false;
+            $('thinking').hidden = true;
+            return;
+          }
+          await animate(m);
+          if (token !== epoch) return;
+          commit(m);
+          busy = false;
+          $('thinking').hidden = true;
+          render();
+          store();
+          checkEnd();
+        };
+        worker.onerror = () => {
+          busy = false;
+          $('thinking').hidden = true;
+          $('prompt').textContent = 'The table paused. Press Restart to try again.';
+        };
+        worker.postMessage({ position: G.position, level: G.level, repetitions: G.reps, token, clear: G.position.ply < 2 });
+      }
+      function undo() {
+        if (!G || G.won || !G.history.length) return;
+        cancel();
+        const s = G.history.pop();
+        restore(s);
+        G.takebacks++;
+        if (isPuzzle()) {
+          // A takeback never erases moves or tries. No puzzle star benefit from a replay.
+          G.moves = run.moves;
+        }
+        drawOffer = false;
+        render();
+        $('board').querySelector('[tabindex="0"]')?.focus({ preventScroll: true });
+        store();
+        if (G.mode === 'cpu' && G.position.side !== G.human) computer();
+      }
+      function restart() {
+        if (!G) {
+          menu();
+          return;
+        }
+        cancel();
+        Recess.close();
+        if (isPuzzle()) {
+          if (G.won) {
+            if (G.mode === 'daily') daily();
+            else newPuzzleRound(G.level - 1);
+            return;
+          }
+          resetPuzzle();
+          showTable();
+          powerup();
+        } else newGame(G.mode, G.level, G.human);
+      }
+      function next() {
+        if (!G) return;
+        if (G.mode === 'cpu') newGame('cpu', Math.min(6, G.level + 1), G.human);
+        else if (G.mode === 'daily') daily();
+        else if (G.mode === 'puzzle') newPuzzleRound(Math.min(4, G.level));
+      }
+      function toggleHints() {
+        hints = !hints;
+        Recess.store('hints', hints);
+        $('hints-button').setAttribute('aria-pressed', String(hints));
+        if (!busy) render();
+      }
+      function flip() {
+        if (!G) return;
+        cancel();
+        G.flip = !G.flip;
+        render();
+        store();
+        if (G.mode === 'cpu' && G.position.side !== G.human) computer();
+        else if (isPuzzle() && G.position.side !== G.human) bookReply();
+      }
+      function drawCall() {
+        if (!G || G.mode !== 'friend' || G.won) return;
+        if (!drawOffer) {
+          drawOffer = true;
+          $('draw-button').textContent = 'Other player: agree?';
+          $('prompt').textContent = 'Pass to the other player. Tap again if you both want a draw.';
+          return;
+        }
+        cancel();
+        G.result = { kind: 'game', title: 'A friendly draw.', text: 'Both players agreed. Take back a move, or play again.' };
+        render();
+        showResult();
+        store();
+      }
+      $('menu-button').onclick = () => menu();
+      $('clue-button').onclick = clue;
+      $('flip-button').onclick = flip;
+      $('hints-button').onclick = toggleHints;
+      $('draw-button').onclick = drawCall;
+      $('more-button').onclick = () => {
+        if (G.mode === 'friend') {
+          $('turn-row').hidden = !$('turn-row').hidden;
+          $('draw-button').hidden = !$('draw-button').hidden;
+        } else help();
+      };
+      $('auto-flip').onchange = (e) => {
+        G.autoFlip = e.target.checked;
+        store();
+      };
+      // Keep keyboard play inside a shell dialog until it is closed.
+      addEventListener('keydown', (e) => {
+        const card = document.querySelector('.rc-card');
+        if (e.key !== 'Tab' || !card) return;
+        const controls = [...card.querySelectorAll('button,input,select,[tabindex="0"]')]
+          .filter((b) => !b.disabled && b.getClientRects().length);
+        const first = controls[0], last = controls.at(-1);
+        if (!first) return;
+        if (e.shiftKey && (document.activeElement === first || !card.contains(document.activeElement))) {
+          e.preventDefault();
+          last.focus({ preventScroll: true });
+        } else if (!e.shiftKey && (document.activeElement === last || !card.contains(document.activeElement))) {
+          e.preventDefault();
+          first.focus({ preventScroll: true });
+        }
+      });
+      addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey || e.altKey || e.target.closest('input,select,textarea,.rc-veil') || !onTable) return;
+        const k = e.key.toLowerCase();
+        if (k === 'h') {
+          e.preventDefault();
+          toggleHints();
+        }
+        if (k === 'f') {
+          e.preventDefault();
+          flip();
+        }
+        if (k === 'c') {
+          e.preventDefault();
+          clue();
+        }
+        if (k === 'p') {
+          e.preventDefault();
+          menu();
+        }
+      });
+      addEventListener('resize', () => {
+        if (onTable && G && !busy) render();
+      });
+      addEventListener('pagehide', () => {
+        store();
+        cancel();
+      });
+      let ac = null,
+        unlocked = false;
+      addEventListener(
+        'pointerdown',
+        () => {
+          unlocked = true;
+        },
+        { once: true },
+      );
+      function tone(f, end, duration = 0.08, wave = 'square', volume = 0.06, delay = 0) {
+        if (!Recess.sound || !unlocked) return;
+        if (!ac) {
+          const A = window.AudioContext || window.webkitAudioContext;
+          if (!A) return;
+          ac = new A();
+        }
+        if (ac.state === 'suspended') ac.resume();
+        const t = ac.currentTime + delay,
+          o = ac.createOscillator(),
+          g = ac.createGain();
+        o.type = wave;
+        o.frequency.setValueAtTime(f, t);
+        o.frequency.exponentialRampToValueAtTime(end, t + duration);
+        g.gain.setValueAtTime(volume, t);
+        g.gain.exponentialRampToValueAtTime(0.0001, t + duration);
+        o.connect(g).connect(ac.destination);
+        o.start(t);
+        o.stop(t + duration + 0.02);
+      }
+      function powerup() {
+        tone(330, 660, 0.15, 'square', 0.05);
+        if (Recess.calm) return;
+        document.querySelectorAll('.square .piece').forEach((p, i) =>
+          p.animate(
+            [
+              { transform: 'translateY(-30%) scale(.9)', opacity: 0 },
+              { transform: 'scale(1.1,.86)', opacity: 1 },
+              { transform: 'none', opacity: 1 },
+            ],
+            { duration: 300, delay: i * 20, easing: 'ease-out' },
+          ),
+        );
+      }
+      function winWave() {
+        if (Recess.calm) return;
+        for (const square of $('board').querySelectorAll('.square')) {
+          const s = +square.dataset.s;
+          if (G.position.b[s] * G.human <= 0) continue;
+          square
+            .querySelector('.piece')
+            ?.animate(
+              [
+                { transform: 'translateY(0) scale(1)' },
+                { transform: 'translateY(-14%) scale(.96,1.08)', offset: 0.45 },
+                { transform: 'scale(1.1,.9)', offset: 0.8 },
+                { transform: 'none' },
+              ],
+              { duration: 380, delay: E.row(s) * 35, easing: 'ease-out' },
+            );
+        }
+      }
+      function lowNotes() {
+        tone(196, 196, 0.2, 'sine', 0.05);
+        tone(165, 165, 0.2, 'sine', 0.05, 0.22);
+      }
+      async function animate(m, holdFinal = false) {
+        const token = epoch,
+          board = $('board'),
+          v = G.position.b[m.from],
+          original = board.querySelector(`[data-s="${m.from}"] .piece`);
+        if (original) original.style.visibility = 'hidden';
+        const fly = document.createElement('img');
+        fly.src = pawnImage(v);
+        fly.className = 'flying';
+        fly.alt = '';
+        board.append(fly);
+        const stops = [m.from, ...m.path];
+        for (let i = 1; i < stops.length; i++) {
+          if (token !== epoch) return;
+          const [x0, y0] = center(stops[i - 1]),
+            [x1, y1] = center(stops[i]);
+          fly.style.left = x1 - 5.875 + '%';
+          fly.style.top = y1 - 5.875 + '%';
+          const calm = Recess.calm,
+            duration = calm ? 120 : m.cap.length ? 200 : 160;
+          let frames;
+          if (calm) frames = [{ opacity: 0 }, { opacity: 1 }];
+          else {
+            const w = board.clientWidth;
+            frames = [
+              { transform: `translate(${((x0 - x1) * w) / 100}px,${((y0 - y1) * w) / 100}px) scale(1,1)` },
+              {
+                transform: `translate(${((x0 - x1) * w) / 200}px,${((y0 - y1) * w) / 200 - (m.cap.length ? w * 0.0225 : 0)}px) scale(.94,1.15)`,
+                offset: 0.5,
+              },
+              { transform: 'scale(1.12,.88)', offset: 0.9 },
+              { transform: 'scale(1,1)' },
+            ];
+          }
+          const anim = fly.animate(frames, { duration, easing: 'ease-in-out' });
+          await anim.finished.catch(() => {});
+          if (token !== epoch) return;
+          if (m.cap.length) {
+            Recess.play('capture');
+            tone(440 * Math.pow(1.26, i - 1), 440 * Math.pow(1.26, i - 1));
+            const cap = board.querySelector(`[data-s="${m.cap[i - 1]}"]`);
+            if (cap) {
+              const piece = cap.querySelector('.piece');
+              if (piece)
+                piece.animate(
+                  calm ? [{ opacity: 1 }, { opacity: 0 }] : [{ filter: 'brightness(5)', opacity: 1 }, { opacity: 0 }],
+                  { duration: calm ? 120 : 180, fill: 'forwards' },
+                );
+            }
+            if (!calm) sparks(m.cap[i - 1]);
+          } else Recess.play('place');
+        }
+        if (m.promote) {
+          Recess.play('pop');
+          tone(1046, 1046, 0.25, 'sine', 0.07);
+          tone(1568, 1568, 0.25, 'sine', 0.035);
+          fly.src = pawnImage(v * 2);
+          if (!Recess.calm) {
+            const crown = document.createElement('img');
+            crown.className = 'crown-pop';
+            crown.src = ART.crowns[0];
+            const [x, y] = center(stops.at(-1));
+            crown.style.left = x - 6 + '%';
+            crown.style.top = y - 10 + '%';
+            board.append(crown);
+            const animation = crown.animate(
+              [
+                { transform: 'translateY(-40%) scale(1.4)', opacity: 0 },
+                { transform: 'scale(1.1,.8)', opacity: 1, offset: 0.7 },
+                { transform: 'none', opacity: 0 },
+              ],
+              { duration: 400 },
+            );
+            for (let j = 1; j < 4; j++) {
+              await wait(65);
+              if (token !== epoch) return;
+              crown.src = ART.crowns[j];
+            }
+            await animation.finished.catch(() => {});
+            crown.remove();
+          }
+        }
+        if (!holdFinal) fly.remove();
+      }
+      function sparks(s) {
+        const [x, y] = center(s),
+          board = $('board');
+        for (let i = 0; i < 6; i++) {
+          const img = document.createElement('img');
+          img.className = 'particle';
+          img.src = ART.spark;
+          img.alt = '';
+          img.style.left = x - 6 + '%';
+          img.style.top = y - 6 + '%';
+          board.append(img);
+          const a = (i * Math.PI) / 3,
+            d = board.clientWidth * 0.1;
+          const anim = img.animate(
+            [
+              { transform: 'scale(.4)', opacity: 1 },
+              { transform: `translate(${Math.cos(a) * d}px,${Math.sin(a) * d}px) scale(.1)`, opacity: 0 },
+            ],
+            { duration: 400, easing: 'ease-out' },
+          );
+          anim.finished.then(() => img.remove()).catch(() => img.remove());
+        }
+      }
+      Recess.start({
+        id: 'checkers',
+        title: 'Checkers',
+        score: { label: 'Moves', lower: true },
+        onUndo: undo,
+        onRestart: restart,
+        onNext: next,
+      });
+      Recess.onMotion((calm) => {
+        if (calm) document.getAnimations().forEach((a) => a.finish());
+        if (calm) document.body.style.setProperty('--arcade-x', '0px');
+      });
+      addEventListener('pointermove', (e) => {
+        if (!Recess.calm) document.body.style.setProperty('--arcade-x', ((e.clientX / innerWidth - 0.5) * 8).toFixed(1) + 'px');
+      });
+      menu();
+
+      // Development hooks are available only when explicitly requested in the file URL.
+      if (new URLSearchParams(location.search).has('test') || new URLSearchParams(location.search).has('ladder')) {
+        window.checkersDev = {
+          E,
+          PUZZLES,
+          workerSource,
+          RIVALS,
+          get state() {
+            return G;
+          },
+          get run() {
+            return run;
+          },
+          newGame,
+          newPuzzleRound,
+          daily,
+          pick,
+          attempt,
+          undo,
+          restart,
+          menu,
+          resume,
+          clue,
+          nextPuzzle,
+          render,
+          selfcheck: () => checkersSelfCheck(E, PUZZLES),
+          get busy() {
+            return busy;
+          },
+          setPosition(position) {
+            cancel();
+            G.position = position;
+            G.reps = { [E.key(position)]: 1 };
+            G.history = [];
+            render();
+            store();
+          },
+        };
+        console.info('Checkers self-check', checkersSelfCheck(E, PUZZLES));
+      }
+
+      async function checkersLadder(gamesPerPair = 10) {
+        const results = [],
+          judger = CheckersEngine();
+        for (let high = 2; high <= 6; high++) {
+          const games = [];
+          for (let game = 0; game < gamesPerPair; game++) {
+            const pairWorkers = [
+              new Worker(
+                workerUrl || (workerUrl = URL.createObjectURL(new Blob([workerSource], { type: 'application/javascript' }))),
+              ),
+              new Worker(workerUrl),
+            ];
+            let p = judger.initial(),
+              reps = { [judger.key(p)]: 1 },
+              turns = 0;
+            const random = Recess.rng('ballot-' + Math.floor(game / 2)),
+              higherSide = game % 2 === 0 ? 1 : -1;
+            for (let k = 0; k < 3; k++) {
+              const ms = judger.moves(p);
+              p = judger.apply(p, ms[Math.floor(random() * ms.length)]);
+              reps[judger.key(p)] = (reps[judger.key(p)] || 0) + 1;
+            }
+            let result = null;
+            try {
+              while (!(result = judger.outcome(p, reps)) && turns < 400) {
+                const index = p.side === higherSide ? 0 : 1,
+                  w = pairWorkers[index],
+                  level = high - index;
+                const reply = await new Promise((resolve, reject) => {
+                  const timer = setTimeout(() => reject(Error('Worker over 3.3 second budget')), 3300);
+                  w.onmessage = (e) => {
+                    clearTimeout(timer);
+                    resolve(e.data);
+                  };
+                  w.onerror = reject;
+                  w.postMessage({ position: p, repetitions: reps, level, token: game, clear: turns < 2 });
+                });
+                p = judger.apply(p, reply.move);
+                turns++;
+                reps[judger.key(p)] = (reps[judger.key(p)] || 0) + 1;
+              }
+            } finally {
+              pairWorkers.forEach((w) => w.terminate());
+            }
+            games.push(result ? (result.winner === 0 ? 'draw' : result.winner === higherSide ? 'win' : 'loss') : 'limit');
+            console.info('Ladder ballot', high, game + 1, games.at(-1));
+          }
+          const row = {
+            high,
+            wins: games.filter((x) => x === 'win').length,
+            losses: games.filter((x) => x === 'loss').length,
+            draws: games.filter((x) => x === 'draw').length,
+          };
+          results.push(row);
+          console.table(results);
+        }
+        return results;
+      }
+      if (window.checkersDev) window.checkersDev.ladder = checkersLadder;
+      if (new URLSearchParams(location.search).has('ladder')) checkersLadder().then((r) => console.info('Ladder finished', r));
+    </script>
+  </body>
+</html>

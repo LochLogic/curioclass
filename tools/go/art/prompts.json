@@ -1,0 +1,140 @@
+{
+  "house_style": "Luminous tactile indie game still life. Strict orthographic overhead camera, warm lamp from upper left, physically rich modern wood and stone, deep brown shadows and honey light. No people, writing, symbols, logos or culturally themed props.",
+  "assets": [
+    {
+      "name": "room",
+      "prompt": "Full-frame dark walnut tabletop at night, fine long wood grain, amber lamp light pool upper left fading to chocolate darkness lower right. Empty tabletop only. Top down. No objects.",
+      "width": 1600,
+      "quality": 80,
+      "drawn_by": "codex",
+      "generated_transparency": false,
+      "cutout": false
+    },
+    {
+      "name": "board",
+      "prompt": "Perfect square honey wood Go board slab, top down orthographic, straight fine grain, luminous golden surface, softly rounded bevel with visible lower right thickness, warm upper left light, no grid, no marks. Transparent surrounding.",
+      "width": 1200,
+      "quality": 85,
+      "cutout": false,
+      "drawn_by": "codex",
+      "generated_transparency": true
+    },
+    {
+      "name": "bowl-black",
+      "prompt": "Plain turned walnut wooden bowl filled with matte slate Go stones, with upturned empty matching lid beside it on right. Strict overhead. Transparent surrounding, warm upper left lamp.",
+      "width": 384,
+      "quality": 82,
+      "cutout": false,
+      "drawn_by": "codex",
+      "generated_transparency": true
+    },
+    {
+      "name": "bowl-white",
+      "prompt": "Plain turned maple wooden bowl filled with warm pearly white Go stones with no stripes, with upturned empty matching lid beside it on right. Strict overhead. Transparent surrounding, warm upper left lamp.",
+      "width": 384,
+      "quality": 82,
+      "cutout": false,
+      "drawn_by": "codex",
+      "generated_transparency": true
+    },
+    {
+      "name": "stones",
+      "prompt": "Sprite atlas, exactly two rows and four columns, eight separate equal-size domed round Go stones, generous transparent spacing. Top row four matte near-black slate stones with tiny natural surface variations, bottom row four warm ivory shell stones with subtle pearly gradient, no stripes. Strict overhead, identical size and upper left soft highlight, short lower right soft shadow. Transparent background.",
+      "width": 1024,
+      "quality": 90,
+      "cutout": false,
+      "drawn_by": "codex",
+      "generated_transparency": true
+    },
+    {
+      "name": "bloom",
+      "prompt": "One soft circular grayscale ink cloud spreading in clear water, delicate smoky tendrils inside a soft feathered perimeter, physically diffusing, no splatters or brush marks. Transparent background.",
+      "width": 512,
+      "quality": 82,
+      "cutout": false,
+      "drawn_by": "codex",
+      "generated_transparency": true
+    },
+    {
+      "name": "cover",
+      "prompt": "Striking indie game box art: overhead honey wood Go board on a dark walnut table under warm upper left lamp, domed slate and pearly white stones in a dramatic surrounding position, a captured chain dissolving into smoky ink water, wooden bowls. Rich warm light and cool slate, deep shadows, tactile contemporary materials. No text, people or cultural props.",
+      "width": 1200,
+      "quality": 85,
+      "drawn_by": "codex",
+      "generated_transparency": false,
+      "cutout": false
+    },
+    {
+      "name": "slate-0",
+      "prompt": "Extracted atlas cell: slate",
+      "width": 160,
+      "quality": 90,
+      "drawn_by": "codex",
+      "derived_from": "stones"
+    },
+    {
+      "name": "slate-1",
+      "prompt": "Extracted atlas cell: slate",
+      "width": 160,
+      "quality": 90,
+      "drawn_by": "codex",
+      "derived_from": "stones"
+    },
+    {
+      "name": "slate-2",
+      "prompt": "Extracted atlas cell: slate",
+      "width": 160,
+      "quality": 90,
+      "drawn_by": "codex",
+      "derived_from": "stones"
+    },
+    {
+      "name": "slate-3",
+      "prompt": "Extracted atlas cell: slate",
+      "width": 160,
+      "quality": 90,
+      "drawn_by": "codex",
+      "derived_from": "stones"
+    },
+    {
+      "name": "shell-0",
+      "prompt": "Extracted atlas cell: shell",
+      "width": 160,
+      "quality": 90,
+      "drawn_by": "codex",
+      "derived_from": "stones"
+    },
+    {
+      "name": "shell-1",
+      "prompt": "Extracted atlas cell: shell",
+      "width": 160,
+      "quality": 90,
+      "drawn_by": "codex",
+      "derived_from": "stones"
+    },
+    {
+      "name": "shell-2",
+      "prompt": "Extracted atlas cell: shell",
+      "width": 160,
+      "quality": 90,
+      "drawn_by": "codex",
+      "derived_from": "stones"
+    },
+    {
+      "name": "shell-3",
+      "prompt": "Extracted atlas cell: shell",
+      "width": 160,
+      "quality": 90,
+      "drawn_by": "codex",
+      "derived_from": "stones"
+    },
+    {
+      "name": "board-wood",
+      "prompt": "Center crop of painted board material",
+      "width": 1024,
+      "quality": 84,
+      "drawn_by": "codex",
+      "derived_from": "board"
+    }
+  ]
+}
