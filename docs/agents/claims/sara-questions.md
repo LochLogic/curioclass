@@ -169,3 +169,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - blueprint-studio: the idea card moves 7.G.3 out of this tool; should it go to clay-cutting-bench? (default used: yes, clay-cutting-bench teaches plane sections; this tool keeps 7.G.1 and 7.G.2)
 - data-detective: which paired data ship? (default used: adult foot length and stature from ANSUR II or NHANES, and NOAA daylight and temperature normals; geyser data left to simulation-studio)
 - ski-slope-designer: what slope numbers should the green, blue and black bands use? (default used: game ranges labeled as such, because no sourced national percent cutoffs were found)
+- question-jar: the CSTA 2026 wording is not in data/standards, so the computer science specs quote the module line from data/modules.csv; file the CSTA text? (default used: module line until the text is filed)
+- question-jar: overlap with wonder-wall, which also sorts questions (default used: keep both; this one sorts by how data is collected and who it misses)
+- attic-gadget-box: which designer cards ship? (default used: Ottens and Philips 1963, Sasson and Kodak 1975, Gladys West and GPS, national TV captions 1980; no person named on the phone and letter tracks until a second source is found)
