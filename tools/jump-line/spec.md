@@ -75,7 +75,7 @@ Two bank voices, each unique in this batch: `casual-peer` as Hopper; `curious-li
 Read speaks the hint, which names the next action and control and never a disabled one.
 
 ## Family engine
-number-line (`kit/number-line.js`, as described in roller-coaster-rounding's spec and docs/families/number-line.md). Uses: `NumberLine` (0 to 100 and 0 to 1000 windows), `nl.x` to place Hopper and arcs, `nl.span` for each jump, `nl.mark` for the start and landings, `nl.zoom` for tens and hundreds, `nl.on('tap')`. The arcs, Hopper and the gallery are this tool's own SVG.
+number-line (`kit/number-line.js`, as described in roller-coaster-rounding's spec and docs/families/number-line.md). Uses: `NumberLine` (0 to 100 and 0 to 1000 windows), `nl.x` to place Hopper, `nl.jump` for each labeled jump arc, `nl.mark` for the start and landings, `nl.zoom` for tens and hundreds, `nl.on('tap')`. Hopper, the steps strip and the gallery are this tool's own SVG.
 
 ## Can it be beaten?
 | Check | Ways to pass without the skill | Why each fails |
