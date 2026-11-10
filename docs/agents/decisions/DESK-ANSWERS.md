@@ -2,6 +2,36 @@
 
 Cory's answers to question cards, and what each still needs. Remove a line once it is applied to the specs.
 
+## 2026-11-10
+
+**Catalog direction (q-catalog-direction) and catalog pilot (q-catalog-pilot): Cory agrees with the assessment, in
+chat; every pick stands.** Tool building is paused until the path in docs/ROADMAP.md ("The path from here") reaches
+step 5. Now BASELINE rules 21 and 22. To apply, in the roadmap's order:
+- Rule edits (docs/agents/catalog/judge/live-core.md, part C, six edits): SPEC.md "Explore first" (the mode that
+  carries a "do" standard is on the main path), SPEC.md Standards map (quote the verb, list the parts, who does the
+  verb; five differing checked items per "do" code, a predict before the reveal per "understand" code), SPEC.md "Can
+  it be beaten?" (which-way feedback, running totals), REFINE.md Teaching lens item 1 (test by parts and key step; a
+  code only in an optional mode, readout or plan.md is a blocker), docs/TOOL-CONTRACT.md (`role` and what the unit
+  adds in tool.json; `outcome` claims main-path work only), data/modules.csv (standards, not clusters).
+- Extract row: format 2 stays (already in docs/agents/CATALOG-EXTRACT.md), with the two wording changes from
+  live-core.md part A (narrow `beatable` to "trial is cheaper than thinking"; add depth `explored` with `unit_adds`
+  for understand, model and investigate verbs only). Re-run the 36 pilot tools as the test, then the full read.
+- Year standards (RL.6.10, RI.6.10, W.6.10 and their like) are recorded as met by the year spine and the Reading
+  Room, with tools as helpers.
+- The six grades 6 to 8 tools that reuse one text get a text per grade, as spec additions before Build.
+- Lettered parts of W.6.1 to W.6.3 each get a named, checked student action in the tool's draft step.
+- climbing-reads: held; reshape as a climbing view over Reading Room texts after the ten-story pilot.
+- recipe-scaler: one tool, two full modes (adding, multiplying).
+- 4.OA.3: no new tool now; growth-spurt grows to all four operations and the year spine brings multistep problems
+  back in three later units. Look again after the unit pilot.
+- 4.NBT.4 fluency lives in the number-ops generator and the unit's daily practice; road-trip-logbook links to them.
+- 4.MD.5b: one counted-steps job added to skate-park-angles at Refine.
+- Built tools, in order: two-trains and smoothie-lab; sight-words (irregular words stay whole-word, decodable ones go
+  through sounding out; check the word list's licence first); the six cheap "tool does the key step" fixes;
+  moon-phase-model (seasons) and how-animals-see; three grade 11 fixes; then the code moves. Lists and sizes:
+  docs/agents/catalog/judge/live-core.md, part B.
+- Spec notes from the two pilot judge files (about 30 tools) are applied without asking.
+
 ## 2026-11-08
 
 **Recess first collection (Go, Chess, Checkers, Cargo Hold, Untangle)**

@@ -31,6 +31,37 @@ Reach and craft together (Cory, 2026-10-28). As many teachers as possible should
 needs to use a tool that does not fit their class, but every tool must be really good. Free for good: no paywall,
 no accounts, no ads, no tracking.
 
+## The path from here (locked 2026-11-10, Cory)
+
+**Tool building is paused** (Build, Refine and the Codex queue) until step 5. Fixes to built tools in step 3 are the
+one exception. The other shelves (worksheets, Word Wall, Reading Room) carry on.
+
+Why: the catalog review (item 6 below) read 63 tools against the adoption bar. Coverage and duplication are fine.
+The repeated flaw is that tools show the idea, then leave the student's own part of the standard thin, optional or
+passable by trial; it is worst on the major work of a grade. The gap in shape is that a module lists a cluster, gets
+one tool, and the rest of the cluster is taught nowhere. Verdict: right raw material, fixable now, costly later.
+Rules: BASELINE 21 and 22. Decisions: docs/agents/decisions/DESK-ANSWERS.md, 2026-11-10.
+
+**One measure:** for each course, standards taught in full out of all its standards (tools, units, worksheets and the
+Reading Room together). It goes on the Desk and every step below moves it.
+
+| Step | What | Done when | Cory decides |
+|---|---|---|---|
+| 1. Rules | The six rule edits and the teaching test go into SPEC.md, REFINE.md and docs/TOOL-CONTRACT.md. File the standard texts and the major-work marks from the published documents (licence checked), so nothing rests on memory | A new spec or lens cannot pass a tool that fails the test | Nothing |
+| 2. Read | The full catalog read with row format 2: the 36 pilot tools again as the test, then every spec by subject and band (about 64 cheaper-model agents). Scripts build one map per course: each standard full, part, shown or none | Every course has its map and its measure | Nothing |
+| 3. Fix what is built | The live-tool fixes in the order in DESK-ANSWERS, then whatever the read finds in the other live tools. The 149 built tools waiting on Refine are not fixed now; the new Teaching lens catches them when Refine resumes | The live math, ELA and science tools each pass the test or carry an honest role | Nothing, unless a fix changes what a tool teaches |
+| 4. Shape | From the maps: split modules to standards, apply spec notes, list the major-work modules that get a second or third tool, and the supporting tools that wait. Applied by rule; only exceptions go to Cory | data/modules.csv, the specs and a build order by value (data/waves.csv) all agree with the maps | One Desk card per subject, exceptions only: reshape, hold, cut, new tool |
+| 5. Prove one course | The year spine and the unit pilot for grade 4 math and grade 6 ELA (Track 7), judged against docs/ADOPTION-BAR.md. Building resumes here for those two courses only, with the token plan's side-by-side trial run on the first three tools | Cory can open one unit of each and see the bar met | The pilot review |
+| 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first | Course by course, the measure reaches full | The order of courses |
+
+**Resume here:** step 1. Everything it needs is in docs/agents/catalog/judge/live-core.md (part C, the rule edits;
+part A, the two wording changes to the extract row) and docs/agents/decisions/DESK-ANSWERS.md (2026-11-10).
+
+**Standing defaults, so decisions stay few:** a spec note that makes a tool pass the teaching test is applied without
+asking; a code follows the tool that really teaches it; year-long standards go to the spine; nothing is cut to save
+work (rule 1). The depth rule (two or three tools on major work) applies to math, ELA and science; other subjects
+only need each tool to pass the test or state its role.
+
 ## Now (set 2026-11-03, Review Desk q-plan cards)
 
 1. **Codex:** Nonsense Words and Sight Words (grade 2 teacher request) first, then keyword-fishing and input-or-output.
@@ -59,23 +90,22 @@ no accounts, no ads, no tracking.
    `C:\Users\Cory\AppData\Local\Temp\claude\_to_delete-2026-11-03` (about 1 GB of old session scratch). Also delete
    the merged branches (`git push origin --delete audit/states codex/biased-bot`, `git branch -D audit/states`) and
    merge `claude/hopeful-dirac-qck82o` (worksheets wave 2) when that session finishes.
-6. **Catalog review (planned 2026-11-10, Cory; docs/agents/CATALOG-REVIEW.md). Pilot run 2026-11-10; full run waits on Desk card q-catalog-pilot.** Pilot (36 tools, grade 4 math and grade 6 ELA): no standard without a tool and no duplicates; the issue is depth (math: 17 of 29 standard rows taught in full), and the row format must change before the full run. Every tool is specced
+6. **Catalog review (planned 2026-11-10, Cory; docs/agents/CATALOG-REVIEW.md). Pilot run 2026-11-10, picks accepted; the full read is step 2 of the path above.** Pilot (36 tools, grade 4 math and grade 6 ELA): no standard without a tool and no duplicates; the issue is depth (math: 17 of 29 standard rows taught in full), and the row format must change before the full run. Every tool is specced
    or further along (7 ASL tools held), so the whole catalog is reviewed for standards coverage, duplication and
    curriculum value, from the specs this time. A cheaper model writes one row per tool, scripts make the tables, the
    top model judges only what the tables flag, and proposals come to Cory as Desk cards with a pick. Pilot on grade 4
    math and grade 6 ELA first, then the rest by subject and band. It gives the bench a build order by value, and it
    takes in checks 8a and 8b below for tools.
-7. **Token plan (planned 2026-11-10, Cory; docs/agents/TOKEN-PLAN.md). Evidence pack script built and checked on two tools 2026-11-10; the three-tool quality trial is next.** Token cost is the biggest limit
+7. **Token plan (planned 2026-11-10, Cory; docs/agents/TOKEN-PLAN.md). Evidence pack script built and checked on two tools 2026-11-10; the three-tool quality trial runs at step 5 of the path above, on the first tools Refine resumes with.** Token cost is the biggest limit
    on growth; savings must not reduce quality. The agent logs show that re-read context, not new context, is most of
    a lens's cost, and that the Exit check and Finish check together cost about as much as the three lenses. Changes to
    try: script the counting checks, one evidence pack a round, heavy files kept out of context, a spec pre-check, and
    model tiers. Each is trialled beside the current flow on three tools and kept only if it misses no blocker or
    should-fix.
 
-   **Order (set 2026-11-10):** items 6 and 7 run first, side by side. Then Cory's picks on the Desk, then the year
-   spines and the unit pilot (Track 7), then Refine resumes in value order on the 119 tools at Self-check. The cohort
-   in item 2 and the Codex queue carry on meanwhile.
-8. **Adoption-bar checks (new 2026-11-10, docs/ADOPTION-BAR.md; on hold behind items 6 and 7):** three checks that
+   **Order:** replaced by "The path from here" above (2026-11-10). Items 1 to 3 here (the Codex queue, the cohort,
+   scaling builds back up) are paused with it.
+8. **Adoption-bar checks (new 2026-11-10, docs/ADOPTION-BAR.md; a and b for tools are done by step 2 of the path above; the rest waits behind it):** three checks that
    are cheap now and costly to backfill. None of them changes the tool pipeline or holds up a build. For tools, a and
    b are now part of the catalog review; what is left of each is a short scan of the other shelves after it.
    - **a. K-2 reading scan.** A fresh agent reads every K-2 reading tool, plan, worksheet and Word Wall card for

@@ -91,5 +91,7 @@ slices) and a README. Always pass --audit; without it the script runs the audit'
   and a check_tools.py that can be imported without running everything.
 
 **Not done yet: the quality guard.** The side-by-side trial on three tools (old flow against pack flow, counting
-turns, context and findings) has not run. No pipeline doc points agents at the pack until it passes.
+turns, context and findings) has not run. No pipeline doc points agents at the pack until it passes. Tool building is paused
+(docs/ROADMAP.md, "The path from here"); the trial runs at step 5, on the first three tools Refine resumes with,
+so it costs no extra builds.
 

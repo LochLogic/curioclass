@@ -64,6 +64,18 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     pursue formal adoption now; if later data says it is a good path, we pivot and are already well placed. The bar
     never overrides "What we will not do" in docs/VISION.md (no accounts, tracking or student analytics). What the
     bar asks, what we took and what we left out: docs/ADOPTION-BAR.md.
+21. **A tool teaches a standard only when it passes the teaching test** (2026-11-10, after the catalog review pilot).
+    A student alone, following the tool's lead, meets a model, does the standard's own verb (solve, write, explain,
+    record) on every part of its wording, on five or more items that differ, with a check where thinking is cheaper
+    than guessing, and none of it can be skipped. For writing and talk a tool cannot mark, a model, a guide while
+    working and a self-check on screen against a shown guide count. Every tool states a role: `lesson` (passes the
+    test), `see why` (lets a student explore the idea and names what the unit adds) or `practice`. A tool claims a
+    code only for work on its main path; a readout, an optional mode or a teacher note never carries a code.
+22. **Modules name standards, and major work gets depth** (2026-11-10). A module lists the standards its tool really
+    teaches, never a bare cluster, so an untaught standard shows. In math, ELA and science, the major work of a
+    grade gets two or three tools or full modes (see why, do it, use it); the trade is fewer tools on supporting
+    topics for now. Fluency volume, long writing, discussion, year-long reading and topic threads across texts
+    belong to units, worksheets and the Reading Room, and are recorded there, not claimed by a tool.
 
 ## One module Cory reviews personally
 

@@ -58,6 +58,7 @@ the shelves that feed it. Single tools keep their own rules (BASELINE, docs/TOOL
 | Math focus and balance report, per grade | ROADMAP Now, item 8b (tools: the catalog review) | Now |
 | Reading Room: a text record and topic sets | docs/LIBRARY-PLAN.md ("Reading level", "Topic sets"); ROADMAP Now 8c and Track 3 | Before the ten-story pilot |
 | Hands-on work uses things a classroom or home already has, or names a cheap stand-in | docs/agents/STANDARDS.md (Scope), docs/agents/PLAN.md | Standing, from 2026-11-10 |
+| The teaching test, tool roles, modules that name standards, depth on major work (from the catalog review) | BASELINE rules 21 and 22; ROADMAP "The path from here" | Locked 2026-11-10; tool building paused until the rules are in |
 | State crosswalk: one state outside the Common Core first; CASE as a file format in and out | ROADMAP Track 7 ("Later"), docs/PHASE1-SCOPE.md | When the crosswalk starts |
 
 On the crosswalk: the Blueprint's shape (our own spine of small pieces, with each state's standards mapped onto it)
