@@ -166,3 +166,5 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - clay-cutting-bench: overlap with slice-and-stack (default used: this tool only predicts and names plane sections of prisms and pyramids; slice-and-stack keeps cross sections for volume)
 - phone-plan-showdown: data source (default used: sample prices from made-up carriers set near current U.S. prepaid plans per FCC and BLS, labeled sample prices with the date, checked again before build)
 - hot-air-and-sandbags: code move (default used: 7.NS.2d goes to remainder-loop; this tool keeps 7.NS.1, 7.NS.2a to 7.NS.2c and 7.NS.3)
+- blueprint-studio: the idea card moves 7.G.3 out of this tool; should it go to clay-cutting-bench? (default used: yes, clay-cutting-bench teaches plane sections; this tool keeps 7.G.1 and 7.G.2)
+- data-detective: which paired data ship? (default used: adult foot length and stature from ANSUR II or NHANES, and NOAA daylight and temperature normals; geyser data left to simulation-studio)
