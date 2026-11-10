@@ -172,3 +172,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - question-jar: the CSTA 2026 wording is not in data/standards, so the computer science specs quote the module line from data/modules.csv; file the CSTA text? (default used: module line until the text is filed)
 - question-jar: overlap with wonder-wall, which also sorts questions (default used: keep both; this one sorts by how data is collected and who it misses)
 - attic-gadget-box: which designer cards ship? (default used: Ottens and Philips 1963, Sasson and Kodak 1975, Gladys West and GPS, national TV captions 1980; no person named on the phone and letter tracks until a second source is found)
+- inventors-hall: the talking calculator exhibit (default used: a 1970s talking calculator for blind users shown with a date range and no maker named until two sources agree)
+- job-shadow-day: E5-SYS-IM-15 is matched to the module line, not CSTA 2026 text (default used: a ripple trace of how one system change affects the day; confirm when the CSTA text is filed)
+- fair-survey-kit: overlap with lunch-survey-cleanup and catalog-column-rules (default used: keep; this one plans first, at grade 3-5 depth)
