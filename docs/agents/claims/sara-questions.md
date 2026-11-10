@@ -10,3 +10,5 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - changemaker-cards: are these the right six people for grade 2? (default used: Olmsted, Titcomb, Susan B. Anthony, Clara Barton, Ruby Bridges, Marley Dias). Sensitivity flag: segregation and race in books; fresh-agent read needed.
 - changemaker-cards: a fifth way, "Showing up", was added for Ruby Bridges (default used: Showing up).
 - my-life-timeline: sensitivity flag (family situations vary); fresh-agent read needed before build (default used: no baby photo, birth facts or family members asked).
+- pen-pal-parcels: sensitivity flag (three real countries, made-up child pen pals); fresh-agent read of letters and art needed before build (default used: ordinary work and one real change per place, no cocoa for Ghana).
+- storm-helpers: sensitivity flag (children who lived through storms); fresh-agent read needed before build (default used: calm morning after only, everyone safe, teacher note).
