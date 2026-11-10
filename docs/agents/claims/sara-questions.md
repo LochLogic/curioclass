@@ -41,3 +41,8 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - house-of-wisdom: sensitivity flag; Islam and the Abbasid caliphate (default used: accurate and respectful, scholars' many faiths named, no scripture pages and no images of the Prophet, fresh-agent read before build).
 - salt-and-gold-caravan: sensitivity flag; the trans-Saharan slave trade (default used: one plain card with a source, no images, Mali shown in its strength, fresh-agent read before build).
 - mongol-messenger: sensitivity flag; the Mongol conquests were violent (default used: one plain overlay card with a source and no images, fresh-agent read before build).
+- printing-press: sensitivity flag; Reformation religious conflict (default used: Catholic and Protestant voices both shown, propaganda described not displayed, fresh-agent read before build).
+- unlabeled-archive: sensitivity flag; the de Bry print shows Algonquian people through a European engraver's eyes (default used: a plain note on its limits, fresh-agent read before build).
+- constitutional-convention: sensitivity flag; slavery's compromises at the Convention (default used: the Constitution's words and effects told plainly, no images of enslaved people, fresh-agent read before build).
+- constitutional-convention: module change; D2.Civ.8.6-8 added here from agora-assembly as the idea card proposes (default used: added; agora-assembly's spec not touched).
+- evidence-corkboard: sensitivity flag; Haudenosaunee land loss (default used: named plainly with sources from the nations, framed as a gap to research, fresh-agent read before build).
