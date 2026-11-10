@@ -38,3 +38,6 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - columbian-exchange: sensitivity flag; population collapse and the slave trade are told plainly (default used: sourced facts and ranges, no images of suffering, fresh-agent read before build).
 - tenochtitlan-builder: sensitivity flag; Mexica religion, the conquest and the epidemic (default used: Templo Mayor shown plainly with no sacrifice images, the conquest in one plain card, people art checked against codices, fresh-agent read before build).
 - constantinople-defense: sensitivity flag; war and religious conflict across four sieges (default used: maps and arrows with no gore, each side's reasons named, fresh-agent read before build).
+- house-of-wisdom: sensitivity flag; Islam and the Abbasid caliphate (default used: accurate and respectful, scholars' many faiths named, no scripture pages and no images of the Prophet, fresh-agent read before build).
+- salt-and-gold-caravan: sensitivity flag; the trans-Saharan slave trade (default used: one plain card with a source, no images, Mali shown in its strength, fresh-agent read before build).
+- mongol-messenger: sensitivity flag; the Mongol conquests were violent (default used: one plain overlay card with a source and no images, fresh-agent read before build).
