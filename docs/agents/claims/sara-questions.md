@@ -136,3 +136,4 @@ Round 1 (37 lines) moved to the Desk as card q-sara-specs on 2026-11-09; the ful
 - make-ten-machine: overlap with fact-rally (default used: strategies built step by step with counters and no timer; fact-rally keeps speed)
 - pizza-party: code move (default used: 1.G.1 and 1.G.2 go to picky-robot-shapes; this tool teaches 1.G.3 only)
 - picky-robot-shapes: overlap with pattern-block-windows (default used: this tool is about defining features and reusing a composite; pattern-block-windows keeps filling outlines in kindergarten)
+- fact-rally: overlap with make-ten-machine and multiplication-dungeon (default used: strategies used fast on a court with rally-spaced repeats; make-ten-machine builds them slowly; multiplication-dungeon gets a different repeat mechanic and look)
