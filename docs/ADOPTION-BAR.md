@@ -70,14 +70,16 @@ standards in; we read it in and can write our map out in it.
 
 | What a review looks at | Where it was | Where it sits now |
 |---|---|---|
-| Assessment beyond one short check per unit | Not in the six steps | Every spec ends each code with an unaided check the teacher can see (SPEC.md, three hooks); the pilot unit carries its own assessment (ROADMAP step 4). Diagnostic and end-of-year checks are still open |
+| Assessment beyond one short check per unit | Not in the six steps | Every spec ends each code with an unaided check the teacher can see (SPEC.md, three hooks); the pilot unit carries its own assessment (ROADMAP step 4). A readiness check per unit and a cumulative check each quarter and at year end are now part of a finished course (ROADMAP, "What a finished course holds", item 4) |
 | English learner supports | Named above, in no step | SPEC.md, three hooks; FINAL-REVIEW.md |
 | Access: keyboard, color, sound with text | A font and contrast bar, later | SPEC.md, three hooks; FINAL-REVIEW.md |
 | What ships, not what the spec says | The measure read specs only | The measure now also counts live and verified tools and unit days (catalog/tables/measure.md) |
 | A reader outside the project | Open in PHASE1-SCOPE | A working teacher reads the pilot unit (ROADMAP step 4) |
 | A real rubric | This file, compiled from one Blueprint and Claude's knowledge | A published rubric is filed and used in step 4 |
-| Coherence across grades | One line in the spine | Still open: the grade 4 spine says what grade 3 hands it and what grade 5 needs |
-| Evidence that it works | Left out | Still left out, apart from one class using the pilot unit |
+| Coherence across grades | One line in the spine | Each spine row names the standards it builds on and where they are taught; a progression table per subject is built by script before step 6 (ROADMAP gap table) |
+| Evidence that it works | Left out | Not claimed. A one-page logic model is written with the pilot unit; a study waits for a partner (ROADMAP gap table) |
+
+The full list of gaps, each with the step that closes it and the test for closed, is in docs/ROADMAP.md, "Gaps found, and how each closes".
 
 ## What we left out, and why
 

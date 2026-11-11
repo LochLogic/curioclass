@@ -91,9 +91,62 @@ Fixes that hold whatever happens (a wrong fact, a broken control on a live tool)
 | 1. Rules. **Done 2026-11-10** | The teaching test and six rule edits are in SPEC.md, REFINE.md and docs/TOOL-CONTRACT.md. Common Core math and ELA texts and the major-work marks are filed in data/standards/. The other subjects' texts are filed there too (CSTA 2026 as ids only) but not yet wired into the packets or the ledger | A new spec or lens cannot pass a tool that fails the test | Nothing |
 | 2. Read. **Read and maps done 2026-11-10.** Wiring the other subjects' texts is parked (2026-11-11): science and social studies when their courses come up, the rest after the core is proved | Every spec read with row format 2: the 36 pilot tools again as the test, then all the rest by subject and band (about 64 cheaper-model agents). Scripts build the ledger and one map per course, and flag two-topic modules | Every course has its map and its measure | Nothing |
 | 3. Shape, one course at a time (was step 4; moved ahead of fixing 2026-11-10) | From the maps, by rule, for one course: module standards spelled out, spec notes applied, second and third tools listed for major-work modules, supporting tools that wait, tools to cut, merge or give a new role, and a build order by value. The two proving courses first. One file per course in docs/agents/catalog/shape/ | data/modules.csv, the specs, the ledger and the build order agree with the map for that course | One Desk card per course, exceptions only: reshape, hold, cut, new tool, split a module |
-| 4. Prove one course (was step 5; moved ahead of further fixing 2026-11-11). **Starts now, grade 4 math first** | Sara closes the specs of the two proving courses, then the band, grade 5 and grade 3 math (NEXT.md, batches 1 to 4), and stops. In step with her: the grade 4 math year spine; three tools built from fixed specs (building resumes for these three only; the token plan's side-by-side trial runs on them); one full unit pulling from every shelf, with its assessment and supports; each built tool played against its spec and logged in catalog/verified.txt; a real adoption rubric filed in docs/ (source and licence checked) and the unit read against it by a fresh agent; then a working teacher reads the unit, and one class uses it if we can arrange that. Grade 6 ELA follows the same path | Cory can open one unit and see the bar met, a teacher outside the project has read it, and the measure shows standards verified, not only full on paper | The spine, which three tools, who the teacher is, then the pilot review |
+| 4. Prove one course (was step 5; moved ahead of further fixing 2026-11-11). **Starts now, grade 4 math first** | Sara closes the specs of the two proving courses, then the band, grade 5 and grade 3 math (NEXT.md, batches 1 to 4), and stops. In step with her: the grade 4 math year spine; three tools built from fixed specs (building resumes for these three only; the token plan's side-by-side trial runs on them); one full unit pulling from every shelf, with its assessment and supports; each built tool played against its spec and logged in catalog/verified.txt; a real adoption rubric filed in docs/ (source and licence checked) and the unit read against it by a fresh agent; then a working teacher reads the unit, and one class uses it if we can arrange that. Grade 6 ELA follows the same path | Cory can open one unit and see the bar met, a teacher outside the project has read it, the measure shows standards verified, not only full on paper, and the cost of one tool and one unit is written down. The course itself is done when it meets "What a finished course holds" | The spine, which three tools, who the teacher is, then the pilot review |
 | 5. Fix what the proof keeps (was step 4) | Whatever the proof changed goes into SPEC.md, the fix list and the shape script first. Then Sara's queue reopens course by course in the order NEXT.md holds, and the live tools in each course are fixed. Ahead of that, only fixes that hold whatever happens: a wrong fact or a broken control on a live tool. The shelf fixes in docs/ECOSYSTEM.md can run any time. Built tools waiting on Refine are not fixed now | Every live tool in a proved course passes the test or carries an honest role | Nothing, unless a fix changes what a tool teaches |
-| 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first, core subjects before the rest. Each finished course gets its spine, units and a full row on every column of the measure | Course by course, the measure reaches full and verified | The order of courses |
+| 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first, core subjects before the rest. A course is finished when it meets "What a finished course holds", and the gap table below is checked at the end of each | Course by course, the measure reaches full and verified and unit days reach the spine's total | The order of courses |
+
+### What a finished course holds (added 2026-11-11)
+
+The measure says how far a course is. This list says what "finished" means, so no step can call a course done on
+tools alone. Grade 4 math is the first course held to it (step 4), and the list is corrected by what that proof
+finds.
+
+1. **A year spine** that accounts for every teaching day: about 150 (180 less testing and school events; the number
+   is set on each spine). Each unit has its days, its reason for sitting where it does, what the grade before hands
+   it and what the grade after needs from it. A day Curio Class has nothing for is listed as a gap day, never
+   papered over.
+2. **Units for every day on the spine**, each pulling from the shelves, with daily plans and teacher pages.
+3. **Every standard taught in full by a live tool or a unit lesson**, and each of those tools verified: played
+   against its spec, logged in docs/agents/catalog/verified.txt.
+4. **Assessment at three sizes.** In every tool, the unaided check (SPEC.md hooks). In every unit, a short
+   readiness check on the standards it builds on, and an end check with a key that says what each wrong answer
+   means. In the course, a cumulative check each quarter and at the end of the year, built from the generators so
+   it can be redrawn. With no accounts, results live on a printable class record sheet and in score codes.
+5. **English learner supports** in every tool (the hooks) and on every unit's teacher page: the language the lesson
+   asks for, the key words with their Word Wall cards, sentence frames for the talk and the writing.
+6. **Access.** Every tool passes the hooks and an automated access check at the Finish check; one keyboard-only
+   play is part of verifying it. Printables read in black and white.
+7. **One outside read.** A working teacher has read at least one unit of the course and their notes are filed in
+   docs/pilots/ with what changed because of them.
+8. **Honest public claims.** The course's pages say taught, practiced or shown per the ledger, never more.
+9. **A fresh-agent read of the whole course** against the rubric on file, with every finding closed or listed.
+
+### Gaps found, and how each closes (2026-11-11)
+
+Every gap the two reviews and the cold review found, with the step that closes it. A gap leaves this table only
+when its "closed when" is true. Nothing here is closed by a sentence in a plan.
+
+| Gap | How it closes | Step | Closed when |
+|---|---|---|---|
+| The measure counted specs, not what ships | Four columns: full on paper, full and live, verified, unit days | Done | In measure.md now. 254, 10, 0, 0 across the site |
+| Tools are about seven hours of a course; no unit exists in data | data/units.csv (one row per unit: course, order, days, modules, status) feeds the Unit days column; only live units count. The spine budgets every teaching day | 4 for the pilot unit, 6 per course | A course's unit days reach its spine's total |
+| The proof came after a year of fixing | Proof is step 4 and runs beside Sara's batch 1 | Done | Grade 4 math meets "What a finished course holds" for one unit, then the year |
+| A built tool may not match its spec | Each tool is played against its spec's Standards map and Done when lines, once with keyboard only, and logged in verified.txt with the date. A mismatch is fixed in the build or the spec, whichever is wrong | 4 for three tools, then every tool as its course comes up | Verified equals Full and live for the course |
+| About 220 built or live tools were made before the teaching test | Not fixed now. Each is fixed, re-read and verified when its course comes up. Until then its public pages claim only what the ledger says (next row) | 5, 6 | No live tool in a finished course fails the test |
+| The public site claims more than the ledger supports | Tool pages and /standards/ pages take their wording (teaches, practices, shows) from data/coverage.csv by script | 5, for proved courses first | A script check fails the build when a page claims more than the ledger |
+| The read is 80 percent reliable, and one re-read was never checked | Every re-read gets a top-model spot-check of one spec in five; under 80 percent agreement the course is read again. Verified play is the final word, not the read | Standing (FINAL-REVIEW.md) | Each finished course has its spot-check figure in its shape file |
+| Outside math and ELA, a course's standards count is only what its modules list | measure.md marks those courses with a star. When science, then social studies, come up, the full standard text is wired in first, so the count is every standard of the grade | Before each of those subjects opens | No starred course is quoted as a share of its standards |
+| Assessment was one short check per unit | Three sizes, item 4 of the finished course | Tools: now. Unit checks: 4. Quarter and year checks: 6 | The pilot unit ships with both unit checks; a finished course has all five cumulative checks |
+| English learner supports were named and in no step | Item 5 of the finished course | Tools: now. Units: 4 | The pilot unit's teacher page carries all three parts |
+| Access was a font and contrast bar | Item 6 of the finished course. The automated check joins the Finish check in docs/agents/ when building resumes | Hooks: now. Check: with the three proof tools | The three proof tools pass both |
+| Coherence across grades was one line | Each spine row names the earlier standards it builds on and where Curio Class teaches them. A script builds a progression table per subject (domain by grade, from the standard texts and the ledger), read at every Shape | Grade 4 math spine: 4. The table: before step 6 | No unit in a finished course builds on a standard taught nowhere below it, or the gap is named |
+| No teacher or class had seen any of it | A working teacher reads the pilot unit; one class if it can be arranged. Every unit page carries a short feedback link. Findings are filed in docs/pilots/ | 4, then standing | Item 7 of the finished course. Two teachers before step 6 opens |
+| No evidence that it works | Not claimed. A one-page logic model (what the course does, why it should work, what would show it) is written with the pilot unit, which is the lowest tier a federal evidence review accepts. A study waits for a partner | 4 | The logic model is on file and nothing public claims results |
+| The bar on file is our summary, compiled from one Blueprint and Claude's knowledge | A published rubric is filed with its source and licence and the pilot unit is read against it | 4 (Desk card q-proof-math-4) | The fresh-agent read cites the rubric's own criteria |
+| The reviewer of a spec was the person who fixed it | Three readers after Sara: verified play, a fresh agent, a teacher | 4 | In FINAL-REVIEW.md now |
+| Builds and units are the constraint, not specs | The proof records what one tool and one unit cost in tokens and days. Step 6 sets how many courses a season holds from that, in the open. After batch 4 Sara's time goes to unit pieces, not more specs | 4 | The cost of one course is written in this file before step 6 opens |
+| Subjects outside the core have thin reads and umbrella codes | Parked, in the goal. Each opens only with its standard text wired and a fresh read | After the core is proved | Its first course meets the finished course list |
+| Loose ends from spelling out module standards | 113 cluster pages under /standards/ are gone and 296 added, with no redirects; scripts/check_plans.py reports 14 of 80 plans with problems; check_concepts stops on unknown module social-studies-3-5-road-trip-atlas | Before the next site build | Redirects are in data/redirects.csv and both checks pass |
 
 **Resume here (left 2026-11-11, midday): step 4, the proof, is open. Every course is shaped; a cold review then narrowed the plan (see "Changed after a cold review" above). Sara works NEXT.md batches 1 to 4 and stops. Next for Claude: the grade 4 math year spine for Cory, then the three tools and the pilot unit once he has answered Desk card q-proof-math-4.** All 800 tools have a row in row format
 2 (docs/agents/catalog/rows/, 71 packets, about 12 million tokens on the cheaper model), and the ledger is rebuilt:
@@ -202,21 +255,22 @@ Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.
 
 ### What every other track does meanwhile
 
-| Track | Until step 5 | From step 5 on |
+| Track | Until grade 4 math is proved (step 4) | After the proof |
 |---|---|---|
-| 1. Tools | Paused, except the step 3 fixes. Held collections, queued ideas and the Codex queue wait | Resumes for the two pilot courses, then by course |
-| 2. Supply Closet | Carries on: worksheet waves, generators, the Word Wall diagram pass, Break Box read. Its shelf fixes land in step 3. Charts and teacher-guide links wait for building to resume, since they ride with a tool | Each unit names what it pulls from the closet. The module kit and Sub Day lite follow the unit pilot |
-| 3. Reading Room | Add the text record and topics to the story format, then the ten-story pilot. It can run beside steps 2 to 4 | Topic sets are written into the ledger for the standards they carry; enrich waves follow the course order |
-| 4. The site | The step 3 page changes. Open items (www redirect, dark mode, request page) any time | The Map shows the measure per stop. A course page links its spine and units |
-| 5. Outreach and funding | Funding contacts carry on with what is live. No wide announcement yet | The two proven courses are what gets shown; teacher channels open after step 5 |
-| 7. Curriculum | Nothing before step 5 | It is steps 5 and 6: spines, units, then Tracks and the Binder once several courses are full. The state crosswalk comes after that |
+| 1. Tools | Paused, except the three grade 4 math proof tools and fixes that hold whatever happens. Held collections, queued ideas and the Codex queue wait | Resumes for the two pilot courses, then by course |
+| 2. Supply Closet | Carries on: worksheet waves, generators, the Word Wall diagram pass, Break Box read. Its shelf fixes can land any time. Charts and teacher-guide links wait for building to resume, since they ride with a tool | Each unit names what it pulls from the closet. The module kit and Sub Day lite follow the unit pilot |
+| 3. Reading Room | Add the text record and topics to the story format, then the ten-story pilot. It can run beside the proof | Topic sets are written into the ledger for the standards they carry; enrich waves follow the course order |
+| 4. The site | Page changes that the fixes need. Open items (www redirect, dark mode, request page) any time | The Map shows the measure per stop. A course page links its spine and units |
+| 5. Outreach and funding | Funding contacts carry on with what is live. No wide announcement yet | The two proven courses are what gets shown; teacher channels open after the proof |
+| 7. Curriculum | The grade 4 math spine, one pilot unit and its checks (step 4) | It is step 6: spines, units, then Tracks and the Binder once several courses are full. The state crosswalk comes after that |
 | 9. Recess and Curiosities | Wait with tool building, since they use the same pipeline. Design work (Recess's look, picking first games) can go on | Built in their own small waves beside the course work, never counted in the measure |
 | 8. Beyond School, 10. Languages | Wait | Start only after several courses are full, or, for the first Languages wing, when a partner says yes |
 
 ### Decisions, kept few
 
-What Cory is asked, in order: the step 4 exception cards (one per subject); the two year spines and the pilot units
-in step 5; the order of courses in step 6. Everything else runs on these defaults: a spec note that makes a tool pass
+What Cory is asked, in order: the Shape exception cards (open now); the proof card (q-proof-math-4: which three
+tools, who the teacher is, which rubric, Sara's work after batch 4); the grade 4 math spine and the pilot unit; the
+order and number of courses in step 6, once the cost of one is known. Everything else runs on these defaults: a spec note that makes a tool pass
 the teaching test is applied without asking; a code follows the tool that really teaches it; year-long standards go
 to the spine; nothing is cut to save work (rule 1). The depth rule (two or three tools on major work) applies to
 math, ELA and science; other subjects only need each tool to pass the test or state its role. Questions go on the
@@ -471,7 +525,7 @@ From single tools to complete courses a teacher can run start to finish, one lad
 adoption bar applies (docs/ADOPTION-BAR.md, BASELINE rule 20): reviews judge a whole course, so the year's shape
 comes before the units that fill it.
 
-1. **Year spine** (new 2026-11-10; starts after the catalog review's pilot on the same two courses, Now item 6, whose
+1. **Year spine** (new 2026-11-10; what it must hold is item 1 of "What a finished course holds"; starts after the catalog review's pilot on the same two courses, Now item 6, whose
    coverage tables it builds on): for each pilot course (grade 4 math, grade 6 ELA), one page that puts the
    year's units in order and says why each sits where it does: what it builds on, what it sets up, and for math,
    how much of the year goes to the major work of the grade. It starts from data/sequence.csv and the module list,
@@ -497,8 +551,8 @@ comes before the units that fill it.
 Later: score codes (a code and QR a student shows the teacher, scanned on the teacher's own device; never called
 proof or cryptographic) and the state standards crosswalk. The crosswalk starts with one state outside the Common
 Core as the test (the state picked when it starts), as a mapping layer over modules and data/sequence.csv, with CASE
-as the file format in and out (docs/ADOPTION-BAR.md). Also open (from PHASE1-SCOPE): a second reader (a teacher)
-checks best-fit standards alignment for one subject.
+as the file format in and out (docs/ADOPTION-BAR.md). The second reader (a teacher) that PHASE1-SCOPE left open is now part of step 4: a working
+teacher reads the pilot unit, and the alignment of its standards is one of the things they are asked about.
 
 ## Track 8: Beyond School (new 2026-11-03, late)
 

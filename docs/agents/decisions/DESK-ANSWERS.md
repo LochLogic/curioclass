@@ -249,3 +249,11 @@ changes, the new findings seem sound."
 
 Also taken: a top-model spot-check on every re-read; Sara's final review is no longer the last word on a course.
 
+## 2026-11-11: close every gap in the plan itself (Cory, in chat)
+
+Cory: "improve the plan as written to close all the gaps we've found." Added to ROADMAP: "What a finished course
+holds" (nine items; the definition of done for a course) and "Gaps found, and how each closes" (nineteen rows, each
+with a step and a test for closed). Defaults Claude chose, open to change: about 150 teaching days per spine; three
+sizes of assessment; public claims follow the ledger by script; two teachers before step 6 opens; a logic model
+instead of any claim of results; Sara's time after batch 4 goes to unit pieces (asked on q-proof-math-4).
+
