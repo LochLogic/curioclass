@@ -174,7 +174,8 @@ The thirteen calls:
 - CSTA 2026 text: file it in data/standards with its licence noted, together with the other subjects' texts still
   owed from step 1 (science first, since the ledger cannot measure a course without its texts).
 - Many Voices Book: bank voice for the whole book; native-speaker greetings only with volunteers and consent.
-- Settle the Valley: LEFT OPEN for Cory and Sara (card q-sara-specs-2). Claude's pick changed with the adoption
-  bar: a made-up first people is the kind of generic portrayal state reviews mark down, so the pick is now to hold
-  the tool and rebuild it on one real nation's own published teaching materials when its course comes up.
+- Settle the Valley: SETTLED by Cory on the Desk, 2026-11-10 ("Use Claude's picks on all of these", card
+  q-sara-specs-2). Hold the tool and rebuild it on one real nation's own published teaching materials when its
+  course comes up, then ask that nation's education office to look at it before it goes live. No paid consultant
+  unless a funder covers it. Why: a made-up first people is the kind of generic portrayal state reviews mark down.
 

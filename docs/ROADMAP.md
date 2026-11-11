@@ -38,7 +38,11 @@ disagree, this section wins.
 
 **End goal.** A teacher can run any course on Curio Class from the first day to the last, free, with no account, and
 the course would stand up to a state adoption review (docs/ADOPTION-BAR.md, BASELINE rule 20). Every tool in it is
-really good. A course is a grade of a subject or a high school course.
+really good. A course is a grade of a subject or a high school course. Taken together, the courses cover what an
+American public school teaches from kindergarten to grade 12: every grade of the core subjects, and the subjects
+around them (arts, computer science, health and PE, world languages, English language development, library, career
+and technical, social and emotional learning). Depth comes first: a course is finished before the next is started
+(step 6), so breadth is where the site ends up, not a reason to spread thin.
 
 **One measure.** For each course: standards taught in full, out of all its standards, counting tools, units,
 worksheets and the Reading Room together. It goes on the Desk, and every step below moves it.
@@ -70,14 +74,14 @@ one exception.
 
 | Step | What | Done when | Cory decides |
 |---|---|---|---|
-| 1. Rules. **Done 2026-11-10** | The teaching test and six rule edits are in SPEC.md, REFINE.md and docs/TOOL-CONTRACT.md. Common Core math and ELA texts and the major-work marks are filed in data/standards/. Not filed yet: science and the other subjects' standard texts | A new spec or lens cannot pass a tool that fails the test | Nothing |
-| 2. Read. **Read done 2026-11-10; maps next** | Every spec read with row format 2: the 36 pilot tools again as the test, then all the rest by subject and band (about 64 cheaper-model agents). Scripts build the ledger and one map per course, and flag two-topic modules | Every course has its map and its measure | Nothing |
+| 1. Rules. **Done 2026-11-10** | The teaching test and six rule edits are in SPEC.md, REFINE.md and docs/TOOL-CONTRACT.md. Common Core math and ELA texts and the major-work marks are filed in data/standards/. The other subjects' texts are filed there too (CSTA 2026 as ids only) but not yet wired into the packets or the ledger | A new spec or lens cannot pass a tool that fails the test | Nothing |
+| 2. Read. **Read and maps done 2026-11-10; wiring the other texts next** | Every spec read with row format 2: the 36 pilot tools again as the test, then all the rest by subject and band (about 64 cheaper-model agents). Scripts build the ledger and one map per course, and flag two-topic modules | Every course has its map and its measure | Nothing |
 | 3. Fix what is built | The live-tool fixes in the order in DESK-ANSWERS, then whatever the read finds in the other live tools. The shelf fixes in docs/ECOSYSTEM.md: pages, search, plans and Sub Day show a tool's own codes; worksheets join by module id; The Map counts a stop ready when its lesson tool is live. The 149 built tools waiting on Refine are not fixed now; the new Teaching lens catches them when Refine resumes | Every live math, ELA and science tool passes the test or carries an honest role, and a module can hold a second tool without any page showing a wrong code | Nothing, unless a fix changes what a tool teaches |
 | 4. Shape | From the maps, by rule: module standards spelled out, spec notes applied, second and third tools listed for major-work modules, supporting tools that wait, worksheet presets and Reading Room sets written into the ledger, and a build order by value (data/waves.csv) | data/modules.csv, the specs, the ledger and the build order all agree with the maps | One Desk card per subject, exceptions only: reshape, hold, cut, new tool, split a module |
 | 5. Prove one course | Grade 4 math and grade 6 ELA (Track 7): the year spine, then one pilot unit each, pulling from every shelf, read by a fresh agent against docs/ADOPTION-BAR.md. Building resumes for these two courses only. The token plan's side-by-side trial runs on the first three tools | Cory can open one unit of each and see the bar met | The two spines, then the pilot review |
 | 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first. Each finished course gets its spine, units and a full row on the measure | Course by course, the measure reaches full | The order of courses |
 
-**Resume here: step 2, the read is done (2026-11-10); the maps are next.** All 800 tools have a row in row format
+**Resume here: step 2, the read and the maps are done (2026-11-10); wiring in the other standard texts is next.** All 800 tools have a row in row format
 2 (docs/agents/catalog/rows/, 71 packets, about 12 million tokens on the cheaper model), and the ledger is rebuilt:
 data/coverage.csv and docs/agents/catalog/tables/measure.md. Across every course's standards: 213 full, 368 nearly,
 404 part, 1,102 practice only, 276 shown, 37 none. By tool: 70 teach every code they carry, 177 teach at least one
@@ -101,10 +105,18 @@ rule in CATALOG-EXTRACT.md needs three tests added (is trial really cheaper than
 table close it, does a second check stand) and a tie-break for two-part standards; (3) rows that say shown with a
 keyed check and an activity the student types are contradictions to grep for.
 
-Next: write the step 2 maps per subject (what is taught in full, what is practice only, what no tool reaches, the
-nine two-domain math modules), sort every spec into fine, small addition or rework from its row, and bring the
-maps to Cory as one Desk card per subject. Specs are revised course by course just before Build (steps 5 and 6,
-docs/agents/SPEC-REVISE.md), not all at once.
+The maps are written (2026-11-10): `python scripts/catalog_maps.py` builds one map per subject in
+docs/agents/catalog/tables/ (map-<subject>.md, index maps.md) and sorts every spec in spec-sort.csv. The sort: 70
+fine, 558 small addition, 172 rework; 62 have a thin or missing spec. By stage: of 83 live tools, 3 fine, 54 small
+addition, 26 rework; of 146 built, 7, 103, 36. The two proving courses: grade 4 math has 13 tools (2 fine, 10 small
+addition, 1 rework) and 27 standards (4 full, 6 nearly, 15 part, 1 practice only, 2 shown); grade 6 ELA has 9 tools
+(1 fine, 7 small addition, 1 rework) and 43 standards (4 full, 6 nearly, 17 part, 14 practice only, 2 shown). The
+maps are on the Desk as card q-maps-1.
+
+Next: wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
+the beatable rule, clean the contradictory rows, then rebuild the ledger and the maps. After that step 2 is closed
+and step 3 (fix what is built: the 26 live rework tools first) opens. Specs are revised course by course just
+before Build (steps 5 and 6, docs/agents/SPEC-REVISE.md), not all at once.
 Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
 
 ### What every other track does meanwhile
