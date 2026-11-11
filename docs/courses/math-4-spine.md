@@ -15,6 +15,13 @@ stretches 12 to 14. (2) A facts check in days 1 to 6, repeated before day 94, wi
 decimals rule for stretches 7 and 15. (4) The third day of unit 8.3 is rounding used to estimate and check. Each is
 written where it applies below; the full wording is in docs/courses/math-3-5-progression.md.
 
+**2026-11-11, from the unit plan trial (Cory said yes; Desk card q-unit-plans).** (1) Stretch 9: unit 9.1 is two
+days (72 to 73) and unit 9.2 four (74 to 77), so subtracting across zeros has a day of its own; the stretch's
+balance is now 3 understanding, 3 fluency. No stretch moved. (2) The numbers rule for days 89 to 93 gains: a
+perimeter used to find a side is even and 100 or less. (3) The readiness check is given before a stretch opens,
+not on its first day. (4) Stretch 11's balance is 2, 1, 2 and its practices are MP.2 and MP.8. (5) Road Trip
+Logbook is a light tool, not a key tool. (6) The warm-up uses the standard algorithm only after it is taught.
+
 ## What changed in this revision
 
 1. **Checks moved from the unit to the stretch.** One readiness check at the start of a stretch, a five-minute exit
@@ -71,7 +78,7 @@ spec yet.
 | 6 | Multiplying a Fraction by a Whole Number | 8 | 44 to 51 | 4.NF.B.4 (a to c) | major | New |
 | 7 | Decimals | 10 | 52 to 61 | 4.NF.C.5, 4.NF.C.6, 4.NF.C.7 | major | Money and Meters (spec) |
 | 8 | Place Value to a Million | 10 | 62 to 71 | 4.NBT.A.1, 4.NBT.A.2, 4.NBT.A.3 | major | Stadium Count (spec) |
-| 9 | Adding and Subtracting Multi-Digit Numbers | 6 | 72 to 77 | 4.NBT.B.4 | major | Road Trip Logbook (spec) |
+| 9 | Adding and Subtracting Multi-Digit Numbers | 6 | 72 to 77 | 4.NBT.B.4 | major | Road Trip Logbook (spec; a light tool, not a key tool: the stretch runs on paper, decided 2026-11-11) |
 | | **Check 2, then a respond day** | 2 | 78 to 79 | stretches 6 to 9, and fractions again | | |
 | 10 | Multiplicative Comparison | 9 | 80 to 88 | 4.OA.A.1, 4.OA.A.2, 4.OA.A.3 (two-step, no remainders) | major | Growth Spurt (spec) |
 | 11 | Area and Perimeter Formulas (the pilot unit) | 5 | 89 to 93 | 4.MD.A.3 | supporting | Community Plot Planner (spec) |
@@ -113,9 +120,9 @@ year. Each unit names the task that builds each one.
 | 6 | Multiplying a Fraction by a Whole Number | 4, 8 | 4 | 2 | 2 | A whole number times a fraction only; fraction times fraction is grade 5; same denominator list |
 | 7 | Decimals | 6, 7 | 6 | 2 | 2 | Tenths and hundredths only; the one unlike addition is tenths plus hundredths; no adding or multiplying in decimal notation (grade 5). The decimals rule: decimals may be read, written, compared, placed and renamed; every calculation is done on whole numbers in the smaller unit or on fractions with denominators 10 and 100; a task that can only be done by computing in decimal notation is grade 5 |
 | 8 | Place Value to a Million | 6, 7 | 5 | 4 | 1 | Whole numbers to 1,000,000; place value in decimals is grade 5 (5.NBT.A.1) and is not assessed here |
-| 9 | Adding and Subtracting Multi-Digit Numbers | 6, 8 | 1 | 4 | 1 | Whole numbers to 1,000,000 |
+| 9 | Adding and Subtracting Multi-Digit Numbers | 6, 8 | 3 | 3 | 0 | Whole numbers to 1,000,000 |
 | 10 | Multiplicative Comparison | 2, 4 | 3 | 1 | 5 | Whole numbers and whole-number answers; in this stretch two steps and no remainders |
-| 11 | Area and Perimeter Formulas | 1, 4 | 1 | 1 | 3 | Rectangles only; area with whole-number sides; fractional sides in perimeter only, like denominators. On days 89 to 93 areas are products within 100, or a one-digit number times a multiple of 10; an unknown side is a factor-pair problem (4.OA.B.4). Area with larger sides returns in stretches 12, 13 and 14 |
+| 11 | Area and Perimeter Formulas | 2, 8 | 2 | 1 | 2 | Rectangles only; area with whole-number sides; fractional sides in perimeter only, like denominators. On days 89 to 93 areas are products within 100, or a one-digit number times a multiple of 10; an unknown side is a factor-pair problem (4.OA.B.4); when a side is found from a perimeter, the perimeter is even and 100 or less. Area with larger sides returns in stretches 12, 13 and 14 |
 | 12 | Multi-Digit Multiplication | 3, 7 | 5 | 5 | 2 | Up to four digits by one digit, and two digits by two digits; place value methods and area models; written methods here shorten into the standard algorithm and must be explained; fluency with the standard algorithm is grade 5 (5.NBT.B.5) |
 | 13 | Division with Remainders | 2, 7 | 5 | 4 | 3 | Dividends to four digits, one-digit divisors; place value methods, which must be explained; fluency with the standard algorithm is grade 6 (6.NS.B.2) |
 | 14 | Multistep Problems with All Four Operations | 1, 4 | 0 | 0 | 4 | Whole numbers and whole-number answers; no more than three steps; a letter for the unknown |
@@ -178,9 +185,11 @@ warm-up from the worksheet generator:
 - **Fractions and decimals, twice a week from day 62**, the day after fraction and decimal teaching ends.
 - **Multiplication and division, from day 118**, mixed into the same rotation.
 
-**The 60 minutes.** Warm-up 5, the lesson about 50, exit question 5. On the first day of a stretch the readiness
-check takes 10 of the lesson's minutes. On the last day the end check takes half the period and the other half is
-used to respond to it.
+**The 60 minutes.** Warm-up 5, the lesson about 50, exit question 5. The readiness check for a stretch takes ten minutes and is given before
+the stretch opens, so it is marked before day 1 and can shape it (decided 2026-11-11): in the last ten minutes of
+the previous stretch's last day, or of the respond day where one sits between the two stretches. Stretch 1 is
+served by the start-of-year check on day 1. On the last day of a stretch the end check takes half the period,
+responding to it takes twenty minutes, and the last ten are the next stretch's readiness check.
 
 ## The units inside each stretch
 
@@ -210,8 +219,8 @@ with one unit, such as the pilot, has its checks inside that unit.
 | 8 | 8.1 Ten times the place to its right | 3 | 62 to 64 | 4.NBT.A.1 |
 | 8 | 8.2 Reading, writing and comparing to a million | 4 | 65 to 68 | 4.NBT.A.2 |
 | 8 | 8.3 Rounding to any place (day 1 the leftmost place on a number line; day 2 any place, with a middle place and rounding up into a new place; day 3 rounding used to estimate and check sums and differences) | 3 | 69 to 71 | 4.NBT.A.3 |
-| 9 | 9.1 The standard algorithm for adding | 3 | 72 to 74 | 4.NBT.B.4 |
-| 9 | 9.2 The standard algorithm for subtracting, across zeros | 3 | 75 to 77 | 4.NBT.B.4 |
+| 9 | 9.1 The standard algorithm for adding | 2 | 72 to 73 | 4.NBT.B.4 |
+| 9 | 9.2 The standard algorithm for subtracting (one ungrouping; several, to six digits; across zeros, a day of its own; mixed, then the end check) | 4 | 74 to 77 | 4.NBT.B.4 |
 | 10 | 10.1 Times as many | 3 | 80 to 82 | 4.OA.A.1 |
 | 10 | 10.2 Comparison word problems: times as many or more than? | 4 | 83 to 86 | 4.OA.A.2 |
 | 10 | 10.3 Two-step problems: a letter for the unknown, an estimate to check | 2 | 87 to 88 | 4.OA.A.3 (two-step, no remainders) |

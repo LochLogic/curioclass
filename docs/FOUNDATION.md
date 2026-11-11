@@ -92,8 +92,11 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
 2. **A tool can be whatever the unit needs.** The unit plan asks, for each key moment, what the ideal instrument for
    that idea would be. Sometimes that is a tool nobody has specced; sometimes it is a marble and a ramp. The limits
    are the promises and assumptions on this page and the cost of doing a tool well, not what software can do.
-3. **Key tools and practice tools.** A key tool is one the unit cannot run without; key tools are built first and
-   hold the course up. Practice tools are lighter, built from shared templates over the long term, and still correct
+3. **Key tools and light tools.** A key tool is the one a day is planned around: it does the day's main job in a
+   way print cannot (feedback on each try, help that fades as the student succeeds, many cases fast), and the paper
+   path is the fallback (reworded 2026-11-11; it had read "one the unit cannot run without", which no tool can meet
+   while every plan must also run on paper). Key tools are built first and hold the course up. Light tools (called
+   practice tools before 2026-11-11) are lighter, built from shared templates over the long term, and still correct
    and still meet the three hooks. Lighter never means lower quality. A course is runnable when its key tools are
    live and print covers the rest. "Key" is a mark given by the unit plan; the roles of BASELINE rule 21 (lesson,
    see why, practice) still say what a tool does.

@@ -6,9 +6,10 @@ A course is counted the way a school would schedule it (Cory, 2026-11-11):
 - every other subject: one per discipline per grade band; world languages one per language.
 The 93 catalog pages (subject by grade or band) are a different count and are not courses.
 
-Run: python -X utf8 scripts/course_status.py
+Run: python -X utf8 scripts/course_status.py [out.json]
+With a path, also writes the Review Desk document (then ArtifactData set stats/courses).
 """
-import csv, glob, io, os, collections, datetime
+import csv, glob, io, json, os, sys, collections, datetime
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def rows(p): return list(csv.DictReader(io.open(os.path.join(ROOT, p), encoding='utf-8')))
@@ -103,6 +104,7 @@ A('## Summary\n')
 A('| Subject | Courses | Flagged core | With a spine | With any unit plan | Modules | Tools: spec / built / live |')
 A('|---|---|---|---|---|---|---|')
 tot = collections.Counter()
+J = dict(at=datetime.datetime.now(datetime.timezone.utc).isoformat(), summary=[], subjects=[], shared=[])
 for s, label in groups:
     ds = [(k, d) for k, d in courselist.items() if d['subject'] == s]
     cells = [layer_cells(k, d) for k, d in ds]
@@ -112,8 +114,10 @@ for s, label in groups:
              plans=sum(c[4] != 'no' for c in cells), mods=sum(d['mods'] for _, d in ds),
              spec=tc['spec'] + tc['idea'], built=tc['built'], live=tc['live'])
     tot.update(r)
+    J['summary'].append(dict(name=label, **r))
     A(f"| {label} | {r['n']} | {r['core']} | {r['spine']} | {r['plans']} | {r['mods']} | {r['spec']} / {r['built']} / {r['live']} |")
     if s == CORE4[-1]:
+        J['core4'] = dict(tot)
         A(f"| **The four core subjects** | **{tot['n']}** | **{tot['core']}** | **{tot['spine']}** | **{tot['plans']}** | "
           f"**{tot['mods']}** | **{tot['spec']} / {tot['built']} / {tot['live']}** |")
 A(f"| **All courses** | **{tot['n']}** | **{tot['core']}** | **{tot['spine']}** | **{tot['plans']}** | **{tot['mods']}** | "
@@ -124,11 +128,14 @@ A('\nTool counts here leave out tools that sit on shared modules (last table). "
 for s, label in groups:
     ds = sorted([(k, d) for k, d in courselist.items() if d['subject'] == s], key=lambda kd: kd[1]['sort'])
     A(f'## {label} ({len(ds)} courses)\n')
+    js = dict(name=label, courses=[]); J['subjects'].append(js)
     A('| Course | Core | Rubric file | Approach | Progression | Spine | Unit plans | Modules | Tools: spec / built / live |')
     A('|---|---|---|---|---|---|---|---|---|')
     for k, d in ds:
         ru, ap, pr, sp, pl = layer_cells(k, d)
         t = d['tools']
+        js['courses'].append(dict(title=d['title'], core=d['core'], rubric=ru, approach=ap, prog=pr, spine=sp, plans=pl,
+                                  mods=d['mods'], spec=t['spec'] + t['idea'], built=t['built'], live=t['live']))
         A(f"| {d['title']} | {'yes' if d['core'] else ''} | {ru} | {ap} | {pr} | {sp} | {pl} | {d['mods']} | "
           f"{t['spec'] + t['idea']} / {t['built']} / {t['live']} |")
     A('')
@@ -141,6 +148,7 @@ A('| Shared set | Modules | Tools: spec / built / live |')
 A('|---|---|---|')
 for k, d in sh:
     t = d['tools']
+    J['shared'].append(dict(title=d['title'], mods=d['mods'], spec=t['spec'] + t['idea'], built=t['built'], live=t['live']))
     A(f"| {d['title']} | {d['mods']} | {t['spec'] + t['idea']} / {t['built']} / {t['live']} |")
 A('\nAlso not counted: French, which is on the course list with no modules yet (other languages come later, '
   'decided 2026-10-22).\n')
@@ -148,4 +156,7 @@ A('\nAlso not counted: French, which is on the course list with no modules yet (
 text = '\n'.join(out)
 assert '—' not in text
 io.open(os.path.join(ROOT, 'docs', 'COURSES-STATUS.md'), 'w', encoding='utf-8', newline='\n').write(text)
+J['total'] = dict(tot)
+if len(sys.argv) > 1:
+    io.open(sys.argv[1], 'w', encoding='utf-8').write(json.dumps(J))
 print('courses', tot['n'], 'core4', sum(1 for d in courselist.values() if d['subject'] in CORE4), 'shared sets', len(sh))

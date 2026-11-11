@@ -46,7 +46,7 @@ Tool counts here leave out tools that sit on shared modules (last table). "Spec"
 | Math, Grade 1 | yes | yes | draft | no | no | no | 11 | 11 / 0 / 0 |
 | Math, Grade 2 | yes | yes | draft | no | no | no | 9 | 6 / 1 / 2 |
 | Math, Grade 3 | yes | yes | draft | yes | no | no | 10 | 9 / 1 / 0 |
-| Math, Grade 4 | yes | yes | draft | yes | draft | 3 | 13 | 11 / 2 / 0 |
+| Math, Grade 4 | yes | yes | draft | yes | draft | 5 | 13 | 11 / 2 / 0 |
 | Math, Grade 5 | yes | yes | draft | yes | no | no | 11 | 11 / 0 / 0 |
 | Math, Grade 6 | yes | yes | draft | no | no | no | 11 | 8 / 1 / 2 |
 | Math, Grade 7 | yes | yes | draft | no | no | no | 12 | 12 / 0 / 0 |

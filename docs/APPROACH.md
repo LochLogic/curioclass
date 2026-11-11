@@ -90,7 +90,9 @@ studies, and one large national study found no gain when schools used it in the 
 Mathematics Advisory Panel, finding 28), so we do not count on software to teach by itself. No technology is
 right everywhere (How People Learn II, conclusions 8-1, 8-2). In one interview study with college students,
 people learned from changing a simulation themselves and little from watching it (Adams et al. 2008). *Rule:* a
-tool is built only when a unit plan names its job, and it has one of three jobs: **show why** (the student
+tool is built only when a unit plan names its job, and each use of it has one of three jobs (one tool may be used
+for two, such as a lesson tool that shows why and then checks unaided; the plan names the part, the job and the
+minutes): **show why** (the student
 predicts, changes something, sees what follows), **practise with feedback**, or **check unaided**. A tool does
 not replace the teacher's explanation, hold a discussion, judge open work, stand in for real materials, or know
 a student from one day to the next. The plan says what is done by hand, with what supplies.
@@ -154,25 +156,14 @@ answer keys explain, and discussion questions are ones a parent can ask.
   the studies under them.
 - Curio Class itself. Untested.
 
-## The unit plan fields (proposed)
+## The stretch sheet and the unit plan
 
-These turn the principles into the fields of a unit plan. Fixed fields, any length inside them, two pages at
-most. They are a proposal until tried on three units (ROADMAP step 4c), which may change them.
-
-| # | Field | Holds | Principle |
-|---|---|---|---|
-| 1 | Standards | Codes, full verbs, limits, major or supporting | Role of the standards |
-| 2 | Builds on, leads to | The earlier and later grade, with the progression cited | 1 |
-| 3 | End check | Written first. Each item: code, what it asks unaided, common wrong answers, "if many missed this, do that" | 8 |
-| 4 | Readiness check | Three to five items; for each gap, the short reteach and the earlier tool or page | 1, 9 |
-| 5 | What is carried | Set by the subject page. Math: the representation and the day it is tied to the written method. Science: the phenomenon and the model. ELA: the text set | 6 |
-| 6 | Days, one row each | Goal in student words; kind of day; how it opens and for how long; who holds the model, and the day it is withdrawn; the tool, key or practice, and its one job; what is done by hand; the evidence the day leaves | 2, 3, 4, 6, 8 |
-| 7 | Talk and writing | Two or three planned questions; the written task; who judges it, with what | 5 |
-| 8 | Expected errors | Each with what it shows and how the unit meets it | 8 |
-| 9 | Practice that returns | Earlier work practised here; where this unit comes back | 7 |
-| 10 | Supports and stretch | English learner supports, access, extension on the same standard | 9 |
-| 11 | Two rooms | Teaching one child; the one-line projector path; supplies; family note | The two rooms; FOUNDATION |
-| 12 | Not in this unit | What the unit leaves to print, to the teacher, or undone | Honest words |
+The principles become the fields of two documents, written before any tool for a unit is specced or built: a
+stretch sheet, which holds the readiness check and the end check whole, and a unit plan with eleven fields.
+The fields were tried on three units of grade 4 math, read by the curriculum expert and fixed by Cory on
+2026-11-11. They live in one place, [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md), with the rules, the word caps
+and a blank copy of each. The field table that stood here as a proposal has been removed so the two cannot
+drift apart.
 
 ## Sources
 

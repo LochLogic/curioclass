@@ -93,12 +93,17 @@ manipulatives teach as well as real ones, we have read nothing. That is the firs
 
 ## What math adds to the unit plan fields
 
-- Field 2: the progression is cited.
-- Field 5: the representation carried through the unit, and the day it is tied to the written method.
-- Field 6: each day marked understanding, fluency or use; the exit question; whether the standard asks for
-  strategies or the standard algorithm; the one or two practices and their task.
-- Field 8: the wrong worked example used for each expected error.
-- Field 9: the fluency target, if the standard sets one, and where it is practised.
+Field numbers are those of [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md), fixed 2026-11-11.
+
+- Stretch sheet, field 3 (where it sits): the progression is cited.
+- Unit plan, field 1: whether the standard asks for strategies or the standard algorithm; the one or two
+  practices and their task.
+- Field 3: the exit question for every day, in full.
+- Field 4: the wrong worked example used for each expected error.
+- Field 5: the representation carried through the unit, the day it is tied to the written method and the day
+  it is withdrawn.
+- Field 6: each day marked understanding, fluency, use or check.
+- Field 8: the fluency target, if the standard sets one, and where it is practised.
 
 ## Sources
 
