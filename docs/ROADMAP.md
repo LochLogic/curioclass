@@ -77,7 +77,7 @@ fifth of the year).
 |---|---|---|---|
 | 1. Foundation | What Curio Class is for, who it serves, the promises, the bar, what we assume about the room, what a tool is for | docs/FOUNDATION.md | Gathered into one file 2026-11-11. Two open questions listed there |
 | 2. Standards | What must be learned. Not ours to change | data/standards/ | Math and ELA texts wired. Science and the rest filed, wired when their courses open. Footnoted limits for math still to add |
-| 3. Approach to teaching | How students learn here and why, with its sources. A short shared core for every subject, then one page per subject | docs/APPROACH.md (to write), then docs/APPROACH-MATH.md | **Not written. Next.** Science and ELA pages when those courses open |
+| 3. Approach to teaching | How students learn here and why, with its sources. A short shared core for every subject, then one page per subject | docs/APPROACH.md (to write), then docs/APPROACH-MATH.md. Sources and how to reach each: docs/APPROACH-SOURCES.md | **Not written. Next.** Science and ELA pages when those courses open |
 | 4. Progressions | What each grade inherits and hands on, per subject | data/sequence.csv, the spine's builds-on columns, a progression table per subject | Partly. Grades 3 to 5 math checked next; the science review found errors in sequence.csv |
 | 5. Course spine | Every teaching day of a year, in order, with the reason | docs/courses/ | Grade 4 math approved. Grade 4 science and grade 6 ELA revised drafts |
 | 6. Stretch and unit plan | The contract for each unit: what each day is for, where a tool is used and for what job, what the check asks | docs/courses/ (to be set with the first plans); rows in data/units.csv | None yet |
