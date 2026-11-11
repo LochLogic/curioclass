@@ -12,39 +12,48 @@ The student lines up near-synonyms on a thermometer from warm praise at the top 
 
 ## Who and how
 - Grade 6, ELA, module "Connotation and Context" (Language and Reading). Standards: L.6.5 (a, b, c), RL.6.4, RI.6.4. (L.6.4 word-solving strategy belongs to context-roots-dictionary.)
-- Driver: one student; class mode is a shared thermometer (tool.json `driver: "student"`). Every word and sentence is read on tap.
-- Six word sets, two passages, then the two-way rewrite. tool.json `modes: ["Solo", "Class thermometer"]`, `minutes: "20-30"`, `grades_label: "Grade 6"`.
+- Driver: one student; class mode is a shared thermometer (tool.json `driver: "student"`). Role: lesson. Every word and sentence is read on tap.
+- Change note (spec fix, 2026-11-10): the thermometer, Gale and the six sets stay. Added: Gale places one set first as the model; a set is now tested as a whole and the student writes how two of its words differ; eight figures of speech (three personification) whose meaning the student types before placing; six relationship cards, with cause and effect and part and whole, each with a check; in every passage the student works out two words from context and one figure of speech before any swap; the gauge is hidden until the student predicts, and hidden during the rewrite; four more story passages and four more information paragraphs, one with technical words; a written line on how the words changed the tone. One part a sitting.
+- Six word sets, eight figures, six relationship cards, ten passages (five story, five information), then the two-way rewrite. tool.json `modes: ["Solo", "Class thermometer"]`, `minutes: "20-30"`, `grades_label: "Grade 6"`.
 - Nothing is saved; `Print` prints the rewrites side by side. The class thermometer keeps counts only while the page is open.
 
 ## Standards map
-| Code | Student action that teaches it | What they see | Done when check |
-|---|---|---|---|
-| L.6.5c | Place near-synonyms on the thermometer and pick a context card for each | the scale with words at their heat | 2 |
-| L.6.5a | Read figurative phrases in a sentence first ("a heart of stone", "tight-fisted"), then place them | the phrase in its sentence and on the scale | 3 |
-| L.6.5b | Name a relationship to place a hard word (stingy and generous are opposites; a miser is a kind of stingy person) | the relationship chip | 3 |
-| RL.6.4 | Swap words into the story; the tone gauge moves | the story with swapped words and the gauge | 4 |
-| RI.6.4 | Swap words into the news paragraph; see how readers judge the same facts | the paragraph, the gauge and a fact list that doesn't change | 4 |
-| RL.6.4, RI.6.4 | Rewrite one passage twice (admire and dislike) by changing five words | two versions side by side with the facts lit | 5 |
+| Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
+|---|---|---|---|---|---|---|
+| L.6.5c | distinguish among the connotations of words with similar denotations | the student | Place five near-synonyms, test the set as a whole, then write how two of them differ | 6 sets of 5 | the scale with words at their heat | 2 |
+| L.6.5a | interpret figures of speech (such as personification) in context | the student | Read the phrase in its sentence, type what it means in plain words, pick the closest meaning, then place it | 8 (3 personification) | the phrase in its sentence and on the scale | 3 |
+| L.6.5b | use the relationship between particular words (cause and effect, part and whole, item and category) to better understand each word | the student | Pick the relationship between a known word and a hard word, then type what the hard word must mean | 6 | the relationship chip and the student's meaning | 4 |
+| RL.6.4 | determine the meaning of words and phrases as used in a text, including figurative and connotative meanings; analyze the impact of a specific word choice on meaning and tone | the student | In each story work out two words from context and one figure; predict each swap's effect before the gauge shows; write how one word changed the tone | 5 stories | the story with swapped words and the gauge | 5, 6 |
+| RI.6.4 | determine the meaning of words and phrases as used in a text, including figurative, connotative and technical meanings | the student | In each paragraph work out two words from context (one technical where the text has them) and one figure; predict each swap before the gauge shows | 5 paragraphs | the paragraph, the gauge and a fact list that doesn't change | 5 |
 
 ## Screens and modes
 Header (kit): title "Word Thermometer"; `Scale`, `Passages`, `Rewrite`; `Read`, `Motion`, `Sound`, `Print`. Controls 44 px or more, icon plus word.
 
 **On load and first tap.** A tall glass thermometer on a wall, warm and sunny at the top (Admiring), cool and frosty at the bottom (Insulting), a neutral band in the middle, and a bin of five tiles. A little weather vane rooster named Gale stands on top. First hint: "Tap a word tile to hear it." The first tap says the word; the welcome is queued after it (`welcomeAfter: true`).
 
-**Scale.** Six sets: doesn't spend much (thrifty, frugal, careful, cheap, stingy); talks a lot (chatty, talkative, outgoing, wordy, loudmouthed); sure of themselves (confident, self-assured, bold, cocky, arrogant); thin (slender, slim, lean, skinny, scrawny); curious (inquisitive, curious, interested, nosy, prying); old (antique, vintage, old, dated, decrepit). The student drags tiles onto the scale; each placement asks for a context card from three ("You'd call your grandmother this to her face", "You'd say this when you're annoyed", "A news report would use this"). The key gives each word a heat band (warm, mild, neutral, cool, cold); a placement two bands off asks "Would you say {stingy} to her face?" and the student may keep their placement with a card.
+**Gale goes first (the model).** Gale places one set alone: scent, aroma, smell, odor, stench. For each she says where and why ("You'd thank someone for an aroma. Nobody thanks you for a stench."), then writes one line on two of them: "Smell and stench both mean something your nose picks up, but stench says it is awful." It cannot be skipped the first time and `Gale's set` reopens it.
 
-**Figurative and relationships.** Later sets add phrases ("a heart of stone", "tight-fisted", "a fountain of ideas") shown first in a sentence, and hard words (miser, spendthrift) placed by naming a relationship to a word already on the scale (opposite of, a kind of, a stronger form of).
+**Scale.** Six sets: doesn't spend much (thrifty, frugal, careful, cheap, stingy); talks a lot (chatty, talkative, outgoing, wordy, loudmouthed); sure of themselves (confident, self-assured, bold, cocky, arrogant); thin (slender, slim, lean, skinny, scrawny); curious (inquisitive, curious, interested, nosy, prying); old (antique, vintage, old, dated, decrepit). The student drags tiles onto the scale; each placement asks for a context card from three ("You'd call your grandmother this to her face", "You'd say this when you're annoyed", "A news report would use this"). The key gives each word a heat band (warm, mild, neutral, cool, cold). Nothing is judged while tiles move. `Check the set` tests all five at once: a tile within one band of its key stands, since the bands are a reading. If any tile is two or more bands off, the first check says only how many; the second asks about each one ("Would you say {stingy} to her face?"). A tile still two bands off after that is moved by Gale and tagged "Gale moved it". Then the student picks two words from the set and writes one line in a frame, "{thrifty} and {stingy} both mean ___, but {stingy} ___", beside Gale's model line and a two-box guide: says what they share; says what feeling the second one adds.
 
-**Passages.** The story (about 200 words): a narrator describing Mrs. Alvarado, a shopkeeper. The news paragraph (about 150 words): a city council's budget vote. Five highlighted slots in each take any word from that slot's set. A tone gauge (admiring to scornful) moves with the average heat; a fact list beside the passage (what she did, what the council voted) never changes.
+**Figures.** Eight phrases, each shown first in a sentence. The student types what it means in plain words, then picks the closest of three meanings (one takes it word for word, one misses the feeling). A wrong pick can be tried once more; then Gale explains and the phrase is tagged "Gale explained". For the three personification items the student also taps the thing that is being treated as a person. Then the phrase goes on the scale.
 
-**Rewrite.** The student writes two versions of the story by changing five words: Admire and Dislike. The two sit side by side with the facts lit in both and the five changed words underlined.
+**Relationships.** Six cards. Each gives a word the student knows, a hard word and a sentence using both. The student picks the relationship from five chips (opposite; a kind of; a stronger form of; cause and effect; part and whole), then types what the hard word must mean and picks the closest of three meanings. A wrong chip can be tried once more; after a second miss Gale names it and a spare card of the same kind is added.
+
+**Passages.** Five stories and five information paragraphs, 100 to 200 words each. Each opens with Word work, before any swap: two words the passage does not explain are underlined. For each the student taps the nearby words that give it away, types a meaning and picks the closest of three; then does the same for one figure of speech in the passage. One retry, then "Gale explained". After Word work, three highlighted slots (five in the Mrs. Alvarado story and the council paragraph) take any word from that slot's set, shown in mixed order. Before the tone gauge (admiring to scornful) moves, the student taps `warmer`, `cooler` or `no change`; then the gauge shows. A wrong call is counted on the passage's card. A fact list beside the passage (what she did, what the council voted) never changes.
+
+**Rewrite.** On the Mrs. Alvarado story and one other story of the student's choice, the student writes two versions by changing five words: Admire and Dislike. The gauge is covered while they work and slot words are in mixed order. `Test both` then shows the two side by side with the facts lit in both and the five changed words underlined. They must sit at least two bands apart on average; if not, the tool says how far apart they are and the student changes words and tests again, and the number of tests is printed. Last, the student writes two sentences: which one word did the most to change how a reader feels, and how. A guide: names the word; says the feeling it brings; says the facts stayed the same.
 
 **Class thermometer.** One contested word ("cheap"); each student taps where they'd place it on the projector; the spread shows.
 
 At 1366x768 the thermometer and passage fit side by side; at 680x425 the thermometer is a slim column beside the passage.
 
 ## Content
-Written for Curio Class: six word sets with heat bands and context-card keys; figurative phrases with sentences; the story and news passages with slots; relationship chips.
+Written for Curio Class: six word sets with heat bands and context-card keys, and the model set (scent, aroma, smell, odor, stench).
+- Figures, each in a sentence with three meanings keyed: "a heart of stone"; "tight-fisted"; "a fountain of ideas"; "a sharp tongue"; "time crawled"; and personification: "the wind whispered through the pines"; "the old house groaned"; "the alarm clock screamed".
+- Relationship cards (known word, hard word, relationship): stingy, miser (a kind of); thrifty, spendthrift (opposite); rain, torrent (a stronger form of); drought, famine (cause and effect); carelessness, mishap (cause and effect); poem, stanza (part and whole). Spares: sprout, seed (cause and effect); play, prologue (part and whole); tool, chisel (a kind of).
+- Stories (narrator describing someone or somewhere): Mrs. Alvarado, a shopkeeper (about 200 words); Coach Bell at practice; Uncle Dev and his truck; Wren, the new girl on the bus; the house at the end of Pike Street. People and places are made up.
+- Information paragraphs: a city council's budget vote (about 150 words); a volcano explainer with technical words (dormant, vent, magma); a game report; a storm bulletin (technical: gust, advisory); a museum label for an old loom. All made up and labeled, except the volcano terms, which follow their dictionary meanings.
+- Each passage carries in data: two context words with their clue words and three meanings, one figure with three meanings, its slots and sets, and its fact list.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
@@ -70,6 +79,12 @@ Bank voice `warm-teacher` as Gale (unique in this batch); the story is read by `
 - event `gauge`: "Same facts. Now readers feel {scornful}."
 - event, whole, `passage`: the passage with the student's words.
 - how `rewriteHow`: "Change five words. Make us admire her. Then make us dislike her."
+- how `checkSet`: "Place all five. Then tap Check the set."
+- how `meaning`: "Type what it means in plain words. Then pick the closest one."
+- how `relate`: "Pick how the two words go together."
+- how `clues`: "Tap the words nearby that give it away."
+- how `call`: "Will that make it warmer, cooler or no change? Tap one."
+- event, whole, Gale's set.
 Read speaks the hint, which names the next action and control and never a disabled one.
 
 ## Family engine
@@ -78,15 +93,18 @@ None. Tool-only code: heat scale with keyed bands, context cards, passage slots 
 ## Can it be beaten?
 | Check | Ways to pass without the skill | Why each fails |
 |---|---|---|
-| Scale | Put tiles anywhere | Two-band misses ask a question; the print shows placements beside the key. |
-| Passages | Swap at random | The gauge reads the swaps back; the rewrite needs a clear admire and dislike difference (at least two bands apart on average). |
-| Rewrite | Change facts | The fact list lights; changing a fact is flagged "That changes what happened." |
+| Scale | Put tiles anywhere; nudge until the question stops | The set is tested whole and the first check gives only a count; a tile still far off is moved and tagged, and the print shows it. |
+| Differ line | Type filler | The tool cannot judge it; Gale's model, the guide and the printout carry it. |
+| Figures and context words | Pick meanings until one sticks | The meaning is typed first; three choices with one retry, then a "Gale explained" tag. |
+| Relationships | Tap chips until right | Five chips; a second miss adds a spare card. |
+| Passages | Swap and watch the gauge | The gauge stays still until the student calls the direction; wrong calls are counted. |
+| Rewrite | Watch the gauge and tune; change facts | The gauge is covered and words are in mixed order until `Test both`; tests are counted; changing a fact is flagged "That changes what happened." |
 
 ## Heard in order
 Waits means the next line waits for it to finish; taps act at once and never wait.
-1. Tap a tile: `word`, `welcome` (queued, first time).
-2. Placements: `askCard` as it fires.
-3. Passages: `gauge` per swap; `passage` on Play.
+1. First visit: Gale's set (whole). Tap a tile: `word`, `welcome` (queued, first time). `checkSet`.
+2. Placements: `askCard` on a second check. Figures: `meaning`. Relationships: `relate`.
+3. Passages: `clues`, `meaning`; `call` before each swap, then `gauge`; `passage` on Play.
 4. Rewrite: `rewriteHow`.
 
 ## Sources
@@ -101,16 +119,20 @@ Design choices (not claims): the heat bands are a reading, labeled as one on scr
 
 Checks run (Python, scratchpad b19, 2026-11-09): every sample set has a word in at least four of the five bands; a sample admire and dislike rewrite differs by at least two bands on average; contrast as in Look.
 
+Spec fix checks (2026-11-10): counted, not run: 8 figures of which 3 are personification; 6 relationship cards cover all five chips with 3 spares; 5 stories and 5 paragraphs, each with 2 context words and 1 figure, give 20 context words and 10 figures. The new words' meanings (torrent, famine, mishap, stanza, prologue, chisel, dormant, vent, magma, gust, advisory) fall under the dictionary row above and were not looked up again in this pass.
+
 ## Done when
 1. Focus and fold: at 1366x768 thermometer and passage fit; at 680x425 the thermometer is a slim column.
-2. Tiles place with context cards and two-band questions. (L.6.5c)
-3. Figurative phrases and relationship chips work. (L.6.5a, L.6.5b)
-4. Passage swaps move the gauge; facts stay. (RL.6.4, RI.6.4)
-5. The two-way rewrite needs five changes and a clear difference.
-6. The class thermometer shows the spread and keeps nothing after closing.
-7. Print shows the rewrites.
-8. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
-9. Motion off: the mercury jumps; no network requests.
+2. Six sets place with context cards and are tested whole; each ends with the student's line on how two words differ. (L.6.5c)
+3. Eight figures, three of them personification, take a typed meaning and a keyed pick before they are placed. (L.6.5a)
+4. Six relationship cards take a chip and a typed meaning; a second miss adds a spare. (L.6.5b)
+5. Each of ten passages opens with two context words and one figure; each swap needs a call before the gauge moves; facts stay. (RL.6.4, RI.6.4)
+6. The two-way rewrite is done on two stories with the gauge covered, needs five changes and a clear difference, and ends with two sentences on tone. (RL.6.4)
+7. Gale's set plays first and can be reopened.
+8. The class thermometer shows the spread and keeps nothing after closing.
+9. Print shows the rewrites, the written lines and any tags.
+10. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
+11. Motion off: the mercury jumps; no network requests.
 
 ## Open questions
 - None for Cory.
