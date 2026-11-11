@@ -50,11 +50,15 @@ Reading Room together). It goes on the Desk and every step below moves it.
 | 1. Rules | The six rule edits and the teaching test go into SPEC.md, REFINE.md and docs/TOOL-CONTRACT.md. File the standard texts and the major-work marks from the published documents (licence checked), so nothing rests on memory | A new spec or lens cannot pass a tool that fails the test | Nothing |
 | 2. Read | The full catalog read with row format 2: the 36 pilot tools again as the test, then every spec by subject and band (about 64 cheaper-model agents). Scripts build one map per course: each standard full, part, shown or none | Every course has its map and its measure | Nothing |
 | 3. Fix what is built | The live-tool fixes in the order in DESK-ANSWERS, then whatever the read finds in the other live tools. The 149 built tools waiting on Refine are not fixed now; the new Teaching lens catches them when Refine resumes | The live math, ELA and science tools each pass the test or carry an honest role | Nothing, unless a fix changes what a tool teaches |
-| 4. Shape | From the maps: split modules to standards, apply spec notes, list the major-work modules that get a second or third tool, and the supporting tools that wait. Applied by rule; only exceptions go to Cory | data/modules.csv, the specs and a build order by value (data/waves.csv) all agree with the maps | One Desk card per subject, exceptions only: reshape, hold, cut, new tool |
+| 4. Shape | From the maps: spell out each module's standards in place (modules are never split or renamed; docs/ECOSYSTEM.md), apply spec notes, list the major-work modules that get a second or third tool, and the supporting tools that wait. Applied by rule; only exceptions go to Cory | data/modules.csv, the specs and a build order by value (data/waves.csv) all agree with the maps | One Desk card per subject, exceptions only: reshape, hold, cut, new tool |
 | 5. Prove one course | The year spine and the unit pilot for grade 4 math and grade 6 ELA (Track 7), judged against docs/ADOPTION-BAR.md. Building resumes here for those two courses only, with the token plan's side-by-side trial run on the first three tools | Cory can open one unit of each and see the bar met | The pilot review |
 | 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first | Course by course, the measure reaches full | The order of courses |
 
-**Resume here:** step 1. Everything it needs is in docs/agents/catalog/judge/live-core.md (part C, the rule edits;
+**The other shelves** (Sub Day, Word Wall, worksheets, charts, games, Reading Room, The Map) move with this change as
+set out in docs/ECOSYSTEM.md: modules stay the hub, tools carry their own codes, and one ledger (data/coverage.csv)
+records where each standard is taught.
+
+**Resume here:** step 1 (rule edits done 2026-11-10; standard texts being filed). Everything it needs is in docs/agents/catalog/judge/live-core.md (part C, the rule edits;
 part A, the two wording changes to the extract row) and docs/agents/decisions/DESK-ANSWERS.md (2026-11-10).
 
 **Standing defaults, so decisions stay few:** a spec note that makes a tool pass the teaching test is applied without

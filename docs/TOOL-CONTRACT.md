@@ -46,8 +46,9 @@ tools/<tool-id>/
 - `driver`: `teacher` (projector-led, required for all K-2), `students`, or `students or teacher`
 - `modes`: empty list for pure explore tools. Most tools don't need a score.
 - `third_party`: bundled libraries with their license, e.g. `"Three.js r128 (MIT)"`
-- The concept's module, grade, subject, format and standards come from the catalog data, not from here. A module
-  lists the standards its tool really teaches, never a bare cluster (BASELINE rule 22).
+- The concept's module, grade, subject, format and standards come from the catalog data, not from here. A module's
+  standards are spelled out, never a bare cluster, and each tool carries only the codes it teaches (BASELINE rule 22,
+  docs/ECOSYSTEM.md).
 
 ## The HTML file must
 

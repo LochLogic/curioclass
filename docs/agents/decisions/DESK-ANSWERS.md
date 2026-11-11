@@ -31,6 +31,9 @@ step 5. Now BASELINE rules 21 and 22. To apply, in the roadmap's order:
   moon-phase-model (seasons) and how-animals-see; three grade 11 fixes; then the code moves. Lists and sizes:
   docs/agents/catalog/judge/live-core.md, part B.
 - Spec notes from the two pilot judge files (about 30 tools) are applied without asking.
+- Amended the same day after the shelf survey (docs/ECOSYSTEM.md): modules are not split or renamed; their standards
+  are spelled out in place and each tool carries its own codes. Math codes are written with the cluster letter
+  (4.NBT.B.5); the judge files and this list use the short form and are read that way.
 
 ## 2026-11-08
 

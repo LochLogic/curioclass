@@ -71,8 +71,11 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     working and a self-check on screen against a shown guide count. Every tool states a role: `lesson` (passes the
     test), `see why` (lets a student explore the idea and names what the unit adds) or `practice`. A tool claims a
     code only for work on its main path; a readout, an optional mode or a teacher note never carries a code.
-22. **Modules name standards, and major work gets depth** (2026-11-10). A module lists the standards its tool really
-    teaches, never a bare cluster, so an untaught standard shows. In math, ELA and science, the major work of a
+    Recess games and Curiosities take the role `recess` or `curiosity` and claim no code.
+22. **Modules name standards, and major work gets depth** (2026-11-10). A module is never renamed or split (its
+    id keys the Word Wall, charts, games, The Map and about 762 live pages; docs/ECOSYSTEM.md). Its standards are
+    spelled out in place, never a bare cluster, each tool carries its own codes, and data/coverage.csv records where
+    every standard is taught in full, so an untaught standard shows. In math, ELA and science, the major work of a
     grade gets two or three tools or full modes (see why, do it, use it); the trade is fewer tools on supporting
     topics for now. Fluency volume, long writing, discussion, year-long reading and topic threads across texts
     belong to units, worksheets and the Reading Room, and are recorded there, not claimed by a tool.
