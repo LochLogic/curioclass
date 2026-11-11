@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (6), Close the guessable check (8), Add the missing part (7), Add a check (3), Reach five items that differ (4), Put it on the main path (3), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-1.md.
+
 ## Festival Parade
 
 - Spec: `tools/festival-parade/spec.md` . Module: social-studies-1-cultures-around-the-world. Stage: spec only. Sort: **rework**.

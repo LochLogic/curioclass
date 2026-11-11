@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (5), Close the guessable check (4), Add the missing part (7), Add a check (2), Reach five items that differ (6), Teach the code or drop it (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/science-11.md.
+
 ## Zipline Energy
 
 - Spec: `tools/zipline-energy/spec.md` . Module: science-11-energy-and-work. Stage: built (the code changes after the spec). Sort: **rework**.

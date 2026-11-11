@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (3), Add the missing part (4), Add a check (2), Reach five items that differ (2), Put it on the main path (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/library-9-12.md.
+
 ## Fair Use Review
 
 - Spec: `tools/fair-use-review/spec.md` . Module: library-9-12-citation-copyright-and-fair-use. Stage: spec only. Sort: **small addition**.

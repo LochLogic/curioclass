@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Close the guessable check (1), Add the missing part (1).
 
+Shape for this course: ../../agents/catalog/shape/health-pe-6-12.md.
+
 ## Partner Skill Coach
 
 - Spec: `tools/partner-skill-coach/spec.md` . Module: health-pe-6-12-peer-skill-coaching. Stage: spec only. Sort: **small addition**.

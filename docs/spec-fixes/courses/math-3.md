@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (3), Close the guessable check (8), Add the missing part (7), Add a model or a guide (2), Add a check (1), Reach five items that differ (5), Source the facts (1).
 
+Shape for this course: ../../agents/catalog/shape/math-3.md.
+
 ## Tile the Floor
 
 - Spec: `tools/tile-the-floor/spec.md` . Module: math-3-area. Stage: spec only. Sort: **small addition**.

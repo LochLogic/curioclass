@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (2), Close the guessable check (1), Add the missing part (2), Add a check (2), Reach five items that differ (1), Sensitivity read (3), Source the facts (2).
 
+Shape for this course: ../../agents/catalog/shape/sel-k-2.md.
+
 ## Calm Corner
 
 - Spec: `tools/calm-corner/(no spec.md yet)` . Module: sel-k-2-calm-down-strategies. Stage: LIVE (the code changes after the spec). Sort: **small addition**.

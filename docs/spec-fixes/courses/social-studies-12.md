@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (5), Close the guessable check (14), Add the missing part (18), Add a check (3), Reach five items that differ (10), Put it on the main path (1), Sensitivity read (10), Source the facts (1).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-12.md.
+
 ## Jury Room
 
 - Spec: `tools/jury-room/spec.md` . Module: social-studies-12-jury-room. Stage: spec only. Sort: **rework**.

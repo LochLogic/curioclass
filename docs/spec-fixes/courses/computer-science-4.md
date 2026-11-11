@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (4), Add the missing part (3), Add a model or a guide (1), Reach five items that differ (2), Put it on the main path (1), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/computer-science-4.md. Band tools that are also part of this course, with their fix lists in computer-science-3-5.md: Inventors Hall, Job Shadow Day, Family Tech Vote, Fair Survey Kit, Marble Ramp Trials, Team Code Relay, Adventure Outline Cards, Three Route Rules, Inside the Keypress.
+
 ## Data Table Builder
 
 - Spec: `tools/data-table-builder/spec.md` . Module: computer-science-4-tables-and-visualizations. Stage: built (the code changes after the spec). Sort: **small addition**.

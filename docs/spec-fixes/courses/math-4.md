@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Reach five items that differ (1).
 
+Shape for this course: ../../agents/catalog/shape/math-4.md.
+
 ## Recipe Scaler  [FIXED]
 
 - Spec: `tools/recipe-scaler/spec.md` . Module: math-4-adding-and-multiplying-fractions. Stage: spec only. Sort: **fine**.

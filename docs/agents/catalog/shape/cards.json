@@ -1,0 +1,62 @@
+[
+ {
+  "id": "q-shape-math-6",
+  "title": "Shape: grade 6 math",
+  "subject": "Math, grade 6",
+  "status": "question",
+  "built": "Nov 11",
+  "changed": "Grade 6 math is shaped by rule (docs/agents/catalog/shape/math-6.md): 11 tools, 8 of 30 standards read as taught in full. No tool is cut or merged. Each question is a second lesson tool in the same module, no split, proposed because one tool carries more than a sitting can teach and part of its load does not read as taught. These come from the catalog rows, not from a fresh read of each spec.",
+  "questions": [
+   {
+    "q": "Smoothie Lab carries 6 codes in 25 minutes (6.RP.A.2 practice only (1 item); 6.RP.A.3 practice only (9 items)). Let it keep 6.RP.A.1, and add a lesson tool in the same module for 6.RP.A.2, 6.RP.A.3 (understand the concept of a unit rate a/b associated with a ratio a)?",
+    "pick": "Yes. Major work. Fixing it inside the tool would run to about 50 minutes."
+   }
+  ]
+ },
+ {
+  "id": "q-shape-math-8",
+  "title": "Shape: grade 8 math",
+  "subject": "Math, grade 8",
+  "status": "question",
+  "built": "Nov 11",
+  "changed": "Grade 8 math is shaped by rule (docs/agents/catalog/shape/math-8.md): 10 tools, 5 of 28 standards read as taught in full. No tool is cut or merged. Each question is a second lesson tool in the same module, no split, proposed because one tool carries more than a sitting can teach and part of its load does not read as taught. These come from the catalog rows, not from a fresh read of each spec.",
+  "questions": [
+   {
+    "q": "Transformation Dock carries 7 codes in 30 minutes (8.G.A.1 practice only (24 items); 8.G.A.5 practice only (3 items)). Let it keep 8.G.A.2 to 4, and add a lesson tool in the same module for 8.G.A.1, 8.G.A.5 (verify experimentally the properties of rotations, reflections, and translations)?",
+    "pick": "Yes. Major work. Fixing it inside the tool would run to about 50 minutes."
+   }
+  ]
+ },
+ {
+  "id": "q-shape-ela-5",
+  "title": "Shape: grade 5 ELA",
+  "subject": "ELA, grade 5",
+  "status": "question",
+  "built": "Nov 11",
+  "changed": "Grade 5 ELA is shaped by rule (docs/agents/catalog/shape/ela-5.md): 21 tools, 3 of 43 standards read as taught in full. No tool is cut or merged. Each question is a second lesson tool in the same module, no split, proposed because one tool carries more than a sitting can teach and part of its load does not read as taught. These come from the catalog rows, not from a fresh read of each spec.",
+  "questions": [
+   {
+    "q": "Fact Fusion carries 5 codes in 40 minutes (RI.5.6 practice only (3 items); RI.5.7 practice only (4 items)). Let it keep RI.5.9, W.5.7, W.5.8, and add a lesson tool in the same module for RI.5.6, RI.5.7 (analyze multiple accounts of the same event or topic, noting important similarities and ...)?",
+    "pick": "Yes. Fixing it inside the tool would run to about 50 minutes."
+   },
+   {
+    "q": "Slow-Mo Writer carries 6 codes in 30 minutes (W.5.3 partly taught (21 items)). Let it keep W.5.5, and add a lesson tool in the same module for W.5.3 (write narratives to develop real or imagined experiences or events using effective ...)?",
+    "pick": "Yes. Fixing it inside the tool would run to about 50 minutes."
+   }
+  ]
+ },
+ {
+  "id": "q-shape-ela-11",
+  "title": "Shape: grade 11 ELA",
+  "subject": "ELA, grade 11",
+  "status": "question",
+  "built": "Nov 11",
+  "changed": "Grade 11 ELA is shaped by rule (docs/agents/catalog/shape/ela-11.md): 14 tools, 2 of 41 standards read as taught in full. No tool is cut or merged. Each question is a second lesson tool in the same module, no split, proposed because one tool carries more than a sitting can teach and part of its load does not read as taught. These come from the catalog rows, not from a fresh read of each spec.",
+  "questions": [
+   {
+    "q": "Personal Essay Studio carries 6 codes in 40 minutes (W.11-12.3 partly taught (5 items)). Let it keep W.11-12.5, and add a lesson tool in the same module for W.11-12.3 (write narratives to develop real or imagined experiences or events using effective ...)?",
+    "pick": "Yes. Fixing it inside the tool would run to about 60 minutes."
+   }
+  ]
+ }
+]

@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (4), Close the guessable check (8), Add the missing part (7), Reach five items that differ (7), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-3.md.
+
 ## Paper Plane Assembly Line
 
 - Spec: `tools/paper-plane-assembly-line/spec.md` . Module: social-studies-3-business-and-specialization. Stage: spec only. Sort: **rework**.

@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (3), Hand the key step to the student (3), Close the guessable check (6), Add the missing part (7), Add a model or a guide (1), Add a check (2), Reach five items that differ (5), Put it on the main path (1), Sensitivity read (4), Source the facts (1).
 
+Shape for this course: ../../agents/catalog/shape/world-languages-6-12.md.
+
 ## Face the Grammar
 
 - Spec: `tools/face-the-grammar/(no spec.md yet)` . Module: world-languages-6-12-asl-grammar-and-facial-expression. Stage: idea only. Sort: **rework**.

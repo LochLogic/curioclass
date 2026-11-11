@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (2), Hand the key step to the student (4), Close the guessable check (4), Add the missing part (8), Add a model or a guide (2), Add a check (2), Reach five items that differ (5), Put it on the main path (1), Teach the code or drop it (1), Sensitivity read (4).
 
+Shape for this course: ../../agents/catalog/shape/health-pe-3-5.md.
+
 ## Playbook
 
 - Spec: `tools/playbook/spec.md` . Module: health-pe-3-5-game-strategies. Stage: spec only. Sort: **rework**.

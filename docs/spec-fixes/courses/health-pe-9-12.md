@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Close the guessable check (6), Add the missing part (7), Add a check (2), Reach five items that differ (5), Sensitivity read (5).
 
+Shape for this course: ../../agents/catalog/shape/health-pe-9-12.md.
+
 ## Health Claim Checker
 
 - Spec: `tools/health-claim-checker/spec.md` . Module: health-pe-9-12-accessing-valid-health-information. Stage: spec only. Sort: **small addition**.

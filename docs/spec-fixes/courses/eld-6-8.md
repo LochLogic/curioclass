@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Close the guessable check (5), Add the missing part (2), Add a check (1), Reach five items that differ (3), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/eld-6-8.md.
+
 ## Idiom Island
 
 - Spec: `tools/idiom-island/(no spec.md yet)` . Module: eld-6-8-idioms-and-everyday-expressions. Stage: LIVE (the code changes after the spec). Sort: **small addition**.

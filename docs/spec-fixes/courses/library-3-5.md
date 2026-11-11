@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (3), Add the missing part (3), Reach five items that differ (1), Teach the code or drop it (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/library-3-5.md.
+
 ## Keyword Fishing
 
 - Spec: `tools/keyword-fishing/spec.md` . Module: library-3-5-search-like-a-pro. Stage: built (the code changes after the spec). Sort: **rework**.

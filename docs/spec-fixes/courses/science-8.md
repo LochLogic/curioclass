@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (2), Close the guessable check (6), Add the missing part (12), Add a check (3), Reach five items that differ (9), Put it on the main path (1), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/science-8.md.
+
 ## Gene Pool
 
 - Spec: `tools/gene-pool/spec.md` . Module: science-8-reproduction-and-heredity. Stage: spec only. Sort: **rework**.

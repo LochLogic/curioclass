@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (8), Add the missing part (3), Add a model or a guide (2), Add a check (2), Reach five items that differ (6), Sensitivity read (3).
 
+Shape for this course: ../../agents/catalog/shape/ela-7.md. Band tools that are also part of this course, with their fix lists in ela-6-8.md: Theme Evidence Ladder, Blizzard Scenes, Page, Audio, Screen, Climbing Reads, Claim, Quote, Comment, Memoir and Biography, Explainer Sections, Draft Versus Draft, Linked Feature, Podcast Listening Club, Docent Tour Talk, Pause and Break, Tricky Word Lab, Context, Roots, Dictionary.
+
 ## Counterclaim Rally
 
 - Spec: `tools/counterclaim-rally/spec.md` . Module: ela-7-argument-with-counterclaims. Stage: spec only. Sort: **small addition**.

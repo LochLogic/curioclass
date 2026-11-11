@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (7), Add the missing part (5), Reach five items that differ (4), Put it on the main path (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/science-5.md.
+
 ## Living Pond
 
 - Spec: `tools/living-pond/spec.md` . Module: science-5-food-webs-and-matter-cycles. Stage: built (the code changes after the spec). Sort: **rework**.

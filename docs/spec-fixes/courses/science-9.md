@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (11), Close the guessable check (9), Add the missing part (13), Add a check (6), Reach five items that differ (11), Put it on the main path (5), Teach the code or drop it (1), Sensitivity read (4).
 
+Shape for this course: ../../agents/catalog/shape/science-9.md.
+
 ## Membrane Gatekeeper
 
 - Spec: `tools/membrane-gatekeeper/spec.md` . Module: science-9-cell-structure-and-function. Stage: spec only. Sort: **rework**.

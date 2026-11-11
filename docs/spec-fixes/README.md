@@ -66,11 +66,23 @@ separate step Claude runs after (ROADMAP step 3 for live tools, steps 5 and 6 fo
 
 ## The order
 
-Work only courses that have been shaped (docs/agents/catalog/shape/<course>.md), so nothing is fixed that is then
-cut, merged or given a new role. Each shape file ends with the spec work it leaves for that course; do that first.
+Every course has now been shaped (docs/agents/catalog/shape/<course>.md, 2026-11-11), so nothing you fix is about
+to be cut, merged or given a new role. **NEXT.md in this folder is the work order**: the batches, in order, with
+the tools in each. In short:
 
-1. The two proving courses: grade 4 math, then grade 6 ELA.
-2. Each further course as its shape file appears, in the order the roadmap scales them.
+1. Close the two proving courses (grade 4 math, grade 6 ELA), then their final review.
+2. The fourteen grade 6 to 8 ELA band specs, each with a path for grades 6, 7 and 8.
+3. Grade 5 math, then grade 3 math, on the splits Cory approved.
+4. Every other course in the order NEXT.md lists: math K to 8, ELA, high school math, science, social studies, and
+   the rest once their standard texts are wired in.
+
+Three things from Shape change how a spec is fixed:
+
+- A tool whose shape file says a second tool was approved keeps only the codes listed there. Drop the rest from the
+  spec and spend the room on more items.
+- A tool with a Desk card open waits. NEXT.md names them.
+- A band tool (grades 6 to 8, say) belongs to each grade it serves. Its spec needs a path for each grade: that
+  grade's texts, that grade's wording of the standard, five or more items.
 
 ## How far to trust the list by subject
 

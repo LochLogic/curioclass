@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (2), Close the guessable check (4), Add the missing part (4), Add a model or a guide (2), Reach five items that differ (4), Teach the code or drop it (2).
 
+Shape for this course: ../../agents/catalog/shape/math-7.md.
+
 ## Hot Air and Sandbags
 
 - Spec: `tools/hot-air-and-sandbags/spec.md` . Module: math-7-operations-with-rational-numbers. Stage: spec only. Sort: **small addition**.

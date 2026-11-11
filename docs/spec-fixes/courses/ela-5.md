@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (9), Add the missing part (5), Add a model or a guide (3), Reach five items that differ (6), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/ela-5.md. Band tools that are also part of this course, with their fix lists in ela-3-5.md: Side by Side Reader, Swap the Teller, Mood in the Pictures, Stretch Shelf, Main Idea Pinboard, How It Works Diagrams, Glossary Makers, Script Read-Through, Draft Car Wash, Deadline Desk, Radio Hour Notes, Planetarium Guide.
+
 ## Character Face-Off
 
 - Spec: `tools/character-face-off/spec.md` . Module: ela-5-comparing-characters-and-themes. Stage: spec only. Sort: **small addition**.

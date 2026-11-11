@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (2), Hand the key step to the student (3), Close the guessable check (5), Add the missing part (8), Add a model or a guide (1), Reach five items that differ (3), Teach the code or drop it (2).
 
+Shape for this course: ../../agents/catalog/shape/math-2.md.
+
 ## Marching Band
 
 - Spec: `tools/marching-band/spec.md` . Module: math-2-odd-even-and-arrays. Stage: LIVE (the code changes after the spec). Sort: **rework**.

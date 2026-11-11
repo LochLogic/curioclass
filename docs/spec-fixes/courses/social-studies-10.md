@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (5), Add the missing part (5), Add a check (3), Reach five items that differ (6), Sensitivity read (5).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-10.md.
+
 ## Inflation Wallet
 
 - Spec: `tools/inflation-wallet/spec.md` . Module: social-studies-10-between-the-wars. Stage: spec only. Sort: **small addition**.

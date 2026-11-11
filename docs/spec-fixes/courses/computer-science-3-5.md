@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (5), Close the guessable check (7), Add the missing part (8), Add a model or a guide (1), Add a check (5), Reach five items that differ (8), Sensitivity read (2), Source the facts (1).
 
+Shape for this course: ../../agents/catalog/shape/computer-science-3-5.md.
+
 ## Three Route Rules
 
 - Spec: `tools/three-route-rules/spec.md` . Module: computer-science-3-5-algorithms-that-help-some-more. Stage: spec only. Sort: **rework**.

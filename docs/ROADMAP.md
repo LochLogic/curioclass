@@ -81,7 +81,7 @@ one exception.
 | 5. Prove one course | Grade 4 math and grade 6 ELA (Track 7): the year spine, then one pilot unit each, pulling from every shelf, read by a fresh agent against docs/ADOPTION-BAR.md. Building resumes for these two courses only. The token plan's side-by-side trial runs on the first three tools | Cory can open one unit of each and see the bar met | The two spines, then the pilot review |
 | 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first. Each finished course gets its spine, units and a full row on the measure | Course by course, the measure reaches full | The order of courses |
 
-**Resume here (left 2026-11-10, 10 PM): step 2, the read and the maps are done; Sara has fixed the specs of both proving courses; those 22 specs are re-read and the ledger rebuilt; her final review of the two courses is next, then wiring in the other standard texts.** All 800 tools have a row in row format
+**Resume here (left 2026-11-11, early morning): step 3, every course is shaped (rule-based parts for 89, four by hand); Sara's work order is docs/spec-fixes/NEXT.md; next is her batch 1 and the final review of the two proving courses, then wiring in the other standard texts.** All 800 tools have a row in row format
 2 (docs/agents/catalog/rows/, 71 packets, about 12 million tokens on the cheaper model), and the ledger is rebuilt:
 data/coverage.csv and docs/agents/catalog/tables/measure.md. Across every course's standards: 213 full, 368 nearly,
 404 part, 1,102 practice only, 276 shown, 37 none. By tool: 70 teach every code they carry, 177 teach at least one
@@ -159,13 +159,29 @@ re-asked after he sent "do not split" back. Grade 3 math is shaped too (shape/ma
 most loaded course so far, 37 codes on ten tools, four second tools proposed. The rule for a module with two topics
 (one module, two tools when the topics sit in separate modes or cannot both fit one sitting) is in that file.
 
-Next, in this order: (1) shape the next courses (grade 7 ELA, grade 6 math), and script the two rule-only parts
-for every math course (spell out module standards; list tools over four codes or 35 minutes); (2) Sara's final review of the two proving courses
-(docs/spec-fixes/FINAL-REVIEW.md), starting with the three tools above and the small additions in each shape file;
-(3) wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
-the beatable rule, clean the contradictory rows, then rebuild the ledger and the maps. After that step 2 is closed
-and Shape carries on course by course (step 3), each followed by its fixes (step 4). Specs are fixed by Sara from docs/spec-fixes/, ahead of Build, so a
-course's specs are ready when its turn comes (steps 5 and 6).
+All courses shaped, 2026-11-11. Cory approved all four grade 3 second tools (nine approved in all) and the
+two-topic rule. scripts/shape_courses.py then shaped the other 89 courses by rule: one file per course in
+docs/agents/catalog/shape/, plus shape.csv (one row per tool per course), hand.txt (the four courses shaped by hand,
+never overwritten) and decisions.csv (Desk answers and hand overrides; edit it when Cory answers a shape card, then
+rerun). What the script decides: load (codes with lettered parts against minutes), a second tool where a tool over
+four codes cannot be fixed inside one sitting (20 minutes in K and 1, 25 in grade 2, 35 from grade 3, with five
+minutes of slack), two-topic math modules by the time test, and the spell-out of math module standards (99 more
+modules now list their own standards in data/modules.csv; the ledger is unchanged by it). What it does not decide:
+anything that needs a spec read. Results: no tool cut or merged anywhere; six second tools on the Desk (grade 6 math
+Smoothie Lab, grade 8 math Transformation Dock, grade 5 ELA Fact Fusion and Slow-Mo Writer, grade 11 ELA Personal
+Essay Studio, and the re-asked grade 4 line plot tool); 41 loaded tools where nothing reads as taught yet, so the
+spec is fixed first and judged again; 9 too close to call, fixed inside the tool; high school math candidates
+listed but not asked. Outside math and ELA the files count load and propose nothing: those reads are rough and
+the standard texts are not wired in. Band tools are never split from a grade file; their specs get a path per grade.
+
+Next, in this order: (1) Sara works docs/spec-fixes/NEXT.md: batch 1 closes the two proving courses, then Claude
+re-reads them and she runs FINAL-REVIEW.md; batch 2 is the fourteen grade 6 to 8 ELA band specs with paths for
+grades 6, 7 and 8; then grade 5 math, grade 3 math, and on down the table. (2) When Cory answers the open shape
+cards, add a line to shape/decisions.csv and rerun shape_courses.py and spec_fixes.py. (3) Wire the other subjects'
+standard texts into catalog_batch.py and coverage_ledger.py (science first), clean the contradictory rows, rebuild
+the ledger, the maps and the shape files; only then are the science and social studies shape calls worth asking.
+(4) After each course's specs are fixed and re-read, rerun the shape script: the "fix first" tools get their real
+call then. Specs are fixed by Sara ahead of Build, so a course's specs are ready when its turn comes (steps 5 and 6).
 Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
 
 ### What every other track does meanwhile

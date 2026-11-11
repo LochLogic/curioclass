@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Close the guessable check (5), Add the missing part (7), Add a check (3), Reach five items that differ (5), Put it on the main path (2), Sensitivity read (5).
 
+Shape for this course: ../../agents/catalog/shape/ela-11.md. Band tools that are also part of this course, with their fix lists in ela-9-12.md: Theme Ledger, Key Term Tracker, Tough Text Club, Idea Threads, Pacing Strip, Editors in the Margin, Living Explainer.
+
 ## American Lit Timeline
 
 - Spec: `tools/american-lit-timeline/spec.md` . Module: ela-11-american-literature. Stage: spec only. Sort: **small addition**.

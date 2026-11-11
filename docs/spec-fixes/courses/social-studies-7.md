@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (3), Close the guessable check (10), Add the missing part (5), Add a model or a guide (2), Add a check (1), Reach five items that differ (8), Sensitivity read (8).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-7.md.
+
 ## Columbian Exchange
 
 - Spec: `tools/columbian-exchange/spec.md` . Module: social-studies-7-age-of-exploration. Stage: spec only. Sort: **rework**.

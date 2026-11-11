@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (4), Hand the key step to the student (4), Close the guessable check (14), Add the missing part (16), Add a model or a guide (5), Add a check (9), Reach five items that differ (13), Put it on the main path (3), Teach the code or drop it (1), Sensitivity read (4).
 
+Shape for this course: ../../agents/catalog/shape/arts-3-5.md.
+
 ## Art Style Match
 
 - Spec: `tools/art-style-match/spec.md` . Module: arts-3-5-famous-artists-and-movements. Stage: built (the code changes after the spec). Sort: **rework**.

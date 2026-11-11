@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (17), Close the guessable check (10), Add the missing part (20), Add a model or a guide (1), Add a check (5), Reach five items that differ (11), Put it on the main path (5), Teach the code or drop it (3), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/math-12.md.
+
 ## Optimization Workshop
 
 - Spec: `tools/optimization-workshop/spec.md` . Module: math-12-applications-of-derivatives. Stage: spec only. Sort: **rework**.

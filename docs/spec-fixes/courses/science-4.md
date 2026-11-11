@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (2), Close the guessable check (4), Add the missing part (5), Add a check (2), Reach five items that differ (4), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/science-4.md.
+
 ## How Animals See
 
 - Spec: `tools/how-animals-see/(no spec.md yet)` . Module: science-4-structures-and-senses. Stage: LIVE (the code changes after the spec). Sort: **rework**.

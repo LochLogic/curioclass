@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (2), Hand the key step to the student (1), Close the guessable check (12), Add the missing part (13), Add a model or a guide (3), Add a check (5), Reach five items that differ (11), Put it on the main path (1), Sensitivity read (3).
 
+Shape for this course: ../../agents/catalog/shape/ela-6-8.md.
+
 ## Context, Roots, Dictionary
 
 - Spec: `tools/context-roots-dictionary/spec.md` . Module: ela-6-8-academic-vocabulary-strategies. Stage: spec only. Sort: **small addition**.

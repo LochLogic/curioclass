@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (4), Add the missing part (1), Reach five items that differ (3), Put it on the main path (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/eld-3-5.md.
+
 ## Talk Moves Trainer
 
 - Spec: `tools/talk-moves-trainer/spec.md` . Module: eld-3-5-academic-conversations. Stage: spec only. Sort: **small addition**.

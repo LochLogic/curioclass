@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (6), Add the missing part (8), Reach five items that differ (7), Put it on the main path (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/science-7.md.
+
 ## Molecule Forge
 
 - Spec: `tools/molecule-forge/spec.md` . Module: science-7-atoms-and-molecules. Stage: built (the code changes after the spec). Sort: **rework**.

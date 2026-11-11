@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (7), Add the missing part (5), Add a check (1), Reach five items that differ (5), Put it on the main path (1).
 
+Shape for this course: ../../agents/catalog/shape/ela-k.md. Band tools that are also part of this course, with their fix lists in ela-k-2.md: Vocabulary Jar, Poem Drum, Windblown Pages, Alike and Different Books, Read-Along Shelf, Question Cube, Because Bridge, Owl Wants More, Little Book Press, Big Question Chart, Class Phone Call, Show and Tell Spotlight.
+
 ## Letter Lanterns
 
 - Spec: `tools/letter-lanterns/spec.md` . Module: ela-k-letter-sounds-and-sight-words. Stage: built (the code changes after the spec). Sort: **rework**.

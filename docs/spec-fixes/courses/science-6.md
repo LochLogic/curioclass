@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (2), Close the guessable check (8), Add the missing part (7), Add a model or a guide (1), Add a check (1), Reach five items that differ (4), Put it on the main path (1), Teach the code or drop it (1).
 
+Shape for this course: ../../agents/catalog/shape/science-6.md.
+
 ## Pocket Universe
 
 - Spec: `tools/pocket-universe/spec.md` . Module: science-6-gravity-and-the-solar-system. Stage: built (the code changes after the spec). Sort: **rework**.

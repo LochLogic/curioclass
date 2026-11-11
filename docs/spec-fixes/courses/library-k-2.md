@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (2), Hand the key step to the student (1), Close the guessable check (2), Add the missing part (3), Add a check (1), Put it on the main path (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/library-k-2.md.
+
 ## Library Adventure
 
 - Spec: `tools/library-adventure/(no spec.md yet)` . Module: library-k-2-finding-a-book. Stage: LIVE (the code changes after the spec). Sort: **rework**.

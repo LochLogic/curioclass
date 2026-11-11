@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (4), Close the guessable check (7), Add the missing part (8), Add a model or a guide (2), Add a check (1), Reach five items that differ (2), Put it on the main path (1), Teach the code or drop it (1).
 
+Shape for this course: ../../agents/catalog/shape/math-8.md.
+
 ## Size of Everything
 
 - Spec: `tools/size-of-everything/(no spec.md yet)` . Module: math-8-exponents-roots-and-scientific-notation. Stage: LIVE (the code changes after the spec). Sort: **rework**.

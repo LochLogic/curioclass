@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Close the guessable check (1), Add a model or a guide (1), Reach five items that differ (1), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/ela-6.md. Band tools that are also part of this course, with their fix lists in ela-6-8.md: Theme Evidence Ladder, Page, Audio, Screen, Climbing Reads, Claim, Quote, Comment, Memoir and Biography, Explainer Sections, Blizzard Scenes, Draft Versus Draft, Linked Feature, Podcast Listening Club, Docent Tour Talk, Pause and Break, Tricky Word Lab, Context, Roots, Dictionary.
+
 ## Argument X-Ray  [FIXED]
 
 - Spec: `tools/argument-x-ray/spec.md` . Module: ela-6-tracing-an-argument. Stage: spec only. Sort: **small addition**.

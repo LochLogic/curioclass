@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (2), Close the guessable check (5), Add the missing part (4), Add a check (2), Reach five items that differ (4).
 
+Shape for this course: ../../agents/catalog/shape/science-k.md.
+
 ## Weather Wardrobe
 
 - Spec: `tools/weather-wardrobe/spec.md` . Module: science-k-weather-watch. Stage: spec only. Sort: **rework**.

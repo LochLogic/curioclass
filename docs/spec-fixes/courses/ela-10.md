@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (5), Add the missing part (7), Add a model or a guide (1), Add a check (2), Reach five items that differ (4), Put it on the main path (1), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/ela-10.md. Band tools that are also part of this course, with their fix lists in ela-9-12.md: Theme Ledger, Tough Text Club, Idea Threads, Pacing Strip, Editors in the Margin, Living Explainer, Key Term Tracker.
+
 ## Socratic Seminar Board
 
 - Spec: `tools/socratic-seminar-board/spec.md` . Module: ela-10-debate-and-discussion. Stage: spec only. Sort: **small addition**.

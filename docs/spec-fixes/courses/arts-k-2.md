@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (4), Hand the key step to the student (3), Close the guessable check (12), Add the missing part (14), Add a model or a guide (3), Add a check (11), Reach five items that differ (9), Put it on the main path (4), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/arts-k-2.md.
+
 ## Art Passport
 
 - Spec: `tools/art-passport/spec.md` . Module: arts-k-2-art-from-many-places. Stage: LIVE (the code changes after the spec). Sort: **rework**.

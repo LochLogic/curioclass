@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (2), Hand the key step to the student (2), Close the guessable check (8), Add the missing part (8), Add a model or a guide (1), Reach five items that differ (5).
 
+Shape for this course: ../../agents/catalog/shape/math-6.md.
+
 ## Expression Garden
 
 - Spec: `tools/expression-garden/spec.md` . Module: math-6-expressions-and-exponents. Stage: spec only. Sort: **rework**.

@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (3), Close the guessable check (12), Add the missing part (11), Add a check (4), Reach five items that differ (11), Put it on the main path (1), Sensitivity read (3).
 
+Shape for this course: ../../agents/catalog/shape/ela-3-5.md.
+
 ## Glossary Makers
 
 - Spec: `tools/glossary-makers/spec.md` . Module: ela-3-5-academic-and-subject-words. Stage: spec only. Sort: **small addition**.

@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (5), Close the guessable check (5), Add the missing part (8), Add a check (1), Reach five items that differ (3), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/health-pe-k-2.md.
+
 ## Parachute Teamwork
 
 - Spec: `tools/parachute-teamwork/spec.md` . Module: health-pe-k-2-cooperative-games. Stage: spec only. Sort: **small addition**.

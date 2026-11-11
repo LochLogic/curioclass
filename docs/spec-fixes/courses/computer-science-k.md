@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (3), Add the missing part (3), Reach five items that differ (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/computer-science-k.md. Band tools that are also part of this course, with their fix lists in computer-science-k-2.md: Attic Gadget Box, Question Jar, Who Uses This Device?, Tablet Buddy, Line Leader Picker, Morning Meeting Board, Tap-to-Start Puppets.
+
 ## Me vs the Counter
 
 - Spec: `tools/me-vs-the-counter/spec.md` . Module: computer-science-k-count-and-decide. Stage: built (the code changes after the spec). Sort: **small addition**.

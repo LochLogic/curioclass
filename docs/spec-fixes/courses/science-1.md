@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Close the guessable check (4), Add the missing part (4), Reach five items that differ (4).
 
+Shape for this course: ../../agents/catalog/shape/science-1.md.
+
 ## Shadow Puppet Studio
 
 - Spec: `tools/shadow-puppet-studio/spec.md` . Module: science-1-light-and-shadows. Stage: spec only. Sort: **small addition**.

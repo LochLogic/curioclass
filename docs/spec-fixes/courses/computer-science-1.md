@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (2), Add the missing part (3), Reach five items that differ (1), Put it on the main path (2).
 
+Shape for this course: ../../agents/catalog/shape/computer-science-1.md. Band tools that are also part of this course, with their fix lists in computer-science-k-2.md: Attic Gadget Box, Question Jar, Who Uses This Device?, Tablet Buddy, Line Leader Picker, Morning Meeting Board, Tap-to-Start Puppets.
+
 ## Spot the AI
 
 - Spec: `tools/spot-the-ai/spec.md` . Module: computer-science-1-what-is-ai. Stage: built (the code changes after the spec). Sort: **rework**.

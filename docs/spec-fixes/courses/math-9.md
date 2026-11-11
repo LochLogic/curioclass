@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (8), Close the guessable check (11), Add the missing part (10), Add a model or a guide (3), Add a check (2), Reach five items that differ (7), Put it on the main path (1), Teach the code or drop it (2).
 
+Shape for this course: ../../agents/catalog/shape/math-9.md.
+
 ## Which Model Wins?
 
 - Spec: `tools/which-model-wins/spec.md` . Module: math-9-linear-quadratic-and-exponential-models. Stage: spec only. Sort: **rework**.

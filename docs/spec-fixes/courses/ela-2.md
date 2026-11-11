@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (2), Hand the key step to the student (2), Close the guessable check (10), Add the missing part (6), Add a model or a guide (4), Add a check (2), Reach five items that differ (3), Put it on the main path (2), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/ela-2.md. Band tools that are also part of this course, with their fix lists in ela-k-2.md: Question Cube, Poem Drum, Windblown Pages, Alike and Different Books, Read-Along Shelf, Vocabulary Jar, Because Bridge, Owl Wants More, Little Book Press, Big Question Chart, Class Phone Call, Show and Tell Spotlight.
+
 ## Vowel Team Tag
 
 - Spec: `tools/vowel-team-tag/spec.md` . Module: ela-2-long-vowels-and-two-syllable-words. Stage: spec only. Sort: **rework**.

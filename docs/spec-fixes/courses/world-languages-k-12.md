@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (5), Hand the key step to the student (1), Close the guessable check (10), Add the missing part (8), Add a model or a guide (2), Add a check (2), Reach five items that differ (2), Put it on the main path (1), Sensitivity read (8).
 
+Shape for this course: ../../agents/catalog/shape/world-languages-k-12.md.
+
 ## Mi Día
 
 - Spec: `tools/mi-día/spec.md` . Module: world-languages-k-12-school-and-daily-routine. Stage: spec only. Sort: **rework**.

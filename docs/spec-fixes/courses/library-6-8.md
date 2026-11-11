@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Close the guessable check (3), Add the missing part (3), Add a model or a guide (1), Add a check (1), Reach five items that differ (2), Source the facts (1).
 
+Shape for this course: ../../agents/catalog/shape/library-6-8.md.
+
 ## Fake or Fact Lab
 
 - Spec: `tools/fake-or-fact-lab/spec.md` . Module: library-6-8-is-it-reliable. Stage: built (the code changes after the spec). Sort: **small addition**.

@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (10), Add the missing part (5), Add a model or a guide (1), Reach five items that differ (4).
 
+Shape for this course: ../../agents/catalog/shape/math-1.md.
+
 ## Make Ten Machine
 
 - Spec: `tools/make-ten-machine/spec.md` . Module: math-1-fact-strategies. Stage: spec only. Sort: **rework**.

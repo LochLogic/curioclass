@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (4), Close the guessable check (2), Add the missing part (6), Add a check (4), Reach five items that differ (2), Put it on the main path (2), Teach the code or drop it (1), Sensitivity read (3).
 
+Shape for this course: ../../agents/catalog/shape/health-pe-6-8.md.
+
 ## Rules Referee
 
 - Spec: `tools/rules-referee/spec.md` . Module: health-pe-6-8-sport-skills-and-rules. Stage: built (the code changes after the spec). Sort: **rework**.

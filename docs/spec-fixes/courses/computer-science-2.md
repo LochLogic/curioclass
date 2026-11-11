@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Close the guessable check (2), Add the missing part (3), Add a model or a guide (1), Reach five items that differ (1).
 
+Shape for this course: ../../agents/catalog/shape/computer-science-2.md. Band tools that are also part of this course, with their fix lists in computer-science-k-2.md: Attic Gadget Box, Question Jar, Who Uses This Device?, Tablet Buddy, Line Leader Picker, Morning Meeting Board, Tap-to-Start Puppets.
+
 ## Input or Output?
 
 - Spec: `tools/input-or-output/spec.md` . Module: computer-science-2-input-and-output. Stage: built (the code changes after the spec). Sort: **small addition**.

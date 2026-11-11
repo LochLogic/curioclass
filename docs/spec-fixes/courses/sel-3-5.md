@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (2), Close the guessable check (1), Add the missing part (2), Add a model or a guide (1), Add a check (1), Reach five items that differ (1), Put it on the main path (1), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/sel-3-5.md.
+
 ## Comeback Club
 
 - Spec: `tools/comeback-club/spec.md` . Module: sel-3-5-growth-mindset-and-goals. Stage: LIVE (the code changes after the spec). Sort: **small addition**.

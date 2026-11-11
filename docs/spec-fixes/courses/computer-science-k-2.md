@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (4), Close the guessable check (5), Add the missing part (7), Add a model or a guide (2), Add a check (2), Reach five items that differ (4), Put it on the main path (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/computer-science-k-2.md.
+
 ## Attic Gadget Box
 
 - Spec: `tools/attic-gadget-box/spec.md` . Module: computer-science-k-2-computing-then-and-now. Stage: spec only. Sort: **rework**.

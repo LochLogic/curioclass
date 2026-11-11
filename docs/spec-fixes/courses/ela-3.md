@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (3), Close the guessable check (10), Add the missing part (7), Add a model or a guide (1), Add a check (1), Reach five items that differ (6), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/ela-3.md. Band tools that are also part of this course, with their fix lists in ela-3-5.md: Main Idea Pinboard, Swap the Teller, Mood in the Pictures, Side by Side Reader, Stretch Shelf, How It Works Diagrams, Glossary Makers, Script Read-Through, Draft Car Wash, Deadline Desk, Radio Hour Notes, Planetarium Guide.
+
 ## Idiom Illustrator
 
 - Spec: `tools/idiom-illustrator/spec.md` . Module: ela-3-literal-and-figurative-language. Stage: spec only. Sort: **rework**.

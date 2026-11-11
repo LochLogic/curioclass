@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (4), Close the guessable check (7), Add the missing part (9), Add a check (1), Reach five items that differ (2), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/science-10.md.
+
 ## Elements Inspector
 
 - Spec: `tools/elements-inspector/(no spec.md yet)` . Module: science-10-atomic-structure-and-the-periodic-table. Stage: LIVE (the code changes after the spec). Sort: **rework**.

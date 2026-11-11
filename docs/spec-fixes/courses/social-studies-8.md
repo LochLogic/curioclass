@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (3), Close the guessable check (13), Add the missing part (11), Add a model or a guide (2), Add a check (3), Reach five items that differ (10), Sensitivity read (10).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-8.md.
+
 ## Constitutional Convention
 
 - Spec: `tools/constitutional-convention/spec.md` . Module: social-studies-8-creating-the-constitution. Stage: spec only. Sort: **rework**.

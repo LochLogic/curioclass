@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (2), Close the guessable check (7), Add the missing part (9), Add a check (2), Reach five items that differ (7).
 
+Shape for this course: ../../agents/catalog/shape/math-5.md.
+
 ## Fraction Kitchen
 
 - Spec: `tools/fraction-kitchen/spec.md` . Module: math-5-adding-unlike-fractions. Stage: spec only. Sort: **small addition**.

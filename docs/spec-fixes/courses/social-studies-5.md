@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (8), Close the guessable check (9), Add the missing part (11), Add a check (2), Reach five items that differ (10), Put it on the main path (2), Sensitivity read (7), Source the facts (1).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-5.md.
+
 ## Cocoa Chain
 
 - Spec: `tools/cocoa-chain/spec.md` . Module: social-studies-5-cocoa-chain. Stage: built (the code changes after the spec). Sort: **rework**.

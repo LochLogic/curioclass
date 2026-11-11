@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (4), Add the missing part (4), Reach five items that differ (3), Sensitivity read (3).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-9.md.
+
 ## Alliance Web
 
 - Spec: `tools/alliance-web/spec.md` . Module: social-studies-9-world-war-i. Stage: spec only. Sort: **rework**.

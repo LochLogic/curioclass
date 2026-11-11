@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (4), Close the guessable check (9), Add the missing part (10), Add a model or a guide (3), Add a check (3), Reach five items that differ (9), Teach the code or drop it (1), Sensitivity read (3).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-4.md.
+
 ## Skateboard Fund Chances
 
 - Spec: `tools/skateboard-fund-chances/spec.md` . Module: social-studies-4-bike-fund-chances. Stage: spec only. Sort: **rework**.

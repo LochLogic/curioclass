@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (3), Hand the key step to the student (1), Close the guessable check (3), Add the missing part (5), Add a check (1), Reach five items that differ (4), Put it on the main path (1), Source the facts (1).
 
+Shape for this course: ../../agents/catalog/shape/science-2.md.
+
 ## Island Maker
 
 - Spec: `tools/island-maker/spec.md` . Module: science-2-maps-of-land-and-water. Stage: spec only. Sort: **rework**.

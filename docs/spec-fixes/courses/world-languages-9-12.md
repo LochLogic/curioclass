@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (1), Close the guessable check (2), Add the missing part (3), Reach five items that differ (3), Put it on the main path (1), Sensitivity read (3).
 
+Shape for this course: ../../agents/catalog/shape/world-languages-9-12.md.
+
 ## ASL Story Theater
 
 - Spec: `tools/asl-story-theater/(no spec.md yet)` . Module: world-languages-9-12-asl-storytelling-and-narrative. Stage: idea only. Sort: **small addition**.

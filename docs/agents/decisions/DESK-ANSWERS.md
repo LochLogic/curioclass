@@ -210,3 +210,26 @@ The thirteen calls:
   ten; a new lesson tool for reading, comparing and rounding decimals (5.NBT.A.3, 5.NBT.A.4).
 - The five approved tools are not written as ideas yet. Each gets an idea card and a spec when its course's Build
   opens; until then the shape file is the record.
+
+## 2026-11-11: grade 3 math, and the two-topic rule
+
+- Grade 3 math (q-shape-math-3): "Use Claude's picks on all of these." All four second lesson tools approved, each
+  in its existing module: unknowns, properties and unknown-factor division (3.OA.A.4, 3.OA.B.5, 3.OA.B.6; Equal
+  Groups Zoo keeps 3.OA.A.1 to 3); equivalent fractions and comparing (3.NF.A.3; Fraction Trail keeps 3.NF.A.1 and
+  3.NF.A.2); area as multiplication and addition (3.MD.C.7; Tile the Floor keeps 3.MD.C.5, 3.MD.C.6, 3.G.A.2); time
+  to the minute and elapsed time (3.MD.A.1; Kitchen Lab keeps 3.MD.A.2).
+- The two-topic rule (one module, two tools when the topics sit in separate modes or cannot both fit one sitting of
+  about 35 minutes; otherwise one tool): Cory said in chat he likes the rule. It now stands for every course.
+- Still open: the re-asked line plot question on q-shape-math-4.
+
+## 2026-11-11: standing calls made while shaping the rest (Claude, under the Desk defaults)
+
+- Shape questions go to the Desk only where a tool over four codes cannot be fixed inside one sitting and part of
+  its load already reads as taught, so there is a line to split along. Four new cards: q-shape-math-6,
+  q-shape-math-8, q-shape-ela-5, q-shape-ela-11 (five questions).
+- Not asked, by rule: loaded tools where nothing reads as taught (fix the spec first), close calls (fix inside the
+  tool), band tools (a path per grade first), high school math (waits for grade 4 math), and every subject outside
+  math and ELA (rough reads).
+- Two hand overrides, in shape/decisions.csv: Turn and Talk Wheel (kindergarten ELA) and Socratic Seminar Board
+  (grade 10 ELA) keep their discussion standard; the rule would have moved the very thing each tool is for.
+

@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (2), Close the guessable check (3), Add the missing part (5), Add a check (4), Reach five items that differ (4), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/science-12.md.
+
 ## Biome Atlas
 
 - Spec: `tools/biome-atlas/spec.md` . Module: science-12-ecosystems-and-biomes. Stage: built (the code changes after the spec). Sort: **rework**.

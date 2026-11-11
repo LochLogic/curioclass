@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (8), Close the guessable check (7), Add the missing part (9), Add a model or a guide (1), Reach five items that differ (7), Put it on the main path (1), Teach the code or drop it (2), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/math-10.md.
+
 ## Circle Theorem Explorer
 
 - Spec: `tools/circle-theorem-explorer/spec.md` . Module: math-10-circles. Stage: spec only. Sort: **rework**.

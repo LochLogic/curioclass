@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Close the guessable check (7), Add the missing part (3), Add a model or a guide (2), Add a check (3), Reach five items that differ (7), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/ela-8.md. Band tools that are also part of this course, with their fix lists in ela-6-8.md: Theme Evidence Ladder, Blizzard Scenes, Page, Audio, Screen, Climbing Reads, Claim, Quote, Comment, Memoir and Biography, Explainer Sections, Draft Versus Draft, Linked Feature, Podcast Listening Club, Docent Tour Talk, Pause and Break, Tricky Word Lab, Context, Roots, Dictionary.
+
 ## Paragraph Surgeon
 
 - Spec: `tools/paragraph-surgeon/spec.md` . Module: ela-8-analyzing-structure-and-paragraphs. Stage: spec only. Sort: **small addition**.

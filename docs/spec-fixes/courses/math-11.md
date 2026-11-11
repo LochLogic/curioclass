@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (7), Close the guessable check (4), Add the missing part (8), Add a model or a guide (2), Add a check (4), Reach five items that differ (3), Put it on the main path (3), Teach the code or drop it (1).
 
+Shape for this course: ../../agents/catalog/shape/math-11.md.
+
 ## Undo Machine
 
 - Spec: `tools/undo-machine/spec.md` . Module: math-11-building-and-inverting-functions. Stage: LIVE (the code changes after the spec). Sort: **rework**.

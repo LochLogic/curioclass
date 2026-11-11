@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (6), Close the guessable check (10), Add the missing part (14), Add a model or a guide (1), Add a check (10), Reach five items that differ (14), Put it on the main path (1), Teach the code or drop it (2), Sensitivity read (8).
 
+Shape for this course: ../../agents/catalog/shape/arts-9-12.md.
+
 ## Dance Styles Explorer
 
 - Spec: `tools/dance-styles-explorer/spec.md` . Module: arts-9-12-dance-styles-and-criticism. Stage: built (the code changes after the spec). Sort: **rework**.

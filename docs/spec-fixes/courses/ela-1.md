@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (2), Close the guessable check (9), Add the missing part (6), Add a model or a guide (1), Add a check (1), Reach five items that differ (6), Put it on the main path (2).
 
+Shape for this course: ../../agents/catalog/shape/ela-1.md. Band tools that are also part of this course, with their fix lists in ela-k-2.md: Poem Drum, Alike and Different Books, Windblown Pages, Read-Along Shelf, Question Cube, Vocabulary Jar, Because Bridge, Owl Wants More, Little Book Press, Big Question Chart, Class Phone Call, Show and Tell Spotlight.
+
 ## Context Clue Hunt
 
 - Spec: `tools/context-clue-hunt/spec.md` . Module: ela-1-word-meanings. Stage: spec only. Sort: **rework**.

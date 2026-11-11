@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (3), Hand the key step to the student (4), Close the guessable check (12), Add the missing part (16), Add a model or a guide (1), Add a check (7), Reach five items that differ (13), Put it on the main path (4), Sensitivity read (6).
 
+Shape for this course: ../../agents/catalog/shape/arts-6-8.md.
+
 ## Scene Staging Comparison
 
 - Spec: `tools/scene-staging-comparison/spec.md` . Module: arts-6-8-comparing-productions. Stage: built (the code changes after the spec). Sort: **rework**.

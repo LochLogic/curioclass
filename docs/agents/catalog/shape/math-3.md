@@ -95,3 +95,10 @@ Trail, Tile the Floor and Kitchen Lab until Cory answers.
 - Count codes with lettered parts, not standards. Grade 3 looks like 25 standards and is 37 things to teach.
 - Load explains weak reads. Sorting specs as "small addition" hid that four of them cannot be fixed inside one
   sitting; only a second tool fixes them.
+
+## Decided (Cory, on the Desk, 2026-11-11)
+
+All four picks approved. Equal Groups Zoo keeps 3.OA.A.1 to 3, with a new lesson tool for 3.OA.A.4, 3.OA.B.5 and
+3.OA.B.6. Fraction Trail keeps 3.NF.A.1 and 3.NF.A.2, with a new lesson tool for 3.NF.A.3. Tile the Floor keeps
+3.MD.C.5, 3.MD.C.6 and 3.G.A.2, with a new lesson tool for 3.MD.C.7. Kitchen Lab keeps 3.MD.A.2, with a new lesson
+tool for 3.MD.A.1. Sara can now fix all four specs on that basis. Cory also confirmed the two-topic rule above.

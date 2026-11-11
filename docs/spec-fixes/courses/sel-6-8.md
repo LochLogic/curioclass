@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (2), Hand the key step to the student (1), Close the guessable check (2), Add the missing part (2), Add a check (1), Reach five items that differ (1), Put it on the main path (1), Sensitivity read (2).
 
+Shape for this course: ../../agents/catalog/shape/sel-6-8.md.
+
 ## Decision Tree
 
 - Spec: `tools/decision-tree/spec.md` . Module: sel-6-8-responsible-decisions. Stage: LIVE (the code changes after the spec). Sort: **rework**.

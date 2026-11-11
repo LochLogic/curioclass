@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (2), Close the guessable check (3), Add the missing part (5), Add a model or a guide (1), Add a check (1), Reach five items that differ (4), Put it on the main path (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-k.md.
+
 ## Playground Rules
 
 - Spec: `tools/playground-rules/spec.md` . Module: social-studies-k-rules-and-responsibilities. Stage: spec only. Sort: **rework**.

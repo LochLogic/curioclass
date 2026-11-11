@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (2), Close the guessable check (9), Add the missing part (6), Add a check (3), Reach five items that differ (8), Sensitivity read (7).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-11.md.
+
 ## Stock Market 1929
 
 - Spec: `tools/stock-market-1929/spec.md` . Module: social-studies-11-roaring-twenties-and-the-great-depression. Stage: spec only. Sort: **rework**.

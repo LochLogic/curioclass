@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (2), Close the guessable check (11), Add the missing part (11), Add a model or a guide (1), Add a check (3), Reach five items that differ (10), Put it on the main path (1), Teach the code or drop it (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/ela-k-2.md.
+
 ## Read-Along Shelf
 
 - Spec: `tools/read-along-shelf/spec.md` . Module: ela-k-2-reading-range-and-text-complexity. Stage: spec only. Sort: **rework**.

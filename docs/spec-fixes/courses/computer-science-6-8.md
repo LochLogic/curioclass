@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (3), Close the guessable check (13), Add the missing part (10), Add a model or a guide (6), Reach five items that differ (13), Put it on the main path (1), Teach the code or drop it (1), Sensitivity read (6).
 
+Shape for this course: ../../agents/catalog/shape/computer-science-6-8.md.
+
 ## Phishing Spotter
 
 - Spec: `tools/phishing-spotter/spec.md` . Module: computer-science-6-8-cyber-attacks-and-defense. Stage: built (the code changes after the spec). Sort: **rework**.

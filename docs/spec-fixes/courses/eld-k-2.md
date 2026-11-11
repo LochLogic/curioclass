@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (4), Close the guessable check (6), Add the missing part (2), Reach five items that differ (1).
 
+Shape for this course: ../../agents/catalog/shape/eld-k-2.md.
+
 ## I Choose Because
 
 - Spec: `tools/i-choose-because/spec.md` . Module: eld-k-2-choosing-and-giving-reasons. Stage: spec only. Sort: **small addition**.

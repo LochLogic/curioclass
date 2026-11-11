@@ -97,6 +97,11 @@ out_rows.sort(key=lambda x: (x['subject'], gkey(x['grade']), x['module'], x['too
 with io.open(os.path.join(OUT, 'fix-list.csv'), 'w', encoding='utf-8', newline='') as f:
     w = csv.DictWriter(f, list(out_rows[0].keys()), lineterminator='\n'); w.writeheader(); w.writerows(out_rows)
 
+BANDTOOLS = collections.defaultdict(list)          # course -> [(title, band grade)], from the shape pass
+sp = os.path.join(CAT, 'shape', 'shape.csv')
+if os.path.exists(sp):
+    for x in csv.DictReader(io.open(sp, encoding='utf-8')):
+        if x['band']: BANDTOOLS[x['course']].append((x['title'], modules[x['module']]['grade']))
 STAGE = {'spec': 'spec only', 'built': 'built (the code changes after the spec)', 'live': 'LIVE (the code changes after the spec)', 'idea': 'idea only'}
 index = ['# The spec fix list, by course\n',
          'Built by scripts/spec_fixes.py. Start with README.md. The two proving courses come first, then every other '
@@ -112,6 +117,8 @@ for (s, g) in courses:
          '%d tools: %d rework, %d small addition, %d fine. How to use this file: ../README.md. '
          'When a spec is fixed, add a line to ../done.txt.\n' % (len(es), n['rework'], n['small addition'], n['fine']),
          'Kinds of fix in this course: ' + (', '.join('%s (%d)' % (NAME[key], kc[key]) for key, _ in KINDS if kc[key]) or 'none') + '.\n']
+    bt = BANDTOOLS.get('%s-%s' % (s, g))
+    P.append('Shape for this course: ../../agents/catalog/shape/%s-%s.md.%s\n' % (s, g, (' Band tools that are also part of this course, with their fix lists in ' + ', '.join(sorted({'%s-%s.md' % (s, b) for _, b in bt})) + ': ' + ', '.join(t for t, _ in bt) + '.') if bt else ''))
     for e in es:
         r = e['row']
         P.append('## %s%s\n' % (e['title'], '  [%s]' % e['status'].upper() if e['status'] else ''))

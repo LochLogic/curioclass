@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (6), Add the missing part (4), Add a check (1), Reach five items that differ (5), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/science-3.md.
+
 ## Magnet Maze
 
 - Spec: `tools/magnet-maze/spec.md` . Module: science-3-magnets-and-static-electricity. Stage: spec only. Sort: **rework**.

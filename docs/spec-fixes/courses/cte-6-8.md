@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (2), Close the guessable check (3), Add the missing part (8), Add a check (3), Reach five items that differ (4), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/cte-6-8.md.
+
 ## Career Cluster Explorer
 
 - Spec: `tools/career-cluster-explorer/spec.md` . Module: cte-6-8-career-clusters. Stage: LIVE (the code changes after the spec). Sort: **rework**.

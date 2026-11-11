@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (5), Close the guessable check (10), Add the missing part (10), Add a model or a guide (1), Add a check (1), Reach five items that differ (7), Sensitivity read (3).
 
+Shape for this course: ../../agents/catalog/shape/social-studies-6.md.
+
 ## Silk Road Traders
 
 - Spec: `tools/silk-road-traders/spec.md` . Module: social-studies-6-ancient-india-and-china. Stage: spec only. Sort: **rework**.

@@ -1,0 +1,15 @@
+# Cory's Desk answers and hand overrides, one line per tool. Read by scripts/shape_courses.py.
+# call: approved (second tool approved, fix the spec on the split), asked (on the Desk, wait), hold (looked at by hand: no second tool), declined
+course,tool,call,date,note
+math-4,recipe-scaler,approved,2026-11-10,Recipe Scaler keeps 4.NF.B.3 (a to d); a new lesson tool takes 4.NF.B.4.
+math-4,area-model-builder,approved,2026-11-10,Area Model Builder keeps 4.NBT.B.5; a new lesson tool takes 4.NBT.B.6.
+math-4,skate-park-angles,asked,2026-11-10,Line plot lesson tool re-asked on q-shape-math-4; the angle side can be fixed now.
+ela-6,debate-prep-desk,approved,2026-11-10,Debate Prep Desk keeps W.6.1a and b; a new lesson tool drafts the argument (W.6.1c to e).
+math-5,grocery-run,approved,2026-11-10,Grocery Run keeps 5.NBT.B.7 and NSPFE.Spending; a new lesson tool takes 5.NBT.B.5 and 5.NBT.B.6.
+math-5,zoom-by-tens,approved,2026-11-10,Zoom by Tens keeps 5.NBT.A.1 and 5.NBT.A.2; a new lesson tool takes 5.NBT.A.3 and 5.NBT.A.4.
+math-3,equal-groups-zoo,approved,2026-11-11,Equal Groups Zoo keeps 3.OA.A.1 to 3; a new lesson tool takes 3.OA.A.4 and 3.OA.B.5 and 3.OA.B.6.
+math-3,fraction-trail,approved,2026-11-11,Fraction Trail keeps 3.NF.A.1 and 3.NF.A.2; a new lesson tool takes 3.NF.A.3.
+math-3,tile-the-floor,approved,2026-11-11,Tile the Floor keeps 3.MD.C.5 and 3.MD.C.6 and 3.G.A.2; a new lesson tool takes 3.MD.C.7.
+math-3,kitchen-lab,approved,2026-11-11,Kitchen Lab keeps 3.MD.A.2; a new lesson tool takes 3.MD.A.1.
+ela-k,turn-and-talk-wheel,hold,2026-11-11,taking turns in conversation (SL.K.1) is what this tool is for; the fix belongs inside it and SL.K.2 is the load to trim if the sitting runs long
+ela-10,socratic-seminar-board,hold,2026-11-11,collaborative discussion (SL.9-10.1) is what this tool is for; the fix belongs inside it and SL.9-10.3 is the load to trim if the sitting runs long

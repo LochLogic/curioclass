@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (7), Add the missing part (7), Reach five items that differ (4), Put it on the main path (1), Sensitivity read (3).
 
+Shape for this course: ../../agents/catalog/shape/ela-12.md. Band tools that are also part of this course, with their fix lists in ela-9-12.md: Theme Ledger, Key Term Tracker, Tough Text Club, Idea Threads, Pacing Strip, Editors in the Margin, Living Explainer.
+
 ## Word Family Tree
 
 - Spec: `tools/word-family-tree/spec.md` . Module: ela-12-advanced-vocabulary-and-etymology. Stage: spec only. Sort: **rework**.

@@ -4,6 +4,8 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (3), Add the missing part (3), Reach five items that differ (1), Sensitivity read (1).
 
+Shape for this course: ../../agents/catalog/shape/computer-science-3.md. Band tools that are also part of this course, with their fix lists in computer-science-3-5.md: Inventors Hall, Job Shadow Day, Family Tech Vote, Fair Survey Kit, Marble Ramp Trials, Team Code Relay, Adventure Outline Cards, Three Route Rules, Inside the Keypress.
+
 ## Internet Journey
 
 - Spec: `tools/internet-journey/spec.md` . Module: computer-science-3-how-we-use-the-internet. Stage: built (the code changes after the spec). Sort: **rework**.
