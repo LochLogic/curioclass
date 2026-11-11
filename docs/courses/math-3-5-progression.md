@@ -2,7 +2,7 @@
 
 **What this is.** Layer 4 of the Curio Class foundation: how grade 4 mathematics joins grade 3 behind it and grade 5 ahead. Unit plans take field 2 ("Builds on, leads to") and field 4 (the readiness check) from this page.
 
-**Status.** Second draft, 2026-11-11, revised after a cold read by the curriculum expert (docs/reviews/math-3-5-progression-2026-11-11.md). Four points wait for Cory. Each is marked "Proposed, waiting for Cory's yes": stretch 7 (decimals), stretch 8 (rounding), stretch 11 (numbers in the pilot) and section 3 (facts check).
+**Status.** Second draft, 2026-11-11, revised after a cold read by the curriculum expert (docs/reviews/math-3-5-progression-2026-11-11.md). Cory said yes to the four points that change what the course teaches (2026-11-11): the decimals rule (stretch 7), the rounding days (stretch 8), the numbers in the pilot unit (stretch 11) and the facts check (section 3). They are written into the spine. The length of this page, a little over 5,000 words, is accepted.
 
 **How to read it.**
 
@@ -76,7 +76,7 @@
 - **Readiness.** (1) W, this year: writes 3/10 as hundredths (4.NF.A.1, stretch 3). (2) W, this year: finds 3/10 + 4/10 (4.NF.B.3, stretch 4). (3) W: circles the larger of 3/8 and 5/8 (3.NF.A.3d). (4) W: writes how many dimes and how many cents make a dollar (2.MD.C.8).
 - **Grade 5 needs from it:** decimals as fractions over 10 or 100, to reach thousandths (5.NBT.A.3) and explain decimal arithmetic (5.NBT.B.7); the number line, as in stretch 3.
 - **Limits:** tenths and hundredths. Comparing, not computing, in decimal notation. Adding is done as fractions (4.NF.C.5), with dimes and cents (Prog. p. 154 (148)).
-- **The decimals rule. Proposed, waiting for Cory's yes.** For this stretch and stretch 15. Decimal notation may be used; computing in it waits for grade 5 (Prog. p. 89 (83); 5.NBT.B.7).
+- **The decimals rule. Decided, Cory, 2026-11-11.** For this stretch and stretch 15. Decimal notation may be used; computing in it waits for grade 5 (Prog. p. 89 (83); 5.NBT.B.7).
   1. **May appear:** decimals to hundredths as given quantities (2.5 km, $3.75, 0.4 L).
   2. **May be done with them:** read, write, compare, place on a number line; rename as a fraction with denominator 10 or 100; rename in a smaller unit as a whole number ($3.75 is 375 cents; 2.5 km is 2,500 m).
   3. **Computing:** every sum, difference, product or quotient is done on whole numbers in the smaller unit, or on fractions with denominators 10 and 100. The answer may then be written back as a decimal.
@@ -91,7 +91,7 @@
 - **Readiness.** (1) W: writes how many hundreds, tens and ones are in 706 (2.NBT.A.1). (2) W: compares two three-digit numbers with >, =, < (2.NBT.A.4). (3) W: rounds 368 to the nearest 10 and 100 (3.NBT.A.1). (4) W: fills in "10 tens make ___; 10 hundreds make ___" (2.NBT.A.1a).
 - **Grade 5 needs from it:** "ten times the place to its right", to add "1/10 of the place to its left" and reach decimals (5.NBT.A.1, A.2).
 - **Limits:** whole numbers to 1,000,000.
-- **Rounding, unit 8.3. Proposed, waiting for Cory's yes.** Keep three days and re-aim the third. Day 1: rounding on the number line to the leftmost place. Day 2: any place, including a middle place and the "round up into a new place" case. Day 3: rounding used to estimate and check sums and differences, which is what 4.OA.A.3 asks for and what stretch 9 begins. Rounding beyond the leftmost one or two places "need not be practiced" (Prog. p. 69 (63), margin); a middle place is the harder case (Prog. p. 68 (62)).
+- **Rounding, unit 8.3. Decided, Cory, 2026-11-11.** Keep three days and re-aim the third. Day 1: rounding on the number line to the leftmost place. Day 2: any place, including a middle place and the "round up into a new place" case. Day 3: rounding used to estimate and check sums and differences, which is what 4.OA.A.3 asks for and what stretch 9 begins. Rounding beyond the leftmost one or two places "need not be practiced" (Prog. p. 69 (63), margin); a middle place is the harder case (Prog. p. 68 (62)).
 - **Hard here:** reading large numbers by their comma groups (Prog. p. 69 (63)).
 - **Practice:** MP.7 and MP.8, in the tenfold pattern.
 - **Earlier in this year:** stretch 7, for the tenfold pattern.
@@ -120,7 +120,7 @@
 - **Readiness.** (1) W: finds the area of a 6 by 7 rectangle and writes the multiplication (3.MD.C.7a). (2) W: finds the perimeter of a rectangle with two sides labelled (3.MD.D.8). (3) W: solves 8 × ? = 48 (3.OA.A.4). (4) W: draws two rectangles with perimeter 12 and different areas (3.MD.D.8).
 - **Grade 5 needs from it:** area of the base, for V = b × h (5.MD.C.5); fractional side lengths (5.NF.B.4b).
 - **Limits:** rectangles. To "apply the formula" does not mean to plug into a memorized one (Prog. p. 112 (106)).
-- **Numbers on these days. Proposed, waiting for Cory's yes.** Keep day 89, before multi-digit multiplication and division. Days 89 to 93: areas are products within 100, or a one-digit number times a multiple of 10. Unknown-side area problems are factor-pair problems (4.OA.B.4). Perimeter may use multi-digit addition (4.NBT.B.4) and like-denominator fractions (4.NF.B.3d). Area with larger sides returns in units 12 and 13 as the context for partial products and for division, and in stretch 14 problems. Without that return 4.MD.A.3 is half taught.
+- **Numbers on these days. Decided, Cory, 2026-11-11.** Keep day 89, before multi-digit multiplication and division. Days 89 to 93: areas are products within 100, or a one-digit number times a multiple of 10. Unknown-side area problems are factor-pair problems (4.OA.B.4). Perimeter may use multi-digit addition (4.NBT.B.4) and like-denominator fractions (4.NF.B.3d). Area with larger sides returns in units 12 and 13 as the context for partial products and for division, and in stretch 14 problems. Without that return 4.MD.A.3 is half taught.
 - **Hard here:** adding one length and one width for perimeter (Prog. pp. 106 (100) and 111 (105)).
 
 ### Stretch 12. Multi-Digit Multiplication (days 94 to 105; 4.NBT.B.5)
@@ -156,7 +156,7 @@
 - **Grade 3 hands it (Weak):** time to the minute; grams, kilograms, liters; one-step problems (3.MD.A.1, A.2). The base for length is grade 2: inches, feet, centimeters, meters (2.MD.A.1 to A.4), with unit size against count (2.MD.A.2), and money (2.MD.C.8). New in grade 4: km, lb, oz, ml, seconds, and every conversion.
 - **Readiness.** (1) W: circles the better unit: a paperclip weighs about 1 gram or 1 kilogram (3.MD.A.2). (2) W: finds the minutes from 2:40 to 3:15 (3.MD.A.1). (3) W, this year: fills in "a meter is ___ times as long as a centimeter" (4.OA.A.1, stretch 10). (4) W, this year: finds 7 × 1,000 and 6 × 12 (4.NBT.B.5, stretch 12).
 - **Grade 5 needs from it:** unit sizes and the times-as-much link, to convert both ways with decimals (5.MD.A.1).
-- **Limits:** larger unit to smaller unit only, within one system. 4.MD.A.2 allows "simple fractions or decimals": the decimals rule in stretch 7 governs every money and metric problem here (Proposed, waiting for Cory's yes).
+- **Limits:** larger unit to smaller unit only, within one system. 4.MD.A.2 allows "simple fractions or decimals": the decimals rule in stretch 7 governs every money and metric problem here (Decided, Cory, 2026-11-11).
 - **Hard here:** the smaller the unit, the more of them it takes, first met in grade 2 (2.MD.A.2; Prog. p. 103 (97)). Two-column tables show the "times as much" link between units (Prog. p. 110 (104)).
 - **Practice:** MP.7 and MP.8, in the two-column tables (Prog. p. 110 (104)).
 - **Earlier in this year:** stretches 6, 7, 10, 12, 13.
@@ -203,7 +203,7 @@ One table per strand: where each grade stops. A grade 4 check item stays inside 
 
 | Decimals: grade 3 | Grade 4 | Grade 5 |
 |---|---|---|
-| None. | Tenths and hundredths. No computing in decimal notation: the decimals rule in stretch 7 (Proposed, waiting for Cory's yes). | Thousandths. All four operations to hundredths. |
+| None. | Tenths and hundredths. No computing in decimal notation: the decimals rule in stretch 7 (Decided, Cory, 2026-11-11). | Thousandths. All four operations to hundredths. |
 
 | Measurement and conversion: grade 3 | Grade 4 | Grade 5 |
 |---|---|---|
@@ -249,7 +249,7 @@ Grade 4 has one fluency standard, 4.NBT.B.4. Multiplication (4.NBT.B.5) has no "
 
 This matches the spine's fluency plan. The only additions are items 1 (check first) and 3.
 
-**The facts check. Proposed, waiting for Cory's yes.** Keep the spine's label "grade 3 maintenance" for times tables, and add: days 1 to 6 include a facts check; students below the mark get the grade 3 fact tools and print during warm-ups, and the check repeats before day 94. The help lives in warm-ups, not in lesson days. Reaching fact fluency may take much time, and extra time and support are essential where needed (Prog. p. 37 (31)).
+**The facts check. Decided, Cory, 2026-11-11.** Keep the spine's label "grade 3 maintenance" for times tables, and add: days 1 to 6 include a facts check; students below the mark get the grade 3 fact tools and print during warm-ups, and the check repeats before day 94. The help lives in warm-ups, not in lesson days. Reaching fact fluency may take much time, and extra time and support are essential where needed (Prog. p. 37 (31)).
 
 ---
 

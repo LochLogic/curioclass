@@ -383,3 +383,15 @@ Also this day: docs/agents/EXPERT.md now tells the expert to start from what ear
 source list and evidence notes, the approach, the progression, earlier reviews) and to end each report with new
 sources for the list. Cory asked whether gathering sources had improved the expert; it had not, until this.
 
+## 2026-11-11: q-progression-math-4 answered (Cory, in chat: "yes to all 4. also, the overage on file word size is acceptable")
+
+1. The pilot unit stays on days 89 to 93. Areas there are products within 100 or a one-digit number times a
+   multiple of 10; area with larger sides returns in stretches 12, 13 and 14.
+2. A facts check in days 1 to 6, repeated before day 94; help in warm-ups only.
+3. The decimals rule for stretches 7 and 15: decimals may appear and be read, compared and renamed; every
+   calculation is in whole numbers of the smaller unit or fractions over 10 and 100.
+4. Unit 8.3 keeps three days; the third is rounding used to estimate and check.
+
+Written into docs/courses/math-4-spine.md and docs/courses/math-3-5-progression.md. No day, order or unit moved, so
+data/units.csv is unchanged. The progression page's length is accepted as it is.
+

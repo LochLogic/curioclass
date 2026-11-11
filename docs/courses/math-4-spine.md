@@ -8,6 +8,13 @@ Revised 2026-11-11 after the curriculum expert's review (docs/reviews/math-4-spi
 
 2026-11-11: builds-on and sets-up pointers corrected from the grades 3 to 5 progression (docs/courses/math-3-5-progression.md); no day, order or unit changed.
 
+**2026-11-11, four decisions from the grades 3 to 5 progression (Cory said yes to each; Desk card
+q-progression-math-4). No day, order or unit moved.** (1) The pilot unit keeps its place before multi-digit
+multiplication; its areas stay within what students can already multiply, and area returns with larger sides in
+stretches 12 to 14. (2) A facts check in days 1 to 6, repeated before day 94, with help in warm-ups only. (3) The
+decimals rule for stretches 7 and 15. (4) The third day of unit 8.3 is rounding used to estimate and check. Each is
+written where it applies below; the full wording is in docs/courses/math-3-5-progression.md.
+
 ## What changed in this revision
 
 1. **Checks moved from the unit to the stretch.** One readiness check at the start of a stretch, a five-minute exit
@@ -104,15 +111,15 @@ year. Each unit names the task that builds each one.
 | 4 | Adding and Subtracting Fractions | 1, 2 | 6 | 4 | 4 | Like denominators only, from the same list; no general adding of unlike fractions (grade 5) |
 | 5 | Line Plots | 4, 6 | 1 | 0 | 2 | Measurements in halves, quarters and eighths of a unit |
 | 6 | Multiplying a Fraction by a Whole Number | 4, 8 | 4 | 2 | 2 | A whole number times a fraction only; fraction times fraction is grade 5; same denominator list |
-| 7 | Decimals | 6, 7 | 6 | 2 | 2 | Tenths and hundredths only; the one unlike addition is tenths plus hundredths; no adding or multiplying in decimal notation (grade 5) |
+| 7 | Decimals | 6, 7 | 6 | 2 | 2 | Tenths and hundredths only; the one unlike addition is tenths plus hundredths; no adding or multiplying in decimal notation (grade 5). The decimals rule: decimals may be read, written, compared, placed and renamed; every calculation is done on whole numbers in the smaller unit or on fractions with denominators 10 and 100; a task that can only be done by computing in decimal notation is grade 5 |
 | 8 | Place Value to a Million | 6, 7 | 5 | 4 | 1 | Whole numbers to 1,000,000; place value in decimals is grade 5 (5.NBT.A.1) and is not assessed here |
 | 9 | Adding and Subtracting Multi-Digit Numbers | 6, 8 | 1 | 4 | 1 | Whole numbers to 1,000,000 |
 | 10 | Multiplicative Comparison | 2, 4 | 3 | 1 | 5 | Whole numbers and whole-number answers; in this stretch two steps and no remainders |
-| 11 | Area and Perimeter Formulas | 1, 4 | 1 | 1 | 3 | Rectangles only; area with whole-number sides; fractional sides in perimeter only, like denominators |
+| 11 | Area and Perimeter Formulas | 1, 4 | 1 | 1 | 3 | Rectangles only; area with whole-number sides; fractional sides in perimeter only, like denominators. On days 89 to 93 areas are products within 100, or a one-digit number times a multiple of 10; an unknown side is a factor-pair problem (4.OA.B.4). Area with larger sides returns in stretches 12, 13 and 14 |
 | 12 | Multi-Digit Multiplication | 3, 7 | 5 | 5 | 2 | Up to four digits by one digit, and two digits by two digits; place value methods and area models; written methods here shorten into the standard algorithm and must be explained; fluency with the standard algorithm is grade 5 (5.NBT.B.5) |
 | 13 | Division with Remainders | 2, 7 | 5 | 4 | 3 | Dividends to four digits, one-digit divisors; place value methods, which must be explained; fluency with the standard algorithm is grade 6 (6.NS.B.2) |
 | 14 | Multistep Problems with All Four Operations | 1, 4 | 0 | 0 | 4 | Whole numbers and whole-number answers; no more than three steps; a letter for the unknown |
-| 15 | Measurement Conversions | 5, 6 | 2 | 2 | 4 | Larger unit to smaller only, inside one system; simple fractions and decimals |
+| 15 | Measurement Conversions | 5, 6 | 2 | 2 | 4 | Larger unit to smaller only, inside one system; simple fractions and decimals, under the decimals rule of stretch 7 (calculate in the smaller unit as whole numbers, $3.75 as 375 cents, or as fractions over 10 and 100; never a smaller unit to a larger one with a decimal answer, which is 5.MD.A.1) |
 | 16 | Lines and Angles | 5, 6 | 5 | 5 | 2 | Whole-number degrees |
 | 17 | Shapes and Symmetry | 3, 7 | 3 | 1 | 0 | Flat figures; line symmetry only |
 | 18 | The Year Together | 1 | mixed | mixed | mixed | The limits above |
@@ -164,7 +171,9 @@ warm-up from the worksheet generator:
 - **Adding and subtracting, from day 1.** Within 1,000 (3.NBT.A.2) until stretch 9, then multi-digit numbers with
   the standard algorithm from day 72 to the end of the year.
 - **Times tables, from day 1.** Labelled on every page as grade 3 maintenance (3.OA.C.7), not grade 4 teaching.
-  Every stretch after the first leans on them.
+  Every stretch after the first leans on them. Days 1 to 6 include a facts check. Students below the mark get the
+  grade 3 fact tools and print during warm-ups, never in place of a lesson day, and the check repeats before day 94,
+  when multi-digit multiplication begins.
 - **Fractions and decimals, twice a week from day 62**, the day after fraction and decimal teaching ends.
 - **Multiplication and division, from day 118**, mixed into the same rotation.
 
@@ -199,7 +208,7 @@ with one unit, such as the pilot, has its checks inside that unit.
 | 7 | 7.3 Comparing decimals | 3 | 59 to 61 | 4.NF.C.7 |
 | 8 | 8.1 Ten times the place to its right | 3 | 62 to 64 | 4.NBT.A.1 |
 | 8 | 8.2 Reading, writing and comparing to a million | 4 | 65 to 68 | 4.NBT.A.2 |
-| 8 | 8.3 Rounding to any place | 3 | 69 to 71 | 4.NBT.A.3 |
+| 8 | 8.3 Rounding to any place (day 1 the leftmost place on a number line; day 2 any place, with a middle place and rounding up into a new place; day 3 rounding used to estimate and check sums and differences) | 3 | 69 to 71 | 4.NBT.A.3 |
 | 9 | 9.1 The standard algorithm for adding | 3 | 72 to 74 | 4.NBT.B.4 |
 | 9 | 9.2 The standard algorithm for subtracting, across zeros | 3 | 75 to 77 | 4.NBT.B.4 |
 | 10 | 10.1 Times as many | 3 | 80 to 82 | 4.OA.A.1 |
@@ -244,6 +253,7 @@ return can use it.
 | Multi-digit multiplication (4.NBT.B.5) | Stretch 12 | Checking division (stretch 13). Multistep problems (stretch 14). Conversions by 12, 16, 60 and 1,000 (stretch 15). Warm-ups from day 118. Checks 3 and 4 |
 | Division with remainders (4.NBT.B.6) | Stretch 13 | Multistep problems (stretch 14). Measurement word problems (stretch 15). Warm-ups from day 118. Checks 3 and 4 |
 | Multistep problems (4.OA.A.3) | Stretches 10 and 14 | Measurement word problems (stretch 15). The Year Together. Check 4 |
+| Area and perimeter formulas (4.MD.A.3; supporting work, listed because its return is required) | Stretch 11, with small numbers | Area with larger sides is the picture for partial products in stretch 12 and for division as a missing side in stretch 13, and a context in stretch 14 problems. Without that return the standard is half taught. Checks 3 and 4 |
 
 ## The checks
 
