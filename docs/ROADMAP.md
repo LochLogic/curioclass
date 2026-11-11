@@ -119,7 +119,9 @@ finds.
 7. **One outside read.** A working teacher has read at least one unit of the course and their notes are filed in
    docs/pilots/ with what changed because of them.
 8. **Honest public claims.** The course's pages say taught, practiced or shown per the ledger, never more.
-9. **A fresh-agent read of the whole course** against the rubric on file, with every finding closed or listed.
+9. **A fresh-agent read of the whole course** against the rubric on file, with every finding closed or listed. The
+   reader is the curriculum expert (docs/agents/EXPERT.md): a standing role, always run cold, that researches outside
+   sources before it judges. It also reads every spine and every pilot unit, and its reports are kept in docs/reviews/.
 
 ### Gaps found, and how each closes (2026-11-11)
 
