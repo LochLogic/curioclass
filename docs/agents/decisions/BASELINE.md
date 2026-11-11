@@ -72,9 +72,11 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     test), `see why` (lets a student explore the idea and names what the unit adds) or `practice`. A tool claims a
     code only for work on its main path; a readout, an optional mode or a teacher note never carries a code.
     Recess games and Curiosities take the role `recess` or `curiosity` and claim no code.
-22. **Modules name standards, and major work gets depth** (2026-11-10). A module is never renamed or split (its
-    id keys the Word Wall, charts, games, The Map and about 762 live pages; docs/ECOSYSTEM.md). Its standards are
-    spelled out in place, never a bare cluster, each tool carries its own codes, and data/coverage.csv records where
+22. **Modules name standards, and major work gets depth** (2026-11-10). A module is one teachable topic. It
+    is split only when it holds two unrelated topics, and then properly: a split script, redirects for the old
+    pages, and its Word Wall, chart and games divided by hand (its id keys all of them and about 762 live pages;
+    docs/ECOSYSTEM.md). It is never split just to reach standard-level detail; the ledger does that. Split
+    candidates come to Cory as exceptions. A module's standards are spelled out in place, never a bare cluster, each tool carries its own codes, and data/coverage.csv records where
     every standard is taught in full, so an untaught standard shows. In math, ELA and science, the major work of a
     grade gets two or three tools or full modes (see why, do it, use it); the trade is fewer tools on supporting
     topics for now. Fluency volume, long writing, discussion, year-long reading and topic threads across texts

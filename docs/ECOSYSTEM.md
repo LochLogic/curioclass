@@ -9,16 +9,22 @@ fixes. Survey of the code and data: 2026-11-10 (findings at the end).
 
 | Thing | What it is | Key | Changes? |
 |---|---|---|---|
-| **Module** | A topic a class spends a few days on. The hub page every shelf links from | `module_id`, about 762 public URLs | **Never renamed or split.** Its list of standards is rewritten in place, from a cluster to the standards inside it |
+| **Module** | A topic a class spends a few days on. The hub page every shelf links from | `module_id`, about 762 public URLs | **One teachable topic.** Split only when it holds two unrelated topics, and then properly (below). Its list of standards is rewritten in place, from a cluster to the standards inside it |
 | **Tool** | One screen-based lesson, see-why or practice piece | `tool_id` | Gains a role and its own list of codes: only the ones it teaches on its main path |
 | **Unit** (new, Track 7) | A 1 to 5 day package for a course, in the year's order | `unit_id` (to be designed at the unit pilot) | Points at modules and picks items from the shelves. It owns nothing but the order, the teacher pages and what no shelf has |
 
 **The correction this makes to the locked plan:** rule 22 and step 4 said modules would be split so each names its
 standards. The survey shows `module_id` is the key for the Word Wall (4,413 cards, 719 art folders), anchor charts,
 Game Night, The Map, the research cards and about 762 live pages, and no script renames a module. Splitting would
-break or orphan all of them. So modules stay whole. A module's standards are spelled out in place, a second or third
-tool joins the same module, and a new module is made only for a standard with no topic home. Same goal (an untaught
-standard shows), no breakage.
+break or orphan all of them. So a module is never split just to reach standard-level detail: its standards are
+spelled out in place, a second or third tool joins the same module, and a new module is made only for a standard
+with no topic home. Same goal (an untaught standard shows), no breakage.
+
+**When a module is split (Cory, 2026-11-10).** Keeping modules whole is the rule because a module is a topic, not
+because splitting is hard. It is split only when it holds two unrelated topics, and then properly: a split script, redirects for the old pages, and its Word Wall, chart and games divided by hand. It is never split just to reach standard-level detail; the ledger does that.
+The step 2 read flags candidates (a guess of one to two dozen: 21 math modules mix domains, such as
+`math-4-angles-and-line-plots`). They come to Cory as exceptions in step 4. The 38 core band modules that span
+grades lean toward staying whole; the unit pilot tests that.
 
 ## One ledger of who teaches what
 
@@ -61,7 +67,8 @@ Every shelf that prints standards reads them from the tool or the ledger, not fr
 3. **Step 3 (fix what is built):** switch tool pages, standards pages, search, plan and Sub Day checks to tool codes;
    join worksheets by module id; the Map and family-sheet lines. Each is small, and all are needed before a module
    holds a second tool.
-4. **Step 4 (shape):** module standards rewritten in place; second and third tools added to major-work modules;
+4. **Step 4 (shape):** module standards rewritten in place; the few two-topic modules split properly, once Cory
+   agrees each; second and third tools added to major-work modules;
    worksheet presets and Reading Room sets written into the ledger.
 5. **Step 5 (prove one course):** the unit shape, on grade 4 math and grade 6 ELA, pulling from every shelf.
 

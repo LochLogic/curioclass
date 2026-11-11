@@ -34,6 +34,12 @@ step 5. Now BASELINE rules 21 and 22. To apply, in the roadmap's order:
 - Amended the same day after the shelf survey (docs/ECOSYSTEM.md): modules are not split or renamed; their standards
   are spelled out in place and each tool carries its own codes. Math codes are written with the cluster letter
   (4.NBT.B.5); the judge files and this list use the short form and are read that way.
+- Amended again the same day (Cory asked whether whole modules were the best choice or the easy one): a module is
+  one teachable topic, split only when it holds two unrelated topics, and then properly (split script, redirects,
+  Word Wall, chart and games divided by hand); never split just to reach standard-level detail. Candidates are
+  flagged in step 2 and come to Cory as exceptions in step 4. Cory also agreed: Recess and Curiosities claim no
+  standards; a course is a "course", a unit is the Track 7 package. Major-work marks: Cory has no preference, so
+  they are filed (data/standards/ccss-math-focus.csv, ids and one-word marks only, licence note in its header).
 
 ## 2026-11-08
 

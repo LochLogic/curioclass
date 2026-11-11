@@ -31,40 +31,78 @@ Reach and craft together (Cory, 2026-10-28). As many teachers as possible should
 needs to use a tool that does not fit their class, but every tool must be really good. Free for good: no paywall,
 no accounts, no ads, no tracking.
 
-## The path from here (locked 2026-11-10, Cory)
+## The path from here (locked 2026-11-10, Cory; whole-site plan, reprinted the same day)
 
-**Tool building is paused** (Build, Refine and the Codex queue) until step 5. Fixes to built tools in step 3 are the
-one exception. The other shelves (worksheets, Word Wall, Reading Room) carry on.
+This section is the plan for the whole site. The tracks below hold the detail; where a track and this section
+disagree, this section wins.
 
-Why: the catalog review (item 6 below) read 63 tools against the adoption bar. Coverage and duplication are fine.
-The repeated flaw is that tools show the idea, then leave the student's own part of the standard thin, optional or
-passable by trial; it is worst on the major work of a grade. The gap in shape is that a module lists a cluster, gets
-one tool, and the rest of the cluster is taught nowhere. Verdict: right raw material, fixable now, costly later.
-Rules: BASELINE 21 and 22. Decisions: docs/agents/decisions/DESK-ANSWERS.md, 2026-11-10.
+**End goal.** A teacher can run any course on Curio Class from the first day to the last, free, with no account, and
+the course would stand up to a state adoption review (docs/ADOPTION-BAR.md, BASELINE rule 20). Every tool in it is
+really good. A course is a grade of a subject or a high school course.
 
-**One measure:** for each course, standards taught in full out of all its standards (tools, units, worksheets and the
-Reading Room together). It goes on the Desk and every step below moves it.
+**One measure.** For each course: standards taught in full, out of all its standards, counting tools, units,
+worksheets and the Reading Room together. It goes on the Desk, and every step below moves it.
+
+**What the review found (2026-11-10).** 63 tools read against the bar. Coverage and duplication are fine. The repeated
+flaw: tools show the idea, then leave the student's own part of the standard thin, optional or passable by trial,
+worst on the major work of a grade. The gap in shape: a module lists a cluster, gets one tool, and the rest of the
+cluster is taught nowhere. Verdict: right raw material, fixable now, costly later.
+
+### The shape we build to
+
+| Piece | What it is | Rule |
+|---|---|---|
+| **Course** | A grade of a subject | Gets a year spine: its units in order, with the reason for the order |
+| **Unit** | A 1 to 5 day package inside a course | Points at modules and picks from every shelf. Owns only the order, the teacher pages and what no shelf has |
+| **Module** | One teachable topic, and the hub page every shelf hangs from | Split only when it holds two unrelated topics, and then properly. Its standards are spelled out, never a bare cluster |
+| **Tool** | One screen piece | Carries only the codes it teaches on its main path, and a role: lesson, see why or practice. Major work in math, ELA and science gets two or three tools |
+| **Shelves** | Word Wall, charts, Game Night, Sub Day, lesson plans, worksheets, generators, Reading Room, The Map | Keep their keys. Worksheets and generators are the home of fluency and extra practice; the Reading Room is the home of year-long reading |
+| **Ledger** | data/coverage.csv | One row per standard per course: where it is taught in full. The one home of a coverage claim and the source of the measure |
+| **Recess, Curiosities** | Play and wonder | Outside the bar. They claim no standard |
+
+Rules: BASELINE 21 (the teaching test, roles) and 22 (modules, depth on major work). How the shelves fit:
+docs/ECOSYSTEM.md. Decisions: docs/agents/decisions/DESK-ANSWERS.md, 2026-11-10.
+
+### The six steps
+
+**Tool building is paused** (Build, Refine and the Codex queue) until step 5. Fixes to live tools in step 3 are the
+one exception.
 
 | Step | What | Done when | Cory decides |
 |---|---|---|---|
-| 1. Rules | The six rule edits and the teaching test go into SPEC.md, REFINE.md and docs/TOOL-CONTRACT.md. File the standard texts and the major-work marks from the published documents (licence checked), so nothing rests on memory | A new spec or lens cannot pass a tool that fails the test | Nothing |
-| 2. Read | The full catalog read with row format 2: the 36 pilot tools again as the test, then every spec by subject and band (about 64 cheaper-model agents). Scripts build one map per course: each standard full, part, shown or none | Every course has its map and its measure | Nothing |
-| 3. Fix what is built | The live-tool fixes in the order in DESK-ANSWERS, then whatever the read finds in the other live tools. The 149 built tools waiting on Refine are not fixed now; the new Teaching lens catches them when Refine resumes | The live math, ELA and science tools each pass the test or carry an honest role | Nothing, unless a fix changes what a tool teaches |
-| 4. Shape | From the maps: spell out each module's standards in place (modules are never split or renamed; docs/ECOSYSTEM.md), apply spec notes, list the major-work modules that get a second or third tool, and the supporting tools that wait. Applied by rule; only exceptions go to Cory | data/modules.csv, the specs and a build order by value (data/waves.csv) all agree with the maps | One Desk card per subject, exceptions only: reshape, hold, cut, new tool |
-| 5. Prove one course | The year spine and the unit pilot for grade 4 math and grade 6 ELA (Track 7), judged against docs/ADOPTION-BAR.md. Building resumes here for those two courses only, with the token plan's side-by-side trial run on the first three tools | Cory can open one unit of each and see the bar met | The pilot review |
-| 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first | Course by course, the measure reaches full | The order of courses |
+| 1. Rules. **Done 2026-11-10** | The teaching test and six rule edits are in SPEC.md, REFINE.md and docs/TOOL-CONTRACT.md. Common Core math and ELA texts and the major-work marks are filed in data/standards/. Not filed yet: science and the other subjects' standard texts | A new spec or lens cannot pass a tool that fails the test | Nothing |
+| 2. Read. **Next** | Every spec read with row format 2: the 36 pilot tools again as the test, then all the rest by subject and band (about 64 cheaper-model agents). Scripts build the ledger and one map per course, and flag two-topic modules | Every course has its map and its measure | Nothing |
+| 3. Fix what is built | The live-tool fixes in the order in DESK-ANSWERS, then whatever the read finds in the other live tools. The shelf fixes in docs/ECOSYSTEM.md: pages, search, plans and Sub Day show a tool's own codes; worksheets join by module id; The Map counts a stop ready when its lesson tool is live. The 149 built tools waiting on Refine are not fixed now; the new Teaching lens catches them when Refine resumes | Every live math, ELA and science tool passes the test or carries an honest role, and a module can hold a second tool without any page showing a wrong code | Nothing, unless a fix changes what a tool teaches |
+| 4. Shape | From the maps, by rule: module standards spelled out, spec notes applied, second and third tools listed for major-work modules, supporting tools that wait, worksheet presets and Reading Room sets written into the ledger, and a build order by value (data/waves.csv) | data/modules.csv, the specs, the ledger and the build order all agree with the maps | One Desk card per subject, exceptions only: reshape, hold, cut, new tool, split a module |
+| 5. Prove one course | Grade 4 math and grade 6 ELA (Track 7): the year spine, then one pilot unit each, pulling from every shelf, read by a fresh agent against docs/ADOPTION-BAR.md. Building resumes for these two courses only. The token plan's side-by-side trial runs on the first three tools | Cory can open one unit of each and see the bar met | The two spines, then the pilot review |
+| 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first. Each finished course gets its spine, units and a full row on the measure | Course by course, the measure reaches full | The order of courses |
 
-**The other shelves** (Sub Day, Word Wall, worksheets, charts, games, Reading Room, The Map) move with this change as
-set out in docs/ECOSYSTEM.md: modules stay the hub, tools carry their own codes, and one ledger (data/coverage.csv)
-records where each standard is taught.
+**Resume here: step 2.** First jobs, in order: teach scripts/catalog_compute.py to read row format 2 and the filed
+texts in data/standards/ (it still reads docs/agents/catalog/math-focus.csv); build data/coverage.csv; re-run the 36
+pilot tools and compare with the pilot judge files; then the full read. Everything it needs:
+docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
 
-**Resume here:** step 1 (rule edits done 2026-11-10; standard texts being filed). Everything it needs is in docs/agents/catalog/judge/live-core.md (part C, the rule edits;
-part A, the two wording changes to the extract row) and docs/agents/decisions/DESK-ANSWERS.md (2026-11-10).
+### What every other track does meanwhile
 
-**Standing defaults, so decisions stay few:** a spec note that makes a tool pass the teaching test is applied without
-asking; a code follows the tool that really teaches it; year-long standards go to the spine; nothing is cut to save
-work (rule 1). The depth rule (two or three tools on major work) applies to math, ELA and science; other subjects
-only need each tool to pass the test or state its role.
+| Track | Until step 5 | From step 5 on |
+|---|---|---|
+| 1. Tools | Paused, except the step 3 fixes. Held collections, queued ideas and the Codex queue wait | Resumes for the two pilot courses, then by course |
+| 2. Supply Closet | Carries on: worksheet waves, generators, the Word Wall diagram pass, Break Box read. Its shelf fixes land in step 3. Charts and teacher-guide links wait for building to resume, since they ride with a tool | Each unit names what it pulls from the closet. The module kit and Sub Day lite follow the unit pilot |
+| 3. Reading Room | Add the text record and topics to the story format, then the ten-story pilot. It can run beside steps 2 to 4 | Topic sets are written into the ledger for the standards they carry; enrich waves follow the course order |
+| 4. The site | The step 3 page changes. Open items (www redirect, dark mode, request page) any time | The Map shows the measure per stop. A course page links its spine and units |
+| 5. Outreach and funding | Funding contacts carry on with what is live. No wide announcement yet | The two proven courses are what gets shown; teacher channels open after step 5 |
+| 7. Curriculum | Nothing before step 5 | It is steps 5 and 6: spines, units, then Tracks and the Binder once several courses are full. The state crosswalk comes after that |
+| 9. Recess and Curiosities | Wait with tool building, since they use the same pipeline. Design work (Recess's look, picking first games) can go on | Built in their own small waves beside the course work, never counted in the measure |
+| 8. Beyond School, 10. Languages | Wait | Start only after several courses are full, or, for the first Languages wing, when a partner says yes |
+
+### Decisions, kept few
+
+What Cory is asked, in order: the step 4 exception cards (one per subject); the two year spines and the pilot units
+in step 5; the order of courses in step 6. Everything else runs on these defaults: a spec note that makes a tool pass
+the teaching test is applied without asking; a code follows the tool that really teaches it; year-long standards go
+to the spine; nothing is cut to save work (rule 1). The depth rule (two or three tools on major work) applies to
+math, ELA and science; other subjects only need each tool to pass the test or state its role. Questions go on the
+Review Desk as cards with a pick.
 
 ## Now (set 2026-11-03, Review Desk q-plan cards)
 
