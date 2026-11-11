@@ -16,6 +16,8 @@ The student squeezes a passage through a press that allows 50, then 25, then 10 
 - Change note (spec fix, 2026-11-10): the press, Gus and the three budgets stay. Added: Gus squeezes a short sample first as the model; before writing, the student marks the sentences that carry the key details and writes the central idea as one sentence, and the gauge's list stays hidden until then; a "Yes" on a partial match is limited to two a summary and is tagged; a Leak hunt of five of Gus's summaries teaches opinion words the 60-word list cannot catch, and the student checks their own summary for them; three more articles, two more fables and one longer story, so each standard has five texts, one a sitting; fable plot summaries are checked for opinion too.
 - Passages: five articles written for Curio Class from sourced facts ("Beavers Remake a Valley", "The Lighthouse Keeper's Log", "The Dance in the Hive", "A Ditch Across New York", "Why Leaves Turn"); four fables ("The Fox and the Crow", "The North Wind and the Sun", "The Lion and the Mouse", "The Crow and the Pitcher"; Aesop, V. S. Vernon Jones translation, 1912, public domain) and one longer story ("The Gift of the Magi", O. Henry, 1905, public domain). tool.json `modes: ["Articles", "Fables", "Beat my squeeze"]`, `minutes: "20-30"`, `grades_label: "Grade 6"`.
 - Nothing is saved; `Print` prints the three squeezes side by side.
+- Change note (hooks, 2026-11-11): Added the three hooks: the fifth article and the story are done on your own with the end screen by code, English learner supports, access.
+- English learners: every spoken line is also on screen in short sentences. The words central idea, detail, summary, opinion and theme each show with an example from Gus's model the first time they are used. Each written line offers a frame the student may take or leave: "The central idea is that __."; "The story shows that __."
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -50,6 +52,9 @@ Header (kit): title "Summary Squeeze"; `Articles`, `Fables`, `Side by side`; `Re
 **Side by side.** Three squeezes in columns, details kept per word shown as a number. Beat my squeeze replays a passage to raise that number.
 
 At 1366x768 the passage and press fit side by side; at 680x425 the passage folds above the press.
+**On your own.** The fifth article and the story run with Gus quiet: the model, the guide, the detail gauge and the leak marks stay closed until the 10-word squeeze is in, and each level is pressed once. The gauge and guide open afterward for the student's own check.
+
+**Results strip (on the end screen).** For the teacher: RI.6.2 on the fifth article (central idea sentence matches the keyed idea or not; key details kept out of six; opinion leaks left in) and RL.6.2 on the story (theme is a sentence and not the plot; the two details linked; leaks), with the student's own sentences shown. It prints with the rest.
 
 ## Content
 Written for Curio Class from sourced facts:
@@ -62,12 +67,17 @@ Written for Curio Class from sourced facts:
 - Story: "The Gift of the Magi" by O. Henry, from The Four Million (1906), Project Gutenberg eBook #7256 (the number checked for book-group-table), full text in numbered sentences.
 - Each text carries in data: its key detail sentences (six, or three for a fable), detail word families, central idea or theme families, and for literature the two or more details keyed as conveying the theme.
 - Model and Leak hunt: the 120-word sample, Gus's three squeezes of it, and seven two-sentence summaries with one keyed opinion each (five shown, two spare).
+- On your own, with what each common wrong answer means:
+  - RI.6.2: a central idea that only names the topic ("It is about bees") means topic and idea are not yet apart; a summary that keeps a striking but minor detail means details are being chosen by interest, not by what carries the idea; "I think" or "the best" left in means summary and opinion are not yet apart.
+  - RL.6.2: a theme that retells the ending means plot and theme are not yet apart; a theme with no detail linked means it was guessed from the kind of story, not found in it.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - Summaries can be edited and re-squeezed any time.
 - The student's yes or no on partial matches is kept for that summary only.
 - With Motion off the press doesn't come down.
+- Access: every action works by tap and by keyboard. A sentence is marked with a tap or Enter; details are linked with a tap on each. Gauge lights carry the detail's first words, and a leak is underlined and labeled "opinion", never color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the last part is in.
 
 ## Look
 - Accent `--brand` #4d6b1f press olive (header, press frame, gauge rim); gold #f4c542 (lit details, the central idea light); paper #f5f8ef; ink #18220a; muted #555c49. Scene: an old print shop with type cases.
@@ -95,6 +105,8 @@ Bank voice `wise-mentor` as Gus (unique in this batch); articles are read by `sc
 - how `selfcheck`: "Read it back. Then tick the box if every sentence comes from the passage."
 - event, whole, Gus's squeeze.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "This one is on your own. I will stay quiet until you finish."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None. Tool-only code: word counter, detail word families with confirm, leak list, budget levels, theme check.
@@ -109,6 +121,7 @@ None. Tool-only code: word counter, detail word families with confirm, leak list
 | Leaks in own summary | Hide opinions in new words; tick the box unread | The 60-word list is backed by the self-check, which opens only after the read-back. The tool cannot judge those words, so the hunt and Gus's clean summary carry the teaching. |
 | Central idea | Write anything in the sentence box | The 10-word squeeze must light the central idea, and the two are put side by side for the student to compare. |
 | Fables and story | Write the plot again; link any two details | The theme light needs theme word families; links are keyed, with one free miss before a "shown" tag. |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line waits for it to finish; taps act at once and never wait.
@@ -147,6 +160,9 @@ Spec fix checks (2026-11-10): counted, not run: 5 articles, 4 fables and 1 story
 10. Print shows the three squeezes, the central idea sentence and any "shown" or "you said so" tags.
 11. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
 12. Motion off: the press is still; no network requests.
+13. The fifth article and the story run with the model, guide, gauge and leak marks closed and one press a level; the end screen shows the result for RI.6.2 and RL.6.2. (RI.6.2, RL.6.2)
+14. Every spoken instruction is also on screen; each key word shows with a picture or example at first use; any sentence frame can be left.
+15. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 - None for Cory.

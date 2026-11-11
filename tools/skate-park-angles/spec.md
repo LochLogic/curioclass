@@ -19,22 +19,24 @@ Grade 4 math, module math-4-angles-and-line-plots. Driver: students (solo by def
 20 to 40 minutes (one sitting per mode works). Standards: 4.MD.B (4.MD.4) and 4.MD.C (4.MD.5a, 4.MD.5b, 4.MD.6,
 4.MD.7). No personal prompts. The crew (Dev, Rae, Mina, Walt) and their jumps are made up, and the tool says so on
 the Jump Log card ("Dev's crew and their jumps are made up for practice.").
-Role: lesson. Change note (spec fix, 2026-11-10; the tool is built, so the code follows this spec later): five Spin
+Role: lesson for 4.MD.5, 4.MD.6 and 4.MD.7; practice for 4.MD.4. Change note (spec fix, 2026-11-10; the tool is built, so the code follows this spec later): five Spin
 jobs were added (7 to 11) and nothing was taken away. Jobs 7 and 8 bring 4.MD.5a to five kinds of item (sixths,
 twelfths, and degrees back to fourths and eighths). Jobs 9 and 10 make the student answer on 4.MD.5b, which before
 was only a readout. Job 11 has the student write the angle equation, which before was always given. The park counter
 goes from 14 to 19. Not added: choosing the line plot's scale (4.MD.4, a small part; the axis stays given so the
 session fits one sitting).
+Change note (2026-11-11; spec only, the built code follows later). Three Spin jobs were added (12 to 14) so 4.MD.5b has five kinds of item, and job 14 also asks for the angle's two rays and the point they share, which no job asked before. Job 9's second box no longer repeats a number on the card. Jump Log stays as it is and is now called practice for 4.MD.4: the line plot lesson (making the plot and choosing its scale) belongs to a new tool, so the "not added" note above is settled. The park counter goes from 19 to 22. Added the three hooks: eight items on your own with results by code, English learner supports, access.
+English learners: every spoken line is also on screen in short sentences. The words angle, ray, vertex, degree, full turn, protractor and line plot each show as a label on the dial, ramp or plot the first time they are used. Job 11's equation comes with a frame the student may take or leave: "__ + ? = __".
 
 ## Standards map
 | Code | Student action that teaches it | What they see | Done when check |
 |---|---|---|---|
 | 4.MD.5a | Drag the board around the dial; do Spin jobs 1 to 3, 7 and 8 (fraction of a turn to degrees and degrees to a fraction, in fourths, eighths, thirds, sixths and twelfths; five kinds of item) | the swept arc as a colored wedge; readout "135 degrees, 135/360 of a full turn" and, at landmarks, "= 3/8 turn"; job wedges cut into equal slices | Spin job 2 (3/8 of a turn) accepts 135 only; 37 or 38 gets the "a full turn is 360" reason |
-| 4.MD.5b | Step the dial with the arrow keys one degree at a time; Spin jobs 9 and 10: count the one-degree slices in a wedge and type its degrees, then say how many one-degree turns fill a given angle and a full turn | the readout's first line counts one-degree turns ("1 degree: 1 one-degree turn, 1/360 of a full turn"); in jobs 9 and 10 a wedge cut into one-degree slices with no number on it | arrow keys move exactly 1 degree and the line updates each press; Spin job 9 with 12 slices accepts 12 only; job 10 needs 37 and 360 |
+| 4.MD.5b | Step the dial with the arrow keys one degree at a time; Spin jobs 12 to 14 (build an angle one degree at a time, compare two angles by their one-degree turns, find the vertex and see that longer sides do not change the measure), which with jobs 9 and 10 make five kinds of item; Spin jobs 9 and 10: count the one-degree slices in a wedge and type its degrees, then say how many one-degree turns fill a given angle and a full turn | the readout's first line counts one-degree turns ("1 degree: 1 one-degree turn, 1/360 of a full turn"); in jobs 9 and 10 a wedge cut into one-degree slices with no number on it | arrow keys move exactly 1 degree and the line updates each press; Spin job 9 with 12 slices accepts 12 only; job 10 needs 37 and 360 |
 | 4.MD.6 (measure) | Ramp jobs 1 to 3: place the protractor on a ramp, pick the right scale, type the angle | a real two-scale protractor (0 to 180 both ways) over a code-drawn ramp; no angle number anywhere | a ramp of 20 accepts 19 to 21; 160 (the other scale) fails with the scale reason and the next try is a new ramp |
 | 4.MD.6 (sketch) | Ramp jobs 4 and 5: drag the ramp's lip handle to a given angle, check it with the protractor | the ramp bends as you drag; no readout in Jobs | a kicker built to 25 passes at 24 to 26 only; a miss never says the angle you made |
 | 4.MD.7 | Stack spins in Explore; Spin jobs 4 to 6 (total, missing part, three parts) written as equations; Spin job 11, where the student writes the equation with a ? and then solves it; Ramp job 3 (straight line split in two); five kinds of item | wedges in two colors with their own labels; the equation strip "90 + 45 = ?" and "125 + ? = 180" with no ticks on the dial | Spin job 5 accepts 55 only; 305 gets the "you added" reason |
-| 4.MD.4 | Jump Log: read each jump on the pole, tap the line plot to place its dot; answer three fraction questions per session | a pole marked in eighths (labels only at 0, 1/2, 1, 1 1/2); a line plot 0 to 1 1/2 ft with all 13 eighth ticks | the Low session's three answers are 3/8, 2 and 1/8 (equivalents accepted); a dot on the wrong tick is refused |
+| 4.MD.4 (practice only; the lesson is the new line plot tool) | Jump Log: read each jump on the pole, tap the line plot to place its dot; answer three fraction questions per session | a pole marked in eighths (labels only at 0, 1/2, 1, 1 1/2); a line plot 0 to 1 1/2 ft with all 13 eighth ticks | the Low session's three answers are 3/8, 2 and 1/8 (equivalents accepted); a dot on the wrong tick is refused |
 
 ## Screens and modes
 Header: title, mode buttons **Park**, **Spin Deck**, **Ramp Shop**, **Jump Log**, then kit Motion, Sound, Read.
@@ -116,7 +118,7 @@ Spin jobs (each has three variants; one shows, a miss keeps it, leaving Jobs re-
 6. Three parts: "150 + 90 + ? = 360" (120); "100 + 150 + ? = 360" (110); "60 + 70 + ? = 180" (50).
 7. Sixths and twelfths: "Dev turns 1/6 of a full turn. How many degrees?" (1/6 = 60, 5/6 = 300, 1/12 = 30). Wedge cut into 6 or 12 equal slices.
 8. Degrees to a fraction, fourths and eighths: "A 270 degree spin is what fraction of a full turn?" (270 = 3/4, 225 = 5/8, 315 = 7/8; any equal fraction accepted).
-9. One-degree slices: the wedge is drawn cut into thin one-degree slices, drawn large (the dial zooms so each slice is at least 14 px wide at the rim), with no label. "Each slice is a one-degree turn. How many degrees is this angle?" (12, 7, 15). Then a second box on the same card: "So 50 one-degree turns make an angle of how many degrees?" (50; variants 90, 200).
+9. One-degree slices: the wedge is drawn cut into thin one-degree slices, drawn large (the dial zooms so each slice is at least 14 px wide at the rim), with no label. "Each slice is a one-degree turn. How many degrees is this angle?" (12, 7, 15). Then a second box on the same card: "Dev turns 8 more one-degree turns. How many degrees is the angle now?" (20; variants 15, 23).
 10. Turns in an angle: "This wedge measures 37 degrees. How many one-degree turns fill it?" (37; variants 112, 8). Second box: "How many one-degree turns fill a full turn?" (360). After both are right the card shows "So one one-degree turn is 1/360 of a full turn."
 11. Write the equation: "Dev wants a 270. He has turned 115. Write an equation with ? for the part left. Then solve it." The strip is empty and the keypad gains +, -, = and ? keys for this job. Accepted equations: 115 + ? = 270, ? + 115 = 270, 270 - 115 = ? and 270 - ? = 115. Answer 155. Variants: turned 90 of a 225 (135); turned 240 of a 360 (120). The equation is checked first, then the answer box opens.
 
@@ -142,6 +144,17 @@ Park pieces (19): Spin jobs 1 to 6 add, in order, a rail, a bench, a light pole,
 props on their spots). Ramp jobs 1 to 5 add their ramp at its angle in slots 1 to 5 (Explore's Put in park uses
 slot 5 until job 5 is done, then a sixth slot). Each Jump Log session adds a line on the scoreboard ("Low kicker: 10
 jumps logged"). A job finished after Rae showed it adds the piece with a small "Rae helped" tag.
+Spin jobs 12 to 14 (added 2026-11-11, all 4.MD.5b; three variants each):
+12. Build it one degree at a time: "Make an angle of 23 degrees. Each tap of Step is a one-degree turn." A Step button (or the arrow key) adds one thin slice; the readout is hidden and the slices are not numbered, so the student keeps the count. Check accepts 23 only (variants 41, 9). A miss says only "Not 23 yet. Count your turns." and clears the wedge.
+13. Compare by turns: two wedges cut into one-degree slices, no labels. "Which angle is bigger? By how many one-degree turns?" (18 and 25: the second, by 7; 14 and 9: the first, by 5; 22 and 30: the second, by 8.)
+14. Rays and vertex: an angle of 45 degrees drawn with short sides. "Tap the vertex, the point where the two rays start." Then the same angle is drawn again with sides twice as long: "How many one-degree turns fill this angle now?" (45; variants 60, 30.) After a right answer the card shows "Longer rays, same turn. The measure counts one-degree turns, not the length of the sides."
+
+On your own (eight items in Park, opened by the Last run sign once the trick list is full; no slices, ticks, readout, hints or Rae; one answer each; nothing is marked until all eight are in). What each common wrong answer means:
+- 4.MD.5a: 5/12 of a full turn (150 degrees); a 300 degree spin as a fraction (5/6). 42 means the student takes a full turn as 100; 300/100 means the same.
+- 4.MD.5b: an unlabeled wedge of 16 one-degree slices (16); two angles, one of 40 one-degree turns with short sides and one of 25 with long sides, "Which is the bigger angle?" (the 40). Picking the long one means side length is being read as angle size.
+- 4.MD.6: measure a ramp of 55 opening left (54 to 56); sketch a bank of 70 (69 to 71). 125 or 110 means the wrong protractor scale was read.
+- 4.MD.7: "140 + 95 + ? = 360" (125); "An angle of 165 is made of two parts. One part is 78. Write the equation and solve it." (87.) 595 or 243 means the student added every number in sight.
+The Park's score card then gains a results strip for the teacher: each of 4.MD.5a, 4.MD.5b, 4.MD.6 and 4.MD.7 with how many of its two items were right, in numbers and words, each item missed and the answer given; under it, 4.MD.4 (practice) with how many Jump Log questions were right on the first try.
 
 ## Interactions in detail
 - Dial drag: angle from the dial center to the pointer, unwrapped so a drag past 0 keeps counting (no jump from 359 to 0); dragging backward lowers it to 0, never negative. Max 900; at 900 the nose stops.
@@ -154,6 +167,8 @@ jumps logged"). A job finished after Rae showed it adds the piece with a small "
 - Jump Log: switching sessions mid-way keeps each session's placed dots; Reset session clears that session only.
 - Park: Ride with no ramps built: Dev rolls across, does his trick off the flat ground as a ground spin.
 - Reset (in each panel's footer) clears that mode's Explore state; jobs and park pieces are saved on this device (localStorage, try/catch) with the line "Saved on this device only." under the counter; **Start over** in Park clears everything after a confirm.
+- Access: every action works by tap and by keyboard. The board, the protractor and the ramp's lip handle can be dragged, or picked with a tap and moved with arrow keys; a plot dot is a tap or Enter on a tick. The violet and orange wedges always carry their own labels, and right or wrong is said in words and with a mark, never by color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the eighth is in.
 
 ## Look
 Concrete paper `--paper #f4f2ee`, ink `#1d2026` (14.6:1), muted `#575c66` (6.0:1). Accent `--brand #5b2bb5`
@@ -208,6 +223,8 @@ no numbers, so all are recordable; job prompts with numbers are read on screen a
 - sessionDone (event, whole): "Session logged. It's on the scoreboard now."
 How lines play once, then live in the hint. Results never repeat a reason more than once per miss. No line names a
 control that is hidden or disabled (addHow waits for Add a spin to be enabled; jobHow needs Check's box visible).
+- own (how, Last run sign): "These last ones are on your own. I will stay quiet."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 none
@@ -221,7 +238,9 @@ none
 | Spin job 5 (missing part) | add the two numbers (305, 250, 560); type a shown number; count ticks; eye the gray wedge | missAdd for the sums; shown numbers (125, 180, 70, 200, 360) are never the answer; no ticks; exact answer required |
 | Spin job 6 (three parts) | add all three (600, 610, 310); subtract only one part (210, 270; 260, 210; 120, 110); add the two parts (240, 250, 130); type a shown number; guess | all fail: checked in Python, no common wrong equals its variant's answer (120, 110, 50), and no answer equals a number shown on its card |
 | Spin jobs 7 and 8 (sixths, twelfths, back to fourths and eighths) | as jobs 1 to 3: guess; eye the wedge; type the fraction of 100 (17, 83, 8); type degrees over 100 (270/100) | exact answers 60, 300, 30 and 3/4, 5/8, 7/8, two tries; no ticks or readout; 17, 83 and 8 fail with missHundred; 270/100, 225/100 and 315/100 are not the answers |
-| Spin jobs 9 and 10 (one-degree turns) | type a number on the card; guess; count slices carelessly | job 9's card and wedge show no number, so the count is the only way in; the second boxes ask about numbers that are stated (50; 37), which is the point of 4.MD.5b: the count of turns is the measure. A child who types them without thought still meets the full-turn box, where 360 must be recalled; 100 gets missHundred |
+| Spin jobs 9 and 10 (one-degree turns) | type a number on the card; guess; count slices carelessly | job 9's card and wedge show no number, so the count is the only way in; job 9's second box needs the count carried on (12 and 8 more is 20), not a number copied from the card; job 10's first box states 37, which is the point of 4.MD.5b (the count of turns is the measure), and a child who copies it still meets the full-turn box, where 360 must be recalled; 100 gets missHundred |
+| Spin jobs 12 to 14 (build, compare, rays) | tap Step until it passes; pick the wedge that looks bigger and guess the gap; answer 90 for the long-sided angle | job 12 has no readout and a miss clears the wedge, so only a kept count passes; job 13's gaps (7, 5, 8) are too small to see by eye and must be typed; job 14's doubled answers (90, 120, 60) fail with the "longer rays, same turn" reason |
+| On your own | retry until right; go back to Explore to read the dial | one answer each, nothing marked until all eight are in, and the other modes are closed while the run is open |
 | Spin job 11 (write the equation) | type the two shown numbers with any sign; add them (385, 315, 600); skip the equation | the equation must be one of the four true forms before the answer box opens; the sums get missAdd; answers 155, 135, 120 are never shown on their own card |
 | Ramp measure jobs 1 and 2 | guess; read the wrong scale then try the other one (elimination by two readings); type a round number | guess odds 3 in 81 per try; a wrong-scale miss loads a new ramp, so the second scale reading belongs to an old ramp; the common wrong (160, 145, 132, 155, 140, 165) fails with missScale |
 | Ramp job 3 (straight line) | type the shown bank angle; type 180; guess | 30, 40, 25 and 180 are not 150, 140, 155; the miss loads the next variant |
@@ -271,6 +290,7 @@ Number checks for the spec fix (Python, run 2026-11-10): 360/6 = 60, 5 x 360/6 =
 225/360 = 5/8, 315/360 = 7/8; fraction-of-100 slips 17, 83 and 8 differ from the answers; 270 - 115 = 155,
 225 - 90 = 135, 360 - 240 = 120, and the sums 385, 315, 600 differ from them; no answer in jobs 7, 8 or 11 is a
 number shown on its card; 14 pieces plus 5 trick-list lines is 19.
+Checks run for the 2026-11-11 additions (Python): 12 + 8 = 20, 7 + 8 = 15, 15 + 8 = 23; 25 - 18 = 7, 14 - 9 = 5, 30 - 22 = 8; 5/12 of 360 is 150; 300/360 = 5/6; 360 - 140 - 95 = 125; 165 - 78 = 87; wrong answers 5/12 of 100 rounds to 42, 180 - 55 = 125, 180 - 70 = 110, 140 + 95 + 360 = 595, 165 + 78 = 243.
 
 ## Done when
 1. Focus: in every mode the dial, ramp, line plot or park is the biggest central thing, and at 1366x768 every control the mode needs (switch, card, keypad, Check) is above the fold; at 680x425 stage and panel stay side by side.
@@ -282,9 +302,14 @@ number shown on its card; 14 pieces plus 5 trick-list lines is 19.
 7. Jump Log Low session: every dot only lands on its true tick; answers 3/8 (or 6/16), 2 (or 16/8) and 1/8 pass; 4 plays missCount.
 8. A tap while anything plays acts at once: Go during a spin restarts it, Ride during a ride restarts it, Stop ends it, a mode switch stops it.
 9. Test ride at 40 shows the bail pose and plays bail once; 30 shows the high arc with the saved spin wedge.
-10. Park counter reaches 19 with the right pieces (14 as before plus five trick-list lines); a shown job adds a "Rae helped" tag and is not counted as on your own; "Saved on this device only." shows.
+10. Park counter reaches 22 with the right pieces (14 as before plus eight trick-list lines); a shown job adds a "Rae helped" tag and is not counted as on your own; "Saved on this device only." shows.
 11. Voice: each how line speaks once in five repeats; right and miss lines speak every time and finish before the next card's line; no line names a disabled control.
 12. Spin job 7 (1/6) accepts 60 only and 17 plays missHundred; job 9 with 12 slices accepts 12 and shows no number before the answer; job 10 needs 37 and 360; job 11 opens its answer box only after a true equation such as 115 + ? = 270 and accepts 155 only.
+13. Spin job 12 accepts only an angle of exactly 23 one-degree steps and shows no readout; job 13 needs the bigger wedge and the gap of 7; job 14 needs the vertex tapped and 45 for the long-sided angle, and 90 gets the "longer rays, same turn" reason. (4.MD.5b)
+14. Jump Log is labeled practice on its card and on the score card. (4.MD.4)
+15. Eight items on your own run with no slices, readout, hint or voice help, one answer each; the score card shows the result for each of 4.MD.5a, 4.MD.5b, 4.MD.6 and 4.MD.7 and the items missed.
+16. Every spoken instruction is also on screen, and each key word shows as a label at first use.
+17. Every action works by keyboard as well as tap, drags have a key way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 none

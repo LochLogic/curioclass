@@ -13,7 +13,9 @@ It's game day, and the view starts on one fan in one seat with a zoom slider and
 - Grade 4, Math, module "Place Value to a Million". Standards: 4.NBT.1 (recognize that in a multi-digit whole number, a digit in one place represents ten times what it represents in the place to its right), 4.NBT.2 (read and write multi-digit whole numbers using base-ten numerals, number names, and expanded form; compare two multi-digit numbers based on meanings of the digits in each place, using >, =, and < symbols to record the results of comparisons), 4.NBT.3 (use place value understanding to round multi-digit whole numbers to any place).
 - Format: explorer. Driver: one student alone (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
 - Change note (spec fix, 2026-11-10): the stadium and the zoom stay. Before, the child dragged the slider and watched the digit move. Now each zoom stop is locked until the child types how many seats it will show, and six "ten times" cards follow, two of them using division. In Read and write the crowds now come in all three forms, so the child also writes the numeral, and says each number aloud before hearing it. A compare needs the deciding place tapped before the sign, and a wrong sign costs the pair. The last two headlines are rounded with no number line. The announcer works one crowd first.
-- Six zoom levels with a prediction at each, six "ten times" cards, the place-value strip, eight crowd counts to read and write, six real comparisons, six headlines to round, the game program. Extra: Our town (the child looks up their town's population on a teacher-given card and finds how many stadiums it would fill). tool.json `modes: ["Game day", "Our town"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
+- Six zoom levels with a prediction at each, six "ten times" cards, the place-value strip, eight crowd counts to read and write, six real comparisons, nine headlines to round, eight items on your own, the game program. Extra: Our town (the child looks up their town's population on a teacher-given card and finds how many stadiums it would fill). tool.json `modes: ["Game day", "Our town"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
+- Change note (2026-11-11): rounding now reaches every place the standard means by "any place": three headlines were added, two to the ten and one to the million, so there are nine. The retry rule for cards and headlines is now stated. Added the three hooks: eight items on your own with the end screen by code, English learner supports, access.
+- English learners: every spoken line is also on screen in short sentences. The words digit, place, value, expanded form, round and greater than each show on the place-value strip with an example the first time they are used. Saying a number aloud comes with the number name on screen after the child's try.
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -36,7 +38,11 @@ Header (kit): title "Stadium Count"; `Game day`, `Our town`; `Read`, `Motion`, `
 
 **Compare.** Real capacities side by side with the year shown: Michigan Stadium (107,601) and Ohio Stadium (102,780). The child compares from the left: hundred thousands equal, ten thousands equal, thousands 7 > 2. The child taps the first place where the digits differ, then drags `>`, `=` or `<` between the numbers. A wrong place or a wrong sign can be fixed once; a second miss sets the pair aside and it comes back at the end with its two sides swapped. Five more pairs.
 
-**Headlines.** A news ticker: "Crowd of about ___". The child rounds 45,312 to the thousand (45,000) and to the ten thousand (50,000) on a number line, and picks which headline is more honest for each story. Six headlines in all; the last two have no number line and the rounded number is typed.
+**Headlines.** A news ticker: "Crowd of about ___". The child rounds 45,312 to the thousand (45,000) and to the ten thousand (50,000) on a number line, and picks which headline is more honest for each story. Nine headlines in all; four have a number line, and on the other five the rounded number is typed with no line. Two round to the ten and one to the million. A wrong round can be tried once more; after a second miss the number line appears with the halfway point marked, and a headline of the same kind with a new number is added at the end. The "ten times" cards follow the same rule.
+
+**On your own.** Eight items with the announcer quiet: no strip, no number line, no hints, one answer each. Nothing is marked until all eight are in.
+
+**The end screen** adds a results strip for the teacher: for each of 4.NBT.1, 4.NBT.2 and 4.NBT.3, how many of its items were right, in numbers and words, with each item missed and the answer the child gave.
 
 **Ten times (the aha).** The 4 in 4,000 and the 4 in 400 light up together. Narrator: "Same digit, one place over, ten times the crowd."
 
@@ -48,13 +54,19 @@ Header (kit): title "Stadium Count"; `Game day`, `Our town`; `Read`, `Motion`, `
 - Six zoom levels (crowds drawn with care; faces not identifiable), six real stadium capacities with year and source, one city population, all readable with `Read`.
 - Real capacities are official figures from the stadium owners, dated.
 - Crowd counts (made up): as numerals 45,312; 70,850; 108,001. As names: nine thousand, four hundred six (9,406); two hundred thirty thousand, seventy-five (230,075); sixty-one thousand, nineteen (61,019). As expanded form: 500,000 + 300 (500,300); 80,000 + 4,000 + 200 + 60 (84,260).
-- Headlines: 45,312 to the thousand (45,000); 45,312 to the ten thousand (50,000); 70,850 to the hundred (70,900); 108,001 to the hundred thousand (100,000); with no line, 61,019 to the thousand (61,000) and 84,260 to the ten thousand (80,000).
+- Headlines: 45,312 to the thousand (45,000); 45,312 to the ten thousand (50,000); 70,850 to the hundred (70,900); 108,001 to the hundred thousand (100,000); with no line, 61,019 to the thousand (61,000), 84,260 to the ten thousand (80,000), 9,406 to the ten (9,410), 230,075 to the ten (230,080), and a season's 871,450 fans to the million (1,000,000).
+- On your own, with what each common wrong answer means:
+  - 4.NBT.1: "The 9 in 90,000 is worth ten times the 9 in what number?" (9,000.) "What number is ten times 7,000?" (70,000.) An answer of 900,000 means the child went the wrong way, to the left when the question pointed right. An answer of 700,000 or 7,0000 means zeros were added by feel, not by place.
+  - 4.NBT.2: "Write four hundred six thousand, twelve as a numeral." (406,012.) "Write 70,304 in expanded form." (70,000 + 300 + 4.) "58,907 __ 58,970" (<). An answer of 40,612 or 4,006,012 means the child writes each part as it sounds and does not hold empty places with zeros. A wrong sign means the child is not comparing place by place from the left.
+  - 4.NBT.3: 36,452 to the thousand (36,000); 749,618 to the hundred thousand (700,000); 2,995 to the ten (3,000). An answer of 37,000 means the child rounds up always or looked at the wrong digit; 36,500 means the wrong place was rounded; 800,000 means the child let the 9 push the next place up; 2,990 or 2,900 means the regrouping across places was lost.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - The zoom slider snaps to six stops; arrows step it.
 - Keyboard: Tab to the slider, the strip, place tiles, sign buttons and the ticker; Enter checks.
 - With Motion off zoom jumps between stops.
+- Access: every action works by tap and by keyboard. The zoom slider moves with arrow keys; tiles and the `>`, `=`, `<` signs can be dragged, or picked with a tap and placed with a tap. Motion can be paused. `Hear it` always shows the number name as text.
+- On your own: one answer each, no feedback until the eighth is in.
 
 ## Look
 - Accent `--brand` #1e4a8a stadium blue (header, the strip, buttons); gold #f4c542 (the moving digit, the foam finger); paper #eef3fa; ink #081a33; muted #4e5767.
@@ -80,6 +92,8 @@ Two bank voices, each unique in this batch: `lively-host` as the stadium announc
 - event, whole, ten times.
 - event, whole, `end`.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "Eight more on your own. No number line this time."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None (family "none"). Tool-only code: the zoom levels, the place-value strip, place tiles, the digit-by-digit compare. The rounding line uses `kit/number-line.js` as described in roller-coaster-rounding's spec. Real figures sit in a marked block `/* STADIUMS DATA: begin */ ... /* end */` with sources and years.
@@ -114,17 +128,21 @@ Backed twice: 5. Cut: 0.
 
 Checks run (Python, scratchpad s14, 2026-11-10): six zoom stops are 1, 10, 100, 1,000, 10,000 and 100,000; 4,000 is 10 times 400; 45,312 = 40,000 + 5,000 + 300 + 10 + 2, rounding to 45,000 and 50,000; 107,601 > 102,780; contrast as in Look.
 Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): the second pass is 4, 40, 400, 4,000, 40,000, 400,000; 700 / 70 = 10 and 5,000 / 500 = 10; 80,000 / 10 = 8,000; the eight crowd counts match their names and expanded forms; rounding gives 45,000, 50,000, 70,900, 100,000, 61,000 and 80,000, three up and three down.
+Checks run for the 2026-11-11 additions (Python `round` checked by hand for halves): 9,406 to the ten is 9,410; 230,075 to the ten is 230,080; 871,450 to the million is 1,000,000; on your own 9,000, 70,000, 406,012, 70,000 + 300 + 4 = 70,304, 58,907 < 58,970, 36,000, 700,000 and 3,000. Of the nine headlines five round up and four round down.
 
 ## Done when
 1. Focus and fold: at 1366x768 crowd, strip and card; at 680x425 strip across the bottom.
 2. Ten zoom stops over two passes open only after the child types the count, and six "ten times" cards are answered, two as divisions. (4.NBT.1)
 3. Eight crowds are written in the two forms not given, with the given form the only one on screen, and each is said aloud. (4.NBT.2)
 4. Six pairs are compared by tapping the deciding place and dragging the sign. (4.NBT.2)
-5. Six headlines are rounded to the place they need, two with no number line. (4.NBT.3)
+5. Nine headlines are rounded to the place they need, from the ten to the million, five with no number line. (4.NBT.3)
 6. Real capacities and the city figure show their source and year.
 7. Crowds have no identifiable faces and no team logos.
 8. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
 9. Motion off: zoom jumps between stops; no network requests.
+10. Eight items on your own run with no strip, line or hint, one answer each; the end screen shows the result for each of the three codes and the items missed. (4.NBT.1, 4.NBT.2, 4.NBT.3)
+11. Every spoken instruction is also on screen, and each key word shows with an example at first use.
+12. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 - The idea card flags a data source (default used: official capacities from the University of Michigan and Ohio State athletics sites and the 2020 Census for Green Bay, each shown with its year and checked again before build).

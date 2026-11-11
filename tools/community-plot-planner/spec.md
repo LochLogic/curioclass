@@ -14,16 +14,16 @@ An empty city lot, 30 feet by 20 feet, is becoming a community garden, and the c
 - Format: builder. Driver: one student alone (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
 - Change note (spec fix, 2026-11-10): small additions only. The missing-side box now has two tries, and a second miss brings the squares back and adds a spare note to be done by formula alone. Before a plot goes on the lot the child now works out its other measure from both sides (the fence for an area plot, the area for a fence plot), so the formulas are also used the plain way round.
 - Five family notes (three area, two fence), unit squares and fence pieces, the equation strip, the formula cards, the lot. Extra: Class lot (the teacher sets a lot size and each student plans a plot). tool.json `modes: ["Lot planner", "Class lot"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
+- Change note (hooks, 2026-11-11): Added the three hooks: four plots on your own with the end screen, English learner supports, access. The standards map now has all seven columns.
+- English learners: every spoken line is also on screen in short sentences. The words area, perimeter, square foot, width and length each show on a labeled plot the first time they are used.
 
 ## Standards map
-| Code | Student action that teaches it | What they see | Done when check |
-|---|---|---|---|
-| 4.MD.3 (area) | Lay squares in rows, then write width x length = area with a missing side | rows of squares; 6 x ? = 48 | 2 |
-| 4.MD.3 (perimeter) | Lay fence pieces, then write 2 x (width + length) = fence | fence pieces; 2 x (5 + ?) = 30 | 3 |
-| 4.MD.3 (apply) | Fit five plots on the lot and state both rules | the lot; the formula cards | 4 |
-| 4.MD.3 (both sides known) | For each finished plot, type the measure the note did not give: the fence for an area plot, the area for a fence plot | the plot's tag filling in | 5 |
-
-The standard's verb is "apply the area and perimeter formulas", and the student does it on every row: five missing sides and five both-sides sums, ten items of four kinds. The Lee plot is the model: its squares and its equation are led step by step by the welcome and first hints.
+| Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
+|---|---|---|---|---|---|---|
+| 4.MD.3 (area) | apply the area formula for rectangles in real world problems, finding an unknown side as a missing factor | the student | Lay squares in rows, then write width x length = area with a missing side | 3 area plots, 1 spare, 2 on your own | rows of squares; 6 x ? = 48 | 2 |
+| 4.MD.3 (perimeter) | apply the perimeter formula for rectangles in real world problems | the student | Lay fence pieces, then write 2 x (width + length) = fence with a missing side | 2 fence plots, 1 spare, 2 on your own | fence pieces; 2 x (5 + ?) = 30 | 3 |
+| 4.MD.3 (apply) | apply both formulas | the student | Fit five plots on the lot and fill in both formula cards | 5 plots, 2 cards | the lot; the formula cards | 4 |
+| 4.MD.3 (both sides known) | apply the formulas with both sides known | the student | For each finished plot, type the measure the note did not give: the fence for an area plot, the area for a fence plot | 5 tags | the plot's tag filling in | 5 |
 
 ## Screens and modes
 Header (kit): title "Community Plot Planner"; `Lot planner`, `Class lot`; `Read`, `Motion`, `Sound`, `Print`. Controls 48 px or more.
@@ -42,15 +42,23 @@ Header (kit): title "Community Plot Planner"; `Lot planner`, `Class lot`; `Read`
 **The end.** The lot plan with each plot's sides, area and fence. `Print` prints it.
 
 **Class lot (extra).** The teacher sets a lot size; each student adds one plot from a note.
+**On your own.** Four items with no squares, no fence pieces, no formula cards in view and no second try, one answer each. Nothing is marked until all are in.
+
+**Results strip (on the end screen).** For the teacher: for 4.MD.3, area and perimeter shown apart, how many of its items on your own were right, in numbers and words, with each item missed and the answer the child gave. It prints with the rest.
 
 ## Content
 - Five families (made up, labeled "illustration" where pictured) with their notes, sizes in whole feet, the 30 by 20 lot, all readable with `Read`.
+- On your own, with what each common wrong answer means:
+  - Area: "A plot is 56 square feet and 7 feet wide. How long is it?" (8 feet.) "A plot is 9 feet by 6 feet. What is its area?" (54 square feet.) An answer of 49 means the child subtracted; 30 means the fence rule was used for area.
+  - Perimeter: "A plot has 40 feet of fence and is 12 feet long. How wide is it?" (8 feet.) "A plot is 9 feet by 6 feet. How much fence?" (30 feet.) An answer of 28 means the child took off one side and forgot the fence goes all the way around; 15 means the two sides were added once; 54 means the area rule was used.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - Plots can be moved and turned on the lot until `Check`.
 - Keyboard: Tab to the squares, fence pieces, the equation boxes, the formula cards and plots on the lot; arrows move a plot one foot; R turns it; Enter places.
 - With Motion off squares and fence pieces appear at once.
+- Access: every action works by tap and by keyboard. Squares, fence pieces and plots can be dragged, or picked with a tap and placed with a tap; arrows move a plot one foot and R turns it. Each plot carries its family name in words, never color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the fourth is in.
 
 ## Look
 - Accent `--brand` #6b4423 soil brown (header, the lot border, buttons); gold #f4c542 (the plot in hand, a plot that fits); paper #f8f2ec; ink #24150a; muted #5c5249.
@@ -75,6 +83,8 @@ Two bank voices, each unique in this batch: `wise-mentor` as the garden club lea
 - event, whole, the lot.
 - event, whole, `end`.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "Four more on your own. No hints this time."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None (family "none"). Reuses the unit grid and area counts from the marked block `/* AREA ENGINE: begin */ ... /* end */` as described in tile-the-floor's spec. Tool-only code: fence pieces, the equation strip, the formula cards, the lot with snapping and overlap checks.
@@ -86,6 +96,7 @@ None (family "none"). Reuses the unit grid and area counts from the marked block
 | Plot tags | Type the note's number again; add the two sides for the fence | The tag asks for the measure the note did not give; 14, 13 and 17 (one length plus one width) fail, and after two misses the tag reads "counted". |
 | Formula cards | Fill them by guessing | Each card is tested on the next plot. |
 | The lot | Stack plots | Plots cannot overlap or leave the lot. |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line or tap waits for it to finish; taps act at once and never wait.
@@ -104,6 +115,7 @@ Backed twice: 2. Cut: 0.
 
 Checks run (Python, scratchpad s12, 2026-11-10): 48 / 6 = 8 with a fence of 28; 30 feet of fence 5 wide gives 10 long and 50 square feet; 36 / 4 = 9 with a fence of 26; 24 feet of fence 8 long gives 4 wide and 32 square feet; 60 / 5 = 12; the plots total 226 square feet of the 600 on the lot; contrast as in Look.
 Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): fences 28, 26 and 34 feet; areas 50 and 32 square feet; five areas total 226; spare notes 72 / 8 = 9 and 36 feet of fence with 12 long gives 6 wide; one length plus one width (14, 13, 17) never equals a right tag.
+Checks run for the items on your own (Python, 2026-11-11): 56 / 7 = 8; 9 x 6 = 54; 40 / 2 - 12 = 8; 2 x (9 + 6) = 30.
 
 ## Done when
 1. Focus and fold: at 1366x768 grid, note and lot; at 680x425 lot as a tab.
@@ -116,6 +128,9 @@ Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): fences 
 8. Families are labeled illustration.
 9. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
 10. Motion off: squares and fence appear at once; no network requests.
+11. Four items on your own run with no model or hint, one answer each; the end screen shows the result by code and the items missed. (4.MD.3)
+12. Every spoken instruction is also on screen, and each key word shows with a picture or example at first use.
+13. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 - The idea card flags overlap with garden-grid by look (default used: an empty city lot with fence posts and family notes, soil brown, no square seed plots; the title avoids "garden").

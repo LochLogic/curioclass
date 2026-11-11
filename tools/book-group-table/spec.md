@@ -16,12 +16,14 @@ The student joins a four-person book group as the fourth member: they prepare fr
 - Change note (spec fix, 2026-11-10): the table, the three classmates and the move chips stay. Added: a short model talk the student listens to first; three more discussions, so there are five, one a sitting; a set-up step in each talk with a goal, a turn limit and a role that changes each time; a sixth move, Probe; the evidence pin is now keyed to the question; rule slips for "back it up" and "everyone talks"; answers and build-ons are typed as full sentences against a guide; a paraphrase is typed from memory before the three versions show, and a wrong pick stays on the closing card; in the closing the student types the key ideas before any list shows and writes how two classmates saw it. The story is now the full text, not abridged.
 - Two texts, five discussions. On the story: "What did each gift really cost?", "Were they wise or foolish?" and "Who gave up more?". On the issue page: "Should the group choose its own books?" and "Is it fair to grade a discussion?". tool.json `modes: ["My seat", "Class tracker"]`, `minutes: "25-35"`, `grades_label: "Grade 6"`.
 - Nothing is saved; `Print` prints the prep card and the closing round. The class tracker keeps counts only while the page is open.
+- Change note (2026-11-11): the student now sets the deadline. The 12 turns stay, and in Set up the student picks the turn by which the goal must be met; at that turn the talk stops for a deadline check. Added the three hooks: the fifth discussion is done on your own with the end screen by code, English learner supports, access.
+- English learners: every bubble is on screen as it is spoken, in the speaker's own short sentences. The words paraphrase, evidence, goal, deadline and role each show with an example from the model talk the first time they are used. Every typed turn offers a frame the student may take or leave ("You are saying that __."; "I agree with __ because line __ says __."). Instructions use no idioms; idioms in the classmates' speech are glossed on tap.
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
 |---|---|---|---|---|---|---|
 | SL.6.1a | come to discussions prepared, having read the material; draw on that preparation by referring to evidence to probe and reflect on ideas | the student | Prep: read, write two questions, pin a line that bears on the question; in the talk use the pin and Probe a classmate's claim by picking the line that backs it or does not | 5 discussions; 2 probes in each | the prep card, its items lighting when used; the probed line | 2 |
-| SL.6.1b | follow rules for collegial discussions, set specific goals and deadlines, and define individual roles as needed | the student | Set up: write the group's goal, agree the turn limit, take a role and do its job; keep the three rules | 5 set-ups, 4 roles | the table tent, the turn clock, the role card | 3 |
+| SL.6.1b | follow rules for collegial discussions, set specific goals and deadlines, and define individual roles as needed | the student | Set up: write the group's goal, set the deadline (the turn by which the goal must be met) and check it when it comes, take a role and do its job; keep the three rules | 5 set-ups, 4 roles | the table tent, the turn clock, the role card | 3 |
 | SL.6.1c | pose and respond to specific questions with elaboration and detail by making comments that contribute to the topic, text or issue | the student | Pick a move each turn and type the words: a question, or an answer or build-on of a full sentence with a detail | 5 turns in each of 5 discussions | the bubbles and the move chip | 4 |
 | SL.6.1d | review the key ideas expressed and demonstrate understanding of multiple perspectives through reflection and paraphrasing | the student | Paraphrase a classmate from memory in your own words; in the closing type the key ideas, then say how two classmates saw it and whether you moved | 5 closings; 2 paraphrases in each | the closing card | 5 |
 
@@ -34,7 +36,7 @@ Header (kit): title "Book Group Table"; `Prep`, `Talk`, `Closing`; `Read`, `Moti
 
 **Prep.** O. Henry's "The Gift of the Magi" (1905), full text of about 2,100 words, in numbered sentences (tap to hear, or `Listen` for the whole story). A glossary strip (pier-glass, fob, Magi, mendicancy, meretricious). The issue page is one screen of about 300 words giving two views on each issue question. The prep card: two question boxes and one evidence pin (tap a sentence to pin it). A two-box guide sits by the questions: it cannot be answered yes or no; it points at a part of the text. The pin is keyed: each discussion's data lists the sentences that bear on its question. A pin from outside that list is turned back once with "How does that line help with today's question?"; a second miss lets it stand, tagged "off the question", and Priya challenges it in the talk.
 
-**Set up.** Each talk opens with the table tent turned over. The student writes the group's goal in a frame ("By the end we will ..."), sees the limit (12 turns on a turn clock that counts down) and takes a role card: Facilitator (must Invite twice), Evidence checker (must Probe twice), Note-taker (types one note after each classmate's idea; these feed the closing) or Timekeeper (must call "Halfway" at turn 6 and "Last two turns" at turn 10). The role changes every discussion, so over five the student holds each role and repeats one. A missed job shows on the closing card.
+**Set up.** Each talk opens with the table tent turned over. The student writes the group's goal in a frame ("By the end we will ..."), sees the limit (12 turns on a turn clock that counts down), sets the deadline (picks turn 6, 8 or 10 as the turn by which the goal must be met; it is flagged on the clock, and the goal frame becomes "By turn 8 we will ...") and takes a role card: Facilitator (must Invite twice), Evidence checker (must Probe twice), Note-taker (types one note after each classmate's idea; these feed the closing) or Timekeeper (must call "Halfway" at turn 6 and "Last two turns" at turn 10). The role changes every discussion, so over five the student holds each role and repeats one. A missed job shows on the closing card.
 
 **Talk.** A discussion of 10 to 12 turns plays as speech bubbles from a branching script. At each of the student's turns, six move chips: Ask, Answer with evidence, Build on, Probe, Paraphrase, Invite. Each opens a frame ("So you're saying ___?", "Building on what Priya said, ___", "Omar, what do you think about ___?") with picked or typed words. The script branches by move, not by the words:
 - Paraphrase hides the classmate's bubble. The student types what was said in their own words ("So you're saying ..."). Then three versions show and the student picks the one closest to what they typed: one is fair, one adds something the speaker did not say, one turns it around. A wrong pick brings a correction ("That's not what I meant. I said she was brave, not silly."), the bubble comes back, and "corrected" is kept on the closing card through any Replay. Each discussion calls for two paraphrases of different speakers.
@@ -50,6 +52,11 @@ Two meters: On the question (drops when the talk wanders, for example if the stu
 **Class tracker.** A projector view for a real class discussion: names typed by the teacher (kept only while the page is open), a tap tally for who has spoken, move stems on the side, a goal line and a talk timer. `Pairs card` prints or shows a half sheet for two real students: one of the five questions, the six move stems, and a tally where each ticks the moves the partner made and writes one paraphrase of the partner's best point.
 
 At 1366x768 the table and bubbles fit; at 680x425 the prep card is a tab.
+**Deadline check.** At the turn the student chose, the talk stops and the goal card comes up: "Deadline. Have we met the goal?" The student taps `Yes` or `Not yet` and types one line saying what shows it. On `Not yet` the student picks what the group does with the turns left (stay on the goal, or go to one named question). The goal, the deadline and the answer print on the closing card. Turns are counted; nothing is timed.
+
+**On your own.** The fifth discussion, "Is it fair to grade a discussion?", runs with no help: `Listen in`, the guides and the move hint are closed, the frames are hidden, each probe and each paraphrase takes one answer, and nothing is marked until the closing is in.
+
+**The end.** A results strip for the teacher on the fifth discussion, part by part: SL.6.1a, the pin on or off the question and both probes; SL.6.1b, goal written, deadline set and checked, role job done, rule slips; SL.6.1c, moves used and typed turns; SL.6.1d, paraphrases matched and the closing. Then the counts for the four talks before.
 
 ## Content
 - Story: O. Henry, "The Gift of the Magi", in "The Four Million" (1906; first printed 1905), Project Gutenberg eBook #7256, full text.
@@ -57,12 +64,16 @@ At 1366x768 the table and bubbles fit; at 680x425 the prep card is a tab.
 - Model talk: six turns on "The North Wind and the Sun" (Aesop, V. S. Vernon Jones translation, 1912, public domain).
 - Five branching discussions written for Curio Class, each with 5 student turns and 3 to 4 branches per turn; every branch rejoins within two turns. Each has in data: the sentences that bear on its question (for the pin), two probe claims (one backed, with its line; one not), two paraphrase points with three versions each, six closing idea cards (two off the question).
 - Members' voices and personalities set in data; each has one idea that only comes out with the right move.
+- What a wrong answer in the fifth discussion means: a pin off the question means the prep was about the text in general and not today's question; tapping a backing line for the probe that has none means the student takes a firm voice for evidence; a paraphrase that adds the student's own view means listening and answering are not yet apart; a deadline check of `Yes` with no line to show it means the goal was not being watched.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - The script waits for the student's turn; classmates' bubbles play in order and wait for each other.
 - No move is wrong; moves change what happens, and the meters show it.
 - With Motion off bubbles appear without sliding.
+- The deadline is a turn number, never a time. The student can take as long as they like on any turn.
+- Access: every action works by tap and by keyboard. The pin is a tap or Enter on a sentence. Each move chip has a picture and a word, rule slips are named in words beside the glow, and speakers are named on every bubble, never color alone. Motion can be paused. Everything spoken is also on screen.
+- On your own: one answer for each probe and paraphrase, no feedback until the closing is in.
 
 ## Look
 - Accent `--brand` #a34a12 pumpkin (header, table edge, move chips); gold #f4c542 (meters, the pinned line); paper #fcf5f0; ink #2a1206; muted #66544a. Scene: a warm school library corner in autumn.
@@ -90,6 +101,9 @@ Classmates: Maya `playful-friend`, Priya `big-sister`, Omar `casual-peer`; the s
 - event `backItUp`: Priya: "Which line says that?"
 - event, whole, the model talk, each voice in turn.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `deadline`: "Pick the turn when the goal must be met."
+- how `own`: "This talk is on your own. No hints this time."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None. Tool-only code: branching discussion script, move chips and frames, two meters, closing card, class tracker.
@@ -128,7 +142,7 @@ Spec fix checks (2026-11-10): counted, not run: five discussions with two probes
 ## Done when
 1. Focus and fold: at 1366x768 the table and bubbles fit; at 680x425 prep is a tab.
 2. Prep takes two questions and a pin keyed to the question; they light when used; each talk has two probes, one with a backing line and one without. (SL.6.1a)
-3. Each talk opens with a written goal, a 12-turn clock and a role whose job is checked; three kinds of rule slip glow and are counted. (SL.6.1b)
+3. Each talk opens with a written goal, a 12-turn clock, a deadline the student sets and checks, and a role whose job is checked; three kinds of rule slip glow and are counted. (SL.6.1b)
 4. Six moves branch the talk; answers and build-ons are typed sentences; Invite brings Omar in. (SL.6.1c)
 5. Paraphrases are typed with the bubble hidden before the versions show; the closing takes typed key ideas, two classmates' views and the student's own. (SL.6.1d)
 6. Five discussions on two texts are present; the model talk plays first and can be reopened.
@@ -136,6 +150,9 @@ Spec fix checks (2026-11-10): counted, not run: five discussions with two probes
 8. Print shows the prep and closing cards with typed turns and any tags.
 9. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
 10. Motion off: bubbles don't slide; no network requests.
+11. The fifth discussion runs with no model, guide, hint or frame and one answer for each probe and paraphrase; the end screen shows the result for each of SL.6.1a, b, c and d. (SL.6.1)
+12. Every spoken line is also on screen; each key word shows with an example at first use; the sentence frames can be left.
+13. Every action works by keyboard as well as tap, nothing is shown by color alone, nothing is timed, and motion can be paused.
 
 ## Open questions
 - None for Cory.

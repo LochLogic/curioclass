@@ -14,6 +14,8 @@ In a sunny school greenhouse, Mr. Haddad (made up, labeled "illustration") sets 
 - Format: simulator. Driver: one student alone (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
 - Change note (spec fix, 2026-11-10): the greenhouse and the two ways of growing stay. Added: three "read it both ways" cards so 4.OA.1 has six items and the child reads an equation as a comparison in both directions; three of the eight word problems now need division, and the child builds the strip diagram instead of watching it redraw; the tray jobs no longer hand over three answers to match (the child divides and types each answer, on two tray sets); the orders went from two to four on the main path, with subtraction and division inside them. A wrong Multiply or Add pick now costs the problem. Mr. Haddad works one problem first.
 - Three plant pairs, three read-it-both-ways cards, the comparison switch, the strip diagram, eight word problems, two tray sets of three questions, four multistep orders. Extra: Greenhouse orders (longer multistep orders for the class). tool.json `modes: ["Greenhouse", "Orders"]`, `minutes: "30-40"`, `grades_label: "Grade 4"`.
+- Change note (hooks, 2026-11-11): Added the three hooks: six items on your own with the end screen by code, English learner supports, access.
+- English learners: every spoken line is also on screen in short sentences. The phrases times as many, more than, equation, remainder and estimate each show on a strip diagram the first time they are used. Word problems use short sentences and no idioms.
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -42,6 +44,9 @@ Header (kit): title "Growth Spurt"; `Greenhouse`, `Orders`; `Read`, `Motion`, `S
 **The end.** The equation cards and tray answers. `Print` prints them.
 
 **Orders (extra).** Longer greenhouse orders.
+**On your own.** Six items with Mr. Haddad quiet: no plants, no strip bars offered, no mode buttons, no hints, one answer each. Nothing is marked until all are in.
+
+**Results strip (on the end screen).** For the teacher: for each of 4.OA.1, 4.OA.2 and 4.OA.3, how many of its items on your own were right, in numbers and words, with each item missed and the answer the child gave. It prints with the rest.
 
 ## Content
 - Made-up greenhouse heights in centimeters (labeled practice numbers), all readable with `Read`.
@@ -50,12 +55,18 @@ Header (kit): title "Growth Spurt"; `Greenhouse`, `Orders`; `Read`, `Motion`, `S
 - Which one? (1) A bean is 9 cm. A sunflower is 4 times as tall. How tall? 36, multiply. (2) A fern is 12 cm. A palm is 15 cm taller. How tall? 27, additive. (3) A cornstalk is 56 cm, 7 times as tall as a sprout. How tall is the sprout? 8, divide. (4) A rose is 45 cm and a daisy is 18 cm. How much taller is the rose? 27, additive. (5) A vine is 48 cm and a seedling is 6 cm. How many times as tall is the vine? 8, divide. (6) A pepper has 7 flowers. A tomato has 5 times as many. How many? 35, multiply. (7) A cactus is 30 cm, which is 6 cm taller than an aloe. How tall is the aloe? 24, additive. (8) A pumpkin vine has 72 leaves, 8 times as many as a squash vine. How many on the squash? 9, divide.
 - Tray sets: 50 seedlings, 6 to a tray: 8 full, 2 left; trays needed 9, full trays 8, left over 2. 75 bulbs, 8 to a box: 9 full, 3 left; boxes needed 10, full boxes 9, left over 3.
 - Orders: (a) m = 3 x 14 + 25 = 67, estimate about 65. (b) "The greenhouse has 120 pots. Each of 4 shelves holds 18. How many pots are left on the floor?" p = 120 - 4 x 18 = 48, estimate about 40. (c) "96 seed packets are shared equally by 6 classes. Each class gives 5 of its packets away. How many does a class keep?" k = 96 / 6 - 5 = 11, estimate about 10. (d) "85 tulips came in and 3 wilted. The rest go in bunches of 9. How many full bunches?" b = (85 - 3) / 9, which is 9 with 1 left, so 9 bunches; estimate about 9.
+- On your own, with what each common wrong answer means:
+  - 4.OA.1: "Write an equation for: 42 is 6 times as many as 7." (42 = 6 x 7.) "24 = 3 x 8. Finish: 24 is __ times as many as __." (3 and 8, or 8 and 3.) Writing 42 = 6 + 7 or 6 x 42 means the sentence is not yet read as a comparison.
+  - 4.OA.2: "A sunflower is 4 times as tall as a 9 cm bean. How tall is it?" (36 cm.) "A vine is 45 cm. It is 5 times as tall as a sprout. How tall is the sprout?" (9 cm.) An answer of 13 or 50 means "times as" was read as "more than"; 225 means the child multiplied where the smaller amount was wanted.
+  - 4.OA.3: "58 seedlings go 8 to a tray. How many trays are needed to hold them all?" (8.) "Mr. Haddad has 3 boxes of 24 pots and uses 50. How many are left?" (22.) An answer of 7 means the remainder was dropped; "7 r 2" means it was not read against the question; 72 means the second step was left out.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - The bean drags in whole centimeters; the mode switch can be flipped any time.
 - Keyboard: Tab to the bean, the switch, Multiply and Add, the answer box and the tray picker; arrows grow the bean; Enter checks.
 - With Motion off plants change height at once.
+- Access: every action works by tap and by keyboard. Bars and number cards can be dragged, or picked with a tap and placed with a tap. The two plants and the two modes carry names in words, never color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the sixth is in.
 
 ## Look
 - Accent `--brand` #2f6b2a greenhouse green (header, the strip diagram, buttons); gold #f4c542 (the plant in hand, a right equation); paper #eff7ee; ink #0b200a; muted #4f5c4d.
@@ -83,6 +94,8 @@ Two bank voices, each unique in this batch: `friendly-dad` as Mr. Haddad; `brigh
 - event, whole, side by side.
 - event, whole, `end`.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "Six more on your own. No hints this time."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None (family "none"). Tool-only code: the two growth rules, the strip diagram, tray packing, the order checker.
@@ -96,6 +109,7 @@ None (family "none"). Tool-only code: the two growth rules, the strip diagram, t
 | Solve | Always multiply the two numbers | Three times-as-many problems need division; 56 x 7 and 48 x 6 fail. |
 | Trays | Give the same answer to all three; type the quotient each time | The three answers differ (9, 8, 2 and 10, 9, 3); each box is checked for its own question, with no choices to pick from. |
 | Orders | Type a number | The order needs an estimate, then an equation with a letter that fits the story, then the answer. |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line or tap waits for it to finish; taps act at once and never wait.
@@ -115,6 +129,7 @@ Backed twice: 3. Cut: 0.
 
 Checks run (Python, scratchpad s14, 2026-11-10): 3 x 8 = 24 with a gap of 16, so a 10 cm bean gives 26 cm by the gap; 4 x 9 = 36; 50 seedlings in trays of 6 need 9 trays, fill 8 and leave 2; contrast as in Look.
 Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): 4 x 7 = 28, 6 x 5 = 30, 5 x 7 = 35, 6 x 7 = 42, 2 x 9 = 18; the eight answers 36, 27, 8, 27, 8, 35, 24, 9; 75 = 8 x 9 + 3, so 10 boxes, 9 full, 3 left; 3 x 14 + 25 = 67; 120 - 4 x 18 = 48; 96 / 6 - 5 = 11; 82 = 9 x 9 + 1; always-multiply slips 392 and 288 and 576 differ from the answers.
+Checks run for the items on your own (Python, 2026-11-11): 6 x 7 = 42; 4 x 9 = 36; 45 / 5 = 9; 58 = 8 x 7 + 2, so 8 trays; 3 x 24 - 50 = 22.
 
 ## Done when
 1. Focus and fold: at 1366x768 plants, strip and card; at 680x425 card under.
@@ -127,6 +142,9 @@ Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): 4 x 7 =
 8. Mr. Haddad is labeled illustration; numbers are labeled practice numbers.
 9. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
 10. Motion off: plants change at once; no network requests.
+11. Six items on your own run with no model or hint, one answer each; the end screen shows the result by code and the items missed. (4.OA.1, 4.OA.2, 4.OA.3)
+12. Every spoken instruction is also on screen, and each key word shows with a picture or example at first use.
+13. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 None.

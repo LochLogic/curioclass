@@ -25,6 +25,8 @@ Role: lesson. Change note (spec fix, 2026-11-10; the tool is built, so the code 
 carton sizes an order fills, with no bench and no line to run, and finishes the factor and multiple sentences.
 Before this, "a number is a multiple of each of its factors" was only printed on the seal card. Nothing else changed.
 Rush goes from 12 cards to 15.
+- Change note (hooks, 2026-11-11): Added the three hooks (spec only; the tool is built, so the code follows later): six items on your own with the end screen by part, English learner supports, access.
+- English learners: every spoken line is also on screen in short sentences. The words factor, factor pair, multiple, prime and composite each show on a stamped carton the first time they are used.
 
 ## Standards map
 | Code part | Student action that teaches it | What they see | Done when check |
@@ -107,6 +109,9 @@ box and every Rush control (crates, toggles, Ship it) sit above the fold. A long
 width with 8 px cups drawn as code ovals (sprites below 16 px are code ovals). 680x425: stage and panel stay side by
 side, panel 250 px; the shelf becomes a list of labels ("1 by 36"); Gus's portrait and the hen hide; Fill Line slots
 shrink to 40 px; the board cells to 36 px with 12 px numbers.
+**On your own.** Six items with no carton, no board colors, no live preview, no hints, one answer each. Nothing is marked until all are in.
+
+**Results strip (on the end screen).** For the teacher: for each part of 4.OA.4 (factor pairs, multiples, prime or composite), how many of its items on your own were right, in numbers and words, with each item missed and the answer the child gave. It prints with the rest.
 
 ## Content
 Starter orders (Next order cycles): 36, 12, 13, 24, 1, 30, 49, 72. Order 30 adds the tag "Real egg flats hold 30
@@ -144,6 +149,10 @@ Card prompts for shift 5: "No bench this time. Use the carton Gus packed. Which 
 Card prompts: "Find every carton for 12 eggs. Then tap Ship it."; "Sort these orders. A composite needs a carton
 that proves it."; "Which cartons will 72 eggs fill with no gaps? Type how many cartons."; "Mark every order from 41 to
 49 that only fits one long row."
+- On your own, with what each common wrong answer means:
+  - Factor pairs: "Type every factor pair of 48." (1 x 48, 2 x 24, 3 x 16, 4 x 12, 6 x 8.) "Which of 4, 6 and 8 are factors of 54?" (6 only.) Leaving out 3 x 16 means the child only tries facts from the times tables; picking 4 means 54 was judged by its last digit.
+  - Multiples: "Is 84 a multiple of 7?" (Yes, 12 sevens.) "Is 58 a multiple of 4?" (No.) A no for 84 means the child stops at 7 x 10.
+  - Prime or composite: 37 (prime); 51 (composite, 3 x 17). Calling 51 prime means "odd and not in the tables" is being used as the test.
 
 ## Interactions in detail
 - Rows 1 to 12 in every order (12 lets 36 show the turns 9 by 4 and 12 by 3). Any order up to 100 has its smaller
@@ -159,6 +168,8 @@ that proves it."; "Which cartons will 72 eggs fill with no gaps? Type how many c
 - Rush Decade: Ship it is enabled at once (a strip with no primes is never asked, but the student may ship any set).
 - Reasons on a miss (first matching): Sort: an odd composite in Prime missOdd; 2 not in Prime missTwo; 1 not in Neither, or another number in Neither, missOne; otherwise missOther. Multiples: a wrong Fills set missFill; right set with a wrong count missCount. Decade: an odd composite marked missOdd; a prime left out missLeft. Every shape: shipMissing.
 - Saved on this device (localStorage, try/catch): sealed orders, Rush progress. "Saved on this device only." shows on the board and the Rush counter. **Start over** on the board clears everything after a confirm.
+- Access: every action works by tap and by keyboard. Rows, order and size controls are buttons that work by tap and by key; chips can be dragged, or picked with a tap and placed with a tap. Board cells carry the words prime, composite or neither with their color. Motion can be paused.
+- On your own: one answer each, no feedback until the sixth is in.
 
 ## Look
 Paper `#fbf7ef`, ink `#2a2118` (14.79:1), muted `#62574a` (6.59:1). Accent `--brand #44691a` meadow green (5.99:1 on
@@ -219,6 +230,8 @@ read on screen and Read speaks the hint plus the card (browser voice for numbers
 How lines play once, then live in the hint. Each miss reason plays once per miss. No line names a disabled control:
 everyHow needs Pack, and its hint keeps "tap Ship it" for when Ship it enables; multHow and decadeHow need Ship it
 enabled or name it only as the last step once boxes are filled (hint text updates when it enables).
+- how `own`: "Six more on your own. No hints this time."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 none
@@ -234,6 +247,7 @@ none
 | Seal and board colors | none (no check) | they appear only after the student has packed every pair; there is no fill-for-me button |
 | Rush counter "on your own" | let Gus show every card; replay a shipped card | shown cards count shipped, not on your own; each card counts once |
 | Pack Station, Fill Line | none (explore, no checks) | their answers can't be carried into Rush, which re-rolls on return |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Grade 4: not every action speaks, but a result lands before the next card.
@@ -269,6 +283,7 @@ contrast ratios in Look.
 Number checks for the spec fix (Python, run 2026-11-10): 56 = 7 x 8, 63 = 7 x 9, 42 = 6 x 7 and 6, 8, 8 do not divide
 them; 45, 32 and 50 with their listed factors and counts, and 6, 6, 4 do not divide them; in 5c 54, 28 and 24 are the
 only orders divisible by both sizes, and each wrong order is divisible by exactly one.
+Checks run for the items on your own (Python, 2026-11-11): 48 = 1 x 48 = 2 x 24 = 3 x 16 = 4 x 12 = 6 x 8; 54 / 6 = 9, 54 / 4 and 54 / 8 leave remainders; 84 = 7 x 12; 58 = 4 x 14 + 2; 37 has no factor from 2 to 6; 51 = 3 x 17.
 
 ## Done when
 1. Focus: in every mode the carton, pallet, board or Rush bench is the biggest central thing, and at 1366x768 every control the mode needs (Rows, order box, sizes, Run, crates, toggles, Ship it) is above the fold; at 680x425 stage and panel stay side by side.
@@ -283,6 +298,9 @@ only orders divisible by both sizes, and each wrong order is divisible by exactl
 10. The board and seal card never show in Rush; leaving Rush with a card open re-rolls it.
 11. Voice: each how line speaks once in five repeats; ship and miss lines speak every time and finish before the next card; no line names a disabled control.
 12. Rush 5a (56 as 7 by 8) ships only with 7 (8 cartons) and 8 (7 cartons) on, 6 off, and the sentences reading "7 is a factor of 56. 56 is a multiple of 7."; no bench or belt shows on shift 5 cards; the counter reads "of 15".
+13. Six items on your own run with no model or hint, one answer each; the end screen shows the result by code and the items missed. (4.OA.4)
+14. Every spoken instruction is also on screen, and each key word shows with a picture or example at first use.
+15. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 none

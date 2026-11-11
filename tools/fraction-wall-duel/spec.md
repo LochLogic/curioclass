@@ -14,6 +14,8 @@ A card game played against Rosa (a made-up rival, labeled "illustration") on a s
 - Format: cards. Driver: one student alone against the computer rival (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
 - A wall from halves to twelfths plus tenths and hundredths, one worked round by Rosa, three decks (twelve rounds each: seven compare rounds, two blank-card rounds, one forced steal, and two rounds that are a trap or a Rosa claim), three reasons the child carries out, the split tool, trap cards, the rule book. Extra: Two players (two students on one screen, hands hidden by a pass-the-device screen). tool.json `modes: ["Duel Rosa", "Two players"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
 - Change note (spec fix, 2026-11-10): the duel, Rosa and the wall stay. What changed is who does the work. Before, the child tapped one of three reason buttons and the wall did the renaming, and the split happened only if the child chose an equal card. Now every deck has blank-card rounds where the child splits the wall, writes the equal fraction and finishes the why sentence; every win needs the sign dragged in, the reason carried out by the child, and a one-line reason in the child's own words checked against a shown guide; a wrong sign or reason gives the round to Rosa; trap cards need the child to say why the wholes differ. The steal is no longer the only place 4.NF.1 is done.
+- Change note (hooks, 2026-11-11): Added the three hooks: five items on your own with the end screen by code, English learner supports, access.
+- English learners: every spoken line is also on screen in short sentences. The words numerator, denominator, equivalent, benchmark and same whole each show on the wall the first time they are used. The why sentence offers a frame the child may take or leave: "Each piece was split into __, so there are __ times as many pieces and each is __."
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -51,18 +53,26 @@ After step 4 the bars fill and the sign is judged against exact values. One miss
 **The end.** The reason list. `Print` prints it and a paper fraction wall.
 
 **Two players (extra).** Hands hidden by a pass-the-device screen.
+**On your own.** Five items with Rosa quiet: the wall is covered, no reason chips, no hints, one answer each. Nothing is marked until all are in.
+
+**Results strip (on the end screen).** For the teacher: for 4.NF.1 and 4.NF.2, how many of its items on your own were right, in numbers and words, with each item missed and the answer the child gave. It prints with the rest.
 
 ## Content
 - Three decks of 24 cards, denominators 2, 3, 4, 5, 6, 8, 10, 12 and 100, four trap cards, two Rosa claims, six blank-card rounds, three steal hands, the rule card and the rule book, all readable with `Read`.
 - Compare rounds per deck: seven, set so that across the game at least six are won only by Same pieces (5/6 and 3/4; 2/3 and 3/5; 7/10 and 65/100), six by Same count (3/5 and 3/8; 2/3 and 2/5; 5/6 and 5/12) and six by Half line (5/8 and 3/7; 7/12 and 4/10; 6/10 and 45/100). The hand is dealt so that every card in it differs from Rosa's in both numerator and denominator unless it is a same-count round.
 - Model lines for the guide, one per reason: "Both are twelfths now, and 10 twelfths is more than 9 twelfths." "Both have 3 pieces, and fifths are bigger than eighths." "5/8 is more than half and 3/7 is less than half."
 - Rosa is a friendly rival; losing a round just deals again, and a lost pair always returns with new numbers.
+- On your own, with what each common wrong answer means:
+  - 4.NF.1: "Write a fraction equal to 3/4 with 12 as the denominator." (9/12.) "Are 4/6 and 10/15 equal?" (Yes: both are 2/3.) An answer of 11/12 means the child added 8 to the top and the bottom; a no means the child looks for one number that turns 4/6 into 10/15 and does not go through a simpler fraction.
+  - 4.NF.2: "5/8 __ 7/12" (>; 15/24 and 14/24). "3/5 __ 5/8" (<; 24/40 and 25/40). "2/5 of a short wall __ 2/5 of a long wall" (cannot be compared). Choosing < for the first means bigger numbers are taken for a bigger fraction; choosing = for the third means the whole is not being looked at.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - Cards can be put back until a reason is picked.
 - Keyboard: Tab to cards, the reason buttons, the split tool, the rule book and challenge; Enter plays.
 - With Motion off bars split and line up at once.
+- Access: every action works by tap and by keyboard. Cards, signs and the overlay whole can be dragged, or picked with a tap and placed with a tap. Fraction pieces carry their names in numbers, never color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the fifth is in.
 
 ## Look
 - Accent `--brand` #9a3d12 brick orange (header, the wall frame, card backs); gold #f4c542 (the card in hand, a winning bar); paper #fbf1ec; ink #2b1005; muted #5e5049.
@@ -90,6 +100,8 @@ Two bank voices, each unique in this batch: `casual-peer` as Rosa; `knowing-guid
 - event, whole, final score.
 - event, whole, `end`.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "Five more on your own. No hints this time."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 fraction-wall (family "fraction-wall"; no engine file yet). This tool builds the family's shared pieces first, in a marked block `/* FRACTION-WALL ENGINE: begin */ ... /* end */`: a wall of rows from 1 down to twelfths plus tenths and hundredths, bars for any a/b, row splitting by n with matching checks, the half line, and exact comparison with `Frac`; how-many-fit reuses them.
@@ -105,6 +117,7 @@ fraction-wall (family "fraction-wall"; no engine file yet). This tool builds the
 | Steals | Never play an equal card | The steal hand is dealt again until it is taken. |
 | Traps and claims | Play them as normal cards; let claims pass | Either gives Rosa the round and the card returns; the sentence must be finished to void. |
 | Rule card | Try word-bank words in turn | Six words for three blanks, and the letter form must match (n x a)/(n x b). |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line or tap waits for it to finish; taps act at once and never wait.
@@ -124,6 +137,7 @@ Backed twice: 3. Cut: 0.
 
 Checks run (Python, scratchpad s13, 2026-11-10): 3/4 = 9/12 and 5/6 = 10/12, so 5/6 > 3/4; 3/5 > 3/8; 3/7 < 1/2 < 5/8; 2/3 = 4/6; contrast as in Look.
 Checks run again for the spec fix (Python `fractions`, scratchpad s/fx, 2026-11-10): the six blank cards give 2/4, 4/6, 9/12, 4/10, 5/10 and 30/100, each equal to its start; steals 4/6 = 2/3, 6/8 = 3/4, 50/100 = 5/10; every listed compare pair has the stated winner (5/6 > 3/4, 2/3 > 3/5, 7/10 > 65/100, 3/5 > 3/8, 2/3 > 2/5, 5/6 > 5/12, 5/8 > 3/7, 7/12 > 4/10, 6/10 > 45/100) and each half-line pair sits on opposite sides of 1/2; rounds per deck 7 + 2 + 1 + 2 = 12, so 36 in all with 21 compare rounds.
+Checks run for the items on your own (Python, 2026-11-11): 3/4 = 9/12; 4/6 = 10/15 = 2/3; 5/8 = 15/24 > 14/24 = 7/12; 3/5 = 24/40 < 25/40 = 5/8.
 
 ## Done when
 1. Focus and fold: at 1366x768 wall and hands; at 680x425 wall scrolls, hand as a tray.
@@ -137,6 +151,9 @@ Checks run again for the spec fix (Python `fractions`, scratchpad s/fx, 2026-11-
 9. Rosa is labeled illustration.
 10. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
 11. Motion off: bars split at once; no network requests.
+12. Five items on your own run with no model or hint, one answer each; the end screen shows the result by code and the items missed. (4.NF.1, 4.NF.2)
+13. Every spoken instruction is also on screen, and each key word shows with a picture or example at first use.
+14. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 None.

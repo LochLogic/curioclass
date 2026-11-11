@@ -16,6 +16,8 @@ One scene sits on a little stage (a lost-and-found counter, three people and a m
 - Change note (spec fix, 2026-11-10): the stage, the dial and the can-know panel stay. Added: the narrator voice works the first dial position as the model; the student predicts what each next narrator can know before the dial turns; judgment words and the twist's lines are now marked as a set with a limited number of taps, and the student calls each tilt before the arrow shows; Identify goes from two passages to five, one a poem with a speaker, with one pick each, two evidence lines and an explain line beside a guide; the Tom Sawyer scene is longer, in three parts, so the student follows the narrator across a text and writes how Twain builds him. The sensitivity read is left for the fresh reader at final review; no wording was changed for it.
 - Levels: Dial (four narrators), Spot the narrator (judgment words), The twist (an unreliable first-person narrator), Your turn (rewrite), then a public-domain scene. tool.json `modes: []`, `minutes: "25-35"`, `grades_label: "Grade 6"`.
 - Nothing is saved; `Print` prints the student's rewrite and the can-know panel.
+- Change note (hooks, 2026-11-11): Added the three hooks: the last two Identify texts and the last part of the longer scene are done on your own with the end screen, English learner supports, access.
+- English learners: every spoken line is also on screen in short sentences. The words narrator, speaker, point of view, first person and third person each show with a line from the first take the first time they are used. Each written answer offers a frame the student may take or leave: "The author shows the narrator's view by __."
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -52,17 +54,26 @@ The can-know panel lists 8 facts (thoughts, secrets, events); each lights for th
 **Public-domain scene.** The fence-painting scene from "The Adventures of Tom Sawyer" (1876), chapter 2, about 900 words in three parts (Tom faces the fence; Ben Rogers arrives; the narrator's closing remarks on work and play), a third person all-knowing narrator that dips into Tom's thoughts and judges him gently, with the same panel. After each part the student picks what the narrator is mostly doing there (inside Tom's head; reporting what anyone could see; stepping back to comment) and taps one line that shows it; keyed, one retry, then "shown". At the end the student writes three sentences on how Twain builds this narrator from the start of the scene to the end, beside the same guide.
 
 At 1366x768 the stage and passage fit side by side; at 680x425 the stage folds above the passage.
+**On your own.** The last two Identify texts, and the third part and closing paragraph of the public-domain scene, run with no model: the first take and the panels are closed, there are no hints, and each tap and each answer is given once.
+
+**Results strip (on the end screen).** For the teacher: RL.6.6 part by part on the items on your own: narrator or speaker named right out of two, the lines tapped, and the student's written answers with the guide boxes they ticked. It prints with the rest.
 
 ## Content
 - Written for Curio Class: the four narrations, the brother's version, Kai's twist version, four identify passages (third limited, first person with a stake, second person, all-knowing) of about 120 words each and four spares, one of each type.
 - Robert Louis Stevenson, "My Shadow", from A Child's Garden of Verses (1885), public domain, all four stanzas.
 - Mark Twain, "The Adventures of Tom Sawyer", chapter 2, from Project Gutenberg eBook #74, about 900 words in three parts, unchanged except cut sentences marked.
 - Can-know panel: 8 facts with reach per narrator; six judgment words with tilt; three twist lines; for each identify text its type and its keyed evidence lines; for each Tom Sawyer part its keyed stance and lines.
+- On your own, with what each common wrong answer means:
+  - Calling a third-person narrator who tells one character's thoughts "first person" means hearing thoughts is being taken for who is telling.
+  - Tapping lines that only state what happened means the student is retelling events and not showing how the author built the view.
+  - Writing that the narrator "is the author" means narrator and author are not yet apart.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - With Motion off the camera jumps between positions.
 - The rewrite panel only checks facts from the panel list; anything else is the student's own.
+- Access: every action works by tap and by keyboard. The dial turns with a tap or with arrow keys; facts, words and lines are picked with a tap or Enter. A tilt arrow carries the word "toward" or "against", never color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the last part is in.
 
 ## Look
 - Accent `--brand` #6b3fa0 camera purple (header, dial, stage curtain); gold #f4c542 (the lit panel facts, the spotlight); paper #f7f3fb; ink #1d0f2e; muted #5b5266. Scene: a toy theater with a school set.
@@ -88,6 +99,8 @@ Bank voice `smooth-narrator` reads the third-person and second-person narrations
 - how `explain`: "Tap two lines that show it. Then write how the author built it."
 - event, whole, the first take.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "These are on your own. Name who is telling it, and show how you know."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None. Tool-only code: narrator dial with four passages, can-know panel, judgment-word key, twist lines, rewrite fact check.
@@ -100,6 +113,7 @@ None. Tool-only code: narrator dial with four passages, can-know panel, judgment
 | Twist | Tap every line | Three marks only, checked as a set; then the student writes what is hidden. |
 | Identify | Guess the type; write nothing real | One pick; a miss is tagged and adds a spare text. Two keyed evidence lines are needed. The written line is not marked by the tool; the model and guide carry it and it prints. |
 | Tom Sawyer | Guess one of three | One retry, then "shown", and a line must be tapped as well. |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line waits for it to finish; taps act at once and never wait.
@@ -134,6 +148,9 @@ Spec fix checks (2026-11-10): counted, not run: 3 dial predictions, 6 judgment w
 9. Print shows the rewrite, the written lines and any "shown" tags.
 10. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
 11. Motion off: the camera jumps; no network requests.
+12. The last two Identify texts and the last part of the longer scene run with no model, panel or hint and one answer each; the end screen shows the result for RL.6.6. (RL.6.6)
+13. Every spoken instruction is also on screen; each key word shows with a picture or example at first use; any sentence frame can be left.
+14. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 - None for Cory.

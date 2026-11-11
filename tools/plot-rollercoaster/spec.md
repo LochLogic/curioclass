@@ -16,6 +16,8 @@ The student builds a rollercoaster track from the episodes of Rudyard Kipling's 
 - Change note (spec fix, 2026-11-10): the coaster, the twelve episodes and Rikki's faces stay. The core of Remove a scene is new. Before, the tool showed what broke and the student then picked a label, on one scene. Now the student pulls five scenes, one sentence and one stanza, and for each says first what the story would lose and which later piece would fail, in their own words; only then does the track show the break. Heights are no longer set by trial: they are tested as a whole track. Six episode notes and a closing paragraph, written beside a model and a guide, give the "describe" the standard asks for. The announcer works the first piece as the model. Not added: a drama. The standard says "story's or drama's", so one story meets it, and Class coaster takes the scenes of a play.
 - Text: "Rikki-Tikki-Tavi" from The Jungle Book by Rudyard Kipling (1894), public domain, in twelve episode cards with the full text a tap away. tool.json `modes: ["Rikki-Tikki-Tavi", "Class coaster"]`, `minutes: "25-35"`, `grades_label: "Grade 6"`.
 - Nothing is saved; `Print` prints the coaster and the remove-a-scene answers. A class coaster typed by the teacher stays only while the page is open.
+- Change note (2026-11-11): the chapter is no longer left out. An eighth pull asks how this chapter fits the whole book. Added the three hooks: the last two pulls and the last two notes are done on your own, with the end screen by code; English learner supports; access.
+- English learners: every spoken line is also on screen in short sentences. The words plot, setting, character, theme, scene, stanza and chapter each show with an example from the announcer's first piece the first time they are used. Each written answer offers a frame the student may take or leave: "Without this part, __ would not __, because __." Old words in Kipling's text are glossed on tap.
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -23,7 +25,7 @@ The student builds a rollercoaster track from the episodes of Rudyard Kipling's 
 | RL.6.3 (episodes) | describe how a story's plot unfolds in a series of episodes | the student | Order the twelve episodes, set each height, and write an episode note on six pieces: what happens and how it raises or lowers the tension | 12 pieces; 6 notes | the track; the student's notes on the pieces | 2, 3 |
 | RL.6.3 (characters respond or change) | describe how the characters respond or change | the student | At each piece pick how Rikki responds and tap the line that shows it; say it in the note | 12 | Rikki's face and thought bubble per piece | 4 |
 | RL.6.3 (toward a resolution) | as the plot moves toward a resolution | the student | Ride, then write three sentences on how Rikki at the end differs from Rikki at the start and which episode turned him | 1 paragraph | the ride and the before-and-after faces | 5 |
-| RL.6.5 | analyze how a sentence, chapter, scene or stanza fits the overall structure and contributes to theme, setting or plot (chapter left out: the story is one chapter) | the student | Pull a part; before anything breaks, pick what the story would lose, tap the later piece that depends on it, and write why; then test | 7 (5 scenes, 1 sentence, 1 stanza) | the track failing only after the student's answer | 6 |
+| RL.6.5 | analyze how a sentence, chapter, scene or stanza fits the overall structure and contributes to theme, setting or plot (the chapter is this story's place in The Jungle Book) | the student | Pull a part; before anything breaks, pick what the story would lose, tap the later piece that depends on it, and write why; then test | 8 (5 scenes, 1 sentence, 1 stanza, 1 chapter) | the track failing only after the student's answer | 6 |
 
 ## Screens and modes
 Header (kit): title "Plot Rollercoaster"; `Cards`, `Build`, `Ride`, `Remove a scene`; `Read`, `Motion`, `Sound`, `Print`. Controls 44 px or more, icon plus word.
@@ -42,7 +44,7 @@ Header (kit): title "Plot Rollercoaster"; `Cards`, `Build`, `Ride`, `Remove a sc
 
 **Ride.** A small coaster car carries Rikki along the track; at each piece his face changes and his thought bubble shows the student's line (Motion off: the car jumps piece to piece). At the end the first and last faces sit side by side with "What changed?" The student writes three sentences, beside a guide: Rikki at the start; Rikki at the end; the episode that turned him and why. A model paragraph about a different, made-up story (a shy dog at a shelter) shows the form without giving the answer.
 
-**Remove a scene.** Seven parts to pull, in any order: five scenes (the flood, Karait, Chuchundra's warning, the plan with Darzee's wife, the eggs), one sentence (the mongoose family motto, "Run and find out", in the opening) and one stanza (the first stanza of Darzee's Chant at the end). For each the student answers before anything moves:
+**Remove a scene.** Eight parts to pull. The last is the chapter: the track shrinks to one car on a longer line of seven, the contents page of The Jungle Book with a one-line summary of each story, and the student pulls "Rikki-Tikki-Tavi" out of the book and answers the same three questions about the book. The first seven come in any order: five scenes (the flood, Karait, Chuchundra's warning, the plan with Darzee's wife, the eggs), one sentence (the mongoose family motto, "Run and find out", in the opening) and one stanza (the first stanza of Darzee's Chant at the end). For each the student answers before anything moves:
 1. What would the story lose? Pick one or more of plot, setting, character, theme.
 2. Which later piece depends on it? Tap that piece on the track (for the stanza, tap `nothing later` and say what the ending would lack).
 3. Why? One or two sentences in the student's own words.
@@ -51,17 +53,24 @@ Only then does `Pull it` run: the tapped piece either sags, because it did rest 
 **Class coaster.** The teacher types episode cards for another book; Remove a scene then asks the student's line with no keyed jobs.
 
 At 1366x768 the cards and track fit; at 680x425 the cards are a strip above the track.
+**On your own.** The last two pulls (the eggs and the chapter) and the last two notes (the breakfast threat, and the chase and the end) run with the announcer quiet: the model and the guide are closed, a pull takes one tap with no second try, and nothing is marked until all four are in. The guide opens afterward so the student can check the notes.
+
+**The end.** A results strip for the teacher: RL.6.3, the two notes on your own with their guide boxes; RL.6.5, the two pulls on your own, right or not, with the student's why lines; then the counts for the parts done earlier and anything marked "shown".
 
 ## Content
 - "Rikki-Tikki-Tavi", Project Gutenberg #236 (The Jungle Book), split into twelve passages with summaries written for Curio Class, keyed heights, keyed responses and lines.
 - Keyed breaks for Remove a scene. The flood: setting and plot; the family takes him in has no way to begin. Karait: character; his boldness at the bathroom fight has no first win behind it. Chuchundra's warning: plot; Rikki has no reason to listen at the bathroom sluice, so the bathroom fight does not start. The plan with Darzee's wife: plot; Nagaina is not drawn away, so Rikki cannot reach the eggs. The eggs: plot; at the breakfast threat Rikki has nothing to turn Nagaina away from Teddy. The motto sentence: character and theme; his choice to follow Nagaina down the hole in the chase loses its root. The stanza of Darzee's Chant: theme; nothing later depends on it, and the ending loses the garden's praise of what Rikki did.
 - Six note pieces: the family takes him in, the first face-off, Karait, the bathroom fight, the breakfast threat, the chase and the end.
+- The chapter, keyed: The Jungle Book (1894) has seven stories, each followed by a song: "Mowgli's Brothers", "Kaa's Hunting", "Tiger! Tiger!", "The White Seal", "Rikki-Tikki-Tavi", "Toomai of the Elephants" and "Her Majesty's Servants". Pulled, the book loses a setting (its one garden and bungalow) and a telling of its theme (a small animal's courage for those it guards). The right tap is `nothing later`: no later story rests on this one, which is how a book of separate tales is built, while the three Mowgli stories do rest on each other.
+- What a wrong answer on your own means. The eggs: tapping the chase means the student sees what comes next, not what depends on it. The chapter: tapping a later story means the student reads the book as one plot. A note that only retells the episode means the student is listing events and not saying how Rikki responds or changes.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - Pieces can be reordered; checks rerun.
 - The ride can be paused at any piece.
 - With Motion off nothing slides or drops; labels show heights.
+- Access: every action works by tap and by keyboard. Cards and track pieces can be dragged, or picked with a tap and placed with a tap; heights move with arrow keys. A sagging piece is drawn bent and labeled "sags", and "shown" is a word, never color alone. Motion can be paused.
+- On your own: one tap for each pull, no feedback until all four parts are in.
 
 ## Look
 - Accent `--brand` #a12f6b coaster magenta (header, track, car); gold #f4c542 (the peak, Rikki's thought bubble edge); paper #fbf2f7; ink #2e0a1d; muted #6a5060. Scene: a sunny fair with a coaster yard.
@@ -87,6 +96,8 @@ Bank voice `lively-host` as the park announcer (unique in this batch); the story
 - how `pull`: "Pick what the story would lose. Then tap the piece that needs it."
 - event, whole, the announcer's first piece and first pull.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "The last four are on your own. I will stay quiet."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None. Tool-only code: ordered track pieces with keyed height ranges, keyed responses with lines, the ride, keyed scene jobs.
@@ -120,6 +131,7 @@ Sensitivity note: the story is set in a British family's home in colonial India 
 Checks run (Python, scratchpad b20, 2026-11-09): the Gutenberg file is The Jungle Book and contains the Rikki-Tikki-Tavi story (about 7,600 words with Darzee's Chant); the lines "Run and find out" and the flood are found in it; contrast as in Look.
 
 Spec fix checks (2026-11-10): the seven keyed breaks were checked against the order of the twelve episode cards, and each depends-on piece comes after the pulled part; the earlier key for "the eggs" (why Nagaina comes to the breakfast table) was wrong, since she comes for the family and the egg is what turns her away, and it has been corrected. The Gutenberg text was not reopened in this pass; the motto sentence and Darzee's Chant should be confirmed against it at Build.
+Spec fix check (2026-11-11): the seven story titles and the song after each were written from memory of Project Gutenberg #236; to confirm at Build against the contents page.
 
 ## Done when
 1. Focus and fold: at 1366x768 cards and track fit; at 680x425 the cards are a strip.
@@ -127,12 +139,15 @@ Spec fix checks (2026-11-10): the seven keyed breaks were checked against the or
 3. Six episode notes are written and checked against the guide. (RL.6.3)
 4. Each piece takes a response with a supporting line; a twice-missed piece blocks the ride. (RL.6.3)
 5. The ride shows faces and lines and ends with the student's three sentences on what changed. (RL.6.3)
-6. Seven parts are pulled (five scenes, one sentence, one stanza); each break shows only after the student has picked what is lost, tapped the piece that depends on it and written why. (RL.6.5)
+6. Eight parts are pulled (five scenes, one sentence, one stanza, and the chapter from the book); each break shows only after the student has picked what is lost, tapped the piece that depends on it and written why. (RL.6.5)
 7. The announcer's first piece and first pull play before the student's and can be reopened.
 8. Class coaster takes custom cards.
 9. Print shows the coaster, the notes and the answers, with "shown" on any part the announcer had to show.
 10. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
 11. Motion off: nothing slides or drops; no network requests.
+12. The last two pulls and the last two notes run with no model, guide or second try; the end screen shows the result for RL.6.3 and RL.6.5. (RL.6.3, RL.6.5)
+13. Every spoken instruction is also on screen; each key word shows with an example at first use; the sentence frame can be left.
+14. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 - None for Cory.

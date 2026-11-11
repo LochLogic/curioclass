@@ -16,6 +16,8 @@ The student preps for a debate at a coach's desk by building both sides of a que
 - Change note (spec fix, 2026-11-10): the desk, the coach and the fair-fight meter stay. Added: a fourth real folder (Later School Start), so with the practice folder there are five arguments to write, one a sitting; the argument is now written out as a paragraph from the filled slots, with an opening that sets up the question; each folder has two weak-source cards and the student rates every source; the student writes each side's claim as a sentence; objections go from three to five and need a written rebuttal, and a wrong card now costs; the meter's hint no longer says what the weaker side needs until the second ask. The coach's own filled sheet for the practice folder is the model.
 - Four folders: Phones at Lunch, Year-Round School, School Uniforms, Later School Start; plus a practice folder labeled made up, done first with the coach's model sheet beside it. tool.json `modes: ["Prep", "Pair prep"]`, `minutes: "25-35"`, `grades_label: "Grade 6"`.
 - Nothing is saved; `Print` prints the two-sided prep sheet and the student's argument.
+- Change note (split, 2026-11-11): this tool keeps W.6.1a and W.6.1b. W.6.1c to e (linking words, formal style, a concluding statement) were never carried here and now have their own tool, so nothing was removed. Added the three hooks: the last folder is done on your own with the end screen by code, English learner supports, access.
+- English learners: every spoken line is also on screen in short sentences. The words claim, reason, evidence, source and objection each show with an example from the coach's sheet the first time they are used. Every written line offers a frame the student may take or leave ("This counts because __."; "Some people say __, but __."). Coach Rivera's objections use no idioms.
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -47,6 +49,9 @@ Header (kit): title "Debate Prep Desk"; `Folder`, `Sides`, `Objections`, `Argume
 **Pair prep.** Two students each take a side; then they swap objections.
 
 At 1366x768 the folder and trays fit side by side; at 680x425 the folder is a tab.
+**On your own.** The last folder, Later School Start, runs with the coach quiet: the coach's sheet and the guide are closed, the meter gives no hints, each source rating and each strongest-card pick takes one answer, and nothing is marked until the paragraph is in. The guide opens afterward for the student's own check.
+
+**The end.** A results strip for the teacher on the last folder: W.6.1a, the paragraph with the guide boxes the student ticked (opens with the question, states the claim, reasons in an order that makes sense); W.6.1b, sources rated right out of the folder's cards, strongest-card picks right out of the reasons, and the "why it counts" lines; then the counts for the four folders before.
 
 ## Content
 Folders (summaries written for Curio Class from the sources):
@@ -56,11 +61,14 @@ Folders (summaries written for Curio Class from the sources):
 - Later School Start: the American Academy of Pediatrics (2014, Pediatrics) recommended that middle and high schools start at 8:30 a.m. or later so that students can get enough sleep; the CDC reported in 2015 that most U.S. middle and high schools started earlier than that; other cards: bus routes and their cost, after-school jobs, sports and daylight, family work schedules.
 - The practice folder ("Should our school start a pet club?") is labeled made up.
 - Every folder has 10 to 12 cards: at least three For, three Against, one Doesn't help and two weak-source cards (made up and labeled: an unsigned online post and an ad from someone who gains), and at least seven keyed objections so five can be asked and two held in reserve.
+- What a wrong answer on the last folder means: rating a weak source strong when it agrees with the student's side means the student judges a source by its answer and not by who wrote it and how they know; picking the most striking card over the one that fits the reason means evidence is being chosen for effect and not for relevance; a paragraph that opens with the claim and never sets up the question means the student has not yet seen the reader as someone new to the topic.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - Cards can move between trays any time; the meter updates.
 - With Motion off the meter needle jumps.
+- Access: every action works by tap and by keyboard. Cards can be dragged, or picked with a tap and placed with a tap on a tray. Ratings are words (Strong, Okay, Weak) and the meter shows its reading in words under the needle, never color alone. Motion can be paused.
+- On your own: one answer for each rating and pick, no feedback until the paragraph is in.
 
 ## Look
 - Accent `--brand` #8a3d00 desk brown (header, desk, trays); gold #f4c542 (the meter's even band, the whistle); paper #fbf5ef; ink #2a1300; muted #66564a. Scene: a library corner with a wooden desk.
@@ -85,6 +93,8 @@ Bank voice `hero-coach` as Coach Rivera (unique in this batch); evidence cards a
 - event `fair`: "That's a fair fight. Now pick your side."
 - event, whole, `argument`: the student's argument.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "This folder is on your own. I will read it when you finish."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 evidence (`__tool.ev`), described in full in tools/theme-ledger/spec.md. This tool uses: Source pack (one folder per question), Claims with `ev.claimCheck`, Evidence links with `side`, rebuttal links, `ev.fairFight`, and Draft with `ev.pickStrong` and `ev.draftChecks`. This is the Sides part of the engine named for this tool. Not Spans, Series, Ledger view or Board view. The coach's objections are tool-only keyed lines per card.
@@ -134,6 +144,9 @@ Spec fix checks (2026-11-10): card counts per folder as listed (3 + 3 + 1 + 2 is
 9. Print shows the prep sheet, the ratings and the paragraph.
 10. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
 11. Motion off: the meter needle jumps; no network requests.
+12. The last folder runs with the coach's sheet and guide closed and one answer for each rating and pick; the end screen shows the result for W.6.1a and W.6.1b. (W.6.1a, W.6.1b)
+13. Every spoken instruction is also on screen; each key word shows with an example at first use; the sentence frames can be left.
+14. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 - None for Cory.

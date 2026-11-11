@@ -14,6 +14,8 @@ At the ribbon counter of a school craft fair, one amount lives in four linked pa
 - Format: simulator. Driver: one student alone (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
 - Change note (spec fix, 2026-11-10): the four linked panels stay. Before, the fraction and decimal were printed under every panel, so the child never wrote one, and a compare was a sign plus a picked panel. Now every challenge round hides the printed labels and gives the child a blank tag to write; adding goes from four rounds to six, with the hundredths form and the sum both written by the child; compares need the child to build both amounts in the proof panel and write a reason line; a wrong sign costs the pair. The clerk writes one tag first as the model.
 - Four linked panels, eight free rounds, the clerk's worked tag, six adding rounds, ten tag-and-place rounds, six compare rounds including Ana's claim, two same-whole rounds. Extra: Hidden panel (a projector view with one panel covered so the class predicts it). tool.json `modes: ["Ribbon counter", "Hidden panel"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
+- Change note (hooks, 2026-11-11): Added the three hooks: six items on your own with the end screen by code, English learner supports, access.
+- English learners: every spoken line is also on screen in short sentences. The words tenth, hundredth, decimal, decimal point and same whole each show on the linked panels the first time they are used. The reason line offers a frame the child may take or leave: "__ is greater because __."
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -44,6 +46,9 @@ Header (kit): title "Money and Meters"; `Ribbon counter`, `Hidden panel`; `Read`
 **The end.** A receipt listing every amount in four forms. `Print` prints it.
 
 **Hidden panel (extra).** One panel is covered and the class predicts it.
+**On your own.** Six items with the clerk quiet: one panel only and it is blank, no coins or grid offered, no hints, one answer each. Nothing is marked until all are in.
+
+**Results strip (on the end screen).** For the teacher: for each of 4.NF.5, 4.NF.6 and 4.NF.7, how many of its items on your own were right, in numbers and words, with each item missed and the answer the child gave. It prints with the rest.
 
 ## Content
 - Amounts from 0.01 to 1.00 in coins, centimeters, grid squares and line positions; dimes and pennies drawn plainly, not copied from real coin designs; all readable with `Read`.
@@ -51,12 +56,18 @@ Header (kit): title "Money and Meters"; `Ribbon counter`, `Hidden panel`; `Read`
 - Tags: 7/10 as 0.7; 7/100 as 0.07; 62/100 as 0.62; 40/100 as 0.40 or 0.4; 0.9 as 9/10 (or 90/100); 0.05 as 5/100. Dots: 0.7, 0.07, 0.62, 0.35.
 - Compare pairs: 0.45 < 0.5 (Ana's claim); 0.07 < 0.7; 0.3 = 0.30; 0.62 > 0.26; 0.8 > 0.75; 0.09 < 0.1.
 - Same whole: 0.3 m and 0.3 of a dollar; 0.5 of a 2 m spool and 0.5 of a 10 m spool.
+- On your own, with what each common wrong answer means:
+  - 4.NF.5: "5/10 = __/100" (50). "6/10 + 27/100 = __/100" (87). An answer of 33/110 means tops and bottoms were added; 33/100 means the tenths were not renamed.
+  - 4.NF.6: "Write 7/100 as a decimal." (0.07.) "Drag the dot to 0.4" on a line marked only 0 and 1. An answer of 0.7 means the hundredths place is not yet held by a zero; a dot near 0.04 means the same.
+  - 4.NF.7: "0.5 __ 0.48" (>). "0.3 __ 0.30" (=). Choosing < for the first means the child compares 5 and 48 as whole numbers; choosing < for the second means a longer decimal is taken as a larger one.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - Any panel can drive; the others follow at once.
 - Keyboard: Tab to each panel, the sign buttons and the proof picker; arrows change the amount by 0.01 (with Shift, 0.1); Enter checks.
 - With Motion off the panels change without sliding.
+- Access: every action works by tap and by keyboard. Coins, grid squares, the dot and the signs can be dragged, or picked with a tap and placed with a tap; the dot also moves with arrow keys. Dimes and pennies are labeled in words, never color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the sixth is in.
 
 ## Look
 - Accent `--brand` #8e2463 craft-fair plum (header, panel frames, buttons); gold #f4c542 (the panel in use, a matched amount); paper #fbeff5; ink #2b0a1c; muted #5e5058.
@@ -83,6 +94,8 @@ Two bank voices, each unique in this batch: `smooth-narrator` as the clerk; `upb
 - event, whole, same whole.
 - event, whole, `end`.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "Six more on your own. No hints this time."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None (family "none"). Tool-only code: the linked amount (kept in hundredths as a whole number) and four panel views; the number line uses `kit/number-line.js` as described in roller-coaster-rounding's spec.
@@ -96,6 +109,7 @@ None (family "none"). Tool-only code: the linked amount (kept in hundredths as a
 | Compare | Guess one of three signs; read the longer ribbon first | The sign goes in before the build; one change is allowed after it, then the pair returns with new numbers. The child builds the ribbons, so reading them is doing the reasoning. |
 | Reason line | Tick the boxes on an empty line | The ticks open only when the line has words; the line is printed on the receipt. |
 | Same whole | Compare anyway | A sign is refused and the sentence must be finished. |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line or tap waits for it to finish; taps act at once and never wait.
@@ -116,6 +130,7 @@ Backed twice: 4. Cut: 0.
 
 Checks run (Python, scratchpad s13, 2026-11-10): 3/10 + 4/100 = 34/100 = 0.34; 0.5 = 0.50 = 5/10 = 50/100; 0.45 < 0.5; 0.07 < 0.7; 0.3 m is 30 cm; contrast as in Look.
 Checks run again for the spec fix (Python `fractions` and `decimal`, scratchpad s/fx, 2026-11-10): the six sums (34, 57, 35, 66, 19 and 100 hundredths); the six tags; the six compare signs; add-tops-and-bottoms slips (7/110, 12/110, 17/110, 30/110, 10/110, 46/110) never equal a right sum.
+Checks run for the items on your own (Python, 2026-11-11): 50/100 + 0 = 5/10; 60/100 + 27/100 = 87/100; 7/100 = 0.07; 0.5 > 0.48; 0.3 = 0.30.
 
 ## Done when
 1. Focus and fold: at 1366x768 four panels; at 680x425 tabs and thumbnails.
@@ -128,6 +143,9 @@ Checks run again for the spec fix (Python `fractions` and `decimal`, scratchpad 
 8. Ana and the clerk are labeled illustration; coins are plain drawings.
 9. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
 10. Motion off: panels change without sliding; no network requests.
+11. Six items on your own run with no model or hint, one answer each; the end screen shows the result by code and the items missed. (4.NF.5, 4.NF.6, 4.NF.7)
+12. Every spoken instruction is also on screen, and each key word shows with a picture or example at first use.
+13. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 None.

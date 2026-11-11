@@ -16,6 +16,8 @@ The student remixes a paragraph of eight short, choppy sentences about two frien
 - Change note (spec fix, 2026-11-10): the deck, DJ Fader, the rhythm strip and the glitches stay. Added: Fader remixes a short sample first as the model; glitch fixes are typed, not picked, and a second miss is logged; after each paragraph a Sound check tape of eight lines with five planted slips and no stripes, which the student must find and fix, so each pronoun skill and the tone skill get five or more items that differ (object and possessive case, reflexive against intensive, other shifts, unclear it, they and this); three more remix moves and a joiner check, so variety is about meaning and not only length; a fifth paragraph; Grandpa Joe's lines are marked as a set, informal forms that slip into narration are found and fixed, and the student writes the same news two ways. The sensitivity read is left for the fresh reader at final review; no wording about Grandpa Joe was changed.
 - Five paragraphs: The Bike Race, The Bakery, The Storm Drill, The Science Fair; a fifth with Grandpa Joe's voice. Each is followed by a Sound check tape. One paragraph and its tape a sitting. tool.json `modes: ["Remix", "Three ways"]`, `minutes: "20-30"`, `grades_label: "Grade 6"`.
 - Nothing is saved; `Print` prints the before-and-after paragraph and the glitch log.
+- Change note (hooks, 2026-11-11): Added the three hooks: a last tape done on your own with two slips of each kind, and two remixes with no help, with the end screen by code; English learner supports; access. The Grandpa Joe paragraph is the fifth everywhere now.
+- English learners: every spoken line is also on screen in short sentences. The words pronoun, subject, object, intensive, shift, vague and tone each show with an example from Fader's mix the first time they are used. The "what the change did" line offers a frame the student may take or leave: "This change helps the reader because __."
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -50,7 +52,7 @@ The glitch log names each fix.
 
 **Sound check.** After each paragraph, a tape of eight new lines plays with five slips in it and no stripes: one case, one -self word, one shift, one unclear pronoun, one tone slip (in the fifth tape the tone slip is informal grammar in narration). The student has five marks and `Check`. The check says how many marks are on a slip, not which; marks can be moved and checked once more, then the missed ones are shown and logged "shown". For each found slip the student types the fix. For the -self word the student may also be asked "Can you lift it out and still have a sentence?" to tell intensive (yes) from reflexive (no). Three lines on every tape are clean.
 
-**Grandpa Joe.** The fourth paragraph includes Grandpa Joe, who talks the way people in his town do ("We was fixing bikes before you was born"). The student marks all eight lines as his dialogue (keep his voice) or narration (standard forms), then taps `Check`, which gives a count for the set; one more check, then the missed lines are shown. Changing his dialogue is answered with "That's how Grandpa Joe talks. His voice belongs in his own words." Across the paragraph and its tape, five informal forms have slipped into the narrator's lines. The student finds each, picks the strategy that would catch it (read it aloud; check the subject and its verb; swap in the word a report would use) and types the standard form.
+**Grandpa Joe.** The fifth paragraph includes Grandpa Joe, who talks the way people in his town do ("We was fixing bikes before you was born"). The student marks all eight lines as his dialogue (keep his voice) or narration (standard forms), then taps `Check`, which gives a count for the set; one more check, then the missed lines are shown. Changing his dialogue is answered with "That's how Grandpa Joe talks. His voice belongs in his own words." Across the paragraph and its tape, five informal forms have slipped into the narrator's lines. The student finds each, picks the strategy that would catch it (read it aloud; check the subject and its verb; swap in the word a report would use) and types the standard form.
 
 **Two ways.** Last, the student writes the race result twice, three sentences each: as a text to a friend and as a report for the school paper. A model pair about a different event (a bake sale) and a guide sit beside the boxes: the text sounds like me; the report uses standard forms; both give the same facts. The student then underlines two places where the two differ. The tool cannot mark this, so the model and the guide do that job, and both print.
 
@@ -59,6 +61,9 @@ The glitch log names each fix.
 **Three ways.** The same paragraph remixed three times; the strips compare.
 
 At 1366x768 the deck and strip fit; at 680x425 the strip is under the deck.
+**On your own.** A last tape of fourteen lines with twelve slips, two of each kind, and no stripes: the student marks each slip and types its fix, with one Check for the whole tape and no count given first. Then two short strings of choppy sentences are remixed with no joiner check and no hints, and the student writes what one change did for the reader.
+
+**Results strip (on the end screen).** For the teacher: for each of L.6.1a to e, L.6.3a and L.6.3b, how many of its two items on your own were right, in numbers and words, with each slip missed and each fix the student typed. It prints with the rest.
 
 ## Content
 Written for Curio Class: five paragraphs of 8 sentences each; for each adjacent pair, all joiner forms with glitch tags and wrong-link tags; split, flip and ask forms where they exist; pictures for vague and intensive glitches; the four-sentence model sample; the bake sale model pair.
@@ -68,12 +73,21 @@ Written for Curio Class: five paragraphs of 8 sentences each; for each adjacent 
 - Shifts: "When we race, you have to watch the turns." (we have to); "A baker gets up early, and they knead the dough first, but then you rest it." (they rest it); "If someone hears the siren, we should walk." (they should walk); "The riders lined up, and he waited." (they waited); "The racers each checked his tires." (their tires).
 - Unclear pronouns: "Lena told Ana that she had won." (name the winner); "The van hit the cone and it tipped over." (the cone); "They say the storm will pass." (the forecasters); "The oven broke and the order was late. This upset the baker." (the late order); "Take the tire off the bike and clean it." (the tire).
 - Tone and informal forms in narration: "The race was, like, super close."; "The bread came out kinda weird."; "Everybody was freaking out in the hall."; "The judges were totally blown away."; and for the fifth tape "The racers was lined up by nine." Other informal forms in the Grandpa Joe narration: "ain't", "gonna", "real quick", "them bikes".
+- On your own, with what each common wrong answer means:
+  - L.6.1a: "Me and Dana fixed the chain." (Dana and I); "The coach gave the trophy to she and Luis." (her and Luis). Left alone, the student is testing by sound and not by the pronoun's job.
+  - L.6.1b: "The mayor hisself opened the race." (himself); "Mia and myself timed the laps." (Mia and I). The second left alone means -self words are taken for a formal "I".
+  - L.6.1c: "When a rider trains hard, you get faster." (the rider gets, or riders train and they get); "I like the hill course because you can coast." (I can coast). Left alone, the student does not track who the sentence is about.
+  - L.6.1d: "Dana told Mia that she had won."; "Luis put the wheel on the stand and painted it." A fix that keeps the pronoun means the student knows whom they meant and does not see that the reader cannot.
+  - L.6.1e: in narration, "The bikes was lined up." (were); "He don't need a map." (doesn't). Marking these in a speaker's own dialogue means the student is correcting a voice, not narration.
+  - L.6.3b: "The finish was, like, epic."; "The officials were super ticked off." L.6.3a: a remix that only strings sentences with "and" means joining is being taken for variety.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - Merges can be split back.
 - The rhythm strip shows word counts as numbers above each bar.
 - Done needs no open glitches and sentences in all three length ranges (short under 8, medium 8 to 15, long over 15 words).
+- Access: every action works by tap and by keyboard. Tracks are picked with a tap or the arrow keys and merged with a button; a slip is marked with a tap or Enter. A glitch is labeled "glitch" as well as shaking, and the shake stops when Motion is off. Every line heard is also shown. Motion can be paused.
+- On your own: one answer each, no feedback until the last part is in.
 
 ## Look
 - Accent `--brand` #0d6e8a mixer cyan (header, deck, faders); gold #f4c542 (rhythm bars, fixed glitches); paper #f0f7fa; ink #062431; muted #475c66. Scene: a small bedroom DJ desk.
@@ -102,6 +116,8 @@ Bank voice `warm-teacher` as DJ Fader and the paragraph reader (unique in this b
 - event `wrongLink`: "Is the second part really the reason?"
 - event, whole, Fader's mix.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "One last tape, on your own. Mark each slip and type the fix."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None. Tool-only code: pairwise merge data with glitch tags, rhythm strip, glitch log, voice marks.
@@ -115,6 +131,7 @@ None. Tool-only code: pairwise merge data with glitch tags, rhythm strip, glitch
 | Sound check | Mark every line | Five marks for eight lines, checked as a set with a count only; a second miss logs "shown"; each found slip still needs a typed fix. |
 | Grandpa Joe | Standardize everything; flip labels until right | Changing his dialogue is turned back with a reason; labels are checked as a set with a count. |
 | Two ways | Type the same thing twice | The student must underline two differences; both versions print beside the model. |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line waits for it to finish; taps act at once and never wait.
@@ -137,6 +154,7 @@ Sensitivity note: Grandpa Joe's English is presented as a real way of speaking t
 Checks run (Python, scratchpad b18, 2026-11-09): the sample bike paragraph has 8 sentences of 4 to 7 words; one sample remix reaches short, medium and long ranges; contrast as in Look.
 
 Spec fix checks (2026-11-10): counted, not run: five tapes with one slip of each of five kinds give 5 case (2 subject, 2 object, 1 possessive), 5 -self items (3 slips, 2 clean ones to sort), 5 shifts, 5 unclear pronouns and 5 tone or informal slips; 8 lines less 5 slips leaves 3 clean lines a tape. Two -self lines are clean on purpose, so those tapes carry a second slip of another kind to keep five; Build sets which. Singular "they" after "someone" is accepted as standard in the keyed fixes.
+Hooks check (2026-11-11), counted not run: the last tape has 2 slips each for L.6.1a, b, c, d, e and L.6.3b, which is 12, in 14 lines.
 
 ## Done when
 1. Focus and fold: at 1366x768 deck and strip fit; at 680x425 the strip is under the deck.
@@ -149,6 +167,9 @@ Spec fix checks (2026-11-10): counted, not run: five tapes with one slip of each
 8. Three ways compares strips; Print shows before and after with the log, the tapes and Two ways.
 9. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
 10. Motion off: glitches show a stripe only; no network requests.
+11. A last tape with two slips of each kind and two remixes run with no stripes, counts or hints and one Check; the end screen shows the result for each of the seven codes. (L.6.1a to e, L.6.3a, L.6.3b)
+12. Every spoken instruction is also on screen; each key word shows with a picture or example at first use; any sentence frame can be left.
+13. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 - None for Cory.

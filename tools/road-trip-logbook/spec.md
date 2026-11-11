@@ -14,13 +14,15 @@ A family sets off on a five-day road trip (a made-up route, labeled so) and the 
 - Format: simulator. Driver: one student alone (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
 - Change note (spec fix, 2026-11-10): the trip is unchanged. Added: the sibling works the first sum as a model, each column box now says right or wrong as it is typed, and a Trip ledger stage follows the trip, twelve mixed sums and differences of four to six digits done without the odometer, so the child gets the repeated practice that "fluently" asks for.
 - Five trip days, one worked sum, five column additions and five subtractions, the odometer, estimates, the map, then the Trip ledger (twelve problems). Extra: My route (the child types five day lengths and a goal). tool.json `modes: ["Road trip", "My route"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
+- Change note (hooks, 2026-11-11): Added the three hooks: four problems on your own with the end screen, English learner supports, access. The ledger no longer shows a time: tools carry no timers, so fluency shows as how many were right on the first try.
+- English learners: every spoken line is also on screen in short sentences. The words sum, difference, regroup and estimate each show on the worked sum the first time they are used.
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
 |---|---|---|---|---|---|---|
 | 4.NBT.4 (add) | add multi-digit whole numbers using the standard algorithm | the student | Add each day to the total in columns, regrouping | 4 trip sums and 6 ledger sums (3 to 6 digits; one, two and three carries) | the column sum; the odometer rolling | 2 |
 | 4.NBT.4 (subtract) | subtract multi-digit whole numbers using the standard algorithm | the student | Subtract the total from the goal, regrouping across zeros | 5 trip differences and 6 ledger differences (two across zeros) | the column difference; the odometer rolling back | 3 |
-| 4.NBT.4 (fluently) | fluently: accurate, and quicker with practice | the student | Work the twelve ledger problems with no odometer and no carry chips offered, against the child's own time | 12 | a ledger page; a "your time" line, never a countdown | 5 |
+| 4.NBT.4 (fluently) | fluently: accurate, and quicker with practice | the student | Work the twelve ledger problems with no odometer and no carry chips offered, and see how many were right on the first try | 12 | a ledger page; a "right first try" count, no clock | 5 |
 | 4.NBT.4 (check) | not in the standard's wording; kept as the check on each answer | the student | Estimate first and compare | 10 | the estimate beside the answer; the map dot | 4 |
 
 ## Screens and modes
@@ -40,11 +42,14 @@ Header (kit): title "Road Trip Logbook"; `Road trip`, `My route`; `Read`, `Motio
 
 **Day five (the aha).** After 512, 298 and 347, the logbook says 2,000, the odometer reads 50,629 after rolling past 49,999, and the dot is home. Narrator: "Three ways to count the same trip, and they all agree."
 
-**Trip ledger (after day five; on the main path).** The family adds up the trip's costs and distances on one ledger page of twelve problems, typed column by column from the right with no odometer and no carry chips unless the child asks for them. A line shows "Your time" for each problem and the best so far; there is no countdown and no penalty. A wrong column is marked when the whole answer is checked, and that problem comes back at the end with new numbers. The ledger is done when twelve are right.
+**Trip ledger (after day five; on the main path).** The family adds up the trip's costs and distances on one ledger page of twelve problems, typed column by column from the right with no odometer and no carry chips unless the child asks for them. A line shows how many were right on the first try, and the best so far; nothing is timed. A wrong column is marked when the whole answer is checked, and that problem comes back at the end with new numbers. The ledger is done when twelve are right.
 
 **The end.** The full logbook and the ledger. `Print` prints them.
 
 **My route (extra).** The child types five day lengths and a goal and logs the trip.
+**On your own.** Four items with the sibling quiet: no odometer, no carry chips, no column marks, no estimate prompt, one answer each. Nothing is marked until all are in.
+
+**Results strip (on the end screen).** For the teacher: for 4.NBT.4, adding and subtracting shown apart, how many of its items on your own were right, in numbers and words, with each item missed and the answer the child gave. It prints with the rest.
 
 ## Content
 - Five days (386, 457, 512, 298, 347 miles) on a made-up route labeled so, a 2,000-mile goal, the odometer, all readable with `Read`.
@@ -52,12 +57,17 @@ Header (kit): title "Road Trip Logbook"; `Road trip`, `My route`; `Read`, `Motio
 - The sibling's model: 268 + 175 = 443.
 - Trip ledger, sums: 1,468 + 2,375 = 3,843; 4,096 + 978 = 5,074; 27,845 + 6,389 = 34,234; 50,629 + 18,476 = 69,105; 136,507 + 48,695 = 185,202; 309,999 + 1 = 310,000. Differences: 3,402 - 1,675 = 1,727; 5,000 - 2,468 = 2,532; 34,234 - 6,389 = 27,845; 70,003 - 28,476 = 41,527; 185,202 - 48,695 = 136,507; 400,000 - 136,507 = 263,493. Replacement problems keep the digits and regrouping pattern and change the numbers.
 - The logbook stays within 10,000; the ledger goes to six digits because the standard names no upper limit.
+- On your own, with what each common wrong answer means:
+  - Add: 3,847 + 2,596 (6,443); 47,208 + 36,957 (84,165). An answer of 5,333 means the carries were dropped; a sum off by exactly 10, 100 or 1,000 means one carry was lost.
+  - Subtract: 5,003 - 1,768 (3,235); 60,400 - 28,356 (32,044). An answer of 4,765 means the child took the smaller digit from the larger in each column and did not regroup; 3,335 or 3,245 means the regrouping across zeros broke down.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - Digits are typed column by column from the right; a carry or borrow chip can be dragged too.
 - Keyboard: Tab to the estimate, each column box, the carry chip and the map; Enter checks.
 - With Motion off the odometer wheels jump to the new number.
+- Access: every action works by tap and by keyboard. Digits are typed or tapped on a keypad; the map dot and carry chips can be dragged, or picked with a tap and placed with a tap. Right and wrong column boxes carry a tick or a cross, never color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the fourth is in.
 
 ## Look
 - Accent `--brand` #1f6a3a highway green (header, the logbook lines, buttons); gold #f4c542 (the column in use, a carry chip); paper #eef7f1; ink #08200f; muted #4d5c52.
@@ -82,6 +92,8 @@ Two bank voices, each unique in this batch: `big-sister` as the older sibling in
 - event, whole, day five.
 - event, whole, `end`.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "Four more on your own. No hints this time."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None (family "none"). Tool-only code: the column workspace with carry and borrow chips, the odometer, the map dot.
@@ -92,7 +104,8 @@ None (family "none"). Tool-only code: the column workspace with carry and borrow
 | Columns | Type the whole answer; try digits until green | Digits go in one column at a time, right to left. A column has ten digits to guess from, and two misses cost an extra sum. |
 | Estimate | Skip it | The column workspace opens after the estimate. |
 | Check | Ignore a far-off answer | The map dot lands in the wrong town and the day stays open. |
-| Ledger | Guess; rush for a time | No per-column color in the ledger, so there is nothing to probe; a wrong answer brings a new problem, so guessing is slower than working. Time is shown, never scored. |
+| Ledger | Guess | No per-column color in the ledger, so there is nothing to probe; a wrong answer brings a new problem, so guessing costs more than working. Nothing is timed. |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line or tap waits for it to finish; taps act at once and never wait.
@@ -112,18 +125,22 @@ Backed twice: 3. Cut: 0.
 
 Checks run (Python, scratchpad s12, 2026-11-10): 386 + 457 = 843; 2,000 - 843 = 1,157; 386 + 457 + 512 + 298 + 347 = 2,000; rounded days 400 + 500 + 500 + 300 + 300 = 2,000; 48,629 + 2,000 = 50,629; contrast as in Look.
 Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): 268 + 175 = 443; all twelve ledger answers as listed; the five nightly miles-left values are 1,614, 1,157, 645, 347 and 0.
+Checks run for the items on your own (Python, 2026-11-11): 3,847 + 2,596 = 6,443; 47,208 + 36,957 = 84,165; 5,003 - 1,768 = 3,235; 60,400 - 28,356 = 32,044.
 
 ## Done when
 1. Focus and fold: at 1366x768 logbook, odometer and map; at 680x425 map as a tab.
 2. Five days are added in columns with regrouping shown on the odometer. (4.NBT.4)
 3. Miles left are found by subtracting, including across zeros. (4.NBT.4)
 4. Every answer is checked against an estimate. (4.NBT.4)
-5. Twelve ledger problems of four to six digits are right, with no odometer, and the child's own time is shown without a countdown. (4.NBT.4, fluently)
+5. Twelve ledger problems of four to six digits are right, with no odometer; the count right on the first try is shown and nothing is timed. (4.NBT.4, fluently)
 6. The sibling's worked sum plays first and can be reopened; each trip column gives right-or-wrong at once.
 7. `Read` reads every card; every control is 48 px or more.
 8. The route is labeled made up.
 9. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
 10. Motion off: odometer jumps; no network requests.
+11. Four items on your own run with no model or hint, one answer each; the end screen shows the result by code and the items missed. (4.NBT.4)
+12. Every spoken instruction is also on screen, and each key word shows with a picture or example at first use.
+13. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 None.

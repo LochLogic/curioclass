@@ -16,6 +16,8 @@ The student lines up near-synonyms on a thermometer from warm praise at the top 
 - Change note (spec fix, 2026-11-10): the thermometer, Gale and the six sets stay. Added: Gale places one set first as the model; a set is now tested as a whole and the student writes how two of its words differ; eight figures of speech (three personification) whose meaning the student types before placing; six relationship cards, with cause and effect and part and whole, each with a check; in every passage the student works out two words from context and one figure of speech before any swap; the gauge is hidden until the student predicts, and hidden during the rewrite; four more story passages and four more information paragraphs, one with technical words; a written line on how the words changed the tone. One part a sitting.
 - Six word sets, eight figures, six relationship cards, ten passages (five story, five information), then the two-way rewrite. tool.json `modes: ["Solo", "Class thermometer"]`, `minutes: "20-30"`, `grades_label: "Grade 6"`.
 - Nothing is saved; `Print` prints the rewrites side by side. The class thermometer keeps counts only while the page is open.
+- Change note (hooks, 2026-11-11): Added the three hooks: the last items of each kind are done on your own with the end screen by code, English learner supports, access.
+- English learners: every spoken line is also on screen in short sentences. The words connotation, figure of speech, personification, context and tone each show with an example from Gale's model the first time they are used. The written line offers a frame the student may take or leave: "__ feels stronger than __ because __."
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -46,6 +48,9 @@ Header (kit): title "Word Thermometer"; `Scale`, `Passages`, `Rewrite`; `Read`, 
 **Class thermometer.** One contested word ("cheap"); each student taps where they'd place it on the projector; the spread shows.
 
 At 1366x768 the thermometer and passage fit side by side; at 680x425 the thermometer is a slim column beside the passage.
+**On your own.** The last two word sets, the last two figures, the last two relationship cards, the fifth story and the fifth paragraph run with Gale quiet: no model, no list of meanings to pick from (the meaning is typed), no hints, and one Check for each.
+
+**Results strip (on the end screen).** For the teacher: for each of L.6.5a, L.6.5b, L.6.5c, RL.6.4 and RI.6.4, how many of its items on your own were right, in numbers and words, with each one missed and what the student placed or typed. It prints with the rest.
 
 ## Content
 Written for Curio Class: six word sets with heat bands and context-card keys, and the model set (scent, aroma, smell, odor, stench).
@@ -54,11 +59,18 @@ Written for Curio Class: six word sets with heat bands and context-card keys, an
 - Stories (narrator describing someone or somewhere): Mrs. Alvarado, a shopkeeper (about 200 words); Coach Bell at practice; Uncle Dev and his truck; Wren, the new girl on the bus; the house at the end of Pike Street. People and places are made up.
 - Information paragraphs: a city council's budget vote (about 150 words); a volcano explainer with technical words (dormant, vent, magma); a game report; a storm bulletin (technical: gust, advisory); a museum label for an old loom. All made up and labeled, except the volcano terms, which follow their dictionary meanings.
 - Each passage carries in data: two context words with their clue words and three meanings, one figure with three meanings, its slots and sets, and its fact list.
+- On your own, with what each common wrong answer means:
+  - L.6.5c: words placed by how long or how rare they are, not by feeling, mean the student is ranking difficulty and not connotation.
+  - L.6.5a: a meaning that reads the phrase word for word ("the wind was shouting") means the figure was not seen as a figure.
+  - L.6.5b: naming the relationship rightly but giving no meaning for the hard word means the link is seen and not yet used.
+  - RL.6.4 and RI.6.4: giving a word's most common meaning where the text uses another means the student is not reading the sentences around it; a word-choice answer that only repeats the definition means meaning and effect on tone are not yet apart.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - With Motion off the mercury jumps.
 - Heat bands are the key's reading; the tool says so ("most readers feel {cocky} as cool") and accepts the student's placement with a card.
+- Access: every action works by tap and by keyboard. Words and phrases can be dragged, or picked with a tap and placed with a tap, or moved along the scale with arrow keys. Heat is shown by height and a number on the scale, never color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the last part is in.
 
 ## Look
 - Accent `--brand` #b02a2a thermometer red (header, mercury, gauge needle); gold #f4c542 (the warm band, swapped words); paper #fcf3f3; ink #2b0909; muted #6a5050. Scene: a sunny porch wall with frost at the bottom.
@@ -86,6 +98,8 @@ Bank voice `warm-teacher` as Gale (unique in this batch); the story is read by `
 - how `call`: "Will that make it warmer, cooler or no change? Tap one."
 - event, whole, Gale's set.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "These last ones are on your own. Type what you think. I will stay quiet."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 None. Tool-only code: heat scale with keyed bands, context cards, passage slots with a tone gauge, two-version rewrite.
@@ -99,6 +113,7 @@ None. Tool-only code: heat scale with keyed bands, context cards, passage slots 
 | Relationships | Tap chips until right | Five chips; a second miss adds a spare card. |
 | Passages | Swap and watch the gauge | The gauge stays still until the student calls the direction; wrong calls are counted. |
 | Rewrite | Watch the gauge and tune; change facts | The gauge is covered and words are in mixed order until `Test both`; tests are counted; changing a fact is flagged "That changes what happened." |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line waits for it to finish; taps act at once and never wait.
@@ -133,6 +148,9 @@ Spec fix checks (2026-11-10): counted, not run: 8 figures of which 3 are personi
 9. Print shows the rewrites, the written lines and any tags.
 10. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
 11. Motion off: the mercury jumps; no network requests.
+12. The last two sets, figures and cards and the fifth story and paragraph run with no model, choices or hints and one Check each; the end screen shows the result for each of the five codes. (L.6.5a, L.6.5b, L.6.5c, RL.6.4, RI.6.4)
+13. Every spoken instruction is also on screen; each key word shows with a picture or example at first use; any sentence frame can be left.
+14. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 - None for Cory.

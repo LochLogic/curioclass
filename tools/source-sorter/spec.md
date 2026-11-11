@@ -14,8 +14,10 @@ The student answers "Why are there fewer monarch butterflies?" by sorting a cart
 - Grade 6, ELA, module "Research and Citing Sources" (Writing). Standards: W.6.7, W.6.8.
 - Driver: one student (tool.json `driver: "student"`). Role: lesson. Every card is read on tap.
 - Change note (spec fix, 2026-11-10): the library, Dewey, the bins and the copy meter stay. Added: Dewey sorts one card and takes one note first as the model; a Search desk where the student picks which results belong on the cart; bin and clue are now committed together, with a second miss tagged; the student builds the source entry from the card's parts for five sources; a paraphrase must also pass a meaning check; each answer sentence must be backed by a note on the same point; the refocus choice is keyed; and three quick shelves where the student writes the starting question, so there are five short projects, one a sitting.
-- Shelves: "Monarch Butterflies" and "Why Do Some Places Get More Lightning?" (ten cards each), then three quick shelves of six cards: Honeybee Dances, Fall Leaves, Salt in the Sea. tool.json `modes: ["Monarchs", "Lightning"]`, `minutes: "25-35"`, `grades_label: "Grade 6"`.
+- Shelves: "Monarch Butterflies" and "Why Do Some Places Get More Lightning?" (ten cards each), then three quick shelves of six cards: Honeybee Dances, Fall Leaves, Salt in the Sea. tool.json `modes: ["Monarchs", "Lightning", "Honeybee Dances", "Fall Leaves", "Salt in the Sea"]`, `minutes: "25-35"`, `grades_label: "Grade 6"`.
 - Nothing is saved; `Print` prints the answer paragraph and the source list.
+- Change note (hooks, 2026-11-11): Added the three hooks: the last quick shelf is done on your own with the end screen by code, English learner supports, access. The mode list now names all five shelves.
+- English learners: every spoken line is also on screen in short sentences. The words source, credible, quote, paraphrase, plagiarism and bibliography each show with an example on Dewey's card the first time they are used. Notes and answer sentences offer frames the student may take or leave: "According to __, __."
 
 ## Standards map
 | Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
@@ -65,6 +67,9 @@ After a paraphrase passes the copy meter it meets the meaning check. Three short
 **Quick shelves.** Three small projects of six cards and four notes. Each starts from a topic card, not a question: the student writes the starting question, beside two model questions and a guide (it asks why or how; one word cannot answer it; six cards could answer it). Then Search desk, Cart, Notes, Refocus and Answer run as before.
 
 At 1366x768 the cart and bins fit side by side; at 680x425 the bins are below.
+**On your own.** The last quick shelf, Salt in the Sea, runs with Dewey quiet: his card is closed, and the search picks, each sort with its clue, each entry and the refocus call are given once with no second try and no hints. Nothing is marked until the answer paragraph is in.
+
+**Results strip (on the end screen).** For the teacher: W.6.8 on the last shelf (search picks right, sorts with clue right, notes that passed the copy meter and the meaning check, entries right) and W.6.7 (the starting question against its guide, the refocus call, answer sentences backed by a note), in numbers and words. It prints with the rest.
 
 ## Content
 - Card text written for Curio Class from the facts in Sources, labeled "practice cards" so no real page is misquoted.
@@ -74,12 +79,17 @@ At 1366x768 the cart and bins fit side by side; at 680x425 the bins are below.
 - Fall Leaves facts: chlorophyll makes leaves green; in fall it breaks down and yellow and orange pigments show; red pigments are made in fall.
 - Salt in the Sea facts: rain wears minerals out of rock and rivers carry them to the sea; water leaves the sea by evaporating and the salts stay behind; vents in the sea floor add minerals too.
 - Each shelf carries in data: its results list with the off-question titles keyed; for each card its bins, clues and entry parts; for each excerpt its key word families and three meaning statements; the pattern card's points; three refocus choices with the fitting one keyed.
+- On your own, with what each common wrong answer means:
+  - W.6.8: ticking every result that has the topic word means the student is matching words and not the question; sorting a seller's page into Use because it has facts means purpose is not being weighed; a paraphrase that swaps a few words means the student is copying with changes and not restating; an entry that starts with the site when an author is named means the parts are not yet known.
+  - W.6.7: changing the question on this shelf, where the notes already answer it, means refocusing has become a habit and not a judgment; an answer sentence with no note behind it means the student is writing from what they already believed.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
 - Cards can move between bins any time; notes from a card moved to Skip get a "source skipped" mark.
 - The copy meter checks only when the student taps `Check note`.
 - With Motion off cards move without sliding.
+- Access: every action works by tap and by keyboard. Cards and entry tiles can be dragged, or picked with a tap and placed with a tap. Bins are named in words, and the copy meter shows a number and the words "too close" or "your own words", never color alone. Motion can be paused.
+- On your own: one answer each, no feedback until the last part is in.
 
 ## Look
 - Accent `--brand` #8a5200 cart amber (header, cart, bins); gold #f4c542 (copy meter runs, note tags); paper #fbf6ee; ink #2a1800; muted #66584a. Scene: a warm school library.
@@ -106,6 +116,8 @@ Bank voice `curious-librarian` as Dewey and the card reader (unique in this batc
 - how `ask`: "Write the question you want this shelf to answer."
 - event, whole, Dewey's card.
 Read speaks the hint, which names the next action and control and never a disabled one.
+- how `own`: "This shelf is on your own. I will look when your answer is written."
+Every `how` line is also shown as text beside its control. Instructions use no idioms.
 
 ## Family engine
 research (`R`), described in full in tools/question-sharpener/spec.md. This tool uses: Source, Shelf/Reader (the cart), Note with `R.closeness` (the copy meter), Cite (citation lines), Question (refocus) and Weight (Use, Check, Skip). Not Board, Trace, Conflicts or Matrix. The clue chips are tool-only keyed data.
@@ -120,6 +132,7 @@ research (`R`), described in full in tools/question-sharpener/spec.md. This tool
 | Entries | Drop tiles anywhere | Order and `none given` are keyed; one retry, then Dewey sets it and says so on the print. |
 | Refocus | Pick any choice | Two of three do not fit the notes, and one shelf needs Keep the question. |
 | Answer | Tag any note to any sentence | The sentence must share a key word family with its note. |
+| On your own | Retry until right; lean on the hints | One answer each, no hints or models, and nothing is marked until all are in. |
 
 ## Heard in order
 Waits means the next line waits for it to finish; taps act at once and never wait.
@@ -162,6 +175,9 @@ Spec fix checks (2026-11-10): counted, not run: 10 + 10 + 6 + 6 + 6 is 38 cards;
 10. Print shows the answer, the source list and any tags.
 11. Tap while it plays: any tap during a line acts at once; no older line plays after a newer one.
 12. Motion off: cards move without sliding; no network requests.
+13. The last quick shelf runs with Dewey's card closed and one try for each pick, sort, entry and call; the end screen shows the result for W.6.7 and W.6.8. (W.6.7, W.6.8)
+14. Every spoken instruction is also on screen; each key word shows with a picture or example at first use; any sentence frame can be left.
+15. Every action works by keyboard as well as tap, drags have a tap way, nothing is shown by color alone, and motion can be paused.
 
 ## Open questions
 - None for Cory.
