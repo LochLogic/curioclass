@@ -117,6 +117,6 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
 ## Open questions on this page
 
 - The device assumption for kindergarten to grade 2 (section 5).
-- What happens to existing tools and specs that no unit plan asks for: retire, hold as practice tools, or keep as
+- What happens to existing tools and specs that no unit plan asks for: retire, hold as light tools, or keep as
   stand-alone pieces outside any course (section 6). To be answered after the grade 4 math unit plans show how
   many there are.

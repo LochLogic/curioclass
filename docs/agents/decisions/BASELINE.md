@@ -83,8 +83,8 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     belong to units, worksheets and the Reading Room, and are recorded there, not claimed by a tool.
 
 23. **A unit plan comes before a tool** (2026-11-11). A tool is the end piece of instruction. No tool is built or
-    refined until a unit plan names its job, and the plan marks it key (the unit cannot run without it; built
-    first) or practice (lighter, added over time, same standard of correctness). An existing spec or tool carries
+    refined until a unit plan names its job, and the plan marks it key (the one a day is planned around; built
+    first) or light (lighter, added over time, same standard of correctness; called "practice" before 2026-11-11, renamed so the mark is not confused with the role "practice"). An existing spec or tool carries
     no weight against what the unit needs (rule 1). A teacher judges open work; a tool gives it structure and marks
     only what has a right answer. Grades 3 to 12 assume one device per student with a one-line projector path, and
     a parent teaching one child at home is a named audience. All of this, with the promises it rests on, is in

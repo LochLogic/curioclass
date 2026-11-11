@@ -106,30 +106,33 @@ what repeats and use it. Each stretch builds the one or two named here on purpos
 year. Each unit names the task that builds each one.
 
 **Balance.** Days per stretch that are mostly understanding (U), mostly fluency and skill (F) or mostly application
-(A). These are a first cut; each unit's plan marks its own days, and the totals here are corrected from the units.
+(A), and the check day (C): the last day of every stretch, which is the end check, the response to it and the
+next stretch's readiness check. The C column was added 2026-11-11. Stretches 9 and 11 are counted from their
+stretch sheets. For the others the check day was taken out of application where the stretch had any, otherwise
+out of fluency, otherwise out of understanding, until each stretch's sheet marks its own days. These are a first cut; each unit's plan marks its own days, and the totals here are corrected from the units.
 
 **Limits.** What grade 4 does not go past. A check item past these limits is above grade and does not belong.
 
-| # | Stretch | Practices | U | F | A | Limits in the standards |
-|---|---|---|---|---|---|---|
-| 1 | Factors and Multiples | 7, 8 | 3 | 2 | 1 | Whole numbers 1 to 100 only; "a multiple of" is tested against one-digit numbers |
-| 2 | Number Patterns | 3, 8 | 2 | 1 | 0 | Explaining is informal; no rule written with a variable |
-| 3 | Equivalent Fractions and Comparing | 3, 7 | 10 | 3 | 2 | Denominators 2, 3, 4, 5, 6, 8, 10, 12 and 100 only |
-| 4 | Adding and Subtracting Fractions | 1, 2 | 6 | 4 | 4 | Like denominators only, from the same list; no general adding of unlike fractions (grade 5) |
-| 5 | Line Plots | 4, 6 | 1 | 0 | 2 | Measurements in halves, quarters and eighths of a unit |
-| 6 | Multiplying a Fraction by a Whole Number | 4, 8 | 4 | 2 | 2 | A whole number times a fraction only; fraction times fraction is grade 5; same denominator list |
-| 7 | Decimals | 6, 7 | 6 | 2 | 2 | Tenths and hundredths only; the one unlike addition is tenths plus hundredths; no adding or multiplying in decimal notation (grade 5). The decimals rule: decimals may be read, written, compared, placed and renamed; every calculation is done on whole numbers in the smaller unit or on fractions with denominators 10 and 100; a task that can only be done by computing in decimal notation is grade 5 |
-| 8 | Place Value to a Million | 6, 7 | 5 | 4 | 1 | Whole numbers to 1,000,000; place value in decimals is grade 5 (5.NBT.A.1) and is not assessed here |
-| 9 | Adding and Subtracting Multi-Digit Numbers | 6, 8 | 3 | 3 | 0 | Whole numbers to 1,000,000 |
-| 10 | Multiplicative Comparison | 2, 4 | 3 | 1 | 5 | Whole numbers and whole-number answers; in this stretch two steps and no remainders |
-| 11 | Area and Perimeter Formulas | 2, 8 | 2 | 1 | 2 | Rectangles only; area with whole-number sides; fractional sides in perimeter only, like denominators. On days 89 to 93 areas are products within 100, or a one-digit number times a multiple of 10; an unknown side is a factor-pair problem (4.OA.B.4); when a side is found from a perimeter, the perimeter is even and 100 or less. Area with larger sides returns in stretches 12, 13 and 14 |
-| 12 | Multi-Digit Multiplication | 3, 7 | 5 | 5 | 2 | Up to four digits by one digit, and two digits by two digits; place value methods and area models; written methods here shorten into the standard algorithm and must be explained; fluency with the standard algorithm is grade 5 (5.NBT.B.5) |
-| 13 | Division with Remainders | 2, 7 | 5 | 4 | 3 | Dividends to four digits, one-digit divisors; place value methods, which must be explained; fluency with the standard algorithm is grade 6 (6.NS.B.2) |
-| 14 | Multistep Problems with All Four Operations | 1, 4 | 0 | 0 | 4 | Whole numbers and whole-number answers; no more than three steps; a letter for the unknown |
-| 15 | Measurement Conversions | 5, 6 | 2 | 2 | 4 | Larger unit to smaller only, inside one system; simple fractions and decimals, under the decimals rule of stretch 7 (calculate in the smaller unit as whole numbers, $3.75 as 375 cents, or as fractions over 10 and 100; never a smaller unit to a larger one with a decimal answer, which is 5.MD.A.1) |
-| 16 | Lines and Angles | 5, 6 | 5 | 5 | 2 | Whole-number degrees |
-| 17 | Shapes and Symmetry | 3, 7 | 3 | 1 | 0 | Flat figures; line symmetry only |
-| 18 | The Year Together | 1 | mixed | mixed | mixed | The limits above |
+| # | Stretch | Practices | U | F | A | C | Limits in the standards |
+|---|---|---|---|---|---|---|---|
+| 1 | Factors and Multiples | 7, 8 | 3 | 2 | 0 | 1 | Whole numbers 1 to 100 only; "a multiple of" is tested against one-digit numbers |
+| 2 | Number Patterns | 3, 8 | 2 | 0 | 0 | 1 | Explaining is informal; no rule written with a variable |
+| 3 | Equivalent Fractions and Comparing | 3, 7 | 10 | 3 | 1 | 1 | Denominators 2, 3, 4, 5, 6, 8, 10, 12 and 100 only |
+| 4 | Adding and Subtracting Fractions | 1, 2 | 6 | 4 | 3 | 1 | Like denominators only, from the same list; no general adding of unlike fractions (grade 5) |
+| 5 | Line Plots | 4, 6 | 1 | 0 | 1 | 1 | Measurements in halves, quarters and eighths of a unit |
+| 6 | Multiplying a Fraction by a Whole Number | 4, 8 | 4 | 2 | 1 | 1 | A whole number times a fraction only; fraction times fraction is grade 5; same denominator list |
+| 7 | Decimals | 6, 7 | 6 | 2 | 1 | 1 | Tenths and hundredths only; the one unlike addition is tenths plus hundredths; no adding or multiplying in decimal notation (grade 5). The decimals rule: decimals may be read, written, compared, placed and renamed; every calculation is done on whole numbers in the smaller unit or on fractions with denominators 10 and 100; a task that can only be done by computing in decimal notation is grade 5 |
+| 8 | Place Value to a Million | 6, 7 | 5 | 4 | 0 | 1 | Whole numbers to 1,000,000; place value in decimals is grade 5 (5.NBT.A.1) and is not assessed here |
+| 9 | Adding and Subtracting Multi-Digit Numbers | 6, 8 | 3 | 2 | 0 | 1 | Whole numbers to 1,000,000 |
+| 10 | Multiplicative Comparison | 2, 4 | 3 | 1 | 4 | 1 | Whole numbers and whole-number answers; in this stretch two steps and no remainders |
+| 11 | Area and Perimeter Formulas | 2, 8 | 2 | 1 | 1 | 1 | Rectangles only; area with whole-number sides; fractional sides in perimeter only, like denominators. On days 89 to 93 areas are products within 100, or a one-digit number times a multiple of 10; an unknown side is a factor-pair problem (4.OA.B.4); when a side is found from a perimeter, the perimeter is even and 100 or less. Area with larger sides returns in stretches 12, 13 and 14 |
+| 12 | Multi-Digit Multiplication | 3, 7 | 5 | 5 | 1 | 1 | Up to four digits by one digit, and two digits by two digits; place value methods and area models; written methods here shorten into the standard algorithm and must be explained; fluency with the standard algorithm is grade 5 (5.NBT.B.5) |
+| 13 | Division with Remainders | 2, 7 | 5 | 4 | 2 | 1 | Dividends to four digits, one-digit divisors; place value methods, which must be explained; fluency with the standard algorithm is grade 6 (6.NS.B.2) |
+| 14 | Multistep Problems with All Four Operations | 1, 4 | 0 | 0 | 3 | 1 | Whole numbers and whole-number answers; no more than three steps; a letter for the unknown |
+| 15 | Measurement Conversions | 5, 6 | 2 | 2 | 3 | 1 | Larger unit to smaller only, inside one system; simple fractions and decimals, under the decimals rule of stretch 7 (calculate in the smaller unit as whole numbers, $3.75 as 375 cents, or as fractions over 10 and 100; never a smaller unit to a larger one with a decimal answer, which is 5.MD.A.1) |
+| 16 | Lines and Angles | 5, 6 | 5 | 5 | 1 | 1 | Whole-number degrees |
+| 17 | Shapes and Symmetry | 3, 7 | 3 | 0 | 0 | 1 | Flat figures; line symmetry only |
+| 18 | The Year Together | 1 | mixed | mixed | mixed | 0 | The limits above |
 | | **Total, stretches 1 to 17** | all eight | 62 | 41 | 38 | |
 
 62 + 41 + 38 = 141, the days in stretches 1 to 17. No strand is missing where a standard calls for it: 4.NBT.B.4
