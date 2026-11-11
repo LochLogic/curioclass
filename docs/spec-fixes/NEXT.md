@@ -42,6 +42,10 @@ Fix list: courses/math-3.md. Shape: ../agents/catalog/shape/math-3.md.
 - Fix: Pattern Painter (`pattern-painter`), Roller Coaster Rounding (`roller-coaster-rounding`), Graph Glow-Up (`graph-glow-up`), Fence Builder (`fence-builder`), Shape Family Tree (`shape-family-tree`).
 - Confirm only: Multiplication Dungeon (`multiplication-dungeon`).
 
+## After batch 4
+
+Specs stay stopped. Your work moves to the unit pieces for the two proving courses (Cory, 2026-11-11): teacher pages, the readiness and end checks with their keys, sentence frames, and your final review. Claude sets that list up when batch 4 is close.
+
 ## On hold: every other course
 
 Do not start these. They open, in this order, once grade 4 math is proved. The table is here so the size of what is left stays in view. A band tool is counted once, with the first course that uses it. "Wait" means a Desk card is open on that tool.

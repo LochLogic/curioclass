@@ -266,3 +266,17 @@ grade 5 ELA Fact Fusion (RI.5.6 and 7) and Slow-Mo Writer (W.5.3), grade 11 ELA 
 All in shape/decisions.csv. The proof card (q-proof-math-4) is not answered: Cory will review it soon. He also said
 yes to drafting the grade 4 math year spine.
 
+## 2026-11-11: the proof card and the spine card (Cory, in chat; the Desk was out of reach)
+
+Yes to all eight picks.
+
+- Build first: Community Plot Planner, Fraction Wall Duel, Road Trip Logbook.
+- Teacher reader: Cory's mom, a grade 2 teacher. Cory asks her. (The pick was a grade 3 to 5 teacher; grade 2 is
+  close enough for a first read, and she is someone who will say what she thinks.)
+- Rubric: EdReports K-8 math. Licence checked: all rights reserved, so docs/RUBRIC-MATH-K8.md links and
+  summarises, and keeps no copy. Reading it added six gaps to the roadmap table.
+- Sara after batch 4: unit pieces for the two proving courses, and her final review.
+- A spine plans for about 150 days.
+- The grade 4 math spine: order approved, line plots after adding fractions and angles near the end, day counts
+  as a first cut. Its 46 rows are in data/units.csv as planned.
+

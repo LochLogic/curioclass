@@ -1,6 +1,7 @@
-# Year spine: grade 4 math (draft for Cory's review)
+# Year spine: grade 4 math
 
-Drafted 2026-11-11. Nothing here is built or public. This is step 4 of the path in docs/ROADMAP.md and item 1 of
+Drafted 2026-11-11 and approved by Cory the same day (order, the two changes, and the day counts as a first cut;
+150 days). Its rows are in data/units.csv as planned. Nothing here is built or public. This is step 4 of the path in docs/ROADMAP.md and item 1 of
 "What a finished course holds": every teaching day of the year, in order, with the reason for the order.
 
 ## What to check
@@ -13,8 +14,9 @@ Drafted 2026-11-11. Nothing here is built or public. This is step 4 of the path 
 ## The year at a glance
 
 - **150 teaching days**: 144 in units, 4 check days, 2 days pulling the year together.
-- **Major work: 100 days, 67 percent.** Supporting: 25 days. Additional: 19 days. A review looks for at least 65
-  percent on major work, so this clears it by a small margin; any day moved off major work should come back.
+- **Major work: 100 days, 67 percent.** Supporting: 25 days. Additional: 19 days. The rubric on file asks that most of the year
+  be major work; the 65 percent line often quoted is not confirmed yet (docs/RUBRIC-MATH-K8.md). Any day moved off
+  major work should come back.
 - **16 stretches, 42 units.** A stretch is one topic and usually one module. A unit is a package of 1 to 5 days.
 - **Fractions come first**, after a short opening on factors. Fractions are the largest block of the grade and the
   hardest new idea, so they get the first half of the year and are used again in line plots, decimals and
