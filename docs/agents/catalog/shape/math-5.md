@@ -84,3 +84,9 @@ only. Wait on Grocery Run and Zoom by Tens until Cory answers.
   cluster. Both can be listed by script for every math course before anyone reads a spec.
 - Shaping before fixing saves real work here: Sara would otherwise have rebuilt Grocery Run and Zoom by Tens
   around loads they are about to lose.
+
+## Decided (Cory, on the Desk, 2026-11-10)
+
+Both picks approved: Grocery Run keeps 5.NBT.B.7 and NSPFE.Spending, with a new lesson tool for 5.NBT.B.5 and
+5.NBT.B.6; Zoom by Tens keeps 5.NBT.A.1 and 5.NBT.A.2, with a new lesson tool for 5.NBT.A.3 and 5.NBT.A.4. Sara can
+now fix both specs on that basis.

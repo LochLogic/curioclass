@@ -85,3 +85,8 @@ applied to data/modules.csv: do it with the band re-read, so the ledger is check
 - A course is its own modules plus every band module that carries one of its standards. The fix list and Sara's
   batches should be cut that way, not by the grade on the module.
 - Check where a gap sits before calling it a missing tool. Here it looked like too few tools and was unfixed specs.
+
+## Decided (Cory, on the Desk, 2026-11-10)
+
+Both picks approved: the fourteen band tools are part of this course and are Sara's next batch; a second lesson
+tool for drafting the argument (W.6.1c to e) joins the Argument Writing module. Debate Prep Desk keeps W.6.1a and b.

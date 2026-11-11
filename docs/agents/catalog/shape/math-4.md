@@ -106,3 +106,23 @@ Not yet written into data/waves.csv; that happens when step 5 opens.
   than four codes or more than about 35 minutes; those are the second-tool candidates.
 - A course can read "full" on every standard and still be thin. The measure counts whether a standard is taught,
   not whether one sitting can hold it.
+
+## Decided (Cory, on the Desk, 2026-11-10)
+
+- Second lesson tool for 4.NF.B.4: approved. Recipe Scaler keeps 4.NF.B.3 (a to d). Sara can now fix it on that basis.
+- Second lesson tool for 4.NBT.B.6: approved. Area Model Builder keeps 4.NBT.B.5. Sara can now fix it on that basis.
+- Angles and Line Plots: "do not split" was sent back for a better look. Reassessment, with what the spec shows:
+  - Skate Park Angles is already two activities under one roof. Spin and Ramp teach angles (four codes, 17 items).
+    Jump Log is a separate mode where the student taps 34 dots onto a line plot whose axis is given, then answers
+    nine fraction questions.
+  - So the "make a line plot" half of 4.MD.B.4 is only half done: the student never chooses a scale or works in
+    halves and quarters. Sara left that out of her fix because the built stage has no room for it.
+  - The angle side is short too (4.MD.C.5b has two items), and the sitting is already 30 minutes. Fixing both sides
+    inside one tool pushes it well past 35.
+  - Line plots of fractions are supporting work that practises adding and subtracting fractions, which is the
+    grade's largest block of major work. Grades 3 and 5 each have a data tool; grade 4 has none of its own.
+  - What the data cannot say: whether a class would rather meet line plots inside the skate park. That is a pilot
+    question, not one the specs answer.
+  New recommendation: keep one module, two tools. Add a line plot lesson tool (build the plot, choose the scale,
+  halves, quarters and eighths, fraction questions). Skate Park Angles becomes the angles lesson and its Jump Log
+  stays as practice for 4.MD.B.4. It is supporting work, so the new tool is built after the major modules.

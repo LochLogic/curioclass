@@ -196,3 +196,17 @@ The thirteen calls:
   control on a live tool) run ahead of it. This replaces "fix the 26 live rework tools first".
 - Sara's order follows: courses that have been shaped, starting with the two proving courses.
 
+## 2026-11-10, late: the first shape cards
+
+- Grade 4 math (q-shape-math-4): yes to a second lesson tool for multiplying a fraction by a whole number
+  (4.NF.B.4; Recipe Scaler keeps 4.NF.B.3). Yes to a second lesson tool for division (4.NBT.B.6; Area Model Builder
+  keeps 4.NBT.B.5). On Angles and Line Plots Cory did not accept "do not split" as analysed: he thinks it could be
+  two tools in the same module and asked for a reassessment. Reassessed and re-asked on the same card; the rule that
+  came out of it is in docs/agents/catalog/shape/math-3.md ("The rule for a module with two topics").
+- Grade 6 ELA (q-shape-ela-6): Claude's picks. The fourteen grade 6 to 8 band tools are part of the grade 6 course,
+  each with a grade 6 path, and are Sara's next batch. A second lesson tool for drafting the argument (W.6.1c to e).
+- Grade 5 math (q-shape-math-5): Claude's picks. Grocery Run keeps decimals and spending; a new lesson tool for
+  whole-number multiplication and division (5.NBT.B.5, 5.NBT.B.6). Zoom by Tens keeps place value and powers of
+  ten; a new lesson tool for reading, comparing and rounding decimals (5.NBT.A.3, 5.NBT.A.4).
+- The five approved tools are not written as ideas yet. Each gets an idea card and a spec when its course's Build
+  opens; until then the shape file is the record.

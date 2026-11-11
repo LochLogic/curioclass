@@ -153,9 +153,13 @@ math, grade 6 ELA and grade 5 math. Correction from shaping grade 6 ELA: its gap
 is 23 tools, nine in grade 6 modules (fixed) and fourteen in grade 6 to 8 band modules (not fixed), and every large
 gap sits on a band tool. A course is its own modules plus every band module that carries one of its standards.
 Sara's next batch is those fourteen band specs, then grade 5 math (seven specs that do not wait on a Desk answer).
-Across the three courses Shape cuts nothing and proposes five second lesson tools, all on the Desk.
+Across those three courses Shape cuts nothing; Cory approved five second lesson tools on the Desk (two in
+grade 4 math, one in grade 6 ELA, two in grade 5 math; DESK-ANSWERS.md), and a sixth (a grade 4 line plot tool) is
+re-asked after he sent "do not split" back. Grade 3 math is shaped too (shape/math-3.md, card q-shape-math-3): the
+most loaded course so far, 37 codes on ten tools, four second tools proposed. The rule for a module with two topics
+(one module, two tools when the topics sit in separate modes or cannot both fit one sitting) is in that file.
 
-Next, in this order: (1) shape the next courses (grade 3 math, grade 7 ELA), and script the two rule-only parts
+Next, in this order: (1) shape the next courses (grade 7 ELA, grade 6 math), and script the two rule-only parts
 for every math course (spell out module standards; list tools over four codes or 35 minutes); (2) Sara's final review of the two proving courses
 (docs/spec-fixes/FINAL-REVIEW.md), starting with the three tools above and the small additions in each shape file;
 (3) wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
