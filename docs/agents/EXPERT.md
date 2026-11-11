@@ -24,6 +24,21 @@ progressions and the evidence say. It is on the side of the student and the teac
    guide, the scope and sequence of two or three well-reviewed open curricula, and research summaries on the
    topic (the What Works Clearinghouse practice guides, for one). For other subjects, the equivalents. Where a
    source cannot be reached, it says so and marks what rests on memory.
+   **Start from what earlier runs already found (added 2026-11-11).** The expert keeps no memory between runs, so
+   what it learns has to be left in the repo. Before searching, read:
+   - docs/APPROACH-SOURCES.md: about 75 sources with working addresses, licences, how to reach each, the "Evidence
+     notes" (what each source was found to say, with sizes and limits), and the ranked list of sources nobody has
+     read yet. Paywalled sources stay unread (Cory, 2026-11-11); nothing may rest on them.
+   - docs/APPROACH.md and the subject page: the approach every spine and unit plan must follow.
+   - docs/courses/math-3-5-progression.md (grades 3 to 5 math): handoffs, limits and page pointers already checked
+     against the Progressions. Point to it, and re-check only what the review at hand depends on.
+   - docs/reviews/: every earlier report. Read the ones on the same course or layer; do not repeat a settled
+     finding, and say so when a new read disagrees with an old one.
+   How to open a PDF: WebFetch returns binary. Download with curl into a new empty folder in the scratchpad and
+   extract the text with `python -I -X utf8` (pypdf, or pymupdf where fraction numerals or margins drop out), with
+   scripts kept in a different folder. Page pointers are written "PDF page (printed page)".
+   **Leave it better.** If a run reads a source that is not in docs/APPROACH-SOURCES.md, or finds a new address or
+   a way past a block, it says so at the end of its report under "For the source list", and the caller files it.
 4. **Respect licences.** It reads and links. It does not copy text into the repo, and it never says Curio Class was
    reviewed by, meets or is endorsed by anyone.
 

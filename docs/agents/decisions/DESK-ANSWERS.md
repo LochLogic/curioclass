@@ -369,3 +369,17 @@ SPEC.md wording, the teach-first default.
 No library access: paywalled sources stay unread and nothing may rest on them (docs/APPROACH-SOURCES.md).
 The approach as a whole still waits for Cory's read.
 
+## 2026-11-11: step 4b, the grades 3 to 5 math progression (Cory: "Go ahead with the next piece")
+
+docs/courses/math-3-5-progression.md drafted from the standards and the 2023 Progressions, read cold by the
+curriculum expert (docs/reviews/math-3-5-progression-2026-11-11.md: nearly every code, quote and pointer checked
+out; 31 of 33 findings right as written; about a dozen corrections), revised once. Applied without asking, as
+corrections that change no day, order or unit: spine builds-on and sets-up pointers (A1 to A9, E4), 15 builds_on
+links in data/sequence.csv (B1 to B14), and the stretch 16 limit in the progression (grade 4 does find unknown
+angles on a line and where lines cross, per 4.MD.C.7; the first draft had wrongly pushed that to grade 7). With
+Cory on Desk card q-progression-math-4: C1, D4, E1, E2.
+
+Also this day: docs/agents/EXPERT.md now tells the expert to start from what earlier runs left in the repo (the
+source list and evidence notes, the approach, the progression, earlier reviews) and to end each report with new
+sources for the list. Cory asked whether gathering sources had improved the expert; it had not, until this.
+

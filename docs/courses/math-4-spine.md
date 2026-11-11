@@ -6,6 +6,8 @@ course holds": every teaching day of the year, in order, with the reason for the
 
 Revised 2026-11-11 after the curriculum expert's review (docs/reviews/math-4-spine-2026-11-11.md); Cory approved all four changes.
 
+2026-11-11: builds-on and sets-up pointers corrected from the grades 3 to 5 progression (docs/courses/math-3-5-progression.md); no day, order or unit changed.
+
 ## What changed in this revision
 
 1. **Checks moved from the unit to the stretch.** One readiness check at the start of a stretch, a five-minute exit
@@ -107,9 +109,9 @@ year. Each unit names the task that builds each one.
 | 9 | Adding and Subtracting Multi-Digit Numbers | 6, 8 | 1 | 4 | 1 | Whole numbers to 1,000,000 |
 | 10 | Multiplicative Comparison | 2, 4 | 3 | 1 | 5 | Whole numbers and whole-number answers; in this stretch two steps and no remainders |
 | 11 | Area and Perimeter Formulas | 1, 4 | 1 | 1 | 3 | Rectangles only; area with whole-number sides; fractional sides in perimeter only, like denominators |
-| 12 | Multi-Digit Multiplication | 3, 7 | 5 | 5 | 2 | Up to four digits by one digit, and two digits by two digits; place value methods and area models, the standard algorithm is grade 5 |
-| 13 | Division with Remainders | 2, 7 | 5 | 4 | 3 | Dividends to four digits, one-digit divisors; place value methods, the standard algorithm is grade 6 |
-| 14 | Multistep Problems with All Four Operations | 1, 4 | 0 | 0 | 4 | Whole numbers and whole-number answers; a letter for the unknown |
+| 12 | Multi-Digit Multiplication | 3, 7 | 5 | 5 | 2 | Up to four digits by one digit, and two digits by two digits; place value methods and area models; written methods here shorten into the standard algorithm and must be explained; fluency with the standard algorithm is grade 5 (5.NBT.B.5) |
+| 13 | Division with Remainders | 2, 7 | 5 | 4 | 3 | Dividends to four digits, one-digit divisors; place value methods, which must be explained; fluency with the standard algorithm is grade 6 (6.NS.B.2) |
+| 14 | Multistep Problems with All Four Operations | 1, 4 | 0 | 0 | 4 | Whole numbers and whole-number answers; no more than three steps; a letter for the unknown |
 | 15 | Measurement Conversions | 5, 6 | 2 | 2 | 4 | Larger unit to smaller only, inside one system; simple fractions and decimals |
 | 16 | Lines and Angles | 5, 6 | 5 | 5 | 2 | Whole-number degrees |
 | 17 | Shapes and Symmetry | 3, 7 | 3 | 1 | 0 | Flat figures; line symmetry only |
@@ -127,22 +129,22 @@ check draws its items from these codes.
 
 | # | Stretch | Builds on (grade 3) | Why it sits here | Sets up |
 |---|---|---|---|---|
-| 1 | Factors and Multiples | 3.OA.C.7 (Times Tables Fluency), 3.OA.B.5 (Meaning of Multiplication and Division), 3.MD.C.7 (Area) | Opens the year on something every student can enter: building rectangles. It wakes up the times tables, and finding a number to multiply top and bottom by is easier once multiples are familiar | Stretch 3; grade 5 expressions |
+| 1 | Factors and Multiples | 3.OA.C.7 (Times Tables Fluency), 3.OA.B.5 (Meaning of Multiplication and Division), 3.MD.C.7 (Area) | Opens the year on something every student can enter: building rectangles. It wakes up the times tables, and finding a number to multiply top and bottom by is easier once multiples are familiar | Stretch 3; grade 5 common denominators (5.NF.A.1) and, more thinly, powers of 10 (5.NBT.A.2) |
 | 2 | Number Patterns | 3.OA.D.9 (Patterns and Two-Step Problems), 3.OA.C.7 | Short, and it sets the habit of saying what you notice and why, which the fraction work leans on | Grade 5 patterns and relationships |
 | 3 | Equivalent Fractions and Comparing | 3.NF.A.1, 3.NF.A.2, 3.NF.A.3 (Fractions as Numbers) | The base of all fraction work this year. It comes early so it can be used again four more times | Stretches 4 to 7; grade 5 unlike denominators |
-| 4 | Adding and Subtracting Fractions | 3.NF.A.1, 3.NF.A.2 (Fractions as Numbers); stretch 3 | A fraction as a sum of unit fractions follows straight from stretch 3, while the pictures are fresh | Stretches 5 and 6; grade 5 adding unlike fractions |
+| 4 | Adding and Subtracting Fractions | 3.NF.A.1, 3.NF.A.2, 3.NF.A.3c (Fractions as Numbers); stretch 3 | A fraction as a sum of unit fractions follows straight from stretch 3, while the pictures are fresh | Stretches 5 and 6; grade 5 adding unlike fractions |
 | 5 | Line Plots | 3.MD.B.4 (Scaled Graphs); stretch 4 | Placed here on purpose: it is supporting work whose whole job is to practise adding and subtracting fractions with real measurements | Grade 5 units and line plots |
 | 6 | Multiplying a Fraction by a Whole Number | 3.OA.A.1 (Meaning of Multiplication and Division), 3.NF.A.1; stretch 4 | Repeated adding of one fraction, so it follows stretch 4. It needs only grade 3 equal groups, not multi-digit multiplication | Grade 5 multiplying fractions |
-| 7 | Decimals | 3.NF.A.2, 3.NF.A.3 (Fractions as Numbers); stretch 3 | Tenths and hundredths are fractions first. Coming straight after fraction work, a decimal is a new way to write a number the student already knows | Stretch 15 (money, metric); grade 5 decimals |
-| 8 | Place Value to a Million | 3.NBT.A.1, 3.NBT.A.3 (Rounding and Multi-Digit Operations) | Students have just written tenths and hundredths, so "ten times the place to its right" has something to stand on. The standard itself is about whole numbers; place value in decimals is grade 5 and is not taught or assessed here | Stretches 9, 12, 13; grade 5 powers of ten |
+| 7 | Decimals | 3.NF.A.2, 3.NF.A.3 (Fractions as Numbers); stretches 3 and 4. Grade 3 gives no tenths or hundredths | Tenths and hundredths are fractions first. Coming straight after fraction work, a decimal is a new way to write a number the student already knows | Stretch 15 (money, metric); grade 5 decimals |
+| 8 | Place Value to a Million | 3.NBT.A.1, 3.NBT.A.3 (Rounding and Multi-Digit Operations); reading, writing and comparing numbers are grade 2 (2.NBT.A.1 to 2.NBT.A.4) | Students have just written tenths and hundredths, so "ten times the place to its right" has something to stand on. The standard itself is about whole numbers; place value in decimals is grade 5 and is not taught or assessed here | Stretches 9, 12, 13; grade 5 powers of ten |
 | 9 | Adding and Subtracting Multi-Digit Numbers | 3.NBT.A.2 (Rounding and Multi-Digit Operations) | The standard algorithm needs place value to a million. The warm-up, which has run within 1,000 since day 1, widens here | Stretches 10, 12, 13, 14 |
-| 10 | Multiplicative Comparison | 3.OA.A.1, 3.OA.A.3 (Meaning of Multiplication and Division), 3.OA.D.8 (Patterns and Two-Step Problems) | "Times as many" is the idea under multi-digit multiplication and unit conversion, so it comes before both. Its two days of two-step problems stay inside what has been taught: no remainders yet | Stretches 12 to 15; grade 5 and 6 ratio thinking |
+| 10 | Multiplicative Comparison | 3.OA.A.1, 3.OA.A.3 (Meaning of Multiplication and Division), 3.OA.D.8 (Patterns and Two-Step Problems) | "Times as many" is the idea under multi-digit multiplication and unit conversion, so it comes before both. Its two days of two-step problems stay inside what has been taught: no remainders yet | Stretches 12 to 15; grade 5 multiplication as scaling (5.NF.B.5) and writing expressions (5.OA.A.2) |
 | 11 | Area and Perimeter Formulas | 3.MD.C.7 (Area), 3.MD.D.8 (Perimeter), 3.OA.A.4 (Meaning of Multiplication and Division) | Finding a missing side is an unknown-factor problem. It also plants the rectangle picture that multiplication uses next | Stretch 12; grade 5 volume |
 | 12 | Multi-Digit Multiplication | 3.OA.C.7 (Times Tables Fluency), 3.OA.B.5, 3.NBT.A.3, 3.MD.C.7 | The area model from stretch 11 becomes the method | Stretches 13 to 15; grade 5 standard algorithm |
 | 13 | Division with Remainders | 3.OA.B.6, 3.OA.A.2 (Meaning of Multiplication and Division), 3.OA.C.7 | Division is taught as undoing multiplication, so it comes straight after it. It ends on day 117, which leaves 33 days in which it is used again | Stretches 14, 15; grade 5 two-digit divisors |
 | 14 | Multistep Problems with All Four Operations | 3.OA.D.8 (Patterns and Two-Step Problems); stretches 9, 10, 12, 13 | The standard asks for all four operations and for remainders read in context. This is the first point in the year where all of that has been taught | Stretch 15; grade 5 problem solving with decimals and fractions |
-| 15 | Measurement Conversions | 3.MD.A.1, 3.MD.A.2 (Time, Volume and Mass); stretches 6, 7, 10, 12, 13 | After multiplication and division, conversions by 12, 16, 60 and 1,000 can use real numbers, and the word problems can use all four operations with fractions and decimals. Supporting work doing major work | Grade 5 unit conversions and volume |
-| 16 | Lines and Angles | 3.G.A.1 (Quadrilaterals); 3.NF.A.1 for a fraction of a full turn. Angle measure itself is new | Additional work, placed after all the major work is taught. Lines and rays are drawn first, because an angle is two rays from one point | Stretch 17; grade 7 angle problems |
+| 15 | Measurement Conversions | 3.MD.A.1, 3.MD.A.2 (Time, Volume and Mass); from grade 2, length units (2.MD.A.1 to 2.MD.A.4, with unit size against count in 2.MD.A.2) and money (2.MD.C.8); stretches 6, 7, 10, 12, 13. Kilometers, pounds, ounces, milliliters and seconds are new | After multiplication and division, conversions by 12, 16, 60 and 1,000 can use real numbers, and the word problems can use all four operations with fractions and decimals. Supporting work doing major work | Grade 5 unit conversions and volume |
+| 16 | Lines and Angles | 3.G.A.1 (Quadrilaterals); 3.NF.A.1 for a fraction of a full turn. Angle measure itself is new | Additional work, placed after all the major work is taught. Lines and rays are drawn first, because an angle is two rays from one point | Stretch 17; grade 5 coordinate axes (5.G.A.1) and classifying figures (5.G.B.3, 5.G.B.4); grade 7 angle problems |
 | 17 | Shapes and Symmetry | 3.G.A.1 (Quadrilaterals); stretch 16 | Sorting shapes by parallel and perpendicular sides and by the size of their angles needs stretch 16 | Grade 5 classifying figures, coordinate plane |
 | 18 | The Year Together | | One day of mixed problems on the major work, fractions first, before the last check | Grade 5 |
 
@@ -209,7 +211,7 @@ with one unit, such as the pilot, has its checks inside that unit.
 | 12 | 12.3 Explain it and connect the methods | 2 | 104 to 105 | 4.NBT.B.5 |
 | 13 | 13.1 Dividing by building up: partial quotients | 5 | 106 to 110 | 4.NBT.B.6 |
 | 13 | 13.2 Larger dividends and remainders | 5 | 111 to 115 | 4.NBT.B.6 |
-| 13 | 13.3 What the remainder means | 2 | 116 to 117 | 4.NBT.B.6 |
+| 13 | 13.3 What the remainder means | 2 | 116 to 117 | 4.NBT.B.6, 4.OA.A.3 (what the remainder means) |
 | 14 | 14.1 Multistep problems with all four operations, remainders and estimates | 4 | 120 to 123 | 4.OA.A.3 |
 | 15 | 15.1 How big is each unit; larger to smaller | 4 | 124 to 127 | 4.MD.A.1 |
 | 15 | 15.2 Measurement word problems | 4 | 128 to 131 | 4.MD.A.2 |
