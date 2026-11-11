@@ -20,12 +20,17 @@ Grade 4 math, module math-4-factors-and-multiples. Driver: students (solo by def
 15 to 35 minutes. Standard: 4.OA.B (4.OA.4: factor pairs for 1 to 100, a number is a multiple of each of its
 factors, whether a number is a multiple of a one-digit number, prime or composite). No personal prompts. Gus, the
 farm, and the orders are made up; the Rush card footer says "Gus's farm and orders are made up for practice."
+Role: lesson. Change note (spec fix, 2026-11-10; the tool is built, so the code follows this spec later): Rush shift 5,
+"From the shelf", was added: three cards where the student uses a known factor pair or factor list to say which
+carton sizes an order fills, with no bench and no line to run, and finishes the factor and multiple sentences.
+Before this, "a number is a multiple of each of its factors" was only printed on the seal card. Nothing else changed.
+Rush goes from 12 cards to 15.
 
 ## Standards map
 | Code part | Student action that teaches it | What they see | Done when check |
 |---|---|---|---|
 | 4.OA.4 factor pairs | Pack Station: change the rows until every carton for the order is on the shelf; Rush shifts 1 and 4 (Every shape, no live preview) | eggs re-deal into the rows; a fit stamps "4 by 9" onto the shelf; a turned fit flies to its twin; the turn line after the square or last pair | Rush 1a (12) ships only with 1 by 12, 2 by 6, 3 by 4 on the shelf; shipping with two of them plays shipMissing |
-| 4.OA.4 multiple of each factor | seal an order in Pack Station, then tap a factor chip to run that order on the Fill Line | the seal card "36 is a multiple of each factor: 1, 2, 3, 4, 6, 9, 12, 18, 36"; the chip opens Fill Line, where every carton fills | after sealing 36, tapping chip 4 runs 36 in cartons of 4: 9 full cartons, counter "4, 8, ... 36", fillYes |
+| 4.OA.4 multiple of each factor | Rush shift 5 (From the shelf): from a packed carton or a factor list, pick the sizes the order fills, type how many cartons, and finish "7 is a ___ of 56. 56 is a ___ of 7."; also seal an order in Pack Station, then tap a factor chip to run that order on the Fill Line | the seal card "36 is a multiple of each factor: 1, 2, 3, 4, 6, 9, 12, 18, 36"; the chip opens Fill Line, where every carton fills | after sealing 36, tapping chip 4 runs 36 in cartons of 4: 9 full cartons, counter "4, 8, ... 36", fillYes |
 | 4.OA.4 multiple of a one-digit number | Fill Line: pick a carton size 2 to 9 (also 10 and 12) and run the order; Rush shift 3 (pick the sizes that fill, type how many cartons) | cartons fill one after another with a skip-count; the last carton full or showing empty cups | Rush 3a (72; sizes 6, 5, 8) passes only with 6 and 8 picked and counts 12 and 9 |
 | 4.OA.4 prime or composite | Pack Station seal reads prime, composite or neither; Rush shift 2 (sort three orders, a composite needs a proof carton); Rush 4c (pick every prime in a decade) | the board cell turns gold (one long row only), blue (more shapes) or gray (1); the Composite bin refuses an order without a fitting carton of 2 or more rows | Rush 2a (13, 21, 27) passes only with 13 in Prime and 21, 27 in Composite; 27 in Prime plays missOdd |
 
@@ -69,11 +74,15 @@ mark once sealed. Panel: counter "Packed 23 of 100: 9 prime, 13 composite, and 1
 this device only." Tap a blank or colored cell: Pack Station opens with that order. There is no button that fills the
 board for you.
 
-**Rush Orders** (the puzzle levels). Four shifts of three cards (Content), a shift pager and dots per card. Each card
+**Rush Orders** (the puzzle levels). Five shifts of three cards (Content), a shift pager and dots per card. Each card
 gives two Ships: a first miss plays its reason and resets the card (nothing marked); a second miss plays shown, Gus
 does it, and the card counts "Gus helped". Leaving Rush (or switching card) re-rolls an unshipped card to another
 variant, preferring the variant with the fewest numbers already sealed on the board. The board and the seal card are
-never on screen in Rush. Counter in the panel: "Orders shipped 5 of 12 (4 on your own)".
+never on screen in Rush. Counter in the panel: "Orders shipped 5 of 15 (4 on your own)".
+- From the shelf cards (shift 5): the stage shows one stamped carton label or one factor list and nothing else: no
+  bench, no belt. The card lists three sizes with a Fills toggle and a count box each, as on Multiples cards, then
+  two sentences with a word slot each and two word chips, **factor** and **multiple**, which can each be used more
+  than once. Card 5c shows two sizes that both filled and three orders to choose from.
 - Every shape cards: the stage is the Pack Station bench without live re-dealing: set rows, tap **Pack**; the eggs
   roll in; a fit joins the shelf as usual. **Ship it** when you think the shelf is complete. No empty slots show.
 - Sort cards: three order tags in a tray above the bench, three painted crates below labeled in code **Prime: one
@@ -128,6 +137,10 @@ Rush shifts (three variants per card; answers):
 - 4a Every shape: 60 (1x60, 2x30, 3x20, 4x15, 5x12, 6x10); 72 (1x72, 2x36, 3x24, 4x18, 6x12, 8x9); 84 (1x84, 2x42, 3x28, 4x21, 6x14, 7x12).
 - 4b Every shape: 96 (1x96, 2x48, 3x32, 4x24, 6x16, 8x12); 100 (1x100, 2x50, 4x25, 5x20, 10x10); 90 (1x90, 2x45, 3x30, 5x18, 6x15, 9x10).
 - 4c Decade: 41 to 49 (41, 43, 47); 61 to 69 (61, 67); 81 to 89 (83, 89). Odd composites in them: 45, 49; 63, 65, 69; 81, 85, 87.
+- 5a From a carton: "Gus packed 56 eggs as 7 by 8." Sizes 7, 8, 6 (7: 8 cartons, 8: 7; 6 no); 63 as 7 by 9, sizes 7, 9, 8 (7: 9, 9: 7; 8 no); 42 as 6 by 7, sizes 6, 7, 8 (6: 7, 7: 6; 8 no). Sentences: "7 is a factor of 56. 56 is a multiple of 7."
+- 5b From a factor list: "45 has factors 1, 3, 5, 9, 15, 45." Sizes 9, 5, 6 (9: 5, 5: 9; 6 no); 32 with 1, 2, 4, 8, 16, 32, sizes 4, 8, 6 (4: 8, 8: 4; 6 no); 50 with 1, 2, 5, 10, 25, 50, sizes 5, 2, 4 (5: 10, 2: 25; 4 no). Sentences: "45 is a multiple of each of its factors. 9 is a factor of 45."
+- 5c Which order: "Cartons of 6 all filled. Cartons of 9 all filled. Which order was it?" 54, 48 or 63 (54); sizes 4 and 7: 28, 42 or 49 (28); sizes 8 and 3: 24, 32 or 27 (24). Then type both carton counts (54: 9 and 6; 28: 7 and 4; 24: 3 and 8) and finish "54 is a multiple of 6 and of 9."
+Card prompts for shift 5: "No bench this time. Use the carton Gus packed. Which sizes will fill?"
 Card prompts: "Find every carton for 12 eggs. Then tap Ship it."; "Sort these orders. A composite needs a carton
 that proves it."; "Which cartons will 72 eggs fill with no gaps? Type how many cartons."; "Mark every order from 41 to
 49 that only fits one long row."
@@ -217,6 +230,7 @@ none
 | Sort (2a to 2c) | everything in Prime; everything in Composite; odd means prime; guess bins (1 in 27); the count of primes per card; elimination after a miss | Composite accepts only an order with a packed fitting carton of 2 or more rows, so placing a composite needs a found factor; all-in-Prime fails on every card (each has a composite); odd composites (21, 27, 39, 25, 33, 49, 9, 57, 51, 91, 87, 77, 93, 69, 81) fail with missOdd; cards hold 1 or 2 primes and one holds 1, so no fixed count; a miss resets all three with nothing marked, and a fix still needs a proof carton |
 | Multiples (3a to 3c) | guess the Fills set (1 in 8 per try); even means fills cartons of 4 (70, 90, 54); type the order or the size as the count; run the line in Fill Line and copy | counts must be exact (12, 9, 10, 14 ...), never the order or a shown size (checked); every card has a "no" size; 70, 90, 54 in 4s each leave 2 and fail with missFill; leaving Rush re-rolls; no belt or bench on the card |
 | Decade (4c) | mark all odd numbers; mark none; guess (1 in 512); the board | odd composites 45, 49; 63, 65, 69; 81, 85, 87 fail with missOdd; none fails with missLeft; the board is never on screen in Rush, and the variant prefers numbers not yet sealed |
+| From the shelf (5a to 5c) | guess the Fills set (1 in 8); type a number on the card as the count; try both chips in each slot (1 in 4); in 5c pick the biggest or the first order | counts must be exact and Ship it checks toggles, counts and both word slots together, so a blind try is about 1 in 32 and two misses mark "Gus helped"; every card has a "no" size; in 5a the right count is the other number of the pair, which is the point (56 = 7 x 8, so 8 cartons of 7), and the word slots and the "no" size still need the idea; in 5c each wrong order is a multiple of exactly one of the two sizes (48 and 63; 42 and 49; 32 and 27), and the right order is the biggest once, the smallest twice and never in a fixed position |
 | Seal and board colors | none (no check) | they appear only after the student has packed every pair; there is no fill-for-me button |
 | Rush counter "on your own" | let Gus show every card; replay a shipped card | shown cards count shipped, not on your own; each card counts once |
 | Pack Station, Fill Line | none (explore, no checks) | their answers can't be carried into Rush, which re-rolls on return |
@@ -252,6 +266,10 @@ correct count equals the order or a shown size; readout example 36 in 5 rows (8 
 4 s); guess odds (Sort 1/27 by bins and blocked by proof; Multiples 1/8 sets plus exact counts; Decade 1/512);
 contrast ratios in Look.
 
+Number checks for the spec fix (Python, run 2026-11-10): 56 = 7 x 8, 63 = 7 x 9, 42 = 6 x 7 and 6, 8, 8 do not divide
+them; 45, 32 and 50 with their listed factors and counts, and 6, 6, 4 do not divide them; in 5c 54, 28 and 24 are the
+only orders divisible by both sizes, and each wrong order is divisible by exactly one.
+
 ## Done when
 1. Focus: in every mode the carton, pallet, board or Rush bench is the biggest central thing, and at 1366x768 every control the mode needs (Rows, order box, sizes, Run, crates, toggles, Ship it) is above the fold; at 680x425 stage and panel stay side by side.
 2. On load the 5-row carton shows 4 ringed empty cups; dragging to 4 rows stamps "4 by 9", chimes and adds it to the shelf; 9 rows makes 4 by 9 glow "turned" without a new slot.
@@ -264,6 +282,7 @@ contrast ratios in Look.
 9. Rush 4c (41 to 49) passes only with 41, 43, 47; marking 49 plays missOdd.
 10. The board and seal card never show in Rush; leaving Rush with a card open re-rolls it.
 11. Voice: each how line speaks once in five repeats; ship and miss lines speak every time and finish before the next card; no line names a disabled control.
+12. Rush 5a (56 as 7 by 8) ships only with 7 (8 cartons) and 8 (7 cartons) on, 6 off, and the sentences reading "7 is a factor of 56. 56 is a multiple of 7."; no bench or belt shows on shift 5 cards; the counter reads "of 15".
 
 ## Open questions
 none
