@@ -108,10 +108,13 @@ finds.
 2. **Units for every day on the spine**, each pulling from the shelves, with daily plans and teacher pages.
 3. **Every standard taught in full by a live tool or a unit lesson**, and each of those tools verified: played
    against its spec, logged in docs/agents/catalog/verified.txt.
-4. **Assessment at three sizes.** In every tool, the unaided check (SPEC.md hooks). In every unit, a short
-   readiness check on the standards it builds on, and an end check with a key that says what each wrong answer
-   means. In the course, a cumulative check each quarter and at the end of the year, built from the generators so
-   it can be redrawn. With no accounts, results live on a printable class record sheet and in score codes.
+4. **Assessment at three sizes.** In every tool, the unaided check (SPEC.md hooks). In every stretch (a run of
+   units on one idea; changed from "every unit" on 2026-11-11 after the expert reviews, so checking stays near a
+   tenth of the year), a short readiness check on the standards it builds on, a short written check as the stretch
+   goes, and an end check with a key that says what each wrong answer means. In the course, the cumulative checks
+   its spine names (a start-of-year check where the spine has one, then one each quarter and at year end), each
+   followed by a respond day. Items come from the generators where they can, so a check can be redrawn; explain
+   tasks and reading checks need fixed items in two forms. With no accounts, results live on a printable class record sheet and in score codes.
 5. **English learner supports** in every tool (the hooks) and on every unit's teacher page: the language the lesson
    asks for, the key words with their Word Wall cards, sentence frames for the talk and the writing.
 6. **Access.** Every tool passes the hooks and an automated access check at the Finish check; one keyboard-only
@@ -138,7 +141,7 @@ when its "closed when" is true. Nothing here is closed by a sentence in a plan.
 | The public site claims more than the ledger supports | Tool pages and /standards/ pages take their wording (teaches, practices, shows) from data/coverage.csv by script | 5, for proved courses first | A script check fails the build when a page claims more than the ledger |
 | The read is 80 percent reliable, and one re-read was never checked | Every re-read gets a top-model spot-check of one spec in five; under 80 percent agreement the course is read again. Verified play is the final word, not the read | Standing (FINAL-REVIEW.md) | Each finished course has its spot-check figure in its shape file |
 | Outside math and ELA, a course's standards count is only what its modules list | measure.md marks those courses with a star. When science, then social studies, come up, the full standard text is wired in first, so the count is every standard of the grade | Before each of those subjects opens | No starred course is quoted as a share of its standards |
-| Assessment was one short check per unit | Three sizes, item 4 of the finished course | Tools: now. Unit checks: 4. Quarter and year checks: 6 | The pilot unit ships with both unit checks; a finished course has all five cumulative checks |
+| Assessment was one short check per unit | Three sizes, item 4 of the finished course | Tools: now. Stretch checks: 4. Cumulative checks: 6 | The pilot unit ships with its stretch's readiness and end checks; a finished course has every cumulative check its spine names, each with a respond day |
 | English learner supports were named and in no step | Item 5 of the finished course | Tools: now. Units: 4 | The pilot unit's teacher page carries all three parts |
 | Access was a font and contrast bar | Item 6 of the finished course. The automated check joins the Finish check in docs/agents/ when building resumes | Hooks: now. Check: with the three proof tools | The three proof tools pass both |
 | Coherence across grades was one line | Each spine row names the earlier standards it builds on and where Curio Class teaches them. A script builds a progression table per subject (domain by grade, from the standard texts and the ledger), read at every Shape | Grade 4 math spine: 4. The table: before step 6 | No unit in a finished course builds on a standard taught nowhere below it, or the gap is named |
@@ -156,7 +159,7 @@ when its "closed when" is true. Nothing here is closed by a sentence in a plan.
 | No assessment accommodations or reading-level supports (rubric) | Each check says how to give it read aloud, with more time, or with a model allowed, without changing what it tests; word problems come in a plainer-language version | 4, 6 | The pilot unit's checks and problems do both |
 | Loose ends from spelling out module standards | 113 cluster pages under /standards/ are gone and 296 added, with no redirects; scripts/check_plans.py reports 14 of 80 plans with problems; check_concepts stops on unknown module social-studies-3-5-road-trip-atlas | Before the next site build | Redirects are in data/redirects.csv and both checks pass |
 
-**Resume here (left 2026-11-11, late): step 4, the proof. Three year spines are drafted and each has a curriculum expert review in docs/reviews/: grade 4 math (approved spine; four changes on Desk card q-review-math-4), grade 4 science (draft; four changes on q-review-science-4) and grade 6 ELA (draft; five changes on q-review-ela-6). Each spine is revised once, after Cory answers its card. The reviews also name the rubrics to file for science (EdReports K-5 science, EQuIP) and ELA (EdReports ELA 6 to 12); not filed yet. Then: pilot unit 12.1, the three tools. Sara works NEXT.md batches 1 to 4, then unit pieces.** All 800 tools have a row in row format
+**Resume here (left 2026-11-11, late): step 4, the proof. Three year spines are revised after curriculum expert reviews (docs/reviews/); Cory said yes to every proposed change (Desk cards q-review-math-4, q-review-science-4, q-review-ela-6). Grade 4 math is the approved spine with rows in data/units.csv; grade 4 science and grade 6 ELA are revised drafts waiting for Cory's final yes. Checks now sit at the stretch, not the unit (item 4). Owed next: file the science rubrics (EdReports K-5 science, EQuIP) and the ELA rubric (EdReports ELA 6 to 12); the ELA text plan (verify the texts marked to verify; an informational shelf); then pilot unit in math (area and perimeter), the three tools. Sara works NEXT.md batches 1 to 4, then unit pieces.** All 800 tools have a row in row format
 2 (docs/agents/catalog/rows/, 71 packets, about 12 million tokens on the cheaper model), and the ledger is rebuilt:
 data/coverage.csv and docs/agents/catalog/tables/measure.md. Across every course's standards: 213 full, 368 nearly,
 404 part, 1,102 practice only, 276 shown, 37 none. By tool: 70 teach every code they carry, 177 teach at least one

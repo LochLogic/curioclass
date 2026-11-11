@@ -1,8 +1,8 @@
 unit_id,subject,grade,order,title,days,modules,status
 math-4-u01-1,math,4,1,"Rectangles and factor pairs",3,math-4-factors-and-multiples,planned
-math-4-u01-2,math,4,2,"Multiples, prime and composite",4,math-4-factors-and-multiples,planned
-math-4-u02-1,math,4,3,"Follow the rule, then notice more",4,math-4-number-patterns,planned
-math-4-u03-1,math,4,4,"Same amount, different parts",4,math-4-equivalent-fractions-and-comparing,planned
+math-4-u01-2,math,4,2,"Multiples, prime and composite",3,math-4-factors-and-multiples,planned
+math-4-u02-1,math,4,3,"Follow the rule, then notice more",3,math-4-number-patterns,planned
+math-4-u03-1,math,4,4,"Same amount, different parts",3,math-4-equivalent-fractions-and-comparing,planned
 math-4-u03-2,math,4,5,"Why multiplying top and bottom works",4,math-4-equivalent-fractions-and-comparing,planned
 math-4-u03-3,math,4,6,"Comparing with a common denominator or numerator",4,math-4-equivalent-fractions-and-comparing,planned
 math-4-u03-4,math,4,7,"Comparing to one half and one; the same whole",4,math-4-equivalent-fractions-and-comparing,planned
@@ -10,38 +10,43 @@ math-4-u04-1,math,4,8,"A fraction as a sum; taking it apart more than one way",4
 math-4-u04-2,math,4,9,"Joining and separating like parts",3,math-4-adding-and-multiplying-fractions,planned
 math-4-u04-3,math,4,10,"Mixed numbers",4,math-4-adding-and-multiplying-fractions,planned
 math-4-u04-4,math,4,11,"Fraction word problems",3,math-4-adding-and-multiplying-fractions,planned
-math-4-check-1,math,4,12,"Check 1",1,,planned
-math-4-u05-1,math,4,13,"Measure, plot, ask",4,math-4-angles-and-line-plots,planned
-math-4-u06-1,math,4,14,"A fraction as a multiple of a unit fraction",3,math-4-adding-and-multiplying-fractions,planned
-math-4-u06-2,math,4,15,"A whole number times any fraction",3,math-4-adding-and-multiplying-fractions,planned
-math-4-u06-3,math,4,16,"Fraction multiplication word problems",2,math-4-adding-and-multiplying-fractions,planned
-math-4-u07-1,math,4,17,"Tenths and hundredths as fractions",3,math-4-decimals,planned
-math-4-u07-2,math,4,18,"Writing and placing decimals",4,math-4-decimals,planned
-math-4-u07-3,math,4,19,"Comparing decimals",3,math-4-decimals,planned
-math-4-u08-1,math,4,20,"Ten times the place to its right",3,math-4-place-value-to-a-million,planned
-math-4-u08-2,math,4,21,"Reading, writing and comparing to a million",4,math-4-place-value-to-a-million,planned
-math-4-u08-3,math,4,22,"Rounding to any place",3,math-4-place-value-to-a-million,planned
-math-4-check-2,math,4,23,"Check 2",1,,planned
+math-4-u05-1,math,4,12,"Measure, plot, ask",3,math-4-angles-and-line-plots,planned
+math-4-check-1,math,4,13,"Check 1",1,,planned
+math-4-respond-1,math,4,14,"Respond day after Check 1",1,,planned
+math-4-u06-1,math,4,15,"A fraction as a multiple of a unit fraction",3,math-4-adding-and-multiplying-fractions,planned
+math-4-u06-2,math,4,16,"A whole number times any fraction",3,math-4-adding-and-multiplying-fractions,planned
+math-4-u06-3,math,4,17,"Fraction multiplication word problems",2,math-4-adding-and-multiplying-fractions,planned
+math-4-u07-1,math,4,18,"Tenths and hundredths as fractions",3,math-4-decimals,planned
+math-4-u07-2,math,4,19,"Writing and placing decimals",4,math-4-decimals,planned
+math-4-u07-3,math,4,20,"Comparing decimals",3,math-4-decimals,planned
+math-4-u08-1,math,4,21,"Ten times the place to its right",3,math-4-place-value-to-a-million,planned
+math-4-u08-2,math,4,22,"Reading, writing and comparing to a million",4,math-4-place-value-to-a-million,planned
+math-4-u08-3,math,4,23,"Rounding to any place",3,math-4-place-value-to-a-million,planned
 math-4-u09-1,math,4,24,"The standard algorithm for adding",3,math-4-adding-and-subtracting-multi-digit-numbers,planned
-math-4-u09-2,math,4,25,"The standard algorithm for subtracting, across zeros",4,math-4-adding-and-subtracting-multi-digit-numbers,planned
-math-4-u10-1,math,4,26,"Times as many",3,math-4-multiplicative-comparison,planned
-math-4-u10-2,math,4,27,"Comparison word problems: times as many or more than?",4,math-4-multiplicative-comparison,planned
-math-4-u10-3,math,4,28,"Multistep problems, remainders and estimates",4,math-4-multiplicative-comparison,planned
-math-4-u11-1,math,4,29,"How big is each unit; larger to smaller",4,math-4-measurement-conversions,planned
-math-4-u11-2,math,4,30,"Measurement word problems",5,math-4-measurement-conversions,planned
-math-4-u12-1,math,4,31,"Area and perimeter formulas",5,math-4-area-and-perimeter-formulas,planned
-math-4-check-3,math,4,32,"Check 3",1,,planned
-math-4-u13-1,math,4,33,"Up to four digits times one digit",5,math-4-multi-digit-multiplication-and-division,planned
-math-4-u13-2,math,4,34,"Two digits times two digits",5,math-4-multi-digit-multiplication-and-division,planned
-math-4-u13-3,math,4,35,"Explain it and connect the methods",2,math-4-multi-digit-multiplication-and-division,planned
-math-4-u14-1,math,4,36,"Dividing by building up: partial quotients",5,math-4-multi-digit-multiplication-and-division,planned
-math-4-u14-2,math,4,37,"Larger dividends and remainders",5,math-4-multi-digit-multiplication-and-division,planned
-math-4-u14-3,math,4,38,"What the remainder means",2,math-4-multi-digit-multiplication-and-division,planned
-math-4-u15-1,math,4,39,"What an angle is: turns and degrees",3,math-4-angles-and-line-plots,planned
-math-4-u15-2,math,4,40,"Measuring and sketching with a protractor",3,math-4-angles-and-line-plots,planned
-math-4-u15-3,math,4,41,"Angles add",2,math-4-angles-and-line-plots,planned
-math-4-u16-1,math,4,42,"Points, lines, rays; parallel and perpendicular",3,math-4-lines-angles-and-symmetry,planned
-math-4-u16-2,math,4,43,"Sorting shapes; right triangles",2,math-4-lines-angles-and-symmetry,planned
-math-4-u16-3,math,4,44,"Lines of symmetry",2,math-4-lines-angles-and-symmetry,planned
-math-4-u17-1,math,4,45,"The year together",2,,planned
-math-4-check-4,math,4,46,"Check 4, end of year",1,,planned
+math-4-u09-2,math,4,25,"The standard algorithm for subtracting, across zeros",3,math-4-adding-and-subtracting-multi-digit-numbers,planned
+math-4-check-2,math,4,26,"Check 2",1,,planned
+math-4-respond-2,math,4,27,"Respond day after Check 2",1,,planned
+math-4-u10-1,math,4,28,"Times as many",3,math-4-multiplicative-comparison,planned
+math-4-u10-2,math,4,29,"Comparison word problems: times as many or more than?",4,math-4-multiplicative-comparison,planned
+math-4-u10-3,math,4,30,"Two-step problems: a letter for the unknown, an estimate to check",2,math-4-multiplicative-comparison,planned
+math-4-u11-1,math,4,31,"Area and perimeter formulas",5,math-4-area-and-perimeter-formulas,planned
+math-4-u12-1,math,4,32,"Up to four digits times one digit",5,math-4-multi-digit-multiplication-and-division,planned
+math-4-u12-2,math,4,33,"Two digits times two digits",5,math-4-multi-digit-multiplication-and-division,planned
+math-4-u12-3,math,4,34,"Explain it and connect the methods",2,math-4-multi-digit-multiplication-and-division,planned
+math-4-u13-1,math,4,35,"Dividing by building up: partial quotients",5,math-4-multi-digit-multiplication-and-division,planned
+math-4-u13-2,math,4,36,"Larger dividends and remainders",5,math-4-multi-digit-multiplication-and-division,planned
+math-4-u13-3,math,4,37,"What the remainder means",2,math-4-multi-digit-multiplication-and-division,planned
+math-4-check-3,math,4,38,"Check 3",1,,planned
+math-4-respond-3,math,4,39,"Respond day after Check 3",1,,planned
+math-4-u14-1,math,4,40,"Multistep problems with all four operations, remainders and estimates",4,math-4-multiplicative-comparison,planned
+math-4-u15-1,math,4,41,"How big is each unit; larger to smaller",4,math-4-measurement-conversions,planned
+math-4-u15-2,math,4,42,"Measurement word problems",4,math-4-measurement-conversions,planned
+math-4-u16-1,math,4,43,"Points, lines, rays; parallel and perpendicular",3,math-4-lines-angles-and-symmetry,planned
+math-4-u16-2,math,4,44,"What an angle is: turns and degrees",3,math-4-angles-and-line-plots,planned
+math-4-u16-3,math,4,45,"Measuring and sketching with a protractor",3,math-4-angles-and-line-plots,planned
+math-4-u16-4,math,4,46,"Angles add",3,math-4-angles-and-line-plots,planned
+math-4-u17-1,math,4,47,"Sorting shapes; right triangles",2,math-4-lines-angles-and-symmetry,planned
+math-4-u17-2,math,4,48,"Lines of symmetry",2,math-4-lines-angles-and-symmetry,planned
+math-4-u18-1,math,4,49,"The year together",1,,planned
+math-4-check-4,math,4,50,"Check 4, end of year",1,,planned
+math-4-respond-4,math,4,51,"Go over Check 4 and hand on to grade 5",1,,planned

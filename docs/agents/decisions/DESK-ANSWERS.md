@@ -315,3 +315,11 @@ To be folded in without asking when each spine is revised: the smaller findings 
 than once, limits, safety, materials tiers, sensitivity notes, vocabulary and language fixes). Rubrics to file next:
 EdReports Science K-5 v2.0 and the EQuIP rubric (science); EdReports ELA 6 to 12 v2.0 (ELA).
 
+## 2026-11-11: "Yes, all" to the three expert reviews (Cory, in chat)
+
+Cory approved every proposed change on q-review-math-4 (four), q-review-science-4 (four) and q-review-ela-6 (five).
+The three spines were revised once each, with the smaller findings folded in. Site rule changed with it: readiness
+and end checks sit at the stretch, not the unit, and each cumulative check has a respond day (ROADMAP, "What a
+finished course holds", item 4). Grade 4 math rows in data/units.csv were regenerated from the revised spine.
+Grade 4 science and grade 6 ELA stay drafts with no rows until Cory's final yes on each.
+

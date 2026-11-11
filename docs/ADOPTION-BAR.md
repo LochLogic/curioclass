@@ -70,7 +70,7 @@ standards in; we read it in and can write our map out in it.
 
 | What a review looks at | Where it was | Where it sits now |
 |---|---|---|
-| Assessment beyond one short check per unit | Not in the six steps | Every spec ends each code with an unaided check the teacher can see (SPEC.md, three hooks); the pilot unit carries its own assessment (ROADMAP step 4). A readiness check per unit and a cumulative check each quarter and at year end are now part of a finished course (ROADMAP, "What a finished course holds", item 4) |
+| Assessment beyond one short check per unit | Not in the six steps | Every spec ends each code with an unaided check the teacher can see (SPEC.md, three hooks); the pilot unit carries its own assessment (ROADMAP step 4). A readiness check and an end check per stretch (not per unit, since 2026-11-11) and the cumulative checks each spine names, with respond days, are now part of a finished course (ROADMAP, "What a finished course holds", item 4) |
 | English learner supports | Named above, in no step | SPEC.md, three hooks; FINAL-REVIEW.md |
 | Access: keyboard, color, sound with text | A font and contrast bar, later | SPEC.md, three hooks; FINAL-REVIEW.md |
 | What ships, not what the spec says | The measure read specs only | The measure now also counts live and verified tools and unit days (catalog/tables/measure.md) |
