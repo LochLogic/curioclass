@@ -31,7 +31,8 @@ report. You change nothing else, judge nothing as good or bad overall, and do no
   - `parts_missing`: read the standard's own wording (you know the Common Core and NGSS texts; say in `unsure` if you
     are not sure of a wording). List each part of it the student never does here: a kind of number, an operation, a
     case, a lettered sub-part, "explain why", "write", "record with symbols". Empty list only if every part is done.
-  - `key_step`: `student` if the student does the step the standard is about, `tool` if the tool does it and the
+  - `verb`: the standard's own verb in a word or two (solve, explain, compare, write, investigate).
+  - `key_step`: judged by that verb. `student` if the student does the step the standard is about, `tool` if the tool does it and the
     student watches or presses on, `shared` if the student chooses and the tool carries it out.
   - `items`: how many problems, rounds or texts the student meets for this code on the main path (0 if not stated).
   - `support`: `modeled` (a worked model or example is shown), `guided` (hints or a guide while working), `none`.
@@ -42,6 +43,9 @@ report. You change nothing else, judge nothing as good or bad overall, and do no
     - `taught`: on_path, key_step is student or shared, there is support, and a check other than none that cannot be
       passed by guessing or by letting the tool do it. For writing and talk, a self-guide check on screen counts;
     - `practiced`: the student does it, but with no model or guide, or with no check;
+    - `explored`: only for a standard whose verb is understand, use a model or investigate (never solve, write,
+      compute or prove): the student sets up cases and predicts before each reveal. Add `unit_adds`: one line on
+      what a unit must add for the standard to be taught in full;
     - `shown`: the tool does the key step; the student watches;
     - `touched`: not on the main path, or can be skipped;
     - `claimed`: the code is listed and nothing the student does matches it.
@@ -70,7 +74,10 @@ report. You change nothing else, judge nothing as good or bad overall, and do no
 - **cost_class:** `simple`, `sibling` (reuses a family engine that exists), `new-engine` or `super`, from the spec's
   Family engine, Art and Screens sections.
 - **beatable:** checks, scores or win states a student could pass without the skill that the spec's "Can it be
-  beaten?" section does not already close. Empty if none found or the tool has no checks.
+  beaten?" section does not already close. List one only when trial is cheaper than thinking: few choices, or
+  feedback that says which way to move, with free tries. Trying again is not beating a check where the standard
+  itself asks the student to design, refine or investigate. A partner or teacher marking a read-aloud is a real
+  check. Empty if none found or the tool has no checks.
 - **flags:** any of `k2-guess-prompt` (a K-2 reading tool that tells a child to guess a word from the picture or the
   sentence rather than sound it out), `sensitive` (cultural, Native, hard history, health), `facts-unsourced` (claims
   with no entry in Sources), `spec-thin` (a section the row needed is missing or one line).

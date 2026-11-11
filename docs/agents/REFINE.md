@@ -30,8 +30,13 @@ what one look means (a broken link styled like a Guest one), or states nobody li
 check gets a fresh run on the polished bundle the same way.
 
 **Teaching lens: does it teach what it claims, to this grade?**
-1. Every standard code on the tool's module is really taught by something the student does (BASELINE rule 2). A
-   code that is only mentioned is a finding: name the activity that would teach it, or say the code should move.
+1. Every standard code on the tool's module is really taught by something the student does (BASELINE rules 2 and
+   21). Test each code part by part against the standard's own wording, and name who does its verb. For a `lesson`
+   tool: a model, the verb done by the student on every part, five or more differing items, a check where thinking
+   is cheaper than guessing, all on the main path. A code that lives only in an optional mode, a readout, a teacher
+   note or plan.md is a blocker, and so is a key step the tool does for the student: name the activity that would
+   teach it, or say the code should move. For a `see why` tool: the student sets up cases and predicts before each
+   reveal, and the notes say what the unit adds; it claims no "solve", "write", "compute" or "prove" code.
 2. Every "Done when" in the spec, tested.
 3. Facts: every number, date and claim on screen or in notes matches the spec's Sources. Recompute numbers yourself.
 4. Nothing gives an answer away in a predict, quiz or hidden-information mode (POLISH, Games and quizzes).

@@ -23,7 +23,18 @@ must stand on its own: anything not in the spec will not be in the tool.
 
 - **One idea.** Name the single thing that makes this tool worth opening. If a neighbor already does that idea or
   mechanic, change yours and say how in "Not like".
-- **Explore first.** Would a kid click around this with no instructions? Challenges are optional modes, never the point.
+- **Explore first, then do.** Would a kid click around this with no instructions? Exploring opens the tool. But the
+  step where the student does what the standard says (solves, writes, explains, records) is on the main path, and the
+  first hint after exploring leads into it. It is never an optional mode, a teacher note or a readout (BASELINE rule
+  21; until 2026-11-10 this line read "Challenges are optional modes, never the point", and most of the gaps the
+  catalog review found traced to it). Extra challenges beyond the standard stay optional.
+- **The teaching test (BASELINE rule 21).** A tool with the role `lesson` teaches each of its codes this way: a
+  student alone, following the tool's lead, meets a model, does the standard's own verb on every part of its
+  wording, on five or more items that differ, with a check where thinking is cheaper than guessing, and none of it
+  can be skipped. For writing and talk a tool cannot mark, a model, a guide while working and a self-check on screen
+  against a shown guide count. A `see why` tool lets the student set up cases and predict before each reveal, and
+  says what the unit adds; it is right for "understand", "use a model" and "investigate" standards, never for
+  "solve", "write", "compute" or "prove". A `practice` tool assumes the teaching happened and says where.
 - **K-2 is teacher led** on a projector: big targets, a narrator, the class answers out loud.
 - **Hard history** (slavery, the Holocaust, Native removal): explorer formats with primary sources and teacher guidance.
   No points, timers or win states.
@@ -82,6 +93,12 @@ These rules close those gaps. Each names the tool that taught it.
   own (Puppet Show's "When did you feel worried?" never mentioned Pom) and to give their own reason (its vote handed
   them the reason). A skill the tool claims (plan, revise, justify) needs a step that does it. A code with no real
   step is dropped (BASELINE rule 2).
+  Since 2026-11-10 each row also quotes the standard's verb, lists the parts of its wording (kinds of number,
+  operations, cases, lettered sub-parts, "explain", "record with symbols") with any part this tool leaves out and
+  where that part is taught instead, and names who does the verb: the student, or the student choosing while the
+  tool carries it out. If the tool does it (writes the equation, fills the table, draws the conclusion), change the
+  design or move the code. Each "do" code needs five or more checked items that differ; each "understand" code
+  needs a prediction before the reveal. Lettered parts of the writing standards each get a named, checked action.
 - **Make the outcome visible.** When the point is "watch it change", list what the picture shows for every outcome,
   and make each one different at a glance, with its own art states if needed (Moon Base: three endings looked alike
   and "the plants are droopy" played over healthy tomatoes).
@@ -122,9 +139,11 @@ gets done. So "Can it be beaten?" and "Heard in order" are now sections of the s
 ## Not like
 <one line per close neighbor: its id and how this differs>
 ## Who and how
-<grade, subject, driver (teacher / students / either), minutes, standards codes; disclosure note if prompts are personal>
+<grade, subject, driver (teacher / students / either), minutes, standards codes; role (lesson / see why / practice)
+ and, for see why or practice, one line on what the unit or a worksheet adds; disclosure note if prompts are personal>
 ## Standards map
-<one row per code: code | the student action that teaches it | what they see | the Done when check that proves it>
+<one row per code: code | the standard's verb and its parts (parts left out, and where they are taught) | who does
+ the verb | the student action that teaches it | how many differing items | what they see | the Done when check>
 ## Screens and modes
 <on load and first tap: what plays, what each first tap does, the first hint. Then each mode: its focus, its layout
  at 1366x768 (what is above the fold) and what folds at 680x425, what the person does, what responds. Name every
@@ -149,7 +168,9 @@ gets done. So "Can it be beaten?" and "Heard in order" are now sections of the s
  Try at least: guessing, elimination (the options repeat or shrink), the answer's position or size or color, a total
  or count that only the right option has, the answer already on screen (a strip, chart, highlight, label or counter
  that shows it before the child answers), doing nothing, mashing, and the common wrong answer. Any way that works is
- a design change here, not a note.>
+ a design change here, not a note. Also try: feedback that says which way to move ("too much", "higher"), which
+ turns a check into hot and cold when tries are free; and a readout or running total that already shows the answer.
+ Trying again is not beating the check where the standard itself asks the student to test, refine or investigate.>
 ## Heard in order
 <K-2 tools, and any tool where a line must be heard: for each step, the lines in the order they play, which ones the
  next line or tap waits for, and the next action spoken. A sound inside a sentence is its recorded clip, never a bare
