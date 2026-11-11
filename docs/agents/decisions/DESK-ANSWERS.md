@@ -137,3 +137,44 @@ before that tool is built.
   when a contact turns one up.
 - Stage areas from the performer's view and the class count-sheet key stay.
 - Statistics thresholds stay, labeled as classroom rules on the key.
+
+## 2026-11-10, Sara's spec questions (q-sara-specs, q-sara-specs-2)
+
+**Settled by Claude at Cory's request ("you might be able to do it knowing my intent already"), from BASELINE and
+the adoption bar. Cory can reverse any of them; one call is left open on the Desk.** The 220 notes behind the two
+cards each used a default, and every default stands except where a line below says otherwise.
+
+By class, all 220 notes:
+- Sensitivity flags (about 70): the default stands. Each gets the fresh-agent sensitivity read before Build (BASELINE),
+  hard history is told plainly at grade level with sources on screen, and no images of suffering.
+- Data sources (about 35): the default stands. Data is bundled with its pull date, no network at runtime, each figure
+  rechecked at Build and at the yearly check.
+- Code moves (about 25): every move stands. Tools carry their own codes now (ECOSYSTEM.md), so the specs are already
+  right; data/modules.csv is brought into line when module standards are spelled out in path step 4, and the full
+  read (step 2) checks each receiving tool really teaches the code it was handed.
+- Overlaps (about 20): each "Not like" split stands; the step 2 tables confirm or flag them.
+- Format changes (nine): accepted.
+- Trapezoids: inclusive definition everywhere, teacher note naming the other.
+
+The thirteen calls:
+- Because Bridge: swap the helmet-law line for a third safety reason, so the tool is true in every state.
+- Idiom Illustrator: add the grade 4 deck (L.4.5a, L.4.5b) as its own content, so it counts for grade 4 in the ledger.
+- Myth Museum, Fire room: keep the Cherokee Water Spider story, the Cherokee Nation's own telling credited first,
+  fresh-agent sensitivity read before Build.
+- Ten Spanish tools: a fresh agent checks the Spanish text at spec revision; a person listens to a 20-line sample
+  per tool at the Art and voice step. Who listens is asked then, not now.
+- Mundo Hispano: bank voices with regional accents; a speaker per place only if a funder or volunteer appears.
+- Eleven ELD tools: English only with pictures and read-aloud; home-language glossaries later as one shared kit
+  feature.
+- Code moves and the two module titles (Skateboard Fund Chances, Behind the Podcast): apply, in path step 4.
+- Nine format changes: accept.
+- State Story Timeline: Nebraska first as the model, other states in waves, each with its own sensitivity read.
+  It is not in either proof course, so nothing is built until its course comes up in step 6.
+- Changemaker Cards: keep the six.
+- CSTA 2026 text: file it in data/standards with its licence noted, together with the other subjects' texts still
+  owed from step 1 (science first, since the ledger cannot measure a course without its texts).
+- Many Voices Book: bank voice for the whole book; native-speaker greetings only with volunteers and consent.
+- Settle the Valley: LEFT OPEN for Cory and Sara (card q-sara-specs-2). Claude's pick changed with the adoption
+  bar: a made-up first people is the kind of generic portrayal state reviews mark down, so the pick is now to hold
+  the tool and rebuild it on one real nation's own published teaching materials when its course comes up.
+
