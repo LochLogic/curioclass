@@ -58,9 +58,10 @@ finding 11). On timing: short timed activities of one to five minutes are rated 
 small-group help for students who struggle, on material already taught, with feedback, never as bare timed
 sheets (WWC 2021, recommendation 6). The evidence does not tell us whether a whole class needs a clock. We
 wanted to say fluency is best built without time pressure. We could not source that, so we do not say it.
-**Open decision for Cory:** whether any tool shows a timer. The expert's recommendation is no countdown in any
-tool; a teacher or parent may run a short paper sprint on taught facts, the student comparing only with their
-own last score.
+*Rule (Cory, 2026-11-11):* no tool shows a
+countdown timer to a student. Tools build fluency with short, spaced, mixed practice and immediate feedback. A
+teacher or parent may run a short paper sprint on facts already taught, the student comparing only with their
+own last score, never graded or posted.
 
 **The daily evidence (principle 8).** Each day ends with an exit question. Regular formative assessment helps
 in the elementary grades (National Mathematics Advisory Panel, finding 25). Many errors are sensible ideas used

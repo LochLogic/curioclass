@@ -357,3 +357,15 @@ openings with a condition; cut both pages roughly in half with the study detail 
 added proposed unit plan fields. Nothing is approved. Open with Cory on Desk card q-approach: tool timers, the
 SPEC.md wording, the teach-first default.
 
+## 2026-11-11: q-approach answered (Cory, in chat: "All three sound good to me. Let's also move forward with out the library")
+
+1. No countdown timer is shown to a student in any tool. A teacher or parent may run a short paper sprint on taught
+   facts, the student comparing only with their own last score. Written into docs/APPROACH-MATH.md.
+2. SPEC.md "Explore first, then do" is renamed "Try it, see it, do it", with a line that the model follows at once.
+3. In grades 2 to 5 teaching first is the default for anything new; a short opening task is allowed when students
+   can attempt it and the goal is an idea; science sets its own rule on its own page. Already in docs/APPROACH.md,
+   principle 4.
+
+No library access: paywalled sources stay unread and nothing may rest on them (docs/APPROACH-SOURCES.md).
+The approach as a whole still waits for Cory's read.
+

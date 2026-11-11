@@ -261,6 +261,9 @@ checks are in docs/reviews/approach-2026-11-11.md.
   intervention, on material already taught, with feedback. Not a whole-class finding.
 - **EEF maths report 2022.** Written for ages 7 to 14.
 
+Cory, 2026-11-11: go forward without library access. The paywalled items below stay unread unless a free copy
+turns up, and no page may rest on them.
+
 **Not yet read, in order of value** (the first is the claim closest to what Curio Class builds):
 
 1. A review of on-screen (virtual) manipulatives, such as Moyer-Packenham and Westenskow 2013.

@@ -13,7 +13,9 @@ minimal; the oldest guide says low), that rating is given. The detail behind eac
 many studies, how big the effect) is in [APPROACH-SOURCES.md](APPROACH-SOURCES.md), "Evidence notes".
 
 Second draft, 2026-11-11, revised after a cold read by the curriculum expert
-([reviews/approach-2026-11-11.md](reviews/approach-2026-11-11.md)). Not yet approved.
+([reviews/approach-2026-11-11.md](reviews/approach-2026-11-11.md)). Cory settled three points the same day
+(how a lesson opens, no timers in tools, a wording change in SPEC.md). The page as a whole still waits for his
+read.
 
 > **What this means in your room, or at your table**
 >

@@ -23,7 +23,9 @@ must stand on its own: anything not in the spec will not be in the tool.
 
 - **One idea.** Name the single thing that makes this tool worth opening. If a neighbor already does that idea or
   mechanic, change yours and say how in "Not like".
-- **Explore first, then do.** Would a kid click around this with no instructions? Exploring opens the tool. But the
+- **Try it, see it, do it** (renamed from "Explore first, then do" on 2026-11-11, Cory; no change of substance).
+  The opening try is under a minute and withholds nothing; the model follows at once (docs/APPROACH.md,
+  principles 3 and 4). Would a kid click around this with no instructions? Exploring opens the tool. But the
   step where the student does what the standard says (solves, writes, explains, records) is on the main path, and the
   first hint after exploring leads into it. It is never an optional mode, a teacher note or a readout (BASELINE rule
   21; until 2026-11-10 this line read "Challenges are optional modes, never the point", and most of the gaps the
