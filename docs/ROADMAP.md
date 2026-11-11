@@ -137,8 +137,8 @@ practice only, 2 shown to 25 full, 3 nearly (4.NBT.A.3, 4.MD.B.4, 4.G.A.1); ever
 taught and no guessable check is listed. Grade 6 ELA went from 4 full, 6 nearly, 17 part, 14 practice only, 2 shown
 to 16 full, 7 nearly, 9 part, 10 practice only, 1 shown. What is left in grade 6 ELA is mostly not a spec problem:
 nine tools cannot carry 43 standards, so the gaps (RL.6.7, RL.6.9, RI.6.3, RI.6.6 to RI.6.9, W.6.1 to W.6.6,
-W.6.10, SL.6.2, SL.6.5, L.6.2, L.6.4, L.6.6) need tools the course does not have yet or rest on the grade 6 to 8
-band tools; that is a step 4 (Shape) question. Still open on the fix list for the 22: argument-x-ray (a tag-and-scan
+W.6.10, SL.6.2, SL.6.5, L.6.2, L.6.4, L.6.6) rest on the grade 6 to 8 band tools, whose specs are not fixed yet
+(see the correction below). Still open on the fix list for the 22: argument-x-ray (a tag-and-scan
 check with free reruns, no model, few items; Sara had logged it fine), skate-park-angles (one code under five
 items), unit-ladder (spec too thin to judge; Sara had logged it fine). Treat the math result as the reader's view,
 not a verdict: it is one pass by the cheaper model on freshly rewritten specs, and the final review is the check.
@@ -147,10 +147,16 @@ Site-wide after the rebuild: 254 full, 370 nearly, 375 part, 1,093 practice only
 
 Order changed (Cory, 2026-11-10, late): Shape now runs before fixing, one course at a time, because a fix to a
 tool that Shape then cuts or re-roles is wasted, and grade 6 ELA showed that fixing specs cannot close a gap that
-is really too few tools. Sara works the courses Shape has been through. Grade 4 math is shaped
-(docs/agents/catalog/shape/math-4.md, Desk card q-shape-math-4); grade 6 ELA is next.
+is really a shape question. Sara works the courses Shape has been through. Three courses are shaped, one file
+each in docs/agents/catalog/shape/, one Desk card each (q-shape-math-4, q-shape-ela-6, q-shape-math-5): grade 4
+math, grade 6 ELA and grade 5 math. Correction from shaping grade 6 ELA: its gap is not too few tools. The course
+is 23 tools, nine in grade 6 modules (fixed) and fourteen in grade 6 to 8 band modules (not fixed), and every large
+gap sits on a band tool. A course is its own modules plus every band module that carries one of its standards.
+Sara's next batch is those fourteen band specs, then grade 5 math (seven specs that do not wait on a Desk answer).
+Across the three courses Shape cuts nothing and proposes five second lesson tools, all on the Desk.
 
-Next, in this order: (1) shape grade 6 ELA; (2) Sara's final review of the two proving courses
+Next, in this order: (1) shape the next courses (grade 3 math, grade 7 ELA), and script the two rule-only parts
+for every math course (spell out module standards; list tools over four codes or 35 minutes); (2) Sara's final review of the two proving courses
 (docs/spec-fixes/FINAL-REVIEW.md), starting with the three tools above and the small additions in each shape file;
 (3) wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
 the beatable rule, clean the contradictory rows, then rebuild the ledger and the maps. After that step 2 is closed

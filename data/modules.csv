@@ -463,17 +463,17 @@ math-4-measurement-conversions,math,4,math-k8,Measurement and Data,Measurement C
 math-4-area-and-perimeter-formulas,math,4,math-k8,Measurement and Data,Area and Perimeter Formulas,Apply area and perimeter formulas for rectangles in real problems,4.MD.A.3,CCSS-Math,math.txt
 math-4-angles-and-line-plots,math,4,math-k8,Measurement and Data,Angles and Line Plots,Angle concepts and protractors; line plots of fractional measurements,4.MD.B.4;4.MD.C.5;4.MD.C.6;4.MD.C.7,CCSS-Math,math.txt
 math-4-lines-angles-and-symmetry,math,4,math-k8,Geometry,"Lines, Angles and Symmetry",Classify figures by lines and angles; lines of symmetry,4.G.A.1;4.G.A.2;4.G.A.3,CCSS-Math,math.txt
-math-5-expressions-and-order-of-operations,math,5,math-k8,Operations and Algebraic Thinking,Expressions and Order of Operations,Write and interpret numerical expressions with grouping symbols,5.OA.A,CCSS-Math,math.txt
-math-5-patterns-and-relationships,math,5,math-k8,Operations and Algebraic Thinking,Patterns and Relationships,Generate two patterns and graph ordered pairs,5.OA.B,CCSS-Math,math.txt
-math-5-powers-of-ten-and-decimals,math,5,math-k8,Number and Operations in Base Ten,Powers of Ten and Decimals,"Place value system; read, compare and round decimals to thousandths",5.NBT.A,CCSS-Math,math.txt
-math-5-operations-with-whole-numbers-and-decimals,math,5,math-k8,Number and Operations in Base Ten,Operations with Whole Numbers and Decimals,Fluent multi-digit multiplication; divide; decimal operations to hundredths,5.NBT.B;NSPFE.Spending,CCSS-Math;NSPFE-2021,math.txt
-math-5-adding-unlike-fractions,math,5,math-k8,Number and Operations - Fractions,Adding Unlike Fractions,Add and subtract fractions with unlike denominators,5.NF.A,CCSS-Math,math.txt
-math-5-multiplying-and-dividing-fractions,math,5,math-k8,Number and Operations - Fractions,Multiplying and Dividing Fractions,Fraction multiplication as scaling,5.NF.B,CCSS-Math,math.txt
-math-5-fractions-as-division,math,5,math-k8,Number and Operations - Fractions,Fractions as Division,A fraction as division; dividing unit fractions and whole numbers,5.NF.B,CCSS-Math,math.txt
-math-5-units-and-line-plots,math,5,math-k8,Measurement and Data,Units and Line Plots,Convert measurement units; line plots with fractional data,5.MD.A;5.MD.B,CCSS-Math,math.txt
-math-5-volume,math,5,math-k8,Measurement and Data,Volume,Understand volume; volume of rectangular prisms,5.MD.C,CCSS-Math,math.txt
-math-5-the-coordinate-plane,math,5,math-k8,Geometry,The Coordinate Plane,Graph points in the first quadrant to solve problems,5.G.A,CCSS-Math,math.txt
-math-5-classifying-2d-figures,math,5,math-k8,Geometry,Classifying 2D Figures,Hierarchy of shapes by properties,5.G.B,CCSS-Math,math.txt
+math-5-expressions-and-order-of-operations,math,5,math-k8,Operations and Algebraic Thinking,Expressions and Order of Operations,Write and interpret numerical expressions with grouping symbols,5.OA.A.1;5.OA.A.2,CCSS-Math,math.txt
+math-5-patterns-and-relationships,math,5,math-k8,Operations and Algebraic Thinking,Patterns and Relationships,Generate two patterns and graph ordered pairs,5.OA.B.3,CCSS-Math,math.txt
+math-5-powers-of-ten-and-decimals,math,5,math-k8,Number and Operations in Base Ten,Powers of Ten and Decimals,"Place value system; read, compare and round decimals to thousandths",5.NBT.A.1;5.NBT.A.2;5.NBT.A.3;5.NBT.A.4,CCSS-Math,math.txt
+math-5-operations-with-whole-numbers-and-decimals,math,5,math-k8,Number and Operations in Base Ten,Operations with Whole Numbers and Decimals,Fluent multi-digit multiplication; divide; decimal operations to hundredths,5.NBT.B.5;5.NBT.B.6;5.NBT.B.7;NSPFE.Spending,CCSS-Math;NSPFE-2021,math.txt
+math-5-adding-unlike-fractions,math,5,math-k8,Number and Operations - Fractions,Adding Unlike Fractions,Add and subtract fractions with unlike denominators,5.NF.A.1;5.NF.A.2,CCSS-Math,math.txt
+math-5-multiplying-and-dividing-fractions,math,5,math-k8,Number and Operations - Fractions,Multiplying and Dividing Fractions,Fraction multiplication as scaling,5.NF.B.4;5.NF.B.5;5.NF.B.6,CCSS-Math,math.txt
+math-5-fractions-as-division,math,5,math-k8,Number and Operations - Fractions,Fractions as Division,A fraction as division; dividing unit fractions and whole numbers,5.NF.B.3;5.NF.B.7,CCSS-Math,math.txt
+math-5-units-and-line-plots,math,5,math-k8,Measurement and Data,Units and Line Plots,Convert measurement units; line plots with fractional data,5.MD.A.1;5.MD.B.2,CCSS-Math,math.txt
+math-5-volume,math,5,math-k8,Measurement and Data,Volume,Understand volume; volume of rectangular prisms,5.MD.C.3;5.MD.C.4;5.MD.C.5,CCSS-Math,math.txt
+math-5-the-coordinate-plane,math,5,math-k8,Geometry,The Coordinate Plane,Graph points in the first quadrant to solve problems,5.G.A.1;5.G.A.2,CCSS-Math,math.txt
+math-5-classifying-2d-figures,math,5,math-k8,Geometry,Classifying 2D Figures,Hierarchy of shapes by properties,5.G.B.3;5.G.B.4,CCSS-Math,math.txt
 math-6-ratios-and-rates,math,6,math-k8,Ratios and Proportional Relationships,Ratios and Rates,"Ratio language, unit rates, percents, tables and double number lines",6.RP.A,CCSS-Math,math.txt
 math-6-dividing-fractions,math,6,math-k8,The Number System,Dividing Fractions,Divide fractions by fractions,6.NS.A,CCSS-Math,math.txt
 math-6-multi-digit-and-decimal-fluency,math,6,math-k8,The Number System,Multi-Digit and Decimal Fluency,Divide multi-digit numbers; operate with decimals; GCF and LCM,6.NS.B,CCSS-Math,math.txt
