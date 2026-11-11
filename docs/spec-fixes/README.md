@@ -66,11 +66,11 @@ separate step Claude runs after (ROADMAP step 3 for live tools, steps 5 and 6 fo
 
 ## The order
 
-1. The two proving courses: grade 4 math, then grade 6 ELA. Building resumes with these, so they come first.
-2. The 26 live tools sorted as rework (filter fix-list.csv: stage live, sort rework). These are what a teacher or
-   reviewer sees today.
-3. Every other course, in the order the roadmap scales them. Until that order is set: math, ELA, science, social
-   studies, then the rest.
+Work only courses that have been shaped (docs/agents/catalog/shape/<course>.md), so nothing is fixed that is then
+cut, merged or given a new role. Each shape file ends with the spec work it leaves for that course; do that first.
+
+1. The two proving courses: grade 4 math, then grade 6 ELA.
+2. Each further course as its shape file appears, in the order the roadmap scales them.
 
 ## How far to trust the list by subject
 

@@ -189,3 +189,10 @@ The thirteen calls:
   does a final review to confirm they meet the end standard (docs/spec-fixes/FINAL-REVIEW.md). This replaces
   "revise just before Build" as the default: specs are fixed ahead of Build.
 
+## 2026-11-10, late: Shape before fixing (Cory, in chat)
+
+- Cory asked why fixing came before Shape. Agreed change: Shape runs first, one course at a time, then the fixes for
+  that course (specs by Sara, live tools by Claude). Only fixes that hold whatever the shape (a wrong fact, a broken
+  control on a live tool) run ahead of it. This replaces "fix the 26 live rework tools first".
+- Sara's order follows: courses that have been shaped, starting with the two proving courses.
+

@@ -76,8 +76,8 @@ one exception.
 |---|---|---|---|
 | 1. Rules. **Done 2026-11-10** | The teaching test and six rule edits are in SPEC.md, REFINE.md and docs/TOOL-CONTRACT.md. Common Core math and ELA texts and the major-work marks are filed in data/standards/. The other subjects' texts are filed there too (CSTA 2026 as ids only) but not yet wired into the packets or the ledger | A new spec or lens cannot pass a tool that fails the test | Nothing |
 | 2. Read. **Read and maps done 2026-11-10; wiring the other texts next** | Every spec read with row format 2: the 36 pilot tools again as the test, then all the rest by subject and band (about 64 cheaper-model agents). Scripts build the ledger and one map per course, and flag two-topic modules | Every course has its map and its measure | Nothing |
-| 3. Fix what is built | The live-tool fixes in the order in DESK-ANSWERS, then whatever the read finds in the other live tools. The shelf fixes in docs/ECOSYSTEM.md: pages, search, plans and Sub Day show a tool's own codes; worksheets join by module id; The Map counts a stop ready when its lesson tool is live. The 149 built tools waiting on Refine are not fixed now; the new Teaching lens catches them when Refine resumes | Every live math, ELA and science tool passes the test or carries an honest role, and a module can hold a second tool without any page showing a wrong code | Nothing, unless a fix changes what a tool teaches |
-| 4. Shape | From the maps, by rule: module standards spelled out, spec notes applied, second and third tools listed for major-work modules, supporting tools that wait, worksheet presets and Reading Room sets written into the ledger, and a build order by value (data/waves.csv) | data/modules.csv, the specs, the ledger and the build order all agree with the maps | One Desk card per subject, exceptions only: reshape, hold, cut, new tool, split a module |
+| 3. Shape, one course at a time (was step 4; moved ahead of fixing 2026-11-10) | From the maps, by rule, for one course: module standards spelled out, spec notes applied, second and third tools listed for major-work modules, supporting tools that wait, tools to cut, merge or give a new role, and a build order by value. The two proving courses first. One file per course in docs/agents/catalog/shape/ | data/modules.csv, the specs, the ledger and the build order agree with the map for that course | One Desk card per course, exceptions only: reshape, hold, cut, new tool, split a module |
+| 4. Fix what Shape keeps (was step 3) | For each shaped course: Sara fixes its specs from docs/spec-fixes/, and the live tools in it are fixed, so nothing is repaired that Shape then cuts. Ahead of Shape, only fixes that hold whatever the shape: a wrong fact or a broken control on a live tool. The shelf fixes in docs/ECOSYSTEM.md (pages, search, plans and Sub Day show a tool's own codes; worksheets join by module id; The Map counts a stop ready when its lesson tool is live) can run any time. Built tools waiting on Refine are not fixed now; the Teaching lens catches them when Refine resumes | Every live tool in a shaped course passes the test or carries an honest role, and a module can hold a second tool without any page showing a wrong code | Nothing, unless a fix changes what a tool teaches |
 | 5. Prove one course | Grade 4 math and grade 6 ELA (Track 7): the year spine, then one pilot unit each, pulling from every shelf, read by a fresh agent against docs/ADOPTION-BAR.md. Building resumes for these two courses only. The token plan's side-by-side trial runs on the first three tools | Cory can open one unit of each and see the bar met | The two spines, then the pilot review |
 | 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first. Each finished course gets its spine, units and a full row on the measure | Course by course, the measure reaches full | The order of courses |
 
@@ -145,10 +145,16 @@ not a verdict: it is one pass by the cheaper model on freshly rewritten specs, a
 Site-wide after the rebuild: 254 full, 370 nearly, 375 part, 1,093 practice only, 271 shown, 37 none; specs 88 fine,
 542 small addition, 170 rework.
 
-Next, in this order: (1) Sara's final review of the two proving courses (docs/spec-fixes/FINAL-REVIEW.md), starting
-with the three tools above; (2) wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
+Order changed (Cory, 2026-11-10, late): Shape now runs before fixing, one course at a time, because a fix to a
+tool that Shape then cuts or re-roles is wasted, and grade 6 ELA showed that fixing specs cannot close a gap that
+is really too few tools. Sara works the courses Shape has been through. Grade 4 math is shaped
+(docs/agents/catalog/shape/math-4.md, Desk card q-shape-math-4); grade 6 ELA is next.
+
+Next, in this order: (1) shape grade 6 ELA; (2) Sara's final review of the two proving courses
+(docs/spec-fixes/FINAL-REVIEW.md), starting with the three tools above and the small additions in each shape file;
+(3) wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
 the beatable rule, clean the contradictory rows, then rebuild the ledger and the maps. After that step 2 is closed
-and step 3 (fix what is built: the 26 live rework tools first) opens. Specs are fixed by Sara from docs/spec-fixes/, ahead of Build, so a
+and Shape carries on course by course (step 3), each followed by its fixes (step 4). Specs are fixed by Sara from docs/spec-fixes/, ahead of Build, so a
 course's specs are ready when its turn comes (steps 5 and 6).
 Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
 
