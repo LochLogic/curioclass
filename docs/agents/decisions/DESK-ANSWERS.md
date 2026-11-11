@@ -395,3 +395,12 @@ sources for the list. Cory asked whether gathering sources had improved the expe
 Written into docs/courses/math-4-spine.md and docs/courses/math-3-5-progression.md. No day, order or unit moved, so
 data/units.csv is unchanged. The progression page's length is accepted as it is.
 
+## 2026-11-11: Sara's work after batch 4 (Cory, in chat)
+
+Cory asked whether Sara can work the rest of the spines. Agreed: yes, math grades 3 and 5 first, as drafts with an
+expert read each. Cory then: "give her a bit more to do, even if it needs corrected later" and "maybe she can also
+do the drafts for the approach pages and rubric files for science and english". Her list is
+docs/courses/NEXT-SPINES.md: grade 3 and 5 math spines; science rubric files and approach page; ELA rubric file,
+approach page and the grade 6 text plan; then K to 2 and 6 to 8 math progressions and spines. All drafts; no
+units.csv rows, no tool work, and anything that changes what a course teaches goes to Cory as a card. This bends
+"one course finished before the next is started" on purpose: drafts of lower layers only. Unit pieces wait for 4c.

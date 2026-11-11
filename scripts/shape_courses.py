@@ -528,7 +528,7 @@ for i, (key, lab) in enumerate((('math-5', 'grade 5 math'), ('math-3', 'grade 3 
     N.append('- Fix: ' + names([d for d in rest if d['sort'] != 'fine']) + '.')
     N.append('- Confirm only: ' + names([d for d in rest if d['sort'] == 'fine']) + '.\n')
 N.append('## After batch 4\n')
-N.append('Specs stay stopped. Your work moves to the unit pieces for the two proving courses (Cory, 2026-11-11): teacher pages, the readiness and end checks with their keys, sentence frames, and your final review. Claude sets that list up when batch 4 is close.\n')
+N.append('Specs stay stopped. Your work moves to drafts of the layers under a course (Cory, 2026-11-11): the grade 3 and grade 5 math spines, the rubric files and approach pages for science and English language arts, the grade 6 ELA text plan, then more math spines. The list, the order and how each piece is made: [../courses/NEXT-SPINES.md](../courses/NEXT-SPINES.md). It can start before batch 4 ends if a batch is waiting on something. Unit pieces (teacher pages, checks with their keys, sentence frames) come after the unit plan fields are fixed.\n')
 N.append('## On hold: every other course\n')
 N.append('Do not start these. They open, in this order, once grade 4 math is proved. The table is here so the size of what is left stays in view. A band tool is counted once, with the first course that uses it. "Wait" means a Desk card is open on that tool.\n')
 N.append('| Order | Course | Specs left | Rework | Small addition | Confirm only | Wait | Shape file |')

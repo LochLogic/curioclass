@@ -44,7 +44,7 @@ Fix list: courses/math-3.md. Shape: ../agents/catalog/shape/math-3.md.
 
 ## After batch 4
 
-Specs stay stopped. Your work moves to the unit pieces for the two proving courses (Cory, 2026-11-11): teacher pages, the readiness and end checks with their keys, sentence frames, and your final review. Claude sets that list up when batch 4 is close.
+Specs stay stopped. Your work moves to drafts of the layers under a course (Cory, 2026-11-11): the grade 3 and grade 5 math spines, the rubric files and approach pages for science and English language arts, the grade 6 ELA text plan, then more math spines. The list, the order and how each piece is made: [../courses/NEXT-SPINES.md](../courses/NEXT-SPINES.md). It can start before batch 4 ends if a batch is waiting on something. Unit pieces (teacher pages, checks with their keys, sentence frames) come after the unit plan fields are fixed.
 
 ## On hold: every other course
 
