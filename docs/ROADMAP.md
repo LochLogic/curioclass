@@ -85,9 +85,14 @@ again in row format 2 (about 175k tokens a packet). Result: the cold read finds 
 math: the same three standards shown, and the judge's reasons appear as the rows' missing parts), but it marks a
 standard part for any missing piece, where the judge called small ones nearly full (math 4: 4 full and 21 part,
 against the judge's 17 full or nearly full). Fix made: each code carries `missing_weight` (core or edge) and the
-ledger has a `nearly` status. Next: one cheaper-model agent adds `missing_weight` to the 36 pilot rows, the ledger
-is checked against the judge's 17, 8, 4, then the full read by subject and band (make
-packets with catalog_batch.py, one cheaper-model agent per packet, then `python scripts/coverage_ledger.py`).
+ledger has a `nearly` status. The 36 pilot rows are weighted (about 93k tokens). Where it
+landed: grade 4 math 4 full, 6 nearly, 15 part, 1 practice only, 2 shown; grade 6 ELA 3 full, 6 nearly, 18 part,
+14 practice only, 2 shown. That is still stricter than the pilot judge (17 full or nearly full in math), and the
+difference is real, not noise: with the official wording in front of it, the read marks core every place a standard
+says explain, write or record and the tool does that step for the student. The ledger's count stands as the
+measure; it is not tuned to match the judge. Next: the full read by subject and band, `missing_weight` written in
+the same pass (make packets with catalog_batch.py, one cheaper-model agent per packet, about 175k tokens each, then
+`python scripts/coverage_ledger.py`), with the top model spot-checking a sample of core and edge calls per subject.
 Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
 
 ### What every other track does meanwhile

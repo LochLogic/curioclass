@@ -29,10 +29,10 @@ Built by scripts/coverage_ledger.py from the extract rows; the rows behind it ar
 | ela 3-5 | 0 of 12 | 78 |  |  |  |  |  |  | 78 |  |
 | ela 4 | 0 of 10 | 43 |  |  |  |  |  |  | 42 | 1 |
 | ela 5 | 0 of 9 | 43 |  |  |  |  |  |  | 42 | 1 |
-| ela 6 | 9 of 9 | 43 | 3 |  | 24 | 14 | 2 |  |  |  |
-| ela 6-8 | 14 of 14 | 77 | 2 |  | 40 | 31 | 4 |  |  |  |
-| ela 7 | 0 of 9 | 41 |  |  | 15 | 10 | 2 |  | 11 | 3 |
-| ela 8 | 0 of 9 | 41 |  |  | 11 | 11 | 1 |  | 15 | 3 |
+| ela 6 | 9 of 9 | 43 | 3 | 6 | 18 | 14 | 2 |  |  |  |
+| ela 6-8 | 14 of 14 | 77 | 2 | 9 | 31 | 31 | 4 |  |  |  |
+| ela 7 | 0 of 9 | 41 |  | 3 | 12 | 10 | 2 |  | 11 | 3 |
+| ela 8 | 0 of 9 | 41 |  | 1 | 10 | 11 | 1 |  | 15 | 3 |
 | ela 9 | 0 of 9 | 41 |  |  |  |  |  |  | 29 | 12 |
 | ela 9-12 | 0 of 7 | 33 |  |  |  |  |  |  | 33 |  |
 | ela k | 0 of 9 | 41 |  |  |  |  |  |  | 41 |  |
@@ -57,7 +57,7 @@ Built by scripts/coverage_ledger.py from the extract rows; the rows behind it ar
 | math 12 | 0 of 20 | 76 |  |  |  | 7 | 6 |  | 63 |  |
 | math 2 | 2 of 9 | 26 |  |  |  | 3 | 1 |  | 22 |  |
 | math 3 | 0 of 10 | 25 |  |  |  |  |  |  | 25 |  |
-| math 4 | 13 of 13 | 28 | 4 |  | 21 | 1 | 2 |  |  |  |
+| math 4 | 13 of 13 | 28 | 4 | 6 | 15 | 1 | 2 |  |  |  |
 | math 5 | 0 of 11 | 27 |  |  |  |  |  |  | 27 |  |
 | math 6 | 2 of 11 | 30 |  |  |  | 4 |  | 2 | 24 |  |
 | math 7 | 0 of 12 | 24 |  |  |  |  |  |  | 24 |  |
