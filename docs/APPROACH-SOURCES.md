@@ -275,3 +275,21 @@ turns up, and no page may rest on them.
 5. Anything on parents teaching their own child a full course.
 6. Learning trajectories (Clements and Sarama), when a K to 2 math course opens.
 
+## Lesson-level sources found by the unit plan review (added 2026-11-11)
+
+- EngageNY grade 4, full modules as PDFs with a text layer, CC BY-NC-SA 3.0 (stated in the files). Read only; the
+  non-commercial, share-alike licence means nothing is copied. Module 1:
+  https://unbounded-uploads.s3.amazonaws.com/attachments/2497/math-g4-m1-full-module.pdf ; module 3:
+  https://unbounded-uploads.s3.amazonaws.com/attachments/2086/math-g4-m3-full-module.pdf ; module 5:
+  https://unbounded-uploads.s3.amazonaws.com/attachments/2563/math-g4-m5-full-module.pdf . Lesson pages at
+  lessons.unbounded.org link to the other modules. This is the live Creative Commons copy that List 3 says was
+  not found.
+- Illustrative Mathematics K-5 lesson pages open without sign-in:
+  https://im.kendallhunt.com/k5/teachers/grade-4/unit-N/lesson-N/preparation.html and .../lesson.html ; scope and
+  sequence at https://im.kendallhunt.com/k5/teachers/grade-4/course-guide/scope-and-sequence.html . Cool-downs and
+  unit assessments need a free sign-in and have not been read.
+- Fishtank Learning grade 4 unit pages are open (https://www.fishtanklearning.org/curriculum/math/4th-grade/);
+  lesson pages show only the objective without a sign-in. Its terms give CC BY-NC-SA 4.0 for the free curriculum.
+- Federal fractions practice guide (Siegler and others, 2010, public domain):
+  https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/fractions_pg_093010.pdf . Roadblock 2.2 (PDF page 31) is the source
+  for "numbers in a fraction read as separate whole numbers".

@@ -121,7 +121,8 @@
 - **Grade 5 needs from it:** area of the base, for V = b × h (5.MD.C.5); fractional side lengths (5.NF.B.4b).
 - **Limits:** rectangles. To "apply the formula" does not mean to plug into a memorized one (Prog. p. 112 (106)).
 - **Numbers on these days. Decided, Cory, 2026-11-11.** Keep day 89, before multi-digit multiplication and division. Days 89 to 93: areas are products within 100, or a one-digit number times a multiple of 10. Unknown-side area problems are factor-pair problems (4.OA.B.4). Perimeter may use multi-digit addition (4.NBT.B.4) and like-denominator fractions (4.NF.B.3d). Area with larger sides returns in units 12 and 13 as the context for partial products and for division, and in stretch 14 problems. Without that return 4.MD.A.3 is half taught.
-- **Hard here:** adding one length and one width for perimeter (Prog. pp. 106 (100) and 111 (105)).
+- **Hard here:** adding one length and one width for perimeter (Prog. pp. 106 (100) and 111 (105)). Writing the four-side form first (5 + ? + 5 + ? = 30) guards against it (Prog. p. 111 (105)).
+- **Practice.** MP.2: think of the situation, then write its equation with one unknown. MP.8: a formula as the summary of repeated calculations (Prog. pp. 111 to 112 (105 to 106)). Added 2026-11-11 from the unit plan review.
 
 ### Stretch 12. Multi-Digit Multiplication (days 94 to 105; 4.NBT.B.5)
 

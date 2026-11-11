@@ -168,8 +168,9 @@ boundary moves; only which unit points at which part.
 **Fluency all year.** The one fluency grade 4 requires by name is 4.NBT.B.4. Every day opens with a five-minute
 warm-up from the worksheet generator:
 
-- **Adding and subtracting, from day 1.** Within 1,000 (3.NBT.A.2) until stretch 9, then multi-digit numbers with
-  the standard algorithm from day 72 to the end of the year.
+- **Adding and subtracting, from day 1.** Within 1,000 (3.NBT.A.2) until stretch 9. Multi-digit adding with the
+  standard algorithm enters the warm-up the day after it is taught, and subtracting from day 78, to the end of the
+  year (corrected 2026-11-11: the warm-up had used the algorithm from day 72, the day it is first taught).
 - **Times tables, from day 1.** Labelled on every page as grade 3 maintenance (3.OA.C.7), not grade 4 teaching.
   Every stretch after the first leans on them. Days 1 to 6 include a facts check. Students below the mark get the
   grade 3 fact tools and print during warm-ups, never in place of a lesson day, and the check repeats before day 94,
