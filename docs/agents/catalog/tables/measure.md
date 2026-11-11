@@ -29,10 +29,10 @@ Built by scripts/coverage_ledger.py from the extract rows; the rows behind it ar
 | ela 3-5 | 12 of 12 | 78 | 5 | 10 | 15 | 45 | 3 |  |  |  |
 | ela 4 | 10 of 10 | 43 | 1 | 7 | 6 | 27 | 2 |  |  |  |
 | ela 5 | 9 of 9 | 43 | 3 | 5 | 10 | 23 | 2 |  |  |  |
-| ela 6 | 9 of 9 | 43 | 4 | 6 | 17 | 14 | 2 |  |  |  |
-| ela 6-8 | 14 of 14 | 77 | 2 | 9 | 32 | 30 | 4 |  |  |  |
-| ela 7 | 9 of 9 | 41 | 2 | 6 | 19 | 12 | 2 |  |  |  |
-| ela 8 | 9 of 9 | 41 | 4 | 4 | 15 | 17 | 1 |  |  |  |
+| ela 6 | 9 of 9 | 43 | 16 | 7 | 9 | 10 | 1 |  |  |  |
+| ela 6-8 | 14 of 14 | 77 | 6 | 11 | 29 | 28 | 3 |  |  |  |
+| ela 7 | 9 of 9 | 41 | 3 | 7 | 19 | 11 | 1 |  |  |  |
+| ela 8 | 9 of 9 | 41 | 5 | 5 | 13 | 17 | 1 |  |  |  |
 | ela 9 | 9 of 9 | 41 | 1 | 6 | 6 | 27 | 1 |  |  |  |
 | ela 9-12 | 7 of 7 | 33 | 3 | 7 | 3 | 19 | 1 |  |  |  |
 | ela k | 9 of 9 | 41 | 10 | 5 | 9 | 15 | 2 |  |  |  |
@@ -48,7 +48,7 @@ Built by scripts/coverage_ledger.py from the extract rows; the rows behind it ar
 | health-pe 9-12 | 7 of 7 | 12 | 2 | 3 | 1 | 6 |  |  |  |  |
 | health-pe k-2 | 8 of 8 | 13 | 1 | 4 | 2 | 6 |  |  |  |  |
 | library 3-5 | 3 of 3 | 5 | 2 | 1 | 1 | 1 |  |  |  |  |
-| library 6-8 | 3 of 3 | 15 | 1 | 2 | 4 | 8 |  |  |  |  |
+| library 6-8 | 3 of 3 | 15 | 3 | 2 | 3 | 7 |  |  |  |  |
 | library 9-12 | 4 of 4 | 13 | 2 | 2 | 2 | 6 | 1 |  |  |  |
 | library k-2 | 3 of 3 | 6 | 2 |  | 1 | 3 |  |  |  |  |
 | math 1 | 11 of 11 | 21 | 1 | 3 | 3 | 13 | 1 |  |  |  |
@@ -57,7 +57,7 @@ Built by scripts/coverage_ledger.py from the extract rows; the rows behind it ar
 | math 12 | 20 of 20 | 76 |  |  | 12 | 26 | 30 | 8 |  |  |
 | math 2 | 9 of 9 | 26 | 7 | 3 | 7 | 5 | 4 |  |  |  |
 | math 3 | 10 of 10 | 25 | 3 | 6 | 5 | 9 | 2 |  |  |  |
-| math 4 | 13 of 13 | 28 | 4 | 6 | 15 | 1 | 2 |  |  |  |
+| math 4 | 13 of 13 | 28 | 25 | 3 |  |  |  |  |  |  |
 | math 5 | 11 of 11 | 27 | 4 | 7 | 8 | 6 | 2 |  |  |  |
 | math 6 | 11 of 11 | 30 | 8 | 4 | 10 | 5 | 1 | 2 |  |  |
 | math 7 | 12 of 12 | 24 | 8 | 10 | 4 | 2 |  |  |  |  |

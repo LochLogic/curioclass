@@ -8,7 +8,7 @@ Built by scripts/catalog_maps.py. 13 tools, 39 standard rows (a standard counts 
 |---|---|---|---|---|---|---|---|
 | library k-2 | 6 | 2 |  | 1 | 3 |  |  |
 | library 3-5 | 5 | 2 | 1 | 1 | 1 |  |  |
-| library 6-8 | 15 | 1 | 2 | 4 | 8 |  |  |
+| library 6-8 | 15 | 3 | 2 | 3 | 7 |  |  |
 | library 9-12 | 13 | 2 | 2 | 2 | 6 | 1 |  |
 
 ## The specs, sorted
@@ -66,10 +66,11 @@ Built by scripts/catalog_maps.py. 13 tools, 39 standard rows (a standard counts 
 | Standard | Status | Lesson tools | Practice or see-why | Weak | Missing |
 |---|---|---|---|---|---|
 | AASL.Curate | Full | fake-or-fact-lab | boolean-builder; keyword-fishing; library-adventure; source-portfolio |  |  |
+| W.6.7 | Full | source-sorter | research-quest |  |  |
+| W.6.8 | Full | fake-or-fact-lab; source-sorter |  |  | avoid plagiarism ; basic bibliographic information ; gather information from several sources for a topic ; quote or paraphrase |
 | AASL.Engage | Nearly | credit-card-builder; fair-use-review; fake-or-fact-lab | research-quest; secret-keeper |  | a formal citation style ; citation styles and plagiarism ; explaining why credit matters (only read on cards in Creator's Corner) ; permi... |
 | D3.2.6-8 | Nearly | fake-or-fact-lab |  |  | stating the source's purpose in own words |
 | AASL.Explore | Part | windows-and-mirrors-shelf | enduring-questions; rabbit-hole-notebook | library-adventure | actually reading widely (no book is read) |
-| W.6.8 | Part | fake-or-fact-lab; source-sorter |  |  | avoid plagiarism ; basic bibliographic information ; find sources (the cart is given) ; gather information from several sources for a top... |
 | W.7.8 | Part | fake-or-fact-lab |  |  | avoid plagiarism ; follow a standard citation format ; quote or paraphrase ; using search terms effectively (chips, no check) |
 | W.8.8 | Part | fake-or-fact-lab |  |  | avoid plagiarism ; follow a standard citation format ; quote or paraphrase ; using search terms effectively (chips, no check) |
 | AASL.Collaborate | Practice only |  | jury-room; school-fix-it-meeting | many-voices-book |  |
@@ -77,7 +78,6 @@ Built by scripts/catalog_maps.py. 13 tools, 39 standard rows (a standard counts 
 | D1.4.6-8 | Practice only |  | rabbit-hole-notebook |  |  |
 | D1.5.6-8 | Practice only |  | research-quest |  |  |
 | D3.1.6-8 | Practice only |  | research-quest |  |  |
-| W.6.7 | Practice only |  | research-quest; source-sorter |  |  |
 | W.7.7 | Practice only |  | research-quest |  |  |
 | W.8.7 | Practice only |  | research-quest |  |  |
 

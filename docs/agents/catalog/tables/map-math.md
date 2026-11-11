@@ -10,7 +10,7 @@ Built by scripts/catalog_maps.py. 144 tools, 449 standard rows (a standard count
 | math 1 | 21 | 1 | 3 | 3 | 13 | 1 |  |
 | math 2 | 26 | 7 | 3 | 7 | 5 | 4 |  |
 | math 3 | 25 | 3 | 6 | 5 | 9 | 2 |  |
-| math 4 | 28 | 4 | 6 | 15 | 1 | 2 |  |
+| math 4 | 28 | 25 | 3 |  |  |  |  |
 | math 5 | 27 | 4 | 7 | 8 | 6 | 2 |  |
 | math 6 | 30 | 8 | 4 | 10 | 5 | 1 | 2 |
 | math 7 | 24 | 8 | 10 | 4 | 2 |  |  |
@@ -22,9 +22,9 @@ Built by scripts/catalog_maps.py. 144 tools, 449 standard rows (a standard count
 
 ## The specs, sorted
 
-21 fine, 82 small addition, 41 rework; 3 have a thin or missing spec.
+32 fine, 72 small addition, 40 rework; 3 have a thin or missing spec.
 
-### Rework (41)
+### Rework (40)
 
 | Tool | Grade | Stage | Why |
 |---|---|---|---|
@@ -32,7 +32,6 @@ Built by scripts/catalog_maps.py. 144 tools, 449 standard rows (a standard count
 | Make Ten Machine | 1 | spec | tool does the key step: 1.OA.B.4 ; close the guessable check (1 listed) ; core part missing: 1.OA.B.3, 1.OA.C.5, 1.OA.C.6 |
 | Marching Band (thin spec) | 2 | live | tool does the key step: 2.OA.C.3, 2.OA.C.4 |
 | Corner Store (thin spec) | 2 | live | tool does the key step: 2.MD.C.7 ; claimed, not taught: 2.MD.C.7 ; close the guessable check (1 listed) |
-| Fraction Wall Duel | 4 | spec | tool does the key step: 4.NF.A.1 ; core part missing: 4.NF.A.2 |
 | Expression Garden | 6 | spec | tool does the key step: 6.EE.A.2a, 6.EE.A.2b, 6.EE.A.3 ; close the guessable check (1 listed) |
 | Size of Everything | 8 | live | tool does the key step: 8.EE.A.4 ; practice with no real check: 8.EE.A.3 ; core part missing: 8.EE.A.3 |
 | Ski Slope Designer | 8 | spec | tool does the key step: 8.EE.B.6 |
@@ -70,7 +69,7 @@ Built by scripts/catalog_maps.py. 144 tools, 449 standard rows (a standard count
 | Identity Proof Race | 12 | spec | tool does the key step: F-TF.B.6 ; close the guessable check (2 listed) ; core part missing: F-TF.C.8, F-TF.C.9, F-TF.B.7 |
 | Flight Planner | 12 | spec | tool does the key step: N-VM.A.2, N-VM.B.4a, N-VM.B.5 ; claimed, not taught: N-VM.A.2 ; close the guessable check (2 listed) ; core part missing: N-VM.B.4 |
 
-### Small addition (82)
+### Small addition (72)
 
 | Tool | Grade | Stage | Why |
 |---|---|---|---|
@@ -105,16 +104,6 @@ Built by scripts/catalog_maps.py. 144 tools, 449 standard rows (a standard count
 | Roller Coaster Rounding | 3 | built | close the guessable check (2 listed) ; core part missing: 3.NBT.A.1, 3.NBT.A.2 |
 | Graph Glow-Up | 3 | spec | close the guessable check (2 listed) ; core part missing: 3.MD.B.3, 3.MD.B.4 |
 | Kitchen Lab | 3 | spec | close the guessable check (2 listed) ; core part missing: 3.MD.A.1, 3.MD.A.2 |
-| Recipe Scaler (thin spec) | 4 | spec | tool does the key step: 4.NF.B.3c ; practice with no real check: 4.NF.B.3d ; core part missing: 4.NF.B.3b |
-| Road Trip Logbook | 4 | spec | core part missing: 4.NBT.B.4 |
-| Skate Park Angles | 4 | built | tool does the key step: 4.MD.C.5b |
-| Money and Meters | 4 | spec | core part missing: 4.NF.C.5, 4.NF.C.6, 4.NF.C.7 |
-| Egg Carton Factory | 4 | built | core part missing: 4.OA.B.4 |
-| Quilt Block Studio | 4 | spec | close the guessable check (1 listed) ; core part missing: 4.G.A.1, 4.G.A.2 |
-| Area Model Builder | 4 | spec | core part missing: 4.NBT.B.5, 4.NBT.B.6 |
-| Growth Spurt | 4 | spec | core part missing: 4.OA.A.1, 4.OA.A.2, 4.OA.A.3 |
-| Rule Machine | 4 | spec | core part missing: 4.OA.C.5 |
-| Stadium Count | 4 | spec | tool does the key step: 4.NBT.A.1 ; core part missing: 4.NBT.A.2 |
 | Fraction Kitchen | 5 | spec | close the guessable check (3 listed) ; core part missing: 5.NF.A.1, 5.NF.A.2 |
 | Expression Escape | 5 | spec | close the guessable check (2 listed) ; core part missing: 5.OA.A.1 |
 | Camp Cook Share-Out | 5 | spec | close the guessable check (1 listed) ; core part missing: 5.NF.B.3, 5.NF.B.7a, 5.NF.B.7b |
@@ -157,9 +146,9 @@ Built by scripts/catalog_maps.py. 144 tools, 449 standard rows (a standard count
 | Fire Lookout Triangles | 12 | built | tool does the key step: G-SRT.D.9 ; claimed, not taught: G-SRT.D.9 ; core part missing: G-SRT.D.10, G-SRT.D.11 |
 | Speedometer | 12 | spec | core part missing: AP-CALC.U2, AP-CALC.U3 |
 
-### Fine (21)
+### Fine (32)
 
-Hundred Hop (k), Number Path Rescue (1), Picky Robot Shapes (1), Multiplication Dungeon (3), Community Plot Planner (4), Unit Ladder (4), Shape Sieve (5), Sea Search Grid (5), Sign Shop (6), Question Lab (6), Intersection Angles (7), Big Wheel, Small Wheel (7), Clay Cutting Bench (7), Expression Match (7), Phone Plan Showdown (7), Blueprint Studio (7), Aquarium Builder (7), Remainder Loop (7), Story Graphs (8), Snow Globe Maker (8), Launch Pad (9)
+Hundred Hop (k), Number Path Rescue (1), Picky Robot Shapes (1), Multiplication Dungeon (3), Recipe Scaler (4), Road Trip Logbook (4), Skate Park Angles (4), Community Plot Planner (4), Money and Meters (4), Fraction Wall Duel (4), Egg Carton Factory (4), Quilt Block Studio (4), Unit Ladder (4), Area Model Builder (4), Growth Spurt (4), Rule Machine (4), Stadium Count (4), Shape Sieve (5), Sea Search Grid (5), Sign Shop (6), Question Lab (6), Intersection Angles (7), Big Wheel, Small Wheel (7), Clay Cutting Bench (7), Expression Match (7), Phone Plan Showdown (7), Blueprint Studio (7), Aquarium Builder (7), Remainder Loop (7), Story Graphs (8), Snow Globe Maker (8), Launch Pad (9)
 
 ## Every standard, by course
 
@@ -282,34 +271,34 @@ Hundred Hop (k), Number Path Rescue (1), Picky Robot Shapes (1), Multiplication 
 
 | Standard | Status | Lesson tools | Practice or see-why | Weak | Missing |
 |---|---|---|---|---|---|
+| 4.G.A.2 (additional) | Full | quilt-block-studio |  |  |  |
 | 4.G.A.3 (additional) | Full | quilt-block-studio |  |  |  |
 | 4.MD.A.1 (supporting) | Full | unit-ladder |  |  |  |
 | 4.MD.A.2 (supporting) | Full | unit-ladder |  |  |  |
+| 4.MD.A.3 (supporting) | Full | community-plot-planner |  |  |  |
+| 4.MD.C.5 (additional) | Full | skate-park-angles(ab) |  |  |  |
 | 4.MD.C.6 (additional) | Full | skate-park-angles |  |  |  |
-| 4.MD.A.3 (supporting) | Nearly | community-plot-planner |  |  | find the area or perimeter when both sides are given (every note gives one side and a total) |
-| 4.MD.B.4 (supporting) | Nearly | skate-park-angles |  |  | choose the scale or draw the axis (axis is given) ; use halves and quarters as the data unit (data is eighths only) |
-| 4.MD.C.7 (additional) | Nearly | skate-park-angles |  |  | write the equation themselves (the strip is given with a box for the unknown) |
-| 4.NBT.A.3 (major) | Nearly | stadium-count |  |  | round without the number line (marks do the work) |
-| 4.NF.B.3 (major) | Nearly | recipe-scaler(ab) | recipe-scaler(d) | recipe-scaler(c) | justify the decomposition in words ; record each decomposition by an equation themselves (the strip writes it) ; say why the wholes must... |
-| 4.NF.B.4 (major) | Nearly | recipe-scaler(abc) |  |  | draw a visual fraction model themselves ; explain the step in words ; record 5/4 = 5 x (1/4) themselves (the strip writes it) ; state n x... |
-| 4.G.A.1 (additional) | Part | quilt-block-studio |  |  | name the lines and angles themselves (the kit names and tags them) |
-| 4.MD.C.5 (additional) | Part | skate-park-angles(a) |  | skate-park-angles(b) | say in words why a one-degree angle is 1/360 of a circle ; part a ; part b |
-| 4.NBT.A.2 (major) | Part | stadium-count |  |  | read the number aloud (Read speaks it) ; write the numeral from a name or expanded form (numeral is given) |
-| 4.NBT.B.4 (major) | Part | road-trip-logbook |  |  | fluency (no speed or repeated-practice measure; about ten problems) |
-| 4.NBT.B.5 (major) | Part | area-model-builder |  |  | explain the calculation in words ; write the full equation themselves (the strip fills; Match the slicing is an optional extra) |
-| 4.NBT.B.6 (major) | Part | area-model-builder |  |  | explain the calculation in words ; write the division equation themselves (the strip writes 857 = 4 x 214 + 1) |
-| 4.NF.A.2 (major) | Part | fraction-wall-duel |  |  | justify in their own words (reason is chosen from three buttons) ; record the comparison with >, = or < ; say why the wholes differ on tr... |
-| 4.NF.C.5 (major) | Part | money-and-meters |  |  | write the equivalent fraction and the sum themselves (written under each panel) |
-| 4.NF.C.6 (major) | Part | money-and-meters |  |  | write the decimal or fraction themselves (shown under each panel) |
-| 4.NF.C.7 (major) | Part | money-and-meters |  |  | justify in their own words (a proof panel is picked, not explained) |
-| 4.OA.A.1 (major) | Part | growth-spurt |  |  | read a given multiplication equation as a comparison in both directions (35 = 5 x 7 as 5 times as many as 7 and 7 times as many as 5) |
-| 4.OA.A.2 (major) | Part | growth-spurt |  |  | divide to solve a comparison problem ; draw the model themselves (the strip diagram redraws on its own) |
-| 4.OA.A.3 (major) | Part | growth-spurt |  |  | decide for themselves how to use a remainder (three given answers are matched to three questions) ; subtract or divide inside a multistep... |
-| 4.OA.B.4 (supporting) | Part | egg-carton-factory |  | definition-duel | recognize a number is a multiple of each of its factors (the seal card states it, nothing asks it) |
-| 4.OA.C.5 (additional) | Part | rule-machine |  |  | explain in their own words (reasons are built from supplied cards) ; write out the terms themselves (the tape prints them) |
-| 4.G.A.2 (additional) | Practice only |  | quilt-block-studio |  |  |
-| 4.NBT.A.1 (major) | Shown |  |  | stadium-count |  |
-| 4.NF.A.1 (major) | Shown |  |  | fraction-wall-duel |  |
+| 4.MD.C.7 (additional) | Full | skate-park-angles |  |  |  |
+| 4.NBT.A.1 (major) | Full | stadium-count |  |  |  |
+| 4.NBT.A.2 (major) | Full | stadium-count |  |  |  |
+| 4.NBT.B.4 (major) | Full | road-trip-logbook |  |  |  |
+| 4.NBT.B.5 (major) | Full | area-model-builder |  |  |  |
+| 4.NBT.B.6 (major) | Full | area-model-builder |  |  |  |
+| 4.NF.A.1 (major) | Full | fraction-wall-duel |  |  |  |
+| 4.NF.A.2 (major) | Full | fraction-wall-duel |  |  |  |
+| 4.NF.B.3 (major) | Full | recipe-scaler(abcd) |  |  |  |
+| 4.NF.B.4 (major) | Full | recipe-scaler(abc) |  |  |  |
+| 4.NF.C.5 (major) | Full | money-and-meters |  |  |  |
+| 4.NF.C.6 (major) | Full | money-and-meters |  |  |  |
+| 4.NF.C.7 (major) | Full | money-and-meters |  |  |  |
+| 4.OA.A.1 (major) | Full | growth-spurt |  |  |  |
+| 4.OA.A.2 (major) | Full | growth-spurt |  |  |  |
+| 4.OA.A.3 (major) | Full | growth-spurt |  |  |  |
+| 4.OA.B.4 (supporting) | Full | egg-carton-factory |  | definition-duel |  |
+| 4.OA.C.5 (additional) | Full | rule-machine |  |  |  |
+| 4.G.A.1 (additional) | Nearly | quilt-block-studio |  |  | identify points, rays and lines in a figure (find-it cards cover only segments and angles) |
+| 4.MD.B.4 (supporting) | Nearly | skate-park-angles |  |  | choose the line plot's scale (axis is given) ; halves and quarters as the unit (only eighths) |
+| 4.NBT.A.3 (major) | Nearly | stadium-count |  |  | rounding to the ten, the one or the million (places run hundred to hundred thousand) |
 
 ### math 5
 

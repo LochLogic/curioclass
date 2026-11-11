@@ -55,6 +55,10 @@ report. You change nothing else, judge nothing as good or bad overall, and do no
     - `touched`: not on the main path, or can be skipped;
     - `claimed`: the code is listed and nothing the student does matches it.
     A code whose only check is listed in `beatable` cannot be `taught`.
+    Two-part standards (2026-11-10, after the spot-check): when a standard has two halves (compare and explain,
+    solve and represent) and the student does one in full and not the other, rate the depth on the half the verb
+    names first, put the other half in `parts_missing` with `missing_weight` core, and do not drop the depth for it:
+    the ledger reads "nearly" from that pair. Rate `shown` only when the student does neither half.
   - `activity`: what the student does, in ten words or fewer, in the spec's own terms.
   - `where`: the spec section or mode that shows it.
   Judge from what the spec says the student does, not from the claim in the table.
@@ -78,11 +82,20 @@ report. You change nothing else, judge nothing as good or bad overall, and do no
 - **minutes:** the time one sitting takes, from the spec; 0 if it does not say.
 - **cost_class:** `simple`, `sibling` (reuses a family engine that exists), `new-engine` or `super`, from the spec's
   Family engine, Art and Screens sections.
-- **beatable:** checks, scores or win states a student could pass without the skill that the spec's "Can it be
-  beaten?" section does not already close. List one only when trial is cheaper than thinking: few choices, or
-  feedback that says which way to move, with free tries. Trying again is not beating a check where the standard
-  itself asks the student to design, refine or investigate. A partner or teacher marking a read-aloud is a real
-  check. Empty if none found or the tool has no checks.
+- **beatable:** checks, scores or win states a student could pass without the skill. List a check only when it
+  fails all three tests (added 2026-11-10 after the spot-check, which found this field applied too strictly):
+  1. **Is trial really cheaper than thinking?** Few choices or feedback that says which way to move, AND free
+     tries. A wrong try that costs the round, the item, a score that matters, or brings a fresh item is not free.
+     A typed, written, built or dragged-into-place answer is not a small choice.
+  2. **Does the spec close it?** Read the "Can it be beaten?" section and the content tables. If the spec states a
+     cost, a retry limit, or a follow-up that makes the student show the reasoning, the check is closed.
+  3. **Does a second check stand?** If the same code is also checked another way on the main path (a typed answer,
+     a written reason, a self-check against a shown guide), the code is not resting on the guessable one.
+  Only a check that is cheap to guess, not closed by the spec, and the code's only check goes in the list. Quote
+  the spec's words for the choices and the retry rule. If the spec is silent on retries, say so in `unsure` and
+  list the check. Trying again is not beating a check where the standard itself asks the student to design, refine
+  or investigate. A partner or teacher marking a read-aloud is a real check. Empty if none found or the tool has
+  no checks.
 - **flags:** any of `k2-guess-prompt` (a K-2 reading tool that tells a child to guess a word from the picture or the
   sentence rather than sound it out), `sensitive` (cultural, Native, hard history, health), `facts-unsourced` (claims
   with no entry in Sources), `spec-thin` (a section the row needed is missing or one line).
@@ -92,6 +105,10 @@ report. You change nothing else, judge nothing as good or bad overall, and do no
 
 - Each row comes only from that tool's own files. Do not carry an impression from one tool to the next.
 - Put findings in the fields, not only in `unsure`: a missing part goes in `parts_missing`, a hole in `beatable`.
+- Keep each entry consistent with itself: `shown` or `key_step` tool cannot sit beside an activity the student
+  types, writes or builds with a keyed check; `practiced` and `taught` need `on_path` true; a code in
+  `module_codes_untaught` must be in the module's list and absent from this tool's codes.
+- Read the whole spec, to its last line. Say in `unsure` if a file was cut short.
 - For a built or live tool, the spec may be old or missing. Use notes.md, tool.json and plan.md, and search src.html
   (grep, never a whole read) to settle what the student really does.
 - Be literal and strict about `depth`. Most errors a later reader finds are a `touched` written as `taught`.

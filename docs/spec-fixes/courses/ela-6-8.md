@@ -2,7 +2,7 @@
 
 14 tools: 0 rework, 14 small addition, 0 fine. How to use this file: ../README.md. When a spec is fixed, add a line to ../done.txt.
 
-Kinds of fix in this course: Write the spec (1), Hand the key step to the student (2), Close the guessable check (14), Add the missing part (13), Add a model or a guide (2), Add a check (6), Reach five items that differ (11), Put it on the main path (1), Sensitivity read (3).
+Kinds of fix in this course: Write the spec (2), Hand the key step to the student (1), Close the guessable check (12), Add the missing part (13), Add a model or a guide (3), Add a check (5), Reach five items that differ (11), Put it on the main path (1), Sensitivity read (3).
 
 ## Context, Roots, Dictionary
 
@@ -97,47 +97,37 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
 ## Claim, Quote, Comment
 
 - Spec: `tools/claim-quote-comment/spec.md` . Module: ela-6-8-analysis-with-evidence-from-nonfiction. Stage: spec only. Sort: **small addition**.
-- Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
-- Checks a student can pass by guessing:
-  - Comment: any 8 words holding one claim word and one quote word light the lamp, even if the quote does not prove the claim
-  - Lead-in: any text in the lead-in field clears the dropped-quote check
-  - Grade 8 rank: three candidates, rank until the tool stops asking for a reason
-- **RI.6.1** (practiced, in Article; Build (grade 6)): Highlight a quote that supports the claim
+- Fixes: Add the missing part, Reach five items that differ.
+- **RI.6.1** (taught, in Build): Highlight a quote, set it in a lead-in, write the comment that proves the claim
   - To do: only 2 items: reach five or more that differ
   - Parts of the standard the student never does (must add):
-    - inferences (quotes show what the text says)
-    - check that the quote really proves the claim (only comment words are tested)
-- **W.6.9** (practiced, in Build (grade 6)): Write a lead-in and a comment for each quote
-  - To do: only 2 items: reach five or more that differ
-  - Parts of the standard the student never does (must add):
-    - draw evidence from literature (one informational article)
-    - reflection and research uses
-    - organize the whole paragraph beyond the links
-- **RI.7.1** (practiced, in Build (grade 7)): Cite three quotes, one from a second section
+    - inferences drawn from the text
+- **RI.7.1** (taught, in Build (grade 7)): Build three links, one from a second article section
   - To do: only 3 items: reach five or more that differ
   - Parts of the standard the student never does (must add):
-    - inferences (quotes show what the text says)
-    - check that the quotes really prove the claim
-- **W.7.9** (practiced, in Build (grade 7)): Write lead-ins and comments for three links
-  - To do: only 3 items: reach five or more that differ
-  - Parts of the standard the student never does (must add):
-    - draw evidence from literature (one informational article)
-    - reflection and research uses
-- **RI.8.1** (practiced, in Grade 8 rank): Rank three candidate quotes and keep the strongest
+    - inferences drawn from the text
+- **RI.8.1** (taught, in Grade 8): Rank three candidate quotes and keep the strongest
   - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - inferences drawn from the text
+- **W.6.9** (taught, in Build, Paragraph): Write a lead-in and a comment so each quote lights its lamp
+  - To do: only 2 items: reach five or more that differ
   - Parts of the standard the student never does (small, add if cheap):
-    - explain in words why the kept quote is strongest (a reason is asked only when the pick is wrong)
-- **W.8.9** (practiced, in Grade 8 counter line): Add a counter line to the paragraph
-  - To do: no check: add one where thinking is cheaper than guessing
-  - To do: only 1 items: reach five or more that differ
-  - Parts of the standard the student never does (must add):
-    - draw evidence from literature (one informational article)
-    - check the counter line (frame only)
+    - reflection and research purposes
+- **W.7.9** (taught, in Build (grade 7)): Write lead-ins and comments for three links and fix dark lamps
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - reflection and research purposes
+- **W.8.9** (taught, in Grade 8): Pick the strongest quote, write comments and a counter line
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - reflection and research purposes
 - The module also lists codes this tool does not carry: W.6.9a, W.6.9b, W.7.9a, W.7.9b, W.8.9a, W.8.9b.
 - The read was unsure about (check these against the spec; the read may be wrong):
-  - spec names W.6.9 only, so a and b parts are listed as untaught; the informational article is not literary nonfiction
-  - all codes practiced because no check tests whether the quote proves the claim, apart from the beatable word tests
-  - grade 7 uses the same loop with three links and a second section; grade 8 adds ranking and a counter line
+  - No role stated, so use lesson is a guess
+  - Spec checks that the quote supports the claim only at grade 8; earlier grades check only word overlap in the comment, lead-in presence and repeats
+  - The article is explicit factual text, so inferences are never asked for
+  - Lead-in can be picked from starters; the spec does not say the tool checks it names the real source
 
 ## Pause and Break
 
@@ -355,53 +345,50 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
 ## Draft Versus Draft
 
 - Spec: `tools/draft-versus-draft/spec.md` . Module: ela-6-8-revising-for-purpose-and-audience. Stage: spec only. Sort: **small addition**.
-- Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Fixes: Write the spec, Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
 - Checks a student can pass by guessing:
-  - My revision: reader rules are simple triggers (add a number of students; first sentence under 15 words) and the faces show which way to move
-- **W.6.4** (taught, in Showdown; Change marks; My revision (grade 6)): Vote, rate changes for a reader, revise for another
-  - To do: only 2 items: reach five or more that differ
-  - Parts of the standard the student never does (must add):
-    - produce a new piece from scratch (the student revises a given letter)
-    - develop and organize beyond one letter
-- **W.6.5** (taught, in Reader panel; My revision (grade 6)): Watch the reader panel react; revise original with four tools
+  - Vote and change marks (W.6.4, W.7.4, W.8.4): three choices per mark, key reading shown right after the pick, and the spec says 'Marks and reactions are advice; the vote has no right answer'. Spec is silent on re-marking, so cost is assumed free.
+- **W.6.4** (practiced, in Showdown, Change marks): Vote A or B for the reader and call each change helped, hurt or no difference
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - write a text unaided (the student revises one existing letter)
+- **W.6.5** (taught, in My revision): Revise the original for a new reader with cut, add, move and reword
   - To do: only 1 items: reach five or more that differ
   - Parts of the standard the student never does (must add):
-    - plan before drafting
-    - edit for conventions
-    - guidance from peers or adults (the panel is simulated)
-- **W.7.4** (taught, in Showdown; Change marks; My revision (grade 7)): Vote, rate changes for a reader, revise for another
-  - To do: only 2 items: reach five or more that differ
-  - Parts of the standard the student never does (must add):
-    - produce a new piece from scratch (the student revises a given letter)
-    - develop and organize beyond one letter
-- **W.7.5** (taught, in Reader panel; My revision (grade 7)): Watch the reader panel react; revise original with four tools
+    - planning
+    - editing for conventions
+    - trying a new approach
+- **W.7.4** (practiced, in Showdown, Change marks): Vote A or B for the reader and call each change helped, hurt or no difference
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - write a text unaided (the student revises one existing letter)
+- **W.7.5** (taught, in Reader panel, My revision): Revise the original for a new reader, watch the reader panel react
   - To do: only 1 items: reach five or more that differ
   - Parts of the standard the student never does (must add):
-    - plan before drafting
-    - edit for conventions
-    - guidance from peers or adults (the panel is simulated)
-- **L.7.3** (practiced, in Wordiness meter (grade 7)): Cut redundant phrases the wordiness meter lights
+    - planning
+    - editing for conventions
+    - trying a new approach
+- **L.7.3** (practiced, in Wordiness meter (grade 7)): Cut the redundant phrases the wordiness meter lights
   - Parts of the standard the student never does (must add):
-    - find wordiness without the meter lighting it
-    - redundancy outside the 40-phrase list
-    - choose precise language (cutting only)
-- **W.8.4** (taught, in Showdown; Change marks; My revision (grade 8)): Vote, rate changes for a reader, revise for another
-  - To do: only 2 items: reach five or more that differ
-  - Parts of the standard the student never does (must add):
-    - produce a new piece from scratch (the student revises a given letter)
-    - develop and organize beyond one letter
-- **W.8.5** (taught, in New approach (grade 8)): Turn the letter into a one-page flyer
+    - recognizing wordiness (the meter lights the phrases)
+    - conventions other than wordiness
+- **W.8.4** (practiced, in Showdown, Change marks): Vote A or B for the council reader and call each change helped or hurt
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - write a text unaided (the student revises one existing letter)
+- **W.8.5** (practiced, in My revision, New approach (grade 8)): Revise the letter, then turn it into a one-page flyer
+  - To do: no check: add one where thinking is cheaper than guessing
   - To do: only 1 items: reach five or more that differ
   - Parts of the standard the student never does (must add):
-    - plan before drafting
-    - edit for conventions
-    - guidance from peers or adults (the panel is simulated)
+    - planning
+    - editing for conventions
 - The read was unsure about (check these against the spec; the read may be wrong):
-  - codes named by the spec only as L.7.3; the wordiness meter matches L.7.3a
-  - W.6.4, W.7.4 and W.8.4 repeat the same loop on different grade content, so rows are alike
-  - grade_split same-plus-step: grade 7 adds the meter and a new pair, grade 8 adds a flyer round on a different letter
-  - minutes 32 is the midpoint of 25 to 40
-  - W.x.4 check is self-guide: the key reading is shown after each mark, no scored pass
+  - Spec ties the x.4 codes to voting and marking, not to producing writing, so depth rests on that
+  - Reader-panel rules are named by example only (a number added, first sentence under 15 words); W.7.5 rules and all grade 8 rules are unstated
+  - Grade 8 flyer round has no stated check
+  - L.7.3 is the code the spec names; its content is the wordiness half of L.7.3a
+  - Spec states no role, so use lesson is a guess
+  - Spec is silent on retries for the marks
 
 ## Tricky Word Lab
 
@@ -516,46 +503,28 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
 ## Theme Evidence Ladder
 
 - Spec: `tools/theme-evidence-ladder/spec.md` . Module: ela-6-8-theme-and-textual-evidence. Stage: spec only. Sort: **small addition**.
-- Fixes: Write the spec, Hand the key step to the student, Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
-- Checks a student can pass by guessing:
-  - Wobble: the because line need only name one word from the student's own theme
-  - Top rung: five rungs, reorder freely until the tool accepts the keyed strongest
-- **RL.6.1** (taught, in Ladder (grade 6)): Lift passages, including one that implies the theme
-  - Parts of the standard the student never does (must add):
-    - label which passages are explicit and which are inferences
-    - explain an inference in words (the implied passage is lifted, not explained)
-- **RL.6.2** (taught, in Theme; Ladder; Write (grade 6)): Write theme as a full sentence, build the ladder, summarize
+- Fixes: Write the spec, Add the missing part, Add a model or a guide, Reach five items that differ.
+- **RL.6.2** (taught, in Story, Ladder, Write): Write the theme as a full sentence and an objective summary and paragraph
   - To do: only 1 items: reach five or more that differ
-  - Parts of the standard the student never does (small, add if cheap):
-    - opinion words not on the flag list
-- **RL.6.9** (practiced, in Poem): Mark Holds, Holds partly or Differs and write why
+- **RL.7.2** (taught, in Write, Timeline (grade 7)): Write theme and objective summary, then view the ladder on a timeline
   - To do: only 1 items: reach five or more that differ
   - Parts of the standard the student never does (must add):
-    - compare form and structure of story and poem (theme only)
-    - contrast the two approaches in detail (one verdict and a line)
-- **RL.7.1** (taught, in Ladder (grade 7)): Lift several passages with paragraph numbers
+    - analyze its development over the course of the text (the timeline is shown, not built)
+- **RL.8.2** (practiced, in Grade 8 tags, Write): Tag each rung as character, setting or plot turn; write the summary
+  - To do: no model or guide: add one
   - Parts of the standard the student never does (must add):
-    - label which passages are explicit and which are inferences
-    - explain an inference in words
-- **RL.7.2** (shown, in Grade 7 timeline): Watch the ladder tip onto the story timeline
-  - To do: the tool does the "determine" step: the student must do it
+    - analyze its development over the course of the text
+- **RL.6.9** (practiced, in Poem): Mark whether the poem Holds, Holds partly or Differs; rewrite or explain the difference
+  - To do: no model or guide: add one
   - To do: only 1 items: reach five or more that differ
   - Parts of the standard the student never does (must add):
-    - analyze in words how the theme develops
-    - an objective summary beyond the flagged 60-word box
-- **RL.8.1** (taught, in Ladder (wobble, strongest) (grade 8)): Rank rungs; explain why a rung beats the rival
-  - Parts of the standard the student never does (must add):
-    - separate explicit statements from inferences in the ranking
-- **RL.8.2** (practiced, in Grade 8 tags): Tag each rung Character, Setting or Plot turn
-  - To do: no check: add one where thinking is cheaper than guessing
-  - Parts of the standard the student never does (must add):
-    - analyze how the theme develops across the story
-    - explain the relationship to character, setting and plot in words (a tag only)
+    - explain how each form approaches the theme when the verdict is Holds or Holds partly
 - The read was unsure about (check these against the spec; the read may be wrong):
-  - Grade 8 tags section names no check; flagged spec-thin
-  - RL.7.2 shown because the ladder tips itself onto the timeline; the 60-word summary is practiced but is not the verb's key step
-  - Starter theme cards offer three themes; own sentence allowed, so theme choice is not fully guessable
-  - Auld Lang Syne word count not stated
+  - No role stated, so use lesson is a guess
+  - Hints on snap and wobble counted as guided support, not a model; RL.6.1 would be practiced if feedback prompts are not counted
+  - Implied-passage and tag choices (grade 8) have no stated key; whether a student-written theme gets keyed rungs is not stated
+  - Poem verdict has no key; teacher reads the print
+  - Spec gives no retry limit for rung tests; the because-line and top-rung checks stand behind them
 
 ## Linked Feature
 

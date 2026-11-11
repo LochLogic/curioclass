@@ -81,7 +81,7 @@ one exception.
 | 5. Prove one course | Grade 4 math and grade 6 ELA (Track 7): the year spine, then one pilot unit each, pulling from every shelf, read by a fresh agent against docs/ADOPTION-BAR.md. Building resumes for these two courses only. The token plan's side-by-side trial runs on the first three tools | Cory can open one unit of each and see the bar met | The two spines, then the pilot review |
 | 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first. Each finished course gets its spine, units and a full row on the measure | Course by course, the measure reaches full | The order of courses |
 
-**Resume here (left 2026-11-10, 10 PM): step 2, the read and the maps are done; Sara has fixed the specs of both proving courses; re-reading those 22 specs for her final review is next, then wiring in the other standard texts.** All 800 tools have a row in row format
+**Resume here (left 2026-11-10, 10 PM): step 2, the read and the maps are done; Sara has fixed the specs of both proving courses; those 22 specs are re-read and the ledger rebuilt; her final review of the two courses is next, then wiring in the other standard texts.** All 800 tools have a row in row format
 2 (docs/agents/catalog/rows/, 71 packets, about 12 million tokens on the cheaper model), and the ledger is rebuilt:
 data/coverage.csv and docs/agents/catalog/tables/measure.md. Across every course's standards: 213 full, 368 nearly,
 404 part, 1,102 practice only, 276 shown, 37 none. By tool: 70 teach every code they carry, 177 teach at least one
@@ -129,11 +129,24 @@ fine and unchanged. None is reviewed yet. Left for later by her notes: new sourc
 (debate-prep-desk, summary-squeeze, source-sorter), sensitivity reads at final review (perspective-camera,
 sentence-remixer), the line plot scale choice not added to skate-park-angles, and three built tools whose code now
 trails the spec (skate-park-angles, egg-carton-factory, and any other marked built). The other 778 specs are not
-started. The rows for these 22 are now stale: the course files still list the old findings beside a FIXED mark
-until the specs are read again.
+started.
 
-Next, in this order: (1) read the 22 fixed specs again with the catalog reader, rebuild the ledger, maps and fix
-list, and hand Sara the two courses for final review (docs/spec-fixes/FINAL-REVIEW.md); (2) wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
+Re-read after the fixes (2026-11-10, late; packets math-4-1 and ela-6-1, cheaper model, under the tightened
+beatable rule and two-part tie-break now in CATALOG-EXTRACT.md). Grade 4 math went from 4 full, 6 nearly, 15 part, 1
+practice only, 2 shown to 25 full, 3 nearly (4.NBT.A.3, 4.MD.B.4, 4.G.A.1); every code on all 13 specs now reads
+taught and no guessable check is listed. Grade 6 ELA went from 4 full, 6 nearly, 17 part, 14 practice only, 2 shown
+to 16 full, 7 nearly, 9 part, 10 practice only, 1 shown. What is left in grade 6 ELA is mostly not a spec problem:
+nine tools cannot carry 43 standards, so the gaps (RL.6.7, RL.6.9, RI.6.3, RI.6.6 to RI.6.9, W.6.1 to W.6.6,
+W.6.10, SL.6.2, SL.6.5, L.6.2, L.6.4, L.6.6) need tools the course does not have yet or rest on the grade 6 to 8
+band tools; that is a step 4 (Shape) question. Still open on the fix list for the 22: argument-x-ray (a tag-and-scan
+check with free reruns, no model, few items; Sara had logged it fine), skate-park-angles (one code under five
+items), unit-ladder (spec too thin to judge; Sara had logged it fine). Treat the math result as the reader's view,
+not a verdict: it is one pass by the cheaper model on freshly rewritten specs, and the final review is the check.
+Site-wide after the rebuild: 254 full, 370 nearly, 375 part, 1,093 practice only, 271 shown, 37 none; specs 88 fine,
+542 small addition, 170 rework.
+
+Next, in this order: (1) Sara's final review of the two proving courses (docs/spec-fixes/FINAL-REVIEW.md), starting
+with the three tools above; (2) wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
 the beatable rule, clean the contradictory rows, then rebuild the ledger and the maps. After that step 2 is closed
 and step 3 (fix what is built: the 26 live rework tools first) opens. Specs are fixed by Sara from docs/spec-fixes/, ahead of Build, so a
 course's specs are ready when its turn comes (steps 5 and 6).

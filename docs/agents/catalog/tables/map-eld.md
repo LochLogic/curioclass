@@ -85,7 +85,7 @@ Math Explainer (3-5), Perspective Frames (6-8), CER Builder (6-8), Then What Hap
 
 | Standard | Status | Lesson tools | Practice or see-why | Weak | Missing |
 |---|---|---|---|---|---|
-| RI.6.2 | Full | summary-scaffold; summary-squeeze |  |  | name the central idea outright (the light checks word families in a sentence) ; opinion words outside the 60-item list are not caught |
+| RI.6.2 | Full | summary-scaffold; summary-squeeze |  |  |  |
 | WIDA.ELD-3 | Full | math-explainer; shape-talk; word-problem-decoder | definition-duel |  | describing in own words with no frame |
 | WIDA.Inform | Full | summary-scaffold | community-map-words; inbox-simulator; time-machine-talk |  |  |
 | RI.8.2 | Nearly | summary-scaffold |  |  | analyze development over the course of the text (labels only) |

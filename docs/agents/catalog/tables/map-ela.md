@@ -12,23 +12,23 @@ Built by scripts/catalog_maps.py. 160 tools, 803 standard rows (a standard count
 | ela 3 | 43 | 3 | 3 | 9 | 28 |  |  |
 | ela 4 | 43 | 1 | 7 | 6 | 27 | 2 |  |
 | ela 5 | 43 | 3 | 5 | 10 | 23 | 2 |  |
-| ela 6 | 43 | 4 | 6 | 17 | 14 | 2 |  |
-| ela 7 | 41 | 2 | 6 | 19 | 12 | 2 |  |
-| ela 8 | 41 | 4 | 4 | 15 | 17 | 1 |  |
+| ela 6 | 43 | 16 | 7 | 9 | 10 | 1 |  |
+| ela 7 | 41 | 3 | 7 | 19 | 11 | 1 |  |
+| ela 8 | 41 | 5 | 5 | 13 | 17 | 1 |  |
 | ela 9 | 41 | 1 | 6 | 6 | 27 | 1 |  |
 | ela 10 | 42 | 1 | 7 | 6 | 27 | 1 |  |
 | ela 11 | 41 | 2 | 5 | 5 | 23 | 6 |  |
 | ela 12 | 42 | 2 | 5 | 5 | 24 | 6 |  |
 | ela k-2 | 72 | 11 | 6 | 5 | 47 | 3 |  |
 | ela 3-5 | 78 | 5 | 10 | 15 | 45 | 3 |  |
-| ela 6-8 | 77 | 2 | 9 | 32 | 30 | 4 |  |
+| ela 6-8 | 77 | 6 | 11 | 29 | 28 | 3 |  |
 | ela 9-12 | 33 | 3 | 7 | 3 | 19 | 1 |  |
 
 ## The specs, sorted
 
-18 fine, 128 small addition, 14 rework; 6 have a thin or missing spec.
+25 fine, 122 small addition, 13 rework; 7 have a thin or missing spec.
 
-### Rework (14)
+### Rework (13)
 
 | Tool | Grade | Stage | Why |
 |---|---|---|---|
@@ -40,14 +40,13 @@ Built by scripts/catalog_maps.py. 160 tools, 803 standard rows (a standard count
 | Syllable Surgeon | 3 | spec | tool does the key step: RF.3.3d ; close the guessable check (3 listed) ; core part missing: RF.3.3b, RF.3.3c |
 | Root Detective Cards | 4 | spec | tool does the key step: L.4.4c ; close the guessable check (3 listed) ; core part missing: L.4.4a, L.4.4 |
 | Quote Picker | 4 | spec | tool does the key step: RI.4.1 ; close the guessable check (3 listed) ; core part missing: W.4.9 ; off the main path: RI.4.1 |
-| Plot Rollercoaster | 6 | spec | tool does the key step: RL.6.5 ; core part missing: RL.6.3 |
 | Founding Words Explorer | 9 | spec | tool does the key step: RI.9-10.9 ; close the guessable check (1 listed) ; core part missing: RI.9-10.4 |
 | Word Family Tree | 12 | spec | tool does the key step: L.11-12.4b, L.11-12.4c ; close the guessable check (3 listed) ; core part missing: L.11-12.4, L.11-12.5, L.11-12.5b |
 | Read-Along Shelf | k-2 | spec | tool does the key step: RI.K.10 ; claimed, not taught: RI.K.10 ; close the guessable check (1 listed) ; core part missing: RL.1.10, RL.2.10 |
 | Pacing Strip | 9-12 | spec | tool does the key step: W.9-10.3c, W.11-12.3c ; claimed, not taught: W.9-10.3c, W.11-12.3c ; close the guessable check (2 listed) ; core part missing: W.9-10.3, W.9-10.3a, W.11-12.3, W.11-12.3a ; o... |
 | Editors in the Margin | 9-12 | spec | tool does the key step: L.11-12.2a, L.11-12.2b ; close the guessable check (2 listed) ; core part missing: W.9-10.4, L.11-12.3a |
 
-### Small addition (128)
+### Small addition (122)
 
 | Tool | Grade | Stage | Why |
 |---|---|---|---|
@@ -92,13 +91,7 @@ Built by scripts/catalog_maps.py. 160 tools, 803 standard rows (a standard count
 | Slow-Mo Writer | 5 | spec | close the guessable check (3 listed) ; core part missing: W.5.3a, W.5.3e, W.5.5 |
 | Essay Rope Team | 5 | spec | close the guessable check (4 listed) ; core part missing: W.5.1a, W.5.1b, W.5.1d, W.5.2a, W.5.2b, W.5.2d |
 | Tense Time-Line | 5 | spec | tool does the key step: L.5.1a ; close the guessable check (1 listed) ; core part missing: L.5.1b, L.5.1c, L.5.1d |
-| Debate Prep Desk | 6 | spec | core part missing: W.6.1a, W.6.1b, D3.4.6-8 |
-| Summary Squeeze | 6 | spec | core part missing: RI.6.2, RL.6.2 |
-| Book Group Table | 6 | spec | close the guessable check (2 listed) ; core part missing: SL.6.1a, SL.6.1b, SL.6.1c, SL.6.1d |
-| Word Thermometer | 6 | spec | close the guessable check (1 listed) ; core part missing: RL.6.4, RI.6.4 |
-| Perspective Camera | 6 | spec | close the guessable check (3 listed) ; core part missing: RL.6.6 |
-| Sentence Remixer | 6 | spec | close the guessable check (2 listed) ; core part missing: L.6.1a, L.6.1c, L.6.1d, L.6.1e, L.6.3a |
-| Source Sorter | 6 | spec | close the guessable check (3 listed) ; core part missing: W.6.8, W.6.7 |
+| Argument X-Ray | 6 | spec | close the guessable check (1 listed) |
 | Counterclaim Rally | 7 | spec | close the guessable check (1 listed) |
 | Two Authors, One Event | 7 | spec | core part missing: RI.7.4, RI.7.9 |
 | Logic Gym | 7 | spec | close the guessable check (2 listed) |
@@ -162,27 +155,27 @@ Built by scripts/catalog_maps.py. 160 tools, 803 standard rows (a standard count
 | Draft Car Wash | 3-5 | spec | close the guessable check (2 listed) ; core part missing: W.3.4, W.3.5, W.4.4, W.4.5, W.5.4, W.5.5 |
 | Deadline Desk | 3-5 | spec | core part missing: W.3.6, W.4.6, W.5.6 |
 | Context, Roots, Dictionary | 6-8 | spec | tool does the key step: L.6.4b, L.7.4b, L.8.4b ; close the guessable check (1 listed) ; core part missing: L.6.4c, L.6.4d, L.6.6, L.7.4c, L.7.4d, L.7.6 |
-| Claim, Quote, Comment | 6-8 | spec | close the guessable check (3 listed) ; core part missing: RI.6.1, W.6.9, RI.7.1, W.7.9, W.8.9 |
+| Claim, Quote, Comment | 6-8 | spec | core part missing: RI.6.1, RI.7.1, RI.8.1 |
 | Pause and Break | 6-8 | spec | close the guessable check (2 listed) |
 | Memoir and Biography | 6-8 | spec | close the guessable check (3 listed) ; core part missing: RI.6.3, RI.6.6, RI.6.9, RI.7.3, RI.8.6 |
 | Podcast Listening Club | 6-8 | spec | close the guessable check (1 listed) ; core part missing: SL.6.2, SL.7.2, SL.7.3, SL.8.3, SL.7.1, SL.8.1 |
 | Blizzard Scenes | 6-8 | spec | close the guessable check (1 listed) ; core part missing: RL.7.6, W.6.3, W.7.3, RL.8.5, W.8.3 |
 | Docent Tour Talk | 6-8 | spec | close the guessable check (2 listed) ; core part missing: SL.7.4, SL.6.5, SL.7.5 |
 | Climbing Reads | 6-8 | spec | core part missing: RL.8.10, RI.8.10 |
-| Draft Versus Draft | 6-8 | spec | close the guessable check (1 listed) ; core part missing: W.6.4, W.6.5, W.7.4, W.7.5, L.7.3, W.8.4 |
+| Draft Versus Draft (thin spec) | 6-8 | spec | close the guessable check (1 listed) ; core part missing: W.6.5, W.7.5, L.7.3, W.8.5 |
 | Tricky Word Lab | 6-8 | spec | core part missing: L.6.2b, L.7.2b, L.8.2c |
 | Explainer Sections | 6-8 | spec | close the guessable check (2 listed) ; core part missing: RI.7.5, W.6.2, W.7.2, W.8.2 |
 | Page, Audio, Screen | 6-8 | spec | close the guessable check (2 listed) ; core part missing: RL.8.7 |
-| Theme Evidence Ladder (thin spec) | 6-8 | spec | tool does the key step: RL.7.2 ; close the guessable check (2 listed) ; core part missing: RL.6.1, RL.6.9, RL.7.1, RL.8.1, RL.8.2 |
+| Theme Evidence Ladder (thin spec) | 6-8 | spec | practice with no real check: RL.8.2, RL.6.9 ; core part missing: RL.7.2, RL.8.2, RL.6.9 |
 | Linked Feature | 6-8 | spec | close the guessable check (2 listed) ; core part missing: W.6.6, W.7.6 ; off the main path: W.6.10, W.7.10, W.8.10 |
 | Idea Threads (thin spec) | 9-12 | spec | close the guessable check (2 listed) ; core part missing: RI.9-10.1, RI.9-10.2, RI.11-12.1, RI.11-12.2 |
 | Theme Ledger | 9-12 | spec | close the guessable check (1 listed) ; core part missing: RL.9-10.1, RL.9-10.2, RL.11-12.2 |
 | Key Term Tracker | 9-12 | spec | tool does the key step: L.9-10.4b, L.9-10.4c ; practice with no real check: L.9-10.4, L.9-10.4a, L.9-10.4d, L.9-10.6, L.11-12.6 |
 | Living Explainer | 9-12 | spec | close the guessable check (2 listed) |
 
-### Fine (18)
+### Fine (25)
 
-My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Character (3), Genre Remix (4), Blueprint Builder (4), Inference Interrogation (5), Claim Court (5), Argument X-Ray (6), History or Fiction? (7), Allusion Hunter (7), Setting Swap (7), Bike Lane Briefing (8), Old Patterns, New Stories (8), Shakespeare Remix (9), World Lit Atlas (10), Little Book Press (k-2), Tough Text Club (9-12)
+My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Character (3), Genre Remix (4), Blueprint Builder (4), Inference Interrogation (5), Claim Court (5), Debate Prep Desk (6), Summary Squeeze (6), Book Group Table (6), Word Thermometer (6), Plot Rollercoaster (6), Perspective Camera (6), Sentence Remixer (6), Source Sorter (6), History or Fiction? (7), Allusion Hunter (7), Setting Swap (7), Bike Lane Briefing (8), Old Patterns, New Stories (8), Shakespeare Remix (9), World Lit Atlas (10), Little Book Press (k-2), Tough Text Club (9-12)
 
 ## Every standard, by course
 
@@ -472,48 +465,48 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 
 | Standard | Status | Lesson tools | Practice or see-why | Weak | Missing |
 |---|---|---|---|---|---|
+| D3.4.6-8 | Full | debate-prep-desk |  |  |  |
 | D4.1.6-8 | Full | debate-prep-desk |  |  |  |
-| RI.6.2 | Full | summary-scaffold; summary-squeeze |  |  | name the central idea outright (the light checks word families in a sentence) ; opinion words outside the 60-item list are not caught |
+| L.6.1 | Full | sentence-remixer(abcde) |  |  |  |
+| L.6.3 | Full | sentence-remixer(ab) |  |  |  |
+| L.6.5 | Full | word-thermometer(abc) |  |  |  |
+| RI.6.2 | Full | summary-scaffold; summary-squeeze |  |  |  |
+| RI.6.4 | Full | word-thermometer |  |  |  |
+| RL.6.1 | Full | theme-evidence-ladder |  |  |  |
+| RL.6.2 | Full | summary-squeeze; theme-evidence-ladder |  |  |  |
+| RL.6.3 | Full | plot-rollercoaster |  |  |  |
+| RL.6.4 | Full | word-thermometer |  |  |  |
+| RL.6.6 | Full | perspective-camera |  |  |  |
 | SL.6.3 | Full | podcast-listening-club |  |  |  |
 | SL.6.4 | Full | docent-tour-talk |  |  |  |
+| W.6.7 | Full | source-sorter | research-quest |  |  |
+| W.6.8 | Full | fake-or-fact-lab; source-sorter |  |  | avoid plagiarism ; basic bibliographic information ; gather information from several sources for a topic ; quote or paraphrase |
 | RI.6.10 | Nearly | climbing-reads |  |  | whole works (passages of 250 to 450 words) |
 | RI.6.5 | Nearly | explainer-sections |  |  | a single sentence or paragraph (blocks are whole sections) |
-| RI.6.8 | Nearly | argument-x-ray |  |  | a real published text (all three op-eds are written for the tool, two made up) ; explain in own words why a claim is unsupported (the rep... |
 | RL.6.10 | Nearly | climbing-reads |  |  | whole works (passages of 250 to 450 words) |
-| RL.6.2 | Nearly | summary-squeeze; theme-evidence-ladder |  |  | a story longer than a fable ; opinion words not on the flag list ; plot summary kept free of opinion (leak check is not described for fab... |
+| RL.6.5 | Nearly | plot-rollercoaster |  |  | chapter (the story is one chapter) |
+| SL.6.1 | Nearly | book-group-table(abcd) |  |  | set the deadline (the 12-turn limit is given) ; part b |
 | SL.6.6 | Nearly | docent-tour-talk |  |  | adapting more than the opening ; formal English beyond a small slang list and contraction reminder |
-| D3.4.6-8 | Part | debate-prep-desk |  |  | write the counterclaim itself (only a reason per side is written) |
-| L.6.1 | Part | sentence-remixer(d) | sentence-remixer(abce) |  | ambiguous it, they or this ; find vague pronouns the tool has not flagged ; part a ; part b ; part c ; part d ; part e |
+| W.6.9 | Nearly | claim-quote-comment |  |  | reflection and research purposes ; part a ; part b |
 | L.6.2 | Part | tricky-word-lab(b) | pause-and-break(a) |  | spelling inside the student's own writing (isolated words only) ; part a ; part b |
-| L.6.3 | Part | sentence-remixer(a) | sentence-remixer(b) |  | patterns other than merges and phrase openers ; vary for meaning or reader interest (variety is measured by sentence length) ; part a ; p... |
 | L.6.4 | Part | context-roots-dictionary(ac) | context-roots-dictionary(d) | context-roots-dictionary(b) | a real print or digital reference (entries are written for the tool) ; find pronunciation or part of speech (shown on the entry) ; positi... |
-| L.6.5 | Part | word-thermometer(ac) | word-thermometer(b) |  | explain the figure's meaning in words (placement only) ; personification ; part a ; part b |
-| RL.6.1 | Part | theme-evidence-ladder |  |  | explain an inference in words (the implied passage is lifted, not explained) ; label which passages are explicit and which are inferences |
-| RL.6.3 | Part | plot-rollercoaster |  |  | describe in own words (the only sentence is one frame at the end of the ride) ; drama (one story only) |
-| RL.6.4 | Part | word-thermometer |  |  | explain the impact on tone in words ; figurative meanings inside the story (phrases are on the scale) ; work out an unfamiliar word from... |
+| RI.6.1 | Part | claim-quote-comment |  |  | inferences drawn from the text |
 | SL.6.2 | Part | podcast-listening-club |  |  | explain how the chart contributes to the issue under study |
-| W.6.1 | Part | debate-prep-desk(ab) |  |  | introduce the claim with context beyond the claim slot ; judge whether a source is credible (the source line is shown and cards are pre-v... |
+| W.6.1 | Part | debate-prep-desk(ab) |  |  | part c ; part d ; part e |
 | W.6.2 | Part | explainer-sections |  |  | formal style ; graphics or multimedia ; precise language and domain-specific vocabulary ; quotations ; part a ; part b ; part c ; part d... |
 | W.6.3 | Part | blizzard-scenes |  |  | a conclusion that follows from the events ; transition words to signal time ; part a ; part b ; part c ; part d ; part e |
-| W.6.4 | Part | draft-versus-draft |  |  | develop and organize beyond one letter ; produce a new piece from scratch (the student revises a given letter) |
-| W.6.5 | Part | draft-versus-draft |  |  | edit for conventions ; guidance from peers or adults (the panel is simulated) ; plan before drafting |
+| W.6.5 | Part | draft-versus-draft |  |  | editing for conventions ; planning ; trying a new approach |
 | W.6.6 | Part | linked-feature |  |  | collaborate with other students (scripted editor) ; publish to a real audience (file save only, nothing posted) ; use the Internet (offli... |
-| W.6.8 | Part | fake-or-fact-lab; source-sorter |  |  | avoid plagiarism ; basic bibliographic information ; find sources (the cart is given) ; gather information from several sources for a top... |
 | L.6.6 | Practice only |  | context-roots-dictionary |  |  |
-| RI.6.1 | Practice only |  | claim-quote-comment |  |  |
 | RI.6.3 | Practice only |  | memoir-and-biography |  |  |
-| RI.6.4 | Practice only |  | word-thermometer |  |  |
 | RI.6.6 | Practice only |  | memoir-and-biography |  |  |
 | RI.6.7 | Practice only |  | page-audio-screen |  |  |
+| RI.6.8 | Practice only |  | argument-x-ray |  |  |
 | RI.6.9 | Practice only |  | memoir-and-biography |  |  |
-| RL.6.6 | Practice only |  | perspective-camera |  |  |
 | RL.6.7 | Practice only |  | page-audio-screen |  |  |
 | RL.6.9 | Practice only |  | theme-evidence-ladder |  |  |
-| SL.6.1 | Practice only |  | book-group-table(abcd) |  | part a ; part b ; part c ; part d |
 | SL.6.5 | Practice only |  | docent-tour-talk |  |  |
-| W.6.7 | Practice only |  | research-quest; source-sorter |  |  |
-| W.6.9 | Practice only |  | claim-quote-comment |  | part a ; part b |
-| RL.6.5 | Shown |  |  | plot-rollercoaster |  |
+| W.6.4 | Practice only |  | draft-versus-draft |  |  |
 | W.6.10 | Shown |  |  | linked-feature |  |
 
 ### ela 7
@@ -521,6 +514,7 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 | Standard | Status | Lesson tools | Practice or see-why | Weak | Missing |
 |---|---|---|---|---|---|
 | RI.7.6 | Full | two-authors-one-event |  |  |  |
+| RL.7.1 | Full | theme-evidence-ladder |  |  |  |
 | RL.7.9 | Full | history-or-fiction |  |  |  |
 | L.7.5 | Nearly | allusion-hunter(abc) |  |  | figures of speech other than allusions are only marked as decoys, never interpreted ; synonym and antonym relationships ; part a ; part b |
 | RI.7.10 | Nearly | climbing-reads |  |  | whole works (passages of 250 to 450 words) |
@@ -528,13 +522,15 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 | RL.7.3 | Nearly | setting-swap |  |  | interaction among character, plot and theme beyond setting |
 | RL.7.5 | Nearly | poetry-soundboard |  |  | say what the sonnet form adds to meaning |
 | SL.7.6 | Nearly | docent-tour-talk |  |  | adapting more than the opening ; formal English beyond a small slang list and contraction reminder |
+| W.7.9 | Nearly | claim-quote-comment |  |  | reflection and research purposes ; part a ; part b |
 | L.7.1 | Part | sentence-tree-builder(b) | sentence-tree-builder(c) | sentence-tree-builder(a) | part a ; part c |
 | L.7.2 | Part | tricky-word-lab(b) | pause-and-break(a) |  | spelling inside the student's own writing (isolated words only) ; part a ; part b |
 | L.7.4 | Part | context-roots-dictionary(ac) | context-roots-dictionary(d) | context-roots-dictionary(b) | a real print or digital reference (entries are written for the tool) ; find pronunciation or part of speech (shown on the entry) ; positi... |
+| RI.7.1 | Part | claim-quote-comment |  |  | inferences drawn from the text |
 | RI.7.2 | Part | summary-scaffold |  |  | analyze how each idea develops over the text (links only) |
 | RI.7.4 | Part | two-authors-one-event |  |  | figurative and technical meanings |
 | RI.7.9 | Part | two-authors-one-event |  |  | state in own words how each author's emphasis shapes the account |
-| RL.7.1 | Part | theme-evidence-ladder |  |  | explain an inference in words ; label which passages are explicit and which are inferences |
+| RL.7.2 | Part | theme-evidence-ladder |  |  | analyze its development over the course of the text (the timeline is shown, not built) |
 | RL.7.4 | Part | poetry-soundboard |  |  | figurative meanings of words and phrases |
 | RL.7.6 | Part | blizzard-scenes |  |  | how the author builds each point of view (marks what is known, not technique) |
 | SL.7.1 | Part | podcast-listening-club |  |  | discussion with live partners (members are scripted) ; follow rules, track goals, define roles (7.1b) ; pose questions that elicit elabor... |
@@ -543,13 +539,11 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 | W.7.1 | Part | counterclaim-rally(ad) | counterclaim-rally(bce) |  | part b ; part c ; part e |
 | W.7.2 | Part | explainer-sections; explainer-studio(ade) | explainer-studio(bcf) |  | an introduction that previews what follows ; cause/effect as an organizing strategy ; domain-specific vocabulary is not checked, only vag... |
 | W.7.3 | Part | blizzard-scenes |  |  | a conclusion that reflects on events ; transitions to signal shifts ; part a ; part b ; part c ; part d ; part e |
-| W.7.4 | Part | draft-versus-draft |  |  | develop and organize beyond one letter ; produce a new piece from scratch (the student revises a given letter) |
-| W.7.5 | Part | draft-versus-draft |  |  | edit for conventions ; guidance from peers or adults (the panel is simulated) ; plan before drafting |
+| W.7.5 | Part | draft-versus-draft |  |  | editing for conventions ; planning ; trying a new approach |
 | W.7.6 | Part | linked-feature |  |  | link to real online sources ; write the citation (sources list builds itself) |
 | W.7.8 | Part | fake-or-fact-lab |  |  | avoid plagiarism ; follow a standard citation format ; quote or paraphrase ; using search terms effectively (chips, no check) |
 | L.7.3 | Practice only |  | draft-versus-draft |  | part a |
 | L.7.6 | Practice only |  | context-roots-dictionary |  |  |
-| RI.7.1 | Practice only |  | claim-quote-comment |  |  |
 | RI.7.3 | Practice only |  | memoir-and-biography |  |  |
 | RI.7.5 | Practice only |  | explainer-sections |  |  |
 | RI.7.7 | Practice only |  | page-audio-screen |  |  |
@@ -557,9 +551,8 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 | RL.7.7 | Practice only |  | page-audio-screen |  |  |
 | SL.7.2 | Practice only |  | podcast-listening-club |  |  |
 | SL.7.5 | Practice only |  | docent-tour-talk |  |  |
+| W.7.4 | Practice only |  | draft-versus-draft |  |  |
 | W.7.7 | Practice only |  | research-quest |  |  |
-| W.7.9 | Practice only |  | claim-quote-comment |  | part a ; part b |
-| RL.7.2 | Shown |  |  | theme-evidence-ladder |  |
 | W.7.10 | Shown |  |  | linked-feature |  |
 
 ### ela 8
@@ -568,17 +561,19 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 |---|---|---|---|---|---|
 | L.8.3 | Full | verb-switchboard(a) |  |  |  |
 | RI.8.9 | Full | bike-lane-briefing |  |  |  |
+| RL.8.1 | Full | theme-evidence-ladder |  |  |  |
 | RL.8.9 | Full | old-patterns-new-stories |  |  |  |
 | SL.8.5 | Full | pitch-deck-studio |  |  |  |
 | RI.8.2 | Nearly | summary-scaffold |  |  | analyze development over the course of the text (labels only) |
 | RI.8.8 | Nearly | bike-lane-briefing |  |  | judging the soundness of the reasoning apart from the evidence |
 | SL.8.4 | Nearly | pitch-deck-studio |  |  | delivering to a live audience; eye contact and pronunciation are only self-marked |
 | SL.8.6 | Nearly | docent-tour-talk |  |  | adapting more than the opening ; formal English beyond a small slang list and contraction reminder |
+| W.8.9 | Nearly | claim-quote-comment |  |  | reflection and research purposes ; part a ; part b |
 | L.8.1 | Part | verb-switchboard(acd) | verb-switchboard(b) |  | part b |
 | L.8.2 | Part | pause-and-break(b); tricky-word-lab(c) | pause-and-break(a) |  | spelling inside the student's own writing (isolated words only) ; part a ; part c |
 | L.8.4 | Part | context-roots-dictionary(ac) | context-roots-dictionary(d) | context-roots-dictionary(b) | a real print or digital reference (entries are written for the tool) ; find pronunciation or part of speech (shown on the entry) ; positi... |
+| RI.8.1 | Part | claim-quote-comment |  |  | inferences drawn from the text |
 | RI.8.10 | Part | climbing-reads |  |  | reading independently (supports may stay on and the hold still counts) ; whole works (passages of 250 to 450 words) |
-| RL.8.1 | Part | theme-evidence-ladder |  |  | separate explicit statements from inferences in the ranking |
 | RL.8.10 | Part | climbing-reads |  |  | reading independently (supports may stay on and the hold still counts) ; whole works (passages of 250 to 450 words) |
 | RL.8.3 | Part | dramatic-irony-theater |  |  | explaining how a line propels, reveals or provokes (labels only) |
 | SL.8.1 | Part | podcast-listening-club |  |  | discussion with live partners (members are scripted) ; follow rules, track goals, define roles (8.1b) ; questions that connect the ideas... |
@@ -586,12 +581,9 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 | W.8.1 | Part | claim-vs-claim(ad) | claim-vs-claim(bce) |  | organize the reasons and evidence logically (the statement's order is fixed by the builder) ; part a ; part b ; part c ; part e |
 | W.8.2 | Part | explainer-sections |  |  | an introduction that previews what follows ; formal style ; organize ideas into broader categories ; precise language and domain-specific... |
 | W.8.3 | Part | flashback-editor(ac) | blizzard-scenes; flashback-editor(bde) |  | establish a context and point of view ; introduce a narrator or characters (scenes are supplied) ; part a ; part b ; part d ; part e |
-| W.8.4 | Part | draft-versus-draft |  |  | develop and organize beyond one letter ; produce a new piece from scratch (the student revises a given letter) |
-| W.8.5 | Part | draft-versus-draft |  |  | edit for conventions ; guidance from peers or adults (the panel is simulated) ; plan before drafting |
 | W.8.8 | Part | fake-or-fact-lab |  |  | avoid plagiarism ; follow a standard citation format ; quote or paraphrase ; using search terms effectively (chips, no check) |
 | L.8.5 | Practice only |  | double-meanings(abc) |  | part a ; part b ; part c |
 | L.8.6 | Practice only |  | context-roots-dictionary |  |  |
-| RI.8.1 | Practice only |  | claim-quote-comment |  |  |
 | RI.8.3 | Practice only |  | memoir-and-biography |  |  |
 | RI.8.4 | Practice only |  | double-meanings |  |  |
 | RI.8.5 | Practice only |  | paragraph-surgeon |  |  |
@@ -603,9 +595,10 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 | RL.8.6 | Practice only |  | dramatic-irony-theater |  |  |
 | RL.8.7 | Practice only |  | page-audio-screen |  |  |
 | SL.8.2 | Practice only |  | pitch-deck-studio |  |  |
+| W.8.4 | Practice only |  | draft-versus-draft |  |  |
+| W.8.5 | Practice only |  | draft-versus-draft |  |  |
 | W.8.6 | Practice only |  | linked-feature |  |  |
 | W.8.7 | Practice only |  | research-quest |  |  |
-| W.8.9 | Practice only |  | claim-quote-comment |  | part a ; part b |
 | W.8.10 | Shown |  |  | linked-feature |  |
 
 ### ela 9
@@ -958,28 +951,35 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 
 | Standard | Status | Lesson tools | Practice or see-why | Weak | Missing |
 |---|---|---|---|---|---|
+| RL.6.1 | Full | theme-evidence-ladder |  |  |  |
+| RL.6.2 | Full | summary-squeeze; theme-evidence-ladder |  |  |  |
+| RL.7.1 | Full | theme-evidence-ladder |  |  |  |
+| RL.8.1 | Full | theme-evidence-ladder |  |  |  |
 | SL.6.3 | Full | podcast-listening-club |  |  |  |
 | SL.6.4 | Full | docent-tour-talk |  |  |  |
 | RI.6.10 | Nearly | climbing-reads |  |  | whole works (passages of 250 to 450 words) |
 | RI.6.5 | Nearly | explainer-sections |  |  | a single sentence or paragraph (blocks are whole sections) |
 | RI.7.10 | Nearly | climbing-reads |  |  | whole works (passages of 250 to 450 words) |
 | RL.6.10 | Nearly | climbing-reads |  |  | whole works (passages of 250 to 450 words) |
-| RL.6.2 | Nearly | summary-squeeze; theme-evidence-ladder |  |  | a story longer than a fable ; opinion words not on the flag list ; plot summary kept free of opinion (leak check is not described for fab... |
 | RL.7.10 | Nearly | climbing-reads |  |  | whole works (passages of 250 to 450 words) |
 | SL.6.6 | Nearly | docent-tour-talk |  |  | adapting more than the opening ; formal English beyond a small slang list and contraction reminder |
 | SL.7.6 | Nearly | docent-tour-talk |  |  | adapting more than the opening ; formal English beyond a small slang list and contraction reminder |
 | SL.8.6 | Nearly | docent-tour-talk |  |  | adapting more than the opening ; formal English beyond a small slang list and contraction reminder |
+| W.6.9 | Nearly | claim-quote-comment |  |  | reflection and research purposes ; part a ; part b |
+| W.7.9 | Nearly | claim-quote-comment |  |  | reflection and research purposes ; part a ; part b |
+| W.8.9 | Nearly | claim-quote-comment |  |  | reflection and research purposes ; part a ; part b |
 | L.6.2 | Part | tricky-word-lab(b) | pause-and-break(a) |  | spelling inside the student's own writing (isolated words only) ; part a ; part b |
 | L.6.4 | Part | context-roots-dictionary(ac) | context-roots-dictionary(d) | context-roots-dictionary(b) | a real print or digital reference (entries are written for the tool) ; find pronunciation or part of speech (shown on the entry) ; positi... |
 | L.7.2 | Part | tricky-word-lab(b) | pause-and-break(a) |  | spelling inside the student's own writing (isolated words only) ; part a ; part b |
 | L.7.4 | Part | context-roots-dictionary(ac) | context-roots-dictionary(d) | context-roots-dictionary(b) | a real print or digital reference (entries are written for the tool) ; find pronunciation or part of speech (shown on the entry) ; positi... |
 | L.8.2 | Part | pause-and-break(b); tricky-word-lab(c) | pause-and-break(a) |  | spelling inside the student's own writing (isolated words only) ; part a ; part c |
 | L.8.4 | Part | context-roots-dictionary(ac) | context-roots-dictionary(d) | context-roots-dictionary(b) | a real print or digital reference (entries are written for the tool) ; find pronunciation or part of speech (shown on the entry) ; positi... |
+| RI.6.1 | Part | claim-quote-comment |  |  | inferences drawn from the text |
+| RI.7.1 | Part | claim-quote-comment |  |  | inferences drawn from the text |
+| RI.8.1 | Part | claim-quote-comment |  |  | inferences drawn from the text |
 | RI.8.10 | Part | climbing-reads |  |  | reading independently (supports may stay on and the hold still counts) ; whole works (passages of 250 to 450 words) |
-| RL.6.1 | Part | theme-evidence-ladder |  |  | explain an inference in words (the implied passage is lifted, not explained) ; label which passages are explicit and which are inferences |
-| RL.7.1 | Part | theme-evidence-ladder |  |  | explain an inference in words ; label which passages are explicit and which are inferences |
+| RL.7.2 | Part | theme-evidence-ladder |  |  | analyze its development over the course of the text (the timeline is shown, not built) |
 | RL.7.6 | Part | blizzard-scenes |  |  | how the author builds each point of view (marks what is known, not technique) |
-| RL.8.1 | Part | theme-evidence-ladder |  |  | separate explicit statements from inferences in the ranking |
 | RL.8.10 | Part | climbing-reads |  |  | reading independently (supports may stay on and the hold still counts) ; whole works (passages of 250 to 450 words) |
 | SL.6.2 | Part | podcast-listening-club |  |  | explain how the chart contributes to the issue under study |
 | SL.7.1 | Part | podcast-listening-club |  |  | discussion with live partners (members are scripted) ; follow rules, track goals, define roles (7.1b) ; pose questions that elicit elabor... |
@@ -989,32 +989,25 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 | SL.8.3 | Part | podcast-listening-club |  |  | soundness of the reasoning beyond tagging |
 | W.6.2 | Part | explainer-sections |  |  | formal style ; graphics or multimedia ; precise language and domain-specific vocabulary ; quotations ; part a ; part b ; part c ; part d... |
 | W.6.3 | Part | blizzard-scenes |  |  | a conclusion that follows from the events ; transition words to signal time ; part a ; part b ; part c ; part d ; part e |
-| W.6.4 | Part | draft-versus-draft |  |  | develop and organize beyond one letter ; produce a new piece from scratch (the student revises a given letter) |
-| W.6.5 | Part | draft-versus-draft |  |  | edit for conventions ; guidance from peers or adults (the panel is simulated) ; plan before drafting |
+| W.6.5 | Part | draft-versus-draft |  |  | editing for conventions ; planning ; trying a new approach |
 | W.6.6 | Part | linked-feature |  |  | collaborate with other students (scripted editor) ; publish to a real audience (file save only, nothing posted) ; use the Internet (offli... |
 | W.7.2 | Part | explainer-sections; explainer-studio(ade) | explainer-studio(bcf) |  | an introduction that previews what follows ; cause/effect as an organizing strategy ; domain-specific vocabulary is not checked, only vag... |
 | W.7.3 | Part | blizzard-scenes |  |  | a conclusion that reflects on events ; transitions to signal shifts ; part a ; part b ; part c ; part d ; part e |
-| W.7.4 | Part | draft-versus-draft |  |  | develop and organize beyond one letter ; produce a new piece from scratch (the student revises a given letter) |
-| W.7.5 | Part | draft-versus-draft |  |  | edit for conventions ; guidance from peers or adults (the panel is simulated) ; plan before drafting |
+| W.7.5 | Part | draft-versus-draft |  |  | editing for conventions ; planning ; trying a new approach |
 | W.7.6 | Part | linked-feature |  |  | link to real online sources ; write the citation (sources list builds itself) |
 | W.8.2 | Part | explainer-sections |  |  | an introduction that previews what follows ; formal style ; organize ideas into broader categories ; precise language and domain-specific... |
 | W.8.3 | Part | flashback-editor(ac) | blizzard-scenes; flashback-editor(bde) |  | establish a context and point of view ; introduce a narrator or characters (scenes are supplied) ; part a ; part b ; part d ; part e |
-| W.8.4 | Part | draft-versus-draft |  |  | develop and organize beyond one letter ; produce a new piece from scratch (the student revises a given letter) |
-| W.8.5 | Part | draft-versus-draft |  |  | edit for conventions ; guidance from peers or adults (the panel is simulated) ; plan before drafting |
 | L.6.6 | Practice only |  | context-roots-dictionary |  |  |
 | L.7.3 | Practice only |  | draft-versus-draft |  | part a |
 | L.7.6 | Practice only |  | context-roots-dictionary |  |  |
 | L.8.6 | Practice only |  | context-roots-dictionary |  |  |
-| RI.6.1 | Practice only |  | claim-quote-comment |  |  |
 | RI.6.3 | Practice only |  | memoir-and-biography |  |  |
 | RI.6.6 | Practice only |  | memoir-and-biography |  |  |
 | RI.6.7 | Practice only |  | page-audio-screen |  |  |
 | RI.6.9 | Practice only |  | memoir-and-biography |  |  |
-| RI.7.1 | Practice only |  | claim-quote-comment |  |  |
 | RI.7.3 | Practice only |  | memoir-and-biography |  |  |
 | RI.7.5 | Practice only |  | explainer-sections |  |  |
 | RI.7.7 | Practice only |  | page-audio-screen |  |  |
-| RI.8.1 | Practice only |  | claim-quote-comment |  |  |
 | RI.8.3 | Practice only |  | memoir-and-biography |  |  |
 | RI.8.6 | Practice only |  | memoir-and-biography |  |  |
 | RI.8.7 | Practice only |  | page-audio-screen |  |  |
@@ -1027,11 +1020,11 @@ My Story Strip (k), Big Book Pointer (k), Word Meaning Yard (k), Stay in Charact
 | SL.6.5 | Practice only |  | docent-tour-talk |  |  |
 | SL.7.2 | Practice only |  | podcast-listening-club |  |  |
 | SL.7.5 | Practice only |  | docent-tour-talk |  |  |
-| W.6.9 | Practice only |  | claim-quote-comment |  | part a ; part b |
-| W.7.9 | Practice only |  | claim-quote-comment |  | part a ; part b |
+| W.6.4 | Practice only |  | draft-versus-draft |  |  |
+| W.7.4 | Practice only |  | draft-versus-draft |  |  |
+| W.8.4 | Practice only |  | draft-versus-draft |  |  |
+| W.8.5 | Practice only |  | draft-versus-draft |  |  |
 | W.8.6 | Practice only |  | linked-feature |  |  |
-| W.8.9 | Practice only |  | claim-quote-comment |  | part a ; part b |
-| RL.7.2 | Shown |  |  | theme-evidence-ladder |  |
 | W.6.10 | Shown |  |  | linked-feature |  |
 | W.7.10 | Shown |  |  | linked-feature |  |
 | W.8.10 | Shown |  |  | linked-feature |  |
