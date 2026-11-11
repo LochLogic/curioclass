@@ -116,6 +116,10 @@ too; check docs/RUBRIC-MATH-K8.md.
 
 ## Rules for all of it
 
+- **Shared band modules (decided, Cory, 2026-11-11).** English language arts has modules that belong to a band, not
+  a grade (for example "Narrators and Points of View", grades 3 to 5). The module and its tools stay shared. Each
+  grade's spine claims the skill on its own days, with that grade's standard code and that grade's texts, so every
+  standard has an owner in a course. Do not split a band module into one per grade.
 - No rows go into data/units.csv, and no tool is specced, built or changed from these drafts. A spine becomes real
   only with Cory's yes.
 - Do not edit the grade 4 math spine or the approach pages. If a draft shows one of them is wrong, write the finding

@@ -142,8 +142,10 @@ for s, label in groups:
 
 sh = sorted([(k, d) for k, d in info.items() if d['kind'] == 'shared'], key=lambda kd: (kd[1]['subject'], kd[1]['sort']))
 A('## Modules that belong to no single course\n')
-A('These sit on a band page and are shared by the grades in it. Each needs a home in a course spine, or a '
-  'decision that it stays a shared shelf. They are not counted as courses above.\n')
+A('These sit on a band page and are shared by the grades in it. Decided (Cory, 2026-11-11): the module and its '
+  'tools stay shared, and each grade\'s spine claims the skill on its own days, with that grade\'s standard and '
+  'texts, so every standard has an owner in a course. The single modules fold into their nearest course. They '
+  'are not counted as courses above.\n')
 A('| Shared set | Modules | Tools: spec / built / live |')
 A('|---|---|---|')
 for k, d in sh:

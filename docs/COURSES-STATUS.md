@@ -205,7 +205,7 @@ Tool counts here leave out tools that sit on shared modules (last table). "Spec"
 
 ## Modules that belong to no single course
 
-These sit on a band page and are shared by the grades in it. Each needs a home in a course spine, or a decision that it stays a shared shelf. They are not counted as courses above.
+These sit on a band page and are shared by the grades in it. Decided (Cory, 2026-11-11): the module and its tools stay shared, and each grade's spine claims the skill on its own days, with that grade's standard and texts, so every standard has an owner in a course. The single modules fold into their nearest course. They are not counted as courses above.
 
 | Shared set | Modules | Tools: spec / built / live |
 |---|---|---|

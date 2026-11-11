@@ -429,3 +429,14 @@ schedule them there are 105 (56 in the four core subjects): docs/COURSES-STATUS.
 scripts/course_status.py and shown on the Desk's new Dashboard tab. Cory: finishing every course to the adoption bar
 is a firm bar to success; do not describe it as unrealistic. The Desk now has three tabs: Questions, Dashboard,
 Roadmap.
+
+## 2026-11-11: shared band modules (Cory, in chat: "use option 1")
+
+Six sets of modules belong to a band, not one course: four English language arts sets (45 modules, 187 tool specs)
+and single modules in English language development and physical education. Of three options (each spine claims
+them; a shared shelf beside the courses; split each into one per grade), Cory chose the first. The module and its
+tools stay shared; each grade's spine places the skill on its own days with that grade's standard and texts. The
+two single modules fold into their nearest course.
+
+Also: the spine's balance table gained a check column, and "practice tool" became "light tool" wherever it meant
+the mark. Where it means the role (lesson, see why, practice) it stays.
