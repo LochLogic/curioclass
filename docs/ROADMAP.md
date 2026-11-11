@@ -77,22 +77,34 @@ one exception.
 | 5. Prove one course | Grade 4 math and grade 6 ELA (Track 7): the year spine, then one pilot unit each, pulling from every shelf, read by a fresh agent against docs/ADOPTION-BAR.md. Building resumes for these two courses only. The token plan's side-by-side trial runs on the first three tools | Cory can open one unit of each and see the bar met | The two spines, then the pilot review |
 | 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first. Each finished course gets its spine, units and a full row on the measure | Course by course, the measure reaches full | The order of courses |
 
-**Resume here: step 2, under way (2026-11-10).** Done: scripts/catalog_compute.py reads row format 2 and the filed
-texts; scripts/coverage_ledger.py builds data/coverage.csv and the measure (docs/agents/catalog/tables/measure.md,
-which also lists two-domain math modules as split candidates); packets now print the filed wording of each standard
-(scripts/catalog_batch.py). The first pilot rows are kept in docs/agents/catalog/rows-v1/. The 36 pilot tools were read
-again in row format 2 (about 175k tokens a packet). Result: the cold read finds what the pilot judge found (grade 4
-math: the same three standards shown, and the judge's reasons appear as the rows' missing parts), but it marks a
-standard part for any missing piece, where the judge called small ones nearly full (math 4: 4 full and 21 part,
-against the judge's 17 full or nearly full). Fix made: each code carries `missing_weight` (core or edge) and the
-ledger has a `nearly` status. The 36 pilot rows are weighted (about 93k tokens). Where it
-landed: grade 4 math 4 full, 6 nearly, 15 part, 1 practice only, 2 shown; grade 6 ELA 3 full, 6 nearly, 18 part,
-14 practice only, 2 shown. That is still stricter than the pilot judge (17 full or nearly full in math), and the
-difference is real, not noise: with the official wording in front of it, the read marks core every place a standard
-says explain, write or record and the tool does that step for the student. The ledger's count stands as the
-measure; it is not tuned to match the judge. Next: the full read by subject and band, `missing_weight` written in
-the same pass (make packets with catalog_batch.py, one cheaper-model agent per packet, about 175k tokens each, then
-`python scripts/coverage_ledger.py`), with the top model spot-checking a sample of core and edge calls per subject.
+**Resume here: step 2, the read is done (2026-11-10); the maps are next.** All 800 tools have a row in row format
+2 (docs/agents/catalog/rows/, 71 packets, about 12 million tokens on the cheaper model), and the ledger is rebuilt:
+data/coverage.csv and docs/agents/catalog/tables/measure.md. Across every course's standards: 213 full, 368 nearly,
+404 part, 1,102 practice only, 276 shown, 37 none. By tool: 70 teach every code they carry, 177 teach at least one
+in full, 178 teach in part, 338 are practice only, 37 only show or claim. The two commonest reasons a tool falls
+short: its only check is a small-choice pick with free retries (601 tools list one; 322 of them teach nothing in
+full), and the tool does the standard's key step for the student (236 tools). High school math has no standard
+taught in full, and science 9 to 12 almost none.
+
+How far to trust it (top-model spot-check of 36 tools, 115 codes, each judged cold first): 80 percent of depth calls
+agree; of the misses, 14 are the read too strict and 9 too generous. Math and social studies are sound (85 and 100
+percent) and no math "taught" was inflated, so those counts are a floor. ELA taught counts are a floor too: the
+read calls a multiple-choice check guessable even where the spec closes it or a second check stands. Science is
+right within one step. In computer science, arts, CTE and world languages the codes are umbrellas with no filed
+wording, so per-code counts mean little there and each "taught" needs a hand check.
+
+Known limits, to fix before the maps are trusted outside math and ELA: (1) the packets and the ledger use only the math and ELA
+texts, so no other course has an expected list and "none" cannot show; the other subjects' texts are filed in
+data/standards (CSTA 2026 as ids only, wording still owed) and need wiring into catalog_batch.py and
+coverage_ledger.py, science first; (2) the beatable
+rule in CATALOG-EXTRACT.md needs three tests added (is trial really cheaper than thinking, does the spec's own
+table close it, does a second check stand) and a tie-break for two-part standards; (3) rows that say shown with a
+keyed check and an activity the student types are contradictions to grep for.
+
+Next: write the step 2 maps per subject (what is taught in full, what is practice only, what no tool reaches, the
+nine two-domain math modules), sort every spec into fine, small addition or rework from its row, and bring the
+maps to Cory as one Desk card per subject. Specs are revised course by course just before Build (steps 5 and 6,
+docs/agents/SPEC-REVISE.md), not all at once.
 Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
 
 ### What every other track does meanwhile
