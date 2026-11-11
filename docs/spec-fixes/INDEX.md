@@ -1,0 +1,101 @@
+# The spec fix list, by course
+
+Built by scripts/spec_fixes.py. Start with README.md. The two proving courses come first, then every other course by subject and grade.
+
+| Course | Tools | Fine | Small addition | Rework | Write the spec | Live | Fixed | Reviewed |
+|---|---|---|---|---|---|---|---|---|
+| [ela 6](courses/ela-6.md) (proving course) | 9 | 1 | 7 | 1 | 0 | 0 | 0 | 0 |
+| [math 4](courses/math-4.md) (proving course) | 13 | 2 | 10 | 1 | 1 | 0 | 0 | 0 |
+| [arts k-2](courses/arts-k-2.md) | 18 | 1 | 15 | 2 | 4 | 5 | 0 | 0 |
+| [arts 3-5](courses/arts-3-5.md) | 18 | 0 | 15 | 3 | 4 | 4 | 0 | 0 |
+| [arts 6-8](courses/arts-6-8.md) | 19 | 1 | 15 | 3 | 3 | 4 | 0 | 0 |
+| [arts 9-12](courses/arts-9-12.md) | 17 | 0 | 13 | 4 | 1 | 1 | 0 | 0 |
+| [computer-science k](courses/computer-science-k.md) | 3 | 0 | 3 | 0 | 0 | 1 | 0 | 0 |
+| [computer-science 1](courses/computer-science-1.md) | 3 | 0 | 2 | 1 | 0 | 2 | 0 | 0 |
+| [computer-science 2](courses/computer-science-2.md) | 3 | 0 | 3 | 0 | 1 | 2 | 0 | 0 |
+| [computer-science 3](courses/computer-science-3.md) | 3 | 0 | 2 | 1 | 0 | 1 | 0 | 0 |
+| [computer-science 4](courses/computer-science-4.md) | 4 | 0 | 4 | 0 | 0 | 1 | 0 | 0 |
+| [computer-science 5](courses/computer-science-5.md) | 4 | 0 | 4 | 0 | 0 | 1 | 0 | 0 |
+| [computer-science k-2](courses/computer-science-k-2.md) | 7 | 0 | 5 | 2 | 1 | 0 | 0 | 0 |
+| [computer-science 3-5](courses/computer-science-3-5.md) | 9 | 0 | 5 | 4 | 1 | 0 | 0 | 0 |
+| [computer-science 6-8](courses/computer-science-6-8.md) | 16 | 0 | 14 | 2 | 0 | 0 | 0 | 0 |
+| [computer-science 9-12](courses/computer-science-9-12.md) | 15 | 1 | 9 | 5 | 0 | 0 | 0 | 0 |
+| [cte 6-8](courses/cte-6-8.md) | 8 | 0 | 6 | 2 | 1 | 2 | 0 | 0 |
+| [cte 9-12](courses/cte-9-12.md) | 11 | 2 | 5 | 4 | 2 | 2 | 0 | 0 |
+| [ela k](courses/ela-k.md) | 9 | 3 | 5 | 1 | 0 | 0 | 0 | 0 |
+| [ela 1](courses/ela-1.md) | 9 | 0 | 8 | 1 | 1 | 0 | 0 | 0 |
+| [ela 2](courses/ela-2.md) | 10 | 0 | 8 | 2 | 2 | 4 | 0 | 0 |
+| [ela 3](courses/ela-3.md) | 10 | 1 | 7 | 2 | 1 | 0 | 0 | 0 |
+| [ela 4](courses/ela-4.md) | 10 | 2 | 6 | 2 | 0 | 0 | 0 | 0 |
+| [ela 5](courses/ela-5.md) | 9 | 2 | 7 | 0 | 0 | 0 | 0 | 0 |
+| [ela 7](courses/ela-7.md) | 9 | 3 | 6 | 0 | 0 | 0 | 0 | 0 |
+| [ela 8](courses/ela-8.md) | 9 | 2 | 7 | 0 | 0 | 0 | 0 | 0 |
+| [ela 9](courses/ela-9.md) | 9 | 1 | 7 | 1 | 0 | 0 | 0 | 0 |
+| [ela 10](courses/ela-10.md) | 8 | 1 | 7 | 0 | 0 | 0 | 0 | 0 |
+| [ela 11](courses/ela-11.md) | 7 | 0 | 7 | 0 | 0 | 0 | 0 | 0 |
+| [ela 12](courses/ela-12.md) | 7 | 0 | 6 | 1 | 0 | 0 | 0 | 0 |
+| [ela k-2](courses/ela-k-2.md) | 12 | 1 | 10 | 1 | 0 | 0 | 0 | 0 |
+| [ela 3-5](courses/ela-3-5.md) | 12 | 0 | 12 | 0 | 0 | 0 | 0 | 0 |
+| [ela 6-8](courses/ela-6-8.md) | 14 | 0 | 14 | 0 | 1 | 0 | 0 | 0 |
+| [ela 9-12](courses/ela-9-12.md) | 7 | 1 | 4 | 2 | 1 | 0 | 0 | 0 |
+| [eld k-2](courses/eld-k-2.md) | 6 | 0 | 6 | 0 | 4 | 4 | 0 | 0 |
+| [eld 3-5](courses/eld-3-5.md) | 5 | 1 | 4 | 0 | 0 | 0 | 0 | 0 |
+| [eld 6-8](courses/eld-6-8.md) | 5 | 2 | 3 | 0 | 1 | 1 | 0 | 0 |
+| [eld 6-12](courses/eld-6-12.md) | 1 | 1 | 0 | 0 | 0 | 0 | 0 | 0 |
+| [eld 9-12](courses/eld-9-12.md) | 5 | 0 | 4 | 1 | 2 | 0 | 0 | 0 |
+| [health-pe k-2](courses/health-pe-k-2.md) | 8 | 0 | 8 | 0 | 5 | 5 | 0 | 0 |
+| [health-pe 3-5](courses/health-pe-3-5.md) | 10 | 0 | 5 | 5 | 2 | 2 | 0 | 0 |
+| [health-pe 6-8](courses/health-pe-6-8.md) | 6 | 0 | 4 | 2 | 0 | 0 | 0 | 0 |
+| [health-pe 6-12](courses/health-pe-6-12.md) | 1 | 0 | 1 | 0 | 0 | 0 | 0 | 0 |
+| [health-pe 9-12](courses/health-pe-9-12.md) | 7 | 0 | 7 | 0 | 1 | 1 | 0 | 0 |
+| [library k-2](courses/library-k-2.md) | 3 | 0 | 2 | 1 | 2 | 2 | 0 | 0 |
+| [library 3-5](courses/library-3-5.md) | 3 | 0 | 2 | 1 | 0 | 0 | 0 | 0 |
+| [library 6-8](courses/library-6-8.md) | 3 | 0 | 3 | 0 | 0 | 0 | 0 | 0 |
+| [library 9-12](courses/library-9-12.md) | 4 | 0 | 4 | 0 | 0 | 0 | 0 | 0 |
+| [math k](courses/math-k.md) | 9 | 1 | 7 | 1 | 1 | 1 | 0 | 0 |
+| [math 1](courses/math-1.md) | 11 | 2 | 8 | 1 | 0 | 0 | 0 | 0 |
+| [math 2](courses/math-2.md) | 9 | 0 | 7 | 2 | 2 | 2 | 0 | 0 |
+| [math 3](courses/math-3.md) | 10 | 1 | 9 | 0 | 0 | 0 | 0 | 0 |
+| [math 5](courses/math-5.md) | 11 | 2 | 9 | 0 | 0 | 0 | 0 | 0 |
+| [math 6](courses/math-6.md) | 11 | 2 | 8 | 1 | 2 | 2 | 0 | 0 |
+| [math 7](courses/math-7.md) | 12 | 8 | 4 | 0 | 0 | 0 | 0 | 0 |
+| [math 8](courses/math-8.md) | 10 | 2 | 6 | 2 | 1 | 2 | 0 | 0 |
+| [math 9](courses/math-9.md) | 11 | 1 | 5 | 5 | 0 | 0 | 0 | 0 |
+| [math 10](courses/math-10.md) | 9 | 0 | 3 | 6 | 0 | 0 | 0 | 0 |
+| [math 11](courses/math-11.md) | 8 | 0 | 1 | 7 | 0 | 7 | 0 | 0 |
+| [math 12](courses/math-12.md) | 20 | 0 | 5 | 15 | 0 | 0 | 0 | 0 |
+| [science k](courses/science-k.md) | 5 | 0 | 4 | 1 | 1 | 0 | 0 | 0 |
+| [science 1](courses/science-1.md) | 5 | 1 | 4 | 0 | 1 | 0 | 0 | 0 |
+| [science 2](courses/science-2.md) | 6 | 0 | 5 | 1 | 3 | 3 | 0 | 0 |
+| [science 3](courses/science-3.md) | 7 | 2 | 4 | 1 | 0 | 0 | 0 | 0 |
+| [science 4](courses/science-4.md) | 8 | 3 | 4 | 1 | 1 | 1 | 0 | 0 |
+| [science 5](courses/science-5.md) | 8 | 2 | 5 | 1 | 0 | 0 | 0 | 0 |
+| [science 6](courses/science-6.md) | 10 | 2 | 6 | 2 | 1 | 1 | 0 | 0 |
+| [science 7](courses/science-7.md) | 10 | 2 | 7 | 1 | 0 | 0 | 0 | 0 |
+| [science 8](courses/science-8.md) | 13 | 1 | 11 | 1 | 0 | 0 | 0 | 0 |
+| [science 9](courses/science-9.md) | 15 | 1 | 4 | 10 | 0 | 0 | 0 | 0 |
+| [science 10](courses/science-10.md) | 9 | 0 | 5 | 4 | 1 | 1 | 0 | 0 |
+| [science 11](courses/science-11.md) | 9 | 1 | 3 | 5 | 0 | 3 | 0 | 0 |
+| [science 12](courses/science-12.md) | 5 | 0 | 3 | 2 | 0 | 0 | 0 | 0 |
+| [sel k-2](courses/sel-k-2.md) | 3 | 0 | 3 | 0 | 2 | 2 | 0 | 0 |
+| [sel 3-5](courses/sel-3-5.md) | 2 | 0 | 2 | 0 | 2 | 2 | 0 | 0 |
+| [sel 6-8](courses/sel-6-8.md) | 2 | 0 | 1 | 1 | 2 | 2 | 0 | 0 |
+| [sel 9-12](courses/sel-9-12.md) | 3 | 0 | 2 | 1 | 2 | 2 | 0 | 0 |
+| [social-studies k](courses/social-studies-k.md) | 5 | 0 | 3 | 2 | 1 | 1 | 0 | 0 |
+| [social-studies 1](courses/social-studies-1.md) | 8 | 0 | 2 | 6 | 0 | 0 | 0 | 0 |
+| [social-studies 2](courses/social-studies-2.md) | 9 | 0 | 6 | 3 | 1 | 1 | 0 | 0 |
+| [social-studies 3](courses/social-studies-3.md) | 8 | 0 | 4 | 4 | 0 | 0 | 0 | 0 |
+| [social-studies 4](courses/social-studies-4.md) | 10 | 0 | 6 | 4 | 1 | 1 | 0 | 0 |
+| [social-studies 5](courses/social-studies-5.md) | 11 | 0 | 5 | 6 | 1 | 1 | 0 | 0 |
+| [social-studies 6](courses/social-studies-6.md) | 11 | 0 | 6 | 5 | 0 | 0 | 0 | 0 |
+| [social-studies 7](courses/social-studies-7.md) | 11 | 0 | 9 | 2 | 0 | 0 | 0 | 0 |
+| [social-studies 8](courses/social-studies-8.md) | 13 | 0 | 11 | 2 | 0 | 0 | 0 | 0 |
+| [social-studies 9](courses/social-studies-9.md) | 5 | 1 | 3 | 1 | 0 | 0 | 0 | 0 |
+| [social-studies 10](courses/social-studies-10.md) | 7 | 1 | 6 | 0 | 0 | 0 | 0 | 0 |
+| [social-studies 11](courses/social-studies-11.md) | 11 | 0 | 10 | 1 | 1 | 0 | 0 | 0 |
+| [social-studies 12](courses/social-studies-12.md) | 22 | 4 | 14 | 4 | 1 | 1 | 0 | 0 |
+| [world-languages 6-12](courses/world-languages-6-12.md) | 7 | 0 | 6 | 1 | 3 | 1 | 0 | 0 |
+| [world-languages 9-12](courses/world-languages-9-12.md) | 3 | 0 | 3 | 0 | 1 | 0 | 0 | 0 |
+| [world-languages k-12](courses/world-languages-k-12.md) | 10 | 1 | 8 | 1 | 5 | 1 | 0 | 0 |
+
+800 tools in 93 courses; 0 fixed, 0 reviewed. By kind of fix: Write the spec 79, Hand the key step to the student 237, Close the guessable check 601, Add the missing part 639, Add a model or a guide 79, Add a check 175, Reach five items that differ 481, Put it on the main path 81, Teach the code or drop it 31, Sensitivity read 206, Source the facts 9.

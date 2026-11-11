@@ -113,10 +113,19 @@ addition, 1 rework) and 27 standards (4 full, 6 nearly, 15 part, 1 practice only
 (1 fine, 7 small addition, 1 rework) and 43 standards (4 full, 6 nearly, 17 part, 14 practice only, 2 shown). The
 maps are on the Desk as card q-maps-1.
 
+The spec fix list (2026-11-10): `python scripts/spec_fixes.py` builds docs/spec-fixes/ (start at its README.md):
+one file per course naming, tool by tool and code by code, which kind of fix each spec needs and the exact parts
+the read found missing; fix-list.csv for sorting; done.txt as the hand-kept log. Sara owns the fixes for the whole
+spec catalog (Cory, on the Desk), proving courses first, then the 26 live rework tools, then course by course.
+After a course's specs are all fixed, the specs are read again and Sara gives the course a final review against
+the end standard (docs/spec-fixes/FINAL-REVIEW.md). Cory's other two answers on card q-maps-1: fix the 26 live
+rework tools first in step 3 and leave the built ones until their course comes up; leave high school math until
+grade 4 math has proved the pattern.
+
 Next: wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
 the beatable rule, clean the contradictory rows, then rebuild the ledger and the maps. After that step 2 is closed
-and step 3 (fix what is built: the 26 live rework tools first) opens. Specs are revised course by course just
-before Build (steps 5 and 6, docs/agents/SPEC-REVISE.md), not all at once.
+and step 3 (fix what is built: the 26 live rework tools first) opens. Specs are fixed by Sara from docs/spec-fixes/, ahead of Build, so a
+course's specs are ready when its turn comes (steps 5 and 6).
 Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
 
 ### What every other track does meanwhile

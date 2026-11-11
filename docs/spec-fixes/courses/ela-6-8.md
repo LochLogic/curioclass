@@ -1,0 +1,598 @@
+# Spec fixes: ela, grade 6-8
+
+14 tools: 0 rework, 14 small addition, 0 fine. How to use this file: ../README.md. When a spec is fixed, add a line to ../done.txt.
+
+Kinds of fix in this course: Write the spec (1), Hand the key step to the student (2), Close the guessable check (14), Add the missing part (13), Add a model or a guide (2), Add a check (6), Reach five items that differ (11), Put it on the main path (1), Sensitivity read (3).
+
+## Context, Roots, Dictionary
+
+- Spec: `tools/context-roots-dictionary/spec.md` . Module: ela-6-8-academic-vocabulary-strategies. Stage: spec only. Sort: **small addition**.
+- Fixes: Hand the key step to the student, Close the guessable check, Add the missing part, Add a model or a guide, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Verdict: mark every guess right; the key sense is shown beside it but nothing forces a match
+- **L.6.4a** (taught, in Context key; clue chip): Tap clue words, name the clue type, write a guess
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - position or function in the sentence as a clue
+- **L.6.4b** (shown, in Roots key; root card): Read the split word and root card, then refine the guess
+  - To do: the tool does the "use" step: the student must do it
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - split the word into parts themselves
+    - reason from the root (refining the guess is optional)
+- **L.6.4c** (taught, in Dictionary key; entry with senses): Pick the dictionary sense that fits the passage
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - use a glossary or thesaurus
+    - a real print or digital reference (entries are written for the tool)
+    - find pronunciation or part of speech (shown on the entry)
+- **L.6.4d** (practiced, in Dictionary key verdict): Mark the guess right, close or wrong against the sense
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - checking the inferred meaning back in context
+- **L.6.6** (practiced, in My glossary and final passage): Write a sentence per cracked word, then read a new passage
+  - To do: no model or guide: add one
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - choosing which words matter (words are chosen for the student)
+    - accurate use judged beyond word and length rules
+- **L.7.4a** (taught, in Context key; clue chip): Tap clue words, name the clue type, write a guess
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - position or function in the sentence as a clue
+- **L.7.4b** (shown, in Roots key; root card): Read the split word and root card, then refine the guess
+  - To do: the tool does the "use" step: the student must do it
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - split the word into parts themselves
+    - reason from the root (refining the guess is optional)
+- **L.7.4c** (taught, in Dictionary key; entry with senses): Pick the dictionary sense that fits the passage
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - use a glossary or thesaurus
+    - a real print or digital reference (entries are written for the tool)
+    - find pronunciation or part of speech (shown on the entry)
+- **L.7.4d** (practiced, in Dictionary key verdict): Mark the guess right, close or wrong against the sense
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - checking the inferred meaning back in context
+- **L.7.6** (practiced, in My glossary and final passage): Write a sentence per cracked word, then read a new passage
+  - To do: no model or guide: add one
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - choosing which words matter (words are chosen for the student)
+    - accurate use judged beyond word and length rules
+- **L.8.4a** (taught, in Context key; clue chip): Tap clue words, name the clue type, write a guess
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - position or function in the sentence as a clue
+- **L.8.4b** (shown, in Roots key; root card): Read the split word and root card, then refine the guess
+  - To do: the tool does the "use" step: the student must do it
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - split the word into parts themselves
+    - reason from the root (refining the guess is optional)
+- **L.8.4c** (taught, in Dictionary key; entry with senses): Pick the dictionary sense that fits the passage
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - use a glossary or thesaurus
+    - a real print or digital reference (entries are written for the tool)
+    - find pronunciation or part of speech (shown on the entry)
+- **L.8.4d** (practiced, in Dictionary key verdict): Mark the guess right, close or wrong against the sense
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - checking the inferred meaning back in context
+- **L.8.6** (practiced, in My glossary and final passage): Write a sentence per cracked word, then read a new passage
+  - To do: no model or guide: add one
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - choosing which words matter (words are chosen for the student)
+    - accurate use judged beyond word and length rules
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - Practiced for 4d and for L.x.6: no stated check forces an honest mark; sentence rule checks use of the word and length only
+  - Spec lists lettered parts; the parent L.x.4 (choosing flexibly) is not claimed separately and the fixed key order limits it
+  - Whether the log's wrong guesses come from the student's mark or the tool's judgment is unclear
+  - Items counted as 4 locked words per grade passage
+
+## Claim, Quote, Comment
+
+- Spec: `tools/claim-quote-comment/spec.md` . Module: ela-6-8-analysis-with-evidence-from-nonfiction. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Comment: any 8 words holding one claim word and one quote word light the lamp, even if the quote does not prove the claim
+  - Lead-in: any text in the lead-in field clears the dropped-quote check
+  - Grade 8 rank: three candidates, rank until the tool stops asking for a reason
+- **RI.6.1** (practiced, in Article; Build (grade 6)): Highlight a quote that supports the claim
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - inferences (quotes show what the text says)
+    - check that the quote really proves the claim (only comment words are tested)
+- **W.6.9** (practiced, in Build (grade 6)): Write a lead-in and a comment for each quote
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - draw evidence from literature (one informational article)
+    - reflection and research uses
+    - organize the whole paragraph beyond the links
+- **RI.7.1** (practiced, in Build (grade 7)): Cite three quotes, one from a second section
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - inferences (quotes show what the text says)
+    - check that the quotes really prove the claim
+- **W.7.9** (practiced, in Build (grade 7)): Write lead-ins and comments for three links
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - draw evidence from literature (one informational article)
+    - reflection and research uses
+- **RI.8.1** (practiced, in Grade 8 rank): Rank three candidate quotes and keep the strongest
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - explain in words why the kept quote is strongest (a reason is asked only when the pick is wrong)
+- **W.8.9** (practiced, in Grade 8 counter line): Add a counter line to the paragraph
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - draw evidence from literature (one informational article)
+    - check the counter line (frame only)
+- The module also lists codes this tool does not carry: W.6.9a, W.6.9b, W.7.9a, W.7.9b, W.8.9a, W.8.9b.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - spec names W.6.9 only, so a and b parts are listed as untaught; the informational article is not literary nonfiction
+  - all codes practiced because no check tests whether the quote proves the claim, apart from the beatable word tests
+  - grade 7 uses the same loop with three links and a second section; grade 8 adds ranking and a counter line
+
+## Pause and Break
+
+- Spec: `tools/pause-and-break/spec.md` . Module: ela-6-8-commas-dashes-and-ellipses. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check.
+- Checks a student can pass by guessing:
+  - Match levels: the target waveform gaps are on screen and Play mine feedback shows alignment, so try marks until the gaps line up
+  - Grade 7 pairs: only two choices (comma or none) with the gap match shown, so trial beats the swap test
+- **L.8.2a** (practiced, in Grade 8 breaks and pauses): Place dashes and ellipses for a break or trailing pause
+  - Parts of the standard the student never does (small, add if cheap):
+    - comma as a pause mark
+- The module also lists codes this tool does not carry: L.6.2b, L.7.2b, L.8.2c.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - Practiced for 6.2a, 7.2a, 8.2a because the waveform match is trial-friendly; the extra meaning questions (picture, whisper or shout) are two-choice
+  - Grade 8 example removes a comma, so comma for a pause is listed as missing; not sure if comma levels exist
+  - Number of omission levels is not stated, items set to 0
+  - Items 12 is levels per grade including some same-words levels
+
+## Memoir and Biography
+
+- Spec: `tools/memoir-and-biography/spec.md` . Module: ela-6-8-how-authors-present-people-and-ideas. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ, Sensitivity read.
+- Checks a student can pass by guessing:
+  - Tags: three types at grade 6 and a mismatch note that names the key reading, so retag to what the tool says
+  - Table: rows in the wrong column show why, so move rows until none object
+  - Conflict round: every one of the four choices is accepted with two sentences
+- **RI.6.3** (practiced, in Tag; highlight types): Tag how Helen is introduced and which anecdotes each text uses
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - explain why the author elaborates this way (tags only)
+- **RI.6.6** (practiced, in Tag; point-of-view tags): Tag where point of view shows and name it in a line
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - explain how the point of view is conveyed (tags and a line)
+- **RI.6.9** (practiced, in Table and Timeline row): Fix table rows and see the timeline lights three differences
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - compare in the student's own words (rows are moved, differences are lit by the tool)
+- **RI.7.3** (practiced, in Threads (grade 7)): Draw labeled threads linking people, events and ideas
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - explain how ideas influence individuals or events (labels only)
+- **RI.8.3** (practiced, in Comparison tags (grade 8)): Tag comparisons and analogies and say what each connects
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - distinctions and categories (comparisons and analogies only)
+- **RI.8.6** (practiced, in Conflict round): Choose how the biography handles the conflict, write two sentences
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - analyze how an author in the texts acknowledges conflicting accounts (student writes their own handling)
+    - determine an author's purpose
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - No standard reached taught: the tag and table feedback names the key answer and the conflict round accepts any choice
+  - RI.8.6 asks to analyze an author's response to conflicting evidence; here the student acts as the biographer, so partial fit
+  - RI.7.3 thread check is not stated; set to none
+  - Items counted as the three texts
+
+## Podcast Listening Club
+
+- Spec: `tools/podcast-listening-club/spec.md` . Module: ela-6-8-listening-to-speakers-and-discussing. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Club round: pick the same move every time; only change my mind is checked, and the typed line is not scored
+- **SL.6.2** (taught, in Chart; chartCheck on the made-up line-wait data): Read the notes chart, type two values, judge the host's claim
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - explain how the chart contributes to the issue under study
+- **SL.7.2** (practiced, in Chart and Summary card): Name each host's main idea and use the chart
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - supporting details beyond one chart claim
+    - explain how ideas clarify the topic
+- **SL.7.3** (taught, in Episode 2 enough meter): Episode 2: mark whether each supported claim's evidence is enough
+  - Parts of the standard the student never does (must add):
+    - relevance of evidence (episode 3 only)
+    - soundness of the reasoning beyond amount of evidence
+- **SL.8.3** (taught, in Episode 3 irrelevant tag): Episode 3: catch a true fact that does not bear on the claim
+  - Parts of the standard the student never does (must add):
+    - soundness of the reasoning beyond tagging
+- **SL.7.1** (taught, in Club round with move cards): Answer each club member's disagreement with a move and a line
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - discussion with live partners (members are scripted)
+    - follow rules, track goals, define roles (7.1b)
+    - pose questions that elicit elaboration (moves are chosen, not asked live)
+- **SL.8.1** (taught, in Club round with qualify frame): Answer each disagreement with a move; qualify or justify your view
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - discussion with live partners (members are scripted)
+    - follow rules, track goals, define roles (8.1b)
+    - questions that connect the ideas of several speakers
+- The module also lists codes this tool does not carry: SL.7.1b, SL.8.1b.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - Spec names SL.7.1 and SL.8.1 only, not 7.1a to 7.1d; I judged sub-parts from the club round
+  - Club members are scripted bubbles, so I marked live-partner discussion as missing even though Pair compare mode exists
+  - SL.7.2 main idea card has no stated check; marked practiced
+  - Whether the tool gives feedback on wrong tags before the club round is not stated
+
+## Blizzard Scenes
+
+- Spec: `tools/blizzard-scenes/spec.md` . Module: ela-6-8-narrative-point-of-view-and-structure. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Reorder: put the headlights paragraph first and drop any tray transition at each jump; the tool checks for presence, not fit
+- **RL.7.6** (taught, in Models; marks and only lines): Mark each line knows, notices or hides for two narrators
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - how the author builds each point of view (marks what is known, not technique)
+- **W.6.3** (taught, in My scene with prompt strip): Pick a seat and write a scene with the prompt strip
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - transition words to signal time
+    - a conclusion that follows from the events
+- **W.7.3** (taught, in Rewrite and side-by-side columns): Rewrite from another seat; tap facts only one narrator knows
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - transitions to signal shifts
+    - a conclusion that reflects on events
+- **RL.8.5** (practiced, in Grade 8 models with structure strips): Compare two model structures and answer what each does to suspense
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - texts by different authors (two versions of one scene)
+    - meaning and style beyond suspense
+- **W.8.3** (practiced, in Grade 8 reorder): Reorder to start at the headlights, add transitions and an ending
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - writing new narrative text (paragraphs are reordered)
+    - sensory language and precise words at grade 8
+- The module also lists codes this tool does not carry: W.6.3c, W.6.3e, W.7.3c, W.7.3e.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - Spec names W.6.3, W.7.3, W.8.3 without letters; untaught parts judged from the prompts and grade 8 additions
+  - Self-ticked prompt strip counted as a self-guide check for the writing codes
+  - W.8.3 marked practiced because its only check is the beatable reorder rule
+  - Grade 8 end-first model word count not stated
+
+## Docent Tour Talk
+
+- Spec: `tools/docent-tour-talk/spec.md` . Module: ela-6-8-presenting-claims-and-findings. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Reach five items that differ, Sensitivity read.
+- Checks a student can pass by guessing:
+  - Key point first: the student marks which line is the key point and the check is only that the marked line is first, so mark the first line every time
+  - This-shows line: three choices with a mismatch note and free tries, so trying beats thinking
+- **SL.6.4** (taught, in Plan and Rehearse; self-check rubric): Order three stops, rehearse with timer, meter and fading script
+  - To do: only 3 items: reach five or more that differ
+- **SL.7.4** (taught, in Plan (key point first) and Rehearse): Put the key point first in each stop; rehearse
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - emphasize salient points beyond placing the key point first
+- **SL.6.5** (practiced, in Details; detail card): Pick a zoomed detail and a this-shows line per stop
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - music and sound components (images only)
+    - visual displays other than a zoomed detail
+    - making or adding a component of their own
+- **SL.7.5** (practiced, in Details; detail card): Pick a zoomed detail and a this-shows line per stop
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - emphasize salient points with the display
+    - making or adding a component of their own
+- **SL.6.6** (taught, in Audiences; word-count and formal checks): Rewrite and record the opening for three audiences
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - formal English beyond a small slang list and contraction reminder
+    - adapting more than the opening
+- **SL.7.6** (taught, in Audiences; word-count and formal checks): Rewrite and record the opening for three audiences
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - formal English beyond a small slang list and contraction reminder
+    - adapting more than the opening
+- **SL.8.6** (taught, in Audiences; word-count and formal checks): Rewrite and record the opening for three audiences
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - formal English beyond a small slang list and contraction reminder
+    - adapting more than the opening
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - Eye contact and pronunciation are self-marked on a rubric, never observed; kept taught because a self-guide counts for talk
+  - Family opening (a story) has no tool check; curator check is a small slang list
+  - Fact card word counts are not stated
+  - SL.6.5 and SL.7.5 depth set by the detail pick having no check and the this-shows pick being trial-friendly
+
+## Climbing Reads
+
+- Spec: `tools/climbing-reads/spec.md` . Module: ela-6-8-reading-range-and-text-complexity. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Sensitivity read.
+- Checks a student can pass by guessing:
+  - Free climb: leave all four supports on at every hold; the holds still count, so independent reading is never required
+- **RL.6.10** (taught, in Wall routes (fiction, poetry, drama)): Read each hold's passage and answer three checks
+  - Parts of the standard the student never does (small, add if cheap):
+    - whole works (passages of 250 to 450 words)
+- **RL.7.10** (taught, in Wall routes (fiction, poetry, drama)): Read each hold's passage and answer three checks
+  - Parts of the standard the student never does (small, add if cheap):
+    - whole works (passages of 250 to 450 words)
+- **RL.8.10** (taught, in Wall routes (fiction, poetry, drama)): Read each hold's passage and answer three checks
+  - Parts of the standard the student never does (must add):
+    - whole works (passages of 250 to 450 words)
+    - reading independently (supports may stay on and the hold still counts)
+- **RI.6.10** (taught, in Wall routes (history, science, technical)): Read each hold's passage and answer three checks
+  - Parts of the standard the student never does (small, add if cheap):
+    - whole works (passages of 250 to 450 words)
+- **RI.7.10** (taught, in Wall routes (history, science, technical)): Read each hold's passage and answer three checks
+  - Parts of the standard the student never does (small, add if cheap):
+    - whole works (passages of 250 to 450 words)
+- **RI.8.10** (taught, in Wall routes (history, science, technical)): Read each hold's passage and answer three checks
+  - Parts of the standard the student never does (must add):
+    - whole works (passages of 250 to 450 words)
+    - reading independently (supports may stay on and the hold still counts)
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - Spec conflicts: standards map says the top hold counts only with no supports; Screens says the hold counts with supports on
+  - Check question types (multiple choice or not) are not stated, so guessing odds are unknown
+  - Words per work set to 4 holds at about 350 words
+  - Technical route is not literary nonfiction; RI.x.10 fit is loose
+
+## Draft Versus Draft
+
+- Spec: `tools/draft-versus-draft/spec.md` . Module: ela-6-8-revising-for-purpose-and-audience. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - My revision: reader rules are simple triggers (add a number of students; first sentence under 15 words) and the faces show which way to move
+- **W.6.4** (taught, in Showdown; Change marks; My revision (grade 6)): Vote, rate changes for a reader, revise for another
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - produce a new piece from scratch (the student revises a given letter)
+    - develop and organize beyond one letter
+- **W.6.5** (taught, in Reader panel; My revision (grade 6)): Watch the reader panel react; revise original with four tools
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - plan before drafting
+    - edit for conventions
+    - guidance from peers or adults (the panel is simulated)
+- **W.7.4** (taught, in Showdown; Change marks; My revision (grade 7)): Vote, rate changes for a reader, revise for another
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - produce a new piece from scratch (the student revises a given letter)
+    - develop and organize beyond one letter
+- **W.7.5** (taught, in Reader panel; My revision (grade 7)): Watch the reader panel react; revise original with four tools
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - plan before drafting
+    - edit for conventions
+    - guidance from peers or adults (the panel is simulated)
+- **L.7.3** (practiced, in Wordiness meter (grade 7)): Cut redundant phrases the wordiness meter lights
+  - Parts of the standard the student never does (must add):
+    - find wordiness without the meter lighting it
+    - redundancy outside the 40-phrase list
+    - choose precise language (cutting only)
+- **W.8.4** (taught, in Showdown; Change marks; My revision (grade 8)): Vote, rate changes for a reader, revise for another
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - produce a new piece from scratch (the student revises a given letter)
+    - develop and organize beyond one letter
+- **W.8.5** (taught, in New approach (grade 8)): Turn the letter into a one-page flyer
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - plan before drafting
+    - edit for conventions
+    - guidance from peers or adults (the panel is simulated)
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - codes named by the spec only as L.7.3; the wordiness meter matches L.7.3a
+  - W.6.4, W.7.4 and W.8.4 repeat the same loop on different grade content, so rows are alike
+  - grade_split same-plus-step: grade 7 adds the meter and a new pair, grade 8 adds a flyer round on a different letter
+  - minutes 32 is the midpoint of 25 to 40
+  - W.x.4 check is self-guide: the key reading is shown after each mark, no scored pass
+
+## Tricky Word Lab
+
+- Spec: `tools/tricky-word-lab/spec.md` . Module: ela-6-8-spelling-through-word-families. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part.
+- Checks a student can pass by guessing:
+  - Family step: three family cards with free tries and a Different family note, so tapping each card works without thinking (the Fresh retype still tests the spelling)
+- **L.6.2b** (taught, in Specimen steps; Fresh; Rule tests; My list): Split the word, pick the family, fix it, retype from memory
+  - Parts of the standard the student never does (must add):
+    - spelling inside the student's own writing (isolated words only)
+- **L.7.2b** (taught, in Specimen steps; Fresh; Rule tests; My list): Split the word, pick the family, fix it, retype from memory
+  - Parts of the standard the student never does (must add):
+    - spelling inside the student's own writing (isolated words only)
+- **L.8.2c** (taught, in Specimen steps; Fresh; Rule tests; My list): Split the word, pick the family, fix it, retype from memory
+  - Parts of the standard the student never does (must add):
+    - spelling inside the student's own writing (isolated words only)
+- The module also lists codes this tool does not carry: L.6.2a, L.7.2a, L.8.2a, L.8.2b.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - All three codes share one activity set; grade only changes the tray of ten words
+  - Rule tests and the review queue are tool-only and not tied to one grade code
+  - Fresh retype right after the fix step may test short memory, though the review queue returns words later
+
+## Explainer Sections
+
+- Spec: `tools/explainer-sections/spec.md` . Module: ela-6-8-structure-in-informative-writing. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Order: reorder blocks until Pip stops stopping; the bubble names the problem, so each try points the way
+  - Build: Pip checks for headings, definition order and a conclusion but not what any section says; one-line sections pass
+- **RI.6.5** (taught, in Take apart; Tag jobs; Walk): Order seven blocks, tag each block's job, watch Pip's walk
+  - Parts of the standard the student never does (small, add if cheap):
+    - a single sentence or paragraph (blocks are whole sections)
+- **RI.7.5** (practiced, in Section map (grade 7 and up)): Write one line per section on how it serves the whole
+  - To do: no check: add one where thinking is cheaper than guessing
+  - Parts of the standard the student never does (must add):
+    - name the overall structure the author used
+- **W.6.2** (taught, in Build; Pip walks the draft): Pick a pattern, write headings, text, transitions and a conclusion
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - precise language and domain-specific vocabulary
+    - formal style
+    - quotations
+    - graphics or multimedia
+- **W.7.2** (taught, in Grade 7 build): Build with a definition section and a comparison chart
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - an introduction that previews what follows
+    - precise language and domain-specific vocabulary
+    - formal style
+    - quotations
+- **W.8.2** (taught, in Grade 8 build): Build with a mix-up section and a following conclusion
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - organize ideas into broader categories
+    - an introduction that previews what follows
+    - precise language and domain-specific vocabulary
+    - formal style
+    - quotations
+- The module also lists codes this tool does not carry: W.6.2d, W.6.2e, W.7.2d, W.7.2e, W.8.2d, W.8.2e.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - W.6.2 sub-letters are not named in the spec; parts missing judged from the standard text
+  - Whether grade 8 build also keeps grade 7's definition and chart is unclear
+  - Section text the student writes is not checked for content, only structure
+  - Word counts of the model and fact packs not stated
+
+## Page, Audio, Screen
+
+- Spec: `tools/page-audio-screen/spec.md` . Module: ela-6-8-text-audio-and-film-versions. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Add a model or a guide, Add a check, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Faithful or departs: mark every storyboard frame as departs; the key departures are named but wrong departs marks are not stated to cost anything
+  - Pins: any text in the effect line satisfies the effect-line rule
+- **RL.6.7** (practiced, in Story tabs Page, Audio, Screen; Pins): Pin what page, audio and storyboard each add or cut
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - a drama or poem (one story scene only)
+    - a live or true video version (storyboard stills only)
+- **RI.6.7** (practiced, in Explainer; three questions with medium tags): Answer three lens questions using article, audio and diagram
+  - To do: no model or guide: add one
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - quantitative information (no numbers or charts)
+- **RL.7.7** (practiced, in Pins with technique list (grade 7)): Pin a medium's technique and write its effect
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - a staged version
+    - a filmed or multimedia version (storyboard stills only)
+    - a drama or poem
+- **RI.7.7** (practiced, in Story: Audio; twoReadings comparison line): Compare two audio readings and write which line lands harder
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - compare to a video or multimedia version
+    - an informational text or speech (readings are of the story)
+- **RL.8.7** (practiced, in Screen and Recommend (grade 8)): Mark storyboard changes faithful or departs, say if worth it
+  - Parts of the standard the student never does (must add):
+    - an actual filmed or live production (storyboard stills only)
+    - evaluating actors' choices (director's frames only)
+- **RI.8.7** (practiced, in Explainer (grade 8) three-column card): Fill a pros and limits card for page, audio, diagram
+  - To do: no model or guide: add one
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - video as a medium (diagram animation only)
+    - print against digital text
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - Every depth is practiced: no pin or effect line is checked for content, only for presence; I read the effect-line rule as weak
+  - RI.7.7 is mapped to the two readings of the story, which is fiction, not an informational text
+  - Recommendation card (cites two pins) maps to no single code
+  - Whether the faithful or departs marks give feedback on false departs is not stated
+
+## Theme Evidence Ladder
+
+- Spec: `tools/theme-evidence-ladder/spec.md` . Module: ela-6-8-theme-and-textual-evidence. Stage: spec only. Sort: **small addition**.
+- Fixes: Write the spec, Hand the key step to the student, Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Wobble: the because line need only name one word from the student's own theme
+  - Top rung: five rungs, reorder freely until the tool accepts the keyed strongest
+- **RL.6.1** (taught, in Ladder (grade 6)): Lift passages, including one that implies the theme
+  - Parts of the standard the student never does (must add):
+    - label which passages are explicit and which are inferences
+    - explain an inference in words (the implied passage is lifted, not explained)
+- **RL.6.2** (taught, in Theme; Ladder; Write (grade 6)): Write theme as a full sentence, build the ladder, summarize
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - opinion words not on the flag list
+- **RL.6.9** (practiced, in Poem): Mark Holds, Holds partly or Differs and write why
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - compare form and structure of story and poem (theme only)
+    - contrast the two approaches in detail (one verdict and a line)
+- **RL.7.1** (taught, in Ladder (grade 7)): Lift several passages with paragraph numbers
+  - Parts of the standard the student never does (must add):
+    - label which passages are explicit and which are inferences
+    - explain an inference in words
+- **RL.7.2** (shown, in Grade 7 timeline): Watch the ladder tip onto the story timeline
+  - To do: the tool does the "determine" step: the student must do it
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - analyze in words how the theme develops
+    - an objective summary beyond the flagged 60-word box
+- **RL.8.1** (taught, in Ladder (wobble, strongest) (grade 8)): Rank rungs; explain why a rung beats the rival
+  - Parts of the standard the student never does (must add):
+    - separate explicit statements from inferences in the ranking
+- **RL.8.2** (practiced, in Grade 8 tags): Tag each rung Character, Setting or Plot turn
+  - To do: no check: add one where thinking is cheaper than guessing
+  - Parts of the standard the student never does (must add):
+    - analyze how the theme develops across the story
+    - explain the relationship to character, setting and plot in words (a tag only)
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - Grade 8 tags section names no check; flagged spec-thin
+  - RL.7.2 shown because the ladder tips itself onto the timeline; the 60-word summary is practiced but is not the verb's key step
+  - Starter theme cards offer three themes; own sentence allowed, so theme choice is not fully guessable
+  - Auld Lang Syne word count not stated
+
+## Linked Feature
+
+- Spec: `tools/linked-feature/spec.md` . Module: ela-6-8-writing-and-publishing-online. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Reach five items that differ, Put it on the main path.
+- Checks a student can pass by guessing:
+  - Diagram: arrows need a label from the four-item list, but any label passes, so labeling at random works
+  - Editor replies: any eight words resolve a comment
+- **W.6.6** (taught, in Feature page counter; Editor comments): Type three pages in one sitting and answer the editor
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - publish to a real audience (file save only, nothing posted)
+    - collaborate with other students (scripted editor)
+    - use the Internet (offline practice pages)
+- **W.7.6** (taught, in Link and cite; Sources): Link claims to source paragraphs; sources list builds itself
+  - Parts of the standard the student never does (must add):
+    - write the citation (sources list builds itself)
+    - link to real online sources
+- **W.8.6** (practiced, in Diagram): Draw a linked diagram with labeled arrows
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - relationships shown in forms other than idea boxes and arrows
+- **W.6.10** (touched, in Quick-writes and Log): Write 5-minute daily quick-writes beside the long feature
+  - To do: off the main path or can be skipped: put it on the path
+  - Parts of the standard the student never does (must add):
+    - a range of discipline-specific tasks and audiences
+- **W.7.10** (touched, in Quick-writes and Log): Write 5-minute daily quick-writes beside the long feature
+  - To do: off the main path or can be skipped: put it on the path
+  - Parts of the standard the student never does (must add):
+    - a range of discipline-specific tasks and audiences
+- **W.8.10** (touched, in Quick-writes and Log): Write 5-minute daily quick-writes beside the long feature
+  - To do: off the main path or can be skipped: put it on the path
+  - Parts of the standard the student never does (must add):
+    - a range of discipline-specific tasks and audiences
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - W.x.10 set to touched because Quick-writes is its own mode that can be skipped; spec treats it as part of the idea
+  - Page word counts are 5 pages at 300 to 500 words each, midpoint 2000
+  - Grade codes map to one shared path with no grade picker
+  - Counted W.6.6 as taught: typed-word counter is a real rule, but filler typing passes it
+

@@ -1,0 +1,5 @@
+# The log of fixed specs. One line per event, newest at the bottom; the last line for a tool wins.
+#   <tool-id> fixed <date> <note>       the spec was changed (or the note says "read was wrong" and why)
+#   <tool-id> reviewed <date> <note>    it passed the final review (FINAL-REVIEW.md)
+# Example:
+#   growth-spurt fixed 2026-11-12 added divide-to-compare round; student draws the strip

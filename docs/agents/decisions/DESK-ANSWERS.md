@@ -179,3 +179,13 @@ The thirteen calls:
   course comes up, then ask that nation's education office to look at it before it goes live. No paid consultant
   unless a funder covers it. Why: a made-up first people is the kind of generic portrayal state reviews mark down.
 
+## 2026-11-10, the maps (card q-maps-1)
+
+- Live rework tools: yes. Fix the 26 live tools sorted as rework first in step 3; the 36 built ones wait until their
+  course comes up.
+- High school math: yes. Leave it until grade 4 math has proved the pattern.
+- Thin specs: changed by Cory. Sara takes the spec fixes, and not only the 62 thin ones: the whole spec catalog.
+  Claude builds a folder listing which spec needs which kind of fix (docs/spec-fixes/); after all are fixed Sara
+  does a final review to confirm they meet the end standard (docs/spec-fixes/FINAL-REVIEW.md). This replaces
+  "revise just before Build" as the default: specs are fixed ahead of Build.
+

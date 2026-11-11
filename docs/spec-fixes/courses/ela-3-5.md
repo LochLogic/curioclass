@@ -1,0 +1,493 @@
+# Spec fixes: ela, grade 3-5
+
+12 tools: 0 rework, 12 small addition, 0 fine. How to use this file: ../README.md. When a spec is fixed, add a line to ../done.txt.
+
+Kinds of fix in this course: Hand the key step to the student (3), Close the guessable check (12), Add the missing part (11), Add a check (4), Reach five items that differ (11), Put it on the main path (1), Sensitivity read (3).
+
+## Glossary Makers
+
+- Spec: `tools/glossary-makers/spec.md` . Module: ela-3-5-academic-and-subject-words. Stage: spec only. Sort: **small addition**.
+- Fixes: Hand the key step to the student, Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Key-idea check: typing one key word passes it
+  - Synonym and opposite: four chips each, a wrong pick explains and the student picks again
+  - Precise word round: three choices per sentence, retry not described
+- **L.3.6** (practiced, in Link round (grade 3)): Add a time or place phrase chip to a joined sentence
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - conversational and domain-specific words (adds time and place phrases only)
+- **L.4.6** (practiced, in Precise word round): Pick the exact word for the sentence
+  - Parts of the standard the student never does (small, add if cheap):
+    - using the domain words in your own writing
+- **L.5.4a** (taught, in Sentence tray): Use the sentence tray's underlined clue words
+  - Parts of the standard the student never does (small, add if cheap):
+    - finding the clue words yourself (they are underlined)
+    - cause/effect and comparison clues named in the standard
+- **L.5.4b** (shown, in Word parts tray (grade 5)): Read the word parts tray and their meanings
+  - To do: the tool does the "use" step: the student must do it
+  - Parts of the standard the student never does (must add):
+    - splitting the word and knowing the part meanings yourself (the tray gives them)
+- **L.5.4c** (practiced, in Reference shelf): Compare your definition with the dictionary page
+  - To do: no check: add one where thinking is cheaper than guessing
+  - Parts of the standard the student never does (small, add if cheap):
+    - finding pronunciation
+    - using a thesaurus or glossary
+    - choosing among strategies flexibly
+- **L.5.6** (practiced, in Link round (grade 5)): Join two glossary facts with a joining word
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 1 items: reach five or more that differ
+- The module also lists codes this tool does not carry: L.4.5a, L.4.5b.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - swap test is a self-judgment backed by a key-word rule, so RI.x.4 held at taught on self-guide
+  - link round has no stated right-joiner check; check set to none
+  - L.5.4a/b/c apply to grade 5 only; on_path judged true for that grade
+  - cost_class sibling assumes the word-lab engine exists; the spec points to the word-family-tree spec
+  - passage word counts not stated
+
+## Side by Side Reader
+
+- Spec: `tools/side-by-side-reader/spec.md` . Module: ela-3-5-comparing-texts-side-by-side. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Reach five items that differ, Sensitivity read.
+- Checks a student can pass by guessing:
+  - Lane sort: Check lights each wrong card, three lanes, free moves after, so trial finds the lane faster than reading
+  - Tags: after a wrong tag only the tag is flagged, with a handful of choices and free changes
+  - Both-texts answer: any two pinned sentences, one per column, pass whatever the answer says
+  - Chapter roles: wrong roles show the chapter's key line and orders can be retried, so four roles fall to trial
+  - Same Tale event strips and theme pick: Can it be beaten does not cover them, few cards and few choices
+- **RI.3.9** (practiced, in Same Topic shelf, grade 3): Drag honeybee facts and details to Both or a side
+  - Parts of the standard the student never does (small, add if cheap):
+    - choose which points are most important (cards are given)
+- **RI.4.9** (practiced, in Same Topic shelf, grade 4): Pin one sentence per text and answer a both-texts question
+  - To do: only 1 items: reach five or more that differ
+- **RL.4.9** (practiced, in Same Tale, Many Places shelf): Drag event cards onto strips, pick each tale's theme card
+  - To do: only 1 items: reach five or more that differ
+- **RI.5.5** (practiced, in Same Topic shelf, grade 5): Name each text's structure, press Rebuild, pick what order showed
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - cause and effect and problem and solution structures
+    - explaining the comparison (a pick, not a written reason)
+- **RL.5.5** (practiced, in Whole and Part task): Give four chapters their roles, finish the fit sentence from tiles
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - explain in own words (sentence is built from tiles)
+    - scenes, stanzas, drama or poems (one chaptered story only)
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - grade_split guessed: shelves differ by grade, with an added step on Same Topic
+  - depth practiced because every check is a keyed drag with retry feedback
+  - text word counts not stated (10 to 12 sentences each)
+  - minutes is the middle of 20-30 per shelf
+  - cost_class new-engine since family is none
+  - on_path true for each shelf though the teacher picks the shelf
+
+## How It Works Diagrams
+
+- Spec: `tools/how-it-works-diagrams/spec.md` . Module: ela-3-5-diagrams-and-how-things-happen. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Placement: a wrong sentence glows and bounces back, so trial finds each step
+  - Links: Run's stuck line names which step is missing
+  - Roles: Run stops at the first wrong role, which points to the fix
+- **RI.3.3** (practiced, in Level: place and Run): Drag each step sentence onto its hotspot
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - describing the relationship in your own words (places sentences)
+- **RI.3.7** (taught, in What each adds): Answer a picture-only and a words-only question
+  - To do: only 2 items: reach five or more that differ
+- **RI.4.3** (practiced, in Level (grade 4): link tool): Draw because links between causes and effects
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - explaining what happened and why in words (draws links)
+- **RI.4.7** (practiced, in What each adds (grade 4)): Pick what the chart adds beside the text
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - explaining in your own words how the chart contributes (picks)
+- **RI.5.3** (practiced, in Grade 5 roles): Drag role cards onto steps; complete the frame
+  - To do: only 2 items: reach five or more that differ
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - chart-pick and frame checks not described in detail; option counts not stated
+  - RI.5.3 frame completion: whether the blanks are checked is not stated, so practiced
+  - cost_class sibling assumes the text-features engine exists; the spec points to the windblown-pages spec
+  - minutes 10 to 15 per level; 12 used
+  - text word counts not stated (5 to 8 sentences each)
+
+## Radio Hour Notes
+
+- Spec: `tools/radio-hour-notes/spec.md` . Module: ela-3-5-listening-for-main-points-and-reasons. Stage: spec only. Sort: **small addition**.
+- Fixes: Hand the key step to the student, Close the guessable check, Add the missing part, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Notepad: pick every card; the recap shows only a note on off-topic cards
+  - Call-in: four cards with free retries and no score
+  - Show page paraphrase: three tiles, retry not described
+- **SL.3.2** (practiced, in Segment 1: Field Trip Report): Pause and pick or type main points and details
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - visual and quantitative formats (audio only in segment 1)
+- **SL.3.3** (practiced, in Call-in break): Pick the call-in question that asks for more
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - answering questions
+    - offering elaboration and detail (picks a prepared question)
+- **SL.4.2** (practiced, in Show page (grade 4 up)): Pick or type a paraphrase of the show page picture
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - paraphrasing text read aloud (paraphrases a picture and chart instead)
+- **SL.4.3** (taught, in Segment 2: The Guest): Sort Riley's claims into reason, evidence or not backed
+  - Parts of the standard the student never does (small, add if cheap):
+    - naming the actual reason or evidence given (sorts claims into bins)
+- **SL.5.2** (shown, in Wrap): Watch the host read a summary from your notes
+  - To do: the tool does the "summarize" step: the student must do it
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - writing or saying the summary yourself (the host builds it)
+- **SL.5.3** (practiced, in Segment 2 (grade 5)): Pick the best-backed claim and the tile saying why
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - summarizing the points in your own words
+    - explaining in your own words (picks a tile)
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - SL.5.2: the table says the student summarizes from notes, but the Wrap screen has the host read a summary built from the notepad
+  - SL.4.2 paraphrase check (tiles or typing) is not in the Can-it-be-beaten table; tile retry assumed
+  - SL.3.2 held at practiced because picking every card catches every recap point
+  - audio lengths given (about 90 seconds to 3 minutes), word counts not stated
+
+## Main Idea Pinboard
+
+- Spec: `tools/main-idea-pinboard/spec.md` . Module: ela-3-5-main-idea-with-text-evidence. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Who-what-why: a wrong pin shows the line that answers, with free retries
+  - RL.3.2: choose among three message cards and read the meter; order three event cards with free retries
+  - Card size: the too small / too big note guides edits to the typed card with free tries
+- **RL.3.1** (practiced, in Who-what-why): Pin the line that answers a who-what-why question
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - asking questions (the questions are given)
+- **RI.3.1** (practiced, in Who-what-why): Pin the line that answers a who-what-why question
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - asking questions (the questions are given)
+- **RL.3.2** (practiced, in Grade 3 fables: Board): Order events and pin lines carrying the message
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - explaining how the message is conveyed (pins lines instead)
+- **RI.4.2** (taught, in Board; meter): Write the main idea card and pin proof sentences
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - writing the summary from scratch (the tool drafts it, the student edits)
+- **RI.4.8** (practiced, in Grade 4 point articles): Pin reasons and evidence under the author's point
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - explaining in words how the author uses reasons and evidence (pins them)
+- **RI.5.1** (taught, in Grade 5 board): Pin exact quotes and tag them says it or shows it
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - explaining in your own words what the text says (pins quotes)
+- **RI.5.2** (taught, in Grade 5 board; two meters): Write two main idea cards and pin key details
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - writing the summary from scratch (the tool drafts it, the student edits)
+- **W.5.9** (practiced, in Make summary): Edit a summary drafted from the pinned lines
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - analysis, reflection or research (summary of one text)
+    - literary texts (informational only)
+- The module also lists codes this tool does not carry: W.5.9a.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - spec says 14 spot-art pieces 'one per text' but lists 9 texts
+  - RI.4.8 pins are advice only ('nothing is refused'), so the check is weak; held at practiced
+  - cost_class sibling assumes the evidence engine exists; the spec points to the theme-ledger spec
+  - item counts: who-what-why 2 per text over the grade's texts; text word counts not stated
+  - the Make summary step is at every grade, so W.5.9 on_path true
+
+## Swap the Teller
+
+- Spec: `tools/swap-the-teller/spec.md` . Module: ela-3-5-narrators-and-points-of-view. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Who is telling: two buttons with free retries
+  - Knows / can't know: three choices, the sentence that shows it appears after a wrong pick
+- **RL.3.6** (taught, in Who took the pie?): Name the culprit with two clues; compare view cards
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - saying in words how your view differs from each teller's
+- **RL.4.6** (practiced, in Part: who is telling; knows chart): Tell first or third person; sort what each teller knows
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - comparing narrators of different stories (one story, three tellings)
+    - stating the contrast in your own words
+- **RL.5.6** (practiced, in Clue board (grade 5)): Read one event in three wordings; pick the feeling
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - describing in your own words how the point of view changes the wording
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - RL.3.6 and RI.3.6 held at taught: checks are proxies (two clues, a clue per mark), not a test of distinguishing views
+  - RL.5.6 pick-a-feeling has no stated right answer; check set to none
+  - extra step 'write part five' mentioned in Who and how and Done-when 7 is not in Screens
+  - text word counts not stated (8 to 12 sentences per telling)
+  - minutes taken as the midpoint of 20-30
+
+## Mood in the Pictures
+
+- Spec: `tools/mood-in-the-pictures/spec.md` . Module: ela-3-5-pictures-panels-and-performances. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Tags: four tag types per hot spot, a wrong tag shows a hint and the student tries again
+  - Timeline marks: stray taps get a note and cost nothing, so dense tapping finds the cues
+- **RL.3.7** (practiced, in Panels; hot spots): Tap what the pictures add and tag it
+  - Parts of the standard the student never does (must add):
+    - explaining how illustrations contribute (tags what they add)
+- **RL.4.7** (practiced, in Panels (grade 4 up); Performance timeline): Mark where the pictures and sounds follow the text
+  - Parts of the standard the student never does (small, add if cheap):
+    - identifying versions' departures in your own words (marks only)
+- **RL.5.7** (practiced, in Swap a panel; compare sentence): Swap a panel; finish 'The ___ version made it feel ___'
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - analyzing multimedia and graphic-novel elements beyond one swapped panel
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - mood dial has no right answer; RL.5.7 compare sentence has no stated check
+  - RL.4.7 follows/adds/changes marks checked against data; retry behavior not stated
+  - item counts use 12 hot spots as the minimum per moment
+  - text word counts not stated (8 to 10 sentences each)
+  - a public-domain plate may replace one panel set at build (a flagged choice in the spec)
+
+## Planetarium Guide
+
+- Spec: `tools/planetarium-guide/spec.md` . Module: ela-3-5-presenting-clearly. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Tour order: 360 orders, the hint says near to far, free retries
+  - Audience cards: two options per stop, reaction picture, free retry
+- **SL.3.4** (taught, in Plan; Record; pace meter): Order four stops, pick facts, record, check pace
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - telling a story or recounting an experience (reports on sky stops)
+- **SL.3.5** (taught, in Closing (grade 3)): Record a clear-paced reading of 'The Star'
+  - To do: only 1 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - adding visual displays to the reading
+- **SL.3.6** (practiced, in Audience switch): Pick whole-sentence lines; fragments are never accepted
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - choosing the words yourself (reads prepared lines)
+- **SL.4.4** (taught, in Plan; Record; pace meter): Order four stops, pick facts, record, check pace
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - using facts to support a main idea or theme (any two facts are accepted)
+- **SL.4.5** (practiced, in Media): Pick one picture or sound per stop and a reason
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - adding your own audio recordings (media are prepared)
+- **SL.4.6** (practiced, in Audience switch): Pick formal or informal lines to fit the audience
+  - To do: only 4 items: reach five or more that differ
+- **SL.5.4** (taught, in Plan; Record; pace meter): Order four stops, pick facts, record, check pace
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - presenting an opinion
+- **SL.5.5** (practiced, in Media): Pick one picture or sound per stop and a reason
+  - To do: no check: add one where thinking is cheaper than guessing
+  - To do: only 4 items: reach five or more that differ
+- **SL.5.6** (practiced, in Audience switch): Pick lines that fit kindergartners or scientists
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - adapting speech in your own words (picks prepared lines)
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - SL.x.4 held at taught on the pace meter and tour rule, but fact and detail picks are not judged
+  - the pace meter judges length and pauses only, never words
+  - SL.3.5 visual displays not offered at grade 3
+  - media step has no stated correctness check; check set to none
+  - minutes taken as the midpoint of 20-30
+
+## Script Read-Through
+
+- Spec: `tools/script-read-through/spec.md` . Module: ela-3-5-readers-theater-and-fluency. Stage: spec only. Sort: **small addition**.
+- Fixes: Hand the key step to the student, Close the guessable check, Add the missing part, Reach five items that differ, Put it on the main path, Sensitivity read.
+- Checks a student can pass by guessing:
+  - Register match: nine cards to three texts, a wrong match shows the giveaway line
+- **RF.3.4b** (taught, in Rehearse; Take; Compare): Read your part, record takes, compare pauses
+  - To do: only 3 items: reach five or more that differ
+- **RF.3.4c** (practiced, in Self-check card): Answer the self-check card after each take
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - using context to confirm or self-correct (only a yes/not yet self-report)
+- **RF.4.3a** (touched, in Rehearse: long words): Tap a long word to see its parts and hear it
+  - To do: off the main path or can be skipped: put it on the path
+  - To do: the tool does the "read" step: the student must do it
+  - Parts of the standard the student never does (must add):
+    - splitting and reading unfamiliar words yourself (the tool splits)
+    - words out of context
+- **RF.4.4b** (taught, in Rehearse; Take; Compare): Read your part, record takes, compare pauses
+  - To do: only 3 items: reach five or more that differ
+- **RF.4.4c** (practiced, in Self-check card): Answer the self-check card after each take
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - using context to confirm or self-correct (only a yes/not yet self-report)
+- **RF.5.3a** (touched, in Rehearse: long words): Tap a long word to see its parts and hear it
+  - To do: off the main path or can be skipped: put it on the path
+  - To do: the tool does the "read" step: the student must do it
+  - Parts of the standard the student never does (must add):
+    - splitting and reading unfamiliar words yourself (the tool splits)
+    - words out of context
+- **RF.5.4b** (taught, in Rehearse; Take; Compare): Read your part, record takes, compare pauses
+  - To do: only 3 items: reach five or more that differ
+- **RF.5.4c** (practiced, in Self-check card): Answer the self-check card after each take
+  - To do: only 3 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - using context to confirm or self-correct (only a yes/not yet self-report)
+- **L.5.3b** (practiced, in Register round (grade 5)): Read news three ways; match features to each text
+  - Parts of the standard the student never does (small, add if cheap):
+    - dialects (registers only)
+    - varieties used in stories, dramas or poems (news, letter, text message)
+- The module also lists codes this tool does not carry: RF.3.4a, RF.4.4a, RF.5.4a, L.5.3a.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - RF.x.4b coded rather than the bare RF.x.4 because the table names accuracy, rate and expression on successive readings
+  - no speech recognition, so accuracy is never checked; pauses only count near marks
+  - self-check card is a yes/not yet self-report; could be read as claimed
+  - cost_class sibling assumes the read-aloud engine exists; the spec points to the echo-reader spec
+  - script line counts given (about 45 and 60), word counts not stated; register texts 60-90 words each, 75 used
+
+## Stretch Shelf
+
+- Spec: `tools/stretch-shelf/spec.md` . Module: ela-3-5-reading-range-and-text-complexity. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Reach five items that differ, Sensitivity read.
+- Checks a student can pass by guessing:
+  - Chunk checks: three choices, free retries, a wrong pick shows the answering sentence
+- **RI.3.10** (practiced, in Reading view; Chunk check; Finish): Read fact texts in chunks, switch supports off, finish a stretch text
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - technical texts (arts, science and history only)
+- **RI.4.10** (practiced, in Reading view; Chunk check; Finish): Read fact texts in chunks, switch supports off, finish a stretch text
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - technical texts (arts, science and history only)
+- **RI.5.10** (practiced, in Reading view; Chunk check; Finish): Read fact texts in chunks, switch supports off, finish a stretch text
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - technical texts (arts, science and history only)
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - all depths practiced: the only check is the guessable chunk check
+  - grade 4 and 5 shelves are described as a similar mix, so those counts are estimates
+  - items 6 literature (5 shelf plus a stretch) and 4 informational (3 plus a stretch) taken from the grade 3 shelf
+  - word counts not stated
+  - independent reading is shown only by the all-supports-off badge, not tested
+  - sensitive: grade 5 Underground Railroad text
+
+## Draft Car Wash
+
+- Spec: `tools/draft-car-wash/spec.md` . Module: ela-3-5-revising-and-editing. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Checks a student can pass by guessing:
+  - Add, Cut and Word Shine: three picks, a wrong pick shows the reason and the station waits for a retry
+  - Word Shine talk-or-write and formal-or-informal cards: two options with retry
+- **W.3.4** (practiced, in Ticket; Add, Cut, Word Shine): Read the ticket, then pick changes that fit the reader
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - producing your own writing (revises a given draft by picks)
+- **W.3.5** (taught, in Add, Cut, Move, Polish): Add, cut and move sentences; polish mistakes
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - planning
+    - writing revisions yourself (picks prepared options)
+- **L.3.3b** (practiced, in Word Shine (grade 3)): Pick spoken or written phrasing on a talk-or-write card
+  - To do: only 4 items: reach five or more that differ
+- **W.4.4** (practiced, in Ticket; Add, Cut, Word Shine): Read the ticket, then pick changes that fit the reader
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - producing your own writing (revises a given draft by picks)
+- **W.4.5** (taught, in Add, Cut, Move, Polish): Add, cut and move sentences; polish mistakes
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - planning
+    - writing revisions yourself (picks prepared options)
+- **L.4.2a** (taught, in Polish): Tap the underlined capital error and pick the fix
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - finding the errors yourself (Find mistakes underlines them)
+- **L.4.2b** (taught, in Polish (grade 4 up)): Fix quotation marks in speech
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - finding the errors yourself (Find mistakes underlines them)
+    - commas with direct speech and quotations (not named)
+- **L.4.2c** (taught, in Polish (grade 4 up)): Fix the comma before and or but
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - finding the errors yourself (Find mistakes underlines them)
+- **L.4.3b** (practiced, in Sentence Buff (grade 4)): Pick an exclamation point or a pause comma
+  - To do: only 4 items: reach five or more that differ
+- **L.4.3c** (practiced, in Word Shine (grade 4)): Pick formal or informal wording for the reader
+  - To do: only 4 items: reach five or more that differ
+- **W.5.4** (practiced, in Ticket; Add, Cut, Word Shine): Read the ticket, then pick changes that fit the reader
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - producing your own writing (revises a given draft by picks)
+- **W.5.5** (taught, in Add, Cut, Move, Polish): Add, cut and move sentences; polish mistakes
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - planning
+    - rewriting or trying a new approach (reader swap reruns the same draft)
+- **L.5.3a** (practiced, in Sentence Buff): Pick the combined, expanded or reduced sentence
+  - To do: only 4 items: reach five or more that differ
+  - Parts of the standard the student never does (must add):
+    - writing your own combined, expanded or reduced sentence (picks a prepared version)
+- **L.3.2b** (taught, in Polish (grade 3)): Fix commas in addresses
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - finding the errors yourself (Find mistakes underlines them)
+- **L.3.2f** (taught, in Polish (grade 3)): Fix spelling patterns
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - finding the errors yourself (Find mistakes underlines them)
+    - consulting references
+- **L.5.2e** (taught, in Polish (grade 5)): Fix spelling errors
+  - To do: only 2 items: reach five or more that differ
+  - Parts of the standard the student never does (small, add if cheap):
+    - finding the errors yourself (Find mistakes underlines them)
+    - consulting references
+- The module also lists codes this tool does not carry: L.3.2a, L.3.2c, L.3.2d, L.3.2e, L.3.2g, L.4.2d, L.5.2a, L.5.2b, L.5.2c, L.5.2d, L.5.3b.
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - spec names L.3.2, L.4.2, L.5.2 without letters; coded by the rules named (address commas L.3.2b, spelling patterns L.3.2f, capitals L.4.2a, quotation marks L.4.2b, comma before and/but L.4.2c, spelling L.5.2e)
+  - grade 4 spelling (L.4.2d) is not clearly named, so left out
+  - Polish fix choices per error not stated; held at taught on the 'each needs its right fix' line
+  - Sentence Buff checks not described; held at practiced
+  - draft word counts not stated (6 to 9 sentences each)
+  - W.x.5 reads as taught because Move and Polish are not guessable, though Add and Cut are trial-friendly
+
+## Deadline Desk
+
+- Spec: `tools/deadline-desk/spec.md` . Module: ela-3-5-typing-publishing-and-writing-routines. Stage: spec only. Sort: **small addition**.
+- Fixes: Close the guessable check, Add the missing part.
+- Checks a student can pass by guessing:
+  - Quick piece stamp and word count: typing nonsense reaches the word goal; the spec says this is not caught
+- **W.3.6** (taught, in Warm-ups; Quick piece; Publish): Type warm-up drills; place pieces in a template and publish
+  - Parts of the standard the student never does (must add):
+    - interact and collaborate with others
+- **W.4.6** (taught, in Warm-ups; Quick piece; Publish): Type warm-up drills, a full page in one sitting, then publish
+  - Parts of the standard the student never does (must add):
+    - use the Internet
+    - interact and collaborate with others
+- **W.5.6** (taught, in Warm-ups; Quick piece; Publish): Type warm-up drills, a full page in one sitting, then publish
+  - Parts of the standard the student never does (must add):
+    - use the Internet
+    - interact and collaborate with others
+- **W.3.10** (taught, in Quick piece; Feature): Write timed quick pieces in one sitting and a feature over days
+  - Parts of the standard the student never does (small, add if cheap):
+    - research from real sources (notes come from fixed interview cards)
+    - range of discipline-specific tasks (all newspaper writing)
+- **W.4.10** (taught, in Quick piece; Feature): Write timed quick pieces in one sitting and a feature over days
+  - Parts of the standard the student never does (small, add if cheap):
+    - research from real sources (notes come from fixed interview cards)
+    - range of discipline-specific tasks (all newspaper writing)
+- **W.5.10** (taught, in Quick piece; Feature): Write timed quick pieces in one sitting and a feature over days
+  - Parts of the standard the student never does (small, add if cheap):
+    - research from real sources (notes come from fixed interview cards)
+    - range of discipline-specific tasks (all newspaper writing)
+- The read was unsure about (check these against the spec; the read may be wrong):
+  - grade_split one-path: grade only sets the word goal
+  - W.x.6 taught: the page check is a word count and publish has no check; warm-ups carry the keyboarding rule check
+  - no Internet or collaboration anywhere in the spec
+  - interview card word counts not stated
+  - support judged guided from prompts, checklist and key map; no worked model
+
