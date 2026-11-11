@@ -11,11 +11,12 @@ grade 4 math pilot unit is read against, so the read cites a real reviewer's cri
   words; a reader works from the original at the link.
 - **What we may never say:** that Curio Class was reviewed by, meets, or is endorsed by EdReports. Only EdReports
   can review materials. We use the criteria to check ourselves, in private.
-- **Not yet read:** the evidence guide that goes with the criteria (how each indicator is scored), and the separate
-  guide for multilingual learners. Read both before the pilot unit's fresh-agent read.
-- **A correction to our notes:** docs/ADOPTION-BAR.md and the spine speak of 65 percent of time on major work. The
-  criteria themselves say only that most of the material is on the major clusters. The number is not confirmed
-  until the evidence guide is read.
+- **Evidence guide:** read by the curriculum expert on 2026-11-11
+  (https://cdn.edreports.org/media/2026/06/Math%20K-8%20Evidence%20Guide_2.0.pdf). Still unread: the separate guide
+  for multilingual learners.
+- **The 65 percent line is real.** The criteria say only that most of the material is on the major clusters; the
+  evidence guide (indicator 1e) scores it as at least 65 percent for grades 3 to 8 and 75 percent for K to 2.
+  Checked in the guide's own text on 2026-11-11. Reviewers count it three ways: by units, by lessons and by time.
 
 ## How it works
 

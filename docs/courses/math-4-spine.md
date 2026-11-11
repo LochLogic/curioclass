@@ -4,6 +4,11 @@ Drafted 2026-11-11 and approved by Cory the same day (order, the two changes, an
 150 days). Its rows are in data/units.csv as planned. Nothing here is built or public. This is step 4 of the path in docs/ROADMAP.md and item 1 of
 "What a finished course holds": every teaching day of the year, in order, with the reason for the order.
 
+**Reviewed 2026-11-11 by the curriculum expert: docs/reviews/math-4-spine-2026-11-11.md.** The main line holds
+(the order matches a well-reviewed open curriculum, 150 days and 67 percent major work are right). Four changes it
+proposes are with Cory on Desk card q-review-math-4; this file is revised once, after his answers. Until then the
+tables below are the version he approved, not the reviewed one.
+
 ## What to check
 
 1. The order of the sixteen stretches, and the two places it differs from data/sequence.csv (marked **changed**).
@@ -13,11 +18,11 @@ Drafted 2026-11-11 and approved by Cory the same day (order, the two changes, an
 
 ## The year at a glance
 
-- **150 teaching days**: 144 in units, 4 check days, 2 days pulling the year together.
-- **Major work: 100 days, 67 percent.** Supporting: 25 days. Additional: 19 days. The rubric on file asks that most of the year
-  be major work; the 65 percent line often quoted is not confirmed yet (docs/RUBRIC-MATH-K8.md). Any day moved off
-  major work should come back.
-- **16 stretches, 42 units.** A stretch is one topic and usually one module. A unit is a package of 1 to 5 days.
+- **150 teaching days**: 146 in units (the last 2 pull the year together) and 4 check days.
+- **Major work: 100 days, 67 percent.** Supporting: 25 days. Additional: 19 days. The rubric's evidence guide sets the line at 65
+  percent for grades 3 to 8 (confirmed 2026-11-11), so this clears it by a small margin. Any day moved off major
+  work should come back.
+- **17 stretches, 42 units.** A stretch is one topic and usually one module. A unit is a package of 1 to 5 days.
 - **Fractions come first**, after a short opening on factors. Fractions are the largest block of the grade and the
   hardest new idea, so they get the first half of the year and are used again in line plots, decimals and
   measurement.

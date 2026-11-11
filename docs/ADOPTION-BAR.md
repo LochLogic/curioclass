@@ -81,7 +81,7 @@ standards in; we read it in and can write our map out in it.
 
 The full list of gaps, each with the step that closes it and the test for closed, is in docs/ROADMAP.md, "Gaps found, and how each closes".
 
-A published rubric is now on file: docs/RUBRIC-MATH-K8.md (EdReports K-8 math criteria v2.0, summarised, not copied). Where it and this file differ, the rubric wins. It says most of the year is major work and gives no percent; the 65 percent in this file is unconfirmed until the evidence guide is read.
+A published rubric is now on file: docs/RUBRIC-MATH-K8.md (EdReports K-8 math criteria v2.0, summarised, not copied). Where it and this file differ, the rubric wins. Its evidence guide confirms the 65 percent line for grades 3 to 8 (75 percent for K to 2), checked 2026-11-11.
 
 ## What we left out, and why
 

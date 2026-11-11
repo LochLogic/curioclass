@@ -280,3 +280,16 @@ Yes to all eight picks.
 - The grade 4 math spine: order approved, line plots after adding fractions and angles near the end, day counts
   as a first cut. Its 46 rows are in data/units.csv as planned.
 
+## 2026-11-11: the curriculum expert, and its first review (Cory, in chat)
+
+Cory asked for a cold, informed pedagogical review of the grade 4 math spine and suggested a standing expert agent.
+Both done: docs/agents/EXPERT.md (and .claude/agents/curriculum-expert.md), and
+docs/reviews/math-4-spine-2026-11-11.md. Cory: "I really liked the analysis", and asked for two more spines with
+expert reviews (grade 6 ELA and grade 4 science chosen by Claude: the second proving course, and the science a
+grade 4 classroom teacher also teaches). He offered his Chrome session or to fetch any source that cannot be reached.
+
+Taken without asking: the 65 percent line is confirmed in the evidence guide's own text; the spine's header counts
+are corrected. Waiting on Cory (q-review-math-4): checks at the stretch level with respond days; 4.OA.A.3 split so
+its full form follows division; the revised order (measurement after division, all major work done by day 123);
+lines before angles, 16 days of geometry.
+
