@@ -225,3 +225,50 @@ Later pages
 Tested and included above: Clark, Kirschner, Sweller (2012); Leahy et al. (2005); Nickow, Oreopoulos, Quan (2020); the CCSSM document itself; NYSED mathematics research briefs; ELSF ELA guidelines; two further WWC reading guides.
 
 Not tested in this pass (flag only, test before relying on them): Hattie and Timperley, The Power of Feedback (2007); a cognitive load theory summary such as the NSW CESE paper; Clements and Sarama on learning trajectories; Fyfe et al. (2014) on concreteness fading; the EdReports v2.0 FAQ; the adoption rubric of whichever state Curio Class targets first.
+
+## Evidence notes (added 2026-11-11 with the second draft of the approach)
+
+The study detail that docs/APPROACH.md and docs/APPROACH-MATH.md leave out to stay short. In our own words. Page
+checks are in docs/reviews/approach-2026-11-11.md.
+
+- **Sinha and Kapur 2021.** A meta-analysis of 53 studies, 166 comparisons of problem solving then instruction
+  against instruction then problem solving. Understanding and transfer: Hedges' g about 0.36 in favour of problem
+  first. Procedures: no difference (about -0.03). Grades 2 to 5 (25 of the 166 comparisons): about -0.09, in favour
+  of instruction first, and different from the other grades. Grades 6 to 10: about 0.50. General skills such as
+  controlling variables: about -0.17. The effect was larger when the teaching built on students' own attempts (0.56
+  against 0.20). The abstract's larger bias-adjusted figure (0.87) is not used. Most studies were math and science.
+  Read in part in a browser; the discussion section was not read.
+- **Hmelo-Silver, Duncan and Chinn 2007.** Abstract only: argues that problem-based and inquiry teaching are heavily
+  supported, not unguided. No number or study may be attributed to it.
+- **Pashler et al. 2007.** Levels: spacing moderate (1); worked examples with problems moderate (2), stated for
+  math and science problem solving; graphics with words moderate (3); concrete and abstract connected moderate (4),
+  with the warning that concrete-only learning may not transfer, and a mention of fading the concrete; pre-questions
+  low (5a); quizzing strong (5b); deep explanatory questions strong (7). This guide's lowest level is called Low.
+- **National Mathematics Advisory Panel 2008.** Finding 11: automatic recall needs enough practice. Finding 23:
+  neither all student-centered nor all teacher-directed teaching is supported. Finding 25: regular formative
+  assessment helps in the elementary grades. Finding 26: real-world problem teaching helped on similar problems
+  only, from a small number of studies. Finding 27: explicit teaching has consistently positive effects for
+  students with math difficulties. Finding 28: practice and tutorial software has generally shown positive effects;
+  a large national study found none under typical conditions. (11, 25 and 27 were checked by the expert review.)
+- **Nickow, Oreopoulos and Quan 2020.** 96 randomized trials of one-to-one or small-group tutoring; pooled effect
+  0.37 standard deviations; 11 of the 96 were parent tutoring, with smaller effects. A working paper.
+- **Bloom 1984.** The "two sigma" claim rests on two doctoral studies of about three weeks. Not repeated as a rule.
+  The copy read is on an unofficial host.
+- **Adams et al. 2008.** Interviews with college undergraduates using simulations, not a controlled trial.
+- **Black and Wiliam 1998.** Used without an effect size on purpose; later re-analyses found smaller effects (the
+  expert names Kingston and Nash 2011, from memory, not read).
+- **WWC 2021, recommendation 6.** Timed activities of one to five minutes, as one part of taught small-group
+  intervention, on material already taught, with feedback. Not a whole-class finding.
+- **EEF maths report 2022.** Written for ages 7 to 14.
+
+**Not yet read, in order of value** (the first is the claim closest to what Curio Class builds):
+
+1. A review of on-screen (virtual) manipulatives, such as Moyer-Packenham and Westenskow 2013.
+2. Carbonneau, Marley and Selig 2013 (manipulatives meta-analysis) and Fyfe, McNeil, Son and Goldstone 2014
+   (concreteness fading): the direct evidence for concrete, then pictures, then symbols.
+3. Hattie and Timperley 2007 on feedback (the task and the next step, not the child).
+4. The discussion section of Sinha and Kapur 2021; the full text of Hmelo-Silver et al. 2007 and Kirschner et al.
+   2006 (library access).
+5. Anything on parents teaching their own child a full course.
+6. Learning trajectories (Clements and Sarama), when a K to 2 math course opens.
+

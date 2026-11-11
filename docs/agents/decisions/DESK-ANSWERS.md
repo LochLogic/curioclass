@@ -345,3 +345,15 @@ agreed by Cory ("yes they sound right"; "this seems right to me"):
 Written into: docs/FOUNDATION.md (new), docs/ROADMAP.md ("The layers", step 4a to 4f), BASELINE rule 23, EXPERT.md.
 Open: the device assumption for K to 2; what happens to tools and specs no unit plan asks for.
 
+## 2026-11-11: the approach to teaching, first and second draft (Cory asked for it in chat)
+
+Cory: "go ahead and start writing the approach. ensure it is well sourced and backed ... get as far as you can and
+we will take another pass later". Done so far: docs/APPROACH.md and docs/APPROACH-MATH.md drafted from sources
+actually opened, read cold by the curriculum expert (docs/reviews/approach-2026-11-11.md: 34 claims checked, 27
+confirmed as written, none invented), and revised once. The revision moved the math-shaped promises (daily exit
+question, daily warm-up, understanding/fluency/use day marks) out of the shared core because the approved science
+spine contradicts them; merged twelve principles into ten; replaced a hard "from grade 6" line on problem-first
+openings with a condition; cut both pages roughly in half with the study detail moved to APPROACH-SOURCES.md; and
+added proposed unit plan fields. Nothing is approved. Open with Cory on Desk card q-approach: tool timers, the
+SPEC.md wording, the teach-first default.
+
