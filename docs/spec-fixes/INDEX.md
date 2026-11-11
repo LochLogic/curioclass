@@ -4,8 +4,8 @@ Built by scripts/spec_fixes.py. Start with README.md. The two proving courses co
 
 | Course | Tools | Fine | Small addition | Rework | Write the spec | Live | Fixed | Reviewed |
 |---|---|---|---|---|---|---|---|---|
-| [ela 6](courses/ela-6.md) (proving course) | 9 | 1 | 7 | 1 | 0 | 0 | 0 | 0 |
-| [math 4](courses/math-4.md) (proving course) | 13 | 2 | 10 | 1 | 1 | 0 | 0 | 0 |
+| [ela 6](courses/ela-6.md) (proving course) | 9 | 1 | 7 | 1 | 0 | 0 | 9 | 0 |
+| [math 4](courses/math-4.md) (proving course) | 13 | 2 | 10 | 1 | 1 | 0 | 13 | 0 |
 | [arts k-2](courses/arts-k-2.md) | 18 | 1 | 15 | 2 | 4 | 5 | 0 | 0 |
 | [arts 3-5](courses/arts-3-5.md) | 18 | 0 | 15 | 3 | 4 | 4 | 0 | 0 |
 | [arts 6-8](courses/arts-6-8.md) | 19 | 1 | 15 | 3 | 3 | 4 | 0 | 0 |
@@ -98,4 +98,4 @@ Built by scripts/spec_fixes.py. Start with README.md. The two proving courses co
 | [world-languages 9-12](courses/world-languages-9-12.md) | 3 | 0 | 3 | 0 | 1 | 0 | 0 | 0 |
 | [world-languages k-12](courses/world-languages-k-12.md) | 10 | 1 | 8 | 1 | 5 | 1 | 0 | 0 |
 
-800 tools in 93 courses; 0 fixed, 0 reviewed. By kind of fix: Write the spec 79, Hand the key step to the student 237, Close the guessable check 601, Add the missing part 639, Add a model or a guide 79, Add a check 175, Reach five items that differ 481, Put it on the main path 81, Teach the code or drop it 31, Sensitivity read 206, Source the facts 9.
+800 tools in 93 courses; 22 fixed, 0 reviewed. By kind of fix: Write the spec 79, Hand the key step to the student 237, Close the guessable check 601, Add the missing part 639, Add a model or a guide 79, Add a check 175, Reach five items that differ 481, Put it on the main path 81, Teach the code or drop it 31, Sensitivity read 206, Source the facts 9.

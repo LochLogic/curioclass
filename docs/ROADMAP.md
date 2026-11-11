@@ -81,7 +81,7 @@ one exception.
 | 5. Prove one course | Grade 4 math and grade 6 ELA (Track 7): the year spine, then one pilot unit each, pulling from every shelf, read by a fresh agent against docs/ADOPTION-BAR.md. Building resumes for these two courses only. The token plan's side-by-side trial runs on the first three tools | Cory can open one unit of each and see the bar met | The two spines, then the pilot review |
 | 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first. Each finished course gets its spine, units and a full row on the measure | Course by course, the measure reaches full | The order of courses |
 
-**Resume here: step 2, the read and the maps are done (2026-11-10); wiring in the other standard texts is next.** All 800 tools have a row in row format
+**Resume here (left 2026-11-10, 10 PM): step 2, the read and the maps are done; Sara has fixed the specs of both proving courses; re-reading those 22 specs for her final review is next, then wiring in the other standard texts.** All 800 tools have a row in row format
 2 (docs/agents/catalog/rows/, 71 packets, about 12 million tokens on the cheaper model), and the ledger is rebuilt:
 data/coverage.csv and docs/agents/catalog/tables/measure.md. Across every course's standards: 213 full, 368 nearly,
 404 part, 1,102 practice only, 276 shown, 37 none. By tool: 70 teach every code they carry, 177 teach at least one
@@ -122,7 +122,18 @@ the end standard (docs/spec-fixes/FINAL-REVIEW.md). Cory's other two answers on 
 rework tools first in step 3 and leave the built ones until their course comes up; leave high school math until
 grade 4 math has proved the pattern.
 
-Next: wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
+Sara's first batch (2026-11-10, branch spec/sara, merged to main the same night): both proving courses are logged
+fixed in docs/spec-fixes/done.txt, 22 tools. Grade 4 math, 13 tools: 11 specs changed, community-plot-planner a
+small change, unit-ladder logged fine and unchanged. Grade 6 ELA, 9 tools: 8 specs changed, argument-x-ray logged
+fine and unchanged. None is reviewed yet. Left for later by her notes: new source and fact rows to confirm at Build
+(debate-prep-desk, summary-squeeze, source-sorter), sensitivity reads at final review (perspective-camera,
+sentence-remixer), the line plot scale choice not added to skate-park-angles, and three built tools whose code now
+trails the spec (skate-park-angles, egg-carton-factory, and any other marked built). The other 778 specs are not
+started. The rows for these 22 are now stale: the course files still list the old findings beside a FIXED mark
+until the specs are read again.
+
+Next, in this order: (1) read the 22 fixed specs again with the catalog reader, rebuild the ledger, maps and fix
+list, and hand Sara the two courses for final review (docs/spec-fixes/FINAL-REVIEW.md); (2) wire the other subjects' standard texts into catalog_batch.py and coverage_ledger.py (science first), tighten
 the beatable rule, clean the contradictory rows, then rebuild the ledger and the maps. After that step 2 is closed
 and step 3 (fix what is built: the 26 live rework tools first) opens. Specs are fixed by Sara from docs/spec-fixes/, ahead of Build, so a
 course's specs are ready when its turn comes (steps 5 and 6).

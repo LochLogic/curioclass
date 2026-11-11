@@ -4,10 +4,12 @@
 
 Kinds of fix in this course: Hand the key step to the student (1), Close the guessable check (9), Add the missing part (8), Add a check (2), Reach five items that differ (9), Sensitivity read (3).
 
-## Plot Rollercoaster
+## Plot Rollercoaster  [FIXED]
 
 - Spec: `tools/plot-rollercoaster/spec.md` . Module: ela-6-plot-and-character-development. Stage: spec only. Sort: **rework**.
 - Fixes: Hand the key step to the student, Close the guessable check, Add the missing part, Reach five items that differ, Sensitivity read.
+- Note: 2026-11-10 rework: student now says what a pulled scene, sentence or stanza would cost before the track breaks (7 pulls); whole-track height test; six episode notes; closing paragraph; announcer model
+
 - Checks a student can pass by guessing:
   - Heights: five slider steps, dashed outline and a question on a bad piece, free retries, so heights can be set by trial
   - Remove a scene: the keyed break is shown before the student picks plot, setting, character or theme, so the label can be copied
@@ -27,10 +29,12 @@ Kinds of fix in this course: Hand the key step to the student (1), Close the gue
   - RL.6.5 shown rather than practiced because the tool names the break first; Class coaster mode has no keyed jobs but is off the main path
   - RL.6.3 taught rests on the response needing a supporting line (spec says keyed); how strictly the line is matched is not stated
 
-## Debate Prep Desk
+## Debate Prep Desk  [FIXED]
 
 - Spec: `tools/debate-prep-desk/spec.md` . Module: ela-6-argument-writing. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Note: 2026-11-10 five arguments written as paragraphs; sources rated; claims written; five objections with written rebuttals and a cost; meter hint no longer gives the answer; fourth folder sources to confirm at Build
+
 - Checks a student can pass by guessing:
   - Objections: drag cards until one is accepted; 8 to 10 cards, wrong ones only say 'doesn't meet the objection', free tries
   - Fair fight: the hint names what the weaker side needs, so sides can be balanced by following it
@@ -55,10 +59,12 @@ Kinds of fix in this course: Hand the key step to the student (1), Close the gue
   - sensitivity note on family cost and phone rules is in the spec; not flagged as the flag list covers cultural, Native, history, health
   - items for W.6.1b and D3.4.6-8 is the 8 to 10 cards in one folder (8 used)
 
-## Summary Squeeze
+## Summary Squeeze  [FIXED]
 
 - Spec: `tools/summary-squeeze/spec.md` . Module: ela-6-central-idea-and-summary. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Note: 2026-11-10 five articles, four fables and one story; mark key sentences and name the central idea first; leak hunt; Yes on partial matches limited; new source rows to confirm at Build
+
 - Checks a student can pass by guessing:
   - Partial matches: answering Yes to every 'does that cover' prompt lights the details; only the printout shows it
 - **RI.6.2** (taught, in Write; Squeeze; Budgets): Write 50, 25 and 10 word summaries; fix lit leaks
@@ -76,10 +82,12 @@ Kinds of fix in this course: Hand the key step to the student (1), Close the gue
   - Fables treated as on path (a header mode); a student could do only Articles
   - Under 50 words keywords can light details; the spec closes this only at the 10-word level
 
-## Book Group Table
+## Book Group Table  [FIXED]
 
 - Spec: `tools/book-group-table/spec.md` . Module: ela-6-collaborative-discussions. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Note: 2026-11-10 five discussions on two texts; set-up with goal, turn limit and roles; Probe move; typed paraphrase before versions; typed key ideas and two views in closing; model talk; full story text
+
 - Checks a student can pass by guessing:
   - Paraphrase: three versions, free replay, the wrong one draws a correction, so the right one is found by trial
   - Closing: pick three of six ideas; the two off-question ones say so when picked, so retries find the right three
@@ -109,10 +117,12 @@ Kinds of fix in this course: Hand the key step to the student (1), Close the gue
   - SL.6.1b rule slips are described only for one voice at a time; the other rules show on meters
   - SL.6.1 stem (range of partners and formats) has no sub-code; only a simulated small group is offered
 
-## Word Thermometer
+## Word Thermometer  [FIXED]
 
 - Spec: `tools/word-thermometer/spec.md` . Module: ela-6-connotation-and-context. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part, Add a check, Reach five items that differ.
+- Note: 2026-11-10 sets tested whole; 8 figures (3 personification); 6 relationship cards; context words in ten passages; gauge hidden until the student predicts; tone lines; model set
+
 - Checks a student can pass by guessing:
   - Rewrite: the gauge shows the direction of each swap and each slot takes words from a small set, so the warmest and coldest words can be picked to pass the two-band difference
 - **L.6.5a** (taught, in Figurative and relationships): Read a phrase in its sentence, then place it
@@ -145,10 +155,12 @@ Kinds of fix in this course: Hand the key step to the student (1), Close the gue
   - heat bands are the tool's reading and are labeled so on screen
   - RL.6.4 taught rests on the rewrite's two-band rule; the swap steps have no check
 
-## Perspective Camera
+## Perspective Camera  [FIXED]
 
 - Spec: `tools/perspective-camera/spec.md` . Module: ela-6-point-of-view. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part, Reach five items that differ, Sensitivity read.
+- Note: 2026-11-10 predict before each dial turn; judgment words and twist lines marked as a set; five identify texts incl. a poem with evidence lines and explain line; longer Tom Sawyer scene; sensitivity read left for final review
+
 - Checks a student can pass by guessing:
   - Spot: tap judgment words until a tilt arrow shows; wrong taps say only 'describes but doesn't judge', free retries
   - Twist: tapping every line finishes it, since a wrong tap just reads the line back with a question
@@ -164,10 +176,12 @@ Kinds of fix in this course: Hand the key step to the student (1), Close the gue
   - Identify is described in Screens but is not a header tab; counted as on path
   - word counts other than 220 and 350 are not stated; flag sensitive is a guess from the people art for Vietnamese American and Mexican American characters
 
-## Sentence Remixer
+## Sentence Remixer  [FIXED]
 
 - Spec: `tools/sentence-remixer/spec.md` . Module: ela-6-pronouns-and-sentence-variety. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part, Reach five items that differ, Sensitivity read.
+- Note: 2026-11-10 typed fixes; five Sound check tapes with unflagged slips (case, -self, shift, unclear pronoun, tone); more remix moves and a joiner check; fifth paragraph; Two ways writing; sensitivity read left for final review
+
 - Checks a student can pass by guessing:
   - Glitch fixes (case, shift, intensive): a few fix chips per glitch, free tries, wrong fixes keep the glitch, so trial finds the key
   - Grandpa Joe: two labels per line, and a wrong change is turned back with the reason
@@ -214,10 +228,12 @@ Kinds of fix in this course: Hand the key step to the student (1), Close the gue
   - paragraph word counts other than the bike paragraph (8 sentences of 4 to 7 words) not stated
   - L.6.3a taught although variety is measured by length alone
 
-## Source Sorter
+## Source Sorter  [FIXED]
 
 - Spec: `tools/source-sorter/spec.md` . Module: ela-6-research-and-citing-sources. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Note: 2026-11-10 Search desk; bin and clue judged together; student builds five entries; paraphrase meaning check; answer sentences must be backed; three quick shelves with own question; new fact rows to confirm at Build
+
 - Checks a student can pass by guessing:
   - Clue chips: a few clue types per card, tap until the tool says 'Good clue', free retries
   - Paraphrase: the copy meter checks only copying, so unrelated words with no four-word run pass
@@ -238,10 +254,12 @@ Kinds of fix in this course: Hand the key step to the student (1), Close the gue
   - Refocus offers three choices or the student's own question; whether own wording is checked is not stated
   - Lightning shelf treated as the same steps, not separate items
 
-## Argument X-Ray
+## Argument X-Ray  [FIXED]
 
 - Spec: `tools/argument-x-ray/spec.md` . Module: ela-6-tracing-an-argument. Stage: spec only. Sort: **fine**.
 - Fixes: Close the guessable check, Reach five items that differ.
+- Note: 2026-11-10 sorted fine; spec unchanged
+
 - Checks a student can pass by guessing:
   - Links: offKey names the misfit rib, there are only three reasons, and re-linking is free, so links can be fixed by trial
 - **RI.6.8** (taught, in Tag; Link; Scan; Report): Tag sentences, link evidence to reasons, judge each crack

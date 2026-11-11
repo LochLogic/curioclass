@@ -4,10 +4,12 @@
 
 Kinds of fix in this course: Write the spec (1), Hand the key step to the student (4), Close the guessable check (6), Add the missing part (11), Add a model or a guide (2), Reach five items that differ (4).
 
-## Fraction Wall Duel
+## Fraction Wall Duel  [FIXED]
 
 - Spec: `tools/fraction-wall-duel/spec.md` . Module: math-4-equivalent-fractions-and-comparing. Stage: spec only. Sort: **rework**.
 - Fixes: Hand the key step to the student, Close the guessable check, Add the missing part.
+- Note: 2026-11-10 rework: child splits, writes equal fractions and the why sentence on blank cards; drags the sign, carries out the reason, writes own reason line; wrong tries cost the round; traps need the same-whole sentence
+
 - Checks a student can pass by guessing:
   - reason buttons: three choices, a wrong reason is shown false and counted, but no cost for a wrong try is stated
 - **4.NF.A.1** (shown, in A round; Steals): Pick same-pieces reason; wall renames the fractions
@@ -27,10 +29,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - engine is built first by this tool, so new-engine
   - 36 rounds from three decks of twelve
 
-## Recipe Scaler
+## Recipe Scaler  [FIXED]
 
 - Spec: `tools/recipe-scaler/spec.md` . Module: math-4-adding-and-multiplying-fractions. Stage: spec only. Sort: **small addition**.
 - Fixes: Write the spec, Hand the key step to the student, Add the missing part, Add a model or a guide, Reach five items that differ.
+- Note: 2026-11-10 child writes every equation (strip no longer writes); Lou models first; five or more rounds per code; story problems and all amounts listed
+
 - **4.NF.B.3** (taught, in Building): Tap scoops to fill a cup; sum strip counts unit fractions
   - To do: only 4 items: reach five or more that differ
   - Parts of the standard the student never does (small, add if cheap):
@@ -80,10 +84,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - 3c rated shown because the pour regroups on screen and the total is typed from it
   - fraction-food engine is described in pizza-party spec; may not exist, so sibling is a guess
 
-## Road Trip Logbook
+## Road Trip Logbook  [FIXED]
 
 - Spec: `tools/road-trip-logbook/spec.md` . Module: math-4-adding-and-subtracting-multi-digit-numbers. Stage: spec only. Sort: **small addition**.
 - Fixes: Add the missing part.
+- Note: 2026-11-10 added sibling's worked sum, per-column feedback, and a twelve-problem Trip ledger to six digits for fluency
+
 - **4.NBT.B.4** (taught, in Estimate; Columns; Miles left; Check): Estimate, then add and subtract in columns with regrouping
   - Parts of the standard the student never does (must add):
     - fluency (no speed or repeated-practice measure; about ten problems)
@@ -93,10 +99,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - numbers stay at 3 to 4 digits; the standard names no upper limit
   - station chosen because the tool practices the algorithm more than it teaches why it works
 
-## Skate Park Angles
+## Skate Park Angles  [FIXED]
 
 - Spec: `tools/skate-park-angles/spec.md` . Module: math-4-angles-and-line-plots. Stage: built (the code changes after the spec). Sort: **small addition**.
 - Fixes: Hand the key step to the student, Add the missing part, Reach five items that differ.
+- Note: 2026-11-10 built tool, spec only: Spin jobs 7 to 11 added (sixths and twelfths, one-degree turns answered, student writes the equation); line plot scale choice not added
+
 - **4.MD.B.4** (taught, in Jump Log): Read each jump on the pole; tap its dot on the plot
   - Parts of the standard the student never does (small, add if cheap):
     - choose the scale or draw the axis (axis is given)
@@ -122,10 +130,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - jump log items 43 = 34 dots plus 9 questions
   - ongoing because progress saves on the device and Park fills over sittings; spec says 20 to 40 minutes
 
-## Money and Meters
+## Money and Meters  [FIXED]
 
 - Spec: `tools/money-and-meters/spec.md` . Module: math-4-decimals. Stage: spec only. Sort: **small addition**.
 - Fixes: Add the missing part, Reach five items that differ.
+- Note: 2026-11-10 panel labels hidden in challenge rounds; child writes hundredths form, sums, decimals and fractions on a blank tag; compares need the sign, both amounts built, and a reason line; six sums
+
 - **4.NF.C.5** (taught, in Adding): Build 3/10 + 4/100 with coins; dimes trade to pennies
   - To do: only 4 items: reach five or more that differ
   - Parts of the standard the student never does (must add):
@@ -141,10 +151,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - C.5 key step rated shared: the student chooses coins, the panels do the 10-to-100 renaming
   - the 8 free rounds are not counted in items
 
-## Egg Carton Factory
+## Egg Carton Factory  [FIXED]
 
 - Spec: `tools/egg-carton-factory/spec.md` . Module: math-4-factors-and-multiples. Stage: built (the code changes after the spec). Sort: **small addition**.
 - Fixes: Add the missing part.
+- Note: 2026-11-10 built tool, spec only: Rush shift 5 "From the shelf" added so the student answers on "a multiple of each of its factors"
+
 - **4.OA.B.4** (taught, in Pack Station; Fill Line; Rush Orders): Re-deal eggs into rows; find every carton; sort primes
   - Parts of the standard the student never does (must add):
     - recognize a number is a multiple of each of its factors (the seal card states it, nothing asks it)
@@ -153,10 +165,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - built tool; src.html not read
   - Rush is a mode button, not forced; counted on_path because Pack Station seals feed the same factor work
 
-## Quilt Block Studio
+## Quilt Block Studio  [FIXED]
 
 - Spec: `tools/quilt-block-studio/spec.md` . Module: math-4-lines-angles-and-symmetry. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part, Add a model or a guide.
+- Note: 2026-11-10 child drags name tags and finds lines and angles in Mae's block; scrap bin is now four yes-or-no sorts with proof marks and a mending pile; Mae models first
+
 - Checks a student can pass by guessing:
   - scrap bin: twelve pieces, three labels, a wrong placement bounces back with the missing feature named and tries look free
 - **4.G.A.1** (taught, in Drafting): Draft six tasks with point, segment, ray, line tools
@@ -173,10 +187,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - flags are real national flags (cultural content) but only drawn shapes; not marked sensitive
   - mirror mode item count not stated and not counted
 
-## Area Model Builder
+## Area Model Builder  [FIXED]
 
 - Spec: `tools/area-model-builder/spec.md` . Module: math-4-multi-digit-multiplication-and-division. Stage: spec only. Sort: **small addition**.
 - Fixes: Add the missing part.
+- Note: 2026-11-10 child types every equation (strip no longer fills) and writes how it worked on seven rectangles; guide models 12 x 13 and 852 by 4; all products and quotients listed
+
 - **4.NBT.B.5** (taught, in Slicing; Two slicings): Drag cuts at place-value breaks; type each partial product
   - Parts of the standard the student never does (must add):
     - explain the calculation in words
@@ -190,10 +206,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - area engine is described in tile-the-floor spec; unclear it exists as code, so sibling is a guess
   - the first division example (852 by 4) is worked for the student
 
-## Growth Spurt
+## Growth Spurt  [FIXED]
 
 - Spec: `tools/growth-spurt/spec.md` . Module: math-4-multiplicative-comparison. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part, Reach five items that differ.
+- Note: 2026-11-10 read-both-ways cards; child builds the strip; three division problems; tray answers typed on two sets, no choices; four orders on the main path; wrong kind costs the problem
+
 - Checks a student can pass by guessing:
   - tray picker: three answers (9, 8, 2) matched to three questions; spec only says each question checks its own use, no stated cost for wrong tries
 - **4.OA.A.1** (taught, in Growing; Standards map 4.OA.1): Grow the bean in times-as mode; write 24 = 3 x 8
@@ -213,10 +231,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - tray picker retry limits not stated
   - Orders (extra mode) has longer orders, not counted in items
 
-## Rule Machine
+## Rule Machine  [FIXED]
 
 - Spec: `tools/rule-machine/spec.md` . Module: math-4-number-patterns. Stage: spec only. Sort: **small addition**.
 - Fixes: Close the guessable check, Add the missing part.
+- Note: 2026-11-10 child types terms 4 to 8 and writes the reason in own words; wrong card build costs the tape; mystery tapes typed before any print; all tapes listed
+
 - Checks a student can pass by guessing:
   - mystery tapes: few dials and the child's tape prints beside Cog's, so the gap guides tuning
   - reason cards: wrong cards are mixed with true ones; spec says checked but not whether tries are limited
@@ -229,10 +249,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - shape-pattern prediction (21 tiles) answer format not stated
   - Tape for a friend (extra) not counted
 
-## Stadium Count
+## Stadium Count  [FIXED]
 
 - Spec: `tools/stadium-count/spec.md` . Module: math-4-place-value-to-a-million. Stage: spec only. Sort: **small addition**.
 - Fixes: Hand the key step to the student, Close the guessable check, Add the missing part.
+- Note: 2026-11-10 zoom stops locked until the count is typed; six ten-times cards; crowds given in all three forms and said aloud; compare taps the deciding place, wrong sign costs; two headlines with no line
+
 - Checks a student can pass by guessing:
   - compare sign: three signs to tap, spec does not say tries are limited
 - **4.NBT.A.1** (shown, in Zoom; Ten times): Drag the zoom slider; watch the digit slide left
@@ -252,10 +274,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - whether the numeral is given or typed in Read and write is not stated
   - places rounded to are only the thousand and ten thousand in the example
 
-## Community Plot Planner
+## Community Plot Planner  [FIXED]
 
 - Spec: `tools/community-plot-planner/spec.md` . Module: math-4-area-and-perimeter-formulas. Stage: spec only. Sort: **fine**.
 - Fixes: Close the guessable check.
+- Note: 2026-11-10 sorted fine; small: two tries on the missing side then a spare note; child works out the other measure from both sides for each plot
+
 - Checks a student can pass by guessing:
   - missing-side number box after the squares fade: typed number, retry limits not stated
 - **4.MD.A.3** (taught, in Area plots; Fence plots; Formula cards; The lot): Lay squares or fence; write the equation for the missing side
@@ -266,10 +290,12 @@ Kinds of fix in this course: Write the spec (1), Hand the key step to the studen
   - area engine is described in tile-the-floor spec; sibling is a guess
   - only the last area plot is unaided once the cards fade, so the unaided count is small
 
-## Unit Ladder
+## Unit Ladder  [FIXED]
 
 - Spec: `tools/unit-ladder/spec.md` . Module: math-4-measurement-conversions. Stage: spec only. Sort: **fine**.
 - Fixes: none found; confirm at final review.
+- Note: 2026-11-10 sorted fine, nothing to fix; spec not changed (no role line added; confirm at final review)
+
 - The module also lists codes this tool does not carry: 4.MD.A.3.
 - The read was unsure about (check these against the spec; the read may be wrong):
   - items 80 assumes all eight unit sets are climbed (Done when says so); a student may pick fewer
