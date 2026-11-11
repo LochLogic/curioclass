@@ -18,6 +18,19 @@ count. A see-why tool lets the student set up cases and predict before each reve
 practice tool says where the teaching happened. The bar behind the test is `docs/ADOPTION-BAR.md`: a course has to
 stand up to a state adoption review.
 
+Three hooks every spec also carries (added 2026-11-11 after a cold review; the full wording is in
+`docs/agents/SPEC.md`, "Three hooks every spec carries"). An adoption review looks for all three, and none was in
+the teaching test:
+
+- **A check the teacher can see.** For each code, the tool ends with at least two items done with no model, hint or
+  worked example on screen. The end screen shows how the student did on them, code by code, and the spec says what
+  each common wrong answer means.
+- **English learners.** Every spoken instruction is also on screen in short, plain sentences. Each key word of the
+  standard is shown with a picture or an example the first time it is used. Any writing or talk task offers a
+  sentence frame. No idioms in instructions.
+- **Access.** Every action works by tap and by keyboard; a drag has a tap or key alternative. Nothing is told by
+  color alone. Sound that carries meaning has text. Motion can be paused.
+
 ## What is in this folder
 
 | File | What it is |
@@ -66,15 +79,15 @@ separate step Claude runs after (ROADMAP step 3 for live tools, steps 5 and 6 fo
 
 ## The order
 
-Every course has now been shaped (docs/agents/catalog/shape/<course>.md, 2026-11-11), so nothing you fix is about
-to be cut, merged or given a new role. **NEXT.md in this folder is the work order**: the batches, in order, with
-the tools in each. In short:
+**NEXT.md in this folder is the work order, and it stops at batch 4** (Cory, 2026-11-11):
 
 1. Close the two proving courses (grade 4 math, grade 6 ELA), then their final review.
 2. The fourteen grade 6 to 8 ELA band specs, each with a path for grades 6, 7 and 8.
 3. Grade 5 math, then grade 3 math, on the splits Cory approved.
-4. Every other course in the order NEXT.md lists: math K to 8, ELA, high school math, science, social studies, and
-   the rest once their standard texts are wired in.
+
+Then stop. Every course is shaped, but no other course opens until grade 4 math is proved: three tools built from
+fixed specs and one full unit, read by a working teacher (docs/ROADMAP.md, step 4). If the proof changes what a
+spec must hold, it changes a few dozen specs, not hundreds. NEXT.md lists the courses on hold and their sizes.
 
 Three things from Shape change how a spec is fixed:
 

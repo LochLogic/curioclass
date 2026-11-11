@@ -115,6 +115,14 @@ def status(code):
     if hs: return 'shown'
     return ''
 
+# built tools that someone has played against the spec, one tool id per line (hand-kept; empty until step 4)
+vp = os.path.join(CAT, 'verified.txt')
+VERIFIED = {ln.split()[0] for ln in io.open(vp, encoding='utf-8') if ln.strip() and not ln.startswith('#')} if os.path.exists(vp) else set()
+# data/units.csv, when it exists: course_id or subject,grade plus days. Nothing in data names a unit yet.
+unit_days = collections.Counter()
+up = os.path.join(ROOT, 'data', 'units.csv')
+if os.path.exists(up):
+    for u in rd('data/units.csv'): unit_days[(u.get('subject', ''), u.get('grade', ''))] += int(u.get('days') or 0)
 out, measure = [], []
 for (subject, grade), mods in courses.items():
     listed = collections.defaultdict(list)
@@ -135,6 +143,10 @@ for (subject, grade), mods in courses.items():
             ts = [t for mid in listed.get(code, []) for t in tools_of[mid]]
             st = 'no module' if code not in listed else 'not read' if any(t not in rows for t in ts) or not ts else 'none'
         count[st] += 1
+        if st == 'full':                        # the same claim, on what a teacher can open today
+            lv = {h[0] for h in hits.get(code, []) if h[2] == 'taught' and not h[3] and rows[h[0]].get('stage') == 'live'}
+            if lv: count['live'] += 1
+            if lv & VERIFIED: count['verified'] += 1
         hs = hits.get(code, [])
         def who(*depths):
             d = collections.defaultdict(set)
@@ -164,11 +176,15 @@ P.append('# The one measure, course by course\n')
 P.append('Built by scripts/coverage_ledger.py from the extract rows; the rows behind it are in data/coverage.csv. '
          'A course whose tools are not all read yet shows how many were. Worksheets, generators, the Reading Room and '
          'units are not counted yet (their columns in the ledger are filled in path step 4).\n')
-P.append('| Course | Tools read | Standards | Full | Nearly | Part | Practice | Shown | None | Not read | No module |')
-P.append('|---|---|---|---|---|---|---|---|---|---|---|')
+P.append('Three columns answer three different questions (split 2026-11-11). **Full on paper**: the spec, as read, teaches the standard in full. '
+         '**Full and live**: the same, and a tool that teaches it is live on the site. **Verified**: the same, and someone has played that live tool '
+         'against its spec (docs/agents/catalog/verified.txt). **Unit days**: days of instruction the course\'s units cover, out of about 180; '
+         'nothing in data names a unit yet. Only the last three say what a teacher can use.\n')
+P.append('| Course | Tools read | Standards | Full on paper | Full and live | Verified | Unit days | Nearly | Part | Practice | Shown | None | Not read | No module |')
+P.append('|---|---|---|---|---|---|---|---|---|---|---|---|---|---|')
 for subject, grade, c, n, read, alltools in measure:
-    P.append('| %s %s | %d of %d | %d | %s |' % (subject, grade, read, alltools, n,
-             ' | '.join(str(c.get(k, 0) or '') for k in ('full', 'nearly', 'part', 'practice', 'shown', 'none', 'not read', 'no module'))))
+    P.append('| %s %s | %d of %d | %d | %s | %d | %d | %d | %s |' % (subject, grade, read, alltools, n, c.get('full', 0) or '', c.get('live', 0), c.get('verified', 0), unit_days.get((subject, grade), 0),
+             ' | '.join(str(c.get(k, 0) or '') for k in ('nearly', 'part', 'practice', 'shown', 'none', 'not read', 'no module'))))
 P.append('\n## Modules that may hold two topics (math: standards from more than one domain)\n')
 P.append('Candidates only. A module is split when it holds two unrelated topics (BASELINE rule 22); each comes to Cory as an '
          'exception in path step 4.\n')

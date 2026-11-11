@@ -502,7 +502,8 @@ ask_all = [(C['key'], d) for C in ALL for d in C['T'] if d['call'] == 'ask']
 N.append('## Where things stand\n')
 N.append('- %d specs in the catalog. %d are logged fixed in done.txt (grade 4 math and grade 6 ELA), none reviewed yet. %d remain, and %d of those sort fine and only need confirming.'
          % (total, len(done), total - len(done), fine_left))
-N.append('- Every course is now shaped, so every course is open to work. The order below still matters: it follows the two proving courses outward.')
+N.append('- **The queue stops at batch 4** (Cory, 2026-11-11, after a cold review of the plan). Every course is shaped, but no course beyond these batches opens until grade 4 math is proved: three tools built from fixed specs and one full unit, read by a working teacher (ROADMAP step 4). If that proof changes what a spec must hold, the change lands on a few dozen specs, not 778.')
+N.append('- From now on every spec you touch also carries the three hooks in README.md ("The end standard"): an unaided check the teacher can see, English learner supports, and access. The 22 specs already logged get them in batch 1.')
 N.append('- Cory approved %d second lesson tools. Each one takes codes away from an existing tool, so that tool\'s spec gets lighter. The new tools are not written yet and are not your work now: each gets an idea and a spec when its course is built.' % len(appr_all))
 N.append('- %d more second tools are on the Desk waiting for Cory. Leave those specs until he answers (Skate Park Angles: only its line plot side waits).' % len(ask_all))
 N.append('- A sitting of 10 to 14 specs is a good batch. One course at a time, and finish a course before starting the next.\n')
@@ -526,8 +527,8 @@ for i, (key, lab) in enumerate((('math-5', 'grade 5 math'), ('math-3', 'grade 3 
     N.append('- On the approved split: ' + '; '.join('%s (`%s`): %s' % (d['title'], d['tool'], d.get('note', '')) for d in ap))
     N.append('- Fix: ' + names([d for d in rest if d['sort'] != 'fine']) + '.')
     N.append('- Confirm only: ' + names([d for d in rest if d['sort'] == 'fine']) + '.\n')
-N.append('## After that, course by course\n')
-N.append('A band tool is counted once, with the first course that uses it. "Wait" means a Desk card is open on that tool.\n')
+N.append('## On hold: every other course\n')
+N.append('Do not start these. They open, in this order, once grade 4 math is proved. The table is here so the size of what is left stays in view. A band tool is counted once, with the first course that uses it. "Wait" means a Desk card is open on that tool.\n')
 N.append('| Order | Course | Specs left | Rework | Small addition | Confirm only | Wait | Shape file |')
 N.append('|---|---|---|---|---|---|---|---|')
 order = ['math-6', 'math-2', 'math-7', 'math-1', 'math-8', 'math-k', 'ela-7', 'ela-8', 'ela-5', 'ela-4', 'ela-3', 'ela-2', 'ela-1', 'ela-k',
@@ -542,14 +543,14 @@ for key in order:
     n += 1
     if order.index(key) >= rough_from and not rough_from < 0:
         rough_from = -1
-        N.append('| | **Below this line: wait until the subject\'s standard text is wired in. The fix lists are rough.** | | | | | | |')
+        N.append('| | **Below this line: parked. These subjects stay in the end goal, but nothing is spent on them until the core courses are proved.** | | | | | | |')
     c = collections.Counter(d['sort'] for d in ds if d['call'] != 'ask')
     N.append('| %d | %s | %d | %d | %d | %d | %s | [%s](../agents/catalog/shape/%s.md) |' % (n, cname(BY[key]['s'], BY[key]['g']), len(ds), c['rework'], c['small addition'], c['fine'],
              ', '.join(d['title'] for d in ds if d['call'] == 'ask') or '', key, key))
 N.append('')
 N.append('High school math sits after ELA on purpose: it waits until grade 4 math is proved.\n')
 N.append('## How the total changed\n')
-N.append('- Before Shape the plan was 800 specs in catalog order, live rework tools first. Now it is the same 800, one course at a time, with %d reopened on a lighter load and %d on hold for a Desk answer.' % (len(appr_all), len(ask_all)))
+N.append('- Before Shape the plan was 800 specs in catalog order, live rework tools first. Now it is four batches (about 46 specs), then a stop until one course is proved, with %d specs reopened on a lighter load and %d on hold for a Desk answer.' % (len(appr_all), len(ask_all)))
 N.append('- New specs that Shape adds for later: %d approved, up to %d more if Cory says yes on the Desk. None is yours to write yet.' % (len(appr_all), len(ask_all)))
 N.append('- Approved: ' + '; '.join('%s' % d.get('note', d['title']) for _, d in appr_all))
 N.append('- On the Desk: ' + ('; '.join('%s (%s)' % (d['title'], k) for k, d in ask_all) or 'nothing') + '.')

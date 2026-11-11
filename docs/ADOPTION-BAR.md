@@ -66,6 +66,19 @@ is what modules plus data/sequence.csv already are. A state view is a mapping la
 teaches in which grade. Nothing is rebuilt. CASE is the open, machine-readable format many states publish their
 standards in; we read it in and can write our map out in it.
 
+## Gaps a cold review found (2026-11-11), and where each now sits
+
+| What a review looks at | Where it was | Where it sits now |
+|---|---|---|
+| Assessment beyond one short check per unit | Not in the six steps | Every spec ends each code with an unaided check the teacher can see (SPEC.md, three hooks); the pilot unit carries its own assessment (ROADMAP step 4). Diagnostic and end-of-year checks are still open |
+| English learner supports | Named above, in no step | SPEC.md, three hooks; FINAL-REVIEW.md |
+| Access: keyboard, color, sound with text | A font and contrast bar, later | SPEC.md, three hooks; FINAL-REVIEW.md |
+| What ships, not what the spec says | The measure read specs only | The measure now also counts live and verified tools and unit days (catalog/tables/measure.md) |
+| A reader outside the project | Open in PHASE1-SCOPE | A working teacher reads the pilot unit (ROADMAP step 4) |
+| A real rubric | This file, compiled from one Blueprint and Claude's knowledge | A published rubric is filed and used in step 4 |
+| Coherence across grades | One line in the spine | Still open: the grade 4 spine says what grade 3 hands it and what grade 5 needs |
+| Evidence that it works | Left out | Still left out, apart from one class using the pilot unit |
+
 ## What we left out, and why
 
 | The Blueprint says | Why not |

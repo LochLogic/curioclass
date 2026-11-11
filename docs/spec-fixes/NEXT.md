@@ -5,7 +5,8 @@ Rebuilt 2026-11-11 by scripts/shape_courses.py; do not edit by hand. How to fix 
 ## Where things stand
 
 - 800 specs in the catalog. 22 are logged fixed in done.txt (grade 4 math and grade 6 ELA), none reviewed yet. 778 remain, and 67 of those sort fine and only need confirming.
-- Every course is now shaped, so every course is open to work. The order below still matters: it follows the two proving courses outward.
+- **The queue stops at batch 4** (Cory, 2026-11-11, after a cold review of the plan). Every course is shaped, but no course beyond these batches opens until grade 4 math is proved: three tools built from fixed specs and one full unit, read by a working teacher (ROADMAP step 4). If that proof changes what a spec must hold, the change lands on a few dozen specs, not 778.
+- From now on every spec you touch also carries the three hooks in README.md ("The end standard"): an unaided check the teacher can see, English learner supports, and access. The 22 specs already logged get them in batch 1.
 - Cory approved 9 second lesson tools. Each one takes codes away from an existing tool, so that tool's spec gets lighter. The new tools are not written yet and are not your work now: each gets an idea and a spec when its course is built.
 - 6 more second tools are on the Desk waiting for Cory. Leave those specs until he answers (Skate Park Angles: only its line plot side waits).
 - A sitting of 10 to 14 specs is a good batch. One course at a time, and finish a course before starting the next.
@@ -41,9 +42,9 @@ Fix list: courses/math-3.md. Shape: ../agents/catalog/shape/math-3.md.
 - Fix: Pattern Painter (`pattern-painter`), Roller Coaster Rounding (`roller-coaster-rounding`), Graph Glow-Up (`graph-glow-up`), Fence Builder (`fence-builder`), Shape Family Tree (`shape-family-tree`).
 - Confirm only: Multiplication Dungeon (`multiplication-dungeon`).
 
-## After that, course by course
+## On hold: every other course
 
-A band tool is counted once, with the first course that uses it. "Wait" means a Desk card is open on that tool.
+Do not start these. They open, in this order, once grade 4 math is proved. The table is here so the size of what is left stays in view. A band tool is counted once, with the first course that uses it. "Wait" means a Desk card is open on that tool.
 
 | Order | Course | Specs left | Rework | Small addition | Confirm only | Wait | Shape file |
 |---|---|---|---|---|---|---|---|
@@ -95,7 +96,7 @@ A band tool is counted once, with the first course that uses it. "Wait" means a 
 | 46 | grade 10 social studies | 7 | 0 | 6 | 1 |  | [social-studies-10](../agents/catalog/shape/social-studies-10.md) |
 | 47 | grade 11 social studies | 11 | 1 | 10 | 0 |  | [social-studies-11](../agents/catalog/shape/social-studies-11.md) |
 | 48 | grade 12 social studies | 22 | 4 | 14 | 4 |  | [social-studies-12](../agents/catalog/shape/social-studies-12.md) |
-| | **Below this line: wait until the subject's standard text is wired in. The fix lists are rough.** | | | | | | |
+| | **Below this line: parked. These subjects stay in the end goal, but nothing is spent on them until the core courses are proved.** | | | | | | |
 | 49 | kindergarten computer science | 10 | 2 | 8 | 0 |  | [computer-science-k](../agents/catalog/shape/computer-science-k.md) |
 | 50 | grade 1 computer science | 3 | 1 | 2 | 0 |  | [computer-science-1](../agents/catalog/shape/computer-science-1.md) |
 | 51 | grade 2 computer science | 3 | 0 | 3 | 0 |  | [computer-science-2](../agents/catalog/shape/computer-science-2.md) |
@@ -136,7 +137,7 @@ High school math sits after ELA on purpose: it waits until grade 4 math is prove
 
 ## How the total changed
 
-- Before Shape the plan was 800 specs in catalog order, live rework tools first. Now it is the same 800, one course at a time, with 9 reopened on a lighter load and 6 on hold for a Desk answer.
+- Before Shape the plan was 800 specs in catalog order, live rework tools first. Now it is four batches (about 46 specs), then a stop until one course is proved, with 9 specs reopened on a lighter load and 6 on hold for a Desk answer.
 - New specs that Shape adds for later: 9 approved, up to 6 more if Cory says yes on the Desk. None is yours to write yet.
 - Approved: Equal Groups Zoo keeps 3.OA.A.1 to 3; a new lesson tool takes 3.OA.A.4 and 3.OA.B.5 and 3.OA.B.6.; Fraction Trail keeps 3.NF.A.1 and 3.NF.A.2; a new lesson tool takes 3.NF.A.3.; Kitchen Lab keeps 3.MD.A.2; a new lesson tool takes 3.MD.A.1.; Tile the Floor keeps 3.MD.C.5 and 3.MD.C.6 and 3.G.A.2; a new lesson tool takes 3.MD.C.7.; Area Model Builder keeps 4.NBT.B.5; a new lesson tool takes 4.NBT.B.6.; Recipe Scaler keeps 4.NF.B.3 (a to d); a new lesson tool takes 4.NF.B.4.; Zoom by Tens keeps 5.NBT.A.1 and 5.NBT.A.2; a new lesson tool takes 5.NBT.A.3 and 5.NBT.A.4.; Grocery Run keeps 5.NBT.B.7 and NSPFE.Spending; a new lesson tool takes 5.NBT.B.5 and 5.NBT.B.6.; Debate Prep Desk keeps W.6.1a and b; a new lesson tool drafts the argument (W.6.1c to e).
 - On the Desk: Skate Park Angles (math-4); Smoothie Lab (math-6); Transformation Dock (math-8); Fact Fusion (ela-5); Slow-Mo Writer (ela-5); Personal Essay Studio (ela-11).

@@ -233,3 +233,19 @@ The thirteen calls:
 - Two hand overrides, in shape/decisions.csv: Turn and Talk Wheel (kindergarten ELA) and Socratic Seminar Board
   (grade 10 ELA) keep their discussion standard; the rule would have moved the very thing each tool is for.
 
+## 2026-11-11: the cold review, and five changes (Cory, in chat)
+
+Cory asked for a cold review of the plan. Claude's own read and an independent agent's agreed: the diagnosis and
+rules hold, but the plan measured specs, not courses, and proved a course too late. Cory: "Let's make all the
+changes, the new findings seem sound."
+
+1. Sara's queue stops at batch 4 until grade 4 math is proved.
+2. The proof moves ahead of further fixing (ROADMAP step 4) and starts now: spine, three tools, one unit, a real
+   rubric, a working teacher.
+3. The measure is split: full on paper, full and live, verified, unit days.
+4. Every spec carries three hooks: a check the teacher can see, English learner supports, access.
+5. Subjects outside the core are parked, not dropped. (The agent proposed dropping them from the bar; Cory's goal
+   keeps them.)
+
+Also taken: a top-model spot-check on every re-read; Sara's final review is no longer the last word on a course.
+

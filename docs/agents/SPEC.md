@@ -63,6 +63,25 @@ must stand on its own: anything not in the spec will not be in the tool.
   enough. Keep auto-plays short (a run over about 30 s needs a reason).
 - Plain words. No em dashes. Always "Curio Class", never "Curio" alone.
 
+### Three hooks every spec carries (2026-11-11, from the cold review of the plan)
+
+An adoption review looks at assessment, supports for English learners and access, and the teaching test asks for
+none of them. They are cheap to write into a spec and costly to add to 800 built tools, so every new spec and
+every spec that is fixed carries all three. Where docs/TOOL-CONTRACT.md or the kit already asks for more, that wins.
+
+- **A check the teacher can see.** For each code the tool carries, the main path ends with at least two items done
+  unaided: no model, hint or worked example on screen. The end screen shows the result on those items code by code
+  (and the score code carries it where the tool has one). The spec lists the common wrong answers and what each one
+  means, so a teacher can act on it. Goes in: Standards map (the Done when check column), Content (the unaided
+  items), Done when.
+- **English learners.** Every spoken instruction is also on screen in short, plain sentences. Each key word of the
+  standard is shown with a picture or an example the first time it is used. Any writing or talk task offers a
+  sentence frame the student may take or leave. No idioms in instructions. Goes in: Who and how (one line), Voice,
+  Content.
+- **Access.** Every action works by tap and by keyboard, and a drag has a tap or key alternative. Nothing is told by
+  color alone. Sound that carries meaning has text. Motion can be paused. Goes in: Interactions in detail, Look,
+  Done when.
+
 ### Lessons from ten full Refines (2026-11-05)
 
 Half the Refine blockers on Codex-built tools traced to the spec, not the build: the builder built what it was told.
@@ -140,7 +159,8 @@ gets done. So "Can it be beaten?" and "Heard in order" are now sections of the s
 <one line per close neighbor: its id and how this differs>
 ## Who and how
 <grade, subject, driver (teacher / students / either), minutes, standards codes; role (lesson / see why / practice)
- and, for see why or practice, one line on what the unit or a worksheet adds; disclosure note if prompts are personal>
+ and, for see why or practice, one line on what the unit or a worksheet adds; disclosure note if prompts are personal;
+ one line on the English learner supports (see "Three hooks every spec carries")>
 ## Standards map
 <one row per code: code | the standard's verb and its parts (parts left out, and where they are taught) | who does
  the verb | the student action that teaches it | how many differing items | what they see | the Done when check>
@@ -180,7 +200,8 @@ gets done. So "Can it be beaten?" and "Heard in order" are now sections of the s
  behaviors too) and their results>
 ## Done when
 <6 to 12 checks the Refine lenses can test by playing it; include one for the focus, one for a tap while anything
- plays, one for the 1366x768 fold, and the Standards map rows>
+ plays, one for the 1366x768 fold, the Standards map rows, one for the unaided check and what the end screen shows,
+ and one for keyboard use and color (the three hooks)>
 ## Open questions
 <only what Cory or the sensitivity review must settle>
 ```
