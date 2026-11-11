@@ -4,7 +4,7 @@ The one plan for Curio Class: what is done, what comes next, and in what order. 
 "Later phases" section of docs/PHASE0-PLAN.md, the Supply Closet roadmap, docs/agents/SCALE-PLAN.md,
 docs/LIBRARY-PLAN.md, docs/SITE.md ("Not done yet") and docs/agents/roadmap/.
 
-Why and where: docs/VISION.md (the north star, 2026-11-03). The quality bar for full courses: docs/ADOPTION-BAR.md
+The foundation (what Curio Class is for, who it serves, its promises and assumptions): docs/FOUNDATION.md, the one home of layer 1 (2026-11-11). Why and where: docs/VISION.md (the north star, 2026-11-03). The quality bar for full courses: docs/ADOPTION-BAR.md
 (state adoption is the bar we build to, Cory 2026-11-10; formal adoption is not pursued now). This file holds the order and the status. The design detail stays in each track's own plan, linked from its section.
 When a roadmap item starts, finishes or moves, update it here first, then post it to the Review Desk's Roadmap tab
 (`python scripts/desk_roadmap.py <out.json>`, then ArtifactData set stats/roadmap).
@@ -66,14 +66,69 @@ flaw: tools show the idea, then leave the student's own part of the standard thi
 worst on the major work of a grade. The gap in shape: a module lists a cluster, gets one tool, and the rest of the
 cluster is taught nowhere. Verdict: right raw material, fixable now, costly later.
 
+### The layers (added 2026-11-11, Cory)
+
+The six steps below say what happens in what order. The layers say what stands on what. Each layer is built on the
+ones under it and may not contradict them. A layer is made solid enough to build on, then corrected by what is
+built on it; none is declared finished in the abstract (the check rule looked solid until a spine showed it took a
+fifth of the year).
+
+| Layer | What it is | Its home | State |
+|---|---|---|---|
+| 1. Foundation | What Curio Class is for, who it serves, the promises, the bar, what we assume about the room, what a tool is for | docs/FOUNDATION.md | Gathered into one file 2026-11-11. Two open questions listed there |
+| 2. Standards | What must be learned. Not ours to change | data/standards/ | Math and ELA texts wired. Science and the rest filed, wired when their courses open. Footnoted limits for math still to add |
+| 3. Approach to teaching | How students learn here and why, with its sources. A short shared core for every subject, then one page per subject | docs/APPROACH.md (to write), then docs/APPROACH-MATH.md | **Not written. Next.** Science and ELA pages when those courses open |
+| 4. Progressions | What each grade inherits and hands on, per subject | data/sequence.csv, the spine's builds-on columns, a progression table per subject | Partly. Grades 3 to 5 math checked next; the science review found errors in sequence.csv |
+| 5. Course spine | Every teaching day of a year, in order, with the reason | docs/courses/ | Grade 4 math approved. Grade 4 science and grade 6 ELA revised drafts |
+| 6. Stretch and unit plan | The contract for each unit: what each day is for, where a tool is used and for what job, what the check asks | docs/courses/ (to be set with the first plans); rows in data/units.csv | None yet |
+| 7. Lessons, tools, print, checks | What students and teachers touch | The shelves and tools | Building paused |
+
+Running through every layer: the assessment system, and the supports for English learners, access, teachers and
+families ("What a finished course holds").
+
+**Open courses are an input, not a layer.** Well-reviewed open courses are read as evidence at layers 5 and 6,
+course by course, by the curriculum expert. We write our own course (FOUNDATION, section 1).
+
+**Decided in the same discussion (Cory, 2026-11-11), and now rules:**
+
+1. We own the full course.
+2. A unit plan for every unit of a course comes before that course's tools.
+3. No tool is built or refined until a unit plan names its job.
+4. Tools are key tools (built first; the course cannot run without them) or practice tools (lighter, added over
+   time, same standard of correctness). A course is runnable when its key tools are live and print covers the rest.
+5. Frequent cold reads by the curriculum expert are the main review at every layer. Human reads are rare and aimed.
+6. Grades 3 to 12 assume one device per student, with a one-line projector path. A parent teaching one child at
+   home is a named audience.
+7. A teacher judges open work; tools give it structure and print carries rubrics and sample pieces.
+
+The detail of each is in docs/FOUNDATION.md. Still open: the device assumption for K to 2, and what happens to
+existing tools and specs that no unit plan asks for.
+
+**The unit plan.** Fixed fields, not a fixed length: a 5-day unit fits one page, and two pages is the ceiling. It
+is a contract, not the lesson. Fields are set when the approach is written and tried on three units first.
+
+**What this changes in step 4.** The order inside "Prove one course" is now:
+
+| # | Piece | Done when |
+|---|---|---|
+| 4a | The approach: a shared core of about two pages and a page for math, each claim with its source | The curriculum expert has read it cold and its findings are closed; Cory has said yes |
+| 4b | The grades 3 to 5 math progression around grade 4 | Every grade 4 stretch names what grade 3 hands it and what grade 5 needs, checked against the standards' own progressions |
+| 4c | The unit plan fields, tried on three units of grade 4 math, the pilot (unit 11.1, area and perimeter) among them | The expert has read the three; the fields are fixed |
+| 4d | Unit plans for the other 40 units of grade 4 math | Every unit has a plan; every tool a plan asks for is marked key or practice; existing specs with no plan asking for them are counted |
+| 4e | The key tools named from the plans. The three approved on 2026-11-11 (Community Plot Planner, Fraction Wall Duel, Road Trip Logbook) stand unless the plans show a better first three, in which case that goes to Cory | A build order for key tools, by value |
+| 4f | The pilot unit built to the bottom, with its key tools, then the reads: verified play, the rubric read, the expert, a working teacher | As in the step 4 row below |
+
+Where the step 4 row below and this table disagree, this table wins.
+
 ### The shape we build to
 
 | Piece | What it is | Rule |
 |---|---|---|
 | **Course** | A grade of a subject | Gets a year spine: its units in order, with the reason for the order |
-| **Unit** | A 1 to 5 day package inside a course | Points at modules and picks from every shelf. Owns only the order, the teacher pages and what no shelf has |
+| **Stretch** | A run of units on one idea (added 2026-11-11) | Owns the readiness check, the end check and, in ELA, the text set and word list |
+| **Unit** | A 1 to 5 day package inside a course | Points at modules and picks from every shelf. Owns only the order, the teacher pages and what no shelf has. Has a unit plan (two pages at most) before any of its tools is built |
 | **Module** | One teachable topic, and the hub page every shelf hangs from | Split only when it holds two unrelated topics, and then properly. Its standards are spelled out, never a bare cluster |
-| **Tool** | One screen piece | Carries only the codes it teaches on its main path, and a role: lesson, see why or practice. Major work in math, ELA and science gets two or three tools |
+| **Tool** | One screen piece | Carries only the codes it teaches on its main path, and a role: lesson, see why or practice. Built only when a unit plan names its job, which also marks it key or practice. Major work in math, ELA and science gets two or three tools |
 | **Shelves** | Word Wall, charts, Game Night, Sub Day, lesson plans, worksheets, generators, Reading Room, The Map | Keep their keys. Worksheets and generators are the home of fluency and extra practice; the Reading Room is the home of year-long reading |
 | **Ledger** | data/coverage.csv | One row per standard per course: where it is taught in full. The one home of a coverage claim and the source of the measure |
 | **Recess, Curiosities** | Play and wonder | Outside the bar. They claim no standard |
@@ -159,7 +214,7 @@ when its "closed when" is true. Nothing here is closed by a sentence in a plan.
 | No assessment accommodations or reading-level supports (rubric) | Each check says how to give it read aloud, with more time, or with a model allowed, without changing what it tests; word problems come in a plainer-language version | 4, 6 | The pilot unit's checks and problems do both |
 | Loose ends from spelling out module standards | 113 cluster pages under /standards/ are gone and 296 added, with no redirects; scripts/check_plans.py reports 14 of 80 plans with problems; check_concepts stops on unknown module social-studies-3-5-road-trip-atlas | Before the next site build | Redirects are in data/redirects.csv and both checks pass |
 
-**Resume here (left 2026-11-11, late): step 4, the proof. Three year spines are revised after curriculum expert reviews (docs/reviews/); Cory said yes to every proposed change (Desk cards q-review-math-4, q-review-science-4, q-review-ela-6). Grade 4 math is the approved spine with rows in data/units.csv; grade 4 science and grade 6 ELA are revised drafts waiting for Cory's final yes. Checks now sit at the stretch, not the unit (item 4). Owed next: file the science rubrics (EdReports K-5 science, EQuIP) and the ELA rubric (EdReports ELA 6 to 12); the ELA text plan (verify the texts marked to verify; an informational shelf); then pilot unit in math (area and perimeter), the three tools. Sara works NEXT.md batches 1 to 4, then unit pieces.** All 800 tools have a row in row format
+**Resume here (left 2026-11-11, late): step 4a, the approach to teaching (layer 3; see "The layers"). Layer 1 is gathered in docs/FOUNDATION.md. Three spines are revised after expert reviews with Cory's yes to every change; grade 4 math is approved with rows in data/units.csv, grade 4 science and grade 6 ELA are drafts awaiting his final yes. Order from here: 4a approach (shared core and math page, expert read, Cory's yes), 4b grades 3 to 5 math progression, 4c unit plan fields on three units, 4d the other 40 unit plans, 4e key tools, 4f the pilot unit built. Also owed: the science and ELA rubric files, the ELA text plan. Sara works NEXT.md batches 1 to 4, then unit pieces.** All 800 tools have a row in row format
 2 (docs/agents/catalog/rows/, 71 packets, about 12 million tokens on the cheaper model), and the ledger is rebuilt:
 data/coverage.csv and docs/agents/catalog/tables/measure.md. Across every course's standards: 213 full, 368 nearly,
 404 part, 1,102 practice only, 276 shown, 37 none. By tool: 70 teach every code they carry, 177 teach at least one

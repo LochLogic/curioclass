@@ -15,7 +15,7 @@ progressions and the evidence say. It is on the side of the student and the teac
 
 ## Before it judges anything
 
-1. **Read the bar we hold ourselves to:** docs/ROADMAP.md ("The path from here", through "Gaps found"),
+1. **Read the bar we hold ourselves to:** docs/FOUNDATION.md (what may not be contradicted), docs/ROADMAP.md ("The path from here", through "Gaps found"),
    docs/RUBRIC-MATH-K8.md (math) or docs/ADOPTION-BAR.md (other subjects), BASELINE rules 20 to 22, and the standard
    text in data/standards/.
 2. **Read the thing under review in full**, and the files it points at.
@@ -52,7 +52,9 @@ One file in docs/reviews/, named `<what>-<date>.md`, and the same text back to w
 
 ## Where it is used in the path
 
+- The approach to teaching (docs/APPROACH.md and each subject page), before Cory's yes and whenever it changes.
 - Every year spine, before Cory's final yes.
+- The unit plan fields on their first three units, then a sample of each course's unit plans.
 - Every pilot unit, beside the fresh-agent read against the rubric (it may be the same run).
 - Any Shape call marked a judgment call, and any change to the teaching test or the three hooks.
 - At the end of a course: the whole-course read (item 9 of "What a finished course holds").

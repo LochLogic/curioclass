@@ -1,7 +1,8 @@
 # Curio Class: the vision
 
 The north star: why Curio Class exists and where it is headed. ROADMAP.md is the one plan (what comes next, in what
-order). This file changes rarely; the roadmap changes every week.
+order). This file changes rarely; the roadmap changes every week. The promises, the audiences and what we assume about a
+classroom are gathered in docs/FOUNDATION.md (2026-11-11); where this file and that one disagree, that one wins.
 
 Integrated 2026-11-03 from Cory's master vision (docs/Return/curio_class_master_vision_and_roadmap.md), his notes, the
 existing roadmap and Codex's portfolio meta analysis (docs/Return/PORTFOLIO-META-ANALYSIS-2026-11-02.md). Decisions:

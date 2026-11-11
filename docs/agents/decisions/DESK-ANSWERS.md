@@ -323,3 +323,25 @@ and end checks sit at the stretch, not the unit, and each cumulative check has a
 finished course holds", item 4). Grade 4 math rows in data/units.csv were regenerated from the revised spine.
 Grade 4 science and grade 6 ELA stay drafts with no rows until Cory's final yes on each.
 
+## 2026-11-11: the layers, and what a tool is for (Cory, in chat, a long discussion)
+
+Cory asked whether the full curriculum should come before any tool. His view: tools are the end piece of
+instruction, and if the structure is sound a tool is a means to a defined end. Where the discussion landed, all
+agreed by Cory ("yes they sound right"; "this seems right to me"):
+
+- The defined end lives in a unit plan, not the spine. A unit plan for every unit of a course comes before its
+  tools. No tool is built or refined until a plan names its job.
+- A tool can be whatever the unit needs; the limits are the site's promises, the physical world, open work only a
+  person can judge, and cost. So: few key tools built first, lighter practice tools over time.
+- We own the full course. Open courses are evidence and source material, not something to stitch together.
+- Score codes and print sheets are fine as the record. A teacher judges open work.
+- Grades 3 to 12 are designed for one device per student. Home school is a named audience.
+- The curriculum expert's frequent cold reads are the main review, "and that has to be okay".
+- The work is layered (foundation, standards, approach, progressions, spine, unit plan, lessons and tools). Layers
+  are made solid enough to build on, not finished in the abstract. Layer 1 was scattered and is now one file,
+  docs/FOUNDATION.md. Layer 3, the approach to teaching, is unwritten and is next.
+- The unit plan has fixed fields, not a fixed length; two pages at most.
+
+Written into: docs/FOUNDATION.md (new), docs/ROADMAP.md ("The layers", step 4a to 4f), BASELINE rule 23, EXPERT.md.
+Open: the device assumption for K to 2; what happens to tools and specs no unit plan asks for.
+

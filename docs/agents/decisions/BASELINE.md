@@ -82,6 +82,14 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     topics for now. Fluency volume, long writing, discussion, year-long reading and topic threads across texts
     belong to units, worksheets and the Reading Room, and are recorded there, not claimed by a tool.
 
+23. **A unit plan comes before a tool** (2026-11-11). A tool is the end piece of instruction. No tool is built or
+    refined until a unit plan names its job, and the plan marks it key (the unit cannot run without it; built
+    first) or practice (lighter, added over time, same standard of correctness). An existing spec or tool carries
+    no weight against what the unit needs (rule 1). A teacher judges open work; a tool gives it structure and marks
+    only what has a right answer. Grades 3 to 12 assume one device per student with a one-line projector path, and
+    a parent teaching one child at home is a named audience. All of this, with the promises it rests on, is in
+    docs/FOUNDATION.md, which every spec, unit and review agent reads first.
+
 ## One module Cory reviews personally
 
 **growing-up-q-a** (grade 4-5 puberty). It opens on a splash cover page that makes the educational purpose clear,

@@ -1,5 +1,7 @@
 # The adoption bar
 
+Where this bar sits among the promises and assumptions it may never outrank: docs/FOUNDATION.md, section 4.
+
 **Decision (Cory, 2026-11-10; BASELINE rule 20):** state adoption is the bar we build to. Full-course materials are
 built to meet the substance of what state and national curriculum reviews ask for. We do not pursue formal adoption
 now. If later data says formal adoption is a good path, we pivot and are already well placed.
