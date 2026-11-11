@@ -1,5 +1,10 @@
 # Year spine: grade 4 science (draft for Cory's review)
 
+**Reviewed 2026-11-11 by the curriculum expert: docs/reviews/science-4-spine-2026-11-11.md.** The bones hold (year
+size, energy first, engineering inside content, end tasks on new phenomena). Four changes it proposes are with Cory
+on Desk card q-review-science-4; this file is revised once, after his answers. Until then the tables below are the
+first draft, not the reviewed one.
+
 Drafted 2026-11-11. Nothing here is built, approved or public, and no row is in data/units.csv. It follows the
 layout of docs/courses/math-4-spine.md and applies the lessons of docs/reviews/math-4-spine-2026-11-11.md from
 the start. Standards are the Next Generation Science Standards (NGSS): the 14 grade 4 performance expectations

@@ -293,3 +293,25 @@ are corrected. Waiting on Cory (q-review-math-4): checks at the stretch level wi
 its full form follows division; the revised order (measurement after division, all major work done by day 123);
 lines before angles, 16 days of geometry.
 
+## 2026-11-11: two more spines and their expert reviews (Cory asked in chat)
+
+Drafted by fresh agents, then reviewed cold by the curriculum expert: docs/courses/science-4-spine.md with
+docs/reviews/science-4-spine-2026-11-11.md, and docs/courses/ela-6-spine.md with
+docs/reviews/ela-6-spine-2026-11-11.md. Neither spine is approved and neither has rows in data/units.csv.
+
+Waiting on Cory:
+
+- **q-review-science-4:** move energy resources (4-ESS3-1) beside the energy and device stretch; life science and
+  light to 21 days with two anchors (a cat at night, a plant that cannot move) and a plant in the end task; the
+  revised 108-day sequence, with a 90-session path marked for ordinary schools; a signal device in place of the
+  chain-reaction contraption, with three days on circuits.
+- **q-review-ela-6:** settle a named, verified, licensed text set for every stretch before any unit is written, and
+  add an informational shelf to the Reading Room; state a reading load per stretch and stop saying "read whole"
+  where it does not fit; fold each cumulative check into the stretch end check and give it two periods; keep the
+  child labor topic but move the written argument and debate to a live question; keep small units as rows in
+  data/units.csv with a stretch column, and pilot a five-day stand-alone slice of stretch 2.
+
+To be folded in without asking when each spine is revised: the smaller findings in each review (practices used more
+than once, limits, safety, materials tiers, sensitivity notes, vocabulary and language fixes). Rubrics to file next:
+EdReports Science K-5 v2.0 and the EQuIP rubric (science); EdReports ELA 6 to 12 v2.0 (ELA).
+

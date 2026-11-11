@@ -1,5 +1,10 @@
 # Year spine: grade 6 ELA (draft for Cory's review)
 
+**Reviewed 2026-11-11 by the curriculum expert: docs/reviews/ela-6-spine-2026-11-11.md.** The design holds (topic
+stretches on text sets, the writing calendar, discussion all year). The texts are the risk: half the year has none
+on file. Five changes it proposes are with Cory on Desk card q-review-ela-6; this file is revised once, after his
+answers. Until then the tables below are the first draft, not the reviewed one.
+
 Drafted 2026-11-11. Not approved, not in data/units.csv, nothing here is built or public. This is item 1 of "What a
 finished course holds" in docs/ROADMAP.md for the second proving course: every teaching day of the year, in order,
 with the reason for the order. It follows the layout of docs/courses/math-4-spine.md and applies the lessons of
