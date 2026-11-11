@@ -25,7 +25,7 @@ The math reads are a floor: a standard marked taught is taught, and some marked 
 
 ## Second tools
 
-1. **Transformations (Desk).** Transformation Dock carries 7 codes in 30 minutes: 8.G.A.1 practice only (24 items); 8.G.A.5 practice only (3 items). Fixing those inside the tool puts it at about 50 minutes. Shape: Transformation Dock keeps 8.G.A.2 to 4; a new lesson tool in the same module takes 8.G.A.1, 8.G.A.5 (verify experimentally the properties of rotations, reflections, and translations).
+- **Transformations: decided.** Transformation Dock keeps 8.G.A.2 to 4; a new lesson tool takes 8.G.A.1 and 8.G.A.5.
 
 Long sittings (over 35 minutes, four codes or fewer): Size of Everything (40). Not a second-tool question: each spec says where the sitting breaks in two.
 
@@ -38,9 +38,9 @@ No station or practice tool. Practice otherwise comes from worksheets and Recess
 Fix lists: docs/spec-fixes/courses/math-8.md.
 
 - Rework (2): Size of Everything, Ski Slope Designer.
-- Small addition (5): Square Root Hunt, Two Trains, Function Machine Factory, Square Slicer, Data Detective.
+- Small addition (6): Square Root Hunt, Two Trains, Function Machine Factory, Transformation Dock, Square Slicer, Data Detective.
 - Sorts fine, confirm only (2): Story Graphs, Snow Globe Maker.
-- Wait for Cory's answer on the Desk: Transformation Dock.
+- Fix on the approved split: Transformation Dock.
 
 ## Build order by value
 
@@ -48,4 +48,4 @@ Fix lists: docs/spec-fixes/courses/math-8.md.
 2. Supporting: Square Root Hunt, Data Detective
 3. Additional: Snow Globe Maker
 
-Exceptions for Cory are on Desk card q-shape-math-8.
+No exception for Cory in this course: no Desk card.

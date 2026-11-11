@@ -126,3 +126,11 @@ Not yet written into data/waves.csv; that happens when step 5 opens.
   New recommendation: keep one module, two tools. Add a line plot lesson tool (build the plot, choose the scale,
   halves, quarters and eighths, fraction questions). Skate Park Angles becomes the angles lesson and its Jump Log
   stays as practice for 4.MD.B.4. It is supporting work, so the new tool is built after the major modules.
+
+## Decided (Cory, 2026-11-11)
+
+- Line plot lesson tool: approved. One module, two tools. Skate Park Angles is the angles lesson (4.MD.C.5 to 7) and
+  its Jump Log stays as practice for 4.MD.B.4. A new lesson tool teaches line plots: build the plot, choose the
+  scale, halves, quarters and eighths, fraction questions. Supporting work, so it is built after the major modules.
+- That makes three second tools approved for this course: fraction times whole number, division, line plots.
+

@@ -38,8 +38,8 @@ Standards listed by two modules (each needs one home, or its lettered parts shar
 
 ## Second tools
 
-1. **Multiple Sources (Desk).** Fact Fusion carries 5 codes in 40 minutes: RI.5.6 practice only (3 items); RI.5.7 practice only (4 items). Fixing those inside the tool puts it at about 50 minutes. Shape: Fact Fusion keeps RI.5.9, W.5.7, W.5.8; a new lesson tool in the same module takes RI.5.6, RI.5.7 (analyze multiple accounts of the same event or topic, noting important similarities and ...).
-2. **Narrative Craft (Desk).** Slow-Mo Writer carries 6 codes in 30 minutes: W.5.3 partly taught (21 items). Fixing those inside the tool puts it at about 50 minutes. Shape: Slow-Mo Writer keeps W.5.5; a new lesson tool in the same module takes W.5.3 (write narratives to develop real or imagined experiences or events using effective ...).
+- **Multiple Sources: decided.** Fact Fusion keeps RI.5.9 and W.5.7 and W.5.8; a new lesson tool takes RI.5.6 and RI.5.7.
+- **Narrative Craft: decided.** Slow-Mo Writer keeps W.5.5; a new lesson tool takes W.5.3.
 - Essay Rope Team (Organized Essays, 11 codes in 40 minutes): nothing reads as taught yet, so there is no line to split along: fix the spec, then judge again.
 - Glossary Makers (Academic and Subject Words, 5 codes in 25 minutes): a band tool: its spec gets a path for this grade first, and it is judged again after the re-read.
 - Tense Time-Line (Verb Tense and Conjunctions, 5 codes in 25 minutes): holds. Every code reads as taught.
@@ -54,9 +54,9 @@ Stations and ongoing tools: Simile Slam, Comma Chameleon, Tense Time-Line, Stret
 
 Fix lists: docs/spec-fixes/courses/ela-5.md and, for band tools, docs/spec-fixes/courses/ela-3-5.md.
 
-- Small addition (17): Character Face-Off, Simile Slam, Essay Rope Team, Comma Chameleon, Tense Time-Line, Side by Side Reader (band), Swap the Teller (band), Mood in the Pictures (band), Stretch Shelf (band), Main Idea Pinboard (band), How It Works Diagrams (band), Glossary Makers (band), Script Read-Through (band), Draft Car Wash (band), Deadline Desk (band), Radio Hour Notes (band), Planetarium Guide (band).
+- Small addition (19): Character Face-Off, Simile Slam, Fact Fusion, Essay Rope Team, Slow-Mo Writer, Comma Chameleon, Tense Time-Line, Side by Side Reader (band), Swap the Teller (band), Mood in the Pictures (band), Stretch Shelf (band), Main Idea Pinboard (band), How It Works Diagrams (band), Glossary Makers (band), Script Read-Through (band), Draft Car Wash (band), Deadline Desk (band), Radio Hour Notes (band), Planetarium Guide (band).
 - Sorts fine, confirm only (2): Inference Interrogation, Claim Court.
-- Wait for Cory's answer on the Desk: Fact Fusion, Slow-Mo Writer.
+- Fix on the approved split: Fact Fusion, Slow-Mo Writer.
 - Each band spec gives grade 5 its own path: its texts, its wording of the standard, five or more items.
 
 ## Build order by value
@@ -66,4 +66,4 @@ Fix lists: docs/spec-fixes/courses/ela-5.md and, for band tools, docs/spec-fixes
 3. Language: Comma Chameleon, Tense Time-Line
 4. Speaking and listening: Radio Hour Notes, Planetarium Guide
 
-Exceptions for Cory are on Desk card q-shape-ela-5.
+No exception for Cory in this course: no Desk card.

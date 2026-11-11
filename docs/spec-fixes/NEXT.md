@@ -7,15 +7,15 @@ Rebuilt 2026-11-11 by scripts/shape_courses.py; do not edit by hand. How to fix 
 - 800 specs in the catalog. 22 are logged fixed in done.txt (grade 4 math and grade 6 ELA), none reviewed yet. 778 remain, and 67 of those sort fine and only need confirming.
 - **The queue stops at batch 4** (Cory, 2026-11-11, after a cold review of the plan). Every course is shaped, but no course beyond these batches opens until grade 4 math is proved: three tools built from fixed specs and one full unit, read by a working teacher (ROADMAP step 4). If that proof changes what a spec must hold, the change lands on a few dozen specs, not 778.
 - From now on every spec you touch also carries the three hooks in README.md ("The end standard"): an unaided check the teacher can see, English learner supports, and access. The 22 specs already logged get them in batch 1.
-- Cory approved 9 second lesson tools. Each one takes codes away from an existing tool, so that tool's spec gets lighter. The new tools are not written yet and are not your work now: each gets an idea and a spec when its course is built.
-- 6 more second tools are on the Desk waiting for Cory. Leave those specs until he answers (Skate Park Angles: only its line plot side waits).
+- Cory approved 15 second lesson tools. Each one takes codes away from an existing tool, so that tool's spec gets lighter. The new tools are not written yet and are not your work now: each gets an idea and a spec when its course is built.
+- No second tool is waiting on the Desk: every one proposed so far is approved.
 - A sitting of 10 to 14 specs is a good batch. One course at a time, and finish a course before starting the next.
 
 ## Batch 1: close the two proving courses (11 specs)
 
 These stand between the two courses and their final review.
 
-- Re-read found still open: Argument X-Ray (`argument-x-ray`: add a model, reach five arguments, make a rerun of the scan cost something), Unit Ladder (`unit-ladder`: the spec is too thin to judge; write it out in full), Skate Park Angles (`skate-park-angles`: bring 4.MD.C.5b to five items; leave the line plot side alone until Cory answers the Desk card).
+- Re-read found still open: Argument X-Ray (`argument-x-ray`: add a model, reach five arguments, make a rerun of the scan cost something), Unit Ladder (`unit-ladder`: the spec is too thin to judge; write it out in full), Skate Park Angles (`skate-park-angles`: bring 4.MD.C.5b to five items; the line plot lesson goes to a new tool Cory approved, so Jump Log stays as it is and the spec calls it practice for 4.MD.B.4).
 - Fix again on the approved split, dropping the codes the new tool takes and using the room for more items: Recipe Scaler (`recipe-scaler`, keeps 4.NF.B.3), Area Model Builder (`area-model-builder`, keeps 4.NBT.B.5), Debate Prep Desk (`debate-prep-desk`, keeps W.6.1a and b).
 - Small parts the re-read still found: Stadium Count (`stadium-count`: 4.NBT.A.3, rounds to the ten and to the million), Quilt Block Studio (`quilt-block-studio`: 4.G.A.1, points, rays and lines), Plot Rollercoaster (`plot-rollercoaster`) and Book Group Table (`book-group-table`): see courses/ela-6.md.
 - Then Claude re-reads both courses and you run FINAL-REVIEW.md on them, starting with Argument X-Ray, Skate Park Angles and Unit Ladder.
@@ -48,15 +48,15 @@ Do not start these. They open, in this order, once grade 4 math is proved. The t
 
 | Order | Course | Specs left | Rework | Small addition | Confirm only | Wait | Shape file |
 |---|---|---|---|---|---|---|---|
-| 1 | grade 6 math | 11 | 1 | 7 | 2 | Smoothie Lab | [math-6](../agents/catalog/shape/math-6.md) |
+| 1 | grade 6 math | 11 | 1 | 8 | 2 |  | [math-6](../agents/catalog/shape/math-6.md) |
 | 2 | grade 2 math | 9 | 2 | 7 | 0 |  | [math-2](../agents/catalog/shape/math-2.md) |
 | 3 | grade 7 math | 12 | 0 | 4 | 8 |  | [math-7](../agents/catalog/shape/math-7.md) |
 | 4 | grade 1 math | 11 | 1 | 8 | 2 |  | [math-1](../agents/catalog/shape/math-1.md) |
-| 5 | grade 8 math | 10 | 2 | 5 | 2 | Transformation Dock | [math-8](../agents/catalog/shape/math-8.md) |
+| 5 | grade 8 math | 10 | 2 | 6 | 2 |  | [math-8](../agents/catalog/shape/math-8.md) |
 | 6 | kindergarten math | 9 | 1 | 7 | 1 |  | [math-k](../agents/catalog/shape/math-k.md) |
 | 7 | grade 7 ELA | 9 | 0 | 6 | 3 |  | [ela-7](../agents/catalog/shape/ela-7.md) |
 | 8 | grade 8 ELA | 9 | 0 | 7 | 2 |  | [ela-8](../agents/catalog/shape/ela-8.md) |
-| 9 | grade 5 ELA | 21 | 0 | 17 | 2 | Fact Fusion, Slow-Mo Writer | [ela-5](../agents/catalog/shape/ela-5.md) |
+| 9 | grade 5 ELA | 21 | 0 | 19 | 2 |  | [ela-5](../agents/catalog/shape/ela-5.md) |
 | 10 | grade 4 ELA | 10 | 2 | 6 | 2 |  | [ela-4](../agents/catalog/shape/ela-4.md) |
 | 11 | grade 3 ELA | 10 | 2 | 7 | 1 |  | [ela-3](../agents/catalog/shape/ela-3.md) |
 | 12 | grade 2 ELA | 22 | 3 | 18 | 1 |  | [ela-2](../agents/catalog/shape/ela-2.md) |
@@ -64,7 +64,7 @@ Do not start these. They open, in this order, once grade 4 math is proved. The t
 | 14 | kindergarten ELA | 9 | 1 | 5 | 3 |  | [ela-k](../agents/catalog/shape/ela-k.md) |
 | 15 | grade 9 ELA | 16 | 3 | 11 | 2 |  | [ela-9](../agents/catalog/shape/ela-9.md) |
 | 16 | grade 10 ELA | 8 | 0 | 7 | 1 |  | [ela-10](../agents/catalog/shape/ela-10.md) |
-| 17 | grade 11 ELA | 7 | 0 | 6 | 0 | Personal Essay Studio | [ela-11](../agents/catalog/shape/ela-11.md) |
+| 17 | grade 11 ELA | 7 | 0 | 7 | 0 |  | [ela-11](../agents/catalog/shape/ela-11.md) |
 | 18 | grade 12 ELA | 7 | 1 | 6 | 0 |  | [ela-12](../agents/catalog/shape/ela-12.md) |
 | 19 | grade 9 math | 11 | 5 | 5 | 1 |  | [math-9](../agents/catalog/shape/math-9.md) |
 | 20 | grade 10 math | 9 | 6 | 3 | 0 |  | [math-10](../agents/catalog/shape/math-10.md) |
@@ -137,7 +137,7 @@ High school math sits after ELA on purpose: it waits until grade 4 math is prove
 
 ## How the total changed
 
-- Before Shape the plan was 800 specs in catalog order, live rework tools first. Now it is four batches (about 46 specs), then a stop until one course is proved, with 9 specs reopened on a lighter load and 6 on hold for a Desk answer.
-- New specs that Shape adds for later: 9 approved, up to 6 more if Cory says yes on the Desk. None is yours to write yet.
-- Approved: Equal Groups Zoo keeps 3.OA.A.1 to 3; a new lesson tool takes 3.OA.A.4 and 3.OA.B.5 and 3.OA.B.6.; Fraction Trail keeps 3.NF.A.1 and 3.NF.A.2; a new lesson tool takes 3.NF.A.3.; Kitchen Lab keeps 3.MD.A.2; a new lesson tool takes 3.MD.A.1.; Tile the Floor keeps 3.MD.C.5 and 3.MD.C.6 and 3.G.A.2; a new lesson tool takes 3.MD.C.7.; Area Model Builder keeps 4.NBT.B.5; a new lesson tool takes 4.NBT.B.6.; Recipe Scaler keeps 4.NF.B.3 (a to d); a new lesson tool takes 4.NF.B.4.; Zoom by Tens keeps 5.NBT.A.1 and 5.NBT.A.2; a new lesson tool takes 5.NBT.A.3 and 5.NBT.A.4.; Grocery Run keeps 5.NBT.B.7 and NSPFE.Spending; a new lesson tool takes 5.NBT.B.5 and 5.NBT.B.6.; Debate Prep Desk keeps W.6.1a and b; a new lesson tool drafts the argument (W.6.1c to e).
-- On the Desk: Skate Park Angles (math-4); Smoothie Lab (math-6); Transformation Dock (math-8); Fact Fusion (ela-5); Slow-Mo Writer (ela-5); Personal Essay Studio (ela-11).
+- Before Shape the plan was 800 specs in catalog order, live rework tools first. Now it is four batches (about 46 specs), then a stop until one course is proved, with 15 specs reopened on a lighter load and 0 on hold for a Desk answer.
+- New specs that Shape adds for later: 15 approved, up to 0 more if Cory says yes on the Desk. None is yours to write yet.
+- Approved: Equal Groups Zoo keeps 3.OA.A.1 to 3; a new lesson tool takes 3.OA.A.4 and 3.OA.B.5 and 3.OA.B.6.; Fraction Trail keeps 3.NF.A.1 and 3.NF.A.2; a new lesson tool takes 3.NF.A.3.; Kitchen Lab keeps 3.MD.A.2; a new lesson tool takes 3.MD.A.1.; Tile the Floor keeps 3.MD.C.5 and 3.MD.C.6 and 3.G.A.2; a new lesson tool takes 3.MD.C.7.; Area Model Builder keeps 4.NBT.B.5; a new lesson tool takes 4.NBT.B.6.; Recipe Scaler keeps 4.NF.B.3 (a to d); a new lesson tool takes 4.NF.B.4.; Skate Park Angles keeps the angle standards (4.MD.C.5 to 7) and its Jump Log stays as practice for 4.MD.B.4; a new lesson tool teaches line plots (4.MD.B.4).; Zoom by Tens keeps 5.NBT.A.1 and 5.NBT.A.2; a new lesson tool takes 5.NBT.A.3 and 5.NBT.A.4.; Grocery Run keeps 5.NBT.B.7 and NSPFE.Spending; a new lesson tool takes 5.NBT.B.5 and 5.NBT.B.6.; Smoothie Lab keeps 6.RP.A.1; a new lesson tool takes 6.RP.A.2 and 6.RP.A.3.; Transformation Dock keeps 8.G.A.2 to 4; a new lesson tool takes 8.G.A.1 and 8.G.A.5.; Fact Fusion keeps RI.5.9 and W.5.7 and W.5.8; a new lesson tool takes RI.5.6 and RI.5.7.; Slow-Mo Writer keeps W.5.5; a new lesson tool takes W.5.3.; Debate Prep Desk keeps W.6.1a and b; a new lesson tool drafts the argument (W.6.1c to e).; Personal Essay Studio keeps W.11-12.5; a new lesson tool takes W.11-12.3.
+- On the Desk: nothing.

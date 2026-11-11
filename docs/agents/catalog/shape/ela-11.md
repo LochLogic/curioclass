@@ -31,7 +31,7 @@ Standards listed by two modules (each needs one home, or its lettered parts shar
 
 ## Second tools
 
-1. **College Personal Essay (Desk).** Personal Essay Studio carries 6 codes in 40 minutes: W.11-12.3 partly taught (5 items). Fixing those inside the tool puts it at about 60 minutes. Shape: Personal Essay Studio keeps W.11-12.5; a new lesson tool in the same module takes W.11-12.3 (write narratives to develop real or imagined experiences or events using effective ...).
+- **College Personal Essay: decided.** Personal Essay Studio keeps W.11-12.5; a new lesson tool takes W.11-12.3.
 - Pacing Strip (Narrative Scenes and Pacing, 5 codes in 38 minutes): a band tool: its spec gets a path for this grade first, and it is judged again after the re-read.
 
 Long sittings (over 35 minutes, four codes or fewer): Premise Inspector (45), Rhetorical Situation Simulator (38), Theme Ledger (43), Key Term Tracker (38), Tough Text Club (40), Living Explainer (45). Not a second-tool question: each spec says where the sitting breaks in two.
@@ -45,9 +45,9 @@ Stations and ongoing tools: Personal Essay Studio, Tough Text Club, Living Expla
 Fix lists: docs/spec-fixes/courses/ela-11.md and, for band tools, docs/spec-fixes/courses/ela-9-12.md.
 
 - Rework (2): Pacing Strip (band), Editors in the Margin (band).
-- Small addition (10): American Lit Timeline, Satire Decoder, Premise Inspector, Source Mixer, Rhetorical Situation Simulator, Usage Panel, Theme Ledger (band), Key Term Tracker (band), Idea Threads (band), Living Explainer (band).
+- Small addition (11): American Lit Timeline, Satire Decoder, Premise Inspector, Source Mixer, Rhetorical Situation Simulator, Personal Essay Studio, Usage Panel, Theme Ledger (band), Key Term Tracker (band), Idea Threads (band), Living Explainer (band).
 - Sorts fine, confirm only (1): Tough Text Club (band).
-- Wait for Cory's answer on the Desk: Personal Essay Studio.
+- Fix on the approved split: Personal Essay Studio.
 - Each band spec gives grade 11 its own path: its texts, its wording of the standard, five or more items.
 
 ## Build order by value
@@ -56,4 +56,4 @@ Fix lists: docs/spec-fixes/courses/ela-11.md and, for band tools, docs/spec-fixe
 2. Writing: Rhetorical Situation Simulator, Personal Essay Studio and its second tool, Pacing Strip, Editors in the Margin, Living Explainer
 3. Language: Usage Panel
 
-Exceptions for Cory are on Desk card q-shape-ela-11.
+No exception for Cory in this course: no Desk card.

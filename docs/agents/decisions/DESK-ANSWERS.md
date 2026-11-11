@@ -257,3 +257,12 @@ with a step and a test for closed). Defaults Claude chose, open to change: about
 sizes of assessment; public claims follow the ledger by script; two teachers before step 6 opens; a logic model
 instead of any claim of results; Sara's time after batch 4 goes to unit pieces (asked on q-proof-math-4).
 
+## 2026-11-11: every proposed second tool accepted (Cory, in chat)
+
+Cory: "any questions that recommended a new tool, go ahead and accept that recommendation." Six approved, which
+makes fifteen in all: the grade 4 line plot lesson (Skate Park Angles keeps angles; Jump Log is practice), grade 6
+math Smoothie Lab (new tool takes 6.RP.A.2 and 3), grade 8 math Transformation Dock (new tool takes 8.G.A.1 and 5),
+grade 5 ELA Fact Fusion (RI.5.6 and 7) and Slow-Mo Writer (W.5.3), grade 11 ELA Personal Essay Studio (W.11-12.3).
+All in shape/decisions.csv. The proof card (q-proof-math-4) is not answered: Cory will review it soon. He also said
+yes to drafting the grade 4 math year spine.
+

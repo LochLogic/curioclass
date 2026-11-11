@@ -28,7 +28,7 @@ Standards listed by two modules (each needs one home, or its lettered parts shar
 
 ## Second tools
 
-1. **Ratios and Rates (Desk).** Smoothie Lab carries 6 codes in 25 minutes: 6.RP.A.2 practice only (1 item); 6.RP.A.3 practice only (9 items). Fixing those inside the tool puts it at about 50 minutes. Shape: Smoothie Lab keeps 6.RP.A.1; a new lesson tool in the same module takes 6.RP.A.2, 6.RP.A.3 (understand the concept of a unit rate a/b associated with a ratio a).
+- **Ratios and Rates: decided.** Smoothie Lab keeps 6.RP.A.1; a new lesson tool takes 6.RP.A.2 and 6.RP.A.3.
 - Expression Garden (Expressions and Exponents, 6 codes in 30 minutes): nothing reads as taught yet, so there is no line to split along: fix the spec, then judge again.
 - Deep Sea Dive (Negative Numbers, 9 codes in 30 minutes): holds. Every code reads as taught.
 - Box Plot Builder (Summarizing Data, 5 codes in 35 minutes): holds. Every code reads as taught.
@@ -42,9 +42,9 @@ No station or practice tool. Practice otherwise comes from worksheets and Recess
 Fix lists: docs/spec-fixes/courses/math-6.md.
 
 - Rework (1): Expression Garden.
-- Small addition (7): How Many Fit?, Factor Forge, Deep Sea Dive, Balance Puzzle, Summer Stand, Net Folder, Box Plot Builder.
+- Small addition (8): Smoothie Lab, How Many Fit?, Factor Forge, Deep Sea Dive, Balance Puzzle, Summer Stand, Net Folder, Box Plot Builder.
 - Sorts fine, confirm only (2): Sign Shop, Question Lab.
-- Wait for Cory's answer on the Desk: Smoothie Lab.
+- Fix on the approved split: Smoothie Lab.
 
 ## Build order by value
 
@@ -52,4 +52,4 @@ Fix lists: docs/spec-fixes/courses/math-6.md.
 2. Supporting: Net Folder, Sign Shop
 3. Additional: Factor Forge, Question Lab, Box Plot Builder
 
-Exceptions for Cory are on Desk card q-shape-math-6.
+No exception for Cory in this course: no Desk card.
