@@ -11,28 +11,31 @@ In a cozy workshop stands a ticker-tape machine with two dials, Start and Rule, 
 
 ## Who and how
 - Grade 4, Math, module "Number Patterns". Standards: 4.OA.5 (generate a number or shape pattern that follows a given rule; identify apparent features of the pattern that were not explicit in the rule itself; for example, given the rule "Add 3" and the starting number 1, generate terms in the resulting sequence and observe that the terms appear to alternate between odd and even numbers; explain informally why the numbers will continue to alternate in this way).
-- Format: puzzle. Driver: one student alone (tool.json `driver: "student"`). `Read` reads every card. Controls 48 px or more.
+- Format: puzzle. Driver: one student alone (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
+- Change note (spec fix, 2026-11-10): the machine, Cog and the tapes stay. Before, the tape printed every term, reasons were only built from cards, and mystery tapes could be tuned by watching the child's tape print beside Cog's. Now the machine prints three terms and the child types the next five; after the cards the child writes the reason in their own words beside a guide; a wrong card build costs the tape; and on mystery tapes the child types the start, the rule and the next two terms before anything prints. Cog works one tape first. The Content list now names every tape.
 - Eight number tapes, four shape tapes, six mystery tapes, the prediction menu, reason cards. Extra: Tape for a friend (the child makes a tape with a hidden start and rule and passes the device). tool.json `modes: ["Workshop", "Tape for a friend"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
 
 ## Standards map
-| Code | Student action that teaches it | What they see | Done when check |
-|---|---|---|---|
-| 4.OA.5 (generate) | Set Start and Rule and pull the lever; predict the 10th shape | the tape printing; tiles growing | 2 |
-| 4.OA.5 (features) | Predict a hidden feature before printing | Cog's highlights on the tape | 3 |
-| 4.OA.5 (explain) | Build a reason from cards; crack mystery tapes | the reason card; the found rule | 4 |
+| Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
+|---|---|---|---|---|---|---|
+| 4.OA.5 (generate) | generate a number or shape pattern that follows a given rule | the student | Set Start and Rule, read three printed terms, type the next five; build the next two shapes and type the 10th shape's tile count | 8 number tapes and 4 shape tapes | the child's typed terms on the tape; tiles the child placed | 2 |
+| 4.OA.5 (features) | identify features of the pattern that the rule did not state | the student | Predict the feature before the tape is finished, then mark it on the tape | 12 | Cog's highlights only after the child's marks | 3 |
+| 4.OA.5 (explain) | explain informally why the feature will continue | the student | Build the reason from cards, then write it in your own words and check it against the guide | 8 | the reason card and the child's own line | 4 |
 
 ## Screens and modes
 Header (kit): title "Rule Machine"; `Workshop`, `Tape for a friend`; `Read`, `Motion`, `Sound`, `Print`. Controls 48 px or more.
 
 **On load and first tap.** A workshop bench, the ticker-tape machine with Start and Rule dials, a lever and Cog. The welcome is queued (`welcomeAfter: true`): "Start at 1. Rule: add 3. Before you pull the lever, guess: will the numbers be odd, even or both? Tap a guess." First hint: "Tap a guess."
 
-**Number tapes (focus: the tape).** At 1366x768 the machine fills the left with the tape running across the bottom and the reason cards right; at 680x425 the cards are a sheet. The tape prints 12 terms. Cog highlights the feature that was predicted. Eight tapes, each with a feature to predict: odd and even (add 3 from 1), all even (add 4 from 2), will 100 appear (add 3 from 1: yes, as term 34; add 4 from 2: no, it jumps from 98 to 102), ones digits that repeat (add 5 from 3: 3, 8, 3, 8).
+**Cog goes first (the model).** Cog runs one tape alone: start 2, add 2. Cog guesses "all even", prints three terms, writes the next five by hand, marks the feature and says why: "Even plus 2 is even, so it can never turn odd." It cannot be skipped and `Cog's tape` reopens it.
 
-**Reasons.** For each, the child drags cards to build why: "odd + 3 is even", "even + 3 is odd", "adding 4 to an even number keeps it even", "every term is 2 more than a number in the 4s count, and 100 is in the 4s count, so 100 is skipped". The cards are short and true; wrong cards are there too.
+**Number tapes (focus: the tape).** At 1366x768 the machine fills the left with the tape running across the bottom and the reason cards right; at 680x425 the cards are a sheet. The child predicts, pulls the lever, and the machine prints three terms and stops. The child types terms 4 to 8 into empty boxes on the tape; each is checked when all five are in, and a wrong box is marked once. Then the last four print. The child marks the feature on the tape (taps every odd term, or the repeating ones digits, or types the term number where 100 lands), and only then does Cog highlight it. Eight tapes, each with a feature to predict: odd and even (add 3 from 1), all even (add 4 from 2), will 100 appear (add 3 from 1: yes, as term 34; add 4 from 2: no, it jumps from 98 to 102), ones digits that repeat (add 5 from 3: 3, 8, 3, 8).
 
-**Shape tapes.** A rule grows a tile shape (start with 3 tiles, add 2 each step). The child predicts the 10th shape (21 tiles) and says whether any shape will have an even number of tiles.
+**Reasons.** For each, the child drags cards to build why: "odd + 3 is even", "even + 3 is odd", "adding 4 to an even number keeps it even", "every term is 2 more than a number in the 4s count, and 100 is in the 4s count, so 100 is skipped". The cards are short and true; wrong cards are there too, six cards in all for each tape with two needed. A wrong build is shown false on the tape with one counterexample; a second wrong build ends the tape and the same feature returns later with a new start. After a right build the child writes the reason in a one-line box, "Why will it keep going?", beside Cog's model line and a three-box guide: says what the rule adds; says what that does to odd or even, or to the ones digit; says why it can never change. The tool cannot mark the words, so the guide and the model do that job, and the line prints with the tape.
 
-**Mystery tapes.** Cog prints 5, 9, 13, 17 with dials covered; the child sets the dials to match.
+**Shape tapes.** A rule grows a tile shape (start with 3 tiles, add 2 each step). The machine builds three shapes; the child builds the next two by placing tiles, types the tile count of the 10th shape in a number box (21), and answers the feature question by typing or tapping (will any shape have an even number of tiles? no).
+
+**Mystery tapes.** Cog prints 5, 9, 13, 17 with dials covered and the lever locked. The child types the start, the rule (a sign and a number) and the next two terms (21, 25) in boxes. Only then does the machine print the child's tape under Cog's. Two tries; after the second miss Cog uncovers the dials and a new mystery tape takes its place.
 
 **Hidden features (the aha).** Cog: "My rule said add 3. It never said odd, even, odd, even. That came from where we started." The child tries start 2, add 3 and sees the turn-taking start with even.
 
@@ -41,7 +44,11 @@ Header (kit): title "Rule Machine"; `Workshop`, `Tape for a friend`; `Read`, `Mo
 **Tape for a friend (extra).** Hide a start and rule; pass the device.
 
 ## Content
-- Rules of add 2 to add 9 and multiply by 2 for two tapes, starts from 0 to 10, four shape rules, six mystery tapes, all readable with `Read`.
+- All readable with `Read`. Each tape prints 12 terms.
+- Number tapes (start, rule, feature): (1) 1, add 3: odd and even take turns. (2) 2, add 4: all even. (3) 1, add 3: will 100 appear? Yes, as term 34. (4) 2, add 4: will 100 appear? No, it jumps from 98 to 102. (5) 3, add 5: ones digits go 3, 8, 3, 8. (6) 5, add 10: the ones digit is always 5. (7) 1, multiply by 2: every term after the first is even. (8) 4, add 6: all even, and the ones digits repeat every five terms (4, 0, 6, 2, 8).
+- Shape tapes (start, rule, 10th shape, feature): 3 tiles, add 2: 21, never even. 1 tile, add 3: 28, odd and even take turns. 4 tiles, add 4: 40, always a multiple of 4. 2 tiles, add 5: 47, ones digits go 2, 7.
+- Mystery tapes (shown terms; start and rule; next two): 5, 9, 13, 17 (5, add 4; 21, 25). 2, 9, 16, 23 (2, add 7; 30, 37). 10, 13, 16, 19 (10, add 3; 22, 25). 3, 6, 12, 24 (3, multiply by 2; 48, 96). 0, 8, 16, 24 (0, add 8; 32, 40). 7, 12, 17, 22 (7, add 5; 27, 32).
+- Prediction menu for each tape: four choices that fit the question (for odd and even: all odd, all even, take turns, no pattern).
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
@@ -65,8 +72,12 @@ Two bank voices, each unique in this batch: `playful-friend` as Cog; `calm-profe
 - how `welcome`: as on load.
 - how `predict`: "Tap a guess before you pull the lever."
 - how `lever`: "Pull the lever."
-- how `reason`: "Drag cards to build the reason."
-- how `mystery`: "Turn the dials to match the tape."
+- how `terms`: "Type the next five numbers on the tape."
+- how `mark`: "Tap the numbers that show the pattern."
+- how `reason`: "Drag two cards to build the reason."
+- how `words`: "Now say why in your own words."
+- how `mystery`: "Type the start, the rule and the next two numbers."
+- event, whole, Cog's tape.
 - event, whole, hidden features.
 - event, whole, `end`.
 Read speaks the hint, which names the next action and control and never a disabled one.
@@ -77,14 +88,18 @@ None for this tool (the catalog lists family "function-machine"). This tool does
 ## Can it be beaten?
 | Check | Ways to pass without the skill | Why each fails |
 |---|---|---|
-| Predictions | Always guess "both" | The score counts only predictions made before printing, and some tapes are all even. |
-| Reasons | Drag any cards | Cards are checked against the tape's start and rule. |
-| Mystery | Turn dials at random | The machine prints the child's tape beside Cog's so the difference shows. |
+| Terms | Wait for the tape to print | The machine stops after three terms; the child types five. |
+| Predictions | Always pick the same choice | Four choices, and the right one changes from tape to tape; only predictions made before the stop count. A wrong prediction is not a fail, it is what the tape then tests. |
+| Feature marks | Tap every term | Marks are checked as a set; extra taps fail it. |
+| Reasons | Try card pairs until one sticks | Six cards make fifteen pairs; the second wrong build ends the tape and brings a new start. |
+| Own words | Tick the boxes on an empty line | The ticks open only when the line has words; the line prints. |
+| Mystery | Tune the dials against Cog's tape | The dials are covered and nothing prints until start, rule and two next terms are typed; two tries, then a new tape. |
+| Shapes | Count tiles on a drawn 10th shape | Only five shapes are ever drawn; the 10th is typed. |
 
 ## Heard in order
 Waits means the next line or tap waits for it to finish; taps act at once and never wait.
-1. Load: `welcome` (queued). `predict`; `lever`.
-2. `reason`.
+1. Load: Cog's tape (whole), then `welcome` (queued). `predict`; `lever`; `terms`; `mark`.
+2. `reason`; `words`.
 3. `mystery`.
 4. Hidden features (whole), waits.
 5. `end` (whole).
@@ -97,16 +112,18 @@ Waits means the next line or tap waits for it to finish; taps act at once and ne
 Backed twice: 2. Cut: 0.
 
 Checks run (Python, scratchpad s14, 2026-11-10): start 1, add 3 alternates odd and even and reaches 100 as term 34; start 2, add 4 stays even and skips from 98 to 102; 3 tiles plus 2 each step gives 21 tiles at the 10th shape; contrast as in Look.
+Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): all eight number tapes generated to 12 terms and each stated feature tested on them (and to 40 terms for the 100 questions); 10th shapes 21, 28, 40 and 47 and their features; the six mystery tapes' next two terms; six cards give 15 pairs.
 
 ## Done when
 1. Focus and fold: at 1366x768 machine, tape and cards; at 680x425 cards as a sheet.
-2. Eight number tapes and four shape tapes are generated from a rule. (4.OA.5)
-3. A hidden feature is predicted before each print. (4.OA.5)
-4. Reasons are built and six mystery tapes are cracked. (4.OA.5)
-5. `Read` reads every card; every control is 48 px or more.
-6. The tool does not ask for in-out rules (that stays in function-machine-factory).
-7. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
-8. Motion off: tapes print in full at once; no network requests.
+2. Eight number tapes and four shape tapes: the child types terms 4 to 8 or builds the next two shapes, and types the 10th shape's count. (4.OA.5)
+3. A hidden feature is predicted before each tape is finished and then marked on the tape by the child. (4.OA.5)
+4. Eight reasons are built from cards and then written in the child's own words against the guide; six mystery tapes are cracked by typing start, rule and two terms before any print. (4.OA.5)
+5. Cog's tape plays first and can be reopened.
+6. `Read` reads every card; every control is 48 px or more.
+7. The tool does not ask for in-out rules (that stays in function-machine-factory).
+8. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
+9. Motion off: tapes print in full at once; no network requests.
 
 ## Open questions
 - The idea card changes the mechanic and flags overlap with the function-machine family (default used: start-and-rule patterns with predicted hidden features; in-out rule guessing stays with function-machine-factory; this tool does not use the function-machine engine).

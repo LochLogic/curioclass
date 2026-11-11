@@ -11,28 +11,32 @@ It's game day, and the view starts on one fan in one seat with a zoom slider and
 
 ## Who and how
 - Grade 4, Math, module "Place Value to a Million". Standards: 4.NBT.1 (recognize that in a multi-digit whole number, a digit in one place represents ten times what it represents in the place to its right), 4.NBT.2 (read and write multi-digit whole numbers using base-ten numerals, number names, and expanded form; compare two multi-digit numbers based on meanings of the digits in each place, using >, =, and < symbols to record the results of comparisons), 4.NBT.3 (use place value understanding to round multi-digit whole numbers to any place).
-- Format: explorer. Driver: one student alone (tool.json `driver: "student"`). `Read` reads every card. Controls 48 px or more.
-- Six zoom levels, the place-value strip, eight crowd counts to read and write, six real comparisons, six headlines to round, the game program. Extra: Our town (the child looks up their town's population on a teacher-given card and finds how many stadiums it would fill). tool.json `modes: ["Game day", "Our town"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
+- Format: explorer. Driver: one student alone (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
+- Change note (spec fix, 2026-11-10): the stadium and the zoom stay. Before, the child dragged the slider and watched the digit move. Now each zoom stop is locked until the child types how many seats it will show, and six "ten times" cards follow, two of them using division. In Read and write the crowds now come in all three forms, so the child also writes the numeral, and says each number aloud before hearing it. A compare needs the deciding place tapped before the sign, and a wrong sign costs the pair. The last two headlines are rounded with no number line. The announcer works one crowd first.
+- Six zoom levels with a prediction at each, six "ten times" cards, the place-value strip, eight crowd counts to read and write, six real comparisons, six headlines to round, the game program. Extra: Our town (the child looks up their town's population on a teacher-given card and finds how many stadiums it would fill). tool.json `modes: ["Game day", "Our town"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
 
 ## Standards map
-| Code | Student action that teaches it | What they see | Done when check |
-|---|---|---|---|
-| 4.NBT.1 | Zoom out a step and watch the digit move | ten times as many seats; the strip shifting | 2 |
-| 4.NBT.2 | Write crowds in three forms; compare two capacities | expanded form; the digit-by-digit compare | 3 |
-| 4.NBT.3 | Round a crowd for each headline | the number line under the ticker; the rounded headline | 4 |
+| Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
+|---|---|---|---|---|---|---|
+| 4.NBT.1 | recognize that a digit in one place is ten times what it is in the place to its right | the student | Type the next stop's seat count before the zoom unlocks (two passes); answer six "ten times" cards, two as divisions | 10 predictions and 6 cards | the strip shifting only after the prediction | 2 |
+| 4.NBT.2 (read and write) | read and write multi-digit numbers as numerals, number names and expanded form | the student | Given one form, write the other two; say the number aloud, then hear it | 8 (3 start as numerals, 3 as names, 2 as expanded form) | the three forms side by side | 3 |
+| 4.NBT.2 (compare) | compare two numbers by the digits in each place; record with >, = or < | the student | Tap the first place where the digits differ, then drag the sign | 6 pairs | the digit-by-digit compare | 4 |
+| 4.NBT.3 | round multi-digit whole numbers to any place | the student | Round a crowd for each headline, four on a number line and two with no line, to the hundred, thousand, ten thousand and hundred thousand | 6 | the number line under the ticker; the rounded headline | 5 |
 
 ## Screens and modes
 Header (kit): title "Stadium Count"; `Game day`, `Our town`; `Read`, `Motion`, `Sound`, `Print`. Controls 48 px or more.
 
 **On load and first tap.** One fan in a seat waving a foam finger, a zoom slider and a place-value strip showing 1. The welcome is queued (`welcomeAfter: true`): "One fan. Zoom out, and every step is ten times as many people. Drag the zoom slider." First hint: "Drag the zoom slider."
 
-**Zoom (focus: the crowd).** At 1366x768 the crowd fills the left with the strip and card right; at 680x425 the strip runs across the bottom. Six stops: seat (1), row (10), section (100), deck (1,000), bowl (10,000), crowd and city (100,000). At each stop the strip slides the 1 one place left and a card says "ten times as many as the step before". A second pass with 4 seats shows 4, 40, 400, 4,000.
+**Zoom (focus: the crowd).** At 1366x768 the crowd fills the left with the strip and card right; at 680x425 the strip runs across the bottom. Six stops: seat (1), row (10), section (100), deck (1,000), bowl (10,000), crowd and city (100,000). The first step, seat to row, is shown by the announcer as the model ("One fan. Ten in a row. The 1 slides one place left."). From then on the slider is locked at each stop until the child types how many seats the next stop holds; the crowd is hidden behind a tunnel until the number is in. A right number opens the zoom, the strip slides the 1 one place left and a card says "ten times as many as the step before". A wrong number shows the row count times ten being built, and the child types again. A second pass with 4 seats asks for 40, 400, 4,000, 40,000 and 400,000 the same way.
 
-**Read and write.** Eight crowd counts (45,312, 70,850, 108,001 and others). The child types the number name and builds the expanded form from place tiles.
+**Ten times cards.** Six cards after the zoom, each with a number box or a tap: "The 7 in 700 is how many times the 7 in 70?" (10). "5,000 / 500 = ?" (10). "In 33,000, tap the 3 that is worth ten times the other." (the ten-thousands 3). "80,000 is ten times what number?" (8,000). "700 / 70 = ?" (10). "In 4,600 the 6 is worth 600. Type a number where the 6 is worth ten times that." (any number with 6 in the thousands place, such as 6,000). The last card asks the child to finish the sentence "A digit one place to the left is worth __ times as much."
 
-**Compare.** Real capacities side by side with the year shown: Michigan Stadium (107,601) and Ohio Stadium (102,780). The child compares from the left: hundred thousands equal, ten thousands equal, thousands 7 > 2. Five more pairs.
+**Read and write.** The announcer does one first as the model: 23,480, "twenty-three thousand, four hundred eighty", 20,000 + 3,000 + 400 + 80. Then eight crowd counts. Three are given as numerals (the child builds the number name from word tiles and the expanded form from place tiles), three as number names (the child types the numeral and builds the expanded form), and two as expanded form (the child types the numeral and builds the name). The form that is given is the only one on screen. For each, the child says the number aloud, then taps `Hear it` and ticks "I said it that way" or "I'll say it again".
 
-**Headlines.** A news ticker: "Crowd of about ___". The child rounds 45,312 to the thousand (45,000) and to the ten thousand (50,000) on a number line, and picks which headline is more honest for each story.
+**Compare.** Real capacities side by side with the year shown: Michigan Stadium (107,601) and Ohio Stadium (102,780). The child compares from the left: hundred thousands equal, ten thousands equal, thousands 7 > 2. The child taps the first place where the digits differ, then drags `>`, `=` or `<` between the numbers. A wrong place or a wrong sign can be fixed once; a second miss sets the pair aside and it comes back at the end with its two sides swapped. Five more pairs.
+
+**Headlines.** A news ticker: "Crowd of about ___". The child rounds 45,312 to the thousand (45,000) and to the ten thousand (50,000) on a number line, and picks which headline is more honest for each story. Six headlines in all; the last two have no number line and the rounded number is typed.
 
 **Ten times (the aha).** The 4 in 4,000 and the 4 in 400 light up together. Narrator: "Same digit, one place over, ten times the crowd."
 
@@ -41,8 +45,10 @@ Header (kit): title "Stadium Count"; `Game day`, `Our town`; `Read`, `Motion`, `
 **Our town (extra).** A teacher-given population; how many full stadiums.
 
 ## Content
-- Six zoom levels (crowds drawn with care; faces not identifiable), eight made-up crowd counts, six real stadium capacities with year and source, one city population, all readable with `Read`.
+- Six zoom levels (crowds drawn with care; faces not identifiable), six real stadium capacities with year and source, one city population, all readable with `Read`.
 - Real capacities are official figures from the stadium owners, dated.
+- Crowd counts (made up): as numerals 45,312; 70,850; 108,001. As names: nine thousand, four hundred six (9,406); two hundred thirty thousand, seventy-five (230,075); sixty-one thousand, nineteen (61,019). As expanded form: 500,000 + 300 (500,300); 80,000 + 4,000 + 200 + 60 (84,260).
+- Headlines: 45,312 to the thousand (45,000); 45,312 to the ten thousand (50,000); 70,850 to the hundred (70,900); 108,001 to the hundred thousand (100,000); with no line, 61,019 to the thousand (61,000) and 84,260 to the ten thousand (80,000).
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
@@ -65,8 +71,11 @@ About 6 images.
 Two bank voices, each unique in this batch: `lively-host` as the stadium announcer; `clear-teacher` as the narrator and hints. `Curio.voice` with `scope: () => state.mode + ':' + state.zoom + ':' + state.round + ':' + state.line`, `welcomeAfter: true`.
 - how `welcome`: as on load.
 - how `zoom`: "Drag the zoom slider to the next stop."
+- how `guess`: "Type how many seats the next stop holds."
 - how `write`: "Drag place tiles to build the number."
-- how `compare`: "Tap the sign that's true."
+- how `say`: "Say the number out loud. Then tap Hear it."
+- how `compare`: "Tap the first place where the digits differ. Then drag a sign."
+- event, whole, the announcer's two examples.
 - how `round`: "Drag the crowd to the nearest mark, then pick a headline."
 - event, whole, ten times.
 - event, whole, `end`.
@@ -78,13 +87,16 @@ None (family "none"). Tool-only code: the zoom levels, the place-value strip, pl
 ## Can it be beaten?
 | Check | Ways to pass without the skill | Why each fails |
 |---|---|---|
-| Compare | Pick by the first digit only | Pairs share their first digits, so the compare goes place by place. |
-| Write | Type digits in any order | Expanded form must match each place. |
-| Round | Always round down | Headlines include numbers that round up. |
+| Zoom | Drag the slider and watch | Each stop is locked and the crowd hidden until the next count is typed. |
+| Ten times cards | Type 10 every time | Three of the six answers are not 10 (a tapped digit, 8,000, a built number). |
+| Write | Copy another form on screen; type digits in any order | Only the given form is on screen; the numeral and the expanded form must each match place by place. Zeros inside 108,001, 9,406 and 230,075 catch digit-by-digit copying of the name. |
+| Say it | Tick without saying | The tool cannot hear; the tick is a self-check, and the name is also built from tiles, which is checked. |
+| Compare | Pick by the first digit only; guess one of three signs | Pairs share their first digits; the deciding place is tapped first, and a second miss sets the pair aside to come back swapped. |
+| Round | Always round down; read the nearest mark | Three of six round up; the last two have no line to read. |
 
 ## Heard in order
 Waits means the next line or tap waits for it to finish; taps act at once and never wait.
-1. Load: `welcome` (queued). `zoom`.
+1. Load: `welcome` (queued). The announcer's first step (whole). `guess`; `zoom`.
 2. `write`; `compare`.
 3. `round`.
 4. Ten times (whole), waits.
@@ -101,16 +113,18 @@ Waits means the next line or tap waits for it to finish; taps act at once and ne
 Backed twice: 5. Cut: 0.
 
 Checks run (Python, scratchpad s14, 2026-11-10): six zoom stops are 1, 10, 100, 1,000, 10,000 and 100,000; 4,000 is 10 times 400; 45,312 = 40,000 + 5,000 + 300 + 10 + 2, rounding to 45,000 and 50,000; 107,601 > 102,780; contrast as in Look.
+Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): the second pass is 4, 40, 400, 4,000, 40,000, 400,000; 700 / 70 = 10 and 5,000 / 500 = 10; 80,000 / 10 = 8,000; the eight crowd counts match their names and expanded forms; rounding gives 45,000, 50,000, 70,900, 100,000, 61,000 and 80,000, three up and three down.
 
 ## Done when
 1. Focus and fold: at 1366x768 crowd, strip and card; at 680x425 strip across the bottom.
-2. Six zoom steps show each place worth ten times the one to its right. (4.NBT.1)
-3. Eight crowds are written three ways; six pairs are compared digit by digit. (4.NBT.2)
-4. Six headlines are rounded to the place they need. (4.NBT.3)
-5. Real capacities and the city figure show their source and year.
-6. Crowds have no identifiable faces and no team logos.
-7. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
-8. Motion off: zoom jumps between stops; no network requests.
+2. Ten zoom stops over two passes open only after the child types the count, and six "ten times" cards are answered, two as divisions. (4.NBT.1)
+3. Eight crowds are written in the two forms not given, with the given form the only one on screen, and each is said aloud. (4.NBT.2)
+4. Six pairs are compared by tapping the deciding place and dragging the sign. (4.NBT.2)
+5. Six headlines are rounded to the place they need, two with no number line. (4.NBT.3)
+6. Real capacities and the city figure show their source and year.
+7. Crowds have no identifiable faces and no team logos.
+8. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
+9. Motion off: zoom jumps between stops; no network requests.
 
 ## Open questions
 - The idea card flags a data source (default used: official capacities from the University of Michigan and Ohio State athletics sites and the 2020 Census for Green Bay, each shown with its year and checked again before build).

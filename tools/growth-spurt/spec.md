@@ -11,15 +11,16 @@ In a sunny school greenhouse, Mr. Haddad (made up, labeled "illustration") sets 
 
 ## Who and how
 - Grade 4, Math, module "Multiplicative Comparison". Standards: 4.OA.1 (interpret a multiplication equation as a comparison, e.g., interpret 35 = 5 x 7 as a statement that 35 is 5 times as many as 7 and 7 times as many as 5; represent verbal statements of multiplicative comparisons as multiplication equations), 4.OA.2 (multiply or divide to solve word problems involving multiplicative comparison, e.g., by using drawings and equations with a symbol for the unknown number to represent the problem, distinguishing multiplicative comparison from additive comparison), 4.OA.3 (solve multistep word problems posed with whole numbers and having whole-number answers using the four operations, including problems in which remainders must be interpreted; represent these problems using equations with a letter standing for the unknown quantity; assess the reasonableness of answers using mental computation and estimation strategies including rounding).
-- Format: simulator. Driver: one student alone (tool.json `driver: "student"`). `Read` reads every card. Controls 48 px or more.
-- Three plant pairs, the comparison switch, the strip diagram, eight word problems, three tray jobs, two multistep orders. Extra: Greenhouse orders (longer multistep orders for the class). tool.json `modes: ["Greenhouse", "Orders"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
+- Format: simulator. Driver: one student alone (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
+- Change note (spec fix, 2026-11-10): the greenhouse and the two ways of growing stay. Added: three "read it both ways" cards so 4.OA.1 has six items and the child reads an equation as a comparison in both directions; three of the eight word problems now need division, and the child builds the strip diagram instead of watching it redraw; the tray jobs no longer hand over three answers to match (the child divides and types each answer, on two tray sets); the orders went from two to four on the main path, with subtraction and division inside them. A wrong Multiply or Add pick now costs the problem. Mr. Haddad works one problem first.
+- Three plant pairs, three read-it-both-ways cards, the comparison switch, the strip diagram, eight word problems, two tray sets of three questions, four multistep orders. Extra: Greenhouse orders (longer multistep orders for the class). tool.json `modes: ["Greenhouse", "Orders"]`, `minutes: "30-40"`, `grades_label: "Grade 4"`.
 
 ## Standards map
-| Code | Student action that teaches it | What they see | Done when check |
-|---|---|---|---|
-| 4.OA.1 | Grow the bean in "times as" mode and write the equation | 24 = 3 x 8; the strip in three equal parts | 2 |
-| 4.OA.2 | Pick multiply or add, then solve; switch modes and watch | the gap fixed or the multiple kept | 3 |
-| 4.OA.3 | Pack trays and pick the remainder answer each question wants; solve an order with a letter | 9, 8 or 2; the estimate check | 4 |
+| Code | The standard's verb and its parts | Who does the verb | Student action that teaches it | Items that differ | What they see | Done when check |
+|---|---|---|---|---|---|---|
+| 4.OA.1 | interpret a multiplication equation as a comparison, both ways; represent comparison statements as equations | the student | Grow a plant in "times as" mode and write the equation; on three cards finish "35 is __ times as many as __ and __ times as many as __" | 6 (3 written from plants, 3 read both ways) | the strip in equal parts; the child's own sentence | 2 |
+| 4.OA.2 | multiply or divide to solve comparison word problems, with drawings and equations with a symbol; tell multiplicative from additive comparison | the student | Pick `Times as many` or `More than`, build the strip diagram from bars, write an equation with a letter, solve | 8 (2 multiply, 3 divide, 3 additive) | the child's own strip: equal bars, or two bars and a gap | 3 |
+| 4.OA.3 | solve multistep problems with the four operations, including interpreting remainders; equations with a letter; check by estimating | the student | Tray sets: divide, then type the answer each question wants. Orders: estimate, write an equation with a letter, solve | 6 tray questions and 4 orders | the trays filling after the answer; the estimate beside the answer | 4, 5 |
 
 ## Screens and modes
 Header (kit): title "Growth Spurt"; `Greenhouse`, `Orders`; `Read`, `Motion`, `Sound`, `Print`. Controls 48 px or more.
@@ -28,11 +29,13 @@ Header (kit): title "Growth Spurt"; `Greenhouse`, `Orders`; `Read`, `Motion`, `S
 
 **Growing (focus: the plants).** At 1366x768 the plants fill the left with the strip diagram below and the equation card right; at 680x425 the card folds under. In "times as tall" the sunflower grows three centimeters for each one; in "taller by 16" it grows one for one. The strip diagram shows three equal bars or two bars and a gap. The child writes each equation.
 
-**Which one?** Eight problems; for each the child taps Multiply or Add before solving, then types the answer with a letter for the unknown (p = 4 x 9).
+**Read it both ways.** After the three plant pairs, three cards show an equation alone (35 = 5 x 7). The child finishes the sentence with four typed numbers: "35 is __ times as many as __ , and __ times as many as __ ." Mr. Haddad reads his own first, as the model: "24 = 3 x 8. So 24 is 3 times as many as 8, and 8 times as many as 3."
 
-**Tray jobs.** 50 seedlings, 6 per tray. Three questions with three different answers: all held (9 trays), full trays to sell (8), left for the class (2). The child picks which answer fits each.
+**Which one?** Eight problems. Mr. Haddad works a ninth one first, aloud, from picking the kind to checking the answer; it cannot be skipped and `Mr. Haddad's example` reopens it. For each problem the child (1) taps `Times as many` or `More than`, (2) builds the strip: drags equal bars for a times-as-many problem, or one bar and a gap piece for a more-than problem, and labels the part that is unknown with the letter, (3) writes an equation with the letter (p = 4 x 9, or 7 x s = 56, or s = 56 / 7), (4) types the answer. The strip does not draw itself. A wrong kind is not told at once: the child finds out when the strip cannot be labeled to fit the story, the problem is set aside, and it comes back at the end with new numbers.
 
-**Orders.** "The library wants 3 times as many marigolds as the 14 the office ordered, plus 25 more for the garden club. How many in all?" The child writes m = 3 x 14 + 25 and estimates first (about 40 + 25).
+**Tray jobs.** "50 seedlings, 6 to a tray." The child first types the division, 50 / 6 = __ with __ left. Then three questions, each with a number box and no choices: How many trays to hold them all? (9) How many full trays can be sold? (8) How many seedlings go to the class? (2) After each answer the trays fill on screen to show it. A second set follows with bulbs.
+
+**Orders.** Four orders, on the main path. "The library wants 3 times as many marigolds as the 14 the office ordered, plus 25 more for the garden club. How many in all?" The child estimates first in a box (about 40 + 25), writes m = 3 x 14 + 25, and solves. An answer far from the child's own estimate is flagged: "Your estimate was 65. Does 137 make sense?"
 
 **Side by side (the aha).** Both modes run at once on two bean pairs. Narrator: "Three more and three times look alike at the start. Let them grow, and they're nothing alike."
 
@@ -41,7 +44,12 @@ Header (kit): title "Growth Spurt"; `Greenhouse`, `Orders`; `Read`, `Motion`, `S
 **Orders (extra).** Longer greenhouse orders.
 
 ## Content
-- Made-up greenhouse heights in centimeters and inches (labeled practice numbers), eight problems, three tray questions, two orders, all readable with `Read`.
+- Made-up greenhouse heights in centimeters (labeled practice numbers), all readable with `Read`.
+- Plant pairs, times-as: a sunflower 3 times as tall as an 8 cm bean (24 = 3 x 8); a tomato 4 times as tall as a 7 cm pepper (28 = 4 x 7); a vine 6 times as tall as a 5 cm sprout (30 = 6 x 5). Read both ways: 35 = 5 x 7; 42 = 6 x 7; 18 = 2 x 9.
+- Mr. Haddad's worked problem: "A pea is 6 cm. A corn plant is 5 times as tall. How tall is the corn?" c = 5 x 6 = 30.
+- Which one? (1) A bean is 9 cm. A sunflower is 4 times as tall. How tall? 36, multiply. (2) A fern is 12 cm. A palm is 15 cm taller. How tall? 27, additive. (3) A cornstalk is 56 cm, 7 times as tall as a sprout. How tall is the sprout? 8, divide. (4) A rose is 45 cm and a daisy is 18 cm. How much taller is the rose? 27, additive. (5) A vine is 48 cm and a seedling is 6 cm. How many times as tall is the vine? 8, divide. (6) A pepper has 7 flowers. A tomato has 5 times as many. How many? 35, multiply. (7) A cactus is 30 cm, which is 6 cm taller than an aloe. How tall is the aloe? 24, additive. (8) A pumpkin vine has 72 leaves, 8 times as many as a squash vine. How many on the squash? 9, divide.
+- Tray sets: 50 seedlings, 6 to a tray: 8 full, 2 left; trays needed 9, full trays 8, left over 2. 75 bulbs, 8 to a box: 9 full, 3 left; boxes needed 10, full boxes 9, left over 3.
+- Orders: (a) m = 3 x 14 + 25 = 67, estimate about 65. (b) "The greenhouse has 120 pots. Each of 4 shelves holds 18. How many pots are left on the floor?" p = 120 - 4 x 18 = 48, estimate about 40. (c) "96 seed packets are shared equally by 6 classes. Each class gives 5 of its packets away. How many does a class keep?" k = 96 / 6 - 5 = 11, estimate about 10. (d) "85 tulips came in and 3 wilted. The rest go in bunches of 9. How many full bunches?" b = (85 - 3) / 9, which is 9 with 1 left, so 9 bunches; estimate about 9.
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
@@ -66,8 +74,12 @@ Two bank voices, each unique in this batch: `friendly-dad` as Mr. Haddad; `brigh
 - how `welcome`: as on load.
 - how `grow`: "Drag the bean's top up."
 - how `switch`: "Flip the switch and grow it again."
-- how `which`: "Tap Multiply or Add."
-- how `tray`: "Pick the answer this question wants."
+- how `both`: "Type the four numbers to finish the sentence."
+- how `which`: "Tap Times as many or More than."
+- how `strip`: "Drag bars to build the strip. Put the letter on the part you don't know."
+- how `tray`: "Type the answer this question wants."
+- how `order`: "Type your estimate first."
+- event, whole, Mr. Haddad's two examples.
 - event, whole, side by side.
 - event, whole, `end`.
 Read speaks the hint, which names the next action and control and never a disabled one.
@@ -78,15 +90,18 @@ None (family "none"). Tool-only code: the two growth rules, the strip diagram, t
 ## Can it be beaten?
 | Check | Ways to pass without the skill | Why each fails |
 |---|---|---|
-| Which one | Always tap Multiply | Additive problems come back with the gap drawn. |
-| Trays | Give the same answer to all three | Each question checks its own use of the remainder. |
-| Orders | Type a number | The order needs an equation with a letter and an estimate first. |
+| Both ways | Copy the equation's numbers in order | Four boxes: the two directions use the factors in swapped places, and a sentence with the product in the wrong box fails. |
+| Which one | Always tap `Times as many` | Three of eight are additive; a wrong kind is found only at the strip, and the problem comes back with new numbers, so guessing costs a whole extra problem. |
+| Strip | Wait for it to draw | The child drags every bar; nothing is drawn for them. |
+| Solve | Always multiply the two numbers | Three times-as-many problems need division; 56 x 7 and 48 x 6 fail. |
+| Trays | Give the same answer to all three; type the quotient each time | The three answers differ (9, 8, 2 and 10, 9, 3); each box is checked for its own question, with no choices to pick from. |
+| Orders | Type a number | The order needs an estimate, then an equation with a letter that fits the story, then the answer. |
 
 ## Heard in order
 Waits means the next line or tap waits for it to finish; taps act at once and never wait.
 1. Load: `welcome` (queued). `grow`; `switch`.
-2. `which`.
-3. `tray`.
+2. `both`. Mr. Haddad's example (whole). `which`; `strip`.
+3. `tray`; `order`.
 4. Side by side (whole), waits.
 5. `end` (whole).
 
@@ -99,16 +114,19 @@ Waits means the next line or tap waits for it to finish; taps act at once and ne
 Backed twice: 3. Cut: 0.
 
 Checks run (Python, scratchpad s14, 2026-11-10): 3 x 8 = 24 with a gap of 16, so a 10 cm bean gives 26 cm by the gap; 4 x 9 = 36; 50 seedlings in trays of 6 need 9 trays, fill 8 and leave 2; contrast as in Look.
+Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): 4 x 7 = 28, 6 x 5 = 30, 5 x 7 = 35, 6 x 7 = 42, 2 x 9 = 18; the eight answers 36, 27, 8, 27, 8, 35, 24, 9; 75 = 8 x 9 + 3, so 10 boxes, 9 full, 3 left; 3 x 14 + 25 = 67; 120 - 4 x 18 = 48; 96 / 6 - 5 = 11; 82 = 9 x 9 + 1; always-multiply slips 392 and 288 and 576 differ from the answers.
 
 ## Done when
 1. Focus and fold: at 1366x768 plants, strip and card; at 680x425 card under.
-2. "Times as" growth is written as multiplication equations. (4.OA.1)
-3. Eight problems are sorted as multiply or add and solved. (4.OA.2)
-4. Three tray questions use the remainder three ways; orders use a letter and an estimate. (4.OA.3)
-5. `Read` reads every card; every control is 48 px or more.
-6. Mr. Haddad is labeled illustration; numbers are labeled practice numbers.
-7. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
-8. Motion off: plants change at once; no network requests.
+2. Three "times as" growths are written as equations and three equations are read as comparisons both ways. (4.OA.1)
+3. Eight problems are sorted as times-as-many or more-than, drawn as strips by the child, and solved with a letter; three need division. (4.OA.2)
+4. Two tray sets: the child divides and types three different answers for each, with no choices given. (4.OA.3)
+5. Four orders are solved with an estimate first and an equation with a letter; two use subtraction or division. (4.OA.3)
+6. Mr. Haddad's worked problem plays first and can be reopened.
+7. `Read` reads every card; every control is 48 px or more.
+8. Mr. Haddad is labeled illustration; numbers are labeled practice numbers.
+9. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
+10. Motion off: plants change at once; no network requests.
 
 ## Open questions
 None.

@@ -11,7 +11,8 @@ An empty city lot, 30 feet by 20 feet, is becoming a community garden, and the c
 
 ## Who and how
 - Grade 4, Math, module "Area and Perimeter Formulas". Standards: 4.MD.3 (apply the area and perimeter formulas for rectangles in real world and mathematical problems; for example, find the width of a rectangular room given the area of the flooring and the length, by viewing the area formula as a multiplication equation with an unknown factor).
-- Format: builder. Driver: one student alone (tool.json `driver: "student"`). `Read` reads every card. Controls 48 px or more.
+- Format: builder. Driver: one student alone (tool.json `driver: "student"`). Role: lesson. `Read` reads every card. Controls 48 px or more.
+- Change note (spec fix, 2026-11-10): small additions only. The missing-side box now has two tries, and a second miss brings the squares back and adds a spare note to be done by formula alone. Before a plot goes on the lot the child now works out its other measure from both sides (the fence for an area plot, the area for a fence plot), so the formulas are also used the plain way round.
 - Five family notes (three area, two fence), unit squares and fence pieces, the equation strip, the formula cards, the lot. Extra: Class lot (the teacher sets a lot size and each student plans a plot). tool.json `modes: ["Lot planner", "Class lot"]`, `minutes: "20-30"`, `grades_label: "Grade 4"`.
 
 ## Standards map
@@ -20,6 +21,9 @@ An empty city lot, 30 feet by 20 feet, is becoming a community garden, and the c
 | 4.MD.3 (area) | Lay squares in rows, then write width x length = area with a missing side | rows of squares; 6 x ? = 48 | 2 |
 | 4.MD.3 (perimeter) | Lay fence pieces, then write 2 x (width + length) = fence | fence pieces; 2 x (5 + ?) = 30 | 3 |
 | 4.MD.3 (apply) | Fit five plots on the lot and state both rules | the lot; the formula cards | 4 |
+| 4.MD.3 (both sides known) | For each finished plot, type the measure the note did not give: the fence for an area plot, the area for a fence plot | the plot's tag filling in | 5 |
+
+The standard's verb is "apply the area and perimeter formulas", and the student does it on every row: five missing sides and five both-sides sums, ten items of four kinds. The Lee plot is the model: its squares and its equation are led step by step by the welcome and first hints.
 
 ## Screens and modes
 Header (kit): title "Community Plot Planner"; `Lot planner`, `Class lot`; `Read`, `Motion`, `Sound`, `Print`. Controls 48 px or more.
@@ -28,9 +32,10 @@ Header (kit): title "Community Plot Planner"; `Lot planner`, `Class lot`; `Read`
 
 **Area plots (focus: the work grid).** At 1366x768 the work grid fills the left with the note and equation strip right and the lot along the bottom; at 680x425 the lot is a tab. Rows of 6 stack until 48 squares are used: 8 rows. The strip writes 6 x 8 = 48 and asks for the missing number before showing it. Nguyen: 36 square feet, 4 wide (9 long). Clark: 60 square feet, 5 wide (12 long).
 
-**Fence plots.** Ortiz: 30 feet of fence, 5 feet wide. Fence pieces go around; the child finds the length is 10 and writes 2 x (5 + 10) = 30. Abebe: 24 feet of fence, 8 feet long (4 wide). Each fence plot also shows its area.
+**Fence plots.** Ortiz: 30 feet of fence, 5 feet wide. Fence pieces go around; the child finds the length is 10 and writes 2 x (5 + 10) = 30. Abebe: 24 feet of fence, 8 feet long (4 wide). 
+**Plot tags.** Before any plot can be dragged to the lot its tag must be complete. The note gave one measure; the child types the other from the two sides, with no squares or fence pieces shown: Lee 6 by 8, fence 28 feet; Nguyen 4 by 9, fence 26; Clark 5 by 12, fence 34; Ortiz 5 by 10, area 50 square feet; Abebe 4 by 8, area 32. Two tries, then the pieces are laid for the child to count and the tag is marked "counted".
 
-**Formula cards.** After two of each, the child fills "area = ___ x ___" and "perimeter = 2 x (___ + ___)" and the squares and fence pieces fade: the next plots use only the formula.
+**Formula cards.** After two of each, the child fills "area = ___ x ___" and "perimeter = 2 x (___ + ___)" and the squares and fence pieces fade: the next plots use only the formula. With the pieces gone, the missing-side box takes two tries. After a second miss the squares or fence come back for that plot, its tag is marked "built with squares", and a spare note is added that must be done by formula alone: Park, 72 square feet and 8 feet wide (9 long), or Diaz, 36 feet of fence and 12 feet long (6 wide). Spare plots do not go on the lot.
 
 **The lot (the aha).** The child drags plots onto the 30 by 20 lot; they snap to whole feet and cannot overlap. When all five fit, the lot says 226 of 600 square feet planted. Narrator: "The squares and the fence showed you why. Now the rule does the counting."
 
@@ -77,7 +82,8 @@ None (family "none"). Reuses the unit grid and area counts from the marked block
 ## Can it be beaten?
 | Check | Ways to pass without the skill | Why each fails |
 |---|---|---|
-| Missing side | Type numbers until one works | The squares or fence must match the note first; after the cards fade, the equation is checked. |
+| Missing side | Type numbers until one works | The squares or fence must match the note first; after the cards fade there are two tries, then the pieces return, the plot is tagged and a spare note is added, so guessing makes more work than dividing. |
+| Plot tags | Type the note's number again; add the two sides for the fence | The tag asks for the measure the note did not give; 14, 13 and 17 (one length plus one width) fail, and after two misses the tag reads "counted". |
 | Formula cards | Fill them by guessing | Each card is tested on the next plot. |
 | The lot | Stack plots | Plots cannot overlap or leave the lot. |
 
@@ -97,16 +103,19 @@ Waits means the next line or tap waits for it to finish; taps act at once and ne
 Backed twice: 2. Cut: 0.
 
 Checks run (Python, scratchpad s12, 2026-11-10): 48 / 6 = 8 with a fence of 28; 30 feet of fence 5 wide gives 10 long and 50 square feet; 36 / 4 = 9 with a fence of 26; 24 feet of fence 8 long gives 4 wide and 32 square feet; 60 / 5 = 12; the plots total 226 square feet of the 600 on the lot; contrast as in Look.
+Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): fences 28, 26 and 34 feet; areas 50 and 32 square feet; five areas total 226; spare notes 72 / 8 = 9 and 36 feet of fence with 12 long gives 6 wide; one length plus one width (14, 13, 17) never equals a right tag.
 
 ## Done when
 1. Focus and fold: at 1366x768 grid, note and lot; at 680x425 lot as a tab.
 2. Three area plots have their missing side found and written as an equation. (4.MD.3)
 3. Two fence plots have their missing side found and written as an equation. (4.MD.3)
 4. Both formulas are written and five plots fit on the lot. (4.MD.3)
-5. `Read` reads every card; every control is 48 px or more.
-6. Families are labeled illustration.
-7. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
-8. Motion off: squares and fence appear at once; no network requests.
+5. Each plot's tag holds the measure the note did not give, typed by the child from both sides: 28, 26, 34 feet of fence and 50, 32 square feet. (4.MD.3)
+6. With the pieces faded the missing-side box allows two tries; a second miss returns the pieces and adds a spare note.
+7. `Read` reads every card; every control is 48 px or more.
+8. Families are labeled illustration.
+9. Tap while it plays: a tap during a line acts at once; no older line plays after a newer one.
+10. Motion off: squares and fence appear at once; no network requests.
 
 ## Open questions
 - The idea card flags overlap with garden-grid by look (default used: an empty city lot with fence posts and family notes, soil brown, no square seed plots; the title avoids "garden").
