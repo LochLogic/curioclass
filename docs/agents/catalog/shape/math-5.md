@@ -6,8 +6,8 @@ Desk card q-shape-math-5 and marked **(Desk)** here. Nothing is built, cut or sp
 
 ## Where the course stands
 
-11 modules, 11 tools, one lesson tool per module, all at spec stage, none fixed yet. Of 26 standards, 4 read as
-taught in full, 6 nearly, 8 part, 6 practice only, 2 shown. Two specs sort fine, nine need a small addition, none
+11 modules, 11 tools, one lesson tool per module, all at spec stage, none fixed yet. Of 27 standards, 4 read as
+taught in full, 7 nearly, 8 part, 6 practice only, 2 shown. Two specs sort fine, nine need a small addition, none
 needs rework. Every standard has a tool, so as in grade 4 the shape questions are about load.
 
 ## Module standards, spelled out (applied to data/modules.csv)
