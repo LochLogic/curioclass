@@ -80,9 +80,13 @@ one exception.
 **Resume here: step 2, under way (2026-11-10).** Done: scripts/catalog_compute.py reads row format 2 and the filed
 texts; scripts/coverage_ledger.py builds data/coverage.csv and the measure (docs/agents/catalog/tables/measure.md,
 which also lists two-domain math modules as split candidates); packets now print the filed wording of each standard
-(scripts/catalog_batch.py). The first pilot rows are kept in docs/agents/catalog/rows-v1/. Running: the 36 pilot
-tools again in row format 2 (packets math-4-1, ela-6-1, ela-6-2). Next: compare the new rows with the pilot judge
-files (docs/agents/catalog/judge/), fix the brief if they disagree, then the full read by subject and band (make
+(scripts/catalog_batch.py). The first pilot rows are kept in docs/agents/catalog/rows-v1/. The 36 pilot tools were read
+again in row format 2 (about 175k tokens a packet). Result: the cold read finds what the pilot judge found (grade 4
+math: the same three standards shown, and the judge's reasons appear as the rows' missing parts), but it marks a
+standard part for any missing piece, where the judge called small ones nearly full (math 4: 4 full and 21 part,
+against the judge's 17 full or nearly full). Fix made: each code carries `missing_weight` (core or edge) and the
+ledger has a `nearly` status. Next: one cheaper-model agent adds `missing_weight` to the 36 pilot rows, the ledger
+is checked against the judge's 17, 8, 4, then the full read by subject and band (make
 packets with catalog_batch.py, one cheaper-model agent per packet, then `python scripts/coverage_ledger.py`).
 Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
 

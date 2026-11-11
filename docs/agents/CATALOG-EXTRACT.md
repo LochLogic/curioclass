@@ -32,6 +32,10 @@ report. You change nothing else, judge nothing as good or bad overall, and do no
   - `parts_missing`: read the standard's own wording (the packet prints the filed Common Core wording under each tool; for
     other frameworks use what the spec quotes, and say in `unsure` if you are not sure of a wording). List each part of it the student never does here: a kind of number, an operation, a
     case, a lettered sub-part, "explain why", "write", "record with symbols". Empty list only if every part is done.
+  - `missing_weight` (added 2026-11-10 after the pilot re-read): `core` if any missing part is the standard's own
+    verb, a whole operation, a whole kind of number or case, a lettered sub-part, or the explaining, writing or
+    recording the wording asks for; `edge` if every missing part is a small facet (one of several example forms, a
+    notation, a number range, reading aloud); "" if nothing is missing. When unsure, `core`.
   - `verb`: the standard's own verb in a word or two (solve, explain, compare, write, investigate).
   - `key_step`: judged by that verb. `student` if the student does the step the standard is about, `tool` if the tool does it and the
     student watches or presses on, `shared` if the student chooses and the tool carries it out.

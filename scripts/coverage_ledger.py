@@ -8,8 +8,8 @@ filed standards in data/standards/, and writes:
   data/coverage.csv                       one row per standard per course: where it is taught in full
   docs/agents/catalog/tables/measure.md   the one measure per course, and the modules that hold two topics
 
-Status of a standard: `full` (a tool teaches it, every part), `part` (taught with parts left out, or explored by a
-see-why tool), `practice` (practised only), `shown` (the tool does the key step, or it can be skipped), `none` (every
+Status of a standard: `full` (a tool teaches it, every part), `nearly` (taught; only small facets left out, the row's
+`missing_weight` is `edge`), `part` (taught with a core part left out or unweighted, or explored by a see-why tool), `practice` (practised only), `shown` (the tool does the key step, or it can be skipped), `none` (every
 tool of the modules that list it was read and none reaches it), `not read` (a tool there has no row yet),
 `no module` (no module lists it).
 """
@@ -87,7 +87,8 @@ hits = collections.defaultdict(list)      # base code -> (tool, letter, depth, p
 for t, r in rows.items():
     for c in r.get('codes', []):
         b, let = split(short(c.get('code', '')))
-        hits[b].append((t, let, c.get('depth', ''), [p for p in c.get('parts_missing', []) if p], c.get('unit_adds', '')))
+        hits[b].append((t, let, c.get('depth', ''), [p for p in c.get('parts_missing', []) if p], c.get('unit_adds', ''),
+                        c.get('missing_weight', '')))
 
 # ---- courses --------------------------------------------------------------------------------------------------
 courses = collections.OrderedDict()
@@ -107,6 +108,8 @@ def status(code):
     need = letters.get(code, set())
     clean = {h[1] for h in hs if h[2] == 'taught' and not h[3]}
     if '' in clean or (need and need <= clean): return 'full'
+    near = {h[1] for h in hs if h[2] == 'taught' and (not h[3] or h[5] == 'edge')}
+    if '' in near or (need and need <= near): return 'nearly'
     if any(h[2] in ('taught', 'explored') for h in hs): return 'part'
     if any(h[2] == 'practiced' for h in hs): return 'practice'
     if hs: return 'shown'
@@ -161,11 +164,11 @@ P.append('# The one measure, course by course\n')
 P.append('Built by scripts/coverage_ledger.py from the extract rows; the rows behind it are in data/coverage.csv. '
          'A course whose tools are not all read yet shows how many were. Worksheets, generators, the Reading Room and '
          'units are not counted yet (their columns in the ledger are filled in path step 4).\n')
-P.append('| Course | Tools read | Standards | Full | Part | Practice | Shown | None | Not read | No module |')
-P.append('|---|---|---|---|---|---|---|---|---|---|')
+P.append('| Course | Tools read | Standards | Full | Nearly | Part | Practice | Shown | None | Not read | No module |')
+P.append('|---|---|---|---|---|---|---|---|---|---|---|')
 for subject, grade, c, n, read, alltools in measure:
     P.append('| %s %s | %d of %d | %d | %s |' % (subject, grade, read, alltools, n,
-             ' | '.join(str(c.get(k, 0) or '') for k in ('full', 'part', 'practice', 'shown', 'none', 'not read', 'no module'))))
+             ' | '.join(str(c.get(k, 0) or '') for k in ('full', 'nearly', 'part', 'practice', 'shown', 'none', 'not read', 'no module'))))
 P.append('\n## Modules that may hold two topics (math: standards from more than one domain)\n')
 P.append('Candidates only. A module is split when it holds two unrelated topics (BASELINE rule 22); each comes to Cory as an '
          'exception in path step 4.\n')
