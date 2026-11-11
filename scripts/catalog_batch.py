@@ -5,7 +5,7 @@ r"""Catalog review: write the packet an extract agent works from (docs/agents/CA
 Writes docs/agents/catalog/batches/<name>-<n>.md: for each tool its catalog line, module, the module's standards,
 its stage, its old overlap tags (for house style) and the files to read. One packet holds at most --size tools.
 """
-import csv, os, sys
+import csv, os, re, sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 args = sys.argv[1:]
@@ -18,6 +18,18 @@ name, pairs = args[0], list(zip(args[1::2], args[2::2]))
 rd = lambda p: list(csv.DictReader(open(ROOT / p, encoding='utf-8')))
 mods = {r['module_id']: r for r in rd('data/modules.csv')}
 tags = {r['tool_id']: r for r in rd('docs/agents/overlap/tags.csv')}
+texts = {}                                  # filed Common Core wording, so no row rests on memory
+for f in ('data/standards/ccss-math-standards.txt', 'data/standards/ccss-ela-standards-full.txt'):
+    for ln in open(ROOT / f, encoding='utf-8'):
+        if ln.strip() and not ln.startswith('#') and '\t' in ln:
+            k, v = ln.rstrip('\n').split('\t', 1); texts[k] = v
+def wording(codes):
+    out = []
+    for c in [c.strip() for c in codes.split(';') if c.strip()]:
+        for k, v in texts.items():
+            if k == c or k.startswith(c + '.') or re.fullmatch(re.escape(c) + r'[a-z]', k):
+                out.append(f'  - {k}: {v}')
+    return out
 def stage(t):
     d = ROOT / 'tools' / t
     for f, s in (('tool.json', 'live'), ('src.html', 'built'), ('spec.md', 'spec'), ('idea.md', 'idea')):
@@ -34,6 +46,7 @@ for n in range(0, len(tools), size):
         lines += [f"## {t['tool_id']}", f"- title: {t['title']} | format: {t['format']} | family: {t['family'] or 'none'} | stage: {s}",
                   f"- module: {m['module_id']} ({m['subject']} {m['grade']}, {m['strand']}): {m['title']}. {m['description']}",
                   f"- module standards: {m['standards']}",
+                  *(['- standard texts (filed wording; a bare cluster is spelled out):'] + wording(m['standards']) if wording(m['standards']) else []),
                   f"- concept line: {t['concept']}",
                   f"- old tags: skill_key={g.get('skill_key','')} | action={g.get('action','')} | setting_group={g.get('setting_group','')}",
                   f"- read: " + ', '.join(f"tools/{t['tool_id']}/{f}" for f in files), '']

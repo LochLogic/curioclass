@@ -26,10 +26,11 @@ report. You change nothing else, judge nothing as good or bad overall, and do no
 ```
 
 - **codes:** every standard the spec says it teaches (its "Standards map" table, and any code named elsewhere), at the
-  finest level the spec names (4.NBT.5, not 4.NBT.B). One entry per code, with these fields (row format 2, 2026-11-10,
+  finest level the spec names (4.NBT.B.5, not 4.NBT.B), spelled as the packet's standard texts spell it (math codes
+  carry the cluster letter; a lettered part is 4.NF.B.3a or W.6.1a). One entry per code, with these fields (row format 2, 2026-11-10,
   after the pilot: add them to each entry beside `code`, `depth`, `activity`, `where`):
-  - `parts_missing`: read the standard's own wording (you know the Common Core and NGSS texts; say in `unsure` if you
-    are not sure of a wording). List each part of it the student never does here: a kind of number, an operation, a
+  - `parts_missing`: read the standard's own wording (the packet prints the filed Common Core wording under each tool; for
+    other frameworks use what the spec quotes, and say in `unsure` if you are not sure of a wording). List each part of it the student never does here: a kind of number, an operation, a
     case, a lettered sub-part, "explain why", "write", "record with symbols". Empty list only if every part is done.
   - `verb`: the standard's own verb in a word or two (solve, explain, compare, write, investigate).
   - `key_step`: judged by that verb. `student` if the student does the step the standard is about, `tool` if the tool does it and the
@@ -54,7 +55,7 @@ report. You change nothing else, judge nothing as good or bad overall, and do no
   - `where`: the spec section or mode that shows it.
   Judge from what the spec says the student does, not from the claim in the table.
 - **module_codes_untaught:** when the module lists a cluster (4.NBT.B) or several codes, name the standards inside it
-  that this spec does not teach or practice. Use the standard's usual number (4.NBT.4). Empty list if none.
+  that this spec does not teach or practice. Use the packet's spelling (4.NBT.B.4). Empty list if none.
 - **skill_key, action, setting_group:** keep the packet's old tags when they still fit the spec; change one only when
   the spec clearly differs, and say so in `unsure`. `action` is one of: count-along, move-along, predict-reveal, sort,
   match, order, build, compose, manipulate, simulate-tune, experiment, explore, hunt, solve, fix, investigate,

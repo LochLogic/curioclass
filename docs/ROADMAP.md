@@ -77,10 +77,14 @@ one exception.
 | 5. Prove one course | Grade 4 math and grade 6 ELA (Track 7): the year spine, then one pilot unit each, pulling from every shelf, read by a fresh agent against docs/ADOPTION-BAR.md. Building resumes for these two courses only. The token plan's side-by-side trial runs on the first three tools | Cory can open one unit of each and see the bar met | The two spines, then the pilot review |
 | 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first. Each finished course gets its spine, units and a full row on the measure | Course by course, the measure reaches full | The order of courses |
 
-**Resume here: step 2.** First jobs, in order: teach scripts/catalog_compute.py to read row format 2 and the filed
-texts in data/standards/ (it still reads docs/agents/catalog/math-focus.csv); build data/coverage.csv; re-run the 36
-pilot tools and compare with the pilot judge files; then the full read. Everything it needs:
-docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
+**Resume here: step 2, under way (2026-11-10).** Done: scripts/catalog_compute.py reads row format 2 and the filed
+texts; scripts/coverage_ledger.py builds data/coverage.csv and the measure (docs/agents/catalog/tables/measure.md,
+which also lists two-domain math modules as split candidates); packets now print the filed wording of each standard
+(scripts/catalog_batch.py). The first pilot rows are kept in docs/agents/catalog/rows-v1/. Running: the 36 pilot
+tools again in row format 2 (packets math-4-1, ela-6-1, ela-6-2). Next: compare the new rows with the pilot judge
+files (docs/agents/catalog/judge/), fix the brief if they disagree, then the full read by subject and band (make
+packets with catalog_batch.py, one cheaper-model agent per packet, then `python scripts/coverage_ledger.py`).
+Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
 
 ### What every other track does meanwhile
 

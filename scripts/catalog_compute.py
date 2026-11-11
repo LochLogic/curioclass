@@ -40,24 +40,34 @@ missing = [t for t, c in concepts.items() if c['subject'] == subject and c['grad
 single = [g for g in grades if '-' not in g]            # coverage is judged for the single grades asked for
 focus = {}
 expected = []
-fpath = os.path.join(CAT, 'math-focus.csv')
-if subject == 'math':
-    for r in csv.DictReader(io.open(fpath, encoding='utf-8')):
-        if r['cluster'].split('.')[0] in single:
-            for s in r['standards'].split(';'):
-                expected.append(s); focus[s] = r['focus']
-            focus[r['cluster']] = r['focus']
-elif subject == 'ela':
-    for line in io.open(os.path.join(ROOT, 'data/standards/ccss-ela-standards.txt'), encoding='utf-8'):
-        line = line.strip()
-        if line and not line.startswith('#') and any(re.search(r'\.%s\.' % g, line) for g in single):
-            expected.append(line.split()[0])
-
-RANK = {'taught': 3, 'practiced': 2, 'touched': 1, 'claimed': 0}
+def short(code):
+    """One spelling for matching: 4.NBT.B.5 -> 4.NBT.5, A-REI.B.4a -> A-REI.4a (as in scripts/coverage_ledger.py)."""
+    p = code.strip().split('.')
+    i = 1 if '-' in p[0] else 2
+    if len(p) > i + 1 and re.match(r'^[A-Z]$', p[i]) and p[i + 1][:1].isdigit(): del p[i]
+    return '.'.join(p)
 def base(code):
-    """4.NF.3a -> 4.NF.3 ; SL.6.1.c -> SL.6.1"""
+    """4.NF.B.3a -> 4.NF.3 ; SL.6.1.c -> SL.6.1"""
+    code = short(code)
     m = re.match(r'^(.*?\.\d+)[a-z]?(\.[a-z])?$', code)
     return m.group(1) if m else code
+def filed(path):
+    for line in io.open(os.path.join(ROOT, path), encoding='utf-8'):
+        if line.strip() and not line.startswith('#'): yield line.rstrip('\n')
+
+if subject == 'math':
+    cf = {r['cluster']: r['focus'] for r in csv.DictReader(filed('data/standards/ccss-math-focus.csv'))}
+    for line in filed('data/standards/ccss-math-standards.txt'):
+        sid = line.split('\t')[0]
+        if sid.split('.')[0].lower() in single and not re.search(r'\d[a-z]$', sid):
+            expected.append(base(sid)); focus[base(sid)] = cf.get(sid.rsplit('.', 1)[0], '')
+elif subject == 'ela':
+    for line in filed('data/standards/ccss-ela-standards.txt'):
+        if any(re.search(r'\.%s\.' % g, line, re.I) for g in single):
+            expected.append(line.split()[0])
+
+# explored (a see-why tool, format 2) counts with taught for clashes and value; shown ranks with touched
+RANK = {'taught': 3, 'explored': 3, 'practiced': 2, 'shown': 1, 'touched': 1, 'claimed': 0}
 
 by_code = collections.defaultdict(list)
 for r in rows:
@@ -73,14 +83,16 @@ if missing: P('**No row yet for:** ' + ', '.join(sorted(missing)) + '\n')
 # ---- 1 coverage -----------------------------------------------------------------------------------------------
 P('## 1. Coverage, standard by standard\n')
 P('A standard is covered when at least one tool teaches it (depth `taught`). `practiced` assumes it was taught '
-  'elsewhere; `touched` can be skipped; `claimed` has no matching student action.\n')
-P('| Standard |%s Taught by | Practiced | Touched or claimed | Status |' % (' Focus |' if focus else ''))
+  'elsewhere; `explored` is a see-why tool; `shown` means the tool does the key step; `touched` can be skipped; '
+  '`claimed` has no matching student action. Parts left out and the full, part or shown verdict are in '
+  'data/coverage.csv (scripts/coverage_ledger.py).\n')
+P('| Standard |%s Taught by | Practiced | Explored, shown, touched or claimed | Status |' % (' Focus |' if focus else ''))
 P('|---|%s---|---|---|---|' % ('---|' if focus else ''))
 status_count = collections.Counter()
 for code in expected:
     hits = by_code.get(code, [])
     t = [h for h in hits if h[1] == 'taught']; p = [h for h in hits if h[1] == 'practiced']
-    o = [h for h in hits if h[1] in ('touched', 'claimed')]
+    o = [h for h in hits if h[1] in ('explored', 'shown', 'touched', 'claimed')]
     nt = len({h[0] for h in t})
     st = 'ok' if nt in (1, 2, 3) else 'crowded (%d)' % nt if nt else 'practice only' if p else 'thin' if o else '**no tool**'
     status_count[st.split(' (')[0]] += 1
@@ -100,7 +112,7 @@ P('## 2. Module codes its own tool does not teach\n')
 P('| Tool | Module codes | Not taught or practiced (from the row) | Claimed or only touched |')
 P('|---|---|---|---|')
 for r in rows:
-    weak = [c['code'] + ' (' + c['depth'] + ')' for c in r.get('codes', []) if c.get('depth') in ('touched', 'claimed')]
+    weak = [c['code'] + ' (' + c['depth'] + ')' for c in r.get('codes', []) if c.get('depth') in ('shown', 'touched', 'claimed')]
     un = [u for u in r.get('module_codes_untaught', []) if u]
     if un or weak:
         P('| %s | %s | %s | %s |' % (r['id'], r['_m']['standards'].replace(';', ', '), ', '.join(un) or '-', ', '.join(weak) or '-'))
@@ -149,19 +161,19 @@ P('')
 P('## 5. Value table\n')
 P('Depth = best depth on any code. Sole = standards only this tool teaches. Sorted so the weakest case for a tool '
   'comes first: little taught, paper could do it, costly to build. A sort order for the judge, not a verdict.\n')
-P('| Tool | Stage | Depth | Sole teacher of | Paper could do it | Screen adds | Cost |')
+P('| Tool | Stage | Depth | Sole teacher of | What paper could not do | Screen adds | Cost |')
 P('|---|---|---|---|---|---|---|')
 teachers = {c: {h[0] for h in hs if h[1] == 'taught'} for c, hs in by_code.items()}
 def val(r):
     d = max([RANK.get(c.get('depth'), 0) for c in r.get('codes', [])] or [0])
     sole = sorted(c for c, t in teachers.items() if t == {r['id']})
-    paper = {'none': 2, 'partial': 1, 'full': 0}.get(r.get('paper_version'), 1)
+    paper = {'none': 2, 'partial': 1, 'full': 0}.get(r.get('paper_version'), 0 if (r.get('paper_gap') or 'none').strip().lower() == 'none' else 2 if 'paper_gap' in r else 1)
     cost = {'simple': 0, 'sibling': 0, 'new-engine': 1, 'super': 2}.get(r.get('cost_class'), 1)
     return d + paper + min(len(sole), 2) - cost, d, sole
 for r in sorted(rows, key=lambda r: val(r)[0]):
     sc, d, sole = val(r)
-    P('| %s | %s | %s | %s | %s | %s | %s |' % (r['id'], r.get('stage') or r['_c']['status'], {3: 'taught', 2: 'practiced', 1: 'touched', 0: 'claimed'}[d],
-        ', '.join(sole) or '-', r.get('paper_version', ''), (r.get('screen_adds') or '').replace('|', '/'), r.get('cost_class', '')))
+    P('| %s | %s | %s | %s | %s | %s | %s |' % (r['id'], r.get('stage') or r['_c']['status'], {3: 'taught or explored', 2: 'practiced', 1: 'shown or touched', 0: 'claimed'}[d],
+        ', '.join(sole) or '-', (r.get('paper_gap') or r.get('paper_version', '')).replace('|', '/'), (r.get('screen_adds') or '').replace('|', '/'), r.get('cost_class', '')))
 P('')
 
 # ---- 6 flags --------------------------------------------------------------------------------------------------
