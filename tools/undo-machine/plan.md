@@ -36,7 +36,7 @@ grouping: Pairs on devices, with whole-class pauses.
 2. On level 9, ask: "Rounding forgets more than a sign. Why can no gate fix it?"
 3. Pairs who finish try level 11: "Which 2-machine chains undo themselves?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "f(x) = (x − 5)/2. Write f⁻¹(x) and check it with x = 9." Then: "Why does g(x) = x² need a restricted domain to have an inverse? Name one domain that works." Cards that subtract before multiplying in the inverse show who needs the swap again.
 

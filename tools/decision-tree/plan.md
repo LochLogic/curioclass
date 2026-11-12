@@ -2,7 +2,7 @@ arc: explore-first
 minutes: 45
 focus: CASEL.Responsible Decision-Making
 goal: I can think ahead to what each option leads to over time, and explain why people with different goals can choose differently.
-materials: The tool on a projector. Optional: one laptop per pair. Blank paper for the Apply tree and scrap paper for the exit check.
+materials: The tool on a projector. Optional: one laptop per pair. Blank paper for the Apply tree and scrap paper for the exit ticket.
 grouping: Whole class for The Double Booking, then partners.
 ---
 ## Before class
@@ -44,7 +44,7 @@ grouping: Whole class for The Double Booking, then partners.
 2. Pairs draw a paper tree: a trunk with the question, three option branches, and three leaves up each one labeled Right away, Next week, Next month. They pick two of Sam's goals and mark each leaf up, down or dash.
 3. "Can two options both happen? Draw that graft." Two pairs share the branch that changed most.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On scrap paper, for Sam: "Write one option that looks good right away but could wilt by next month, and the leaf that makes it wilt." (Skip moving boxes to go to practice. Right away: good practice. Next month: the cousin stops asking Sam for help.) Students who only write a Right away leaf need another round in **Grow** with **Play**.
 
@@ -57,4 +57,4 @@ On scrap paper, for Sam: "Write one option that looks good right away but could 
 ## Short on time
 
 - Hook (3 min), then **The Double Booking**: plant **A** to **D**, **Make a call**, **Play**, **Graft** (10 min).
-- End with the exit check (4 min).
+- End with the exit ticket (4 min).

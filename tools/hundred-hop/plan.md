@@ -34,7 +34,7 @@ grouping: Whole class on the carpet.
 1. Hop in place and count together: ten hops by ones, then count by tens with a big jump for each ten.
 2. Start in the middle: "Start at 52 and hop 3 times. Where are we?" (55.)
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Call on children one at a time: "Start at 27 and count on 3." "What comes after 39?" "Count by tens from 50." Note who still needs to start from 1.
 

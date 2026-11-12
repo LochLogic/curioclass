@@ -38,7 +38,7 @@ grouping: Pairs on laptops, with whole-class debriefs.
 3. Then ticket 7, **Meet twice**. Pairs try, then decide whether to press **It can't be done**. "Why can't two straight lines cross twice?" (Two different lines cross at most once. The same line meets everywhere, not twice.) Settle the hook vote.
 4. Fast pairs: ticket 8, **Junction at four** (both speeds; A 15, B 60).
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "Train A: d = 50t. Train B: d = −30t + 240. When and where do they meet? Then change one number in B's equation so the trains never meet, and say why." (50t = −30t + 240, so 80t = 240, t = 3: 3:00 pm at mile 150. Never meet: any B with rate 50 and a different starting number, such as d = 50t + 240, because the lines are parallel.)
 

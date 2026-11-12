@@ -35,7 +35,7 @@ grouping: Whole class on the carpet, then partners.
 2. Ask: "What is this place called in your home language?" Let children share.
 3. "Who helps you when you're sick? When you're lost?" Remind them: in an emergency, call 911 or tell a grown-up.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Each child draws one helper and tells you a sentence: "A ___ works at the ___. They ___." Listen for the place word and the helper word.
 

@@ -34,7 +34,7 @@ grouping: Whole class on the carpet, then partners.
 1. Sort the class wonders together into the three bins.
 2. Pick one wonder you can try right now, and try it. Pick another to look up in the library this week.
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Read three new wonders aloud. Children show the answer with a hand sign: a pretend open book for look it up, a phone to the ear for ask an expert, and wiggling fingers for try it. Ask one or two children why.
 

@@ -35,7 +35,7 @@ grouping: Whole class, then small groups taking turns at the board.
 1. Open the art garden. It has no seed spots. The class plants a picture with loops.
 2. One group explains their shortest program for a garden.
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Draw on the board: Step, Plant, Step, Plant, Step, Plant, Step, Plant. "How would you write this with a loop?" Children hold up fingers for the repeat number (4), then say which blocks go inside (Step and Plant).
 

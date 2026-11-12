@@ -35,7 +35,7 @@ grouping: Whole class, then pairs on devices.
 1. Pairs switch to **Which region?** and match clues to regions on the map, explaining each choice with a land clue.
 2. Pairs who finish pick one nation and write two sentences: one about the past, one about today.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "Pick one region. Name one nation that lives there today, and explain how the land shaped one part of life there." Cards that talk about Native nations only in the past tense show who needs the "still here" talk again.
 

@@ -43,14 +43,14 @@ grouping: Whole class for the first situation, then partners, then students on t
 1. Partners, on paper (5 min): "Jae's family car broke down, so Jae takes two buses to practice this month." Write one part Jae can change and one he can't, with a strategy from the map for each. Share two pairs.
 2. On your own (5 min): open **My plan**. "Build a plan for yourself or for Jae. Nobody will see or collect it, and you don't have to pick anything." **Print** is optional. Shared laptops: **Clear** before logging off.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 Read: "Mia's coach moved practice to the same night as her part-time job." On an index card: one part Mia can change with a strategy, one part she can't with a strategy, and a role at school she could go to. (Ask the coach or manager early. The new schedule: slow breaths or a friend. A school counselor.) Cards with only problem-solving strategies need another look at Dev's two routes.
 
 ## Support and stretch
 
 - **Support:** keep the board columns up, and let pairs read the route lists in the panel instead of the pins.
-- **Support:** model the exit check with **Malik: everything due at once** first.
+- **Support:** model the exit ticket with **Malik: everything due at once** first.
 - **Stretch:** "Open **Talk it through** and **Ask early**. Both work on the problem. When would you use each?"
 - **Stretch:** "Argue that one stop on a can't route could also go on the change route."
 
@@ -58,4 +58,4 @@ Read: "Mia's coach moved practice to the same night as her part-time job." On an
 
 - Ground rule and the phone question (3 min).
 - **Dev: test on Friday** with both halves, the **Rethink a thought** card and **More help** (10 min).
-- Exit check card (4 min). Offer **My plan** as optional, private homework.
+- Exit ticket card (4 min). Offer **My plan** as optional, private homework.

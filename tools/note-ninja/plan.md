@@ -36,7 +36,7 @@ grouping: Whole class, then pairs on devices.
 2. Switch to **3/4**. "What note fills a whole measure by itself?" (A dotted half note.)
 3. The class claps and counts the pairs' measures out loud. Rests are a silent open hand.
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Draw three notes on the board staff: one on a line, one in a space, and middle C. Students write the letter names on a card. Then: "In 4/4, a measure has a half note and a quarter note. What is missing?" (One beat: a quarter note or a quarter rest.)
 

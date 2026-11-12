@@ -33,7 +33,7 @@ grouping: Whole class on the carpet, then at tables.
 1. Switch to **Fix the tray**. Look at pizza day. "Which group is missing?" Add it.
 2. At tables, children draw their own lunch on a paper plate with one food from each group.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Children hold up their plates. Point to a spot and ask the child to name the group. Then ask the class: "Name a food from the grains group." Listen for answers from each group.
 

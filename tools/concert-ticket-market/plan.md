@@ -34,7 +34,7 @@ grouping: Pairs on devices, with whole-class pauses.
 2. Pairs set a price, open sales and read the result: a line means too low, empty seats mean too high. Each night adds a point on the demand curve.
 3. After night three, demand is revealed with a score. Pairs compare scores and strategies.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card, sketch a supply and demand graph for a sold-out show priced too low. Label the shortage. Then answer: "Who gains and who loses when tickets are priced below the market-clearing price?" Graphs with the shortage above the clearing price show who needs **Explore** again.
 

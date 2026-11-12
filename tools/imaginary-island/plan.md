@@ -34,7 +34,7 @@ grouping: Pairs on devices, with whole-class pauses.
 2. Pairs switch to **Springs**. With b = 0, they raise c from −4 and watch the springs slide together on the Real Road, meet at 0, then split north and south.
 3. "Why do the two complex solutions always come as a mirror pair across the Real Road?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "Compute (2 − i)(3 + 4i) and plot it. Then solve x² + 9 = 0 and say where its solutions sit on the map." Cards that leave i² as i² show who needs the worked lines in **Explore** again.
 

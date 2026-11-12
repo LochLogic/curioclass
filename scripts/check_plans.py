@@ -11,9 +11,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 TOOLS = ROOT / 'tools'
 ARCS = {
-    'explore-first': ('Explore first', ['Hook', 'Explore', 'Make sense', 'Apply', 'Exit check']),
-    'teach-then-practice': ('Teach, then practice', ['Hook', 'Teach', 'Practice', 'Apply', 'Exit check']),
-    'model-then-make': ('Model, then make', ['Hook', 'Model', 'Make', 'Share', 'Exit check']),
+    'explore-first': ('Explore first', ['Hook', 'Explore', 'Make sense', 'Apply', 'Exit ticket']),
+    'teach-then-practice': ('Teach, then practice', ['Hook', 'Teach', 'Practice', 'Apply', 'Exit ticket']),
+    'model-then-make': ('Model, then make', ['Hook', 'Model', 'Make', 'Share', 'Exit ticket']),
 }
 KEYS = ['arc', 'minutes', 'focus', 'goal', 'materials', 'grouping']
 UNTIMED = ['Before class', 'Support and stretch', 'Short on time']
@@ -124,7 +124,7 @@ def keywords(text):
 
 
 def exit_problems(tid, module=None):
-    """exit.md against docs/LESSON-PLANS.md, Sub Day: kind, 1 to 3 items, a key for tickets, and the same ask as the plan's Exit check."""
+    """exit.md against docs/LESSON-PLANS.md, Sub Day: kind, 1 to 3 items, a key for tickets, and the same ask as the plan's Exit ticket."""
     ex = parse_exit(tid)
     if ex is None:
         return []
@@ -148,9 +148,9 @@ def exit_problems(tid, module=None):
     if kind == 'ticket' and items and items[-1][0] != 'Rate it':
         out.append('exit.md tickets end with a "Rate it:" self-rating')
     plan = parse(tid)
-    check = ' '.join(t for title, _, t in plan['sections'] if title == 'Exit check') if plan else ''
+    check = ' '.join(t for title, _, t in plan['sections'] if title == 'Exit ticket') if plan else ''
     if check and not keywords(check) & keywords(' '.join(f'{p} {a or ""}' for _, p, a in items)):
-        out.append("exit.md shares no key word with the plan's Exit check; they must ask the same thing")
+        out.append("exit.md shares no key word with the plan's Exit ticket; they must ask the same thing")
     raw = (TOOLS / tid / 'exit.md').read_text(encoding='utf-8')
     if '—' in raw:
         out.append('exit.md: em dash')

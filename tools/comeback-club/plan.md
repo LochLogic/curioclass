@@ -2,7 +2,7 @@ arc: teach-then-practice
 minutes: 45
 focus: CASEL.Self-Management
 goal: I can set a clear goal, plan what I will try when I get stuck, and come back after a "not yet".
-materials: The tool on a projector. One laptop per student or per pair. Scrap paper for Apply and the exit check.
+materials: The tool on a projector. One laptop per student or per pair. Scrap paper for Apply and the exit ticket.
 grouping: Whole class for the hook and teach, then students or pairs on laptops, then partners.
 ---
 ## Before class
@@ -41,7 +41,7 @@ Teacher drives, class votes.
 2. Partners trade papers: "Could you tell when they reached it?" (Yes means it has a number, a day or a finish line.) Fix one goal together.
 3. Two volunteers share: "Which strategy first, and why?"
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 On scrap paper: "Jada's goal is: I want to be better at reading. Rewrite it so she can tell when she reached it. Then write the strategy card she should try first when she gets stuck, and one reason." (Read 20 minutes every night this week. Break it into parts: read one page at a time.) A vague goal or no strategy means another look at the cards in **Goals**.
 
@@ -55,4 +55,4 @@ On scrap paper: "Jada's goal is: I want to be better at reading. Rewrite it so s
 ## Short on time
 
 - Hook (2 min), then Teach steps 1 to 6 on the projector only (10 min).
-- Skip Practice. Do the exit check as a quick talk with a partner (4 min).
+- Skip Practice. Do the exit ticket as a quick talk with a partner (4 min).

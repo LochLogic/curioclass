@@ -34,7 +34,7 @@ grouping: Whole class, then pairs on devices.
 2. Pairs who want an idea press **Surprise me** and change it.
 3. Two or three pairs play their tunes for the class. The class names one step, one skip and one leap.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 Switch to **Echo it** on the projector. The robin sings a short pattern; the class sings it back in solfege, then a student plays it on the bells. Then ask: "Why does an answer phrase end on do?"
 

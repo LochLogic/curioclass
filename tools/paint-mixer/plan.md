@@ -35,7 +35,7 @@ grouping: Pairs on devices, then the same pairs at paint tables.
 2. "Was real paint the same as the tool? What was different?"
 3. Pairs who finish try a shade, and notice that a little black darkens a lot.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "How do you make green? How do you make light blue? Name one pair of complements." (Blue and yellow. Blue and white. For example, red and green.) Cards that mix up tints and shades show who needs the ladder again.
 

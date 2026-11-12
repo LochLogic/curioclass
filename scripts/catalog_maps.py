@@ -122,9 +122,9 @@ for s in subjects:
     P.append('## Every standard, by course\n')
     for g in grades:
         P.append('### %s %s\n' % (s, g))
-        P.append('| Standard | Status | Lesson tools | Practice or see-why | Weak | Missing |'); P.append('|---|---|---|---|---|---|')
+        P.append('| Standard | Status | Teach tools | Practice or see-why | Weak | Missing |'); P.append('|---|---|---|---|---|---|')
         for r in sorted((r for r in cov if r['grade'] == g), key=lambda r: (STAT.index(r['status']), r['standard'])):
-            P.append('| %s%s | %s | %s | %s | %s | %s |' % (r['standard'], ' (%s)' % r['focus'] if r['focus'] else '', WORD[r['status']], clip(r['lesson'], 90),
+            P.append('| %s%s | %s | %s | %s | %s | %s |' % (r['standard'], ' (%s)' % r['focus'] if r['focus'] else '', WORD[r['status']], clip(r['teach'], 90),
                      clip('; '.join(x for x in (r['practice'], r['see_why']) if x), 90), clip(r['weak'], 70), clip(r['parts_missing'].replace('|', ';'), 140)))
         P.append('')
     io.open(os.path.join(TAB, 'map-%s.md' % s), 'w', encoding='utf-8', newline='\n').write('\n'.join(P) + '\n')

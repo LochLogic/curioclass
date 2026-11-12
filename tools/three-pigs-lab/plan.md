@@ -33,7 +33,7 @@ grouping: Whole class on the carpet, then small groups.
 
 Small groups design a house on paper: one material for the walls, one for the windows and one for the roof. They label each with the property that makes it a good choice. Then a group builds their design in the tool and tests it.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Ask: "What would make a good raincoat? A good blanket? A good window?" Children answer with a material and a reason: "Glass, because you can see through it."
 

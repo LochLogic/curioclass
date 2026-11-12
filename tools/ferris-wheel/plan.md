@@ -34,7 +34,7 @@ grouping: Pairs on devices, with whole-class pauses.
 1. Pairs open **Match** and work through the target graphs. **Check** accepts any wheel within 0.5 m, so equivalent wheels count.
 2. Pairs who finish open **Real Wheels** and compare the London Eye with Chicago 1893. "The London Eye moves at about 0.21 m/s. Why can you barely feel it move?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "A wheel has radius 20 m, a hub 25 m high, turns once in 60 s, and you board at the bottom. Write h(t) and give the highest and lowest heights." Then: "Why is 18 + 15 sin(2πt / 40 − π/2) the same as 18 − 15 cos(2πt / 40)?"
 

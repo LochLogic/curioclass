@@ -21,7 +21,7 @@ What the script decides by rule, and nothing more:
   second tool a loaded tool whose codes fall into a group that reads as taught and a group that does not, when
               giving each weak code a model and five items (about five minutes each) would pass one sitting
               (20 minutes in K and grade 1, 25 in grade 2, 35 from grade 3) by more than five minutes: the tool keeps the first group, a
-              new lesson tool in the same module takes the second. A band tool is never split from a grade file:
+              new teach tool in the same module takes the second. A band tool is never split from a grade file:
               its spec gets a path for each grade first.
   two topics  a math module holding standards from two domains (or two measurement clusters): two tools when
               giving the weaker topic a model and five items would pass about 35 minutes, else one
@@ -367,7 +367,7 @@ def write(C):
         room = [d for d in T if d['call'] == 'room']
         if not (ask or appr or later or fixf or holds or room): P.append('No tool carries more than four codes. Every tool keeps its load.\n')
         for i, d in enumerate(ask, 1):
-            P.append('%d. **%s (Desk).** %s carries %d codes in %d minutes: %s. Fixing those inside the tool puts it at about %d minutes. Shape: %s keeps %s; a new lesson tool in the same module takes %s (%s).'
+            P.append('%d. **%s (Desk).** %s carries %d codes in %d minutes: %s. Fixing those inside the tool puts it at about %d minutes. Shape: %s keeps %s; a new teach tool in the same module takes %s (%s).'
                      % (i, d['module']['title'], d['title'], d['n'], d['minutes'], depth_words(d, d['move']), d.get('est', d['minutes'] + 10), d['title'], fmt([L(b) for b in d['keep']]),
                         fmt([L(b) for b in d['move']]), topic(d['move'][0])))
         for d in appr:
@@ -462,13 +462,13 @@ for C in ALL:
     st = collections.Counter(r['status'] for r in C['cov'])
     qs = []
     for d in ask:
-        qs.append({'q': '%s carries %d codes in %d minutes (%s). Let it keep %s, and add a lesson tool in the same module for %s (%s)?'
+        qs.append({'q': '%s carries %d codes in %d minutes (%s). Let it keep %s, and add a teach tool in the same module for %s (%s)?'
                         % (d['title'], d['n'], d['minutes'], depth_words(d, d['move']), fmt([L(b) for b in d['keep']]), fmt([L(b) for b in d['move']]), topic(d['move'][0])),
                    'pick': 'Yes.' + (' Major work.' if C['s'] == 'math' else '') + ' Fixing it inside the tool would run to about %d minutes.' % d.get('est', d['minutes'] + 10)})
     cards.append({'id': 'q-shape-' + C['key'], 'title': 'Shape: ' + cname(C['s'], C['g']), 'subject': '%s, %s' % (NAME[C['s']][:1].upper() + NAME[C['s']][1:], gname(C['g'])),
                   'status': 'question', 'built': 'Nov 11',
                   'changed': '%s is shaped by rule (docs/agents/catalog/shape/%s.md): %d tools, %d of %d standards read as taught in full. No tool is cut or merged. '
-                             'Each question is a second lesson tool in the same module, no split, proposed because one tool carries more than a sitting can teach and part of its load does not read as taught. '
+                             'Each question is a second teach tool in the same module, no split, proposed because one tool carries more than a sitting can teach and part of its load does not read as taught. '
                              'These come from the catalog rows, not from a fresh read of each spec.' % (cname(C['s'], C['g'])[:1].upper() + cname(C['s'], C['g'])[1:], C['key'], len(C['T']), st['full'], len(C['cov'])),
                   'questions': qs})
 json.dump(cards, io.open(os.path.join(SHAPE, 'cards.json'), 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
@@ -502,9 +502,9 @@ ask_all = [(C['key'], d) for C in ALL for d in C['T'] if d['call'] == 'ask']
 N.append('## Where things stand\n')
 N.append('- %d specs in the catalog. %d are logged fixed in done.txt (grade 4 math and grade 6 ELA), none reviewed yet. %d remain, and %d of those sort fine and only need confirming.'
          % (total, len(done), total - len(done), fine_left))
-N.append("- **Spec fixing has stopped** (Cory, 2026-11-11 night, accepting the cold strategic review; it had been set to stop after batch 4). Do not work the batches below. Old tools and specs are now sorted by demand (BASELINE rule 26): a spec gets work only when a unit plan names its tool. Sara's work is docs/courses/NEXT-SPINES.md.")
+N.append("- **Spec fixing has stopped** (Cory, 2026-11-11 night, accepting the cold strategic review; it had been set to stop after batch 4). Do not work the batches below. Old tools and specs are now sorted by demand (BASELINE rule 26): a spec gets work only when a unit or section plan names its tool. Sara's work is docs/courses/NEXT-SPINES.md.")
 N.append('- From now on every spec you touch also carries the three hooks in README.md ("The end standard"): an unaided check the teacher can see, English learner supports, and access. The 22 specs already logged get them in batch 1.')
-N.append('- Cory approved %d second lesson tools. Each one takes codes away from an existing tool, so that tool\'s spec gets lighter. The new tools are not written yet and are not your work now: each gets an idea and a spec when its course is built.' % len(appr_all))
+N.append('- Cory approved %d second teach tools. Each one takes codes away from an existing tool, so that tool\'s spec gets lighter. The new tools are not written yet and are not your work now: each gets an idea and a spec when its course is built.' % len(appr_all))
 N.append(('- %d more second tools are on the Desk waiting for Cory. Leave those specs until he answers.' % len(ask_all)) if ask_all else '- No second tool is waiting on the Desk: every one proposed so far is approved.')
 N.append('- A sitting of 10 to 14 specs is a good batch. One course at a time, and finish a course before starting the next.\n')
 N.append('## Batch 1: close the two proving courses (11 specs)\n')
@@ -528,7 +528,7 @@ for i, (key, lab) in enumerate((('math-5', 'grade 5 math'), ('math-3', 'grade 3 
     N.append('- Fix: ' + names([d for d in rest if d['sort'] != 'fine']) + '.')
     N.append('- Confirm only: ' + names([d for d in rest if d['sort'] == 'fine']) + '.\n')
 N.append('## After batch 4\n')
-N.append('Specs stay stopped. Your work moves to drafts of the layers under a course (Cory, 2026-11-11): the grade 3 and grade 5 math spines, the rubric files and approach pages for science and English language arts, the grade 6 ELA text plan, then more math spines. The list, the order and how each piece is made: [../courses/NEXT-SPINES.md](../courses/NEXT-SPINES.md). It can start before batch 4 ends if a batch is waiting on something. Unit pieces (teacher pages, checks with their keys, sentence frames) come after the unit plan fields are fixed.\n')
+N.append('Specs stay stopped. Your work moves to drafts of the layers under a course (Cory, 2026-11-11): the grade 3 and grade 5 math scope and sequence, the rubric files and approach pages for science and English language arts, the grade 6 ELA text plan, then more math scope and sequence documents. The list, the order and how each piece is made: [../courses/NEXT-SPINES.md](../courses/NEXT-SPINES.md). It can start before batch 4 ends if a batch is waiting on something. Unit pieces (teacher pages, checks with their keys, sentence frames) come after the unit plan fields are fixed.\n')
 N.append('## On hold: every other course\n')
 N.append('Do not start these. They open, in this order, once grade 4 math is proved. The table is here so the size of what is left stays in view. A band tool is counted once, with the first course that uses it. "Wait" means a Desk card is open on that tool.\n')
 N.append('| Order | Course | Specs left | Rework | Small addition | Confirm only | Wait | Shape file |')

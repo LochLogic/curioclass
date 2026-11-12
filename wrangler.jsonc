@@ -10,7 +10,7 @@
     "binding": "ASSETS",
     "not_found_handling": "404-page",
     "html_handling": "auto-trailing-slash",
-    "run_worker_first": ["/library/*/art/*", "/modules/*/words/art/*", "/api/*"]
+    "run_worker_first": ["/library/*/art/*", "/topics/*/words/art/*", "/api/*"]
   },
   // Messages from the home page banner (worker/sql/messages.sql); pulled for review by scripts/messages.py.
   "d1_databases": [

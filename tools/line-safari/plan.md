@@ -33,7 +33,7 @@ grouping: Whole class on the carpet, then at tables.
 1. Open **Draw** on the big screen. Two or three children add one line each to a class picture using the line brushes.
 2. Children hold up their drawings. Classmates find a zigzag, a spiral or a circle in each one.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Call out a line name: "Wavy!" "Zigzag!" "Spiral!" Children draw it in the air with a finger. Then: "Which two colors make green?" (Yellow and blue.)
 

@@ -1,12 +1,12 @@
-"""Which Worksheet Generators fit a module, with their settings filled in (docs/SUPPLY-CLOSET-PLAN.md, Generators).
+"""Which Worksheet Generators fit a topic, with their settings filled in (docs/SUPPLY-CLOSET-PLAN.md, Generators).
 
     links(module, has_words) -> [dict(id, title, url, note)]
 
-Module pages show these as "Make a sheet" links (site/templates/module.html). A link opens the generator with the
-grade, skill or word list already chosen; the generator falls back to its defaults for any setting it does not have,
-so a slightly off grade is harmless. Rules go by subject, strand and grade, the same three fields every module has in
-data/modules.csv. Keep them few: a module page should offer the two or three generators a teacher would really use,
-not the whole shelf.
+Topic pages (/topics/<id>/) show these as "Make a sheet" links (site/templates/module.html; the code still says
+module). A link opens the generator with the grade, skill or word list already chosen; the generator falls back to its
+defaults for any setting it does not have, so a slightly off grade is harmless. Rules go by subject, strand and grade,
+the same three fields every topic has in data/modules.csv. Keep them few: a topic page should offer the two or three
+generators a teacher would really use, not the whole shelf.
 """
 import json
 from pathlib import Path

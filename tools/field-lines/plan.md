@@ -36,7 +36,7 @@ grouping: Pairs on devices, with whole-class pauses.
 3. Pairs calculate the force between two 1 kg balls 1 m apart, each with 1 μC, and check the tool.
 4. Discuss: "The electric force is about 10³⁹ times gravity in an atom, yet gravity holds the Moon in orbit. Why?" (Matter is almost neutral, so charges cancel; mass only adds up.)
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "Two charges are 2 m apart. They move to 6 m apart. What happens to the force?" (It becomes 1/9.) Then: "Name one way gravitational and electric forces are alike and one way they differ."
 

@@ -50,7 +50,7 @@ Press **Next round** after each win. Trips cost nothing: "Tripping is how we fin
 3. Team Moon closes their eyes; swap two cards; Team Star dances it. "What changed? Which cards moved?" (The two we swapped.)
 4. Switch teams and repeat.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 1. Set out Wave, Jump, Stomp. Say: "The real dance is wave, clap, stomp. I'm the robot." Dance exactly what the cards say.
 2. "Show me with fingers: which step was the bug?" Every child holds up fingers (2). "How do we fix it?" (Change Jump to Clap.)
@@ -67,4 +67,4 @@ Press **Next round** after each win. Trips cost nothing: "Tripping is how we fin
 
 - Teach steps 1 and 2 only (4 min).
 - **Fix-It Show** rounds 1 to 3, one per team plus a bonus (10 min).
-- Exit check with the paper cards (4 min).
+- Exit ticket with the paper cards (4 min).

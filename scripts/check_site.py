@@ -23,17 +23,30 @@ for page in DIST.rglob('*.html'):
     for url in re.findall(r'(?:href|src)="(/[^"#?]*)', html):
         if not resolves(url):
             broken.setdefault(url, page.relative_to(DIST).as_posix())
-# _redirects (from data/redirects.csv): every target must exist, and no old path may still be built as a page
+# _redirects (from data/redirects.csv): every target must exist, and no old path may still be built as a page.
+# A splat rule (/modules/* /topics/:splat) moves a whole folder: its target folder must be built and hold pages, and
+# nothing may still be built under the old folder (a link to the old folder already shows up above as broken).
 rfile = DIST / '_redirects'
 redirects = [l.split() for l in rfile.read_text(encoding='utf-8').splitlines() if l.strip()] if rfile.exists() else []
+splats = 0
 for old, new, *_ in redirects:
+    if old.endswith('/*'):
+        splats += 1
+        src, dst = DIST / old[:-1].strip('/'), DIST / new.split(':splat')[0].strip('/')
+        if not new.endswith('/:splat'):
+            broken.setdefault(new + ' (a splat target ends in /:splat)', '_redirects')
+        elif not dst.is_dir() or not next(dst.rglob('index.html'), None):
+            broken.setdefault(new, '_redirects')
+        if src.exists() and any(f.is_file() for f in src.rglob('*')):
+            broken.setdefault(old + ' (redirected, but still built)', '_redirects')
+        continue
     if not resolves(new.split('#')[0]):
         broken.setdefault(new, '_redirects')
     if resolves(old):
         broken.setdefault(old + ' (redirected, but still built)', '_redirects')
 files = [f for f in DIST.rglob('*') if f.is_file()]
 big = [f.relative_to(DIST).as_posix() for f in files if f.stat().st_size > 25 * 2 ** 20]  # Cloudflare's asset limits
-print(f'{pages} pages checked, {len(redirects)} redirects, {len(broken)} broken internal links, {len(external)} external loads, '
+print(f'{pages} pages checked, {len(redirects)} redirects ({splats} splat), {len(broken)} broken internal links, {len(external)} external loads, '
       f'{len(files)} files (limit 20000), {len(big)} over 25 MiB')
 for f in big:
     print('  too big', f)

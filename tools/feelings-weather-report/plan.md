@@ -32,7 +32,7 @@ grouping: Whole class on the carpet.
 2. Listen to Bear's kind words or good idea. "What else could help?"
 3. Do two or three stories, then open **Class forecast**. Children come up one at a time and tap their weather. Press **Make the forecast**.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Each child draws their weather right now and tells you one thing that helps when they feel that way. Listen for a feeling word and a helper idea.
 

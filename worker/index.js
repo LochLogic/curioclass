@@ -1,7 +1,9 @@
 // Curio Class Worker: everything is static assets, except the pictures, which live in the R2 bucket curioclass-media
-// (the 20,000-file limit on static assets, docs/ROADMAP.md). URLs stay the same; the R2 key is the path under dist/.
+// (the 20,000-file limit on static assets, docs/ROADMAP.md). The R2 key is the path under dist/, except that Word Wall art,
+// served at /topics/<id>/words/art/, keeps its key from before topic pages moved (modules/<id>/words/art/).
 // scripts/sync_media.py uploads new pictures before a deploy; build_site.py writes dist/.assetsignore so they skip the asset upload.
-const MEDIA = /^\/((?:library\/[^/]+\/art\/[^/]+\.jpg)|(?:modules\/[^/]+\/words\/art\/[^/]+\.webp))$/;
+const MEDIA = /^\/((?:library\/[^/]+\/art\/[^/]+\.jpg)|(?:topics\/[^/]+\/words\/art\/[^/]+\.webp))$/;
+const r2key = p => p.replace(/^topics\//, 'modules/');
 
 export default {
   async fetch(request, env, ctx) {
@@ -16,7 +18,7 @@ export default {
     const key = new Request(url.origin + url.pathname, { method: 'GET' });
     let res = await cache.match(key);
     if (!res) {
-      const obj = await env.MEDIA.get(m[1]);
+      const obj = await env.MEDIA.get(r2key(m[1]));
       if (!obj) return env.ASSETS.fetch(request);  // not in R2: the asset 404 page
       const headers = new Headers();
       obj.writeHttpMetadata(headers);

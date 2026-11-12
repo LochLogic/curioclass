@@ -37,7 +37,7 @@ grouping: Pairs on devices, with whole-class debriefs.
 2. Every group that tries Spec 4 fails. Ask them to prove it can't be done: the crush force times the crush length has to be at least the kinetic energy.
 3. Connect to the real world: car crumple zones, bike helmets, airbags.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "A 1.0 kg cart at 2.0 m/s hits a wall and stops. Design A stops it in 0.01 s, design B in 0.2 s. Find the impulse and the average force for each, and say which design is safer." (Impulse 2.0 N·s for both. 200 N for A, 10 N for B, so B is safer.)
 

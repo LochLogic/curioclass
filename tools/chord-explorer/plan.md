@@ -36,7 +36,7 @@ grouping: Whole class for the hook, then pairs on devices.
 2. Try the **Surprise!** preset. "How does the deceptive ending make you feel?"
 3. Pairs write their own four-chord progression in Roman numerals that ends with a strong way home, and play it.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "Name the chords in G major: I, IV and V. Which chord creates the most tension? Write a progression that ends on a half cadence." Cards that end the half cadence on I show who needs **Home or not?** again.
 

@@ -44,7 +44,7 @@ Let Pip finish talking before you tap. Partners plan, then the class calls the a
 3. "Which card is the bug?" (Card 4, Left.) "What should it be?" (Up.) Swap it; a new Pip walks it to the envelope.
 4. New Pip: Right, Right, Right, Up. Pip steps off the tape on card 3. "Which card is extra?" (One Right.) Take it away, add the up arrow, walk again.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 1. Tap **Snow Town**, the Sun house (two squares right of the Post Office), **Clear**, the right arrow, the up arrow.
 2. "Will Pip get to the Sun house? Thumbs up or down." (Down: card 2 goes up into a snowbank.) **Go**: "Flump!"
@@ -62,4 +62,4 @@ Let Pip finish talking before you tap. Partners plan, then the class calls the a
 
 - Teach steps 1 to 5 (5 min).
 - Practice steps 4 to 6, the bug in level 4 (7 min).
-- Exit check steps 2 and 3 (3 min).
+- Exit ticket steps 2 and 3 (3 min).

@@ -41,7 +41,7 @@ grouping: Whole class on the carpet, with turn-and-talk partners.
 3. Draw a tricky one: round, with stripes. Partners talk: "What example would help?" Draw and label one more, then guess again.
 4. Change the Zib label to Zab. "Now what would Kip guess for a round, spotted one?" (Zab, which is wrong.) "Does a wrong label help?" (No. Kip learns it wrong.)
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 1. "Kip thinks a fluffy dog is a cat. What should we show it?" 1 finger for five more cats, 2 for one more fluffy dog. (2: an example like the new pet.)
 2. "If we tell Kip a cat is a dog, will its guesses get better or worse?" Thumbs up or down. (Down: worse.)
@@ -58,4 +58,4 @@ grouping: Whole class on the carpet, with turn-and-talk partners.
 
 - **Read**, teach Marmalade and Bear, one parade: 6 of 10 (7 min).
 - Teach up to Ziggy, the twelfth pet, and parade again: 10 of 10 (8 min).
-- The fingers question from the Exit check (3 min).
+- The fingers question from the Exit ticket (3 min).

@@ -35,7 +35,7 @@ grouping: Whole class for the hook, then pairs on devices.
 2. Before pressing **Run the plan**, pairs check their plan with the right series formula on paper. One run per customer.
 3. Ask: "Ivy's goal is $2,000. How can you prove no plan works without trying them all?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "A plan starts at $3 and adds $2 each week. Write the rule both ways and find the balance after 10 weeks." Then: "A plan starts at $1 and triples each day. Write the sum for 8 days as a formula." Cards that use a_n where S_n belongs show who needs the chart again.
 

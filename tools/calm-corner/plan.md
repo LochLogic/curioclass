@@ -35,7 +35,7 @@ grouping: Whole class on the carpet, with room to stand.
 2. Try one more: "It's too loud and your body feels wiggly." Take two or three ideas.
 3. Point to the calm corner: "This is where you can go to use a tool."
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Children hold up fingers for their favorite tool: one for balloon breathing, two for star breathing, three for stretching. Then each whispers to a neighbor when they might use it. Listen for a real moment ("when my brother takes my toy").
 

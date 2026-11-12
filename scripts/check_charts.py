@@ -80,7 +80,7 @@ def parse(f, kind):
             (col['items'] if col else c['items']).append(it)
         else:
             c['bad_lines'].append(line)
-    c['url'] = f'/modules/{f.stem}/chart/' if kind == 'chart' else f'/closet/anchor-charts/posters/{f.stem}/'
+    c['url'] = f'/topics/{f.stem}/chart/' if kind == 'chart' else f'/closet/anchor-charts/posters/{f.stem}/'
     return c
 
 

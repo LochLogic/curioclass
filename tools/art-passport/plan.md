@@ -33,7 +33,7 @@ grouping: Whole class on the carpet.
 
 Children choose a favorite work from today and draw it, adding one thing they noticed up close. Under it, they "write" (or tell you) where it was made.
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Show one work from today. Each child tells a partner one thing they see and one feeling it gives them, using "I see... It makes me feel..." Listen in for children who name a detail.
 

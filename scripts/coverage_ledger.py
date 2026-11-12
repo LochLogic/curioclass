@@ -158,7 +158,7 @@ for (subject, grade), mods in courses.items():
         got = {h[1] for h in hs if h[2] == 'taught' and not h[3]}
         missing += ['part %s' % x for x in sorted(letters.get(code, set()) - got)] if letters.get(code) and '' not in got and st != 'full' else []
         out.append({'subject': subject, 'grade': grade, 'standard': long_of.get(code, code), 'focus': focus.get(code, ''),
-                    'status': st, 'lesson': who('taught'), 'see_why': who('explored'), 'practice': who('practiced'),
+                    'status': st, 'teach': who('taught'), 'see_why': who('explored'), 'practice': who('practiced'),
                     'weak': who('shown', 'touched', 'claimed'), 'parts_missing': ' | '.join(missing),
                     'unit_adds': ' | '.join(sorted({h[4] for h in hs if h[4]})),
                     'modules': '; '.join(listed.get(code, [])), 'worksheets': '', 'generator': '', 'reading_room': '', 'unit': ''})
@@ -166,7 +166,7 @@ for (subject, grade), mods in courses.items():
     alltools = sum(len(tools_of[m['module_id']]) for m in mods)
     measure.append((subject, grade, count, len(expected), read, alltools))
 
-cols = ['subject', 'grade', 'standard', 'focus', 'status', 'lesson', 'see_why', 'practice', 'weak', 'parts_missing', 'unit_adds',
+cols = ['subject', 'grade', 'standard', 'focus', 'status', 'teach', 'see_why', 'practice', 'weak', 'parts_missing', 'unit_adds',
         'modules', 'worksheets', 'generator', 'reading_room', 'unit']
 with io.open(os.path.join(ROOT, 'data', 'coverage.csv'), 'w', encoding='utf-8', newline='') as f:
     w = csv.DictWriter(f, cols, lineterminator='\n'); w.writeheader(); w.writerows(out)

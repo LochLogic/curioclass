@@ -45,7 +45,7 @@ grouping: Whole class for the first story, then partners.
 2. Each student fills the three empty thought bubbles, one for Lulu, one for Hank and one for Ivy: what each one is thinking, and one thing only that character knows.
 3. Partners swap and find one thing in their partner's bubbles that one character knows and another doesn't. Call on two pairs.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On the back of the bubble sheet, students answer: "In The Last Goal, Max blames Bea for losing. Name one thing Bea or Dot knew that Max didn't, and what Max might do if he knew it." Show page 3 of **The Last Goal** in Bea's and Dot's shoes first. (Bea's glove was loose; Dot lost the ball first. Max might say sorry or stop blaming Bea.) Students who only retell what happened need another round of switching shoes.
 

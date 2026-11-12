@@ -32,7 +32,7 @@ grouping: Whole class on the carpet.
 1. Switch to **Loud or soft?** Children make a big shape for loud and a tiny shape for soft, then see the glow.
 2. Switch to **Echo**. Sing the three-note tune back on "loo," then press **Show the shape** to see if it went up, down or stayed the same.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Play two notes in **High or low?** Each child shows with their body: tall for higher, crouched for lower. Then ask: "Was that sound high or loud?" Children answer with the word that fits.
 

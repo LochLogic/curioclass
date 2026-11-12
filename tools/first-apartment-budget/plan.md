@@ -35,7 +35,7 @@ grouping: Individuals on devices, then pairs to compare.
 2. Pairs with the same challenge compare reports. "Which single decision made the biggest difference?"
 3. Discuss: "A frugal year with no fun scores poorly on Life. A fun year with a maxed card scores poorly on Debt. What does balance look like?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "Your take-home pay is $2,400 a month. Using 50/30/20, how much goes to needs, wants and saving? Name one surprise from your year and how you'd plan for it next time."
 

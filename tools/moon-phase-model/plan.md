@@ -35,7 +35,7 @@ grouping: Pairs on devices, then small groups with the lamp.
 2. Find the new, first quarter, full and third quarter moons. Each group sketches the four in order.
 3. "Hold the ball where a lunar eclipse could happen. Why only sometimes?" (The ball must line up exactly in your head's shadow.)
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card, draw the Sun, Earth and Moon for a first quarter moon. Label the lit half of the Moon and the half we see from Earth. Then write one sentence on why phases aren't caused by Earth's shadow. Drawings with the Moon in Earth's shadow show who needs the model again.
 

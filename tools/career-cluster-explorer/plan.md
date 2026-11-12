@@ -37,7 +37,7 @@ grouping: Whole class for the hook and the model, then pairs on devices, then wh
 2. They draw a trail of four or five people behind it, like the tool's trails: each person's occupation, its career cluster, and one sentence ("A logger cuts the wood.").
 3. They count the clusters, then trade with the next pair and check each other's clusters in **Clusters**.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On paper or the printed ticket: name one career cluster and two occupations in it, then pick one thing at the fair or in the room and name two clusters that worked on it, with a job from each. Two jobs but no cluster means: back to the lanterns.
 
@@ -51,6 +51,6 @@ On paper or the printed ticket: name one career cluster and two occupations in i
 ## Short on time
 
 - Model the Ferris wheel, then pairs light five lanterns in **Festival** (10 min).
-- One trail together in **Trails** (4 min), then the exit check (4 min).
+- One trail together in **Trails** (4 min), then the exit ticket (4 min).
 
 See the teacher notes for what every button does.

@@ -40,7 +40,7 @@ Every object has four steps, shown by the bar at the top: change it, predict, te
 2. Use a crayon melted in the sun (can go back: it hardens again, in a new shape), a cracker toasted in a toaster (can't), a snowman melting into a puddle (the water can freeze again, but not into a snowman), and a pancake on a hot pan (can't).
 3. After each one: "Who can give me a because?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 1. Back to the plate. "Our ice cube is water now. Can it go back? How could we test it?" (Freeze it.) Put the plate in a freezer and check it tomorrow.
 2. Each child tells their partner one change that can go back and one that can't, with a because. Listen in on four or five pairs. Those without a because need the frame again tomorrow.

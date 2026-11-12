@@ -40,7 +40,7 @@ grouping: Whole class on the carpet, with partners for practice.
 3. Read the marked pages of the picture book. Children give a thumbs up when they hear a contraction, then say the two words it stands for.
 4. Share the rule breaker: will not becomes won't. "Does this one follow the pattern?" (No. It is just one to remember.)
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 1. Say a pair of words. Children hold up one or two fingers for how many letters fall out: is not (1), I will (2), we are (1), I have (2).
 2. Then three children each say a contraction and the two words it stands for. Note who still drops the wrong letters.

@@ -37,7 +37,7 @@ grouping: Whole class, then pairs on devices (or teams taking turns at the proje
 2. Pose an LCM problem: "Hot dogs come in packs of 8 and buns in packs of 6. What's the fewest of each that come out even?" (24, the LCM.)
 3. Pairs explain which tool they used and why: GCF for splitting into equal groups, LCM for things lining up again.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: write 90 as a product of primes (2 × 3² × 5), then find the GCF and LCM of 12 and 18 (6 and 36). Cards that mix up GCF and LCM show who needs the crucible again.
 

@@ -85,7 +85,7 @@ bands = {b['band_id']: dict(b, grade_list=b['grades'].split(';')) for b in read(
 BAND_SLUG = {'k2': 'k-2', '35': '3-5', '68': '6-8', '912': '9-12'}
 formats = {f['format_id']: f for f in read('formats.csv')}
 courses = {c['course_id']: c for c in read('courses.csv')}
-modules = {m['module_id']: dict(m, grades=expand(m['grade']), codes=m['standards'].split(';'), url=f'/modules/{m["module_id"]}/')
+modules = {m['module_id']: dict(m, grades=expand(m['grade']), codes=m['standards'].split(';'), url=f'/topics/{m["module_id"]}/')
            for m in read('modules.csv')}
 
 tools = []
@@ -182,8 +182,8 @@ env.globals['library_live'] = LIBRARY_LIVE
 # The Supply Closet (docs/SUPPLY-CLOSET-PLAN.md) stays out of deploy builds until Sub Day ships; --closet builds it.
 CLOSET_LIVE = bool({'--closet', '--preview'} & set(sys.argv))
 env.globals['closet_live'] = CLOSET_LIVE
-# The Teaching map is hidden for now (Cory, 2026-11-12): it comes back, reimagined as a picture of the course spines,
-# once the courses are built (docs/SITE-DESIGN.md). --map builds the old map for a local look.
+# The Teaching map is hidden for now (Cory, 2026-11-12): it comes back, reimagined as a picture of each course's
+# scope and sequence, once the courses are built (docs/SITE-DESIGN.md). --map builds the old map for a local look.
 MAP_LIVE = bool({'--map', '--preview'} & set(sys.argv))
 env.globals['map_live'] = MAP_LIVE
 # Recess (docs/GAMES.md): the game shelf at /recess/ and a page per game. A game is live once tools/<id>/tool.json
@@ -370,7 +370,7 @@ for c in list(charts.values()) + list(posters.values()):
 
 
 def chart_page(c, color, **ctx):
-    """/modules/<id>/chart/ or a poster page: a symbol per version, language and ink, and chart.svg for the shelf."""
+    """/topics/<id>/chart/ or a topic's poster page: a symbol per version, language and ink, and chart.svg for the shelf."""
     symbols, versions = [], []
     for v in ['done', 'fill'] if c['layout'] != 'grid' else ['done']:
         for lang in ['en', 'es']:
@@ -433,7 +433,7 @@ for u in ws.built_units():
         frag, _ = ws.build(u, sh, row, label, mod, tool_titles)
         data[sh['n']] = dict(title=sh['title'], type=row['type'], minutes=sh['minutes'], html=frag)
         ws_index.append(dict(t=f"Worksheet: {sh['title']}", u=f'/closet/worksheets/sheet/#{u}/{sh["n"]}', g=label, s='Supply Closet',
-                             f='Worksheet', m=row['module'], c=' '.join(mod['codes']) if mod else '', d=row['does'], b=True))
+                             f='Worksheet', w=row['module'], c=' '.join(mod['codes']) if mod else '', d=row['does'], b=True))
     ws_built[u] = data
     out = DIST / 'closet' / 'worksheets' / 'data' / f'{u}.json'
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -456,7 +456,7 @@ for u, rows_ in ws_rows.items():
             ws_by_module[mod['module_id']].append(dict(row, unit=u, label=ws_units[u]['label'], built=row['n'] in ws_built.get(u, {}) or bool(g), gen=g,
                                                        url=f'/closet/worksheets/sheet/#{u}/{row["n"]}' if row['n'] in ws_built.get(u, {}) else g['url'] if g else f'/closet/worksheets/{u}/'))
 
-# modules: the hub for everything one module has (tools, then Supply Closet shelves as they ship)
+# topic pages (/topics/<id>/; the code still says module): the hub for everything one topic has
 for m in modules.values():
     mt = by_module[m['module_id']]
     plans = [t for t in mt if t['built'] and t['plan']]
@@ -470,7 +470,7 @@ for m in modules.values():
         chart_page(charts[m['module_id']], CSS_HEX[subjects[m['subject']]['color']], m=m, subject=subjects[m['subject']],
                    tools=[t for t in mt if t['built']])
     if cards:
-        dest = DIST / 'modules' / m['module_id'] / 'words'
+        dest = DIST / 'topics' / m['module_id'] / 'words'
         for c in cards:
             c['src'] = ''
             if c['art'].exists():
@@ -961,33 +961,34 @@ if not CLOSET_LIVE:
     shutil.rmtree(DIST / 'closet')
     sitemap[:] = [p for p in sitemap if not p.startswith('/closet/')]
 
-# search index and static pages
+# search index and static pages. Fields: t title, u url, g grade, s subject or shelf, f kind, w where it sits (its topic,
+# strand, author or kind), c standard codes, d description, b ready
 index = [{'t': t['title'], 'u': t['url'], 'g': grade_label(t['module']['grade']), 's': t['subject_info']['short'],
-          'f': t['format_info']['label'], 'm': t['module']['title'], 'c': ' '.join(t['module']['codes']),
+          'f': t['format_info']['label'], 'w': t['module']['title'], 'c': ' '.join(t['module']['codes']),
           'd': t['concept'], 'b': t['built']} for t in tools]
-index += [{'t': g['title'], 'u': g['url'], 'g': g['band_label'], 's': 'Recess', 'f': 'Game', 'm': 'Recess', 'c': '',
+index += [{'t': g['title'], 'u': g['url'], 'g': g['band_label'], 's': 'Recess', 'f': 'Game', 'w': 'Recess', 'c': '',
            'd': g['blurb'], 'b': True} for g in RECESS if g['live']]
 index += [{'t': m['title'], 'u': m['url'], 'g': grade_label(m['grade']), 's': subjects[m['subject']]['short'], 'f': 'Topic',
-           'm': m['strand'], 'c': ' '.join(m['codes']), 'd': m['description'],
+           'w': m['strand'], 'c': ' '.join(m['codes']), 'd': m['description'],
            'b': any(t['built'] for t in by_module[m['module_id']])} for m in modules.values()]
 index += [{'t': s['title'], 'u': s['url'], 'g': grade_label(s['grades']), 's': 'Reading Room', 'f': s['kind'],
-           'm': s.get('author', ''), 'c': '', 'd': s.get('summary', ''), 'b': s['ready']} for s in stories + speeches + myth_own + sacred if LIBRARY_LIVE]
+           'w': s.get('author', ''), 'c': '', 'd': s.get('summary', ''), 'b': s['ready']} for s in stories + speeches + myth_own + sacred if LIBRARY_LIVE]
 if CLOSET_LIVE:  # Supply Closet items, so "fractions vocabulary" or "photosynthesis chart" finds them
     for m in modules.values():
-        mod = dict(g=grade_label(m['grade']), s=subjects[m['subject']]['short'], m=m['title'], c=' '.join(m['codes']), b=True)
+        mod = dict(g=grade_label(m['grade']), s=subjects[m['subject']]['short'], w=m['title'], c=' '.join(m['codes']), b=True)
         if words.get(m['module_id']):
             index.append(dict(mod, t=f"Word Wall: {m['title']}", u=m['url'] + 'words/', f='Word Wall',
                               d='Vocabulary cards: ' + ', '.join(c['word'] for c in words[m['module_id']])))
         if m['module_id'] in charts:
             ch = charts[m['module_id']]
             index.append(dict(mod, t=f"Anchor chart: {ch['title'][0]}", u=ch['url'], f='Anchor chart', d=f"The big idea of {m['title']} on one page"))
-    index += [{'t': f"Poster: {p['title'][0]}", 'u': p['url'], 'g': bands[p['band']]['label'], 's': 'Supply Closet', 'f': 'Poster', 'm': '', 'c': '',
+    index += [{'t': f"Poster: {p['title'][0]}", 'u': p['url'], 'g': bands[p['band']]['label'], 's': 'Supply Closet', 'f': 'Poster', 'w': '', 'c': '',
                'd': p['for'][0], 'b': True} for p in posters.values()]
     index += [{'t': f"Family game: {g['title']}", 'u': g['url'], 'g': grade_label(g['grade']), 's': subjects[g['subject']]['short'],
-               'f': 'Game Night', 'm': ', '.join(x['title'] for x in g['mods']), 'c': '', 'd': g['learn'], 'b': True}
+               'f': 'Game Night', 'w': ', '.join(x['title'] for x in g['mods']), 'c': '', 'd': g['learn'], 'b': True}
               for g in games.values()]
     index += [{'t': f"Break Box: {b['title']}", 'u': b['url'], 'g': grade_label(b['grade']), 's': 'Supply Closet',
-               'f': 'Break Box', 'm': b['kind'], 'c': '', 'd': b['idea'], 'b': True} for b in breaks.values()]
+               'f': 'Break Box', 'w': b['kind'], 'c': '', 'd': b['idea'], 'b': True} for b in breaks.values()]
     index += ws_index
 (DIST / 'search-index.json').write_text(json.dumps(index, separators=(',', ':')), encoding='utf-8')
 render('search.html', '/search/', index=False)
@@ -1018,10 +1019,16 @@ render('404.html', '/404.html', index=False)
     '  Permissions-Policy: camera=(), microphone=(self), geolocation=(), interest-cohort=()\n'
     '/assets/fonts/*\n  Cache-Control: public, max-age=31536000, immutable\n', encoding='utf-8')
 # Renamed or moved pages (data/redirects.csv: old,new) become permanent redirects; Workers static assets read _redirects.
-(DIST / '_redirects').write_text(''.join(f"{r['old']} {r['new']} 301\n" for r in read('redirects.csv')), encoding='utf-8')
+# A row may move a whole folder with a splat: old ends in /* and new uses :splat (/modules/* -> /topics/:splat). One-path
+# rules go first, splat rules after, so a one-path rule always wins.
+_redir = sorted(read('redirects.csv'), key=lambda r: r['old'].endswith('*'))
+for _r in _redir:
+    if ('*' in _r['old']) != (':splat' in _r['new']) or ('*' in _r['old'] and not _r['old'].endswith('/*')):
+        sys.exit(f"data/redirects.csv: {_r['old']} -> {_r['new']}: a splat rule ends in /* and its target uses :splat")
+(DIST / '_redirects').write_text(''.join(f"{r['old']} {r['new']} 301\n" for r in _redir), encoding='utf-8')
 # Content Signals (contentsignals.org): Cory allows search, AI answers and AI training (2026-10-28).
 (DIST / 'robots.txt').write_text(f'User-agent: *\nContent-Signal: search=yes, ai-input=yes, ai-train=yes\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n', encoding='utf-8')
 # Pictures are served from R2 by worker/index.js (the static-asset file limit); keep them out of the asset upload.
 # scripts/sync_media.py uploads the same two patterns. Keep the patterns here, there and in the Worker in step.
-(DIST / '.assetsignore').write_text('.assetsignore\nlibrary/*/art/*.jpg\nmodules/*/words/art/*.webp\n', encoding='utf-8')
+(DIST / '.assetsignore').write_text('.assetsignore\nlibrary/*/art/*.jpg\ntopics/*/words/art/*.webp\n', encoding='utf-8')
 print(f'{pages} pages, {len(built)} built tools, {len(bench)} on the bench, {len(sitemap)} in sitemap -> dist/')

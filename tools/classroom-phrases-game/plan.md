@@ -35,7 +35,7 @@ grouping: Whole class on the carpet, with partners for acting out.
 1. Play "What do I say?" with real objects. Drop a pencil, hold up an empty water bottle, or pretend to sneeze. Children say the phrase.
 2. Post the picture cards by the door. Show newcomers they can point to a card when the words don't come.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Point to three children, one at a time, and set a scene: "You don't understand the directions." "You want to join a game." "Someone gives you a crayon." Each child says the phrase. Note who needs the picture card for now.
 

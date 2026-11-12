@@ -35,7 +35,7 @@ grouping: Whole class on the carpet, then partners.
 1. Partners take turns at their spots: one picks a real object from the bag and describes it with the frame cards, and the other guesses.
 2. Ask a few partners to share their best sentence with the class.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Hold up one real object. Each child tells you one full sentence about it: "It has ___." or "It is ___." Listen for the math words. Children who answer with one word try again with a frame.
 

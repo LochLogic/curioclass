@@ -2,7 +2,7 @@ arc: explore-first
 minutes: 45
 focus: CASEL.Relationship Skills
 goal: I can lead a team project by matching people to work they're good at, checking in, and giving people rest, and explain why that keeps the team going.
-materials: The tool on a projector. One laptop per pair. Scrap paper for the exit check.
+materials: The tool on a projector. One laptop per pair. Scrap paper for the exit ticket.
 grouping: Whole class for weeks 1 and 2, then partners, then groups of three or four.
 ---
 ## Before class
@@ -44,7 +44,7 @@ grouping: Whole class for weeks 1 and 2, then partners, then groups of three or 
 3. Tick at least two boxes under **How I'll keep the team going** and read the notes in the panel. "The plan says Week 2 has 4 tasks at once. What would you move?"
 4. Press **Print plan**, or **Save on this device**.
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 On scrap paper: "Week 3. Ben starts the week Tired. Luis cares about Having a say. Who do you rest, which lead move do you pick, and why?" (Rest Ben so he comes back strong. Ask for ideas, because Luis gets a bigger boost and the team's idea cuts work.) Students who push everyone or skip rest should revisit their report's **Week by week** list.
 
@@ -57,4 +57,4 @@ On scrap paper: "Week 3. Ben starts the week Tired. Luis cares about Having a sa
 ## Short on time
 
 - Hook (3 min), then weeks 1 and 2 of Riverside Cleanup as a class, with the **Check in** surprise (10 min).
-- Skip Plan Your Own. End with the exit check (4 min).
+- Skip Plan Your Own. End with the exit ticket (4 min).

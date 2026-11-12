@@ -34,7 +34,7 @@ grouping: Whole class on the carpet, with partners.
 1. Switch to **Describe it**. Tap a thing and pick its color, size, parts and texture from the word cards. Press **Say it together**.
 2. Pass the real objects around. Partners use the frames to describe one: "It is ___. It feels ___."
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Play I spy with one thing in the classroom. A child gives two clues using the frames, and the class guesses. Do it with three children. Note who can give a color and a texture word.
 

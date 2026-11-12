@@ -34,7 +34,7 @@ grouping: Whole class on the carpet.
 1. Open **Timers** and do handwashing together: five steps with 20 seconds of scrubbing, acted out with pretend soap. If you have a sink, do it for real.
 2. Stand up and move with the music for 30 seconds of toothbrushing: "top teeth, bottom teeth, front, back."
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Each child turns to a partner and finishes the sentence: "My healthy habit is ___. It helps my body ___." Listen to four or five pairs. Children who name a habit but not how it helps need the meters again tomorrow.
 

@@ -36,7 +36,7 @@ grouping: Whole class for the teach, then pairs on devices.
 3. "No snack wins every line. How do you decide which line matters most?" (It depends on your goal.)
 4. If you brought real packages, pairs use the 5/20 rule on one.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "A snack has 25% DV sodium. Is that high or low? A serving is 1 cup, and the package has 3 servings. You eat the whole package. How much sodium is that?" (High; 75% DV.) Cards that miss the serving math show who needs the chips label again.
 

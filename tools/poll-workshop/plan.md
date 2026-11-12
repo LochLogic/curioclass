@@ -36,7 +36,7 @@ grouping: Pairs on devices, with whole-class pauses.
 2. Pairs open **Budget desk** for round 1 and design the best poll they can for $10,000, then **Publish**.
 3. Pairs rewrite the real survey question you brought as a neutral question.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "A poll of 900 randomly chosen students finds 54 percent support a later start. Find the margin of error and write a headline using the tool's rules." Then: "A poll of 5,000 people who visit a gaming website finds 80 percent support. What's wrong with it?"
 

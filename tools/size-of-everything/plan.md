@@ -34,7 +34,7 @@ grouping: Whole class for the hook, then pairs on devices.
 2. Rule check: "Hop left, the exponent goes up. Hop right, it goes down. Does the value change?"
 3. Pairs who finish pick the comparison that surprised them most and explain it.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "Write 0.00042 m and 93,000,000 mi in scientific notation. The universe is about 10²⁷ m and a proton about 10⁻¹⁵ m. How many times bigger is the universe?" (10⁴².) Cards that call 10⁻¹⁵ a negative size show who needs the slider again.
 

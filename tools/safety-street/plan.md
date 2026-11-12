@@ -33,7 +33,7 @@ grouping: Whole class on the carpet.
 1. Switch to **Crossing practice**. Biscuit waits at the curb. The class says "Look left, right and left again," and waits for the walking person.
 2. Children practice at the tape curb: stop, look left, right, left, and hold a grown-up's hand. Remind them that young children cross with a grown-up.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Switch to **Safe or not?** and read four cards. Children answer with thumbs up or thumbs down. Listen to their reasons for "Chase a ball into the street."
 

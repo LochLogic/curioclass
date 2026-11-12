@@ -38,7 +38,7 @@ grouping: Whole class for the model, then pairs on laptops.
 1. Two or three pairs play their song on the big screen with the Form card covered by a sheet of paper. The class closes their eyes, listens, and calls the form.
 2. Uncover the Form card to check. "How did you know A came back?" (It sounded the same, the same notes and instrument.)
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On paper or the printed ticket: a song goes verse, chorus, verse. Students write its form in letters (A B A) and explain what happens to every A block when you change one note in A, and why (they all change, because the same letter means the same music). Students who write A B C need step 2 of the Model again.
 
@@ -52,6 +52,6 @@ On paper or the printed ticket: a song goes verse, chorus, verse. Students write
 ## Short on time
 
 - Model with Hot Cross Buns in **Listen**, then build ABA in **Build** together (10 min).
-- Pairs build one rondo (7 min), then the exit check (3 min).
+- Pairs build one rondo (7 min), then the exit ticket (3 min).
 
 See the teacher notes for what every button does.

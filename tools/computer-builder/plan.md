@@ -51,7 +51,7 @@ grouping: Whole class on the carpet, with turn-and-talk partners.
    - take a selfie (box, camera, screen)
 3. After each: "Which part could we leave off? How do you know?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 1. Tap **Missing**, then **Start**. Everyone closes their eyes while Nibbles the mouse unplugs a part.
 2. Watch the job. When the narrator asks which part is unplugged, every child shows its sign. Scan the room.

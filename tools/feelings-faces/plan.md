@@ -33,7 +33,7 @@ grouping: Whole class on the carpet, then partners.
 2. Read the three choices for what to say or do. The class votes, then taps.
 3. Talk about an answer like "Don't be sad." It isn't mean, but why doesn't it help a friend feel heard?
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Partners practice: one makes a sad face, the other says one kind thing. Then they switch. Listen for questions like "Are you okay? Do you want to play?"
 

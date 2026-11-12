@@ -8,3 +8,4 @@ old,new
 /grades,/classrooms/
 /subjects/,/classrooms/#subject
 /subjects,/classrooms/#subject
+/modules/*,/topics/:splat

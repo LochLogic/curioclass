@@ -35,7 +35,7 @@ grouping: Pairs on devices, with whole-class debriefs.
 1. Pairs do **Missions**: at least **Bad timing**, the fees mission and steady saving. Predict first, then launch.
 2. Debrief the fee mission: "A 1% fee left about a third less after 40 years. Why so much more than 1%?" (Fees compound every year, just like returns.)
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card, in three sentences: one reason stocks are risky, one thing that has lowered that risk in the past, and one reason these past results might not repeat. Cards that promise future returns show who needs the "history is not a forecast" point again.
 

@@ -15,12 +15,25 @@ ROOT = Path(__file__).resolve().parent.parent
 DIST = ROOT / 'dist'
 MANIFEST = ROOT / 'data' / 'media-manifest.txt'
 BUCKET = 'curioclass-media'
-PATTERNS = ['library/*/art/*.jpg', 'modules/*/words/art/*.webp']  # same as worker/index.js and dist/.assetsignore
+PATTERNS = ['library/*/art/*.jpg', 'topics/*/words/art/*.webp']  # same as worker/index.js and dist/.assetsignore
+
+
 TYPES = {'.jpg': 'image/jpeg', '.webp': 'image/webp'}
 
 
+def key(rel):
+    """The R2 key for a path under dist/. Word Wall art keeps its key from before topic pages moved to /topics/
+    (worker/index.js maps it the same way), so nothing uploads again and the manifest keeps its names."""
+    return 'modules/' + rel[len('topics/'):] if rel.startswith('topics/') else rel
+
+
+def file_of(k):
+    """The file in dist/ for an R2 key (the reverse of key())."""
+    return DIST / ('topics/' + k[len('modules/'):] if k.startswith('modules/') else k)
+
+
 def local():
-    return {p.relative_to(DIST).as_posix(): p.stat().st_size for pat in PATTERNS for p in DIST.glob(pat)}
+    return {key(p.relative_to(DIST).as_posix()): p.stat().st_size for pat in PATTERNS for p in DIST.glob(pat)}
 
 
 def manifest():
@@ -54,7 +67,7 @@ def main():
 
     def put(k):
         for attempt in range(5):
-            r = subprocess.run(cmd + ['r2', 'object', 'put', f'{BUCKET}/{k}', '--file', str(DIST / k),
+            r = subprocess.run(cmd + ['r2', 'object', 'put', f'{BUCKET}/{k}', '--file', str(file_of(k)),
                                       '--content-type', TYPES[Path(k).suffix], '--remote'],
                                capture_output=True, text=True, encoding='utf-8', errors='replace', cwd=ROOT)
             if r.returncode == 0:

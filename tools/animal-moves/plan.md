@@ -33,7 +33,7 @@ grouping: Whole class, each child in their own space.
 1. Two or three children make up a new animal move. The class copies it.
 2. Ask: "Which animal moved at a low level? A high level? Which move was hardest to do slowly?"
 
-## Exit check (2 min)
+## Exit ticket (2 min)
 
 Call out a cue: "Land softly!" Children show a frog hop. "Same foot leads!" Children show a gallop. "Still as a statue!" Children balance like a flamingo. Watch for bent knees and soft landings.
 

@@ -33,7 +33,7 @@ grouping: Whole class in a circle.
 1. Switch to **Echo**. The cards turn face down and the buddies play a pattern. The class listens, then claps it back on "Ready... Go!"
 2. Press **Show me** to check. Start with bears and bunnies, then add the owl.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Clap your name: "Mi-a" is ti-ti, "Sam" is ta. Children clap their own names one at a time around the circle while you pat a steady beat. Then ask: "Is the owl's beat gone, or still there?" (Still there.)
 

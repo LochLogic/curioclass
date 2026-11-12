@@ -38,7 +38,7 @@ grouping: Whole class for the model, then individual drawing.
 2. Two or three students show their drawing. "Where is the eye level? How can you tell?"
 3. On-screen drawings can be saved with **Save picture**.
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 On a card, draw a horizon line, a vanishing point and one box above the horizon. Shade one side darker. Boxes that show their top above the horizon show who needs the model again.
 

@@ -35,7 +35,7 @@ grouping: Pairs on devices, with whole-class pauses.
 3. Discuss target 6, Turnaround: "The cart stops for an instant at 3 s. Is the acceleration zero there?" (No: it is −0.5 m/s² the whole time.)
 4. "Why can't a real cart follow target 1 exactly?" Press **Show all three** to see.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card, sketch the velocity and acceleration graphs for this position graph: still for 2 s, then rising steadily for 4 s, then still. Then: "Where on a position graph is the velocity largest?" Velocity graphs with a ramp instead of a flat step show who needs **Show links** again.
 

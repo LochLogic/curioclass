@@ -2,7 +2,7 @@ arc: explore-first
 minutes: 45
 focus: CASEL.Relationship Skills
 goal: I can say a hard thing with an I-statement, say back the other person's side, and suggest a plan that works for both of us.
-materials: The tool on a projector. Optional: one laptop per pair. Printed Partner Cards for The Markers, one set per pair. Scrap paper for the exit check.
+materials: The tool on a projector. Optional: one laptop per pair. Printed Partner Cards for The Markers, one set per pair. Scrap paper for the exit ticket.
 grouping: Whole class for the first scene, then partners.
 ---
 ## Before class
@@ -45,7 +45,7 @@ grouping: Whole class for the first scene, then partners.
 3. **Swap roles** with the same cards and do it again.
 4. Project **Show both sides** for The Markers. "What did each of you not know at the start?" Call on two pairs.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 Read a new made-up moment: "Your locker partner keeps piling wet gym clothes on top of your books." On scrap paper, students write one I-statement with all four parts: I feel ___ when ___ because ___. Could we ___? (I feel annoyed when my books get wet, because I need them for class. Could we each use one shelf?) Students who write "I feel like you..." or skip the ask need another round in **Line Builder**.
 
@@ -53,9 +53,9 @@ Read a new made-up moment: "Your locker partner keeps piling wet gym clothes on 
 
 - **Support:** keep the frame "I feel ___ when ___ because ___. Could we ___?" on the board all period.
 - **Stretch:** "In **Line Builder**, use all four trap tiles, check the line, then fix one trap at a time. Which fix changed the reply most?"
-- **Stretch:** "Write a blame line for the exit check moment, then rewrite it as a reflective listen from the other side."
+- **Stretch:** "Write a blame line for the exit ticket moment, then rewrite it as a reflective listen from the other side."
 
 ## Short on time
 
 - Hook (3 min), then **The Slides** only: blame card, **Rewind**, I-statement, and the Jordan surprise (10 min).
-- End with the exit check I-statement (4 min).
+- End with the exit ticket I-statement (4 min).

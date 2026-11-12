@@ -39,7 +39,7 @@ def place(m):
         if c in BY_GRADE:
             if g in GRADES:
                 return 'course', f'{s}-{g}', f'{SHORT[s]}, {gname(g)}', (GRADES.index(g), '')
-            return 'shared', f'{s}-{g}', f'{SHORT[s]}, modules shared across grades {bname(g)}', (0, g)
+            return 'shared', f'{s}-{g}', f'{SHORT[s]}, topics shared across grades {bname(g)}', (0, g)
         return 'course', c, courses[c]['title'], (20 + int(courses[c]['typical_grade'] or 9), c)
     title = courses[c]['title']
     if s in ONE_ROW:
@@ -47,7 +47,7 @@ def place(m):
     b = BAND_OF.get(g, g)
     if b in BANDS:
         return 'course', f'{c}-{b}', f'{title}, grades {bname(b)}', (BANDS.index(b), c)
-    return 'shared', f'{c}-{b}', f'{title}, modules shared across grades {bname(b)}', (9, c)
+    return 'shared', f'{c}-{b}', f'{title}, topics shared across grades {bname(b)}', (9, c)
 
 info = {}
 for m in modules:
@@ -89,11 +89,11 @@ A('- **Rubric file**: our own-words file of what a published review rubric asks.
   'the bar still has to be stated.')
 A('- **Approach**: the subject page that says how the shared approach is carried out.')
 A('- **Progression**: what the grade inherits and hands on.')
-A('- **Spine**: every teaching day of the year in order. "draft" means written and read by the expert; see '
+A('- **Scope and sequence**: every teaching day of the year in order. "draft" means written and read by the expert; see '
   'ROADMAP for which have Cory\'s yes.')
-A('- **Unit plans**: stretch sheets and unit plans on file, as a count.')
-A('- **Modules** and **Tools**: what the catalog holds. Tools are counted as spec / built / live. A spec or a '
-  'built tool is not yet tied to a unit plan anywhere except the trial units.')
+A('- **Plans**: unit plans and section plans on file, as a count.')
+A('- **Topics** and **Tools**: what the catalog holds. Tools are counted as spec / built / live. A spec or a '
+  'built tool is not yet tied to a section plan anywhere except the trial sections.')
 A('\nNo course has lessons, print, checks with keys or teacher pages yet. That is layer 7 and starts with the '
   'pilot unit.\n')
 
@@ -101,7 +101,7 @@ courselist = {k: d for k, d in info.items() if d['kind'] == 'course'}
 groups = [(s, subjects[s]) for s in CORE4] + [(s, subjects[s]) for s in subjects if s not in CORE4]
 
 A('## Summary\n')
-A('| Subject | Courses | Flagged core | With a spine | With any unit plan | Modules | Tools: spec / built / live |')
+A('| Subject | Courses | Flagged core | With a scope and sequence | With any plan | Topics | Tools: spec / built / live |')
 A('|---|---|---|---|---|---|---|')
 tot = collections.Counter()
 J = dict(at=datetime.datetime.now(datetime.timezone.utc).isoformat(), summary=[], subjects=[], shared=[])
@@ -122,14 +122,14 @@ for s, label in groups:
           f"**{tot['mods']}** | **{tot['spec']} / {tot['built']} / {tot['live']}** |")
 A(f"| **All courses** | **{tot['n']}** | **{tot['core']}** | **{tot['spine']}** | **{tot['plans']}** | **{tot['mods']}** | "
   f"**{tot['spec']} / {tot['built']} / {tot['live']}** |")
-A('\nTool counts here leave out tools that sit on shared modules (last table). "Spec" includes a few that are '
+A('\nTool counts here leave out tools that sit on shared topics (last table). "Spec" includes a few that are '
   'still ideas.\n')
 
 for s, label in groups:
     ds = sorted([(k, d) for k, d in courselist.items() if d['subject'] == s], key=lambda kd: kd[1]['sort'])
     A(f'## {label} ({len(ds)} courses)\n')
     js = dict(name=label, courses=[]); J['subjects'].append(js)
-    A('| Course | Core | Rubric file | Approach | Progression | Spine | Unit plans | Modules | Tools: spec / built / live |')
+    A('| Course | Core | Rubric file | Approach | Progression | Scope and sequence | Plans | Topics | Tools: spec / built / live |')
     A('|---|---|---|---|---|---|---|---|---|')
     for k, d in ds:
         ru, ap, pr, sp, pl = layer_cells(k, d)
@@ -141,18 +141,18 @@ for s, label in groups:
     A('')
 
 sh = sorted([(k, d) for k, d in info.items() if d['kind'] == 'shared'], key=lambda kd: (kd[1]['subject'], kd[1]['sort']))
-A('## Modules that belong to no single course\n')
-A('These sit on a band page and are shared by the grades in it. Decided (Cory, 2026-11-11): the module and its '
-  'tools stay shared, and each grade\'s spine claims the skill on its own days, with that grade\'s standard and '
-  'texts, so every standard has an owner in a course. The single modules fold into their nearest course. They '
+A('## Topics that belong to no single course\n')
+A('These sit on a band page and are shared by the grades in it. Decided (Cory, 2026-11-11): the topic and its '
+  'tools stay shared, and each grade\'s scope and sequence claims the skill on its own days, with that grade\'s standard and '
+  'texts, so every standard has an owner in a course. The single topics fold into their nearest course. They '
   'are not counted as courses above.\n')
-A('| Shared set | Modules | Tools: spec / built / live |')
+A('| Shared set | Topics | Tools: spec / built / live |')
 A('|---|---|---|')
 for k, d in sh:
     t = d['tools']
     J['shared'].append(dict(title=d['title'], mods=d['mods'], spec=t['spec'] + t['idea'], built=t['built'], live=t['live']))
     A(f"| {d['title']} | {d['mods']} | {t['spec'] + t['idea']} / {t['built']} / {t['live']} |")
-A('\nAlso not counted: French, which is on the course list with no modules yet (other languages come later, '
+A('\nAlso not counted: French, which is on the course list with no topics yet (other languages come later, '
   'decided 2026-10-22).\n')
 
 text = '\n'.join(out)

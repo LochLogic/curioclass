@@ -35,7 +35,7 @@ grouping: Pairs on devices, with whole-class pauses.
 2. Pairs try the Fading rumor, which halves every 5 days. "Why is 'when does it reach 2,100?' answered 'Never'? What does the negative t mean?"
 3. Switch to **Hit the ceiling** and pick **United States**. The exponential passes the population; the logistic levels off. "When do they start to disagree, and why?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "A post has 50 shares and the shares double every 4 hours. Write N(t) and solve for when it reaches 100,000 shares, showing the log step. What percent does it grow each hour?" Then: "Name one assumption of the model that breaks first in a real school."
 

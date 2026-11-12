@@ -36,7 +36,7 @@ grouping: Whole class, then pairs on devices.
 2. If you are using it, do "Sam sends a goodbye" together as a class. "Why was asking directly the best reply?" Highlight refusing to keep the secret and calling 988 together.
 3. Pairs open **Stress bucket**. Add stressors, then open taps. Notice what clogs the taps. Try the box-breathing guide together.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a private card: "Name two taps you could open this week. Name one adult at school you could connect a friend to." Collect the cards, and follow up privately with anything that worries you.
 

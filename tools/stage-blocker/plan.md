@@ -40,7 +40,7 @@ grouping: Whole class for the hook and the model, then pairs (a director and a s
 2. The class is the house. Far-side students answer: "Can you see all three faces?" "Is anyone upstaged?"
 3. "Your bench and the lamp post are the **set design**. How did the bench change your blocking?" (Two could sit; the third had to stand where everyone could see.)
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On the ticket or paper: an actor is told "cross downstage left". Which way does she walk, and which side is that for the audience? Then: Ava sits talking to Ben, who stands right behind her, upstage. Name the problem and give two fixes.
 
@@ -54,6 +54,6 @@ On the ticket or paper: an actor is told "cross downstage left". Which way does 
 ## Short on time
 
 - Model beats 1 to 3 (7 min).
-- Pairs block and run Bus Stop (10 min), then the exit check (3 min).
+- Pairs block and run Bus Stop (10 min), then the exit ticket (3 min).
 
 See the teacher notes for what every button does.

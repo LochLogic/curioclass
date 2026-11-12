@@ -82,7 +82,7 @@ _SPEC = SPEC_TEST + SPEC_TEST_2 + SPEC_TEST_3 + SPEC_TEST_4 + SPEC_TEST_5
 # Recess games (docs/GAMES.md, Cory 2026-11-08): built from docs/agents/CODEX-RECESS.md, not CODEX-BUILD.md. Add a game
 # here only once its spec is final, so a build never starts on a spec still being written.
 RECESS = """chess untangle checkers go sliding-blocks""".split()
-# Pilot unit 11.1 (grade 4 math, HANDOFF.md): its day 90 lesson is taught on this tool, so it goes first.
+# The pilot, unit 11 (grade 4 math, HANDOFF.md): its day 90 lesson is taught on this tool, so it goes first.
 PILOT = ['community-plot-planner']
 QUEUE = (PILOT + [t for t in CURIO if curio_ready(t)] + RECESS + _SPEC
          + [t for t in QUEUE if t not in CURIO and t not in _SPEC and t not in PILOT])

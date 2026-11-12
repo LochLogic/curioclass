@@ -2,7 +2,7 @@ arc: teach-then-practice
 minutes: 45
 focus: E4-PRO-VD-06; E4-PRO-RD-07
 goal: I can trace a short program one line at a time to show how its variables change, and check whether its note tells the truth.
-materials: The tool on the projector, and one laptop per pair. Whiteboards. Three clear cups: two with different colored water, one empty. An exit slip per student (or the exit program on the board).
+materials: The tool on the projector, and one laptop per pair. Whiteboards. Three clear cups: two with different colored water, one empty. An exit ticket per student (or the exit program on the board).
 grouping: Whole class, then pairs on laptops (one types, both agree), then whole class.
 ---
 ## Before class
@@ -43,7 +43,7 @@ grouping: Whole class, then pairs on laptops (one types, both agree), then whole
 3. Pick **Doubling tower**. Tap the 3 in `repeat 3 times` and press + once. A yellow ? appears on the note. **Step** to the end. "Is the note still true?" (No. It doubles 4 times and ends at 16.)
 4. Pairs write a new true note on whiteboards. Read two aloud, then press **Reset numbers**.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 Students trace this in a table (Step, Line, score, Says):
 

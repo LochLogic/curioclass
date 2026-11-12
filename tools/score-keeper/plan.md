@@ -42,7 +42,7 @@ grouping: Whole class, then pairs on laptops (one steers, one reads), then whole
 2. On paper they list three variables it would need, each with a starting value and what changes it, or "stays the same". Example: "points = 0, changes when the class is on task."
 3. Two pairs share: "Stored, or changing? What changes it?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a slip, each student answers: "A jump rope program has three boxes: **jumps**, **time left** and **rope color**. Circle the one that stays the same. For each other one, write what changes it." (Rope color stays the same. Jumps changes when you jump. Time left changes as time passes.)
 ## Support and stretch
@@ -56,4 +56,4 @@ On a slip, each student answers: "A jump rope program has three boxes: **jumps**
 
 - Hook with the scoreboard (3 min), then one game in **Play** on the projector, using **Pause** and **Step** (7 min).
 - As a class, run questions 1 and 3 in **Lab** (5 min).
-- Ask the jump rope question out loud as the exit check (3 min).
+- Ask the jump rope question out loud as the exit ticket (3 min).

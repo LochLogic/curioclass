@@ -36,7 +36,7 @@ grouping: Whole class for the model, then students alone or in pairs on devices.
 1. Three or four volunteers play their track on the projector.
 2. Listeners name one choice that worked and where the energy changed: "the hats came in at bar 5", "the filter sweep before the drop".
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 On a sticky note or in the class form: "Name one thing you changed to make a loop feel different, and why you changed it." Notes that only say "it sounded better" show who needs the vocabulary (backbeat, swing, layer, drop) again.
 

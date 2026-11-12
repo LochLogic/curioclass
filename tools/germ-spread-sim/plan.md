@@ -39,7 +39,7 @@ grouping: Whole class for predictions, then pairs on devices.
 3. Try **water only** to see how much soap matters.
 4. If you can, go to the sink: everyone practices the five steps while humming for 20 seconds.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: name two ways germs spread in a classroom, and the one habit you'll use most, with a reason. Cards that don't mention spreading before feeling sick show what to revisit.
 

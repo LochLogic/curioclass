@@ -36,7 +36,7 @@ grouping: Students alone or in pairs on devices, with whole-class debriefs.
 2. "Which light makes the apple look most round? Which hides its shape?"
 3. If cameras are allowed, students take one real photo around the room that uses a rule (or breaks one on purpose) and title it with the rule.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 Students pick their best photo (**Save photo** downloads it) and write two sentences: which rule they used, and one rule they broke or would break on purpose, and why. Two sentences with no rule named show who needs the review vocabulary again.
 

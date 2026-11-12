@@ -36,7 +36,7 @@ grouping: Students on their own devices, then partners.
 2. Partners find two careers in the same cluster with very different training. "Why might someone choose each one?"
 3. Students who want to can **Print my results** to take home.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On an index card: your three-letter code, one career it matched that surprised you, and the training that career takes. Cards with a career but no training show who needs to go back to the career details.
 

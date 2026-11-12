@@ -35,7 +35,7 @@ grouping: Whole class on the carpet, then partners.
 3. Partners build arrays with counters and write the repeated addition on whiteboards.
 4. Try 5 or 7. "Why won't it make a rectangle?"
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 On whiteboards: "Is 9 odd or even? Draw it as partners to show how you know." Then: "Write 2 rows of 5 as an addition sentence." (5 + 5 = 10.)
 

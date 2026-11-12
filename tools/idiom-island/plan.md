@@ -34,7 +34,7 @@ grouping: Pairs on devices, with whole-class talk.
 1. Charades: one student acts out an idiom literally, like **Horse Ranch** (hold your horses), and the partner guesses it.
 2. Each student writes two sentences about their own week, using two idioms correctly.
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 On an index card: pick one idiom and write what the words say, what it really means, and a sentence that uses it. Cards that explain only the literal picture show who needs another round of the checks.
 

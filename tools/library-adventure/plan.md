@@ -32,7 +32,7 @@ grouping: Whole class on the carpet.
 
 Switch to **ABC shelf**. Children tap the picture book that comes first in ABC order, then the next, until the shelf is full. Sing or say the alphabet when the class gets stuck.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Hold up each real book. Children point to where in the room (or the library) it lives and say the section name: picture books, fiction or nonfiction.
 

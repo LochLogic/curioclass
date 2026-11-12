@@ -36,7 +36,7 @@ grouping: Whole class for the hook, then pairs on devices.
 2. Every try lands on the graph: red tastes wrong, gold tastes right but misses the condition, green fills the order.
 3. "What did you multiply by? How do you know?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card: "A smoothie uses 3 scoops of mango for every 5 of yogurt. Make a ratio table with three rows. How much mango for 20 scoops of yogurt? What is the unit rate of yogurt per scoop of mango?"
 

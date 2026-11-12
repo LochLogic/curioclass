@@ -37,7 +37,7 @@ grouping: Whole class on the carpet for the model, then at tables for writing.
 1. Two or three children read their burgers. The class listens: "Which sentence was the top bun? Did anything sound like a boot?"
 2. Type one child's paragraph into **Write your own** and press **Serve it!** for the bear.
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Read a sentence aloud. Children show where it goes: hands on head for a top bun, hands on tummy for a filling, hands on feet for a bottom bun, and a head shake for a boot. Try "First, put toothpaste on the brush." (Tummy.) "Now your teeth are clean and shiny!" (Feet.) "My cat is orange." (Head shake.) "Brushing your teeth is easy." (Head.)
 

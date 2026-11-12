@@ -36,7 +36,7 @@ grouping: Whole class, then pairs.
 2. Each word read the first time speeds the next one up. Watch the speed climb.
 3. Talk: "Did you read each letter, or the shape of the whole word?"
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Each student fingerspells their name to you or a partner at Steady speed. Watch for a still hand, an even rhythm and clear fist letters.
 

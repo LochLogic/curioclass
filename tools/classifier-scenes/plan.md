@@ -37,7 +37,7 @@ grouping: Whole class, then pairs.
 1. Pairs set up a real scene with classroom objects and sign it to another pair, who arrange their own objects to match.
 2. If you have the video, watch the Deaf signer describe a scene. "What did they do the same? What was different?"
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Show a new scene: a person walking past a car. Each student signs it to you or a partner. Check: the car (3 handshape) goes first and stays, and the person (1 handshape) moves past.
 

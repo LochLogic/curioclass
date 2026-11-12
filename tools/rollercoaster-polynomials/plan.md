@@ -2,7 +2,7 @@ arc: explore-first
 minutes: 50
 focus: A-APR.B.2; A-APR.B.3; A-APR.C.4; A-APR.C.5
 goal: I can connect the zeros, multiplicities and leading coefficient of a polynomial to its graph, and use the remainder theorem to find factors.
-materials: The tool on the projector and on student devices. Graph paper for the exit check.
+materials: The tool on the projector and on student devices. Graph paper for the exit ticket.
 grouping: Pairs on devices, with whole-class pauses.
 ---
 ## Before class
@@ -38,7 +38,7 @@ grouping: Pairs on devices, with whole-class pauses.
 4. Pairs use **Check for a double footing** when a zero might repeat, and keep going until the fog lifts.
 5. Pairs who finish try Plan 9: "It has only one footing. Where did the other two zeros go?"
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On graph paper, sketch y = (x + 3)(x − 1)²(x − 4) with the zeros labeled and the right end behavior. Then: "P(2) = 0 for some polynomial P. What do you know about its factors?" Sketches that cross at x = 1 show who needs **Build** again.
 

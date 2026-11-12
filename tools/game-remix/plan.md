@@ -2,13 +2,13 @@ arc: model-then-make
 minutes: 45
 focus: E5-PRO-PD-04; E5-PRO-TR-08
 goal: I can remix a program, give credit to the person who made it, and use what changed to find a bug.
-materials: The tool on the projector, plus one laptop per pair. Sticky notes for the exit check.
+materials: The tool on the projector, plus one laptop per pair. Sticky notes for the exit ticket.
 grouping: Whole class for the model, then partners on laptops (one drives, one navigates, switch halfway).
 ---
 ## Before class
 
 - Open the tool on the projector. It opens in **Arcade** with the shelf of games. Sound on.
-- Write the exit check on the board and cover it.
+- Write the exit ticket on the board and cover it.
 - The teacher notes explain every button and saving.
 
 ## Hook (5 min)
@@ -42,7 +42,7 @@ grouping: Whole class for the model, then partners on laptops (one drives, one n
 2. Visitors play the remix and guess what changed, then check the **What changed** list.
 3. Ask two or three pairs: "Read the credit lines. Whose work is in this game?" (The remixers and the original maker. A borrowed sprite adds a name.)
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Uncover the board. Each child answers on a sticky note:
 

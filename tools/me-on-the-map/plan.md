@@ -33,7 +33,7 @@ grouping: Whole class on the carpet.
 
 Children draw three circles, one inside another. In the middle, they draw their home. In the next circle, their town. In the big one, the Earth (or the state, if they know it). Say it together as they finish.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Ask: "Is our town inside our state, or is our state inside our town?" Children point a finger up for "town in state" and down for "state in town." Then three children say the chain from room to Earth.
 

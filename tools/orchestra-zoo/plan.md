@@ -33,7 +33,7 @@ grouping: Whole class on the carpet.
 1. Switch to **Zoo band**. The class picks a **Melody**, a **Bass** and a **Beat**, and you press **Play the band**.
 2. Mute the bass while it plays: "What changed?" Then try a flute melody with a tuba bass.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Call out an action: "Blow!" "Bow!" "Buzz your lips!" "Tap!" Children name the family. Then ask: "Big tuba or little trumpet: which plays lower?" Children answer with a low voice or a high voice.
 

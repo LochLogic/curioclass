@@ -5,7 +5,7 @@ r"""Check the Word Wall (data/closet/words/<subject>.txt) against docs/SUPPLY-CL
 
 One line per card: module_id|word|definition|example|picture|es_word|es_definition|es_example
 picture is what to draw (an "svg:" prefix means a diagram drawn in code, not a painting); the drawn file goes in
-closet/words/art/<module_id>/<slug(word)>.webp. build_site.py uses load() for /modules/<id>/words/ and runs
+closet/words/art/<module_id>/<slug(word)>.webp. build_site.py uses load() for /topics/<id>/words/ and runs
 problems() so a bad word list stops a closet build.
 """
 import csv, re, sys

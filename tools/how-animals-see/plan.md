@@ -34,7 +34,7 @@ grouping: Whole class, then pairs on devices.
 1. Pairs play **Who's looking?** and choose whose eyes each view belongs to, giving a reason for each.
 2. Pairs make a T-chart: animal, and how its eyes help it survive. At least three animals.
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 On a card, draw arrows to show how light lets you see a ball in the yard: from the Sun, to the ball, to your eye. Then: "Why might a rabbit need eyes on the sides of its head?" Arrows that go from the eye to the ball show who needs the eye diagram again.
 

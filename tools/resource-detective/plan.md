@@ -32,7 +32,7 @@ grouping: Whole class on the carpet, then partners.
 
 Partners pick a real object from the classroom and draw its trail: the object, how it was made, and the natural resource it came from. Partners who finish solve the **Glass jar** or **Wool mittens** case on the big screen.
 
-## Exit check (3 min)
+## Exit ticket (3 min)
 
 Point to something you're wearing or something in the room. Children name a natural resource it might come from and say one clue that tells them so.
 

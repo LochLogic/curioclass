@@ -36,7 +36,7 @@ grouping: Whole class on the carpet, then pairs with play coins.
 1. Pairs play store with the board price list. One buys with play coins and the other counts up the change. Then they switch.
 2. "Is there more than one way to give the same change? Which way uses the fewest coins?" Share two ways for 15¢ (a dime and a nickel, or three nickels).
 
-## Exit check (5 min)
+## Exit ticket (5 min)
 
 1. On a whiteboard: "A sticker costs 40¢. You pay with two quarters. How much change?" (10¢.) Children show it with play coins or write the amount.
 2. At 3:45 the bell rings in the tool. Read the day's total in dollars and cents together.

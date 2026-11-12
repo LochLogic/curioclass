@@ -35,7 +35,7 @@ grouping: Whole class on the carpet, then small groups outside or by the windows
 1. Groups go out to the schoolyard (or look out the windows) and tally the kinds of living things they see: grass, a tree, an ant, a bird.
 2. Back on the carpet, add a fifth column to the chart: Our schoolyard. "Is our schoolyard more like the desert or the rainforest?"
 
-## Exit check (4 min)
+## Exit ticket (4 min)
 
 Ask three quick questions, with thumbs up or down: "A desert has more kinds than a rainforest." (Down.) "Five robins count as five kinds." (Down.) "Diversity means lots of different kinds." (Up.) Then two children say which habitat they would explore and why.
 
