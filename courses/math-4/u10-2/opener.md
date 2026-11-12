@@ -32,7 +32,7 @@ the longer strip.
 "Times as many" is multiplicative: the longer strip is copies of the shorter. The same number does different work
 in each. On day 83 the class watches the gap grow: with 8 to start, "3 more" gives 11 and "3 times as many" gives
 24; with 1 to start, "3 more" (4) beats "3 times as many" (3). Students should see this in strips and numbers, not
-memorise it.
+memorize it.
 
 **The letter.** From day 84 the letter goes on the unknown part of the strip before the equation is written, and
 the student says what it stands for. 8 × l = 56 and l = 56 ÷ 8 say the same thing; either is right
@@ -47,7 +47,7 @@ a multiple of 10, or 10 times a one- or two-digit number. Whole numbers, no rema
 
 ## The routine
 
-Write it on a card for each student, or once on the wall:
+It is printed on day 84's student page:
 
 1. Read the story. Say it back in your own words.
 2. Who has more? Draw two strips: the longer one for them.
@@ -70,9 +70,9 @@ sort cards, in the same minutes; each day's teacher page gives that paper path i
 
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
-| A | Read "times as many" as "more than" | Comparing still means adding on, as in grade 2 | Build or draw both, "more than" and "times as many"; say which is which |
+| A | Mixes the two comparisons: reads "times as many" as "more than", or multiplies in a "more than" story | The two kinds of comparison are not yet told apart | Build or draw both, "more than" and "times as many"; say which is which |
 | B | Multiply because the story says "times", when the smaller amount or the number of times is unknown | A key word is followed in place of the story | Before any numbers: "Who has more?" Mark the longer strip; the answer must fit it |
-| C | Swap the roles: say the smaller amount is so many times as many as the larger | They lost track of which number is the multiplier | Point to the longer strip first; the bigger amount stands alone in the equation |
+| C | Swap the roles: make the smaller amount the larger (in a times story, say the smaller is so many times as many; in a more-than story, give the extra to the smaller) | They lost track of which number is the multiplier | Point to the longer strip first; the bigger amount stands alone in the equation |
 | E | Say "3 times more than 4" could be 12 or 16 | The phrase is unclear in everyday English | A talk, not a correction. Not marked |
 
 Error D (copies added on top, unit 10.1) can come back on day 83; count the copies aloud, starting with the
@@ -96,17 +96,18 @@ That picture, two strips and the piece that sticks out, is where day 83's teachi
 
 ## Supplies for the unit
 
-- Per student: strip sheets (about two a day on days 83 to 85) or paper strips; a ruler; a routine card.
-- Per pair: one set of day 86's sort cards, printed from that day's file.
+- Per student: a strip sheet on days 83 and 84 (one each), a few cut into strips on day 85.
+- Day 86: the eight sort cards are on the student page; nothing to cut. About 8 strip sheets for the class, for
+  students who are stuck.
 - Per class: the projector for the display pages; a board.
 - Devices for days 83 and 86 if Growth Spurt is built; otherwise the paper paths.
 
 ## Words
 
 As many as, as much as, more than, how many times, equation, letter, unknown. Each goes on the wall over a strip
-picture. "That is 3 times as many as ..." is taught as a pattern on day 84. Short sentences, one fact in each, no
-idioms. Students retell each story before drawing, in a home language if they wish. Read problems aloud, twice
-if asked.
+picture. Both orders are met on day 84: "Zoe picked 5 times as many as Ben. Zoe picked 45" and "... 45. That is 5 times
+as many as Ben picked". Short sentences, one fact in each, no
+idioms. Students retell each story before drawing, in a home language if they wish. Read problems aloud.
 
 ## How the unit is checked
 

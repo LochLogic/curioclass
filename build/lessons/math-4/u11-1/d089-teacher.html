@@ -8,8 +8,9 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
@@ -17,7 +18,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 </style></head><body class="teacher"><h1>Day 89: Both measures of one rectangle</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>89, unit 11.1, understanding day</td></tr><tr><td>Goal</td><td>I can find both measures of one rectangle and write each as a formula</td></tr><tr><td>Standard parts</td><td>4.MD.A.3 (a) the area formula, a side unknown (on a branch or Longer only); 4.MD.A.3 (f) the perimeter formula as 2 × (l + w): length plus width is half the perimeter; 4.MD.A.3 (g) the area formula, both sides known</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, 15 tiles or paper squares cut from grid paper, grid paper (2 sheets), stretch 10&#x27;s marked end check; per class, the projector with the display page, 15 large tiles for the teacher, and a board (no document camera: draw the grid on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit slip, 1 per student; facts check part 1 sheet from stretch 1, 1 per student; the key, 1 for the teacher</td></tr><tr><td>Leans on</td><td>courses/math-4/u11-1/opener.md; courses/math-4/u01-1/facts-check-1.md; courses/math-4/u11-1/record.md; docs/courses/math-4/s10.md</td></tr><tr><td>Version</td><td>draft 1, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
 <p>Print the student page both sides, the facts check part 1 sheet, the exit slips and the key. Count 15 tiles or
@@ -28,10 +29,10 @@ Put the display page on the projector.</p>
 <p>Alone. The 36 products from stretch 1, untimed. Collect at 5 minutes; an item not reached is left blank, not
 marked wrong. Mark the sheets after class. Students under 32 of 36 keep their 9 by 9 table out from day 90.</p>
 <h4>5 min. Day 88's items 7 and 8</h4>
-<p>Hand back day 88's end checks. Show a "meets" answer for each on the board. Item 7: "b = 20 + 4 × 20.
-4 × 20 = 80. 20 + 80 = 100 beads." Item 8: "7 × 7 is about 50, and 18 is about 20, so about 70. 175 is far too
-big. s = 67." Students fix their own in pen beside the first try. Collect them for the record sheet. If many gave 80 on 7 or took 175 on 8, each warm-up problem from day 90 starts with an estimate,
-for a week.</p>
+<p>Hand back day 88's end checks. Show a "meets" answer for each. Item 7: "b = 20 + 4 × 20.
+4 × 20 = 80. 20 + 80 = 100 beads." Item 8: "18 is about 20, and 7 × 7 is about 50, so about 70. 175 is far too
+big. s = 67." Students fix their own in pen beside the first try. Collect them for the record sheet. Many 80 on 7 (F): underline the question and ask "is 80 what it
+asked?" Many 175 on 8 (H): write Ravi's steps as two equations.</p>
 <h4>20 min. Teaching first: one rectangle</h4>
 <p><strong>12 minutes together: build one rectangle</strong> (Build a rectangle 5 tiles long and 3 tiles wide. Find its area and its perimeter. <strong>[5 × 3 = 15 square units; 5 + 3 + 5 + 3 = 16 units, or 2 × (5 + 3) = 16]</strong>). Each student builds along with tiles on grid paper
 and fills the frame on side 1 as you go, not ahead of you. In the box on side 1, they sketch the 5 by 3 and label

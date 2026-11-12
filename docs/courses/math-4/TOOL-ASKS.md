@@ -224,6 +224,8 @@ Asks, from [s10](s10.md) field 8 as first written and the three unit plans:
    as many". (s10; u10-2.)
 6. Read it both ways has more than three cards, and cards that go from sentence to equation, with 10 times
    and with measures. (u10-1.)
+7. Growing's "taller by" uses the same number as "times as tall" (3 on day 83), and the teacher can set the
+   bean to 1, 2, 4 and 10 cm, so the class fills day 83's side 1 table from the screen. (u10-2; day 83 read.)
 
 The spine also names Growth Spurt's multistep part for stretch 14. That stretch is not planned yet.
 

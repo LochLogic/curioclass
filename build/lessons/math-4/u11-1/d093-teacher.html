@@ -8,8 +8,9 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
@@ -17,9 +18,9 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
-</style></head><body class="teacher"><h1>Day 93: Show what I know</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>93, unit 11.1, check day</td></tr><tr><td>Goal</td><td>I can show what I know and fix what I missed</td></tr><tr><td>Standard parts</td><td>4.MD.A.3 (a) the area formula, a side unknown; 4.MD.A.3 (b) the perimeter formula, a side unknown; 4.MD.A.3 (c) perimeter with multi-digit sides; 4.MD.A.3 (d) perimeter with fraction sides; 4.MD.A.3 (e) choosing the measure in a real problem; 4.MD.A.3 (f) the perimeter formula as 2 × (l + w): length plus width is half the perimeter; 4.MD.A.3 (g) the area formula, both sides known</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, a pencil and a pen or coloured pencil for marking; per class, the projector with the display page (or the board), grid paper for the groups</td></tr><tr><td>Print</td><td>student page (the end check), 1 per student, both sides; large print on request; the key, 1 for the teacher; the record sheet, 1</td></tr><tr><td>Leans on</td><td>courses/math-4/u11-1/opener.md; courses/math-4/u11-1/record.md</td></tr><tr><td>Uses when it exists</td><td>courses/math-4/u12-1/readiness.md</td></tr><tr><td>Version</td><td>draft 2, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+</style></head><body class="teacher"><h1>Day 93: Show what I know</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>93, unit 11.1, check day</td></tr><tr><td>Goal</td><td>I can show what I know and fix what I missed</td></tr><tr><td>Standard parts</td><td>4.MD.A.3 (a) the area formula, a side unknown; 4.MD.A.3 (b) the perimeter formula, a side unknown; 4.MD.A.3 (c) perimeter with multi-digit sides; 4.MD.A.3 (d) perimeter with fraction sides; 4.MD.A.3 (e) choosing the measure in a real problem; 4.MD.A.3 (f) the perimeter formula as 2 × (l + w): length plus width is half the perimeter; 4.MD.A.3 (g) the area formula, both sides known</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, a pencil and a pen or colored pencil for marking; per class, the projector with the display page (or the board), grid paper for the groups</td></tr><tr><td>Print</td><td>student page (the end check), 1 per student, both sides; large print on request; the key, 1 for the teacher; the record sheet, 1</td></tr><tr><td>Leans on</td><td>courses/math-4/u11-1/opener.md; courses/math-4/u11-1/record.md</td></tr><tr><td>Uses when it exists</td><td>courses/math-4/u12-1/readiness.md</td></tr><tr><td>Version</td><td>draft 2, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
 <p>Print the end check both sides, the key and the record sheet. Open the display; show the answers only at the
 marking. Put grid paper out for the groups.</p>
 <h3>The day</h3>
@@ -28,7 +29,7 @@ marking. Put grid paper out for the groups.</p>
 minutes, pencils down. An item not reached is recorded as not reached, not wrong.</p>
 <h4>20 min. Respond: mark, then fix in groups</h4>
 <p><strong>Mark, 5 minutes.</strong> Pencils away; show the answers to 1 to 4 and 7. Students tick or circle each in pen or
-coloured pencil. Items 5 and 6 come back in the last ten minutes.</p>
+colored pencil. Items 5 and 6 come back in the last ten minutes.</p>
 <p><strong>Groups, 15 minutes.</strong> Hands up by item sets the groups. A student who missed several joins the group for the
 first one missed. Each group fixes its item in pen beside the first try, then checks it: put the side back in the
 equation, or add the four sides again. Each group's task is on the display.</p>
@@ -37,7 +38,7 @@ equation, or add the four sides again. Each group's task is on the display.</p>
 <li>Item 2 (error D): fill in 16 + <span class="blank" style="width:0.9em"></span> + 16 + <span class="blank" style="width:0.9em"></span> = 50 together.</li>
 <li>Items 3 and 4 (error B): trace and name all four sides, then write l + w + l + w. A right setup with a wrong
   sum is an adding slip: redo the sum only.</li>
-<li>Item 7 (error A or E): sketch it, shade the inside, trace the edge in another colour. Area is the shaded part,
+<li>Item 7 (error A or E): sketch it, shade the inside, trace the edge in another color. Area is the shaded part,
   in square centimeters. A student whose day 92 written task missed look-for 1 or 4 joins this group.</li>
 </ul>
 <p>Students who missed nothing do the challenge (A rectangle has an area of 90 square feet and a perimeter of 38 feet. How long are its sides? <strong>[9 feet and 10 feet]</strong>), then the extension (Find every rectangle with whole-number sides and an area of 42 square feet. Find the perimeter of each. <strong>[1 by 42, 86; 2 by 21, 46; 3 by 14, 34; 6 by 7, 26]</strong>), then check a

@@ -8,8 +8,9 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
@@ -17,26 +18,26 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
-</style></head><body class="teacher"><h1>Day 87: Two steps, one equation, one estimate</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>87, unit 10.3, use day</td></tr><tr><td>Goal</td><td>I can solve a two-step problem with one equation and a letter, and check my answer with an estimate</td></tr><tr><td>Standard parts</td><td>4.OA.A.3 (f) two-step word problems with whole-number answers, no remainders (this stretch&#x27;s share); 4.OA.A.3 (g) a two-step problem with an equation with a letter for the unknown; 4.OA.A.3 (h) whether an answer is reasonable, by estimating</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, the student page and a pencil; per class, the projector with the display page, and a board (no document camera: draw it on the board); a few blank strip sheets for students who get stuck</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit slip, 1 per student; blank strip sheet, 1 for every four students; the key, 1 for the teacher</td></tr><tr><td>Leans on</td><td>courses/math-4/u10-3/opener.md; courses/math-4/u10-1/readiness.md; courses/math-4/u10-1/record.md; courses/math-4/u10-1/strip-sheet.md</td></tr><tr><td>Version</td><td>draft 2, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+</style></head><body class="teacher"><h1>Day 87: Two steps, one equation, one estimate</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>87, unit 10.3, use day</td></tr><tr><td>Goal</td><td>I can solve a two-step problem with one equation and a letter, and check my answer with an estimate</td></tr><tr><td>Standard parts</td><td>4.OA.A.3 (f) two-step word problems with whole-number answers, no remainders (this stretch&#x27;s share); 4.OA.A.3 (g) a two-step problem with an equation with a letter for the unknown; 4.OA.A.3 (h) whether an answer is reasonable, by estimating</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, the student page and a pencil; per class, the projector with the display page, and a board (no document camera: draw it on the board); a few blank strip sheets for students who get stuck</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit slip, 1 per student; blank strip sheet, 1 for every four students; the key, 1 for the teacher</td></tr><tr><td>Leans on</td><td>courses/math-4/u10-3/opener.md; courses/math-4/u10-1/readiness.md; courses/math-4/u10-1/record.md; courses/math-4/u10-1/strip-sheet.md</td></tr><tr><td>Version</td><td>draft 3, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
 <p>Print the student page both sides, the exit slips, a few strip sheets and the key. From the day 79 readiness
 results, list who missed item 3. Sort the day 86 slips by error. Put the display page on the projector; write
 the warm-up on the board.</p>
 <h3>The day</h3>
 <h4>5 min. Warm-up: sentences, facts, one difference</h4>
-<p>Alone. Write as equations "45 is 5 times as many as 9" and "6 times as many as 8 is 48"; the 7s and 8s facts
-aloud with a partner; then 503 − 268 with the standard algorithm.</p>
+<p>Alone. Write as equations Write as an equation: "45 is 5 times as many as 9." <strong>[45 = 5 × 9]</strong> and Write as an equation: "6 times as many as 8 is 48." <strong>[6 × 8 = 48]</strong>; the 7s and 8s facts aloud with a partner; then
+503 − 268 = ? <strong>[235]</strong> with the standard algorithm.</p>
 <p><strong>If the readiness check showed gaps on item 3</strong> (many missed it): the warm-up and the next five minutes go to
-the unit opener's reteach, whole class: each step as its own equation, then joined. The day 86 slips go to day
-88's groups. If fewer missed it, they do the reteach with you as a small group during the warm-up.</p>
+the unit opener's reteach, whole class: each step as its own equation, then joined. The day 86 slips go back with the E87 slips on
+day 88: melon 96 joins the B and C group, melon 20 or squash 96 the A and D group. If fewer missed it, they do the reteach with you as a small group during the warm-up.</p>
 <h4>5 min. Day 86's exit back</h4>
-<p>Whole class. <strong>If day 86's slips showed many B</strong> (melon 96) <strong>or many A</strong> (melon 20, or squash 24): redraw the
-pumpkin as 4 copies of the melon, then the squash as the melon plus a piece of 4. Ask "who has more?" first.
-Otherwise one student shows the melon strip and says the two steps: today's idea.</p>
+<p>Whole class. <strong>If day 86's slips showed many B</strong> (melon 96) <strong>or many A</strong> (melon 20, or squash 96; error A): redraw
+the pumpkin as 4 copies of the melon, then the squash as the pumpkin plus a piece of 4. Otherwise one student shows the melon strip. Hand back the two-stories task; read the meets sample aloud
+and ask which words make the 2 mean copies. Both stories one kind (error A) join the redraw.</p>
 <h4>10 min. Teaching first: one story, two equations, then one</h4>
-<p>Whole class. Students fill the example frames on side 1 as you go, not ahead of you. Draw the strips on the
-board (the display shows the same strip picture): one strip for Ben, four copies for Amy, 135 marked off, p on the rest.</p>
+<p>Whole class. Students fill the example frames on side 1 as you go. Draw the strips on the
+board (the display shows the same picture): one strip for Ben, four copies for Amy, 135 marked off, p on the rest.</p>
 <p><strong>Example</strong> (Ben's book has 70 pages. Amy's book has 4 times as many pages. Amy has read 135 pages. How many pages does she have left to read? <strong>[p = 4 × 70 − 135; 145 pages; estimate about 280 − 140 = 140]</strong>). </p>
 <ol>
 <li>Read it twice. Underline the question: how many pages are left?</li>
@@ -47,46 +48,47 @@ board (the display shows the same strip picture): one strip for Ben, four copies
 <li>Solve: 4 × 70 = 280, and 280 − 135 = 145. p = 145. Amy has 145 pages left.</li>
 <li>Estimate: 4 × 70 is 280, and 135 is about 140. 280 − 140 = 140. 145 is close to 140, so it makes sense.</li>
 </ol>
-<p>Two short equations are a right answer too. Today's problems all multiply or divide first, so one equation
-needs no parentheses. A good estimate uses easy numbers from the story, not the answer, and only needs to catch
+<p>Two short equations are a right answer too. A good estimate uses easy numbers from the story, not the answer, and only needs to catch
 an answer double or ten times off.</p>
 <p><strong>Ask.</strong> "Could the answer be more than 1,000? How do you know without working it out?" Expect: "the book has
 only 280 pages". Then "What does your letter stand for?"</p>
 <h4>17 min. Two steps, six problems</h4>
 <p>Alone (Jade has 60 stamps. Her aunt has 5 times as many stamps. Her aunt gives away 115 of them. How many stamps does her aunt have now? <strong>[a = 5 × 60 − 115; 185 stamps; about 300 − 120 = 180]</strong>, A tower is 63 feet tall. It is 9 times as tall as a fence. A tree is 48 feet taller than the fence. How tall is the tree? <strong>[t = 63 ÷ 9 + 48; 55 feet; about 7 + 50 = 57]</strong>, A farm has 7 goats. It has 6 times as many hens as goats. The farm sells 17 hens. How many hens are left? <strong>[h = 6 × 7 − 17; 25 hens; about 40 − 20 = 20]</strong>, A box holds 8 rows of 50 tiles. Mr. Diaz uses 286 tiles. How many tiles are left in the box? <strong>[t = 8 × 50 − 286; 114 tiles; about 400 − 290 = 110]</strong>, Rae buys 4 packs of 90 cards. She already has 237 cards. How many cards does she have now? <strong>[c = 4 × 90 + 237; 597 cards; about 360 + 240 = 600]</strong>, Sam has 463 dollars. He buys 7 tickets that cost 40 dollars each. How much money does he have left? <strong>[m = 463 − 7 × 40; 183 dollars; about 460 − 280 = 180]</strong>). For each:
-name the letter in words, one equation, solve, estimate. A strip only when stuck. In the last 2 minutes the
-display shows the answers; a mismatch gets a question mark, not the answer.</p>
-<p>Watch for the first step only (300 stamps, 7 feet, 42 hens: error F), a letter with no words (G), and 18,240
-on problem 6 (H). On problem 2 ask "who is taller, the tower or the fence?" (615 is error B). Ask as you walk:
+name the letter in words, one equation, solve, estimate. A strip only when stuck. Most will finish four; 5 and 6 are
+for those who finish. Visit first the students who drew most strips on day 86. In the last 2 minutes the display
+shows the answers.</p>
+<p>Check: Compare with yours. A mismatch gets a question mark, not a fix.</p>
+<p>Watch for the first step only (300 stamps, 7 feet, 42 hens: error F), a letter with no words (G), and 463 − 7 =
+456 written first on problem 6 (H). On problem 2 ask "who is taller, the tower or the fence?" (615 is error B). Ask as you walk:
 "Is that the answer to the question that was asked?"</p>
 <p>If many stop at one step: underline the question together and reread it after solving. If many skip the
 estimate: problem 4's aloud, 400 − 290.</p>
 <h4>5 min. Judge it by estimate</h4>
-<p>Whole class. Show one finished answer at a time (Ola has 6 bags of 40 beads and 28 more beads. She says she has 268 beads. Does 268 make sense? <strong>[Makes sense: about 240 + 30 = 270; 268 beads]</strong>, A van drives 80 miles a day for 5 days. Then it drives 47 more miles. Gus says it drove 847 miles. Does 847 make sense? <strong>[Far off, far too big: about 400 + 50 = 450; 447 miles]</strong>, A shop has 900 markers. It sells 3 boxes of 70 markers. Ivy says 69 markers are left. Does 69 make sense? <strong>[Far off, far too small: about 900 − 200 = 700; 690 markers]</strong>). Students
-estimate in their heads and write "makes sense" or "far off" on side 2 before anyone computes.</p>
+<p>Whole class. Show one finished answer at a time (Ola has 6 bags of 40 beads and 28 more beads. She says she has 268 beads. Does 268 make sense? <strong>[Makes sense: about 240 + 30 = 270; 268 beads]</strong>, A van drives 80 miles a day for 5 days. Then it drives 47 more miles. Gus says it drove 847 miles. Does 847 make sense? <strong>[Far off, far too big: about 400 + 50 = 450; 447 miles]</strong>, A shop has 900 markers. It sells 3 boxes of 70 markers. Ivy says 69 markers are left. Does 69 make sense? <strong>[Far off, far too small: about 900 − 200 = 700; 690 markers]</strong>). Read each aloud as it
+shows. Students estimate in their heads and write "makes sense" or "far off" on side 2 before anyone computes.</p>
 <p><strong>Ask.</strong> "How did you know 847 was wrong before working it out?" Expect: "5 days of 80 is 400, and 47 is about
-50, so about 450". Ivy's 69 shows an answer can be far too small too.</p>
+50, so about 450".</p>
 <h4>6 min. Fix three</h4>
 <p>Pairs for a minute each, then the class; the display shows each wrong working beside the right one. Students
 write what went wrong on side 2.</p>
 <ul>
-<li>Pia says: "Lena has 40 dollars. Omar has 2 times as much. Together they have 80 dollars." <strong>[d = 40 + 2 × 40; 120 dollars. Pia stopped after one step]</strong> (F). <strong>Ask.</strong> "Is 80 the answer to the question that was asked?" Then "Which part of your
+<li>Lena has 40 dollars. Omar has 2 times as much. How much money do they have together? Pia says 80 dollars. <strong>[d = 40 + 2 × 40; 120 dollars. Pia stopped after one step]</strong> (F). <strong>Ask.</strong> "Is 80 the answer to the question that was asked?" Then "Which part of your
   equation is Omar's money?" Expect: 2 × 40.</li>
-<li>Kim has 4 sheets of 6 stickers and 9 more stickers. Kim wrote only "33". <strong>[s = 4 × 6 + 9, s is all the stickers; s = 33. The number is right; the equation and letter are missing]</strong> (G). The number is right; the plan is missing. Say what s stands for before writing it.</li>
+<li>Kim has 4 sheets of 6 stickers and 9 more stickers. Kim wrote only "33". <strong>[s = 4 × 6 + 9, s is all the stickers; s = 33. The number is right; the equation and letter are missing]</strong> (G). Say what s stands for before writing it.</li>
 <li>Ed has 10 marbles. He gets 3 bags of 3 marbles. Ed wrote m = 10 + 3 × 3 and got 39. <strong>[m = 10 + 3 × 3; 19 marbles. Ed added first]</strong> (H). Multiply before adding: 10 + 9, not 13 × 3.</li>
 </ul>
 <h4>5 min. Written task: Mia's estimate</h4>
-<p>Alone, side 2 (Mia says the answer to a problem is 12. Her estimate was 120. What should Mia do next, and why? <strong>[The answer and the estimate are far apart, so one is wrong; Mia checks her working and her estimate again]</strong>), read aloud once. Collect the pages; judge it after class by its look-fors.</p>
+<p>Alone, 3 minutes, side 2 (Mia says the answer to a problem is 12. Her estimate was 120. What should Mia do next, and why? <strong>[The answer and the estimate are far apart, so one is wrong; Mia checks her working and her estimate again]</strong>), read aloud once. Then 2 minutes, whole class: two students read theirs;
+the class says whether each says the two numbers disagree and what to check. Pages are not collected.</p>
 <h4>7 min. Exit: the slip</h4>
-<p>Alone, read aloud once, twice if asked (A school has 158 pencils. It gives 3 classes 30 pencils each. How many pencils are left? Write one equation with a letter. Solve it. Then write an estimate that shows your answer makes sense. <strong>[p = 158 − 3 × 30; 68 pencils; about 160 − 90 = 70]</strong>). Judged after class, one look-for each for parts f, g and
+<p>Alone, read aloud once (A school has 158 pencils. It gives 3 classes 30 pencils each. How many pencils are left? Write one equation with a letter. Say what the letter stands for. Solve it. Then estimate to show your answer makes sense. <strong>[p = 158 − 3 × 30; 68 pencils; about 160 − 90 = 70]</strong>). Judged after class, one look-for each for parts f, g and
 h, marked on the record sheet under E87.</p>
 <h3>Other rooms</h3>
 <ul>
-<li><strong>No devices.</strong> Nothing changes: today runs on paper.</li>
-<li><strong>One projector.</strong> One problem on the screen at a time; the class holds up equations. Put two different right
-  ones side by side: how does each match the story?</li>
+<li><strong>No projector.</strong> Write each judged answer and each wrong working on the board, one at a time.</li>
+<li><strong>One projector.</strong> One problem on the screen at a time; the class holds up equations.</li>
 <li><strong>One child at home.</strong> Problems 1, 4 and 6 are enough. Before each, the child tells the story back, names the
-  letter and guesses "about how many"; compare the guess with the answer.</li>
+  letter and guesses "about how many".</li>
 </ul>
 <h3>Shorter or longer</h3>
 <p>Shorter: do problems 1, 2, 4 and 6 only, and talk through one fix instead of three. Never drop the estimates,
@@ -94,13 +96,13 @@ the judge-it round or the named letter. Longer: the challenge (Write a two-step 
 <h3>Words and supports</h3>
 <p>Word Wall cards: estimate, about, in all, left, each, equation. Show "left" and "in all" on a sketch, not as
 signals for an operation. Students retell the story and question first, in a home language if they wish. Frames:
-"My letter <span class="blank" style="width:0.9em"></span> stands for <span class="blank" style="width:0.9em"></span>." "My estimate is about <span class="blank" style="width:0.9em"></span>, so <span class="blank" style="width:0.9em"></span> makes sense." Problems are read aloud on request.</p>
+"My letter <span class="blank" style="width:0.9em"></span> stands for <span class="blank" style="width:0.9em"></span>." "My estimate is about <span class="blank" style="width:0.9em"></span>, so <span class="blank" style="width:0.9em"></span> makes sense."</p>
 <h3>Tomorrow</h3>
-<p>Day 88 is the end check. Hand the E87 slips back at the door; students showing these signs join the F to H
-group in the respond half: 90 (error F); 4,650, worked left to right as (158 − 3) × 30 (error H); 248 (added the
-90); 68 with no letter, or a letter never named (G); no estimate, or "68 is about 70" with nothing from the story
+<p>Day 88 is the end check. Hand the E87 slips back when day 88's marking starts, after pencils go
+down; students showing these signs join the F to H group in the respond half: 90 (error F); a working that
+starts 158 − 3 = 155 (error H); 248 (added the 90); 68 with no letter, or a letter never named (error G); no estimate, or "68 is about 70" with nothing from the story
 (part h).</p>
 <h3>Credit</h3>
 <p>Ours. Informed by, not adapted from: Illustrative Mathematics K-5, grade 4, unit 5, lesson 5 (CC BY 4.0,
 https://curriculum.illustrativemathematics.org/k5/), and the Progressions for the Common Core State Standards,
-Operations and Algebraic Thinking.</p><div class="foot">Curio Class, grade 4 math, day 87, version draft 2, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>
+Operations and Algebraic Thinking.</p><div class="foot">Curio Class, grade 4 math, day 87, version draft 3, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>

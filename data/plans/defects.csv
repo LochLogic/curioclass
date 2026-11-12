@@ -124,3 +124,90 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-12,math-4,days.csv,plan,writer,sequence,"Day 86 by-hand said the strip is drawn first, holds said only when stuck",fixed,
 2026-11-12,math-4,items.csv,plan,writer,fields,Day 80 rows had no part,fixed,
 2026-11-12,math-4,items.csv,plan,writer,level,s10-P87-2 (56 / 8) forced its estimate; now 63 / 9 + 48,fixed,
+2026-11-12,math-4,d080.md,process,expert,layout,"Strip sheet too small for day 80: warm-up moved to side 2, box rule from item 3, item 3 now 5 by 3, challenge box on the page",fixed,docs/reviews/day-080-2026-11-12.md#1
+2026-11-12,math-4,d080.md,process,expert,handoff,Tomorrow promised a strip hand-off day 81 did not use; both days now say strips are cut from grid paper,fixed,docs/reviews/day-080-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,layout,Exit asked for two drawings on two lines; slips that ask for a drawing now get a box,fixed,docs/reviews/day-080-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,layout,Items 4 to 6 printed as 1 to 3; list numbers now kept and gated,fixed,docs/reviews/day-080-2026-11-12.md#4
+2026-11-12,math-4,items.csv,day,expert,wording,Lin's wrong answer described the right picture; F80-2 stem reworded,fixed,docs/reviews/day-080-2026-11-12.md#5
+2026-11-12,math-4,d080.md,day,expert,sequence,Six comparisons with no answer check; partner check and Check line added,fixed,docs/reviews/day-080-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,display,Display dropped the strip picture on the steps that point at it,fixed,docs/reviews/day-080-2026-11-12.md#7
+2026-11-12,math-4,d080.md,day,expert,materials,Teacher cubes and the frame card were in no list; added,fixed,docs/reviews/day-080-2026-11-12.md#8
+2026-11-12,math-4,d080.md,process,expert,handoff,Day 80 pointed to the opener's reteach while day 81 ran another; day 81 now runs the opener's,fixed,docs/reviews/day-080-2026-11-12.md#9
+2026-11-12,math-4,d080.md,day,expert,wording,"Day 80 small wording repairs (home task, Progressions page, Tomorrow)",fixed,docs/reviews/day-080-2026-11-12.md#10
+2026-11-12,math-4,items.csv,day,expert,figure,"K81 strips showed equal groups, not a comparison; one-copy strip added to both figures",fixed,docs/reviews/day-081-2026-11-12.md#1
+2026-11-12,math-4,items.csv,process,expert,level,Fix it practised day 82's direction; new s10-F81-2 reads an equation as comparisons,fixed,docs/reviews/day-081-2026-11-12.md#2
+2026-11-12,math-4,d081.md,day,expert,handoff,"Readiness reteach disagreed with the opener; now pairs, 15 then 24 counters",fixed,docs/reviews/day-081-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,handoff,Hand-offs held in name only; Tomorrow letters now gated against the next day,fixed,docs/reviews/day-081-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,layout,Exit slip asked for a strip picture on two lines; slip box added,fixed,docs/reviews/day-081-2026-11-12.md#5
+2026-11-12,math-4,d081.md,day,expert,sequence,"Student page out of the day order; Fix it moved after the six, early-finisher line",fixed,docs/reviews/day-081-2026-11-12.md#6
+2026-11-12,math-4,d081.md,day,expert,wording,"Day 81 small wording repairs (grid paper size, Shorter)",fixed,docs/reviews/day-081-2026-11-12.md#7
+2026-11-12,math-4,items.csv,process,expert,key,Keys marked right equations wrong on a self-marked count; either-order notes and an accept line on the answers screen,fixed,docs/reviews/day-082-2026-11-12.md#1
+2026-11-12,math-4,wrongs.csv,day,expert,key,"Exit 16 + 8 = 24 carried B; now D, B re-keyed to 16 x 2, B wording widened",fixed,docs/reviews/day-082-2026-11-12.md#2
+2026-11-12,math-4,d082.md,process,expert,layout,"No room for the asked-for sentences; set tables with a Write it column; rows 2em, not the 3em asked, so the page fits two sides",fixed,docs/reviews/day-082-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,layout,Questions in tables printed at 12 point; tables now 14 point,fixed,docs/reviews/day-082-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,display,Display dropped the whale's strip on the screen about it,fixed,docs/reviews/day-082-2026-11-12.md#5
+2026-11-12,math-4,d082.md,day,expert,level,Fluency target 5 of 6 on sets of 4; now 7 of 8 in sets 3 and 4,fixed,docs/reviews/day-082-2026-11-12.md#6
+2026-11-12,math-4,d082.md,process,expert,handoff,Day 81's hand-off half picked up; slips sorted and C handled in the exit back,fixed,docs/reviews/day-082-2026-11-12.md#7
+2026-11-12,math-4,items.csv,process,expert,fields,Warm-up questions not in data; rows s10-P82-17 to 23,fixed,docs/reviews/day-082-2026-11-12.md#8
+2026-11-12,math-4,items.csv,day,expert,level,Written task thin for nine minutes; s10-W82v2 Jo and Max,fixed,docs/reviews/day-082-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,expert,level,Only one practice sentence started with the times; s10-P82-10v2,fixed,docs/reviews/day-082-2026-11-12.md#10
+2026-11-12,math-4,d082.md,day,expert,materials,Strip sheet printed for all on an optional day; about 6 for the class,fixed,docs/reviews/day-082-2026-11-12.md#11
+2026-11-12,math-4,d082.md,day,expert,wording,"Day 82 small wording repairs (K82-3 step, check line, challenge key, no-printer exit)",fixed,docs/reviews/day-082-2026-11-12.md#12
+2026-11-12,math-4,errors.csv,process,expert,key,Error A described one direction only; text and shows now cover both mixes,fixed,docs/reviews/day-083-2026-11-12.md#1
+2026-11-12,math-4,TOOL-ASKS.md,process,expert,tool,Growth Spurt cannot show the same number in both modes; ask 7 filed and day sentence rewritten; open until the tool takes the ask,open,docs/reviews/day-083-2026-11-12.md#2
+2026-11-12,math-4,items.csv,day,expert,level,"Bo's table skipped the crossing; T83-5 (Bo 2) replaces T83-3, opener numbers 1, 2, 4, 10",fixed,docs/reviews/day-083-2026-11-12.md#3
+2026-11-12,math-4,d083.md,process,expert,layout,No room for strips and the strip sheet off the print list; both fixed,fixed,docs/reviews/day-083-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,layout,Exit asked for two strips with nowhere to draw; slip box and answer lines,fixed,docs/reviews/day-083-2026-11-12.md#5
+2026-11-12,math-4,d083.md,day,expert,handoff,Readiness branch disagreed with the opener and dropped E82's B; reworded,fixed,docs/reviews/day-083-2026-11-12.md#6
+2026-11-12,math-4,d083.md,day,expert,wording,The 'times more than' talk landed on 16 without tying it to error D; sentence added,fixed,docs/reviews/day-083-2026-11-12.md#7
+2026-11-12,math-4,lesson.py,process,expert,display,Display gave each picture before the steps and shrank the fix strips,fixed,docs/reviews/day-083-2026-11-12.md#8
+2026-11-12,math-4,items.csv,process,expert,fields,"Extension and warm-up not rows; s10-C83-2 and s10-W83-1, -2 (W83-1 50/10/5, as 18/3/6 clashed with E6)",fixed,docs/reviews/day-083-2026-11-12.md#9
+2026-11-12,math-4,d083.md,day,expert,wording,Day 83 small wording repairs (P83-3 stem and others),fixed,docs/reviews/day-083-2026-11-12.md#10
+2026-11-12,math-4,items.csv,process,expert,level,"Sentence form gave the operation away and the exit tested the form; P84 v2 rows reordered, X84v2",fixed,docs/reviews/day-084-2026-11-12.md#1
+2026-11-12,math-4,lesson.py,process,expert,handoff,Sit-near-you hand-offs not picked up on either side; seating lines both days,fixed,docs/reviews/day-084-2026-11-12.md#2
+2026-11-12,math-4,d084.md,process,expert,fields,Warm-up had no questions; rows s10-W84-1 to 5 and a board line,fixed,docs/reviews/day-084-2026-11-12.md#3
+2026-11-12,math-4,d084.md,process,expert,display,Examples drawn three times; point to the display instead,fixed,docs/reviews/day-084-2026-11-12.md#4
+2026-11-12,math-4,d084.md,process,expert,layout,Frames floated at the foot of side 2; moved under problem 2,fixed,docs/reviews/day-084-2026-11-12.md#5
+2026-11-12,math-4,d084.md,day,expert,layout,Challenge asked for strips with no box; sketch box added,fixed,docs/reviews/day-084-2026-11-12.md#6
+2026-11-12,math-4,opener.md,process,expert,materials,Materials drifted between the opener and the days; supplies line rewritten,fixed,docs/reviews/day-084-2026-11-12.md#7
+2026-11-12,math-4,items.csv,process,expert,key,"Exit could not show error C; s10-X85v2 asks for a sentence, gate added",fixed,docs/reviews/day-085-2026-11-12.md#1
+2026-11-12,math-4,items.csv,process,expert,level,Exit answer was the example's answer; K85-1v2 is 36 / 4,fixed,docs/reviews/day-085-2026-11-12.md#2
+2026-11-12,math-4,d085.md,process,expert,layout,"Answer lines too short for sentences; Equation and Answer in a sentence on one full-width line (one line, not two, to fit two sides)",fixed,docs/reviews/day-085-2026-11-12.md#3
+2026-11-12,math-4,d085.md,day,expert,sequence,"Six problems in blocks with no must-do; mixed order, 1 to 3 must-do",fixed,docs/reviews/day-085-2026-11-12.md#4
+2026-11-12,math-4,d085.md,day,expert,wording,Discussion's left picture had no 45; bracketed 45,fixed,docs/reviews/day-085-2026-11-12.md#5
+2026-11-12,math-4,d085.md,process,expert,handoff,Day 84's seating promise not kept; seat line added,fixed,docs/reviews/day-085-2026-11-12.md#6
+2026-11-12,math-4,items.csv,day,expert,wording,Fix's first picture not explained; F85-1v2 step and explanation,fixed,docs/reviews/day-085-2026-11-12.md#7
+2026-11-12,math-4,d085.md,day,expert,materials,"Materials and rooms gaps; routine from day 84 page (not a card), print list, no-printer room",fixed,docs/reviews/day-085-2026-11-12.md#8
+2026-11-12,math-4,d085.md,process,expert,key,Watch list missed D and the key had a gap; both added,fixed,docs/reviews/day-085-2026-11-12.md#9
+2026-11-12,math-4,d086.md,day,expert,wording,"Sort test asked about the numbers; now the story's words, card 7 sentence at the key",fixed,docs/reviews/day-086-2026-11-12.md#1
+2026-11-12,math-4,lesson.py,process,expert,figure,"Strips scaled each on its own; scale= option, K86-1 and K86-2 at 48",fixed,docs/reviews/day-086-2026-11-12.md#2
+2026-11-12,math-4,items.csv,process,expert,level,"Exit chained two steps; s10-X86v2, both answers one step from the pumpkin",fixed,docs/reviews/day-086-2026-11-12.md#3
+2026-11-12,math-4,d086.md,process,expert,handoff,"Two-stories task never handed back; day 87 hands it back, gate for judged written tasks",fixed,docs/reviews/day-086-2026-11-12.md#4
+2026-11-12,math-4,items.csv,process,expert,fields,"Which one? problems not rows; s10-T86-1 to 8, tool-row gate",fixed,docs/reviews/day-086-2026-11-12.md#5
+2026-11-12,math-4,errors.csv,process,expert,key,Error C wording did not fit additive swaps; widened in errors.csv and the opener,fixed,docs/reviews/day-086-2026-11-12.md#6
+2026-11-12,math-4,d086.md,process,expert,layout,Small boxes and two-character frame blanks; sketch boxes and long blanks; the under-4-character frame gate not added (would hit stretch 11 pages),fixed,docs/reviews/day-086-2026-11-12.md#7
+2026-11-12,math-4,opener.md,day,expert,materials,Opener named cut sort cards; strip sheets about 8 for the class,fixed,docs/reviews/day-086-2026-11-12.md#8
+2026-11-12,math-4,d086.md,day,expert,minutes,"Teaching and solving tight; Example 2 in three steps, sort 18, solve 12, days.csv 18",fixed,docs/reviews/day-086-2026-11-12.md#9
+2026-11-12,math-4,d086.md,day,expert,wording,"Day 86 small wording repairs (exit back of slip, one projector, card 4, warm-up)",fixed,docs/reviews/day-086-2026-11-12.md#10
+2026-11-12,math-4,lesson.py,process,expert,display,Judge-it stories on no screen; practice rows in whole-class parts get screens,fixed,docs/reviews/day-087-2026-11-12.md#1
+2026-11-12,math-4,lesson.py,process,expert,display,"No answers screen and the second Ask lost; Check line added, every quoted Ask kept, gate",fixed,docs/reviews/day-087-2026-11-12.md#2
+2026-11-12,math-4,items.csv,process,expert,wording,"Exit marked a named letter it never asked for; s10-X87v3, slip work box",fixed,docs/reviews/day-087-2026-11-12.md#3
+2026-11-12,math-4,d087.md,process,expert,layout,"No line for the letter's meaning or the answer; frames added, boxes cut",fixed,docs/reviews/day-087-2026-11-12.md#4
+2026-11-12,math-4,wrongs.csv,process,expert,key,"H signs needed multiplying past grade 4; now the first wrong step (456, 155), over-limit note in plan.py",fixed,docs/reviews/day-087-2026-11-12.md#5
+2026-11-12,math-4,d087.md,process,expert,handoff,"Day 86 slips and E87 slips during the check; routed to day 88 groups, back at pencils down",fixed,docs/reviews/day-087-2026-11-12.md#6
+2026-11-12,math-4,d087.md,day,expert,sequence,"W87 collected and unused; run in class, pages not collected",fixed,docs/reviews/day-087-2026-11-12.md#7
+2026-11-12,math-4,items.csv,day,expert,wording,Pia's story had no question; F87-1 stem,fixed,docs/reviews/day-087-2026-11-12.md#8
+2026-11-12,math-4,d087.md,day,expert,minutes,"Six problems over fifteen minutes; most finish four, 5 and 6 for those who finish",fixed,docs/reviews/day-087-2026-11-12.md#9
+2026-11-12,math-4,items.csv,process,expert,fields,"Warm-up typed in prose; rows s10-P87-10 to 12, warm-up id gate",fixed,docs/reviews/day-087-2026-11-12.md#10
+2026-11-12,math-4,d087.md,day,expert,wording,"Day 87 small repairs (Multiply capital, no projector, day 86 strip note)",fixed,docs/reviews/day-087-2026-11-12.md#11
+2026-11-12,math-4,DEFAULTS.md,process,expert,handoff,"Marked slip and strip sheets on desks during the check; back at pencils down, no strip sheets",fixed,docs/reviews/day-088-2026-11-12.md#1
+2026-11-12,math-4,d088.md,process,expert,handoff,"Tomorrow sent F and H to an estimate warm-up nowhere; day 89 lines, about __ in days 91 and 92, u10-3 field 8 reworded",fixed,docs/reviews/day-088-2026-11-12.md#2
+2026-11-12,math-4,items.csv,day,expert,key,"Ravi 175 was not left to right; s10-E8v2, H gate",fixed,docs/reviews/day-088-2026-11-12.md#3
+2026-11-12,math-4,items.csv,day,expert,key,E7 look-fors marked down the five-jar route; look-for and sample added,fixed,docs/reviews/day-088-2026-11-12.md#4
+2026-11-12,math-4,d088.md,day,expert,materials,"One record sheet for two stretches' marks; both printed, leans_on adds u11-1 record",fixed,docs/reviews/day-088-2026-11-12.md#5
+2026-11-12,math-4,items.csv,process,expert,level,"E2 was day 87's tower fact; s10-E2v2 210 = 7 x 30, fact gate covers stretch 10",fixed,docs/reviews/day-088-2026-11-12.md#6
+2026-11-12,math-4,d088.md,day,expert,sequence,"Respond groups did not match the register; A, C and F lines added",fixed,docs/reviews/day-088-2026-11-12.md#7
+2026-11-12,math-4,lesson.py,process,expert,key,"Answers screen had no accept rule; any letter, any order, pen",fixed,docs/reviews/day-088-2026-11-12.md#8
+2026-11-12,math-4,items.csv,day,expert,level,"E8 numbers make the estimate a ritual; open, a judgment call the expert left for the taught run",open,docs/reviews/day-088-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,expert,level,"C88-2 was review; s10-C88-3 tower 8 times, 63 taller (54/6/9 clashed with E1, so not the 7 and 54 asked)",fixed,docs/reviews/day-088-2026-11-12.md#10
+2026-11-12,math-4,d088.md,day,expert,wording,"Day 88 small repairs (print counts, after-class load, US spelling, R4 stem, second box, version, cuts)",fixed,docs/reviews/day-088-2026-11-12.md#11

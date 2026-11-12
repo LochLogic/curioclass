@@ -81,7 +81,7 @@ already put one grade 3 two-step problem in everyone's warm-up.
 The end check, 30 minutes, unaided; strip pictures may be drawn. Then the respond half as in the course defaults:
 mark 5 minutes, then groups by error, 15 minutes. A and D rebuild one comparison with strips; B and C sort three
 problems by which amount is unknown; F to H do this unit's "if many" action, joined by the students whose day 87
-slips, handed back at the door, showed F, G or H. A student in two groups goes to the earlier one. Then the last
+slips, handed back when pencils go down, showed F, G or H. A student in two groups goes to the earlier one. Then the last
 ten minutes are stretch 11's readiness check. Items 7 and 8 are judged after class and handed back on day 89.
 
 ## Supplies for the unit

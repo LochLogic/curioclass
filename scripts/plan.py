@@ -94,6 +94,69 @@ def check_key(label, comp, val, fails):
             fails.append('%s: key says %s but %s = %s' % (label, v, c, got))
 
 
+def step_results(i):
+    """What a row's student works out: the result of every multiplication and division in its compute cells, and
+    its values, as canon() strings (63 / 9 + 48 gives 7 and 55)."""
+    out = set()
+    for c in split(i['compute']):
+        try:
+            tree = ast.parse(c.replace(';', ','), mode='eval')
+        except SyntaxError:
+            continue
+        for n in ast.walk(tree):
+            if isinstance(n, ast.BinOp) and isinstance(n.op, (ast.Mult, ast.Div)):
+                try:
+                    out.add(canon(compute(ast.unparse(n))))
+                except Exception:
+                    pass
+    for v in split(i['value']):
+        try:
+            out.add(canon(parse_value(v)))
+        except (ValueError, ZeroDivisionError):
+            pass
+    return out
+
+
+def left_to_right(expr):
+    """Every running value of an expression of whole numbers and + - * / worked strictly left to right, ignoring
+    the order of operations: '18+7*7' gives [18, 25, 175]. None if it has brackets or anything else."""
+    toks = re.findall(r'\d+|[-+*/]', expr.replace(' ', ''))
+    if not toks or ''.join(toks) != expr.replace(' ', '') or not toks[0].isdigit():
+        return None
+    acc, out = Fraction(int(toks[0])), [Fraction(int(toks[0]))]
+    for op, n in zip(toks[1::2], toks[2::2]):
+        n = Fraction(int(n))
+        acc = acc + n if op == '+' else acc - n if op == '-' else acc * n if op == '*' else acc / n if n else acc
+        out.append(acc)
+    return out
+
+
+GRADE_MULT = {'4': (9999, 9, 99)}   # grade 4: four digits by one digit, or two digits by two digits
+
+
+def over_limit(expr, course):
+    """True when the expression multiplies past what the course's grade multiplies (for a wrong answer's sign)."""
+    lim = GRADE_MULT.get(course.rsplit('-', 1)[-1])
+    if not lim:
+        return False
+    try:
+        tree = ast.parse(expr.split('|')[0].replace(';', ','), mode='eval')
+    except SyntaxError:
+        return False
+    for n in ast.walk(tree):
+        if isinstance(n, ast.BinOp) and isinstance(n.op, ast.Mult):
+            try:
+                a, b = sorted(abs(compute(ast.unparse(x))) for x in (n.left, n.right))
+            except Exception:
+                continue
+            if a == int(a) and b == int(b) and a % 10 and b % 10:   # multiples of 10 are inside the rule
+                if not ((a <= lim[1] and b <= lim[0]) or (a <= lim[2] and b <= lim[2])):
+                    return True
+            elif a == int(a) and b == int(b) and a > lim[2] and b > lim[2]:
+                return True
+    return False
+
+
 def numbers(text):
     """The set of numbers in a stem or example: used for the no-reuse rule."""
     t = re.sub(r'\b(?:MP|E|day|Day|stretch|lesson|unit|item|items)\.? ?\d+', ' ', text)
@@ -113,7 +176,7 @@ def canon(v):
     return str(v.numerator) if v.denominator == 1 else '%d/%d' % (v.numerator, v.denominator)
 
 
-def facts(i):
+def facts(i, stem=True):
     """The fact triples a row teaches or checks, as sorted tuples of canon() strings, matched in any order:
     (side, side, area) for an area or a side from an area, (side, side, perimeter) for a perimeter or a side from
     a perimeter. Read from the compute cell, plus both measures of any rectangle the stem names by two numbers."""
@@ -173,7 +236,7 @@ def facts(i):
             ev(ast.parse(c.replace(';', ','), mode='eval'))
         except SyntaxError:
             pass
-    ns = [parse_value(x) for x in numbers(i['stem'])]
+    ns = [parse_value(x) for x in numbers(i['stem'])] if stem else []
     if len(ns) == 2:
         add(ns[0], ns[1], ns[0] * ns[1])
         add(ns[0], ns[1], 2 * (ns[0] + ns[1]))
@@ -223,8 +286,10 @@ def check(course):
         # lesson-day columns (docs/courses/LESSON-DAY.md): an exit names its path; an adapted item carries its credit
         # an exit's path is tool or paper; a practice row written on the board when the sheet is not printed is board
         pth = i.get('path', '')
-        if not (pth == '' or (pth in ('tool', 'paper') and i['check'] == 'exit') or (pth == 'board' and i['check'] == 'practice')):
-            fails.append('%s: path must be tool or paper on an exit, or board on a practice row' % i['item_id'])
+        # spare: a lesson row kept in data for a later day to cite, printed on no page
+        if not (pth == '' or (pth in ('tool', 'paper') and i['check'] == 'exit') or (pth == 'board' and i['check'] == 'practice')
+                or (pth == 'spare' and i['check'] in LESSON_KINDS)):
+            fails.append('%s: path must be tool or paper on an exit, board on a practice row, or spare on a lesson row' % i['item_id'])
         # a teacher-judged row carries its look-fors (steps) and its samples (meets | partly | not), so the key holds them
         if i['judged'] == 'teacher' and not i.get('steps', '').strip():
             fails.append('%s: judged by the teacher but has no look-fors in its steps cell' % i['item_id'])
@@ -250,9 +315,28 @@ def check(course):
             fails.append(lab + ': no such item')
         if w['compute'].strip():
             check_key(lab, w['compute'], w['value'], fails)
-        st = next((i['stretch'] for i in items if i['item_id'] == w['item_id']), None)
+        it = next((i for i in items if i['item_id'] == w['item_id']), None)
+        st = it['stretch'] if it else None
         if w['error'] and (st, w['error']) not in letters:
             fails.append(lab + ': error letter %s is not in the error register' % w['error'])
+        # a "left to right" error's wrong answer is what the item's expression gives worked strictly left to right
+        # (or a first step of that); expert, day 88: Ravi's 175 was not left to right at all
+        reg = next((e for e in errors if (e['stretch'], e['letter']) == (st, w['error'])), None)
+        if it and reg and 'left to right' in reg['error'].lower() and w['value'].strip() and it['compute'].strip():
+            want = left_to_right(split(it['compute'])[0])
+            if want and parse_value(split(w['value'])[0]) not in want:
+                fails.append(lab + ': error %s is left to right, but %s worked left to right gives %s'
+                             % (w['error'], split(it['compute'])[0], ', '.join(str(x) for x in want)))
+        # a wrong answer that needs multiplying beyond the grade's limit is one a child cannot reach (expert, day 87)
+        if w['compute'].strip() and over_limit(w['compute'], course):
+            notes.append(lab + ': its compute multiplies beyond the grade limit; read it (day 87 read)')
+    # an exit whose wrong answers are sentences asks for a sentence, or the sign cannot show (expert, day 85)
+    for i in items:
+        if i['check'] == 'exit':
+            ws = [w['shown'] for w in wrongs if w['item_id'] == i['item_id']]
+            if any(re.search(r'[A-Za-z]+ (?:\w+ )?(?:read|has|have|is|picked|weighs) \d+ times as', x) for x in ws) and \
+                    not re.search(r'sentence|say|finish', i['stem'], re.I):
+                fails.append('%s: a wrong answer is a sentence, but the stem never asks for one' % i['item_id'])
 
     for s in stretches:
         sp = [p for p in parts if p['stretch'] == s]
@@ -284,6 +368,40 @@ def check(course):
             for b, nb in asked[k + 1:]:
                 if na == nb:
                     fails.append('%s and %s use the same numbers: %s' % (a, b, ', '.join(sorted(na))))
+        # 3a. a fact turned round: a check or exit item that shares a taught row's multiplication or division fact
+        # (a, b, a x b from the compute cells, any order) and prints that row's answer as a given number fails, so a
+        # taught answer reused as a factor is caught (expert, day 88: 63 = 7 x 9 was day 87's 63 / 9 = 7; day 85:
+        # 27 / 9 = 3 against 27 / 3 = 9). Sharing a fact alone is allowed: stretch 10's one-digit facts are all used
+        tf = {}
+        for i in items:
+            if i['stretch'] == s and i['check'] in LESSON_KINDS:
+                for t in facts(i, stem=False):
+                    tf.setdefault(t, []).append(i)
+        for i in items:
+            if i['stretch'] == s and i['check'] in ('end', 'exit'):
+                given = {canon(parse_value(x)) for x in numbers(i['stem'])}
+                for t in sorted(facts(i, stem=False)):
+                    for x in tf.get(t, []):
+                        if i['check'] == 'exit' and int(x['day']) > int(i['day']):
+                            continue   # not taught yet when the exit is asked
+                        ans = step_results(x)
+                        own = {canon(parse_value(y)) for y in numbers(x['stem'])}
+                        turned = (ans & given & set(t)) - own
+                        if turned:
+                            fails.append('%s gives %s, the answer of the taught row %s on the same fact %s'
+                                         % (i['item_id'], ', '.join(sorted(turned)), x['item_id'], ' '.join(t)))
+        # taught against taught, across days: allowed for practice, but counted so a writer sees it
+        cross = sorted(t for t, xs in tf.items() if len({x['day'] for x in xs}) > 1)
+        if cross:
+            notes.append('stretch %s: %d taught facts recur on more than one day (allowed for practice), e.g. %s'
+                         % (s, len(cross), '; '.join(' '.join(t) for t in cross[:4])))
+        # an exit whose answer is a taught answer on the same part of its own day can be copied (lesson-day read, day 85)
+        for i in items:
+            if i['stretch'] == s and i['check'] == 'exit' and i['value'].strip():
+                same = [x['item_id'] for x in items if x['day'] == i['day'] and x['check'] in ('example', 'fix')
+                        and partset(x) & partset(i) and split(x['value'])[:1] == split(i['value'])[:1]]
+                if same:
+                    notes.append('%s: its answer %s is the answer of %s on the same part' % (i['item_id'], i['value'], same[0]))
         # 3b. no two rows of a stretch share a stem, and no two challenges share their numbers under new ids
         sr = [i for i in items if i['stretch'] == s]
         for k, a in enumerate(sr):
@@ -319,6 +437,10 @@ def check(course):
                     fails.append('%s: tool %s is not marked key or light' % (lab, d['tool']))
                 if not (ROOT / 'tools' / d['tool']).is_dir():
                     fails.append('%s: no folder tools/%s' % (lab, d['tool']))
+                # the tool's problems are rows, so the no-reuse gates see them (expert, day 86)
+                if int(d['tool_min'] or 0) and not any(i['day'] == d['day'] and (i['check'] == 'tool' or i.get('path') == 'tool')
+                                                       for i in items):
+                    fails.append('%s: names the tool %s but has no tool rows in items.csv' % (lab, d['tool']))
                 stated = sum(int(m) for m in re.findall(r'(\d+) min', d['tool_use']))
                 if stated != int(d['tool_min'] or 0):
                     fails.append('%s: tool minutes in words add to %d, tool_min says %s' % (lab, stated, d['tool_min']))

@@ -8,8 +8,9 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
@@ -17,7 +18,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 </style></head><body class="teacher"><h1>Day 92: Area or perimeter?</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>92, unit 11.1, use day</td></tr><tr><td>Goal</td><td>I can decide which measure a real problem needs</td></tr><tr><td>Standard parts</td><td>4.MD.A.3 (c) perimeter with multi-digit sides; 4.MD.A.3 (d) perimeter with fraction sides; 4.MD.A.3 (e) choosing the measure in a real problem; 4.MD.A.3 (f) the perimeter formula as 2 × (l + w): length plus width is half the perimeter</td></tr><tr><td>Tool</td><td>None</td></tr><tr><td>Materials</td><td>per student, grid paper (1 sheet) and a pencil; per class, the 36-foot string loop, the projector with the display page, and a board (no document camera: draw it on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; exit slip, 1 per student; the key, 1 for the teacher</td></tr><tr><td>Leans on</td><td>courses/math-4/u11-1/opener.md; courses/math-4/u11-1/record.md</td></tr><tr><td>Version</td><td>draft 1, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
 <p>Print what the header lists. Have the 36-foot string loop and grid paper out, the display on the projector, and
@@ -26,7 +27,8 @@ the two warm-up problems on the board.</p>
 <h4>5 min. Warm-up: two perimeters</h4>
 <p>Alone, on the back of the grid paper. A rectangle is 264 feet long and 129 feet wide. Find its perimeter. <strong>[786 feet]</strong> and A rectangle is 2 3/5 inches long and 1 4/5 inches wide. Find its perimeter. <strong>[8 4/5 inches; 6 14/5, 7 9/5 and 44/5 are also right]</strong>. Students add the length and the width,
 then add the sum to itself, as on day 91. Go over both at 5 minutes. A sum not doubled (393, 4 2/5 or 3 7/5) is
-error B: trace the four sides on the board.</p>
+error B: trace the four sides on the board. If day 88's item 8 showed many with no estimate: write "about <span class="blank" style="width:0.9em"></span>"
+before each sum.</p>
 <p><strong>If many made B on day 91's exit</strong> (383 or 5 5/10): Ben's wrong answer from day 91's display first, one minute.
 <strong>E</strong> (240 feet): the opener's eight answers with no units replace A rectangle is 2 3/5 inches long and 1 4/5 inches wide. Find its perimeter. <strong>[8 4/5 inches; 6 14/5, 7 9/5 and 44/5 are also right]</strong>. <strong>A</strong> (92 for the hall): open
 the dog pen with Lia's wrong answer: "Does the floor cover, or go around?"</p>
@@ -99,11 +101,10 @@ edge?" before any number.</p>
 <ul>
 <li><strong>No string loop.</strong> Draw a 17 by 1 pen and a 9 by 9 pen on the board, each with 36 feet of edge.</li>
 <li><strong>One child at home.</strong> Make the 36-foot pens from a 36-inch string on a table, with paper squares for the room
-  inside. Then do problems 1 to 3 together and 4 to 6 alone.</li>
+  inside.</li>
 </ul>
 <h3>Shorter or longer</h3>
-<p>Shorter: stop the task's table at 6 pens and close it from there; drop the partner check (students check their
-own). Never drop the written task or the reading aloud. Longer: the challenge (A dog pen is 10 feet long and 2 feet wide. Draw a pen with more room but less fence. <strong>[For example 5 by 5: 25 square feet and 20 feet of fence. The 10 by 2 pen has 20 square feet and 24 feet of fence]</strong>), on the back of the
+<p>Shorter: stop the task's table at 6 pens and close it from there. Never drop the written task or the reading aloud. Longer: the challenge (A dog pen is 10 feet long and 2 feet wide. Draw a pen with more room but less fence. <strong>[For example 5 by 5: 25 square feet and 20 feet of fence. The 10 by 2 pen has 20 square feet and 24 feet of fence]</strong>), on the back of the
 grid paper.</p>
 <h3>Words and supports</h3>
 <p>Word Wall cards: area, perimeter, length, width, square foot, times as long. Frames on the display: "This

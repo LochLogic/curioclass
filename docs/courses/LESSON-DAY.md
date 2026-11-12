@@ -109,6 +109,11 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
 - Room to write: every question that asks for a sketch has a box (`{sketch}`, or `{small}` for a short fix);
   every "show your working" has `{work}`.
 - Then the day's questions in the order they are used, each pulled from data, with room to write.
+- Warm-up questions are rows too, so the key and the reuse gate see them. A printed sentence frame sits under
+  the question it belongs to, and list numbers carry on across a side (no two items 1 on one side).
+- Tables print at the page's own type size (14 point); a day that will not fit two sides trims, not the type.
+- Strip pictures that are compared side by side share one scale (`scale=N` on each strip figure).
+- An exit slip that asks for a strip picture prints a box for it; a teacher-judged slip item gets a tall box.
 - No answers printed. No timer, score or rank. Black and white, readable with no colour.
 - A large-print version (18 point) is generated from the same file.
 - Instructions a student reads are short sentences in plain words; numbers are written as numerals.
@@ -162,6 +167,14 @@ check`, which it runs); a reused set of numbers; a `leans_on` piece missing on a
 adapted credit or `source` with no licence or link, or with NonCommercial, ShareAlike or NoDerivatives terms; a
 student page that prints to more than two sides (counted on the printed page whenever Chrome is present, and the
 output says so when it was skipped). It cannot judge whether the day teaches; the expert and people do that.
+
+Added from the stretch 10 reads: an error letter or "near you" in Tomorrow the next day does not name; a
+teacher-judged practice row the next day does not hand back (unless its pages stay with students); a part that
+says the display shows the answers with no check named; a warm-up with no row; repeated list numbers on a side;
+compared strips with different scales. `plan.py check` adds: a wrong answer for H that is not a left-to-right
+running value; a sentence-shaped wrong answer on an exit that asks for no sentence; an exit or check item whose
+given number is a taught step's result for the same fact (the fact turned into its answer); a day that names a
+tool with no tool rows.
 
 **How days are read.** Every day by the gates; a sample of days per unit by the expert; the whole of the first
 unit in each course by a teacher, in a taught run.

@@ -8,8 +8,9 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
 .side { page-break-after: always; } .side:last-child { page-break-after: auto; }
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
-.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
-.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
 .slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
@@ -17,37 +18,39 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
 .pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
-.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 </style></head><body class="student"><h1>Day 85: How many times as many?</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can find how many times as many one amount is as another.</strong></p>
-<p><strong>Example.</strong> Gus picked 36 apples. Nell picked 9 apples. Gus picked how many times as many apples as Nell?</p>
-<div class="fig" style="margin:.2em 0"><svg viewBox="0 0 748 170" width="748" style="display:block;height:0.87in;width:auto;max-width:100%" role="img" aria-label="A strip diagram: Nell 9; Gus n copies of 9, in all 36" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><rect x="88" y="4" width="160" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="168" y="37" text-anchor="middle" font-size="30">9</text><text x="76" y="37" text-anchor="end" font-size="30">Nell</text><rect x="88" y="60" width="640" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="408" y="93" text-anchor="middle" font-size="30">n times</text><text x="76" y="93" text-anchor="end" font-size="30">Gus</text><path d="M88 110 L88 120 L728 120 L728 110 M408 120 L408 126" fill="none" stroke="#000" stroke-width="2"/><text x="408" y="154" text-anchor="middle" font-size="30">36</text></svg></div>
+<p><strong>Example.</strong> Gus picked 36 apples. Nell picked 4 apples. Gus picked how many times as many apples as Nell?</p>
+<div class="fig" style="margin:.2em 0"><svg viewBox="0 0 748 170" width="748" style="display:block;height:0.87in;width:auto;max-width:100%" role="img" aria-label="A strip diagram: Nell 4; Gus n copies of 4, in all 36" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><rect x="88" y="4" width="71" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="124" y="37" text-anchor="middle" font-size="30">4</text><text x="76" y="37" text-anchor="end" font-size="30">Nell</text><rect x="88" y="60" width="640" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="408" y="93" text-anchor="middle" font-size="30">n times</text><text x="76" y="93" text-anchor="end" font-size="30">Gus</text><path d="M88 110 L88 120 L728 120 L728 110 M408 120 L408 126" fill="none" stroke="#000" stroke-width="2"/><text x="408" y="154" text-anchor="middle" font-size="30">36</text></svg></div>
 
 <p>Equation: <span class="blank" style="width:7.2em"></span>  Gus picked <span class="blank" style="width:1.8em"></span> times as many apples as Nell.</p>
-<p><strong>Six problems.</strong> In each box, show two strips with a letter on the unknown. Write an equation. Answer in a sentence.</p>
+<p>The long strip is <span class="blank" style="width:1.8em"></span> copies of the short strip.</p>
+<p><strong>Six problems.</strong> In each box, two strips and a letter. Then fill both lines.</p>
 <p><strong>Problem 1.</strong> Rosa has 8 marbles. Teo has 7 times as many marbles as Rosa. How many marbles does Teo have?</p>
 <div class="sketch work"></div>
 
-<p>Equation: <span class="blank" style="width:7.2em"></span>  Answer: <span class="blank" style="width:9.9em"></span></p>
-<p><strong>Problem 2.</strong> A puppy weighs 9 pounds. A big dog weighs 10 times as much as the puppy. How much does the big dog weigh?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span> Answer in a sentence: <span class="blank" style="width:14.4em"></span></p>
+<p><strong>Problem 2.</strong> Pia has 42 stickers. That is 6 times as many stickers as Sam has. How many stickers does Sam have?</p>
 <div class="sketch work"></div>
 
-<p>Equation: <span class="blank" style="width:7.2em"></span>  Answer: <span class="blank" style="width:9.9em"></span></p>
-<p><strong>Problem 3.</strong> Pia has 42 stickers. That is 6 times as many stickers as Sam has. How many stickers does Sam have?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span> Answer in a sentence: <span class="blank" style="width:14.4em"></span></p>
+<p><strong>Problem 3.</strong> A tall jar holds 48 buttons. A small jar holds 8 buttons. The tall jar holds how many times as many buttons as the small jar?</p>
 <div class="sketch work"></div>
 
-<p>Equation: <span class="blank" style="width:7.2em"></span>  Answer: <span class="blank" style="width:9.9em"></span></p><div class="foot">Curio Class, grade 4 math, day 85, version draft 2, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Problem 4.</strong> A whale is 72 feet long. That is 9 times as long as a dolphin. How long is the dolphin?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span> Answer in a sentence: <span class="blank" style="width:14.4em"></span></p><div class="foot">Curio Class, grade 4 math, day 85, version draft 3, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Problem 4.</strong> A whale is 72 feet long. That is 9 times as long as a dolphin. How long is the dolphin?</p>
 <div class="sketch work"></div>
 
-<p>Equation: <span class="blank" style="width:7.2em"></span>  Answer: <span class="blank" style="width:9.9em"></span></p>
-<p><strong>Problem 5.</strong> A tall jar holds 48 buttons. A small jar holds 8 buttons. The tall jar holds how many times as many buttons as the small jar?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span> Answer in a sentence: <span class="blank" style="width:14.4em"></span></p>
+<p><strong>Problem 5.</strong> A puppy weighs 9 pounds. A big dog weighs 10 times as much as the puppy. How much does the big dog weigh?</p>
 <div class="sketch work"></div>
 
-<p>Equation: <span class="blank" style="width:7.2em"></span>  Answer: <span class="blank" style="width:9.9em"></span></p>
+<p>Equation: <span class="blank" style="width:6.3em"></span> Answer in a sentence: <span class="blank" style="width:14.4em"></span></p>
 <p><strong>Problem 6.</strong> A tower is 45 feet tall. A shed is 9 feet tall. The tower is how many times as tall as the shed?</p>
 <div class="sketch work"></div>
 
-<p>Equation: <span class="blank" style="width:7.2em"></span>  Answer: <span class="blank" style="width:9.9em"></span></p>
+<p>Equation: <span class="blank" style="width:6.3em"></span> Answer in a sentence: <span class="blank" style="width:14.4em"></span></p>
 <p><strong>Fix it.</strong> Ann has 24 pens. Raj has 3 pens. Ali says: "Raj has 8 times as many pens as Ann." Who has more? <span class="blank" style="width:2.7em"></span></p>
 <p>The right sentence: <span class="blank" style="width:18.0em"></span></p>
-<p><strong>Challenge.</strong> Lin has 2 beads. Mae has 3 times as many beads as Lin. Ned has 3 times as many beads as Mae. Ned has how many times as many beads as Lin? Answer: <span class="blank" style="width:6.3em"></span></p><div class="foot">Curio Class, grade 4 math, day 85, version draft 2, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>
+<p><strong>Challenge.</strong> Lin has 2 beads. Mae has 3 times as many beads as Lin. Ned has 3 times as many beads as Mae. Ned has how many times as many beads as Lin?</p>
+<p>Answer: <span class="blank" style="width:27.0em"></span></p><div class="foot">Curio Class, grade 4 math, day 85, version draft 3, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>

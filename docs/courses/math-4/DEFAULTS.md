@@ -11,8 +11,8 @@ stretches as each is next opened.
 - **"Many"** means more than a third of the class.
 - **The respond half.** Students mark keyed items against the key on the screen, pen down, five minutes. Hands
   up by item sets the groups; each group does its error's "if many" action. Teacher-judged items are read after
-  class and answered in the next day's first five minutes. When the next day is a check, judged work goes back at
-  the door and feeds that day's respond groups.
+  class and answered in the next day's first five minutes. When the next day is a check, judged work goes back
+  when pencils go down, never before the check, and feeds that day's respond groups.
 - **Teaching one child.** Give the check items, then go over the missed ones together.
 - **No document camera.** Draw it on the board; the display page carries every figure and step.
 - **Lesson day sizes (docs/courses/LESSON-DAY.md).** Teacher page 900 words of prose (15 a minute of a 60-minute
