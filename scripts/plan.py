@@ -72,6 +72,11 @@ def parse_value(v):
     return Fraction(v)
 
 
+def partset(i):
+    """The parts one item tests: a cell may name several, "f, g", when one printed item checks two verbs."""
+    return {x.strip() for x in i['part'].split(',') if x.strip()}
+
+
 def split(cell):
     return [c.strip() for c in cell.split('|')] if cell.strip() else []
 
@@ -91,7 +96,8 @@ def check_key(label, comp, val, fails):
 
 def numbers(text):
     """The set of numbers in a stem or example: used for the no-reuse rule."""
-    t = re.sub(r'\b(?:MP|E|day|Day|stretch|lesson|unit)\.? ?\d+', ' ', text)
+    t = re.sub(r'\b(?:MP|E|day|Day|stretch|lesson|unit|item|items)\.? ?\d+', ' ', text)
+    t = re.sub(r'\b\d+ min\b', ' ', t)   # minutes in a day row are time, not taught numbers
     t = re.sub(r'\((?:a|b|c|d|e|f)\)', ' ', t)
     return frozenset(re.findall(r'\d+(?: \d+/\d+)?(?:,\d{3})*', t))
 
@@ -253,11 +259,12 @@ def check(course):
         end = [i for i in items if i['stretch'] == s and i['check'] == 'end']
         # 2. every part of every standard has an end-check item
         for p in sp:
-            if not any(i['code'] == p['code'] and i['part'] == p['part'] for i in end):
+            if not any(i['code'] == p['code'] and p['part'] in partset(i) for i in end):
                 fails.append('stretch %s: %s part (%s) "%s" has no end-check item' % (s, p['code'], p['part'], p['text']))
         for i in end:
-            if sp and not any(i['code'] == p['code'] and i['part'] == p['part'] for p in sp):
-                fails.append('%s: part (%s) of %s is not listed in parts.csv' % (i['item_id'], i['part'], i['code']))
+            for pt in sorted(partset(i)):
+                if sp and not any(i['code'] == p['code'] and pt == p['part'] for p in sp):
+                    fails.append('%s: part (%s) of %s is not listed in parts.csv' % (i['item_id'], pt, i['code']))
         if codes:
             for p in sp:
                 if p['code'] not in codes:
@@ -371,8 +378,10 @@ def wrong_text(ws):
     return '; '.join(out)
 
 
-def blocks(course, s):
-    items = [i for i in rows(course, 'items') if i['stretch'] == s]
+def blocks(course, s, unit=None):
+    """The generated tables of one stretch; a unit plan (uNN-N.md) gets its own unit's days, exits and parts."""
+    U = lambda r: unit is None or r.get('unit') == unit
+    items = [i for i in rows(course, 'items') if i['stretch'] == s and (i['check'] != 'exit' or U(i))]
     wrongs = rows(course, 'wrongs')
     W = lambda i: wrong_text([w for w in wrongs if w['item_id'] == i['item_id']])
     b = {}
@@ -394,21 +403,21 @@ def blocks(course, s):
         [[d['day'], d['goal'], d['kind'] + (' (%s)' % d['check_min'].replace(';', ',') if d['check_min'] else ''), d['opens'], d['holds'],
           ('%s (%s): %s' % (d['tool'], d['mark'], d['tool_use'])) if d['tool'] else 'None', d['by_hand'],
           'The end check' if d['exit'] == 'END' else d['exit']]
-         for d in sorted((d for d in rows(course, 'days') if d['stretch'] == s), key=lambda d: int(d['day']))])
+         for d in sorted((d for d in rows(course, 'days') if d['stretch'] == s and U(d)), key=lambda d: int(d['day']))])
     b['parts'] = table(['Code', 'Part', 'Verb', 'What it is'],
-        [[p['code'], '(%s)' % p['part'], p['verb'], p['text']] for p in rows(course, 'parts') if p['stretch'] == s])
+        [[p['code'], '(%s)' % p['part'], p['verb'], p['text']] for p in rows(course, 'parts') if p['stretch'] == s and U(p)])
     return b
 
 
 def tables(course):
     changed = 0
     for f in sorted((DOCS / course).glob('*.md')):
-        m = re.match(r'[su](\d+)', f.name)
+        m = re.match(r'([su])(\d+)(?:-(\d+))?', f.name)
         if not m:
             continue
         raw = io.open(f, encoding='utf-8', newline='').read()
         nl = '\r\n' if '\r\n' in raw else '\n'
-        b = blocks(course, str(int(m[1])))
+        b = blocks(course, str(int(m[2])), '%d.%s' % (int(m[2]), m[3]) if m[1] == 'u' and m[3] else None)
         def sub(mm):
             name = mm.group(1)
             if name not in b:
@@ -451,10 +460,10 @@ def pack(course, s):
             m = re.search(r'^## %s.*?(?=^## |\Z)' % re.escape(name), text, flags=re.S | re.M)
             out += ['', '## Tool asks: ' + name, '', m.group(0).split('\n', 1)[1].strip() if m else '(no section in TOOL-ASKS.md)',
                     '', 'Spec: tools/%s/spec.md' % t]
-    f = DOCS / course / ('s%02d.md' % int(s))
-    if f.exists():
-        prose = re.sub(r'<!-- gen:.*?<!-- /gen -->', '(table above)', f.read_text(encoding='utf-8'), flags=re.S)
-        out += ['', '## The plan\'s prose (%s)' % f.name, '', prose]
+    for f in [DOCS / course / ('s%02d.md' % int(s))] + sorted((DOCS / course).glob('u%02d-*.md' % int(s))):
+        if f.exists():   # the stretch sheet, then each unit plan: a day writer needs the unit's prose too
+            prose = re.sub(r'<!-- gen:.*?<!-- /gen -->', '(table above)', f.read_text(encoding='utf-8'), flags=re.S)
+            out += ['', '## The plan\'s prose (%s)' % f.name, '', prose]
     open_d = [d for d in rows_defects() if d['course'] == course and d['status'] == 'open' and ('s%02d' % int(s)) in d['artifact']]
     if open_d:
         out += ['', '## Open defects on this stretch', ''] + ['- %s (%s, %s): %s' % (d['artifact'], d['found_by'], d['date'], d['summary']) for d in open_d]

@@ -90,3 +90,57 @@ s11-R2,13,9+4,13,B,
 s11-R2,36,9*4,36,A,
 s11-R3,40 or 56,48-8 | 48+8,40 | 56,,not seen as a missing factor
 s11-R3,384,48*8,384,,not seen as a missing factor
+s10-R1,25 or 35,30-5 | 30+5,25 | 35,,not seen as equal groups
+s10-R1,150,30*5,150,,multiplied the two numbers given
+s10-R2,23,15+8,23,,"added: ""how many more"" not yet seen as a difference"
+s10-R3,18,2*9,18,F,"the cost of the books, not the money left"
+s10-R3,21,30-9,21,,one book only
+s10-R3,252,(30-2)*9,252,H,
+s10-R3,12 with no equation,,,G,
+s10-E1,"""54 is 6 more than 9""",,,A,
+s10-E1,"""6 is 9 times as many as 54""",,,C,
+s10-E1,one sentence only,,,,the second reading is the point of the part
+s10-E2,"63 = 7 + 9, or 7 + 9 = 16",7+9,16,A,
+s10-E2,9 = 7 × 63,,,C,
+s10-E3,13,8+5,13,A,
+s10-E3,48,8+5*8,48,D,
+s10-E4,128,32*4,128,B,
+s10-E4,28,32-4,28,A,
+s10-E5,24,27-3,24,A,
+s10-E5,81,27*3,81,B,
+s10-E6,"both 18, both 9, or swapped",,,A,
+s10-E7,80,4*20,80,F,
+s10-E7,44,20+(20+4),44,A,"""4 more"""
+s10-E7,480,(20+4)*20,480,H,
+s10-E7,100 with no letter,,,G,
+s10-E8,67 with no estimate,7*7+18,67,,goes to the estimate warm-ups
+s10-E8,175 accepted,7*(7+18),175,H,"adds before multiplying, as Ravi did"
+s10-X80,7,2+5,7,A,
+s10-X80,"12, or six copies drawn",2+5*2,12,D,
+s10-X80,"""2 is 5 times as many as 10""",,,C,
+s10-X81,"""28 is 4 more than 7""",,,A,
+s10-X81,"""7 is 4 times as many as 28""",,,C,
+s10-X81,one sentence only,,,,the second reading is the day's point
+s10-X81,"a 4-strip and a 7-strip, no copies",,,A,
+s10-X82a,"2 + 7 = 9, or 14 = 2 + 7",2+7,9,A,
+s10-X82a,7 = 2 × 14,,,C,
+s10-X82b,10 + 6 = 16,10+6,16,A,
+s10-X82c,"16 + 8 = 24, or 16 × 2 = 32",16+8 | 16*2,24 | 32,B,
+s10-X83,"both 6, both 8, or swapped",,,A,
+s10-X83,Di 12,4+2*4,12,D,
+s10-X84,63,21*3,63,B,
+s10-X84,18,21-3,18,A,
+s10-X84,24,21+3,24,A,added
+s10-X85,15,20-5,15,A,
+s10-X85,100,20*5,100,B,
+s10-X85,"""Jon read 4 times as many""",,,C,
+s10-X86,melon 96,24*4,96,B,
+s10-X86,melon 20,24-4,20,A,
+s10-X86,squash 24,4*(24/4),24,A,the other way round: 4 times the melon
+s10-X86,melon only,,,F,one question answered
+s10-X87,90,3*30,90,F,
+s10-X87,142,3*30+52,142,,adds the 52
+s10-X87,"38 with no letter, or a letter never named",,,G,
+s10-X87,"no estimate, or ""38 is about 40"" with no working from the story",,,,part h not shown
+s10-W82,"3 + 5 = 8, so Jo is wrong",3+5,8,A,
+s10-W86,"both stories say ""times"", or both say ""more""",,,A,

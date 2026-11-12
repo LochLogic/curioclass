@@ -1,3 +1,4 @@
 pattern,use,reason
 "^(?!.*\b(?:goat|dog|chicken) pen\b).*\bpen\b",goat pen or dog pen,a bare pen reads as a writing pen (expert day 92)
 "\b(?:dog|chicken|goat) run\b",yard,a run is not a word fourth graders know for an enclosure (expert day 92)
+\btimes more than\b,"times as many as, or times as much as","unclear in everyday English; talked about once on day 83, never asked (s10 limits, Prog. p. 44)"
