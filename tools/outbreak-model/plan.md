@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 50
-focus: F-LE.A.4; F-IF.C
+focus: F-LE.A.4; F-IF.C.7; F-IF.C.8; F-IF.C.9
 goal: I can solve exponential models for time with logarithms in base 2, 10 and e, read percent growth from an exponential, and explain where a pure exponential model breaks.
 materials: The tool on the projector and on student devices. Calculators with ln and log.
 grouping: Pairs on devices, with whole-class pauses.

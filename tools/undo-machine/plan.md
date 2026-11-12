@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 50
-focus: F-BF.A; F-BF.B
+focus: F-BF.A.1; F-BF.A.2; F-BF.B.3; F-BF.B.4; F-BF.B.5
 goal: I can compose functions, write and verify an inverse by undoing steps in reverse order, read inverses as a reflection across y = x, and restrict a domain to make a function one-to-one.
 materials: The tool on the projector and on student devices. Graph paper.
 grouping: Pairs on devices, with whole-class pauses.

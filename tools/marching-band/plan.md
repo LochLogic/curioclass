@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 30
-focus: 2.OA.C
+focus: 2.OA.C.3; 2.OA.C.4
 goal: I can tell if a number is odd or even by pairing, and write an array as repeated addition.
 materials: The tool on the big screen with sound on. Counters or cubes for each pair. Whiteboards.
 grouping: Whole class on the carpet, then partners.

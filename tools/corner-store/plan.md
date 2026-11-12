@@ -1,6 +1,6 @@
 arc: teach-then-practice
 minutes: 40
-focus: 2.MD.C
+focus: 2.MD.C.7; 2.MD.C.8
 goal: I can count coins, biggest first, and make change by counting up from the price.
 materials: The tool on the big screen. Play coins for each pair (quarters, dimes, nickels, pennies). A small price list on the board.
 grouping: Whole class on the carpet, then pairs with play coins.

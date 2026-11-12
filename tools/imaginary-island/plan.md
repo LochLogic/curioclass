@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 50
-focus: N-CN.A; N-CN.C
+focus: N-CN.A.1; N-CN.A.2; N-CN.A.3; N-CN.C.7; N-CN.C.8; N-CN.C.9
 goal: I can add, multiply and conjugate complex numbers, see multiplication by i as a turn on the complex plane, and locate the complex solutions of a quadratic.
 materials: The tool on the projector and on student devices. Graph paper.
 grouping: Pairs on devices, with whole-class pauses.

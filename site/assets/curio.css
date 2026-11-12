@@ -1039,6 +1039,11 @@ p.ws-note { border-left: 3px solid #b03020; padding-left: 8px; }
 .building-close { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: var(--paper);
   color: var(--muted); font-size: 22px; line-height: 1; cursor: pointer; }
 .building-close:hover { color: var(--ink); }
+.building-peek { display: flex; justify-content: flex-end; margin: 12px 0 0; }
+.building-peek[hidden] { display: none; }
+.building-peek button { font: 600 14px/1 var(--sans); padding: 8px 14px; border-radius: 999px; cursor: pointer;
+  background: var(--paper-2); color: var(--accent-ink); border: 1px solid var(--line); border-left: 4px solid var(--accent); }
+.building-peek button:hover { color: var(--ink); }
 .msg { width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 32px); padding: 0; border: 1px solid var(--line);
   border-radius: 16px; background: var(--paper); color: var(--ink); box-shadow: 0 24px 60px rgba(20, 24, 32, .28); }
 .msg::backdrop { background: rgba(20, 24, 32, .5); }

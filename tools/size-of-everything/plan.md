@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 45
-focus: 8.EE.A
+focus: 8.EE.A.1; 8.EE.A.2; 8.EE.A.3; 8.EE.A.4
 goal: I can read and write very large and very small numbers in scientific notation, and estimate how many times bigger one thing is than another.
 materials: The tool on the projector and on student devices. Notebooks.
 grouping: Whole class for the hook, then pairs on devices.

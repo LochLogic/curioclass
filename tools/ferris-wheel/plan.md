@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 50
-focus: F-TF.A; F-TF.B; F-TF.C
+focus: F-TF.A.1; F-TF.A.2; F-TF.A.3; F-TF.A.4; F-TF.B.5; F-TF.B.6; F-TF.B.7; F-TF.C.8; F-TF.C.9
 goal: I can model a Ferris wheel ride with a sinusoid, read amplitude, midline and period from it, and explain radians as arc length on the unit circle.
 materials: The tool on the projector and on student devices. Graph paper. A string and a round lid for the radian demo.
 grouping: Pairs on devices, with whole-class pauses.

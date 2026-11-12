@@ -1,6 +1,6 @@
 arc: teach-then-practice
 minutes: 30
-focus: K.CC.A
+focus: K.CC.A.1; K.CC.A.2; K.CC.A.3
 goal: I can count to 100 by ones and by tens, and count on from any number.
 materials: The tool on the big screen. Room to hop in place.
 grouping: Whole class on the carpet.

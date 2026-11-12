@@ -1,6 +1,6 @@
 arc: teach-then-practice
 minutes: 45
-focus: 6.NS.B
+focus: 6.NS.B.2; 6.NS.B.3; 6.NS.B.4
 goal: I can write a number as a product of primes and use prime factorizations to find the GCF and LCM of two numbers.
 materials: The tool on the projector, and on student devices if you have them. Whiteboards.
 grouping: Whole class, then pairs on devices (or teams taking turns at the projector).

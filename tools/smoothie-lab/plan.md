@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 45
-focus: 6.RP.A
+focus: 6.RP.A.1; 6.RP.A.2; 6.RP.A.3
 goal: I can use ratio language, tables of equivalent ratios, graphs and unit rates to scale a recipe.
 materials: The tool on the projector and on student devices. Graph paper for ratio tables.
 grouping: Whole class for the hook, then pairs on devices.

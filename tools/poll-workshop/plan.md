@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 50
-focus: S-IC.A; S-IC.B; S-ID.A.4
+focus: S-IC.A.1; S-IC.A.2; S-IC.B.3; S-IC.B.4; S-IC.B.5; S-IC.B.6; S-ID.A.4
 goal: I can explain how the way a sample is chosen and a question is worded bias a survey, estimate a proportion with a margin of error, and explain what the margin of error does not cover.
 materials: The tool on the projector and on student devices. Calculators.
 grouping: Pairs on devices, with whole-class pauses.

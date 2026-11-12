@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 45
-focus: 8.EE.C
+focus: 8.EE.C.7; 8.EE.C.8
 goal: I can find where two lines meet on a graph and with algebra, and tell when a system has one solution, no solution or infinitely many.
 materials: A laptop per student or pair. The tool on the projector. A notebook page with a table: preset, banner, where the lines cross.
 grouping: Pairs on laptops, with whole-class debriefs.

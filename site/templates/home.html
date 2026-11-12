@@ -7,9 +7,12 @@
     <p><strong>Curio Class is being built in the open,</strong> and new tools arrive every week. Spotted something broken, big or small? Have feedback, or an idea for what comes next? We'd love to hear it.</p>
     <div class="building-actions">
       <button type="button" class="building-send" id="msg-open">Send us a message</button>
-      <button type="button" class="building-close" id="building-close" aria-label="Hide this note">&times;</button>
+      <button type="button" class="building-close" id="building-close" aria-label="Tuck this note away">&times;</button>
     </div>
   </aside>
+  <div class="building-peek" id="building-peek" hidden>
+    <button type="button" id="building-show" aria-controls="building" aria-expanded="false">Feedback? <span aria-hidden="true">&#9662;</span></button>
+  </div>
   <dialog class="msg" id="msg" aria-labelledby="msg-h">
     <form id="msg-form" novalidate>
       <h2 id="msg-h">Send us a message</h2>
@@ -117,11 +120,14 @@
   var bar = document.getElementById('building'), dlg = document.getElementById('msg'), form = document.getElementById('msg-form');
   var text = document.getElementById('msg-text'), count = document.getElementById('msg-count'), status = document.getElementById('msg-status');
   var send = document.getElementById('msg-send');
-  try { if (localStorage.getItem('cc-building-hidden') === '1') bar.hidden = true; } catch (e) {}
-  document.getElementById('building-close').addEventListener('click', function () {
-    bar.hidden = true;
-    try { localStorage.setItem('cc-building-hidden', '1'); } catch (e) {}
-  });
+  var peek = document.getElementById('building-peek'), show = document.getElementById('building-show');
+  function tuck(on) {
+    bar.hidden = on; peek.hidden = !on; show.setAttribute('aria-expanded', on ? 'false' : 'true');
+    try { if (on) localStorage.setItem('cc-building-hidden', '1'); else localStorage.removeItem('cc-building-hidden'); } catch (e) {}
+  }
+  try { if (localStorage.getItem('cc-building-hidden') === '1') { bar.hidden = true; peek.hidden = false; } } catch (e) {}
+  document.getElementById('building-close').addEventListener('click', function () { tuck(true); show.focus(); });
+  show.addEventListener('click', function () { tuck(false); document.getElementById('msg-open').focus(); });
   document.getElementById('msg-open').addEventListener('click', function () {
     status.textContent = ''; status.className = 'msg-status';
     if (dlg.showModal) dlg.showModal(); else dlg.setAttribute('open', '');

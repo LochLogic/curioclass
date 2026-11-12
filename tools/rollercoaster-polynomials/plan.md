@@ -1,6 +1,6 @@
 arc: explore-first
 minutes: 50
-focus: A-APR.B; A-APR.C
+focus: A-APR.B.2; A-APR.B.3; A-APR.C.4; A-APR.C.5
 goal: I can connect the zeros, multiplicities and leading coefficient of a polynomial to its graph, and use the remainder theorem to find factors.
 materials: The tool on the projector and on student devices. Graph paper for the exit check.
 grouping: Pairs on devices, with whole-class pauses.
