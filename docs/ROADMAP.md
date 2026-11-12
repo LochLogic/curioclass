@@ -68,6 +68,11 @@ cluster is taught nowhere. Verdict: right raw material, fixable now, costly late
 
 ### The layers (added 2026-11-11, Cory)
 
+**Core subjects first (Cory, 2026-11-11; a soft goal).** Math, English language arts, science and social
+studies (56 of the 105 courses) are the first focus; the other subjects follow. This bends where work is
+complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
+core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
+
 The six steps below say what happens in what order. The layers say what stands on what. Each layer is built on the
 ones under it and may not contradict them. A layer is made solid enough to build on, then corrected by what is
 built on it; none is declared finished in the abstract (the check rule looked solid until a spine showed it took a

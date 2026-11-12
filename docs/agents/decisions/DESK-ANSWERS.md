@@ -471,3 +471,9 @@ framework is loaded when that course's spine is written.
 
 None of these was applied to the spine, the template or the plans on the day. The apply list is in
 docs/HANDOFF.md, "Decided but not yet applied".
+
+## 2026-11-11 (evening): core subjects first (Cory, in chat)
+
+"set the soft goal that the core subjects are the initial focus, then the rest. this can be malleable where work is
+complementary but when a choice needs to be made, the core subjects come first." Recorded as BASELINE rule 24,
+in ROADMAP above the layers, and in docs/HANDOFF.md.

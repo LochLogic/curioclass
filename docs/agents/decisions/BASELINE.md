@@ -89,6 +89,10 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     only what has a right answer. Grades 3 to 12 assume one device per student with a one-line projector path, and
     a parent teaching one child at home is a named audience. All of this, with the promises it rests on, is in
     docs/FOUNDATION.md, which every spec, unit and review agent reads first.
+24. **Core subjects first (Cory, 2026-11-11; a soft goal).** Math, English language arts, science and social
+    studies (56 of the 105 courses) are the first focus; the other subjects follow. This bends where work is
+    complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
+    core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
 
 ## One module Cory reviews personally
 

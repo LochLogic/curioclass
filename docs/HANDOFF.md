@@ -24,6 +24,7 @@ disagrees with another page, the other page is probably the stale one: check the
   then `answered`. Cory answers in a comment on the card. Next free card order: 104. After changes, refresh the
   Dashboard with `python -X utf8 scripts/course_status.py <out.json>` (Desk doc `stats/courses`) and the Roadmap
   tab with `python -X utf8 scripts/desk_roadmap.py <out.json>` (Desk doc `stats/roadmap`).
+- Core subjects first (BASELINE rule 24, a soft goal): see "Then, the next real work".
 - Cory's standing rules that bite most often: every one of the 105 courses is finished to the adoption bar (a
   firm bar; never call it unrealistic); no countdown timer shown to a student; no library or paywalled access;
   teach first by default in grades 2 to 5; Cory wants pushback and welcomes questions about earlier decisions.
@@ -143,6 +144,13 @@ the files.
    `docs/COURSES-STATUS.md`, refresh the Desk.
 
 ## Then, the next real work
+
+**Core subjects first (Cory, 2026-11-11; a soft goal).** Math, English language arts, science and social
+studies (56 of the 105 courses) are the first focus; the other subjects follow. This bends where work is
+complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
+core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
+So: grade 4 math first, then the other core spines and plans. The social studies content standard question is
+core work. Health, PE, arts, computer science, CTE, SEL, ELD and library work waits unless it is complementary.
 
 - **Step 4d continues:** grade 4 math stretches 4 to 8, then 12 to 18, a stretch at a time, per UNIT-PLAN.md,
   with a cold expert read on a sample. Stretch 4's readiness items are already needed on day 24 (s03 points at
