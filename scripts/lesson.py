@@ -23,8 +23,18 @@ OUT = ROOT / 'build' / 'lessons'
 DAY_MIN = plan.DAY_MIN
 KIND_WORD = {'Check': 'assessment'}   # days.csv kind to the word printed on the header (docs/GLOSSARY.md)
 HEADER = ['day', 'course', 'unit', 'version', 'materials', 'print', 'credit', 'leans_on']
-TEACHER = ['Before class', 'The day', 'Other rooms', 'Shorter or longer', 'Words and supports', 'Tomorrow', 'Credit']
+TEACHER = ['Before class', 'The day', 'Other rooms', 'At home', 'Shorter or longer', 'Words and supports', 'Tomorrow',
+           'Credit']
 CAP_TEACH, CAP_CHECK, CAP_BEFORE, CAP_STUDENT = 900, 500, 80, 350   # student: everything printed, stems included
+CAP_HOME = 170                         # the At home block, counted apart from the teacher prose cap
+HOME_TEACH, HOME_CHECK = (30, 40), (40, 50)   # minutes at home: a teaching day; an assessment day (about 45)
+# TEMPORARY: sections whose days are still to get their At home block (homeschool option 1, 2026-11-12). Their days
+# report "At home block missing" as a note, not a failure. The agent that writes a section's blocks removes it here;
+# when the list is empty, delete it.
+HOME_TODO = {'u01-1', 'u01-2', 'u09-1', 'u09-2', 'u10-1', 'u10-2', 'u10-3'}
+HOME_PART = re.compile(r'^- \*\*(\d+) min\. (.+?)\.\*\*(.*?)(?=^- \*\*\d+ min\.|^\*\*|\Z)', re.M | re.S)
+TALK = re.compile(r'\bpairs?\b|turn-and-talk|whole class|\bthe class\b|\*\*Ask\.\*\*', re.I)
+HOME_LACKS = re.compile(r'projector|grid paper|tiles|device|string loop|document camera|large tiles', re.I)
 SENTENCE_MAX = 15            # words in one student sentence, grades 3 to 5 (ours, untested)
 BAD_LICENCE = re.compile(r'\bnc\b|noncommercial|non-commercial|sharealike|share-alike|-sa\b|\bnd\b|-nd\b|'
                          r'noderivatives|no derivatives', re.I)
@@ -122,6 +132,110 @@ def sentences(text):
     return [s for s in re.split(r'(?<=[.?!])\s+', text.replace('"', '')) if s.strip()]
 
 
+# ------------------------------------------------------------------ the At home block (homeschool option 1)
+def teacher_prose(d):
+    """The teacher page without its At home block, which has its own cap and its own view."""
+    return re.sub(r'^### At home\n.*?(?=^### |\Z)', '', d['teacher'], flags=re.M | re.S)
+
+
+def home_parts(d):
+    """The At home parts, written "- **N min. Name.** ...": (minutes, name, text)."""
+    return [(int(a), b.strip(), c) for a, b, c in HOME_PART.findall(d['secs'].get('At home', ''))]
+
+
+def page_labels(d):
+    """Each question on the student page by the name a parent finds it under: "side 2, On your own 1"."""
+    lab = {}
+    for side, body in d['sides']:
+        sn = side.lower()
+        cur, row = '', 0
+        for ln in body.splitlines():
+            m = re.match(r'\s*\*\*(?!I can)([^*]+?)\.\*\*', ln)
+            if m:
+                cur, row = m[1].strip(), 0
+                cur = 'item %s' % cur if cur.isdigit() else cur
+                for r in REF.findall(ln[m.end():])[:1]:   # "**Example 1.** [[id]]": the label is the question's name
+                    lab.setdefault(r, '%s, %s' % (sn, cur))
+                continue
+            if ln.lstrip().startswith('|'):
+                ns = NOTE.findall(ln)
+                if ns:
+                    row += 1
+                    lab.setdefault(ns[0], '%s, %s, row %d' % (sn, cur, row))
+                for n, r in re.findall(r'(\d+)\.\s*\[\[([A-Za-z0-9-]+)\]\]', ln):
+                    lab.setdefault(r, '%s, %s %s' % (sn, cur, n))
+                continue
+            m = re.match(r'\s*(\d+)\.\s+.*?\[\[([A-Za-z0-9-]+)\]\]', ln)
+            if m:
+                lab.setdefault(m[2], '%s, %s %s' % (sn, cur, m[1]))
+                continue
+            for r in REF.findall(ln):
+                lab.setdefault(r, '%s, %s' % (sn, cur))
+    return lab
+
+
+def home_todo(d):
+    return d['path'].parent.name in HOME_TODO
+
+
+def check_home(d, items, row, lab):
+    """The At home block (LESSON-DAY.md, "At home"): minutes in the band, every item on the student page, a Say.
+    line where the class talks, a Swap. line for what a home lacks, the exit ticket last, the cap."""
+    f = []
+    if 'At home' not in d['secs']:
+        if home_todo(d):
+            return ['NOTE %s: At home block missing (section %s is on the backfill list, HOME_TODO in lesson.py)'
+                    % (lab, d['path'].parent.name)]
+        return ['%s: At home block missing' % lab]
+    home, h = d['secs']['At home'], d['head']
+    assess = row['kind'] == 'Check'
+    parts = home_parts(d)
+    if not parts:
+        return ['%s: At home has no parts written "- **N min. Name.** ..."' % lab]
+    lo, hi = HOME_CHECK if assess else HOME_TEACH
+    tot = sum(p[0] for p in parts)
+    if not lo <= tot <= hi:
+        f.append('%s: At home parts add to %d minutes; %s %d to %d' % (
+            lab, tot, 'an assessment day runs' if assess else 'a teaching day runs', lo, hi))
+    hw = words(home)
+    if hw > CAP_HOME:
+        f.append('%s: At home is %d words; the cap is %d' % (lab, hw, CAP_HOME))
+    labels = page_labels(d)
+    byid = {i['item_id']: i for i in items}
+    exits = [i['item_id'] for i in items if i['day'] == h.get('day') and i['check'] == 'exit'
+             and i.get('path', '') in ('', 'paper')]
+    for r in REF.findall(home):
+        if r not in labels and r not in exits:
+            f.append('%s: At home names [[%s]], which is not on the student page%s' % (
+                lab, r, '' if r in byid else ' (and has no row)'))
+    if STEPS.search(home) or NOTE.search(home) or FIG.search(home):
+        f.append('%s: At home names questions as [[id]] only; the view prints each one with its question' % lab)
+    if TALK.search(d['secs'].get('The day', '')) and not re.search(r'\*\*Say\.\*\* ', home):
+        f.append('%s: the class talks in pairs or as a class, but At home has no **Say.** line for the parent' % lab)
+    for m in re.finditer(r'\*\*Say\.\*\* (.*?)(?=\n\s*\n|\Z)', home, re.S):
+        if not re.search(r'\bExpect\b', m[1]):
+            f.append('%s: an At home **Say.** line gives no answer to expect ("Expect: ...")' % lab)
+    if HOME_LACKS.search(h.get('materials', '')) and not re.search(r'^\*\*Swap\.\*\* ', home, re.M):
+        f.append('%s: the materials need things a home may lack, but At home has no **Swap.** line' % lab)
+    if not re.search(r'^\*\*Skip\.\*\* ', home, re.M):
+        f.append('%s: At home has no **Skip.** line (what to leave out)' % lab)
+    if assess:
+        if not re.search(r'assessment', parts[0][1], re.I):
+            f.append('%s: on an assessment day the At home path opens with the assessment' % lab)
+    else:
+        last = parts[-1]
+        if not re.search(r'exit ticket', last[1], re.I):
+            f.append('%s: the last At home part is "%s"; on a teaching day it is the exit ticket' % (lab, last[1]))
+        elif exits and not set(exits) <= set(REF.findall(last[2])):
+            f.append('%s: the At home exit ticket part does not name the paper exit row(s) %s'
+                     % (lab, ', '.join(exits)))
+    if re.search(r'\btimer\b|\bscores?\b|\bgrades?\b(?! \d)|\bpoints\b|\bpercent', home, re.I):
+        f.append('%s: At home shows no timer, grade or score' % lab)
+    if re.search(r'one child at home', d['secs'].get('Other rooms', ''), re.I):
+        f.append('%s: "One child at home" now lives in At home; take it out of Other rooms' % lab)
+    return f
+
+
 # ------------------------------------------------------------------ the gates
 def check_day(d, items, days):
     f, h, lab = [], d['head'], d['path'].relative_to(ROOT).as_posix()
@@ -133,7 +247,7 @@ def check_day(d, items, days):
         return f + ['%s: day %s has no row in days.csv' % (lab, h.get('day'))]
     if row['unit'] != h.get('unit'):
         f.append('%s: header unit (section) %s, but days.csv says %s' % (lab, h.get('unit'), row['unit']))
-    want = TEACHER
+    want = [s for s in TEACHER if s != 'At home' or 'At home' in d['order']]   # a missing block is reported below
     got = [s for s in d['order'] if s in want]
     if got != want:
         f.append('%s: teacher headings should be %s in that order; found %s' % (lab, ', '.join(want), ', '.join(d['order'])))
@@ -227,7 +341,7 @@ def check_day(d, items, days):
             if tm != int(row['tool_min'] or 0):
                 f.append('%s: parts naming %s add to %d min; days.csv says %s' % (lab, tt, tm, row['tool_min']))
     # caps
-    tw = words(d['teacher'])
+    tw = words(teacher_prose(d))   # the At home block has its own cap (check_home)
     cap = CAP_CHECK if check_day_kind else CAP_TEACH
     if tw > cap:
         f.append('%s: teacher page is %d words of prose; the cap is %d' % (lab, tw, cap))
@@ -340,6 +454,7 @@ def check_day(d, items, days):
         if s and (BAD_LICENCE.search(s) or 'http' not in s or not re.search(r'cc by|cc0|public domain', s, re.I)):
             f.append('%s: %s has a source that is not CC BY, CC0 or public domain with a licence link' % (lab, r))
     f += check_lists(d, items, lab)
+    f += check_home(d, items, row, lab)
     return f
 
 
@@ -946,7 +1061,9 @@ def header_table(d, row, parts, tt, side=frozenset()):
     cells = [('Day', '%s, section %s, %s day' % (h['day'], h['unit'], KIND_WORD.get(row['kind'], row['kind'].lower()))),
              ('Goal', row['goal']), ('Standard parts', ps or 'see the section opener'),
              ('Tool', '%s (%s), %s min' % (tt, row['mark'], row['tool_min']) if row['tool'] else 'None'),
-             ('Materials', h['materials']), ('Print', h['print']),
+             ('Materials', h['materials']), ('Print', h['print'])] + (
+             [('At home', 'the At home view, %s-home.html, %d minutes with one child'
+               % (d['path'].stem, sum(p[0] for p in home_parts(d))))] if 'At home' in d['secs'] else []) + [
              ('Leans on', '; '.join(x for x in leans(d) if not x.lower().startswith(WHEN)) or 'nothing'),
              ] + ([('Uses when it exists', '; '.join(optional(d)))] if optional(d) else []) + [
              ('Version', h['version']), ('Credit', h['credit'])]
@@ -965,6 +1082,54 @@ def student_html(d, course, items):
         foot_line(h, course, credits))
         for k, (_, body) in enumerate(d['sides']))
     return '<h1>%s</h1>%s' % (html.escape(title), sides)
+
+
+def home_html(d, row, items, warn, foot):
+    """The At home view: the goal and minutes, the block as written (each [[id]] named by where it sits on the
+    student page), then the questions it names, pulled from data, with their answers for the parent."""
+    h, title = d['head'], d['title']
+    byid = {i['item_id']: i for i in items}
+    exits = [i['item_id'] for i in items if i['day'] == h['day'] and i['check'] == 'exit'
+             and i.get('path', '') in ('', 'paper')]
+    labels = page_labels(d)
+
+    def where(r):
+        if r in exits:
+            return 'ticket question %d' % (exits.index(r) + 1) if len(exits) > 1 else 'the ticket question'
+        side, _, name = labels.get(r, r).partition(', ')
+        return '%s (%s)' % (name, side) if name else side
+    home = d['secs']['At home']
+    named = list(dict.fromkeys(r for r in REF.findall(home) if r in byid))
+    tot = sum(p[0] for p in home_parts(d))
+    kind = 'assessment day' if row['kind'] == 'Check' else 'teaching day'
+    meta = [('Goal', row['goal']), ('Time', '%d minutes, one parent and one child (a %s)' % (tot, kind)),
+            ('Print', 'the student page' + (' and one exit ticket' if exits and row['kind'] != 'Check' else '')
+             + '; this page and its answers are for you')]
+    last = {'group': None, 'end': 0}
+
+    def name(m):   # "Fix it 1 (side 1), then 2": a run of questions from one place names the place once
+        r = m[1]
+        if r not in byid:
+            return m[0]
+        w = where(r)
+        g = re.match(r'(.*?)(?:,? (?:row |question )?\d+)?(?: \((side \d)\))?$', w)
+        group = (g[1], g[2])
+        gap = home[last['end']:m.start()]
+        same = group == last['group'] and len(gap) <= 8   # ", ", " and ", ", then ", " to "
+        last.update(group=group, end=m.end())
+        if same:
+            w = w[len(g[1]):].split(' (side')[0].lstrip(', ')
+        elif re.search(r'(?:^|\.\**)\s*$', home[:m.start()]):   # a sentence starts with it
+            w = w[0].upper() + w[1:]
+        return '**%s**' % w
+    body = md(REF.sub(name, home), items)
+    qs = ''.join('<tr><td>%s</td><td class="q">%s</td><td>%s</td></tr>' % (
+        html.escape(where(r)), stacked(stem(byid[r])), html.escape(byid[r]['answer'])) for r in named)
+    return ('<h1>%s</h1><p>At home</p>%s<table class="meta">%s</table>%s'
+            '<h2>The questions</h2><p>The child works on the printed page; the answers are for you.</p>'
+            '<table><tr><th>Where</th><th>Question</th><th>Answer</th></tr>%s</table>%s' % (
+                html.escape(title), warn, ''.join('<tr><td>%s</td><td>%s</td></tr>' % (html.escape(a), html.escape(b))
+                                                  for a, b in meta), body, qs, foot))
 
 
 def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
@@ -995,7 +1160,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     warn = ('<p class="warn">Not ready to teach: %s missing.</p>' % html.escape(', '.join(gone))) if gone else ''
     side = branch_only(d, mine) if not end else set()
     tb = '<h1>%s</h1><p>Teacher page</p>%s%s%s%s' % (html.escape(title), warn, header_table(d, row, parts, tt, side),
-                                                     md(d['teacher'], items, teacher=True), foot)
+                                                     md(teacher_prose(d), items, teacher=True), foot)
     put(out / (name + '-teacher.html'), page(title + ': teacher page', tb, 'teacher'), encoding='utf-8')
     sb = student_html(d, course, items)
     put(out / (name + '-student.html'), page(title + ': student page', sb, 'student'), encoding='utf-8')
@@ -1034,6 +1199,9 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
           'they mean</th></tr>%s</table>%s' % (html.escape(title), html.escape(accept([byid[r] for r in refs])),
                                                ''.join(kr), foot))
     put(out / (name + '-key.html'), page(title + ': key', kb, 'key'), encoding='utf-8')
+    if 'At home' in d['secs']:
+        put(out / (name + '-home.html'), page(title + ': at home', home_html(d, row, items, warn, foot), 'teacher'),
+            encoding='utf-8')
     # exit ticket, four to a sheet: the paper path only
     ex = [i for i in mine if i['check'] == 'exit' and i.get('path', '') in ('', 'paper')]
     if ex and row['kind'] != 'Check':
@@ -1231,7 +1399,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                   scr.append('<div class="screen"><p><b>Answers.</b></p><ol>%s</ol></div>' % ''.join(
                       '<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(i['answer'])) for i in left))
     # anything named outside the parts of the day (Longer, Tomorrow); the day's own parts are walked above
-    walk('\n'.join(v for k, v in d['secs'].items() if k != 'The day'), [])
+    walk('\n'.join(v for k, v in d['secs'].items() if k not in ('The day', 'At home')), [])
     if end and not shown:
         scr.append(answers_screen())
     scr += ['<div class="screen">%s</div>' % html.escape(q) for q in
@@ -1628,9 +1796,12 @@ def main(a):
             side_note = print_sides(tmp)
             if 'FAIL' in side_note:
                 fails.append('%s: the student page prints to more than two sides' % lab)
-        print('%s: teacher %d words, student %d words (%d frame, %d questions), %d min, %s, %d failure(s)' % (
-            lab, words(d['teacher']), words(d['student']) + stem_words(d, byid), words(d['student']),
-            stem_words(d, byid), sum(b[0] for b in d['blocks']), side_note, len(fails)))
+        hp = home_parts(d)
+        print('%s: teacher %d words, student %d words (%d frame, %d questions), %d min, %s, %s, %d failure(s)' % (
+            lab, words(teacher_prose(d)), words(d['student']) + stem_words(d, byid), words(d['student']),
+            stem_words(d, byid), sum(b[0] for b in d['blocks']), side_note,
+            'at home %d words, %d min' % (words(d['secs']['At home']), sum(x[0] for x in hp))
+            if 'At home' in d['secs'] else 'no at home', len(fails)))
         for x in fails:
             print('  FAIL', x)
         for x in notes:

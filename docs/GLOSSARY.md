@@ -47,7 +47,7 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 | **readiness check** | The short check given before a unit opens, on what it builds on | pre-test, diagnostic, pre-assessment | `items.csv` `check` = `readiness`; `readiness.md` |
 | **facts check** | The multiplication facts check of grade 4 math, given in days 1 to 6 and before day 94 | fluency test, timed test | `facts-check-N.md` |
 | **sub-ready day** | One day per unit in each course (18 a year in grade 4 math), written with the unit, that a substitute can run from its page (Cory, 2026-11-12, card 112) | Sub Day (that is the per-tool packet), sub plan | Not built |
-| **at home** block | The one-child path every day carries for a parent teaching at home | homeschool version, home track | Not built |
+| **at home** block | The one-child path every day carries for a parent teaching at home; built as the day page's At home view | homeschool version, home track | `### At home` in the day file; `<day>-home.html` |
 | **Teaching map** | The picture of every course's order. Hidden now; returns, reimagined, once the courses are built | The Map, teaching map (lower case t in a name) | `/map/`, build flag `--map`, `data/sequence.csv` |
 
 ## Inside a lesson

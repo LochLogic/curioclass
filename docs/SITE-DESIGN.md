@@ -68,7 +68,7 @@ page, as tabs that also work as plain links with no script:
 | Student | The student page, both sides, and large print | `dNNN-student.html`, `-student-large.html` |
 | Key | Answers and the wrong answers to expect; teachers only, never on student pages | `dNNN-key.html` |
 | Print | Every printable for the day, one link each, and the whole day or section as one PDF | the `print` header line |
-| At home | The same lesson with one child in 30 to 40 minutes: what to say where the class talks in pairs, which items to do, home swaps for supplies | the at-home block (to add to LESSON-DAY.md) |
+| At home | The same lesson with one child in 30 to 40 minutes: what to say where the class talks in pairs, which items to do, home swaps for supplies | the At home block (LESSON-DAY.md), built as `dNNN-home.html` (days 89 to 93 so far) |
 
 Foot: report a problem with this day, corrections to this course, the unit's sub-ready day, the version.
 

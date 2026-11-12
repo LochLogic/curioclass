@@ -3,7 +3,9 @@
 Draft 2, 2026-11-12. Written against day 90 of grade 4 math (pilot unit 11), which is the worked case at the
 end. BASELINE rule 27 points here. **Approved by Cory, 2026-11-12: this sets the shape of about 15,000 lesson
 days.** The curriculum expert read draft 1 cold (docs/reviews/lesson-day-2026-11-12.md); draft 2
-makes its seven "before the yes" changes. **Proved on grade 4 math only** until the ELA and science pilots run.
+makes its seven "before the yes" changes. The At home block was added the same day (Cory, homeschool option 1;
+DESK-ANSWERS, "homeschool parents and the site's shape"). **Proved on grade 4 math only** until the ELA and science
+pilots run.
 
 A section plan says what each day is for. This page says what a teacher and a student hold in their hands on that
 day, how big each piece may be, and which pieces are written and which are generated. The shared shape holds for
@@ -15,6 +17,7 @@ adds the rest.
 | Piece | Who reads it | Made how | Size |
 |---|---|---|---|
 | **Teacher page** | The teacher, the night before | Written, plus a header and tables generated from data | 900 words of prose at most on a teaching day, 500 on an assessment day. Generated tables do not count |
+| **At home view** | A parent teaching one child | Written: the teacher page's At home block. Built as `dNNN-home.html`, each question it names pulled from data with its answer | 170 words at most, counted apart from the teacher prose cap |
 | **Student page** | Each student | Written frame; every question pulled from data | One sheet, both sides of US Letter at most. Words a student reads counts everything printed for the student, questions included; the cap is set per course in DEFAULTS.md (grade 4 math: 350, ours, untested), and the gate reports frame and questions apart. No sentence over 15 words in grades 3 to 5. 18 point type in kindergarten to grade 2, with a line telling the teacher what to read aloud; 14 point in grades 3 to 5; 12 point from grade 6 |
 | **Exit ticket** | Each student, then the teacher | Generated from data: the paper path's exit rows | A quarter page, four to a sheet |
 | **Answer key** | The teacher | Generated from data: every answer on both exit paths, its equation or working, and what each wrong answer means | Usually one side |
@@ -35,9 +38,9 @@ and end-of-unit assessment with their answer keys. A sheet with no preset questi
 `piece: blank`: it prints for students, its words are counted without markup, and it must fit two sides. These
 are generated from data wherever they can be.
 
-**The arithmetic, so the size is seen.** A teaching day is at most about 1,250 words a person reads (900
-teacher, 350 student, questions included), of which only the teacher prose and the student frame are written
-free: day 90 has about 1,000 such words. At about 150 days a course and 105 courses that is about 16 to 20
+**The arithmetic, so the size is seen.** A teaching day is at most about 1,420 words a person reads (900
+teacher, 170 at home, 350 student, questions included), of which only the teacher prose, the At home block and the
+student frame are written free: day 90 has about 1,100 such words. At about 150 days a course and 105 courses that is about 16 to 20
 million words, before checks and section openers. The cost is in the reading as much as the writing (see "How days
 are read"). The caps hold it down; the pilot's real counts go in docs/pilots/COST.md.
 
@@ -95,21 +98,22 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
    words matter: the steps of a worked example (from the row, `[[steps:id]]`), and the planned questions, each
    marked **Ask.** with the answers to expect and the order to show them in. Everything else is told, not
    scripted.
-4. **Other rooms.** The paper path when there are no devices, one projector, one child at home: only what
-   differs from the course's DEFAULTS.md. Every day has a paper path. When the day's tool is planned but not
-   built, the paper path is written as fully as the tool path: what students do, how they check, what to watch
-   for.
-5. **Shorter or longer.** What to cut when time runs short without making the work easier, and the extension,
+4. **Other rooms.** The paper path when there are no devices, no printer, one projector: only what differs from
+   the course's DEFAULTS.md. Every day has a paper path. When the day's tool is planned but not built, the paper
+   path is written as fully as the tool path: what students do, how they check, what to watch for. One child at
+   home is not here: it has its own block, next.
+5. **At home.** The same day for one parent and one child (see "The At home block" below). Required on every day.
+6. **Shorter or longer.** What to cut when time runs short without making the work easier, and the extension,
    on the same standard.
-6. **Words and supports.** The key words with their Word Wall cards, the sentence frames, and any access note:
+7. **Words and supports.** The key words with their Word Wall cards, the sentence frames, and any access note:
    only what differs from the section opener.
-7. **Tomorrow.** What the exit tells the teacher, and what changes the next day because of it, naming the sign
+8. **Tomorrow.** What the exit tells the teacher, and what changes the next day because of it, naming the sign
    of each error on both exit paths. A fix-it named by its pupil (Kai, Mia) is handed on by its sum or difference, not
    by the name, since the names come back on later days with other errors. The hand-off is two-sided: the next day's file carries an "If many ...
    day N's exit" line (or an "If day N's tickets showed ..." branch) that acts on it, and the gate checks it,
    finding the next day by number in any section folder of the course. On an assessment day, a display line
    `Check: ...` shows each row with its answer; `Check (sort): ...` shows only the kind (the answer's first part).
-8. **Credit.** See rule 4.
+9. **Credit.** See rule 4.
 
 ## The student page
 
@@ -127,6 +131,31 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
 - No answers printed. No timer, score or rank. Black and white, readable with no colour.
 - A large-print version (18 point) is generated from the same file.
 - Instructions a student reads are short sentences in plain words; numbers are written as numerals.
+
+## The At home block
+
+Every day carries one, under `### At home` on the teacher page, built from the same day: same goal, same items,
+fewer of them. It is written to a parent with no teacher training, who reads it the night before and teaches one
+child at the table. The build turns it into the At home view of the day page (`dNNN-home.html`): the goal and the
+minutes, the block, then every question it names with its answer, pulled from data. It is not printed on the
+teacher page.
+
+- **Minutes.** 30 to 40 on a teaching day. On an assessment day, the assessment alone, then the respond part one
+  to one, about 45 in all (40 to 50).
+- **Parts**, written `- **N min. Name.** ...`, in the order of the day. Their minutes add up to the total; there is
+  no other place the total is written.
+- **Items by name.** Each question is named by its id, `[[s11-P90-1]]`, and must be on that day's student page
+  (or the day's paper exit ticket). The view prints it by where it sits ("On your own 1 (side 2)"), so the parent
+  finds it on the page in the child's hands. Fewer items than the class, never other ones.
+- **Say.** Wherever the class version has pairs or whole-class talk, at least one `**Say.**` line (indented under
+  its part) gives the parent's words in quotes and the answer to expect (`Expect: ...`). The parent is the partner.
+- **Swap.** One `**Swap.**` line, above the parts, for each thing a home lacks that the day's materials name: no
+  projector (point at the page), no grid paper, no tiles, no class set, no device.
+- **Skip.** One `**Skip.**` line: what the class does that home leaves out (the facts check, the tool, a third
+  rectangle, the groups).
+- **The exit ticket last** on a teaching day, naming the paper ticket's rows. The child answers alone.
+- **Cap.** 170 words, counted apart from the 900-word teacher prose cap.
+- **Plain words.** No teacher terms without a gloss, no timer shown to the child, no grades or scores.
 
 ## Assessment days
 
@@ -177,6 +206,15 @@ check`, which it runs); a reused set of numbers; a `leans_on` piece missing on a
 adapted credit or `source` with no licence or link, or with NonCommercial, ShareAlike or NoDerivatives terms; a
 student page that prints to more than two sides (counted on the printed page whenever Chrome is present, and the
 output says so when it was skipped). It cannot judge whether the day teaches; the expert and people do that.
+
+Added for the At home block (2026-11-12): a day with no At home section ("At home block missing"); parts that do
+not add to 30 to 40 minutes (40 to 50 on an assessment day); an `[[id]]` in it that is not on the student page or
+the paper exit ticket; no **Say.** line on a day whose The day has pairs or class talk, or a Say. line with no
+"Expect"; no **Swap.** line when the materials name a projector, grid paper, tiles, a device or a string loop; no
+**Skip.** line; on a teaching day a last part that is not the exit ticket or does not name its rows; on an
+assessment day a first part that is not the assessment; a timer, grade or score; the 170-word cap; and "One child
+at home" left in Other rooms. Until the earlier sections are backfilled, `HOME_TODO` in `lesson.py` lists the
+sections whose days report the missing block as a note instead of a failure.
 
 Added from the unit 10 reads: an error letter or "near you" in Tomorrow the next day does not name; a
 teacher-judged practice row the next day does not hand back (unless its pages stay with students); a part that
@@ -240,7 +278,8 @@ Day 90 is written to this page: [courses/math-4/u11-1/d090.md](../../courses/mat
 `data/plans/math-4/items.csv` (ids starting `s11-` with `90` in them), and its built pages in
 `build/lessons/math-4/u11-1/` (teacher, student, large print, key, exit tickets, display). Counts (draft 2):
 teacher page 898 words of prose, student page 247 words a student reads (98 frame, 149 questions), 60 minutes,
-student page two sides. Version "draft 2, not ready, not yet taught": the tool, the section opener, the facts check
+student page two sides. With the At home block (2026-11-12): teacher prose 879 (the old "one child at home" line
+moved out), At home 128 words and 40 minutes, built as `d090-home.html`. Version "draft 2, not ready, not yet taught": the tool, the section opener, the facts check
 sheet and the record sheet do not exist yet.
 
 ### What day 90 showed
@@ -265,3 +304,7 @@ sheet and the record sheet do not exist yet.
 8. **Room to write costs space.** Writing boxes for the fixes and "On your own" pushed the page to four sides;
    the expert's fix (the Plot notes table shows the family and the numbers given, which is all a student needs to
    solve it; the full note stays in the tool and the key) brought it back to two.
+9. **The At home block fits in 130 words.** Days 89 to 93 came to 110 to 137 words, 35 to 45 minutes. What made it
+   short: the student page already holds the questions, so the block only says which ones, what to say and what to
+   swap. The hardest calls were the tool day (90: the Plot notes table on paper is the whole job) and the
+   assessment day (93: the groups become going over each missed item together).
