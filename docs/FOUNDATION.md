@@ -30,7 +30,7 @@ teacher already uses, and that is welcome, but it is not the plan.
 | Who | What that means for the work |
 |---|---|
 | **A classroom teacher** running a course | The main reader of every spine, unit plan and teacher page. Teacher pages teach the teacher |
-| **A parent teaching one child at home** (named 2026-11-11) | Every unit carries a short "teaching one child" note; answer keys explain, not only list; discussion is written so a parent can hold it; sample pieces show what grade-level work looks like |
+| **A parent teaching one child at home** (named 2026-11-11; how far, decided 2026-11-12) | The second audience, served by the same course, never a separate track. Every lesson day carries an "at home" block (a 30 to 40 minute one-child path, what the parent says where the class has partner talk, which items to do, home swaps for materials); a course gives placement from its readiness checks, a 36-week numbered calendar and a record that works as a portfolio; answer keys explain, not only list; sample pieces show what grade-level work looks like. Not planned: separate home courses or multi-age plans |
 | **A student alone** | The site is public and a child may open any tool with no adult present. Every tool stands alone: defaults work for a solo user and teacher toggles are extras (BASELINE rule 4) |
 
 ## 3. The promises

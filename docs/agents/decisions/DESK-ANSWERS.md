@@ -642,3 +642,25 @@ ELA pilot (every one of its texts is an old Reading Room book) are on card `q-co
 
 Applied: HANDOFF "Start here" and "The order after the pilot". Next unit opened: stretch 10 (days 79 to 88), moved
 into data first.
+
+## 2026-11-12: homeschool parents and the site's shape (Cory, in chat)
+
+Asked in chat after stretches 1 and 9 landed: how much do we accommodate homeschooling parents (teachers stay the
+primary users), and what should the site be now that tools are a piece of the course rather than the focal point.
+Research behind the answer: homeschooling is 3.4% to 6% of K-12 students and growing; most families piece
+resources together; about 3 in 4 parents have no teacher preparation; a home day is 2 to 4 hours for all subjects;
+the popular free home curricula are a numbered page per day over 36 weeks; free classroom math curricula offer no
+home path and lean on partner work.
+
+1. Homeschool: option 1, "I agree with you on option 1." One course, no separate home track. Every lesson day
+   carries a required "at home" block built from the same data (a 30 to 40 minute one-child path, what the parent
+   says where the class has partner talk, which items to do, home swaps for materials), shown as an At home view of
+   the day. At the course level: readiness checks double as placement, a 36-week numbered calendar, and a record
+   sheet that works as a portfolio. Not now: separate home courses or multi-age plans.
+2. The site: "you really found a good answer. I would love to see the mock-ups." The direction: two equal front
+   doors (teach a course; find something for tomorrow) and a smaller Explore door for students; the course page as
+   the heart (the year at a glance, numbered days, honest status per unit, print and offline per unit); one page per
+   lesson day with Teach, Project, Student, Key, Print and At home views; tools as ingredients that keep their own
+   pages and say where they are used; unbuilt courses still useful and plainly labelled; community without accounts
+   (report a problem on every day, a public errata list, sign up to try a unit). Cory asked for a check that every
+   existing piece still has a home before anything is built. Mock-ups and that check come next; no build yet.

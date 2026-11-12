@@ -64,9 +64,12 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
      lists 31 and 51 (tool owner). New pieces: 9 by 9 table, 1 to 100 chart, a `cols` display figure. Step 3 is not
      earned: the expert still found 3 to 5 a day that only an expert sees (REVIEW-CADENCE.md). Days 78 and 79 wait
      on stretches 6 to 8. Briefs and read costs: `pilots/s01-s09-reads/`.
-   - **Next, by Cory 2026-11-12: a discussion before anything is written** on two layers of the user side: inside
-     the lesson (what a teacher sees on a given day) and the site (what a first-time visitor, for example a
-     homeschool parent, sees). Open question for that talk: the lessons are written for a classroom teacher.
+   - **Decided 2026-11-12 (DESK-ANSWERS, "homeschool parents and the site's shape"):** homeschool option 1, a
+     required "at home" block on every lesson day plus course placement, a 36-week calendar and a portfolio record;
+     no separate home track. The site turns course-first (two front doors, a course page, one page per lesson day,
+     tools as ingredients). **Now:** mock-ups of the grade 4 math course page and a lesson day page, and a check
+     that every existing piece of the site still has a home. Nothing is built until Cory has seen them. The at-home
+     block goes into LESSON-DAY.md and the day writers' brief before the next unit is written.
    - Still owed: the Spanish family note needs a qualified reader; the module has no Word Wall cards of its own
      (area, perimeter, square unit, formula, length, width exist under other modules), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts
