@@ -457,3 +457,18 @@ s09-X79,"74,384",4+8*10+3*100+4*1000+7*10000,74384,F,
 s09-X79,"24,333",70203-45870,24333,B,
 s09-W73,"""it is a 1""",,,C,
 s09-W76,"""the zeros become 10s""",,,I,
+s01-K1-1,7,3+4,7,,added the rows and the tiles in a row
+s01-K1-2,"""yes"" for 5 rows, with short rows",,,,not a rectangle; every row must be full
+s01-P1-1,2 by 9 and 9 by 2 drawn as two,9*2,18,C,
+s01-P1-1,no 1 by 18,,,A,
+s01-P1-1,a shape of 4 rows with a short row,4*4 | 4*5,16 | 20,,not a rectangle: 4 rows of 4 is 16 and 4 rows of 5 is 20
+s01-P1-2,4 by 5 and 5 by 4 drawn as two,5*4,20,C,
+s01-P1-2,no 1 by 20,,,A,
+s01-P1-2,a shape of 3 rows with a short row,3*6 | 3*7,18 | 21,,not a rectangle: 3 rows of 6 is 18 and 3 rows of 7 is 21
+s01-P1-3,"no 4 by 4: ""a square is not a rectangle""",,,,a square is a rectangle with all sides the same
+s01-P1-3,2 by 8 and 8 by 2 drawn as two,8*2,16,C,
+s01-P1-3,no 1 by 16,,,A,
+s01-P1-4,no 1 by 15,,,A,
+s01-P1-4,3 by 5 and 5 by 3 drawn as two,5*3,15,C,
+s01-P1-4,2 rows of 7 with 1 tile on the end,2*7+1,15,,not a rectangle; 15 tiles cannot make 2 equal rows
+s01-C1-1,"16: 1 by 16, 2 by 8, 4 by 4",1*16 | 2*8 | 4*4,16 | 16 | 16,,"three rectangles, not two"
