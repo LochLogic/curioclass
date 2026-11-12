@@ -90,3 +90,10 @@ Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
 - Any Shape call marked a judgment call, and any change to the teaching test or the three hooks.
 - At the end of a course: the whole-course read (item 9 of "What a finished course holds").
 - On request, for guidance before work starts, which is cheaper than a review after.
+
+## Before reading a course plan (added 2026-11-11)
+
+Run `python -X utf8 scripts/plan.py check`. If it fails, the plan goes back to its writer unread. Start from the
+stretch's reading pack (`scripts/plan.py pack <course> <stretch>`). Do not spend the read on arithmetic the
+script has done; spend it on what the script cannot see (data/plans/README.md, "What the gates cannot see").
+Log each finding with `scripts/plan.py defect ...`, found_by `expert`, so the ledger shows what each read earns.

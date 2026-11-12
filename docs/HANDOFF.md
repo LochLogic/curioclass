@@ -15,15 +15,16 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
 2. **Write `docs/courses/LESSON-DAY.md`**: exactly what one teaching day ships as (teacher page, student page,
    slides or none, key, materials), with a size for each, and the rule that an adapted lesson carries its credit
    on the lesson. Expert reads it. Cory says yes once.
-3. **Keys as data.** One row per keyed item (code, part, stem, answer, named wrong answers) and a script that
-   recomputes every answer. Done when the 13 planned units pass and a wrong key fails the build.
+3. **Keys as data: built 2026-11-11 for stretch 11** (`data/plans/`, `scripts/plan.py`; see "Plan weight").
+   Still to do: the lesson days' items go in as the pilot is written, and the other five planned stretches
+   move into data when each is next opened.
 4. **Build unit 11.1 to the bottom:** its five days in full, the generator sheet, both checks with keys, the
    record sheet, the family note, and Community Plot Planner (six open asks in
    [courses/math-4/TOOL-ASKS.md](courses/math-4/TOOL-ASKS.md)). Write the cost of each piece (tokens, wall hours,
    owner minutes) in `docs/pilots/COST.md`.
 5. **People.** Cory is arranging a grade 3 to 5 teacher, one taught run and three timed students
    ([pilots/README.md](pilots/README.md)). Their notes change the templates.
-6. **After the pilot is read:** fix the templates, try the lighter plan design ("Plan weight" below), then the
+6. **After the pilot is read:** fix the templates, cut the plan prose to judgment only ("Plan weight" below), then the
    first ELA pilot (grade 6, stretch 2, five days) and the first science pilot.
 
 Also owed before step 4: the script that sorts every tool and spec into the three bins of BASELINE rule 26.
@@ -216,35 +217,28 @@ added data (esp in pedagogy). that may need more work soon." So the expert stays
 of work on its sources (`docs/APPROACH-SOURCES.md`, the pedagogy sources named in `docs/APPROACH.md`): what it
 must open before judging each subject, and what is still unread. Not scheduled yet.
 
-## Plan weight: is it still too heavy when an AI manages it? (proposal, not decided)
+## Plan weight: facts in data, scripts as gates (built 2026-11-11, on stretch 11)
 
-Cory asked this on 2026-11-11. The short answer is yes, but for different reasons than for a person.
+Cory asked whether the plan is still too heavy when an AI manages it. Yes, for different reasons than for a
+person: no agent can hold a 125,000-word course; prose repeats facts and the repeats drift; prose cannot be
+checked by a machine; every word is paid for several times; and Cory cannot sample what has no fixed shape.
+He then said: "Let's implement those architectural fixes".
 
-Reading speed is not the problem for a model. These are:
+| Fix | What exists now |
+|---|---|
+| Facts in data, one home each | `data/plans/math-4/`: parts, days, items, wrongs, errors. Stretch 11: 16 items, 22 wrong answers, 5 days, 5 errors, 6 standard parts |
+| Scripts as gates | `scripts/plan.py check`: keys recomputed exactly, every standard part has an end-check item, no reused numbers, day counts against `data/units.csv`, minutes add up, tool folders exist. Stretch 11 passes; a planted wrong key failed |
+| Prose only for judgment | The tables in `s11.md` are generated (`scripts/plan.py tables`). The prose itself has **not** been cut yet: about 1,700 words outside the tables |
+| Defaults written once | `docs/courses/math-4/DEFAULTS.md`, a draft from stretch 11 and the spine only |
+| Plans just in time | BASELINE rule 25 |
+| A reading pack per agent | `scripts/plan.py pack math-4 11` |
+| A defect ledger | `data/plans/defects.csv`, empty; `scripts/plan.py defect` and `defects` |
 
-1. **No agent can hold a course.** One course is about 125,000 words of plans. Each agent reads a slice, so
-   nobody checks that slice against the rest unless a script does.
-2. **Prose repeats facts, and repeats drift.** The same day number, standard part or tool ask sits in the spine,
-   the stretch sheet, the unit plan and the tool list. 23 stale lines were found after one day of changes.
-3. **Prose cannot be checked by a machine.** Whether every part of a standard has a check item, whether a check
-   reuses a taught number, whether a key is right: today a model reads for each of these, every time.
-4. **Every word is paid for several times:** written, read cold, revised, then read again by the lesson writer.
-5. **Cory cannot sample what has no fixed shape.**
+Rules: `docs/courses/UNIT-PLAN.md`, "Facts live in data". How to use it: `data/plans/README.md`.
 
-The design that answers them, to be tried on the pilot and brought to Cory once:
-
-- **Facts live in data, one home each.** Units and days (`data/units.csv`), keyed items, the error register, tool
-  asks, and which standard part each day and item covers. Tables in a plan are generated from the data.
-- **Prose is kept only for judgment:** why this order, what to say when a class is stuck, what the hard part is.
-  A few hundred words a unit.
-- **Scripts are the gates.** Coverage of every standard part, no reuse of taught numbers, keys recomputed, day
-  counts, minutes that add up. A plan that fails does not go to a reader.
-- **Defaults are written once.** Supports, the two rooms, the family note sit at the stretch (or the course)
-  and a unit writes only what differs.
-- **Plans are written just in time:** a stretch is planned when the one before it is built (BASELINE rule 25).
-- **A script builds each agent's reading pack:** the exact rows and pages that agent needs, so no agent reads
-  the whole course and none misses a part.
-- **A defect ledger:** what was found, by which reader, at which layer, so we know which reads earn their cost.
+**Not done:** stretches 1, 2, 3, 9 and 10 (12 units) are still prose only, so their keys have not been recomputed
+by the script. Tool asks are still prose in TOOL-ASKS.md. The number limits of a stretch (for example "products
+within 100") are not yet a gate. Cutting s11's prose down to judgment waits for its cold read.
 
 ## The order after the pilot
 

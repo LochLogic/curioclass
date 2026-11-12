@@ -32,6 +32,28 @@ one-unit stretch with a key tool). The fields have been tried on math only, and 
 and ELA spines only. The first plan in each of those subjects may change what that subject fills. No plan has
 been used with children.
 
+## Facts live in data (added 2026-11-11, Cory: "Let's implement those architectural fixes")
+
+A course is too large for any one agent to hold, and a fact written in four files drifts. So:
+
+1. **Facts have one home: `data/plans/<course>/`** (see `data/plans/README.md`). Parts of each standard, days,
+   check items, exit questions, wrong answers and the error register are rows. The tables in a sheet or a plan
+   are built from them between `<!-- gen:NAME -->` markers. Nobody edits a generated table.
+2. **Prose is for judgment only:** why this order, what is carried and when it is withdrawn, what to say when a
+   class is stuck, what a tool is for. If a sentence states a fact that a row holds, cut the sentence.
+3. **The script is the first reader.** `python -X utf8 scripts/plan.py check` must pass before any expert or
+   person reads a plan. It recomputes every key, checks that every part of every standard has an end-check
+   item (rule 5), that no check item reuses taught numbers (rule 4), and that days and minutes add up.
+4. **Defaults are written once,** in the course's `DEFAULTS.md`. A sheet or plan writes a support, an
+   accommodation or a room note only where it differs.
+5. **A stretch is planned when the one before it is built** (BASELINE rule 25).
+6. **A writer or reader starts from the stretch's reading pack** (`scripts/plan.py pack <course> <stretch>`),
+   not from the whole course.
+7. **Every defect is logged** in `data/plans/defects.csv` with who found it and at which layer.
+
+State: stretch 11 is in data. Stretches 1, 2, 3, 9 and 10 move when each is next opened. The word caps under
+"Length" still stand for prose; a generated table does not count.
+
 ## The rules
 
 Each rule is marked **shared** (every subject) or **math fills** (the subject page sets the detail; what math

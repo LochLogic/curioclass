@@ -21,6 +21,8 @@ come first (BASELINE rule 24).
 2. docs/FOUNDATION.md. Nothing may contradict it. Section 7 changed: read it again.
 3. docs/APPROACH.md and docs/reviews/approach-2026-11-11.md.
 4. docs/agents/EXPERT.md (how the curriculum expert is run).
+4a. data/plans/README.md. New 2026-11-11: check items and days are rows of data now, a script checks every answer
+   key, and the tables in a plan are built from the rows. Short, and it changes pieces 1 and 4.
 5. docs/RUBRIC-MATH-K8.md (the model for a rubric file).
 
 ## How every piece is made
@@ -49,10 +51,17 @@ one who can say "no one could teach this in a week" or "this order would lose my
 **Waiting on it: the pilot build, and through it the templates, the cost of a unit, and the plan with sizes and
 dates for all 105 courses. Do this first. It is short.**
 
-- [ ] Run the curriculum expert cold on `docs/courses/math-4/s11.md`. Ask it to rework every answer key, check
-      that every part of each standard has an end-check item, check that no check item reuses a taught number,
-      say whether each day fits fifty minutes, and say whether a lesson writer could work from the plan.
-      Report: `docs/reviews/unit-plan-s11-<date>.md`. Revise once.
+- [ ] First run `python -X utf8 scripts/plan.py check`. It reworks every answer key and checks coverage, reused
+      numbers and minutes, so the expert does not spend its read on those. It passes today.
+- [ ] Run the curriculum expert cold on `docs/courses/math-4/s11.md`, starting it from the reading pack
+      (`python -X utf8 scripts/plan.py pack math-4 11`). Ask what the script cannot see: is each question a good
+      question, are the six parts the right reading of the standard, does each day teach what its goal says
+      and fit its minutes, are the wrong answers the ones children really give, could a lesson writer work from
+      this. Also ask which sentences of prose only repeat a table, so they can be cut.
+      Report: `docs/reviews/unit-plan-s11-<date>.md`. Revise once: a fact changes in `data/plans/math-4/`, then
+      `scripts/plan.py tables`; only judgment changes in the prose.
+- [ ] Log each finding: `python -X utf8 scripts/plan.py defect math-4 s11.md plan expert <kind> "<what>"`. Your
+      own findings use `sara` in place of `expert`.
 - [ ] "Sara's read" at the top of that report: could you teach these five days? Where would a class get stuck?
 - Tell the main session (or Cory) when it is done. The build waits for it.
 
@@ -99,7 +108,9 @@ do it.**
 - [ ] The start-of-year check (day 1). It must carry stretch 1's three readiness items
       (docs/courses/math-4/s01.md). Written to the check rules in docs/courses/UNIT-PLAN.md.
 - [ ] Stretch 4's readiness items only (not the stretch sheet, not its unit plans).
-- Write the items so they can become rows of data later: code, part, stem, answer, the wrong answers you expect.
+- Write the items straight into `data/plans/math-4/items.csv` and `wrongs.csv` (how: data/plans/README.md), with
+  a compute cell for every answer, and run `scripts/plan.py check` until it passes. Use stretch `0` for the
+  start-of-year check and `4` for stretch 4's readiness items. No table is typed by hand.
 
 ### 5. Social studies: the content standard options
 

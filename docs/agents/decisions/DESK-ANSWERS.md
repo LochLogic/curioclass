@@ -500,3 +500,10 @@ later session. The order of steps 4d, 4e and 4f changed: the pilot unit 11.1 is 
 
 Cory also asked whether the plan is still too heavy when an AI manages it, and what the fix is. The answer and
 the proposed design are in docs/HANDOFF.md, "Plan weight"; it is a proposal to be tried on the pilot, not decided.
+
+## 2026-11-11 (night): the plan architecture built (Cory, in chat)
+
+"Let's implement those architectural fixes that you laid out. Then, if it changes anything in saras queue, make
+the update". Built for grade 4 math stretch 11: data/plans/, scripts/plan.py (gates, tables, reading pack, defect
+ledger), docs/courses/math-4/DEFAULTS.md, and the section "Facts live in data" in docs/courses/UNIT-PLAN.md.
+Sara's pieces 1 and 4 changed to use it. The other five planned stretches are not yet in data.
