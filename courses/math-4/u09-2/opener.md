@@ -6,13 +6,13 @@ version: draft 1, not ready, not yet taught
 credit: ours
 ---
 
-# Unit 9.2: The standard algorithm for subtracting (days 74 to 77)
+# Section 9.2: The standard algorithm for subtracting (days 74 to 77)
 
 ## The math, for the adult
 
 Standard 4.NBT.B.4, its second part: "Fluently add and subtract multi-digit whole numbers using the standard
-algorithm." Unit 9.1 taught adding. This unit subtracts, across zeros included, and ends with the stretch's end
-check on day 77.
+algorithm." Section 9.1 taught adding. This section subtracts, across zeros included, and ends with the end-of-unit
+assessment on day 77.
 
 **Ungrouping is carrying run backwards.** In adding, ten of a unit become one of the next. In subtracting, one of
 a unit becomes ten of the next smaller unit. In 9,372 − 4,156 the ones cannot give 6 from 2, so one of the 7 tens
@@ -46,7 +46,7 @@ clock is shown.
   adding after. Place names come down before E75.
 - **Day 76.** Expanded form comes back for ten minutes, for zeros only: 402 − 178, then 6,005 − 2,347, each top
   number renamed in one line first. Then differences with one, two and three zeros, and from 100,000.
-- **Day 77.** The check: a mixed set, the end check, then groups by error.
+- **Day 77.** The check: a mixed set, the end-of-unit assessment, then groups by error.
 
 The place value columns sheet (u09-1/columns.md) has a dashed row above the top number for ungrouped digits.
 
@@ -60,7 +60,7 @@ paper path (practice-d077.md) in the same minutes.
 
 ## The errors to expect, in plain words
 
-Unit 9.1's opener explains A to E; B comes back here on a difference, in day 75's wrong example.
+Section 9.1's opener explains A to E; B comes back here on a difference, in day 75's wrong example.
 
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
@@ -89,11 +89,12 @@ the five minutes go to E74.
 **Item 4, across a zero.** Say 402 as 3 hundreds, 9 tens, 12 ones before writing anything, and check that it is
 still 402. Every student who missed item 4 sits with the teacher for day 76's teaching (both examples).
 
-## Supplies for the unit
+## Supplies for the section
 
 - Per student: grid paper, or lined paper turned sideways; the place value columns sheet, one per student on day
-  75, for any student who wants it on other days; the day 77 mixed set and the end
-  check; a pencil.
+  75, for any student who wants it on other days; the day 77 mixed set and the end-of-unit
+  assessment; a pencil.
+
 - Place name cards from ones to hundred thousands, on paper, for the board (days 74 to 76).
 - Per class: the projector for the display pages; a board with place names over the columns.
 - A room with nothing: differences copied from the board; lined paper turned sideways.
@@ -104,13 +105,13 @@ Difference, ungroup, check, and the place names, each on the worked example at f
 "borrow" or "regroup"; all are welcome. Frame: "1 __ is 10 __." A student may say an ungrouping in a home language
 first, then in the frame.
 
-## The end of the stretch
+## The end of the unit
 
-Day 77: the mixed set (10 minutes), then the end check (30 minutes, unaided; 9.2a, 9.2b and 9.2c are this unit's),
-then the respond half by error group. E76's slips go back when pencils go down and join the I and F groups. A
+Day 77: the mixed set (10 minutes), then the end-of-unit assessment (30 minutes, unaided; 9.2a, 9.2b and 9.2c are this section's),
+then the respond half by error group. E76's tickets go back when pencils go down and join the I and F groups. A
 student in an adding group and a subtracting group goes to the subtracting one. Items 9.1c and 9.2c are judged
-after class and handed back on day 79, after Check 2 (day 78), which holds stretch 9's items C2.1 and C2.2 and is
-not ready until stretches 6 to 8 add theirs. Day 79 responds to both. Everything goes on stretch 9's record sheet
+after class and handed back on day 79, after Check 2 (day 78), which holds unit 9's items C2.1 and C2.2 and is
+not ready until units 6 to 8 add theirs. Day 79 responds to both. Everything goes on unit 9's record sheet
 (u09-1/record.md).
 
 ## Credit

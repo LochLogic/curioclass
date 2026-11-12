@@ -1,4 +1,4 @@
-# Rights list: grade 6 ELA, stretch 2 (Heroes and Their Trials)
+# Rights list: grade 6 ELA, unit 2 (Heroes and Their Trials)
 
 **To be redone (Cory, 2026-11-12, BASELINE rule 29).** The anchor becomes a new Curio Class hero story set today,
 with one myth retold in our own words as the paired text. The rows below are the old list, kept as the record of
@@ -6,7 +6,7 @@ what was found; none is the anchor any more. Grade 4 math goes first.
 
 Second draft, 2026-11-11 (Sara's list, piece 2), revised once after the curriculum expert's cold read
 ([../../reviews/rights-ela-6-s2-2026-11-11.md](../../reviews/rights-ela-6-s2-2026-11-11.md)). The texts are those
-named for stretch 2 in [../ela-6-spine.md](../ela-6-spine.md), "The texts, stretch by stretch".
+named for unit 2 in [../ela-6-spine.md](../ela-6-spine.md), "The texts, unit by unit".
 
 **This file gathers. It does not rule.** Every row is marked **found, not yet second-read**. No text here may be
 taught from until a second reader has checked its licence line and its source (FOUNDATION, section 7). Nothing
@@ -20,7 +20,7 @@ the file. Nobody has compared any file with a printed copy.
 **What "level" means here.** Rough figures, none a text record: (a) the score the host's own catalogue page
 shows; (b) a Flesch-Kincaid grade from my quick script on the plain-text file; (c) the expert's Flesch-Kincaid
 grade, measured separately. The band for grades 6 to 8 is 6.51 to 10.34; for grades 4 to 5 it is 4.51 to 7.73.
-The spine's review gave 8.7 for Colum. Neither of us could reproduce that figure, so it is not used here.
+The scope and sequence's review gave 8.7 for Colum. Neither of us could reproduce that figure, so it is not used here.
 
 **Pictures.** Not gathered for any row. Rows 1 and 6 are illustrated books; this list covers their text only.
 
@@ -43,12 +43,12 @@ These rows are books at Project Gutenberg. The same three passages apply to each
 
 ## The texts
 
-| # | Role in stretch 2 | Text and edition found | Exists? | Free legal copy | Licence, in the publisher's words | Level | Status |
+| # | Role in unit 2 | Text and edition found | Exists? | Free legal copy | Licence, in the publisher's words | Level | Status |
 |---|---|---|---|---|---|---|---|
 | 1 | Anchor | Padraic Colum, *The Adventures of Odysseus and the Tale of Troy* (the catalogue page titles it "The Tales of Troy"). Macmillan, New York. The file's title page reads "COPYRIGHT, 1918, BY THE MACMILLAN COMPANY" and lists reprints to "AUGUST, 1927", so the file likely follows a 1927 printing; that is not shown | Yes. 54,182 words. **The pilot passage is Part II, chapters IV to VI, whole: "Odysseus tells his own tale: the Lotus-eaters to the wreck"**, about 5,700 words. Chapter IV is the Lotus-eaters and the Cyclops; V is Aeolus and Circe; VI is the Sirens, Scylla and Charybdis, the Cattle of the Sun and the wreck. The plain-text file has copying errors in these chapters ("E embarked", "our laud", "If them comest"), so the passage must be proofed against a page scan of a named printing before it is taught | https://www.gutenberg.org/ebooks/16867 | See above | (a) "Reading ease score: 85.7 (6th grade)"; (b) 7.1 for the book, 6.0 for the passage; (c) 7.0 for the book, 5.9 for the passage. The passage is under the grade 6 to 8 floor by measure | found, not yet second-read |
 | 2 | Way in (one hero story) | James Baldwin, *Old Greek Stories*. American Book Company. The file shows no date; archive.org records give 1895 (https://archive.org/details/oldgreekstoriest00baldrich ; the scan's title page was not opened) | Yes. 43,522 words, fifteen stories. "Set II: the heroes" is the Reading Room's own cut of six stories (data/library/cuts.csv), not a part of the book: "Cadmus and Europa" (about 2,830 words), "The Quest of Medusa's Head", "The Story of Atalanta", "The Adventures of Theseus", "The Wonderful Artisan", "The Cruel Tribute". There is no Hercules story. **The way-in story is "The Cruel Tribute"** (Theseus and the Minotaur), about 3,210 words | https://www.gutenberg.org/ebooks/11582 | See above | (a) "82.8 (6th grade)"; (b) 7.6 for the hero stories; (c) 8.0 for "The Cruel Tribute" | found, not yet second-read |
 | 3 | Other choice of anchor | Alfred J. Church, *The Story of the Odyssey*. The file shows no publisher or date. Our sources file says 1906; that is not confirmed (archive.org records show 1891, 1904 and 1905 printings), so the date is unknown | Yes. 45,487 words. Chapters X "The Cyclops" and XI "Aeolus; the Laestrygons; Circe" cover part of the pilot passage. The hero is called Ulysses | https://www.gutenberg.org/ebooks/6370 | See above | (a) "84.8 (6th grade)"; (b) 7.1; (c) 7.7 for chapters X and XI | found, not yet second-read |
-| 4 | Second hero, another tradition | E. T. C. Werner, *Myths and Legends of China*, chapter XIV, "How the Monkey Became a God". George G. Harrap, London. The file's preface is dated 1922 | Yes. The chapter is 12,866 words in 53 short titled parts. It is Werner's digest of the *Hsi Yu Chi* (Journey to the West), not a translation and not a full telling. **Unit 2.5 reads only from "Beyond the seas" in "Legend of Sun Hou-tzu" through "Conditions of Release"**, about 2,000 words. Werner's opening comment is cut, and the cut is named. Decided 2026-11-12 (Cory): the cut is taught now. Before stretch 2 is called finished, a labeled Curio Class retelling of the same episodes is written. If that does not work, a new story is found in its place. The retelling is owed | https://www.gutenberg.org/ebooks/15250 | See above | (a) "65.6 (8th & 9th grade)" for the book; (b) 8.6 for the chapter; (c) 10.5 for the cut | found, not yet second-read |
+| 4 | Second hero, another tradition | E. T. C. Werner, *Myths and Legends of China*, chapter XIV, "How the Monkey Became a God". George G. Harrap, London. The file's preface is dated 1922 | Yes. The chapter is 12,866 words in 53 short titled parts. It is Werner's digest of the *Hsi Yu Chi* (Journey to the West), not a translation and not a full telling. **Section 2.5 reads only from "Beyond the seas" in "Legend of Sun Hou-tzu" through "Conditions of Release"**, about 2,000 words. Werner's opening comment is cut, and the cut is named. Decided 2026-11-12 (Cory): the cut is taught now. Before unit 2 is called finished, a labeled Curio Class retelling of the same episodes is written. If that does not work, a new story is found in its place. The retelling is owed | https://www.gutenberg.org/ebooks/15250 | See above | (a) "65.6 (8th & 9th grade)" for the book; (b) 8.6 for the chapter; (c) 10.5 for the cut | found, not yet second-read |
 | 5 | Second hero, the fallback (decided 2026-11-12, Cory: "The Ogre of Rashomon sounds fine to me, lets go with that"; chosen from our own search, docs/reviews/fallback-hero-ela-6-2026-11-12.md; the verse Ramayana that sat in this row is not used) | Yei Theodora Ozaki, *Japanese Fairy Tales*. The file's title page says "Compiled by Yei Theodora Ozaki" and shows no publisher; the dedication and the preface are signed "Tokio, 1908". The preface says the tales "have been translated from the modern version written by Sadanami Sanjin" and "are not literal translations" | Yes. 71,526 words, twenty-two tales. **The fallback text is "The Ogre of Rashomon", whole**, 2,244 words, the third tale from the end. A second whole tale, "My Lord Bag of Rice" (2,337 words, the first tale), is the spare. The plain-text file prints italics as capitals ("SAKE", "ME"), so the passage must be proofed against a page scan of a named printing before it is taught. The opening speaks of an ogre that ate its victims; a fresh sensitivity read is owed | https://www.gutenberg.org/ebooks/4018 | See above | (a) "Reading ease score: 84.0 (6th grade)" for the book; (b) 8.6 for "The Ogre of Rashomon" and 8.7 for "My Lord Bag of Rice", by the gatherer's script, which gives 6.0 on the Colum passage; (c) not yet measured by the expert | found, not yet second-read |
 | 6 | Long book for independent reading | Charles Kingsley, *The Heroes; or, Greek Fairy Tales for My Children*. The file says "Transcribed from the 1889 Macmillan and Co. edition" | Yes. 48,028 words: Perseus, The Argonauts, Theseus | https://www.gutenberg.org/ebooks/677 | See above | (a) "78.1 (7th grade)"; (b) 9.8 | found, not yet second-read |
 | 7 | Audio of the anchor | LibriVox recording of row 1, read by Elizabeth Klett, one reader, 30 sections, 5 hours 19 minutes 54 seconds, catalogued 2011-10-11 | Yes. Sections 19, 20 and 21 are Part II chapters IV, V and VI: 32 minutes 21 seconds for the pilot passage. Nobody has listened to it | https://librivox.org/the-adventures-of-odysseus-and-the-tale-of-troy-by-padraic-colum/ | On the book page: "LibriVox recordings are Public Domain in the USA. If you are not in the USA, please verify the copyright status of these works in your own country before downloading, otherwise you may be violating copyright laws." On https://librivox.org/pages/public-domain/ : "all our recordings are public domain (definitely in the USA, and maybe in your country as well ...). This means anyone can use all our recordings however they wish (even to sell them)." | Not a text | found, not yet second-read |
@@ -56,7 +56,7 @@ These rows are books at Project Gutenberg. The same three passages apply to each
 | 9 | Background text one | Core Knowledge Foundation, *The Heritage of Ancient Greece and Rome*, student reader (their grade 6 language arts unit). "Copyright © 2021 Core Knowledge Foundation". 98 pages, about 19,400 words. Its page says it uses portions of the row 10 reader | Yes. **Background text one is the chapter "The Ancient Greek City-States"** (chapter 2, PDF pages 14 to 19, about 1,080 words), if the second reader passes it. It is the only chapter that names the gods and myths. Background text two does not come from this reader. Decided 2026-11-12 (Cory): it is a short labeled Curio Class explainer, 500 to 700 words, on who Homer was and what the Trojan War was. Not written; owed. Standing note: upgrade to a free source later: replace this explainer when a suitable free text is found | Page: https://www.coreknowledge.org/free-resource/ckla-unit-3-the-heritage-of-ancient-greece-and-rome/ File: https://www.coreknowledge.org/wp-content/uploads/2023/08/CKLA_G6U3_TheHeritageOfAncientGreeceAndRome_SR.pdf | In the file, page 4: "This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License." It asks for this credit: "This work is based on an original work of the Core Knowledge® Foundation (www.coreknowledge.org) made available through licensing under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. This does not in any way imply that the Core Knowledge Foundation endorses this work." Under "Noncommercial": "You may not use this work for commercial purposes." Under "Share Alike": "If you alter, transform, or build upon this work, you may distribute the resulting work only under the same or similar license to this one." The same page also says "Copyright © 2021 Core Knowledge Foundation www.coreknowledge.org All Rights Reserved." | Written for grade 6 by its publisher. No level is printed. The expert's rough measure is not to be leaned on, because the sounding-out guides in the text push it up | found, not yet second-read |
 | 10 | Background, the same chapter in another book | Core Knowledge Foundation, *Ancient Greece and Rome*, student reader (their grade 6 history unit 2). "Copyright © 2018 Core Knowledge Foundation". 154 pages, about 31,700 words | Yes. The same chapter opens this reader. No chapter here serves as background text two; that is the Curio Class explainer named in row 9 (decided 2026-11-12, Cory) | Page: https://www.coreknowledge.org/free-resource/ckhg-unit-2-ancient-greece-rome/ File: https://www.coreknowledge.org/wp-content/uploads/2018/03/CKHG_G6_U2_AGR_SR.pdf | In the file, page 4: the same licence wording as row 9, with "Copyright © 2018" | The back cover (PDF page 154) prints "960L", a level stated by the publisher | found, not yet second-read |
 | 11 | Play scene | Not written. A Curio Class retelling of one myth as a short scene (the library plan's route 5) | No | None | Not yet written. Which telling it is made from, and whether that telling is free to build on, are still to be gathered | None yet | owed; nothing to second-read yet |
-| 12 | End-check text: a new short myth (unit 2.8 and pilot day 5) | **Not chosen.** It must be one the class has not read. Two candidates in row 2's file, for the unit writer to choose from: Baldwin's "The Wonderful Weaver" (about 1,100 words) and "The Story of Io" (about 1,700 words). Neither has been read through | The two candidates are in the row 2 file | https://www.gutenberg.org/ebooks/11582 | See above | (c) 5.6 for "The Wonderful Weaver". The expert's target for this text is 5.5 to 7.5, and no harder in language than the pilot passage | not chosen; found, not yet second-read |
+| 12 | End-of-unit assessment text: a new short myth (section 2.8 and pilot day 5) | **Not chosen.** It must be one the class has not read. Two candidates in row 2's file, for the section writer to choose from: Baldwin's "The Wonderful Weaver" (about 1,100 words) and "The Story of Io" (about 1,700 words). Neither has been read through | The two candidates are in the row 2 file | https://www.gutenberg.org/ebooks/11582 | See above | (c) 5.6 for "The Wonderful Weaver". The expert's target for this text is 5.5 to 7.5, and no harder in language than the pilot passage | not chosen; found, not yet second-read |
 
 ## Decided by Cory, 2026-11-12
 
@@ -69,7 +69,7 @@ questions in full are in docs/reviews/piece-2-cards-for-cory-2026-11-11.md.
    from Ozaki's Japanese Fairy Tales (row 5). The runner-up was a Hanuman episode from Sister Nivedita's prose
    Ramayana.
 2. **The Monkey King as a digest (row 4).** Werner's chapter is a fast summary with old spellings of names, and
-   its later parts hold episodes that do not suit a class. The 2,000-word cut is taught now. Before stretch 2 is
+   its later parts hold episodes that do not suit a class. The 2,000-word cut is taught now. Before unit 2 is
    called finished, a labeled Curio Class retelling of the same episodes is written. If that does not work, a
    new story is found in its place. The library plan asks for an outside reader from the culture. That reader
    is an outside person, so that step still needs Cory's separate yes.
@@ -125,30 +125,30 @@ These are things we saw and cannot settle. Each is a question, not an answer.
 
 ## What we found that is not about rights
 
-Settled by the expert unless marked otherwise. Items for the spine are for the main session; this session does
-not edit the spine.
+Settled by the expert unless marked otherwise. Items for the scope and sequence are for the main session; this session does
+not edit the scope and sequence.
 
 - **The pilot passage sits below the grade 6 to 8 band by measure.** Two separate measures agree: 5.9 and 6.0
   for the passage, 7.0 and 7.1 for the book. The text record must say so plainly: below the band by measure,
   placed in grade 6 on a person's judgment of its old language and the knowledge it assumes, and the easiest
   anchor passage of the year, placed first on purpose. The pilot stays on Colum. It tests the teaching of
-  RL.6.2, not the level of the text. **For the spine:** drop "8.7", "23.5" and the sentence that the year opens
+  RL.6.2, not the level of the text. **For the scope and sequence:** drop "8.7", "23.5" and the sentence that the year opens
   on some of its hardest prose.
 - **What makes the passage hard is old language, not long sentences.** Old forms (thee, thou, hast and the like)
   come about 90 times in 5,700 words. The middle sentence is 17 words and the longest is 48. My earlier "up to
   88 words" was wrong: my script ran two sentences together. So the pilot's supports are a sheet on the old
-  forms, a name chart and a note on who is speaking to whom, not the long-sentence routine. **For the spine:**
+  forms, a name chart and a note on who is speaking to whom, not the long-sentence routine. **For the scope and sequence:**
   the scaffold table.
-- **The passage holds content the spine's teacher-note list does not name:** the Cyclops kills and eats two
+- **The passage holds content the scope and sequence's teacher-note list does not name:** the Cyclops kills and eats two
   men, six more are taken by Scylla, and in chapter V Odysseus weighs throwing himself into the sea. **For the
-  spine:** add both to the Colum line. A fresh sensitivity read of the passage is still owed.
+  scope and sequence:** add both to the Colum line. A fresh sensitivity read of the passage is still owed.
 - **The pilot passage was misnamed.** "Cyclops through Circe" would end with chapter V, mid-tale. The theme
-  needs chapter VI, where the Cyclops's curse is paid out. **For the spine:** the new name in the text table,
+  needs chapter VI, where the Cyclops's curse is paid out. **For the scope and sequence:** the new name in the text table,
   the reading load and "The pilot".
-- **The way-in story is harder by measure than the anchor passage** (8.0 against 5.9). **For the spine:** call
+- **The way-in story is harder by measure than the anchor passage** (8.0 against 5.9). **For the scope and sequence:** call
   the order "shorter and complete first", not "easier to harder"; the king's death at the end needs a line in
   the teacher note; say "the Reading Room's set II".
-- **The reading load for stretch 2** should count the way-in story (about 3,200 words) and the Monkey King cut
-  (about 2,000 words). **For the spine.**
+- **The reading load for unit 2** should count the way-in story (about 3,200 words) and the Monkey King cut
+  (about 2,000 words). **For the scope and sequence.**
 - **Both background readers are history, not myth.** Homer is named once. The same publisher may have a grade 6
-  unit of retold Greek stories; neither of us looked for it, because the spine did not name it.
+  section of retold Greek stories; neither of us looked for it, because the scope and sequence did not name it.

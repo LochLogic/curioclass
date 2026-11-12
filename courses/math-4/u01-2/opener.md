@@ -6,13 +6,13 @@ version: draft 1, not ready, not yet taught
 credit: ours
 ---
 
-# Unit 1.2: Multiples, prime and composite (days 4 to 6)
+# Section 1.2: Multiples, prime and composite (days 4 to 6)
 
 ## The math, for the adult
 
 Standard 4.OA.B.4, its last three parts: "Recognize that a whole number is a multiple of each of its factors.
 Determine whether a given whole number in the range 1–100 is a multiple of a given one-digit number. Determine
-whether a given whole number in the range 1–100 is prime or composite." Unit 1.1 taught the first part, finding
+whether a given whole number in the range 1–100 is prime or composite." Section 1.1 taught the first part, finding
 every factor pair.
 
 **Factor and multiple are one fact read two ways.** 3 × 7 = 21 says 3 and 7 are factors of 21, and 21 is a
@@ -23,7 +23,7 @@ students should say it from one equation, both ways, on day 4.
 decide whether a number is a multiple of 7, count by 7s (or build from a product you know) and see whether you
 land on it. 84 is a multiple of 7: 7 × 10 = 70, and 14 more is 7 × 2, so 7 × 12 = 84. A number between two
 products is fenced: it lands on neither, so it leaves a leftover and is not a multiple. Reading what the
-leftover means is stretch 13; here a leftover only means "no".
+leftover means is unit 13; here a leftover only means "no".
 
 **Why the last digit works for some numbers and not others.** Every multiple of 10 is a multiple of 2 and of 5,
 so a number's tens never change whether it is a multiple of 2 or 5: only its last digit does. 10 is not a
@@ -64,7 +64,7 @@ finds no pair.
 
 ## The errors to expect, in plain words
 
-Unit 1.1's opener explains A to C; they can return in day 5's warm-up and day 6's groups.
+Section 1.1's opener explains A to C; they can return in day 5's warm-up and day 6's groups.
 
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
@@ -76,14 +76,14 @@ Unit 1.1's opener explains A to C; they can return in day 5's warm-up and day 6'
 The day each wrong example is shown: D and E on day 4, F and G on day 5. Each day's teacher page names the wrong
 answer that signals each error on that day's exit.
 
-## What comes in from unit 1.1
+## What comes in from section 1.1
 
 E3 and day 3's written task are answered in day 4's first minutes. E3's second part asks part (c) early ("Is 6
 a factor of 98?"); a student who said yes because 98 is even shows error E before it is taught, and day 4's
 wrong example E is for them. Students below the facts mark (32 of 36 on either facts check) keep the 9 by 9 table
-(table-9x9.md) from day 5, in lessons and on the end check.
+(table-9x9.md) from day 5, in lessons and on the end-of-unit assessment.
 
-## Supplies for the unit
+## Supplies for the section
 
 - Per student: side 1 of the day 4 page holds the number lines (notebooks if there is no printer); the 1 to 30
   chart (day 5); a pencil; the 1 to 100 chart (chart-100.md) for the sieve on day 6, about 6.
@@ -96,13 +96,13 @@ Multiple, factor, prime, composite, each with its picture. "Multiple" and "multi
 Frames: "__ is a multiple of __, because __ × __ = __." "__ is composite, because __ × __ = __." "__ is prime: I
 tried __ to __ and found no pair."
 
-## The end of the stretch
+## The end of the unit
 
-Day 6: the end check, 30 minutes, unaided; items 2 to 5 are this unit's. Then the respond half, by error group
+Day 6: the end-of-unit assessment, 30 minutes, unaided; items 2 to 5 are this section's. Then the respond half, by error group
 (missed item 1: A to C; items 2 or 3: D and E; item 4: F and G; nothing missed: the sieve on a 1 to 100 chart).
-E5's slips and day 5's written task go back when pencils go down, and their errors join the F and G group. The
-last ten minutes are stretch 2's readiness check. Items 5 and 6 are judged after class and handed back on day 7.
-Everything goes on stretch 1's record sheet (u01-1/record.md).
+E5's tickets and day 5's written task go back when pencils go down, and their errors join the F and G group. The
+last ten minutes are unit 2's readiness check. Items 5 and 6 are judged after class and handed back on day 7.
+Everything goes on unit 1's record sheet (u01-1/record.md).
 
 ## Credit
 

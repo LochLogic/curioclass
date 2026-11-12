@@ -6,13 +6,13 @@ version: draft 1, not yet taught
 credit: ours
 ---
 
-# Unit 11.1: Area and perimeter formulas (days 89 to 93)
+# Section 11.1: Area and perimeter formulas (days 89 to 93)
 
 ## The math, for the adult
 
 Standard 4.MD.A.3: "Apply the area and perimeter formulas for rectangles in real world and mathematical
 problems." Students met both measures in grade 3 by counting: area as the unit squares that cover a shape,
-arranged in rows and columns (3.MD.C.7), and perimeter as the length of the edge (3.MD.D.8). This unit turns
+arranged in rows and columns (3.MD.C.7), and perimeter as the length of the edge (3.MD.D.8). This section turns
 each count into a formula and then uses the formula backwards.
 
 **Area is rows times columns.** A rectangle 6 feet by 8 feet holds 6 rows of 8 one-foot squares, so its area is
@@ -40,7 +40,7 @@ inside or the edge (covers, fills, around, edge, side, border of, whole floor); 
 paint, trim, wire) is not a cue.
 
 **Limits.** Rectangles only. Areas stay within 100, or a one-digit number times a multiple of 10. A side found
-from a perimeter comes from an even perimeter of 100 or less. Larger areas come back in stretches 12 to 14.
+from a perimeter comes from an even perimeter of 100 or less. Larger areas come back in units 12 to 14.
 
 ## Why this model
 
@@ -83,9 +83,9 @@ the facts check moves to day 91.
 
 For item 3 (8 × ? = 48) gaps: fact help goes into the warm-ups only, not into the lesson.
 
-## Supplies for the unit
+## Supplies for the section
 
-- Per student: grid paper (about six sheets over the unit; large squares for students who need them), about
+- Per student: grid paper (about six sheets over the section; large squares for students who need them), about
   15 tiles or paper squares (day 89), a pencil.
 - Per class: the projector for the display pages, a board, one string loop 36 units long (day 92's pens).
 - Devices for day 90 if Community Plot Planner is built; otherwise grid paper.
@@ -96,12 +96,12 @@ For item 3 (8 × ? = 48) gaps: fact help goes into the warm-ups only, not into t
 Area, perimeter, length, width, square unit (square foot, square meter), formula, equation. Teach each on a
 labelled rectangle. "Covers" and "goes around" help at first; by day 92 problems use neither.
 
-## How the unit is checked
+## How the section is checked
 
 Readiness check: day 88, four items, marked before day 89. Exits: one each on days 89 to 92, written on the
-record sheet by error letter. End check: day 93, seven items, 30 minutes, unaided, no grid; items 5 and 6 are
+record sheet by error letter. End-of-unit assessment: day 93, seven items, 30 minutes, unaided, no grid; items 5 and 6 are
 judged by the teacher with look-fors and answered in day 94's first five minutes. Area returns with larger sides
-in stretches 12 to 14; without that return the standard is only half taught.
+in units 12 to 14; without that return the standard is only half taught.
 
 ## Credit
 

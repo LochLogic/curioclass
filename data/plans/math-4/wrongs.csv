@@ -7,7 +7,7 @@ s11-E2,17,(50-16)/2,17,D,"one side taken off, then halved"
 s11-E3,3 4/8,F(19;8)+F(9;8),3 4/8,B,Fraction slips go to the warm-up
 s11-E4,465,318+147,465,B,Adding slips go to the warm-up
 s11-E4,783,2*318+147,783,,one side doubled only (from memory)
-s11-E5,"Length 9, giving 45 and 28",5+4 | 5*(5+4) | 2*(5+5+4),9 | 45 | 28,,"""4 more"", stretch 10"
+s11-E5,"Length 9, giving 45 and 28",5+4 | 5*(5+4) | 2*(5+5+4),9 | 45 | 28,,"""4 more"", unit 10"
 s11-E5,swapped,,,A,
 s11-E5,25,5+4*5,25,B,
 s11-E5,"""100 feet""",,,E,
@@ -25,7 +25,7 @@ s11-X91a,"24 or 2,400",,,,a zero slip
 s11-X91a,92,2*(40+6),92,A,
 s11-X91b,383,235+148,383,B,
 s11-X91c,5 5/10,F(31;10)+F(24;10),5 5/10,B,
-s11-X92,length 7,4+3,7,,"""3 more"", stretch 10"
+s11-X92,length 7,4+3,7,,"""3 more"", unit 10"
 s11-X92,swapped,,,A,
 s11-X92,"""48 yards""",,,E,
 s11-F90-1,30,35-5,30,C,the wrong answer shown
@@ -60,7 +60,7 @@ s11-K91-1,422,264+158,422,B,length plus width only
 s11-K91-2,9 2/4,F(27;4)+F(11;4),9 2/4,B,length plus width only
 s11-P91-3,4 6/10,,,,denominators added: a fraction slip
 s11-K92-1,every pen has the same room,1*17==9*9,False,,same fence taken as same area
-s11-K92-2,"length 9, area 63",7+2 | 7*(7+2),9 | 63,,"""2 more"", stretch 10"
+s11-K92-2,"length 9, area 63",7+2 | 7*(7+2),9 | 63,,"""2 more"", unit 10"
 s11-K92-2,42,2*(7+2*7),42,A,
 s11-K92-3,9,72/8,9,,stops at the side
 s11-K92-3,17,9+8,17,B,
@@ -70,11 +70,11 @@ s11-P92-3,30,2*(9+6),30,A,
 s11-P92-3,"""54 feet""",,,E,
 s11-P92-4,126,14*9,126,A,
 s11-P92-4,23,14+9,23,B,
-s11-P92-5,"length 8, area 16",2+6 | 2*(2+6),8 | 16,,"""6 more"", stretch 10"
+s11-P92-5,"length 8, area 16",2+6 | 2*(2+6),8 | 16,,"""6 more"", unit 10"
 s11-P92-5,28,2*(2+6*2),28,A,
 s11-P92-6,7,42/6,7,,stops at the side
 s11-P92-6,96,2*(6+42),96,A,the area used as a side
-s11-P92-7,"length 11, trim 40",9+2 | 2*(9+2+9),11 | 40,,"""2 more"", stretch 10"
+s11-P92-7,"length 11, trim 40",9+2 | 2*(9+2+9),11 | 40,,"""2 more"", unit 10"
 s11-P92-7,162,9*(2*9),162,A,
 s11-P92-8,17,24-7,17,D,one long side taken off
 s11-P92-8,10,24-2*7,10,D,not halved
@@ -400,7 +400,7 @@ s01-X2,10 × 5 as a fourth pair,,,C,
 s01-X2,"""I just know""",,,,no reason; ask what was tried and where it stopped
 s01-X3a,no 7 × 14,,,B,
 s01-X3a,no 1 × 98,,,A,
-s01-X3b,"""yes, 98 is even""",,,E,Met again in unit 1.2
+s01-X3b,"""yes, 98 is even""",,,E,Met again in section 1.2
 s01-X4av2,"""55 is a factor of 5"", or ""5 is a multiple of 55""",,,D,
 s01-X4b,"""no"": the 4s stop at 40",,,E,
 s01-X4b,"""yes, it is even"", with no product shown",,,E,

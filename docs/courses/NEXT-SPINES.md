@@ -4,10 +4,10 @@
 (docs/reviews/strategic-review-2026-11-11.md) and asked for this list to be rebuilt so you can start. Three things
 changed for you:
 
-- **Spec fixing has stopped.** No more batches in docs/spec-fixes/. A spec gets work only when a unit plan names
+- **Spec fixing has stopped.** No more batches in docs/spec-fixes/. A spec gets work only when a section plan names
   its tool.
-- **One unit is being built all the way down first** (grade 4 math, unit 11.1). Until a teacher has read it, no
-  new spines, progression pages, stretch plans or unit plans are written. They came off this list. They are kept
+- **One unit is being built all the way down first** (grade 4 math, unit 11). Until a teacher has read it, no
+  new scopes and sequences, progression pages, unit plans or section plans are written. They came off this list. They are kept
   at the bottom under "On hold".
 - **Small choices no longer go to Cory.** The curriculum expert settles them and they go in a weekly digest.
   Cory decides scope, audience, money, outside people, and anything that moves a standard between units.
@@ -79,7 +79,7 @@ dates for all 105 courses. Do this first. It is short.**
 
 ### 2. English language arts: rubric file, approach page, and the rights list
 
-**Waiting on it: the first ELA pilot (five days of grade 6, stretch 2), which runs as soon as the math pilot has
+**Waiting on it: the first ELA pilot (five days of grade 6, unit 2), which runs as soon as the math pilot has
 been read, and behind it all 13 ELA courses. The rights work has the longest wait of anything here, so it starts
 now.**
 
@@ -91,16 +91,16 @@ now.**
       from the texts; foundational skills in the lower grades; the daily question is about the text; modelled
       reading and writing; "fluency" means reading fluency. Sources: the ELA standards and appendices, the
       publishers' criteria, the federal practice guides on comprehension, foundational skills and writing.
-- [x] The rights list for grade 6, stretch 2 only (docs/courses/ela-6-spine.md): for each text, does it exist,
+- [x] The rights list for grade 6, unit 2 only (docs/courses/ela-6-spine.md): for each text, does it exist,
       where a free legal copy lives, its licence in the publisher's own words with the address, its level. Put
       it in docs/courses/ela-6/RIGHTS.md. **You gather; you do not rule.** A second reader checks every licence
       line before a text is taught (FOUNDATION section 7). Mark each row "found, not yet second-read".
 - Changes to which texts are taught go to Cory as a card.
 - 2026-11-11: all three drafted, read cold by the expert, revised once. Reports:
   docs/reviews/rubric-ela-2026-11-11.md, approach-ela-2026-11-11.md, rights-ela-6-s2-2026-11-11.md. "Sara's
-  read" is owed on each. Six questions for Cory and the notes for the spine are in
+  read" is owed on each. Six questions for Cory and the notes for the scope and sequence are in
   docs/reviews/piece-2-cards-for-cory-2026-11-11.md.
-- 2026-11-12, main session: the six questions are on the Desk as card `q-ela-piece-2`; the spine edits are
+- 2026-11-12, main session: the six questions are on the Desk as card `q-ela-piece-2`; the scope and sequence edits are
   applied to docs/courses/ela-6-spine.md; the sources are on docs/APPROACH-SOURCES.md; the findings are in the
   defect ledger. What the expert settled is listed in docs/reviews/DIGEST.md. When the Desk cannot be opened
   from your session, keep writing cards to a file like this one; the main session places them. Every rights row is still "found, not yet second-read".
@@ -115,26 +115,26 @@ now.**
       and the class model are the daily evidence); worked examples for calculation and data work only; models
       are revised, not withdrawn. It must read at least one source on hands-on science teaching, which nobody has
       read yet. Sources: A Framework for K-12 Science Education, the NGSS appendices, the EQuIP rubric.
-- [ ] Name one unit of the grade 4 science spine draft to be the pilot (your pick, with a reason, as a card for
+- [ ] Name one unit of the grade 4 science scope and sequence draft to be the pilot (your pick, with a reason, as a card for
       Cory), and list every material it needs with a household stand-in. A science teacher reads safety and
       materials before the course is called finished; for now mark what you are unsure of.
 
-### 4. Grade 4 math: the start-of-year check and stretch 4's readiness items
+### 4. Grade 4 math: the start-of-year check and unit 4's readiness items
 
 **Waiting on it: day 1 of the course cannot run without the check, and day 24 points at readiness items that do
 not exist. This is the one piece of grade 4 planning that is not frozen. It is yours; the main session will not
 do it.**
 
-- [ ] The start-of-year check (day 1). It must carry stretch 1's three readiness items
+- [ ] The start-of-year check (day 1). It must carry unit 1's three readiness items
       (docs/courses/math-4/s01.md). Written to the check rules in docs/courses/UNIT-PLAN.md.
-- [ ] Stretch 4's readiness items only (not the stretch sheet, not its unit plans).
+- [ ] Unit 4's readiness items only (not the unit plan, not its unit plans).
 - Write the items straight into `data/plans/math-4/items.csv` and `wrongs.csv` (how: data/plans/README.md), with
-  a compute cell for every answer, and run `scripts/plan.py check` until it passes. Use stretch `0` for the
-  start-of-year check and `4` for stretch 4's readiness items. No table is typed by hand.
+  a compute cell for every answer, and run `scripts/plan.py check` until it passes. Use unit `0` for the
+  start-of-year check and `4` for unit 4's readiness items. No table is typed by hand.
 
 ### 5. Social studies: the content standard options
 
-**Waiting on it: all 14 social studies courses. No social studies spine can start before Cory decides. Nothing in
+**Waiting on it: all 14 social studies courses. No social studies scope and sequence can start before Cory decides. Nothing in
 the first three pilots waits on it, which is why it is fifth.**
 
 - [ ] docs/reviews/social-studies-content-standard-<date>.md, expert read, revised once, then a Desk card.
@@ -151,7 +151,7 @@ the first three pilots waits on it, which is why it is fifth.**
 
 ### 6. When the pilot unit is built: read it, and perhaps teach it
 
-**Waiting on it: every time figure in the course. This opens when the main session says unit 11.1 is built.**
+**Waiting on it: every time figure in the course. This opens when the main session says unit 11 is built.**
 
 - [ ] Read the five lesson days as a teacher against the five questions in docs/pilots/README.md, and file your
       notes there. You are not the grade 3 to 5 reader Cory is looking for, and your read does not replace
@@ -171,26 +171,26 @@ the first three pilots waits on it, which is why it is fifth.**
 
 Do not start these. They will be written to a template the pilot is expected to change.
 
-- Cold reads of grade 4 math stretches 3, 9 and 10, and of docs/ADOPTION-BAR-SUBJECTS.md. (Still owed. They move
+- Cold reads of grade 4 math units 3, 9 and 10, and of docs/ADOPTION-BAR-SUBJECTS.md. (Still owed. They move
   back up when the plan template is settled.)
 - Math progression pages for kindergarten to grade 2 and grades 6 to 8. Note for later: the K to 2 rubric counts
   major work at 75 percent of days, not 65 (docs/RUBRIC-MATH-K8.md).
-- Grade 4 math stretches 4 to 8 (sheets and unit plans).
-- The grade 3 and grade 5 math spines, and the six other math spines.
-- The full grade 6 ELA text plan beyond stretch 2.
+- Grade 4 math units 4 to 8 (unit plans and section plans).
+- The grade 3 and grade 5 math scopes and sequences, and the six other math scopes and sequences.
+- The full grade 6 ELA text plan beyond unit 2.
 
 ## Rules for all of it
 
 - **Shared band modules (decided, Cory, 2026-11-11).** English language arts has modules that belong to a band, not
   a grade (for example "Narrators and Points of View", grades 3 to 5). The module and its tools stay shared. Each
-  grade's spine claims the skill on its own days, with that grade's standard code and that grade's texts, so every
+  grade's scope and sequence claims the skill on its own days, with that grade's standard code and that grade's texts, so every
   standard has an owner in a course. Do not split a band module into one per grade.
-- No rows go into data/units.csv, and no tool is specced, built or changed from these drafts. A spine becomes real
+- No rows go into data/units.csv, and no tool is specced, built or changed from these drafts. A scope and sequence becomes real
   only with Cory's yes.
 - No licence or rights judgment is final on your word or one agent's. Gather it, quote it, and mark it for the
   second reader.
 - Nothing is sent to an outside person and no money is spent without Cory's yes.
-- Do not edit the grade 4 math spine or the approach pages. If a draft shows one of them is wrong, write the finding
+- Do not edit the grade 4 math scope and sequence or the approach pages. If a draft shows one of them is wrong, write the finding
   in your review file and on a Desk card.
 - No em dashes anywhere. Always "Curio Class" in full. Never say Curio Class was reviewed by, meets or is endorsed
   by anyone. Public copy names no companies.

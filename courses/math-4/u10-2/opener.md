@@ -6,7 +6,7 @@ version: draft 1, not yet taught
 credit: ours
 ---
 
-# Unit 10.2: Comparison word problems: times as many or more than? (days 83 to 86)
+# Section 10.2: Comparison word problems: times as many or more than? (days 83 to 86)
 
 ## The math, for the adult
 
@@ -25,7 +25,7 @@ multiplicative comparison from additive comparison."
 
 **The word "times" does not tell you to multiply.** It is in all three stories, and two of them are solved by
 dividing. A student who multiplies because the story says "times" (error B) gets 448 for Lia's marbles, more than
-Max has. The question that catches it is the one asked every day of this unit: "Who has more?" The answer must fit
+Max has. The question that catches it is the one asked every day of this section: "Who has more?" The answer must fit
 the longer strip.
 
 **Two kinds of comparison.** "More than" is additive: the longer strip is the shorter one with a piece on its end.
@@ -59,7 +59,7 @@ It is printed on day 84's student page:
 
 ## Why this model
 
-The strip picture from unit 10.1 already holds both kinds of comparison, so a student draws first and decides
+The strip picture from section 10.1 already holds both kinds of comparison, so a student draws first and decides
 the operation from the picture, not from a word. Two strips one above the other, with the extra piece marked, is
 also the picture for readiness item 2, so the reteach and day 83 start in the same place. Growth Spurt would add
 two things print cannot: on day 83 (Growing, with the comparison switch) many cases seen in minutes, and on day 86
@@ -75,13 +75,13 @@ sort cards, in the same minutes; each day's teacher page gives that paper path i
 | C | Swap the roles: make the smaller amount the larger (in a times story, say the smaller is so many times as many; in a more-than story, give the extra to the smaller) | They lost track of which number is the multiplier | Point to the longer strip first; the bigger amount stands alone in the equation |
 | E | Say "3 times more than 4" could be 12 or 16 | The phrase is unclear in everyday English | A talk, not a correction. Not marked |
 
-Error D (copies added on top, unit 10.1) can come back on day 83; count the copies aloud, starting with the
+Error D (copies added on top, section 10.1) can come back on day 83; count the copies aloud, starting with the
 first strip as copy one. The day each wrong example is shown: A and E on day 83, B on day 84, C on day 85. Each
 day's teacher page names the wrong answer that signals each error on that day's exit.
 
 ## The reteach (readiness item 2)
 
-Readiness item 2 (shells, "how many more") is the additive comparison this unit sets beside "times as many". If
+Readiness item 2 (shells, "how many more") is the additive comparison this section sets beside "times as many". If
 more than a third of the class missed it, day 83's warm-up and first five minutes are this reteach for the whole
 class. Otherwise run it with the students who missed it during day 83's warm-up, and the five minutes go to day
 82's exit.
@@ -94,7 +94,7 @@ class. Otherwise run it with the students who missed it during day 83's warm-up,
 
 That picture, two strips and the piece that sticks out, is where day 83's teaching starts.
 
-## Supplies for the unit
+## Supplies for the section
 
 - Per student: a strip sheet on days 83 and 84 (one each), a few cut into strips on day 85.
 - Day 86: the eight sort cards are on the student page; nothing to cut. About 8 strip sheets for the class, for
@@ -109,11 +109,11 @@ picture. Both orders are met on day 84: "Zoe picked 5 times as many as Ben. Zoe 
 as many as Ben picked". Short sentences, one fact in each, no
 idioms. Students retell each story before drawing, in a home language if they wish. Read problems aloud.
 
-## How the unit is checked
+## How the section is checked
 
-Exits on days 83 to 86, on paper, written on the stretch record sheet by error letter (courses/math-4/u10-1/
+Exits on days 83 to 86, on paper, written on the unit record sheet by error letter (courses/math-4/u10-1/
 record.md). Day 86's exit has two answers; a tick means both. Day 86's written task is judged by the teacher with
-look-fors on that day's key. End check items 3 to 6 on day 88 are this unit's.
+look-fors on that day's key. Unit assessment items 3 to 6 on day 88 are this section's.
 
 ## Credit
 

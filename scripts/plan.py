@@ -2,10 +2,10 @@
 
     python -X utf8 scripts/plan.py check  [course]            gates; exit 1 on any failure
     python -X utf8 scripts/plan.py tables [course]            rewrite the generated blocks in the plan files
-    python -X utf8 scripts/plan.py pack   <course> <stretch>  print one agent's reading pack
+    python -X utf8 scripts/plan.py pack   <course> <unit>     print one agent's reading pack
     python -X utf8 scripts/plan.py defect <course> <artifact> <layer> <found_by> <kind> "<summary>" [ref]
     python -X utf8 scripts/plan.py defects                    counts by reader and layer
-    python -X utf8 scripts/plan.py reserve <course> <stretch> write the stretch's fact triples into its generator
+    python -X utf8 scripts/plan.py reserve <course> <unit>    write the unit's fact triples into its generator
 
 Facts live in data/plans/<course>/ (parts, days, items, wrongs, errors). The plan files in
 docs/courses/<course>/ keep prose for judgment; their tables are generated between
@@ -18,9 +18,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 PLANS = ROOT / 'data' / 'plans'
 DOCS = ROOT / 'docs' / 'courses'
-LESSON_MIN = 50          # the lesson part of a 60 minute day (spine: warm-up 5, lesson about 50, exit 5)
+LESSON_MIN = 50          # the lesson part of a 60 minute day (scope and sequence: warm-up 5, lesson about 50, exit 5)
 DAY_MIN = 60
-KINDS = {'Understanding', 'Fluency', 'Use', 'Check', 'Respond'}
+KINDS = {'Understanding', 'Fluency', 'Application', 'Check', 'Respond'}
 MARKS = {'key', 'light'}
 LESSON_KINDS = {'example', 'tool', 'fix', 'practice', 'challenge'}   # rows a lesson day adds; all count as taught
 CHECKS = {'readiness', 'end', 'exit'} | LESSON_KINDS
@@ -159,7 +159,7 @@ def over_limit(expr, course):
 
 def numbers(text):
     """The set of numbers in a stem or example: used for the no-reuse rule."""
-    t = re.sub(r'\b(?:MP|E|day|Day|stretch|lesson|unit|item|items)\.? ?\d+', ' ', text)
+    t = re.sub(r'\b(?:MP|E|day|Day|unit|section|lesson|item|items)\.? ?\d+', ' ', text)
     t = re.sub(r'\b\d+ min\b', ' ', t)   # minutes in a day row are time, not taught numbers
     t = re.sub(r'\((?:a|b|c|d|e|f)\)', ' ', t)
     return frozenset(re.findall(r'\d+(?: \d+/\d+)?(?:,\d{3})*', t))
@@ -167,7 +167,7 @@ def numbers(text):
 
 
 # ------------------------------------------------------------------ reserved numbers
-RESERVED = {('math-4', '11'): 'site/assets/gen/measure-shapes.js'}   # (course, stretch): the generator that serves it
+RESERVED = {('math-4', '11'): 'site/assets/gen/measure-shapes.js'}   # (course, unit): the generator that serves it
 
 
 def canon(v):
@@ -244,14 +244,14 @@ def facts(i, stem=True):
 
 
 def reserved_js(items, st):
-    """Every fact triple the stretch teaches or checks, as a JS array literal, sorted for a stable diff."""
+    """Every fact triple the unit teaches or checks, as a JS array literal, sorted for a stable diff."""
     ts = sorted({t for i in items if i['stretch'] == st and i['check'] in CHECKS for t in facts(i)})
     return '[' + ', '.join('[' + ', '.join("'%s'" % n for n in t) + ']' for t in ts) + ']'
 
 
 def reserve(course, st):
-    if (course, st) not in RESERVED:   # a stretch with no generator: the no-reuse gates in check() guard it
-        print('%s stretch %s: no generator to write; plan.py check guards its reserved numbers' % (course, st))
+    if (course, st) not in RESERVED:   # a unit with no generator: the no-reuse gates in check() guard it
+        print('%s unit %s: no generator to write; plan.py check guards its reserved numbers' % (course, st))
         return
     js = ROOT / RESERVED[(course, st)]
     t = js.read_text(encoding='utf-8')
@@ -296,7 +296,7 @@ def trade_places(m):
 
 
 def first_days():
-    """Each grade 4 standard's first day in the year spine (docs/courses/math-4-spine.md)."""
+    """Each grade 4 standard's first day in the scope and sequence (docs/courses/math-4-spine.md)."""
     out, p = {}, DOCS / 'math-4-spine.md'
     if not p.exists():
         return out
@@ -394,10 +394,10 @@ def check(course):
     for s in stretches:
         sp = [p for p in parts if p['stretch'] == s]
         end = [i for i in items if i['stretch'] == s and i['check'] == 'end']
-        # 2. every part of every standard has an end-check item
+        # 2. every part of every standard has a unit assessment item
         for p in sp:
             if not any(i['code'] == p['code'] and p['part'] in partset(i) for i in end):
-                fails.append('stretch %s: %s part (%s) "%s" has no end-check item' % (s, p['code'], p['part'], p['text']))
+                fails.append('unit %s: %s part (%s) "%s" has no unit assessment item' % (s, p['code'], p['part'], p['text']))
         for i in end:
             for pt in sorted(partset(i)):
                 if sp and not any(i['code'] == p['code'] and pt == p['part'] for p in sp):
@@ -406,7 +406,7 @@ def check(course):
             for p in sp:
                 if p['code'] not in codes:
                     fails.append('parts.csv: %s is not in the standards file' % p['code'])
-        # 3. no end-check item or exit question reuses the numbers of a taught example or of another item
+        # 3. no unit assessment item or exit question reuses the numbers of a taught example or of another item
         taught = [('error %s example' % e['letter'], numbers(e['example'])) for e in errors if e['stretch'] == s]
         taught += [('day %s' % d['day'], numbers(d['opens'] + ' ' + d['by_hand'])) for d in days if d['stretch'] == s]
         # lesson-day rows (docs/courses/LESSON-DAY.md, rule 3): worked examples, tool notes, fixes, practice
@@ -424,7 +424,7 @@ def check(course):
         # 3a. a fact turned round: a check or exit item that shares a taught row's multiplication or division fact
         # (a, b, a x b from the compute cells, any order) and prints that row's answer as a given number fails, so a
         # taught answer reused as a factor is caught (expert, day 88: 63 = 7 x 9 was day 87's 63 / 9 = 7; day 85:
-        # 27 / 9 = 3 against 27 / 3 = 9). Sharing a fact alone is allowed: stretch 10's one-digit facts are all used
+        # 27 / 9 = 3 against 27 / 3 = 9). Sharing a fact alone is allowed: unit 10's one-digit facts are all used
         tf = {}
         for i in items:
             if i['stretch'] == s and i['check'] in LESSON_KINDS:
@@ -446,7 +446,7 @@ def check(course):
         # taught against taught, across days: allowed for practice, but counted so a writer sees it
         cross = sorted(t for t, xs in tf.items() if len({x['day'] for x in xs}) > 1)
         if cross:
-            notes.append('stretch %s: %d taught facts recur on more than one day (allowed for practice), e.g. %s'
+            notes.append('unit %s: %d taught facts recur on more than one day (allowed for practice), e.g. %s'
                          % (s, len(cross), '; '.join(' '.join(t) for t in cross[:4])))
         # an exit whose answer is a taught answer on the same part of its own day can be copied (lesson-day read, day 85)
         for i in items:
@@ -455,7 +455,7 @@ def check(course):
                         and partset(x) & partset(i) and split(x['value'])[:1] == split(i['value'])[:1]]
                 if same:
                     notes.append('%s: its answer %s is the answer of %s on the same part' % (i['item_id'], i['value'], same[0]))
-        # 3b. no two rows of a stretch share a stem, and no two challenges share their numbers under new ids
+        # 3b. no two rows of a unit share a stem, and no two challenges share their numbers under new ids
         sr = [i for i in items if i['stretch'] == s]
         for k, a in enumerate(sr):
             for b in sr[k + 1:]:
@@ -468,16 +468,16 @@ def check(course):
         sd = sorted((d for d in days if d['stretch'] == s), key=lambda d: int(d['day']))
         nums = [int(d['day']) for d in sd]
         if nums and nums != list(range(nums[0], nums[0] + len(nums))):
-            fails.append('stretch %s: day numbers are not consecutive: %s' % (s, nums))
+            fails.append('unit %s: day numbers are not consecutive: %s' % (s, nums))
         for u in sorted({d['unit'] for d in sd}):
-            # a teaching unit is "9.2"; a cumulative check or its respond day is named as in units.csv ("check-2")
+            # a teaching section is "9.2"; a cumulative check or its respond day is named as in units.csv ("check-2")
             uid = '%s-u%02d-%s' % (course, int(u.split('.')[0]), u.split('.')[1]) if '.' in u else '%s-%s' % (course, u)
             row = next((x for x in units if x['unit_id'] == uid), None)
             n = sum(1 for d in sd if d['unit'] == u)
             if row is None:
-                fails.append('unit %s (%s) is not in data/units.csv' % (u, uid))
+                fails.append('section %s (%s) is not in data/units.csv' % (u, uid))
             elif int(row['days']) != n:
-                fails.append('unit %s: data/units.csv says %s days, days.csv has %d' % (u, row['days'], n))
+                fails.append('section %s: data/units.csv says %s days, days.csv has %d' % (u, row['days'], n))
         for d in sd:
             lab = 'day %s' % d['day']
             if d['kind'] not in KINDS:
@@ -501,12 +501,12 @@ def check(course):
             if d['kind'] == 'Check':
                 tot = sum(int(re.findall(r'\d+', re.sub(r'\(.*?\)', '', s))[-1]) for s in d['check_min'].split(';') if re.findall(r'\d+', re.sub(r'\(.*?\)', '', s)))   # the last number of each part, notes in brackets aside
                 if tot != DAY_MIN:
-                    fails.append('%s: check day parts add to %d minutes, not %d' % (lab, tot, DAY_MIN))
+                    fails.append('%s: assessment day parts add to %d minutes, not %d' % (lab, tot, DAY_MIN))
                 if not any(i['check'] == 'end' and i['day'] == d['day'] for i in items):
-                    fails.append('%s: a check day with no end-check items' % lab)
+                    fails.append('%s: an assessment day with no unit assessment items' % lab)
             elif not any(i['check'] == 'exit' and i['day'] == d['day'] for i in items):
                 fails.append('%s: no exit question in items.csv' % lab)
-        # 3c. a reserved number (an end-check stem's number) made by a product in a taught row's answer or in the
+        # 3c. a reserved number (a unit assessment stem's number) made by a product in a taught row's answer or in the
         # day's prose; the compute-only gate cannot see it (expert, day 4: 4 x 20 = 80 taught, 80 an end number)
         resv = {int(x) for i in end for x in numbers(i['stem']) if x.isdigit() and int(x) >= 12}
         prod = re.compile(r'\b(\d+) [×x] (\d+)\b')
@@ -519,18 +519,18 @@ def check(course):
         for who, txt in srcs:
             hit = sorted({int(a) * int(b) for a, b in prod.findall(txt)} & resv)
             if hit:
-                notes.append('stretch %s: %s shows a product equal to reserved %s; rule on it (day 4 read)'
+                notes.append('unit %s: %s shows a product equal to reserved %s; rule on it (day 4 read)'
                              % (s, who, ', '.join(map(str, hit))))
-        # 3d. every registered error can be shown by an exit or end-check wrong answer (expert, day 6: error G)
+        # 3d. every registered error can be shown by an exit or unit assessment wrong answer (expert, day 6: error G)
         checked = {w['error'] for w in wrongs for i in items if i['item_id'] == w['item_id'] and i['stretch'] == s
                    and i['check'] in ('exit', 'end')}
         for e in errors:
             if e['stretch'] == s and e['letter'] not in checked:
-                notes.append('stretch %s: error %s has no wrong-answer row on any exit or end-check item (day 6 read)'
+                notes.append('unit %s: error %s has no wrong-answer row on any exit or unit assessment item (day 6 read)'
                              % (s, e['letter']))
         # 3e. a difference with one ungrouping must tell the smaller-from-larger error from the small-1-only error:
         # they give the same answer when the digits of the ungrouped place are 5 apart (s09 expert, day 74), and a
-        # row past the day both are taught keys both (stretch 9 reads, 2026-11-12)
+        # row past the day both are taught keys both (unit 9 reads, 2026-11-12)
         se = {e['letter']: e for e in errors if e['stretch'] == s}
         fl = next((L for L, e in se.items() if 'smaller digit from the larger' in e['error']), None)
         gl = next((L for L, e in se.items() if 'small 1' in e['error'] and 'leaves' in e['error']), None)
@@ -554,7 +554,7 @@ def check(course):
                     fails.append('%s: one ungrouping, past day %d, but its wrong answers key only error %s; key %s (%d) '
                                  'too' % (i['item_id'], both, ''.join(keyed & {fl, gl}),
                                           gl if fl in keyed else fl, fg[1] if fl in keyed else fg[0]))
-        # 3f. notes from the stretch 9 reads: an exit or fix that rehearses a worked example of its own day
+        # 3f. notes from the unit 9 reads: an exit or fix that rehearses a worked example of its own day
         ex_rows = [x for x in items if x['stretch'] == s and x['check'] == 'example']
         for i in items:
             if i['stretch'] != s or i['check'] not in ('exit', 'fix') or not i['compute']:
@@ -570,28 +570,28 @@ def check(course):
                 if i['check'] == 'exit' and trade_places(ops) == trade_places(xo):
                     notes.append('%s: carries or ungroupings in the same places as the worked example %s (day 72 read)'
                                  % (i['item_id'], x['item_id']))
-        # 3g. a row coded to a standard the spine first teaches on a later day (day 73 read: 4 x 600 on day 73)
+        # 3g. a row coded to a standard the scope and sequence first teaches on a later day (day 73 read: 4 x 600 on day 73)
         for i in items:
             fd = FIRST_DAY.get(i['code'])
             if i['stretch'] == s and fd and i['day'].isdigit() and int(i['day']) < fd:
-                notes.append('%s: coded %s, which the spine first teaches on day %d' % (i['item_id'], i['code'], fd))
-        # 5. the error register is shown inside the stretch
+                notes.append('%s: coded %s, which the scope and sequence first teaches on day %d' % (i['item_id'], i['code'], fd))
+        # 5. the error register is shown inside the unit
         for e in errors:
             if e['stretch'] == s and nums and int(e['day']) not in nums:
-                fails.append('error %s: its example day %s is outside stretch %s' % (e['letter'], e['day'], s))
+                fails.append('error %s: its example day %s is outside unit %s' % (e['letter'], e['day'], s))
             if e['stretch'] == s and 'memory' in e['source'].lower():
-                notes.append('stretch %s error %s rests on memory, not a source' % (s, e['letter']))
+                notes.append('unit %s error %s rests on memory, not a source' % (s, e['letter']))
         # prose weight, outside the generated blocks
         f = DOCS / course / ('s%02d.md' % int(s))
         if f.exists():
             t = re.sub(r'<!-- gen:.*?<!-- /gen -->', '', f.read_text(encoding='utf-8'), flags=re.S)
-            notes.append('stretch %s: %d words of prose outside the generated tables (%s)' % (s, len(t.split()), f.name))
+            notes.append('unit %s: %d words of prose outside the generated tables (%s)' % (s, len(t.split()), f.name))
 
     planned = sorted({int(m[1]) for f in (DOCS / course).glob('s[0-9][0-9].md') for m in [re.match(r's(\d+)', f.name)]})
     missing = [n for n in planned if str(n) not in stretches]
     if missing:
-        notes.append('stretches planned in prose but not yet in data: %s' % ', '.join(map(str, missing)))
-    # 9. a generator that serves a stretch refuses the numbers the stretch teaches or checks; its list must be current
+        notes.append('units planned in prose but not yet in data: %s' % ', '.join(map(str, missing)))
+    # 9. a generator that serves a unit refuses the numbers the unit teaches or checks; its list must be current
     for (c, st), js in RESERVED.items():
         if c == course and (ROOT / js).exists():
             have = re.search(r'const RESERVED_S%s = (.*?);' % st, (ROOT / js).read_text(encoding='utf-8'), re.S)
@@ -624,13 +624,13 @@ def wrong_text(ws):
 
 
 def blocks(course, s, unit=None):
-    """The generated tables of one stretch; a unit plan (uNN-N.md) gets its own unit's days, exits and parts."""
+    """The generated tables of one unit; a section plan (uNN-N.md) gets its own section's days, exits and parts."""
     U = lambda r: unit is None or r.get('unit') == unit
     items = [i for i in rows(course, 'items') if i['stretch'] == s and (i['check'] != 'exit' or U(i))]
     wrongs = rows(course, 'wrongs')
     W = lambda i: wrong_text([w for w in wrongs if w['item_id'] == i['item_id']])
     b = {}
-    b['readiness'] = table(['#', 'Code', 'The item', 'Key', 'Serves unit'],
+    b['readiness'] = table(['#', 'Code', 'The item', 'Key', 'Serves section'],
         [[i['n'], i['code'], i['stem'], i['answer'], i['unit']] for i in items if i['check'] == 'readiness'])
     b['end-check'] = table(['#', 'Practice', 'Part', 'The item', 'Answer', 'Wrong answers (error)'],
         [[i['n'], i['practice'] + (', teacher judged' if i['judged'] == 'teacher' else ''), '(%s)' % i['part'],
@@ -647,7 +647,7 @@ def blocks(course, s, unit=None):
     b['days'] = table(['Day', 'Goal, in student words', 'Kind', 'Opens', 'Who holds it', 'Tool: part, mark, job, minutes', 'By hand', 'Exit'],
         [[d['day'], d['goal'], d['kind'] + (' (%s)' % d['check_min'].replace(';', ',') if d['check_min'] else ''), d['opens'], d['holds'],
           ('%s (%s): %s' % (d['tool'], d['mark'], d['tool_use'])) if d['tool'] else 'None', d['by_hand'],
-          'The end check' if d['exit'] == 'END' else d['exit']]
+          'The end-of-unit assessment' if d['exit'] == 'END' else d['exit']]
          for d in sorted((d for d in rows(course, 'days') if d['stretch'] == s and U(d)), key=lambda d: int(d['day']))])
     b['parts'] = table(['Code', 'Part', 'Verb', 'What it is'],
         [[p['code'], '(%s)' % p['part'], p['verb'], p['text']] for p in rows(course, 'parts') if p['stretch'] == s and U(p)])
@@ -678,8 +678,8 @@ def tables(course):
 
 # ------------------------------------------------------------------ reading pack
 def pack(course, s):
-    out = ['# Reading pack: %s, stretch %s' % (course, s), '',
-           'Built by scripts/plan.py on %s. Everything a writer or reader of this stretch needs, and nothing else.' % datetime.date.today(),
+    out = ['# Reading pack: %s, unit %s' % (course, s), '',
+           'Built by scripts/plan.py on %s. Everything a writer or reader of this unit needs, and nothing else.' % datetime.date.today(),
            'Read in full first: docs/FOUNDATION.md, docs/courses/UNIT-PLAN.md (the rules), and for a lesson writer',
            'docs/courses/LESSON-DAY.md.', '']
     parts = [p for p in rows(course, 'parts') if p['stretch'] == s]
@@ -692,8 +692,8 @@ def pack(course, s):
             if l.split('\t')[0] in wanted:
                 out.append('- **%s** %s' % tuple(l.split('\t')[:2]))
     b = blocks(course, s)
-    for title, k in [('Parts of each standard this stretch must teach and check', 'parts'), ('Days', 'days'),
-                     ('Readiness check', 'readiness'), ('End check', 'end-check'), ('Exit questions', 'exits'),
+    for title, k in [('Parts of each standard this unit must teach and check', 'parts'), ('Days', 'days'),
+                     ('Readiness check', 'readiness'), ('End-of-unit assessment', 'end-check'), ('Exit questions', 'exits'),
                      ('Error register', 'errors')]:
         out += ['', '## ' + title, '', b[k]]
     tools = sorted({d['tool'] for d in rows(course, 'days') if d['stretch'] == s and d['tool']})
@@ -706,12 +706,12 @@ def pack(course, s):
             out += ['', '## Tool asks: ' + name, '', m.group(0).split('\n', 1)[1].strip() if m else '(no section in TOOL-ASKS.md)',
                     '', 'Spec: tools/%s/spec.md' % t]
     for f in [DOCS / course / ('s%02d.md' % int(s))] + sorted((DOCS / course).glob('u%02d-*.md' % int(s))):
-        if f.exists():   # the stretch sheet, then each unit plan: a day writer needs the unit's prose too
+        if f.exists():   # the unit plan, then each section plan: a day writer needs the section's prose too
             prose = re.sub(r'<!-- gen:.*?<!-- /gen -->', '(table above)', f.read_text(encoding='utf-8'), flags=re.S)
             out += ['', '## The plan\'s prose (%s)' % f.name, '', prose]
     open_d = [d for d in rows_defects() if d['course'] == course and d['status'] == 'open' and ('s%02d' % int(s)) in d['artifact']]
     if open_d:
-        out += ['', '## Open defects on this stretch', ''] + ['- %s (%s, %s): %s' % (d['artifact'], d['found_by'], d['date'], d['summary']) for d in open_d]
+        out += ['', '## Open defects on this unit', ''] + ['- %s (%s, %s): %s' % (d['artifact'], d['found_by'], d['date'], d['summary']) for d in open_d]
     print('\n'.join(out))
 
 

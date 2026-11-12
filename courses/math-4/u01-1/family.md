@@ -6,7 +6,7 @@ version: draft 1, not ready, not yet taught; English only until a qualified read
 credit: ours
 ---
 
-# Stretch 1 family note: factors and multiples
+# Unit 1 family note: factors and multiples
 
 ## English
 

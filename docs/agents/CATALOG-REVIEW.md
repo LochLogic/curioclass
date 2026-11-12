@@ -49,7 +49,7 @@ specs, so it can check what each tool really does. It reuses their clash rule, t
 
 Grade 4 math and grade 6 ELA (the two unit-pilot courses): extract, compute, judge, and show Cory the tables and the
 proposals. Tune the row format, then run the rest by subject and band. The pilot's tables are also the starting point
-for those two year spines (ROADMAP Track 7, step 1).
+for those two scopes and sequences (ROADMAP Track 7, step 1).
 
 ## What it absorbs
 

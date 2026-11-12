@@ -6,12 +6,12 @@ version: draft 1, not ready, not yet taught
 credit: ours
 ---
 
-# Unit 1.1: Rectangles and factor pairs (days 1 to 3)
+# Section 1.1: Rectangles and factor pairs (days 1 to 3)
 
 ## The math, for the adult
 
 Standard 4.OA.B.4, the first of its four parts: "Find all factor pairs for a whole number in the range 1–100."
-Unit 1.2 teaches the other three (multiples, and prime and composite).
+Section 1.2 teaches the other three (multiples, and prime and composite).
 
 **A factor pair is a rectangle.** In grade 3, students found area by counting squares in rows and columns
 (3.MD.C.7). Turn that round: take 12 squares and ask which rectangles they make. 1 row of 12, 2 rows of 6, 3
@@ -37,11 +37,11 @@ another ten: 3 × 20 = 60, 21 more is 3 × 7, so 3 × 27 = 81. This is division 
 "3 rows of how many make 42?"
 
 **Limits.** Whole numbers 1 to 100. No factor trees, no greatest common factor (grade 6). The Progressions say
-students "need not be fluent" in finding all pairs, so nothing in the unit is done for speed.
+students "need not be fluent" in finding all pairs, so nothing in the section is done for speed.
 
 ## The rows table
 
-The model the unit carries. A table with three columns: rows, "fits, with __", or no. Each number of rows from
+The model the section carries. A table with three columns: rows, "fits, with __", or no. Each number of rows from
 1 is tried in order; each fit is written as an equation; a line goes under the last pair.
 
 - **Day 1.** Square tiles, then centimetre grid paper. Every rectangle for 12 built at the front, shown on the
@@ -63,7 +63,7 @@ the rows table, with each fit checked by the fact or on grid paper.
 
 ## The errors to expect, in plain words
 
-Unit 1.2 meets errors D to G; its opener explains them. E appears once here, on E3's second part.
+Section 1.2 meets errors D to G; its opener explains them. E appears once here, on E3's second part.
 
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
@@ -93,7 +93,7 @@ equation. Turn each one: "Is this a new rectangle, or the same one turned?"
 
 Item 1 (facts) has no reteach slot: it is the first reading for the facts checks on days 3 and 4.
 
-## Supplies for the unit
+## Supplies for the section
 
 - Per pair: 24 square tiles or paper squares (day 1, and day 2's worked search).
 - Per student: centimetre grid paper, the rows table page (day 2), the day 3 practice sheet, a pencil.
@@ -106,11 +106,11 @@ Factor, factor pair, row, column, product, rectangle, turn, each taught on a lab
 are a factor pair of __, because __ × __ = __." A student may say a pair in a home language first, then in the
 frame.
 
-## How the stretch is checked
+## How the unit is checked
 
 Readiness: three items, day 1 (readiness.md), marked after class. Exits: one each on days 1 to 5, on paper.
-Day 2's exit and the written tasks of days 3 and 5 are judged with look-fors. End check: day 6, six items,
-unaided; items 1 and 6 are this unit's. All of it goes on one record sheet for the stretch (record.md), by
+Day 2's exit and the written tasks of days 3 and 5 are judged with look-fors. End-of-unit assessment: day 6, six items,
+unaided; items 1 and 6 are this section's. All of it goes on one record sheet for the unit (record.md), by
 error letter. The family note (family.md) goes home on day 1.
 
 ## Credit

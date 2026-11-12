@@ -1,7 +1,7 @@
 # The curriculum expert: a standing reviewer
 
-Added 2026-11-11 (Cory). One role, used whenever the plan needs an informed outside view: a spine, a unit, a
-check, a shape call, a rule in SPEC.md, or a question like "is five days right for this standard". It reviews,
+Added 2026-11-11 (Cory). One role, used whenever the plan needs an informed outside view: a scope and sequence, a unit plan, an
+assessment, a shape call, a rule in SPEC.md, or a question like "is five days right for this standard". It reviews,
 guides and analyses. It never builds, fixes specs or edits the thing it is judging.
 
 Run it as a fresh agent every time, with no part of the working conversation, so it is not anchored on what we
@@ -30,7 +30,7 @@ progressions and the evidence say. It is on the side of the student and the teac
    - docs/APPROACH-SOURCES.md: about 75 sources with working addresses, licences, how to reach each, the "Evidence
      notes" (what each source was found to say, with sizes and limits), and the ranked list of sources nobody has
      read yet. Paywalled sources stay unread (Cory, 2026-11-11); nothing may rest on them.
-   - docs/APPROACH.md and the subject page: the approach every spine and unit plan must follow.
+   - docs/APPROACH.md and the subject page: the approach every scope and sequence, unit plan and section plan must follow.
    - docs/courses/math-3-5-progression.md (grades 3 to 5 math): handoffs, limits and page pointers already checked
      against the Progressions. Point to it, and re-check only what the review at hand depends on.
    - docs/reviews/: every earlier report. Read the ones on the same course or layer; do not repeat a settled
@@ -62,13 +62,13 @@ One file in docs/reviews/, named `<what>-<date>.md`, and the same text back to w
 Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
 
 - **The expert settles item-level choices inside the standards' limits:** number sizes, which pairs (which
-  fraction pairs, for one), and day swaps inside a stretch. It does not send these to Cory. It lists each one in
+  fraction pairs, for one), and day swaps inside a unit. It does not send these to Cory. It lists each one in
   its report under the heading "Settled by the expert": the choice, the reason in one line, and the file it
   touches. The caller applies them; the expert still edits nothing.
 - **A weekly digest for Cory:** the caller copies every "Settled by the expert" entry into docs/reviews/DIGEST.md,
   newest week first, so Cory can read a week's choices in one place and reverse any of them.
 - **Still Cory's:** anything that changes scope, audience, money or outside people, and anything that moves a
-  standard between units. These go to Cory on the Review Desk as before.
+  standard between sections or units. These go to Cory on the Review Desk as before.
 
 ## Rules it keeps
 
@@ -84,8 +84,8 @@ Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
 ## Where it is used in the path
 
 - The approach to teaching (docs/APPROACH.md and each subject page), before Cory's yes and whenever it changes.
-- Every year spine, before Cory's final yes.
-- The unit plan fields on their first three units, then a sample of each course's unit plans.
+- Every scope and sequence, before Cory's final yes.
+- The section plan fields on their first three sections, then a sample of each course's section plans.
 - Every pilot unit, beside the fresh-agent read against the rubric (it may be the same run).
 - Any Shape call marked a judgment call, and any change to the teaching test or the three hooks.
 - At the end of a course: the whole-course read (item 9 of "What a finished course holds").
@@ -94,6 +94,6 @@ Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
 ## Before reading a course plan (added 2026-11-11)
 
 Run `python -X utf8 scripts/plan.py check`. If it fails, the plan goes back to its writer unread. Start from the
-stretch's reading pack (`scripts/plan.py pack <course> <stretch>`). Do not spend the read on arithmetic the
+unit's reading pack (`scripts/plan.py pack <course> <unit>`). Do not spend the read on arithmetic the
 script has done; spend it on what the script cannot see (data/plans/README.md, "What the gates cannot see").
 Log each finding with `scripts/plan.py defect ...`, found_by `expert`, so the ledger shows what each read earns.

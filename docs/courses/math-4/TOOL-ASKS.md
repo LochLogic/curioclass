@@ -1,7 +1,7 @@
 # Grade 4 math: tool asks
 
 **Started 2026-11-11.** One file for the course, as [UNIT-PLAN.md](../UNIT-PLAN.md) asks (Cory, 2026-11-11,
-Desk card q-plans-4d-1). The stretch sheets and unit plans keep only each tool's verdict and a link to this
+Desk card q-plans-4d-1). The unit plans and section plans keep only each tool's verdict and a link to this
 page. Everything a plan asks of a tool's spec sits here, for the spec writer.
 
 How to read it:
@@ -11,14 +11,14 @@ How to read it:
 - **Days.** Which day uses which part of the tool, for which job (show why, practise with feedback, check
   unaided). Minutes are ours, untested.
 - **Asks.** Numbered once for each tool, most pressing first where the plan ranked them. Each ask names the
-  sheet or plan it came from. The numbers do not change once given: plans point at them. A new ask takes the
+  unit plan or section plan it came from. The numbers do not change once given: plans point at them. A new ask takes the
   next number.
 - Nothing in any spec has been changed by this page. No build was played. No plan here has been tried with
   children.
-- Stretch 3's unit numbers are those of the plans after the swap of units 3.3 and 3.4 (Cory, 2026-11-11). The
+- Unit 3's section numbers are those of the plans after the swap of sections 3.3 and 3.4 (Cory, 2026-11-11). The
   swap is done: benchmarks are taught first. See [s03.md](s03.md).
 
-Stretches planned so far: 1, 2, 3, 9, 10 and 11. Each new stretch adds its asks here.
+Units planned so far: 1, 2, 3, 9, 10 and 11. Each new unit adds its asks here.
 
 ## Egg Carton Factory
 
@@ -34,11 +34,11 @@ Stretches planned so far: 1, 2, 3, 9, 10 and 11. Each new stretch adds its asks 
 | 5 | Rush shift 2 (cards 2a and 2b only) and card 4c | Practise with feedback | [u01-2](u01-2.md) |
 
 Not placed: Rush shift 1 (its cards repeat the numbers of days 1 and 2), Rush shift 3 (day 4 could not hold
-two tool parts), Rush shift 5 (spec only) and the six items on your own (the paper end check does that job).
+two tool parts), Rush shift 5 (spec only) and the six items on your own (the paper end-of-unit assessment does that job).
 
 **Known now:** check numbers 77 and 93 sit on Rush card 2c. Day 5 leaves that card out until ask 1 is done.
 
-Asks, from [s01](s01.md) field 8 as first written (the unit plans point at these numbers):
+Asks, from [s01](s01.md) field 8 as first written (the section plans point at these numbers):
 
 1. Replace the second variant of Rush card 2c (77, 79, 93), so 77 and 93 are free for the checks. (s01 fields
    5 and 8; u01-2 field 5.)
@@ -60,12 +60,12 @@ Asks, from [s01](s01.md) field 8 as first written (the unit plans point at these
     lists its factors. (s01 fields 5 and 8; u01-2 field 5.)
 11. A way for the teacher to pick the cards a class meets. (s01 field 8.)
 
-Also for the spec writer: generator presets and day sheets must leave out stretch 1's reserved numbers (s01
+Also for the spec writer: generator presets and day sheets must leave out unit 1's reserved numbers (s01
 field 5).
 
 ## Rule Machine
 
-- **Mark.** Light (the plan's own). Spec only. Stretch 2 has no key tool: it runs on print.
+- **Mark.** Light (the plan's own). Spec only. Unit 2 has no key tool: it runs on print.
 - **Verdict.** Partly fits, as a light tool for generating a pattern and for meeting features after the
   lesson. Identifying and explaining are judged by a teacher; no tool can mark them.
 - **Spec.** tools/rule-machine/spec.md.
@@ -84,7 +84,7 @@ Asks, from [s02](s02.md) field 8 as first written, most pressing first:
 4. The student writes a reason before any reason cards are shown.
 5. A shape pattern among the items on your own.
 
-Also: no tape may use stretch 2's reserved rules (s02 field 5).
+Also: no tape may use unit 2's reserved rules (s02 field 5).
 
 ## Fraction Wall Duel
 
@@ -106,10 +106,10 @@ practice, not showing why (u03-1, u03-2, u03-3, field 5 of each).
 Asks, from [s03](s03.md) field 8 as first written, most pressing first:
 
 1. A way to pick the deck and the reasons in play. With it, deck 1 would serve day 20 as a light tool:
-   every deck now deals Half line rounds and traps or claims, which are unit 3.4's work. (s03; u03-3.)
+   every deck now deals Half line rounds and traps or claims, which are section 3.4's work. (s03; u03-3.)
 2. A number line, and fractions past 1. (s03; u03-1, u03-3, u03-4.)
 3. The benchmark 1 and "closer to 1". (s03.)
-4. Hundredths in the deck played: deck 1 has none, and end-check item 3.4a uses 48/100. (s03.)
+4. Hundredths in the deck played: deck 1 has none, and unit assessment item 3.4a uses 48/100. (s03.)
 5. No 3/7 or 10/15: both are outside the grade's denominators. One listed pair is 5/8 and 3/7. (s03; u03-3.)
 6. The deck list and the screens agree on which decks hold trap and claim rounds. (s03.)
 7. Help that fades. (s03.)
@@ -117,13 +117,13 @@ Asks, from [s03](s03.md) field 8 as first written, most pressing first:
    minutes are untested. (s03; u03-4.)
 
 Not an ask any more: the blank card 3/4 by 3 no longer meets a check. Item 3.1b was changed on the plan's
-side (s03). Also: no tool item may use stretch 3's reserved fractions (s03 field 5).
+side (s03). Also: no tool item may use unit 3's reserved fractions (s03 field 5).
 
 ## Number line splitter (does not exist)
 
-- **Mark.** Light, if built (u03-2). It is stretch 3's larger need (s03).
-- **Decided (Cory, 2026-11-11, Desk card q-plans-4d-1).** Wait until stretch 7 is planned, then spec it once
-  for stretches 3 to 7. No spec before then.
+- **Mark.** Light, if built (u03-2). It is unit 3's larger need (s03).
+- **Decided (Cory, 2026-11-11, Desk card q-plans-4d-1).** Wait until unit 7 is planned, then spec it once
+  for units 3 to 7. No spec before then.
 - **Until it exists.** Printed number lines carry the days.
 
 | Day | Part | Job | Plan |
@@ -135,7 +135,7 @@ What the spec must hold, so far:
 
 1. A number line from 0 to 2, so fractions past 1 are there. (s03 field 8; u03-1.)
 2. The student picks n, writes the new name, and only then sees the cut. (u03-1; u03-2.)
-3. To add when stretches 4 to 7 are planned: what each of them needs from the same line.
+3. To add when units 4 to 7 are planned: what each of them needs from the same line.
 
 ## Light practice set for missing numbers and comparing (does not exist)
 
@@ -159,7 +159,7 @@ What the spec must hold:
 
 ## Road Trip Logbook
 
-- **Mark.** Light (Cory, 2026-11-11; in the spine). Spec only. Stretch 9 has no key tool: it runs on print.
+- **Mark.** Light (Cory, 2026-11-11; in the scope and sequence). Spec only. Unit 9 has no key tool: it runs on print.
 - **Verdict.** Does not fit days 72 to 76: every trip sum is grade 3 size (386 + 457), and every evening
   includes subtracting from 2,000. Partly fits day 77.
 - **Spec.** tools/road-trip-logbook/spec.md.
@@ -199,7 +199,7 @@ What the spec must hold (u09-1 field 5):
 
 - **Mark.** Key (the plan's own). Spec only. It fits in parts only.
 - **Verdict.** Growing fits. Read it both ways and Which one? partly fit. Orders does not fit. Tray jobs and
-  On your own are not used in stretch 10.
+  On your own are not used in unit 10.
 - **Spec.** tools/growth-spurt/spec.md.
 
 | Day | Part | Job | Plan |
@@ -210,12 +210,12 @@ What the spec must hold (u09-1 field 5):
 
 Day 82 runs on paper (three cards are too few). Day 87 runs on print (Orders does not fit).
 
-Asks, from [s10](s10.md) field 8 as first written and the three unit plans:
+Asks, from [s10](s10.md) field 8 as first written and the three section plans:
 
-1. Each part opens by itself. The spec plans one sitting of 30 to 40 minutes, and stretch 10 uses the tool on
+1. Each part opens by itself. The spec plans one sitting of 30 to 40 minutes, and unit 10 uses the tool on
    three days. (s10; u10-1; u10-2.)
-2. Remainders stay out of the parts stretch 10 uses. Tray jobs, one order and two On your own items have
-   them; they belong to stretches 13 and 14. (s10; u10-3.)
+2. Remainders stay out of the parts unit 10 uses. Tray jobs, one order and two On your own items have
+   them; they belong to units 13 and 14. (s10; u10-3.)
 3. Orders rewritten inside the numbers rule: its four orders use 3 × 14, 4 × 18 and 96 ÷ 6, which are outside
    the rule before day 94. Rewritten, it would do day 87's practice with feedback. (s10; u10-3.)
 4. Which one? lets the child draw the strip before picking the kind. As it stands it asks for the kind
@@ -227,11 +227,11 @@ Asks, from [s10](s10.md) field 8 as first written and the three unit plans:
 7. Growing's "taller by" uses the same number as "times as tall" (3 on day 83), and the teacher can set the
    bean to 1, 2, 4 and 10 cm, so the class fills day 83's side 1 table from the screen. (u10-2; day 83 read.)
 
-The spine also names Growth Spurt's multistep part for stretch 14. That stretch is not planned yet.
+The scope and sequence also names Growth Spurt's multistep part for unit 14. That unit is not planned yet.
 
 ## Community Plot Planner
 
-- **Mark.** Key (Cory, 2026-11-11). Spec only. It is the key tool of the pilot unit, 11.1.
+- **Mark.** Key (Cory, 2026-11-11). Spec only. It is the key tool of the pilot unit, unit 11.
 - **Verdict.** Fits.
 - **Spec.** tools/community-plot-planner/spec.md.
 
@@ -258,7 +258,7 @@ Asks, from [s11](s11.md) field U5 as first written:
    reward. (Same finding.)
 9. "On your own" reads its four items from the plan's rows (`data/plans/math-4/items.csv`, `s11-X90t1` to
    `s11-X90t4`, `path` = `tool`): two missing lengths from an area, two missing widths from a fence, the same two
-   parts as the paper slip. The spec's items (with 9 × 6 = 54, which tests nothing on day 90's goal) are
+   parts as the paper ticket. The spec's items (with 9 × 6 = 54, which tests nothing on day 90's goal) are
    replaced. (Expert read of the lesson-day template, docs/reviews/lesson-day-2026-11-12.md, finding 2.)
 
 Not a gap: the 30 by 20 lot. The tool states 600 and never asks for it; keep it that way.

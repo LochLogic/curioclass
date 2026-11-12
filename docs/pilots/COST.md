@@ -9,21 +9,21 @@ blank: leave a cell empty if it was not measured, and say "estimate" if it is on
 - **Owner minutes:** Cory's or Sara's time reading, answering or fixing.
 - **Defects:** from `python -X utf8 scripts/plan.py defects`, counted by the read that found them.
 
-## Grade 4 math, unit 11.1 (area and perimeter, days 89 to 93)
+## Grade 4 math, unit 11 (area and perimeter, days 89 to 93)
 
 | Piece | Tokens | Wall hours | Owner minutes | Defects found, by read | Notes |
 |---|---|---|---|---|---|
-| Stretch sheet and unit plan (s11.md) | not measured | not measured | not measured | 15, expert cold read | Written three times over two days before costs were kept; do not use as a base |
+| Unit plan and section plan (s11.md) | not measured | not measured | not measured | 15, expert cold read | Written three times over two days before costs were kept; do not use as a base |
 | Plan as data (parts, days, items, wrongs, errors) | not measured | | | 0 by the script after revision | |
-| Lesson-day template (LESSON-DAY.md), with scripts/lesson.py | Cold read 200,829 (the expert's run); writing and revision not measured | | | 13, expert cold read, shared with day 90 (9 fixed, 4 open for the taught run) | Once only, not a unit cost. Draft 2 waits on Cory's yes |
+| Lesson-day template (LESSON-DAY.md), with scripts/lesson.py | Cold read 200,829 (the expert's run); writing and revision not measured | | | 13, expert cold read, shared with day 90 (9 fixed, 4 open for the taught run) | Once only, not a section cost. Draft 2 waits on Cory's yes |
 | Day 89 lesson | 129,028 by its agent (23 tool uses), plus about 4,000 merge (estimate) | 0.07 for the agent (4.4 min); merge and push same evening | 0 | 0 by the scripts at merge; 10 by the expert cold read | One agent per day from one shared brief, in its own worktree. Teacher 878 words, student 210, two sides |
 | Day 90 lesson | Not measured apart from the template | | | Counted with the template row | Draft 2: teacher 898 words, student 247, two sides; not ready (tool, opener, facts sheet, record sheet missing) |
 | Day 91 lesson | 132,830 by its agent (27 tool uses), plus about 4,000 merge (estimate) | 0.08 for the agent (5.1 min) | 0 | 0 by the scripts at merge; 14 by the expert cold read | Teacher 895, student 176, two sides. Needed the generator sheet (row below) |
 | Day 92 lesson | 136,815 by its agent (25 tool uses), plus about 4,000 merge (estimate) | 0.10 for the agent (5.8 min) | 0 | 0 by the scripts at merge; 14 by the expert cold read | Teacher 898, student 280, two sides |
-| Day 93 check and respond | 127,977 by its agent (29 tool uses), plus about 4,000 merge (estimate) | 0.06 for the agent (3.8 min) | 0 | 0 by the scripts; the agent found 5 builder gaps for check days; 12 by the expert cold read | Teacher 500, student 202, two sides. Fixing the check-day builders in lesson.py (display, key order, look-fors) took about 25,000 more (estimate); a once-only tooling cost, not a day cost |
+| Day 93 check and respond | 127,977 by its agent (29 tool uses), plus about 4,000 merge (estimate) | 0.06 for the agent (3.8 min) | 0 | 0 by the scripts; the agent found 5 builder gaps for assessment days; 12 by the expert cold read | Teacher 500, student 202, two sides. Fixing the check-day builders in lesson.py (display, key order, look-fors) took about 25,000 more (estimate); a once-only tooling cost, not a day cost |
 | Expert cold reads, days 89, 91, 92, 93 | 167,177 / 180,499 / 167,661 / 166,847 (34 / 37 / 29 / 27 tool uses) | 0.13 / 0.15 / 0.13 / 0.14 (8.0 / 9.1 / 7.6 / 8.1 min), run in parallel | 0 | 50 in all (10 / 14 / 14 / 12); about 7 in 10 in the process layer (template, generator, scripts), not the day; none needed Cory | Reports in docs/reviews/day-0NN-2026-11-12.md. Fixes applied by one agent: 129,337 tokens, 121 tool uses, 22.7 min; 47 fixed, 3 open, 13 new gates |
-| Generator sheet | not measured (made in the main session) | | 0 | 0 by check_generators | A new skill in measure-shapes, a preset row, sheet-d091.md, and plan.py reserve so it never repeats the unit's numbers |
-| Readiness check and end check, print and keys | not measured (main session) | | 0 | 0 by the scripts | Readiness is a piece file; the end check is day 93's student page. Also the two facts-check sheets (unit 1.1) |
+| Generator sheet | not measured (made in the main session) | | 0 | 0 by check_generators | A new skill in measure-shapes, a preset row, sheet-d091.md, and plan.py reserve so it never repeats the section's numbers |
+| Readiness check and end-of-unit assessment, print and keys | not measured (main session) | | 0 | 0 by the scripts | Readiness is a piece file; the end-of-unit assessment is day 93's student page. Also the two facts-check sheets (section 1.1) |
 | Record sheet | not measured (main session) | | 0 | 0 by the scripts | One landscape side, 22 rows |
 | Family note (English, Spanish) | not measured (main session) | | 0 | | Spanish waits for a qualified reader. Also made: the anchor chart and a family game (Fence or Floor) |
 | Community Plot Planner: eight asks | | | | | Queued 2026-11-12 as the first build in the Codex queue (scripts/codex_queue.py PILOT), with an owner note pointing at d090.md |
@@ -38,7 +38,7 @@ cost: the four expert day reads cost 167,000 to 180,000, mean 170,500, so a day 
 stop repeating (docs/pilots/REVIEW-CADENCE.md). The agents read the same plan pack, so most of each figure is
 reading, not writing.
 
-## Grade 4 math, stretch 10 (multiplicative comparison, days 80 to 88), the second unit
+## Grade 4 math, unit 10 (multiplicative comparison, days 80 to 88), the second unit
 
 Built 2026-11-12, after the four 11.1 day reads were folded in. Full expert read on every day still to come
 (REVIEW-CADENCE.md step 2).
@@ -59,21 +59,21 @@ Built 2026-11-12, after the four 11.1 day reads were folded in. Full expert read
 | Merge of the nine days | not measured (main session, small) | | 0 | 2 duplicate wrong-answer rows, removed | |
 | Writer-flagged fix pass (lesson.py byte-stable PDFs, sketch gate, check screen, and others) | 96,200 by one agent (97 tool uses) | 0.27 (15.9 min) | 0 | 13 fixed, found by the day writers | Before the expert reads |
 | Expert cold reads, days 80 to 88 | 173,197 / 164,160 / 197,136 / 184,064 / 160,803 / 178,123 / 158,824 / 175,657 / 211,259; mean 178,100 | 0.09 to 0.12 each (5.2 to 7.1 min), run in parallel | 0 | 87 in all (10 / 7 / 12 / 10 / 7 / 9 / 10 / 11 / 11); 56% process layer; 61 repeat an 11.1 kind; none for Cory | Reports in docs/reviews/day-080 to 088-2026-11-12.md; analysis in REVIEW-CADENCE.md |
-| Expert fix pass | 216,916 by one agent (264 tool uses) | 0.55 (33.1 min) | 0 | 85 of 87 fixed, 2 open (a tool ask; one judgment left for the taught run); about 10 new gates | Also touched stretch 11 days 89 to 93 where a stretch 10 promise reached them |
+| Expert fix pass | 216,916 by one agent (264 tool uses) | 0.55 (33.1 min) | 0 | 85 of 87 fixed, 2 open (a tool ask; one judgment left for the taught run); about 10 new gates | Also touched unit 11 days 89 to 93 where a unit 10 promise reached them |
 
-**For estimates.** Nine days cost 140,555 to 184,931 tokens each, mean 169,200, up from 131,700 in unit 11.1: the brief now carries
-the 11.1 lessons and the gates are stricter, so agents spend more turns passing them. A stretch's shared pieces cost
+**For estimates.** Nine days cost 140,555 to 184,931 tokens each, mean 169,200, up from 131,700 in unit 11: the brief now carries
+the 11.1 lessons and the gates are stricter, so agents spend more turns passing them. A unit's shared pieces cost
 about 165,000 once, and putting a prose plan into data about 81,000.
 
-## Grade 4 math, stretches 1 and 9, the third and fourth units
+## Grade 4 math, units 1 and 9, the third and fourth units
 
-Started 2026-11-12. Stretch 1 is factors and multiples (days 1 to 6); stretch 9 is adding and subtracting to a
-million (days 72 to 79; day 78 is Check 2, which waits on stretches 6 to 8).
+Started 2026-11-12. Unit 1 is factors and multiples (days 1 to 6); unit 9 is adding and subtracting to a
+million (days 72 to 79; day 78 is Check 2, which waits on units 6 to 8).
 
 | Piece | Tokens | Wall hours | Owner minutes | Defects found, by read | Notes |
 |---|---|---|---|---|---|
-| Stretch 1 plan as data | 250,696 by one agent (68 tool uses) | 0.17 (10.2 min) | 0 | 0 by the script after | Prose plan existed |
-| Stretch 9 plan as data | 217,505 by one agent (42 tool uses) | 0.17 (10.3 min) | 0 | 0 by the script after | plan.py: check-2 and respond-2 units |
+| Unit 1 plan as data | 250,696 by one agent (68 tool uses) | 0.17 (10.2 min) | 0 | 0 by the script after | Prose plan existed |
+| Unit 9 plan as data | 217,505 by one agent (42 tool uses) | 0.17 (10.3 min) | 0 | 0 by the script after | plan.py: check-2 and respond-2 sections |
 | Merge of both into main | not measured (main session) | | 0 | 1 stale duplicate day row; 2 hand-backs at the door moved to pencils down | The new tool-rows gate flags days 2 to 5 and 77 until their writers add T rows |
 | Day 1 lesson | 201,459 by its agent (35 tool uses) | 0.10 (6.2 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
 | Day 2 lesson | 185,118 by its agent (54 tool uses) | 0.12 (7.3 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
@@ -82,23 +82,23 @@ million (days 72 to 79; day 78 is Check 2, which waits on stretches 6 to 8).
 | Day 5 lesson | 212,163 by its agent (47 tool uses) | 0.17 (10.4 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
 | Day 6 lesson | 148,862 by its agent (35 tool uses) | 0.07 (3.9 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
 | Shared pieces (readiness, two openers, record, rows table, day 3 practice sheet, 1 to 30 chart, family note) | 208,162 by one agent (92 tool uses) | 0.18 (10.7 min) | 0 | 0 by the scripts | lesson.py gained piece options (item lists, written columns, fact blanks) |
-| Stretch 1 writer-flagged fix pass | 224,132 by one agent (66 tool uses) | 0.17 (10.3 min) | 0 | 10 found by the day writers: 9 fixed, 1 open (no number-line figure) | lesson.py: tool-row check screens, singular units, figures from answers, natural order for end items like 9.1a |
+| Unit 1 writer-flagged fix pass | 224,132 by one agent (66 tool uses) | 0.17 (10.3 min) | 0 | 10 found by the day writers: 9 fixed, 1 open (no number-line figure) | lesson.py: tool-row check screens, singular units, figures from answers, natural order for end items like 9.1a |
 | Day 72 lesson | 161,766 by its agent (40 tool uses) | 0.10 (5.8 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
 | Day 73 lesson | 187,449 by its agent (47 tool uses) | 0.12 (7.2 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
 | Day 74 lesson | 198,835 by its agent (61 tool uses) | 0.14 (8.5 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
 | Day 75 lesson | 183,346 by its agent (38 tool uses) | 0.10 (6.2 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
 | Day 76 lesson | 160,528 by its agent (38 tool uses) | 0.08 (4.9 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
 | Day 77 lesson | 160,840 by its agent (44 tool uses) | 0.09 (5.1 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
-| Stretch 9 shared pieces (readiness, two openers, record, column sheet, day 77 mixed set, family note) | 198,774 by one agent (61 tool uses) | 0.12 (7.2 min) | 0 | 0 by the scripts | |
-| Stretch 9 writer-flagged fix pass | 193,044 by one agent (69 tool uses) | 0.10 (6.3 min) | 0 | writer flags fixed (clean stems as v2 ids, day 74 hand-off row, warm-up ids, check screens) | |
-| Stretch 1 cheap reads, six days | 646,492 (mean 107,700, 98,000 to 127,000) | about 0.05 each, in parallel | 0 | 67 | Smaller model, docs/agents/CHEAP-READ.md |
-| Stretch 1 expert reads, six days | 1,131,349 (mean 188,600, 178,000 to 199,000) | about 0.11 each, in parallel | 0 | 47 the cheap read missed (31 expert only) | |
-| Stretch 9 cheap reads, six days | 651,910 (mean 108,700, 97,000 to 131,000) | about 0.04 each, in parallel | 0 | 65 | |
-| Stretch 9 expert reads, six days | 1,113,524 (mean 185,600, 170,000 to 196,000) | about 0.12 each, in parallel | 0 | 42 the cheap read missed (18 expert only) | |
-| Stretch 1 reads fix pass | 95,452 by one agent (235 tool uses) | 0.54 (32.4 min) | 0 | 108 logged: 93 fixed, 2 open, 13 rejected | 2 new gates; 9 by 9 table and 1 to 100 chart pieces. Token count looks low for 235 tool uses; as reported |
-| Stretch 9 reads fix pass | 204,408 by one agent (246 tool uses) | 0.60 (36.3 min) | 0 | 104 logged: 95 fixed, 1 open, 8 rejected | 6 new gates or notes; `cols` display figure |
+| Unit 9 shared pieces (readiness, two openers, record, column sheet, day 77 mixed set, family note) | 198,774 by one agent (61 tool uses) | 0.12 (7.2 min) | 0 | 0 by the scripts | |
+| Unit 9 writer-flagged fix pass | 193,044 by one agent (69 tool uses) | 0.10 (6.3 min) | 0 | writer flags fixed (clean stems as v2 ids, day 74 hand-off row, warm-up ids, check screens) | |
+| Unit 1 cheap reads, six days | 646,492 (mean 107,700, 98,000 to 127,000) | about 0.05 each, in parallel | 0 | 67 | Smaller model, docs/agents/CHEAP-READ.md |
+| Unit 1 expert reads, six days | 1,131,349 (mean 188,600, 178,000 to 199,000) | about 0.11 each, in parallel | 0 | 47 the cheap read missed (31 expert only) | |
+| Unit 9 cheap reads, six days | 651,910 (mean 108,700, 97,000 to 131,000) | about 0.04 each, in parallel | 0 | 65 | |
+| Unit 9 expert reads, six days | 1,113,524 (mean 185,600, 170,000 to 196,000) | about 0.12 each, in parallel | 0 | 42 the cheap read missed (18 expert only) | |
+| Unit 1 reads fix pass | 95,452 by one agent (235 tool uses) | 0.54 (32.4 min) | 0 | 108 logged: 93 fixed, 2 open, 13 rejected | 2 new gates; 9 by 9 table and 1 to 100 chart pieces. Token count looks low for 235 tool uses; as reported |
+| Unit 9 reads fix pass | 204,408 by one agent (246 tool uses) | 0.60 (36.3 min) | 0 | 104 logged: 95 fixed, 1 open, 8 rejected | 6 new gates or notes; `cols` display figure |
 
-## Grade 6 ELA, stretch 2, five pilot days
+## Grade 6 ELA, unit 2, five pilot days
 
 Not started. Planning pieces so far (rubric page, approach page, rights list): tokens not measured.
 

@@ -23,7 +23,7 @@ work by hand, alone, lists only: no tiles and no grid. A 9 by 9 table is on hand
 Items 1 and 3 (63, 75) are for everyone; 2 and 4 for those who finish. Students check against the key on the
 screen after items 2 and 4, and fix in pen. Every item holds a pair
 outside the times tables (4 × 11, 3 × 21, 3 × 25, 3 × 22), so error B shows here first; item 4 has four pairs
-and the most turned pairs to leave out. None of the four numbers is on an exit, the end check or the readiness check.
+and the most turned pairs to leave out. None of the four numbers is on an exit, the end-of-unit assessment or the readiness check.
 
 ## Items
 

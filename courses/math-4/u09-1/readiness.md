@@ -18,9 +18,9 @@ Show your work for each one. No drawings. Do only the items your teacher reads.
 ## Teacher
 
 One sheet a student, given in two halves. Items 1 and 2 are the last ten minutes of day 71 (the last day of
-stretch 8): alone, on paper, each item read aloud once. Collect the sheets and mark them that night, before day
+unit 8): alone, on paper, each item read aloud once. Collect the sheets and mark them that night, before day
 72. Items 3 and 4 are the first five minutes of day 74, on the same sheet: hand the sheets back, read both items
-aloud, collect them, and mark them that night. Write each result on the stretch 9 record
+aloud, collect them, and mark them that night. Write each result on the unit 9 record
 sheet (R1 to R4): a tick, the error letter where the key gives one, or x for any other wrong answer.
 
 "Many" means more than a third of the class. Items 1 and 2 are reteached in day 73's warm-up and first five

@@ -4,7 +4,7 @@
     python -X utf8 scripts/lesson.py build [--pdf]    write the pages to build/lessons/ (--pdf also prints the
                                                       student page with Chrome and counts its sides)
 
-A day file is courses/<course>/u<stretch>-<unit>/d<day>.md: a header block, "## Teacher page" with fixed
+A day file is courses/<course>/u<unit>-<section>/d<day>.md: a header block, "## Teacher page" with fixed
 headings, then "## Student page". Questions are named by id, [[s11-P90-1]], and live in
 data/plans/<course>/items.csv with their computed keys (scripts/plan.py). Nothing here types a key.
 """
@@ -21,6 +21,7 @@ ROOT = plan.ROOT
 COURSES = ROOT / 'courses'
 OUT = ROOT / 'build' / 'lessons'
 DAY_MIN = plan.DAY_MIN
+KIND_WORD = {'Check': 'assessment'}   # days.csv kind to the word printed on the header (docs/GLOSSARY.md)
 HEADER = ['day', 'course', 'unit', 'version', 'materials', 'print', 'credit', 'leans_on']
 TEACHER = ['Before class', 'The day', 'Other rooms', 'Shorter or longer', 'Words and supports', 'Tomorrow', 'Credit']
 CAP_TEACH, CAP_CHECK, CAP_BEFORE, CAP_STUDENT = 900, 500, 80, 350   # student: everything printed, stems included
@@ -131,7 +132,7 @@ def check_day(d, items, days):
     if row is None:
         return f + ['%s: day %s has no row in days.csv' % (lab, h.get('day'))]
     if row['unit'] != h.get('unit'):
-        f.append('%s: unit %s, but days.csv says %s' % (lab, h.get('unit'), row['unit']))
+        f.append('%s: header unit (section) %s, but days.csv says %s' % (lab, h.get('unit'), row['unit']))
     want = TEACHER
     got = [s for s in d['order'] if s in want]
     if got != want:
@@ -153,13 +154,13 @@ def check_day(d, items, days):
             if run != want:
                 f.append('%s: the parts after the warm-up do not add to the opening\'s %s min in days.csv'
                          % (lab, row['opens_min']))
-    elif row.get('check_min'):   # a check day's parts follow check_min, in order ("end check 30; respond 20; ...")
+    elif row.get('check_min'):   # an assessment day's parts follow check_min, in order ("end-of-unit assessment 30; respond 20; ...")
         want = [int(re.findall(r'\d+', re.sub(r'\(.*?\)', '', s))[-1]) for s in row['check_min'].split(';')
                 if re.findall(r'\d+', re.sub(r'\(.*?\)', '', s))]
         got = [b[0] for b in d['blocks']]
         if got != want:
             f.append('%s: the parts run %s min; days.csv check_min says %s' % (lab, got, want))
-    # Tomorrow: the next day by number, in any unit folder of the course, must carry the hand-off ("day N" in it)
+    # Tomorrow: the next day by number, in any section folder of the course, must carry the hand-off ("day N" in it)
     nxt = int(h.get('day', 0) or 0) + 1
     tm = d['secs'].get('Tomorrow', '')
     nf = next(iter(sorted(d['path'].parent.parent.glob('u*/d%03d.md' % nxt))), None)
@@ -273,7 +274,7 @@ def check_day(d, items, days):
     for i in items:
         if i['day'] == h.get('day') and i['check'] in plan.LESSON_KINDS | {'exit'} and i['item_id'] not in refs:
             if i.get('path') in ('board', '') and '[[%s]]' % i['item_id'] in pieces:
-                continue   # a board row printed by the unit's sheet piece, or a fixed practice sheet's row
+                continue   # a board row printed by the section's sheet piece, or a fixed practice sheet's row
             if i.get('path') == 'spare':
                 continue   # kept in data (a later day may cite it), printed on no page
             if i['check'] == 'tool' and re.search(r'\bexists\b', d['teacher'], re.I):
@@ -324,7 +325,7 @@ def check_day(d, items, days):
                                     else 'stem'))
     for r in set(REF.findall(d['student'])):
         if r in byid and byid[r]['check'] == 'exit':
-            f.append('%s: exit question %s is printed on the student page; it belongs on the slip' % (lab, r))
+            f.append('%s: exit question %s is printed on the student page; it belongs on the exit ticket' % (lab, r))
     # credit
     c = h.get('credit', '').lower()
     if c != 'ours' and not ('adapted' in c and 'http' in c and re.search(r'cc by|cc0|public domain', c)):
@@ -346,8 +347,8 @@ _WRONGS = {}
 
 
 def check_lists(d, items, lab):
-    """Gates from the stretch 9 reads (2026-11-12): what the opener sends home, the papers the prose uses, the
-    branches a slip can trigger, and the student page in the day's order."""
+    """Gates from the unit 9 reads (2026-11-12): what the opener sends home, the papers the prose uses, the
+    branches an exit ticket can trigger, and the student page in the day's order."""
     f, h = [], d['head']
     day, course = h.get('day', ''), h.get('course', '')
     prn = h.get('print', '').lower()
@@ -365,7 +366,7 @@ def check_lists(d, items, lab):
         if re.search(pat, the_day, re.I) and not re.search(pat, where, re.I):
             f.append('%s: the day uses %s, but the %s line does not list it' % (
                 lab, name, 'print' if name != 'grid paper' else 'materials or print'))
-    # an "If many X" branch on the slips of day N-1 needs a wrong answer for X on that exit (day 76: a B branch E75
+    # an "If many X" branch on the exit tickets of day N-1 needs a wrong answer for X on that exit (day 76: a B branch E75
     # could not show)
     if course not in _WRONGS:
         _WRONGS[course] = plan.rows(course, 'wrongs') if (plan.ROOT / 'data' / 'plans' / course / 'wrongs.csv').exists() else []
@@ -376,7 +377,7 @@ def check_lists(d, items, lab):
         exits = {i['item_id'] for i in items if i['day'] == m[1] and i['check'] == 'exit'}
         have = {w['error'] for w in _WRONGS[course] if w['item_id'] in exits}
         for par in re.split(r'\n\s*\n', btxt):
-            if re.match(r'\s*\*\*If many [A-I]\b', par) or re.search(r"slips showed many [A-I]\b", par):
+            if re.match(r'\s*\*\*If many [A-I]\b', par) or re.search(r"tickets showed many [A-I]\b", par):
                 for L in re.findall(r'\bmany ([A-I])\b', par.split('**:')[0] if '**:' in par else par.split(':')[0]):
                     if exits and L not in have:
                         f.append('%s: "%s" has a branch for many %s, but no wrong answer on E%s shows %s' % (lab, bname, L, m[1], L))
@@ -392,7 +393,7 @@ def check_lists(d, items, lab):
             seen.append(r)
     for a, b in zip(seen, seen[1:]):
         if first[b] < first[a] and not re.search(r'turn back to side', the_day, re.I):
-            # a note, not a failure: stretches 10 and 11 have pages in this order, read and kept
+            # a note, not a failure: units 10 and 11 have pages in this order, read and kept
             f.append('NOTE %s: the student page prints %s before %s, but the day teaches them the other way round'
                      % (lab, a, b))
             break
@@ -427,7 +428,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 
 
 def nkey(i):
-    """A row's n in natural order: '2' before '10', and '9.1a', '9.1b', '9.2a' (stretch 9's end numbers)."""
+    """A row's n in natural order: '2' before '10', and '9.1a', '9.1b', '9.2a' (unit 9's assessment numbers)."""
     return [(0, int(x), '') if x.isdigit() else (1, 0, x) for x in re.findall(r'\d+|[^\d.]+', i.get('n') or '0')]
 
 
@@ -942,8 +943,8 @@ def header_table(d, row, parts, tt, side=frozenset()):
     h = d['head']
     ps = '; '.join('%s (%s) %s%s' % (p['code'], p['part'], p['text'],
                                      ' (on a branch or Longer only)' if (p['code'], p['part']) in side else '') for p in parts)
-    cells = [('Day', '%s, unit %s, %s day' % (h['day'], h['unit'], row['kind'].lower())),
-             ('Goal', row['goal']), ('Standard parts', ps or 'see the unit opener'),
+    cells = [('Day', '%s, section %s, %s day' % (h['day'], h['unit'], KIND_WORD.get(row['kind'], row['kind'].lower()))),
+             ('Goal', row['goal']), ('Standard parts', ps or 'see the section opener'),
              ('Tool', '%s (%s), %s min' % (tt, row['mark'], row['tool_min']) if row['tool'] else 'None'),
              ('Materials', h['materials']), ('Print', h['print']),
              ('Leans on', '; '.join(x for x in leans(d) if not x.lower().startswith(WHEN)) or 'nothing'),
@@ -971,8 +972,8 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     row = next(x for x in days if x['day'] == h['day'])
     tt = tool_title(row['tool']) if row['tool'] else ''
     mine = [i for i in items if i['day'] == h['day'] and i['check'] in plan.LESSON_KINDS | {'exit'}]
-    # a check day is measured by its end rows, which carry the stretch, not the day
-    # (a stretch with two check days keeps each day's end rows apart: select by the day being built)
+    # an assessment day is measured by its end rows, which carry the unit, not the day
+    # (a unit with two assessment days keeps each day's end rows apart: select by the day being built)
     end = sorted((i for i in items if i['stretch'] == row['stretch'] and i['check'] == 'end' and i['day'] == h['day']),
                  key=nkey)
     if row['kind'] != 'Check':
@@ -1033,12 +1034,12 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
           'they mean</th></tr>%s</table>%s' % (html.escape(title), html.escape(accept([byid[r] for r in refs])),
                                                ''.join(kr), foot))
     put(out / (name + '-key.html'), page(title + ': key', kb, 'key'), encoding='utf-8')
-    # exit slip, four to a sheet: the paper path only
+    # exit ticket, four to a sheet: the paper path only
     ex = [i for i in mine if i['check'] == 'exit' and i.get('path', '') in ('', 'paper')]
     if ex and row['kind'] != 'Check':
         one = '<div class="slip"><p>Name ______________ Day %s</p>%s%s</div>' % (h['day'], ''.join(
             slip_item(k, i) for k, i in enumerate(ex)), foot)
-        put(out / (name + '-exit.html'), page(title + ': exit slips', one * 4, 'student'), encoding='utf-8')
+        put(out / (name + '-exit.html'), page(title + ': exit tickets', one * 4, 'student'), encoding='utf-8')
     # display, in the order the teacher page runs: part by part, each [[id]], [[steps:id]] and **Ask.** where it
     # first appears (a worked example with its figure, then its steps one screen at a time; a fix with the wrong
     # working beside the right; a challenge); a plain sum's answers; a part's "check your answers" screen only when
@@ -1235,7 +1236,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         scr.append(answers_screen())
     scr += ['<div class="screen">%s</div>' % html.escape(q) for q in
             re.findall(r'"([^"]*__[^"]*)"', d['secs'].get('Words and supports', ''))]
-    if end:   # a check day's challenges are for whoever finishes, all at once: one screen (s09 expert, day 77)
+    if end:   # an assessment day's challenges are for whoever finishes, all at once: one screen (s09 expert, day 77)
         ch = '<div class="screen"><p><b>Challenge.</b> '
         merged = []
         for x in scr:
@@ -1277,7 +1278,7 @@ DRAWS = re.compile(r'\b(draw|sketch|strip picture|strips)\b', re.I)
 
 
 def slip_item(k, i):
-    """One exit question on the slip. A stem that asks for a drawing gets a box before its lines; a teacher-judged
+    """One exit question on the exit ticket. A stem that asks for a drawing gets a box before its lines; a teacher-judged
     exit gets a taller work box; a sentence with blanks in the stem ("Finish: __ is __ times as many as __.") prints
     as its own fill line, and when the stem ends in such frames they are the answer lines."""
     sents = re.split(r'(?<=[.?!])\s+', stem(i))
@@ -1382,8 +1383,8 @@ def count_sides(pdf):
     return '%d side(s)%s' % (n, '' if n <= 2 else ' FAIL: more than two')
 
 
-# ------------------------------------------------------------------ once-per-unit pieces
-# A piece is any other .md in a unit folder (opener.md, record.md, readiness.md, ...), with a header naming its
+# ------------------------------------------------------------------ once-per-section pieces
+# A piece is any other .md in a section folder (opener.md, record.md, readiness.md, ...), with a header naming its
 # kind: opener (written, 1,200 words at most), record (the record sheet, generated), check (a readiness check:
 # student page and key generated from the rows), facts (a facts check sheet), family (the family note), sheet (a
 # generator preset's page for the teacher), blank (a sheet printed as written, for students to work on: one with
@@ -1416,7 +1417,7 @@ def parse_piece(path):
 
 def piece_rows(p, items):
     """A check piece's rows: those its "## Items" section names by id, in that order (a fixed practice sheet, so
-    the day's other rows of the same kind stay out), or else every row of its check kind for its stretch."""
+    the day's other rows of the same kind stay out), or else every row of its check kind for its unit."""
     h = p['head']
     named = REF.findall(section(p['body'], 'Items') or '')
     if named:
@@ -1428,7 +1429,7 @@ def piece_rows(p, items):
 
 def unit_foot(h, course, what):
     return '<div class="foot">%s</div>' % html.escape(
-        'Curio Class, %s, unit %s, %s, version %s, CC BY 4.0, curioclass.org'
+        'Curio Class, %s, section %s, %s, version %s, CC BY 4.0, curioclass.org'
         % (course_name(course), h['unit'], what, h['version']))
 
 
@@ -1446,11 +1447,11 @@ def check_piece(p, items):
     if kind not in PIECE_KINDS:
         f.append('%s: piece "%s" is not one of %s' % (lab, kind, ', '.join(PIECE_KINDS)))
     if kind == 'opener' and words(p['body']) > CAP_OPENER:
-        f.append('%s: the unit opener is %d words; the cap is %d' % (lab, words(p['body']), CAP_OPENER))
+        f.append('%s: the section opener is %d words; the cap is %d' % (lab, words(p['body']), CAP_OPENER))
     if kind == 'check':
         rs = piece_rows(p, items)
         if not rs:
-            f.append('%s: no %s rows for stretch %s in items.csv' % (lab, h.get('check'), h.get('stretch')))
+            f.append('%s: no %s rows for unit %s in items.csv' % (lab, h.get('check'), h.get('stretch')))
         have = {i['item_id'] for i in items}
         for r in REF.findall(section(p['body'], 'Items') or ''):
             if r not in have:

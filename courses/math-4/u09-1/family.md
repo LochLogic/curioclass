@@ -6,7 +6,7 @@ version: draft 1, not ready, not yet taught; English only until a qualified read
 credit: ours
 ---
 
-# Stretch 9 family note: adding and subtracting to a million
+# Unit 9 family note: adding and subtracting to a million
 
 ## English
 

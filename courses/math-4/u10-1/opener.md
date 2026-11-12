@@ -6,7 +6,7 @@ version: draft 1, not yet taught
 credit: ours
 ---
 
-# Unit 10.1: Times as many (days 80 to 82)
+# Section 10.1: Times as many (days 80 to 82)
 
 ## The math, for the adult
 
@@ -37,7 +37,7 @@ Thinking). Day 83 talks about it once and it is never asked. If a student says i
 "You mean 3 times as many as." Also say once, on day 80, that "times" means occasions too ("three times a day").
 
 **Limits.** Whole numbers. Comparisons use one-digit facts; a one-digit number times a multiple of 10 up to
-90; or 10 times a one- or two-digit number. No word problems to solve yet: that is unit 10.2.
+90; or 10 times a one- or two-digit number. No word problems to solve yet: that is section 10.2.
 
 ## The strip picture
 
@@ -50,20 +50,21 @@ right gives the total. "More than" looks different: one strip with a short extra
   the other, the whole row is the product.
 - **Day 82.** Drawn only when a sentence is hard.
 
-The strip stays all stretch; from day 86 a student draws it only when stuck, and may in the end check. The strip
+The strip stays all unit; from day 86 a student draws it only when stuck, and may in the end-of-unit assessment. The strip
 sheet (strip-sheet.md) has six frames, three rows of ten boxes each, one box a copy. Print one a student, both
 sides, for each of days 80, 81 and 83 to 85; plain or grid paper does the same.
 
 ## Why this model
 
 Cubes make a copy something a hand does: build the small strip, build it again and again, count the copies.
-The drawn strip is the same picture with the cubes gone, and it carries every comparison problem to the end
-check, in both kinds. A student who can point to the copies can say which number counts what, which is what the
+The drawn strip is the same picture with the cubes gone, and it carries every comparison problem to the end-of-unit
+assessment, in both kinds.
+ A student who can point to the copies can say which number counts what, which is what the
 standard asks. Growth Spurt (Read it both ways) is a spec only, so day 81 runs its paper path.
 
 ## The errors to expect, in plain words
 
-Units 10.2 and 10.3 meet errors B and E to H; their openers explain them.
+Sections 10.2 and 10.3 meet errors B and E to H; their openers explain them.
 
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
@@ -76,7 +77,7 @@ answer that signals each error on that day's exit.
 
 ## The reteach (readiness item 1)
 
-Readiness item 1 (chairs in equal rows) asks for the equal groups this unit compares. If more than a third of
+Readiness item 1 (chairs in equal rows) asks for the equal groups this section compares. If more than a third of
 the class missed it, day 81's warm-up and first five minutes are this reteach for the whole class. Otherwise run
 it with the students who missed it during day 81's warm-up, and the five minutes go to day 80's exit.
 
@@ -89,12 +90,12 @@ it with the students who missed it during day 81's warm-up, and the five minutes
 
 With no counters, draw dots in rows. The numbers are new on purpose.
 
-## Supplies for the unit
+## Supplies for the section
 
 - Per pair: 30 connecting cubes or counters (day 80, and the reteach on day 81).
 - Per student: strip sheets, or paper strips or grid paper; a ruler; a pencil.
 - Per class: the projector for the display pages; a board; the frame "__ is __ times as many as __" on the wall
-  over a strip picture, all stretch.
+  over a strip picture, all unit.
 - A room with nothing: squares drawn on paper stand in for cubes, and hand-drawn boxes for the strip sheet.
 
 ## Words
@@ -102,11 +103,11 @@ With no counters, draw dots in rows. The numbers are new on purpose.
 Times as many as, times as much as, times as long as, comparison, equation, factor, product, strip, copy, each
 taught on a strip picture. A student may say a comparison in a home language first, then in the frame.
 
-## How the stretch is checked
+## How the unit is checked
 
-Readiness check: day 79, three items, one for each unit (readiness.md). Exits: one each on days 80 to 87, on
-paper. Day 82's written task is judged with look-fors on its key. End check: day 88, eight items, unaided; items
-1 and 2 are this unit's. All of it goes on one record sheet for the stretch (record.md), by error letter. The
+Readiness check: day 79, three items, one for each section (readiness.md). Exits: one each on days 80 to 87, on
+paper. Day 82's written task is judged with look-fors on its key. End-of-unit assessment: day 88, eight items, unaided; items
+1 and 2 are this section's. All of it goes on one record sheet for the unit (record.md), by error letter. The
 family note (family.md) goes home on day 80; its Spanish needs a qualified reader first.
 
 ## Credit

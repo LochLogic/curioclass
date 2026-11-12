@@ -17,8 +17,8 @@ area, a missing side from a perimeter, a perimeter with two- and three-digit sid
 sides (like denominators). The order is shuffled, so the words have to say which measure is asked for. The sheet
 says 18 minutes on its head.
 
-The generator never uses a fact that the unit's lessons, exits or checks use: two sides with their area or their
-perimeter, in any order. So the sheet cannot hand students an answer they will meet on the end check. Each story
+The generator never uses a fact that the section's lessons, exits or checks use: two sides with their area or their
+perimeter, in any order. So the sheet cannot hand students an answer they will meet on the end-of-unit assessment. Each story
 thing comes in units and sizes it really has.
 
 ## Making it
@@ -34,7 +34,7 @@ problem. Then put the key up. Most students finish 8 to 10; the pairs check what
 
 ## Without a printer or a device
 
-Write these six on the board; students work them in their notebooks. None uses a fact from the unit's lessons or
+Write these six on the board; students work them in their notebooks. None uses a fact from the section's lessons or
 checks (they are rows in the plan, so the gate checks them). The answers are in brackets.
 
 1. [[s11-B91-1]]

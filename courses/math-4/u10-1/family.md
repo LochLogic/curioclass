@@ -6,7 +6,7 @@ version: draft 1, not yet taught; the Spanish needs a qualified reader before it
 credit: ours
 ---
 
-# Stretch 10 family note: times as many
+# Unit 10 family note: times as many
 
 ## English
 

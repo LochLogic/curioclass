@@ -8,11 +8,11 @@ student's name is written down.
 
 ## The three tests on a pilot unit
 
-1. **A teacher of the grade band reads it.** For grade 4 math unit 11.1, a grade 3 to 5 teacher. They get the five
+1. **A teacher of the grade band reads it.** For grade 4 math unit 11, a grade 3 to 5 teacher. They get the five
    days, the print and the checks, and the five questions below.
 2. **Someone teaches it.** One teacher or one parent runs the days in order and writes down the minutes each part
    really took.
-3. **Three students sit the end check.** The adult times it on a watch the student does not see. No countdown is
+3. **Three students sit the end-of-unit assessment.** The adult times it on a watch the student does not see. No countdown is
    shown to a student, ever.
 
 ## The five questions for the reading teacher (draft, ours)

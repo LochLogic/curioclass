@@ -1,4 +1,4 @@
-# Year spine: grade 4 science (draft for Cory's review)
+# Scope and sequence: grade 4 science (draft for Cory's review)
 
 **Revised 2026-11-11 after the curriculum expert's review (docs/reviews/science-4-spine-2026-11-11.md); Cory approved all four changes. Still a draft: no rows in data/units.csv until Cory's final yes.**
 
@@ -12,13 +12,13 @@ on memory or on an untested tally it is marked **test before printing**.
 
 ## What changed in this revision
 
-1. **Energy resources (4-ESS3-1) moved up** to the end of stretch 2 as lesson set 2.7, beside the circuits it
-   depends on. Stretch 8 is now hazards only.
-2. **Stretch 4 grew from 16 to 21 days** and has two anchors: the cat at night, then the plant that cannot
+1. **Energy resources (4-ESS3-1) moved up** to the end of unit 2 as lesson set 2.7, beside the circuits it
+   depends on. Unit 8 is now hazards only.
+2. **Unit 4 grew from 16 to 21 days** and has two anchors: the cat at night, then the plant that cannot
    move. Its end task now has a plant in it and a separate item on light.
 3. **The time split changed:** physical science 42 days, life science 17, Earth and space science 36, checks
-   and The Year Together 13. Stretches 5, 7 and 8 gave up days.
-4. **The stretch 2 design problem is a signal device,** with three hands-on days on circuits. Chain reactions
+   and The Year Together 13. Units 5, 7 and 8 gave up days.
+4. **The unit 2 design problem is a signal device,** with three hands-on days on circuits. Chain reactions
    are the extension.
 5. **Every lesson set is marked core or extended, and a 90-session path is set out in full.**
 6. The smaller findings are folded in: practices and crosscutting concepts used more than once, a written
@@ -27,19 +27,19 @@ on memory or on an untested tally it is marked **test before printing**.
 
 ## What to check
 
-1. The 21-day stretch 4 and its two anchors.
-2. The signal device in place of the contraption, and energy resources at the end of stretch 2.
+1. The 21-day unit 4 and its two anchors.
+2. The signal device in place of the contraption, and energy resources at the end of unit 2.
 3. The 90-session path: which day each extended lesson set gives up, and whether each trade-off is one a
    teacher can live with.
 4. The three materials tiers, and the plain statement that tier C is weaker for eight investigations.
 5. Three judgment calls listed under "Least sure of".
 
-## How science differs from the math spine
+## How science differs from the math scope and sequence
 
 - **A performance expectation is an end point, not a lesson.** Each one joins three things: a core idea, a
-  science or engineering practice, and a crosscutting concept. A stretch teaches toward its expectations over
+  science or engineering practice, and a crosscutting concept. A unit teaches toward its expectations over
   many days and checks them with a task at the end.
-- **Each stretch starts from something to figure out.** Six stretches open with a phenomenon (a real event to
+- **Each unit starts from something to figure out.** Six units open with a phenomenon (a real event to
   explain). Two open with a design problem. The class keeps a question board and a class model, and returns
   to both.
 - **Students work with real materials.** A screen tool can show an idea or give practice. It does not replace
@@ -55,7 +55,7 @@ on memory or on an untested tally it is marked **test before printing**.
   Amplify Science plans 5,280 minutes with its assessment days. Mystery Science plans about 19 hours of core
   lessons and about 57 with its extras. So 4,860 minutes sits inside what real programs plan (figures from the
   review; sources 6 to 8 and 12).
-- **Why a 90-session path as well.** The math spine counts 150 teaching days in a 180-day year. Three sessions
+- **Why a 90-session path as well.** The math scope and sequence counts 150 teaching days in a 180-day year. Three sessions
   a week over those 30 weeks is 90 sessions, not 108. The 2018 national survey reports an average of 27
   minutes of science a day in self-contained grades 4 to 6 (source 5); 27 minutes over 150 days is 67.5
   hours, which is 90 sessions of 45 minutes. So 108 is the full program and 90 is the ordinary school. Both
@@ -71,9 +71,9 @@ on memory or on an untested tally it is marked **test before printing**.
 | Cumulative checks, respond days, catch-up days, The Year Together | 13 | 12 percent | all |
 | **Total** | **108** | **100 percent** | **14, plus 3 engineering** |
 
-  Physical science counts stretch 1 (12), stretch 2 without lesson set 2.7 (15), stretch 3 (11) and the 4 days
-  on light in lesson set 4.2. Life science is the other 17 days of stretch 4. Earth and space science counts
-  stretches 5 to 8 (32) and the 4 days of lesson set 2.7. Engineering design is not a separate block: 20 of
+  Physical science counts unit 1 (12), unit 2 without lesson set 2.7 (15), unit 3 (11) and the 4 days
+  on light in lesson set 4.2. Life science is the other 17 days of unit 4. Earth and space science counts
+  units 5 to 8 (32) and the 4 days of lesson set 2.7. Engineering design is not a separate block: 20 of
   the days above (19 percent) are design work, in lesson sets 2.1, 2.4, 2.5, 2.6, 3.3, 8.1, 8.3, 8.4 and 8.5.
 
 - **How the 108 days split by kind of work.**
@@ -91,42 +91,42 @@ on memory or on an untested tally it is marked **test before printing**.
 - **Tool time, said plainly.** The eight tools are 235 minutes by their specs: about 4 hours of an 81-hour
   year, 5 percent. Nobody should read the tool column as the course. Most of the year is print lessons and
   investigations that do not exist yet.
-- **Checking takes 12 days, 11 percent:** 8 task days and 4 cumulative check days. Every cumulative check has a
+- **Checking takes 12 days, 11 percent:** 8 task days and 4 cumulative assessment days. Every cumulative check has a
   respond day after it. There is no daily exit question (see "The checks").
-- **9 stretches, 38 lesson sets.** A stretch is one topic. A lesson set is a package of 1 to 5 days that
+- **9 units, 38 lesson sets.** A unit is one topic. A lesson set is a package of 1 to 5 days that
   answers one question from the class question board. 23 lesson sets are core and 15 are extended.
-- **What exists today:** 8 tools (7 specs, 1 live), no unit, no investigation sheet, no task. Every one of the
+- **What exists today:** 8 tools (7 specs, 1 live), no section, no investigation sheet, no task. Every one of the
   108 days is a gap day until its lesson set is written.
 
-## The spine
+## The scope and sequence
 
 "Anchor" is the proposed phenomenon (P) or design problem (D). "Tool" is the tool from
 docs/agents/catalog/shape/science-4.md with its stage and how the rough read sorts its codes.
 
-| # | Stretch | Days | On days | Anchor (proposal) | Performance expectations | Tool |
+| # | Unit | Days | On days | Anchor (proposal) | Performance expectations | Tool |
 |---|---|---|---|---|---|---|
 | 1 | Energy and Motion | 12 | 1 to 12 | P: A slow bowling ball tips two pins. A fast one clears the lane, and you hear the crash. Where did the motion come from and where did it go? Staged in the hallway with a ball and plastic bottles. Day 1 opens with the 20-minute start-of-year check | 4-PS3-1, 4-PS3-3 | Bowling Lab (spec; 1 full, 1 practice) |
 | 2 | Energy on the Move, a Device, and Where Energy Comes From | 19 | 13 to 31 | D: The class needs a signal for clean-up time. Turn stored energy into a sound or a light the whole room notices, from one release. You may use a raised weight, a stretched band or a battery. Then: our device ran on a battery or a stretched band. Where does the current in the classroom wall come from, and what does each source cost the land? | 4-PS3-2, 4-PS3-4, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3, 4-ESS3-1 | Contraption Workshop (spec, loaded: 5 codes in 35 minutes; 3 practice, 1 full, 1 shown). No tool for energy resources |
-| | **Check 1, respond day, catch-up day** | 3 | 32 to 34 | | stretches 1 and 2 | |
+| | **Check 1, respond day, catch-up day** | 3 | 32 to 34 | | units 1 and 2 | |
 | 3 | Waves and Information | 11 | 35 to 45 | One question spans both halves: how can something get across a room when nothing travels across? P: A cork on water bobs up and down as a wave passes, and does not ride to the edge. Then D: send a four-letter message across the room with no words | 4-PS4-1, 4-PS4-3, 3-5-ETS1-2 | Secret Code Signals (spec; 1 practice, 1 nearly) |
 | 4 | Structures, Senses and Sight | 21 | 46 to 66 | P: A cat crosses the yard at night. Its eyes shine in a flashlight or a photo flash, it walks where we would stumble, and it bolts at a sound we did not hear. Can it see in complete darkness? Then P: A plant cannot walk to water, run from what eats it or carry its young. Yet a cut white flower stood in coloured water has coloured petals by morning, and one dandelion seeds a field | 4-PS4-2, 4-LS1-2, 4-LS1-1 | How Animals See (live; spec marked for rework; 3 shown) |
-| | **Check 2, respond day, catch-up day** | 3 | 67 to 69 | | stretches 3 and 4, energy again | |
+| | **Check 2, respond day, catch-up day** | 3 | 67 to 69 | | units 3 and 4, energy again | |
 | 5 | Weathering and Erosion | 10 | 70 to 79 | P: After one hard rain the bare patch under the school downspout has a channel and a fan of sand. The grass beside it does not. A second observation, kept apart, is for weathering: a cracked or crumbling surface, such as a step, a kerb or a path lifted by a root | 4-ESS2-1 | Erosion Table (spec; nearly) |
 | 6 | Rock Layers and Earth History | 8 | 80 to 87 | P: A canyon wall has shell fossils high above the river at its foot (the standard's own example) | 4-ESS1-1 | Canyon Reader (spec; nearly) |
 | 7 | Earth's Features on Maps | 6 | 88 to 93 | P: Could a volcano or a big earthquake happen here? Answered by plotting a year of large earthquakes and the world's volcanoes on one map | 4-ESS2-2 | World Layers Map (spec; full) |
-| | **Check 3, respond day, catch-up day** | 3 | 94 to 96 | | stretches 5 to 7, earlier work | |
+| | **Check 3, respond day, catch-up day** | 3 | 94 to 96 | | units 5 to 7, earlier work | |
 | 8 | Hazards | 8 | 97 to 104 | D: A model town sits at the foot of the erosion tray and a flood is coming. With a fixed budget of materials, find the plan that saves the most. Opened with one real flood, told in photographs and a short account | 4-ESS3-2, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3 | Town Planner: Disaster Ready (spec; 2 practice) |
 | 9 | The Year Together | 2 | 105 to 106 | The eight question boards, read again for what is still open | all, mixed | |
 | | **Check 4, then a day to go over it and hand on to grade 5** | 2 | 107 to 108 | | the whole course | |
 
-Totals: stretches 1 to 8 are 95 days (12 + 19 + 11 + 21 + 10 + 8 + 6 + 8), check blocks 11, The Year Together
+Totals: units 1 to 8 are 95 days (12 + 19 + 11 + 21 + 10 + 8 + 6 + 8), check blocks 11, The Year Together
 2. 95 + 11 + 2 = 108.
 
 **The rule for swapping in a local phenomenon.** Each anchor should be swapped for a local one where a class
 has one. The swap must pass three tests: students can observe it, it needs the same core idea to explain, and
 it is not explained on day 1.
 
-**Which real flood opens stretch 8** is chosen when the lesson set is written, local where possible.
+**Which real flood opens unit 8** is chosen when the lesson set is written, local where possible.
 
 ## The 90-session path
 
@@ -134,7 +134,7 @@ The 90-session path teaches every lesson set and every expectation. It keeps eve
 day, because revising a model or a design after feedback is where much of the learning is. It drops the one
 extended day in each of 15 lesson sets, and the three catch-up days. 15 + 3 = 18, and 108 - 18 = 90.
 
-| # | Stretch or block | 108 path | 90 path | On days (90 path) |
+| # | Unit or block | 108 path | 90 path | On days (90 path) |
 |---|---|---|---|---|
 | 1 | Energy and Motion | 12 | 10 | 1 to 10 |
 | 2 | Energy on the Move, a Device, and Where Energy Comes From | 19 | 16 | 11 to 26 |
@@ -172,31 +172,31 @@ task, 8 check and respond, 2 The Year Together.
 | 5.2 | 4 | 3 | One tray day (plant cover) | Slope and amount of water are tested first-hand. Plant cover is tested in Erosion Table or read from a data table |
 | 5.3 | 3 | 2 | One weathering day | Ice and wind become one teacher demonstration. Rubbing and roots stay as student work |
 | 6.2 | 3 | 2 | The settling jar day | The jar is set up by the teacher the day before and only read. Students still build, cut and push the layers |
-| 7.2 | 3 | 2 | The contour model day | The sliced mountain is a ten-minute demonstration. The stretch then has no hands-on day at all |
+| 7.2 | 3 | 2 | The contour model day | The sliced mountain is a ten-minute demonstration. The unit then has no hands-on day at all |
 | 8.3 | 4 | 3 | One test day | One round of improvement. The large flood is run once, as a class |
 | Catch-up days | 3 | 0 | The day after each of the first three respond days | No slack. The respond day is all the reteaching time there is |
 
 **Schools that teach science in blocks.** Many schools alternate science with social studies, a few weeks of
 one and then a few weeks of the other. The survey reports that 29 percent of grade 4 to 6 classes teach
-science only some weeks (source 5). Each stretch already stands as a block: it opens with its own first ideas
-probe and closes with its own task. Keep the order. Four natural blocks are stretches 1 and 2 with Check 1
-(34 days, or 28 on the 90-session path), stretches 3 and 4 with Check 2 (35, or 29), stretches 5 to 7 with
-Check 3 (27, or 22), and stretch 8 to the end (12, or 11). After a gap, the first ideas probe of the next
-stretch is where the class picks the thread up again.
+science only some weeks (source 5). Each unit already stands as a block: it opens with its own first ideas
+probe and closes with its own task. Keep the order. Four natural blocks are units 1 and 2 with Check 1
+(34 days, or 28 on the 90-session path), units 3 and 4 with Check 2 (35, or 29), units 5 to 7 with
+Check 3 (27, or 22), and unit 8 to the end (12, or 11). After a gap, the first ideas probe of the next
+unit is where the class picks the thread up again.
 
 ## Practices, crosscutting concepts and limits
 
 The grade 4 expectations name seven of the eight practices and four of the seven crosscutting concepts
 (source 1). Two things from the review change how this section reads. First, every practice the grade's own
-expectations name should be used more than once, in different stretches. Second, all eight practices and all
+expectations name should be used more than once, in different units. Second, all eight practices and all
 seven crosscutting concepts are owed across grades 3 to 5 together, not inside grade 4. So the first draft's
-promise to meet all of them in one year was more than is asked. The placements this spine adds are kept where
+promise to meet all of them in one year was more than is asked. The placements this scope and sequence adds are kept where
 they fit and are marked **added**. The first draft's "computational thinking: a grid of 1s and 0s" is dropped:
 the grid is the core idea of 4-PS4-3, not that practice.
 
 **Practices and limits.**
 
-| # | Stretch | Practices built | Practices used again | Limits set by the standards (not taught or tested past these) |
+| # | Unit | Practices built | Practices used again | Limits set by the standards (not taught or tested past these) |
 |---|---|---|---|---|
 | 1 | Energy and Motion | Asking questions and predicting (4-PS3-3); constructing explanations (4-PS3-1) | Analyzing and interpreting data: the line plot of slide distances; using mathematics: measure and repeat trials (**added**) | No measured speeds, no formula or exact definition of energy. Ramp height is only a way to get more speed; stored energy of position is not taught or tested. Collisions are explained by energy and speed. One sentence links back to grade 3 forces: the push at contact is how energy passes from one object to the other |
 | 2 | Energy on the Move, a Device, and Where Energy Comes From | Planning and carrying out investigations (4-PS3-2, 3-5-ETS1-3); defining problems (3-5-ETS1-1); designing solutions (4-PS3-4, 3-5-ETS1-2); obtaining and combining information (4-ESS3-1) | Obtaining information a second time: research before design in 2.4; constructing explanations: the energy trace | No measured amounts of energy. Devices use stored energy to make motion, light or sound, or turn motion into electric current. Energy resources: where energy and fuels come from and what their use does to the land, air and water, no more |
@@ -207,18 +207,18 @@ the grid is the core idea of 4-PS4-3, not that practice.
 | 7 | Earth's Features on Maps | Analyzing and interpreting data (4-ESS2-2) | Asking questions: could it happen here | Describe the patterns. Why the plates move is middle school |
 | 8 | Hazards | Designing and comparing solutions (4-ESS3-2); defining problems and running fair tests with less help (3-5-ETS1-1, 3-5-ETS1-3) | Engaging in argument: which plan is better and why; obtaining information: the real flood; analyzing data: test results | Hazards are earthquakes, floods, tsunamis and volcanic eruptions only. People can reduce the harm, not stop the hazard |
 
-Each practice the grade's expectations name is used in more than one stretch: asking questions and defining
+Each practice the grade's expectations name is used in more than one unit: asking questions and defining
 problems (1, 2, 4, 7, 8), models (3, 4, 6), investigations (2, 4, 5, 8), data (1, 5, 7, 8), explanations and
 solutions (1, 2, 3, 6, 8), argument (4, 6, 8), obtaining information (2, 3, 8). Using mathematics is not named
-by a grade 4 expectation and is added in stretches 1 and 5 as measuring and graphing.
+by a grade 4 expectation and is added in units 1 and 5 as measuring and graphing.
 
 **Crosscutting concepts.** "Used again" is where a concept built earlier is put to work a second time. The
-prompt is one question per stretch that makes students use the concept as a tool, not only hear its name.
+prompt is one question per unit that makes students use the concept as a tool, not only hear its name.
 
-| # | Stretch | Crosscutting concepts built | Used again | The prompt |
+| # | Unit | Crosscutting concepts built | Used again | The prompt |
 |---|---|---|---|---|
 | 1 | Energy and Motion | Energy and matter; cause and effect | | Follow the energy. Where was it before the crash, and what is every place it went after? |
-| 2 | Energy on the Move, a Device, and Where Energy Comes From | Energy and matter; cause and effect | Cause and effect, from stretch 1, in every fair test | Name the form the energy starts in, the form it ends in, and the part of the device that changes one to the other |
+| 2 | Energy on the Move, a Device, and Where Energy Comes From | Energy and matter; cause and effect | Cause and effect, from unit 1, in every fair test | Name the form the energy starts in, the form it ends in, and the part of the device that changes one to the other |
 | 3 | Waves and Information | Patterns | Energy and matter: a wave carries energy across and leaves the water where it was | What repeats in this wave or this code, and what does the pattern let you predict or read? |
 | 4 | Structures, Senses and Sight | Systems and system models; cause and effect; structure and function (**added**) | Energy and matter: light carries energy to the eye | Name the parts of this system and say what would fail if one were removed |
 | 5 | Weathering and Erosion | Cause and effect; stability and change: change at different rates (**added**) | Patterns: the same channel and fan shapes in every tray | You changed one thing. What changed because of it, and how do you know nothing else caused it? |
@@ -228,49 +228,49 @@ prompt is one question per stretch that makes students use the concept as a tool
 
 Where each concept sits: patterns (3, 6, 7; again in 5 and 8), cause and effect (1, 2, 4, 5, 8; again in 6),
 scale (6, 7), systems (4; again in 8), energy and matter (1, 2; again in 3 and 4), structure and function (4),
-stability and change (5, 6; again in 7). Stability and change is no longer claimed for stretch 8.
+stability and change (5, 6; again in 7). Stability and change is no longer claimed for unit 8.
 
 **Nature of science, core idea elements, and what to watch for.** The connections are the ones the standards
 page places beside these expectations. "Watch for" is the common idea a teacher should expect to hear; the
 teacher page for each lesson set starts from this line.
 
-| # | Stretch | Nature of science and engineering connections | Core idea elements given a home | Watch for |
+| # | Unit | Nature of science and engineering connections | Core idea elements given a home | Watch for |
 |---|---|---|---|---|
-| 1 | Energy and Motion | None placed for this stretch | | "The energy got used up in the crash." It went somewhere: into the pins, the sound, a little warmth |
+| 1 | Energy and Motion | None placed for this unit | | "The energy got used up in the crash." It went somewhere: into the pins, the sound, a little warmth |
 | 2 | Energy on the Move, a Device, and Where Energy Comes From | Scientists and engineers work in teams; science affects everyday life; science and engineering depend on each other (energy resources) | Sharing a design with other groups improves it: a gallery walk in 2.5 and the comparison in 2.6. Research before design in 2.4 | "The battery runs out of electricity." "One wire is enough to light the bulb." "Energy gets used up" |
 | 3 | Waves and Information | Science findings rest on recognising patterns; science and engineering depend on each other | Phones and computers turn information into a pattern, send it and decode it: one reading in 3.3 | "The wave carries the water along with it" |
-| 4 | Structures, Senses and Sight | None placed for this stretch | Memory guides what an animal does: the learned signal in 4.3. Changing the path of light with a mirror or a barrier: 4.2 | "Eyes send out sight." "Cat eyes glow by themselves." "A cat can see with no light at all" |
-| 5 | Weathering and Erosion | None placed for this stretch | Rainfall shapes the land and what can live there: 5.2. Living things change their surroundings (roots, burrows): 5.3 | "Rocks do not change." Also weathering and erosion used as one word: breaking is weathering, carrying away is erosion |
+| 4 | Structures, Senses and Sight | None placed for this unit | Memory guides what an animal does: the learned signal in 4.3. Changing the path of light with a mirror or a barrier: 4.2 | "Eyes send out sight." "Cat eyes glow by themselves." "A cat can see with no light at all" |
+| 5 | Weathering and Erosion | None placed for this unit | Rainfall shapes the land and what can live there: 5.2. Living things change their surroundings (roots, burrows): 5.3 | "Rocks do not change." Also weathering and erosion used as one word: breaking is weathering, carrying away is erosion |
 | 6 | Rock Layers and Earth History | Science assumes consistent patterns in nature: layers formed long ago the way they form now | Earth forces such as earthquakes bend and break layers: the pushed stack in 6.2 | "The shells were washed up the hill." "The layers were always there" |
 | 7 | Earth's Features on Maps | Science findings rest on recognising patterns | | "Earthquakes and volcanoes can happen anywhere, by chance" |
 | 8 | Hazards | Engineers improve technologies to cut risk | Sharing a design with other groups improves it: 8.4 | "A big enough wall fixes it." "A hazard can be stopped" |
 
 **Deep time.** Rock layers and Earth's long history can be sensitive for some families. The standard stays
-with relative order: what came first and what came after, with no dates. The teacher page for stretch 6 says
+with relative order: what came first and what came after, with no dates. The teacher page for unit 6 says
 so.
 
-## Why this order, and what each stretch hands on
+## Why this order, and what each unit hands on
 
 "Builds on" names the earlier expectations by code and, in brackets, the Curio Class module that holds them.
 The codes come from the articulation lines of the grade 4 standards (source 1).
 
-| # | Stretch | Builds on | Why it sits here | Sets up |
+| # | Unit | Builds on | Why it sits here | Sets up |
 |---|---|---|---|---|
-| 1 | Energy and Motion | 3-PS2-1, 3-PS2-2, K-PS2-1 (science-3-balanced-and-unbalanced-forces) | Energy is the idea the rest of the year uses: waves carry it, light carries it, a town needs it. Rolling and crashing things is a start every student can enter, and it teaches the fair test early | Stretches 2, 3, 4 and 8; middle school MS-PS3-1 |
-| 2 | Energy on the Move, a Device, and Where Energy Comes From | Stretch 1; K-2-ETS1-1 to 3; 3-PS2-4 (science-3-magnets-and-static-electricity) | Once energy is tied to motion, the class finds it in sound, light, heat and electric current, then uses it in a device. The first full design cycle comes early so the next two can ask for more. Energy resources follow at once, because the question "where does the current in the wall come from" is one the circuit work raises | Stretches 3, 4 and 8; grade 5 5-PS3-1 and 5-ESS3-1; 3-5-ETS1 again in grade 5 |
-| 3 | Waves and Information | Stretches 1 and 2; 1-PS4-1, 1-PS4-4 (science-1-sound-and-vibration) | Sound was one way energy moved in stretch 2. A wave is the pattern behind it. Sending a code is the second design problem, and it is about comparing solutions, not building | Stretch 4 (light, and information in animals); stretch 8 (earthquakes and tsunamis); middle school MS-PS4-1 |
-| 4 | Structures, Senses and Sight | Stretches 2 and 3; 1-PS4-2 (science-1-light-and-shadows); 1-LS1-1 (science-1-plant-and-animal-parts); 3-LS3-1, 3-LS3-2 (science-3-traits-and-variation) | Light entering the eye follows from light carrying energy in stretch 2. An animal taking in information, processing it and responding follows from sending a code. Plants get their own anchor so that half of 4-LS1-1 is not an afterthought. It is indoor work for the middle of the year | Grade 5 5-LS1-1 and 5-LS2-1 loosely; middle school MS-LS1-3, MS-LS1-8 |
-| 5 | Weathering and Erosion | 2-ESS1-1, 2-ESS2-1 (science-2-changing-landforms) | The Earth block opens with a process students can run and measure themselves. It sits in spring so the tray and the walk can be outdoors | Stretches 6 and 8; grade 5 5-ESS2-1 |
-| 6 | Rock Layers and Earth History | Stretch 5; 2-ESS1-1 (science-2-changing-landforms); 3-LS4-1 (science-3-fossils-and-changing-environments) | A river cutting a canyon is erosion over a very long time, so it follows stretch 5. Layers and fossils are read as evidence, which is the year's hardest explanation | Stretch 7; middle school MS-ESS1-4 |
-| 7 | Earth's Features on Maps | 2-ESS2-2, 2-ESS2-3 (science-2-maps-of-land-and-water) | From one canyon to the whole Earth. The pattern of where earthquakes and volcanoes happen is what the hazard work needs next | Stretch 8; grade 5 5-ESS2-2; middle school MS-ESS2-3 |
-| 8 | Hazards | Stretches 1, 2, 3, 5 and 7; 3-ESS3-1 (science-3-weather-and-climate) | The third design problem uses the year: erosion and floods, the energy of moving water, the hazard map, fair tests. It is the capstone design, and the class defines the problem and plans the tests with less help than in stretch 2 | Grade 5 5-ESS3-1; middle school MS-ESS3-2, MS-ETS1 |
+| 1 | Energy and Motion | 3-PS2-1, 3-PS2-2, K-PS2-1 (science-3-balanced-and-unbalanced-forces) | Energy is the idea the rest of the year uses: waves carry it, light carries it, a town needs it. Rolling and crashing things is a start every student can enter, and it teaches the fair test early | Units 2, 3, 4 and 8; middle school MS-PS3-1 |
+| 2 | Energy on the Move, a Device, and Where Energy Comes From | Unit 1; K-2-ETS1-1 to 3; 3-PS2-4 (science-3-magnets-and-static-electricity) | Once energy is tied to motion, the class finds it in sound, light, heat and electric current, then uses it in a device. The first full design cycle comes early so the next two can ask for more. Energy resources follow at once, because the question "where does the current in the wall come from" is one the circuit work raises | Units 3, 4 and 8; grade 5 5-PS3-1 and 5-ESS3-1; 3-5-ETS1 again in grade 5 |
+| 3 | Waves and Information | Units 1 and 2; 1-PS4-1, 1-PS4-4 (science-1-sound-and-vibration) | Sound was one way energy moved in unit 2. A wave is the pattern behind it. Sending a code is the second design problem, and it is about comparing solutions, not building | Unit 4 (light, and information in animals); unit 8 (earthquakes and tsunamis); middle school MS-PS4-1 |
+| 4 | Structures, Senses and Sight | Units 2 and 3; 1-PS4-2 (science-1-light-and-shadows); 1-LS1-1 (science-1-plant-and-animal-parts); 3-LS3-1, 3-LS3-2 (science-3-traits-and-variation) | Light entering the eye follows from light carrying energy in unit 2. An animal taking in information, processing it and responding follows from sending a code. Plants get their own anchor so that half of 4-LS1-1 is not an afterthought. It is indoor work for the middle of the year | Grade 5 5-LS1-1 and 5-LS2-1 loosely; middle school MS-LS1-3, MS-LS1-8 |
+| 5 | Weathering and Erosion | 2-ESS1-1, 2-ESS2-1 (science-2-changing-landforms) | The Earth block opens with a process students can run and measure themselves. It sits in spring so the tray and the walk can be outdoors | Units 6 and 8; grade 5 5-ESS2-1 |
+| 6 | Rock Layers and Earth History | Unit 5; 2-ESS1-1 (science-2-changing-landforms); 3-LS4-1 (science-3-fossils-and-changing-environments) | A river cutting a canyon is erosion over a very long time, so it follows unit 5. Layers and fossils are read as evidence, which is the year's hardest explanation | Unit 7; middle school MS-ESS1-4 |
+| 7 | Earth's Features on Maps | 2-ESS2-2, 2-ESS2-3 (science-2-maps-of-land-and-water) | From one canyon to the whole Earth. The pattern of where earthquakes and volcanoes happen is what the hazard work needs next | Unit 8; grade 5 5-ESS2-2; middle school MS-ESS2-3 |
+| 8 | Hazards | Units 1, 2, 3, 5 and 7; 3-ESS3-1 (science-3-weather-and-climate) | The third design problem uses the year: erosion and floods, the energy of moving water, the hazard map, fair tests. It is the capstone design, and the class defines the problem and plans the tests with less help than in unit 2 | Grade 5 5-ESS3-1; middle school MS-ESS3-2, MS-ETS1 |
 | 9 | The Year Together | | Two days on questions still open, before the last check | Grade 5 |
 
 **Same order as data/sequence.csv, with one module taught in two places.** The eight modules run in the order
 on file. The module Structures and Senses is taught light first (4-PS4-2), then senses, then animal
-structures, then plant structures. Light comes first because it follows from light carrying energy in stretch
+structures, then plant structures. Light comes first because it follows from light carrying energy in unit
 2. The module Natural Resources and Hazards holds two topics and is now taught in two places: energy
-resources as lesson set 2.7 and hazards as stretch 8. That needs a note in sequence.csv, not a split. No
+resources as lesson set 2.7 and hazards as unit 8. That needs a note in sequence.csv, not a split. No
 module is split.
 
 **The prerequisites in sequence.csv do not all match the standards' own articulation.** It lists Weather and
@@ -281,19 +281,19 @@ articulation codes. The file is not edited here; this is a fix for whoever owns 
 
 | Idea or skill | First taught | Comes back |
 |---|---|---|
-| Energy moves and changes form | Stretches 1 and 2 | Waves carry energy (3); light carries energy to the eye (4); the energy of moving water (5, 8); Checks 2, 3 and 4 |
-| The fair test: change one thing, repeat trials | Stretch 1 | Device tests (2); the dark box (4); erosion trays (5); flood plans (8) |
-| The design cycle: define, compare, test, improve | Stretch 2 | Comparing codes (3); the flood plan with a budget (8). Each time the class does more of it alone |
-| Models that are drawn, tested and revised | Stretch 1 class model | Wave models (3); light and senses models (4); layer models (6) |
-| Argument from evidence | Stretch 4 | Which account the layers support (6); which plan is better (8) |
-| Reading sources and combining them | Stretch 2 (2.4 and 2.7) | How phones and computers send information (3); the real flood (8) |
-| Erosion | Stretch 5 | The canyon (6); the flood (8) |
-| Patterns on maps | Stretch 7 | Where hazards happen (8) |
-| Measuring and line plots | Stretch 1 | Erosion data (5) |
+| Energy moves and changes form | Units 1 and 2 | Waves carry energy (3); light carries energy to the eye (4); the energy of moving water (5, 8); Checks 2, 3 and 4 |
+| The fair test: change one thing, repeat trials | Unit 1 | Device tests (2); the dark box (4); erosion trays (5); flood plans (8) |
+| The design cycle: define, compare, test, improve | Unit 2 | Comparing codes (3); the flood plan with a budget (8). Each time the class does more of it alone |
+| Models that are drawn, tested and revised | Unit 1 class model | Wave models (3); light and senses models (4); layer models (6) |
+| Argument from evidence | Unit 4 | Which account the layers support (6); which plan is better (8) |
+| Reading sources and combining them | Unit 2 (2.4 and 2.7) | How phones and computers send information (3); the real flood (8) |
+| Erosion | Unit 5 | The canyon (6); the flood (8) |
+| Patterns on maps | Unit 7 | Where hazards happen (8) |
+| Measuring and line plots | Unit 1 | Erosion data (5) |
 
-## The lesson sets inside each stretch
+## The lesson sets inside each unit
 
-Readiness and end checks sit at the stretch level. Each stretch opens with a ten-minute "first ideas" probe
+Readiness and end-of-unit assessments sit at the unit level. Each unit opens with a ten-minute "first ideas" probe
 inside its first lesson set (a drawing and two questions on the earlier expectations it builds on), and ends
 with a task. Each teaching lesson set ends with one short written check (see "The checks").
 
@@ -302,7 +302,7 @@ taught on both paths, and holds one extended day that only the 108-session path 
 108-session path and "90" is the 90-session path. H, T, R and K are days of hands-on work, tool work, print
 work (reading, talk, models, data, writing) and end task, on the 108-session path.
 
-| Stretch | Lesson set | Mark | Days | 90 | H | T | R | K | Expectations |
+| Unit | Lesson set | Mark | Days | 90 | H | T | R | K | Expectations |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | 1.1 What happened at the crash? Start-of-year check, the hallway bowling, question board, first class model | core | 2 | 2 | | | 2 | | 4-PS3-1, 4-PS3-3 |
 | 1 | 1.2 Faster means more energy: ramp tests, repeated trials, a line plot | extended | 4 | 3 | 3 | | 1 | | 4-PS3-1 |
@@ -337,7 +337,7 @@ work (reading, talk, models, data, writing) and end task, on the 108-session pat
 | 7 | 7.2 Mountains, trenches and the ocean floor; a contour model | extended | 3 | 2 | 1 | 1 | 1 | | 4-ESS2-2 |
 | 7 | 7.3 End task | core | 1 | 1 | | | | 1 | 4-ESS2-2 |
 | 8 | 8.1 One real flood, the model town, the budget: the class writes the criteria and constraints | core | 1 | 1 | | | 1 | | 4-ESS3-2, 3-5-ETS1-1 |
-| 8 | 8.2 Which hazard, where: the four hazards on the stretch 7 map | core | 1 | 1 | | | 1 | | 4-ESS3-2 |
+| 8 | 8.2 Which hazard, where: the four hazards on the unit 7 map | core | 1 | 1 | | | 1 | | 4-ESS3-2 |
 | 8 | 8.3 Plans and fair tests under a small flood and a large one; failure points | extended | 4 | 3 | 3 | 1 | | | 4-ESS3-2, 3-5-ETS1-2, 3-5-ETS1-3 |
 | 8 | 8.4 Compare the plans against the criteria; argue for one | core | 1 | 1 | | | 1 | | 4-ESS3-2, 3-5-ETS1-2 |
 | 8 | 8.5 End task | core | 1 | 1 | | | | 1 | 4-ESS3-2, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3 |
@@ -346,7 +346,7 @@ work (reading, talk, models, data, writing) and end task, on the 108-session pat
 
 97 lesson-set days plus 11 days of check blocks is 108. On the 90-session path, 82 lesson-set days plus 8 days
 of check blocks is 90. The H, T, R and K columns add to 95; the other 2 are The Year Together, which is mixed
-work and is counted on its own line in the table of kinds of day. Stretch totals on the 108-session path: 12,
+work and is counted on its own line in the table of kinds of day. Unit totals on the 108-session path: 12,
 19, 11, 21, 10, 8, 6, 8 and 2. On the 90-session path: 10, 16, 10, 17, 8, 7, 5, 7 and 2.
 
 **The signal device, in more detail.** Criteria the class can measure: the signal is noticed from the back
@@ -364,7 +364,7 @@ written for three situations.
 - **Tier B, one demonstration set.** The teacher or a pair of students runs it at the front; the class
   predicts first, records the data and explains.
 - **Tier C, no materials.** Curio Class publishes, for each investigation, a photo or video run with its real
-  data table, and the stretch's tool where there is one. The class still predicts, reads data and explains.
+  data table, and the unit's tool where there is one. The class still predicts, reads data and explains.
   None of these runs exists yet; each is a piece the course owes.
 
 **Tier C is weaker, and for eight investigations it is much weaker.** These eight are first-hand core, because
@@ -387,13 +387,13 @@ untested: **test before printing.**
   The ranges assume the school already owns what most classrooms have: rulers, metre sticks or tape measures,
   timers or a clock with a second hand, paper, card, tape, scissors, string, books, plastic cups, a few balls
   from the gym closet and a bucket. What usually has to be bought: cells, bulbs or LEDs, flashlights, acrylic
-  mirrors, foil trays, modelling clay, marbles, food dye, celery or cut flowers, sand. Stretches 1, 3, 5 and
+  mirrors, foil trays, modelling clay, marbles, food dye, celery or cut flowers, sand. Units 1, 3, 5 and
   6 can run at no cost from the schoolyard, the recycling bin and the gym closet.
 
 **The investigations.** "Core" marks the eight first-hand core investigations. H is the count of hands-on
-days in the stretch on the 108-session path.
+days in the unit on the 108-session path.
 
-| Stretch | H | Lesson set | Investigation | Core | Tier A: group sets | Tier B: one demonstration set | Tier C: no materials |
+| Unit | H | Lesson set | Investigation | Core | Tier A: group sets | Tier B: one demonstration set | Tier C: no materials |
 |---|---|---|---|---|---|---|---|
 | 1 | 5 | 1.2 | Marble down a ruler ramp at three heights into a paper cup; how far the cup slides, five trials each | | Marbles or small balls, grooved rulers or card ramps, books, paper cups, metre sticks | One ramp at the front; students take turns to release and measure, all record | Photo run and data table; Bowling Lab. No-cost first-hand version: a ball from the gym closet down a propped board into a box |
 | 1 | | 1.3 | Marble into marble; ball into stacked cups | | Marbles, a ruler track, paper cups, a soft ball | One track at the front | Video run; Bowling Lab |
@@ -418,8 +418,8 @@ days in the stretch on the 108-session path.
 | 5 | | 5.3 | Rubbing: chalk or sugar cubes shaken in a jar. Ice: a full, sealed plastic bottle left in a freezer. Wind: dry sand in a box, fanned with a card. Roots: found on the walk | core | Chalk, plastic jars with lids, a plastic bottle, a box or a tray with a lid, dry sand, card | One jar, one bottle, one box | Photo run. No-cost first-hand version: two pieces of chalk or soft rock rubbed together over paper |
 | 6 | 3 | 6.2 | Sand, soil and gravel shaken in a jar of water and left to settle | | Clear plastic jars, sand, soil, gravel | One jar | Photo run over a day. Soil and a jar from the recycling bin cost nothing |
 | 6 | | 6.2 | Layers of modelling clay with small shells or buttons as fossils, cut and read; then the stack pushed from both ends to bend and break it | | Modelling clay in three colours, shells or buttons, a plastic knife | One stack at the front | Photo run. No-cost first-hand version: a stack of folded towels or paper pushed from both ends |
-| 7 | 1 | 7.2 | A clay "mountain" sliced into layers and traced to make a contour map | | Modelling clay from stretch 6, plastic knife, paper | One mountain | Photo run; World Layers Map |
-| 8 | 3 | 8.3 | The stretch 5 tray with a model town: test barriers, channels, raised houses and planted banks under the same small pour, then a large one | core | The stretch 5 kit, craft sticks, clay, sponge, small blocks as houses | One tray; each group owns one plan and the class tests them in turn | Students plan on paper and judge filmed tests; Town Planner: Disaster Ready. This does not meet 3-5-ETS1-3 by itself |
+| 7 | 1 | 7.2 | A clay "mountain" sliced into layers and traced to make a contour map | | Modelling clay from unit 6, plastic knife, paper | One mountain | Photo run; World Layers Map |
+| 8 | 3 | 8.3 | The unit 5 tray with a model town: test barriers, channels, raised houses and planted banks under the same small pour, then a large one | core | The unit 5 kit, craft sticks, clay, sponge, small blocks as houses | One tray; each group owns one plan and the class tests them in turn | Students plan on paper and judge filmed tests; Town Planner: Disaster Ready. This does not meet 3-5-ETS1-3 by itself |
 
 **Notes that rest on memory: test before printing.**
 
@@ -455,26 +455,26 @@ a piece the course owes, and is listed under "What is missing". The notes so far
   before the flowers.
 - The hallway bowling needs a clear lane and a soft or light ball.
 
-Stretches 6 and 7 are the least hands-on. Rock layers and world maps are hard to hold in the hand, and that is
+Units 6 and 7 are the least hands-on. Rock layers and world maps are hard to hold in the hand, and that is
 where the tools and printed photographs and maps carry more of the load.
 
 ## Ties to grade 4 math and ELA
 
-The standards list these connections themselves (source 1), except the line plot row, which is this spine's.
+The standards list these connections themselves (source 1), except the line plot row, which is this scope and sequence's.
 
-| Stretch | Math | ELA |
+| Unit | Math | ELA |
 |---|---|---|
-| 1 | Line plots of slide distances. Science reaches this in week 2, before the math spine teaches 4.MD.B.4, so the plot uses whole centimetres as in grade 3 (3.MD.B.4) | RI.4.3 explain what happened and why; W.4.2 a written explanation |
+| 1 | Line plots of slide distances. Science reaches this in week 2, before the math scope and sequence teaches 4.MD.B.4, so the plot uses whole centimetres as in grade 3 (3.MD.B.4) | RI.4.3 explain what happened and why; W.4.2 a written explanation |
 | 2 | 4.OA.A.3 multistep problems on a materials budget; 4.OA.A.1 "times as many" when comparing energy sources; MP.5 choosing tools | W.4.7 a short research task; W.4.8 notes from experience and sources; RI.4.1, RI.4.9 two sources combined, for 2.7 |
 | 3 | 4.G.A.1 drawing lines; MP.4 a drawn model | RI.4.9 two texts on one topic; SL.4.5 a display to go with a talk |
-| 4 | 4.G.A.1 rays, drawn for light. Science meets rays before the math spine does (math stretch 16), so they are introduced as "a straight path with an arrow". 4.G.A.3 lines of symmetry in leaves and animals | W.4.1 an opinion piece with reasons and evidence, which is the argument for 4-LS1-1; SL.4.5 |
-| 5 | 4.MD.B.4 line plots with halves and quarters of a centimetre, now after the math spine has taught them; 4.MD.A.2 measurement problems. Trays use one unit throughout, because 4.MD.A.1 conversions come later in math | W.4.7, W.4.8 |
+| 4 | 4.G.A.1 rays, drawn for light. Science meets rays before the math scope and sequence does (math unit 16), so they are introduced as "a straight path with an arrow". 4.G.A.3 lines of symmetry in leaves and animals | W.4.1 an opinion piece with reasons and evidence, which is the argument for 4-LS1-1; SL.4.5 |
+| 5 | 4.MD.B.4 line plots with halves and quarters of a centimetre, now after the math scope and sequence has taught them; 4.MD.A.2 measurement problems. Trays use one unit throughout, because 4.MD.A.1 conversions come later in math | W.4.7, W.4.8 |
 | 6 | 4.MD.A.1 relative sizes of units, for thickness of layers; MP.2 | W.4.9 evidence from informational texts; W.4.1 for the argument about two accounts |
 | 7 | 4.MD.A.2 distances on a map scale | RI.4.7 reading maps, charts and diagrams |
 | 8 | 4.OA.A.3 the budget | RI.4.7 and RI.4.9 for the real flood; W.4.1 the argument for one plan |
 
-Each stretch needs a small set of informational texts at grade 4 level from the Reading Room, and its Word
-Wall cards. Neither is matched to a stretch yet. Stretch 2 needs the most: research before design, and the
+Each unit needs a small set of informational texts at grade 4 level from the Reading Room, and its Word
+Wall cards. Neither is matched to a unit yet. Unit 2 needs the most: research before design, and the
 energy sources.
 
 ## The checks
@@ -482,8 +482,8 @@ energy sources.
 - **Start-of-year check, day 1, 20 minutes.** Grade 3 ideas the year leans on (3-PS2-1, 3-PS2-2, 3-LS4-1,
   3-ESS3-1) and one fair-test item (the practice 3-5-ETS1-3 needs). Not graded. It tells the teacher where to
   slow down.
-- **First ideas probe, 10 minutes at the start of each stretch.** A drawing and two questions on the earlier
-  expectations the stretch builds on. It is kept and compared with the end task.
+- **First ideas probe, 10 minutes at the start of each unit.** A drawing and two questions on the earlier
+  expectations the unit builds on. It is kept and compared with the end task.
 - **The daily record is the science notebook and the revised class model.** There is no daily exit question.
   The first draft had one of five minutes a day, which added up to about 450 minutes, close to a tenth of the
   year.
@@ -494,14 +494,14 @@ energy sources.
   memory. Each task asks for a core idea, a practice and a crosscutting concept together, names all three on
   the scoring guide beside each part, and ends with "if many missed this, do that". Where the task is two
   days, the second day is feedback and revising the model or explanation.
-- **Energy resources are checked outside an end task.** Lesson set 2.7 comes after the stretch 2 end task, so
+- **Energy resources are checked outside an end task.** Lesson set 2.7 comes after the unit 2 end task, so
   4-ESS3-1 is checked by the written piece on the last day of 2.7 (day 31), scored with the same kind of
   guide as an end task, and again in Check 1 the next day.
-- **Engineering is checked twice.** 3-5-ETS1-1 and 3-5-ETS1-3 are checked in stretch 2 with the class
-  problem and shared criteria, and again in stretch 8 with less help: each student writes the criteria and
+- **Engineering is checked twice.** 3-5-ETS1-1 and 3-5-ETS1-3 are checked in unit 2 with the class
+  problem and shared criteria, and again in unit 8 with less help: each student writes the criteria and
   constraints and plans the fair test alone.
-- **Cumulative checks 1 to 4.** One session each. Two parts: short items on the stretches since the last check
-  plus a few from earlier, and one fixed task that crosses stretches. Checks 1 to 3 are followed by a respond
+- **Cumulative checks 1 to 4.** One session each. Two parts: short items on the units since the last check
+  plus a few from earlier, and one fixed task that crosses units. Checks 1 to 3 are followed by a respond
   day and a catch-up day. Check 4 is on day 107 so that day 108 can go over it.
 
 With the start-of-year check there are five course-level checks, the number docs/ROADMAP.md asks for. Days
@@ -509,41 +509,41 @@ below are for the 108-session path.
 
 | Day | Check | A three-dimensional task (proposal) | Core idea | Practice | Crosscutting concept |
 |---|---|---|---|---|---|
-| 11 to 12 | Stretch 1 end task | A skateboard rolls into a stack of boxes from two start points. Write two questions the class could test. Predict, then explain the difference from the evidence given | Energy and speed; collisions | Asking questions and predicting; explaining | Energy and matter |
-| 26 to 27 | Stretch 2 end task | As a group: present the device, its test data and one change made after a failure. Alone: trace the energy, start to finish, in a device the student did not build, naming the part that changes it | Energy transfer and conversion; defining and improving designs | Investigating; designing solutions | Energy and matter |
+| 11 to 12 | Unit 1 end task | A skateboard rolls into a stack of boxes from two start points. Write two questions the class could test. Predict, then explain the difference from the evidence given | Energy and speed; collisions | Asking questions and predicting; explaining | Energy and matter |
+| 26 to 27 | Unit 2 end task | As a group: present the device, its test data and one change made after a failure. Alone: trace the energy, start to finish, in a device the student did not build, naming the part that changes it | Energy transfer and conversion; defining and improving designs | Investigating; designing solutions | Energy and matter |
 | 31 | Written piece, lesson set 2.7 | Two short texts on an energy source the class did not study: combine them into a piece on where the energy comes from and what its use does to the land | Energy resources | Obtaining and combining information | Cause and effect |
-| 32 | Check 1 | A wind-up toy that ends in a click: where is the energy at each step, and what one fair test would show it? Then one item on an energy source and what it costs the land | Stretches 1 and 2 | Planning an investigation | Cause and effect |
-| 44 to 45 | Stretch 3 end task | Draw a model of two boat wakes that rock a floating dock differently; then pick the better of two given codes against stated criteria | Wave properties; information by patterns | Modelling; comparing solutions | Patterns |
-| 65 to 66 | Stretch 4 end task | One animal and one plant not studied in class (for example a barn owl and a cactus), each with a data card. For each, argue which structures do which jobs and how they work together, and say whether the evidence on the card is enough. Model how the animal senses, processes, remembers and responds. A short separate item: draw how a person sees an object round a corner with a mirror, and what happens when a card blocks the path | Structure and function; senses; light and seeing | Modelling; argument from evidence | Systems; structure and function; cause and effect |
-| 67 | Check 2 | A lighthouse and a foghorn warn the same ship: compare them as energy transfers and as codes | Stretches 2 to 4 | Explaining | Patterns; energy and matter |
-| 79 | Stretch 5 end task | Two hillside photographs and a data table from a tray test: which slope loses more soil, what is the evidence, what test would settle it. A short separate item on one photograph of a cracked rock: is this weathering or erosion, and what would you look for next | Weathering and erosion, kept apart | Investigating; using data | Cause and effect |
-| 86 to 87 | Stretch 6 end task | A road cut the class has not seen, with fern fossils below, shells above and one place where the layers are bent or broken: explain what changed and in what order, and say which of two given accounts the layers support | Rock layers and fossils; Earth forces | Explaining from evidence; argument | Patterns; stability and change |
-| 93 | Stretch 7 end task | A map of a region not used in class: first put the map data into a table or chart, then describe the pattern of mountains, earthquakes and volcanoes and say where the next is most likely | Patterns of Earth's features | Analyzing data | Patterns |
-| 94 | Check 3 | A river town below a cliff: what the layers say about its past, what the slope says about its future | Stretches 5 to 7, energy again | Explaining; using data | Stability and change |
-| 104 | Stretch 8 end task | A different town and a different hazard from the list of four. Alone and with no shared list: write the criteria and constraints, compare two given plans against them and argue for one, then plan a fair test of it and say what would count as failure | Hazards; defining problems; fair tests | Defining problems; comparing solutions; planning an investigation | Cause and effect |
+| 32 | Check 1 | A wind-up toy that ends in a click: where is the energy at each step, and what one fair test would show it? Then one item on an energy source and what it costs the land | Units 1 and 2 | Planning an investigation | Cause and effect |
+| 44 to 45 | Unit 3 end task | Draw a model of two boat wakes that rock a floating dock differently; then pick the better of two given codes against stated criteria | Wave properties; information by patterns | Modelling; comparing solutions | Patterns |
+| 65 to 66 | Unit 4 end task | One animal and one plant not studied in class (for example a barn owl and a cactus), each with a data card. For each, argue which structures do which jobs and how they work together, and say whether the evidence on the card is enough. Model how the animal senses, processes, remembers and responds. A short separate item: draw how a person sees an object round a corner with a mirror, and what happens when a card blocks the path | Structure and function; senses; light and seeing | Modelling; argument from evidence | Systems; structure and function; cause and effect |
+| 67 | Check 2 | A lighthouse and a foghorn warn the same ship: compare them as energy transfers and as codes | Units 2 to 4 | Explaining | Patterns; energy and matter |
+| 79 | Unit 5 end task | Two hillside photographs and a data table from a tray test: which slope loses more soil, what is the evidence, what test would settle it. A short separate item on one photograph of a cracked rock: is this weathering or erosion, and what would you look for next | Weathering and erosion, kept apart | Investigating; using data | Cause and effect |
+| 86 to 87 | Unit 6 end task | A road cut the class has not seen, with fern fossils below, shells above and one place where the layers are bent or broken: explain what changed and in what order, and say which of two given accounts the layers support | Rock layers and fossils; Earth forces | Explaining from evidence; argument | Patterns; stability and change |
+| 93 | Unit 7 end task | A map of a region not used in class: first put the map data into a table or chart, then describe the pattern of mountains, earthquakes and volcanoes and say where the next is most likely | Patterns of Earth's features | Analyzing data | Patterns |
+| 94 | Check 3 | A river town below a cliff: what the layers say about its past, what the slope says about its future | Units 5 to 7, energy again | Explaining; using data | Stability and change |
+| 104 | Unit 8 end task | A different town and a different hazard from the list of four. Alone and with no shared list: write the criteria and constraints, compare two given plans against them and argue for one, then plan a fair test of it and say what would count as failure | Hazards; defining problems; fair tests | Defining problems; comparing solutions; planning an investigation | Cause and effect |
 | 107 | Check 4 | The whole course, with one task that follows energy from the sun through a solar panel to a lit classroom, and one that reads an unfamiliar landscape. The sun's energy in food and fuel is grade 5 and is not asked | All | Mixed | Mixed |
 
 ## Every expectation accounted for
 
-| Expectation | Stretch | Lesson sets | Checked in | Tool |
+| Expectation | Unit | Lesson sets | Checked in | Tool |
 |---|---|---|---|---|
-| 4-PS3-1 | 1 | 1.2 | Stretch 1 end task | Bowling Lab |
-| 4-PS3-2 | 2 | 2.1 to 2.3 | Stretch 2 end task (the energy trace) and Check 1 | Contraption Workshop (read as shown) |
-| 4-PS3-3 | 1 | 1.3 | Stretch 1 end task | Bowling Lab |
-| 4-PS3-4 | 2 | 2.3, 2.5, 2.6 | Stretch 2 end task | Contraption Workshop |
-| 4-PS4-1 | 3 | 3.1, 3.2 | Stretch 3 end task | Secret Code Signals |
-| 4-PS4-2 | 4 | 4.1, 4.2 | Stretch 4 end task (the mirror item) | How Animals See |
-| 4-PS4-3 | 3 | 3.3 | Stretch 3 end task | Secret Code Signals |
-| 4-LS1-1 | 4 | 4.4, 4.5 | Stretch 4 end task (an animal and a plant) | How Animals See (animals only) |
-| 4-LS1-2 | 4 | 4.1, 4.3 | Stretch 4 end task | How Animals See |
-| 4-ESS1-1 | 6 | 6.1 to 6.3 | Stretch 6 end task | Canyon Reader |
-| 4-ESS2-1 | 5 | 5.1 to 5.3 | Stretch 5 end task | Erosion Table |
-| 4-ESS2-2 | 7 | 7.1, 7.2 | Stretch 7 end task | World Layers Map |
+| 4-PS3-1 | 1 | 1.2 | Unit 1 end task | Bowling Lab |
+| 4-PS3-2 | 2 | 2.1 to 2.3 | Unit 2 end task (the energy trace) and Check 1 | Contraption Workshop (read as shown) |
+| 4-PS3-3 | 1 | 1.3 | Unit 1 end task | Bowling Lab |
+| 4-PS3-4 | 2 | 2.3, 2.5, 2.6 | Unit 2 end task | Contraption Workshop |
+| 4-PS4-1 | 3 | 3.1, 3.2 | Unit 3 end task | Secret Code Signals |
+| 4-PS4-2 | 4 | 4.1, 4.2 | Unit 4 end task (the mirror item) | How Animals See |
+| 4-PS4-3 | 3 | 3.3 | Unit 3 end task | Secret Code Signals |
+| 4-LS1-1 | 4 | 4.4, 4.5 | Unit 4 end task (an animal and a plant) | How Animals See (animals only) |
+| 4-LS1-2 | 4 | 4.1, 4.3 | Unit 4 end task | How Animals See |
+| 4-ESS1-1 | 6 | 6.1 to 6.3 | Unit 6 end task | Canyon Reader |
+| 4-ESS2-1 | 5 | 5.1 to 5.3 | Unit 5 end task | Erosion Table |
+| 4-ESS2-2 | 7 | 7.1, 7.2 | Unit 7 end task | World Layers Map |
 | 4-ESS3-1 | 2 | 2.7 | The 2.7 written piece and Check 1 | None |
-| 4-ESS3-2 | 8 | 8.1 to 8.4 | Stretch 8 end task | Town Planner: Disaster Ready |
-| 3-5-ETS1-1 | 2, 8 | 2.1, 2.4, 8.1 | Stretch 2 and stretch 8 end tasks | Contraption Workshop, Town Planner |
-| 3-5-ETS1-2 | 2, 3, 8 | 2.4, 2.6, 3.3, 8.3, 8.4 | Stretch 2, 3 and 8 end tasks | Contraption Workshop, Secret Code Signals, Town Planner |
-| 3-5-ETS1-3 | 2, 8 | 2.5, 8.3 | Stretch 2 and stretch 8 end tasks | Contraption Workshop, Town Planner |
+| 4-ESS3-2 | 8 | 8.1 to 8.4 | Unit 8 end task | Town Planner: Disaster Ready |
+| 3-5-ETS1-1 | 2, 8 | 2.1, 2.4, 8.1 | Unit 2 and unit 8 end tasks | Contraption Workshop, Town Planner |
+| 3-5-ETS1-2 | 2, 3, 8 | 2.4, 2.6, 3.3, 8.3, 8.4 | Unit 2, 3 and 8 end tasks | Contraption Workshop, Secret Code Signals, Town Planner |
+| 3-5-ETS1-3 | 2, 8 | 2.5, 8.3 | Unit 2 and unit 8 end tasks | Contraption Workshop, Town Planner |
 
 All 14 grade 4 expectations and all 3 engineering expectations have lesson sets and a scored task. None is left
 to a tool alone. The grade 3 to 5 engineering expectations are shared across three grades; this course teaches
@@ -561,14 +561,14 @@ all three in full and does not rely on grades 3 or 5 to finish them.
 - **The tier C runs are owed:** a photo or video run with a real data table for each investigation. None
   exists.
 - **Contraption Workshop no longer matches the design problem.** Its spec is a chain-reaction machine and
-  carries five codes in 35 minutes. The stretch 2 problem is now a signal device with chain reactions as the
+  carries five codes in 35 minutes. The unit 2 problem is now a signal device with chain reactions as the
   extension, so the spec needs a second look as well as the one the shape file calls for.
 - **Four places have no tool at all:** the evidence that energy moves (2.2), circuits (2.3), plant structures
   for 4-LS1-1 (4.5), and energy resources for 4-ESS3-1 (2.7). Town Planner's read of 4-ESS3-1 is practice
   only and the tool is about hazards.
 - **For the ledger.** Many of these expectations have verbs a screen cannot carry: make observations, test,
   design. Under BASELINE rule 21 most science tools should take the role "see why" or "practice", and "taught
-  in full" should come from the stretch, not from the tool.
+  in full" should come from the unit, not from the tool.
 - **The standard text is not wired in, and its licence must be checked first.** data/standards/ngss-pes.txt
   holds codes only. The practices, crosscutting concepts, core idea statements, clarification statements and
   assessment limits are in no data file, so nothing can check a spec or a task against them by script. The
@@ -578,7 +578,7 @@ all three in full and does not rely on grades 3 or 5 to finish them.
   and evidence guide are all rights reserved, so they are summarised in our own words and linked, as
   docs/RUBRIC-MATH-K8.md does; the suggested name is docs/RUBRIC-SCIENCE-K5.md. The EQuIP rubric for science
   lessons and units carries a Creative Commons Attribution licence and can be filed more fully, with
-  attribution. It is the right tool for reading a pilot stretch.
+  attribution. It is the right tool for reading a pilot unit.
 - **The end tasks have not been checked line by line against the NGSS evidence statements.** The review read
   all 14 and its fixes are applied here. The engineering design evidence statements could not be opened by
   anyone.
@@ -586,8 +586,8 @@ all three in full and does not rely on grades 3 or 5 to finish them.
   and graphing. Each needs to be seen in a real task before it is believed.
 - **No science generator or task bank.** The cumulative checks cannot be "built from the generators so they
   can be redrawn" as ROADMAP item 4 asks. The fixed tasks above are proposals with no scoring guide.
-- **The Reading Room has no science text sets matched to stretches.** 4-ESS3-1 is a reading standard in all
-  but name, stretch 3 needs a reading on how phones and computers send information, and stretch 8 needs an
+- **The Reading Room has no science text sets matched to units.** 4-ESS3-1 is a reading standard in all
+  but name, unit 3 needs a reading on how phones and computers send information, and unit 8 needs an
   account of one real flood.
 - **Grades 3 and 5 are not spined.** "Builds on" is true of the standards and not yet of Curio Class. The
   practices and crosscutting concepts owed across grades 3 to 5 cannot be counted until they are.
@@ -598,7 +598,7 @@ all three in full and does not rely on grades 3 or 5 to finish them.
 - **The day counts, the materials costs and the bulb, cell and lamp notes are untested.** No teacher has read
   this, and no investigation has been run.
 - **English learner supports, access notes and family notes** are owed per lesson set and are not started.
-  The stretch 6 teacher page owes the note on deep time.
+  The unit 6 teacher page owes the note on deep time.
 
 ## Least sure of
 
@@ -607,13 +607,13 @@ all three in full and does not rely on grades 3 or 5 to finish them.
    class may still pick the raised weight every time and never use a circuit in its design; the three circuit
    days in 2.3 are what guarantee the content.
 2. **4-ESS3-1 checked by a written piece and a cumulative check, not by an end task.** The review's sequence
-   puts the stretch 2 end task before lesson set 2.7. Moving the end task after 2.7 would join two topics in
+   puts the unit 2 end task before lesson set 2.7. Moving the end task after 2.7 would join two topics in
    one task, which is the fault the move was meant to fix. So the written piece on day 31 is scored like a
-   task. This is this spine's call, not the review's.
-3. **The day counts.** 21 days for stretch 4 and 6 for stretch 7 come from comparing shares with other
+   task. This is this scope and sequence's call, not the review's.
+3. **The day counts.** 21 days for unit 4 and 6 for unit 7 come from comparing shares with other
    programs, not from a classroom. Only a pilot and a grade 3 to 5 teacher can say.
 4. **Which day each extended lesson set gives up.** The review names the 15 lesson sets. The choice of day
-   and the wording of each trade-off are this spine's.
+   and the wording of each trade-off are this scope and sequence's.
 
 ## Sources
 

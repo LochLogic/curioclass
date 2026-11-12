@@ -27,12 +27,12 @@ Day 77's mixed set: the paper path of Road Trip Logbook's Trip ledger, used whil
 same 10 minutes. One a student, alone, on grid paper (1 sheet each) or the place value columns sheet (u09-1/columns.md). The key
 is on the screen from the start; a student checks each answer as soon as it is done, fixes a wrong one in pen,
 and ticks only those right on the first try. The count is the student's own, compared only with their own last
-count; it is not collected or posted. A student who does not finish stops when the end check begins.
+count; it is not collected or posted. A student who does not finish stops when the end-of-unit assessment begins.
 
 Items 1 to 5 are sums, two of different lengths (B shows on 3 and 5) and one that passes into a new place
 (E shows on 2). Items 6 to 10 are differences: 8 has five ungroupings (H), and 9 and 10 cross zeros (I). F can
 show on any difference. Watch the counts as you walk: a student who missed both zeros items is a likely member of
-the I group in the respond half. None of these numbers is on an exit, the end check, Check 2 or the readiness
+the I group in the respond half. None of these numbers is on an exit, the end-of-unit assessment, Check 2 or the readiness
 check.
 
 ## Items

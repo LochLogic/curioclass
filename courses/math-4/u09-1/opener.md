@@ -6,12 +6,12 @@ version: draft 1, not ready, not yet taught
 credit: ours
 ---
 
-# Unit 9.1: The standard algorithm for adding (days 72 to 73)
+# Section 9.1: The standard algorithm for adding (days 72 to 73)
 
 ## The math, for the adult
 
 Standard 4.NBT.B.4, its first part: "Fluently add and subtract multi-digit whole numbers using the standard
-algorithm." This unit adds; unit 9.2 subtracts. It is the grade's one fluency standard, so it is begun here and
+algorithm." This section adds; section 9.2 subtracts. It is the grade's one fluency standard, so it is begun here and
 carried by the daily warm-up to day 150.
 
 **The standard algorithm is expanded form written short.** In grade 3, students added within 1,000 by place
@@ -39,7 +39,7 @@ a method that is understood. No time target is set and no clock is shown.
 
 ## Expanded form beside the algorithm
 
-The model the unit carries, under place names over the columns.
+The model the section carries, under place names over the columns.
 
 - **Day 72.** The teacher shows both, side by side, for 3,746 + 2,538 and 1,895 + 4,368, saying each carry by
   its value. Pairs do two sums both ways, then four- and five-digit sums with the algorithm alone, each small 1
@@ -56,7 +56,7 @@ Expanded form shows where every carry comes from: the 14 ones are on the page be
 small 1. Putting it beside the algorithm on the same sum, under the same place names, lets a student match each
 step. Taking it away on day 73 is the point: the algorithm is the fast form, and the estimate takes over as the
 check. No tool fits days 72 and 73. Road Trip Logbook (spec only) asks only grade 3 sizes and mixes in
-subtracting, so the unit runs on paper with a key.
+subtracting, so the section runs on paper with a key.
 
 ## The errors to expect, in plain words
 
@@ -68,7 +68,7 @@ subtracting, so the unit runs on paper with a key.
 | D | Write a two-digit sum in one column | A place is not seen as holding one digit | The same sum in expanded form |
 | E | Lose the last carry into a new place | Stops at the longer number's last digit | Estimate first: the sum must pass the next place |
 
-The day each wrong example is shown: A, C and D on day 72, B and E on day 73. B comes back in unit 9.2, on a
+The day each wrong example is shown: A, C and D on day 72, B and E on day 73. B comes back in section 9.2, on a
 difference. Each day's teacher page names the wrong answer that signals each error on that day's exit.
 
 ## The reteach (readiness items 1 and 2)
@@ -87,7 +87,7 @@ Otherwise run it with the students who missed it during day 73's warm-up, and th
 **Item 2, a number in digits.** Read "three hundred six thousand" and write 306 before the comma; read "forty-two"
 and fill the last three places, a zero in the hundreds. Students read two more numbers by their comma groups.
 
-## Supplies for the unit
+## Supplies for the section
 
 - Per student: the place value columns sheet on day 72 (and for anyone who wants it on day 73); grid paper on
   day 73; a pencil.
@@ -100,12 +100,12 @@ Sum, regroup, estimate, and the place names, each taught on the worked sum at fi
 "carry"; both words are welcome. Frame: "__ ones is __ ten and __ ones." A student may say a carry in a home
 language first, then in the frame.
 
-## How the stretch is checked
+## How the unit is checked
 
 Readiness: four items, two on day 71 and two on day 74 (readiness.md). Exits: one each on days 72 to 76, on
-paper, and E79. Written tasks on days 73 and 76, judged with look-fors. End check: day 77, six items, unaided;
-9.1a, 9.1b and 9.1c are this unit's. Check 2 on day 78 holds two more (C2.1 and C2.2). All of it goes on one
-record sheet for the stretch (record.md), by error letter. The family note (family.md) goes home on day 72.
+paper, and E79. Written tasks on days 73 and 76, judged with look-fors. End-of-unit assessment: day 77, six items, unaided;
+9.1a, 9.1b and 9.1c are this section's. Check 2 on day 78 holds two more (C2.1 and C2.2). All of it goes on one
+record sheet for the unit (record.md), by error letter. The family note (family.md) goes home on day 72.
 
 ## Credit
 

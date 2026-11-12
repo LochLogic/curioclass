@@ -6,7 +6,7 @@ version: draft 1, not yet sent; the Spanish needs a qualified reader before it g
 credit: ours
 ---
 
-# Unit 11.1 family note: area and perimeter
+# Section 11.1 family note: area and perimeter
 
 ## English
 
