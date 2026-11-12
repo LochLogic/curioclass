@@ -472,3 +472,24 @@ s01-P1-4,no 1 by 15,,,A,
 s01-P1-4,3 by 5 and 5 by 3 drawn as two,5*3,15,C,
 s01-P1-4,2 rows of 7 with 1 tile on the end,2*7+1,15,,not a rectangle; 15 tiles cannot make 2 equal rows
 s01-C1-1,"16: 1 by 16, 2 by 8, 4 by 4",1*16 | 2*8 | 4*4,16 | 16 | 16,,"three rectangles, not two"
+s01-W2-2,443,,,,took the smaller digit from the larger in each place; regroup instead
+s01-W2-4,437,,,,took the smaller digit from the larger in each place; regroup instead
+s01-T2-1,"9 × 4 or 12 × 3 added, or 6 × 6 written twice",,,C,
+s01-T2-1,no 1 × 36,,,A,
+s01-T2-1,no 2 × 18 or no 3 × 12,,,B,not in the times tables; check on grid paper
+s01-T2-2,6 × 5 added as a fifth pair,6*5,30,C,
+s01-T2-2,no 1 × 30,,,A,
+s01-T2-2,no 2 × 15,,,B,not in the times tables; check on grid paper
+s01-T2-3,only 7 × 7,,,A,
+s01-T2-3,keeps trying rows past 7,,,C,7 × 7 is the turn: a square turned is itself
+s01-T2-4,10 × 6 or 12 × 5 added,,,C,
+s01-T2-4,no 1 × 60,,,A,
+s01-T2-4,"no 3 × 20, 4 × 15 or 5 × 12",,,B,not in the times tables; check on grid paper
+s01-F2-1,1 × 20 still missing,,,A,start from 1 row
+s01-F2-1,5 × 4 added as a fourth pair,5*4,20,C,
+s01-F2-2,six pairs: only one turned pair crossed out,,,C,
+s01-F2-2,6 × 6 crossed out too,,,,a square is a rectangle; 6 × 6 is a pair
+s01-P2-1,8 × 5 or 10 × 4 added,,,C,
+s01-P2-1,no 1 × 40,,,A,
+s01-P2-1,no 2 × 20,,,B,not in the times tables
+s01-C2-1,44 or 45,,,,"three pairs each; a pair of 48 was missed, or the search stopped early"
