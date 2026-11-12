@@ -275,6 +275,16 @@ s09-X75,exit,75,9,9.2,1,4.NBT.B.4,b,,key,"""Estimate first, then subtract: 524,3
 s09-X76,exit,76,9,9.2,1,4.NBT.B.4,b,,key,"""Subtract 40,060 − 17,384. Then add to check your answer.""","22,676; 22,676 + 17,384 = 40,060",40060-17384 | 22676+17384,22676 | 40060,paper,,,,
 s09-X79,exit,79,9,respond-2,1,4.NBT.B.4,b,,key,"""Subtract 70,203 − 4,587. Then add to check your answer.""","65,616; 65,616 + 4,587 = 70,203",70203-4587 | 65616+4587,65616 | 70203,paper,,,,
 s09-W73,practice,73,9,9.1,1,4.NBT.B.4,a,MP.6,teacher,"Tell a third grader, in two sentences, what the small 1 means.","For example: when a column makes ten or more, ten of that place are traded for one of the next place. The small 1 is that one, so over the tens it is one ten.",,,,,"names the unit the small 1 stands for (a ten, a hundred)|says ten of one unit were traded for one of the next",,"meets: When a column makes ten or more, ten of that place make one of the next place. So the small 1 over the tens is one ten.|partly: The small 1 is a ten. (Look-for 1 only: no trade said.)|not: You carry the 1 because the number is too big. (Neither look-for: error C.)"
+s09-T77-1,tool,77,9,9.2,1,4.NBT.B.4,a,MP.6,key,"Add: 37,295 + 48,617","85,912",37295+48617,85912,,,,,
+s09-T77-2,tool,77,9,9.2,2,4.NBT.B.4,a,MP.6,key,"Add: 5,846 + 7,379","13,225",5846+7379,13225,,,,,
+s09-T77-3,tool,77,9,9.2,3,4.NBT.B.4,a,MP.6,key,"Add: 263,580 + 94,763","358,343",263580+94763,358343,,,,,
+s09-T77-4,tool,77,9,9.2,4,4.NBT.B.4,a,MP.6,key,"Add: 708,469 + 186,754","895,223",708469+186754,895223,,,,,
+s09-T77-5,tool,77,9,9.2,5,4.NBT.B.4,a,MP.6,key,"Add: 49,387 + 6,958","56,345",49387+6958,56345,,,,,
+s09-T77-6,tool,77,9,9.2,6,4.NBT.B.4,b,MP.6,key,"Subtract: 8,153 − 3,627","4,526",8153-3627,4526,,,,,
+s09-T77-7,tool,77,9,9.2,7,4.NBT.B.4,b,MP.6,key,"Subtract: 61,742 − 25,386","36,356",61742-25386,36356,,,,,
+s09-T77-8,tool,77,9,9.2,8,4.NBT.B.4,b,MP.6,key,"Subtract: 437,215 − 168,549","268,666",437215-168549,268666,,,,,
+s09-T77-9,tool,77,9,9.2,9,4.NBT.B.4,b,MP.6,key,"Subtract: 7,003 − 2,465","4,538",7003-2465,4538,,,,,
+s09-T77-10,tool,77,9,9.2,10,4.NBT.B.4,b,MP.6,key,"Subtract: 500,060 − 236,847","263,213",500060-236847,263213,,,,,
 s09-W76,practice,76,9,9.2,1,4.NBT.B.4,b,MP.8,teacher,"Tell a friend, in two sentences, why the zeros in 6,005 become 9s.","For example: there are no hundreds or tens to ungroup, so one thousand is ungrouped into ten hundreds, one of those into ten tens, and one of those into ten ones. Each zero place passes one on and keeps nine.",,,,,says one thousand was ungrouped|says each zero place passed one on and kept nine,,"meets: There are no hundreds or tens, so I ungroup one thousand. It goes to 10 hundreds, then 10 tens, then 10 ones, and each place gives one away and keeps 9.|partly: You cross out the 6 and make it 5, and the zeros turn into 9s. (Look-for 1 only, said as marks: ask what the thousand became.)|not: The zeros become 10s because you borrow. (Error I.)"
 s09-C77-1,challenge,77,9,9.2,1,4.NBT.B.4,a,MP.6,key,"Add the three numbers: 148,276 + 39,508 + 205,617.","393,401",148276+39508+205617,393401,,,,,
 s09-C77-2,challenge,77,9,9.2,2,4.NBT.B.4,b,MP.6,key,"Find 504,030 − 268,457. Show the adding that checks it.","235,573; 235,573 + 268,457 = 504,030",504030-268457 | 235573+268457,235573 | 504030,,,,,
