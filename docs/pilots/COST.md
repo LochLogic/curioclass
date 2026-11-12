@@ -75,6 +75,13 @@ million (days 72 to 79; day 78 is Check 2, which waits on stretches 6 to 8).
 | Stretch 1 plan as data | 250,696 by one agent (68 tool uses) | 0.17 (10.2 min) | 0 | 0 by the script after | Prose plan existed |
 | Stretch 9 plan as data | 217,505 by one agent (42 tool uses) | 0.17 (10.3 min) | 0 | 0 by the script after | plan.py: check-2 and respond-2 units |
 | Merge of both into main | not measured (main session) | | 0 | 1 stale duplicate day row; 2 hand-backs at the door moved to pencils down | The new tool-rows gate flags days 2 to 5 and 77 until their writers add T rows |
+| Day 1 lesson | 201,459 by its agent (35 tool uses) | 0.10 (6.2 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
+| Day 2 lesson | 185,118 by its agent (54 tool uses) | 0.12 (7.3 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
+| Day 3 lesson | 231,586 by its agent (53 tool uses) | 0.16 (9.6 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
+| Day 4 lesson | 218,792 by its agent (65 tool uses) | 0.16 (9.9 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
+| Day 5 lesson | 212,163 by its agent (47 tool uses) | 0.17 (10.4 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
+| Day 6 lesson | 148,862 by its agent (35 tool uses) | 0.07 (3.9 min), all six in parallel | 0 | 0 by the scripts at merge | Teaching from the shared brief with the 13 expert-read days' lessons |
+| Shared pieces (readiness, two openers, record, rows table, day 3 practice sheet, 1 to 30 chart, family note) | 208,162 by one agent (92 tool uses) | 0.18 (10.7 min) | 0 | 0 by the scripts | lesson.py gained piece options (item lists, written columns, fact blanks) |
 
 ## Grade 6 ELA, stretch 2, five pilot days
 
