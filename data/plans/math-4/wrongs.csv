@@ -384,8 +384,8 @@ s01-E3,"""yes"" for 6: it ends in 6, or it is even",,,E,
 s01-E4,93 prime,,,F,
 s01-E4,71 or 53 composite with no pair,,,,a guess
 s01-E4,1 × 94 given as the proof,,,,every number has 1 × itself, so it proves nothing; prime means exactly two factors
-s01-E5,agrees with Ana,,,F,
-s01-E5,"""no"" with no pair",,,,"a guess, or a size rule; ask for the pair"
+s01-E5v2,agrees with Ana,,,F,
+s01-E5v2,"""no"" with no pair",,,,"a guess, or a size rule; ask for the pair"
 s01-E6,"""No, she must try up to 35""",,,C,
 s01-E6,"""yes, there are only two"", with no reason",,,,"a count, not a reason; ask what happens after 7"
 s01-X1,only 2 by 5,,,A,
