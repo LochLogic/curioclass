@@ -90,6 +90,13 @@ million (days 72 to 79; day 78 is Check 2, which waits on stretches 6 to 8).
 | Day 76 lesson | 160,528 by its agent (38 tool uses) | 0.08 (4.9 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
 | Day 77 lesson | 160,840 by its agent (44 tool uses) | 0.09 (5.1 min), all six in parallel | 0 | 0 by the scripts at merge; 1 hand-back fixed at merge (day 77) | |
 | Stretch 9 shared pieces (readiness, two openers, record, column sheet, day 77 mixed set, family note) | 198,774 by one agent (61 tool uses) | 0.12 (7.2 min) | 0 | 0 by the scripts | |
+| Stretch 9 writer-flagged fix pass | 193,044 by one agent (69 tool uses) | 0.10 (6.3 min) | 0 | writer flags fixed (clean stems as v2 ids, day 74 hand-off row, warm-up ids, check screens) | |
+| Stretch 1 cheap reads, six days | 646,492 (mean 107,700, 98,000 to 127,000) | about 0.05 each, in parallel | 0 | 67 | Smaller model, docs/agents/CHEAP-READ.md |
+| Stretch 1 expert reads, six days | 1,131,349 (mean 188,600, 178,000 to 199,000) | about 0.11 each, in parallel | 0 | 47 the cheap read missed (31 expert only) | |
+| Stretch 9 cheap reads, six days | 651,910 (mean 108,700, 97,000 to 131,000) | about 0.04 each, in parallel | 0 | 65 | |
+| Stretch 9 expert reads, six days | 1,113,524 (mean 185,600, 170,000 to 196,000) | about 0.12 each, in parallel | 0 | 42 the cheap read missed (18 expert only) | |
+| Stretch 1 reads fix pass | 95,452 by one agent (235 tool uses) | 0.54 (32.4 min) | 0 | 108 logged: 93 fixed, 2 open, 13 rejected | 2 new gates; 9 by 9 table and 1 to 100 chart pieces. Token count looks low for 235 tool uses; as reported |
+| Stretch 9 reads fix pass | 204,408 by one agent (246 tool uses) | 0.60 (36.3 min) | 0 | 104 logged: 95 fixed, 1 open, 8 rejected | 6 new gates or notes; `cols` display figure |
 
 ## Grade 6 ELA, stretch 2, five pilot days
 

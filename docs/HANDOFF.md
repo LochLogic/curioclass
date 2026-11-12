@@ -56,11 +56,17 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
      to be copied to docs/agents when first used).
    - **The 11.1 teacher-read pack** is `build/pilot/math-4-u11-1-teacher-read.pdf` (57 pages), sent to Cory
      2026-11-12 for a teacher.
-   - **Now: stretches 1 and 9.** Both are in data (merged 2026-11-12). Stretch 1 (days 1 to 6): one writer per day
-     plus a shared-pieces agent running; then the writer-flagged fixes, the cheap read and the full expert read on
-     every day. Stretch 9 (days 72 to 79) next, the same way, days 72 to 77 only: day 78 is Check 2, which needs
-     items from stretches 6 to 8 (frozen), and day 79 responds to it. The tool-rows gate flags days 2 to 5 and 77
-     until their writers add T rows. Costs go in COST.md.
+   - **Done 2026-11-12: stretches 1 and 9** (days 1 to 6 in `courses/math-4/u01-1..2`; days 72 to 77 in
+     `u09-1..2`). Each day had a writer, a cheap focused read ([agents/CHEAP-READ.md](agents/CHEAP-READ.md)) and
+     then a full expert read (docs/reviews/cheap-d0NN and day-0NN-2026-11-12.md). 212 ledger rows: 188 fixed, 3
+     open, 21 rejected on the expert's reasons. Open: day 78's writer gives Check 2 item C2.1 a sum that passes into a
+     new place (error E); readiness item 3 has no blank-grid figure yet; the Egg Carton Factory spec card still
+     lists 31 and 51 (tool owner). New pieces: 9 by 9 table, 1 to 100 chart, a `cols` display figure. Step 3 is not
+     earned: the expert still found 3 to 5 a day that only an expert sees (REVIEW-CADENCE.md). Days 78 and 79 wait
+     on stretches 6 to 8. Briefs and read costs: `pilots/s01-s09-reads/`.
+   - **Next, by Cory 2026-11-12: a discussion before anything is written** on two layers of the user side: inside
+     the lesson (what a teacher sees on a given day) and the site (what a first-time visitor, for example a
+     homeschool parent, sees). Open question for that talk: the lessons are written for a classroom teacher.
    - Still owed: the Spanish family note needs a qualified reader; the module has no Word Wall cards of its own
      (area, perimeter, square unit, formula, length, width exist under other modules), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts
