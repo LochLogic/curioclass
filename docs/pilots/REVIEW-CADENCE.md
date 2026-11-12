@@ -43,5 +43,32 @@ Not a full expert read on every day forever, and not spot checks yet. Three step
 day rises. The ledger (`python -X utf8 scripts/plan.py defects`) counts findings by reader, so it shows which read is
 earning its cost.
 
+## Step 2, measured: stretch 10 (days 80 to 88), read 2026-11-12
+
+| | Unit 11.1 (4 days) | Stretch 10 (9 days) |
+|---|---|---|
+| Findings per day | 12.5 | 9.7 (87 in all) |
+| In the process layer | 70% | 56% (49) |
+| A script could catch it | 30% | 20% (17) |
+| A cheap focused read could catch it | 48% | 57% (50) |
+| Only an expert caught it, per day | 2.75 | 2.2 (20 in all) |
+| Same kind as an 11.1 finding | not measured | 70% (61 of 87) |
+| Tokens per read | mean 170,500 | mean 178,100 (158,824 to 211,259) |
+
+Findings fell by a fifth and script-catchable ones fell most, so the new gates worked. But neither condition for
+step 3 holds: 7 in 10 findings repeat a kind already seen, and expert-only findings are still above two a day.
+
+**Why the repeats.** The 11.1 lessons went into the day writers' brief as a list of "do not repeat these". The
+writers read it and still repeated the kinds (a Tomorrow line that the next day does not keep, cue words, pages
+that do not fit, wrong-answer rows missing). A warning in a brief is weaker than a gate, and most repeats are not
+mechanical enough to gate: they need someone to look across two files at once (this day and the next, the key and
+the items, the sheet and the minutes). That is the cheap focused read.
+
+**What changes for stretches 9 and 1.** Every script-catchable finding becomes a gate (the fix pass does this).
+Then each day gets a cheap focused read before the expert read: hand-offs both ways, page fit and blanks, the key
+against items.csv and wrongs.csv, and the brief's repeat list as a checklist. The expert read still runs on every
+day (still step 2), and it now measures what the cheap read missed. If the expert then finds about one per day or
+fewer that the cheap read could not, drop to step 3 for the next unit.
+
 This is the strategic review's quality plan (cold reads on every unit, a second read on a one-in-five sample, a
 defect ledger per reader) made concrete for lesson days.

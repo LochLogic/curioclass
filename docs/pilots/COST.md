@@ -57,6 +57,9 @@ Built 2026-11-12, after the four 11.1 day reads were folded in. Full expert read
 | Day 88 lesson | 140,555 by its agent (22 tool uses) | 0.07 (4.1 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
 | Shared pieces (readiness, three openers, record, strip sheet, family note) | 165,181 by one agent (63 tool uses) | 0.17 (10.2 min) | 0 | 0 by the scripts | Run alongside the nine days |
 | Merge of the nine days | not measured (main session, small) | | 0 | 2 duplicate wrong-answer rows, removed | |
+| Writer-flagged fix pass (lesson.py byte-stable PDFs, sketch gate, check screen, and others) | 96,200 by one agent (97 tool uses) | 0.27 (15.9 min) | 0 | 13 fixed, found by the day writers | Before the expert reads |
+| Expert cold reads, days 80 to 88 | 173,197 / 164,160 / 197,136 / 184,064 / 160,803 / 178,123 / 158,824 / 175,657 / 211,259; mean 178,100 | 0.09 to 0.12 each (5.2 to 7.1 min), run in parallel | 0 | 87 in all (10 / 7 / 12 / 10 / 7 / 9 / 10 / 11 / 11); 56% process layer; 61 repeat an 11.1 kind; none for Cory | Reports in docs/reviews/day-080 to 088-2026-11-12.md; analysis in REVIEW-CADENCE.md |
+| Expert fix pass | | | 0 | | Running |
 
 **For estimates.** Nine days cost 140,555 to 184,931 tokens each, mean 169,200, up from 131,700 in unit 11.1: the brief now carries
 the 11.1 lessons and the gates are stricter, so agents spend more turns passing them. A stretch's shared pieces cost
