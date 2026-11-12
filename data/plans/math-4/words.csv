@@ -2,3 +2,6 @@ pattern,use,reason
 "^(?!.*\b(?:goat|dog|chicken) pen\b).*\bpen\b",goat pen or dog pen,a bare pen reads as a writing pen (expert day 92)
 "\b(?:dog|chicken|goat) run\b",yard,a run is not a word fourth graders know for an enclosure (expert day 92)
 \btimes more than\b,"times as many as, or times as much as","unclear in everyday English; talked about once on day 83, never asked (s10 limits, Prog. p. 44)"
+\bmultipl(?:y|ying|ied) (?:it |both |them )?by 1\b|\bby n/n\b,each part cut into n,"never ""multiplying by 1"": it needs a fraction times a fraction, grade 5 (s03 limits; Prog. p. 150 (144))"
+\bsimplest form\b|\blowest terms\b|\bsimplify\b,a name with smaller numbers,no simplest form in grade 4 (s03 limits)
+\bleast common (?:denominator|multiple)\b,a common denominator,no least common denominator is asked (s03 limits; Prog. p. 150 (144))

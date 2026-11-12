@@ -98,6 +98,14 @@ million (days 72 to 79; day 78 is Check 2, which waits on units 6 to 8).
 | Unit 1 reads fix pass | 95,452 by one agent (235 tool uses) | 0.54 (32.4 min) | 0 | 108 logged: 93 fixed, 2 open, 13 rejected | 2 new gates; 9 by 9 table and 1 to 100 chart pieces. Token count looks low for 235 tool uses; as reported |
 | Unit 9 reads fix pass | 204,408 by one agent (246 tool uses) | 0.60 (36.3 min) | 0 | 104 logged: 95 fixed, 1 open, 8 rejected | 6 new gates or notes; `cols` display figure |
 
+## Grade 4 math, unit 3 (equivalent fractions and comparing, days 10 to 24)
+
+Started 2026-11-12. The fifth unit into data, and the first on fractions.
+
+| Piece | Tokens | Wall hours | Owner minutes | Defects found, by read | Notes |
+|---|---|---|---|---|---|
+| Plan as data (s03.md and u03 files into the CSVs) | about 150,000 by one agent (estimate; 36 tool uses) | 0.25 (about 15 min) | 0 | 0 by the script after; 3 no-reuse false positives on the way, fixed in plan.py | Prose plan existed. 7 parts, 15 days, 30 items (4 readiness, 7 unit assessment, 14 exits, 5 written tasks), 66 wrong answers, 11 errors, 3 word rules. plan.py reads a fraction as one number and holds a fraction item against each clause of a day row |
+
 ## Grade 6 ELA, unit 2, five pilot days
 
 Not started. Planning pieces so far (rubric page, approach page, rights list): tokens not measured.

@@ -162,7 +162,8 @@ def numbers(text):
     t = re.sub(r'\b(?:MP|E|day|Day|unit|section|lesson|item|items)\.? ?\d+', ' ', text)
     t = re.sub(r'\b\d+ min\b', ' ', t)   # minutes in a day row are time, not taught numbers
     t = re.sub(r'\((?:a|b|c|d|e|f)\)', ' ', t)
-    return frozenset(re.findall(r'\d+(?: \d+/\d+)?(?:,\d{3})*', t))
+    # a fraction is one number (unit 3: 2/3 is not the numbers 2 and 3); a mixed number stays one too
+    return frozenset(re.findall(r'\d+(?: \d+/\d+|/\d+)?(?:,\d{3})*', t))
 
 
 
@@ -412,10 +413,15 @@ def check(course):
         # lesson-day rows (docs/courses/LESSON-DAY.md, rule 3): worked examples, tool notes, fixes, practice
         taught += [(i['item_id'], numbers(i['stem'])) for i in items if i['stretch'] == s and i['check'] in LESSON_KINDS]
         asked = [(i['item_id'], numbers(i['stem'])) for i in items if i['stretch'] == s and i['check'] in ('end', 'exit')]
+        # a fraction item is held to each taught example on a day, one clause at a time (unit 3: a day row names a
+        # dozen fractions, and rule 4 forbids reusing a taught pair, not two fractions met in different examples)
+        clauses = [('day %s' % d['day'], numbers(c)) for d in days if d['stretch'] == s
+                   for c in re.split(r'[;:]\s|\.\s', d['opens'] + '; ' + d['by_hand'])]
+        taught_f = [t for t in taught if not t[0].startswith('day ')] + clauses
         for k, (a, na) in enumerate(asked):
             if len(na) < 2:
                 continue
-            for b, nb in taught:
+            for b, nb in (taught_f if any('/' in x for x in na) else taught):
                 if len(nb) >= 2 and na <= nb:
                     fails.append('%s reuses the numbers of %s: %s' % (a, b, ', '.join(sorted(na))))
             for b, nb in asked[k + 1:]:

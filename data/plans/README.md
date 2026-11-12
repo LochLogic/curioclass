@@ -59,6 +59,7 @@ their numbers. `python -X utf8 scripts/lesson.py check` gates the day files in `
 print pages. Four optional item columns serve lesson days (draft 2 of the template): `path` (an exit's `tool`
 or `paper`), `figure` (a labelled shape for the display, `rect w=7 l=? A=63 u=ft`), `steps` (worked steps split
 by `|`) and `source` (the credit of an adapted item; CC BY, CC0 or public domain with a link, or the gate fails).
-Units 1, 2, 3, 9 and 10 are still prose only;
+Units 1, 3, 9 and 10 are in data too (unit 3 on 2026-11-12); unit 2 is still prose only, apart from its
+readiness rows;
 each moves into data when it is next opened. 
 ELA will add `texts.csv`, `questions.csv` and `words.csv` per course (Cory's yes, 2026-11-12); not built yet, and the columns are fixed when the first ELA pilot plan is written.
