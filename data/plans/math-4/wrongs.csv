@@ -853,3 +853,17 @@ s03-F17-2,4/10 > 1/2,,,D,the wrong answer shown
 s03-P17-2,30/100 or 2/12 sorted as more than 1/2,,,D,bigger numbers read as a bigger fraction
 s03-P17-3,>,,,D,35 and 100 are bigger than 4 and 5
 s03-P17-4,<,,,D,45 and 100 are bigger than 9 and 12
+s03-P18-1,7,7,7,A,one number kept
+s03-P18-1,16,7+(12-3),16,B,added 9 to both
+s03-F18-1,5/6 = 7/8,,,I,the wrong answer shown
+s03-F18-2,2/3 > 5/6,,,J,the wrong answer shown
+s03-P18-2,<,,,D,9 and 12 are bigger
+s03-P18-3,>,,,D,8 is bigger than 3
+s03-P18-4,<,,,D,10 is bigger than 8
+s03-P18-5,<,,,D,the same-numerator case: 12 is bigger than 5
+s03-P18-6,=,,,I,each one part short
+s03-P18-6,<,,,J,thirds are bigger pieces
+s03-P18-7,=,,,I,each one part short
+s03-P18-7,>,,,J,halves are bigger pieces
+s03-C18-1,=,,,I,each one part more than 1
+s03-C18-1,<,,,D,13 and 12 are bigger
