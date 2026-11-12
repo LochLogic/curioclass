@@ -457,3 +457,24 @@ s09-X79,"74,384",4+8*10+3*100+4*1000+7*10000,74384,F,
 s09-X79,"24,333",70203-45870,24333,B,
 s09-W73,"""it is a 1""",,,C,
 s09-W76,"""the zeros become 10s""",,,I,
+s01-W2-2,443,,,,took the smaller digit from the larger in each place; regroup instead
+s01-W2-4,437,,,,took the smaller digit from the larger in each place; regroup instead
+s01-T2-1,"9 × 4 or 12 × 3 added, or 6 × 6 written twice",,,C,
+s01-T2-1,no 1 × 36,,,A,
+s01-T2-1,no 2 × 18 or no 3 × 12,,,B,not in the times tables; check on grid paper
+s01-T2-2,6 × 5 added as a fifth pair,6*5,30,C,
+s01-T2-2,no 1 × 30,,,A,
+s01-T2-2,no 2 × 15,,,B,not in the times tables; check on grid paper
+s01-T2-3,only 7 × 7,,,A,
+s01-T2-3,keeps trying rows past 7,,,C,7 × 7 is the turn: a square turned is itself
+s01-T2-4,10 × 6 or 12 × 5 added,,,C,
+s01-T2-4,no 1 × 60,,,A,
+s01-T2-4,"no 3 × 20, 4 × 15 or 5 × 12",,,B,not in the times tables; check on grid paper
+s01-F2-1,1 × 20 still missing,,,A,start from 1 row
+s01-F2-1,5 × 4 added as a fourth pair,5*4,20,C,
+s01-F2-2,six pairs: only one turned pair crossed out,,,C,
+s01-F2-2,6 × 6 crossed out too,,,,a square is a rectangle; 6 × 6 is a pair
+s01-P2-1,8 × 5 or 10 × 4 added,,,C,
+s01-P2-1,no 1 × 40,,,A,
+s01-P2-1,no 2 × 20,,,B,not in the times tables
+s01-C2-1,44 or 45,,,,"three pairs each; a pair of 48 was missed, or the search stopped early"
