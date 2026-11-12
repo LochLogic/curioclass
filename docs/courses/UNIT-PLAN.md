@@ -205,11 +205,11 @@ Count words, not pages. A page depends on the screen.
 
 Decided by Cory, 2026-11-11 (Desk card q-plans-4d-1). These replace the first caps (see "Decided").
 
-- **Unit plan:** 1,000 words, not counting fields 3 (checks), 4 (errors) and 6 (days).
-- **Stretch sheet:** 800 words, not counting its check tables and error register (fields 4, 5 and 6).
+- **Unit plan:** 1,250 words, not counting fields 3 (checks), 4 (errors) and 6 (days).
+- **Stretch sheet:** 1,250 words, not counting its check tables and error register (fields 4, 5 and 6).
+  (Both raised from 1,000 and 800 by Cory later on 2026-11-11, after the stretch 3 and 10 files ran over.)
 - **One-unit stretch, one merged document:** 1,800 words, not counting checks, errors and days (stretch
-  fields 4, 5 and 6, and U3, U4 and U6). **Proposed, waiting for Cory's yes.** It is the two caps above added
-  together, with the same fields left out.
+  fields 4, 5 and 6, and U3, U4 and U6). Decided by Cory, 2026-11-11, in chat ("1,800 words is fine").
 - **Tool gaps and spec asks** do not sit in a sheet or a plan, so they do not count. They go in the course's
   TOOL-ASKS.md (rule 10).
 
@@ -411,9 +411,9 @@ others; its verdict follows each.
 The caps were looked at again after stretches 1, 2 and 3 were written. Cory's answers that change this page:
 
 - **Word caps.** A unit plan is 1,000 words not counting its checks, errors and days fields (3, 4 and 6). A
-  stretch sheet is 800 words not counting its check tables and error register (fields 4, 5 and 6). The cap
-  for the merged one-unit document was not on the card: 1,800 words by the same logic is **proposed, waiting
-  for Cory's yes** (see "Length").
+  stretch sheet is 800 words not counting its check tables and error register (fields 4, 5 and 6). Later the
+  same day Cory raised both to 1,250 ("the other files should get their cap raised again to 1250 words") and
+  set the merged one-unit document at 1,800 ("1,800 words is fine").
 - **Tool gaps move out.** Tool gaps and spec asks no longer sit in the sheets or plans. They go in one
   tool-asks file for each course, `docs/courses/<course>/TOOL-ASKS.md`. A sheet's tools field keeps only the
   verdict and a link (rule 10; stretch field 8; unit field 5).

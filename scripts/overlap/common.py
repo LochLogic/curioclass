@@ -37,8 +37,11 @@ def load(after=False):
     """Rows from tags.csv joined to tools-concepts.csv. after=True applies the new tags and titles in decisions_src.py."""
     concepts = {r['tool_id']: r for r in csv.DictReader(io.open(os.path.join(ROOT, 'data', 'tools-concepts.csv'), encoding='utf-8'))}
     rows = []
+    gone = []
     for r in csv.DictReader(io.open(os.path.join(OUT, 'tags.csv'), encoding='utf-8')):
         r = dict(r)
+        if r['tool_id'] not in concepts:      # tagged earlier, since retired or renamed in tools-concepts.csv
+            gone.append(r['tool_id']); continue
         r['bands'] = bands(r['band'])
         r['grade'] = concepts[r['tool_id']]['grade']
         r['module_id'] = concepts[r['tool_id']]['module_id']
@@ -46,6 +49,8 @@ def load(after=False):
         r['setting_group'] = coarse(r['setting_group'])
         r['changed'] = False
         rows.append(r)
+    if gone:
+        print('note: %d tagged tools are no longer in data/tools-concepts.csv and were skipped: %s' % (len(gone), ', '.join(gone)), file=sys.stderr)
     if after:
         from decisions_src import D
         by = {r['tool_id']: r for r in rows}

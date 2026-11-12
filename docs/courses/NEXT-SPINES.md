@@ -145,7 +145,7 @@ Tell Cory before starting stretches, so two chats are not planning the same stre
 - [ ] The start-of-year check (day 1). The spine says what it covers; it must carry stretch 1's three readiness
       items (docs/courses/math-4/s01.md). Written to the check rules in docs/courses/UNIT-PLAN.md.
 - [ ] Stretch 4: docs/courses/math-4/s04.md and its unit plans. Then 5, 6, 7, 8, one stretch at a time, each per
-      docs/courses/UNIT-PLAN.md (word caps 1,000 and 800; tool asks go in docs/courses/math-4/TOOL-ASKS.md), with a
+      docs/courses/UNIT-PLAN.md (word caps 1,250 for a unit plan and for a stretch sheet, 1,800 for a one-unit stretch; tool asks go in docs/courses/math-4/TOOL-ASKS.md), with a
       cold expert read on at least every second stretch. Models: s01, s03, s10.
 - After stretch 7 is planned: the number line splitter is specced once for stretches 3 to 7 (Cory, 2026-11-11).
 

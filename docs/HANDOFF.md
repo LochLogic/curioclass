@@ -39,7 +39,7 @@ disagrees with another page, the other page is probably the stale one: check the
 | 3 Approach | [APPROACH.md](APPROACH.md), [APPROACH-MATH.md](APPROACH-MATH.md). Decisions answered. Cory still owes a read of the pages as a whole; his mother is reading "The principles" onward as a grade 2 teacher. Science and ELA approach pages are on Sara's list ([courses/NEXT-SPINES.md](courses/NEXT-SPINES.md)). |
 | 4 Progressions | Math grades 3 to 5 done. |
 | 5 Spine | Grade 4 math, plus science and ELA spines waiting for Cory's final yes. 3 of 105 courses have a spine. |
-| 6 Stretch sheets and unit plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Word caps are 1,000 and 800 since 2026-11-11. Grade 4 math: stretches 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 units (the status table shows 17 because it counts stretch sheets too). 30 units to go (stretches 4 to 8 and 12 to 18). |
+| 6 Stretch sheets and unit plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Word caps are 1,250 (unit plan), 1,250 (stretch sheet) and 1,800 (one-unit stretch) since 2026-11-11. Grade 4 math: stretches 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 units (the status table shows 17 because it counts stretch sheets too). 30 units to go (stretches 4 to 8 and 12 to 18). |
 | 7 Lessons, tools, print | Paused until the pilot unit (11.1). |
 | The bar | Math: [RUBRIC-MATH-K8.md](RUBRIC-MATH-K8.md). All other subjects but ELA and science: [ADOPTION-BAR-SUBJECTS.md](ADOPTION-BAR-SUBJECTS.md), second draft. ELA and science rubric files are on Sara's list. |
 
@@ -122,7 +122,7 @@ Everything in the three cards that could be applied has been. Where each landed:
 
 | Decision | Where it is now |
 |---|---|
-| Word caps 1,000 and 800; tool asks in one file per course | `docs/courses/UNIT-PLAN.md` ("Length", "Decided"); `docs/courses/math-4/TOOL-ASKS.md` (9 tools); sheets s01, s02, s03, s09, s10, s11 link to it |
+| Word caps: unit plan 1,250, stretch sheet 1,250, merged one-unit stretch 1,800 (first set at 1,000 and 800, raised by Cory the same night); tool asks in one file per course | `docs/courses/UNIT-PLAN.md` ("Length", "Decided"); `docs/courses/math-4/TOOL-ASKS.md` (9 tools); sheets s01, s02, s03, s09, s10, s11 link to it |
 | Always cover the whole standard | UNIT-PLAN.md rule 19; BASELINE rule 23 |
 | No-reuse rule for fractions | UNIT-PLAN.md rule 4 |
 | Stretch 3: benchmarks first | Spine, `data/units.csv`, s03, u03-1 to u03-4. Now: 3.1 days 10 to 12; 3.2 days 13 to 16; 3.3 comparing to one half and one, the same whole, days 17 to 18; 3.4 common denominator or numerator, days 19 to 24 (check on 24) |
@@ -143,17 +143,17 @@ Everything in the three cards that could be applied has been. Where each landed:
 
 **Left open by the apply work (small):**
 
-- The merged one-unit stretch cap of 1,800 words is proposed, not decided (UNIT-PLAN.md "Length").
 - Unit 3.4 now has six days; the spine names it as the exception to "1 to 5 days".
 - Unit 3.3 has a new written task (3/4 and 5/6, day 18): the old one needed common denominators.
-- Over the new caps: u03-4 (about 1,400 against 1,000), s03 (about 1,230 against 800), s10 (845). Unit plans
-  other than stretch 3's were not recounted.
+- Against the caps of 1,250: u03-4 is still over (about 1,400); s03 (about 1,230) and s10 (845) now fit. Unit
+  plans other than stretch 3's were not recounted.
 - Growth Spurt's "key" mark is the plan's own, not a decision of Cory's. It is settled at step 4e.
 - Cory's answers left three things undefined, to ask before the spine that needs them: what "smaller" means for
   SEL and library courses (fewer days or fewer units); what evidence would raise informed action above once a
   year; and the specialist health read was taken as included in "3 all" (no spend without his yes).
-- `scripts/overlap/standards.py` crashes in load() on module id `food-web-wobble`. The fault is older than
-  today's edits.
+- Fixed 2026-11-11: `scripts/overlap/standards.py` crashed because `docs/agents/overlap/tags.csv` still lists four
+  tools that are no longer in `data/tools-concepts.csv` (food-web-wobble, planet-builder, molecule-builder,
+  span-the-gap). The loader now skips them and says so. The tags file itself is unchanged.
 - The federal PE review tool could not be opened (addresses return 404); the PE and health keying rests on the
   earlier report.
 
