@@ -507,3 +507,14 @@ the proposed design are in docs/HANDOFF.md, "Plan weight"; it is a proposal to b
 the update". Built for grade 4 math stretch 11: data/plans/, scripts/plan.py (gates, tables, reading pack, defect
 ledger), docs/courses/math-4/DEFAULTS.md, and the section "Facts live in data" in docs/courses/UNIT-PLAN.md.
 Sara's pieces 1 and 4 changed to use it. The other five planned stretches are not yet in data.
+
+## 2026-11-12: pilot unit plan, cold expert read (Sara's piece 1)
+
+No decision by Cory was needed. The curriculum expert read docs/courses/math-4/s11.md cold: 15 findings, all
+settled at item level, report in docs/reviews/unit-plan-s11-2026-11-12.md. The plan was revised once: part (g)
+and end-check item 7 added, part (f) renamed, new stems for E92 and items 2, 3, 4, 5 and 6, a fraction exit
+on day 91, minutes for days 89, 91 and 92, error C widened, the generator sheet and record sheet defined, tool
+asks 7 and 8 added. `scripts/plan.py check` passes (18 items, 31 wrong answers). The verdict: the build can
+start. Still owed: "Sara's read" at the top of the report. Two notes for the main session: the prose count is
+1,898 words against the 1,800 cap, and the generator sheet's twelfth problem (one "times as long" area) was
+added in revision to make the expert's count of twelve add up.

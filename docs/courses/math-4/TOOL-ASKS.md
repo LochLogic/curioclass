@@ -250,6 +250,10 @@ Asks, from [s11](s11.md) field U5 as first written:
 5. Its items on your own must not share numbers with the plan's checks. The plan's side was changed to make
    this true; recheck if the spec changes.
 6. A played build, to learn whether 20 minutes is enough for the five notes. (s11 field 10.)
+7. "On your own" opens by itself from the header, whether or not the lot is finished. (Expert read,
+   docs/reviews/unit-plan-s11-2026-11-12.md, finding 6.)
+8. The lot can be left unfinished with no loss: notes, equations and tags are the job; placing plots is the
+   reward. (Same finding.)
 
 Not a gap: the 30 by 20 lot. The tool states 600 and never asks for it; keep it that way.
 

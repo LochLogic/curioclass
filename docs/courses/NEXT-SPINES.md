@@ -51,18 +51,20 @@ one who can say "no one could teach this in a week" or "this order would lose my
 **Waiting on it: the pilot build, and through it the templates, the cost of a unit, and the plan with sizes and
 dates for all 105 courses. Do this first. It is short.**
 
-- [ ] First run `python -X utf8 scripts/plan.py check`. It reworks every answer key and checks coverage, reused
+- [x] First run `python -X utf8 scripts/plan.py check`. It reworks every answer key and checks coverage, reused
       numbers and minutes, so the expert does not spend its read on those. It passes today.
-- [ ] Run the curriculum expert cold on `docs/courses/math-4/s11.md`, starting it from the reading pack
+- [x] Run the curriculum expert cold on `docs/courses/math-4/s11.md`, starting it from the reading pack
       (`python -X utf8 scripts/plan.py pack math-4 11`). Ask what the script cannot see: is each question a good
       question, are the six parts the right reading of the standard, does each day teach what its goal says
       and fit its minutes, are the wrong answers the ones children really give, could a lesson writer work from
       this. Also ask which sentences of prose only repeat a table, so they can be cut.
       Report: `docs/reviews/unit-plan-s11-<date>.md`. Revise once: a fact changes in `data/plans/math-4/`, then
       `scripts/plan.py tables`; only judgment changes in the prose.
-- [ ] Log each finding: `python -X utf8 scripts/plan.py defect math-4 s11.md plan expert <kind> "<what>"`. Your
+- [x] Log each finding: `python -X utf8 scripts/plan.py defect math-4 s11.md plan expert <kind> "<what>"`. Your
       own findings use `sara` in place of `expert`.
 - [ ] "Sara's read" at the top of that report: could you teach these five days? Where would a class get stuck?
+- 2026-11-12: check run, expert read done (15 findings, none for Cory), plan revised once, findings logged.
+  Only "Sara's read" is left.
 - Tell the main session (or Cory) when it is done. The build waits for it.
 
 ### 2. English language arts: rubric file, approach page, and the rights list

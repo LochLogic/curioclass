@@ -3,15 +3,17 @@ s11-R1,readiness,88,11,11.1,1,3.MD.C.7a,,,key,"""A rectangle is 6 units by 7 uni
 s11-R2,readiness,88,11,11.1,2,3.MD.D.8,,,key,"A rectangle with two sides labelled 9 cm and 4 cm. ""Find the perimeter.""",26 cm,2*(9+4),26
 s11-R3,readiness,88,11,11.1,3,3.OA.A.4,,,key,"""8 × ? = 48""",6,48/8,6
 s11-R4,readiness,88,11,11.1,4,3.MD.D.8,,,key,"""On grid paper, draw two rectangles with perimeter 12 and different areas.""","Two of: 1 by 5, 2 by 4, 3 by 3",2*(1+5)==12 and 2*(2+4)==12 and 2*(3+3)==12 and len({1*5;2*4;3*3})==3,True
-s11-E1,end,93,11,11.1,1,4.MD.A.3,a,MP.2,key,"""A hallway floor covers 28 square feet. It is 4 feet wide. How long is it? Write an equation with ? for the unknown side.""",4 × ? = 28; 7 feet,28/4,7
-s11-E2,end,93,11,11.1,2,4.MD.A.3,b,MP.2,key,"""Mia has 50 feet of fence for a rectangular pen. The pen is 16 feet long. How wide is it? Show your steps.""",9 feet,(50-2*16)/2,9
-s11-E3,end,93,11,11.1,3,4.MD.A.3,d,MP.6,key,"""A rectangle has sides of 2 3/8 inches and 1 1/8 inches. Find its perimeter.""",7 inches; 6 8/8 is also right,2*(F(19;8)+F(9;8)),7
-s11-E4,end,93,11,11.1,4,4.MD.A.3,c,MP.6,key,"""A rectangle is 318 m long and 147 m wide. Find its perimeter.""",930 m,2*(318+147),930
-s11-E5,end,93,11,11.1,5,4.MD.A.3,e,MP.4,teacher,"""A sandbox is 5 feet wide. It is 4 times as long as it is wide. (a) A cover lies flat on top of it. How big is the cover? (b) A wooden border runs along every side. How long is the border?""",100 square feet; 50 feet,5*(4*5) | 2*(5+4*5),100 | 50
-s11-E6,end,93,11,11.1,6,4.MD.A.3,f,MP.3,teacher,"""A garden is 11 feet by 8 feet. Give the sides of a different rectangle with the same perimeter. Explain how you know without adding four sides.""",For example 12 by 7; length plus width is still 19,12+7==11+8 | 11+8,True | 19
-s11-X89,exit,89,11,11.1,1,4.MD.A.3,,,key,"""A rectangle is 8 m long and 3 m wide. Find the area and the perimeter, with units.""",24 square m; 22 m,8*3 | 2*(8+3),24 | 22
+s11-E1,end,93,11,11.1,1,4.MD.A.3,a,MP.2,key,"""A hallway floor covers 28 square feet. It is 4 feet wide. How long is it? Write an equation with ? for the unknown side.""","4 × ? = 28 (also right: ? × 4 = 28, 28 = 4 × ?, 28 ÷ 4 = ?); 7 feet",28/4,7
+s11-E2,end,93,11,11.1,2,4.MD.A.3,b,MP.2,key,"""Mia uses all 50 feet of her fence to make a rectangular pen. The pen is 16 feet long. How wide is it? Show your steps.""",9 feet,(50-2*16)/2,9
+s11-E3,end,93,11,11.1,3,4.MD.A.3,d,MP.6,key,"""A rectangle is 2 3/8 inches long and 1 1/8 inches wide. Find its perimeter.""",7 inches; 6 8/8 and 56/8 are also right,2*(F(19;8)+F(9;8)),7
+s11-E4,end,93,11,11.1,4,4.MD.A.3,c,MP.6,key,"""A rectangle is 318 meters long and 147 meters wide. Find its perimeter.""",930 meters,2*(318+147),930
+s11-E5,end,93,11,11.1,5,4.MD.A.3,e,MP.4,teacher,"""A sandbox is 5 feet wide. It is 4 times as long as it is wide. (a) A plastic sheet lies flat on top and just fits. How much plastic is that? (b) A wooden border runs along all four sides. How long is the border? Write the units.""",100 square feet; 50 feet,5*(4*5) | 2*(5+4*5),100 | 50
+s11-E6,end,93,11,11.1,6,4.MD.A.3,f,MP.3,teacher,"""A garden is 11 feet long and 8 feet wide. Write the length and width of a different rectangle with the same perimeter. How can you tell the perimeters match without adding all four sides?""",For example 12 by 7; length plus width is still 19,12+7==11+8 | 11+8,True | 19
+s11-E7,end,93,11,11.1,7,4.MD.A.3,g,MP.6,key,"""A rectangle is 70 centimeters long and 8 centimeters wide. Find its area.""",560 square centimeters,70*8,560
+s11-X89,exit,89,11,11.1,1,4.MD.A.3,,,key,"""A rectangle is 8 meters long and 3 meters wide. Find the area and the perimeter. Write the equation and the units for each.""",8 × 3 = 24 square meters; 8 + 3 + 8 + 3 = 22 meters (2 × (8 + 3) is also right),8*3 | 2*(8+3),24 | 22
 s11-X90a,exit,90,11,11.1,1,4.MD.A.3,,,key,"""A poster's area is 45 square inches. It is 5 inches wide. How long is it? Write the equation.""","5 × ? = 45, 9 inches",45/5,9
 s11-X90b,exit,90,11,11.1,2,4.MD.A.3,,,key,"""A frame's perimeter is 46 inches. It is 17 inches long. How wide?""",6 inches,(46-2*17)/2,6
 s11-X91a,exit,91,11,11.1,1,4.MD.A.3,,,key,"""A hall is 40 feet long and 6 feet wide. Area?""",240 square feet,40*6,240
 s11-X91b,exit,91,11,11.1,2,4.MD.A.3,,,key,"""A park is 235 yards long and 148 yards wide. Perimeter?""",766 yards,2*(235+148),766
-s11-X92,exit,92,11,11.1,1,4.MD.A.3,,,key,"""A patio is 4 yards wide. Its length is 3 times its width. How many yards of edging go around it? How many square yards of tile cover it?""",32 yards; 48 square yards,2*(4+3*4) | 4*(3*4),32 | 48
+s11-X91c,exit,91,11,11.1,3,4.MD.A.3,,,key,"""A card is 3 1/10 inches long and 2 4/10 inches wide. Perimeter?""",11 inches; 10 10/10 is also right,2*(F(31;10)+F(24;10)),11
+s11-X92,exit,92,11,11.1,1,4.MD.A.3,,,key,"""A patio is 4 yards wide. Its length is 3 times its width. (a) Ana paints the whole patio floor. How much floor is that? (b) She hangs a string of lights along all four edges. How long is the string? Write the units.""",48 square yards; 32 yards,4*(3*4) | 2*(4+3*4),48 | 32
