@@ -33,9 +33,8 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
 **Waiting on Cory (all on the Desk and asked in chat on 2026-11-12):**
 
 - (Answered 2026-11-12: card `q-ela-piece-2`, see "Decided 2026-11-12" below.)
-- The fallback second hero for grade 6 ELA stretch 2: our own search is written up in
-  `docs/reviews/fallback-hero-ela-6-2026-11-12.md`. Cory picks from it, or says the pick is ours.
-- What to do with the other working folders (see "The folders" below). Nothing has been touched.
+- Merge or retire the Codex branch (`codex/queue`, 11 commits not in `main`).
+- Whether the four untracked files in `S:\CurioClass` belong in the repository (see "The folders").
 - Move the other five planned stretches (1, 2, 3, 9, 10) into data now, or when each is next opened? The
   standing answer is "when next opened" (UNIT-PLAN.md) and the assistant's advice is to wait for the pilot:
   the row shapes will change once a lesson day exists.
@@ -59,45 +58,47 @@ start-of-year check and stretch 4's readiness items (Sara's piece 4).
 3. **ELA text records, question sets and word lists are rows in `data/plans/`**, shown as generated tables
    outside the word cap. The row files are named in `UNIT-PLAN.md`; they are built with the first ELA pilot plan.
 4. **The fallback second hero:** we do our own research and pick our own preferred document. The verse
-   Ramayana on file is not used. Report: `docs/reviews/fallback-hero-ela-6-2026-11-12.md`.
+   Ramayana on file is not used. Report: `docs/reviews/fallback-hero-ela-6-2026-11-12.md`. Cory, the same day:
+   "The Ogre of Rashomon sounds fine to me, lets go with that". It is row 5 of the rights list: Yei Theodora
+   Ozaki, Japanese Fairy Tales, the tale whole, 2,244 words; found, not yet second-read; a sensitivity read is
+   owed.
 5. **The Monkey King:** teach the 2,000-word cut now; write a labeled Curio Class retelling before stretch 2 is
    called finished; if that does not work, a new story takes its place. An outside reader from the culture still
    needs Cory's separate yes.
 6. **Background text two:** a short labeled Curio Class explainer (500 to 700 words), with a standing note to
    replace it when a suitable free source is found. Not written yet; it is part of the ELA pilot build.
 
-## The folders (asked by Cory 2026-11-12; nothing changed yet)
+## The folders (cleaned up 2026-11-12, on Cory's yes)
 
-The truth is the GitHub repository, branch `main`. Every folder below is a working copy of it. All current
-work is pushed there, so nothing is at risk of being lost from this folder.
+The truth is the GitHub repository, branch `main`. Each folder is a working copy of it.
 
-| Folder | Branch | State on 2026-11-12 |
+| Folder | Branch | Who works there |
 |---|---|---|
-| `S:\CurioClass-spec2` | `spec/sara` | Where all work since 2026-11-10 was done. Level with `main`. Clean |
-| `S:\CurioClass` | `main` | The original folder. 56 commits behind GitHub. 113 files changed or new and never committed, nearly all Word Wall work (`data/closet/words`, `closet/words/art`). They exist on this PC only (and in the weekly backup) |
-| `S:\CurioClass-codex` | `codex/queue` | 11 commits not in `main` (Codex builds, among them Checkers and Go), 77 behind. Clean |
-| `S:\CurioClass-agy` | `agy/build` | 5 commits not in `main` (Antigravity test builds, research packets held off main on purpose), 77 behind. Clean |
-| `S:\CurioClass-audit` | none | Empty folder |
-| `S:\CurioClass-codex-scratch` | none | Not a working copy: loose briefs and tool folders |
+| `S:\CurioClass` | `main` | **The main session, from now on.** Brought level with GitHub on 2026-11-12 |
+| `S:\CurioClass-spec2` | `spec/sara` | Sara's sessions only |
+| `S:\CurioClass-codex` | `codex/queue` | Codex. 11 commits not in `main` (builds, among them Checkers and Go), all pushed. Merge or retire is still Cory's call |
+| `S:\CurioClass-archive` | none | Not a working copy. Holds what the clean-up set aside (below) |
 
-Why this folder and not `S:\CurioClass`: Sara's spec work was given its own working copy so that two sessions
-would not edit the same files, the main session's curriculum work then continued here, and a standing rule kept
-sessions out of `S:\CurioClass` so the Word Wall work there would not be disturbed.
+What was done, with nothing deleted that was not first saved:
 
-The risks, in order: (1) the uncommitted Word Wall work in `S:\CurioClass` is in no repository; (2) anyone who
-opens `S:\CurioClass` reads pages two days stale, with the old plan; (3) the two side branches drift further
-from `main` each day, so a later merge gets harder. None of these touches the curriculum work.
-
-Proposed, waiting for Cory's yes: commit and push the Word Wall work from `S:\CurioClass` and bring that folder
-up to date (main has not changed any Word Wall file since, so it should apply cleanly); then make
-`S:\CurioClass` the one place the main session works, keep `spec2` for Sara only; decide merge or retire for
-the Codex and Antigravity branches; delete the empty and scratch folders after a look.
+- **Word Wall work** that sat uncommitted in `S:\CurioClass` (215 word pictures, 13 word lists, the media
+  manifest) was checked (`scripts/check_words.py`, 0 problems), committed and pushed to `main`.
+- **Left untracked in `S:\CurioClass` on purpose** (this is a public repository, and these may be private):
+  `docs/Curio-Class-Plan.pdf`, `docs/US Curriculum Design Blueprint.pdf`, `docs/Return/`,
+  `docs/agents/audit/wordwall-movement-cards.jpg`. Cory says whether any belongs in the repository.
+- **Antigravity** (Cory: "no longer needed"): its working copy was removed. Its 5 commits stay on GitHub as
+  branch `agy/build`. Its 8,846 files that git ignored (scratch work, prompts, raw art) were copied to
+  `S:\CurioClass-archivegy-2026-11-12` and compared byte for byte first.
+- **`S:\CurioClass-codex-scratch`** was moved, whole, to `S:\CurioClass-archive\codex-scratch-2026-11-12`.
+- **For Cory to delete by hand** (a safety check stops the assistant removing top-level folders): the two empty
+  folders `S:\CurioClass-audit` and `S:\CurioClass-agy`. The archive folder can go whenever he is sure.
 
 ## How to work here
 
-- Work only in the worktree `S:\CurioClass-spec2`, branch `spec/sara`. Never `cd` to `S:\CurioClass`.
-- Push to both: `git pull -q --rebase origin main`, `git push -q origin HEAD:spec/sara`,
-  `git push -q origin HEAD:main`. "Bypassed rule violations" on main is normal. Commit only your own files.
+- **The main session works in `S:\CurioClass`, branch `main`** (since 2026-11-12): `git pull -q --rebase origin
+  main`, then `git push -q origin HEAD:main`. Sara's sessions work in `S:\CurioClass-spec2`, branch `spec/sara`,
+  and push to both (`git push -q origin HEAD:spec/sara`, `git push -q origin HEAD:main`). Do not edit in the
+  other session's folder. Pull before starting: the other session pushes to `main` too. "Bypassed rule violations" on main is normal. Commit only your own files.
 - No em dashes anywhere. Always "Curio Class" in full. Never say Curio Class was reviewed by, meets or is
   endorsed by anyone. Public copy names no companies. Outside rubrics are linked and put in our own words.
 - Do not touch the Word Wall files (`data/closet`, `closet/words`, `data/media-manifest.txt`).

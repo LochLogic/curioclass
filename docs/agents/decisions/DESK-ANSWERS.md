@@ -566,3 +566,14 @@ RUBRIC-ELA.md, APPROACH.md, APPROACH-ELA.md, UNIT-PLAN.md, the grade 6 spine and
 Also 2026-11-12, in chat: Cory asked why the main CurioClass folder is no longer used and whether the several
 folders risk version control trouble. Answer and a proposed clean-up are in docs/HANDOFF.md, "The folders".
 Nothing was changed; it waits for his yes.
+
+## 2026-11-12: the fallback hero and the folder clean-up (Cory, in chat)
+
+"The Ogre of Rashomon sounds fine to me, lets go with that. yes, do the clean up as you described. the
+Antigravity folders are no longer needed. be very sure that no useful work is lost in the cleanup."
+
+Done: "The Ogre of Rashomon" (Ozaki, Japanese Fairy Tales) is the fallback second hero, row 5 of
+docs/courses/ela-6/RIGHTS.md. The Word Wall work in S:\CurioClass was checked, committed and pushed; that folder
+is level with GitHub and is where the main session works from now on. The Antigravity working copy was removed
+after its ignored files were archived and compared; its branch stays on GitHub. Details and what is left for
+Cory: docs/HANDOFF.md, "The folders".
