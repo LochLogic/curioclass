@@ -457,3 +457,15 @@ s09-X79,"74,384",4+8*10+3*100+4*1000+7*10000,74384,F,
 s09-X79,"24,333",70203-45870,24333,B,
 s09-W73,"""it is a 1""",,,C,
 s09-W76,"""the zeros become 10s""",,,I,
+s01-K4-1,"""7 is a multiple of 21""",,,D,the two words swapped
+s01-K4-2,"""no: the 6s stop at 60""",,,E,
+s01-T4-1,"""no: the 7s stop at 70""",,,E,
+s01-T4-2,"""yes: 58 is even""",,,E,
+s01-T4-3,"""no: the 5s stop at 50""",,,E,
+s01-T4-4,"""yes: 26 cartons""",3*26,78,,stopped at 78 and missed the 1 egg left; a leftover means not a multiple
+s01-P4-1,"""yes: it ends in 6"", or ""yes: it is even""",,,E,
+s01-P4-2,"""no: the 4s stop at 40""",,,E,
+s01-P4-3,"""no: 69 is odd"", or ""no: the 3s stop at 30""",,,E,
+s01-P4-4,"""yes: 62 is even""",,,E,
+s01-F4-1,"the list 1, 2, 3, 6 left as it is",,,D,
+s01-C4-1,"only 72 and 78, the even ones",,,E,judged by even; 3 × 25 = 75
