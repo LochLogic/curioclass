@@ -1,5 +1,9 @@
 # Rights list: grade 6 ELA, stretch 2 (Heroes and Their Trials)
 
+**To be redone (Cory, 2026-11-12, BASELINE rule 29).** The anchor becomes a new Curio Class hero story set today,
+with one myth retold in our own words as the paired text. The rows below are the old list, kept as the record of
+what was found; none is the anchor any more. Grade 4 math goes first.
+
 Second draft, 2026-11-11 (Sara's list, piece 2), revised once after the curriculum expert's cold read
 ([../../reviews/rights-ela-6-s2-2026-11-11.md](../../reviews/rights-ela-6-s2-2026-11-11.md)). The texts are those
 named for stretch 2 in [../ela-6-spine.md](../ela-6-spine.md), "The texts, stretch by stretch".

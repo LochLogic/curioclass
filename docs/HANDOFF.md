@@ -45,9 +45,9 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
   the row shapes will change once a lesson day exists.
 - In or not-now for the six extra pieces of a finished course (ROADMAP, "What a finished course holds",
   items 10 to 15).
-- Where newer, relatable course texts come from (card `q-course-texts`, three questions, 2026-11-12). Cory: the
-  Reading Room is not the source of course texts below the higher grades. This touches the grade 6 ELA pilot,
-  whose texts are all old Reading Room books.
+- (Answered 2026-11-12, card `q-course-texts`: K-8 anchors on newer texts, mostly our own; 9-12 may anchor on
+  Reading Room texts; the grade 6 ELA pilot gets a new hero story as anchor and a retold myth as its pair, and its
+  rights list is redone. See DESK-ANSWERS.)
 - (Answered 2026-11-12: shelves, the feedback note, no slides, build unit 11.1 now. See DESK-ANSWERS.) His read
   of the approach pages, and his final yes on the science and ELA spines, are still owed from before.
 

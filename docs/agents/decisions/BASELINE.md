@@ -117,6 +117,11 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     to one template (docs/courses/LESSON-DAY.md) so its parts can be counted and checked.
 28. **Qualified people are named where a course needs them** (same day). docs/FOUNDATION.md section 7 holds the
     table. No money is spent and no outside person is approached without Cory's yes.
+29. **Course texts are newer and relatable below grade 9** (2026-11-12, card `q-course-texts`). Kindergarten to
+    grade 8 anchor on newer texts, mostly original Curio Class texts written to a per-grade text spec and read by
+    a qualified ELA teacher, plus recent public-domain government nonfiction; a deeper search for fitting open
+    texts is allowed. Older Reading Room texts appear there only as a paired or optional read. Grades 9 to 12 may
+    anchor on Reading Room texts. The Reading Room itself stays an independent-reading shelf.
 
 ## One module Cory reviews personally
 

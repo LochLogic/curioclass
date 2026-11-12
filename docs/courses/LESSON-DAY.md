@@ -170,7 +170,7 @@ slides) holds everywhere. Known now to differ:
   item it uses (Word Wall card, chart, worksheet row, generator preset, game) by id, and the gate fails on an id
   that does not exist. Not built into `lesson.py` yet; it comes with unit 11.1's shelf pieces. A course day's Sub
   Day packet is generated from the day itself. The Reading Room is not where course texts come from below the
-  higher grades (card `q-course-texts`).
+  higher grades: K-8 anchors on newer texts, mostly our own (card `q-course-texts`).
 
 ## The worked case: day 90
 

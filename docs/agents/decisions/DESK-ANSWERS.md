@@ -614,3 +614,15 @@ reading room but id like something newer and more relatable for course content."
 So the Reading Room stays a shelf for independent reading and is not the source of course texts below the higher
 grades (ECOSYSTEM.md). Where the newer texts come from, where the line falls, and what it means for the grade 6
 ELA pilot (every one of its texts is an old Reading Room book) are on card `q-course-texts`.
+
+## 2026-11-12: course texts (Cory, card q-course-texts)
+
+1. Where newer course texts come from: "yes to your idea, but we can also probably do another deep dive for more
+   fitting content if needed." So: mostly original Curio Class texts written to a per-grade text spec (present-day
+   settings, children like the class), each read by a qualified ELA teacher before use; recent US government
+   nonfiction (public domain) for informational texts; a further search for fitting open texts stays allowed.
+2. The line: yes. Grades 9 to 12 may anchor on Reading Room texts. Kindergarten to grade 8 anchor on newer texts;
+   an older text appears there only as a paired or optional read, never the anchor.
+3. The grade 6 ELA pilot: yes. Keep heroes and their trials; the anchor becomes a new Curio Class hero story set
+   today, with one myth retold in our own words as the paired text. The rights list is redone for the new texts,
+   and stretches 3 and 4 get the same treatment when next opened. Grade 4 math goes first.
