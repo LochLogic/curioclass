@@ -10,6 +10,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
 .student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
 .student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
@@ -21,55 +22,121 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 </style></head><body class="student"><h1>Day 76: Subtracting across zeros</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can subtract when the top number has zeros.</strong></p>
-<p>Rename the top number first. Subtract. Add to check.</p>
-<p><strong>Example 1.</strong> Subtract 402 − 178. Then add to check.</p>
-<p>402 is <span class="blank" style="width:1.8em"></span> hundreds, <span class="blank" style="width:1.8em"></span> tens, <span class="blank" style="width:1.8em"></span> ones.</p>
-<div class="sketch"></div>
-
-<p>Check: <span class="blank" style="width:2.7em"></span> + 178 = <span class="blank" style="width:2.7em"></span></p>
+<p><strong>Example 1.</strong> Subtract 500 − 263. Then add to check.</p>
+<table class="wide">
+<thead>
+<tr>
+<th></th>
+<th>Hundreds</th>
+<th>Tens</th>
+<th>Ones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rename</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Top</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>−</td>
+<td>2</td>
+<td>6</td>
+<td>3</td>
+</tr>
+<tr>
+<td>Difference</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>500 renamed: <span class="blank" style="width:1.8em"></span> hundreds, <span class="blank" style="width:1.8em"></span> tens, <span class="blank" style="width:1.8em"></span> ones.  Check: <span class="blank" style="width:2.7em"></span> + 263 = <span class="blank" style="width:2.7em"></span></p>
 <p><strong>Example 2.</strong> Subtract 6,005 − 2,347. Then add to check.</p>
-<p>6,005 is <span class="blank" style="width:1.8em"></span> thousands, <span class="blank" style="width:1.8em"></span> hundreds, <span class="blank" style="width:1.8em"></span> tens, <span class="blank" style="width:1.8em"></span> ones.</p>
-<div class="sketch tall"></div>
-
-<p>Check: <span class="blank" style="width:3.6em"></span> + 2,347 = <span class="blank" style="width:3.6em"></span></p>
-<p><strong>Fix it.</strong> The answer is wrong. Say what went wrong. Then do it right and add to check.</p>
+<table class="wide">
+<thead>
+<tr>
+<th></th>
+<th>Thousands</th>
+<th>Hundreds</th>
+<th>Tens</th>
+<th>Ones</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Rename</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Top</td>
+<td>6</td>
+<td>0</td>
+<td>0</td>
+<td>5</td>
+</tr>
+<tr>
+<td>−</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>7</td>
+</tr>
+<tr>
+<td>Difference</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>6,005 renamed: <span class="blank" style="width:1.8em"></span> thousands, <span class="blank" style="width:1.8em"></span> hundreds, <span class="blank" style="width:1.8em"></span> tens, <span class="blank" style="width:1.8em"></span> ones.</p>
+<p>Check: <span class="blank" style="width:2.7em"></span> + 2,347 = <span class="blank" style="width:2.7em"></span></p>
+<p><strong>Fix it.</strong> Kai says: "5,002 − 1,836 = 3,276." Do it right in the box.</p>
+<p>What went wrong: <span class="blank" style="width:12.6em"></span>  Check: <span class="blank" style="width:2.7em"></span> + 1,836 = <span class="blank" style="width:2.7em"></span></p>
+<div class="sketch"></div><div class="foot">Curio Class, grade 4 math, day 76, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Six differences.</strong> Work on grid paper. Rename the top number. Subtract. Add to check.</p>
 <ol>
 <li>
-<p>Kai says: "5,002 − 1,836 = 3,276."</p>
-<p>What went wrong: <span class="blank" style="width:17.1em"></span></p>
-<p><div class="sketch tall"></div></p>
-<p>Check: <span class="blank" style="width:3.6em"></span> + 1,836 = <span class="blank" style="width:3.6em"></span></p>
-</li>
-</ol><div class="foot">Curio Class, grade 4 math, day 76, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Six differences.</strong> Work on grid paper. Rename the top number. Subtract. Add to check.</p>
-<ol>
-<li>
-<p>803 − 457  Answer: <span class="blank" style="width:4.5em"></span></p>
-<p>Rename: <span class="blank" style="width:23.4em"></span></p>
+<p>803 − 457  Answer: <span class="blank" style="width:4.5em"></span>  Rename: <span class="blank" style="width:13.5em"></span></p>
 </li>
 <li>
-<p>9,004 − 3,678  Answer: <span class="blank" style="width:4.5em"></span></p>
-<p>Rename: <span class="blank" style="width:23.4em"></span></p>
+<p>9,004 − 3,678  Answer: <span class="blank" style="width:4.5em"></span>  Rename: <span class="blank" style="width:13.5em"></span></p>
 </li>
 <li>
 <p>60,500 − 27,846  Answer: <span class="blank" style="width:4.5em"></span></p>
 <p>Rename: <span class="blank" style="width:23.4em"></span></p>
+<p><span class="blank" style="width:27.0em"></span></p>
 </li>
 <li>
 <p>30,007 − 12,469  Answer: <span class="blank" style="width:4.5em"></span></p>
 <p>Rename: <span class="blank" style="width:23.4em"></span></p>
+<p><span class="blank" style="width:27.0em"></span></p>
 </li>
 <li>
 <p>100,000 − 46,183  Answer: <span class="blank" style="width:4.5em"></span></p>
 <p>Rename: <span class="blank" style="width:23.4em"></span></p>
+<p><span class="blank" style="width:27.0em"></span></p>
 </li>
 <li>
 <p>407,020 − 158,364  Answer: <span class="blank" style="width:4.5em"></span></p>
 <p>Rename: <span class="blank" style="width:23.4em"></span></p>
+<p><span class="blank" style="width:27.0em"></span></p>
 </li>
 </ol>
-<p><strong>Write.</strong> Tell a friend, in two sentences, why the zeros in 6,005 become 9s.</p>
+<p><strong>Write.</strong> Kim is finding 7,000 − 2,358. She renames 7,000 as 6 thousands, 9 hundreds, 9 tens, 10 ones. Tell a friend, in two sentences, why two zeros became 9 and one became 10.</p>
 <p>1 <span class="blank" style="width:1.8em"></span> is 10 <span class="blank" style="width:1.8em"></span>.</p>
-<p><span class="blank" style="width:31.5em"></span></p>
 <p><span class="blank" style="width:31.5em"></span></p>
 <p><span class="blank" style="width:31.5em"></span></p>
 <p><strong>Challenge.</strong> Mia subtracted and got 4,268. She took away 3,739. What number did she start with? Then subtract to check.</p>

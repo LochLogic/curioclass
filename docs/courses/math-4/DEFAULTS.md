@@ -10,7 +10,8 @@ stretches as each is next opened.
   says: the student keeps working through the respond half and joins a group after.
 - **"Many"** means more than a third of the class.
 - **The respond half.** Students mark keyed items against the key on the screen, pen down, five minutes. Hands
-  up by item sets the groups; each group does its error's "if many" action. Teacher-judged items are read after
+  up by item sets the groups; on a check whose groups are by error, students match their wrong answer to the
+  group list on the screen; each group does its error's "if many" action. Teacher-judged items are read after
   class and answered in the next day's first five minutes. When the next day is a check, judged work goes back
   when pencils go down, never before the check, and feeds that day's respond groups.
 - **Teaching one child.** Give the check items, then go over the missed ones together.

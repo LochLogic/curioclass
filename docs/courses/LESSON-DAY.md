@@ -59,6 +59,13 @@ drawn dashed as the extra "more than" piece, a letter count (`6*n`) draws one lo
 `=total` brackets the bar (`=?` or a letter for the unknown), and `/a,b` brackets each segment. A wrong answer
 to fix may hold two figures, their picture then the right one, split by ` | ` (`| strip ...` gives the right
 one only). The first figure's numbers must be in the stem; the second's in the stem or steps.
+A sum or difference in place-value columns is `cols 3746+2538` (or `cols 9372-4156`): place names over the
+columns, a row for the small 1s or the rename (the old digit crossed out, the new one above), the two numbers,
+a line and the answer. A wrong answer's working takes `carry=3` (the places, ones 0, that get a small 1),
+`rename=-,-,-,14` (the new top digits left to right, `-` for one left as it was, `none` for no rename) and
+`ans=4136` (or `ans=5/12/7/14` for a column written whole). On the display a worked example fills in step by
+step as `by=` says, one entry a step: `0` the numbers only, `r2` the rename of the first two places, `d3` three
+answer places, `-` no figure, `*` everything.
 `steps` (the worked steps as the teacher says them, split by `|`; for a wrong answer to fix, their working then
 the right working; a teacher-judged row lists its look-fors here), `samples` (a teacher-judged row's two sample
 answers, one meeting the look-fors and one not, shown on the key), `path` (an exit's `tool` or `paper`; `board`
@@ -95,7 +102,8 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
 6. **Words and supports.** The key words with their Word Wall cards, the sentence frames, and any access note:
    only what differs from the unit opener.
 7. **Tomorrow.** What the exit tells the teacher, and what changes the next day because of it, naming the sign
-   of each error on both exit paths. The hand-off is two-sided: the next day's file carries an "If many ...
+   of each error on both exit paths. A fix-it named by its pupil (Kai, Mia) is handed on by its sum or difference, not
+   by the name, since the names come back on later days with other errors. The hand-off is two-sided: the next day's file carries an "If many ...
    day N's exit" line (or an "If day N's slips showed ..." branch) that acts on it, and the gate checks it,
    finding the next day by number in any unit folder of the course. On a check day, a display line
    `Check: ...` shows each row with its answer; `Check (sort): ...` shows only the kind (the answer's first part).
@@ -175,6 +183,15 @@ compared strips with different scales. `plan.py check` adds: a wrong answer for 
 running value; a sentence-shaped wrong answer on an exit that asks for no sentence; an exit or check item whose
 given number is a taught step's result for the same fact (the fact turned into its answer); a day that names a
 tool with no tool rows.
+
+Added from the stretch 9 reads: a unit whose opener sends the family note home on a day that does not print it;
+grid paper used in a part and on neither the materials nor the print line, or the column sheet used and not
+printed; an "If many X" branch on a slip whose exit has no wrong answer for X; a note when the student page runs
+in another order than the day (unless the part says to turn back). `plan.py check` adds: a difference with one
+ungrouping whose two errors (smaller from larger, the small 1 only) give one answer, or, past the day both are
+taught, a row keying only one of them; notes for an exit whose carries fall where the day's worked example's do,
+a fix on a worked example's numbers, and a row coded to a standard the spine teaches later. The key's opening
+line is the equal-forms note only on a day with an equation, the estimate rule on a day of estimates.
 
 **How days are read.** Every day by the gates; a sample of days per unit by the expert; the whole of the first
 unit in each course by a teacher, in a taught run.

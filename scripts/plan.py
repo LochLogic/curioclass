@@ -260,7 +260,57 @@ def reserve(course, st):
     print('%s: RESERVED_S%s %s' % (js.relative_to(ROOT), st, 'rewritten' if new != t else 'already current'))
 
 # ------------------------------------------------------------------ the gates
+def one_ungrouping(a, b):
+    """For a - b with exactly one place that must ungroup (and no zero to cross): the answers of error F (the smaller
+    digit from the larger in each place) and of error G (the small 1 written, the next place left as it was).
+    None for any other difference."""
+    da, db = [int(c) for c in reversed(str(a))], [int(c) for c in reversed(str(b))]
+    db += [0] * (len(da) - len(db))
+    if len(db) > len(da) or a <= b:
+        return None
+    need = [j for j in range(len(da)) if da[j] < db[j]]
+    if len(need) != 1 or need[0] + 1 >= len(da) or da[need[0] + 1] == 0 or da[need[0] + 1] - 1 < db[need[0] + 1]:
+        return None
+    f = sum(abs(x - y) * 10 ** j for j, (x, y) in enumerate(zip(da, db)))
+    return f, a - b + 10 ** (need[0] + 1)
+
+
+def trade_places(m):
+    """The places (ones 0) that carry in a sum, or that must ungroup in a difference, from a match of a+b or a-b."""
+    a, b = int(m[1]), int(m[3])
+    da, db = [int(c) for c in reversed(str(a))], [int(c) for c in reversed(str(b))]
+    n = max(len(da), len(db))
+    da += [0] * (n - len(da)); db += [0] * (n - len(db))
+    out, c = set(), 0
+    for j in range(n):
+        if m[2] == '+':
+            c = (da[j] + db[j] + c) // 10
+            if c:
+                out.add(j)
+        else:
+            t = da[j] - c
+            c = 1 if t < db[j] else 0
+            if c:
+                out.add(j)
+    return out
+
+
+def first_days():
+    """Each grade 4 standard's first day in the year spine (docs/courses/math-4-spine.md)."""
+    out, p = {}, DOCS / 'math-4-spine.md'
+    if not p.exists():
+        return out
+    for ln in p.read_text(encoding='utf-8').splitlines():
+        m = re.match(r'\|\s*\d+\s*\|[^|]*\|[^|]*\|\s*(\d+) to \d+\s*\|([^|]*)\|', ln)
+        if m:
+            for code in re.findall(r'4\.[A-Z]+\.[A-Z]\.\d+', m[2]):
+                out[code] = min(out.get(code, 999), int(m[1]))
+    return out
+
+
 def check(course):
+    global FIRST_DAY
+    FIRST_DAY = first_days() if course == 'math-4' else {}
     fails, notes = [], []
     parts, days, items = rows(course, 'parts'), rows(course, 'days'), rows(course, 'items')
     wrongs, errors = rows(course, 'wrongs'), rows(course, 'errors')
@@ -478,6 +528,53 @@ def check(course):
             if e['stretch'] == s and e['letter'] not in checked:
                 notes.append('stretch %s: error %s has no wrong-answer row on any exit or end-check item (day 6 read)'
                              % (s, e['letter']))
+        # 3e. a difference with one ungrouping must tell the smaller-from-larger error from the small-1-only error:
+        # they give the same answer when the digits of the ungrouped place are 5 apart (s09 expert, day 74), and a
+        # row past the day both are taught keys both (stretch 9 reads, 2026-11-12)
+        se = {e['letter']: e for e in errors if e['stretch'] == s}
+        fl = next((L for L, e in se.items() if 'smaller digit from the larger' in e['error']), None)
+        gl = next((L for L, e in se.items() if 'small 1' in e['error'] and 'leaves' in e['error']), None)
+        if fl and gl:
+            both = max(int(se[fl]['day']), int(se[gl]['day']))
+            for i in items:
+                said = {x.replace(',', '') for x in numbers(i['stem'])}
+                m = next((mm for c in (split(i['compute']) if i['compute'] else [])
+                          for mm in [re.fullmatch(r'(\d+)-(\d+)', c)] if mm and {mm[1], mm[2]} <= said), None)
+                if i['stretch'] != s or not m:
+                    continue
+                fg = one_ungrouping(int(m[1]), int(m[2]))
+                if not fg:
+                    continue
+                if fg[0] == fg[1]:
+                    fails.append('%s: %s gives %d both ways (smaller digit from the larger, error %s; the small 1 '
+                                 'only, error %s): change a digit of the ungrouped place' % (i['item_id'], i['compute'],
+                                                                                         fg[0], fl, gl))
+                keyed = {w['error'] for w in wrongs if w['item_id'] == i['item_id']}
+                if int(i['day']) >= both and len(keyed & {fl, gl}) == 1:
+                    fails.append('%s: one ungrouping, past day %d, but its wrong answers key only error %s; key %s (%d) '
+                                 'too' % (i['item_id'], both, ''.join(keyed & {fl, gl}),
+                                          gl if fl in keyed else fl, fg[1] if fl in keyed else fg[0]))
+        # 3f. notes from the stretch 9 reads: an exit or fix that rehearses a worked example of its own day
+        ex_rows = [x for x in items if x['stretch'] == s and x['check'] == 'example']
+        for i in items:
+            if i['stretch'] != s or i['check'] not in ('exit', 'fix') or not i['compute']:
+                continue
+            ops = re.fullmatch(r'(\d{3,})([+-])(\d{3,})', split(i['compute'])[0])
+            for x in ex_rows:
+                xo = re.fullmatch(r'(\d{3,})([+-])(\d{3,})', split(x['compute'])[0]) if x['compute'] else None
+                if x['day'] != i['day'] or not (ops and xo) or ops[2] != xo[2]:
+                    continue
+                if i['check'] == 'fix' and {ops[1], ops[3]} == {xo[1], xo[3]}:
+                    notes.append('%s: a fix on the numbers of the worked example %s; students copy, not find (day 73 read)'
+                                 % (i['item_id'], x['item_id']))
+                if i['check'] == 'exit' and trade_places(ops) == trade_places(xo):
+                    notes.append('%s: carries or ungroupings in the same places as the worked example %s (day 72 read)'
+                                 % (i['item_id'], x['item_id']))
+        # 3g. a row coded to a standard the spine first teaches on a later day (day 73 read: 4 x 600 on day 73)
+        for i in items:
+            fd = FIRST_DAY.get(i['code'])
+            if i['stretch'] == s and fd and i['day'].isdigit() and int(i['day']) < fd:
+                notes.append('%s: coded %s, which the spine first teaches on day %d' % (i['item_id'], i['code'], fd))
         # 5. the error register is shown inside the stretch
         for e in errors:
             if e['stretch'] == s and nums and int(e['day']) not in nums:

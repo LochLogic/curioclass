@@ -20,7 +20,7 @@ Show your work for each one. No drawings. Do only the items your teacher reads.
 One sheet a student, given in two halves. Items 1 and 2 are the last ten minutes of day 71 (the last day of
 stretch 8): alone, on paper, each item read aloud once. Collect the sheets and mark them that night, before day
 72. Items 3 and 4 are the first five minutes of day 74, on the same sheet: hand the sheets back, read both items
-aloud, and mark them while students work the day's first difference. Write each result on the stretch 9 record
+aloud, collect them, and mark them that night. Write each result on the stretch 9 record
 sheet (R1 to R4): a tick, the error letter where the key gives one, or x for any other wrong answer.
 
 "Many" means more than a third of the class. Items 1 and 2 are reteached in day 73's warm-up and first five
@@ -39,7 +39,7 @@ minutes; items 3 and 4 in day 75's.
   rewritten as 600 + 120 + 14, then in columns. Day 74 teaches the same move, so read item 3 beside E74.
 - **Item 4, subtracting across a zero.** The signs: 376 (F) or 234 (the zero made 10 and left 10, error I).
   Reteach on day 75: 402 said as 3 hundreds, 9 tens, 12 ones before anything is written. Every student who
-  missed item 4 also sits with the teacher for day 76's first ten minutes, whatever E75 shows.
+  missed item 4 also sits with the teacher for day 76's teaching (both examples), whatever E75 shows.
 
 When no whole-class reteach is needed, the five minutes answer the previous day's exit (E72 on day 73, E74 on
 day 75). If both are needed, the reteach goes first and the exit's error is talked through inside the worked sum

@@ -89,8 +89,8 @@ and fill the last three places, a zero in the hundreds. Students read two more n
 
 ## Supplies for the unit
 
-- Per student: grid paper, or lined paper turned sideways; the place value columns sheet for any student who
-  wants it; a pencil.
+- Per student: the place value columns sheet on day 72 (and for anyone who wants it on day 73); grid paper on
+  day 73; a pencil.
 - Per class: the projector for the display pages; a board with place names written over the columns.
 - A room with nothing: sums copied from the board; lined paper turned sideways so its lines make columns.
 

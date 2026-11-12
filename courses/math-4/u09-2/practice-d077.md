@@ -5,6 +5,7 @@ course: math-4
 unit: 9.2
 stretch: 9
 day: 77
+room: line
 version: draft 1, not ready, not yet taught
 credit: ours
 ---
@@ -13,14 +14,17 @@ credit: ours
 
 ## Student
 
-Write each one in columns. Check each answer as soon as it is done. Count how many were right first try.
+Work on grid paper. Write each answer on its line. Check each answer as soon as it is done. Count how many
+were right first try.
 
-Right first try: ______ of 10
+Right first try: ______
+
+Tried: ______
 
 ## Teacher
 
 Day 77's mixed set: the paper path of Road Trip Logbook's Trip ledger, used while the tool is spec only, in the
-same 10 minutes. One a student, alone, on grid paper or the place value columns sheet (u09-1/columns.md). The key
+same 10 minutes. One a student, alone, on grid paper (1 sheet each) or the place value columns sheet (u09-1/columns.md). The key
 is on the screen from the start; a student checks each answer as soon as it is done, fixes a wrong one in pen,
 and ticks only those right on the first try. The count is the student's own, compared only with their own last
 count; it is not collected or posted. A student who does not finish stops when the end check begins.

@@ -308,6 +308,13 @@ def check_day(d, items, days):
                         fv = strip_numbers(spec)
                     except ValueError as e:
                         f.append('%s: %s figure: %s' % (lab, r, e)); continue
+                elif spec.startswith('cols'):   # the two numbers, and a wrong answer drawn for a fix
+                    cm = re.match(r'(\d+)\s*[+−-]\s*(\d+)$', spec.split()[1])
+                    if not cm:
+                        f.append('%s: %s figure: cols needs two numbers, as cols 3746+2538' % (lab, r)); continue
+                    sn = {x.replace(',', '') for x in sn}
+                    ff = fig_fields(spec)[0]
+                    fv = [cm[1], cm[2]] + ([ff['ans']] if 'ans' in ff and '/' not in ff['ans'] else [])
                 else:
                     fv = [v for kk, v in (x.split('=', 1) for x in spec.split()[1:] if '=' in x) if kk in ('l', 'w', 'A', 'P')]
                 for v in fv:
@@ -331,6 +338,64 @@ def check_day(d, items, days):
         s = byid.get(r, {}).get('source', '')
         if s and (BAD_LICENCE.search(s) or 'http' not in s or not re.search(r'cc by|cc0|public domain', s, re.I)):
             f.append('%s: %s has a source that is not CC BY, CC0 or public domain with a licence link' % (lab, r))
+    f += check_lists(d, items, lab)
+    return f
+
+
+_WRONGS = {}
+
+
+def check_lists(d, items, lab):
+    """Gates from the stretch 9 reads (2026-11-12): what the opener sends home, the papers the prose uses, the
+    branches a slip can trigger, and the student page in the day's order."""
+    f, h = [], d['head']
+    day, course = h.get('day', ''), h.get('course', '')
+    prn = h.get('print', '').lower()
+    # the opener names a day for the family note; that day prints it (day 72: no day printed the note)
+    op = d['path'].parent / 'opener.md'
+    if op.exists():
+        m = re.search(r'family note\b(?:\s*\([^)]*\))?[^.]*?goes home on day (\d+)', op.read_text(encoding='utf-8'), re.I)
+        if m and m[1] == day and 'family note' not in prn:
+            f.append('%s: the opener sends the family note home on day %s, but the print line does not list it' % (lab, day))
+    # grid paper or the column sheet used in the day's parts is on the print line (days 73, 76, 77)
+    the_day = d['secs'].get('The day', '')
+    # (grid paper is a supply: the materials line will do; the column sheet is a page Curio Class prints)
+    mat = h.get('materials', '').lower()
+    for name, pat, where in (('grid paper', r'grid paper', prn + ' ' + mat), ('the column sheet', r'columns? sheet', prn)):
+        if re.search(pat, the_day, re.I) and not re.search(pat, where, re.I):
+            f.append('%s: the day uses %s, but the %s line does not list it' % (
+                lab, name, 'print' if name != 'grid paper' else 'materials or print'))
+    # an "If many X" branch on the slips of day N-1 needs a wrong answer for X on that exit (day 76: a B branch E75
+    # could not show)
+    if course not in _WRONGS:
+        _WRONGS[course] = plan.rows(course, 'wrongs') if (plan.ROOT / 'data' / 'plans' / course / 'wrongs.csv').exists() else []
+    for _, bname, btxt in d['blocks']:
+        m = re.match(r'E(\d+) back', bname)
+        if not m:
+            continue
+        exits = {i['item_id'] for i in items if i['day'] == m[1] and i['check'] == 'exit'}
+        have = {w['error'] for w in _WRONGS[course] if w['item_id'] in exits}
+        for par in re.split(r'\n\s*\n', btxt):
+            if re.match(r'\s*\*\*If many [A-I]\b', par) or re.search(r"slips showed many [A-I]\b", par):
+                for L in re.findall(r'\bmany ([A-I])\b', par.split('**:')[0] if '**:' in par else par.split(':')[0]):
+                    if exits and L not in have:
+                        f.append('%s: "%s" has a branch for many %s, but no wrong answer on E%s shows %s' % (lab, bname, L, m[1], L))
+    # the student page runs in the order the day teaches it, or the part says to turn back (days 73 and 76)
+    taught = [r for r in REF.findall(the_day)]
+    first = {}
+    for k, r in enumerate(taught):
+        first.setdefault(r, k)
+    page = [r for r in REF.findall(d['student']) if r in first]
+    seen = []
+    for r in page:
+        if r not in seen:
+            seen.append(r)
+    for a, b in zip(seen, seen[1:]):
+        if first[b] < first[a] and not re.search(r'turn back to side', the_day, re.I):
+            # a note, not a failure: stretches 10 and 11 have pages in this order, read and kept
+            f.append('NOTE %s: the student page prints %s before %s, but the day teaches them the other way round'
+                     % (lab, a, b))
+            break
     return f
 
 
@@ -347,6 +412,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
 .student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
 .student table.wide td:first-child { width: 27%; }
+.student table.digits { table-layout: fixed; width: auto; } .student table.digits td { width: .55in; text-align: center; } .student table.digits td:first-child { width: .3in; }
 .student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
@@ -405,9 +471,17 @@ def tables(h):
         kind = 'sets' if '✓' in head or '>Write it' in head else ('narrow' if n <= 3 else 'wide')   # a set table: item, write it, tick
         tb = tb.replace('<table>', '<table class="%s">' % kind, 1)
         hd = re.search(r'<thead>\s*<tr>(.*?)</tr>\s*</thead>', tb, re.S)
-        if hd and n > 3 and all(not re.sub(r'<.*?>', '', c).strip() for c in re.findall(r'<th[^>]*>(.*?)</th>', hd[1], re.S)[1:]):
+        cells = [re.sub(r'<.*?>', '', c).strip() for c in re.findall(r'<th[^>]*>(.*?)</th>', hd[1], re.S)] if hd else []
+        # a first row of numbered questions ("1. 573 + 248") is a row to answer, not a header (s09 expert, day 72)
+        asks = any(cells) and all(re.match(r'\d+\.\s', c) for c in cells if c)
+        if hd and (asks or n > 3 and all(not c for c in cells[1:])):
             row = re.sub(r'<th([^>]*)>', r'<td\1>', hd[1]).replace('</th>', '</td>')
             tb = tb.replace(hd[0], '').replace('<tbody>', '<tbody><tr>%s</tr>' % row, 1)
+        # a digit grid (a sign, then one digit a cell) prints equal columns, the sign cell narrow, so a new place
+        # looks like any other place (s09 expert, day 77)
+        every = [re.sub(r'<.*?>', '', c).strip() for c in re.findall(r'<t[dh][^>]*>(.*?)</t[dh]>', tb, re.S)]
+        if n >= 4 and every and all(re.fullmatch(r'[0-9+−-]?', c) for c in every) and any(c.isdigit() for c in every):
+            tb = tb.replace('<table class="%s">' % kind, '<table class="digits">', 1)
         return tb
     return re.sub(r'<table>.*?</table>', one, h, flags=re.S)
 
@@ -502,6 +576,8 @@ def figure(spec, size=1.0):
         return strip(spec, size)
     if spec.split()[0] == 'rows':
         return rows_fig(spec, size)
+    if spec.split()[0] == 'cols':
+        return cols(spec, size)
     return rect(spec, size)
 
 
@@ -742,6 +818,110 @@ def rows_fig(spec, size=1.0):
         W, H, W, html.escape(alt), ''.join(out))
 
 
+PLACE = ['ones', 'tens', 'hundreds', 'thousands', 'ten thousands', 'hundred thousands', 'millions']
+
+
+def cols_rename(a, b):
+    """Ungroup first, right to left (s09 expert, day 75): the top number's places after each column is looked at.
+    A place that must give and holds 0 first takes ten from its left (day 76: 500 is 4, 9, 10). Index 0 is ones."""
+    top, states = a[:], []
+    def give(j):   # place j gives one to the place on its right
+        if top[j] == 0 and j + 1 < len(top):
+            give(j + 1)
+            top[j] += 10
+        top[j] -= 1
+    for j in range(len(top)):
+        if top[j] < (b[j] if j < len(b) else 0) and j + 1 < len(top):
+            give(j + 1)
+            top[j] += 10
+        states.append(top[:])
+    return states
+
+
+def cols(spec, size=1.0, state='*'):
+    """A sum or difference in place-value columns: 'cols 3746+2538' or 'cols 9372-4156'. Place names over the
+    columns, then a row for the small 1s (adding) or the rename (subtracting: the old digit crossed out, the new
+    one above it), the two numbers, a line and the answer. Their working for a fix: carry=3 (the places, ones 0,
+    that get a small 1), rename=-,-,-,14 (the new top digits left to right, '-' for one left as it was; none for
+    no rename) and ans=4136, or ans=5/12/7/14 for a column written whole. state is a step of the display:
+    '0' the numbers only, 'r2' the rename of the first two places, 'd3' three answer places, '*' everything."""
+    f, _ = fig_fields(spec)
+    m = re.match(r'(\d+)\s*([+−-])\s*(\d+)$', spec.split()[1])
+    x, op, y = int(m[1]), '+' if m[2] == '+' else '−', int(m[3])
+    true = x + y if op == '+' else x - y
+    ans = f.get('ans', str(true)).split('/') if '/' in f.get('ans', '') else list(f.get('ans', str(true)))
+    n = max(len(m[1]), len(m[3]), len(ans))
+    a = [int(c) for c in reversed(m[1])] + [0] * (n - len(m[1]))
+    b = [int(c) for c in reversed(m[3])]
+    ans = list(reversed(ans))
+    full = state == '*'
+    r = int(re.search(r'r(\d+)', state)[1]) if re.search(r'r(\d+)', state) else (n if full else 0)
+    d = int(re.search(r'd(\d+)', state)[1]) if re.search(r'd(\d+)', state) else (n if full else 0)
+    small = {}   # place -> the small text over it
+    crossed = set()
+    if op == '+':
+        if 'carry' in f:
+            for j in (int(c) for c in f['carry'].split(',') if c.strip()):
+                if j <= d:
+                    small[j] = '1'
+        else:
+            c = 0
+            for j in range(n):
+                s = a[j] + (b[j] if j < len(b) else 0) + c
+                c = s // 10
+                if c and j + 1 <= d and j + 1 < n:
+                    small[j + 1] = str(c)
+    else:
+        if 'rename' in f:
+            new = [] if f['rename'] == 'none' else list(reversed(f['rename'].split(',')))
+            now = {j: v for j, v in enumerate(new) if v != '-'} if r else {}
+        else:
+            st = cols_rename(a[:len(m[1])], b)
+            now = {j: str(v) for j, v in enumerate(st[min(r, len(st)) - 1]) if v != a[j]} if r else {}
+        small, crossed = now, set(now)
+    cw, x0 = 64 * size, 52 * size
+    hy, sy, ty, by, ly = 34 * size, 78 * size, 122 * size, 170 * size, 186 * size
+    ay = 232 * size
+    W, H = x0 + n * cw + 12 * size, 250 * size
+    cx = lambda j: x0 + (n - 1 - j) * cw + cw / 2
+    out = []
+    for j in range(n):   # place names, two lines where they are two words
+        w = PLACE[j].split() if j < len(PLACE) else ['']
+        for k, part in enumerate(w):
+            out.append('<text x="%.0f" y="%.0f" font-size="%.0f" text-anchor="middle">%s</text>' % (
+                cx(j), hy - (len(w) - 1 - k) * 15 * size, 13 * size, part))
+        if j:   # a light line between places
+            out.append('<line x1="%.0f" y1="%.0f" x2="%.0f" y2="%.0f" stroke="#999" stroke-width="1"/>' % (
+                cx(j) + cw / 2, 44 * size, cx(j) + cw / 2, ay + 8 * size))
+    num = lambda v, j, y, fs=34: out.append('<text x="%.0f" y="%.0f" font-size="%.0f" text-anchor="middle">%s</text>' % (
+        cx(j), y, fs * size, v))
+    for j, v in small.items():
+        num(v, j, sy, 24)
+    for j in range(len(m[1])):
+        num(a[j], j, ty)
+        if j in crossed:
+            out.append('<line x1="%.0f" y1="%.0f" x2="%.0f" y2="%.0f" stroke="#000" stroke-width="2.5"/>' % (
+                cx(j) - 12 * size, ty - 4 * size, cx(j) + 12 * size, ty - 22 * size))
+    for j in range(len(b)):
+        num(b[j], j, by)
+    out.append('<text x="%.0f" y="%.0f" font-size="%.0f" text-anchor="middle">%s</text>' % (
+        x0 - 26 * size + cw * (n - len(b)), by, 34 * size, op))
+    out.append('<line x1="%.0f" y1="%.0f" x2="%.0f" y2="%.0f" stroke="#000" stroke-width="3"/>' % (x0 - 40 * size, ly, W - 8 * size, ly))
+    for j in range(min(d, len(ans))):
+        num(ans[j], j, ay, 34 if len(ans[j]) == 1 else 26)
+    alt = '%s %s %s in columns under the place names%s' % (m[1], op, m[3], ', answer %s' % ''.join(reversed(ans)) if d else '')
+    return ('<svg viewBox="0 0 %.0f %.0f" width="%.0f" style="width:100%%;max-width:%.1fin;height:auto" role="img" '
+            'aria-label="%s" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">%s</svg>') % (
+        W, H, W, min(6.5, 0.8 * n + 0.8), html.escape(alt), ''.join(out))
+
+
+def cols_state(spec, k):
+    """The display's state of a column figure at step k (0-based): its by= list, one entry a step ('-' none)."""
+    f, _ = fig_fields(spec)
+    by = f.get('by', '').split(',') if f.get('by') else []
+    return by[k] if k < len(by) else '*'
+
+
 def foot_line(h, course, credits=()):
     s = 'Curio Class, %s, day %s, version %s, CC BY 4.0, curioclass.org' % (
         course_name(course), int(h['day']), h['version'])
@@ -850,7 +1030,8 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     kb = ('<h1>%s: key</h1><p>Each answer is worked out in full. The last column names the wrong answers to expect and the error each one shows.</p>'
           '<p>%s</p>'
           '<table><tr><th>Where</th><th>Id</th><th>Part</th><th>Question</th><th>Answer</th><th>Wrong answers and what '
-          'they mean</th></tr>%s</table>%s' % (html.escape(title), html.escape(ACCEPT), ''.join(kr), foot))
+          'they mean</th></tr>%s</table>%s' % (html.escape(title), html.escape(accept([byid[r] for r in refs])),
+                                               ''.join(kr), foot))
     put(out / (name + '-key.html'), page(title + ': key', kb, 'key'), encoding='utf-8')
     # exit slip, four to a sheet: the paper path only
     ex = [i for i in mine if i['check'] == 'exit' and i.get('path', '') in ('', 'paper')]
@@ -874,6 +1055,9 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         """The example's figure at step k: none before the step that first draws or builds it; a strip grows a bar
         a step from there, in the full picture's frame, whole by the last step; smaller once the list is long."""
         spec = figures(i)[0] if len(figures(i)) == 1 else ''
+        if spec.startswith('cols'):   # columns fill in step by step, as the by= list says (s09 expert, days 72 to 76)
+            s = cols_state(spec, k)
+            return '' if s == '-' else cols(spec, 1.0, s)
         if not spec or k < first:
             return ''
         upto = None
@@ -890,7 +1074,8 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
             at = re.search(r'\bat=(\d+)', figures(i)[0]) if len(figures(i)) == 1 else None
             if at:   # 'rows 12/5 at=4': the picture is the answer, held back until the step that shows it
                 first = int(at[1]) - 1
-            o = ['<div class="screen"><p>%s</p>%s</div>' % (stacked(stem(i)), fig(i) if first == 0 and not
+            col = len(figures(i)) == 1 and figures(i)[0].startswith('cols')
+            o = ['<div class="screen"><p>%s</p>%s</div>' % (stacked(stem(i)), fig(i) if first == 0 and not col and not
                                                             draws.search(st[0] if st else '') else '')]
             for k in range(len(st)):
                 # a step that lays this example beside an earlier one shows that one's picture too
@@ -912,14 +1097,30 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         return []
 
     def answers_screen():
-        # the letter sentence only when a key holds a letter for an unknown (expert, day 6: stretch 1 has none)
+        # labelled by the numbers on the student page, not the part names (s09 expert, day 77); the equal-forms
+        # sentence only on a day with equations; a judged sum or difference shows its number, so a student who
+        # let a wrong one stand can see it
+        num = lambda i: (re.search(r'(?m)^\s*\**(\d+)\.\**\s.*?\[\[%s\]\]' % re.escape(i['item_id']), d['student'])
+                         or [None, i['n']])[1]
+        eq = accept(end) == ACCEPT
         letter = any(LETTER.search(i['answer']) for i in end if i['judged'] == 'key')
-        return ('<div class="screen"><p><b>Answers.</b> %sAn equation is right in any order if it '
-                'says the same thing. Mark your own in pen. Items %s are read by your teacher.</p><ol>%s</ol></div>' % (
+
+        def say(i):
+            if i['judged'] == 'key':
+                return i['answer']
+            last = i['answer'].split(';')[-1].strip()
+            if re.fullmatch(r'[\d,]+', last) and re.search(r'[+−]', stem(i)):
+                kind = 'difference' if '−' in stem(i) else 'sum'
+                how = 'adding' if re.search(r'(?<!without )\badding\b', stem(i), re.I) else 'reason'
+                return 'The %s is %s. Your %s is read by your teacher.' % (kind, last, how)
+            return 'Read by your teacher.'
+        judged = [num(i) for i in end if i['judged'] == 'teacher']
+        return ('<div class="screen"><p><b>Answers.</b> %s%sMark your own in pen.%s</p><ol>%s</ol></div>' % (
                     'Any letter is right. ' if letter else '',
-                    ' and '.join(i['n'] for i in end if i['judged'] == 'teacher') or 'none',
-                    ''.join('<li style="list-style:none"><b>%s.</b> %s</li>' % (html.escape(i['n']), html.escape(
-                        i['answer'] if i['judged'] == 'key' else 'read by your teacher')) for i in end)))
+                    'An equation is right in any order if it says the same thing. ' if eq else '',
+                    (' Items %s are judged by your teacher.' % ' and '.join(judged)) if judged else '',
+                    ''.join('<li style="list-style:none"><b>%s.</b> %s</li>' % (html.escape(num(i)), html.escape(say(i)))
+                            for i in end)))
 
     def walk(text, prac):
         for m in tok.finditer(text):
@@ -967,9 +1168,9 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
             scr.append(answers_screen())
             shown = True
             gs = [' '.join(b.split()) for b in re.findall(r'^- (.+?)(?=^- |\n\s*\n|\Z)', whole, re.M | re.S)]
-            for b in gs:
-                scr.append('<div class="screen"><p><b>Group.</b> %s</p></div>' % html.escape(b))
-            if len(gs) > 1:   # groups work at once: one screen holds every task (expert, day 6)
+            if len(gs) == 1:
+                scr.append('<div class="screen"><p><b>Group.</b> %s</p></div>' % html.escape(gs[0]))
+            if len(gs) > 1:   # groups work at once: one screen holds every task (expert, days 6 and 77)
                 scr.append('<div class="screen" style="font-size:16pt"><p><b>Every group.</b></p><ul>%s</ul></div>'
                            % ''.join('<li>%s</li>' % html.escape(b) for b in gs))
         for btxt in chunks(whole):
@@ -1034,6 +1235,15 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         scr.append(answers_screen())
     scr += ['<div class="screen">%s</div>' % html.escape(q) for q in
             re.findall(r'"([^"]*__[^"]*)"', d['secs'].get('Words and supports', ''))]
+    if end:   # a check day's challenges are for whoever finishes, all at once: one screen (s09 expert, day 77)
+        ch = '<div class="screen"><p><b>Challenge.</b> '
+        merged = []
+        for x in scr:
+            if merged and x.startswith(ch) and merged[-1].startswith(ch):
+                merged[-1] = merged[-1][:-len('</div>')] + x[len('<div class="screen">'):]
+            else:
+                merged.append(x)
+        scr = merged
     put(out / (name + '-display.html'), page(title + ': display', ''.join(scr) + foot, 'display'),
                                                 encoding='utf-8')
     note = ''
@@ -1045,6 +1255,18 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
 ACCEPT = ('Any equal form of an equation is right: the two factors in either order, either side of the equals sign, '
           'any letter, or the matching division (n × 9 = 36, 9 × n = 36, 36 = 9 × n and 36 ÷ 9 = n all say the same).')
 ORDER = ['example', 'tool', 'fix', 'practice', 'challenge', 'exit']
+
+
+def accept(rows):
+    """The key's opening rule: the equal-forms note only on a day with an equation (a letter for an unknown, or a
+    division); a day of sums and differences with estimates gets the estimate rule instead (s09 expert, days 72 to
+    77: the factors note printed on adding days)."""
+    if any(LETTER.search(stem(i)) or LETTER.search(i['answer']) or '÷' in stem(i) + i['answer']
+           or re.search(r'×.*=', i['answer']) for i in rows):
+        return ACCEPT
+    if any(re.search(r'\b(?:estimate|about)\b', i['answer'], re.I) for i in rows):
+        return 'Any close estimate is right: it only has to catch a big mistake.'
+    return ''
 LETTER = re.compile(r'(?<![A-Za-z])[a-z](?![A-Za-z])\s*[=×÷+−-]|[=×÷+−-]\s*[a-z](?![A-Za-z])')   # n × 9, = n
 
 
@@ -1082,6 +1304,25 @@ def slip_item(k, i):
         nums = re.findall(r'\d+', each[2])
         lines = ('<table><tr><th style="width:22%%">Number</th><th style="width:33%%">%s?</th><th>Proof</th></tr>%s</table>' % (
             html.escape(each[1][0].upper() + each[1][1:]), ''.join('<tr><td>%s</td><td></td><td></td></tr>' % n for n in nums)))
+    # a column sum or difference: a work box for the columns, then a labelled line for each part asked (s09 expert,
+    # days 72 to 76: two bare lines held neither the working nor which answer was which)
+    big = r'(\d{1,3}(?:,\d{3})+|\d{3,})'
+    sm = re.search(big + r'\s*([+−-])\s*' + big, stem(i))
+    if sm and not frames and not each and re.search(r'\b(add|subtract|find)\b', stem(i), re.I):
+        sub = sm[2] != '+'
+        a, b = (int(x.replace(',', '')) for x in (sm[1], sm[3]))
+        ad = [int(c) for c in reversed(str(a))]
+        st = cols_rename(ad, [int(c) for c in reversed(str(b))]) if sub else []
+        zero = sub and any(ad[j] == 0 and st[-1][j] != 0 for j in range(len(ad)))
+        q = stem(i)
+        labels = (['Estimate'] if re.search(r'\bestimate\b', q, re.I) else []) + (['Rename'] if zero else []) + \
+            ['Difference' if sub else 'Sum'] + (['Which place'] if re.search(r'\bwhich place\b', q, re.I) else []) + \
+            (['Became'] if re.search(r'\bbecome\b', q, re.I) else []) + \
+            (['Worth'] if re.search(r'\bworth\b', q, re.I) else []) + \
+            (['Check'] if re.search(r'\bto check\b|\bcheck(?:s)? it\b|\bcheck your\b', q, re.I) else [])
+        box = '<div class="sketch tall"></div>'
+        lines = ''.join('<p>%s: <span class="blank" style="width:%sem"></span></p>' % (
+            l, '13' if l in ('Rename', 'Became', 'Check') else '9') for l in labels)
     return '<p>%d. %s</p>%s%s' % (k + 1, stacked(' '.join(ask)), box, lines)
 
 
@@ -1324,6 +1565,8 @@ def build_piece(p, items, wrongs, errors):
             return '<table class="facts"><tr>%s</tr></table>' % ''.join(
                 '<td style="border:0;width:20%%">%s = ____</td>%s' % (x, '</tr><tr>' if k % 5 == 4 else '')
                 for k, x in enumerate(fs))
+        if h.get('room') == 'line':   # worked on grid paper: the answer line only (s09 expert, day 77)
+            return '<p>Answer: %s</p>' % ('_' * 30)
         if h.get('room') == 'tall':   # a whole search: a tall box and a full-width answer line (day 3 read)
             return '<div class="sketch tall"></div><p>Answer: %s</p>' % ('_' * 62)
         return '<div class="sketch work"></div><p>Answer: ______________________</p>'
@@ -1373,6 +1616,8 @@ def main(a):
         c = d['head'].get('course', p.parent.parent.name)
         items, days, parts, errors, wrongs = load(c)
         fails = check_day(d, items, days)
+        notes = [x[5:] for x in fails if x.startswith('NOTE ')]
+        fails = [x for x in fails if not x.startswith('NOTE ')]
         byid = {i['item_id']: i for i in items}
         side_note = 'sides not counted (no Chrome)'
         if CHROME.exists() and d['sides']:   # the two-side rule, on the printed page
@@ -1387,6 +1632,8 @@ def main(a):
             stem_words(d, byid), sum(b[0] for b in d['blocks']), side_note, len(fails)))
         for x in fails:
             print('  FAIL', x)
+        for x in notes:
+            print('  NOTE', x)
         bad += len(fails)
         if a[0] == 'build' and not fails:
             out, note = build_day(d, c, items, days, parts, errors, wrongs, '--pdf' in a)
@@ -1412,6 +1659,8 @@ def main(a):
         print('%s: %s, %d words%s, %d failure(s)' % (lab, pc['head'].get('piece'), words(pc['body']), note, len(fails)))
         for x in fails:
             print('  FAIL', x)
+        for x in notes:
+            print('  NOTE', x)
         bad += len(fails)
         if a[0] == 'build' and not fails:
             out = build_piece(pc, items, wrongs, errors)

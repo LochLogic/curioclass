@@ -228,7 +228,7 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-12,math-4,d074.md,day,writer,missing,"Day 74's practice sets had no display screen. LESSON-DAY and lesson.py agree a check screen is built only where a part names a check, and five other days set practice without one on purpose (partner compare, class talk), so the day was at fault: the grid set (problems 3 to 8) now names its Check: line; the pairs set stays partner-checked",fixed,
 2026-11-12,math-4,end-check,plan,writer,level,"No end-check item could show error E (a last carry into a new place); 9.1a is now 58,476 + 63,859 = 122,335 (s09-E1v2), E's wrong 22,335 is a row, day 77 has an E group and a sixth column on item 1",fixed,
 2026-11-12,math-4,d074.md,day,writer,sequence,"readiness.md is one sheet used on days 71 and 74, but d074 printed items 3 and 4 afresh; d074 now hands the day 71 sheet back; days.csv day 74 and s09.md field 4 say the same (day 71 has no days.csv row until stretch 8 is planned)",fixed,
-2026-11-12,math-4,d072.md,day,writer,level,"E72 asks the worth of the small 1 over the thousands, the carry Example 1 (3,746 + 2,538) already names; left for the expert read",open,
+2026-11-12,math-4,d072.md,day,writer,level,"E72 asks the worth of the small 1 over the thousands, the carry Example 1 (3,746 + 2,538) already names; left for the expert read",fixed,
 2026-11-12,math-4,d073.md,day,writer,level,"Fix B (s09-F73-1) reuses the worked example's numbers, 6,285 + 947; left for the expert read",open,
 2026-11-12,math-4,items.csv,process,expert,layout,"Day 1 figures labelled sides in tiles; rect rows flag prints ""4 in each row"" and ""3 rows""",fixed,docs/reviews/day-001-2026-11-12.md#1
 2026-11-12,math-4,items.csv,process,expert,display,Day 1 short-row picture drawn nowhere; new rows figure (12 dots dealt into 5 rows) on K1-2,fixed,docs/reviews/day-001-2026-11-12.md#2
@@ -338,3 +338,107 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-12,math-4,d006.md,day,cheap,handoff,Day 5 slip has no answers on day 6; expert: the header already has it marked,rejected,docs/reviews/cheap-d006-2026-11-12.md#1
 2026-11-12,math-4,d006.md,day,cheap,handoff,Day 7 opening verb differs from s02.md; expert: it already agrees,rejected,docs/reviews/cheap-d006-2026-11-12.md#2
 2026-11-12,math-4,d006.md,day,cheap,handoff,Mark day 5 written task the night before; expert: d005 and d006 already say so,rejected,docs/reviews/cheap-d006-2026-11-12.md#3
+2026-11-12,math-4,d072.md,process,expert,level,E72 rehearsed Example 1 and its cue named the column; s09-X72v2 carries where neither example does; plan.py 3f notes an exit whose carries fall where the worked example's do,fixed,docs/reviews/day-072-2026-11-12.md#1
+2026-11-12,math-4,d072.md,day,expert,layout,"The column sheet could not hold what the day sent to it (items 7 to 11, the fix); Columns alone is now a table with a line for each sum's small 1s",fixed,docs/reviews/day-072-2026-11-12.md#2
+2026-11-12,math-4,d072.md,day,expert,layout,Side 1's expanded-form line held a fifth of what the steps write; place-by-place frames with four blanks,fixed,docs/reviews/day-072-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,display,"No columns on the display, and the screen answered 'One what?' as it asked it; new cols figure fills in step by step (by=), K72-2 steps split at each 'One what?'",fixed,docs/reviews/day-072-2026-11-12.md#4
+2026-11-12,math-4,opener.md,process,expert,materials,"Family note never printed and opener supplies disagreed with the day; d072 and d080 print the note, u09-1 supplies match the days; lesson.py gate for an opener's family-note day",fixed,docs/reviews/day-072-2026-11-12.md#5
+2026-11-12,math-4,d072.md,day,expert,sequence,"Readiness item 1 list was seated for the pairs part, which never used it; the pairs part now names the list",fixed,docs/reviews/day-072-2026-11-12.md#6
+2026-11-12,math-4,d072.md,day,expert,layout,"Pairs split the methods on the teacher page but asked each student for both; one partner each, swap for problem 6",fixed,docs/reviews/day-072-2026-11-12.md#7
+2026-11-12,math-4,lesson.py,process,expert,key,"The key printed the multiplication any-equal-form note on an adding day; accept() prints it only with an equation, the estimate rule on estimate days",fixed,docs/reviews/day-072-2026-11-12.md#8
+2026-11-12,math-4,lesson.py,process,expert,layout,"Question tables printed their first row bold; a first row of numbered questions is a row, not a header",fixed,docs/reviews/day-072-2026-11-12.md#9
+2026-11-12,math-4,items.csv,process,expert,level,"Kai's fix was the worked example, so copying; F73-1v2 on new numbers; plan.py 3f notes a fix on a worked example's numbers",fixed,docs/reviews/day-073-2026-11-12.md#1
+2026-11-12,math-4,d073.md,day,expert,wording,The estimate was sold as the check though it cannot catch a lost carry; teaching first says what an estimate can and cannot catch,fixed,docs/reviews/day-073-2026-11-12.md#2
+2026-11-12,math-4,d073.md,day,expert,missing,"MP.8 tagged and taught nowhere; second Ask is the problem 9 question, u09-1.md field 7 to match",fixed,docs/reviews/day-073-2026-11-12.md#3
+2026-11-12,math-4,lesson.py,process,expert,materials,Grid paper used but not on the print line; d073 prints it; gate: grid paper or column sheet used in a part and not listed,fixed,docs/reviews/day-073-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,layout,Exit slip gave two unlabelled lines for a two-part answer; slips get labelled lines and work boxes,fixed,docs/reviews/day-073-2026-11-12.md#5
+2026-11-12,math-4,items.csv,day,expert,level,A warm-up item coded to a standard taught 21 days later; P73-14v2; plan.py 3g notes a row coded before the spine's first day,fixed,docs/reviews/day-073-2026-11-12.md#6
+2026-11-12,math-4,d073.md,day,expert,wording,"Small repairs (reteach line, Ask 1 answer, fix wording) applied",fixed,docs/reviews/day-073-2026-11-12.md#7
+2026-11-12,math-4,items.csv,day,expert,error,Pair problem 2 could not tell F from G; P74-2v2; plan.py 3e fails a one-ungrouping row whose F and G answers match or that keys only one past day 74,fixed,docs/reviews/day-074-2026-11-12.md#1
+2026-11-12,math-4,d074.md,day,expert,wording,The table used 'Left' for two things; rows renamed (Answer) and the halves named on the page,fixed,docs/reviews/day-074-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,display,No column picture on the display; cols figures on the examples and fixes of days 72 to 76,fixed,docs/reviews/day-074-2026-11-12.md#3
+2026-11-12,math-4,d074.md,day,expert,sequence,"Readiness items marked during the pairs block; now marked that night, R3 and R4 on the record sheet; readiness.md and days.csv agree",fixed,docs/reviews/day-074-2026-11-12.md#4
+2026-11-12,math-4,lesson.py,process,expert,key,The key printed lines that did not fit the row; accept() key line,fixed,docs/reviews/day-074-2026-11-12.md#5
+2026-11-12,math-4,d074.md,day,expert,materials,"Columns sheet leaned on but never used, and print named the E73 slips; sheet named in supports and printed, slips moved to Before class",fixed,docs/reviews/day-074-2026-11-12.md#6
+2026-11-12,math-4,items.csv,day,expert,sequence,"The worked example alternated ungrouping and subtracting, the habit H's remedy undoes; K75-1 ungroups first, then subtracts",fixed,docs/reviews/day-075-2026-11-12.md#1
+2026-11-12,math-4,items.csv,day,expert,key,A right estimate could be 'fixed' into a wrong one at the self-check; P75-1 to 6 accept any close estimate,fixed,docs/reviews/day-075-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,key,Every key printed a multiplication rule on adding and subtracting days; accept(),fixed,docs/reviews/day-075-2026-11-12.md#3
+2026-11-12,math-4,opener.md,process,expert,handoff,"u09-2 opener and the day disagreed on the reteach and on supplies; reteach is the first five minutes, place name cards and column sheet listed",fixed,docs/reviews/day-075-2026-11-12.md#4
+2026-11-12,math-4,d075.md,day,expert,wording,"Small repairs: H watch line, set names, Ask wording",fixed,docs/reviews/day-075-2026-11-12.md#5
+2026-11-12,math-4,errors.csv,process,expert,error,"'A zero becomes 9' taught as a rule while the exit needs a zero that becomes 10; K76-1v2 (500 - 263), error I widened, every-zero-9 wrong answers added, opener sentence",fixed,docs/reviews/day-076-2026-11-12.md#1
+2026-11-12,math-4,lesson.py,process,expert,display,"The rename over the columns was shown nowhere; cols figure renames, example tables with a Rename row",fixed,docs/reviews/day-076-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,handoff,E75 back gave F the wrong remedy and kept a B branch the slip cannot trigger; branches fixed; gate for an If many X branch with no wrong answer for X on the exit,fixed,docs/reviews/day-076-2026-11-12.md#3
+2026-11-12,math-4,items.csv,process,expert,level,"Written task and Ask recited Example 2; W76v2 (7,000 - 2,358) and the 500 - 263 Ask",fixed,docs/reviews/day-076-2026-11-12.md#4
+2026-11-12,math-4,d076.md,day,expert,wording,The frames under the examples had two right answers; 'renamed' frames,fixed,docs/reviews/day-076-2026-11-12.md#5
+2026-11-12,math-4,lesson.py,process,expert,sequence,Fix it printed before the practice but taught after it; moved after teaching first; gate notes a page out of the day's order,fixed,docs/reviews/day-076-2026-11-12.md#6
+2026-11-12,math-4,lesson.py,process,expert,layout,"Exit slip had two lines for a five-digit rename, difference and add-back; slip work boxes",fixed,docs/reviews/day-076-2026-11-12.md#7
+2026-11-12,math-4,readiness.md,process,expert,handoff,Item 4 seating promise worded three ways; readiness.md and opener say day 76's teaching (both examples),fixed,docs/reviews/day-076-2026-11-12.md#8
+2026-11-12,math-4,d076.md,day,expert,materials,"Column sheet put out but not printed, board had four columns; printed, six columns",fixed,docs/reviews/day-076-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,expert,level,Warm-up 6 x 70 was day 73's item word for word; P76-13v2,fixed,docs/reviews/day-076-2026-11-12.md#10
+2026-11-12,math-4,DEFAULTS.md,process,expert,sequence,Groups by error cannot be set by hands up; students match their wrong answer to the groups screen; DEFAULTS respond-half rule,fixed,docs/reviews/day-077-2026-11-12.md#1
+2026-11-12,math-4,lesson.py,process,expert,display,The display showed one group's task a screen; check-day groups and challenges each on one screen,fixed,docs/reviews/day-077-2026-11-12.md#2
+2026-11-12,math-4,lesson.py,process,expert,display,"Answers screen numbered differently from the student page; labelled by the page's numbers, signs for 3 and 6 shown",fixed,docs/reviews/day-077-2026-11-12.md#3
+2026-11-12,math-4,d077.md,day,expert,materials,"Mixed set had nowhere to be worked; grid paper printed, sheet says work on grid paper",fixed,docs/reviews/day-077-2026-11-12.md#4
+2026-11-12,math-4,wrongs.csv,day,expert,key,"Item 1 blurred E and missed D; 111,225 (A) and 1111121215 (D) rows, digit grids with equal columns",fixed,docs/reviews/day-077-2026-11-12.md#5
+2026-11-12,math-4,d072.md,day,cheap,layout,Exit slip had no work box,fixed,docs/reviews/cheap-d072-2026-11-12.md#1
+2026-11-12,math-4,d072.md,day,cheap,layout,Boxes for items 5 and 6 too small (fixed by the pairs split),fixed,docs/reviews/cheap-d072-2026-11-12.md#2
+2026-11-12,math-4,d072.md,day,cheap,layout,No place for items 7 to 11,fixed,docs/reviews/cheap-d072-2026-11-12.md#3
+2026-11-12,math-4,d072.md,day,cheap,layout,'What went wrong' lines too short,fixed,docs/reviews/cheap-d072-2026-11-12.md#4
+2026-11-12,math-4,d072.md,day,cheap,display,No warm-up screen,fixed,docs/reviews/cheap-d072-2026-11-12.md#5
+2026-11-12,math-4,d072.md,day,cheap,sequence,Challenge shows day 73's carry of 2; expert: a first sight as extension does no harm,rejected,docs/reviews/cheap-d072-2026-11-12.md#6
+2026-11-12,math-4,d072.md,day,cheap,minutes,Columns alone tight; items 10 and 11 for fast finishers,fixed,docs/reviews/cheap-d072-2026-11-12.md#7
+2026-11-12,math-4,d072.md,day,cheap,wording,Exit names the column; X72v2,fixed,docs/reviews/cheap-d072-2026-11-12.md#8
+2026-11-12,math-4,d073.md,day,cheap,handoff,Reteach branch dropped E72's fixes,fixed,docs/reviews/cheap-d073-2026-11-12.md#1
+2026-11-12,math-4,d073.md,day,cheap,display,Sets named no answer screen,fixed,docs/reviews/cheap-d073-2026-11-12.md#2
+2026-11-12,math-4,d073.md,day,cheap,layout,Fix boxes too short,fixed,docs/reviews/cheap-d073-2026-11-12.md#3
+2026-11-12,math-4,d073.md,day,cheap,layout,Written task lines too short,fixed,docs/reviews/cheap-d073-2026-11-12.md#4
+2026-11-12,math-4,d073.md,day,cheap,minutes,Sets tight; problem 8 for fast finishers,fixed,docs/reviews/cheap-d073-2026-11-12.md#5
+2026-11-12,math-4,wrongs.csv,day,cheap,key,P73-6 had no B row,fixed,docs/reviews/cheap-d073-2026-11-12.md#6
+2026-11-12,math-4,items.csv,day,cheap,level,"Exit 286,947 ends in 947; expert: shares no fact with 6,285 + 947, rewording harder to read",rejected,docs/reviews/cheap-d073-2026-11-12.md#7
+2026-11-12,math-4,d073.md,day,cheap,materials,Board had four columns; six,fixed,docs/reviews/cheap-d073-2026-11-12.md#8
+2026-11-12,math-4,d074.md,day,cheap,handoff,R3 and R4 not named on the record sheet,fixed,docs/reviews/cheap-d074-2026-11-12.md#1
+2026-11-12,math-4,d074.md,day,cheap,handoff,Item 4 misses not passed to day 76,fixed,docs/reviews/cheap-d074-2026-11-12.md#2
+2026-11-12,math-4,items.csv,day,cheap,key,"C74 key named the tens, not the hundred",fixed,docs/reviews/cheap-d074-2026-11-12.md#3
+2026-11-12,math-4,wrongs.csv,day,cheap,key,Extra X74 row for a misread place; expert: the record sheet already codes any other wrong answer x,rejected,docs/reviews/cheap-d074-2026-11-12.md#4
+2026-11-12,math-4,d074.md,day,cheap,layout,Exit slip box and labels,fixed,docs/reviews/cheap-d074-2026-11-12.md#5
+2026-11-12,math-4,d074.md,day,cheap,layout,Expanded-form cells cramped; expert: each holds one place and fits at 14 point,rejected,docs/reviews/cheap-d074-2026-11-12.md#6
+2026-11-12,math-4,d074.md,day,cheap,display,No screen for pair problems,fixed,docs/reviews/cheap-d074-2026-11-12.md#7
+2026-11-12,math-4,d074.md,day,cheap,minutes,"Grid block and fix tight; 4 and 7 for early finishers, right difference only if time",fixed,docs/reviews/cheap-d074-2026-11-12.md#8
+2026-11-12,math-4,items.csv,day,cheap,wording,Exit gave the place to ungroup; X74v2,fixed,docs/reviews/cheap-d074-2026-11-12.md#9
+2026-11-12,math-4,d075.md,day,cheap,handoff,Exit asked for no check while Tomorrow expected one,fixed,docs/reviews/cheap-d075-2026-11-12.md#1
+2026-11-12,math-4,d076.md,day,cheap,handoff,'No estimate counts as half' not kept by day 76,fixed,docs/reviews/cheap-d075-2026-11-12.md#2
+2026-11-12,math-4,d076.md,day,cheap,handoff,Day 76's B branch no E75 slip can show,fixed,docs/reviews/cheap-d075-2026-11-12.md#3
+2026-11-12,math-4,wrongs.csv,day,cheap,key,"C75-1 wrong row; shown cell 16,170",fixed,docs/reviews/cheap-d075-2026-11-12.md#4
+2026-11-12,math-4,d075.md,day,cheap,display,No display screens for sets 1 and 2,fixed,docs/reviews/cheap-d075-2026-11-12.md#5
+2026-11-12,math-4,d075.md,day,cheap,layout,No room on the exit slip,fixed,docs/reviews/cheap-d075-2026-11-12.md#6
+2026-11-12,math-4,d075.md,day,cheap,layout,Nowhere to work the add-backs; back of the column sheet,fixed,docs/reviews/cheap-d075-2026-11-12.md#7
+2026-11-12,math-4,d075.md,day,cheap,layout,Fix boxes tight,fixed,docs/reviews/cheap-d075-2026-11-12.md#8
+2026-11-12,math-4,d075.md,day,cheap,minutes,"Minutes tight in four parts; teaching first 7, set 2 13 (fixed in part)",fixed,docs/reviews/cheap-d075-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,cheap,wording,"Exit's 'Estimate first' cue; expert: fair on a fluency day, testing an unprompted estimate is day 77's job",rejected,docs/reviews/cheap-d075-2026-11-12.md#10
+2026-11-12,math-4,d075.md,day,cheap,wording,"First Ask repeated Ty; now 52,918 - 4,375",fixed,docs/reviews/cheap-d075-2026-11-12.md#11
+2026-11-12,math-4,d077.md,day,cheap,handoff,Written task never handed back,fixed,docs/reviews/cheap-d076-2026-11-12.md#1
+2026-11-12,math-4,d076.md,day,cheap,handoff,No-estimate half not said on day 76,fixed,docs/reviews/cheap-d076-2026-11-12.md#2
+2026-11-12,math-4,d076.md,day,cheap,handoff,Tomorrow silent on 'no check',fixed,docs/reviews/cheap-d076-2026-11-12.md#3
+2026-11-12,math-4,d076.md,day,cheap,layout,Rename lines too narrow,fixed,docs/reviews/cheap-d076-2026-11-12.md#4
+2026-11-12,math-4,d076.md,day,cheap,layout,Challenge box too small,fixed,docs/reviews/cheap-d076-2026-11-12.md#5
+2026-11-12,math-4,d076.md,day,cheap,layout,Fix it box tight,fixed,docs/reviews/cheap-d076-2026-11-12.md#6
+2026-11-12,math-4,d076.md,day,cheap,display,No answers screen for the six differences,fixed,docs/reviews/cheap-d076-2026-11-12.md#7
+2026-11-12,math-4,d076.md,day,cheap,wording,Warm-up load and 'each difference' wording,fixed,docs/reviews/cheap-d076-2026-11-12.md#8
+2026-11-12,math-4,d076.md,day,cheap,minutes,"Fix it tight; moved before practice, class does the right working",fixed,docs/reviews/cheap-d076-2026-11-12.md#9
+2026-11-12,math-4,d076.md,day,cheap,wording,Problems 5 and 6 marked for those who are ready,fixed,docs/reviews/cheap-d076-2026-11-12.md#10
+2026-11-12,math-4,items.csv,day,cheap,wording,"Drop 'Then add to check' from the exit; expert: checking is half the day's goal, first day",rejected,docs/reviews/cheap-d076-2026-11-12.md#11
+2026-11-12,math-4,items.csv,day,cheap,level,Example 1 reused R4's numbers; K76-1v2,fixed,docs/reviews/cheap-d076-2026-11-12.md#12
+2026-11-12,math-4,d076.md,day,cheap,error,Watch list missed wrong answers,fixed,docs/reviews/cheap-d076-2026-11-12.md#13
+2026-11-12,math-4,d077.md,day,cheap,handoff,W76 not handed back,fixed,docs/reviews/cheap-d077-2026-11-12.md#1
+2026-11-12,math-4,d077.md,day,cheap,wording,Mark paragraph ran two papers together,fixed,docs/reviews/cheap-d077-2026-11-12.md#2
+2026-11-12,math-4,items.csv,day,cheap,key,"E3 'not' sample 8,231 is no lost carry; 8,221",fixed,docs/reviews/cheap-d077-2026-11-12.md#3
+2026-11-12,math-4,errors.csv,day,cheap,error,G note on item 4; G generalised,fixed,docs/reviews/cheap-d077-2026-11-12.md#4
+2026-11-12,math-4,practice-d077.md,day,cheap,layout,"Orphaned answer line; work on grid paper, answer on its line",fixed,docs/reviews/cheap-d077-2026-11-12.md#5
+2026-11-12,math-4,practice-d077.md,day,cheap,layout,Small boxes; work on grid paper,fixed,docs/reviews/cheap-d077-2026-11-12.md#6
+2026-11-12,math-4,d077.md,day,cheap,layout,"End check split work boxes on 2 and 5, short reason lines on 3 and 6",fixed,docs/reviews/cheap-d077-2026-11-12.md#7
+2026-11-12,math-4,lesson.py,day,cheap,display,"Display 'all three together'; expert: it is nine screens, the problem is the reverse",rejected,docs/reviews/cheap-d077-2026-11-12.md#8
+2026-11-12,math-4,practice-d077.md,day,cheap,minutes,"Ten problems in 10 minutes; count is 'of ___ tried', not finished is fine",fixed,docs/reviews/cheap-d077-2026-11-12.md#9
+2026-11-12,math-4,items.csv,day,cheap,wording,Item 6's 'Use adding' cue; expert: it is the skill 9.2c tests,rejected,docs/reviews/cheap-d077-2026-11-12.md#10
+2026-11-12,math-4,lesson.py,day,cheap,key,Equation boilerplate on the key; accept(),fixed,docs/reviews/cheap-d077-2026-11-12.md#11
+2026-11-12,math-4,d080.md,process,writer,materials,Day 80's print line lacked the family note the u10-1 opener sends home that day; caught by the new gate,fixed,
+2026-11-12,math-4,s09.md,plan,expert,sequence,C2.1 (day 78): pass it into a new place so E gets a second cold chance; for day 78's writer,open,docs/reviews/day-077-2026-11-12.md
