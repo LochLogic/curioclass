@@ -457,3 +457,27 @@ s09-X79,"74,384",4+8*10+3*100+4*1000+7*10000,74384,F,
 s09-X79,"24,333",70203-45870,24333,B,
 s09-W73,"""it is a 1""",,,C,
 s09-W76,"""the zeros become 10s""",,,I,
+s01-W5-1,"""48 is a factor of 6"", or the words swapped",,,D,
+s01-W5-4,"""no"": the 4s stop at 40",,,E,
+s01-W5-4,"""yes, it is even"", with no product",,,E,"right answer, wrong reason; ask for the product"
+s01-W5-5,"no 2 × 27, or no 3 × 18",,,B,
+s01-W5-5,no 1 × 54,,,A,
+s01-P5-1,9 or 15 on the list,3*3 | 3*5,9 | 15,F,one long row drawn and no other shape tried
+s01-P5-1,"4, 9 or 16 on the list",2*2 | 3*3 | 4*4,4 | 9 | 16,,a square was not counted as a rectangle; a 2 by 2 square is one
+s01-P5-1,1 left off,,,,not wrong yet: 1 makes one 1 by 1 square; it opens why 1 is neither
+s01-K5-2,51 prime,,,F,odd and not in the tables
+s01-P5-2,33 or 85 in Prime,,,F,
+s01-P5-3,1 in Prime,,,G,
+s01-P5-3,69 in Prime,,,F,
+s01-P5-4,"2 in Composite, because it is even",,,G,
+s01-P5-4,89 in Composite with no pair,,,,a guess; ask for the pair
+s01-P5-5,"45 or 49 ringed, or every odd number ringed",,,F,
+s01-P5-6,1 ringed,,,G,
+s01-P5-6,2 not ringed,,,G,
+s01-P5-6,"9, 15, 21, 25 or 27 ringed",,,F,
+s01-F5-1,87 is prime,,,F,the wrong answer shown
+s01-F5-2,1 is prime; 2 is composite,,,G,the wrong answer shown
+s01-C5-1,"""yes"", with an odd multiple such as 21",3*7,21,F,
+s01-T5-1,21 or 27 in Prime,,,F,
+s01-T5-5,1 in Prime,,,G,
+s01-T5-7,45 or 49 picked,,,F,
