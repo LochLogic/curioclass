@@ -1,0 +1,111 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 2: Search in order: teacher page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="teacher"><h1>Day 2: Search in order</h1><p>Teacher page</p><table class="meta"><tr><td>Day</td><td>2, unit 1.1, understanding day</td></tr><tr><td>Goal</td><td>I can find all the factor pairs of a number in order, and say how I know I am done</td></tr><tr><td>Standard parts</td><td>4.OA.B.4 (a) all factor pairs for a whole number in the range 1 to 100</td></tr><tr><td>Tool</td><td>Egg Carton Factory (key), 20 min</td></tr><tr><td>Materials</td><td>per student, a pencil, grid paper (1 sheet) and the rows table page; per pair, 24 square tiles or paper squares, and scissors; per class, the projector with the display page, and a board (no document camera: draw it on the board)</td></tr><tr><td>Print</td><td>student page, 1 per student, both sides; rows table page, 1 per student; exit slip, 1 per student; the key, 1 for the teacher; the E1 slips, marked, to hand back</td></tr><tr><td>Leans on</td><td>courses/math-4/u01-1/opener.md; courses/math-4/u01-1/rows-table.md; courses/math-4/u01-1/readiness.md; courses/math-4/u01-1/record.md</td></tr><tr><td>Uses when it exists</td><td>tools/egg-carton-factory/src.html</td></tr><tr><td>Version</td><td>draft 1, not ready, not yet taught</td></tr><tr><td>Credit</td><td>ours</td></tr></table><h3>Before class</h3>
+<p>Print the student page both sides, the rows table pages, the exit slips and the key. Sort the marked E1 slips:
+C (one rectangle counted twice), a short last row, A (only 2 by 5). From the readiness sheets, list who missed
+item 2 or 3. Put the display page on the projector. Write the warm-up on the board.</p>
+<h3>The day</h3>
+<h4>5 min. Warm-up: add and subtract</h4>
+<p>Alone, then whole class: 563 + 278 <strong>[841]</strong>, 702 − 345 <strong>[357]</strong>, 419 + 386 <strong>[805]</strong>, 830 − 467 <strong>[363]</strong>.</p>
+<p>Students who missed readiness item 2 or 3, if fewer than a third, sit with you instead. Item 2:
+three rows of 8 dots, read as 3 × 8 = 24 and 24 ÷ 3 = 8. Item 3: build 12 with tiles in every rectangle; a
+turned one is the same rectangle.</p>
+<p><strong>If more than a third missed item 2 or 3</strong>, the next 5 minutes are that reteach for the whole class, and E1's
+error is taken inside the worked search.</p>
+<h4>5 min. E1 back</h4>
+<p>Whole class. Hand back the day 1 slips.</p>
+<p><strong>If day 1's slips showed many C</strong> (2 by 5 and 5 by 2 counted as two): cut a 2 by 5 rectangle from grid paper
+and turn it. "Did it change? One rectangle, two names."</p>
+<p><strong>If many drew a short last row</strong> for 3 rows: build 10 in 3 rows with tiles. Rows of 3 leave 1 over; rows of 4
+need 12. The last row is short, so 3 rows do not fit.</p>
+<p>If neither: one student shows both rectangles. Students who drew only 2 by 5 (A) sit near you for Teaching
+first: the search in order answers them.</p>
+<h4>8 min. Teaching first: one search, 24</h4>
+<p>Whole class. Students fill the table on side 1 as you go, not ahead of you. Pairs build each row count with 24
+tiles. The display shows each step on its own screen.</p>
+<p><strong>Example</strong> (24 squares. Try 1 row, 2 rows, 3 rows and on, in order. Which numbers of rows fit with none left over? <strong>[1 × 24, 2 × 12, 3 × 8, 4 × 6; 5 rows: no; 6 rows of 4 is 4 rows of 6 turned, so stop]</strong>).</p>
+<ol>
+<li>1 row: 1 row of 24. Fits, with 24. Write 1 × 24 = 24.</li>
+<li>2 rows: 2 × 12 = 24. Fits, with 12.</li>
+<li>3 rows: 3 × 8 = 24. Fits, with 8.</li>
+<li>4 rows: 4 × 6 = 24. Fits, with 6.</li>
+<li>5 rows: 5 rows of 4 is 20, and 4 squares are left. A short last row is not a rectangle. No.</li>
+<li>6 rows: 6 rows of 4. Fits, but 6 × 4 is 4 × 6 turned: the same rectangle. Draw a line under 4 rows. That is the turn.</li>
+<li>Stop. 7 rows or more would need fewer than 4 in each row, and 1, 2 and 3 rows are done.</li>
+<li>The factor pairs of 24 are 1 × 24, 2 × 12, 3 × 8 and 4 × 6. Four pairs.</li>
+</ol>
+<p>Why stop at the turn: once the rows outnumber the squares in each row, that row length was already tried as a
+number of rows. Show it with the tiles, not as a rule.</p>
+<h4>20 min. Egg Carton Factory, Pack Station: on paper</h4>
+<p>Alone, on the rows table page; grid paper to check. When it exists: Pack Station, the same table filled beside
+the cartons, stopped at 20 minutes. Until then, the paper path: 36 squares. Fill the rows table from 1 row. <strong>[1 × 36, 2 × 18, 3 × 12, 4 × 9, 6 × 6; 5 rows: no; the turn at 6 × 6]</strong>, 30 squares. Fill the rows table from 1 row. <strong>[1 × 30, 2 × 15, 3 × 10, 5 × 6; 4 rows: no; 6 rows of 5 is the turn]</strong>, 49 squares. Fill the rows table from 1 row. <strong>[1 × 49, 7 × 7; 2 to 6 rows: no; the turn at 7 × 7]</strong>,
+60 squares. Fill the rows table from 1 row. <strong>[1 × 60, 2 × 30, 3 × 20, 4 × 15, 5 × 12, 6 × 10; 7, 8 and 9 rows: no; 10 rows of 6 is the turn]</strong>.</p>
+<p>For each number of rows from 1 up, students write "fits, with <span class="blank" style="width:0.9em"></span>" or "no" before checking it by a fact or by
+shading rows on grid paper. They draw the turn line and copy the pairs to side 1. After each table, the display
+shows its key.</p>
+<p>Check: Does every row match? Is your turn line in the same place? Fix a row in pen.</p>
+<p>Walk with one question: "How many rows did you just try? What comes next?" Watch for:</p>
+<ul>
+<li>A turned pair written again, such as 6 × 5 on 30 (error C). Point to the turn line.</li>
+<li>A table that starts at 2 rows, so no 1 × 36 (error A). "Start with 1 row."</li>
+<li>A row skipped because the fact is not one they know, such as 2 × 18 (error B). Shade it on grid paper. No
+  shortcut today; that is day 3.</li>
+<li>49: a student who stops at 6 rows. 7 rows of 7 is the turn on itself.</li>
+</ul>
+<p>If many miss the same row of 36, shade it together, then go on.</p>
+<h4>7 min. Fix it: Mia and Kai</h4>
+<p>Side 2 (Mia says: "The factor pairs of 20 are 2 × 10 and 4 × 5. Done." <strong>[1 × 20, 2 × 10, 4 × 5. Mia did not go in order, so she missed 1 × 20]</strong>, Kai says: "36 has seven factor pairs: 1 × 36, 2 × 18, 3 × 12, 4 × 9, 6 × 6, 9 × 4, 12 × 3." <strong>[5 pairs: 1 × 36, 2 × 18, 3 × 12, 4 × 9, 6 × 6. 9 × 4 and 12 × 3 are 4 × 9 and 3 × 12 turned]</strong>). Two minutes alone, one minute of turn-and-talk in pairs, then the class: the
+display shows each wrong working beside the right one. Mia used facts she knew, in no order, so she could not
+know she was done. Kai kept going past 6 × 6. Cut a 4 by 9 rectangle from grid paper and turn it.</p>
+<h4>6 min. On your own: 40</h4>
+<p>Alone, side 2, no tiles (Find all the factor pairs of 40. <strong>[1 × 40, 2 × 20, 4 × 10, 5 × 8 (either order in each pair)]</strong>); grid paper only to check a row. Four minutes, then partners swap and check.</p>
+<p>Check: Does your partner start at 1 row? Is every pair there once? Is there a turn line?</p>
+<h4>4 min. Pull it together</h4>
+<p>Whole class.</p>
+<p><strong>Ask.</strong> "You found 6 × 6 for 36. Why is every fit after that one you already have?" Expect: "7 rows would need
+fewer than 6 in each row, and I already tried those"; "they are the ones before, turned". Hold up the cut 4 by
+9 rectangle and turn it.</p>
+<h4>5 min. Exit: the slip</h4>
+<p>Alone, on paper (Find all the factor pairs of 50. How do you know you have them all? <strong>[1 × 50, 2 × 25, 5 × 10. After 5, neither 6 nor 7 works, and 8 × 8 = 64 is already more than 50, so any new pair would be one of these turned. Also right: "the next number that works is 10, and I have it."]</strong>). Read it aloud once if a student asks. Collect at the door; write results on the
+record sheet under E2.</p>
+<h3>Other rooms</h3>
+<ul>
+<li><strong>No printer.</strong> Students rule their own rows table: "rows" and "fits?". The fixes and 40 on the board.</li>
+<li><strong>No tiles.</strong> Squares cut from grid paper.</li>
+<li><strong>One projector.</strong> For each row count the class writes "fits, with <span class="blank" style="width:0.9em"></span>" or "no" before you show it.</li>
+<li><strong>One child at home.</strong> 24 coins, rows from 1 up; at 6 rows ask "Have we made this before?"</li>
+</ul>
+<h3>Shorter or longer</h3>
+<p>Shorter: drop 49 from the rows tables and the partner check (students check their own). Never drop the search
+in order, the fixes or the turn line. Longer: the challenge (Which number from 41 to 49 has the most factor pairs? List its pairs. <strong>[48: 1 × 48, 2 × 24, 3 × 16, 4 × 12, 6 × 8]</strong>).</p>
+<h3>Words and supports</h3>
+<p>Word Wall cards: factor, factor pair, row, product. Anchor chart: the table for 24 with its turn line. Students
+say each row aloud with a partner, in a home language if they wish. Frame on the display: "<span class="blank" style="width:0.9em"></span> and <span class="blank" style="width:0.9em"></span> are a factor pair of <span class="blank" style="width:0.9em"></span>, because <span class="blank" style="width:0.9em"></span> × <span class="blank" style="width:0.9em"></span> = <span class="blank" style="width:0.9em"></span>."</p>
+<h3>Tomorrow</h3>
+<p>On the slip, 10 × 5 as a fourth pair (error C): day 3's first two minutes cross out the turned pairs in one list
+together. "I just know", or no reason: day 3 reads one reason that names the turn. Then day 3 searches with no
+tiles. Students who listed fewer than three pairs sit near you for day 3's Teaching first.</p>
+<h3>Credit</h3>
+<p>Ours. Informed by, not adapted from: Illustrative Mathematics K-5, grade 4, unit 1, lesson 2 (CC BY 4.0,
+https://curriculum.illustrativemathematics.org/k5/), and the Progressions for the Common Core State Standards,
+Operations and Algebraic Thinking.</p><div class="foot">Curio Class, grade 4 math, day 2, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>
