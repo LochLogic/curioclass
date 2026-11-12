@@ -31,7 +31,7 @@ HOME_TEACH, HOME_CHECK = (30, 40), (40, 50)   # minutes at home: a teaching day;
 # TEMPORARY: sections whose days are still to get their At home block (homeschool option 1, 2026-11-12). Their days
 # report "At home block missing" as a note, not a failure. The agent that writes a section's blocks removes it here;
 # when the list is empty, delete it.
-HOME_TODO = {'u01-1', 'u01-2', 'u09-1', 'u09-2', 'u10-1', 'u10-2', 'u10-3'}
+HOME_TODO = set()
 HOME_PART = re.compile(r'^- \*\*(\d+) min\. (.+?)\.\*\*(.*?)(?=^- \*\*\d+ min\.|^\*\*|\Z)', re.M | re.S)
 TALK = re.compile(r'\bpairs?\b|turn-and-talk|whole class|\bthe class\b|\*\*Ask\.\*\*', re.I)
 HOME_LACKS = re.compile(r'projector|grid paper|tiles|device|string loop|document camera|large tiles', re.I)
@@ -1101,8 +1101,8 @@ def home_html(d, row, items, warn, foot):
     home = d['secs']['At home']
     named = list(dict.fromkeys(r for r in REF.findall(home) if r in byid))
     tot = sum(p[0] for p in home_parts(d))
-    kind = 'assessment day' if row['kind'] == 'Check' else 'teaching day'
-    meta = [('Goal', row['goal']), ('Time', '%d minutes, one parent and one child (a %s)' % (tot, kind)),
+    kind = 'an assessment day' if row['kind'] == 'Check' else 'a teaching day'
+    meta = [('Goal', row['goal']), ('Time', '%d minutes, one parent and one child (%s)' % (tot, kind)),
             ('Print', 'the student page' + (' and one exit ticket' if exits and row['kind'] != 'Check' else '')
              + '; this page and its answers are for you')]
     last = {'group': None, 'end': 0}
