@@ -457,6 +457,9 @@ s09-X79,"74,384",4+8*10+3*100+4*1000+7*10000,74384,F,
 s09-X79,"24,333",70203-45870,24333,B,
 s09-W73,"""it is a 1""",,,C,
 s09-W76,"""the zeros become 10s""",,,I,
+s09-C77-1,"393,391 or 383,401",393401-10 | 393401-10000,393391 | 383401,A,a carry of 2 written as 1
+s09-C77-2,"245,673",504030-268457+100+10000,245673,I,
+s09-C77-2,"364,427",7+2*10+4*100+4*1000+6*10000+3*100000,364427,F,
 s01-K1-1,7,3+4,7,,added the rows and the tiles in a row
 s01-K1-2,"""yes"" for 5 rows, with short rows",,,,not a rectangle; every row must be full
 s01-P1-1,2 by 9 and 9 by 2 drawn as two,9*2,18,C,
