@@ -1,7 +1,7 @@
 # Handoff: the one current-state page
 
 **This is the single page that says where the work stands and what to do next. Last updated 2026-11-12, after
-the lesson-day template's cold read and revision. Everything here is pushed to `spec/sara` and `main`.**
+unit 11.1 was built (all but its tool). Everything here is pushed to `spec/sara` and `main`.**
 
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page
 disagrees with this one, the other page is stale: check the date, fix it, and say so.
@@ -26,10 +26,27 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
    facts check sheet and the record sheet do not exist yet.
 3. **Keys as data: built for stretch 11** (`data/plans/`, `scripts/plan.py`; see "Plan weight"). The lesson
    days' own items go in as rows while the pilot is written.
-4. **Build unit 11.1 to the bottom:** its five days in full, the generator sheet (twelve problems by type,
-   defined in s11.md), both checks with keys, the record sheet, the family note, and Community Plot Planner
-   (eight open asks in [courses/math-4/TOOL-ASKS.md](courses/math-4/TOOL-ASKS.md)). Fill in
-   [pilots/COST.md](pilots/COST.md) as each piece is made, not afterwards.
+4. **Unit 11.1 built 2026-11-12, all but its tool.** In `courses/math-4/u11-1/`: days 89 to 93, the opener, the
+   readiness check, the record sheet, the family note (English and Spanish), `sheet-d091.md`; the two facts-check
+   sheets are in `u01-1/`. Every day passes `lesson.py check` (two sides each) and `plan.py check` (70 items, 79 wrong
+   answers, 0 failures). Days 89, 91 and 92 build "ready"; day 90 waits on Community Plot Planner; day 93 leans on
+   stretch 12's readiness check, which is frozen with the rest of planning. New this round:
+   - `lesson.py` builds "pieces" (opener, record, check, facts, family, sheet) and check days (answers display,
+     look-fors in the key from the `steps` cell of judged end items).
+   - The generator sheet is the measure-shapes skill `formulas` (preset math-4 #40 in
+     `data/closet/worksheets/generated.csv`). `plan.py reserve math-4 11` writes the unit's number sets into the
+     generator so it never repeats them, and `plan.py check` fails when that list is stale: run it after any
+     items.csv change in stretch 11.
+   - Shelf: anchor chart `data/closet/charts/math-4-area-and-perimeter-formulas.md`; family game
+     `data/closet/games/fence-or-floor.md`.
+   - Community Plot Planner is the first build in the Codex queue (`codex_queue.py` PILOT), with a note sending the
+     builder to d090.md and the TOOL-ASKS asks. Codex needs main merged into `codex/queue` first.
+   - Costs: [pilots/COST.md](pilots/COST.md). One agent per day cost 128,000 to 137,000 tokens.
+   - Still owed: the Spanish family note needs a qualified reader; the module has no Word Wall cards of its own
+     (area, perimeter, square unit, formula, length, width exist under other modules), which is the Word Wall
+     owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts
+     check (day 91 agent); day 92's written task has no slot for feedback on day 93, so the teacher page hands it back
+     at the door (day 92 agent); figure cells cannot label mixed numbers yet (day 91 used 6¾).
 5. **People.** Cory is arranging a grade 3 to 5 teacher, one taught run and three timed students
    ([pilots/README.md](pilots/README.md)). Their notes change the templates.
 6. **After the pilot is read:** fix the templates, then the first ELA pilot (grade 6, stretch 2, five days) and
@@ -147,7 +164,7 @@ What was done, with nothing deleted that was not first saved:
 | 4 Progressions | Math grades 3 to 5 done. |
 | 5 Spine | Grade 4 math, plus science and ELA spines waiting for Cory's final yes. 3 of 105 courses have a spine. |
 | 6 Stretch sheets and unit plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Word caps are 1,250 (unit plan), 1,250 (stretch sheet) and 1,800 (one-unit stretch) since 2026-11-11. Grade 4 math: stretches 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 units (the status table shows 17 because it counts stretch sheets too). 30 units to go (stretches 4 to 8 and 12 to 18). **Planning is frozen at these six until the pilot is read.** |
-| 7 Lessons, tools, print | Nothing exists yet. The pilot unit (11.1) is next, see "Start here". There is no lesson-day template yet. |
+| 7 Lessons, tools, print | Unit 11.1 (grade 4 math) is built but for its tool, see "Start here" step 4. Template: [courses/LESSON-DAY.md](courses/LESSON-DAY.md). |
 | Texts (ELA) | Grade 6 stretch 2 only: [courses/ela-6/RIGHTS.md](courses/ela-6/RIGHTS.md). Every row is "found, not yet second-read"; fifteen questions wait for the second reader (a person, FOUNDATION 7.3). No text is taught before that read. |
 | The bar | Math: [RUBRIC-MATH-K8.md](RUBRIC-MATH-K8.md). All other subjects but ELA and science: [ADOPTION-BAR-SUBJECTS.md](ADOPTION-BAR-SUBJECTS.md), second draft. ELA: [RUBRIC-ELA.md](RUBRIC-ELA.md), drafted 2026-11-11, read by the expert, revised once. Science rubric file: Sara's piece 3. |
 

@@ -206,6 +206,7 @@ Math worksheets for Kindergarten through Grade 8 Math, then the high school cour
 | 36 | Conversion Tables | Data and graphs | Measurement Conversions | Complete conversion tables for feet to inches, hours to minutes, kilograms to grams and pounds to ounces. |
 | 38 | Recipe and Road Trip Units | Apply | Measurement Conversions | Solve 6 problems that mix units, like liters and milliliters or hours and minutes, answering in the smaller unit. |
 | 39 | Missing Side Detectives | Practice | Area and Perimeter Formulas | Find unknown side lengths for 8 rectangles when the area or perimeter is given. |
+| 40 | Both Formulas, No Pictures | Practice | Area and Perimeter Formulas | Solve 12 mixed area and perimeter problems with no drawings, including missing sides, three-digit sides and fraction sides, then fix 5 wrong answers. |
 | 41 | Design a Classroom Rug | Planner | Area and Perimeter Formulas | Test 3 rectangular rug designs with area 48 square feet in a table and choose one with perimeter under 30 feet. |
 | 42 | Turns of a Circle | Diagram | Angles and Line Plots | Show 8 angles as fractions of a full turn and convert each to degrees, like 1/4 turn = 90 degrees. |
 | 43 | Protractor Practice | Practice | Angles and Line Plots | Measure 8 printed angles with a protractor, then draw 4 angles of given measures. |

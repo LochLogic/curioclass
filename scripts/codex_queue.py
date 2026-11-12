@@ -82,8 +82,10 @@ _SPEC = SPEC_TEST + SPEC_TEST_2 + SPEC_TEST_3 + SPEC_TEST_4 + SPEC_TEST_5
 # Recess games (docs/GAMES.md, Cory 2026-11-08): built from docs/agents/CODEX-RECESS.md, not CODEX-BUILD.md. Add a game
 # here only once its spec is final, so a build never starts on a spec still being written.
 RECESS = """chess untangle checkers go sliding-blocks""".split()
-QUEUE = ([t for t in CURIO if curio_ready(t)] + RECESS + _SPEC
-         + [t for t in QUEUE if t not in CURIO and t not in _SPEC])
+# Pilot unit 11.1 (grade 4 math, HANDOFF.md): its day 90 lesson is taught on this tool, so it goes first.
+PILOT = ['community-plot-planner']
+QUEUE = (PILOT + [t for t in CURIO if curio_ready(t)] + RECESS + _SPEC
+         + [t for t in QUEUE if t not in CURIO and t not in _SPEC and t not in PILOT])
 # Specs reserved for an outside helper (drafts/paste-ready/helper-process.txt), tool id -> GitHub handle. Codex skips
 # these. Remove the line to hand a tool back to Codex.
 HELPERS = {
@@ -93,6 +95,7 @@ QUEUE = [t for t in QUEUE if t not in HELPERS]
 DANCE = ("Owner's decision: this tool gets painted dancers, not the code figure. Paint them yourself, marked \"people\": true, "
          "with a natural range of dancers. Draw the fewest poses that teach the moves well, and keep the figure easy to swap.")
 NOTES = {  # desk answers the spec does not hold yet (docs/agents/decisions/DESK-ANSWERS.md)
+    'community-plot-planner': "Owner's decision: this tool is the pilot unit's day 90 lesson. Read courses/math-4/u11-1/d090.md and build what that page asks of Lot planner. Then build every ask in the Community Plot Planner section of docs/courses/math-4/TOOL-ASKS.md (asks 1, 2, 4, 5, 7, 8 and 9; where an ask and the spec disagree, the ask wins). After the formula cards fade, two more notes come (one area, one fence), so each formula is used at least twice with no squares or fence. Keep the Lee and Ortiz numbers as the spec gives them.",
     'music-history-radio': "Owner's decision: add one station from outside the European and American line, with sourced facts.",
     'director-s-chair': "Owner's decision: the 5 masks are objects, not people, so paint them yourself. The masked actors stay figures in code.",
     'neighborhood-issue-play': "Owner's decision: restore the idea card's third problem, a new family who speaks another language, in place "

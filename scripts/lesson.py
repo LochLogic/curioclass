@@ -333,7 +333,11 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     row = next(x for x in days if x['day'] == h['day'])
     tt = tool_title(row['tool']) if row['tool'] else ''
     mine = [i for i in items if i['day'] == h['day'] and i['check'] in plan.LESSON_KINDS | {'exit'}]
-    pk = {(i['code'], i['part']) for i in mine if i['part']}
+    # a check day is measured by its end rows, which carry the stretch, not the day
+    end = sorted((i for i in items if i['stretch'] == row['stretch'] and i['check'] == 'end'), key=lambda i: int(i['n']))
+    if row['kind'] != 'Check':
+        end = []
+    pk = {(i['code'], i['part']) for i in (end or mine) if i['part']}
     parts = [p for p in parts_all if (p['code'], p['part']) in pk]
     out = OUT / course / d['path'].parent.name
     out.mkdir(parents=True, exist_ok=True)
@@ -343,6 +347,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     refs = sorted({r for r in REF.findall(d['teacher'] + d['student']) + STEPS.findall(d['teacher']) if r in byid},
                   key=lambda r: (ORDER.index(byid[r]['check']) if byid[r]['check'] in ORDER else 9,
                                  byid[r].get('path', ''), int(byid[r]['n'] or 0)))
+    refs = [i['item_id'] for i in end] + [r for r in refs if r not in {i['item_id'] for i in end}]
     credits = sorted({byid[r]['source'] for r in refs if byid[r].get('source')})
     foot = foot_line(h, course, ([h['credit']] if h['credit'].lower() != 'ours' else []) + credits)
     gone = missing(d)
@@ -364,10 +369,15 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
             e = w['error']
             what = ('error %s' % e) + ('' if e in seen else ', ' + errname.get(e, '').lower()) if e else ''
             seen.add(e)
-            ws.append('%s: %s%s' % (w['shown'], what, (' (%s)' % w['note']) if w['note'] else ''))
-        where = i['check'] + (' (%s)' % i['path'] if i.get('path') else '')
-        kr.append('<tr><td>%s</td><td>%s</td><td class="q">%s</td><td>%s</td><td>%s</td></tr>' % tuple(
-            html.escape(x) for x in (where, i['item_id'], stem(i), i['answer'], '; '.join(ws))))
+            tail = (what + (' (%s)' % w['note'] if w['note'] else '')).strip()
+            ws.append(w['shown'] + (': ' + tail if tail else ''))
+        where = i['check'] + (' %s' % i['n'] if i['check'] == 'end' else '') + (' (%s)' % i['path'] if i.get('path') else '')
+        ans = html.escape(i['answer'])
+        if i['judged'] == 'teacher' and steps(i):
+            ans += '<br><b>Look-fors, each ticked alone:</b><ol>%s</ol>' % ''.join(
+                '<li>%s</li>' % html.escape(x) for x in steps(i))
+        kr.append('<tr><td>%s</td><td>%s</td><td class="q">%s</td><td>%s</td><td>%s</td></tr>' % (
+            html.escape(where), html.escape(i['item_id']), html.escape(stem(i)), ans, html.escape('; '.join(ws))))
     kb = ('<h1>%s: key</h1><p>Every answer below is recomputed by scripts/plan.py from data/plans/%s/items.csv.</p>'
           '<table><tr><th>Where</th><th>Id</th><th>Question</th><th>Answer</th><th>Wrong answers and what they mean</th>'
           '</tr>%s</table>%s' % (html.escape(title), course, ''.join(kr), foot))
@@ -406,6 +416,14 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         scr.append('<div class="screen"><p><b>Check your answers.</b> Put each answer back in its equation. Does it '
                    'give the number in the question? If not, put a question mark.</p><ol>%s</ol></div>' % ''.join(
                        '<li>%s</li>' % html.escape(stem(i)) for i in prac))
+    if end:
+        # the check day's display: the key-marked answers, for students marking their own in another colour
+        scr.append('<div class="screen"><p><b>Answers.</b> Mark your own in another colour. Items %s are read by '
+                   'your teacher.</p><ol>%s</ol></div>' % (
+                       ' and '.join(i['n'] for i in end if i['judged'] == 'teacher') or 'none',
+                       ''.join('<li value="%s">%s</li>' % (i['n'], html.escape(i['answer'] if i['judged'] == 'key'
+                                                                           else 'read by your teacher'))
+                               for i in end)))
     (out / (name + '-display.html')).write_text(page(title + ': display', ''.join(scr) + foot, 'display'),
                                                 encoding='utf-8')
     note = ''
@@ -440,6 +458,159 @@ def print_sides(src):
     from pypdf import PdfReader
     n = len(PdfReader(str(pdf)).pages)
     return '%d side(s)%s' % (n, '' if n <= 2 else ' FAIL: more than two')
+
+
+# ------------------------------------------------------------------ once-per-unit pieces
+# A piece is any other .md in a unit folder (opener.md, record.md, readiness.md, ...), with a header naming its
+# kind: opener (written, 1,200 words at most), record (the record sheet, generated), check (a readiness check:
+# student page and key generated from the rows), facts (a facts check sheet), family (the family note).
+CAP_OPENER = 1200
+PIECE_HEAD = ['piece', 'course', 'unit', 'version', 'credit']
+PIECE_KINDS = ('opener', 'record', 'check', 'facts', 'family', 'sheet')
+
+
+def preset(h):
+    """A sheet piece names a generator preset as 'unit n' (data/closet/worksheets/generated.csv)."""
+    import ws_generated
+    u, _, n = (h.get('preset') or '').partition(' ')
+    return ws_generated.load().get(u, {}).get(int(n)) if n.strip().isdigit() else None
+
+
+def piece_files():
+    return sorted(p for p in COURSES.glob('*/u*/*.md') if not re.match(r'd\d{3}$', p.stem))
+
+
+def parse_piece(path):
+    t = path.read_text(encoding='utf-8')
+    m = re.match(r'---\n(.*?)\n---\n(.*)', t, re.S)
+    if not m:
+        return None
+    head = {k.strip(): v.strip() for k, _, v in (ln.partition(':') for ln in m[1].splitlines())}
+    title = re.search(r'^# (.+)$', m[2], re.M)
+    return dict(path=path, head=head, body=m[2], title=title[1] if title else path.stem)
+
+
+def piece_rows(p, items):
+    h = p['head']
+    return sorted([i for i in items if i['check'] == h.get('check') and i['stretch'] == h.get('stretch')],
+                  key=lambda i: int(i['n'] or 0))
+
+
+def unit_foot(h, course, what):
+    return '<div class="foot">%s</div>' % html.escape(
+        'Curio Class, %s, unit %s, %s, version %s, CC BY 4.0, curioclass.org'
+        % (course_name(course), h['unit'], what, h['version']))
+
+
+def section(body, name):
+    m = re.search(r'^## %s\n(.*?)(?=^## |\Z)' % re.escape(name), body, re.M | re.S)
+    return m[1] if m else None
+
+
+def check_piece(p, items):
+    f, h, lab = [], p['head'], p['path'].relative_to(ROOT).as_posix()
+    for k in PIECE_HEAD:
+        if not h.get(k):
+            f.append('%s: header field "%s" is missing' % (lab, k))
+    kind = h.get('piece')
+    if kind not in PIECE_KINDS:
+        f.append('%s: piece "%s" is not one of %s' % (lab, kind, ', '.join(PIECE_KINDS)))
+    if kind == 'opener' and words(p['body']) > CAP_OPENER:
+        f.append('%s: the unit opener is %d words; the cap is %d' % (lab, words(p['body']), CAP_OPENER))
+    if kind == 'check':
+        rs = piece_rows(p, items)
+        if not rs:
+            f.append('%s: no %s rows for stretch %s in items.csv' % (lab, h.get('check'), h.get('stretch')))
+        g = grade(h.get('course', ''))
+        for i in rs:
+            for s in sentences(stem(i)):
+                if g and 3 <= g <= 5 and words(s) > SENTENCE_MAX:
+                    f.append('%s: a sentence in %s is %d words; grades 3 to 5 keep to %d'
+                             % (lab, i['item_id'], words(s), SENTENCE_MAX))
+    if kind == 'sheet' and not preset(h):
+        f.append('%s: preset "%s" is not a row of data/closet/worksheets/generated.csv' % (lab, h.get('preset', '')))
+    if kind == 'family':
+        for lang in ('English', 'Spanish'):
+            sec = section(p['body'], lang)
+            if sec is None:
+                f.append('%s: no "## %s" section' % (lab, lang))
+            elif words(sec) > 150:
+                f.append('%s: the %s note is %d words; the cap is 150' % (lab, lang, words(sec)))
+    return f
+
+
+def build_piece(p, items, wrongs, errors):
+    h, course = p['head'], p['head']['course']
+    out = OUT / course / p['path'].parent.name
+    out.mkdir(parents=True, exist_ok=True)
+    name, kind, title = p['path'].stem, h['piece'], p['title']
+    body = re.sub(r'^# .+\n', '', p['body'], count=1, flags=re.M)
+    mdh = lambda t: markdown.markdown(t, extensions=['tables'])
+    if kind in ('opener', 'family'):
+        (out / (name + '.html')).write_text(page(title, '<h1>%s</h1>%s%s' % (
+            html.escape(title), mdh(body), unit_foot(h, course, name)), 'teacher'), encoding='utf-8')
+        return out
+    if kind == 'sheet':   # a page for the teacher: the preset's link, then the piece's own notes
+        g = preset(h)
+        url = 'https://curioclass.org' + g['url']
+        (out / (name + '.html')).write_text(page(title, '<h1>%s</h1><p><b>Make and print it:</b> <a href="%s">%s</a>. '
+            'Each press of New sheet gives a fresh sheet and its key; print one sheet per student and the key for '
+            'you.</p>%s%s' % (html.escape(title), html.escape(url), html.escape(url), mdh(body), unit_foot(h, course, name)),
+            'teacher'), encoding='utf-8')
+        return out
+    if kind == 'facts':   # every pair a x b with 2 <= a <= b <= 9, once: products, or the matching quotients
+        pairs = [(a, b) for a in range(2, 10) for b in range(a, 10)]
+        import random
+        rnd = random.Random(h.get('seed', '1'))
+        rnd.shuffle(pairs)
+        qs = ['%d × %d =' % (a, b) if h.get('facts') == 'products' else '%d ÷ %d =' % (a * b, rnd.choice((a, b)))
+              for a, b in pairs]
+        cells = ''.join('<td>%s ______</td>%s' % (q, '</tr><tr>' if k % 4 == 3 else '') for k, q in enumerate(qs))
+        sb = '<h1>%s</h1><p>Name ______________________ Date __________</p>%s<table class="facts"><tr>%s</tr></table>%s' % (
+            html.escape(title), mdh(section(body, 'Student') or ''), cells, unit_foot(h, course, name))
+        css = '<style>.facts td { height: auto; padding: .35em .4em; width: 25%; font-size: 14pt; }</style>'
+        (out / (name + '-student.html')).write_text(page(title, css + sb, 'student'), encoding='utf-8')
+        key = ''.join('<td>%s %s</td>%s' % (q, eval(q[:-1].replace('×', '*').replace('÷', '//')),
+                                             '</tr><tr>' if k % 4 == 3 else '') for k, q in enumerate(qs))
+        (out / (name + '-key.html')).write_text(page(title + ': key', '<h1>%s: key</h1>%s<table><tr>%s</tr></table>%s' % (
+            html.escape(title), mdh(section(body, 'Teacher') or ''), key, unit_foot(h, course, name)), 'key'), encoding='utf-8')
+        return out
+    if kind == 'record':
+        st = h.get('stretch')
+        looks = {k.strip(): int(v) for k, _, v in (x.partition('=') for x in h.get('lookfors', '').split(';')) if v}
+        cols = [('R%s' % i['n'], 1) for i in items if i['stretch'] == st and i['check'] == 'readiness']
+        cols += [('E%s' % d, 1) for d in sorted({i['day'] for i in items if i['stretch'] == st and i['check'] == 'exit'})]
+        cols += [('End %s' % i['n'], looks.get(i['n'], 1)) for i in items if i['stretch'] == st and i['check'] == 'end']
+        hd = '<tr><th>Student</th>%s</tr>' % ''.join('<th colspan="%d">%s</th>' % (n, html.escape(c)) for c, n in cols)
+        sub = '<tr><th></th>%s</tr>' % ''.join(''.join('<th>%s</th>' % ('' if n == 1 else '%d' % (k + 1))
+                                                      for k in range(n)) for _, n in cols)
+        row = '<tr><td style="width:1.6in">&nbsp;</td>%s</tr>' % ('<td></td>' * sum(n for _, n in cols))
+        css = ('<style>@page { size: letter landscape; margin: .4in; } body.record { max-width: none; font-size: 9pt; }'
+               ' .record td { height: .26in; padding: 0 .2em; } .record th { font-size: 8pt; }</style>')
+        tb = '<h1>%s</h1>%s<table>%s%s%s</table>%s' % (html.escape(title), mdh(body), hd, sub,
+                                                     row * int(h.get('rows', 28)), unit_foot(h, course, 'record sheet'))
+        (out / (name + '.html')).write_text(page(title, css + tb, 'record'), encoding='utf-8')
+        return out
+    # a check: the student page, a large-print copy, and the key
+    rs = piece_rows(p, items)
+    foot = unit_foot(h, course, '%s check' % h.get('check'))
+    sb = '<h1>%s</h1><p>Name ______________________ Date __________</p>%s%s%s' % (
+        html.escape(title), mdh(section(body, 'Student') or ''), ''.join(
+            '<p>%d. %s</p><div class="sketch work"></div><p>Answer: ______________________</p>' % (k + 1, html.escape(stem(i)))
+            for k, i in enumerate(rs)), foot)
+    (out / (name + '-student.html')).write_text(page(title, sb, 'student'), encoding='utf-8')
+    (out / (name + '-student-large.html')).write_text(page(title + ', large print', sb, 'student large'), encoding='utf-8')
+    errname = {e['letter']: e['error'] for e in errors if e['stretch'] == h.get('stretch')}
+    tail = lambda w: ((('error %s, %s' % (w['error'], errname.get(w['error'], '').lower())) if w['error'] else '')
+                      + (' (%s)' % w['note'] if w['note'] else '')).strip()
+    wr = lambda i: '; '.join(w['shown'] + (': ' + tail(w) if tail(w) else '')
+                             for w in wrongs if w['item_id'] == i['item_id'])
+    kr = ''.join('<tr><td>%s</td><td class="q">%s</td><td>%s</td><td>%s</td></tr>' % tuple(
+        html.escape(x) for x in (i['n'], stem(i), i['answer'], wr(i))) for i in rs)
+    kb = ('<h1>%s: key</h1>%s<table><tr><th>#</th><th>Question</th><th>Answer</th><th>Wrong answers and what they '
+          'mean</th></tr>%s</table>%s' % (html.escape(title), mdh(section(body, 'Teacher') or ''), kr, foot))
+    (out / (name + '-key.html')).write_text(page(title + ': key', kb, 'key'), encoding='utf-8')
+    return out
 
 
 # ------------------------------------------------------------------ main
@@ -486,6 +657,27 @@ def main(a):
             print('  built %s%s' % (out.relative_to(ROOT).as_posix(), ('; student page: ' + note) if note else ''))
             if 'FAIL' in note:
                 bad += 1
+    for p in piece_files():
+        pc = parse_piece(p)
+        lab = p.relative_to(ROOT).as_posix()
+        if pc is None:
+            print('  FAIL %s: no header block' % lab); bad += 1; continue
+        c = pc['head'].get('course', p.parent.parent.name)
+        items, days, parts, errors, wrongs = load(c)
+        fails = check_piece(pc, items)
+        note = ''
+        if not fails and pc['head'].get('piece') in ('check', 'facts') and CHROME.exists():
+            out = build_piece(pc, items, wrongs, errors)
+            note = ', student page ' + print_sides(out / (p.stem + '-student.html'))
+            if 'FAIL' in note:
+                fails.append('%s: the student page prints to more than two sides' % lab)
+        print('%s: %s, %d words%s, %d failure(s)' % (lab, pc['head'].get('piece'), words(pc['body']), note, len(fails)))
+        for x in fails:
+            print('  FAIL', x)
+        bad += len(fails)
+        if a[0] == 'build' and not fails:
+            out = build_piece(pc, items, wrongs, errors)
+            print('  built %s/%s' % (out.relative_to(ROOT).as_posix(), p.stem))
     sys.exit(1 if bad else 0)
 
 

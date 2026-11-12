@@ -5,6 +5,7 @@
     python -X utf8 scripts/plan.py pack   <course> <stretch>  print one agent's reading pack
     python -X utf8 scripts/plan.py defect <course> <artifact> <layer> <found_by> <kind> "<summary>" [ref]
     python -X utf8 scripts/plan.py defects                    counts by reader and layer
+    python -X utf8 scripts/plan.py reserve <course> <stretch> write the stretch's number sets into its generator
 
 Facts live in data/plans/<course>/ (parts, days, items, wrongs, errors). The plan files in
 docs/courses/<course>/ keep prose for judgment; their tables are generated between
@@ -94,6 +95,25 @@ def numbers(text):
     t = re.sub(r'\((?:a|b|c|d|e|f)\)', ' ', t)
     return frozenset(re.findall(r'\d+(?: \d+/\d+)?(?:,\d{3})*', t))
 
+
+
+# ------------------------------------------------------------------ reserved numbers
+RESERVED = {('math-4', '11'): 'site/assets/gen/measure-shapes.js'}   # (course, stretch): the generator that serves it
+
+
+def reserved_js(items, st):
+    """Every number set the stretch teaches or checks, as a JS array literal, sorted for a stable diff."""
+    sets = sorted({tuple(sorted(numbers(i['stem']))) for i in items
+                   if i['stretch'] == st and (i['check'] in CHECKS) and len(numbers(i['stem'])) >= 2})
+    return '[' + ', '.join('[' + ', '.join("'%s'" % n.replace(',', '') for n in t) + ']' for t in sets) + ']'
+
+
+def reserve(course, st):
+    js = ROOT / RESERVED[(course, st)]
+    t = js.read_text(encoding='utf-8')
+    new = re.sub(r'const RESERVED_S%s = .*?;' % st, lambda m: 'const RESERVED_S%s = %s;' % (st, reserved_js(rows(course, 'items'), st)), t, count=1, flags=re.S)
+    js.write_text(new, encoding='utf-8')
+    print('%s: RESERVED_S%s %s' % (js.relative_to(ROOT), st, 'rewritten' if new != t else 'already current'))
 
 # ------------------------------------------------------------------ the gates
 def check(course):
@@ -227,6 +247,12 @@ def check(course):
     missing = [n for n in planned if str(n) not in stretches]
     if missing:
         notes.append('stretches planned in prose but not yet in data: %s' % ', '.join(map(str, missing)))
+    # 9. a generator that serves a stretch refuses the numbers the stretch teaches or checks; its list must be current
+    for (c, st), js in RESERVED.items():
+        if c == course and (ROOT / js).exists():
+            have = re.search(r'const RESERVED_S%s = (.*?);' % st, (ROOT / js).read_text(encoding='utf-8'), re.S)
+            if not have or have.group(1) != reserved_js(items, st):
+                fails.append('%s: RESERVED_S%s is out of date; run plan.py reserve %s %s' % (js, st, c, st))
     return fails, notes, len(items), len(wrongs)
 
 
@@ -396,6 +422,8 @@ def main(a):
         pack(rest[0], str(int(rest[1])))
     elif cmd == 'defect':
         defect_add(rest)
+    elif cmd == 'reserve':
+        reserve(rest[0], str(int(rest[1])))
     elif cmd == 'defects':
         defects()
     else:
