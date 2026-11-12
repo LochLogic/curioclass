@@ -680,3 +680,17 @@ found. Cory: "the draft pages look great! lets take the next step in solidifying
    it in both internally and externally." A deep scan writes docs/GLOSSARY.md and a staged rename plan; obvious
    fixes are made, the rest come back as a plan.
 4. The design is written down in docs/SITE-DESIGN.md, with a proposed build order.
+
+## 2026-11-12: course level names (Cory, in chat; card 112 q-course-level-names, both picks accepted)
+
+> okay, lets do the naming updates everywhere. use your recommendations. include secondary things like the review
+> desk so all naming conventions are standard everywhere.
+
+1. The course levels take the words teachers know: stretch becomes **unit**, unit becomes **section**, spine becomes
+   **scope and sequence**, end check becomes **end-of-unit assessment** (check day becomes **assessment day**). Ids,
+   item ids and folders keep their names (`s11-...`, `sNN.md`, `uNN-N/`).
+2. Sub-ready days: one per unit in the new sense, 18 a year in grade 4 math.
+3. The rest of the naming scan's staged plan goes ahead on its recommendations: exit slip becomes exit ticket, the
+   day kind `Use` becomes Application, topic pages move from /modules/ to /topics/ with redirects (the `module_id`
+   code name lags, as the glossary records), the tool role "lesson" becomes "teach". The Review Desk follows the
+   same words. Entries above this one are history and keep the words of their day.
