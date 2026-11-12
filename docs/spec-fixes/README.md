@@ -79,7 +79,10 @@ separate step Claude runs after (ROADMAP step 3 for live tools, steps 5 and 6 fo
 
 ## The order
 
-**NEXT.md in this folder is the work order, and it stops at batch 4** (Cory, 2026-11-11):
+**Stopped, 2026-11-11 night (Cory): no more spec fix batches.** A spec gets work only when a unit plan names its
+tool (BASELINE rule 26). What follows is kept as the record of the order that was planned.
+
+**NEXT.md in this folder was the work order, and it stopped at batch 4** (Cory, 2026-11-11):
 
 1. Close the two proving courses (grade 4 math, grade 6 ELA), then their final review.
 2. The fourteen grade 6 to 8 ELA band specs, each with a path for grades 6, 7 and 8.

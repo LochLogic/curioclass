@@ -1,11 +1,35 @@
-# Handoff: where the course work stands
+# Handoff: the one current-state page
 
-**Written 2026-11-11, evening, at the end of a long session, for the next chat. Read this first, then
-[ROADMAP.md](ROADMAP.md) ("The layers" and "Resume here"). Everything below is pushed to `spec/sara` and `main`. Updated late the same evening, after the
-decisions were applied.**
+**This is the single page that says where the work stands and what to do next. Last updated 2026-11-11, night,
+after Cory accepted the cold strategic review in full. Everything here is pushed to `spec/sara` and `main`.**
 
-This page is the one place that says what was decided, what has been applied, and what to do next. If it
-disagrees with another page, the other page is probably the stale one: check the date, fix it, and say so.
+[ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page
+disagrees with this one, the other page is stale: check the date, fix it, and say so.
+
+## Start here: the next action
+
+The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](courses/math-4/s11.md)). In order:
+
+1. **Cold expert read of `s11.md`**, revise once. It is piece 1 on Sara's list; if her session has not done it,
+   do it.
+2. **Write `docs/courses/LESSON-DAY.md`**: exactly what one teaching day ships as (teacher page, student page,
+   slides or none, key, materials), with a size for each, and the rule that an adapted lesson carries its credit
+   on the lesson. Expert reads it. Cory says yes once.
+3. **Keys as data.** One row per keyed item (code, part, stem, answer, named wrong answers) and a script that
+   recomputes every answer. Done when the 13 planned units pass and a wrong key fails the build.
+4. **Build unit 11.1 to the bottom:** its five days in full, the generator sheet, both checks with keys, the
+   record sheet, the family note, and Community Plot Planner (six open asks in
+   [courses/math-4/TOOL-ASKS.md](courses/math-4/TOOL-ASKS.md)). Write the cost of each piece (tokens, wall hours,
+   owner minutes) in `docs/pilots/COST.md`.
+5. **People.** Cory is arranging a grade 3 to 5 teacher, one taught run and three timed students
+   ([pilots/README.md](pilots/README.md)). Their notes change the templates.
+6. **After the pilot is read:** fix the templates, try the lighter plan design ("Plan weight" below), then the
+   first ELA pilot (grade 6, stretch 2, five days) and the first science pilot.
+
+Also owed before step 4: the script that sorts every tool and spec into the three bins of BASELINE rule 26.
+
+**Frozen until the pilot is read:** new spines, stretch sheets, unit plans and specs. One exception: the grade 4
+start-of-year check and stretch 4's readiness items (on Sara's list).
 
 ## How to work here
 
@@ -19,13 +43,17 @@ disagrees with another page, the other page is probably the stale one: check the
 - The working pattern: a writer agent drafts; commit; the curriculum expert reads it cold (a fresh agent told to
   read [agents/EXPERT.md](agents/EXPERT.md) first; report goes to `docs/reviews/<what>-<date>.md`); revise once;
   anything that changes what a course teaches or a decided rule goes to Cory on the Review Desk **and** in chat.
-- Records to update after every decision: this page, ROADMAP ("The layers" row and "Resume here"),
-  [agents/decisions/DESK-ANSWERS.md](agents/decisions/DESK-ANSWERS.md), and the assistant's memory notes.
+- Records to update after every decision: this page, and one dated entry in
+  [agents/decisions/DESK-ANSWERS.md](agents/decisions/DESK-ANSWERS.md) with Cory's words. ROADMAP changes only
+  when the order of work changes. A rule goes in BASELINE. The assistant's memory notes point here.
+- What goes to Cory is narrower since 2026-11-11: scope, audience, money, outside people, and anything that moves
+  a standard between units. Item-level choices are settled by the expert and go in a weekly digest
+  (`docs/reviews/DIGEST.md`, not started yet).
 - The Review Desk is https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC. A question card has status `question`,
   then `answered`. Cory answers in a comment on the card. Next free card order: 104. After changes, refresh the
   Dashboard with `python -X utf8 scripts/course_status.py <out.json>` (Desk doc `stats/courses`) and the Roadmap
   tab with `python -X utf8 scripts/desk_roadmap.py <out.json>` (Desk doc `stats/roadmap`).
-- Core subjects first (BASELINE rule 24, a soft goal): see "Then, the next real work".
+- Core subjects first (BASELINE rule 24, a soft goal): see "The order after the pilot".
 - Cory's standing rules that bite most often: every one of the 105 courses is finished to the adoption bar (a
   firm bar; never call it unrealistic); no countdown timer shown to a student; no library or paywalled access;
   teach first by default in grades 2 to 5; Cory wants pushback and welcomes questions about earlier decisions.
@@ -39,8 +67,8 @@ disagrees with another page, the other page is probably the stale one: check the
 | 3 Approach | [APPROACH.md](APPROACH.md), [APPROACH-MATH.md](APPROACH-MATH.md). Decisions answered. Cory still owes a read of the pages as a whole; his mother is reading "The principles" onward as a grade 2 teacher. Science and ELA approach pages are on Sara's list ([courses/NEXT-SPINES.md](courses/NEXT-SPINES.md)). |
 | 4 Progressions | Math grades 3 to 5 done. |
 | 5 Spine | Grade 4 math, plus science and ELA spines waiting for Cory's final yes. 3 of 105 courses have a spine. |
-| 6 Stretch sheets and unit plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Word caps are 1,250 (unit plan), 1,250 (stretch sheet) and 1,800 (one-unit stretch) since 2026-11-11. Grade 4 math: stretches 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 units (the status table shows 17 because it counts stretch sheets too). 30 units to go (stretches 4 to 8 and 12 to 18). |
-| 7 Lessons, tools, print | Paused until the pilot unit (11.1). |
+| 6 Stretch sheets and unit plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Word caps are 1,250 (unit plan), 1,250 (stretch sheet) and 1,800 (one-unit stretch) since 2026-11-11. Grade 4 math: stretches 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 units (the status table shows 17 because it counts stretch sheets too). 30 units to go (stretches 4 to 8 and 12 to 18). **Planning is frozen at these six until the pilot is read.** |
+| 7 Lessons, tools, print | Nothing exists yet. The pilot unit (11.1) is next, see "Start here". There is no lesson-day template yet. |
 | The bar | Math: [RUBRIC-MATH-K8.md](RUBRIC-MATH-K8.md). All other subjects but ELA and science: [ADOPTION-BAR-SUBJECTS.md](ADOPTION-BAR-SUBJECTS.md), second draft. ELA and science rubric files are on Sara's list. |
 
 Course count: 105, of which 56 are in the four core subjects ([COURSES-STATUS.md](COURSES-STATUS.md), generated;
@@ -137,7 +165,8 @@ Everything in the three cards that could be applied has been. Where each landed:
 
 **Not applied, on purpose:**
 
-- The licence page (`LICENSE-CONTENT.md`) and the SEL file header: Cory asked for this later, with an Opus model.
+- (Done since: the licence page and the SEL file header were fixed on 2026-11-11, night, when Cory accepted the
+  strategic review. Not yet done: a header for `data/standards/ccss-math-focus.csv`.)
 - The course status table still counts world languages. Cory: leave it as a reminder.
 - World languages: the 2026 can-do statements and the ASL standards wait with the shelved subject.
 
@@ -157,28 +186,83 @@ Everything in the three cards that could be applied has been. Where each landed:
 - The federal PE review tool could not be opened (addresses return 404); the PE and health keying rests on the
   earlier report.
 
-## Then, the next real work
+## Decided 2026-11-11 (night): the strategic review, accepted in full
 
-**Core subjects first (Cory, 2026-11-11; a soft goal).** Math, English language arts, science and social
-studies (56 of the 105 courses) are the first focus; the other subjects follow. This bends where work is
-complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
-core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
-So: grade 4 math first, then the other core spines and plans. The social studies content standard question is
-core work. Health, PE, arts, computer science, CTE, SEL, ELD and library work waits unless it is complementary.
+Cory: "i accept all of the reviewers recommendations, even the ones that overturn my decisions earlier. please
+action those decisions so they take effect." The review is
+[reviews/strategic-review-2026-11-11.md](reviews/strategic-review-2026-11-11.md).
 
-- **Sara's list is `docs/courses/NEXT-SPINES.md`, reordered 2026-11-11 by what is waiting on each piece:** expert
-  reads; the social studies content standard options; science rubric and approach; ELA rubric, approach and
-  text plan; math progression pages; the grade 4 start-of-year check and stretches 4 to 8; then spines. Whoever
-  takes grade 4 math stretches says so first, so two chats do not plan the same stretch.
-- **Step 4d continues:** grade 4 math stretches 4 to 8, then 12 to 18, a stretch at a time, per UNIT-PLAN.md,
-  with a cold expert read on a sample. Stretch 4's readiness items are already needed on day 24 (s03 points at
-  a sheet that does not exist yet), so stretch 4 is next. The start-of-year check (day 1) is unwritten and must
-  carry stretch 1's three readiness items.
-- **Stretches 3 (since the swap), 9, 10 and 11 have had no expert read in their current form.** These reads are
-  Sara's (Cory, 2026-11-11). Do not build lessons on them before the reads.
-- **Work up the social studies content standard options** (unified set, high watermark, one state) with what
-  each would cost and change, and the values question beside it. Bring both to Cory on the Desk.
-- Then 4e (name the key tools from all the plans; goes to Cory) and 4f (build pilot unit 11.1 and have it read).
+| # | Decision | Where it is now | Still to do |
+|---|---|---|---|
+| 1 | Build pilot unit 11.1 to the bottom now, ahead of the other unit plans and the key-tool ranking | BASELINE rule 25; ROADMAP order; "Start here" | The build itself |
+| 2 | Freeze stretch planning at the six on file until the pilot is read (exception: start-of-year check, stretch 4 readiness items) | BASELINE rule 25; Sara's list | Nothing |
+| 3 | A lesson-day template before the pilot is built | BASELINE rule 27 | Write `docs/courses/LESSON-DAY.md` |
+| 4 | Keyed items as data; a script recomputes every key | BASELINE rule 27; FOUNDATION 7.2 | Write the data file and the script |
+| 5 | A grade 3 to 5 teacher, one taught run, three timed students | FOUNDATION 7.3; [pilots/README.md](pilots/README.md) with five draft questions | Cory finds the people |
+| 6 | Spec fixing stops now; old tools and specs sorted into three bins by demand | BASELINE rule 26; FOUNDATION 6.5 (open question closed); `docs/spec-fixes/` marked stopped | Write the bin script |
+| 7 | Qualified people named where a course needs them | FOUNDATION 7.3 table; BASELINE rules 5 and 28 | Names and budget: none yet, Cory's |
+| 8 | First ELA and science pilots right after 11.1 is read | BASELINE rule 25; Sara's list pieces 3 and 4 | Rubric and approach pages first |
+| 9 | Item-level choices settled by the expert, weekly digest; Cory decides scope, audience, money, people, moves of standards | BASELINE "What goes to Cory"; EXPERT.md | Start `docs/reviews/DIGEST.md` at the first read |
+| 10 | One current-state page | This page; ROADMAP cut to the order, history in `docs/archive/` | Keep it so |
+| 11 | Licence page fixed | `LICENSE-CONTENT.md`; SEL file header | Header for `ccss-math-focus.csv` |
+| 12 | Six more pieces listed for a finished course | ROADMAP "What a finished course holds"; FOUNDATION open questions | Cory says in or not-now for each |
+
+These overturn earlier answers of Cory's, with his say: Sara's spec batches were to stop after batch 4; "we
+don't wait on outside human reviewers" (BASELINE rule 5); the licence fix was to wait for a later session; the
+step order 4d, 4e, 4f.
+
+**The expert and its data.** Cory: "i agree that the AI expert needs to be good enough, thats why i pushed for
+added data (esp in pedagogy). that may need more work soon." So the expert stays the main read. Expect a piece
+of work on its sources (`docs/APPROACH-SOURCES.md`, the pedagogy sources named in `docs/APPROACH.md`): what it
+must open before judging each subject, and what is still unread. Not scheduled yet.
+
+## Plan weight: is it still too heavy when an AI manages it? (proposal, not decided)
+
+Cory asked this on 2026-11-11. The short answer is yes, but for different reasons than for a person.
+
+Reading speed is not the problem for a model. These are:
+
+1. **No agent can hold a course.** One course is about 125,000 words of plans. Each agent reads a slice, so
+   nobody checks that slice against the rest unless a script does.
+2. **Prose repeats facts, and repeats drift.** The same day number, standard part or tool ask sits in the spine,
+   the stretch sheet, the unit plan and the tool list. 23 stale lines were found after one day of changes.
+3. **Prose cannot be checked by a machine.** Whether every part of a standard has a check item, whether a check
+   reuses a taught number, whether a key is right: today a model reads for each of these, every time.
+4. **Every word is paid for several times:** written, read cold, revised, then read again by the lesson writer.
+5. **Cory cannot sample what has no fixed shape.**
+
+The design that answers them, to be tried on the pilot and brought to Cory once:
+
+- **Facts live in data, one home each.** Units and days (`data/units.csv`), keyed items, the error register, tool
+  asks, and which standard part each day and item covers. Tables in a plan are generated from the data.
+- **Prose is kept only for judgment:** why this order, what to say when a class is stuck, what the hard part is.
+  A few hundred words a unit.
+- **Scripts are the gates.** Coverage of every standard part, no reuse of taught numbers, keys recomputed, day
+  counts, minutes that add up. A plan that fails does not go to a reader.
+- **Defaults are written once.** Supports, the two rooms, the family note sit at the stretch (or the course)
+  and a unit writes only what differs.
+- **Plans are written just in time:** a stretch is planned when the one before it is built (BASELINE rule 25).
+- **A script builds each agent's reading pack:** the exact rows and pages that agent needs, so no agent reads
+  the whole course and none misses a part.
+- **A defect ledger:** what was found, by which reader, at which layer, so we know which reads earn their cost.
+
+## The order after the pilot
+
+**Core subjects first (Cory, 2026-11-11; a soft goal, BASELINE rule 24).** Math, English language arts, science
+and social studies (56 of the 105 courses) come first; this bends where work is complementary. Every course is
+still finished to the bar; this sets the order, not the scope.
+
+1. The pilot is read; templates and the plan design are fixed from what it showed.
+2. The ELA and science pilots, so a unit's cost is known in three subjects.
+3. One stretch of grade 4 math on major work, built whole. Then the course, a stretch at a time, each planned
+   only when the one before is built.
+4. The plan with sizes and dates for all 105 courses, written from three real unit costs.
+5. The social studies content standard goes to Cory before any social studies spine.
+
+**Sara's list is [courses/NEXT-SPINES.md](courses/NEXT-SPINES.md)**, redone 2026-11-11 (night): the cold read of
+the pilot's plan and her own read as a teacher; the ELA and science rubric and approach pages and the ELA
+rights list; the start-of-year check; the social studies options. Spines, progression pages and stretches 4 to 8
+came off it until the pilot is read.
 
 ## Owed, smaller
 
@@ -198,6 +282,8 @@ core work. Health, PE, arts, computer science, CTE, SEL, ELD and library work wa
 - The source search, the bar draft and the standards check rest on agent reports. Instruments named as "read in
   part" or "not opened" in those files are still so.
 - No plan, check or tool here has been tried with a student or read by a working teacher.
+- Only 5 of the 23 stale lines in the strategic review's records table were checked by the working session
+  before the clean-up; the clean-up worked from the reviewer's table.
 - Tool minutes in the plans are estimates; no build was played.
 
 ## Reports from 2026-11-11, by question
@@ -209,11 +295,4 @@ core work. Health, PE, arts, computer science, CTE, SEL, ELD and library work wa
 | Are the loaded standards current | `docs/reviews/standards-currency-2026-11-11.md` |
 | Expert on the three trial plans (4c) | `docs/reviews/unit-plans-2026-11-11.md` |
 | Expert on stretches 1 to 3 (4d) | `docs/reviews/unit-plans-4d-2026-11-11.md` |
-
-## Cold strategic review, 2026-11-11 (read before choosing the next work)
-
-`docs/reviews/strategic-review-2026-11-11.md`: a cold review of the whole project with twelve ranked
-recommendations, a table of 23 stale or contradicting record lines, and section 7, the working session's check.
-Nothing in it has been acted on. Cory decides recommendations 1 and 2 first (build pilot unit 11.1 now; freeze
-stretch planning until it is read). Recommendations 6, 7 and 11 would reverse earlier decisions of his, so they
-are his to re-decide.
+| Is the whole project on a solid path | `docs/reviews/strategic-review-2026-11-11.md` |

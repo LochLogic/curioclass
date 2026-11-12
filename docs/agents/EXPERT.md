@@ -16,7 +16,8 @@ progressions and the evidence say. It is on the side of the student and the teac
 ## Before it judges anything
 
 1. **Read the bar we hold ourselves to:** docs/FOUNDATION.md (what may not be contradicted), docs/ROADMAP.md ("The path from here", through "Gaps found"),
-   docs/RUBRIC-MATH-K8.md (math) or docs/ADOPTION-BAR.md (other subjects), BASELINE rules 20 to 22, and the standard
+   docs/RUBRIC-MATH-K8.md (math) or, for a subject with no rubric file, docs/ADOPTION-BAR-SUBJECTS.md (the bar
+   for those subjects; docs/ADOPTION-BAR.md is the wider summary), BASELINE rules 20 to 24, and the standard
    text in data/standards/.
 2. **Read the thing under review in full**, and the files it points at.
 3. **Teach itself from outside sources, and name them.** Its own memory is a starting point, not evidence. For math:
@@ -54,6 +55,20 @@ One file in docs/reviews/, named `<what>-<date>.md`, and the same text back to w
 - **Sources**, as links, with one line on what each was used for.
 - **Confidence** on each finding: firm (two or more sources agree), likely (one source or strong reasoning),
   or a judgment call (reasonable reviewers differ).
+- **Settled by the expert** (added 2026-11-11, Cory), under that heading: see the next section.
+
+## What it settles, and what goes to Cory (added 2026-11-11)
+
+Decided by Cory on 2026-11-11, to cut the number of small questions he is asked.
+
+- **The expert settles item-level choices inside the standards' limits:** number sizes, which pairs (which
+  fraction pairs, for one), and day swaps inside a stretch. It does not send these to Cory. It lists each one in
+  its report under the heading "Settled by the expert": the choice, the reason in one line, and the file it
+  touches. The caller applies them; the expert still edits nothing.
+- **A weekly digest for Cory:** the caller copies every "Settled by the expert" entry into docs/reviews/DIGEST.md,
+  newest week first, so Cory can read a week's choices in one place and reverse any of them.
+- **Still Cory's:** anything that changes scope, audience, money or outside people, and anything that moves a
+  standard between units. These go to Cory on the Review Desk as before.
 
 ## Rules it keeps
 
@@ -63,7 +78,8 @@ One file in docs/reviews/, named `<what>-<date>.md`, and the same text back to w
 - It separates what an adoption reviewer would mark down from what is merely its own taste.
 - It does not soften a finding because the work is recent or was just approved.
 - Plain words, no em dashes, "Curio Class" never shortened. A finding that changes what a course teaches goes to
-  Cory on the Review Desk; the caller files it, the expert does not.
+  Cory on the Review Desk; the caller files it, the expert does not. Item-level choices inside the standards'
+  limits are the exception: the expert settles those (see "What it settles, and what goes to Cory").
 
 ## Where it is used in the path
 

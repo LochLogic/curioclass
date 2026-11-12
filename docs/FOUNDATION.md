@@ -15,7 +15,9 @@ so a teacher can run a full course without paying for curriculum or software (VI
 
 **The end goal.** A teacher can run any course on Curio Class from the first day to the last, free, with no account,
 and the course would stand up to a state adoption review. A course is a grade of a subject or a high school course.
-Depth comes first: one course is finished before the next is started (ROADMAP, "The path from here").
+Depth comes first: one course is finished before the next is started (ROADMAP, "The path from here"). One bend,
+on purpose (2026-11-11): the first pilot unit in each of math, English language arts and science is built early,
+with the rubric file and approach page each needs, so the cost of a unit is known in three subjects.
 
 **We own the full course** (Cory, 2026-11-11). Curio Class writes its own courses. Well-reviewed open courses are
 used as evidence for order, time and anchors, and a lesson may be adapted where its licence allows and the credit
@@ -101,22 +103,48 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
    live and print covers the rest. "Key" is a mark given by the unit plan; the roles of BASELINE rule 21 (lesson,
    see why, practice) still say what a tool does.
 4. **Curiosities and Recess** are play and wonder. They claim no standard and are outside the bar (VISION).
+5. **Tools and specs made before this page are sorted by demand** (Cory, 2026-11-11; BASELINE rule 26). Named by a
+   unit plan: course work. Live, passing the teaching test, not named: stays on the shelf, free-standing, and
+   claims no course coverage. Everything else: frozen. A script makes the list; nobody argues a tool into a course.
 
 ## 7. How the work is checked
 
 1. **The curriculum expert reads cold, often** (docs/agents/EXPERT.md). Cory's attention and a teacher's are the
    scarce things, so frequent cold reads by the expert, which teaches itself from outside sources first, are the
-   main review at every layer. That has to be good enough, and we say so.
-2. **Human reads are rare and aimed.** A working teacher reads the pilot unit of a course (ROADMAP, "What a finished
-   course holds", item 7). The first is Cory's mom, a grade 2 teacher.
-3. **Lower layers are solid enough to build on, and expected to be revised** by what is built on them. No layer is
+   main review at every layer. It is the main read, not the only one (changed 2026-11-11, when Cory accepted the cold strategic review). The
+   writer and the expert are the same kind of model, so a cold read removes anchoring but not a shared mistake.
+   Three things stand beside it: the sources the expert must open before it judges (the pedagogy and standards
+   data, which Cory expects to grow), a script for everything that can be computed (item 2), and a qualified
+   person for the things in item 3.
+2. **A machine checks what a machine can** (BASELINE rule 27). Standard codes, day counts, coverage of every part
+   of a standard, and every answer that can be computed. A key the script cannot reproduce fails the build.
+3. **People are aimed at what only a person can judge** (Cory, 2026-11-11; BASELINE rule 28). Every row below is
+   required before the course it touches is called finished. None has a name or a budget yet: Cory finds the
+   people, and nothing is spent or sent without his yes.
+
+   | Who | What they read or do | When |
+   |---|---|---|
+   | A working teacher of the grade band (grades 3 to 5 for the first pilot) | Reads the pilot unit against written questions (docs/pilots/README.md) | Each course's pilot unit |
+   | A teacher or a parent | Teaches the pilot unit's days and notes the minutes | First pilot in each subject |
+   | Three students of the grade | Sit the end check, timed by a watch the student does not see | First pilot in each subject |
+   | A math content reviewer | Every item and key of one whole course's checks | Before a math course is called finished |
+   | A science teacher | Safety and materials of every investigation | Before a science course is called finished |
+   | A second reader on rights | The licence and source of every text a course teaches from | Before an ELA text is taught |
+   | A native Spanish reader | Family notes, and student materials if they are made | Before Spanish is published in a course |
+   | A health specialist | The sensitive health topics | Before those units go live |
+   | A reader from the community concerned | Native and hard-history content in a course | Before those units go live |
+
+   Cory's mom, a grade 2 teacher, is reading the approach pages. The first pilot needs a grade 3 to 5 teacher too.
+4. **Lower layers are solid enough to build on, and expected to be revised** by what is built on them. No layer is
    declared finished in the abstract.
-4. **What goes to Cory:** anything that changes what a course teaches or who it is for, anything this page cannot
-   settle, and anything that needs money, accounts, outside people or a live deploy (BASELINE, "What goes to Cory").
+5. **What goes to Cory:** scope, audience, money, accounts, outside people, a live deploy, anything that moves a
+   standard between units, and anything this page cannot settle. Item-level choices inside the standards' limits
+   are settled by the expert and reach Cory in a weekly digest (BASELINE, "What goes to Cory").
 
 ## Open questions on this page
 
 - The device assumption for kindergarten to grade 2 (section 5).
-- What happens to existing tools and specs that no unit plan asks for: retire, hold as light tools, or keep as
-  stand-alone pieces outside any course (section 6). To be answered after the grade 4 math unit plans show how
-  many there are.
+- Closed 2026-11-11: what happens to existing tools and specs that no unit plan asks for (section 6, item 5).
+- Which of these go into "What a finished course holds", listed 2026-11-11 and not yet decided: accessibility to a
+  named level, a versioning and errata rule, a course teacher guide, a state alignment document, Spanish student
+  materials, a print-volume count.

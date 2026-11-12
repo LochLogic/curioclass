@@ -1,29 +1,25 @@
 # Roadmap
 
-The one plan for Curio Class: what is done, what comes next, and in what order. Consolidated 2026-10-28 from the
+**Read this first (2026-11-11).** The current state and the next action live in docs/HANDOFF.md. This file holds
+the order of work only. History and superseded plans were moved to docs/archive/ROADMAP-history-2026-11-11.md;
+nothing in that file is current.
+
+The one plan for Curio Class: what comes next, and in what order. Consolidated 2026-10-28 from the
 "Later phases" section of docs/PHASE0-PLAN.md, the Supply Closet roadmap, docs/agents/SCALE-PLAN.md,
 docs/LIBRARY-PLAN.md, docs/SITE.md ("Not done yet") and docs/agents/roadmap/.
 
 The foundation (what Curio Class is for, who it serves, its promises and assumptions): docs/FOUNDATION.md, the one home of layer 1 (2026-11-11). Why and where: docs/VISION.md (the north star, 2026-11-03). The quality bar for full courses: docs/ADOPTION-BAR.md
-(state adoption is the bar we build to, Cory 2026-11-10; formal adoption is not pursued now). This file holds the order and the status. The design detail stays in each track's own plan, linked from its section.
+(state adoption is the bar we build to, Cory 2026-11-10; formal adoption is not pursued now). This file holds the order. The design detail stays in each track's own plan, linked from its section.
 When a roadmap item starts, finishes or moves, update it here first, then post it to the Review Desk's Roadmap tab
 (`python scripts/desk_roadmap.py <out.json>`, then ArtifactData set stats/roadmap).
 
-## Where it stands (2026-11-10)
+## Where it stands (a pointer, 2026-11-11)
 
-| | Count |
-|---|---|
-| Tool concepts in the catalog | 805 |
-| Live tools | 84 |
-| Specs written | every tool: 559 waiting on Build (Sara wrote the last 431, 2026-11-08 to 11-10); 7 ASL tools held for the Sign Strip sample |
-| Built, waiting on Refine | 119 at Self-check, 20 at Fix, 10 at Art and voice |
-| Worksheets live | 1,008 of 7,116 planned (live 2026-11-03; trimmed from 8,947 on 2026-11-04) |
-| Modules with Word Wall cards | 762 of 797 (4,413 cards), English and Spanish |
-| Anchor charts / posters / Game Night games | 74 / 54 / 104 |
-| Sub Day packets | 79 |
-| Reading Room stories curated and processed | about 700, not live yet |
-
-`python scripts/board.py` gives the live tool counts (docs/BUILD-BOARD.md).
+Live counts are no longer kept here (removed 2026-11-11; the 2026-11-10 table is in the archive). On 2026-11-11
+docs/COURSES-STATUS.md counted 105 courses, 3 with a spine, 1 with any unit plan, and tools at 569 spec, 149
+built, 83 live. For today's counts run `python scripts/course_status.py` (docs/COURSES-STATUS.md) and
+`python scripts/board.py` (docs/BUILD-BOARD.md). For the state of the work read docs/HANDOFF.md. The shelf counts
+(worksheets, Word Wall, charts, Sub Day, Reading Room) as of 2026-11-10 are in the archive table.
 
 ## Goal
 
@@ -42,7 +38,9 @@ really good. A course is a grade of a subject or a high school course. Taken tog
 American public school teaches from kindergarten to grade 12: every grade of the core subjects, and the subjects
 around them (arts, computer science, health and PE, world languages, English language development, library, career
 and technical, social and emotional learning). Depth comes first: a course is finished before the next is started
-(step 6), so breadth is where the site ends up, not a reason to spread thin.
+(step 6), so breadth is where the site ends up, not a reason to spread thin. This is bent on purpose in one
+place only (2026-11-11): the three first pilots (grade 4 math unit 11.1, then one grade 6 ELA slice and one
+science unit) and the rubric and approach pages those pilots need. More spines wait until the pilot is read.
 
 **One measure, read three ways** (split 2026-11-11). For each course: standards taught in full, out of all its
 standards. "Full on paper" is what the specs say. "Full and live" counts only what a teacher can open today.
@@ -50,21 +48,45 @@ standards. "Full on paper" is what the specs say. "Full and live" counts only wh
 course's units cover out of about 180. A course is complete when the last three are full, not the first. All four
 are in docs/agents/catalog/tables/measure.md; every step below moves them.
 
-**Changed after a cold review (2026-11-11, Cory).** A fresh read of this plan found that it measured specs, not
-courses, and queued a year of spec fixing across 93 courses before one course had been proved. Five changes, all
-now in the steps below: (1) Sara's queue stops at batch 4 (docs/spec-fixes/NEXT.md); (2) the proof moves ahead of
-further fixing and starts now with grade 4 math; (3) the measure is split as above; (4) every spec carries three
-hooks an adoption review looks for and the teaching test did not ask for: a check the teacher can see, English
-learner supports and access (docs/agents/SPEC.md); (5) the subjects outside the core (arts, computer science,
-health and PE, world languages, ELD, library, CTE, SEL) stay in the end goal but are parked: no standard texts
-wired, no specs fixed, no builds, until the core courses are proved. Science and social studies wait their turn
-behind math and ELA. What the review said to keep: the build pause, the teaching test, one ledger, shape before
-fix, and finishing a course before starting the next.
+**Decided after the strategic review (2026-11-11, night, Cory).** Cory accepted all twelve recommendations of
+docs/reviews/strategic-review-2026-11-11.md, including the ones that overturn his earlier decisions. What that
+changes in the order:
 
-**What the review found (2026-11-10).** 63 tools read against the bar. Coverage and duplication are fine. The repeated
-flaw: tools show the idea, then leave the student's own part of the standard thin, optional or passable by trial,
-worst on the major work of a grade. The gap in shape: a module lists a cluster, gets one tool, and the rest of the
-cluster is taught nowhere. Verdict: right raw material, fixable now, costly later.
+1. Pilot unit 11.1 (grade 4 math) is built to the bottom now, ahead of the remaining unit plans and the key tool
+   ranking ("The order inside step 4").
+2. Stretch planning is frozen at the six stretches on file (1, 2, 3, 9, 10, 11) until the pilot has been read.
+   One exception: the start-of-year check and stretch 4's readiness items.
+3. A lesson-day template (docs/courses/LESSON-DAY.md) is written before the pilot is built.
+4. Every keyed item is kept as data and recomputed by a script before the pilot is built.
+5. A grade 3 to 5 teacher reads unit 11.1 against five written questions, one teacher or parent teaches the five
+   days, and three students sit the end check, timed. Notes go in docs/pilots/. Cory finds the people.
+6. Sara's spec fix batches stop now, not after batch 4. Every tool and spec is sorted by script into three bins
+   (rule 8 under "The layers").
+7. A table of where a qualified human is required is in docs/FOUNDATION.md, section 7. For those rows the old
+   line "We don't wait on outside human reviewers" no longer holds.
+8. The first non-math pilots (one five-day ELA slice, grade 6 stretch 2; one science unit with real materials)
+   run right after 11.1 is read, not after grade 4 math is finished.
+9. Item-level choices inside the standards' limits are settled by the curriculum expert and reported in a weekly
+   digest. Cory decides scope, audience, money, outside people, and anything that moves a standard between units
+   ("Decisions, kept few").
+10. Records collapse: docs/HANDOFF.md is the single current-state page and this file is the order only.
+11. The licence page is fixed now.
+12. Six items are added to "What a finished course holds" (items 10 to 15), each still to be marked in or
+    not-now by Cory.
+
+Still in force from the cold review earlier the same day: the measure is split as above; every spec carries the
+three hooks an adoption review looks for (a check the teacher can see, English learner supports and access,
+docs/agents/SPEC.md); the build pause, the teaching test, one ledger, and shape before fix. The full text of that
+change note, and what the 2026-11-10 catalog review found, are in the archive.
+
+**Subjects outside the core (state on 2026-11-11).** Arts, computer science, health and PE, English language
+development, library, career and technical, and social and emotional learning stay in the end goal. Core subjects
+come first (next section). No spec is fixed and nothing is built for them now. What was done for them on
+2026-11-11: the computer science Specialty standard ids were loaded, health and PE mappings were made, and a bar
+page was written for subjects with no rubric file (docs/ADOPTION-BAR-SUBJECTS.md, second draft). World languages,
+ASL among them, are shelved. Science and social studies are core subjects: the grade 4 science spine is a draft
+and the science pilot unit runs right after 11.1 is read; social studies waits on its content standard, which is
+open and Cory's to decide.
 
 ### The layers (added 2026-11-11, Cory)
 
@@ -84,9 +106,9 @@ fifth of the year).
 | 2. Standards | What must be learned. Not ours to change | data/standards/ | Math and ELA texts wired. Science and the rest filed, wired when their courses open. Footnoted limits for math still to add |
 | 3. Approach to teaching | How students learn here and why, with its sources. A short shared core for every subject, then one page per subject | docs/APPROACH.md, docs/APPROACH-MATH.md; evidence detail and source access in docs/APPROACH-SOURCES.md | **Second draft 2026-11-11**, revised once after the expert's cold read (docs/reviews/approach-2026-11-11.md). Cory settled the three decisions on Desk card q-approach the same day (teach first by default in grades 2 to 5, no countdown timer in any tool, SPEC.md rule renamed) and said to go forward without library access. Waiting on Cory: his read of the pages. Science and ELA pages when those courses open |
 | 4. Progressions | What each grade inherits and hands on, per subject | data/sequence.csv, the spine's builds-on columns, a progression page per subject (first: docs/courses/math-3-5-progression.md) | Grades 3 to 5 math: second draft 2026-11-11 after the expert's cold read (docs/reviews/math-3-5-progression-2026-11-11.md); spine pointers and 15 sequence.csv links corrected; Cory said yes to its four points the same day (Desk card q-progression-math-4), now in the spine. The science review found errors in sequence.csv, still open |
-| 5. Course spine | Every teaching day of a year, in order, with the reason | docs/courses/ | Grade 4 math approved. Grade 4 science and grade 6 ELA revised drafts |
-| 6. Stretch and unit plan | The contract for each stretch and unit: the checks written first, what each day is for, where a tool is used and for what job | docs/courses/UNIT-PLAN.md (the fields, rules and blank copies); docs/courses/<course>/sNN.md (stretch sheet) and uNN-N.md (unit plan); rows in data/units.csv | **Fields fixed 2026-11-11** after three trial plans and the expert's cold read (docs/reviews/unit-plans-2026-11-11.md); Cory answered Desk card q-unit-plans. Grade 4 math has stretch sheets 3, 9 and 11 and unit plans 3.1 and 9.1 (second drafts); then, same day, step 4d began: stretches 1, 2, 3, 9 and 10 now have sheets and unit plans (first drafts, one expert read of stretches 1 to 3, docs/reviews/unit-plans-4d-2026-11-11.md, revised once; Desk card q-plans-4d-1 open). 13 of 43 units planned, 30 to go |
-| 7. Lessons, tools, print, checks | What students and teachers touch | The shelves and tools | Building paused |
+| 5. Course spine | Every teaching day of a year, in order, with the reason | docs/courses/ | Grade 4 math: approved by Cory 2026-11-11, revised since; status draft in docs/COURSES-STATUS.md until the pilot is read. Grade 4 science and grade 6 ELA: revised drafts. More spines wait until the pilot is read |
+| 6. Stretch and unit plan | The contract for each stretch and unit: the checks written first, what each day is for, where a tool is used and for what job | docs/courses/UNIT-PLAN.md (the fields, rules and blank copies); docs/courses/<course>/sNN.md (stretch sheet) and uNN-N.md (unit plan); rows in data/units.csv | **Fields fixed 2026-11-11** after three trial plans and the expert's cold read (docs/reviews/unit-plans-2026-11-11.md); Cory said yes (Desk card q-unit-plans). Grade 4 math: stretches 1, 2, 3, 9, 10 and 11 are planned, 13 of 43 units (one expert read of stretches 1 to 3, docs/reviews/unit-plans-4d-2026-11-11.md). Desk card q-plans-4d-1 is answered and applied. Planning is frozen at these six until pilot unit 11.1 has been read; the one exception is the start-of-year check and stretch 4's readiness items |
+| 7. Lessons, tools, print, checks | What students and teachers touch | The shelves and tools; the lesson-day template docs/courses/LESSON-DAY.md (to be written before the pilot is built) | Building paused, except pilot unit 11.1 and its key tool, which are built now (step 4f) |
 
 Running through every layer: the assessment system, and the supports for English learners, access, teachers and
 families ("What a finished course holds").
@@ -97,17 +119,23 @@ course by course, by the curriculum expert. We write our own course (FOUNDATION,
 **Decided in the same discussion (Cory, 2026-11-11), and now rules:**
 
 1. We own the full course.
-2. A unit plan for every unit of a course comes before that course's tools.
+2. A unit plan for every unit of a course comes before that course's tools. One exception (2026-11-11): the pilot
+   unit's key tool, Community Plot Planner, is built with the pilot.
 3. No tool is built or refined until a unit plan names its job.
 4. Tools are key tools (built first; the ones a day is planned around) or light tools (lighter, added over
    time, same standard of correctness). A course is runnable when its key tools are live and print covers the rest.
-5. Frequent cold reads by the curriculum expert are the main review at every layer. Human reads are rare and aimed.
+5. Frequent cold reads by the curriculum expert are the main review at every layer. Human reads are rare and
+   aimed, except where the table in docs/FOUNDATION.md section 7 says a qualified human is required (2026-11-11).
 6. Grades 3 to 12 assume one device per student, with a one-line projector path. A parent teaching one child at
    home is a named audience.
 7. A teacher judges open work; tools give it structure and print carries rubrics and sample pieces.
+8. Every existing tool and spec is sorted by script into three bins (2026-11-11). Named by a unit plan, as key
+   or light: it gets course work. Live and passing the teaching test but not named: it stays on the shelf and
+   claims no course coverage. Everything else: frozen, with no further spend. Sara's spec fix batches stopped
+   the same day.
+9. A stretch is planned only when the stretch before it is built (2026-11-11), once the pilot has been read.
 
-The detail of each is in docs/FOUNDATION.md. Still open: the device assumption for K to 2, and what happens to
-existing tools and specs that no unit plan asks for.
+The detail of each is in docs/FOUNDATION.md. Still open: the device assumption for K to 2.
 
 **The unit plan.** Fixed fields in two documents, a stretch sheet and a unit plan (docs/courses/UNIT-PLAN.md, fixed
 2026-11-11). Length is capped by words (caps changed 2026-11-11, Desk card q-plans-4d-1): a unit plan 1,250 not counting its
@@ -115,16 +143,20 @@ checks, errors and days; a stretch sheet 1,250 not counting its check tables and
 1,800 by the same count. Tool asks sit in one TOOL-ASKS.md per course. Check items, exit questions, errors and day rows are never cut to fit. It
 is a contract, not the lesson.
 
-**What this changes in step 4.** The order inside "Prove one course" is now:
+**The order inside step 4 (changed 2026-11-11, night, Cory).** The labels 4a to 4f keep their meaning, so older
+files that cite them still read correctly. What changed is the order of the last three. The old order was 4d
+(every unit plan), then 4e (key tools), then 4f (the pilot unit). The new order is 4f first, then the rest of 4d
+a stretch at a time, with 4e done as the plans come in. The table is in the new order.
 
 | # | Piece | Done when |
 |---|---|---|
-| 4a | The approach: a shared core of about two pages and a page for math, each claim with its source | The curriculum expert has read it cold and its findings are closed; Cory has said yes |
-| 4b | The grades 3 to 5 math progression around grade 4 | Every grade 4 stretch names what grade 3 hands it and what grade 5 needs, checked against the standards' own progressions |
-| 4c | The unit plan fields, tried on three units of grade 4 math, the pilot (unit 11.1, area and perimeter) among them | The expert has read the three; the fields are fixed |
-| 4d | Unit plans for the other 40 units of grade 4 math | Every unit has a plan; every tool a plan asks for is marked key or light; existing specs with no plan asking for them are counted |
-| 4e | The key tools named from the plans. Of the three approved on 2026-11-11, Community Plot Planner stands (with spec fixes from its plan), Road Trip Logbook is now a light tool, and Fraction Wall Duel is held until units 3.3 and 3.4 are planned (Cory, 2026-11-11, card q-unit-plans). The final first three are named here from all the plans and go to Cory | A build order for key tools, by value |
-| 4f | The pilot unit built to the bottom, with its key tools, then the reads: verified play, the rubric read, the expert, a working teacher | As in the step 4 row below |
+| 4a | The approach: a shared core of about two pages and a page for math, each claim with its source | The curriculum expert has read it cold and its findings are closed (done). Cory answered yes three times on Desk card q-approach (2026-11-11) but has not yet read the pages in full. That read is still owed; work proceeds on the pages meanwhile |
+| 4b | The grades 3 to 5 math progression around grade 4 | Done 2026-11-11. Every grade 4 stretch names what grade 3 hands it and what grade 5 needs, checked against the standards' own progressions |
+| 4c | The unit plan fields, tried on three units of grade 4 math, the pilot (unit 11.1, area and perimeter) among them | Done 2026-11-11. The expert has read the three; the fields are fixed |
+| 4f | **Now.** Pilot unit 11.1 built to the bottom. In this order: (1) a cold expert read of docs/courses/math-4/s11.md; (2) the lesson-day template docs/courses/LESSON-DAY.md (Claude drafts, the expert reads, Cory says yes); (3) a script that keeps every keyed item as data and recomputes every key; (4) the five days written in full and Community Plot Planner built; (5) the cost recorded in tokens, wall hours and owner minutes; (6) the reads: verified play, the rubric read, the expert, a grade 3 to 5 teacher against five written questions, one teacher or parent teaching the five days, three students sitting the end check, timed. Notes go in docs/pilots/ | As in the step 4 row below, and the cost of each piece is written down |
+| next | The first non-math pilots, right after 11.1 is read: one five-day ELA slice (grade 6, stretch 2) and one science unit with real materials. Each needs its rubric file and approach page first | Three unit costs are written on one page |
+| 4d | Unit plans for the rest of grade 4 math. Frozen at the six stretches on file (1, 2, 3, 9, 10, 11; 13 of 43 units) until the pilot has been read. One exception: the start-of-year check and stretch 4's readiness items. After that, a stretch is planned only when the stretch before it is built | Every unit has a plan; every tool a plan asks for is marked key or light; the three bins are counted |
+| 4e | The key tools, named from the plans as they come in and built in order of value. Community Plot Planner is the pilot's key tool and is built in 4f (with spec fixes from its plan). Road Trip Logbook is a light tool. Fraction Wall Duel is a light tool for now (Cory, 2026-11-11). No other tool is built until a unit plan names it | A build order for key tools, by value |
 
 Where the step 4 row below and this table disagree, this table wins.
 
@@ -134,9 +166,9 @@ Where the step 4 row below and this table disagree, this table wins.
 |---|---|---|
 | **Course** | A grade of a subject | Gets a year spine: its units in order, with the reason for the order |
 | **Stretch** | A run of units on one idea (added 2026-11-11) | Owns the readiness check, the end check and, in ELA, the text set and word list |
-| **Unit** | A 1 to 5 day package inside a course | Points at modules and picks from every shelf. Owns only the order, the teacher pages and what no shelf has. Has a unit plan (1,250 words at most, not counting checks, errors and days, under its stretch sheet) before any of its tools is built |
+| **Unit** | A 1 to 5 day package inside a course (unit 3.4 of grade 4 math, six days, is the named exception) | Points at modules and picks from every shelf. Owns only the order, the teacher pages and what no shelf has. Has a unit plan (1,250 words at most, not counting checks, errors and days, under its stretch sheet) before any of its tools is built |
 | **Module** | One teachable topic, and the hub page every shelf hangs from | Split only when it holds two unrelated topics, and then properly. Its standards are spelled out, never a bare cluster |
-| **Tool** | One screen piece | Carries only the codes it teaches on its main path, and a role: lesson, see why or practice. Built only when a unit plan names its job, which also marks it key or light. Major work in math, ELA and science gets two or three tools |
+| **Tool** | One screen piece | Carries only the codes it teaches on its main path, and a role: lesson, see why or practice. Built only when a unit plan names its job, which also marks it key or light. How many tools a stretch gets is set by its unit plans (BASELINE rules 22 and 23, changed 2026-11-11); a major stretch may run on print with no key tool, as grade 4 math stretch 3 does |
 | **Shelves** | Word Wall, charts, Game Night, Sub Day, lesson plans, worksheets, generators, Reading Room, The Map | Keep their keys. Worksheets and generators are the home of fluency and extra practice; the Reading Room is the home of year-long reading |
 | **Ledger** | data/coverage.csv | One row per standard per course: where it is taught in full. The one home of a coverage claim and the source of the measure |
 | **Recess, Curiosities** | Play and wonder | Outside the bar. They claim no standard |
@@ -146,16 +178,17 @@ docs/ECOSYSTEM.md. Decisions: docs/agents/decisions/DESK-ANSWERS.md, 2026-11-10.
 
 ### The six steps
 
-**Tool building is paused** (Build, Refine and the Codex queue) except for the three grade 4 math tools of step 4.
-Fixes that hold whatever happens (a wrong fact, a broken control on a live tool) are the other exception.
+**Tool building is paused** (Build, Refine and the Codex queue) except for the pilot unit's key tool, Community
+Plot Planner (step 4f). Fixes that hold whatever happens (a wrong fact, a broken control on a live tool) are the
+other exception.
 
 | Step | What | Done when | Cory decides |
 |---|---|---|---|
 | 1. Rules. **Done 2026-11-10** | The teaching test and six rule edits are in SPEC.md, REFINE.md and docs/TOOL-CONTRACT.md. Common Core math and ELA texts and the major-work marks are filed in data/standards/. The other subjects' texts are filed there too (CSTA 2026 as ids only) but not yet wired into the packets or the ledger | A new spec or lens cannot pass a tool that fails the test | Nothing |
 | 2. Read. **Read and maps done 2026-11-10.** Wiring the other subjects' texts is parked (2026-11-11): science and social studies when their courses come up, the rest after the core is proved | Every spec read with row format 2: the 36 pilot tools again as the test, then all the rest by subject and band (about 64 cheaper-model agents). Scripts build the ledger and one map per course, and flag two-topic modules | Every course has its map and its measure | Nothing |
 | 3. Shape, one course at a time (was step 4; moved ahead of fixing 2026-11-10) | From the maps, by rule, for one course: module standards spelled out, spec notes applied, second and third tools listed for major-work modules, supporting tools that wait, tools to cut, merge or give a new role, and a build order by value. The two proving courses first. One file per course in docs/agents/catalog/shape/ | data/modules.csv, the specs, the ledger and the build order agree with the map for that course | One Desk card per course, exceptions only: reshape, hold, cut, new tool, split a module |
-| 4. Prove one course (was step 5; moved ahead of further fixing 2026-11-11). **Starts now, grade 4 math first** | Sara closes the specs of the two proving courses, then the band, grade 5 and grade 3 math (NEXT.md, batches 1 to 4), and stops. In step with her: the grade 4 math year spine; three tools built from fixed specs (building resumes for these three only; the token plan's side-by-side trial runs on them); one full unit pulling from every shelf, with its assessment and supports; each built tool played against its spec and logged in catalog/verified.txt; a real adoption rubric filed in docs/ (source and licence checked) and the unit read against it by a fresh agent; then a working teacher reads the unit, and one class uses it if we can arrange that. Grade 6 ELA follows the same path | Cory can open one unit and see the bar met, a teacher outside the project has read it, the measure shows standards verified, not only full on paper, and the cost of one tool and one unit is written down. The course itself is done when it meets "What a finished course holds" | The spine, which three tools, who the teacher is, then the pilot review |
-| 5. Fix what the proof keeps (was step 4) | Whatever the proof changed goes into SPEC.md, the fix list and the shape script first. Then Sara's queue reopens course by course in the order NEXT.md holds, and the live tools in each course are fixed. Ahead of that, only fixes that hold whatever happens: a wrong fact or a broken control on a live tool. The shelf fixes in docs/ECOSYSTEM.md can run any time. Built tools waiting on Refine are not fixed now | Every live tool in a proved course passes the test or carries an honest role | Nothing, unless a fix changes what a tool teaches |
+| 4. Prove one course (was step 5; moved ahead of further fixing 2026-11-11). **Under way, grade 4 math first** | The order inside this step is the table "The order inside step 4" above. Pilot unit 11.1 is built to the bottom now, with its key tool (building resumes for that one tool). The tool is played against its spec and logged in catalog/verified.txt. The unit is read against docs/RUBRIC-MATH-K8.md by a fresh agent and by the expert. A grade 3 to 5 teacher reads it, one teacher or parent teaches it, and three students sit the end check. Then the ELA and science pilots, then the rest of grade 4 math a stretch at a time. Sara's spec fix batches stopped on 2026-11-11 | Cory can open one unit and see the bar met, a teacher outside the project has read it, the measure shows standards verified, not only full on paper, and the cost of one tool and one unit is written down. The course itself is done when it meets "What a finished course holds" | The lesson-day template, who the outside people are, then the pilot review |
+| 5. Fix what the proof keeps (was step 4) | Whatever the proof changed goes into SPEC.md, the fix list and the shape script first. Spec fixing does not reopen course by course (changed 2026-11-11): a spec is fixed only when a unit plan names its tool, key or light (the three bins, rule 8 under "The layers"), and the live tools a proved course names are fixed. Ahead of that, only fixes that hold whatever happens: a wrong fact or a broken control on a live tool. The shelf fixes in docs/ECOSYSTEM.md can run any time. Built tools waiting on Refine are not fixed now | Every live tool a proved course names passes the test or carries an honest role | Nothing, unless a fix changes what a tool teaches |
 | 6. Scale by course | Build and Refine resume in value order: finish a course before starting the next, major work first, core subjects before the rest. A course is finished when it meets "What a finished course holds", and the gap table below is checked at the end of each | Course by course, the measure reaches full and verified and unit days reach the spine's total | The order of courses |
 
 ### What a finished course holds (added 2026-11-11)
@@ -183,11 +216,29 @@ finds.
 6. **Access.** Every tool passes the hooks and an automated access check at the Finish check; one keyboard-only
    play is part of verifying it. Printables read in black and white.
 7. **One outside read.** A working teacher has read at least one unit of the course and their notes are filed in
-   docs/pilots/ with what changed because of them.
+   docs/pilots/ with what changed because of them. For the pilot unit (2026-11-11): a grade 3 to 5 teacher reads
+   it against five written questions, one teacher or parent teaches the five days, and three students sit the
+   end check, timed.
 8. **Honest public claims.** The course's pages say taught, practiced or shown per the ledger, never more.
 9. **A fresh-agent read of the whole course** against the rubric on file, with every finding closed or listed. The
    reader is the curriculum expert (docs/agents/EXPERT.md): a standing role, always run cold, that researches outside
    sources before it judges. It also reads every spine and every pilot unit, and its reports are kept in docs/reviews/.
+
+Listed 2026-11-11 from the strategic review. Each of the six below is on the list so nothing surprises the first
+whole-course read. For each one: listed 2026-11-11; in or not-now still to be decided by Cory.
+
+10. **Accessibility conformance to a named level**, for tools and for print files. Listed 2026-11-11; in or
+    not-now still to be decided by Cory.
+11. **A versioning and errata rule for a live course:** how a unit is versioned, held steady for a school year
+    and corrected. Listed 2026-11-11; in or not-now still to be decided by Cory.
+12. **A course-level teacher guide with pacing options**, the shorter path among them. Listed 2026-11-11; in or
+    not-now still to be decided by Cory.
+13. **A state alignment document:** one worked crosswalk on the first finished course. Listed 2026-11-11; in or
+    not-now still to be decided by Cory.
+14. **Spanish student materials.** Family notes are already in English and Spanish; student pages are not.
+    Listed 2026-11-11; in or not-now still to be decided by Cory.
+15. **A print-volume count per student:** the pages a student uses in a year. Listed 2026-11-11; in or not-now
+    still to be decided by Cory.
 
 ### Gaps found, and how each closes (2026-11-11)
 
@@ -199,21 +250,21 @@ when its "closed when" is true. Nothing here is closed by a sentence in a plan.
 | The measure counted specs, not what ships | Four columns: full on paper, full and live, verified, unit days | Done | In measure.md now. 254, 10, 0, 0 across the site |
 | Tools are about seven hours of a course; no unit exists in data | data/units.csv (one row per unit: course, order, days, modules, status) feeds the Unit days column; only live units count. The spine budgets every teaching day | 4 for the pilot unit, 6 per course | A course's unit days reach its spine's total |
 | The proof came after a year of fixing | Proof is step 4 and runs beside Sara's batch 1 | Done | Grade 4 math meets "What a finished course holds" for one unit, then the year |
-| A built tool may not match its spec | Each tool is played against its spec's Standards map and Done when lines, once with keyboard only, and logged in verified.txt with the date. A mismatch is fixed in the build or the spec, whichever is wrong | 4 for three tools, then every tool as its course comes up | Verified equals Full and live for the course |
+| A built tool may not match its spec | Each tool is played against its spec's Standards map and Done when lines, once with keyboard only, and logged in verified.txt with the date. A mismatch is fixed in the build or the spec, whichever is wrong | 4 for the pilot's key tool, then every tool as its course comes up | Verified equals Full and live for the course |
 | About 220 built or live tools were made before the teaching test | Not fixed now. Each is fixed, re-read and verified when its course comes up. Until then its public pages claim only what the ledger says (next row) | 5, 6 | No live tool in a finished course fails the test |
 | The public site claims more than the ledger supports | Tool pages and /standards/ pages take their wording (teaches, practices, shows) from data/coverage.csv by script | 5, for proved courses first | A script check fails the build when a page claims more than the ledger |
 | The read is 80 percent reliable, and one re-read was never checked | Every re-read gets a top-model spot-check of one spec in five; under 80 percent agreement the course is read again. Verified play is the final word, not the read | Standing (FINAL-REVIEW.md) | Each finished course has its spot-check figure in its shape file |
 | Outside math and ELA, a course's standards count is only what its modules list | measure.md marks those courses with a star. When science, then social studies, come up, the full standard text is wired in first, so the count is every standard of the grade | Before each of those subjects opens | No starred course is quoted as a share of its standards |
 | Assessment was one short check per unit | Three sizes, item 4 of the finished course | Tools: now. Stretch checks: 4. Cumulative checks: 6 | The pilot unit ships with its stretch's readiness and end checks; a finished course has every cumulative check its spine names, each with a respond day |
 | English learner supports were named and in no step | Item 5 of the finished course | Tools: now. Units: 4 | The pilot unit's teacher page carries all three parts |
-| Access was a font and contrast bar | Item 6 of the finished course. The automated check joins the Finish check in docs/agents/ when building resumes | Hooks: now. Check: with the three proof tools | The three proof tools pass both |
+| Access was a font and contrast bar | Item 6 of the finished course. The automated check joins the Finish check in docs/agents/ when building resumes | Hooks: now. Check: with the pilot's key tool | The pilot's key tool passes both |
 | Coherence across grades was one line | Each spine row names the earlier standards it builds on and where Curio Class teaches them. A script builds a progression table per subject (domain by grade, from the standard texts and the ledger), read at every Shape | Grade 4 math spine: 4. The table: before step 6 | No unit in a finished course builds on a standard taught nowhere below it, or the gap is named |
-| No teacher or class had seen any of it | A working teacher reads the pilot unit (Cory's mom, a grade 2 teacher; Cory asks her); one class if it can be arranged. Every unit page carries a short feedback link. Findings are filed in docs/pilots/ | 4, then standing | Item 7 of the finished course. Two teachers before step 6 opens |
+| No teacher or class had seen any of it | A grade 3 to 5 teacher reads the pilot unit against five written questions, one teacher or parent teaches the five days, and three students sit the end check, timed (2026-11-11; Cory finds the people; a grade 2 teacher, Cory's mom, was the first reader named). Every unit page carries a short feedback link. Findings are filed in docs/pilots/ (the folder exists from 2026-11-11, see its README.md) | 4, then standing | Item 7 of the finished course. Two teachers before step 6 opens |
 | No evidence that it works | Not claimed. A one-page logic model (what the course does, why it should work, what would show it) is written with the pilot unit, which is the lowest tier a federal evidence review accepts. A study waits for a partner | 4 | The logic model is on file and nothing public claims results |
 | The bar on file is our summary, compiled from one Blueprint and Claude's knowledge | docs/RUBRIC-MATH-K8.md: the EdReports K-8 math criteria v2.0, linked and summarised in our own words (all rights reserved, so no copy). The expert read the evidence guide on 2026-11-11 and confirmed the 65 percent line. The pilot unit is read against it | 4 | The fresh-agent read cites the rubric's own indicators, and the 65 percent figure is confirmed or corrected |
 | The reviewer of a spec was the person who fixed it | Three readers after Sara: verified play, a fresh agent, a teacher | 4 | In FINAL-REVIEW.md now |
-| Builds and units are the constraint, not specs | The proof records what one tool and one unit cost in tokens and days. Step 6 sets how many courses a season holds from that, in the open. After batch 4 Sara's time goes to unit pieces, not more specs | 4 | The cost of one course is written in this file before step 6 opens |
-| Subjects outside the core have thin reads and umbrella codes | Parked, in the goal. Each opens only with its standard text wired and a fresh read | After the core is proved | Its first course meets the finished course list |
+| Builds and units are the constraint, not specs | The proof records what one tool and one unit cost in tokens and days. Step 6 sets how many courses a season holds from that, in the open. Sara's spec fix batches stopped on 2026-11-11; her time goes to unit pieces, not more specs | 4 | The cost of one course is written in this file before step 6 opens |
+| Subjects outside the core have thin reads and umbrella codes | In the goal; core subjects come first. Each opens only with its standard text wired, its bar (docs/ADOPTION-BAR-SUBJECTS.md where no rubric file exists) and a fresh read | After the core subjects | Its first course meets the finished course list |
 | The eight mathematical practices are in no spec, unit or ledger column (found in the rubric, 2026-11-11) | Each unit names the one or two practices it builds and the task that builds each; the spine shows all eight are met over the year. Not added to tool specs until the pilot shows where they belong | 4 (pilot unit), 6 | The pilot unit names its practices; a finished course's spine covers all eight |
 | Nothing checks the balance of understanding, fluency and application (rubric) | Each unit's plan marks every day as mostly one of the three; the spine totals them per stretch | 4, 6 | The pilot unit has all three, and the spine shows none missing where a standard calls for it |
 | Check items do not name their standard, and no check says what to do next (rubric) | Every item on a unit or course check carries its code; every key ends with "if many missed this, do that" | 4 | The pilot unit's two checks do both |
@@ -222,197 +273,53 @@ when its "closed when" is true. Nothing here is closed by a sentence in a plan.
 | No assessment accommodations or reading-level supports (rubric) | Each check says how to give it read aloud, with more time, or with a model allowed, without changing what it tests; word problems come in a plainer-language version | 4, 6 | The pilot unit's checks and problems do both |
 | Loose ends from spelling out module standards | 113 cluster pages under /standards/ are gone and 296 added, with no redirects; scripts/check_plans.py reports 14 of 80 plans with problems; check_concepts stops on unknown module social-studies-3-5-road-trip-atlas | Before the next site build | Redirects are in data/redirects.csv and both checks pass |
 
-**Resume here (left 2026-11-11, evening): read docs/HANDOFF.md first. It holds Cory's answers to Desk cards q-plans-4d-1, q-bar-subjects and q-standards-currency, where each decision was applied the same night (word caps 1,250 and 1,250, one-unit stretch 1,800, stretch 3 now teaches benchmarks first, always cover the whole standard, world languages shelved, computer science Specialty standards loaded), what is still open (the social studies content standard), and the next work: Sara's list in docs/courses/NEXT-SPINES.md, ordered by what is waiting on each piece, with the expert reads of stretches 3, 9, 10 and 11 first. Earlier state: steps 4a, 4b and 4c are done bar one read. 4a: docs/APPROACH.md and docs/APPROACH-MATH.md, second drafts, decisions answered; Cory still owes a read of the pages as a whole. 4b: the grades 3 to 5 progression, done. 4c: the stretch sheet and unit plan fields are fixed (docs/courses/UNIT-PLAN.md; Desk card q-unit-plans, all eight answered): stretch 9 is now two days adding and four subtracting; the readiness check is given before a stretch opens; a key tool is the one a day is planned around and the other kind is a light tool; Road Trip Logbook is a light tool and Fraction Wall Duel is held until 4e. 4d is under way: stretches 1, 2, 3, 9, 10 and 11 are planned (13 of 43 units); next are stretches 4 to 8, then 12 to 18, a stretch at a time, the answers to Desk card q-plans-4d-1 are applied (see docs/HANDOFF.md). Then 4e key tools, 4f the pilot unit. docs/COURSES-STATUS.md (scripts/course_status.py; also the Desk's Dashboard tab) counts 105 courses as a school would schedule them, 56 in the four core subjects; every one is to be finished to the bar (Cory), and the bar for subjects with no rubric on file is drafted (docs/ADOPTION-BAR-SUBJECTS.md, second draft after the expert's read, docs/reviews/bar-subjects-2026-11-11.md; Desk card q-bar-subjects answered 2026-11-11, two choices still open; it lists what must be loaded or decided before each subject's spine). The loaded standards were checked against current editions (docs/reviews/standards-currency-2026-11-11.md: none superseded; gaps on Desk card q-standards-currency, answered). The plan with sizes and dates waits for the pilot unit's real cost. Shared band modules (four ELA sets and two single modules) stay shared and each grade's spine claims them (Cory, 2026-11-11). Also owed: three data/modules.csv description notes; the science and ELA rubric files and the ELA text plan (on Sara's list); Cory's final yes on the science and ELA spines. Sara works NEXT.md batches 1 to 4, then docs/courses/NEXT-SPINES.md.** All 800 tools have a row in row format
-2 (docs/agents/catalog/rows/, 71 packets, about 12 million tokens on the cheaper model), and the ledger is rebuilt:
-data/coverage.csv and docs/agents/catalog/tables/measure.md. Across every course's standards: 213 full, 368 nearly,
-404 part, 1,102 practice only, 276 shown, 37 none. By tool: 70 teach every code they carry, 177 teach at least one
-in full, 178 teach in part, 338 are practice only, 37 only show or claim. The two commonest reasons a tool falls
-short: its only check is a small-choice pick with free retries (601 tools list one; 322 of them teach nothing in
-full), and the tool does the standard's key step for the student (236 tools). High school math has no standard
-taught in full, and science 9 to 12 almost none.
-
-How far to trust it (top-model spot-check of 36 tools, 115 codes, each judged cold first): 80 percent of depth calls
-agree; of the misses, 14 are the read too strict and 9 too generous. Math and social studies are sound (85 and 100
-percent) and no math "taught" was inflated, so those counts are a floor. ELA taught counts are a floor too: the
-read calls a multiple-choice check guessable even where the spec closes it or a second check stands. Science is
-right within one step. In computer science, arts, CTE and world languages the codes are umbrellas with no filed
-wording, so per-code counts mean little there and each "taught" needs a hand check.
-
-Known limits, to fix before the maps are trusted outside math and ELA: (1) the packets and the ledger use only the math and ELA
-texts, so no other course has an expected list and "none" cannot show; the other subjects' texts are filed in
-data/standards (CSTA 2026 as ids only, wording still owed) and need wiring into catalog_batch.py and
-coverage_ledger.py, science first; (2) the beatable
-rule in CATALOG-EXTRACT.md needs three tests added (is trial really cheaper than thinking, does the spec's own
-table close it, does a second check stand) and a tie-break for two-part standards; (3) rows that say shown with a
-keyed check and an activity the student types are contradictions to grep for.
-
-The maps are written (2026-11-10): `python scripts/catalog_maps.py` builds one map per subject in
-docs/agents/catalog/tables/ (map-<subject>.md, index maps.md) and sorts every spec in spec-sort.csv. The sort: 70
-fine, 558 small addition, 172 rework; 62 have a thin or missing spec. By stage: of 83 live tools, 3 fine, 54 small
-addition, 26 rework; of 146 built, 7, 103, 36. The two proving courses: grade 4 math has 13 tools (2 fine, 10 small
-addition, 1 rework) and 27 standards (4 full, 6 nearly, 15 part, 1 practice only, 2 shown); grade 6 ELA has 9 tools
-(1 fine, 7 small addition, 1 rework) and 43 standards (4 full, 6 nearly, 17 part, 14 practice only, 2 shown). The
-maps are on the Desk as card q-maps-1.
-
-The spec fix list (2026-11-10): `python scripts/spec_fixes.py` builds docs/spec-fixes/ (start at its README.md):
-one file per course naming, tool by tool and code by code, which kind of fix each spec needs and the exact parts
-the read found missing; fix-list.csv for sorting; done.txt as the hand-kept log. Sara owns the fixes for the whole
-spec catalog (Cory, on the Desk), proving courses first, then the 26 live rework tools, then course by course.
-After a course's specs are all fixed, the specs are read again and Sara gives the course a final review against
-the end standard (docs/spec-fixes/FINAL-REVIEW.md). Cory's other two answers on card q-maps-1: fix the 26 live
-rework tools first in step 3 and leave the built ones until their course comes up; leave high school math until
-grade 4 math has proved the pattern.
-
-Sara's first batch (2026-11-10, branch spec/sara, merged to main the same night): both proving courses are logged
-fixed in docs/spec-fixes/done.txt, 22 tools. Grade 4 math, 13 tools: 11 specs changed, community-plot-planner a
-small change, unit-ladder logged fine and unchanged. Grade 6 ELA, 9 tools: 8 specs changed, argument-x-ray logged
-fine and unchanged. None is reviewed yet. Left for later by her notes: new source and fact rows to confirm at Build
-(debate-prep-desk, summary-squeeze, source-sorter), sensitivity reads at final review (perspective-camera,
-sentence-remixer), the line plot scale choice not added to skate-park-angles, and three built tools whose code now
-trails the spec (skate-park-angles, egg-carton-factory, and any other marked built). The other 778 specs are not
-started.
-
-Re-read after the fixes (2026-11-10, late; packets math-4-1 and ela-6-1, cheaper model, under the tightened
-beatable rule and two-part tie-break now in CATALOG-EXTRACT.md). Grade 4 math went from 4 full, 6 nearly, 15 part, 1
-practice only, 2 shown to 25 full, 3 nearly (4.NBT.A.3, 4.MD.B.4, 4.G.A.1); every code on all 13 specs now reads
-taught and no guessable check is listed. Grade 6 ELA went from 4 full, 6 nearly, 17 part, 14 practice only, 2 shown
-to 16 full, 7 nearly, 9 part, 10 practice only, 1 shown. What is left in grade 6 ELA is mostly not a spec problem:
-nine tools cannot carry 43 standards, so the gaps (RL.6.7, RL.6.9, RI.6.3, RI.6.6 to RI.6.9, W.6.1 to W.6.6,
-W.6.10, SL.6.2, SL.6.5, L.6.2, L.6.4, L.6.6) rest on the grade 6 to 8 band tools, whose specs are not fixed yet
-(see the correction below). Still open on the fix list for the 22: argument-x-ray (a tag-and-scan
-check with free reruns, no model, few items; Sara had logged it fine), skate-park-angles (one code under five
-items), unit-ladder (spec too thin to judge; Sara had logged it fine). Treat the math result as the reader's view,
-not a verdict: it is one pass by the cheaper model on freshly rewritten specs, and the final review is the check.
-Site-wide after the rebuild: 254 full, 370 nearly, 375 part, 1,093 practice only, 271 shown, 37 none; specs 88 fine,
-542 small addition, 170 rework.
-
-Order changed (Cory, 2026-11-10, late): Shape now runs before fixing, one course at a time, because a fix to a
-tool that Shape then cuts or re-roles is wasted, and grade 6 ELA showed that fixing specs cannot close a gap that
-is really a shape question. Sara works the courses Shape has been through. Three courses are shaped, one file
-each in docs/agents/catalog/shape/, one Desk card each (q-shape-math-4, q-shape-ela-6, q-shape-math-5): grade 4
-math, grade 6 ELA and grade 5 math. Correction from shaping grade 6 ELA: its gap is not too few tools. The course
-is 23 tools, nine in grade 6 modules (fixed) and fourteen in grade 6 to 8 band modules (not fixed), and every large
-gap sits on a band tool. A course is its own modules plus every band module that carries one of its standards.
-Sara's next batch is those fourteen band specs, then grade 5 math (seven specs that do not wait on a Desk answer).
-Across those three courses Shape cuts nothing; Cory approved five second lesson tools on the Desk (two in
-grade 4 math, one in grade 6 ELA, two in grade 5 math; DESK-ANSWERS.md), and a sixth (a grade 4 line plot tool) is
-re-asked after he sent "do not split" back. Grade 3 math is shaped too (shape/math-3.md, card q-shape-math-3): the
-most loaded course so far, 37 codes on ten tools, four second tools proposed. The rule for a module with two topics
-(one module, two tools when the topics sit in separate modes or cannot both fit one sitting) is in that file.
-
-All courses shaped, 2026-11-11. Cory approved all four grade 3 second tools (nine approved in all) and the
-two-topic rule. scripts/shape_courses.py then shaped the other 89 courses by rule: one file per course in
-docs/agents/catalog/shape/, plus shape.csv (one row per tool per course), hand.txt (the four courses shaped by hand,
-never overwritten) and decisions.csv (Desk answers and hand overrides; edit it when Cory answers a shape card, then
-rerun). What the script decides: load (codes with lettered parts against minutes), a second tool where a tool over
-four codes cannot be fixed inside one sitting (20 minutes in K and 1, 25 in grade 2, 35 from grade 3, with five
-minutes of slack), two-topic math modules by the time test, and the spell-out of math module standards (99 more
-modules now list their own standards in data/modules.csv; the ledger is unchanged by it). What it does not decide:
-anything that needs a spec read. Results: no tool cut or merged anywhere; six second tools on the Desk (grade 6 math
-Smoothie Lab, grade 8 math Transformation Dock, grade 5 ELA Fact Fusion and Slow-Mo Writer, grade 11 ELA Personal
-Essay Studio, and the re-asked grade 4 line plot tool); 41 loaded tools where nothing reads as taught yet, so the
-spec is fixed first and judged again; 9 too close to call, fixed inside the tool; high school math candidates
-listed but not asked. Outside math and ELA the files count load and propose nothing: those reads are rough and
-the standard texts are not wired in. Band tools are never split from a grade file; their specs get a path per grade.
-
-Next, in this order (rewritten 2026-11-11 after the cold review): (1) Sara works docs/spec-fixes/NEXT.md,
-batches 1 to 4, adding the three hooks to every spec she touches, and stops there. (2) Claude drafts the grade 4
-math year spine from data/sequence.csv, the shape file and the focus marks, for Cory's review. (3) When Cory has
-answered q-proof-math-4 (which three tools, who the teacher reader is), those three tools are built from their
-fixed specs, played against the spec and logged in catalog/verified.txt, and the area and perimeter pilot unit is
-written around them. (4) A published adoption rubric is filed in docs/ with its source and licence, and a fresh
-agent reads the unit against it; then the teacher reads it. (5) After Sara's batch 1, Claude re-reads the two
-proving courses, the top model spot-checks one spec in five, and she runs FINAL-REVIEW.md. (6) When Cory answers
-an open shape card, add a line to shape/decisions.csv and rerun shape_courses.py and spec_fixes.py. Not next:
-wiring other subjects' standard texts, fixing specs beyond batch 4, any build beyond the three tools.
-Everything it needs: docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/.
+**Where to resume:** docs/HANDOFF.md. The "Resume here" block that stood here, the dated notes on the catalog
+read, the maps, the spec fix list and Shape, and the old "Next, in this order" list were moved to
+docs/archive/ROADMAP-history-2026-11-11.md on 2026-11-11. The tools they describe are still where they were:
+docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catalog/ and docs/spec-fixes/.
 
 ### What every other track does meanwhile
 
 | Track | Until grade 4 math is proved (step 4) | After the proof |
 |---|---|---|
-| 1. Tools | Paused, except the three grade 4 math proof tools and fixes that hold whatever happens. Held collections, queued ideas and the Codex queue wait | Resumes for the two pilot courses, then by course |
+| 1. Tools | Paused, except the pilot unit's key tool (Community Plot Planner) and fixes that hold whatever happens. Held collections, queued ideas and the Codex queue wait | Resumes by course, for the tools a unit plan names |
 | 2. Supply Closet | Carries on: worksheet waves, generators, the Word Wall diagram pass, Break Box read. Its shelf fixes can land any time. Charts and teacher-guide links wait for building to resume, since they ride with a tool | Each unit names what it pulls from the closet. The module kit and Sub Day lite follow the unit pilot |
 | 3. Reading Room | Add the text record and topics to the story format, then the ten-story pilot. It can run beside the proof | Topic sets are written into the ledger for the standards they carry; enrich waves follow the course order |
 | 4. The site | Page changes that the fixes need. Open items (www redirect, dark mode, request page) any time | The Map shows the measure per stop. A course page links its spine and units |
 | 5. Outreach and funding | Funding contacts carry on with what is live. No wide announcement yet | The two proven courses are what gets shown; teacher channels open after the proof |
-| 7. Curriculum | The grade 4 math spine, one pilot unit and its checks (step 4) | It is step 6: spines, units, then Tracks and the Binder once several courses are full. The state crosswalk comes after that |
+| 7. Curriculum | Pilot unit 11.1 built to the bottom, then the ELA and science pilots, then the rest of the grade 4 math plans a stretch at a time (step 4) | It is step 6: spines, units, then Tracks and the Binder once several courses are full |
 | 9. Recess and Curiosities | Wait with tool building, since they use the same pipeline. Design work (Recess's look, picking first games) can go on | Built in their own small waves beside the course work, never counted in the measure |
 | 8. Beyond School, 10. Languages | Wait | Start only after several courses are full, or, for the first Languages wing, when a partner says yes |
 
 ### Decisions, kept few
 
-What Cory is asked, in order: the Shape exception cards (open now); the proof card (q-proof-math-4: which three
-tools, who the teacher is, which rubric, Sara's work after batch 4); the grade 4 math spine and the pilot unit; the
-order and number of courses in step 6, once the cost of one is known. Everything else runs on these defaults: a spec note that makes a tool pass
-the teaching test is applied without asking; a code follows the tool that really teaches it; year-long standards go
-to the spine; nothing is cut to save work (rule 1). The depth rule (two or three tools on major work) applies to
-math, ELA and science; other subjects only need each tool to pass the test or state its role. Questions go on the
-Review Desk as cards with a pick.
+**What goes to Cory (2026-11-11).** Scope, audience, money, outside people, and anything that moves a standard
+between units. Item-level choices inside the standards' limits (number sizes, which pairs, day swaps inside a
+stretch) are settled by the curriculum expert in its report, under the heading "Settled by the expert", and are
+collected in a weekly digest for Cory (docs/reviews/DIGEST.md; docs/agents/EXPERT.md).
 
-## Now (set 2026-11-03, Review Desk q-plan cards)
+What Cory is asked next, in order: a yes on the lesson-day template; who the outside people are (the teacher, the
+person who teaches the five days, the three students); the pilot review; in or not-now for items 10 to 15 of
+"What a finished course holds"; the social studies content standard; the order and number of courses in step 6,
+once the cost of one is known. Everything else runs on these defaults: a spec note that makes a tool pass the
+teaching test is applied without asking; a code follows the tool that really teaches it; year-long standards go
+to the spine; nothing is cut to save work (rule 1). Questions go on the Review Desk as cards with a pick.
 
-1. **Codex:** Nonsense Words and Sight Words (grade 2 teacher request) first, then keyword-fishing and input-or-output.
-   Nonsense Words is live with a pattern picker (short vowels to word endings, plus mixes) over an 894-word bank
-   checked by fresh agents.
-2. **Finish a cohort before more builds** (BASELINE rule 14): Credit Card Builder, Image Transformer, Data Policy
-   Council, Puppet Show Feelings, World Music Map and Near and Far, end to end under the new review (people art,
-   audit that saves as it goes, preflight). Repeat problems go in an issue ledger and become kit or brief fixes. A
-   preflight and the ledger are adopted now; a per-tool learning contract and readiness-as-a-checklist are tried on
-   this cohort and kept only if Refine counts fall.
-3. **Then scale back up:** Codex builds resume with at most about 10 built and unreviewed. People art is filled for the
-   11 tools missing it (314 images), each set on a contact sheet for Cory plus a fresh representation check.
-4. **Worksheets, generator first (Cory, 2026-11-03):** the 15 generators reviewed well. Module pages and Sub Day pages
-   now link the generators that fit each module with its settings filled in (scripts/gen_links.py), and the authored
-   sheets a module has. Concept-list rows a generator can make are backed by it (the row keeps its title and place in
-   the year, its link opens the generator preset): the first sift kept 26 of 746 math, science and social studies rows,
-   which said the generators rarely replaced a written sheet as they stood. 2026-11-04: the settings the reviewers
-   wished for were built (and a coordinate-plane generator, 16 in all), a second sift took the backed rows to 83; the
-   remaining wish list is in docs/SUPPLY-CLOSET-PLAN.md, Generators. Later 2026-11-04: an assessment of every unwritten
-   row (docs/agents/WORKSHEET-GAPS.md) chose 10 more generators where the gaps are biggest (arts rubrics and frames,
-   world languages, music, statistics, algebra, finance, code, K-2 number, grammar), 26 in all, and a strict sift took
-   the backed rows to 676. About 4,900 rows need a writer whatever we build. Authored waves
-   continue for K-2 and the interpretive subjects. Cory still reviews the live shelf; the rest of wave 2 and wave 3
-   follow at a slower pace.
-5. **Housekeeping (from the 2026-11-03 cleanup):** after 2026-11-07, delete the staged temp folder
-   `C:\Users\Cory\AppData\Local\Temp\claude\_to_delete-2026-11-03` (about 1 GB of old session scratch). Also delete
-   the merged branches (`git push origin --delete audit/states codex/biased-bot`, `git branch -D audit/states`) and
-   merge `claude/hopeful-dirac-qck82o` (worksheets wave 2) when that session finishes.
-6. **Catalog review (planned 2026-11-10, Cory; docs/agents/CATALOG-REVIEW.md). Pilot run 2026-11-10, picks accepted; the full read is step 2 of the path above.** Pilot (36 tools, grade 4 math and grade 6 ELA): no standard without a tool and no duplicates; the issue is depth (math: 17 of 29 standard rows taught in full), and the row format must change before the full run. Every tool is specced
-   or further along (7 ASL tools held), so the whole catalog is reviewed for standards coverage, duplication and
-   curriculum value, from the specs this time. A cheaper model writes one row per tool, scripts make the tables, the
-   top model judges only what the tables flag, and proposals come to Cory as Desk cards with a pick. Pilot on grade 4
-   math and grade 6 ELA first, then the rest by subject and band. It gives the bench a build order by value, and it
-   takes in checks 8a and 8b below for tools.
-7. **Token plan (planned 2026-11-10, Cory; docs/agents/TOKEN-PLAN.md). Evidence pack script built and checked on two tools 2026-11-10; the three-tool quality trial runs at step 5 of the path above, on the first tools Refine resumes with.** Token cost is the biggest limit
-   on growth; savings must not reduce quality. The agent logs show that re-read context, not new context, is most of
-   a lens's cost, and that the Exit check and Finish check together cost about as much as the three lenses. Changes to
-   try: script the counting checks, one evidence pack a round, heavy files kept out of context, a spec pre-check, and
-   model tiers. Each is trialled beside the current flow on three tools and kept only if it misses no blocker or
-   should-fix.
+## Now
 
-   **Order:** replaced by "The path from here" above (2026-11-10). Items 1 to 3 here (the Codex queue, the cohort,
-   scaling builds back up) are paused with it.
-8. **Adoption-bar checks (new 2026-11-10, docs/ADOPTION-BAR.md; a and b for tools are done by step 2 of the path above; the rest waits behind it):** three checks that
-   are cheap now and costly to backfill. None of them changes the tool pipeline or holds up a build. For tools, a and
-   b are now part of the catalog review; what is left of each is a short scan of the other shelves after it.
-   - **a. K-2 reading scan.** A fresh agent reads every K-2 reading tool, plan, worksheet and Word Wall card for
-     prompts that tell a child to guess a word from the picture or the sentence instead of sounding it out. Findings
-     go in a short report; fixes go through the normal Fix step.
-   - **b. Math focus and balance report.** For each math grade, how much of what we have (tools, worksheets, planned
-     rows) sits on the major work of the grade, and how it splits between understanding, fluency and real-world use.
-     Needs a major-or-supporting mark on each cluster in data/standards/ccss-math-clusters.txt (from the published
-     focus documents, licence checked first) and a one-word kind on each tool and sheet. The report shows thin
-     spots; it changes nothing by itself.
-   - **c. Reading Room fields.** Add the text record and topics to the story format before the ten-story pilot
-     (docs/LIBRARY-PLAN.md, "Reading level" and "Topic sets"), so the enrich waves fill them in as they go.
+The "Now" list set on 2026-11-03 (items 1 to 8: the Codex queue, the cohort, worksheets generator first,
+housekeeping, the catalog review, the token plan, the adoption-bar checks 8a to 8c) was moved to
+docs/archive/ROADMAP-history-2026-11-11.md on 2026-11-11. Older files that cite "ROADMAP Now, item N" mean that
+list. What is being worked now is in docs/HANDOFF.md.
 
 ## Track 1: Tools (the main work)
 
 Detail: docs/BUILD-PLAN.md (the pipeline), docs/agents/SCALE-PLAN.md (the order), docs/agents/RUNBOOK.md (how a
 session runs it), docs/agents/decisions/BASELINE.md (Cory's standing rules).
 
-1. **Now:** review the two Codex single-tool tests with Cory (docs/agents/BATCH-BR.md, "Resume here").
+Paused since 2026-11-10 ("The six steps"). The list below is the order this track resumes in, not current work.
+
+1. **First when it resumes:** review the two Codex single-tool tests with Cory (docs/agents/BATCH-BR.md, "Resume here").
 2. **Then spec waves** of about 30 to 50 tools, one subject or band at a time, each with its own overlap check.
 3. **Art overnight per wave**, right after the spec check (docs/ART.md).
 4. **Builds stream** in small mixed Build and Refine waves (docs/agents/REFINE.md), then build-only waves per family
@@ -554,7 +461,7 @@ play-tests.
 Detail: docs/LIBRARY-PLAN.md. About 700 stories are curated and processed into readable text. Next:
 
 1. **Pilot:** ten stories in the 3-5 band end to end (format, reader, pipeline). The format gains a text record and
-   topics first (Now, item 8c; docs/ADOPTION-BAR.md).
+   topics first (the old Now list, item 8c, in the archive; docs/ADOPTION-BAR.md).
 2. **Enrich and verify** in waves of about 50: word help, questions, teacher notes, the text record and topics, then
    a cold verify agent. Stories that share a topic are shown together as topic sets.
 3. **K-2 read-aloud** as the voice bank allows.
@@ -593,29 +500,33 @@ Detail: docs/funding/ (one-pager, cost sheet, prospect list).
 The repo (LochLogic/curioclass) has been public since 2026-10-28. The site is live but not announced; outreach is
 Track 5.
 
-## Track 7: Curriculum (merged 2026-11-03: units, then Tracks, then the Binder)
+## Track 7: Curriculum (merged 2026-11-03: units, then Tracks, then the Binder; rewritten 2026-11-11)
 
 From single tools to complete courses a teacher can run start to finish, one ladder. This track is where the
 adoption bar applies (docs/ADOPTION-BAR.md, BASELINE rule 20): reviews judge a whole course, so the year's shape
-comes before the units that fill it.
+comes before the units that fill it. The order of work is step 4 of "The path from here"; this section says what
+each rung is.
 
-1. **Year spine** (new 2026-11-10; what it must hold is item 1 of "What a finished course holds"; starts after the catalog review's pilot on the same two courses, Now item 6, whose
-   coverage tables it builds on): for each pilot course (grade 4 math, grade 6 ELA), one page that puts the
-   year's units in order and says why each sits where it does: what it builds on, what it sets up, and for math,
-   how much of the year goes to the major work of the grade. It starts from data/sequence.csv and the module list,
-   and names the gaps. Units are cut from the spine, not gathered from whatever parts are finished. Cory reviews
-   both spines before the unit pilot is written.
-2. **Units** (the capstone, Cory 2026-11-03): worksheets, handouts, topics and ready-made prompts packaged into a 1 to
-   5 day, mostly non-tech unit, with daily plans, a partner game, a short assessment and optional practice drills
-   (math facts and the like). Projector slides (warm-up, launch, turn and talk, exit ticket) are one part of a unit day.
-   Each day opens and closes by saying where it sits in the unit and the year.
-   **Pilot:** grade 4 area and perimeter and a grade 6 argument essay; Cory reviews both before a unit wave.
-   - **Teacher pages that teach the teacher** (tried on the pilot, 2026-11-10): each unit says why its main model or
-     picture was chosen, what students tend to get wrong with a key that shows what each wrong answer means, and how
-     to shorten or stretch a day without making it easier. Kept for the unit wave, and offered to tool lesson plans,
-     only if Cory finds them useful in the pilot.
-   - **Judged against the bar:** each pilot unit gets a fresh-agent read against the matching part of
-     docs/ADOPTION-BAR.md, and the findings go to Cory with the unit.
+1. **Year spine** (what it must hold is item 1 of "What a finished course holds"): one page that puts the year's
+   units in order and says why each sits where it does: what it builds on, what it sets up, and for math, how
+   much of the year goes to the major work of the grade. Units are cut from the spine, not gathered from whatever
+   parts are finished. On file: grade 4 math (docs/courses/math-4-spine.md; approved by Cory 2026-11-11, revised
+   since; status draft in docs/COURSES-STATUS.md until the pilot is read), and revised drafts for grade 4 science
+   and grade 6 ELA. More spines wait until the pilot is read.
+2. **Units**, on the unit plan model (docs/courses/UNIT-PLAN.md): a stretch sheet and a unit plan with fixed
+   fields, the checks written first, each day given its job, print as a full path, and tools marked key or
+   light. A unit is 1 to 5 days (unit 3.4 of grade 4 math, six days, is the named exception). A unit's lessons
+   are written to the lesson-day template (docs/courses/LESSON-DAY.md, to be written before the pilot is built).
+   **Pilot:** one unit, grade 4 math unit 11.1, area and perimeter (docs/courses/math-4/s11.md), built now. The
+   ELA pilot (a five-day slice of grade 6, stretch 2) and the science pilot (one unit with real materials) come
+   next, right after 11.1 is read.
+   - **Teacher pages that teach the teacher:** each unit says why its main model or picture was chosen, what
+     students tend to get wrong with a key that shows what each wrong answer means, and how to shorten or stretch
+     a day without making it easier.
+   - **Read against the rubric on file:** a math unit is read against docs/RUBRIC-MATH-K8.md by a fresh agent and
+     by the curriculum expert (docs/agents/EXPERT.md). docs/ADOPTION-BAR.md is the wider summary of the bar, and
+     docs/ADOPTION-BAR-SUBJECTS.md is the bar for subjects with no rubric file. The findings go to Cory with the
+     unit.
    - Hands-on work uses things a classroom or home already has, or names a cheap stand-in (docs/agents/STANDARDS.md).
 3. **Tracks:** units in a year's order with pacing for each subject and grade, grown from the year spines (the
    vision's Tracks idea; the public name is to be workshopped when it ships, keeping "Curio Class" whole).
@@ -625,8 +536,9 @@ comes before the units that fill it.
 Later: score codes (a code and QR a student shows the teacher, scanned on the teacher's own device; never called
 proof or cryptographic) and the state standards crosswalk. The crosswalk starts with one state outside the Common
 Core as the test (the state picked when it starts), as a mapping layer over modules and data/sequence.csv, with CASE
-as the file format in and out (docs/ADOPTION-BAR.md). The second reader (a teacher) that PHASE1-SCOPE left open is now part of step 4: a working
-teacher reads the pilot unit, and the alignment of its standards is one of the things they are asked about.
+as the file format in and out (docs/ADOPTION-BAR.md). One worked crosswalk on the first finished course is item 13
+of "What a finished course holds", still to be marked in or not-now by Cory. A working teacher reads the pilot
+unit (step 4), and the alignment of its standards is one of the things they are asked about.
 
 ## Track 8: Beyond School (new 2026-11-03, late)
 
@@ -662,7 +574,7 @@ languages modules, what "mid-level" means in lessons, and which engines are shar
 
 ## Late and far back
 
-- **Worksheet Generator**: no longer late. Live since 2026-11-03 and now the first path for procedural practice (see Now, item 4). Design in docs/SUPPLY-CLOSET-PLAN.md.
+- **Worksheet Generator**: no longer late. Live since 2026-11-03 and now the first path for procedural practice (see the old Now list, item 4, in the archive). Design in docs/SUPPLY-CLOSET-PLAN.md.
 - **Classroom projects by standard** (future input): an off-screen project per module from Cory's notes.
   docs/agents/roadmap/CLASSROOM-PROJECTS.md.
 - **Class Cast** (parked 2026-11-03): live class sync through a relay. Only with funding and someone to keep a server

@@ -68,7 +68,8 @@ goes to major work. They are not copied from any program.
 - **Major work: 100 days, 67 percent.** Supporting: 22 days. Additional: 19 days. The rubric's evidence guide sets
   the line at 65 percent for grades 3 to 8 (confirmed 2026-11-11), so this clears it by a small margin. Any day
   moved off major work should come back.
-- **The same count read other ways.** By units, 29 of the 42 teaching units are major work (69 percent). By
+- **The same count read other ways.** By units, 29 of the 42 units in the 17 teaching stretches are major work
+  (69 percent). The course has 43 units; the 43rd, unit 18.1, pulls the year together and is not in this count. By
   stretches, 10 of 17 (59 percent), which is why the three supporting stretches that practise major work (line
   plots, area and perimeter, measurement conversions; 16 days) must show that link on the page of every unit. With
   those 16 days counted beside major work, the figure is 116 of 150 (77 percent).

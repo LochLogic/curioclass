@@ -1,198 +1,152 @@
-# Sara's next work: spines, approach pages and rubric files
+# Sara's work
 
-Set up 2026-11-11 (Cory: "yes write it but lets give her a bit more to do, even if it needs corrected later";
-"maybe she can also do the drafts for the approach pages and rubric files for science and english"). This is the
-work after batch 4 of docs/spec-fixes/NEXT.md, and it can start sooner if a batch is waiting on something.
+**Redone 2026-11-11, night.** Cory accepted a cold review of the whole project
+(docs/reviews/strategic-review-2026-11-11.md) and asked for this list to be rebuilt so you can start. Three things
+changed for you:
 
-It replaces the earlier plan of "unit pieces" for now. Unit pieces cannot start until the unit plan fields are
-tried on three units (ROADMAP step 4c), which Cory's session is doing. Nothing on this page is blocked.
+- **Spec fixing has stopped.** No more batches in docs/spec-fixes/. A spec gets work only when a unit plan names
+  its tool.
+- **One unit is being built all the way down first** (grade 4 math, unit 11.1). Until a teacher has read it, no
+  new spines, progression pages, stretch plans or unit plans are written. They came off this list. They are kept
+  at the bottom under "On hold".
+- **Small choices no longer go to Cory.** The curriculum expert settles them and they go in a weekly digest.
+  Cory decides scope, audience, money, outside people, and anything that moves a standard between units.
 
-**Everything made here is a draft.** It will be corrected by the grade 4 pilot unit and by Cory's read. That is
-expected and fine. A draft that exists and has been read by the expert is worth more than a perfect one later.
+The pieces are in order of what is waiting on them: the piece with the most waiting comes first. Core subjects
+come first (BASELINE rule 24).
 
 ## Read first (once)
 
-1. docs/FOUNDATION.md. Nothing may contradict it.
-2. docs/ROADMAP.md, "The layers".
-3. docs/APPROACH.md and docs/APPROACH-MATH.md, and the review that shaped them: docs/reviews/approach-2026-11-11.md.
-4. docs/courses/math-4-spine.md (the model for every spine: copy its sections and tables), and
-   docs/reviews/math-4-spine-2026-11-11.md (what the expert caught in it).
-5. docs/courses/math-3-5-progression.md (the model for a progression page) and its findings file.
-6. docs/agents/EXPERT.md (how the curriculum expert is run).
+1. docs/HANDOFF.md, "Start here". It says what the main session is doing so you do not do the same thing.
+2. docs/FOUNDATION.md. Nothing may contradict it. Section 7 changed: read it again.
+3. docs/APPROACH.md and docs/reviews/approach-2026-11-11.md.
+4. docs/agents/EXPERT.md (how the curriculum expert is run).
+5. docs/RUBRIC-MATH-K8.md (the model for a rubric file).
 
 ## How every piece is made
 
-The same five moves each time. Your Claude session does the reading and drafting; you steer and judge.
+1. **Gather.** Read what the piece rests on. For outside sources start from docs/APPROACH-SOURCES.md. No library
+   access: a paywalled source stays unread and nothing may rest on it.
+2. **Draft.** One file, in the place named. Plain words. A claim about a standard quotes its verb and code. A claim
+   about how students learn names a source that was opened, and says how much of it was read.
+3. **Expert read.** A fresh agent told to read docs/agents/EXPERT.md first and follow it, given the file and what
+   will be built on it. Report in docs/reviews/<what>-<date>.md. **Every draft gets this read. You are never the
+   only reviewer of your own draft.**
+4. **Revise once** from the report. Item-level choices the expert settles are applied. Anything on Cory's list above
+   goes to him as a question card on the Review Desk with a pick, and is marked in the draft "Proposed, waiting
+   for Cory's yes".
+5. **Record and push.** Tick the piece, add one dated line to docs/agents/decisions/DESK-ANSWERS.md, commit and
+   push your own files.
 
-1. **Gather.** Read what the piece rests on (listed under each piece below). For outside sources start from
-   docs/APPROACH-SOURCES.md, which has working addresses and the way to open a PDF. No library access: a paywalled
-   source stays unread and nothing may rest on it.
-2. **Draft.** One file, in the place named below. Plain words. Every claim about the standards quotes the standard's
-   own verb and code. Every claim about how students learn names a source that was opened, and says how much of it
-   was read.
-3. **Expert read.** Run the curriculum expert cold: a fresh agent told to read docs/agents/EXPERT.md first and
-   follow it, given the file to review and what will be built on it. Its report goes in
-   docs/reviews/<what>-<date>.md.
-4. **Revise once** from the report. Corrections are applied. Anything that changes what a course teaches, who it is
-   for, or a rule of the site is not applied: it goes to Cory as a question card on the Review Desk with a pick, and
-   is written into the draft as "Proposed, waiting for Cory's yes".
-5. **Record and push.** Tick the piece below, add one line to docs/agents/decisions/DESK-ANSWERS.md, commit and push
-   your own files.
+**Your part, Sara.** You are the one human in the loop. Read each draft as the teacher who would have to use it,
+and write what you see at the top of the review file under "Sara's read". The expert checks sources. You are the
+one who can say "no one could teach this in a week" or "this order would lose my class".
 
-**Your part, Sara.** Read each draft as the teacher who would have to use it. The expert checks sources; you are the
-one who can say "no one could teach this in a week" or "this order would lose my class". Write what you see at the
-top of the review file under "Sara's read". That note goes to Cory with the draft.
+## The pieces
 
-## The pieces, in order of what is waiting on them
+### 1. The pilot unit's plan: cold read, then your read
 
-Reordered 2026-11-11 (Cory: "order it by what the biggest blockers are. whichever item has the most waiting on it
-goes first"). Each piece says what waits on it. Core subjects come first (BASELINE rule 24). If a piece turns out
-to block more or less than this says, move it and say why.
+**Waiting on it: the pilot build, and through it the templates, the cost of a unit, and the plan with sizes and
+dates for all 105 courses. Do this first. It is short.**
 
-### 1. Expert reads of the grade 4 math plans
+- [ ] Run the curriculum expert cold on `docs/courses/math-4/s11.md`. Ask it to rework every answer key, check
+      that every part of each standard has an end-check item, check that no check item reuses a taught number,
+      say whether each day fits fifty minutes, and say whether a lesson writer could work from the plan.
+      Report: `docs/reviews/unit-plan-s11-<date>.md`. Revise once.
+- [ ] "Sara's read" at the top of that report: could you teach these five days? Where would a class get stuck?
+- Tell the main session (or Cory) when it is done. The build waits for it.
 
-**Waiting on it: the pilot unit, and through it the plan with sizes and dates for all 105 courses.** Short. Cory:
-"the stretch expert reads can be done by sara".
+### 2. English language arts: rubric file, approach page, and the rights list
 
-Each is steps 3 and 4 of "How every piece is made": run the curriculum expert cold on the files, save the report
-to `docs/reviews/unit-plans-<stretch>-<date>.md`, revise once, and put anything that changes what the course
-teaches to Cory on the Desk. Ask the expert to rework every answer key, check that every part of each standard has
-an end-check item, check that no check item reuses taught numbers, and say whether a lesson writer could work from
-the plans.
+**Waiting on it: the first ELA pilot (five days of grade 6, stretch 2), which runs as soon as the math pilot has
+been read, and behind it all 13 ELA courses. The rights work has the longest wait of anything here, so it starts
+now.**
 
-- [ ] Stretch 3 as a whole, after the swap (benchmarks now come before common denominators):
-      `docs/courses/math-4/s03.md`, `u03-1.md` to `u03-4.md`.
-- [ ] Stretch 9: `s09.md`, `u09-1.md`, `u09-2.md`. Never read cold in its current form.
-- [ ] Stretch 10: `s10.md`, `u10-1.md` to `u10-3.md`. Never read cold.
-- [ ] Stretch 11 (the pilot unit), second draft: `s11.md`. Never read cold in its current form.
-- [ ] The bar for other subjects, after Cory's answers were applied: `docs/ADOPTION-BAR-SUBJECTS.md`.
+- [ ] docs/RUBRIC-ELA.md (grades 3 to 8, and 6 to 12 where the guide differs). Shape of docs/RUBRIC-MATH-K8.md:
+      what the rubric asks, indicator by indicator, in our own words, with a link. The source text is all rights
+      reserved: link and summarise briefly, never copy, and keep it to structure.
+- [ ] docs/APPROACH-ELA.md. From docs/reviews/approach-2026-11-11.md, finding F1: the text is the unit; text
+      complexity; text sets that build knowledge; volume of reading; the writing process and calendar; vocabulary
+      from the texts; foundational skills in the lower grades; the daily question is about the text; modelled
+      reading and writing; "fluency" means reading fluency. Sources: the ELA standards and appendices, the
+      publishers' criteria, the federal practice guides on comprehension, foundational skills and writing.
+- [ ] The rights list for grade 6, stretch 2 only (docs/courses/ela-6-spine.md): for each text, does it exist,
+      where a free legal copy lives, its licence in the publisher's own words with the address, its level. Put
+      it in docs/courses/ela-6/RIGHTS.md. **You gather; you do not rule.** A second reader checks every licence
+      line before a text is taught (FOUNDATION section 7). Mark each row "found, not yet second-read".
+- Changes to which texts are taught go to Cory as a card.
 
-Stretches 1 and 2 were read and revised on 2026-11-11 (`docs/reviews/unit-plans-4d-2026-11-11.md`).
+### 3. Science: rubric file, approach page, and the pilot unit's materials
 
-### 2. Social studies: the content standard options
+**Waiting on it: the first science pilot, and behind it all 14 science courses.**
 
-**Waiting on it: all 14 social studies courses. No social studies spine can start before Cory decides.**
+- [ ] docs/RUBRIC-SCIENCE-K5.md (and 6 to 8 if the same guide covers it). Same shape, same copying rule.
+- [ ] docs/APPROACH-SCIENCE.md. From the same finding F1: a phenomenon or design problem comes first; three
+      dimensions in every end task; investigation days and materials tiers; no daily exit question (the notebook
+      and the class model are the daily evidence); worked examples for calculation and data work only; models
+      are revised, not withdrawn. It must read at least one source on hands-on science teaching, which nobody has
+      read yet. Sources: A Framework for K-12 Science Education, the NGSS appendices, the EQuIP rubric.
+- [ ] Name one unit of the grade 4 science spine draft to be the pilot (your pick, with a reason, as a card for
+      Cory), and list every material it needs with a household stand-in. A science teacher reads safety and
+      materials before the course is called finished; for now mark what you are unsure of.
+
+### 4. Grade 4 math: the start-of-year check and stretch 4's readiness items
+
+**Waiting on it: day 1 of the course cannot run without the check, and day 24 points at readiness items that do
+not exist. This is the one piece of grade 4 planning that is not frozen. It is yours; the main session will not
+do it.**
+
+- [ ] The start-of-year check (day 1). It must carry stretch 1's three readiness items
+      (docs/courses/math-4/s01.md). Written to the check rules in docs/courses/UNIT-PLAN.md.
+- [ ] Stretch 4's readiness items only (not the stretch sheet, not its unit plans).
+- Write the items so they can become rows of data later: code, part, stem, answer, the wrong answers you expect.
+
+### 5. Social studies: the content standard options
+
+**Waiting on it: all 14 social studies courses. No social studies spine can start before Cory decides. Nothing in
+the first three pilots waits on it, which is why it is fifth.**
 
 - [ ] docs/reviews/social-studies-content-standard-<date>.md, expert read, revised once, then a Desk card.
-- The question (Cory, 2026-11-11, card q-bar-subjects): only the C3 framework is loaded, and it names skills, not
-  content. Cory turned down "pick one state's standards" as the only option and asked for a better one: "this may
-  require a unification of content standards or possibly a 'high watermark' method".
-- Work up three options side by side: (a) one state's set, K to 12; (b) a unified set built from several states;
-  (c) high watermark: where states differ, take the more demanding expectation. For each: which states' standards
-  are strong and freely usable (licence), what it would cost to build and keep current, how a state reviewer would
-  see it, what it does to the 135 modules already tagged to C3, and what it means for the named high school courses
-  (psychology and economics have national subject standards).
-- Beside it, the values question from the same card: Cory leans to "follow the higher quality or rigor" where state
-  instruments conflict. Rigor can be ranked; a values conflict is not always higher or lower. Say what the rule
-  would do in three real cases, and what FOUNDATION's promises already settle.
-- Rests on: docs/ADOPTION-BAR-SUBJECTS.md (social studies part and "Still open with Cory"),
-  docs/reviews/bar-other-subjects-2026-11-11.md, docs/reviews/standards-currency-2026-11-11.md.
-- No recommendation is owed before the options are laid out. This goes to Cory; it is his call.
+- Cory, 2026-11-11: only the C3 framework is loaded, and it names skills, not content. He asked for better than
+  "pick one state": "this may require a unification of content standards or possibly a 'high watermark' method".
+- Three options side by side: (a) one state's set; (b) a unified set built from several states; (c) high
+  watermark: where states differ, take the more demanding expectation. For each: which states' standards are
+  strong and freely usable, the cost to build and keep current, how a state reviewer would see it, what it does
+  to the 135 modules tagged to C3, and what it means for the named high school courses.
+- Beside it, the values question: Cory leans to "the higher quality or rigor" where state instruments conflict.
+  Say what that rule would do in three real cases.
+- This is a scope decision for 14 courses, so no recommendation is owed before the options are laid out, and the
+  main session reads it with the expert before it goes to Cory.
 
-### 3. Science: rubric files, then the approach page
+### 6. When the pilot unit is built: read it, and perhaps teach it
 
-**Waiting on it: all 14 science courses, and the grade 4 science spine that is waiting for Cory's final yes.**
+**Waiting on it: every time figure in the course. This opens when the main session says unit 11.1 is built.**
 
-- [ ] docs/RUBRIC-SCIENCE-K5.md (and 6 to 8 if the same guide covers it). Follow the shape of
-  docs/RUBRIC-MATH-K8.md: what the rubric asks, indicator by indicator, in our own words, with a link. The
-  curriculum review organizations' text is all rights reserved: link and summarize, never copy. Sources: the
-  EdReports science evidence guides and the EQuIP rubric for science (addresses in docs/APPROACH-SOURCES.md, or
-  found from them).
-- [ ] docs/APPROACH-SCIENCE.md, expert read, revised once. It says how science carries out each of the ten shared
-  principles. The approach review already listed what it must add or override (docs/reviews/approach-2026-11-11.md,
-  finding F1): a phenomenon or design problem comes first as the rule, with sense-making and teaching following;
-  three dimensions in every end task; investigation days and materials tiers; no daily exit question (the notebook
-  and the class model are the daily evidence); worked examples apply to calculation and data work, not to building
-  an explanation; models are revised, not withdrawn. It must also read at least one source on hands-on science
-  teaching, which the shared page admits nobody has read. Main sources: A Framework for K-12 Science Education, the
-  NGSS appendices, the EQuIP rubric.
-- When both exist, the grade 4 science spine (a draft waiting for Cory's final yes) gets one more expert read
-  against them.
+- [ ] Read the five lesson days as a teacher against the five questions in docs/pilots/README.md, and file your
+      notes there. You are not the grade 3 to 5 reader Cory is looking for, and your read does not replace
+      theirs; it comes first and is cheaper.
+- If Cory asks: teaching the five days to one child, with the minutes written down, is test 2 in that file.
 
-### 4. English language arts: rubric file, the approach page, the text plan
-
-**Waiting on it: all 13 English language arts courses.**
-
-- [ ] docs/RUBRIC-ELA.md (grades 3 to 8, and 6 to 12 where the guide differs). Same shape and same copying rule.
-- [ ] docs/APPROACH-ELA.md, expert read, revised once. From the same review finding: the text is the unit; text
-  complexity; text sets that build knowledge; volume of reading; the writing process and the writing calendar;
-  vocabulary taught from the texts; foundational skills in the lower grades; the daily question is always about the
-  text; "model then fade" becomes modelled reading and writing, with weaker evidence than math worked examples;
-  "fluency" here means reading fluency. Main sources: the ELA standards and their appendices, the publishers'
-  criteria for ELA, the federal practice guides on reading comprehension, foundational skills and writing.
-- [ ] The grade 6 ELA text plan (docs/courses/ela-6-spine.md): every text marked "to verify" is checked (it exists,
-  where a free legal copy lives, its licence, its level), and an informational shelf is proposed. Changes to which
-  texts are taught go to Cory as a card.
-
-### 5. Math progression pages for kindergarten to grade 2 and grades 6 to 8
-
-**Waiting on it: six math spines (K, 1, 2, 6, 7, 8). A progression page comes before the spines of its band.**
-
-- [ ] docs/courses/math-k-2-progression.md
-- [ ] docs/courses/math-6-8-progression.md
-
-Two things are undecided and must be marked, not settled: whether kindergarten to grade 2 assumes a device per
-student (FOUNDATION, section 5), and how a K to 2 day is shaped. Write the K to 2 spines so they work either way,
-and say where the answer would change them. The rubric for grades K to 2 counts major work at 65 percent of days
-too; check docs/RUBRIC-MATH-K8.md.
-
-### 6. Grade 4 math: the start-of-year check, then stretches 4 to 8
-
-**Waiting on it: stretch 1 cannot run without the start-of-year check; stretch 3's last day (24) needs stretch 4's
-readiness items; 30 of the 43 units are unplanned, and the key tools (step 4e) are named only from all the plans.**
-Tell Cory before starting stretches, so two chats are not planning the same stretch at once.
-
-- [ ] The start-of-year check (day 1). The spine says what it covers; it must carry stretch 1's three readiness
-      items (docs/courses/math-4/s01.md). Written to the check rules in docs/courses/UNIT-PLAN.md.
-- [ ] Stretch 4: docs/courses/math-4/s04.md and its unit plans. Then 5, 6, 7, 8, one stretch at a time, each per
-      docs/courses/UNIT-PLAN.md (word caps 1,250 for a unit plan and for a stretch sheet, 1,800 for a one-unit stretch; tool asks go in docs/courses/math-4/TOOL-ASKS.md), with a
-      cold expert read on at least every second stretch. Models: s01, s03, s10.
-- After stretch 7 is planned: the number line splitter is specced once for stretches 3 to 7 (Cory, 2026-11-11).
-
-### 7. Grade 3 math spine
-
-**Waiting on it: one course, and grade 4's readiness checks lean on it.**
-
-- [ ] docs/courses/math-3-spine.md, expert read, revised once.
-- Rests on: the grade 3 standards in data/standards/, docs/courses/math-3-5-progression.md (what grade 4 needs from
-  grade 3 is already written there, stretch by stretch), docs/agents/catalog/shape/math-3.md (the tools that exist),
-  docs/RUBRIC-MATH-K8.md, and the scope and sequence of two well-reviewed open grade 3 courses.
-- Must show: every teaching day of the year in order; major work at 65 percent or more of days; the stretches and
-  units; the limits of the grade; builds-on and sets-up by code; where each major idea comes back; the checks at
-  the stretch, each cumulative check with a respond day; a fluency plan (3.OA.C.7 and 3.NBT.A.2 are this grade's);
-  what is missing today, said plainly.
-- Grade 4 depends on: fractions as numbers on the number line, multiplication and division facts from memory by the
-  end of the year, area as rows and columns.
-
-### 8. Grade 5 math spine
-
-**Waiting on it: one course.**
-
-- [ ] docs/courses/math-5-spine.md, expert read, revised once.
-- Rests on: the same, with docs/agents/catalog/shape/math-5.md. The progression page says what grade 4 hands over.
-- Watch: the standard algorithm for multiplication is this grade's fluency (5.NBT.B.5); decimal arithmetic starts
-  here (5.NBT.B.7); fraction work is the largest block.
-
-### 9. The other math spines
-
-**Waiting on each: one course. Each needs its band's progression page (piece 5) first.**
-
-- [ ] docs/courses/math-2-spine.md
-- [ ] docs/courses/math-6-spine.md
-- [ ] docs/courses/math-1-spine.md
-- [ ] docs/courses/math-7-spine.md
-- [ ] docs/courses/math-k-spine.md
-- [ ] docs/courses/math-8-spine.md
-
-### 10. Small owed fixes
+### 7. Small owed fixes
 
 **Waiting on them: nothing yet, but each is a known fault in a file others read.**
 
-- [ ] Three description notes in data/modules.csv (listed in docs/HANDOFF.md, "Owed, smaller").
+- [ ] Three description notes in data/modules.csv (docs/HANDOFF.md, "Owed, smaller").
 - [ ] Footnoted limits in data/standards/ccss-math-standards.txt.
-- [ ] The build order in docs/agents/catalog/shape/math-4.md against the spine.
 - [ ] The errors in the science sequence.csv.
-- [ ] docs/courses/math-4/s09.md puts five minutes of teacher-judged answers on day 78, before Check 2.
+- [ ] A header (source, version, date, licence) for data/standards/ccss-math-focus.csv.
+
+## On hold until the pilot unit has been read
+
+Do not start these. They will be written to a template the pilot is expected to change.
+
+- Cold reads of grade 4 math stretches 3, 9 and 10, and of docs/ADOPTION-BAR-SUBJECTS.md. (Still owed. They move
+  back up when the plan template is settled.)
+- Math progression pages for kindergarten to grade 2 and grades 6 to 8. Note for later: the K to 2 rubric counts
+  major work at 75 percent of days, not 65 (docs/RUBRIC-MATH-K8.md).
+- Grade 4 math stretches 4 to 8 (sheets and unit plans).
+- The grade 3 and grade 5 math spines, and the six other math spines.
+- The full grade 6 ELA text plan beyond stretch 2.
 
 ## Rules for all of it
 
@@ -202,6 +156,9 @@ Tell Cory before starting stretches, so two chats are not planning the same stre
   standard has an owner in a course. Do not split a band module into one per grade.
 - No rows go into data/units.csv, and no tool is specced, built or changed from these drafts. A spine becomes real
   only with Cory's yes.
+- No licence or rights judgment is final on your word or one agent's. Gather it, quote it, and mark it for the
+  second reader.
+- Nothing is sent to an outside person and no money is spent without Cory's yes.
 - Do not edit the grade 4 math spine or the approach pages. If a draft shows one of them is wrong, write the finding
   in your review file and on a Desk card.
 - No em dashes anywhere. Always "Curio Class" in full. Never say Curio Class was reviewed by, meets or is endorsed

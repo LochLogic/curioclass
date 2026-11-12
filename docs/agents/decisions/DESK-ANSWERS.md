@@ -469,8 +469,7 @@ Open after this: 1 (social studies content standards: work up unified and high w
 The note for 5: the 26 AP and psychology modules get marked as not yet standards-checked now, and the course
 framework is loaded when that course's spine is written.
 
-None of these was applied to the spine, the template or the plans on the day. The apply list is in
-docs/HANDOFF.md, "Decided but not yet applied".
+They were applied later the same night; where each landed is in docs/HANDOFF.md, "Applied on 2026-11-11 (late)".
 
 ## 2026-11-11 (evening): core subjects first (Cory, in chat)
 
@@ -485,3 +484,19 @@ spine, template and plans"; "the course status table can stay as-is ... its a re
 expert reads can be done by sara"; on Sara's list: "add all of it and order it by what the biggest blockers are.
 whichever item has the most waiting on it goes first." Where each decision landed is in docs/HANDOFF.md, "Applied
 on 2026-11-11 (late)". The licence page was left for a later session with an Opus model, as Cory asked.
+
+## 2026-11-11 (night): the cold strategic review accepted in full (Cory, in chat)
+
+"i accept all of the reviewers recommendations, even the ones that overturn my decisions earlier. please action
+those decisions so they take effect. Also i agree that the AI expert needs to be good enough, thats why i pushed
+for added data (esp in pedagogy). that may need more work soon." And: "please redo saras work so she can get
+started when we are done here."
+
+The review is docs/reviews/strategic-review-2026-11-11.md. All twelve recommendations are decided. Three overturn
+earlier answers: spec fixing stops now, not after batch 4; a qualified person is required for courses where
+FOUNDATION section 7 says so (BASELINE rule 5 narrowed); the licence page was fixed the same night, not left for a
+later session. The order of steps 4d, 4e and 4f changed: the pilot unit 11.1 is built first. New rules: BASELINE
+25 to 28 and the narrowed "What goes to Cory". Where each landed: docs/HANDOFF.md, "Decided 2026-11-11 (night)".
+
+Cory also asked whether the plan is still too heavy when an AI manages it, and what the fix is. The answer and
+the proposed design are in docs/HANDOFF.md, "Plan weight"; it is a proposal to be tried on the pilot, not decided.

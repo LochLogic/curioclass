@@ -15,8 +15,8 @@ How to read it:
   next number.
 - Nothing in any spec has been changed by this page. No build was played. No plan here has been tried with
   children.
-- Stretch 3's unit numbers are those of the plans as written on 2026-11-11. Units 3.3 and 3.4 are being
-  swapped (Cory, 2026-11-11); the days named here do not move.
+- Stretch 3's unit numbers are those of the plans after the swap of units 3.3 and 3.4 (Cory, 2026-11-11). The
+  swap is done: benchmarks are taught first. See [s03.md](s03.md).
 
 Stretches planned so far: 1, 2, 3, 9, 10 and 11. Each new stretch adds its asks here.
 

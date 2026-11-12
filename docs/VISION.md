@@ -27,10 +27,11 @@ stays here. Public copy says "a free, complete classroom toolkit" and never name
 - **Paper is a first-class product.** Worksheets, units and Supply Closet printables matter as much as screens.
 - **Honest words.** We say what a thing is: practice tools are not diagnoses, score codes are not proof.
 
-## Where things stand (2026-11-03)
+## Where things stand
 
-800 tool concepts, 83 live, 238 more specs, about 80 more built by Codex and waiting on review; 1,008 worksheets
-written (of 8,947 planned); Word Walls for 762 of 797 modules; about 700 Reading Room stories processed.
+Counts are not kept on this page. The live course and tool counts are in docs/COURSES-STATUS.md, and the state
+of the work is in docs/HANDOFF.md. The counts that stood here, dated 2026-11-03, were removed on 2026-11-11
+because they had gone stale.
 
 ## The pillars and where each one lives
 

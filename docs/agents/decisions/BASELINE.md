@@ -22,6 +22,9 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
 5. **Facts stay plain, with the human side.** Don't soften history or science. Present it with care for the people
    involved. Sensitivity and accuracy checks on cultural, Native or hard-history content are done by a fresh review
    agent; once that review passes, the content can go live. We don't wait on outside human reviewers (proj-03).
+   **Changed 2026-11-11 (Cory, accepting the cold strategic review):** that sentence still holds for a single tool
+   on the shelf. For a course it does not: a qualified person is required where docs/FOUNDATION.md section 7 says
+   so, and Native and hard-history content in a course is one of those rows.
 6. **Classroom-safe language.** No slurs or expletives. A grawlix (#@$!) stands in where a curse would be (w1-28).
 7. **Privacy is stated.** Wherever a tool records or stores anything, say on screen that it never leaves the device
    (w1-20).
@@ -81,6 +84,8 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     grade gets two or three tools or full modes (see why, do it, use it); the trade is fewer tools on supporting
     topics for now. Fluency volume, long writing, discussion, year-long reading and topic threads across texts
     belong to units, worksheets and the Reading Room, and are recorded there, not claimed by a tool.
+    **Changed 2026-11-11:** the unit plan decides how many tools a stretch gets (rule 23), not this rule. A major
+    stretch may run on print with no key tool (grade 4 math stretch 3 does).
 
 23. **A unit plan comes before a tool** (2026-11-11). A tool is the end piece of instruction. No tool is built or
     refined until a unit plan names its job, and the plan marks it key (the one a day is planned around; built
@@ -96,6 +101,22 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     studies (56 of the 105 courses) are the first focus; the other subjects follow. This bends where work is
     complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
     core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
+25. **Prove at the bottom before planning wider** (Cory, 2026-11-11, accepting the cold strategic review,
+    docs/reviews/strategic-review-2026-11-11.md). One unit is built all the way down (lesson days, print, checks
+    with keys, its tool) and read before more plans are written to the same template. A stretch is planned only
+    when the stretch before it is built. The first pilot is grade 4 math unit 11.1; the first ELA and science
+    pilots follow as soon as it has been read. Until then no new spine, stretch sheet, unit plan or spec is
+    written, except the pieces a pilot needs.
+26. **Old tools and specs are sorted by demand** (same day). Three bins, set by script, never by inspection:
+    (a) named by a unit plan, as key or light: gets course work; (b) live and passing the teaching test but not
+    named: stays on the shelf as a free-standing tool and claims no course coverage; (c) everything else: frozen,
+    no further spend. Spec fixing in batches has stopped. A tool moves to bin (a) only when a unit plan asks for it.
+27. **A machine checks what a machine can** (same day). Every keyed item (check items, exit questions, answers,
+    named wrong answers) is kept as data, and a script recomputes every answer that can be computed. A key the
+    script cannot reproduce fails the build. "Worked twice by an agent" is not a check. A lesson day is written
+    to one template (docs/courses/LESSON-DAY.md) so its parts can be counted and checked.
+28. **Qualified people are named where a course needs them** (same day). docs/FOUNDATION.md section 7 holds the
+    table. No money is spent and no outside person is approached without Cory's yes.
 
 ## One module Cory reviews personally
 
@@ -144,6 +165,14 @@ Only questions that:
 - touch growing-up-q-a or a topic that is just as sensitive;
 - need money, accounts, outside people or a live deploy;
 - or that these rules cannot settle.
+
+**Narrowed 2026-11-11 (Cory, accepting the cold strategic review).** Two rules keep the list short:
+
+- Item-level choices inside the standards' limits (number sizes, which fraction pairs, how many items on a check,
+  day swaps inside a stretch, word caps) are settled by the curriculum expert, written under "Settled by the
+  expert" in its report, and collected in a weekly digest for Cory (docs/reviews/DIGEST.md). Cory can overturn
+  any of them from the digest.
+- Cory decides scope, audience, money, outside people, and anything that moves a standard between units.
 
 Each one comes with full context: what the tool is, what the student sees, what the choice changes, and a concrete
 example. Several of Cory's holds were "need more info".
