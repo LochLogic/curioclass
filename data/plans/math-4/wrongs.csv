@@ -546,3 +546,27 @@ s01-C5-1,"""yes"", with an odd multiple such as 21",3*7,21,F,
 s01-T5-1,21 or 27 in Prime,,,F,
 s01-T5-5,1 in Prime,,,G,
 s01-T5-7,45 or 49 picked,,,F,
+s09-W74-1,"6,332, 6,242 or 5,342",3867+2475-10 | 3867+2475-100 | 3867+2475-1000,6332 | 6242 | 5342,A,one carry lost
+s09-W74-2,"74,523, 74,433 or 64,533",48159+26374-10 | 48159+26374-100 | 48159+26374-10000,74523 | 74433 | 64533,A,one carry lost
+s09-K74-1,"5,224",4+2*10+2*100+5*1000,5224,F,
+s09-K74-1,"5,226",9372-4156+10,5226,G,"the 1 written, the next place left as it was"
+s09-P74-1,"5,235",5+3*10+2*100+5*1000,5235,F,
+s09-P74-1,"5,275",8926-3751+100,5275,G,"the 1 written, the next place left as it was"
+s09-P74-2,"5,435",5+3*10+4*100+5*1000,5435,F,
+s09-P74-3,"4,645",5+4*10+6*100+4*1000,4645,F,
+s09-P74-3,"4,665",5947-1382+100,4665,G,"the 1 written, the next place left as it was"
+s09-P74-4,"5,463",3+6*10+4*100+5*1000,5463,F,
+s09-P74-4,"5,443",9618-4275+100,5443,G,"the 1 written, the next place left as it was"
+s09-P74-5,"4,633",3+3*10+6*100+4*1000,4633,F,
+s09-P74-5,"4,433",7254-3821+1000,4433,G,"the 1 written, the next place left as it was"
+s09-P74-6,"34,244",4+4*10+2*100+4*1000+3*10000,34244,F,
+s09-P74-6,"34,246",46385-12149+10,34246,G,"the 1 written, the next place left as it was"
+s09-P74-7,"32,313",3+1*10+3*100+2*1000+3*10000,32313,F,
+s09-P74-7,"32,713",83617-51904+1000,32713,G,"the 1 written, the next place left as it was"
+s09-P74-8,"46,341",1+4*10+3*100+6*1000+4*10000,46341,F,
+s09-P74-8,"44,341",72594-38253+10000,44341,G,"the 1 written, the next place left as it was"
+s09-F74-1,"4,136",6+3*10+1*100+4*1000,4136,F,the wrong answer shown
+s09-F74-1,"4,134",5842-1718+10,4134,G,"made 12 ones, left the 4 tens as 4"
+s09-F74-2,"4,236",6594-2368+10,4236,G,the wrong answer shown
+s09-F74-2,"4,234",4+3*10+2*100+4*1000,4234,F,
+s09-C74-1,1,7-6,1,F,7 take away the hidden digit is 6: the smaller from the larger
