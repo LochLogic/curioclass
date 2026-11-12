@@ -78,3 +78,7 @@ Scratch modules, so do not use it after editing the canonical source unless thos
 The requested three-child playtest, ages 8 to 13, was unavailable in this unattended session. The 30 to 90 second
 human median and enjoyment/stall criteria are not claimed. All automated play and geometry evidence is separate.
 The owner's decision on the visual bar remains the owner's decision; the painted look board and final frames are provided.
+
+## Live early
+
+Live early for Cory to see, 2026-11-12, process not exempted. tool.draft.json was renamed to tool.json only so the site lists the game; Refine, Exit check, Art and voice, Finish check and Sign-off are still owed.

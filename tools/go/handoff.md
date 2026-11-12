@@ -108,3 +108,7 @@ through play and Undo. This is the unattended choice in favor of the brief's val
 opponent replies, star cutoffs, and the canonical route remain intact. The solver evidence is
 `../../_scratch/go/f8-valid-lines.json`. Book puzzles retain their prescribed replies; their alternate whole-board
 continuations have not been exhaustively classified.
+
+## Live early
+
+Live early for Cory to see, 2026-11-12, process not exempted. tool.draft.json was renamed to tool.json only so the site lists the game; Refine, Exit check, Art and voice, Finish check and Sign-off are still owed.

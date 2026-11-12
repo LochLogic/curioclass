@@ -78,3 +78,7 @@ painted board visible. See `codex-review.md` for current verification; the build
 Tests ran in Windows Chrome, including emulated Chromebook and phone viewports. No physical Chromebook, physical phone,
 child or adult human strength trial was available. The top opponent is measured against the ladder, not rated against people.
 The independent cold review is recorded in `codex-review.md`. No sign-off or deployment has been performed.
+
+## Live early
+
+Live early for Cory to see, 2026-11-12, process not exempted. tool.draft.json was renamed to tool.json only so the site lists the game; Refine, Exit check, Art and voice, Finish check and Sign-off are still owed.
