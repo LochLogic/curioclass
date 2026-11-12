@@ -73,19 +73,24 @@ dates for all 105 courses. Do this first. It is short.**
 been read, and behind it all 13 ELA courses. The rights work has the longest wait of anything here, so it starts
 now.**
 
-- [ ] docs/RUBRIC-ELA.md (grades 3 to 8, and 6 to 12 where the guide differs). Shape of docs/RUBRIC-MATH-K8.md:
+- [x] docs/RUBRIC-ELA.md (grades 3 to 8, and 6 to 12 where the guide differs). Shape of docs/RUBRIC-MATH-K8.md:
       what the rubric asks, indicator by indicator, in our own words, with a link. The source text is all rights
       reserved: link and summarise briefly, never copy, and keep it to structure.
-- [ ] docs/APPROACH-ELA.md. From docs/reviews/approach-2026-11-11.md, finding F1: the text is the unit; text
+- [x] docs/APPROACH-ELA.md. From docs/reviews/approach-2026-11-11.md, finding F1: the text is the unit; text
       complexity; text sets that build knowledge; volume of reading; the writing process and calendar; vocabulary
       from the texts; foundational skills in the lower grades; the daily question is about the text; modelled
       reading and writing; "fluency" means reading fluency. Sources: the ELA standards and appendices, the
       publishers' criteria, the federal practice guides on comprehension, foundational skills and writing.
-- [ ] The rights list for grade 6, stretch 2 only (docs/courses/ela-6-spine.md): for each text, does it exist,
+- [x] The rights list for grade 6, stretch 2 only (docs/courses/ela-6-spine.md): for each text, does it exist,
       where a free legal copy lives, its licence in the publisher's own words with the address, its level. Put
       it in docs/courses/ela-6/RIGHTS.md. **You gather; you do not rule.** A second reader checks every licence
       line before a text is taught (FOUNDATION section 7). Mark each row "found, not yet second-read".
 - Changes to which texts are taught go to Cory as a card.
+- 2026-11-11: all three drafted, read cold by the expert, revised once. Reports:
+  docs/reviews/rubric-ela-2026-11-11.md, approach-ela-2026-11-11.md, rights-ela-6-s2-2026-11-11.md. "Sara's
+  read" is owed on each. Six questions for Cory and the notes for the spine are in
+  docs/reviews/piece-2-cards-for-cory-2026-11-11.md (the Desk could not be opened from Sara's session, so
+  the cards are not on it yet). Every rights row is still "found, not yet second-read".
 
 ### 3. Science: rubric file, approach page, and the pilot unit's materials
 

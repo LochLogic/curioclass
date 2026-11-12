@@ -518,3 +518,20 @@ asks 7 and 8 added. `scripts/plan.py check` passes (18 items, 31 wrong answers).
 start. Still owed: "Sara's read" at the top of the report. Two notes for the main session: the prose count is
 1,898 words against the 1,800 cap, and the generator sheet's twelfth problem (one "times as long" area) was
 added in revision to make the expert's count of twelve add up.
+
+## 2026-11-11: ELA rubric page, approach page and stretch 2 rights list (Sara's piece 2)
+
+No decision by Cory has been made; six are asked. Three drafts were written, each read cold by the curriculum
+expert and revised once: docs/RUBRIC-ELA.md (report docs/reviews/rubric-ela-2026-11-11.md, 12 findings),
+docs/APPROACH-ELA.md (report approach-ela-2026-11-11.md, 10 findings) and docs/courses/ela-6/RIGHTS.md (report
+rights-ela-6-s2-2026-11-11.md, 12 findings). Settled by the expert at item level: which rubric indicators the
+five-day pilot is read against; the pilot passage is Colum Part II chapters IV to VI whole; it sits below the
+grade 6 to 8 band by measure (5.9) and stays, placed on judgment, with the text record saying so; the way-in
+story is Baldwin's "The Cruel Tribute"; unit 2.5 reads a 2,000-word cut of the Monkey King chapter; background
+text one is "The Ancient Greek City-States". Waiting for Cory's yes, written out as six cards in
+docs/reviews/piece-2-cards-for-cory-2026-11-11.md because the Desk could not be opened from Sara's session:
+whether grades 3 to 5 ELA claim foundational skills; new wording for APPROACH.md principle 3; text record,
+question set and word list as data rows outside the word cap; the fallback second hero; the Monkey King as a
+digest; background text two. Every rights row is "found, not yet second-read"; fifteen questions for the second
+reader are listed in RIGHTS.md. Still owed: "Sara's read" on the three reports; the spine edits listed in the
+cards file (for the main session); the findings are not logged with scripts/plan.py defect.
