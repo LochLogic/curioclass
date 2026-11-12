@@ -45,8 +45,13 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
    - **Done 2026-11-12: expert cold reads of days 89, 91, 92, 93** (docs/reviews/day-0NN-2026-11-12.md): 50 findings,
      none for Cory, 35 in the process; settled fixes applied and logged in defects.csv. Each read cost about 170,500
      tokens (COST.md). How often to read from here: [pilots/REVIEW-CADENCE.md](pilots/REVIEW-CADENCE.md).
-   - **Waiting on Cory: Desk card 111 `q-plan-after-11-1`** (review cadence; math only vs the ELA and science pilots
-     first; hold tools until the frame is built). Asked in chat 2026-11-12.
+   - **Decided 2026-11-12, card 111 `q-plan-after-11-1`** (DESK-ANSWERS): one more full expert read on every day of
+     the next unit, then spot checks; grade 4 math is the main thread, with the ELA and science pilots alongside once
+     11.1 has its teacher read and no other math course before them; tools held until the frame is built, except
+     Community Plot Planner and Codex's non-course queue until 2026-11-30.
+   - **Now: stretch 10 (days 79 to 88, units 10.1 to 10.3)**, the next unit. Its prose plan goes into data first
+     (`plan.py check`), then one agent per day as for 11.1, then a full expert read on every day (REVIEW-CADENCE.md
+     step 2). Costs go in COST.md.
    - Still owed: the Spanish family note needs a qualified reader; the module has no Word Wall cards of its own
      (area, perimeter, square unit, formula, length, width exist under other modules), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts
@@ -350,9 +355,10 @@ and social studies (56 of the 105 courses) come first; this bends where work is 
 still finished to the bar; this sets the order, not the scope.
 
 1. The pilot is read; templates and the plan design are fixed from what it showed.
-2. The ELA and science pilots, so a unit's cost is known in three subjects.
-3. One stretch of grade 4 math on major work, built whole. Then the course, a stretch at a time, each planned
-   only when the one before is built.
+2. Grade 4 math is the main thread (Cory, 2026-11-12, card 111): the course a stretch at a time, each planned
+   only when the one before is built. Stretch 10 is next.
+3. Alongside it, once 11.1 has its teacher read: the ELA and science pilots, so a unit's cost is known in three
+   subjects. No other math course is built until they are in.
 4. The plan with sizes and dates for all 105 courses, written from three real unit costs.
 5. The social studies content standard goes to Cory before any social studies spine.
 

@@ -626,3 +626,19 @@ ELA pilot (every one of its texts is an old Reading Room book) are on card `q-co
 3. The grade 6 ELA pilot: yes. Keep heroes and their trials; the anchor becomes a new Curio Class hero story set
    today, with one myth retold in our own words as the paired text. The rights list is redone for the new texts,
    and stretches 3 and 4 get the same treatment when next opened. Grade 4 math goes first.
+
+## 2026-11-12: after unit 11.1 (Cory, card q-plan-after-11-1, all three picks accepted)
+
+1. Review cadence: not a full expert read on every day forever, and not spot checks yet. Lessons from the four day
+   reads are folded in (47 of 50 fixed, 13 new gates). The next unit built gets a full expert read on every day, once,
+   to measure whether the fixes worked. Then spot checks: scripts plus one cheap focused read on every day, a full
+   expert read on one day in five plus every check day, and a teacher on a sample. Step back up if a spot check finds
+   a new process defect. Written up in docs/pilots/REVIEW-CADENCE.md.
+2. Order: grade 4 math is the main thread. The two five-day pilots (grade 6 ELA, then science) run once 11.1 has its
+   teacher read, alongside grade 4 math. No other math course is built until they are in.
+3. Tools: held until the frame is built, with two exceptions. Community Plot Planner stays first in the Codex queue
+   (day 90 and the taught run need it). Codex keeps draining the non-course queue (Curiosities, Recess) until Pro ends
+   2026-11-30. Claude Refine on those waits until the frame is built.
+
+Applied: HANDOFF "Start here" and "The order after the pilot". Next unit opened: stretch 10 (days 79 to 88), moved
+into data first.
