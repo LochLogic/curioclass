@@ -38,6 +38,30 @@ cost: the four expert day reads cost 167,000 to 180,000, mean 170,500, so a day 
 stop repeating (docs/pilots/REVIEW-CADENCE.md). The agents read the same plan pack, so most of each figure is
 reading, not writing.
 
+## Grade 4 math, stretch 10 (multiplicative comparison, days 80 to 88), the second unit
+
+Built 2026-11-12, after the four 11.1 day reads were folded in. Full expert read on every day still to come
+(REVIEW-CADENCE.md step 2).
+
+| Piece | Tokens | Wall hours | Owner minutes | Defects found, by read | Notes |
+|---|---|---|---|---|---|
+| Plan as data (s10.md and u10 files into the five CSVs) | 81,149 by one agent (46 tool uses) | 0.26 (15.5 min) | 0 | 0 by the script after | Prose plan existed (written before costs were kept); plan.py gained unit-file tables and multi-part cells |
+| Day 80 lesson | 158,163 by its agent (21 tool uses) | 0.11 (6.8 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
+| Day 81 lesson | 169,947 by its agent (29 tool uses) | 0.12 (7.3 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
+| Day 82 lesson | 179,863 by its agent (32 tool uses) | 0.14 (8.3 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
+| Day 83 lesson | 170,049 by its agent (28 tool uses) | 0.12 (7.5 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
+| Day 84 lesson | 166,148 by its agent (41 tool uses) | 0.16 (9.6 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
+| Day 85 lesson | 171,024 by its agent (32 tool uses) | 0.14 (8.3 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
+| Day 86 lesson | 184,931 by its agent (35 tool uses) | 0.13 (8.1 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
+| Day 87 lesson | 182,060 by its agent (38 tool uses) | 0.14 (8.5 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
+| Day 88 lesson | 140,555 by its agent (22 tool uses) | 0.07 (4.1 min), all nine in parallel | 0 | 0 by the scripts at merge | One agent per day from one shared brief (with the four 11.1 reads folded in), in its own worktree |
+| Shared pieces (readiness, three openers, record, strip sheet, family note) | 165,181 by one agent (63 tool uses) | 0.17 (10.2 min) | 0 | 0 by the scripts | Run alongside the nine days |
+| Merge of the nine days | not measured (main session, small) | | 0 | 2 duplicate wrong-answer rows, removed | |
+
+**For estimates.** Nine days cost 140,555 to 184,931 tokens each, mean 169,200, up from 131,700 in unit 11.1: the brief now carries
+the 11.1 lessons and the gates are stricter, so agents spend more turns passing them. A stretch's shared pieces cost
+about 165,000 once, and putting a prose plan into data about 81,000.
+
 ## Grade 6 ELA, stretch 2, five pilot days
 
 Not started. Planning pieces so far (rubric page, approach page, rights list): tokens not measured.

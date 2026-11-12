@@ -1,0 +1,69 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Day 84: Which amount is missing?: student page</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; font-size: 12pt; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 20%; font-size: 12pt; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .25in; margin: 0 1% .2in 0; vertical-align: top; font-size: 13pt; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="student"><h1>Day 84: Which amount is missing?</h1><div class="side"><p>Name ______________________ Date __________</p><p><strong>I can solve a comparison problem when the bigger or the smaller amount is missing.</strong></p>
+<p>Read. Make two strips. Put the letter on the unknown. Equation. Solve. Answer in a sentence. Reread.</p>
+<p><strong>Example 1.</strong> A kitten weighs 7 pounds. A dog weighs 8 times as much as the kitten. How much does the dog weigh?</p>
+<div class="fig" style="margin:.2em 0"><svg viewBox="0 0 780 170" width="780" style="display:block;height:0.87in;width:auto;max-width:100%" role="img" aria-label="A strip diagram: Kitten 7; Dog 8 copies of 7, in all d" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><rect x="120" y="4" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="160" y="37" text-anchor="middle" font-size="30">7</text><text x="108" y="37" text-anchor="end" font-size="30">Kitten</text><rect x="120" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="160" y="93" text-anchor="middle" font-size="30">7</text><rect x="200" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="240" y="93" text-anchor="middle" font-size="30">7</text><rect x="280" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="320" y="93" text-anchor="middle" font-size="30">7</text><rect x="360" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="400" y="93" text-anchor="middle" font-size="30">7</text><rect x="440" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="480" y="93" text-anchor="middle" font-size="30">7</text><rect x="520" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="560" y="93" text-anchor="middle" font-size="30">7</text><rect x="600" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="640" y="93" text-anchor="middle" font-size="30">7</text><rect x="680" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="720" y="93" text-anchor="middle" font-size="30">7</text><text x="108" y="93" text-anchor="end" font-size="30">Dog</text><path d="M120 110 L120 120 L760 120 L760 110 M440 120 L440 126" fill="none" stroke="#000" stroke-width="2"/><text x="440" y="154" text-anchor="middle" font-size="30">d</text></svg></div>
+
+<p>Equation: d = <span class="blank" style="width:1.8em"></span> × <span class="blank" style="width:1.8em"></span>  d = <span class="blank" style="width:1.8em"></span>  The dog weighs <span class="blank" style="width:1.8em"></span> pounds.</p>
+<p><strong>Example 2.</strong> A dog weighs 56 pounds. That is 8 times as much as a kitten weighs. How much does the kitten weigh?</p>
+<div class="fig" style="margin:.2em 0"><svg viewBox="0 0 780 170" width="780" style="display:block;height:0.87in;width:auto;max-width:100%" role="img" aria-label="A strip diagram: Kitten k; Dog 8 copies of k, in all 56" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif"><rect x="120" y="4" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="160" y="37" text-anchor="middle" font-size="30">k</text><text x="108" y="37" text-anchor="end" font-size="30">Kitten</text><rect x="120" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="160" y="93" text-anchor="middle" font-size="30">k</text><rect x="200" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="240" y="93" text-anchor="middle" font-size="30">k</text><rect x="280" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="320" y="93" text-anchor="middle" font-size="30">k</text><rect x="360" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="400" y="93" text-anchor="middle" font-size="30">k</text><rect x="440" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="480" y="93" text-anchor="middle" font-size="30">k</text><rect x="520" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="560" y="93" text-anchor="middle" font-size="30">k</text><rect x="600" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="640" y="93" text-anchor="middle" font-size="30">k</text><rect x="680" y="60" width="80" height="46" fill="none" stroke="#000" stroke-width="3"/><text x="720" y="93" text-anchor="middle" font-size="30">k</text><text x="108" y="93" text-anchor="end" font-size="30">Dog</text><path d="M120 110 L120 120 L760 120 L760 110 M440 120 L440 126" fill="none" stroke="#000" stroke-width="2"/><text x="440" y="154" text-anchor="middle" font-size="30">56</text></svg></div>
+
+<p>Equation: <span class="blank" style="width:1.8em"></span> × k = <span class="blank" style="width:1.8em"></span>  k = <span class="blank" style="width:1.8em"></span>  The kitten weighs <span class="blank" style="width:1.8em"></span> pounds.</p>
+<p><strong>Fix it.</strong> The answer is wrong. Say what went wrong. Then draw the strips and do it right.</p>
+<ol>
+<li>
+<p>Lu says: "Jo has 12 shells. That is 2 times as many as Max has. So Max has 24 shells."</p>
+<p>What went wrong: <span class="blank" style="width:17.1em"></span></p>
+<p><div class="sketch work"></div></p>
+<p>Max has <span class="blank" style="width:1.8em"></span> shells.</p>
+</li>
+</ol><div class="foot">Curio Class, grade 4 math, day 84, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div><div class="side"><p><strong>Six problems.</strong> Who has more? Draw the strips first, on your strip sheet or grid paper. Then write the equation and a sentence.</p>
+<ol>
+<li>
+<p>Lin has 9 stickers. Gus has 4 times as many stickers as Lin. How many stickers does Gus have?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span>  Answer: <span class="blank" style="width:18.0em"></span></p>
+</li>
+<li>
+<p>A rope is 42 feet long. That is 6 times as long as a jump rope. How long is the jump rope?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span>  Answer: <span class="blank" style="width:18.0em"></span></p>
+</li>
+<li>
+<p>A bean plant is 8 inches tall. A sunflower is 9 times as tall as the bean plant. How tall is the sunflower?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span>  Answer: <span class="blank" style="width:18.0em"></span></p>
+</li>
+<li>
+<p>Zoe picked 45 apples. That is 5 times as many as Ben picked. How many apples did Ben pick?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span>  Answer: <span class="blank" style="width:18.0em"></span></p>
+</li>
+<li>
+<p>A short train has 50 seats. A long train has 7 times as many seats. How many seats does the long train have?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span>  Answer: <span class="blank" style="width:18.0em"></span></p>
+</li>
+<li>
+<p>A bus holds 48 people. That is 6 times as many as a van holds. How many people does the van hold?</p>
+<p>Equation: <span class="blank" style="width:6.3em"></span>  Answer: <span class="blank" style="width:18.0em"></span></p>
+</li>
+</ol>
+<p>That is <span class="blank" style="width:2.7em"></span> times as many as <span class="blank" style="width:2.7em"></span>.  <span class="blank" style="width:2.7em"></span> has more, so the longer strip is <span class="blank" style="width:2.7em"></span>.</p>
+<p>The letter is on the <span class="blank" style="width:3.6em"></span> strip, so I <span class="blank" style="width:5.4em"></span>.</p>
+<p><strong>Challenge.</strong> Ana's kite string is 5 times as long as Tim's. Ana's string is 35 feet long. How long is Tim's string? Equation: <span class="blank" style="width:7.2em"></span>  Answer: <span class="blank" style="width:7.2em"></span></p><div class="foot">Curio Class, grade 4 math, day 84, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></div></body></html>

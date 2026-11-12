@@ -111,3 +111,16 @@ date,course,artifact,layer,found_by,kind,summary,status,ref
 2026-11-12,math-4,lesson.py,process,expert,layout,Questions printed in italics and mixed numbers on one line,fixed,docs/reviews/day-093-2026-11-12.md
 2026-11-12,math-4,d093.md,day,expert,wording,Day 93 wording and materials: six small repairs,fixed,docs/reviews/day-093-2026-11-12.md
 2026-11-12,math-4,items.csv,day,expert,wording,"End-check item wording; three fixes made, item 5(b) border wording left as an unsettled judgment for the taught run",open,docs/reviews/day-093-2026-11-12.md
+2026-11-12,math-4,lesson.py,process,writer,missing,No strip (tape) figure syntax; strip pictures added to days 80 to 87 worked examples and fixes,fixed,
+2026-11-12,math-4,lesson.py,process,writer,script,"Check-day header did not split part cells such as ""f, g""",fixed,
+2026-11-12,math-4,lesson.py,process,writer,handoff,Hand-off gate looked for the next day only in the same unit folder; d084 Tomorrow named the reused kitten story and d089 never named day 88,fixed,
+2026-11-12,math-4,lesson.py,process,writer,script,Sketch-box gate read the goal line and bold labels; workarounds in d080 and d083 undone,fixed,
+2026-11-12,math-4,lesson.py,process,writer,script,"Display check screen did not show each row's answer (days 81, 82, 86)",fixed,
+2026-11-12,math-4,lesson.py,process,writer,script,Ask screens appeared twice on the display (days 80 to 90),fixed,
+2026-11-12,math-4,lesson.py,process,writer,script,build --pdf rewrote unchanged tracked PDFs,fixed,
+2026-11-12,math-4,strip-sheet.md,process,writer,kind,"No piece kind for a blank sheet; strip sheet moved to piece: blank, words counted without markup",fixed,
+2026-11-12,math-4,items.csv,plan,writer,error,"Error C example 16 = 4 x 4 (Ann 16, Raj 4) let the swapped sentence read true; new numbers Ann 24, Raj 3, 8 times",fixed,
+2026-11-12,math-4,items.csv,plan,writer,error,Exit s10-X87 (3 x 30 - 52) could not show error H; now 158 - 3 x 30 with new wrong rows,fixed,
+2026-11-12,math-4,days.csv,plan,writer,sequence,"Day 86 by-hand said the strip is drawn first, holds said only when stuck",fixed,
+2026-11-12,math-4,items.csv,plan,writer,fields,Day 80 rows had no part,fixed,
+2026-11-12,math-4,items.csv,plan,writer,level,s10-P87-2 (56 / 8) forced its estimate; now 63 / 9 + 48,fixed,

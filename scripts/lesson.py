@@ -30,6 +30,7 @@ BAD_LICENCE = re.compile(r'\bnc\b|noncommercial|non-commercial|sharealike|share-
 REF = re.compile(r'\[\[([A-Za-z0-9-]+)\]\]')
 STEPS = re.compile(r'\[\[steps:([A-Za-z0-9-]+)\]\]')
 NOTE = re.compile(r'\[\[note:([A-Za-z0-9-]+)\]\]')   # a short form for a table: who, and the numbers given
+FIG = re.compile(r'\[\[fig:([A-Za-z0-9-]+)\]\]')     # the row's figure, drawn where it stands (a fix: their picture)
 CHROME = Path(r'C:\Program Files\Google\Chrome\Application\chrome.exe')
 
 
@@ -57,7 +58,8 @@ def parse(path):
 
 def words(md):
     """Prose words a person reads: no ids, no blanks, no table rules, no markup, no bare numbers or signs."""
-    md = NOTE.sub(' ', STEPS.sub(' ', REF.sub(' ', md)))
+    md = FIG.sub(' ', NOTE.sub(' ', STEPS.sub(' ', REF.sub(' ', md))))
+    md = re.sub(r'<[^>]+>', ' ', md)   # HTML tags and their attributes are markup, not words
     md = re.sub(r'_{2,}|\{sketch\}|\{work\}|\{small\}|^\|[-| ]+\|$|[#*|>`]', ' ', md, flags=re.M)
     return sum(1 for w in md.split() if re.search(r'[A-Za-z]', w))   # words, not numerals or signs
 
@@ -157,21 +159,25 @@ def check_day(d, items, days):
         got = [b[0] for b in d['blocks']]
         if got != want:
             f.append('%s: the parts run %s min; days.csv check_min says %s' % (lab, got, want))
-    # Tomorrow: a next day that exists must carry the hand-off ("day N" in its file)
+    # Tomorrow: the next day by number, in any unit folder of the course, must carry the hand-off ("day N" in it)
     nxt = int(h.get('day', 0) or 0) + 1
     tm = d['secs'].get('Tomorrow', '')
-    nf = d['path'].parent / ('d%03d.md' % nxt)
-    if re.search(r'\bday %d\b' % nxt, tm) and nf.exists() and not re.search(
-            r'\bday %d\b' % (nxt - 1), nf.read_text(encoding='utf-8')):
-        f.append('%s: "Tomorrow" sends work to day %d, but d%03d.md never names day %d' % (lab, nxt, nxt, nxt - 1))
+    nf = next(iter(sorted(d['path'].parent.parent.glob('u*/d%03d.md' % nxt))), None)
+    if re.search(r'\bday %d\b' % nxt, tm, re.I) and nf and not re.search(
+            r'\bday %d\b' % (nxt - 1), nf.read_text(encoding='utf-8'), re.I):
+        f.append('%s: "Tomorrow" sends work to day %d, but %s never names day %d'
+                 % (lab, nxt, nf.relative_to(ROOT).as_posix(), nxt - 1))
     # the student page: one numbered question a line; room for every sketch asked for
     for ln in d['student'].splitlines():
         if not ln.lstrip().startswith('|') and len(re.findall(r'(?:^|\s)\d+\.\s+\[\[', ln)) > 1:
             f.append('%s: two numbered questions on one student line print as a broken list: %s' % (lab, ln.strip()[:50]))
     for side, body in d['sides']:
         for chunk in re.split(r'\n(?=\*\*)', body):
-            if (re.search(r'\b(sketch|draw)\b', chunk, re.I) and not re.search(r'\{sketch\}|\{work\}|\{small\}', chunk)
-                    and not re.search(r'grid paper|\bback\b|notebook', chunk, re.I)):
+            # the goal line ("**I can ...**") and a bold label are not asks; only the words under them are
+            ask = re.sub(r'^\*\*I can .*?\*\*\s*$', ' ', chunk, flags=re.M)
+            ask = re.sub(r'\*\*[^*\n]+\*\*', ' ', ask)
+            if (re.search(r'\b(sketch|draw)\b', ask, re.I) and not re.search(r'\{sketch\}|\{work\}|\{small\}|\[\[fig:', chunk)
+                    and not re.search(r'grid paper|\bback\b|notebook|strip sheet', chunk, re.I)):
                 f.append('%s: %s asks for a sketch or a drawing with no box for it: %s' % (lab, side, chunk.strip()[:40]))
     # a wide student table must leave each writing column at least half an inch
     for tb in re.findall(r'^\|.*\|$', d['student'], re.M):
@@ -214,10 +220,15 @@ def check_day(d, items, days):
     if not d['sides'] or len(d['sides']) > 2:
         f.append('%s: the student page needs "### Side 1" (and at most "### Side 2")' % lab)
     # questions
-    refs = REF.findall(d['teacher'] + d['student']) + STEPS.findall(d['teacher']) + NOTE.findall(d['student'])
+    figs = FIG.findall(d['teacher'] + d['student'])
+    refs = (REF.findall(d['teacher'] + d['student']) + STEPS.findall(d['teacher']) + NOTE.findall(d['student'])
+            + figs)
     for r in NOTE.findall(d['student']):
         if r in byid and not byid[r].get('figure'):
             f.append('%s: [[note:%s]] needs a figure cell to print from' % (lab, r))
+    for r in figs:
+        if r in byid and not byid[r].get('figure'):
+            f.append('%s: [[fig:%s]] needs a figure cell to draw from' % (lab, r))
     for r in refs:
         if r not in byid:
             f.append('%s: [[%s]] has no row in items.csv' % (lab, r))
@@ -233,11 +244,20 @@ def check_day(d, items, days):
     for r in sorted(set(refs)):
         i = byid.get(r)
         if i and i.get('figure'):
-            fv = [v for k, v in (x.split('=', 1) for x in i['figure'].split()[1:] if '=' in x) if k in ('l', 'w', 'A', 'P')]
-            sn = set(plan.numbers(i['stem']))
-            for v in fv:
-                if v != '?' and v.replace('_', ' ') not in sn:
-                    f.append('%s: %s figure has %s, which its stem does not say' % (lab, r, v.replace('_', ' ')))
+            for k, spec in enumerate(figures(i)):
+                # the problem's picture keeps to its stem; a fix's right picture may use the right working too
+                sn = set(plan.numbers(i['stem'] + (' ' + i.get('steps', '') if k else '')))
+                if spec.startswith('strip'):
+                    try:
+                        fv = strip_numbers(spec)
+                    except ValueError as e:
+                        f.append('%s: %s figure: %s' % (lab, r, e)); continue
+                else:
+                    fv = [v for kk, v in (x.split('=', 1) for x in spec.split()[1:] if '=' in x) if kk in ('l', 'w', 'A', 'P')]
+                for v in fv:
+                    if v != '?' and v.replace('_', ' ') not in sn:
+                        f.append('%s: %s figure has %s, which its %s does not say'
+                                 % (lab, r, v.replace('_', ' '), 'working' if k else 'stem'))
     for r in set(REF.findall(d['student'])):
         if r in byid and byid[r]['check'] == 'exit':
             f.append('%s: exit question %s is printed on the student page; it belongs on the slip' % (lab, r))
@@ -280,6 +300,13 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; }
 .foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
 """
+
+
+def put(path, text, encoding='utf-8'):
+    """Write a built file only when its text changed, so an unchanged page keeps its date and its PDF is not
+    printed again."""
+    if not (path.exists() and path.read_text(encoding=encoding) == text):
+        path.write_text(text, encoding=encoding)
 
 
 def page(title, body, cls):
@@ -340,7 +367,11 @@ def md(text, items, teacher=False):
     def sub_note(m):
         i = byid.get(m[1])
         return note(i) if i else m[0]
-    text = NOTE.sub(sub_note, STEPS.sub(sub_steps, text))
+
+    def sub_fig(m):   # its own paragraph, so markdown leaves the SVG alone
+        i = byid.get(m[1])
+        return '\n\n<div class="fig" style="margin:.2em 0">%s</div>\n\n' % figure(figures(i)[0], 0.6) if i and figures(i) else m[0]
+    text = FIG.sub(sub_fig, NOTE.sub(sub_note, STEPS.sub(sub_steps, text)))
     text = REF.sub(sub, text).replace('{sketch}', '<div class="sketch"></div>').replace(
         '{work}', '<div class="sketch work"></div>').replace('{small}', '<div class="sketch small"></div>')
     text = re.sub(r'_{2,}', lambda m: '<span class="blank" style="width:%.1fem"></span>' % (len(m[0]) * 0.45), text)
@@ -375,7 +406,153 @@ def note(i):
     return (who[1] + ': ' if who else '') + ', '.join(given)
 
 
+def figures(i):
+    """A row's figure cell as a list of figure specs. A fix may hold two, 'their | right': the wrong working's
+    picture, then the right one ('| strip ...' gives only the right one). Any other row holds one."""
+    cell = (i.get('figure') or '').strip()
+    if not cell:
+        return []
+    return [x.strip() for x in cell.split('|')] if '|' in cell else [cell]
+
+
 def figure(spec, size=1.0):
+    """A figure cell drawn as inline SVG: a strip diagram ('strip ...') or a labelled rectangle ('rect ...')."""
+    if not spec:
+        return ''
+    if spec.split()[0] == 'strip':
+        return strip(spec, size)
+    return rect(spec, size)
+
+
+STRIP_BAR = re.compile(r'^(?P<name>[^:]*):(?P<pieces>[^=/]+)(?:=(?P<total>[^/]+))?(?:/(?P<segs>.+))?$')
+
+
+def strip_bars(spec):
+    """'strip Kitten:7 Dog:7*8=d' as bars: [(name, [(value, count), ...], total, [segment, ...]), ...]. A value or
+    count is a number, a letter or '?'; '_' in a name is a space."""
+    bars = []
+    for tok in spec.split()[1:]:
+        m = STRIP_BAR.match(tok)
+        if not m:
+            raise ValueError('strip bar "%s" is not name:pieces[=total][/a,b]' % tok)
+        pieces = []
+        for p in m['pieces'].split('+'):
+            v, _, c = p.partition('*')
+            pieces.append((v.strip(), (c or '1').strip()))
+        bars.append((m['name'].replace('_', ' '), pieces, (m['total'] or '').strip(),
+                     [s.strip() for s in (m['segs'] or '').split(',') if s.strip()]))
+    return bars
+
+
+def strip_numbers(spec):
+    """The numbers a strip figure prints (values, counts, totals, segments), for the figure-and-stem gate."""
+    out = []
+    for _, pieces, total, segs in strip_bars(spec):
+        for v, c in pieces:
+            out += [v] + ([c] if c != '1' else [])
+        out += [total] + segs
+    return [x for x in out if re.fullmatch(r'\d+', x)]
+
+
+def strip(spec, size=1.0):
+    """A strip (tape) diagram from a figure cell. Each bar is 'Name:pieces[=total][/a,b]':
+    pieces are 'value' or 'value*count' joined by '+'; the first piece is one unit, a later piece of the same value
+    is drawn as more copies (solid), a piece of another value as an extra piece (dashed), as in '6+2' for 2 more
+    than 6. '=total' brackets the whole bar and writes its total under it ('?' or a letter for the unknown). '/a,b'
+    brackets parts of the bar, as in '/135,p' for 135 read and p left. A count that is a letter ('9*n=36') draws one
+    long piece marked 'n times'. Unknowns are worked out from the other bars, so the picture is to scale; a piece
+    too small to label is widened."""
+    bars = strip_bars(spec)
+    known = {}
+
+    def val(x):
+        if re.fullmatch(r'\d+', x):
+            return Fraction(int(x))
+        return known.get(x)
+
+    for _ in range(4):   # solve each bar's one unknown from its total, sharing letters across bars
+        for _, pieces, total, _ in bars:
+            t = val(total) if total else None
+            terms = [(val(v), val(c), v, c) for v, c in pieces]
+            unk = [k for k, (a, b, _, _) in enumerate(terms) if a is None or b is None]
+            if t is not None and len(unk) == 1:
+                a, b, v, c = terms[unk[0]]
+                rest = sum(x * y for k, (x, y, _, _) in enumerate(terms) if k != unk[0])
+                if a is None and b is not None and b and v != '?':
+                    known[v] = (t - rest) / b   # an unknown count stays unknown: it is drawn as one long piece
+            elif t is None and total and total != '?' and not unk:
+                known[total] = sum(a * b for a, b, _, _ in terms)
+    widths = []
+    for _, pieces, total, _ in bars:
+        whole = val(total) if total else None
+        widths.append(whole or sum((val(v) or 0) * (val(c) if val(c) is not None else 4) for v, c in pieces))
+    top = max([w for w in widths if w] or [1])
+    fill = top / 4   # an unknown with nothing to size it from
+    # one drawing space for every size (a font of 30 units); size only sets how big it prints
+    span, fs, minp, bh, gap = 640, 30, 54, 46, 10
+    lw = max([len(n) for n, _, _, _ in bars] + [1]) * fs * 0.52 + 16
+    x0 = lw + 10
+    t = lambda x, y, s, a='middle': '<text x="%.0f" y="%.0f" text-anchor="%s" font-size="%d">%s</text>' % (
+        x, y, a, fs, html.escape(s))
+    box = lambda x, y, w, dash='': ('<rect x="%.0f" y="%.0f" width="%.0f" height="%d" fill="none" stroke="#000" '
+                                    'stroke-width="3"%s/>' % (x, y, w, bh, dash))
+
+    def bracket(xa, xb, yb, label, up=False):   # a square bracket along a bar, its label off the middle tick
+        s, mid = (-1 if up else 1), (xa + xb) / 2
+        return ('<path d="M%.0f %.0f L%.0f %.0f L%.0f %.0f L%.0f %.0f M%.0f %.0f L%.0f %.0f" fill="none" '
+                'stroke="#000" stroke-width="2"/>' % (xa, yb, xa, yb + s * 10, xb, yb + s * 10, xb, yb,
+                                                      mid, yb + s * 10, mid, yb + s * 16)) + t(
+            mid, yb + (s * 16 + (fs - 2) if not up else -16 - 6), label)
+    out, y, right = [], 4, x0
+    for (name, pieces, total, segs), w in zip(bars, widths):
+        above = bool(total and segs)
+        if above:
+            y += fs + 26
+        unit, x = pieces[0][0], x0
+        for v, c in pieces:
+            a, n = val(v), val(c)
+            if n is None:   # an unknown number of copies: one long piece, as long as what is left of the total
+                rest = sum((val(v2) or 0) * (val(c2) or 0) for v2, c2 in pieces if (v2, c2) != (v, c))
+                long_ = (w - rest) if w and val(total) else (a or fill) * 4
+                pw = max(float(long_ * span / top), minp * 2)
+                out += [box(x, y, pw), t(x + pw / 2, y + bh / 2 + fs / 3, '%s times' % c)]
+                x += pw
+                continue
+            for _ in range(int(n)):   # a piece of the unit's value is a copy; any other value is an extra piece
+                pw = max(float((a if a is not None else fill) * span / top), minp)
+                out += [box(x, y, pw, '' if v == unit else ' stroke-dasharray="10 6"'),
+                        t(x + pw / 2, y + bh / 2 + fs / 3, v)]
+                x += pw
+        out.append(t(x0 - 12, y + bh / 2 + fs / 3, name, 'end'))
+        right = max(right, x)
+        if total:
+            out.append(bracket(x0, x, y - 4 if above else y + bh + 4, total, up=above))
+        y += bh
+        if segs:
+            tv = val(total) if total else (Fraction(w) if w else None)
+            first = val(segs[0])
+            cut = [x0]
+            if tv and first is not None and len(segs) == 2:
+                cut.append(x0 + (x - x0) * float(first / tv))
+            else:
+                cut += [x0 + (x - x0) * k / len(segs) for k in range(1, len(segs))]
+            cut.append(x)
+            for k, sg in enumerate(segs):
+                out.append(bracket(cut[k] + 3, cut[k + 1] - 3, y + 4, sg))
+        y += (fs + 24 if (total and not above) or segs else 0) + gap
+    W, H = right + 20, y
+    alt = 'A strip diagram: ' + '; '.join('%s %s%s' % (n, ' and '.join(
+        v if c == '1' else '%s copies of %s' % (c, v) for v, c in p), (', in all ' + tt) if tt else '')
+        for n, p, tt, _ in bars)
+    # full size fills the width (the display); a smaller size prints its words at about 11 point on a page
+    style = ('width:100%;max-width:9in;height:auto' if size >= 1 else
+             'display:block;height:%.2fin;width:auto;max-width:100%%' % (H / fs * 11 / 72 * size / 0.6))
+    return ('<svg viewBox="0 0 %.0f %.0f" width="%.0f" style="%s" role="img" '
+            'aria-label="%s" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">%s</svg>') % (
+        W, H, W, style, html.escape(alt), ''.join(out))
+
+
+def rect(spec, size=1.0):
     """A labelled rectangle from a figure cell: 'rect w=7 l=? A=63 u=ft' or 'rect l=12 w=? P=38 u=ft'. Small
     whole-number sides are drawn to scale; 'grid' draws the unit squares inside and 'marks' ticks and numbers each
     unit side along the edge. Larger figures keep one plain shape."""
@@ -437,7 +614,8 @@ def branch_only(d, rows):
     day = d['secs'].get('The day', '')
     main = '\n\n'.join(par for par in re.split(r'\n\s*\n', day) if not par.lstrip().startswith('**If'))
     hit = set(REF.findall(main)) | set(STEPS.findall(main))
-    return {(i['code'], i['part']) for i in rows if i['part']} - {(i['code'], i['part']) for i in rows if i['item_id'] in hit and i['part']}
+    return ({(i['code'], p) for i in rows for p in plan.partset(i)}
+            - {(i['code'], p) for i in rows if i['item_id'] in hit for p in plan.partset(i)})
 
 
 def header_table(d, row, parts, tt, side=frozenset()):
@@ -477,7 +655,7 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     end = sorted((i for i in items if i['stretch'] == row['stretch'] and i['check'] == 'end'), key=lambda i: int(i['n']))
     if row['kind'] != 'Check':
         end = []
-    pk = {(i['code'], i['part']) for i in (end or mine) if i['part']}
+    pk = {(i['code'], p) for i in (end or mine) for p in plan.partset(i)}   # a cell may name several: "f, g"
     parts = [p for p in parts_all if (p['code'], p['part']) in pk]
     out = OUT / course / d['path'].parent.name
     out.mkdir(parents=True, exist_ok=True)
@@ -495,10 +673,10 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     side = branch_only(d, mine) if not end else set()
     tb = '<h1>%s</h1><p>Teacher page</p>%s%s%s%s' % (html.escape(title), warn, header_table(d, row, parts, tt, side),
                                                      md(d['teacher'], items, teacher=True), foot)
-    (out / (name + '-teacher.html')).write_text(page(title + ': teacher page', tb, 'teacher'), encoding='utf-8')
+    put(out / (name + '-teacher.html'), page(title + ': teacher page', tb, 'teacher'), encoding='utf-8')
     sb = student_html(d, course, items)
-    (out / (name + '-student.html')).write_text(page(title + ': student page', sb, 'student'), encoding='utf-8')
-    (out / (name + '-student-large.html')).write_text(page(title + ': student page, large print', sb, 'student large'),
+    put(out / (name + '-student.html'), page(title + ': student page', sb, 'student'), encoding='utf-8')
+    put(out / (name + '-student-large.html'), page(title + ': student page, large print', sb, 'student large'),
                                                      encoding='utf-8')
     # key: in the order the pages use them, both exit paths
     errname = {e['letter']: e['error'] for e in errors if e['stretch'] == row['stretch']}
@@ -520,26 +698,30 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         if i['judged'] == 'teacher' and i.get('samples'):
             ans += '<b>Samples (ours, untested):</b><ul>%s</ul>' % ''.join(
                 '<li>%s</li>' % html.escape(x.strip()) for x in i['samples'].split('|') if x.strip())
-        kr.append('<tr><td>%s</td><td>%s</td><td>%s</td><td class="q">%s</td><td>%s</td><td>%s</td></tr>' % (
-            html.escape(where), html.escape(i['item_id']), html.escape(part_of(i)), html.escape(stem(i)), ans,
+        # a strip figure prints with its question (a fix: their picture, then the right one)
+        pics = ''.join('<div style="margin:.2em 0">%s%s</div>' % (
+            ('<i>%s</i>' % ('Their picture' if k == 0 else 'The right picture')) if len(figures(i)) == 2 else '',
+            figure(x, 0.6)) for k, x in enumerate(figures(i)) if x.startswith('strip'))
+        kr.append('<tr><td>%s</td><td>%s</td><td>%s</td><td class="q">%s%s</td><td>%s</td><td>%s</td></tr>' % (
+            html.escape(where), html.escape(i['item_id']), html.escape(part_of(i)), html.escape(stem(i)), pics, ans,
             html.escape('; '.join(ws))))
     kb = ('<h1>%s: key</h1><p>Every answer below is recomputed by scripts/plan.py from data/plans/%s/items.csv.</p>'
           '<table><tr><th>Where</th><th>Id</th><th>Part</th><th>Question</th><th>Answer</th><th>Wrong answers and what '
           'they mean</th></tr>%s</table>%s' % (html.escape(title), course, ''.join(kr), foot))
-    (out / (name + '-key.html')).write_text(page(title + ': key', kb, 'key'), encoding='utf-8')
+    put(out / (name + '-key.html'), page(title + ': key', kb, 'key'), encoding='utf-8')
     # exit slip, four to a sheet: the paper path only
     ex = [i for i in mine if i['check'] == 'exit' and i.get('path', '') in ('', 'paper')]
     if ex and row['kind'] != 'Check':
         one = '<div class="slip"><p>Name ______________ Day %s</p>%s%s</div>' % (h['day'], ''.join(
             '<p>%d. %s</p><p>__________________________</p><p>__________________________</p>' % (k + 1, stacked(stem(i)))
             for k, i in enumerate(ex)), foot)
-        (out / (name + '-exit.html')).write_text(page(title + ': exit slips', one * 4, 'student'), encoding='utf-8')
+        put(out / (name + '-exit.html'), page(title + ': exit slips', one * 4, 'student'), encoding='utf-8')
     # display, in the order the teacher page runs: part by part, each [[id]], [[steps:id]] and **Ask.** where it
     # first appears (a worked example with its figure, then its steps one screen at a time; a fix with the wrong
     # working beside the right; a challenge); a plain sum's answers; a part's "check your answers" screen only when
     # that part names a partner or self check (its own "Check: ..." line, if any, is the sentence); the frames last
-    scr, done = [], set()
-    fig = lambda i: figure(i['figure']) if i.get('figure') else ''
+    scr, done, asked = [], set(), set()
+    fig = lambda i: figure(figures(i)[0]) if len(figures(i)) == 1 else ''
     tok = re.compile(r'\[\[(?:steps:)?([A-Za-z0-9-]+)\]\]|\*\*Ask\.\*\* "(.+?)"', re.S)
     peer = re.compile(r'swap and check|swap and compare|partner check|check their own|partners check', re.I)
 
@@ -550,12 +732,13 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
                 o.append('<div class="screen">%s<ol>%s</ol></div>' % (fig(i) if k < 2 else '', ''.join(
                     '<li%s>%s</li>' % (' class="now"' if j == k else '', html.escape(s)) for j, s in enumerate(st[:k + 1]))))
             return o
-        if i['check'] == 'fix':
-            st = steps(i) + ['', '']
-            return ['<div class="screen"><p>%s</p>%s<div class="pair"><div><b>Their working</b><p>%s</p></div>'
-                    '<div><b>The right working</b><p>%s</p></div></div></div>' % (
-                        stacked(stem(i)), fig(i), html.escape(re.sub(r'^.*?working: ', '', st[0])),
-                        html.escape(re.sub(r'^.*?working: ', '', st[1])))]
+        if i['check'] == 'fix':   # one figure is the problem's, above both; two are their picture and the right one
+            st, fs = steps(i) + ['', ''], figures(i)
+            two = [figure(x) if x else '' for x in fs] if len(fs) == 2 else ['', '']
+            return ['<div class="screen"><p>%s</p>%s<div class="pair"><div><b>Their working</b>%s<p>%s</p></div>'
+                    '<div><b>The right working</b>%s<p>%s</p></div></div></div>' % (
+                        stacked(stem(i)), fig(i), two[0], html.escape(re.sub(r'^.*?working: ', '', st[0])),
+                        two[1], html.escape(re.sub(r'^.*?working: ', '', st[1])))]
         if i['check'] == 'challenge':
             return ['<div class="screen"><p><b>Challenge.</b> %s</p></div>' % stacked(stem(i))]
         return []
@@ -570,7 +753,10 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
     def walk(text, prac):
         for m in tok.finditer(text):
             if m[2]:
-                scr.append('<div class="screen">%s</div>' % html.escape(re.sub(r'[*]', '', m[2]).strip()))
+                q = re.sub(r'[*]', '', m[2]).strip()
+                if q not in asked:   # one screen per planned question, however often the page names it
+                    asked.add(q)
+                    scr.append('<div class="screen">%s</div>' % html.escape(q))
                 continue
             if m[1] in done or m[1] not in byid:
                 continue
@@ -594,18 +780,23 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
             scr.append('<div class="screen"><p><b>Check your answers.</b></p><ol>%s</ol></div>' % ''.join(
                 '<li>%s = %s</li>' % (html.escape(stem(i).rstrip('? =').strip()), html.escape(i['answer'])) for i in plain))
         rest = [i for i in prac if i not in plain]
-        cm = re.search(r'^Check: (.+)$', btxt, re.M)
+        cm = re.search(r'^Check(?: \((sort)\))?: (.+)$', btxt, re.M)
         if rest and (cm or peer.search(btxt)):
-            say = cm[1].strip() if cm else ('Put each answer back in its equation. Does it give the number in the '
+            say = cm[2].strip() if cm else ('Put each answer back in its equation. Does it give the number in the '
                                            'question? If not, put a question mark.')
+            # each row's answer, whatever its form; "Check (sort):" shows only its first part, the kind, so a sort
+            # checked now does not give away the solving that comes later
+            ans = lambda i: i['answer'].split(';')[0].strip() if cm and cm[1] else i['answer']
             scr.append('<div class="screen"><p><b>Check your answers.</b> %s</p><ol>%s</ol></div>' % (
-                html.escape(say), ''.join('<li>%s</li>' % stacked(stem(i)) for i in rest)))
-    walk(d['teacher'], [])   # anything named outside the parts of the day (Longer, Tomorrow)
+                html.escape(say), ''.join('<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(ans(i)))
+                                          for i in rest)))
+    # anything named outside the parts of the day (Longer, Tomorrow); the day's own parts are walked above
+    walk('\n'.join(v for k, v in d['secs'].items() if k != 'The day'), [])
     if end and not shown:
         scr.append(answers_screen())
     scr += ['<div class="screen">%s</div>' % html.escape(q) for q in
             re.findall(r'"([^"]*__[^"]*)"', d['secs'].get('Words and supports', ''))]
-    (out / (name + '-display.html')).write_text(page(title + ': display', ''.join(scr) + foot, 'display'),
+    put(out / (name + '-display.html'), page(title + ': display', ''.join(scr) + foot, 'display'),
                                                 encoding='utf-8')
     note = ''
     if pdf:
@@ -622,10 +813,15 @@ def part_of(i):
 
 
 def print_sides(src):
-    """Print the student page to PDF with headless Chrome and count its sides."""
+    """Print the student page to PDF with headless Chrome and count its sides. A PDF newer than its page is
+    counted as it stands; a fresh print that matches the old PDF but for its dates leaves the old file alone, so an
+    unchanged page never shows as a changed PDF."""
+    final = src.with_suffix('.pdf')
+    if final.exists() and final.stat().st_size and final.stat().st_mtime >= src.stat().st_mtime:
+        return count_sides(final)
     if not CHROME.exists():
         return 'page count not checked (no Chrome)'
-    pdf = src.with_suffix('.pdf')
+    pdf = src.with_name(src.stem + '.printing.pdf')
     if pdf.exists():
         pdf.unlink()
     args = ['--headless=new', '--disable-gpu', '--no-pdf-header-footer', '--print-to-pdf=%s' % pdf, src.as_uri()]
@@ -641,6 +837,27 @@ def print_sides(src):
         time.sleep(0.5)
     if not pdf.exists():
         return 'page count not checked (Chrome wrote nothing)'
+    time.sleep(0.3)   # let Chrome finish the file
+    new = undated(pdf.read_bytes())
+    if final.exists() and undated(final.read_bytes()) == new:
+        pdf.unlink()
+        os.utime(final)   # the same PDF: keep its bytes, mark it current
+    else:
+        pdf.write_bytes(new)
+        os.replace(pdf, final)
+    return count_sides(final)
+
+
+def undated(b):
+    """A printed PDF with its creation and change dates set to one fixed value of the same length, so two prints of
+    one page are the same bytes."""
+    def fixed(m):
+        digits = iter(b'20260101000000' + b'0' * 20)
+        return m[1] + re.sub(rb'[0-9]', lambda _: bytes([next(digits)]), m[2])
+    return re.sub(rb'(/(?:CreationDate|ModDate) ?\(D:)([0-9+\-Z\']+)', fixed, b)
+
+
+def count_sides(pdf):
     from pypdf import PdfReader
     n = len(PdfReader(str(pdf)).pages)
     return '%d side(s)%s' % (n, '' if n <= 2 else ' FAIL: more than two')
@@ -649,10 +866,12 @@ def print_sides(src):
 # ------------------------------------------------------------------ once-per-unit pieces
 # A piece is any other .md in a unit folder (opener.md, record.md, readiness.md, ...), with a header naming its
 # kind: opener (written, 1,200 words at most), record (the record sheet, generated), check (a readiness check:
-# student page and key generated from the rows), facts (a facts check sheet), family (the family note).
+# student page and key generated from the rows), facts (a facts check sheet), family (the family note), sheet (a
+# generator preset's page for the teacher), blank (a sheet printed as written, for students to work on: one with
+# no preset, such as the strip sheet; two sides at most).
 CAP_OPENER = 1200
 PIECE_HEAD = ['piece', 'course', 'unit', 'version', 'credit']
-PIECE_KINDS = ('opener', 'record', 'check', 'facts', 'family', 'sheet')
+PIECE_KINDS = ('opener', 'record', 'check', 'facts', 'family', 'sheet', 'blank')
 
 
 def preset(h):
@@ -733,13 +952,17 @@ def build_piece(p, items, wrongs, errors):
     body = re.sub(r'^# .+\n', '', p['body'], count=1, flags=re.M)
     mdh = lambda t: markdown.markdown(t, extensions=['tables'])
     if kind in ('opener', 'family'):
-        (out / (name + '.html')).write_text(page(title, '<h1>%s</h1>%s%s' % (
+        put(out / (name + '.html'), page(title, '<h1>%s</h1>%s%s' % (
             html.escape(title), mdh(body), unit_foot(h, course, name)), 'teacher'), encoding='utf-8')
+        return out
+    if kind == 'blank':   # a student sheet printed as written (its markup may lay out boxes), with the foot line
+        put(out / (name + '-student.html'), page(title, '<h1>%s</h1>%s%s' % (
+            html.escape(title), mdh(body), unit_foot(h, course, name)), 'student'))
         return out
     if kind == 'sheet':   # a page for the teacher: the preset's link, then the piece's own notes
         g = preset(h)
         url = 'https://curioclass.org' + g['url']
-        (out / (name + '.html')).write_text(page(title, '<h1>%s</h1><p><b>Make and print it:</b> <a href="%s">%s</a>. '
+        put(out / (name + '.html'), page(title, '<h1>%s</h1><p><b>Make and print it:</b> <a href="%s">%s</a>. '
             'Each press of New sheet gives a fresh sheet and its key; print one sheet per student and the key for '
             'you.</p>%s%s' % (html.escape(title), html.escape(url), html.escape(url), md(body, items, teacher=True),
                               unit_foot(h, course, name)),
@@ -756,10 +979,10 @@ def build_piece(p, items, wrongs, errors):
         sb = '<h1>%s</h1><p>Name ______________________ Date __________</p>%s<table class="facts"><tr>%s</tr></table>%s' % (
             html.escape(title), mdh(section(body, 'Student') or ''), cells, unit_foot(h, course, name))
         css = '<style>.facts td { height: auto; padding: .35em .4em; width: 25%; font-size: 14pt; }</style>'
-        (out / (name + '-student.html')).write_text(page(title, css + sb, 'student'), encoding='utf-8')
+        put(out / (name + '-student.html'), page(title, css + sb, 'student'), encoding='utf-8')
         key = ''.join('<td>%s %s</td>%s' % (q, eval(q[:-1].replace('×', '*').replace('÷', '//')),
                                              '</tr><tr>' if k % 4 == 3 else '') for k, q in enumerate(qs))
-        (out / (name + '-key.html')).write_text(page(title + ': key', '<h1>%s: key</h1>%s<table><tr>%s</tr></table>%s' % (
+        put(out / (name + '-key.html'), page(title + ': key', '<h1>%s: key</h1>%s<table><tr>%s</tr></table>%s' % (
             html.escape(title), mdh(section(body, 'Teacher') or ''), key, unit_foot(h, course, name)), 'key'), encoding='utf-8')
         return out
     if kind == 'record':
@@ -781,7 +1004,7 @@ def build_piece(p, items, wrongs, errors):
                ' .record td { height: .26in; padding: 0 .2em; } .record th { font-size: 8pt; }</style>')
         tb = '<h1>%s</h1>%s<table>%s%s%s</table>%s%s' % (html.escape(title), mdh(body), hd, sub,
                                                        row * int(h.get('rows', 28)), lf, unit_foot(h, course, 'record sheet'))
-        (out / (name + '.html')).write_text(page(title, css + tb, 'record'), encoding='utf-8')
+        put(out / (name + '.html'), page(title, css + tb, 'record'), encoding='utf-8')
         return out
     # a check: the student page, a large-print copy, and the key
     rs = piece_rows(p, items)
@@ -794,8 +1017,8 @@ def build_piece(p, items, wrongs, errors):
         html.escape(title), mdh(section(body, 'Student') or ''), ''.join(
             '<p>%d. %s</p>%s%s' % (k + 1, stacked(stem(i)), figure(i['figure'], 0.5) if i.get('figure') else '', room(i))
             for k, i in enumerate(rs)), foot)
-    (out / (name + '-student.html')).write_text(page(title, sb, 'student'), encoding='utf-8')
-    (out / (name + '-student-large.html')).write_text(page(title + ', large print', sb, 'student large'), encoding='utf-8')
+    put(out / (name + '-student.html'), page(title, sb, 'student'), encoding='utf-8')
+    put(out / (name + '-student-large.html'), page(title + ', large print', sb, 'student large'), encoding='utf-8')
     errname = {e['letter']: e['error'] for e in errors if e['stretch'] == h.get('stretch')}
     tail = lambda w: ((('error %s, %s' % (w['error'], errname.get(w['error'], '').lower())) if w['error'] else '')
                       + (' (%s)' % w['note'] if w['note'] else '')).strip()
@@ -805,7 +1028,7 @@ def build_piece(p, items, wrongs, errors):
         html.escape(x) for x in (i['n'], part_of(i), stem(i), i['answer'], wr(i))) for i in rs)
     kb = ('<h1>%s: key</h1>%s<table><tr><th>#</th><th>Part</th><th>Question</th><th>Answer</th><th>Wrong answers and '
           'what they mean</th></tr>%s</table>%s' % (html.escape(title), mdh(section(body, 'Teacher') or ''), kr, foot))
-    (out / (name + '-key.html')).write_text(page(title + ': key', kb, 'key'), encoding='utf-8')
+    put(out / (name + '-key.html'), page(title + ': key', kb, 'key'), encoding='utf-8')
     return out
 
 
@@ -838,7 +1061,7 @@ def main(a):
         if CHROME.exists() and d['sides']:   # the two-side rule, on the printed page
             import tempfile
             tmp = Path(tempfile.gettempdir()) / ('curio-%s-%s.html' % (c, p.stem))
-            tmp.write_text(page('check', student_html(d, c, items), 'student'), encoding='utf-8')
+            put(tmp, page('check', student_html(d, c, items), 'student'))
             side_note = print_sides(tmp)
             if 'FAIL' in side_note:
                 fails.append('%s: the student page prints to more than two sides' % lab)
@@ -864,7 +1087,7 @@ def main(a):
         items, days, parts, errors, wrongs = load(c)
         fails = check_piece(pc, items)
         note = ''
-        if not fails and pc['head'].get('piece') in ('check', 'facts') and CHROME.exists():
+        if not fails and pc['head'].get('piece') in ('check', 'facts', 'blank') and CHROME.exists():
             out = build_piece(pc, items, wrongs, errors)
             note = ', student page ' + print_sides(out / (p.stem + '-student.html'))
             if 'FAIL' in note:

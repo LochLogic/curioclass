@@ -29,7 +29,9 @@ today's key and a reuser can see whom to credit.
 **Once per unit** (not per day): the unit opener (the teacher page for the unit: the math explained at an adult's
 level, why this model, the error register in plain words, the supply list; 1,200 words at most), the family note in
 English and Spanish (150 words at most each), the record sheet, the readiness check and end check with their keys,
-and any generator sheet the plan defines. These are generated from data wherever they can be.
+and any generator sheet the plan defines. A sheet with no preset questions (a strip sheet, a blank grid) is a
+`piece: blank`: it prints for students, its words are counted without markup, and it must fit two sides. These
+are generated from data wherever they can be.
 
 **The arithmetic, so the size is seen.** A teaching day is at most about 1,250 words a person reads (900
 teacher, 350 student, questions included), of which only the teacher prose and the student frame are written
@@ -46,11 +48,17 @@ wrong answers to fix, the exit) is a row in `data/plans/<course>/items.csv`, and
 file names a question by its id, `[[s11-P90-1]]`, and never types a key. `[[steps:id]]` prints a worked
 example's steps from the row's `steps` cell, the same cell the display reveals, so the teacher page and the
 display cannot drift; `[[note:id]]` prints a short form (who, and the numbers given) from the row's `figure` cell
-for a table. `python -X utf8 scripts/lesson.py build` makes the print pages in `build/lessons/`.
+for a table; `[[fig:id]]` draws the row's figure in place (on the student page, the key and the display). `python -X utf8 scripts/lesson.py build` makes the print pages in `build/lessons/`.
 
 A row may carry, beside its key: `figure` (a labelled shape, `rect w=7 l=? A=63 u=ft`; a mixed number joins
 with `_`, as `l=6_3/4`; flags `grid` draw the unit squares and `marks` tick and number each unit side; `around=`
 names what goes round; small whole sides are drawn to scale; every number in the figure must be in the stem),
+or a strip (tape) picture, `strip Ada:6 Eli:6*2=?`: one bar per `Name:pieces`, `_` for a space in the name;
+pieces join with `+`, the first is the unit, `6*2` is two copies of it, a piece of another value (`6+2`) is
+drawn dashed as the extra "more than" piece, a letter count (`6*n`) draws one long piece marked "n times";
+`=total` brackets the bar (`=?` or a letter for the unknown), and `/a,b` brackets each segment. A wrong answer
+to fix may hold two figures, their picture then the right one, split by ` | ` (`| strip ...` gives the right
+one only). The first figure's numbers must be in the stem; the second's in the stem or steps.
 `steps` (the worked steps as the teacher says them, split by `|`; for a wrong answer to fix, their working then
 the right working; a teacher-judged row lists its look-fors here), `samples` (a teacher-judged row's two sample
 answers, one meeting the look-fors and one not, shown on the key), `path` (an exit's `tool` or `paper`; `board`
@@ -88,7 +96,9 @@ Fixed headings, so a script can find each part and a teacher always finds it in 
    only what differs from the unit opener.
 7. **Tomorrow.** What the exit tells the teacher, and what changes the next day because of it, naming the sign
    of each error on both exit paths. The hand-off is two-sided: the next day's file carries an "If many ...
-   day N's exit" line (or an "If day N's slips showed ..." branch) that acts on it, and the gate checks it.
+   day N's exit" line (or an "If day N's slips showed ..." branch) that acts on it, and the gate checks it,
+   finding the next day by number in any unit folder of the course. On a check day, a display line
+   `Check: ...` shows each row with its answer; `Check (sort): ...` shows only the kind (the answer's first part).
 8. **Credit.** See rule 4.
 
 ## The student page
@@ -141,7 +151,8 @@ the check is the evidence.
 `python -X utf8 scripts/lesson.py check` fails a day on: a missing header field or heading, or a heading with
 nothing under it; minutes that do not add up to the day or disagree with `days.csv` (the parts after the warm-up
 must sum to the plan's lesson minutes, and a check day's parts follow its `check_min`); a Tomorrow that the next
-day's file does not pick up; two numbered questions on one source line; a sketch with no box; a table too wide
+day's file does not pick up; two numbered questions on one source line; a sketch asked for with no box (a `[[fig:]]`, a {sketch} box or the strip sheet; the goal line and bold labels
+are not read as asking); a table too wide
 for its page (under half an inch a column); a "when it exists" piece the prose does not explain; a figure number
 missing from its stem; a teacher-judged row with no look-fors or samples (from `plan.py check`, which also
 checks duplicate stems, challenges with the same numbers and the course's word rules in `words.csv`); a prose cap passed, or the

@@ -93,10 +93,12 @@ s11-R3,384,48*8,384,,not seen as a missing factor
 s10-R1,25 or 35,30-5 | 30+5,25 | 35,,not seen as equal groups
 s10-R1,150,30*5,150,,multiplied the two numbers given
 s10-R2,23,15+8,23,,"added: ""how many more"" not yet seen as a difference"
+s10-R2,15 or 8,15 | 8,15 | 8,,gave one amount: the question asks for the difference
 s10-R3,18,2*9,18,F,"the cost of the books, not the money left"
 s10-R3,21,30-9,21,,one book only
 s10-R3,252,(30-2)*9,252,H,
 s10-R3,12 with no equation,,,G,
+s10-R3,48,30+2*9,48,,"added the cost to the money he had: ""left"" not yet read as taking away"
 s10-E1,"""54 is 6 more than 9""",,,A,
 s10-E1,"""6 is 9 times as many as 54""",,,C,
 s10-E1,one sentence only,,,,the second reading is the point of the part
@@ -115,8 +117,6 @@ s10-E7,480,(20+4)*20,480,H,
 s10-E7,100 with no letter,,,G,
 s10-E8,67 with no estimate,7*7+18,67,,goes to the estimate warm-ups
 s10-E8,175 accepted,7*(7+18),175,H,"adds before multiplying, as Ravi did"
-s10-X80,7,2+5,7,A,
-s10-X80,"12, or six copies drawn",2+5*2,12,D,
 s10-X80,"""2 is 5 times as many as 10""",,,C,
 s10-X81,"""28 is 4 more than 7""",,,A,
 s10-X81,"""7 is 4 times as many as 28""",,,C,
@@ -138,9 +138,224 @@ s10-X86,melon 96,24*4,96,B,
 s10-X86,melon 20,24-4,20,A,
 s10-X86,squash 24,4*(24/4),24,A,the other way round: 4 times the melon
 s10-X86,melon only,,,F,one question answered
-s10-X87,90,3*30,90,F,
-s10-X87,142,3*30+52,142,,adds the 52
-s10-X87,"38 with no letter, or a letter never named",,,G,
-s10-X87,"no estimate, or ""38 is about 40"" with no working from the story",,,,part h not shown
+s10-X87v2,90,3*30,90,F,
+s10-X87v2,4650,(158-3)*30,4650,H,"worked left to right, 158 − 3 first"
+s10-X87v2,248,158+3*30,248,,adds the 90
+s10-X87v2,"68 with no letter, or a letter never named",,,G,
+s10-X87v2,"no estimate, or ""68 is about 70"" with no working from the story",,,,part h not shown
 s10-W82,"3 + 5 = 8, so Jo is wrong",3+5,8,A,
 s10-W86,"both stories say ""times"", or both say ""more""",,,A,
+s10-C88-1,72,8*9,72,F,
+s10-C88-1,87,8*9+15,87,,adds the 15
+s10-C88-1,2,9+8-15,2,A,"""8 more"""
+s10-C88-2,"42 times, 8 blocks",,,A,the two answers swapped
+s10-C88-2,288,48*6,288,B,
+s10-X80,7,2+5,7,A,added 5 to the 2-strip
+s10-X80,"12, or six copies drawn",2+5*2,12,D,one copy too many
+s10-K80-1,7,3+4,7,A,
+s10-K80-1,15,3+4*3,15,D,
+s10-K80-2,12,4*3,12,,"multiplied: read ""4 more"" as 4 copies"
+s10-F80-1,11,3+8,11,A,the wrong answer shown
+s10-F80-1,27,3+8*3,27,D,"fixed the add, then drew one copy too many"
+s10-F80-2,15,3+4*3,15,D,the wrong answer shown
+s10-F80-2,7,3+4,7,A,
+s10-P80-1,5,2+3,5,A,
+s10-P80-1,8,2+3*2,8,D,
+s10-P80-2,8,1+7,8,A,
+s10-P80-2,"8, or eight copies drawn",1+7*1,8,D,
+s10-P80-3,8,4+4,8,A,
+s10-P80-3,20,4+4*4,20,D,
+s10-P80-4,12,5+7,12,A,
+s10-P80-4,40,5+7*5,40,D,
+s10-P80-5,14,6+8,14,A,
+s10-P80-5,54,6+8*6,54,D,
+s10-P80-6,13,4+9,13,A,
+s10-P80-6,40,4+9*4,40,D,
+s10-C80-1,15,7+8,15,A,
+s10-C80-1,63,7+8*7,63,D,
+s10-P81-4,"""5 times as many as 9 is 14""",5+9,14,A,added
+s10-P81-4,"""9 is 5 times as many as 45""",,,C,roles swapped
+s10-P81-4,one sentence only,,,,the second reading is the day's point
+s10-P81-5,"""7 times as many as 8 is 15""",7+8,15,A,added
+s10-P81-5,"""8 is 7 times as many as 56""",,,C,roles swapped
+s10-P81-5,one sentence only,,,,the second reading is the day's point
+s10-P81-6,"""6 times as many as 8 is 14""",6+8,14,A,added
+s10-P81-6,"""8 is 6 times as many as 48""",,,C,roles swapped
+s10-P81-6,one sentence only,,,,the second reading is the day's point
+s10-P81-7,"""2 times as many as 9 is 11""",2+9,11,A,added
+s10-P81-7,"""9 is 2 times as many as 18""",,,C,roles swapped
+s10-P81-7,one sentence only,,,,the second reading is the day's point
+s10-P81-8,"""7 times as many as 5 is 12""",7+5,12,A,added
+s10-P81-8,"""5 is 7 times as many as 35""",,,C,roles swapped
+s10-P81-8,one sentence only,,,,the second reading is the day's point
+s10-P81-9,"""8 times as many as 9 is 17""",8+9,17,A,added
+s10-P81-9,"""9 is 8 times as many as 72""",,,C,roles swapped
+s10-P81-9,one sentence only,,,,the second reading is the day's point
+s10-P81-10,"""4 times as many as 9 is 13""",4+9,13,A,added
+s10-P81-10,"""9 is 4 times as many as 36""",,,C,roles swapped
+s10-P81-10,one sentence only,,,,the second reading is the day's point
+s10-P81-11,"""3 times as many as 8 is 11""",3+8,11,A,added
+s10-P81-11,"""8 is 3 times as many as 24""",,,C,roles swapped
+s10-P81-11,one sentence only,,,,the second reading is the day's point
+s10-P81-1,72 or 56,64+8 | 64-8,72 | 56,,added or took away: not yet a missing factor
+s10-P81-2,90 or 72,81+9 | 81-9,90 | 72,,added or took away: not yet a missing factor
+s10-P81-3,465,,,,took the smaller digit from the larger in each place
+s10-F81-1,3 = 4 × 12,,,C,the wrong answer shown
+s10-F81-1,"12 = 4 + 3, or 4 + 3 = 7",4+3,7,A,
+s10-C81-1,"""Two: 49 is 7 times as many as 7, twice""",,,,the same sentence counted twice
+s10-C81-2,only the two from 36 = 4 × 9,,,,6 times as many as 6 missed
+s10-K83-1,12,2*6,12,A,multiplied: the 2 read as copies
+s10-K83-2,8,6+2,8,A,
+s10-K83-2,18,6+2*6,18,D,Ada's strip and then 2 more copies
+s10-T83-1,3 times as many: 4,1+3,4,A,both columns the same
+s10-T83-2,3 times as many: 7,4+3,7,A,both columns the same
+s10-T83-2,3 times as many: 16,4+3*4,16,D,
+s10-T83-3,3 times as many: 8,5+3,8,A,both columns the same
+s10-T83-3,3 times as many: 20,5+3*5,20,D,
+s10-T83-4,3 times as many: 13,10+3,13,A,both columns the same
+s10-T83-4,3 times as many: 40,10+3*10,40,D,
+s10-F83-1,44,4+10*4,44,D,Bo's strip and then 10 more copies
+s10-P83-1,"both 11, both 24, or swapped",,,A,
+s10-P83-1,Sol 32,8+3*8,32,D,
+s10-P83-2,"both 14, both 45, or swapped",,,A,
+s10-P83-2,Oz 54,9+5*9,54,D,
+s10-P83-3,"both 13, both 42, or swapped",,,A,
+s10-P83-3,blue 48,6+7*6,48,D,
+s10-P83-4,"both 72, both 140, or swapped",,,A,
+s10-P83-4,Kai 210,70+2*70,210,D,
+s10-C83-1,4,2+2,4,,"Sam's and Tia's number, not Pat's"
+s10-K86-1,14,8+6,14,A,
+s10-K86-1,56,8+6*8,56,D,
+s10-K86-2,48,6*8,48,A,the other way round: copies for extra
+s10-P86-1,12,5+7,12,A,
+s10-P86-1,40,5+7*5,40,D,
+s10-P86-2,63,9*7,63,A,the other way round: copies for extra
+s10-P86-2,2,9-7,2,C,made the hose shorter
+s10-P86-3,144,36*4,144,B,
+s10-P86-3,32 or 40,36-4 | 36+4,32 | 40,A,
+s10-P86-4,49,56-7,49,A,
+s10-P86-4,392,56*7,392,B,
+s10-P86-4,"""The cat weighs 8 times as much""",,,C,
+s10-P86-5,52,43+9,52,C,"Sam read fewer pages, not more"
+s10-P86-6,17,8+9,17,A,
+s10-P86-6,80,8+9*8,80,D,
+s10-P86-7,7,49/7,7,A,"the other way round: how many times, not how many more"
+s10-P86-8,40,45-5,40,A,
+s10-P86-8,225,45*5,225,B,
+s10-P86-9,56,7*8,56,F,one step only
+s10-P86-9,47 with no letter,,,G,
+s10-C86-1,24,3*8,24,F,Bo only
+s10-C86-1,18,8+3+7,18,A,
+s10-K82-1,"7 + 5 = 12, or 35 = 7 + 5",7+5,12,A,
+s10-K82-1,5 = 7 × 35,,,C,
+s10-K82-2,"10 + 8 = 18, or 80 = 10 + 8",10+8,18,A,
+s10-K82-2,8 = 10 × 80,,,C,
+s10-K82-3,"6 + 8 = 14, or 48 = 6 + 8",6+8,14,A,
+s10-K82-3,48 × 6 = 288,48*6,288,B,multiplied the bigger amount
+s10-K82-3,8 = 6 × 48,,,C,
+s10-P82-1,"5 + 9 = 14, or 45 = 5 + 9",5+9,14,A,
+s10-P82-1,9 = 5 × 45,,,C,
+s10-P82-2,"""56 is 7 more than 8""",,,A,
+s10-P82-2,"""8 is 7 times as many as 56""",,,C,
+s10-P82-3,"10 + 5 = 15, or 50 = 10 + 5",10+5,15,A,
+s10-P82-3,50 × 10 = 500,50*10,500,B,multiplied the bigger amount
+s10-P82-3,5 = 10 × 50,,,C,
+s10-P82-4,"""42 is 6 more than 7""",,,A,
+s10-P82-4,"""7 is 6 times as many as 42""",,,C,
+s10-P82-5,"10 + 7 = 17, or 70 = 10 + 7",10+7,17,A,
+s10-P82-5,7 = 10 × 70,,,C,
+s10-P82-6,"""72 is 8 more than 9""",,,A,
+s10-P82-6,"""9 is 8 times as many as 72""",,,C,
+s10-P82-7,"4 + 9 = 13, or 36 = 4 + 9",4+9,13,A,
+s10-P82-7,36 × 4 = 144,36*4,144,B,multiplied the bigger amount
+s10-P82-7,9 = 4 × 36,,,C,
+s10-P82-8,"""60 is 3 more than 20""",,,A,
+s10-P82-8,"""20 is 3 times as many as 60""",,,C,
+s10-P82-9,"""120 is 10 more than 12""",,,A,
+s10-P82-9,"""12 is 10 times as many as 120""",,,C,
+s10-P82-10,"9 + 2 = 11, or 18 = 9 + 2",9+2,11,A,
+s10-P82-10,2 = 9 × 18,,,C,
+s10-P82-11,"""200 is 10 more than 20""",,,A,
+s10-P82-11,"""20 is 10 times as many as 200""",,,C,
+s10-P82-12,"3 + 30 = 33, or 90 = 3 + 30",3+30,33,A,
+s10-P82-12,90 × 3 = 270,90*3,270,B,multiplied the bigger amount
+s10-P82-12,30 = 3 × 90,,,C,
+s10-P82-13,"8 + 50 = 58, or 400 = 8 + 50",8+50,58,A,
+s10-P82-13,400 × 8 = 3200,400*8,3200,B,multiplied the bigger amount
+s10-P82-13,50 = 8 × 400,,,C,
+s10-P82-14,"""280 is 4 more than 70""",,,A,
+s10-P82-14,"""70 is 4 times as many as 280""",,,C,
+s10-P82-15,"6 + 40 = 46, or 240 = 6 + 40",6+40,46,A,
+s10-P82-15,40 = 6 × 240,,,C,
+s10-P82-16,"""300 is 5 more than 60""",,,A,
+s10-P82-16,"""60 is 5 times as many as 300""",,,C,
+s10-C82-1,"one pair only, or one reading of each pair",,,,the second reading is the day 81 point
+s10-C82-1,"""24 is 4 more than 20""",20+4,24,A,
+s10-K85-1,27,36-9,27,A,
+s10-K85-1,324,36*9,324,B,
+s10-K85-1,"""Nell picked 4 times as many""",,,C,
+s10-P85-1,24,3*8,24,F,"the crayons taken, not the crayons left"
+s10-P85-1,376,(50-3)*8,376,H,
+s10-P85-1,26 with no equation,,,G,
+s10-P85-2,15,8+7,15,A,
+s10-P85-2,64,8+7*8,64,D,
+s10-P85-3,19,9+10,19,A,
+s10-P85-3,99,9+10*9,99,D,
+s10-P85-4,252,42*6,252,B,
+s10-P85-4,36,42-6,36,A,
+s10-P85-4,48,42+6,48,A,added
+s10-P85-5,648,72*9,648,B,
+s10-P85-5,63,72-9,63,A,
+s10-P85-5,81,72+9,81,A,added
+s10-P85-6,40,48-8,40,A,
+s10-P85-6,384,48*8,384,B,
+s10-P85-6,"""the small jar holds 6 times as many""",,,C,
+s10-P85-7,36,45-9,36,A,
+s10-P85-7,405,45*9,405,B,
+s10-P85-7,"""the shed is 5 times as tall""",,,C,
+s10-C85-1,18,3*3*2,18,F,"Ned's beads, not the number of times"
+s10-C85-1,6,3+3,6,A,the two 3s added
+s10-F85-1v2,"""Raj has 8 times as many pens as Ann""",,,C,the wrong answer shown
+s10-K87-1,280,4*70,280,F,stopped at the pages in the book
+s10-K87-1,415,4*70+135,415,,added the pages read
+s10-P87-1,300,5*60,300,F,
+s10-P87-1,415,5*60+115,415,,added the 115
+s10-P87-1,"185 with no letter, or a letter never named",,,G,
+s10-P87-2v2,7,63/9,7,F,"the fence, not the tree"
+s10-P87-2v2,615,63*9+48,615,B,multiplied because it says times
+s10-P87-3,42,6*7,42,F,
+s10-P87-3,59,6*7+17,59,,added the hens sold
+s10-P87-3,13 − 17 cannot be done,7+6,13,A,read 6 times as many as 6 more
+s10-P87-4,400,8*50,400,F,
+s10-P87-4,686,8*50+286,686,,added the tiles used
+s10-P87-5,360,4*90,360,F,
+s10-P87-5,331,4+90+237,331,,added the 4 packs as 4 cards
+s10-P87-6,280,7*40,280,F,"the cost of the tickets, not the money left"
+s10-P87-6,"18,240",(463-7)*40,18240,H,worked 463 − 7 × 40 left to right
+s10-P87-6,423,463-40,423,,one ticket only
+s10-P87-7,far off,,,,a right answer rejected: the estimate was not made from the story
+s10-P87-8,makes sense,,,,847 accepted: no estimate made
+s10-P87-9,makes sense,,,,69 accepted: no estimate made
+s10-F87-1,80,2*40,80,F,the wrong answer shown
+s10-F87-2,33 with no equation,,,G,the wrong answer shown
+s10-F87-3,39,(10+3)*3,39,H,the wrong answer shown
+s10-K84-1,15,8+7,15,A,added
+s10-K84-1,63,7+8*7,63,D,one copy too many
+s10-K84-2,448,56*8,448,B,
+s10-K84-2,48,56-8,48,A,
+s10-F84-1,24,12*2,24,B,the wrong answer shown
+s10-F84-1,10,12-2,10,A,
+s10-P84-1,13,9+4,13,A,
+s10-P84-1,45,9+4*9,45,D,one copy too many
+s10-P84-2,252,42*6,252,B,
+s10-P84-2,36 or 48,42-6 | 42+6,36 | 48,A,
+s10-P84-3,17,8+9,17,A,
+s10-P84-3,80,8+9*8,80,D,one copy too many
+s10-P84-4,225,45*5,225,B,
+s10-P84-4,40 or 50,45-5 | 45+5,40 | 50,A,
+s10-P84-5,57,50+7,57,A,
+s10-P84-5,400,50+7*50,400,D,one copy too many
+s10-P84-6,288,48*6,288,B,
+s10-P84-6,42 or 54,48-6 | 48+6,42 | 54,A,
+s10-C84-1,175,35*5,175,B,
+s10-C84-1,30,35-5,30,A,
