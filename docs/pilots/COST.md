@@ -59,11 +59,22 @@ Built 2026-11-12, after the four 11.1 day reads were folded in. Full expert read
 | Merge of the nine days | not measured (main session, small) | | 0 | 2 duplicate wrong-answer rows, removed | |
 | Writer-flagged fix pass (lesson.py byte-stable PDFs, sketch gate, check screen, and others) | 96,200 by one agent (97 tool uses) | 0.27 (15.9 min) | 0 | 13 fixed, found by the day writers | Before the expert reads |
 | Expert cold reads, days 80 to 88 | 173,197 / 164,160 / 197,136 / 184,064 / 160,803 / 178,123 / 158,824 / 175,657 / 211,259; mean 178,100 | 0.09 to 0.12 each (5.2 to 7.1 min), run in parallel | 0 | 87 in all (10 / 7 / 12 / 10 / 7 / 9 / 10 / 11 / 11); 56% process layer; 61 repeat an 11.1 kind; none for Cory | Reports in docs/reviews/day-080 to 088-2026-11-12.md; analysis in REVIEW-CADENCE.md |
-| Expert fix pass | | | 0 | | Running |
+| Expert fix pass | 216,916 by one agent (264 tool uses) | 0.55 (33.1 min) | 0 | 85 of 87 fixed, 2 open (a tool ask; one judgment left for the taught run); about 10 new gates | Also touched stretch 11 days 89 to 93 where a stretch 10 promise reached them |
 
 **For estimates.** Nine days cost 140,555 to 184,931 tokens each, mean 169,200, up from 131,700 in unit 11.1: the brief now carries
 the 11.1 lessons and the gates are stricter, so agents spend more turns passing them. A stretch's shared pieces cost
 about 165,000 once, and putting a prose plan into data about 81,000.
+
+## Grade 4 math, stretches 1 and 9, the third and fourth units
+
+Started 2026-11-12. Stretch 1 is factors and multiples (days 1 to 6); stretch 9 is adding and subtracting to a
+million (days 72 to 79; day 78 is Check 2, which waits on stretches 6 to 8).
+
+| Piece | Tokens | Wall hours | Owner minutes | Defects found, by read | Notes |
+|---|---|---|---|---|---|
+| Stretch 1 plan as data | 250,696 by one agent (68 tool uses) | 0.17 (10.2 min) | 0 | 0 by the script after | Prose plan existed |
+| Stretch 9 plan as data | 217,505 by one agent (42 tool uses) | 0.17 (10.3 min) | 0 | 0 by the script after | plan.py: check-2 and respond-2 units |
+| Merge of both into main | not measured (main session) | | 0 | 1 stale duplicate day row; 2 hand-backs at the door moved to pencils down | The new tool-rows gate flags days 2 to 5 and 77 until their writers add T rows |
 
 ## Grade 6 ELA, stretch 2, five pilot days
 
