@@ -9,7 +9,7 @@
   {{ crumbs([(grade_label(m.grade), grade_href(m.grade)), (subject.short, '/subjects/' ~ m.subject ~ '/'), (m.title, None)]) }}
   <div class="module-head">
     <div class="page-head">
-      <p class="eyebrow">Module · {{ grade_label(m.grade) }} · {{ subject.short }}</p>
+      <p class="eyebrow">Topic · {{ grade_label(m.grade) }} · {{ subject.short }}</p>
       <h1><span class="title-dot" style="background:var(--{{ subject.color }})"></span>{{ m.title }}</h1>
       <p>{{ m.description }}.</p>
     </div>
@@ -39,7 +39,7 @@
   {% if rcards %}
   <section class="group">
     <h2>Research Cards</h2>
-    <p>{% if rc_all %}A first taste of research for young learners: a two-page card on a person, place, thing or animal. Children read, then find facts and write them down.{% else %}Two-page research cards that go with this module. Children read, then find facts and write them down.{% endif %}</p>
+    <p>{% if rc_all %}A first taste of research for young learners: a two-page card on a person, place, thing or animal. Children read, then find facts and write them down.{% else %}Two-page research cards that go with this topic. Children read, then find facts and write them down.{% endif %}</p>
     <ul class="module-list">{% for c in rcards[:6] %}<li><a href="/closet/research-cards/{{ c.id }}/"><b>{{ c.emoji }} {{ c.title }}</b></a></li>{% endfor %}</ul>
     <p><a class="btn" href="/closet/research-cards/">All research cards</a></p>
   </section>
@@ -55,7 +55,7 @@
     </ul>
     {% endif %}
     {% if gens %}
-    <p><b>Make a sheet:</b> a new one with its answer key every time, settings already picked for this module.</p>
+    <p><b>Make a sheet:</b> a new one with its answer key every time, settings already picked for this topic.</p>
     <ul class="module-list">
       {% for g in gens %}<li><a href="{{ g.url }}"><b>{{ g.title }}</b></a><span>{{ g.note }}</span></li>{% endfor %}
     </ul>
@@ -66,7 +66,7 @@
   {% if chart %}
   <section class="group">
     <h2>Anchor chart</h2>
-    <p>{{ chart.title[0] }}: the big idea of this module on one page, finished or fill-in, in English or Spanish. Print it on one page or tile it big.</p>
+    <p>{{ chart.title[0] }}: the big idea of this topic on one page, finished or fill-in, in English or Spanish. Print it on one page or tile it big.</p>
     <p><a class="btn" href="{{ chart.url }}">Print the anchor chart</a></p>
   </section>
   {% endif %}

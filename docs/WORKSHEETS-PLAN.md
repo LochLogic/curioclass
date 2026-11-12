@@ -1,6 +1,6 @@
 # Worksheets: printable practice sheets (plan)
 
-Status: LIVE 2026-11-03, 1,008 sheets built across 204 units; concept lists for all 215 classes (7,116 sheets after the 2026-11-04 trim, from 8,947).
+Status: LIVE 2026-11-03, 1,008 sheets built across 204 classes; concept lists for all 215 classes (7,116 sheets after the 2026-11-04 trim, from 8,947).
 Started 2026-11-01 (Cory). Track 2, Supply Closet, item 6 in docs/ROADMAP.md.
 
 ## What it is
@@ -20,25 +20,25 @@ layout types (organizers, planners, frames, logs, reflections) are covered when 
 The first 15 generators went live as a test group on 2026-11-03 (/closet/worksheets/make/, docs/SUPPLY-CLOSET-PLAN.md
 "Generators"); the worksheets shelf links to them.
 
-## A class is a unit
+## One list per class (`unit` in the code)
 
 Cory chose "by class" (2026-11-01): a list for each class a teacher actually teaches.
 
-| Subjects | One unit per | Units |
+| Subjects | One class per | Classes |
 |---|---|---|
 | ELA, Health, PE, Visual Arts, Music, Theater, Dance, Media Arts, Computer Science, SEL, ELD, Library | grade, K-12 | 156 |
 | Math, Science, Social Studies | grade, K-8 (grade 6-8 Social Studies is its course: World Geography, World History, US History to 1877) | 27 |
 | High school courses | course: Algebra I, Geometry, Algebra II, Precalculus, Statistics, Calculus; Earth and Space, Biology, Chemistry, Physics, Environmental; World History, US History since 1877, Government, Economics, Psychology | 16 |
 | CTE | grade 6-8 (Career Exploration), then course: Career Pathways, Personal Finance | 5 |
 | World Languages | proficiency level, not grade: Spanish and ASL Novice (K-5), Novice (6-12), Intermediate, Advanced; French Novice, Intermediate, Advanced | 11 |
-| **Total** | | **215 units, 7,116 worksheets** (8,947 before the 2026-11-04 trim) |
+| **Total** | | **215 classes, 7,116 worksheets** (8,947 before the 2026-11-04 trim) |
 
-`python scripts/check_worksheets.py --units` lists them all; `--modules <unit-id>` lists the modules a unit covers.
-The units come from `data/courses.csv` and `data/modules.csv`, so a new module shows up in its units automatically.
+`python scripts/check_worksheets.py --units` lists them all; `--modules <unit-id>` lists the modules a class covers.
+The classes come from `data/courses.csv` and `data/modules.csv`, so a new module shows up in its classes automatically.
 
 ## The concept lists
 
-`docs/worksheets/<subject>.md`, one file per subject (Arts split by discipline, Health and PE split). Each unit is a
+`docs/worksheets/<subject>.md`, one file per subject (Arts split by discipline, Health and PE split). Each class is a
 section, in course order:
 
 ```
@@ -52,29 +52,29 @@ section, in course order:
 - **Worksheet:** a specific, teacher-friendly title. Never "Fractions Practice 2".
 - **Type:** one of the types below.
 - **Module:** the module title from `data/modules.csv` (the sheet links to its module page, and through it to the
-  standards, tools, Word Wall and chart). "-" only for a unit with no modules yet (French).
+  standards, tools, Word Wall and chart). "-" only for a class with no modules yet (French).
 - **Students:** what students actually do on the sheet, in one sentence (6 to 30 words), concrete enough that a
   writer can build the sheet from it.
 
-### Rules for a unit's list
+### Rules for a class's list
 
 1. **30 to 45 rows** (about 30 hand-written, generator rows on top, since the 2026-11-04 trim). Every module gets at
    least 1 (2 where it fits; ELA's small modules are a roadmap item), roughly in proportion to its size. Row numbers
    are ids: never renumber, gaps are fine.
 2. **In teaching order:** the order a teacher would use them across the year, module by module, with a few review
    sheets at natural checkpoints.
-3. **A real mix of types.** At least 4 types per unit, no type over 60%. Math leans on Practice and Apply; history on
+3. **A real mix of types.** At least 4 types per class, no type over 60%. Math leans on Practice and Apply; history on
    Source analysis, Timeline and Map; science on Lab, Diagram and Data and graphs; arts on Critique, Planner and Log.
 4. **Grade-right.** K-1 sheets are mostly pictures, tracing, circling, cutting and gluing, and drawing, with a few
    words a teacher reads aloud. Reading load grows with the grade.
-5. **Distinct.** No two sheets in a unit do the same thing. Consecutive grades build on each other rather than
+5. **Distinct.** No two sheets in a class do the same thing. Consecutive grades build on each other rather than
    repeating (grade 4 fractions are not grade 3 fractions).
 6. **Paper is the product.** Nothing needs a device. Sheets that pair with a Curio Class tool say so in the Students
    line ("after the tool", "while using").
 7. **No busywork.** Word searches and coloring-only sheets are out. A Puzzle sheet must make students use the
    skill: a color by code where each space's color comes from solving its problem, a cross-number with real
    computation, a maze you escape by choosing right answers, a logic grid built on the content.
-8. **Vocabulary sheets sparingly** (at most 3 per unit): Word check on the Word Wall shelf already does matching.
+8. **Vocabulary sheets sparingly** (at most 3 per class): Word check on the Word Wall shelf already does matching.
    A Vocabulary sheet here does something more (sort, use in context, draw it, word map).
 9. **House rules:** no em dashes, "Curio Class" never "Curio" alone, hard history and health guardrails
    (docs/agents/STANDARDS.md), and nothing that needs a student's personal or family information.
@@ -158,13 +158,13 @@ texts by name. Each passage is checked for grade-level readability and never reu
 
 Agreed 2026-11-01 (Cory): keep the collection light by storing text, not pages, images or PDFs.
 
-- **Source is text.** One file per unit, `data/closet/worksheets/<unit-id>.md`, holding its sheets as
+- **Source is text.** One file per class, `data/closet/worksheets/<unit-id>.md`, holding its sheets as
   `key: value` headers and format blocks (above), with answers inline. About 2 to 4 KB per sheet, so 25 to 40 MB for
   the whole collection, and an edit is a one-line diff.
 - **No raster images and no PDFs.** Pictures come from the shared SVG icon library and generated diagrams. A teacher
   makes a PDF with the browser's Save as PDF if they want one.
-- **About 450 deployed files, not 10,000.** One static page per unit lists its sheets (indexable: every title and
-  description), one compact data file per unit (about 20 to 40 KB compressed), and one shared viewer page
+- **About 450 deployed files, not 10,000.** One static page per class lists its sheets (indexable: every title and
+  description), one compact data file per class (about 20 to 40 KB compressed), and one shared viewer page
   (`/closet/worksheets/sheet/#<unit-id>/<n>`) that draws a sheet in the print layout. This keeps the site far under
   the host's file-count limit (Cloudflare static assets: check the current cap, about 20,000 files on the free plan).
 - **One page, two copies.** "Show answer key" flips the same page between the student copy and the teacher page.
@@ -172,7 +172,7 @@ Agreed 2026-11-01 (Cory): keep the collection light by storing text, not pages, 
 - **Print sets.** "Print all sheets for this module" sends several sheets in one print job.
 - **No new libraries or fonts.** The viewer is one small shared script with the site's print CSS, nothing from other
   hosts.
-- **Search:** the unit pages carry search. If single sheets need to rank later, the most used few hundred can be
+- **Search:** the class pages carry search. If single sheets need to rank later, the most used few hundred can be
   pre-rendered as static pages and still stay well under the limit.
 
 A checker verifies every answer key (computed for math, looked up for facts, a human pass for open answers).
@@ -248,7 +248,7 @@ row labels, the staff, graphs that print for students, code listings, teacher-on
 
 ## Order (proposed)
 
-1. **Concept lists** for all 215 units (this step). Cory reviews the lists.
+1. **Concept lists** for all 215 classes (this step). Cory reviews the lists.
 2. **Pilot:** DONE 2026-11-01, ten sheets (above). Cory's review of them comes next.
 3. **Build waves** by subject and band, core subjects first, with the answer-key check.
 4. **Site:** `/closet/worksheets/` by grade and subject, a sheet page that prints the student pages, and a separate

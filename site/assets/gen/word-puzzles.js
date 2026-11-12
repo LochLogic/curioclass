@@ -202,8 +202,8 @@ Gen.add('word-puzzles', {
     { id: 'subject', label: 'Subject', type: 'select', options: (v, d) => subjects(d), def: 'science' },
     { id: 'band', label: 'Grades', type: 'select', def: '35',
       options: (v, d) => BANDS.filter(b => mods(d).some(m => m.subject === v.subject && m.band === b[0])) },
-    { id: 'mod', label: 'Word Wall module', type: 'select', options: (v, d) => inBand(v, d).map(m => [m.id, m.title + gradeNote(m)]) },
-    { id: 'mod2', label: 'Add a second module (optional)', type: 'select', def: '',
+    { id: 'mod', label: 'Word Wall topic', type: 'select', options: (v, d) => inBand(v, d).map(m => [m.id, m.title + gradeNote(m)]) },
+    { id: 'mod2', label: 'Add a second topic (optional)', type: 'select', def: '',
       options: (v, d) => [['', 'None']].concat(inBand(v, d).filter(m => m.id !== v.mod).map(m => [m.id, m.title + gradeNote(m)])) },
     { id: 'kind', label: 'Puzzle', type: 'select', options: [['search', 'Word search'], ['cross', 'Crossword']], def: 'search' },
     { id: 'list', label: 'Word search list', type: 'select', def: 'words', show: v => v.kind === 'search' && v.band !== 'k2',
@@ -312,7 +312,7 @@ Gen.add('word-puzzles', {
       mistakes: search_ ? 'Circling part of a longer word, or stopping when a word bends: words always run in a straight line.'
         : 'Starting a word in the wrong box, and counting boxes wrong. A word that does not fit the number of boxes is the wrong word; check the crossing letters.',
       notes: (search_ ? 'The key shades every square that belongs to a word. ' : 'The crossword is laid out fresh for each sheet code, and every word crosses at least one other. ') +
-        'Clues are the Word Wall meanings; if a word appears inside its own meaning it is shown as a blank. Add a second module for a longer puzzle.',
+        'Clues are the Word Wall meanings; if a word appears inside its own meaning it is shown as a blank. Add a second topic for a longer puzzle.',
     };
   },
   verify(s, v, d) {

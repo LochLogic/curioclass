@@ -9,7 +9,7 @@ The one plan for Curio Class: what comes next, and in what order. Consolidated 2
 docs/LIBRARY-PLAN.md, docs/SITE.md ("Not done yet") and docs/agents/roadmap/.
 
 The foundation (what Curio Class is for, who it serves, its promises and assumptions): docs/FOUNDATION.md, the one home of layer 1 (2026-11-11). Why and where: docs/VISION.md (the north star, 2026-11-03). The quality bar for full courses: docs/ADOPTION-BAR.md
-(state adoption is the bar we build to, Cory 2026-11-10; formal adoption is not pursued now). This file holds the order. The design detail stays in each track's own plan, linked from its section.
+(state adoption is the bar we build to, Cory 2026-11-10; formal adoption is not pursued now). This file holds the order. The design detail stays in each track's own plan, linked from its section. The words for each thing we build: docs/GLOSSARY.md (locked 2026-11-12).
 When a roadmap item starts, finishes or moves, update it here first, then post it to the Review Desk's Roadmap tab
 (`python scripts/desk_roadmap.py <out.json>`, then ArtifactData set stats/roadmap).
 
@@ -169,7 +169,7 @@ Where the step 4 row below and this table disagree, this table wins.
 | **Unit** | A 1 to 5 day package inside a course (unit 3.4 of grade 4 math, six days, is the named exception) | Points at modules and picks from every shelf. Owns only the order, the teacher pages and what no shelf has. Has a unit plan (1,250 words at most, not counting checks, errors and days, under its stretch sheet) before any of its tools is built |
 | **Module** | One teachable topic, and the hub page every shelf hangs from | Split only when it holds two unrelated topics, and then properly. Its standards are spelled out, never a bare cluster |
 | **Tool** | One screen piece | Carries only the codes it teaches on its main path, and a role: lesson, see why or practice. Built only when a unit plan names its job, which also marks it key or light. How many tools a stretch gets is set by its unit plans (BASELINE rules 22 and 23, changed 2026-11-11); a major stretch may run on print with no key tool, as grade 4 math stretch 3 does |
-| **Shelves** | Word Wall, charts, Game Night, Sub Day, lesson plans, worksheets, generators, Reading Room, The Map | Keep their keys. Worksheets and generators are the home of fluency and extra practice; the Reading Room is the home of year-long reading |
+| **Shelves** | Word Wall, charts, Game Night, Sub Day, lesson plans, worksheets, generators, Reading Room, Teaching map (hidden now, back later reimagined) | Keep their keys. Worksheets and generators are the home of fluency and extra practice; the Reading Room is the home of year-long reading |
 | **Ledger** | data/coverage.csv | One row per standard per course: where it is taught in full. The one home of a coverage claim and the source of the measure |
 | **Recess, Curiosities** | Play and wonder | Outside the bar. They claim no standard |
 

@@ -29,15 +29,15 @@ Needs Python with `jinja2` and `markdown`. `dist/` is generated and not committe
 | URL | Page | In sitemap |
 |---|---|---|
 | `/` | Home | yes |
-| `/grades/`, `/grades/<k..12>/`, `/grades/<k-2, 3-5, 6-8, 9-12>/` | Grade and band pages (browse layout: sticky section nav, two-column modules, Ready now shelf, Ready-only filter, jump menu on phones) | yes |
+| `/grades/`, `/grades/<k..12>/`, `/grades/<k-2, 3-5, 6-8, 9-12>/` | Grade and band pages (browse layout: sticky section nav, two-column topics, Ready now shelf, Ready-only filter, jump menu on phones) | yes |
 | `/subjects/`, `/subjects/<id>/` | Subject pages | yes |
 | `/styles/`, `/styles/<format>/` | Play styles | yes |
 | `/collections/`, `/collections/<family>/` | Tool families across grades | yes |
 | `/standards/` | Standards index | yes |
-| `/standards/<code>/` | Modules, then tools, for one code | no (noindex until more tools are built) |
-| `/modules/<id>/` | Everything for one module: tools, lesson plans, Supply Closet shelves as they ship | yes once the module has a built tool |
+| `/standards/<code>/` | Topics, then tools, for one code | no (noindex until more tools are built) |
+| `/modules/<id>/` | Topic page ("module" in the URL and code): everything for one topic: tools, lesson plans, Supply Closet shelves as they ship | yes once the topic has a built tool |
 | `/modules/<id>/words/` | Word Wall print page: wall cards, mini cards, glossary; English, Spanish or both (`?format=`, `?lang=`); built only with `--closet` or `--preview` | yes in closet builds |
-| `/closet/word-wall/<grade>/` | Word Wall list for one grade or span (`k`, `3`, `9-12`, `k-12`), modules grouped by subject | yes in closet builds |
+| `/closet/word-wall/<grade>/` | Word Wall list for one grade or span (`k`, `3`, `9-12`, `k-12`), topics grouped by subject | yes in closet builds |
 | `/closet/`, `/closet/<shelf>/` | Supply Closet (docs/SUPPLY-CLOSET-PLAN.md); built only with `--closet` or `--preview` until Sub Day ships | yes / noindex while a shelf is empty |
 | `/modules/<id>/chart/` | Anchor chart (Phase D): finished or fill-in, English or Spanish, one page or tiled 2x2 / 3x3 (`?version=`, `?lang=`, `?size=`); `chart.svg` beside it is the shelf thumbnail | yes in closet builds |
 | `/closet/anchor-charts/posters/<id>/` | Year-long poster, same page and options as an anchor chart | yes in closet builds |

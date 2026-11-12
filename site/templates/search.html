@@ -29,7 +29,7 @@
     const terms = q.value.toLowerCase().split(/\s+/).filter(Boolean).map(widen);
     if (!terms.length) { out.innerHTML = ''; count.textContent = ''; return; }
     const hits = data.filter(d => terms.every(t => d.hay.includes(t)))
-      .sort((a, b) => b.b - a.b || (a.f === 'Module') - (b.f === 'Module'));
+      .sort((a, b) => b.b - a.b || (a.f === 'Topic') - (b.f === 'Topic'));
     count.textContent = hits.length + (hits.length === 1 ? ' result' : ' results');
     out.innerHTML = hits.slice(0, 80).map(d =>
       '<a href="' + d.u + '"><b>' + esc(d.t) + '</b>' + (d.b ? ' <span class="tag built">Ready</span>' : '') +

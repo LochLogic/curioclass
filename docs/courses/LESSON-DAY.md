@@ -17,7 +17,7 @@ adds the rest.
 | **Teacher page** | The teacher, the night before | Written, plus a header and tables generated from data | 900 words of prose at most on a teaching day, 500 on a check day. Generated tables do not count |
 | **Student page** | Each student | Written frame; every question pulled from data | One sheet, both sides of US Letter at most. Words a student reads counts everything printed for the student, questions included; the cap is set per course in DEFAULTS.md (grade 4 math: 350, ours, untested), and the gate reports frame and questions apart. No sentence over 15 words in grades 3 to 5. 18 point type in kindergarten to grade 2, with a line telling the teacher what to read aloud; 14 point in grades 3 to 5; 12 point from grade 6 |
 | **Exit slip** | Each student, then the teacher | Generated from data: the paper path's exit rows | A quarter page, four to a sheet |
-| **Key** | The teacher | Generated from data: every answer on both exit paths, its equation or working, and what each wrong answer means | Usually one side |
+| **Answer key** | The teacher | Generated from data: every answer on both exit paths, its equation or working, and what each wrong answer means | Usually one side |
 | **Display page** | The class, on the projector | Generated from data, in the order the teacher page runs, part by part. For each worked example, the question with its labelled figure, then the steps one screen at a time; for each wrong answer to fix, their working beside the right working; one screen per **Ask.**; a challenge screen; the answers to a plain sum; a "check your answers" screen only where a part names a partner or self check (a `Check: ...` line in the part gives its sentence); on a check day, the answers screen and one screen per group in the respond part; the sentence frames last | No words of its own |
 | **Slides** | Nobody | **None.** The display page and the tool's own screen do this job; a slide deck would be a second copy of the teacher page to write and keep right | 0 |
 | **Materials** | The teacher | A line in the header: per student, per class, what to print and how many, and the stand-in for a room without it ("no document camera: draw it on the board") | Part of the header |
@@ -27,9 +27,10 @@ curioclass.org", and the credit of any adapted item it prints (rule 4), so last 
 today's key and a reuser can see whom to credit.
 
 **Once per unit** (not per day): the unit opener (the teacher page for the unit: the math explained at an adult's
-level, why this model, the error register in plain words, the supply list; 1,200 words at most), the family note in
-English and Spanish (150 words at most each), the record sheet, the readiness check and end check with their keys,
-and any generator sheet the plan defines. A sheet with no preset questions (a strip sheet, a blank grid) is a
+level, why this model, the error register in plain words, the supply list; 1,200 words at most) and any generator sheet the plan defines. **Once per
+stretch** (filed in the folder of the stretch's first unit, as docs/courses/UNIT-PLAN.md puts them on the stretch
+sheet): the family note in English and Spanish (150 words at most each), the record sheet, the readiness check
+and end check with their answer keys. A sheet with no preset questions (a strip sheet, a blank grid) is a
 `piece: blank`: it prints for students, its words are counted without markup, and it must fit two sides. These
 are generated from data wherever they can be.
 
@@ -227,8 +228,9 @@ slides) holds everywhere. Known now to differ:
 - An accessibility conformance level for print (item 10: Cory's).
 - (Decided 2026-11-12, card `q-shelves-in-courses`.) How a day uses the older shelves: a day names each shelf
   item it uses (Word Wall card, chart, worksheet row, generator preset, game) by id, and the gate fails on an id
-  that does not exist. Not built into `lesson.py` yet; it comes with unit 11.1's shelf pieces. A course day's Sub
-  Day packet is generated from the day itself. The Reading Room is not where course texts come from below the
+  that does not exist. Not built into `lesson.py` yet; it comes with unit 11.1's shelf pieces. A course has one
+  sub-ready day per unit, written with the unit (this replaced "a Sub Day packet generated from every course
+  day" the same day; docs/SITE-DESIGN.md); the per-tool Sub Day packets stay on the shelf. The Reading Room is not where course texts come from below the
   higher grades: K-8 anchors on newer texts, mostly our own (card `q-course-texts`).
 
 ## The worked case: day 90

@@ -7,7 +7,7 @@
   {{ crumbs([('Supply Closet', '/closet/'), ('Word Wall', '/closet/word-wall/'), (title, None)]) }}
   <div class="page-head">
     <h1>Word Wall: {{ title }}</h1>
-    <p>{{ tally }}. Pick a module to print its cards in English, Español or both.{% if also %} More for this grade: {% for x in also %}<a href="/closet/word-wall/{{ x }}/">{{ grade_label(x) }}</a>{{ ', ' if not loop.last }}{% endfor %}.{% endif %}</p>
+    <p>{{ tally }}. Pick a topic to print its cards in English, Español or both.{% if also %} More for this grade: {% for x in also %}<a href="/closet/word-wall/{{ x }}/">{{ grade_label(x) }}</a>{{ ', ' if not loop.last }}{% endfor %}.{% endif %}</p>
   </div>
 
   <div class="browse">

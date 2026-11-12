@@ -26,7 +26,7 @@
 {% block main %}
 <div class="wrap">
   {{ crumbs([('Teaching map', None)]) }}
-  <div class="page-head"><h1>Teaching map</h1><p>A suggested order for the year in every subject and grade: {{ n_stops }} modules in {{ n_regions }} regions. Open a region to walk its trail. {{ n_ready }} stops have a tool ready today, and the rest are planned.</p></div>
+  <div class="page-head"><h1>Teaching map</h1><p>A suggested order for the year in every subject and grade: {{ n_stops }} topics in {{ n_regions }} regions. Open a region to walk its trail. {{ n_ready }} stops have a tool ready today, and the rest are planned.</p></div>
 
   <div class="map-scroll">{{ grid | safe }}</div>
   <p class="map-key"><span><i style="background:var(--teal)"></i>Darker: more stops ready</span><span><i style="background:#fff;border-style:dashed"></i>Dashed: planned, nothing ready yet</span><span>Numbers: stops ready / stops in the region</span></p>
@@ -42,13 +42,13 @@
 
   <section class="group map-about" id="about" aria-labelledby="about-h">
     <h2 id="about-h">About this order</h2>
-    <p>The order is our own suggestion for arranging our own modules. It is not a pacing guide or a requirement, and it is not endorsed by the authors of any standards or curriculum named here. Move stops to fit your school's calendar. The map shows standard codes and our own module titles only, never the standards' text.</p>
+    <p>The order is our own suggestion for arranging our own topics. It is not a pacing guide or a requirement, and it is not endorsed by the authors of any standards or curriculum named here. Move stops to fit your school's calendar. The map shows standard codes and our own module titles only, never the standards' text.</p>
     <p>Each region page says where its order came from:</p>
     <ul>
       <li><b>Math K-11:</b> the unit order of Illustrative Mathematics K-12 Math, first edition, by Illustrative Mathematics, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, used as a reference for which topics come first. "Builds on" links follow each math domain from one grade to the next, as described in the Progressions for the Common Core State Standards for Mathematics (Common Core Standards Writing Team, 2023 edition, licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>). Grade 12 courses follow their framework's unit order.</li>
       <li><b>Science 6-8:</b> based on the grade placements in NGSS Appendix K (Conceptual Progressions model). Kindergarten to grade 5 and high school follow what each topic needs first.</li>
-      <li><b>English language arts:</b> foundational skills early, then reading modules, each followed by the writing or speaking module that uses it, with language modules spread through the year.</li>
-      <li><b>Social studies:</b> expanding horizons in the early grades (self, family, school, community, state), then chronological order, with skills, civics and economics modules next to the era or topic they serve.</li>
+      <li><b>English language arts:</b> foundational skills early, then reading topics, each followed by the writing or speaking topic that uses it, with language topics spread through the year.</li>
+      <li><b>Social studies:</b> expanding horizons in the early grades (self, family, school, community, state), then chronological order, with skills, civics and economics topics next to the era or topic they serve.</li>
       <li><b>Every other subject:</b> the framework's own order, course by course.</li>
     </ul>
   </section>

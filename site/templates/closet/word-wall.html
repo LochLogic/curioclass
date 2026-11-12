@@ -5,7 +5,7 @@
 {% block main %}
 <div class="wrap">
   {{ crumbs([('Supply Closet', '/closet/'), (label, None)]) }}
-  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }} Pick a grade to see its modules by subject, then print cards in English, Español or both.</p></div>
+  <div class="page-head"><h1>{{ label }}</h1><p>{{ what }} Pick a grade to see its topics by subject, then print cards in English, Español or both.</p></div>
   <div class="grades" style="margin-top:24px">
     {% for b in wall_bands %}
     <div class="band">
@@ -15,6 +15,6 @@
     </div>
     {% endfor %}
   </div>
-  <p class="plan-link">"All" pages hold modules written for a whole span, like electives for grades 9-12. World Languages go by language, since each one runs from beginner to advanced at any grade.</p>
+  <p class="plan-link">"All" pages hold topics written for a whole span, like electives for grades 9-12. World Languages go by language, since each one runs from beginner to advanced at any grade.</p>
 </div>
 {% endblock %}

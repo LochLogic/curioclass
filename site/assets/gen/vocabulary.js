@@ -61,8 +61,8 @@ Gen.add('vocabulary', {
     { id: 'subject', label: 'Subject', type: 'select', options: (v, d) => subjects(d), def: 'science' },
     { id: 'band', label: 'Grades', type: 'select', def: '35',
       options: (v, d) => BANDS.filter(b => mods(d).some(m => m.subject === v.subject && m.band === b[0])) },
-    { id: 'mod', label: 'Word Wall module', type: 'select', options: (v, d) => inBand(v, d).map(m => [m.id, m.title + gradeNote(m)]) },
-    { id: 'mod2', label: 'Add a second module (optional)', type: 'select', def: '',
+    { id: 'mod', label: 'Word Wall topic', type: 'select', options: (v, d) => inBand(v, d).map(m => [m.id, m.title + gradeNote(m)]) },
+    { id: 'mod2', label: 'Add a second topic (optional)', type: 'select', def: '',
       options: (v, d) => [['', 'None']].concat(inBand(v, d).filter(m => m.id !== v.mod).map(m => [m.id, m.title + gradeNote(m)])) },
     { id: 'count', label: 'Words', type: 'select', options: v => COUNTS[v.band] || COUNTS['35'], def: '6' },
     { id: 'mode', label: 'Sheet', type: 'select', def: 'std',
@@ -116,7 +116,7 @@ Gen.add('vocabulary', {
     void own;
     const title = `${m1 ? m1.title : 'Vocabulary'}${m2 ? ' and ' + m2.title : ''}: Vocabulary`;
     return {
-      title, level: `${band[1]}, ${m1 ? m1.s : ''}${n < +v.count ? `, ${n} words (all the module has)` : ''}`,
+      title, level: `${band[1]}, ${m1 ? m1.s : ''}${n < +v.count ? `, ${n} words (all the topic has)` : ''}`,
       ican: `I can match ${k2 ? 'words' : 'vocabulary words'} to their meanings and use them${k2 ? '.' : ' in my own sentences.'}`,
       directions: k2 ? 'Write the letter of the meaning next to each word. Then write the word from the box that fits on each line.'
         : 'Part 1: write the letter of the matching meaning on the line. Part 2: write a word from the box on each line. Use each word once. Part 3: write your own sentence.',
@@ -153,7 +153,7 @@ Gen.add('vocabulary', {
         Array.from({ length: k }, (_, i) => `<p class="ws-text gen-vown">${i + 1 + n}. Word: ${'<span class="ws-blank" style="min-width:9em"></span>'}</p>${lines(2)}`).join(''))];
     const title = `${m1 ? m1.title : 'Vocabulary'}${m2 ? ' and ' + m2.title : ''}: Fill the Passage`;
     return {
-      title, level: `${band[1]}, ${m1 ? m1.s : ''}${n < +v.count ? `, ${n} words (all the module has)` : ''}`,
+      title, level: `${band[1]}, ${m1 ? m1.s : ''}${n < +v.count ? `, ${n} words (all the topic has)` : ''}`,
       ican: 'I can use the meaning of a sentence to choose the vocabulary word that fits.',
       directions: 'Part 1: read each sentence and write the word from the box that fits on the line. Use each word once. Part 2: write your own sentence.',
       minutes: n > 8 ? 25 : 20, materials: 'pencil',

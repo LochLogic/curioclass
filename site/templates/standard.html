@@ -6,11 +6,11 @@
 {% block main %}
 <div class="wrap">
   {{ crumbs([('Standards', '/standards/'), (code, None)]) }}
-  <div class="page-head"><h1>{{ code }}</h1><p>Modules and tools aligned to {{ code }} ({{ framework }}).</p></div>
+  <div class="page-head"><h1>{{ code }}</h1><p>Topics and tools aligned to {{ code }} ({{ framework }}).</p></div>
 
   <section class="group">
-    <h2>Modules</h2>
-    <p>Each module page has its tools, lesson plans and printables in one place.</p>
+    <h2>Topics</h2>
+    <p>Each topic page has its tools, lesson plans and printables in one place.</p>
     <ul class="module-list">
       {% for m in mods %}<li><a href="{{ m.url }}"><b>{{ m.title }}</b></a><span>{{ grade_label(m.grade) }} · {{ subjects[m.subject].short }} · {{ m.description }}</span>{% if m.module_id in walls %}<a class="wall-link" href="{{ m.url }}words/">Word Wall</a>{% endif %}</li>{% endfor %}
     </ul>
@@ -18,8 +18,8 @@
 
   {% if map_spots %}
   <section class="group">
-    <h2>On the teaching map</h2>
-    <p>Where these modules sit in a suggested order for the year. Filled dots teach {{ code }}.</p>
+    <h2>On the Teaching map</h2>
+    <p>Where these topics sit in a suggested order for the year. Filled dots teach {{ code }}.</p>
     <ul class="map-spots">
       {% for sp in map_spots %}<li><a href="{{ sp.url }}">{{ sp.label }}</a>{{ sp.svg | safe }}</li>{% endfor %}
     </ul>

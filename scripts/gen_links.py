@@ -81,7 +81,7 @@ def links(m, has_words):
             out.append(link('music-notation', 'Rhythm, note names, scales and chords drawn as real notation.', grade=g))
         frame = {'Dance': 'counts', 'Theater': 'script', 'Media Arts': 'storyboard', 'Visual Arts': 'art'}.get(strand)
         if frame:
-            out.append(link('project-frames', 'A project page for this module: plan, sketch or score the work.', kind=frame, band=band_of(m['grade']), topic=title))
+            out.append(link('project-frames', 'A project page for this topic: plan, sketch or score the work.', kind=frame, band=band_of(m['grade']), topic=title))
         out.append(link('rubric-checklist', 'A rubric or feedback form for this art form.', **({'kind': 'faces'} if n <= 2 else {}), grade=g, subject=art))
     if subj == 'health-pe' and strand == 'Physical Education' and n is not None:
         out.append(link('rubric-checklist', 'Skill-cue checklists for partner or self checks.', kind='skill', grade=g))
@@ -90,7 +90,7 @@ def links(m, has_words):
     if subj == 'eld' and n is not None and n >= 1:
         out.append(link('grammar-words', 'Sentence frames by English level, plus grammar practice.', grade=str(clamp(n, 1, 12)), skill='frames'))
     if subj == 'library' and strand == 'Research' or subj == 'ela' and strand == 'Speaking and Listening':
-        out.append(link('project-frames', 'A research or presentation planner for this module.', kind='research' if subj == 'library' else 'present', band=band_of(m['grade']), topic=title))
+        out.append(link('project-frames', 'A research or presentation planner for this topic.', kind='research' if subj == 'library' else 'present', band=band_of(m['grade']), topic=title))
     if subj == 'world-languages' and not any(x in m['module_id'] for x in ('asl', 'sign', 'fingerspelling', 'deaf', 'classifiers')):
         out.append(link('world-language', 'Spanish or French practice: verbs, numbers, agreement, dates and more.', level=strand.lower()))
         out.append(link('rubric-checklist', 'Can-do self-checks for this level.', kind='cando', level=strand.lower()))
@@ -108,10 +108,10 @@ def links(m, has_words):
             out.append(link('timeline', 'Timelines to build and read.', grade=str(clamp(n, 2, 12))))
     if has_words:
         band = band_of(m['grade'])
-        out.append(link('vocabulary', "This module's Word Wall words: match, fill in, sort and use.", subject=subj, band=band, mod=m['module_id']))
+        out.append(link('vocabulary', "This topic's Word Wall words: match, fill in, sort and use.", subject=subj, band=band, mod=m['module_id']))
         if band != 'k2':
-            out.append(link('word-puzzles', "Crosswords and word searches from this module's words.", subject=subj, band=band, mod=m['module_id']))
-    out.append(link('organizer', 'A graphic organizer with this module as the title.', band=band_of(m['grade']), topic=title))
+            out.append(link('word-puzzles', "Crosswords and word searches from this topic's words.", subject=subj, band=band, mod=m['module_id']))
+    out.append(link('organizer', 'A graphic organizer with this topic as the title.', band=band_of(m['grade']), topic=title))
     if subj in ('ela', 'social-studies', 'science', 'eld') and n is not None and n >= 1:
         out.append(link('writing-frame', 'Sentence starters and paragraph frames for a write-up.', grade=str(clamp(n, 1, 12)), topic=title))
     # at most four: the skill generators first, then the words, then the thinking pages; puzzles and frames fill in

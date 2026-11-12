@@ -522,8 +522,8 @@ for t in tools:
 CLOSET = [  # slug, label, what it holds
     ('sub-day', 'Sub Day', 'A print-ready packet for a substitute: cover page, lesson plan, teacher notes, exit tickets '
      'and a backup sheet for when the tech fails.'),
-    ('word-wall', 'Word Wall', 'Vocabulary cards for every module, with pictures for the younger grades, plus a student glossary.'),
-    ('anchor-charts', 'Posters and Anchor Charts', 'The big idea of each module on one page, finished or fill-in, and posters '
+    ('word-wall', 'Word Wall', 'Vocabulary cards for every topic, with pictures for the younger grades, plus a student glossary.'),
+    ('anchor-charts', 'Posters and Anchor Charts', 'The big idea of each topic on one page, finished or fill-in, and posters '
      'that stay up all year. Print on one page or tile them big.'),
     ('game-night', 'Family Game Night', 'Games to play at home with paper, pencils, cards or dice. Nothing to buy.'),
     ('break-box', 'Break Box', 'Projects for a school break, K to 12: build, make, cook, play or explore for an hour or two. '
@@ -576,7 +576,7 @@ for mid in words:
 
 
 def mods_tally(mods):
-    return f'{len(mods)} modules, {sum(len(words[m["module_id"]]) for m in mods)} words'
+    return f'{len(mods)} topics, {sum(len(words[m["module_id"]]) for m in mods)} words'
 
 
 # A module written across bands (like ELD for 6-12) also sits on the whole-band page of every band it reaches, so a
@@ -967,7 +967,7 @@ index = [{'t': t['title'], 'u': t['url'], 'g': grade_label(t['module']['grade'])
           'd': t['concept'], 'b': t['built']} for t in tools]
 index += [{'t': g['title'], 'u': g['url'], 'g': g['band_label'], 's': 'Recess', 'f': 'Game', 'm': 'Recess', 'c': '',
            'd': g['blurb'], 'b': True} for g in RECESS if g['live']]
-index += [{'t': m['title'], 'u': m['url'], 'g': grade_label(m['grade']), 's': subjects[m['subject']]['short'], 'f': 'Module',
+index += [{'t': m['title'], 'u': m['url'], 'g': grade_label(m['grade']), 's': subjects[m['subject']]['short'], 'f': 'Topic',
            'm': m['strand'], 'c': ' '.join(m['codes']), 'd': m['description'],
            'b': any(t['built'] for t in by_module[m['module_id']])} for m in modules.values()]
 index += [{'t': s['title'], 'u': s['url'], 'g': grade_label(s['grades']), 's': 'Reading Room', 'f': s['kind'],
