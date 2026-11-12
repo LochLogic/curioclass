@@ -952,3 +952,12 @@ s03-P19-8,13/10 > 7/5 with no renaming,,,D,
 s03-P19-8,"7/5 = 7/10, so 13/10 > 7/5",,,A,
 s03-P19-8,"13/10 < 14/10, so 13/10 > 7/5",,,G,
 s03-X19,"3/2 = 3/8, so 3/2 < 11/8",,,A,(b): the bottom number only
+s03-P12-4,"thirds: yes, 2/3",F(1+1;2+1),2/3,B,one added to the top and the bottom
+s03-P12-4,"tenths: no, 5/10 is more",,,D,
+s03-P12-5,"not the same, 10/12 is more",,,D,
+s03-P12-6,the same,F(3+2;10+2),5/12,B,2 added to the top and the bottom
+s03-P12-7,"not the same, 5/10 is more",,,D,
+s03-P12-8,the same,F(1+1;3+1),2/4,B,1 added to the top and the bottom
+s03-F12-1,"yes, the lines agree",F(3+2;4+2),5/6,B,the wrong answer shown
+s03-F12-2,Kai is right,,,D,the wrong answer shown
+s03-X12,2/12 for 2/3,F(2;3*4),2/12,A,one number kept
