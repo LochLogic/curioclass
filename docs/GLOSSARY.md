@@ -40,7 +40,7 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 | **end-of-unit assessment**, short **unit assessment**; **assessment day** | The assessment on a unit's last day, on every part of every standard the unit teaches | end check, check day, unit test, quiz | `items.csv` `check` = `end`; `days.csv` `kind` = `Check` |
 | **day** | One numbered day of a course's year (day 90 of 150), of any kind | lesson day, period | `d090.md`; `/courses/<course>/day-<n>/` |
 | **lesson** | What one teaching day ships: teacher page, student page, exit ticket, answer key, display | lesson day | The template is docs/courses/LESSON-DAY.md (file name lags) |
-| **teaching day, assessment day, respond day** | The kinds of day. A teaching day is understanding, fluency or application; a respond day acts on an assessment | check day | `days.csv` `kind`: `Understanding`, `Fluency`, `Use` (lag: the word is **application**), `Check` (an assessment day), `Respond` |
+| **teaching day, assessment day, respond day** | The kinds of day. A teaching day is understanding, fluency or application; a respond day acts on an assessment | check day | `days.csv` `kind`: `Understanding`, `Fluency`, `Application`, `Check` (an assessment day), `Respond` |
 | **warm-up** | The first minutes of a day | opener (that is the section's teacher page), opening | `days.csv` `opens`, `opens_min` |
 | **goal** (on screen and paper: the "I can" line) | What the day is for, in student words | objective, target | `days.csv` `goal` |
 | **section opener** | The teacher page for a section: the content at an adult's level, why this model, the common errors, the supply list | unit opener, unit overview, intro | `opener.md` in each section folder |
@@ -56,7 +56,7 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 |---|---|---|---|
 | **teacher page** | The page the teacher reads the night before; it runs the day | lesson plan (that is the per-tool page), script | `<day>-teacher.html` |
 | **student page** | The one sheet each student works on, both sides at most | worksheet, handout, student sheet | `<day>-student.html` |
-| **exit ticket** | The quarter-page check at the end of a teaching day, four to a sheet; one question on it is an **exit question** | exit slip, exit check (a build step), cool-down | Lag: course day files, LESSON-DAY.md and `lesson.py` may say "exit slip" until they are next moved; `items.csv` `check` = `exit` |
+| **exit ticket** | The quarter-page check at the end of a teaching day, four to a sheet; one question on it is an **exit question** | exit slip, exit check (a build step), cool-down | `items.csv` `check` = `exit`; `days.csv` `exit` |
 | **answer key** (short **key** in code and file names only) | Every answer, its working and what each wrong answer means | key (in prose: it clashes with key tool and `judged` = `key`) | `<day>-key.html` |
 | **display** | The projector pages, generated in the order of the teacher page | slides, deck, presentation | `<day>-display.html` |
 | **slides** | None. We do not make them | | |
@@ -74,7 +74,7 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 | **Find** | The door for something for tomorrow: search, standards, topics, grades, subjects | Browse, Classrooms | Not built. Today's `/classrooms/` page, its **grade rooms** and **subject wings**, fold in here and those three names retire |
 | **Shelves** | The door for everything usable on its own: tools, the Supply Closet, the Reading Room, collections | Library (that is the Reading Room's code name), catalog | Not built. One named collection on it is **a shelf** (the Word Wall shelf) |
 | **Explore** | The door for curiosity and play: Curiosities, Recess, play styles | Fun, Games | Not built |
-| **topic** (topic page) | One subject-and-grade topic with its tools, worksheets, Word Wall, anchor chart and more, tied to its standards | module | URL `/topics/<id>/`, moving from `/modules/<id>/` (1,634 pages) with redirects. Lag: `module_id` in data and scripts, `data/modules.csv`, the search index's `m` field, the "Module" column of the worksheet lists |
+| **topic** (topic page) | One subject-and-grade topic with its tools, worksheets, Word Wall, anchor chart and more, tied to its standards | module | URL `/topics/<id>/`, moved from `/modules/<id>/` (1,634 pages), which redirects. Lag: `module_id` in data and scripts, `data/modules.csv`, the search index's `m` field, the "Module" column of the worksheet lists |
 | **standard** | One code of a standards document (4.MD.A.3); **part of a standard** is one verb's worth of it | objective, outcome | `/standards/<code>/`; `parts.csv` |
 | **strand** | The grouping above a standard that a topic page shows: a domain in math and science, a strand in ELA, a discipline in the arts | domain (fine when quoting a math document) | `modules.csv` `strand` |
 | **grade band** | K-2, 3-5, 6-8, 9-12 | span, level | `bands.csv`, `band` |
@@ -86,8 +86,8 @@ docs/courses/UNIT-PLAN.md (the section and unit plan template) and docs/courses/
 |---|---|---|---|
 | **tool** | One interactive page that works offline as a single file | app, game (unless it is one), activity, interactive, module, instrument | `/tools/<id>/` |
 | **key tool**, **light tool** | A section plan's mark: the tool a day is planned around, or a lighter one built from templates | practice tool (the old name of light tool; "practice" is a role) | `days.csv` `mark` |
-| **role**: teach, see why, practice | What a tool does (BASELINE rule 21) | lesson (that is what a teaching day ships) | `coverage.csv`. Lag: the column and code say `lesson` until they are renamed |
-| **lesson plan** | The one-period plan for one tool, on its tool page | teacher page (that is the course's) | `/tools/<id>/plan/`; its last part is still headed "Exit check" (stage 1 renames it exit ticket) |
+| **role**: teach, see why, practice | What a tool does (BASELINE rule 21) | lesson (that is what a teaching day ships) | `coverage.csv` `teach`, `see_why`, `practice` |
+| **lesson plan** | The one-period plan for one tool, on its tool page | teacher page (that is the course's) | `/tools/<id>/plan/`; its last part is headed "Exit ticket" |
 | **Sub Day packet** | The five-page print packet for one tool, for a substitute, on the Supply Closet shelf | sub day (lower case), sub plan, sub packet | `/tools/<id>/sub/`, `/closet/sub-day/`, `exit.md` |
 | **on the bench** | Planned, not built yet | coming soon, draft | `bench.html` |
 | **Ready to use** | The page of every built tool | | `/tools/` |

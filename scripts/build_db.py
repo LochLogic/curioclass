@@ -106,7 +106,7 @@ db.commit()
 subjects = [s['subject_id'] for s in read_csv('subjects.csv')]
 counts = dict(db.execute('SELECT m.subject || "|" || g.grade, count(*) FROM modules m '
                          'JOIN module_grades g USING(module_id) GROUP BY 1').fetchall())
-print(f'{len(modules)} modules\n')
+print(f'{len(modules)} topics\n')
 print('subject'.ljust(18) + ''.join(g.rjust(4) for g in GRADES))
 for s in subjects:
     print(s.ljust(18) + ''.join(str(counts.get(f'{s}|{g}', '.')).rjust(4) for g in GRADES))

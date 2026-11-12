@@ -34,7 +34,7 @@ def load(modules, grades):
             rows[r['module_id']] = r
     missing = [mid for mid in modules if mid not in rows]
     if missing:
-        warn.append(f'{len(missing)} modules have no row in data/sequence.csv (like {missing[0]}); '
+        warn.append(f'{len(missing)} topics have no row in data/sequence.csv (like {missing[0]}); '
                     'they go at the end of their region until they get one')
     regions = {}
     for i, (mid, m) in enumerate(modules.items()):

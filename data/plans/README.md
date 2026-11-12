@@ -13,7 +13,7 @@ Column names lag the words (docs/GLOSSARY.md): `stretch` holds the unit number, 
 |---|---|---|
 | `parts.csv` | one part of one standard that a unit must teach and check | `code`, `part`, `verb` (the standard's own), `stretch`, `unit` |
 | `days.csv` | one teaching day | `kind`, `goal`, `opens` and `opens_min`, `tool` (its folder name), `mark` (key or light), `tool_use` and `tool_min`, `exit`, `check_min` |
-| `items.csv` | one question a student answers: on a readiness check, an end-of-unit assessment, an exit, or inside a lesson day | `check` (readiness, end, exit; and for lesson days example, tool, fix, practice, challenge), `day`, `code`, `part`, `judged` (key or teacher), `stem`, `answer` (as printed), `compute`, `value` |
+| `items.csv` | one question a student answers: on a readiness check, an end-of-unit assessment, an exit ticket, or inside a lesson day | `check` (readiness, end, exit; and for lesson days example, tool, fix, practice, challenge), `day`, `code`, `part`, `judged` (key or teacher), `stem`, `answer` (as printed), `compute`, `value` |
 | `wrongs.csv` | one wrong answer we expect to an item | `shown`, `compute`, `value`, `error` (a letter in the error register), `note` |
 | `errors.csv` | one lettered error of a unit | `source`, `example`, `day`, `if_many` |
 

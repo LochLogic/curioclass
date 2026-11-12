@@ -39,7 +39,7 @@ for c in concepts:
         m = modules[c['module_id']]
         by_subject[m['subject']].append(c)
 
-print(f'{len(concepts)} concepts, {len(covered)}/{len(modules)} modules covered')
+print(f'{len(concepts)} concepts, {len(covered)}/{len(modules)} topics covered')
 print(f'{"subject":18} n  formats  top format share')
 for s, cs in by_subject.items():
     fc = Counter(c['format'] for c in cs)
@@ -63,7 +63,7 @@ for x in streaks:
     print('streak:', x)
 
 if missing:
-    print(f'\n{len(missing)} modules without a concept, e.g. {missing[:5]}')
+    print(f'\n{len(missing)} topics without a concept, e.g. {missing[:5]}')
 for e in errors:
     print('ERROR', e)
 

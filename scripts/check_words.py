@@ -98,7 +98,7 @@ def main():
         print('  -', p)
     cards = sum(len(c) for c in words.values())
     drawn = sum(c['art'].exists() for cs in words.values() for c in cs)
-    print(f'{len(words)} modules, {cards} cards, {drawn} pictures drawn, {len(bad)} problems')
+    print(f'{len(words)} topics, {cards} cards, {drawn} pictures drawn, {len(bad)} problems')
     sys.exit(1 if bad else 0)
 
 

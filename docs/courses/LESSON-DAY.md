@@ -230,7 +230,7 @@ slides) holds everywhere. Known now to differ:
 - (Decided 2026-11-12, card `q-shelves-in-courses`.) How a day uses the older shelves: a day names each shelf
   item it uses (Word Wall card, chart, worksheet row, generator preset, game) by id, and the gate fails on an id
   that does not exist. Not built into `lesson.py` yet; it comes with section 11.1's shelf pieces. A course has one
-  sub-ready day per section, written with the section (this replaced "a Sub Day packet generated from every course
+  sub-ready day per unit, written with the unit (this replaced "a Sub Day packet generated from every course
   day" the same day; docs/SITE-DESIGN.md); the per-tool Sub Day packets stay on the shelf. The Reading Room is not where course texts come from below the
   higher grades: K-8 anchors on newer texts, mostly our own (card `q-course-texts`).
 

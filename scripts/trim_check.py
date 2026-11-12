@@ -25,5 +25,5 @@ for f in sorted(p for p in D.glob('*.csv')):
         lost += [f'{u}:{t}' for t in PROTECT if any(r['type'] == t for r in ur) and not any(r['type'] == t for r in kept)]
     dash = sum('—' in (c.get('reason') or '') for c in cuts)
     tot += len(cutset)
-    print(f'{f.stem}: {len(cutset)} cuts, bad {len(bad)}, off-target {miss or 0}, modules under 2: {thin}, protected lost {lost or 0}, dashes {dash}')
+    print(f'{f.stem}: {len(cutset)} cuts, bad {len(bad)}, off-target {miss or 0}, topics under 2: {thin}, protected lost {lost or 0}, dashes {dash}')
 print('total', tot)

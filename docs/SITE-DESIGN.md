@@ -23,7 +23,7 @@ day. Teachers stay the main readers. Homeschool parents use the same courses thr
 | Door | Job | Holds |
 |---|---|---|
 | **Courses** | Teach a course, day by day. The heart of the site | Course pages, unit, section and day pages, unit pieces, sub-ready days, print and offline bundles |
-| **Find** | Something for tomorrow, by any route | Search, standards, topic pages (moving from /modules/ to /topics/), grades, subjects. Grade rooms and subject wings fold in here |
+| **Find** | Something for tomorrow, by any route | Search, standards, topic pages (at /topics/, moved from /modules/), grades, subjects. Grade rooms and subject wings fold in here |
 | **Shelves** | Everything usable on its own | Tools, the Supply Closet (anchor charts, Break Box, Game Night, printables, research cards, Teacher Desk, Word Wall, worksheets, the per-tool Sub Day packets), the Reading Room, collections |
 | **Explore** | Curiosity and play, mostly for students | Curiosities (the shelf now, the full entrance once all are built), Recess, play styles |
 

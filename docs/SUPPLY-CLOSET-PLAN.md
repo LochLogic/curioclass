@@ -2,7 +2,7 @@
 
 Status: concepts AGREED by Cory 2026-10-26 (decisions at the bottom). This file is the implementation plan.
 Phase A and Phase C's words (all 586 topics at the time; 762 of 797 today) went LIVE 2026-10-27; deploy builds now use `--library --closet`.
-Phases B, D and E went LIVE 2026-10-27 overnight (status notes under each phase). Phase F, The Map, was built 2026-11-03 (status under Phase F).
+Phases B, D and E went LIVE 2026-10-27 overnight (status notes under each phase). Phase F, the Teaching map, was built 2026-11-03 (status under Phase F).
 
 The Supply Closet is the teacher-resources side of Curio Class: things to print and put up that go with the tools.
 It is organized like a real supply closet, as shelves:
@@ -14,7 +14,7 @@ It is organized like a real supply closet, as shelves:
 | **Posters and Anchor Charts** | Anchor chart per topic (finished and fill-in), a small set of year-long posters per band | topic / band | D |
 | **Family Game Night** | Low-materials games to play at home, 2-3 per subject per grade | grade + subject | E |
 | **Break Box** | Screen-free 1-2 hour projects for kids home on school breaks, 30 per grade (docs/BREAK-BOX-PLAN.md) | grade | Draft |
-| **The Map** | A visual map of topics, with tools and closet items as pins, and suggested unit trails | topic | F |
+| **Teaching map** | A visual map of topics, with tools and closet items as pins, and suggested unit trails | topic | F |
 | **Worksheets** | Authored print sheets, 40-50 per class, with keys (docs/WORKSHEETS-PLAN.md) | class | Pilot |
 | Worksheet Generator | Generated practice sheets with answer keys; 26 generators live 2026-11-04 at /closet/worksheets/make/ | skill and grade | Test group |
 
@@ -31,7 +31,7 @@ It is organized like a real supply closet, as shelves:
   to the topic, so topic pages are the first thing to build (Phase A).
 - **Search** (`/search/`) matches every typed word as a substring of the tool's title, topic, grade, subject and
   codes. A teacher who types the full code `3.NF.A.1` gets nothing, because the data holds `3.NF.A`.
-- **Lesson plans** (`docs/LESSON-PLANS.md`) already end with a timed **Exit check**, and rule 3 already says a
+- **Lesson plans** (`docs/LESSON-PLANS.md`) already end with a timed **Exit ticket**, and rule 3 already says a
   substitute who has never seen the tool should be able to run the plan. Print CSS for one-page plans is in
   `site/assets/curio.css`.
 - **The build** is `scripts/build_site.py` (Jinja2, static, about 1,550 pages, nothing loaded from other hosts,
@@ -60,9 +60,9 @@ It is organized like a real supply closet, as shelves:
 /closet/word-wall/               Word wall by grade and subject
 /closet/anchor-charts/           Anchor charts and posters
 /closet/game-night/              Family games by grade and subject
-/modules/<module-id>/            NEW: everything for one topic (tools, closet items, standards)
+/topics/<module-id>/             NEW: everything for one topic (tools, closet items, standards)
 /tools/<id>/sub/                 NEW: the Sub Day packet for one tool
-/map/                            The Map (Phase F)
+/map/                            The Teaching map (Phase F; hidden for now)
 ```
 
 - **Nav:** "Supply Closet" joins the main nav after Subjects once Phase B ships, gated like the Reading Room until
@@ -82,7 +82,7 @@ It is organized like a real supply closet, as shelves:
 {topic}" line under the teacher notes, search indexes topics and widens a full code to its cluster, and the closet
 scaffold (`closet/home.html`, `closet/shelf.html`) builds only with `--closet` or `--preview`.
 
-1. **Topic pages** at `/modules/<module-id>/` (template `module.html`), in the sitemap once the topic has a
+1. **Topic pages** at `/topics/<module-id>/` (template `module.html`), in the sitemap once the topic has a
    built tool or any closet item, noindex otherwise. Fix the tool page crumb to link to it.
 2. **Standards pages point at topics.** `/standards/<code>/` lists the topics for the code first, then the tools.
 3. **Search handles full codes.** In `search.html`, a term that looks like a code also matches its cluster prefix
@@ -134,22 +134,22 @@ kind: ticket            (or "checklist" for K-2)
 3. Rate it: I can place a fraction on a number line.
 ```
 
-- 1 to 3 items, written to the student, in the plan's exit check spirit (the plan's **Exit check** and the ticket
+- 1 to 3 items, written to the student, in the spirit of the plan's **Exit ticket** (the plan's part and the ticket
   must ask the same thing).
 - Grades 3-12: a "show me", an "explain", and a self-rating (1 to 4). Answers in parentheses go on a teacher key strip
   at the bottom of the page, upside down, not on the tickets.
-- K-2 (`kind: checklist`): the exit check stays oral or physical, so the page is a class list grid (names left
+- K-2 (`kind: checklist`): the exit ticket stays oral or physical, so the page is a class list grid (names left
   blank) with the checks as columns and "got it / almost / not yet" boxes. The sub marks it while calling on children.
 - Print: four tickets per Letter page (quarter sheets) with cut lines; one page of checklist for K-2.
 - Checker: `check_plans.py` grows an `exit.md` check (kind, item count, answer key present for tickets, words cap,
-  no em dashes, the plan's Exit check shares at least one bold term or key word with the ticket).
+  no em dashes, the plan's Exit ticket shares at least one bold term or key word with the ticket).
 
 ### The backup sheet (generic fallback)
 
 One template per band that fills itself from the topic and the plan, so it needs no per-tool writing:
 
-- **K-2:** "Draw it" box for the topic topic, "Show me with your fingers" prompts read aloud by the sub from the
-  plan's exit check, and a color-the-faces self rating.
+- **K-2:** "Draw it" box for the topic, "Show me with your fingers" prompts read aloud by the sub from the
+  plan's Exit ticket, and a color-the-faces self rating.
 - **3-5 and 6-8:** a frame sheet: what I know about {topic title}, two key words and what they mean (from the plan's
   bold terms, later from the Word Wall), one question I still have, then the exit ticket items as written work.
 - **9-12:** a short written response built from the plan's goal ("Explain in your own words: {goal}"), the focus
@@ -190,7 +190,7 @@ followed by every other grade and subject: **all 586 topics, 3,533 cards, Englis
 (`data/closet/words/<subject>.txt`, about 880 KB). `scripts/check_words.py` reports 0 problems and the closet build
 runs it. A closet build makes 591 word pages (about 9.3 MB, roughly 16 KB each, before pictures); `check_site.py`
 passes at 11,373 files against the 20,000 limit.
-Print page per topic at `/modules/<id>/words/` with three formats (wall cards two to a landscape page, mini cards
+Print page per topic at `/topics/<id>/words/` with three formats (wall cards two to a landscape page, mini cards
 eight to a page, a "My words" glossary) and three languages (English, Español, both), chosen on the page and
 remembered, or set by link (`?format=mini&lang=both`). `/closet/word-wall/` lists the topics by grade; topic pages
 get a Word Wall row. Checked in print preview (headless Chrome PDF) and at phone width.
@@ -239,7 +239,7 @@ over the English cap. Spanish is neutral Latin American.
 The topic page gets a **Word Wall** row. `/closet/word-wall/` is a grade picker: a card per band with a chip for each
 grade and an "All" chip for the band, plus an "Across bands" card for K-12 and 6-12 topics. Each chip opens
 `/closet/word-wall/<grade or span>/` (19 pages), with topics grouped by subject and a subject sidebar (a jump menu on
-phones). Print pages at `/modules/<id>/words/`, whose breadcrumb leads back to their grade's list.
+phones). Print pages at `/topics/<id>/words/`, whose breadcrumb leads back to their grade's list.
 
 ### Pilot
 
@@ -352,7 +352,7 @@ words caps per section, no teacher jargon, no em dashes, K-1 games have no readi
 
 ---
 
-## Phase F: The Map (last)
+## Phase F: Teaching map (last)
 
 **Status (2026-11-03): built.** Tucked away for teachers and admins: "Teaching map" in the footer (Browse), not the
 top nav. 94 pages: /map/ plus one page per region (93). `data/sequence.csv` holds a drafted order for all 797 topics
@@ -418,7 +418,7 @@ word pages, 74 anchor charts and 14 Game Night pages. Notes link to the tool pag
 - One macro, `teach_strip(tools)`, in a closet template file: for each built tool of the topic, its title, then
   "Teacher notes · Lesson plan · Sub Day" (each shown only when it exists). Screen only (`no-print`), so printed
   cards, charts and family games stay clean.
-- Placed on: the topic word page (`/modules/<id>/words/`), the anchor chart page (replacing its inline sentence),
+- Placed on: the topic word page (`/topics/<id>/words/`), the anchor chart page (replacing its inline sentence),
   and the Game Night page's teacher hint. Not on the printed family game sheet itself, which keeps only "Play it at
   curioclass.org/tools/<id>/".
 - Topics with no built tool show nothing (no "coming soon" line).
@@ -578,7 +578,7 @@ comes:
 ```
 A Foundation ──> B Sub Day ──> (ships with every new tool from here on; so will its anchor chart, see docs/ROADMAP.md)
             ├──> C Word Wall ──┐
-            ├──> D Charts ─────┼──> F The Map ──> Late: Worksheet Generator
+            ├──> D Charts ─────┼──> F Teaching map ──> Late: Worksheet Generator
             └──> E Game Night ─┘
 ```
 
@@ -606,7 +606,7 @@ A Foundation ──> B Sub Day ──> (ships with every new tool from here on; 
 - **Q2.** QR code on the Sub Day cover: worth building, or is the printed URL enough?
 - **Q3.** Posters: approve a proposed list of about 50 before any are made?
 - **Q4.** Game Night: core four subjects only at first, or include electives (arts, health and PE, CS) from the start?
-- **Q5.** The Map's teaching order: research published progressions and pacing guides first (license check), or
+- **Q5.** The Teaching map's teaching order: research published progressions and pacing guides first (license check), or
   draft from the frameworks alone?
 
 ## Decisions (Cory, 2026-10-26)

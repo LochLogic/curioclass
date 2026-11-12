@@ -73,7 +73,7 @@ goes to major work. They are not copied from any program.
   units, 10 of 17 (59 percent), which is why the three supporting units that practise major work (line
   plots, area and perimeter, measurement conversions; 16 days) must show that link on the page of every section. With
   those 16 days counted beside major work, the figure is 116 of 150 (77 percent).
-- **18 units, 43 sections.** A unit is one topic and usually one module. A section is a package of 1 to 5 days (section 3.4 has 6: its last day is the unit's assessment day).
+- **18 units, 43 sections.** A unit is one block of standards and usually one topic. A section is a package of 1 to 5 days (section 3.4 has 6: its last day is the unit's assessment day).
 - **Five cumulative checks:** a start-of-year check on day 1 and Checks 1 to 4 on days 42, 78, 118 and 149.
 - **All major work is taught by day 123**, and multi-digit multiplication and division by day 117. Measurement and
   geometry follow.
@@ -164,7 +164,7 @@ sentence were taken out on 2026-11-11: the check column changed them; read the r
 
 ## Why this order, and what each unit hands on
 
-"Builds on" gives the grade 3 standards by code and the grade 3 module that holds them. Each unit's readiness
+"Builds on" gives the grade 3 standards by code and the grade 3 topic that holds them. Each unit's readiness
 check draws its items from these codes.
 
 | # | Unit | Builds on (grade 3) | Why it sits here | Sets up |
@@ -188,14 +188,14 @@ check draws its items from these codes.
 | 17 | Shapes and Symmetry | 3.G.A.1 (Quadrilaterals); unit 16 | Sorting shapes by parallel and perpendicular sides and by the size of their angles needs unit 16 | Grade 5 classifying figures, coordinate plane |
 | 18 | The Year Together | | One day of mixed problems on the major work, fractions first, before the last check | Grade 5 |
 
-**Where this differs from data/sequence.csv.** Five places, all marked **changed** in the scope and sequence. (1) The module
-Angles and Line Plots is one module with two topics. The scope and sequence uses its two halves in two places: line plots at
-unit 5, where they practise fraction addition, and angles at unit 16. The module stays one module (Cory's
+**Where this differs from data/sequence.csv.** Five places, all marked **changed** in the scope and sequence. (1) The topic
+Angles and Line Plots is one topic with two halves. The scope and sequence uses its two halves in two places: line plots at
+unit 5, where they practise fraction addition, and angles at unit 16. The topic stays one topic (Cory's
 call on the Desk); only the sections point at different parts of it. (2) sequence.csv puts Multi-Digit Multiplication
 and Division as one stop; the scope and sequence gives each half its own unit, matching the two tools. (3) Measurement
 Conversions moves from before Area and Perimeter to after division, so it can use the computing it needs. (4) The
-module Multiplicative Comparison is used in two places: unit 10, and unit 14 for 4.OA.A.3 in full. (5) 4.G.A.1
-(points, lines, rays) is taught with angles in unit 16 and the rest of its module in unit 17. No module
+topic Multiplicative Comparison is used in two places: unit 10, and unit 14 for 4.OA.A.3 in full. (5) 4.G.A.1
+(points, lines, rays) is taught with angles in unit 16 and the rest of its topic in unit 17. No topic
 boundary moves; only which section points at which part.
 
 **Fluency all year.** The one fluency grade 4 requires by name is 4.NBT.B.4. Every day opens with a five-minute
@@ -360,8 +360,6 @@ Rules for every check, unit or cumulative:
 
 ## After this revision
 
-The rows in data/units.csv match this file. Still to bring into line, outside this file: ROADMAP item 4 of "What a
-finished course holds" says the readiness and end-of-unit assessments are "in every section" and now means "in every unit" (a
-site-wide call for Cory); the grade 4 footnotes on limits are not yet in data/standards/ccss-math-standards.txt;
+The rows in data/units.csv match this file. Still to bring into line, outside this file: the grade 4 footnotes on limits are not yet in data/standards/ccss-math-standards.txt;
 docs/RUBRIC-MATH-K8.md still says "the four checks"; and the build order in docs/agents/catalog/shape/math-4.md is
 checked against this order. Then the pilot, section 11.1, is written.

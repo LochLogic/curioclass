@@ -12,7 +12,7 @@ on memory or on an untested tally it is marked **test before printing**.
 
 ## What changed in this revision
 
-1. **Energy resources (4-ESS3-1) moved up** to the end of unit 2 as lesson set 2.7, beside the circuits it
+1. **Energy resources (4-ESS3-1) moved up** to the end of unit 2 as section 2.7, beside the circuits it
    depends on. Unit 8 is now hazards only.
 2. **Unit 4 grew from 16 to 21 days** and has two anchors: the cat at night, then the plant that cannot
    move. Its end task now has a plant in it and a separate item on light.
@@ -20,16 +20,16 @@ on memory or on an untested tally it is marked **test before printing**.
    and The Year Together 13. Units 5, 7 and 8 gave up days.
 4. **The unit 2 design problem is a signal device,** with three hands-on days on circuits. Chain reactions
    are the extension.
-5. **Every lesson set is marked core or extended, and a 90-session path is set out in full.**
+5. **Every section is marked core or extended, and a 90-session path is set out in full.**
 6. The smaller findings are folded in: practices and crosscutting concepts used more than once, a written
-   check per lesson set in place of a daily exit question, three materials tiers, safety fixes, "watch for"
+   check per section in place of a daily exit question, three materials tiers, safety fixes, "watch for"
    lines, and a home for the nature of science connections.
 
 ## What to check
 
 1. The 21-day unit 4 and its two anchors.
 2. The signal device in place of the contraption, and energy resources at the end of unit 2.
-3. The 90-session path: which day each extended lesson set gives up, and whether each trade-off is one a
+3. The 90-session path: which day each extended section gives up, and whether each trade-off is one a
    teacher can live with.
 4. The three materials tiers, and the plain statement that tier C is weaker for eight investigations.
 5. Three judgment calls listed under "Least sure of".
@@ -71,10 +71,10 @@ on memory or on an untested tally it is marked **test before printing**.
 | Cumulative checks, respond days, catch-up days, The Year Together | 13 | 12 percent | all |
 | **Total** | **108** | **100 percent** | **14, plus 3 engineering** |
 
-  Physical science counts unit 1 (12), unit 2 without lesson set 2.7 (15), unit 3 (11) and the 4 days
-  on light in lesson set 4.2. Life science is the other 17 days of unit 4. Earth and space science counts
-  units 5 to 8 (32) and the 4 days of lesson set 2.7. Engineering design is not a separate block: 20 of
-  the days above (19 percent) are design work, in lesson sets 2.1, 2.4, 2.5, 2.6, 3.3, 8.1, 8.3, 8.4 and 8.5.
+  Physical science counts unit 1 (12), unit 2 without section 2.7 (15), unit 3 (11) and the 4 days
+  on light in section 4.2. Life science is the other 17 days of unit 4. Earth and space science counts
+  units 5 to 8 (32) and the 4 days of section 2.7. Engineering design is not a separate block: 20 of
+  the days above (19 percent) are design work, in sections 2.1, 2.4, 2.5, 2.6, 3.3, 8.1, 8.3, 8.4 and 8.5.
 
 - **How the 108 days split by kind of work.**
 
@@ -83,7 +83,7 @@ on memory or on an untested tally it is marked **test before printing**.
 | Hands-on investigation or build with real materials | 43 | 40 percent |
 | Reading, talk, drawing models, working with data and maps, writing (print) | 31 | 29 percent |
 | A Curio Class tool is the main work | 8 | 7 percent |
-| End-of-stretch tasks (8 task days and 5 days of feedback and revision) | 13 | 12 percent |
+| End-of-unit tasks (8 task days and 5 days of feedback and revision) | 13 | 12 percent |
 | Cumulative checks (4), respond days (4), catch-up days (3) | 11 | 10 percent |
 | The Year Together | 2 | 2 percent |
 | **Total** | **108** | **100 percent** |
@@ -93,10 +93,10 @@ on memory or on an untested tally it is marked **test before printing**.
   investigations that do not exist yet.
 - **Checking takes 12 days, 11 percent:** 8 task days and 4 cumulative assessment days. Every cumulative check has a
   respond day after it. There is no daily exit question (see "The checks").
-- **9 units, 38 lesson sets.** A unit is one topic. A lesson set is a package of 1 to 5 days that
-  answers one question from the class question board. 23 lesson sets are core and 15 are extended.
+- **9 units, 38 sections.** A unit is one topic. A section is a package of 1 to 5 days that
+  answers one question from the class question board. 23 sections are core and 15 are extended.
 - **What exists today:** 8 tools (7 specs, 1 live), no section, no investigation sheet, no task. Every one of the
-  108 days is a gap day until its lesson set is written.
+  108 days is a gap day until its section is written.
 
 ## The scope and sequence
 
@@ -126,13 +126,13 @@ Totals: units 1 to 8 are 95 days (12 + 19 + 11 + 21 + 10 + 8 + 6 + 8), check blo
 has one. The swap must pass three tests: students can observe it, it needs the same core idea to explain, and
 it is not explained on day 1.
 
-**Which real flood opens unit 8** is chosen when the lesson set is written, local where possible.
+**Which real flood opens unit 8** is chosen when the section is written, local where possible.
 
 ## The 90-session path
 
-The 90-session path teaches every lesson set and every expectation. It keeps every end task and every revision
+The 90-session path teaches every section and every expectation. It keeps every end task and every revision
 day, because revising a model or a design after feedback is where much of the learning is. It drops the one
-extended day in each of 15 lesson sets, and the three catch-up days. 15 + 3 = 18, and 108 - 18 = 90.
+extended day in each of 15 sections, and the three catch-up days. 15 + 3 = 18, and 108 - 18 = 90.
 
 | # | Unit or block | 108 path | 90 path | On days (90 path) |
 |---|---|---|---|---|
@@ -232,7 +232,7 @@ stability and change (5, 6; again in 7). Stability and change is no longer claim
 
 **Nature of science, core idea elements, and what to watch for.** The connections are the ones the standards
 page places beside these expectations. "Watch for" is the common idea a teacher should expect to hear; the
-teacher page for each lesson set starts from this line.
+teacher page for each section starts from this line.
 
 | # | Unit | Nature of science and engineering connections | Core idea elements given a home | Watch for |
 |---|---|---|---|---|
@@ -251,7 +251,7 @@ so.
 
 ## Why this order, and what each unit hands on
 
-"Builds on" names the earlier expectations by code and, in brackets, the Curio Class module that holds them.
+"Builds on" names the earlier expectations by code and, in brackets, the Curio Class topic that holds them.
 The codes come from the articulation lines of the grade 4 standards (source 1).
 
 | # | Unit | Builds on | Why it sits here | Sets up |
@@ -266,15 +266,15 @@ The codes come from the articulation lines of the grade 4 standards (source 1).
 | 8 | Hazards | Units 1, 2, 3, 5 and 7; 3-ESS3-1 (science-3-weather-and-climate) | The third design problem uses the year: erosion and floods, the energy of moving water, the hazard map, fair tests. It is the capstone design, and the class defines the problem and plans the tests with less help than in unit 2 | Grade 5 5-ESS3-1; middle school MS-ESS3-2, MS-ETS1 |
 | 9 | The Year Together | | Two days on questions still open, before the last check | Grade 5 |
 
-**Same order as data/sequence.csv, with one module taught in two places.** The eight modules run in the order
-on file. The module Structures and Senses is taught light first (4-PS4-2), then senses, then animal
+**Same order as data/sequence.csv, with one topic taught in two places.** The eight topics run in the order
+on file. The topic Structures and Senses is taught light first (4-PS4-2), then senses, then animal
 structures, then plant structures. Light comes first because it follows from light carrying energy in unit
-2. The module Natural Resources and Hazards holds two topics and is now taught in two places: energy
-resources as lesson set 2.7 and hazards as unit 8. That needs a note in sequence.csv, not a split. No
-module is split.
+2. The topic Natural Resources and Hazards holds two halves and is now taught in two places: energy
+resources as section 2.7 and hazards as unit 8. That needs a note in sequence.csv, not a split. No
+topic is split.
 
 **The prerequisites in sequence.csv do not all match the standards' own articulation.** It lists Weather and
-Climate under three Earth modules and Life Cycles under Structures and Senses. The table above uses the
+Climate under three Earth topics and Life Cycles under Structures and Senses. The table above uses the
 articulation codes. The file is not edited here; this is a fix for whoever owns it.
 
 **Where earlier work comes back.**
@@ -291,18 +291,18 @@ articulation codes. The file is not edited here; this is a fix for whoever owns 
 | Patterns on maps | Unit 7 | Where hazards happen (8) |
 | Measuring and line plots | Unit 1 | Erosion data (5) |
 
-## The lesson sets inside each unit
+## The sections inside each unit
 
 Readiness and end-of-unit assessments sit at the unit level. Each unit opens with a ten-minute "first ideas" probe
-inside its first lesson set (a drawing and two questions on the earlier expectations it builds on), and ends
-with a task. Each teaching lesson set ends with one short written check (see "The checks").
+inside its first section (a drawing and two questions on the earlier expectations it builds on), and ends
+with a task. Each teaching section ends with one short written check (see "The checks").
 
-"Mark" is core or extended. A core lesson set is taught in full on both paths. An extended lesson set is also
+"Mark" is core or extended. A core section is taught in full on both paths. An extended section is also
 taught on both paths, and holds one extended day that only the 108-session path teaches. "Days" is the
 108-session path and "90" is the 90-session path. H, T, R and K are days of hands-on work, tool work, print
 work (reading, talk, models, data, writing) and end task, on the 108-session path.
 
-| Unit | Lesson set | Mark | Days | 90 | H | T | R | K | Expectations |
+| Unit | Section | Mark | Days | 90 | H | T | R | K | Expectations |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | 1.1 What happened at the crash? Start-of-year check, the hallway bowling, question board, first class model | core | 2 | 2 | | | 2 | | 4-PS3-1, 4-PS3-3 |
 | 1 | 1.2 Faster means more energy: ramp tests, repeated trials, a line plot | extended | 4 | 3 | 3 | | 1 | | 4-PS3-1 |
@@ -342,7 +342,7 @@ work (reading, talk, models, data, writing) and end task, on the 108-session pat
 | 8 | 8.4 Compare the plans against the criteria; argue for one | core | 1 | 1 | | | 1 | | 4-ESS3-2, 3-5-ETS1-2 |
 | 8 | 8.5 End task | core | 1 | 1 | | | | 1 | 4-ESS3-2, 3-5-ETS1-1, 3-5-ETS1-2, 3-5-ETS1-3 |
 | 9 | 9.1 The Year Together | core | 2 | 2 | | | | | all, mixed |
-| | **Totals (38 lesson sets)** | | **97** | **82** | **43** | **8** | **31** | **13** | |
+| | **Totals (38 sections)** | | **97** | **82** | **43** | **8** | **31** | **13** | |
 
 97 lesson-set days plus 11 days of check blocks is 108. On the 90-session path, 82 lesson-set days plus 8 days
 of check blocks is 90. The H, T, R and K columns add to 95; the other 2 are The Year Together, which is mixed
@@ -393,7 +393,7 @@ untested: **test before printing.**
 **The investigations.** "Core" marks the eight first-hand core investigations. H is the count of hands-on
 days in the unit on the 108-session path.
 
-| Unit | H | Lesson set | Investigation | Core | Tier A: group sets | Tier B: one demonstration set | Tier C: no materials |
+| Unit | H | Section | Investigation | Core | Tier A: group sets | Tier B: one demonstration set | Tier C: no materials |
 |---|---|---|---|---|---|---|---|
 | 1 | 5 | 1.2 | Marble down a ruler ramp at three heights into a paper cup; how far the cup slides, five trials each | | Marbles or small balls, grooved rulers or card ramps, books, paper cups, metre sticks | One ramp at the front; students take turns to release and measure, all record | Photo run and data table; Bowling Lab. No-cost first-hand version: a ball from the gym closet down a propped board into a box |
 | 1 | | 1.3 | Marble into marble; ball into stacked cups | | Marbles, a ruler track, paper cups, a soft ball | One track at the front | Video run; Bowling Lab |
@@ -487,14 +487,14 @@ energy sources.
 - **The daily record is the science notebook and the revised class model.** There is no daily exit question.
   The first draft had one of five minutes a day, which added up to about 450 minutes, close to a tenth of the
   year.
-- **One short written check per lesson set.** Ten minutes on the last day of each of the 29 teaching lesson
+- **One short written check per section.** Ten minutes on the last day of each of the 29 teaching lesson
   sets, tied to what that set is for: one core idea, one practice and one crosscutting concept together. In
-  the 8 end-task lesson sets the task is the check, and The Year Together has none.
-- **End-of-stretch task.** A new phenomenon or problem the class has not seen, so it cannot be answered from
+  the 8 end-task sections the task is the check, and The Year Together has none.
+- **End-of-unit task.** A new phenomenon or problem the class has not seen, so it cannot be answered from
   memory. Each task asks for a core idea, a practice and a crosscutting concept together, names all three on
   the scoring guide beside each part, and ends with "if many missed this, do that". Where the task is two
   days, the second day is feedback and revising the model or explanation.
-- **Energy resources are checked outside an end task.** Lesson set 2.7 comes after the unit 2 end task, so
+- **Energy resources are checked outside an end task.** Section 2.7 comes after the unit 2 end task, so
   4-ESS3-1 is checked by the written piece on the last day of 2.7 (day 31), scored with the same kind of
   guide as an end task, and again in Check 1 the next day.
 - **Engineering is checked twice.** 3-5-ETS1-1 and 3-5-ETS1-3 are checked in unit 2 with the class
@@ -511,7 +511,7 @@ below are for the 108-session path.
 |---|---|---|---|---|---|
 | 11 to 12 | Unit 1 end task | A skateboard rolls into a stack of boxes from two start points. Write two questions the class could test. Predict, then explain the difference from the evidence given | Energy and speed; collisions | Asking questions and predicting; explaining | Energy and matter |
 | 26 to 27 | Unit 2 end task | As a group: present the device, its test data and one change made after a failure. Alone: trace the energy, start to finish, in a device the student did not build, naming the part that changes it | Energy transfer and conversion; defining and improving designs | Investigating; designing solutions | Energy and matter |
-| 31 | Written piece, lesson set 2.7 | Two short texts on an energy source the class did not study: combine them into a piece on where the energy comes from and what its use does to the land | Energy resources | Obtaining and combining information | Cause and effect |
+| 31 | Written piece, section 2.7 | Two short texts on an energy source the class did not study: combine them into a piece on where the energy comes from and what its use does to the land | Energy resources | Obtaining and combining information | Cause and effect |
 | 32 | Check 1 | A wind-up toy that ends in a click: where is the energy at each step, and what one fair test would show it? Then one item on an energy source and what it costs the land | Units 1 and 2 | Planning an investigation | Cause and effect |
 | 44 to 45 | Unit 3 end task | Draw a model of two boat wakes that rock a floating dock differently; then pick the better of two given codes against stated criteria | Wave properties; information by patterns | Modelling; comparing solutions | Patterns |
 | 65 to 66 | Unit 4 end task | One animal and one plant not studied in class (for example a barn owl and a cactus), each with a data card. For each, argue which structures do which jobs and how they work together, and say whether the evidence on the card is enough. Model how the animal senses, processes, remembers and responds. A short separate item: draw how a person sees an object round a corner with a mirror, and what happens when a card blocks the path | Structure and function; senses; light and seeing | Modelling; argument from evidence | Systems; structure and function; cause and effect |
@@ -525,7 +525,7 @@ below are for the 108-session path.
 
 ## Every expectation accounted for
 
-| Expectation | Unit | Lesson sets | Checked in | Tool |
+| Expectation | Unit | Sections | Checked in | Tool |
 |---|---|---|---|---|
 | 4-PS3-1 | 1 | 1.2 | Unit 1 end task | Bowling Lab |
 | 4-PS3-2 | 2 | 2.1 to 2.3 | Unit 2 end task (the energy trace) and Check 1 | Contraption Workshop (read as shown) |
@@ -545,13 +545,13 @@ below are for the 108-session path.
 | 3-5-ETS1-2 | 2, 3, 8 | 2.4, 2.6, 3.3, 8.3, 8.4 | Unit 2, 3 and 8 end tasks | Contraption Workshop, Secret Code Signals, Town Planner |
 | 3-5-ETS1-3 | 2, 8 | 2.5, 8.3 | Unit 2 and unit 8 end tasks | Contraption Workshop, Town Planner |
 
-All 14 grade 4 expectations and all 3 engineering expectations have lesson sets and a scored task. None is left
+All 14 grade 4 expectations and all 3 engineering expectations have sections and a scored task. None is left
 to a tool alone. The grade 3 to 5 engineering expectations are shared across three grades; this course teaches
 all three in full and does not rely on grades 3 or 5 to finish them.
 
 ## What is missing today, said plainly
 
-- **No lesson set is written.** All 108 days are gap days.
+- **No section is written.** All 108 days are gap days.
 - **The tools are a small part and mostly not built.** Seven are specs. The one live tool, How Animals See, is
   marked for rework and its three codes read as shown, not taught. The shape file calls its own science reads
   rough.
@@ -597,7 +597,7 @@ all three in full and does not rely on grades 3 or 5 to finish them.
   NGSS as written.
 - **The day counts, the materials costs and the bulb, cell and lamp notes are untested.** No teacher has read
   this, and no investigation has been run.
-- **English learner supports, access notes and family notes** are owed per lesson set and are not started.
+- **English learner supports, access notes and family notes** are owed per section and are not started.
   The unit 6 teacher page owes the note on deep time.
 
 ## Least sure of
@@ -607,12 +607,12 @@ all three in full and does not rely on grades 3 or 5 to finish them.
    class may still pick the raised weight every time and never use a circuit in its design; the three circuit
    days in 2.3 are what guarantee the content.
 2. **4-ESS3-1 checked by a written piece and a cumulative check, not by an end task.** The review's sequence
-   puts the unit 2 end task before lesson set 2.7. Moving the end task after 2.7 would join two topics in
+   puts the unit 2 end task before section 2.7. Moving the end task after 2.7 would join two topics in
    one task, which is the fault the move was meant to fix. So the written piece on day 31 is scored like a
    task. This is this scope and sequence's call, not the review's.
 3. **The day counts.** 21 days for unit 4 and 6 for unit 7 come from comparing shares with other
    programs, not from a classroom. Only a pilot and a grade 3 to 5 teacher can say.
-4. **Which day each extended lesson set gives up.** The review names the 15 lesson sets. The choice of day
+4. **Which day each extended section gives up.** The review names the 15 sections. The choice of day
    and the wording of each trade-off are this scope and sequence's.
 
 ## Sources
@@ -650,6 +650,6 @@ draft, and are used here only through the review.
 
 ## After Cory's final yes
 
-The approved lesson sets go into data/units.csv as planned rows, each with its core or extended mark. The note
+The approved sections go into data/units.csv as planned rows, each with its core or extended mark. The note
 on Natural Resources and Hazards goes into data/sequence.csv. The licence of the standard text is checked, and
 then the text is wired in before any spec is fixed against it.

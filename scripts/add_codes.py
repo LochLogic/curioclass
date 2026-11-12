@@ -79,7 +79,7 @@ def main():
     if errors:
         print('\n'.join(errors))
         sys.exit(1)
-    print(f'{changed} modules changed' + (' (dry run)' if '--dry' in sys.argv else ''))
+    print(f'{changed} topics changed' + (' (dry run)' if '--dry' in sys.argv else ''))
 
 
 if __name__ == '__main__':

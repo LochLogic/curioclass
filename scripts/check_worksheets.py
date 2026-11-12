@@ -178,7 +178,7 @@ def main(args):
     U = units()
     if args[:1] == ['--units']:
         for u, d in U.items():
-            print(f'{u}\t{d["label"]}\t{d["file"]}\t{len(d["modules"])} modules')
+            print(f'{u}\t{d["label"]}\t{d["file"]}\t{len(d["modules"])} topics')
         return 0
     if args[:1] == ['--modules']:
         for u in args[1:]:

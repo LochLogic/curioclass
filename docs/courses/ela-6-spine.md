@@ -47,7 +47,7 @@ copied from a program.
 ## What to check
 
 1. **The shape.** The year is six topic units, each built on a set of texts, with reading, writing, speaking
-   and language taught through those texts. This is not the order of data/sequence.csv, which lists modules one
+   and language taught through those texts. This is not the order of data/sequence.csv, which lists topics one
    skill at a time. The five differences are marked **changed** below and listed after the order table.
 2. **The text plan.** Every unit now names its texts, with a source, a licence and a status. Only texts marked
    "on file" are in data/library today. Everything marked "to verify" must be checked before a section leans on it.
@@ -351,8 +351,8 @@ so the daily figures are averages.
 
 ## Why this order, and what each unit hands on
 
-"Builds on" names grade 5 standards by code and the Curio Class module that data/sequence.csv says carries them.
-I did not check how well those grade 5 modules teach them.
+"Builds on" names grade 5 standards by code and the Curio Class topic that data/sequence.csv says carries them.
+I did not check how well those grade 5 topics teach them.
 
 | # | Unit | Builds on | Why it sits here | Hands on to |
 |---|---|---|---|---|
@@ -373,10 +373,10 @@ I did not check how well those grade 5 modules teach them.
    first, with a first small argument in unit 4.
 3. Connotation and Context moves ahead of Tracing an Argument, into the novel, where word choice has the most to
    show. Figurative language now begins earlier still, at first meeting in the myths.
-4. Pronouns and Sentence Variety is one module with two topics. Pronouns are taught in unit 2, in the revise
-   days, and sentence variety in units 5 and 7. The module stays one module; only the sections point at
+4. Pronouns and Sentence Variety is one topic with two skills. Pronouns are taught in unit 2, in the revise
+   days, and sentence variety in units 5 and 7. The topic stays one topic; only the sections point at
    different parts.
-5. The fourteen band modules have their own order in sequence.csv. Here they are woven into the grade 6 units.
+5. The fourteen band topics have their own order in sequence.csv. Here they are woven into the grade 6 units.
 
 **Note for data/sequence.csv.** Once this scope and sequence is approved, sequence.csv should be reordered for grade 6 to
 follow it, or carry a note that the scope and sequence governs. Nothing in sequence.csv is changed by this file.
@@ -663,7 +663,7 @@ of these is written.
 ## Every grade 6 standard accounted for
 
 The course has 41 Common Core standards (RL 9, RI 10, W 10, SL 6, L 6), with 38 lettered parts among them. The
-shape file counts 43 because the Argument Writing module also lists two social studies codes (D3.4.6-8, D4.1.6-8);
+shape file counts 43 because the Argument Writing topic also lists two social studies codes (D3.4.6-8, D4.1.6-8);
 both sit in unit 5.
 
 | Standard | Taught in | Comes back in |

@@ -72,7 +72,7 @@ standards in; we read it in and can write our map out in it.
 
 | What a review looks at | Where it was | Where it sits now |
 |---|---|---|
-| Assessment beyond one short check per unit | Not in the six steps | Every spec ends each code with an unaided check the teacher can see (SPEC.md, three hooks); the pilot unit carries its own assessment (ROADMAP step 4). A readiness check and an end-of-unit assessment per unit (not per unit, since 2026-11-11) and the cumulative checks each scope and sequence names, with respond days, are now part of a finished course (ROADMAP, "What a finished course holds", item 4) |
+| Assessment beyond one short check per section | Not in the six steps | Every spec ends each code with an unaided check the teacher can see (SPEC.md, three hooks); the pilot unit carries its own assessment (ROADMAP step 4). A readiness check and an end-of-unit assessment per unit (not per unit, since 2026-11-11) and the cumulative checks each scope and sequence names, with respond days, are now part of a finished course (ROADMAP, "What a finished course holds", item 4) |
 | English learner supports | Named above, in no step | SPEC.md, three hooks; FINAL-REVIEW.md |
 | Access: keyboard, color, sound with text | A font and contrast bar, later | SPEC.md, three hooks; FINAL-REVIEW.md |
 | What ships, not what the spec says | The measure read specs only | The measure now also counts live and verified tools and unit days (catalog/tables/measure.md) |
@@ -91,7 +91,7 @@ A published rubric is now on file: docs/RUBRIC-MATH-K8.md (EdReports K-8 math cr
 |---|---|
 | Rostering, single sign-on, grade passback, live telemetry, dosage dashboards | VISION: no accounts, tracking or student analytics, ever. The Binder's course cartridge export stays; nothing that carries student data does |
 | Load all 50 states' standards before writing any content | Quality first, shared parts grown from finished work (rules 13 and 14). One state first, when its time comes |
-| An engine that picks each student's next lesson | Needs stored student data. Score codes and The Map are our answer |
+| An engine that picks each student's next lesson | Needs stored student data. Score codes and the Teaching map are our answer |
 | Teacher guides that change as the teacher gains skill | Needs a teacher account. A short and a full view of the same page does the useful part |
 | Every lesson teacher-led and built on student inquiry | Rule 4: every tool stands alone. The inquiry shape fits units, where a teacher is present. Several states also ask for fluency and direct teaching, so units keep both |
 | Formal reviews, state funding, controlled trials | Not pursued now (the decision above) |

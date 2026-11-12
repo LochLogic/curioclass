@@ -35,11 +35,11 @@ Needs Python with `jinja2` and `markdown`. `dist/` is generated and not committe
 | `/collections/`, `/collections/<family>/` | Tool families across grades | yes |
 | `/standards/` | Standards index | yes |
 | `/standards/<code>/` | Topics, then tools, for one code | no (noindex until more tools are built) |
-| `/modules/<id>/` (moving to `/topics/<id>/`) | Topic page ("module" in the code, `module_id`): everything for one topic: tools, lesson plans, Supply Closet shelves as they ship | yes once the topic has a built tool |
-| `/modules/<id>/words/` | Word Wall print page: wall cards, mini cards, glossary; English, Spanish or both (`?format=`, `?lang=`); built only with `--closet` or `--preview` | yes in closet builds |
+| `/topics/<id>/` (moved from `/modules/<id>/`, which redirects) | Topic page ("module" in the code, `module_id`): everything for one topic: tools, lesson plans, Supply Closet shelves as they ship | yes once the topic has a built tool |
+| `/topics/<id>/words/` | Word Wall print page: wall cards, mini cards, glossary; English, Spanish or both (`?format=`, `?lang=`); built only with `--closet` or `--preview` | yes in closet builds |
 | `/closet/word-wall/<grade>/` | Word Wall list for one grade or span (`k`, `3`, `9-12`, `k-12`), topics grouped by subject | yes in closet builds |
 | `/closet/`, `/closet/<shelf>/` | Supply Closet (docs/SUPPLY-CLOSET-PLAN.md); built only with `--closet` or `--preview` until Sub Day ships | yes / noindex while a shelf is empty |
-| `/modules/<id>/chart/` | Anchor chart (Phase D): finished or fill-in, English or Spanish, one page or tiled 2x2 / 3x3 (`?version=`, `?lang=`, `?size=`); `chart.svg` beside it is the shelf thumbnail | yes in closet builds |
+| `/topics/<id>/chart/` | Anchor chart (Phase D): finished or fill-in, English or Spanish, one page or tiled 2x2 / 3x3 (`?version=`, `?lang=`, `?size=`); `chart.svg` beside it is the shelf thumbnail | yes in closet builds |
 | `/closet/anchor-charts/posters/<id>/` | Year-long poster, same page and options as an anchor chart | yes in closet builds |
 | `/closet/game-night/<game-id>/` | Family Game Night card (Phase E) | yes in closet builds |
 | `/tools/` | Built tools | yes |

@@ -143,7 +143,7 @@ the first three pilots waits on it, which is why it is fifth.**
 - Three options side by side: (a) one state's set; (b) a unified set built from several states; (c) high
   watermark: where states differ, take the more demanding expectation. For each: which states' standards are
   strong and freely usable, the cost to build and keep current, how a state reviewer would see it, what it does
-  to the 135 modules tagged to C3, and what it means for the named high school courses.
+  to the 135 topics tagged to C3, and what it means for the named high school courses.
 - Beside it, the values question: Cory leans to "the higher quality or rigor" where state instruments conflict.
   Say what that rule would do in three real cases.
 - This is a scope decision for 14 courses, so no recommendation is owed before the options are laid out, and the
@@ -181,10 +181,10 @@ Do not start these. They will be written to a template the pilot is expected to 
 
 ## Rules for all of it
 
-- **Shared band modules (decided, Cory, 2026-11-11).** English language arts has modules that belong to a band, not
-  a grade (for example "Narrators and Points of View", grades 3 to 5). The module and its tools stay shared. Each
+- **Shared band topics (decided, Cory, 2026-11-11).** English language arts has topics that belong to a band, not
+  a grade (for example "Narrators and Points of View", grades 3 to 5). The topic and its tools stay shared. Each
   grade's scope and sequence claims the skill on its own days, with that grade's standard code and that grade's texts, so every
-  standard has an owner in a course. Do not split a band module into one per grade.
+  standard has an owner in a course. Do not split a band topic into one per grade.
 - No rows go into data/units.csv, and no tool is specced, built or changed from these drafts. A scope and sequence becomes real
   only with Cory's yes.
 - No licence or rights judgment is final on your word or one agent's. Gather it, quote it, and mark it for the

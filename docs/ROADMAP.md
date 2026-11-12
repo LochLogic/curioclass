@@ -198,7 +198,7 @@ tools alone. Grade 4 math is the first course held to it (step 4), and the list 
 finds.
 
 1. **A scope and sequence** that accounts for every teaching day: about 150 (180 less testing and school events; the number
-   is set on each scope and sequence). Each section has its days, its reason for sitting where it does, what the grade before hands
+   is set on each scope and sequence). Each unit has its days, its reason for sitting where it does, what the grade before hands
    it and what the grade after needs from it. A day Curio Class has nothing for is listed as a gap day, never
    papered over.
 2. **Sections for every day on the scope and sequence**, each pulling from the shelves, with daily plans and teacher pages.
@@ -267,7 +267,7 @@ when its "closed when" is true. Nothing here is closed by a sentence in a plan.
 | Subjects outside the core have thin reads and umbrella codes | In the goal; core subjects come first. Each opens only with its standard text wired, its bar (docs/ADOPTION-BAR-SUBJECTS.md where no rubric file exists) and a fresh read | After the core subjects | Its first course meets the finished course list |
 | The eight mathematical practices are in no spec, section or ledger column (found in the rubric, 2026-11-11) | Each section names the one or two practices it builds and the task that builds each; the scope and sequence shows all eight are met over the year. Not added to tool specs until the pilot shows where they belong | 4 (pilot unit), 6 | The pilot unit names its practices; a finished course's scope and sequence covers all eight |
 | Nothing checks the balance of understanding, fluency and application (rubric) | Each section's plan marks every day as mostly one of the three; the scope and sequence totals them per unit | 4, 6 | The pilot unit has all three, and the scope and sequence shows none missing where a standard calls for it |
-| Check items do not name their standard, and no check says what to do next (rubric) | Every item on a section or course check carries its code; every key ends with "if many missed this, do that" | 4 | The pilot unit's two checks do both |
+| Check items do not name their standard, and no check says what to do next (rubric) | Every item on a unit or course check carries its code; every key ends with "if many missed this, do that" | 4 | The pilot unit's two checks do both |
 | No extension for students ready for more (rubric) | Each section has one deeper task on the same standard, never next year's content | 4, 6 | The pilot unit has one |
 | No family note or supplies list (rubric) | Each section has a half-page note for families and a list of what the room needs | 4, 6 | The pilot unit has both |
 | No assessment accommodations or reading-level supports (rubric) | Each check says how to give it read aloud, with more time, or with a model allowed, without changing what it tests; word problems come in a plainer-language version | 4, 6 | The pilot unit's checks and problems do both |
@@ -285,7 +285,7 @@ docs/agents/CATALOG-EXTRACT.md, docs/agents/CATALOG-REVIEW.md, docs/agents/catal
 | 1. Tools | Paused, except the pilot unit's key tool (Community Plot Planner) and fixes that hold whatever happens. Held collections, queued ideas and the Codex queue wait | Resumes by course, for the tools a section plan names |
 | 2. Supply Closet | Carries on: worksheet waves, generators, the Word Wall diagram pass, Break Box read. Its shelf fixes can land any time. Charts and teacher-guide links wait for building to resume, since they ride with a tool | Each section names what it pulls from the closet. The topic kit and Sub Day lite follow the section pilot |
 | 3. Reading Room | Add the text record and topics to the story format, then the ten-story pilot. It can run beside the proof | Topic sets are written into the ledger for the standards they carry; enrich waves follow the course order |
-| 4. The site | Page changes that the fixes need. Open items (www redirect, dark mode, request page) any time | The Map shows the measure per stop. A course page links its scope and sequence and sections |
+| 4. The site | Page changes that the fixes need. Open items (www redirect, dark mode, request page) any time | The Teaching map, when it returns, shows the measure per stop. A course page links its scope and sequence and sections |
 | 5. Outreach and funding | Funding contacts carry on with what is live. No wide announcement yet | The two proven courses are what gets shown; teacher channels open after the proof |
 | 7. Curriculum | Pilot unit 11 built to the bottom, then the ELA and science pilots, then the rest of the grade 4 math plans a unit at a time (step 4) | It is step 6: scopes and sequences, sections, then Tracks and the Binder once several courses are full |
 | 9. Recess and Curiosities | Wait with tool building, since they use the same pipeline. Design work (Recess's look, picking first games) can go on | Built in their own small waves beside the course work, never counted in the measure |
@@ -445,13 +445,15 @@ Night, Word check, closet search, Take home, words CSV. What is left, in order:
    literacy) and that it is practice, not a diagnosis or treatment; a fresh agent reviews the wording. Nonsense Words
    is its first tool. A site-wide accessibility bar (dyslexia-friendly font, high contrast, reduced motion) follows
    the cohort kit fixes. An IEP goal bank is parked until a special-education reviewer is found.
-9. **The Map** (Phase F): BUILT 2026-11-03. A teaching map for teachers and admins, tucked away as "Teaching map" in
+9. **Teaching map** (Phase F): BUILT 2026-11-03. A teaching map for teachers and admins, tucked away as "Teaching map" in
    the footer's Browse column, not the top nav: /map/ (regions by subject and grade, shaded by how much is ready), a
    page per region (/map/<subject>/<grade>/, a trail of stops with pins, planned stops drawn as outlines, a plain list
    below, a vertical trail on phones) and a "where this sits" strip on /standards/<code>/ pages. Upkeep: one row per
    new topic in data/sequence.csv (order, builds_on, basis); the build warns, and does not fail, when a topic has
    none, and draws it at the end of its region. Everything else is derived from existing data at build time
-   (scripts/teaching_map.py). Cory spot-checks one region per subject.
+   (scripts/teaching_map.py). Cory spot-checks one region per subject. Hidden from the deploy build 2026-11-12
+   (`--map` builds it locally); it returns, reimagined, as a picture of the scopes and sequences once the courses are
+   built (docs/SITE-DESIGN.md).
 
 **Still owed, any time:** a real-printer test of every print format, the Spanish native review, family game
 play-tests.

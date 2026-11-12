@@ -15,7 +15,7 @@ fixes. Survey of the code and data: 2026-11-10 (findings at the end).
 
 **The correction this makes to the locked plan:** rule 22 and step 4 said topics would be split so each names its
 standards. The survey shows `module_id` is the key for the Word Wall (4,413 cards, 719 art folders), anchor charts,
-Game Night, The Map, the research cards and about 762 live pages, and no script renames a topic. Splitting would
+Game Night, the Teaching map, the research cards and about 762 live pages, and no script renames a topic. Splitting would
 break or orphan all of them. So a topic is never split just to reach standard-level detail: its standards are
 spelled out in place, a second or third tool joins the same topic, and a new topic is made only for a standard
 with no topic home. Same goal (an untaught standard shows), no breakage.
@@ -53,7 +53,7 @@ Every shelf that prints standards reads them from the tool or the ledger, not fr
 | Worksheets | course, row, topic title | Now the named home of fluency volume and extra practice, recorded in the ledger. The join by topic title is fragile (four topics share a title today) | Join by `module_id`; add each preset or row to the ledger |
 | Generators | rules on subject, strand, grade | Same role as worksheets for fluency. A `practice` or `see why` tool links to its preset | Record preset per standard in the ledger |
 | Reading Room | story | **Not the source of course texts below the higher grades** (Cory, 2026-11-12: its stories at mid and lower levels are mostly very old or from other countries and cultures, "fine for a reading room but id like something newer and more relatable for course content"; card `q-course-texts`, answered the same day: grades 9 to 12 may anchor on it; K-8 only as a paired or optional read). It stays a shelf for independent reading. The named home of year-long reading and topic threads. Needs the `record`, `topics` and code fields the plan already describes (ROADMAP item 8c) | Fields before the ten-story pilot |
-| The Map | topic | A stop is "ready" when its `teach` tool is live, not any tool. Later it shows the measure per stop | Small build change |
+| Teaching map | topic | A stop is "ready" when its `teach` tool is live, not any tool. Later it shows the measure per stop | Small build change |
 | Related tools | derived | Inside a topic, show siblings first and in order: see why, do it, use it | Small build change; a `role` and order column on tools |
 | Posters, Break Box | band or grade | Unaffected | None |
 | Recess, Curiosities | their own | Outside the bar. They take the role `curiosity` or `recess` and claim no code, so the ledger never counts them | One line in rule 21 |
@@ -85,6 +85,6 @@ their ids; only the wording in docs and pages changes, as each is next touched.
   sheet and game of a topic, so a second tool shows correctly with no change.
 - 133 of 144 math topics list a bare cluster. 213 of 1,457 codes sit on more than one topic.
 - Loud failures if a topic id changed: lesson plan focus check, Word Wall, charts, Game Night (the build stops).
-  Silent ones: worksheets joined by title, research cards, The Map (a warning only).
+  Silent ones: worksheets joined by title, research cards, the Teaching map (a warning only).
 - Not affected by anything here: tool URLs, worksheet URLs, Map URLs, Break Box, posters, Reading Room, Recess.
 - Nothing in data names a section yet, and nothing records that a generator carries a standard's fluency.

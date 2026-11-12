@@ -31,15 +31,15 @@ an easy answer when someone asks what standard the class was working on.
 
 | Arc | Use it for | Timed parts, in order |
 |---|---|---|
-| `explore-first` | explore and sort tools, models, simulations | Hook, Explore (the tool), Make sense, Apply, Exit check |
-| `teach-then-practice` | practice, arcade and drill tools | Hook, Teach, Practice (the tool), Apply, Exit check |
-| `model-then-make` | builders where students then make their own | Hook, Model (the tool), Make, Share, Exit check |
+| `explore-first` | explore and sort tools, models, simulations | Hook, Explore (the tool), Make sense, Apply, Exit ticket |
+| `teach-then-practice` | practice, arcade and drill tools | Hook, Teach, Practice (the tool), Apply, Exit ticket |
+| `model-then-make` | builders where students then make their own | Hook, Model (the tool), Make, Share, Exit ticket |
 
 The checker holds each plan to its arc's parts and order. If a tool truly needs another shape, add an arc here
 first, with Cory's OK.
 
 **K-2:** the class is on the carpet and the teacher drives the tool on the big screen (all K-2 tools are teacher
-led). Keep parts short, use turn-and-talk and hands-up votes, and make the exit check oral or physical (thumbs,
+led). Keep parts short, use turn-and-talk and hands-up votes, and make the exit ticket oral or physical (thumbs,
 point, act it out). No worksheets needed unless the plan says what to print.
 
 ## The file: `tools/<id>/plan.md`
@@ -59,7 +59,7 @@ grouping: Whole class on the carpet, with turn-and-talk partners.
 ## Explore (15 min)
 ## Make sense (8 min)
 ## Apply (7 min)
-## Exit check (5 min)
+## Exit ticket (5 min)
 ## Support and stretch
 ## Short on time
 ```
@@ -93,7 +93,7 @@ kind: ticket
   print four to a page with cut lines, and the key prints upside down at the bottom.
 - **Checklists:** one to three short things to watch for (10 words at most each). They print as column heads on a
   class list with got it, almost and not yet boxes.
-- The items ask the same thing as the plan's Exit check (the checker wants a shared key word).
+- The items ask the same thing as the plan's Exit ticket (the checker wants a shared key word).
 - The backup sheet needs nothing extra: K-2 gets a draw-it box, the exit items to read aloud and faces to color;
   3-8 a frame sheet (what I know, two Word Wall words, the exit items); 9-12 the goal to explain, the words and the
   exit items.
