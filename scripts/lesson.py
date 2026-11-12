@@ -292,7 +292,7 @@ table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { borde
 .student table.wide td:first-child { width: 20%; font-size: 12pt; }
 .frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
 .frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
-.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .25in; margin: 0 1% .2in 0; vertical-align: top; font-size: 13pt; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
 .screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
 .warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
 .screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
@@ -705,9 +705,9 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         kr.append('<tr><td>%s</td><td>%s</td><td>%s</td><td class="q">%s%s</td><td>%s</td><td>%s</td></tr>' % (
             html.escape(where), html.escape(i['item_id']), html.escape(part_of(i)), html.escape(stem(i)), pics, ans,
             html.escape('; '.join(ws))))
-    kb = ('<h1>%s: key</h1><p>Every answer below is recomputed by scripts/plan.py from data/plans/%s/items.csv.</p>'
+    kb = ('<h1>%s: key</h1><p>Each answer is worked out in full. The last column names the wrong answers to expect and the error each one shows.</p>'
           '<table><tr><th>Where</th><th>Id</th><th>Part</th><th>Question</th><th>Answer</th><th>Wrong answers and what '
-          'they mean</th></tr>%s</table>%s' % (html.escape(title), course, ''.join(kr), foot))
+          'they mean</th></tr>%s</table>%s' % (html.escape(title), ''.join(kr), foot))
     put(out / (name + '-key.html'), page(title + ': key', kb, 'key'), encoding='utf-8')
     # exit slip, four to a sheet: the paper path only
     ex = [i for i in mine if i['check'] == 'exit' and i.get('path', '') in ('', 'paper')]
