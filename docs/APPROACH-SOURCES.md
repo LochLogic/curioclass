@@ -112,6 +112,9 @@ Access codes used in the tables:
 | WWC, Providing Reading Interventions for Students in Grades 4-9 (added) | IES, 2022 | https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/WWC-practice-guide-reading-intervention-full-text.pdf | PDF, extracts (204 pp / 74,440 words) | Public domain. | Upper-grade reading. |
 | SAP text complexity materials | Student Achievement Partners | https://achievethecore.org/page/2725/text-complexity ; Why Text Complexity Matters: https://achievethecore.org/content/upload/Why_Text_Complexity_Matters.pdf | HTML part (page lists rubrics and tools); PDF extracts (10 pp / 3,589 words) | Not seen. | Qualitative rubrics, rationale. |
 | SAP knowledge-building materials | Student Achievement Partners | Research Supporting Shift 3, Building Knowledge: https://achievethecore.org/content/upload/Research%20Supporting%20Shift%203%20-%20Building%20Knowledge%5B1%5D.pdf ; Research Supporting the ELA Standards and Shifts: https://achievethecore.org/content/upload/Research%20Supporting%20the%20ELA%20Standards%20and%20Shifts%20Final.pdf | PDF, extracts (3 pp and 17 pp) | Not seen. | Annotated bibliographies for knowledge building. Index of research pages: https://achievethecore.org/category/420/research-and-articles |
+| Kamil and others, Improving Adolescent Literacy: Effective Classroom and Intervention Practices (added 2026-11-12) | IES practice guide, 2008 | https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/adlit_pg_082608.pdf | PDF, extracts (65 pp; word count not recorded). Opened by the curriculum expert on 2026-11-11 with curl and a browser user agent, text taken out with pymupdf. Not re-tested for this entry. Read in part: the checklist (PDF 15 to 16), the level-of-evidence paragraph of all five recommendations (PDF 17, 22, 27, 32, 37) and step 4 of recommendation 2 (PDF 24). | Public domain. | Grades 4 to 12. Vocabulary strong, comprehension strategies strong, discussion moderate, motivation moderate, specialist help strong. Its levels are strong, moderate and low. |
+| National Reading Panel, Teaching Children to Read: Reports of the Subgroups (added 2026-11-12) | NICHD, 2000 | https://www.nichd.nih.gov/sites/default/files/publications/pubs/nrp/Documents/report.pdf | PDF, extracts (449 pp; word count not recorded). Opened by the expert the same way. Not re-tested for this entry. Read in part: PDF 192 (3-3) and PDF 216 (3-28) of the fluency chapter, and the paragraph on its search. | Public domain. | Chapter 3, fluency: guided oral rereading supported; independent silent reading not shown to help. |
+| Hasbrouck and Tindal, An Update to Compiled ORF Norms, Technical Report 1702 (added 2026-11-12) | University of Oregon, 2017 | https://files.eric.ed.gov/fulltext/ED594994.pdf | PDF, extracts (20 pp; word count not recorded). Opened by the expert the same way. Not re-tested for this entry. Read in part: the grade 5 and 6 table, PDF 16 (printed page 13). | All rights reserved; read and cite the figures only. | Oral reading norms by grade and season. |
 
 ## Provenance note on achievethecore.org
 
@@ -196,6 +199,9 @@ Later pages
 - https://achievethecore.org/content/upload/Why_Text_Complexity_Matters.pdf
 - https://achievethecore.org/content/upload/Research%20Supporting%20Shift%203%20-%20Building%20Knowledge%5B1%5D.pdf
 - https://achievethecore.org/content/upload/Research%20Supporting%20the%20ELA%20Standards%20and%20Shifts%20Final.pdf
+- https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/adlit_pg_082608.pdf (added 2026-11-12)
+- https://www.nichd.nih.gov/sites/default/files/publications/pubs/nrp/Documents/report.pdf (added 2026-11-12)
+- https://files.eric.ed.gov/fulltext/ED594994.pdf (added 2026-11-12)
 
 ## List 3: paywalled, blocked or not found, with the best free substitute
 
@@ -293,3 +299,64 @@ turns up, and no page may rest on them.
 - Federal fractions practice guide (Siegler and others, 2010, public domain):
   https://ies.ed.gov/ncee/wwc/Docs/PracticeGuide/fractions_pg_093010.pdf . Roadblock 2.2 (PDF page 31) is the source
   for "numbers in a fraction read as separate whole numbers".
+
+## ELA evidence notes and access notes (added 2026-11-12)
+
+From the curriculum expert's cold reads of 2026-11-11: docs/reviews/approach-ela-2026-11-11.md,
+docs/reviews/rights-ela-6-s2-2026-11-11.md and docs/reviews/rubric-ela-2026-11-11.md. In our own words. Each note
+keeps the report's own statement of how much was read. Nothing here was re-opened when these notes were filed.
+
+Evidence notes:
+
+- **Kamil and others 2008 (Improving Adolescent Literacy).** Read in part: the checklist, the level-of-evidence
+  paragraph of all five recommendations and step 4 of recommendation 2, of 65 pages. Recommendation 1, teaching
+  words directly in regular lessons with repeated meetings in several settings: strong, for upper elementary,
+  middle and high school; the effects are on word learning, and only some studies show a gain in comprehension.
+  Recommendation 2, direct and explicit teaching of comprehension strategies, with the teacher thinking aloud
+  and then guided practice: strong, on five randomized studies. Recommendation 3, extended discussion of what a
+  text means: moderate, on four small studies and one large correlational one. Recommendation 5, intensive help
+  from specialists for students who struggle: strong. Limits: it is the oldest guide of the set, its panel chose
+  the studies and did not run a full search, and its lowest level is called "low", not "minimal".
+- **National Reading Panel 2000.** Read in part: two pages of the fluency chapter (PDF 192 and 216) and the
+  paragraph on its search, of 449 pages. It found only 14 studies that tried to raise the amount of independent
+  silent reading, mostly with no gain. It concluded the evidence is not adequate to say that encouraging students
+  to read more raises achievement, and that this does not show such programs cannot work. It notes that many
+  correlational studies find the best readers read the most. It found clear evidence for guided repeated oral
+  reading. It uses no strong, moderate or minimal scale. No later review was read.
+- **Hasbrouck and Tindal 2017.** Read in part: the grade 5 and 6 table. In the fall of grade 6 the middle student
+  reads about 132 words correct a minute and the 25th percentile about 112. The flag at 112 in the ELA pages is
+  ours and untested.
+- **Writing Next (Graham and Perin 2007).** Read in part: the sentence-combining section (PDF 26) and "A Note
+  About Grammar Instruction" (PDF 29), of 77 pages. A meta-analysis of studies in grades 4 to 12, with the quality
+  of writing as the outcome. Teaching parts of speech and sentence structure as a subject of its own had a small
+  negative effect. Sentence combining had a moderate positive effect (0.50), mostly measured against that kind of
+  grammar teaching. One study found grammar taught for use inside writing had a strong positive effect. Limits:
+  the outcome is writing quality, not a test of conventions; it is a summary, and the studies were not read.
+- **WWC 2022 (reading interventions, grades 4 to 9), recommendation 3, Part A.** Three to five minutes of
+  background on the topic and three to five on its words before one passage, inside small-group help (PDF 28 to
+  29). It is evidence for a short step before reading, not for a set of texts on one topic.
+- **WWC elementary writing guide (2012, revised 2018).** Its studies run from kindergarten to grade 6 (PDF 14), so
+  it covers grade 6.
+- **WWC foundational skills guide (2016), recommendation 2.** Its studies were kindergarten and grade 1 (PDF 21).
+  It says nothing to grades 3 to 5.
+- **Supplement to Appendix A (2012), PDF page 8.** A person's judgment of a text may outweigh the computed
+  measure, most of all for narrative fiction in the later grades. The same page says poetry, drama and
+  kindergarten to grade 1 texts cannot be placed by a computed measure. The band table is on PDF page 4.
+
+Access notes:
+
+- **Publishers' Criteria, grades 3 to 12.** In the extracted text, words are split by odd spacing. Collapse runs
+  of spaces before searching.
+- **EdReports ELA criteria and evidence guides.** The four ELA files (grades 3 to 5 v2.1 and grades 6 to 12 v2.0,
+  both updated 07/2025) now sit on a media host with hashed file names, not on the cdn.edreports.org addresses
+  this page lists for the math and multilingual learner files. Plain curl works with no special header. The
+  stable way in is the tools page: https://edreports.org/process/review-tools/ela . The four addresses, and how
+  much of each was read, are in docs/RUBRIC-ELA.md. The tools page also links four multilingual learner files for
+  ELA; their addresses are in docs/reviews/rubric-ela-2026-11-11.md. Those four were found, not opened.
+- **Archive.org search.** The search endpoint (advancedsearch.php with output=json) answers without a block and
+  gives publisher and year for old editions. Used to date Baldwin's Old Greek Stories (1895). The scan's title
+  page was not opened.
+- **LibriVox book pages.** Each lists every section with its reader and time in plain HTML tables. curl with a
+  browser user agent works. Nobody listened to a recording.
+- **Core Knowledge, Ancient Greece and Rome (grade 6 history reader).** The back cover (PDF page 154) prints
+  "960L", a level stated by the publisher.

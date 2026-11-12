@@ -44,6 +44,12 @@ come first (BASELINE rule 24).
 and write what you see at the top of the review file under "Sara's read". The expert checks sources. You are the
 one who can say "no one could teach this in a week" or "this order would lose my class".
 
+## Where you are (2026-11-12)
+
+Pieces 1 and 2 are done except your own read. **Next is piece 3 (science).** Your read is owed at the top of
+four reports: unit-plan-s11-2026-11-12.md, rubric-ela-2026-11-11.md, approach-ela-2026-11-11.md and
+rights-ela-6-s2-2026-11-11.md (all in docs/reviews/). The s11 one matters most: the pilot is built from it.
+
 ## The pieces
 
 ### 1. The pilot unit's plan: cold read, then your read
@@ -89,8 +95,11 @@ now.**
 - 2026-11-11: all three drafted, read cold by the expert, revised once. Reports:
   docs/reviews/rubric-ela-2026-11-11.md, approach-ela-2026-11-11.md, rights-ela-6-s2-2026-11-11.md. "Sara's
   read" is owed on each. Six questions for Cory and the notes for the spine are in
-  docs/reviews/piece-2-cards-for-cory-2026-11-11.md (the Desk could not be opened from Sara's session, so
-  the cards are not on it yet). Every rights row is still "found, not yet second-read".
+  docs/reviews/piece-2-cards-for-cory-2026-11-11.md.
+- 2026-11-12, main session: the six questions are on the Desk as card `q-ela-piece-2`; the spine edits are
+  applied to docs/courses/ela-6-spine.md; the sources are on docs/APPROACH-SOURCES.md; the findings are in the
+  defect ledger. What the expert settled is listed in docs/reviews/DIGEST.md. When the Desk cannot be opened
+  from your session, keep writing cards to a file like this one; the main session places them. Every rights row is still "found, not yet second-read".
 
 ### 3. Science: rubric file, approach page, and the pilot unit's materials
 

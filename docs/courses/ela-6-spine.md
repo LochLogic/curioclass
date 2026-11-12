@@ -7,6 +7,34 @@ finished course holds" in docs/ROADMAP.md for the second proving course: every t
 with the reason for the order. It follows the layout of docs/courses/math-4-spine.md and applies the lessons of
 docs/reviews/math-4-spine-2026-11-11.md from the start.
 
+**Changed 2026-11-12, from the expert reads of the ELA rubric page, approach page and stretch 2 rights list**
+(docs/reviews/rubric-ela-2026-11-11.md, approach-ela-2026-11-11.md and rights-ela-6-s2-2026-11-11.md). Each is an
+item-level choice the curriculum expert settled. No day, unit, order or standard moved.
+(1) The pilot passage is Colum, Part II, chapters IV to VI, whole, about 5,700 words, named "Odysseus tells his
+own tale: the Lotus-eaters to the wreck". "Cyclops through Circe" was a misnomer and is gone from the text table,
+the reading load and "The pilot".
+(2) Colum's figures are 7.0 for the book and 5.9 for the passage. "8.7", "23.5" and the sentence that the year
+opens on some of its hardest prose are out. The passage sits below the grade 6 to 8 band by computed measure and
+is placed in grade 6 on judgment; the spine now says so.
+(3) Pilot supports are a sheet on the old forms, a name chart and a note on who is speaking. The long-sentence
+routine is not used on the pilot passage.
+(4) The sensitivity table adds, for Colum, the violence in the cave and the hero's thought of drowning himself,
+and a line for the king's death at the end of the way-in story.
+(5) The way-in story is Baldwin's "The Cruel Tribute", from the Reading Room's set II. The order is "shorter and
+complete first", not easier to harder.
+(6) Unit 2.5 reads a cut of about 2,000 words of the Monkey King chapter. The stretch 2 reading load now counts
+it and the way-in story.
+(7) Background text one is the chapter "The Ancient Greek City-States", if the second reader on rights passes it.
+(8) One short written answer on theme that cites the text is added on pilot day 2 or 3.
+(9) The readiness check sits in the last ten minutes of the previous stretch's last day.
+(10) The fall oral reading check flags a student below about 112 words correct a minute (ours, untested).
+(11) The "from memory" mark on the grammar line is off; Writing Next (2007) is named.
+(12) The Sources section no longer cites the 2024 draft of the rubric as current; the files are v2.0 and v2.1
+(07/2025), summarised in docs/RUBRIC-ELA.md.
+Three questions that touch this spine wait for Cory and are marked where they fall: the fallback second hero
+(card 4), a Curio Class retelling of the Monkey King (card 5) and background text two (card 6). The cards are in
+docs/reviews/piece-2-cards-for-cory-2026-11-11.md. The current text stands until he answers.
+
 **How to read the numbers.** Counts of standards, tools and Reading Room pieces come from the repo files. Word
 counts and difficulty measures of the texts on file come from the review, which measured them with its own script.
 Every day count, minute count, reading load and share is an estimate, marked (est.) where it first appears. None is
@@ -76,7 +104,7 @@ spec. Standards listed are the ones taught in that stretch; where each comes bac
 | # | Stretch | Days | On days | Topic and anchor texts | Standards taught | Tools |
 |---|---|---|---|---|---|---|
 | 1 | How This Class Works **(changed)** | 4 | 1 to 4 | Routines, choosing a book, the start-of-year check | SL.6.1b, RL.6.10, RI.6.10, W.6.10 | Book Group Table, Climbing Reads* |
-| 2 | Heroes and Their Trials | 25 | 5 to 29 | Greek myths: a Baldwin hero story as the way in, then about 18,000 words of connected episodes from Colum's Odysseus; a second hero from another tradition; a short play scene from a myth, performed | RL.6.1, RL.6.2, RL.6.3, RL.6.5, RL.6.7, W.6.3, W.6.4, W.6.5, W.6.9a, SL.6.1a, SL.6.1c, L.6.1a to d, L.6.4b, L.6.5a | Plot Rollercoaster, Summary Squeeze, Sentence Remixer, Book Group Table, Theme Evidence Ladder*, Page Audio Screen*, Blizzard Scenes* |
+| 2 | Heroes and Their Trials | 25 | 5 to 29 | Greek myths: Baldwin's "The Cruel Tribute" as the way in, then about 18,000 words of connected episodes from Colum's Odysseus; a second hero from another tradition; a short play scene from a myth, performed | RL.6.1, RL.6.2, RL.6.3, RL.6.5, RL.6.7, W.6.3, W.6.4, W.6.5, W.6.9a, SL.6.1a, SL.6.1c, L.6.1a to d, L.6.4b, L.6.5a | Plot Rollercoaster, Summary Squeeze, Sentence Remixer, Book Group Table, Theme Evidence Ladder*, Page Audio Screen*, Blizzard Scenes* |
 | 3 | To the Ends of the Earth | 22 | 30 to 51 | True first-person accounts of exploration, led by Matthew Henson, beside Peary on the same days and modern expedition logs; maps and timelines; one short story or narrative poem | RI.6.1, RI.6.2, RI.6.3, RI.6.4, RI.6.5, RI.6.7, W.6.2, W.6.7, W.6.9b, SL.6.2, SL.6.5, L.6.2a, L.6.4a to d, L.6.6 | Summary Squeeze, Claim Quote Comment*, Context Roots Dictionary*, Pause and Break*, Explainer Sections*, Draft Versus Draft* |
 | | **Check 1 (two periods), then a respond day** | 3 | 52 to 54 | The end check of stretch 3; stretch 2 again | | |
 | 4 | A Novel of the North | 24 | 55 to 78 | One full-length novel read by chapter, a human audio reading of it, and poems on the same ground. Paired with stretch 3 | RL.6.4, RL.6.5, RL.6.6, RL.6.7, RL.6.9, W.6.1a, W.6.1b, W.6.9a, SL.6.1a to d, L.6.5a to c | Perspective Camera, Word Thermometer, Book Group Table, Page Audio Screen*, Theme Evidence Ladder* |
@@ -136,13 +164,13 @@ this band. Stretches 3, 5 and 6 (66 of the 138 unit days) have no anchor on file
 
 | Stretch | Role | Text | Source and licence | Status |
 |---|---|---|---|---|
-| 2 | Way in | James Baldwin, Old Greek Stories, set II: the heroes (one hero story) | Reading Room; public domain | On file (tagged grades 3 to 5; about grade 7 by the review's measure) |
-| 2 | Anchor | Padraic Colum, The Adventures of Odysseus and the Tale of Troy: about 18,000 words of connected episodes, with Cyclops through Circe (about 6,000 words) as the core | Reading Room; public domain | On file |
+| 2 | Way in | James Baldwin, Old Greek Stories: "The Cruel Tribute" (Theseus and the Minotaur), about 3,210 words, one of the six hero stories in the Reading Room's set II. Read in one lesson, with the audio | Reading Room; public domain | On file (the set is tagged grades 3 to 5 and is about grade 7 by the review's measure; this story is 8.0 by the expert's measure) |
+| 2 | Anchor | Padraic Colum, The Adventures of Odysseus and the Tale of Troy: about 18,000 words of connected episodes. The core, and the pilot passage, is Part II, chapters IV to VI, whole: "Odysseus tells his own tale: the Lotus-eaters to the wreck" (about 5,700 words) | Reading Room; public domain | On file |
 | 2 | Other choice of anchor | Alfred J. Church, The Story of the Odyssey | Reading Room; public domain | On file |
-| 2 | Second hero, another tradition | The Monkey King (E. T. C. Werner, from Journey to the West). The other choice is The Ramayana, condensed | Reading Room; public domain | On file (The Monkey King is tagged grades 5 to 9; the Ramayana is tagged 9 to 12, which is why it is second choice) |
+| 2 | Second hero, another tradition | The Monkey King (E. T. C. Werner, from Journey to the West). Unit 2.5 reads a cut of about 2,000 words from Werner's chapter XIV: from "Beyond the seas" in "Legend of Sun Hou-tzu" through "Conditions of Release". Werner's opening comment is cut, and the cut is named. Whether a labeled Curio Class retelling of the same episodes later takes its place is open (proposed, waiting for Cory's yes: see docs/reviews/piece-2-cards-for-cory-2026-11-11.md, card 5). The other choice is The Ramayana, condensed (proposed, waiting for Cory's yes: see docs/reviews/piece-2-cards-for-cory-2026-11-11.md, card 4) | Reading Room; public domain | On file (The Monkey King is tagged grades 5 to 9; the Ramayana is tagged 9 to 12, which is why it is second choice) |
 | 2 | Play scene | One myth written as a short scene: a labeled Curio Class retelling, performed by the class | Curio Class writes it (the library plan's route 5) | Not written; the course owes it |
 | 2 | Audio | A human reading of the anchor episodes | LibriVox; recordings are released into the public domain, to be checked on each book page | To verify |
-| 2 | Background, two short texts on ancient Greece | Core Knowledge student readers | CC BY-NC-SA 4.0 on the grade 6 guides the review checked; each title must be checked | To verify |
+| 2 | Background, two short texts on ancient Greece | Core Knowledge student readers. Text one is the chapter "The Ancient Greek City-States" (about 1,080 words) from the grade 6 language arts reader, if the second reader on rights passes it. Text two is not settled (proposed, waiting for Cory's yes: see docs/reviews/piece-2-cards-for-cory-2026-11-11.md, card 6) | CC BY-NC-SA 4.0 on the grade 6 guides the review checked; each title must be checked | To verify |
 | 2 | Long book for independent reading | Charles Kingsley, The Heroes (Perseus, Theseus, The Argonauts) | Reading Room; public domain | On file |
 | 3 | Lead anchor | Matthew Henson, A Negro Explorer at the North Pole (1912), excerpts | Project Gutenberg 20923 and a Standard Ebooks edition; public domain | Verified, not on file |
 | 3 | Paired account of the same days | Robert Peary, The North Pole (1910), excerpts | Public domain by date | To verify |
@@ -215,20 +243,31 @@ widens that.
 
 ### How hard the texts are (rough measures)
 
-The first draft said the texts climb through the grade band across the year. That claim is dropped. The review's
-measure shows the year opens on some of its hardest prose: the myths have long, old-fashioned sentences. Order
+The first draft said the texts climb through the grade band across the year. That claim is dropped. Order
 inside the band does not need to climb. What each anchor needs is a text record that says where it sits in the
 band and why it is placed where it is.
 
-These figures are the review's, from its own script, good to about one grade either way. The grades 6 to 8 band
+**The pilot passage sits below the band by computed measure.** It measures 5.9 on Flesch-Kincaid, against a floor
+of 6.51 for grades 6 to 8, and inside the grades 4 to 5 band (4.51 to 7.73). The whole book measures 7.0, low in
+the grade 6 to 8 band. The passage is placed in grade 6 on a person's judgment of its old language and the
+knowledge it assumes. It is the easiest anchor passage of the year, placed first on purpose, so that the first
+teaching of theme and summary is not blocked by the text. Its text record must say all of this plainly. The climb
+has to be shown by later anchors.
+
+These figures are the review's, from its own script, good to about one grade either way, except the two Colum
+rows and the row for "The Cruel Tribute". Those three are the expert's own measure from the read of the stretch 2
+rights list (docs/reviews/rights-ela-6-s2-2026-11-11.md); the drafter's separate measure agrees to within 0.1.
+Neither could reproduce the review's earlier figures for Colum, so they are not used. The grades 6 to 8 band
 is 6.51 to 10.34 on Flesch-Kincaid and 925L to 1185L on Lexile.
 
 | Text | Flesch-Kincaid grade | Words per sentence | Known Lexile |
 |---|---|---|---|
-| Colum, Odysseus | 8.7 | 23.5 | |
+| Colum, Odysseus: the whole book | 7.0 | 19.3 | |
+| Colum, Odysseus: the pilot passage (Part II, chapters IV to VI) | 5.9 | 18.0 | |
 | Hawthorne, The Gorgon's Head; The Minotaur | 8.9; 9.8 | 20 to 23 | |
 | Kingsley, Perseus | 9.3 | 25.6 | |
 | Baldwin, Old Greek Stories II | 7.4 | 20.6 | |
+| Baldwin, "The Cruel Tribute" (the way-in story) | 8.0 | Not given | |
 | The Call of the Wild | 7.9 | 18.7 | 1120L (1080L on one list) |
 | Keller, The Story of My Life | 9.2 | 20.6 | 1150L (one retailer, unverified) |
 | Zitkala-Sa, School Days | 7.1 | 16.2 | 900L and 1040L for two chapters (another program's map) |
@@ -244,7 +283,7 @@ step's word help is the "during". Audio sits beside the text for access; the rul
 
 | Anchor | What makes it hard | Before | During | After |
 |---|---|---|---|---|
-| Baldwin, then Colum (stretch 2) | Long sentences, old vocabulary, unfamiliar names | The two background texts; a name and place chart; the Baldwin story first | Word help; the long-sentence routine; partner rereading; the human audio | The plot map, the summary, the first discussion |
+| Baldwin, then Colum (stretch 2) | Old forms (thee, thou, hast and the like, about 90 times in the pilot passage), old vocabulary, unfamiliar names, and a tale told inside a tale. Long sentences are not the problem in the pilot passage: its middle sentence is 17 words | The two background texts; a name and place chart; a note on who is speaking, to whom and where; the Baldwin story first | Word help; a one-page sheet on the old forms; partner rereading; the human audio. The long-sentence routine is not used on the pilot passage; the other Colum episodes have not been measured | The plot map, the summary, the first discussion |
 | Henson (stretch 3) | Period terms, place names, a claim historians dispute | Maps and the timeline; a note on the words of 1912 | Word help; the long-sentence routine; Peary beside Henson | Central idea and summary; the two-minute map talk |
 | The Call of the Wild (stretch 4) | Length, dialect, harsh events | Stretch 3's knowledge of the North; the National Park Service background; the teacher note | Reading by chapter with the audio; one lens at a time | The seminar; the literary argument |
 | Spargo and the government history (stretch 5) | Argument structure, numbers, period rhetoric | The photographs and the table first | The claim, reasons and evidence chart; a text from the other side | Tracing on paper; the listening task |
@@ -261,7 +300,8 @@ Each named text needs the fresh sensitivity read the first draft promised, and a
 | Henson | The period term in the title; "Esquimo"; Peary's treatment of the Inughuit. Accuracy: historians dispute that the party reached the Pole, and the unit must say so |
 | Scott and Shackleton, if a teacher adds them | The deaths of Scott's party, one man walking out to die; dogs and a cat killed |
 | Keller | Chapter 2's account of a Black servant's child she ruled over; period words for disability; Sullivan's letters describe physical struggle. Her "Frost King" chapter is a ready text on plagiarism for W.6.8 |
-| Colum | The killing of the suitors; enslaved people in the household |
+| Colum | The killing of the suitors; enslaved people in the household. In the pilot passage: the violence in the cave (the Cyclops kills and eats two men; six more are taken by Scylla in chapter VI), and the hero's thought of drowning himself (chapter V). A fresh sensitivity read of the passage is still owed |
+| Baldwin, "The Cruel Tribute" | The king's death at the end of the story |
 | Mother Jones, Hine | Injured children. A partisan voice, which is fine if taught as a voice |
 | Zitkala-Sa | Hard history. A well-reviewed outside program teaches two of its chapters in grade 6, so it is not held back. It is never used as a cold-read check text |
 | The topics of stretches 5 and 6 | Some students work, and some have lived through a disaster. Each stretch needs a line for the teacher |
@@ -276,7 +316,7 @@ so the daily figures are averages.
 
 | Stretch | Anchor reading | In class, per reading day | At home | If a class cannot count on homework |
 |---|---|---|---|---|
-| 2 | About 18,000 words of connected Colum episodes over the 10 literature days of units 2.2 to 2.4. Not "the whole cycle": the book is 54,200 words, about 6 hours, and does not fit. The Baldwin story and The Monkey King are not yet counted | About 1,800 words, 12 minutes | No anchor reading. Twenty minutes of the independent book (about 3,000 words) | Nothing changes: the anchor is all in class. A class that reads slowly uses shared reading with the audio, or reads fewer episodes, never fewer than Cyclops through Circe (about 6,000 words) |
+| 2 | About 18,000 words of connected Colum episodes over the 10 literature days of units 2.2 to 2.4. Not "the whole cycle": the book is 54,200 words, about 6 hours, and does not fit. Also counted: the way-in story, "The Cruel Tribute", about 3,200 words in one lesson of unit 2.1, as shared reading with the audio; and the Monkey King cut, about 2,000 words over the two days of unit 2.5. That is about 23,200 words for the stretch | About 1,800 words, 12 minutes, on the Colum days. The way-in day is about 3,200 words, 20 minutes with the audio. The Monkey King days are about 1,000 words each | No anchor reading. Twenty minutes of the independent book (about 3,000 words) | Nothing changes: the anchor is all in class. A class that reads slowly uses shared reading with the audio, or reads fewer episodes, never fewer than the pilot passage, Part II, chapters IV to VI, "Odysseus tells his own tale: the Lotus-eaters to the wreck" (about 5,700 words) |
 | 3 | A budget of about 20,000 words of excerpts over 12 reading days (no count exists; no text is on file) | Up to about 1,800 words, 12 minutes | No anchor reading. The independent book | Nothing changes |
 | 4 | The Call of the Wild, 31,800 words, about 3.5 hours, over the 15 days of units 4.1 to 4.4 | About 1,100 words, 7 minutes | About 1,000 words, 7 minutes a night: the next part of the chapter | All in class: about 2,100 words, 14 minutes a day, as shared reading with the audio. The lens work in units 4.2 and 4.3 gets shorter, not the book |
 | 5 | A budget of about 14,000 words over 10 reading days. These are the least familiar texts of the year, so the daily figure is lower | Up to about 1,400 words, 9 minutes | No anchor reading. The independent book | Nothing changes |
@@ -313,7 +353,7 @@ I did not check how well those grade 5 modules teach them.
 | # | Stretch | Builds on | Why it sits here | Hands on to |
 |---|---|---|---|---|
 | 1 | How This Class Works | SL.5.1, RL.5.10, RI.5.10 (ela-3-5-reading-range-and-text-complexity) | Discussion rules, the reading log and the writing folder are used every day after this, so they come first. The start-of-year check and the one-minute reading checks tell the teacher who needs support before the first hard text | Every stretch |
-| 2 | Heroes and Their Trials | RL.5.1, RL.5.2, RL.5.3, RL.5.5, W.5.3, L.5.1 (ela-5-comparing-characters-and-themes, ela-5-narrative-craft) | Stories are the most familiar kind of text, though this prose is not easy, which is why the stretch opens on Baldwin and then moves to Colum. Plot, character change, theme and summary with evidence are the base of all later reading. Narrative is the writing type students arrive strongest in, so the first process piece teaches the process itself. Myths also give names, stories and word roots that later texts lean on | Stretch 3 (evidence and summary move to nonfiction); stretch 4 (theme and structure in a long text); grade 7 RL.7.2, RL.7.3 |
+| 2 | Heroes and Their Trials | RL.5.1, RL.5.2, RL.5.3, RL.5.5, W.5.3, L.5.1 (ela-5-comparing-characters-and-themes, ela-5-narrative-craft) | Stories are the most familiar kind of text. The stretch opens on Baldwin's "The Cruel Tribute" and then moves to Colum: the order is shorter and complete first, not easier to harder, since the Baldwin story is the harder of the two by measure. Plot, character change, theme and summary with evidence are the base of all later reading. Narrative is the writing type students arrive strongest in, so the first process piece teaches the process itself. Myths also give names, stories and word roots that later texts lean on | Stretch 3 (evidence and summary move to nonfiction); stretch 4 (theme and structure in a long text); grade 7 RL.7.2, RL.7.3 |
 | 3 | To the Ends of the Earth | RI.5.1, RI.5.2, RI.5.3, RI.5.4, RI.5.5, W.5.2, W.5.7, L.5.4 (ela-3-5-main-idea-with-text-evidence, ela-5-organized-essays, ela-3-5-academic-and-subject-words) | The same moves (evidence, central idea, summary) are made again on true accounts while they are fresh. Word-solving strategies get their full teaching here because nonfiction is where unknown words pile up. The first informative essay and the first short research project use the knowledge the texts build | Stretch 4, its pair (the cold, the dogs and the journeys are background for the novel, and the word list carries through); stretch 6 (research and informative writing at full size); grade 7 RI.7.2, RI.7.3 |
 | 4 | A Novel of the North | RL.5.4, RL.5.6, RL.5.7, RL.5.9, L.5.5, W.5.1 (ela-3-5-narrators-and-points-of-view, ela-5-comparing-characters-and-themes) | Craft comes after comprehension: point of view, word choice and structure need a text long enough to show them working. A full-length text is asked for by the standards and the outside criteria. The literary argument is the gentlest first argument, because all the evidence is in one book everyone has read | Stretch 5 (claim and evidence move to real-world arguments; point of view becomes an author's purpose); grade 7 RL.7.6, RL.7.4 |
 | 5 | Children at Work | RI.5.6, RI.5.8, W.5.1, W.5.8, SL.5.3 (ela-3-5-main-idea-with-text-evidence, ela-5-organized-essays, ela-3-5-listening-for-main-points-and-reasons) | Students read and trace arguments before they write one. Arguments are the least familiar kind of text, so they come after a first small argument about the novel and still ahead of a spring test. Judging sources is taught here because an argument is only as good as its sources | Stretch 6 (source work at full size); grade 7 RI.7.8 and W.7.1, which add judging the reasoning and answering the other side |
@@ -393,11 +433,11 @@ tradition (2.5).
 |---|---|---|---|---|---|---|
 | 1 | 1.1 Discussion rules, the reading log, choosing a book; one-minute reading checks begin | 2 | 1 to 2 | Routines | SL.6.1b, RL.6.10, RI.6.10, W.6.10 | Book Group Table, Climbing Reads* |
 | 1 | 1.2 Start-of-year check: a cold read, then writing in one sitting | 2 | 3 to 4 | Check | Grade 5: RL.5.1, RL.5.2, RI.5.1, RI.5.2, W.5.2, L.5.1, L.5.2 | |
-| 2 | 2.1 Who the Greeks were: background reading and key words; a Baldwin hero story as the way in | 3 | 5 to 7 | Read info 2, read lit 1 | RI.6.1, RI.6.2 (first look), L.6.6, RL.6.1 | |
+| 2 | 2.1 Who the Greeks were: background reading and key words (text one is "The Ancient Greek City-States"); Baldwin's "The Cruel Tribute" as the way in, read in one lesson with the audio | 3 | 5 to 7 | Read info 2, read lit 1 | RI.6.1, RI.6.2 (first look), L.6.6, RL.6.1 | |
 | 2 | 2.2 How a myth unfolds: episodes and turning points (Colum) | 4 | 8 to 11 | Read lit | RL.6.3, RL.6.1 | Plot Rollercoaster |
 | 2 | 2.3 How the hero responds and changes; first text discussion | 3 | 12 to 14 | Read lit | RL.6.3, RL.6.1, SL.6.1a, SL.6.1c | Book Group Table |
 | 2 | 2.4 What the myth is saying: theme, a summary with no opinion in it, and a first evidence paragraph on theme; the words the myths gave us (roots, figures of speech) | 4 | 15 to 18 | Read lit 3, language 1 | RL.6.2, RL.6.1, W.6.9a, L.6.4b, L.6.5a | Summary Squeeze, Theme Evidence Ladder* |
-| 2 | 2.5 A second hero from another tradition | 2 | 19 to 20 | Read lit | RL.6.3, RL.6.2, RL.6.1 | |
+| 2 | 2.5 A second hero from another tradition: the 2,000-word cut of the Monkey King chapter | 2 | 19 to 20 | Read lit | RL.6.3, RL.6.2, RL.6.1 | |
 | 2 | 2.6 A myth as a play: reading a scene, performing it, hearing a reading | 3 | 21 to 23 | Read lit | RL.6.7, RL.6.5, RL.6.3 (drama), RL.6.10 (drama) | Page Audio Screen* |
 | 2 | 2.7 A new trial for the hero: plan and draft a story | 3 | 24 to 26 | Write (narrative) | W.6.3a to e, W.6.4 | Blizzard Scenes* |
 | 2 | 2.8 Revise, with pronoun work on the students' own drafts; finish the evidence paragraph; share; end check on a new short myth | 3 | 27 to 29 | Write (narrative) 2, check 1 | W.6.5, W.6.3, L.6.1a to d, W.6.9a, SL.6.1 | Sentence Remixer |
@@ -467,10 +507,21 @@ reject. So:
 The pilot is a five-day slice of stretch 2 that stands alone, so it can be taught and judged without the days
 of stretch 2 that come before it.
 
-- **Text:** Colum's Cyclops through Circe, one connected run of about 6,000 words (on file).
+- **Text:** Colum, Part II, chapters IV to VI, whole: "Odysseus tells his own tale: the Lotus-eaters to the
+  wreck". One connected run of about 5,700 words (on file). Chapter IV is the Lotus-eaters and the Cyclops, V is
+  Aeolus and Circe, VI is the Sirens, Scylla and Charybdis, the Cattle of the Sun and the wreck. The theme work
+  needs chapter VI.
+- **Its level, said plainly:** 5.9 by computed measure, below the grade 6 to 8 band (floor 6.51). It is placed in
+  grade 6 on judgment of its old language, and the text record says so. The pilot tests the teaching of theme,
+  not the level of the text.
 - **Standards:** theme and objective summary (RL.6.2), with RL.6.1 and RL.6.3 in support.
 - **The five days:** read for plot; read on and find the theme; write the summary; a discussion; an end check on
   a new short myth.
+- **One short written answer on theme that cites the text** (RL.6.2 with RL.6.1) is added on day 2 or day 3, as
+  an exit question or as the first lines of the evidence paragraph unit 2.4 already plans. A summary alone is not
+  analysis. It moves no day.
+- **Supports:** a sheet on the old forms (thee, thou, hast), a name chart and a note on who is speaking. Not the
+  long-sentence routine.
 - **Tools:** Plot Rollercoaster and Summary Squeeze, the two with fixed specs. Theme Evidence Ladder is added
   when its grade 6 path is fixed.
 - **It ships with what an ELA unit is really made of:** the text record, the question set, the word list and the
@@ -527,13 +578,16 @@ end-of-stretch check on overlapping standards. Now, where a cumulative check fol
 stretch's end check. That is true of stretches 3, 4, 6 and 7. Stretches 2 and 5 keep their own end check: a short
 new text on the stretch's topic with questions, about half a period, and the other half spent going over it.
 
-**At the stretch, not in every unit.** Each of the six topic stretches opens with a 10-minute readiness check on
-the standards in its "Builds on" row. The stretch's process piece, scored with a rubric, is the other half of the
+**At the stretch, not in every unit.** Each of the six topic stretches has a 10-minute readiness check on
+the standards in its "Builds on" row. It sits in the last ten minutes of the previous stretch's last day, as
+field 4 of docs/courses/UNIT-PLAN.md says for every subject, not on the stretch's own first day. The stretch's process piece, scored with a rubric, is the other half of the
 evidence. Every day ends with a written exit question about the text.
 
 **A one-minute oral reading check for every student in the first two weeks.** It is done during independent
 reading and takes no extra day. It is there to flag students who need more help with reading words than this
-course can give. This is a core course, not an intervention, and the course page must say so plainly.
+course can give. The flag: a student below about 112 words correct a minute gets a closer look (ours, untested).
+That figure is the 25th percentile for the fall of grade 6 in published norms (Hasbrouck and Tindal, 2017, read
+in part by the expert). A low score is a reason to look closer, not a diagnosis. This is a core course, not an intervention, and the course page must say so plainly.
 
 **Four cumulative checks, two periods each.** Period one: a new text or pair of texts, read cold, with questions.
 Period two: writing in one sitting from the same texts. The first draft's single period (20 minutes of reading,
@@ -579,10 +633,12 @@ What each needs, and how ELA differs from the math checks:
 **The long-sentence routine.** On anchor reading days, one long sentence from the day's text is taken apart into
 its short sentences and rebuilt. It takes about three minutes at the start of the lesson, or the whole opener on a
 sentence day. It serves the long, old-fashioned sentences of the myths and the 1900s texts, it serves English
-learners, and it is sentence work done inside the texts.
+learners, and it is sentence work done inside the texts. It is not used on the pilot passage of stretch 2, where
+the sentences are short and the old forms are what is hard.
 
 **Why the language days changed.** Grammar taught apart from writing does little for writing, and sentence
-combining does more (the review's summary of the research, from memory). So the two pronoun days moved into the
+combining does more (Writing Next, 2007, a review of studies in grades 4 to 12, read in part by the expert; the
+outcome was the quality of writing, not a test of conventions). So the two pronoun days moved into the
 revise days of unit 2.8, where students fix pronouns in their own drafts; the lone spelling day moved into the
 editing step of the report; and whole language days fell from 10 to 8.
 
@@ -705,7 +761,8 @@ five:
   grade 3 to 5 band tools are not fixed.
 - **No ELA rubric is on file.** docs/RUBRIC-MATH-K8.md has no ELA twin. The review names what to file
   (docs/RUBRIC-ELA-6-12.md, a summary in our own words with links, and a companion summary for multilingual
-  learners). That is a separate job from this file.
+  learners). That is a separate job from this file. (Since 2026-11-11 a draft is on file as docs/RUBRIC-ELA.md,
+  not yet approved. The multilingual learner companion is still unread.)
 - **The day counts and reading loads are untested**, and no teacher of grade 6 has seen them.
 
 ## Least sure
@@ -718,7 +775,9 @@ five:
    It cuts in-class independent reading from 15 hours to 10 and shortens one lesson a week to 25 minutes.
    Reasonable readers differ, and the first draft's three openers can be restored without moving a day.
 3. **The second hero.** The review named The Ramayana, condensed, and The Monkey King. I chose The Monkey King
-   because the shelf tags it grades 5 to 9 and tags the Ramayana 9 to 12. I have measured neither.
+   because the shelf tags it grades 5 to 9 and tags the Ramayana 9 to 12. I have measured neither. (Proposed,
+   waiting for Cory's yes: see docs/reviews/piece-2-cards-for-cory-2026-11-11.md, card 4 for the fallback and
+   card 5 for the Monkey King retelling.)
 4. **Six stretches of 17 to 25 days.** Outside programs run four or five longer units, and fewer, longer
    stretches would build more knowledge. Six is kept because each writing type goes through the full process
    twice, and because stretches 3 and 4 already work as one long run.
@@ -769,9 +828,13 @@ meets or is endorsed by any of these bodies.
 - Student Achievement Partners, the shifts in ELA and literacy:
   https://achievethecore.org/page/2727/college-and-career-ready-shifts-in-ela-literacy. Used for: complex text,
   evidence from text, building knowledge.
-- EdReports, Core Content Review Criteria v2.0, English Language Arts, Grades 6 to 12 (marked draft):
-  https://cdn.edreports.org/media/2024/11/ELA-Grades-6-12-Draft-of-v2.0-Tools_-Review-Criteria-2.pdf. Read in
-  full. Used for: the 55 to 45 balance of informational and literary texts in grades 6 to 8, text sets built on a
+- EdReports, Core Content Review Criteria, English Language Arts. The current files are Grades 6 to 12 v2.0 and
+  Grades 3 to 5 v2.1, both updated 07/2025, reached from https://edreports.org/process/review-tools/ela. Our
+  summary of them, in our own words, is docs/RUBRIC-ELA.md (a draft, not yet approved). The first draft of this
+  spine read an earlier file marked draft (2024):
+  https://cdn.edreports.org/media/2024/11/ELA-Grades-6-12-Draft-of-v2.0-Tools_-Review-Criteria-2.pdf. That file
+  was read in full, and the points below were taken from it; they have not been re-checked line by line against
+  the 07/2025 file for this spine. Used for: the 55 to 45 balance of informational and literary texts in grades 6 to 8, text sets built on a
   topic, a text complexity record for each anchor, pacing that fits a school year, on-demand and process writing,
   research, sentence work taken from the texts, checks that name their standards and say what to do next, a
   year-long scope and sequence. All rights reserved.
@@ -794,5 +857,6 @@ meets or is endorsed by any of these bodies.
 **Could not be read, by the first draft or the review.** The EL Education and CommonLit curriculum pages returned
 "not found" for the first draft. Appendix A and Appendix B of the standards were not fetched; the band ranges come
 from the supplement as quoted elsewhere. The review did not read the multilingual learner companion, Fishtank's
-EdReports report, or the fallback titles (Gay-Neck, The Post Office). Reading-rate norms, vocabulary research and
-the grammar research are from the review's memory.
+EdReports report, or the fallback titles (Gay-Neck, The Post Office). Reading-rate norms and vocabulary research are
+from the review's memory. The grammar research no longer is: the expert opened Writing Next (2007) on 2026-11-11
+and read its sentence-combining section and its note on grammar.

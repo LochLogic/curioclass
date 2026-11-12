@@ -22,6 +22,8 @@ which sit in this repository under their owners' terms. Each file's header names
 If a lesson is ever adapted from an open course, the credit and that course's licence are printed in the lesson
 itself.
 
-Known gaps, said plainly: `data/standards/ccss-math-focus.csv` has no header yet (source and terms not recorded).
+Known gaps, said plainly: the terms recorded in the header of `data/standards/ccss-math-focus.csv` rest on an
+archived copy of the publisher's permissions page; the live site no longer shows it. The file holds cluster ids
+and a one-word mark, no document text.
 The social and emotional learning file once held sub-skill wording close to its publisher's in its header; that
 was taken out on 2026-11-11 and the file now holds ids only (older versions remain in the git history).

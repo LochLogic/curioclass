@@ -535,3 +535,17 @@ question set and word list as data rows outside the word cap; the fallback secon
 digest; background text two. Every rights row is "found, not yet second-read"; fifteen questions for the second
 reader are listed in RIGHTS.md. Still owed: "Sara's read" on the three reports; the spine edits listed in the
 cards file (for the main session); the findings are not logged with scripts/plan.py defect.
+
+## 2026-11-12: Sara's pieces 1 and 2 taken in (Cory, in chat)
+
+"sara did a little bit of work. i need to get this over to the opus 5.5 model. please take her work in, action
+it, and update. then prep for changing models". Done by the main session: the six ELA questions placed on the
+Desk as card q-ela-piece-2 (order 104), not yet answered; the expert's settled edits applied to
+docs/courses/ela-6-spine.md; the new sources added to docs/APPROACH-SOURCES.md; the ELA findings logged in
+data/plans/defects.csv; docs/reviews/DIGEST.md started; docs/pilots/COST.md started; the tool bins script
+written (scripts/tool_bins.py, docs/TOOL-BINS.md). Settled by the main session at item level: the pilot plan's
+prose stays at 1,898 words against the 1,800 cap until the pilot is built (the overage is the generator sheet
+and record sheet definitions). Corrected: data/standards/ccss-math-focus.csv does have a header; the licence
+page and the handoff page said it did not. Still open with Cory: card q-ela-piece-2; whether the other five
+planned stretches move into data now or when next opened; in or not-now on the six extra pieces of a finished
+course.
