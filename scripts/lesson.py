@@ -500,6 +500,8 @@ def figure(spec, size=1.0):
         return ''
     if spec.split()[0] == 'strip':
         return strip(spec, size)
+    if spec.split()[0] == 'rows':
+        return rows_fig(spec, size)
     return rect(spec, size)
 
 
@@ -664,13 +666,29 @@ def rect(spec, size=1.0):
     if scaled and H > 300 * size:
         W, H = W * 300 * size / H, 300 * size
     pad = 60 * size if 'marks' in flags else 0
-    x0, y0, w, h = 170 * size + pad, 60 * size + pad, W, H
+    fs = 36 * size
+    tw = lambda s: len(s) * fs * 0.52   # about a Georgia character's width
+    # 'rows' labels one long side "4 in each row" and one short side "3 rows", once each (expert, day 1: an array
+    # is read in rows, not as a length in tiles); otherwise each side is labelled twice in its unit
+    rows_ = 'rows' in flags
+    if rows_:
+        top = '?' if f.get('l', '?') == '?' else '%s in %s' % (f['l'], 'the row' if Wd == 1 else 'each row')
+        side = '?' if f.get('w', '?') == '?' else '%s %s' % (f['w'], 'row' if Wd == 1 else 'rows')
+    else:
+        top, side = lab(f.get('l', '')), lab(f.get('w', ''))
+    x0, y0, w, h = max(170 * size, tw(side) + 30 * size) + pad, 60 * size + pad, W, H
     mid = ''
-    if 'A' in f:
-        mid = '%s square %s inside' % (f['A'], unit_for(f['A'], unit))
+    if 'A' in f:   # squares and tiles are already square units: "28 squares inside"
+        mid = ('%s %s inside' % (f['A'], unit_for(f['A'], unit)) if unit in ('squares', 'tiles') else
+               '%s square %s inside' % (f['A'], unit_for(f['A'], unit)))
     elif 'P' in f:
         mid = '%s %s%s all the way around' % (f['P'], unit_for(f['P'], unit), ' of ' + f['around'] if f.get('around') else '')
-    fs = 36 * size
+    # an inside label wider than the shape goes under it, below the bottom label (expert, day 2: Kai's 4 by 9)
+    below = bool(mid) and tw(mid) > w - 16 * size
+    right = 0 if rows_ else tw(side) + 30 * size
+    fw = max(x0 + w + max(right, 170 * size) + pad, x0 + w / 2 + tw(top) / 2 + 20 * size,
+             x0 + w / 2 + tw(mid) / 2 + 20 * size if below else 0)
+    fh = H + 130 * size + 2 * pad + (50 * size if below else 0)
     t = lambda x, y, s, a='middle', z=fs: '<text x="%.0f" y="%.0f" text-anchor="%s" font-size="%.0f">%s</text>' % (
         x, y, a, z, html.escape(s))
     extra = ''
@@ -689,14 +707,39 @@ def rect(spec, size=1.0):
             extra += '<line x1="%.0f" y1="%.0f" x2="%.0f" y2="%.0f" stroke="#000" stroke-width="2"/>' % (
                 x - dx * tk, y - dy * tk, x + dx * tk, y + dy * tk)
             extra += t(x + dx * off, y + dy * off + 8 * size, str(n), 'middle', z)
+    labels = (t(x0 + w / 2, y0 - 14 * size - pad, top) + t(x0 - 10 * size - pad, y0 + h / 2 + 12 * size, side, 'end'))
+    if not rows_:
+        labels += (t(x0 + w / 2, y0 + h + 46 * size + pad, top)
+                   + t(x0 + w + 10 * size + pad, y0 + h / 2 + 12 * size, side, 'start'))
+    if mid:
+        labels += (t(x0 + w / 2, y0 + h + (96 if not rows_ else 46) * size + pad, mid) if below
+                   else t(x0 + w / 2, y0 + h / 2 + 12 * size, mid))
     return ('<svg viewBox="0 0 %.0f %.0f" width="%.0f" style="width:100%%;max-width:9in;height:auto" role="img" aria-label="%s" xmlns="http://www.w3.org/2000/svg" '
             'font-family="Georgia, serif"><rect x="%.0f" y="%.0f" width="%.0f" height="%.0f" fill="none" stroke="#000" '
-            'stroke-width="3"/>%s%s%s%s%s%s</svg>') % (
-        W + 340 * size + 2 * pad, H + 130 * size + 2 * pad, W + 340 * size + 2 * pad, html.escape('A rectangle: ' + ', '.join(
-            '%s %s' % (k, v) for k, v in f.items())), x0, y0, w, h, extra,
-        t(x0 + w / 2, y0 - 14 * size - pad, lab(f.get('l', ''))), t(x0 + w / 2, y0 + h + 46 * size + pad, lab(f.get('l', ''))),
-        t(x0 - 10 * size - pad, y0 + h / 2, lab(f.get('w', '')), 'end'), t(x0 + w + 10 * size + pad, y0 + h / 2, lab(f.get('w', '')), 'start'),
-        t(x0 + w / 2, y0 + h / 2 + 8 * size, mid) if mid else '')
+            'stroke-width="3"/>%s%s</svg>') % (
+        fw, fh, fw, html.escape('A rectangle: ' + ', '.join(
+            '%s %s' % (k, v) for k, v in f.items()) + (', drawn in rows' if rows_ else '')), x0, y0, w, h, extra, labels)
+
+
+def rows_fig(spec, size=1.0):
+    """Tiles dealt into rows: 'rows 12/5' deals 12 dots one at a time into 5 rows (3, 3, 2, 2, 2) and leaves each
+    short row's missing places open, dashed, so the picture shows why 5 is not a factor of 12 (expert, day 1)."""
+    n, r = (int(x) for x in spec.split()[1].split('/'))
+    per = [n // r + (1 if k < n % r else 0) for k in range(r)]
+    cols, d = max(per), 44 * size
+    x0, y0 = 40 * size, 30 * size
+    out = []
+    for k, c in enumerate(per):
+        for j in range(cols):
+            cx, cy = x0 + j * d + d / 2, y0 + k * d + d / 2
+            out.append('<circle cx="%.0f" cy="%.0f" r="%.0f" %s/>' % (cx, cy, d * 0.36, 'fill="#000"' if j < c else
+                                                                     'fill="none" stroke="#000" stroke-width="2" stroke-dasharray="5 4"'))
+        out.append('<text x="%.0f" y="%.0f" font-size="%.0f">%d</text>' % (x0 + cols * d + 16 * size, y0 + k * d + d * 0.68, 26 * size, c))
+    W, H = x0 + cols * d + 70 * size, y0 + r * d + 20 * size
+    alt = '%d dots dealt into %d rows: %s in the rows; the short rows are left open' % (n, r, ', '.join(map(str, per)))
+    return ('<svg viewBox="0 0 %.0f %.0f" width="%.0f" style="width:100%%;max-width:4in;height:auto" role="img" '
+            'aria-label="%s" xmlns="http://www.w3.org/2000/svg" font-family="Georgia, serif">%s</svg>') % (
+        W, H, W, html.escape(alt), ''.join(out))
 
 
 def foot_line(h, course, credits=()):
@@ -844,6 +887,9 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
         if i['check'] == 'example':
             st = steps(i)
             first = next((k for k, s in enumerate(st) if draws.search(s)), 0)
+            at = re.search(r'\bat=(\d+)', figures(i)[0]) if len(figures(i)) == 1 else None
+            if at:   # 'rows 12/5 at=4': the picture is the answer, held back until the step that shows it
+                first = int(at[1]) - 1
             o = ['<div class="screen"><p>%s</p>%s</div>' % (stacked(stem(i)), fig(i) if first == 0 and not
                                                             draws.search(st[0] if st else '') else '')]
             for k in range(len(st)):
@@ -859,15 +905,18 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
             two = [figure(x) if x else '' for x in fs] if len(fs) == 2 else ['', '']
             return ['<div class="screen"><p>%s</p>%s<div class="pair"><div><b>Their working</b>%s<p>%s</p></div>'
                     '<div><b>The right working</b>%s<p>%s</p></div></div></div>' % (
-                        stacked(stem(i)), fig(i), two[0], html.escape(re.sub(r'^.*?working: ', '', st[0])),
-                        two[1], html.escape(re.sub(r'^.*?working: ', '', st[1])))]
+                        stacked(stem(i)), fig(i), two[0], html.escape(cap1(re.sub(r'^.*?working: ', '', st[0]))),
+                        two[1], html.escape(cap1(re.sub(r'^.*?working: ', '', st[1]))))]
         if i['check'] == 'challenge':
             return ['<div class="screen"><p><b>Challenge.</b> %s</p></div>' % stacked(stem(i))]
         return []
 
     def answers_screen():
-        return ('<div class="screen"><p><b>Answers.</b> Any letter is right. An equation is right in any order if it '
+        # the letter sentence only when a key holds a letter for an unknown (expert, day 6: stretch 1 has none)
+        letter = any(LETTER.search(i['answer']) for i in end if i['judged'] == 'key')
+        return ('<div class="screen"><p><b>Answers.</b> %sAn equation is right in any order if it '
                 'says the same thing. Mark your own in pen. Items %s are read by your teacher.</p><ol>%s</ol></div>' % (
+                    'Any letter is right. ' if letter else '',
                     ' and '.join(i['n'] for i in end if i['judged'] == 'teacher') or 'none',
                     ''.join('<li style="list-style:none"><b>%s.</b> %s</li>' % (html.escape(i['n']), html.escape(
                         i['answer'] if i['judged'] == 'key' else 'read by your teacher')) for i in end)))
@@ -899,65 +948,86 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
             if i['check'] in ('practice', 'tool'):
                 prac.append(i)
 
+    def chunks(btxt):
+        """A part's text cut where the display must follow the prose: each "If ..." branch paragraph is its own run
+        of screens (expert, day 5: every warm-up branch was shown at once), and a Check: line closes a run, so its
+        screen comes before an Ask written after it."""
+        out, cur = [], []
+        for par in re.split(r'\n\s*\n', btxt):
+            if cur and re.match(r'\s*(?:\*\*)?If\b', par):
+                out.append('\n\n'.join(cur)); cur = []
+            cur.append(par)
+            if re.search(r'^Check(?: \(sort\))?: ', par, re.M):
+                out.append('\n\n'.join(cur)); cur = []
+        return out + (['\n\n'.join(cur)] if cur else [])
+
     shown = False
-    for _, bname, btxt in d['blocks']:
-        prac = []
+    for _, bname, whole in d['blocks']:
         if end and bname.lower().startswith('respond'):
             scr.append(answers_screen())
             shown = True
-            for b in re.findall(r'^- (.+?)(?=^- |\n\s*\n|\Z)', btxt, re.M | re.S):
-                scr.append('<div class="screen"><p><b>Group.</b> %s</p></div>' % html.escape(' '.join(b.split())))
-        walk(btxt, prac)
-        # tool rows (the paper path of a tool part) get their check screens here, so the teacher never reads the
-        # answers from the key: a long row (a story, a whole table) its own, after its question if the student page
-        # does not print it; short rows with short answers (a table's lines, day 83) share one screen
-        tools, prac = [i for i in prac if i['check'] == 'tool'], [i for i in prac if i['check'] != 'tool']
-        ct = re.search(r'^Check(?: \(sort\))?: (.+)$', btxt, re.M)
-        say_t = html.escape(ct[1].strip() if ct else 'Does yours match? Fix it in pen.')
-        brief = [i for i in tools if words(stem(i)) <= 12 and len(i['answer']) <= 60]
-        for i in tools:
-            if i in brief:
-                continue
-            if i['item_id'] not in on_page:
-                scr.append('<div class="screen"><p>%s</p></div>' % stacked(stem(i)))
-            scr.append('<div class="screen"><p><b>Check your answers.</b> %s</p><p>%s</p><p><b>%s</b></p></div>' % (
-                say_t, stacked(stem(i)), html.escape(i['answer'])))
-        if brief:
-            scr.append('<div class="screen"><p><b>Check your answers.</b> %s</p><ol>%s</ol></div>' % (say_t, ''.join(
-                '<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(i['answer'])) for i in brief)))
-        # a practice row the student page does not print has no other place to be read: a long one (a story) gets
-        # its own screen, then its answer; short ones (warm-up facts) share one screen, answered below
-        cm0 = re.search(r'^Check(?: \((sort)\))?: (.+)$', btxt, re.M) or peer.search(btxt)
-        off = [i for i in prac if i['item_id'] not in on_page]
-        for i in off:
-            if words(stem(i)) > 12:
-                scr.append('<div class="screen"><p>%s</p></div>' % stacked(stem(i)))
-                if not cm0:
-                    scr.append('<div class="screen"><p>%s</p><p><b>%s</b></p></div>' % (
-                        stacked(stem(i)), html.escape(i['answer'])))
-        short = [i for i in off if words(stem(i)) <= 12]
-        if short:
-            scr.append('<div class="screen"><ol>%s</ol></div>' % ''.join('<li>%s</li>' % stacked(stem(i)) for i in short))
-        plain = [i for i in prac if re.search(r'=\s*\?\s*$', stem(i))]
-        if plain:
-            scr.append('<div class="screen"><p><b>Check your answers.</b></p><ol>%s</ol></div>' % ''.join(
-                '<li>%s = %s</li>' % (html.escape(stem(i).rstrip('? =').strip()), html.escape(i['answer'])) for i in plain))
-        rest = [i for i in prac if i not in plain]
-        cm = re.search(r'^Check(?: \((sort)\))?: (.+)$', btxt, re.M)
-        if rest and (cm or peer.search(btxt)):
-            say = cm[2].strip() if cm else ('Put each answer back in its equation. Does it give the number in the '
-                                           'question? If not, put a question mark.')
-            # each row's answer, whatever its form; "Check (sort):" shows only its first part, the kind, so a sort
-            # checked now does not give away the solving that comes later
-            ans = lambda i: i['answer'].split(';')[0].strip() if cm and cm[1] else i['answer']
-            scr.append('<div class="screen"><p><b>Check your answers.</b> %s</p><ol>%s</ol></div>' % (
-                html.escape(say), ''.join('<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(ans(i)))
-                                          for i in rest)))
-        elif short:   # warm-up rows with no check line: their answers, so the teacher need not read them out
-            left = [i for i in short if i not in plain]
-            if left:
-                scr.append('<div class="screen"><p><b>Answers.</b></p><ol>%s</ol></div>' % ''.join(
-                    '<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(i['answer'])) for i in left))
+            gs = [' '.join(b.split()) for b in re.findall(r'^- (.+?)(?=^- |\n\s*\n|\Z)', whole, re.M | re.S)]
+            for b in gs:
+                scr.append('<div class="screen"><p><b>Group.</b> %s</p></div>' % html.escape(b))
+            if len(gs) > 1:   # groups work at once: one screen holds every task (expert, day 6)
+                scr.append('<div class="screen" style="font-size:16pt"><p><b>Every group.</b></p><ul>%s</ul></div>'
+                           % ''.join('<li>%s</li>' % html.escape(b) for b in gs))
+        for btxt in chunks(whole):
+          prac = []
+          walk(btxt, prac)
+          # tool rows (the paper path of a tool part) get a question screen, then their check screens, so the
+          # answers never show before students predict (expert, day 4): a long row (a story, a whole table) its own
+          # pair of screens; short rows with short answers (a table's lines, day 83) share one of each
+          tools, prac = [i for i in prac if i['check'] == 'tool'], [i for i in prac if i['check'] != 'tool']
+          ct = re.search(r'^Check(?: \(sort\))?: (.+)$', btxt, re.M)
+          say_t = html.escape(ct[1].strip() if ct else 'Does yours match? Fix it in pen.')
+          brief = [i for i in tools if words(stem(i)) <= 12 and len(i['answer']) <= 60]
+          if len(brief) < len(tools):   # all share one screen, or each has its own: the page's order is kept (day 2)
+              brief = []
+          for i in tools:
+              if i in brief:
+                  continue
+              scr.append('<div class="screen"><p>%s</p></div>' % stacked(stem(i)))
+              scr.append('<div class="screen"><p><b>Check your answers.</b> %s</p><p>%s</p><p><b>%s</b></p></div>' % (
+                  say_t, stacked(stem(i)), html.escape(i['answer'])))
+          if brief:
+              scr.append('<div class="screen"><ol>%s</ol></div>' % ''.join(
+                  '<li>%s</li>' % stacked(stem(i)) for i in brief))
+              scr.append('<div class="screen"><p><b>Check your answers.</b> %s</p><ol>%s</ol></div>' % (say_t, ''.join(
+                  '<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(i['answer'])) for i in brief)))
+          # a practice row the student page does not print has no other place to be read: a long one (a story) gets
+          # its own screen, then its answer; short ones (warm-up facts) share one screen, answered below
+          cm0 = re.search(r'^Check(?: \((sort)\))?: (.+)$', btxt, re.M) or peer.search(whole)
+          off = [i for i in prac if i['item_id'] not in on_page]
+          for i in off:
+              if words(stem(i)) > 12:
+                  scr.append('<div class="screen"><p>%s</p></div>' % stacked(stem(i)))
+                  if not cm0:
+                      scr.append('<div class="screen"><p>%s</p><p><b>%s</b></p></div>' % (
+                          stacked(stem(i)), html.escape(i['answer'])))
+          short = [i for i in off if words(stem(i)) <= 12]
+          if short:
+              scr.append('<div class="screen"><ol>%s</ol></div>' % ''.join('<li>%s</li>' % stacked(stem(i)) for i in short))
+          plain = [i for i in prac if re.search(r'=\s*\?\s*$', stem(i))]
+          if plain:
+              scr.append('<div class="screen"><p><b>Check your answers.</b></p><ol>%s</ol></div>' % ''.join(
+                  '<li>%s = %s</li>' % (html.escape(stem(i).rstrip('? =').strip()), html.escape(i['answer'])) for i in plain))
+          rest = [i for i in prac if i not in plain]
+          cm = re.search(r'^Check(?: \((sort)\))?: (.+)$', btxt, re.M)
+          if rest and (cm or peer.search(whole)):
+              say = cm[2].strip() if cm else ('Put each answer back in its equation. Does it give the number in the '
+                                             'question? If not, put a question mark.')
+              # each row's answer, whatever its form; "Check (sort):" shows only its first part, the kind, so a sort
+              # checked now does not give away the solving that comes later
+              ans = lambda i: i['answer'].split(';')[0].strip() if cm and cm[1] else i['answer']
+              scr.append('<div class="screen"><p><b>Check your answers.</b> %s</p><ol>%s</ol></div>' % (
+                  html.escape(say), ''.join('<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(ans(i)))
+                                            for i in rest)))
+          elif short:   # warm-up rows with no check line: their answers, so the teacher need not read them out
+              left = [i for i in short if i not in plain]
+              if left:
+                  scr.append('<div class="screen"><p><b>Answers.</b></p><ol>%s</ol></div>' % ''.join(
+                      '<li>%s<br><b>%s</b></li>' % (stacked(stem(i)), html.escape(i['answer'])) for i in left))
     # anything named outside the parts of the day (Longer, Tomorrow); the day's own parts are walked above
     walk('\n'.join(v for k, v in d['secs'].items() if k != 'The day'), [])
     if end and not shown:
@@ -975,6 +1045,12 @@ def build_day(d, course, items, days, parts_all, errors, wrongs, pdf):
 ACCEPT = ('Any equal form of an equation is right: the two factors in either order, either side of the equals sign, '
           'any letter, or the matching division (n × 9 = 36, 9 × n = 36, 36 = 9 × n and 36 ÷ 9 = n all say the same).')
 ORDER = ['example', 'tool', 'fix', 'practice', 'challenge', 'exit']
+LETTER = re.compile(r'(?<![A-Za-z])[a-z](?![A-Za-z])\s*[=×÷+−-]|[=×÷+−-]\s*[a-z](?![A-Za-z])')   # n × 9, = n
+
+
+def cap1(s):
+    """The first letter up: a fix's working with its "Right working:" label stripped starts a sentence."""
+    return s[:1].upper() + s[1:]
 DRAWS = re.compile(r'\b(draw|sketch|strip picture|strips)\b', re.I)
 
 
@@ -986,13 +1062,26 @@ def slip_item(k, i):
     ask = [s for s in sents if '__' not in s]
     frames = [s for s in sents if '__' in s]
     blank = lambda s: re.sub(r'_{2,}', '<span class="blank" style="width:5em"></span>', stacked(s))
-    box = ('<div class="sketch tall"></div>' if i['judged'] == 'teacher' else
-           '<div class="sketch"></div>' if DRAWS.search(stem(i)) and not re.search(r'grid paper', stem(i), re.I)
-           else '')
+    # a full search ("Find all the factor pairs") is marked on its working, so it gets a work box and one answer
+    # line (expert, day 3); asked with "how do you know", the box holds the pairs and the lines the reason (day 2)
+    search = re.search(r'\ball the factor pairs\b|\bevery factor\b', stem(i), re.I)
+    why = search and re.search(r'how do you know', stem(i), re.I)
+    label = '<span style="font-size:10pt">Pairs:</span>' if why else ''
+    box = ('<div class="sketch tall">%s</div>' % label if i['judged'] == 'teacher' else
+           '<div class="sketch">%s</div>' % label if (DRAWS.search(stem(i)) and not re.search(r'grid paper', stem(i), re.I))
+           or search else '')
     lines = ''.join('<p>%s</p>' % blank(s) for s in frames) or (
+        '<p>How I know: ____________________</p><p>__________________________</p>' if why else
+        '<p>__________________________</p>' if search else
         '<p>__________________________</p><p>__________________________</p>')
     if frames and not re.search(r'\b(?:finish|answer)\b', ' '.join(frames), re.I) and len(frames) < 2:
         lines += '<p>__________________________</p>'
+    # "Write prime or composite for 59, 77, 34 and 73": a row for each number, with room for its proof (day 5 read)
+    each = re.match(r'Write ([a-z, ]+?) for ((?:\d+, )+\d+ and \d+)\.', stem(i))
+    if each and not frames:
+        nums = re.findall(r'\d+', each[2])
+        lines = ('<table><tr><th style="width:22%%">Number</th><th style="width:33%%">%s?</th><th>Proof</th></tr>%s</table>' % (
+            html.escape(each[1][0].upper() + each[1][1:]), ''.join('<tr><td>%s</td><td></td><td></td></tr>' % n for n in nums)))
     return '<p>%d. %s</p>%s%s' % (k + 1, stacked(' '.join(ask)), box, lines)
 
 
@@ -1197,6 +1286,10 @@ def build_piece(p, items, wrongs, errors):
                for d in {i['day'] for i in items if i['stretch'] == st and i['check'] == 'exit'}]
         mid += [((int(w['day']), 1), ('W%s (%s)' % (w['day'], w['part']) if w['part'] else 'W%s' % w['day'],
                                       max(1, len(steps(w))))) for w in wts]
+        # a facts check part named in the header ("factcols: F1=3; F2=4") follows its day's columns: its count of 36
+        # (expert, day 3: the facts check had nowhere to be recorded)
+        mid += [((int(v), 2), (k.strip(), 1)) for k, _, v in (x.partition('=') for x in h.get('factcols', '').split(';'))
+                if v.strip().isdigit()]
         cols += [c for _, c in sorted(mid)]
         ends = [i for i in items if i['stretch'] == st and i['check'] == 'end']
         cols += [('End %s (%s)' % (i['n'], i['part']) if i['part'] else 'End %s' % i['n'], looks.get(i['n'], 1)) for i in ends]
@@ -1231,6 +1324,8 @@ def build_piece(p, items, wrongs, errors):
             return '<table class="facts"><tr>%s</tr></table>' % ''.join(
                 '<td style="border:0;width:20%%">%s = ____</td>%s' % (x, '</tr><tr>' if k % 5 == 4 else '')
                 for k, x in enumerate(fs))
+        if h.get('room') == 'tall':   # a whole search: a tall box and a full-width answer line (day 3 read)
+            return '<div class="sketch tall"></div><p>Answer: %s</p>' % ('_' * 62)
         return '<div class="sketch work"></div><p>Answer: ______________________</p>'
 
     def asked(i):

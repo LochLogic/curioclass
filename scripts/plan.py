@@ -24,7 +24,7 @@ KINDS = {'Understanding', 'Fluency', 'Use', 'Check', 'Respond'}
 MARKS = {'key', 'light'}
 LESSON_KINDS = {'example', 'tool', 'fix', 'practice', 'challenge'}   # rows a lesson day adds; all count as taught
 CHECKS = {'readiness', 'end', 'exit'} | LESSON_KINDS
-READERS = {'script', 'expert', 'sara', 'teacher', 'student', 'cory', 'writer'}
+READERS = {'script', 'expert', 'cheap', 'sara', 'teacher', 'student', 'cory', 'writer'}
 
 
 def rows(course, name):
@@ -250,6 +250,9 @@ def reserved_js(items, st):
 
 
 def reserve(course, st):
+    if (course, st) not in RESERVED:   # a stretch with no generator: the no-reuse gates in check() guard it
+        print('%s stretch %s: no generator to write; plan.py check guards its reserved numbers' % (course, st))
+        return
     js = ROOT / RESERVED[(course, st)]
     t = js.read_text(encoding='utf-8')
     new = re.sub(r'const RESERVED_S%s = .*?;' % st, lambda m: 'const RESERVED_S%s = %s;' % (st, reserved_js(rows(course, 'items'), st)), t, count=1, flags=re.S)
@@ -453,6 +456,28 @@ def check(course):
                     fails.append('%s: a check day with no end-check items' % lab)
             elif not any(i['check'] == 'exit' and i['day'] == d['day'] for i in items):
                 fails.append('%s: no exit question in items.csv' % lab)
+        # 3c. a reserved number (an end-check stem's number) made by a product in a taught row's answer or in the
+        # day's prose; the compute-only gate cannot see it (expert, day 4: 4 x 20 = 80 taught, 80 an end number)
+        resv = {int(x) for i in end for x in numbers(i['stem']) if x.isdigit() and int(x) >= 12}
+        prod = re.compile(r'\b(\d+) [×x] (\d+)\b')
+        srcs = [(i['item_id'], i['answer']) for i in items if i['stretch'] == s and i['check'] in LESSON_KINDS]
+        sdays = {d['day'] for d in days if d['stretch'] == s and d['kind'] != 'Check'}
+        for f in sorted((ROOT / 'courses' / course).glob('u*/d[0-9][0-9][0-9].md')):
+            m = re.search(r'^day: (\d+)', f.read_text(encoding='utf-8'), re.M)
+            if m and m[1] in sdays:
+                srcs.append((f.name, f.read_text(encoding='utf-8')))
+        for who, txt in srcs:
+            hit = sorted({int(a) * int(b) for a, b in prod.findall(txt)} & resv)
+            if hit:
+                notes.append('stretch %s: %s shows a product equal to reserved %s; rule on it (day 4 read)'
+                             % (s, who, ', '.join(map(str, hit))))
+        # 3d. every registered error can be shown by an exit or end-check wrong answer (expert, day 6: error G)
+        checked = {w['error'] for w in wrongs for i in items if i['item_id'] == w['item_id'] and i['stretch'] == s
+                   and i['check'] in ('exit', 'end')}
+        for e in errors:
+            if e['stretch'] == s and e['letter'] not in checked:
+                notes.append('stretch %s: error %s has no wrong-answer row on any exit or end-check item (day 6 read)'
+                             % (s, e['letter']))
         # 5. the error register is shown inside the stretch
         for e in errors:
             if e['stretch'] == s and nums and int(e['day']) not in nums:

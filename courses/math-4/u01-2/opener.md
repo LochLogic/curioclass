@@ -49,7 +49,7 @@ The rectangle comes back as a sketch only: on day 4, a multiple of 7 is rows of 
 
 - **Day 4.** Jumps on a number line: a size, and an order to fill. Yes or no is written before the jumps are
   drawn.
-- **Day 5.** Sort cards, three sets of three numbers, a proof pair on each composite before it is placed. Then
+- **Day 5.** Three sorts of three numbers on the student page, a proof pair for each composite. Then
   the 1 to 30 chart (chart-30.md): every prime ringed, a proof pair under each odd composite, and what is true
   of every even number after 2.
 
@@ -68,9 +68,9 @@ Unit 1.1's opener explains A to C; they can return in day 5's warm-up and day 6'
 
 | | What students do | What it shows | What to do when many do it |
 |---|---|---|---|
-| D | Swap factor and multiple: "the multiples of 6 are 1, 2, 3, 6" | The two words are not yet tied to one equation | Sort 1, 3, 9, 18, 27 and 54 into "factor of 9" and "multiple of 9"; say each with its equation |
+| D | Swap factor and multiple: "the multiples of 6 are 1, 2, 3, 6" | The two words are not yet tied to one equation | Sort 1, 3, 9, 18, 27 and 54 into "factor of 9" and "multiple of 9"; say each with its equation (9 goes in both) |
 | E | Judge "a multiple of" by the last digit or by even and odd, or stop at ten times | A rule that works for 2, 5 and 10 is stretched; the tables are taken for all the multiples | Fence four numbers between two products of the number tested, starting from ten times where needed |
-| F | Call a number prime because it is odd, or not in the tables | Prime is a look, not the result of a search | Test 2, 3, 5 and 7 in order on 39, 57 and 95; call a number prime only after the search finds nothing |
+| F | Call a number prime because it is odd, or not in the tables | Prime is a look, not the result of a search | Search 39, 57, 95 and 97 in order to the turn; call a number prime only after the search finds nothing |
 | G | Call 1 prime, or 2 composite because it is even | Prime is "few factors", not exactly two | Write the factors of 1, 2, 3 and 4 and count them: one, two, two, three |
 
 The day each wrong example is shown: D and E on day 4, F and G on day 5. Each day's teacher page names the wrong
@@ -80,21 +80,21 @@ answer that signals each error on that day's exit.
 
 E3 and day 3's written task are answered in day 4's first minutes. E3's second part asks part (c) early ("Is 6
 a factor of 98?"); a student who said yes because 98 is even shows error E before it is taught, and day 4's
-wrong example E is for them. Students below the facts mark (32 of 36 on either facts check) keep a 9 by 9 table
-from day 5, in lessons and on the end check.
+wrong example E is for them. Students below the facts mark (32 of 36 on either facts check) keep the 9 by 9 table
+(table-9x9.md) from day 5, in lessons and on the end check.
 
 ## Supplies for the unit
 
-- Per student: plain paper for number lines (day 4); a set of paper sort cards (day 5); the 1 to 30 chart
-  (day 5); a pencil.
-- Per class: the projector for the display pages; a board; a 1 to 100 chart for the sieve on day 6.
-- A room with nothing: lines and charts ruled by hand, and cards cut from scrap paper.
+- Per student: side 1 of the day 4 page holds the number lines (notebooks if there is no printer); the 1 to 30
+  chart (day 5); a pencil; the 1 to 100 chart (chart-100.md) for the sieve on day 6, about 6.
+- Per class: the projector for the display pages; a board.
+- A room with nothing: lines and charts ruled by hand.
 
 ## Words
 
 Multiple, factor, prime, composite, each with its picture. "Multiple" and "multiply" are said side by side.
-Frames: "__ is a multiple of __, because __ × __ = __." "__ is composite, because __ × __ = __." "__ is prime,
-because its only factor pair is 1 × __."
+Frames: "__ is a multiple of __, because __ × __ = __." "__ is composite, because __ × __ = __." "__ is prime: I
+tried __ to __ and found no pair."
 
 ## The end of the stretch
 

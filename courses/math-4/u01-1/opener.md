@@ -26,14 +26,14 @@ property students met in grade 3 (3.OA.B.5), now used to decide when a list is f
 **The search in order, and the turn.** To find every pair, try 1 row, 2 rows, 3 rows and on, in order, and
 write "fits, with __" or "no" for each. For 36: 1 × 36, 2 × 18, 3 × 12, 4 × 9, 5 no, 6 × 6. At 6 the two
 factors meet. Any number of rows past 6 would need a partner smaller than 6, and every number below 6 has
-already been tried. So the search stops there. For a number that is not a square, the stop comes where the
-next try is already bigger than its partner, or where a pair already found comes back turned. That is why the
-search for any number up to 100 never needs more than 10 tries: 10 × 10 is 100. Students say why they stopped;
+already been tried. One stop rule, taught on day 2 and used on days 3 and 5: when rows × rows is more than the
+number, stop. So no search up to 100 needs more than 10 tries: 10 × 10 is 100. Students say why they stopped;
 they are not given a rule to recite.
 
 **Pairs outside the times tables.** The tables stop at 9 × 9 (or at ten times). The search does not. 3 is a
 factor of 42 because 3 × 14 = 42, and 14 is in no table students learned. Students find it by building from
-ten times: 3 × 10 = 30, 12 more is 3 × 4, so 3 × 14 = 42. This is division as a missing factor (3.OA.B.6):
+ten times: 3 × 10 = 30, 12 more is 3 × 4, so 3 × 14 = 42. When what is left is still past the table, take
+another ten: 3 × 20 = 60, 21 more is 3 × 7, so 3 × 27 = 81. This is division as a missing factor (3.OA.B.6):
 "3 rows of how many make 42?"
 
 **Limits.** Whole numbers 1 to 100. No factor trees, no greatest common factor (grade 6). The Progressions say
@@ -42,15 +42,15 @@ students "need not be fluent" in finding all pairs, so nothing in the unit is do
 ## The rows table
 
 The model the unit carries. A table with three columns: rows, "fits, with __", or no. Each number of rows from
-1 is tried in order; each fit is written as an equation; the turn is marked with a star.
+1 is tried in order; each fit is written as an equation; a line goes under the last pair.
 
-- **Day 1.** Square tiles, then grid paper. Every rectangle for 12 under the camera, then pairs build 18 and
-  14. An equation inside each rectangle.
-- **Day 2.** The rows table on paper (rows-table.md), checked by the fact or on grid paper. Every list ends at
-  the turn.
-- **Day 3.** Lists only. No tiles, no grid. The table is drawn only by a student who is stuck.
+- **Day 1.** Square tiles, then centimetre grid paper. Every rectangle for 12 built at the front, shown on the
+  display; pairs build 18, 14, 16 and 15. An equation inside each rectangle.
+- **Day 2.** The rows table on paper (rows-table.md), checked by the fact or on grid paper.
+- **Day 3.** Lists only, no tiles or grid. Side 1 of the student page carries one table for 72 and 90; after
+  that, lists.
 
-The rows table page holds eight tables, enough for days 2 and 3: one a student, both sides.
+The rows table page holds six tables: four for day 2 and two spare for the fixes and 40.
 
 ## Why this model
 
@@ -69,7 +69,7 @@ Unit 1.2 meets errors D to G; its opener explains them. E appears once here, on 
 |---|---|---|---|
 | A | List some pairs and stop; often leave out 1 × the number | There is no order to the search | Search 30 in order as a class: for 1 to 6 rows, say "yes, with __" or "no" |
 | B | Find only pairs from the times tables: no 3 × 14 for 42 | A factor is "a fact I know", not "a number of rows that fits" | Test 3 and 4 on 42, 45, 56 and 81, starting from ten times |
-| C | Count a turned pair as new, or keep searching past the turn | 4 × 9 and 9 × 4 are not yet seen as one rectangle | Cut a 4 by 9 rectangle from grid paper, turn it, name it both ways; cross out the turned pairs in two lists |
+| C | Count a turned pair as new, or keep searching past the turn | 4 × 7 and 7 × 4 are not yet seen as one rectangle | Cut a 4 by 7 rectangle from grid paper, turn it, name it both ways; cross out the turned pairs in two lists |
 
 The day each wrong example is shown: A and C on day 2, B on day 3. Each day's teacher page names the wrong
 answer that signals each error on that day's exit.
@@ -77,8 +77,8 @@ answer that signals each error on that day's exit.
 ## The reteach (readiness items 2 and 3)
 
 Readiness items are marked after day 1 (readiness.md, or the start-of-year check once it exists). If more than a
-third of the class missed item 2 or item 3, day 2's warm-up and first five minutes are this reteach for the whole
-class. Otherwise run it with the students who missed it during day 2's warm-up, and the five minutes go to E1.
+third of the class missed item 2 or item 3, day 2's first five minutes after the warm-up are this reteach for
+the whole class. Otherwise run it with the students who missed it during day 2's warm-up.
 
 **Item 2, division as a missing factor.**
 
@@ -95,15 +95,14 @@ Item 1 (facts) has no reteach slot: it is the first reading for the facts checks
 
 ## Supplies for the unit
 
-- Per pair: 24 square tiles or paper squares (day 1, and the reteach on day 2).
-- Per student: grid paper, the rows table page, the day 3 practice sheet (practice-d003.md), a pencil.
-- Per class: the projector for the display pages; a board; a 9 by 9 multiplication table for any student who
-  asks on day 3.
+- Per pair: 24 square tiles or paper squares (day 1, and day 2's worked search).
+- Per student: centimetre grid paper, the rows table page (day 2), the day 3 practice sheet, a pencil.
+- Per class: the projector; a board; the 9 by 9 table (table-9x9.md), about 6, from day 3.
 - A room with nothing: squares cut from paper, and tables ruled by hand.
 
 ## Words
 
-Factor, factor pair, row, column, product, rectangle, each taught on a labelled rectangle. Frame: "__ and __
+Factor, factor pair, row, column, product, rectangle, turn, each taught on a labelled rectangle. Frame: "__ and __
 are a factor pair of __, because __ × __ = __." A student may say a pair in a home language first, then in the
 frame.
 

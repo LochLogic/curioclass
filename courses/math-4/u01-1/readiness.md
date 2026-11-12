@@ -23,7 +23,7 @@ Alone, on paper, with grid paper for item 3. Read each item aloud once; item 1 m
 class, before day 2, and write each result on the stretch 1 record sheet (R1 to R3): a tick, x for a wrong
 answer, or the error letter where the key gives one. Item 1 gets the number right out of 20.
 
-"Many" means more than a third of the class. Day 2's warm-up and first five minutes are the reteach slot:
+"Many" means more than a third of the class. Day 2's first five minutes after the warm-up are the reteach slot:
 
 - **Item 1, facts (both units).** No reteach slot. It is the first reading for the facts checks on days 3 and
   4; note the facts each student missed. A student who missed many keeps a 9 by 9 table out on days 3 and 4.

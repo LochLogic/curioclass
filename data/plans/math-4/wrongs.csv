@@ -381,9 +381,12 @@ s01-E2,only 2 and 4,,,E,"Judged by even, not by the pairs given"
 s01-E2,no 1 or no 52,,,,"not error A. 1 is a factor of every number, and a number is a factor and a multiple of itself; read 1 × 52 = 52 both ways"
 s01-E3,"""no"" for 4: the 4s stop at 40",,,E,
 s01-E3,"""yes"" for 6: it ends in 6, or it is even",,,E,
-s01-E4,93 prime,,,F,
-s01-E4,71 or 53 composite with no pair,,,,a guess
-s01-E4,1 × 94 given as the proof,,,,every number has 1 × itself, so it proves nothing; prime means exactly two factors
+s01-E4v2,93 prime,,,F,
+s01-E4v2,71 or 53 composite with no pair,,,,a guess
+s01-E4v2,1 × 94 given as the proof,,,,"every number has 1 × itself, so it proves nothing; prime means exactly two factors"
+s01-E4v2,1 prime,,,G,
+s01-E4v2,1 composite,,,G,
+s01-E4v2,a prime with nothing tested,,,,"a look, not a search"
 s01-E5v2,agrees with Ana,,,F,
 s01-E5v2,"""no"" with no pair",,,,"a guess, or a size rule; ask for the pair"
 s01-E6,"""No, she must try up to 35""",,,C,
@@ -398,12 +401,13 @@ s01-X2,"""I just know""",,,,no reason; ask what was tried and where it stopped
 s01-X3a,no 7 × 14,,,B,
 s01-X3a,no 1 × 98,,,A,
 s01-X3b,"""yes, 98 is even""",,,E,Met again in unit 1.2
-s01-X4a,"""55 is a factor of 5"", or the blanks swapped",,,D,
+s01-X4av2,"""55 is a factor of 5"", or ""5 is a multiple of 55""",,,D,
 s01-X4b,"""no"": the 4s stop at 40",,,E,
 s01-X4b,"""yes, it is even"", with no product shown",,,E,
-s01-X5,77 prime,,,F,
-s01-X5,59 or 73 composite with no pair,,,,a guess
-s01-X5,1 × 77 given as the proof,,,,every number has 1 × itself, so it proves nothing; prime means exactly two factors
+s01-X5v2,77 prime,,,F,
+s01-X5v2,59 or 73 composite with no pair,,,,a guess
+s01-X5v2,1 × 77 given as the proof,,,,"every number has 1 × itself, so it proves nothing; prime means exactly two factors"
+s01-X5v2,prime with no number tried,,,,no search shown
 s01-W3,"stops at 64, or tries every number to 64",,,C,
 s01-W3,"""when I can't think of any more""",,,A,no order to the search
 s01-W5,"""Ben is right: 91 is odd and not in the tables""",,,F,
@@ -481,6 +485,7 @@ s09-C77-2,"245,673",504030-268457+100+10000,245673,I,
 s09-C77-2,"364,427",7+2*10+4*100+4*1000+6*10000+3*100000,364427,F,
 s01-K1-1,7,3+4,7,,added the rows and the tiles in a row
 s01-K1-2,"""yes"" for 5 rows, with short rows",,,,not a rectangle; every row must be full
+s01-K1-3,"""no, one row is not a rectangle""",,,,a row of 12 is a 1 by 12 rectangle
 s01-P1-1,2 by 9 and 9 by 2 drawn as two,9*2,18,C,
 s01-P1-1,no 1 by 18,,,A,
 s01-P1-1,a shape of 4 rows with a short row,4*4 | 4*5,16 | 20,,not a rectangle: 4 rows of 4 is 16 and 4 rows of 5 is 20
@@ -494,6 +499,7 @@ s01-P1-4,no 1 by 15,,,A,
 s01-P1-4,3 by 5 and 5 by 3 drawn as two,5*3,15,C,
 s01-P1-4,2 rows of 7 with 1 tile on the end,2*7+1,15,,not a rectangle; 15 tiles cannot make 2 equal rows
 s01-C1-1,"16: 1 by 16, 2 by 8, 4 by 4",1*16 | 2*8 | 4*4,16 | 16 | 16,,"three rectangles, not two"
+s01-C1-1,6: 1 by 6 and 2 by 3,1*6 | 2*3,6 | 6,,"two rectangles, but no square"
 s01-W2-2,443,,,,took the smaller digit from the larger in each place; regroup instead
 s01-W2-4,437,,,,took the smaller digit from the larger in each place; regroup instead
 s01-T2-1,"9 × 4 or 12 × 3 added, or 6 × 6 written twice",,,C,
@@ -504,17 +510,18 @@ s01-T2-2,no 1 × 30,,,A,
 s01-T2-2,no 2 × 15,,,B,not in the times tables; check on grid paper
 s01-T2-3,only 7 × 7,,,A,
 s01-T2-3,keeps trying rows past 7,,,C,7 × 7 is the turn: a square turned is itself
+s01-T2-3,"only 1 × 49, stopped at 6 rows",,,A,
 s01-T2-4,10 × 6 or 12 × 5 added,,,C,
 s01-T2-4,no 1 × 60,,,A,
 s01-T2-4,"no 3 × 20, 4 × 15 or 5 × 12",,,B,not in the times tables; check on grid paper
 s01-F2-1,1 × 20 still missing,,,A,start from 1 row
 s01-F2-1,5 × 4 added as a fourth pair,5*4,20,C,
-s01-F2-2,six pairs: only one turned pair crossed out,,,C,
-s01-F2-2,6 × 6 crossed out too,,,,a square is a rectangle; 6 × 6 is a pair
+s01-F2-2v2,four pairs: only one turned pair crossed out,,,C,
 s01-P2-1,8 × 5 or 10 × 4 added,,,C,
 s01-P2-1,no 1 × 40,,,A,
 s01-P2-1,no 2 × 20,,,B,not in the times tables
 s01-C2-1,44 or 45,,,,"three pairs each; a pair of 48 was missed, or the search stopped early"
+s01-C2-1,42: four pairs,,,,48 has five
 s01-K3-1,no 3 × 16 or no 4 × 12,,,B,
 s01-T3-1,no 3 × 24 or no 4 × 18,,,B,
 s01-T3-1,no 1 × 72,,,A,
@@ -533,16 +540,18 @@ s01-P3-4,no 3 × 22 or no 6 × 11,,,B,
 s01-P3-4,11 × 6 or 22 × 3 added,,,C,
 s01-C3-1,"""No: 28 is not in the 3 times table""",,,B,
 s01-K4-1,"""7 is a multiple of 21""",,,D,the two words swapped
-s01-K4-2v2,"""no: the 6s stop at 60""",,,E,
+s01-K4-2v3,"""no: the 6s stop at 60""",,,E,
 s01-T4-1,"""no: the 7s stop at 70""",,,E,
 s01-T4-2,"""yes: 58 is even""",,,E,
 s01-T4-3,"""no: the 5s stop at 50""",,,E,
-s01-T4-4,"""yes: 26 cartons""",3*26,78,,stopped at 78 and missed the 1 egg left; a leftover means not a multiple
+s01-T4-4,"""yes: 26 cartons""",3*26,78,E,stopped at 78 and missed the 1 egg left; a leftover means not a multiple
 s01-P4-1,"""yes: it ends in 6"", or ""yes: it is even""",,,E,
 s01-P4-2,"""no: the 4s stop at 40""",,,E,
 s01-P4-3,"""no: 69 is odd"", or ""no: the 3s stop at 30""",,,E,
 s01-P4-4,"""yes: 62 is even""",,,E,
 s01-F4-1,"the list 1, 2, 3, 6 left as it is",,,D,
+s01-F4-2,46 left as a multiple of 6,,,E,the wrong answer shown
+s01-F4-3,68 left as not a multiple of 4,,,E,the wrong answer shown
 s01-C4-1,"only 72 and 78, the even ones",,,E,judged by even; 3 × 25 = 75
 s01-W5-1,"""48 is a factor of 6"", or the words swapped",,,D,
 s01-W5-4,"""no"": the 4s stop at 40",,,E,
@@ -666,4 +675,4 @@ s09-P76-5,"64,927",100000-46183+10+100+1000+10000,64927,I,
 s09-P76-5,"146,183",3+8*10+1*100+6*1000+4*10000+1*100000,146183,F,
 s09-P76-6,"258,756",407020-158364+100+10000,258756,I,
 s09-P76-6,"351,344",4+4*10+3*100+1*1000+5*10000+3*100000,351344,F,
-s09-C76-1,529,4268-3739,529,,subtracted: the start is the top number, so add the two
+s09-C76-1,529,4268-3739,529,,"subtracted: the start is the top number, so add the two"
