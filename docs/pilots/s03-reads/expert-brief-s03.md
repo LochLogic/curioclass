@@ -1,0 +1,22 @@
+You are the curriculum expert for Curio Class (repo S:\CurioClass, branch main). Read docs/agents/EXPERT.md first and act as it says. Do a cold read of ONE lesson day of grade 4 math unit 3 (equivalent fractions and comparing; days 10 to 24; section 3.1 days 10 to 12 in courses/math-4/u03-1, section 3.2 days 13 to 16 in u03-2, section 3.3 days 17 and 18 in u03-3, section 3.4 days 19 to 24 in u03-4; day 23 is the choose-a-way day and day 24 is the assessment day). You did not write it. Other experts read the other days at the same time; stay on your day, but note anything that looks shared across days.
+
+A cheap focused read of your day has already been done: docs/reviews/cheap-d0NN-2026-11-12.md (your day number). Read it LAST, after your own read, and do not repeat its findings: your job includes measuring what it missed.
+
+Model your read on docs/reviews/day-084-2026-11-12.md. Read in full: docs/courses/LESSON-DAY.md, docs/GLOSSARY.md, your day file, your day's rows of data/plans/math-4/items.csv and wrongs.csv (ids s03-*), errors.csv and days.csv rows for unit 3, the built pages build/lessons/math-4/u03-N/d0NN-*.html (render the student page: `python -X utf8 scripts/lesson.py build --pdf` writes PDFs; look at them), the section opener in your section folder, the shared pieces in u03-1 it leans on (readiness, record, strip-sheet, number-lines, family), docs/courses/math-4/s03.md and your section's u03-N.md, docs/courses/math-4/DEFAULTS.md, docs/RUBRIC-MATH-K8.md, and the day before and after yours. Day 10 follows day 9 (unit 2, not written; its plan is in docs/courses/math-4/s02.md and its section plans). Day 24 is followed by day 25 (unit 4, not written; its plan is in docs/courses/math-4/s04.md). Rework every key by hand. Run `python -X utf8 scripts/plan.py check` and `python -X utf8 scripts/lesson.py check`.
+
+This unit is the first to use the figure kinds `line` (number lines) and `fstrip` (fraction strips) from items.csv (described in LESSON-DAY.md and data/plans/README.md). Check that every figure on your day draws exactly what its stem and key claim (tick count, marked point, shaded parts, which strip is which), and that it prints legibly in black and white.
+
+The writers changed some plan points on purpose; judge each one that falls on your day and settle it in your table: day 14 groups the twelfths in twos, not fours; day 14 already uses 50/100 and 20/100 though section 3.2 says hundredths start on day 15; day 15 changed its extensions; day 17 moved 2/5 against 5/8 into teaching; day 18 uses 99/100; day 21 changed its opener and fix-it numbers; day 23's partner holds a key with its eight card rows cut out; day 24's readiness slot reuses items 2 and 5 because unit 4 has no readiness check yet.
+
+Judge: is the mathematics right; would a grade 4 teacher with no prep teach this well in 60 minutes; would students learn the day's goal; do the minutes, materials and print list hold; do the pictures show what they claim; does it meet the rubric; does it hand off cleanly both ways; is it in plain words a busy teacher reads fast.
+
+Rules: never use em dashes. Write "Curio Class" in full. Do NOT edit any file except your report (build output from running the build is fine; restore other sections' build files if it rewrites them). Do not commit. Do not touch data/closet/words, closet/words, data/media-manifest.txt, or S:\CurioClass-spec2.
+
+Write your report to docs/reviews/day-0NN-2026-11-12.md with: what you read; a verdict (2-4 sentences); findings, most serious first, each with what is wrong, why it matters, the exact fix; a table "Settled by the expert" for item-level choices you decide; a short list "For Cory" only for scope, money, people or audience questions (likely none).
+
+For EVERY finding add four tags:
+(a) LAYER: "day" or "process";
+(b) CATCH: "script", "cheap read" or "expert";
+(c) REPEAT: "yes" if the same kind as one found in the earlier expert reads (skim docs/reviews/day-001 to 006, day-072 to 077 and day-080 to 093-2026-11-12.md and defects.csv rows found_by expert), else "new";
+(d) CHEAP: "found" if the cheap read already had it (then do not count it as yours, list it in one line at the end instead), else "missed".
+Finish with a line counting your findings (cheap "missed" only) by LAYER, CATCH and REPEAT, and one line: how many of the cheap read's findings you agree with. Your final message: the verdict, the counts, and the report path.
