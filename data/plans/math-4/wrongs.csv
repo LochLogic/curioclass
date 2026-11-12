@@ -359,3 +359,48 @@ s10-P84-6,288,48*6,288,B,
 s10-P84-6,42 or 54,48-6 | 48+6,42 | 54,A,
 s10-C84-1,175,35*5,175,B,
 s10-C84-1,30,35-5,30,A,
+s01-R1,54 or 63 for 7 × 8,6*9 | 7*9,54 | 63,,a nearby fact; record it with the facts missed
+s01-R1,"8 for 72 ÷ 8, or 8 for 56 ÷ 7",,,,gave the divisor back; division not yet read as a missing factor
+s01-R1,a fact left blank,,,,"not known yet, not wrong; it goes on the facts record"
+s01-R2,24 × 3 = ?; 72,24*3,72,,multiplied the two numbers given; not yet an unknown factor
+s01-R2,24 ÷ 3 = 8 with no multiplication written,,,,"solved, but the link to multiplying is the gap; the reteach"
+s01-R2,21,24-3,21,,subtracted
+s01-R3,only 3 by 4,,,A,
+s01-R3,4 by 3 drawn as another rectangle,,,C,
+s01-R3,"2 by 4, 1 by 5 and 3 by 3",2*(2+4) | 2*(1+5) | 2*(3+3),12 | 12 | 12,,"perimeter 12, not area 12 (grade 3)"
+s01-R3,a 12-square shape that is not a rectangle,,,,"area is right; ""rectangle"" is not yet read"
+s01-E1,no 5 × 16,,,B,
+s01-E1,"two or three pairs, or no 1 × 80",,,A,
+s01-E1,10 × 8 added as a sixth pair,,,C,
+s01-E2,"104, 156",52*2 | 52*3,104 | 156,D,
+s01-E2,only 2 and 4,,,E,"Judged by even, not by the pairs given"
+s01-E2,no 1 or no 52,,,,"not error A. 1 is a factor of every number, and a number is a factor and a multiple of itself; read 1 × 52 = 52 both ways"
+s01-E3,"""no"" for 4: the 4s stop at 40",,,E,
+s01-E3,"""yes"" for 6: it ends in 6, or it is even",,,E,
+s01-E4,93 prime,,,F,
+s01-E4,71 or 53 composite with no pair,,,,a guess
+s01-E4,1 × 94 given as the proof,,,,every number has 1 × itself, so it proves nothing; prime means exactly two factors
+s01-E5,agrees with Ana,,,F,
+s01-E5,"""no"" with no pair",,,,"a guess, or a size rule; ask for the pair"
+s01-E6,"""No, she must try up to 35""",,,C,
+s01-E6,"""yes, there are only two"", with no reason",,,,"a count, not a reason; ask what happens after 7"
+s01-X1,only 2 by 5,,,A,
+s01-X1,2 by 5 and 5 by 2 counted as two,,,C,
+s01-X1,"""yes"", with a shape whose last row is short",,,,not a rectangle; 10 squares in 3 rows leave one short row
+s01-X2,no 2 × 25,,,B,
+s01-X2,no 1 × 50,,,A,
+s01-X2,10 × 5 as a fourth pair,,,C,
+s01-X2,"""I just know""",,,,no reason; ask what was tried and where it stopped
+s01-X3a,no 7 × 14,,,B,
+s01-X3a,no 1 × 98,,,A,
+s01-X3b,"""yes, 98 is even""",,,E,Met again in unit 1.2
+s01-X4a,"""55 is a factor of 5"", or the blanks swapped",,,D,
+s01-X4b,"""no"": the 4s stop at 40",,,E,
+s01-X4b,"""yes, it is even"", with no product shown",,,E,
+s01-X5,77 prime,,,F,
+s01-X5,59 or 73 composite with no pair,,,,a guess
+s01-X5,1 × 77 given as the proof,,,,every number has 1 × itself, so it proves nothing; prime means exactly two factors
+s01-W3,"stops at 64, or tries every number to 64",,,C,
+s01-W3,"""when I can't think of any more""",,,A,no order to the search
+s01-W5,"""Ben is right: 91 is odd and not in the tables""",,,F,
+s01-W5,"Ben is wrong, with no pair",,,,a guess; ask for the proof pair
