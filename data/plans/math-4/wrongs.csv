@@ -803,3 +803,33 @@ s03-P14-3,40/10,,,A,keeps the top number
 s03-P14-4,5/12 = 4/11 or 7/8 = 6/7,,,B,takes 1 from both
 s03-P14-4,10/100 = 10/10,,,A,keeps the top number
 s03-K14-2,50/10,,,A,keeps the top number
+s03-K15-1,3/100,,,A,one number kept
+s03-K15-1,93,3+(100-10),93,B,the same added to both
+s03-K15-2,2,,,A,one number kept
+s03-K15-2,20,2+(27-9),20,B,the same added to both
+s03-F15-1,50/100 > 1/2,,,D,the wrong answer shown
+s03-F15-2,1/100,,,A,the wrong answer shown
+s03-P15-5,7,,,A,one number kept
+s03-P15-5,12,7+(10-5),12,B,
+s03-P15-6,11,,,A,one number kept
+s03-P15-6,17,11+(12-6),17,B,
+s03-P15-7,4,,,A,one number kept
+s03-P15-7,13,4+(18-9),13,B,
+s03-P15-8,16,,,A,one number kept
+s03-P15-8,11,16-(10-5),11,B,the same taken from both
+s03-P15-9,14,,,A,one number kept
+s03-P15-9,11,14-(6-3),11,B,the same taken from both
+s03-P15-10,12,,,A,one number kept
+s03-P15-11,13,,,A,one number kept
+s03-P15-11,103,13+(100-10),103,B,
+s03-P15-12,170,,,A,one number kept
+s03-P15-12,80,170-(100-10),80,B,the same taken from both
+s03-P15-13,10,,,A,one number kept
+s03-P15-13,181,10+(190-19),181,B,
+s03-P15-14,11,,,A,one number kept
+s03-P15-14,19,11+(12-4),19,B,
+s03-P15-15,10,,,A,one number kept
+s03-P15-15,1,10-(18-9),1,B,the same taken from both
+s03-P15-16,230,,,A,one number kept
+s03-P15-16,140,230-(100-10),140,B,the same taken from both
+s03-P15-17,9,7+(4-2),9,B,"the same added to both, first blank"
