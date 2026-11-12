@@ -272,8 +272,8 @@ def check_day(d, items, days):
     pieces = ''.join(q.read_text(encoding='utf-8') for q in d['path'].parent.glob('*.md') if not re.match(r'd\d{3}$', q.stem))
     for i in items:
         if i['day'] == h.get('day') and i['check'] in plan.LESSON_KINDS | {'exit'} and i['item_id'] not in refs:
-            if i.get('path') == 'board' and '[[%s]]' % i['item_id'] in pieces:
-                continue   # a board row printed by the unit's sheet piece
+            if i.get('path') in ('board', '') and '[[%s]]' % i['item_id'] in pieces:
+                continue   # a board row printed by the unit's sheet piece, or a fixed practice sheet's row
             if i.get('path') == 'spare':
                 continue   # kept in data (a later day may cite it), printed on no page
             if i['check'] == 'tool' and re.search(r'\bexists\b', d['teacher'], re.I):
@@ -1042,7 +1042,13 @@ def parse_piece(path):
 
 
 def piece_rows(p, items):
+    """A check piece's rows: those its "## Items" section names by id, in that order (a fixed practice sheet, so
+    the day's other rows of the same kind stay out), or else every row of its check kind for its stretch."""
     h = p['head']
+    named = REF.findall(section(p['body'], 'Items') or '')
+    if named:
+        byid = {i['item_id']: i for i in items}
+        return [byid[r] for r in named if r in byid]
     return sorted([i for i in items if i['check'] == h.get('check') and i['stretch'] == h.get('stretch')],
                   key=lambda i: int(i['n'] or 0))
 
@@ -1072,6 +1078,10 @@ def check_piece(p, items):
         rs = piece_rows(p, items)
         if not rs:
             f.append('%s: no %s rows for stretch %s in items.csv' % (lab, h.get('check'), h.get('stretch')))
+        have = {i['item_id'] for i in items}
+        for r in REF.findall(section(p['body'], 'Items') or ''):
+            if r not in have:
+                f.append('%s: [[%s]] has no row in items.csv' % (lab, r))
         g = grade(h.get('course', ''))
         for i in rs:
             for s in sentences(stem(i)):
@@ -1136,12 +1146,21 @@ def build_piece(p, items, wrongs, errors):
         looks = {k.strip(): int(v) for k, _, v in (x.partition('=') for x in h.get('lookfors', '').split(';')) if v}
         ex = lambda d: sorted({i['part'] for i in items if i['stretch'] == st and i['check'] == 'exit' and i['day'] == d and i['part']})
         cols = [('R%s' % i['n'], 1) for i in items if i['stretch'] == st and i['check'] == 'readiness']
-        cols += [('E%s (%s)' % (d, ', '.join(ex(d))) if ex(d) else 'E%s' % d, 1)
-                 for d in sorted({i['day'] for i in items if i['stretch'] == st and i['check'] == 'exit'})]
+        # the exits by day; a written task named in the header ("written: s01-W3; s01-W5") follows its day's exit,
+        # one column for each look-for on its row
+        byid = {i['item_id']: i for i in items}
+        wts = [byid[x.strip()] for x in h.get('written', '').split(';') if x.strip() in byid]
+        mid = [((int(d), 0), ('E%s (%s)' % (d, ', '.join(ex(d))) if ex(d) else 'E%s' % d, 1))
+               for d in {i['day'] for i in items if i['stretch'] == st and i['check'] == 'exit'}]
+        mid += [((int(w['day']), 1), ('W%s (%s)' % (w['day'], w['part']) if w['part'] else 'W%s' % w['day'],
+                                      max(1, len(steps(w))))) for w in wts]
+        cols += [c for _, c in sorted(mid)]
         ends = [i for i in items if i['stretch'] == st and i['check'] == 'end']
         cols += [('End %s (%s)' % (i['n'], i['part']) if i['part'] else 'End %s' % i['n'], looks.get(i['n'], 1)) for i in ends]
-        lf = ''.join('<p><b>End %s look-fors:</b> %s</p>' % (i['n'], '; '.join('%d. %s' % (k + 1, html.escape(s))
-                     for k, s in enumerate(steps(i)))) for i in ends if i['judged'] == 'teacher' and steps(i))
+        lf = ''.join('<p><b>W%s look-fors:</b> %s</p>' % (w['day'], '; '.join('%d. %s' % (k + 1, html.escape(s))
+                     for k, s in enumerate(steps(w)))) for w in wts if steps(w))
+        lf += ''.join('<p><b>End %s look-fors:</b> %s</p>' % (i['n'], '; '.join('%d. %s' % (k + 1, html.escape(s))
+                      for k, s in enumerate(steps(i)))) for i in ends if i['judged'] == 'teacher' and steps(i))
         hd = '<tr><th>Student</th>%s</tr>' % ''.join('<th colspan="%d">%s</th>' % (n, html.escape(c)) for c, n in cols)
         sub = '<tr><th></th>%s</tr>' % ''.join(''.join('<th>%s</th>' % ('' if n == 1 else '%d' % (k + 1))
                                                       for k in range(n)) for _, n in cols)
@@ -1154,14 +1173,28 @@ def build_piece(p, items, wrongs, errors):
         return out
     # a check: the student page, a large-print copy, and the key
     rs = piece_rows(p, items)
-    foot = unit_foot(h, course, '%s check' % h.get('check'))
-    def room(i):   # a drawing goes on grid paper; otherwise a work box and an answer line
-        if re.search(r'grid paper', stem(i), re.I):
-            return '<p>Draw on your grid paper. Write the area inside each.</p>'
+    foot = unit_foot(h, course, 'practice sheet' if h.get('check') == 'practice' else '%s check' % h.get('check'))
+    def facts_list(i):   # "lead: 6 × 7, 8 × 4, ...; 42 ÷ 6, ...": six or more bare facts, each gets its own blank
+        m = re.match(r'(.*?):\s*(.+)$', stem(i), re.S)
+        fs = [x.strip().rstrip('.') for x in re.split(r'[,;]', m[2])] if m else []
+        return (m[1], fs) if len(fs) >= 6 and all(re.fullmatch(r'\d+ [×÷] \d+', x) for x in fs) else None
+
+    def room(i):   # a drawing goes on grid paper; a list of facts gets a blank for each; otherwise a work box
+        if re.search(r'\bgrid\b', stem(i), re.I):
+            return '<p>Draw on your grid paper.%s</p>' % ('' if re.search(r'\barea \d', stem(i)) else
+                                                          ' Write the area inside each.')
+        if facts_list(i):
+            fs = facts_list(i)[1]
+            return '<table class="facts"><tr>%s</tr></table>' % ''.join(
+                '<td style="border:0;width:20%%">%s = ____</td>%s' % (x, '</tr><tr>' if k % 5 == 4 else '')
+                for k, x in enumerate(fs))
         return '<div class="sketch work"></div><p>Answer: ______________________</p>'
+
+    def asked(i):
+        return facts_list(i)[0] + '.' if facts_list(i) else stacked(stem(i))
     sb = '<h1>%s</h1><p>Name ______________________ Date __________</p>%s%s%s' % (
         html.escape(title), mdh(section(body, 'Student') or ''), ''.join(
-            '<p>%d. %s</p>%s%s' % (k + 1, stacked(stem(i)), figure(i['figure'], 0.5) if i.get('figure') else '', room(i))
+            '<p>%d. %s</p>%s%s' % (k + 1, asked(i), figure(i['figure'], 0.5) if i.get('figure') else '', room(i))
             for k, i in enumerate(rs)), foot)
     put(out / (name + '-student.html'), page(title, sb, 'student'), encoding='utf-8')
     put(out / (name + '-student-large.html'), page(title + ', large print', sb, 'student large'), encoding='utf-8')
