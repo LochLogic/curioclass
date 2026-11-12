@@ -1,0 +1,139 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Unit 9.1: The standard algorithm for adding (days 72 to 73)</title><style>
+@page { size: letter; margin: 0.5in; }
+body { font-family: Georgia, 'Times New Roman', serif; color: #000; background: #fff; margin: 0 auto; max-width: 7.3in; }
+body.student { font-size: 14pt; line-height: 1.45; } body.large { font-size: 18pt; }
+body.teacher, body.key { font-size: 11pt; line-height: 1.4; }
+h1 { font-size: 1.4em; margin: 0 0 .3em; } h2 { font-size: 1.15em; margin: 1em 0 .3em; } h3, h4 { font-size: 1em; margin: .9em 0 .2em; }
+table { border-collapse: collapse; width: 100%; margin: .4em 0; } th, td { border: 1px solid #000; padding: .3em .4em; vertical-align: top; text-align: left; }
+.student td { height: 2em; padding: .2em .4em; } .student p { margin: .45em 0; } .sketch { border: 1px dashed #000; height: 0.9in; margin: .3em 0; }
+.side { page-break-after: always; } .side:last-child { page-break-after: auto; }
+.q { font-style: normal; } .blank { display: inline-block; border-bottom: 1px solid #000; height: 1em; vertical-align: baseline; }
+.student table.narrow td:first-child { width: 30%; } .student table.narrow td:nth-child(2) { width: 42%; }
+.student table.wide td:first-child { width: 27%; }
+.student table.sets td:first-child { width: 40%; } .student table.sets td:nth-child(2) { width: 50%; } .student table.sets td { height: 2em; }
+.frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; font-size: .78em; line-height: 1.05; margin: 0 .08em; }
+.frac > span:first-child { border-bottom: 1px solid #000; } .meta td:first-child { width: 22%; font-weight: bold; }
+.slip { border: 1px dashed #000; height: 4.6in; width: 48%; display: inline-block; box-sizing: border-box; padding: .2in; margin: 0 1% .2in 0; vertical-align: top; font-size: 12pt; overflow: hidden; } .slip p { margin: .35em 0; } .slip .foot { font-size: 8pt; margin-top: .3em; padding-top: .2em; }
+.screen { min-height: 90vh; font-size: 30pt; line-height: 1.35; page-break-after: always; padding: .3in; border-bottom: 2px solid #000; }
+.warn { border: 2px solid #000; padding: .4em; font-weight: bold; }
+.screen svg { display: block; max-width: 100%; margin: .3em 0; } .screen li { color: #555; } .screen li.now { color: #000; font-weight: bold; }
+.pair { display: flex; gap: .4in; } .pair > div { flex: 1; border: 2px solid #000; padding: .2in; }
+.sketch.work { height: 0.8in; } .sketch.small { height: 0.5in; } .sketch.tall { height: 1.5in; } .slip .sketch { height: 1.3in; } .slip .sketch.tall { height: 1.5in; }
+.foot { font-size: 9pt; margin-top: 1em; border-top: 1px solid #000; padding-top: .3em; }
+</style></head><body class="teacher"><h1>Unit 9.1: The standard algorithm for adding (days 72 to 73)</h1><h2>The math, for the adult</h2>
+<p>Standard 4.NBT.B.4, its first part: "Fluently add and subtract multi-digit whole numbers using the standard
+algorithm." This unit adds; unit 9.2 subtracts. It is the grade's one fluency standard, so it is begun here and
+carried by the daily warm-up to day 150.</p>
+<p><strong>The standard algorithm is expanded form written short.</strong> In grade 3, students added within 1,000 by place
+(3.NBT.A.2). 3,746 + 2,538 in expanded form is 3,000 + 700 + 40 + 6 and 2,000 + 500 + 30 + 8. Add like units:
+14 ones, 7 tens, 12 hundreds, 5 thousands. 14 ones is 1 ten and 4 ones, so the ones place holds 4 and the ten
+joins the tens: 8 tens. 12 hundreds is 1 thousand and 2 hundreds, so the hundreds place holds 2 and the thousand
+joins the thousands: 6 thousands. The sum is 6,284. The standard algorithm does the same work in columns, right
+to left, with each ten of a unit written as a small 1 over the next column.</p>
+<p><strong>The small 1 always has a worth.</strong> Over the tens it is one ten; over the thousands it is one thousand. It is
+"one" only as a digit. Students say each carry by its value ("14 ones is 1 ten and 4 ones") on day 72, so the
+algorithm stays tied to place value. Families may say "carry"; "regroup" is the same move.</p>
+<p><strong>Ten of any unit make one of the next.</strong> The same rule runs in every column, all the way to a million: ten
+hundred thousands make one million. So nothing new is needed for six-digit numbers, only care. This is MP.8, using
+what repeats.</p>
+<p><strong>An estimate catches what the columns hide.</strong> Lining up numbers of different lengths is where most wrong sums
+start. Before each sum on day 73, students round and add (4.NBT.A.3, from day 71): 6,285 + 947 is about 6,300 +
+900 = 7,200, so any answer near 15,000 is wrong before it is checked. Saying both numbers aloud by their comma
+groups first (4.NBT.A.2) puts each digit in its place.</p>
+<p><strong>Limits.</strong> Whole numbers; sums under 1,000,000. No blocks: fluency here means accurate and reasonably fast, with
+a method that is understood. No time target is set and no clock is shown.</p>
+<h2>Expanded form beside the algorithm</h2>
+<p>The model the unit carries, under place names over the columns.</p>
+<ul>
+<li><strong>Day 72.</strong> The teacher shows both, side by side, for 3,746 + 2,538 and 1,895 + 4,368, saying each carry by
+  its value. Pairs do two sums both ways, then four- and five-digit sums with the algorithm alone, each small 1
+  labelled with its worth.</li>
+<li><strong>Day 73.</strong> Expanded form is gone. Place names stay up for the first set, then come down before E73. An
+  estimate is written before every sum.</li>
+</ul>
+<p>The place value columns sheet (columns.md) gives place names to millions and a dashed row for small digits. It is
+for any student who needs the columns ruled, on both days and on day 77.</p>
+<h2>Why this model</h2>
+<p>Expanded form shows where every carry comes from: the 14 ones are on the page before they are written as 4 and a
+small 1. Putting it beside the algorithm on the same sum, under the same place names, lets a student match each
+step. Taking it away on day 73 is the point: the algorithm is the fast form, and the estimate takes over as the
+check. No tool fits days 72 and 73. Road Trip Logbook (spec only) asks only grade 3 sizes and mixes in
+subtracting, so the unit runs on paper with a key.</p>
+<h2>The errors to expect, in plain words</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>What students do</th>
+<th>What it shows</th>
+<th>What to do when many do it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>Drop a carry: usually one, rarely all</td>
+<td>Each column is added as its own small sum</td>
+<td>One sum in expanded form beside the algorithm; say each carry by its value</td>
+</tr>
+<tr>
+<td>B</td>
+<td>Line numbers up from the left</td>
+<td>Digits are matched, not places</td>
+<td>Place names over the columns; say both numbers aloud first</td>
+</tr>
+<tr>
+<td>C</td>
+<td>Call every carry "one"</td>
+<td>The place value is gone</td>
+<td>Students name each carry aloud for a day</td>
+</tr>
+<tr>
+<td>D</td>
+<td>Write a two-digit sum in one column</td>
+<td>A place is not seen as holding one digit</td>
+<td>The same sum in expanded form</td>
+</tr>
+<tr>
+<td>E</td>
+<td>Lose the last carry into a new place</td>
+<td>Stops at the longer number's last digit</td>
+<td>Estimate first: the sum must pass the next place</td>
+</tr>
+</tbody>
+</table>
+<p>The day each wrong example is shown: A, C and D on day 72, B and E on day 73. B comes back in unit 9.2, on a
+difference. Each day's teacher page names the wrong answer that signals each error on that day's exit.</p>
+<h2>The reteach (readiness items 1 and 2)</h2>
+<p>Items 1 and 2 are given in the last ten minutes of day 71 and marked that night (readiness.md). If more than a
+third of the class missed one, day 73's warm-up and first five minutes are this reteach for the whole class.
+Otherwise run it with the students who missed it during day 73's warm-up, and the five minutes go to E72.</p>
+<p><strong>Item 1, adding within 1,000.</strong></p>
+<ol>
+<li>Draw a place value chart: hundreds, tens, ones.</li>
+<li>Write 467 and 285 in it as 400 + 60 + 7 and 200 + 80 + 5.</li>
+<li>Add each place: 12 ones, 14 tens, 6 hundreds. Ask "12 ones is how many tens and ones?" and trade.</li>
+<li>Then "14 tens is how many hundreds and tens?" and trade. Write the same sum in columns beside it.</li>
+</ol>
+<p><strong>Item 2, a number in digits.</strong> Read "three hundred six thousand" and write 306 before the comma; read "forty-two"
+and fill the last three places, a zero in the hundreds. Students read two more numbers by their comma groups.</p>
+<h2>Supplies for the unit</h2>
+<ul>
+<li>Per student: grid paper, or lined paper turned sideways; the place value columns sheet for any student who
+  wants it; a pencil.</li>
+<li>Per class: the projector for the display pages; a board with place names written over the columns.</li>
+<li>A room with nothing: sums copied from the board; lined paper turned sideways so its lines make columns.</li>
+</ul>
+<h2>Words</h2>
+<p>Sum, regroup, estimate, and the place names, each taught on the worked sum at first use. Families may say
+"carry"; both words are welcome. Frame: "__ ones is __ ten and __ ones." A student may say a carry in a home
+language first, then in the frame.</p>
+<h2>How the stretch is checked</h2>
+<p>Readiness: four items, two on day 71 and two on day 74 (readiness.md). Exits: one each on days 72 to 76, on
+paper, and E79. Written tasks on days 73 and 76, judged with look-fors. End check: day 77, six items, unaided;
+9.1a, 9.1b and 9.1c are this unit's. Check 2 on day 78 holds two more (C2.1 and C2.2). All of it goes on one
+record sheet for the stretch (record.md), by error letter. The family note (family.md) goes home on day 72.</p>
+<h2>Credit</h2>
+<p>Ours. Informed by, not adapted from: Illustrative Mathematics K-5, grade 4, unit 4 (CC BY 4.0,
+https://curriculum.illustrativemathematics.org/k5/); the Progressions for the Common Core State Standards, Number
+and Operations in Base Ten (2011 draft); and a second open course, grade 4 module 1, topic E, read to learn only.</p><div class="foot">Curio Class, grade 4 math, unit 9.1, opener, version draft 1, not ready, not yet taught, CC BY 4.0, curioclass.org</div></body></html>
