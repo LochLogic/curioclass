@@ -299,7 +299,8 @@ def check(course):
         if nums and nums != list(range(nums[0], nums[0] + len(nums))):
             fails.append('stretch %s: day numbers are not consecutive: %s' % (s, nums))
         for u in sorted({d['unit'] for d in sd}):
-            uid = '%s-u%02d-%s' % (course, int(u.split('.')[0]), u.split('.')[1])
+            # a teaching unit is "9.2"; a cumulative check or its respond day is named as in units.csv ("check-2")
+            uid = '%s-u%02d-%s' % (course, int(u.split('.')[0]), u.split('.')[1]) if '.' in u else '%s-%s' % (course, u)
             row = next((x for x in units if x['unit_id'] == uid), None)
             n = sum(1 for d in sd if d['unit'] == u)
             if row is None:
