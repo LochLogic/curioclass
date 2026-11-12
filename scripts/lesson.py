@@ -71,7 +71,7 @@ def parse(path):
 def words(md):
     """Prose words a person reads: no ids, no blanks, no table rules, no markup, no bare numbers or signs."""
     md = FIG.sub(' ', NOTE.sub(' ', STEPS.sub(' ', REF.sub(' ', md))))
-    md = re.sub(r'<[^>]+>', ' ', md)   # HTML tags and their attributes are markup, not words
+    md = re.sub(r'<!--.*?-->|</?[A-Za-z][^<>]*>', ' ', md, flags=re.S)   # HTML tags (a letter after <), not a < b comparisons
     md = re.sub(r'_{2,}|\{sketch\}|\{work\}|\{small\}|\{tall\}|^\|[-| ]+\|$|[#*|>`]', ' ', md, flags=re.M)
     return sum(1 for w in md.split() if re.search(r'[A-Za-z]', w))   # words, not numerals or signs
 
