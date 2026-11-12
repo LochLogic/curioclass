@@ -477,3 +477,11 @@ docs/HANDOFF.md, "Decided but not yet applied".
 "set the soft goal that the core subjects are the initial focus, then the rest. this can be malleable where work is
 complementary but when a choice needs to be made, the core subjects come first." Recorded as BASELINE rule 24,
 in ROADMAP above the layers, and in docs/HANDOFF.md.
+
+## 2026-11-11 (late): the evening's answers applied (Cory, in chat)
+
+"go ahead and action anything that you recorded but wasnt delt with yet. then lets look at applying that to the
+spine, template and plans"; "the course status table can stay as-is ... its a reminder for me"; "the stretch
+expert reads can be done by sara"; on Sara's list: "add all of it and order it by what the biggest blockers are.
+whichever item has the most waiting on it goes first." Where each decision landed is in docs/HANDOFF.md, "Applied
+on 2026-11-11 (late)". The licence page was left for a later session with an Opus model, as Cory asked.

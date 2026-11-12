@@ -22,6 +22,27 @@ perimeter used to find a side is even and 100 or less. (3) The readiness check i
 not on its first day. (4) Stretch 11's balance is 2, 1, 2 and its practices are MP.2 and MP.8. (5) Road Trip
 Logbook is a light tool, not a key tool. (6) The warm-up uses the standard algorithm only after it is taught.
 
+**2026-11-11, evening, from the plans for stretches 1 to 3, 9 and 10 (Cory said yes; Desk card q-plans-4d-1).**
+No stretch moved and no day was added.
+(1) Stretch 3 order: benchmarks and the same whole are taught before common denominators and numerators. The
+two units swapped inside the stretch: unit 3.3 is now Comparing to one half and one; the same whole (days 17 to
+18), and unit 3.4 is Comparing with a common denominator or numerator (days 19 to 24: four teaching days, the
+choose-a-way day and the check day). Unit 3.4 has six days, so "a package of 1 to 5 days" now names it as the
+one exception.
+(2) Unit 3.2's title says both directions: day 14 teaches the equivalence rule read backwards (always cover the
+whole standard).
+(3) "The checks" now matches the decided rule: readiness is given before a stretch opens, and every stretch's
+last day is end check 30, respond 20, next readiness 10. The ten-minute end check for three-day stretches is gone.
+(4) Stretch 1's balance is 4 understanding, 1 fluency, 0 application, 1 check (from its plans). The total row
+was also out of date since the check column was added; it now sums the columns as they stand.
+(5) The facts check is defined, with its mark and the 9 by 9 table ("Fluency all year").
+(6) Stretch 2 limits: pattern terms under 1,000, no further than the 10th step; its second readiness item is a
+written item.
+(7) Stretch 10 has a numbers rule, in its limits. Unit 10.3 has one teaching day (87); day 88 is the check day.
+(8) Tool column: stretch 2 has no key tool (Rule Machine is light); Fraction Wall Duel is a light tool serving
+one day of stretch 3; Growth Spurt is key but only some of its parts fit.
+(9) The start-of-year check on day 1 must carry stretch 1's three readiness items, and is not yet written.
+
 ## What changed in this revision
 
 1. **Checks moved from the unit to the stretch.** One readiness check at the start of a stretch, a five-minute exit
@@ -51,7 +72,7 @@ goes to major work. They are not copied from any program.
   stretches, 10 of 17 (59 percent), which is why the three supporting stretches that practise major work (line
   plots, area and perimeter, measurement conversions; 16 days) must show that link on the page of every unit. With
   those 16 days counted beside major work, the figure is 116 of 150 (77 percent).
-- **18 stretches, 43 units.** A stretch is one topic and usually one module. A unit is a package of 1 to 5 days.
+- **18 stretches, 43 units.** A stretch is one topic and usually one module. A unit is a package of 1 to 5 days (unit 3.4 has 6: its last day is the stretch's check day).
 - **Five cumulative checks:** a start-of-year check on day 1 and Checks 1 to 4 on days 42, 78, 118 and 149.
 - **All major work is taught by day 123**, and multi-digit multiplication and division by day 117. Measurement and
   geometry follow.
@@ -70,8 +91,8 @@ spec yet.
 | # | Stretch | Days | On days | Standards | Weight | Tool |
 |---|---|---|---|---|---|---|
 | 1 | Factors and Multiples (day 1 opens with the start-of-year check) | 6 | 1 to 6 | 4.OA.B.4 | supporting | Egg Carton Factory (built) |
-| 2 | Number Patterns | 3 | 7 to 9 | 4.OA.C.5 | additional | Rule Machine (spec) |
-| 3 | Equivalent Fractions and Comparing | 15 | 10 to 24 | 4.NF.A.1, 4.NF.A.2 | major | Fraction Wall Duel (spec) |
+| 2 | Number Patterns | 3 | 7 to 9 | 4.OA.C.5 | additional | Rule Machine (spec; a light tool: the stretch has no key tool, decided 2026-11-11) |
+| 3 | Equivalent Fractions and Comparing | 15 | 10 to 24 | 4.NF.A.1, 4.NF.A.2 | major | Fraction Wall Duel (spec; a light tool serving one day, day 23, which runs on paper for now: decided 2026-11-11, follow up after more progress). No key tool |
 | 4 | Adding and Subtracting Fractions | 14 | 25 to 38 | 4.NF.B.3 (a to d) | major | Recipe Scaler (spec) |
 | 5 | Line Plots **(changed)** | 3 | 39 to 41 | 4.MD.B.4 | supporting | New line plot tool; Skate Park Angles' Jump Log as practice |
 | | **Check 1, then a respond day** | 2 | 42 to 43 | stretches 1 to 5 | | |
@@ -80,7 +101,7 @@ spec yet.
 | 8 | Place Value to a Million | 10 | 62 to 71 | 4.NBT.A.1, 4.NBT.A.2, 4.NBT.A.3 | major | Stadium Count (spec) |
 | 9 | Adding and Subtracting Multi-Digit Numbers | 6 | 72 to 77 | 4.NBT.B.4 | major | Road Trip Logbook (spec; a light tool, not a key tool: the stretch runs on paper, decided 2026-11-11) |
 | | **Check 2, then a respond day** | 2 | 78 to 79 | stretches 6 to 9, and fractions again | | |
-| 10 | Multiplicative Comparison | 9 | 80 to 88 | 4.OA.A.1, 4.OA.A.2, 4.OA.A.3 (two-step, no remainders) | major | Growth Spurt (spec) |
+| 10 | Multiplicative Comparison | 9 | 80 to 88 | 4.OA.A.1, 4.OA.A.2, 4.OA.A.3 (two-step, no remainders) | major | Growth Spurt (spec; key, but only some of its parts fit, on days 81, 83 and 86: see docs/courses/math-4/s10.md) |
 | 11 | Area and Perimeter Formulas (the pilot unit) | 5 | 89 to 93 | 4.MD.A.3 | supporting | Community Plot Planner (spec) |
 | 12 | Multi-Digit Multiplication | 12 | 94 to 105 | 4.NBT.B.5 | major | Area Model Builder (spec) |
 | 13 | Division with Remainders | 12 | 106 to 117 | 4.NBT.B.6 | major | New |
@@ -107,7 +128,7 @@ year. Each unit names the task that builds each one.
 
 **Balance.** Days per stretch that are mostly understanding (U), mostly fluency and skill (F) or mostly application
 (A), and the check day (C): the last day of every stretch, which is the end check, the response to it and the
-next stretch's readiness check. The C column was added 2026-11-11. Stretches 9 and 11 are counted from their
+next stretch's readiness check. The C column was added 2026-11-11. Stretches 1, 9 and 11 are counted from their
 stretch sheets. For the others the check day was taken out of application where the stretch had any, otherwise
 out of fluency, otherwise out of understanding, until each stretch's sheet marks its own days. These are a first cut; each unit's plan marks its own days, and the totals here are corrected from the units.
 
@@ -115,8 +136,8 @@ out of fluency, otherwise out of understanding, until each stretch's sheet marks
 
 | # | Stretch | Practices | U | F | A | C | Limits in the standards |
 |---|---|---|---|---|---|---|---|
-| 1 | Factors and Multiples | 7, 8 | 3 | 2 | 0 | 1 | Whole numbers 1 to 100 only; "a multiple of" is tested against one-digit numbers |
-| 2 | Number Patterns | 3, 8 | 2 | 0 | 0 | 1 | Explaining is informal; no rule written with a variable |
+| 1 | Factors and Multiples | 7, 8 | 4 | 1 | 0 | 1 | Whole numbers 1 to 100 only; "a multiple of" is tested against one-digit numbers |
+| 2 | Number Patterns | 3, 8 | 2 | 0 | 0 | 1 | Explaining is informal; no rule written with a variable. Pattern terms stay under 1,000, and no question goes further than the 10th step (decided 2026-11-11) |
 | 3 | Equivalent Fractions and Comparing | 3, 7 | 10 | 3 | 1 | 1 | Denominators 2, 3, 4, 5, 6, 8, 10, 12 and 100 only |
 | 4 | Adding and Subtracting Fractions | 1, 2 | 6 | 4 | 3 | 1 | Like denominators only, from the same list; no general adding of unlike fractions (grade 5) |
 | 5 | Line Plots | 4, 6 | 1 | 0 | 1 | 1 | Measurements in halves, quarters and eighths of a unit |
@@ -124,7 +145,7 @@ out of fluency, otherwise out of understanding, until each stretch's sheet marks
 | 7 | Decimals | 6, 7 | 6 | 2 | 1 | 1 | Tenths and hundredths only; the one unlike addition is tenths plus hundredths; no adding or multiplying in decimal notation (grade 5). The decimals rule: decimals may be read, written, compared, placed and renamed; every calculation is done on whole numbers in the smaller unit or on fractions with denominators 10 and 100; a task that can only be done by computing in decimal notation is grade 5 |
 | 8 | Place Value to a Million | 6, 7 | 5 | 4 | 0 | 1 | Whole numbers to 1,000,000; place value in decimals is grade 5 (5.NBT.A.1) and is not assessed here |
 | 9 | Adding and Subtracting Multi-Digit Numbers | 6, 8 | 3 | 2 | 0 | 1 | Whole numbers to 1,000,000 |
-| 10 | Multiplicative Comparison | 2, 4 | 3 | 1 | 4 | 1 | Whole numbers and whole-number answers; in this stretch two steps and no remainders |
+| 10 | Multiplicative Comparison | 2, 4 | 3 | 1 | 4 | 1 | Whole numbers and whole-number answers; in this stretch two steps and no remainders. The numbers rule (decided 2026-11-11): one-digit facts and their divisions; one digit times a multiple of 10, and 10 times a number, multiplying only; adding and subtracting within 1,000. Two-step problems are chosen so that one equation needs no brackets; two equations are always allowed |
 | 11 | Area and Perimeter Formulas | 2, 8 | 2 | 1 | 1 | 1 | Rectangles only; area with whole-number sides; fractional sides in perimeter only, like denominators. On days 89 to 93 areas are products within 100, or a one-digit number times a multiple of 10; an unknown side is a factor-pair problem (4.OA.B.4); when a side is found from a perimeter, the perimeter is even and 100 or less. Area with larger sides returns in stretches 12, 13 and 14 |
 | 12 | Multi-Digit Multiplication | 3, 7 | 5 | 5 | 1 | 1 | Up to four digits by one digit, and two digits by two digits; place value methods and area models; written methods here shorten into the standard algorithm and must be explained; fluency with the standard algorithm is grade 5 (5.NBT.B.5) |
 | 13 | Division with Remainders | 2, 7 | 5 | 4 | 2 | 1 | Dividends to four digits, one-digit divisors; place value methods, which must be explained; fluency with the standard algorithm is grade 6 (6.NS.B.2) |
@@ -133,11 +154,12 @@ out of fluency, otherwise out of understanding, until each stretch's sheet marks
 | 16 | Lines and Angles | 5, 6 | 5 | 5 | 1 | 1 | Whole-number degrees |
 | 17 | Shapes and Symmetry | 3, 7 | 3 | 0 | 0 | 1 | Flat figures; line symmetry only |
 | 18 | The Year Together | 1 | mixed | mixed | mixed | 0 | The limits above |
-| | **Total, stretches 1 to 17** | all eight | 62 | 41 | 38 | |
+| | **Total, stretches 1 to 17** | all eight | 66 | 36 | 22 | 17 | |
 
-62 + 41 + 38 = 141, the days in stretches 1 to 17. No strand is missing where a standard calls for it: 4.NBT.B.4
-(fluency by name) has 4 fluency days plus the daily warm-up, and the two application standards with the most in
-them, 4.OA.A.3 and 4.MD.A.2, have 4 application days each in their own stretches.
+66 + 36 + 22 + 17 = 141, the days in stretches 1 to 17 (totals re-added 2026-11-11 from the columns as they stand; the old row predated the check column). No strand is missing where a standard calls for it: 4.NBT.B.4
+(fluency by name) has its fluency days in stretch 9 plus the daily warm-up, and the two application standards with the most in
+them, 4.OA.A.3 and 4.MD.A.2, have application days in their own stretches (the day counts that stood in this
+sentence were taken out on 2026-11-11: the check column changed them; read the rows).
 
 ## Why this order, and what each stretch hands on
 
@@ -182,16 +204,18 @@ warm-up from the worksheet generator:
   standard algorithm enters the warm-up the day after it is taught, and subtracting from day 78, to the end of the
   year (corrected 2026-11-11: the warm-up had used the algorithm from day 72, the day it is first taught).
 - **Times tables, from day 1.** Labelled on every page as grade 3 maintenance (3.OA.C.7), not grade 4 teaching.
-  Every stretch after the first leans on them. Days 1 to 6 include a facts check. Students below the mark get the
-  grade 3 fact tools and print during warm-ups, never in place of a lesson day, and the check repeats before day 94,
-  when multi-digit multiplication begins.
+  Every stretch after the first leans on them. Days 1 to 6 include a facts check (decided 2026-11-11): 36
+  products in the day 3 warm-up and 36 quotients in the day 4 warm-up, untimed; the mark is 32 of 36. Students
+  below the mark keep a 9 by 9 multiplication table through stretch 3 (to day 24), and get the grade 3 fact tools
+  and print during warm-ups, never in place of a lesson day. The check repeats before day 94, when multi-digit
+  multiplication begins.
 - **Fractions and decimals, twice a week from day 62**, the day after fraction and decimal teaching ends.
 - **Multiplication and division, from day 118**, mixed into the same rotation.
 
 **The 60 minutes.** Warm-up 5, the lesson about 50, exit question 5. The readiness check for a stretch takes ten minutes and is given before
 the stretch opens, so it is marked before day 1 and can shape it (decided 2026-11-11): in the last ten minutes of
 the previous stretch's last day, or of the respond day where one sits between the two stretches. Stretch 1 is
-served by the start-of-year check on day 1. On the last day of a stretch the end check takes half the period,
+served by the start-of-year check on day 1, which must carry its three readiness items. On the last day of a stretch the end check takes half the period,
 responding to it takes twenty minutes, and the last ten are the next stretch's readiness check.
 
 ## The units inside each stretch
@@ -205,9 +229,9 @@ with one unit, such as the pilot, has its checks inside that unit.
 | 1 | 1.2 Multiples, prime and composite | 3 | 4 to 6 | 4.OA.B.4 |
 | 2 | 2.1 Follow the rule, then notice more | 3 | 7 to 9 | 4.OA.C.5 |
 | 3 | 3.1 Same amount, different parts | 3 | 10 to 12 | 4.NF.A.1 |
-| 3 | 3.2 Why multiplying top and bottom works | 4 | 13 to 16 | 4.NF.A.1 |
-| 3 | 3.3 Comparing with a common denominator or numerator | 4 | 17 to 20 | 4.NF.A.2 |
-| 3 | 3.4 Comparing to one half and one; the same whole | 4 | 21 to 24 | 4.NF.A.2 |
+| 3 | 3.2 Why multiplying top and bottom works, in both directions (day 14: the rule read backwards, by grouping parts) | 4 | 13 to 16 | 4.NF.A.1 |
+| 3 | 3.3 Comparing to one half and one; the same whole (benchmarks first, decided 2026-11-11) | 2 | 17 to 18 | 4.NF.A.2 |
+| 3 | 3.4 Comparing with a common denominator or numerator (rename one; rename both; same numerators; mixed; choose a way, day 23; then the end check, day 24) | 6 | 19 to 24 | 4.NF.A.2 |
 | 4 | 4.1 A fraction as a sum; taking it apart more than one way | 4 | 25 to 28 | 4.NF.B.3a, 4.NF.B.3b |
 | 4 | 4.2 Joining and separating like parts | 3 | 29 to 31 | 4.NF.B.3a, 4.NF.B.3d |
 | 4 | 4.3 Mixed numbers | 4 | 32 to 35 | 4.NF.B.3c |
@@ -226,7 +250,7 @@ with one unit, such as the pilot, has its checks inside that unit.
 | 9 | 9.2 The standard algorithm for subtracting (one ungrouping; several, to six digits; across zeros, a day of its own; mixed, then the end check) | 4 | 74 to 77 | 4.NBT.B.4 |
 | 10 | 10.1 Times as many | 3 | 80 to 82 | 4.OA.A.1 |
 | 10 | 10.2 Comparison word problems: times as many or more than? | 4 | 83 to 86 | 4.OA.A.2 |
-| 10 | 10.3 Two-step problems: a letter for the unknown, an estimate to check | 2 | 87 to 88 | 4.OA.A.3 (two-step, no remainders) |
+| 10 | 10.3 Two-step problems: a letter for the unknown, an estimate to check (one teaching day, 87; day 88 is the stretch's check day) | 2 | 87 to 88 | 4.OA.A.3 (two-step, no remainders) |
 | 11 | 11.1 Area and perimeter formulas **(the pilot unit; was 12.1)** | 5 | 89 to 93 | 4.MD.A.3 |
 | 12 | 12.1 Up to four digits times one digit | 5 | 94 to 98 | 4.NBT.B.5 |
 | 12 | 12.2 Two digits times two digits | 5 | 99 to 103 | 4.NBT.B.5 |
@@ -272,11 +296,14 @@ return can use it.
 
 **In every stretch (1 to 17).**
 
-- **Readiness check**, first day, ten minutes, on the grade 3 or earlier grade 4 standards in the "Builds on"
-  column.
+- **Readiness check**, ten minutes, given before the stretch opens: in the last ten minutes of the previous
+  stretch's last day, or of the respond day where one sits between the two stretches. It is on the grade 3 or
+  earlier grade 4 standards in the "Builds on" column, and it is marked before the stretch's first day. Stretch 1's
+  readiness items ride in the start-of-year check on day 1.
 - **Exit question**, every day, five minutes.
-- **End check**, last day, half the period. The other half is used to respond to it. The two three-day stretches
-  (Number Patterns and Line Plots) keep theirs to ten minutes.
+- **The last day** of every stretch: end check 30 minutes, respond 20, the next stretch's readiness check 10. The
+  three-day stretches (Number Patterns and Line Plots) follow the same rule (decided 2026-11-11; they no longer
+  keep a ten-minute end check).
 
 **Over the year: five cumulative checks.**
 
@@ -287,6 +314,11 @@ return can use it.
 | 2 | 78 | one period | Stretches 6 to 9: fraction times whole number, decimals, place value, adding and subtracting; fractions again | Respond day, day 79 |
 | 3 | 118 | one period | Stretches 10 to 13: comparison, area and perimeter, multiplication, division; fractions and place value again | Respond day, day 119 |
 | 4 | 149 | one period | The whole course, two thirds of it major work | Day 150: go over it and hand on to grade 5 |
+
+**The start-of-year check is not yet written.** It must carry stretch 1's three readiness items
+(docs/courses/math-4/s01.md, field 4): ten products and their ten quotients (3.OA.C.7); a division rewritten as a
+multiplication with an unknown, then solved (3.OA.B.6); and every rectangle with area 12 drawn on a grid
+(3.MD.C.7). It is marked after class, so it cannot shape day 1.
 
 Rules for every check, stretch or cumulative:
 
@@ -303,6 +335,7 @@ Rules for every check, stretch or cumulative:
 
 ## What is missing today, said plainly
 
+- **The start-of-year check (day 1) is not written.** It must carry stretch 1's three readiness items.
 - **No unit is written.** All 150 days are gap days. The pilot (unit 11.1, was 12.1) is the first.
 - **No lesson tool is live.** Two are built and must catch up with their specs; eleven are specs.
 - **Three stretches have no spec for their main tool:** line plots, fraction times whole number, division. Division

@@ -43,29 +43,55 @@ The same five moves each time. Your Claude session does the reading and drafting
 one who can say "no one could teach this in a week" or "this order would lose my class". Write what you see at the
 top of the review file under "Sara's read". That note goes to Cory with the draft.
 
-## The pieces, in order
+## The pieces, in order of what is waiting on them
 
-### 1. Grade 3 math spine
+Reordered 2026-11-11 (Cory: "order it by what the biggest blockers are. whichever item has the most waiting on it
+goes first"). Each piece says what waits on it. Core subjects come first (BASELINE rule 24). If a piece turns out
+to block more or less than this says, move it and say why.
 
-- [ ] docs/courses/math-3-spine.md, expert read, revised once.
-- Rests on: the grade 3 standards in data/standards/, docs/courses/math-3-5-progression.md (what grade 4 needs from
-  grade 3 is already written there, stretch by stretch), docs/agents/catalog/shape/math-3.md (the tools that exist),
-  docs/RUBRIC-MATH-K8.md, and the scope and sequence of two well-reviewed open grade 3 courses.
-- Must show: every teaching day of the year in order; major work at 65 percent or more of days; the stretches and
-  units; the limits of the grade; builds-on and sets-up by code; where each major idea comes back; the checks at
-  the stretch, each cumulative check with a respond day; a fluency plan (3.OA.C.7 and 3.NBT.A.2 are this grade's);
-  what is missing today, said plainly.
-- Grade 4 depends on: fractions as numbers on the number line, multiplication and division facts from memory by the
-  end of the year, area as rows and columns.
+### 1. Expert reads of the grade 4 math plans
 
-### 2. Grade 5 math spine
+**Waiting on it: the pilot unit, and through it the plan with sizes and dates for all 105 courses.** Short. Cory:
+"the stretch expert reads can be done by sara".
 
-- [ ] docs/courses/math-5-spine.md, expert read, revised once.
-- Rests on: the same, with docs/agents/catalog/shape/math-5.md. The progression page says what grade 4 hands over.
-- Watch: the standard algorithm for multiplication is this grade's fluency (5.NBT.B.5); decimal arithmetic starts
-  here (5.NBT.B.7); fraction work is the largest block.
+Each is steps 3 and 4 of "How every piece is made": run the curriculum expert cold on the files, save the report
+to `docs/reviews/unit-plans-<stretch>-<date>.md`, revise once, and put anything that changes what the course
+teaches to Cory on the Desk. Ask the expert to rework every answer key, check that every part of each standard has
+an end-check item, check that no check item reuses taught numbers, and say whether a lesson writer could work from
+the plans.
+
+- [ ] Stretch 3 as a whole, after the swap (benchmarks now come before common denominators):
+      `docs/courses/math-4/s03.md`, `u03-1.md` to `u03-4.md`.
+- [ ] Stretch 9: `s09.md`, `u09-1.md`, `u09-2.md`. Never read cold in its current form.
+- [ ] Stretch 10: `s10.md`, `u10-1.md` to `u10-3.md`. Never read cold.
+- [ ] Stretch 11 (the pilot unit), second draft: `s11.md`. Never read cold in its current form.
+- [ ] The bar for other subjects, after Cory's answers were applied: `docs/ADOPTION-BAR-SUBJECTS.md`.
+
+Stretches 1 and 2 were read and revised on 2026-11-11 (`docs/reviews/unit-plans-4d-2026-11-11.md`).
+
+### 2. Social studies: the content standard options
+
+**Waiting on it: all 14 social studies courses. No social studies spine can start before Cory decides.**
+
+- [ ] docs/reviews/social-studies-content-standard-<date>.md, expert read, revised once, then a Desk card.
+- The question (Cory, 2026-11-11, card q-bar-subjects): only the C3 framework is loaded, and it names skills, not
+  content. Cory turned down "pick one state's standards" as the only option and asked for a better one: "this may
+  require a unification of content standards or possibly a 'high watermark' method".
+- Work up three options side by side: (a) one state's set, K to 12; (b) a unified set built from several states;
+  (c) high watermark: where states differ, take the more demanding expectation. For each: which states' standards
+  are strong and freely usable (licence), what it would cost to build and keep current, how a state reviewer would
+  see it, what it does to the 135 modules already tagged to C3, and what it means for the named high school courses
+  (psychology and economics have national subject standards).
+- Beside it, the values question from the same card: Cory leans to "follow the higher quality or rigor" where state
+  instruments conflict. Rigor can be ranked; a values conflict is not always higher or lower. Say what the rule
+  would do in three real cases, and what FOUNDATION's promises already settle.
+- Rests on: docs/ADOPTION-BAR-SUBJECTS.md (social studies part and "Still open with Cory"),
+  docs/reviews/bar-other-subjects-2026-11-11.md, docs/reviews/standards-currency-2026-11-11.md.
+- No recommendation is owed before the options are laid out. This goes to Cory; it is his call.
 
 ### 3. Science: rubric files, then the approach page
+
+**Waiting on it: all 14 science courses, and the grade 4 science spine that is waiting for Cory's final yes.**
 
 - [ ] docs/RUBRIC-SCIENCE-K5.md (and 6 to 8 if the same guide covers it). Follow the shape of
   docs/RUBRIC-MATH-K8.md: what the rubric asks, indicator by indicator, in our own words, with a link. The
@@ -85,6 +111,8 @@ top of the review file under "Sara's read". That note goes to Cory with the draf
 
 ### 4. English language arts: rubric file, the approach page, the text plan
 
+**Waiting on it: all 13 English language arts courses.**
+
 - [ ] docs/RUBRIC-ELA.md (grades 3 to 8, and 6 to 12 where the guide differs). Same shape and same copying rule.
 - [ ] docs/APPROACH-ELA.md, expert read, revised once. From the same review finding: the text is the unit; text
   complexity; text sets that build knowledge; volume of reading; the writing process and the writing calendar;
@@ -96,23 +124,75 @@ top of the review file under "Sara's read". That note goes to Cory with the draf
   where a free legal copy lives, its licence, its level), and an informational shelf is proposed. Changes to which
   texts are taught go to Cory as a card.
 
-### 5. More math spines, working outward from grade 4
+### 5. Math progression pages for kindergarten to grade 2 and grades 6 to 8
 
-A progression page comes before the spines of its band, the same way the grades 3 to 5 page came before these.
+**Waiting on it: six math spines (K, 1, 2, 6, 7, 8). A progression page comes before the spines of its band.**
 
-- [ ] docs/courses/math-k-2-progression.md, then
+- [ ] docs/courses/math-k-2-progression.md
+- [ ] docs/courses/math-6-8-progression.md
+
+Two things are undecided and must be marked, not settled: whether kindergarten to grade 2 assumes a device per
+student (FOUNDATION, section 5), and how a K to 2 day is shaped. Write the K to 2 spines so they work either way,
+and say where the answer would change them. The rubric for grades K to 2 counts major work at 65 percent of days
+too; check docs/RUBRIC-MATH-K8.md.
+
+### 6. Grade 4 math: the start-of-year check, then stretches 4 to 8
+
+**Waiting on it: stretch 1 cannot run without the start-of-year check; stretch 3's last day (24) needs stretch 4's
+readiness items; 30 of the 43 units are unplanned, and the key tools (step 4e) are named only from all the plans.**
+Tell Cory before starting stretches, so two chats are not planning the same stretch at once.
+
+- [ ] The start-of-year check (day 1). The spine says what it covers; it must carry stretch 1's three readiness
+      items (docs/courses/math-4/s01.md). Written to the check rules in docs/courses/UNIT-PLAN.md.
+- [ ] Stretch 4: docs/courses/math-4/s04.md and its unit plans. Then 5, 6, 7, 8, one stretch at a time, each per
+      docs/courses/UNIT-PLAN.md (word caps 1,000 and 800; tool asks go in docs/courses/math-4/TOOL-ASKS.md), with a
+      cold expert read on at least every second stretch. Models: s01, s03, s10.
+- After stretch 7 is planned: the number line splitter is specced once for stretches 3 to 7 (Cory, 2026-11-11).
+
+### 7. Grade 3 math spine
+
+**Waiting on it: one course, and grade 4's readiness checks lean on it.**
+
+- [ ] docs/courses/math-3-spine.md, expert read, revised once.
+- Rests on: the grade 3 standards in data/standards/, docs/courses/math-3-5-progression.md (what grade 4 needs from
+  grade 3 is already written there, stretch by stretch), docs/agents/catalog/shape/math-3.md (the tools that exist),
+  docs/RUBRIC-MATH-K8.md, and the scope and sequence of two well-reviewed open grade 3 courses.
+- Must show: every teaching day of the year in order; major work at 65 percent or more of days; the stretches and
+  units; the limits of the grade; builds-on and sets-up by code; where each major idea comes back; the checks at
+  the stretch, each cumulative check with a respond day; a fluency plan (3.OA.C.7 and 3.NBT.A.2 are this grade's);
+  what is missing today, said plainly.
+- Grade 4 depends on: fractions as numbers on the number line, multiplication and division facts from memory by the
+  end of the year, area as rows and columns.
+
+### 8. Grade 5 math spine
+
+**Waiting on it: one course.**
+
+- [ ] docs/courses/math-5-spine.md, expert read, revised once.
+- Rests on: the same, with docs/agents/catalog/shape/math-5.md. The progression page says what grade 4 hands over.
+- Watch: the standard algorithm for multiplication is this grade's fluency (5.NBT.B.5); decimal arithmetic starts
+  here (5.NBT.B.7); fraction work is the largest block.
+
+### 9. The other math spines
+
+**Waiting on each: one course. Each needs its band's progression page (piece 5) first.**
+
 - [ ] docs/courses/math-2-spine.md
-- [ ] docs/courses/math-6-8-progression.md, then
 - [ ] docs/courses/math-6-spine.md
 - [ ] docs/courses/math-1-spine.md
 - [ ] docs/courses/math-7-spine.md
 - [ ] docs/courses/math-k-spine.md
 - [ ] docs/courses/math-8-spine.md
 
-Two things are undecided and must be marked, not settled: whether kindergarten to grade 2 assumes a device per
-student (FOUNDATION, section 5), and how a K to 2 day is shaped. Write the K to 2 spines so they work either way,
-and say where the answer would change them. The rubric for grades K to 2 counts major work at 65 percent of days
-too; check docs/RUBRIC-MATH-K8.md.
+### 10. Small owed fixes
+
+**Waiting on them: nothing yet, but each is a known fault in a file others read.**
+
+- [ ] Three description notes in data/modules.csv (listed in docs/HANDOFF.md, "Owed, smaller").
+- [ ] Footnoted limits in data/standards/ccss-math-standards.txt.
+- [ ] The build order in docs/agents/catalog/shape/math-4.md against the spine.
+- [ ] The errors in the science sequence.csv.
+- [ ] docs/courses/math-4/s09.md puts five minutes of teacher-judged answers on day 78, before Check 2.
 
 ## Rules for all of it
 

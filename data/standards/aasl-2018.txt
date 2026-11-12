@@ -1,6 +1,7 @@
 # source: https://standards.aasl.org/wp-content/uploads/2026/07/250918-AASL-framework-for-learners.pdf (current, 2nd edition)
 # source: https://ride.ri.gov/Portals/0/Uploads/Documents/Instruction-and-Assessment-World-Class-Standards/Other-Subjects/180206-AASL-framework-for-learners-2.pdf (2018 1st edition; official AASL PDF, hosted by Rhode Island Dept. of Education)
-# version: AASL Standards Framework for Learners, National School Library Standards 2018; structure identical in the 2nd edition now on standards.aasl.org
+# version: AASL Standards Framework for Learners, National School Library Standards, 2nd edition (published September 2025; learner framework PDF dated 2025-09-18). The ids were first counted from the 2018 1st edition and are the same in both.
+# note: label corrected 2026-11-11. The file name (aasl-2018.txt) and the frameworks tag AASL-2018 in data/modules.csv and scripts/standards.py still carry the old year, because tool specs cite the file by name and the checker matches the tag. They are names only: the ids here are current against the 2nd edition.
 # fetched: 2026-10-27
 # level: one learner competency, AASL.<Shared Foundation>.<Domain>.<n>, e.g. AASL.I.A.1
 # note: Shared Foundations: I Inquire, II Include, III Collaborate, IV Curate, V Explore, VI Engage. Domains: A Think, B Create, C Share, D Grow. modules.csv codes AASL.Inquire etc., so map the name to its numeral before prefix-matching (AASL.Inquire -> AASL.I.).

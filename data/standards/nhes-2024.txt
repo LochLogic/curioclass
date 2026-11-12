@@ -1,12 +1,13 @@
 # source: https://shapeamerica.org/standards/health/new-he-standards/
-# version: National Health Education Standards, 3rd edition (2024), SHAPE America / National Consensus for School Health Education
+# version: National Health Education Standards, 2024, SHAPE America (SHAPE America calls it the 3rd edition). Name it "SHAPE America, 2024".
+# note: corrected 2026-11-11. This line used to credit "SHAPE America / National Consensus for School Health Education" as one publisher. They are two bodies. The National Consensus for School Health Education publishes a different set with the same title (3rd edition, 2022, schoolhealtheducation.org). The ids in this file are SHAPE America's; nothing here comes from the other set.
 # fetched: 2026-10-27
 # level: one grade-span performance indicator, NHES.S<standard>.<span end grade>.<n>; official code 1.5.1 = NHES.S1.5.1 (span end 2 = PreK-2+, 5 = 3-5+, 8 = 6-8+, 12 = 9-12+)
 # note: 172 indicators, all listed with codes on the free SHAPE America page above; per standard (PreK-2/3-5/6-8/9-12): S1 7/7/7/9, S2 3/4/4/5, S3 3/4/5/5, S4 5/7/10/10, S5 4/5/6/8, S6 6/6/6/6, S7 2/2/3/4, S8 3/4/5/7.
 # note: the page calls them both "performance indicators" and "grade-span learning indicators"; spans are printed "PreK-2+", "3-5+" etc.
 # note: the full book (120 pp, Human Kinetics) is paid; the standards and indicators themselves are free on the page above.
 # note: standards: S1 functional health information; S2 analyze influences; S3 access valid and reliable resources; S4 interpersonal communication; S5 decision-making; S6 goal-setting; S7 practices and behaviors; S8 advocacy.
-# note: CDC HECAT health topics are in hecat-topics.txt.
+# note: CDC HECAT health topics are in hecat-topics.txt. HECAT 2021 is keyed to the 2007 standards (2nd edition), not to this set; our mapping is in docs/standards-notes/health-2007-to-2024.md.
 NHES.S1.2.1
 NHES.S1.2.2
 NHES.S1.2.3

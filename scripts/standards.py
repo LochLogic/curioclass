@@ -84,7 +84,9 @@ def c3(code):
 
 
 # --- CSTA 2026 PK-12 CS Standards (csteachers.org, released July 2026)
-CSTA = set((DATA / 'csta-2026-ids.txt').read_text().split())
+# Lines starting with # are the file header. The 135 high school Specialty ids are valid codes too (2026-11-11).
+CSTA = {l.strip() for f in ('csta-2026-ids.txt', 'csta-2026-specialty-ids.txt')
+        for l in (DATA / f).read_text(encoding='utf-8').splitlines() if l.strip() and not l.startswith('#')}
 
 # --- Frameworks without fine-grained codes: closed vocabularies
 CLOSED = {

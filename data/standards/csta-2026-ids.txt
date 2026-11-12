@@ -1,3 +1,11 @@
+# source: https://csteachers.org/2026-csta-pk-12-computer-science-standards/ (the publisher's download address; it serves https://csteachers.org/wp-content/uploads/2026/07/2026-CSTA-PK%E2%80%9312-Computer-Science-Standards.pdf, 218 pages)
+# version: 2026 CSTA PK-12 Computer Science Standards, Computer Science Teachers Association, published summer 2026 (DOI 10.1145/3820482). The PDF names the 2017 CSTA standards as the set it replaces.
+# licence: CC BY-NC-SA 4.0, (c) 2026 Computer Science Teachers Association (printed in the PDF). This file holds ids only, no statement text.
+# fetched: original load date not recorded (the file had no header). Header added 2026-11-11, when all 196 ids were rechecked by script against the PDF above: the PDF holds exactly these 196 Foundational ids and no others.
+# level: one Foundational standard per line, <band>-<concept>-<subconcept>-<n>. Bands: EK (pre-K and K), E1 to E5 (grades 1 to 5), MS (middle school), HS (high school foundational).
+# note: 196 ids: EK 16, E1 16, E2 16, E3 19, E4 19, E5 19, MS 45, HS 46. Concepts: ALG Algorithms and Design, PRO Programming, DAT Data and Analysis, SYS Systems and Security, SOC Computing and Society.
+# note: the 135 high school Specialty standards (S1, S2) are in csta-2026-specialty-ids.txt, not here.
+# note: tool specs may show 2017 codes beside these as a crosswalk; the 2017 codes are the superseded set and never stand alone.
 E1-ALG-IM-03
 E1-ALG-ML-02
 E1-ALG-PS-01

@@ -5,6 +5,9 @@ tool" and the readiness check before the stretch opens (2026-11-11, Desk card q-
 fixed for grade 4 math; the first plan in science and in English language arts may change what those subjects
 fill.**
 
+**Changed 2026-11-11, evening (Cory, Desk card q-plans-4d-1): new word caps (see "Length"), tool asks moved
+to one file per course, rule 19 ("always cover the whole standard") and the fractions wording in rule 4.**
+
 Two documents are written before any tool for a unit is specced or built.
 
 - **The stretch sheet** is written first, once for each stretch. It holds what belongs to the whole stretch:
@@ -17,6 +20,8 @@ A stretch with one unit has **one merged document**: the stretch fields, then un
 
 **File names.** `docs/courses/<course>/sNN.md` for a stretch sheet and for the merged document of a one-unit
 stretch. `docs/courses/<course>/uNN-N.md` for a unit plan. Examples: `math-4/s03.md`, `math-4/u03-1.md`.
+`docs/courses/<course>/TOOL-ASKS.md` holds everything the course's plans ask of a tool's spec, one section
+for each tool (rule 10). Example: [math-4/TOOL-ASKS.md](math-4/TOOL-ASKS.md).
 
 The fields come from the twelve in [APPROACH.md](../APPROACH.md) and the math additions in
 [APPROACH-MATH.md](../APPROACH-MATH.md). The first draft was tried on three grade 4 math units and then read
@@ -41,7 +46,8 @@ sets is given).
 4. **Shared. No end-check item or exit question reuses the numbers or the story of a worked example, a wrong
    example, a planned question or a tool item in the same stretch. Same error, new numbers.** A remembered
    answer is not evidence of the skill. (From memory: standard practice in writing checks; no source was
-   opened for it.)
+   opened for it.) **In fractions** (decided 2026-11-11): the rule applies to the fractions an item gives,
+   not to every renaming along the way. The given pair and the answer must both be new to the stretch.
 5. **Shared. The end check covers every part of each standard.** The parts are listed by verb in stretch
    field 2. Every part has at least one item before any part has two. Items are not shared out by days.
 6. **Shared. At least half the readiness items serve the first unit. An item for a later unit is asked at the
@@ -58,7 +64,10 @@ sets is given).
    feedback".
 10. **Shared. The ideal instrument is named first, then the spec is judged against it.** Fits, partly fits or
     does not fit, with the reason in one sentence. A tool that is wanted and does not exist is named as "does
-    not exist".
+    not exist". The sheet and the plan keep only that verdict and a link. The gaps and what the plan asks of
+    the spec go in the course's one tool-asks file, `docs/courses/<course>/TOOL-ASKS.md`: a section for each
+    tool, with its mark, which day uses which part for which job, and the numbered asks, each with the sheet
+    or plan it came from (decided 2026-11-11).
 11. **Shared. Every day has a kind, in the subject page's words.** *Math fills:* understanding, fluency, use
     or check. The last day of a stretch is written "Check (end check 30, respond 20, next readiness 10)". The counts go in the
     header.
@@ -75,6 +84,11 @@ sets is given).
 17. **Shared. House rules hold:** plain words, short sentences, "Curio Class" in full, no company names in the
     body of a sheet or plan.
 18. **Shared. Word caps, by count.** See "Length".
+19. **Shared. Always cover the whole standard** (Cory's words, decided 2026-11-11). A plan teaches and checks
+    every part of each standard it claims, in both directions where the standard has two, even where a spine
+    title names only one part. Example: 4.NF.A.1 is taught and checked by multiplying both numbers and by
+    dividing both numbers. Rule 5 says the same of the end check; this rule says it of the teaching days and
+    the exit questions too.
 
 ## The stretch sheet: fields, in order
 
@@ -111,8 +125,9 @@ against the key on the screen, pen down, five minutes. Hands up by item sets the
 are read after class and answered in the next day's first five minutes." For one child: go over the missed
 items together.
 
-**8. Tools and supplies across the stretch.** *Shared:* each tool with its day, mark and job; the supplies
-list. (Science adds materials tiers and safety.)
+**8. Tools and supplies across the stretch.** *Shared:* each tool with its day, mark and job, its verdict
+(rule 10) and a link to the course's TOOL-ASKS.md; the supplies list. Not here: tool gaps or asks of a spec.
+(Science adds materials tiers and safety.)
 
 **9. Family note.** *Shared.* Once for the stretch, one or two sentences.
 
@@ -145,7 +160,8 @@ here: what the error shows, or its source (the register).
 
 **5. What is carried, and instruments.** *Shared:* what is carried in this unit and what happens to it (rule
 12); then each key moment, with the ideal instrument and the spec judged against it (rule 10); what a room
-with nothing does. Not here: how the tool works inside (its spec), or the supplies list (stretch field 8).
+with nothing does. Not here: how the tool works inside (its spec), the tool's gaps and asks (the course's
+TOOL-ASKS.md), or the supplies list (stretch field 8).
 
 **6. Days.** *Shared:* one row a day: day; goal in student words; kind; how it opens and for how long; who
 holds what is carried; tool by part, with mark, job and minutes (rule 8), or "None"; work by hand; the day's
@@ -187,9 +203,18 @@ U11. Three things move so nothing is written twice:
 
 Count words, not pages. A page depends on the screen.
 
-- **Unit plan:** 1,500 words.
-- **Stretch sheet:** 700 words of prose, plus its two check tables (fields 4 and 5), which do not count.
-- **One-unit stretch:** 2,500 words in one document.
+Decided by Cory, 2026-11-11 (Desk card q-plans-4d-1). These replace the first caps (see "Decided").
+
+- **Unit plan:** 1,000 words, not counting fields 3 (checks), 4 (errors) and 6 (days).
+- **Stretch sheet:** 800 words, not counting its check tables and error register (fields 4, 5 and 6).
+- **One-unit stretch, one merged document:** 1,800 words, not counting checks, errors and days (stretch
+  fields 4, 5 and 6, and U3, U4 and U6). **Proposed, waiting for Cory's yes.** It is the two caps above added
+  together, with the same fields left out.
+- **Tool gaps and spec asks** do not sit in a sheet or a plan, so they do not count. They go in the course's
+  TOOL-ASKS.md (rule 10).
+
+How to count: every word in the file outside the fields left out, the title and the header paragraph
+included. A whole field is in or out; nothing is counted by the line.
 
 When over, cut in this order:
 
@@ -246,7 +271,7 @@ Day _, thirty minutes, unaided.
 Marking step. Then, by error group:
 
 ## 8. Tools and supplies across the stretch
-- **Tools.** Name (mark): day _, part, job.
+- **Tools.** Name (mark): day _, part, job. Verdict: fits, partly fits, does not fit. Asks: TOOL-ASKS.md.
 - **Supplies.**
 
 ## 9. Family note
@@ -289,6 +314,7 @@ UNIT-PLAN.md.
 ## 5. What is carried, and instruments
 - **Carried.**
 - **Key moment 1, day _: what must be seen.** Ideal instrument. Spec: fits, partly fits, does not fit; why.
+  Gaps and asks: TOOL-ASKS.md.
 - **A room with nothing.**
 
 ## 6. Days
@@ -376,4 +402,23 @@ others; its verdict follows each.
 - Unit 9.1 on days 72 to 73 and unit 9.2 on days 74 to 77 (see [s09](math-4/s09.md)); in the spine.
 - The word caps. A merged one-unit document counts its 2,500 words without the two check tables, as a stretch
   sheet does. The two trial stretch sheets run about 100 to 170 words over 700; accepted for the trial, and the
-  cap is looked at again after the next three sheets.
+  cap is looked at again after the next three sheets. **Replaced the same evening; see the next section.**
+  The first caps were: unit plan 1,500 words; stretch sheet 700 words of prose plus its two check tables;
+  one-unit stretch 2,500 words.
+
+## Decided, Cory, 2026-11-11, evening (Desk card q-plans-4d-1)
+
+The caps were looked at again after stretches 1, 2 and 3 were written. Cory's answers that change this page:
+
+- **Word caps.** A unit plan is 1,000 words not counting its checks, errors and days fields (3, 4 and 6). A
+  stretch sheet is 800 words not counting its check tables and error register (fields 4, 5 and 6). The cap
+  for the merged one-unit document was not on the card: 1,800 words by the same logic is **proposed, waiting
+  for Cory's yes** (see "Length").
+- **Tool gaps move out.** Tool gaps and spec asks no longer sit in the sheets or plans. They go in one
+  tool-asks file for each course, `docs/courses/<course>/TOOL-ASKS.md`. A sheet's tools field keeps only the
+  verdict and a link (rule 10; stretch field 8; unit field 5).
+- **"Always cover the whole standard"** (Cory's words). Now rule 19, and in
+  [BASELINE.md](../agents/decisions/BASELINE.md) rule 23. It came from day 14 of grade 4 math, which now
+  teaches the equivalence rule in both directions.
+- **No reuse, in fractions.** The rule applies to the fractions an item gives, not to every renaming along
+  the way; the given pair and the answer must both be new to the stretch. Now in rule 4.

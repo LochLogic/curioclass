@@ -1,7 +1,13 @@
 # The adoption bar for the other subjects
 
 **Status:** second draft, 2026-11-11. Revised once after the curriculum expert's cold read
-(docs/reviews/bar-subjects-2026-11-11.md). Not yet read by Cory. Nothing here is a rule until he has read it.
+(docs/reviews/bar-subjects-2026-11-11.md). The owner's answers were applied on 2026-11-11 (Desk card
+q-bar-subjects; see "Decided" and "Still open with Cory" near the end). Not read by the expert since revision.
+
+**Core subjects come first.** This is a soft goal (Cory, 2026-11-11; docs/agents/decisions/BASELINE.md rule 24).
+Work on the subjects on this page waits behind math, English language arts, science and social studies unless it
+is complementary, such as a shared rule or a standards fix that serves both. Social studies is core. Every course
+is still finished to the bar; this sets the order, not the scope.
 
 **What this page is for.** Every one of the 105 courses is to be finished to the adoption bar (docs/FOUNDATION.md,
 section 4; docs/ADOPTION-BAR.md). Math has a rubric file; English language arts and science rubrics are drafted
@@ -16,7 +22,8 @@ own words.
 
 ## The pass rule
 
-**Proposed, waiting for Cory's yes.** No course has been read against it yet, so it may prove too hard or too easy.
+**Accepted for now (Cory, 2026-11-11), to be tested on the first finished course.** No course has been read
+against it yet, so it may prove too hard or too easy.
 It copies the shape of the instruments read: alignment, accuracy and feasibility are a door that stops a review, and
 the rest is scored.
 
@@ -30,6 +37,11 @@ the rest is scored.
   course of four units or fewer is read whole. Below, "three units" means this sample.
 - The subject part is read the same way: no criterion failed, and the part pass count above covers core and subject
   criteria together.
+- **A small course is read the same way.** SEL and library skills courses may be smaller than other courses by
+  the nature of the subject (decided 2026-11-11). They are "held to the whole core at the size its spine states":
+  every criterion from C1 to C16 and every criterion of the subject part still applies, and what is measured is
+  the number of units and days the spine itself sets out, not the size of a math or science course. Being small
+  waives no criterion.
 - **Beyond the three units,** the reviewer reads: for C1, the whole coverage table, tracing ten standards of the
   reviewer's choice to lesson and check item; for C4, the progression page; for C8 and C9, one cumulative check;
   for C13, the approach page; for C3 and C16, all public copy for the course and the logic model.
@@ -54,7 +66,7 @@ the sources table). No count per row is given, because the first draft's "Seen i
 | C10 | **Every learner works on the course's content:** help for students behind that keeps the goal, deeper extensions, guidance for disabilities, a reading load that fits the grade with help for students who read below it | The three hooks on every unit plan; the reteach per readiness gap; extension on the same standard; the unit plan's reading load field | 3, 6, 7 | A support lowers the goal or swaps the content. No extension on the same standard. No guidance for disabilities. Reading load field empty, or pages above grade with no help |
 | C11 | **English learners are supported inside the lesson:** the language the lesson asks for, key words in depth, frames, levels where the subject can, and help telling a language gap from a content gap | The English learner hook in every tool and teacher page; Word Wall cards; a line in each key on answers that show a language gap | 6, 7 | Supports are a general list not tied to the lesson. No frames. Nothing helps the teacher tell a language gap from a content gap |
 | C12 | **People are shown with care and range:** many voices and places, no stereotypes, no shaming, hard facts told plainly | The fresh-agent sensitivity read (FOUNDATION promise 7); a record per unit of whose work and voices appear | 1, 7 | A stereotype or shaming passes. One group carries all the examples. A hard fact is softened until it is false. No read on record |
-| C13 | **The approach is explained, and families are told** | The subject's approach page, with sources and how much of each was read; a family note per unit | 3, 7 | No approach page. A research claim rests on a source nobody read. A sampled unit has no family note |
+| C13 | **The approach is explained, and families are told** | The subject's approach page, with sources and how much of each was read; a family note per unit, in English and Spanish, written when the unit is finished | 3, 7 | No approach page. A research claim rests on a source nobody read. A sampled unit has no family note |
 | C14 | **It can be run in an ordinary room:** time, space, supplies, cost and teacher knowledge are stated and modest | The supplies list with cheap stand-ins; the paper path for every tool day; time per lesson; a free site | 1, 5, 7 | The course needs space, kit, time or training most schools lack and gives no stand-in. A cost to the school is not stated. A tool day has no paper path |
 | C15 | **Screens serve the learning:** tied to the objective, run on school devices, usable without mouse or colour, private, with a non-screen path | The tool's named job in the unit plan; the access check; single-file offline tools that store nothing off the device | 6, 7 | A tool has no named job. It fails keyboard-only or colour-free play. It needs an install, an account or a network. It stores data off the device |
 | C16 | **Honest about evidence** | A one-page logic model per course; the plain statement that the course has not been tried with children | 1, 3 | Any claim of effect. No logic model. Research cited that nobody on the project read |
@@ -63,19 +75,22 @@ the sources table). No count per row is given, because the first draft's "Seen i
 (FOUNDATION, section 3): data dashboards (Texas names one as an example), adapting to each student and plugging
 into a learning management system (Ohio, narrative items), accessible-format files lodged with a national centre
 (Oregon), and professional learning tied to the materials (Ohio, scored). Our answers are the class record sheet,
-score codes, open pages, print and teacher pages.
+score codes, open pages, print and teacher pages. Professional learning: none for now (decided 2026-11-11). It is
+a future area of growth, not a closed door.
 
 **Where the instruments conflict on values.** Oklahoma's arts rubric checks materials against state law. Maryland,
 the federal health tool and the SEL registry ask for equity content in terms that pull the other way. No stance
 passes all of them. C12 follows FOUNDATION promise 7, a middle line, and Curio Class does not claim to satisfy any
-state's values criteria. Said once here, so it is not re-opened per course (open choice 5).
+state's values criteria. Said once here, so it is not re-opened per course. Cory leans to a "high watermark" rule
+here, which is not yet worked out (see "Still open with Cory", b). Until it is, FOUNDATION's promises still bind.
 
 **Acceptability is local.** A national site cannot settle what suits each community, so each course page says what
-a school may leave out (open choice 3).
+a school may leave out. For health this is decided: all sensitive topics are carried, and each sensitive unit can
+be left out without breaking the course.
 
 ## The subject parts
 
-Each part adds to the core. Unless a part says otherwise, it covers four band courses. Tags: **[I]** from the instrument, **[S]** from the standards, **[O]** ours. Full
+Each part adds to the core. Part 6, world languages, is shelved (2026-11-11) and is kept for a later pass. Unless a part says otherwise, it covers four band courses. Tags: **[I]** from the instrument, **[S]** from the standards, **[O]** ours. Full
 titles, links, licences and how much was read are in the sources table. "Fails if" lines work as in the core.
 
 ### 1. Social studies
@@ -97,7 +112,8 @@ Maryland's rubric (2025), read in full by the expert; Massachusetts read in part
 6. [I] Subject words are taught and used.
 7. [I] Checks test knowledge and skills together and include a task done from sources.
 8. [I, in two of three instruments] Students apply what they concluded to a real problem near them. Maryland puts
-   this in the category that must be met; Louisiana does not ask it. How often is open choice 6.
+   this in the category that must be met; Louisiana does not ask it. How often (decided 2026-11-11): once a year
+   per course, and up to three times a year if the evidence shows a need for more.
 
 **Fails if:** coverage without depth; sources are textbook summaries only; one telling of a contested event;
 questions answerable without the sources; skills practised on content the course does not teach.
@@ -106,7 +122,8 @@ questions answerable without the sources; skills practised on content the course
 Maryland's value-laden items are left out on purpose (see the values paragraph).
 
 **Standards.** data/standards/c3-indicators.txt (2013) is skills only. No content standard is loaded, and
-psychology cites a standard with no file.
+psychology cites a standard with no file. Which content standard the courses teach is still open with Cory (see
+"Still open with Cory", a). No social studies spine starts before it is settled.
 
 **Spine states:** the content standard and each unit's question. **Unit plan fills:** the source list
 with reasons. **Confidence:** likely.
@@ -156,7 +173,8 @@ coverage is scored.
    fails.
 6. [I] Units link students to family and trusted adults, and learning reaches past the classroom.
 7. [I] The health, medical and scientific content is checked by a named person able to judge it, with the date. A
-   health curriculum specialist counts. An agent's read does not.
+   health curriculum specialist counts. An agent's read does not. The plan stays as proposed: one paid read per
+   band by a health curriculum specialist. The cost is confirmed with Cory before anything is spent.
 8. [I] Objectives cover knowing, valuing and doing, and can be measured. Assessment is of more than one kind and
    includes students assessing themselves.
 9. [I] Materials are inclusive: they fit students' cultures and the conditions they live in, avoid blame, and guide
@@ -168,10 +186,13 @@ coverage is scored.
 coverage map; a sensitive topic taught with no note on what a school may leave out.
 
 **Unsupported.** The tool counts features and does not show a curriculum works. It assumes a teacher leads, in a
-classroom or online. No instrument says which sensitive topics a national site carries (open choice 3).
+classroom or online. No instrument says which sensitive topics a national site carries. Decided 2026-11-11:
+Curio Class carries all of the tool's sensitive topics, and each sensitive unit can be left out without breaking
+the course.
 
 **Standards.** data/standards/nhes-2024.txt (SHAPE America, 2024). The tool is keyed to the 2007 edition. Skills map
-across; the first standard was reworded.
+across; the first standard was reworded. Decided 2026-11-11 (card q-standards-currency): the 2024 standards are
+kept, with a written mapping to the older-keyed review tool.
 
 **Spine states:** the coverage map. **Unit plan fills:** the behaviour outcome and the skill steps.
 **Confidence:** likely, until the writer has read the second half of chapter 5 and one topic module.
@@ -201,7 +222,8 @@ fitness tests used as grades.
 and knowledge content.
 
 **Standards.** data/standards/shape-pe-2024.txt (four standards). The federal tool is keyed to the earlier five. The
-method carries over; the tables do not.
+method carries over; the tables do not. Decided 2026-11-11 (card q-standards-currency): the 2024 standards are
+kept, with a written mapping to the older-keyed review tool.
 
 **Spine states:** the outcome for each standard by grade. **Unit plan fills:** space, equipment and
 the adaptation. **Confidence:** likely.
@@ -227,12 +249,18 @@ account; no help for the non-specialist.
 **Unsupported.** No national materials rubric. No page may claim coding improves general thinking.
 
 **Standards.** data/standards/csta-2026-ids.txt: the 196 foundational codes of the 2026 standards, with no header and
-no wording. The 135 high school specialty standards are absent.
+no wording. The 135 high school specialty standards are absent. Decided 2026-11-11 (card q-standards-currency):
+the 135 Specialty standards are loaded. The high school course teaches the Foundational set and claims a
+Specialty standard only where a module already goes that far.
 
 **Spine states:** the concept areas per unit. **Unit plan fills:** the unplugged task.
 **Confidence:** likely.
 
-### 6. World languages: Spanish, American Sign Language
+### 6. World languages: Spanish, American Sign Language. Shelved, 2026-11-11
+
+**Shelved for a later pass (Cory, 2026-11-11), American Sign Language included.** No spine is written, no
+standards are loaded and no video is planned for these courses now. The part below is kept as written so the
+later pass starts from it. What is owed when it is unshelved is listed under "Before a spine in this subject".
 
 Two courses today, each "all levels".
 
@@ -305,7 +333,8 @@ fits exploration courses and would not fit a technical one.
 **Fails if:** stale rates; a sponsor's logo; advice presented as fact; vocabulary tests as the end check.
 
 **Unsupported.** The bar for this course is the design side. The evidence side needs studies of the course itself
-and is stated as unmet on the course page. No page may promise changed behaviour.
+and is stated as unmet on the course page. No page may promise changed behaviour. Decided 2026-11-11: the design
+half is the bar, **marked for a deeper review**.
 
 **Standards.** data/standards/nspfe-2021.txt. The tool's content lists predate it, so criterion 1 is checked against
 the file.
@@ -314,6 +343,9 @@ the file.
 **Confidence:** likely.
 
 ### 9. Social and emotional learning
+
+Decided 2026-11-11: these stay separate courses, not strands inside other subjects. They may be smaller than
+other courses by the nature of the subject (see the pass rule for what that means).
 
 **Rests on.** The SEL registry's criteria paper (2020): design criteria read in full by the writer and the expert.
 
@@ -331,7 +363,8 @@ the file.
 **Fails if:** posters and discussion with no practice; two of five areas; a band taught the same way every year.
 
 **Unsupported.** The registry tests evidence first. The bar for these courses is the design half; the evidence half
-is stated as unmet on the course page.
+is stated as unmet on the course page. Decided 2026-11-11: the design half is the bar, **marked for a deeper
+review**.
 
 **Standards.** data/standards/casel-5.txt, the same framework.
 
@@ -365,6 +398,10 @@ page. *To firm it:* read the California map end to end and open the WIDA rubric 
 
 ### 11. Library and research skills. Ours, untested
 
+Decided 2026-11-11: these stay separate courses. The bar below is our own, named as ours, and it may be small.
+The courses may be smaller than other courses by the nature of the subject (see the pass rule for what that
+means).
+
 **Rests on.** No materials instrument exists. Built from the Empire State continuum (introduction page only), the
 national school library standards (not re-opened) and one trial of lateral reading known through a press notice.
 *To firm it:* open the continuum's grade lists and the trial itself.
@@ -388,69 +425,91 @@ national school library standards (not re-opened) and one trial of lateral readi
 
 ## Before a spine in this subject
 
-A course blocked here is not exempt and is not finished. Each row is work owed. "Cory" means it waits on an open
-choice below.
+A course blocked here is not exempt and is not finished. Each row is work owed. "Cory" means it waits on a
+question in "Still open with Cory" below, or on his yes. Core subjects come first (see the top of this page), so
+every row but social studies waits behind the core work unless it is complementary.
 
 | Subject | Owed before a spine | Who |
 |---|---|---|
-| All eleven | An approach page per subject (layer 3) that fills the unit plan's subject slots: the kinds of day and the form of daily evidence | Agent drafts, Cory's yes |
-| Social studies (14) | Choose and load content standards (choice 1). Load the psychology standard's current edition or drop its tags. Say what economics and geography stand on. Confirm the C3 edition at the publisher | Cory, then agent |
+| All ten active subjects | An approach page per subject (layer 3) that fills the unit plan's subject slots: the kinds of day and the form of daily evidence | Agent drafts, Cory's yes |
+| Social studies (14) | Work up the three content standard options and bring them back to Cory (still open, a); then load what he chooses. No spine starts before that. Load the psychology standard's current edition or drop its tags. Say what economics and geography stand on. Confirm the C3 edition at the publisher. Plan informed action once a year per course, up to three times if the evidence shows a need | Agent works up, Cory decides, then agent |
+| AP and psychology modules (26), in whichever subject they sit | These have no standards file. Mark them now as not yet standards-checked. **Do not lose this note (Cory): the course framework is loaded when that course's spine is written** | Agent |
 | Arts (20) | A written rule placing each grade's standards, and the three high school levels, in a band year. Read the reuse terms. Watch the national revision twice a year | Agent |
-| Health (4) | Read one topic module; write the band coverage map; write the 2007 to 2024 note; fix the file header to "SHAPE America, 2024". Settle sensitive topics and the qualified reader (choice 3) | Agent, then Cory |
-| Physical education (4) | Write the map from the tool's five standards to the loaded four. Find and read the appropriate practice guidelines | Agent |
-| Computer science (4) | Give the file a header and the standards' wording, under its own licence line. Load the 135 high school specialty standards, or record that grades 9 to 12 teach the foundational set only | Agent |
-| World languages (2) | Split into levels with a target each. Load the 2026 can-do statements after a licence check. Load American Sign Language standards. Decide on video (choice 2) | Cory, then agent |
+| Health (4) | Read one topic module; write the band coverage map; write the 2007 to 2024 note; fix the file header to "SHAPE America, 2024". Keep the 2024 standards and write the mapping to the older-keyed review tool (decided, card q-standards-currency). Carry all sensitive topics, each sensitive unit able to be left out without breaking the course (decided). One paid specialist read per band, as proposed; confirm the cost with Cory before any spend | Agent, then Cory for the cost |
+| Physical education (4) | Keep the 2024 standards and write the map from the tool's five standards to the loaded four (decided, card q-standards-currency). Find and read the appropriate practice guidelines | Agent |
+| Computer science (4) | Give the file a header and the standards' wording, under its own licence line. Load the 135 Specialty standards (decided, card q-standards-currency). The high school course teaches the Foundational set and claims a Specialty standard only where a module already goes that far | Agent |
 | Career education (2) | Read the 2024 career-ready practices wording. List what a school adds | Agent |
 | Personal finance (1) | Check content against the 2021 file and say the mapping is ours | Agent |
-| SEL (4) | Courses or strands (choice 4); then a sequence per grade | Cory, then agent |
+| SEL (4) | Separate courses (decided); they may be small. Write a sequence per grade. The design half as the bar is marked for a deeper review | Agent |
 | English language development (4) | Read the California map in full; open the WIDA rubric file. Build after C11 is proven in core courses | Agent |
-| Library (4) | Relabel the file to the second edition (2025); open the continuum's grade lists (choices 4 and 9) | Agent, then Cory |
+| Library (4) | Relabel the file to the second edition (2025); open the continuum's grade lists. Separate courses, our own bar, and it may be small (decided) | Agent |
 
-## Open choices for Cory
+**World languages (2): shelved, 2026-11-11. Owed when unshelved, not before.** Split each language into levels
+with a target each. Load the 2026 can-do statements after a licence check (agreed on card q-standards-currency,
+and waiting with the shelved courses). Load American Sign Language standards. Decide the video source for
+American Sign Language, which may mean people on camera. Splitting into levels would raise the course count above
+105. Cory decides the split and the video when the pass opens; the agent's work follows.
 
-**Answered 2026-11-11 (Desk card q-bar-subjects); this list has not been rewritten yet. Cory's words and what
-they mean are in [HANDOFF.md](HANDOFF.md). In short: choice 1 is still open (he wants a unified or "high
-watermark" option, not one state's set); world languages, American Sign Language included, are shelved for a
-later pass; all sensitive health topics are carried; SEL and library skills stay courses and may be small;
-choice 5 leans to the higher quality or rigor and needs working out; informed action once a year, up to three
-times if the evidence shows a need; the pass rule is accepted for now; no professional learning for now; the
-library bar is ours; the design half stands for SEL and personal finance, marked for a deeper review; family
-notes in English and Spanish. Also: 26 AP and psychology modules have no standards file; their course
-framework is loaded when that course's spine is written.**
+## Decided, Cory, 2026-11-11 (Desk card q-bar-subjects)
 
-In the expert's order, by how much each changes what courses teach.
+The numbers are those of the eleven choices the second draft put to him. His words are quoted exactly from
+[HANDOFF.md](HANDOFF.md). Choices 1 and 5 are not settled and are under "Still open with Cory".
 
-1. **Which content standards does social studies teach?** Options: one state's standards for kindergarten to grade
-   12; one state for K to 8 and another source for high school; C3 only. *Recommend:* one state's set throughout,
-   C3 kept for skills, with psychology and economics on their national subject standards. *Changes:* every social
-   studies spine.
-2. **How are the language courses split, and how is American Sign Language made?** Options: levels 1 to 4 for each
-   language; fewer levels; keep one course. Sign language needs video, which may mean people on camera.
-   *Recommend:* split into levels, load sign language standards, and decide the video source before any spine.
-   *Changes:* the course count rises above 105.
-3. **Which sensitive health topics does Curio Class carry, and who checks accuracy?** Options: all the tool's topics with a
-   leave-out path; a reduced set; none. *Recommend:* all, each sensitive unit able to be left out without breaking the
-   course, with one paid read per band by a health curriculum specialist. *Changes:* the health coverage map and a cost.
-4. **Are SEL and library skills courses or strands?** Options: stand-alone courses with a year-by-year sequence;
-   strands inside health, English language arts and social studies. The registry accepts both for SEL.
-   *Recommend:* keep them as courses, held to the whole core at the days their spine states, with a sequence per
-   grade. *Changes:* the course count if strands are chosen.
-5. **What is our stance where state instruments conflict on values?** Options: FOUNDATION promise 7 governs and the
-   page says so once; write to one state's criteria. *Recommend:* the first. *Changes:* C12 and the sensitivity
-   read stay as they are.
-6. **Is informed action required in social studies?** Options: once a year in every course, sized small; in every
-   unit; optional. *Recommend:* once a year per course. *Changes:* one task per social studies course.
-7. **Is the pass rule right?** Options: as proposed; stricter; looser. *Recommend:* accept, then test on the first finished course.
-   *Changes:* what "finished" means for every course here.
-8. **Do we confirm that no professional learning is offered?** Options: none; a short free guide
-   per subject. *Recommend:* none, stated as a promise that costs marks. *Changes:* nothing built.
-9. **Do we accept the library part as our own bar?** Options: yes, named as ours; wait for an instrument. *Recommend:* yes. *Changes:* four courses can proceed.
-10. **Do we accept the design half as the bar for SEL and personal finance?** Options: yes, evidence half stated as
-    unmet on each course page; no courses until a study exists. *Recommend:* yes. *Changes:* wording on
-    five course pages.
-11. **Are family notes written in Spanish too?** Texas, Ohio, Maryland and the SEL registry each ask for family
-    materials beyond English. Options: English only; English and Spanish; later. *Recommend:* decide once for all
-    105 courses, not per subject. *Changes:* one more page per unit everywhere.
+2. **World languages.** "2 shelf foreign languages for a later pass (ASL included)." Spanish and American Sign
+   Language are shelved. No spines, no standards loading and no video planning for them now. Part 6 is kept.
+3. **Sensitive health topics.** "3 all." Curio Class carries all of the tool's sensitive topics, and each
+   sensitive unit can be left out without breaking the course. The paid read per band by a health curriculum
+   specialist was part of the recommended option and stays as proposed; the cost is confirmed with Cory before
+   any spend.
+4. **SEL and library skills.** "4 they can stay separate but are allowed to be smaller than other courses by
+   nature of the subject." They stay courses, not strands, each with a sequence per grade. They are held to the
+   whole core at the size their spine states (see the pass rule).
+6. **Informed action in social studies.** "6 i lean to once per year, but up to three times if the evidence
+   indicates a need for more." Once a year per course is the plan. A course may go up to three times a year where
+   the evidence shows a need.
+7. **The pass rule.** "7 accept for now." It stands for now and is tested on the first finished course.
+8. **Professional learning.** "8 i agree for now but this is a future area of growth." None is offered for now.
+   It is not ruled out for later.
+9. **The library bar.** "9 yes and it might be small and thats okay." The library part is our own bar, named as
+   ours, and four courses can proceed on it. It may be small.
+10. **The design half for SEL and personal finance.** "10 yes but mark this for a deeper review." The design half
+    is the bar, with the evidence half stated as unmet on each course page. **Marked for a deeper review.**
+11. **Family notes.** "11, agreed" Family notes are written in English and Spanish, for all courses, when a unit
+    is finished.
+
+Decided on the same day on Desk card q-standards-currency, and applied in "Before a spine in this subject": the
+computer science Specialty standards, the health and physical education mapping, and the 26 AP and psychology
+modules.
+
+## Still open with Cory
+
+Both are to be worked up together and brought back to him on the Review Desk. Neither has a recommendation yet.
+
+**(a) Which content standard does social studies teach?** Cory's words: "1 needs a better option. this may
+require a unification of content standards or possibly a "high watermark" method." He did not accept one state's
+set as the only option. He asked for a unified set, or a high watermark method: where sources differ, take the
+more demanding expectation. Three options are to be worked up:
+
+- **One state's set.** The second draft's proposal: one state's standards from kindergarten to grade 12, C3 kept
+  for skills, psychology and economics on their national subject standards. To work up: which states are
+  candidates and why, the reuse terms of each, and how well each fits the fourteen courses.
+- **A unified set built from several sources.** To work up: which sources go in, the rule for merging them and
+  for what is left out, who checks the result, what it costs to build and keep current, and how a school in any
+  one state would trace a course back to its own standards.
+- **A high watermark.** To work up: which sources are compared, what "more demanding" means for content
+  (earlier grade, more depth, more topics), how to stop the sum from growing past what a year can teach (C1 and
+  C2 still apply), and the same tracing question.
+
+For each option the work-up also says what it would change in the fourteen spines. It must be worked up and
+brought back before anything is chosen. **No social studies spine starts before it is settled.**
+
+**(b) What is our stance where state instruments conflict on values?** Cory's words: "5 is another place where i
+feel a "high watermark" may be best (follow the higher quality or rigor)." He leans to a high watermark here too.
+Said plainly: rigor can be ranked, so where two instruments ask for more or less of the same thing, the higher
+one can be followed. A values conflict is not always a matter of higher or lower. Two instruments can ask for
+opposite things, and neither is the more rigorous. So the rule needs working out alongside (a): what "higher"
+means, which conflicts it can settle, and what governs the ones it cannot. Until then FOUNDATION's promises still
+bind, promise 7 among them, and C12 and the sensitivity read stay as they are.
 
 ## Sources
 

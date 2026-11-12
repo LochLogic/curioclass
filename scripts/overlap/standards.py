@@ -17,7 +17,7 @@ for r in rows:
         if o is not r and set(o['bands']) & set(r['bands']): others |= stds(o)
     if S and S <= others: print(' ', r['tool_id'], r['band'], r['subject'], sorted(S))
 
-ids = [l.strip() for l in io.open(os.path.join(ROOT, 'data', 'standards', 'csta-2026-ids.txt'), encoding='utf-8') if l.strip()]
+ids = [l.strip() for l in io.open(os.path.join(ROOT, 'data', 'standards', 'csta-2026-ids.txt'), encoding='utf-8') if l.strip() and not l.startswith('#')]
 used = set()
 for m in mods.values(): used |= {s.strip() for s in m['standards'].split(';')}
 miss = [i for i in ids if i not in used]

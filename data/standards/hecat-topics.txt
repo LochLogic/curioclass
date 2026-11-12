@@ -2,6 +2,7 @@
 # source: https://www.cdc.gov/healthy-youth/hecat/pdfs/HECAT_Appendix_03.pdf (Healthy Behavior Outcomes)
 # version: CDC Health Education Curriculum Analysis Tool (HECAT), 2021 edition
 # fetched: 2026-10-27
+# note: added 2026-11-11. HECAT 2021 builds its knowledge and skill expectations on the National Health Education Standards, 2nd edition (2007), not on the 2024 SHAPE America set in nhes-2024.txt. Our mapping is in docs/standards-notes/health-2007-to-2024.md.
 # level: section 1 = one HECAT topic module, HECAT.<abbr>; section 2 = one Healthy Behavior Outcome (HBO) within a topic, HECAT.<abbr>.HBO<n>. Prefix-match HBOs to their topic.
 # note: abbreviations are taken from CDC's module PDF filenames (aod, fn, meh, phw, pa, s, sh, t, v, che); CDC does not print them as codes on the page.
 # note: 2021 module names: AOD Alcohol- and Other Drug-Use Prevention; FN Food and Nutrition; MEH Mental and Emotional Health; PHW Personal Health and Wellness; PA Physical Activity; S Safety; SH Sexual Health; T Tobacco-Use Prevention; V Violence Prevention; CHE Comprehensive Health Education.

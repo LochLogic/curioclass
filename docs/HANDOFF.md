@@ -1,7 +1,8 @@
 # Handoff: where the course work stands
 
 **Written 2026-11-11, evening, at the end of a long session, for the next chat. Read this first, then
-[ROADMAP.md](ROADMAP.md) ("The layers" and "Resume here"). Everything below is pushed to `spec/sara` and `main`.**
+[ROADMAP.md](ROADMAP.md) ("The layers" and "Resume here"). Everything below is pushed to `spec/sara` and `main`. Updated late the same evening, after the
+decisions were applied.**
 
 This page is the one place that says what was decided, what has been applied, and what to do next. If it
 disagrees with another page, the other page is probably the stale one: check the date, fix it, and say so.
@@ -38,12 +39,12 @@ disagrees with another page, the other page is probably the stale one: check the
 | 3 Approach | [APPROACH.md](APPROACH.md), [APPROACH-MATH.md](APPROACH-MATH.md). Decisions answered. Cory still owes a read of the pages as a whole; his mother is reading "The principles" onward as a grade 2 teacher. Science and ELA approach pages are on Sara's list ([courses/NEXT-SPINES.md](courses/NEXT-SPINES.md)). |
 | 4 Progressions | Math grades 3 to 5 done. |
 | 5 Spine | Grade 4 math, plus science and ELA spines waiting for Cory's final yes. 3 of 105 courses have a spine. |
-| 6 Stretch sheets and unit plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Grade 4 math: stretches 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 units (the status table shows 17 because it counts stretch sheets too). 30 units to go (stretches 4 to 8 and 12 to 18). |
+| 6 Stretch sheets and unit plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Word caps are 1,000 and 800 since 2026-11-11. Grade 4 math: stretches 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 units (the status table shows 17 because it counts stretch sheets too). 30 units to go (stretches 4 to 8 and 12 to 18). |
 | 7 Lessons, tools, print | Paused until the pilot unit (11.1). |
 | The bar | Math: [RUBRIC-MATH-K8.md](RUBRIC-MATH-K8.md). All other subjects but ELA and science: [ADOPTION-BAR-SUBJECTS.md](ADOPTION-BAR-SUBJECTS.md), second draft. ELA and science rubric files are on Sara's list. |
 
 Course count: 105, of which 56 are in the four core subjects ([COURSES-STATUS.md](COURSES-STATUS.md), generated;
-never edit by hand). Languages are now shelved (see below) but still counted until the status script is told.
+never edit by hand). World languages are shelved (see below) but still counted in the table, as a reminder (Cory).
 
 ## What Cory decided on 2026-11-11 (evening), in his words
 
@@ -115,33 +116,46 @@ never edit by hand). Languages are now shelved (see below) but still counted unt
 5. **AP and psychology modules (26) with no standards file:** mark them now as not yet standards-checked.
    **Do not lose this: load the course framework when that course's spine is written.**
 
-## Decided but not yet applied (do these first, in this order)
+## Applied on 2026-11-11 (late), after Cory said to act on the answers
 
-None of the evening's answers has been written into the spine, the template or the plans yet. Each line names
-the files.
+Everything in the three cards that could be applied has been. Where each landed:
 
-1. **Word caps** in `docs/courses/UNIT-PLAN.md` ("Length" and the "Decided" section) and the ROADMAP paragraph
-   that quotes the old caps (1,500 / 700 / 2,500). Decide the one-unit merged document's cap by the same logic
-   and mark it proposed. Create `docs/courses/math-4/TOOL-ASKS.md` and move the spec asks out of the sheets
-   (s01 has 11, s02 has 5, s03 has 8; s09, s10 and s11 have theirs in the tools field).
-2. **"Always cover the whole standard"** as a rule in UNIT-PLAN.md and `docs/agents/decisions/BASELINE.md`.
-3. **Stretch 3 swap:** `docs/courses/math-4-spine.md` (unit rows, days), `data/units.csv`, `s03.md`, and
-   `u03-3.md` / `u03-4.md` (which becomes 3.3 and which 3.4, days 17 to 23, tie and withdrawal days, exit
-   question numbering, the two-pizzas opening). Remove the "Open, with Cory" line at the top of s03.md. Rework
-   every key touched. Then one expert read of stretch 3 as a whole.
-4. **Spine fixes found by the writers** (`math-4-spine.md`): "The checks" lines still describe first-day
-   readiness; stretch 1 balance is 4/1/0/1; define the facts check and its mark (item 5 above); stretch 2 limits;
-   stretch 10 numbers rule; day 14's title; the Tool column for stretch 3 (the Duel is light, one day); Growth
-   Spurt fits in parts only; unit 10.3 has one teaching day.
-5. **No-reuse rule wording** (item 7) in UNIT-PLAN.md.
-6. **Bar page** `docs/ADOPTION-BAR-SUBJECTS.md`: move the answered choices into a "Decided" section in Cory's
-   words; shelve the world languages part (keep the text, mark it shelved); note SEL and library may be small;
-   leave choices 1 and 5 open with the high watermark idea; mark choice 10 for deeper review. Status line: not
-   read by the expert since revision.
-7. **Standards work** (card 3): load CS Specialty standards; health and PE mapping and header clean-up; mark the
-   26 AP and psychology modules in `data/modules.csv` or the shape file; licence page with an Opus model.
-8. **Course status:** teach `scripts/course_status.py` that world languages are shelved, regenerate
-   `docs/COURSES-STATUS.md`, refresh the Desk.
+| Decision | Where it is now |
+|---|---|
+| Word caps 1,000 and 800; tool asks in one file per course | `docs/courses/UNIT-PLAN.md` ("Length", "Decided"); `docs/courses/math-4/TOOL-ASKS.md` (9 tools); sheets s01, s02, s03, s09, s10, s11 link to it |
+| Always cover the whole standard | UNIT-PLAN.md rule 19; BASELINE rule 23 |
+| No-reuse rule for fractions | UNIT-PLAN.md rule 4 |
+| Stretch 3: benchmarks first | Spine, `data/units.csv`, s03, u03-1 to u03-4. Now: 3.1 days 10 to 12; 3.2 days 13 to 16; 3.3 comparing to one half and one, the same whole, days 17 to 18; 3.4 common denominator or numerator, days 19 to 24 (check on 24) |
+| Facts check; stretch 2 limits; stretch 10 numbers; day 14 both ways; readiness timing in "The checks"; stretch 1 balance; tool column | `docs/courses/math-4-spine.md`, dated change block for 2026-11-11 |
+| Fraction Wall Duel light for now; splitter waits for stretch 7 | TOOL-ASKS.md, s03, spine |
+| The bar: all eleven answers | `docs/ADOPTION-BAR-SUBJECTS.md` ("Decided" in Cory's words; "Still open with Cory"; world languages part headed "Shelved") |
+| Computer science Specialty standards | `data/standards/csta-2026-specialty-ids.txt` (135 ids); `scripts/standards.py` accepts them |
+| Health and PE mapping and clean-up | `docs/standards-notes/health-2007-to-2024.md`, `pe-2014-to-2024.md`; headers fixed in nhes-2024, aasl-2018, csta-2026-ids |
+| 26 AP and psychology modules | `docs/standards-notes/modules-without-standards.md`: not yet standards-checked; load the framework when that course's spine is written |
+| Core subjects first | BASELINE rule 24; ROADMAP above the layers |
+| Expert reads go to Sara | `docs/courses/NEXT-SPINES.md`, piece 1 |
+
+**Not applied, on purpose:**
+
+- The licence page (`LICENSE-CONTENT.md`) and the SEL file header: Cory asked for this later, with an Opus model.
+- The course status table still counts world languages. Cory: leave it as a reminder.
+- World languages: the 2026 can-do statements and the ASL standards wait with the shelved subject.
+
+**Left open by the apply work (small):**
+
+- The merged one-unit stretch cap of 1,800 words is proposed, not decided (UNIT-PLAN.md "Length").
+- Unit 3.4 now has six days; the spine names it as the exception to "1 to 5 days".
+- Unit 3.3 has a new written task (3/4 and 5/6, day 18): the old one needed common denominators.
+- Over the new caps: u03-4 (about 1,400 against 1,000), s03 (about 1,230 against 800), s10 (845). Unit plans
+  other than stretch 3's were not recounted.
+- Growth Spurt's "key" mark is the plan's own, not a decision of Cory's. It is settled at step 4e.
+- Cory's answers left three things undefined, to ask before the spine that needs them: what "smaller" means for
+  SEL and library courses (fewer days or fewer units); what evidence would raise informed action above once a
+  year; and the specialist health read was taken as included in "3 all" (no spend without his yes).
+- `scripts/overlap/standards.py` crashes in load() on module id `food-web-wobble`. The fault is older than
+  today's edits.
+- The federal PE review tool could not be opened (addresses return 404); the PE and health keying rests on the
+  earlier report.
 
 ## Then, the next real work
 
@@ -152,12 +166,16 @@ core subjects come first. Every course is still finished to the bar; this sets t
 So: grade 4 math first, then the other core spines and plans. The social studies content standard question is
 core work. Health, PE, arts, computer science, CTE, SEL, ELD and library work waits unless it is complementary.
 
+- **Sara's list is `docs/courses/NEXT-SPINES.md`, reordered 2026-11-11 by what is waiting on each piece:** expert
+  reads; the social studies content standard options; science rubric and approach; ELA rubric, approach and
+  text plan; math progression pages; the grade 4 start-of-year check and stretches 4 to 8; then spines. Whoever
+  takes grade 4 math stretches says so first, so two chats do not plan the same stretch.
 - **Step 4d continues:** grade 4 math stretches 4 to 8, then 12 to 18, a stretch at a time, per UNIT-PLAN.md,
   with a cold expert read on a sample. Stretch 4's readiness items are already needed on day 24 (s03 points at
   a sheet that does not exist yet), so stretch 4 is next. The start-of-year check (day 1) is unwritten and must
   carry stretch 1's three readiness items.
-- **Stretches 9 and 10 have had no expert read.** Read them cold before building on them. Stretch 11's second
-  draft has had none either.
+- **Stretches 3 (since the swap), 9, 10 and 11 have had no expert read in their current form.** These reads are
+  Sara's (Cory, 2026-11-11). Do not build lessons on them before the reads.
 - **Work up the social studies content standard options** (unified set, high watermark, one state) with what
   each would cost and change, and the values question beside it. Bring both to Cory on the Desk.
 - Then 4e (name the key tools from all the plans; goes to Cory) and 4f (build pilot unit 11.1 and have it read).
