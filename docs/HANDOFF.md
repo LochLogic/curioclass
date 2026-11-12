@@ -209,3 +209,11 @@ core work. Health, PE, arts, computer science, CTE, SEL, ELD and library work wa
 | Are the loaded standards current | `docs/reviews/standards-currency-2026-11-11.md` |
 | Expert on the three trial plans (4c) | `docs/reviews/unit-plans-2026-11-11.md` |
 | Expert on stretches 1 to 3 (4d) | `docs/reviews/unit-plans-4d-2026-11-11.md` |
+
+## Cold strategic review, 2026-11-11 (read before choosing the next work)
+
+`docs/reviews/strategic-review-2026-11-11.md`: a cold review of the whole project with twelve ranked
+recommendations, a table of 23 stale or contradicting record lines, and section 7, the working session's check.
+Nothing in it has been acted on. Cory decides recommendations 1 and 2 first (build pilot unit 11.1 now; freeze
+stretch planning until it is read). Recommendations 6, 7 and 11 would reverse earlier decisions of his, so they
+are his to re-decide.
