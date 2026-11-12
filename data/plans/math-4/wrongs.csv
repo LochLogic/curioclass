@@ -920,3 +920,16 @@ s03-K11-2,12/16,F(12;16),12/16,K,took 0 to 2 as the whole
 s03-P11-7,7/10,F(7;5*2),7/10,A,
 s03-P11-7,14/20,F(14;20),14/20,K,took 0 to 2 as the whole
 s03-P11-8,"8/8, then 16/16",F(8;8) | F(16;16),8/8 | 16/16,K,took 0 to 2 as the whole
+s03-P23-1,>,,,D,45 and 100 read as bigger numbers
+s03-P23-2,>,,,G,
+s03-P23-3,<,,,D,3 and 12 read as bigger numbers
+s03-P23-4,Jay,,,H,compares the fractions of two different books
+s03-P23-5,>,,,D,
+s03-P23-6,>,,,D,
+s03-P23-7,=,,,I,each is two parts short of 1
+s03-P23-7,>,,,G,
+s03-P23-8,Mo,,,H,compares the fractions of two different cartons
+s03-P23-9,<,,,D,
+s03-P23-10,Ivy's,,,D,13 and 10 read as bigger numbers
+s03-P23-10,"Max's, with 13/10 > 5/3 written",,,G,
+s03-P23-11,Yes,,,H,
