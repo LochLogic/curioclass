@@ -69,6 +69,64 @@ def layer_cells(key, d):
     plans = len(glob.glob(os.path.join(ROOT, 'docs', 'courses', key, '[us][0-9]*.md')))
     return rubric, approach, prog, spine, (str(plans) if plans else 'no')
 
+import re
+SPINE_ROW = re.compile(r'^\|\s*(\d*)\s*\|\s*(.+?)\s*\|\s*(\d+)\s*\|\s*(\d+)(?:\s*to\s*(\d+))?\s*\|')
+
+def spine_units(key):
+    """The scope and sequence table: [(unit number or None for a check, label, first day, last day)]."""
+    p = os.path.join(ROOT, 'docs', 'courses', f'{key}-spine.md')
+    if not os.path.exists(p): return []
+    out, inside = [], False
+    for line in io.open(p, encoding='utf-8'):
+        if line.startswith('|') and 'On days' in line: inside = True; continue   # the year's table only
+        if inside and not line.startswith('|'):
+            if out: break
+            continue
+        m = SPINE_ROW.match(line) if inside else None
+        if m:
+            a = int(m.group(4)); b = int(m.group(5) or a)
+            out.append((int(m.group(1)) if m.group(1) else None, re.sub(r'\*|\s*\(.*', '', m.group(2)).strip(), a, b))
+    return out
+
+# reviews are filed by day number only; they belong to the one course that has written days (grade 4 math today)
+REVIEWED = {'cheap': set(), 'expert': set()}
+for f in glob.glob(os.path.join(ROOT, 'docs', 'reviews', 'cheap-d[0-9][0-9][0-9]-*.md')):
+    REVIEWED['cheap'].add(int(os.path.basename(f)[7:10]))
+for f in glob.glob(os.path.join(ROOT, 'docs', 'reviews', 'day-[0-9][0-9][0-9]-*.md')):
+    REVIEWED['expert'].add(int(os.path.basename(f)[4:7]))
+WRITTEN = {}
+for f in glob.glob(os.path.join(ROOT, 'courses', '*', 'u*', 'd[0-9][0-9][0-9].md')):
+    WRITTEN.setdefault(os.path.basename(os.path.dirname(os.path.dirname(f))), set()).add(int(os.path.basename(f)[1:4]))
+TAUGHT = {}   # no course day has been taught yet; filled from taught-run records when they exist
+
+def ladder(key):
+    """Counts down the build order: scope and sequence, unit plans, section plans, days written, read, taught."""
+    units = spine_units(key)
+    d = os.path.join(ROOT, 'docs', 'courses', key)
+    uplans = {int(re.match(r's(\d+)', os.path.basename(f)).group(1)) for f in glob.glob(os.path.join(d, 's[0-9]*.md'))}
+    splans = len(glob.glob(os.path.join(d, 'u[0-9]*-[0-9]*.md')))
+    written = WRITTEN.get(key, set())
+    only = len(WRITTEN) == 1 and key in WRITTEN
+    cheap = (REVIEWED['cheap'] & written) if only else set()
+    expert = (REVIEWED['expert'] & written) if only else set()
+    taught = TAUGHT.get(key, set())
+    total = max((u[3] for u in units), default=0)
+    r = dict(units_total=sum(1 for u in units if u[0] is not None), units=len(uplans), sections=splans,
+             days_total=total, written=len(written), cheap=len(cheap), read=len(expert), taught=len(taught))
+    strip = None
+    if written or uplans:
+        planned = {n for u in units if u[0] in uplans for n in range(u[2], u[3] + 1)}
+        def state(n):
+            if n in taught: return 'taught'
+            if n in expert: return 'read'
+            if n in cheap: return 'cheap'
+            if n in written: return 'written'
+            if n in planned: return 'planned'
+            return 'sequence'
+        strip = dict(days=[state(n) for n in range(1, total + 1)],
+                     segments=[dict(n=u[0], label=u[1], a=u[2], b=u[3]) for u in units])
+    return r, strip
+
 out = []
 A = out.append
 today = datetime.date.today().isoformat()
@@ -104,15 +162,19 @@ A('## Summary\n')
 A('| Subject | Courses | Flagged core | With a scope and sequence | With any plan | Topics | Tools: spec / built / live |')
 A('|---|---|---|---|---|---|---|')
 tot = collections.Counter()
-J = dict(at=datetime.datetime.now(datetime.timezone.utc).isoformat(), summary=[], subjects=[], shared=[])
+J = dict(at=datetime.datetime.now(datetime.timezone.utc).isoformat(), summary=[], subjects=[], shared=[], strips=[], core_subjects=[SHORT[c] for c in CORE4])
 for s, label in groups:
     ds = [(k, d) for k, d in courselist.items() if d['subject'] == s]
     cells = [layer_cells(k, d) for k, d in ds]
     tc = collections.Counter()
     for _, d in ds: tc.update(d['tools'])
+    lad = collections.Counter()
+    for k, _ in ds: lad.update(ladder(k)[0])
     r = dict(n=len(ds), core=sum(d['core'] for _, d in ds), spine=sum(c[3] != 'no' for c in cells),
              plans=sum(c[4] != 'no' for c in cells), mods=sum(d['mods'] for _, d in ds),
-             spec=tc['spec'] + tc['idea'], built=tc['built'], live=tc['live'])
+             spec=tc['spec'] + tc['idea'], built=tc['built'], live=tc['live'],
+             units=lad['units'], sections=lad['sections'], written=lad['written'], cheap=lad['cheap'],
+             read=lad['read'], taught=lad['taught'])
     tot.update(r)
     J['summary'].append(dict(name=label, **r))
     A(f"| {label} | {r['n']} | {r['core']} | {r['spine']} | {r['plans']} | {r['mods']} | {r['spec']} / {r['built']} / {r['live']} |")
@@ -134,8 +196,10 @@ for s, label in groups:
     for k, d in ds:
         ru, ap, pr, sp, pl = layer_cells(k, d)
         t = d['tools']
+        lad, strip = ladder(k)
         js['courses'].append(dict(title=d['title'], core=d['core'], rubric=ru, approach=ap, prog=pr, spine=sp, plans=pl,
-                                  mods=d['mods'], spec=t['spec'] + t['idea'], built=t['built'], live=t['live']))
+                                  mods=d['mods'], spec=t['spec'] + t['idea'], built=t['built'], live=t['live'], **lad))
+        if strip: J['strips'].append(dict(title=d['title'], **lad, **strip))
         A(f"| {d['title']} | {'yes' if d['core'] else ''} | {ru} | {ap} | {pr} | {sp} | {pl} | {d['mods']} | "
           f"{t['spec'] + t['idea']} / {t['built']} / {t['live']} |")
     A('')
