@@ -50,6 +50,10 @@ Pieces 1 and 2 are done except your own read. **Next is piece 3 (science).** You
 four reports: unit-plan-s11-2026-11-12.md, rubric-ela-2026-11-11.md, approach-ela-2026-11-11.md and
 rights-ela-6-s2-2026-11-11.md (all in docs/reviews/). The s11 one matters most: the pilot is built from it.
 
+Cory answered the six ELA questions on 2026-11-12 (docs/HANDOFF.md, "Decided 2026-11-12"). All six went the
+expert's way, with two additions: we find our own fallback hero text, and background text two carries a note
+to upgrade to a free source later.
+
 ## The pieces
 
 ### 1. The pilot unit's plan: cold read, then your read

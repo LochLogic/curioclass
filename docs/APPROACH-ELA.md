@@ -76,8 +76,8 @@ weekly reading block rests on judgment, and the spine says so.
 speak and listen, language, or check. A speak-and-listen day names its standard (SL.6.1 to SL.6.6): a
 discussion, listening to a recorded text, a prepared talk, or reading aloud. Each has a look-for sheet.
 
-**Modelled reading and writing (principle 3).** The shared page says modelling in reading and writing is common
-practice with weaker evidence. The sources opened for this page are stronger than that. The first matches a
+**Modelled reading and writing (principle 3).** The shared page gives these ratings in short (its wording was
+changed on 2026-11-12, Cory's yes). The sources opened for this page are given here in full. The first matches a
 whole grade 6 class; the others carry a limit. Each rating is for teaching a strategy as a whole practice, with
 modelling as one part.
 
@@ -93,8 +93,7 @@ modelling as one part.
 What stays unrated is modelling the close reading of one text for a whole class. The publishers' criteria add a
 limit: strategies serve the understanding of this text and are not the goal of the lesson. *Rule:* the teacher
 models on a passage or a sample piece, the class does the next one together, and the day the help is withdrawn
-is named. A strategy is taught where a text needs it, never as a unit of its own. **Proposed, waiting for Cory's
-yes:** new wording for the shared page's principle 3; this page does not change that one.
+is named. A strategy is taught where a text needs it, never as a unit of its own.
 
 **The writing process and the writing calendar.** W.6.5: "With some guidance and support from peers and adults,
 develop and strengthen writing as needed by planning, revising, editing, rewriting, or trying a new approach."
@@ -133,7 +132,9 @@ small-group and one-on-one teaching; no study there measured word-part outcomes 
 skills guide, 2016, recommendation 3). For students behind in grades 4 to 9, teaching the reading of long words
 is rated strong (WWC 2022, recommendation 1). The rubric on file makes this part must-pass for grades 3 to 5
 where a program teaches it, and rules out teaching children to guess a word from a picture or the sentence.
-*Rule:* a grade 3 to 5 ELA spine starts from a sequence for long words, word parts and fluency. Grade 6 has no
+Decided 2026-11-12 (Cory's yes): Curio Class grades 3 to 5 ELA claim to teach these skills, so that first
+gateway applies to those grades in full.
+*Rule:* a grade 3 to 5 ELA spine starts from a taught sequence for long words, word parts and fluency. Grade 6 has no
 such standards; it teaches roots and word parts.
 
 **Students reading well below grade.** A one-minute oral reading check in the first two weeks of grade 6 uses
@@ -193,9 +194,11 @@ exit answer against the sample answer, and gives the end check on the named cold
 Field numbers are those of [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). They were fixed on math; the pilot is
 the first ELA plan and may change what ELA fills. Proposed, to be tried on the pilot:
 
-- **Facts in data. Proposed, waiting for Cory's yes** (the fields and the word cap were fixed by Cory): the text
-  record, the question set (each question with its day, its standard and whether it needs the text) and the word
-  list are rows in data/plans/, shown as generated tables. They do not count toward the word cap.
+- **Facts in data. Decided 2026-11-12, Cory's yes:** the text record, the question set (each question with its
+  day, its standard and whether it needs the text) and the word list are rows in `data/plans/<course>/`, in
+  three files: texts.csv, questions.csv and words.csv. They are shown as generated tables and do not count
+  toward the word cap. The columns are fixed when the first ELA pilot plan is written. The files are not built
+  yet.
 - Header: days by kind, in the ELA kinds.
 - Stretch field 2: the text set (generated: record, rights line, status), the word list (generated), the main
   piece of writing, and what is carried: the anchor text, read and returned to.

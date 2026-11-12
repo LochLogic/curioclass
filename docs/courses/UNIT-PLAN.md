@@ -54,6 +54,11 @@ A course is too large for any one agent to hold, and a fact written in four file
 State: stretch 11 is in data. Stretches 1, 2, 3, 9 and 10 move when each is next opened. The word caps under
 "Length" still stand for prose; a generated table does not count.
 
+Added 2026-11-12 (Cory's yes on card q-ela-piece-2): ELA adds three row files to `data/plans/<course>/`:
+`texts.csv` (the text record), `questions.csv` (every question with its standard) and `words.csv` (the word
+list). They are shown as generated tables and do not count toward the word cap. The columns are fixed when the
+first ELA pilot plan is written. Not built yet.
+
 ## The rules
 
 Each rule is marked **shared** (every subject) or **math fills** (the subject page sets the detail; what math

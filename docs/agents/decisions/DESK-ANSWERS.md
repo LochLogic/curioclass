@@ -549,3 +549,20 @@ and record sheet definitions). Corrected: data/standards/ccss-math-focus.csv doe
 page and the handoff page said it did not. Still open with Cory: card q-ela-piece-2; whether the other five
 planned stretches move into data now or when next opened; in or not-now on the six extra pieces of a finished
 course.
+
+## 2026-11-12: card q-ela-piece-2, ELA rubric, approach and pilot texts (Cory, on the Desk)
+
+"1, yes. 2, I agree with you.  3, i agree with you. 4, lets do our own research and find our own preferred
+document. 5, i agree with you but if it doesnt work later, we find a new story. 6, use your suggestion but add a
+note to upgrade to a free source later."
+
+So: grades 3 to 5 ELA teach foundational skills; APPROACH.md principle 3 takes the expert's wording; ELA text
+records, question sets and word lists are data rows outside the word cap; the fallback second hero is found by
+our own research (report docs/reviews/fallback-hero-ela-6-2026-11-12.md); the Monkey King cut is taught now, a
+labeled Curio Class retelling follows, and a new story replaces it if that does not work; background text two is
+a short labeled Curio Class explainer with a note to upgrade to a free source later. Applied the same day to
+RUBRIC-ELA.md, APPROACH.md, APPROACH-ELA.md, UNIT-PLAN.md, the grade 6 spine and RIGHTS.md.
+
+Also 2026-11-12, in chat: Cory asked why the main CurioClass folder is no longer used and whether the several
+folders risk version control trouble. Answer and a proposed clean-up are in docs/HANDOFF.md, "The folders".
+Nothing was changed; it waits for his yes.

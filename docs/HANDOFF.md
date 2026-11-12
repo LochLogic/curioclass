@@ -32,8 +32,10 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
 
 **Waiting on Cory (all on the Desk and asked in chat on 2026-11-12):**
 
-- Card `q-ela-piece-2`, six ELA choices. None holds up the math pilot. Until answered, each is marked
-  "proposed, waiting for Cory's yes" where it touches a page.
+- (Answered 2026-11-12: card `q-ela-piece-2`, see "Decided 2026-11-12" below.)
+- The fallback second hero for grade 6 ELA stretch 2: our own search is written up in
+  `docs/reviews/fallback-hero-ela-6-2026-11-12.md`. Cory picks from it, or says the pick is ours.
+- What to do with the other working folders (see "The folders" below). Nothing has been touched.
 - Move the other five planned stretches (1, 2, 3, 9, 10) into data now, or when each is next opened? The
   standing answer is "when next opened" (UNIT-PLAN.md) and the assistant's advice is to wait for the pilot:
   the row shapes will change once a lesson day exists.
@@ -44,6 +46,52 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
 
 **Frozen until the pilot is read:** new spines, stretch sheets, unit plans and specs. One exception: the grade 4
 start-of-year check and stretch 4's readiness items (Sara's piece 4).
+
+## Decided 2026-11-12: card q-ela-piece-2 (ELA)
+
+> 1, yes. 2, I agree with you. 3, i agree with you. 4, lets do our own research and find our own preferred
+> document. 5, i agree with you but if it doesnt work later, we find a new story. 6, use your suggestion but add
+> a note to upgrade to a free source later.
+
+1. **Grades 3 to 5 ELA teach foundational skills.** The rubric's first gateway applies in full and each of
+   those spines starts from a taught sequence (`RUBRIC-ELA.md`, `APPROACH-ELA.md`).
+2. **`APPROACH.md` principle 3** takes the expert's wording on modelling in reading and writing.
+3. **ELA text records, question sets and word lists are rows in `data/plans/`**, shown as generated tables
+   outside the word cap. The row files are named in `UNIT-PLAN.md`; they are built with the first ELA pilot plan.
+4. **The fallback second hero:** we do our own research and pick our own preferred document. The verse
+   Ramayana on file is not used. Report: `docs/reviews/fallback-hero-ela-6-2026-11-12.md`.
+5. **The Monkey King:** teach the 2,000-word cut now; write a labeled Curio Class retelling before stretch 2 is
+   called finished; if that does not work, a new story takes its place. An outside reader from the culture still
+   needs Cory's separate yes.
+6. **Background text two:** a short labeled Curio Class explainer (500 to 700 words), with a standing note to
+   replace it when a suitable free source is found. Not written yet; it is part of the ELA pilot build.
+
+## The folders (asked by Cory 2026-11-12; nothing changed yet)
+
+The truth is the GitHub repository, branch `main`. Every folder below is a working copy of it. All current
+work is pushed there, so nothing is at risk of being lost from this folder.
+
+| Folder | Branch | State on 2026-11-12 |
+|---|---|---|
+| `S:\CurioClass-spec2` | `spec/sara` | Where all work since 2026-11-10 was done. Level with `main`. Clean |
+| `S:\CurioClass` | `main` | The original folder. 56 commits behind GitHub. 113 files changed or new and never committed, nearly all Word Wall work (`data/closet/words`, `closet/words/art`). They exist on this PC only (and in the weekly backup) |
+| `S:\CurioClass-codex` | `codex/queue` | 11 commits not in `main` (Codex builds, among them Checkers and Go), 77 behind. Clean |
+| `S:\CurioClass-agy` | `agy/build` | 5 commits not in `main` (Antigravity test builds, research packets held off main on purpose), 77 behind. Clean |
+| `S:\CurioClass-audit` | none | Empty folder |
+| `S:\CurioClass-codex-scratch` | none | Not a working copy: loose briefs and tool folders |
+
+Why this folder and not `S:\CurioClass`: Sara's spec work was given its own working copy so that two sessions
+would not edit the same files, the main session's curriculum work then continued here, and a standing rule kept
+sessions out of `S:\CurioClass` so the Word Wall work there would not be disturbed.
+
+The risks, in order: (1) the uncommitted Word Wall work in `S:\CurioClass` is in no repository; (2) anyone who
+opens `S:\CurioClass` reads pages two days stale, with the old plan; (3) the two side branches drift further
+from `main` each day, so a later merge gets harder. None of these touches the curriculum work.
+
+Proposed, waiting for Cory's yes: commit and push the Word Wall work from `S:\CurioClass` and bring that folder
+up to date (main has not changed any Word Wall file since, so it should apply cleanly); then make
+`S:\CurioClass` the one place the main session works, keep `spec2` for Sara only; decide merge or retire for
+the Codex and Antigravity branches; delete the empty and scratch folders after a look.
 
 ## How to work here
 

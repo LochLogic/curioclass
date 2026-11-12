@@ -17,6 +17,10 @@ Second draft, 2026-11-11, revised after a cold read by the curriculum expert
 (how a lesson opens, no timers in tools, a wording change in SPEC.md). The page as a whole still waits for his
 read.
 
+Changed 2026-11-12, Cory's yes on card q-ela-piece-2: principle 3 and the modelling line under "Where the
+evidence is thin or contested" now give the federal ratings for reading and writing
+([reviews/approach-ela-2026-11-11.md](reviews/approach-ela-2026-11-11.md), finding F4).
+
 > **What this means in your room, or at your table**
 >
 > - We find out what your student already knows before teaching something new.
@@ -58,8 +62,12 @@ kinds of day it balances, and a unit plan marks every day as one of them.
 **3. Teach new things clearly, in small steps, with models. Then take the help away.**
 Working memory is small, and for beginners clear teaching beats partial guidance (Rosenshine 2012; Clark,
 Kirschner and Sweller 2012, which is an argued position). Alternating worked examples with problems is rated
-moderate (Pashler et al. 2007, recommendation 2). That rating is for math and science problems; for reading and
-writing we rely on modelling, which is common practice with weaker evidence. As skill grows the advantage of
+moderate (Pashler et al. 2007, recommendation 2). That rating is for math and science problems. In writing,
+teaching strategies directly, with the teacher modelling and then handing over, is rated strong for elementary
+grades and for grades 6 to 12 (WWC elementary and secondary writing guides). In reading, teaching comprehension
+strategies the same way is rated strong for kindergarten to grade 3 and, in an older guide, for grades 4 to 12.
+Each rating is for the whole practice, with modelling as one part. Modelling the close reading of a single text
+is common practice with no rating. As skill grows the advantage of
 examples reverses, so the help must fade. *Rule:* a unit plan names who holds the model on each day and the day
 it is withdrawn. A lesson tool shows a model before it asks.
 
@@ -147,7 +155,7 @@ answer keys explain, and discussion questions are ones a parent can ask.
   build, and the first gap to close.
 - Mixing problem types in practice. Promising, not settled.
 - Feedback. Helpful on average, with wide variation and some harm.
-- Modelling in reading and writing; structured writing for English learners. Common practice, weak evidence.
+- Modelling the close reading of a single text; structured writing for English learners. Common practice, weak evidence.
 - Universal Design for Learning. A design framework; we did not read the studies behind it.
 - Hands-on work in science. We read no study of it for this page; the science page must.
 - Rewards and games. Mixed findings.
@@ -169,7 +177,8 @@ drift apart.
 
 Status is one of: read in full; read in part (which part); not read (why). "Read" means read for this page, in
 November 2026. Summaries above are in our own words. The curriculum expert re-opened most of these and checked
-34 claims against them; its report lists what it could not verify.
+34 claims against them; its report lists what it could not verify. The writing and reading guides named in
+principle 3 are listed in the Sources table of [APPROACH-ELA.md](APPROACH-ELA.md).
 
 | Source | Where | Licence | Status |
 |---|---|---|---|

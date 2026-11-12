@@ -31,9 +31,13 @@ it and the way-in story.
 (11) The "from memory" mark on the grammar line is off; Writing Next (2007) is named.
 (12) The Sources section no longer cites the 2024 draft of the rubric as current; the files are v2.0 and v2.1
 (07/2025), summarised in docs/RUBRIC-ELA.md.
-Three questions that touch this spine wait for Cory and are marked where they fall: the fallback second hero
-(card 4), a Curio Class retelling of the Monkey King (card 5) and background text two (card 6). The cards are in
-docs/reviews/piece-2-cards-for-cory-2026-11-11.md. The current text stands until he answers.
+Cory answered the six questions of docs/reviews/piece-2-cards-for-cory-2026-11-11.md on 2026-11-12. One line each:
+(A1) Grades 3 to 5 ELA claim to teach foundational skills; the rubric's first gateway applies to them in full (docs/RUBRIC-ELA.md). Nothing in this grade 6 spine moves.
+(A2) The shared approach page, principle 3, now gives the federal ratings for modelling in reading and writing (docs/APPROACH.md).
+(A3) The text record, question set and word list will be rows in data/plans/ela-6/ (texts.csv, questions.csv, words.csv), outside the word cap. Not built yet.
+(A4) The fallback second hero: the verse Ramayana on file is not used. Our own search for a preferred prose document is under way (docs/reviews/fallback-hero-ela-6-2026-11-12.md). The fallback stays unnamed until that report lands.
+(A5) The Monkey King: the 2,000-word cut is taught now. Before stretch 2 is called finished, a labeled Curio Class retelling of the same episodes is written. If that does not work, a new story is found in its place. The outside reader from the culture still needs Cory's separate yes.
+(A6) Background text two is a short labeled Curio Class explainer, 500 to 700 words, on who Homer was and what the Trojan War was. Not written yet. Standing note: upgrade to a free source later.
 
 **How to read the numbers.** Counts of standards, tools and Reading Room pieces come from the repo files. Word
 counts and difficulty measures of the texts on file come from the review, which measured them with its own script.
@@ -167,10 +171,10 @@ this band. Stretches 3, 5 and 6 (66 of the 138 unit days) have no anchor on file
 | 2 | Way in | James Baldwin, Old Greek Stories: "The Cruel Tribute" (Theseus and the Minotaur), about 3,210 words, one of the six hero stories in the Reading Room's set II. Read in one lesson, with the audio | Reading Room; public domain | On file (the set is tagged grades 3 to 5 and is about grade 7 by the review's measure; this story is 8.0 by the expert's measure) |
 | 2 | Anchor | Padraic Colum, The Adventures of Odysseus and the Tale of Troy: about 18,000 words of connected episodes. The core, and the pilot passage, is Part II, chapters IV to VI, whole: "Odysseus tells his own tale: the Lotus-eaters to the wreck" (about 5,700 words) | Reading Room; public domain | On file |
 | 2 | Other choice of anchor | Alfred J. Church, The Story of the Odyssey | Reading Room; public domain | On file |
-| 2 | Second hero, another tradition | The Monkey King (E. T. C. Werner, from Journey to the West). Unit 2.5 reads a cut of about 2,000 words from Werner's chapter XIV: from "Beyond the seas" in "Legend of Sun Hou-tzu" through "Conditions of Release". Werner's opening comment is cut, and the cut is named. Whether a labeled Curio Class retelling of the same episodes later takes its place is open (proposed, waiting for Cory's yes: see docs/reviews/piece-2-cards-for-cory-2026-11-11.md, card 5). The other choice is The Ramayana, condensed (proposed, waiting for Cory's yes: see docs/reviews/piece-2-cards-for-cory-2026-11-11.md, card 4) | Reading Room; public domain | On file (The Monkey King is tagged grades 5 to 9; the Ramayana is tagged 9 to 12, which is why it is second choice) |
+| 2 | Second hero, another tradition | The Monkey King (E. T. C. Werner, from Journey to the West). Unit 2.5 reads a cut of about 2,000 words from Werner's chapter XIV: from "Beyond the seas" in "Legend of Sun Hou-tzu" through "Conditions of Release". Werner's opening comment is cut, and the cut is named. Decided 2026-11-12 (Cory): the cut is taught now. Before stretch 2 is called finished, a labeled Curio Class retelling of the same episodes is written. If that does not work, a new story is found in its place. The outside reader from the culture is an outside person and still needs Cory's separate yes. The fallback, decided 2026-11-12 (Cory): the verse Ramayana on file is not used. Our own search for a preferred prose document is under way; see docs/reviews/fallback-hero-ela-6-2026-11-12.md. The fallback stays unnamed until that report lands | Reading Room; public domain | On file (The Monkey King is tagged grades 5 to 9). The retelling is not written; the course owes it |
 | 2 | Play scene | One myth written as a short scene: a labeled Curio Class retelling, performed by the class | Curio Class writes it (the library plan's route 5) | Not written; the course owes it |
 | 2 | Audio | A human reading of the anchor episodes | LibriVox; recordings are released into the public domain, to be checked on each book page | To verify |
-| 2 | Background, two short texts on ancient Greece | Core Knowledge student readers. Text one is the chapter "The Ancient Greek City-States" (about 1,080 words) from the grade 6 language arts reader, if the second reader on rights passes it. Text two is not settled (proposed, waiting for Cory's yes: see docs/reviews/piece-2-cards-for-cory-2026-11-11.md, card 6) | CC BY-NC-SA 4.0 on the grade 6 guides the review checked; each title must be checked | To verify |
+| 2 | Background, two short texts on ancient Greece | Core Knowledge student readers. Text one is the chapter "The Ancient Greek City-States" (about 1,080 words) from the grade 6 language arts reader, if the second reader on rights passes it. Text two, decided 2026-11-12 (Cory): a short labeled Curio Class explainer, 500 to 700 words, on who Homer was and what the Trojan War was. Not written; the course owes it. Standing note: upgrade to a free source later: replace this explainer when a suitable free text is found | CC BY-NC-SA 4.0 on the grade 6 guides the review checked; each title must be checked | To verify |
 | 2 | Long book for independent reading | Charles Kingsley, The Heroes (Perseus, Theseus, The Argonauts) | Reading Room; public domain | On file |
 | 3 | Lead anchor | Matthew Henson, A Negro Explorer at the North Pole (1912), excerpts | Project Gutenberg 20923 and a Standard Ebooks edition; public domain | Verified, not on file |
 | 3 | Paired account of the same days | Robert Peary, The North Pole (1910), excerpts | Public domain by date | To verify |
@@ -775,9 +779,11 @@ five:
    It cuts in-class independent reading from 15 hours to 10 and shortens one lesson a week to 25 minutes.
    Reasonable readers differ, and the first draft's three openers can be restored without moving a day.
 3. **The second hero.** The review named The Ramayana, condensed, and The Monkey King. I chose The Monkey King
-   because the shelf tags it grades 5 to 9 and tags the Ramayana 9 to 12. I have measured neither. (Proposed,
-   waiting for Cory's yes: see docs/reviews/piece-2-cards-for-cory-2026-11-11.md, card 4 for the fallback and
-   card 5 for the Monkey King retelling.)
+   because the shelf tags it grades 5 to 9 and tags the Ramayana 9 to 12. I have measured neither. Decided
+   2026-11-12 (Cory): the verse Ramayana on file is not used, and our own search for a preferred prose document
+   is under way (docs/reviews/fallback-hero-ela-6-2026-11-12.md); the fallback stays unnamed until it lands. The
+   Monkey King cut is taught now and a labeled Curio Class retelling is owed before stretch 2 is called
+   finished. If the retelling does not work, a new story is found in its place.
 4. **Six stretches of 17 to 25 days.** Outside programs run four or five longer units, and fewer, longer
    stretches would build more knowledge. Six is kept because each writing type goes through the full process
    twice, and because stretches 3 and 4 already work as one long run.

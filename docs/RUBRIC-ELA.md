@@ -36,7 +36,8 @@ criteria and not our own summary. It is the ELA twin of [RUBRIC-MATH-K8.md](RUBR
 ## How it works
 
 Three gateways. Grades 6 to 12 have no first gateway: the read starts at Gateway 2. Grades 3 to 5 have a first
-gateway on foundational skills, used only when the program is designed to teach them. A partial pass of Gateway 1
+gateway on foundational skills, used only when the program is designed to teach them. Curio Class grades 3 to 5
+ELA are designed to teach them (decided 2026-11-12, Cory's yes), so it applies to them in full. A partial pass of Gateway 1
 lets a course go on to Gateway 2. Only a full pass of every gateway that applies lets it go on to Gateway 3. In
 Gateway 2, a zero on any one scored indicator stops the course, whatever the total. So a course cannot make up
 for a missing piece (say, no research teaching) with strength elsewhere.
@@ -131,8 +132,9 @@ accommodations) apply to ELA as they stand.
 5. The year's share of informational and literary anchor texts, of whole texts and excerpts, and of long and
    short texts, counted. Reported, not scored.
 6. For grades 3 to 5: a taught sequence for long words, word parts and fluency before any spine, because the
-   standards of those grades include them. **Proposed, waiting for Cory's yes:** whether Curio Class grades 3 to
-   5 ELA claims to teach foundational skills (the expert's pick: yes). If yes, Gateway 1 applies in full.
+   standards of those grades include them. **Decided 2026-11-12, Cory's yes:** Curio Class grades 3 to 5 ELA
+   claim to teach foundational skills. Gateway 1 applies in full to those grades, and each of those spines
+   starts from the taught sequence.
 7. The companion criteria for multilingual learners, read and summarised. The 6 to 12 pair is read before the
    pilot read, because the pilot ships its scaffolds. The four addresses are in the review file.
 8. A model piece or sample student piece for each writing type, with guidance for the teacher on feedback.

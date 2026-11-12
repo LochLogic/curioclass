@@ -52,3 +52,4 @@ of numbers only; a reused story with new numbers gets past it.
 
 Grade 4 math stretch 11 (the pilot unit) is in data and passes. Stretches 1, 2, 3, 9 and 10 are still prose only;
 each moves into data when it is next opened. Lesson-day items are added to `items.csv` when the pilot is built.
+ELA will add `texts.csv`, `questions.csv` and `words.csv` per course (Cory's yes, 2026-11-12); not built yet, and the columns are fixed when the first ELA pilot plan is written.
