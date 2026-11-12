@@ -1,18 +1,159 @@
 {
-  "house_style": "Painterly realistic illustration for a high school chemistry game: warm dim early-morning light, deep browns and soft cream highlights, calm and cozy, deserted. No text, no letters, no numbers, no logos, no watermark, no border, no frame.",
-  "style": "A backdrop shown behind the order board under a 70 percent dark overlay, so the middle stays calm and uncluttered.",
+  "house_style": "Sophisticated editorial gouache illustration for a Grade 10 chemistry bakery. Rich tactile brushed texture, realistic proportions, warm honey wood, cream marble, brushed steel and amber highlights. Light from upper left. Beautiful detailed materials and soft shading. No text, letters, numbers, logos, border or people.",
   "assets": [
     {
       "name": "mb-counter",
-      "prompt": "A cozy small bakery counter at early morning, seen straight on: a wooden counter top in front with a flour-dusted marble slab, an empty glass display case, a blank plain dark chalkboard on the back wall, warm light from a window at one side, empty and quiet.",
+      "prompt": "Wide cozy small bakery interior in early morning. Honey wood counter top and flour-dusted marble across foreground. Plain dark green blank chalkboard on back wall, empty glass display case. Warm window light from left, deep atmospheric layers, copper and wood details. Open clear counter space in the middle for interactive equipment.",
       "aspect": "16:9",
-      "cutout": false,
-      "width": 1280,
-      "quality": 66,
+      "width": 1400,
+      "quality": 74,
       "people": false,
-      "sd": "Early morning in a small cozy pastry kitchen, seen straight on: a wooden counter top across the front with a flour-dusted white marble slab on it, an empty curved glass display case on the counter, the back wall plain warm cream plaster with one large empty matte black slate panel in a simple wooden frame, a window at the left with warm golden light, wooden shelves with plain round loaves and ceramic bowls.",
-      "source": "flux1-schnell (local)",
-      "review": "pending"
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-scale",
+      "prompt": "Small flat digital kitchen scale in brushed stainless steel, front three-quarter view almost straight on. A broad plain blank dark display centered on its front. Fine screws, brushed edges and soft highlights. Entire object alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "4:3",
+      "width": 440,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-bowl",
+      "prompt": "Wide empty clear glass mixing bowl seen directly from the side, broad elliptical rim and rounded foot. Very thin blue-white glass edges, transparent interior showing the perfectly flat pure green #00FF00 backdrop through the entire bowl. Sparse delicate reflections only, allowing moving particles to show through. Entire object alone, no ground shadow.",
+      "aspect": "4:3",
+      "width": 650,
+      "quality": 82,
+      "cutout": true,
+      "holes": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-oven",
+      "prompt": "Small bakery oven seen straight from front. Dark charcoal enamel, brushed steel trim, copper knobs, large rectangular glass window taking most of front, warm orange glow and empty rack inside. Entire oven isolated on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "4:3",
+      "width": 650,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-biscuits",
+      "prompt": "Metal baking tray holding six tall golden buttermilk biscuits, flaky layered sides, buttery tops with tiny browned flecks. Low three-quarter front view, delicious detailed crumb. Entire tray alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-cake",
+      "prompt": "Round golden vinegar cake with a gently domed top, delicate browned crust, on a simple cream ceramic plate. Low three-quarter front view. Entire object alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-bread",
+      "prompt": "High round loaf of crusty bread with beautiful flour dusting and scored golden brown crust, low three-quarter front view. Entire loaf alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-cookies",
+      "prompt": "Stack of thin crisp golden cookies, delicate browned edges and tiny pores, with two cookies leaning beside the stack. Low front three-quarter view. Entire object alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "1:1",
+      "width": 380,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-soda",
+      "prompt": "Small plain white cardboard baking soda box with completely blank cream front panel, folded top and fine paper texture. Front view. Entire box alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-tartar",
+      "prompt": "Small glass spice jar filled with fine white cream of tartar powder, steel screw lid and completely blank cream label. Front view. Entire jar alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-vinegar",
+      "prompt": "Clear glass bottle filled with pale white vinegar with a completely blank paper label and steel cap. Front view. Entire bottle alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-glucose",
+      "prompt": "Small kraft paper sack of fine white glucose sugar, folded shut, with a completely blank cream label. Detailed paper folds. Front view. Entire sack alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-ammonia",
+      "prompt": "Squat clear glass jar of coarse white ammonium bicarbonate crystals with a cork lid and completely blank cream label. Front view. Entire jar alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "3:4",
+      "width": 180,
+      "quality": 76,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
+    },
+    {
+      "name": "mb-coin",
+      "prompt": "Plain round gold coin tilted slightly to show its ridged edge, smooth completely blank face, rich warm metallic glints. Entire coin alone on perfectly flat pure green #00FF00 background, no ground shadow.",
+      "aspect": "1:1",
+      "width": 100,
+      "quality": 78,
+      "cutout": true,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image"
     }
   ]
 }

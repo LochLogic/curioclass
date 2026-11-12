@@ -577,3 +577,8 @@ docs/courses/ela-6/RIGHTS.md. The Word Wall work in S:\CurioClass was checked, c
 is level with GitHub and is where the main session works from now on. The Antigravity working copy was removed
 after its ignored files were archived and compared; its branch stays on GitHub. Details and what is left for
 Cory: docs/HANDOFF.md, "The folders".
+
+## 2026-11-12: the Codex branch (Cory, in chat)
+
+"Review, then merge". Reviewed: 141 new files and 5 changed, all under tools/, no conflict, no tool goes live,
+the checkers pass. Merged codex/queue into main the same day. The tools stay in the frozen bin.

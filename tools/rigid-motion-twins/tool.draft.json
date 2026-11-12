@@ -1,0 +1,22 @@
+{
+  "id": "rigid-motion-twins",
+  "stage": "built",
+  "status": "beta",
+  "hook": "Move the cast onto the print. Your moves are the proof.",
+  "outcome": "Prove congruence with rigid motions, find polygon symmetries and explain triangle congruence criteria",
+  "driver": "students",
+  "minutes": "15-40",
+  "modes": ["Tracks", "Criteria"],
+  "grades_label": "Grade 10",
+  "sources": [
+    "Common Core State Standards for Mathematics, High School Geometry, Congruence, G-CO.A and G-CO.B",
+    "H. S. M. Coxeter, Introduction to Geometry, second edition, 1969, chapter 3",
+    "Eric W. Weisstein, Glide Reflection, MathWorld",
+    "Euclid, Elements I.4, I.8 and I.26, D. E. Joyce edition, Clark University",
+    "Footprint coordinates and SSA example invented for Curio Class and independently recomputed",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Existing sandstone texture drawn with FLUX.1-schnell (Apache 2.0), edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

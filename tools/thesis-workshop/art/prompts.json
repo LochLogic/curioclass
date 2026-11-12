@@ -1,0 +1,25 @@
+{
+  "house_style": "Soft watercolor illustration for a grade 10 literary writing room, pale washes on fine cold-pressed paper, layered atmospheric depth, precise architectural and botanical details, gentle directional light, cool slate indigo shadows and restrained warm highlights. Rich hand-painted illustration, mature and quiet. No text, letters, numbers, logos or people.",
+  "assets": [
+    {
+      "name": "tw-open-window",
+      "prompt": "A tall French window standing wide open from a quiet English country drawing room onto a lawn at October dusk. A chintz armchair and a small polished wood table inside in the foreground, finely detailed window latch and glazing bars in the middle ground, long shadows on the grass and a line of shrubs beyond. Soft low light enters from the left. Wide panoramic composition, the open window and its view readable in the middle horizontal strip. Empty room, peaceful literary atmosphere.",
+      "aspect": "4:1",
+      "width": 1440,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    },
+    {
+      "name": "tw-yellow-wood",
+      "prompt": "A narrow dirt path in an autumn wood of yellow birch and maple splits into two equally grassy paths curving away. Fallen golden leaves cover both paths comparably. Foreground leaves and delicate exposed roots, fork in the middle ground, layers of pale trunks fading into a luminous distant wood. Gentle light from the upper left, slate indigo shadows. Wide panoramic composition, both paths clearly readable in the middle horizontal strip. Quiet contemplative atmosphere.",
+      "aspect": "4:1",
+      "width": 1440,
+      "quality": 78,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex"
+    }
+  ]
+}

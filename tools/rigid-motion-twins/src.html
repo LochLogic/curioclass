@@ -1,0 +1,1728 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rigid Motion Twins · Curio Class</title>
+<meta name="description" content="Move a fossil cast onto its footprint. Build a congruence proof with slides, turns and flips. Grade 10 geometry, offline.">
+<link rel="icon" href="data:,">
+<!--
+Rigid Motion Twins, Curio Class. Grade 10, G-CO.A and G-CO.B. Students drive.
+Sources: CCSS Geometry Congruence; Euclid I.4, I.8, I.26, Joyce edition;
+Coxeter, Introduction to Geometry, chapter 3; MathWorld, Glide Reflection.
+Illustrations generated with OpenAI gpt-image, edited for Curio Class.
+Existing sandstone: FLUX.1-schnell (Apache 2.0). Content CC BY 4.0, code MIT.
+The specified transformations engine is absent. Affine motions below are a tool-local adapter.
+-->
+<link rel="stylesheet" href="kit:curio">
+<link rel="stylesheet" href="kit:theme-912">
+<style>
+:root{--brand:#efe6d2;--brand-ink:#10161f;--gr-grid:rgba(42,29,18,.21);--gr-grid-major:rgba(42,29,18,.3);
+  --gr-axis:#6c5038;--gr-text:#2a1d12;--focus:#89dcec}
+body{height:100dvh;min-height:0;overflow:hidden}
+header{padding:10px 18px;gap:8px;background:linear-gradient(110deg,#171e26,#222b32)}
+h1{font-size:25px;letter-spacing:.01em}h1 small{font-size:13px}
+.seg button,.icon-btn{min-height:44px;font-size:14px;padding:0 12px}
+main{grid-template-columns:minmax(0,1fr) 360px;overflow:hidden}
+.stage{min-height:0;background:#302e26;display:flex;flex-direction:column;isolation:isolate}
+.stage::before{content:'';position:absolute;inset:0;background:linear-gradient(#151d23a8,#151d23dc),
+  url(art:rmt-trackway) center/cover;z-index:-1}
+.fieldtop{display:flex;gap:10px;align-items:center;padding:10px 20px;min-height:52px}
+.fieldtop .kicker{font-size:11px;letter-spacing:.15em;color:#c8baa3;text-transform:uppercase}
+.fieldtop strong{font:500 20px Georgia,serif;color:var(--brand)}
+.fieldtop select{margin-left:auto;max-width:230px}
+.plane-wrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:8px 20px 16px}
+#rock{position:relative;aspect-ratio:1;background:linear-gradient(#c9a57a35,#c9a57a35),url(art:rmt-sandstone) center/cover;
+  box-shadow:0 16px 36px #0008,inset 0 0 0 3px #e9c799,inset 0 0 24px #48332266;border:7px solid #645541;
+  border-radius:8px;overflow:hidden}
+#rock::after{content:'';pointer-events:none;position:absolute;inset:0;border:1px solid #f9dfb36b;
+  box-shadow:inset 3px 3px 8px #fff4,inset -4px -4px 12px #0003;border-radius:2px}
+#plane{display:block;width:100%;height:100%;touch-action:none;outline-offset:-6px}
+#plane text{user-select:none}
+.legend{display:flex;gap:18px;align-items:center;justify-content:center;padding:0 10px 9px;font-size:12px;color:#e8ddc9}
+.legend i{display:inline-block;width:19px;height:13px;vertical-align:-2px;margin-right:5px;background:#efe6d2;
+  box-shadow:1px 2px 2px #0008;border:1px solid #302418}
+.legend i.print{background:#5b4636;border:1px dashed #e8ddc9}
+.lamp{width:6px;height:6px;background:#e9d9a5;border-radius:50%;box-shadow:0 0 8px #fff7b7;animation:breathe 4s infinite}
+@keyframes breathe{50%{opacity:.45}}
+body.calm .lamp{animation:none}
+.panel{padding:0;gap:0;border-left:1px solid #605441;background:linear-gradient(120deg,#242a2e,#171e26)}
+.banner{height:130px;flex:none;position:relative;background:url(art:rmt-trackway) center 58%/cover;border-bottom:3px solid #716149}
+.banner::after{content:'FIELD STATION / CONGRUENCE';position:absolute;bottom:9px;left:14px;color:#fff8e8;
+  text-shadow:0 1px 4px #000;font:700 11px system-ui;letter-spacing:.13em}
+.controls{padding:13px 14px 8px;flex:none;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;gap:6px;align-items:center}.row>*{min-width:0;flex:1}
+.btn{padding:0 8px;font-size:14px;border-color:#6f726d;background:#30383c}
+select,input[type=number]{height:44px;min-height:44px;border:1px solid #77776c;border-radius:6px;background:#10171d;
+  color:#efe6d2;font:14px var(--readout-font);padding:0 8px;min-width:0}
+label{font-size:11px;color:#c7c3b7;display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+input[type=number]{width:100%}
+.params{display:flex;gap:6px;align-items:end}.params .btn{flex:none;min-width:58px}
+.hint{font-size:13px;line-height:1.4;min-height:55px;color:#e4dfd3;padding:8px 14px;border-top:1px solid #ffffff12;
+  border-bottom:1px solid #ffffff12;background:#121a2066;flex:none}
+.logbook{overflow:auto;min-height:0;padding:12px 14px;flex:1}
+.logbook h2{font:600 11px system-ui;letter-spacing:.12em;color:#c9bc9f;margin:0 0 10px;text-transform:uppercase}
+#moves{margin:0;padding:0;list-style:none;font-size:12px}
+#moves li{padding:8px 0;border-bottom:1px solid #ffffff17;line-height:1.5}
+#moves code{display:block;color:#e8d7ae;font-size:12px;overflow-wrap:anywhere}
+.empty{color:#a9b4b9;font-size:12px;line-height:1.6}
+.proof{background:#eee3c9;color:#302719;border:1px solid #b79a68;padding:13px;border-radius:4px;
+  box-shadow:1px 4px 12px #0005;position:relative;margin-bottom:14px;font-size:13px;line-height:1.5}
+.proof strong{display:block;font:600 23px Georgia,serif;margin-bottom:5px}.stars{color:#79530f;letter-spacing:2px}
+.proof p{margin:5px 0}.proof:before{content:'';position:absolute;top:7px;right:10px;width:7px;height:7px;
+  border-radius:50%;background:radial-gradient(at 25% 20%,#f5f3e0,#827961);box-shadow:0 2px 2px #0003}
+.privacy{font-size:10px;color:#b6bebd;padding:8px 14px;display:flex;align-items:center;gap:8px;flex:none}
+.privacy button{font-size:11px;min-height:44px;border:0;background:none;color:#d9d1bf;padding:0 4px;margin-left:auto}
+#measureResult{font:13px var(--readout-font);color:#f0dfaf;line-height:1.5}
+#shape{width:100%}#symTray{font-size:12px;line-height:1.6;color:#ddd6c8}
+.criteria-controls{display:flex;flex-direction:column;gap:8px}.cardrow{display:grid;grid-template-columns:repeat(5,1fr);gap:4px}
+.cardrow .btn{padding:0 3px;font-size:13px}
+#criteriaScene{height:100%;display:flex;flex-direction:column;padding:22px;min-height:0}
+.notebook{flex:1;min-height:0;background:url(art:rmt-notebook) center/cover,#efe9da;color:#2a1d12;
+  box-shadow:4px 10px 30px #0008;border-radius:3px;display:flex;flex-direction:column;padding:18px 20px 14px 30px}
+.notebook h2{font:italic 23px Georgia,serif;margin:0 0 6px}.notebook .eyebrow{font:11px system-ui;letter-spacing:.13em}
+#triangles{width:100%;flex:1;min-height:0;display:block}
+#sentence{font:16px/1.5 Georgia,serif;margin:6px 0;min-height:49px;max-width:650px}
+.stamp{font:700 11px system-ui;letter-spacing:.13em;color:#725e40}
+.vertex{font:700 13px system-ui;fill:#2a1d12;paint-order:stroke;stroke:#eee2c9;stroke-width:3px;stroke-linejoin:round}
+.prime{fill:#fff1d2;stroke:#5b4636;stroke-width:3px}
+.gr-tick{font-size:12px!important;paint-order:stroke;stroke:#d4b488;stroke-width:2px}
+.gr-axis{stroke-width:1.4px}.float-tag{fill:#2a1d12;font:12px system-ui}
+.measure-segment{stroke:#ffec91;stroke-width:4px;filter:drop-shadow(0 1px 2px #2a1d12)}
+@media(max-height:899px){.banner{height:85px}.controls{padding:10px 12px 6px;gap:6px}.logbook{padding:10px 12px}}
+@media(max-height:700px){header{padding:6px 12px}h1{font-size:21px}h1 small{display:none}.banner{display:none}
+  .fieldtop{padding:6px 14px;min-height:44px}.fieldtop .kicker{display:none}.fieldtop strong{font-size:17px}
+  .controls{padding:8px 10px 5px;gap:5px}.hint{padding:6px 10px;font-size:12px;min-height:48px}
+  .privacy{padding:0 10px}.logbook{padding:7px 10px}.params label{font-size:10px}
+  .plane-wrap{padding:2px 12px 8px}.legend{padding-bottom:5px}#criteriaScene{padding:12px}}
+@media(max-width:1050px){main{grid-template-columns:minmax(0,1fr) 310px}h1{font-size:21px}}
+@media(max-width:800px) and (orientation:landscape){main{grid-template-columns:minmax(0,1fr) 290px}
+  header{gap:5px;padding:5px 8px}header .icon-btn{padding:0 8px;font-size:12px}.seg button{padding:0 8px;font-size:13px}
+  h1{font-size:17px}.fieldtop strong{font-size:15px}.fieldtop select{max-width:165px;font-size:12px}
+  .fieldtop{gap:5px;padding:4px 10px}.legend{font-size:10px;gap:8px}.privacy{font-size:10px}
+  #sentence{font-size:14px;min-height:45px}.notebook{padding:10px 12px}.notebook h2{font-size:18px}}
+@media(max-width:999px) and (orientation:portrait){body{grid-template-rows:auto 1fr}header{padding:6px 10px;gap:5px}
+  h1{flex-basis:100%;font-size:19px}h1 small{display:none}.seg button,.icon-btn{padding:0 9px;font-size:12px}
+  main{display:flex;flex-direction:column}.stage{flex:none;height:43%;min-height:250px}.panel{flex:1;border-left:0;min-height:0}
+  .banner{display:none}.controls{padding:6px 10px;gap:5px}.hint{min-height:42px;font-size:12px;padding:5px 10px}
+  .fieldtop{padding:3px 10px;min-height:44px}.fieldtop strong{font-size:15px}.fieldtop .kicker{display:none}
+  .fieldtop select{font-size:12px;max-width:190px}.plane-wrap{padding:0 8px 5px}.legend{font-size:10px;padding-bottom:3px}
+  .privacy{padding:0 10px}.logbook{padding:7px 10px}.criteria-controls{gap:5px}
+  #criteriaScene{padding:8px}.notebook{padding:8px 12px}.notebook h2{font-size:18px}#sentence{font-size:13px;min-height:38px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Rigid Motion Twins<small>Move the cast onto the print.</small></h1>
+  <div class="seg" role="group" aria-label="Mode">
+    <button id="m-tracks" aria-pressed="true">Tracks</button>
+    <button id="m-criteria" aria-pressed="false">Criteria</button>
+  </div>
+  <button class="icon-btn" id="motion" aria-pressed="true">Motion</button>
+  <button class="icon-btn" id="sound" aria-pressed="true">Sound</button>
+  <button class="icon-btn" id="read">Read</button>
+</header>
+<main>
+  <section class="stage" id="stage" aria-label="Fossil field station">
+    <div class="fieldtop" id="fieldtop">
+      <div><span class="kicker">Trackway / study site</span><br><strong id="levelTitle">01 · First landing</strong></div>
+      <select id="levels" aria-label="Level"></select>
+    </div>
+    <div class="plane-wrap" id="planeWrap"><div id="rock">
+      <svg id="plane" tabindex="0" role="application" aria-label="Coordinate rock. Arrow keys set the selected move. Enter applies it."></svg>
+    </div></div>
+    <div class="legend" id="legend"><span><i></i>plaster cast A to I</span><span><i class="print"></i>sunken print A′ to I′</span>
+      <span class="lamp" aria-hidden="true"></span></div>
+    <div id="criteriaScene" hidden><div class="notebook">
+      <div class="eyebrow">FIELD NOTES / CONGRUENCE</div><h2 id="criteriaTitle">Three sides, one triangle</h2>
+      <svg id="triangles" role="img" aria-label="Triangles with their given equal parts marked"></svg>
+      <p id="sentence"></p><span class="stamp">RIGID MOTIONS KEEP LENGTHS &amp; ANGLES</span>
+    </div></div>
+  </section>
+  <aside class="panel">
+    <div class="banner" role="img" aria-label="Painted three-toed fossil trackway beside a river"></div>
+    <div class="controls" id="trackControls">
+      <div id="movebar" class="row" role="group" aria-label="Move bar">
+        <button class="btn" id="slide" aria-pressed="true">↗ Slide</button>
+        <button class="btn" id="turn" aria-pressed="false">↶ Turn</button>
+        <button class="btn" id="flip" aria-pressed="false">◧ Flip</button>
+        <button class="btn" id="measure" aria-pressed="false">Measure</button>
+      </div>
+      <select id="shape" aria-label="Self-twin shape" hidden></select>
+      <div class="params" id="slideParams">
+        <label>Slide x<input id="dx" aria-label="Slide x" type="number" step="0.5" value="0" min="-20" max="20"></label>
+        <label>Slide y<input id="dy" aria-label="Slide y" type="number" step="0.5" value="0" min="-20" max="20"></label>
+        <button class="btn apply" id="applySlide">Apply</button>
+      </div>
+      <div class="params" id="turnParams" hidden>
+        <label>Center x<input id="cx" aria-label="Turn center x" type="number" step="0.5" value="0" min="-10" max="10"></label>
+        <label>Center y<input id="cy" aria-label="Turn center y" type="number" step="0.5" value="0" min="-10" max="10"></label>
+        <label>CCW angle<select id="angle" aria-label="Counterclockwise angle"></select></label>
+        <button class="btn apply" id="applyTurn">Apply</button>
+      </div>
+      <div id="flipParams" hidden>
+        <div class="params">
+          <label>Line point 1 x<input id="x1" aria-label="Mirror line point 1 x"
+            type="number" step="1" value="0" min="-10" max="10"></label>
+          <label>y<input id="y1" aria-label="Line point 1 y" type="number" step="1" value="-3" min="-10" max="10"></label>
+          <label>Point 2 x<input id="x2" aria-label="Mirror line point 2 x"
+            type="number" step="1" value="0" min="-10" max="10"></label>
+          <label>y<input id="y2" aria-label="Line point 2 y" type="number" step="1" value="3" min="-10" max="10"></label>
+        </div>
+        <div class="row" style="margin-top:5px"><button class="btn apply" id="applyFlip">Apply flip</button></div>
+      </div>
+      <div class="row"><button class="btn" id="undo">Undo</button><button class="btn" id="reset">Start over</button>
+        <button class="btn" id="notTwins">Not twins</button></div>
+    </div>
+    <div class="controls criteria-controls" id="criteriaControls" hidden>
+      <div class="cardrow" role="group" aria-label="Triangle criterion">
+        <button class="btn" id="c-SSS">SSS</button><button class="btn" id="c-SAS">SAS</button>
+        <button class="btn" id="c-ASA">ASA</button><button class="btn" id="c-SSA">SSA?</button>
+        <button class="btn" id="c-AAA">AAA?</button>
+      </div>
+      <div class="row"><button class="btn" id="backStep">Back step</button><button class="btn" id="nextStep">Next step</button></div>
+    </div>
+    <p class="hint" id="hint"></p>
+    <div class="logbook" id="logbook">
+      <div class="proof" id="proof" hidden></div>
+      <div id="measureResult" aria-live="polite"></div>
+      <div id="symTray"></div>
+      <h2 id="listTitle">Your moves / the proof</h2><ol id="moves" aria-live="polite"></ol>
+      <p class="empty" id="empty">Set a move on the rock.<br>Every landing leaves a coordinate rule here.</p>
+    </div>
+    <div class="privacy"><span>Stars stay on this device.</span><button id="clear">Clear progress</button></div>
+  </aside>
+</main>
+<script src="kit:curio"></script>
+<script src="kit:graphing"></script>
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const NS = 'http://www.w3.org/2000/svg';
+  const make = (tag, attrs, parent) => {
+    const el = document.createElementNS(NS, tag);
+    for (const [k, v] of Object.entries(attrs || {})) el.setAttribute(k, v);
+    if (parent) parent.appendChild(el);
+    return el;
+  };
+  const fmt = n => (Math.abs(n) < 1e-9 ? '0' : String(+n.toFixed(4))).replace('-', '−');
+  const clean = n => Math.abs(n) < 1e-12 ? 0 : Math.abs(n - Math.round(n)) < 1e-12 ? Math.round(n) : n;
+  const I = [1, 0, 0, 1, 0, 0];
+  const apply = (m, [x, y]) => [clean(m[0] * x + m[2] * y + m[4]), clean(m[1] * x + m[3] * y + m[5])];
+  const poly = (m, p) => p.map(v => apply(m, v));
+  const compose = (a, b) => [
+    a[0] * b[0] + a[2] * b[1], a[1] * b[0] + a[3] * b[1], a[0] * b[2] + a[2] * b[3], a[1] * b[2] + a[3] * b[3],
+    a[0] * b[4] + a[2] * b[5] + a[4], a[1] * b[4] + a[3] * b[5] + a[5]
+  ].map(clean);
+  const slideM = (x, y) => [1, 0, 0, 1, x, y];
+
+  function turnM(d, x, y) {
+    const c = clean(Math.cos(d * Math.PI / 180)),
+      s = clean(Math.sin(d * Math.PI / 180));
+    return [c, s, -s, c, clean(x - c * x + s * y), clean(y - s * x - c * y)];
+  }
+
+  function flipM(x, y, u, v) {
+    const a = u - x,
+      b = v - y,
+      h = a * a + b * b;
+    if (h < 1e-18) return null;
+    const c = (a * a - b * b) / h,
+      s = 2 * a * b / h;
+    return [c, s, s, -c, x - c * x - s * y, y - s * x + c * y].map(clean);
+  }
+  const equal = (p, q) => p.length === q.length && p.every((v, i) => Math.hypot(v[0] - q[i][0], v[1] - q[i][1]) < 1e-9);
+  const matches = (p, q) => p.length === q.length && p.every(v => q.some(w => Math.hypot(v[0] - w[0], v[1] - w[1]) < 1e-9));
+  const sameM = (a, b) => a.every((v, i) => Math.abs(v - b[i]) < 1e-9);
+  const F = [
+    [1, 0],
+    [2, 0],
+    [2, 2],
+    [4, 3],
+    [2, 3],
+    [2, 5],
+    [1, 3],
+    [0, 3],
+    [1, 2]
+  ];
+  const OFF = [
+    [-8, -4],
+    [1, 1],
+    [-6, -2],
+    [-6, 1],
+    [-8, 1],
+    [3, -7],
+    [-7, -6],
+    [-6, -7]
+  ];
+  const SOL = [slideM(9, 5), turnM(90, 0, 0), flipM(0, -3, 0, 3), turnM(180, -.5, .5),
+    [1, 0, 0, -1, 5, 0], flipM(0, 0, 3, 3), turnM(270, 1, -1), flipM(0, 2, 2, 0)
+  ];
+  const TITLES = ['First landing', 'Around the origin', 'Across the divide', 'Between grid points', 'A sliding mirror',
+    'The diagonal', 'A different center', 'An offset mirror', 'Self-twins', 'Not twins?'
+  ];
+  const SHAPES = [{
+    name: 'Rectangle',
+    p: [
+      [-3, -2],
+      [3, -2],
+      [3, 2],
+      [-3, 2]
+    ],
+    n: 3
+  }, {
+    name: 'Square',
+    p: [
+      [-2, -2],
+      [2, -2],
+      [2, 2],
+      [-2, 2]
+    ],
+    n: 7
+  }, {
+    name: 'Parallelogram',
+    p: [
+      [-3, -1],
+      [1, -1],
+      [3, 1],
+      [-1, 1]
+    ],
+    n: 1
+  }, {
+    name: 'Isosceles trapezoid',
+    p: [
+      [-3, -1],
+      [3, -1],
+      [1, 2],
+      [-1, 2]
+    ],
+    n: 1
+  }, {
+    name: 'Regular hexagon',
+    p: Array.from({
+      length: 6
+    }, (_, i) => [3 * Math.cos(i * Math.PI / 3), 3 * Math.sin(i * Math.PI / 3)]),
+    n: 11
+  }];
+  const L = {
+    wTracks: 'Tap Slide, Turn or Flip, then set the move on the rock. Move the cast until it fits the print.',
+    wSelf: 'No print this time. Tap Turn or Flip and find every move that lands the shape on itself.',
+    wNot: 'Is this cast a true twin? Tap Measure, then tap two corners of each footprint.',
+    wCriteria: 'Pick a card, then tap Next step and watch the triangle land, one move at a time.',
+    twins: 'Twins. That move list is your proof.',
+    fewest: 'And in the fewest moves. Clean work.',
+    notTwins: 'Good eye. One length does not match, so no move can fix it.',
+    ssa: 'Two triangles fit the same clues. SSA cannot decide.',
+    slideHelp: 'Drag from a cast corner to a grid point, or set Slide x and Slide y, then tap Apply.',
+    turnHelp: 'Tap the rock to place the center, choose a counterclockwise angle, then tap Apply.',
+    flipHelp: 'Tap two points on the rock to set the mirror line, then tap Apply flip.',
+    measureHelp: 'Tap two corners on the same footprint. Then measure the matching two corners on the other footprint.',
+    measureKeys: 'On the rock, use left and right to choose a corner, up and down to choose a footprint, then Enter to select it.',
+    measurePair: 'Tap two different corners on the same footprint, or tap Measure to start again.',
+    outside: 'That would leave the rock. Set a smaller move, or tap Undo.',
+    identity: 'That move changes nothing. Set a different move, then tap Apply.',
+    found: 'A new self-twin. Try a different turn or mirror line.',
+    repeat: 'That is the same self-twin again. Try a different turn or mirror line.',
+    miss: 'The shape did not land on itself. Try a different center, angle or mirror line.',
+    needMeasure: 'Measure matching corners on both footprints first. Tap Measure to collect your evidence.',
+    trueTwin: 'Measure first. Every length here has a match.',
+    needCorrespondence: 'Those are different corner pairs. Measure the same two letters on both footprints.',
+    sameLength: 'Those matching lengths agree. Measure the toe segment from C to D on both footprints.',
+    next: 'Twins! Read your proof, or choose another level from the Level menu.',
+    notNext: 'Choose another level, or tap Criteria to investigate triangle congruence.',
+    selfComplete: 'All self-twins found for this shape. Choose another shape, or tap Criteria.',
+    criteriaNext: 'Tap Next step to slide, turn, then flip the triangle onto its twin.',
+    criteriaTurn: 'Tap Next step to turn the triangle about D.',
+    criteriaFlip: 'Tap Next step to flip the triangle over DE.',
+    criteriaDone: 'The triangles coincide. Tap Back step to inspect a move, or pick another card.',
+    counterexample: 'Compare the marked clues on both triangles. Pick SSS, SAS or ASA to see a rigid-motion proof.'
+  };
+  const state = {
+    mode: 'Tracks',
+    level: 1,
+    tool: 'slide',
+    matrix: [...I],
+    history: [],
+    base: [],
+    target: [],
+    shape: 0,
+    found: SHAPES.map(() => []),
+    measurements: [],
+    selected: [],
+    measureCursor: {
+      shape: 'cast',
+      index: 0
+    },
+    card: 'SSS',
+    step: 0,
+    stars: {},
+    won: false
+  };
+  try {
+    const saved = JSON.parse(localStorage.getItem('rmt-stars') || '{}');
+    for (let n = 1; n <= 10; n++)
+      if ([1, 2].includes(saved[n])) state.stars[n] = saved[n];
+  } catch {}
+  const welcomeKey = () => state.mode === 'Criteria' ? 'wCriteria' : state.level === 9 ? 'wSelf' : state.level === 10 ? 'wNot' : 'wTracks';
+  const V = Curio.voice({
+    lines: L,
+    scope: () => state.mode + ':' + state.level,
+    hint: false,
+    read: () => $('hint').textContent,
+    welcome: () => [welcomeKey(), {
+      valid: () => state.mode === 'Criteria' ? state.step === 0 && ['SSS', 'SAS', 'ASA'].includes(state.card) :
+        !state.won && (state.level === 9 ? state.found[state.shape].length === 0 : state.history.length === 0)
+    }],
+    speaks: '.apply,#nextStep,#notTwins'
+  });
+
+  function hint(key, speak = true) {
+    $('hint').textContent = L[key] || key;
+    if (speak && L[key]) V.how(key, {
+      valid: () => $('hint').textContent === L[key]
+    });
+  }
+  const save = () => {
+    try {
+      localStorage.setItem('rmt-stars', JSON.stringify(state.stars));
+    } catch {}
+  };
+  const award = n => {
+    state.stars[state.level] = Math.max(state.stars[state.level] || 0, n);
+    save();
+    levelOptions();
+  };
+
+  function levelOptions() {
+    const focus = document.activeElement === $('levels');
+    $('levels').replaceChildren(...TITLES.map((t, i) => new Option(`${i+1}. ${t} ${'★'.repeat(state.stars[i+1]||0)}`, i + 1)));
+    $('levels').value = state.level;
+    if (focus) $('levels').focus({
+      preventScroll: true
+    });
+  }
+  let plane, drawGroup, castGroup, guides, labels, ghosts, measureLayer, W = 500,
+    PW = 464;
+  let running = null,
+    frame = 0,
+    visual = [...I],
+    criteriaVisual = [...I];
+  const current = () => poly(state.matrix, state.base);
+  const svgMatrix = m => {
+    const k = PW / 20,
+      h = PW / 2;
+    return [m[0], -m[1], -m[2], m[3], h * (1 - m[0] + m[2]) + m[4] * k, h * (1 + m[1] - m[3]) - m[5] * k];
+  };
+  const setMatrix = (el, m) => el.setAttribute('transform', 'matrix(' + svgMatrix(m).join(' ') + ')');
+
+  function finish() {
+    if (!running) return;
+    cancelAnimationFrame(frame);
+    const end = running.end;
+    running = null;
+    end();
+  }
+
+  function animate(from, motion, kind, params, render, end) {
+    finish();
+    if (Curio.reduce) {
+      render(compose(motion, from));
+      end();
+      return;
+    }
+    const start = performance.now();
+    running = {
+      end: () => {
+        render(compose(motion, from));
+        end();
+      }
+    };
+    const tick = now => {
+      const t = Math.min(1, (now - start) / 600),
+        e = t * t * (3 - 2 * t);
+      let m;
+      if (kind === 'turn') m = turnM(params[0] * e, params[1], params[2]);
+      else if (kind === 'slide') m = slideM(motion[4] * e, motion[5] * e);
+      else {
+        const q = Math.cos(Math.PI * e),
+          u = (1 + q) / 2,
+          v = (1 - q) / 2;
+        m = I.map((z, i) => u * z + v * motion[i]);
+      }
+      render(compose(m, from));
+      if (t < 1) frame = requestAnimationFrame(tick);
+      else {
+        const done = running.end;
+        running = null;
+        done();
+      }
+    };
+    frame = requestAnimationFrame(tick);
+  }
+
+  function paintDef(svg) {
+    const defs = make('defs', {}, svg);
+    const textures = {
+      plaster: 'art:rmt-plaster',
+      mud: 'art:rmt-mud'
+    };
+    for (const [id, img] of Object.entries(textures)) {
+      const p = make('pattern', {
+        id,
+        patternUnits: 'userSpaceOnUse',
+        width: W,
+        height: W
+      }, defs);
+      make('image', {
+        href: img,
+        width: W,
+        height: W,
+        preserveAspectRatio: 'xMidYMid slice'
+      }, p);
+      if (id === 'mud') make('rect', {
+        width: W,
+        height: W,
+        fill: '#382a1e',
+        opacity: .24
+      }, p);
+    }
+    const filter = make('filter', {
+      id: 'castShadow',
+      x: '-40%',
+      y: '-40%',
+      width: '180%',
+      height: '180%'
+    }, defs);
+    make('feDropShadow', {
+      dx: 1.5,
+      dy: 3,
+      stdDeviation: 1.8,
+      'flood-color': '#35271c',
+      'flood-opacity': '.65'
+    }, filter);
+    const marker = make('marker', {
+      id: 'arrow',
+      viewBox: '0 0 10 10',
+      refX: 8,
+      refY: 5,
+      markerWidth: 7,
+      markerHeight: 7,
+      orient: 'auto'
+    }, defs);
+    make('path', {
+      d: 'M0 0L10 5L0 10Z',
+      fill: '#2a1d12'
+    }, marker);
+  }
+
+  function points(p) {
+    return p.map(v => plane.px(...v).join(',')).join(' ');
+  }
+
+  function polygon(p, parent, type) {
+    const el = make('polygon', {
+      points: points(p),
+      fill: type === 'print' ? 'url(#mud)' : 'url(#plaster)',
+      stroke: '#2a1d12',
+      'stroke-width': type === 'print' ? 2 : 1.7,
+      'stroke-linejoin': 'round'
+    }, parent);
+    if (type === 'print') el.setAttribute('stroke-dasharray', '5 4');
+    if (type === 'cast') {
+      el.setAttribute('filter', 'url(#castShadow)');
+      make('polygon', {
+        points: points(p),
+        fill: 'none',
+        stroke: '#fffae2',
+        'stroke-width': .8,
+        'stroke-opacity': '.8'
+      }, parent);
+      const c = p.reduce((a, v) => [a[0] + v[0] / p.length, a[1] + v[1] / p.length], [0, 0]);
+      const [x, y] = plane.px(...c);
+      make('path', {
+        d: `M${x-5},${y+4}a8,8 0 1 1 11,-8m-4,-1l4,1l-1,-4`,
+        fill: 'none',
+        stroke: '#77674d',
+        'stroke-width': 1.2
+      }, parent);
+    }
+    return el;
+  }
+
+  function drawLabels(p, prime = false) {
+    const center = p.reduce((a, v) => [a[0] + v[0] / p.length, a[1] + v[1] / p.length], [0, 0]);
+    const occupied = [...plane.layer('labels').querySelectorAll('text')].map(t => t.getBBox());
+    const overlap = (a, b) => Math.max(0, Math.min(a.x + a.width + 2, b.x + b.width + 2) - Math.max(a.x - 2, b.x - 2)) *
+      Math.max(0, Math.min(a.y + a.height + 2, b.y + b.height + 2) - Math.max(a.y - 2, b.y - 2));
+    p.forEach((v, i) => {
+      const [x, y] = plane.px(...v), dx = v[0] - center[0], dy = v[1] - center[1];
+      const side = dx >= 0 ? 1 : -1;
+      const rise = dy >= 0 ? -7 : 14;
+      const t = make('text', {
+        class: 'vertex' + (prime ? ' prime' : '')
+      }, labels);
+      t.textContent = String.fromCharCode(65 + i) + (prime ? '′' : '');
+      const choices = [
+        [side * 7, rise],
+        [side * 7, rise - 14],
+        [side * 7, rise + 14],
+        [-side * 7, rise],
+        [side * 16, rise],
+        [-side * 7, rise - 14],
+        [-side * 7, rise + 14]
+      ];
+      let best = choices[0],
+        score = Infinity;
+      choices.forEach((c, j) => {
+        t.setAttribute('x', x + c[0]);
+        t.setAttribute('y', y + c[1]);
+        t.setAttribute('text-anchor', c[0] > 0 ? 'start' : 'end');
+        const box = t.getBBox();
+        const outside = box.x < -14 || box.y < -14 || box.x + box.width > PW + 14 || box.y + box.height > PW + 14;
+        const cost = occupied.reduce((s, b) => s + overlap(box, b), 0) * 100 + (outside ? 100000 : 0) + j;
+        if (cost < score) {
+          best = c;
+          score = cost;
+        }
+      });
+      t.setAttribute('x', x + best[0]);
+      t.setAttribute('y', y + best[1]);
+      t.setAttribute('text-anchor', best[0] > 0 ? 'start' : 'end');
+      occupied.push(t.getBBox());
+    });
+  }
+
+  function draw() {
+    if (!plane || state.mode !== 'Tracks') return;
+    drawGroup.replaceChildren();
+    labels.replaceChildren();
+    ghosts.replaceChildren();
+    measureLayer.replaceChildren();
+    if (state.level !== 9) polygon(state.target, drawGroup, 'print');
+    if (state.history.length) {
+      const prev = state.history[state.history.length - 1].before;
+      make('polygon', {
+        points: points(poly(prev, state.base)),
+        fill: '#efe6d2',
+        opacity: .14,
+        stroke: '#2a1d12',
+        'stroke-width': 1,
+        'stroke-dasharray': '3 4'
+      }, ghosts);
+    }
+    castGroup = make('g', {}, drawGroup);
+    polygon(state.base, castGroup, 'cast');
+    setMatrix(castGroup, visual);
+    if (state.level !== 9 && !landed()) drawLabels(state.target, true);
+    drawLabels(current());
+    for (const s of state.selected) {
+      const p = s.shape === 'cast' ? current() : state.target;
+      const [x, y] = plane.px(...p[s.index]);
+      make('circle', {
+        cx: x,
+        cy: y,
+        r: 7,
+        fill: 'none',
+        stroke: '#ffe994',
+        'stroke-width': 3
+      }, measureLayer);
+    }
+    if (state.tool === 'measure' && document.activeElement === $('plane') && $('plane').matches(':focus-visible')) {
+      const s = state.measureCursor,
+        p = s.shape === 'cast' ? current() : state.target;
+      if (p[s.index]) {
+        const [x, y] = plane.px(...p[s.index]);
+        make('circle', {
+          cx: x,
+          cy: y,
+          r: 11,
+          fill: 'none',
+          stroke: '#2a1d12',
+          'stroke-width': 2,
+          'stroke-dasharray': '3 2'
+        }, measureLayer);
+      }
+    }
+    for (const s of state.measurements.slice(-2)) {
+      const p = s.shape === 'cast' ? current() : state.target;
+      const [a, b] = s.indices.map(i => plane.px(...p[i]));
+      make('line', {
+        x1: a[0],
+        y1: a[1],
+        x2: b[0],
+        y2: b[1],
+        class: 'measure-segment'
+      }, measureLayer);
+    }
+    drawGuide();
+  }
+
+  function drawGuide() {
+    if (!guides || state.mode !== 'Tracks') return;
+    guides.replaceChildren();
+    if (state.won) return;
+    if (state.tool === 'turn') {
+      const c = [num('cx'), num('cy')],
+        [x, y] = plane.px(...c);
+      if (!c.every(Number.isFinite)) return;
+      make('circle', {
+        cx: x,
+        cy: y,
+        r: 7,
+        fill: '#eadbb6',
+        stroke: '#2a1d12',
+        'stroke-width': 2
+      }, guides);
+      make('path', {
+        d: `M${x+22},${y}A22,22 0 1 0 ${x},${y-22}`,
+        fill: 'none',
+        stroke: '#2a1d12',
+        'stroke-width': 2,
+        'marker-end': 'url(#arrow)'
+      }, guides);
+    }
+    if (state.tool === 'flip') {
+      const a = [num('x1'), num('y1')],
+        b = [num('x2'), num('y2')],
+        d = [b[0] - a[0], b[1] - a[1]];
+      if (![...a, ...b].every(Number.isFinite)) return;
+      if (Math.hypot(...d) < 1e-9) return;
+      const u = plane.px(a[0] - d[0] * 30, a[1] - d[1] * 30),
+        v = plane.px(a[0] + d[0] * 30, a[1] + d[1] * 30);
+      make('line', {
+        x1: u[0],
+        y1: u[1],
+        x2: v[0],
+        y2: v[1],
+        stroke: '#2a1d12',
+        'stroke-width': 2,
+        'stroke-dasharray': '8 5'
+      }, guides);
+      for (const p of [a, b]) {
+        const [x, y] = plane.px(...p);
+        make('circle', {
+          cx: x,
+          cy: y,
+          r: 6,
+          fill: '#e9dcbf',
+          stroke: '#2a1d12'
+        }, guides);
+      }
+    }
+    if (state.tool === 'slide') {
+      const a = current()[0],
+        b = [a[0] + num('dx'), a[1] + num('dy')],
+        u = plane.px(...a),
+        v = plane.px(...b);
+      make('line', {
+        x1: u[0],
+        y1: u[1],
+        x2: v[0],
+        y2: v[1],
+        stroke: '#2a1d12',
+        'stroke-width': 2,
+        'marker-end': 'url(#arrow)'
+      }, guides);
+    }
+  }
+
+  function resize() {
+    finish();
+    const box = $('planeWrap').getBoundingClientRect();
+    W = Math.max(100, Math.floor(Math.min(box.width - 40, box.height - 20)) - 14);
+    PW = W - 36;
+    $('rock').style.width = (W + 14) + 'px';
+    $('rock').style.height = (W + 14) + 'px';
+    const svg = $('plane');
+    svg.replaceChildren();
+    svg.setAttribute('viewBox', `0 0 ${W} ${W}`);
+    paintDef(svg);
+    plane = Plane(svg, {
+      x: [-10, 10],
+      y: [-10, 10],
+      width: PW,
+      height: PW,
+      left: 18,
+      top: 18,
+      grid: 1,
+      labels: 5,
+      ticks: 'axis',
+      xLabel: 'x',
+      yLabel: 'y'
+    });
+    ghosts = make('g', {}, plane.layer('plot'));
+    drawGroup = make('g', {}, plane.layer('plot'));
+    guides = make('g', {
+      'pointer-events': 'none'
+    }, plane.layer('front'));
+    labels = make('g', {
+      'pointer-events': 'none'
+    }, plane.layer('labels'));
+    measureLayer = make('g', {
+      'pointer-events': 'none'
+    }, plane.layer('front'));
+    visual = [...state.matrix];
+    draw();
+    drawCriteria();
+  }
+
+  function num(id) {
+    return $(id).value.trim() === '' ? NaN : Number($(id).value);
+  }
+
+  function fraction(n) {
+    let z = Math.abs(n),
+      p0 = 0,
+      q0 = 1,
+      p1 = 1,
+      q1 = 0;
+    for (let i = 0; i < 24; i++) {
+      const a = Math.floor(z),
+        p = a * p1 + p0,
+        q = a * q1 + q0;
+      if (q > 4096) break;
+      if (Math.abs(p / q - Math.abs(n)) < 1e-11) return [n < 0 ? -p : p, q];
+      [p0, p1, q0, q1] = [p1, p, q1, q];
+      if (Math.abs(z - a) < 1e-14) break;
+      z = 1 / (z - a);
+    }
+    return null;
+  }
+
+  function exactNum(n) {
+    const f = fraction(n);
+    if (f) return (f[1] === 1 ? String(f[0]) : f[0] + '/' + f[1]).replace('-', '−');
+    for (const r of [2, 3, 6]) {
+      const a = fraction(n / Math.sqrt(r));
+      if (a && Math.abs(a[0]) <= 100 && a[1] <= 100) {
+        return (a[0] < 0 ? '−' : '') + (Math.abs(a[0]) === 1 ? '' : Math.abs(a[0])) + '√' + r + (a[1] === 1 ? '' : '/' + a[1]);
+      }
+    }
+    for (const s of [-1, 1])
+      if (Math.abs(Math.abs(n) - (Math.sqrt(6) + s * Math.sqrt(2)) / 4) < 1e-11)
+        return (n < 0 ? '−' : '') + '(√6 ' + (s > 0 ? '+' : '−') + ' √2)/4';
+    return '≈' + fmt(n);
+  }
+
+  function expr(a, b, c) {
+    let text = '';
+    for (const [v, k] of [
+        [a, 'x'],
+        [b, 'y']
+      ])
+      if (Math.abs(v) > 1e-10) {
+        let coefficient = exactNum(v);
+        if (coefficient.includes('/')) coefficient = '(' + coefficient + ')';
+        const t = (Math.abs(v - 1) < 1e-10 ? '' : Math.abs(v + 1) < 1e-10 ? '−' : coefficient) + k;
+        text += text && v > 0 ? ' + ' + t : text && v < 0 ? ' − ' + t.replace('−', '') : t;
+      }
+    if (Math.abs(c) > 1e-10) text += text ? (c > 0 ? ' + ' : ' − ') + exactNum(Math.abs(c)) : exactNum(c);
+    return text || '0';
+  }
+  const fnText = m => `(x, y) → (${expr(m[0],m[2],m[4])}, ${expr(m[1],m[3],m[5])})`;
+
+  function moveFunction(kind, params, m) {
+    if (kind !== 'turn' || params[0] % 90 === 0) return fnText(m);
+    const [d, x, y] = params, a = exactNum(x), b = exactNum(y);
+    return `(x, y) → (${a} + (x − ${a}) cos ${d}° − (y − ${b}) sin ${d}°, ` +
+      `${b} + (x − ${a}) sin ${d}° + (y − ${b}) cos ${d}°)`;
+  }
+
+  function classify(m) {
+    if (sameM(m, I)) return 'doing nothing';
+    const det = m[0] * m[3] - m[1] * m[2];
+    if (det < 0) {
+      const sq = compose(m, m);
+      if (Math.hypot(sq[4], sq[5]) > 1e-8) return 'a glide reflection';
+      if (Math.abs(m[2]) < 1e-9) {
+        return m[0] < 0 ? 'one flip over x = ' + fmt(m[4] / 2) : 'one flip over y = ' + fmt(m[5] / 2);
+      }
+      const angle = (Math.atan2(1 - m[0], m[2]) * 180 / Math.PI + 180) % 180;
+      if (Math.hypot(m[4], m[5]) < 1e-9) return `one flip over the ${fmt(angle)}° line through (0, 0)`;
+      const slope = (1 - m[0]) / m[2],
+        intercept = -m[4] / m[2];
+      return `one flip over y = ${expr(slope,0,intercept)}`;
+    }
+    const deg = clean((Math.atan2(m[1], m[0]) * 180 / Math.PI + 360) % 360);
+    if (Math.abs(deg) < 1e-8) return `one slide ⟨${fmt(m[4])}, ${fmt(m[5])}⟩`;
+    const a = 1 - m[0],
+      b = -m[2],
+      c = -m[1],
+      d = 1 - m[3],
+      det2 = a * d - b * c;
+    const x = (m[4] * d - b * m[5]) / det2,
+      y = (a * m[5] - m[4] * c) / det2;
+    return `one turn of ${fmt(deg)}° about (${fmt(x)}, ${fmt(y)})`;
+  }
+
+  function move(kind, params) {
+    finish();
+    if (V.playing === L.wTracks) V.hush();
+    else V.dropQueued();
+    if (state.mode !== 'Tracks') return false;
+    if (!params.every(Number.isFinite)) {
+      hint('Enter finite coordinates, then tap Apply.', false);
+      return false;
+    }
+    const coordinates = kind === 'turn' ? params.slice(1) : params;
+    if (coordinates.some(x => Math.abs(x) > (kind === 'slide' ? 20 : 10))) {
+      hint('Set line points and centers on the rock, and slide components between −20 and 20.', false);
+      return false;
+    }
+    if (coordinates.some(x => Math.abs(x * 2 - Math.round(x * 2)) > 1e-9) && state.level !== 9) {
+      hint('Use lattice or half-grid coordinates. Set the move again, then tap Apply.', false);
+      return false;
+    }
+    if (state.level === 9 && kind !== 'slide') {
+      const p = SHAPES[state.shape].p;
+      const anchors = [
+        [0, 0], ...p, ...p.map((v, i) => [(v[0] + p[(i + 1) % p.length][0]) / 2, (v[1] + p[(i + 1) % p.length][1]) / 2])
+      ];
+      const pairs = kind === 'turn' ? [coordinates] : [coordinates.slice(0, 2), coordinates.slice(2)];
+      if (pairs.some(v => !v.every(x => Math.abs(x * 2 - Math.round(x * 2)) < 1e-9) &&
+          !anchors.some(a => Math.hypot(a[0] - v[0], a[1] - v[1]) < 1e-9))) {
+        hint('Use a grid point, half point, vertex, edge midpoint or center.', false);
+        return false;
+      }
+    }
+    let m, name;
+    if (kind === 'slide') {
+      m = slideM(...params);
+      name = `slide ⟨${fmt(params[0])}, ${fmt(params[1])}⟩`;
+    }
+    if (kind === 'turn') {
+      const [d, x, y] = params, step = state.level === 9 && state.shape === 4 ? 15 : 90;
+      if (d <= 0 || d >= 360 || Math.abs(d / step - Math.round(d / step)) > 1e-9) return false;
+      m = turnM(d, x, y);
+      name = `turn ${fmt(d)}° about (${fmt(x)}, ${fmt(y)})`;
+    }
+    if (kind === 'flip') {
+      m = flipM(...params);
+      name = `flip through (${exactNum(params[0])}, ${exactNum(params[1])}), ` +
+        `(${exactNum(params[2])}, ${exactNum(params[3])})`;
+      if (!m) {
+        hint('Pick two different points for the mirror line.', false);
+        return false;
+      }
+    }
+    if (sameM(m, I)) {
+      hint('identity');
+      return false;
+    }
+    const before = [...state.matrix],
+      after = compose(m, before),
+      next = poly(after, state.base);
+    if (next.some(v => v.some(z => Math.abs(z) > 10 + 1e-9))) {
+      hint('outside');
+      Curio.tone(150, .15);
+      return false;
+    }
+    state.won = false;
+    $('proof').hidden = true;
+    state.selected = [];
+    state.measurements = [];
+    $('measureResult').textContent = '';
+    if (state.level === 9) {
+      const global = compose(m, before);
+      if (matches(next, state.base)) {
+        if (sameM(global, I)) hint('identity');
+        else if (state.found[state.shape].some(x => sameM(x.matrix, global))) hint('repeat');
+        else {
+          state.found[state.shape].push({
+            matrix: global,
+            name: classify(global),
+            fn: fnText(global)
+          });
+          hint(state.found[state.shape].length === SHAPES[state.shape].n ? 'selfComplete' : 'found');
+          Curio.yes();
+        }
+      } else {
+        hint('miss');
+        Curio.tone(180, .12);
+      }
+      state.history.push({
+        before,
+        after,
+        name,
+        fn: moveFunction(kind, params, m),
+        kind,
+        params
+      });
+      // Each symmetry attempt starts from the original shape. Composed experiments cannot farm duplicate discoveries.
+      state.matrix = [...I];
+      visual = [...before];
+      renderLog();
+      draw();
+      animate(before, m, kind, params, x => {
+        visual = x;
+        if (castGroup) setMatrix(castGroup, x);
+      }, () => {
+        visual = [...I];
+        draw();
+      });
+      return true;
+    }
+    state.history.push({
+      before,
+      after,
+      name,
+      fn: moveFunction(kind, params, m),
+      kind,
+      params
+    });
+    state.matrix = after;
+    visual = before;
+    renderLog();
+    draw();
+    Curio.tone(kind === 'flip' ? 330 : kind === 'turn' ? 440 : 280, .09, .025);
+    animate(before, m, kind, params, x => {
+      visual = x;
+      if (castGroup) setMatrix(castGroup, x);
+    }, () => {
+      visual = [...state.matrix];
+      draw();
+      if (landed()) win();
+    });
+    if (!landed()) {
+      if (state.level === 10 && state.history.length >= 5) hint('wNot');
+      else hint(state.tool + 'Help', false);
+    }
+    return true;
+  }
+
+  function landed() {
+    return state.level !== 9 && equal(current(), state.target);
+  }
+
+  function win() {
+    state.won = true;
+    drawGuide();
+    const stars = state.history.length === (state.level === 5 ? 2 : 1) ? 2 : 1;
+    award(stars);
+    Curio.yes();
+    hint('next', false);
+    const level = state.level;
+    V.say(stars === 2 ? ['twins', 'fewest'] : 'twins', {
+      valid: () => state.level === level && state.won
+    });
+    $('proof').hidden = false;
+    $('logbook').scrollTop = 0;
+    $('proof').innerHTML = `<strong>Twins! <span class="stars">${'★'.repeat(stars)}</span></strong>` +
+      `<p>The cast maps onto the print by ${state.history.map(h=>({slide:'T',turn:'R',flip:'F'}[h.kind])).join(' then ')}.</p>` +
+      '<p>Slides, turns and flips keep every length and angle. The footprints are congruent.</p>' +
+      '<p>A ↔ A′, B ↔ B′, C ↔ C′, D ↔ D′, E ↔ E′, F ↔ F′, G ↔ G′, H ↔ H′, I ↔ I′.</p>' +
+      (state.history.length > 1 ? `<p>Your ${state.history.length} moves are ${classify(state.matrix)}.</p>` : '');
+  }
+
+  function renderLog() {
+    $('moves').replaceChildren(...state.history.map((h, i) => {
+      const li = document.createElement('li'),
+        code = document.createElement('code');
+      li.textContent = `${i+1}. ${h.name}`;
+      code.textContent = h.fn;
+      li.appendChild(code);
+      return li;
+    }));
+    $('empty').hidden = state.history.length > 0 || state.mode === 'Criteria';
+    $('symTray').textContent = '';
+    if (state.level === 9 && state.mode === 'Tracks') {
+      const list = state.found[state.shape],
+        max = SHAPES[state.shape].n;
+      $('symTray').textContent = `Found ${list.length} of ${max}. ` + list.map(x => x.name).join('; ');
+      if (state.found.every((a, i) => a.length === SHAPES[i].n)) award(2);
+    }
+  }
+
+  function level(n) {
+    finish();
+    V.hush();
+    state.level = Math.max(1, Math.min(10, Math.round(n)));
+    state.history = [];
+    state.matrix = [...I];
+    state.won = false;
+    state.selected = [];
+    state.measurements = [];
+    visual = [...I];
+    $('proof').hidden = true;
+    $('measureResult').textContent = '';
+    if (n === 9) {
+      state.base = SHAPES[state.shape].p.map(v => [...v]);
+      state.target = [];
+    } else if (n === 10) {
+      state.base = poly(slideM(-6, -2), F);
+      const fake = F.map(v => [...v]);
+      fake[3] = [5, 3];
+      state.target = poly(slideM(2, 1), fake);
+    } else {
+      state.base = poly(slideM(...OFF[n - 1]), F);
+      state.target = poly(SOL[n - 1], state.base);
+    }
+    $('levelTitle').textContent = String(n).padStart(2, '0') + ' · ' + TITLES[n - 1];
+    $('shape').hidden = n !== 9;
+    $('shape').value = state.shape;
+    const angles = n === 9 && state.shape === 4 ? Array.from({
+      length: 23
+    }, (_, i) => (i + 1) * 15) : [90, 180, 270];
+    $('angle').replaceChildren(...angles.map(d => new Option(d + '°', d)));
+    $('dx').value = 0;
+    $('dy').value = 0;
+    $('cx').value = '';
+    $('cy').value = '';
+    $('x1').value = '';
+    $('y1').value = '';
+    $('x2').value = '';
+    $('y2').value = '';
+    levelOptions();
+    renderLog();
+    setTool(n === 9 ? 'turn' : 'slide', false);
+    hint(tracksHint(), false);
+    V.welcome();
+    draw();
+  }
+
+  function undo() {
+    finish();
+    V.hush();
+    if (!state.history.length) {
+      hint('Set a move first, then Undo can retrace it.', false);
+      return;
+    }
+    const h = state.history.pop();
+    state.matrix = state.level === 9 ? [...I] : h.before;
+    visual = [...state.matrix];
+    state.won = false;
+    state.selected = [];
+    state.measurements = [];
+    $('measureResult').textContent = '';
+    $('proof').hidden = true;
+    renderLog();
+    draw();
+    hint(state.tool + 'Help', false);
+  }
+
+  function setTool(t, speak = true) {
+    finish();
+    if (state.tool !== t) V.hush();
+    state.tool = t;
+    state.selected = [];
+    state.measureCursor = {
+      shape: 'cast',
+      index: 0
+    };
+    flipPoint = 0;
+    for (const k of ['slide', 'turn', 'flip', 'measure']) $(k).setAttribute('aria-pressed', k === t);
+    for (const k of ['slide', 'turn', 'flip']) $(k + 'Params').hidden = k !== t;
+    hint(t + 'Help', speak);
+    draw();
+  }
+
+  function radical(sq) {
+    if (Math.abs(sq - Math.round(sq)) > 1e-8) return fmt(Math.sqrt(sq));
+    sq = Math.round(sq);
+    let a = 1;
+    for (let k = 2; k * k <= sq; k++)
+      if (sq % (k * k) === 0) a = k;
+    const b = sq / (a * a);
+    return b === 1 ? String(a) : (a === 1 ? '' : a) + '√' + b;
+  }
+
+  function measure(a, b) {
+    if (V.playing === L.wNot) V.hush();
+    const parse = v => typeof v === 'number' ? {
+      shape: 'cast',
+      index: v
+    } : typeof v === 'string' ? {
+      shape: v.includes('′') || v.includes("'") ? 'print' : 'cast',
+      index: v.charCodeAt(0) - 65
+    } : v;
+    a = parse(a);
+    b = parse(b);
+    if (!a || !b || a.shape !== b.shape || a.index === b.index) {
+      state.selected = [];
+      hint('measurePair');
+      Curio.tone(180, .08, .02);
+      draw();
+      return null;
+    }
+    const p = a.shape === 'cast' ? current() : state.target;
+    if (!p[a.index] || !p[b.index]) return null;
+    const sq = (p[a.index][0] - p[b.index][0]) ** 2 + (p[a.index][1] - p[b.index][1]) ** 2;
+    const entry = {
+      shape: a.shape,
+      indices: [a.index, b.index].sort((x, y) => x - y),
+      squared: sq
+    };
+    state.measurements = state.measurements.filter(x => x.shape !== entry.shape || x.indices.join() !== entry.indices.join());
+    state.measurements.push(entry);
+    $('measureResult').textContent = state.measurements.map(x =>
+      `${x.shape==='cast'?'Cast':'Print'} ${x.indices.map(i=>String.fromCharCode(65+i)).join(' to ')}: ` +
+      `${radical(x.squared)} ≈ ${Math.sqrt(x.squared).toFixed(2)}`).join(' | ');
+    state.selected = [];
+    draw();
+    Curio.tone(620, .08, .025);
+    return entry;
+  }
+
+  function notTwins() {
+    finish();
+    if (state.level !== 10) {
+      hint('trueTwin');
+      return false;
+    }
+    const cast = state.measurements.filter(x => x.shape === 'cast');
+    const print = state.measurements.filter(x => x.shape === 'print');
+    if (!cast.length || !print.length) {
+      hint('needMeasure');
+      return false;
+    }
+    const pair = cast.flatMap(a => print.filter(b => a.indices.join() === b.indices.join()).map(b => [a, b]));
+    if (!pair.length) {
+      hint('needCorrespondence');
+      return false;
+    }
+    const unequal = pair.find(([a, b]) => Math.abs(a.squared - b.squared) > 1e-9);
+    if (!unequal) {
+      hint('sameLength');
+      return false;
+    }
+    state.won = true;
+    award(1);
+    $('proof').hidden = false;
+    $('logbook').scrollTop = 0;
+    $('proof').innerHTML = '<strong>Not twins. ✓</strong><p>Your matching lengths disagree: ' +
+      unequal.map(x => radical(x.squared)).join(' versus ') + '. No rigid motion changes a length.</p>';
+    hint('notNext', false);
+    V.say('notTwins', {
+      valid: () => state.level === 10 && state.won
+    });
+    Curio.yes();
+    return true;
+  }
+
+  function snap(x, y, half = false) {
+    let p = [Math.round(x * (half ? 2 : 1)) / (half ? 2 : 1), Math.round(y * (half ? 2 : 1)) / (half ? 2 : 1)];
+    if (state.level === 9) {
+      const a = SHAPES[state.shape].p,
+        opts = [
+          [0, 0], ...a, ...a.map((v, i) => [(v[0] + a[(i + 1) % a.length][0]) / 2, (v[1] + a[(i + 1) % a.length][1]) / 2])
+        ];
+      const best = opts.reduce((b, v) => Math.hypot(v[0] - x, v[1] - y) < Math.hypot(b[0] - x, b[1] - y) ? v : b, p);
+      if (Math.hypot(best[0] - x, best[1] - y) < .45) p = best;
+    }
+    return p.map(v => Math.max(-10, Math.min(10, v)));
+  }
+  let drag = null,
+    flipPoint = 0;
+  $('plane').addEventListener('pointerdown', e => {
+    if (state.mode !== 'Tracks' || e.button) return;
+    e.preventDefault();
+    finish();
+    const raw = plane.eventCoord(e),
+      p = snap(...raw, state.tool === 'turn');
+    $('plane').focus({
+      preventScroll: true
+    });
+    if (state.tool === 'slide') {
+      const a = current();
+      let idx = 0;
+      a.forEach((v, i) => {
+        if (Math.hypot(v[0] - raw[0], v[1] - raw[1]) < Math.hypot(a[idx][0] - raw[0], a[idx][1] - raw[1])) idx = i;
+      });
+      if (Math.hypot(a[idx][0] - raw[0], a[idx][1] - raw[1]) * W / 20 > 23) {
+        hint('slideHelp');
+        return;
+      }
+      drag = {
+        start: a[idx],
+        last: p
+      };
+      $('plane').setPointerCapture(e.pointerId);
+      Curio.tone(300, .05, .02);
+    } else if (state.tool === 'turn') {
+      $('cx').value = p[0];
+      $('cy').value = p[1];
+      drawGuide();
+      Curio.tone(450, .05, .02);
+    } else if (state.tool === 'flip') {
+      $(flipPoint ? 'x2' : 'x1').value = p[0];
+      $(flipPoint ? 'y2' : 'y1').value = p[1];
+      flipPoint = 1 - flipPoint;
+      drawGuide();
+      Curio.tone(flipPoint ? 350 : 520, .06, .02);
+    } else {
+      const opts = [...current().map((v, index) => ({
+        v,
+        index,
+        shape: 'cast'
+      })), ...state.target.map((v, index) => ({
+        v,
+        index,
+        shape: 'print'
+      }))];
+      const a = opts.reduce((b, v) => Math.hypot(v.v[0] - raw[0], v.v[1] - raw[1]) < Math.hypot(b.v[0] - raw[0], b.v[1] - raw[1]) ? v : b);
+      if (Math.hypot(a.v[0] - raw[0], a.v[1] - raw[1]) * W / 20 > 24) return;
+      if (state.selected.length && state.selected[0].shape !== a.shape) state.selected = [];
+      state.selected.push({
+        shape: a.shape,
+        index: a.index
+      });
+      if (state.selected.length === 2) measure(...state.selected);
+      else {
+        draw();
+        Curio.tone(620, .06, .02);
+      }
+    }
+  });
+  $('plane').addEventListener('pointermove', e => {
+    if (!drag) return;
+    const p = snap(...plane.eventCoord(e));
+    drag.last = p;
+    $('dx').value = clean(p[0] - drag.start[0]);
+    $('dy').value = clean(p[1] - drag.start[1]);
+    drawGuide();
+  });
+  $('plane').addEventListener('pointerup', () => {
+    if (!drag) return;
+    drag = null;
+    move('slide', [num('dx'), num('dy')]);
+  });
+  $('plane').addEventListener('pointercancel', () => {
+    drag = null;
+    draw();
+  });
+
+  function applySelected() {
+    if (state.tool === 'slide') move('slide', [num('dx'), num('dy')]);
+    if (state.tool === 'turn') move('turn', [num('angle'), num('cx'), num('cy')]);
+    if (state.tool === 'flip') move('flip', [num('x1'), num('y1'), num('x2'), num('y2')]);
+  }
+  for (const id of ['slide', 'turn', 'flip', 'measure']) $(id).onclick = () => setTool(id);
+  for (const id of ['applySlide', 'applyTurn', 'applyFlip']) $(id).onclick = applySelected;
+  for (const id of ['dx', 'dy', 'cx', 'cy', 'x1', 'y1', 'x2', 'y2', 'angle']) $(id).addEventListener('input', () => {
+    finish();
+    drawGuide();
+  });
+  let barEdited = false;
+  for (const id of ['movebar', 'plane']) $(id).addEventListener('keydown', e => {
+    if (state.tool === 'measure') {
+      if (e.target !== $('plane')) return;
+      const c = state.measureCursor;
+      if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Enter'].includes(e.key)) e.preventDefault();
+      else return;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        const p = c.shape === 'cast' ? current() : state.target;
+        c.index = (c.index + (e.key === 'ArrowRight' ? 1 : -1) + p.length) % p.length;
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
+        c.shape = state.target.length && c.shape === 'cast' ? 'print' : 'cast';
+      } else {
+        if (state.selected.length && state.selected[0].shape !== c.shape) state.selected = [];
+        state.selected.push({
+          ...c
+        });
+        if (state.selected.length === 2) measure(...state.selected);
+      }
+      const letter = String.fromCharCode(65 + c.index) + (c.shape === 'print' ? '′' : '');
+      hint(`${c.shape==='cast'?'Cast':'Print'} corner ${letter}. Left or right changes corner; up or down changes footprint. Enter selects.`,
+        false);
+      draw();
+      return;
+    }
+    const d = {
+      ArrowLeft: [-1, 0],
+      ArrowRight: [1, 0],
+      ArrowUp: [0, 1],
+      ArrowDown: [0, -1]
+    } [e.key];
+    if (e.key === 'Enter' && (e.target.tagName !== 'BUTTON' || barEdited)) {
+      e.preventDefault();
+      barEdited = false;
+      applySelected();
+      return;
+    }
+    if (!d) return;
+    e.preventDefault();
+    finish();
+    barEdited = true;
+    const k = e.shiftKey ? .5 : 1;
+    const ids = state.tool === 'slide' ? ['dx', 'dy'] : state.tool === 'turn' ? ['cx', 'cy'] : e.altKey ? ['x2', 'y2'] : ['x1', 'y1'];
+    ids.forEach((id, i) => {
+      $(id).value = clean((Number.isFinite(num(id)) ? num(id) : 0) + d[i] * k);
+    });
+    drawGuide();
+  });
+  $('undo').onclick = undo;
+  $('reset').onclick = () => level(state.level);
+  $('notTwins').onclick = notTwins;
+  $('levels').onchange = () => level(+$('levels').value);
+  SHAPES.forEach((s, i) => $('shape').append(new Option(s.name, i)));
+  $('shape').onchange = () => {
+    state.shape = +$('shape').value;
+    level(9);
+  };
+  $('clear').onclick = () => {
+    state.stars = {};
+    state.found = SHAPES.map(() => []);
+    save();
+    levelOptions();
+    if (state.mode === 'Tracks') {
+      level(state.level);
+      hint('Progress cleared. Choose a move to begin again.', false);
+    } else {
+      criteria(state.card, state.step);
+      hint('Progress cleared. Pick a triangle card to continue.', false);
+    }
+  };
+  // Triangle construction. The same affine animation is used by both modes.
+  const ABC = [
+      [0, 0],
+      [4, 0],
+      [1, 3]
+    ],
+    DEF = [
+      [6, 1],
+      [6, 5],
+      [9, 2]
+    ];
+  const CT = [I, slideM(6, 1), compose(turnM(90, 6, 1), slideM(6, 1)),
+    compose(flipM(6, 0, 6, 1), compose(turnM(90, 6, 1), slideM(6, 1)))
+  ];
+  const sentences = {
+    SSS: ['Three matching sides: 4, √10 and √18. Tap Next step to slide A onto D.',
+      'A is on D. Turn about D to align the side AB with DE.',
+      'B is on E. Flip over DE to put C on the same side as F.',
+      'C is the one point √10 from D and √18 from E on this side. C lands on F at (9, 2).'
+    ],
+    SAS: ['The two sides and their included angle match. Tap Next step to slide A onto D.',
+      'A is on D. Turn about D to align the first equal side.',
+      'The equal included angle fixes the ray. Flip over DE to choose the matching side.',
+      'The angle fixes the ray, the length fixes the point. C lands on F.'
+    ],
+    ASA: ['One side and its two adjacent angles match. Tap Next step to slide A onto D.',
+      'A is on D. Turn about D to align the equal side AB with DE.',
+      'The two equal angles fix rays from D and E. Flip to put them on the same side.',
+      'Two rays from D and E cross at one point. Their intersection is F.'
+    ]
+  };
+
+  function drawCriteria() {
+    if (state.mode !== 'Criteria') return;
+    const svg = $('triangles'),
+      r = svg.getBoundingClientRect(),
+      w = Math.max(180, r.width),
+      h = Math.max(100, r.height);
+    svg.replaceChildren();
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    const title = {
+      SSS: 'Three sides, one triangle',
+      SAS: 'A ray, then a point',
+      ASA: 'Where two rays meet',
+      SSA: 'Same clues. Two triangles.',
+      AAA: 'Same angles. Different sizes.'
+    };
+    $('criteriaTitle').textContent = title[state.card];
+    const scale = Math.min((w - 45) / 12, (h - 40) / 6.5),
+      ox = 25,
+      oy = h - 20;
+    const px = ([x, y]) => [ox + x * scale, oy - y * scale];
+    const path = (p, fill, dash = false) => make('polygon', {
+      points: p.map(v => px(v).join(',')).join(' '),
+      fill,
+      stroke: '#413626',
+      'stroke-width': 2,
+      'stroke-dasharray': dash ? '6 4' : ''
+    }, svg);
+    const label = (p, n) => p.forEach((v, i) => {
+      const [x, y] = px(v);
+      const t = make('text', {
+        x: x + 5,
+        y: y - 7,
+        fill: '#2a1d12',
+        'font-size': 13,
+        'font-weight': 700,
+        'paint-order': 'stroke',
+        stroke: '#efe9da',
+        'stroke-width': 3
+      }, svg);
+      t.textContent = n[i];
+    });
+    const line = (a, b, color = '#76552f', dash = '') => {
+      const p = px(a),
+        q = px(b);
+      return make('line', {
+        x1: p[0],
+        y1: p[1],
+        x2: q[0],
+        y2: q[1],
+        stroke: color,
+        'stroke-width': 2,
+        'stroke-dasharray': dash
+      }, svg);
+    };
+
+    function tick(a, b, n) {
+      const p = px(a),
+        q = px(b),
+        dx = q[0] - p[0],
+        dy = q[1] - p[1],
+        l = Math.hypot(dx, dy);
+      for (let i = 0; i < n; i++) {
+        const t = .5 + (i - (n - 1) / 2) * 5 / l,
+          c = [p[0] + t * dx, p[1] + t * dy];
+        make('line', {
+          x1: c[0] - dy / l * 5,
+          y1: c[1] + dx / l * 5,
+          x2: c[0] + dy / l * 5,
+          y2: c[1] - dx / l * 5,
+          stroke: '#413626',
+          'stroke-width': 2
+        }, svg);
+      }
+    }
+
+    function angleMark(p, i, radius) {
+      const [a, b, c] = [p[(i + p.length - 1) % p.length], p[i], p[(i + 1) % p.length]].map(px);
+      const u = Math.atan2(a[1] - b[1], a[0] - b[0]),
+        v = Math.atan2(c[1] - b[1], c[0] - b[0]);
+      let d = (v - u + Math.PI * 3) % (Math.PI * 2) - Math.PI;
+      const x = b[0] + radius * Math.cos(u),
+        y = b[1] + radius * Math.sin(u),
+        xx = b[0] + radius * Math.cos(u + d),
+        yy = b[1] + radius * Math.sin(u + d);
+      make('path', {
+        d: `M${x},${y}A${radius},${radius} 0 0 ${d>0?1:0} ${xx},${yy}`,
+        fill: 'none',
+        stroke: '#413626',
+        'stroke-width': 1.5
+      }, svg);
+    }
+    if (['SSS', 'SAS', 'ASA'].includes(state.card)) {
+      const moved = poly(criteriaVisual, ABC);
+      const same = moved.map((v, i) => Math.hypot(v[0] - DEF[i][0], v[1] - DEF[i][1]) < 1e-9);
+      const near = moved.map((v, i) => Math.hypot(v[0] - DEF[i][0], v[1] - DEF[i][1]) * scale < 20);
+      path(DEF, '#73594345', true);
+      label(DEF, ['D', 'E', 'F'].map((v, i) => near[i] ? '' : v));
+      path(moved, '#f7edd0bb');
+      label(moved, ['A', 'B', 'C'].map((v, i) => same[i] ? v + ' = ' + ['D', 'E', 'F'][i] : v));
+      for (const p of [moved, DEF]) {
+        tick(p[0], p[1], 1);
+        if (state.card === 'SSS' || state.card === 'SAS') tick(p[0], p[2], 2);
+        if (state.card === 'SSS') tick(p[1], p[2], 3);
+        if (state.card === 'SAS') angleMark(p, 0, 18);
+        if (state.card === 'ASA') {
+          angleMark(p, 0, 16);
+          angleMark(p, 1, 20);
+          angleMark(p, 1, 24);
+        }
+      }
+      if (state.card === 'SSS' && state.step === 3) {
+        for (const [p, rad] of [
+            [DEF[0], Math.sqrt(10)],
+            [DEF[1], Math.sqrt(18)]
+          ]) {
+          const [x, y] = px(p);
+          make('circle', {
+            cx: x,
+            cy: y,
+            r: rad * scale,
+            fill: 'none',
+            stroke: '#8c6a3b',
+            'stroke-dasharray': '3 5',
+            'stroke-width': 1,
+            opacity: .65
+          }, svg);
+        }
+      }
+      $('sentence').textContent = sentences[state.card][state.step];
+    } else if (state.card === 'SSA') {
+      const a = 40 * Math.PI / 180,
+        c1 = 6.211524846685,
+        c2 = 1.448919584505;
+      const p = [
+          [0, 0],
+          [5, 0],
+          [c1 * Math.cos(a), c1 * Math.sin(a)]
+        ],
+        q = [
+          [0, 0],
+          [5, 0],
+          [c2 * Math.cos(a), c2 * Math.sin(a)]
+        ];
+      const shift = p => p.map(([x, y]) => [x, y + 1]);
+      path(shift(p), '#b08a4355');
+      path(shift(q), '#9b58365e', true);
+      label(shift(p), ['A', 'B', 'C₁']);
+      label(shift(q), ['', '', 'C₂']);
+      tick(...shift(p).slice(0, 2), 1);
+      tick(shift(p)[1], shift(p)[2], 2);
+      tick(shift(q)[1], shift(q)[2], 2);
+      angleMark(shift(p), 0, 25);
+      const [x, y] = px([8, 4]);
+      const t = make('text', {
+        x,
+        y,
+        'font-size': 14,
+        fill: '#413626'
+      }, svg);
+      for (const [i, text] of ['A = 40°', 'AB = 5', 'BC = 4', 'AC₁ = 6.21', 'AC₂ = 1.45'].entries())
+        make('tspan', {
+          x,
+          dy: i ? 25 : 0
+        }, t).textContent = text;
+      $('sentence').textContent = 'Two different triangles fit angle A = 40°, AB = 5 and BC = 4. SSA cannot prove congruence.';
+    } else {
+      const p = [
+          [.5, 1],
+          [3.5, 1],
+          [1.25, 3.25]
+        ],
+        q = [
+          [5, 1],
+          [11, 1],
+          [6.5, 5.5]
+        ];
+      path(p, '#d4b86f88');
+      path(q, '#9e7b4788', true);
+      label(p, ['A', 'B', 'C']);
+      label(q, ['D', 'E', 'F']);
+      for (const t of [p, q])
+        for (let i = 0; i < 3; i++) angleMark(t, i, 12 + i * 3);
+      $('sentence').textContent = 'All three angles match, but the second triangle has sides twice as long. AAA proves similarity, not congruence.';
+    }
+  }
+
+  function criteria(card, step = 0) {
+    finish();
+    V.hush();
+    state.card = card;
+    state.step = Math.max(0, Math.min(3, step));
+    if (!['SSS', 'SAS', 'ASA', 'SSA', 'AAA'].includes(card)) return;
+    criteriaVisual = CT[state.step];
+    for (const k of ['SSS', 'SAS', 'ASA', 'SSA', 'AAA']) $('c-' + k).setAttribute('aria-pressed', k === card);
+    $('backStep').setAttribute('aria-disabled', state.step === 0 || card === 'SSA' || card === 'AAA');
+    $('nextStep').setAttribute('aria-disabled', state.step === 3 || card === 'SSA' || card === 'AAA');
+    drawCriteria();
+    hint(criteriaHint(), false);
+    if (card === 'SSA') V.say('ssa', {
+      valid: () => state.mode === 'Criteria' && state.card === 'SSA'
+    });
+    if (card === 'AAA') V.how('counterexample', {
+      valid: () => state.mode === 'Criteria' && state.card === 'AAA'
+    });
+  }
+
+  function criteriaHint() {
+    if (state.card === 'SSA' || state.card === 'AAA') return 'counterexample';
+    return ['criteriaNext', 'criteriaTurn', 'criteriaFlip', 'criteriaDone'][state.step];
+  }
+
+  function stepCriteria(delta) {
+    finish();
+    const old = state.step;
+    if (!['SSS', 'SAS', 'ASA'].includes(state.card) || old + delta < 0 || old + delta > 3) {
+      hint(criteriaHint());
+      return;
+    }
+    const card = state.card,
+      next = old + delta;
+    criteria(card, next);
+    const motion = delta === 1 ? [slideM(6, 1), turnM(90, 6, 1), flipM(6, 0, 6, 1)][old] : [slideM(-6, -1), turnM(270, 6, 1), flipM(6, 0, 6, 1)][
+      next
+    ];
+    const kind = (delta === 1 ? old : next) === 0 ? 'slide' : (delta === 1 ? old : next) === 1 ? 'turn' : 'flip';
+    const params = kind === 'turn' ? [delta === 1 ? 90 : 270, 6, 1] : [];
+    criteriaVisual = CT[old];
+    Curio.tone(400 + next * 80, .1, .025);
+    animate(CT[old], motion, kind, params, m => {
+      criteriaVisual = m;
+      drawCriteria();
+    }, () => {
+      criteriaVisual = CT[state.step];
+      drawCriteria();
+      const key = criteriaHint();
+      V.how(key, {
+        valid: () => state.mode === 'Criteria' && state.card === card && state.step === next,
+        needs: next === 3 ? '#backStep' : '#nextStep'
+      });
+    });
+  }
+
+  function setMode(mode) {
+    mode = mode === 'Criteria' ? 'Criteria' : 'Tracks';
+    if (state.mode === mode) return;
+    finish();
+    V.hush();
+    state.mode = mode;
+    const c = state.mode === 'Criteria';
+    $('m-tracks').setAttribute('aria-pressed', !c);
+    $('m-criteria').setAttribute('aria-pressed', c);
+    for (const id of ['planeWrap', 'fieldtop', 'legend', 'trackControls']) $(id).hidden = c;
+    for (const id of ['criteriaScene', 'criteriaControls']) $(id).hidden = !c;
+    $('logbook').hidden = c;
+    if (c) {
+      criteria(state.card, state.step);
+      if (state.step === 0 && ['SSS', 'SAS', 'ASA'].includes(state.card)) hint('wCriteria', false);
+    } else {
+      hint(tracksHint(), false);
+      renderLog();
+    }
+    V.welcome();
+    resize();
+  }
+
+  function tracksHint() {
+    if (state.won) return state.level === 10 ? 'notNext' : 'next';
+    if (state.level === 9 && state.found[state.shape].length === SHAPES[state.shape].n) return 'selfComplete';
+    return welcomeKey();
+  }
+  $('m-tracks').onclick = () => setMode('Tracks');
+  $('m-criteria').onclick = () => setMode('Criteria');
+  for (const k of ['SSS', 'SAS', 'ASA', 'SSA', 'AAA']) $('c-' + k).onclick = () => criteria(k, 0);
+  $('nextStep').onclick = () => stepCriteria(1);
+  $('backStep').onclick = () => stepCriteria(-1);
+  Curio.init({
+    clips: "voice:*",
+    rate: .93,
+    readFallback: () => $('hint').textContent
+  });
+  Curio.onMotion(() => finish());
+  new ResizeObserver(() => resize()).observe($('planeWrap'));
+  new ResizeObserver(() => drawCriteria()).observe($('triangles'));
+  window.__tool = {
+    state,
+    setMode,
+    level,
+    slide: (x, y) => move('slide', [x, y]),
+    turn: (d, x, y) => move('turn', [d, x, y]),
+    flip: (x, y, u, v) => move('flip', [x, y, u, v]),
+    undo,
+    landed,
+    notTwins,
+    measure,
+    symmetriesFound: () => state.found[state.shape],
+    criteria,
+    allLines: V.allLines,
+    vlog: V.log,
+    get vq() {
+      return V.queue;
+    },
+    finish,
+    fnText,
+    classify,
+    current,
+    apply,
+    compose,
+    SHAPES,
+    screenPoint: (x, y) => {
+      const p = $('plane').createSVGPoint();
+      [p.x, p.y] = plane.px(x, y);
+      const q = p.matrixTransform(plane.root.getScreenCTM());
+      return [q.x, q.y];
+    }
+  };
+  level(1);
+  resize();
+})();
+</script>
+</body>
+</html>

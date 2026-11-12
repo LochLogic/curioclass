@@ -1,0 +1,25 @@
+{
+  "id": "equation-balancer",
+  "status": "beta",
+  "stage": "built",
+  "hook": "Count molecules, not guesses.",
+  "outcome": "Balance chemical equations with atom and mass ledgers and predict products using ion charges.",
+  "driver": "students",
+  "minutes": "15-35",
+  "modes": [
+    "Workbench",
+    "Levels",
+    "Predict"
+  ],
+  "grades_label": "Grade 10",
+  "sources": [
+    "OpenStax Chemistry 2e, sections 4.1, 4.2 and 2.6",
+    "Royal Society of Chemistry atomic masses from the Elements Inspector table",
+    "PubChem compound summaries, including magnesium peroxide CID 61745",
+    "NGSS Lead States (2013), HS-PS1-2 and HS-PS1-7",
+    "American Chemical Society, Guidelines for Chemical Laboratory Safety in Secondary Schools (2016)",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

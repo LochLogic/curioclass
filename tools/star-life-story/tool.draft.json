@@ -1,0 +1,22 @@
+{
+  "id": "star-life-story",
+  "status": "beta",
+  "stage": "spec",
+  "build_status": "incomplete: implementation write blocked by automatic content filter",
+  "hook": "Follow stars from their first fuel to the elements they leave behind.",
+  "outcome": "Explain how stellar mass affects lifetime, fusion, fate and element origins.",
+  "driver": "students",
+  "minutes": "25-40",
+  "modes": ["Life Line", "Sun", "Origins"],
+  "grades_label": "Grade 9",
+  "sources": [
+    "OpenStax Astronomy 2e, Table 22.1 and solar interior chapters",
+    "Sackmann, Boothroyd and Kraemer 1993, Our Sun. III. Present and Future",
+    "Heger et al. 2002, Massive Star Evolution Through the Ages, Table 1",
+    "Johnson 2019, Populating the periodic table: Nucleosynthesis of the elements",
+    "Planck Collaboration 2020; Fixsen 2009; IAU 2015 Resolution B3; NIST",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party": [],
+  "updated": "2026-11-07"
+}

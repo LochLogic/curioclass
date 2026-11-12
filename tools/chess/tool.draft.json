@@ -1,0 +1,16 @@
+{
+  "id": "chess",
+  "title": "Chess",
+  "description": "A paper theatre lit from the side. Play the computer, a friend, or a quick mate-in-one.",
+  "band": "35",
+  "grades": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  "stage": "built",
+  "recess": true,
+  "sources": [
+    "Lichess puzzle database, https://database.lichess.org/#puzzles. Database exports are released under the Creative Commons CC0 license. The 45 puzzle IDs, FENs and UCI lines are exactly the set recorded in spec.md.",
+    "Lichess/chess-puzzles, https://huggingface.co/datasets/Lichess/chess-puzzles. Licence at source: CC0 1.0. The spec's selection query used this official mirror.",
+    "FIDE Laws of Chess, https://handbook.fide.com/chapter/E012023. Classic game rules, with original game wording. Automatic threefold and fifty-move draws follow the Recess spec.",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class",
+    "Original engine, evaluation tables implementation, user interface and synthesized sound made for this game. Stockfish 19, GPL v3, is a development calibration tool only and is not included."
+  ]
+}

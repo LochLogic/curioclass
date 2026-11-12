@@ -1,0 +1,1820 @@
+[
+  {
+    "id": "hamlet",
+    "play": "Hamlet",
+    "act": "3.1",
+    "scene": "3.1",
+    "source": "Project Gutenberg #100",
+    "set": "gt-thrust-stage",
+    "floor": [
+      [
+        0.05,
+        0.7
+      ],
+      [
+        0.95,
+        0.7
+      ],
+      [
+        0.99,
+        0.86
+      ],
+      [
+        0.01,
+        0.86
+      ]
+    ],
+    "figures": [
+      "hamlet",
+      "ophelia",
+      "king",
+      "polonius"
+    ],
+    "lines": [
+      {
+        "speaker": "Hamlet",
+        "text": "Soft you now,",
+        "verse": true,
+        "dir": false,
+        "n": 1,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "The fair Ophelia! Nymph, in thy orisons",
+        "verse": true,
+        "dir": false,
+        "n": 2,
+        "gloss": [
+          {
+            "word": "orisons",
+            "meaning": "prayers",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "Be all my sins remember'd.",
+        "verse": true,
+        "dir": false,
+        "n": 3,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "Good my lord,",
+        "verse": true,
+        "dir": false,
+        "n": 4,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "How does your honour for this many a day?",
+        "verse": true,
+        "dir": false,
+        "n": 5,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "I humbly thank you; well, well, well.",
+        "verse": true,
+        "dir": false,
+        "n": 6,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "My lord, I have remembrances of yours",
+        "verse": true,
+        "dir": false,
+        "n": 7,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "That I have longed long to re-deliver.",
+        "verse": true,
+        "dir": false,
+        "n": 8,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "I pray you, now receive them.",
+        "verse": true,
+        "dir": false,
+        "n": 9,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "No, not I.",
+        "verse": true,
+        "dir": false,
+        "n": 10,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "I never gave you aught.",
+        "verse": true,
+        "dir": false,
+        "n": 11,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "My honour'd lord, you know right well you did,",
+        "verse": true,
+        "dir": false,
+        "n": 12,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "And with them words of so sweet breath compos'd",
+        "verse": true,
+        "dir": false,
+        "n": 13,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "As made the things more rich; their perfume lost,",
+        "verse": true,
+        "dir": false,
+        "n": 14,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "Take these again; for to the noble mind",
+        "verse": true,
+        "dir": false,
+        "n": 15,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "Rich gifts wax poor when givers prove unkind.",
+        "verse": true,
+        "dir": false,
+        "n": 16,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "There, my lord.",
+        "verse": true,
+        "dir": false,
+        "n": 17,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "Ha, ha! Are you honest?",
+        "verse": true,
+        "dir": false,
+        "n": 18,
+        "gloss": [
+          {
+            "word": "honest",
+            "meaning": "chaste and truthful; both senses are in play",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "My lord?",
+        "verse": true,
+        "dir": false,
+        "n": 19,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "Are you fair?",
+        "verse": true,
+        "dir": false,
+        "n": 20,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "What means your lordship?",
+        "verse": true,
+        "dir": false,
+        "n": 21,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "That if you be honest and fair, your honesty should admit no discourse",
+        "verse": true,
+        "dir": false,
+        "n": 22,
+        "gloss": [
+          {
+            "word": "honest",
+            "meaning": "chaste and truthful; both senses are in play",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "to your beauty.",
+        "verse": true,
+        "dir": false,
+        "n": 23,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "Could beauty, my lord, have better commerce than with honesty?",
+        "verse": true,
+        "dir": false,
+        "n": 24,
+        "gloss": [
+          {
+            "word": "honest",
+            "meaning": "chaste and truthful; both senses are in play",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "Ay, truly; for the power of beauty will sooner transform honesty from",
+        "verse": true,
+        "dir": false,
+        "n": 25,
+        "gloss": [
+          {
+            "word": "honest",
+            "meaning": "chaste and truthful; both senses are in play",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "what it is to a bawd than the force of honesty can translate beauty",
+        "verse": true,
+        "dir": false,
+        "n": 26,
+        "gloss": [
+          {
+            "word": "honest",
+            "meaning": "chaste and truthful; both senses are in play",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "into his likeness. This was sometime a paradox, but now the time gives",
+        "verse": true,
+        "dir": false,
+        "n": 27,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "it proof. I did love you once.",
+        "verse": true,
+        "dir": false,
+        "n": 28,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "Indeed, my lord, you made me believe so.",
+        "verse": true,
+        "dir": false,
+        "n": 29,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "You should not have believed me; for virtue cannot so inoculate our old",
+        "verse": true,
+        "dir": false,
+        "n": 30,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "stock but we shall relish of it. I loved you not.",
+        "verse": true,
+        "dir": false,
+        "n": 31,
+        "gloss": []
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "I was the more deceived.",
+        "verse": true,
+        "dir": false,
+        "n": 32,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "Get thee to a nunnery. Why wouldst thou be a breeder of sinners? I am",
+        "verse": true,
+        "dir": false,
+        "n": 33,
+        "gloss": [
+          {
+            "word": "nunnery",
+            "meaning": "a convent; some editors read a second, ruder meaning",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "myself indifferent honest; but yet I could accuse me of such things",
+        "verse": true,
+        "dir": false,
+        "n": 34,
+        "gloss": [
+          {
+            "word": "honest",
+            "meaning": "chaste and truthful; both senses are in play",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "that it were better my mother had not borne me. I am very proud,",
+        "verse": true,
+        "dir": false,
+        "n": 35,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "revengeful, ambitious, with more offences at my beck than I have",
+        "verse": true,
+        "dir": false,
+        "n": 36,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "thoughts to put them in, imagination to give them shape, or time to act",
+        "verse": true,
+        "dir": false,
+        "n": 37,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "them in. What should such fellows as I do crawling between earth and",
+        "verse": true,
+        "dir": false,
+        "n": 38,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "heaven? We are arrant knaves all, believe none of us. Go thy ways to a",
+        "verse": true,
+        "dir": false,
+        "n": 39,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "nunnery. Where's your father?",
+        "verse": true,
+        "dir": false,
+        "n": 40,
+        "gloss": [
+          {
+            "word": "nunnery",
+            "meaning": "a convent; some editors read a second, ruder meaning",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Ophelia",
+        "text": "At home, my lord.",
+        "verse": true,
+        "dir": false,
+        "n": 41,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "Let the doors be shut upon him, that he may play the fool nowhere but",
+        "verse": true,
+        "dir": false,
+        "n": 42,
+        "gloss": []
+      },
+      {
+        "speaker": "Hamlet",
+        "text": "in's own house. Farewell.",
+        "verse": true,
+        "dir": false,
+        "n": 43,
+        "gloss": []
+      }
+    ],
+    "question": "When does Hamlet know he is being watched, and does it matter?",
+    "setup": "KING: Her father and myself, lawful espials, / Will so bestow ourselves that, seeing unseen,\nExeunt King and Polonius. The text says they withdraw, not where.",
+    "quote": "Where's your father?",
+    "productions": [
+      {
+        "title": "The Watched Prince",
+        "note": "He sees them early. The cruelty becomes a performance.",
+        "choices": [
+          {
+            "title": "Hamlet sees the watchers early.",
+            "key": "allows",
+            "reason": "The sudden turn at \"Ha, ha!\" can signal discovery, but the words do not demand it.",
+            "refs": [
+              18
+            ],
+            "id": "0-0"
+          },
+          {
+            "title": "\"I loved you not\" is aimed at the hiding place.",
+            "key": "adds",
+            "reason": "The text gives the words, but no direction toward the listeners.",
+            "refs": [
+              31
+            ],
+            "id": "0-1"
+          },
+          {
+            "title": "Ophelia's gifts are thrown down.",
+            "key": "adds",
+            "reason": "The gifts are offered back; throwing them is a new physical action.",
+            "refs": [
+              9
+            ],
+            "id": "0-2"
+          },
+          {
+            "title": "Ophelia offers the remembrances back while the withdrawn King and Polonius watch.",
+            "key": "requires",
+            "reason": "The offer is explicit; the setup places the King and Polonius out of sight to observe.",
+            "refs": [
+              9
+            ],
+            "id": "0-3"
+          }
+        ]
+      },
+      {
+        "title": "The Wounded Lover",
+        "note": "He never knows. Returning the gifts wounds him.",
+        "choices": [
+          {
+            "title": "Hamlet has no sight line to the watchers.",
+            "key": "allows",
+            "reason": "Nothing in the excerpt settles whether Hamlet sees the withdrawn listeners.",
+            "refs": [
+              40
+            ],
+            "id": "1-0"
+          },
+          {
+            "title": "A long pause precedes \"I loved you not\".",
+            "key": "allows",
+            "reason": "The reversal after \"I did love you once\" can sustain a pause. Its length is not specified.",
+            "refs": [
+              28,
+              31
+            ],
+            "id": "1-1"
+          },
+          {
+            "title": "\"Get thee to a nunnery\" is quiet and close.",
+            "key": "allows",
+            "reason": "The command can be protective, bitter or cruel. Neither distance nor volume is fixed.",
+            "refs": [
+              33
+            ],
+            "id": "1-2"
+          },
+          {
+            "title": "Ophelia offers the remembrances back while the withdrawn King and Polonius watch.",
+            "key": "requires",
+            "reason": "The offer is explicit; the setup places the King and Polonius out of sight to observe.",
+            "refs": [
+              9
+            ],
+            "id": "1-3"
+          }
+        ]
+      },
+      {
+        "title": "The Late Turn",
+        "note": "Her glance makes the question a turning point.",
+        "choices": [
+          {
+            "title": "Hamlet realizes at \"Where's your father?\".",
+            "key": "allows",
+            "reason": "The question and \"Let the doors be shut upon him\" can suggest sudden suspicion.",
+            "refs": [
+              40,
+              42
+            ],
+            "id": "2-0"
+          },
+          {
+            "title": "Ophelia looks toward the watchers.",
+            "key": "adds",
+            "reason": "\"At home, my lord\" gives an answer, not an eye movement.",
+            "refs": [
+              41
+            ],
+            "id": "2-1"
+          },
+          {
+            "title": "Hamlet exits fast on \"Farewell\".",
+            "key": "allows",
+            "reason": "The farewell licenses departure; its speed remains a performance choice.",
+            "refs": [
+              43
+            ],
+            "id": "2-2"
+          },
+          {
+            "title": "Ophelia offers the remembrances back while the withdrawn King and Polonius watch.",
+            "key": "requires",
+            "reason": "The offer is explicit; the setup places the King and Polonius out of sight to observe.",
+            "refs": [
+              9
+            ],
+            "id": "2-3"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "awareness",
+        "title": "When does Hamlet know?",
+        "options": [
+          "Early, at \"Ha, ha!\"",
+          "He never knows",
+          "At \"Where's your father?\""
+        ],
+        "refs": [
+          18,
+          40
+        ]
+      },
+      {
+        "id": "delivery",
+        "title": "How does the denial land?",
+        "options": [
+          "Toward the listeners",
+          "After a long pause",
+          "With new suspicion"
+        ],
+        "refs": [
+          31
+        ]
+      },
+      {
+        "id": "gifts",
+        "title": "What happens to the gifts?",
+        "options": [
+          "Thrown to the floor",
+          "Held between them",
+          "Returned with a glance"
+        ],
+        "refs": [
+          9
+        ]
+      }
+    ],
+    "keyLine": 40
+  },
+  {
+    "id": "macbeth",
+    "play": "Macbeth",
+    "act": "2.1",
+    "scene": "2.1",
+    "source": "Project Gutenberg #100",
+    "set": "gt-thrust-stage",
+    "floor": [
+      [
+        0.05,
+        0.7
+      ],
+      [
+        0.95,
+        0.7
+      ],
+      [
+        0.99,
+        0.86
+      ],
+      [
+        0.01,
+        0.86
+      ]
+    ],
+    "figures": [
+      "macbeth-reach"
+    ],
+    "lines": [
+      {
+        "speaker": "Macbeth",
+        "text": "Is this a dagger which I see before me,",
+        "verse": true,
+        "dir": false,
+        "n": 1,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "The handle toward my hand? Come, let me clutch thee:--",
+        "verse": true,
+        "dir": false,
+        "n": 2,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "I have thee not, and yet I see thee still.",
+        "verse": true,
+        "dir": false,
+        "n": 3,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "Art thou not, fatal vision, sensible",
+        "verse": true,
+        "dir": false,
+        "n": 4,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "To feeling as to sight? or art thou but",
+        "verse": true,
+        "dir": false,
+        "n": 5,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "A dagger of the mind, a false creation,",
+        "verse": true,
+        "dir": false,
+        "n": 6,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "Proceeding from the heat-oppressed brain?",
+        "verse": true,
+        "dir": false,
+        "n": 7,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "I see thee yet, in form as palpable",
+        "verse": true,
+        "dir": false,
+        "n": 8,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "As this which now I draw.",
+        "verse": true,
+        "dir": false,
+        "n": 9,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "Thou marshall'st me the way that I was going;",
+        "verse": true,
+        "dir": false,
+        "n": 10,
+        "gloss": [
+          {
+            "word": "marshall'st",
+            "meaning": "leads",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "And such an instrument I was to use.",
+        "verse": true,
+        "dir": false,
+        "n": 11,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "Mine eyes are made the fools o' the other senses,",
+        "verse": true,
+        "dir": false,
+        "n": 12,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "Or else worth all the rest: I see thee still;",
+        "verse": true,
+        "dir": false,
+        "n": 13,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "And on thy blade and dudgeon, gouts of blood,",
+        "verse": true,
+        "dir": false,
+        "n": 14,
+        "gloss": [
+          {
+            "word": "dudgeon",
+            "meaning": "the handle of a dagger",
+            "source": "Folger Shakespeare editions notes"
+          },
+          {
+            "word": "gouts",
+            "meaning": "drops",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "Which was not so before.--There's no such thing.",
+        "verse": true,
+        "dir": false,
+        "n": 15,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "It is the bloody business which informs",
+        "verse": true,
+        "dir": false,
+        "n": 16,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "Thus to mine eyes.",
+        "verse": true,
+        "dir": false,
+        "n": 17,
+        "gloss": []
+      },
+      {
+        "cut": true
+      },
+      {
+        "speaker": "",
+        "text": "A bell rings.",
+        "dir": true,
+        "verse": false,
+        "n": 18,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "I go, and it is done. The bell invites me.",
+        "verse": true,
+        "dir": false,
+        "n": 19,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "Hear it not, Duncan, for it is a knell",
+        "verse": true,
+        "dir": false,
+        "n": 20,
+        "gloss": []
+      },
+      {
+        "speaker": "Macbeth",
+        "text": "That summons thee to heaven or to hell.",
+        "verse": true,
+        "dir": false,
+        "n": 21,
+        "gloss": []
+      }
+    ],
+    "question": "Should the audience see the dagger?",
+    "setup": "Macbeth is alone before the murder of Duncan. An imagined dagger leads toward a real deed.",
+    "quote": "Is this a dagger which I see before me,",
+    "productions": [
+      {
+        "title": "Empty Air",
+        "note": "A reaching hand meets nothing.",
+        "choices": [
+          {
+            "title": "No imagined dagger is shown.",
+            "key": "allows",
+            "reason": "\"There's no such thing\" supports an empty stage, though the audience need not see what Macbeth sees.",
+            "refs": [
+              15
+            ],
+            "id": "0-0"
+          },
+          {
+            "title": "Macbeth draws his real dagger.",
+            "key": "requires",
+            "reason": "\"As this which now I draw\" names the real drawing action.",
+            "refs": [
+              9
+            ],
+            "id": "0-1"
+          },
+          {
+            "title": "The bell is a real sound.",
+            "key": "requires",
+            "reason": "The script supplies the direction \"A bell rings.\"",
+            "refs": [
+              18
+            ],
+            "id": "0-2"
+          }
+        ]
+      },
+      {
+        "title": "Light on the Floor",
+        "note": "The audience shares a vision made of light.",
+        "choices": [
+          {
+            "title": "A projected dagger appears on the boards.",
+            "key": "allows",
+            "reason": "\"I see thee\" sustains a visible vision. The text does not prescribe its material.",
+            "refs": [
+              8
+            ],
+            "id": "1-0"
+          },
+          {
+            "title": "Blood appears only at \"Which was not so before\".",
+            "key": "allows",
+            "reason": "The change is described in the words; its precise visual cue is open.",
+            "refs": [
+              14,
+              15
+            ],
+            "id": "1-1"
+          },
+          {
+            "title": "The audience sees what Macbeth sees.",
+            "key": "adds",
+            "reason": "The text reports his sight, without requiring the audience to share it.",
+            "refs": [
+              3
+            ],
+            "id": "1-2"
+          }
+        ]
+      },
+      {
+        "title": "The Wire",
+        "note": "A solid dagger leads him on, just out of reach.",
+        "choices": [
+          {
+            "title": "A solid prop hangs on a wire.",
+            "key": "adds",
+            "reason": "A physical hanging object is added to a \"fatal vision\" and \"dagger of the mind\".",
+            "refs": [
+              4,
+              6
+            ],
+            "id": "2-0"
+          },
+          {
+            "title": "The dagger moves on \"Thou marshall'st me the way\".",
+            "key": "allows",
+            "reason": "\"Marshall'st\" can be staged as a visible leading motion.",
+            "refs": [
+              10
+            ],
+            "id": "2-1"
+          },
+          {
+            "title": "The vision is supernatural, rather than imagined.",
+            "key": "adds",
+            "reason": "The words question the cause; this production supplies an external supernatural answer.",
+            "refs": [
+              7
+            ],
+            "id": "2-2"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "dagger",
+        "title": "What does the audience see?",
+        "options": [
+          "Empty air",
+          "A dagger of light",
+          "A dagger on a wire"
+        ],
+        "refs": [
+          1
+        ]
+      },
+      {
+        "id": "vision",
+        "title": "How does the vision behave?",
+        "options": [
+          "Still, beyond his grasp",
+          "Blood at 'Which was not so before'",
+          "It leads him away"
+        ],
+        "refs": [
+          14,
+          10
+        ]
+      },
+      {
+        "id": "cause",
+        "title": "What does its delivery suggest?",
+        "options": [
+          "A mind in conflict",
+          "A shared vision",
+          "A supernatural force"
+        ],
+        "refs": [
+          6
+        ]
+      }
+    ],
+    "keyLine": 1
+  },
+  {
+    "id": "shrew",
+    "play": "The Taming of the Shrew",
+    "act": "5.2",
+    "scene": "5.2",
+    "source": "Project Gutenberg #100",
+    "set": "gt-thrust-stage",
+    "floor": [
+      [
+        0.05,
+        0.7
+      ],
+      [
+        0.95,
+        0.7
+      ],
+      [
+        0.99,
+        0.86
+      ],
+      [
+        0.01,
+        0.86
+      ]
+    ],
+    "figures": [
+      "katherina",
+      "petruchio",
+      "bianca",
+      "widow",
+      "lucentio",
+      "hortensio"
+    ],
+    "lines": [
+      {
+        "speaker": "Katherina",
+        "text": "Thy husband is thy lord, thy life, thy keeper,",
+        "verse": true,
+        "dir": false,
+        "n": 1,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "Thy head, thy sovereign; one that cares for thee,",
+        "verse": true,
+        "dir": false,
+        "n": 2,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "And for thy maintenance commits his body",
+        "verse": true,
+        "dir": false,
+        "n": 3,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "To painful labour both by sea and land,",
+        "verse": true,
+        "dir": false,
+        "n": 4,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "To watch the night in storms, the day in cold,",
+        "verse": true,
+        "dir": false,
+        "n": 5,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "Whilst thou liest warm at home, secure and safe;",
+        "verse": true,
+        "dir": false,
+        "n": 6,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "And craves no other tribute at thy hands",
+        "verse": true,
+        "dir": false,
+        "n": 7,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "But love, fair looks, and true obedience;",
+        "verse": true,
+        "dir": false,
+        "n": 8,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "Too little payment for so great a debt.",
+        "verse": true,
+        "dir": false,
+        "n": 9,
+        "gloss": []
+      },
+      {
+        "cut": true
+      },
+      {
+        "speaker": "Katherina",
+        "text": "My mind hath been as big as one of yours,",
+        "verse": true,
+        "dir": false,
+        "n": 10,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "My heart as great, my reason haply more,",
+        "verse": true,
+        "dir": false,
+        "n": 11,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "To bandy word for word and frown for frown;",
+        "verse": true,
+        "dir": false,
+        "n": 12,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "But now I see our lances are but straws,",
+        "verse": true,
+        "dir": false,
+        "n": 13,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "Our strength as weak, our weakness past compare,",
+        "verse": true,
+        "dir": false,
+        "n": 14,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "That seeming to be most which we indeed least are.",
+        "verse": true,
+        "dir": false,
+        "n": 15,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "Then vail your stomachs, for it is no boot,",
+        "verse": true,
+        "dir": false,
+        "n": 16,
+        "gloss": [
+          {
+            "word": "vail your stomachs",
+            "meaning": "lower your pride",
+            "source": "Folger Shakespeare editions notes"
+          },
+          {
+            "word": "it is no boot",
+            "meaning": "it is no use",
+            "source": "Folger Shakespeare editions notes"
+          }
+        ]
+      },
+      {
+        "speaker": "Katherina",
+        "text": "And place your hands below your husband's foot:",
+        "verse": true,
+        "dir": false,
+        "n": 17,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "In token of which duty, if he please,",
+        "verse": true,
+        "dir": false,
+        "n": 18,
+        "gloss": []
+      },
+      {
+        "speaker": "Katherina",
+        "text": "My hand is ready; may it do him ease.",
+        "verse": true,
+        "dir": false,
+        "n": 19,
+        "gloss": []
+      },
+      {
+        "speaker": "Petruchio",
+        "text": "Why, there's a wench! Come on, and kiss me, Kate.",
+        "verse": true,
+        "dir": false,
+        "n": 20,
+        "gloss": []
+      },
+      {
+        "cut": true
+      },
+      {
+        "speaker": "",
+        "text": "Exeunt Petruchio and Katherina.",
+        "dir": true,
+        "verse": false,
+        "n": 21,
+        "gloss": []
+      },
+      {
+        "speaker": "Hortensio",
+        "text": "Now go thy ways; thou hast tam'd a curst shrew.",
+        "verse": true,
+        "dir": false,
+        "n": 22,
+        "gloss": []
+      },
+      {
+        "speaker": "Lucentio",
+        "text": "'Tis a wonder, by your leave, she will be tam'd so.",
+        "verse": true,
+        "dir": false,
+        "n": 23,
+        "gloss": []
+      }
+    ],
+    "question": "Does Kate mean it?",
+    "setup": "The speech wins a bet: three husbands wagered on whose wife would come when called. The words state a husband's rule over a wife; the three readings ask what the performance means.",
+    "quote": "My mind hath been as big as one of yours,",
+    "productions": [
+      {
+        "title": "Plain Words",
+        "note": "Warm, sincere, addressed to the other wives.",
+        "choices": [
+          {
+            "title": "Kate says the speech straight.",
+            "key": "allows",
+            "reason": "The declaration can be sincere, but its sincerity is not fixed by its wording.",
+            "refs": [
+              1
+            ],
+            "id": "0-0"
+          },
+          {
+            "title": "Petruchio is moved, not smug.",
+            "key": "allows",
+            "reason": "His welcome and kiss can express tenderness; his feeling is not directed.",
+            "refs": [
+              20
+            ],
+            "id": "0-1"
+          },
+          {
+            "title": "Kate's hand is truly under his foot.",
+            "key": "allows",
+            "reason": "The speech offers that gesture; a completed gesture is not prescribed.",
+            "refs": [
+              17
+            ],
+            "id": "0-2"
+          },
+          {
+            "title": "The speech is public before the other couples and ends the wager.",
+            "key": "requires",
+            "reason": "The scene places the other couples at the wager; Kate addresses them in the plural.",
+            "refs": [
+              10
+            ],
+            "id": "0-3"
+          }
+        ]
+      },
+      {
+        "title": "The Long Con",
+        "note": "Kate and Petruchio play a team to win the wager.",
+        "choices": [
+          {
+            "title": "Kate uses ironic delivery.",
+            "key": "allows",
+            "reason": "Her assertion of an equal mind and greater reason can support irony.",
+            "refs": [
+              10,
+              11
+            ],
+            "id": "1-0"
+          },
+          {
+            "title": "The couple share a look at the winnings.",
+            "key": "adds",
+            "reason": "The wager is context; this shared look is an invented signal.",
+            "refs": [
+              11
+            ],
+            "id": "1-1"
+          },
+          {
+            "title": "Petruchio stops her hand before his foot.",
+            "key": "adds",
+            "reason": "No direction supplies the intercepting hand.",
+            "refs": [
+              19
+            ],
+            "id": "1-2"
+          },
+          {
+            "title": "The speech is public before the other couples and ends the wager.",
+            "key": "requires",
+            "reason": "The scene places the other couples at the wager; Kate addresses them in the plural.",
+            "refs": [
+              10
+            ],
+            "id": "1-3"
+          }
+        ]
+      },
+      {
+        "title": "Hollow",
+        "note": "Flat exhaustion leaves Petruchio uneasy.",
+        "choices": [
+          {
+            "title": "Kate sounds broken and exhausted.",
+            "key": "allows",
+            "reason": "The speech specifies words, not a mood or pitch contour.",
+            "refs": [
+              1
+            ],
+            "id": "2-0"
+          },
+          {
+            "title": "Lucentio's last line expresses real doubt.",
+            "key": "allows",
+            "reason": "\"'Tis a wonder\" can register doubt, surprise or admiration.",
+            "refs": [
+              23
+            ],
+            "id": "2-1"
+          },
+          {
+            "title": "Kate exits alone.",
+            "key": "adds",
+            "reason": "The text sends them out together. A production can do this, but it goes against a stage direction.",
+            "refs": [
+              21
+            ],
+            "id": "2-2"
+          },
+          {
+            "title": "The speech is public before the other couples and ends the wager.",
+            "key": "requires",
+            "reason": "The scene places the other couples at the wager; Kate addresses them in the plural.",
+            "refs": [
+              10
+            ],
+            "id": "2-3"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "delivery",
+        "title": "Does Kate mean it?",
+        "options": [
+          "Warm and sincere",
+          "Ironic, with a wink",
+          "Flat and exhausted"
+        ],
+        "refs": [
+          1,
+          11
+        ]
+      },
+      {
+        "id": "hand",
+        "title": "What happens to the offered hand?",
+        "options": [
+          "Hand below his foot",
+          "He stops her hand",
+          "The gesture is hollow"
+        ],
+        "refs": [
+          19
+        ]
+      },
+      {
+        "id": "ending",
+        "title": "How does the ending settle?",
+        "options": [
+          "Together, with warmth",
+          "Together, with their winnings",
+          "Kate exits alone"
+        ],
+        "refs": [
+          21
+        ]
+      }
+    ],
+    "keyLine": 10
+  },
+  {
+    "id": "trifles",
+    "play": "Trifles",
+    "act": "the ending",
+    "scene": "the ending",
+    "source": "Project Gutenberg #10623",
+    "set": "gt-kitchen-set",
+    "floor": [
+      [
+        0.05,
+        0.7
+      ],
+      [
+        0.95,
+        0.7
+      ],
+      [
+        0.99,
+        0.86
+      ],
+      [
+        0.01,
+        0.86
+      ]
+    ],
+    "figures": [
+      "mrs-hale",
+      "mrs-peters",
+      "henderson",
+      "sheriff",
+      "hale"
+    ],
+    "lines": [
+      {
+        "speaker": "",
+        "text": "Their eyes meet. A look of growing comprehension, of horror. Steps are heard outside. MRS HALE slips box under quilt pieces, and sinks into her chair. Enter SHERIFF and COUNTY ATTORNEY. MRS PETERS rises.",
+        "dir": true,
+        "verse": false,
+        "n": 1,
+        "gloss": [
+          {
+            "word": "quilt",
+            "meaning": "To quilt is to stitch the layers; to knot is to tie them with knots of yarn.",
+            "source": "Britannica, quilting"
+          }
+        ]
+      },
+      {
+        "speaker": "",
+        "text": "as one turning from serious things to little pleasantries",
+        "dir": true,
+        "verse": false,
+        "n": 2,
+        "gloss": []
+      },
+      {
+        "speaker": "Henderson",
+        "text": "Well ladies, have you decided whether she was going to quilt it or knot it?",
+        "dir": false,
+        "verse": false,
+        "n": 3,
+        "gloss": [
+          {
+            "word": "quilt",
+            "meaning": "To quilt is to stitch the layers; to knot is to tie them with knots of yarn.",
+            "source": "Britannica, quilting"
+          }
+        ]
+      },
+      {
+        "speaker": "Mrs Peters",
+        "text": "We think she was going to--knot it.",
+        "dir": false,
+        "verse": false,
+        "n": 4,
+        "gloss": [
+          {
+            "word": "knot",
+            "meaning": "To quilt is to stitch the layers; to knot is to tie them with knots of yarn.",
+            "source": "Britannica, quilting"
+          }
+        ]
+      },
+      {
+        "cut": true
+      },
+      {
+        "speaker": "Henderson",
+        "text": "No, Peters, it's all perfectly clear except a reason for doing it. But you know juries when it comes to women. If there was some definite thing. Something to show--something to make a story about--a thing that would connect up with this strange way of doing it--",
+        "dir": false,
+        "verse": false,
+        "n": 5,
+        "gloss": []
+      },
+      {
+        "speaker": "",
+        "text": "The women's eyes meet for an instant. Enter HALE from outer door.",
+        "dir": true,
+        "verse": false,
+        "n": 6,
+        "gloss": []
+      },
+      {
+        "speaker": "Hale",
+        "text": "Well, I've got the team around. Pretty cold out there.",
+        "dir": false,
+        "verse": false,
+        "n": 7,
+        "gloss": []
+      },
+      {
+        "speaker": "Henderson",
+        "text": "I'm going to stay here a while by myself,",
+        "dir": false,
+        "verse": false,
+        "n": 8,
+        "gloss": []
+      },
+      {
+        "speaker": "",
+        "text": "to the SHERIFF",
+        "dir": true,
+        "verse": false,
+        "n": 9,
+        "gloss": []
+      },
+      {
+        "speaker": "Henderson",
+        "text": "You can send Frank out for me, can't you? I want to go over everything. I'm not satisfied that we can't do better.",
+        "dir": false,
+        "verse": false,
+        "n": 10,
+        "gloss": []
+      },
+      {
+        "speaker": "Sheriff",
+        "text": "Do you want to see what Mrs Peters is going to take in?",
+        "dir": false,
+        "verse": false,
+        "n": 11,
+        "gloss": []
+      },
+      {
+        "speaker": "",
+        "text": "The LAWYER goes to the table, picks up the apron, laughs.",
+        "dir": true,
+        "verse": false,
+        "n": 12,
+        "gloss": []
+      },
+      {
+        "speaker": "Henderson",
+        "text": "Oh, I guess they're not very dangerous things the ladies have picked out.",
+        "dir": false,
+        "verse": false,
+        "n": 13,
+        "gloss": []
+      },
+      {
+        "speaker": "",
+        "text": "Moves a few things about, disturbing the quilt pieces which cover the box. Steps back",
+        "dir": true,
+        "verse": false,
+        "n": 14,
+        "gloss": [
+          {
+            "word": "quilt",
+            "meaning": "To quilt is to stitch the layers; to knot is to tie them with knots of yarn.",
+            "source": "Britannica, quilting"
+          }
+        ]
+      },
+      {
+        "speaker": "Henderson",
+        "text": "No, Mrs Peters doesn't need supervising. For that matter, a sheriff's wife is married to the law. Ever think of it that way, Mrs Peters?",
+        "dir": false,
+        "verse": false,
+        "n": 15,
+        "gloss": []
+      },
+      {
+        "speaker": "Mrs Peters",
+        "text": "Not--just that way.",
+        "dir": false,
+        "verse": false,
+        "n": 16,
+        "gloss": []
+      },
+      {
+        "speaker": "",
+        "text": "chuckling",
+        "dir": true,
+        "verse": false,
+        "n": 17,
+        "gloss": []
+      },
+      {
+        "speaker": "Sheriff",
+        "text": "Married to the law.",
+        "dir": false,
+        "verse": false,
+        "n": 18,
+        "gloss": []
+      },
+      {
+        "speaker": "",
+        "text": "moves toward the other room",
+        "dir": true,
+        "verse": false,
+        "n": 19,
+        "gloss": []
+      },
+      {
+        "speaker": "Sheriff",
+        "text": "I just want you to come in here a minute, George. We ought to take a look at these windows.",
+        "dir": false,
+        "verse": false,
+        "n": 20,
+        "gloss": []
+      },
+      {
+        "speaker": "",
+        "text": "scoffingly",
+        "dir": true,
+        "verse": false,
+        "n": 21,
+        "gloss": []
+      },
+      {
+        "speaker": "Henderson",
+        "text": "Oh, windows!",
+        "dir": false,
+        "verse": false,
+        "n": 22,
+        "gloss": []
+      },
+      {
+        "speaker": "Sheriff",
+        "text": "We'll be right out, Mr Hale.",
+        "dir": false,
+        "verse": false,
+        "n": 23,
+        "gloss": []
+      },
+      {
+        "speaker": "",
+        "text": "HALE goes outside. The SHERIFF follows the COUNTY ATTORNEY into the other room. Then MRS HALE rises, hands tight together, looking intensely at MRS PETERS, whose eyes make a slow turn, finally meeting MRS HALE's. A moment MRS HALE holds her, then her own eyes point the way to where the box is concealed. Suddenly MRS PETERS throws back quilt pieces and tries to put the box in the bag she is wearing. It is too big. She opens box, starts to take bird out, cannot touch it, goes to pieces, stands there helpless. Sound of a knob turning in the other room. MRS HALE snatches the box and puts it in the pocket of her big coat. Enter COUNTY ATTORNEY and SHERIFF.",
+        "dir": true,
+        "verse": false,
+        "n": 24,
+        "gloss": [
+          {
+            "word": "quilt",
+            "meaning": "To quilt is to stitch the layers; to knot is to tie them with knots of yarn.",
+            "source": "Britannica, quilting"
+          }
+        ]
+      },
+      {
+        "speaker": "",
+        "text": "facetiously",
+        "dir": true,
+        "verse": false,
+        "n": 25,
+        "gloss": []
+      },
+      {
+        "speaker": "Henderson",
+        "text": "Well, Henry, at least we found out that she was not going to quilt it. She was going to--what is it you call it, ladies?",
+        "dir": false,
+        "verse": false,
+        "n": 26,
+        "gloss": [
+          {
+            "word": "quilt",
+            "meaning": "To quilt is to stitch the layers; to knot is to tie them with knots of yarn.",
+            "source": "Britannica, quilting"
+          }
+        ]
+      },
+      {
+        "speaker": "",
+        "text": "her hand against her pocket",
+        "dir": true,
+        "verse": false,
+        "n": 27,
+        "gloss": []
+      },
+      {
+        "speaker": "Mrs Hale",
+        "text": "We call it--knot it, Mr Henderson.",
+        "dir": false,
+        "verse": false,
+        "n": 28,
+        "gloss": [
+          {
+            "word": "knot",
+            "meaning": "To quilt is to stitch the layers; to knot is to tie them with knots of yarn.",
+            "source": "Britannica, quilting"
+          }
+        ]
+      },
+      {
+        "speaker": "",
+        "text": "CURTAIN",
+        "dir": true,
+        "verse": false,
+        "n": 29,
+        "gloss": []
+      }
+    ],
+    "question": "When do the two women decide, and is it justice?",
+    "setup": "Susan Glaspell, 1916. Two women in a farmhouse kitchen, while the men search for evidence that Minnie Wright killed her husband, find her canary dead in a sewing box: \"Somebody--wrung--its--neck.\" Only the closed box is pictured.",
+    "quote": "We call it--knot it, Mr Henderson.",
+    "productions": [
+      {
+        "title": "Quiet Pact",
+        "note": "An early shared look; the last line stays polite.",
+        "choices": [
+          {
+            "title": "The women decide at the first look.",
+            "key": "allows",
+            "reason": "Growing comprehension can become a decision; the direction does not say a pact is made.",
+            "refs": [
+              1
+            ],
+            "id": "0-0"
+          },
+          {
+            "title": "The last line is flat and polite.",
+            "key": "allows",
+            "reason": "The wording and pocket gesture leave the tone open.",
+            "refs": [
+              28
+            ],
+            "id": "0-1"
+          }
+        ]
+      },
+      {
+        "title": "Married to the Law",
+        "note": "Mrs Peters turns only at her reply to Henderson.",
+        "choices": [
+          {
+            "title": "Mrs Peters decides at \"Not--just that way\".",
+            "key": "allows",
+            "reason": "Her reply can mark a late break with the law, without fixing that moment of decision.",
+            "refs": [
+              16
+            ],
+            "id": "1-0"
+          },
+          {
+            "title": "A long pause falls inside Mrs Peters's line.",
+            "key": "allows",
+            "reason": "The dash leaves room for hesitation; its length is an actor's choice.",
+            "refs": [
+              16
+            ],
+            "id": "1-1"
+          }
+        ]
+      },
+      {
+        "title": "The Dare",
+        "note": "The last reply becomes a challenge.",
+        "choices": [
+          {
+            "title": "Mrs Hale delivers the last line defiantly.",
+            "key": "allows",
+            "reason": "The words and prescribed pocket gesture can carry defiance or concealment.",
+            "refs": [
+              28
+            ],
+            "id": "2-0"
+          },
+          {
+            "title": "Mrs Hale holds a hand against her pocket.",
+            "key": "requires",
+            "reason": "The direction explicitly states \"her hand against her pocket\".",
+            "refs": [
+              27
+            ],
+            "id": "2-1"
+          },
+          {
+            "title": "Henderson notices and lets it go.",
+            "key": "adds",
+            "reason": "The text supplies neither recognition nor a decision to overlook the concealed box.",
+            "refs": [
+              28
+            ],
+            "id": "2-2"
+          }
+        ]
+      }
+    ],
+    "decisions": [
+      {
+        "id": "decision",
+        "title": "When is the decision made?",
+        "options": [
+          "At the first look",
+          "At \"Not--just that way\"",
+          "At the box snatch"
+        ],
+        "refs": [
+          1,
+          16,
+          24
+        ]
+      },
+      {
+        "id": "delivery",
+        "title": "How does \"knot it\" land?",
+        "options": [
+          "Flat and polite",
+          "After hesitation",
+          "A direct challenge"
+        ],
+        "refs": [
+          28
+        ]
+      },
+      {
+        "id": "henderson",
+        "title": "What does Henderson notice?",
+        "options": [
+          "No recognition",
+          "The hesitation only",
+          "The concealed box; he lets it go"
+        ],
+        "refs": [
+          28
+        ]
+      }
+    ],
+    "keyLine": 28
+  }
+]

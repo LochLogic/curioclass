@@ -76,8 +76,8 @@ Frozen. No further spend until a unit plan asks for one of them.
 
 | Why it is here | Count |
 |---|---|
-| Not live: a spec only | 551 |
-| Not live: built, not live | 144 |
+| Not live: a spec only | 546 |
+| Not live: built, not live | 149 |
 | Not live: an idea only | 7 |
 | Live, read, does not pass the teaching test (small addition) | 54 |
 | Live, read, does not pass the teaching test (rework) | 26 |
@@ -88,10 +88,10 @@ Frozen. No further spend until a unit plan asks for one of them.
 
 | Subject | Spec or idea | Built | Live, does not pass | Live, no record | All |
 |---|---|---|---|---|---|
-| English Language Arts | 150 | 6 | 4 | 0 | 160 |
+| English Language Arts | 148 | 8 | 4 | 0 | 160 |
 | Social Studies | 122 | 4 | 5 | 0 | 131 |
-| Math | 99 | 16 | 13 | 0 | 128 |
-| Science | 77 | 24 | 9 | 0 | 110 |
+| Math | 98 | 17 | 13 | 0 | 128 |
+| Science | 75 | 26 | 9 | 0 | 110 |
 | Arts and Music | 0 | 58 | 13 | 0 | 71 |
 | Computer Science | 39 | 20 | 8 | 0 | 67 |
 | Health and PE | 16 | 8 | 8 | 0 | 32 |

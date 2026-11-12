@@ -33,7 +33,6 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
 **Waiting on Cory (all on the Desk and asked in chat on 2026-11-12):**
 
 - (Answered 2026-11-12: card `q-ela-piece-2`, see "Decided 2026-11-12" below.)
-- Merge or retire the Codex branch (`codex/queue`, 11 commits not in `main`).
 - Whether the four untracked files in `S:\CurioClass` belong in the repository (see "The folders").
 - Move the other five planned stretches (1, 2, 3, 9, 10) into data now, or when each is next opened? The
   standing answer is "when next opened" (UNIT-PLAN.md) and the assistant's advice is to wait for the pilot:
@@ -76,7 +75,7 @@ The truth is the GitHub repository, branch `main`. Each folder is a working copy
 |---|---|---|
 | `S:\CurioClass` | `main` | **The main session, from now on.** Brought level with GitHub on 2026-11-12 |
 | `S:\CurioClass-spec2` | `spec/sara` | Sara's sessions only |
-| `S:\CurioClass-codex` | `codex/queue` | Codex. 11 commits not in `main` (builds, among them Checkers and Go), all pushed. Merge or retire is still Cory's call |
+| `S:\CurioClass-codex` | `codex/queue` | Codex. Merged into `main` on 2026-11-12 (Cory: "Review, then merge"); the folder stays for Codex to work in |
 | `S:\CurioClass-archive` | none | Not a working copy. Holds what the clean-up set aside (below) |
 
 What was done, with nothing deleted that was not first saved:
@@ -90,6 +89,13 @@ What was done, with nothing deleted that was not first saved:
   branch `agy/build`. Its 8,846 files that git ignored (scratch work, prompts, raw art) were copied to
   `S:\CurioClass-archivegy-2026-11-12` and compared byte for byte first.
 - **`S:\CurioClass-codex-scratch`** was moved, whole, to `S:\CurioClass-archive\codex-scratch-2026-11-12`.
+- **The Codex branch was reviewed and merged** (2026-11-12): 141 new files and 5 changed, all under `tools/`
+  (builds of globe-theatre-stage, equation-balancer, mole-bakery, star-life-story, rigid-motion-twins,
+  thesis-workshop and smaller pieces). No conflict with `main`, no tool went live (live count still 83), and
+  `check_tools`, `check_safety`, `check_games` and `check_words` pass. These tools are still in the frozen bin
+  (BASELINE rule 26): merging saved the work, it did not restart it. Found in passing, not caused by the merge:
+  `scripts/check_concepts.py` reports an unknown module `social-studies-3-5-road-trip-atlas` at
+  `social-studies.txt` line 135.
 - **For Cory to delete by hand** (a safety check stops the assistant removing top-level folders): the two empty
   folders `S:\CurioClass-audit` and `S:\CurioClass-agy`. The archive folder can go whenever he is sure.
 

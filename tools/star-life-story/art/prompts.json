@@ -1,0 +1,115 @@
+{
+  "house_style": "Premium planetarium scientific illustration for grade 9: rich luminous gases, exquisite fine surface texture, dimensional light, deep space blacks, restrained cinematic colors, physically plausible forms. No text, letters, numbers, logos, borders or people. All square portraits centered with breathing room on pure black, luminous edges suitable for screen blending.",
+  "assets": [
+    {
+      "name": "sl-star-disk",
+      "prompt": "One bright white stellar sphere filling most of the square. Fine rice grain granulation across its surface, subtle limb darkening, a thin soft white corona. Full disk visible, isolated on pure black.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "sl-giant",
+      "prompt": "An enormous swollen deep orange red giant star. Full sphere with huge mottled convection cells, delicately shaded turbulent surface, hazy glowing edge and soft extended corona on pure black.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "sl-white-dwarf",
+      "prompt": "A small brilliant blue white stellar sphere at the center, with fine smooth luminous surface and a soft concentric round halo dissolving into pure black. The actual sphere is one fifth of the frame width.",
+      "aspect": "1:1",
+      "width": 480,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "sl-neutron-star",
+      "prompt": "A tiny blazing blue white sphere with two thin straight beams of pale blue light projecting in opposite directions from its tilted poles. Gentle round halo, subtle magnetospheric wisps, on pure black. Sphere one sixth of frame width.",
+      "aspect": "1:1",
+      "width": 480,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "sl-black-hole",
+      "prompt": "A perfectly circular black hole shadow, surrounded by a thin glowing gravitationally lensed ring. Distant star points visibly bent into arcs close to the ring, dim distant stars outside. Dramatic subtle light, centrally composed.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "sl-planetary-nebula",
+      "prompt": "A magnificent planetary nebula, glowing nested rings of teal and rose ionized gas shells around a small brilliant white central star, fine wispy filaments, nearly circular slightly asymmetric structure, isolated on pure black.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "sl-supernova",
+      "prompt": "A brilliant white blue supernova explosion flash with many fine glowing streaks and ragged luminous gas erupting radially outward in every direction, strong blue halo and brilliant center on pure black.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "sl-remnant",
+      "prompt": "A large wispy roughly circular supernova remnant shell of delicate glowing red and blue gas filaments, intricate lace like shockfront structures and tiny bright central point, hollow dark interior, on pure black.",
+      "aspect": "1:1",
+      "width": 640,
+      "quality": 76,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "sl-nursery",
+      "prompt": "Wide deep space stellar nursery, dark dusty violet nebula with luminous pink hydrogen clouds, tiny scattered young blue stars. Clouds strongest toward the edges, a quiet dark open central region for stellar portraits. Layered dust foreground, glowing middle distance, deep far stars.",
+      "aspect": "16:9",
+      "width": 1400,
+      "quality": 72,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    },
+    {
+      "name": "sl-deep-field",
+      "prompt": "Wide deep astronomical field, dozens of small distant galaxies scattered across black, distinct spiral galaxies, warm elliptical galaxies, tiny blue and red smudges with different orientations. Realistic deep telescope view with rich subtle colors and immense depth.",
+      "aspect": "16:9",
+      "width": 900,
+      "quality": 74,
+      "cutout": false,
+      "people": false,
+      "drawn_by": "codex",
+      "source": "OpenAI gpt-image via built-in image tool"
+    }
+  ]
+}

@@ -1,0 +1,280 @@
+{
+  "house_style": "Rich editorial science illustration for older teenagers. Painterly realism with fine gouache texture, convincing materials, dramatic directional light, restrained teal shadows and warm highlights. Precise recognizable objects, cinematic composition, no cartoon mascots.",
+  "assets": [
+    {
+      "name": "eb-bench",
+      "prompt": "A dark slate chemistry lab bench top seen from straight above, faint scratches, stone grain and a soft lamp glow from upper left, filling the frame. Empty surface with quiet fine detail and room for diagram overlays. Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "16:9",
+      "cutout": false,
+      "people": false,
+      "width": 1400,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-water",
+      "prompt": "a car tailpipe with clear water droplets falling from it on a cool morning Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-ammonia",
+      "prompt": "rows of young green corn plants in dark soil at sunrise Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-salt",
+      "prompt": "a small heap of white table salt crystals on dark slate Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-magnesium",
+      "prompt": "a strip of magnesium burning with a blinding white flame, held in steel tongs over a lab bench Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-peroxide",
+      "prompt": "white foam fizzing on a cotton pad beside a plain brown bottle Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-rust",
+      "prompt": "a rusty iron chain coiled on weathered wood Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-aluminum",
+      "prompt": "crumpled aluminum foil with a dull silver sheen Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-oxygen",
+      "prompt": "an emergency oxygen mask with a clear tube dangling from an open airplane ceiling panel Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-lime",
+      "prompt": "an old stone lime kiln with piles of white lime powder at its base Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-yeast",
+      "prompt": "a glass of warm water topped with a thick tan foam of bubbling yeast Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-silver",
+      "prompt": "a test tube of clear liquid with a cloudy white solid settling to the bottom Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-lead",
+      "prompt": "a test tube with a bright yellow solid swirling in clear liquid Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-neutral",
+      "prompt": "a glass burette dripping into a flask of liquid turning pale pink Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-copper",
+      "prompt": "a strip of aluminum coated in red-brown copper standing in a beaker of blue solution Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-gas-stove",
+      "prompt": "a ring of blue flame on a gas stove burner in a dark kitchen Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-propane",
+      "prompt": "a white propane tank beside a backyard grill on a patio Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-ethanol",
+      "prompt": "a fuel pump nozzle with a yellow handle resting in a car's open fuel door Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-respiration",
+      "prompt": "a ripe banana, a granola bar and a water bottle on a gym bench Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-ethane",
+      "prompt": "a tall gas flare burning at a refinery at night Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-octane",
+      "prompt": "a red metal gasoline can beside a lawn mower on cut grass Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-nitric",
+      "prompt": "a glowing orange fine platinum wire mesh, hot, in a dark steel housing Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-blast-furnace",
+      "prompt": "molten iron pouring from a ladle in a steel mill, a bright orange stream and sparks Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-soda-vinegar",
+      "prompt": "a glass flask overflowing with white foam on a lab bench Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    },
+    {
+      "name": "eb-story-phosphate",
+      "prompt": "a heap of rough grey phosphate rock at an open mine under a blue sky. Plain unlabelled surfaces. No people, text, letters, numbers, logos or watermarks.",
+      "aspect": "4:3",
+      "cutout": false,
+      "people": false,
+      "width": 640,
+      "quality": 76,
+      "drawn_by": "codex",
+      "review": "ok; inspected at display size; no people"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id":"mole-bakery",
+  "status":"beta",
+  "stage":"built",
+  "hook":"Weigh in grams. React in moles.",
+  "outcome":"Use mole ratios and limiting reactants to calculate gas yield and conserve mass.",
+  "driver":"students",
+  "minutes":"20-40",
+  "modes":["Test kitchen","Bakery"],
+  "grades_label":"Grade 10",
+  "sources":[
+    "OpenStax Chemistry 2e, sections 3.1, 4.3 and 4.4",
+    "OpenStax Biology 2e, section 7.5",
+    "NIST CODATA, Avogadro and molar gas constants",
+    "PubChem compound summaries, CIDs 516892, 23681127, 176, 5793 and 14013",
+    "U.S. FDA CPG Sec. 525.825, Vinegar Definitions",
+    "Illustrations generated with OpenAI gpt-image, edited for Curio Class"
+  ],
+  "third_party":[],
+  "updated":"2026-11-07"
+}
