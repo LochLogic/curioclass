@@ -8,7 +8,9 @@ parents and the site's shape" and "the home check".
 Mock-ups (private design canvas, three boards: the Grade 4 Math course page, day 74 with its six views, and where
 every piece lives): https://claude.ai/artifact/ReGX8xmhDNBCBEKwhVzLzT
 
-Words on this page follow [GLOSSARY.md](GLOSSARY.md) once it exists; where they differ, the glossary wins.
+Words on this page follow [GLOSSARY.md](GLOSSARY.md); where they differ, the glossary wins. "Stretch", "unit" and
+"spine" below are today's words: Desk card 112 (`q-course-level-names`) asks whether they become unit, section and
+scope and sequence on the site.
 
 ## What changed
 
@@ -53,7 +55,7 @@ In order, as on the mock-up's first board:
    record sheet as portfolio); Out tomorrow (the unit's sub-ready day); tools in this course (each with the days
    that use it); help make it better (report a problem, corrections list, try a unit with your class).
 
-### Lesson day page: `/courses/<course>/day-<n>/` (for example `/courses/math-4/day-74/`)
+### Day page: `/courses/<course>/day-<n>/` (for example `/courses/math-4/day-74/`)
 
 Breadcrumb (course / stretch / unit / day N of 150), the day's title, the "I can" goal, minutes, standards, kind of
 day, version label ("draft 1, not yet taught" until a taught run), previous and next day. Then six views of one

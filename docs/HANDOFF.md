@@ -74,8 +74,11 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
      (https://claude.ai/artifact/ReGX8xmhDNBCBEKwhVzLzT). The design is [SITE-DESIGN.md](SITE-DESIGN.md), with a
      proposed build order (step 1: course and day pages for grade 4 math behind a `--courses` flag). The Teaching
      map is hidden from the deploy build until it returns as a picture of the spines; Sub Day becomes one
-     sub-ready day per unit; names are being locked to the best-known word inside and out (GLOSSARY.md and
-     reviews/naming-scan-2026-11-12.md).
+     sub-ready day per unit; names are locked to the best-known word inside and out ([GLOSSARY.md](GLOSSARY.md),
+     [reviews/naming-scan-2026-11-12.md](reviews/naming-scan-2026-11-12.md): obvious fixes made in 2ef52cac). Waiting on
+     Cory: Desk card 112 `q-course-level-names` (stretch to unit, unit to section, spine to scope and sequence;
+     sub-ready days per new unit). Staged renames (exit slip to exit ticket in day files, /modules/ to /topics/ with
+     redirects) wait on that answer.
    - Still owed: the Spanish family note needs a qualified reader; the module has no Word Wall cards of its own
      (area, perimeter, square unit, formula, length, width exist under other modules), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts
