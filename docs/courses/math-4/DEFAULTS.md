@@ -12,5 +12,9 @@ stretches as each is next opened.
   up by item sets the groups; each group does its error's "if many" action. Teacher-judged items are read after
   class and answered in the next day's first five minutes.
 - **Teaching one child.** Give the check items, then go over the missed ones together.
+- **No document camera.** Draw it on the board; the display page carries every figure and step.
+- **Lesson day sizes (docs/courses/LESSON-DAY.md).** Teacher page 900 words of prose (15 a minute of a 60-minute
+  day), Before class 80. Student page 350 words a student reads, questions included (ours, untested), with no
+  sentence over 15 words; two sides of US Letter; 14 point.
 - **One projector.** The teacher runs the tool; the class writes each answer on paper before it is shown.
 - **A room with nothing.** Every day has a paper path; hand-ruled grids and paper squares stand in for supplies.

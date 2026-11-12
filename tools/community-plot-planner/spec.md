@@ -1,7 +1,7 @@
 # Community Plot Planner
 
 ## One idea
-An empty city lot, 30 feet by 20 feet, is becoming a community garden, and the child is the lot planner: five families each send a note with one fixed number (the Lee family needs 48 square feet and their plot can be 6 feet wide; the Ortiz family has 30 feet of fence and wants a plot 5 feet wide), and the child finds the missing side by laying unit squares or fence pieces until the rule shows itself (48 squares in rows of 6 make 8 rows, so the plot is 8 feet long), writes the matching equation (6 x ? = 48, 2 x (5 + ?) = 30), then drags each finished plot onto the lot; the unit squares fade once the child has written the area formula, and the fence pieces fade once the perimeter formula is written; at the end every family has a plot that fits, the plots fill 226 of the lot's 600 square feet with room for paths, and the child states both rules in words, so a fourth grader learns to apply the area and perimeter formulas for rectangles in real problems, including finding a missing side.
+An empty city lot, 30 feet by 20 feet, is becoming a community garden, and the child is the lot planner: five families each send a note with one fixed number (the Lee family needs 48 square feet and their plot can be 6 feet wide; the Ortiz family has 30 feet of fence to go all the way around and wants a plot 5 feet wide), and the child finds the missing side by laying unit squares or fence pieces until the rule shows itself (48 squares in rows of 6 make 8 rows, so the plot is 8 feet long), writes the matching equation (6 x ? = 48, 2 x (5 + ?) = 30), then drags each finished plot onto the lot; the unit squares fade once the child has written the area formula, and the fence pieces fade once the perimeter formula is written; at the end every family has a plot that fits, the plots fill 226 of the lot's 600 square feet with room for paths, and the child states both rules in words, so a fourth grader learns to apply the area and perimeter formulas for rectangles in real problems, including finding a missing side.
 
 ## Not like
 - garden-grid (2, spec): counting square plots, by look only. Here formulas and missing sides.
@@ -32,7 +32,7 @@ Header (kit): title "Community Plot Planner"; `Lot planner`, `Class lot`; `Read`
 
 **Area plots (focus: the work grid).** At 1366x768 the work grid fills the left with the note and equation strip right and the lot along the bottom; at 680x425 the lot is a tab. Rows of 6 stack until 48 squares are used: 8 rows. The strip writes 6 x 8 = 48 and asks for the missing number before showing it. Nguyen: 36 square feet, 4 wide (9 long). Clark: 60 square feet, 5 wide (12 long).
 
-**Fence plots.** Ortiz: 30 feet of fence, 5 feet wide. Fence pieces go around; the child finds the length is 10 and writes 2 x (5 + 10) = 30. Abebe: 24 feet of fence, 8 feet long (4 wide). 
+**Fence plots.** Ortiz: 30 feet of fence all the way around, 5 feet wide. Fence pieces go around; the child finds the length is 10 and writes 2 x (5 + 10) = 30. Abebe: 24 feet of fence all the way around, 8 feet long (4 wide). 
 **Plot tags.** Before any plot can be dragged to the lot its tag must be complete. The note gave one measure; the child types the other from the two sides, with no squares or fence pieces shown: Lee 6 by 8, fence 28 feet; Nguyen 4 by 9, fence 26; Clark 5 by 12, fence 34; Ortiz 5 by 10, area 50 square feet; Abebe 4 by 8, area 32. Two tries, then the pieces are laid for the child to count and the tag is marked "counted".
 
 **Formula cards.** After two of each, the child fills "area = ___ x ___" and "perimeter = 2 x (___ + ___)" and the squares and fence pieces fade: the next plots use only the formula. With the pieces gone, the missing-side box takes two tries. After a second miss the squares or fence come back for that plot, its tag is marked "built with squares", and a spare note is added that must be done by formula alone: Park, 72 square feet and 8 feet wide (9 long), or Diaz, 36 feet of fence and 12 feet long (6 wide). Spare plots do not go on the lot.
@@ -48,9 +48,9 @@ Header (kit): title "Community Plot Planner"; `Lot planner`, `Class lot`; `Read`
 
 ## Content
 - Five families (made up, labeled "illustration" where pictured) with their notes, sizes in whole feet, the 30 by 20 lot, all readable with `Read`.
-- On your own, with what each common wrong answer means:
-  - Area: "A plot is 56 square feet and 7 feet wide. How long is it?" (8 feet.) "A plot is 9 feet by 6 feet. What is its area?" (54 square feet.) An answer of 49 means the child subtracted; 30 means the fence rule was used for area.
-  - Perimeter: "A plot has 40 feet of fence and is 12 feet long. How wide is it?" (8 feet.) "A plot is 9 feet by 6 feet. How much fence?" (30 feet.) An answer of 28 means the child took off one side and forgot the fence goes all the way around; 15 means the two sides were added once; 54 means the area rule was used.
+- On your own: four items read from the plan's rows (data/plans/math-4/items.csv, `s11-X90t1` to `s11-X90t4`, `path` = `tool`), each with the wrong answers that mean something (wrongs.csv). As of 2026-11-12:
+  - Area: "A plot is 56 square feet and 7 feet wide. How long is it?" (8 feet; 49 or 63 means the two numbers were taken away or added.) "A plot is 18 square feet and 3 feet wide. How long is it?" (6 feet; 15 or 21, the same.)
+  - Perimeter: "A plot has 40 feet of fence all the way around. It is 12 feet long. How wide is it?" (8 feet; 28 means one long side was taken off, 16 means not halved.) "A plot has 22 feet of fence all the way around. It is 7 feet long. How wide is it?" (4 feet; 15 or 8, the same.)
 
 ## Interactions in detail
 - Every tap acts at once; a new line stops the old one.
@@ -115,7 +115,7 @@ Backed twice: 2. Cut: 0.
 
 Checks run (Python, scratchpad s12, 2026-11-10): 48 / 6 = 8 with a fence of 28; 30 feet of fence 5 wide gives 10 long and 50 square feet; 36 / 4 = 9 with a fence of 26; 24 feet of fence 8 long gives 4 wide and 32 square feet; 60 / 5 = 12; the plots total 226 square feet of the 600 on the lot; contrast as in Look.
 Checks run again for the spec fix (Python, scratchpad s/fx, 2026-11-10): fences 28, 26 and 34 feet; areas 50 and 32 square feet; five areas total 226; spare notes 72 / 8 = 9 and 36 feet of fence with 12 long gives 6 wide; one length plus one width (14, 13, 17) never equals a right tag.
-Checks run for the items on your own (Python, 2026-11-11): 56 / 7 = 8; 9 x 6 = 54; 40 / 2 - 12 = 8; 2 x (9 + 6) = 30.
+Checks run for the items on your own: now computed by scripts/plan.py from the rows (2026-11-12): 56 / 7 = 8; 18 / 3 = 6; (40 - 24) / 2 = 8; (22 - 14) / 2 = 4.
 
 ## Done when
 1. Focus and fold: at 1366x768 grid, note and lot; at 680x425 lot as a tab.

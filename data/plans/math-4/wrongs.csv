@@ -20,8 +20,6 @@ s11-E7,"""560 centimeters""",,,E,
 s11-X89,11,8+3,11,B,
 s11-X89,swapped,,,A,
 s11-X89,units swapped,,,E,
-s11-X90a,40 or 50,45-5 | 45+5,40 | 50,C,
-s11-X90a,225,45*5,225,C,
 s11-X90b,29 or 12,46-17 | 46-2*17,29 | 12,D,
 s11-X91a,"24 or 2,400",,,,a zero slip
 s11-X91a,92,2*(40+6),92,A,
@@ -37,3 +35,11 @@ s11-P90-1,81,27*3,81,C,
 s11-P90-2,29,42-13,29,D,one long side taken off
 s11-P90-2,16,42-2*13,16,D,not halved
 s11-T90-1,54 or 42,48+6 | 48-6,54 | 42,C,
+s11-X90a,18 or 24,21-3 | 21+3,18 | 24,C,
+s11-X90a,63,21*3,63,C,
+s11-X90t1,49 or 63,56-7 | 56+7,49 | 63,C,
+s11-X90t2,15 or 21,18-3 | 18+3,15 | 21,C,
+s11-X90t3,28,40-12,28,D,one long side taken off
+s11-X90t3,16,40-2*12,16,D,not halved
+s11-X90t4,15,22-7,15,D,one long side taken off
+s11-X90t4,8,22-2*7,8,D,not halved

@@ -15,9 +15,9 @@ blank: leave a cell empty if it was not measured, and say "estimate" if it is on
 |---|---|---|---|---|---|
 | Stretch sheet and unit plan (s11.md) | not measured | not measured | not measured | 15, expert cold read | Written three times over two days before costs were kept; do not use as a base |
 | Plan as data (parts, days, items, wrongs, errors) | not measured | | | 0 by the script after revision | |
-| Lesson-day template (LESSON-DAY.md) | | | | | Once only, not a unit cost |
+| Lesson-day template (LESSON-DAY.md), with scripts/lesson.py | Cold read 200,829 (the expert's run); writing and revision not measured | | | 13, expert cold read, shared with day 90 (9 fixed, 4 open for the taught run) | Once only, not a unit cost. Draft 2 waits on Cory's yes |
 | Day 89 lesson | | | | | |
-| Day 90 lesson | | | | | |
+| Day 90 lesson | Not measured apart from the template | | | Counted with the template row | Draft 2: teacher 898 words, student 247, two sides; not ready (tool, opener, facts sheet, record sheet missing) |
 | Day 91 lesson | | | | | |
 | Day 92 lesson | | | | | |
 | Day 93 check and respond | | | | | |

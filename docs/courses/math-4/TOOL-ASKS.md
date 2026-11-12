@@ -254,6 +254,10 @@ Asks, from [s11](s11.md) field U5 as first written:
    docs/reviews/unit-plan-s11-2026-11-12.md, finding 6.)
 8. The lot can be left unfinished with no loss: notes, equations and tags are the job; placing plots is the
    reward. (Same finding.)
+9. "On your own" reads its four items from the plan's rows (`data/plans/math-4/items.csv`, `s11-X90t1` to
+   `s11-X90t4`, `path` = `tool`): two missing lengths from an area, two missing widths from a fence, the same two
+   parts as the paper slip. The spec's items (with 9 × 6 = 54, which tests nothing on day 90's goal) are
+   replaced. (Expert read of the lesson-day template, docs/reviews/lesson-day-2026-11-12.md, finding 2.)
 
 Not a gap: the 30 by 20 lot. The tool states 600 and never asks for it; keep it that way.
 

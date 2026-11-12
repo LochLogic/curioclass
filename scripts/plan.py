@@ -121,6 +121,13 @@ def check(course):
             fails.append('%s: check "%s" is not one of %s' % (i['item_id'], i['check'], ', '.join(sorted(CHECKS))))
         if i['judged'] not in ('key', 'teacher'):
             fails.append('%s: judged must be key or teacher' % i['item_id'])
+        # lesson-day columns (docs/courses/LESSON-DAY.md): an exit names its path; an adapted item carries its credit
+        if i.get('path', '') not in ('', 'tool', 'paper') or (i.get('path') and i['check'] != 'exit'):
+            fails.append('%s: path must be tool or paper, and only on an exit' % i['item_id'])
+        src = i.get('source', '')
+        if src and (re.search(r'\bnc\b|noncommercial|sharealike|-sa\b|\bnd\b|-nd\b|noderivatives', src, re.I)
+                    or 'http' not in src or not re.search(r'cc by|cc0|public domain', src, re.I)):
+            fails.append('%s: source must be CC BY, CC0 or public domain, with a licence link' % i['item_id'])
         if i['judged'] == 'key' and not i['compute'].strip():
             fails.append('%s: marked against a key but has no compute cell' % i['item_id'])
         if i['compute'].strip():

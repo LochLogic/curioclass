@@ -10,6 +10,20 @@ heading, and say how many findings went to Cory instead.
 
 ## Week of 2026-11-09
 
+### Lesson-day template and day 90 of grade 4 math. Report: lesson-day-2026-11-12.md
+
+13 findings. Seven (1 to 7) changed the template before Cory's yes, which goes to Cory as one question on the
+Desk; the rest wait for the taught run. Both gates pass after the revision.
+
+| Settled | Why |
+|---|---|
+| Exit `s11-X90a` becomes the card: 21 square inches, 3 inches wide, "Write the equation."; wrong answers 18 or 24, and 63 | The old exit's answer, 9, was the worked example's; a 5 by 9 inch poster was not real |
+| Exit `s11-X90b` adds "Write the equation." | The day teaches writing the equation first |
+| Fence stems say "all the way around" (Ortiz, Abebe, Max's pen, the dog yard) | A careful child may otherwise answer "less than" |
+| "Pen" becomes "goat pen"; "dog run" becomes "dog yard" | A new English learner reads "pen" as a writing pen |
+| A row for the extension: every whole-number rectangle with area 36 and its perimeter | A teacher should not have to work out the key |
+| Day 90's paper path, readiness branch and wording repairs | Day-level wording inside the day's own minutes |
+
 ### Grade 4 math, pilot unit plan (stretch 11). Report: unit-plan-s11-2026-11-12.md
 
 15 findings, none to Cory. Verdict: the build can start. `scripts/plan.py check` passes after the revision

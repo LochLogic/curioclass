@@ -1,7 +1,7 @@
 # Handoff: the one current-state page
 
 **This is the single page that says where the work stands and what to do next. Last updated 2026-11-12, after
-Sara's first two pieces were taken in. Everything here is pushed to `spec/sara` and `main`.**
+the lesson-day template's cold read and revision. Everything here is pushed to `spec/sara` and `main`.**
 
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page
 disagrees with this one, the other page is stale: check the date, fix it, and say so.
@@ -14,10 +14,16 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
    ([reviews/unit-plan-s11-2026-11-12.md](reviews/unit-plan-s11-2026-11-12.md)): 15 findings, none for Cory,
    verdict "the build can start". `scripts/plan.py check` passes (18 items, 31 wrong answers). Sara's own read
    as a teacher is still owed at the top of that report; it does not hold up step 2.
-2. **NEXT: write `docs/courses/LESSON-DAY.md`**: exactly what one teaching day ships as (teacher page, student
-   page, slides or none, key, materials), with a size for each, and the rule that an adapted lesson carries its
-   credit on the lesson. Write it against day 90 of s11 as the worked case. Expert reads it. Cory says yes once
-   (it sets the shape of about 15,000 lesson days, so it is his).
+2. **Written, read, revised: [courses/LESSON-DAY.md](courses/LESSON-DAY.md), draft 2 (2026-11-12). NEXT: Cory's
+   yes** (Desk card `q-lesson-day`). What one teaching day ships as, with sizes, written against day 90
+   ([courses/math-4/u11-1/d090.md](../courses/math-4/u11-1/d090.md)). `scripts/lesson.py check` and `build --pdf`
+   gate and print it. The expert's cold read
+   ([reviews/lesson-day-2026-11-12.md](reviews/lesson-day-2026-11-12.md)) had 13 findings: 1 to 7 were made
+   before asking Cory (display carries figures and steps from data; the tool's exit items are rows with
+   `path`; `leans_on` and "not ready"; the credit rule refuses ND and puts `source` on rows; the student count
+   includes the questions; "What changes by subject"; a foot line with version and licence). 8, 9, 12 wait for
+   the taught run (defects.csv, status open). Day 90 is "draft 2, not ready": the tool, the unit opener, the
+   facts check sheet and the record sheet do not exist yet.
 3. **Keys as data: built for stretch 11** (`data/plans/`, `scripts/plan.py`; see "Plan weight"). The lesson
    days' own items go in as rows while the pilot is written.
 4. **Build unit 11.1 to the bottom:** its five days in full, the generator sheet (twelve problems by type,
@@ -39,7 +45,9 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
   the row shapes will change once a lesson day exists.
 - In or not-now for the six extra pieces of a finished course (ROADMAP, "What a finished course holds",
   items 10 to 15).
-- A yes on `LESSON-DAY.md` once it is written. His read of the approach pages, and his final yes on the science
+- How long the home page feedback note stays hidden after × (card `q-banner-hide`, 2026-11-12). It had not gone
+  away: Cory's Chrome had it hidden for good from one click. One message ever received, our own test.
+- A yes on `LESSON-DAY.md` draft 2 (card `q-lesson-day`, 2026-11-12). His read of the approach pages, and his final yes on the science
   and ELA spines, are still owed from before.
 
 **Frozen until the pilot is read:** new spines, stretch sheets, unit plans and specs. One exception: the grade 4
@@ -120,7 +128,7 @@ What was done, with nothing deleted that was not first saved:
   ([reviews/DIGEST.md](reviews/DIGEST.md), started 2026-11-12: copy each report's "Settled by the expert" table
   into it).
 - The Review Desk is https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC. A question card has status `question`,
-  then `answered`. Cory answers in a comment on the card. Next free card order: 105. Sara's session cannot open the Desk; the main session places her cards. After changes, refresh the
+  then `answered`. Cory answers in a comment on the card. Next free card order: 107. Sara's session cannot open the Desk; the main session places her cards. After changes, refresh the
   Dashboard with `python -X utf8 scripts/course_status.py <out.json>` (Desk doc `stats/courses`) and the Roadmap
   tab with `python -X utf8 scripts/desk_roadmap.py <out.json>` (Desk doc `stats/roadmap`).
 - Core subjects first (BASELINE rule 24, a soft goal): see "The order after the pilot".

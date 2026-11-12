@@ -10,7 +10,7 @@ files. Nobody edits a table in a plan file: change the row here, then run the sc
 |---|---|---|
 | `parts.csv` | one part of one standard that a stretch must teach and check | `code`, `part`, `verb` (the standard's own), `stretch`, `unit` |
 | `days.csv` | one teaching day | `kind`, `goal`, `opens` and `opens_min`, `tool` (its folder name), `mark` (key or light), `tool_use` and `tool_min`, `exit`, `check_min` |
-| `items.csv` | one question on a readiness check, an end check or an exit question | `check`, `day`, `code`, `part`, `judged` (key or teacher), `stem`, `answer` (as printed), `compute`, `value` |
+| `items.csv` | one question a student answers: on a readiness check, an end check, an exit, or inside a lesson day | `check` (readiness, end, exit; and for lesson days example, tool, fix, practice, challenge), `day`, `code`, `part`, `judged` (key or teacher), `stem`, `answer` (as printed), `compute`, `value` |
 | `wrongs.csv` | one wrong answer we expect to an item | `shown`, `compute`, `value`, `error` (a letter in the error register), `note` |
 | `errors.csv` | one lettered error of a stretch | `source`, `example`, `day`, `if_many` |
 
@@ -50,6 +50,12 @@ of numbers only; a reused story with new numbers gets past it.
 
 ## State
 
-Grade 4 math stretch 11 (the pilot unit) is in data and passes. Stretches 1, 2, 3, 9 and 10 are still prose only;
-each moves into data when it is next opened. Lesson-day items are added to `items.csv` when the pilot is built.
+Grade 4 math stretch 11 (the pilot unit) is in data and passes. Day 90's lesson rows went in on 2026-11-12 with
+the lesson-day template (docs/courses/LESSON-DAY.md). Lesson rows count as taught: no exit or check item may reuse
+their numbers. `python -X utf8 scripts/lesson.py check` gates the day files in `courses/`, and `build` makes their
+print pages. Four optional item columns serve lesson days (draft 2 of the template): `path` (an exit's `tool`
+or `paper`), `figure` (a labelled shape for the display, `rect w=7 l=? A=63 u=ft`), `steps` (worked steps split
+by `|`) and `source` (the credit of an adapted item; CC BY, CC0 or public domain with a link, or the gate fails).
+Stretches 1, 2, 3, 9 and 10 are still prose only;
+each moves into data when it is next opened. 
 ELA will add `texts.csv`, `questions.csv` and `words.csv` per course (Cory's yes, 2026-11-12); not built yet, and the columns are fixed when the first ELA pilot plan is written.
