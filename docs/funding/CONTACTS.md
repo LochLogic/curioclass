@@ -116,7 +116,7 @@ logins, no student data, and every tool works offline. 83 tools are live and 717
 site. I'm looking for [an introductory conversation / a fiscal sponsor / a speaking slot] and would love 20 minutes to
 show you. Could I send a link and set up a time?"
 
-Then send: the site, one great tool for their grade focus, a module page, and the one-pager (ONE-PAGER.md).
+Then send: the site, one great tool for their grade focus, a topic page, and the one-pager (ONE-PAGER.md).
 
 ## Log
 

@@ -1,6 +1,6 @@
 # Worksheets: English Language Development
 
-Covers English Language Development, Kindergarten through Grade 12 (WIDA ELD Standards 2020: language for social and instructional purposes, and the language of language arts, math, science and social studies). Each grade is listed in teaching order, module by module, with review sheets at checkpoints; every sheet carries sentence frames, and K-2 sheets have picture support on every item.
+Covers English Language Development, Kindergarten through Grade 12 (WIDA ELD Standards 2020: language for social and instructional purposes, and the language of language arts, math, science and social studies). Each grade is listed in teaching order, topic by topic, with review sheets at checkpoints; every sheet carries sentence frames, and K-2 sheets have picture support on every item.
 
 ## eld-k: Kindergarten English Language Development
 

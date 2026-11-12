@@ -1,7 +1,7 @@
 # Curio Class: the foundation (layer 1)
 
 Gathered 2026-11-11 (Cory). This is the one home for what Curio Class is for, who it serves, what it promises and
-what it assumes. Every layer above it (the approach to teaching, the progressions, the spines, the unit plans, the
+what it assumes. Every layer above it (the approach to teaching, the progressions, the scopes and sequences, the section plans, the
 tools) is built on this page and may not contradict it. Until today these lines were spread over docs/VISION.md,
 docs/ROADMAP.md, docs/ADOPTION-BAR.md and docs/agents/decisions/BASELINE.md; those files keep their detail and now
 point here. Where one of them disagrees with this page, this page wins and the other file is fixed.
@@ -29,7 +29,7 @@ teacher already uses, and that is welcome, but it is not the plan.
 
 | Who | What that means for the work |
 |---|---|
-| **A classroom teacher** running a course | The main reader of every spine, unit plan and teacher page. Teacher pages teach the teacher |
+| **A classroom teacher** running a course | The main reader of every scope and sequence, section plan and teacher page. Teacher pages teach the teacher |
 | **A parent teaching one child at home** (named 2026-11-11; how far, decided 2026-11-12) | The second audience, served by the same course, never a separate track. Every lesson day carries an "at home" block (a 30 to 40 minute one-child path, what the parent says where the class has partner talk, which items to do, home swaps for materials); a course gives placement from its readiness checks, a 36-week numbered calendar and a record that works as a portfolio; answer keys explain, not only list; sample pieces show what grade-level work looks like. Not planned: separate home courses or multi-age plans |
 | **A student alone** | The site is public and a child may open any tool with no adult present. Every tool stands alone: defaults work for a solo user and teacher toggles are extras (BASELINE rule 4) |
 
@@ -81,17 +81,17 @@ Decided 2026-11-11 (Cory) unless marked.
    tool gives the work a structure so it is quick to read, and print carries the rest: a rubric, sample pieces at
    each score level, and a look-for sheet. Our job is to make that judging fast and consistent (BASELINE rule 21
    already says a tool cannot mark writing or talk).
-5. **Time.** A spine states its own year and period length and gives a shorter path where ordinary schools have less
+5. **Time.** A scope and sequence states its own year and period length and gives a shorter path where ordinary schools have less
    time than a full program assumes.
 
 ## 6. What a tool is for
 
 Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions/DESK-ANSWERS.md.
 
-1. **A tool is the end piece of instruction, a means to a defined end.** The end is defined in a unit plan: what
-   each day is for, where a tool is used and for what job. **No tool is built or refined until a unit plan names
+1. **A tool is the end piece of instruction, a means to a defined end.** The end is defined in a section plan: what
+   each day is for, where a tool is used and for what job. **No tool is built or refined until a section plan names
    its job.**
-2. **A tool can be whatever the unit needs.** The unit plan asks, for each key moment, what the ideal instrument for
+2. **A tool can be whatever the unit needs.** The section plan asks, for each key moment, what the ideal instrument for
    that idea would be. Sometimes that is a tool nobody has specced; sometimes it is a marble and a ramp. The limits
    are the promises and assumptions on this page and the cost of doing a tool well, not what software can do.
 3. **Key tools and light tools.** A key tool is the one a day is planned around: it does the day's main job in a
@@ -100,11 +100,11 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
    while every plan must also run on paper). Key tools are built first and hold the course up. Light tools (called
    practice tools before 2026-11-11) are lighter, built from shared templates over the long term, and still correct
    and still meet the three hooks. Lighter never means lower quality. A course is runnable when its key tools are
-   live and print covers the rest. "Key" is a mark given by the unit plan; the roles of BASELINE rule 21 (lesson,
+   live and print covers the rest. "Key" is a mark given by the section plan; the roles of BASELINE rule 21 (teach,
    see why, practice) still say what a tool does.
 4. **Curiosities and Recess** are play and wonder. They claim no standard and are outside the bar (VISION).
 5. **Tools and specs made before this page are sorted by demand** (Cory, 2026-11-11; BASELINE rule 26). Named by a
-   unit plan: course work. Live, passing the teaching test, not named: stays on the shelf, free-standing, and
+   section plan: course work. Live, passing the teaching test, not named: stays on the shelf, free-standing, and
    claims no course coverage. Everything else: frozen. A script makes the list; nobody argues a tool into a course.
 
 ## 7. How the work is checked
@@ -126,7 +126,7 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
    |---|---|---|
    | A working teacher of the grade band (grades 3 to 5 for the first pilot) | Reads the pilot unit against written questions (docs/pilots/README.md) | Each course's pilot unit |
    | A teacher or a parent | Teaches the pilot unit's days and notes the minutes | First pilot in each subject |
-   | Three students of the grade | Sit the end check, timed by a watch the student does not see | First pilot in each subject |
+   | Three students of the grade | Sit the end-of-unit assessment, timed by a watch the student does not see | First pilot in each subject |
    | A math content reviewer | Every item and key of one whole course's checks | Before a math course is called finished |
    | A science teacher | Safety and materials of every investigation | Before a science course is called finished |
    | A second reader on rights | The licence and source of every text a course teaches from | Before an ELA text is taught |
@@ -138,13 +138,13 @@ Decided 2026-11-11 (Cory), from the discussion recorded in docs/agents/decisions
 4. **Lower layers are solid enough to build on, and expected to be revised** by what is built on them. No layer is
    declared finished in the abstract.
 5. **What goes to Cory:** scope, audience, money, accounts, outside people, a live deploy, anything that moves a
-   standard between units, and anything this page cannot settle. Item-level choices inside the standards' limits
+   standard between sections, and anything this page cannot settle. Item-level choices inside the standards' limits
    are settled by the expert and reach Cory in a weekly digest (BASELINE, "What goes to Cory").
 
 ## Open questions on this page
 
 - The device assumption for kindergarten to grade 2 (section 5).
-- Closed 2026-11-11: what happens to existing tools and specs that no unit plan asks for (section 6, item 5).
+- Closed 2026-11-11: what happens to existing tools and specs that no section plan asks for (section 6, item 5).
 - Which of these go into "What a finished course holds", listed 2026-11-11 and not yet decided: accessibility to a
   named level, a versioning and errata rule, a course teacher guide, a state alignment document, Spanish student
   materials, a print-volume count.

@@ -1,6 +1,6 @@
 # Worksheets: Health
 
-Covers Health for every grade, Kindergarten through Grade 12, following the National Health Education Standards. Each unit's list runs in teaching order, module by module. Every scenario uses story characters, never the student's own body, weight, family or history, and no sheet counts calories or compares bodies.
+Covers Health for every grade, Kindergarten through Grade 12, following the National Health Education Standards. Each class's list runs in teaching order, topic by topic. Every scenario uses story characters, never the student's own body, weight, family or history, and no sheet counts calories or compares bodies.
 
 ## health-k: Kindergarten Health
 

@@ -10,7 +10,7 @@ before quoting it to a funder. Lines marked **(Cory)** need Cory's real numbers.
 | Tool concepts in the catalog | 800 |
 | Live | 83 |
 | Still to build | 717 (249 already specced) |
-| Also planned | Reading Room (about 700 public domain stories), Supply Closet (diagrams, charts per module, module kit, the Map), Spanish review, ASL collection |
+| Also planned | Reading Room (about 700 public domain stories), Supply Closet (diagrams, charts per topic, topic kit, the Map), Spanish review, ASL collection |
 
 ## Why the AI bill is bigger than "tokens per tool"
 

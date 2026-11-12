@@ -2,7 +2,7 @@
 
 This page says how English language arts carries out the shared principles in [APPROACH.md](APPROACH.md). It does
 not repeat that page; principle numbers point back to it. The same rules hold: nothing here has been tried with
-children, every claim rests on a source opened for this page, and the rules are rules for unit plans. Evidence
+children, every claim rests on a source opened for this page, and the rules are rules for section plans. Evidence
 ratings (strong, moderate, minimal) are the federal practice guides' own. A rating belongs to the grades and the
 students the guide studied, and those are named each time, because many do not match a whole grade 6 class.
 
@@ -10,7 +10,7 @@ Second draft, 2026-11-11 (Sara's list, piece 2), revised once after the curricul
 ([reviews/approach-ela-2026-11-11.md](reviews/approach-ela-2026-11-11.md)). Not yet approved. Written for the
 grade 6 pilot first. For grades 3 to 5 this page gives the bands (grades 2 to 3: 420 to 820 Lexile; grades 4 to
 5: 740 to 1010), the writing shares (30 argue, 35 explain, 35 narrative) and the word-reading rule, and nothing
-else is checked for those grades. No grade 3 to 5 spine starts until this page is read again against the grades
+else is checked for those grades. No grade 3 to 5 scope and sequence starts until this page is read again against the grades
 3 to 5 criteria.
 
 **The role of the standards.** The Common Core State Standards for English Language Arts set what is learned and
@@ -22,7 +22,7 @@ the text, and reading builds knowledge.
 set of texts, and the standards are taught through them. The reading standards ask for this: RL.6.1, "Cite
 textual evidence to support analysis of what the text says explicitly as well as inferences drawn from the
 text." The publishers' criteria say eighty to ninety percent of the reading standards in each grade need this
-kind of work, and ask for a like share of questions. *Rule:* no unit is planned until its stretch's texts are
+kind of work, and ask for a like share of questions. *Rule:* no section is planned until its unit's texts are
 named, checked for rights and on file. The text record, the question set and the word list exist before the
 days do. Questions are written for this text, in an order that goes from what it says to what it means; a
 question that would fit any text is rewritten. At least four in five questions on a reading day need the text
@@ -40,11 +40,11 @@ measure; its record says so and rests on the other two parts. Texts need not cli
 **Supports that keep the text (principle 9).** The publishers' criteria ask that help lets every student meet
 the text and never stands in for it: no summary that makes reading unnecessary. For students who struggle with
 reading in grades 4 to 9, working through hard "stretch" text with a teacher's help is rated moderate (WWC 2022,
-recommendation 4). That guide studied small-group help, not whole classes. *Rule:* a unit plan names what makes
+recommendation 4). That guide studied small-group help, not whole classes. *Rule:* a section plan names what makes
 its anchor hard and gives support before, during and after reading that matches it. An anchor passage is read
 more than once: first for what happens, then again for a named purpose, with the questions. Audio sits beside
-the text; it does not replace reading on a reading check. For English learners the supports sit on the stretch:
-the word list, sentence frames for the stretch's writing type and its discussion, the long-sentence routine,
+the text; it does not replace reading on a reading check. For English learners the supports sit on the unit:
+the word list, sentence frames for the unit's writing type and its discussion, the long-sentence routine,
 and audio beside the text.
 
 **How a reading day opens (principle 4).** Reading the text is the day's work, not an opening task. Before the
@@ -59,18 +59,18 @@ the standards; we read none of the studies themselves. For students with reading
 a few minutes of background on the topic and a few on its words, before a passage, is one part of a set of
 practices rated strong (WWC 2022, recommendation 3). That is evidence for a short step before reading, not for a
 text set. Whether topic-based sets beat a mixed reader for a whole class, we did not read. The rubric on file
-scores it either way ([RUBRIC-ELA.md](RUBRIC-ELA.md), indicator 2d). *Rule:* a stretch is one topic and one set
+scores it either way ([RUBRIC-ELA.md](RUBRIC-ELA.md), indicator 2d). *Rule:* a unit is one topic and one set
 of texts, with a word list that carries through it. A second text is chosen for what it adds to the first. The
-spine counts reading days and texts by kind; the rubric on file looks for about 55 percent informational in
+scope and sequence counts reading days and texts by kind; the rubric on file looks for about 55 percent informational in
 grades 6 to 8.
 
 **Volume of reading.** The publishers' criteria ask for several longer texts a year and for daily reading of the
 student's own choice. The best readers read the most, but that is a correlation. The National Reading Panel
 (2000) found too few studies, mostly showing no gain, to say that setting aside time for silent reading raises
-achievement; it did find clear support for guided oral rereading. We read no later review. *Rule:* the spine
-states the words read in class and at home for every stretch, and offers a long on-topic book each stretch.
+achievement; it did find clear support for guided oral rereading. We read no later review. *Rule:* the scope and sequence
+states the words read in class and at home for every unit, and offers a long on-topic book each unit.
 Independent reading time always has a teacher conference and a log, and it never replaces a reading day. The
-weekly reading block rests on judgment, and the spine says so.
+weekly reading block rests on judgment, and the scope and sequence says so.
 
 **Kinds of day (principle 2).** An ELA day is marked by its main work: read literature, read information, write,
 speak and listen, language, or check. A speak-and-listen day names its standard (SL.6.1 to SL.6.6): a
@@ -100,7 +100,7 @@ develop and strengthen writing as needed by planning, revising, editing, rewriti
 W.6.10: "Write routinely over extended time frames ... and shorter time frames." Linking reading and writing,
 with model texts that show a kind of writing's features, is rated moderate (WWC secondary writing guide, 2016,
 recommendation 2). The publishers' criteria ask for about 35 percent argument, 35 percent informative and 30
-percent narrative in middle school. *Rule:* the spine holds a writing calendar that says, for each piece, its
+percent narrative in middle school. *Rule:* the scope and sequence holds a writing calendar that says, for each piece, its
 type, process or one sitting, and the texts it draws on. A process piece has a model piece, a rubric and sample
 student work on paper. There is one rubric for each writing type, used all year, and the "guidance and support"
 of W.6.5 is planned as a named feedback step. W.6.6 asks for three typed pages in one sitting by the end of
@@ -121,8 +121,8 @@ found across written texts, and says words are learned through repeated meetings
 words directly in regular lessons, with repeated meetings in several settings, is rated strong for grades 4 to
 12; the studies show word learning, and only some show better comprehension (WWC 2008, recommendation 1).
 Teaching a small set of academic words in depth is rated strong for English learners (shared page, principle 9).
-*Rule:* a stretch has one word list, drawn from its texts, mostly general academic words; a paired stretch may
-share one. Each word is met before, during and after reading and comes back in a later stretch. Ways to work out
+*Rule:* a unit has one word list, drawn from its texts, mostly general academic words; a paired unit may
+share one. Each word is met before, during and after reading and comes back in a later unit. Ways to work out
 a new word are taught on words the text supplies.
 
 **Foundational skills in the lower grades.** Grades 3 to 5 still have standards for reading words: RF.3.3,
@@ -134,7 +134,7 @@ is rated strong (WWC 2022, recommendation 1). The rubric on file makes this part
 where a program teaches it, and rules out teaching children to guess a word from a picture or the sentence.
 Decided 2026-11-12 (Cory's yes): Curio Class grades 3 to 5 ELA claim to teach these skills, so that first
 gateway applies to those grades in full.
-*Rule:* a grade 3 to 5 ELA spine starts from a taught sequence for long words, word parts and fluency. Grade 6 has no
+*Rule:* a grade 3 to 5 ELA scope and sequence starts from a taught sequence for long words, word parts and fluency. Grade 6 has no
 such standards; it teaches roots and word parts.
 
 **Students reading well below grade.** A one-minute oral reading check in the first two weeks of grade 6 uses
@@ -155,17 +155,17 @@ timer (shared rule). In the oral reading check the teacher holds the watch.
 **Talk (principle 5).** SL.6.1: "Engage effectively in a range of collaborative discussions." Extended
 discussion of what a text means is rated moderate for grades 4 to 12, on a small set of studies (WWC 2008,
 recommendation 3). For kindergarten to grade 3 it is rated minimal, because it has rarely been tested there (WWC
-2010, recommendation 3). The standards also require it. *Rule:* a unit plan names the discussion routine, two or
+2010, recommendation 3). The standards also require it. *Rule:* a section plan names the discussion routine, two or
 three planned questions about the text, and a look-for sheet.
 
 **The daily evidence (principle 8).** A read, speak-and-listen or language day ends with a written question that
 can only be answered from the day's text. This is W.6.9, "Draw evidence from literary or informational texts",
 done often, and it is the routine writing W.6.10 asks for. A write day ends with the day's writing, read against
-one look-for named in the plan. A check day's evidence is the check. Each exit question has one look-for and one
+one look-for named in the plan. An assessment day's evidence is the check. Each exit question has one look-for and one
 sample answer that meets it. The teacher sorts the answers into met, partly and not yet, with no mark, and the
 plan says what tomorrow's first five minutes do for "not yet" (from memory: common practice; no source opened).
-No exit question repeats a planned question or one the teacher modelled. Every end check is on a text not read
-in the stretch.
+No exit question repeats a planned question or one the teacher modelled. Every end-of-unit assessment is on a text not read
+in the unit.
 
 **Practice that returns (principle 7).** Words and sentence skills come back in the openers. Reading standards
 come back on new texts, which is why a cumulative check uses a text read cold.
@@ -173,10 +173,10 @@ come back on new texts, which is why a cumulative check uses a text read cold.
 **What a tool may and may not do.** A tool may give practice with feedback on words, sentence combining and plot
 order, and may check closed questions on a cold text. It may not summarize or shorten the anchor, read a check
 passage aloud, judge writing or talk, or be the only place the anchor is read: every anchor has a print copy.
-Tools are about a tenth of the year (spine).
+Tools are about a tenth of the year (scope and sequence).
 
 **The home room.** Teaching one child, the parent is the discussion partner and the rereading partner, reads the
-exit answer against the sample answer, and gives the end check on the named cold text.
+exit answer against the sample answer, and gives the end-of-unit assessment on the named cold text.
 
 ## Where the ELA evidence is thin
 
@@ -189,7 +189,7 @@ exit answer against the sample answer, and gives the end check on the named cold
 - Reading on a screen against reading on paper. Nothing opened.
 - Several strong ratings above are for younger grades or for students who struggle with reading.
 
-## What ELA adds to the unit plan fields
+## What ELA adds to the unit and section plan fields
 
 Field numbers are those of [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). They were fixed on math; the pilot is
 the first ELA plan and may change what ELA fills. Proposed, to be tried on the pilot:
@@ -200,31 +200,31 @@ the first ELA plan and may change what ELA fills. Proposed, to be tried on the p
   toward the word cap. The columns are fixed when the first ELA pilot plan is written. The files are not built
   yet.
 - Header: days by kind, in the ELA kinds.
-- Stretch field 2: the text set (generated: record, rights line, status), the word list (generated), the main
+- Unit field 2: the text set (generated: record, rights line, status), the word list (generated), the main
   piece of writing, and what is carried: the anchor text, read and returned to.
-- Stretch field 4 (readiness): a short passage with questions on the "builds on" standards, or a short piece of
+- Unit field 4 (readiness): a short passage with questions on the "builds on" standards, or a short piece of
   writing; the ten-minute reteach is a modelled reread. It sits in the last ten minutes of the previous
-  stretch's last day, as the field says.
-- Stretch field 5 (end check): a new text read cold, named, with its record. Each teacher-judged item has
+  unit's last day, as the field says.
+- Unit field 5 (end-of-unit assessment): a new text read cold, named, with its record. Each teacher-judged item has
   look-fors and two sample answers.
-- Stretch field 6 (error register): expected misreadings and writing faults, lettered, each with its source or
+- Unit field 6 (error register): expected misreadings and writing faults, lettered, each with its source or
   "from memory".
-- Stretch field 7 (respond half): closed items are marked against the key in class. Written answers are read
+- Unit field 7 (respond half): closed items are marked against the key in class. Written answers are read
   after class and answered in the next day's first five minutes.
-- Unit field 1: no strategies line. What the teacher page must explain is the text itself: what it is, what a
+- Section field 1: no strategies line. What the teacher page must explain is the text itself: what it is, what a
   teacher must know to teach it, where it is hard.
-- Unit field 3: the day's evidence, with its look-for and sample answer.
-- Unit field 4: a misreading beside a sound reading with its line of evidence, and the day it is shown.
-- Unit field 5: the anchor passage and what is done with it on each return; the model passage or model piece;
+- Section field 3: the day's evidence, with its look-for and sample answer.
+- Section field 4: a misreading beside a sound reading with its line of evidence, and the day it is shown.
+- Section field 5: the anchor passage and what is done with it on each return; the model passage or model piece;
   the day the help is withdrawn.
-- Unit field 6: kind of day; how it opens; pages or words read.
-- Unit field 7: the discussion routine; the two or three questions marked for discussion; the written task and
+- Section field 6: kind of day; how it opens; pages or words read.
+- Section field 7: the discussion routine; the two or three questions marked for discussion; the written task and
   its type.
-- Unit field 8: the words and the sentence skill that come back; the rereading passage; "no rate target; the
+- Section field 8: the words and the sentence skill that come back; the rereading passage; "no rate target; the
   standards set none".
-- Unit field 9: reading load (words read alone, words read with audio or aloud); what may be read aloud on a
+- Section field 9: reading load (words read alone, words read with audio or aloud); what may be read aloud on a
   check and what may not.
-- Unit field 10: the home room lines above.
+- Section field 10: the home room lines above.
 
 ## Sources
 

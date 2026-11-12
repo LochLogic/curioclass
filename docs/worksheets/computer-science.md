@@ -1,6 +1,6 @@
 # Worksheets: Computer Science
 
-This file covers Computer Science for Kindergarten through Grade 12, one unit per grade. Sheets are all unplugged and follow CSTA concepts; within each grade they are listed in teaching order, module by module, with review sheets at natural checkpoints.
+This file covers Computer Science for Kindergarten through Grade 12, one class per grade. Sheets are all unplugged and follow CSTA concepts; within each grade they are listed in teaching order, topic by topic, with review sheets at natural checkpoints.
 
 ## cs-k: Kindergarten Computer Science
 

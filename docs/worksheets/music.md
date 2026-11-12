@@ -1,6 +1,6 @@
 # Worksheets: Music
 
-Music classes K-12, one list per grade, built on the National Core Arts Standards (creating, performing, responding, connecting). Each list follows the grade's modules in teaching order, with review sheets at the end of each module; listening sheets name public-domain or traditional pieces the teacher plays.
+Music classes K-12, one list per grade, built on the National Core Arts Standards (creating, performing, responding, connecting). Each list follows the grade's topics in teaching order, with review sheets at the end of each topic; listening sheets name public-domain or traditional pieces the teacher plays.
 
 ## music-k: Kindergarten Music
 

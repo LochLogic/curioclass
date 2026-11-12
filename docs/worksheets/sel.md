@@ -1,6 +1,6 @@
 # Worksheets: Social and Emotional Learning
 
-Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Each grade is listed in teaching order, module by module, with review sheets at checkpoints. Every sheet uses fictional characters and scenarios and offers choices; no sheet asks students to share anything about themselves, their families or classmates.
+Covers Social and Emotional Learning, Kindergarten through Grade 12 (CASEL). Each grade is listed in teaching order, topic by topic, with review sheets at checkpoints. Every sheet uses fictional characters and scenarios and offers choices; no sheet asks students to share anything about themselves, their families or classmates.
 
 ## sel-k: Kindergarten Social and Emotional Learning
 

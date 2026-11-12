@@ -1,6 +1,6 @@
 # Worksheets: Science
 
-Covers Kindergarten through Grade 8 Science by grade, then the high school courses Earth and Space Science, Biology, Chemistry, Physics and Environmental Science. Each list follows the NGSS performance expectations of its modules, in teaching order through the year.
+Covers Kindergarten through Grade 8 Science by grade, then the high school courses Earth and Space Science, Biology, Chemistry, Physics and Environmental Science. Each list follows the NGSS performance expectations of its topics, in teaching order through the year.
 
 ## science-k: Kindergarten Science
 

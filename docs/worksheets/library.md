@@ -1,6 +1,6 @@
 # Worksheets: Library and Research Skills
 
-This file covers Library and Research Skills for Kindergarten through Grade 12, one unit per grade, following AASL. Within each grade, sheets are listed in teaching order, module by module, with review sheets at natural checkpoints.
+This file covers Library and Research Skills for Kindergarten through Grade 12, one class per grade, following AASL. Within each grade, sheets are listed in teaching order, topic by topic, with review sheets at natural checkpoints.
 
 ## library-k: Kindergarten Library and Research Skills
 

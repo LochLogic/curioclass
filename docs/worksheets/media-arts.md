@@ -1,6 +1,6 @@
 # Worksheets: Media Arts
 
-Covers Media Arts for every grade, Kindergarten through Grade 12, following the National Core Arts Standards (create, present, respond, connect); every sheet is completed on paper with no device. Each grade's list runs module by module in teaching order, with review sheets at the end of modules and the year.
+Covers Media Arts for every grade, Kindergarten through Grade 12, following the National Core Arts Standards (create, present, respond, connect); every sheet is completed on paper with no device. Each grade's list runs topic by topic in teaching order, with review sheets at the end of topics and the year.
 
 ## media-arts-k: Kindergarten Media Arts
 

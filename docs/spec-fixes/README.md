@@ -79,7 +79,7 @@ separate step Claude runs after (ROADMAP step 3 for live tools, steps 5 and 6 fo
 
 ## The order
 
-**Stopped, 2026-11-11 night (Cory): no more spec fix batches.** A spec gets work only when a unit plan names its
+**Stopped, 2026-11-11 night (Cory): no more spec fix batches.** A spec gets work only when a section plan names its
 tool (BASELINE rule 26). What follows is kept as the record of the order that was planned.
 
 **NEXT.md in this folder was the work order, and it stopped at batch 4** (Cory, 2026-11-11):

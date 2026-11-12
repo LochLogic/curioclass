@@ -5,7 +5,7 @@ A static site generated from the catalog data. No server, no database, no npm.
 ## Build and check
 
 ```
-python scripts/build_db.py       # modules + standards database (after editing data/modules)
+python scripts/build_db.py       # topics + standards database (after editing data/modules)
 python scripts/check_concepts.py --write   # tool concepts catalog (after editing data/concepts)
 python scripts/check_tools.py    # every built tool meets docs/TOOL-CONTRACT.md
 python scripts/build_site.py     # writes dist/ (about 1,550 pages)
@@ -35,7 +35,7 @@ Needs Python with `jinja2` and `markdown`. `dist/` is generated and not committe
 | `/collections/`, `/collections/<family>/` | Tool families across grades | yes |
 | `/standards/` | Standards index | yes |
 | `/standards/<code>/` | Topics, then tools, for one code | no (noindex until more tools are built) |
-| `/modules/<id>/` | Topic page ("module" in the URL and code): everything for one topic: tools, lesson plans, Supply Closet shelves as they ship | yes once the topic has a built tool |
+| `/modules/<id>/` (moving to `/topics/<id>/`) | Topic page ("module" in the code, `module_id`): everything for one topic: tools, lesson plans, Supply Closet shelves as they ship | yes once the topic has a built tool |
 | `/modules/<id>/words/` | Word Wall print page: wall cards, mini cards, glossary; English, Spanish or both (`?format=`, `?lang=`); built only with `--closet` or `--preview` | yes in closet builds |
 | `/closet/word-wall/<grade>/` | Word Wall list for one grade or span (`k`, `3`, `9-12`, `k-12`), topics grouped by subject | yes in closet builds |
 | `/closet/`, `/closet/<shelf>/` | Supply Closet (docs/SUPPLY-CLOSET-PLAN.md); built only with `--closet` or `--preview` until Sub Day ships | yes / noindex while a shelf is empty |

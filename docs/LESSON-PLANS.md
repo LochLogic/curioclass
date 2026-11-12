@@ -64,7 +64,7 @@ grouping: Whole class on the carpet, with turn-and-talk partners.
 ## Short on time
 ```
 
-- `focus` is one or more of the module's standard codes (semicolon separated, as in modules.csv); the page shows their text.
+- `focus` is one or more of the topic's standard codes (semicolon separated, as in modules.csv); the page shows their text.
 - `goal` is an "I can" sentence a student could say.
 - **Before class:** setup in two or three bullets.
 - **Timed parts:** numbered steps. Questions in quotes, with expected answers in parentheses.
@@ -76,7 +76,7 @@ grouping: Whole class on the carpet, with turn-and-talk partners.
 Every tool with a plan also gets a Sub Day packet at `/tools/<id>/sub/` (docs/SUPPLY-CLOSET-PLAN.md, Phase B): five
 printed pages, each starting a new sheet. A cover page the teacher fills in by hand (the tool's link and a QR code,
 who drives, how long, and blanks for the day), the plan, the teacher notes, the exit page and a backup sheet for when
-the tool will not load. The packet is built from the plan, notes.md, tool.json, the module's Word Wall words and one
+the tool will not load. The packet is built from the plan, notes.md, tool.json, the topic's Word Wall words and one
 small file:
 
 ```

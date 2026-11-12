@@ -13,7 +13,7 @@ Build the site: `python scripts/build_site.py` (see docs/SITE.md).
 | Folder | What |
 |---|---|
 | `docs/` | Plans and decisions |
-| `data/` | Catalog data: grades, subjects, courses, modules, standards, concepts, formats |
+| `data/` | Catalog data: grades, subjects, courses, topics, standards, concepts, formats |
 | `tools/<tool-id>/` | One folder per tool: the HTML file, later notes.md, meta, preview |
 | `templates/parked-tool-starter.html` | Parked starter template (not used) |
 | `site/` | Site templates, assets and the design mockups |

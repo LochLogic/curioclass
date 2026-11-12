@@ -17,8 +17,8 @@ separately. This page writes the bar for every other subject: one shared core, t
 bar we hold ourselves to. Most instruments are all rights reserved, so nothing is quoted. Every criterion is in our
 own words.
 
-**What this page is not.** An approach page. Layer 3 asks for one per subject before a spine, and none exists (see
-"Before a spine in this subject"). A subject's part moves to its own docs/RUBRIC-*.md file once it is firm.
+**What this page is not.** An approach page. Layer 3 asks for one per subject before a scope and sequence, and none exists (see
+"Before a scope and sequence in this subject"). A subject's part moves to its own docs/RUBRIC-*.md file once it is firm.
 
 ## The pass rule
 
@@ -32,15 +32,15 @@ the rest is scored.
   three part passes.
 - **Pass:** no "fails if" condition is found in the sample. **Part pass:** a condition is found in one sampled unit
   only, and the fix is local. **Fail:** it is found in two or more units, or is built into the course's design.
-- **The sample.** The reviewer reads the whole spine and coverage table, then three whole units picked by the
+- **The sample.** The reviewer reads the whole scope and sequence and coverage table, then three whole units picked by the
   reviewer, never by the builder, one from each third of the year: every lesson, page, tool and check in them. A
   course of four units or fewer is read whole. Below, "three units" means this sample.
 - The subject part is read the same way: no criterion failed, and the part pass count above covers core and subject
   criteria together.
 - **A small course is read the same way.** SEL and library skills courses may be smaller than other courses by
-  the nature of the subject (decided 2026-11-11). They are "held to the whole core at the size its spine states":
+  the nature of the subject (decided 2026-11-11). They are "held to the whole core at the size its scope and sequence states":
   every criterion from C1 to C16 and every criterion of the subject part still applies, and what is measured is
-  the number of units and days the spine itself sets out, not the size of a math or science course. Being small
+  the number of units and days the scope and sequence itself sets out, not the size of a math or science course. Being small
   waives no criterion.
 - **Beyond the three units,** the reviewer reads: for C1, the whole coverage table, tracing ten standards of the
   reviewer's choice to lesson and check item; for C4, the progression page; for C8 and C9, one cumulative check;
@@ -48,27 +48,27 @@ the rest is scored.
 
 ## The shared core
 
-Layers are those in docs/ROADMAP.md, "The layers": 1 foundation, 2 standards, 3 approach, 4 progressions, 5 spine,
-6 stretch sheet and unit plan, 7 lessons, tools, print and checks. The rows recur across the instruments read in full (see
+Layers are those in docs/ROADMAP.md, "The layers": 1 foundation, 2 standards, 3 approach, 4 progressions, 5 scope and sequence,
+6 unit plan and section plan, 7 lessons, tools, print and checks. The rows recur across the instruments read in full (see
 the sources table). No count per row is given, because the first draft's "Seen in" column was not reliable.
 
 | # | A reviewer looks for | What shows it in a Curio Class course | Layer | Fails if |
 |---|---|---|---|---|
-| C1 | **Every standard of the course is named and taught in full,** at the depth its wording asks, with little time on content from outside the course | The spine's standards table with days; a coverage table pointing each standard to lesson, tool and check item; a named edition loaded in data/standards/ | 2, 5 | Any standard lacks a lesson, practice or a check item. A traced standard is taught below its wording. More than 10 percent of teaching days go to content outside the course's standards (our number, reset per subject once its spine form is known). The edition is not named or not loaded |
-| C2 | **A year plan with reasons:** units in order, why, days per unit, minutes per lesson, a shorter path | The spine: every teaching day, the reason for the order, the stated year and period length, the short path, gap days | 5 | A teaching day has no plan. The order has no stated reason. No minutes per lesson. No short path. The days do not add up to the stated year |
+| C1 | **Every standard of the course is named and taught in full,** at the depth its wording asks, with little time on content from outside the course | The scope and sequence's standards table with days; a coverage table pointing each standard to lesson, tool and check item; a named edition loaded in data/standards/ | 2, 5 | Any standard lacks a lesson, practice or a check item. A traced standard is taught below its wording. More than 10 percent of teaching days go to content outside the course's standards (our number, reset per subject once its scope and sequence form is known). The edition is not named or not loaded |
+| C2 | **A year plan with reasons:** units in order, why, days per unit, minutes per lesson, a shorter path | The scope and sequence: every teaching day, the reason for the order, the stated year and period length, the short path, gap days | 5 | A teaching day has no plan. The order has no stated reason. No minutes per lesson. No short path. The days do not add up to the stated year |
 | C3 | **Nothing wrong, nothing sold, authors plain.** (a) Facts, figures, terms and pictures are correct and current, with sources. (b) No product, brand or provider is promoted; opinion is marked. (c) Who wrote it, and how, is stated | The accuracy read at the Finish check, with the reader named; a source line on each fact page; public copy that names no companies and says how the course was made. Health: see its criterion 7 | 7 | (a) An uncorrected error in a key, a definition or a figure; a dated figure with no date or source. (b) Any promotion. (c) No statement of authorship |
-| C4 | **Each idea rests on the last:** what earlier grades taught, how units link, what comes next | The subject's progression page; the spine's builds-on and comes-back columns; the readiness check on each stretch sheet | 4, 5, 6 | A unit leans on an idea nothing earlier taught and no readiness check catches it. No progression page. A band course does not say what the band before taught |
-| C5 | **A unit overview that prepares the teacher:** purpose, background knowledge, the unit's words, how it is assessed | The unit plan's fields; the teacher page that teaches the teacher | 6, 7 | The teacher page restates the lessons and adds no background. No word list. Assessment not stated |
-| C6 | **Lessons ready to teach:** objective, questions, tasks, materials, time per part, grouping | Daily plans and student pages for every spine day; the supplies list; the projector path on tool days | 7 | A spine day has no plan or no student page. A lesson lacks an objective, materials or times. The teacher must write the questions or tasks |
-| C7 | **New things are taught, then practised with fading help,** spread over time, and they come back | The unit plan field naming who holds the model each day and the day it is withdrawn; the plan for what earlier work returns | 3, 6 | A new skill is first met in independent work. No day is named for withdrawing the model. Nothing from earlier units returns |
-| C8 | **An assessment system:** checks before, during and after teaching, each tied to named standards, more than one kind of task, doing where the subject is a doing subject, and students judging and tracking their own work | The unaided check in each tool, readiness and end checks on each stretch sheet, cumulative checks on the spine; a student self-check page per unit | 6, 7 | One of the three sizes is missing. An item names no standard. A doing subject is checked by recall alone. Students never judge or track their own work in a unit |
+| C4 | **Each idea rests on the last:** what earlier grades taught, how units link, what comes next | The subject's progression page; the scope and sequence's builds-on and comes-back columns; the readiness check on each unit plan | 4, 5, 6 | A unit leans on an idea nothing earlier taught and no readiness check catches it. No progression page. A band course does not say what the band before taught |
+| C5 | **A unit overview that prepares the teacher:** purpose, background knowledge, the unit's words, how it is assessed | The section plan's fields; the teacher page that teaches the teacher | 6, 7 | The teacher page restates the lessons and adds no background. No word list. Assessment not stated |
+| C6 | **Lessons ready to teach:** objective, questions, tasks, materials, time per part, grouping | Daily plans and student pages for every scope and sequence day; the supplies list; the projector path on tool days | 7 | A scope and sequence day has no plan or no student page. A lesson lacks an objective, materials or times. The teacher must write the questions or tasks |
+| C7 | **New things are taught, then practised with fading help,** spread over time, and they come back | The section plan field naming who holds the model each day and the day it is withdrawn; the plan for what earlier work returns | 3, 6 | A new skill is first met in independent work. No day is named for withdrawing the model. Nothing from earlier units returns |
+| C8 | **An assessment system:** checks before, during and after teaching, each tied to named standards, more than one kind of task, doing where the subject is a doing subject, and students judging and tracking their own work | The unaided check in each tool, readiness and end-of-unit assessments on each unit plan, cumulative checks on the scope and sequence; a student self-check page per unit | 6, 7 | One of the three sizes is missing. An item names no standard. A doing subject is checked by recall alone. Students never judge or track their own work in a unit |
 | C9 | **The teacher can score it and act on it:** keys, rubrics, scored samples, what each wrong answer shows, what to do next | Keys that explain each wrong answer and the reteach; a rubric and sample pieces for every open task; the respond day; the class record sheet | 6, 7 | A key gives answers only. An open task has no rubric, or samples at fewer than two levels. No next step. No record sheet |
-| C10 | **Every learner works on the course's content:** help for students behind that keeps the goal, deeper extensions, guidance for disabilities, a reading load that fits the grade with help for students who read below it | The three hooks on every unit plan; the reteach per readiness gap; extension on the same standard; the unit plan's reading load field | 3, 6, 7 | A support lowers the goal or swaps the content. No extension on the same standard. No guidance for disabilities. Reading load field empty, or pages above grade with no help |
+| C10 | **Every learner works on the course's content:** help for students behind that keeps the goal, deeper extensions, guidance for disabilities, a reading load that fits the grade with help for students who read below it | The three hooks on every section plan; the reteach per readiness gap; extension on the same standard; the section plan's reading load field | 3, 6, 7 | A support lowers the goal or swaps the content. No extension on the same standard. No guidance for disabilities. Reading load field empty, or pages above grade with no help |
 | C11 | **English learners are supported inside the lesson:** the language the lesson asks for, key words in depth, frames, levels where the subject can, and help telling a language gap from a content gap | The English learner hook in every tool and teacher page; Word Wall cards; a line in each key on answers that show a language gap | 6, 7 | Supports are a general list not tied to the lesson. No frames. Nothing helps the teacher tell a language gap from a content gap |
 | C12 | **People are shown with care and range:** many voices and places, no stereotypes, no shaming, hard facts told plainly | The fresh-agent sensitivity read (FOUNDATION promise 7); a record per unit of whose work and voices appear | 1, 7 | A stereotype or shaming passes. One group carries all the examples. A hard fact is softened until it is false. No read on record |
 | C13 | **The approach is explained, and families are told** | The subject's approach page, with sources and how much of each was read; a family note per unit, in English and Spanish, written when the unit is finished | 3, 7 | No approach page. A research claim rests on a source nobody read. A sampled unit has no family note |
 | C14 | **It can be run in an ordinary room:** time, space, supplies, cost and teacher knowledge are stated and modest | The supplies list with cheap stand-ins; the paper path for every tool day; time per lesson; a free site | 1, 5, 7 | The course needs space, kit, time or training most schools lack and gives no stand-in. A cost to the school is not stated. A tool day has no paper path |
-| C15 | **Screens serve the learning:** tied to the objective, run on school devices, usable without mouse or colour, private, with a non-screen path | The tool's named job in the unit plan; the access check; single-file offline tools that store nothing off the device | 6, 7 | A tool has no named job. It fails keyboard-only or colour-free play. It needs an install, an account or a network. It stores data off the device |
+| C15 | **Screens serve the learning:** tied to the objective, run on school devices, usable without mouse or colour, private, with a non-screen path | The tool's named job in the section plan; the access check; single-file offline tools that store nothing off the device | 6, 7 | A tool has no named job. It fails keyboard-only or colour-free play. It needs an install, an account or a network. It stores data off the device |
 | C16 | **Honest about evidence** | A one-page logic model per course; the plain statement that the course has not been tried with children | 1, 3 | Any claim of effect. No logic model. Research cited that nobody on the project read |
 
 **Where our promises cost us marks, by choice.** Curio Class will not build some things rubrics ask for
@@ -101,7 +101,7 @@ Fourteen courses, kindergarten to grade 12, including the named high school cour
 Maryland's rubric (2025), read in full by the expert; Massachusetts read in part.
 
 1. [I] Inquiry and knowledge together: units are framed by questions and big ideas, and content is taught directly
-   and in order so facts, ideas and words pile up. History runs in time order unless the spine gives a reason.
+   and in order so facts, ideas and words pile up. History runs in time order unless the scope and sequence gives a reason.
 2. [I] Students work with real sources, primary and secondary, at a reading level right for the grade. Each source
    has a stated difficulty and a reason for its place in the year.
 3. [I] Where an event has more than one account, the sources carry more than one.
@@ -123,9 +123,9 @@ Maryland's value-laden items are left out on purpose (see the values paragraph).
 
 **Standards.** data/standards/c3-indicators.txt (2013) is skills only. No content standard is loaded, and
 psychology cites a standard with no file. Which content standard the courses teach is still open with Cory (see
-"Still open with Cory", a). No social studies spine starts before it is settled.
+"Still open with Cory", a). No social studies scope and sequence starts before it is settled.
 
-**Spine states:** the content standard and each unit's question. **Unit plan fills:** the source list
+**Scope and sequence states:** the content standard and each unit's question. **Section plan fills:** the source list
 with reasons. **Confidence:** likely.
 
 ### 2. Arts: visual arts, music, theater, dance, media arts
@@ -155,7 +155,7 @@ performing art, so the performing is in the room.
 **Standards.** data/standards/ncas-performance-standards.txt (2014; a national revision is under way, no date). The
 standards are by grade to grade 8; our courses are bands.
 
-**Spine states:** which grade's standards fall in which year of the band. **Unit plan fills:** the
+**Scope and sequence states:** which grade's standards fall in which year of the band. **Section plan fills:** the
 works studied and the showing. **Confidence:** likely for the instruments, thin for the evidence.
 
 ### 3. Health
@@ -179,10 +179,10 @@ coverage is scored.
    includes students assessing themselves.
 9. [I] Materials are inclusive: they fit students' cultures and the conditions they live in, avoid blame, and guide
    the teacher on their own bias.
-10. [I, modules unread] A band coverage map shows which topics and healthy behaviour outcomes in
+10. [I, topics unread] A band coverage map shows which topics and healthy behaviour outcomes in
     data/standards/hecat-topics.txt each band teaches, and where.
 
-**Fails if:** scare tactics; fact recall as the end check; skills named and never rehearsed; outdated figures; no
+**Fails if:** scare tactics; fact recall as the end-of-unit assessment; skills named and never rehearsed; outdated figures; no
 coverage map; a sensitive topic taught with no note on what a school may leave out.
 
 **Unsupported.** The tool counts features and does not show a curriculum works. It assumes a teacher leads, in a
@@ -194,7 +194,7 @@ the course.
 across; the first standard was reworded. Decided 2026-11-11 (card q-standards-currency): the 2024 standards are
 kept, with a written mapping to the older-keyed review tool.
 
-**Spine states:** the coverage map. **Unit plan fills:** the behaviour outcome and the skill steps.
+**Scope and sequence states:** the coverage map. **Section plan fills:** the behaviour outcome and the skill steps.
 **Confidence:** likely, until the writer has read the second half of chapter 5 and one topic module.
 
 ### 4. Physical education
@@ -225,7 +225,7 @@ and knowledge content.
 method carries over; the tables do not. Decided 2026-11-11 (card q-standards-currency): the 2024 standards are
 kept, with a written mapping to the older-keyed review tool.
 
-**Spine states:** the outcome for each standard by grade. **Unit plan fills:** space, equipment and
+**Scope and sequence states:** the outcome for each standard by grade. **Section plan fills:** space, equipment and
 the adaptation. **Confidence:** likely.
 
 ### 5. Computer science
@@ -251,16 +251,16 @@ account; no help for the non-specialist.
 **Standards.** data/standards/csta-2026-ids.txt: the 196 foundational codes of the 2026 standards, with no header and
 no wording. The 135 high school specialty standards are absent. Decided 2026-11-11 (card q-standards-currency):
 the 135 Specialty standards are loaded. The high school course teaches the Foundational set and claims a
-Specialty standard only where a module already goes that far.
+Specialty standard only where a topic already goes that far.
 
-**Spine states:** the concept areas per unit. **Unit plan fills:** the unplugged task.
+**Scope and sequence states:** the concept areas per unit. **Section plan fills:** the unplugged task.
 **Confidence:** likely.
 
 ### 6. World languages: Spanish, American Sign Language. Shelved, 2026-11-11
 
-**Shelved for a later pass (Cory, 2026-11-11), American Sign Language included.** No spine is written, no
+**Shelved for a later pass (Cory, 2026-11-11), American Sign Language included.** No scope and sequence is written, no
 standards are loaded and no video is planned for these courses now. The part below is kept as written so the
-later pass starts from it. What is owed when it is unshelved is listed under "Before a spine in this subject".
+later pass starts from it. What is owed when it is unshelved is listed under "Before a scope and sequence in this subject".
 
 Two courses today, each "all levels".
 
@@ -287,7 +287,7 @@ two-way task; one course for all levels.
 **Standards.** data/standards/actfl-wrs.txt (2015 standards, 2024 level names). The 2026 can-do statements and any
 American Sign Language standards are not loaded.
 
-**Spine states:** the target level. **Unit plan fills:** the three-mode end task.
+**Scope and sequence states:** the target level. **Section plan fills:** the three-mode end task.
 **Confidence:** likely.
 
 ### 7. Career and technical education. Ours in part, untested
@@ -314,7 +314,7 @@ says what a school adds.
 **Standards.** data/standards/cte-career-clusters-2024.txt: cluster names and twelve practices by number only. It
 fits exploration courses and would not fit a technical one.
 
-**Spine states:** the fields studied. **Unit plan fills:** the applied task and its data source.
+**Scope and sequence states:** the fields studied. **Section plan fills:** the applied task and its data source.
 **Confidence:** thin.
 
 ### 8. Personal finance, grades 9 to 12
@@ -330,7 +330,7 @@ fits exploration courses and would not fit a technical one.
 7. [I] A teacher with no finance training can teach it with modest preparation.
 8. [O] The course page states that the course has not been studied.
 
-**Fails if:** stale rates; a sponsor's logo; advice presented as fact; vocabulary tests as the end check.
+**Fails if:** stale rates; a sponsor's logo; advice presented as fact; vocabulary tests as the end-of-unit assessment.
 
 **Unsupported.** The bar for this course is the design side. The evidence side needs studies of the course itself
 and is stated as unmet on the course page. No page may promise changed behaviour. Decided 2026-11-11: the design
@@ -339,7 +339,7 @@ half is the bar, **marked for a deeper review**.
 **Standards.** data/standards/nspfe-2021.txt. The tool's content lists predate it, so criterion 1 is checked against
 the file.
 
-**Spine states:** the topic per unit. **Unit plan fills:** the decision practised.
+**Scope and sequence states:** the topic per unit. **Section plan fills:** the decision practised.
 **Confidence:** likely.
 
 ### 9. Social and emotional learning
@@ -368,7 +368,7 @@ review**.
 
 **Standards.** data/standards/casel-5.txt, the same framework.
 
-**Spine states:** the year-by-year sequence. **Unit plan fills:** the practice by doing.
+**Scope and sequence states:** the year-by-year sequence. **Section plan fills:** the practice by doing.
 **Confidence:** likely for design.
 
 ### 10. English language development. Ours in part, untested
@@ -393,7 +393,7 @@ page. *To firm it:* read the California map end to end and open the WIDA rubric 
 
 **Standards.** data/standards/wida-2020.txt. California's criteria are keyed to its own ELD standards.
 
-**Spine states:** entry and exit points. **Unit plan fills:** the levels and the talk routine.
+**Scope and sequence states:** entry and exit points. **Section plan fills:** the levels and the talk routine.
 **Confidence:** thin.
 
 ### 11. Library and research skills. Ours, untested
@@ -410,7 +410,7 @@ national school library standards (not re-opened) and one trial of lateral readi
 2. [O] Each grade has named priority skills, each with a check.
 3. [O, one trial] Judging a source is taught as leaving the page to see what others say about it, not as a
    checklist run on the page.
-4. [O] Skills are practised on real tasks from the grade's other courses, named in the spine.
+4. [O] Skills are practised on real tasks from the grade's other courses, named in the scope and sequence.
 5. [O] Citing, fair use and honest use of others' work are taught at each band.
 6. [O] Students make a product from their research and share it.
 
@@ -420,24 +420,24 @@ national school library standards (not re-opened) and one trial of lateral readi
 
 **Standards.** data/standards/aasl-2018.txt: the codes match the second edition (2025); the label is stale.
 
-**Spine states:** the host tasks from other courses. **Unit plan fills:** the check per skill.
+**Scope and sequence states:** the host tasks from other courses. **Section plan fills:** the check per skill.
 **Confidence:** thin.
 
-## Before a spine in this subject
+## Before a scope and sequence in this subject
 
 A course blocked here is not exempt and is not finished. Each row is work owed. "Cory" means it waits on a
 question in "Still open with Cory" below, or on his yes. Core subjects come first (see the top of this page), so
 every row but social studies waits behind the core work unless it is complementary.
 
-| Subject | Owed before a spine | Who |
+| Subject | Owed before a scope and sequence | Who |
 |---|---|---|
-| All ten active subjects | An approach page per subject (layer 3) that fills the unit plan's subject slots: the kinds of day and the form of daily evidence | Agent drafts, Cory's yes |
-| Social studies (14) | Work up the three content standard options and bring them back to Cory (still open, a); then load what he chooses. No spine starts before that. Load the psychology standard's current edition or drop its tags. Say what economics and geography stand on. Confirm the C3 edition at the publisher. Plan informed action once a year per course, up to three times if the evidence shows a need | Agent works up, Cory decides, then agent |
-| AP and psychology modules (26), in whichever subject they sit | These have no standards file. Mark them now as not yet standards-checked. **Do not lose this note (Cory): the course framework is loaded when that course's spine is written** | Agent |
+| All ten active subjects | An approach page per subject (layer 3) that fills the section plan's subject slots: the kinds of day and the form of daily evidence | Agent drafts, Cory's yes |
+| Social studies (14) | Work up the three content standard options and bring them back to Cory (still open, a); then load what he chooses. No scope and sequence starts before that. Load the psychology standard's current edition or drop its tags. Say what economics and geography stand on. Confirm the C3 edition at the publisher. Plan informed action once a year per course, up to three times if the evidence shows a need | Agent works up, Cory decides, then agent |
+| AP and psychology topics (26), in whichever subject they sit | These have no standards file. Mark them now as not yet standards-checked. **Do not lose this note (Cory): the course framework is loaded when that course's scope and sequence is written** | Agent |
 | Arts (20) | A written rule placing each grade's standards, and the three high school levels, in a band year. Read the reuse terms. Watch the national revision twice a year | Agent |
 | Health (4) | Read one topic module; write the band coverage map; write the 2007 to 2024 note; fix the file header to "SHAPE America, 2024". Keep the 2024 standards and write the mapping to the older-keyed review tool (decided, card q-standards-currency). Carry all sensitive topics, each sensitive unit able to be left out without breaking the course (decided). One paid specialist read per band, as proposed; confirm the cost with Cory before any spend | Agent, then Cory for the cost |
 | Physical education (4) | Keep the 2024 standards and write the map from the tool's five standards to the loaded four (decided, card q-standards-currency). Find and read the appropriate practice guidelines | Agent |
-| Computer science (4) | Give the file a header and the standards' wording, under its own licence line. Load the 135 Specialty standards (decided, card q-standards-currency). The high school course teaches the Foundational set and claims a Specialty standard only where a module already goes that far | Agent |
+| Computer science (4) | Give the file a header and the standards' wording, under its own licence line. Load the 135 Specialty standards (decided, card q-standards-currency). The high school course teaches the Foundational set and claims a Specialty standard only where a topic already goes that far | Agent |
 | Career education (2) | Read the 2024 career-ready practices wording. List what a school adds | Agent |
 | Personal finance (1) | Check content against the 2021 file and say the mapping is ours | Agent |
 | SEL (4) | Separate courses (decided); they may be small. Write a sequence per grade. The design half as the bar is marked for a deeper review | Agent |
@@ -456,14 +456,14 @@ The numbers are those of the eleven choices the second draft put to him. His wor
 [HANDOFF.md](HANDOFF.md). Choices 1 and 5 are not settled and are under "Still open with Cory".
 
 2. **World languages.** "2 shelf foreign languages for a later pass (ASL included)." Spanish and American Sign
-   Language are shelved. No spines, no standards loading and no video planning for them now. Part 6 is kept.
+   Language are shelved. No scopes and sequences, no standards loading and no video planning for them now. Part 6 is kept.
 3. **Sensitive health topics.** "3 all." Curio Class carries all of the tool's sensitive topics, and each
    sensitive unit can be left out without breaking the course. The paid read per band by a health curriculum
    specialist was part of the recommended option and stays as proposed; the cost is confirmed with Cory before
    any spend.
 4. **SEL and library skills.** "4 they can stay separate but are allowed to be smaller than other courses by
    nature of the subject." They stay courses, not strands, each with a sequence per grade. They are held to the
-   whole core at the size their spine states (see the pass rule).
+   whole core at the size their scope and sequence states (see the pass rule).
 6. **Informed action in social studies.** "6 i lean to once per year, but up to three times if the evidence
    indicates a need for more." Once a year per course is the plan. A course may go up to three times a year where
    the evidence shows a need.
@@ -477,9 +477,9 @@ The numbers are those of the eleven choices the second draft put to him. His wor
 11. **Family notes.** "11, agreed" Family notes are written in English and Spanish, for all courses, when a unit
     is finished.
 
-Decided on the same day on Desk card q-standards-currency, and applied in "Before a spine in this subject": the
+Decided on the same day on Desk card q-standards-currency, and applied in "Before a scope and sequence in this subject": the
 computer science Specialty standards, the health and physical education mapping, and the 26 AP and psychology
-modules.
+topics.
 
 ## Still open with Cory
 
@@ -500,8 +500,8 @@ more demanding expectation. Three options are to be worked up:
   (earlier grade, more depth, more topics), how to stop the sum from growing past what a year can teach (C1 and
   C2 still apply), and the same tracing question.
 
-For each option the work-up also says what it would change in the fourteen spines. It must be worked up and
-brought back before anything is chosen. **No social studies spine starts before it is settled.**
+For each option the work-up also says what it would change in the fourteen scopes and sequences. It must be worked up and
+brought back before anything is chosen. **No social studies scope and sequence starts before it is settled.**
 
 **(b) What is our stance where state instruments conflict on values?** Cory's words: "5 is another place where i
 feel a "high watermark" may be best (follow the higher quality or rigor)." He leans to a high watermark here too.
@@ -528,7 +528,7 @@ loaded: docs/reviews/standards-currency-2026-11-11.md.
 | Texas IMRA, languages rubric, 2026 | https://sboe.texas.gov/state-board-of-education/imra/sboe-approved-lote-quality-rubric.pdf | State document | Writer, in full, 22 pp |
 | California, arts materials criteria, K-8 | https://www.cde.ca.gov/BE/cc/cd/documents/artsadoptionevalcriteria4c.docx | State document | Writer, five categories in full |
 | Oklahoma, fine arts rubric, 2024 | https://oklahoma.gov/content/dam/ok/en/osde/documents/services/standards-learning/hqim/hqim-rubrics/Fine-Arts-HQIM-Rubric-2024.pdf | State document | Expert, in full, 23 pp |
-| CDC, Health Education Curriculum Analysis Tool, 2021 | https://www.cdc.gov/healthy-youth/hecat/pdfs/hecat_chapter-04.pdf and hecat_chapter-05.pdf; overview at https://www.cdc.gov/healthy-youth/hecat/2021-edition.html | US government work | Expert, chapters 4 and 5 in full. Writer, overview and first halves. Topic modules unread |
+| CDC, Health Education Curriculum Analysis Tool, 2021 | https://www.cdc.gov/healthy-youth/hecat/pdfs/hecat_chapter-04.pdf and hecat_chapter-05.pdf; overview at https://www.cdc.gov/healthy-youth/hecat/2021-edition.html | US government work | Expert, chapters 4 and 5 in full. Writer, overview and first halves. Topic topics unread |
 | CDC, Physical Education Curriculum Analysis Tool, 2019 | https://www.cdc.gov/physical-activity-education/media/pdfs/2025/04/18_300595-A_PECAT_042619_508tagged_CR2025-04-07_revised-clean.pdf | US government work | Writer and expert, preliminary analyses and directions. Grade tables unread |
 | Oregon, physical education criteria, 2025 | https://www.oregon.gov/ode/educator-resources/teachingcontent/instructional-materials/Documents/2025PhysicalEducationIMCriteria.pdf | State document | Writer, in full, 7 pp |
 | Ohio, computer science and technology rubric, 2025 | https://education.ohio.gov/getattachment/Topics/Learning-in-Ohio/OLS-Graphic-Sections/Resources/High-Quality-Instructional-Material/HQIM-Rubrics/Computer-Science-Technology-Rubric.pdf.aspx?lang=en-US | State document | Expert, in full, 24 pp. Writer, gateway 1 |

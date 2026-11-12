@@ -27,7 +27,7 @@ For every code on the spec, with the standard's full wording in front of you:
 - [ ] Cannot be skipped: all of the above is on the path every student takes.
 - [ ] The three hooks (README, "The end standard"): an unaided check the teacher can see, with what each wrong answer
       means; English learner supports; access by tap and keyboard, nothing by color alone.
-- [ ] The role is honest: `lesson`, `see why` or `practice`, and a practice tool says where the teaching happened.
+- [ ] The role is honest: `teach`, `see why` or `practice`, and a practice tool says where the teaching happened.
 
 For the spec as a whole:
 
@@ -38,7 +38,7 @@ For the spec as a whole:
 
 ## The review, course as a whole
 
-- [ ] Every standard in the course is taught in full by at least one lesson tool. List any that are not.
+- [ ] Every standard in the course is taught in full by at least one teach tool. List any that are not.
 - [ ] Major work of the grade gets the most tools and the most items.
 - [ ] No two tools teach the same thing the same way; where two overlap, one is the lesson and one the practice.
 - [ ] The tools can be run in an order that makes sense, with nothing assumed that was never taught.

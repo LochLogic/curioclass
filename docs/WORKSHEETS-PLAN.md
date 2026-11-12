@@ -7,7 +7,7 @@ Started 2026-11-01 (Cory). Track 2, Supply Closet, item 6 in docs/ROADMAP.md.
 
 A Supply Closet shelf of print-ready student worksheets a teacher can hand out tomorrow: **about 30 hand-written per
 class** (40 to 50 until the 2026-11-04 trim), plus generator sheets, for
-every class Curio Class covers, K-12. Each worksheet is hand-designed around one skill or idea from a module, prints
+every class Curio Class covers, K-12. Each worksheet is hand-designed around one skill or idea from a topic, prints
 on US Letter in black and white, and comes with a teacher page (answer key and notes).
 
 This is not the Worksheet Generator (docs/SUPPLY-CLOSET-PLAN.md, "Generators"). The generator makes endless
@@ -33,8 +33,8 @@ Cory chose "by class" (2026-11-01): a list for each class a teacher actually tea
 | World Languages | proficiency level, not grade: Spanish and ASL Novice (K-5), Novice (6-12), Intermediate, Advanced; French Novice, Intermediate, Advanced | 11 |
 | **Total** | | **215 classes, 7,116 worksheets** (8,947 before the 2026-11-04 trim) |
 
-`python scripts/check_worksheets.py --units` lists them all; `--modules <unit-id>` lists the modules a class covers.
-The classes come from `data/courses.csv` and `data/modules.csv`, so a new module shows up in its classes automatically.
+`python scripts/check_worksheets.py --units` lists them all; `--modules <unit-id>` lists the topics a class covers.
+The classes come from `data/courses.csv` and `data/modules.csv`, so a new topic shows up in its classes automatically.
 
 ## The concept lists
 
@@ -44,24 +44,24 @@ section, in course order:
 ```
 ## ela-3: Grade 3 English Language Arts
 
-| # | Worksheet | Type | Module | Students |
+| # | Worksheet | Type | Topic | Students |
 |---|---|---|---|---|
 | 1 | Who Is Telling? Point of View Sort | Practice | Point of View | Sort 12 short passages by narrator (first or third person), then rewrite one from the other view. |
 ```
 
 - **Worksheet:** a specific, teacher-friendly title. Never "Fractions Practice 2".
 - **Type:** one of the types below.
-- **Module:** the module title from `data/modules.csv` (the sheet links to its module page, and through it to the
-  standards, tools, Word Wall and chart). "-" only for a class with no modules yet (French).
+- **Topic:** the topic title from `data/modules.csv` (the sheet links to its topic page, and through it to the
+  standards, tools, Word Wall and chart). "-" only for a class with no topics yet (French).
 - **Students:** what students actually do on the sheet, in one sentence (6 to 30 words), concrete enough that a
   writer can build the sheet from it.
 
 ### Rules for a class's list
 
-1. **30 to 45 rows** (about 30 hand-written, generator rows on top, since the 2026-11-04 trim). Every module gets at
-   least 1 (2 where it fits; ELA's small modules are a roadmap item), roughly in proportion to its size. Row numbers
+1. **30 to 45 rows** (about 30 hand-written, generator rows on top, since the 2026-11-04 trim). Every topic gets at
+   least 1 (2 where it fits; ELA's small topics are a roadmap item), roughly in proportion to its size. Row numbers
    are ids: never renumber, gaps are fine.
-2. **In teaching order:** the order a teacher would use them across the year, module by module, with a few review
+2. **In teaching order:** the order a teacher would use them across the year, topic by topic, with a few review
    sheets at natural checkpoints.
 3. **A real mix of types.** At least 4 types per class, no type over 60%. Math leans on Practice and Apply; history on
    Source analysis, Timeline and Map; science on Lab, Diagram and Data and graphs; arts on Critique, Planner and Log.
@@ -95,7 +95,7 @@ section, in course order:
 | Source analysis | Read a primary or secondary source (text, image, chart) with guiding questions |
 | Writing frame | Scaffolded writing: sentence starters, paragraph frame, outline |
 | Vocabulary | Use words in context, sort, word maps, draw it (not plain matching) |
-| Review | Mixed review or quick check across a module or several |
+| Review | Mixed review or quick check across a topic or several |
 | Planner | Plan a project, performance, design or investigation |
 | Reflection | Self-assessment, goal setting, journaling prompt |
 | Log | Practice log, fitness log, listening log, observation log over time |
@@ -109,7 +109,7 @@ Not part of the concept lists; this is the layout every built sheet will share.
 **Student pages (1 or 2 Letter pages):**
 
 1. Header: Name, Date, Class lines; the worksheet title; grade and subject in small type.
-2. **I can** line, from the module.
+2. **I can** line, from the topic.
 3. **Directions** in plain words. K-2 directions are short, with a small picture, and the teacher reads them aloud.
 4. **Example** box: one worked example or model answer (Practice, Apply, Writing frame).
 5. **Part A, warm up:** 2 to 4 easy items.
@@ -118,7 +118,7 @@ Not part of the concept lists; this is the layout every built sheet will share.
 8. **Check yourself:** a short self-rating ("I can do this: on my own / with help / not yet").
 9. Footer: "Curio Class, CC BY 4.0, curioclass.org/..." like every closet item.
 
-**Teacher page** (the same page with the key switched on): answer key (or a model answer and a short rubric for open tasks), the module and its standard
+**Teacher page** (the same page with the key switched on): answer key (or a model answer and a short rubric for open tasks), the topic and its standard
 codes, time (10 to 30 minutes), materials (scissors, glue, crayons), the tool it pairs with, and one line on common
 mistakes to watch for.
 
@@ -169,7 +169,7 @@ Agreed 2026-11-01 (Cory): keep the collection light by storing text, not pages, 
   the host's file-count limit (Cloudflare static assets: check the current cap, about 20,000 files on the free plan).
 - **One page, two copies.** "Show answer key" flips the same page between the student copy and the teacher page.
   Print defaults to the student copy, so a key never goes out by accident.
-- **Print sets.** "Print all sheets for this module" sends several sheets in one print job.
+- **Print sets.** "Print all sheets for this topic" sends several sheets in one print job.
 - **No new libraries or fonts.** The viewer is one small shared script with the site's print CSS, nothing from other
   hosts.
 - **Search:** the class pages carry search. If single sheets need to rank later, the most used few hundred can be
@@ -252,8 +252,8 @@ row labels, the staff, graphs that print for students, code listings, teacher-on
 2. **Pilot:** DONE 2026-11-01, ten sheets (above). Cory's review of them comes next.
 3. **Build waves** by subject and band, core subjects first, with the answer-key check.
 4. **Site:** `/closet/worksheets/` by grade and subject, a sheet page that prints the student pages, and a separate
-   teacher page with the key (the key never prints on the student copy). Module pages get a Worksheets row (done
-   2026-11-03: the module's authored sheets, ready ones linked, plus up to four generators preset for it).
+   teacher page with the key (the key never prints on the student copy). Topic pages get a Worksheets row (done
+   2026-11-03: the topic's authored sheets, ready ones linked, plus up to four generators preset for it).
 5. **Spanish** for the student pages, then the native-speaker review (closet rule 6).
 6. **Held collections** keep their holds: ASL sheets wait for the ASL sign-strip sample, hard history sheets get the
    fresh review, Spanish-language sheets the native review.

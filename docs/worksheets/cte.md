@@ -1,6 +1,6 @@
 # Worksheets: Career and Technical Education
 
-Grade 6, 7 and 8 Career Exploration, then the high school Career Pathways and Personal Finance courses. Each list runs in teaching order, module by module, with a review sheet closing each module; every dollar figure is invented, never a student's own or family finances.
+Grade 6, 7 and 8 Career Exploration, then the high school Career Pathways and Personal Finance courses. Each list runs in teaching order, topic by topic, with a review sheet closing each topic; every dollar figure is invented, never a student's own or family finances.
 
 ## cte-explore-6: Grade 6 Career Exploration
 

@@ -23,7 +23,7 @@ tools/<tool-id>/
   "status": "beta",
   "hook": "Click a state, name it, fill the map.",
   "outcome": "Locate and name all 50 US states",
-  "role": "lesson",
+  "role": "teach",
   "unit_adds": "",
   "driver": "students or teacher",
   "minutes": "10-20",
@@ -38,15 +38,15 @@ tools/<tool-id>/
 - `status`: `beta` or `ready`
 - `outcome`: only what the student does on the tool's main path. A readout, an optional mode or a teacher note is
   never part of it.
-- `role` (BASELINE rule 21): `lesson` (passes the teaching test for its codes), `see why` (the student explores the
+- `role` (BASELINE rule 21): `teach` (passes the teaching test for its codes), `see why` (the student explores the
   idea and predicts; the unit does the rest) or `practice` (assumes the teaching happened elsewhere).
 - `unit_adds`: for `see why` and `practice`, one line on what a unit, worksheet or the Reading Room must add for the
-  standard to be taught in full. Empty for `lesson`. Tools made before 2026-11-10 get both fields as each is fixed
+  standard to be taught in full. Empty for `teach`. Tools made before 2026-11-10 get both fields as each is fixed
   or next passes through Refine.
 - `driver`: `teacher` (projector-led, required for all K-2), `students`, or `students or teacher`
 - `modes`: empty list for pure explore tools. Most tools don't need a score.
 - `third_party`: bundled libraries with their license, e.g. `"Three.js r128 (MIT)"`
-- The concept's module, grade, subject, format and standards come from the catalog data, not from here. A module's
+- The concept's topic, grade, subject, format and standards come from the catalog data, not from here. A topic's
   standards are spelled out, never a bare cluster, and each tool carries only the codes it teaches (BASELINE rule 22,
   docs/ECOSYSTEM.md).
 

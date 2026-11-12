@@ -1,6 +1,6 @@
 # Worksheets: Visual Arts
 
-Covers Visual Arts for every grade, Kindergarten through Grade 12, following the National Core Arts Standards (create, present, respond, connect). Each grade's list runs module by module in teaching order, with review sheets at the end of modules and the year.
+Covers Visual Arts for every grade, Kindergarten through Grade 12, following the National Core Arts Standards (create, present, respond, connect). Each grade's list runs topic by topic in teaching order, with review sheets at the end of topics and the year.
 
 ## visual-arts-k: Kindergarten Visual Arts
 

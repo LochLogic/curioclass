@@ -1,14 +1,14 @@
 # Handoff: the one current-state page
 
 **This is the single page that says where the work stands and what to do next. Last updated 2026-11-12, after
-unit 11.1 was built (all but its tool). Everything here is pushed to `spec/sara` and `main`.**
+section 11.1 was built (all but its tool) and the course words were renamed ([GLOSSARY.md](GLOSSARY.md)). Everything here is pushed to `spec/sara` and `main`.**
 
 [ROADMAP.md](ROADMAP.md) holds the order of work only. Its history is in `docs/archive/`. If another page
 disagrees with this one, the other page is stale: check the date, fix it, and say so.
 
 ## Start here: the next action
 
-The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](courses/math-4/s11.md)). In order:
+The pilot unit comes first (grade 4 math unit 11, one section, 11.1: [courses/math-4/s11.md](courses/math-4/s11.md)). In order:
 
 1. **Done 2026-11-12: cold expert read of `s11.md`**, revised once
    ([reviews/unit-plan-s11-2026-11-12.md](reviews/unit-plan-s11-2026-11-12.md)): 15 findings, none for Cory,
@@ -22,21 +22,21 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
    before asking Cory (display carries figures and steps from data; the tool's exit items are rows with
    `path`; `leans_on` and "not ready"; the credit rule refuses ND and puts `source` on rows; the student count
    includes the questions; "What changes by subject"; a foot line with version and licence). 8, 9, 12 wait for
-   the taught run (defects.csv, status open). Day 90 is "draft 2, not ready": the tool, the unit opener, the
+   the taught run (defects.csv, status open). Day 90 is "draft 2, not ready": the tool, the section opener, the
    facts check sheet and the record sheet do not exist yet.
-3. **Keys as data: built for stretch 11** (`data/plans/`, `scripts/plan.py`; see "Plan weight"). The lesson
+3. **Keys as data: built for unit 11** (`data/plans/`, `scripts/plan.py`; see "Plan weight"). The lesson
    days' own items go in as rows while the pilot is written.
-4. **Unit 11.1 built 2026-11-12, all but its tool.** In `courses/math-4/u11-1/`: days 89 to 93, the opener, the
+4. **Section 11.1 built 2026-11-12, all but its tool.** In `courses/math-4/u11-1/`: days 89 to 93, the opener, the
    readiness check, the record sheet, the family note (English and Spanish), `sheet-d091.md`; the two facts-check
    sheets are in `u01-1/`. Every day passes `lesson.py check` (two sides each) and `plan.py check` (70 items, 79 wrong
    answers, 0 failures). Days 89, 91 and 92 build "ready"; day 90 waits on Community Plot Planner; day 93 leans on
-   stretch 12's readiness check, which is frozen with the rest of planning. New this round:
-   - `lesson.py` builds "pieces" (opener, record, check, facts, family, sheet) and check days (answers display,
+   unit 12's readiness check, which is frozen with the rest of planning. New this round:
+   - `lesson.py` builds "pieces" (opener, record, check, facts, family, sheet) and assessment days (answers display,
      look-fors in the key from the `steps` cell of judged end items).
    - The generator sheet is the measure-shapes skill `formulas` (preset math-4 #40 in
-     `data/closet/worksheets/generated.csv`). `plan.py reserve math-4 11` writes the unit's number sets into the
+     `data/closet/worksheets/generated.csv`). `plan.py reserve math-4 11` writes the section's number sets into the
      generator so it never repeats them, and `plan.py check` fails when that list is stale: run it after any
-     items.csv change in stretch 11.
+     items.csv change in unit 11.
    - Shelf: anchor chart `data/closet/charts/math-4-area-and-perimeter-formulas.md`; family game
      `data/closet/games/fence-or-floor.md`.
    - Community Plot Planner is the first build in the Codex queue (`codex_queue.py` PILOT), with a note sending the
@@ -49,44 +49,48 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
      the next unit, then spot checks; grade 4 math is the main thread, with the ELA and science pilots alongside once
      11.1 has its teacher read and no other math course before them; tools held until the frame is built, except
      Community Plot Planner and Codex's non-course queue until 2026-11-30.
-   - **Done 2026-11-12: stretch 10 (days 80 to 88, units 10.1 to 10.3)** built in `courses/math-4/u10-1..3`, with a
+   - **Done 2026-11-12: unit 10 (days 80 to 88, sections 10.1 to 10.3)** built in `courses/math-4/u10-1..3`, with a
      full expert read on every day (docs/reviews/day-080 to 088): 87 findings, none for Cory, 85 fixed, 2 open,
      about 10 new gates. 7 in 10 findings repeated an 11.1 kind, so step 3 is not earned: REVIEW-CADENCE.md now adds
      a cheap focused read on every day before the expert read for the next units (brief in the session scratchpad,
      to be copied to docs/agents when first used).
    - **The 11.1 teacher-read pack** is `build/pilot/math-4-u11-1-teacher-read.pdf` (57 pages), sent to Cory
      2026-11-12 for a teacher.
-   - **Done 2026-11-12: stretches 1 and 9** (days 1 to 6 in `courses/math-4/u01-1..2`; days 72 to 77 in
+   - **Done 2026-11-12: units 1 and 9** (days 1 to 6 in `courses/math-4/u01-1..2`; days 72 to 77 in
      `u09-1..2`). Each day had a writer, a cheap focused read ([agents/CHEAP-READ.md](agents/CHEAP-READ.md)) and
      then a full expert read (docs/reviews/cheap-d0NN and day-0NN-2026-11-12.md). 212 ledger rows: 188 fixed, 3
      open, 21 rejected on the expert's reasons. Open: day 78's writer gives Check 2 item C2.1 a sum that passes into a
      new place (error E); readiness item 3 has no blank-grid figure yet; the Egg Carton Factory spec card still
      lists 31 and 51 (tool owner). New pieces: 9 by 9 table, 1 to 100 chart, a `cols` display figure. Step 3 is not
      earned: the expert still found 3 to 5 a day that only an expert sees (REVIEW-CADENCE.md). Days 78 and 79 wait
-     on stretches 6 to 8. Briefs and read costs: `pilots/s01-s09-reads/`.
+     on units 6 to 8. Briefs and read costs: `pilots/s01-s09-reads/`.
    - **Decided 2026-11-12 (DESK-ANSWERS, "homeschool parents and the site's shape"):** homeschool option 1, a
-     required "at home" block on every lesson day plus course placement, a 36-week calendar and a portfolio record;
-     no separate home track. The site turns course-first (two front doors, a course page, one page per lesson day,
-     tools as ingredients). **Now:** mock-ups of the grade 4 math course page and a lesson day page, and a check
+     required "at home" block on every lesson plus course placement, a 36-week calendar and a portfolio record;
+     no separate home track. The site turns course-first (two front doors, a course page, one page per day,
+     tools as ingredients). **Now:** mock-ups of the grade 4 math course page and a day page, and a check
      that every existing piece of the site still has a home. Nothing is built until Cory has seen them. The at-home
      block goes into LESSON-DAY.md and the day writers' brief before the next unit is written.
    - **Decided 2026-11-12 (DESK-ANSWERS, "the home check, the mock-ups and names"):** Cory liked the mock-ups
      (https://claude.ai/artifact/ReGX8xmhDNBCBEKwhVzLzT). The design is [SITE-DESIGN.md](SITE-DESIGN.md), with a
      proposed build order (step 1: course and day pages for grade 4 math behind a `--courses` flag). The Teaching
-     map is hidden from the deploy build until it returns as a picture of the spines; Sub Day becomes one
+     map is hidden from the deploy build until it returns as a picture of the scopes and sequences; Sub Day becomes one
      sub-ready day per unit; names are locked to the best-known word inside and out ([GLOSSARY.md](GLOSSARY.md),
-     [reviews/naming-scan-2026-11-12.md](reviews/naming-scan-2026-11-12.md): obvious fixes made in 2ef52cac). Waiting on
-     Cory: Desk card 112 `q-course-level-names` (stretch to unit, unit to section, spine to scope and sequence;
-     sub-ready days per new unit). Staged renames (exit slip to exit ticket in day files, /modules/ to /topics/ with
-     redirects) wait on that answer.
-   - Still owed: the Spanish family note needs a qualified reader; the module has no Word Wall cards of its own
-     (area, perimeter, square unit, formula, length, width exist under other modules), which is the Word Wall
+     [reviews/naming-scan-2026-11-12.md](reviews/naming-scan-2026-11-12.md): obvious fixes made in 2ef52cac).
+   - **Decided 2026-11-12, Desk card 112 `q-course-level-names`** (DESK-ANSWERS, "course level names"): the course
+     levels take the words teachers know. What was a stretch is now a **unit**, what was a unit is now a **section**,
+     the spine is the **scope and sequence**, the end check is the **end-of-unit assessment** (check day: **assessment
+     day**); sub-ready days are one per unit in the new sense (18 a year in grade 4 math). The staged plan goes ahead:
+     exit slip to exit ticket, the day kind `Use` to Application, topic pages from /modules/ to /topics/ with redirects,
+     the tool role "lesson" to "teach". Ids, folders and file names keep their names (`s11-...`, `sNN.md`, `uNN-N/`,
+     `math-4-spine.md`, `UNIT-PLAN.md`, `LESSON-DAY.md`). This page uses the new words; dated reports keep theirs.
+   - Still owed: the Spanish family note needs a qualified reader; the topic has no Word Wall cards of its own
+     (area, perimeter, square unit, formula, length, width exist under other topics), which is the Word Wall
      owner's to add; the plan should say where day 90's two "On your own" items go when day 91's warm-up is the facts
      check (day 91 agent); day 92's written task has no slot for feedback on day 93, so the teacher page hands it back
      at the door (day 92 agent); figure cells cannot label mixed numbers yet (day 91 used 6¾).
 5. **People.** Cory is arranging a grade 3 to 5 teacher, one taught run and three timed students
    ([pilots/README.md](pilots/README.md)). Their notes change the templates.
-6. **After the pilot is read:** fix the templates, then the first ELA pilot (grade 6, stretch 2, five days) and
+6. **After the pilot is read:** fix the templates, then the first ELA pilot (grade 6, unit 2, five days) and
    the first science pilot. ELA is nearly ready to plan: its rubric page, approach page and rights list exist
    (see "Where things stand"). Science has none of the three yet (Sara's piece 3).
 
@@ -94,19 +98,19 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
 
 - (Answered 2026-11-12: card `q-ela-piece-2`, see "Decided 2026-11-12" below.)
 - Whether the four untracked files in `S:\CurioClass` belong in the repository (see "The folders").
-- Move the other five planned stretches (1, 2, 3, 9, 10) into data now, or when each is next opened? The
+- Move the other five planned units (1, 2, 3, 9, 10) into data now, or when each is next opened? The
   standing answer is "when next opened" (UNIT-PLAN.md) and the assistant's advice is to wait for the pilot:
-  the row shapes will change once a lesson day exists.
+  the row shapes will change once a lesson exists.
 - In or not-now for the six extra pieces of a finished course (ROADMAP, "What a finished course holds",
   items 10 to 15).
 - (Answered 2026-11-12, card `q-course-texts`: K-8 anchors on newer texts, mostly our own; 9-12 may anchor on
   Reading Room texts; the grade 6 ELA pilot gets a new hero story as anchor and a retold myth as its pair, and its
   rights list is redone. See DESK-ANSWERS.)
-- (Answered 2026-11-12: shelves, the feedback note, no slides, build unit 11.1 now. See DESK-ANSWERS.) His read
-  of the approach pages, and his final yes on the science and ELA spines, are still owed from before.
+- (Answered 2026-11-12: shelves, the feedback note, no slides, build pilot unit 11 (section 11.1) now. See DESK-ANSWERS.) His read
+  of the approach pages, and his final yes on the science and ELA scopes and sequences, are still owed from before.
 
-**Frozen until the pilot is read:** new spines, stretch sheets, unit plans and specs. One exception: the grade 4
-start-of-year check and stretch 4's readiness items (Sara's piece 4).
+**Frozen until the pilot is read:** new scopes and sequences, unit plans, section plans and specs. One exception: the grade 4
+start-of-year check and unit 4's readiness items (Sara's piece 4).
 
 ## Decided 2026-11-12: card q-ela-piece-2 (ELA)
 
@@ -115,7 +119,7 @@ start-of-year check and stretch 4's readiness items (Sara's piece 4).
 > a note to upgrade to a free source later.
 
 1. **Grades 3 to 5 ELA teach foundational skills.** The rubric's first gateway applies in full and each of
-   those spines starts from a taught sequence (`RUBRIC-ELA.md`, `APPROACH-ELA.md`).
+   those scopes and sequences starts from a taught sequence (`RUBRIC-ELA.md`, `APPROACH-ELA.md`).
 2. **`APPROACH.md` principle 3** takes the expert's wording on modelling in reading and writing.
 3. **ELA text records, question sets and word lists are rows in `data/plans/`**, shown as generated tables
    outside the word cap. The row files are named in `UNIT-PLAN.md`; they are built with the first ELA pilot plan.
@@ -124,7 +128,7 @@ start-of-year check and stretch 4's readiness items (Sara's piece 4).
    "The Ogre of Rashomon sounds fine to me, lets go with that". It is row 5 of the rights list: Yei Theodora
    Ozaki, Japanese Fairy Tales, the tale whole, 2,244 words; found, not yet second-read; a sensitivity read is
    owed.
-5. **The Monkey King:** teach the 2,000-word cut now; write a labeled Curio Class retelling before stretch 2 is
+5. **The Monkey King:** teach the 2,000-word cut now; write a labeled Curio Class retelling before unit 2 is
    called finished; if that does not work, a new story takes its place. An outside reader from the culture still
    needs Cory's separate yes.
 6. **Background text two:** a short labeled Curio Class explainer (500 to 700 words), with a standing note to
@@ -157,7 +161,7 @@ What was done, with nothing deleted that was not first saved:
   thesis-workshop and smaller pieces). No conflict with `main`, no tool went live (live count still 83), and
   `check_tools`, `check_safety`, `check_games` and `check_words` pass. These tools are still in the frozen bin
   (BASELINE rule 26): merging saved the work, it did not restart it. Found in passing, not caused by the merge:
-  `scripts/check_concepts.py` reports an unknown module `social-studies-3-5-road-trip-atlas` at
+  `scripts/check_concepts.py` reports an unknown topic `social-studies-3-5-road-trip-atlas` at
   `social-studies.txt` line 135.
 - **For Cory to delete by hand** (a safety check stops the assistant removing top-level folders): the two empty
   folders `S:\CurioClass-audit` and `S:\CurioClass-agy`. The archive folder can go whenever he is sure.
@@ -179,7 +183,7 @@ What was done, with nothing deleted that was not first saved:
   [agents/decisions/DESK-ANSWERS.md](agents/decisions/DESK-ANSWERS.md) with Cory's words. ROADMAP changes only
   when the order of work changes. A rule goes in BASELINE. The assistant's memory notes point here.
 - What goes to Cory is narrower since 2026-11-11: scope, audience, money, outside people, and anything that moves
-  a standard between units. Item-level choices are settled by the expert and go in a weekly digest
+  a standard between sections. Item-level choices are settled by the expert and go in a weekly digest
   ([reviews/DIGEST.md](reviews/DIGEST.md), started 2026-11-12: copy each report's "Settled by the expert" table
   into it).
 - The Review Desk is https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC. A question card has status `question`,
@@ -199,10 +203,10 @@ What was done, with nothing deleted that was not first saved:
 | 2 Standards | `data/standards/`. Checked 2026-11-11: nothing superseded; gaps listed below. |
 | 3 Approach | [APPROACH.md](APPROACH.md), [APPROACH-MATH.md](APPROACH-MATH.md). Decisions answered. Cory still owes a read of the pages as a whole; his mother is reading "The principles" onward as a grade 2 teacher. ELA: [APPROACH-ELA.md](APPROACH-ELA.md), drafted 2026-11-11, read by the expert, revised once; two points wait for Cory. Science approach page: Sara's piece 3 ([courses/NEXT-SPINES.md](courses/NEXT-SPINES.md)). |
 | 4 Progressions | Math grades 3 to 5 done. |
-| 5 Spine | Grade 4 math, plus science and ELA spines waiting for Cory's final yes. 3 of 105 courses have a spine. |
-| 6 Stretch sheets and unit plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Word caps are 1,250 (unit plan), 1,250 (stretch sheet) and 1,800 (one-unit stretch) since 2026-11-11. Grade 4 math: stretches 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 units (the status table shows 17 because it counts stretch sheets too). 30 units to go (stretches 4 to 8 and 12 to 18). **Planning is frozen at these six until the pilot is read.** |
-| 7 Lessons, tools, print | Unit 11.1 (grade 4 math) is built but for its tool, see "Start here" step 4. Template: [courses/LESSON-DAY.md](courses/LESSON-DAY.md). |
-| Texts (ELA) | Grade 6 stretch 2 only: [courses/ela-6/RIGHTS.md](courses/ela-6/RIGHTS.md). Every row is "found, not yet second-read"; fifteen questions wait for the second reader (a person, FOUNDATION 7.3). No text is taught before that read. |
+| 5 Scope and sequence | Grade 4 math, plus science and ELA scopes and sequences waiting for Cory's final yes. 3 of 105 courses have a scope and sequence. |
+| 6 Unit plans and section plans | Fields fixed in [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md). Word caps are 1,250 (section plan), 1,250 (unit plan) and 1,800 (one-section unit) since 2026-11-11. Grade 4 math: units 1, 2, 3, 9, 10 and 11 are planned, which is 13 of 43 sections (the status table shows 17 because it counts unit plans too). 30 sections to go (units 4 to 8 and 12 to 18). **Planning is frozen at these six until the pilot is read.** |
+| 7 Lessons, tools, print | Section 11.1 (grade 4 math) is built but for its tool, see "Start here" step 4. Template: [courses/LESSON-DAY.md](courses/LESSON-DAY.md). |
+| Texts (ELA) | Grade 6 unit 2 only: [courses/ela-6/RIGHTS.md](courses/ela-6/RIGHTS.md). Every row is "found, not yet second-read"; fifteen questions wait for the second reader (a person, FOUNDATION 7.3). No text is taught before that read. |
 | The bar | Math: [RUBRIC-MATH-K8.md](RUBRIC-MATH-K8.md). All other subjects but ELA and science: [ADOPTION-BAR-SUBJECTS.md](ADOPTION-BAR-SUBJECTS.md), second draft. ELA: [RUBRIC-ELA.md](RUBRIC-ELA.md), drafted 2026-11-11, read by the expert, revised once. Science rubric file: Sara's piece 3. |
 
 Course count: 105, of which 56 are in the four core subjects ([COURSES-STATUS.md](COURSES-STATUS.md), generated;
@@ -215,23 +219,23 @@ never edit by hand). World languages are shelved (see below) but still counted i
 > 1, yes. 2, yes. 3, yes but mark for follow up after more progress. 4, agree. 5, yes. 6, yes, always cover the
 > whole standard. 7, yes. 8, yes. 9, yes.
 
-1. **Stretch 3 order:** benchmarks and the same whole come before common denominators. No stretch moves; the
-   units inside stretch 3 swap.
-2. **Word caps:** a unit plan is 1,000 words not counting its checks, errors and days fields (fields 3, 4, 6); a
-   stretch sheet is 800 words not counting its check tables and error register (fields 4, 5, 6); tool gaps move
+1. **Unit 3 order:** benchmarks and the same whole come before common denominators. No unit moves; the
+   sections inside unit 3 swap.
+2. **Word caps:** a section plan is 1,000 words not counting its checks, errors and days fields (fields 3, 4, 6); a
+   unit plan is 800 words not counting its check tables and error register (fields 4, 5, 6); tool gaps move
    to one tool-asks file per course.
 3. **Fraction Wall Duel** is a light tool for now; day 23 runs on paper. **Follow up after more progress.**
-4. **Number line splitter:** wait until stretch 7 is planned, then spec it once for stretches 3 to 7.
-5. **Facts check** in stretch 1: 36 products in the day 3 warm-up, 36 quotients in the day 4 warm-up, untimed,
-   mark 32 of 36. Students below the mark keep a 9 by 9 multiplication table through stretch 3.
+4. **Number line splitter:** wait until unit 7 is planned, then spec it once for units 3 to 7.
+5. **Facts check** in unit 1: 36 products in the day 3 warm-up, 36 quotients in the day 4 warm-up, untimed,
+   mark 32 of 36. Students below the mark keep a 9 by 9 multiplication table through unit 3.
 6. **Day 14** teaches the equivalence rule in both directions. **New standing rule: always cover the whole
    standard.**
 7. **No-reuse rule in fractions:** it applies to the fractions an item gives; the given pair and the answer must
    both be new.
-8. **Stretch 10 number sizes:** one-digit facts and their divisions; one digit times a multiple of 10, and 10
+8. **Unit 10 number sizes:** one-digit facts and their divisions; one digit times a multiple of 10, and 10
    times a number, multiplying only; adding and subtracting within 1,000. Two-step problems are chosen so one
    equation needs no brackets; two equations are always allowed.
-9. **Stretch 2 limits:** pattern terms under 1,000, no further than the 10th step; the second readiness item is
+9. **Unit 2 limits:** pattern terms under 1,000, no further than the 10th step; the second readiness item is
    written.
 
 ### Card q-bar-subjects: the bar for subjects with no rubric on file
@@ -245,8 +249,8 @@ never edit by hand). World languages are shelved (see below) but still counted i
 
 1. **Social studies content standards: NOT decided.** Cory wants a better option than "pick one state": a
    unified set, or a "high watermark" method (take the more demanding expectation where states differ). This is
-   to be worked up and brought back to him. No social studies spine before it is settled.
-2. **World languages are shelved for a later pass, American Sign Language included.** Do not write spines, load
+   to be worked up and brought back to him. No social studies scope and sequence before it is settled.
+2. **World languages are shelved for a later pass, American Sign Language included.** Do not write scopes and sequences, load
    standards or plan video for them now.
 3. **Health:** carry all the sensitive topics, each able to be left out without breaking the course. (The paid
    specialist read per band was part of the pick and was not objected to; confirm the cost with Cory before
@@ -270,13 +274,13 @@ never edit by hand). World languages are shelved (see below) but still counted i
 > 5, agree but dont lose the note to load them when writing the spine.
 
 1. **Computer science 9 to 12:** load the 135 Specialty standards. The high school course teaches the
-   Foundational set; Specialty standards are claimed only where a module already goes that far.
+   Foundational set; Specialty standards are claimed only where a topic already goes that far.
 2. **Health and PE:** keep the 2024 standards, write the mapping to the older-keyed review tools, and **fully
    update and clean up where needed** (file headers, labels, the stale "2018" on the library standards file).
 3. **2026 can-do statements:** yes, but world languages are shelved (card above), so this waits with them.
 4. **Licence page and the SEL file header:** yes, fix. Cory asked that this be done later, with an Opus model.
-5. **AP and psychology modules (26) with no standards file:** mark them now as not yet standards-checked.
-   **Do not lose this: load the course framework when that course's spine is written.**
+5. **AP and psychology topics (26) with no standards file:** mark them now as not yet standards-checked.
+   **Do not lose this: load the course framework when that course's scope and sequence is written.**
 
 ## Applied on 2026-11-11 (late), after Cory said to act on the answers
 
@@ -284,16 +288,16 @@ Everything in the three cards that could be applied has been. Where each landed:
 
 | Decision | Where it is now |
 |---|---|
-| Word caps: unit plan 1,250, stretch sheet 1,250, merged one-unit stretch 1,800 (first set at 1,000 and 800, raised by Cory the same night); tool asks in one file per course | `docs/courses/UNIT-PLAN.md` ("Length", "Decided"); `docs/courses/math-4/TOOL-ASKS.md` (9 tools); sheets s01, s02, s03, s09, s10, s11 link to it |
+| Word caps: section plan 1,250, unit plan 1,250, merged one-section unit 1,800 (first set at 1,000 and 800, raised by Cory the same night); tool asks in one file per course | `docs/courses/UNIT-PLAN.md` ("Length", "Decided"); `docs/courses/math-4/TOOL-ASKS.md` (9 tools); sheets s01, s02, s03, s09, s10, s11 link to it |
 | Always cover the whole standard | UNIT-PLAN.md rule 19; BASELINE rule 23 |
 | No-reuse rule for fractions | UNIT-PLAN.md rule 4 |
-| Stretch 3: benchmarks first | Spine, `data/units.csv`, s03, u03-1 to u03-4. Now: 3.1 days 10 to 12; 3.2 days 13 to 16; 3.3 comparing to one half and one, the same whole, days 17 to 18; 3.4 common denominator or numerator, days 19 to 24 (check on 24) |
-| Facts check; stretch 2 limits; stretch 10 numbers; day 14 both ways; readiness timing in "The checks"; stretch 1 balance; tool column | `docs/courses/math-4-spine.md`, dated change block for 2026-11-11 |
-| Fraction Wall Duel light for now; splitter waits for stretch 7 | TOOL-ASKS.md, s03, spine |
+| Unit 3: benchmarks first | Scope and sequence, `data/units.csv`, s03, u03-1 to u03-4. Now: 3.1 days 10 to 12; 3.2 days 13 to 16; 3.3 comparing to one half and one, the same whole, days 17 to 18; 3.4 common denominator or numerator, days 19 to 24 (check on 24) |
+| Facts check; unit 2 limits; unit 10 numbers; day 14 both ways; readiness timing in "The checks"; unit 1 balance; tool column | `docs/courses/math-4-spine.md`, dated change block for 2026-11-11 |
+| Fraction Wall Duel light for now; splitter waits for unit 7 | TOOL-ASKS.md, s03, scope and sequence |
 | The bar: all eleven answers | `docs/ADOPTION-BAR-SUBJECTS.md` ("Decided" in Cory's words; "Still open with Cory"; world languages part headed "Shelved") |
 | Computer science Specialty standards | `data/standards/csta-2026-specialty-ids.txt` (135 ids); `scripts/standards.py` accepts them |
 | Health and PE mapping and clean-up | `docs/standards-notes/health-2007-to-2024.md`, `pe-2014-to-2024.md`; headers fixed in nhes-2024, aasl-2018, csta-2026-ids |
-| 26 AP and psychology modules | `docs/standards-notes/modules-without-standards.md`: not yet standards-checked; load the framework when that course's spine is written |
+| 26 AP and psychology topics | `docs/standards-notes/modules-without-standards.md`: not yet standards-checked; load the framework when that course's scope and sequence is written |
 | Core subjects first | BASELINE rule 24; ROADMAP above the layers |
 | Expert reads go to Sara | `docs/courses/NEXT-SPINES.md`, piece 1 |
 
@@ -307,12 +311,12 @@ Everything in the three cards that could be applied has been. Where each landed:
 
 **Left open by the apply work (small):**
 
-- Unit 3.4 now has six days; the spine names it as the exception to "1 to 5 days".
-- Unit 3.3 has a new written task (3/4 and 5/6, day 18): the old one needed common denominators.
-- Against the caps of 1,250: u03-4 is still over (about 1,400); s03 (about 1,230) and s10 (845) now fit. Unit
-  plans other than stretch 3's were not recounted.
+- Section 3.4 now has six days; the scope and sequence names it as the exception to "1 to 5 days".
+- Section 3.3 has a new written task (3/4 and 5/6, day 18): the old one needed common denominators.
+- Against the caps of 1,250: u03-4 is still over (about 1,400); s03 (about 1,230) and s10 (845) now fit. Section
+  plans other than unit 3's were not recounted.
 - Growth Spurt's "key" mark is the plan's own, not a decision of Cory's. It is settled at step 4e.
-- Cory's answers left three things undefined, to ask before the spine that needs them: what "smaller" means for
+- Cory's answers left three things undefined, to ask before the scope and sequence that needs them: what "smaller" means for
   SEL and library courses (fewer days or fewer units); what evidence would raise informed action above once a
   year; and the specialist health read was taken as included in "3 all" (no spend without his yes).
 - Fixed 2026-11-11: `scripts/overlap/standards.py` crashed because `docs/agents/overlap/tags.csv` still lists four
@@ -329,10 +333,10 @@ action those decisions so they take effect." The review is
 
 | # | Decision | Where it is now | Still to do |
 |---|---|---|---|
-| 1 | Build pilot unit 11.1 to the bottom now, ahead of the other unit plans and the key-tool ranking | BASELINE rule 25; ROADMAP order; "Start here" | The build itself |
-| 2 | Freeze stretch planning at the six on file until the pilot is read (exception: start-of-year check, stretch 4 readiness items) | BASELINE rule 25; Sara's list | Nothing |
+| 1 | Build pilot unit 11 to the bottom now, ahead of the other section plans and the key-tool ranking | BASELINE rule 25; ROADMAP order; "Start here" | The build itself |
+| 2 | Freeze unit planning at the six on file until the pilot is read (exception: start-of-year check, unit 4 readiness items) | BASELINE rule 25; Sara's list | Nothing |
 | 3 | A lesson-day template before the pilot is built | BASELINE rule 27 | Write `docs/courses/LESSON-DAY.md` (the next action) |
-| 4 | Keyed items as data; a script recomputes every key | BASELINE rule 27; FOUNDATION 7.2; built, see "Plan weight" | The other five stretches |
+| 4 | Keyed items as data; a script recomputes every key | BASELINE rule 27; FOUNDATION 7.2; built, see "Plan weight" | The other five units |
 | 5 | A grade 3 to 5 teacher, one taught run, three timed students | FOUNDATION 7.3; [pilots/README.md](pilots/README.md) with five draft questions | Cory finds the people |
 | 6 | Spec fixing stops now; old tools and specs sorted into three bins by demand | BASELINE rule 26; FOUNDATION 6.5 (open question closed); `docs/spec-fixes/` marked stopped; sorted by `scripts/tool_bins.py` into [TOOL-BINS.md](TOOL-BINS.md): 15 named by a plan (plus 3 asked for and not built), 3 on the shelf, 782 frozen. The shelf count rests on a rough machine read of the teaching test; 17 Recess and Curiosities folders sit outside the sort | Nothing |
 | 7 | Qualified people named where a course needs them | FOUNDATION 7.3 table; BASELINE rules 5 and 28 | Names and budget: none yet, Cory's |
@@ -351,7 +355,7 @@ added data (esp in pedagogy). that may need more work soon." So the expert stays
 of work on its sources (`docs/APPROACH-SOURCES.md`, the pedagogy sources named in `docs/APPROACH.md`): what it
 must open before judging each subject, and what is still unread. Not scheduled yet.
 
-## Plan weight: facts in data, scripts as gates (built 2026-11-11, on stretch 11)
+## Plan weight: facts in data, scripts as gates (built 2026-11-11, on unit 11)
 
 Cory asked whether the plan is still too heavy when an AI manages it. Yes, for different reasons than for a
 person: no agent can hold a 125,000-word course; prose repeats facts and the repeats drift; prose cannot be
@@ -360,19 +364,19 @@ He then said: "Let's implement those architectural fixes".
 
 | Fix | What exists now |
 |---|---|
-| Facts in data, one home each | `data/plans/math-4/`: parts, days, items, wrongs, errors. Stretch 11: 18 items, 31 wrong answers, 5 days, 5 errors, 7 standard parts |
-| Scripts as gates | `scripts/plan.py check`: keys recomputed exactly, every standard part has an end-check item, no reused numbers, day counts against `data/units.csv`, minutes add up, tool folders exist. Stretch 11 passes; a planted wrong key failed |
+| Facts in data, one home each | `data/plans/math-4/`: parts, days, items, wrongs, errors. Unit 11: 18 items, 31 wrong answers, 5 days, 5 errors, 7 standard parts |
+| Scripts as gates | `scripts/plan.py check`: keys recomputed exactly, every standard part has an end-of-unit assessment item, no reused numbers, day counts against `data/units.csv`, minutes add up, tool folders exist. Unit 11 passes; a planted wrong key failed |
 | Prose only for judgment | The tables in `s11.md` are generated (`scripts/plan.py tables`). The prose was cut by the cold read (about 170 words that repeated a table or DEFAULTS.md) and stands at 1,898 words against a cap of 1,800. Settled 2026-11-12: it stays; the overage is the generator sheet and record sheet definitions, which move to the built pages (DIGEST.md) |
-| Defaults written once | `docs/courses/math-4/DEFAULTS.md`, a draft from stretch 11 and the spine only |
+| Defaults written once | `docs/courses/math-4/DEFAULTS.md`, a draft from unit 11 and the scope and sequence only |
 | Plans just in time | BASELINE rule 25 |
 | A reading pack per agent | `scripts/plan.py pack math-4 11` |
 | A defect ledger | `data/plans/defects.csv`; `scripts/plan.py defect` and `defects`. 49 logged on 2026-11-12: 15 on the pilot plan (0 open), 34 on the three ELA pages (6 open, the six questions on card `q-ela-piece-2`) |
 
 Rules: `docs/courses/UNIT-PLAN.md`, "Facts live in data". How to use it: `data/plans/README.md`.
 
-**Not done:** stretches 1, 2, 3, 9 and 10 (12 units) are still prose only, so their keys have not been recomputed
-by the script. Tool asks are still prose in TOOL-ASKS.md. The number limits of a stretch (for example "products
-within 100") are not yet a gate. `DEFAULTS.md` has been checked against stretch 11 only. ELA has no data shape yet (its text
+**Not done:** units 1, 2, 3, 9 and 10 (12 sections) are still prose only, so their keys have not been recomputed
+by the script. Tool asks are still prose in TOOL-ASKS.md. The number limits of a unit (for example "products
+within 100") are not yet a gate. `DEFAULTS.md` has been checked against unit 11 only. ELA has no data shape yet (its text
 record, question set and word list wait for Cory's answer on card `q-ela-piece-2`, question 3).
 
 ## The order after the pilot
@@ -382,41 +386,41 @@ and social studies (56 of the 105 courses) come first; this bends where work is 
 still finished to the bar; this sets the order, not the scope.
 
 1. The pilot is read; templates and the plan design are fixed from what it showed.
-2. Grade 4 math is the main thread (Cory, 2026-11-12, card 111): the course a stretch at a time, each planned
-   only when the one before is built. Stretch 10 is next.
+2. Grade 4 math is the main thread (Cory, 2026-11-12, card 111): the course a unit at a time, each planned
+   only when the one before is built. Unit 10 is next.
 3. Alongside it, once 11.1 has its teacher read: the ELA and science pilots, so a unit's cost is known in three
    subjects. No other math course is built until they are in.
 4. The plan with sizes and dates for all 105 courses, written from three real unit costs.
-5. The social studies content standard goes to Cory before any social studies spine.
+5. The social studies content standard goes to Cory before any social studies scope and sequence.
 
 **Sara's list is [courses/NEXT-SPINES.md](courses/NEXT-SPINES.md)**. Done by her session: piece 1 (the pilot
 plan's cold read) and piece 2 (ELA rubric page, approach page, rights list). Owed from those: her own read as a
 teacher at the top of four reports. Next for her: piece 3 (science rubric page, approach page, pilot unit
-materials), then piece 4 (the start-of-year check and stretch 4's readiness items, as data rows), then piece 5
-(the social studies options). Spines, progression pages and stretches 4 to 8
+materials), then piece 4 (the start-of-year check and unit 4's readiness items, as data rows), then piece 5
+(the social studies options). Scopes and sequences, progression pages and units 4 to 8
 came off it until the pilot is read.
 
 ## Owed, smaller
 
-- Cory's read of the approach pages; his final yes on the science and ELA spines.
+- Cory's read of the approach pages; his final yes on the science and ELA scopes and sequences.
 - Three `data/modules.csv` description notes; footnoted limits in `data/standards/ccss-math-standards.txt`; the
-  shape file `math-4.md` build order against the spine; science `sequence.csv` errors.
+  shape file `math-4.md` build order against the scope and sequence; science `sequence.csv` errors.
 - Tool spec gaps: Community Plot Planner (eight asks, all in TOOL-ASKS.md); Egg Carton Factory (no ordered search, no
   equation form, names prime and composite a day early, check numbers 77 and 93 sit on Rush card 2c); Rule
   Machine; Fraction Wall Duel; Growth Spurt; Road Trip Logbook. All go in TOOL-ASKS.md.
 - `s09.md` puts five minutes of teacher-judged answers on day 78, before Check 2.
 - The K to 2 device assumption is undecided.
-- Grade 6 ELA spine, found while applying the expert's edits on 2026-11-12, all item-level and for the expert
+- Grade 6 ELA scope and sequence, found while applying the expert's edits on 2026-11-12, all item-level and for the expert
   when the ELA pilot is planned: the readiness check's ten minutes do not fit a 50-minute ELA period on a check
-  day, and stretch 2's would land on day 4; "every day ends with a written exit question" still stands in the
-  spine though the approach page dropped it for writing and check days; the stretch 2 audio row still says "to
-  verify"; the Monkey King cut measures 10.5, the top of the band, and the spine does not say so; "the easiest
-  anchor passage of the year" was said with only stretch 2 measured.
+  day, and unit 2's would land on day 4; "every day ends with a written exit question" still stands in the
+  scope and sequence though the approach page dropped it for writing and assessment days; the unit 2 audio row still says "to
+  verify"; the Monkey King cut measures 10.5, the top of the band, and the scope and sequence does not say so; "the easiest
+  anchor passage of the year" was said with only unit 2 measured.
 - `scripts/tool_bins.py` reads TOOL-ASKS.md by its layout and has been run on one course only. Its shelf bin
   (3 tools) uses the rough machine read of the teaching test; four tools a judge report calls passing in prose
   are counted as frozen.
 - The usage limit stopped four agents mid-run once on 2026-11-11. They were resumed and finished; nothing was
-  lost, but stretches 1, 2, 3, 9 and 10 were written across that break.
+  lost, but units 1, 2, 3, 9 and 10 were written across that break.
 
 ## What has not been verified
 
@@ -438,11 +442,11 @@ came off it until the pilot is read.
 | Expert on the bar's first draft | `docs/reviews/bar-subjects-2026-11-11.md` |
 | Are the loaded standards current | `docs/reviews/standards-currency-2026-11-11.md` |
 | Expert on the three trial plans (4c) | `docs/reviews/unit-plans-2026-11-11.md` |
-| Expert on stretches 1 to 3 (4d) | `docs/reviews/unit-plans-4d-2026-11-11.md` |
+| Expert on units 1 to 3 (4d) | `docs/reviews/unit-plans-4d-2026-11-11.md` |
 | Is the whole project on a solid path | `docs/reviews/strategic-review-2026-11-11.md` |
-| Expert on the pilot unit plan (stretch 11) | `docs/reviews/unit-plan-s11-2026-11-12.md` |
+| Expert on the pilot unit's plan (unit 11) | `docs/reviews/unit-plan-s11-2026-11-12.md` |
 | Expert on the ELA rubric page | `docs/reviews/rubric-ela-2026-11-11.md` |
 | Expert on the ELA approach page | `docs/reviews/approach-ela-2026-11-11.md` |
-| Expert on the grade 6 stretch 2 rights list | `docs/reviews/rights-ela-6-s2-2026-11-11.md` |
+| Expert on the grade 6 unit 2 rights list | `docs/reviews/rights-ela-6-s2-2026-11-11.md` |
 | Sara's six questions for Cory, in full | `docs/reviews/piece-2-cards-for-cory-2026-11-11.md` |
 | What the expert settled without Cory | `docs/reviews/DIGEST.md` |

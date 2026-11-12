@@ -1,6 +1,6 @@
 # Worksheets: Dance
 
-Dance classes K-12, one list per grade, built on the National Core Arts Standards for dance (creating, performing, responding, connecting). Each list follows the grade's modules in teaching order, with review sheets at the end of each module; sheets pair with movement in the room and never need a device.
+Dance classes K-12, one list per grade, built on the National Core Arts Standards for dance (creating, performing, responding, connecting). Each list follows the grade's topics in teaching order, with review sheets at the end of each topic; sheets pair with movement in the room and never need a device.
 
 ## dance-k: Kindergarten Dance
 

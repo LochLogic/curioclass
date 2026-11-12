@@ -2,6 +2,11 @@
 
 Cory's answers to question cards, and what each still needs. Remove a line once it is applied to the specs.
 
+**Words:** entries before 2026-11-12's "course level names" (card 112) keep the words of their day. Read their
+"unit" (the short package) as today's section, "stretch" as unit, "spine" as scope and sequence, "end check" as
+end-of-unit assessment, "check day" as assessment day, "exit slip" as exit ticket, "module" as topic and the tool
+role "lesson" as teach (docs/GLOSSARY.md).
+
 ## 2026-11-10
 
 **Catalog direction (q-catalog-direction) and catalog pilot (q-catalog-pilot): Cory agrees with the assessment, in

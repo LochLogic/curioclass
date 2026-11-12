@@ -2,7 +2,7 @@
 
 This page says how mathematics carries out the shared principles in [APPROACH.md](APPROACH.md). It does not
 repeat that page; principle numbers point back to it. The same rules hold: nothing here has been tried with
-children, every claim rests on a source read for this page, and the rules are rules for unit plans. Evidence
+children, every claim rests on a source read for this page, and the rules are rules for section plans. Evidence
 ratings (strong, moderate, minimal) are the federal practice guides' own. Study detail is in
 [APPROACH-SOURCES.md](APPROACH-SOURCES.md), "Evidence notes".
 
@@ -11,15 +11,15 @@ Second draft, 2026-11-11, revised after the curriculum expert's cold read. Not y
 **The role of the standards, and focus, coherence, rigor.** The Common Core State Standards for Mathematics set
 what is learned and leave the teaching to us (shared core). From the K-8 Publishers' Criteria: most of the year
 goes to the grade's major work (at least 65 percent of class time), each topic is tied to earlier grades and to
-the major work, and understanding, fluency and application are each pursued. The spine carries the first two.
-The unit plan carries the third.
+the major work, and understanding, fluency and application are each pursued. The scope and sequence carries the first two.
+The section plan carries the third.
 
 **The kinds of day (principle 2).** A math day is marked understanding, fluency or use. Understanding, fluent
 procedures and quick recall of facts support each other (National Mathematics Advisory Panel; *Adding It Up*
 says the same of its five strands).
 
 **The progressions are the backbone (principle 1).** The standards were cut from written accounts of how each
-topic grows across grades. A unit plan reads the progression first. Four that matter for grade 4:
+topic grows across grades. A section plan reads the progression first. Four that matter for grade 4:
 
 - *Fractions are numbers.* Grade 3 builds every fraction from unit fractions and places it on the number line.
   Grade 4 rests on this for equivalent fractions, which are hard because the numerals get bigger while the
@@ -49,7 +49,7 @@ not yet read the direct studies of this sequence, or of manipulatives; they are 
 **The number line.** It is the one picture that holds whole numbers, fractions and decimals together. As the
 central picture for fractions it is rated moderate, with much of the evidence from whole numbers and decimals
 (WWC fractions guide, recommendation 2); for students who struggle, strong (WWC 2021, recommendation 4). The
-grade 4 spine carries one number line model through its fraction and decimal stretches.
+grade 4 scope and sequence carries one number line model through its fraction and decimal units.
 
 **Practice and fluency (principle 7).** A five-minute warm-up opens each day, drawn from printable generators,
 mixing earlier work. Fluent means accurate and reasonably fast, with a method that is understood (Publishers'
@@ -65,7 +65,7 @@ own last score, never graded or posted.
 
 **The daily evidence (principle 8).** Each day ends with an exit question. Regular formative assessment helps
 in the elementary grades (National Mathematics Advisory Panel, finding 25). Many errors are sensible ideas used
-where they no longer hold, such as "multiplication makes bigger"; a unit plan lists them in advance (EEF maths
+where they no longer hold, such as "multiplication makes bigger"; a section plan lists them in advance (EEF maths
 report) and puts a wrong worked example beside a right one once the right one is known (Deans for Impact).
 
 **Word problems.** For grades 4 to 8: teach students to monitor and reflect (strong), use visual
@@ -81,8 +81,8 @@ show and in what order, connect (the "5 Practices", as in the Illustrative Mathe
 Comparing strategies is the part with rated evidence; the wider case rests on professional guidance (NCTM).
 
 **Students who are behind (principle 9).** They stay on grade-level work; sorting into lower sets tends to
-widen gaps (EEF maths report). The readiness check finds the gap, the unit plan gives a ten-minute reteach and
-the earlier-grade tool, and respond days give time. The grade 4 spine has no reteach time beyond its four
+widen gaps (EEF maths report). The readiness check finds the gap, the section plan gives a ten-minute reteach and
+the earlier-grade tool, and respond days give time. The grade 4 scope and sequence has no reteach time beyond its four
 respond days, and Curio Class has no small-group program. Teachers who need one should read the federal guide
 *Assisting Students Struggling with Mathematics* (WWC 2021), whose six recommendations are all rated strong.
 
@@ -91,12 +91,12 @@ array), gives practice with feedback, or checks unaided. An on-screen manipulati
 one: true to the math, tied to the written method, dropped when no longer needed. On whether on-screen
 manipulatives teach as well as real ones, we have read nothing. That is the first gap to close.
 
-## What math adds to the unit plan fields
+## What math adds to the unit and section plan fields
 
 Field numbers are those of [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md), fixed 2026-11-11.
 
-- Stretch sheet, field 3 (where it sits): the progression is cited.
-- Unit plan, field 1: whether the standard asks for strategies or the standard algorithm; the one or two
+- Unit plan, field 3 (where it sits): the progression is cited.
+- Section plan, field 1: whether the standard asks for strategies or the standard algorithm; the one or two
   practices and their task.
 - Field 3: the exit question for every day, in full.
 - Field 4: the wrong worked example used for each expected error.

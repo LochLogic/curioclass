@@ -5,9 +5,9 @@ Rebuilt 2026-11-11 by scripts/shape_courses.py; do not edit by hand. How to fix 
 ## Where things stand
 
 - 800 specs in the catalog. 22 are logged fixed in done.txt (grade 4 math and grade 6 ELA), none reviewed yet. 778 remain, and 67 of those sort fine and only need confirming.
-- **Spec fixing has stopped** (Cory, 2026-11-11 night, accepting the cold strategic review; it had been set to stop after batch 4). Do not work the batches below. Old tools and specs are now sorted by demand (BASELINE rule 26): a spec gets work only when a unit plan names its tool. Sara's work is docs/courses/NEXT-SPINES.md.
+- **Spec fixing has stopped** (Cory, 2026-11-11 night, accepting the cold strategic review; it had been set to stop after batch 4). Do not work the batches below. Old tools and specs are now sorted by demand (BASELINE rule 26): a spec gets work only when a section plan names its tool. Sara's work is docs/courses/NEXT-SPINES.md.
 - From now on every spec you touch also carries the three hooks in README.md ("The end standard"): an unaided check the teacher can see, English learner supports, and access. The 22 specs already logged get them in batch 1.
-- Cory approved 15 second lesson tools. Each one takes codes away from an existing tool, so that tool's spec gets lighter. The new tools are not written yet and are not your work now: each gets an idea and a spec when its course is built.
+- Cory approved 15 second teach tools. Each one takes codes away from an existing tool, so that tool's spec gets lighter. The new tools are not written yet and are not your work now: each gets an idea and a spec when its course is built.
 - No second tool is waiting on the Desk: every one proposed so far is approved.
 - A sitting of 10 to 14 specs is a good batch. One course at a time, and finish a course before starting the next.
 
@@ -30,7 +30,7 @@ Theme Evidence Ladder (`theme-evidence-ladder`), Page, Audio, Screen (`page-audi
 
 Fix list: courses/math-5.md. Shape: ../agents/catalog/shape/math-5.md.
 
-- On the approved split: Zoom by Tens (`zoom-by-tens`): Zoom by Tens keeps 5.NBT.A.1 and 5.NBT.A.2; a new lesson tool takes 5.NBT.A.3 and 5.NBT.A.4.; Grocery Run (`grocery-run`): Grocery Run keeps 5.NBT.B.7 and NSPFE.Spending; a new lesson tool takes 5.NBT.B.5 and 5.NBT.B.6.
+- On the approved split: Zoom by Tens (`zoom-by-tens`): Zoom by Tens keeps 5.NBT.A.1 and 5.NBT.A.2; a new teach tool takes 5.NBT.A.3 and 5.NBT.A.4.; Grocery Run (`grocery-run`): Grocery Run keeps 5.NBT.B.7 and NSPFE.Spending; a new teach tool takes 5.NBT.B.5 and 5.NBT.B.6.
 - Fix: Expression Escape (`expression-escape`), Two Rule Race (`two-rule-race`), Fraction Kitchen (`fraction-kitchen`), Shrink Ray (`shrink-ray`), Camp Cook Share-Out (`camp-cook-share-out`), Seed Sprout Data (`seed-sprout-data`), Box Packer (`box-packer`).
 - Confirm only: Sea Search Grid (`sea-search-grid`), Shape Sieve (`shape-sieve`).
 
@@ -38,13 +38,13 @@ Fix list: courses/math-5.md. Shape: ../agents/catalog/shape/math-5.md.
 
 Fix list: courses/math-3.md. Shape: ../agents/catalog/shape/math-3.md.
 
-- On the approved split: Equal Groups Zoo (`equal-groups-zoo`): Equal Groups Zoo keeps 3.OA.A.1 to 3; a new lesson tool takes 3.OA.A.4 and 3.OA.B.5 and 3.OA.B.6.; Fraction Trail (`fraction-trail`): Fraction Trail keeps 3.NF.A.1 and 3.NF.A.2; a new lesson tool takes 3.NF.A.3.; Kitchen Lab (`kitchen-lab`): Kitchen Lab keeps 3.MD.A.2; a new lesson tool takes 3.MD.A.1.; Tile the Floor (`tile-the-floor`): Tile the Floor keeps 3.MD.C.5 and 3.MD.C.6 and 3.G.A.2; a new lesson tool takes 3.MD.C.7.
+- On the approved split: Equal Groups Zoo (`equal-groups-zoo`): Equal Groups Zoo keeps 3.OA.A.1 to 3; a new teach tool takes 3.OA.A.4 and 3.OA.B.5 and 3.OA.B.6.; Fraction Trail (`fraction-trail`): Fraction Trail keeps 3.NF.A.1 and 3.NF.A.2; a new teach tool takes 3.NF.A.3.; Kitchen Lab (`kitchen-lab`): Kitchen Lab keeps 3.MD.A.2; a new teach tool takes 3.MD.A.1.; Tile the Floor (`tile-the-floor`): Tile the Floor keeps 3.MD.C.5 and 3.MD.C.6 and 3.G.A.2; a new teach tool takes 3.MD.C.7.
 - Fix: Pattern Painter (`pattern-painter`), Roller Coaster Rounding (`roller-coaster-rounding`), Graph Glow-Up (`graph-glow-up`), Fence Builder (`fence-builder`), Shape Family Tree (`shape-family-tree`).
 - Confirm only: Multiplication Dungeon (`multiplication-dungeon`).
 
 ## After batch 4
 
-Specs stay stopped. Your work moves to drafts of the layers under a course (Cory, 2026-11-11): the grade 3 and grade 5 math spines, the rubric files and approach pages for science and English language arts, the grade 6 ELA text plan, then more math spines. The list, the order and how each piece is made: [../courses/NEXT-SPINES.md](../courses/NEXT-SPINES.md). It can start before batch 4 ends if a batch is waiting on something. Unit pieces (teacher pages, checks with their keys, sentence frames) come after the unit plan fields are fixed.
+Specs stay stopped. Your work moves to drafts of the layers under a course (Cory, 2026-11-11): the grade 3 and grade 5 math scopes and sequences, the rubric files and approach pages for science and English language arts, the grade 6 ELA text plan, then more math scopes and sequences. The list, the order and how each piece is made: [../courses/NEXT-SPINES.md](../courses/NEXT-SPINES.md). It can start before batch 4 ends if a batch is waiting on something. Unit pieces (teacher pages, checks with their keys, sentence frames) come after the section plan fields are fixed.
 
 ## On hold: every other course
 
@@ -143,5 +143,5 @@ High school math sits after ELA on purpose: it waits until grade 4 math is prove
 
 - Before Shape the plan was 800 specs in catalog order, live rework tools first. Now it is four batches (about 46 specs), then a stop until one course is proved, with 15 specs reopened on a lighter load and 0 on hold for a Desk answer.
 - New specs that Shape adds for later: 15 approved, up to 0 more if Cory says yes on the Desk. None is yours to write yet.
-- Approved: Equal Groups Zoo keeps 3.OA.A.1 to 3; a new lesson tool takes 3.OA.A.4 and 3.OA.B.5 and 3.OA.B.6.; Fraction Trail keeps 3.NF.A.1 and 3.NF.A.2; a new lesson tool takes 3.NF.A.3.; Kitchen Lab keeps 3.MD.A.2; a new lesson tool takes 3.MD.A.1.; Tile the Floor keeps 3.MD.C.5 and 3.MD.C.6 and 3.G.A.2; a new lesson tool takes 3.MD.C.7.; Area Model Builder keeps 4.NBT.B.5; a new lesson tool takes 4.NBT.B.6.; Recipe Scaler keeps 4.NF.B.3 (a to d); a new lesson tool takes 4.NF.B.4.; Skate Park Angles keeps the angle standards (4.MD.C.5 to 7) and its Jump Log stays as practice for 4.MD.B.4; a new lesson tool teaches line plots (4.MD.B.4).; Zoom by Tens keeps 5.NBT.A.1 and 5.NBT.A.2; a new lesson tool takes 5.NBT.A.3 and 5.NBT.A.4.; Grocery Run keeps 5.NBT.B.7 and NSPFE.Spending; a new lesson tool takes 5.NBT.B.5 and 5.NBT.B.6.; Smoothie Lab keeps 6.RP.A.1; a new lesson tool takes 6.RP.A.2 and 6.RP.A.3.; Transformation Dock keeps 8.G.A.2 to 4; a new lesson tool takes 8.G.A.1 and 8.G.A.5.; Fact Fusion keeps RI.5.9 and W.5.7 and W.5.8; a new lesson tool takes RI.5.6 and RI.5.7.; Slow-Mo Writer keeps W.5.5; a new lesson tool takes W.5.3.; Debate Prep Desk keeps W.6.1a and b; a new lesson tool drafts the argument (W.6.1c to e).; Personal Essay Studio keeps W.11-12.5; a new lesson tool takes W.11-12.3.
+- Approved: Equal Groups Zoo keeps 3.OA.A.1 to 3; a new teach tool takes 3.OA.A.4 and 3.OA.B.5 and 3.OA.B.6.; Fraction Trail keeps 3.NF.A.1 and 3.NF.A.2; a new teach tool takes 3.NF.A.3.; Kitchen Lab keeps 3.MD.A.2; a new teach tool takes 3.MD.A.1.; Tile the Floor keeps 3.MD.C.5 and 3.MD.C.6 and 3.G.A.2; a new teach tool takes 3.MD.C.7.; Area Model Builder keeps 4.NBT.B.5; a new teach tool takes 4.NBT.B.6.; Recipe Scaler keeps 4.NF.B.3 (a to d); a new teach tool takes 4.NF.B.4.; Skate Park Angles keeps the angle standards (4.MD.C.5 to 7) and its Jump Log stays as practice for 4.MD.B.4; a new lesson tool teaches line plots (4.MD.B.4).; Zoom by Tens keeps 5.NBT.A.1 and 5.NBT.A.2; a new teach tool takes 5.NBT.A.3 and 5.NBT.A.4.; Grocery Run keeps 5.NBT.B.7 and NSPFE.Spending; a new teach tool takes 5.NBT.B.5 and 5.NBT.B.6.; Smoothie Lab keeps 6.RP.A.1; a new teach tool takes 6.RP.A.2 and 6.RP.A.3.; Transformation Dock keeps 8.G.A.2 to 4; a new teach tool takes 8.G.A.1 and 8.G.A.5.; Fact Fusion keeps RI.5.9 and W.5.7 and W.5.8; a new teach tool takes RI.5.6 and RI.5.7.; Slow-Mo Writer keeps W.5.5; a new teach tool takes W.5.3.; Debate Prep Desk keeps W.6.1a and b; a new lesson tool drafts the argument (W.6.1c to e).; Personal Essay Studio keeps W.11-12.5; a new teach tool takes W.11-12.3.
 - On the Desk: nothing.

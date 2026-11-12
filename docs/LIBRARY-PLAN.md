@@ -228,7 +228,7 @@ use; speeches by private citizens (for example "I Have a Dream") are still under
 | `/library/excerpts/` | The excerpts add-on shelf (later) |
 
 Links both ways with the rest of the site: grade pages get a small "From the Reading Room" strip, and ELA
-reading-literature modules link to matching stories by standard code. Later, a few **"works with any story"
+reading-literature topics link to matching stories by standard code. Later, a few **"works with any story"
 tools** (story map, character feelings tracker, compare two versions) can open any story in the library.
 
 ### Built (2026-10-25): pages ready to populate

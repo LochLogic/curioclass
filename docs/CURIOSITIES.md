@@ -9,7 +9,7 @@ eight concepts go ahead. Span and Spire and Pocket Universe are pivoting first, 
 concepts has a spec yet.
 
 Each concept names the real thing it is, the first two minutes, where the depth comes from, the real material (with
-its licence status), and where it sits on the map: the anchor module it fills and the other modules it reaches.
+its licence status), and where it sits on the map: the anchor topic it fills and the other topics it reaches.
 
 ## Cory's first read (2026-11-04)
 
@@ -129,7 +129,7 @@ its licence status), and where it sits on the map: the anchor module it fills an
 - **Map:** anchor math-9-function-notation-and-graphs. Also reaches math-8-defining-functions,
   math-8-modeling-with-functions, math-9-linear-quadratic-and-exponential-models, math-11-polynomial-functions,
   math-11-exponential-and-logarithmic-functions, math-11-trigonometric-functions, math-12-functions-and-their-graphs.
-  About a dozen graphing lesson tools are planned in those modules; they stay, and each can open this one.
+  About a dozen graphing teach tools are planned in those topics; they stay, and each can open this one.
 - **Watch:** must not copy any branded graphing calculator in name, look or layout (BASELINE rule 15).
 
 ### 7. Compass and Straightedge
@@ -156,7 +156,7 @@ its licence status), and where it sits on the map: the anchor module it fills an
 - **Real material:** the CMU Pronouncing Dictionary (134,000 words with stress; BSD-style licence).
 - **Map:** anchor ela-7-sound-and-form-in-poetry. Also reaches ela-4-poetry-drama-and-prose,
   ela-k-rhymes-and-sounds.
-- **Watch:** Poetry Soundboard (planned studio in the same module) is the neighbour; this may take its card or sit
+- **Watch:** Poetry Soundboard (planned studio in the same topic) is the neighbour; this may take its card or sit
   beside it.
 
 ## The look (approved by Cory, 2026-11-04)
@@ -206,7 +206,7 @@ one offline file, school Chromebook speed. Motion, Sound and Read stay, gathered
 
 **On the site.** The Curiosities shelf gets its own presentation: dark, like a cabinet of curiosities, each one shown
 by its nameplate and a short live preview (the atom turning, the ribbon scrolling), not the regular tool card. In a
-module the curiosity still sits in the normal list, with its nameplate as the badge.
+topic the curiosity still sits in the normal list, with its nameplate as the badge.
 
 **How it gets built.** The shared controls (knob, fader, dial, gauge, readout, nameplate, Manual drawer) become a small
 curiosities kit, grown the usual way: from the first three curiosities that need it (rule 13). Span and Spire and

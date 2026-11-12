@@ -21,7 +21,7 @@ vocabulary cards in English and Spanish, and a family game for home.
 
 - **83 tools live,** from a kindergarten computer builder to a high school fact-check lab. Open any of them now.
 - **800 tools planned** across every grade and subject. The 717 still to build are on the site already, as sketches
-  on each module page, so you can see exactly what your support finishes.
+  on each topic page, so you can see exactly what your support finishes.
 - **Supply Closet live:** 4,400+ vocabulary cards in English and Spanish, 104 family games, anchor charts and posters.
 - **Reading Room in progress:** about 700 public domain stories, curated and processed.
 - Every tool goes through a written build process: a spec, a build, three independent quality reviews (teaching,

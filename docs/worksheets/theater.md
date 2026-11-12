@@ -1,6 +1,6 @@
 # Worksheets: Theater
 
-Kindergarten through Grade 12 Theater, one section per grade, built on the National Core Arts Standards. Each list runs in teaching order, module by module, with review sheets at module checkpoints; scripts are public domain or original.
+Kindergarten through Grade 12 Theater, one list per grade, built on the National Core Arts Standards. Each list runs in teaching order, topic by topic, with review sheets at topic checkpoints; scripts are public domain or original.
 
 ## theater-k: Kindergarten Theater
 

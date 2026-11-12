@@ -3,7 +3,7 @@
 This file covers the 11 world language classes by proficiency level (ACTFL and the World-Readiness Standards: the three
 communication modes, cultures and comparisons): Spanish, then French, then American Sign Language, each from Novice to
 Advanced, with every list in teaching order through the year. Every Spanish and French sheet needs a native-speaker
-review before it is published. French has no modules yet, so its Module cells read "-". ASL sheets are graphics-only on
+review before it is published. French has no topics yet, so its Module cells read "-". ASL sheets are graphics-only on
 paper (drawn handshape diagrams with movement arrows, no photos or video) and wait on the ASL design decision, including
 review by Deaf educators, before any are built.
 

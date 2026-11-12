@@ -38,7 +38,7 @@ because they had gone stale.
 | Pillar (from the master vision) | Where it lives | When |
 |---|---|---|
 | Standards spine: national frameworks, leaf standards, a state crosswalk, prerequisite maps | Tools track and The Map | The state crosswalk and leaf expansion come after the curriculum ladder starts (one state outside the Common Core first); prerequisite maps feed The Map |
-| Curriculum spine | Curriculum track: a year spine, then units, then Tracks, then the Binder export | Year spine and unit pilot after the worksheets go live |
+| Curriculum scope and sequence | Curriculum track: a scope and sequence, then units, then Tracks, then the Binder export | Scope and sequence and unit pilot after the worksheets go live |
 | Universal shell and Projector Mode | Kit, grown from finished tools; Projector slides become part of a unit day | With the cohort kit fixes, then units |
 | Teacher desk utilities (timers, noise meter, group maker, chimes) | Supply Closet: Teacher Desk shelf, with classroom music and a sound board | After the closet's current items |
 | Live class sync (Class Cast) | Parked | Only with funding and someone to keep a server running |
@@ -83,11 +83,11 @@ first three qualities, but they add a goal ladder and a sticker book: a designed
 needs neither. A super tool can also be a curiosity when it passes the short test; the label follows the test, not
 the size.
 
-**One tool, two doors.** A curiosity is a normal tool on the curriculum map: it fills its anchor module (Beat Lab
+**One tool, two doors.** A curiosity is a normal tool on the curriculum map: it fills its anchor topic (Beat Lab
 fills arts-9-12-composing-and-producing; Elements Inspector fills science-10-atomic-structure-and-the-periodic-table)
-and lists the other modules it reaches, like any tool. It also appears on a Curiosities shelf, which is a view of
-those tools, never a copy. It takes over the anchor's lesson card only when its teacher plan teaches that module's
-standard (Beat Lab's plan.md does); otherwise it is a second card in the module, beside the lesson tool. Concepts
+and lists the other topics it reaches, like any tool. It also appears on a Curiosities shelf, which is a view of
+those tools, never a copy. It takes over the anchor's lesson card only when its teacher plan teaches that topic's
+standard (Beat Lab's plan.md does); otherwise it is a second card in the topic, beside the teach tool. Concepts
 and open choices: docs/CURIOSITIES.md.
 
 ## The bar we build to (Cory, 2026-11-10)

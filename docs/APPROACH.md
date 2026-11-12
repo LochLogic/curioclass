@@ -1,12 +1,12 @@
 # The Curio Class approach to teaching
 
 This page says how Curio Class teaches, in every subject, and why. It is layer 3 of a course: it is built on
-[FOUNDATION.md](FOUNDATION.md) and on the standards, and every spine and unit plan is built on it. Each subject
+[FOUNDATION.md](FOUNDATION.md) and on the standards, and every scope and sequence and section plan is built on it. Each subject
 adds its own page, which says how the subject carries out each principle. The first is
 [APPROACH-MATH.md](APPROACH-MATH.md); science and English language arts follow when those courses open.
 
 Two honest notes. Nothing in Curio Class has been tried with children yet, so this page makes no claim about
-results; it explains choices, and its rules are rules for unit plans, not descriptions of lessons that exist.
+results; it explains choices, and its rules are rules for section plans, not descriptions of lessons that exist.
 And every claim about how students learn rests on a source opened and read for this page. The list at the end
 says how much of each was read. Where a federal practice guide rates its own evidence (strong, moderate, or
 minimal; the oldest guide says low), that rating is given. The detail behind each claim (who was studied, how
@@ -51,13 +51,13 @@ They follow the order of a unit: plan, teach, practise, check, and then two that
 **1. Start from what students know, and teach in an order where each idea rests on the last.**
 New ideas are learned by connecting them to what is already in memory, and what a student already believes can
 also mislead (How People Learn II, conclusion 5-1; Deans for Impact). These are summaries of a large body of
-research, not a tested recipe for ordering a course. *Rule:* a unit plan names the earlier standards it builds
-on and checks them first; the spine gives "builds on" and "where it comes back" for every stretch.
+research, not a tested recipe for ordering a course. *Rule:* a section plan names the earlier standards it builds
+on and checks them first; the scope and sequence gives "builds on" and "where it comes back" for every unit.
 
 **2. Know it, do it, use it, together.**
 Students learn why an idea works, become accurate and quick with it, and use it. None of the three waits for
 the others (Deans for Impact; the math page gives that subject's sources). *Rule:* each subject page names the
-kinds of day it balances, and a unit plan marks every day as one of them.
+kinds of day it balances, and a section plan marks every day as one of them.
 
 **3. Teach new things clearly, in small steps, with models. Then take the help away.**
 Working memory is small, and for beginners clear teaching beats partial guidance (Rosenshine 2012; Clark,
@@ -68,8 +68,8 @@ grades and for grades 6 to 12 (WWC elementary and secondary writing guides). In 
 strategies the same way is rated strong for kindergarten to grade 3 and, in an older guide, for grades 4 to 12.
 Each rating is for the whole practice, with modelling as one part. Modelling the close reading of a single text
 is common practice with no rating. As skill grows the advantage of
-examples reverses, so the help must fade. *Rule:* a unit plan names who holds the model on each day and the day
-it is withdrawn. A lesson tool shows a model before it asks.
+examples reverses, so the help must fade. *Rule:* a section plan names who holds the model on each day and the day
+it is withdrawn. A teach tool shows a model before it asks.
 
 **4. A lesson may open with a short task. The teaching follows the same day.**
 This is a real debate, and we do not pretend it is settled. Research does not support only student-centered or
@@ -81,13 +81,13 @@ widely used open math course puts a task before the explanation from kindergarte
 K-5), and science standards are built on starting from something to explain. *Rule:* an opening task is allowed
 when students already have what they need to attempt it and the goal is an idea, not a procedure; in math, ten
 minutes at most. In grades 2 to 5, teaching first is the default for anything new, unless the subject page says
-otherwise and gives its source. A unit plan says how each day opens and for how long.
+otherwise and gives its source. A section plan says how each day opens and for how long.
 
 **5. Talk and writing are part of learning.**
 Asking students to explain why and how is rated strong (Pashler et al. 2007, recommendation 7); that supports
 "why" questions, not every kind of discussion. For English learners, building spoken and written language into
 content lessons is rated strong, and regular structured writing is recommended on minimal evidence (WWC English
-learner guide). *Rule:* a unit plan names two or three planned questions and the written task. A tool cannot
+learner guide). *Rule:* a section plan names two or three planned questions and the written task. A tool cannot
 judge open writing; a teacher does, with a rubric and sample pieces on paper (FOUNDATION).
 
 **6. Choose the medium for the idea: hands, paper or screen.**
@@ -98,8 +98,8 @@ studies, and one large national study found no gain when schools used it in the 
 Mathematics Advisory Panel, finding 28), so we do not count on software to teach by itself. No technology is
 right everywhere (How People Learn II, conclusions 8-1, 8-2). In one interview study with college students,
 people learned from changing a simulation themselves and little from watching it (Adams et al. 2008). *Rule:* a
-tool is built only when a unit plan names its job, and each use of it has one of three jobs (one tool may be used
-for two, such as a lesson tool that shows why and then checks unaided; the plan names the part, the job and the
+tool is built only when a section plan names its job, and each use of it has one of three jobs (one tool may be used
+for two, such as a teach tool that shows why and then checks unaided; the plan names the part, the job and the
 minutes): **show why** (the student
 predicts, changes something, sees what follows), **practise with feedback**, or **check unaided**. A tool does
 not replace the teacher's explanation, hold a discussion, judge open work, stand in for real materials, or know
@@ -108,13 +108,13 @@ a student from one day to the next. The plan says what is done by hand, with wha
 **7. Practise over time, mixed, and from memory.**
 Spacing is rated moderate and quizzing with feedback strong (Pashler et al. 2007, recommendations 1 and 5b); a
 review of study techniques rated the same two highest, and mixing problem types promising but less certain
-(Dunlosky 2013). *Rule:* a unit plan says what earlier work is practised in it and where its own ideas come
+(Dunlosky 2013). *Rule:* a section plan says what earlier work is practised in it and where its own ideas come
 back. How (a warm-up, a notebook, a return to a text) is set by the subject page.
 
 **8. Every day leaves evidence the teacher can act on.**
 Checking helps when the evidence changes the teaching, and feedback helps when it is about the work and the
 next step, not a mark (Black and Wiliam 1998; Leahy et al. 2005). Feedback varies widely in effect and can harm
-(EEF feedback report). *Rule:* the end check of a unit is written before its days. Each item names the common
+(EEF feedback report). *Rule:* a unit's end-of-unit assessment is written before its days. Each item names the common
 wrong answers, what each shows, and what to do if many students made it. The form of the daily evidence is set
 by the subject page: an exit question in math; the notebook and the class model in science. What FOUNDATION
 costs us: no accounts means no live dashboard. The teacher holds the record, on score codes and a printed class
@@ -124,7 +124,7 @@ sheet, and that is slower.
 Teaching a small set of academic words in depth is rated strong (WWC English learner guide, recommendation 1).
 Guidance for English learners asks that language support sit inside the lesson and the challenge be kept (ELSF;
 WIDA 2020). Universal Design for Learning asks for more than one way in, more than one way to respond (CAST
-2024); we treat it as a design framework, not a proven method. *Rule:* every unit plan fills three hooks: an
+2024); we treat it as a design framework, not a proven method. *Rule:* every section plan fills three hooks: an
 unaided check, English learner supports, and access. Extension goes deeper on the same standard. For each
 readiness gap the plan gives a ten-minute reteach and the earlier-grade tool or page. Curio Class is not an
 intervention program, and a student two or more years behind needs more than it offers.
@@ -164,11 +164,11 @@ answer keys explain, and discussion questions are ones a parent can ask.
   the studies under them.
 - Curio Class itself. Untested.
 
-## The stretch sheet and the unit plan
+## The unit plan and the section plan
 
 The principles become the fields of two documents, written before any tool for a unit is specced or built: a
-stretch sheet, which holds the readiness check and the end check whole, and a unit plan with eleven fields.
-The fields were tried on three units of grade 4 math, read by the curriculum expert and fixed by Cory on
+unit plan, which holds the readiness check and the end-of-unit assessment whole, and a section plan with eleven fields.
+The fields were tried on three sections of grade 4 math, read by the curriculum expert and fixed by Cory on
 2026-11-11. They live in one place, [courses/UNIT-PLAN.md](courses/UNIT-PLAN.md), with the rules, the word caps
 and a blank copy of each. The field table that stood here as a proposal has been removed so the two cannot
 drift apart.

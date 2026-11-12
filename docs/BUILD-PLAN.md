@@ -94,8 +94,8 @@ children's tools and are not used. See docs/POLISH.md (Sound and voice) and docs
    parallel; a family's first tool runs before its siblings (it writes the engine).
 4. Integrate: check_tools, commit, board, queue art and voice, add to the Review Desk when art and voice are in.
 5. Cross-link (every build, not just tools): link the new piece from where a teacher or child would look for it, and
-   link out from it to what it pairs with. A tool links to its module, word wall, anchor chart, games, research cards and
-   worksheets; a Supply Closet item (word wall words, research cards, games, printables) is mapped to the modules it
-   serves so module pages show it; a new collection links to and from its members. Ask: where would someone expect to
-   find this, and where should they go next? Check the module page and the closet shelf both show it.
-   A new module also gets a row in data/sequence.csv (its stop on the Teaching map; the build warns until it has one).
+   link out from it to what it pairs with. A tool links to its topic, word wall, anchor chart, games, research cards and
+   worksheets; a Supply Closet item (word wall words, research cards, games, printables) is mapped to the topics it
+   serves so topic pages show it; a new collection links to and from its members. Ask: where would someone expect to
+   find this, and where should they go next? Check the topic page and the closet shelf both show it.
+   A new topic also gets a row in data/sequence.csv (its stop on the Teaching map; the build warns until it has one).

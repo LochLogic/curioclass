@@ -11,8 +11,8 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
 1. **Quality over saved work.** Never merge, shorten or share something only to save effort. Spans, shared engines and
    shared figures are fine only when nothing is lost for any grade or subject. If something is lost, build it
    separately (gf-04, w1-21).
-2. **Every standard is taught well, above the minimum.** A code on a module must be really taught in that tool. If it
-   cannot be taught well there, remove it from the module and make sure another tool teaches it well. Never add a thin
+2. **Every standard is taught well, above the minimum.** A code on a topic must be really taught in that tool. If it
+   cannot be taught well there, remove it from the topic and make sure another tool teaches it well. Never add a thin
    activity just to make a code honest (gf-07, w2-01, w2-21, w2-22, w1-15).
 3. **Better graphics by default.** When there is a choice between drawn-in-code placeholders and real illustrated art,
    choose the better art (w1-42).
@@ -71,46 +71,46 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     A student alone, following the tool's lead, meets a model, does the standard's own verb (solve, write, explain,
     record) on every part of its wording, on five or more items that differ, with a check where thinking is cheaper
     than guessing, and none of it can be skipped. For writing and talk a tool cannot mark, a model, a guide while
-    working and a self-check on screen against a shown guide count. Every tool states a role: `lesson` (passes the
+    working and a self-check on screen against a shown guide count. Every tool states a role: `teach` (passes the
     test), `see why` (lets a student explore the idea and names what the unit adds) or `practice`. A tool claims a
     code only for work on its main path; a readout, an optional mode or a teacher note never carries a code.
     Recess games and Curiosities take the role `recess` or `curiosity` and claim no code.
-22. **Modules name standards, and major work gets depth** (2026-11-10). A module is one teachable topic. It
+22. **Topics name standards, and major work gets depth** (2026-11-10). A topic page covers one teachable topic. It
     is split only when it holds two unrelated topics, and then properly: a split script, redirects for the old
     pages, and its Word Wall, chart and games divided by hand (its id keys all of them and about 762 live pages;
     docs/ECOSYSTEM.md). It is never split just to reach standard-level detail; the ledger does that. Split
-    candidates come to Cory as exceptions. A module's standards are spelled out in place, never a bare cluster, each tool carries its own codes, and data/coverage.csv records where
+    candidates come to Cory as exceptions. A topic's standards are spelled out in place, never a bare cluster, each tool carries its own codes, and data/coverage.csv records where
     every standard is taught in full, so an untaught standard shows. In math, ELA and science, the major work of a
     grade gets two or three tools or full modes (see why, do it, use it); the trade is fewer tools on supporting
     topics for now. Fluency volume, long writing, discussion, year-long reading and topic threads across texts
-    belong to units, worksheets and the Reading Room, and are recorded there, not claimed by a tool.
-    **Changed 2026-11-11:** the unit plan decides how many tools a stretch gets (rule 23), not this rule. A major
-    stretch may run on print with no key tool (grade 4 math stretch 3 does).
+    belong to units and sections, worksheets and the Reading Room, and are recorded there, not claimed by a tool.
+    **Changed 2026-11-11:** the section plan decides how many tools a unit gets (rule 23), not this rule. A major
+    unit may run on print with no key tool (grade 4 math unit 3 does).
 
-23. **A unit plan comes before a tool** (2026-11-11). A tool is the end piece of instruction. No tool is built or
-    refined until a unit plan names its job, and the plan marks it key (the one a day is planned around; built
+23. **A section plan comes before a tool** (2026-11-11). A tool is the end piece of instruction. No tool is built or
+    refined until a section plan names its job, and the plan marks it key (the one a day is planned around; built
     first) or light (lighter, added over time, same standard of correctness; called "practice" before 2026-11-11, renamed so the mark is not confused with the role "practice"). An existing spec or tool carries
     no weight against what the unit needs (rule 1). A teacher judges open work; a tool gives it structure and marks
     only what has a right answer. Grades 3 to 12 assume one device per student with a one-line projector path, and
     a parent teaching one child at home is a named audience. Always cover the whole standard (Cory, 2026-11-11): a
     plan teaches and checks every part of each standard it claims, in both directions where the standard has two
-    (4.NF.A.1: multiplying and dividing both numbers), even where a spine title names only one part
+    (4.NF.A.1: multiplying and dividing both numbers), even where a scope and sequence title names only one part
     (docs/courses/UNIT-PLAN.md, rule 19). All of this, with the promises it rests on, is in
-    docs/FOUNDATION.md, which every spec, unit and review agent reads first.
+    docs/FOUNDATION.md, which every spec, unit, section and review agent reads first.
 24. **Core subjects first (Cory, 2026-11-11; a soft goal).** Math, English language arts, science and social
     studies (56 of the 105 courses) are the first focus; the other subjects follow. This bends where work is
     complementary (a shared rule, a bar page, a standards fix that serves both). When a choice has to be made, the
     core subjects come first. Every course is still finished to the bar; this sets the order, not the scope.
 25. **Prove at the bottom before planning wider** (Cory, 2026-11-11, accepting the cold strategic review,
     docs/reviews/strategic-review-2026-11-11.md). One unit is built all the way down (lesson days, print, checks
-    with keys, its tool) and read before more plans are written to the same template. A stretch is planned only
-    when the stretch before it is built. The first pilot is grade 4 math unit 11.1; the first ELA and science
-    pilots follow as soon as it has been read. Until then no new spine, stretch sheet, unit plan or spec is
+    with keys, its tool) and read before more plans are written to the same template. A unit is planned only
+    when the unit before it is built. The first pilot is grade 4 math pilot unit 11 (one section, 11.1); the first ELA and science
+    pilots follow as soon as it has been read. Until then no new scope and sequence, unit plan, section plan or spec is
     written, except the pieces a pilot needs.
 26. **Old tools and specs are sorted by demand** (same day). Three bins, set by script, never by inspection:
-    (a) named by a unit plan, as key or light: gets course work; (b) live and passing the teaching test but not
+    (a) named by a section plan, as key or light: gets course work; (b) live and passing the teaching test but not
     named: stays on the shelf as a free-standing tool and claims no course coverage; (c) everything else: frozen,
-    no further spend. Spec fixing in batches has stopped. A tool moves to bin (a) only when a unit plan asks for it.
+    no further spend. Spec fixing in batches has stopped. A tool moves to bin (a) only when a section plan asks for it.
 27. **A machine checks what a machine can** (same day). Every keyed item (check items, exit questions, answers,
     named wrong answers) is kept as data, and a script recomputes every answer that can be computed. A key the
     script cannot reproduce fails the build. "Worked twice by an agent" is not a check. A lesson day is written
@@ -123,11 +123,11 @@ Bring Cory only questions these rules cannot settle and that matter (see "What g
     texts is allowed. Older Reading Room texts appear there only as a paired or optional read. Grades 9 to 12 may
     anchor on Reading Room texts. The Reading Room itself stays an independent-reading shelf.
 
-## One module Cory reviews personally
+## One tool Cory reviews personally
 
 **growing-up-q-a** (grade 4-5 puberty). It opens on a splash cover page that makes the educational purpose clear,
 framed as education, not a warning. It uses proper anatomical terms, and every fact is sourced. **Cory reviews it before
-any live push.** This is the only module with that gate. It also has open wording and default questions; they are
+any live push.** This is the only tool with that gate. It also has open wording and default questions; they are
 brought to Cory together with that review, not before (w1-29 to w1-32).
 
 ## Specific calls
@@ -137,13 +137,13 @@ brought to Cory together with that review, not before (w1-29 to w1-32).
 - pressure-point: illustrated portraits, not drawn-in-code (w1-42).
 - dance-styles-explorer: instead of a disclaimer, a fresh agent checks each style's phrases for respect and accuracy,
   then it ships (w1-24, rule 5).
-- algebra-tile-studio: remove A-SSE.B.3c and B.4 from its module. Add them to exponent-rule-builder and savings-plan,
+- algebra-tile-studio: remove A-SSE.B.3c and B.4 from its topic. Add them to exponent-rule-builder and savings-plan,
   which teach them in full (w2-01, rule 2).
 - work-rate-crew: keep the extraneous-roots audit, set inside the story (the crew lead's checking sheet), so A-REI.A.2
   is taught in full (w2-05, rule 2).
 - input-or-output: add E2-SYS-SE-12 only if a real activity teaches it well; otherwise move the code to a tool that does
   (gf-07).
-- K-2 span modules: the builder confirms each grade gets full depth; split any span where a grade loses something
+- K-2 span topics: the builder confirms each grade gets full depth; split any span where a grade loses something
   (gf-04).
 - target-toss: the default setup is a target taped to the wall beside the screen, not on it. The screen shows the
   target and keeps score; students throw soft balls at the wall target. A setup card shows this (w1-49).
@@ -174,10 +174,10 @@ Only questions that:
 **Narrowed 2026-11-11 (Cory, accepting the cold strategic review).** Two rules keep the list short:
 
 - Item-level choices inside the standards' limits (number sizes, which fraction pairs, how many items on a check,
-  day swaps inside a stretch, word caps) are settled by the curriculum expert, written under "Settled by the
+  day swaps inside a unit, word caps) are settled by the curriculum expert, written under "Settled by the
   expert" in its report, and collected in a weekly digest for Cory (docs/reviews/DIGEST.md). Cory can overturn
   any of them from the digest.
-- Cory decides scope, audience, money, outside people, and anything that moves a standard between units.
+- Cory decides scope, audience, money, outside people, and anything that moves a standard between sections.
 
 Each one comes with full context: what the tool is, what the student sees, what the choice changes, and a concrete
 example. Several of Cory's holds were "need more info".

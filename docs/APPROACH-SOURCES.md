@@ -281,7 +281,7 @@ turns up, and no page may rest on them.
 5. Anything on parents teaching their own child a full course.
 6. Learning trajectories (Clements and Sarama), when a K to 2 math course opens.
 
-## Lesson-level sources found by the unit plan review (added 2026-11-11)
+## Lesson-level sources found by the section plan review (added 2026-11-11)
 
 - EngageNY grade 4, full modules as PDFs with a text layer, CC BY-NC-SA 3.0 (stated in the files). Read only; the
   non-commercial, share-alike licence means nothing is copied. Module 1:

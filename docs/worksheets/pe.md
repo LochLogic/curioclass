@@ -1,6 +1,6 @@
 # Worksheets: Physical Education
 
-Covers Physical Education for every grade, Kindergarten through Grade 12, following the SHAPE America national standards. Each unit's list runs in teaching order, module by module. Fitness sheets track effort, activity and personal progress only, never body size, and observation sheets rate skills against cues, not classmates.
+Covers Physical Education for every grade, Kindergarten through Grade 12, following the SHAPE America national standards. Each class's list runs in teaching order, topic by topic. Fitness sheets track effort, activity and personal progress only, never body size, and observation sheets rate skills against cues, not classmates.
 
 ## pe-k: Kindergarten Physical Education
 
