@@ -45,6 +45,8 @@ The pilot unit comes first (grade 4 math unit 11.1, [courses/math-4/s11.md](cour
   the row shapes will change once a lesson day exists.
 - In or not-now for the six extra pieces of a finished course (ROADMAP, "What a finished course holds",
   items 10 to 15).
+- How lesson days use the shelves (Sub Day, Word Wall, charts, worksheets, generators, games, lesson plans):
+  card `q-shelves-in-courses`, four questions, 2026-11-12. Unit 11.1's module has almost nothing on the shelves yet.
 - How long the home page feedback note stays hidden after × (card `q-banner-hide`, 2026-11-12). It had not gone
   away: Cory's Chrome had it hidden for good from one click. One message ever received, our own test.
 - (Answered 2026-11-12: yes on `LESSON-DAY.md` draft 2. Still open on the card: no slides, and building the
@@ -129,7 +131,7 @@ What was done, with nothing deleted that was not first saved:
   ([reviews/DIGEST.md](reviews/DIGEST.md), started 2026-11-12: copy each report's "Settled by the expert" table
   into it).
 - The Review Desk is https://claude.ai/artifact/SVXBzgyS941dyqmEzQHgNC. A question card has status `question`,
-  then `answered`. Cory answers in a comment on the card. Next free card order: 107. Sara's session cannot open the Desk; the main session places her cards. After changes, refresh the
+  then `answered`. Cory answers in a comment on the card. Next free card order: 108. Sara's session cannot open the Desk; the main session places her cards. After changes, refresh the
   Dashboard with `python -X utf8 scripts/course_status.py <out.json>` (Desk doc `stats/courses`) and the Roadmap
   tab with `python -X utf8 scripts/desk_roadmap.py <out.json>` (Desk doc `stats/roadmap`).
 - Core subjects first (BASELINE rule 24, a soft goal): see "The order after the pilot".
