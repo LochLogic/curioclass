@@ -5,3 +5,9 @@ cheap,74,108353,15,112312,11
 cheap,76,99454,18,122382,13
 cheap,77,102784,18,155867,13
 cheap,75,130783,23,168259,12
+expert,74,171559,27,275752,6 missed (script 2 expert 4); agrees 7 of 9 cheap
+expert,73,195541,34,339333,7 missed (expert 3 script 2 cheap 2); agrees 7 of 8 cheap
+expert,72,170074,34,339644,9 missed (cheap 6 script 1 expert 2); agrees 7 of 8 cheap
+expert,75,193513,41,384426,5 missed (script 1 cheap 3 expert 1); agrees 9 of 11 cheap (1 partly)
+expert,76,193256,33,487132,10 missed (script 5 expert 5); agrees 12 of 13 cheap (2 partly)
+expert,77,189581,38,612901,5 missed (script 1 cheap 1 expert 3); agrees 9 of 11 cheap
